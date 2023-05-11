@@ -316,6 +316,7 @@ public:
 	double DisruptionLevel() const;
 	// Get how fogged this ship's vision is.
 	double FogLevel() const;
+	double FoggedViewRange() const;
 	// Get the (absolute) amount of hull that needs to be damaged until the
 	// ship becomes disabled. Returns 0 if the ships hull is already below the
 	// disabled threshold.

@@ -1254,8 +1254,8 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	// range higher than 2000, it will engage ships up to 50% beyond its range.
 	// If a ship has short range weapons and is not hunting, it will engage any
 	// ship that is within 3000 of it.
-	double closest = person.IsHunting() ? numeric_limits<double>::infinity() :
-		(minRange > 1000.) ? maxRange * 1.5 : 4000.;
+	double closest = person.IsHunting() ? min(numeric_limits<double>::infinity(), 10000. / (1 + ship.FogLevel())) :
+		(minRange > min(1000., ship.FoggedViewRange()) ? maxRange * 1.5 : min(4000., ship.FoggedViewRange()));
 	bool hasNemesis = false;
 	bool canPlunder = person.Plunders() && ship.Cargo().Free() && !ship.CanBeCarried();
 	// Figure out how strong this ship is.
@@ -1398,7 +1398,7 @@ shared_ptr<Ship> AI::FindNonHostileTarget(const Ship &ship) const
 vector<Ship *> AI::GetShipsList(const Ship &ship, bool targetEnemies, double maxRange) const
 {
 	if(maxRange < 0.)
-		maxRange = numeric_limits<double>::infinity();
+		maxRange = min(numeric_limits<double>::infinity(), ship.FoggedViewRange());
 
 	auto targets = vector<Ship *>();
 
@@ -2858,7 +2858,7 @@ bool AI::DoCloak(Ship &ship, Command &command)
 		}
 
 		// Otherwise, always cloak if you are in imminent danger.
-		static const double MAX_RANGE = 10000.;
+		static const double MAX_RANGE = min(10000., ship.FoggedViewRange());
 		double range = MAX_RANGE;
 		const Ship *nearestEnemy = nullptr;
 		// Find the nearest targetable, in-system enemy that could attack this ship.
@@ -3269,7 +3269,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 		if(it != orders.end() && it->second.target.lock() == currentTarget)
 		{
 			disabledOverride = (it->second.type == Orders::FINISH_OFF);
-			friendlyOverride = disabledOverride | (it->second.type == Orders::ATTACK);
+			friendlyOverride = disabledOverride || (it->second.type == Orders::ATTACK);
 		}
 	}
 	bool currentIsEnemy = currentTarget

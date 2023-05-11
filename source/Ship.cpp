@@ -3383,10 +3383,18 @@ double Ship::DisruptionLevel() const
 
 
 
-// Get how disrupted this ship's shields are.
+// Get how fogged this ship's view is.
 double Ship::FogLevel() const
 {
 	return fogging;
+}
+
+
+
+// Get the field of view of this ship, accounting for fog.
+double Ship::FoggedViewRange() const
+{
+	return 100. * (1000. / (fogging + 100.) + 2);
 }
 
 

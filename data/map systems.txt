@@ -4466,6 +4466,7 @@ system Alnitak
 	fleet "Small Republic" 3000
 	fleet "Large Republic" 4000
 	fleet "Republic Logistics" 6000
+	hazard "Tangles Fog" 1
 	object
 		sprite star/f8
 		period 10
