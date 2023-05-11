@@ -57,6 +57,7 @@ namespace {
 		TARGET,
 		MARKED,
 		LAUNCHING,
+		LINGERING,
 		DARING,
 		SECRETIVE,
 		RAMMING,
@@ -95,6 +96,7 @@ namespace {
 		{"target", TARGET},
 		{"marked", MARKED},
 		{"launching", LAUNCHING},
+		{"lingering", LINGERING},
 		{"daring", DARING},
 		{"secretive", SECRETIVE},
 		{"ramming", RAMMING}
@@ -359,6 +361,13 @@ bool Personality::Harvests() const
 bool Personality::IsSwarming() const
 {
 	return flags.test(SWARMING);
+}
+
+
+
+bool Personality::IsLingering() const
+{
+	return flags.test(LINGERING);
 }
 
 
