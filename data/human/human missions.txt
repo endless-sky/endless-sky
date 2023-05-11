@@ -5956,7 +5956,6 @@ mission "Blind Man from Martini"
 			choice
 				`	"Goodbye."`
 				`	"Farewell to you too."`
-			`	With that, he grabs his cane and his luggage, and follows a hospital attendant toward his daughter's room, leaving you in the reception.`
 			action
 				clear "Blind Man from Martini: label blind"
 				clear "Blind Man from Martini: label blind-1"
@@ -5967,4 +5966,5 @@ mission "Blind Man from Martini"
 				clear "Blind Man from Martini: taxi questions count"
 				clear "Blind Man from Martini: label far"
 				clear "Blind Man from Martini: label looking"
-				decline
+			`	With that, he grabs his cane and his luggage, and follows a hospital attendant toward his daughter's room, leaving you in the reception.`
+			decline
