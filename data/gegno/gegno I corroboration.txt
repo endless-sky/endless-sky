@@ -155,7 +155,7 @@ mission "Veering Vi"
 				"Slate" 2
 
 
-mission "Scin Suspicion" 
+mission "Scin Suspicion"
 	minor
 	repeat
 	invisible
@@ -178,16 +178,6 @@ mission "Scin Suspicion"
 				"Tridymite"
 
 
-
-
-
-
-
-
-
-
-
-
 #mission "Derelict Desponders"
 	invisible
 	landing
@@ -204,8 +194,12 @@ mission "Scin Suspicion"
 
 #mission "Acquiescence"
 
+
 #jobs
+
 
 #mission "Heart of the Mighty"
 
+
 #mission "Heart of the Clever"
+
