@@ -84,6 +84,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Dialog.h
 	Dictionary.cpp
 	Dictionary.h
+	DistanceCalculationSettings.h
+	DistanceCalculationSettings.cpp
 	DistanceMap.cpp
 	DistanceMap.h
 	Distribution.cpp
