@@ -185,14 +185,14 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 	damage.burnDamage = weapon.BurnDamage() * ScaleType(.5, 0., attributes.Get("burn protection"));
 	damage.leakDamage = weapon.LeakDamage() * ScaleType(1., 0., attributes.Get("leak protection"));
 
-  // Unique special damage types.
+	// Unique special damage types.
 	// Slowing and scrambling are blocked 50% by shields.
 	// Disruption is blocked 50% by the absence of shields.
 	damage.slowingDamage = weapon.SlowingDamage() * ScaleType(.5, 0., attributes.Get("slowing protection"));
 	damage.scramblingDamage = weapon.ScramblingDamage() * ScaleType(.5, 0., attributes.Get("scramble protection"));
 	damage.disruptionDamage = weapon.DisruptionDamage() * ScaleType(0., .5, attributes.Get("disruption protection"));
-	damage.foggingDamage = weapon.FogDamage() * ScaleType(0., attributes.Get("fogging protection"));
-  
+	damage.foggingDamage = weapon.FogDamage() * ScaleType(0., 0., attributes.Get("fogging protection"));
+
 	// Hit force is unaffected by shields.
 	double hitForce = weapon.HitForce() * ScaleType(0., 0., attributes.Get("force protection"));
 
