@@ -101,7 +101,7 @@ jobs:
   check_content_style:
     name: Content Style
     needs: changed
-    if: ${{ needs.changed.outputs.data == 'true' }}
+    if: ${{ needs.changed.outputs.data == 'true' || needs.changed.outputs.integration_tests == 'true' }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
