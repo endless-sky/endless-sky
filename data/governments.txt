@@ -943,7 +943,7 @@ government "Kor Isaha"
 
 	"attitude toward"
 		"Kor Alaji" .01
-		"Kor Isaha" .01
+		"Korath" .01
 		"Kor Sestor" -.01
 		"Korath (Civilian)" 1
 		"Korath" .01
