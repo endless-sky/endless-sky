@@ -1,4 +1,4 @@
-# Copyright (c) 2022 by Hurleveur, an anonymous author
+# Copyright (c) 2022 by Hurleveur and an anonymous author
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
