@@ -417,7 +417,6 @@ mission "Korath [F01]: A Fishy Deal"
 	on offer
 		event "know about Korath fish jobs"
 		conversation
-			`[New Tortuga approach image]`
 			`Flying through the atmosphere of New Tortuga, you pass over a typhoon, overfly a tsunami, and take a short detour around a supercell thunderstorm. After a half hour of delicate flying, you approach doors more than a hundred meters tall. As they open, you can see they're ten meters thick, made of a material you don't recall seeing on human planets. Two layers of shields shut down in anticipation of your entry, each strong enough to stop a Navy Carrier. To the left and right, there are turrets with heat signatures higher than a Breeder Reactor. Whoever built this place values their safety... and has the funds and technology to secure it.`
 			`	Spaceport authorities direct you to bay 23X-5, which contains an odd ship you see on your way in. It appears to be an old-fashioned jet aircraft, whose four jet engines have been replaced with small ion engines. From the gold pipes on the tail, it appears to have a hyperdrive built into the hull. Several packages are being unloaded from the plane. A woman is waving her arms, perhaps with anger, as she walks from the cockpit into the airport.`
 			`	The ship is parked next to yours and the woman is about to walk past you. She looks quite distraught, and perchance looks your way. Maybe a distraction will cheer her up?`
@@ -522,7 +521,6 @@ mission "Korath [F02]: A Fishy Proposition"
 			label gun
 			action
 				set "pulled gun on Iris"
-			`[TO DO: Image with modified version of the prior scene with guns pointed at you.]`
 			`	Before you can reach the holster, the squad's guns are pointed at nearly every part of your torso. Iris raises her hand to signal "hold fire." You instinctively stop, knowing any move will result in your death.`
 			`	"I understand, Captain <last>, you're scared. Anyone would be in a place like this, crawling with pirates, marauders, and who knows what else. We haven't threatened you in any way; you're safe around us. I'm used to dealing with difficult personalities, so I'll give you a second chance."`
 			choice
@@ -563,11 +561,9 @@ mission "Korath [F02]: A Fishy Proposition"
 				`	"You can count on me."`
 				`	"No, I think I'm done with your deliveries."`
 					goto reject
-			`	[Picture of ships in a hovering image near Iris projected by a gadget she's holding.]`
 			`	"I'm sure I can," she says, smiling.`
 				goto warning
 			label see
-			`	[Picture of ships in a hovering image near Iris projected by a gadget she's holding.]`
 			`	She nods and gives an approving smile.`
 			label warning
 			`	"One more matter, Captain <last>: a fair warning about some of our associates. To keep helping our planet, you need to be able to travel far and wide, acting as a courier through space we cannot reach. If you anger half the galaxy, not only will it risk your life, it'll hurt the people of New Tortuga.`
