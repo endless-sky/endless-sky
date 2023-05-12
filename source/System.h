@@ -171,6 +171,9 @@ public:
 	// in per frame).
 	double Danger() const;
 
+	// The smallest arrival period of a fleet (or 0 if no fleets arrive)
+	int MinimumFleetPeriod() const;
+
 
 private:
 	void LoadObject(const DataNode &node, Set<Planet> &planets, int parent = -1);
@@ -242,6 +245,7 @@ private:
 	double solarPower = 0.;
 	double solarWind = 0.;
 	double starfieldDensity = 1.;
+	int minimumFleetPeriod = 0;
 
 	// The amount of additional distance that ships will arrive away from the
 	// system center when entering this system through a hyperspace link.

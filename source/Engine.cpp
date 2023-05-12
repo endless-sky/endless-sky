@@ -1962,6 +1962,10 @@ void Engine::HandleKeyboardInputs()
 		else if(keyHeld.Has(Command::JUMP))
 			activeCommands |= Command::FLEET_JUMP;
 	}
+
+	if(keyHeld.Has(Command::AUTOSTEER) && !activeCommands.Turn()
+			&& !activeCommands.Has(Command::LAND | Command::JUMP | Command::BOARD | Command::STOP))
+		activeCommands |= Command::AUTOSTEER;
 }
 
 
@@ -2284,6 +2288,8 @@ void Engine::DoCollection(Flotsam &flotsam)
 		}
 	}
 	if(!collector)
+		return;
+	if(collector == player.Flagship() && !Preferences::Has("Flagship flotsam collection"))
 		return;
 
 	// Transfer cargo from the flotsam to the collector ship.
