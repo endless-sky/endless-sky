@@ -34,15 +34,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	// Dynamic economy parameters: how much of its production each system keeps
-	// and exports each day:
-	const double KEEP = .89;
-	const double EXPORT = .10;
-	// Standard deviation of the daily production of each commodity:
-	const double VOLUME = 2000.;
-	// Above this supply amount, price differences taper off:
-	const double LIMIT = 20000.;
-
 	template<class Container>
 	void LoadRandomIntervalConditions(Container &container, const DataNode &child)
 	{
@@ -52,6 +43,15 @@ namespace {
 			if(grand.Size() == 2 && grand.Token(0) == "to" && grand.Token(1) == "spawn" && grand.HasChildren())
 				container.back().AddConditions(grand);
 	}
+
+	// Dynamic economy parameters: how much of its production each system keeps
+	// and exports each day:
+	const double KEEP = .89;
+	const double EXPORT = .10;
+	// Standard deviation of the daily production of each commodity:
+	const double VOLUME = 2000.;
+	// Above this supply amount, price differences taper off:
+	const double LIMIT = 20000.;
 }
 
 const double System::DEFAULT_NEIGHBOR_DISTANCE = 100.;
