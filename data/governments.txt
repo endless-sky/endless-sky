@@ -669,6 +669,11 @@ government "Humanika (Ship)"
 	"attitude toward"
 		"Korath (Civilian)" .01
 		"Syndicate" -.1
+
+	# These hails are mostly placeholders. Humanika (Ship) pilots are
+	# non-violent smugglers, people persecuted by the Syndicate, and
+	# peaceful misfits. The pirate hails don't fit at all, but most of
+	# the civilian hails fit.
 	"friendly hail" "friendly civilian"
 	"hostile hail" "hostile civilian"
 
