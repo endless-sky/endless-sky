@@ -1,4 +1,4 @@
-/* GameData.h
+/* Text.h
 Copyright (c) 2023 by Rian Shelley
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -21,13 +21,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <memory>
 #include <string>
 
-/**
- * Class used for text meant for display.
- * TODO: Translate the text if a supported PO file is loaded
- * TODO: locale for times/dates/lists
- * TODO: language specific object properties
- * TODO: bidi/rtl text
- */
+/// Class used for text meant for display.
+/// TODO: Translate the text if a supported PO file is loaded
+/// TODO: locale for times/dates/lists
+/// TODO: language specific object properties
+/// TODO: bidi/rtl text
 class Text
 {
 private:
@@ -35,23 +33,23 @@ private:
 	class FormatArg
 	{
 	public:
-		virtual std::string ToString() const  = 0;
+		virtual std::string ToString() const = 0;
 		virtual int64_t N() const { return -1; }
 	};
 	// Handle string formatting
-	class FormatArgString: public FormatArg
+	class FormatArgString : public FormatArg
 	{
 	public:
-		FormatArgString(const std::string& s): m_s(s) {}
+		FormatArgString(const std::string& s) : m_s(s) {}
 		virtual std::string ToString() const override { return m_s; }
 	private:
 		std::string m_s;
 	};
 	// Handle number formatting
-	class FormatArgInt: public FormatArg
+	class FormatArgInt : public FormatArg
 	{
 	public:
-		FormatArgInt(int64_t i): m_i(i) {}
+		FormatArgInt(int64_t i) : m_i(i) {}
 		virtual std::string ToString() const override { return std::to_string(m_i); }
 		virtual int64_t N() const override { return m_i; }
 

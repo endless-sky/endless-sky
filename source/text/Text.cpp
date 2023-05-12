@@ -1,4 +1,4 @@
-/* GameData.h
+/* Text.cpp
 Copyright (c) 2023 by Rian Shelley
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -19,9 +19,7 @@ using namespace std;
 
 
 
-/**
- * Format string based on format and args
- */
+/// Format string
 Text Text::Format(const std::string& format)
 {
 	// TODO: po file lookup
@@ -30,9 +28,7 @@ Text Text::Format(const std::string& format)
 
 
 
-/**
- * Format string based on format and args
- */
+/// Format string based on format and args
 Text Text::Format(const std::string& format, const Args& args)
 {
 	string result;
@@ -74,19 +70,18 @@ Text Text::Format(const std::string& format, const Args& args)
 
 
 
-/**
- * Format either singular or plural form based on args.
- */
+/// Format either singular or plural form based on args.
 Text Text::FormatN(const std::string& format_singular, const std::string& format_plural, const Args& args)
 {
 	// TODO: if a PO file is loaded, select among alternative plural forms using n here
 	int64_t n = -1;
-	for (auto& kv: args)
+	for(auto& kv: args)
 	{
 		int64_t an = kv.second.N();
-		if (an >= 0)
+		if(an >= 0)
 		{
 			n = an;
+			break;
 		}
 	}
 
