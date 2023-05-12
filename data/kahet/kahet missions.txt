@@ -410,9 +410,9 @@ mission "Ka'het: Patir Mystery 1"
 						not "patir: asked about ka'het"
 					goto kahet
 				`	"If they were able to get to Patir, does this suggest they have jump drives?"`
-					goto jumpdrive
+					goto "jump drive"
 				`	"Why aren't they in other systems?"`
-					goto jumpdrive
+					goto "jump drive"
 			label kasei
 			action
 				set "patir: asked about ka'sei"
@@ -424,7 +424,7 @@ mission "Ka'het: Patir Mystery 1"
 			`	Taely looks towards the console again. On the screen a tactical view of the Fetri'sei appears. "Well, consider that the Ka'het are true battleships, heavily shielded and always with their weapons ready. These are more akin to reconnaissance and mining probes. Their structure is extremely weak, and they do not have any weapons except the equipment necessary to mine asteroids. I imagine it would take decades for even just a Maeri'het to replicate itself.`
 			`	"There is also the tactical problem: forcing a Ka'het to spend such a long time building copies of itself makes them vulnerable to enemy attacks and unable to effectively fight back, making them ill-suited for the job."`
 				goto questions
-			label jumpdrive
+			label "jump drive"
 			`	"They do not have any drives on board, not even a hyperdrive. Limited to sub-light velocity, they would need hundreds of years to pass from one system to another, which is a testament to the Builders' patience. Most species we have encountered abandon any form of sub-light transportation between star systems immediately after developing hyperdrive technology. For all we know, the Ember Waste could have been visited by these Fetri'sei or some other Ka'sei, but they had to leave for some reason we are not aware of. The last Builder died almost 100,000 years ago - so long that having a clear idea of what happened is impossible.`
 			choice
 				`	"What's the difference between Ka'sei and Fetri'sei?"`

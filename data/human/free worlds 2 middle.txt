@@ -1725,12 +1725,12 @@ mission "FW Albatross 1"
 				`	"Okay, I feel silly for even asking. Let's go meet up with JJ!"`
 					accept
 				`	"Actually, I'm gay too."`
-					goto metoo
+					goto "me too"
 				`	"Ah. That certainly explains some things."`
 				`	"It seems crazy that anyone would be bothered by that in this day and age."`
 			`	"Yes," she says. "Yes, it does. Now, let's go meet up with JJ."`
 				accept
-			label metoo
+			label "me too"
 			action
 				set "gay"
 			`	Freya raises an eyebrow. "I hadn't heard. We don't have time to find someone else for this mission, so you'll need to be the one to transport JJ. Stay safe."`

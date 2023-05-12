@@ -160,18 +160,18 @@ mission "Pookie, Part 3"
 				`	(Bet on Zinc.)`
 				`	(Bet on Puny.)`
 				`	"I'll pass."`
-					goto nobet
-			branch notpoor
+					goto "nobet"
+			branch "not poor"
 				"credits" >= 3000
 			`	You dig through your pockets for a credit chip to toss into the bucket, until you realize that you don't have enough money to make a bet. Impatient with your bumbling, the woman turns to take money from a person next to you.`
 				goto next
-			label notpoor
+			label "not poor"
 			action
 				set "bet on hound racing"
 				payment -3000
 			`	You toss a chip into the bucket, and the woman eagerly turns towards a person next to you.`
 				goto next
-			label nobet
+			label "nobet"
 			`	The woman turns to take bets from a person next to you.`
 			label next
 			`	After several minutes pass, the siren sounds, and the announcer speaks again. "Once again, we at the East Mesa Racing Complex give our thanks to everyone who supports our cause by participating in betting. Now, without further ado..."`
@@ -191,10 +191,10 @@ mission "Pookie, Part 3"
 				die
 			label live
 			`	You scramble to your feet, barely dodging Zinc as she's kicked back by Doom. As the two animals howl in pain, you push your way through the onlooking crowd, hoping to escape the danger. After getting some distance away, you turn back to see Zinc and Doom continuing to go at each other's throats.`
-				goto next2
+				goto "next 2"
 			label leave
 			`	You turn and head away from the fence. Moments later, you hear two cries of pain accompanying the sound of wood splintering. Peeking back, you see that Zinc and Doom are fighting outside the track, with the crowd raving at the sight of violence.`
-			label next2
+			label "next 2"
 			choice
 				`	(Stay and watch.)`
 				`	(Leave the building.)`
@@ -203,11 +203,11 @@ mission "Pookie, Part 3"
 			`	Suddenly, a gunshot rings out throughout the building. The two beasts fall over as the stagehand steps forward holding a shotgun. The crowd is left in silence for a moment, until they start to jeer and boo, angered by the unsatisfying end to the duel. The stagehand responds by pointing his gun up and firing again. "That's enough!" he yells. "If you freaks want your bloodsports, then go to the gladiator stadium, or a cockfighting ring. But this establishment will not support such degeneracy!" The crowd goes quiet, but out of the corner of your eye, you see some mean-faced figures reach into their pockets.`
 			choice
 				`	(Get out before it gets ugly.)`
-					goto nopelate
+					goto "nope late"
 				`	(Stay for a while longer.)`
 			`	Continuing to look on, you hear a loud bang to your right as the stagehand gasps in pain and collapses. You turn to see that a mustached man next to you has his gun raised. Before you can react, you hear another gunshot and see a spurt of blood erupt from the man's temple. Almost instantly, the entire audience is up in arms as gunfire comes in from every direction. Acting instinctually, you duck down and crawl through the forest of legs towards the exit. Once there, you reach your hand up and push the door open before running out.`
 				goto outside
-			label nopelate
+			label "nope late"
 			`	As you turn around, you hear a volley of gunshots from behind, and decide to run out of the building, tackling the door open.`
 				goto outside
 			label nope
@@ -241,11 +241,11 @@ mission "Pookie, Part 3"
 			`	As you step into the cockpit, you recall the bet you put on the hound race. Looks like you won't be getting your money back.`
 				accept
 			label shoo
-			branch rememberdecline
+			branch "remember decline"
 				has "bet on hound racing"
 			`	You wiggle your leg around to scare Puny off. She runs into the mist, vanishing from sight. You turn back and manage to reach your ship, changing into a dry set of clothes.`
 				decline
-			label rememberdecline
+			label "remember decline"
 			`	You wiggle your leg around to scare Puny off. She runs into the mist, vanishing from sight. You turn back and manage to reach your ship, changing into a dry set of clothes.`
 			`	As you step into the cockpit, you recall the bet you put on the hound race. Looks like you won't be getting your money back.`
 				decline
@@ -325,10 +325,10 @@ mission "Pookie, Part 5"
 				`	"What do you mean?"`
 					goto explain
 				`	"I'm sorry?"`
-					goto sawwry
+					goto "saw wry"
 			`	She tosses her head to the side. "Then I mean it twice as much!"`
 				goto explain
-			label sawwry
+			label "saw wry"
 			`	She hisses. "If you wanted to be sorry, then you should never have tried to trick me in the first place!"`
 			label explain
 			`	Pemefrey thrusts an accusing finger at Puny. "My dog would never be as scruffy, as ugly, as this mutt! You are trying to deceive me by picking some mongrel off of the street and claiming it as mine!"`
@@ -426,7 +426,7 @@ mission "Smuggler's Den, Part 1"
 			`	You stand up and leave. The men in the doorway make no effort to stop you.`
 				decline
 			
-			label `tunnel`
+			label tunnel
 			`	The boy stands up. "Wait ten seconds, then head to the tunnel," he says. He walks into the bathroom, which is right next to the back entrance that she pointed out. You wait for a few seconds, then stand up. "Don't run," says the girl. "Walk slowly. Pretend. You've had a bit too much to drink. We're headed out back to find some privacy." You don't dare look behind you to see if the men in the doorway are watching you.`
 			`	Finally, you reach the back entrance, and she spins the wheel to unlock it. The hinges squeal, but it opens enough for you to squeeze through. You find yourselves in a narrow corridor lit only by flickering sodium lamps. In the yellow lamplight her face and hands look pale, jaundiced. The floor of the corridor is littered with beer bottles and discarded hypodermic needles. To one side of the door are several over-stuffed trash cans. As you step into the corridor, a rat scurries away into the darkness.`
 			`	A few seconds later, watching through the open airlock, you see the boy walk out of the bathroom. He can't help stealing a quick glance towards the men in the doorway, after which he quickly ducks through the airlock and slams the door shut. "Run!" he whispers.`
@@ -842,11 +842,11 @@ mission "There Might Be Riots part 2"
 				`	"What do you mean, 'beyond' human space?"`
 				`	"Well, I'll look forward to the next time we meet."`
 					accept
-			branch notpublic
+			branch "not public"
 				not "event: hai-human resolution announced"
 			`	Ulrich launches into a story. "Years ago when the band was young and we had a month off in between gigs, we found an old gray merchant captain with a glass eye and asked him to transport us to one of the Paradise worlds for an extended 'drug vacation,' if you know what I mean. He said, 'Boys, why don't you leave the drugs behind, and I'll take you on a real mind-altering trip,' and a few days later we were playing a concert on this world where the people were giant squirrels. They loved our music, too. Of course, these days that story isn't half as interesting as it once was."`
 				goto revealed
-			label notpublic
+			label "not public"
 			`	Ulrich launches into a story. "Years ago when the band was young and we had a month off in between gigs, we found an old gray merchant captain with a glass eye and asked him to transport us to one of the Paradise worlds for an extended 'drug vacation,' if you know what I mean. He said, 'Boys, why don't you leave the drugs behind, and I'll take you on a real mind-altering trip,' and a few days later we were playing a concert on this world where the people were giant squirrels. They loved our music, too. Never did find anyone who could take us back there, though."`
 			branch known
 				has "First Contact: Hai: offered"
@@ -917,14 +917,14 @@ mission "There Might Be Riots part 3A"
 			`	"Yes," you say, "they're called the Hai. They live in a whole big region to the north."`
 				goto end
 			label known
-			branch notpublic
+			branch "not public"
 				not "event: hai-human resolution announced"
 			`	"Great," he says. "Now, the only question is where we'll go afterwards until the fuss dies down."`
 			`	"Didn't you say the Hai really liked you before?" you ask. "I think now might be the perfect opportunity to go back to the Hai."`
 			`	"Aww yeah!" he exlaims, "those squirrel people were rad cool. We go thumb our noses at the military industrial complex, then you take us to stay with the peaceful squirrel people where the government won't bother us."`
 			`	Once more, they begin loading their stuff onto your ship, while you chart a course to <destination>.`
 				accept
-			label notpublic
+			label "not public"
 			`	"Great," he says. "Now, the only question is where we'll go afterwards until the fuss dies down. I was thinking it'd be a great chance for our band to reconnect with the squirrel people - what did you call them?"`
 			`	"The Hai," you say.`
 			label end
@@ -3785,13 +3785,13 @@ mission "Mafia Extortion"
 			`	"If you care about safety, then I could make a donation to the System Safety Foundation on your behalf. 200,000 credits really goes a long way around here."`
 			choice
 				`	(Pay 200,000 credits.)`
-					goto payup
+					goto "pay up"
 				`	"How can I be sure the money is spent well?"`
 					goto impatient
 				`	"Sorry, I already made a donation to the 'Security Support Fund' earlier today, and I don't donate twice in one day."`
 					goto impatient
 				`	"I've already heard enough, I'm going to talk to the authorities."`
-					goto nextsteps
+					goto "next steps"
 				`	"And what dangers should I be afraid of?"`
 					goto impatient
 				`	"Listen, I see that you're missing a finger on each hand. You look like a goon, and not a very successful one."`
@@ -3800,19 +3800,19 @@ mission "Mafia Extortion"
 			`	The man sounds annoyed. "Listen, I don't have all day to talk! Are you going to pay or not?!"`
 			choice
 				`	(Pay 200,000 credits.)`
-					goto payup
+					goto "pay up"
 				`	"I don't trust you. You aren't getting any money from me."`
 					goto funeral
 				`	"I've heard enough, I'm going to talk to the authorities."`
-					goto nextsteps
+					goto "next steps"
 				`	"Listen, I see that you're missing a finger on each hand. You look like a goon, and not a very successful one."`
 					goto unnerved
 			label funeral
 			`	The man responds "Your funeral, not mine," and turns away from you.`
-				goto walksaway
-			label nextsteps
+				goto "walks away"
+			label "next steps"
 			`	"Look, that's not a smart move. Most of them are in on it anyway."`
-			label walksaway
+			label "walks away"
 			`	The man walks away. You consider what to do next.`
 			choice
 				`	(Shrug off the whole thing and take no further action.)`
@@ -3843,12 +3843,12 @@ mission "Mafia Extortion"
 				`	"Nice scam you have running here. Would be a shame if somebody told the local godfather about it."`
 					goto payback
 				`	(Agree.)`
-					goto zerodeal
+					goto "zero deal"
 			label cornered
 			`	"Well, what do you want? Do I have to do something for you?"`
 			choice
 				`	"No, let's just forget it happened."`
-					goto zerodeal
+					goto "zero deal"
 				`	"Compensation for the time that you've wasted would be excellent."`
 			label payback
 			`	A bead of sweat travels down the man's face as he asks, "How many credits do you need to just forget this whole conversation happened?"`
@@ -3862,24 +3862,24 @@ mission "Mafia Extortion"
 				`	"50,000."`
 					goto much
 				`	"5,000."`
-					goto counterdeal
+					goto "counter deal"
 				`	"2,000."`
-					goto counterdeal
+					goto "counter deal"
 				`	"1,000."`
-					goto counterdeal
+					goto "counter deal"
 				`	"I don't need your credits, just forget it."`
-					goto zerodeal
-			label zerodeal
+					goto "zero deal"
+			label "zero deal"
 			`The man walks away without saying a word.`
 				decline
 			label much
 			`	"That's too much! 2,389 credits is all I have. Would that be enough?"`
 			choice
 				`	"Sure."`
-					goto counterdeal
+					goto "counter deal"
 				`	"No way, I want a lot more."`
 					goto panicking
-			label counterdeal
+			label "counter deal"
 			`	The man hands you a credit chip, nods and walks away. You pocket the chip quickly, more ready to be done with this neighborhood than you want to visibly show.`
 			`	A few minutes later you reach into your pocket for the chip... to find it missing. Looks like even a hardened captain like you isn't immune to being pickpocketed on a planet like this.`
 				decline
@@ -3912,7 +3912,7 @@ mission "Mafia Extortion"
 			label leave
 			`	You make it to your ship alive and depart under a rain of bullets and laser-weapons fire. This is a pirate planet so there are unlikely to be any lasting consequences, but you might want to stay away for a few days.`
 				flee
-			label payup
+			label "pay up"
 			`	The man takes your credits, responds with a brief "Thank you," and walks away.`
 				accept
 
@@ -3951,22 +3951,22 @@ mission "Street Swindle"
 			`	"Yes, I'm certain," the man interrupts. He draws 7000 credits and tosses them on the table. The magician lifts the cup, and a small red ball rolls from beneath. "And the first challenger proves to be a player!" the announcer says, mustering enthusiasm as the magician counts 14,000 credits to pay the man. "Let us find a new challenger! The next buy-in is a mere 400 credits; if you haven't played before, now's the time to test your skill!"`
 			choice
 				`	"I'd like to give it a try." (Bet 400 credits).`
-					goto firstgameplay
+					goto "first game play"
 				`	(Wait and watch.)`
-					goto firstgamewatch
+					goto "first game watch"
 				`	(Walk away.)`
 					decline
-			label firstgamewatch
+			label "first game watch"
 			`	A short woman volunteers. The game progresses in a similar manner; by the end, you are certain the ball is underneath the center cup. Sure enough, the woman chooses that cup, and she walks away 400 credits richer.`
 			`	"The next buy-in is a larger prize!" the announcer calls after her before turning to address the crowd. "Six thousand credits, only for the proudest of players." The magician shakes her head softly, frowning at the cups.`
 			choice
 				`	"I'll do it!" (Bet 6000 credits).`
-					goto secondgameplay
+					goto "second game play"
 				`	(Continue watching.)`
-					goto secondgamewatch
+					goto "second game watch"
 				`	(Walk away.)`
 					decline
-			label firstgameplay
+			label "first game play"
 			`	You pay 400 credits and sit across from the magician. "Double or nothing, bet your bet!" the announcer repeats. "Are you a player or a puppet?"`
 			`	The magician places the ball beneath the center and begins moving the cups. This one seems faster, but that might just be from the pressure. You keep your eyes trained on the cup as it shifts back and forth, around in circles, and occasionally remains untouched. By the end, you're pretty sure it's in the center cup.`
 			`	"What's your choice?" the magician asks, smirking.`
@@ -3984,19 +3984,19 @@ mission "Street Swindle"
 				payment -400
 			choice
 				`	"Let's go again."`
-					goto secondgameplay
+					goto "second game play"
 				`	"I think I'm done."`
-					goto secondgamewatch
+					goto "second game watch"
 			label correct
 			`	She asks if you're sure, and you stick with your gut. With a grimace, she lifts the cup to reveal the ball and counts out your winnings. "And the player prevails!" the announcer says. "Earning a small bounty. But wait: the next buy-in is bigger yet! Six thousand credits, reserved for the most daring. As the previous player, you have first priority."`
 			action
 				payment 400
 			choice
 				`	"Let's go again."`
-					goto secondgameplay
+					goto "second game play"
 				`	"I think I'm done."`
-					goto secondgamewatch
-			label secondgameplay
+					goto "second game watch"
+			label "second game play"
 			`	You place your 6000 credit bet on the table, and the game begins. The pattern is slightly longer, but once the magician's hands stop, you feel like the ball lies beneath the left cup.`
 			choice
 				`	"Left."`
@@ -4017,7 +4017,7 @@ mission "Street Swindle"
 			`	With a raised eyebrow, she reveals the right cup. It's... wrong! "Nice try," she says, pocketing your money. "That one was a bit tricky."`
 			`	"Well, that's all for today, folks!" the announcer says. As they pack up and leave, you notice that the first winner walks away beside them.`
 				accept
-			label secondgamewatch
+			label "second game watch"
 			`	Sensing that something's up, you decide to watch the next game. A sprightly young fellow confidently hands over 6000 credits; when the cups stop, you feel like the ball is under the left one. The boy points to it; with a grin, the magician reveals the left cup, and it's... wrong! "Nice try," she says, pocketing the shocked boy's money. "It is a bit tricky."`
 			`	"Well, that's all for today, folks!" the announcer says. You're glad you avoided the con. As they pack up and leave, you notice that the first winner walks away beside them.`
 				decline
@@ -4189,7 +4189,7 @@ mission "Fumbling Mugger"
 			`	You push down as hard as you can with your legs while leaning backwards, rising to the lofty height of two feet above the ground. As you begin to fall back-first uncontrollably, cold metal digs into your spine. A gasp escapes from behind as you land on a soft body. You pick yourself up as fast as possible, and you end up face-to-face with your attacker. In the darkness, you pick out that she's wearing a black hoodie with a bandanna over her mouth, her back hunched over and feet placed apart. As you look down, you spot a sawed-off break-action shotgun held single-handed, the end of which is pointed at your abdomen. "Hands up now, Captain."`
 			choice
 				`	(Put my hands up.)`
-					goto handsup
+					goto "hands up"
 				`	(Draw my gun and fire.)`
 			action
 				set "fumbling mugger shot"
@@ -4198,7 +4198,7 @@ mission "Fumbling Mugger"
 			
 			label peaceful
 			`	You raise your arms and turn to face the woman. In the darkness, you pick out that she's wearing a black hoodie with a bandanna over her mouth, her back hunched over and feet placed apart. As you look down, you spot a sawed-off break-action shotgun held single-handed, the end of which is pointed at your abdomen.`
-			label handsup
+			label "hands up"
 			`	"Very good, Captain," she says. "Now, I have a proposal for you. I need transport to <destination>. Take me there, and the both of us can forget this ever happened."`
 			choice
 				`	"And if I don't take you there?"`
@@ -4233,7 +4233,7 @@ mission "Fumbling Mugger"
 			`	She seizes up for a few moments, then she throws her shotgun away and raises her hands. "I'm, um, sorry about threatening you. Would you mind if the both of us just walked this off?"`
 			choice
 				`	"Why do you want to go to <planet>?"`
-					goto why2
+					goto "why 2"
 				`	"Get out of my sight, and I'll let you go."`
 					goto freedom
 				`	(Shoot her.)`
@@ -4247,7 +4247,7 @@ mission "Fumbling Mugger"
 			`	She nods her head and backs away from you, hands still held up. When she disappears around a corner, you holster your gun and walk back to a safer portion of the spaceport.`
 				decline
 			
-			label why2
+			label "why 2"
 			`	The woman looks at you with a confused expression. "Huh? Why would you want to know that?"`
 			`	"Just humor me for a moment," you reply.`
 			`	She sighs. "A while ago, I was in a bad situation. My boyfriend had just moved to <planet> for employment, and I was to join him in a year. My father had other plans. He used my boyfriend's absence to justify marrying me into another, richer family. Wanted a chunk of their fortune, I suppose. I tried everying I could to convince him otherwise, but..." She looks down. "So I snuck off to the spaceport and got a merchant to transport me. She forced me to pay upfront, however, and as soon as we landed on <origin>, she kicked me out to make space for another set of passengers."`
@@ -4760,7 +4760,7 @@ mission "Dangerous Games 2"
 	source
 		attributes "frontier" "pirate" "rim"
 	destination "Poseidos"
-	cargo "subpods" 6
+	cargo ""sub pods"" 6
 	passengers 6
 	to offer
 		random < 15
@@ -4777,7 +4777,7 @@ mission "Dangerous Games 2"
 				`	"Of course."`
 				`	"Sorry, mate. You'll have to find another pilot."`
 					decline
-			`	Karengo laughs. "If they can handle space, I think they can handle some water. I've got a group of lads and ladies here rarin' to see some quoijuu in heat, right up close'n'personal. They've all got their own subpods, so how's about we load up and head out in the next few hours. Good? Good."`
+			`	Karengo laughs. "If they can handle space, I think they can handle some water. I've got a group of lads and ladies here rarin' to see some quoijuu in heat, right up close'n'personal. They've all got their own "sub pods", so how's about we load up and head out in the next few hours. Good? Good."`
 			`	"Oh, nearly forgot. We're headed to <destination>, and you'll get <payment> for taking us there. Ain't sure if those in charge are gonna like what I'm doing, so we might need to grease some palms. Best to keep your eyes open and your shields up. We leave at noon!"`
 				accept
 	on complete
@@ -4798,7 +4798,7 @@ mission "Dangerous Games 2"
 			`	TEN KILOMETERS.`
 			`	SIXTEEN KILOMETERS. A loud, metallic creak echoes through the ship and Mussie jumps, startled.`
 			`	Karengo claps him on the back and gives him a signature grin. "Maybe <first> can keep you aboard after this in case they need anything from a high shelf!" Mussie smiles weakly, but his eyes don't leave the readout.`
-			`	TWENTY-FIVE KILOMETERS. "This's it," Karengo announces, "Sub up! Let's see what there is to see. And <first>, keep it to passive sensors. Don't want to attract any undue attention." The ship smoothly descends into the mouth of a massive cave and your visibility, clouded by dark sulfide emissions from the hydrothermal vents at the floor, drops to less than eight meters. 6 personal subpods fan out behind you, their communication equipment syncing with yours to display them as blips on your screen.`
+			`	TWENTY-FIVE KILOMETERS. "This's it," Karengo announces, "Sub up! Let's see what there is to see. And <first>, keep it to passive sensors. Don't want to attract any undue attention." The ship smoothly descends into the mouth of a massive cave and your visibility, clouded by dark sulfide emissions from the hydrothermal vents at the floor, drops to less than eight meters. 6 personal "sub pods" fan out behind you, their communication equipment syncing with yours to display them as blips on your screen.`
 			`	"Ok, <first>," Karengo crackles over the radio. "I'll read you the first clue."`
 			`"No other path may you take"`
 			`"Oiled skins flash and flicker"`
@@ -4819,25 +4819,25 @@ mission "Dangerous Games 2"
 			`	"Last one there's a rotten fish eye!" shouts Elias, and your screen shows his subpod leap forward and gain on you, followed quickly by Taddese.`
 			`	Then, without warning, a proximity sensor goes off. At the same time, your external lights illuminate a wall directly in front, stretching for as far as you can see. "Stop!" shouts Karengo, "It's the end of the cavern! Stop and go back!"`
 			`	Shuddering, your ship comes to a halt mere meters from the endless stone face. With a sinking feeling that has nothing to do with the depth, you turn the ship around and head back the way you came.`
-				goto riddletwo
+				goto "riddle two"
 			label east
 			action
 				set "Elias and Taddese dead"
 			`	Small schools of fish flit past as you guide your small fleet to the east. Out of the darkness, some sort of small whale crashes into your ship, setting off a couple of proximity alarms but causing no damage. It isn't until you hear screaming, distorted by the speakers, that it becomes clear what you just saw; the "small whale" was a just a flipper of something much, much larger.`
 			`	"Morgawrii!" shouts Karengo, "Turn around! Turn around!"`
 			`	Hauling on the controls, you spin your ship around. Leviathan shapes rise from below, stirring the water around your ship as it speeds to safety.`
-				goto riddletwo
+				goto "riddle two"
 			label south
 			action
 				set "Elias and Taddese dead"
 			`	Small schools of fish flit past as you guide your small fleet to the south. The swirling clouds of emissions seem to get thicker and thicker, until there's no reason to look at anything but the ship compass. The screen beeps once and a blip disappears.`
 			`	"Elias?" Karengo asks. "Your transmitter just cut out." When there's no response, he swears. "Everybody go back." he broadcasts. "Something's wrong."`
 			`	You spin your ship around and hear a loud crunch come from outside - your shields have just impacted something large and solid. The outer lights shine off falling stone and, suddenly, it all comes together; you've led everybody through a field of hydrothermal vents that rise dozens of meters off the bottom, obscured by their own noxious clouds. You guide your ship back to safety, toppling more underwater smokestacks as you go.`
-				goto riddletwo
+				goto "riddle two"
 			label north
-			`	You turn the ship to the north and guide it through the abyssal depths. The subpods race forward, each vying to outdo the other, seemingly heedless of the dangers that Karengo hinted at. With bated breath, you watch the sensors until at last the comms flare.`
+			`	You turn the ship to the north and guide it through the abyssal depths. The "sub pods" race forward, each vying to outdo the other, seemingly heedless of the dangers that Karengo hinted at. With bated breath, you watch the sensors until at last the comms flare.`
 			`	"Woah!" comes Karengo's voice. "I think that's far enough. Which way do we go next, <first>?"`
-			label riddletwo
+			label "riddle two"
 			branch dead
 				has "Elias and Taddese dead"
 			`	After everyone arrives and is accounted for, Karengo reads the riddle to you.`
@@ -4847,9 +4847,9 @@ mission "Dangerous Games 2"
 			`"No danger there, just open sea."`
 			choice
 				`	(Go east.)`
-					goto east1
+					goto "east 1"
 				`	(Go north.)`
-					goto north1
+					goto "north 1"
 				`	(Go west.)`
 			action
 				set "Mussie dead"
@@ -4857,75 +4857,75 @@ mission "Dangerous Games 2"
 			`	"Last one there's a rotten fish eye!" shouts Mussie, and your screen shows his subpod leap forward and gain on you, followed quickly by others'.`
 			`	Then, without warning, a proximity sensor goes off at the same time your outer lights show a wall directly in front, stretching for as far as you can see. "Stop!" shouts Karengo, "It's the end of the cavern! Stop and go back!"`
 			`	Shuddering, your ship comes to a halt mere meters from the endless stone face. With a sinking feeling that has nothing to do with the depth, you turn the ship around and head back the way you came.`
-				goto rollcall
-			label east1
+				goto "roll call"
+			label "east 1"
 			`	"A bee-less beast," you mutter to yourself. "A poet, this writer was not." Turning east, the ship powers forward, cautious but confident.`
-			`	Subpods fly ahead, exulting in their agility in the face of the dangerous ocean. It isn't long until Karengo again radios you. "Knew I chose ya for a reason. What's the next direction?"`
-				goto riddlethree
-			label north1
+			`	"sub pods" fly ahead, exulting in their agility in the face of the dangerous ocean. It isn't long until Karengo again radios you. "Knew I chose ya for a reason. What's the next direction?"`
+				goto "riddle three"
+			label "north 1"
 			action
 				set "Mussie dead"
-			`	Bubbles rush past the thick windows as the group's subpods scout to the north at your direction. At first, all is quiet. Just as you start to exhale a sigh of relief, twin lightning bolts arc across the waterscape ahead and the ship sensors overload, blinded by an apparent release of electricity. The systems recover, showing subpods returning quickly back to the ship.`
+			`	Bubbles rush past the thick windows as the group's "sub pods" scout to the north at your direction. At first, all is quiet. Just as you start to exhale a sigh of relief, twin lightning bolts arc across the waterscape ahead and the ship sensors overload, blinded by an apparent release of electricity. The systems recover, showing "sub pods" returning quickly back to the ship.`
 			`	One is missing: Mussie.`
 			`	You turn the ship back the way you came and pull up the sensor recording to see what happened. The flash of light came from viney seaweed, stretching as far up and down as the ship can detect. Evidently, contact with it released a jolt of electricity that lit up both the vine and Mussie's subpod.`
-				goto rollcall
+				goto "roll call"
 			label dead
 			`	After making a roll call, you find out that Elias and Taddese have not returned. Karengo seems unfazed as he reads the second riddle to you. "There are stingers in the deep \ A certain death, a dreamless sleep. \ Go to beast that has no bee \ No danger there, just open sea."`
 			choice
 				`	(Go east.)`
-					goto east2
+					goto "east 2"
 				`	(Go north.)`
-					goto north2
+					goto "north 2"
 				`	(Go west.)`
 			action
 				set "Mussie dead"
 			`	The proximity alarm wails and you bring your ship to a halt... but Mussie isn't so lucky. His subpod smashes straight into a rock wall, leaving little doubt as to his fate.`
 			`	Again, you put the ship into reverse and turn around. This is not going at all how it was supposed to.`
-				goto rollcall
-			label east2
-			`	Cautiously, you turn to the east and power forward. Subpods fly ahead, exulting in their agility in the face of the dangerous ocean.`
+				goto "roll call"
+			label "east 2"
+			`	Cautiously, you turn to the east and power forward. "sub pods" fly ahead, exulting in their agility in the face of the dangerous ocean.`
 			`	After holding your breath for what feels like hours, Karengo radios you. "Knew you'd find your way eventually. What's the next direction?"`
-				goto riddlethree
-			label north2
+				goto "riddle three"
+			label "north 2"
 			action
 				set "Mussie dead"
-			`	Bubbles rush past the thick windows as the group's subpods scout to the north at your direction. At first, all is quiet. Just as you start to exhale a sigh of relief, twin lightning bolts arc across the waterscape ahead and the ship sensors overload, blinded by an apparent release of electricity. The systems recover, showing subpods returning quickly back to the ship.`
+			`	Bubbles rush past the thick windows as the group's "sub pods" scout to the north at your direction. At first, all is quiet. Just as you start to exhale a sigh of relief, twin lightning bolts arc across the waterscape ahead and the ship sensors overload, blinded by an apparent release of electricity. The systems recover, showing "sub pods" returning quickly back to the ship.`
 			`	One is missing: Mussie.`
 			`	You turn the ship back the way you came and pull up the sensor recording to see what happened. The flash of light came from viney seaweed, stretching as far up and down as the ship can detect. Evidently, contact with it released a jolt of electricity that lit up both the vine and Mussie's subpod.`
-			label rollcall
-			branch dead1
+			label "roll call"
+			branch "dead 1"
 				has "Elias and Taddese dead"
 				has "Mussie dead"
 			`	Karengo sounds a roll call over the radio. Mussie never reports in, and his subpod beacon isn't responding. "Ah, well." says Karengo, without much sympathy. "You all stay here and I'll scout ahead."`
 			`	Only minutes later, he's found a clear path east, and you morosely trail the ship behind.`
-				goto riddlethree
-			label dead1
+				goto "riddle three"
+			label "dead 1"
 			`	Karengo sounds a roll call over the radio. Elias and Taddese are still missing, and now Mussie has failed to report in as well. None of their subpod beacons are responding.`
 			`	"Ah, well." says Karengo, without much sympathy. "You all stay here and I'll scout ahead." Only minutes later, he's found a clear path east, and you morosly trail the ship behind.`
-			label riddlethree
+			label "riddle three"
 			`	Karengo reads you the next line.`
 			`"To the north and to the east"`
 			`"Track my movements like a beast."`
 			`"A quick turn right and forward on,"`
 			`"Come toward me where danger's gone."`
-			branch dead2
+			branch "dead 2"
 				has "Mussie dead"
 				has "Elias and Taddese dead"
-			branch dead3
+			branch "dead 3"
 				has "Mussie dead"
 			choice
 				`	(Go north.)`
-					goto north5
+					goto "north 5"
 				`	(Go east.)`
-					goto east5
+					goto "east 5"
 				`	(Go south.)`
 					goto uninterested
-			label north5
+			label "north 5"
 			action
 				set "Jorma and Daciana dead"
 			`	Buoyed by your navigation thus far, you make the call to go north, completing the zig-zag pattern.`
-			label subpods
-			`	The subpods, as usual, race ahead of the ship despite all logic. "Wall to the east!" calls out Daciana, whose beacon on the ship display starts to move north-west, presumably avoiding the undersea hazard, and joining up with Jorma. "Hmm," radios in Karengo. "We should be right about on top of it. Send out a ping." It's almost a relief to send out a pulse to map the surroundings after flying dark for so long.`
+			label "sub pods"
+			`	The "sub pods", as usual, race ahead of the ship despite all logic. "Wall to the east!" calls out Daciana, whose beacon on the ship display starts to move north-west, presumably avoiding the undersea hazard, and joining up with Jorma. "Hmm," radios in Karengo. "We should be right about on top of it. Send out a ping." It's almost a relief to send out a pulse to map the surroundings after flying dark for so long.`
 			`	The result is not what you were hoping for. The display maps two leviathan-sized things ahead, each over 200 meters long. Dozens of sets of flippers run along each 80-meter-tall side and hundreds of teeth the size of an adult human line their jaws.`
 			choice
 				`	(Run.)`
@@ -4937,7 +4937,7 @@ mission "Dangerous Games 2"
 			`	It's a long while before you slow and turn around. No mammoth sea monster comes out of the darkness, and you take a breath.`
 			`	"Quoijuu," says Karengo simply.`
 				goto failure
-			label east5
+			label "east 5"
 			action
 				set "Jorma and Daciana dead"
 			`	Small schools of fish flit past as you guide your small fleet to the west. Minutes pass with no sign of danger, and finally Karengo broadcasts, "Good work, <first>. Looks like this is the way forward."`
@@ -4945,12 +4945,12 @@ mission "Dangerous Games 2"
 			`	Then, without warning, a proximity sensor goes off at the same time your outer lights show a wall directly in front, stretching for as far as you can see. "Stop!" shouts Karengo, "It's the end of the cavern! Stop and go back!"`
 			`	Shuddering, your ship comes to a halt mere meters from the endless stone face. With a sinking feeling that has nothing to do with the depth, you turn the ship around and head back the way you came.`
 				goto failure
-			label dead2
+			label "dead 2"
 			choice
 				`	(Go north.)`
-					goto north3
+					goto "north 3"
 				`	(Go east.)`
-					goto east3
+					goto "east 3"
 				`	(Go south.)`
 			label uninterested
 			`	You smoothly turn the ship to the right, heading south.`
@@ -4958,38 +4958,38 @@ mission "Dangerous Games 2"
 			`	The result, however, is a surprise. The display shows a massive object directly below you... as well as as two leviathan-sized things back the way you came, each over 200 meters long. Dozens of sets of flippers run along each 80-meter-tall side and hundreds of teeth the size of an adult human line their jaws.`
 			`	You goggle at the display for a moment, holding your breath, but the leviathans seem uninterested. You shudder, imagining what one of those could do if you'd turned the wrong way, before your interest returns to the mysterious bulk resting below the ship.`
 				goto treasure
-			label north3
+			label "north 3"
 			action
 				set "Jorma and Daciana dead"
 			`	Disheartened at this point, you make the call to go north, completing the zig-zag pattern.`
-				goto subpods
-			label east3
+				goto "sub pods"
+			label "east 3"
 			action
 				set "Jorma and Daciana dead"
 			`	By now, the feeling that you get when the ship's subpod tracker loses two more dots is familiar. One subpod remains: Karengo's.`
 				goto failure
-			label dead3
+			label "dead 3"
 			choice
 				`	(Go north.)`
-					goto north4
+					goto "north 4"
 				`	(Go east.)`
-					goto east4
+					goto "east 4"
 				`	(Go south.)`
 					goto uninterested
-			label north4
+			label "north 4"
 			action
 				set "Jorma and Daciana dead"
 			`	Hesitantly, you make the call to go north, completing the zig-zag pattern.`
-			`	The subpods, as usual, race ahead of the ship despite all logic. "Wall to the east!" calls out Daciana, whose beacon on the ship display starts to move north-west, presumably avoiding the undersea hazard, and joining up with Jorma. "Hmm," radios in Karengo. "We should be right about on top of it. Send out a ping." It's almost a relief to send out a pulse to map the surroundings after flying dark for so long.`
+			`	The "sub pods", as usual, race ahead of the ship despite all logic. "Wall to the east!" calls out Daciana, whose beacon on the ship display starts to move north-west, presumably avoiding the undersea hazard, and joining up with Jorma. "Hmm," radios in Karengo. "We should be right about on top of it. Send out a ping." It's almost a relief to send out a pulse to map the surroundings after flying dark for so long.`
 			`	The result is not what you were hoping for. The display maps two leviathan-sized things ahead, each over 200 meters long. Dozens of sets of flippers run along each 80-meter-tall side and hundreds of teeth the size of an adult human line their jaws.`
 			`	You goggle at the display for a moment, taking it in, and draw breath to call out the alarm when an eye appears through the ship window, yellow, glowing, alien, and massive. All at once, you turn and accelerate, shouting the alarm to any who hadn't already realized, and hoping that you're leaving the leviathan beasts behind. A quick glance at the display shows at least one subpod following behind. Good enough. If one of those rams the ship, nobody is going home anyway.`
 			`	It's a long while before you slow and turn around. No mammoth sea monster comes out of the darkness, and you take a breath.`
 			`	"Quoijuu," says Karengo simply.`
 				goto failure
-			label east4
+			label "east 4"
 			action
 				set "Jorma and Daciana dead"
-			`	The proximity alarm wails and you bring your ship to a halt, but your tracker shows two subpods smash straight into the stone wall looming in front of you.`
+			`	The proximity alarm wails and you bring your ship to a halt, but your tracker shows two "sub pods" smash straight into the stone wall looming in front of you.`
 			`	Again, you put the ship into reverse and turn around. This is not going at all how it was supposed to.`
 			label failure
 			`	Jorma and Daciana never report back in.`
@@ -5012,16 +5012,16 @@ mission "Dangerous Games 2"
 			`	"Come on then," Karengo says. "We'll need a better look at this baby."`
 			label closer
 			`	Your craft moves closer to investigate and you send out another ping, this time more focused, and the holographic ship display flickers and refines. The outlines of sealed entrances are visible, unnecessary with the ship torn apart as it is. Sea growth is mostly absent from the hull, to your surprise, except for a radial pattern of some sort of crystal-shaped growth. Infrared imaging shows a dim glow of heat at its center.`
-			branch somesurvive
+			branch "some survive"
 				or
 					"Mussie dead" + "Elias and Taddese dead" + "Jorma and Daciana dead" == 1
 					"Mussie dead" + "Elias and Taddese dead" + "Jorma and Daciana dead" == 2
-			branch alldead
+			branch "all dead"
 				has "Mussie dead"
 				has "Elias and Taddese dead"
 				has "Jorma and Daciana dead"
 			`	"What we have here, folks," breaks in Karengo, "is the fabled treasure. A chunk'o'some, anyway. And we're gonna take whatever we want. Let's see what there is to see."`
-			`	Now that active communication is low-risk, you bring up the video feed from Karengo's subpod as he floats toward the heat source. Bathed in floodlight, you can see that there are actual crystals formed on the ship hull, glowing a dull red. Something unknowable has rent a hole near the crystalline spiral, and Karengo disappears inside. The rest of the subpods wait outside, apparently spooked. "Jackpot!" comes his voice. "There's some sort of computer in here! <first>, get closer and let's get this out." You don't know what it is, but it looks expensive.`
+			`	Now that active communication is low-risk, you bring up the video feed from Karengo's subpod as he floats toward the heat source. Bathed in floodlight, you can see that there are actual crystals formed on the ship hull, glowing a dull red. Something unknowable has rent a hole near the crystalline spiral, and Karengo disappears inside. The rest of the "sub pods" wait outside, apparently spooked. "Jackpot!" comes his voice. "There's some sort of computer in here! <first>, get closer and let's get this out." You don't know what it is, but it looks expensive.`
 			choice
 				`	(Help him out.)`
 					goto silent
@@ -5030,30 +5030,30 @@ mission "Dangerous Games 2"
 			label silent
 			`	It's slow work, but the group is able to cut loose the machine, along with as much other salvage as possible. The crystalline growth covers everything inside the ship, making extraction difficult, but many hands make light work, and you end up with a sizable haul. At last, you are done.`
 				goto return
-			label alldead
+			label "all dead"
 			`	"What we have here, <first>," breaks in Karengo, "is the fabled treasure. A chunk'o'some, anyway. And we're gonna take whatever we want. Let's see what there is to see."`
 			`	Now that active communication is low-risk, you bring up the video feed from Karengo's subpod as he floats toward the heat source. Bathed in floodlight, you can see that there are actual crystals formed on the ship hull, glowing a dull red. Something unknowable has rent a hole near the crystalline spiral, and Karengo disappears inside. "Jackpot!" comes his voice. "There's some sort of computer in here! <first>, get closer and let's get this out." You don't know what it is, but it looks expensive.`
 			choice
 				`	(Help him out.)`
-					goto silent1
+					goto "silent 1"
 				`	"Do you know how this got here?"`
 			`	"No clue. I'm not about to look a gift horse in the mouth," Karengo says.`
-			label silent1
+			label "silent 1"
 			`	It's slow work, but you and Karengo are able to cut loose the machine, along with as much other salvage as possible. The crystalline growth covers everything inside the ship, making extraction difficult. You wish there were others to help gather more salvage, but at last you are done.`
 				goto return
-			label somesurvive
+			label "some survive"
 			`	"What we have here, folks," breaks in Karengo, "is the fabled treasure. A chunk'o'some, anyway. And we're gonna take whatever we want. Let's see what there is to see."`
-			`	Now that active communication is low-risk, you bring up the video feed from Karengo's subpod as he floats toward the heat source. Bathed in floodlight, you can see that there are actual crystals formed on the ship hull, glowing a dull red. Something unknowable has rent a hole near the crystalline spiral, and Karengo disappears inside. The rest of the subpods wait outside, apparently spooked. "Jackpot!" comes his voice. "There's some sort of computer in here! <first>, get closer and let's get this out." You don't know what it is, but it looks expensive.`
+			`	Now that active communication is low-risk, you bring up the video feed from Karengo's subpod as he floats toward the heat source. Bathed in floodlight, you can see that there are actual crystals formed on the ship hull, glowing a dull red. Something unknowable has rent a hole near the crystalline spiral, and Karengo disappears inside. The rest of the "sub pods" wait outside, apparently spooked. "Jackpot!" comes his voice. "There's some sort of computer in here! <first>, get closer and let's get this out." You don't know what it is, but it looks expensive.`
 			choice
 				`	(Help him out.)`
-					goto silent2
+					goto "silent 2"
 				`	"Do you know how this got here?"`
 			`	"No clue. I'm not about to look a gift horse in the mouth," Karengo says.`
-			label silent2
+			label "silent 2"
 			`	It's slow work, but the remains of the group are able to cut loose the machine, along with as much other salvage as possible. The crystalline growth covers everything inside the ship, making extraction difficult, but many hands make light work and you end up with an acceptable haul. At last, you are done.`
 			label return
 			`	Carefully, you navigate back to the surface, the knowledge that you've made it through once doing absolutely nothing to help with the very rational fear of the depths. Walls seem to loom just out of sight, and massive, yellow eyes seem to appear, then dissolve into tricks of the light.`
-			branch onlyplayer
+			branch "only player"
 				has "Mussie dead"
 				has "Elias and Taddese dead"
 				has "Jorma and Daciana dead"
@@ -5071,7 +5071,7 @@ mission "Dangerous Games 2"
 			`	It seems ages, but finally you break through to the surface. Karengo smiles, and a sigh of relief goes through the crew.`
 			`	Once back to the surface, the passengers begin to shuffle off your ship, choking back sobs all the while. As soon as the passengers are out of earshot, Karengo calls up someone on his receiver. Soon, a small flock of scientists arrive and haul the machine to a local lab for investigation. They quickly determine it to be non-functional and promise to extract as many secrets as possible.`
 				goto end
-			label onlyplayer
+			label "only player"
 			`	"Alright," he says. "Let's get back to the surface. <first>, kindly be our chariot and haul."`
 			`	It seems ages, but finally you break through to the surface. Karengo smiles, but only you and he are left to be relieved.`
 			`	Once back to the surface, Karengo calls up someone on his receiver. Soon, a small flock of scientists arrive and haul the machine to a local lab for investigation. They quickly determine it to be non-functional and promise to extract as many secrets as possible.`
@@ -5696,13 +5696,13 @@ mission "Argosy Hijacking"
 			choice
 				`	"I'll do it!"`
 				`	(Let Syndicated Security deal with it.)`
-					goto securityjob
+					goto "security job"
 			`	The captain of the stolen <npc model> turns towards you. "Thank you, Captain! Don't destroy the <npc>, I'm already late for my bloody contract. Agh, this doesn't help at all," he mutters to himself.`
 			`	The officer looks back at you, having dusted himself off and regained his senses. "Yes, go and deal with his ship now. Don't board it, we'll have Syndicated Security ships come after you to board the hijacked ship and tug it down. Go!"`
 			`	You run towards the <ship> and take off after the hijacked <npc>...`
 				launch
 			
-			label securityjob
+			label "security job"
 			`	The officer, slightly flustered, calls for a small squadron of Syndicated Security ships to chase the hijacked <npc>, then runs off to one of <origin>'s spaceport terminals to file the paperwork with the captain.`
 				decline
 	

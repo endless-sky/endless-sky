@@ -519,11 +519,11 @@ mission "Wanderers: Defend Vara Ke'sok Hint"
 					goto jerk
 			label war
 			`	"Ambassador Sayari mentioned you are great [hero, explorer] in human space, and solved many [issues, disasters]. Or are we mistaken?"`
-				goto choice2
+				goto "choice 2"
 			label hai
 			`	"Ambassador Sayari mentioned you are great [hero, explorer], even in Hai space, and solved many [issues, disasters]. Or are we mistaken?"`
-				goto choice2
-			label choice2
+				goto "choice 2"
+			label "choice 2"
 			choice
 				`	"I guess I could be considered a hero."`
 					goto proposal
@@ -2147,11 +2147,11 @@ mission "Wanderers Solifuge Recon 4"
 		conversation "solifuge conversation"
 
 conversation "solifuge conversation"
-	branch altStart
+	branch "alt start"
 		has "Strider Alt Start: done"
 	`You give the message from Sayari to the spaceport authorities so that they can deliver it to the council of elders. After the message has been delivered, the council requests that you meet with them.`
 		goto start
-	label altStart
+	label "alt start"
 	`	When you arrive on <planet>, you are quickly escorted from the spaceport to the council chambers.`
 	label start
 	`	"Greetings again, <first> <last>," one of the elders says to you. "It is our understanding that our Unfettered brothers and sisters have created a carrier ship. How difficult was it for you to combat it?"`
@@ -2177,7 +2177,7 @@ conversation "solifuge conversation"
 	`	The elders once again mumble among themselves. They continue to ask Osen a number of questions about this new carrier. How difficult is one to produce? How much does it cost? What are the capabilities of the drones? How useful would it be without being able to repair the hull of its drones?`
 	`	After having all their questions answered, the elders seem to be interested in the idea of Osen's new ship. "This hull repair technology indeed sounds necessary," an elder says. "We will provide what funding we can to help fast track its development."`
 	`	Osen's father turns to you. "You have traveled many systems, <first> <last>. Perhaps you might be able to help. If you know of any peoples who have such technology from elsewhere in the galaxy, should it exist, then perhaps we could meet with them."`
-	branch altEnd
+	branch "alt end"
 		has "Strider Alt Start: done"
 	choice
 		`	"I'm sorry, but I can't help right now. I need to return to the Wanderers."`
@@ -2191,7 +2191,7 @@ conversation "solifuge conversation"
 	`	"This is understandable," Osen's father responds. "Return to where you are needed, but when you are able to help, we will gladly accept it." The elders all thank you for bringing Sayari's message and bid you safe travels back to <planet>.`
 		accept
 	
-	label altEnd
+	label "alt end"
 	choice
 		`	"I'd be glad to help. I'm sure I could find someone with hull repair technology that could help."`
 			goto glad

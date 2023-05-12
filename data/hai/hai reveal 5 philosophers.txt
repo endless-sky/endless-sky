@@ -344,10 +344,10 @@ mission "Hai Reveal [B04] The Road Not Taken"
 				`	"Can you tell me more about the victim support group?"`
 				`	"How do you know I have a jump drive?"`
 				`	(Give up on getting any more information out of her.)`
-					goto giveup
+					goto "give up"
 			`	She seems rushed and ignores you, picking up a bag and putting some items from her desk into it.`
 				goto end
-			label giveup
+			label "give up"
 			`	She picks up a bag and starts putting some items from her desk into it.`
 			label end
 			`	"In any event, I really must go. Check out those coordinates, and then come see me. Fly safe, Captain!"`
@@ -1068,7 +1068,7 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 				`	"We only need to maintain the ruse a little longer."`
 					goto maintain
 				`	"You don't know that we've given up on that?"`
-					goto giveup
+					goto "give up"
 				`	"Is it still working at all?"`
 					goto working
 					to display
@@ -1078,7 +1078,7 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 				set "Hai Reveal [B12] Devil-Hide Battle: working"
 			`	"Our ruse is getting preposterous. The captains at Ultima Thule already know about the Hai, but we had to tell the crews that we were dealing with a major pirate threat. We hired a few pirate gangs to fly through the area to back our story. The Shield Beetles you've just flown here have been explained away as experimental ship designs from the movie production being tested out. Still though, our cover stories have passed the point of plausibility into the realm of barefaced lying. I hope you can finish this without too many more public displays, otherwise we won't be able to hide the Hai anymore."`
 				goto kopkow
-			label giveup
+			label "give up"
 			`	He blinks at you, "Wait, what?"`
 				goto explain
 			label maintain
@@ -1404,21 +1404,21 @@ mission "Hai Reveal [B13] Freedom"
 			label reason
 			choice
 				`	"I do not, but I must, out of duty."`
-					goto knowduty
+					goto "know duty"
 				`	"I wish to know, for the Hai."`
-					goto knowhai
+					goto "know hai"
 				`	"I wish to know, for the Syndicate."`
-					goto knowsyndi
+					goto "know syndicate"
 				`	"I wish to know, for the people."`
 			`	They regard you thoughtfully. "You are well suited to the neutral ground. It is little wonder you are here as an agent of no single faction. That is appropriate then.`
 				goto finished
-			label knowhai
+			label "know hai"
 			`	They incline their head respectfully. "The Hai are perhaps the greatest valuers of truth among us. If they have set you to this, then they will be honored by your diligence.`
 				goto finished
-			label knowsyndi
+			label "know syndicate"
 			`	They focus on you closely. "The Syndicate is perhaps the most impressive machine ever wrought by man. It is worthy of both respect and fear, and will do to people as any machine does to the product of its design. Treat it as such and it will always do precisely what you expect it to; both good and bad.`
 				goto finished
-			label knowduty
+			label "know duty"
 			`	They lift their head and smile. "A promise made is a promise kept. If your word is your bond then it would not do for me to stand in its way.`
 				goto finished
 			label finished

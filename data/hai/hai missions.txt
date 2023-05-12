@@ -955,11 +955,11 @@ mission "Nanachi 3"
 			`	"Oh, sorry about that, shouldn't have assumed you knew everything, you're a starship captain after all, not a historian, I'll just ask someone else when I get the chance," says Nanachi.`
 				goto board
 			label fake
-			branch public2
+			branch "public 2"
 				has "event: hai-human resolution announced"
 			`	You start making up stories about how beautiful the skies of Earth are. You describe forests teeming with life, and do your best to remember ancient civilizations and their monuments. From the looks of it she believes you, and your lie seems to have sated her curiosity for now. If the day where the Hai are allowed to move around human space ever comes, though, she will no doubt be extremely disappointed.`
 				goto board
-			label public2
+			label "public 2"
 			`	You start making up stories about how beautiful the skies of Earth are. You describe forests teeming with life, and do your best to remember ancient civilizations and their monuments. From the looks of it she believes you, and your lie seems to have sated her curiosity for now. If she does manage to be successful enough to fly to Earth one day, though, she will no doubt be extremely disappointed.`
 				goto board
 			label truth
@@ -1033,15 +1033,15 @@ mission "Nanachi 4"
 			choice
 				`	"Are those art pieces really that valuable?"`
 				`	"Can't you just postpone the festival until the pirates are taken care of?"`
-			branch public2
+			branch "public 2"
 				has "event: hai-human resolution announced"
 			`	Xavier collapses back to the table, holding his head in both hands. "Those paintings and sculptures were our main attraction! They're worth tens of billions! It'll take months before the Navy ever notices the pirates there and makes it safe for the convoy to come here. The art exhibition is scheduled three weeks from now!"`
 			`	As they try to figure out what to do, Nanachi speaks up. "I'll go there. I pilot a human ship and if we just need to transfer cargo from one ship to the other, I could get out of there quickly. Nobody would notice that a Hai ever went there."`
-				goto return2
-			label public2
+				goto "return 2"
+			label "public 2"
 			`	Xavier collapses back to the table, holding his head in both hands. "Those paintings and sculptures were our main attraction! They're worth tens of billions! Even if we contact the Navy it will take weeks before they can mobilize to hunt them down and guarantee that they've made it safe for the convoy to come here, and the hazard pay to request a carrier escort is frankly ridiculous. The art exhibition is scheduled for only three weeks from now!"`
 			`	Some of them eye you as they try to figure out what to do, but Nanachi speaks up before any well-formed ideas are reached, "I'll go there. I pilot a human ship and if we just need to transfer cargo from one ship to the other, I could get out of there quickly. It's not an impressive ship either, so it's much more likely to go unnoticed or uncared for."`
-			label return2
+			label "return 2"
 			`	"Are you insane?" Vanessa says, "If they managed to take down that Leviathan, you wouldn't last a second! Besides, our convoy was extremely fast. If even they were caught, your chances of outrunning the pirates are next to nothing!"`
 			`	"Captain <last>," Nanachi turns to you. "I know you already helped me way more than anyone would ever be willing to, and I'm really grateful for that, but would you be willing to help me one last time, to get to that planet, and travel back here?"`
 			`	It's certain that for a pirate fleet to take down a Leviathan so easily they must be incredibly powerful, and this could be extremely dangerous. You're sure that if Nanachi tries to get to Prime by herself she'll just get herself killed.`
@@ -1051,11 +1051,11 @@ mission "Nanachi 4"
 					decline
 			`	She thanks you profusely, and promises that she'll pay you for everything as soon as she can. The organizers are a bit hesitant, but seeing as no other captain here has decided to offer them help, they agree to let the two of you go to Prime and retrieve the cargo.`
 			`	Vanessa grabs ahold of Nanachi's arm before she can run off to the spaceport. "Just remember, if you can't get back here by <day>, don't worry about it; we'll understand. I'm sure we can come up with some alternative to have the festival without our main attractions."`
-			branch public3
+			branch "public 3"
 				has "event: hai-human resolution announced"
 			`	As you're leaving the bar, Xavier pulls you aside, speaking very quietly, "<last>, I know you're just trying to help this girl, but don't get killed over this. If you run into those pirates don't try to fight them, just rush to Prime."`
 				accept
-			label public3
+			label "public 3"
 			`	As you're leaving the bar, Xavier pulls you aside, speaking very quietly. "<last>, I know you're no stranger to combat and danger, but don't get killed over this. The girl won't know what's sensible for her if it gets hairy, and she shouldn't have to get killed over this. If you run into those pirates don't try to fight them, just rush her through. I have faith in a person such as yourself."`
 				accept
 	npc

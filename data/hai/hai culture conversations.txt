@@ -228,22 +228,22 @@ mission "Academy Motto"
 			choice
 				`	(Play games on my ship.)`
 				`	(Have a look around further afield.)`
-					goto fieldtrip
+					goto "field trip"
 			`	Not interested in getting lost in an expansive Hai city, you simply load up an entertainment console to keep you occupied for the next few hours.`
 				decline
-			label fieldtrip
+			label "field trip"
 			`	The tendency of the Hai to efficiently pack people into vibrant but densely populated spaces is on full display as you navigate through throngs of Hai who mostly make polite efforts to avoid bumping into you. Colorful banners, flags, murals, and even windows all provide brilliant highlights to the oft-utilitarian architectural styles underlying them. Holoprojected welcome signs even grace the entry-ways of several apartment buildings that you pass, with caveats for door-to-door salespeople.`
 			`	One apartment complex's exterior fencing bears a very large sign which your translator informs you says, "No Meme Content Here Please."`
 			`	After some time you find what appears to be a cafe, or equivalent, and sit down where you can get a good view of one of the more impressive building complexes around. After a moment a holoprojection built into the table asks you in human standard whether you'd like to order through the table or converse with a member of staff.`
 			choice
 				`	(Order through the table.)`
-					goto pleasantlunch
+					goto "pleasant lunch"
 				`	(Order through a person.)`
 			`	A friendly Hai emerges to take your order and politely informs you that there's a 10% surcharge for eating on the terrace. Since that's hardly a meaningful sum to a ship's captain you just nod and try and work out what you're eating. Eventually you settle for a sandwich with acorn butter and vegetable slices that appear to be spiced, or pickled, you're not really sure. It was the staff's top recommended item and didn't come with any follow-up questions about Hai food preferences that you couldn't answer.`
-				goto finishingchat
-			label pleasantlunch
+				goto "finishing chat"
+			label "pleasant lunch"
 			`	The interface is rather annoying to work with human-sized hands, but eventually you settle for a sandwich with acorn butter and vegetable slices that appear to be spiced, or pickled, you're not really sure. It was the top recommended item and didn't come with any follow-up questions about Hai food preferences that you couldn't answer.`
-			label finishingchat
+			label "finishing chat"
 			`	As you eat your strange, but actually surprisingly tasty lunch, you take note of the large text written above the gateway into the grounds for the building complex opposite you. After a moment your translator box takes note of where you're looking and reads it aloud for you.`
 			`	"To know is to lead, to study is to know, to serve is to study, to lead is to serve."`
 			`	Naturally, your translator cannot answer questions, so you eat your lunch and leave it be until a staff member emerges to take your plate.`
