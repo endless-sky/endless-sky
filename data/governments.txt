@@ -713,6 +713,24 @@ government "Ka'sei"
 
 color "governments: Korath Exiles" .8 .5 .1
 
+government "Korath (Almach guard mission)"
+	"display name" "Korath"
+	swizzle 0
+	color "governments: Korath Exiles"
+	"crew attack" 1.4
+	"crew defense" 2.6
+	language "Korath"
+
+	"attitude toward"
+		"Hai (Friendly Unfettered)" -.01
+
+	"player reputation" -10
+	"send untranslated hails"
+	"friendly hail" "friendly korath untranslated"
+	"friendly disabled hail" "friendly disabled korath untranslated"
+	"hostile hail" "hostile korath untranslated"
+	"hostile disabled hail" "hostile disabled korath untranslated"
+
 government "Korath"
 	swizzle 0
 	color "governments: Korath Exiles"
@@ -724,6 +742,7 @@ government "Korath"
 		"Kor Sestor" -.01
 		"Korath (Civilian)" 1
 		"Hai (Friendly Unfettered)" -.01
+		"Korath (Almach guard mission)" 1
 	
 	"player reputation" -10
 	"send untranslated hails"

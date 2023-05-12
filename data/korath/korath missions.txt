@@ -375,11 +375,22 @@ mission "Korath Stormhold Artifacts [2] Drones"
 				`	"No thanks. I don't want to steal the Navy's glory."`
 					decline
 	on enter Almach
-		dialog "The Navy's sensor algorithms are working: your ship is picking up an abundance of drones."
+		dialog "The new sensor algorithms are working: your ship is picking up an abundance of drones."
 	on complete
 		payment 2500000
 		conversation
+			branch "Choot'k is away"
+				or
+					has "Hai Reveal [B11] Moving Together: offered"
+					has "Hai Reveal [B12] Devil-Hide Battle: offered"
+					has "Hai Reveal [B13] Freedom: offered"
 			`Choot'k greets you, beside some Navy crewmen in inventory management uniforms. "The Navy tells me you shut down the transmissions. Good job! As promised, we've set aside some of the best Korath gear for you to choose from.`
+				goto reward
+			label "Choot'k is away"
+			`A Navy officer approaches you, beside some crewmen in inventory management uniforms. "I was told you shut down the Korath transmissions. Good job! As promised, we've set aside some of the best Korath gear for you to choose from.`
+				goto reward
+
+			label reward
 			`	"Pick among these:`
 			`	"Some wonderful Korath systems that repair your hull and shields, while also storing energy. They come with two Korath anti-missile turrets and some other odds and ends.`
 			`	"I can also offer the strongest afterburner I've ever heard of, plus a sizable amount of fuel storage and ramscoop to keep it working.`
@@ -456,17 +467,17 @@ mission "Korath Stormhold Artifacts [2] Drones"
 			`	"It is always a pleasure to help another warrior get their due."`
 
 	npc kill
-		government Korath
+		government "Korath (Almach guard mission)"
 		system Almach
-		personality staying timid target marked
+		personality staying target surveillance
 		fleet
 			variant
 				"Kas'ik Tek 7 (Self-Destruct)" 12
 		dialog "With the probes destroyed, you can now return to Stormhold for your payment."
 	npc
-		government Korath
+		government "Korath (Almach guard mission)"
 		system Almach
-		personality staying heroic marked opportunistic
+		personality staying heroic target opportunistic
 		fleet
 			variant
 				"Ra'gru Ik 618 (Sentry)"
