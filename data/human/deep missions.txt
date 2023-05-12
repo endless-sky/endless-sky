@@ -2692,7 +2692,7 @@ mission "Stone of our Fathers 5"
 			`	The woman frowns for a second then seems to break from a trance as real warmth washes over her face. "I am sorry, it's just been so long since I've dealt with people who weren't looking for work. Alfheim, well, it is what it used to be, but only just more so now." She shrugs, "I know of Grimssalr though. I'm actually from Lindsvoll, in the same valley."`
 			`	"So can you tell us where it is?" Thorleif asks earnestly. The woman smiles shyly at Thorleif. "Tell you? How about I take you there?"`
 			choice
-				`	(Invite her "on board".)`
+				`	(Invite her onboard.)`
 					goto accompany
 				`	(Reject the offer.)`
 			`	You start to say that it isn't necessary for her to accompany you, when Thorleif cuts you off. "That sounds great!"`
