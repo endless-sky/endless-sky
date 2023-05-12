@@ -6210,7 +6210,7 @@ system Atlas
 		distance 4020
 		period 1991.2652
 		object
-			sprite planet/station3bd
+			sprite planet/ice0-b
 			distance 227
 			period 129.2824
 	object
@@ -7149,7 +7149,7 @@ system "Beta Lyrae"
 	fleet "Large Syndicate" 2500
 	fleet "Small Core Pirates" 2000
 	fleet "Large Core Pirates" 4000
-	habitable 2560
+	habitable 39560
 	belt 1130
 	trade Clothing 310
 	trade Electronics 750
@@ -7810,7 +7810,7 @@ system Botein
 		distance 1725
 		period 5210.5186
 		object
-			sprite planet/station3bd
+			sprite planet/ice0-b
 			distance 284
 			period 125.25502
 	object
@@ -12322,7 +12322,7 @@ system Electra
 	fleet "Large Core Pirates" 800
 	fleet "Small Core Pirates" 1200
 	fleet "Small Core Merchants" 600
-	habitable 2560
+	habitable 42560
 	belt 1607
 	object
 		sprite star/o-supergiant
@@ -15200,7 +15200,7 @@ system Fulu
 	fleet "Large Core Pirates" 800
 	fleet "Small Core Pirates" 1200
 	fleet "Small Core Merchants" 600
-	habitable 2560
+	habitable 200
 	belt 1529
 	object
 		sprite planet/browndwarf-y-rouge
@@ -19606,7 +19606,7 @@ system Kang
 		distance 3363
 		period 3047.2657
 		object
-			sprite planet/station14
+			sprite planet/ice0-b
 			distance 305
 			period 201.34942
 
@@ -28359,7 +28359,7 @@ system Puppis
 	fleet "Large Core Pirates" 800
 	fleet "Small Core Pirates" 1200
 	fleet "Small Core Merchants" 600
-	habitable 2560
+	habitable 17505
 	belt 1429
 	object
 		sprite star/neutron
@@ -30894,7 +30894,7 @@ system Semutir
 		object
 			sprite planet/dust0
 			distance 300
-			period 320.01934
+			period 120.01934
 		object
 			sprite planet/dust5-b
 			distance 416
@@ -33299,7 +33299,7 @@ system "Tau Ceti"
 	fleet "Small Core Pirates" 2000
 	fleet "Large Core Pirates" 4000
 	fleet "Human Miners" 2000
-	habitable 861.25
+	habitable 3161
 	belt 1130
 	trade Clothing 310
 	trade Electronics 750
