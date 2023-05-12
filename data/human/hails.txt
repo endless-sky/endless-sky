@@ -2122,6 +2122,8 @@ phrase "friendly civilian"
 		"Get in on the ground floor!"
 		"We're about to go orbital, you should sign up while you still can!"
 	word
+		" "
+	word
 		"Find me "
 		"You can get me "
 		"Call me "
@@ -2142,6 +2144,9 @@ phrase "friendly civilian"
 		"a power cascade! "
 		"an anti-matter containment failure! "
 		"an engine overheating! "
+		"unsynchronized repulsors! "
+		"a parasitic shield disharge! "
+		"a leaky fuel cell! "
 	word
 		"The maintenance on this old bucket will cripple me."
 		"It's just one thing after another on these old ships."
@@ -2149,12 +2154,16 @@ phrase "friendly civilian"
 		"And it's not as though parts are cheap these days."
 		"It could be worse, I suppose. I could fly into a black hole."
 		"It's not like the customers even care, they just want their cargo yesterday."
+		"What else can you expect from shoddy Syndicated Systems manufacturing?"
+		"I'd repair it, but I got to pay my mortgage."
+		"Do you know where I could fix it for good?"
+		"I'd love to know how other captains get by without these problems."
 		
 phrase "friendly civilian"
 	word
-		"I just found out that a 'duck' is a type of bird from Earth! Now I wonder why 'duck tape' is named after it?"
-		"Apparently they want me to pay 5% of my paycheck for union dues! I'm gonna keep it. My boss is a good guy, he'll look out for me."
-		"I saved up and bought extra bunk space so my wife could come on trips with me, and now she says 'we need to talk'. That can't be a good sign, can it?"
+		`I just found out that a "duck" is a type of bird from Earth! Now I wonder why "duck tape" is named after it?`
+		`Apparently they want me to pay 5% of my paycheck for union dues! I'm gonna keep it. My boss is a good guy; he'll look out for me.`
+		`I saved up and bought extra bunk space so my wife could come on trips with me, and now she says "we need to talk." That can't be a good sign, can it?`
 
 phrase "friendly navy"
 	word
