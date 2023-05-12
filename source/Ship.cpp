@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 
 #include "Audio.h"
+#include "CategoryList.h"
 #include "CategoryTypes.h"
 #include "DamageDealt.h"
 #include "DataNode.h"
@@ -755,11 +756,11 @@ void Ship::FinishLoading(bool isNewInstance)
 	// invalid bays. Add a default "launch effect" to any remaining internal bays if
 	// this ship is crewed (i.e. pressurized).
 	string warning;
-	const auto &bayCategories = GameData::Category(CategoryType::BAY);
+	const auto &bayCategories = GameData::GetCategory(CategoryType::BAY);
 	for(auto it = bays.begin(); it != bays.end(); )
 	{
 		Bay &bay = *it;
-		if(find(bayCategories.begin(), bayCategories.end(), bay.category) == bayCategories.end())
+		if(!bayCategories.Contains(bay.category))
 		{
 			warning += "Invalid bay category: " + bay.category + "\n";
 			it = bays.erase(it);
@@ -771,7 +772,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			bay.launchEffects.emplace_back(GameData::Effects().Get("basic launch"));
 	}
 
-	canBeCarried = find(bayCategories.begin(), bayCategories.end(), attributes.Category()) != bayCategories.end();
+	canBeCarried = bayCategories.Contains(attributes.Category());
 
 	// Issue warnings if this ship has is misconfigured, e.g. is missing required values
 	// or has negative outfit, cargo, weapon, or engine capacity.
@@ -1287,6 +1288,8 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	forget = 1;
 	targetShip.reset();
 	shipToAssist.reset();
+	if(isDeparting)
+		lingerSteps = 0;
 
 	// The swizzle is only updated if this ship has a government or when it is departing
 	// from a planet. Launching a carry from a carrier does not update its swizzle.
@@ -1474,7 +1477,8 @@ bool Ship::CanSendHail(const PlayerInfo &player, bool allowUntranslated) const
 	// Ships that don't share a language with the player shouldn't communicate when hailed directly.
 	// Only random event hails should work, and only if the government explicitly has
 	// untranslated hails. This is ensured by the allowUntranslated argument.
-	if(!allowUntranslated && !gov->Language().empty() && !player.Conditions().Get("language: " + gov->Language()))
+	if(!(allowUntranslated && gov->SendUntranslatedHails())
+			&& !gov->Language().empty() && !player.Conditions().Get("language: " + gov->Language()))
 		return false;
 
 	return true;
@@ -1608,6 +1612,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		// Once we've created enough little explosions, die.
 		if(explosionCount == explosionTotal || forget)
 		{
+			if(IsYours() && Preferences::Has("Extra fleet status messages"))
+				Messages::Add("Your ship \"" + Name() + "\" has been destroyed.", Messages::Importance::Highest);
+
 			if(!forget)
 			{
 				const Effect *effect = GameData::Effects().Get("smoke");
@@ -1711,7 +1718,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		// Enter hyperspace.
 		int direction = hyperspaceSystem ? 1 : -1;
 		hyperspaceCount += direction;
+		// Number of frames it takes to enter or exit hyperspace.
 		static const int HYPER_C = 100;
+		// Rate the ship accelerate and slow down when exiting hyperspace.
 		static const double HYPER_A = 2.;
 		static const double HYPER_D = 1000.;
 		if(hyperspaceSystem)
@@ -1817,9 +1826,12 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 					if(altV > 0. && altV < exitV)
 						exitV = altV;
 				}
-				if(velocity.Length() <= exitV)
+				// If current velocity is less than or equal to targeted velocity
+				// consider the hyperspace exit done.
+				const Point facingUnit = angle.Unit();
+				if(velocity.Dot(facingUnit) <= exitV)
 				{
-					velocity = angle.Unit() * exitV;
+					velocity = facingUnit * exitV;
 					hyperspaceCount = 0;
 				}
 			}
@@ -1922,12 +1934,15 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	else if(requiredCrew && static_cast<int>(Random::Int(requiredCrew)) >= Crew())
 	{
 		pilotError = 30;
-		if(parent.lock() || !isYours)
-			Messages::Add("The " + name + " is moving erratically because there are not enough crew to pilot it."
-				, Messages::Importance::Low);
-		else
-			Messages::Add("Your ship is moving erratically because you do not have enough crew to pilot it."
-				, Messages::Importance::Low);
+		if(isYours || (personality.IsEscort() && Preferences::Has("Extra fleet status messages")))
+		{
+			if(parent.lock())
+				Messages::Add("The " + name + " is moving erratically because there are not enough crew to pilot it."
+					, Messages::Importance::Low);
+			else
+				Messages::Add("Your ship is moving erratically because you do not have enough crew to pilot it."
+					, Messages::Importance::Low);
+		}
 	}
 	else
 		pilotOkay = 30;
@@ -2419,14 +2434,6 @@ void Ship::DoGeneration()
 
 	isDisabled = isOverheated || hull < MinimumHull() || (!crew && RequiredCrew());
 
-	// Whenever not actively scanning, the amount of
-	// scan information the ship has "decays" over time.
-	// Only apply the decay if not already done scanning the target.
-	if(cargoScan < SCAN_TIME)
-		cargoScan = max(0., cargoScan - 1.);
-	if(outfitScan < SCAN_TIME)
-		outfitScan = max(0., outfitScan - 1.);
-
 	// Update ship supply levels.
 	if(isDisabled)
 		PauseAnimation();
@@ -2463,8 +2470,8 @@ void Ship::DoGeneration()
 		double activeCooling = coolingEfficiency * attributes.Get("active cooling");
 		if(activeCooling > 0. && heat > 0. && energy >= 0.)
 		{
-			// Although it's a misuse of this feature, handle the case where
-			// "active cooling" does not require any energy.
+			// Handle the case where "active cooling"
+			// does not require any energy.
 			double coolingEnergy = attributes.Get("cooling energy");
 			if(coolingEnergy)
 			{
@@ -2473,7 +2480,7 @@ void Ship::DoGeneration()
 				energy -= spentEnergy;
 			}
 			else
-				heat -= activeCooling;
+				heat -= activeCooling * min(1., Heat());
 		}
 	}
 
@@ -2700,9 +2707,8 @@ int Ship::Scan(const PlayerInfo &player)
 			// "1 / depth"
 			// This makes scan time proportional to cargo or outfit space.
 
-			// To make up for previous scan delay, also add 1.
 			elapsed += ((scannerRange - .5 * distanceSquared) * speed)
-				/ (scannerRange * (sqrt(speed) + distanceSquared) * depth) + 1;
+				/ (scannerRange * (sqrt(speed) + distanceSquared) * depth);
 
 			if(elapsed >= SCAN_TIME)
 				result |= event;
@@ -2714,6 +2720,10 @@ int Ship::Scan(const PlayerInfo &player)
 	// Play the scanning sound if the actor or the target is the player's ship.
 	if(isYours || (target->isYours && activeScanning))
 		Audio::Play(Audio::Get("scan"), Position());
+
+	bool isImportant = false;
+	if(target->isYours)
+		isImportant = target.get() == player.Flagship() || government->FinesContents(target.get());
 
 	if(startedScanning && isYours)
 	{
@@ -2737,18 +2747,22 @@ int Ship::Scan(const PlayerInfo &player)
 				Messages::Importance::Highest);
 		}
 	}
-	else if(startedScanning && target->isYours)
+	else if(startedScanning && target->isYours && isImportant)
 		Messages::Add("The " + government->GetName() + " " + Noun() + " \""
-			+ Name() + "\" is attempting to scan you.", Messages::Importance::Low);
+				+ Name() + "\" is attempting to scan your ship \"" + target->Name() + "\".",
+				Messages::Importance::Low);
 
-	if(target->isYours && !isYours)
+	if(target->isYours && !isYours && isImportant)
 	{
 		if(result & ShipEvent::SCAN_CARGO)
 			Messages::Add("The " + government->GetName() + " " + Noun() + " \""
-					+ Name() + "\" completed its scan of your cargo.", Messages::Importance::High);
+					+ Name() + "\" completed its cargo scan of your ship \"" + target->Name() + "\".",
+					Messages::Importance::High);
 		if(result & ShipEvent::SCAN_OUTFITS)
 			Messages::Add("The " + government->GetName() + " " + Noun() + " \""
-					+ Name() + "\" completed its scan of your outfits.", Messages::Importance::High);
+					+ Name() + "\" completed its outfit scan of your ship \"" + target->Name()
+					+ (target->Attributes().Get("inscrutable") > 0. ? "\" with no useful results." : "\"."),
+					Messages::Importance::High);
 	}
 
 	// Some governments are provoked when a scan is completed on one of their ships.
@@ -3119,6 +3133,14 @@ void Ship::Restore()
 	explosionRate = 0;
 	UnmarkForRemoval();
 	Recharge(true);
+}
+
+
+
+bool Ship::IsDamaged() const
+{
+	// Account for ships with no shields when determining if they're damaged.
+	return (attributes.Get("shields") != 0 && Shields() != 1.) || Hull() != 1.;
 }
 
 
@@ -3757,6 +3779,10 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 	// Check only for the category that we are interested in.
 	const string &category = ship->attributes.Category();
 
+	// NPC ships should always transfer cargo. Player ships should only
+	// transfer cargo if they set the AI preference.
+	const bool shouldTransferCargo = !IsYours() || Preferences::Has("Fighters transfer cargo");
+
 	for(Bay &bay : bays)
 		if((bay.category == category) && !bay.ship)
 		{
@@ -3771,9 +3797,8 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 			ship->isSteering = false;
 			ship->commands.Clear();
 
-			// If this fighter collected anything in space, try to store it
-			// (unless this is a player-owned ship).
-			if(!isYours && cargo.Free() && !ship->Cargo().IsEmpty())
+			// If this fighter collected anything in space, try to store it.
+			if(shouldTransferCargo && cargo.Free() && !ship->Cargo().IsEmpty())
 				ship->Cargo().TransferAll(cargo);
 
 			// Return unused fuel and ammunition to the carrier, so they may
@@ -4210,6 +4235,17 @@ void Ship::SetParent(const shared_ptr<Ship> &ship)
 
 
 
+bool Ship::CanPickUp(const Flotsam &flotsam) const
+{
+	if(this == flotsam.Source())
+		return false;
+	if(government == flotsam.SourceGovernment() && (!personality.Harvests() || personality.IsAppeasing()))
+		return false;
+	return cargo.Free() >= flotsam.UnitSize();
+}
+
+
+
 shared_ptr<Ship> Ship::GetParent() const
 {
 	return parent.lock();
@@ -4220,6 +4256,20 @@ shared_ptr<Ship> Ship::GetParent() const
 const vector<weak_ptr<Ship>> &Ship::GetEscorts() const
 {
 	return escorts;
+}
+
+
+
+int Ship::GetLingerSteps() const
+{
+	return lingerSteps;
+}
+
+
+
+void Ship::Linger()
+{
+	++lingerSteps;
 }
 
 
