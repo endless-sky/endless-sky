@@ -64,7 +64,7 @@ public:
 
 
 public:
-	// Get the PlayerInfo object that represents the current player playing the game.
+	// Get the PlayerInfo object for the player that is presently playing the game.
 	// If no player has been selected yet, this will return an empty PlayerInfo.
 	static PlayerInfo &ActivePlayer();
 
