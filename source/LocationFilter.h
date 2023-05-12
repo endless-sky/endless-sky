@@ -112,8 +112,11 @@ private:
 	int originMaxDistance = -1;
 	DistanceCalculationSettings originDistanceOptions;
 
+	// Flags for keyword tests such as "elsewhere" or "landed"
 	int flags = 0;
 
+	// Do any filters in this tree need this map?
+	// This is an efficiency measure, so DistanceMaps are only calculated when needed.
 	bool needFlagshipMap = false;
 	bool needPlayerMap = false;
 
