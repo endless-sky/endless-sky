@@ -333,7 +333,7 @@ mission "Coalition Yottrite 3"
 					goto "inside crate"
 				`	"That's gotta be the shortest courier mission I've ever heard of. Can't some other ship do the trip?"`
 					goto "so it would seem"
-			label "inside "crate"
+			label "inside crate"
 			`	"Older samples that you've brought to us, they contain. Experimented with, the yottrite was. Unsure of the details, I am."`
 				goto end
 			label "so it would seem"
@@ -1526,7 +1526,7 @@ mission "Saryd University Lecture"
 					decline
 			label answer
 			`	"Answering some questions from the attendees, would you be comfortable with? Simple, they would be, about aspects of human society, physical structure, and the like, they would pertain to."`
-				goto choosetostay
+				goto "choose to stay"
 			label low
 			`	"Nonsense! Travel the galaxy, you do. A most knowledgeable individual, surely you must be. Accept my offer, will you?"`
 				goto "choose to stay"
@@ -2629,7 +2629,7 @@ mission "Coalition: Expeditions Past 6"
 				has "Rim Archaeology 6: offered"
 			choice
 				`	"No, I didn't even know there used to be ruins here."`
-					goto notknow
+					goto "not know"
 			label sheragi
 			choice
 				`	"Actually, yes. They were called Sheragi."`

@@ -160,7 +160,7 @@ mission "Pookie, Part 3"
 				`	(Bet on Zinc.)`
 				`	(Bet on Puny.)`
 				`	"I'll pass."`
-					goto "nobet"
+					goto "no bet"
 			branch "not poor"
 				"credits" >= 3000
 			`	You dig through your pockets for a credit chip to toss into the bucket, until you realize that you don't have enough money to make a bet. Impatient with your bumbling, the woman turns to take money from a person next to you.`
@@ -171,7 +171,7 @@ mission "Pookie, Part 3"
 				payment -3000
 			`	You toss a chip into the bucket, and the woman eagerly turns towards a person next to you.`
 				goto next
-			label "nobet"
+			label "no bet"
 			`	The woman turns to take bets from a person next to you.`
 			label next
 			`	After several minutes pass, the siren sounds, and the announcer speaks again. "Once again, we at the East Mesa Racing Complex give our thanks to everyone who supports our cause by participating in betting. Now, without further ado..."`
@@ -4760,7 +4760,7 @@ mission "Dangerous Games 2"
 	source
 		attributes "frontier" "pirate" "rim"
 	destination "Poseidos"
-	cargo ""sub pods"" 6
+	cargo "sub pods"" 6
 	passengers 6
 	to offer
 		random < 15

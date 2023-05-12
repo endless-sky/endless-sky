@@ -3006,7 +3006,7 @@ mission "Home for Skadenga 1"
 			choice
 				`	(Wake up.)`
 			label "village arrival"
-			branch ""body aches""
+			branch "body aches"
 				has "put on jacket"
 			`	The pale morning light of the first sun filters in through a synthetic window and onto your face. You try to escape back into sleep, but something feels off and groggily you peer out at your surroundings.`
 				goto barracks
@@ -3018,7 +3018,7 @@ mission "Home for Skadenga 1"
 				`	"Excuse me?"`
 			`	The crowd steps back, and an elderly woman steps forward. Her gray hair is rolled up into tight, elegant braids, and her face and hands are covered in faded, blue tattoos.`
 			`	"We are pleased to call you guest. You have saved our daughter, and more; you will save us all." The elderly woman and everyone behind her kneels before you.`
-			branch ""with hjlod""
+			branch "with hjlod"
 				has "put on jacket"
 			action
 				set "Hjlodsaved"
@@ -3053,7 +3053,7 @@ mission "Home for Skadenga 1"
 					goto "do it"
 				`	"No. This isn't my problem. I just need to get back to my ship."`
 			`	The Ondurdis bows and steps back. "If that is your wish, then you must not be the one we wait for." With that, she and everyone else leave the barracks.`
-			branch ""use shuttle""
+			branch "use shuttle"
 				has "put on jacket"
 			`	You climb out of your bunk and head to the Ice-Crawler. From there, you head straight back to the spaceport. The trip takes a few hours and you spend some of it pondering the strange course of events - how you went from a life or death struggle against the elements to being some rustic community's savior.`
 			`	"Oh, well." You say to yourself, "I can't save everyone."`
@@ -3080,7 +3080,7 @@ mission "Home for Skadenga 1"
 			choice
 				`	(Head to the shuttle.)`
 			label shuttle
-			branch ""three fingers""
+			branch "three fingers"
 				has "put on jacket"
 			`	A lone figure stands next to the idling shuttle. As you draw closer you recognize Hjlod.`
 			`	"I just vant to thank you." Hjlod's gray-blue eyes glitter in the morning light. "I alvays say Hjlod keep tourist safe. But yesterday you save Hjlod. I vill not forgot, know this."`

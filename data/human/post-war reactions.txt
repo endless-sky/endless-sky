@@ -136,7 +136,7 @@ mission "War Reactions: Navy and Free Worlds Captains"
 					goto "sister 2"
 					to display
 						has "War Reactions: Navy and Free Worlds Captains: label sister"
-						not "War Reactions: Navy and Free Worlds Captains: label "sister 2""
+						not "War Reactions: Navy and Free Worlds Captains: label sister2"
 				`	"Mercenary? I'm not a mercenary."`
 					goto mercenary
 					to display
@@ -168,7 +168,7 @@ mission "War Reactions: Navy and Free Worlds Captains"
 				goto questions
 			label "sister 2"
 			action
-				set "War Reactions: Navy and Free Worlds Captains: label "sister 2""
+				set "War Reactions: Navy and Free Worlds Captains: label sister2"
 			`	They share a glance and Fiona shrugs. "Sometimes that's just what happens with family."`
 			`	Rain continues, "You do what you have to to follow your orders and look out for each other in between."`
 				goto questions
