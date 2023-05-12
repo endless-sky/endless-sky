@@ -378,7 +378,7 @@ mission "First Contact: Korath Exiles"
 			`	They stare at you for another few awkward seconds.`
 			`	Then, in front of your three ships, they slowly and carefully draw a large fire, larger than the three of your ships put together. Beside your ships, facing away, they draw a pointed circle on one side, and a spider on the other; after a brief pause, they make the circle and spider double-ended. Again, they point to the drawing of your double-ended ships, and then to the now ominous-looking collection of ships and fire, and point to you.`
 			choice
-				`	(Point again to the ominous collection of ships and fire, with the three ships flying togther.)`
+				`	(Point again to the ominous collection of ships and fire, with the three ships flying together.)`
 					goto fire
 				`	(Point to the double-ended ships facing off against each other this time.)`
 					goto fight
@@ -387,6 +387,7 @@ mission "First Contact: Korath Exiles"
 
 			label fire
 			`	A furious exchange of gestures and vocalisations ensues between the two korath, and they begin furiously drawing, erasing, and drawing more things in the sand between themselves, out of your sight. Eventually, the pace of their conversation slows and they turn back to you.`
+			# This Korath is asking you to return here with food.
 			`	They draw your ships back on the illustration of the planet, pick up the sand for your ship, and throw it back in human space again. Then, they collect a few pebbles from human space, redraw your ship back on the planet again, and place the pebbles inside. Picking up one of the pebbles, one of them reaches into its coat, takes out a glowing red orb, unscrews a cap from the top, and drinks the thick, red fluid. They gesture with the pebble, gesture with the now-empty orb, and place all the pebbles on the drawing of the planet between your three ships.`
 			choice
 				`	(Continue.)`
