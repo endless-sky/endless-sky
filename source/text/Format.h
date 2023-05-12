@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef ES_TEXT_FORMAT_H_
 #define ES_TEXT_FORMAT_H_
 
+#include <functional>
 #include <map>
 #include <string>
 #include <vector>
@@ -24,6 +25,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 // Collection of functions for formatting strings for display.
 class Format {
+public:
+	// Function to retrieve a condition's value. Receives a string that contains
+	// the condition name, and the start & size of the substring with the condition
+	// name.
+	using ConditionGetter = std::function<int64_t(const std::string &source, size_t start, size_t size)>;
+
+
 public:
 	// Convert the given number into abbreviated format with a suffix like
 	// "M" for million, "B" for billion, or "T" for trillion. Any number
@@ -63,6 +71,9 @@ public:
 
 	// Split a single string into substrings with the given separator.
 	static std::vector<std::string> Split(const std::string &str, const std::string &separator);
+
+	// Finds &[condition] and &[format@condition] in strings and expands them
+	static std::string ExpandConditions(const std::string &source, ConditionGetter getter);
 };
 
 
