@@ -848,7 +848,7 @@ government "Korath (Civilian)"
 government "Korath (Station)"
 	"display name" "Korath"
 	color .8 .5 .1
-	language "Exile"
+	language "Korath"
 
 	"attitude toward"
 		"Wanderer" -.01
