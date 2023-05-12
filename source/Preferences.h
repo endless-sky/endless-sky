@@ -50,6 +50,13 @@ public:
 		WHEN_FIRING
 	};
 
+	enum class AutoFire : int_fast8_t {
+		OFF = 0,
+		ON,
+		GUNS_ONLY,
+		TURRETS_ONLY
+	};
+
 	enum class BoardingPriority : int_fast8_t {
 		PROXIMITY = 0,
 		VALUE,
@@ -109,6 +116,11 @@ public:
 	static void ToggleAutoAim();
 	static AutoAim GetAutoAim();
 	static const std::string &AutoAimSetting();
+
+	// Auto fire setting, either "off", "on", "guns only", or "turrets only".
+	static void ToggleAutoFire();
+	static AutoFire GetAutoFire();
+	static const std::string &AutoFireSetting();
 
 	// Background parallax setting, either "fast", "fancy", or "off".
 	static void ToggleParallax();
