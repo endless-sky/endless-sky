@@ -75,7 +75,7 @@ Text Text::FormatN(const std::string& format_singular, const std::string& format
 {
 	// TODO: if a PO file is loaded, select among alternative plural forms using n here
 	int64_t n = -1;
-	for(auto& kv: args)
+	for(auto & kv: args)
 	{
 		int64_t an = kv.second.N();
 		if(an >= 0)
