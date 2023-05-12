@@ -266,6 +266,7 @@ mission "First Contact: Korath Exiles"
 	to offer
 		not "Wanderers: Sestor: Exiles 2: active"
 	on offer
+		fail
 		conversation
 			# Premise: Although there are Korath who are around humans frequently,
 			# that is a tiny fraction of the Korath population. Most will not have
@@ -391,8 +392,10 @@ mission "First Contact: Korath Exiles"
 			`	They draw your ships back on the illustration of the planet, pick up the sand for your ship, and throw it back in human space again. Then, they collect a few pebbles from human space, redraw your ship back on the planet again, and place the pebbles inside. Picking up one of the pebbles, one of them reaches into its coat, takes out a glowing red orb, unscrews a cap from the top, and drinks the thick, red fluid. They gesture with the pebble, gesture with the now-empty orb, and place all the pebbles on the drawing of the planet between your three ships.`
 			choice
 				`	(Continue.)`
-			`	"Lasel," says the Korath, and it stretches out both arms toward you, fingers curled back towards its body. You make the same gesture, and they reverse their hands, linking their scaly fingers with yours. You're not sure if that is the right response, but the Korath seem satisfied, saying, "Nik lak'mal." They get back in their fighters and take off, cirlcling above you.`
-				accept
+			action
+				"Korath happiness with first contact" = 2
+			`	"Lasel," says the Korath, and it stretches out both arms toward you, fingers curled back towards its body. You make the same gesture, and they reverse their hands, linking their scaly fingers with yours. You're not sure if that is the right response, but the Korath seem satisfied, saying, "Nik lak'mal." They get back in their fighters and take off, circling above you.`
+				decline
 
 			label alone
 			`	On the map, you draw a line between Korath space and human space. "Humans will stay here," you say, "if the Korath will stay here. Humans here, Korath here." You point to each location for emphasis.`
@@ -400,6 +403,8 @@ mission "First Contact: Korath Exiles"
 			label fight
 			`	It pushes its finger deep into the ground at a point on the map not too far from Earth. "Ka puk soru, nik ka korath."`
 			label parting
+			action
+				"Korath happiness with first contact" = 1
 			`	"Kai," says the Korath, and it stretches out both arms toward you, palms out. You make the same gesture and touch its hands, palm to palm. You're not sure if that is the right response, but the Korath seem satisfied, saying, "Nik lak'mal." They get back in their fighters, take off, and hover nearby.`
 				decline
 
@@ -795,11 +800,22 @@ mission "Korath [F05]: The Rainbow Feather"
 			`	"I sense you have a part to play on the galactic stage, which I should not forbid. The rest of the galaxy knows our protectors as monsters; mindless destroyers to be hunted for thrill or profit. All I ask is that you act with compassion and understanding."`
 			choice
 				`	"You've made a convincing case. I'll help them find their place in the galaxy."`
+					goto "find their place"
 				`	"Compassion for the Korath? That's asking a lot, but I'll try."`
+					goto "will try"
 				`	"We will have to agree to disagree, but I will not forget your words."`
-					goto nosee
+					goto "agree to disagree"
+			label "find their place"
+			action
+				"willingness to agree to Iris's request to help Korath" = 3
+			branch happyiris
+			label "will try"
+			action
+				"willingness to agree to Iris's request to help Korath" = 2
 			`	She closes her eyes and sighs happily. "Thank you. We do not share this information lightly, and I'm glad we judged well." Opening her eyes and smiling, she does a slight bow and departs.`
 				decline
-			label nosee
+			label "agree to disagree"
+			action
+				"willingness to agree to Iris's request to help Korath" = 1
 			`	She looks concerned and says, "Then, I'll pray that you make the right choice when fate brings power your way." At this, she does a slight bow and departs.`
 				decline
