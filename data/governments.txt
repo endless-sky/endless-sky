@@ -669,6 +669,8 @@ government "Humanika (Ship)"
 	"attitude toward"
 		"Korath (Civilian)" .01
 		"Syndicate" -.1
+	"friendly hail" "friendly civilian"
+	"hostile hail" "hostile civilian"
 
 government "Independent"
 	swizzle 6
