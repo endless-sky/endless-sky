@@ -1279,9 +1279,9 @@ mission "Hai Reveal [A09] History of Appeasement"
 			choice
 				`	"What does that mean?"`
 				`	"Thank you, Sayari."`
-					goto "actual meetgin"
+					goto "actual meeting"
 			`	"Our governmental structure is directed towards stability, but sometimes there's a problem that merits rapid action. When needed, the Council will nominate a group of Elders, or even just one, to take actions the full Council would otherwise spend weeks deliberating upon. Their power is limited, and is defined when they're nominated, but their dictate is immediate. If necessity pushes beyond their preset limits, they can make a recommendation with a fast track to a full Council discussion. In trying times like these, they may get a meeting by tomorrow."`
-			label "actual meetgin"
+			label "actual meeting"
 			`	The three Hai Elders are sat behind a table, and the Elder in the center gestures for all of you to sit down in those strange Hai chairs. After a small, calm exchange in Hai between Sayari and the central Elder, he motions for you to speak.`
 			`	Instead, Teeneep begins. "Respected Elders, I have extensive evidence of a sustained kidnapping campaign in Hai space, facilitated by pirates you've been arm-"`
 			`	"Enough," says an Elder, raising his hand. "We know about your views, the 'five thousand missing Hai,' and your organization's media connections. You're already risking larger issues with your current actions. We are here to speak to your witness. Captain <last>," he says, turning to you, "tell us your views on these matters."`
