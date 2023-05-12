@@ -41,6 +41,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "System.h"
 #include "Weapon.h"
 #include "Wormhole.h"
+#include "text/Text.h"
 
 #include <algorithm>
 #include <cmath>
@@ -175,18 +176,24 @@ namespace {
 		{
 			for(Ship *ship : toDeploy)
 				ship->SetDeployOrder(true);
-			Messages::Add(GameData::GetString("deployed",
-					{{"<count>", to_string(toDeploy.size())}}
-				), Messages::Importance::High);
+			Text::Args args = {{"count", toDeploy.size()}};
+			Text message = Text::FormatN(
+				"Deployed 1 carried ship.",
+				"Deployed <count> carried ships.",
+				args);
+			Messages::Add(message.ToString(), Messages::Importance::High);
 		}
 		// Otherwise, instruct the carried ships to return to their berth.
 		else if(!toRecall.empty())
 		{
 			for(Ship *ship : toRecall)
 				ship->SetDeployOrder(false);
-			Messages::Add(GameData::GetString("recalled",
-					{{"<count>", to_string(toRecall.size())}}
-				), Messages::Importance::High);
+			Text::Args args = {{"count", toRecall.size()}};
+			Text message = Text::FormatN(
+				"Recalled 1 carried ship.",
+				"Recalled <count> carried ships.",
+				args);
+			Messages::Add(message.ToString(), Messages::Importance::High);
 		}
 	}
 

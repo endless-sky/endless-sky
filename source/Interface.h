@@ -54,12 +54,6 @@ public:
 	// Get a named value.
 	double GetValue(const std::string &name) const;
 
-	// Get a named string.
-	const std::string& GetString(const std::string& key) const;
-	// Get a named string, with formatting
-	std::string GetString(const std::string& key,
-		const std::map<std::string, std::string>& values) const;
-
 
 private:
 	class AnchoredPoint {
@@ -220,11 +214,9 @@ private:
 
 
 private:
-	std::string name;
 	std::vector<Element *> elements;
 	std::map<std::string, Element> points;
 	std::map<std::string, double> values;
-	std::map<std::string, std::string> stringTable;
 };
 
 

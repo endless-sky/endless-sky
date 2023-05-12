@@ -348,6 +348,8 @@ target_sources(EndlessSkyLib PRIVATE
 	text/Format.h
 	text/Table.cpp
 	text/Table.h
+	text/Text.cpp
+	text/Text.h
 	text/Utf8.cpp
 	text/Utf8.h
 	text/WrappedText.cpp

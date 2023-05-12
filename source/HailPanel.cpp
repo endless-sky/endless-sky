@@ -34,6 +34,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
+#include "text/Text.h"
 #include "text/WrappedText.h"
 
 #include <algorithm>
@@ -248,7 +249,6 @@ void HailPanel::Draw()
 bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	bool shipIsEnemy = (ship && ship->GetGovernment()->IsEnemy());
-	const Interface *hailUi = GameData::Interfaces().Get("hail panel");
 
 	if(key == 'd' || key == SDLK_ESCAPE || key == SDLK_RETURN || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 	{
@@ -263,7 +263,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			GameData::GetPolitics().DominatePlanet(planet, false);
 			// Set payment 0 to erase the tribute.
 			player.SetTribute(planet, 0);
-			message = hailUi->GetString("relinquish domination");
+			message = Text::Format("Thank you for granting us our freedom!").ToString();
 		}
 		else
 			message = planet->DemandTribute(player);

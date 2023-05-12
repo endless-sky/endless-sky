@@ -39,7 +39,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ImageSet.h"
 #include "Interface.h"
 #include "LineShader.h"
-#include "Logger.h"
 #include "MaskManager.h"
 #include "Minable.h"
 #include "Mission.h"
@@ -66,7 +65,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Test.h"
 #include "TestData.h"
 #include "UniverseObjects.h"
-#include "text/Format.h"
 
 #include <algorithm>
 #include <iostream>
@@ -822,33 +820,6 @@ string GameData::HelpMessage(const string &name)
 	static const string EMPTY;
 	auto it = objects.helpMessages.find(name);
 	return Command::ReplaceNamesWithKeys(it == objects.helpMessages.end() ? EMPTY : it->second);
-}
-
-
-
-const string &GameData::GetString(const string &name)
-{
-	static const string EMPTY;
-	auto it = objects.stringTable.find(name);
-	if(it == objects.stringTable.end())
-	{
-		static set<string> logOnce;
-		if(logOnce.count(name) == 0)
-		{
-			Logger::LogError("Attempting to get non-existent string \"" + name +
-				"\" from global string table");
-			logOnce.insert(name);
-		}
-		return EMPTY;
-	}
-	return it->second;
-}
-
-
-
-string GameData::GetString(const string &name, const map<string, string> &substitutions)
-{
-	return Format::Replace(GetString(name), substitutions);
 }
 
 
