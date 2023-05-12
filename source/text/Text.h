@@ -33,6 +33,7 @@ private:
 	class FormatArg
 	{
 	public:
+		virtual ~FormatArg() {}
 		virtual std::string ToString() const = 0;
 		virtual int64_t N() const { return -1; }
 	};
