@@ -712,7 +712,7 @@ news "humanika researcher"
 
 			# New ones, relating to observing the Korath
 			`"We've always used star lanes for hyperspace communication, but it turns out you can communicate directly between two systems. The devices are hard to manufacture, though."`
-			`"There's a really creative alloy we found recently, which can dissipate heat faster than anything we ever seen. We haven't had much luck reproducing it, but we won't give up so easily."`
+			`"There's a really creative alloy we found recently, which can dissipate heat faster than anything we've ever seen. We haven't had much luck reproducing it, but we won't give up so easily."`
 			`"Recently, we've come upon a strange substance... I believe it's called Nutragel? We found that if you put it in a fuel cell, the power output doubles, but the cell quickly melts itself."`
 			`"Humanity has had nanofluids for centuries, but we've come upon a substance that quadruples the heat capacity of water. Unfortunately, the particles break down quickly, so it isn't viable yet."`
 			`"You know those expensive microbots we use for organ repair? It turns out you can modify them to repair metal instead. The power requirements are enormous, so it'll be years before we can use it for practical applications."`
