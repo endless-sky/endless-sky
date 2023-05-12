@@ -904,8 +904,6 @@ trade
 		"open-source software"
 		"replicas of the Fearless Girl statue"
 		"Luddite propaganda"
-		"flaming effigies of Ayn Rand"
-		"Adam Smith dart boards"
 		"Maoist texts"
 		"printings of The Communist Manifesto"
 		"writings of Leon Trotsky"
