@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Outfit.h"
 #include "Phrase.h"
 #include "Politics.h"
+#include "Ship.h"
 #include "ShipEvent.h"
 
 #include <algorithm>
@@ -671,6 +672,17 @@ int Government::Fines(const Outfit *outfit) const
 		if(it.first == outfit)
 			return it.second;
 	return outfit->Get("illegal");
+}
+
+
+
+bool Government::FinesContents(const Ship *ship) const
+{
+	for(auto &it : ship->Outfits())
+		if(this->Fines(it.first) || this->Condemns(it.first))
+			return true;
+
+	return ship->Cargo().IllegalCargoFine(this);
 }
 
 

@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define LOCATION_FILTER_H_
 
 #include "ConditionSet.h"
+#include "DistanceCalculationSettings.h"
 
 #include <list>
 #include <set>
@@ -105,9 +106,11 @@ private:
 	const System *center = nullptr;
 	int centerMinDistance = 0;
 	int centerMaxDistance = 1;
+	DistanceCalculationSettings centerDistanceOptions;
 	// Distance limits used in a "distance" filter.
 	int originMinDistance = 0;
 	int originMaxDistance = -1;
+	DistanceCalculationSettings originDistanceOptions;
 
 	int flags = 0;
 

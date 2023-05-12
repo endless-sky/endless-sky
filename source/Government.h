@@ -138,6 +138,8 @@ public:
 	bool Condemns(const Outfit *outfit) const;
 	// Returns the fine for given outfit for this government.
 	int Fines(const Outfit *outfit) const;
+	// Check if given ship has illegal outfits or cargo.
+	bool FinesContents(const Ship *ship) const;
 
 	// Get or set the player's reputation with this government.
 	double Reputation() const;
