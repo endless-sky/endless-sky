@@ -608,7 +608,7 @@ mission "Korath [F02]: A Fishy Proposition"
 				`	"I'm glad to have served another happy customer."`
 					goto done
 			`	She looks shocked. "You should never ask that question." Her face relaxes. "You're in luck this time: your cargo was not confidential, so I can satisfy your curiosity.`
-			`	"Much of our planet's food comes from a waste processing system that converts sewage directly into edible materials. We need a steady supply of filters to make this possible. These barrels contain several genetically-engineered organisms that feed on sewage and secrete certain types of proteins. There are other filters for sugar, oils, and just about anything else. It goes into 3D printers, and with a bit of spices, it is quite palatable. Still, we prefer to eat real food when we can.`
+			`	"Much of our planet's food comes from a waste processing systems that converts sewage into edible materials. They rely heavily on aquaponics using extraterrestrial species. These barrels contain several genetically-engineered organisms that feed on sewage and secrete certain types of proteins. The process produces edible algae-like substances; with spices and 3D printers, it is quite palatable. Still, we prefer to eat real food when we can.`
 
 			label done
 			`	"Your payment is <payment>, a bit higher than promised. Thank you for the prompt delivery, Captain <last>!"`
