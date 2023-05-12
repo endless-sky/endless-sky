@@ -396,6 +396,8 @@
 		<Unit filename="source/text/Format.h" />
 		<Unit filename="source/text/Table.cpp" />
 		<Unit filename="source/text/Table.h" />
+		<Unit filename="source/text/Text.cpp" />
+		<Unit filename="source/text/Text.h" />
 		<Unit filename="source/text/Utf8.cpp" />
 		<Unit filename="source/text/Utf8.h" />
 		<Unit filename="source/text/WrappedText.cpp" />

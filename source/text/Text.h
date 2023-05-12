@@ -21,11 +21,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <memory>
 #include <string>
 
-/// Class used for text meant for display.
-/// TODO: Translate the text if a supported PO file is loaded
-/// TODO: locale for times/dates/lists
-/// TODO: language specific object properties
-/// TODO: bidi/rtl text
+// Class used for text meant for display.
+// TODO: Translate the text if a supported PO file is loaded
+// TODO: locale for times/dates/lists
+// TODO: language specific object properties
+// TODO: bidi/rtl text
 class Text
 {
 private:

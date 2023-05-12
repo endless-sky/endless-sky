@@ -17,9 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "text/alignment.hpp"
 #include "DrawList.h"
-#include "text/Font.h"
-#include "text/FontSet.h"
-#include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Information.h"
@@ -33,9 +30,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Sprite.h"
 #include "StellarObject.h"
 #include "System.h"
-#include "UI.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "text/Text.h"
 #include "text/WrappedText.h"
+#include "UI.h"
 
 #include <algorithm>
 #include <cmath>

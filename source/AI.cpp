@@ -39,9 +39,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipJumpNavigation.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "text/Text.h"
 #include "Weapon.h"
 #include "Wormhole.h"
-#include "text/Text.h"
 
 #include <algorithm>
 #include <cmath>

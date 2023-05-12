@@ -19,7 +19,7 @@ using namespace std;
 
 
 
-/// Format string
+// Format string
 Text Text::Format(const std::string& format)
 {
 	// TODO: po file lookup
@@ -28,7 +28,7 @@ Text Text::Format(const std::string& format)
 
 
 
-/// Format string based on format and args
+// Format string based on format and args
 Text Text::Format(const std::string& format, const Args& args)
 {
 	string result;
@@ -70,7 +70,7 @@ Text Text::Format(const std::string& format, const Args& args)
 
 
 
-/// Format either singular or plural form based on args.
+// Format either singular or plural form based on args.
 Text Text::FormatN(const std::string& format_singular, const std::string& format_plural, const Args& args)
 {
 	// TODO: if a PO file is loaded, select among alternative plural forms using n here
