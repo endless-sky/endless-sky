@@ -1673,7 +1673,7 @@ mission "Slave Transport [0]"
 		"reputation: Pirate" > 0
 		"combat rating" > 1100
 	to accept
-		has "outfit: Brig"
+		has "outfit (installed): Brig"
 	source
 		government "Pirate" "Humanika (Port)"
 		not attributes "slavery ban"
@@ -1699,7 +1699,7 @@ mission "Slave Transport [1]"
 		"reputation: Pirate" > 0
 		"combat rating" > 1100
 	to accept
-		has "outfit: Brig"
+		has "outfit (installed): Brig"
 	source
 		government "Pirate" "Humanika (Port)"
 		not attributes "slavery ban"
@@ -1725,7 +1725,7 @@ mission "Slave Transport [2]"
 		"reputation: Pirate" > 0
 		"combat rating" > 1100
 	to accept
-		has "outfit: Brig"
+		has "outfit (installed): Brig"
 	source
 		government "Pirate" "Humanika (Port)"
 		not attributes "slavery ban"
@@ -1753,7 +1753,7 @@ mission "Bulk Slave Transport [0]"
 		"reputation: Pirate" > 0
 		"combat rating" > 3000
 	to accept
-		has "outfit: Brig"
+		has "outfit (installed): Brig"
 	source
 		government "Pirate" "Humanika (Port)"
 		not attributes "slavery ban"
@@ -1779,7 +1779,7 @@ mission "Bulk Slave Transport [1]"
 		"reputation: Pirate" > 0
 		"combat rating" > 3000
 	to accept
-		has "outfit: Brig"
+		has "outfit (installed): Brig"
 	source
 		government "Pirate" "Humanika (Port)"
 		not attributes "slavery ban"

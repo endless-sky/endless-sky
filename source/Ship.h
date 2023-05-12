@@ -284,6 +284,7 @@ public:
 	void Destroy();
 	void SelfDestruct();
 	void Restore();
+	bool IsDamaged() const;
 	// Check if this ship has been destroyed.
 	bool IsDestroyed() const;
 	// Recharge and repair this ship (e.g. because it has landed).
@@ -453,6 +454,11 @@ public:
 	std::shared_ptr<Ship> GetParent() const;
 	const std::vector<std::weak_ptr<Ship>> &GetEscorts() const;
 
+	// How many AI steps has this ship been lingering?
+	int GetLingerSteps() const;
+	// The AI wants the ship to linger for one AI step.
+	void Linger();
+
 
 private:
 	// Add or remove a ship from this ship's list of escorts.
@@ -528,6 +534,9 @@ private:
 
 	double attraction = 0.;
 	double deterrence = 0.;
+
+	// Number of AI steps this ship has spent lingering
+	int lingerSteps = 0;
 
 	Command commands;
 	FireCommand firingCommands;

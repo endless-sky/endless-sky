@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MapPanel.h"
 
+#include "CategoryList.h"
 #include "ClickZone.h"
 
 #include <set>
@@ -87,7 +88,7 @@ protected:
 	double scroll = 0.;
 	double maxScroll = 0.;
 
-	const std::vector<std::string> &categories;
+	const CategoryList &categories;
 	bool onlyShowSoldHere = false;
 
 

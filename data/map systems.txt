@@ -2077,6 +2077,7 @@ system Achernar
 system Acnanjo
 	pos 516.8 -544.7
 	government Uninhabited
+	attributes "giant star" "notable star"
 	arrival 4050
 	habitable 4050
 	belt 1944
@@ -2193,6 +2194,7 @@ system Acrux
 system Actannka
 	pos 1016.73 -706.867
 	government "Quarg (Gegno)"
+	attributes "bright star" "notable star"
 	arrival 3200
 	habitable 3200
 	belt 1228
@@ -2357,6 +2359,7 @@ system "Ae Ce L-332"
 system "Ae Ce Q-761"
 	pos 769.634 -760.648
 	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 3200
 	habitable 3200
 	belt 1002
@@ -2399,7 +2402,7 @@ system "Ae Ce Q-761"
 system "Ae Il A-3"
 	pos 477.32 -590.375
 	government Uninhabited
-	attributes "multi-star"
+	attributes "giant star" "multi-star" "notable star" "supergiant star"
 	arrival 5000
 	habitable 15715
 	belt 1031 5
@@ -2451,6 +2454,7 @@ system "Ae Il A-3"
 system "Ae Il B-11"
 	pos 397.635 -661.079
 	government Uninhabited
+	attributes "giant star" "notable star"
 	arrival 2300
 	habitable 2300
 	belt 1328 10
@@ -2509,6 +2513,7 @@ system "Ae Il B-11"
 system "Ae Il F-46"
 	pos 523.467 -743.162
 	government Uninhabited
+	attributes "bright star" "giant star" "notable star"
 	arrival 5000
 	habitable 12475
 	belt 1244
@@ -2559,6 +2564,7 @@ system "Ae Il F-46"
 system "Ae Il G-66"
 	pos 510.097 -610.773
 	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 5000
 	habitable 9350
 	belt 1622 2
@@ -2688,6 +2694,7 @@ system "Ae Il I-99"
 system "Ae Il M-77"
 	pos 638.134 -656.718
 	government Uninhabited
+	attributes "bright star" "notable star" "supergiant star"
 	arrival 5000
 	habitable 17025
 	belt 1979 3
@@ -2835,6 +2842,7 @@ system Aescolanus
 system Aierena
 	pos 1048.06 -348.956
 	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 3000
 	habitable 3000
 	belt 1856
@@ -2869,7 +2877,7 @@ system Aierena
 system "Aik Kamgatake"
 	pos 487.63 -365.37
 	government Uninhabited
-	attributes "nova"
+	attributes "notable star" "nova"
 	arrival 500
 	habitable 100
 	belt 1920
@@ -2973,6 +2981,7 @@ system Aki'il
 system Aksek
 	pos 477.944 -401.011
 	government Uninhabited
+	attributes "giant star" "notable star"
 	arrival 2300
 	habitable 2300
 	belt 1795
@@ -3474,6 +3483,7 @@ system Aleit
 	fleet "Quarg (Gegno)" 1100
 	fleet "Large Quarg (Gegno)" 1600
 	fleet "Gegno Basic" 1000
+	fleet "Gegno Cargo" 6000
 	object
 		sprite star/g3
 		period 10
@@ -3717,7 +3727,7 @@ system Algieba
 system Algol
 	pos -210 17
 	government Syndicate
-	attributes "core"
+	attributes "bright star" "core" "notable star"
 	arrival 3490
 	habitable 3490
 	belt 1839
@@ -4102,7 +4112,7 @@ system Alkaid
 system Almaaz
 	pos -349 -538
 	government Pirate
-	attributes "north"
+	attributes "giant star" "north" "notable star"
 	arrival 5000
 	habitable 5600
 	belt 2873
@@ -5062,7 +5072,7 @@ system Aludra
 system Anbrim
 	pos 725.7 -376.2
 	government Uninhabited
-	attributes "nova"
+	attributes "notable star" "nova"
 	arrival 500
 	habitable 100
 	belt 1101
@@ -5362,7 +5372,7 @@ system Antares
 system Antevorta
 	pos -36.1297 446.242
 	government Uninhabited
-	attributes "carbon" "ember waste"
+	attributes "carbon" "ember waste" "notable star"
 	arrival 3000
 	ramscoop
 		universal 0
@@ -5833,9 +5843,9 @@ system Asio
 	asteroids "medium metal" 9 4.13
 	asteroids "large metal" 2 4.2
 	minables iron 7 1.8
-	fleet "Gegno Basic" 1200
-	fleet "Small Vi" 2300
-	fleet "Gegno Miners" 1600
+	fleet "Gegno Basic" 400
+	fleet "Gegno Cargo" 1000
+	fleet "Gegno Miners" 1200
 	object
 		sprite star/m0
 		period 10
@@ -5859,7 +5869,7 @@ system Asio
 system Aspidiske
 	pos -690 -282
 	government Republic
-	attributes "deep"
+	attributes "bright star" "deep" "notable star" "supergiant star"
 	arrival 5000
 	habitable 11850
 	belt 2385
@@ -5917,6 +5927,7 @@ system Aspidiske
 system Atik
 	pos -66 -52
 	government "Humanika (Restricted)"
+	attributes "bright star" "giant star" "multi-star" "notable star"
 	arrival 1800
 	habitable 3105
 	belt 1240
@@ -6054,7 +6065,7 @@ system Atria
 system Auhru
 	pos 1007.41 -524.011
 	government "Gegno Scin"
-	attributes "gegno" "scin"
+	attributes "bright star" "gegno" "notable star" "scin"
 	arrival 5000
 	habitable 8650
 	belt 1336
@@ -6175,6 +6186,7 @@ system Avior
 system "Avo Chigo"
 	pos 242.817 -205.83
 	government "Bunrodea (Guard)"
+	attributes "bright star" "notable star"
 	arrival 5000
 	habitable 5600
 	belt 1500
@@ -6702,7 +6714,7 @@ system "Beta Lupi"
 system Betelgeuse
 	pos -384 -322
 	government Republic
-	attributes "north"
+	attributes "north" "notable star" "supergiant star"
 	arrival 3450
 	habitable 3450
 	belt 2141
@@ -7117,6 +7129,7 @@ system "Bore Fah"
 system "Bosuno Le"
 	pos 335.9 -152.3
 	government "Bunrodea (Guard)"
+	attributes "bright star" "notable star"
 	arrival 3400
 	habitable 3400
 	belt 1500
@@ -7421,6 +7434,7 @@ system "Broken Bowl"
 system "Bunri Lemeta"
 	pos 317.9 -94.3
 	government "Bunrodea (Guard)"
+	attributes "bright star" "notable star"
 	arrival 3650
 	habitable 3650
 	belt 1500
@@ -7490,7 +7504,7 @@ system "Bunri Lemeta"
 system Caeculus
 	pos 162.87 343.242
 	government Uninhabited
-	attributes "ember waste" "wolf-rayet"
+	attributes "ember waste" "notable star" "wolf-rayet"
 	arrival 5000
 	ramscoop
 		universal 0
@@ -8604,7 +8618,7 @@ system Companion
 system Convector
 	pos -14.1297 379.242
 	government Uninhabited
-	attributes "ember waste"
+	attributes "ember waste" "giant star" "notable star"
 	arrival 5000
 	ramscoop
 		universal 0
@@ -8777,6 +8791,7 @@ system Cotpoxi
 system Cshudlye
 	pos 595.14 -477.911
 	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 5000
 	habitable 5600
 	belt 1675
@@ -9255,6 +9270,7 @@ system Debrugt
 system "Deep Space 19K12"
 	pos -1113 -747
 	government Uninhabited
+	attributes "proto-system" "notable star"
 	arrival 500
 	habitable 135
 	belt 1977
@@ -9285,6 +9301,7 @@ system "Deep Space 19K12"
 system "Deep Space 19M1"
 	pos -895 -745
 	government Uninhabited
+	attributes "giant star" "notable star"
 	arrival 4050
 	habitable 4050
 	belt 2115
@@ -9413,6 +9430,7 @@ system "Deep Space 19M2"
 system "Deep Space 19M5"
 	pos -1133 -828
 	government Uninhabited
+	attributes "proto-system" "notable star"
 	arrival 500
 	habitable 370
 	belt 1977
@@ -9469,6 +9487,7 @@ system "Deep Space 19M5"
 system "Deep Space 1Q"
 	pos -920 -668
 	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 3650
 	habitable 3650
 	belt 2577
@@ -9539,6 +9558,7 @@ system "Deep Space 1Q"
 system "Deep Space 1X"
 	pos -935 -695
 	government Uninhabited
+	attributes "notable star" "nova"
 	arrival 500
 	habitable 100
 	belt 1751
@@ -10892,7 +10912,7 @@ system Durax
 system E-4183
 	pos 1042.97 -618.13
 	government Uninhabited
-	attributes "umbral reach"
+	attributes "bright star" "giant star" "notable star" "umbral reach"
 	arrival 5000
 	habitable 7900
 	belt 1542
@@ -10948,7 +10968,7 @@ system E-4183
 system E-9182
 	pos 1167.2 -629
 	government Uninhabited
-	attributes "umbral reach"
+	attributes "bright star" "notable star" "umbral reach"
 	arrival 5000
 	habitable 13720
 	belt 1387
@@ -11134,7 +11154,7 @@ system Eblumab
 system Edusa
 	pos 273.87 347.242
 	government Uninhabited
-	attributes "ember waste" "wormhole"
+	attributes "ember waste" "giant star" "notable star" "wormhole"
 	arrival 4050
 	ramscoop
 		universal 0
@@ -11624,6 +11644,7 @@ system Ekuarik
 system "Elabi Choati"
 	pos 205.2 -175.9
 	government Bunrodea
+	attributes "carbon" "notable star"
 	arrival 3000
 	habitable 3000
 	belt 1500
@@ -11686,6 +11707,7 @@ system "Elabi Choati"
 system Elifennka
 	pos 990.5 -728.2
 	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 3400
 	habitable 3400
 	belt 1533
@@ -11700,6 +11722,7 @@ system Elifennka
 	asteroids "large metal" 27 4.49
 	minables aluminum 28 8.68
 	minables titanium 31 9.59
+	fleet "Gegno Miners" 10000
 	fleet "Quarg (Gegno)" 4000
 	object
 		sprite star/a3
@@ -11791,6 +11814,7 @@ system Elnath
 system "Elo Chigo"
 	pos 170.2 -121.8
 	government Bunrodea
+	attributes "bright star" "notable star"
 	arrival 3000
 	habitable 3000
 	belt 1500
@@ -12010,6 +12034,7 @@ system Eneremprukt
 system "Eneva Katta"
 	pos 193 -27
 	government Bunrodea
+	attributes "giant star" "notable star"
 	arrival 4050
 	habitable 4050
 	belt 1500
@@ -12167,6 +12192,7 @@ system Enif
 system Eogho
 	pos 812.579 -541.547
 	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 5000
 	habitable 7000
 	belt 1960
@@ -12181,6 +12207,7 @@ system Eogho
 	asteroids "medium metal" 9 6.98
 	asteroids "large metal" 46 6.84
 	fleet "Gegno Basic" 2200
+	fleet "Gegno Cargo" 4000
 	object
 		sprite star/b0
 		period 10
@@ -12339,6 +12366,7 @@ system "Era Natta"
 system "Erabu Lemeta"
 	pos 284.9 -136.3
 	government "Bunrodea (Guard)"
+	attributes "bright star" "notable star"
 	arrival 3650
 	habitable 3650
 	belt 1500
@@ -12409,6 +12437,7 @@ system "Erabu Lemeta"
 system "Eragaru Le"
 	pos 302.817 -185.83
 	government "Bunrodea (Guard)"
+	attributes "bright star" "notable star"
 	arrival 3650
 	habitable 3650
 	belt 1500
@@ -12677,7 +12706,7 @@ system Eshkoshtar
 system Esix
 	pos 142 532
 	government Uninhabited
-	attributes "ember waste" "graveyard" "wormhole"
+	attributes "bright star" "ember waste" "graveyard" "notable star" "wormhole"
 	arrival 5000
 	ramscoop
 		universal 0
@@ -12809,7 +12838,7 @@ system Eteron
 system Evrae
 	pos 884.49 -475.35
 	government Gegno
-	attributes "gegno"
+	attributes "bright star" "gegno" "notable star"
 	arrival 3200
 	habitable 3200
 	belt 1985
@@ -13421,7 +13450,7 @@ system Faronektu
 system Fasitopfar
 	pos 92.4305 -105.812
 	government Uninhabited
-	attributes "archon" "korath" "nova"
+	attributes "archon" "korath" "notable star" "nova"
 	arrival 500
 	habitable 100
 	belt 1670
@@ -13669,7 +13698,7 @@ system Feraticus
 system Fereti
 	pos -39 600
 	government Uninhabited
-	attributes "ember waste" "graveyard"
+	attributes "bright star" "ember waste" "graveyard" "notable star"
 	arrival 3200
 	ramscoop
 		universal 0
@@ -13732,7 +13761,7 @@ system Fereti
 system Feroteri
 	pos 149.431 -205.812
 	government Uninhabited
-	attributes "korath"
+	attributes "bright star" "korath" "notable star"
 	arrival 4075
 	habitable 4075
 	belt 1419
@@ -14197,7 +14226,7 @@ system "Four Pillars"
 system Fscher
 	pos 725.47 -418.2
 	government Gegno
-	attributes "gegno"
+	attributes "bright star" "gegno" "notable star"
 	arrival 5000
 	habitable 6300
 	belt 1048
@@ -14304,7 +14333,7 @@ system Furmeliki
 system G-3191
 	pos 1039.23 -395
 	government Uninhabited
-	attributes "umbral reach"
+	attributes "bright star" "notable star" "supergiant star" "umbral reach"
 	arrival 5000
 	departure 1000
 	habitable 20250
@@ -14344,7 +14373,7 @@ system G-3191
 system G-6183
 	pos 1019.4 -590.18
 	government Uninhabited
-	attributes "blackhole" "umbral reach"
+	attributes "black hole" "notable star" "umbral reach"
 	arrival 5000
 	habitable 10000
 	belt 1187
@@ -14547,7 +14576,7 @@ system Gacrux
 system "Gamma Cassiopeiae"
 	pos -116 293
 	government Syndicate
-	attributes "core"
+	attributes "bright star" "core" "notable star"
 	arrival 5000
 	habitable 7000
 	belt 1779
@@ -14721,6 +14750,7 @@ system Gaungu
 system "Genta Bo"
 	pos 185.2 -65.9
 	government Bunrodea
+	attributes "bright star" "notable star" "supergiant star"
 	arrival 5000
 	habitable 37100
 	belt 1500
@@ -14779,6 +14809,7 @@ system "Genta Bo"
 system "Gento Ah"
 	pos 351.9 -352.3
 	government Bunrodea
+	attributes "bright star" "notable star" "supergiant star"
 	arrival 5000
 	habitable 11850
 	belt 1500
@@ -14838,7 +14869,7 @@ system "Gento Ah"
 system Gerenus
 	pos 197 514
 	government Uninhabited
-	attributes "ember waste" "graveyard"
+	attributes "ember waste" "giant star" "graveyard" "notable star"
 	arrival 3000
 	ramscoop
 		universal 0
@@ -14903,6 +14934,7 @@ system Gerenus
 system Ghhil
 	pos 922.4 -714
 	government "Quarg (Gegno)"
+	attributes "bright star" "notable star"
 	arrival 3000
 	habitable 3000
 	belt 1760
@@ -15376,7 +15408,7 @@ system "Good Omen"
 system Gorvi
 	pos -250 -483
 	government Republic
-	attributes "north" "wolf-rayet"
+	attributes "north" "notable star" "wolf-rayet"
 	arrival 5000
 	habitable 50000
 	belt 1345
@@ -15510,6 +15542,7 @@ system Gualetri
 	link Uelawan
 	asteroids "large metal" 1 2.8
 	fleet "Gegno Basic" 4400
+	fleet "Gegno Cargo" 6000
 	fleet "Small Scin" 2100
 	object
 		sprite star/k-dwarf
@@ -15592,7 +15625,7 @@ system Gupta
 system H-8188
 	pos 1206.6 -506.5
 	government Uninhabited
-	attributes "umbral reach"
+	attributes "bright star" "notable star" "umbral reach"
 	arrival 3650
 	habitable 3650
 	belt 1254
@@ -15630,7 +15663,7 @@ system H-8188
 system H-9187
 	pos 1130.88 -455.97
 	government Uninhabited
-	attributes "umbral reach"
+	attributes "bright star" "notable star" "umbral reach"
 	arrival 3400
 	habitable 3400
 	belt 1102
@@ -16141,8 +16174,8 @@ system Heutesl
 	asteroids "small metal" 6 1.71
 	asteroids "medium metal" 44 2.1
 	minables copper 8 1.1
-	minables lead 12 1.4
-	minables silicon 12 1.3
+	minables lead 10 1.4
+	minables silicon 10 1.3
 	trade Clothing 262
 	trade Electronics 814
 	trade Equipment 693
@@ -16154,8 +16187,10 @@ system Heutesl
 	trade Metal 571
 	trade Plastic 196
 	fleet "Gegno Basic" 200
+	fleet "Gegno Miners" 1000
+	fleet "Gegno Cargo" 800
+	fleet "Gegno Old" 40000
 	fleet "Quarg (Gegno)" 2800
-	fleet "Gegno Miners" 2000
 	object
 		sprite star/f8
 		period 10
@@ -16731,9 +16766,10 @@ system Iigen
 	asteroids "large metal" 45 3.84
 	minables uranium 4 5.8
 	minables iron 22 1.47
-	fleet "Gegno Basic" 1900
-	fleet "Gegno Miners" 2100
-	fleet "Quarg (Gegno)" 3500
+	fleet "Gegno Basic" 1100
+	fleet "Gegno Cargo" 2800
+	fleet "Gegno Miners" 2400
+	fleet "Quarg (Gegno)" 3400
 	object
 		sprite star/m3
 		period 10
@@ -16761,6 +16797,7 @@ system Iigen
 system Iinjma
 	pos 986.29 -410.7
 	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 3755
 	habitable 3755
 	belt 1861
@@ -16910,7 +16947,7 @@ system Ik'kara'ka
 system Ildaria
 	pos -702 317
 	government Republic
-	attributes "nova" "rim"
+	attributes "notable star" "nova" "rim"
 	arrival 500
 	habitable 100
 	belt 1132
@@ -17450,7 +17487,7 @@ system "Is Ce B-139"
 system "Is Ce F-422"
 	pos 651.273 -687.648
 	government Uninhabited
-	attributes "astral"
+	attributes "astral" "bright star" "notable star"
 	arrival 3430
 	habitable 3430
 	belt 1941 9
@@ -17568,7 +17605,7 @@ system "Is Ce G-460"
 system "Is Ce J-591"
 	pos 573.246 -671.106
 	government Uninhabited
-	attributes "astral"
+	attributes "astral" "giant star" "notable star"
 	arrival 5000
 	habitable 6680
 	belt 1648 8
@@ -17751,7 +17788,7 @@ system "Is Il T-94"
 system "Is Il V-263"
 	pos 713.513 -707.278
 	government Uninhabited
-	attributes "astral"
+	attributes "astral" "bright star" "notable star" "supergiant star"
 	arrival 5000
 	habitable 17025
 	belt 1434 2
@@ -17807,7 +17844,7 @@ system "Is Il V-263"
 system "Is Il X-626"
 	pos 736.235 -739.779
 	government Uninhabited
-	attributes "astral"
+	attributes "astral" "bright star" "notable star"
 	arrival 3135
 	habitable 3135
 	haze _menu/haze-brown
@@ -17892,7 +17929,7 @@ system "Is Il Z-59"
 system "Is Il Z-814"
 	pos 694.718 -785.55
 	government Uninhabited
-	attributes "wolf-rayet"
+	attributes "notable star" "wolf-rayet"
 	arrival 5000
 	habitable 50000
 	belt 1862
@@ -18052,6 +18089,7 @@ system Izar
 system "Jentu Centi"
 	pos 390.9 -291.3
 	government Bunrodea
+	attributes "giant star" "notable star"
 	arrival 4050
 	habitable 4050
 	belt 1500
@@ -18198,6 +18236,7 @@ system Jied
 system "Jyeg Pvu"
 	pos 904.75 -426.028
 	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 5000
 	habitable 5160
 	belt 1522
@@ -18496,7 +18535,7 @@ system Kaliptari
 system Kanguwa
 	pos 990.137 -331.456
 	government Uninhabited
-	attributes "neutron" "rulei"
+	attributes "neutron" "notable star" "rulei"
 	music "ambient/rulei space"
 	arrival 500
 	habitable 100
@@ -18713,7 +18752,7 @@ system Kashikt
 system Kasikfar
 	pos 10.4305 -127.812
 	government Uninhabited
-	attributes "archon" "korath" "nova"
+	attributes "archon" "korath" "notable star" "nova"
 	arrival 500
 	habitable 100
 	belt 1539
@@ -19131,6 +19170,7 @@ system "Ki War Ek"
 system "Kifrana Terberah"
 	pos 362.817 -200.83
 	government Bunrodea
+	attributes "giant star" "notable star"
 	arrival 2300
 	habitable 2300
 	belt 1500
@@ -19184,7 +19224,7 @@ system Kilema
 	government Uninhabited
 	arrival 500
 	habitable 150
-	belt 1612
+	belt 612
 	haze _menu/haze-brown
 	link "Erba Yle"
 	asteroids "small rock" 4 1.9
@@ -19193,8 +19233,11 @@ system Kilema
 	asteroids "small metal" 8 1.8
 	asteroids "medium metal" 7 2.7
 	asteroids "large metal" 3 2.3
+	minables lead 3 1.4
+	minables iron 5 1.1
 	fleet "Small Scin" 4600
 	fleet "Scin Transport" 3500
+	fleet "Scin Science" 14400
 	object
 		sprite star/g-dwarf
 		period 10
@@ -19202,6 +19245,14 @@ system Kilema
 		sprite planet/ice8
 		distance 638
 		period 526.314
+		offset -10
+	object "Beryl"
+		sprite planet/beryl/beryl
+			"scale" 0.5
+			"frame rate" 4
+		distance 1200
+		period 3000
+		offset 75
 	object
 		sprite planet/rock17
 		distance 1761
@@ -19210,10 +19261,6 @@ system Kilema
 		sprite planet/gas0
 		distance 4002
 		period 8268.56
-	object
-		sprite planet/browndwarf-l
-		distance 15993
-		period 66055.5
 
 system Kiluit
 	pos 699.45 -562.23
@@ -19523,7 +19570,7 @@ system Kochab
 system "Kor Ak'Mari"
 	pos 43 42
 	government Korath
-	attributes "carbon" "korath"
+	attributes "carbon" "korath" "notable star"
 	arrival 3100
 	habitable 3100
 	belt 1606
@@ -20335,7 +20382,7 @@ system Kursa
 system L-118
 	pos 1085.78 -416.75
 	government Uninhabited
-	attributes "umbral reach"
+	attributes "bright star" "notable star" "umbral reach"
 	arrival 3000
 	habitable 3000
 	belt 1724
@@ -20372,7 +20419,7 @@ system L-118
 system L-6181
 	pos 1139.93 -522.87
 	government Uninhabited
-	attributes "umbral reach"
+	attributes "bright star" "notable star" "umbral reach"
 	arrival 885
 	habitable 885
 	belt 1758
@@ -20542,7 +20589,7 @@ system Lesath
 system Levana
 	pos 203.504 247.389
 	government Uninhabited
-	attributes "ember waste"
+	attributes "bright star" "ember waste" "giant star" "notable star"
 	arrival 5000
 	ramscoop
 		universal 0
@@ -20742,6 +20789,7 @@ system Lire
 system Lloloi
 	pos 907.022 -251.144
 	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 5000
 	habitable 10000
 	belt 1338
@@ -21114,7 +21162,7 @@ system Lurata
 system M-1188
 	pos 1124.66 -607.233
 	government Uninhabited
-	attributes "umbral reach"
+	attributes "bright star" "notable star" "umbral reach"
 	arrival 750
 	habitable 750
 	belt 1676
@@ -21185,7 +21233,7 @@ system MC-42
 system MS-219
 	pos 1075.13 -568.167
 	government Uninhabited
-	attributes "iije" "umbral reach"
+	attributes "bright star" "iije" "notable star" "umbral reach"
 	arrival 2075
 	habitable 2075
 	belt 1404
@@ -21670,7 +21718,7 @@ system Meblumem
 system Mebsuta
 	pos -482 -394
 	government Republic
-	attributes "north"
+	attributes "north" "notable star" "supergiant star"
 	arrival 5000
 	habitable 6110
 	belt 2340
@@ -23070,6 +23118,7 @@ system Mirzam
 system Misam
 	pos -9 -80
 	government "Humanika (Port)"
+	attributes "multi-star" "notable star"
 	arrival 3835
 	habitable 3835
 	belt 1091
@@ -23262,6 +23311,7 @@ system Mnashyu
 system Mohuwo
 	pos 956.45 -544.26
 	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 5000
 	habitable 6210
 	belt 1213
@@ -23445,6 +23495,7 @@ system Mora
 system Msalbit
 	pos 978.348 -274.767
 	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 5000
 	habitable 13720
 	belt 1333
@@ -23876,6 +23927,7 @@ system Nihal
 system Nnatai
 	pos 513.2 -470.3
 	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 5000
 	habitable 5600
 	belt 1478
@@ -23911,7 +23963,7 @@ system Nnatai
 system Nnaug
 	pos 718.89 -592.01
 	government "Gegno Vi"
-	attributes "gegno" "vi"
+	attributes "bright star" "gegno" "notable star" "vi"
 	arrival 3650
 	habitable 3650
 	belt 1901
@@ -23938,7 +23990,8 @@ system Nnaug
 	fleet "Large Vi" 2100
 	fleet "Vi Transport" 800
 	fleet "Vi Cargo" 1000
-	fleet "Gegno Basic" 4400
+	fleet "Gegno Basic" 3400
+	fleet "Gegno Cargo" 4600
 	object
 		sprite star/a0
 		period 10
@@ -24100,6 +24153,7 @@ system Nona
 system Nssryos
 	pos 770.122 -524.267
 	government Uninhabited
+	attributes "giant star" "notable star"
 	arrival 5000
 	habitable 5600
 	belt 1175
@@ -24268,7 +24322,7 @@ system O-3184
 system Oblate
 	pos -124 -119
 	government Pirate
-	attributes "core"
+	attributes "core" "giant star" "notable star"
 	arrival 2300
 	habitable 2300
 	belt 1954
@@ -24347,6 +24401,7 @@ system Oihaug
 	minables copper 22 3.51
 	minables tungsten 11 2.56
 	fleet "Gegno Basic" 3700
+	fleet "Gegno Cargo" 4700
 	fleet "Small Vi" 1600
 	fleet "Vi Transport" 3200
 	object
@@ -24376,7 +24431,7 @@ system Oihaug
 system Ookmya
 	pos 633.6 -610.17
 	government "Gegno Vi"
-	attributes "gegno" "vi"
+	attributes "bright star" "gegno" "giant star" "notable star" "vi"
 	arrival 5000
 	habitable 7900
 	belt 1144
@@ -24464,8 +24519,9 @@ system Oosuoro
 	trade Medical 664
 	trade Metal 496
 	trade Plastic 274
-	fleet "Gegno Basic" 500
-	fleet "Gegno Miners" 2150
+	fleet "Gegno Basic" 800
+	fleet "Gegno Miners" 2000
+	fleet "Gegno Cargo" 2400
 	object
 		sprite star/g3
 		period 10
@@ -24499,7 +24555,7 @@ system Oosuoro
 system Orbona
 	pos -735.99 -97.2491
 	government Republic
-	attributes "dirt belt"
+	attributes "bright star" "dirt belt" "giant star" "notable star"
 	arrival 5000
 	habitable 11840
 	belt 1507
@@ -24943,7 +24999,7 @@ system Parca
 system "Paru Paru"
 	pos 275.9 -237.3
 	government Bunrodea
-	attributes "neutron"
+	attributes "neutron" "notable star"
 	arrival 500
 	habitable 100
 	belt 1500
@@ -25016,7 +25072,7 @@ system Patir
 	hidden
 	pos -38 553
 	government Uninhabited
-	attributes "ember waste" "graveyard"
+	attributes "black hole" "ember waste" "notable star" "nova" "graveyard"
 	arrival 500
 	ramscoop
 		universal 0
@@ -25101,7 +25157,8 @@ system Pbelnep
 	fleet "Scin Transport" 1500
 	fleet "Scin Cargo" 1300
 	fleet "Gegno Miners" 2600
-	fleet "Gegno Basic" 4100
+	fleet "Gegno Basic" 2800
+	fleet "Gegno Cargo" 3600
 	object
 		sprite star/g5
 		distance 28.47
@@ -25207,7 +25264,7 @@ system Peacock
 system Pelubta
 	pos -757.587 575.051
 	government Coalition
-	attributes "arachi"
+	attributes "arachi" "bright star" "notable star"
 	arrival 5000
 	habitable 7050
 	belt 1709
@@ -25362,7 +25419,7 @@ system Peragenor
 system Peresedersi
 	pos 81.4305 -154.812
 	government Uninhabited
-	attributes "archon" "korath" "nova"
+	attributes "archon" "korath" "notable star" "nova"
 	arrival 500
 	habitable 100
 	belt 1065
@@ -25532,7 +25589,7 @@ system Persian
 system Persitar
 	pos 297.431 -395.812
 	government Uninhabited
-	attributes "korath" "nova"
+	attributes "korath" "notable star" "nova"
 	arrival 500
 	habitable 100
 	belt 1948
@@ -25825,6 +25882,7 @@ system Phurad
 system Piadenli
 	pos 318.817 -338.83
 	government Bunrodea
+	attributes "notable star" "supergiant star"
 	arrival 4500
 	habitable 4500
 	belt 1500
@@ -26437,7 +26495,7 @@ system Procyon
 system Prosa
 	pos 303 194
 	government Uninhabited
-	attributes "ember waste" "inaccessible"
+	attributes "bright star" "ember waste" "giant star" "inaccessible" "notable star"
 	arrival 5000
 	ramscoop
 		universal 0
@@ -26550,6 +26608,7 @@ system Ptetubo
 system Ptobeh
 	pos 553.2 -526.3
 	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 5000
 	habitable 13720
 	belt 1440
@@ -27351,6 +27410,7 @@ system "Rati Cal"
 system "Ravu Kon"
 	pos 332.9 -251.3
 	government Bunrodea
+	attributes "bright star" "notable star"
 	arrival 5000
 	habitable 5000
 	belt 1500
@@ -27484,7 +27544,7 @@ system Regor
 system Regulus
 	pos -544 25
 	government Republic
-	attributes "near earth"
+	attributes "bright star" "near earth" "notable star"
 	arrival 5000
 	habitable 7000
 	belt 1605
@@ -27700,7 +27760,7 @@ system Remembrance
 system Rigel
 	pos -324 -363
 	government Republic
-	attributes "north"
+	attributes "bright star" "north" "notable star" "supergiant star"
 	arrival 5000
 	habitable 17025
 	belt 1882
@@ -27856,7 +27916,7 @@ system Ritilas
 system Rouseu
 	pos 566.7 -404.133
 	government Uninhabited
-	attributes "wormhole"
+	attributes "bright star" "notable star" "wormhole"
 	arrival 5000
 	habitable 8800
 	belt 1648
@@ -28263,7 +28323,7 @@ system Sadalsuud
 system Sadr
 	pos -287 543
 	government Republic
-	attributes "south"
+	attributes "bright star" "notable star" "south"
 	arrival 3430
 	habitable 3430
 	belt 1388
@@ -28329,7 +28389,7 @@ system Sadr
 system "Sagittarius A*"
 	pos 112 22
 	government Uninhabited
-	attributes "blackhole"
+	attributes "black hole" "notable star"
 	arrival 5000
 	habitable 100000
 	belt 1500
@@ -28471,7 +28531,7 @@ system Salipastart
 system Saquergen
 	pos -482 561
 	government Uninhabited
-	attributes "nova"
+	attributes "notable star" "nova"
 	arrival 500
 	habitable 100
 	belt 1435
@@ -28794,7 +28854,7 @@ system Schedar
 system Scija
 	pos 651.5 -586
 	government "Gegno Vi"
-	attributes "gegno" "vi"
+	attributes "bright star" "gegno" "notable star" "vi"
 	arrival 5000
 	habitable 5600
 	belt 1431
@@ -28822,11 +28882,12 @@ system Scija
 	trade Medical 609
 	trade Metal 489
 	trade Plastic 311
-	fleet "Small Vi" 800
-	fleet "Large Vi" 1900
-	fleet "Vi Transport" 900
-	fleet "Vi Cargo" 1400
-	fleet "Gegno Basic" 3600
+	fleet "Small Vi" 500
+	fleet "Large Vi" 1500
+	fleet "Vi Transport" 600
+	fleet "Vi Cargo" 1200
+	fleet "Gegno Basic" 3200
+	fleet "Gegno Cargo" 4000
 	fleet "Gegno Miners" 2500
 	object
 		sprite star/b5
@@ -29183,6 +29244,7 @@ system Sepriaptu
 system "Sera Natta"
 	pos 344.9 -418.3
 	government Bunrodea
+	attributes "bright star" "notable star"
 	arrival 3000
 	habitable 3000
 	belt 1500
@@ -30055,7 +30117,7 @@ system Sko'karak
 system Sobarati
 	pos 277.431 -557.812
 	government "Kor Sestor"
-	attributes "korath"
+	attributes "bright star" "korath" "notable star"
 	arrival 3355
 	habitable 3355
 	belt 1314
@@ -30530,7 +30592,7 @@ system Solifar
 system Sospi
 	pos -317 -161
 	government Republic
-	attributes "north" "wolf-rayet"
+	attributes "north" "notable star" "wolf-rayet"
 	arrival 5000
 	habitable 50000
 	belt 1715
@@ -30932,7 +30994,7 @@ system Stercutus
 system Suhail
 	pos -774 -338
 	government Republic
-	attributes "deep"
+	attributes "deep" "giant star" "notable star"
 	arrival 3000
 	habitable 3000
 	belt 2715
@@ -31124,7 +31186,7 @@ system Sumprast
 system Tais
 	pos -346 381
 	government Republic
-	attributes "dirt belt"
+	attributes "bright star" "dirt belt" "notable star"
 	arrival 3200
 	habitable 3200
 	belt 1379
@@ -31636,6 +31698,7 @@ system "Terra Incognita"
 system "Thshybo Le"
 	pos 217.2 -94.9
 	government "Bunrodea (Guard)"
+	attributes "bright star" "notable star"
 	arrival 3200
 	habitable 3200
 	belt 1500
@@ -31853,8 +31916,9 @@ system Tscera
 	asteroids "large metal" 2 4.27
 	minables aluminum 1 5.75
 	minables lead 7 6.19
+	fleet "Gegno Basic" 1000
+	fleet "Gegno Cargo" 3000
 	fleet "Quarg (Gegno)" 3800
-	fleet "Gegno Basic" 3000
 	object
 		sprite star/f0
 		period 10
@@ -31977,6 +32041,7 @@ system U-5188
 system Uelawan
 	pos 895.2 -565.75
 	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 3200
 	habitable 3200
 	belt 1976
@@ -32039,7 +32104,7 @@ system Uelawan
 system Uhebe
 	pos 647.4 -496.3
 	government "Gegno Vi"
-	attributes "gegno" "vi"
+	attributes "bright star" "gegno" "notable star" "vi"
 	arrival 5000
 	habitable 10000
 	belt 1771
@@ -32427,6 +32492,7 @@ system Unukalhai
 system "Urba Pest"
 	pos 391.9 -394.3
 	government Bunrodea
+	attributes "bright star" "notable star"
 	arrival 5000
 	habitable 5000
 	belt 1500
@@ -32485,6 +32551,7 @@ system "Urba Pest"
 system Uttna
 	pos 946.3 -580.8
 	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 3000
 	habitable 3000
 	belt 1748
@@ -32497,8 +32564,8 @@ system Uttna
 	asteroids "large metal" 16 3.42
 	minables platinum 5 1.4
 	minables uranium 8 2.2
-	fleet "Gegno Basic" 2700
-	fleet "Gegno Miners" 1900
+	fleet "Gegno Basic" 2600
+	fleet "Gegno Miners" 1800
 	object
 		sprite star/a8
 		period 10
@@ -32600,6 +32667,7 @@ system "Uwa Fahn"
 system "Uwo Seija"
 	pos 420.667 -429
 	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 4630
 	habitable 4630
 	belt 1222
@@ -32641,7 +32709,7 @@ system "Uwo Seija"
 system V-2189
 	pos 1135.9 -711.667
 	government Uninhabited
-	attributes "umbral reach"
+	attributes "bright star" "notable star" "umbral reach"
 	arrival 5000
 	habitable 17370
 	belt 1985
@@ -32736,6 +32804,7 @@ system Vaiov
 system Vanguwo
 	pos 978.189 -237.686
 	government Uninhabited
+	attributes "giant star" "notable star"
 	arrival 4050
 	habitable 4050
 	belt 1964
@@ -32904,11 +32973,12 @@ system Vesvii
 	asteroids "small metal" 15 2.2
 	asteroids "medium metal" 2 3.3
 	asteroids "large metal" 4 2.9
-	minables aluminum 6 1.5
-	minables gold 7 3.2
+	minables aluminum 8 1.5
+	minables gold 6 2.4
 	minables iron 9 1.7
-	fleet "Vi Warfleet" 800
-	fleet "Scin Warfleet" 800
+	minables lead 11 2.1
+	fleet "Vi Warfleet" 1100
+	fleet "Scin Warfleet" 1000
 	object
 		sprite star/k5-old
 		distance 81.5
@@ -33134,7 +33204,7 @@ system Vorsuke
 system Vulcuja
 	pos 1071.75 -263.767
 	government Uninhabited
-	attributes "carbon"
+	attributes "carbon" "notable star"
 	arrival 3000
 	habitable 3000
 	belt 1972
@@ -33162,7 +33232,7 @@ system Vulcuja
 system W-3197
 	pos 1204.5 -400
 	government Uninhabited
-	attributes "umbral reach"
+	attributes "bright star" "notable star" "umbral reach"
 	arrival 5000
 	habitable 6300
 	belt 1887
@@ -33278,6 +33348,7 @@ system "Wah Ki"
 system "Wah Oh"
 	pos -205.344 -381.381
 	government Hai
+	attributes "bright star" "notable star"
 	arrival 3650
 	habitable 3650
 	belt 1194
@@ -33933,6 +34004,7 @@ system "Xutluno Fali"
 system "Xutluno Rees"
 	pos 435.817 -281.83
 	government Bunrodea
+	attributes "bright star" "notable star"
 	arrival 5000
 	habitable 9075
 	belt 1500
@@ -34135,6 +34207,7 @@ system "Yed Prior"
 system Yerser
 	pos 827.319 -412.984
 	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 3650
 	habitable 3650
 	belt 1478
@@ -34220,6 +34293,7 @@ system Yli
 system Yllke
 	pos 947.7 -648.2
 	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 5000
 	habitable 5160
 	belt 1925
@@ -34236,8 +34310,9 @@ system Yllke
 	asteroids "large metal" 36 0.99
 	minables iron 27 2.32
 	minables aluminum 42 1.94
-	fleet "Gegno Miners" 3000
 	fleet "Gegno Basic" 1300
+	fleet "Gegno Cargo" 4000
+	fleet "Gegno Miners" 3000
 	fleet "Quarg (Gegno)" 3300
 	object
 		sprite star/b8
@@ -34272,7 +34347,7 @@ system Yllke
 system Yranjiu
 	pos 1054.27 -298.942
 	government Uninhabited
-	attributes "blackhole"
+	attributes "black hole" "notable star"
 	arrival 5000
 	habitable 10550
 	belt 1478
@@ -34408,11 +34483,12 @@ system Zeinar
 	trade Medical 873
 	trade Metal 275
 	trade Plastic 262
-	fleet "Small Scin" 700
-	fleet "Large Scin" 2300
-	fleet "Scin Transport" 800
-	fleet "Scin Cargo" 1500
-	fleet "Gegno Basic" 2600
+	fleet "Small Scin" 400
+	fleet "Large Scin" 2000
+	fleet "Scin Transport" 500
+	fleet "Scin Cargo" 1200
+	fleet "Gegno Basic" 3400
+	fleet "Gegno Cargo" 3600
 	fleet "Gegno Miners" 2500
 	object
 		sprite star/k5
