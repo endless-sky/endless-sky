@@ -7025,7 +7025,7 @@ system "Beta Carinae"
 	fleet "Large Core Pirates" 800
 	fleet "Small Core Pirates" 1200
 	fleet "Small Core Merchants" 600
-	habitable 22579.2
+	habitable 11850
 	belt 1197
 	object
 		sprite star/a-supergiant
@@ -12605,7 +12605,9 @@ system Embe'kor
 	minables tungsten 5 5.213319
 	haze _menu/haze-orange
 	fleet "Korath Raid" 1600
-	habitable 117964.8
+	fleet "Korath Ember Waste Raid" 10000
+	fleet "Korath Rescue" 30000
+	habitable 3450
 	belt 1942
 	trade Clothing 227
 	trade Electronics 653
@@ -12976,7 +12978,7 @@ system Epo'kor
 	minables uranium 13 3.05224
 	haze _menu/haze-orange
 	fleet "Korath Raid" 1600
-	habitable 52428.8
+	habitable 4500
 	belt 1444
 	trade Clothing 223
 	trade Electronics 692
@@ -22324,7 +22326,7 @@ system Maia
 	fleet "Large Core Pirates" 800
 	fleet "Small Core Pirates" 1200
 	fleet "Small Core Merchants" 600
-	habitable 819.2
+	habitable 5600
 	belt 1675
 	object
 		sprite star/b5
@@ -24262,7 +24264,7 @@ system Mira
 	fleet "Large Core Pirates" 800
 	fleet "Small Core Pirates" 1200
 	fleet "Small Core Merchants" 600
-	habitable 44556.8
+	habitable 6110
 	belt 1864
 	object
 		sprite star/g-supergiant
@@ -26847,7 +26849,7 @@ system Pemuka
 	minables silicon 1 3.2372957
 	haze _menu/haze-133
 	fleet "Large Quarg" 1000
-	habitable 3006.25
+	habitable 490
 	belt 1257
 	trade Clothing 322
 	trade Electronics 826
@@ -30854,7 +30856,7 @@ system Semutir
 	minables lead 6 3.4052361
 	haze _menu/haze-133
 	fleet "Large Quarg" 1000
-	habitable 583.2
+	habitable 3400
 	belt 1999
 	trade Clothing 322
 	trade Electronics 826
