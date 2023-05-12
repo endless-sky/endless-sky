@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ConditionSet.h"
 #include "ConditionsStore.h"
+#include "DataNode.h"
 
 #include <memory>
 
@@ -29,13 +30,13 @@ template <typename T>
 class RandomEvent {
 public:
 	constexpr RandomEvent(const T *event, int period) noexcept;
+	RandomEvent(const RandomEvent &);
+	RandomEvent &operator = (const RandomEvent &r);
 
 	constexpr const T *Get() const noexcept;
 	constexpr int Period() const noexcept;
-	std::shared_ptr<const ConditionSet> GetConditions() const noexcept;
-	std::shared_ptr<ConditionSet> GetConditions() noexcept;
-	bool Test(const ConditionsStore &tester) const;
-	void SetConditions(std::shared_ptr<ConditionSet> conditions);
+	bool CanTrigger(const ConditionsStore &tester) const;
+	void AddConditions(const DataNode &node);
 
 private:
 	const T *event;
@@ -51,6 +52,26 @@ constexpr RandomEvent<T>::RandomEvent(const T *event, int period) noexcept
 {
 }
 
+template<typename T>
+RandomEvent<T>::RandomEvent(const RandomEvent &r)
+	: event(r.event), period(r.period), conditions()
+{
+	if(r.conditions)
+		conditions = std::make_shared<ConditionSet>(*r.conditions);
+}
+
+template<typename T>
+RandomEvent<T> &RandomEvent<T>::operator = (const RandomEvent &r)
+{
+	event = r.event;
+	period = r.period;
+	if(r.conditions)
+		conditions = std::make_shared<ConditionSet>(*r.conditions);
+	else
+		conditions = nullptr;
+	return *this;
+}
+
 template <typename T>
 constexpr const T *RandomEvent<T>::Get() const noexcept
 {
@@ -64,27 +85,18 @@ constexpr int RandomEvent<T>::Period() const noexcept
 }
 
 template <typename T>
-std::shared_ptr<const ConditionSet> RandomEvent<T>::GetConditions() const noexcept
-{
-	return conditions;
-}
-
-template <typename T>
-std::shared_ptr<ConditionSet> RandomEvent<T>::GetConditions() noexcept
-{
-	return conditions;
-}
-
-template <typename T>
-bool RandomEvent<T>::Test(const ConditionsStore &tester) const
+bool RandomEvent<T>::CanTrigger(const ConditionsStore &tester) const
 {
 	return !conditions || conditions->Test(tester);
 }
 
 template <typename T>
-void RandomEvent<T>::SetConditions(std::shared_ptr<ConditionSet> newConditions)
+void RandomEvent<T>::AddConditions(const DataNode &node)
 {
-	conditions = newConditions;
+	if(!conditions)
+		conditions = std::make_shared<ConditionSet>(node);
+	else
+		conditions->Load(node);
 }
 
 

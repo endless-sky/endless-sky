@@ -1305,12 +1305,12 @@ void Engine::EnterSystem()
 	for(int i = 0; i < 5; ++i)
 	{
 		for(const auto &fleet : system->Fleets())
-			if(fleet.Get()->GetGovernment() && Random::Int(fleet.Period()) < 60 && fleet.Test(conditions))
+			if(fleet.Get()->GetGovernment() && Random::Int(fleet.Period()) < 60 && fleet.CanTrigger(conditions))
 				fleet.Get()->Place(*system, newShips);
 
 		auto CreateWeather = [this, conditions](const RandomEvent<Hazard> &hazard, Point origin)
 		{
-			if(hazard.Get()->IsValid() && Random::Int(hazard.Period()) < 60 && hazard.Test(conditions))
+			if(hazard.Get()->IsValid() && Random::Int(hazard.Period()) < 60 && hazard.CanTrigger(conditions))
 			{
 				const Hazard *weather = hazard.Get();
 				int hazardLifetime = weather->RandomDuration();
@@ -1748,7 +1748,7 @@ void Engine::SpawnFleets()
 	// or coming from planets in the current one.
 	ConditionsStore &conditions = player.Conditions();
 	for(const auto &fleet : player.GetSystem()->Fleets())
-		if(!Random::Int(fleet.Period()) && fleet.Test(conditions))
+		if(!Random::Int(fleet.Period()) && fleet.CanTrigger(conditions))
 		{
 			const Government *gov = fleet.Get()->GetGovernment();
 			if(!gov)
@@ -1824,7 +1824,7 @@ void Engine::GenerateWeather()
 	ConditionsStore &conditions = player.Conditions();
 	auto CreateWeather = [this, conditions](const RandomEvent<Hazard> &hazard, Point origin)
 	{
-		if(hazard.Get()->IsValid() && !Random::Int(hazard.Period()) && hazard.Test(conditions))
+		if(hazard.Get()->IsValid() && !Random::Int(hazard.Period()) && hazard.CanTrigger(conditions))
 		{
 			const Hazard *weather = hazard.Get();
 			// If a hazard has activated, generate a duration and strength of the
