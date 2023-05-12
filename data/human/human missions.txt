@@ -4760,7 +4760,7 @@ mission "Dangerous Games 2"
 	source
 		attributes "frontier" "pirate" "rim"
 	destination "Poseidos"
-	cargo "sub pods" 6
+	cargo subpods 6
 	passengers 6
 	to offer
 		random < 15
@@ -4777,7 +4777,7 @@ mission "Dangerous Games 2"
 				`	"Of course."`
 				`	"Sorry, mate. You'll have to find another pilot."`
 					decline
-			`	Karengo laughs. "If they can handle space, I think they can handle some water. I've got a group of lads and ladies here rarin' to see some quoijuu in heat, right up close'n'personal. They've all got their own "sub pods", so how's about we load up and head out in the next few hours. Good? Good."`
+			`	Karengo laughs. "If they can handle space, I think they can handle some water. I've got a group of lads and ladies here rarin' to see some quoijuu in heat, right up close'n'personal. They've all got their own subpods, so how's about we load up and head out in the next few hours. Good? Good."`
 			`	"Oh, nearly forgot. We're headed to <destination>, and you'll get <payment> for taking us there. Ain't sure if those in charge are gonna like what I'm doing, so we might need to grease some palms. Best to keep your eyes open and your shields up. We leave at noon!"`
 				accept
 	on complete
@@ -4798,7 +4798,7 @@ mission "Dangerous Games 2"
 			`	TEN KILOMETERS.`
 			`	SIXTEEN KILOMETERS. A loud, metallic creak echoes through the ship and Mussie jumps, startled.`
 			`	Karengo claps him on the back and gives him a signature grin. "Maybe <first> can keep you aboard after this in case they need anything from a high shelf!" Mussie smiles weakly, but his eyes don't leave the readout.`
-			`	TWENTY-FIVE KILOMETERS. "This's it," Karengo announces, "Sub up! Let's see what there is to see. And <first>, keep it to passive sensors. Don't want to attract any undue attention." The ship smoothly descends into the mouth of a massive cave and your visibility, clouded by dark sulfide emissions from the hydrothermal vents at the floor, drops to less than eight meters. 6 personal "sub pods" fan out behind you, their communication equipment syncing with yours to display them as blips on your screen.`
+			`	TWENTY-FIVE KILOMETERS. "This's it," Karengo announces, "Sub up! Let's see what there is to see. And <first>, keep it to passive sensors. Don't want to attract any undue attention." The ship smoothly descends into the mouth of a massive cave and your visibility, clouded by dark sulfide emissions from the hydrothermal vents at the floor, drops to less than eight meters. 6 personal subpods fan out behind you, their communication equipment syncing with yours to display them as blips on your screen.`
 			`	"Ok, <first>," Karengo crackles over the radio. "I'll read you the first clue."`
 			`"No other path may you take"`
 			`"Oiled skins flash and flicker"`
@@ -4835,7 +4835,7 @@ mission "Dangerous Games 2"
 			`	You spin your ship around and hear a loud crunch come from outside - your shields have just impacted something large and solid. The outer lights shine off falling stone and, suddenly, it all comes together; you've led everybody through a field of hydrothermal vents that rise dozens of meters off the bottom, obscured by their own noxious clouds. You guide your ship back to safety, toppling more underwater smokestacks as you go.`
 				goto "riddle two"
 			label north
-			`	You turn the ship to the north and guide it through the abyssal depths. The "sub pods" race forward, each vying to outdo the other, seemingly heedless of the dangers that Karengo hinted at. With bated breath, you watch the sensors until at last the comms flare.`
+			`	You turn the ship to the north and guide it through the abyssal depths. The subpods race forward, each vying to outdo the other, seemingly heedless of the dangers that Karengo hinted at. With bated breath, you watch the sensors until at last the comms flare.`
 			`	"Woah!" comes Karengo's voice. "I think that's far enough. Which way do we go next, <first>?"`
 			label "riddle two"
 			branch dead
@@ -4860,12 +4860,12 @@ mission "Dangerous Games 2"
 				goto "roll call"
 			label "east 1"
 			`	"A bee-less beast," you mutter to yourself. "A poet, this writer was not." Turning east, the ship powers forward, cautious but confident.`
-			`	"sub pods" fly ahead, exulting in their agility in the face of the dangerous ocean. It isn't long until Karengo again radios you. "Knew I chose ya for a reason. What's the next direction?"`
+			`	subpods fly ahead, exulting in their agility in the face of the dangerous ocean. It isn't long until Karengo again radios you. "Knew I chose ya for a reason. What's the next direction?"`
 				goto "riddle three"
 			label "north 1"
 			action
 				set "Mussie dead"
-			`	Bubbles rush past the thick windows as the group's "sub pods" scout to the north at your direction. At first, all is quiet. Just as you start to exhale a sigh of relief, twin lightning bolts arc across the waterscape ahead and the ship sensors overload, blinded by an apparent release of electricity. The systems recover, showing "sub pods" returning quickly back to the ship.`
+			`	Bubbles rush past the thick windows as the group's subpods scout to the north at your direction. At first, all is quiet. Just as you start to exhale a sigh of relief, twin lightning bolts arc across the waterscape ahead and the ship sensors overload, blinded by an apparent release of electricity. The systems recover, showing subpods returning quickly back to the ship.`
 			`	One is missing: Mussie.`
 			`	You turn the ship back the way you came and pull up the sensor recording to see what happened. The flash of light came from viney seaweed, stretching as far up and down as the ship can detect. Evidently, contact with it released a jolt of electricity that lit up both the vine and Mussie's subpod.`
 				goto "roll call"
@@ -4883,13 +4883,13 @@ mission "Dangerous Games 2"
 			`	Again, you put the ship into reverse and turn around. This is not going at all how it was supposed to.`
 				goto "roll call"
 			label "east 2"
-			`	Cautiously, you turn to the east and power forward. "sub pods" fly ahead, exulting in their agility in the face of the dangerous ocean.`
+			`	Cautiously, you turn to the east and power forward. subpods fly ahead, exulting in their agility in the face of the dangerous ocean.`
 			`	After holding your breath for what feels like hours, Karengo radios you. "Knew you'd find your way eventually. What's the next direction?"`
 				goto "riddle three"
 			label "north 2"
 			action
 				set "Mussie dead"
-			`	Bubbles rush past the thick windows as the group's "sub pods" scout to the north at your direction. At first, all is quiet. Just as you start to exhale a sigh of relief, twin lightning bolts arc across the waterscape ahead and the ship sensors overload, blinded by an apparent release of electricity. The systems recover, showing "sub pods" returning quickly back to the ship.`
+			`	Bubbles rush past the thick windows as the group's subpods scout to the north at your direction. At first, all is quiet. Just as you start to exhale a sigh of relief, twin lightning bolts arc across the waterscape ahead and the ship sensors overload, blinded by an apparent release of electricity. The systems recover, showing subpods returning quickly back to the ship.`
 			`	One is missing: Mussie.`
 			`	You turn the ship back the way you came and pull up the sensor recording to see what happened. The flash of light came from viney seaweed, stretching as far up and down as the ship can detect. Evidently, contact with it released a jolt of electricity that lit up both the vine and Mussie's subpod.`
 			label "roll call"
@@ -4925,7 +4925,7 @@ mission "Dangerous Games 2"
 				set "Jorma and Daciana dead"
 			`	Buoyed by your navigation thus far, you make the call to go north, completing the zig-zag pattern.`
 			label "sub pods"
-			`	The "sub pods", as usual, race ahead of the ship despite all logic. "Wall to the east!" calls out Daciana, whose beacon on the ship display starts to move north-west, presumably avoiding the undersea hazard, and joining up with Jorma. "Hmm," radios in Karengo. "We should be right about on top of it. Send out a ping." It's almost a relief to send out a pulse to map the surroundings after flying dark for so long.`
+			`	The subpods, as usual, race ahead of the ship despite all logic. "Wall to the east!" calls out Daciana, whose beacon on the ship display starts to move north-west, presumably avoiding the undersea hazard, and joining up with Jorma. "Hmm," radios in Karengo. "We should be right about on top of it. Send out a ping." It's almost a relief to send out a pulse to map the surroundings after flying dark for so long.`
 			`	The result is not what you were hoping for. The display maps two leviathan-sized things ahead, each over 200 meters long. Dozens of sets of flippers run along each 80-meter-tall side and hundreds of teeth the size of an adult human line their jaws.`
 			choice
 				`	(Run.)`
@@ -4980,7 +4980,7 @@ mission "Dangerous Games 2"
 			action
 				set "Jorma and Daciana dead"
 			`	Hesitantly, you make the call to go north, completing the zig-zag pattern.`
-			`	The "sub pods", as usual, race ahead of the ship despite all logic. "Wall to the east!" calls out Daciana, whose beacon on the ship display starts to move north-west, presumably avoiding the undersea hazard, and joining up with Jorma. "Hmm," radios in Karengo. "We should be right about on top of it. Send out a ping." It's almost a relief to send out a pulse to map the surroundings after flying dark for so long.`
+			`	The subpods, as usual, race ahead of the ship despite all logic. "Wall to the east!" calls out Daciana, whose beacon on the ship display starts to move north-west, presumably avoiding the undersea hazard, and joining up with Jorma. "Hmm," radios in Karengo. "We should be right about on top of it. Send out a ping." It's almost a relief to send out a pulse to map the surroundings after flying dark for so long.`
 			`	The result is not what you were hoping for. The display maps two leviathan-sized things ahead, each over 200 meters long. Dozens of sets of flippers run along each 80-meter-tall side and hundreds of teeth the size of an adult human line their jaws.`
 			`	You goggle at the display for a moment, taking it in, and draw breath to call out the alarm when an eye appears through the ship window, yellow, glowing, alien, and massive. All at once, you turn and accelerate, shouting the alarm to any who hadn't already realized, and hoping that you're leaving the leviathan beasts behind. A quick glance at the display shows at least one subpod following behind. Good enough. If one of those rams the ship, nobody is going home anyway.`
 			`	It's a long while before you slow and turn around. No mammoth sea monster comes out of the darkness, and you take a breath.`
@@ -4989,7 +4989,7 @@ mission "Dangerous Games 2"
 			label "east 4"
 			action
 				set "Jorma and Daciana dead"
-			`	The proximity alarm wails and you bring your ship to a halt, but your tracker shows two "sub pods" smash straight into the stone wall looming in front of you.`
+			`	The proximity alarm wails and you bring your ship to a halt, but your tracker shows two subpods smash straight into the stone wall looming in front of you.`
 			`	Again, you put the ship into reverse and turn around. This is not going at all how it was supposed to.`
 			label failure
 			`	Jorma and Daciana never report back in.`
@@ -5021,7 +5021,7 @@ mission "Dangerous Games 2"
 				has "Elias and Taddese dead"
 				has "Jorma and Daciana dead"
 			`	"What we have here, folks," breaks in Karengo, "is the fabled treasure. A chunk'o'some, anyway. And we're gonna take whatever we want. Let's see what there is to see."`
-			`	Now that active communication is low-risk, you bring up the video feed from Karengo's subpod as he floats toward the heat source. Bathed in floodlight, you can see that there are actual crystals formed on the ship hull, glowing a dull red. Something unknowable has rent a hole near the crystalline spiral, and Karengo disappears inside. The rest of the "sub pods" wait outside, apparently spooked. "Jackpot!" comes his voice. "There's some sort of computer in here! <first>, get closer and let's get this out." You don't know what it is, but it looks expensive.`
+			`	Now that active communication is low-risk, you bring up the video feed from Karengo's subpod as he floats toward the heat source. Bathed in floodlight, you can see that there are actual crystals formed on the ship hull, glowing a dull red. Something unknowable has rent a hole near the crystalline spiral, and Karengo disappears inside. The rest of the subpods wait outside, apparently spooked. "Jackpot!" comes his voice. "There's some sort of computer in here! <first>, get closer and let's get this out." You don't know what it is, but it looks expensive.`
 			choice
 				`	(Help him out.)`
 					goto silent
@@ -5043,7 +5043,7 @@ mission "Dangerous Games 2"
 				goto return
 			label "some survive"
 			`	"What we have here, folks," breaks in Karengo, "is the fabled treasure. A chunk'o'some, anyway. And we're gonna take whatever we want. Let's see what there is to see."`
-			`	Now that active communication is low-risk, you bring up the video feed from Karengo's subpod as he floats toward the heat source. Bathed in floodlight, you can see that there are actual crystals formed on the ship hull, glowing a dull red. Something unknowable has rent a hole near the crystalline spiral, and Karengo disappears inside. The rest of the "sub pods" wait outside, apparently spooked. "Jackpot!" comes his voice. "There's some sort of computer in here! <first>, get closer and let's get this out." You don't know what it is, but it looks expensive.`
+			`	Now that active communication is low-risk, you bring up the video feed from Karengo's subpod as he floats toward the heat source. Bathed in floodlight, you can see that there are actual crystals formed on the ship hull, glowing a dull red. Something unknowable has rent a hole near the crystalline spiral, and Karengo disappears inside. The rest of the subpods wait outside, apparently spooked. "Jackpot!" comes his voice. "There's some sort of computer in here! <first>, get closer and let's get this out." You don't know what it is, but it looks expensive.`
 			choice
 				`	(Help him out.)`
 					goto "silent 2"
