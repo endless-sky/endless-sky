@@ -613,7 +613,6 @@ government "Humanika (Port)"
 	"hostile hail" "hostile civilian"
 	"attitude toward"
 		"Syndicate" -.01
-		"Syndicate that won't enter wormhole" -.01
 		"Syndicate (Extremist)" -.01
 		"Republic" -.01
 		"Republic that won't enter wormhole" -.01
@@ -639,7 +638,6 @@ government "Humanika (Restricted)"
 	"hostile hail" "hostile civilian"
 	"attitude toward"
 		"Syndicate" -.01
-		"Syndicate that won't enter wormhole" -.01
 		"Syndicate (Extremist)" -.01
 		"Merchant" -.01
 		"Pirate" -.01
