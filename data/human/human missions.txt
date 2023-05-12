@@ -325,10 +325,10 @@ mission "Pookie, Part 5"
 				`	"What do you mean?"`
 					goto explain
 				`	"I'm sorry?"`
-					goto "sorry"
+					goto sorry
 			`	She tosses her head to the side. "Then I mean it twice as much!"`
 				goto explain
-			label "sorry"
+			label sorry
 			`	She hisses. "If you wanted to be sorry, then you should never have tried to trick me in the first place!"`
 			label explain
 			`	Pemefrey thrusts an accusing finger at Puny. "My dog would never be as scruffy, as ugly, as this mutt! You are trying to deceive me by picking some mongrel off of the street and claiming it as mine!"`
