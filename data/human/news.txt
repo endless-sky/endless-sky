@@ -1489,7 +1489,9 @@ news "proselytizing"
 		word
 			`"`
 		word
-			# Actual quotes from about repentance and forgiveness, from religious texts:
+			# Actual quotes from about repentance and forgiveness, from religious texts or leaders.
+			# Do not change the wording or punctuation; they're all either original, or
+			# from widely-accepted translations. Every detail is how it is for a reason.
 			"Blessed is the one whose transgressions are forgiven, whose sins are covered."
 			"Hatred stirs old quarrels, but love overlooks insults."
 			"Every son of Adam sins, the best of the sinners are those who repent."
