@@ -4871,7 +4871,7 @@ system "Alpha Centauri"
 		period 3022.55
 
 system "Alpha Hydri"
-	pos -153 125
+	pos -128.55556 111.44444
 	government Syndicate
 	attributes "core"
 	arrival 1450
