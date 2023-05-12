@@ -812,6 +812,7 @@ mission "Korath [F05]: The Rainbow Feather"
 			label "will try"
 			action
 				"willingness to agree to Iris's request to help Korath" = 2
+			label happyiris
 			`	She closes her eyes and sighs happily. "Thank you. We do not share this information lightly, and I'm glad we judged well." Opening her eyes and smiling, she does a slight bow and departs.`
 				decline
 			label "agree to disagree"
