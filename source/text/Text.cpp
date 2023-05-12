@@ -89,8 +89,6 @@ Text Text::FormatN(const std::string& format_singular, const std::string& format
 			n = an;
 		}
 	}
-	
+
 	return Format(n == 1 ? format_singular : format_plural, args);
 }
-
-
