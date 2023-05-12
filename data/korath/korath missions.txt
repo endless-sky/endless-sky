@@ -356,10 +356,10 @@ mission "First Contact: Korath Exiles"
 			`	The other one says, "Far'en lai, soru ka'lai en ka korath. Soti far'en lai ko forei lak'far." It points to the gun at the front of its fighter, then makes a gesture, hands turned downward toward the ground. "Far'en lai ka let'mari nik lak'mal." It points to a few places, hundreds of meters away, where you see green plants growing. "Nik lak'mal." Then it points to you. "Hoomani ka Korath nik lak'mal."`
 			`	To emphasize the point, on a blank part of the sand they draw a circle, very big, with lots of dots on it, pointing to the plants as they make each dot. They then draw on outline of all three of your ships inside the circle, pointing towards each other. Finally, one picks up the sand they just used to make your ship, and tosses it back onto the map of human space, while the other picks up the sand that makes up their ships, and likewise tosses it onto the map of their own space.`
 			choice
-				`	(Try to communicate that they should leave humanity alone.)`
-					goto alone
 				`	(Try to assure them you do not mean to fight them.)`
 					goto assurance
+				`	(Try to communicate that they should leave humanity alone.)`
+					goto alone
 
 			label assurance
 			`	"We do not want to fight you," you say, and you redraw the human and Korath ships, on the map, so they are facing away from each other.`
@@ -367,10 +367,10 @@ mission "First Contact: Korath Exiles"
 			`	"Lajalness?" the other says back, and takes a moment to look at your ship.`
 			`	Returning to the sand, they make another copy of your respective ships, this time, all facing in the same direction. Making a gesture, they alter the drawing you made, so that the ships appear double-ended. They point to each drawing, and then to you.`
 			choice
-				`	(Point to the double-ended ships.)`
-					goto fight
-				`	(Point to the three ships pointing in the same direction.)`
+				`	(Point to the three ships flying together in the same direction.)`
 					goto together
+				`	(Point to the double-ended ships facing off against each other.)`
+					goto fight
 				`	(Change the drawing to emphasize the ships moving apart again.)`
 					goto alone
 
@@ -378,10 +378,10 @@ mission "First Contact: Korath Exiles"
 			`	They stare at you for another few awkward seconds.`
 			`	Then, in front of your three ships, they slowly and carefully draw a large fire, larger than the three of your ships put together. Beside your ships, facing away, they draw a pointed circle on one side, and a spider on the other; after a brief pause, they make the circle and spider double-ended. Again, they point to the drawing of your double-ended ships, and then to the now ominous-looking collection of ships and fire, and point to you.`
 			choice
-				`	(Point to the double-ended ships this time.)`
-					goto fight
-				`	(Point again to the ominous collection of ships and fire.)`
+				`	(Point again to the ominous collection of ships and fire, with the three ships flying togther.)`
 					goto fire
+				`	(Point to the double-ended ships facing off against each other this time.)`
+					goto fight
 				`	(Change the drawing to emphasize the ships moving apart again.)`
 					goto alone
 
