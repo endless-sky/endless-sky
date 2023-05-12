@@ -73,23 +73,23 @@ namespace {
 	// MAX_SCAN_RANGE is critical since anywhere within that range,
 	// you still have a maximum of SCAN_TIME AI steps to scan.
 	const double SCAN_TIME = 600.;
-	const double MAX_SCAN_RANGE = 2.4477468306808167762; // exp(-x*x/2) = 0.05
+	const double MAX_SCAN_RANGE = 2;
 	const double MAX_SCAN_RANGE_FACTOR = MAX_SCAN_RANGE * MAX_SCAN_RANGE;
 
 	// These numbers ensure it takes 10 seconds for a Cargo Scanner to scan
 	// a Bulk Freighter at point blank range. Any ship with less than 40
 	// cargo space takes as long as a ship with 40 cargo space.
 	const double SCAN_MIN_CARGO_SPACE = 40;
-	const double SCAN_CARGO_FACTOR = 0.017469281074217108;
+	const double SCAN_CARGO_FACTOR = 3;
 
 	// This ensures it takes 10 seconds for an Outfit Scanner to scan a
 	// Bactrian at point blank range. Any ship with less than 200 outfit
 	// space takes as long as a ship with 200 outfit space.
 	const double SCAN_MIN_OUTFIT_SPACE = 200;
-	const double SCAN_OUTFIT_FACTOR = 0.07850641917988008;
+	const double SCAN_OUTFIT_FACTOR = 10;
 
 	// Formula for the scan outfit or cargo factor is:
-	// factor = pow(scanEfficiency * framesToFullScan / SCAN_TIME, 3./2) / referenceSize
+	// factor = pow(sqrt(scanEfficiency) * framesToFullScan / SCAN_TIME, 3./2) / referenceSize
 
 	// Helper function to transfer energy to a given stat if it is less than the
 	// given maximum value.
@@ -2722,7 +2722,7 @@ int Ship::Scan(const PlayerInfo &player)
 			// Gaussian drop-off of scan speed.
 			double distanceExponent = -distanceSquared / max<double>(1e-3, 2 * scannerRangeSquared);
 
-			elapsed += 1 + max<double>(1, exp(distanceExponent) * speed * sizeAdjustment);
+			elapsed += max<double>(1, exp(distanceExponent) * sqrt(speed) * sizeAdjustment);
 
 			if(elapsed >= SCAN_TIME)
 				result |= event;
