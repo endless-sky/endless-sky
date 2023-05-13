@@ -835,7 +835,7 @@ news "athlete"
 			"Does your ship have a weight room?"
 			"I'm hoping to get a sponsorship, but nobody here wants to partner with me. Could you recommend a planet where I might find better results?"
 			"I don't expect everyone to be as fit as I am, but do remember to get up and exercise a little every once in a while!"
-			"I once went to a sports event on Dancer in the the Rastaban system, but never again! All activities were indoors because of the horrible weather the planet has."
+			"I once went to a sports event on Dancer in the Rastaban system, but never again! All activities were indoors because of the horrible weather the planet has."
 		word
 			`"`
 
