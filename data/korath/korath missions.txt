@@ -483,7 +483,11 @@ mission "Korath [F01]: A Fishy Deal"
 				log "Agreed to help a woman named Jenny Jetmaster who couldn't make a delivery. Apparently the delivery is illegal, though it's unlikely to be detected since it's in a region of space not patrolled by any law-abiding governments."
 			`	"Really? Okay, hold on..." looking down, she fidgets with a datapad, perhaps transferring permission for the cargo mission. "Yeah, okay." She looks back up at last. "Transfer is approved." Her crewman starts offloading the fish, preparing to transfer it to your ship.`
 			`	"If the authorities won't let you land, read them the serial number from the cargo container, and they'll open a bay for you. Oh, also, this is an illegal mission, so don't get caught, or it'll cost you. Well, it's unlikely anyone out here will care about laws, but I do believe in full disclosure."`
-				accept
+			choice
+				`	"I'm not afraid of dodging the cops... where there are none. Give me the cargo, and it'll reach its destination. You have my word."`
+					accept
+				`	"On second thought, I don't think I want this mission. Illegal fish deliveries are too strange for my tastes."`
+					decline
 
 	on enter Atik
 		dialog "It seems you do not have automatic clearance to <planet>. If you talk to the planet, the authorities will probably let you land."
