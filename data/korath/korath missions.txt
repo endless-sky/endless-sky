@@ -320,7 +320,7 @@ mission "First Contact: Korath Exiles"
 
 			label silence
 			`	The left gestures at itself and says, "Akafavah." The right does a similar gesture and says, "Takra." You respond almost instinctively with "<first> <last>."`
-			`	Pleased with this success, Akafavah continues, "Korath," gesturing at the two pilots.`
+			`	Pleased with this success, Akafavah continues. "Korath," it says, gesturing at the two pilots.`
 			`	"I'm a human," you say, "from Earth."`
 			`	Akafavah says suddenly, "Oi! Humanika!" It's unclear what emotion the Korath is expressing, but it is a strong one.`
 			`	They see your confusion and seem to give up on communicating with words. It's time for a different approach.`
@@ -588,7 +588,7 @@ mission "Korath [F02]: A Fishy Proposition"
 			label departs
 			action
 				log `Agreed to help New Tortuga by delivering "planetary supplies" from a black market called "La'ab Bamen." The request came from a woman who calls herself Iris. That may be a code name; she seems to be an agent of some sort. She has a suspiciously large amount of knowledge of the large vessels that frequent New Tortuga, which identify themselves as Korath.`
-				log `Iris warned me not to assist Korath vessels, or it would anger "half the galaxy." New Tortuga and the Korath need me to retain my freedom of movement, to act as a courier.`
+				log `Iris warned me not to assist Korath vessels, or it would anger "half the galaxy." New Tortuga and the Korath need me to retain my freedom of movement so I can act as a courier.`
 			`	She departs with her entourage, and some dock workers load the barrels onto your ship.`
 				accept
 	on complete
@@ -772,7 +772,7 @@ mission "Korath [F05]: The Rainbow Feather"
 			action
 				set "Korath [F05]: The Rainbow Feather: freedom"
 			`	"There are few life-supporting planets in the systems where the Korath are exiled. One is the violent planet you visited: Rabasot Pa'ah. The Korath discovered New Tortuga has a similar, though less violent, environment and evolved a fish-like species that would be an excellent food source.`
-			`	"They could not grow the creatures on Rabasot Pa'ah, or artificially, since the larval form requires very specific conditions. The juvenile and adult forms thrive on Rabasot Pa'ah, growing far larger than on New Tortuga. The conditions of their exile prevented the Korath from fishing on New Tortuga themselves, so they had to make a deal with humans.`
+			`	"They could not grow the creatures either artificially or on Rabasot Pa'ah, since the larval form requires very specific conditions. The juvenile and adult forms thrive on Rabasot Pa'ah, growing far larger than on New Tortuga. The conditions of their exile prevented the Korath from fishing on New Tortuga themselves, so they had to make a deal with humans.`
 			`	"Not understanding our society, they talked to the first fishers they found, who couldn't help them, because those fishers were slaves. To Korath, self-expression is a religion and almost a biological necessity. Slavery to them is as abhorrent as," she thinks for a moment, "consuming the skin of dead relatives is to us.`
 			`	"They made a deal: freedom for fish. The Korath provided rifles in secret, and the slaves drove their masters off the planet. Ex-Syndicate refugees who fled persecution to live here helped us form a functioning government. Now, we give juvenile fish to the Korath, and they assist us in industry, mining, food production, and defense of our systems.`
 			`	"We invited them - no, we asked them - to live on New Tortuga with us, to share our homes and be family. Sadly, their oppressors have forbidden them from setting foot on planets outside their exiled systems. Although we have occasional visits of technicians or doctors to New Tortuga, no Korath has stayed for more than a few days. Never has a military vessel touched down.`
