@@ -90,11 +90,11 @@ phrase "generic waypoint on visit"
 
 phrase "generic infiltrating slave rescue stopover pickup"
 	word
-		`You land in a remote location and load the <passengers>, who seem excited to escape slavery.`
+		`You land in a remote location and load the <passengers>, who hurry into your ship silently.`
 
 phrase "generic slave rescue pickup"
 	word
-		`You move your ship to a remote location and load the <passengers>, who seem excited to escape slavery.`
+		`You move your ship to a remote location and load the <passengers>, who seem relieved to escape slavery.`
 
 
 phrase "generic hunted bounty eliminated dialog"
