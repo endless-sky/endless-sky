@@ -3998,7 +3998,7 @@ mission "Escaped Slaves [0]"
 	name "Help slaves escape to <planet>"
 	job
 	repeat
-	description "Escaped slaves with valuable skills want asylum. Fly all <bunks> of them from <origin> to them <destination> for <payment>. Expect bounty hunters."
+	description "Escaped slaves with valuable skills want asylum. Fly all <bunks> of them from <origin> to <destination> for <payment>. Expect bounty hunters."
 	passengers 2 8 .8
 	to offer
 		random < 60
