@@ -902,7 +902,6 @@ trade
 		"anti-Syndicate propaganda"
 		"Marxist texts"
 		"open-source software"
-		"replicas of the Fearless Girl statue"
 		"Luddite propaganda"
 		"Maoist texts"
 		"printings of The Communist Manifesto"
