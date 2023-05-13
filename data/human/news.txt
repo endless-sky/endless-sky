@@ -710,7 +710,7 @@ news "humanika researcher"
 			`"My research concerns force fields. No, not those kinds of force fields."`
 
 			# New ones, relating to observing the Korath
-			`"We've always used star lanes for hyperspace communication, but it turns out you can communicate directly between two systems. The devices are hard to manufacture, though."`
+			`"Interstellar communication has always sent waves along hyperspace links. It turns out you can communicate directly between two systems without the use of a link. The devices are hard to manufacture and have astronomical power requirements."`
 			`"There's a really creative alloy we found recently, which can dissipate heat faster than anything we've ever seen. We haven't had much luck reproducing it, but we won't give up so easily."`
 			`"Recently, we've come upon a strange substance... I believe it's called Nutragel? We found that if you put it in a fuel cell, the power output doubles, but the cell quickly melts itself."`
 			`"Humanity has had nanofluids for centuries, but we've come upon a substance that quadruples the heat capacity of water. Unfortunately, the particles break down quickly, so it isn't viable yet."`
