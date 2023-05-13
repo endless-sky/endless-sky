@@ -502,7 +502,7 @@ mission "Hai Rescue: Meroot and Lucy"
 				`	"Sure. Let's go."`
 				`	"No, you'll have to find another pilot."`
 					decline
-			`	The two women put on clothing that thoroughly covers their person. They lead you through a series of ducts and alleys back to the pad where your ship is parked. Just as your airlock opens there's a sharp zapping sound as someone shoots Meroot with a stun gun. You and Lucy duck and a couple other shots dissipate harmlessly on the bulkhead of your ship. You fire off a couple shots back and between the two of you you manage to drag Meroot through the airlock, seal it behind you and lift off. It appears you're being followed into orbit.`
+			`	The two women put on clothing that thoroughly covers their person. They lead you through a series of ducts and alleys back to the pad where your ship is parked. Just as your airlock opens there's a sharp zapping sound as someone shoots Meroot with a stun gun. You and Lucy duck and a couple other shots dissipate harmlessly on the bulkhead of your ship. You fire off a couple shots back and between the two of you manage to drag Meroot through the airlock, seal it behind you and lift off. It appears you're being followed into orbit.`
 				launch
 	on complete
 		log `Rescued a pair of researchers: a Hai woman named Meroot and a human woman named Lucy. They were kidnapped by men who brought them to Canyon. Returned them to <planet> where they now live together. They don't know the identities of the kidnappers.`
