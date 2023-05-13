@@ -573,7 +573,7 @@ if __name__ == '__main__':
 		for pattern in sys.argv[1:]:
 			files += glob.glob(pattern, recursive=True)
 	else:
-		files = glob.glob('source/*.cpp', recursive=True) + glob.glob('source/*.h', recursive=True) + glob.glob('tests/*.cpp', recursive=True) + glob.glob('tests/*.h', recursive=True)
+		files = glob.glob('source/**/*.cpp', recursive=True) + glob.glob('source/**/*.h', recursive=True) + glob.glob('tests/**/*.cpp', recursive=True) + glob.glob('tests/**/*.h', recursive=True)
 	files.sort()
 
 	for file in files:
