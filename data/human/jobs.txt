@@ -3900,7 +3900,7 @@ phrase "syndicate defectors"
 # stopover since that is a valid place for slaves to have escaped to.
 
 mission "Rescue Slaves [0]"
-	name "Help slaves escape to <planet>"
+	name "Emancipation on <planet stopovers>"
 	job
 	repeat
 	description "An anonymous group will pay <payment> to transport <bunks> people out of slavery on <stopovers> to freedom on <planet>. You will have a passcode for landing clearance. Expect bounty hunters."
@@ -3931,7 +3931,7 @@ mission "Rescue Slaves [0]"
 			distance 1 2
 
 mission "Rescue Slaves [1]"
-	name "Help slaves escape to <planet>"
+	name "Emancipation on <planet stopovers>"
 	job
 	repeat
 	description "An anonymous group will pay <payment> to transport <bunks> people out of slavery on <stopovers> to freedom on <planet>. You will have a passcode for landing clearance. Expect bounty hunters."
@@ -3963,7 +3963,7 @@ mission "Rescue Slaves [1]"
 			distance 1 2
 
 mission "Rescue Slaves [2]"
-	name "Help slaves escape to <planet>"
+	name "Emancipation on <planet stopovers>"
 	job
 	repeat
 	description "An anonymous group will pay <payment> to transport <bunks> people out of slavery on <stopovers> to freedom on <planet>. You will have a passcode for landing clearance. Expect bounty hunters."
@@ -4118,7 +4118,7 @@ mission "Transport recruiters [1]"
 		dialog phrase "generic passenger on visit"
 
 mission "Transport recruiters [2]"
-	name "Recruitment team and supplies to <planet>"
+	name "Recruiters and supplies to <planet>"
 	job
 	repeat
 	description `Transport a team of <bunks> <origin> recruiters and <tons> of recruitment supplies to <planet> by <date> for <payment>.`
@@ -4187,7 +4187,7 @@ mission "Retrieve recruiters [1]"
 		dialog phrase "generic passenger on visit"
 
 mission "Retrieve recruiters [2]"
-	name "Return recruitment team home to <planet>"
+	name "Return recruiters home to <planet>"
 	job
 	repeat
 	description `Pick up a team of <bunks> recruiters on <stopovers> and fly them home to <planet> by <date> for <payment>.`
