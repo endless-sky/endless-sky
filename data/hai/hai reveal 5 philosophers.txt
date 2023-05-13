@@ -233,7 +233,7 @@ mission "Hai Reveal [B03] Contact Giti"
 			`	There is a moment of uncertainty where Danforth continues conversing in a low voice with his lieutenant and Batu catches your gaze with a questioning look.`
 			choice
 				`	"Admiral, would you like to lead this?"`
-					goto cedetodanforth
+					goto "cede to danforth"
 				`	"Good to see everyone arrive here safely."`
 			action
 				set "HR: Allied Leader"
@@ -287,7 +287,7 @@ mission "Hai Reveal [B03] Contact Giti"
 			`	Teeneep seems to bristle but Sayari smoothly cuts in. "You should not concern yourself with our comfort, Admiral. It would not be seemly for the Elder to abandon the field while another leader remains." She looks pointedly at Choot'k. "You may have forgotten also but there are Hai representatives of two governments in this room. It would also be unseemly for our ships to act in concert with the Unfettered without a diplomatic liaison here. And so I too have my place here. Things have happened quickly, of course, but my colleague Hiyamaharu will soon arrive at Mountaintop to act as my counterpart there. I trust things are being attended to, but you might consider checking that your people are properly aware of that."`
 				goto briefing
 
-			label cedetodanforth
+			label "cede to danforth"
 			action
 				set "HR: Allied Supporter"
 			`	Danforth looks around and, without missing a beat, steps up to the table in the middle of the room. "Thank you, Captain. The Hai and Unfettered are coordinating through me and my command for the ground operation, and so far, stage one has been successful. However, as I expected, it looks like we're going to be here a while. <origin> is a rabbit warren of hidden places. Even with the Hai resources on top of everything we've brought, it could take weeks to root things out sufficiently."`
