@@ -25479,8 +25479,28 @@ system Noitakt
 	fleet "Large Core Pirates" 800
 	fleet "Small Core Pirates" 1200
 	fleet "Small Core Merchants" 600
-	habitable 3276.8
+	habitable 176.8
 	belt 1478
+	object
+		sprite star/g-dwarf
+		distance 5.1
+		period 11.3
+	object
+		sprite star/l-dwarf
+		distance 33.2
+		period 11.3
+	object
+		sprite planet/rock13
+		distance 1564.3
+		period 476.772
+	object
+		sprite planet/rock10-b
+		distance 2811.2
+		period 1288.23
+		object
+			sprite planet/ice7
+			distance 211
+			period 12.901
 
 system Nona
 	pos 166 558
