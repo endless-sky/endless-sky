@@ -1713,11 +1713,16 @@ news "pirate"
 		word
 			`"`
 		phrase
+			# The 3 and 35 match the number of news stories in each phrase.
+			# Please update these if you change those phrases.
 			"pirate slavery news" 3
 			"pirate news without slavery" 35
 		word
 			`"`
 
+
+# The pirate news has been split into slavery and non-slavery news so
+# that planets with a slavery ban won't display the slavery news.
 
 phrase "pirate slavery news"
 	word
