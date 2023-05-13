@@ -3903,7 +3903,7 @@ mission "Rescue Slaves [0]"
 	name "Help slaves escape to <planet>"
 	job
 	repeat
-	description "An anonymous group will pay <payment> to transport <bunks> escaped slaves from <stopovers> to <planet>. You will have a passcode for landing clearance. Expect bounty hunters."
+	description "An anonymous group will pay <payment> to transport <bunks> people out of slavery on <stopovers> to freedom on <planet>. You will have a passcode for landing clearance. Expect bounty hunters."
 	passengers 2 8 .8
 	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
 	to offer
@@ -3934,7 +3934,7 @@ mission "Rescue Slaves [1]"
 	name "Help slaves escape to <planet>"
 	job
 	repeat
-	description "An anonymous group will pay <payment> to transport <bunks> escaped slaves from <stopovers> to <planet>. You will have a passcode for landing clearance. Expect bounty hunters."
+	description "An anonymous group will pay <payment> to transport <bunks> people out of slavery on <stopovers> to freedom on <planet>. You will have a passcode for landing clearance. Expect bounty hunters."
 	passengers 4 15 .8
 	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
 	to offer
@@ -3966,7 +3966,7 @@ mission "Rescue Slaves [2]"
 	name "Help slaves escape to <planet>"
 	job
 	repeat
-	description "An anonymous group will pay <payment> to transport <bunks> escaped slaves from <stopovers> to <planet>. You will have a passcode for landing clearance. Expect bounty hunters."
+	description "An anonymous group will pay <payment> to transport <bunks> people out of slavery on <stopovers> to freedom on <planet>. You will have a passcode for landing clearance. Expect bounty hunters."
 	passengers 7 28 .8
 	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
 	to offer
