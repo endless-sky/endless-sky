@@ -479,7 +479,7 @@ conversation "Hai Diplomat Intro"
 		`	"What if the humans want our own envoy to these aliens?"`
 			goto envoy
 	`	"Yes," she says. "If these aliens will provide a place for me, I mean to live with them permanently, an ambassador between their people and ours. I am old, and in need of a great novelty like this to make my life interesting once more." You note that the fur on her face, especially on the snout, has turned from brown to silvery gray - a sign of age in terrestrial creatures, and perhaps in the Hai as well.`
-	# Sayari is the head of the entire Hai diplomatic core, so she doesn't need permission to choose herself as the diplomat.
+	# Sayari is the head of the entire Hai diplomatic corps, so she doesn't need permission to choose herself as the diplomat.
 	# Going to diplomatic hot-spots is literally her job.
 	choice
 		`	"Let's go visit these aliens immediately!"`
