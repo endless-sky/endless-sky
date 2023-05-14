@@ -247,6 +247,7 @@ mission "Ringworld Debris: Quarg"
 	invisible
 	source
 		attributes "quarg"
+		not attributes "gegno quarg"
 	to offer
 		has "ringworld debris"
 		has "First Contact: Quarg: offered"
@@ -656,7 +657,7 @@ mission "Ka'het: Patir Mystery 5"
 				die
 			
 			label still
-			`	After another short silence, the Ka'sei starts emitting a loud siren. You hear the screech of Ravager fire as an angry energy beam sears through the air to your left, just barely missing you. Both you and Dusk jump back to the airlock, slamming the door closed. You can still feel the crackle of the Ravager cannons from the other side the the door, and after a second, the door begins to glow.`
+			`	After another short silence, the Ka'sei starts emitting a loud siren. You hear the screech of Ravager fire as an angry energy beam sears through the air to your left, just barely missing you. Both you and Dusk jump back to the airlock, slamming the door closed. You can still feel the crackle of the Ravager cannons from the other side the door, and after a second, the door begins to glow.`
 			choice
 				`	(Open the exit door, even with the airlock full of air.)`
 					goto blast

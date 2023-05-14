@@ -17,7 +17,7 @@
 
 mission "Hai Building Mountaintop [1] Construction Fleet"
 	name "Escort construction fleet to Ultima Thule"
-	description "Meet a construction fleet at <stopovers> and escort them to to <destination> to prevent a confrontation."
+	description "Meet a construction fleet at <stopovers> and escort them to <destination> to prevent a confrontation."
 	autosave
 	landing
 	source "Hai-home"

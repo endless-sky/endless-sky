@@ -1098,6 +1098,7 @@ mission "Saryd Students 2"
 	landing
 	deadline
 	cargo "arach rum" 2
+	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	to offer
 		has "Saryd Students 1: done"
 	source "Weir of Glubatub"
