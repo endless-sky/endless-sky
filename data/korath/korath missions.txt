@@ -804,7 +804,7 @@ mission "Korath [F05]: The Rainbow Feather"
 				`	"I'll hear it."`
 			`	"In my meditations, I see your future part on the galactic stage, which I should not forbid. The rest of the galaxy knows our protectors as monsters; mindless destroyers to be hunted for thrill or profit. All I ask is that you act with compassion and understanding."`
 			choice
-				`	"I'm just an ordinary pilot, not a galactic superpower. You need to seek stronger allies, but I'll show what compassion I can."`
+				`	"I'm just a ship captain, not a galactic superpower. You need to seek stronger allies, but I'll show what compassion I can."`
 					goto "will try"
 				`	"You've made a convincing case. I'll help them find their place in the galaxy."`
 					goto "find their place"
