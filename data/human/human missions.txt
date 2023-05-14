@@ -4955,7 +4955,7 @@ mission "Dangerous Games 2"
 			label uninterested
 			`	You smoothly turn the ship to the right, heading south.`
 			`	"Should be close," radios Karengo. "Fire off a ping." It's almost a relief to send out a pulse to map the surroundings after flying dark for so long.`
-			`	The result, however, is a surprise. The display shows a massive object directly below you... as well as as two leviathan-sized things back the way you came, each over 200 meters long. Dozens of sets of flippers run along each 80-meter-tall side and hundreds of teeth the size of an adult human line their jaws.`
+			`	The result, however, is a surprise. The display shows a massive object directly below you... as well as two leviathan-sized things back the way you came, each over 200 meters long. Dozens of sets of flippers run along each 80-meter-tall side and hundreds of teeth the size of an adult human line their jaws.`
 			`	You goggle at the display for a moment, holding your breath, but the leviathans seem uninterested. You shudder, imagining what one of those could do if you'd turned the wrong way, before your interest returns to the mysterious bulk resting below the ship.`
 				goto treasure
 			label "north 3"

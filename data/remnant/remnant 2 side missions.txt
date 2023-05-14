@@ -376,7 +376,7 @@ mission "Remnant: Teciimach Deployment"
 				`	"Thanks! Circling back to our earlier topic, what does 'Warren' mean?"`
 			`	"It is our term for the network of caves, tunnels, and spaces deep underground. All three of our main worlds have them in some form or another. We know a little about the original people who built them, but not nearly as much as we would like. They called themselves the Zitchal Maudrakoi, and one of the most distinguishing features we have been able to learn about them is that they do not seem to attach much importance to directionality. For example, in a control room we found, there were instruments and controls on every available surface, with just a scattering of handholds to support the operator." She shrugs. "Plume or Dusk would know more than I about them. I mostly focus on understanding their equipment."`
 			label "emp no"
-			`	"Well, I should get back to work, then. Next time you are in space, take a look at how our ships fare in battle. Hopefully you will see an improvement." She grabs a couple components from a nearby lift, and scrambles back up the side of the Merganser to continue working on an a new bay.`
+			`	"Well, I should get back to work, then. Next time you are in space, take a look at how our ships fare in battle. Hopefully you will see an improvement." She grabs a couple components from a nearby lift, and scrambles back up the side of the Merganser to continue working on a new bay.`
 				accept
 	npc
 		government "Remnant"

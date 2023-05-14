@@ -170,7 +170,7 @@ mission "War Reactions: Navy and Free Worlds Captains"
 			action
 				set "War Reactions: Navy and Free Worlds Captains: label sister2"
 			`	They share a glance and Fiona shrugs. "Sometimes that's just what happens with family."`
-			`	Rain continues, "You do what you have to to follow your orders and look out for each other in between."`
+			`	Rain continues, "You do what you have to do to follow your orders and look out for each other in between."`
 				goto questions
 			label mercenary
 			action
