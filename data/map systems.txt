@@ -2121,7 +2121,12 @@ system Acrab
 	asteroids "large metal" 4 4.158
 	minables aluminum 3 10.167916
 	minables iron 7 9.6900905
-	fleet "Large Core Merchants" 800
+	fleet "Small Core Merchants" 800
+	fleet "Large Core Merchants" 1000
+	fleet "Small Syndicate" 1200
+	fleet "Large Syndicate" 2000
+	fleet "Human Miners" 3000
+	fleet "Republic Logistics" 3600
 	fleet "Small Core Pirates" 1200
 	fleet "Small Core Merchants" 600
 	habitable 151.25
@@ -6173,9 +6178,13 @@ system Atlas
 	asteroids "large metal" 1 2.9016
 	minables silver 24 8.125609
 	haze _menu/haze-133
-	fleet "Large Core Pirates" 800
-	fleet "Small Core Pirates" 1200
-	fleet "Small Core Merchants" 600
+	fleet "Large Core Merchants" 500
+	fleet "Large Syndicate" 700
+	fleet "Small Syndicate" 600
+	fleet "Small Core Merchants" 400
+	fleet "Republic Logistics" 5800
+	fleet "Small Core Pirates" 2000
+	fleet "Large Core Pirates" 3000
 	habitable 13107.2
 	belt 1848
 	object
@@ -7789,9 +7798,12 @@ system Botein
 	asteroids "large metal" 2 2.016
 	minables aluminum 6 2.9659099
 	haze _menu/haze-133
-	fleet "Large Core Pirates" 800
-	fleet "Small Core Pirates" 1200
-	fleet "Small Core Merchants" 600
+	fleet "Small Core Merchants" 550
+	fleet "Large Core Merchants" 650
+	fleet "Small Syndicate" 950
+	fleet "Large Syndicate" 3000
+	fleet "Small Core Pirates" 1900
+	fleet "Large Core Pirates" 3200
 	habitable 151.25
 	belt 1523
 	object
@@ -12319,9 +12331,9 @@ system Electra
 	minables silver 7 4.3545762
 	minables copper 8 5.7354391
 	haze _menu/haze-133
-	fleet "Large Core Pirates" 800
-	fleet "Small Core Pirates" 1200
-	fleet "Small Core Merchants" 600
+	fleet "Small Core Pirates" 1000
+	fleet "Large Core Pirates" 2500
+	fleet "Small Core Merchants" 1800
 	habitable 42560
 	belt 1607
 	object
@@ -17934,9 +17946,9 @@ system Iklil
 	asteroids "large metal" 1 1.3039
 	minables silicon 19 1.5395955
 	minables platinum 32 1.4626157
-	fleet "Large Core Pirates" 800
-	fleet "Small Core Pirates" 1200
-	fleet "Small Core Merchants" 600
+	fleet "Small Core Pirates" 1000
+	fleet "Large Core Pirates" 2500
+	fleet "Small Core Merchants" 2000
 	habitable 468.25
 	belt 1265
 	object
@@ -23330,9 +23342,9 @@ system Meissa
 	minables tungsten 12 6.825799
 	minables uranium 1 9.7583272
 	haze _menu/haze-133
-	fleet "Large Core Pirates" 800
-	fleet "Small Core Pirates" 1200
-	fleet "Small Core Merchants" 600
+	fleet "Small Core Pirates" 3000
+	fleet "Small Core Merchants" 2000
+	fleet "Large Core Merchants" 4000
 	habitable 1288.45
 	belt 1163
 	object
@@ -25476,9 +25488,12 @@ system Noitakt
 	minables aluminum 1 5.7519675
 	minables lead 7 6.190245
 	haze _menu/haze-133
-	fleet "Large Core Pirates" 800
-	fleet "Small Core Pirates" 1200
-	fleet "Small Core Merchants" 600
+	fleet "Small Core Merchants" 950
+	fleet "Large Core Merchants" 1100
+	fleet "Small Syndicate" 3000
+	fleet "Large Syndicate" 4500
+	fleet "Small Core Pirates" 2500
+	fleet "Large Core Pirates" 4000
 	habitable 176.8
 	belt 1478
 	object
@@ -28376,9 +28391,12 @@ system Puppis
 	minables aluminum 1 6.3654077
 	minables neodymium 5 4.8274569
 	haze _menu/haze-133
-	fleet "Large Core Pirates" 800
-	fleet "Small Core Pirates" 1200
-	fleet "Small Core Merchants" 600
+	fleet "Small Core Merchants" 2000
+	fleet "Large Core Merchants" 600
+	fleet "Small Syndicate" 1800
+	fleet "Large Syndicate" 3500
+	fleet "Small Core Pirates" 1000
+	fleet "Large Core Pirates" 2500
 	habitable 17505
 	belt 1429
 	object
@@ -32999,9 +33017,9 @@ system Tabit
 	asteroids "large metal" 1 0.65
 	minables neodymium 9 0.76902448
 	minables lead 35 1.0955883
-	fleet "Large Core Pirates" 800
-	fleet "Small Core Pirates" 1200
-	fleet "Small Core Merchants" 600
+	fleet "Small Core Pirates" 1000
+	fleet "Large Core Pirates" 2500
+	fleet "Small Core Merchants" 2000
 	habitable 3125
 	belt 1154
 	object
