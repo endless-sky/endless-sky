@@ -88,11 +88,11 @@ phrase "generic waypoint on visit"
 	word
 		`You have reached <planet>, but you haven't visited all the systems yet! Better depart and make sure you visit <waypoints>.`
 
-phrase "generic infiltrating slave rescue stopover pickup"
+phrase "generic infiltrating emancipation stopover pickup"
 	word
 		`You land in a remote location and load the <passengers>, who hurry into your ship silently.`
 
-phrase "generic slave rescue pickup"
+phrase "generic emancipation pickup"
 	word
 		`You move your ship to a remote location and load the <passengers>, who seem relieved to escape slavery.`
 
@@ -144,6 +144,10 @@ phrase "generic completed pirate slave mission"
 	word
 		`After landing on <planet>, the pirates move the <bunks> slaves from your ship and pay you <payment>.`
 
-phrase "generic completed slave rescue mission"
+phrase "generic completed emancipation mission"
 	word
-		`The <bunks> slaves exit your ship and are exhilarated about their newfound freedom. Local authorities give you <payment>.`
+		`Local authorities thank you with joyous words and <payment>. They lead the <bunks> people you helped emancipate to their newfound freedom.`
+
+phrase "generic completed emancipation raid mission"
+	word
+		`Local authorities thank you with joyous words and <payment>. They lead the people you helped emancipate to their newfound freedom.`

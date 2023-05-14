@@ -3910,19 +3910,19 @@ mission "Rescue Slaves [0]"
 		random < 60
 	source
 		government "Humanika (Port)"
-	destination
-		government "Humanika (Port)"
+		attributes "slavery ban"
 	stopover
 		government "Pirate"
 		not attributes "slavery ban"
+		attributes spaceport
 		distance 5 16
 	on visit
 		dialog phrase "generic passenger on visit"
 	on stopover
-		dialog phrase "generic infiltrating slave rescue stopover pickup"
+		dialog phrase "generic infiltrating emancipation stopover pickup"
 	on complete
 		payment 30000 170
-		dialog phrase "generic completed slave rescue mission"
+		dialog phrase "generic completed emancipation mission"
 	npc
 		government "Bounty Hunter"
 		personality heroic unconstrained nemesis plunders harvests waiting
@@ -3942,19 +3942,19 @@ mission "Rescue Slaves [1]"
 		"passenger space" > 5
 	source
 		government "Humanika (Port)"
-	destination
-		government "Humanika (Port)"
+		attributes "slavery ban"
 	stopover
 		government "Pirate"
 		not attributes "slavery ban"
+		attributes spaceport
 		distance 5 16
 	on visit
 		dialog phrase "generic passenger on visit"
 	on stopover
-		dialog phrase "generic infiltrating slave rescue stopover pickup"
+		dialog phrase "generic infiltrating emancipation stopover pickup"
 	on complete
 		payment 30000 170
-		dialog phrase "generic completed slave rescue mission"
+		dialog phrase "generic completed emancipation mission"
 	npc
 		government "Bounty Hunter"
 		personality heroic unconstrained nemesis plunders harvests waiting
@@ -3974,19 +3974,19 @@ mission "Rescue Slaves [2]"
 		"passenger space" > 10
 	source
 		government "Humanika (Port)"
-	destination
-		government "Humanika (Port)"
+		attributes "slavery ban"
 	stopover
 		government "Pirate"
 		not attributes "slavery ban"
+		attributes spaceport
 		distance 5 16
 	on visit
 		dialog phrase "generic passenger on visit"
 	on stopover
-		dialog phrase "generic infiltrating slave rescue stopover pickup"
+		dialog phrase "generic infiltrating emancipation stopover pickup"
 	on complete
 		payment 30000 170
-		dialog phrase "generic completed slave rescue mission"
+		dialog phrase "generic completed emancipation mission"
 	npc
 		government "Bounty Hunter"
 		personality heroic unconstrained nemesis plunders harvests waiting
@@ -4007,11 +4007,12 @@ mission "Escaped Slaves [0]"
 		not attributes "slavery ban"
 	destination
 		government "Humanika (Port)"
+		attributes "slavery ban"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 7000 170
-		dialog phrase "generic completed slave rescue mission"
+		dialog phrase "generic completed emancipation mission"
 	npc
 		government "Bounty Hunter"
 		personality heroic unconstrained nemesis plunders harvests waiting
@@ -4033,11 +4034,12 @@ mission "Escaped Slaves [1]"
 		not attributes "slavery ban"
 	destination
 		government "Humanika (Port)"
+		attributes "slavery ban"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 7000 170
-		dialog phrase "generic completed slave rescue mission"
+		dialog phrase "generic completed emancipation mission"
 	npc
 		government "Bounty Hunter"
 		personality heroic unconstrained nemesis plunders harvests waiting
@@ -4059,17 +4061,212 @@ mission "Escaped Slaves [2]"
 		not attributes "slavery ban"
 	destination
 		government "Humanika (Port)"
+		attributes "slavery ban"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 7000 170
-		dialog phrase "generic completed slave rescue mission"
+		dialog phrase "generic completed emancipation mission"
 	npc
 		government "Bounty Hunter"
 		personality heroic unconstrained nemesis plunders harvests waiting
 		fleet "Bounty Hunters"
 		system
 			distance 1 2
+
+mission "Emancipation Raid Escort [0]"
+	name "Emancipation escort: <planet stopovers>"
+	job
+	repeat
+	description "Escort a Nighthawk to <stopovers> for an emancipation raid, then back to <planet> for <payment>. You will have a passcode for landing clearance. Beware Syndicate and bounty hunters."
+	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
+	to offer
+		"combat rating" > 50
+		random < 40
+	source
+		government "Humanika (Port)"
+		attributes "slavery ban"
+	stopover
+		government "Pirate"
+		not attributes "slavery ban"
+		attributes spaceport
+		distance 5 16
+	on visit
+		dialog "The emancipation raid isn't complete. The Nighthawk must reach <stopover planets> and then <planet>."
+	on stopover
+		dialog "The Nighthawk lands on a different vector. You can see a bunker explode from bombardment before it lands. Not long after, it meets you in the spaceport, filled with freed slaves."
+	on complete
+		payment 130000
+		dialog phrase "generic completed emancipation raid mission"
+	npc save accompany
+		government "Humanika (Ship)"
+		personality timid escort
+		fleet
+			names "Humanika emancipation fleet"
+			variant
+				"Nighthawk (New Tortuga Emancipation)"
+	npc
+		government "Bounty Hunter"
+		personality heroic unconstrained nemesis plunders harvests waiting
+		fleet "Bounty Hunters"
+		system
+			distance 1 2
+	npc
+		government "Syndicate"
+		personality heroic unconstrained nemesis waiting
+		fleet "Small Syndicate"
+		system
+			distance 3 5
+
+mission "Emancipation Raid Escort [1]"
+	name "Emancipation escort: <planet stopovers>"
+	job
+	repeat
+	description "Escort three Nighthawks to <stopovers> for an emancipation raid, then back to <planet> for <payment>. You will have a passcode for landing clearance. Beware Syndicate and bounty hunters."
+	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
+	to offer
+		"combat rating" > 100
+		random < 40
+	source
+		government "Humanika (Port)"
+		attributes "slavery ban"
+	stopover
+		government "Pirate"
+		not attributes "slavery ban"
+		attributes spaceport
+		distance 5 16
+	on visit
+		dialog "The emancipation raid isn't complete. All Nighthawks must arrive together at <stopover planets> and then <planet>."
+	on stopover
+		dialog "The Nighthawks land on a different vector. You can see a hardened bunker explode from bombardment before they land. Not long after, they meet you at the spaceport, filled with freed slaves."
+	on complete
+		payment 240000
+		dialog phrase "generic completed emancipation raid mission"
+	npc save accompany
+		government "Humanika (Ship)"
+		personality timid escort
+		fleet
+			names "Humanika emancipation fleet"
+			variant
+				"Nighthawk (New Tortuga Emancipation)" 3
+	npc
+		government "Bounty Hunter"
+		personality heroic unconstrained nemesis plunders harvests waiting
+		fleet "Small Core Pirates" 2
+		system
+			distance 1 2
+	npc
+		government "Syndicate"
+		personality heroic unconstrained nemesis waiting
+		fleet "Small Syndicate" 2
+		system
+			distance 3 5
+
+mission "Emancipation Raid Escort [2]"
+	name "Emancipation escort: <planet stopovers>"
+	job
+	repeat
+	description "Escort a fleet of Nighthawks to <stopovers> for an emancipation raid, then back to <planet> for <payment>. You will have a passcode for landing clearance. Beware Syndicate and bounty hunters."
+	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
+	to offer
+		"combat rating" > 150
+		random < 25
+	source
+		government "Humanika (Port)"
+		attributes "slavery ban"
+	stopover
+		government "Pirate"
+		not attributes "slavery ban"
+		attributes spaceport
+		distance 5 16
+	on visit
+		dialog "The emancipation raid isn't complete. All Nighthawks must arrive together at <stopover planets> and then <planet>."
+	on stopover
+		dialog "The Nighthawks land on a different vector. You can see hardened bunkers explode from bombardment before the ships land. Not long after, they meet you at the spaceport, filled with freed slaves."
+	on complete
+		payment 380000
+		dialog phrase "generic completed emancipation raid mission"
+	npc save accompany
+		government "Humanika (Ship)"
+		personality timid escort
+		fleet
+			names "Humanika emancipation fleet"
+			variant
+				"Nighthawk (New Tortuga Emancipation)" 5
+			variant 3
+				"Nighthawk (New Tortuga Emancipation)" 6
+			variant
+				"Nighthawk (New Tortuga Emancipation)" 7
+	npc
+		government "Bounty Hunter"
+		personality heroic unconstrained nemesis plunders harvests waiting
+		fleet "Small Core Pirates"
+		fleet "Large Core Pirates" 2
+		system
+			distance 1 2
+	npc
+		government "Syndicate"
+		personality heroic unconstrained nemesis waiting
+		fleet "Large Syndicate"
+		fleet "Small Syndicate"
+		system
+			distance 3 5
+
+mission "Emancipation Raid Escort [3]"
+	name "Emancipation escort: <planet stopovers>"
+	job
+	repeat
+	description "Escort a large fleet of Nighthawks to <stopovers> for an emancipation raid, then back to <planet> for <payment>. You will have a passcode for landing clearance. Beware Syndicate and bounty hunters."
+	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
+	to offer
+		"combat rating" > 250
+		random < 15
+	source
+		government "Humanika (Port)"
+		attributes "slavery ban"
+	stopover
+		government "Pirate"
+		not attributes "slavery ban"
+		attributes spaceport
+		distance 5 16
+	on stopover
+		dialog "The Nighthawks land on a different vector. You can see hardened bunkers and ground turrets explode from bombardment before the ships land. Not long after, they meet you at the spaceport, filled with freed slaves."
+	on visit
+		dialog "The emancipation raid isn't complete. All Nighthawks must arrive together at <stopover planets> and then <planet>."
+	on complete
+		payment 640000
+		dialog phrase "generic completed emancipation raid mission"
+	npc save accompany
+		government "Humanika (Ship)"
+		personality timid escort
+		fleet
+			names "Humanika emancipation fleet"
+			variant 1
+				"Nighthawk (New Tortuga Emancipation)" 7
+			variant 1
+				"Nighthawk (New Tortuga Emancipation)" 8
+			variant 2
+				"Nighthawk (New Tortuga Emancipation)" 9
+			variant 5
+				"Nighthawk (New Tortuga Emancipation)" 10
+			variant 1
+				"Nighthawk (New Tortuga Emancipation)" 11
+			variant 1
+				"Nighthawk (New Tortuga Emancipation)" 12
+	npc
+		government "Bounty Hunter"
+		personality heroic unconstrained nemesis plunders harvests waiting
+		fleet "Small Core Pirates"
+		fleet "Marauder fleet IV"
+		system
+			distance 1 2
+	npc
+		government "Syndicate"
+		personality heroic unconstrained nemesis waiting
+		fleet "Small Syndicate"
+		fleet "Large Syndicate" 2
+		system
+			distance 3 5
 
 mission "Transport recruiters [0]"
 	name "Recruiter and supplies to <planet>"
@@ -4592,3 +4789,335 @@ mission "Banned Syndicate Items [4]"
 	on complete
 		payment 40000 170
 		dialog phrase "generic passenger dropoff payment"
+
+mission "Slaver Assassination (Very Tiny)"
+	name "Execute slavers near <planet>"
+	description "A small pirate fighter named the <npc> has been transporting slaves near the <system> system. Destroy it and return to <planet> by <day> for payment (<payment>)."
+	repeat
+	job
+	deadline 16
+	to offer
+		or
+			"combat rating" > 15
+			has "ships: Interceptor"
+			has "ships: Light Warship"
+		"combat rating" < 80
+		random < 50
+	source
+		government "Humanika (Port)"
+		attributes "slavery ban"
+	npc kill
+		government "Bounty"
+		personality heroic staying nemesis target
+		system
+			distance 1 3
+		fleet
+			names "pirate"
+			variant 3
+				"Scrapper"
+			variant 6
+				"Sparrow"
+			variant
+				"Wasp"
+			variant
+				"Wasp (Gatling)"
+			variant
+				"Wasp (Javelin)"
+			variant
+				"Wasp (Meteor)"
+			variant
+				"Wasp (Plasma)"
+			variant
+				"Wasp (Proton)"
+		dialog phrase "generic hunted bounty eliminated dialog"
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 25000
+		dialog phrase "generic bounty hunting payment dialog"
+
+mission "Slaver Assassination (Tiny)"
+	name "Execute slavers near <planet>"
+	description "A well armed pirate fighter named the <npc> has been transporting slaves near the <system> system. Destroy it and return to <planet> by <day> for payment (<payment>)."
+	repeat
+	job
+	deadline 16
+	to offer
+		or
+			"combat rating" > 30
+			has "ships: Interceptor"
+			has "ships: Light Warship"
+		"combat rating" < 200
+		random < 45
+	source
+		government "Humanika (Port)"
+		attributes "slavery ban"
+	npc kill
+		government "Bounty"
+		personality heroic staying nemesis target
+		system
+			distance 1 3
+		fleet
+			names "pirate"
+			variant
+				"Hawk"
+			variant
+				"Hawk (Rocket)"
+			variant
+				"Hawk (Speedy)"
+			variant
+				"Hawk (Bomber)"
+			variant
+				"Berserker"
+			variant
+				"Berserker (Afterburner)"
+			variant
+				"Berserker (Strike)"
+			variant
+				"Fury"
+			variant
+				"Fury (Missile)"
+			variant
+				"Fury (Heavy)"
+			variant
+				"Fury (Laser)"
+			variant
+				"Fury (Bomber)"
+		dialog phrase "generic hunted bounty eliminated dialog"
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 50000
+		dialog phrase "generic bounty hunting payment dialog"
+
+mission "Slaver Assassination (Very Small)"
+	name "Execute slavers near <planet>"
+	description "A light pirate warship named the <npc> has been transporting slaves near the <system> system. Destroy it and return to <planet> by <day> for payment (<payment>)."
+	repeat
+	job
+	deadline 16
+	to offer
+		or
+			"combat rating" > 80
+			has "ships: Light Warship"
+			has "ships: Medium Warship"
+		"combat rating" < 350
+		random < 40
+	source
+		government "Humanika (Port)"
+		attributes "slavery ban"
+	npc kill
+		government "Bounty"
+		personality heroic staying nemesis target
+		system
+			distance 1 3
+		fleet
+			names "pirate"
+			variant
+				"Quicksilver"
+			variant
+				"Quicksilver (Proton)"
+			variant
+				"Raven"
+			variant
+				"Raven (Heavy)"
+			variant
+				"Raven (Afterburner)"
+			variant
+				"Headhunter"
+			variant
+				"Headhunter (Strike)"
+			variant
+				"Headhunter (Particle)"
+			variant
+				"Clipper"
+			variant
+				"Clipper (Heavy)"
+			variant
+				"Clipper (Speedy)"
+		dialog phrase "generic hunted bounty eliminated dialog"
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 95000
+		dialog phrase "generic bounty hunting payment dialog"
+
+mission "Slaver Assassination (Small)"
+	name "Execute slavers near <planet>"
+	description "A medium pirate warship named the <npc> has been transporting slaves near the <system> system. Destroy it and return to <planet> by <day> for payment (<payment>)."
+	repeat
+	job
+	deadline 16
+	to offer
+		"combat rating" > 200
+		"combat rating" < 500
+		random < 40
+	source
+		government "Humanika (Port)"
+		attributes "slavery ban"
+	npc kill
+		government "Bounty"
+		personality heroic staying nemesis target
+		system
+			distance 1 3
+		fleet
+			names "pirate"
+			variant
+				"Firebird"
+			variant
+				"Firebird (Missile)"
+			variant
+				"Splinter"
+			variant
+				"Splinter (Laser)"
+			variant
+				"Osprey"
+			variant
+				"Osprey (Laser)"
+			variant
+				"Bastion"
+			variant
+				"Manta"
+			variant
+				"Manta (Proton)"
+		dialog phrase "generic hunted bounty eliminated dialog"
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 180000
+		dialog phrase "generic bounty hunting payment dialog"
+
+mission "Slaver Assassination (Medium)"
+	name "Execute slavers near <planet>"
+	description "A sizeable pirate warship named the <npc> has been transporting slaves near the <system> system. Destroy it and return to <planet> by <day> for payment (<payment>)."
+	repeat
+	job
+	deadline 16
+	to offer
+		"combat rating" > 350
+		"combat rating" < 1200
+		random < 40
+	source
+		government "Humanika (Port)"
+		attributes "slavery ban"
+	npc kill
+		government "Bounty"
+		personality heroic staying nemesis target
+		system
+			distance 1 3
+		fleet
+			names "pirate"
+			variant
+				"Protector"
+			variant
+				"Protector (Laser)"
+			variant
+				"Osprey (Missile)"
+			variant
+				"Bastion (Heavy)"
+			variant
+				"Bastion (Laser)"
+			variant
+				"Firebird (Plasma)"
+		dialog phrase "generic hunted bounty eliminated dialog"
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 240000
+		dialog phrase "generic bounty hunting payment dialog"
+
+mission "Slaver Assassination (Big)"
+	name "Execute slavers near <planet>"
+	description "A heavy warship known as the <npc> has been transporting slaves near the <system> system. Destroy it and return to <planet> by <day> for payment (<payment>)."
+	repeat
+	job
+	deadline 16
+	to offer
+		"combat rating" > 500
+		"combat rating" < 2000
+		random < 40
+	source
+		government "Humanika (Port)"
+		attributes "slavery ban"
+	npc kill
+		government "Bounty"
+		personality heroic staying nemesis target
+		system
+			distance 1 3
+		fleet
+			names "pirate"
+			variant
+				"Leviathan"
+			variant
+				"Leviathan (Heavy)"
+			variant
+				"Leviathan (Laser)"
+			variant
+				"Falcon"
+			variant
+				"Falcon (Heavy)"
+			variant
+				"Falcon (Laser)"
+			variant
+				"Vanguard"
+			variant
+				"Vanguard (Particle)"
+		dialog phrase "generic hunted bounty eliminated dialog"
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 300000
+		dialog phrase "generic bounty hunting payment dialog"
+
+mission "Slaver Assassination (Fleet)"
+	name "Execute slavers near <planet>"
+	description "A fleet led by the <npc> has been transporting slaves near the <system> system. Destroy the entire fleet and return to <planet> by <day> for payment (<payment>)."
+	repeat
+	job
+	deadline 16
+	to offer
+		"combat rating" >= 2000
+		random < 40
+	source
+		government "Humanika (Port)"
+		attributes "slavery ban"
+	npc kill
+		government "Bounty"
+		personality heroic staying nemesis target
+		system
+			distance 1 3
+		fleet
+			names "pirate"
+			variant
+				"Bastion"
+				"Quicksilver" 2
+				"Quicksilver (Proton)"
+				"Bactrian"
+			variant
+				"Raven (Afterburner)" 3
+				"Falcon"
+				"Bactrian"
+			variant 3
+				"Corvette (Missile)" 2
+				"Corvette (Speedy)" 2
+				"Mammoth"
+			variant 3
+				"Nighthawk" 3
+				"Leviathan (Heavy)"
+				"Leviathan (Laser)"
+				"Leviathan"
+			variant 3
+				"Nighthawk" 3
+				"Falcon (Heavy)"
+				"Falcon (Laser)"
+				"Falcon"
+			variant 2
+				"Star Queen" 2
+				"Manta (Nuclear)" 3
+				"Vanguard" 2
+		dialog phrase "generic hunted bounty eliminated dialog"
+	on visit
+		dialog phrase "generic bounty hunting on visit"
+	on complete
+		payment 550000
+		dialog phrase "generic bounty hunting payment dialog"
