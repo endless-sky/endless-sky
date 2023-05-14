@@ -482,7 +482,7 @@ mission "Korath [F01]: A Fishy Deal"
 			action
 				log "Agreed to help a woman named Jenny Jetmaster who couldn't make a delivery. Apparently the delivery is illegal, though it's unlikely to be detected since it's in a region of space not patrolled by any law-abiding governments."
 			`	"Really? Okay, hold on..." looking down, she fidgets with a datapad, perhaps transferring permission for the cargo mission. "Yeah, okay." She looks back up at last. "Transfer is approved." Her crewman starts offloading the fish, preparing to transfer it to your ship.`
-			`	"If the authorities won't let you land, read them the serial number from the cargo container, and they'll open a bay for you. Oh, also, this is an illegal mission, so don't get caught, or it'll cost you. Well, it's unlikely anyone out here will care about laws, but I do believe in full disclosure."`
+			`	"If the authorities won't let you land, read them the serial number from the cargo container, and they'll open a bay for you. Oh, also, this is an illegal mission, so don't get caught, or it'll cost you. The cargo is totally legal, but the delivery is part of an illegal trade arrangement. Well, it's unlikely anyone out here will care about laws, but I do believe in full disclosure."`
 			choice
 				`	"I'm not afraid of dodging the cops... where there are none. Give me the cargo, and it'll reach its destination. You have my word."`
 					accept
