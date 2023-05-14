@@ -664,7 +664,7 @@ mission "Korath [F03]: Rabasot Pa'ah Failed Landings"
 			label "second attempt"
 			scene scene/volcanic-eruption-at-night
 			action
-				log "Was able to pass through the atmosphere of Rabasot Pa'ah despite the unusual atmospheric event. A volcanic eruption nearly hit the ship, and it may have been caused by landing on an inopportune spot. There is a large island - or small continent - that looks suitable for landing. My next landing attempt should succeed."
+				log "Was able to pass through the atmosphere of Rabasot Pa'ah despite the unusual atmospheric event. A volcanic eruption nearly hit your ship, perhaps caused by landing in the wrong area. There is a large island - or small continent - that looks suitable for landing. Your next landing attempt should succeed"
 			`In this trip, your ship's descent stirred up awe-inspiring storm clouds, but traveling through them was easy. Your shield plow technique took you down to the lower troposphere, where the storms cleared enough for you to see. The original island chain was too far away, so you set course for a larger island nearby.`
 			`	Aiming for a hard-looking piece of ground, you touch down. As this planet has twice Earth's gravity, you extend your ship's artificial gravity field to the surface. Donning a space suit for safety's sake, you walk out to see nature taking control once again: the massive volcano in front of you starts to erupt.`
 			`	After a dash to the cockpit, still in your suit, you take off, satisfied that you've reached the surface - albeit in the worst possible spot. A third attempt will certainly succeed, as you saw a small continent with no apparent volcanic activity, and a pleasant-looking bay.`
