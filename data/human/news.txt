@@ -704,7 +704,6 @@ news "humanika researcher"
 			# These are copied from elsewhere in this file:
 			`"I hope you checked your shoes for invasive species before setting foot on my planet. The last thing we want is for our crops to get infected with the Arcturan Blight."`
 			`"Don't ever forget that you have us to thank for humanity's ability to support our growing population."`
-			`"This neutronium alloy I'm working on will be what's armoring your next starship - no doubt about it."`
 			`"We've got student interns in the lab this month. A few of them are very bright!"`
 			`"Excuse me, captain, I have to resume work on a paper I'm co-authoring. Would you like an advance copy?"`
 			`"My research concerns force fields. No, not those kinds of force fields."`
