@@ -577,8 +577,8 @@ mission "Korath [F02]: A Fishy Proposition"
 			`	She nods and gives an approving smile.`
 			label warning
 			`	"One more matter, Captain <last>: a fair warning about some of our associates. To keep helping our planet, you need to be able to travel far and wide, acting as a courier through space we cannot reach. If you anger half the galaxy, not only will it risk your life, it'll hurt the people of New Tortuga.`
-			`	"You may have noticed some unusual ships near here, larger than anything else in human space. Any fish delivery jobs at New Tortuga, and any jobs at this station, will earn you favor with them. Eventually, they'll stop being hostile, and you will be allowed to assist their disabled ships.`
-			`	"For your safety, for their sake, and for the sake of my planet, I do implore you: do not assist those ships. They know the risk they take when raiding, and have backups in place. It is more important to them that you retain your freedom of movement by not revealing your association."`
+			`	"You may have noticed some unusual ships near here, larger than anything else in human space. Any fish delivery jobs at New Tortuga, and any jobs at this station, will earn you favor with them. Eventually, they'll warm up to you and might even begin to trust you if you assist them when their ships are damaged.`
+			`	"For your safety, for their sake, and for the sake of my planet, I do implore you: do not assist those ships in combat. They know the risk they take when raiding, and have contingencies in place. It is more important to them that you retain your freedom of movement by not revealing your association with them."`
 				goto departs
 
 			label reject
@@ -653,10 +653,10 @@ mission "Korath [F03]: Rabasot Pa'ah Failed Landings"
 			label "first attempt"
 			scene scene/purple-lightning
 			action
-				log "Failed to land on Rabasot Pa'ah due to a powerful atmospheric event brought on by unusual interactions between the planet's atmosphere and the nova it orbits. Reconfiguring the shields to act as a plow got me out of the storm. That shield configuration should allow safe transit through the atmosphere in my next landing attempt."
+				log "Failed to land on Rabasot Pa'ah due to a powerful atmospheric event brought on by unusual interactions between the planet's atmosphere and the nova it orbits. Reconfiguring the shields to act as a plow got you out of the storm. That shield configuration should allow safe transit through the atmosphere in your next landing attempt."
 			`As you descend through the magnetosphere, your computer warns you of a build-up of unusual charged particles, muons, which is a bit odd. From your training on hyperspace exit and entrance, you recall that the mean lifetime of a muon is measured in microseconds. Something here must be actively generating them.`
 			`	You travel deeper into the atmosphere, approaching what appears to be an inactive volcanic island chain. As usual, your ship's descent causes air currents, but the strange atmosphere turns those currents into a powerful storm. The muons mix with this event, creating catastrophic explosions of electrical discharge.`
-			`	Recalling the class you took on extreme atmospheric landings, you reconfigure your shields to act as a plow, pushing through the storm. At first, it isn't enough, so you pull upward, hoping the lower atmospheric density will let you escape. Once you're free, you realize you've already reached the exosphere. For once, those 50,000 credits of pilot training don't seem like a waste of money.`
+			`	Recalling what you've read about extreme atmospheric landings, you reconfigure your shields to act as a plow, pushing through the storm. At first, it isn't enough, so you pull upward, hoping the lower atmospheric density will let you escape. Once you're free, you realize you've already reached the exosphere.`
 			`	A quick analysis by your ship's computer tells you the shield plow technique should get you all the way down to the surface, if you avoid eddies in the magnetosphere. It seems those eddies interact with the nova in an odd manner that produces vast amounts of muons, which ride your ship through the atmosphere.`
 			`	Certainly, a second landing attempt will get you through the atmosphere. Next, you'll have to scout for a safe place to land on this world of water and storms.`
 				launch
