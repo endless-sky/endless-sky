@@ -415,6 +415,7 @@ mission "Korath [F01]: A Fishy Deal"
 	name "A fishy proposition"
 	description "Transport <cargo> to <planet> by <date>. After a return trip, you'll be paid 140,000. Don't get caught."
 	cargo "live fish" 15
+	# The mission is illegal because of the broader trade agreement. The player is supposed to be left with the impression that the Korath are sending back more dangerous things than waste processing systems. The Syndicate (and by extension, the Republic) is aware of this, and fines pilots involved.
 	illegal 50000
 	deadline 4
 	clearance "The authorities do not respond, but a concealed hangar bay door opens. The meaning is clear: land here."
@@ -503,6 +504,7 @@ mission "Korath [F02]: A Fishy Proposition"
 	name "A fishy proposition"
 	description "Transport <cargo> to <planet> by <date> for <payment>. Avoid getting scanned or landing on high-security planets, or you may be fined."
 	cargo "planetary supplies" 15
+	# See note above in "Korath [F01]: A Fishy Deal" for why this is illegal.
 	illegal 50000
 	"apparent payment" 140000
 	deadline 4
