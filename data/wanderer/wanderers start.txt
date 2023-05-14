@@ -91,6 +91,8 @@ mission "Wanderers: Unfettered Diplomat"
 	landing
 	source
 		attributes "unfettered"
+		# Not necessary yet, but a safeguard for future development:
+		not attributes "uninhabited"
 	to offer
 		has "First Contact: Wanderer: offered"
 		has "First Contact: Unfettered: offered"
@@ -150,6 +152,7 @@ mission "Wanderers: Hai Diplomat"
 	source
 		not planet "Hai-home"
 		attributes "hai"
+		not attributes "uninhabited"
 	destination "Hai-home"
 	clearance
 	to offer
@@ -181,8 +184,8 @@ mission "Wanderers: Hai Diplomat"
 
 
 mission "Wanderers: Diplomacy Delayed"
+	invisible
 	name "Wanderers: Diplomacy"
-	description "Resolve Hai internal social problems and arrange a Hai-human treaty so the Hai will provide an ambassador. Or, hope someone you talked to on Hai-home will find an interpreter for you."
 	landing
 	source "Hai-home"
 	clearance
@@ -223,10 +226,10 @@ mission "Wanderers: Diplomacy Delayed"
 			# We get here if the election has ended, but the Hai-human resolution hasn't been announced
 			branch chaos
 			label election
-			`	"Need I remind you we are in the middle of an election? Barring an apocalyptic emergency, our government can take no major action until the election ends. That is our law, and it is an inviolate one.`
+			`	"Need I remind you we are in the middle of an election? Barring a true emergency, our government can take no major action until the election ends. That is our law, and it is an inviolate one.`
 				goto chaos
 			label stagnant
-			`	"With the problems in human space, the Hai are always at the risk of being the recipient of an unmanageable wave of human refugees. At the same time, our species is dealing with infighting with our brethren to the north. Now is not the time for a first contact.`
+			`	"With the problems in human space, the Hai are always at the risk of being the recipient of an unmanageable wave of human refugees. At the same time, we struggle to prevent infighting in our own species from escalating to civil war. Now is not the time for a first contact.`
 				goto chaos
 			label chaos
 			action
@@ -278,15 +281,15 @@ mission "Wanderers: Professor Available"
 		not "Wanderers: Diplomacy: done"
 	on offer
 		conversation
-			`Your ship's terminal bleats out a pinging noise, accompanied by a message from a university on <planet>. "Professor Andelena the Department of Skiourology at Mongongo University awaits your transport services on her expedition." This may be the interpreter you've been waiting for.`
+			`Your ship's terminal bleats out a pinging noise, accompanied by a message from a university on <planet>. "Professor Andelena in the Department of Skiourology at Mongongo University awaits your transport services on her expedition." This may be the interpreter you've been waiting for.`
 				accept
 
 
 
 mission "Wanderers: Meet Professor"
+	invisible
 	landing
 	name "Wanderers: Professor Andelena"
-	description "Pick up Professor Andelena and her student Eenap at the <planet> spaceport, so they can serve as interpreters for you."
 	source Allhome
 	to offer
 		has "Wanderers: Professor Available: done"
@@ -312,16 +315,21 @@ mission "Wanderers: Meet Professor"
 					accept
 				`	"No, I'd rather wait for the Hai government to provide an ambassador."`
 					decline
+	on accept
+		log "Professor Andelena and her grad student agreed to act as interpreters for the aliens to the north. I need to meet them at the <planet> spaceport."
 
 
 
 mission "Wanderers: Intercepted"
+	invisible
 	source Allhome
 	to offer
 		has "Wanderers: Professor Available: done"
 		not "Wanderers: Diplomacy: active"
 		not "Wanderers: Diplomacy: done"
 		not "Wanderers: Sayari Available After Hai Reveal: offered"
+	to complete
+		never
 	on offer
 		fail "Wanderers: Meet Professor"
 		conversation
@@ -345,6 +353,8 @@ mission "Wanderers: Intercepted"
 			`	The armed Hai escort you to a secure room, where a worried Professor Andelena looks at her student, Eenap, who is in handcuffs. An stern-looking Hai woman in a similar uniform to the others seems to be in charge, and glares at Eenap before addressing you.`
 			`	"Your efforts to find an interpreter have stumbled upon a suspected Unfettered spy who tried to transmit details about you and your ship to the Unfettered." She glares again at Eenap, who parries with a defiant look. "Fortunately, we shut down the operation before it got too far. You are safe, for now, Captain <last>."`
 			`	She motions for you to follow her to another room. There, she continues, "If you follow your curiosity, the Unfettered may take more extreme measures than spying. They have an unhealthy fascination with the birds to the North. This is a matter that doesn't concern you, and I suggest you stay away."`
+			action
+				log `The Hai arrested Professor Andelena's grad student Eenap for being an Unfettered agent me. She tried to transmit details about myself and my ship to the Unfettered. The Hai are concerned about the "unhealthy fascination" that Unfettered have with the Wanderers. A Hai agent warned me against getting involved, for my own safety.`
 			choice
 				`	"Aren't you wondering why the Unfettered are so fascinated by the 'birds to the North?' I could take you north to investigate."`
 				# The ambiguity of the second sentence here is intentional:
@@ -358,13 +368,19 @@ mission "Wanderers: Intercepted"
 			`	"I do wonder who the birds are, and why they are attractive as prey. I have little knowledge on the matter, but my superiors may know more. Perhaps not, though.`
 					goto forward
 			label accusation
-			`	After a flash of anger, she quickly calms herself and responds. "Yes, the Unfettered are Hai, but they are not like us. My government has no control over Unfettered hostilities, and we are not culpable for their actions. I do take your point though: if we can help, we should.`
+			`	After a flash of anger, she quickly calms herself and responds. "The Unfettered are Hai, but they are not like us. My government has no control over Unfettered hostilities, and we are not culpable for their actions. I do take your point though: if we can help, we should.`
 			label forward
+			action
+				event "Wanderers: Alternative Hai Diplomat Available" 14
 			`	"I will forward your offer to my government. With luck, you will receive a response."`
-				event "Wanderers: Alternative Hai Diplomat Available"
-				fail
+				accept
+	on decline
+		log "Professor Andelena and her grad student have attracted the attention of Hai authorities. It seems the pair are no longer available to act as interpreters."
+	on accept
+		log "The Hai arrested Professor Andelena's grad student Eenap for being an Unfettered agent me. She tried to transmit details about myself and my ship to the Unfettered. It seems the pair are no longer able to act as interpreters."
 
 event "Wanderers: Alternative Hai Diplomat Available"
+
 
 
 mission "Wanderers Diplomacy: Alternative Hai Diplomat Available"
@@ -374,12 +390,12 @@ mission "Wanderers Diplomacy: Alternative Hai Diplomat Available"
 	source
 		government Hai
 		not attributes uninhabited
-	destination "Cloudfire"
+	destination "Hai-home"
 	to offer
-		not 
+		has "Wanderers: Intercepted: active"
 	on offer
+		fail "Wanderers: Intercepted"
 		dialog "Upon landing, you receive a message from the Hai government saying a diplomat is waiting to meet you on <planet> about the aliens you met north of Hai space."
-
 
 
 
@@ -391,29 +407,9 @@ mission "Wanderers Diplomacy (Before Hai Reveal)"
 	clearance
 	passengers 1
 	to offer
-		has "First Contact: Wanderer: offered"
-		has "event: hai-human resolution announced"
+		has "Wanderers Diplomacy: Alternative Hai Diplomat Available: done"
 	on offer
-
-	on accept
-		fail "First Contact: Wanderer"
-
-			# action
-			# 	log "People" "Irayas Payaana" `A Hai ambassador who made first contact with the Syndicate and various pirate groups. Sayari, the head of the Hai diplomatic corps, chose her as the Hai ambassador to the aliens to the north of Hai space.`
-			# 	log "People" "Sayari" `The head of the Hai diplomatic corps who hand-picked Irayas Payaana as the Hai representative to the aliens north of Hai space.`
-			# `	"Myself, Irayas Payaana," she says. "I made first contact with the Syndicate, and various pirate groups years ago. My specialty is maintaining positive relations with alien groups who have unknown, and possibly hostile, objectives. Most of my work recently has been with the Unfettered, but Sayari - the head of our diplomatic corps - believes you've found a more urgent need for my skills."`
-			# choice
-			# 	`	"Let's go!"`
-			# 	`	"I'm done with this cloak and dagger business. Find another courier."`
-			# 		decline
-			# action
-			# 	event "Wanderers before Hai Reveal"
-			# 	fail "Wanderers: Diplomacy Delayed"
-			# `	"One warning, Captain <last>, from someone who has seen the darkest side of the Hai: It is imperative that you keep silent about your discovery, and any hostilities you may take part in. Should your involvement become public knowledge, I fear there may be a backlash against humans, especially in Unfettered space."`
-			# 	accept
-
-
-event "Wanderers before Hai Reveal"
+		conversation "Hai Diplomat Intro"
 
 
 
@@ -457,7 +453,6 @@ mission "Wanderers: Diplomacy"
 
 
 conversation "Hai Diplomat Intro"
-
 	branch "Alternative Ambassador"
 		has "Wanderers: Diplomacy Delayed: offered"
 		not "event: Sayari available after Hai Reveal"
@@ -479,22 +474,28 @@ conversation "Hai Diplomat Intro"
 	`	"A first contact is a dream opportunity, and there are so very few of them. So of course I will come with you."`
 	choice
 		`	"Let's go visit these aliens immediately!"`
-			accept
+			goto "let's go"
 		`	"Can a distinguished ambassador such as yourself just leave like that?"`
 		`	"What if the humans want our own envoy to these aliens?"`
 			goto envoy
 	`	"Yes," she says. "If these aliens will provide a place for me, I mean to live with them permanently, an ambassador between their people and ours. I am old, and in need of a great novelty like this to make my life interesting once more." You note that the fur on her face, especially on the snout, has turned from brown to silvery gray - a sign of age in terrestrial creatures, and perhaps in the Hai as well.`
-	`	"Besides," she says, "after recent events they can hardly say no to me."`
+	# Sayari is the head of the entire Hai diplomatic core, so she doesn't need permission to choose herself as the diplomat.
+	# Going to diplomatic hot-spots is literally her job.
 	choice
 		`	"Let's go visit these aliens immediately!"`
-			accept
+			goto "let's go"
 		`	"What if the humans want our own envoy to these aliens?"`
 	label envoy
 	`	She says, "If they prove to be friendly, I will help you to find a way to communicate with them directly, so you need not use me as an intermediary. But our first step must be to speak with them." You help her aboard your ship, and get ready to return to the alien homeworld.`
-		accept
+		goto "let's go"
+
+	label "let's go"
+	`	"Excellent! I will await you in your ship."`
+	action
+		event "Wanderers after Hai Reveal"
+		fail "First Contact: Wanderer"
 
 	label "Alternative Ambassador"
-
 	action
 		log "People" "Irayas Payaana" `A Hai ambassador who made first contact with the Syndicate and "other hostile human groups." Sayari, the head of the Hai diplomatic corps, chose her as the Hai ambassador to the aliens to the north of Hai space.`
 		log "People" "Sayari" `The head of the Hai diplomatic corps who hand-picked Irayas Payaana as the Hai representative to the aliens north of Hai space. Her diplomatic corps believes you have "a lot of potential... and a jump drive."`
@@ -507,7 +508,7 @@ conversation "Hai Diplomat Intro"
 		`	"The two of you already seem to know a lot about the situation."`
 		`	"What happens next?"`
 		`	"It sounds like we have an understanding. Let's do this."`
-			accept
+			goto understanding
 	`	Irayas answers. "Our Unfettered brethren have had an unhealthy fascination with the aliens to the north for quite some time. The main focus of Unfettered civilization is hostilities towards these birds. We're worried those hostilities may one day turn into an all-out war.`
 	`	"Our job, you and I, is to bring the matter conflict to a conclusion - one way or the other - as soon as possible. We must avoid dragging the whole of the Hai into this war, or the conflict may escalate uncontrollably.`
 	`	"I will fight with words, while you fight with guns."`
@@ -515,16 +516,21 @@ conversation "Hai Diplomat Intro"
 		`	"Why me?"`
 		`	"Why were you chosen?"`
 		`	"It sounds like we have an understanding. Let's do this."`
-			accept
+			goto understanding
 	`	Irayas explains. "The head of our diplomatic corps - Sayari - hand-picked both of us for this task. My specialty is maintaining positive relations with groups that have unknown, and possibly hostile, objectives. I made the first contact between Hai and Syndicate, among other dangerous human groups."`
 	`	"Inquisitive human merchant captains like you have been reliable partners in difficult matters in the past. The secrecy of the Hai has been, in part, due to help from such merchants. Our diplomatic corps believes you have much potential... and a jump drive."`
 	choice
 		`	"It sounds like we have an understanding. Let's do this."`
-			accept
+			goto understanding
 		`	"I'm getting too old for this sort of thing. You can find someone else."`
 			decline
+	label understanding
+	`	"That we do, Captain <last>. I will await you in your ship."`
+	action
+		event "Wanderers before Hai Reveal"
+		fail "First Contact: Wanderer"
 
-
+event "Wanderers before Hai Reveal"
 event "Wanderers after Hai Reveal"
 
 
