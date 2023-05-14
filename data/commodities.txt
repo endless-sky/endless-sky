@@ -904,3 +904,8 @@ trade
 		"pirated software"
 		"Luddite propaganda"
 		"protest songs"
+		"communist propaganda"
+		"leftist texts"
+		"manifestos"
+		"anarchist pamphlets"
+		"samizdat"
