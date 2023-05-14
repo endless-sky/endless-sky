@@ -1288,6 +1288,8 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	forget = 1;
 	targetShip.reset();
 	shipToAssist.reset();
+	if(isDeparting)
+		lingerSteps = 0;
 
 	// The swizzle is only updated if this ship has a government or when it is departing
 	// from a planet. Launching a carry from a carrier does not update its swizzle.
@@ -2719,6 +2721,10 @@ int Ship::Scan(const PlayerInfo &player)
 	if(isYours || (target->isYours && activeScanning))
 		Audio::Play(Audio::Get("scan"), Position());
 
+	bool isImportant = false;
+	if(target->isYours)
+		isImportant = target.get() == player.Flagship() || government->FinesContents(target.get());
+
 	if(startedScanning && isYours)
 	{
 		if(!target->Name().empty())
@@ -2741,20 +2747,21 @@ int Ship::Scan(const PlayerInfo &player)
 				Messages::Importance::Highest);
 		}
 	}
-	else if(startedScanning && target->isYours)
+	else if(startedScanning && target->isYours && isImportant)
 		Messages::Add("The " + government->GetName() + " " + Noun() + " \""
-			+ Name() + "\" is attempting to scan you.", Messages::Importance::Low);
+				+ Name() + "\" is attempting to scan your ship \"" + target->Name() + "\".",
+				Messages::Importance::Low);
 
-	if(target->isYours && !isYours)
+	if(target->isYours && !isYours && isImportant)
 	{
 		if(result & ShipEvent::SCAN_CARGO)
 			Messages::Add("The " + government->GetName() + " " + Noun() + " \""
-					+ Name() + "\" completed its scan of your cargo.", Messages::Importance::High);
+					+ Name() + "\" completed its cargo scan of your ship \"" + target->Name() + "\".",
+					Messages::Importance::High);
 		if(result & ShipEvent::SCAN_OUTFITS)
 			Messages::Add("The " + government->GetName() + " " + Noun() + " \""
-					+ Name() + (target->attributes.Get("inscrutable") > 0.
-					? "\" completed its scan of your outfits with no useful results."
-					: "\" completed its scan of your outfits."),
+					+ Name() + "\" completed its outfit scan of your ship \"" + target->Name()
+					+ (target->Attributes().Get("inscrutable") > 0. ? "\" with no useful results." : "\"."),
 					Messages::Importance::High);
 	}
 
@@ -4249,6 +4256,20 @@ shared_ptr<Ship> Ship::GetParent() const
 const vector<weak_ptr<Ship>> &Ship::GetEscorts() const
 {
 	return escorts;
+}
+
+
+
+int Ship::GetLingerSteps() const
+{
+	return lingerSteps;
+}
+
+
+
+void Ship::Linger()
+{
+	++lingerSteps;
 }
 
 
