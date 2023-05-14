@@ -328,7 +328,7 @@ mission "First Contact: Korath Exiles"
 
 			label attack
 			`	You reach for your gun. They move faster than you would have expected possible. One of strikes a pose with their arms and shouts, "Nag! Nag! Koreshi far'en lai!" Simultaneously, the other dives at you, grabbing the gun out of your hands before you have a chance to fire it.`
-			`	Then, instead of attacking you, the one who took your gun begins waving it your face and talking very quickly, as if scolding you. It points to the sky with a sweeping gesture, then mimics drawing the gun as you just did. Then it points to the ground, puts the gun on the ground, and says, "Far'en lai ko forei lak'far." Then it picks up the gun and repeats both gestures: all the sky, gun drawn. Earth, gun on ground. Then it tosses the gun down at your feet and waits, expectantly.`
+			`	Then, instead of attacking you, the one who took your gun begins waving it your face and talking very quickly, as if scolding you. It points to the sky with a sweeping gesture, then mimics drawing the gun as you just did. Then it points to the ground, puts the gun on the ground, and says, "Far'en lai ko forei lak'far." Then it picks up the gun and repeats both gestures: all the sky, gun drawn. Down, gun on ground. Then it tosses the gun near your feet and waits, expectantly.`
 				goto map
 
 			label map
@@ -377,7 +377,7 @@ mission "First Contact: Korath Exiles"
 
 			label together
 			`	They stare at you for another few awkward seconds.`
-			`	Then, in front of your three ships, they slowly and carefully draw a large fire, larger than the three of your ships put together. Beside your ships, facing away, they draw a pointed circle on one side, and a spider on the other; after a brief pause, they make the circle and spider double-ended. Again, they point to the drawing of your double-ended ships, and then to the now ominous-looking collection of ships and fire, and point to you.`
+			`	Then, in front of your three ships, they slowly and carefully draw a large fire, larger than the three of your ships put together. Beside your ships, facing away, they draw a pointed circle on one side, and a spider on the other. After a brief pause, they give the spider heads on both sides of its body, and give the circle points in each direction. Again, they point to the drawing of your double-ended ships, and then to the now ominous-looking collection of ships and fire, and point to you.`
 			choice
 				`	(Point again to the ominous collection of ships and fire, with the three ships flying together.)`
 					goto fire
