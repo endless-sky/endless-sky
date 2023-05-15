@@ -2211,6 +2211,16 @@ system Actannka
 	minables iron 22 3.6
 	minables silver 12 5.36
 	minables titanium 12 5.45
+	trade Clothing 365
+	trade Electronics 785
+	trade Equipment 700
+	trade Food 390
+	trade "Heavy Metals" 920
+	trade Industrial 760
+	trade "Luxury Goods" 1130
+	trade Medical 600
+	trade Metal 410
+	trade Plastic 420
 	fleet "Large Quarg (Gegno)" 1400
 	fleet "Quarg (Gegno)" 1400
 	object
@@ -14939,6 +14949,16 @@ system Ghhil
 	minables silicon 2 6.3
 	minables copper 13 3.31
 	minables titanium 7 4.9
+	trade Clothing 340
+	trade Electronics 760
+	trade Equipment 740
+	trade Food 360
+	trade "Heavy Metals" 910
+	trade Industrial 740
+	trade "Luxury Goods" 1120
+	trade Medical 590
+	trade Metal 440
+	trade Plastic 400
 	fleet "Quarg (Gegno)" 2000
 	object
 		sprite star/a8
