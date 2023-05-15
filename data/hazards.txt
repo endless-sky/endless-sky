@@ -129,7 +129,7 @@ effect "gravity well"
 hazard "Core Sheltered Heat"
 	"duration" 1
 	"strength" 0.65 0.85
-	"range" 50000
+	"system-wide"
 	weapon
 		"burn damage" 0.06
 		"relative heat damage" 0.0012
@@ -138,6 +138,6 @@ hazard "Core Sheltered Heat"
 hazard "Core Shadow Passing"
 	"duration" 10 360
 	"strength" 1 3
-	"range" 50000
+	"system-wide"
 	weapon
 		"relative heat damage" -0.002
