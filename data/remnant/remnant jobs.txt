@@ -610,7 +610,7 @@ mission "Remnant: Rescue 4"
 		system
 			attributes "graveyard"
 			not government "Remnant"
-			near "Nona" 100
+			near "Nona" 20
 				"only unrestricted wormholes"
 		personality escort derelict heroic plunders
 		government "Remnant"
