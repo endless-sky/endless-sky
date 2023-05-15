@@ -685,14 +685,9 @@ mission "Korath [F03]: Rabasot Pa'ah Failed Landings"
 
 
 
-mission "Korath [F04]: Fishy Reasoning"
+mission "Korath [F04]: Fishy Delay"
+	invisible
 	landing
-	name "Seek answers from Iris"
-	description "Visit Iris at <planet> and ask her about Korath, fish transfers, an ocean planet, and her rainbow feather."
-	clearance "You explain the purpose of your visit, and the authorities inform you that Iris will expect you."
-	source
-		not planet "La'ab Bamen"
-	destination "La'ab Bamen"
 	to offer
 		has "First Contact: Korath Exiles: offered"
 
@@ -702,6 +697,24 @@ mission "Korath [F04]: Fishy Reasoning"
 		# You have to meet Iris and know she has knowledge of Korath:
 		has "Korath [F02]: A Fishy Proposition: done"
 	on offer
+		event "Korath [F04]: Fishy Delay Event" 5 14
+		fail
+
+event "Korath [F04]: Fishy Delay Event"
+
+
+
+mission "Korath [F05]: Fishy Reasoning"
+	landing
+	name "Seek answers from Iris"
+	description "Visit Iris at <planet> and ask her about Korath, fish transfers, an ocean planet, and her rainbow feather."
+	clearance "You explain the purpose of your visit, and the authorities inform you that Iris will expect you."
+	source
+		not planet "La'ab Bamen"
+	destination "La'ab Bamen"
+	to offer
+		has "event: Korath [F04]: Fishy Delay Event"
+	on offer
 		conversation
 			`While skimming damage and transit logs from your recent trips, a few old log entries catch your eye.`
 			`	When the Korath were drawing systems, three seemed to jump out at you. You now know they're Misam, home of New Tortuga; Atik, where the La'ab Bamen black market resides; and Kor Ak'Mari, the ocean planet's system. The first fish you transferred from New Tortuga to La'ab Bamen looked like a tiny relative of the island-sized fish on the ocean planet.`
@@ -710,12 +723,12 @@ mission "Korath [F04]: Fishy Reasoning"
 				accept
 
 
-mission "Korath [F05]: The Rainbow Feather"
+mission "Korath [F06]: The Rainbow Feather"
 	landing
 	invisible
 	source "La'ab Bamen"
 	to offer
-		has "Korath [F04]: Fishy Reasoning: offered"
+		has "Korath [F05]: Fishy Reasoning: offered"
 	on offer
 		fail
 		conversation
