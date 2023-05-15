@@ -143,24 +143,31 @@ shipyard "Luxury Ships"
 # Note on Humanika Mimicry.
 # For a few decades, New Tortuga has had advanced technology, Syndicate defectors, and a steady supply of poached employees. One of their top priorities has been technological advancement. They are only one planet though, so even with help from an advanced species, their success has been limited. Thus, this list is restricted low-to-mid-range tech from older companies. This is with the exception the the Syndicate, for which they already had access to top technology.
 shipyard "Humanika Mimicry"
-	"Blackbird"
+	# Advanced Southern Pirates without the Osprey:
 	"Falcon"
+	"Modified Argosy"
+
+	# Commonly available from multiple sellers:
+	"Hauler"
+
+	# Common pirate fighter:
+	"Lance"
+
+	# Syndicate Advanced without the Container Transport or Arrow:
+	"Bulk Freighter"
+
+	# Non-modified versions of pirate-modified ships:
+	"Blackbird"
 	"Bastion"
-	"Raven"
 	"Behemoth"
 	"Bounder"
-	"Hauler"
-	"Modified Argosy"
-	"Boxwing"
-	"Barb"
-	"Finch"
+
+	# Pirate modifications of standard ships:
 	"Marauder Bounder"
 	"Nighthawk (New Tortuga)"
-	"Lance"
+	"Valkyrie"
 	"Cutthroat"
 	"Mammoth"
-	"Bulk Freighter"
-	"Valkyrie"
 
 
 # See note above about capabilities and limitations of "Humanika Mimicry"
@@ -170,7 +177,6 @@ outfitter "Humanika Mimicry"
 	"Impala Plasma Steering"
 	"Liquid Nitrogen Cooler"
 	"S3 Thermionic"
-	"Tactical Scanner"
 	"Heavy Laser"
 	"Heavy Laser Turret"
 	"A120 Atomic Thruster"
