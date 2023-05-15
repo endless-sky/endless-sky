@@ -141,7 +141,7 @@ mission "Hai Reveal [B02] Join the Fleet"
 		system "Rajak"
 		personality escort heroic opportunistic vindictive waiting
 		fleet "Large Unfettered" 7
-	# Guard fleets are 1 ship each. Unfet are 2.7 on average. Total Fleet Size is is roughly 57 + 10 Syndicate.
+	# Guard fleets are 1 ship each. Unfet are 2.7 on average. Total Fleet Size is roughly 57 + 10 Syndicate.
 
 	npc kill
 		government "Pirate"
@@ -547,7 +547,7 @@ mission "Hai Reveal [B06-long] Tarazed Analysis"
 			choice
 				`	"That's some impressive work in such a short time."`
 				`	"Thank you for the help."`
-			`	He nods in response. "Also... maybe keep this quiet. This is," he pauses and clears his throat conspicuously, "somewhat less than strictly legal, though there's no penalty attached to accessing the data at the level this card will use. My data sets only only cover coreward parts of Syndicate space, but your other data is heavily weighted to the Far North. Maybe if you have no luck in Syndicate space it'll be worth the trip to try up there."`
+			`	He nods in response. "Also... maybe keep this quiet. This is," he pauses and clears his throat conspicuously, "somewhat less than strictly legal, though there's no penalty attached to accessing the data at the level this card will use. My data sets only cover coreward parts of Syndicate space, but your other data is heavily weighted to the Far North. Maybe if you have no luck in Syndicate space it'll be worth the trip to try up there."`
 			`	All business and technical explanation now out of the way, you watch as the reality of what's happening seems to suddenly sink in, and his demeanor changes suddenly as his eyes shine with faint hope, "And please, if you do find my wife Janitza... please bring her home."`
 			`	After one last ride through the metro system of <origin>, you arrive at your ship. You plug the data card into your computer, and a new "government" shows up: Smuggler. The ships will be colored differently than pirates.`
 			`	It may be risky, but you should disable one and board it.`
@@ -1349,7 +1349,7 @@ mission "Hai Reveal [B13] Freedom"
 			label "translation services"
 			action
 				set "Hai Reveal [B13] Freedom: label translation services"
-			`	The Korath leader hisses. "No, we cannot. We here do not even speak a full form of our own language anymore. Even if we did, we must remain here in secret. Perhaps in time there there will be a reconnection, but not yet."`
+			`	The Korath leader hisses. "No, we cannot. We here do not even speak a full form of our own language anymore. Even if we did, we must remain here in secret. Perhaps in time there will be a reconnection, but not yet."`
 				goto questions
 			label "cadmium"
 			action
