@@ -3227,8 +3227,8 @@ fleet "Humanika Merchants"
 	variant 10
 		"Bulk Freighter (Blaster)"
 		"Aerie"
-		"Barb (Proton)"
-		"Barb"
+		"Dagger"
+		"Lance"
 	variant 3
 		"Mule (Heavy)"
 		"Manta (Proton)"
