@@ -2211,6 +2211,16 @@ system Actannka
 	minables iron 22 3.6
 	minables silver 12 5.36
 	minables titanium 12 5.45
+	trade Clothing 365
+	trade Electronics 785
+	trade Equipment 700
+	trade Food 390
+	trade "Heavy Metals" 920
+	trade Industrial 760
+	trade "Luxury Goods" 1130
+	trade Medical 600
+	trade Metal 410
+	trade Plastic 420
 	fleet "Large Quarg (Gegno)" 1400
 	fleet "Quarg (Gegno)" 1400
 	object
@@ -3469,19 +3479,20 @@ system Aleit
 	link Elifennka
 	link Ghhil
 	link Yllke
-	trade Clothing 216
-	trade Electronics 817
-	trade Equipment 729
-	trade Food 212
-	trade "Heavy Metals" 1314
-	trade Industrial 916
-	trade "Luxury Goods" 1239
-	trade Medical 605
-	trade Metal 539
-	trade Plastic 378
+	trade Clothing 350
+	trade Electronics 760
+	trade Equipment 720
+	trade Food 380
+	trade "Heavy Metals" 940
+	trade Industrial 750
+	trade "Luxury Goods" 1090
+	trade Medical 570
+	trade Metal 450
+	trade Plastic 410
 	fleet "Quarg (Gegno)" 1100
 	fleet "Large Quarg (Gegno)" 1600
 	fleet "Gegno Basic" 1000
+	fleet "Gegno Cargo" 6000
 	object
 		sprite star/g3
 		period 10
@@ -5840,9 +5851,19 @@ system Asio
 	asteroids "medium metal" 9 4.13
 	asteroids "large metal" 2 4.2
 	minables iron 7 1.8
-	fleet "Gegno Basic" 1200
-	fleet "Small Vi" 2300
-	fleet "Gegno Miners" 1600
+	trade Clothing 230
+	trade Electronics 640
+	trade Equipment 680
+	trade Food 475
+	trade "Heavy Metals" 785
+	trade Industrial 650
+	trade "Luxury Goods" 1265
+	trade Medical 490
+	trade Metal 320
+	trade Plastic 320
+	fleet "Gegno Basic" 400
+	fleet "Gegno Cargo" 1000
+	fleet "Gegno Miners" 1200
 	object
 		sprite star/m0
 		period 10
@@ -6064,16 +6085,16 @@ system Auhru
 	asteroids "large rock" 1 3.2
 	asteroids "small metal" 32 2.9
 	asteroids "large metal" 17 2.4
-	trade Clothing 306
-	trade Electronics 812
-	trade Equipment 380
-	trade Food 336
-	trade "Heavy Metals" 679
-	trade Industrial 569
-	trade "Luxury Goods" 1325
-	trade Medical 811
-	trade Metal 310
-	trade Plastic 248
+	trade Clothing 200
+	trade Electronics 760
+	trade Equipment 690
+	trade Food 350
+	trade "Heavy Metals" 860
+	trade Industrial 540
+	trade "Luxury Goods" 1060
+	trade Medical 625
+	trade Metal 260
+	trade Plastic 425
 	fleet "Small Scin" 1100
 	fleet "Large Scin" 2500
 	fleet "Scin Transport" 800
@@ -11702,6 +11723,7 @@ system Elifennka
 	asteroids "large metal" 27 4.49
 	minables aluminum 28 8.68
 	minables titanium 31 9.59
+	fleet "Gegno Miners" 10000
 	fleet "Quarg (Gegno)" 4000
 	object
 		sprite star/a3
@@ -12186,6 +12208,7 @@ system Eogho
 	asteroids "medium metal" 9 6.98
 	asteroids "large metal" 46 6.84
 	fleet "Gegno Basic" 2200
+	fleet "Gegno Cargo" 4000
 	object
 		sprite star/b0
 		period 10
@@ -12504,16 +12527,16 @@ system "Erba Yle"
 	asteroids "medium metal" 3 2.8
 	asteroids "large metal" 15 3.3
 	minables copper 1 3.7
-	trade Clothing 361
-	trade Electronics 828
-	trade Equipment 353
-	trade Food 680
-	trade "Heavy Metals" 793
-	trade Industrial 587
-	trade "Luxury Goods" 1105
-	trade Medical 915
-	trade Metal 259
-	trade Plastic 417
+	trade Clothing 210
+	trade Electronics 800
+	trade Equipment 670
+	trade Food 300
+	trade "Heavy Metals" 980
+	trade Industrial 560
+	trade "Luxury Goods" 1140
+	trade Medical 660
+	trade Metal 245
+	trade Plastic 450
 	fleet "Small Scin" 1300
 	fleet "Scin Cargo" 800
 	fleet "Scin Transport" 1100
@@ -14926,6 +14949,16 @@ system Ghhil
 	minables silicon 2 6.3
 	minables copper 13 3.31
 	minables titanium 7 4.9
+	trade Clothing 340
+	trade Electronics 760
+	trade Equipment 740
+	trade Food 360
+	trade "Heavy Metals" 910
+	trade Industrial 740
+	trade "Luxury Goods" 1120
+	trade Medical 590
+	trade Metal 440
+	trade Plastic 400
 	fleet "Quarg (Gegno)" 2000
 	object
 		sprite star/a8
@@ -15519,6 +15552,7 @@ system Gualetri
 	link Uelawan
 	asteroids "large metal" 1 2.8
 	fleet "Gegno Basic" 4400
+	fleet "Gegno Cargo" 6000
 	fleet "Small Scin" 2100
 	object
 		sprite star/k-dwarf
@@ -16150,21 +16184,23 @@ system Heutesl
 	asteroids "small metal" 6 1.71
 	asteroids "medium metal" 44 2.1
 	minables copper 8 1.1
-	minables lead 12 1.4
-	minables silicon 12 1.3
-	trade Clothing 262
-	trade Electronics 814
-	trade Equipment 693
-	trade Food 536
-	trade "Heavy Metals" 944
-	trade Industrial 896
-	trade "Luxury Goods" 1002
-	trade Medical 441
-	trade Metal 571
-	trade Plastic 196
+	minables lead 10 1.4
+	minables silicon 10 1.3
+	trade Clothing 250
+	trade Electronics 650
+	trade Equipment 650
+	trade Food 490
+	trade "Heavy Metals" 800
+	trade Industrial 665
+	trade "Luxury Goods" 1280
+	trade Medical 490
+	trade Metal 340
+	trade Plastic 290
 	fleet "Gegno Basic" 200
+	fleet "Gegno Miners" 1000
+	fleet "Gegno Cargo" 800
+	fleet "Gegno Old" 40000
 	fleet "Quarg (Gegno)" 2800
-	fleet "Gegno Miners" 2000
 	object
 		sprite star/f8
 		period 10
@@ -16740,9 +16776,10 @@ system Iigen
 	asteroids "large metal" 45 3.84
 	minables uranium 4 5.8
 	minables iron 22 1.47
-	fleet "Gegno Basic" 1900
-	fleet "Gegno Miners" 2100
-	fleet "Quarg (Gegno)" 3500
+	fleet "Gegno Basic" 1100
+	fleet "Gegno Cargo" 2800
+	fleet "Gegno Miners" 2400
+	fleet "Quarg (Gegno)" 3400
 	object
 		sprite star/m3
 		period 10
@@ -16984,16 +17021,16 @@ system Iliniza
 	link Zeinar
 	asteroids "large metal" 1 5.1
 	minables iron 46 1.16
-	trade Clothing 286
-	trade Electronics 991
-	trade Equipment 611
-	trade Food 368
-	trade "Heavy Metals" 891
-	trade Industrial 728
-	trade "Luxury Goods" 1417
-	trade Medical 725
-	trade Metal 310
-	trade Plastic 240
+	trade Clothing 190
+	trade Electronics 810
+	trade Equipment 670
+	trade Food 325
+	trade "Heavy Metals" 930
+	trade Industrial 580
+	trade "Luxury Goods" 1080
+	trade Medical 700
+	trade Metal 290
+	trade Plastic 460
 	fleet "Small Scin" 1000
 	fleet "Large Scin" 2500
 	fleet "Scin Transport" 600
@@ -19197,7 +19234,7 @@ system Kilema
 	government Uninhabited
 	arrival 500
 	habitable 150
-	belt 1612
+	belt 612
 	haze _menu/haze-brown
 	link "Erba Yle"
 	asteroids "small rock" 4 1.9
@@ -19206,8 +19243,11 @@ system Kilema
 	asteroids "small metal" 8 1.8
 	asteroids "medium metal" 7 2.7
 	asteroids "large metal" 3 2.3
+	minables lead 3 1.4
+	minables iron 5 1.1
 	fleet "Small Scin" 4600
 	fleet "Scin Transport" 3500
+	fleet "Scin Science" 14400
 	object
 		sprite star/g-dwarf
 		period 10
@@ -19215,6 +19255,14 @@ system Kilema
 		sprite planet/ice8
 		distance 638
 		period 526.314
+		offset -10
+	object "Beryl"
+		sprite planet/beryl/beryl
+			"scale" 0.5
+			"frame rate" 4
+		distance 1200
+		period 3000
+		offset 75
 	object
 		sprite planet/rock17
 		distance 1761
@@ -19223,10 +19271,6 @@ system Kilema
 		sprite planet/gas0
 		distance 4002
 		period 8268.56
-	object
-		sprite planet/browndwarf-l
-		distance 15993
-		period 66055.5
 
 system Kiluit
 	pos 699.45 -562.23
@@ -19247,16 +19291,16 @@ system Kiluit
 	asteroids "large metal" 9 2.45
 	minables tungsten 1 5.46
 	minables lead 9 3.13
-	trade Clothing 277
-	trade Electronics 860
-	trade Equipment 468
-	trade Food 337
-	trade "Heavy Metals" 1416
-	trade Industrial 916
-	trade "Luxury Goods" 1392
+	trade Clothing 180
+	trade Electronics 640
+	trade Equipment 720
+	trade Food 370
+	trade "Heavy Metals" 925
+	trade Industrial 770
+	trade "Luxury Goods" 985
 	trade Medical 573
-	trade Metal 497
-	trade Plastic 406
+	trade Metal 465
+	trade Plastic 460
 	fleet "Small Vi" 1300
 	fleet "Vi Cargo" 800
 	fleet "Vi Transport" 1100
@@ -23932,21 +23976,22 @@ system Nnaug
 	asteroids "large rock" 6 1.2
 	asteroids "medium metal" 2 1.8
 	asteroids "large metal" 3 1.2
-	trade Clothing 281
-	trade Electronics 677
-	trade Equipment 629
-	trade Food 367
-	trade "Heavy Metals" 1015
-	trade Industrial 761
-	trade "Luxury Goods" 860
-	trade Medical 636
-	trade Metal 204
-	trade Plastic 427
+	trade Clothing 160
+	trade Electronics 600
+	trade Equipment 700
+	trade Food 380
+	trade "Heavy Metals" 900
+	trade Industrial 720
+	trade "Luxury Goods" 1010
+	trade Medical 450
+	trade Metal 420
+	trade Plastic 435
 	fleet "Small Vi" 1100
 	fleet "Large Vi" 2100
 	fleet "Vi Transport" 800
 	fleet "Vi Cargo" 1000
-	fleet "Gegno Basic" 4400
+	fleet "Gegno Basic" 3400
+	fleet "Gegno Cargo" 4600
 	object
 		sprite star/a0
 		period 10
@@ -24355,6 +24400,7 @@ system Oihaug
 	minables copper 22 3.51
 	minables tungsten 11 2.56
 	fleet "Gegno Basic" 3700
+	fleet "Gegno Cargo" 4700
 	fleet "Small Vi" 1600
 	fleet "Vi Transport" 3200
 	object
@@ -24395,16 +24441,16 @@ system Ookmya
 	asteroids "medium metal" 55 4
 	asteroids "large metal" 4 7.69
 	minables lead 11 1.2
-	trade Clothing 294
-	trade Electronics 858
-	trade Equipment 418
-	trade Food 345
-	trade "Heavy Metals" 440
-	trade Industrial 913
-	trade "Luxury Goods" 1464
-	trade Medical 585
-	trade Metal 482
-	trade Plastic 437
+	trade Clothing 160
+	trade Electronics 590
+	trade Equipment 700
+	trade Food 380
+	trade "Heavy Metals" 870
+	trade Industrial 710
+	trade "Luxury Goods" 970
+	trade Medical 450
+	trade Metal 410
+	trade Plastic 445
 	fleet "Small Vi" 900
 	fleet "Large Vi" 1600
 	fleet "Vi Transport" 1000
@@ -24462,18 +24508,19 @@ system Oosuoro
 	asteroids "large metal" 2 2.77
 	minables neodymium 7 1.9
 	minables aluminum 6 2.3
-	trade Clothing 367
-	trade Electronics 789
-	trade Equipment 470
-	trade Food 495
-	trade "Heavy Metals" 1120
-	trade Industrial 832
-	trade "Luxury Goods" 916
-	trade Medical 664
-	trade Metal 496
-	trade Plastic 274
-	fleet "Gegno Basic" 500
-	fleet "Gegno Miners" 2150
+	trade Clothing 230
+	trade Electronics 655
+	trade Equipment 675
+	trade Food 480
+	trade "Heavy Metals" 780
+	trade Industrial 640
+	trade "Luxury Goods" 1260
+	trade Medical 480
+	trade Metal 300
+	trade Plastic 300
+	fleet "Gegno Basic" 800
+	fleet "Gegno Miners" 2000
+	fleet "Gegno Cargo" 2400
 	object
 		sprite star/g3
 		period 10
@@ -25092,22 +25139,23 @@ system Pbelnep
 	asteroids "large metal" 31 3.64
 	minables titanium 3 5.75
 	minables silicon 28 1.6
-	trade Clothing 269
-	trade Electronics 843
-	trade Equipment 331
-	trade Food 312
-	trade "Heavy Metals" 671
-	trade Industrial 623
-	trade "Luxury Goods" 1409
-	trade Medical 860
-	trade Metal 231
-	trade Plastic 260
+	trade Clothing 190
+	trade Electronics 770
+	trade Equipment 665
+	trade Food 335
+	trade "Heavy Metals" 910
+	trade Industrial 590
+	trade "Luxury Goods" 1100
+	trade Medical 580
+	trade Metal 280
+	trade Plastic 390
 	fleet "Small Scin" 1100
 	fleet "Large Scin" 2100
 	fleet "Scin Transport" 1500
 	fleet "Scin Cargo" 1300
 	fleet "Gegno Miners" 2600
-	fleet "Gegno Basic" 4100
+	fleet "Gegno Basic" 2800
+	fleet "Gegno Cargo" 3600
 	object
 		sprite star/g5
 		distance 28.47
@@ -26509,16 +26557,16 @@ system Ptetubo
 	minables copper 4 1.9
 	minables uranium 2 0.9
 	minables titanium 3 2.3
-	trade Clothing 415
-	trade Electronics 415
-	trade Equipment 580
-	trade Food 366
-	trade "Heavy Metals" 612
-	trade Industrial 478
-	trade "Luxury Goods" 944
-	trade Medical 625
-	trade Metal 330
-	trade Plastic 415
+	trade Clothing 195
+	trade Electronics 580
+	trade Equipment 680
+	trade Food 370
+	trade "Heavy Metals" 845
+	trade Industrial 675
+	trade "Luxury Goods" 1050
+	trade Medical 500
+	trade Metal 385
+	trade Plastic 420
 	fleet "Small Vi" 4200
 	fleet "Large Vi" 2100
 	fleet "Vi Transport" 1300
@@ -28819,21 +28867,22 @@ system Scija
 	asteroids "large metal" 10 2.7
 	minables iron 19 1.2
 	minables aluminum 6 1.5
-	trade Clothing 224
-	trade Electronics 769
-	trade Equipment 781
-	trade Food 444
-	trade "Heavy Metals" 1230
-	trade Industrial 782
-	trade "Luxury Goods" 913
-	trade Medical 609
-	trade Metal 489
-	trade Plastic 311
-	fleet "Small Vi" 800
-	fleet "Large Vi" 1900
-	fleet "Vi Transport" 900
-	fleet "Vi Cargo" 1400
-	fleet "Gegno Basic" 3600
+	trade Clothing 170
+	trade Electronics 615
+	trade Equipment 710
+	trade Food 395
+	trade "Heavy Metals" 890
+	trade Industrial 735
+	trade "Luxury Goods" 1000
+	trade Medical 475
+	trade Metal 440
+	trade Plastic 470
+	fleet "Small Vi" 500
+	fleet "Large Vi" 1500
+	fleet "Vi Transport" 600
+	fleet "Vi Cargo" 1200
+	fleet "Gegno Basic" 3200
+	fleet "Gegno Cargo" 4000
 	fleet "Gegno Miners" 2500
 	object
 		sprite star/b5
@@ -31859,8 +31908,9 @@ system Tscera
 	asteroids "large metal" 2 4.27
 	minables aluminum 1 5.75
 	minables lead 7 6.19
+	fleet "Gegno Basic" 1000
+	fleet "Gegno Cargo" 3000
 	fleet "Quarg (Gegno)" 3800
-	fleet "Gegno Basic" 3000
 	object
 		sprite star/f0
 		period 10
@@ -32506,8 +32556,8 @@ system Uttna
 	asteroids "large metal" 16 3.42
 	minables platinum 5 1.4
 	minables uranium 8 2.2
-	fleet "Gegno Basic" 2700
-	fleet "Gegno Miners" 1900
+	fleet "Gegno Basic" 2600
+	fleet "Gegno Miners" 1800
 	object
 		sprite star/a8
 		period 10
@@ -32915,11 +32965,12 @@ system Vesvii
 	asteroids "small metal" 15 2.2
 	asteroids "medium metal" 2 3.3
 	asteroids "large metal" 4 2.9
-	minables aluminum 6 1.5
-	minables gold 7 3.2
+	minables aluminum 8 1.5
+	minables gold 6 2.4
 	minables iron 9 1.7
-	fleet "Vi Warfleet" 800
-	fleet "Scin Warfleet" 800
+	minables lead 11 2.1
+	fleet "Vi Warfleet" 1100
+	fleet "Scin Warfleet" 1000
 	object
 		sprite star/k5-old
 		distance 81.5
@@ -34250,8 +34301,9 @@ system Yllke
 	asteroids "large metal" 36 0.99
 	minables iron 27 2.32
 	minables aluminum 42 1.94
-	fleet "Gegno Miners" 3000
 	fleet "Gegno Basic" 1300
+	fleet "Gegno Cargo" 4000
+	fleet "Gegno Miners" 3000
 	fleet "Quarg (Gegno)" 3300
 	object
 		sprite star/b8
@@ -34411,21 +34463,22 @@ system Zeinar
 	asteroids "large metal" 9 4.1
 	minables aluminum 3 1.52
 	minables tungsten 4 1.319
-	trade Clothing 281
-	trade Electronics 812
-	trade Equipment 373
-	trade Food 315
-	trade "Heavy Metals" 709
-	trade Industrial 589
-	trade "Luxury Goods" 1386
-	trade Medical 873
-	trade Metal 275
-	trade Plastic 262
-	fleet "Small Scin" 700
-	fleet "Large Scin" 2300
-	fleet "Scin Transport" 800
-	fleet "Scin Cargo" 1500
-	fleet "Gegno Basic" 2600
+	trade Clothing 180
+	trade Electronics 830
+	trade Equipment 685
+	trade Food 280
+	trade "Heavy Metals" 1000
+	trade Industrial 545
+	trade "Luxury Goods" 1120
+	trade Medical 680
+	trade Metal 250
+	trade Plastic 465
+	fleet "Small Scin" 400
+	fleet "Large Scin" 2000
+	fleet "Scin Transport" 500
+	fleet "Scin Cargo" 1200
+	fleet "Gegno Basic" 3400
+	fleet "Gegno Cargo" 3600
 	fleet "Gegno Miners" 2500
 	object
 		sprite star/k5

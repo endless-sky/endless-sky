@@ -288,6 +288,42 @@ namespace {
 		ship.SetTargetStellar(nullptr);
 	}
 
+	bool StayOrLinger(Ship &ship)
+	{
+		const Personality &personality = ship.GetPersonality();
+		if(personality.IsStaying())
+			return true;
+
+		const Government *government = ship.GetGovernment();
+		shared_ptr<const Ship> parent = ship.GetParent();
+		if(parent && government && parent->GetGovernment()->IsEnemy(government))
+			return true;
+
+		if(ship.IsFleeing())
+			return false;
+
+		// Everything after here is the lingering logic.
+
+		if(!personality.IsLingering())
+			return false;
+		// NPCs that can follow the player do not linger.
+		if(ship.IsSpecial() && !personality.IsUninterested())
+			return false;
+
+		const System *system = ship.GetSystem();
+		const System *destination = ship.GetTargetSystem();
+
+		// Ships not yet at their destination must go there before they can linger.
+		if(destination && destination != system)
+			return false;
+		// Ship cannot linger any longer in this system.
+		if(!system || ship.GetLingerSteps() >= system->MinimumFleetPeriod() / 4)
+			return false;
+
+		ship.Linger();
+		return true;
+	}
+
 	// Constants for the invisible fence timer.
 	const int FENCE_DECAY = 4;
 	const int FENCE_MAX = 600;
@@ -1590,9 +1626,9 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		return;
 	}
 
-	// A ship has restricted movement options if it is 'staying' or is hostile to its parent.
-	const bool shouldStay = ship.GetPersonality().IsStaying()
-			|| (ship.GetParent() && ship.GetParent()->GetGovernment()->IsEnemy(gov));
+	// A ship has restricted movement options if it is 'staying', 'lingering', or hostile to its parent.
+	const bool shouldStay = StayOrLinger(ship);
+
 	// Ships should choose a random system/planet for travel if they do not
 	// already have a system/planet in mind, and are free to move about.
 	const System *origin = ship.GetSystem();

@@ -155,6 +155,11 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		++currentSettingsPage;
 	else if((key == 'r' || key == SDLK_PAGEDOWN) && currentSettingsPage > 0)
 		--currentSettingsPage;
+	else if((key == 'x' || key == SDLK_DELETE) && (page == 'c'))
+	{
+		if(zones[latest].Value().KeyName() != Command::MENU.KeyName())
+			Command::SetKey(zones[latest].Value(), 0);
+	}
 	else
 		return false;
 
@@ -355,8 +360,17 @@ void PreferencesPanel::DrawControls()
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
 
-	// Check for conflicts.
+	// Colors for highlighting.
 	const Color &warning = *GameData::Colors().Get("warning conflict");
+	const Color &noCommand = *GameData::Colors().Get("warning no command");
+
+	if(selected != oldSelected)
+		latest = selected;
+	if(hover != oldHover)
+		latest = hover;
+
+	oldSelected = selected;
+	oldHover = hover;
 
 	Table table;
 	table.AddColumn(-115, {230, Alignment::LEFT});
@@ -436,11 +450,12 @@ void PreferencesPanel::DrawControls()
 			int index = zones.size();
 			// Mark conflicts.
 			bool isConflicted = command.HasConflict();
+			bool isEmpty = !command.HasBinding();
 			bool isEditing = (index == editing);
-			if(isConflicted || isEditing)
+			if(isConflicted || isEditing || isEmpty)
 			{
 				table.SetHighlight(56, 120);
-				table.DrawHighlight(isEditing ? dim : warning);
+				table.DrawHighlight(isEditing ? dim : isEmpty ? noCommand : warning);
 			}
 
 			// Mark the selected row.
