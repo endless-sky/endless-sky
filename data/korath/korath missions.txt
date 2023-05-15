@@ -580,7 +580,7 @@ mission "Korath [F02]: A Fishy Proposition"
 			`	She nods and gives an approving smile.`
 			label warning
 			`	"One more matter, Captain <last>: a fair warning about some of our associates. To keep helping our planet, you need to be able to travel far and wide, acting as a courier through space we cannot reach. If you anger half the galaxy, not only will it risk your life, it'll hurt the people of New Tortuga.`
-			`	"You may have noticed some unusual ships near here, larger than anything else in human space. Any fish delivery jobs at New Tortuga, and any jobs at this station, will earn you favor with them. Eventually, they'll warm up to you and might even begin to trust you if you assist them when their ships are damaged.`
+			`	"You may have noticed some unusual ships near here, larger than anything else in human space. Assisting New Tortuga or this station can earn you favor with them. Eventually, they'll warm up to you and might even begin to trust you if you assist them when their ships are damaged.`
 			`	"For your safety, for their sake, and for the sake of my planet, I do implore you: do not assist those ships in combat. They know the risk they take when raiding, and have contingencies in place. It is more important to them that you retain your freedom of movement by not revealing your association with them."`
 				goto departs
 
