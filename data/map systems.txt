@@ -5928,7 +5928,7 @@ system Atik
 	government "Humanika (Restricted)"
 	attributes "bright star" "giant star" "multi-star" "notable star"
 	arrival 1800
-	habitable 3105
+	habitable 1800
 	belt 1240
 	link Durax
 	asteroids "small rock" 36 1.99
