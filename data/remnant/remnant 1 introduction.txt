@@ -403,7 +403,7 @@ conversation "remnant key stones"
 	`	"You may have noticed the red anomalies scattered within this region of space. What you may not have known is that these are wormholes, accessible only with the possession of a Quantum Key Stone. My people highly value these Key Stones because of this, but our mines produce very few of them." The manager shows you a Key Stone that he has with him.`
 	scene "outfit/keystone"
 	
-	branch "hai 1"
+	branch hai1
 		has "First Contact: Hai: offered"
 	
 	`	"We have explored all of the Ember Waste, but have been unable to find any large concentrations of these stones."`
@@ -420,20 +420,20 @@ conversation "remnant key stones"
 	`You find the outfitter manager and tell him that you have good news. "You found another world where the stones can be mined?" he asks.`
 		goto exchange
 	
-	label "hai 1"
+	label hai1
 	`	"I've seen that before," you say.`
 	`	He looks at you with surprise. "You found another world where these stones can be mined?"`
 	
 	label exchange
 	choice
 		`	"Yes, in the territory of some aliens far to the north of here."`
-			goto "hai 2"
+			goto hai2
 		`	"Yes, but I would prefer not to tell you where."`
 	
 	`	"That is understandable," he says. "I am a businessman and I understand how valuable certain trade secrets can be. But perhaps I can interest you in a mutually profitable endeavor?"`
 		goto more
 	
-	label "hai 2"
+	label hai2
 	`	"Intriguing," he sings. "Are they aware of how valuable these stones are?" You tell him about the Hai, that they are an old species and that to them the Key Stones are just good luck charms. "Perhaps they have forgotten the true use of the Stones," says the man. "This may give us an opportunity for a mutually profitable endeavor."`
 	
 	label more
@@ -1022,7 +1022,7 @@ mission "Remnant: Deep Surveillance"
 			branch "told before"
 				has "remnant: told about deep"
 			
-			branch "terminus 1"
+			branch terminus1
 				not "Deep: Remnant Research: offered"
 			
 			`	While wandering the spaceport, you think back to the scientists from the Deep that you helped discover the Ember Waste. Given that the Remnant value their secrecy, they may be interested in knowing about this.`
@@ -1032,7 +1032,7 @@ mission "Remnant: Deep Surveillance"
 				`	(Don't tell the Remnant.)`
 					decline
 			
-			label "terminus 1"
+			label terminus1
 			`	While wandering the spaceport, you think back to the scientists researching the wormhole in Terminus. Given that the Remnant value their secrecy, they may be interested in knowing about this.`
 			choice
 				`	(Find a prefect to tell.)`
@@ -1044,7 +1044,7 @@ mission "Remnant: Deep Surveillance"
 				set "remnant: told about deep"
 			`	You ask one of the Remnant in the spaceport where you would be able to find a prefect, and they point you to what looks like an information desk of sorts. There you tell the attendant that you have something potentially important to discuss in regards to Remnant security. They tap a few buttons then give you directions down a hallway. You quickly find yourself in an armory where several Remnant guards are in the process of cleaning their weapons. One stands up and comes over to you.`
 			`	"Greetings, Captain. I am Prefect Torza. I was told you had information that could be important to our security." He takes a seat on a bench on the far side of the room from the other Remnant and gestures for you to do the same. "What do you have to tell us?"`
-			branch "terminus 2"
+			branch terminus2
 				not "Deep: Remnant Research: offered"
 			
 			choice
@@ -1064,7 +1064,7 @@ mission "Remnant: Deep Surveillance"
 			`	"What do they know?"`
 				goto knowledge
 			
-			label "terminus 2"
+			label terminus2
 			choice
 				`	"I helped a group of scientists who were researching the wormhole in Terminus."`
 				`	"I discovered that a group of scientists are researching the wormhole in Terminus."`
@@ -1268,21 +1268,21 @@ mission "Remnant: Deep Surveillance"
 				decline
 			
 			label accepted
-			branch "revealed 2"
+			branch revealed2
 				has "deep: did reveal remnant"
 			
-			branch "admitted 2"
+			branch admitted2
 				has "remnant: admitted to helping deep"
 			
 			`	"This is good," Torza responds. "Once you have the findings, simply return to the spaceport here and give them to the information desk. We will look over them shortly thereafter." Torza gets up from the bench and shows you out. "Have a safe journey, Captain. May the Embers burn bright for you."`
 				accept
 			
-			label "admitted 2"
+			label admitted2
 			`	"This is good," Torza responds. "Once you have the findings, simply return to the spaceport here and give them to the information desk. We will look over them shortly thereafter." Torza gets up from the bench and shows you out. "Have a safe journey, Captain. But know that we may be keeping a closer eye on you going forward to avoid another situation like this."`
 				accept
 			
-			label "revealed 2"
-			branch "liar 2"
+			label revealed2
+			branch liar2
 				or
 					has "remnant: lied to torza: technology"
 					has "remnant: lied to torza: understanding"
@@ -1290,7 +1290,7 @@ mission "Remnant: Deep Surveillance"
 			`	"This is good," Torza responds. "Once you have the findings, simply return to the spaceport here and give them to the information desk. We will look over them shortly thereafter." Torza gets up from the bench and shows you out without another word.`
 				accept
 			
-			label "liar 2"
+			label liar2
 			action
 				set "remnant: player is surveilled"
 			`	"This is good," Torza responds. "Once you have the findings, simply return to the spaceport here and give them to the information desk. We will look over them shortly thereafter." Torza gets up from the bench and shows you out. "Know that you will be watched closely by us from now on, Captain. I commend you for agreeing to bring us this information, but we cannot allow another situation like this to occur."`
@@ -1459,14 +1459,14 @@ mission "Remnant: Deep Surveillance"
 			label suspicion
 			branch cubes
 				has "Deep: Remnant Surveillance: done"
-			branch "again 2"
+			branch again2
 				"retrieved information" == 2
 			
 			`	"A copy?" Ivan looks off into space for a moment. "Well, I suppose since you helped me so much, I could make an exception for you. I typically don't share findings with those not on my research team until they're finalized. I've been burned one too many times because of that."`
 			`	Ivan leans over to his desk. "This will be for your eyes only."`
 				goto branches
 			
-			label "again 2"
+			label again2
 			`	"Again?" Ivan asks. He leans over to his desk. "I like that you're so interested in my research. I suppose it only makes sense with you helping me, but typically merchant captains aren't this interested in following up on odd jobs they do."`
 			
 			label branches

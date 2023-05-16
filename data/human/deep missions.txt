@@ -824,7 +824,7 @@ mission "Deep: Questions"
 
 
 conversation "deep: questioning"
-	branch "question 1"
+	branch question1
 		has "Deep: Interrogation: offered"
 	
 	`When you land on <origin> and open your ship's main hatch, you find yourself face-to-face with two Deep Security officers, neither of whom appear armed. "Hello, Captain <last>. We're going to need to ask you some questions. If you would please step off of your ship and follow us, that would be much appreciated."`
@@ -923,7 +923,7 @@ conversation "deep: questioning"
 	`	"You clearly mean no harm to the Deep, so I'll give you the privilege of asking me any questions you might have after this encounter."`
 		goto questions
 	
-	label "question 1"
+	label question1
 	`You are escorted by two <planet> security guards to a Corvette occupying a landing pad close to the spaceport's Deep Security complex. Standing below the Corvette is the tall, dark-skinned woman who questioned you on your work for Albert Foster.`
 	`	"Good evening, Captain," she looks up to the overcast sky for a moment, "or whatever time of day it might be right now. I've been informed that you proved yourself a great asset to the Navy and Deep Security in tracking down and... almost trapping Beelzebub. Please, come inside my ship for a moment."`
 	choice
@@ -981,35 +981,35 @@ conversation "deep: questioning"
 	`	"That's a question for the people who were originally brought here." The woman flashes another sly smile.`
 	
 	label done
-	branch "question 2"
+	branch question2
 		has "Deep: Interrogation: offered"
 	
 	`	"That will be enough questions for now. You will be escorted back outside momentarily. Enjoy the rest of your day, Captain."`
 		goto next
 	
-	label "question 2"
+	label question2
 	`	"That will be enough questions for now."`
 		goto next
 	
 	label none
-	branch "question 3"
+	branch question3
 		has "Deep: Interrogation: offered"
 	
 	`	"If that is all, then this meeting is over. You will be escorted back outside momentarily. Enjoy the rest of your day, Captain."`
 		goto next
 		
-	label "question 3"
+	label question3
 	`	"Very well."`
 		goto next
 	
 	label next
-	branch "question 4"
+	branch question4
 		has "Deep: Interrogation: offered"
 	
 	`	The woman gets up from her chair and stops in the doorway. She turns her head slightly and says in a low voice, "I'll be watching," then leaves. Moments later, the same two men that brought you here step into the room and ask you to follow them. They lead you to an entryway and lock the door as you step out into the spaceport.`
 		decline
 
-	label "question 4"
+	label question4
 	`	The woman opens the hatch to the ship. "We might meet again in the future. Stay on your best behavior and our next meeting will surely be on good terms. Goodbye, Captain."`
 		decline
 	
@@ -1463,14 +1463,14 @@ conversation "deep: remnant"
 	
 	label "knew before"
 	`	"As you mentioned before, a single keystone is sufficient to enter the wormhole," Ivan says. "We've determined that there is a stabilization effect, either on the ship or the wormhole, that allows matter to cross the threshold. However, we'll need much more time and data to fully understand the true mechanism.`
-	branch "remnant 1"
+	branch remnant1
 		has "deep: did reveal remnant"
 	`	"Last time, you mentioned that there were alien creatures able to survive the vacuum of space, correct?"`
 	`	You nod.`
 	`	"Right. Well, it would be extremely interesting if we were to learn more about these alien creatures.`
 		goto end
 
-	label "remnant 1"
+	label remnant1
 	`	"Last time, you mentioned that there were humans living in this space, the... the 'Remainder?'"`
 	`	"Remnant," you say.`
 	`	"Right, that was it. Well, it would be extremely interesting if we were to learn more about this people.`
@@ -1499,7 +1499,7 @@ conversation "deep: remnant"
 	action
 		set "deep: did reveal remnant"
 	`	You then tell them about the strange-looking humans who communicate in song and sign language that attacked you after you wouldn't submit to a blood test.`
-		goto "remnant 2"
+		goto remnant2
 		
 	label friendly
 	choice
@@ -1509,7 +1509,7 @@ conversation "deep: remnant"
 	action
 		set "deep: did reveal remnant"
 	`	You then tell them about the Remnant, a group of friendly humans who fled human space during the Alpha Wars and have advanced independently of humanity for centuries, and how they call the region of space the "Ember Waste."`
-		goto "remnant 2"
+		goto remnant2
 
 	label secret
 	action
@@ -1518,7 +1518,7 @@ conversation "deep: remnant"
 	`	"We can seek to learn more about these alien creatures later," Ivan says.`
 		goto end
 		
-	label "remnant 2"
+	label remnant2
 	`	The group of scientists looks captivated the entire time, almost like kindergarten children listening to a fairy tale. When you finish talking, they immediately chatter among themselves, seeming to be most interested in the human beings which inhabit the region. They seem to agree that they need to learn more about these humans, and more specifically about the technology which they have developed.`
 	`	"We can seek to learn more about this group of humans later," Ivan says.`
 

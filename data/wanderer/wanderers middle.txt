@@ -1880,7 +1880,7 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 				`	"Where did this fight take place?"`
 					goto where
 				`	"You should be glad you're still in one piece."`
-					goto "glad 1"
+					goto glad1
 					
 			`	"Well," the pilot says, "we had hired a beefy Leviathan escort to Farpoint. When we were going in for landing, two of these hostile ships jumped in from the northwest, the direction of all the anarchist colonies in this area. The ships weren't big, but they were tough: our four Heavy Laser Turrets weren't enough to produce even a dent in their shields. They made short work of the Leviathan, and nearly disabled our ship, too. It was lucky I decided that jumping would be faster than landing. We warped out of the system while in atmosphere, saving the ship, but now I'm in debt to all my crew because I couldn't meet a rush delivery deadline. Still had to deliver the goods, but lost a pretty substantial bonus."`
 			choice
@@ -1897,7 +1897,7 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 				`	"Thanks for the information. I think that these hostile ships are the ones I'm hunting."`
 					goto thanks
 			
-			label "glad 1"
+			label glad1
 			`	"I am! The attacking ships weren't big, but they were tough: our four Heavy Laser Turrets couldn't even produce a dent in their shields," the captain says. "We even hired a beefy Leviathan to protect us from the pirate raids as we traveled to Farpoint, but when these hostile ships jumped in from the northwest, they made short work of our escort and nearly disabled our ship, too. I had to jump out of the system while in atmosphere to save the ship, but now I'm in debt to all my crew because I didn't meet a rush delivery deadline. Still had to deliver the goods, but lost a pretty substantial bonus."`
 			choice
 				`	"You really are lucky as hell to be here today."`

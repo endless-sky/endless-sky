@@ -133,7 +133,7 @@ mission "War Reactions: Navy and Free Worlds Captains"
 					to display
 						not "War Reactions: Navy and Free Worlds Captains: label sister"
 				`	"You were on opposite sides as sisters!?"`
-					goto "sister 2"
+					goto sister2
 					to display
 						has "War Reactions: Navy and Free Worlds Captains: label sister"
 						not "War Reactions: Navy and Free Worlds Captains: label sister2"
@@ -166,7 +166,7 @@ mission "War Reactions: Navy and Free Worlds Captains"
 			`	Rain continues, "Can you imagine my surprise when I woke up on my sister's new Dreadnought?"`
 			`	"Hey, you got a new Auxiliary commission afterwards," replies Fiona, poking Rain as she says it, "and your whole crew survived. Now we escort each other's ships during investigations!"`
 				goto questions
-			label "sister 2"
+			label sister2
 			action
 				set "War Reactions: Navy and Free Worlds Captains: label sister2"
 			`	They share a glance and Fiona shrugs. "Sometimes that's just what happens with family."`

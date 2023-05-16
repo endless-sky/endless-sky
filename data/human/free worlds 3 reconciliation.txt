@@ -51,35 +51,35 @@ mission "FW Reconciliation 1"
 			`	"Well," she says, "only Parliament can decide that. But the Navy has been ordered not to attack Free Worlds ships, and the news that Sawyer brought has become public knowledge, so you'll find that most Republic worlds will be willing to welcome you, now."`
 			choice
 				`	"Are you some sort of mind reader?"`
-					goto "read 2"
+					goto read2
 				`	"What exactly is the job of Navy Intelligence?"`
-					goto "intelligence 2"
+					goto intelligence2
 			
 			label read
 			`	She laughs, and says, "No, I'm just a really good listener." When she sees that you're not satisfied with that answer, she elaborates. "The official term for us is 'empaths.' We have a heightened ability to absorb the emotional state of those around us. That, combined with extensive training, makes us better lie detectors than any machine. But if you're asking whether my abilities work through body language and vocal cues, or through some sort of mystical powers, honestly none of us knows that for sure."`
 			choice
 				`	"Are we at peace with the Republic now?"`
-					goto "peace 2"
+					goto peace2
 				`	"What exactly is the job of Navy Intelligence?"`
-					goto "intelligence 2"
+					goto intelligence2
 			
 			label intelligence
 			`	She says, "I assume your real question is, why does Navy Intelligence exist at all, since the Republic already has a very powerful, well-funded, and nearly omniscient Department of Intelligence that exists independent of the Navy? The short answer is, we don't trust them. Someone needs to watch the watchers."`
 			choice
 				`	"Are we at peace with the Republic now?"`
-					goto "peace 2"
+					goto peace2
 				`	"Are you some sort of mind reader?"`
-					goto "read 2"
+					goto read2
 			
-			label "peace 2"
+			label peace2
 			`	"Well," she says, "only Parliament can decide that. But the Navy has been ordered not to attack Free Worlds ships, and the news that Sawyer brought has become public knowledge, so you'll find that most Republic worlds will be willing to welcome you, now."`
 				goto next
 			
-			label "read 2"
+			label read2
 			`	She laughs, and says, "No, I'm just a really good listener." When she sees that you're not satisfied with that answer, she elaborates. "The official term for us is 'empaths.' We have a heightened ability to absorb the emotional state of those around us. That, combined with extensive training, makes us better lie detectors than any machine. But if you're asking whether my abilities work through body language and vocal cues, or through some sort of mystical powers, honestly none of us knows that for sure."`
 				goto next
 			
-			label "intelligence 2"
+			label intelligence2
 			`	She says, "I assume your real question is, why does Navy Intelligence exist at all, since the Republic already has a very powerful, well-funded, and nearly omniscient Department of Intelligence that exists independent of the Navy? The short answer is, we don't trust them. Someone needs to watch the watchers."`
 				goto next
 			
@@ -1369,35 +1369,35 @@ mission "FW Pug 2C: Side"
 			`	"A few. Their ships aren't invulnerable; a merchant in an Argosy managed to take out one of their smaller ships when it was landed with its shields down, before they blew his ship out of the air in retaliation. And those staffs they're carrying shoot some kind of stun ray, but if you cut them, they bleed, same as any other creature." He pauses, then taps the knife that is holstered at his belt and says, "Except, they bleed blue. Pale milky blue."`
 			choice
 				`	"What do you think their intentions are?"`
-					goto "intentions 2"
+					goto intentions2
 				`	"Did they explain why they cut you off from the rest of the galaxy?"`
-					goto "cut 2"
+					goto cut2
 		
 			label intentions
 			`	"Well, they want our resources, of course. And, they say they have come to bring a new era of peace and an end to all violence and conflict. I don't buy it, though; they saw that humanity was too divided to resist them, and they seized the opportunity to invade and plunder us. It's that simple."`
 			choice
 				`	"Did anyone try to resist them?"`
-					goto "resist 2"
+					goto resist2
 				`	"Did they explain why they cut you off from the rest of the galaxy?"`
-					goto "cut 2"
+					goto cut2
 		
 			label cut
 			`	"I'd think that would be obvious. With the hyperspace links cut, there's no way for anyone from outside to assist us. And they struck at a part of human space without much in the way of militias or bounty hunters or Navy protection. And the few half-decent warships that happened to be in system when they attacked have already been destroyed trying to fight them."`
 			choice
 				`	"Did anyone try to resist them?"`
-					goto "resist 2"
+					goto resist2
 				`	"What do you think their intentions are?"`
-					goto "intentions 2"
+					goto intentions2
 		
-			label "resist 2"
+			label resist2
 			`	"A few. Their ships aren't invulnerable; a merchant in an Argosy managed to take out one of their smaller ships when it was landed with its shields down, before they blew his ship out of the air in retaliation. And those staffs they're carrying shoot some kind of stun ray, but if you cut them, they bleed, same as any other creature." He pauses, then taps the knife that is holstered at his belt and says, "Except, they bleed blue. Pale milky blue."`
 				goto end
 		
-			label "intentions 2"
+			label intentions2
 			`	"Well, they want our resources, of course. And, they say they have come to bring a new era of peace and an end to all violence and conflict. I don't buy it, though; they saw that humanity was too divided to resist them, and they seized the opportunity to invade and plunder us. It's that simple."`
 				goto end
 		
-			label "cut 2"
+			label cut2
 			`	"I'd think that would be obvious. With the hyperspace links cut, there's no way for anyone from outside to assist us. And they struck at a part of human space without much in the way of militias or bounty hunters or Navy protection. And the few half-decent warships that happened to be in system when they attacked have already been destroyed trying to fight them."`
 				goto end
 		

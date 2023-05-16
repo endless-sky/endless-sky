@@ -519,11 +519,11 @@ mission "Wanderers: Defend Vara Ke'sok Hint"
 					goto jerk
 			label war
 			`	"Ambassador Sayari mentioned you are great [hero, explorer] in human space, and solved many [issues, disasters]. Or are we mistaken?"`
-				goto "choice 2"
+				goto choice2
 			label hai
 			`	"Ambassador Sayari mentioned you are great [hero, explorer], even in Hai space, and solved many [issues, disasters]. Or are we mistaken?"`
-				goto "choice 2"
-			label "choice 2"
+				goto choice2
+			label choice2
 			choice
 				`	"I guess I could be considered a hero."`
 					goto proposal

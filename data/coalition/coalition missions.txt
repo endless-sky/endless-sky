@@ -576,7 +576,7 @@ mission "Kimek Student 1"
 			`	"Wish to speak to you, this Kimek does, Captain," the agent says, as they continue listening to what the Kimek is telling them, and makes an effort to translate their message to you. "Called Chikee, he is. A student, aspiring to join the ranks of the Heliarchs. Looking for transportation to <destination>, he is, so that a better job there he may acquire."`
 			choice
 				`	"Sure, I'll take him there."`
-					goto "accept 1"
+					goto accept1
 				`	"How much will he pay me?"`
 				`	"I'm not headed that way, sorry."`
 					decline
@@ -586,7 +586,7 @@ mission "Kimek Student 1"
 				`	"Okay then, I'll take him there."`
 				`	"I prefer not having to wait to get paid, sorry."`
 					decline
-			label "accept 1"
+			label accept1
 			`	You're told to wait for Chikee before departing the planet, and the Heliarch agent leaves. You leave the restaurant yourself shortly after, and head to your ship.`
 				goto end
 			label translator
@@ -594,7 +594,7 @@ mission "Kimek Student 1"
 			`	"Chikee, my name is, Captain. A student. Looking for transportation to <destination>, I am," he blabs, scrambling to show you what you assume is some kind of letter. "A job in the mines there, I was offered. Better payment than this one, it has."`
 			choice
 				`	"Sure, I'll take you there."`
-					goto "accept 2"
+					goto accept2
 				`	"How much will you pay me?"`
 				`	"I'm not headed that way, sorry."`
 					decline
@@ -604,7 +604,7 @@ mission "Kimek Student 1"
 				`	"Ok, I'll take you there."`
 				`	I prefer not having to wait to get paid, sorry.`
 					decline
-			label "accept 2"
+			label accept2
 			`	He thanks you and says to wait for him by your ship before you depart. You leave the restaurant shortly after, and head to your ship.`
 			label end
 			`	Night falls, but there hasn't been any decrease to the activities here, as the hordes of captains and workers still populate the docking area and the spaceport.`
