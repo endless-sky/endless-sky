@@ -5907,7 +5907,7 @@ mission "Blind Man from Martini"
 				`	"Everything is going to be alright."`
 					goto recovery
 				`	"Could I come with you?"`
-					goto comealong
+					goto "come along"
 			label bye
 			`	"Bye, now. I wish you greater luck in your travels and your sights." With that, he taps his cane twice, and then steps into one of New Sydney's taxis, going toward the University of New Sydney campus on the far side of town.`
 				decline
@@ -5918,9 +5918,9 @@ mission "Blind Man from Martini"
 				`	"Goodbye."`
 					goto bye
 				`	"Could I come with you?"`
-					goto comealong
+					goto "come along"
 			
-			label comealong
+			label "come along"
 			`	Douglas looks taken aback for a moment, but says, "Well, I suppose you can come along. I'm not sure if the university would let you in, though. But I think Anita would like to meet you, or at least say hello." You get into the taxi with him, and it starts toward New Sydney's University District.`
 
 			# The player can do three actions before arriving at the hospital.
@@ -5935,13 +5935,13 @@ mission "Blind Man from Martini"
 						not "Blind Man from Martini: label blind"
 
 				`	"How did becoming blind change your life?"`
-					goto blind-1
+					goto blind1
 					to display
 						has "Blind Man from Martini: label blind"
 						not "Blind Man from Martini: label blind-1"
 
 				`	"How do you feel about the atomic bombings?"`
-					goto atomic-bombings
+					goto "atomic bombings"
 					to display
 						has "Blind Man from Martini: label blind"
 						not "Blind Man from Martini: label atomic-bombings"
@@ -5974,14 +5974,14 @@ mission "Blind Man from Martini"
 			`	"But when the bomb dropped, I was looking right at it, from my office window. All I could remember next was that I was in a lot of pain, that I couldn't see, but one of my colleagues - thank goodness for her - found me afterwards, during the evacuation, covered in glass from the shockwave. I survived mostly because I was sitting at my terminal and that protected me from the bulk of the shards."`
 				goto taxi
 
-			label blind-1
+			label blind1
 			action
 				set "Blind Man from Martini: label blind-1"
 				"Blind Man from Martini: taxi questions count" ++
 			`	"Hmm... well, it was really only one of many things that hit my life then, not least of which was my newfound blindness, and the loss of my company and my job." He gives a heavy sigh, and he shifts in his seat as if something heavy was placed on his shoulders. "I was able to keep things intact for a while, but no, it was too much. Anything can be taken away from you if you get too used to it."`
 				goto taxi
 			
-			label atomic-bombings
+			label "atomic bombings"
 			action
 				set "Blind Man from Martini: label atomic-bombings"
 				"Blind Man from Martini: taxi questions count" ++
