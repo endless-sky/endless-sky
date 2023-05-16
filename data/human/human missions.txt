@@ -5829,7 +5829,7 @@ mission "Argosy Hijacking (Declined)"
 
 mission "A Dead Man's Path 1"
 	name "Siblings to New China"
-	description "Bring these siblings to New China to hear their father's last will by <date>. They offer to pay you <payment>."
+	description "Bring these siblings to New China to hear their father's last will by <date>. They have offered to pay you <payment>."
 	minor
 	passengers 2
 	deadline 7
@@ -5842,42 +5842,43 @@ mission "A Dead Man's Path 1"
 		random < 20
 	on offer
 		conversation
-			`The spaceport on <origin> is lively tonight. There are porters running to and from depots with crates, crewmen buying rounds of drinks for each other around the bars before they hit the bed, and bands of Navy officers jovially greeting captains and systematically inspecting ships. The energy and self-purpose of this spaceport is on full display this one night.`
-			`	The only exception to the bustle and activity are a young man and woman, both dressed very formally, who are seemingly lost and having no luck approaching anybody. You watch them drift from one person to another, each time being sent off without an answer. Finally, they come towards you.`
+			`The spaceport on <origin> is lively tonight. There are porters running to and from depots with crates, crewmen buying rounds of drinks for each other around the bars before they hit the bed, and bands of Navy officers jovially greeting captains and systematically inspecting ships. The energy and self-purpose of this spaceport is on full display tonight.`
+			`	The only exception to the bustle and activity are a young man and woman, both dressed very formally, who are seemingly lost. You watch them drift from one person to another, each time being sent off without an answer. Finally, they come toward you.`
 			`	Their faces show clearly that they are on their last legs of hope. It is only with reluctance that the woman says, "Excuse me, are you a spaceship captain?"`
 			choice
 				`	"Yes, my name's Captain <last>."`
 				`	"Depends on what you want."`
 					goto suspicious
-			`	Her face brightens up with a smile, and she continues, "That's good to hear! My brother and I were searching for someone who could give us a ride to <destination>. We received notice that our father's last will is going to be published there. Do you think you could take us there? We will pay you for your service, of course."`
+			`	Her face brightens up with a smile, and she continues, "That's good to hear! My brother and I were searching for someone who could give us a ride to <destination>. We received notice that our father's last will is going to be published there on <day>. Do you think you could take us there? We can pay you for your service, of course: <payment>."`
 				goto helpornot
 			label suspicious
-			`	She laughs. "There's no need to be suspicious, my brother and I were just searching for someone who could give us a ride to <destination>. We received notice that our father's last will is going to be published there. Do you think you could take us there? We will pay you for your service, of course.`
+			`	She seems a little confused. "Oh, um... my brother and I were just searching for someone who could give us a ride to <destination>. We received notice that our father's last will is going to be published there on <day>. Do you think you could take us there? We can pay you for your service, of course: <payment>.`
 			label helpornot
 			choice
 				`	"Of course I can."`
 					goto agreed
 				`	"I'm sorry, but I've got more urgent things to do. You'll need to find someone else."`
-			`	Her smile fades away as you say that, but they both simply nod and walk away out the gates of the spaceport with their heads down.`
+			`	Her smile fades away as you say that, but they both simply nod and walk out of the spaceport with their heads down.`
 				decline
 			label agreed
-			`	"Fantastic! My name is Sophie, and this is my younger brother," she says, pointing at the man to her side, who goes to shake your hand. "Hi, I'm Liam. We've been looking for a ride for some time now. We were starting to worry that we wouldn't get there in time! You'll have to bring us there quickly."`
+			`	"Fantastic! My name is Sophie, and this is my younger brother," she says, pointing at the man to her side, who goes to shake your hand.
+			`	"Hi, I'm Liam. We've been looking for a ride for some time now. We were starting to worry that we wouldn't get there in time! You'll have to bring us there quickly."`
 			choice
 				`	"Don't worry, you'll be surprised how fast my ship flies. We'll get there in no time."`
 					goto notime
 				`	"Yes, a lot of captains are quite busy these days."`
-			`	"It seems that way," Sophie agrees. "Everyone feels more tense or uncertain, and there's always more to do and less time to do it."`
+			`	"It seems that way," Sophie agrees. "Everyone feels more tense or uncertain. There's always more to do and less time to do it."`
 				goto ship
 			label notime
 			`	Liam's voice barely hides his excitement at finding an available captain. "Well, let's see that ship of yours then, and show us if it's as fast as you say it is!"`
 			label ship
-			`	You lead them to your ship, and help them with their bags as they board.`
+			`	You lead them to your ship and help them with their bags as they board.`
 				accept
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
 		log `Helped a pair of siblings named Sophie and Liam by bringing them to New China so they can hear their father's last will.`
-		dialog `When you arrive at <planet>'s spaceport, the siblings prepare to head off to the court where their father's last will will be read out. Just before they leave, Liam turns to you. "Captain <last>, I've transferred <payment> to your account. Would it be okay for you to wait here until we come back? We will need a ride home."`
+		dialog `When you arrive at <planet>'s spaceport, the siblings prepare to head off to the court where their father's last will will be read out. Just before they leave, Liam turns to you. "Captain <last>, I've transferred <payment> to your account. Would it be okay for you to wait here until we come back? We'll need a ride home. If you're able to take us, please meet us in the spaceport later."`
 		payment 50000
 
 mission "A Dead Man's Path 2"
@@ -5899,10 +5900,10 @@ mission "A Dead Man's Path 2"
 			`After waiting two hours in the spaceport's bar, Liam and Sophie come back with unexpectedly broad smiles on their faces. You flag them down from your table and they eagerly take a seat.`
 			`	Liam speaks as soon as he can. "Captain <last>, it turns out we will need a bit more than just a ride home! Have you decided to help us again?"`
 			choice
-				`	"But what do you want me to do?"`
-				`	"Sorry, but I'd be stupid to accept a mission I don't know anything about."`
-			`	Sophie smiles at her brother. "Of course, Liam just can't wait to get started!" She turns back to you. "Maybe I should start with who our father was. We didn't get to know him very well - he came home only occasionally. Don't get me wrong, our parents weren't fighting, but he had this passion that couldn't make him stay in one place for very long. He was a captain, not unlike you, and he was restless to explore even the furthest parts of the galaxy. We believe he traveled further than most human captains; sometimes he brought small items back home that nobody could explain."`
-			`	She pauses for a moment. "Anyway, in his testament he told us that he left something behind for us on <planet>, in <system>. He said that he would not make it easy, though; he loved fantasy books, and in those stories there is always something mysterious at play that we do not understand the meaning of until the very end. So he told us of a few systems that we should visit before we go to Prime. It'll be like one last fantasy story from our dad!`
+				`	"What do you want me to do?"`
+				`	"Tell me more before I decide."`
+			`	Sophie smiles at her brother. "Of course, Liam just can't wait to get started!" She turns back to you. "Maybe I should start with who our father was. We didn't get to know him very well - he came home only occasionally. Don't get me wrong, our parents weren't fighting, but he had this passion: he couldn't stay in one place for very long. He was a captain, not unlike you, and he was restless to explore even the furthest parts of the galaxy. We believe he traveled further than most human captains; sometimes he brought small items back home that nobody could explain."`
+			`	She pauses for a moment. "Anyway, his testament says he left something behind for us on <planet>, in <system>. He said that he wouldn't make it easy though; he loved fantasy books, and there's always an air of mystery to those stories. He told us of a few systems we should visit before we go to Prime. It'll be like one last fantasy story from dad!`
 			`	"Of course, it would be much easier if we could go directly to Prime, but we want to respect our father's last will." She looks directly at you now. "And that is why we need your help. Could you help us again and take us through all these systems?"`
 			choice
 				`	"Which systems would we have to fly through?"`
@@ -5911,7 +5912,7 @@ mission "A Dead Man's Path 2"
 					goto nothanks
 
 			label starmap
-			`	Liam pulls a starmap out of his bag. "These are the systems our father wants us to visit: <waypoints>. Those systems are spread far out around human space, but apparently they all have something unique to them. We've never really travelled beyond our home planet, so it'll be quite a big adventure for us! Does that sound good to you?"`
+			`	Liam pulls a star map out of his bag. "These are the systems our father wants us to visit: <waypoints>. Those systems are spread far out around human space, but apparently they all have something unique to them. We've never really traveled beyond our home planet, so it'll be quite a big adventure for us! We can offer 50,000 credits. Does that sound good?"`
 			choice
 				`	"Sounds good!"`
 				`	"Sorry, I won't be able to take you. Those systems are too far away from each other."`
@@ -5924,7 +5925,7 @@ mission "A Dead Man's Path 2"
 				decline
 
 	on enter "Terminus"
-		dialog `It is often thought that there are nothing interesting in these uninhabited systems by the Deep, but Sophie points out that there is a strange anomaly in this system. "When we got to see him, our father used to describe all these unusual sights he saw on his adventures flying through wormholes or nebulae. That anomaly reminds me of one of them."`
+		dialog `It is often thought that there's nothing interesting in these uninhabited systems by the Deep, but Sophie points out that there is a strange anomaly in this system. "When we got to see him, our father used to describe all these unusual sights he saw on his adventures flying through wormholes or nebulae. That anomaly reminds me of one of them."`
 	on enter "Aspidiske"
 		dialog `While Sophie and Liam are both quite chatty at times, the beauty of this star stops all their conversations.`
 	on enter "Gorvi"
@@ -5936,7 +5937,7 @@ mission "A Dead Man's Path 2"
 		dialog phrase "generic missing waypoint or passengers"
 
 	on complete
-		log `Brought Sophie and Liam around the galaxy to various locations that their departed father asked them to visit in his will, before finally bringing them to Prime where he left something for them.`
+		log `Brought Sophie and Liam to various locations that their departed father asked them to visit in his will; ended at Prime where he left something for them.`
 		conversation
 			`The siblings are uncharacteristically quiet, perhaps in anticipation of finally arriving at their destination. It is only when you have all stepped out into Prime's spaceport that Sophie says, "Captain <last>, you've helped us immensely, and we can't thank you enough for bringing us all across the galaxy! But we have one last request. Both of us think that you should come with us to see what our father left behind. Do you want to see it?"`
 			choice
@@ -5945,15 +5946,15 @@ mission "A Dead Man's Path 2"
 				`	"I'm sorry, I've got to be somewhere else."`
 					goto somewhere-else
 			label continue
-			`	Liam pulls out a map; not the starmap he had before but a local map of Prime marked 'New Toulouse'. "Apparently our father bought a whole mountain on this planet, and he wants us to go there. It's to the west of us near the New Pyrenees, a little while away from Prime Central Spaceport where we are."`
+			`	Liam pulls out a map - not the starmap he had before, but a local map of Prime marked 'New Toulouse'. "Apparently our father bought a whole mountain on this planet, and he wants us to go there. It's to the west of us near the New Pyrenees, a little while away from Prime Central Spaceport where we are."`
 			choice
 				`	"Sounds good. I'll follow your lead."`
 					goto shuttle
 				`	"We could also have a look around here, and see why your father chose this planet."`
-			`	"You're right. I hadn't thought of that, there must surely have been a reason he picked here," Sophie says."`
+			`	"You're right. I hadn't thought of that, surely there was a reason he picked here," Sophie says."`
 			`	All three of you walk around the spaceport district for some time. Coming into a giant plaza, you see one of the newest models from Betelgeuse, a Behemoth, on display in the center. The massive freighter with its many turret emplacements towers over even the plaza, an obvious showcase of Prime's leading shipbuilding industry.`
 			`	Liam's face brightens as if he just understood something. "I think our father chose this planet because he was always a fan of Betelgeuse ships. Before he went on his adventures he used to be a test pilot for the shipyard."`
-			`	Sophie nods. "Right! And once he was allowed to keep one of their experimental models as a gift for being one of their most productive pilots. Betelgeuse wouldn't let him go when he wanted to leave and start exploring the galaxy! But we're running out of time. Shall we go to the mountain now?"`
+			`	Sophie nods. "Right! And once he was allowed to keep one of their experimental models as a gift for being one of their most productive pilots. Betelgeuse almost wouldn't let him go when he wanted to leave and explore the galaxy! But we're running out of time. Shall we go to the mountain now?"`
 			choice
 				`	"We should take a shuttle. It'll be the fastest way."`
 					goto shuttle
@@ -5965,13 +5966,13 @@ mission "A Dead Man's Path 2"
 			label maglev
 			`	You take a maglev from the spaceport and get a tour through some of the regions of Prime's mainland; on the way you pass through the fields of New Toulouse, where the majority of the local agricultural industry is located, and into the New Pyrenees hills. After an hour you and the siblings step off at a provincial city. Although Betelgeuse starts to recede behind the horizon, you can see a small mountain that stands alone against the rest of the landscape.`
 			label front-mountain
-			`	Liam, with the help of the map, guides all of you to the base of the mountain where you come across a flat wall embedded into a small cavern in its side. He looks a bit embarrassed as he says, "There's a phrase our father left in the instructions: 'Edr- i fen'. I don't know what it means, but I'm certain it has something to do with one of these fantasy novels he used to read."`
+			`	Liam, with the help of the map, guides all of you to the base of the mountain, where you come across a flat wall embedded into a small cavern in its side. "There's a phrase our father left in the instructions: 'Edr- i fen,'" he explains, a little embarrassed at his inability to pronounce it. "I don't know what it means, but I'm certain it has something to do with one of these fantasy novels he used to read."`
 			choice
 				`	"Sounds funny, but let's say it."`
 				`	"You've got a strange dad, but I like his sense of humor."`
 			`	Sophie counts to three, and then all of you shout out the phrase together.`
 			`	Suddenly, a bright blue line appears on the wall. For a second, a flash blinds you and there is a dim hissing noise, like the sound of rock being cut by a laser. As you look back, the line forms into a blue rectangle, the shape rapidly expanding down the wall. When it reaches the ground, the shape has become large enough to cover a human.`
-			`	For a moment, nothing happens, and the siblings are too stunned to do anything. The blue rectangle starts flashing between different hues of blue, until the whole rectangle and the stone it covered disappears suddenly to leave behind a cavity in the wall. "I could have sworn the stone was real," Liam says under his breath.`
+			`	For a moment, nothing happens, and the siblings are too stunned to do anything. The rectangle starts flashing between different hues of blue, until the whole section and the stone it covered disappears suddenly to leave behind a cavity in the wall. "I could have sworn the stone was real," Liam says under his breath.`
 			choice
 				`	"Well, this is a real adventure. Lets go!"`
 					goto enter
@@ -6004,8 +6005,6 @@ mission "A Dead Man's Path 2"
 				`	"I would be more than grateful to accept it."`
 					goto accepted
 				`	"This is too much for me to take."`
-					goto lastchance
-			label lastchance
 			`	"Are you sure?" Sophie asks. "This is a one time offer. It would be wasted on us."`
 			choice
 				`	"Yes, I'm sure."`
@@ -6026,7 +6025,7 @@ mission "A Dead Man's Path 2"
 
 			label conclusion
 			`	"Well, we'll need some time to take it all in and arrange things, find a place to stay on Prime and all that," Sophie says, "but we won't keep you from your ship any longer. It was a pleasure to travel with you, Captain <last>."`
-			`	Liam adds, "We will always be grateful for you helping us with our father's will. We never imagined that we would come so far and we would have never done it without you. It means so much to us. We wish you well through the stars, Captain <last>."`
+			`	Liam adds, "We will always be grateful for your help with our father's will. We never imagined that we would come so far, and we would have never done it without you. It means so much to us. We wish you well through the stars, Captain <last>."`
 
 			branch accepted-sword extra-money
 				not "declined old man's sword"
@@ -6046,5 +6045,5 @@ mission "A Dead Man's Path 2"
 			label somewhere-else
 			action
 				payment 100000
-			`	"Well, that's okay. We'll always appreciate the help you've given us in fulfilling our father's will. Oh, and here's your payment, and a little extra for putting up with us all this time," Liam says, handing you a few credit chips for <payment>. "We wish you well through the stars!" Again, the siblings both thank you profusely for the trip, and you watch them leave Prime's spaceport with their heads up.`
+			`	"Well, that's okay. We'll always appreciate the help you've given us in fulfilling our father's will. Oh, and here's your payment, and a little extra for putting up with us all this time," Liam says, handing you a few credit chips for <payment>. "We wish you well through the stars!" Again, the siblings both thank you profusely for the trip, and you watch them leave Prime's spaceport with excitement.`
 				decline
