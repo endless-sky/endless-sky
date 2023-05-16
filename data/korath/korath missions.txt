@@ -377,7 +377,7 @@ mission "First Contact: Korath Exiles"
 
 			label together
 			`	They stare at you for another few awkward seconds.`
-			`	Then, in front of your three ships, they slowly and carefully draw a large fire, larger than the three of your ships put together. Beside your ships, facing away, they draw a pointed circle on one side, and a spider on the other. After a brief pause, they give the spider heads on both sides of its body, and give the circle points in each direction. Again, they point to the drawing of your double-ended ships, and then to the now ominous-looking collection of ships and fire, and point to you.`
+			`	Then, in front of your three ships, they slowly and carefully draw a large fire, larger than the three of your ships put together. On one side of the ships, they a teardrop shape, facing away. On the other, they draw a spider facing in the other direction. After a brief pause, they give the spider heads on both sides of its body, and give the teardrop a second point. Again, they point to the drawing of your double-ended ships, and then to the now ominous-looking collection of ships and fire, and point to you.`
 			choice
 				`	(Point again to the ominous collection of ships and fire, with the three ships flying together.)`
 					goto fire
