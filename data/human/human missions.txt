@@ -4760,7 +4760,7 @@ mission "Dangerous Games 2"
 	source
 		attributes "frontier" "pirate" "rim"
 	destination "Poseidos"
-	cargo subpods 6
+	cargo "subpods" 6
 	passengers 6
 	to offer
 		random < 15
@@ -4860,7 +4860,7 @@ mission "Dangerous Games 2"
 				goto "roll call"
 			label east1
 			`	"A bee-less beast," you mutter to yourself. "A poet, this writer was not." Turning east, the ship powers forward, cautious but confident.`
-			`	subpods fly ahead, exulting in their agility in the face of the dangerous ocean. It isn't long until Karengo again radios you. "Knew I chose ya for a reason. What's the next direction?"`
+			`	Subpods fly ahead, exulting in their agility in the face of the dangerous ocean. It isn't long until Karengo again radios you. "Knew I chose ya for a reason. What's the next direction?"`
 				goto "riddle three"
 			label north1
 			action
