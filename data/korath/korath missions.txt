@@ -263,20 +263,20 @@ substitutions
 	<EDC-ship> "Esketari"
 
 mission "Efreti: Distress Call 1"
+	minor
+	landing
 	name "Investigate distress call"
 	description "The Quarg have asked you investigate an Efreti distress call in <destination>."
 	source "Karek Fornati"
 	stopover "Seleptra Nak"
 	destination "Laki Nemparu"
 	passengers 40
-	landing
-	minor
-	random < 30
 	blocked "A Quarg ship broadcasts that they need a ship with at least <bunks> bunks for an emergency evacuation."
 
 	to offer
 		not "event: wanderers: kor mereti friendly"
 		has "First Contact: Karek Fornati: offered"
+		random < 30
 		
 	on offer
 		conversation
@@ -291,7 +291,7 @@ mission "Efreti: Distress Call 1"
 					goto careless
 			
 			label quarg
-			`	"We fought off the Mereti that attacked them but they had crashed before we could reach them. The gravity on that world requires us to have hardened environment suits to navigate wreckage while a Human would have few problems. You can reach them days before we could return from Kuwaru Efreti."`
+			`	"We vanquished the Mereti, but the <EDC-ship> fell beyond our reach and crashed. Strong armor we need to survive the pressure of a heavy world to help the Korath, while a Human would have few problems. You can reach them days before we could return from Kuwaru Efreti."`
 			choice
 				`	"I'll go help, then."`
 					accept
@@ -374,7 +374,7 @@ mission "Efreti: Distress Call 2"
 
 mission "Efreti: Distress Call 3"
 	name "Pick up salvage crew"
-	description "Pick up salvage crew."
+	description "Hire crew to salvage Efreti ship."
 	source "Karek Fornati"
 	destination "Greenwater"
 	landing
@@ -415,7 +415,7 @@ mission "Efreti: Distress Call 4"
 		system "Seketra"
 		fleet "Small Kor Mereti" 2
 		government "Kor Mereti"
-		personality	
+		personality
 			staying
 
 	to offer
@@ -451,7 +451,7 @@ mission "Efreti: Distress Call 4"
 				`	(I've got places to be.)`
 					decline
 				
-			`	The tent is larger than you expected. At the back there is a group of Korath arranged like a choir, but standing oddly still. A Korath in some kind of robes stands next to a table piled with sweets and cups of some kind of thick drink. As you approach, you realize that the "choir" is made of holograms. You do a quick mental count and guess that these are the Korath that died on the ship; this is probably some type of memorial. The Korath in robes greets you and presses a cup into your hand. It is fermented and has a sweet and sour taste that leaves you lips and mouth tingling and then numb. They press the sweets on you so you take them. You see a few groups from the spaceport follow the same ritual, though some of them walk up to the "choir" and say something to them. When you finish the food, you take your leave and return to your ship.`
+			`	The tent is larger than you expected. At the back there is a group of Korath arranged like a choir, but standing oddly still. A Korath in some kind of robes stands next to a table piled with sweets and cups of some kind of thick drink. As you approach, you realize that the "choir" is made of holograms. You do a quick mental count and guess that these are the Korath that died on the ship; this is probably some type of memorial. The Korath in robes greets you and presses a cup into your hand. The drink is fermented and has a sweet and sour taste that leaves you lips and mouth tingling and then numb. They press the sweets on you so you take them. You see a few groups from the spaceport follow the same ritual, though some of them walk up to the "choir" and say something to them. When you finish the food, you take your leave and return to your ship.`
 
 
 mission "Efreti: Distress Call 5"
