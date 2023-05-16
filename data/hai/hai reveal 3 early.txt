@@ -17,7 +17,7 @@
 
 mission "Hai Building Mountaintop [1] Construction Fleet"
 	name "Escort construction fleet to Ultima Thule"
-	description "Meet a construction fleet at <stopovers> and escort them to to <destination> to prevent a confrontation."
+	description "Meet a construction fleet at <stopovers> and escort them to <destination> to prevent a confrontation."
 	autosave
 	landing
 	source "Hai-home"
@@ -441,7 +441,7 @@ event "role-play station active"
 		security 0.7
 		"required reputation" -10
 
-# Now that more ships are involved elsewhere, Ladybugs start getting used to take up the slack in surveillance security fleets.	
+# Now that more ships are involved elsewhere, Ladybugs start getting used to take up the slack in surveillance security fleets.
 event "ladybug surveillance"
 	fleet "Hai Surveillance"
 		add variant 10
