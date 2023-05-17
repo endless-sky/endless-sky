@@ -802,7 +802,7 @@ mission "Korath [F06]: The Rainbow Feather"
 			label freedom
 			action
 				set "Korath [F05]: The Rainbow Feather: freedom"
-			`	"There are few life-supporting planets in the systems where the Korath are exiled. One is the violent planet you visited: Rabasot Pa'ah. The Korath discovered New Tortuga has a similar, though less violent, environment and evolved a fish-like species that would be an excellent food source.`
+			`	"There are few life-supporting planets in the systems where the Korath are exiled. One is the violent planet you visited: Rabasot Pa'ah. The Korath discovered New Tortuga has a similar environment, but it had evolved macroscopic life. The creature you found, the Pwason Gra, attracted them.`
 			`	"They could not grow the creatures either artificially or on Rabasot Pa'ah, since the larval form requires very specific conditions. The juvenile and adult forms thrive on Rabasot Pa'ah, growing far larger than on New Tortuga. The conditions of their exile prevented the Korath from fishing on New Tortuga themselves, so they had to make a deal with humans.`
 			`	"Not understanding our society, they talked to the first fishers they found, who couldn't help them, because those fishers were slaves. To Korath, self-expression is a religion and almost a biological necessity. Slavery to them is as abhorrent as," she thinks for a moment, "consuming the skin of dead relatives is to us.`
 			`	"They made a deal: freedom for fish. The Korath provided rifles in secret, and the slaves drove their masters off the planet. Ex-Syndicate refugees who fled persecution to live here helped us form a functioning government. Now, we give juvenile fish to the Korath, and they assist us in industry, mining, food production, and defense of our systems.`
