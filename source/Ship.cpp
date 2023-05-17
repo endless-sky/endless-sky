@@ -1207,12 +1207,12 @@ vector<string> Ship::FlightCheck() const
 		checks.emplace_back("no thruster!");
 	else if(!turn)
 		checks.emplace_back("no steering!");
-	else if(RequiredCrew() > attributes.Get("bunks"))
-		checks.emplace_back("insufficient bunks!");
 
 	// If no errors were found, check all warning conditions:
 	if(checks.empty())
 	{
+		if(RequiredCrew() > attributes.Get("bunks"))
+			checks.emplace_back("insufficient bunks?");
 		if(!thrust && !reverseThrust)
 			checks.emplace_back("afterburner only?");
 		if(!thrust && !afterburner)
