@@ -484,12 +484,22 @@ mission "Korath [F01]: A Fishy Deal"
 			action
 				log "Agreed to help a woman named Jenny Jetmaster who couldn't make a delivery. Apparently the delivery is illegal, though it's unlikely to be detected since it's in a region of space not patrolled by any law-abiding governments."
 			`	"Really? Okay, hold on..." looking down, she fidgets with a datapad, perhaps transferring permission for the cargo mission. "Yeah, okay." She looks back up at last. "Transfer is approved." Her crewman starts offloading the fish, preparing to transfer it to your ship.`
-			`	"If the authorities won't let you land, read them the serial number from the cargo container, and they'll open a bay for you. Oh, also, this is an illegal mission, so don't get caught, or it'll cost you. The cargo is totally legal, but the delivery is part of an illegal trade arrangement. Well, it's unlikely anyone out here will care about laws, but I do believe in full disclosure."`
+			`	"If the authorities won't let you land, transmit them the serial number from the cargo container, and they'll open a bay for you. Oh, also, this is an illegal mission, so don't get caught, or it'll cost you. Well, it's unlikely anyone out here will care about laws, but I do believe in full disclosure."`
+			label questions
 			choice
 				`	"I'm not afraid of dodging the cops... where there are none. Give me the cargo, and it'll reach its destination. You have my word."`
 					accept
 				`	"On second thought, I don't think I want this mission. Illegal fish deliveries are too strange for my tastes."`
 					decline
+				`	"If I'm just delivering fish, why is it illegal?"`
+					to display
+						not "Korath [F01]: A Fishy Deal: spicy"
+			label "'cause they're spicy"
+			action
+				set "Korath [F01]: A Fishy Deal: spicy"
+			`	"Nothing is wrong with the fish; the other end of the delivery is the problem, so the whole trade arrangement is illegal. There's all sorts of barrels and boxes that come back from <planet>. It's mostly mundane stuff; never any drugs, counterfeits, or weapons. Why the Republic would ban this... I haven't the slightest notion.`
+			`	"A while back, my aunt was fined 25,000 credits for using a knock-off fuel gasket on her racing Flivver. She used the gasket because it was more reliable than a genuine one. Of course, that doesn't matter to the Republic. The Navy officer that caught her knew how dumb the law was, so he let her keep the gasket."`
+				goto questions
 
 	on enter Atik
 		dialog "It seems you do not have automatic clearance to <planet>. If you talk to the planet, the authorities will probably let you land."
