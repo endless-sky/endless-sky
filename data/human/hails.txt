@@ -2093,6 +2093,7 @@ phrase "pyramid_scheme_company"
 		"Liberated "
 		"Literal "
 		"Family "
+		"Hyper-real "
 	word
 		"Dynamix"
 		"Unlimited"
