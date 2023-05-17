@@ -265,11 +265,10 @@ substitutions
 mission "Efreti: Distress Call 1"
 	minor
 	landing
-	name "Investigate distress call"
-	description "The Quarg have asked you investigate an Efreti distress call in <planet stopovers>."
+	name "Distress call from the <EDC-ship>"
+	description "The Quarg have asked you investigate a distress call from the Efreti ship <EDC-ship> which has crashed on <destination>."
 	source "Karek Fornati"
-	stopover "Seleptra Nak"
-	destination "Laki Nemparu"
+	destination "Seleptra Nak"
 	passengers 40
 	blocked "A Quarg ship broadcasts that they need a ship with at least <bunks> bunks for an emergency evacuation."
 
@@ -282,7 +281,7 @@ mission "Efreti: Distress Call 1"
 	on offer
 		conversation
 			`The blue flash of Quarg ships is nothing new as you travel Efreti space. Usually that is all you see of the enigmatic aliens. Today, however, you receive an urgent hail as you land.`
-			`	"Salutations Captain of the <ship>. Your most diligent efforts are required lest many families mourn the dead. An Efreti ship, the <EDC-ship>, was surveying <stopovers> when surprised by Mereti they were. Their ship crashed on the planet with many dead and they have asked for help to evacuate."`
+			`	"Salutations Captain of the <ship>. Your most diligent efforts are required lest many families mourn the dead. An Efreti ship, the <EDC-ship>, was surveying <planet> when surprised by Mereti they were. Their ship crashed on the planet with many dead and they have asked for help to evacuate."`
 			choice
 				`	"I'll go there immediately."`
 					accept
@@ -302,8 +301,24 @@ mission "Efreti: Distress Call 1"
 			label careless
 			`	The Quarg is silent for some time. Eventually it responds, "Life is rare and precious across the vastness of space. Look about the Korath worlds and see what remains when one cares not what others suffer."`
 				decline
+	npc
+		system "Seketra"
+		fleet "Small Kor Mereti"
+		government "Kor Mereti"
+		personality
+			staying
 
-	on stopover
+
+mission "Efreti: Distress Call 2"
+	landing
+	name "Return the <EDC-ship> survivors"
+	description "Transport the <bunks> survivors of the <EDC-ship> to <planet>."
+	source "Seleptra Nak"
+	destination "Laki Nemparu"
+	passengers 40
+	to offer
+		has "Efreti: Distress Call 1: done"
+	on offer
 		conversation
 			`It takes you some time to find the <EDC-ship>. You had expected a beacon of some sort but they are either keeping radio silence to avoid drawing the Mereti or there were no survivors.`
 			`	When you manage to open the hatch, you find yourself staring down a thermal rifle. The Korath shouts something at you and you hold your hands out palms forward. He limps back a few steps but keeps the weapon trained on you. You slowly pull your communicator out and play your ship's recording of the Quarg transmission. When the Korath hears the Quarg's voice they become excited. "<planet>?" he asks repeatedly. You nod your head and show your palms again.`
@@ -312,9 +327,9 @@ mission "Efreti: Distress Call 1"
 			`	You quickly count the number of survivors and communicate to your guide that you can take them all. He mimics your nodding head gesture, shows you his palms and makes quick circles. You think he is agreeing and wants to hurry. You call your crew over to help move the survivors to the <ship>. Within a couple of hours you are ready to go.`
 				to display
 					"flagship crew" > 1
+				accept
 			`	You quickly count the number of survivors and communicate to your guide that you can take them all. He mimics your nodding head gesture, shows you his palms and makes quick circles. You think he is agreeing and wants to hurry. With no crew helping you, it takes several hours to transfer them to the <ship>.`
-				to display
-					"flagship crew" <= 1
+				accept
 	
 	on complete
 		payment 300000
@@ -322,24 +337,31 @@ mission "Efreti: Distress Call 1"
 			`The Efreti commander hails the authorities once you enter the system and they have medical crews waiting when you land. It takes several hours to evacuate the injured as doctors or maybe paramedics swarm over them to triage, treat, and prepare for transport. The three who died during the flight are treated with respect and carried off the <ship>.`
 			`	When you make it to the spaceport, you find a message from the Quarg. "Bold human! With profuse thanks we offer you for helping the stranded Korath. The Korath ever mourn the loss of their worlds, and, from time to time, brave their dangers. They salvage what they can among the ruins, and seek out worlds where they may one day live again. For the young, this gives them hope, but sometimes they are caught and the Efreti are reminded why they live crushed together around these few stars."`
 			`	Your communicator notifies you of a payment of <payment>.`
+	npc
+		system "Seketra"
+		fleet "Small Kor Mereti"
+		government "Kor Mereti"
+		to spawn
+			random < 30
+		personality
+			staying
 
 
-mission "Efreti: Distress Call 2"
-	name "Recover the fallen of <EDC-ship>"
-	description "Recover the bodies of the dead <EDC-ship> crew on <stopovers> and return them to <destination>."
+mission "Efreti: Distress Call 3"
+	name "Recover the fallen crew of the <EDC-ship>"
+	description "Recover the bodies of the dead <EDC-ship> crew on <destination> and return them to <origin>."
 	source "Laki Nemparu"
-	stopover "Seleptra Nak"
-	destination "Karek Fornati"
+	destination "Seleptra Nak"
 	landing
 
 	to offer
-		has "Efreti: Distress Call 1: done"
+		has "Efreti: Distress Call 2: done"
 
 	on offer
 		conversation
 			`You are relaxing at a spaceport restaurant now that the evacuation is complete when a delegation of Korath approach you somewhat hesitantly. They are dressed in what appears to be much finer clothing than most of the Korath you have met, certainly nothing you would wear to do work in a spaceport. As they make the traditional gesture of greeting, which you return, you are curious both as to what they want and how they will ask.`
 			`	One of them takes a small case out of a pocket and removes a black device that looks like three triangles hooked together. He hisses at it for a moment and then it rises out of his hand. The air around it begins to shimmer and soon a life size hologram of a Quarg appears.`
-			`	"Salutations, far traveler," the Quarg rumbles. "These Korath-Friends are the princes of the clan-company that you have assisted. They thank you for your aid in saving their children and grandchildren. While most grateful they are for the living, they cannot fully mourn the dead who lie on <stopovers>. They ask me to ask that you travel there and bring their lost ones home to <planet>."`
+			`	"Salutations, far traveler," the Quarg rumbles. "These Korath-Friends are the princes of the clan-company that you have assisted. They thank you for your aid in saving their children and grandchildren. While most grateful they are for the living, they cannot fully mourn the dead who lie on <planet>. They ask me to ask that you travel there and bring their lost ones home to <planet>."`
 			choice
 				`	"I will bring them home."`
 					goto home
@@ -359,8 +381,24 @@ mission "Efreti: Distress Call 2"
 			label title
 			`	The leader turns and speaks to you directly. His eyes never waver from yours even as you wait for the translation. "For many ship skills, parent and child work to learn. For some families, three generations are lost. We will not try to salvage the body box of our kin, for none can bear to fly it. We offer you title to salvage the <EDC-ship> and carry our grief far from here."`
 				accept
+	npc
+		system "Seketra"
+		fleet "Small Kor Mereti"
+		government "Kor Mereti"
+		to spawn
+			random < 30
+		personality
+			staying
 
-	on stopover
+mission "Efreti: Distress Call 4"
+	landing
+	name "Recover the fallen of <EDC-ship>"
+	description "Return the bodies of the dead <EDC-ship> crew to <destination>."
+	source "Seleptra Nak"
+	destination "Karek Fornati"
+	to offer
+		has "Efreti: Distress Call 3: done"
+	on offer
 		conversation
 			`You enter the <EDC-ship> wearing environment suits. It's been several days since the crash and Korath ships run hot. This will be an unpleasant task in the suits and perhaps impossible without them.`
 				to display
@@ -387,7 +425,7 @@ mission "Efreti: Distress Call 2"
 			`	As a precaution, you make a last sweep to move debris, both to assess for repairs later and to make sure you haven't missed anyone, or parts of them. You clean and disinfect as best you can and return to your ship for the trip to <destination>.`
 				to display
 					"flagship crew" <= 1
-
+			branch accept
 	on complete
 		conversation
 			`A crowd pours out of the spaceport when you land. It takes some time for the workers to establish barricades and clear a path so the transports can get to your cargo hold. A team in uniform greets you formally when you open the hatch. You count the coffins together and show them the boxes of possessions.`
@@ -395,8 +433,16 @@ mission "Efreti: Distress Call 2"
 			`	The crowd has been somber, but when the first coffin leaves your ship, they erupt in a cacophony of barking sounds. Some Korath try to rush forward but are held back by others, you presume their family.`
 			`	You go back inside your ship rather than intrude on their grief. You slot the data chip into your systems but the information is in an alien language. You set it aside and work on a salvage plan.`
 			`	As you review your notes on the ship and the number of crew they were carrying, it's clear that you will need to carry at least 66 additional crew that you can communicate with to be able to salvage the <EDC-ship>. The closest system where you can find that many human speakers is on Greenwater in Hai space.`
+	npc
+		system "Seketra"
+		fleet "Small Kor Mereti"
+		government "Kor Mereti"
+		to spawn
+			random < 30
+		personality
+			staying
 
-mission "Efreti: Distress Call 3"
+mission "Efreti: Distress Call 5"
 	name "<EDC-ship> salvage team"
 	description "Hire a <bunks> member salvage team on <destination> to salvage the Efreti ship <EDC-ship>."
 	source "Karek Fornati"
@@ -405,7 +451,7 @@ mission "Efreti: Distress Call 3"
 	passengers 66
 	
 	to offer
-		has "Efreti: Distress Call 2: done"
+		has "Efreti: Distress Call 4: done"
 	
 	on complete
 		conversation
@@ -431,7 +477,7 @@ ship "Charm-Shallop" "Charm-Shallop (Distressed)"
 	gun -16.5 -114.5 "Digger Mining Beam"
 	gun 16.5 -114.5
 
-mission "Efreti: Distress Call 4"
+mission "Efreti: Distress Call 6"
 	name "Salvage the <EDC-ship>"
 	description "Salvage the <EDC-ship> and return it to <planet> to claim rights to it."
 	source "Greenwater"
@@ -441,20 +487,20 @@ mission "Efreti: Distress Call 4"
 	blocked "You need to be able to carry <bunks> additional crew to salvage the ship. Return here when you have sufficient crew capacity."
 
 	to offer
-		has "Efreti: Distress Call 3: done"
+		has "Efreti: Distress Call 5: done"
 
 
-mission "Efreti: Distress Call 4 Ships"
+mission "Efreti: Distress Call 6 Ships"
 	invisible
 	landing
 	source "Greenwater"
 	to offer
-		has "Efreti: Distress Call 3: done"
+		has "Efreti: Distress Call 5: done"
 	to fail
 		or
-			has "Efreti: Distress Call 5: failed"
-			has "Efreti: Distress Call 5: aborted"
-			has "Efreti: Distress Call 5: done"
+			has "Efreti: Distress Call 7: failed"
+			has "Efreti: Distress Call 7: aborted"
+			has "Efreti: Distress Call 7: done"
 	npc kill
 		system "Seketra"
 		fleet "Small Kor Mereti" 2
@@ -463,7 +509,7 @@ mission "Efreti: Distress Call 4 Ships"
 			staying
 
 
-mission "Efreti: Distress Call 5"
+mission "Efreti: Distress Call 7"
 	landing
 	name "Salvage the <EDC-ship>"
 	description "Salvage the <EDC-ship> and return it to <planet> to claim rights to it."
@@ -471,7 +517,7 @@ mission "Efreti: Distress Call 5"
 	destination "Karek Fornati"
 	landing
 	to offer
-		has "Efreti: Distress Call 4: done"
+		has "Efreti: Distress Call 6: done"
 	on offer
 		conversation
 			`Thanks to your engineer's work, the atmosphere on the ship is to human standards, if a bit tropical. Your crew works on repairs and getting familiar with the ship. Its strong hull appears spaceworthy, but your engineer tells you that you have no weapons, shield regeneration or battery. If the Mereti attack, you are a sitting duck.`
@@ -492,7 +538,7 @@ mission "Efreti: Distress Call 5"
 				launch
 
 	on complete
-		fail "Efreti: Distress Call 4 Ships"
+		fail "Efreti: Distress Call 6 Ships"
 		conversation
 			action
 				# Ship name should match the <EDC-ship> substitution above.
@@ -521,13 +567,13 @@ mission "Efreti: Distress Call 5"
 		personality timid escort
 		ship "Charm-Shallop (Distressed)" "Esketari"
 
-mission "Efreti: Distress Call 6"
+mission "Efreti: Distress Call 8"
 	invisible
 	landing
 	source
 		attributes quarg
 	to offer
-		has "Efreti: Distress Call 5: done"
+		has "Efreti: Distress Call 7: done"
 	on offer
 		conversation
 			`The Quarg have translated the Korath language for you in the past. You have a data chip from when you helped the Efret salvage the <EDC-ship>. Would you like to see if the Quarg will tell you what the data chip says?`
