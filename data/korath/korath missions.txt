@@ -58,7 +58,7 @@ mission "Discovered Korath Space"
 		attributes "efret"
 	on offer
 		event "label korath space"
-		log "Factions" "Korath" `The Korath are reptilian, bipedal aliens whose territory is almost entirely in ruins: cities destroyed and entire planets scarred by what appears to have been a vicious civil war. Several factions of Korath survive. The "Kor Efreti" live in the shelter of a Quarg ringworld and are on peaceful terms with the Quarg. Other Korath, living as exiles near the galactic core, have been raiding human worlds to steal food and supplies. And deeper in Korath space, two massive armies of automated war drones, known as the Kor Mereti and the Kor Sestor, are locked in an unending struggle. They attack any visitors to their regi of space, including the Quarg.`
+		log "Factions" "Korath" `The Korath are reptilian, bipedal aliens whose territory is almost entirely in ruins: cities destroyed and entire planets scarred by what appears to have been a vicious civil war. Several factions of Korath survive. The "Kor Efreti" live in the shelter of a Quarg ringworld and are on peaceful terms with the Quarg. Other Korath, living as exiles near the galactic core, have been raiding human worlds to steal food and supplies. And deeper in Korath space, two massive armies of automated war drones, known as the Kor Mereti and the Kor Sestor, are locked in an unending struggle. They attack any visitors to their region of space, including the Quarg.`
 		fail
 
 event "label korath space"
