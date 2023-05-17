@@ -555,21 +555,6 @@ void ShopPanel::CheckForMissions(Mission::Location location)
 		player.HandleBlockedMissions(location, GetUI());
 }
 
-
-
-void ShopPanel::FailSell(bool toStorage) const
-{
-}
-
-
-
-bool ShopPanel::CanSellMultiple() const
-{
-	return true;
-}
-
-
-
 // Helper function for UI buttons to determine if the selected item is
 // already owned. Affects if "Install" is shown for already owned items
 // or if "Buy" is shown for items not yet owned.
@@ -629,16 +614,15 @@ void ShopPanel::ToggleCargo()
 bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	scrollDetailsIntoView = false;
-	bool toStorage = selectedOutfit && (key == 'r' || key == 'u');
 	if(key == 'l' || key == 'd' || key == SDLK_ESCAPE
 			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 	{
 		player.UpdateCargoCapacities();
 		GetUI()->Pop(this);
 	}
-	else if(key == 'b' || key == 'i' || key == 'c')
+	else if(key == 'b' || key == 'i' || key == 'c' || key == 's' || key == 'u')
 	{
-		const auto result = CanBuy(key == 'i' || key == 'c');
+		const auto result = CanTransactionHandle(key);
 		if(!result)
 		{
 			if(result.HasMessage())
@@ -646,19 +630,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		}
 		else
 		{
-			Buy(key == 'i' || key == 'c');
-			player.UpdateCargoCapacities();
-		}
-	}
-	else if(key == 's' || toStorage)
-	{
-		if(!CanSell(toStorage))
-			FailSell(toStorage);
-		else
-		{
-			int modifier = CanSellMultiple() ? Modifier() : 1;
-			for(int i = 0; i < modifier && CanSell(toStorage); ++i)
-				Sell(toStorage);
+			TransactionHandle(key);
 			player.UpdateCargoCapacities();
 		}
 	}

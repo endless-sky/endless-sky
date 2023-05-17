@@ -242,7 +242,7 @@ int ShipyardPanel::DrawDetails(const Point &center)
 
 
 
-ShopPanel::BuyResult ShipyardPanel::CanBuy(bool onlyOwned) const
+ShopPanel::BuyResult ShipyardPanel::CanBuy() const
 {
 	if(!selectedShip)
 		return false;
@@ -285,7 +285,7 @@ ShopPanel::BuyResult ShipyardPanel::CanBuy(bool onlyOwned) const
 
 
 
-void ShipyardPanel::Buy(bool onlyOwned)
+void ShipyardPanel::Buy()
 {
 	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
 	if(licenseCost < 0)
@@ -310,14 +310,14 @@ void ShipyardPanel::Buy(bool onlyOwned)
 
 
 
-bool ShipyardPanel::CanSell(bool toStorage) const
+bool ShipyardPanel::CanSell() const
 {
 	return playerShip;
 }
 
 
 
-void ShipyardPanel::Sell(bool toStorage)
+void ShipyardPanel::Sell()
 {
 	static const int MAX_LIST = 20;
 
@@ -367,6 +367,50 @@ void ShipyardPanel::Sell(bool toStorage)
 bool ShipyardPanel::CanSellMultiple() const
 {
 	return false;
+}
+
+ShopPanel::BuyResult ShipyardPanel::CanTransactionHandle(const char pressed) const
+{
+	switch (pressed)
+	{
+	case 'b':
+	case 'i':
+	case 'c':
+		return CanBuy();
+		/*
+		else
+		{
+			Buy();
+			player.UpdateCargoCapacities();
+		}
+		*/
+	case 's':
+		//if (!CanSell())
+		//	FailSell();
+		// 
+		// Selling ships should never fail, unless there is no ship selected
+		/*
+		int modifier = CanSellMultiple() ? Modifier() : 1;
+		for (int i = 0; i < modifier && CanSell(); ++i)
+			Sell();
+		player.UpdateCargoCapacities();
+		*/
+		return true;
+	default:
+		return false;
+	}
+}
+
+void ShipyardPanel::TransactionHandle(const char pressed)
+{
+	switch (pressed) {
+	case 'b':
+		Buy();
+		break;
+	case 's':
+		Sell();
+		break;
+	}
 }
 
 

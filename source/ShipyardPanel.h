@@ -48,11 +48,13 @@ protected:
 	virtual int DividerOffset() const override;
 	virtual int DetailWidth() const override;
 	virtual int DrawDetails(const Point &center) override;
-	virtual BuyResult CanBuy(bool onlyOwned = false) const override;
-	virtual void Buy(bool onlyOwned = false) override;
-	virtual bool CanSell(bool toStorage = false) const override;
-	virtual void Sell(bool toStorage = false) override;
-	virtual bool CanSellMultiple() const override;
+	virtual BuyResult CanBuy() const;
+	virtual void Buy();
+	virtual bool CanSell() const;
+	virtual void Sell();
+	virtual bool CanSellMultiple() const;
+	virtual BuyResult CanTransactionHandle(const char pressed = 0) const override;
+	virtual void TransactionHandle(const char pressed = 0) override;
 
 
 private:

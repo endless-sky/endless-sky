@@ -89,12 +89,9 @@ protected:
 	virtual int DividerOffset() const = 0;
 	virtual int DetailWidth() const = 0;
 	virtual int DrawDetails(const Point &center) = 0;
-	virtual BuyResult CanBuy(bool onlyOwned = false) const = 0;
-	virtual void Buy(bool onlyOwned = false) = 0;
-	virtual bool CanSell(bool toStorage = false) const = 0;
-	virtual void Sell(bool toStorage = false) = 0;
-	virtual void FailSell(bool toStorage = false) const;
-	virtual bool CanSellMultiple() const;
+	// Handles Buying/Selling within Derived Implementation
+	virtual BuyResult CanTransactionHandle(const char pressed = 0) const;
+	virtual void TransactionHandle(const char pressed = 0);
 	virtual bool IsAlreadyOwned() const;
 	virtual bool ShouldHighlight(const Ship *ship);
 	virtual void DrawKey();
@@ -179,6 +176,9 @@ protected:
 	double selectedTopY = 0.;
 	bool sameSelectedTopY = false;
 	char hoverButton = '\0';
+
+	// Where outfits are going to from
+	char destination = 'i';
 
 	std::vector<Zone> zones;
 	std::vector<ClickZone<std::string>> categoryZones;

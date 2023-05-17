@@ -55,18 +55,19 @@ protected:
 	virtual int DividerOffset() const override;
 	virtual int DetailWidth() const override;
 	virtual int DrawDetails(const Point &center) override;
-	virtual BuyResult CanBuy(bool onlyOwned = false) const override;
-	virtual void Buy(bool onlyOwned = false) override;
-	virtual bool CanSell(bool toStorage = false) const override;
-	virtual void Sell(bool toStorage = false) override;
-	virtual void FailSell(bool toStorage = false) const override;
 	virtual bool ShouldHighlight(const Ship *ship) override;
 	virtual void DrawKey() override;
 	virtual void ToggleForSale() override;
 	virtual void ToggleStorage() override;
 	virtual void ToggleCargo() override;
+	virtual BuyResult CanTransactionHandle(const char pressed = 0) const override;
+	virtual void TransactionHandle(const char pressed = 0) override;
+
+	bool CanSell();
 
 
+	BuyResult CanDestination() const;
+	BuyResult CanSource(const char source) const;
 
 
 private:
