@@ -364,7 +364,7 @@ mission "Efreti: Distress Call 2"
 			`You enter the <EDC-ship> wearing environment suits. It's been several days since the crash and Korath ships run hot. This will be an unpleasant task in the suits and perhaps impossible without them.`
 				to display
 					"flagship crew" > 1
-			`You enter the <EDC-ship> wearing an environment suit. It's been several days since the crash and Korath ships run hot. This will be an unpleasant task in the suits and perhaps impossible without them, especially with no crew helping you.`
+			`You enter the <EDC-ship> wearing an environment suit. It's been several days since the crash and Korath ships run hot. This will be an unpleasant task in the suit and perhaps impossible without it, especially with no crew helping you.`
 				to display
 					"flagship crew" <= 1
 
