@@ -263,7 +263,7 @@ mission "Korath Humanika: Fish Trade (small)"
 		not "Korath Humanika: Fish Trade (small): active"
 		"reputation: Korath" > -3000
 	on stopover
-		dialog "You drop of your <tons> of illicit fish, and receive <tons> of unknown cargo."
+		dialog "You drop off your <tons> of illicit fish, and receive <tons> of unknown cargo."
 	on complete
 		payment 25000 500
 		dialog "An inventory officer meets you to trade your cargo for <payment>."
@@ -288,7 +288,7 @@ mission "Korath Humanika: Fish Trade (medium)"
 		"cargo space" > 20
 		"reputation: Korath" > -3000
 	on stopover
-		dialog "You drop of your <tons> of illicit fish, and receive <tons> of unknown cargo."
+		dialog "You drop off your <tons> of illicit fish, and receive <tons> of unknown cargo."
 	on complete
 		payment 35000 400
 		dialog "An inventory officer meets you to trade your cargo for <payment>."
@@ -299,7 +299,7 @@ mission "Korath Humanika: Fish Trade (bulk)"
 	job
 	repeat
 	description "Take <tons> of fish to <stopovers> and return with <tons> of supplies for <payment>. Avoid getting caught or you may be fined."
-	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
 	cargo "New Tortuga trade" 40 300 0.8
 	illegal 150000
 	deadline 7
@@ -313,7 +313,7 @@ mission "Korath Humanika: Fish Trade (bulk)"
 		"cargo space" > 50
 		"reputation: Korath" > -3000
 	on stopover
-		dialog "You drop of your <tons> of illicit fish, and receive <tons> of unknown cargo."
+		dialog "You drop off your <tons> of illicit fish, and receive <tons> of unknown cargo."
 	on complete
 		payment 45000 350
 		dialog "An inventory officer meets you to trade your cargo for <payment>."
@@ -324,7 +324,7 @@ mission "Korath: Retrieve livestock [0]"
 	job
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unique livestock and return to <planet> for <payment>."
-	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
 	cargo "livestock trade" 1 4 0.8
 	source "La'ab Bamen"
 	stopover
@@ -344,7 +344,7 @@ mission "Korath: Retrieve livestock [1]"
 	job
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of rare livestock and return to <planet> for <payment>."
-	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
 	cargo "livestock trade" 3 10 0.8
 	source "La'ab Bamen"
 	stopover
@@ -364,7 +364,7 @@ mission "Korath: Retrieve livestock [2]"
 	job
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of indigenous livestock and return to <planet> for <payment>."
-	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
 	cargo "livestock trade" 7 25 0.8
 	source "La'ab Bamen"
 	stopover
@@ -385,7 +385,7 @@ mission "Korath: Retrieve livestock [3]"
 	job
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual livestock and return to <planet> for <payment>."
-	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
 	cargo "livestock trade" 16 80 0.8
 	source "La'ab Bamen"
 	stopover
@@ -406,7 +406,7 @@ mission "Korath: Retrieve livestock [4]"
 	job
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual livestock and return to <planet> for <payment>."
-	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
 	cargo "livestock trade" 35 300 0.8
 	source "La'ab Bamen"
 	stopover
@@ -427,7 +427,7 @@ mission "Korath: Retrieve crops [0]"
 	job
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unique crops and return to <planet> for <payment>."
-	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
 	cargo "crops trade" 1 4 0.8
 	source "La'ab Bamen"
 	stopover
@@ -447,7 +447,7 @@ mission "Korath: Retrieve crops [1]"
 	job
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of rare crops and return to <planet> for <payment>."
-	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
 	cargo "crops trade" 3 10 0.8
 	source "La'ab Bamen"
 	stopover
@@ -467,7 +467,7 @@ mission "Korath: Retrieve crops [2]"
 	job
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of indigenous crops and return to <planet> for <payment>."
-	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
 	cargo "crops trade" 7 25 0.8
 	source "La'ab Bamen"
 	stopover
@@ -488,7 +488,7 @@ mission "Korath: Retrieve crops [3]"
 	job
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual crops and return to <planet> for <payment>."
-	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
 	cargo "crops trade" 16 80 0.8
 	source "La'ab Bamen"
 	stopover
@@ -509,7 +509,7 @@ mission "Korath: Retrieve crops [4]"
 	job
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual crops and return to <planet> for <payment>."
-	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
 	cargo "crops trade" 35 300 0.8
 	source "La'ab Bamen"
 	stopover
@@ -530,7 +530,7 @@ mission "Korath: Retrieve fish [0]"
 	job
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unique fish and return to <planet> for <payment>."
-	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
 	cargo "fish trade" 1 4 0.8
 	source "La'ab Bamen"
 	stopover
@@ -550,7 +550,7 @@ mission "Korath: Retrieve fish [1]"
 	job
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of rare fish and return to <planet> for <payment>."
-	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
 	cargo "fish trade" 3 10 0.8
 	source "La'ab Bamen"
 	stopover
@@ -570,7 +570,7 @@ mission "Korath: Retrieve fish [2]"
 	job
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of indigenous fish and return to <planet> for <payment>."
-	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
 	cargo "fish trade" 7 25 0.8
 	source "La'ab Bamen"
 	stopover
@@ -591,7 +591,7 @@ mission "Korath: Retrieve fish [3]"
 	job
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual fish and return to <planet> for <payment>."
-	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
 	cargo "fish trade" 16 80 0.8
 	source "La'ab Bamen"
 	stopover
@@ -612,7 +612,7 @@ mission "Korath: Retrieve fish [4]"
 	job
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual fish and return to <planet> for <payment>."
-	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
 	cargo "fish trade" 35 300 0.8
 	source "La'ab Bamen"
 	stopover
@@ -633,7 +633,7 @@ mission "Korath: Retrieve flora and fauna [0]"
 	job
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unique flora and fauna and return to <planet> for <payment>."
-	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
 	cargo "flora and fauna trade" 1 4 0.8
 	source "La'ab Bamen"
 	stopover
@@ -653,7 +653,7 @@ mission "Korath: Retrieve flora and fauna [1]"
 	job
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of rare flora and fauna and return to <planet> for <payment>."
-	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
 	cargo "flora and fauna trade" 3 10 0.8
 	source "La'ab Bamen"
 	stopover
@@ -673,7 +673,7 @@ mission "Korath: Retrieve flora and fauna [2]"
 	job
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of indigenous flora and fauna and return to <planet> for <payment>."
-	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
 	cargo "flora and fauna trade" 7 25 0.8
 	source "La'ab Bamen"
 	stopover
@@ -694,7 +694,7 @@ mission "Korath: Retrieve flora and fauna [3]"
 	job
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual flora and fauna and return to <planet> for <payment>."
-	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
 	cargo "flora and fauna trade" 16 80 0.8
 	source "La'ab Bamen"
 	stopover
@@ -715,7 +715,7 @@ mission "Korath: Retrieve flora and fauna [4]"
 	job
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual flora and fauna and return to <planet> for <payment>."
-	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
 	cargo "flora and fauna trade" 35 300 0.8
 	source "La'ab Bamen"
 	stopover
@@ -736,7 +736,7 @@ mission "Korath: Retrieve domestic pets [0]"
 	job
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unique domestic pets and return to <planet> for <payment>."
-	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
 	cargo "domestic pets trade" 1 4 0.8
 	source "La'ab Bamen"
 	stopover
@@ -756,7 +756,7 @@ mission "Korath: Retrieve domestic pets [1]"
 	job
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of rare domestic pets and return to <planet> for <payment>."
-	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
 	cargo "domestic pets trade" 3 10 0.8
 	source "La'ab Bamen"
 	stopover
@@ -776,7 +776,7 @@ mission "Korath: Retrieve domestic pets [2]"
 	job
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of indigenous domestic pets and return to <planet> for <payment>."
-	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
 	cargo "domestic pets trade" 7 25 0.8
 	source "La'ab Bamen"
 	stopover
@@ -797,7 +797,7 @@ mission "Korath: Retrieve domestic pets [3]"
 	job
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual domestic pets and return to <planet> for <payment>."
-	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
 	cargo "domestic pets trade" 16 80 0.8
 	source "La'ab Bamen"
 	stopover
@@ -818,7 +818,7 @@ mission "Korath: Retrieve domestic pets [4]"
 	job
 	repeat
 	description "Take <tons> of trade goods to <stopovers> to trade for <tons> of unusual domestic pets and return to <planet> for <payment>."
-	clearance "You read the cargo serial numbers and the authorities give you landing coordinates."
+	clearance "You transmit the cargo serial numbers and the authorities give you landing coordinates."
 	cargo "domestic pets trade" 35 300 0.8
 	source "La'ab Bamen"
 	stopover
