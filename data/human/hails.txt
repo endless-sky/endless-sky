@@ -2123,6 +2123,8 @@ phrase "friendly civilian"
 	word
 		" "
 	word
+		" "
+	word
 		"Find me "
 		"You can get me "
 		"Call me "
