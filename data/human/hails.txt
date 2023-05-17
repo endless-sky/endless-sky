@@ -2083,7 +2083,7 @@ phrase "friendly civilian"
 		"New Holland. It gets too boring there, though, so I fly the stars instead."
 		"Bounty. I bought my first ship when the manufacturing industry started to develop there."
 		
-phrase "pyramid scheme"
+phrase "pyramid_scheme_company"
 	word
 		"Magellan "
 		"Dehydrated "
