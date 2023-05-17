@@ -277,6 +277,7 @@ mission "Efreti: Distress Call 1"
 		not "event: wanderers: kor mereti friendly"
 		has "First Contact: Karek Fornati: offered"
 		random < 30
+		"combat rating" > 250
 		
 	on offer
 		conversation
@@ -324,8 +325,8 @@ mission "Efreti: Distress Call 1"
 
 
 mission "Efreti: Distress Call 2"
-	name "Recover the fallen"
-	description "Recover the bodies of the dead Korath on <stopovers> and return them to <destination>."
+	name "Recover the fallen of <EDC-ship>"
+	description "Recover the bodies of the dead <EDC-ship> crew on <stopovers> and return them to <destination>."
 	source "Laki Nemparu"
 	stopover "Seleptra Nak"
 	destination "Karek Fornati"
@@ -396,8 +397,8 @@ mission "Efreti: Distress Call 2"
 			`	As you review your notes on the ship and the number of crew they were carrying, it's clear that you will need to carry at least 66 additional crew that you can communicate with to be able to salvage the <EDC-ship>. The closest system where you can find that many human speakers is on Greenwater in Hai space.`
 
 mission "Efreti: Distress Call 3"
-	name "Pick up salvage crew"
-	description "Hire crew to salvage Efreti ship."
+	name "<EDC-ship> salvage team"
+	description "Hire a <bunks> member salvage team on <destination> to salvage the Efreti ship <EDC-ship>."
 	source "Karek Fornati"
 	destination "Greenwater"
 	landing
@@ -431,29 +432,43 @@ ship "Charm-Shallop" "Charm-Shallop (Distressed)"
 	gun 16.5 -114.5
 
 mission "Efreti: Distress Call 4"
-	name "Salvage ship"
-	description "Salvage the Korath ship."
+	name "Salvage the <EDC-ship>"
+	description "Salvage the <EDC-ship> and return it to <planet> to claim rights to it."
 	source "Greenwater"
 	destination "Seleptra Nak"
 	landing
 	passengers 66
 	blocked "You need to be able to carry <bunks> additional crew to salvage the ship. Return here when you have sufficient crew capacity."
 
-	npc
+	to offer
+		has "Efreti: Distress Call 3: done"
+
+
+mission "Efreti: Distress Call 4 Ships"
+	name "SHIP MISSION"
+	description "SHIP MISSION"
+	invisible
+	landing
+	source "Greenwater"
+	to offer
+		has "Efreti: Distress Call 3: done"
+	to fail
+		or
+			has "Efreti: Distress Call 5: failed"
+			has "Efreti: Distress Call 5: aborted"
+			has "Efreti: Distress Call 5: done"
+	npc kill
 		system "Seketra"
 		fleet "Small Kor Mereti" 2
 		government "Kor Mereti"
 		personality
 			staying
 
-	to offer
-		has "Efreti: Distress Call 3: done"
-
 
 mission "Efreti: Distress Call 5"
 	landing
-	name "Salvage ship"
-	description "Salvage the Korath ship."
+	name "Salvage the <EDC-ship>"
+	description "Salvage the <EDC-ship> and return it to <planet> to claim rights to it."
 	source "Seleptra Nak"
 	destination "Karek Fornati"
 	landing
@@ -479,6 +494,7 @@ mission "Efreti: Distress Call 5"
 				launch
 
 	on complete
+		fail "Efreti: Distress Call 4 Ships"
 		conversation
 			action
 				# Ship name should match the <EDC-ship> substitution above.
