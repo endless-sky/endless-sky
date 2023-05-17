@@ -319,7 +319,7 @@ mission "Efreti: Distress Call 1"
 		payment 300000
 		conversation
 			`The Efreti commander hails the authorities once you enter the system and they have medical crews waiting when you land. It takes several hours to evacuate the injured as doctors or maybe paramedics swarm over them to triage, treat, and prepare for transport. The three who died during the flight are treated with respect and carried off the <ship>.`
-			`	When you make it to the spaceport, you find a message from the Quarg. "Bold human! With profuse thanks we offer you for helping the stranded Korath. The Korath ever mourn the loss of their worlds, and, from time to time, brave the dangers to seek what they can salvage among the ruins, and to seek out those where they may one day live again. For the young, this gives them hope, but sometimes they are caught and the Efreti are reminded why they live crushed together around these few stars."`
+			`	When you make it to the spaceport, you find a message from the Quarg. "Bold human! With profuse thanks we offer you for helping the stranded Korath. The Korath ever mourn the loss of their worlds, and, from time to time, brave the dangers. They salvage what they can among the ruins, and seek out worlds where they may one day live again. For the young, this gives them hope, but sometimes they are caught and the Efreti are reminded why they live crushed together around these few stars."`
 			`	Your communicator notifies you of a payment of <payment>.`
 
 
