@@ -2164,10 +2164,6 @@ phrase "friendly civilian"
 		"I'd repair it, but I got to pay my mortgage."
 		"Do you know where I could fix it for good?"
 		"I'd love to know how other captains get by without these problems."
-		"What else can you expect from shoddy Syndicated Systems manufacturing?"
-		"I'd repair it, but I got to pay my mortgage."
-		"Do you know where I could fix it for good?"
-		"I'd love to know how other captains get by without these problems."
 		
 phrase "friendly civilian"
 	word
