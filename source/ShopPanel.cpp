@@ -354,9 +354,15 @@ void ShopPanel::DrawButtons()
 		Screen::Right() - SIDEBAR_WIDTH + 10,
 		Screen::Bottom() - 65);
 	font.Draw("You have:", creditsPoint, dim);
-
 	const auto credits = Format::CreditString(player.Accounts().Credits());
 	font.Draw({credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, creditsPoint, bright);
+
+	const Point CargoPoint(
+		Screen::Right() - SIDEBAR_WIDTH + 10,
+		Screen::Bottom() - 65);
+	font.Draw("Cargo Space:", CargoPoint, dim);
+	string space = Format::Number(player.Cargo().Free()) + " / " + Format::Number(player.Cargo().Size());
+	font.Draw({ space, {SIDEBAR_WIDTH - 20, Alignment::RIGHT} }, CargoPoint, bright);
 
 	const Font &bigFont = FontSet::Get(18);
 	const Color &hover = *GameData::Colors().Get("hover");
@@ -573,20 +579,6 @@ bool ShopPanel::ShouldHighlight(const Ship *ship)
 {
 	return (hoverButton == 's');
 }
-
-
-
-void ShopPanel::DrawKey()
-{
-}
-
-
-
-int ShopPanel::VisibilityCheckboxesSize() const
-{
-	return 0;
-}
-
 
 
 void ShopPanel::ToggleForSale()

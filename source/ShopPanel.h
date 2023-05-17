@@ -74,15 +74,15 @@ protected:
 	void DrawShipsSidebar();
 	void DrawDetailsSidebar();
 	void DrawButtons();
+	// Used in DrawButtons to determine button string
+	bool IsAlreadyOwned() const;
 	void DrawMain();
-
 	void DrawShip(const Ship &ship, const Point &center, bool isSelected);
 
 	void CheckForMissions(Mission::Location location);
 
 	// These are for the individual shop panels to override.
 	virtual int TileSize() const = 0;
-	virtual int VisibilityCheckboxesSize() const;
 	virtual int DrawPlayerShipInfo(const Point &point) = 0;
 	virtual bool HasItem(const std::string &name) const = 0;
 	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) = 0;
@@ -90,11 +90,14 @@ protected:
 	virtual int DetailWidth() const = 0;
 	virtual int DrawDetails(const Point &center) = 0;
 	// Handles Buying/Selling within Derived Implementation
-	virtual BuyResult CanTransactionHandle(const char pressed = 0) const;
-	virtual void TransactionHandle(const char pressed = 0);
-	virtual bool IsAlreadyOwned() const;
+	virtual BuyResult CanTransactionHandle(const char pressed = 0) const = 0;
+	virtual void TransactionHandle(const char pressed = 0) = 0;
+	
 	virtual bool ShouldHighlight(const Ship *ship);
-	virtual void DrawKey();
+
+	// Only overrided in Outfitter - not pure virtual
+	virtual int VisibilityCheckboxesSize() const { return 0; };
+	virtual void DrawKey() {};
 	virtual void ToggleForSale();
 	virtual void ToggleStorage();
 	virtual void ToggleCargo();
@@ -134,12 +137,12 @@ protected:
 
 
 protected:
-	static const int SIDEBAR_WIDTH = 250;
-	static const int INFOBAR_WIDTH = 300;
-	static const int SIDE_WIDTH = SIDEBAR_WIDTH + INFOBAR_WIDTH;
-	static const int BUTTON_HEIGHT = 70;
-	static const int SHIP_SIZE = 250;
-	static const int OUTFIT_SIZE = 183;
+	static constexpr int SIDEBAR_WIDTH = 250;
+	static constexpr int INFOBAR_WIDTH = 300;
+	static constexpr int SIDE_WIDTH = SIDEBAR_WIDTH + INFOBAR_WIDTH;
+	static constexpr int BUTTON_HEIGHT = 95; //70 original
+	static constexpr int SHIP_SIZE = 250;
+	static constexpr int OUTFIT_SIZE = 183;
 
 
 protected:
