@@ -58,7 +58,7 @@ mission "Discovered Korath Space"
 		attributes "efret"
 	on offer
 		event "label korath space"
-		log "Factions" "Korath" `The Korath are reptilian, bipedal aliens whose territory is almost entirely in ruins: cities destroyed and entire planets scarred by what appears to have been a vicious civil war. Several factions of Korath survive. The "Kor Efreti" live in the shelter of a Quarg ringworld and are on peaceful terms with the Quarg. Other Korath, living as exiles near the galactic core, have been raiding human worlds to steal food and supplies. And deeper in Korath space, two massive armies of automated war drones, known as the Kor Mereti and the Kor Sestor, are locked in an unending struggle. They attack any visitors to their region of space, including the Quarg.`
+		log "Factions" "Korath" `The Korath are reptilian, bipedal aliens whose territory is almost entirely in ruins: cities destroyed and entire planets scarred by what appears to have been a vicious civil war. Several factions of Korath survive. The "Kor Efreti" live in the shelter of a Quarg ringworld and are on peaceful terms with the Quarg. Other Korath, living as exiles near the galactic core, have been raiding human worlds to steal food and supplies. And deeper in Korath space, two massive armies of automated war drones, known as the Kor Mereti and the Kor Sestor, are locked in an unending struggle. They attack any visitors to their regi of space, including the Quarg.`
 		fail
 
 event "label korath space"
@@ -410,7 +410,7 @@ mission "Efreti: Distress Call 3"
 
 ship "Charm-Shallop" "Charm-Shallop (Distressed)"
 	outfits
-		"Digger Mining Beam" 3
+		"Digger Mining Beam" 2
 		"Fuel Processor"
 		"Generator (Furnace Class)"
 		"Large Heat Shunt"
@@ -422,13 +422,17 @@ ship "Charm-Shallop" "Charm-Shallop (Distressed)"
 		"Thermal Repeater Rifle" 19
 		"Thruster (Lunar Class)"
 		"Warder Anti-Missile"
+	turret 0 -35 "Warder Anti-Missile"
+	turret 0 97
+	gun 0 -118 "Digger Mining Beam"
+	gun -16.5 -114.5 "Digger Mining Beam"
+	gun 16.5 -114.5
 
 mission "Efreti: Distress Call 4"
 	name "Salvage ship"
 	description "Salvage the Korath ship."
 	source "Greenwater"
-	stopover "Seleptra Nak"
-	destination "Karek Fornati"
+	destination "Seleptra Nak"
 	landing
 	passengers 66
 	blocked "You need to be able to carry <bunks> additional crew to salvage the ship. Return here when you have sufficient crew capacity."
@@ -443,7 +447,17 @@ mission "Efreti: Distress Call 4"
 	to offer
 		has "Efreti: Distress Call 3: done"
 
-	on stopover
+
+mission "Efreti: Distress Call 5"
+	landing
+	name "Salvage ship"
+	description "Salvage the Korath ship."
+	source "Seleptra Nak"
+	destination "Karek Fornati"
+	landing
+	to offer
+		has "Efreti: Distress Call 4: done"
+	on offer
 		conversation
 			`Thanks to your engineer's work, the atmosphere on the ship is to human standards, if a bit tropical. Your crew works on repairs and getting familiar with the ship. Its strong hull appears spaceworthy, but your engineer tells you that you have no weapons, shield regeneration or battery. If the Mereti attack, you are a sitting duck.`
 			choice
@@ -459,14 +473,14 @@ mission "Efreti: Distress Call 4"
 				flee
 			
 			label runforit
+			`	You manage to bring up the shields, at least initially, using the <ship>. Your crew on the <EDC-ship> take their stations as you prepare to evade Mereti patrols on your way to <destination>.`
+				launch
+
+	on complete
+		conversation
 			action
 				# Ship name should match the <EDC-ship> substitution above.
 				give ship "Charm-Shallop (Distressed)" "Esketari"
-			`	You manage to bring up the shields, at least initially, using the <ship>. Your crew on the <EDC-ship> take their stations as you prepare to evade Mereti patrols on your way to <destination>.`
-				launch
-	
-	on complete
-		conversation
 			`There are no crowds waiting for you when you land; rather, the ground crews seem astonished to see the ship. It takes you some time to arrange for repairs. By the time you're finished, you see a pavilion has been set up near the <EDC-ship> and small groups of Korath periodically stop by.`
 			choice
 				`	(Check it out.)`
@@ -474,9 +488,15 @@ mission "Efreti: Distress Call 4"
 					decline
 				
 			`	The tent is larger than you expected. At the back there is a group of Korath arranged like a choir, but standing oddly still. A Korath in some kind of robes stands next to a table piled with sweets and cups of some kind of thick drink. As you approach, you realize that the "choir" is made of holograms. You do a quick mental count and guess that these are the Korath that died on the ship; this is probably some type of memorial. The Korath in robes greets you and presses a cup into your hand. The drink is fermented and has a sweet and sour taste that leaves you lips and mouth tingling and then numb. They press the sweets on you so you take them. You see a few groups from the spaceport follow the same ritual, though some of them walk up to the "choir" and say something to them. When you finish the food, you take your leave and return to your ship.`
+	on visit
+		dialog "You arrive, but you notice the <EDC-ship> is absent. You'll have to bring it here to finish the salvage mission."
+	npc save accompany
+		# Ship name should match the <EDC-ship> substitution above.
+		government "Kor Efret"
+		personality timid escort
+		ship "Charm-Shallop (Distressed)" "Esketari"
 
-
-mission "Efreti: Distress Call 5"
+mission "Efreti: Distress Call 6"
 	name "Translate Title"
 	description "Translate the Korath data chip."
 	source "Kuwaru Efreti"
@@ -484,7 +504,7 @@ mission "Efreti: Distress Call 5"
 	landing
 
 	to offer
-		has "Efreti: Distress Call 4: done"
+		has "Efreti: Distress Call 5: done"
 	on offer
 		conversation
 			`The Quarg have translated the Korath language for you in the past. Would you like to see if they will tell you what the data chip says?`
