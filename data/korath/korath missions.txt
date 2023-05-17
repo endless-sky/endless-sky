@@ -306,12 +306,12 @@ mission "Efreti: Distress Call 1"
 		conversation
 			`It takes you some time to find the <EDC-ship>. You had expected a beacon of some sort but they are either keeping radio silence to avoid drawing the Mereti or there were no survivors.`
 			`	When you manage to open the hatch, you find yourself staring down a thermal rifle. The Korath shouts something at you and you hold your hands out palms forward. He limps back a few steps but keeps the weapon trained on you. You slowly pull your communicator out and play your ship's recording of the Quarg transmission. When the Korath hears the Quarg's voice they become excited. "<planet>?" he asks repeatedly. You nod your head and show your palms again.`
-			`	He leads you into the ship, shouting into a communication device that is then picked up on speakers throughout the ship. You can only glance around as you move through the engineering section but it's clear they are running on emergency power and their Systems Core was destroyed leaving them stranded.`
+			`	He leads you into the ship, shouting into a communication device that is then picked up on speakers throughout the ship. You can only glance around as you move through the engineering section but it's clear they are running on emergency power. You notice that their Systems Core was destroyed, leaving them stranded.`
 			`	The living area is a makeshift hospital. You don't see any bodies, but there are far fewer Korath here than you would expect to crew a ship of this size. It's clear that all the surviving crew are injured to some degree with more than half incapacitated or unconscious. Even if the ship is spaceworthy, there aren't enough crew to fly it.`
-			`	You quickly count the number of survivors and communicate to your guide that you can take them all. He mimics your nodding head gesture and shows you his palms and makes quick circles. You think he is agreeing and wants to hurry. You call your crew over to help move the survivors to the <ship>. Within a couple of hours you are ready to go.`
+			`	You quickly count the number of survivors and communicate to your guide that you can take them all. He mimics your nodding head gesture, shows you his palms and makes quick circles. You think he is agreeing and wants to hurry. You call your crew over to help move the survivors to the <ship>. Within a couple of hours you are ready to go.`
 				to display
 					"flagship crew" > 1
-			`	You quickly count the number of survivors and communicate to your guide that you can take them all. He mimics your nodding head gesture and shows you his palms and makes quick circles. You think he is agreeing and wants to hurry. With no crew helping you, it takes several hours to transfer them to <ship>.`
+			`	You quickly count the number of survivors and communicate to your guide that you can take them all. He mimics your nodding head gesture, shows you his palms and makes quick circles. You think he is agreeing and wants to hurry. With no crew helping you, it takes several hours to transfer them to the <ship>.`
 				to display
 					"flagship crew" <= 1
 	
@@ -511,7 +511,7 @@ mission "Efreti: Distress Call 6"
 				`	(Ask the Quarg to translate the data chip.)`
 				`	(Maybe another time.)`
 					defer
-				`	(I really don't care what it says.)`
+				`	(I don't care what it says.)`
 					decline
 			
 			`	You approach one of the Quarg in the spaceport. It stops and acknowledges you but doesn't speak. It pauses for a few moments after you make your request but then holds out its hand. It takes the data chip and slots it into a communicator of some sort. It then nods to itself and hands you back the chip.`
