@@ -418,7 +418,6 @@ ship "Charm-Shallop" "Charm-Shallop (Distressed)"
 		"Scram Drive"
 		"Small Heat Shunt"
 		"Steering (Planetary Class)"
-		"Systems Core (Small)"
 		"Thermal Repeater Rifle" 19
 		"Thruster (Lunar Class)"
 		"Warder Anti-Missile"
