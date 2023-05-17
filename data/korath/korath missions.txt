@@ -527,7 +527,7 @@ mission "Korath [F02]: A Fishy Proposition"
 	on offer
 		conversation
 			`You approach the asteroid and a crater suddenly opens up, revealing a docking bay below. It's large enough to fit entire human space stations, but there are only a few ordinary ships parked below. When you exit your ship, several threatening-looking men in odd uniforms stare you down. They're armed with bright orange rifles whose scorching heat warps the air around them.`
-			`	It is the woman who captures your attention, though, as she steps forward with a warm and open smile on her face.  Strapped over the top of her silky white dress you see two revolvers and a sizable supply of ammo. Beyond that there is a knife on each leg, just above her knee-high combat boots, and you think there's another one between her shoulder-blades. A rainbow lock contrasts her otherwise light blond hair, and matches the rainbow feather on a necklace draped around her neck.`
+			`	It is the woman who captures your attention, though, as she steps forward with a warm and open smile on her face. Strapped over the top of her silky white dress you see two revolvers and a sizable supply of ammo. Beyond that there is a knife on each leg, just above her knee-high combat boots, and you think there's another one between her shoulder-blades. A rainbow lock contrasts her otherwise light blond hair, and matches the rainbow feather on a necklace draped around her neck.`
 			`	She shakes your hand firmly. "My name is Iris." Her glowing smile quickly switches to a look of concern. "We don't like surprises, Captain <last>. I was expecting to see Jenny Jetmaster, but here you are in her stead. Care to explain?"`
 			choice
 				`	(Pull out your gun.)`
