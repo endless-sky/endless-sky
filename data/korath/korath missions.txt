@@ -445,8 +445,6 @@ mission "Efreti: Distress Call 4"
 
 
 mission "Efreti: Distress Call 4 Ships"
-	name "SHIP MISSION"
-	description "SHIP MISSION"
 	invisible
 	landing
 	source "Greenwater"
