@@ -537,7 +537,6 @@ government "Hai (Unfettered)"
 		"Merchant" -.01
 		"Kor Efret" -.01
 		"Shadow" 1
-		"Bounty Hunter that Attacks Hai" -.01
 		"Elenctic Commune" .1
 		"Hai (Unfettered Challenger)" 1
 		"Hai (Unfettered Blue Challenger)" 1
