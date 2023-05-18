@@ -411,7 +411,31 @@ void ShipyardPanel::TransactionHandle(const char pressed)
 
 char ShipyardPanel::CheckButton(int x, int y)
 {
-	return 0;
+	if (x < Screen::Right() - SIDEBAR_WIDTH || y < Screen::Bottom() - BUTTON_HEIGHT)
+		return '\0';
+
+	if (y < Screen::Bottom() - 40 || y >= Screen::Bottom() - 10)
+		return ' ';
+
+	x -= Screen::Right() - SIDEBAR_WIDTH;
+	if (x > 9 && x < 70)
+	{
+		if (!IsAlreadyOwned())
+			return 'b';
+		else
+			return 'i';
+	}
+	else if (x > 89 && x < 150)
+		return 's';
+	else if (x > 169 && x < 240)
+		return 'l';
+
+	return ' ';
+}
+
+void ShipyardPanel::DrawButtons()
+{
+
 }
 
 

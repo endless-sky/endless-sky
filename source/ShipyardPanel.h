@@ -56,6 +56,7 @@ protected:
 	virtual BuyResult CanTransactionHandle(const char pressed = 0) const override;
 	virtual void TransactionHandle(const char pressed = 0) override;
 	virtual char CheckButton(int x, int y) override;
+	virtual void DrawButtons() override;
 
 private:
 	void BuyShip(const std::string &name);
