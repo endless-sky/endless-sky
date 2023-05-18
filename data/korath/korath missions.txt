@@ -690,7 +690,7 @@ mission "Korath [F03]: Rabasot Pa'ah Failed Landings"
 				log "Discovered a creature in a bay on the ocean world of Rabasot Pa'ah with the front half of a whale and the back half of a giant squid. They seem out-of-place, since the planet is almost devoid of macroscopic lifeforms. Perhaps someone is shipping them to the planet?"
 			`On your third attempt, you dodge most of the storms by flying into the atmosphere at an odd angle that keeps you in stable air nearly the whole way. After a long flight through safe atmosphere, you finally reach the bay and land on a durable mesa overlooking it. Extending your ship's artificial gravity field to the surface, you don your suit and walk out. It quickly becomes clear the mesa is artificial: it's a constructed landing pad for a ship of vast scale.`
 			`	This is the perfect location for life, so it's no surprise there are small plants and a few fish in the water. The seas are calmer here than the rest of the planet and an unusual formation in the ionosphere protects this spot from the worst rays of the nova. The dominant land-based lifeform seems to be toothed worms about the size of your arm.`
-			`	The strangest feature is what appears to be slow-moving islands. As one comes closer, its form is more clear: an unholy marriage between a blue whale and a giant squid. On the far end of the mesa, you spy a gravity lift system that looks suitable for lifting such a beast out of the water.`
+			`	The strangest feature is what appears to be slow-moving islands. As one comes closer, its form is more clear: an unholy marriage between a blue whale and a giant squid. On the far end of the mesa, you spy a gravity crane system that looks suitable for carrying such a beast out of the water.`
 				decline
 
 
