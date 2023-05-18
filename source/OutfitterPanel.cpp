@@ -470,8 +470,141 @@ ShopPanel::BuyResult OutfitterPanel::CanTransactionHandle(const char pressed) co
 	return 1; //Go through with transaction
 }
 
-void OutfitterPanel::TransactionHandle(const char pressed)
+void OutfitterPanel::TransactionHandle(const char dest)
 {
+	//special cases
+	// Special case: maps.
+	int mapSize = selectedOutfit->Get("map");
+	if (mapSize)
+	{
+		player.Map(mapSize);
+		player.Accounts().AddCredits(-selectedOutfit->Cost());
+		return;
+	}
+
+	// Special case: licenses.
+	if (IsLicense(selectedOutfit->TrueName()))
+	{
+		player.AddLicense(LicenseRoot(selectedOutfit->TrueName()));
+		player.Accounts().AddCredits(-selectedOutfit->Cost());
+		return;
+	}
+
+	int64_t price = 0;
+	int modifier = Modifier();
+
+	auto handleSource = [&]() {
+		switch (source) {
+		case 's':
+		{
+			//Is the outfit sold here or in stock?
+			//if (!outfitter.Has(selectedOutfit) && player.Stock(selectedOutfit) <= 0)
+			//	return; //break?? failiure
+			/*if (!(player.Stock(selectedOutfit) <= 0))
+				return;*/
+			price = player.StockDepreciation().Value(selectedOutfit, day);
+			player.Accounts().AddCredits(-price);
+			player.AddStock(selectedOutfit, -1);
+			break;
+		}
+		case 'u':
+			//Is the outfit in storage?
+			//if (!player.Storage() || !player.Storage()->Get(selectedOutfit))
+			//	return;
+			player.Storage()->Remove(selectedOutfit);
+			break;
+		case 'c':
+			//Is the outfit in cargo?
+			//if (player.Cargo().Get(selectedOutfit))
+				player.Cargo().Remove(selectedOutfit);
+			break;
+		}
+	};
+	
+	auto handledestination = [&]() {
+		switch (dest)
+		{
+		case 's':
+			price = player.FleetDepreciation().Value(selectedOutfit, day);
+			player.Accounts().AddCredits(price);
+			player.AddStock(selectedOutfit, 1);
+			break;
+		case 'u':
+			player.Storage()->Add(selectedOutfit);
+			break;
+		case 'c':
+			player.Cargo().Add(selectedOutfit);
+			break;
+		}
+	};
+
+	for (int i = 0; i < modifier && CanTransactionHandle(dest); ++i)
+	{
+		//remove from source
+		if (source == 'i') {
+			// Get the ships that have the most of this outfit installed.
+			const vector<Ship*> shipsToOutfit = GetShipsToOutfit();
+
+			if (shipsToOutfit.size() > 0)
+			{
+				for (Ship* ship : shipsToOutfit)
+				{
+					ship->AddOutfit(selectedOutfit, -1);
+					if (selectedOutfit->Get("required crew"))
+						ship->AddCrew(-selectedOutfit->Get("required crew"));
+					ship->Recharge();
+					handledestination();
+					const Outfit* ammo = selectedOutfit->Ammo();
+					if (ammo && ship->OutfitCount(ammo))
+					{
+						// Determine how many of this ammo I must sell to also sell the launcher.
+						int mustSell = 0;
+						for (const pair<const char*, double>& it : ship->Attributes().Attributes())
+							if (it.second < 0.)
+								mustSell = max<int>(mustSell, it.second / ammo->Get(it.first));
+
+						if (mustSell)
+						{
+							ship->AddOutfit(ammo, -mustSell);
+							if (player.Storage(true))
+								mustSell -= player.Storage()->Add(ammo, mustSell);
+							if (mustSell)
+							{
+								int64_t price = player.FleetDepreciation().Value(ammo, day, mustSell);
+								player.Accounts().AddCredits(price);
+								player.AddStock(ammo, mustSell);
+							}
+						}
+					}
+				}
+				return;
+			}
+		}
+		else if (dest == 'i'); // source->install is handled below
+		else 
+			handleSource();
+
+		//add to destination
+		if (source == 'i')
+			break; //uninstalling->dest is handled above
+		else if (dest == 'i') {
+			// Find the ships with the fewest number of these outfits.
+			const vector<Ship*> shipsToOutfit = GetShipsToOutfit(true);
+			for (Ship* ship : shipsToOutfit)
+			{
+				if (!CanTransactionHandle(dest)) //check if we can remove an outfit from the source
+					return;
+				handleSource(); //remove an outfit from the source
+				ship->AddOutfit(selectedOutfit, 1); // add an outfit to a ship
+				int required = selectedOutfit->Get("required crew");
+				if (required && ship->Crew() + required <= static_cast<int>(ship->Attributes().Get("bunks")))
+					ship->AddCrew(required);
+				ship->Recharge();
+			}
+		}
+		else
+			handledestination();
+	}
 }
 
 // Don't let player sell maps or licenses
