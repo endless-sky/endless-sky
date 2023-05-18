@@ -474,12 +474,45 @@ void OutfitterPanel::TransactionHandle(const char pressed)
 {
 }
 
-
+// Don't let player sell maps or licenses
+// If a player tries to store or place a map in cargo, treat it as an install instead!
+ShopPanel::BuyResult OutfitterPanel::CanUniqueOutfits(const char dest) const {
+	switch (dest) {
+	case 's':
+		if (HasLicense(selectedOutfit->TrueName()))
+			return "You cannot sell licenses. Once you obtain one, it is yours permanently.";
+		if (selectedOutfit->Get("map"))
+			return "Maps cannot be sold. Once yours, it is permanently installed.";
+		break;
+	case 'u':
+	case 'c':
+	case 'i':
+		if (HasLicense(selectedOutfit->TrueName()))
+			return "You already have one of these licenses, so there is no reason to install another. "
+			"Once obtained, it is yours permanently.";
+		int mapSize = selectedOutfit->Get("map");
+		if (mapSize > 0 && player.HasMapped(mapSize))
+			return "You have already mapped all the systems shown by this map, "
+			"so there is no reason to install another. Once obtained, it is yours permanently.";
+		break;
+	}
+	return 1; // okay.
+}
 
 ShopPanel::BuyResult OutfitterPanel::CanDestination(const char dest) const
 {
 	if (!planet || !selectedOutfit) // make sure something is selected
 		return false;
+
+	// Check special unique outfits, if you already have them.
+	auto result = CanUniqueOutfits(dest);
+	if (!result)
+		return result;
+
+	// Check that the player has any necessary licenses.
+	int64_t licenseCost = LicenseCost(selectedOutfit);
+	if (licenseCost < 0)
+		return "You cannot buy this outfit, because it requires a license that you don't have.";
 
 	switch (dest) {
 

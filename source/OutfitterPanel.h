@@ -69,6 +69,7 @@ protected:
 	BuyResult CanDestination(const char dest) const;
 	BuyResult CanSource() const;
 
+	BuyResult CanUniqueOutfits(const char dest) const;
 
 private:
 	static bool ShipCanBuy(const Ship *ship, const Outfit *outfit);
