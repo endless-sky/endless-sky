@@ -59,20 +59,20 @@ gamerules
 
 	# Amount of days before a new outfit and ship begin to depreciate.
 	# DEFAULT: 7 (7 days)
-	# ALLOWABLE VALUES: any integer >= 1.
+	# ALLOWABLE VALUES: any integer >= 0.
 	"depreciation grace period" 7
 
 	# First factor of depreciation calculation. The second factor is "depreciation max age" below
 	# This is the Percentage of an ship or outfit value remains per day after the grace period.
 	# The value is then multiplied by previous value on the next day, and repeat.
-	# So this can be calculated by "remaining daily percent" = "daily percent" ^ age - "grace period"
+	# So this can be calculated by "remaining daily percent" = "daily percent" ^ (age - "grace period")
 	# where age is in days. "remaining daily percent" is then multiplied by result from next factor.
 	# DEFAULT: .997 (99.7 percent)
 	# ALLOWABLE VALUES: any value between 0. and 1.
 	"depreciation daily" 0.997
 
 	# Second factor of depreciation calculation.
-	# Maximum day for fully depreciated ship or outfit in percent.
+	# Maximum day for fully depreciated ship or outfit.
 	# This value will automatically include grace period so 1000 days actually means
 	# 1000 days + 7 days where 7 days is the grace period. After addition of grace period
 	# this value is then subtracted by current age of the outfit and divided by max age without grace period
