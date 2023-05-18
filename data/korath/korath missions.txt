@@ -266,7 +266,7 @@ mission "Efreti: Distress Call 1"
 	minor
 	landing
 	name "Distress call from the <EDC-ship>"
-	description "The Quarg have asked you investigate a distress call from the Efreti ship <EDC-ship> which has crashed on <destination>."
+	description "The Quarg have asked you investigate a distress call from the Efreti ship <EDC-ship> which has crashed on <destination> with <bunks> survivors."
 	source "Karek Fornati"
 	destination "Seleptra Nak"
 	passengers 40
