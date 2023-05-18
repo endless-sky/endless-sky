@@ -2133,7 +2133,11 @@ phrase "friendly civilian"
 		"Drop me a line "
 		"Buzz me "
 	word
-		"at ${name}@${pyramid_scheme_company}."
+		"at ${pyramid_scheme_company}. "
+	word
+		"Ask for ${name}."
+		"Tell them ${name} sent you."
+		"Mention my name, ${name}, for a discount on your first order!"
 
 phrase "friendly civilian"
 	word
