@@ -66,8 +66,8 @@ protected:
 	virtual char CheckButton(int x, int y) override;
 	virtual void DrawButtons() override;
 
-	BuyResult CanDestination() const;
-	BuyResult CanSource(const char source) const;
+	BuyResult CanDestination(const char dest) const;
+	BuyResult CanSource() const;
 
 
 private:

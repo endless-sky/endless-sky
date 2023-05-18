@@ -402,7 +402,7 @@ void OutfitterPanel::SwapSource(const char source)
 	}
 	}
 	this->source = source;
-	//Set y thingy?
+	ShopPanel::ChangingSource();
 }
 //
 //void OutfitterPanel::ToggleForSale()
@@ -459,11 +459,11 @@ void OutfitterPanel::SwapSource(const char source)
 
 ShopPanel::BuyResult OutfitterPanel::CanTransactionHandle(const char pressed) const
 {
-	auto result = CanDestination();
+	auto result = CanDestination(pressed);
 	if (!result)
 		return result;
 
-	result = CanSource(pressed);
+	result = CanSource();
 	if (!result)
 		return result;
 
@@ -476,12 +476,12 @@ void OutfitterPanel::TransactionHandle(const char pressed)
 
 
 
-ShopPanel::BuyResult OutfitterPanel::CanDestination() const
+ShopPanel::BuyResult OutfitterPanel::CanDestination(const char dest) const
 {
-	if (!planet || !selectedOutfit)
+	if (!planet || !selectedOutfit) // make sure something is selected
 		return false;
 
-	switch (source) {
+	switch (dest) {
 
 		// Can always sell, provided item can be removed from source
 	case 's':
@@ -568,11 +568,10 @@ ShopPanel::BuyResult OutfitterPanel::CanDestination() const
 	}
 }
 
-ShopPanel::BuyResult OutfitterPanel::CanSource(const char source) const
+ShopPanel::BuyResult OutfitterPanel::CanSource() const
 {
 	switch (source)
-{
-
+	{
 		// Store -> dest
 	case 's':
 	{
@@ -831,9 +830,9 @@ char OutfitterPanel::CheckButton(int x, int y)
 			return 's';
 	}
 	else if (x > 127 && x < 183)
-		return 'u';
-	else if (x > 67 && x < 123)
 		return 'c';
+	else if (x > 67 && x < 123)
+		return 'u';
 	else if (x > 7 && x < 63)
 		return 'l';
 
@@ -881,19 +880,18 @@ void OutfitterPanel::DrawButtons()
 	FillShader::Fill(Center, Point(55, 30), back);
 	const Color* TextColor;
 	bool isPurchasing = true;
-	if (source == 'i')
+	if (source != 's')
 		isPurchasing = false;
-	static string STR = isPurchasing ? "_Install" : "_Sell";
-	static char DEST = isPurchasing ? 'i' : 's';
-	if (CanTransactionHandle(DEST))
+	static string str = isPurchasing ? "_Install" : "_Sell";
+	static char dest = isPurchasing ? 'i' : 's';
+	if (!CanTransactionHandle(dest))
 		TextColor = &inactive;
-	else if (hoverButton == DEST)
+	else if (hoverButton == dest)
 		TextColor = &hover;
 	else
 		TextColor = &active;
-
-	bigFont.Draw(STR,
-		Center - .5 * Point(bigFont.Width(STR), bigFont.Height()),
+	bigFont.Draw(str,
+		Center - .5 * Point(bigFont.Width(str), bigFont.Height()),
 		*TextColor);
 
 	// Cargo Button
