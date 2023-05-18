@@ -668,7 +668,6 @@ government "Humanika (Ship)"
 	"hostile hail" "hostile civilian"
 	"attitude toward"
 		"Korath (Civilian)" .01
-		"Syndicate" -.1
 
 	# These hails are mostly placeholders. Humanika (Ship) pilots are
 	# non-violent smugglers, people persecuted by the Syndicate, and
@@ -1491,6 +1490,7 @@ government "Syndicate"
 		"Pirate (Devil-Run Gang)" -.4
 		"Smuggler (Hai Trafficker)" .3
 		"Korath" -.5
+		"Humanika (Ship)" -.4
 	"bribe" .08
 	"friendly hail" "friendly syndicate"
 	"hostile hail" "hostile syndicate"
