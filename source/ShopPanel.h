@@ -103,7 +103,7 @@ protected:
 	virtual int VisibilityCheckboxesSize() const { return 0; };
 	virtual void DrawKey() {};
 	virtual void ChangingSource() { sameSelectedTopY = true; };
-
+	virtual void SwapSource(const char newSource) {};
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, int clicks) override;

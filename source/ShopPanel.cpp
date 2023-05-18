@@ -535,12 +535,12 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		player.UpdateCargoCapacities();
 		GetUI()->Pop(this);
 	}
-	else if(key == 'b' || key == 'i' || key == 'c' || key == 's' || key == 'u')
+	else if(key == 'i' || key == 'c' || key == 's' || key == 'u')
 	{
 		const auto result = CanTransactionHandle(key);
-		if(!result)
+		if (!result)
 		{
-			if(result.HasMessage())
+			if (result.HasMessage())
 				GetUI()->Push(new Dialog(result.Message()));
 		}
 		else
@@ -548,6 +548,11 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			TransactionHandle(key);
 			player.UpdateCargoCapacities();
 		}
+	}
+	else if (key == 'q' || key == 'w' || key == 'e' || key == 'r') {
+		//remap keys for swapsource
+		key = (key == 'q') ? 's' : (key == 'w' ? 'i' : (key == 'e' ? 'c' : 'u'));
+		SwapSource(key);
 	}
 	else if(key == SDLK_LEFT)
 	{

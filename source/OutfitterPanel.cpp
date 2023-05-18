@@ -655,7 +655,7 @@ ShopPanel::BuyResult OutfitterPanel::CanDestination(const char dest) const
 
 		// Can always store, provided item can be removed from source
 	case 'u':
-		return true;
+		return player.Storage(true);
 
 		// Cargo requires space in the hold
 	case 'c':
@@ -988,17 +988,29 @@ char OutfitterPanel::CheckButton(int x, int y)
 	// Turn x into pixels from Right(), so that it is similar to DrawButtons()
 	x = (x - Screen::Right()) * -1;
 
+	// Install (default) or sell
 	if (x > 187 && x < 243)
 	{
-		if (source == 's')
-			return 'i';
-		else
+		if (source == 'i')
 			return 's';
+		else
+			return 'i';
 	}
-	else if (x > 127 && x < 183)
-		return 'c';
-	else if (x > 67 && x < 123)
-		return 'u';
+	// Cargo (default) or sell
+	else if (x > 127 && x < 183) {
+		if (source == 'c')
+			return 's';
+		else
+			return 'c';
+	}
+	// Store (default) or sell
+	else if (x > 67 && x < 123) {
+		if (source == 'u')
+			return 's';
+		else
+			return 'u';
+	}
+	// Leave
 	else if (x > 7 && x < 63)
 		return 'l';
 
