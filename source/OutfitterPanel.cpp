@@ -134,20 +134,20 @@ int OutfitterPanel::DrawPlayerShipInfo(const Point &point)
 bool OutfitterPanel::HasItem(const string &name) const
 {
 	const Outfit *outfit = GameData::Outfits().Get(name);
-	if(showForSale && (outfitter.Has(outfit) || player.Stock(outfit) > 0))
+	if((outfitter.Has(outfit) || player.Stock(outfit) > 0))
 		return true;
 
-	if(showCargo && player.Cargo().Get(outfit))
+	if(player.Cargo().Get(outfit))
 		return true;
 
-	if(showStorage && player.Storage() && player.Storage()->Get(outfit))
+	if(player.Storage() && player.Storage()->Get(outfit))
 		return true;
 
 	for(const Ship *ship : playerShips)
 		if(ship->OutfitCount(outfit))
 			return true;
 
-	if(showForSale && HasLicense(name))
+	if(HasLicense(name))
 		return true;
 
 	return false;
@@ -353,76 +353,109 @@ void OutfitterPanel::DrawKey()
 	Color color[2] = {*GameData::Colors().Get("medium"), *GameData::Colors().Get("bright")};
 	const Sprite *box[2] = {SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked")};
 
-	Point pos = Screen::BottomLeft() + Point(10., -VisibilityCheckboxesSize() - 20.);
+	Point pos = Screen::BottomLeft() + Point(10., -VisibilityCheckboxesSize() - 40.);
 	Point off = Point(10., -.5 * font.Height());
-	SpriteShader::Draw(box[showForSale], pos);
-	font.Draw("Show outfits for sale", pos + off, color[showForSale]);
-	AddZone(Rectangle(pos + Point(80., 0.), Point(180., 20.)), [this](){ ToggleForSale(); });
+
+	SpriteShader::Draw(box[sourceStore], pos);
+	font.Draw("Purchase from Store", pos + off, color[sourceStore]);
+	AddZone(Rectangle(pos + Point(80., 0.), Point(180., 20.)), [this]() { SwapSource('s'); });
 
 	pos.Y() += 20.;
-	SpriteShader::Draw(box[showCargo], pos);
-	font.Draw("Show outfits in cargo", pos + off, color[showCargo]);
-	AddZone(Rectangle(pos + Point(80., 0.), Point(180., 20.)), [this](){ ToggleCargo(); });
+	SpriteShader::Draw(box[sourceInstall], pos);
+	font.Draw("Uninstall from Ship", pos + off, color[sourceInstall]);
+	AddZone(Rectangle(pos + Point(80., 0.), Point(180., 20.)), [this]() { SwapSource('i'); });
 
 	pos.Y() += 20.;
-	SpriteShader::Draw(box[showStorage], pos);
-	font.Draw("Show outfits in storage", pos + off, color[showStorage]);
-	AddZone(Rectangle(pos + Point(80., 0.), Point(180., 20.)), [this](){ ToggleStorage(); });
+	SpriteShader::Draw(box[sourceCargo], pos);
+	font.Draw("Remove from Cargo", pos + off, color[sourceCargo]);
+	AddZone(Rectangle(pos + Point(80., 0.), Point(180., 20.)), [this](){ SwapSource('c'); });
+
+	pos.Y() += 20.;
+	SpriteShader::Draw(box[sourceStorage], pos);
+	font.Draw("Remove from Storage", pos + off, color[sourceStorage]);
+	AddZone(Rectangle(pos + Point(80., 0.), Point(180., 20.)), [this](){ SwapSource('u'); });
 }
 
-
-
-void OutfitterPanel::ToggleForSale()
+void OutfitterPanel::SwapSource(const char source)
 {
-	showForSale = !showForSale;
-
-	if(selectedOutfit && !HasItem(selectedOutfit->TrueName()))
-	{
-		selectedOutfit = nullptr;
+	sourceStore = false;
+	sourceInstall = false;
+	sourceCargo = false;
+	sourceStorage = false;
+	// Boolean values currently needed for the checkbox sprites, otherwise unnecessary
+	switch (source) {
+	case 's': {
+		sourceStore = true;
+		break;
 	}
-
-	ShopPanel::ToggleForSale();
+	case 'u': {
+		sourceStorage = true;
+		break;
+	}
+	case 'c': {
+		sourceCargo = true;
+		break;
+	}
+	case 'i': {
+		sourceInstall = true;
+		break;
+	}
+	}
+	this->source = source;
+	//Set y thingy?
 }
-
-
-
-void OutfitterPanel::ToggleStorage()
-{
-	showStorage = !showStorage;
-
-	if(selectedOutfit && !HasItem(selectedOutfit->TrueName()))
-	{
-		selectedOutfit = nullptr;
-	}
-
-	ShopPanel::ToggleStorage();
-}
-
-
-
-void OutfitterPanel::ToggleCargo()
-{
-	showCargo = !showCargo;
-
-	if(selectedOutfit && !HasItem(selectedOutfit->TrueName()))
-	{
-		selectedOutfit = nullptr;
-	}
-
-	if(playerShip)
-	{
-		playerShip = nullptr;
-		playerShips.clear();
-	}
-	else
-	{
-		playerShip = player.Flagship();
-		if(playerShip)
-			playerShips.insert(playerShip);
-	}
-
-	ShopPanel::ToggleCargo();
-}
+//
+//void OutfitterPanel::ToggleForSale()
+//{
+//	showForSale = !showForSale;
+//
+//	if(selectedOutfit && !HasItem(selectedOutfit->TrueName()))
+//	{
+//		selectedOutfit = nullptr;
+//	}
+//
+//	ShopPanel::ToggleForSale();
+//}
+//
+//
+//
+//void OutfitterPanel::ToggleStorage()
+//{
+//	showStorage = !showStorage;
+//
+//	if(selectedOutfit && !HasItem(selectedOutfit->TrueName()))
+//	{
+//		selectedOutfit = nullptr;
+//	}
+//
+//	ShopPanel::ToggleStorage();
+//}
+//
+//
+//
+//void OutfitterPanel::ToggleCargo()
+//{
+//	showCargo = !showCargo;
+//
+//	if(selectedOutfit && !HasItem(selectedOutfit->TrueName()))
+//	{
+//		selectedOutfit = nullptr;
+//	}
+//
+//	if(playerShip)
+//	{
+//		playerShip = nullptr;
+//		playerShips.clear();
+//	}
+//	else
+//	{
+//		playerShip = player.Flagship();
+//		if(playerShip)
+//			playerShips.insert(playerShip);
+//	}
+//
+//	ShopPanel::ToggleCargo();
+//}
 
 ShopPanel::BuyResult OutfitterPanel::CanTransactionHandle(const char pressed) const
 {

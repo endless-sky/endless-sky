@@ -57,9 +57,10 @@ protected:
 	virtual int DrawDetails(const Point &center) override;
 	virtual bool ShouldHighlight(const Ship *ship) override;
 	virtual void DrawKey() override;
-	virtual void ToggleForSale() override;
-	virtual void ToggleStorage() override;
-	virtual void ToggleCargo() override;
+	void SwapSource(const char dest);
+	//virtual void ToggleForSale() override;
+	//virtual void ToggleStorage() override;
+	//virtual void ToggleCargo() override;
 	virtual BuyResult CanTransactionHandle(const char pressed = 0) const override;
 	virtual void TransactionHandle(const char pressed = 0) override;
 	virtual char CheckButton(int x, int y) override;
@@ -85,12 +86,16 @@ private:
 private:
 	// Record whether we've checked if the player needs ammo refilled.
 	bool checkedRefill = false;
-	// Allow toggling whether outfits that are for sale are shown.
-	bool showForSale = true;
-	// Allow toggling whether stored outfits are shown.
-	bool showStorage = true;
-	// Allow toggling whether outfits in cargo are shown.
-	bool showCargo = true;
+	//// Allow toggling whether outfits that are for sale are shown.
+	//bool showForSale = true;
+	//// Allow toggling whether stored outfits are shown.
+	//bool showStorage = true;
+	//// Allow toggling whether outfits in cargo are shown.
+	//bool showCargo = true;
+	bool sourceStore = true;
+	bool sourceInstall = false;
+	bool sourceCargo = false;
+	bool sourceStorage = false;
 
 	Sale<Outfit> outfitter;
 

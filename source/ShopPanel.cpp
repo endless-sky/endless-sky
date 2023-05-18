@@ -505,25 +505,25 @@ bool ShopPanel::ShouldHighlight(const Ship *ship)
 	return (hoverButton == 's');
 }
 
-
-void ShopPanel::ToggleForSale()
-{
-	sameSelectedTopY = true;
-}
-
-
-
-void ShopPanel::ToggleStorage()
-{
-	sameSelectedTopY = true;
-}
-
-
-
-void ShopPanel::ToggleCargo()
-{
-	sameSelectedTopY = true;
-}
+//
+//void ShopPanel::ToggleForSale()
+//{
+//	sameSelectedTopY = true;
+//}
+//
+//
+//
+//void ShopPanel::ToggleStorage()
+//{
+//	sameSelectedTopY = true;
+//}
+//
+//
+//
+//void ShopPanel::ToggleCargo()
+//{
+//	sameSelectedTopY = true;
+//}
 
 
 

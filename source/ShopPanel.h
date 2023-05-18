@@ -102,9 +102,7 @@ protected:
 	// Only overrided in Outfitter - not pure virtual
 	virtual int VisibilityCheckboxesSize() const { return 0; };
 	virtual void DrawKey() {};
-	virtual void ToggleForSale();
-	virtual void ToggleStorage();
-	virtual void ToggleCargo();
+	virtual void ChangingSource() {};
 
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
@@ -184,7 +182,7 @@ protected:
 	bool sameSelectedTopY = false;
 	char hoverButton = '\0';
 
-	// Where outfits are coming from (Default Store)
+	// Where outfits are coming from (Default  is Store)
 	char source = 's';
 
 	std::vector<Zone> zones;
