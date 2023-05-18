@@ -328,6 +328,7 @@ mission "Efreti: Distress Call 2"
 				to display
 					"flagship crew" > 1
 				accept
+			# No "to display" is required here due to the "accept" above:
 			`	You quickly count the number of survivors and communicate to your guide that you can take them all. He mimics your nodding head gesture, shows you his palms and makes quick circles. You think he is agreeing and wants to hurry. With no crew helping you, it takes several hours to transfer them to the <ship>.`
 				accept
 	
@@ -352,6 +353,7 @@ mission "Efreti: Distress Call 3"
 	description "Recover the bodies of the dead <EDC-ship> crew on <destination> and return them to <origin>."
 	source "Laki Nemparu"
 	destination "Seleptra Nak"
+	cargo "Efreti coffins" 13
 	landing
 
 	to offer
@@ -396,6 +398,7 @@ mission "Efreti: Distress Call 4"
 	description "Return the bodies of the dead <EDC-ship> crew to <destination>."
 	source "Seleptra Nak"
 	destination "Karek Fornati"
+	cargo "Efreti deceased" 13
 	to offer
 		has "Efreti: Distress Call 3: done"
 	on offer
