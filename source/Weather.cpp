@@ -103,11 +103,11 @@ void Weather::Step(vector<Visual> &visuals, const Point &center)
 	{
 		// Estimate the number of visuals to be generated this frame.
 		// MAYBE: create only a subset of possible effects per frame.
-		int totalAmount = 0;
+		float totalAmount = 0;
 		for(auto &&effect : hazard->EnvironmentalEffects())
 			totalAmount += effect.second;
 		totalAmount *= effectMultiplier;
-		visuals.reserve(visuals.size() + totalAmount);
+		visuals.reserve(visuals.size() + static_cast<int>(totalAmount));
 
 		for(auto &&effect : hazard->EnvironmentalEffects())
 			for(int i = 0; i < effect.second * effectMultiplier; ++i)

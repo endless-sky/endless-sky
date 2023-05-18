@@ -1,0 +1,38 @@
+# Copyright (c) 2014 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+# Conversations shown when launching from a planet with insufficiently equipped ships.
+conversation "flight check: no energy!"
+	scene "scene/engine2"
+	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of the <ship> warming up, you run through a mental checklist. Computers: check. Life support: check.`
+	`	It is all going smoothly until it comes time to fire up your systems for a test run... and you discover that your generator does not produce enough power to power them. You'll have to either install some batteries, or switch to a more powerful generator.`
+	
+conversation "flight check: no thruster!"
+	scene "scene/engine2"
+	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of the <ship> warming up, you run through a mental checklist. Computers: check. Life support: check.`
+	`	It is all going smoothly until it comes time to fire up the thrusters for a test run... and you realize, much to your embarrassment, that you do not have any thrusters installed. Time to head back to the outfitter and fix that!`
+
+conversation "flight check: no steering!"
+	scene "scene/engine"
+	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of the <ship> warming up, you run through a mental checklist. Computers: check. Life support: check.`
+	`	It is all going smoothly until it comes time to fire up the steering engines for a test run... and you realize, much to your embarrassment, that you do not have any steering installed. Time to head back to the outfitter and fix that!`
+	
+conversation "flight check: overheating!"
+	scene "scene/engine"
+	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of the <ship> warming up, you run through a mental checklist. Computers: check. Life support: check.`
+	`	By the time you reach the end of the checklist, it has grown uncomfortably warm. The air smells like ozone and hot metal, and your cameras are showing a plume of steam or smoke escaping from the hull near the engines. If your systems are running this hot while still in the atmosphere, they're likely to overheat the moment you hit hard vacuum. You are going to have to either install cooling systems, or trade out some components for lower-heat alternatives.`
+
+conversation "flight check: insufficient bunks!"
+	scene "scene/engine"
+	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of the <ship> warming up, you run through a mental checklist. Computers: check. Life support: check.`
+	`	But when you reach the end of the checklist, although nothing appears wrong, you have a sneaking suspicion that something isn't right. You go through the checklist again, but the suspicion only grows. You decide to check the specifications of the ship and each of the outfits you have installed and finally find the issue that was scratching at the back of your mind: you've somehow managed to outfit the <ship> to require more crew than it has space for. You are going to have to either install more bunk rooms, or trade out some components that require extra crew, lest the ship come crashing down during takeoff as a result of not having enough crew to man all the necessary systems.`
