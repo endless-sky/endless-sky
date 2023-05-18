@@ -39,6 +39,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SpriteShader.h"
 #include "text/truncate.hpp"
 #include "UI.h"
+#include "FillShader.h"
 
 #include <algorithm>
 
@@ -435,7 +436,69 @@ char ShipyardPanel::CheckButton(int x, int y)
 
 void ShipyardPanel::DrawButtons()
 {
+	// The last 70 pixels on the end of the side panel are for the buttons:
+	Point buttonSize(SIDEBAR_WIDTH, BUTTON_HEIGHT);
+	FillShader::Fill(Screen::BottomRight() - .5 * buttonSize, buttonSize,
+		*GameData::Colors().Get("shop side panel background"));
+	FillShader::Fill(
+		Point(Screen::Right() - SIDEBAR_WIDTH / 2, Screen::Bottom() - BUTTON_HEIGHT),
+		Point(SIDEBAR_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
 
+	const Font& font = FontSet::Get(14);
+	const Color& bright = *GameData::Colors().Get("bright");
+	const Color& dim = *GameData::Colors().Get("medium");
+	const Color& back = *GameData::Colors().Get("panel background");
+
+	const Point creditsPoint(
+		Screen::Right() - SIDEBAR_WIDTH + 10,
+		Screen::Bottom() - 65);
+	font.Draw("You have:", creditsPoint, dim);
+
+	const auto credits = Format::CreditString(player.Accounts().Credits());
+	font.Draw({ credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT} }, creditsPoint, bright);
+
+	const Font& bigFont = FontSet::Get(18);
+	const Color& hover = *GameData::Colors().Get("hover");
+	const Color& active = *GameData::Colors().Get("active");
+	const Color& inactive = *GameData::Colors().Get("inactive");
+
+	const Point buyCenter = Screen::BottomRight() - Point(210, 25);
+	FillShader::Fill(buyCenter, Point(60, 30), back);
+	const Color* buyTextColor;
+	if (!CanBuy())
+		buyTextColor = &inactive;
+	else if (hoverButton == ('b'))
+		buyTextColor = &hover;
+	else
+		buyTextColor = &active;
+	string BUY = "_Buy";
+	bigFont.Draw(BUY,
+		buyCenter - .5 * Point(bigFont.Width(BUY), bigFont.Height()),
+		*buyTextColor);
+
+	const Point sellCenter = Screen::BottomRight() - Point(130, 25);
+	FillShader::Fill(sellCenter, Point(60, 30), back);
+	static const string SELL = "_Sell";
+	bigFont.Draw(SELL,
+		sellCenter - .5 * Point(bigFont.Width(SELL), bigFont.Height()),
+		CanSell() ? hoverButton == 's' ? hover : active : inactive);
+
+	const Point leaveCenter = Screen::BottomRight() - Point(45, 25);
+	FillShader::Fill(leaveCenter, Point(70, 30), back);
+	static const string LEAVE = "_Leave";
+	bigFont.Draw(LEAVE,
+		leaveCenter - .5 * Point(bigFont.Width(LEAVE), bigFont.Height()),
+		hoverButton == 'l' ? hover : active);
+
+	int modifier = Modifier();
+	if (modifier > 1)
+	{
+		string mod = "x " + to_string(modifier);
+		int modWidth = font.Width(mod);
+		font.Draw(mod, buyCenter + Point(-.5 * modWidth, 10.), dim);
+		if (CanSellMultiple())
+			font.Draw(mod, sellCenter + Point(-.5 * modWidth, 10.), dim);
+	}
 }
 
 

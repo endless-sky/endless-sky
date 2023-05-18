@@ -184,8 +184,8 @@ protected:
 	bool sameSelectedTopY = false;
 	char hoverButton = '\0';
 
-	// Where outfits are going to from
-	char source = 'i';
+	// Where outfits are coming from (Default Store)
+	char source = 's';
 
 	std::vector<Zone> zones;
 	std::vector<ClickZone<std::string>> categoryZones;
