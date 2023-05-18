@@ -410,7 +410,7 @@ mission "Efreti: Distress Call 4"
 			`	While your engineer works on refreshing the atmosphere with outside air, the rest of the crew gathers the bodies and places them in the fibrous, vaguely egg-shaped coffins the Korath provided. As you move them to your cargo bay, you find they stack together like a clutch of eggs in a nest.`
 				to display
 					"flagship crew" > 2
-			`	While your crew works on refreshing the atmosphere with outside air, you gather the bodies and places them in the fibrous, vaguely egg-shaped coffins the Korath provided. As you move them to your cargo bay, you find they stack together like a clutch of eggs in a nest.`
+			`	While your crewmate works on refreshing the atmosphere with outside air, you gather the bodies and place them in the fibrous, vaguely egg-shaped coffins the Korath provided. As you move them to your cargo bay, you find they stack together like a clutch of eggs in a nest.`
 				to display
 					"flagship crew" == 2
 			`	One by one, you gather the bodies and place them in the fibrous, vaguely egg-shaped coffins the Korath provided. As you move them to your cargo bay, you find they stack together like a clutch of eggs in a nest. It takes a while to refresh the atmosphere with outside air before the smell is tolerable.`
