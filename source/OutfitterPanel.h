@@ -57,7 +57,7 @@ protected:
 	virtual int DrawDetails(const Point &center) override;
 	virtual bool ShouldHighlight(const Ship *ship) override;
 	virtual void DrawKey() override;
-	void SwapSource(const char dest);
+	void SwapSource(const char newSource);
 	//virtual void ToggleForSale() override;
 	//virtual void ToggleStorage() override;
 	//virtual void ToggleCargo() override;

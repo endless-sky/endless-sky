@@ -376,14 +376,14 @@ void OutfitterPanel::DrawKey()
 	AddZone(Rectangle(pos + Point(80., 0.), Point(180., 20.)), [this](){ SwapSource('u'); });
 }
 
-void OutfitterPanel::SwapSource(const char source)
+void OutfitterPanel::SwapSource(const char newSource)
 {
 	sourceStore = false;
 	sourceInstall = false;
 	sourceCargo = false;
 	sourceStorage = false;
 	// Boolean values currently needed for the checkbox sprites, otherwise unnecessary
-	switch (source) {
+	switch (newSource) {
 	case 's': {
 		sourceStore = true;
 		break;
@@ -401,7 +401,7 @@ void OutfitterPanel::SwapSource(const char source)
 		break;
 	}
 	}
-	this->source = source;
+	ShopPanel::source = newSource;
 	ShopPanel::ChangingSource();
 }
 //
@@ -854,6 +854,7 @@ void OutfitterPanel::DrawButtons()
 	const Color& bright = *GameData::Colors().Get("bright");
 	const Color& dim = *GameData::Colors().Get("medium");
 	const Color& back = *GameData::Colors().Get("panel background");
+	const Color* TextColor;
 
 	const Point creditsPoint(
 		Screen::Right() - SIDEBAR_WIDTH + 10,
@@ -874,41 +875,61 @@ void OutfitterPanel::DrawButtons()
 	const Color& hover = *GameData::Colors().Get("hover");
 	const Color& active = *GameData::Colors().Get("active");
 	const Color& inactive = *GameData::Colors().Get("inactive");
-
-	// Install (default) or Sell buttons
-	const Point Center = Screen::BottomRight() - Point(215, 25);
-	FillShader::Fill(Center, Point(55, 30), back);
-	const Color* TextColor;
-	bool isPurchasing = true;
-	if (source != 's')
-		isPurchasing = false;
-	static string str = isPurchasing ? "_Install" : "_Sell";
-	static char dest = isPurchasing ? 'i' : 's';
-	if (!CanTransactionHandle(dest))
+	
+	// Install (default) or Sell button
+	const Point installCenter = Screen::BottomRight() - Point(215, 25);
+	FillShader::Fill(installCenter, Point(55, 30), back);
+	bool isUninstalling = true;
+	if (source != 'i')
+		isUninstalling = false;
+	string install = isUninstalling ? "_Sell" : "_Install";
+	char b1dest = isUninstalling ? 's' : 'i';
+	if (!CanTransactionHandle(b1dest))
 		TextColor = &inactive;
-	else if (hoverButton == dest)
+	else if (hoverButton == b1dest)
 		TextColor = &hover;
 	else
 		TextColor = &active;
-	bigFont.Draw(str,
-		Center - .5 * Point(bigFont.Width(str), bigFont.Height()),
+	bigFont.Draw(install,
+		installCenter - .5 * Point(bigFont.Width(install), bigFont.Height()),
 		*TextColor);
 
-	// Cargo Button
+	// Cargo (default) or Sell Button
 	const Point cargoCenter = Screen::BottomRight() - Point(155, 25);
 	FillShader::Fill(cargoCenter, Point(55, 30), back);
-	static const string CARGO = "_Cargo";
-	bigFont.Draw(CARGO,
-		cargoCenter - .5 * Point(bigFont.Width(CARGO), bigFont.Height()),
-		CanTransactionHandle('c') ? hoverButton == 'c' ? hover : active : inactive);
+	bool isTakingFromCargo = true;
+	if (source != 'c')
+		isTakingFromCargo = false;
+	string cargo = isTakingFromCargo ? "_Sell" : "_Cargo";
+	char b2dest = isTakingFromCargo ? 's' : 'c';
+	if (!CanTransactionHandle(b2dest))
+		TextColor = &inactive;
+	else if (hoverButton == b2dest)
+		TextColor = &hover;
+	else
+		TextColor = &active;
+	bigFont.Draw(cargo,
+		cargoCenter - .5 * Point(bigFont.Width(cargo), bigFont.Height()),
+		*TextColor);
 
-	// Store Button
+	// Store (default) or Sell Button
 	const Point storeCenter = Screen::BottomRight() - Point(95, 25);
 	FillShader::Fill(storeCenter, Point(55, 30), back);
-	static const string STORE = "Store";
-	bigFont.Draw(STORE,
-		storeCenter - .5 * Point(bigFont.Width(STORE), bigFont.Height()),
-		CanTransactionHandle('u') ? (hoverButton == 'u' ? hover : active) : inactive);
+	bool isTakingFromStorage = true;
+	if (source != 'u')
+		isTakingFromStorage = false;
+	string store = isTakingFromStorage ? "_Sell" : "_Store";
+	char b3dest = isTakingFromStorage ? 's' : 'u';
+	if (!CanTransactionHandle(b3dest))
+		TextColor = &inactive;
+	else if (hoverButton == b3dest)
+		TextColor = &hover;
+	else
+		TextColor = &active;
+	bigFont.Draw(store,
+		storeCenter - .5 * Point(bigFont.Width(store), bigFont.Height()),
+		*TextColor);
+
 
 	// Leave Button
 	const Point leaveCenter = Screen::BottomRight() - Point(35, 25);
@@ -924,7 +945,7 @@ void OutfitterPanel::DrawButtons()
 	{
 		string mod = "x " + to_string(modifier);
 		int modWidth = font.Width(mod);
-		font.Draw(mod, Center + Point(-.5 * modWidth, 10.), dim);
+		font.Draw(mod, installCenter + Point(-.5 * modWidth, 10.), dim);
 		font.Draw(mod, cargoCenter + Point(-.5 * modWidth, 10.), dim);
 		font.Draw(mod, storeCenter + Point(-.5 * modWidth, 10.), dim);
 	}
