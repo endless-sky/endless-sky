@@ -378,21 +378,8 @@ ShopPanel::BuyResult ShipyardPanel::CanTransactionHandle(const char pressed) con
 	case 'i':
 	case 'c':
 		return CanBuy();
-		/*
-		else
-		{
-			Buy();
-			player.UpdateCargoCapacities();
-		}
-		*/
 	case 's':
 		return CanSell();
-		/*
-		int modifier = CanSellMultiple() ? Modifier() : 1;
-		for (int i = 0; i < modifier && CanSell(); ++i)
-			Sell();
-		player.UpdateCargoCapacities();
-		*/
 	default:
 		return false;
 	}
@@ -420,12 +407,7 @@ char ShipyardPanel::CheckButton(int x, int y)
 
 	x -= Screen::Right() - SIDEBAR_WIDTH;
 	if (x > 9 && x < 70)
-	{
-		if (!IsAlreadyOwned())
-			return 'b';
-		else
-			return 'i';
-	}
+		return 'b';
 	else if (x > 89 && x < 150)
 		return 's';
 	else if (x > 169 && x < 240)

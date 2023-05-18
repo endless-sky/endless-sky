@@ -261,8 +261,9 @@ int OutfitterPanel::DrawDetails(const Point &center)
 	int heightOffset = 20;
 
 	if(selectedOutfit)
-	{//(source!='s' && CanTransactionHandle('s'))
-		outfitInfo.Update(*selectedOutfit, player, IsAlreadyOwned(), collapsed.count("description"));
+	{
+		const bool isAlreadyOwned = CanSource('i') || CanSource('c') || CanSource('u');
+		outfitInfo.Update(*selectedOutfit, player, isAlreadyOwned, collapsed.count("description"));
 		selectedItem = selectedOutfit->DisplayName();
 
 		const Sprite *thumbnail = selectedOutfit->Thumbnail();
@@ -463,7 +464,7 @@ ShopPanel::BuyResult OutfitterPanel::CanTransactionHandle(const char pressed) co
 	if (!result)
 		return result;
 
-	result = CanSource();
+	result = CanSource(source);
 	if (!result)
 		return result;
 
@@ -734,7 +735,7 @@ ShopPanel::BuyResult OutfitterPanel::CanDestination(const char dest) const
 	}
 }
 
-ShopPanel::BuyResult OutfitterPanel::CanSource() const
+ShopPanel::BuyResult OutfitterPanel::CanSource(const char source) const
 {
 	switch (source)
 	{

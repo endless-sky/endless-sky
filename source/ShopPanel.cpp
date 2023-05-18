@@ -486,18 +486,6 @@ void ShopPanel::CheckForMissions(Mission::Location location)
 		player.HandleBlockedMissions(location, GetUI());
 }
 
-// Helper function for UI buttons to determine if the selected item is
-// already owned. Affects if "Install" is shown for already owned items
-// or if "Buy" is shown for items not yet owned.
-//
-// If we are buying into cargo, then items in cargo don't count as already
-// owned, but they count as "already installed" in cargo.
-bool ShopPanel::IsAlreadyOwned() const
-{
-	return (playerShip && selectedOutfit && player.Cargo().Get(selectedOutfit))
-		|| (player.Storage() && player.Storage()->Get(selectedOutfit));
-}
-
 
 
 bool ShopPanel::ShouldHighlight(const Ship *ship)

@@ -67,7 +67,7 @@ protected:
 	virtual void DrawButtons() override;
 
 	BuyResult CanDestination(const char dest) const;
-	BuyResult CanSource() const;
+	BuyResult CanSource(const char source) const;
 
 	BuyResult CanUniqueOutfits(const char dest) const;
 

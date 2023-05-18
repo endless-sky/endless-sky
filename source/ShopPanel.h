@@ -73,10 +73,7 @@ protected:
 protected:
 	void DrawShipsSidebar();
 	void DrawDetailsSidebar();
-	// Overrided in derived since differing buttons
 	virtual void DrawButtons() = 0;
-	// Used in DrawButtons to determine button string
-	bool IsAlreadyOwned() const;
 	void DrawMain();
 	void DrawShip(const Ship &ship, const Point &center, bool isSelected);
 
