@@ -557,7 +557,7 @@ mission "Efreti: Distress Call 7"
 			`	Either the Efret don't notice your ruse, or they are too polite to say. They press the sweets on you so you take them. You see a few groups from the spaceport follow the same ritual, though some of them walk up to the "choir" and say something to them. When you finish the food, you take your leave and return to your ship.`
 				goto end
 			label drink
-			`	The drink is fermented and has a sweet and sour taste that leaves you lips and mouth tingling and then numb. They press the sweets on you so you take them. You see a few groups from the spaceport follow the same ritual, though some of them walk up to the "choir" and say something to them. When you finish the food, you take your leave and return to your ship.`
+			`	The drink is fermented and has a sweet and sour taste that leaves your lips and mouth tingling and then numb. They press the sweets on you so you take them. You see a few groups from the spaceport follow the same ritual, though some of them walk up to the "choir" and say something to them. When you finish the food, you take your leave and return to your ship.`
 			label end
 	on visit
 		dialog "You arrive, but you notice the <EDC-ship> is absent. You'll have to bring it here to finish the salvage mission."
