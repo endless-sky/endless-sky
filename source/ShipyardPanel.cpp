@@ -385,17 +385,13 @@ ShopPanel::BuyResult ShipyardPanel::CanTransactionHandle(const char pressed) con
 		}
 		*/
 	case 's':
-		//if (!CanSell())
-		//	FailSell();
-		// 
-		// Selling ships should never fail, unless there is no ship selected
+		return CanSell();
 		/*
 		int modifier = CanSellMultiple() ? Modifier() : 1;
 		for (int i = 0; i < modifier && CanSell(); ++i)
 			Sell();
 		player.UpdateCargoCapacities();
 		*/
-		return true;
 	default:
 		return false;
 	}
@@ -411,6 +407,11 @@ void ShipyardPanel::TransactionHandle(const char pressed)
 		Sell();
 		break;
 	}
+}
+
+char ShipyardPanel::CheckButton(int x, int y)
+{
+	return 0;
 }
 
 
@@ -460,5 +461,5 @@ void ShipyardPanel::SellShip()
 		}
 	if(playerShip)
 		playerShips.insert(playerShip);
-	player.UpdateCargoCapacities();
+	player.UpdateCargoCapacities(); // FIX??
 }

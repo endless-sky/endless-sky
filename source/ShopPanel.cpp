@@ -345,6 +345,7 @@ void ShopPanel::DrawButtons()
 		Point(Screen::Right() - SIDEBAR_WIDTH / 2, Screen::Bottom() - BUTTON_HEIGHT),
 		Point(SIDEBAR_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
 
+	//Text
 	const Font &font = FontSet::Get(14);
 	const Color &bright = *GameData::Colors().Get("bright");
 	const Color &dim = *GameData::Colors().Get("medium");
@@ -352,60 +353,77 @@ void ShopPanel::DrawButtons()
 
 	const Point creditsPoint(
 		Screen::Right() - SIDEBAR_WIDTH + 10,
-		Screen::Bottom() - 65);
+		Screen::Bottom() - 85);
 	font.Draw("You have:", creditsPoint, dim);
 	const auto credits = Format::CreditString(player.Accounts().Credits());
 	font.Draw({credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, creditsPoint, bright);
 
-	const Point CargoPoint(
+	const Point cargoPoint(
 		Screen::Right() - SIDEBAR_WIDTH + 10,
 		Screen::Bottom() - 65);
-	font.Draw("Cargo Space:", CargoPoint, dim);
+	font.Draw("Cargo Space:", cargoPoint, dim);
 	string space = Format::Number(player.Cargo().Free()) + " / " + Format::Number(player.Cargo().Size());
-	font.Draw({ space, {SIDEBAR_WIDTH - 20, Alignment::RIGHT} }, CargoPoint, bright);
+	font.Draw({ space, {SIDEBAR_WIDTH - 20, Alignment::RIGHT} }, cargoPoint, bright);
 
+	//Buttons
 	const Font &bigFont = FontSet::Get(18);
 	const Color &hover = *GameData::Colors().Get("hover");
 	const Color &active = *GameData::Colors().Get("active");
 	const Color &inactive = *GameData::Colors().Get("inactive");
 
-	const Point buyCenter = Screen::BottomRight() - Point(210, 25);
-	FillShader::Fill(buyCenter, Point(60, 30), back);
-	bool isOwned = IsAlreadyOwned();
-	const Color *buyTextColor;
-	if(!CanBuy(isOwned))
-		buyTextColor = &inactive;
-	else if(hoverButton == (isOwned ? 'i' : 'b'))
-		buyTextColor = &hover;
+	// Install (default) or Sell buttons
+	const Point Center = Screen::BottomRight() - Point(215, 25);
+	FillShader::Fill(Center, Point(55, 30), back);
+	const Color *TextColor;
+	bool isPurchasing = true;
+	if (source == 'i')
+		isPurchasing = false;
+	static string STR = isPurchasing ? "_Install" : "_Sell";
+	static char DEST = isPurchasing ? 'i' : 's';
+	if (CanTransactionHandle(DEST))
+		TextColor = &inactive;
+	else if(hoverButton == DEST)
+		TextColor = &hover;
 	else
-		buyTextColor = &active;
-	string BUY = isOwned ? (playerShip ? "_Install" : "_Cargo") : "_Buy";
-	bigFont.Draw(BUY,
-		buyCenter - .5 * Point(bigFont.Width(BUY), bigFont.Height()),
-		*buyTextColor);
+		TextColor = &active;
+	
+	bigFont.Draw(STR,
+		Center - .5 * Point(bigFont.Width(STR), bigFont.Height()),
+		*TextColor);
 
-	const Point sellCenter = Screen::BottomRight() - Point(130, 25);
-	FillShader::Fill(sellCenter, Point(60, 30), back);
-	static const string SELL = "_Sell";
-	bigFont.Draw(SELL,
-		sellCenter - .5 * Point(bigFont.Width(SELL), bigFont.Height()),
-		CanSell() ? hoverButton == 's' ? hover : active : inactive);
+	// Cargo Button
+	const Point cargoCenter = Screen::BottomRight() - Point(155, 25);
+	FillShader::Fill(cargoCenter, Point(55, 30), back);
+	static const string CARGO = "_Cargo";
+	bigFont.Draw(CARGO,
+		cargoCenter - .5 * Point(bigFont.Width(CARGO), bigFont.Height()),
+		CanTransactionHandle('c') ? hoverButton == 'c' ? hover : active : inactive);
 
-	const Point leaveCenter = Screen::BottomRight() - Point(45, 25);
-	FillShader::Fill(leaveCenter, Point(70, 30), back);
+	// Store Button
+	const Point storeCenter = Screen::BottomRight() - Point(95, 25);
+	FillShader::Fill(storeCenter, Point(55, 30), back);
+	static const string STORE = "Store";
+	bigFont.Draw(STORE,
+		storeCenter - .5 * Point(bigFont.Width(STORE), bigFont.Height()),
+		CanTransactionHandle('u') ? (hoverButton == 'u' ? hover : active) : inactive);
+
+	// Leave Button
+	const Point leaveCenter = Screen::BottomRight() - Point(35, 25);
+	FillShader::Fill(leaveCenter, Point(55, 30), back);
 	static const string LEAVE = "_Leave";
 	bigFont.Draw(LEAVE,
 		leaveCenter - .5 * Point(bigFont.Width(LEAVE), bigFont.Height()),
 		hoverButton == 'l' ? hover : active);
 
+	// Modifier Text that appears below Buy & Sell
 	int modifier = Modifier();
 	if(modifier > 1)
 	{
 		string mod = "x " + to_string(modifier);
 		int modWidth = font.Width(mod);
-		font.Draw(mod, buyCenter + Point(-.5 * modWidth, 10.), dim);
-		if(CanSellMultiple())
-			font.Draw(mod, sellCenter + Point(-.5 * modWidth, 10.), dim);
+		font.Draw(mod, Center + Point(-.5 * modWidth, 10.), dim);
+		font.Draw(mod, cargoCenter + Point(-.5 * modWidth, 10.), dim);
+		font.Draw(mod, storeCenter + Point(-.5 * modWidth, 10.), dim);
 	}
 }
 
@@ -1264,32 +1282,4 @@ vector<ShopPanel::Zone>::const_iterator ShopPanel::MainStart() const
 		++start;
 
 	return start;
-}
-
-
-
-// Check if the given point is within the button zone, and if so return the
-// letter of the button (or ' ' if it's not on a button).
-char ShopPanel::CheckButton(int x, int y)
-{
-	if(x < Screen::Right() - SIDEBAR_WIDTH || y < Screen::Bottom() - BUTTON_HEIGHT)
-		return '\0';
-
-	if(y < Screen::Bottom() - 40 || y >= Screen::Bottom() - 10)
-		return ' ';
-
-	x -= Screen::Right() - SIDEBAR_WIDTH;
-	if(x > 9 && x < 70)
-	{
-		if(!IsAlreadyOwned())
-			return 'b';
-		else
-			return 'i';
-	}
-	else if(x > 89 && x < 150)
-		return 's';
-	else if(x > 169 && x < 240)
-		return 'l';
-
-	return ' ';
 }

@@ -260,8 +260,8 @@ int OutfitterPanel::DrawDetails(const Point &center)
 	int heightOffset = 20;
 
 	if(selectedOutfit)
-	{
-		outfitInfo.Update(*selectedOutfit, player, CanSell(), collapsed.count("description"));
+	{//(source!='s' && CanTransactionHandle('s'))
+		outfitInfo.Update(*selectedOutfit, player, IsAlreadyOwned(), collapsed.count("description"));
 		selectedItem = selectedOutfit->DisplayName();
 
 		const Sprite *thumbnail = selectedOutfit->Thumbnail();
@@ -333,10 +333,10 @@ bool OutfitterPanel::ShouldHighlight(const Ship *ship)
 	if(!selectedOutfit)
 		return false;
 
-	if(hoverButton == 'b')
-		return CanBuy() && ShipCanBuy(ship, selectedOutfit);
-	else if(hoverButton == 's')
-		return CanSell() && ShipCanSell(ship, selectedOutfit);
+	//if(hoverButton == 'b')
+	//	return CanBuy() && ShipCanBuy(ship, selectedOutfit);
+	//else if(hoverButton == 's')
+	//	return CanSell() && ShipCanSell(ship, selectedOutfit);
 
 	return false;
 }
@@ -447,7 +447,7 @@ ShopPanel::BuyResult OutfitterPanel::CanDestination() const
 	if (!planet || !selectedOutfit)
 		return false;
 
-	switch (destination) {
+	switch (source) {
 
 		// Can always sell, provided item can be removed from source
 	case 's':
@@ -774,4 +774,34 @@ const vector<Ship *> OutfitterPanel::GetShipsToOutfit(bool isBuy) const
 	}
 
 	return shipsToOutfit;
+}
+
+// Check if the given point is within the button zone, and if so return the
+// letter of the button (or ' ' if it's not on a button).
+char ShopPanel::CheckButton(int x, int y)
+{
+	if (x < Screen::Right() - SIDEBAR_WIDTH || y < Screen::Bottom() - BUTTON_HEIGHT)
+		return '\0';
+
+	if (y < Screen::Bottom() - 40 || y >= Screen::Bottom() - 10)
+		return ' ';
+
+	// Turn x into pixels from Right(), so that it is similar to DrawButtons()
+	x = (x - Screen::Right()) * -1;
+
+	if (x > 187 && x < 243)
+	{
+		if (source == 's')
+			return 'i';
+		else
+			return 's';
+	}
+	else if (x > 127 && x < 183)
+		return 'u';
+	else if (x > 67 && x < 123)
+		return 'c';
+	else if (x > 7 && x < 63)
+		return 'l';
+
+	return ' ';
 }

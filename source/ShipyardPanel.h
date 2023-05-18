@@ -55,7 +55,7 @@ protected:
 	virtual bool CanSellMultiple() const;
 	virtual BuyResult CanTransactionHandle(const char pressed = 0) const override;
 	virtual void TransactionHandle(const char pressed = 0) override;
-
+	virtual char CheckButton(int x, int y) override;
 
 private:
 	void BuyShip(const std::string &name);
