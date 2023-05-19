@@ -301,12 +301,6 @@ mission "Efreti: Distress Call 1"
 			label careless
 			`	The Quarg is silent for some time. Eventually it responds, "Life is rare and precious across the vastness of space. Look about the Korath worlds and see what remains when one cares not what others suffer."`
 				decline
-	npc
-		system "Seketra"
-		fleet "Small Kor Mereti"
-		government "Kor Mereti"
-		personality
-			staying
 
 
 mission "Efreti: Distress Call 2"
