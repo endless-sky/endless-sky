@@ -283,7 +283,7 @@ mission "Efreti: Distress Call 1"
 	on offer
 		conversation
 			`The occasional blue flashes of Quarg ships are nothing new as you travel Efreti space. Usually that is all you see of the enigmatic aliens. Today, however, you receive an urgent hail from one of them as you land.`
-			`	"Salutations Captain of the <ship>. Your most diligent efforts are requested lest many families mourn the dead. An Efreti ship, the <EDC-ship>, was surveying <planet> when surprised by Mereti they were. Their ship crashed on the planet with many dead, and they have asked for help to evacuate."`
+			`	"Salutations, Captain of the <ship>. Victims of uncertain fate need your most diligent efforts, lest many families mourn the dead. Mereti drones waylayed the Efreti ship <EDC-ship> near <planet> ere it could elude. Two score Korath still live, awaiting rescue."`
 			choice
 				`	"I'll go there immediately."`
 					accept
@@ -293,7 +293,7 @@ mission "Efreti: Distress Call 1"
 					goto careless
 			
 			label quarg
-			`	"We vanquished the Mereti, but the <EDC-ship> fell beyond our reach and crashed. Strong armor we need to survive the pressure of a heavy world to help the Korath, while a human would have few problems. You can reach them days before we could return from Kuwaru Efreti."`
+			`	"We vanquished the Mereti, but the <EDC-ship> fell beyond our reach at landfall. Without strong plate, we fare ill on a heavy worlds. A human can reach them days before an expedition from Kuwaru Efreti."`
 			choice
 				`	"I'll go help, then."`
 					accept
@@ -359,7 +359,7 @@ mission "Efreti: Distress Call 3"
 		conversation
 			`A few hours later, you are relaxing at a spaceport restaurant now that the evacuation is complete when a delegation of Korath approach you somewhat hesitantly. They are dressed in what appears to be much finer clothing than most Korath you have met, certainly nothing you would wear to do work in a spaceport. As they make the traditional gesture of greeting, which you return, you are curious both as to what they want and how they will ask.`
 			`	One of them takes a small case out of a pocket and removes a black device that looks like three triangles hooked together. He hisses at it for a moment and it rises out of his hand. The air around it begins to shimmer, followed by the appearance of a life-sized hologram of a Quarg.`
-			`	"Salutations, far traveler," the Quarg rumbles. "These Korath-Friends are the princes of the clan-company that you have assisted. They thank you for your aid in saving their children and grandchildren. While most grateful they are for the living, they cannot fully mourn the dead who lie on <planet>. They request that you travel there and bring their lost ones home to <origin>."`
+			`	"Salutations, far traveler," the Quarg rumbles. "These Korath-Friends are the princes of the clan that you assisted. While grateful for the living, they cannot fully mourn those that lie dead. They beseech you travel back to <planet> and bring their lost ones home to <origin>."`
 			choice
 				`	"I will bring them home."`
 					goto home
