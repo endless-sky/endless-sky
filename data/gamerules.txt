@@ -23,9 +23,8 @@ gamerules
 	# ALLOWABLE VALUES: false, true, 0, 1
 	"universal ramscoop" true
 
-	# Determines how much heat a ship will receive from nearby stars.
-	# This is basically "solar heat" added to every ship, so real value depends on distance
-	# and type of the stars.
+	# Determines how much heat a ship will receive from nearby stars. This is basically
+	# "solar heat" added to every ship, so real value depends on distance and type of the stars.
 	# DEFAULT: .5
 	# ALLOWABLE VALUES: any value >= 0
 	"universal solar heat" .5
