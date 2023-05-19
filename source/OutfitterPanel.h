@@ -65,7 +65,8 @@ protected:
 
 	BuyResult CanDestination(const char dest) const;
 	BuyResult CanSource(const char source) const;
-
+	// Don't let player sell maps or licenses
+	// If a player tries to store or place a map in cargo, treat it as an install instead!
 	BuyResult CanUniqueOutfits(const char dest) const;
 
 private:
@@ -84,6 +85,7 @@ private:
 private:
 	// Record whether we've checked if the player needs ammo refilled.
 	bool checkedRefill = false;
+	// These 4 bools keep track of which box in the outfitter key should be checked
 	bool sourceStore = true;
 	bool sourceInstall = false;
 	bool sourceCargo = false;

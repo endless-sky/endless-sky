@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
+#include "FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -38,7 +39,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SpriteShader.h"
 #include "text/truncate.hpp"
 #include "UI.h"
-#include "FillShader.h"
 
 #include <algorithm>
 #include <limits>
@@ -453,25 +453,15 @@ void OutfitterPanel::TransactionHandle(const char dest)
 		switch (source) {
 		case 's':
 		{
-			//Is the outfit sold here or in stock?
-			//if (!outfitter.Has(selectedOutfit) && player.Stock(selectedOutfit) <= 0)
-			//	return; //break?? failiure
-			/*if (!(player.Stock(selectedOutfit) <= 0))
-				return;*/
 			price = player.StockDepreciation().Value(selectedOutfit, day);
 			player.Accounts().AddCredits(-price);
 			player.AddStock(selectedOutfit, -1);
 			break;
 		}
 		case 'u':
-			//Is the outfit in storage?
-			//if (!player.Storage() || !player.Storage()->Get(selectedOutfit))
-			//	return;
 			player.Storage()->Remove(selectedOutfit);
 			break;
 		case 'c':
-			//Is the outfit in cargo?
-			//if (player.Cargo().Get(selectedOutfit))
 				player.Cargo().Remove(selectedOutfit);
 			break;
 		}
@@ -541,17 +531,17 @@ void OutfitterPanel::TransactionHandle(const char dest)
 			handleSource();
 
 		//add to destination
-		if (source == 'i')
-			break; //uninstalling->dest is handled above
+		if (source == 'i') //uninstalling->dest is handled above, so continue to next iteration
+			continue; 
 		else if (dest == 'i') {
 			// Find the ships with the fewest number of these outfits.
 			const vector<Ship*> shipsToOutfit = GetShipsToOutfit(true);
 			for (Ship* ship : shipsToOutfit)
 			{
-				if (!CanTransactionHandle(dest)) //check if we can remove an outfit from the source
+				if (!CanTransactionHandle(dest))
 					return;
-				handleSource(); //remove an outfit from the source
-				ship->AddOutfit(selectedOutfit, 1); // add an outfit to a ship
+				handleSource();
+				ship->AddOutfit(selectedOutfit, 1);
 				int required = selectedOutfit->Get("required crew");
 				if (required && ship->Crew() + required <= static_cast<int>(ship->Attributes().Get("bunks")))
 					ship->AddCrew(required);
@@ -563,8 +553,6 @@ void OutfitterPanel::TransactionHandle(const char dest)
 	}
 }
 
-// Don't let player sell maps or licenses
-// If a player tries to store or place a map in cargo, treat it as an install instead!
 ShopPanel::BuyResult OutfitterPanel::CanUniqueOutfits(const char dest) const {
 	switch (dest) {
 	case 's':
@@ -585,7 +573,7 @@ ShopPanel::BuyResult OutfitterPanel::CanUniqueOutfits(const char dest) const {
 			"so there is no reason to install another. Once obtained, it is yours permanently.";
 		break;
 	}
-	return 1; // okay.
+	return 1;
 }
 
 ShopPanel::BuyResult OutfitterPanel::CanDestination(const char dest) const

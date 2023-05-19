@@ -178,8 +178,7 @@ protected:
 	double selectedTopY = 0.;
 	bool sameSelectedTopY = false;
 	char hoverButton = '\0';
-
-	// Where outfits are coming from (Default is Store)
+	// Where outfits are being taken from (Default is Store)
 	char source = 's';
 
 	std::vector<Zone> zones;

@@ -519,8 +519,8 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		}
 	}
 	else if (key == 'q' || key == 'w' || key == 'e' || key == 'r') {
-		//remap keys for swapsource
-		key = (key == 'q') ? 's' : (key == 'w' ? 'i' : (key == 'e' ? 'c' : 'u'));
+		//remap keys for swapsource q->s, w->i, etc
+		key = (key == 'q' ? 's' : (key == 'w' ? 'i' : (key == 'e' ? 'c' : 'u')));
 		SwapSource(key);
 	}
 	else if(key == SDLK_LEFT)
