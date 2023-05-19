@@ -609,6 +609,9 @@ ShopPanel::BuyResult OutfitterPanel::CanDestination(const char dest) const
 		// Installing has several conditions
 	case 'i':
 	{
+		// Ensure at least one ship is selected
+		if (!playerShip)
+			return false;
 		// Find if any ship can install the outfit.
 		for (const Ship* ship : playerShips)
 			if (ShipCanBuy(ship, selectedOutfit))
