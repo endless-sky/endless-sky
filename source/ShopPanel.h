@@ -73,7 +73,6 @@ protected:
 protected:
 	void DrawShipsSidebar();
 	void DrawDetailsSidebar();
-	virtual void DrawButtons() = 0;
 	void DrawMain();
 	void DrawShip(const Ship &ship, const Point &center, bool isSelected);
 
@@ -87,20 +86,21 @@ protected:
 	virtual int DividerOffset() const = 0;
 	virtual int DetailWidth() const = 0;
 	virtual int DrawDetails(const Point &center) = 0;
-	// Handles Buying/Selling within Derived Implementation
+	virtual void DrawButtons() = 0;
 	virtual BuyResult CanTransactionHandle(const char pressed = 0) const = 0;
 	virtual void TransactionHandle(const char pressed = 0) = 0;
 	// Check if the given point is within the button zone, and if so return the
 	// letter of the button (or ' ' if it's not on a button).
 	virtual char CheckButton(int x, int y) = 0;
-
 	virtual bool ShouldHighlight(const Ship *ship);
 
-	// Only overrided in Outfitter - not pure virtual
+	// Only overrided in OutfitterPanel
 	virtual int VisibilityCheckboxesSize() const { return 0; };
 	virtual void DrawKey() {};
+	// Called when the source is swapped by SwapSource
 	virtual void ChangingSource() { sameSelectedTopY = true; };
 	virtual void SwapSource(const char newSource) {};
+
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, int clicks) override;

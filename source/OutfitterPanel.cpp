@@ -405,62 +405,18 @@ void OutfitterPanel::SwapSource(const char newSource)
 	ShopPanel::source = newSource;
 	ShopPanel::ChangingSource();
 }
-//
-//void OutfitterPanel::ToggleForSale()
-//{
-//	showForSale = !showForSale;
-//
-//	if(selectedOutfit && !HasItem(selectedOutfit->TrueName()))
-//	{
-//		selectedOutfit = nullptr;
-//	}
-//
-//	ShopPanel::ToggleForSale();
-//}
-//
-//
-//
-//void OutfitterPanel::ToggleStorage()
-//{
-//	showStorage = !showStorage;
-//
-//	if(selectedOutfit && !HasItem(selectedOutfit->TrueName()))
-//	{
-//		selectedOutfit = nullptr;
-//	}
-//
-//	ShopPanel::ToggleStorage();
-//}
-//
-//
-//
-//void OutfitterPanel::ToggleCargo()
-//{
-//	showCargo = !showCargo;
-//
-//	if(selectedOutfit && !HasItem(selectedOutfit->TrueName()))
-//	{
-//		selectedOutfit = nullptr;
-//	}
-//
-//	if(playerShip)
-//	{
-//		playerShip = nullptr;
-//		playerShips.clear();
-//	}
-//	else
-//	{
-//		playerShip = player.Flagship();
-//		if(playerShip)
-//			playerShips.insert(playerShip);
-//	}
-//
-//	ShopPanel::ToggleCargo();
-//}
 
 ShopPanel::BuyResult OutfitterPanel::CanTransactionHandle(const char pressed) const
 {
-	auto result = CanDestination(pressed);
+	if (!planet || !selectedOutfit) // make sure something is selected
+		return false;
+
+	// Check special unique outfits, if you already have them.
+	auto result = CanUniqueOutfits(pressed);
+	if (!result)
+		return result;
+
+	result = CanDestination(pressed);
 	if (!result)
 		return result;
 
@@ -473,7 +429,6 @@ ShopPanel::BuyResult OutfitterPanel::CanTransactionHandle(const char pressed) co
 
 void OutfitterPanel::TransactionHandle(const char dest)
 {
-	//special cases
 	// Special case: maps.
 	int mapSize = selectedOutfit->Get("map");
 	if (mapSize)
@@ -635,13 +590,6 @@ ShopPanel::BuyResult OutfitterPanel::CanUniqueOutfits(const char dest) const {
 
 ShopPanel::BuyResult OutfitterPanel::CanDestination(const char dest) const
 {
-	if (!planet || !selectedOutfit) // make sure something is selected
-		return false;
-
-	// Check special unique outfits, if you already have them.
-	auto result = CanUniqueOutfits(dest);
-	if (!result)
-		return result;
 
 	// Check that the player has any necessary licenses.
 	int64_t licenseCost = LicenseCost(selectedOutfit);
