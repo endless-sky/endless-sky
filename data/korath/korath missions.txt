@@ -582,7 +582,7 @@ mission "Efreti: Distress Call 8"
 					decline
 			
 			`	You approach one of the Quarg in the spaceport. It stops and acknowledges you but doesn't speak. It pauses for a few moments after you make your request but then holds out its hand. It takes the data chip and slots it into a communicator of some sort. It then nods to itself and hands you back the chip.`
-			# The message is translated from Korath, which has no tenses. It was translated by Quarg, who use archaic writing and wording. Hence the odd writing style.
+			# The message is translated from Efreti. Korath languages have no tenses due to their biology. It was translated by Quarg, who use archaic writing and wording. Hence the odd writing style.
 			`	You plug the chip into your own device and see two files: one in the Korath language, one in your own. You open the file in your language, and it reads: "The <EDC-ship> is a ship of grief, bringing great pain in memories that sing for generations. Love is a void in the souls of many. Know all that <first> <last> is a true Efret by heart, if not by skin. The <EDC-ship> is theirs, to save lives and keep memories."`
 			`	You store the chip carefully and return to your ship.`
 
