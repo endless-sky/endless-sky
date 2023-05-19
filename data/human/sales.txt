@@ -108,6 +108,7 @@ shipyard "Advanced Northern Pirates"
 	"Aerie"
 	"Leviathan"
 	"Mule"
+	"Mammoth"
 
 shipyard "Southern Pirates"
 	"Argosy"
