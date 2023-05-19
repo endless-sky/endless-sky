@@ -293,7 +293,7 @@ mission "Efreti: Distress Call 1"
 					goto careless
 			
 			label quarg
-			`	"We vanquished the Mereti, but the <EDC-ship> fell beyond our reach at landfall. Without strong plate, we fare ill on a heavy worlds. A human can reach them days before an expedition from Kuwaru Efreti."`
+			`	"We vanquished the Mereti, but the <EDC-ship> fell beyond our reach at landfall. Without strong plate, we fare ill on a heavy world. A human can reach them days before an expedition from Kuwaru Efreti."`
 			choice
 				`	"I'll go help, then."`
 					accept
@@ -316,10 +316,9 @@ mission "Efreti: Distress Call 2"
 		has "Efreti: Distress Call 1: done"
 	on offer
 		conversation
-			`It takes you some time to find the <EDC-ship>. You had expected a beacon of some sort but they are either keeping radio silence to avoid drawing the Mereti or there were no survivors. When you manage to open the hatch, you find yourself staring down a thermal rifle.`
+			`It takes you some time to find the <EDC-ship>. You had expected a beacon of some sort, but either they are keeping radio silence to avoid drawing the Mereti, or there were no survivors. When you manage to open the hatch, you find yourself staring down a thermal rifle.`
 			`	The Korath shouts something at you, and you hold your hands out with your palms forward. He limps back a few steps, but keeps the weapon trained on you. Slowly pulling a communicator out, you play a recording of the Quarg transmission you received earlier. Once the Korath hears the Quarg's voice, he becomes excited and lowers his rifle. "<planet>?" he asks repeatedly. You nod your head and show your palms again.`
-			`	He leads you into the ship, shouting into a communication device that is then broadcasted on speakers throughout the ship. You can only glance around as you move through the engineering section, but it's clear they are running on emergency power, and several important-looking systems are destroyed.`
-			`	The living area is a makeshift hospital. You don't see any bodies, but there are far fewer Korath here than you would expect to crew a ship of this size. It's clear that all the surviving crew are injured to some degree, while more than half are incapacitated or unconscious. Even if the ship is spaceworthy, there aren't enough crew to fly it.`
+			`	He leads you into the ship, shouting into a communication device that is then broadcasted on speakers throughout the vessel. You can only glance around as you move through the engineering section, but it's clear they are running on emergency power, and several important-looking systems are destroyed. The living area is a makeshift hospital. You don't see any bodies, but there are far fewer Korath here than you would expect to crew a ship of this size. It's clear that all the surviving crew are injured to some degree, while more than half are incapacitated or unconscious. Even if the ship is spaceworthy, there aren't enough crew to fly it.`
 			`	Quickly count the number of survivors, you communicate to your guide that you can take them all. He mimics your nodding head gesture, shows you his palms, and makes quick circles. You think he is agreeing and wants to hurry. Calling your crew over to help, the survivors are moved onboard the <ship>. Within a couple of hours you are ready to go.`
 				to display
 					"flagship crew" > 1
@@ -331,7 +330,7 @@ mission "Efreti: Distress Call 2"
 	on complete
 		payment 300000
 		conversation
-			`Medical crews await you once you land, and it takes several hours to evacuate the injured. Doctors or maybe paramedics swarm over them to triage, treat, and prepare them for transport. Three who died during the flight are treated with respect and carried off the <ship>.`
+			`Medical crews await you once you land, and it takes several hours to evacuate the injured. Doctors, or maybe paramedics, swarm over them to triage, treat, and prepare them for transport. Three who died during the flight are treated with respect and carried off the <ship>.`
 			`	When you make it to the spaceport, you find a message from the Quarg. "Bold human! With profuse thanks we offer you for helping the stranded Korath. The Korath ever mourn the loss of their worlds, and, from time to time, brave their dangers. They salvage what they can among the ruins, and seek out worlds where they may one day live again. For the young, this gives them hope, but sometimes they are caught, and the Efreti are reminded why they live crushed together around these few stars."`
 			`	Your communicator notifies you of a payment of <payment>.`
 	npc
@@ -427,7 +426,7 @@ mission "Efreti: Distress Call 4"
 			branch accept
 	on complete
 		conversation
-			`A crowd pours out of the spaceport when you land. It takes some time for the workers to establish barricades and clear a path so the transports can get to your cargo hold. A team in uniform greets you formally when you open the hatch, and you count the coffins together with then, then show them the boxes of possessions. An officer thanks you and hands you a data chip that vaguely reminds you of a license.`
+			`A crowd pours out of the spaceport when you land. It takes some time for the workers to establish barricades and clear a path so the transports can get to your cargo hold. A team in uniform greets you formally when you open the hatch, and you count the coffins together with them. Afterwards, you show them the boxes of possessions, which they handle with care. An officer thanks you and hands you a data chip that vaguely reminds you of a license.`
 			`	The crowd has been somber, but when the first coffin leaves your ship, they erupt in a cacophony of barking sounds. Some Korath try to rush forward but are held back by others, presumably their family.`
 			`	Rather than intrude on their grief, you return to your ship, slotting the data chip you received into your systems. Unfortunately, the information is in an alien language, so you set it aside and work on a plan to salvage the <EDC-ship>. Gathering some notes on the ship and the number of crew they were carrying, it's clear that you will need to carry at least 66 additional crew that you can communicate with to be able to salvage it. The closest system that comes to mind with many human speakers is on Greenwater, in Hai space.`
 	npc
@@ -517,11 +516,11 @@ mission "Efreti: Distress Call 7"
 		has "Efreti: Distress Call 6: done"
 	on offer
 		conversation
-			`Thanks to your engineer's work, the atmosphere on the ship is to human standards, if a bit tropical. Your crew works on repairs and getting familiar with the ship. Its strong hull appears spaceworthy, but your engineer tells you that you have no weapons, shield regeneration or battery. If the Mereti attack, you are a sitting duck.`
+			`Thanks to the work of your crew, the atmosphere on the ship is brought to human standards, if a bit tropical. As the salvage continues, you and your crew start to become familiar with the ship. Its strong hull appears spaceworthy, but the ship has barely any weapons, the battery systems are beyond repair, and shield regeneration is impossible. If the Mereti attack, the <EDC-ship> won't be able to survive long.`
 			choice
-				`	(Fly the <EDC-ship> home)`
+				`	(Fly the <EDC-ship> home.)`
 					goto runforit
-				`	(Abandon the ship)`
+				`	(Abandon the ship.)`
 					goto abandon
 			
 			label abandon
@@ -540,7 +539,7 @@ mission "Efreti: Distress Call 7"
 			action
 				# Ship name should match the <EDC-ship> substitution above.
 				give ship "Charm-Shallop (Distressed)" "Esketari"
-			`There are no crowds waiting for you when you land; rather, the ground crews seem astonished to see the ship. It takes you some time to arrange for repairs. By the time you're finished, you see a pavilion has been set up near the <EDC-ship> and small groups of Korath periodically stop by.`
+			`This time, there are no crowds waiting for you when you land; rather, the ground crews seem astonished to see the ship. It takes you some time to arrange for additional repairs, but by the time you're finished, a pavilion has been set up near the <EDC-ship>, and small groups of Korath periodically stop by.`
 			choice
 				`	(Check it out.)`
 				`	(I've got places to be.)`
@@ -554,7 +553,7 @@ mission "Efreti: Distress Call 7"
 			`	Either the Efret don't notice your ruse, or they are too polite to say. They press the sweets on you so you take them. You see a few groups from the spaceport follow the same ritual, though some of them walk up to the "choir" and say something to them. When you finish the food, you take your leave and return to your ship.`
 				goto end
 			label drink
-			`	The drink is fermented and has a sweet and sour taste that leaves your lips and mouth tingling and then numb. They press the sweets on you so you take them. You see a few groups from the spaceport follow the same ritual, though some of them walk up to the "choir" and say something to them. When you finish the food, you take your leave and return to your ship.`
+			`	The drink is fermented, and has a sweet and sour taste that leaves your lips and mouth tingling, eventually numbing them. The Korath then presses the sweets on you, and you humbly accept them. A few groups from the spaceport follow the same ritual, though some of them walk up to the "choir" and say something to them. When you finish the food, you take your leave and return to your ship.`
 			label end
 	on visit
 		dialog "You arrive, but you notice the <EDC-ship> is absent. You'll have to bring it here to finish the salvage mission."
@@ -573,7 +572,7 @@ mission "Efreti: Distress Call 8"
 		has "Efreti: Distress Call 7: done"
 	on offer
 		conversation
-			`The Quarg have translated the Korath language for you in the past. You have a data chip from when you helped the Efret salvage the <EDC-ship>. Would you like to see if the Quarg will tell you what the data chip says?`
+			`The Quarg have translated the Korath language for you in the past. You have the data chip from when you helped the Efret salvage the <EDC-ship>. Would you like to see if the Quarg can tell you what the data chip says?`
 			choice
 				`	(Ask the Quarg to translate the data chip.)`
 				`	(Maybe another time.)`
@@ -581,8 +580,8 @@ mission "Efreti: Distress Call 8"
 				`	(I don't care what it says.)`
 					decline
 			
-			`	You approach one of the Quarg in the spaceport. It stops and acknowledges you but doesn't speak. It pauses for a few moments after you make your request but then holds out its hand. It takes the data chip and slots it into a communicator of some sort. It then nods to itself and hands you back the chip.`
+			`	You approach one of the Quarg in the spaceport and request assistance with the data chip. It stops and acknowledges you, but doesn't speak. It pauses for a few moments after you make your request, but then holds out its hand. Taking the data chip, it slots it into a communicator of some sort, slowly nods to itself, and hands it back to you.`
 			# The message is translated from Efreti. Korath languages have no tenses due to their biology. It was translated by Quarg, who use archaic writing and wording. Hence the odd writing style.
-			`	You plug the chip into your own device and see two files: one in the Korath language, one in your own. You open the file in your language, and it reads: "The <EDC-ship> is a ship of grief, bringing great pain in memories that sing for generations. Love is a void in the souls of many. Know all that <first> <last> is a true Efret by heart, if not by skin. The <EDC-ship> is theirs, to save lives and keep memories."`
-			`	You store the chip carefully and return to your ship.`
+			`	You return to your ship and try plugging the chip into your systems again, which now displays two files: one in the Korath language, and one in your own. You open the file in your language, and it reads: "The <EDC-ship> is a ship of grief, bringing great pain in memories that sing for generations. Love is a void in the souls of many. Know all that <first> <last> is a true Efret by heart, if not by skin. The <EDC-ship> is theirs, to save lives and keep memories."`
+			`	You carefully store the chip in a safe place.`
 
