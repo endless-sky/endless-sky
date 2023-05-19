@@ -3394,7 +3394,10 @@ mission "Pirate Duel"
 		not "ships: Medium Warship"
 		not "ships: Heavy Warship"
 		not "ships: Heavy Freighter"
-		"ships: Light Warship" + "ships: Light Freighter" + "ships: Transport" + "ships: Interceptor" == 1
+		not "ships: Space Liner"
+		not "ships: Utility"
+		not "ships: Superheavy"
+		"ships: Light Warship" + "ships: Light Freighter" + "ships: Transport" + "ships: Interceptor" + "ships: Fighter" + "ships: Drone" == 1
 	
 	on offer
 		conversation
