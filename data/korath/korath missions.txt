@@ -275,6 +275,7 @@ mission "Efreti: Distress Call 1"
 	to offer
 		not "event: wanderers: kor mereti friendly"
 		has "First Contact: Karek Fornati: offered"
+		has "First Contact: Hai: declined"
 		random < 30
 		"combat rating" > 250
 		
@@ -314,7 +315,7 @@ mission "Efreti: Distress Call 2"
 		has "Efreti: Distress Call 1: done"
 	on offer
 		conversation
-			`It takes you some time to find the <EDC-ship>. You had expected a beacon of some sort but they are either keeping radio silence to avoid drawing the Mereti or there were no survivors. When you manage to open the hatch, you find yourself staring down a thermal rifle. 
+			`It takes you some time to find the <EDC-ship>. You had expected a beacon of some sort but they are either keeping radio silence to avoid drawing the Mereti or there were no survivors. When you manage to open the hatch, you find yourself staring down a thermal rifle.`
 			`	The Korath shouts something at you, and you hold your hands out with your palms forward. He limps back a few steps, but keeps the weapon trained on you. Slowly pulling a communicator out, you play a recording of the Quarg transmission you received earlier. Once the Korath hears the Quarg's voice, he becomes excited and lowers his rifle. "<planet>?" he asks repeatedly. You nod your head and show your palms again.`
 			`	He leads you into the ship, shouting into a communication device that is then broadcasted on speakers throughout the ship. You can only glance around as you move through the engineering section, but it's clear they are running on emergency power, and several important-looking systems are destroyed.`
 			`	The living area is a makeshift hospital. You don't see any bodies, but there are far fewer Korath here than you would expect to crew a ship of this size. It's clear that all the surviving crew are injured to some degree, while more than half are incapacitated or unconscious. Even if the ship is spaceworthy, there aren't enough crew to fly it.`
