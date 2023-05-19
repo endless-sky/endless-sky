@@ -41,7 +41,7 @@ mission "First Contact: Wanderer"
 	to complete
 		or
 			has "Wanderers: Diplomacy: offered"
-			has "Wanderers: Diplomacy (Before Hai Reveal): offered"
+			has "Wanderers Diplomacy (Before Hai Reveal): offered"
 	on offer
 		log "Discovered a birdlike alien species to the north of human space. They appear to speak the Hai language in addition to their own, so with the help of a Hai interpreter it might be possible to communicate with them."
 		conversation
@@ -234,6 +234,8 @@ mission "Wanderers: Diplomacy Delayed"
 			label chaos
 			action
 				set "Hai professor is available."
+				log `The Hai government refused to provide an interpreter for the aliens to the north due to inconvenient timing. They referred to the aliens as "troubled avians" and seemed annoyed by the request.`
+				log `Asked many other Hai for an interpreter. Eventually, a professor agreed to seek an interpreter among her colleagues. It sounds promising; I'll have to wait for a response.`
 			`	"Until the chaos in human space and at home has ended, we cannot send an ambassador. I will let you know if that changes."`
 			`	You return to your ship and fly back to the main spaceport. Not to be deterred, you ask around various universities, officials, street performers, and anyone else who will listen. Nobody is willing to translate for you. Finally, a spark of hope: one professor agrees to ask their colleagues and let you know if someone is willing to volunteer.`
 				accept
@@ -280,6 +282,7 @@ mission "Wanderers: Professor Available"
 		not "Wanderers: Diplomacy: accepted"
 		not "Wanderers: Diplomacy: done"
 	on offer
+		log `Professor Andelena in the Department of Skiourology at Mongongo University has sent me a message asking for transport services on her expedition. This may be an opportunity to get an interpreter for the aliens to the north.`
 		conversation
 			`Your ship's terminal bleats out a pinging noise, accompanied by a message from a university on <planet>. "Professor Andelena in the Department of Skiourology at Mongongo University awaits your transport services on her expedition." This may be the interpreter you've been waiting for.`
 				accept
@@ -378,6 +381,7 @@ mission "Wanderers: Intercepted"
 		log "Professor Andelena and her grad student have attracted the attention of Hai authorities. It seems the pair are no longer available to act as interpreters."
 	on accept
 		log "The Hai arrested Professor Andelena's grad student Eenap for being an Unfettered agent me. She tried to transmit details about myself and my ship to the Unfettered. It seems the pair are no longer able to act as interpreters."
+		log "Piqued a Hai intelligence officer's curiosity about why the Unfettered are pestering the aliens to the north. She agreed to ask her superiors about getting an interpreter for an investigation."
 
 event "Wanderers: Alternative Hai Diplomat Available"
 
@@ -399,7 +403,8 @@ mission "Wanderers Diplomacy: Alternative Hai Diplomat Available"
 
 
 
-mission "Wanderers Diplomacy (Before Hai Reveal)"
+mission "Wanderers: Diplomacy (Before Hai Reveal)"
+	name "Wanderers Diplomacy"
 	description "Travel to the Wanderer homeworld with a Hai ambassador who can help communicate with them."
 	landing
 	source "Hai-home"
@@ -490,16 +495,17 @@ conversation "Hai Diplomat Intro"
 		goto "let's go"
 
 	label "let's go"
-	`	"Excellent! I will await you in your ship."`
 	action
 		event "Wanderers after Hai Reveal"
 		fail "First Contact: Wanderer"
+	`	"Excellent! I will await you in your ship."`
+		accept
 
 	label "Alternative Ambassador"
 	action
 		log "People" "Irayas Payaana" `A Hai ambassador who made first contact with the Syndicate and "other hostile human groups." Sayari, the head of the Hai diplomatic corps, chose her as the Hai ambassador to the aliens to the north of Hai space.`
 		log "People" "Sayari" `The head of the Hai diplomatic corps who hand-picked Irayas Payaana as the Hai representative to the aliens north of Hai space. Her diplomatic corps believes you have "a lot of potential... and a jump drive."`
-		log `The Hai chose an ambassador, Irayas, to represent them in the dispute with the aliens to the north. Apparently the Hai Elders have known about the conflict for a while, but were stalling their involvement while they dealt with matters closer to home. Searching for an interpreter has stirred up trouble, forcing the Elders to send a diplomat before they were ready.`
+		log `The Hai chose an ambassador, Irayas, to represent them in the dispute with the aliens to the north. Apparently the Hai Elders have known about the conflict for a while. They were stalling their involvement while they dealt with matters closer to home. Searching for an interpreter has stirred up trouble, forcing the Elders to send a diplomat before they were ready.`
 
 	`As you are approaching Hai-home, you contact the Hai government and inform them you are ready to receive an ambassador to the aliens to the north. They direct you to the same hangar as before. A serious-looking Hai woman in a military uniform meets you and leads you into a secure underground base.`
 	`	Along the way, through bulkheads and security checkpoints, she explains the situation. "You have stirred up a lot of unnecessary trouble. We were delaying our attention to the northern problem until our issues near home were settled. Now, thanks to you, we have threats on a second front and the Unfettered are watching our intelligence efforts closely. You've compounded our internal problems and added new external ones."`
@@ -525,10 +531,11 @@ conversation "Hai Diplomat Intro"
 		`	"I'm getting too old for this sort of thing. You can find someone else."`
 			decline
 	label understanding
-	`	"That we do, Captain <last>. I will await you in your ship."`
 	action
 		event "Wanderers before Hai Reveal"
 		fail "First Contact: Wanderer"
+	`	"That we do, Captain <last>. I will await you in your ship."`
+		accept
 
 event "Wanderers before Hai Reveal"
 event "Wanderers after Hai Reveal"
@@ -619,7 +626,7 @@ mission "Wanderers: Algorithm Training Data"
 		conversation
 			`A Wanderer meets you after you land and you hand them the data card. They plug it into what looks like a fat data pad with several different types of data card slots. The Wanderer makes clicking and whistling noises while manipulating the device. Eventually, the device spits out the phrases, "[Enter, bring] three and five. Within [truth, lies], the pleasant [cow, nova] tickles me [thoughtfully, gracefully]."`
 			`	The Wanderer seems displeased with the results. After a few minutes of fiddling with the device, it sputters out, "Pleasing [truth, gratifications]. [Accepting, holding] geolocated results [within, for] two [menstrual, lunar] cycles." Seeing your confusion, the Wanderer continues manipulating the device, chirping loudly as if in frustration.`
-			`	"Thank you. Return in eight weeks", the device eventually says, drawing what seemed like satisfaction from the Wanderer once you gave your acknowledgment. The Wanderer tinkers with the machine for a while more, before waving to you and departing, leaving you to your own devices.`
+			`	"Thank you. Return in eight weeks", the device eventually says, drawing what seemed like satisfaction from the Wanderer once you gave your acknowledgment. The Wanderer tinkers with the machine for a while more, before waving to you and departing.`
 
 
 event "wanderer translator available"
