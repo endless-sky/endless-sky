@@ -6093,7 +6093,7 @@ mission "A Dead Man's Path 1"
 			`	Her smile fades away as you say that, but they both simply nod and walk out of the spaceport with their heads down.`
 				decline
 			label agreed
-			`	"Fantastic! My name is Sophie, and this is my younger brother," she says, pointing at the man to her side, who goes to shake your hand.
+			`	"Fantastic! My name is Sophie, and this is my younger brother," she says, pointing at the man to her side, who goes to shake your hand.`
 			`	"Hi, I'm Liam. We've been looking for a ride for some time now. We were starting to worry that we wouldn't get there in time! You'll have to bring us there quickly."`
 			choice
 				`	"Don't worry, you'll be surprised how fast my ship flies. We'll get there in no time."`
