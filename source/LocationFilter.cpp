@@ -518,8 +518,10 @@ void LocationFilter::NearOrDistanceFilter::Load(const DataNode &node, int valueI
 
 
 
-LocationFilter::NearOrDistanceFilter::NearElement::NearElement(const LocationFilter::NearOrDistanceFilter::DistanceElement &other)
-	: center(nullptr), minDistance(other.minDistance), maxDistance(other.maxDistance), distanceOptions(other.distanceOptions)
+LocationFilter::NearOrDistanceFilter::NearElement::NearElement(
+			const LocationFilter::NearOrDistanceFilter::DistanceElement &other)
+	: center(nullptr), minDistance(other.minDistance), maxDistance(other.maxDistance),
+			distanceOptions(other.distanceOptions)
 {
 }
 
