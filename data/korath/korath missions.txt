@@ -280,8 +280,8 @@ mission "Efreti: Distress Call 1"
 		
 	on offer
 		conversation
-			`The blue flash of Quarg ships is nothing new as you travel Efreti space. Usually that is all you see of the enigmatic aliens. Today, however, you receive an urgent hail as you land.`
-			`	"Salutations Captain of the <ship>. Your most diligent efforts are required lest many families mourn the dead. An Efreti ship, the <EDC-ship>, was surveying <planet> when surprised by Mereti they were. Their ship crashed on the planet with many dead and they have asked for help to evacuate."`
+			`The occasional blue flashes of Quarg ships are nothing new as you travel Efreti space. Usually that is all you see of the enigmatic aliens. Today, however, you receive an urgent hail from one of them as you land.`
+			`	"Salutations Captain of the <ship>. Your most diligent efforts are requested lest many families mourn the dead. An Efreti ship, the <EDC-ship>, was surveying <planet> when surprised by Mereti they were. Their ship crashed on the planet with many dead, and they have asked for help to evacuate."`
 			choice
 				`	"I'll go there immediately."`
 					accept
