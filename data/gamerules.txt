@@ -22,12 +22,6 @@ gamerules
 	# DEFAULT: true
 	# ALLOWABLE VALUES: false, true, 0, 1
 	"universal ramscoop" true
-
-	# Determines how much heat a ship will receive from nearby stars. This is basically
-	# "solar heat" added to every ship, so real value depends on distance and type of the stars.
-	# DEFAULT: .5
-	# ALLOWABLE VALUES: any value >= 0
-	"universal solar heat" .5
 	
 	# An attempt to spawn a person ship happens on average every this many frames.
 	# DEFAULT: 36000 frames (ten minutes)

@@ -38,8 +38,6 @@ void Gamerules::Load(const DataNode &node)
 
 		if(key == "universal ramscoop")
 			universalRamscoop = child.BoolValue(1);
-		else if(key == "universal solar heat")
-			universalSolarHeat = max<double>(0., child.Value(1));
 		else if(key == "person spawn period")
 			personSpawnPeriod = max<int>(1, child.Value(1));
 		else if(key == "no person spawn weight")
@@ -58,13 +56,6 @@ void Gamerules::Load(const DataNode &node)
 bool Gamerules::UniversalRamscoopActive() const
 {
 	return universalRamscoop;
-}
-
-
-
-double Gamerules::UniversalSolarHeat() const
-{
-	return universalSolarHeat;
 }
 
 

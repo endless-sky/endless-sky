@@ -39,7 +39,6 @@ public:
 
 private:
 	bool universalRamscoop = true;
-	double universalSolarHeat = 1.;
 	int personSpawnPeriod = 36000;
 	int noPersonSpawnWeight = 1000;
 	int npcMaxMiningTime = 3600;

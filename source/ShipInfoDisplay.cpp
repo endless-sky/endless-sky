@@ -326,8 +326,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 		- attributes.Get("energy consumption")
 		- attributes.Get("cooling energy");
 	const double idleHeatPerFrame = attributes.Get("heat generation")
-		+ GameData::GetGamerules().UniversalSolarHeat()
-		+ attributes.Get("solar heat")
+		+ attributes.Get("solar heat") + .5
 		+ attributes.Get("fuel heat")
 		- ship.CoolingEfficiency() * (attributes.Get("cooling") + attributes.Get("active cooling"));
 	tableLabels.push_back("idle:");

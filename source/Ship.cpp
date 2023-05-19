@@ -2449,7 +2449,7 @@ void Ship::DoGeneration()
 
 			double solarScaling = currentSystem->SolarPower() * scale;
 			energy += solarScaling * attributes.Get("solar collection");
-			heat += solarScaling * (attributes.Get("solar heat") + GameData::GetGamerules().UniversalSolarHeat());
+			heat += solarScaling * (attributes.Get("solar heat") + .5);
 		}
 
 		double coolingEfficiency = CoolingEfficiency();
