@@ -654,7 +654,7 @@ void Interface::BarElement::Draw(const Rectangle &rect, const Information &info,
 		if(!rect.Width() || !rect.Height())
 			return;
 
-		RingShader::Draw(rect.Center(), .5 * rect.Width(), width, value, *color, segments > 1. ? segments : 0.);
+		RingShader::Draw(rect.Center(), .5 * rect.Width(), width, value, *color, segments);
 	}
 	else
 	{
@@ -719,5 +719,5 @@ void Interface::LineElement::Draw(const Rectangle &rect, const Information &info
 	// Avoid crashes for malformed interface elements that are not fully loaded.
 	if(!from.Get() && !to.Get())
 		return;
-	FillShader::Fill(rect.TopLeft(), rect.Dimensions(), *color);
+	FillShader::Fill(rect.Center(), rect.Dimensions(), *color);
 }

@@ -51,6 +51,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Trade.h"
 #include "text/truncate.hpp"
 #include "UI.h"
+#include "Wormhole.h"
 #include "text/WrappedText.h"
 
 #include <algorithm>
@@ -130,6 +131,7 @@ void MapDetailPanel::Draw()
 	DrawInfo();
 	DrawOrbits();
 	DrawKey();
+	FinishDrawing("is ports");
 }
 
 
@@ -648,6 +650,7 @@ void MapDetailPanel::DrawInfo()
 	double planetHeight = planetCardInterface->GetValue("height");
 	double planetWidth = planetCardInterface->GetValue("width");
 	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
+	double minPlanetPanelHeight = mapInterface->GetValue("min planet panel height");
 	double maxPlanetPanelHeight = mapInterface->GetValue("max planet panel height");
 
 	const double bottomGovY = mapInterface->GetValue("government Y");
@@ -656,12 +659,9 @@ void MapDetailPanel::DrawInfo()
 	bool hasVisited = player.HasVisited(*selectedSystem);
 
 	// Draw the panel for the planets. If the system was not visited, no planets will be shown.
-	const double maximumSize = max(planetHeight * 1.5, Screen::Height() - bottomGovY - systemSprite->Height());
-	planetPanelHeight = hasVisited ? min(min(maximumSize, maxPlanetPanelHeight),
+	const double minimumSize = max(minPlanetPanelHeight, Screen::Height() - bottomGovY - systemSprite->Height());
+	planetPanelHeight = hasVisited ? min(min(minimumSize, maxPlanetPanelHeight),
 		(planetCards.size()) * planetHeight) : 0.;
-	// If not all planets fit on screen, make sure we're seeing half a planet to indicate there's more below.
-	if(hasVisited && planetPanelHeight < planetCards.size() * planetHeight)
-		planetPanelHeight -= static_cast<int>(planetPanelHeight) % static_cast<int>(planetHeight) + planetHeight / 2.;
 	Point size(planetWidth, planetPanelHeight);
 	// This needs to fill from the start of the screen.
 	FillShader::Fill(Screen::TopLeft() + Point(size.X() / 2., size.Y() / 2.),
@@ -802,8 +802,6 @@ void MapDetailPanel::DrawInfo()
 		text.Wrap(selectedPlanet->Description());
 		text.Draw(Point(Screen::Right() - X_OFFSET - WIDTH, Screen::Top() + 20), medium);
 	}
-
-	DrawButtons("is ports");
 }
 
 
@@ -879,10 +877,18 @@ void MapDetailPanel::DrawOrbits()
 			continue;
 
 		Point pos = orbitCenter + object.Position() * scale;
-		if(object.HasValidPlanet() && object.GetPlanet()->IsAccessible(player.Flagship()))
+		// Special case: wormholes which would lead to an inaccessible location should not
+		// be drawn as landable.
+		bool hasPlanet = object.HasValidPlanet();
+		bool inaccessible = hasPlanet && object.GetPlanet()->GetWormhole()
+			&& object.GetPlanet()->GetWormhole()->WormholeDestination(*selectedSystem).Inaccessible();
+		if(hasPlanet && object.GetPlanet()->IsAccessible(player.Flagship()) && !inaccessible)
 			planets[object.GetPlanet()] = pos;
 
-		const float *rgb = Radar::GetColor(object.RadarType(player.Flagship())).Get();
+		// The above wormhole check prevents the wormhole from being selected, but does not change its color
+		// on the orbits radar.
+		const float *rgb = inaccessible ? Radar::GetColor(Radar::INACTIVE).Get()
+			: Radar::GetColor(object.RadarType(player.Flagship())).Get();
 		// Darken and saturate the color, and make it opaque.
 		Color color(max(0.f, rgb[0] * 1.2f - .2f), max(0.f, rgb[1] * 1.2f - .2f), max(0.f, rgb[2] * 1.2f - .2f), 1.f);
 		RingShader::Draw(pos, object.Radius() * scale + 1., 0.f, color);

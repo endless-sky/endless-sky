@@ -416,7 +416,7 @@ mission "Slave Crew Rescue"
 	invisible
 	assisting
 	deadline 1
-	passengers 1	
+	passengers 1
 	to offer
 		random < 10
 	source
@@ -532,7 +532,7 @@ mission "Slave Crew Rescue"
 				launch
 
 			label "has brig"
-			`        You search Tarquin and find a concealed handgun and several knives, the credit chip he was going to pay you, and a tiny unlocking device. Then you instruct one of the members of your boarding party to lock him in your ship's brig. Tarquin curses you foully as he is marched to captivity at gunpoint. You resolve to figure out what to do with him later, and go to rescue the ship's crew.`
+			`	You search Tarquin and find a concealed handgun and several knives, the credit chip he was going to pay you, and a tiny unlocking device. Then you instruct one of the members of your boarding party to lock him in your ship's brig. Tarquin curses you foully as he is marched to captivity at gunpoint. You resolve to figure out what to do with him later, and go to rescue the ship's crew.`
 				goto "rescue the crew with tarquin captured"
 
 			label execution

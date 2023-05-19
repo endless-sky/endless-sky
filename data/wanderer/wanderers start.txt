@@ -11,35 +11,14 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-mission "Wandering Nightmares"
-	landing
-	name "Quiet your Nightmares"
-	description "You have recurring nightmares about an alien world north of Unfettered space. You'll never sleep again unless you investigate it."
-	source
-		not attributes "wanderer"
-	destination "Vara K'chrai"
-	to offer
-		has "event: wandering nightmare map"
-		not "First Contact: Wanderer: offered"
-		not "First Contact: Wanderer (Before Hai): offered"
-	on offer
-		log "You have reoccurring nightmares about an alien world north of Unfettered space. You'll never sleep again unless you investigate it."
-		conversation
-			`Terrified, you see you're in a room filled with angry squirrels. Suddenly one's arm is ripped off and blood spatters on a nearby wall. There's a map on the wall, but you can't quite see it. You hear the flapping of birds' wings as you struggle to see, but your dream is cut short when you awaken.`
-			`	You've had this dream every night for a week now. At long last, you realize it isn't a dream; it is a memory. When Teeneep cut the arm off an Unfettered warrior, blood spattered on a map on the wall. A map of a region north of Hai space.`
-			`	Little blood reached the wall, but it surrounded one system. Perhaps this is a threat from some malevolent deity warning you of a terrible fate that will befall you there. You'll never sleep well again until you investigate.`
-			`	Whatever fate may have in store for you, it can't be worse than a lifetime of insomnia.`
-				accept
-
 mission "First Contact: Wanderer (Before Hai)"
 	landing
 	source
 		attributes "wanderer"
 	to offer
-		not "First Contact: Hai: offered"
-		not "First Contact: Unfettered: offered"
+		not "First Contact: Wanderer: offered"
+		not "event: hai-human resolution announced"
 	on offer
-		fail "Wandering Nightmares"
 		conversation
 			`All the other worlds belonging to this species have appeared unwilling to let you land, but here you find a slightly warmer welcome. A cloud of small, highly maneuverable patrol ships takes off from the planet as you approach and herds you onto one particular landing pad where, after a few minutes, several of the aliens approach your ship.`
 			`	This species is birdlike, but with bodies nearly as large as yours, and with wings that tower above you. They come swooping down from the sky, circle your ship to inspect it, and then land near the hatch and wait for you to open it. They do not appear to be armed, but their talons are eight or nine centimeters long.`
@@ -48,7 +27,7 @@ mission "First Contact: Wanderer (Before Hai)"
 				`	"Hello. I come in peace."`
 				`	"My name is <first>. I am glad to meet you."`
 			`	The alien leans forward as you speak, as if trying to decipher your words. "Iyik'ka'ak kareek elik, ek karu karai kavet," it says. You shake your head to indicate that you do not understand, and again try to speak to it in your own language. Again it leans forward as if deeply focused on what you are saying.`
-			`	The other aliens standing beside it are inspecting you with equal curiosity. Finally, one of them says to the leader, "Ek kalek kiro suk i'hai, sek speru siyek ka'hai esek'ru fer'ek." The leader gestures in response, turning up open palms, and the second alien steps forward and addresses you in an entirely different language, one that does not sound like birdsong at all. In fact, you suspect that it is the language of a different species entirely, but unfortunately it is no more comprehensible to you than the bird's own language.`
+			`	The other aliens standing beside it are inspecting you with equal curiosity. Finally, one of them says to the leader, "Ek kalek kiro suk i'hai, sek speru siyek ka'hai esek'ru fer'ek." The leader gestures in response, turning up open palms, and the second alien steps forward and addresses you in an entirely different language, one that does not sound like birdsong at all. In fact, judging by the difficulty it seems to be having in trying to speak it, you suspect that it is the language of a different species entirely. Unfortunately, it is no more comprehensible to you than the bird's own language.`
 			`	They make some further attempts to communicate with you, but without success. Eventually they give up and all but the leader leaves. The leader makes a sweeping gesture to the rest of the spaceport, apparently inviting you to explore.`
 				decline
 
@@ -61,13 +40,10 @@ mission "First Contact: Wanderer"
 	source
 		attributes "wanderer"
 	to offer
-		or
-			has "First Contact: Hai: offered"
-			has "First Contact: Unfettered: offered"
+		has "event: hai-human resolution announced"
 	to complete
 		has "Wanderers: Diplomacy: offered"
 	on offer
-		fail "Wandering Nightmares"
 		log "Discovered a birdlike alien species to the north of human space. They appear to speak the Hai language in addition to their own, so with the help of a Hai interpreter it might be possible to communicate with them."
 		conversation
 			branch revisit
@@ -85,7 +61,7 @@ mission "First Contact: Wanderer"
 			`As before, you are ushered to the ground by a flock of the small alien ships, and a few of them fly over to your ship and wait for your to come out and try to talk to them. Also as before, you do not recognize their language and they do not understand yours, although their leader seems to be focused intently on trying to understand you.`
 			
 			label hai
-			`	The other aliens standing beside it are inspecting you with equal curiosity. Finally, one of them says to the leader, "Ek kalek kiro suk i'hai, sek speru siyek ka'hai esek'ru fer'ek." The leader gestures in response, turning up open palms, and the second alien steps forward and begins speaking in an entirely different language. After a moment, you are startled to realize that it is speaking the language of the Hai.`
+			`	The other aliens standing beside it are inspecting you with equal curiosity. Finally, one of them says to the leader, "Ek kalek kiro suk i'hai, sek speru siyek ka'hai esek'ru fer'ek." The leader gestures in response, turning up open palms, and the second alien steps forward and begins speaking in an entirely different language. After a moment, you are startled to realize that it is speaking the language of the Hai. The difficulty it has producing the sounds lends it a rather coarse accent, but it is almost certainly Hai.`
 			`	"Hai, you speak the Hai language?" you ask. You cup your hands above your ears to mimic the large, rodent-like ears of the Hai.`
 			`	"Iy, ka'hai!" says the alien, rustling its wings in what you take as a gesture of excitement, "Speru ek ka'hai?" At the same time, though, one of the other aliens takes a step back and flexes its talons at you. It occurs to you that the Hai may or may not be viewed favorably here.`
 			choice
@@ -191,6 +167,10 @@ mission "Wanderers: Hai Diplomat"
 				accept
 	on accept
 		"reputation: Hai" >?= 20
+		"reputation: Hai (Wormhole Access)" >?= 20
+		"reputation: Hai Merchant" >?= 20
+		"reputation: Hai Merchant (Human)" >?= 20
+		"reputation: Hai Merchant (Sympathizers)" >?= 20
 		"reputation: Hai" += 30
 		"reputation: Hai (Wormhole Access)" += 30
 		"reputation: Hai Merchant" += 30
@@ -235,7 +215,7 @@ mission "Wanderers: Diplomacy"
 				`	"What if the humans want our own envoy to these aliens?"`
 			label envoy
 			`	She says, "If they prove to be friendly, I will help you to find a way to communicate with them directly, so you need not use me as an intermediary. But our first step must be to speak with them." You help her aboard your ship, and get ready to return to the alien homeworld.`
-				accept			
+				accept
 	on accept
 		fail "First Contact: Wanderer"
 	on visit
@@ -383,6 +363,7 @@ mission "Visit Wanderers Again"
 		has "human cultural data"
 	on offer
 		set "language: Wanderer"
+		set "language: Hai"
 		event "wanderer technology available"
 		log "Received a device, created by a Hai scientist, which can translate between human language and the Hai language. Since the Wanderers speak the Hai language, that should make it possible to communicate with them directly."
 		conversation "eruk cultural data"
@@ -393,6 +374,19 @@ event "wanderer technology available" # Name unchanged for compatibility
 		"friendly disabled hail" "friendly disabled wanderer"
 		"hostile hail" "hostile wanderer"
 		"hostile disabled hail" "hostile disabled wanderer"
+
+
+
+# Compatibility patch for saves before "language: Hai" variable was added.
+mission "Hai Language Patch"
+	landing
+	invisible
+	to offer
+		has "Visit Wanderers Again: offered"
+		not "language: Hai"
+	on offer
+		set "language: Hai"
+		fail
 
 
 
@@ -767,17 +761,15 @@ mission "Wanderers: Unfettered Diplomacy 1B"
 		ship "Deep River (Jump, Unarmed)" "Ayi'i Ki'ak'var"
 
 fleet "Unfettered Tribute"
-	government "Hai (Unfettered)"
+	government "Hai (Unfettered Wanderer Tribute)"
 	names "hai"
+	personality coward timid
 	cargo 3
 	variant
 		"Water Bug (Jump)"
 
 event "wanderer / unfettered peace"
 	"reputation: Hai (Unfettered)" >?= 1
-	government "Hai (Unfettered)"
-		"attitude toward"
-			"Wanderer" 0
 	system "Ehma Ti"
 		remove fleet "Unfettered Raid"
 		add fleet "Unfettered Tribute" 1000
@@ -810,7 +802,7 @@ mission "Wanderers: Unfettered Diplomacy 1C"
 		set "license: Wanderer"
 		log "Managed to broker a temporary ceasefire between the Unfettered Hai and the Wanderers. Was granted access to purchase the non-military Wanderer ships, as a reward."
 		conversation
-			`When you return to <planet>, Iktat Rek meets with Ambassador Sayari and a few of the Wanderer elders. The elders thank you for the role that you played in negotiating a temporary peace, and Rek says, "We will [reward, honor] you by allowing you to purchase our current [civilian, peacekeeping] ships."`
+			`When you return to <planet>, Iktat Rek meets with Ambassador Sayari and a few of the Wanderer elders. The elders thank you for the role that you played in negotiating a temporary peace, and Rek says, "We will [reward, honor] you by allowing you to purchase our current [civilian, peacekeeping] ships. And, we [request, insist] that you do not [attack, assault] the ships sent to collect [tribute], as long as they remain [peaceful, cooperative]."`
 			`	The elders seem to agree that this is only a temporary solution. The Unfettered cannot be granted a base in Wanderer territory: they would use their few jump drives to move a few warships at a time to that base until they had a fleet too strong for the Wanderers to defeat. Sooner or later, the Unfettered will grow tired of demanding such a base and will return to open warfare.`
 			`	In the meantime, the only way to defuse the situation would be to get all the jump drives out of the hands of the Unfettered - and that means discovering and stopping whoever is supplying those drives to them.`
 
@@ -1328,7 +1320,7 @@ mission "Wanderers: Alpha Surveillance E"
 
 mission "Wanderers: Alpha Surveillance F"
 	name "Invade Avalon"
-	description "Escort Admiral Danforth's Navy Cruiser to <destination> and land on the planet with them. They will attempt to locate and eliminate the Alpha base."
+	description "Escort Admiral Danforth's Navy <npc model> to <destination> and land on the planet with them. They will attempt to locate and eliminate the Alpha base."
 	autosave
 	source "Farpoint"
 	destination "Avalon"
@@ -2136,7 +2128,7 @@ mission "Wanderers Solifuge Recon 3"
 			has "Wanderers Pond Strider Recon 2: done"
 	on offer
 		conversation
-			`Tele'ek and Sayari listen carefully as you outline the strengths and weaknesses of the new Unfettered carriers. "I am not greatly [concerned, frightened] by tiny fighters," Tele'ek says. "The weapon that has done us most harm is their ion cannons, which no ship so small can [wield, carry]. But thank you for your assistance."`
+			`Tele'ek and Sayari listen carefully as you outline the strengths and weaknesses of the new Unfettered carriers. "I am not greatly [concerned, frightened] by tiny fighters," Tele'ek says. "The weapon that has done us most harm is their Ion Cannons, which no ship so small can [wield, carry]. But thank you for your assistance."`
 			`	Sayari looks more concerned about this information. "These carriers may not be an issue for the Wanderers, but this development could cause trouble for the Hai. I have written a message describing the situation." She hands you a data chip. "Please deliver it to the council of elders on <planet>."`
 			`	"Please be quick if you are to deliver this message now," Tele'ek says. "We have no other [fights, brawls] for you to take part in right now, but once you return here, you will find another evacuation fleet that needs an [escort, protector]."`
 				accept

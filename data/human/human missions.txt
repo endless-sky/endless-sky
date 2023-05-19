@@ -20,6 +20,7 @@ mission "Immigrant Workers"
 		random < 50
 	source "New Iceland"
 	destination
+		not government "Pirate"
 		attributes "core"
 		attributes "factory" "textile"
 	on complete
@@ -47,18 +48,16 @@ mission "Immigrant Workers"
 
 
 mission "Pookie, Part 1"
+	minor
 	name "Pookie"
 	description "Travel to <destination> and meet Pookie, who is staying with her aunt and may be scared of flying."
-	minor
-	to offer
-		random < 50
 	source "Hestia"
 	destination "Shroud"
 	passengers 1
 	cargo "(reserved)" 1
 	on offer
 		conversation
-			`As you walk through the spaceport, you hear a voice behind you, saying, "Excuse me, captain." You turn around and see a woman trying to flag you down. Her hairdo is tall and somewhat confusing; her high heels are also tall and are giving her considerable trouble as she walks towards you.`
+			`As you walk through the spaceport, you hear a voice behind you, saying, "Excuse me, Captain." You turn around and see a woman trying to flag you down. Her hairdo is tall and somewhat confusing; her high heels are also tall and are giving her considerable trouble as she walks towards you.`
 			`	"You look like the sort of captain I can trust," she says. "My darling Pookie has been visiting her aunt on Shroud, and it's time for her to come home, but she's not used to space travel and it scares her. I would feel so much better if you could go pick her up and bring her back here. Can you do that for me?" You can't help noticing that the jewelry she's wearing probably costs as much as a small fighter craft. This job sounds easy, and has the potential to be quite lucrative.`
 			choice
 				"	(Accept.)"
@@ -110,7 +109,270 @@ mission "Pookie, Part 2"
 		payment 80000
 		dialog "In the past few days, Pookie has barked incessantly and thrown up several times despite being fed perfectly on schedule, and the room you've been keeping her in will likely smell like dog urine for months. You are all too happy to return her to her owner, who pays you <payment>."
 		log "Minor People" "Pocahontas (Pookie)" `A dog...`
-		
+
+
+
+mission "Pookie, Part 3"
+	minor
+	name "Stray Dog"
+	description `Find a home for a stray dog you picked up on <origin>. She might have been from one of the Paradise Worlds.`
+	source "Freedom"
+	passengers 1
+	to offer
+		has "Pookie, Part 2: done"
+	on offer
+		conversation
+			`The weather on <origin> is unusually rough today; the sky ripples with thunder while rain whips against locals brave or desperate enough to stay outside. Through the mist, you see a building with neon lettering saying, "East Mesa Indoor Racing Complex: Bets are open!"`
+			choice
+				`	(Check it out.)`
+					goto begin
+				`	(Stay dry in my ship.)`
+			`	You lean back in your seat and turn on your ship's heater. After a while, the neon sign shuts off, and the weather clears up.`
+				decline
+			label begin
+			`	You wade through the mud as you approach the complex. At its entrance is a stout woman in a black uniform holding a shotgun. When she sees you, she looks at a list in her hand, before saying, "You're alright. Feel free to come in."`
+			`	The inside of the racing complex is packed to capacity. Around you is a swarm of elbows and shoulders, jutting into you while you worm your way through the crowd. The sounds of rancorous conversation blend in with the pounding of rain on the roof as you glimpse a sight of the main attraction: a large, fenced-off oval. White lines inside the area form racing lanes, and arranged on the far side of the track are four cages covered with cloth.`
+			`	As you reach the boundary of the track, a loud siren fills the air, causing the crowd to fall silent.`
+			choice
+				`	"What's going on?"`
+				`	(Quietly observe.)`
+					goto quiet
+			`	When you try to open your mouth to speak, a hand shushes you, appearing as suddenly as it disappears.`
+			label quiet
+			`	The siren ends, and a greasy voice takes its place. "Welcome, one and all, to the grand biweekly hound race! Before we collect your wagers, let me introduce you to our fine racing stock for the night!"`
+			`	A stagehand hops over the fence and towards the cages while the announcer continues. "Bleedbug is a veteran of the racing track. He's never taken the pole position, but perhaps this will be his lucky day!" The stagehand removes the covering of the innermost cage as a cheer rings out. The dog inside begins ferociously barking upon seeing the cacophony around him, but you can't help but notice how withered Bleedbug's body looks.`
+			`	"Our second hound is one that you're all familiar with. He's an 18-time victor of the track," the voice pauses, "even if some of his wins were only by technicality." Already, a jeer is rising in the audience. The announcer says, "It's the hound that you don't want to beat: Doom." The booing reaches a peak as the stagehand takes the cover off of the largest cage of the lineup, revealing a gargantuan hound. Doom's body is finely defined, devoid of his competitor's malnutrition. As soon as he sets his eyes on Doom, Bleedbug stops yelling and retreats to the corner of his cage to whimpering. Pleased at his reputation, Doom lets out a thunderous bark.`
+			choice
+				`	(Join in with the booing.)`
+				`	(Stay silent.)`
+					goto shush
+			`	You pump your fists into the air and join in on the jeering until you are interrupted by the announcer speaking.`
+				goto second
+			label shush
+			`	You silently observe the crowd's boos die when the announcer continues speaking.`
+			label second
+			`	"Now, our other two racers for the day are all-new." A murmur of anticipation sweeps through the audience. "Our first newcomer is a fine lady. Rumored to be from the wilderness of Zenith, can everyone put their hands together for Zinc!" The cover over the third cage is taken off to reveal a creature that is clearly not a dog. Her long, gray fur and piercing, golden eyes mark her as a far more graceful and feral beast, though underneath her coat, you spot atrophied muscles. Zinc initially stands unfazed by the crowd and the other dogs, calmly observing her surroundings. When Doom spots the wolf ignoring him, he begins to bark louder and louder, until she abruptly stares at him with an inscrutable expression.`
+			`	"Our final contestant for the day is a most... unorthodox choice. The merchant who graciously donated her to us came with a most facinating story. She said that the hound comes from the Paradise Worlds, and her owner wanted the pet to have a luxury flight to her holiday home. Well, let's see if she can pay her way to victory here, folks." The audience snickers. "Now, give your best welcomes to Puny!" Puny is easily the frailest of the dogs, barely more than skin and bones. White whispers of hair clump around her head, chest, and ankles, and the bottom of her cage is wet. None of the other racers acknowledge her, but the crowd is rearing to volley a variety of curses and slurs at her, as though an actual Paradise World baron was in the cage. As you look at the poodle, you can't help but feel a strange sense of familiarity.`
+			`	You feel your back get nudged, and turn to see a woman dressed in rags holding four buckets filled with credits. The names of the racers are crudely written on each of them. "Betting is 3,000 credits," she says unusually sweetly.`
+			choice
+				`	(Bet on Bleedbug.)`
+				`	(Bet on Doom.)`
+				`	(Bet on Zinc.)`
+				`	(Bet on Puny.)`
+				`	"I'll pass."`
+					goto nobet
+			branch notpoor
+				"credits" >= 3000
+			`	You dig through your pockets for a credit chip to toss into the bucket, until you realize that you don't have enough money to make a bet. Impatient with your bumbling, the woman turns to take money from a person next to you.`
+				goto next
+			label notpoor
+			action
+				set "bet on hound racing"
+				payment -3000
+			`	You toss a chip into the bucket, and the woman eagerly turns towards a person next to you.`
+				goto next
+			label nobet
+			`	The woman turns to take bets from a person next to you.`
+			label next
+			`	After several minutes pass, the siren sounds, and the announcer speaks again. "Once again, we at the East Mesa Racing Complex give our thanks to everyone who supports our cause by participating in betting. Now, without further ado..."`
+			`	A red light on the ceiling turns on, and the audience shouts, "Three!" A second one lights up. "Two!" A third light, this time yellow, turns on. "One!"`
+			`	A green light appears, and the crowd descends into chaos as the cage doors open.`
+			`	The first to move is Bleedbug, desperate to get as far away from Doom as possible. Doom himself has his eyes set on a different target. As soon as the doors open, he rushes over the lane lines towards Zinc and bares his teeth for a bite. Anticipating this, Zinc dodges beneath the attack, and lunges in with her mouth open. Doom responds to the threat by lowering his head and bashing into her, and the two animals are quickly locked into a brutal mess of teeth and blood. The crowd goes wild at the spectacle unfolding before them as the brawl approaches your section of the fence.`
+			choice
+				`	(Continue watching.)`
+				`	(Get away.)`
+					goto leave
+			`	Looking on, you are suddenly thrown backward when the beasts smash into the fence in front of you. Lying on the ground, you look down and see Zinc and Doom tearing into each other outside of the track, inches from your feet.`
+			choice
+				`	(Get up and back away.)`
+					goto live
+				`	(Lie still.)`
+			`	As you lie still, Zinc is kicked on top of you, and Doom dashes in to continue the brawl. Within seconds, your skin is ripped to ribbons by two animals too deep in bloodlust to notice that another body has joined the fray. You bleed out on the floor as the crowd cheers at the slaughter of a fellow human.`
+				die
+			label live
+			`	You scramble to your feet, barely dodging Zinc as she's kicked back by Doom. As the two animals howl in pain, you push your way through the onlooking crowd, hoping to escape the danger. After getting some distance away, you turn back to see Zinc and Doom continuing to go at each other's throats.`
+				goto next2
+			label leave
+			`	You turn and head away from the fence. Moments later, you hear two cries of pain accompanying the sound of wood splintering. Peeking back, you see that Zinc and Doom are fighting outside the track, with the crowd raving at the sight of violence.`
+			label next2
+			choice
+				`	(Stay and watch.)`
+				`	(Leave the building.)`
+					goto nope
+			`	You look on at the duel, as does the rest of the building. The crowd has already taken sides, with some shouting Zinc's name and others shouting Doom's. Doom initially appears to have the upper hand, ramming himself into Zinc with impunity as she is sent sprawling. However, when Doom goes in for another tackle, Zinc dashes in and sinks her teeth into his neck. His roars of pain deminish into whimpers as blood spills readily on the complex's floor.`
+			`	Suddenly, a gunshot rings out throughout the building. The two beasts fall over as the stagehand steps forward holding a shotgun. The crowd is left in silence for a moment, until they start to jeer and boo, angered by the unsatisfying end to the duel. The stagehand responds by pointing his gun up and firing again. "That's enough!" he yells. "If you freaks want your bloodsports, then go to the gladiator stadium, or a cockfighting ring. But this establishment will not support such degeneracy!" The crowd goes quiet, but out of the corner of your eye, you see some mean-faced figures reach into their pockets.`
+			choice
+				`	(Get out before it gets ugly.)`
+					goto nopelate
+				`	(Stay for a while longer.)`
+			`	Continuing to look on, you hear a loud bang to your right as the stagehand gasps in pain and collapses. You turn to see that a mustached man next to you has his gun raised. Before you can react, you hear another gunshot and see a spurt of blood erupt from the man's temple. Almost instantly, the entire audience is up in arms as gunfire comes in from every direction. Acting instinctually, you duck down and crawl through the forest of legs towards the exit. Once there, you reach your hand up and push the door open before running out.`
+				goto outside
+			label nopelate
+			`	As you turn around, you hear a volley of gunshots from behind, and decide to run out of the building, tackling the door open.`
+				goto outside
+			label nope
+			`	You head towards the exit, pushing aside audience members completely captivated by the fight. Flinging the door open, you hear a gunshot from behind, and decide to run out.`
+			label outside
+			`	As you step outside, you are greeted by sheets of rain lashing you. The strength of the torrent almost causes you to fall backwards, but you manage to steady yourself. You take a glance back at the racing complex to find that the guard in the black uniform is missing. You turn to begin the trek back to your ship, but halfway there, you feel something touch your lower leg.`
+			choice
+				`	(Turn around.)`
+					goto turner
+				`	(Run away.)`
+			`	You begin to run, but slip in the mud and fall on your face. You roll over to come face-to-face with a dour-looking dog eyeing you. Sitting up, you recognize the poodle as Puny, who must have snuck out of the complex during all the commotion. As you get off of the ground, Puny looks up at you with puppy-dog eyes.`
+				goto kindly
+			label turner
+			`	You turn around and come face-to-face with a dour-looking dog looking up at you with puppy-dog eyes. Inspecting it, you recognize the poodle as Puny, who must have snuck out of the complex during all the commotion.`
+			label kindly
+			choice
+				`	(Pet her.)`
+				`	(Shoo her.)`
+					goto shoo
+			`	You crouch down and rub the soggy tufts of hair on Puny's head. As you continue, a smile creeps onto her face, beaming in spite of the soaking rain. You think about what to do with her.`
+			choice
+				`	(Bring Puny aboard your ship.)`
+				`	(Shoo Puny off.)`
+					goto shoo
+			branch remember
+				has "bet on hound racing"
+			`	You pick up Puny and carry her onboard. As you dry yourselves, you think back to what the announcer said about Puny being owned by someone from the Paradise Worlds, and wonder where you might be able to drop her off.`
+				accept
+			label remember
+			`	You pick up Puny and carry her onboard. As you dry yourselves, you think back to what the announcer said about Puny being owned by someone from the Paradise Worlds, and wonder where you might be able to drop her off.`
+			`	As you step into the cockpit, you recall the bet you put on the hound race. Looks like you won't be getting your money back.`
+				accept
+			label shoo
+			branch rememberdecline
+				has "bet on hound racing"
+			`	You wiggle your leg around to scare Puny off. She runs into the mist, vanishing from sight. You turn back and manage to reach your ship, changing into a dry set of clothes.`
+				decline
+			label rememberdecline
+			`	You wiggle your leg around to scare Puny off. She runs into the mist, vanishing from sight. You turn back and manage to reach your ship, changing into a dry set of clothes.`
+			`	As you step into the cockpit, you recall the bet you put on the hound race. Looks like you won't be getting your money back.`
+				decline
+	to complete
+		never
+
+
+
+mission "Pookie, Part 4"
+	repeat
+	landing
+	source
+		attributes "paradise"
+		not planet "Hestia"
+	to offer
+		has "Pookie, Part 3: active"
+	on offer
+		conversation
+			branch repeat
+				has "Pookie, Part 4: offered"
+			`After landing on <origin>, you look for a way to reach as many people on the planet as possible in order to find Puny's owner. One of the receptionists at a planetary information desk says that she can put out a notice for a lost dog on a planetwide notice board, if you're able to put in a detailed enough description of Puny. You describe the poodle's appearance to the best of your abilities, and also mention how she was traveling for a vacation when she was abducted.`
+			`	When you check back with the receptionist the next morning, she tells you that nobody has approached the offer.`
+				decline
+			label repeat
+			`You put a description of Puny on a planetwide notice board. By the time the next day arrives, you've received no offers in response.`
+				decline
+
+
+
+mission "Pookie, Part 5"
+	landing
+	source "Hestia"
+	to offer
+		has "Pookie, Part 3: active"
+	on offer
+		fail "Pookie, Part 3"
+		conversation
+			branch repeat
+				has "Pookie, Part 4: offered"
+			`When you land on <origin>, you look for a way to reach as many people on the planet as possible in order to find Puny's owner. One of the receptionists at a planetary information desk says that she can put out a notice for a lost dog on a planetwide notice board, if you're able to put in a detailed enough description of Puny. You describe the poodle's appearance to the best of your abilities, and also mention how she was meant to be transported to a vacation location before being abducted.`
+				goto next
+			label repeat
+			`You approach a receptionist to put a description of Puny on a planetwide notice board.`
+			label next
+			`	The next day, you visit the receptionist. When she sees you, she tells you that one message came in response, saying that the dog was theirs. You copy the address provided and hail down a taxi.`
+			`	The address brings you to a stark white mansion upon a cliff overlooking the ocean. A path snakes down from the entrance of the mansion to a large, gold-plated gate. You bring Puny out from the taxi and ring the doorbell next to the gate. A minute later, a servant in a prim suit approaches. As soon as she sees him, Puny straightens up, holding her head high.`
+			choice
+				`	"I'm <first>, and I'm here to return a missing pet."`
+				`	(Wait quietly.)`
+					goto inside
+			`	The servant says, "Ah, you're the one with the dog. Come inside, mistress has been expecting you."`
+				goto enter
+			label inside
+			`	When he spots you, the servant says, "Welcome. Come inside, mistress has been expecting you."`
+			label enter
+			`	The walk to the front of the house is arduous; you pass through several different stadium-sized gardens along the way, each dedicated to a different type of biome. Looking up at the sky, you see the remnants of clouds contort unnaturally around invisible pillars. As you follow the servant, he looks back at you repeatedly, checking that you're still following. You decide to look behind yourself, and see Puny eagerly following. She has somewhat recovered from her time on Freedom, but her body is still little more than skin and bone.`
+			`	By the time you reach the mansion, your skin is slightly sunburnt. The servant walks up to the oddly tall door and presses the doorbell before moving to the side, hands folded behind his back. The bell is answered by a woman with a monstrous hairdo, barely able to fit in the doorway. Puny breaks into barking as soon as she sees her, but the woman ignores the barking and says, "Walters, who is this?"`
+			`	"It's the captain who put out a description of Pookie, Madam Pemefrey," the servant replies.`
+			`	When she hears this, Pemefrey's expression changes from annoyance to elation. "Really? Oh, I can't thank enough for this, dearie. How was it rescuing her? Did you have to barter with smugglers to track her down? Chase down kidnappers to free her? Battle with warlords for her safety?"`
+			choice
+				`	"It was an adventure and a half saving her."`
+				`	"It wasn't anything too hard."`
+					goto humble
+				`	"Wait, did you say Pookie?"`
+					goto rude
+			`	"I'm sure it was. Now, where's my darling Pookie?"`
+				goto show
+			label humble
+			`	"Oh. Well, where's my darling Pookie?"`
+				goto show
+			label rude
+			`	Pemefrey chuckles haughtily. "Of course? Why, did you not realize that the purebred you saved is none other than the great Pocahontas? Now, show me my darling."`
+			label show
+			`	You pick up Puny and show her to the lady. When she makes eye contact with the poodle, her face contorts with anger. "What do you take me for, some kind of Dirt Belter?"`
+			choice
+				`	"Hey, I'm from the Dirt Belt!"`
+				`	"What do you mean?"`
+					goto explain
+				`	"I'm sorry?"`
+					goto sawwry
+			`	She tosses her head to the side. "Then I mean it twice as much!"`
+				goto explain
+			label sawwry
+			`	She hisses. "If you wanted to be sorry, then you should never have tried to trick me in the first place!"`
+			label explain
+			`	Pemefrey thrusts an accusing finger at Puny. "My dog would never be as scruffy, as ugly, as this mutt! You are trying to deceive me by picking some mongrel off of the street and claiming it as mine!"`
+			`	Walters walks up to his master, saying, "But Madam, how could this captain provide such an accurate description of how Pookie was abducted if-"`
+			`	Pemefrey snaps her head to look back at her servant. "Walters! I thought you were on my side!" She holds her hands on her chest. "It would be such a shame if you ruined our friendship like this. Why, I wouldn't be able to bear to keep you around if you betrayed me like that."`
+			`	Walters shoots a desperate glance at you while stepping back, but otherwise says nothing.`
+			`	"Now, where was I... oh, right. You. Out. Now." She claps twice, jumping Walters to attention, who beckons you and Puny back to the gate of the mansion.`
+			`	You slam the door of the taxi shut as Walters locks the gate. The return journey is somewhat somber, with even Puny wearing a frown. When you look back up from Puny, you find yourself in a far more humble region of <origin>. The grandiose manors built into impossible locations are far distant, replaced with a small suburban town that would not look out of place in the Dirt Belt were it not for the picturesque mountain ranges surrounding it.`
+			`	While this town is less wealthy than the neighboring estates, it is still unmistakably on a Paradise World, with the street lamps scrubbed and polished to a wasteful degree. As you pass through the commercial district, your eyes catch a sign that says "Antette and Co. Animal Adoption Agency."`
+			choice
+				`	(Investigate.)`
+				`	(Ignore the sign.)`
+					goto lazy
+			label within
+			`	You tell the taxi driver to stop the car and you walk into the adoption center, leading Puny behind you.`
+			`	The inside of the agency is decorated with pale blue wallpaper. To either side of you are rows of plastic chairs, and in front of you is a receptionist looking down at his nails. When he notices you, he lazily says, "Welcome, welcome. What can I do for you."`
+			`	You point down at Puny and say, "Could you find a home for this dog?"`
+			`	The receptionist leans over the counter to look. "Wow, that's a sorry-looking puppy. What's her name?"`
+			choice
+				`	"It's Puny."`
+					goto unfortunate
+				`	"It's Pookie."`
+				`	"I don't know."`
+					goto figure
+			`	"That's a nice name." The receptionist steps forward to pick up the poodle before saying, "We'll make sure Pookie gets plenty of care and love. Thank you for bringing her to us."`
+				goto end
+			label unfortunate
+			`	The receptionist winces. "That's... I'm sure we can come up with something better." He steps forward to pick up the poodle before saying, "We'll make sure she gets plenty of care and love. Thank you for bringing her to us."`
+				goto end
+			label figure
+			`	"Well, I'm sure we'll figure out a name for her eventually." The receptionist steps forward to pick up the poodle before saying, "We'll make sure she gets plenty of care and love. Thank you for bringing her to us."`
+			label end
+			action
+				log `Saved a dog from a hound-racing ring, and tried to give her a home. However, her alleged owner rejected her. Eventually decided to give her up for adoption.`
+				log `Minor People` `Puny` `A poodle who was a former racer in a gambling ring. She might secretly be Pookie.`
+			`	You exit the center and head back to your taxi for the rest of the trip back to the spaceport.`
+				decline
+			label lazy
+			action
+				log `Saved a dog from a hound-racing ring, and tried to give her a home. However, her alleged owner rejected her. Eventually decided to keep her.`
+				outfit "Puny"
+			`	You lean back in your seat as the taxi passes through the town without interruption. Not long after you find yourself back in the spaceport, with Puny still in your care. With nowhere else to go, you decide to bring Puny aboard your ship. As you lead her, she happily strolls up the landing ramp and settles into one of your bunks.`
+				decline
+
 
 
 mission "Smuggler's Den, Part 1"
@@ -457,10 +719,10 @@ mission "WR Star 1"
 		random < 20
 	passengers 3
 	cargo "sensors" 2
-	
 	on offer
 		dialog `A group of <bunks> scientists approaches you and asks if you will be headed to the Rim any time soon. "We're doing research on Wolf-Rayet stars," they explain, "and we're hoping to find a captain who can do a fly-by of <waypoints>." Scientific research in the Deep is notoriously well-funded, so they will probably pay you quite well.`
-	
+	on waypoint
+		dialog `The team of scientists unpacks their equipment and takes some measurements of the star. Before long they inform you they are ready to go home.`
 	on visit
 		dialog phrase "generic missing waypoint or cargo and passengers"
 	on complete
@@ -1067,7 +1329,7 @@ mission "Shady passenger transport 3"
 
 mission "Shady passenger transport 3 - double cross"
 	name "Shady passenger transport"
-	description "Discreetly transport <bunks> passengers to <destination>. Payment will be 350,000 credits. If you are caught with them, the legal consequences may be severe."
+	description "Discreetly transport <bunks> passengers to <destination>. Payment will be <payment>. If you are caught with them, the legal consequences may be severe."
 	"apparent payment" 350000
 	minor
 	source
@@ -2061,7 +2323,7 @@ event "terraforming follow-up"
 
 mission "A wolf, a goat, and a cabbage"
 	job
-	description "Transport a wolf, a goat, and a cabbage to <destination>. Payment will be 100,000 credits."
+	description "Transport a wolf, a goat, and a cabbage to <destination>. Payment will be <payment>."
 	"apparent payment" 100000
 	to offer
 		"day" == 1
@@ -2617,7 +2879,7 @@ mission "Northern Blockade"
 mission "Southern Blockade"
 	minor
 	name `Spaceport Defenses`
-	description `<stopovers> are under attack and in need of spaceport defenses. Drop off your cargo of <cargo> on these three planets and return to <destination> for payment. (<payment>)`
+	description `<stopovers> are under attack. Drop off <cargo> on these planets and return to <destination> for payment. (<payment>)`
 	source
 		near "Pherkad" 2 4
 		government "Free Worlds"
@@ -2856,7 +3118,7 @@ mission "Capture Smuggler"
 	npc board
 		conversation
 			`The smuggler and his crew are ready and waiting when you board. You pull out the "gift" and press the button, then quickly toss it down the hallway. For a moment, you meet the smuggler's eyes. They widen with terror when he sees the "gift." You duck back into cover. A few seconds later, you hear a strangely muted detonation, followed by silence. After a minute, you hazard another peek out of cover. The smuggler and all his men are unconscious on the ground. One crewman has blood dripping from his nose and ears. You tie them all up and stow the smuggler in a locked cabin on your ship.`
-			`	Once they're secured, you sweep the ship. Ultimately you find the stolen cargo in the captain's cabin, hidden behind a false panel. The cargo is a nondescript storage container, but upon closer inspection you see that it's code-locked and covered with interference plating.`
+			`	Once they're secured, you sweep the ship. Ultimately you find the stolen cargo in the captain's cabin, hidden behind a false panel. The cargo is a nondescript storage container, but upon closer inspection you see that it's code-locked and covered with Interference Plating.`
 				launch
 		government "Merchant"
 		personality staying uninterested timid target marked
@@ -3301,7 +3563,7 @@ mission "Spacediving professionals accident"
 	job
 	repeat
 	name "Spacediving at <planet>"
-	description "Head to <destination> with <bunks> professionally equipped skydivers and drop them from the edge of space. They've agreed to pay 120,000 credits when they land."
+	description "Head to <destination> with <bunks> professionally equipped skydivers and drop them from the edge of space. They've agreed to pay <payment> when they land."
 	"apparent payment" 120000
 	passengers 5 10
 	source
@@ -3324,7 +3586,7 @@ mission "Spacediving professionals disaster"
 	job
 	repeat
 	name "Spacediving at <planet>"
-	description "Head to <destination> with <bunks> professionally equipped skydivers and drop them from the edge of space. They've agreed to pay 120,000 credits when they land."
+	description "Head to <destination> with <bunks> professionally equipped skydivers and drop them from the edge of space. They've agreed to pay <payment> when they land."
 	"apparent payment" 120000
 	passengers 5 10
 	source
@@ -3349,7 +3611,7 @@ mission "Spacediving amateurs"
 	job
 	repeat
 	name "Spacediving at <planet>"
-	description "Head to <destination> with <bunks> poorly equipped skydivers and drop them from the edge of space. They've agreed to pay 120,000 credits when they land."
+	description "Head to <destination> with <bunks> poorly equipped skydivers and drop them from the edge of space. They've agreed to pay <payment> when they land."
 	"apparent payment" 120000
 	passengers 5 10
 	source
@@ -3376,6 +3638,7 @@ mission "Human to Hai Space - No Contact"
 	to offer
 		random < 2
 		not "First Contact: Hai: offered"
+		not "event: hai-human resolution announced"
 	on offer
 		conversation
 			`	A young man carrying luggage approaches you. "You look like a knowledgeable captain," he says. "In all your travels, have you ever heard tell of any... intelligent rodents?"`
@@ -3401,7 +3664,9 @@ mission "Human to Hai Space"
 	destination "Greenwater"
 	to offer
 		random < 10
-		has "First Contact: Hai: offered"
+		or
+			has "First Contact: Hai: offered"
+			has "event: hai-human resolution announced"
 		not "Human to Hai Space - No Contact: offered"
 	on offer
 		conversation
@@ -3412,6 +3677,8 @@ mission "Human to Hai Space"
 				`	"Ah, I think I know of some large squirrels to the north of here."`
 					goto hai
 				`	"What are you talking about?"`
+					to display
+						not "event: hai-human resolution announced"
 			`	"Oh, never mind then," he says, with a note of disappointment in his voice. You feel good knowing that you are helping to keep the Hai's existence a secret in human space. Better safe than sorry.`
 				decline
 			
@@ -3433,7 +3700,7 @@ mission "Human to Hai Space"
 			
 			label travel
 			`	"It was quite the trip! It's a bit odd to see only humans around, and I had to be careful to not mention where I was from. But it was definitely worth it! I got to see Earth, Skymoot, Chiron, and so many other beautiful planets. Seeing human culture with my own eyes was an eye-opening experience, although some of the places there were less... clean than I expected. I was almost robbed on Earth; I'm not used to pickpockets back home. Perhaps human space isn't as safe as Hai space, but I still don't regret coming here. It's about time for me to go back, though."`
-				
+			
 			label decision
 			choice
 				`	"Alright, I'll take you there."`
@@ -4048,6 +4315,7 @@ mission "Laborer"
 		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
 		attributes "mining"
 	destination
+		distance 1 100
 		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
 		attributes "mining"
 	to offer
@@ -4129,28 +4397,29 @@ mission "Block Hai Wormhole Warning"
 	invisible
 	to offer
 		or
-			has "First Contact: Hai"
-			has "First Contact: Unfettered"
+			has "First Contact: Hai: declined"
+			has "First Contact: Unfettered: declined"
 		has "chosen sides"
 		not "main plot completed"
 	on offer
 		fail
 
 mission "Hai Wormhole Warning"
-	minor
+	landing
 	source
 		government "Republic"
 		not attributes "deep"
 	to offer
 		or
-			has "First Contact: Hai"
-			has "First Contact: Unfettered"
+			has "First Contact: Hai: declined"
+			has "First Contact: Unfettered: declined"
 		not "Block Hai Wormhole Warning: offered"
 		not "Wanderers: Alpha Surveillance E: offered"
+		not "Hai Leaks Response 1: offered"
 	on offer
 		log "Was pulled aside by a Navy officer and told to keep the wormhole to the Hai a secret. The Republic doesn't want the knowledge of the wormhole to be widespread, as that could cause chaos for both the Republic and the Hai."
 		conversation
-			`Upon entering the spaceport, you're stopped by a Navy officer. "Captain <last>. I'd like to speak with you for a few minutes. In private." He motions toward a Frigate on a landing pad behind you.`
+			`When you open the door to let in the Navy officer on inspection duty, you expect him to produce the usual set of landing papers and bureaucracy. But instead he says, "Captain <last>. I'd like to speak with you for a few minutes. In private." He motions toward a Frigate on the landing pad next to <ship>.`
 			choice
 				`	"What about?"`
 					goto what
@@ -4162,7 +4431,7 @@ mission "Hai Wormhole Warning"
 			label what
 			`	"I did say in private, did I not?" he says, once again motioning to the Frigate.`
 			label frigate
-			`	The man puts a hand on your shoulder and begins walking you toward the ship. As you approach, you note that the man's uniform doesn't have any Naval markings that you recognize.`
+			`	The man puts a hand on your shoulder and begins walking you toward the ship. As you approach, you note that the man's uniform doesn't have any Navy markings that you recognize.`
 			`	You enter the ship with the officer, and despite the decent crew requirement of a Frigate, you don't notice anyone else on board, and the interior of the ship appears more cushy than you would expect out of a military vessel. The officer leads you to what looks like a rather comfy lounge area. "Please, have a seat," he says.`
 			choice
 				`	(Take a seat.)`
@@ -4215,7 +4484,7 @@ mission "Hai Wormhole Warning"
 			label ok
 			`	"That's good to hear," the officer responds. "Thank you for your cooperation, <last>. Now, if you'll please depart my ship so that I can be on my way."`
 			label end
-			`	The officer leads you out of the ship and closes the doors behind you. As you make your way back to the spaceport, you turn back and see the Frigate take off, slowly getting smaller in the sky until it finally disappears.`
+			`	The officer leads you out of the ship and closes the doors behind you, while the actual Navy officer on inspection duty stands beside <ship>, brandishing a set of landing documents. When you've finished signing them, you turn back to see the Frigate take off, slowly getting smaller in the sky until it finally disappears.`
 				decline
 
 
@@ -4425,7 +4694,7 @@ mission "Dangerous Games 1"
 			`	After a cheer rises up from the crowd, you're treated to several rounds of drinks by your passengers; you sense any attempt to refuse would be ignored. You're unsure of how much you drank, but it was enough to make sure that you didn't remember. You wake up significantly after dawn with empty bottles and unconscious men strewn all over the ship's mess hall. Karengo peels himself off the floor and gives you a crooked smile, shielding his eyes from the light. "Alright, <last>," he says, "let's do this."`
 				accept
 			label money
-			`	The crowd's eyes turn to you. Karengo squints, then laughs. "Ha! What kind of question is that? Of course you're getting paid. <payment> to bring myself and these other fine folks to <planet> and back - <bunks> of us total. What say you?" The crowd watches you with eager anticipation."`
+			`	The crowd's eyes turn to you. Karengo squints, then laughs. "Ha! What kind of question is that? Of course you're getting paid. <payment> to bring myself and these other fine folks to <planet> and back - <bunks> of us total. What say you?" The crowd watches you with eager anticipation.`
 			choice
 				`	"Works for me. We leave tomorrow."`
 					goto accept
@@ -4477,7 +4746,7 @@ mission "Dangerous Games 1"
 			choice
 				`	"Thanks."`
 					goto end
-				`	I can't accept his money. It's not right."`
+				`	"I can't accept his money. It's not right."`
 			`	Karengo shrugs and doesn't take it back.`
 			label end
 			`	"Maybe I'll see you again sometime, yeah? I'm always in need of a pilot with some guts." He nods in your direction, clearly dismissing you.`
@@ -4531,7 +4800,11 @@ mission "Dangerous Games 2"
 			`	Karengo claps him on the back and gives him a signature grin. "Maybe <first> can keep you aboard after this in case they need anything from a high shelf!" Mussie smiles weakly, but his eyes don't leave the readout.`
 			`	TWENTY-FIVE KILOMETERS. "This's it," Karengo announces, "Sub up! Let's see what there is to see. And <first>, keep it to passive sensors. Don't want to attract any undue attention." The ship smoothly descends into the mouth of a massive cave and your visibility, clouded by dark sulfide emissions from the hydrothermal vents at the floor, drops to less than eight meters. 6 personal subpods fan out behind you, their communication equipment syncing with yours to display them as blips on your screen.`
 			`	"Ok, <first>," Karengo crackles over the radio. "I'll read you the first clue."`
-			`	"No other path may you take \ Oiled skins flash and flicker \ Razor spikes grow from the deep \ Titanic walls crush and smash \ Heed the beginnings to live".`
+			`"No other path may you take"`
+			`"Oiled skins flash and flicker"`
+			`"Razor spikes grow from the deep"`
+			`"Titanic walls crush and smash"`
+			`"Heed the beginnings to live".`
 			choice
 				`	(Go east).`
 					goto east
@@ -4567,7 +4840,11 @@ mission "Dangerous Games 2"
 			label riddletwo
 			branch dead
 				has "Elias and Taddese dead"
-			`	After everyone arrives and is accounted for, Karengo reads the riddle to you. "There are stingers in the deep \ A certain death, a dreamless sleep. \ Go to beast that has no bee \ No danger there, just open sea."`
+			`	After everyone arrives and is accounted for, Karengo reads the riddle to you.`
+			`"There are stingers in the deep"`
+			`"A certain death, a dreamless sleep."`
+			`"Go to beast that has no bee."`
+			`"No danger there, just open sea."`
 			choice
 				`	(Go east.)`
 					goto east1
@@ -4626,7 +4903,11 @@ mission "Dangerous Games 2"
 			`	Karengo sounds a roll call over the radio. Elias and Taddese are still missing, and now Mussie has failed to report in as well. None of their subpod beacons are responding.`
 			`	"Ah, well." says Karengo, without much sympathy. "You all stay here and I'll scout ahead." Only minutes later, he's found a clear path east, and you morosly trail the ship behind.`
 			label riddlethree
-			`	Karengo reads you the next line. "To the north and to the east \ Track my movements like a beast. \ A quick turn right and forward on, \ Come toward me where danger's gone."`
+			`	Karengo reads you the next line.`
+			`"To the north and to the east"`
+			`"Track my movements like a beast."`
+			`"A quick turn right and forward on,"`
+			`"Come toward me where danger's gone."`
 			branch dead2
 				has "Mussie dead"
 				has "Elias and Taddese dead"
@@ -4783,7 +5064,7 @@ mission "Dangerous Games 2"
 			`	"Alright," he says. "Let's get back to the surface. <first>, kindly be our chariot and haul."`
 			`	It seems ages, but finally you break through to the surface. Karengo smiles, and a sigh of relief goes through the crew.`
 			`	Once back to the surface, the passengers begin to shuffle off your ship, clearly exhausted but happy that they got to experience such an adventure. You're just relieved all of them stayed alive.`
-			`As soon as the passengers are out of earshot, Karengo calls up someone on his receiver. Soon, a small flock of scientists arrive and haul the machine to a local lab for investigation. They quickly determine it to be non-functional and promise to extract as many secrets as possible.`
+			`	As soon as the passengers are out of earshot, Karengo calls up someone on his receiver. Soon, a small flock of scientists arrive and haul the machine to a local lab for investigation. They quickly determine it to be non-functional and promise to extract as many secrets as possible.`
 				goto end
 			label some
 			`	"Alright," he says. "Let's get back to the surface. <first>, kindly be our chariot and haul."`
@@ -4964,3 +5245,582 @@ mission "Riley"
 			label end
 			`	You say your goodbyes, leaving to your ship and returning to the stars.`
 				decline
+
+
+
+mission "Wool Smuggling 1"
+	minor
+	name "Pickup at <planet>"
+	description "Head to <destination> to pick up a shipment of 15 tons of woollen goods for delivery to Bloodsea."
+	source
+		near "Muhlifain" 1 3
+	destination "New Kansas"
+	to offer
+		random < 45
+		"cargo space" >= 15
+		not "event: bloodsea joins free worlds"
+		not "event: bloodsea independent"
+	on offer
+		conversation
+			`As you walk around the spaceport, a stout man wearing a fine wool coat approaches you. "Captain, could you help me out with a delivery? I've been asking around the spaceport to get a shipment of woolen goods to another planet, but every merchant I've talked to so far has refused."`
+			choice
+				`	"Where are you taking the goods to?"`
+				`	"How much do I have to carry?"`
+				`	"Sorry, but I'll also have to pass."`
+					decline
+			`	"The cargo's stored on <planet>, so you'll have to go there first to pick up the 15 tons of wool garments." The man hesitates. "Then, take the cargo to Bloodsea. I have a contact there that can pick up the goods and distribute them fairly." You recall that Bloodsea is a lawless world, home to countless bloodthirsty pirates.`
+			choice
+				`	"I'll do it."`
+					goto accept
+				`	"How much are you willing to pay?"`
+					goto payment
+				`	"I'm not interested in risking my hide just to aid pirates."`
+			`	"They aren't all pirates," the man protests. "Most of them are just trying to live their lives away from the Republic, and it's unfortunate that the anarchist lifestyle also attracts criminals. The people living on those planets need clothing as much as you or I do."`
+			choice
+				`	"How much are you willing to pay?"`
+				`	"Fine, I'll do it."`
+					goto accept
+				`	"I'm still not going to do it."`
+					goto decline
+			label payment
+			`	"Ninety thousand credits for the job." You wonder how he's able to pay so much for a small delivery job.`
+			choice
+				`	"Fine, I'll do it."`
+					goto accept
+				`	"That's not enough for me."`
+					goto decline
+			label accept
+			`	"Great! I'll call up the spaceport workers on <planet> to tell them to load the cargo onto your ship." The man walks away, leaving you to your own devices.`
+				accept
+			label decline
+			`	"Suit yourself, then." He haughtily walks off into the spaceport.`
+				decline
+	on complete
+		dialog `When you land, dock workers begin loading crates with woolen garments on board as arranged. Time to set course for Bloodsea.`
+
+
+mission "Wool Smuggling 2"
+	landing
+	clearance `You talk to the closest thing that Bloodsea has to a spaceport traffic controller, and they agree to let you land.`
+	name "Wool to <planet>"
+	description "Deliver <cargo> to the pirate world of <destination>. Payment will be <payment>."
+	cargo "wool garments" 15
+	blocked `The spaceport workers inform you that you need <tons> of cargo free to pick up the woollen goods intended for <planet>.`
+	source "New Kansas"
+	destination "Bloodsea"
+	to offer
+		has "Wool Smuggling 1: done"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 90000
+		dialog `Your cargo of woolen garments is unloaded by several bulky workers led by a one-armed woman. She hands you <payment> for the trouble of transport, then says, "Thanks for the shipment. I know that you captains think that we're all bad, but I'm glad that you were able to aid the more friendly among us."`
+
+
+
+mission "Deal Change 1"
+	minor
+	name "Inheritance to <planet>"
+	description "Deliver <cargo> to <destination>. Payment will be <payment>."
+	cargo "inherited assets" 5
+	source
+		attributes "paradise"
+	destination "Skymoot"
+	to offer
+		random < 10
+	on offer
+		conversation
+			`The spaceport on <origin> is as spirited as ever: to your left, a family wearing floral shirts pull along their luggage, with the man of the family flaunting a souvenir from some far-away planet. To your right, a cleaner whistles a tuneless song while they wipe down a bench.`
+			`	A young man in a prim suit approaches you. "Good day, Captain! Would you mind if I spoke to you for a moment?"`
+			choice
+				`	"I'd be glad to listen."`
+					goto listen
+				`	"No, I'm busy right now."`
+			`	The man frowns. "I see. Well, it's not like I was going to offer you a highly profitable job." He begins to shout while stepping away. "And that job certainly wouldn't have paid hundreds of thousands of credits!"`
+			choice
+				`	"Alright, what do you want?"`
+					goto late
+				`	"Shut the hell up."`
+			`	Seemingly unfazed by your bluntness, the man coolly walks away while saying, "I'm sorry you feel that way, Captain. Perhaps you can assist us at a later date. Farewell."`
+				decline
+			label late
+			`	He smirks as he walks back towards you. "I'm glad that you've changed your mind."`
+			label listen
+			`	The man pulls you aside to talk. "You see, one of our clients recently passed away, and in his will, he divided his property between each of his relatives. The only problem is that one of his family members, his niece, lives all the way down in the Rim. We would like you to deliver her portion of the inheritance, weighing <tons>, to her residence on <destination>. We can pay you <payment> upon completion of the job."`
+			choice
+				`	"I'll do it."`
+					goto agree
+				`	"What did she inherit?"`
+				`	"Sorry, but I don't want to do this job."`
+					goto nope
+			`	"My sincerest apologies, but I'm afraid that is confidential information. Our prioritization of privacy is one of our main selling points."`
+			choice
+				`	"I'll take the job."`
+				`	"I don't like the idea of carrying unknown cargo. Count me out."`
+					goto nope
+			label agree
+			`	The man smiles. "I'm glad to hear that. We'll have the cargo loaded onto your ship by sundown." He walks away into the spaceport, leaving you to prepare for the journey.`
+				accept
+			label nope
+			`	The man frowns. "I see. Well, I appreciate that you listened to our offer, and I hope that you may assist us at a later date. Farewell." He walks away into the spaceport but doesn't appear to seek out any other captains.`
+				decline
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		fail "Deal Change 2"
+		payment 100000
+		conversation
+			`You step off your ship and order the spaceport crew to unload your cargo. As you do, a large, fat-lipped woman walks up to you and says in the most exaggerated manner possible, "Oh, thank you so much, Captain! You must have gone through so much trouble to help little old me!" She gasps. "Oh, silly old me! I forgot to tell you who I am! I'm the recipient of the inheritance from <origin>, of course! You have truly made a great contribution to the galaxy!" She chuckles.`
+			choice
+				`	"Thank you?"`
+				`	"Could you tell me what the inheritance is?"`
+			`	Before you can get a single word out, the woman exclaims, "I'll be sure to inform your employers of the wonderful work you've done. Ta ta!" She begins to swagger towards a cream-colored car as her inheritance is loaded into a truck beside it. When you return to your ship's cockpit, you find that <payment> have been deposited into your account.`
+
+
+
+mission "Deal Change 2"
+	landing
+	name "Inheritance to <planet>"
+	description "Instead of bringing the inheritance to Skymoot, deliver it to <destination>. You were promised <payment> for doing so."
+	source
+		attributes "dirt belt" "south" "rim"
+		not planet "Greenrock"
+	destination "Greenrock"
+	clearance `You read out the code on the back of the paper you received and get a green light from Greenrock's authorities, along with a set of coordinates.`
+	to offer
+		has "Deal Change 1: active"
+	on offer
+		conversation
+			`You touch down on <origin>'s surface and step out into the open air. The landing docks are emptier than usual, with only a handful of people walking around. Suddenly, you feel the wind knocked out of you as you collide with another person and fall on the pavement with a thud.`
+			choice
+				`	(Get up and apologize.)`
+				`	(Get up and demand the other person's apology.)`
+			`	You open your mouth as you lift yourself up, only to find that the other person is already gone. As you look around, you spot a piece of paper with writing lying on the ground beside you. You pick up the note and read it:`
+			``
+			`<first> <last>,`
+			`		You are currently carrying five tons of cargo to Skymoot. This cargo has been described to you as an "inheritance," and you have been promised 100,000 credits as payment for the job. Under no circumstances should you allow the cargo to reach the destination. Instead, bring it to <destination>. You will be paid <payment> if you do so. The back of this note has a code you can use to pass through spaceport security.`
+			``
+			`	You flip the paper over and see a string of letters and numbers. The note has no signature, nor anything else to identify the person who wrote it.`
+			choice
+				`	(Keep the note.)`
+					goto accept
+				`	(Throw the note away.)`
+			`	You stand up and crumple the note in your hand before throwing it into a bin. You think you catch a glance of a cloaked figure, but don't meet any more trouble on your way to the spaceport.`
+				decline
+			label accept
+			`	You stand up and stuff the note in your pocket before continuing towards the spaceport.`
+				accept
+	npc
+		government "Bounty Hunter"
+		personality staying nemesis
+		system "Lesath"
+		ship "Falcon (Heavy)" "Turncoat"
+		ship "Clipper" "Deserter"
+	npc
+		government "Bounty Hunter"
+		personality staying nemesis
+		system "Shaula"
+		ship "Osprey (Laser)" "Sellout"
+	on complete
+		fail "Deal Change 1"
+		payment 300000
+		conversation
+			`You follow the coordinates to a clearing within the forests of Greenrock. Several other ships are present near the landing site, all of which wear pirate colors. A person wearing a cloak steps out of one of the vessels to greet you. "I am glad that you were able to trust us," they say. "My name is not Ci, but you may refer to me as such." A gang of pirates emerges from the foliage around your ship and begin to unload the cargo from your ship.`
+			choice
+				`	(Stay silent.)`
+					goto skip
+				`	"Can I ask you some questions?"`
+			`	One of the pirates near you bares his pointy teeth, but Ci steps forward and raises their hand. "Please forgive the naivety of this captain," they say to the pirate before turning towards you. "I apologize, but I am afraid that I cannot answer your questions. This is a very volatile matter, and any misplaced information could spell death. You are safer knowing as little as possible."`
+			choice
+				`	"I understand."`
+					goto skip
+				`	"I'm taking back the cargo if you're not answering me."`
+			`	Ci gestures towards the pirates around them. "Are you sure that is a wise choice, Captain?" They step closer. "The only reason you are still alive is because it is more convenient than killing you. It would be in your best interests to keep it that way."`
+			choice
+				`	"Okay, I'll stay quiet."`
+					goto skip
+				`	(Pull out my gun.)`
+			`	The moment your hand touches the handle of your gun, you are blinded by bright lights and searing pain. You die before your body falls to the ground.`
+				die
+			label skip
+			`	After a few minutes, the pirates finish unloading the cargo, and Ci steps forward, holding out a credit chip. "<payment>, for making the right choice." Ci and the pirates return to their ships as you take off and head towards the main spaceport of <planet>.`
+
+
+
+mission "Quicksilver Mixup 0"
+	minor
+	name "Package to Silver"
+	description "Deliver a package to <planet> by <date>. Payment is <payment>."
+	"apparent payment" 17100
+	cargo package 1
+	deadline 4 0
+	to offer
+		random < 25
+	source
+		near Algol 1 3
+	destination Silver
+	on offer
+		conversation
+			`You're looking at some job listings when a man with a harried face approaches you, carrying a package.`
+			`	"Excuse me, Captain," he says. "I need this package delivered in the next four days. Details are on the package. I'll pay you <payment> once it's done." Without waiting for a response, he shoves the package into your hands and runs off to attend to whatever business has gotten him in such a hurry. The package is addressed to a location on <planet>.`
+			branch "can't make it in time"
+				has "hyperjumps to planet: Silver" > 3
+			`	It's going to be close to his deadline, but it's possible.`
+				goto choice
+			label "can't make it in time"
+			`	How he expects you to deliver that package in four days is beyond you, seeing as <planet> is not within three jumps of <origin>, but you might as well try and get there as soon as possible.`
+			label choice
+			choice
+				`	(Deliver the package.)`
+				`	(Find another pilot to give the package to.)`
+					goto declined
+			`	You take the package to your ship, leave it in the cargo bay, and prepare for the flight to <planet>.`
+				accept
+			
+			label declined
+			`	It takes a while searching for a pilot who can handle the delivery, but you do eventually find one. You hand them the package, explain the situation, thank them, and leave.`
+				decline
+	on visit
+		dialog phrase "generic cargo on visit"
+
+mission "Quicksilver Mixup 1"
+	name "Redirect Package to <planet>"
+	description "Apparently the package labeled for <origin> was actually intended for <planet>. You'll have missed the deadline, so you probably won't be paid the <payment> offered."
+	landing
+	cargo package 1
+	source Silver
+	destination Quicksilver
+	to offer
+		not "Quicksilver Mixup 0: aborted"
+		or
+			has "Quicksilver Mixup 0: done"
+			has "Quicksilver Mixup 0: failed"
+	on offer
+		conversation
+			branch late
+				not "Quicksilver Mixup 0: done"
+			`Barely making the deadline, you take the package to the post office in <origin>'s spaceport. The service clerk immediately lets out a sigh of frustration before setting the package down on the counter in front of you.`
+				goto "can't take package"
+			
+			label late
+			`Despite missing the deadline, you take the package to the post office in <origin>'s spaceport. The service clerk immediately lets out a sigh of frustration before setting the package down on the counter in front of you.`
+			
+			label "can't take package"
+			`	"I'm sorry, but we can't take this package," they say.`
+			choice
+				`	"Is something wrong?"`
+					goto misdirected
+				`	"What do you mean? Surely you can."`
+			`	"Again, I'm sorry, but we can't send the package," they reiterate. "It's got an incorrect address.`
+			label misdirected
+			`	"This package is addressed to 2081 Amethyst Avenue, Mercury City, <origin>. Mercury City is <planet>'s capital. Y'know, that planet out east in Algol. Syndicate space. Not a place on <origin>. The package was posted to the wrong planet."`
+			`	"Oh," you say.`
+			`	"I've lost count of how many times this has happened just this month. <origin>, <planet>, I wonder what's the difference! At this point, I don't know why no one's started to regularly meet with <planet>'s postmaster to exchange all this wrongly-posted mail. Alright, here's a word of advice: I highly recommend you take a picture of the incorrect address. I've had plenty of captains get put on blast 'cause of an error the sender made. Not your fault it got addressed to the wrong planet."`
+			`	You thank the clerk and take the package back to your ship.`
+			choice
+				`	(Take a picture of the incorrect address.)`
+				`	(Don't bother taking a picture.)`
+					accept
+			action
+				set "took picture of quicksilver package"
+			`	You take a few photographs of the address label, just to be sure that you've got a clear picture of the wrong address.`
+				accept
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 17100
+		event "quicksilver mixup 2 available" 90
+		conversation
+			`When you talk to a post officer in <planet>'s spaceport and point out the incorrect address before handing it over, you note that he exhibits the same frustration the clerk on <origin> did regarding the frequent switch-ups. He takes the package, muttering something about off-worlders "not knowing the difference even if it smacked 'em in the face" as he did.`
+			`	Once you return to your ship, you notice that the man who gave you that package had sent you a message. Or, to be more precise, a series of messages. An angry series of messages.`
+			`	"WHAT TOOK YOU SO LONG???"`
+			`	"I NEEDED THAT DELIVERED DAYS AGO"`
+			branch picture "didn't take picture"
+				has "took picture of quicksilver package"
+
+			label picture
+			`	You send the man the picture you took of his error and point out that it was his mistake that got the package initially got sent to the wrong place, and politely inform him that had he wanted a smoother delivery, then maybe he should've filed a proper job listing and made sure that he placed the correct address.`
+			branch "picture success" "picture failure"
+				random < 50
+
+			label "picture failure"
+			action
+				payment -17100
+			`	He doesn't respond.`
+				decline
+
+			label "picture success"
+			action
+				payment 5000
+			`	He sees the message, but doesn't send a reply. Just before you walk away from your ship's terminal, you see a new message appear:`
+			`	"I am so sorry."`
+			`	The man then proceeds to apologize profusely for his mistake and his outburst, offering to pay an extra 5,000 credits for the trouble. You gladly accept.`
+				decline
+
+			label "didn't take picture"
+			action
+				payment -17100
+			`	You try to defend yourself, but the man remains adamant that it was your mistake that got the package sent so late. After a frustrating back-and-forth, you decide to relent and (reluctantly) offer an apology. He ignores it and threatens to get spaceport authorities to "STOP OFFERING JOBS TO INCOMPETENTS LIKE YOU."`
+			`	You don't bother to reply.`
+			
+
+event "quicksilver mixup 2 available"
+
+
+mission "Quicksilver Mixup 2"
+	name "Misposted Mail Delivery"
+	description "Deliver <tons> of misposted mail from <origin> to <planet> by <date> and then come back with the return shipment. You will be paid <payment> after you return from <planet>."
+	minor
+	deadline 10 1
+	source "Silver"
+	destination "Quicksilver"
+	cargo "misposted mail" 38
+	"apparent payment" 100000
+	to offer
+		has "Quicksilver Mixup 1: done"
+		has "event: quicksilver mixup 2 available"
+	on offer
+		conversation
+			`As you walk through <origin>'s spaceport, somebody wearing office attire and carrying a tablet power walks up to you after ending a hurried conversation with another pilot.`
+			`	"Captain! I work for the postmaster's office. The regular pilot who carries misposted mail to <planet> and back couldn't make it this month, some mechanical issues with his ship, I'm told. Would you be willing to carry this month's load there by <day> and then return with the mail from <planet>? We'll pay you what he'd be paid: <payment>."`
+			choice
+				`	"Oh, so you guys did set up that regular shipment after all!"`
+					goto context
+
+				`	"Sure, how much mail are we talking about?"`
+					goto shipment
+
+				`	"Sorry, but I'm not heading in that direction."`
+					goto refuse
+
+			label context
+			`	The mail employee appears confused for a moment, leaning his head to the side slightly.`
+			choice
+				`	"I once delivered a misposted package like that, and the clerk mentioned that it happened so often somebody should set up a regular delivery."`
+				`	"Never mind. What's the size of the shipment?"`
+					goto shipment
+			`	The post employee smiles and responds, "Oh! That was me, actually, back when I worked as a clerk for the post office. I was sick of always having that same conversation with so many pilots a day, so I went out and found a captain to set up a regular delivery with and made the proposal to my boss, who was just as sick of my and the <planet> postmaster's endless reports. Got a bonus and promotion for it; I'm now responsible for the delivery's management, instead! Anyways, are you interested in covering for them?"`
+			choice
+				`	"Yeah, what's the size of the shipment?"`
+					goto shipment
+				`	"Sorry, but I'm not able to work that into my plans."`
+					goto refuse
+
+			label shipment
+			`	The man takes a look at his tablet and says, "This week, it totaled... <tons> of letters and miscellaneous packages here, and then 29 tons to be brought back from Quicksilver."`
+			`	"<tons> of misposted packages? Just this month?!" you ask.`
+			`	He nods. "Told you it happened often. And only a few of these packages even weigh over a kilo! Big shipments hardly get misposted; it's mostly private citizens who make these kinds of mistakes. Mostly. You'd be amazed!"`
+			`	You two shake hands and arrange for the misposted packages to be loaded onto the <ship>. Time to head to <planet>.`
+				accept
+
+			label refuse
+			`	The mail employee thanks you for your time, and continues his search for a willing captain. At least pilots that get hired to deliver such wrongly-posted packages, like you once did, won't have to finish those deliveries themselves in the future.`
+				decline
+	on visit
+		dialog `You have reached <planet>, but your escort, loaded with the shipment, has not arrived. Better depart and wait for your escorts to arrive in this star system.`
+	on complete
+		dialog `You contact the spaceport authorities and they direct you to the respective landing pad, where the post office staff is already waiting. They transfer the cargo and you prepare to head back to <origin>. Again, you have 10 days to make the delivery.`
+
+
+mission "Quicksilver Mixup 3"
+	name "Misposted Mail Delivery"
+	deadline 10 1
+	landing
+	description "Return to <planet> with <cargo>. You will be paid <payment>."
+	source "Quicksilver"
+	destination "Silver"
+	cargo "misposted mail" 29
+	to offer
+		has "Quicksilver Mixup 2: done"
+	on visit
+		dialog `You have reached <planet>, but your escort carrying the misposted mail has not arrived. Better depart and wait for your escorts to arrive in this star system.`
+	on complete
+		payment 100000
+		dialog `The same manager from before is waiting with the unloading crew, and thanks you for covering for the other pilot before handing you the credit chip for payment. It's nice to know that captains who get hired to deliver such wrongly-posted packages, like you once did, won't have to finish those deliveries themselves in the future."`
+
+
+
+
+mission "Argosy Hijacking (Trigger)"
+	landing
+	invisible
+	source
+		government "Syndicate"
+	to offer
+		"combat rating" > 200
+		random < 5
+	on offer
+		fail
+
+mission "Argosy Hijacking"
+	landing
+	name "Stop Ship Hijacking"
+	description "The <npc> was hijacked on <origin>; disable it and return to <origin>. Do not board, capture, or destroy it; Syndicated Security will deal with the hijackers in space after you have disabled it."
+	source
+		government "Syndicate"
+		not attributes "station"
+		not near "Sol" 3
+	to offer
+		has "Argosy Hijacking (Trigger): offered"
+	on offer
+		conversation
+			`You're signing the standard Syndicate landing papers with an officer on <origin>. "Everything seems to be in order. And of course, we'll have your ship refueled promptly. Have a good day, Captain <last>." He nods his head at you and starts to move off towards the next ship.`
+			`	Before he can make it there, you hear a commotion by the <npc>, the <npc model> on the landing pad next to you.`
+			choice
+				`	(Turn around to see what's going on.)`
+					goto turn
+				`	(Ignore the commotion.)`
+					goto ignore
+			label turn
+			`	Both of you turn your heads towards the <npc> to see what's happening, but as you do you hear the deafening blare of warning sirens through <origin>'s spaceport; at the same time, the <npc> suddenly jolts up with its loading ramp still extended.`
+				goto hijack
+			
+			label ignore
+			`	You turn back towards the <ship> only to hear the deafening blares of warning sirens through <origin>'s spaceport. Looking around instinctively, you notice the <npc> jolting up with its loading ramp still extended.`
+
+			label hijack
+			`	"Hey, what's going on here?" the officer tries to shout over the noise of the sirens and the repulsors, but the rogue <npc model> veers rapidly and uncertainly towards you and the officer.`
+			choice
+				`	(Jump for cover.)`
+				`	(Take a shot at the <npc model> with your sidearm.)`
+					goto shoot
+			`	Both of you barely jump down for cover before the ship clips a stack of cargo crates, sending them flying into the refueling platform. The Quad Blaster Turret mounted on the top of the <npc model> swivels around aimlessly, then fires without warning, its energy bolts scattering some of the startled onlookers nearby and sending up debris where they hit the ground. It comes dangerously close to colliding with the <ship> before it veers off to the side and sends its repulsors into full thrust, fleeing away into the sky.`
+				goto dazed
+
+			label shoot
+			`	You fire a shot right at the cockpit with your pistol but the shot is absorbed by the <npc model>'s shield matrix, rendering it useless. The <npc> flies right over you, sending you backwards and into the ground.`
+			`	You prop yourself up to hear the <npc model>'s Quad Blaster Turret fire aimlessly around the spaceport, shortly replaced by the sounds of its repulsors being sent up to full thrust. By the time you get up, the <npc> has already started fleeing off into the sky.`
+
+			label dazed
+			`	The Syndicated Security officer, dazed and coated in dust kicked up from the unpermitted departure, only just pulls himself up before another person runs up to accost him. "Oi, those kids, they just hijacked my <npc model>! Get someone on their tail!"`
+			choice
+				`	"I'll do it!"`
+				`	(Let Syndicated Security deal with it.)`
+					goto securityjob
+			`	The captain of the stolen <npc model> turns towards you. "Thank you, Captain! Don't destroy the <npc>, I'm already late for my bloody contract. Agh, this doesn't help at all," he mutters to himself.`
+			`	The officer looks back at you, having dusted himself off and regained his senses. "Yes, go and deal with his ship now. Don't board it, we'll have Syndicated Security ships come after you to board the hijacked ship and tug it down. Go!"`
+			`	You run towards the <ship> and take off after the hijacked <npc>...`
+				launch
+			
+			label securityjob
+			`	The officer, slightly flustered, calls for a small squadron of Syndicated Security ships to chase the hijacked <npc>, then runs off to one of <origin>'s spaceport terminals to file the paperwork with the captain.`
+				decline
+	
+	npc save disable
+		personality launching daring uninterested target
+			confusion 80
+		government "Bounty (Disguised)"
+		ship "Argosy (Blaster)" "Moonshake Express"
+		dialog `The <npc> has been disabled. Syndicated Security will now deal with the hijackers, but you should go back and report to the captain of the ship.`
+		on board
+			set "boarded hijacked argosy"
+			dialog `You've boarded the Moonshake Express, against the orders of the Syndicated Security officer. The ship's captain won't be impressed.`
+			fail
+		on kill
+			set "destroyed hijacked argosy"
+			dialog `You have destroyed the Moonshake Express. Its captain won't be impressed.`
+
+	on fail
+		conversation
+			branch fail
+				or
+					has "boarded hijacked argosy"
+					has "destroyed hijacked argosy"
+			`You've landed without disabling the <npc>. It's probably gone now, but you might want to report to its captain.`
+			choice
+				`	(Find the captain.)`
+				`	(Don't worry about it.)`
+					decline
+			`	You find him in the spaceport lounge. As you walk in, he recognizes you and calls you over. "How are you doing? Did you recover the <npc>?`
+			choice
+				`	"No, I wasn't able to."`
+				`	"It fled before I could disable it."`
+				`	"I blew it up, just like you wanted."`
+					goto blew
+			`	He frowns at this and lets out a sigh. "Well, I'll contact security and let them deal with this. Don't worry, they'll sort it out. But thanks for getting back to me about it." He walks off towards the Syndicated Security offices.`
+				decline
+
+			label blew
+			`	He jolts his head back. "What'd you say?"`
+			choice
+				`	"Yeah, I blew it up."`
+					goto destroyed
+				`	"The hijackers got away, sorry."`
+			`	He sighs and says, "Man, I don't have time for this. Tell me what actually happened."`
+			choice
+				`	"I blew it up, didn't you hear me?"`
+				`	"You ship got away. That's what happened."`
+			`	"If you're going to waste my time, get out of here." Before you can react, he storms off towards the Syndicated Security offices.`
+				decline
+
+			label fail
+			`When you land, the captain of the <npc> comes up to you, his face rather red.`
+			branch boarded destroyed
+				and
+					has "boarded hijacked argosy"
+					not "destroyed hijacked argosy"
+			label boarded
+			`	He grabs your shoulders and shakes you hard, shouting, "Didn't I tell you not to board my ship? Do you know how many credits I've just lost because of you?"`
+			choice
+				`	"I'm sorry, I was just trying to help!"`
+				`	"I'm sure whatever you lost wasn't worth all that much."`
+					goto worthless
+			`	He stops shaking you for a moment to say, "Well, you didn't need to shoot up the insides of my <npc model> while you were trying to help, weren't you? Fat lot of help that was, even if you tried to do the right thing. Oh, well..."`
+			`	The captain lets you go with a push and turns around to walk off towards the direction of the bar, leaving you to contemplate your actions.`
+				decline
+
+			label destroyed
+			`	He grabs your shoulders and shakes you hard, shouting, "Didn't I tell you not to destroy my ship? Do you know how many credits I've just lost because of you?"`
+			choice
+				`	"I'm sorry, I was just trying to help!"`
+				`	"I'm sure whatever you lost wasn't worth all that much."`
+					goto worthless
+			`	He stops shaking you for a moment to say, "Well, you shouldn't have blown up my <npc model> while you were trying to help, weren't you? Fat lot of help that was, even if you tried to do the right thing. Oh, well..."`
+			`	The captain lets you go with a push and turns around to walk off towards the direction of the bar, leaving you to contemplate your actions.`
+				decline
+
+			label worthless
+			`	He looks at you incredulously, scrunching up his face. "Not--not that much? Is that what you just said?" He pauses for a moment to look at the wall above you with a lost look in his eyes. "That was my life's work up there, an <npc model> that had served me for 14 years, and you have the audacity to say it was all for nothing?!"`
+			choice
+				`	"Well, yeah."`
+				`	"No, that's not what I meant."`
+			`	The captain scoffs, staring you down again with even more intensity than before, and lets you go with a rough push. "I don't need your explanation, I don't think you could give me one. I just can't understand how you can walk away feeling alright that you've set back one man's life so much."`
+			`	Suddenly, he turns around and walks off towards the direction of the bar, leaving you to contemplate your actions.`
+				decline
+
+	on visit
+		fail
+
+	on complete
+		log `Helped an unfortunate captain recover his Argosy after a bunch of delinquents hijacked it.`
+		payment 48000
+		conversation
+			`As you land, Syndicated Security have the <npc> in tow, escorted by a trio of Quicksilvers. The formation lands on one of the larger pads reserved for Syndicated Security vessels, fenced off from the rest of the spaceport.`
+			`	The hijackers, just a raucous group of young kids, are hauled out of the <npc model> by Syndicated Security personnel towards an armored van. Multiple times the kids try to run away, but after a few minutes they're finally detained; the van drives off towards the spaceport terminal.`
+			`	After the incident is wrapped up, the captain of the <npc> sends you <payment>, and a message thanking you for helping him recover his ship.`
+
+mission "Argosy Hijacking (Declined)"
+	invisible
+	landing
+	source
+		government "Syndicate"
+		not attributes "station"
+		not near "Sol" 3
+	deadline 1
+	to offer
+		has "Argosy Hijacking (Trigger): offered"
+	to complete
+		never
+	npc
+		personality launching daring uninterested
+			confusion 40
+		government "Merchant (Hijacked)"
+		ship "Argosy (Blaster)" "Moonshake Express"
+		to spawn
+			has "Argosy Hijacking: declined"
+	npc
+		personality launching disables uninterested
+		government "Syndicate"
+		fleet "Small Syndicate"
+		to spawn
+			has "Argosy Hijacking: declined"

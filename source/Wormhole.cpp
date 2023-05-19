@@ -24,6 +24,18 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
+namespace {
+	const string DEFAULT_WORMHOLE_COLOR = "map wormhole";
+}
+
+
+
+// Define the constructor to set "linkColor" to the desired default color.
+Wormhole::Wormhole()
+{
+	linkColor = ExclusiveItem<Color>(GameData::Colors().Get(DEFAULT_WORMHOLE_COLOR));
+}
+
 
 
 // Load a wormhole's description from a file.
@@ -97,6 +109,18 @@ void Wormhole::Load(const DataNode &node)
 			else
 				child.PrintTrace("Missing value for attribute:");
 		}
+		else if(key == "color" && (hasValue || remove))
+		{
+			if(remove)
+				linkColor = ExclusiveItem<Color>(GameData::Colors().Get(DEFAULT_WORMHOLE_COLOR));
+			else if(child.Size() >= 3 + valueIndex)
+				linkColor = ExclusiveItem<Color>(Color(child.Value(valueIndex),
+						child.Value(valueIndex + 1), child.Value(valueIndex + 2)));
+			else if(child.Size() >= 1 + valueIndex)
+				linkColor = ExclusiveItem<Color>(GameData::Colors().Get(child.Token(valueIndex)));
+			else
+				child.PrintTrace("Warning: skipping malformed \"color\" node:");
+		}
 		else if(remove)
 			child.PrintTrace("Cannot \"remove\" a specific value from the given key:");
 		else
@@ -150,6 +174,13 @@ const string &Wormhole::Name() const
 bool Wormhole::IsMappable() const
 {
 	return mappable;
+}
+
+
+
+const Color *Wormhole::GetLinkColor() const
+{
+	return &(*linkColor);
 }
 
 

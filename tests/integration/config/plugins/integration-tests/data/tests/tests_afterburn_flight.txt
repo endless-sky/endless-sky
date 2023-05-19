@@ -1,4 +1,4 @@
-test-data "burning flyers"
+test-data "burning flyers save"
 	category "savegame"
 	contents
 		pilot Bobbi Bughunter
@@ -93,10 +93,8 @@ test "Afterburner-flight - Simple depart land"
 	status active
 	description "Tests if the AI can use the afterburner as regular thruster for departure and landing."
 	sequence
-		inject "burning flyers"
+		inject "burning flyers save"
 		call "Load First Savegame"
-		assert
-			"flagship planet: Ruin" == 1
 		watchdog 12000
 		call "Depart"
 		# Wait for 10 seconds to drift away from the planet.
@@ -109,10 +107,4 @@ test "Afterburner-flight - Simple depart land"
 			"test: steps to wait" = "test: steps to wait" - 1
 		branch "floating"
 			"test: steps to wait" > 0
-		input
-			command land
-		label "landing"
-		# empty input to make time pass
-		input
-		branch "landing"
-			"flagship planet: Ruin" == 0
+		call "Land"

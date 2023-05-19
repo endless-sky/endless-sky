@@ -93,7 +93,7 @@ news "kor efret station friendly"
 			
 news "wanderer at kor efret spaceport"
 	to show
-		has "Wanderers: Sestor: Final: done"
+		has "wanderers sestor done"
 	location
 		government "Kor Efret"
 		not attributes "station"
