@@ -365,11 +365,6 @@ void ShipyardPanel::Sell()
 
 
 
-bool ShipyardPanel::CanSellMultiple() const
-{
-	return false;
-}
-
 ShopPanel::BuyResult ShipyardPanel::CanTransactionHandle(const char pressed) const
 {
 	switch (pressed)
@@ -478,8 +473,6 @@ void ShipyardPanel::DrawButtons()
 		string mod = "x " + to_string(modifier);
 		int modWidth = font.Width(mod);
 		font.Draw(mod, buyCenter + Point(-.5 * modWidth, 10.), dim);
-		if (CanSellMultiple())
-			font.Draw(mod, sellCenter + Point(-.5 * modWidth, 10.), dim);
 	}
 }
 

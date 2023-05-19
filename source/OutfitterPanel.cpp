@@ -334,12 +334,6 @@ bool OutfitterPanel::ShouldHighlight(const Ship *ship)
 {
 	if(!selectedOutfit)
 		return false;
-
-	//if(hoverButton == 'b')
-	//	return CanBuy() && ShipCanBuy(ship, selectedOutfit);
-	//else if(hoverButton == 's')
-	//	return CanSell() && ShipCanSell(ship, selectedOutfit);
-
 	return false;
 }
 
