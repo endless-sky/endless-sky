@@ -402,7 +402,7 @@ outfit "Old Man's Sword"
 	"capture attack" 1.4
 	"capture defense" 1
 	"unplunderable" 1
-	description "	While swords are seen today as being old curios and commemorative objects, rendered useless when gunpowder became dominant on the battlefield thousands of years ago, this sword is unlike any you have seen before. Despite how heavy it looks, it is remarkably light, and there are inscriptions on the blade itself that don't appear to be like any human language."
+	description "While swords are seen today as being old curios and commemorative objects, rendered useless when gunpowder became dominant on the battlefield thousands of years ago, this sword is unlike any you have seen before. Despite how heavy it looks, it is remarkably light, and there are inscriptions on the blade itself that don't appear to be like any human language."
 	description "	For whatever reason, the red beam within the blade seems to pulsate as you swing it; perhaps there is more to the sword than you know."
 
 outfit "Puny"
