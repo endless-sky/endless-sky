@@ -378,10 +378,10 @@ mission "Efreti: Distress Call 3"
 				goto title
 
 			label pay
-			`	A ripple of what appears to be dissatisfaction passes through the group, but their leader silences them with a gesture.`
+			`	The group relaxes quickly as you see ripple of relief and pride pass through the group.`
 
 			label title
-			`	The leader turns and speaks to you directly. His eyes never waver from yours even as you wait for the translation. "For many ship skills, parent and child work to learn. For some families, three generations are lost. We will not try to salvage the body box of our kin, for none can bear to fly it. We offer you title to salvage the <EDC-ship> and carry our grief far from here."`
+			`	The leader turns and speaks to you directly. His eyes never waver from yours even as you wait for the translation. "Efreti crews have families, as children learn by working with parents. For some families, three generations were lost. We will not try to salvage the ship, for none can bear to fly it. We offer you title to salvage the <EDC-ship> and carry our grief far from here."`
 				accept
 	npc
 		system "Seketra"
