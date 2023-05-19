@@ -30,7 +30,6 @@ public:
 	void Load(const DataNode &node);
 
 	bool UniversalRamscoopActive() const;
-	double UniversalSolarHeat() const;
 	int PersonSpawnPeriod() const;
 	int NoPersonSpawnWeight() const;
 	int NPCMaxMiningTime() const;

@@ -23,7 +23,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "FillShader.h"
 #include "text/Format.h"
 #include "GameData.h"
-#include "Gamerules.h"
 #include "text/layout.hpp"
 #include "Outfit.h"
 #include "PlayerInfo.h"
