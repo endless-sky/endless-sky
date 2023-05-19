@@ -552,7 +552,7 @@ mission "Efreti: Distress Call 7"
 				`	(I've got places to be.)`
 					decline
 				
-			`	The tent is larger than you expected. At the back there is a group of Korath arranged like a choir, but standing oddly still. A Korath in some kind of robes stands next to a table piled with sweets and cups of some kind of thick drink. As you approach, you realize that the "choir" is made of holograms. You do a quick mental count and guess that these are the Korath that died on the ship; this is probably some type of memorial. The Korath in robes greets you and presses a cup into your hand.`
+			`	The tent is larger than you expected. At the back there is a group of Korath arranged like a choir, but standing oddly still. A Korath in some kind of robe stands next to a table piled with sweets and cups of some kind of thick drink. As you approach, you realize that the "choir" is made of holograms. You do a quick mental count and guess that these are the Korath that died on the ship; this is probably some type of memorial. The Korath in robes greets you and presses a cup into your hand.`
 			choice
 				`	(Drink it.)`
 					goto drink
