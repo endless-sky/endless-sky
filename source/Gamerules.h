@@ -30,6 +30,7 @@ public:
 	void Load(const DataNode &node);
 
 	bool UniversalRamscoopActive() const;
+	double UniversalSolarHeat() const;
 	int PersonSpawnPeriod() const;
 	int NoPersonSpawnWeight() const;
 	int NPCMaxMiningTime() const;
@@ -38,6 +39,7 @@ public:
 
 private:
 	bool universalRamscoop = true;
+	double universalSolarHeat = 1.;
 	int personSpawnPeriod = 36000;
 	int noPersonSpawnWeight = 1000;
 	int npcMaxMiningTime = 3600;

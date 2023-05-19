@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "FillShader.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "text/layout.hpp"
 #include "Outfit.h"
 #include "PlayerInfo.h"
@@ -325,6 +326,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 		- attributes.Get("energy consumption")
 		- attributes.Get("cooling energy");
 	const double idleHeatPerFrame = attributes.Get("heat generation")
+		+ GameData::GetGamerules().UniversalSolarHeat()
 		+ attributes.Get("solar heat")
 		+ attributes.Get("fuel heat")
 		- ship.CoolingEfficiency() * (attributes.Get("cooling") + attributes.Get("active cooling"));

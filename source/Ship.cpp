@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Flotsam.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "Government.h"
 #include "JumpTypes.h"
 #include "Logger.h"
@@ -2448,7 +2449,7 @@ void Ship::DoGeneration()
 
 			double solarScaling = currentSystem->SolarPower() * scale;
 			energy += solarScaling * attributes.Get("solar collection");
-			heat += solarScaling * attributes.Get("solar heat");
+			heat += solarScaling * (attributes.Get("solar heat") + GameData::GetGamerules().UniversalSolarHeat());
 		}
 
 		double coolingEfficiency = CoolingEfficiency();
