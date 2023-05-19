@@ -190,7 +190,8 @@ void LocationFilter::Load(const DataNode &node)
 	}
 
 	isEmpty = planets.empty() && attributes.empty() && systems.empty() && governments.empty()
-		&& !center && originMaxDistance < 0 && notFilters.empty() && neighborFilters.empty()
+		&& nearFilters.empty() && distanceFilters.empty()
+		&& notFilters.empty() && neighborFilters.empty()
 		&& outfits.empty() && shipCategory.empty();
 }
 
@@ -270,8 +271,8 @@ void LocationFilter::Save(DataWriter &out) const
 			}
 			out.EndChild();
 		}
-		if(center)
-			out.Write("near", center->Name(), centerMinDistance, centerMaxDistance);
+		for(const auto &it : nearFilters)
+			it.Save(out);
 	}
 	out.EndChild();
 }
@@ -305,8 +306,9 @@ bool LocationFilter::IsValid() const
 	// Governments are always considered valid.
 
 	// The "center" of a "near <system>" filter must be valid.
-	if(center && !center->IsValid())
-		return false;
+	for(const auto &it : nearFilters)
+		if(!it.IsValid())
+			return false;
 
 	if(!CheckValidity(outfits))
 		return false;
@@ -425,8 +427,11 @@ bool LocationFilter::Matches(const Ship &ship) const
 
 	// Check if this ship's current system meets a "near <system>" criterion.
 	// (Ships only offer missions, so no "distance" criteria need to be checked.)
-	if(center && Distance(center, origin, centerMaxDistance, centerDistanceOptions) < centerMinDistance)
-		return false;
+	for(const auto &it : nearFilters)
+	{
+		if(!it.Matches(origin))
+			return false;
+	}
 
 	return true;
 }
@@ -437,25 +442,21 @@ bool LocationFilter::Matches(const Ship &ship) const
 LocationFilter LocationFilter::SetOrigin(const System *origin) const
 {
 	// If there is no distance filter, then no conversion is needed.
-	if(IsEmpty() || originMaxDistance < 0)
+	if(distanceFilters.empty())
 		return *this;
 
 	// If the system is invalid, or a "near <system>" filter already
 	// exists, do not convert "distance" to "near".
-	if(!origin || center)
+	if(!origin)
 		return *this;
 
 	// Copy all parts of this instantiated filter into the result.
 	LocationFilter result = *this;
 	// Perform the conversion.
-	result.center = origin;
-	result.centerMinDistance = originMinDistance;
-	result.centerMaxDistance = originMaxDistance;
-	result.centerDistanceOptions = originDistanceOptions;
+	for(const auto &it : distanceFilters)
+		result.nearFilters.emplace_back(it, origin);
 	// Revert "distance" parameters to their default.
-	result.originMinDistance = 0;
-	result.originMaxDistance = -1;
-	result.originDistanceOptions = DistanceCalculationSettings{};
+	result.distanceFilters.clear();
 
 	return result;
 }
@@ -504,6 +505,148 @@ const Planet *LocationFilter::PickPlanet(const System *origin, bool hasClearance
 
 
 
+// Members of the NearOrDistanceFilter class.
+
+void LocationFilter::NearOrDistanceFilter::Load(const DataNode &node, int valueIndex)
+{
+	if(node.Size() > valueIndex)
+		LoadElement(node, valueIndex);
+	else if(node.HasChildren())
+		for(const auto &child : node)
+			LoadElement(child, 0);
+}
+
+
+
+LocationFilter::NearOrDistanceFilter::NearElement::NearElement(const LocationFilter::NearOrDistanceFilter::DistanceElement &other)
+	: center(nullptr), minDistance(other.minDistance), maxDistance(other.maxDistance), distanceOptions(other.distanceOptions)
+{
+}
+
+
+
+// Members of the DistanceFilter class.
+
+// At least one of the elements must match.
+bool LocationFilter::DistanceFilter::Matches(const System *system, const System *origin) const
+{
+	for(const auto &it : elements)
+		if(it.maxDistance >= 0 && Distance(origin, system, it.maxDistance, it.distanceOptions) >= it.minDistance)
+			return true;
+	return false;
+}
+
+
+
+const list<LocationFilter::NearOrDistanceFilter::DistanceElement> &LocationFilter::DistanceFilter::Elements() const
+{
+	return elements;
+}
+
+
+
+void LocationFilter::DistanceFilter::LoadElement(const DataNode &node, int index)
+{
+	if(node.Size() < index + 1)
+		return;
+
+	elements.emplace_back();
+	DistanceElement &it = elements.back();
+
+	if(node.Size() == 1 + index)
+		it.maxDistance = node.Value(index);
+	else if(node.Size() == 2 + index)
+	{
+		it.minDistance = node.Value(index);
+		it.maxDistance = node.Value(1 + index);
+	}
+
+	if(node.HasChildren())
+		it.distanceOptions.Load(node);
+}
+
+
+
+// Members of the NearElement class.
+
+LocationFilter::NearFilter::NearFilter(const LocationFilter::DistanceFilter &other, const System *origin)
+{
+	for(const auto &it : other.Elements())
+	{
+		elements.emplace_back(it);
+		elements.back().center = origin;
+	}
+}
+
+
+
+void LocationFilter::NearFilter::Save(DataWriter &out) const
+{
+	if(elements.empty())
+		return;
+
+	out.Write("near");
+	out.BeginChild();
+	for(const auto &it : elements)
+		if(it.center)
+		{
+			out.Write(it.center->Name(), it.minDistance, it.maxDistance);
+			out.BeginChild();
+			it.distanceOptions.Save(out);
+			out.EndChild();
+		}
+	out.EndChild();
+}
+
+
+
+// At least one of the elements must match.
+bool LocationFilter::NearFilter::Matches(const System *system) const
+{
+	for(const auto &it : elements)
+		if(it.center && Distance(it.center, system, it.maxDistance, it.distanceOptions) >= it.minDistance)
+			return true;
+	return false;
+}
+
+
+
+bool LocationFilter::NearFilter::IsValid() const
+{
+	for(const auto &it : elements)
+		if(it.center && !it.center->IsValid())
+			return false;
+	return true;
+}
+
+
+
+void LocationFilter::NearFilter::LoadElement(const DataNode &node, int index)
+{
+	if(node.Size() < index + 2)
+		return;
+
+	elements.emplace_back();
+	NearElement &newFilter = elements.back();
+
+	newFilter.center = GameData::Systems().Get(node.Token(index));
+
+	if(node.Size() == 2 + index)
+		newFilter.maxDistance = node.Value(1 + index);
+	else if(node.Size() == 3 + index)
+	{
+		newFilter.minDistance = node.Value(1 + index);
+		newFilter.maxDistance = node.Value(2 + index);
+	}
+
+	if(node.HasChildren())
+		newFilter.distanceOptions.Load(node);
+}
+
+
+
+// Private members of LocationFilter
+
 // Load one particular line of conditions.
 void LocationFilter::LoadChild(const DataNode &child)
 {
@@ -549,32 +692,15 @@ void LocationFilter::LoadChild(const DataNode &child)
 		if(attributes.back().empty())
 			attributes.pop_back();
 	}
-	else if(key == "near" && child.Size() >= 1 + valueIndex)
+	else if(key == "near" && (child.Size() >= 1 + valueIndex || child.HasChildren()))
 	{
-		center = GameData::Systems().Get(child.Token(valueIndex));
-		if(child.Size() == 2 + valueIndex)
-			centerMaxDistance = child.Value(1 + valueIndex);
-		else if(child.Size() == 3 + valueIndex)
-		{
-			centerMinDistance = child.Value(1 + valueIndex);
-			centerMaxDistance = child.Value(2 + valueIndex);
-		}
-
-		if(child.HasChildren())
-			centerDistanceOptions.Load(child);
+		nearFilters.emplace_back();
+		nearFilters.back().Load(child, valueIndex);
 	}
-	else if(key == "distance" && child.Size() >= 1 + valueIndex)
+	else if(key == "distance" && (child.Size() >= 1 + valueIndex || child.HasChildren()))
 	{
-		if(child.Size() == 1 + valueIndex)
-			originMaxDistance = child.Value(valueIndex);
-		else if(child.Size() == 2 + valueIndex)
-		{
-			originMinDistance = child.Value(valueIndex);
-			originMaxDistance = child.Value(1 + valueIndex);
-		}
-
-		if(child.HasChildren())
-			originDistanceOptions.Load(child);
+		distanceFilters.emplace_back();
+		distanceFilters.back().Load(child, valueIndex);
 	}
 	else if(key == "category" && child.Size() >= 2 + isNot)
 	{
@@ -642,11 +768,13 @@ bool LocationFilter::Matches(const System *system, const System *origin, bool di
 		return false;
 
 	// Check this system's distance from the desired reference system.
-	if(center && Distance(center, system, centerMaxDistance, centerDistanceOptions) < centerMinDistance)
-		return false;
-	if(origin && originMaxDistance >= 0
-			&& Distance(origin, system, originMaxDistance, originDistanceOptions) < originMinDistance)
-		return false;
+	for(const auto &it : nearFilters)
+		if(!it.Matches(system))
+			return false;
+	if(origin)
+		for(const auto &it : distanceFilters)
+			if(!it.Matches(system, origin))
+				return false;
 
 	return true;
 }
