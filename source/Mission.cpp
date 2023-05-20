@@ -157,7 +157,6 @@ void Mission::Load(const DataNode &node)
 			deadline = Date(child.Value(1), child.Value(2), child.Value(3));
 		else if(child.Token(0) == "hide")
 		{
-			fprintf(stderr,"HIDE %d",child.Size());
 			for(int i = 1; i < child.Size() ; i++)
 				if(child.Token(i) == "destination")
 					mapHidingFlags |= HIDE_DESTINATION;
