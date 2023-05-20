@@ -153,6 +153,19 @@ void Mission::Load(const DataNode &node)
 			deadline = Date(child.Value(1), child.Value(2), child.Value(3));
 		else if(child.Size() == 2 && child.Token(0) == "complete" && child.Token(1) == "anywhere")
 			completeAnywhere = true;
+		else if(child.Size() == 2 && child.Token(0) == "complete" && child.Token(1) == "at")
+		{
+			LocationFilter loaded(child);
+			if(!loaded.IsValid())
+				continue;
+			completeAnywhere = loaded.IsEmpty();
+			if(completeAnywhere)
+				completionFilter = LocationFilter();
+			else
+				completionFilter = loaded;
+		}
+		else if(child.Token(0) == "complete")
+			child.PrintTrace("Invalid \"complete\" option.");
 		else if(child.Token(0) == "deadline")
 		{
 			if(child.Size() == 1)
@@ -350,6 +363,11 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("deadline", deadline.Day(), deadline.Month(), deadline.Year());
 		if(completeAnywhere)
 			out.Write("complete", "anywhere");
+		else if(!completionFilter.IsEmpty() && completionFilter.IsValid())
+		{
+			out.Write("complete", "at");
+			completionFilter.Save(out);
+		}
 		if(cargoSize)
 			out.Write("cargo", cargo, cargoSize);
 		if(passengers)
@@ -824,8 +842,13 @@ bool Mission::HasSpace(const Ship &ship) const
 
 bool Mission::CanComplete(const PlayerInfo &player) const
 {
-	if(!completeAnywhere && player.GetPlanet() != destination)
-		return false;
+	if(!completeAnywhere)
+	{
+		if(completionFilter.IsEmpty() && player.GetPlanet() != destination)
+			return false;
+		else if(!completionFilter.IsEmpty() && !completionFilter.Matches(player.GetPlanet(), player.GetSystem()))
+			return false;
+	}
 
 	return IsSatisfied(player);
 }
@@ -1219,6 +1242,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.repeat = repeat;
 	result.name = name;
 	result.waypoints = waypoints;
+	result.completeAnywhere = completeAnywhere;
+	result.completionFilter = completionFilter;
 	// Handle waypoint systems that are chosen randomly.
 	const System *const sourceSystem = player.GetSystem();
 	for(const LocationFilter &filter : waypointFilters)
