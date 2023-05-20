@@ -41,7 +41,7 @@ mission "First Contact: Wanderer"
 	to complete
 		or
 			has "Wanderers: Diplomacy: offered"
-			has "Wanderers Diplomacy (Before Hai Reveal): offered"
+			has "Wanderers: Diplomacy (Before Hai Reveal): offered"
 	on offer
 		log "Discovered a birdlike alien species to the north of human space. They appear to speak the Hai language in addition to their own, so with the help of a Hai interpreter it might be possible to communicate with them."
 		conversation
