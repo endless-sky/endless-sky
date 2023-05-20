@@ -369,11 +369,11 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("passengers", passengers);
 		if(paymentApparent)
 			out.Write("apparent payment", paymentApparent);
-		if( (mapHidingFlags & HIDE_DESTINATION) )
+		if((mapHidingFlags & HIDE_DESTINATION))
 			out.Write("hide", "destination");
-		if( (mapHidingFlags & HIDE_WAYPOINTS) )
+		if((mapHidingFlags & HIDE_WAYPOINTS))
 			out.Write("hide", "waypoints");
-		if( (mapHidingFlags & HIDE_STOPOVERS) )
+		if((mapHidingFlags & HIDE_STOPOVERS))
 			out.Write("hide", "stopovers");
 		if(illegalCargoFine)
 			out.Write("illegal", illegalCargoFine, illegalCargoMessage);
