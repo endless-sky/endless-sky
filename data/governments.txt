@@ -560,7 +560,7 @@ government "Hai (Friendly Unfettered)"
 		"Hai" .01
 		"Hai (Wormhole Access)" .01
 		"Elenctic Commune" .01
-		"Wanderer" -1e5
+		"Wanderer" -1e-5
 
 		"Hai (Unfettered)" 1e-5
 		"Hai (Unfettered Civilians)" .01
