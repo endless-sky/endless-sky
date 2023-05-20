@@ -1084,7 +1084,7 @@ government "Quarg (Kor Efret)"
 		"Kor Sestor" -.01
 	"custom penalties for"
 		"Kor Efret"
-			provoke 0.1
+			provoke 1
 	"death sentence" "quarg imprisonment"
 	"hostile hail" "hostile quarg"
 	"hostile disabled hail" "hostile quarg"
@@ -1113,7 +1113,7 @@ government "Quarg (Gegno)"
 		"Gegno"
 	"custom penalties for"
 		"Gegno"
-			provoke 0.01
+			provoke 1
 	"death sentence" "quarg imprisonment"
 	"hostile hail" "hostile quarg"
 	"hostile disabled hail" "hostile quarg"
