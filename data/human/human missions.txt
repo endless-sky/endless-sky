@@ -5475,6 +5475,7 @@ mission "Escort offer (Betrayal)"
 				accept
 	on enter Moktar
 		dialog `As expected, there are pirates waiting for you in Moktar. Unfortunately, the <npc> makes no attempt to attack them, instead turning its guns on you.`
+		dialog `You receive a hail from the <npc>: "Gotcha, you didn't suspect a thing!"`
 		"reputation: Escort (Betraying)" <?= -1000
 		fail
 	on enter Menkar
