@@ -5450,6 +5450,58 @@ mission "Deal Change 2"
 
 
 
+mission "Escort offer (Betrayal)"
+	minor
+	landing
+	name "Cargo to <planet>"
+	description "Transport <tons> of cargo to <destination> by <date>. You will be paid <payment>. The captain of the <npc> has offered to protect you from any pirates along the way in exchange for a cut of the profits."
+	deadline
+	"apparent payment" 280000
+	cargo "sealed barrels" 220
+	source Sunracer
+	destination Maelstrom
+	to offer
+		"armament deterrence" <= 2
+		"cargo attractiveness" >= 6
+	on offer
+		"reputation: Escort (Betraying)" = 10
+		conversation
+			`As you land, a heavily modified Firebird with oversized guns follows you down, settling on the pad next to you. A young man with short hair steps out, walks over to your ship, and says, "Hey, you've got a lot of cargo space there. I bet you make loads of dough with it, trading or running jobs. Say, I know somebody who could use a ship like yours. He needs to get <tons> of cargo to <destination> by <day>, you see. Payment's about 350,000 credits. Lot of pirates round there, though. I can fight 'em, but there's not much money to be made hauling cargo in this thing." He gestures to his ship. "Tell you what, for 20% of the payment, I'll see to it that you arrive there safely. What do you think?"`
+			choice
+				`	"Sounds like a plan. You'll be taking 70,000 credits, then?"`
+				`	"Sorry, that just sounds too dangerous for me."`
+					decline
+			`	"That's right. Now, let's go! The cargo'll be loaded on your ship by sundown. Oh, and if you didn't already know, you can get to <planet> from here in just four jumps. North, west, southwest, then south."`
+				accept
+	on enter Moktar
+		dialog `As expected, there are pirates waiting for you in Moktar. Unfortunately, the <npc> makes no attempt to attack them, instead turning its guns on you.`
+		dialog `You receive a hail from the <npc>: "Gotcha, you didn't suspect a thing!"`
+		"reputation: Escort (Betraying)" <?= -1000
+		fail
+	on enter Menkar
+		dialog `The <npc> hails you: "Wrong way, mate! You'll miss the deadline if you go the whole way round. Head back up to Mirfak, then north, west, southwest and south."`
+	on enter Zaurak
+		dialog `The <npc> hails you again: "Figured it out, did you? Bit late for that now, mate. You're still going down."`
+		"reputation: Escort (Betraying)" <?= -1000
+		fail
+	on enter Oblate Cardax Volax Nihal Elnath Acamar Kugel Algol Hamal
+		dialog `You receive a message from the <npc>, which is now several systems away: "Hello? You still there? I don't know what just happened, but on the off chance you're still alive, I thought I'd just let you know that the deal's off." You open up the cargo that he wanted you to carry, and find nothing but worthless barrels of water.`
+		fail
+	on abort
+		dialog `The <npc> hails you: "Figured it out, did you? Bit late for that now, mate. You're still going down."`
+		"reputation: Escort (Betraying)" <?= -1000
+	npc
+		government "Pirate"
+		personality staying nemesis harvests plunders
+		system Moktar
+		ship "Splinter" "Hellblade"
+	npc accompany save
+		government "Escort (Betraying)"
+		personality nemesis harvests plunders
+		ship "Marauder Firebird (Weapons)" "Hellspear"
+
+
+
 mission "Quicksilver Mixup 0"
 	minor
 	name "Package to Silver"

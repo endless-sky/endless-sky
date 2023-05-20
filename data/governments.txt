@@ -221,6 +221,17 @@ government "Escort"
 	swizzle 5
 	"fine" 0
 
+government "Escort (Betraying)"
+	"display name" "Merchant"
+	swizzle 5
+
+	"player reputation" 10
+	"attitude toward"
+		"Korath" -.01
+	"fine" 0
+	"friendly hail" "friendly civilian"
+	"hostile hail" "hostile pirate"
+	
 government "Forest (Prey)"
 	# Indigenous creatures in large forest zones outside the Milky Way.
 	# Drak don't look after these since they're beyond Drak territory.
