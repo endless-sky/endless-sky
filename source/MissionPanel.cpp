@@ -64,16 +64,18 @@ namespace {
 		if(!system)
 			return false;
 
-		if(mission.Destination()->IsInSystem(system))
+		if(!mission.HideDestination() && mission.Destination()->IsInSystem(system))
 			return true;
 
-		for(const System *waypoint : mission.Waypoints())
-			if(waypoint == system)
-				return true;
+		if(!mission.HideWaypoints())
+			for(const System *waypoint : mission.Waypoints())
+				if(waypoint == system)
+					return true;
 
-		for(const Planet *stopover : mission.Stopovers())
-			if(stopover->IsInSystem(system))
-				return true;
+		if(!mission.HideStopovers())
+			for(const Planet *stopover : mission.Stopovers())
+				if(stopover->IsInSystem(system))
+					return true;
 
 		return false;
 	}
@@ -593,22 +595,24 @@ bool MissionPanel::Scroll(double dx, double dy)
 
 void MissionPanel::SetSelectedScrollAndCenter(bool immediate)
 {
+	cycleInvolvedIndex = 0;
+
 	// Auto select the destination system for the current mission.
-	if(availableIt != available.end())
+	if(availableIt != available.end() && !availableIt->HideDestination())
 	{
 		selectedSystem = availableIt->Destination()->GetSystem();
 		DoScroll(available, availableIt, availableScroll, false);
 	}
-	else if(acceptedIt != accepted.end())
+	else if(acceptedIt != accepted.end() && !acceptedIt->HideDestination())
 	{
 		selectedSystem = acceptedIt->Destination()->GetSystem();
 		DoScroll(accepted, acceptedIt, acceptedScroll, true);
 	}
+	else
+		selectedSystem = player.GetSystem();
 
 	// Center on the selected system.
 	CenterOnSystem(selectedSystem, immediate);
-
-	cycleInvolvedIndex = 0;
 }
 
 
@@ -696,24 +700,41 @@ void MissionPanel::DrawSelectedSystem() const
 // waypoints) by drawing colored rings around them.
 void MissionPanel::DrawMissionSystem(const Mission &mission, const Color &color) const
 {
-	auto toVisit = set<const System *>{mission.Waypoints()};
-	for(const Planet *planet : mission.Stopovers())
-		toVisit.insert(planet->GetSystem());
-	auto hasVisited = set<const System *>{mission.VisitedWaypoints()};
-	for(const Planet *planet : mission.VisitedStopovers())
-		hasVisited.insert(planet->GetSystem());
-
-	const Color &waypoint = *GameData::Colors().Get("waypoint back");
-	const Color &visited = *GameData::Colors().Get("faint");
-
 	double zoom = Zoom();
 	auto drawRing = [&](const System *system, const Color &drawColor)
 		{ RingShader::Add(zoom * (system->Position() + center), 22.f, 20.5f, drawColor); };
 
-	RingShader::Bind();
+	if(!mission.HideDestination())
 	{
+		RingShader::Bind();
 		// Draw a colored ring around the destination system.
 		drawRing(mission.Destination()->GetSystem(), color);
+		RingShader::Unbind();
+	}
+
+	if(mission.HideWaypoints() && mission.HideStopovers())
+		return;
+
+	set<const System *> toVisit, hasVisited;
+	const Color &waypoint = *GameData::Colors().Get("waypoint back");
+	const Color &visited = *GameData::Colors().Get("faint");
+
+	if(!mission.HideWaypoints())
+	{
+		toVisit = set<const System *>{mission.Waypoints()};
+		hasVisited = set<const System *>{mission.VisitedWaypoints()};
+	}
+
+	if(!mission.HideStopovers())
+	{
+		for(const Planet *planet : mission.Stopovers())
+			toVisit.insert(planet->GetSystem());
+		for(const Planet *planet : mission.VisitedStopovers())
+			hasVisited.insert(planet->GetSystem());
+	}
+
+	RingShader::Bind();
+	{
 		// Draw bright rings around systems that still need to be visited.
 		for(const System *system : toVisit)
 			drawRing(system, waypoint);
@@ -1055,10 +1076,10 @@ bool MissionPanel::FindMissionForSystem(const System *system)
 	acceptedIt = accepted.end();
 
 	for(availableIt = available.begin(); availableIt != available.end(); ++availableIt)
-		if(availableIt->Destination()->IsInSystem(system))
+		if(!availableIt->HideDestination() && availableIt->Destination()->IsInSystem(system))
 			return true;
 	for(acceptedIt = accepted.begin(); acceptedIt != accepted.end(); ++acceptedIt)
-		if(acceptedIt->IsVisible() && acceptedIt->Destination()->IsInSystem(system))
+		if(acceptedIt->IsVisible() && !acceptedIt->HideDestination() && acceptedIt->Destination()->IsInSystem(system))
 			return true;
 
 	return false;
@@ -1091,21 +1112,23 @@ void MissionPanel::CycleInvolvedSystems(const Mission &mission)
 	cycleInvolvedIndex++;
 
 	int index = 0;
-	for(const System *waypoint : mission.Waypoints())
-		if(++index == cycleInvolvedIndex)
-		{
-			CenterOnSystem(waypoint);
-			return;
-		}
+	if(!mission.HideWaypoints())
+		for(const System *waypoint : mission.Waypoints())
+			if(++index == cycleInvolvedIndex)
+			{
+				CenterOnSystem(waypoint);
+				return;
+			}
 
-	for(const Planet *stopover : mission.Stopovers())
-		if(++index == cycleInvolvedIndex)
-		{
-			CenterOnSystem(stopover->GetSystem());
-			return;
-		}
-
+	if(!mission.HideStopovers())
+		for(const Planet *stopover : mission.Stopovers())
+			if(++index == cycleInvolvedIndex)
+			{
+				CenterOnSystem(stopover->GetSystem());
+				return;
+			}
 
 	cycleInvolvedIndex = 0;
-	CenterOnSystem(mission.Destination()->GetSystem());
+	if(!mission.HideDestination())
+		CenterOnSystem(mission.Destination()->GetSystem());
 }

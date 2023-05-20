@@ -157,6 +157,10 @@ public:
 	enum Trigger {COMPLETE, OFFER, ACCEPT, DECLINE, FAIL, ABORT, DEFER, VISIT, STOPOVER, WAYPOINT, DAILY};
 	bool Do(Trigger trigger, PlayerInfo &player, UI *ui = nullptr, const std::shared_ptr<Ship> &boardingShip = nullptr);
 
+	bool HideDestination() const;
+	bool HideWaypoints() const;
+	bool HideStopovers() const;
+
 	// Get a list of NPCs associated with this mission. Every time the player
 	// takes off from a planet, they should be added to the active ships.
 	const std::list<NPC> &NPCs() const;
@@ -213,6 +217,8 @@ private:
 	bool ignoreClearance = false;
 	LocationFilter clearanceFilter;
 	bool hasFullClearance = true;
+
+	int mapHidingFlags = 0;
 
 	int repeat = 1;
 	std::string cargo;
