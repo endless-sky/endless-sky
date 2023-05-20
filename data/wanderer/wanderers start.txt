@@ -196,7 +196,6 @@ mission "Wanderers: Diplomacy Delayed"
 	to complete
 		or
 			has "Wanderers: Diplomacy: offered"
-			has "Wanderers: Diplomacy (Before Hai Reveal): accepted"
 			has "Wanderers: Diplomacy (Before Hai Reveal): done"
 	on offer
 		conversation
@@ -279,7 +278,6 @@ mission "Wanderers: Professor Available"
 	destination Allhome
 	to offer
 		has "event: A Hai professor is available to translate"
-		not "Wanderers: Diplomacy: accepted"
 		not "Wanderers: Diplomacy: done"
 	on offer
 		log `Professor Andelena in the Department of Skiourology at Mongongo University has sent me a message asking for transport services on her expedition. This may be an opportunity to get an interpreter for the aliens to the north.`
@@ -1680,12 +1678,14 @@ mission "Wanderers: Alpha Surveillance E"
 
 
 
+# This is to allow people to upgrade from earlier Endless Sky releases.
 mission "Wanderers: Alpha Surveillance Danforth Mission Sequence Fix"
 	landing
 	invisible
 	to offer
 		not "Danforth in mission sequence"
-		has "Wanderers: Alpha Surveillance E: accepted"
+		has "Wanderers: Alpha Surveillance E: offered"
+		not "Wanderers: Alpha Surveillance E: declined"
 		not "Wanderers: Alpha Surveillance I: offered"
 	on offer
 		"Danforth in mission sequence" = 2
