@@ -151,6 +151,8 @@ void Mission::Load(const DataNode &node)
 			blocked = child.Token(1);
 		else if(child.Token(0) == "deadline" && child.Size() >= 4)
 			deadline = Date(child.Value(1), child.Value(2), child.Value(3));
+		else if(child.Size() == 2 && child.Token(0) == "complete" && child.Token(1) == "anywhere")
+			completeAnywhere = true;
 		else if(child.Token(0) == "deadline")
 		{
 			if(child.Size() == 1)
@@ -346,6 +348,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("blocked", blocked);
 		if(deadline)
 			out.Write("deadline", deadline.Day(), deadline.Month(), deadline.Year());
+		if(completeAnywhere)
+			out.Write("complete", "anywhere");
 		if(cargoSize)
 			out.Write("cargo", cargo, cargoSize);
 		if(passengers)
@@ -820,7 +824,7 @@ bool Mission::HasSpace(const Ship &ship) const
 
 bool Mission::CanComplete(const PlayerInfo &player) const
 {
-	if(player.GetPlanet() != destination)
+	if(!completeAnywhere && player.GetPlanet() != destination)
 		return false;
 
 	return IsSatisfied(player);

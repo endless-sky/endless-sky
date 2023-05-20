@@ -213,6 +213,7 @@ private:
 	bool ignoreClearance = false;
 	LocationFilter clearanceFilter;
 	bool hasFullClearance = true;
+	bool completeAnywhere = true;
 
 	int repeat = 1;
 	std::string cargo;
