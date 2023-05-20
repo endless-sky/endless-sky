@@ -387,7 +387,7 @@ mission "First Contact: Korath Exiles"
 					goto alone
 
 			label fire
-			`	A furious exchange of gestures and vocalizations ensues between the two Korath, and they begin furiously drawing, erasing, and drawing more things in the sand between themselves, out of your sight. Eventually, the pace of their conversation slows and they turn back to you.`
+			`	A furious exchange of gestures and vocalizations ensues between the two Korath, and they begin vigorously drawing, erasing, and drawing more things in the sand between themselves, out of your sight. Eventually, the pace of their conversation slows and they turn back to you.`
 			# This Korath is asking you to return here with food.
 			`	They draw your ships back on the illustration of the planet, pick up the sand for your ship, and throw it back in human space again. Then they collect a few pebbles from human space, redraw your ship back on the planet again, and place the pebbles inside. Picking up one of the pebbles, one of them reaches into its coat, takes out a glowing red orb, unscrews a cap from the top, and drinks the thick, red fluid. They gesture with the pebble, gesture with the now-empty orb, and place all the pebbles on the drawing of the planet between your three ships.`
 			choice
@@ -464,7 +464,7 @@ mission "Korath [F01]: A Fishy Deal"
 			label ship
 			action
 				set "Korath [F01]: A Fishy Deal: ship"
-				log "Minor People" "Jenny Jetmaster" "Latest in a family line that has operated and maintained a replica of an ancient jet aircraft and made money on airshows. She is now on the run from the Syndicate for rescuing her persecuted uncle from Tinker"
+				log "Minor People" "Jenny Jetmaster" "Latest in a family line that has operated and maintained a replica of an ancient jet aircraft and made money on airshows. She is now on the run from the Syndicate for rescuing her persecuted uncle from Tinker."
 			`	You see her expression brighten as she walks towards you. "It's an heirloom," she says proudly, gesturing widely at the ship, "which has been in the family for centuries. My distant ancestor got a military surplus cargo plane and refurbished it. They used it as a personal craft. Each generation added to it; every piece has been repaired or replaced over the last thousand years. It's more of a replica now.`
 			`	"The whole thing has been modernized - about a dozen times. There's a hyperdrive built into the hull itself, and those ion engines aren't of Syndicate design. They're custom-built, with ion propulsion, steering, and atmospheric anti-grav, in one assembly. The design was once called a Jetmaster, and my family have taken the Jetmaster name as our own.`
 			`	"Jenny Jetmaster," she says, with a choreographed bow. "My family used to do air shows all across human space, until my uncle got on the bad side of the Syndicate. We flew all the way from Bourne to Tinker to pick him up and smuggled him out to New Tortuga where the Syndicate cannot reach us. Now I smuggle cargo through hyperspace in a 20th century aircraft!"`
@@ -666,7 +666,7 @@ mission "Korath [F03]: Rabasot Pa'ah Failed Landings"
 			label "first attempt"
 			scene scene/purple-lightning
 			action
-				log "Failed to land on Rabasot Pa'ah due to a powerful atmospheric event brought on by unusual interactions between the planet's atmosphere and the nova it orbits. Reconfiguring the shields to act as a plow got you out of the storm. That shield configuration should allow safe transit through the atmosphere in your next landing attempt."
+				log "Failed to land on Rabasot Pa'ah due to a powerful atmospheric event brought on by unusual interactions between the planet's atmosphere and the nova it orbits. Reconfigured the shields to act as a plow to get out of the storm. That shield configuration should allow safe transit through the atmosphere in another landing attempt."
 			`As you descend through the magnetosphere, your computer warns you of a build-up of unusual charged particles, muons, which is a bit odd. From your training on hyperspace exit and entrance, you recall that the mean lifetime of a muon is measured in microseconds. Something here must be actively generating them.`
 			`	You travel deeper into the atmosphere, approaching what appears to be an inactive volcanic island chain. As usual, your ship's descent causes air currents, but the strange atmosphere turns those currents into a powerful storm. The muons mix with this event, creating catastrophic explosions of electrical discharge.`
 			`	Remembering what you've read about extreme atmospheric landings, you reconfigure your shields to act as a plow, pushing through the storm. At first it isn't enough, so you pull upward, hoping the lower atmospheric density will let you escape. Once you're free, you realize you've already reached the exosphere.`
@@ -677,7 +677,7 @@ mission "Korath [F03]: Rabasot Pa'ah Failed Landings"
 			label "second attempt"
 			scene scene/volcanic-eruption-at-night
 			action
-				log "Was able to pass through the atmosphere of Rabasot Pa'ah despite the unusual atmospheric event. A volcanic eruption nearly hit your ship, perhaps caused by landing in the wrong area. There is a large island - or small continent - that looks suitable for landing. Your next landing attempt should succeed"
+				log "Was able to pass through the atmosphere of Rabasot Pa'ah despite the unusual atmospheric event. A volcanic eruption nearly hit the ship, perhaps caused by landing in the wrong area. There is a large island - or small continent - that looks suitable for landing. Another landing attempt should succeed."
 			`In this trip, your ship's descent stirred up awe-inspiring storm clouds, but traveling through them was easy. Your shield plow technique took you down to the lower troposphere, where the storms cleared enough for you to see. The original island chain was too far away, so you set course for a larger island nearby.`
 			`	Aiming for a hard-looking piece of ground, you touch down. As this planet has twice Earth's gravity, you extend your ship's artificial gravity field to the surface. Donning a space suit for safety's sake, you walk out to see nature taking control once again: the massive volcano in front of you starts to erupt.`
 			`	After a dash to the cockpit, still in your suit, you take off, satisfied that you've reached the surface - albeit in the worst possible spot. A third attempt will certainly succeed, as you saw a small continent with no apparent volcanic activity, and a pleasant-looking bay.`
@@ -728,7 +728,7 @@ mission "Korath [F05]: Fishy Reasoning"
 		conversation
 			`While skimming damage and transit logs from your recent trips, a few old log entries catch your eye.`
 			`	When the Korath were drawing systems, three seemed to jump out at you. You now know they're Misam, home of New Tortuga; Atik, where the La'ab Bamen black market resides; and Kor Ak'Mari, the ocean planet's system. The first fish you transferred from New Tortuga to La'ab Bamen looked like a tiny relative of the island-sized fish on the ocean planet.`
-			`	Iris had quite a lot of knowledge of the Korath, and spoke of them with admiration. Most curious of all is the rainbow feather on her necklace. It was the exact shape of feathers on the Korath of Far'en Lei, but far more colorful.`
+			`	Iris had quite a lot of knowledge of the Korath, and spoke of them with admiration. Most curious of all is the rainbow feather on her necklace. It was the exact shape of feathers on the Korath of Far'en Lai, but far more colorful.`
 			`	You last saw Iris on <planet>. Perhaps it is time to seek answers.`
 				accept
 
@@ -743,7 +743,7 @@ mission "Korath [F06]: The Rainbow Feather"
 		fail
 		conversation
 			`You find Iris in one of the narrow access tunnels of La'ab Bamen, observing the fish behind the glass.`
-			`	"I was wondering when you'd seek me out," she says, with a worried look. "You gave those two patrols quite a scare on Far'en Lei. They had never seen a human before, and they found one armed at their jail's lock."`
+			`	"I was wondering when you'd seek me out," she says, with a worried look. "You gave those two patrols quite a scare on Far'en Lai. They had never seen a human before, and they found one armed at their jail's lock."`
 				goto questions
 
 			label check
@@ -767,7 +767,7 @@ mission "Korath [F06]: The Rainbow Feather"
 					to display
 						has "Korath [F05]: The Rainbow Feather: know"
 						not "Korath [F05]: The Rainbow Feather: feather"
-				`	"Why did you call Far'en Lei 'their jail's lock'?"`
+				`	"Why did you call Far'en Lai 'their jail's lock'?"`
 					goto exile
 					to display
 						has "Korath [F05]: The Rainbow Feather: know"
@@ -781,13 +781,13 @@ mission "Korath [F06]: The Rainbow Feather"
 			label harm
 			action
 				set "Korath [F05]: The Rainbow Feather: know"
-			`	"The Korath told me what you did: you brought a weapon to Far'en Lei, Captain." She looks deeply concerned. "That, alone, is terrible harm, and you should never do it again. They let you go because it is a planet of peace."`
+			`	"The Korath told me what you did: you brought a weapon to Far'en Lai, Captain." She looks deeply concerned. "That, alone, is terrible harm, and you should never do it again. They let you go because it is a planet of peace."`
 				goto check
 
 			label know
 			action
 				set "Korath [F05]: The Rainbow Feather: know"
-			`	"We are allies of the Korath. Naturally, if a human somehow obtains a jump drive and wanders into Korath space, they ask us about it. Landing on Far'en Lei with a weapon does terrible harm. They let you go because it is a planet of peace."`
+			`	"We are allies of the Korath. Naturally, if a human somehow obtains a jump drive and wanders into Korath space, they ask us about it. Landing on Far'en Lai with a weapon does terrible harm. They let you go because it is a planet of peace."`
 				goto check
 
 			label feather
@@ -803,7 +803,7 @@ mission "Korath [F06]: The Rainbow Feather"
 			action
 				set "Korath [F05]: The Rainbow Feather: freedom"
 			`	"There are few life-supporting planets in the systems where the Korath are exiled. One is the violent planet you visited: Rabasot Pa'ah. The Korath discovered New Tortuga has a similar environment, but it had evolved macroscopic life. The creature you found, the Pwason Gra, attracted them.`
-			`	"They could not grow the creatures from an egg either artificially or on Rabasot Pa'ah, because the larval form requires very specific conditions. The juvenile and adult forms thrive on Rabasot Pa'ah, growing far larger than on New Tortuga. That means they need a steady supply of juveniles for transport. The conditions of their exile prevented the Korath from fishing on New Tortuga themselves, so they had to make a deal with humans.`
+			`	"They could not grow the creatures from an egg either artificially or on Rabasot Pa'ah, because the larval form requires very specific conditions. However, the juvenile and adult forms thrive on Rabasot Pa'ah, growing far larger than on New Tortuga. That means they need a steady supply of juveniles for transport. The conditions of their exile prevented the Korath from fishing on New Tortuga themselves, so they had to make a deal with humans.`
 			`	"Not understanding our society, they talked to the first fishers they found, who couldn't help them, because those fishers were slaves. To Korath, self-expression is a religion and almost a biological necessity. Slavery to them is as abhorrent as," she thinks for a moment, "consuming the skin of dead relatives is to us.`
 			`	"They made a deal: freedom for fish. The Korath provided rifles in secret, and the slaves drove their masters off the planet. Ex-Syndicate refugees who fled persecution to live here helped us form a functioning government. Now, we give juvenile fish to the Korath, and they assist us in industry, mining, food production, and defense of our systems.`
 			`	"We invited them - no, we asked them - to live on New Tortuga with us, to share our homes and be family. Sadly, their oppressors have forbidden them from setting foot on planets outside their exiled systems. Although we have occasional visits of technicians or doctors to New Tortuga, no Korath has stayed for more than a few days. Never has a military vessel touched down.`
