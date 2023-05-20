@@ -438,13 +438,13 @@ mission "Hai Reveal [C05] Cleanup"
 			`	As it happens, the summit has functionally concluded by the time you return. In fact, diplomats had been running interference to prolong things, knowing that your return could potentially have critical consequences. Now that you're here, the remaining agenda items miraculously get resolved within hours, and late in the day, you find yourself once again "Where Mountains Touch The Sky," as the successful resolution is announced.`
 			`	The historic moment lays the groundwork for a future official treaty framework and governmental cooperation, as well as establishing <planet> as the principle diplomatic embassy for both peoples. Less publicly, extensive surveillance fleets are posted on both sides of the wormhole to detect any kidnappings or other illegal travel. Now, the only way for illicit transfers to happen is if a government employee is involved, but all three countries have quietly agreed to watch for that behavior and punish it severely.`
 			`	Maybe you'll have to find out who the Unfettered were stealing their other technologies from. They mentioned another group: the "Wanderers."`
-				decline # This does not decline the mission. It still ends up completed.
+				decline
 				to display
 					not "Wanderers Conversation: offered"
 
 			# The player would have gotten this reminder in the Wanderer Campaign missions, but they missed it since Danforth was preoccupied with Hai issues.
 			`	Now that events in Hai and human space have calmed down, it's probably time to check in on the Wanderers again.`
-				decline # This does not decline the mission. It still ends up completed.
+				decline
 				to display
 					has "Wanderers Conversation: offered"
 					not "Wanderers: Tour 1: offered"
