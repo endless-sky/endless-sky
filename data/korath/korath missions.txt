@@ -319,7 +319,7 @@ mission "Efreti: Distress Call 2"
 			`It takes you some time to find the <EDC-ship>. You had expected a beacon of some sort, but either they are keeping radio silence to avoid drawing the Mereti, or there were no survivors. When you manage to open the hatch, you find yourself staring down a thermal rifle.`
 			`	The Korath shouts something at you, and you hold your hands out with your palms forward. He limps back a few steps, but keeps the weapon trained on you. Slowly pulling a communicator out, you play a recording of the Quarg transmission you received earlier. Once the Korath hears the Quarg's voice, he becomes excited and lowers his rifle. "<planet>?" he asks repeatedly. You nod your head and show your palms again.`
 			`	He leads you into the ship, shouting into a communication device that is then broadcasted on speakers throughout the vessel. You can only glance around as you move through the engineering section, but it's clear they are running on emergency power, and several important-looking systems are destroyed. The living area is a makeshift hospital. You don't see any bodies, but there are far fewer Korath here than you would expect to crew a ship of this size. It's clear that all the surviving crew are injured to some degree, while more than half are incapacitated or unconscious. Even if the ship is spaceworthy, there aren't enough crew to fly it.`
-			`	Quickly count the number of survivors, you communicate to your guide that you can take them all. He mimics your nodding head gesture, shows you his palms, and makes quick circles. You think he is agreeing and wants to hurry. Calling your crew over to help, the survivors are moved onboard the <ship>. Within a couple of hours you are ready to go.`
+			`	You quickly count the number of survivors and communicate to your guide that you can take them all. He mimics your nodding head gesture, shows you his palms, and makes quick circles. You think he is agreeing and wants to hurry. Calling your crew over to help, the survivors are moved onboard the <ship>. Within a couple of hours you are ready to go.`
 				to display
 					"flagship crew" > 1
 				accept
@@ -415,7 +415,7 @@ mission "Efreti: Distress Call 4"
 				to display
 					"flagship crew" < 2
 
-			`	Returning to the Korath ship, you carefully gather all the personal effects you can find in the living quarters and box them for transport. You've no way of knowing if those. in what appear to be photos. are now safely recovering or lying in your hold.`
+			`	Returning to the Korath ship, you carefully gather all the personal effects you can find in the living quarters and box them for transport. You've no way of knowing if those Korath in the photographs you find are now safely recovering or lying in your hold.`
 
 			`	The crew makes a last sweep to move debris, both to assess for repairs later and to make sure you haven't missed anyone, or parts of them. You clean and disinfect as best you can and return to your ship for the trip to <destination>.`
 				to display
