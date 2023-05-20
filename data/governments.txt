@@ -1113,7 +1113,7 @@ government "Quarg (Gegno)"
 		"Gegno"
 	"custom penalties for"
 		"Gegno"
-			provoke 1
+			provoke 0.01
 	"death sentence" "quarg imprisonment"
 	"hostile hail" "hostile quarg"
 	"hostile disabled hail" "hostile quarg"
