@@ -3394,7 +3394,10 @@ mission "Pirate Duel"
 		not "ships: Medium Warship"
 		not "ships: Heavy Warship"
 		not "ships: Heavy Freighter"
-		"ships: Light Warship" + "ships: Light Freighter" + "ships: Transport" + "ships: Interceptor" == 1
+		not "ships: Space Liner"
+		not "ships: Utility"
+		not "ships: Superheavy"
+		"ships: Light Warship" + "ships: Light Freighter" + "ships: Transport" + "ships: Interceptor" + "ships: Fighter" + "ships: Drone" == 1
 	
 	on offer
 		conversation
@@ -4955,7 +4958,7 @@ mission "Dangerous Games 2"
 			label uninterested
 			`	You smoothly turn the ship to the right, heading south.`
 			`	"Should be close," radios Karengo. "Fire off a ping." It's almost a relief to send out a pulse to map the surroundings after flying dark for so long.`
-			`	The result, however, is a surprise. The display shows a massive object directly below you... as well as as two leviathan-sized things back the way you came, each over 200 meters long. Dozens of sets of flippers run along each 80-meter-tall side and hundreds of teeth the size of an adult human line their jaws.`
+			`	The result, however, is a surprise. The display shows a massive object directly below you... as well as two leviathan-sized things back the way you came, each over 200 meters long. Dozens of sets of flippers run along each 80-meter-tall side and hundreds of teeth the size of an adult human line their jaws.`
 			`	You goggle at the display for a moment, holding your breath, but the leviathans seem uninterested. You shudder, imagining what one of those could do if you'd turned the wrong way, before your interest returns to the mysterious bulk resting below the ship.`
 				goto treasure
 			label north3
@@ -5824,3 +5827,237 @@ mission "Argosy Hijacking (Declined)"
 		fleet "Small Syndicate"
 		to spawn
 			has "Argosy Hijacking: declined"
+
+
+
+mission "Blind Man from Martini"
+	name "Transport a blind passenger to <planet>"
+	description "This blind man, Douglas, wishes to be transported to <destination>, so he can be with his daughter while she undergoes treatment there. He will pay you <payment>."
+	source Martini
+	destination Chiron
+	to offer
+		has "main plot completed"
+		random < 15
+	on offer
+		conversation
+			`As you walk through <origin>'s cramped new planetary spaceport, you see a middle-aged man on the other side of the corridor, behind a column of people. He sits on a bench with a suitcase at his side, doing nothing particular aside from the occasional tap of his cane when someone passes by.`
+			choice
+				`	(Go up to him.)`
+				`	(Ignore him.)`
+					decline
+			`	Wading through the mix of passengers, stevedores, and captains in the overflowing corridor, you reach the man with the cane. It's obvious now that he's blind; he doesn't move to look at you and continues looking straight ahead, but he taps his cane twice when you come by him.`
+			choice
+				`	"Hello."`
+				`	"Are you alright?"`
+				`	(Nevermind.)`
+					decline
+			`	"Yes, hello, how are you doing?" the man responds, shifting his head toward your direction. "I'm here waiting for someone to pick me up," he says in a voice that sounds like he expects it at any moment.`
+
+			label questions
+			choice
+				`	"Are they far away?"`
+					goto far
+					to display
+						not "Blind Man from Martini: label far"
+				`	"Who is it you're looking for?"`
+					goto looking
+					to display
+						has "Blind Man from Martini: label far"
+						not "Blind Man from Martini: label looking"
+				`	"Where is she?"`
+					goto somewhere
+					to display
+						has "Blind Man from Martini: label looking"
+				`	"I see. Safe travels to you." (Walk away.)`
+					decline
+			
+			label far
+			action
+				set "Blind Man from Martini: label far"
+			`	"Well, I suppose you could say that they are far away, or they could be right here. I don't know." He taps his cane twice more.`
+				goto questions
+			
+			label looking
+			action
+				set "Blind Man from Martini: label looking"
+			`	"Someone to take me to my daughter, Anita." Yet again, his cane taps twice.`
+				goto questions
+
+			label somewhere
+			`	He looks over to his side, as if he feels reserved about something. "She's on <planet>, getting some experimental treatment from the University of New Sydney. I want to be by her side if anything goes wrong, to tell her that I'm there for her, that I love her, and that everything will be okay. She's been waiting for the treatment for so long now. And since nobody else seems to have arrived here yet, I hope you'll be the one to take me there."`
+			choice
+				`	"Of course, I can take you to <planet>."`
+				`	"Sorry, I won't be able to."`
+					goto can't
+			`	The man musters a broad smile, says "Thank you all too much. Would you like to help me with the luggage?" He scans the floor with his cane for it. Later, while boarding, he tells you his name is Douglas Pears, and he promises to you <payment> for transporting him.`
+				accept
+
+			label can't
+			`	"Then I will wait until another comes to help me." The blind man taps his cane once more, then returns to looking straight ahead.`
+				decline
+
+	on complete
+		log `Brought a blind man named Douglas to Chiron so he could visit his daughter, who will undergo experimental treatment at the University of New Sydney.`
+		payment 58000
+		conversation
+			`Throughout the trip, Douglas has been relatively quiet and has kept to himself. When you land, he lets you help him bring down his luggage once more; it turns out you needn't have done so because an attendant from the planetary spaceport quickly comes to his side. He guides both of you to the spaceport's intracity transit complex; the bustling spaceport makes it a challenge to keep together, but all of you manage to reach it. From there, you hail a taxi while Douglas arranges for the <payment> to be sent to you.`
+			`	"Well, I must go now to the University of New Sydney. They and my daughter are expecting me at their Health Sciences quarter."`
+			choice
+				`	"Goodbye."`
+					goto bye
+				`	"I hope your daughter has a safe recovery."`
+					goto recovery
+				`	"Everything is going to be alright."`
+					goto recovery
+				`	"Could I come with you?"`
+					goto comealong
+			label bye
+			`	"Bye, now. I wish you greater luck in your travels and your sights." With that, he taps his cane twice, and then steps into one of New Sydney's taxis, going toward the University of New Sydney campus on the far side of town.`
+				decline
+
+			label recovery
+			`	"Yes, thank you so much. I hope so too, of course; actually, it's a little foolish saying that, of course I do. But now I have to go. Again, thank you for making this journey possible."`
+			choice
+				`	"Goodbye."`
+					goto bye
+				`	"Could I come with you?"`
+					goto comealong
+			
+			label comealong
+			`	Douglas looks taken aback for a moment, but says, "Well, I suppose you can come along. I'm not sure if the university would let you in, though. But I think Anita would like to meet you, or at least say hello." You get into the taxi with him, and it starts toward New Sydney's University District.`
+
+			# The player can do three actions before arriving at the hospital.
+			label taxi
+			branch questions hospital
+				"Blind Man from Martini: taxi questions count" != 3
+			label questions
+			choice
+				`	"How did you become blind?"`
+					goto blind
+					to display
+						not "Blind Man from Martini: label blind"
+
+				`	"How did becoming blind change your life?"`
+					goto blind-1
+					to display
+						has "Blind Man from Martini: label blind"
+						not "Blind Man from Martini: label blind-1"
+
+				`	"How do you feel about the atomic bombings?"`
+					goto atomic-bombings
+					to display
+						has "Blind Man from Martini: label blind"
+						not "Blind Man from Martini: label atomic-bombings"
+
+				`	"Was your daughter caught in the atomic bombings?"`
+					goto daughter
+					to display
+						or
+							has "Blind Man from Martini: label blind"
+							has "Blind Man from Martini: label illness"
+						not "Blind Man from Martini: label daughter"
+				
+				`	"What happened to your daughter?"`
+					goto illness
+					to display
+						not "Blind Man from Martini: label illness"
+						has "Blind Man from Martini: label daughter"
+
+				`	(Stay silent.)`
+					goto waiting
+					to display
+						not "Blind Man from Martini: label waiting"
+
+			label blind
+			action
+				set "Blind Man from Martini: label blind"
+				"Blind Man from Martini: taxi questions count" ++
+			`	"It was the fourth of July, 3014. I was in my office, on one of the high rises on the outskirts of the capital, with my office window pointed right at the city center." He turns to look out the window, as if he knew New Sydney's skyline was out there where he couldn't see. In the small lull, he takes an audible breath.`
+			`	"It was a beautiful day that day. I... I remember that Pollux was especially bright and colorful that day, and the songbirds that inhabited the city were alive with sound. They were unusually so. It was very vivid, very strange. Maybe I should have listened to the birds...`
+			`	"But when the bomb dropped, I was looking right at it, from my office window. All I could remember next was that I was in a lot of pain, that I couldn't see, but one of my colleagues - thank goodness for her - found me afterwards, during the evacuation, covered in glass from the shockwave. I survived mostly because I was sitting at my terminal and that protected me from the bulk of the shards."`
+				goto taxi
+
+			label blind-1
+			action
+				set "Blind Man from Martini: label blind-1"
+				"Blind Man from Martini: taxi questions count" ++
+			`	"Hmm... well, it was really only one of many things that hit my life then, not least of which was my newfound blindness, and the loss of my company and my job." He gives a heavy sigh, and he shifts in his seat as if something heavy was placed on his shoulders. "I was able to keep things intact for a while, but no, it was too much. Anything can be taken away from you if you get too used to it."`
+				goto taxi
+			
+			label atomic-bombings
+			action
+				set "Blind Man from Martini: label atomic-bombings"
+				"Blind Man from Martini: taxi questions count" ++
+			`	"How do I feel about the bombings? Well, they changed everything. In some ways I'm very grateful that it showed - no, it exposed to me, that people, they- there's people that live this way. With no sight. Who need other people to help them just... live. And that there are plenty of people who don't have people to help them live. I was lucky, I could get treatment for my blindness. But others, no...`
+			# This will need to be updated once new Human campaigns are written.
+			branch reconciliation checkmate
+				has "free worlds reconciliation"
+			label reconciliation
+			`	"And for the bombings themselves, they were certainly a malicious act. The Syndicate needs to take full accountability for it, not only for the people who were killed or affected in some form or another. I'm too cynical to say that they will, with all the power they still have in Parliament."`
+				goto taxi
+
+			label checkmate
+			`	"And for the bombings themselves, they were certainly a malicious act. I hear the authorities are still investigating the bombings, although it's very curious that Korban, the CEO of the Syndicate, resigned as soon as the Republic started poking their heads that way. I'm still not sure who's responsible for the bombings, the deaths, the war... I can only hope the investigation will be thorough."`
+				goto taxi
+
+			label daughter
+			action
+				set "Blind Man from Martini: label daughter"
+				"Blind Man from Martini: taxi questions count" ++
+			`	"Luckily, my daughter was off-planet during the bombings. Anita was studying nanoengineering on Vinci and was going to apply for a job at CyberAcme there. But she gave that up to come take care of me after the bombings. When things were more ironed over, it was the midst of the civil war, and she managed to go back to Vinci and work at CyberAcme then, but... well, she has not been well since then."`
+				goto taxi
+
+			label illness
+			action
+				set "Blind Man from Martini: label illness"
+				"Blind Man from Martini: taxi questions count" ++
+			`	"I don't know if I really should tell you this, but Anita was working on a project on nanomachines at CyberAcme when she got back. She was, uh... infected by them by accident. The experimental treatment is meant to try and eliminate the rogue machines, but since they're so small... that's why the treatment is experimental."`
+				goto taxi
+
+			label waiting
+			action
+				"Blind Man from Martini: taxi questions count" ++
+			`	Deciding not to ask Douglas anything, you look out the windows of the taxi. You're in the midst of New Sydney, and skyscrapers stare down at your tiny taxi from each side of the avenue, but despite this it is still quite green and cheery, with trees on each side and people walking to work in the morning.`
+				to display
+					"Blind Man from Martini: taxi questions count" == 1
+				goto taxi
+
+			`	As the taxi drives on a highway on the edge of a small hill, the window gives you a panorama of the suburbs of New Sydney and the two skylines on each side, one marking the commercial sector where the spaceport is prominent in its gleaming steel-glass architecture, and the other being the University District, a series of clean and white, flowing buildings and skyscrapers. Far away on the horizon, you can barely notice the smokestacks of factories.`
+				to display
+					"Blind Man from Martini: taxi questions count" == 2
+				goto taxi
+
+			`	The taxi enters the University district proper now, and the window shows thongs of energetic university students from the University of New Sydney travelling to and from lectures and classrooms; going over steel walkways that run from building to building above you, and on footpaths beside the streets; clutching their backpacks and data pads. Your datapad shows that University isn't actually the only university district in New Sydney. The University of Chiron's campus is on the other side of town, presumably to keep the fierce competition between the two institutions from boiling over each other.`
+				to display
+					"Blind Man from Martini: taxi questions count" == 3
+				goto taxi
+
+			label hospital
+			`	Eventually, the taxi passes by a sign for the "UNS Health Sciences" quarter, which by the looks of it takes up an entire section of the University District. The taxi pulls up beside the entrance of the university hospital, where you help Douglas out with his luggage. The building is stark from the outside, to match the architecture of the surroundings, yet strangely colorful on the inside, as if the person building it decided that hospital interiors were far too unimaginative.`
+			`	After a short queue, you reach the reception with Douglas. The receptionist, placed behind a sterile-looking screen that looks far out of place with the colorful hallways, asks with a well-practiced smile, "How may I help you?"`
+			choice
+				`	"We're looking for Anita Pears. Where can we find her?"`
+			`	For a moment, the receptionist shuffles information around on her terminal. "Are one of you a parent?"`
+			`	"I'm the father, Douglas Pears," he replies.`
+			`	She takes a few more seconds before looking at you and saying, "Ah, but we cannot let you in. Only Mr. Pears is booked in for his daughter's procedure; we have a family-only policy, to keep the privacy of our patients."`
+			choice
+				`	"Alright."`
+					goto end
+				`	"Are you sure?"`
+			`	"We can't allow immediate exceptions, sorry. There's nothing I can do."`
+			label end
+			`	Douglas gives you a compassionate look, and says to the receptionist, "There'll be no worry." He turns back to you once more and says, "I'm sure that when Anita is recovered and well, we can meet again some day. I don't want to keep you from your business too long, either. I expect ship captains are busy folk." He comes up to you and, to your surprise, gives you a hug. "Thank you so much for bringing me here and coming along with me. I really can't say how I want to express my gratitude. But I hope we meet again. Farewell."`
+			choice
+				`	"Goodbye."`
+				`	"Farewell to you too."`
+			action
+				clear "Blind Man from Martini: label blind"
+				clear "Blind Man from Martini: label blind-1"
+				clear "Blind Man from Martini: label atomic-bombings"
+				clear "Blind Man from Martini: label illness"
+				clear "Blind Man from Martini: label daughter"
+				clear "Blind Man from Martini: label waiting"
+				clear "Blind Man from Martini: taxi questions count"
+				clear "Blind Man from Martini: label far"
+				clear "Blind Man from Martini: label looking"
+			`	With that, he grabs his cane and his luggage, and follows a hospital attendant toward his daughter's room, leaving you in the reception.`
