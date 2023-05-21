@@ -307,12 +307,12 @@ mission "First Contact: Korath Exiles"
 			# (even if you may not be human) so they try to use the same language in response.
 			label peaceleader
 			`	Both of them seem confused, like they half-understand parts of what you said, but can't put the pieces together.`
-			`	"Peeese? Takra," it says, pointing to itself. Then it points to the other and says, "Akafavah." You respond almost instinctively with "<first> <last>."`
+			`	"Peeese? Takra," it says, pointing to itself. Then it points to the other and says, "Akafavah." You respond with "<first> <last>."`
 			`	"Weee Korath," it says, gesturing to the two of them. Then it gestures at you and says, "Yee ess...?"`
 				goto humanika
 
 			label humanika
-			`	"Human," you say.`
+			`	"Human," you say, almost instinctively.`
 			`	Akafavah says, "Oy! Humanika!" It's not clear what emotion they're feeling, but it's a strong one.`
 			`	Takra asks you, "Were foam?"`
 			`	They see your confusion and seem to give up on communicating in your language. It's time for a different approach.`
