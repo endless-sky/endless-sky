@@ -652,8 +652,8 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 		table.DrawGap(5);
 
 		if(localProb)
-			table.DrawTruncatedPair("local threat: " + attractionRating, dim,
-			"(+" + Format::Decimal(localProb, 1) + ")", dim, Truncate::MIDDLE, false);
+			table.DrawTruncatedPair("local threat: ", dim,
+			lround(100 * localProb) + "%", dim, Truncate::MIDDLE, false);
 		// Format the attraction and deterrence levels with tens places, so it
 		// is clear which is higher even if they round to the same level.
 		table.DrawTruncatedPair("cargo: " + attractionRating, dim,
