@@ -454,7 +454,7 @@ government "Hai (Wormhole Access)"
 	"hostile hail" "hostile hai"
 	"hostile disabled hail" "hostile disabled hai"
 
-# A government used to have Unfettered raids in Wah Ki and nearby systems.
+# A government that is used to allow Unfettered raids in Wah Ki and nearby systems.
 government "Hai (Raided)"
 	swizzle 0
 	color "governments: Hai"
