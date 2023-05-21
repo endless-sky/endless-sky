@@ -327,6 +327,8 @@ mission "First Contact: Korath Exiles"
 				goto map
 
 			label attack
+			action
+				set "First Contact: Korath Exiles: pointed gun on Far'en Lai"
 			`	You reach for your gun. They move faster than you would have expected possible. One of them strikes a pose with their arms and shouts, "Nag! Nag! Koreshi far'en lai!" Simultaneously, the other dives at you, grabbing the gun out of your hands before you have a chance to fire it.`
 			`	Then, instead of attacking you, the one who took your gun begins waving it in your face and talking very quickly, as if scolding you. It points to the sky with a sweeping gesture, then mimics drawing the gun as you just did. Then it points to the ground, puts the gun on the ground, and says, "Far'en lai ko forei lak'far." Then it picks up the gun and repeats both gestures: at the sky, gun drawn. Down, gun on ground. Then it tosses the gun near your feet and waits, expectantly.`
 				goto map
@@ -394,7 +396,7 @@ mission "First Contact: Korath Exiles"
 				`	(Nod.)`
 				`	(Make a motion like a ship landing, and point to the Korath's mouth.)`
 			action
-				"Korath happiness with first contact" = 2
+				set "First Contact: Korath Exiles: agreed to bring food"
 			`	"Lasel," says the Korath, and it stretches out both arms toward you, fingers curled back towards its body. You make the same gesture, and they reverse their hands, linking their scaly fingers with yours. You're not sure if that is the right response, but the Korath seem satisfied, saying, "Nik lak'mal." They get back in their fighters and take off, circling above you.`
 				decline
 
@@ -404,8 +406,6 @@ mission "First Contact: Korath Exiles"
 			label fight
 			`	It pushes its finger deep into the ground at a point on the map not too far from Earth. "Ka puk soru, nik ka korath."`
 			label parting
-			action
-				"Korath happiness with first contact" = 1
 			`	"Kai," says the Korath, and it stretches out both arms toward you, palms out. You make the same gesture and touch its hands, palm to palm. You're not sure if that is the right response, but the Korath seem satisfied, saying, "Nik lak'mal." They get back in their fighters, take off, and hover nearby.`
 				decline
 
@@ -782,6 +782,14 @@ mission "Korath [F06]: The Rainbow Feather"
 			action
 				set "Korath [F05]: The Rainbow Feather: know"
 			`	"The Korath told me what you did: you brought a weapon to Far'en Lai, Captain." She looks deeply concerned. "That, alone, is terrible harm, and you should never do it again. They let you go because it is a planet of peace."`
+				to display
+					has "First Contact: Korath Exiles: pointed gun on Far'en Lai"
+				goto check
+			`	"Landing on Far'en Lai is dangerous to the Korath, Captain <last>. You did make a good impression when you agreed to bring them food. Any of the jobs at <origin>'s job board provide food to the Korath. Please lend all the help you can.`
+				to display
+					has "First Contact: Korath Exiles: agreed to bring food"
+				goto check
+			`	"Landing on Far'en Lai is dangerous to the Korath, Captain <last>. If you make the wrong move, it can lead to their destruction. I'm glad you had the good sense not to do any real harm, but please stay away in the future.`
 				goto check
 
 			label know
