@@ -785,11 +785,11 @@ mission "Korath [F06]: The Rainbow Feather"
 				to display
 					has "First Contact: Korath Exiles: pointed gun on Far'en Lai"
 				goto check
-			`	"Landing on Far'en Lai is dangerous to the Korath, Captain <last>. You did make a good impression when you agreed to bring them food. Any of the jobs at <origin>'s job board provide food to the Korath. Please lend all the help you can.`
+			`	"Strangers landing on Far'en Lai is dangerous to the Korath, Captain <last>. If you make the wrong move, it can lead to their destruction. You did make a good impression when you agreed to bring them food. Any of the jobs at <origin>'s job board provide food to the Korath. Please lend all the help you can.`
 				to display
 					has "First Contact: Korath Exiles: agreed to bring food"
 				goto check
-			`	"Landing on Far'en Lai is dangerous to the Korath, Captain <last>. If you make the wrong move, it can lead to their destruction. I'm glad you had the good sense not to do any real harm, but please stay away in the future.`
+			`	"Strangers landing on Far'en Lai is dangerous to the Korath, Captain <last>. If you make the wrong move, it can lead to their destruction. I'm glad you had the good sense not to do any real harm, but please stay away in the future.`
 				goto check
 
 			label know
