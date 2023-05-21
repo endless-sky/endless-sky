@@ -640,7 +640,7 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 		double prob = 1. - pow(1. - attraction, 10.);
 		double localProb = 0.;
 		double notHappening = 1.;
-		for(auto fleet : fleets)
+		for(auto fleet : player.GetSystem()->GetGovernment()->RaidFleets())
 			notHappening -= pow(1. - player.RaidFleetAttraction(fleet, player.GetSystem()), 10.);
 		if(notHappening != 1.)
 			localProb = 1. - min(0., notHappening);
