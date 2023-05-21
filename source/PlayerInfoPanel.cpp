@@ -638,6 +638,12 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	{
 		double attraction = max(0., min(1., .005 * (factors.first - factors.second - 2.)));
 		double prob = 1. - pow(1. - attraction, 10.);
+		double localProb = 0.;
+		double notHappening = 1.;
+		for(auto fleet : fleets)
+			notHappening -= pow(1. - player.RaidFleetAttraction(fleet, player.GetSystem()), 10.);
+		if(notHappening != 1.)
+			localProb = 1. - min(0., notHappening);
 
 		table.DrawGap(10);
 		table.DrawUnderline(dim);
@@ -645,6 +651,9 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 		table.Draw(to_string(lround(100 * prob)) + "%", dim);
 		table.DrawGap(5);
 
+		if(localProb)
+			table.DrawTruncatedPair("local threat: " + attractionRating, dim,
+			"(+" + Format::Decimal(localProb, 1) + ")", dim, Truncate::MIDDLE, false);
 		// Format the attraction and deterrence levels with tens places, so it
 		// is clear which is higher even if they round to the same level.
 		table.DrawTruncatedPair("cargo: " + attractionRating, dim,
