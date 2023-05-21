@@ -361,7 +361,8 @@ mission "Hai Reveal: Pirate Troubles [1]"
 	to offer
 		has "Hai Reveal: Pirate Troubles [0]: done"
 	on offer
-		"reputation: Hai" += 20
+		"reputation: Hai" += 2
+		"reputation: Hai (Raided)" += 20
 		"reputation: Hai (Wormhole Access)" += 20
 		"reputation: Hai Merchant" += 20
 		"reputation: Hai Merchant (Human)" += 20
@@ -646,7 +647,8 @@ mission "Hai Reveal: Pirate Troubles [4]"
 			has "hr defeated scar's legion"
 			has "hr accepted scar's legion tribute"
 	on offer
-		"reputation: Hai" += 20
+		"reputation: Hai" += 2
+		"reputation: Hai (Raided)" += 20
 		"reputation: Hai (Wormhole Access)" += 20
 		"reputation: Hai Merchant" += 20
 		"reputation: Hai Merchant (Human)" += 20
@@ -692,7 +694,8 @@ mission "Hai Reveal: Pirate Troubles [4]"
 				decline
 	
 	on decline
-		"reputation: Hai" += 40
+		"reputation: Hai" += 4
+		"reputation: Hai (Raided)" += 40
 		"reputation: Hai (Wormhole Access)" += 40
 		"reputation: Hai Merchant" += 40
 		"reputation: Hai Merchant (Human)" += 40
@@ -714,7 +717,8 @@ mission "Hai Reveal: Pirate Troubles [4]"
 		dialog phrase "generic arrived-without-npc dialog"
 	
 	on complete
-		"reputation: Hai" += 40
+		"reputation: Hai" += 4
+		"reputation: Hai (Raided)" += 40
 		"reputation: Hai (Wormhole Access)" += 40
 		"reputation: Hai Merchant" += 40
 		"reputation: Hai Merchant (Human)" += 40

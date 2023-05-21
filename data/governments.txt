@@ -454,6 +454,29 @@ government "Hai (Wormhole Access)"
 	"hostile hail" "hostile hai"
 	"hostile disabled hail" "hostile disabled hai"
 
+# A government used to have Unfettered raids in Wah Ki and nearby systems.
+government "Hai (Raided)"
+	swizzle 0
+	color "governments: Hai"
+	
+	"player reputation" 0
+	"attitude toward"
+		"Hai (Wormhole Access)" 1
+		"Hai Merchant" 1
+		"Hai Merchant (Sympathizers)" 1
+		"Hai Merchant (Human)" 1
+		"Hai (Unfettered)" -.1
+		"Hai (Friendly Unfettered)" .1
+		"Hai (Unfettered Civilians)" .1
+		"Merchant" .01
+		"Elenctic Commune" .1
+	"bribe" .2
+	"friendly hail" "friendly hai"
+	"friendly disabled hail" "friendly disabled hai"
+	"hostile hail" "hostile hai"
+	"hostile disabled hail" "hostile disabled hai"
+	raid "Large Plundering Unfettered" 10
+
 government "Hai Merchant"
 	"display name" "Hai"
 	swizzle 0
@@ -545,6 +568,7 @@ government "Hai (Unfettered)"
 	"friendly disabled hail" "friendly disabled unfettered"
 	"hostile hail" "hostile unfettered"
 	"hostile disabled hail" "hostile disabled unfettered"
+	raid "Large Plundering Unfettered" 8
 
 government "Hai (Unfettered Wanderer Tribute)"
 	swizzle 4

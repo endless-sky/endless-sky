@@ -29,6 +29,8 @@ mission "Human Vacation [1]"
 	on complete
 		payment 8000 150
 		"reputation: Hai" += 2
+		"reputation: Hai (Raided)" += 2
+		"reputation: Hai (Raided)" += 2
 		"reputation: Hai (Wormhole Access)" += 2
 		"reputation: Hai Merchant" += 2
 		"reputation: Hai Merchant (Human)" += 2
@@ -53,6 +55,7 @@ mission "Human Vacation [2]"
 	on complete
 		payment 5000 150
 		"reputation: Hai" += 2
+		"reputation: Hai (Raided)" += 2
 		"reputation: Hai (Wormhole Access)" += 2
 		"reputation: Hai Merchant" += 2
 		"reputation: Hai Merchant (Human)" += 2
@@ -77,6 +80,7 @@ mission "Hai Vacation [1]"
 	on complete
 		payment 6000 150
 		"reputation: Hai" += 2
+		"reputation: Hai (Raided)" += 2
 		"reputation: Hai (Wormhole Access)" += 2
 		"reputation: Hai Merchant" += 2
 		"reputation: Hai Merchant (Human)" += 2
@@ -101,6 +105,7 @@ mission "Hai Vacation [2]"
 	on complete
 		payment 4000 150
 		"reputation: Hai" += 2
+		"reputation: Hai (Raided)" += 2
 		"reputation: Hai (Wormhole Access)" += 2
 		"reputation: Hai Merchant" += 2
 		"reputation: Hai Merchant (Human)" += 2
@@ -125,6 +130,7 @@ mission "Hai Vacation [3]"
 	on complete
 		payment 4000 150
 		"reputation: Hai" += 2
+		"reputation: Hai (Raided)" += 2
 		"reputation: Hai (Wormhole Access)" += 2
 		"reputation: Hai Merchant" += 2
 		"reputation: Hai Merchant (Human)" += 2
@@ -150,6 +156,7 @@ mission "Hai Vacation [4]"
 		payment
 		payment 6000
 		"reputation: Hai" += 2
+		"reputation: Hai (Raided)" += 2
 		"reputation: Hai (Wormhole Access)" += 2
 		"reputation: Hai Merchant" += 2
 		"reputation: Hai Merchant (Human)" += 2
@@ -179,6 +186,7 @@ mission "Wealthy Hai [1]"
 	on complete
 		payment 15000 300
 		"reputation: Hai" += 3
+		"reputation: Hai (Raided)" += 3
 		"reputation: Hai (Wormhole Access)" += 3
 		"reputation: Hai Merchant" += 3
 		"reputation: Hai Merchant (Human)" += 3
@@ -207,6 +215,7 @@ mission "Wealthy Hai [2]"
 	on complete
 		payment 15000 300
 		"reputation: Hai" += 3
+		"reputation: Hai (Raided)" += 3
 		"reputation: Hai (Wormhole Access)" += 3
 		"reputation: Hai Merchant" += 3
 		"reputation: Hai Merchant (Human)" += 3
@@ -238,6 +247,7 @@ mission "Hai Festival [1]"
 	on complete
 		payment 10000 200
 		"reputation: Hai" += 3
+		"reputation: Hai (Raided)" += 3
 		"reputation: Hai (Wormhole Access)" += 3
 		"reputation: Hai Merchant" += 3
 		"reputation: Hai Merchant (Human)" += 3
@@ -264,6 +274,7 @@ mission "Hai Festival [2]"
 	on complete
 		payment 10000 200
 		"reputation: Hai" += 3
+		"reputation: Hai (Raided)" += 3
 		"reputation: Hai (Wormhole Access)" += 3
 		"reputation: Hai Merchant" += 3
 		"reputation: Hai Merchant (Human)" += 3
@@ -290,6 +301,7 @@ mission "Hai Festival [3]"
 	on complete
 		payment 10000 200
 		"reputation: Hai" += 3
+		"reputation: Hai (Raided)" += 3
 		"reputation: Hai (Wormhole Access)" += 3
 		"reputation: Hai Merchant" += 3
 		"reputation: Hai Merchant (Human)" += 3
@@ -335,6 +347,7 @@ mission "Unfettered Aid [0]"
 	on complete
 		payment 5000 1600
 		"reputation: Hai" += 5
+		"reputation: Hai (Raided)" += 5
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
 		"reputation: Hai Merchant (Human)" += 5
@@ -365,6 +378,7 @@ mission "Unfettered Aid [1]"
 	on complete
 		payment 6000 1800
 		"reputation: Hai" += 5
+		"reputation: Hai (Raided)" += 5
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
 		"reputation: Hai Merchant (Human)" += 5
@@ -395,6 +409,7 @@ mission "Unfettered Aid [2]"
 	on complete
 		payment 7000 2000
 		"reputation: Hai" += 5
+		"reputation: Hai (Raided)" += 5
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
 		"reputation: Hai Merchant (Human)" += 5
@@ -423,6 +438,7 @@ mission "Delivery to Human Space [0]"
 		payment
 		payment 50000
 		"reputation: Hai" += 5
+		"reputation: Hai (Raided)" += 5
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
 		"reputation: Hai Merchant (Human)" += 5
@@ -448,6 +464,7 @@ mission "Delivery to Human Space [1]"
 		payment
 		payment 50000
 		"reputation: Hai" += 5
+		"reputation: Hai (Raided)" += 5
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
 		"reputation: Hai Merchant (Human)" += 5
@@ -475,6 +492,7 @@ mission "Delivery to Human Space [2]"
 		payment
 		payment 50000
 		"reputation: Hai" += 5
+		"reputation: Hai (Raided)" += 5
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
 		"reputation: Hai Merchant (Human)" += 5
@@ -505,6 +523,7 @@ mission "Hai Retrieve Human Luxury Goods"
 	on complete
 		payment 100000 200
 		"reputation: Hai" += 5
+		"reputation: Hai (Raided)" += 5
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
 		"reputation: Hai Merchant (Human)" += 5
@@ -534,6 +553,7 @@ mission "Hai Retrieve Human Food"
 	on complete
 		payment 100000 200
 		"reputation: Hai" += 5
+		"reputation: Hai (Raided)" += 5
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
 		"reputation: Hai Merchant (Human)" += 5
@@ -563,6 +583,7 @@ mission "Hai Retrieve Human Electronics"
 	on complete
 		payment 100000 200
 		"reputation: Hai" += 5
+		"reputation: Hai (Raided)" += 5
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
 		"reputation: Hai Merchant (Human)" += 5
@@ -611,6 +632,7 @@ mission "Escort to Human Space (Small)"
 	on complete
 		payment 120000
 		"reputation: Hai" += 5
+		"reputation: Hai (Raided)" += 5
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
 		"reputation: Hai Merchant (Human)" += 5
@@ -664,6 +686,7 @@ mission "Escort to Human Space (Medium)"
 	on complete
 		payment 180000
 		"reputation: Hai" += 5
+		"reputation: Hai (Raided)" += 5
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
 		"reputation: Hai Merchant (Human)" += 5
@@ -712,6 +735,7 @@ mission "Escort to Human Space (Large)"
 	on complete
 		payment 240000
 		"reputation: Hai" += 5
+		"reputation: Hai (Raided)" += 5
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
 		"reputation: Hai Merchant (Human)" += 5
@@ -766,6 +790,7 @@ mission "Escort to Human Space (Extra Large)"
 	on complete
 		payment 300000
 		"reputation: Hai" += 5
+		"reputation: Hai (Raided)" += 5
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
 		"reputation: Hai Merchant (Human)" += 5
@@ -794,6 +819,7 @@ mission "Hai Passengers [1]"
 	on complete
 		payment
 		"reputation: Hai" += 2
+		"reputation: Hai (Raided)" += 2
 		"reputation: Hai (Wormhole Access)" += 2
 		"reputation: Hai Merchant" += 2
 		"reputation: Hai Merchant (Human)" += 2
@@ -818,6 +844,7 @@ mission "Hai Passengers [2]"
 	on complete
 		payment
 		"reputation: Hai" += 2
+		"reputation: Hai (Raided)" += 2
 		"reputation: Hai (Wormhole Access)" += 2
 		"reputation: Hai Merchant" += 2
 		"reputation: Hai Merchant (Human)" += 2
@@ -842,6 +869,7 @@ mission "Hai Passengers [3]"
 	on complete
 		payment
 		"reputation: Hai" += 2
+		"reputation: Hai (Raided)" += 2
 		"reputation: Hai (Wormhole Access)" += 2
 		"reputation: Hai Merchant" += 2
 		"reputation: Hai Merchant (Human)" += 2
@@ -870,6 +898,7 @@ mission "Hai Family [0]"
 		payment
 		payment 4000
 		"reputation: Hai" += 2
+		"reputation: Hai (Raided)" += 2
 		"reputation: Hai (Wormhole Access)" += 2
 		"reputation: Hai Merchant" += 2
 		"reputation: Hai Merchant (Human)" += 2
@@ -898,6 +927,7 @@ mission "Hai Family [1]"
 		payment
 		payment 6000
 		"reputation: Hai" += 2
+		"reputation: Hai (Raided)" += 2
 		"reputation: Hai (Wormhole Access)" += 2
 		"reputation: Hai Merchant" += 2
 		"reputation: Hai Merchant (Human)" += 2
@@ -924,6 +954,7 @@ mission "Transport Hai miners to <planet>"
 		payment
 		payment 2000
 		"reputation: Hai" += 2
+		"reputation: Hai (Raided)" += 2
 		"reputation: Hai (Wormhole Access)" += 2
 		"reputation: Hai Merchant" += 2
 		"reputation: Hai Merchant (Human)" += 2
@@ -950,6 +981,7 @@ mission "Transport Hai farmers to <planet>"
 		payment
 		payment 2000
 		"reputation: Hai" += 2
+		"reputation: Hai (Raided)" += 2
 		"reputation: Hai (Wormhole Access)" += 2
 		"reputation: Hai Merchant" += 2
 		"reputation: Hai Merchant (Human)" += 2
@@ -976,6 +1008,7 @@ mission "Transport Hai mill workers to <planet>"
 		payment
 		payment 2000
 		"reputation: Hai" += 2
+		"reputation: Hai (Raided)" += 2
 		"reputation: Hai (Wormhole Access)" += 2
 		"reputation: Hai Merchant" += 2
 		"reputation: Hai Merchant (Human)" += 2
@@ -1002,6 +1035,7 @@ mission "Transport Hai workers to <planet>"
 		payment
 		payment 2000
 		"reputation: Hai" += 2
+		"reputation: Hai (Raided)" += 2
 		"reputation: Hai (Wormhole Access)" += 2
 		"reputation: Hai Merchant" += 2
 		"reputation: Hai Merchant (Human)" += 2
@@ -1028,6 +1062,7 @@ mission "Hai Cargo [0]"
 	on complete
 		payment
 		"reputation: Hai" += 2
+		"reputation: Hai (Raided)" += 2
 		"reputation: Hai (Wormhole Access)" += 2
 		"reputation: Hai Merchant" += 2
 		"reputation: Hai Merchant (Human)" += 2
@@ -1052,6 +1087,7 @@ mission "Hai Cargo [1]"
 	on complete
 		payment
 		"reputation: Hai" += 2
+		"reputation: Hai (Raided)" += 2
 		"reputation: Hai (Wormhole Access)" += 2
 		"reputation: Hai Merchant" += 2
 		"reputation: Hai Merchant (Human)" += 2
@@ -1077,6 +1113,7 @@ mission "Hai Cargo [2]"
 	on complete
 		payment
 		"reputation: Hai" += 2
+		"reputation: Hai (Raided)" += 2
 		"reputation: Hai (Wormhole Access)" += 2
 		"reputation: Hai Merchant" += 2
 		"reputation: Hai Merchant (Human)" += 2
@@ -1103,6 +1140,7 @@ mission "Hai Cargo [3]"
 		payment
 		payment 2000
 		"reputation: Hai" += 2
+		"reputation: Hai (Raided)" += 2
 		"reputation: Hai (Wormhole Access)" += 2
 		"reputation: Hai Merchant" += 2
 		"reputation: Hai Merchant (Human)" += 2
@@ -1129,6 +1167,7 @@ mission "Hai Cargo [4]"
 		payment
 		payment 4000
 		"reputation: Hai" += 2
+		"reputation: Hai (Raided)" += 2
 		"reputation: Hai (Wormhole Access)" += 2
 		"reputation: Hai Merchant" += 2
 		"reputation: Hai Merchant (Human)" += 2
@@ -1153,6 +1192,7 @@ mission "Hai Bulk Delivery [0]"
 	on complete
 		payment
 		"reputation: Hai" += 2
+		"reputation: Hai (Raided)" += 2
 		"reputation: Hai (Wormhole Access)" += 2
 		"reputation: Hai Merchant" += 2
 		"reputation: Hai Merchant (Human)" += 2
@@ -1178,6 +1218,7 @@ mission "Hai Bulk Delivery [1]"
 		payment
 		payment 2000
 		"reputation: Hai" += 2
+		"reputation: Hai (Raided)" += 2
 		"reputation: Hai (Wormhole Access)" += 2
 		"reputation: Hai Merchant" += 2
 		"reputation: Hai Merchant (Human)" += 2
@@ -1204,6 +1245,7 @@ mission "Hai Bulk Delivery [2]"
 		payment
 		payment 4000
 		"reputation: Hai" += 2
+		"reputation: Hai (Raided)" += 2
 		"reputation: Hai (Wormhole Access)" += 2
 		"reputation: Hai Merchant" += 2
 		"reputation: Hai Merchant (Human)" += 2
@@ -1230,6 +1272,7 @@ mission "Hai Large Bulk Delivery [0]"
 		payment
 		payment 4000
 		"reputation: Hai" += 2
+		"reputation: Hai (Raided)" += 2
 		"reputation: Hai (Wormhole Access)" += 2
 		"reputation: Hai Merchant" += 2
 		"reputation: Hai Merchant (Human)" += 2
@@ -1256,6 +1299,7 @@ mission "Hai Large Bulk Delivery [1]"
 		payment
 		payment 6000
 		"reputation: Hai" += 2
+		"reputation: Hai (Raided)" += 2
 		"reputation: Hai (Wormhole Access)" += 2
 		"reputation: Hai Merchant" += 2
 		"reputation: Hai Merchant (Human)" += 2
@@ -1283,6 +1327,7 @@ mission "Hai Large Bulk Delivery [2]"
 		payment
 		payment 8000
 		"reputation: Hai" += 2
+		"reputation: Hai (Raided)" += 2
 		"reputation: Hai (Wormhole Access)" += 2
 		"reputation: Hai Merchant" += 2
 		"reputation: Hai Merchant (Human)" += 2
@@ -1309,6 +1354,7 @@ mission "Hai Rush Delivery [0]"
 		payment
 		payment 16000
 		"reputation: Hai" += 2
+		"reputation: Hai (Raided)" += 2
 		"reputation: Hai (Wormhole Access)" += 2
 		"reputation: Hai Merchant" += 2
 		"reputation: Hai Merchant (Human)" += 2
@@ -1335,6 +1381,7 @@ mission "Hai Rush Delivery [1]"
 		payment
 		payment 18000
 		"reputation: Hai" += 2
+		"reputation: Hai (Raided)" += 2
 		dialog phrase "generic cargo delivery payment"
 
 mission "Hai Rush Delivery [2]"
@@ -1358,6 +1405,7 @@ mission "Hai Rush Delivery [2]"
 		payment
 		payment 20000
 		"reputation: Hai" += 2
+		"reputation: Hai (Raided)" += 2
 		dialog phrase "generic cargo delivery payment"
 
 mission "Hai Rush Delivery [3]"
@@ -1381,6 +1429,7 @@ mission "Hai Rush Delivery [3]"
 		payment
 		payment 22000
 		"reputation: Hai" += 2
+		"reputation: Hai (Raided)" += 2
 		dialog phrase "generic cargo delivery payment"
 
 mission "Hai Large Rush Delivery [0]"
@@ -1404,6 +1453,7 @@ mission "Hai Large Rush Delivery [0]"
 		payment
 		payment 36000
 		"reputation: Hai" += 2
+		"reputation: Hai (Raided)" += 2
 		dialog phrase "generic cargo delivery payment"
 
 mission "Hai Large Rush Delivery [1]"
@@ -1427,6 +1477,7 @@ mission "Hai Large Rush Delivery [1]"
 		payment
 		payment 38000
 		"reputation: Hai" += 2
+		"reputation: Hai (Raided)" += 2
 		dialog phrase "generic cargo delivery payment"
 
 mission "Hai Large Rush Delivery [2]"
@@ -1451,6 +1502,7 @@ mission "Hai Large Rush Delivery [2]"
 		payment
 		payment 40000
 		"reputation: Hai" += 2
+		"reputation: Hai (Raided)" += 2
 		dialog phrase "generic cargo delivery payment"
 
 mission "Hai Large Rush Delivery [3]"
@@ -1475,6 +1527,7 @@ mission "Hai Large Rush Delivery [3]"
 		payment
 		payment 42000
 		"reputation: Hai" += 2
+		"reputation: Hai (Raided)" += 2
 		dialog phrase "generic cargo delivery payment"
 
 
@@ -1502,4 +1555,5 @@ mission "Hai Prisoner Roleplay"
 	on complete
 		payment 15000 150
 		"reputation: Hai" += 5
+		"reputation: Hai (Raided)" += 5
 		dialog "The Hai depart your ship chittering in excitement. One of them hands you your payment of <payment> before running to catch up with their friends."

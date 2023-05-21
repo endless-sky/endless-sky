@@ -7070,7 +7070,7 @@ system Boral
 
 system "Bore Fah"
 	pos 71.7761 -592.536
-	government Hai
+	government "Hai (Raided)"
 	arrival 625
 	habitable 625
 	belt 1823
@@ -7193,7 +7193,7 @@ system "Bosuno Le"
 
 system "Bote Asu"
 	pos 8.87418 -572.768
-	government Hai
+	government "Hai (Raided)"
 	arrival 3180
 	habitable 3180
 	belt 1753
@@ -33263,7 +33263,7 @@ system W-3197
 
 system "Wah Ki"
 	pos 14.9925 -612.792
-	government Hai
+	government "Hai (Raided)"
 	arrival 500
 	habitable 425
 	belt 1585
@@ -34741,7 +34741,7 @@ system Zosma
 
 system "Zuba Zub"
 	pos -48.2661 -647.926
-	government Hai
+	government "Hai (Raided)"
 	arrival 500
 	habitable 425
 	belt 1911

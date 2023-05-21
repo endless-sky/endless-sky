@@ -1184,6 +1184,7 @@ mission "Sheragi Archaeology: The Box 7b"
 
 	on complete
 		"reputation: Hai" += 10
+		"reputation: Hai (Raided)" += 10
 		"reputation: Hai (Wormhole Access)" += 10
 		"reputation: Hai Merchant" += 10
 		"reputation: Hai Merchant (Human)" += 10
