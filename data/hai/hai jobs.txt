@@ -30,7 +30,6 @@ mission "Human Vacation [1]"
 		payment 8000 150
 		"reputation: Hai" += 2
 		"reputation: Hai (Raided)" += 2
-		"reputation: Hai (Raided)" += 2
 		"reputation: Hai (Wormhole Access)" += 2
 		"reputation: Hai Merchant" += 2
 		"reputation: Hai Merchant (Human)" += 2
