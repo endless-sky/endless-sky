@@ -312,7 +312,7 @@ mission "First Contact: Korath Exiles"
 				goto humanika
 
 			label humanika
-			`	"Human," you say, almost instinctively.`
+			`	"Human," you say.`
 			`	Akafavah says, "Oy! Humanika!" It's not clear what emotion they're feeling, but it's a strong one.`
 			`	Takra asks you, "Were foam?"`
 			`	They see your confusion and seem to give up on communicating in your language. It's time for a different approach.`

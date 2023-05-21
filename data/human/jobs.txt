@@ -4078,7 +4078,7 @@ mission "Emancipation Raid Escort [0]"
 	name "Emancipation escort: <planet stopovers>"
 	job
 	repeat
-	description "Escort a Nighthawk to <stopovers> for an emancipation raid, then back to <planet> for <payment>. You will have a passcode for landing clearance. Syndicate and bounty hunters will attack these ships."
+	description "Escort a Nighthawk to <stopovers> for an emancipation raid, then back to <planet> for <payment>. You will have a passcode for landing clearance. The Syndicate and bounty hunters will attack these ships."
 	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
 	to offer
 		"combat rating" > 50
@@ -4092,7 +4092,7 @@ mission "Emancipation Raid Escort [0]"
 		attributes spaceport
 		distance 5 16
 	on visit
-		dialog "The emancipation raid isn't complete. The Nighthawk must reach <stopover planets> and then <planet>."
+		dialog "The emancipation raid isn't complete. The Nighthawk must reach <planet stopovers> and then <planet>."
 	on stopover
 		dialog "The Nighthawk lands on a different vector. You can see a bunker explode from bombardment before it lands. Not long after, it meets you in the spaceport, filled with freed slaves."
 	on complete
@@ -4122,7 +4122,7 @@ mission "Emancipation Raid Escort [1]"
 	name "Emancipation escort: <planet stopovers>"
 	job
 	repeat
-	description "Escort three Nighthawks to <stopovers> for an emancipation raid, then back to <planet> for <payment>. You will have a passcode for landing clearance. Syndicate and bounty hunters will attack these ships."
+	description "Escort three Nighthawks to <stopovers> for an emancipation raid, then back to <planet> for <payment>. You will have a passcode for landing clearance. The Syndicate and bounty hunters will attack these ships."
 	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
 	to offer
 		"combat rating" > 100
@@ -4136,7 +4136,7 @@ mission "Emancipation Raid Escort [1]"
 		attributes spaceport
 		distance 5 16
 	on visit
-		dialog "The emancipation raid isn't complete. All Nighthawks must arrive together at <stopover planets> and then <planet>."
+		dialog "The emancipation raid isn't complete. All Nighthawks must arrive together at <planet stopovers> and then <planet>."
 	on stopover
 		dialog "The Nighthawks land on a different vector. You can see a hardened bunker explode from bombardment before they land. Not long after, they meet you at the spaceport, filled with freed slaves."
 	on complete
@@ -4166,7 +4166,7 @@ mission "Emancipation Raid Escort [2]"
 	name "Emancipation escort: <planet stopovers>"
 	job
 	repeat
-	description "Escort a fleet of Nighthawks to <stopovers> for an emancipation raid, then back to <planet> for <payment>. You will have a passcode for landing clearance. Syndicate and bounty hunters will attack these ships."
+	description "Escort a fleet of Nighthawks to <stopovers> for an emancipation raid, then back to <planet> for <payment>. You will have a passcode for landing clearance. The Syndicate and bounty hunters will attack these ships."
 	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
 	to offer
 		"combat rating" > 150
@@ -4180,7 +4180,7 @@ mission "Emancipation Raid Escort [2]"
 		attributes spaceport
 		distance 5 16
 	on visit
-		dialog "The emancipation raid isn't complete. All Nighthawks must arrive together at <stopover planets> and then <planet>."
+		dialog "The emancipation raid isn't complete. All Nighthawks must arrive together at <planet stopovers> and then <planet>."
 	on stopover
 		dialog "The Nighthawks land on a different vector. You can see hardened bunkers explode from bombardment before the ships land. Not long after, they meet you at the spaceport, filled with freed slaves."
 	on complete
@@ -4216,7 +4216,7 @@ mission "Emancipation Raid Escort [3]"
 	name "Emancipation escort: <planet stopovers>"
 	job
 	repeat
-	description "Escort a large fleet of Nighthawks to <stopovers> for an emancipation raid, then back to <planet> for <payment>. You will have a passcode for landing clearance. Syndicate and bounty hunters will attack these ships."
+	description "Escort a large fleet of Nighthawks to <stopovers> for an emancipation raid, then back to <planet> for <payment>. You will have a passcode for landing clearance. The Syndicate and bounty hunters will attack these ships."
 	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
 	to offer
 		"combat rating" > 250
@@ -4232,7 +4232,7 @@ mission "Emancipation Raid Escort [3]"
 	on stopover
 		dialog "The Nighthawks land on a different vector. You can see hardened bunkers and ground turrets explode from bombardment before the ships land. Not long after, they meet you at the spaceport, filled with freed slaves."
 	on visit
-		dialog "The emancipation raid isn't complete. All Nighthawks must arrive together at <stopover planets> and then <planet>."
+		dialog "The emancipation raid isn't complete. All Nighthawks must arrive together at <planet stopovers> and then <planet>."
 	on complete
 		payment 640000
 		dialog phrase "generic completed emancipation raid mission"
