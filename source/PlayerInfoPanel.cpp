@@ -643,7 +643,7 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 		for(auto fleet : player.GetSystem()->GetGovernment()->RaidFleets())
 			notHappening -= pow(1. - player.RaidFleetAttraction(fleet, player.GetSystem()), 10.);
 		if(notHappening != 1.)
-			localProb = 1. - min(0., notHappening);
+			localProb = 1. - max(0., notHappening);
 
 		table.DrawGap(10);
 		table.DrawUnderline(dim);
