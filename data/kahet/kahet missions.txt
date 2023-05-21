@@ -247,6 +247,7 @@ mission "Ringworld Debris: Quarg"
 	invisible
 	source
 		attributes "quarg"
+		not attributes "gegno quarg"
 	to offer
 		has "ringworld debris"
 		has "First Contact: Quarg: offered"
@@ -601,7 +602,7 @@ mission "Ka'het: Patir Mystery 5"
 				`	"You have been on Builder planets?"`
 					goto planets
 				`	"How far have the Remnant explored the Graveyard?"`
-				`	"Do you have have all the equipment ready?"`
+				`	"Do you have all the equipment ready?"`
 					goto skip
 			
 			`	"I presume Taely already told you about the troubled beginnings we had in exploring the area; as a consequence of that, we had to reevaluate the procedures for exploring the nearby systems and species, especially beyond the Ossipago wormhole. Every scout ship entering the area has to always remain cloaked to prevent attacks from the countless Ka'het patrolling the area; this means that the further we need to travel to reach the destination, the more fuel we have to spend to return home, which considerably impacts the time we can spend cloaked in the destination. Some of the systems at the other end of the Graveyard have seen very few Starlings, most of them staying for less than a day.`
@@ -656,7 +657,7 @@ mission "Ka'het: Patir Mystery 5"
 				die
 			
 			label still
-			`	After another short silence, the Ka'sei starts emitting a loud siren. You hear the screech of Ravager fire as an angry energy beam sears through the air to your left, just barely missing you. Both you and Dusk jump back to the airlock, slamming the door closed. You can still feel the crackle of the Ravager cannons from the other side the the door, and after a second, the door begins to glow.`
+			`	After another short silence, the Ka'sei starts emitting a loud siren. You hear the screech of Ravager fire as an angry energy beam sears through the air to your left, just barely missing you. Both you and Dusk jump back to the airlock, slamming the door closed. You can still feel the crackle of the Ravager cannons from the other side the door, and after a second, the door begins to glow.`
 			choice
 				`	(Open the exit door, even with the airlock full of air.)`
 					goto blast

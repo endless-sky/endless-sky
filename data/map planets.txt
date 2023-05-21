@@ -120,7 +120,7 @@ planet Alix
 	description `Alix is a small moon of the gas giant Pathera, lacking a breathable atmosphere but rich in minerals. While settlements on the moon have been destroyed to the extent that all that remains are debris scattered across the terrain, some automated facilities are still functioning and see a constant flow of cargo drones that stop by the moon to gather raw materials before quickly bringing them to the nearby station's reserves.`
 
 planet Allhome
-	attributes farming hai "human tourism" urban
+	attributes farming hai "hai: human presence" "human tourism" urban
 	landscape land/dmottl0
 	description `This Earth-like planet has been settled both by human beings and by the Hai, the species that controls this region of space. The human settlements are relatively small, mostly farming communities founded by people who came here to escape the chaos and uncertainty of human space. More substantial urban settlements exist, particularly near the spaceport, but from the air they appear to exist within strict boundaries.`
 	spaceport `In the spaceport, a handful of human merchants and colonists wander about amid throngs of Hai - vaguely squirrel-like aliens who are somewhat shorter than the average human being, but make up for it with an abundance of energy. You feel a little bit like an adult wading through a sea of hyperactive children as you try to locate the commodity exchange and the other services offered here.`
@@ -237,7 +237,7 @@ planet "Ashy Reach"
 	security 0.1
 
 planet Avalon
-	landscape land/sea17-harro
+	landscape land/sea22
 	description `This is a pristine and perfectly habitable world, with warm oceans and a temperate climate. The land is dominated by large reptiles similar to the dinosaurs that roamed the continents of ancient Earth. Some of the land reptiles are over twenty meters in length, and the sea holds monsters more than twice that size.`
 	description `	Deep in the jungles near the equator, small mammals are working hard to avoid being eaten by the great lizards, and to survive for long enough that they will be able to evolve into the dominant life form.`
 	security 0
@@ -289,6 +289,14 @@ planet "Belug's Plunge"
 	spaceport `	Occasionally a group of cadets wearing yellow baldrics marches through, stepping as lightly as they can to avoid disturbing the quiet.`
 	outfitter "Coalition Advanced"
 	security 0.5
+
+planet "Beryl"
+	attributes gegno scin "requires: scin access" uninhabited
+	landscape land/station16
+	description `Beryl is a small space telescope deployed by the Gegno Scin to observe a nearby section of space home to mysterious dark nebulae and black holes. Only select Scin scientists are allowed to acquire research data from Beryl, which is otherwise not publicly accessible.`
+	government "Gegno Scin"
+	bribe 0
+	security 0
 
 planet "Big Sky"
 	attributes "dirt belt" farming forest frontier
@@ -466,7 +474,7 @@ planet "Builder Settlement"
 
 planet Bunthro
 	attributes bunrodea religious
-	landscape land/sky6
+	landscape land/mountain27
 	description `Despite being a pristine world for colonizing, Bunthro appears to be almost entirely untouched by the Bunrodea. Aside from the spaceport, there are hardly any structures on the planet, most that you can find being small shrines built atop high locations such as hills or mountains.`
 	description `	Permission to land is even more restricted than the capital; the entire world of Bunthro appears to be a religious site of some sort to the Bunrodea.`
 	spaceport `The spaceport is practically nonexistent, consisting of little more than a few landing pads, a refueling station, and a few buildings for shelter. Beyond the landing pads are paths that branch out into the wilderness, presumably off toward the shrines that can be spotted from above.`
@@ -1786,7 +1794,7 @@ wormhole "Graveyard Wormhole (Unstable)"
 	color "wormholes: Ember Waste"
 
 planet Greenbloom
-	attributes hai "hai tourism" "human tourism"
+	attributes hai "hai tourism" "hai: human presence" "human tourism"
 	landscape land/water3
 	description `The islands and continents on this planet are almost entirely covered in marshes, rainforests, and (near the poles) dense coniferous forests, and the oceans appear green from above due to thick algae blooms and floating kelp mats. The overabundance of flora is caused by Greenbloom's major volcanoes, which constantly spew carbon dioxide into the atmosphere.`
 	spaceport `The spaceport is a massive floating island built by the Hai - a network of hexagonal platforms, each roughly half a kilometer in diameter, linked by bridges that can bend to accommodate the platforms rising and falling in rough weather. You are not sure what sort of alloy the platforms are built from, but judging by the fact that some of them have coral colonies growing on their edges, they can probably last for centuries without requiring any maintenance.`
@@ -1816,7 +1824,7 @@ planet Greenrock
 		fleet "Large Northern Pirates" 13
 
 planet Greenview
-	attributes hai station
+	attributes hai station "hai tourism" "hai: human presence" "human tourism"
 	landscape land/station38
 	description `Although not strictly humid by the standards of a planet, the air here has a rich, moist, and faintly verdant quality atypical of a space station. The station is run by the Hei Low Io species preservation foundation, and each of its four branches features a different internal climate showcasing life from distant worlds. An infographic proclaims it to be the largest collection in the galaxy of rare organisms sourced from private collections, rebuilt from genetic samples, or rescued before being exterminated after being deemed invasive on Hai worlds. It also mentions that certain exhibits have been improved in some cases with species recently acquired from human space through secret trade deals.`
 	description `	The central spire is still largely residential, with some nursery and laboratory facilities.`
@@ -1825,7 +1833,7 @@ planet Greenview
 	security 0.5
 
 planet Greenwater
-	attributes farming fishing hai "human tourism"
+	attributes farming fishing hai "hai: human presence" "human tourism"
 	landscape land/myrabella2
 	description `Greenwater is one of the few worlds in Hai space that is home to a sizable human population. The temperature on most of the planet's surface is too warm for the Hai, but tolerable for human beings. Close to the equator are scattered human settlements for farming or fishing, which trade with the Hai cities closer to the poles for technology and equipment.`
 	spaceport `In this bustling spaceport, deeply tanned human merchants are busy haggling with the Hai natives over the price of loads of fish and produce. The atmosphere is quite friendly and relaxed - even here, well into the planet's temperate zone, it is warm enough that everyone, Hai and human alike, moves at a languid pace.`
@@ -1844,7 +1852,7 @@ planet "Gresku Fodar"
 	security 0
 
 planet Greymoon
-	attributes hai station
+	attributes hai "human tourism" station
 	landscape land/station13
 	description `This station is owned and operated by the Far Loo Bah fuel collection corporation. Their logo is emblazoned on nearly every possible surface and sign, indicating their sponsorship of all manner of services and features on the station. Interestingly, this includes a "History of Spaceflight" museum which takes up an entire wing of the facility. Naturally, the museum focuses very heavily on the Far Loo Bah corporation's role in that history.`
 	spaceport `The spaceport consists of a wide, two-level promenade encircling the interior of the station, with the docking access opening directly onto the mezzanine. The upper level is mostly devoted to amenities, light commercial businesses, a medical center, and a bank. The lower level has all of the real businesses: multiple manufacturers, which are supplied by the heavier elements filtered out from the supply of fuel stock from the planet below, have store frontage here. A virtual outfitter provides sale options for locally-manufactured outfits that can be installed on your ship without you ever leaving the comfort of the promenade.`
@@ -1931,7 +1939,7 @@ planet Haven
 
 planet Haze
 	attributes deep factory
-	landscape land/mfield2
+	landscape land/city24
 	description `Haze is a manufacturing world, covered in sprawling cities. It is a relatively prosperous planet, but so far the inhabitants have chosen to spend more of their terraforming budget on climate control than on pollution reduction.`
 	description `	Very few regions of this planet remain untouched by human hands, but a few of the particularly mountainous or marshy areas have been set aside as nature preserves. More than half of the indigenous life forms have gone extinct since human settlement began here four centuries ago.`
 	spaceport `The spaceport is constructed purely for efficiency and functionality. It is a long building, stretching in a straight line across more than a kilometer. Through the center, on tracks elevated at various levels, run monorail trams for carrying passengers and cargo. Along the sides of the building are docking bays alternating with storage rooms. The wide corridors are packed both with people and with robotic freight carts.`
@@ -1960,7 +1968,7 @@ planet Heartland
 
 planet Heartvalley
 	attributes hai "hai tourism" manufacturing
-	landscape land/fog0
+	landscape land/mountain28
 	description `An extreme amount of tectonic activity in its distant past has left Heartvalley with mountain ranges five to ten kilometers high in some places. Most of the Hai settlements here are in the valleys closer to sea level, where the air is dense enough for them to breathe comfortably. The tectonic activity has left many ancient sea-beds exposed, providing access to bountiful supplies of oil. To the Hai, oil is too precious a resource to be used for fuel; instead they process it into plastic and use the byproducts in other chemical processes.`
 	spaceport `The spaceport is built halfway up the slope of one of the most heavily settled valleys. Farther down the valley, the tallest buildings of the city seem tiny compared to the mountains that surround them. On the outskirts of the city sit strange engines the size of a spacecraft, with pipes snaking out from them in all directions and sinking deep into the ground.`
 	shipyard "Imo Loo Mer Basics"
@@ -2140,7 +2148,8 @@ planet Iddesato
 planet "Iemn Eitch"
 	attributes gegno
 	landscape land/desert2
-	description `Although too cold for a proper civilization, Iemn Eitch has been extensively used in the past as an outpost for the growing Gegno space race. As one of their first few explored worlds, antique-looking architecture is are scattered about the surface and looks significantly different to structures found on Dueyu Eitch, perhaps due to the nature of construction in an unfamiliar environment. A few large shipyard-esque platforms continue to service a small number of still active Gegno generation vessels from times past, presumably at a much slower pace than during the earliest days of their space colonization.`
+	description `Although too cold for a proper civilization, Iemn Eitch has been extensively used in the past as an outpost for the growing Gegno space race. As one of their first few explored worlds, antique-looking architecture is scattered about the surface and looks significantly different to structures found on Dueyu Eitch, perhaps due to the nature of construction in an unfamiliar environment. A few large shipyard-esque platforms continue to service a small number of still active Gegno generation vessels from times past, presumably at a much slower pace than during the earliest days of their space colonization.`
+	spaceport `	Rather than a traditional spaceport, a large and extensive shipyard engulfs a portion of the moon's surface, cluttered with numerous structures from an early colonial period. Several immense hangars, mostly reduced to their bare metal frames, house various archaic spacecraft of times past, with a few of them still servicing the remaining active vessels.`
 	government Gegno
 	"required reputation" 1
 	bribe 0
@@ -2691,7 +2700,7 @@ planet "Midway Emerald"
 
 planet Millrace
 	attributes factory "near earth" urban
-	landscape land/mfield1
+	landscape land/city25
 	description `Millrace is an overpopulated world, full of factories and manufacturing plants. It is one of several planets in this region of space where people trying to escape from the crowded squalor and polluted cities of Earth come looking for work. Most of the goods manufactured here end up being used by the Syndicate for constructing starships or driving industry on other worlds.`
 	description `	The Syndicate is a fair employer: living conditions here may be squalid, but most workers are earning a living wage and some are able to save up for a new life on a more pleasant planet. The Syndicate trusts there will never be a shortage of new immigrants to replace them.`
 	spaceport `This spaceport is ugly. It was designed not for the pleasure of sight, but for processing as many people through it as possible, without collapsing onto itself.`
@@ -2760,7 +2769,7 @@ planet Muspel
 
 planet Mutiny
 	attributes pirate
-	landscape land/badlands8
+	landscape land/badlands13
 	description `Centuries ago, Mutiny was used as a sort of prison world for a powerful band of pirates, a place where rivals could be marooned or held for ransom, rather than killing them outright. It is a cold, dark planet, and food is scarce, but over time several villages developed in the more hospitable regions. No longer prisoners, the inhabitants who remain do so because they prefer a simple life beyond the reach of any government, on a planet that will never be stolen from them because it carries nothing of value.`
 	security 0
 
@@ -3036,11 +3045,11 @@ planet "New Washington"
 		fleet "Large Militia" 3
 
 planet Newhome
-	attributes hai textiles urban
+	attributes hai "hai: human presence" textiles urban
 	landscape land/myrabella7
 	description `Newhome's gravity, climate, and geography is very similar to the Hai homeworld. Several billion Hai live here. Most dwell in large factory cities, but there are also ranches in the undeveloped areas where the Hai raise animals that are larger than elephants but produce wool similar to sheep. Shearing them is a dangerous undertaking, but their wool can be used to make excellent, long-lasting clothing.`
 	spaceport `The roads in the spaceport are very wide, so that Hai ranchers can lead their massive, sheep-like beasts along them. The animals seem docile enough, but their size is alarming.`
-	spaceport `	Most of the shops only sell clothing made for the Hai, but a few enterprising artisans have begun making clothing for humans as well: larger dimensions, and no tail holes in the pants.`
+	spaceport `	Most of the shops only sell clothing made for the Hai, but a few enterprising artisans have responded to the growing human population in the spaceport district and begun making clothing for humans as well: larger dimensions, and no tail holes in the pants.`
 	outfitter "Hai Basics"
 	security 0.2
 
@@ -3062,7 +3071,7 @@ planet Nifel
 
 planet Nimbus
 	attributes core fishing medical
-	landscape land/fog6
+	landscape land/beach15
 	description `Nimbus is a stormy ocean world, where a rain shower can descend on you almost without warning, only to be replaced with equal suddenness by bright sunshine. It draws mostly the sort of people who can weather such changes with placid, unperturbed calm; tourist guidebooks often rank Nimbus near the top in their lists of "friendliest natives."`
 	description `	All the industry on Nimbus is driven by the sea. Fish are plentiful, and the oceans here also contain some unique microorganisms that are harvested to extract useful medical compounds.`
 	spaceport `The spaceport is on a small island, but well above the high water mark. The mixture of ocean spray and fog and drizzling rain is enough to turn your clothes damp even just on the short walk from your landing pad to the main cluster of buildings.`
@@ -3208,7 +3217,7 @@ planet Passaritus
 
 planet Pearl
 	attributes forest medical paradise tourism
-	landscape land/forest3
+	landscape land/forest10
 	description `Pearl is an idyllic, forested world, mostly set aside as a wildlife sanctuary for imported exotic species. Each of the islands and continents houses animals and plants from a different planet's biosphere. Terraforming stations and satellites maintain the atmospheric gas levels in order to keep each island at the proper temperature and rainfall level.`
 	description `	Some of the islands are open for tourists and safari tours, and even for hunting. Others are owned by private companies and used for medical research. People with training in veterinary medicine are always in high demand here.`
 	spaceport `The spaceport is on one of the smaller islands, where the outside contagions brought in by visiting ships - including the rats and insects that inevitably stow away inside cargo crates - can be kept in isolation. The spaceport is located on a mountain slope immediately above a sea port, where visitors can charter a ship to one of the other islands. The warehouses for incoming and outgoing supplies are massive, but have been dug partly into the mountain so that the part of them that extends above ground is less prominent.`
@@ -3733,7 +3742,7 @@ planet "Septar Lorku"
 
 planet Seraglio
 	attributes "ice giant" uninhabited
-	landscape land/snow13
+	landscape land/snow22
 	description `Seraglio's vast ice fields hint at a variety of mysteries, most notably the chasms that suggest the planet was somehow subjected to massive compressive forces at some point in its recent geological history.`
 	description `At present, Seraglio is the focus of considerable attention from researchers searching for clues as to the planet's history.`
 	government Uninhabited
@@ -3883,7 +3892,7 @@ planet Siedi
 
 planet "Sies Upi"
 	attributes gegno vi
-	landscape land/hills1
+	landscape land/desert15
 	description `Sies Upi is one of the most recently colonized planets of the Gegno Vi. This hot, dry world with harsh living environments serves as more of an outpost than it does a colony, but nevertheless the Vi found ways to create manageable living conditions.`
 	spaceport `This spaceport seems a lot more militarized than other Gegno planet spaceports, full of geared up Vi with their ships parked close by. The roar of an enormous cruiser's engines can be heard just as often as the shutting down of another. There doesn't look to be very many non-military personnel here, and it feels somewhat claustrophobic with all of the guards standing around.`
 	government "Gegno Vi"
@@ -4184,7 +4193,7 @@ planet Sunracer
 		fleet "Large Syndicate" 10
 
 planet Swiftsong
-	attributes hai "hai tourism" station
+	attributes hai "hai tourism" "hai: human presence" "human tourism" station
 	landscape land/station39
 	description `Swiftsong Station is operated and maintained by the Imo Blep corporation as a giant convention center. Most Hai stations restrict access beyond the docking bay or the promenade to at least some degree, but Swiftsong is almost completely open.`
 	description `	Tens of thousands of Hai pass through on an almost daily basis as the continual churn of summits, forums, conventions, symposiums, productions, conferences, weddings, festivals, and the like roll on in an endless cavalcade of life. With Icelake nearby and Hai-home just one jump away, this station is a major cultural hub that even houses the head office of one of the biggest music labels in Hai space.`
@@ -4652,7 +4661,7 @@ planet "Vibrant Water"
 
 planet Vigales
 	attributes uninhabited
-	landscape land/desert5
+	landscape land/desert14
 	description `This hot desert world is home to several species of underground animals. These animals are very reptile-like, having appearances similar to that of lizards or salamanders from Earth, although much larger in size. It is believed that some indigenous species in Gegno space have originated from this world, or are descendants of ancestral species that once inhabited it.`
 	government Uninhabited
 

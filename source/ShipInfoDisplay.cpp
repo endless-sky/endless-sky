@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipInfoDisplay.h"
 
 #include "text/alignment.hpp"
+#include "CategoryList.h"
 #include "CategoryTypes.h"
 #include "Color.h"
 #include "Depreciation.h"
@@ -152,7 +153,7 @@ bool descriptionCollapsed, bool sale = false)
 	if(!ship.IsYours())
 		for(const string &license : attributes.Licenses())
 		{
-			if(player.Conditions().Has("license: " + license))
+			if(player.HasLicense(license))
 				continue;
 
 			const auto &licenseOutfit = GameData::Outfits().Find(license + " License");
@@ -297,8 +298,9 @@ bool descriptionCollapsed, bool sale = false)
 	}
 
 	// Print the number of bays for each bay-type we have
-	for(auto &&bayType : GameData::Category(CategoryType::BAY))
+	for(const auto &category : GameData::GetCategory(CategoryType::BAY))
 	{
+		const string &bayType = category.Name();
 		int totalBays = ship.BaysTotal(bayType);
 		if(totalBays)
 		{
