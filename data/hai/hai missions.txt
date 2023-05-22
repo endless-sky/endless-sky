@@ -16,8 +16,6 @@ mission "First Contact: Hai"
 	source
 		government "Hai"
 		not attributes "uninhabited"
-	to offer
-		not "event: hr: friend settled in"
 	on offer
 		conversation
 			branch unfettered
