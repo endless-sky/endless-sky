@@ -40,7 +40,8 @@ public:
 	// The list's elements are string and callback pair.
 	// Justified alignment does nothing, defaults to centered.
 	// Padding does not have any effect when center-aligned.
-	ComboList(Rectangle box, const std::vector<std::pair<std::string, callback>> &listElements, Alignment alignment = Alignment::CENTER, bool dimBackground = false, int padding = 2, int initialIndex = 0);
+	ComboList(Rectangle box, const std::vector<std::pair<std::string, callback>> &listElements, Alignment alignment = Alignment::CENTER,
+		bool dimBackground = false, int padding = 2, int initialIndex = 0);
 	// ~ComboList();
 
 	virtual void Draw() override;

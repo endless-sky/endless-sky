@@ -46,6 +46,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <SDL2/SDL.h>
 
 #include <algorithm>
+#include "ui/ComboList.h"
 
 using namespace std;
 
@@ -352,11 +353,28 @@ void ShopPanel::DrawButtons()
 
 	const Point creditsPoint(
 		Screen::Right() - SIDEBAR_WIDTH + 10,
-		Screen::Bottom() - 65);
+		Screen::Bottom() - 85);
 	font.Draw("You have:", creditsPoint, dim);
 
 	const auto credits = Format::CreditString(player.Accounts().Credits());
 	font.Draw({credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, creditsPoint, bright);
+
+	const Point buyTargetPoint(
+		Screen::Right() - SIDEBAR_WIDTH + 10,
+		Screen::Bottom() - 65);
+	font.Draw("Buy _to:", buyTargetPoint, dim);
+	static const vector<pair<string, function<void()>>> COMBO_OPTIONS = {
+		pair<string, function<void()>>("Ship", [this](){SetBuyOption(BuyOption::SHIP);}),
+		pair<string, function<void()>>("Cargo", [this](){SetBuyOption(BuyOption::CARGO);}),
+		pair<string, function<void()>>("Storage", [this](){SetBuyOption(BuyOption::STORAGE);})
+	};
+	Rectangle comboRect(buyTargetPoint + Point(SIDEBAR_WIDTH - 20 - 35, font.Height() / 2), Point(70, 24));
+	FillShader::Fill(comboRect.Center(), comboRect.Dimensions(), dim);
+	FillShader::Fill(comboRect.Center(), comboRect.Dimensions() - Point(2, 2), back);
+	font.Draw({ COMBO_OPTIONS[static_cast<int>(currentBuyOption)].first, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, buyTargetPoint - Point(5, 0), bright);
+	AddZone(comboRect, [this, comboRect]() {
+		OpenBuyOptionsCombo(comboRect);
+	});
 
 	const Font &bigFont = FontSet::Get(18);
 	const Color &hover = *GameData::Colors().Get("hover");
@@ -635,6 +653,14 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	{
 		player.UpdateCargoCapacities();
 		GetUI()->Pop(this);
+	}
+	else if(key == 't')
+	{
+		const Point buyTargetPoint(
+			Screen::Right() - SIDEBAR_WIDTH + 10,
+			Screen::Bottom() - 65);
+		Rectangle comboRect(buyTargetPoint + Point(SIDEBAR_WIDTH - 20 - 35, FontSet::Get(14).Height() / 2), Point(70, 24));
+		OpenBuyOptionsCombo(comboRect);
 	}
 	else if(key == 'b' || key == 'i' || key == 'c')
 	{
@@ -1328,4 +1354,25 @@ char ShopPanel::CheckButton(int x, int y)
 		return 'l';
 
 	return ' ';
+}
+
+
+
+void ShopPanel::SetBuyOption(BuyOption option)
+{
+	currentBuyOption = option;
+}
+
+
+
+void ShopPanel::OpenBuyOptionsCombo(Rectangle rect)
+{
+	static const vector<pair<string, function<void()>>> COMBO_OPTIONS = {
+		pair<string, function<void()>>("Ship", [this](){SetBuyOption(BuyOption::SHIP); }),
+		pair<string, function<void()>>("Cargo", [this](){SetBuyOption(BuyOption::CARGO); }),
+		pair<string, function<void()>>("Storage", [this](){SetBuyOption(BuyOption::STORAGE); })
+	};
+	GetUI()->Push(
+		make_shared<ComboList>(rect, COMBO_OPTIONS, Alignment::RIGHT, true, 2, static_cast<int>(currentBuyOption))
+	);
 }
