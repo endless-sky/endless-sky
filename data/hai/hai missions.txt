@@ -16,6 +16,8 @@ mission "First Contact: Hai"
 	source
 		government "Hai"
 		not attributes "uninhabited"
+	to offer
+		not "event: hr: friend settled in"
 	on offer
 		conversation
 			branch unfettered
@@ -272,7 +274,7 @@ mission "Unwanted Cargo Trigger"
 	to offer
 		random < 1
 		"cargo space" > 0
-		not "event: hai secret leaks"
+		not "hr: secret leaks"
 	on offer
 		event "hai in cargo" 14
 		fail
@@ -289,7 +291,7 @@ mission "Unwanted Cargo"
 	destination "Allhome"
 	to offer
 		has "event: hai in cargo"
-		not "event: hai secret leaks"
+		not "hr: secret leaks"
 	on offer
 		conversation
 			`The "Check Cargo" light for your ship begins blinking when you land, meaning that a cargo crate may have come loose in flight. You shut off the ship's engines and walk to the cargo hold.`
@@ -738,7 +740,7 @@ mission "Hiding in Plain Sight"
 		random < 30
 		has "First Contact: Hai: offered"
 		or
-			not "event: hai secret leaks"
+			not "hr: secret leaks"
 			has "event: hai-human resolution announced"
 	on offer
 		conversation
@@ -840,7 +842,7 @@ mission "Nanachi 1"
 		"combat rating" > 1200
 		has "First Contact: Hai: offered"
 		or
-			not "event: hai secret leaks"
+			not "hr: secret leaks"
 			has "event: hai-human resolution announced"
 	on offer
 		conversation
