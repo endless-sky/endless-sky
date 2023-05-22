@@ -1194,7 +1194,7 @@ ship "Geocoris" "Geocoris (Keystones)"
 		"Boulder Reactor"
 		"Hai Valley Batteries"
 		"Hai Diamond Regenerator"
-		"Hai Corundrum Regenerator"
+		"Hai Corundum Regenerator"
 		"Hai Williwaw Cooling" 4
 		`"Biroo" Reverse Thruster`
 		`"Biroo" Atomic Thruster`
@@ -1290,7 +1290,7 @@ mission "<uhai> 4: Scan Geocoris"
 		government "Hai"
 		to spawn
 			has "unfettered: entered Ya Hai"
-		personality launching
+		personality launching coward
 		system "Ya Hai"
 		ship "Grasshopper (Ion)" "Beholder"
 	to fail
