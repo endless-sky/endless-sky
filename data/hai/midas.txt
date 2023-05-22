@@ -21,7 +21,7 @@ outfit "Gold Bars"
 	thumbnail "outfit/gold bars"
 	mass 2.1
 	"installable" -1
-	description "It shines; you can feel its value. For some reason, the text 'nemo me impune lacessit' is written on them. You wonder what that could mean... surely nothing to worry about. Most outfitters are not real 'connoisseurs' of the value these hold though, and would not give you any more than the price of brute gold for it."
+	description "It shines; you can feel its value. For some reason, the text 'nemo me impune lacessit' is written on them. You wonder what that could mean... surely nothing to worry about. Most outfitters are not real 'connoisseurs' of the value these hold however, and would not give you any more than the price of brute gold for it."
 
 # the hyperdrive was optimized out, ship is for duels only
 ship "Sea Scorpion" "Si-Ra' Scorpion"
@@ -163,8 +163,8 @@ ship "Antlion"
 	explode "small explosion" 40
 	explode "tiny explosion" 40
 	"final explode" "final explosion large"
-	description "This ship was designed to repel the raiding ships, near the end of the Korath raids. Whilst it would not be able to defeat one of their ships alone, and would struggle in a prolonged fight, its energy weapons and drone support allow it to hold its own until reinforcements arrive."
-	description "	The prototype was stolen after the raids meaning that this ship design was never produced again, given it would be of little use in the Unfettered conflict. Nowadays the Antlion is renowned for attacking vulnerable targets and disappearing before anyone can react, as if always one move ahead."
+	description "This ship was designed to repel raiding ships, near the end of the Korath war. While it would not be able to defeat one of their ships alone, and would struggle in a prolonged fight, its energy weapons and drone support allow it to hold its own until reinforcements arrive."
+	description "	The prototype was stolen after the raids and that this ship design was never produced again, given it would be of little use in the Unfettered conflict. Nowadays the Antlion is renowned for attacking vulnerable targets and disappearing before anyone can react, as if always one move ahead."
 
 
 ship "Tick"

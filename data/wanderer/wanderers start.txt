@@ -680,7 +680,7 @@ mission "Unfettered: Regrets"
 		outfit "True Unfettered License"
 		dialog
 			`The instant you enter the system, you receive a priority message from the local authorities. "<last>, because of your recent involvements with the aliens up north, we have decided to stop offering you important missions."`
-			`	Since this is a recorded message you cannot respond, but even if you could they would probably just ignore you. This clearly means that your license has no value anymore to them.`
+			`	Since this is a recorded message you cannot respond, but even if you could they would probably just ignore you. You assume that your Unfettered license no longer has any value to them.`
 		fail
 
 mission "Unfettered: Betrayed"
@@ -702,7 +702,7 @@ mission "Unfettered: Betrayed"
 		event "unfettered: outcast"
 		dialog
 			`Once you are alone in your quarters you hear a voice, darker and more serious than ever before. "You have betrayed us. Nemo Me Impune Laccessit, <first>. We have a message to transmit to you on behalf of the council of Chiefs.`
-			`	"<last>. From now on, you are an outcast. Your history has been erased and your exploits forgotten. You did bring us Jump Drives, however, and we will continue to allow you to do so, but we will do without your help for any more advanced missions. You license also lost all it's meaning, so you may as well toss it."`
+			`	"<last>. From now on, you are an outcast. Your history has been erased and your exploits forgotten. You did bring us Jump Drives, however, and we will continue to allow you to do so, but we will do without your help for any more advanced missions. Your license is now meaningless, so you may as well toss it."`
 
 
 
@@ -1075,7 +1075,7 @@ mission "Wanderers: Alpha Surveillance A"
 			label oldbase
 			action
 				set "told them the alpha base location"
-			`	"An old base, you say? They probably no longer operate there anymore then. I would advise against going there again, because it most likely will be trapped."`
+			`	"An old base, you say? They probably no longer operate there anymore then. I would advise against going there again, because it will most likely have traps."`
 			`	"Then where could they have gone?" you ask.`
 			label where
 			`	"We do not know," he says. "It is not our business to track the doings of other species, outside our territory. And during the time of the Korath raids, we would not have had the capacity to track them, anyway."`
