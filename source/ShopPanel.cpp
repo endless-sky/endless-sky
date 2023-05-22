@@ -353,7 +353,7 @@ void ShopPanel::DrawButtons()
 
 	const Point creditsPoint(
 		Screen::Right() - SIDEBAR_WIDTH + 10,
-		Screen::Bottom() - 85);
+		Screen::Bottom() - 90);
 	font.Draw("You have:", creditsPoint, dim);
 
 	const auto credits = Format::CreditString(player.Accounts().Credits());
@@ -362,7 +362,7 @@ void ShopPanel::DrawButtons()
 	const Point buyTargetPoint(
 		Screen::Right() - SIDEBAR_WIDTH + 10,
 		Screen::Bottom() - 65);
-	font.Draw("Buy _to:", buyTargetPoint, dim);
+	font.Draw("Send _to:", buyTargetPoint, dim);
 	static const vector<pair<string, function<void()>>> COMBO_OPTIONS = {
 		pair<string, function<void()>>("Ship", [this](){SetBuyOption(BuyOption::SHIP);}),
 		pair<string, function<void()>>("Cargo", [this](){SetBuyOption(BuyOption::CARGO);}),

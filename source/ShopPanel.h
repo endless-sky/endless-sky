@@ -147,7 +147,7 @@ protected:
 	static const int SIDEBAR_WIDTH = 250;
 	static const int INFOBAR_WIDTH = 300;
 	static const int SIDE_WIDTH = SIDEBAR_WIDTH + INFOBAR_WIDTH;
-	static const int BUTTON_HEIGHT = 90;
+	static const int BUTTON_HEIGHT = 100;
 	static const int SHIP_SIZE = 250;
 	static const int OUTFIT_SIZE = 183;
 
