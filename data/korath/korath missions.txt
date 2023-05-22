@@ -324,7 +324,7 @@ mission "Efreti: Distress Call 2"
 					"flagship crew" > 1
 				accept
 			# No "to display" is required here due to the "accept" above:
-			`	You quickly count the number of survivors and communicate to your guide that you can take them all. He mimics your nodding head gesture, shows you his palms and makes quick circles. You think he is agreeing and wants to hurry. With no crew helping you, it takes several hours to transfer the survivors to the <ship>.`
+			`	You quickly count the number of survivors and communicate to your guide that you can take them all. He mimics your nodding head gesture, shows you his palms, and makes quick circles. You think he is agreeing and wants to hurry. With no crew helping you, it takes several hours to transfer the survivors to the <ship>.`
 				accept
 	
 	on complete
