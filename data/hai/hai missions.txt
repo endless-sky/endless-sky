@@ -271,6 +271,7 @@ mission "Unwanted Cargo Trigger"
 	landing
 	source
 		government "Hai"
+		not attributes "uninhabited"
 	to offer
 		random < 1
 		"cargo space" > 0
