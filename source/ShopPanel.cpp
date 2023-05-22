@@ -345,7 +345,7 @@ void ShopPanel::DrawShipsSidebar()
 
 	PointerShader::Draw(Point(Screen::Right() - 10, Screen::Top() + 10),
 		Point(0., -1.), 10.f, 10.f, 5.f, Color(sidebarScroll > 0 ? .8f : .2f, 0.f));
-	PointerShader::Draw(Point(Screen::Right() - 10, Screen::Bottom() - 80),
+	PointerShader::Draw(Point(Screen::Right() - 10, Screen::Bottom() - BUTTON_HEIGHT - 10),
 		Point(0., 1.), 10.f, 10.f, 5.f, Color(sidebarScroll < maxSidebarScroll ? .8f : .2f, 0.f));
 }
 

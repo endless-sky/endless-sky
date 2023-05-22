@@ -329,6 +329,43 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			if(event.type == SDL_MOUSEMOTION)
 				cursorTime = 0;
 
+			// Touch debugging hooks
+#define TOUCH_DEBUGGING
+#ifdef TOUCH_DEBUGGING
+			if(event.type == SDL_MOUSEBUTTONDOWN)
+			{
+				SDL_Event fingerEvent{};
+				fingerEvent.type = SDL_FINGERDOWN;
+				fingerEvent.tfinger.fingerId = 0;
+				fingerEvent.tfinger.x = static_cast<float>(event.button.x) / Screen::RawWidth();
+				fingerEvent.tfinger.y = static_cast<float>(event.button.y) / Screen::RawHeight();
+			
+				event = fingerEvent;
+			}
+			else if(event.type == SDL_MOUSEMOTION)
+			{
+				SDL_Event fingerEvent{};
+				fingerEvent.type = SDL_FINGERMOTION;
+				fingerEvent.tfinger.fingerId = 0;
+				fingerEvent.tfinger.x = static_cast<float>(event.motion.x) / Screen::RawWidth();
+				fingerEvent.tfinger.y = static_cast<float>(event.motion.y) / Screen::RawHeight();
+				fingerEvent.tfinger.dx = static_cast<float>(event.motion.xrel) / Screen::RawWidth();
+				fingerEvent.tfinger.dy = static_cast<float>(event.motion.yrel) / Screen::RawHeight();
+				event = fingerEvent;
+			}
+			else if(event.type == SDL_MOUSEBUTTONUP)
+			{
+				SDL_Event fingerEvent{};
+				fingerEvent.type = SDL_FINGERUP;
+				fingerEvent.tfinger.fingerId = 0;
+				fingerEvent.tfinger.x = static_cast<float>(event.button.x) / Screen::RawWidth();
+				fingerEvent.tfinger.y = static_cast<float>(event.button.y) / Screen::RawHeight();
+			
+				event = fingerEvent;
+			}
+#endif
+			
+
 			// Filter touch events through the gesture manager. It will create
 			// user gesture events we can use for input.
 			if(event.type == SDL_FINGERDOWN)
