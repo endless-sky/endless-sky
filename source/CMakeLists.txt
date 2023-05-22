@@ -357,4 +357,6 @@ target_sources(EndlessSkyLib PRIVATE
 	text/alignment.hpp
 	text/layout.hpp
 	text/truncate.hpp
+	ui/ComboList.cpp
+	ui/ComboList.h
 )
