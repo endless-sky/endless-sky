@@ -1183,6 +1183,27 @@ mission "<uhai> 3: Jump Drive Vault: Attracted Attention"
 
 
 
+# This variant has no reverse thrusters to make it easier to scan it, even with the new formula.
+ship "Geocoris" "Geocoris (Keystones)"
+	crew 56
+	outfits
+		"Hai Tracker Pod" 2
+		"Hai Tracker" 112
+		"Chameleon Anti-Missile" 3
+		"Hai Cuttlefish Jammer" 4
+		"Boulder Reactor"
+		"Hai Valley Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Corundrum Regenerator"
+		"Hai Williwaw Cooling" 4
+		`"Biroo" Reverse Thruster`
+		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		Hyperdrive
+		"Pulse Rifle" 56
+	cargo
+		"Quantum Keystone" 123
+
 mission "<uhai> 4: Scan Geocoris"
 	name `Scan the Geocoris`
 	description `Scan the cargo of the Hai Geocoris in Ya Hai with the Unfettered scanner, then return to <destination> with the scanner logs.`
@@ -1255,10 +1276,7 @@ mission "<uhai> 4: Scan Geocoris"
 			has "unfettered: entered Ya Hai"
 		personality target entering uninterested waiting
 		system "Ya Hai"
-		fleet
-			names "hai"
-			variant
-				"Geocoris"
+		ship "Geocoris (Keystones)" "Strong Gold"
 		conversation
 			branch "didn't listen"
 				not "outfit (flagship installed): Value Detector"
@@ -1268,6 +1286,13 @@ mission "<uhai> 4: Scan Geocoris"
 			`You have scanned the Geocoris, but you did not use a Value Detector to do so. The scans will be of no value to Mera, you have failed the mission.`
 			action
 				fail "<uhai> 4: Scan Geocoris"
+	npc
+		government "Hai"
+		to spawn
+			has "unfettered: entered Ya Hai"
+		personality launching
+		system "Ya Hai"
+		ship "Grasshopper (Ion)" "Beholder"
 	to fail
 		has "event: unfettered: outcast"
 	on fail
