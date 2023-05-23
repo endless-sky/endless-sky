@@ -1085,10 +1085,10 @@ void OutfitterPanel::DrawBuyOptions()
 		"Store"
 	};
 	// font.Draw("_To/_Amount:", toTargetPoint, *GameData::Colors().Get("medium"));
-	Rectangle toRect(targetPoint + Point(SIDEBAR_WIDTH - 20 - 95, font.Height() / 2), Point(70, 24));
+	Rectangle toRect(targetPoint + Point(SIDEBAR_WIDTH - 20 - 105, font.Height() / 2), Point(50, 24));
 	FillShader::Fill(toRect.Center(), toRect.Dimensions(), dim);
 	FillShader::Fill(toRect.Center(), toRect.Dimensions() - Point(2, 2), back);
-	font.Draw({ COMBO_OPTIONS[static_cast<int>(currentBuyOption)], {SIDEBAR_WIDTH - 20 - 60, Alignment::RIGHT}}, targetPoint - Point(5, 0), bright);
+	font.Draw({ COMBO_OPTIONS[static_cast<int>(currentBuyOption)], {SIDEBAR_WIDTH - 30 - 70, Alignment::RIGHT}}, targetPoint - Point(5, 0), bright);
 	AddZone(comboRect, [this, comboRect]() {
 		OpenOptionComboA(comboRect);
 		});
