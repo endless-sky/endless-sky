@@ -2139,7 +2139,7 @@ phrase "friendly civilian"
 
 phrase "friendly civilian"
 	word
-		"All I want is one day without "
+		"All I want is one day without running into "
 		"I just bought this ship and it already has "
 		"The warranty for my ship expired a week ago, and wouldn't you know it, I just found "
 	word
