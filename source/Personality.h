@@ -90,6 +90,9 @@ public:
 	static Personality Defender();
 	static Personality DefenderFighter();
 
+	// Amount of time to linger, or -1 if it should use the system value:
+	int LingerTime() const;
+
 
 private:
 	void Parse(const DataNode &node, int index, bool remove);
@@ -107,6 +110,7 @@ private:
 	double aimMultiplier;
 	Point confusion;
 	Point confusionVelocity;
+	int lingerTime = -1;
 };
 
 

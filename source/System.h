@@ -173,6 +173,10 @@ public:
 	// The smallest arrival period of a fleet (or 0 if no fleets arrive)
 	int MinimumFleetPeriod() const;
 
+	// Amount of time a ship should linger when it has nothing to do,
+	// unless something else overrides that linger time.
+	int LingerTime() const;
+
 
 private:
 	void LoadObject(const DataNode &node, Set<Planet> &planets, int parent = -1);
@@ -242,6 +246,7 @@ private:
 	double solarWind = 0.;
 	double starfieldDensity = 1.;
 	int minimumFleetPeriod = 0;
+	int lingerTime = -1;
 
 	// The amount of additional distance that ships will arrive away from the
 	// system center when entering this system through a hyperspace link.
