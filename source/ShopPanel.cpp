@@ -1364,7 +1364,8 @@ void ShopPanel::DrawBuyOptions()
 	Rectangle comboRect(buyTargetPoint + Point(SIDEBAR_WIDTH - 20 - 35, font.Height() / 2), Point(70, 24));
 	FillShader::Fill(comboRect.Center(), comboRect.Dimensions(), dim);
 	FillShader::Fill(comboRect.Center(), comboRect.Dimensions() - Point(2, 2), back);
-	font.Draw({ to_string(multiplier) + "x", {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, buyTargetPoint - Point(5, 0), bright);
+	font.Draw({ to_string(multiplier) + "x", {SIDEBAR_WIDTH - 20, Alignment::RIGHT}},
+		buyTargetPoint - Point(5, 0), bright);
 	AddZone(comboRect, [this, comboRect]() {
 		OpenOptionComboA(comboRect);
 		});

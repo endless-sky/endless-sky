@@ -16,9 +16,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef COMBO_LIST_H_
 #define COMBO_LIST_H_
 
+#include "text/alignment.hpp"
 #include "ClickZone.h"
 #include "Panel.h"
-#include "text/alignment.hpp"
 
 #include <functional>
 #include <string>
@@ -36,13 +36,13 @@ public:
 
 public:
 	// Constructor.
-	// The box is the position and size of the initial label, which copies of will be drawn above, or below if space isn't available.
+	// The box is the position and size of the initial label, which additional labels will be drawn.
 	// The list's elements are string and callback pair.
 	// Justified alignment does nothing, defaults to centered.
 	// Dim backgrounds dims the background when enabled.
 	// Padding does not have any effect when center-aligned.
-	ComboList(Rectangle box, const std::vector<std::pair<std::string, callback>> &listElements, Alignment alignment = Alignment::CENTER,
-		bool dimBackground = false, int padding = 2, int initialIndex = 0);
+	ComboList(Rectangle box, const std::vector<std::pair<std::string, callback>> &listElements,
+		Alignment alignment = Alignment::CENTER, bool dimBackground = false, int padding = 2, int initialIndex = 0);
 
 	virtual void Draw() override;
 

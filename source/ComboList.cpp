@@ -17,18 +17,20 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Color.h"
 #include "FillShader.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
 #include "GameData.h"
 #include "Point.h"
 #include "Rectangle.h"
 #include "Screen.h"
-#include "text/Font.h"
-#include "text/FontSet.h"
 #include "UI.h"
 
 using namespace std;
 
-ComboList::ComboList(Rectangle box, const std::vector<std::pair<std::string, callback>> &listElements, Alignment alignment, bool dimBackground, int padding, int initialIndex)
-	: elements(listElements), currentIndex(initialIndex), rect(box), padding(padding), alignment(alignment), dimBackground(dimBackground)
+ComboList::ComboList(Rectangle box, const std::vector<std::pair<std::string, callback>> &listElements,
+	Alignment alignment, bool dimBackground, int padding, int initialIndex)
+	: elements(listElements), currentIndex(initialIndex), rect(box), alignment(alignment),
+		padding(padding), dimBackground(dimBackground)
 {
 	int comboBoxHeight = ((FontSet::Get(14).Height() + padding) * elements.size()) + padding;
 	float maxVerticalHeight = (rect.Top() + Screen::RawHeight() / 2);
