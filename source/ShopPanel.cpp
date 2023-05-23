@@ -119,6 +119,7 @@ void ShopPanel::Draw()
 	DrawShipsSidebar();
 	DrawDetailsSidebar();
 	DrawButtons();
+	DrawBuyOptions();
 	DrawMain();
 	DrawKey();
 
@@ -173,6 +174,8 @@ void ShopPanel::Draw()
 		}
 	}
 	mainScroll = min(mainScroll, maxMainScroll);
+
+	multiplier = BetterModifier();
 }
 
 
@@ -359,23 +362,6 @@ void ShopPanel::DrawButtons()
 	const auto credits = Format::CreditString(player.Accounts().Credits());
 	font.Draw({credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, creditsPoint, bright);
 
-	const Point buyTargetPoint(
-		Screen::Right() - SIDEBAR_WIDTH + 10,
-		Screen::Bottom() - 65);
-	font.Draw("Send _to:", buyTargetPoint, dim);
-	static const vector<pair<string, function<void()>>> COMBO_OPTIONS = {
-		pair<string, function<void()>>("Ship", [this](){SetBuyOption(BuyOption::SHIP);}),
-		pair<string, function<void()>>("Cargo", [this](){SetBuyOption(BuyOption::CARGO);}),
-		pair<string, function<void()>>("Storage", [this](){SetBuyOption(BuyOption::STORAGE);})
-	};
-	Rectangle comboRect(buyTargetPoint + Point(SIDEBAR_WIDTH - 20 - 35, font.Height() / 2), Point(70, 24));
-	FillShader::Fill(comboRect.Center(), comboRect.Dimensions(), dim);
-	FillShader::Fill(comboRect.Center(), comboRect.Dimensions() - Point(2, 2), back);
-	font.Draw({ COMBO_OPTIONS[static_cast<int>(currentBuyOption)].first, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, buyTargetPoint - Point(5, 0), bright);
-	AddZone(comboRect, [this, comboRect]() {
-		OpenBuyOptionsCombo(comboRect);
-	});
-
 	const Font &bigFont = FontSet::Get(18);
 	const Color &hover = *GameData::Colors().Get("hover");
 	const Color &active = *GameData::Colors().Get("active");
@@ -409,16 +395,6 @@ void ShopPanel::DrawButtons()
 	bigFont.Draw(LEAVE,
 		leaveCenter - .5 * Point(bigFont.Width(LEAVE), bigFont.Height()),
 		hoverButton == 'l' ? hover : active);
-
-	int modifier = Modifier();
-	if(modifier > 1)
-	{
-		string mod = "x " + to_string(modifier);
-		int modWidth = font.Width(mod);
-		font.Draw(mod, buyCenter + Point(-.5 * modWidth, 10.), dim);
-		if(CanSellMultiple())
-			font.Draw(mod, sellCenter + Point(-.5 * modWidth, 10.), dim);
-	}
 }
 
 
@@ -660,7 +636,15 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			Screen::Right() - SIDEBAR_WIDTH + 10,
 			Screen::Bottom() - 65);
 		Rectangle comboRect(buyTargetPoint + Point(SIDEBAR_WIDTH - 20 - 35, FontSet::Get(14).Height() / 2), Point(70, 24));
-		OpenBuyOptionsCombo(comboRect);
+		OpenOptionComboT(comboRect);
+	}
+	else if(key == 'a')
+	{
+		const Point buyTargetPoint(
+			Screen::Right() - SIDEBAR_WIDTH + 10,
+			Screen::Bottom() - 65);
+		Rectangle comboRect(buyTargetPoint + Point(SIDEBAR_WIDTH - 20 - 35, FontSet::Get(14).Height() / 2), Point(70, 24));
+		OpenOptionComboA(comboRect);
 	}
 	else if(key == 'b' || key == 'i' || key == 'c')
 	{
@@ -682,7 +666,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			FailSell(toStorage);
 		else
 		{
-			int modifier = CanSellMultiple() ? Modifier() : 1;
+			int modifier = CanSellMultiple() ? BetterModifier() : 1;
 			for(int i = 0; i < modifier && CanSell(toStorage); ++i)
 				Sell(toStorage);
 			player.UpdateCargoCapacities();
@@ -1006,6 +990,15 @@ const Outfit *ShopPanel::Zone::GetOutfit() const
 double ShopPanel::Zone::ScrollY() const
 {
 	return scrollY;
+}
+
+
+
+int ShopPanel::BetterModifier()
+{
+	auto ret = Modifier() == prevMod ? multiplier : Modifier();
+	prevMod = Modifier();
+	return ret;
 }
 
 
@@ -1358,21 +1351,47 @@ char ShopPanel::CheckButton(int x, int y)
 
 
 
-void ShopPanel::SetBuyOption(BuyOption option)
+void ShopPanel::DrawBuyOptions()
 {
-	currentBuyOption = option;
+	const auto &font = FontSet::Get(14);
+	const auto &dim = *GameData::Colors().Get("dim");
+	const auto &bright = *GameData::Colors().Get("bright");
+	const auto &back = *GameData::Colors().Get("shop side panel background");
+	const Point buyTargetPoint(
+		Screen::Right() - SIDEBAR_WIDTH + 10,
+		Screen::Bottom() - 65);
+	font.Draw("_Amoun_t:", buyTargetPoint, *GameData::Colors().Get("medium"));
+	Rectangle comboRect(buyTargetPoint + Point(SIDEBAR_WIDTH - 20 - 35, font.Height() / 2), Point(70, 24));
+	FillShader::Fill(comboRect.Center(), comboRect.Dimensions(), dim);
+	FillShader::Fill(comboRect.Center(), comboRect.Dimensions() - Point(2, 2), back);
+	font.Draw({ to_string(multiplier) + "x", {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, buyTargetPoint - Point(5, 0), bright);
+	AddZone(comboRect, [this, comboRect]() {
+		OpenOptionComboA(comboRect);
+		});
 }
 
 
 
-void ShopPanel::OpenBuyOptionsCombo(Rectangle rect)
+void ShopPanel::OpenOptionComboA(Rectangle rect)
 {
 	static const vector<pair<string, function<void()>>> COMBO_OPTIONS = {
-		pair<string, function<void()>>("Ship", [this](){SetBuyOption(BuyOption::SHIP); }),
-		pair<string, function<void()>>("Cargo", [this](){SetBuyOption(BuyOption::CARGO); }),
-		pair<string, function<void()>>("Storage", [this](){SetBuyOption(BuyOption::STORAGE); })
+		pair<string, function<void()>>("1x", [this](){multiplierIndex = 0; SetMultiplier(1); }),
+		pair<string, function<void()>>("5x", [this](){multiplierIndex = 1; SetMultiplier(5); }),
+		pair<string, function<void()>>("10x", [this](){multiplierIndex = 2; SetMultiplier(10); }),
+		pair<string, function<void()>>("25x", [this](){multiplierIndex = 3; SetMultiplier(25); }),
+		pair<string, function<void()>>("100x", [this](){multiplierIndex = 4; SetMultiplier(100); }),
+		pair<string, function<void()>>("500x", [this](){multiplierIndex = 5; SetMultiplier(500); }),
+		pair<string, function<void()>>("2500x", [this](){multiplierIndex = 6; SetMultiplier(2500); }),
+		pair<string, function<void()>>("10000x", [this](){multiplierIndex = 7; SetMultiplier(10000); })
 	};
 	GetUI()->Push(
-		make_shared<ComboList>(rect, COMBO_OPTIONS, Alignment::RIGHT, true, 2, static_cast<int>(currentBuyOption))
+		make_shared<ComboList>(rect, COMBO_OPTIONS, Alignment::RIGHT, true, 2, multiplierIndex)
 	);
+}
+
+
+
+void ShopPanel::OpenOptionComboT(Rectangle rect)
+{
+	OpenOptionComboA(rect);
 }

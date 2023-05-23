@@ -40,6 +40,13 @@ class Ship;
 // panel makes an attempt to ensure that you do not leave with a ship that is
 // configured in such a way that it cannot fly (e.g. no engines or steering).
 class OutfitterPanel : public ShopPanel {
+private:
+	enum class BuyOption : int_fast8_t {
+		SHIP = 0,
+		CARGO,
+		STORAGE
+	};
+
 public:
 	explicit OutfitterPanel(PlayerInfo &player);
 
@@ -66,6 +73,11 @@ protected:
 	virtual void ToggleStorage() override;
 	virtual void ToggleCargo() override;
 
+	virtual bool IsAlreadyOwned() const override;
+
+	virtual void DrawBuyOptions() override;
+	virtual void OpenOptionComboA(Rectangle rect) override;
+	virtual void OpenOptionComboT(Rectangle rect) override;
 
 
 
@@ -82,6 +94,8 @@ private:
 	// same quantity of the selected outfit.
 	const std::vector<Ship *> GetShipsToOutfit(bool isBuy = false) const;
 
+	void SetBuyOption(BuyOption option);
+
 private:
 	// Record whether we've checked if the player needs ammo refilled.
 	bool checkedRefill = false;
@@ -96,6 +110,8 @@ private:
 
 	// Keep track of how many of the outfitter help screens have been shown
 	bool checkedHelp = false;
+
+	BuyOption currentBuyOption = BuyOption::SHIP;
 };
 
 

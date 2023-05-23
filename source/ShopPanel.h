@@ -40,13 +40,6 @@ class Ship;
 // Class representing the common elements of both the shipyard panel and the
 // outfitter panel (e.g. the sidebar with the ships you own).
 class ShopPanel : public Panel {
-private:
-	enum class BuyOption : int_fast8_t {
-		SHIP = 0,
-		CARGO,
-		STORAGE
-	};
-
 public:
 	explicit ShopPanel(PlayerInfo &player, bool isOutfitter);
 
@@ -108,6 +101,12 @@ protected:
 	virtual void ToggleForSale();
 	virtual void ToggleStorage();
 	virtual void ToggleCargo();
+
+	virtual void DrawBuyOptions();
+	virtual void OpenOptionComboA(Rectangle rect);
+	virtual void OpenOptionComboT(Rectangle rect);
+	int BetterModifier();
+	inline void SetMultiplier(int mult){ multiplier = mult; };
 
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
@@ -187,7 +186,9 @@ protected:
 	bool sameSelectedTopY = false;
 	char hoverButton = '\0';
 
-	BuyOption currentBuyOption = BuyOption::SHIP;
+	int multiplierIndex = 1;
+	int multiplier = 1;
+	int prevMod = 1;
 
 	std::vector<Zone> zones;
 	std::vector<ClickZone<std::string>> categoryZones;
@@ -218,8 +219,6 @@ private:
 	// Check if the given point is within the button zone, and if so return the
 	// letter of the button (or ' ' if it's not on a button).
 	char CheckButton(int x, int y);
-	void OpenBuyOptionsCombo(Rectangle rect);
-	void SetBuyOption(BuyOption option);
 };
 
 

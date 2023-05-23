@@ -45,7 +45,6 @@ public:
 	// ~ComboList();
 
 	virtual void Draw() override;
-	virtual void Step() override;
 
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	//virtual bool Drag(double dx, double dy) override;

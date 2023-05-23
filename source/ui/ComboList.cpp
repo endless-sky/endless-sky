@@ -109,11 +109,6 @@ void ComboList::Draw()
 	}
 }
 
-void ComboList::Step()
-{
-
-}
-
 bool ComboList::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(key == SDLK_RETURN)

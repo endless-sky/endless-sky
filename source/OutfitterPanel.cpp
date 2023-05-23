@@ -18,8 +18,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/alignment.hpp"
 #include "comparators/BySeriesAndIndex.h"
 #include "Color.h"
+#include "ui/ComboList.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
+#include "FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -513,11 +515,33 @@ void OutfitterPanel::Buy(bool onlyOwned)
 		return;
 	}
 
-	int modifier = Modifier();
+	int modifier = BetterModifier();
 	for(int i = 0; i < modifier && CanBuy(onlyOwned); ++i)
 	{
+		// Buying into storage, either from cargo or from stock/supply.
+		if(currentBuyOption == BuyOption::STORAGE)
+		{
+			if(player.Cargo().Get(selectedOutfit))
+			{
+				player.Storage()->Add(selectedOutfit);
+				player.Cargo().Remove(selectedOutfit);
+				continue;
+			}
+			else
+			{
+				// Check if the outfit is for sale or in stock so that we can actually buy it.
+				if(!outfitter.Has(selectedOutfit) && player.Stock(selectedOutfit) <= 0)
+					continue;
+				player.Storage()->Add(selectedOutfit);
+				int64_t price = player.StockDepreciation().Value(selectedOutfit, day);
+				player.Accounts().AddCredits(-price);
+				player.AddStock(selectedOutfit, -1);
+				continue;
+			}
+		}
+
 		// Buying into cargo, either from storage or from stock/supply.
-		if(!playerShip)
+		if(!playerShip || (currentBuyOption == BuyOption::CARGO))
 		{
 			if(onlyOwned)
 			{
@@ -525,6 +549,13 @@ void OutfitterPanel::Buy(bool onlyOwned)
 					continue;
 				player.Cargo().Add(selectedOutfit);
 				player.Storage()->Remove(selectedOutfit);
+			}
+			else if((currentBuyOption == BuyOption::CARGO)
+				&& player.Storage() && player.Storage()->Get(selectedOutfit))
+			{
+				player.Cargo().Add(selectedOutfit);
+				player.Storage()->Remove(selectedOutfit);
+				continue;
 			}
 			else
 			{
@@ -1008,4 +1039,104 @@ const vector<Ship *> OutfitterPanel::GetShipsToOutfit(bool isBuy) const
 	}
 
 	return shipsToOutfit;
+}
+
+void OutfitterPanel::SetBuyOption(BuyOption option)
+{
+	switch(option)
+	{
+	case BuyOption::SHIP:
+		currentBuyOption = option;
+		break;
+	case BuyOption::CARGO:
+		currentBuyOption = option;
+		break;
+	case BuyOption::STORAGE:
+		if(player.Storage(true))
+			currentBuyOption = option;
+		break;
+	default:
+		currentBuyOption = option;
+		break;
+	}
+}
+
+
+
+void OutfitterPanel::DrawBuyOptions()
+{
+	const auto &font = FontSet::Get(14);
+	const auto &dim = *GameData::Colors().Get("dim");
+	const auto &bright = *GameData::Colors().Get("bright");
+	const auto &back = *GameData::Colors().Get("shop side panel background");
+	const Point targetPoint(
+		Screen::Right() - SIDEBAR_WIDTH + 10,
+		Screen::Bottom() - 65);
+	font.Draw("_To/_Amount:", targetPoint, *GameData::Colors().Get("medium"));
+	Rectangle comboRect(targetPoint + Point(SIDEBAR_WIDTH - 20 - 35, font.Height() / 2), Point(70, 24));
+	FillShader::Fill(comboRect.Center(), comboRect.Dimensions(), dim);
+	FillShader::Fill(comboRect.Center(), comboRect.Dimensions() - Point(2, 2), back);
+	font.Draw({ to_string(multiplier) + "x", {SIDEBAR_WIDTH - 20, Alignment::RIGHT} }, targetPoint - Point(5, 0), bright);
+
+	static const vector<string> COMBO_OPTIONS = {
+		"Ship",
+		"Cargo",
+		"Store"
+	};
+	// font.Draw("_To/_Amount:", toTargetPoint, *GameData::Colors().Get("medium"));
+	Rectangle toRect(targetPoint + Point(SIDEBAR_WIDTH - 20 - 95, font.Height() / 2), Point(70, 24));
+	FillShader::Fill(toRect.Center(), toRect.Dimensions(), dim);
+	FillShader::Fill(toRect.Center(), toRect.Dimensions() - Point(2, 2), back);
+	font.Draw({ COMBO_OPTIONS[static_cast<int>(currentBuyOption)], {SIDEBAR_WIDTH - 20 - 60, Alignment::RIGHT}}, targetPoint - Point(5, 0), bright);
+	AddZone(comboRect, [this, comboRect]() {
+		OpenOptionComboA(comboRect);
+		});
+	AddZone(toRect, [this, toRect]() {
+		OpenOptionComboT(toRect);
+		});
+}
+
+
+
+void OutfitterPanel::OpenOptionComboA(Rectangle rect)
+{
+	static const vector<pair<string, function<void()>>> COMBO_OPTIONS = {
+		pair<string, function<void()>>("1x", [this](){multiplierIndex = 0; SetMultiplier(1); }),
+		pair<string, function<void()>>("5x", [this](){multiplierIndex = 1; SetMultiplier(5); }),
+		pair<string, function<void()>>("10x", [this](){multiplierIndex = 2; SetMultiplier(10); }),
+		pair<string, function<void()>>("25x", [this](){multiplierIndex = 3; SetMultiplier(25); }),
+		pair<string, function<void()>>("100x", [this](){multiplierIndex = 4; SetMultiplier(100); }),
+		pair<string, function<void()>>("500x", [this](){multiplierIndex = 5; SetMultiplier(500); }),
+		pair<string, function<void()>>("2500x", [this](){multiplierIndex = 6; SetMultiplier(2500); }),
+		pair<string, function<void()>>("10000x", [this](){multiplierIndex = 7; SetMultiplier(10000); })
+	};
+	GetUI()->Push(
+		make_shared<ComboList>(rect, COMBO_OPTIONS, Alignment::RIGHT, true, 2, multiplierIndex)
+	);
+}
+
+
+
+void OutfitterPanel::OpenOptionComboT(Rectangle rect)
+{
+	static const vector<pair<string, function<void()>>> COMBO_OPTIONS = {
+		pair<string, function<void()>>("Ship", [this](){SetBuyOption(BuyOption::SHIP); }),
+		pair<string, function<void()>>("Cargo", [this](){SetBuyOption(BuyOption::CARGO); }),
+		pair<string, function<void()>>("Store", [this](){SetBuyOption(BuyOption::STORAGE); }),
+	};
+	GetUI()->Push(
+		make_shared<ComboList>(rect, COMBO_OPTIONS, Alignment::RIGHT, true, 2, static_cast<int>(currentBuyOption))
+	);
+}
+
+
+
+bool OutfitterPanel::IsAlreadyOwned() const
+{
+	if(currentBuyOption == BuyOption::SHIP)
+	{
+		return (playerShip && selectedOutfit && player.Cargo().Get(selectedOutfit))
+			|| (player.Storage() && player.Storage()->Get(selectedOutfit));
+	}
+	return false;
 }
