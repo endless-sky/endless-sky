@@ -100,6 +100,8 @@
 		<Unit filename="source/CollisionSet.h" />
 		<Unit filename="source/Color.cpp" />
 		<Unit filename="source/Color.h" />
+		<Unit filename="source/ComboList.cpp" />
+		<Unit filename="source/ComboList.h" />
 		<Unit filename="source/Command.cpp" />
 		<Unit filename="source/Command.h" />
 		<Unit filename="source/ConditionSet.cpp" />
