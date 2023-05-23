@@ -1112,7 +1112,7 @@ void OutfitterPanel::OpenOptionComboA(Rectangle rect)
 		pair<string, function<void()>>("10000x", [this](){multiplierIndex = 7; SetMultiplier(10000); })
 	};
 	GetUI()->Push(
-		make_shared<ComboList>(rect, COMBO_OPTIONS, Alignment::RIGHT, true, 2, multiplierIndex)
+		make_shared<ComboList>(rect, COMBO_OPTIONS, Alignment::RIGHT, false, 2, multiplierIndex)
 	);
 }
 
@@ -1126,7 +1126,7 @@ void OutfitterPanel::OpenOptionComboT(Rectangle rect)
 		pair<string, function<void()>>("Store", [this](){SetBuyOption(BuyOption::STORAGE); }),
 	};
 	GetUI()->Push(
-		make_shared<ComboList>(rect, COMBO_OPTIONS, Alignment::RIGHT, true, 2, static_cast<int>(currentBuyOption))
+		make_shared<ComboList>(rect, COMBO_OPTIONS, Alignment::RIGHT, false, 2, static_cast<int>(currentBuyOption))
 	);
 }
 

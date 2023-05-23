@@ -303,7 +303,7 @@ void ShopPanel::DrawShipsSidebar()
 
 	PointerShader::Draw(Point(Screen::Right() - 10, Screen::Top() + 10),
 		Point(0., -1.), 10.f, 10.f, 5.f, Color(sidebarScroll > 0 ? .8f : .2f, 0.f));
-	PointerShader::Draw(Point(Screen::Right() - 10, Screen::Bottom() - 80),
+	PointerShader::Draw(Point(Screen::Right() - 10, Screen::Bottom() - (BUTTON_HEIGHT + 10)),
 		Point(0., 1.), 10.f, 10.f, 5.f, Color(sidebarScroll < maxSidebarScroll ? .8f : .2f, 0.f));
 }
 
@@ -1385,7 +1385,7 @@ void ShopPanel::OpenOptionComboA(Rectangle rect)
 		pair<string, function<void()>>("10000x", [this](){multiplierIndex = 7; SetMultiplier(10000); })
 	};
 	GetUI()->Push(
-		make_shared<ComboList>(rect, COMBO_OPTIONS, Alignment::RIGHT, true, 2, multiplierIndex)
+		make_shared<ComboList>(rect, COMBO_OPTIONS, Alignment::RIGHT, false, 2, multiplierIndex)
 	);
 }
 
