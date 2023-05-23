@@ -54,6 +54,8 @@ target_sources(EndlessSkyLib PRIVATE
 	CollisionSet.h
 	Color.cpp
 	Color.h
+	ComboList.cpp
+	ComboList.h
 	Command.cpp
 	Command.h
 	ConditionSet.cpp
@@ -357,6 +359,4 @@ target_sources(EndlessSkyLib PRIVATE
 	text/alignment.hpp
 	text/layout.hpp
 	text/truncate.hpp
-	ui/ComboList.cpp
-	ui/ComboList.h
 )

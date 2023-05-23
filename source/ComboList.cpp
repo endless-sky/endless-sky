@@ -15,15 +15,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ComboList.h"
 
-#include "../Color.h"
-#include "../FillShader.h"
-#include "../GameData.h"
-#include "../Point.h"
-#include "../Rectangle.h"
-#include "../Screen.h"
-#include "../text/Font.h"
-#include "../text/FontSet.h"
-#include "../UI.h"
+#include "Color.h"
+#include "FillShader.h"
+#include "GameData.h"
+#include "Point.h"
+#include "Rectangle.h"
+#include "Screen.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "UI.h"
 
 using namespace std;
 

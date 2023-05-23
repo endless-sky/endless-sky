@@ -16,9 +16,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef COMBO_LIST_H_
 #define COMBO_LIST_H_
 
-#include "../ClickZone.h"
-#include "../Panel.h"
-#include "../text/alignment.hpp"
+#include "ClickZone.h"
+#include "Panel.h"
+#include "text/alignment.hpp"
 
 #include <functional>
 #include <string>
