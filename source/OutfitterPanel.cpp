@@ -412,7 +412,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 	}
 
 	// Check if the outfit will fit
-	if(!playerShip)
+	if(!playerShip || currentBuyOption == BuyOption::CARGO)
 	{
 		// Buying into cargo, so check cargo space vs mass.
 		double mass = selectedOutfit->Mass();
@@ -424,7 +424,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 			+ Format::CargoString(mass, "mass") + " and your fleet has "
 			+ Format::CargoString(freeCargo, "cargo space") + " free.";
 	}
-	else
+	else if(currentBuyOption != BuyOption::STORAGE)
 	{
 		// Find if any ship can install the outfit.
 		for(const Ship *ship : playerShips)
@@ -483,6 +483,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 			"because it would reduce one of your ship's attributes to a negative amount. "
 			"For example, it may use up more cargo space than you have left.";
 	}
+	return true;
 }
 
 
