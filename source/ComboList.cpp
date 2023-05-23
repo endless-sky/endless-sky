@@ -40,7 +40,7 @@ ComboList::ComboList(Rectangle box, const std::vector<std::pair<std::string, cal
 	zones.clear();
 
 	const int elementHeight = rect.Height() + 0.5;
-	for(int i = 0; i < static_Cast<int>(elements.size()); i++)
+	for(int i = 0; i < static_cast<int>(elements.size()); i++)
 	{
 		int verticalOffset = i * elementHeight;
 		Point offset = Point(0, facingUp ? verticalOffset : -verticalOffset);
