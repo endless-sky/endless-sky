@@ -39,16 +39,14 @@ public:
 	// The box is the position and size of the initial label, which copies of will be drawn above, or below if space isn't available.
 	// The list's elements are string and callback pair.
 	// Justified alignment does nothing, defaults to centered.
+	// Dim backgrounds dims the background when enabled.
 	// Padding does not have any effect when center-aligned.
 	ComboList(Rectangle box, const std::vector<std::pair<std::string, callback>> &listElements, Alignment alignment = Alignment::CENTER,
 		bool dimBackground = false, int padding = 2, int initialIndex = 0);
-	// ~ComboList();
 
 	virtual void Draw() override;
 
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
-	//virtual bool Drag(double dx, double dy) override;
-	//virtual bool Scroll(double dx, double dy) override;
 	virtual bool Hover(int x, int y) override;
 
 	inline void SetBackgroundDimming(bool dim) { dimBackground = dim; };
