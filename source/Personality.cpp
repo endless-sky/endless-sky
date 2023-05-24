@@ -20,7 +20,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataWriter.h"
 
 #include <map>
-#include <string>
 #include <vector>
 
 using namespace std;
