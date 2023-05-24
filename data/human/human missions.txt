@@ -3923,6 +3923,7 @@ mission "Mafia Extortion"
 
 mission "Street Swindle"
 	minor
+	invisible
 	source
 		government "Free Worlds" "Republic" "Syndicate"
 		attributes "urban"
