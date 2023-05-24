@@ -1090,12 +1090,11 @@ government "Quarg (Kor Efret)"
 		"Quarg" 1
 		"Quarg (Hai)" 1
 		"Quarg (Gegno)" 1
-		"Kor Efret" .1
+		"Kor Efret" 1
 		"Kor Mereti" -.01
 		"Kor Sestor" -.01
-	"custom penalties for"
+	"foreign penalties for"
 		"Kor Efret"
-			provoke 1
 	"death sentence" "quarg imprisonment"
 	"hostile hail" "hostile quarg"
 	"hostile disabled hail" "hostile quarg"
