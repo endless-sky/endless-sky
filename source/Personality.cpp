@@ -127,26 +127,29 @@ void Personality::Load(const DataNode &node)
 {
 	bool add = (node.Token(0) == "add");
 	bool remove = (node.Token(0) == "remove");
-	if(!(add || remove))
+	int keyIndex = add || remove;
+	if(!keyIndex)
 		flags.reset();
-	for(int i = 1 + (add || remove); i < node.Size(); ++i)
+	for(int i = 1 + keyIndex; i < node.Size(); ++i)
 		Parse(node, i, remove);
 
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "confusion")
 		{
-			if(add || remove)
+			if(keyIndex)
 				child.PrintTrace("Error: Cannot \"" + node.Token(0) + "\" a confusion value:");
 			else if(child.Size() < 2)
 				child.PrintTrace("Skipping \"confusion\" tag with no value specified:");
 			else
 				confusionMultiplier = child.Value(1);
 		}
-		else if(remove && child.Size() == 3 && child.Token(1) == "linger" && child.Token(2) == "time")
+		else if(remove && child.Size() == 2 && child.Token(1) == "linger time")
 			lingerTime = -1;
-		else if(child.Size() == 3 + add && child.Token(add) == "linger" && child.Token(add + 1) == "time")
-			lingerTime = child.Value(add + 2);
+		else if(!remove && child.Size() == 2 + keyIndex && child.Token(keyIndex) == "linger time")
+			lingerTime = child.Value(add + 1);
+		else if(child.Size() > keyIndex && child.Token(keyIndex) == "linger time")
+			child.PrintTrace("Invalid \"linger time\" specification.");
 		else
 			for(int i = 0; i < child.Size(); ++i)
 				Parse(child, i, remove);
@@ -166,9 +169,9 @@ void Personality::Save(DataWriter &out) const
 			if(flags.test(it.second))
 				out.Write(it.first);
 	}
-	out.EndChild();
 	if(lingerTime >= 0)
-		out.Write("linger", "time", lingerTime);
+		out.Write("linger time", lingerTime);
+	out.EndChild();
 }
 
 

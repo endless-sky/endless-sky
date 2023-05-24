@@ -153,7 +153,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				ramscoopAddend = 0.;
 				ramscoopMultiplier = 1.;
 			}
-			else if(key == "linger")
+			else if(key == "linger time")
 				lingerTime = -1;
 			else if(key == "trade")
 				trade.clear();
@@ -211,10 +211,12 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			child.PrintTrace("Error: Expected key to have a value:");
 			continue;
 		}
-		else if(remove && child.Size() == 3 && key == "linger" && value == "time")
+		else if(remove && child.Size() == 2 && key == "linger time")
 			lingerTime = -1;
-		else if(child.Size() == valueIndex + 2 && key == "linger" && value == "time")
-			lingerTime = child.Value(valueIndex + 1);
+		else if(!remove && child.Size() == valueIndex + 1 && key == "linger time")
+			lingerTime = child.Value(valueIndex);
+		else if(key == "linger time")
+			child.PrintTrace("Invalid \"linger time\" specification.");
 		// Handle the attributes which can be "removed."
 		else if(key == "attributes")
 		{

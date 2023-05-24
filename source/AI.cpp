@@ -318,11 +318,11 @@ namespace {
 			return false;
 
 		int maxLinger = personality.LingerTime();
-		if(maxLinger < 0)
-			system->LingerTime();
+		if(system && maxLinger < 0)
+			maxLinger = system->LingerTime();
 
 		// Ship cannot linger any longer in this system.
-		if(!system || ship.GetLingerSteps() >= maxLinger)
+		if(ship.GetLingerSteps() >= maxLinger)
 			return false;
 
 		ship.Linger();
