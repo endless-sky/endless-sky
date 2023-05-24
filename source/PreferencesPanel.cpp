@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/alignment.hpp"
 #include "Audio.h"
 #include "Color.h"
+#include "ComboList.h"
 #include "Dialog.h"
 #include "Files.h"
 #include "text/Font.h"
@@ -42,6 +43,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <SDL2/SDL.h>
 
 #include <algorithm>
+#include <utility>
 
 using namespace std;
 
@@ -76,6 +78,16 @@ namespace {
 
 	// How many pages of settings there are.
 	const int SETTINGS_PAGE_COUNT = 2;
+
+	PreferenceSettings::StringCallbackVec OverlayStateSettings(Preferences::OverlayType type)
+	{
+		return {
+			make_pair(string("off"), [type](){Preferences::SetOverlaysState(type, Preferences::OverlayState::OFF);}),
+			make_pair(string("always on"), [type](){Preferences::SetOverlaysState(type, Preferences::OverlayState::ON); }),
+			make_pair(string("damaged"), [type](){Preferences::SetOverlaysState(type, Preferences::OverlayState::DAMAGED); }),
+			make_pair(string("disabled"), [type](){Preferences::SetOverlaysState(type, Preferences::OverlayState::DISABLED); })
+		};
+	};
 }
 
 
@@ -209,9 +221,9 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 				SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
 			}
 			else if(zone.Value() == BOARDING_PRIORITY)
-				Preferences::ToggleBoarding();
+				CreateComboList(zone.Center(), zone.Dimensions(), PreferenceSettings::BOARDING_SETTINGS);
 			else if(zone.Value() == BACKGROUND_PARALLAX)
-				Preferences::ToggleParallax();
+				CreateComboList(zone.Center(), zone.Dimensions(), PreferenceSettings::PARALLAX_SETTINGS);
 			else if(zone.Value() == VIEW_ZOOM_FACTOR)
 			{
 				// Increase the zoom factor unless it is at the maximum. In that
@@ -220,29 +232,40 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 					while(Preferences::ZoomViewOut()) {}
 			}
 			else if(zone.Value() == SCREEN_MODE_SETTING)
-				Preferences::ToggleScreenMode();
+				CreateComboList(zone.Center(), zone.Dimensions(), PreferenceSettings::SCREEN_MODE_SETTINGS);
 			else if(zone.Value() == VSYNC_SETTING)
-			{
-				if(!Preferences::ToggleVSync())
-					GetUI()->Push(new Dialog(
-						"Unable to change VSync state. (Your system's graphics settings may be controlling it instead.)"));
-			}
+				CreateComboList(zone.Center(), zone.Dimensions(), PreferenceSettings::VSYNC_SETTINGS);
 			else if(zone.Value() == STATUS_OVERLAYS_ALL)
-				Preferences::CycleStatusOverlays(Preferences::OverlayType::ALL);
+			{
+				auto settings = OverlayStateSettings(Preferences::OverlayType::ALL);
+				CreateComboList(zone.Center(), zone.Dimensions(), settings);
+			}
 			else if(zone.Value() == STATUS_OVERLAYS_FLAGSHIP)
-				Preferences::CycleStatusOverlays(Preferences::OverlayType::FLAGSHIP);
+			{
+				auto settings = OverlayStateSettings(Preferences::OverlayType::FLAGSHIP);
+				CreateComboList(zone.Center(), zone.Dimensions(), settings);
+			}
 			else if(zone.Value() == STATUS_OVERLAYS_ESCORT)
-				Preferences::CycleStatusOverlays(Preferences::OverlayType::ESCORT);
+			{
+				auto settings = OverlayStateSettings(Preferences::OverlayType::ESCORT);
+				CreateComboList(zone.Center(), zone.Dimensions(), settings);
+			}
 			else if(zone.Value() == STATUS_OVERLAYS_ENEMY)
-				Preferences::CycleStatusOverlays(Preferences::OverlayType::ENEMY);
+			{
+				auto settings = OverlayStateSettings(Preferences::OverlayType::ENEMY);
+				CreateComboList(zone.Center(), zone.Dimensions(), settings);
+			}
 			else if(zone.Value() == STATUS_OVERLAYS_NEUTRAL)
-				Preferences::CycleStatusOverlays(Preferences::OverlayType::NEUTRAL);
+			{
+				auto settings = OverlayStateSettings(Preferences::OverlayType::NEUTRAL);
+				CreateComboList(zone.Center(), zone.Dimensions(), settings);
+			}
 			else if(zone.Value() == AUTO_AIM_SETTING)
-				Preferences::ToggleAutoAim();
+				CreateComboList(zone.Center(), zone.Dimensions(), PreferenceSettings::AUTO_AIM_SETTINGS);
 			else if(zone.Value() == AUTO_FIRE_SETTING)
-				Preferences::ToggleAutoFire();
+				CreateComboList(zone.Center(), zone.Dimensions(), PreferenceSettings::AUTO_FIRE_SETTINGS);
 			else if(zone.Value() == EXPEND_AMMO)
-				Preferences::ToggleAmmoUsage();
+				CreateComboList(zone.Center(), zone.Dimensions(), PreferenceSettings::AMMO_USAGE_SETTINGS);
 			else if(zone.Value() == TURRET_TRACKING)
 				Preferences::Set(FOCUS_PREFERENCE, !Preferences::Has(FOCUS_PREFERENCE));
 			else if(zone.Value() == REACTIVATE_HELP)
@@ -259,7 +282,7 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 				Preferences::SetScrollSpeed(speed);
 			}
 			else if(zone.Value() == ALERT_INDICATOR)
-				Preferences::ToggleAlert();
+				CreateComboList(zone.Center(), zone.Dimensions(), PreferenceSettings::ALERT_INDICATOR_SETTING);
 			// All other options are handled by just toggling the boolean state.
 			else
 				Preferences::Set(zone.Value(), !Preferences::Has(zone.Value()));
@@ -677,7 +700,7 @@ void PreferencesPanel::DrawSettings()
 			isOn = text != "off";
 		}
 		else if(setting == EXPEND_AMMO)
-			text = Preferences::AmmoUsage();
+			text = Preferences::AmmoUsageSetting();
 		else if(setting == TURRET_TRACKING)
 		{
 			isOn = true;
@@ -837,4 +860,20 @@ void PreferencesPanel::Exit()
 	Command::SaveSettings(Files::Config() + "keys.txt");
 
 	GetUI()->Pop(this);
+}
+
+
+
+void PreferencesPanel::CreateComboList(Point center, Point dimensions, const PreferenceSettings::StringCallbackVec &vec)
+{
+	GetUI()->Push(
+		make_shared<ComboList>(
+			Rectangle(center, dimensions),
+			vec,
+			Alignment::RIGHT,
+			false,
+			2,
+			static_cast<int>(Preferences::GetBackgroundParallax())
+		)
+	);
 }

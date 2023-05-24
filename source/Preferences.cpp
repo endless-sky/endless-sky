@@ -27,15 +27,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <map>
 
+#include <SDL.h>
+
 using namespace std;
+using namespace PreferenceSettings;
 
 namespace {
 	map<string, bool> settings;
 	int scrollSpeed = 60;
-
-	// Strings for ammo expenditure:
-	const string EXPEND_AMMO = "Escorts expend ammo";
-	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 
 	const vector<double> ZOOMS = {.25, .35, .50, .70, 1.00, 1.40, 2.00};
 	int zoomIndex = 4;
@@ -43,11 +42,20 @@ namespace {
 
 	// Default to fullscreen.
 	int screenModeIndex = 1;
-	const vector<string> SCREEN_MODE_SETTINGS = {"windowed", "fullscreen"};
-
 	// Enable standard VSync by default.
-	const vector<string> VSYNC_SETTINGS = {"off", "on", "adaptive"};
 	int vsyncIndex = 1;
+	// Enable "when firing" auto-aim by default.
+	int autoAimIndex = 2;
+	// Disable auto-fire by default.
+	int autoFireIndex = 0;
+	// Board closest by default.
+	int boardingIndex = 0;
+	// Enable "fast" parallax by default. "fancy" is too GPU heavy, especially for low-end hardware.
+	int parallaxIndex = 2;
+	// Enable visual-only alert by default.
+	int alertIndicatorIndex = 3;
+	// Escorts always use ammo by default.
+	int ammoUsageIndex = 2;
 
 	class OverlaySetting {
 	public:
@@ -72,26 +80,6 @@ namespace {
 			state = static_cast<Preferences::OverlayState>(value);
 		}
 
-		void Increment()
-		{
-			switch(state)
-			{
-				case Preferences::OverlayState::OFF:
-					state = Preferences::OverlayState::ON;
-					break;
-				case Preferences::OverlayState::ON:
-					state = Preferences::OverlayState::DAMAGED;
-					break;
-				case Preferences::OverlayState::DAMAGED:
-					state = Preferences::OverlayState::OFF;
-					break;
-				case Preferences::OverlayState::DISABLED:
-					state = Preferences::OverlayState::OFF;
-					break;
-			}
-		}
-
-
 	private:
 		static const vector<string> OVERLAY_SETTINGS;
 
@@ -100,7 +88,7 @@ namespace {
 		Preferences::OverlayState state = Preferences::OverlayState::OFF;
 	};
 
-	const vector<string> OverlaySetting::OVERLAY_SETTINGS = {"off", "always on", "damaged", "--"};
+	const vector<string> OverlaySetting::OVERLAY_SETTINGS = { "off", "always on", "damaged", "--" };
 
 	map<Preferences::OverlayType, OverlaySetting> statusOverlaySettings = {
 		{Preferences::OverlayType::ALL, Preferences::OverlayState::DISABLED},
@@ -110,22 +98,7 @@ namespace {
 		{Preferences::OverlayType::NEUTRAL, Preferences::OverlayState::OFF},
 	};
 
-	const vector<string> AUTO_AIM_SETTINGS = {"off", "always on", "when firing"};
-	int autoAimIndex = 2;
-
-	const vector<string> AUTO_FIRE_SETTINGS = {"off", "on", "guns only", "turrets only"};
-	int autoFireIndex = 0;
-
-	const vector<string> BOARDING_SETTINGS = {"proximity", "value", "mixed"};
-	int boardingIndex = 0;
-
-	// Enable "fast" parallax by default. "fancy" is too GPU heavy, especially for low-end hardware.
-	const vector<string> PARALLAX_SETTINGS = {"off", "fancy", "fast"};
-	int parallaxIndex = 2;
-
-	const vector<string> ALERT_INDICATOR_SETTING = {"off", "audio", "visual", "both"};
-	int alertIndicatorIndex = 3;
-
+	// Minimum number of previous saves to keep.
 	int previousSaveCount = 3;
 }
 
@@ -137,8 +110,6 @@ void Preferences::Load()
 	// values for settings that are off by default.
 	settings["Render motion blur"] = true;
 	settings["Flagship flotsam collection"] = true;
-	settings[FRUGAL_ESCORTS] = true;
-	settings[EXPEND_AMMO] = true;
 	settings["Damaged fighters retreat"] = true;
 	settings["Show escort systems on map"] = true;
 	settings["Show stored outfits on map"] = true;
@@ -265,19 +236,30 @@ void Preferences::Set(const string &name, bool on)
 
 
 
-void Preferences::ToggleAmmoUsage()
+void Preferences::SetAmmoUsage(AmmoUsage setting)
 {
-	bool expend = Has(EXPEND_AMMO);
-	bool frugal = Has(FRUGAL_ESCORTS);
-	Preferences::Set(EXPEND_AMMO, !(expend && !frugal));
-	Preferences::Set(FRUGAL_ESCORTS, !expend);
+	ammoUsageIndex = static_cast<int>(setting);
 }
 
 
 
-string Preferences::AmmoUsage()
+void Preferences::ToggleAmmoUsage()
 {
-	return Has(EXPEND_AMMO) ? Has(FRUGAL_ESCORTS) ? "frugally" : "always" : "never";
+	ammoUsageIndex = (ammoUsageIndex + 1) % AMMO_USAGE_SETTINGS.size();
+}
+
+
+
+Preferences::AmmoUsage Preferences::GetAmmoUsage()
+{
+	return static_cast<AmmoUsage>(ammoUsageIndex);
+}
+
+
+
+string Preferences::AmmoUsageSetting()
+{
+	return AMMO_USAGE_SETTINGS[ammoUsageIndex].first;
 }
 
 
@@ -341,13 +323,9 @@ double Preferences::MaxViewZoom()
 
 
 
-// Starfield parallax.
-void Preferences::ToggleParallax()
+void Preferences::SetParallax(Preferences::BackgroundParallax setting)
 {
-	int targetIndex = parallaxIndex + 1;
-	if(targetIndex == static_cast<int>(PARALLAX_SETTINGS.size()))
-		targetIndex = 0;
-	parallaxIndex = targetIndex;
+	parallaxIndex = static_cast<int>(setting);
 }
 
 
@@ -361,7 +339,18 @@ Preferences::BackgroundParallax Preferences::GetBackgroundParallax()
 
 const string &Preferences::ParallaxSetting()
 {
-	return PARALLAX_SETTINGS[parallaxIndex];
+	return PARALLAX_SETTINGS[parallaxIndex].first;
+}
+
+
+
+void Preferences::SetScreenMode(ScreenMode setting)
+{
+	if(screenModeIndex != static_cast<int>(setting))
+	{
+		GameWindow::ToggleFullscreen();
+		screenModeIndex = GameWindow::IsFullscreen();
+	}
 }
 
 
@@ -374,9 +363,43 @@ void Preferences::ToggleScreenMode()
 
 
 
+Preferences::ScreenMode Preferences::GetScreenMode()
+{
+	return static_cast<ScreenMode>(screenModeIndex);
+}
+
+
+
 const string &Preferences::ScreenModeSetting()
 {
-	return SCREEN_MODE_SETTINGS[screenModeIndex];
+	return SCREEN_MODE_SETTINGS[screenModeIndex].first;
+}
+
+
+
+bool Preferences::SetVSync(VSync setting)
+{
+	int targetIndex = static_cast<int>(setting);
+	/*if(targetIndex == static_cast<int>(VSYNC_SETTINGS.size()))
+		targetIndex = 0;*/
+	if(!GameWindow::SetVSync(setting))
+	{
+		// Not all drivers support adaptive VSync. Increment desired VSync again.
+		++targetIndex;
+		if(targetIndex == static_cast<int>(VSYNC_SETTINGS.size()))
+			targetIndex = 0;
+		if(!GameWindow::SetVSync(static_cast<VSync>(targetIndex)))
+		{
+			// Restore original saved setting.
+			Logger::LogError("Unable to change VSync state");
+			GameWindow::SetVSync(static_cast<VSync>(vsyncIndex));
+			SDL_ShowSimpleMessageBox(0, "Error", "Failed to chnage VSync state", nullptr);
+			return false;
+		}
+	}
+	vsyncIndex = targetIndex;
+	SDL_ShowSimpleMessageBox(0, "Error", "Failed to chnage VSync state", nullptr);
+	return true;
 }
 
 
@@ -416,12 +439,12 @@ Preferences::VSync Preferences::VSyncState()
 
 const string &Preferences::VSyncSetting()
 {
-	return VSYNC_SETTINGS[vsyncIndex];
+	return VSYNC_SETTINGS[vsyncIndex].first;
 }
 
 
 
-void Preferences::CycleStatusOverlays(Preferences::OverlayType type)
+void Preferences::SetOverlaysState(Preferences::OverlayType type, Preferences::OverlayState state)
 {
 	// Calling OverlaySetting::Increment when the state is DAMAGED will cycle to off.
 	// But, for the ALL overlay type, allow it to cycle to DISABLED.
@@ -432,7 +455,7 @@ void Preferences::CycleStatusOverlays(Preferences::OverlayType type)
 	else if(type != OverlayType::ALL && statusOverlaySettings[OverlayType::ALL].IsActive())
 		statusOverlaySettings[OverlayType::ALL] = OverlayState::DISABLED;
 	else
-		statusOverlaySettings[type].Increment();
+		statusOverlaySettings[type].SetState(static_cast<int>(state));
 }
 
 
@@ -460,9 +483,9 @@ const string &Preferences::StatusOverlaysSetting(Preferences::OverlayType type)
 
 
 
-void Preferences::ToggleAutoAim()
+void Preferences::SetAutoAim(AutoAim setting)
 {
-	autoAimIndex = (autoAimIndex + 1) % AUTO_AIM_SETTINGS.size();
+	autoAimIndex = static_cast<int>(setting);
 }
 
 
@@ -476,14 +499,14 @@ Preferences::AutoAim Preferences::GetAutoAim()
 
 const string &Preferences::AutoAimSetting()
 {
-	return AUTO_AIM_SETTINGS[autoAimIndex];
+	return AUTO_AIM_SETTINGS[autoAimIndex].first;
 }
 
 
 
-void Preferences::ToggleAutoFire()
+void Preferences::SetAutoFire(AutoFire setting)
 {
-	autoFireIndex = (autoFireIndex + 1) % AUTO_FIRE_SETTINGS.size();
+	autoFireIndex = static_cast<int>(setting);
 }
 
 
@@ -497,18 +520,15 @@ Preferences::AutoFire Preferences::GetAutoFire()
 
 const string &Preferences::AutoFireSetting()
 {
-	return AUTO_FIRE_SETTINGS[autoFireIndex];
+	return AUTO_FIRE_SETTINGS[autoFireIndex].first;
 }
 
 
 
 
-void Preferences::ToggleBoarding()
+void Preferences::SetBoarding(BoardingPriority setting)
 {
-	int targetIndex = boardingIndex + 1;
-	if(targetIndex == static_cast<int>(BOARDING_SETTINGS.size()))
-		targetIndex = 0;
-	boardingIndex = targetIndex;
+	boardingIndex = static_cast<int>(setting);
 }
 
 
@@ -522,15 +542,14 @@ Preferences::BoardingPriority Preferences::GetBoardingPriority()
 
 const string &Preferences::BoardingSetting()
 {
-	return BOARDING_SETTINGS[boardingIndex];
+	return BOARDING_SETTINGS[boardingIndex].first;
 }
 
 
 
-void Preferences::ToggleAlert()
+void Preferences::SetAlert(AlertIndicator setting)
 {
-	if(++alertIndicatorIndex >= static_cast<int>(ALERT_INDICATOR_SETTING.size()))
-		alertIndicatorIndex = 0;
+	alertIndicatorIndex = static_cast<int>(setting);
 }
 
 
@@ -544,7 +563,7 @@ Preferences::AlertIndicator Preferences::GetAlertIndicator()
 
 const std::string &Preferences::AlertSetting()
 {
-	return ALERT_INDICATOR_SETTING[alertIndicatorIndex];
+	return ALERT_INDICATOR_SETTING[alertIndicatorIndex].first;
 }
 
 

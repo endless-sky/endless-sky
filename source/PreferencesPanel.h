@@ -25,6 +25,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+// class Rectangle;
+
 
 
 // UI panel for editing preferences, especially the key mappings.
@@ -52,6 +54,9 @@ private:
 	void DrawPlugins();
 
 	void Exit();
+
+	void CreateComboList(Point center, Point dimensions,
+		const std::vector<std::pair<std::string, std::function<void()>>> &vec);
 
 
 private:

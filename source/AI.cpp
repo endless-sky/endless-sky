@@ -390,8 +390,8 @@ void AI::IssueMoveTarget(const PlayerInfo &player, const Point &target, const Sy
 // Commands issued via the keyboard (mostly, to the flagship).
 void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 {
-	escortsUseAmmo = Preferences::Has("Escorts expend ammo");
-	escortsAreFrugal = Preferences::Has("Escorts use ammo frugally");
+	escortsUseAmmo = Preferences::GetAmmoUsage() > Preferences::AmmoUsage::NEVER;
+	escortsAreFrugal = Preferences::GetAmmoUsage() == Preferences::AmmoUsage::FRUGAL;
 
 	autoPilot |= activeCommands;
 	if(activeCommands.Has(AutopilotCancelCommands()))
