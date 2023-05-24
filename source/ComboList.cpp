@@ -69,7 +69,6 @@ void ComboList::Draw()
 	const Color &bright = GameData::Colors().Get("bright")->Opaque();
 	const Color &dark = GameData::Colors().Get("dark")->Opaque();
 	const int elementHeight = rect.Height();
-	dimBackground = true;
 	for(const auto &it : elements)
 	{
 		auto &label = it.first;
@@ -110,7 +109,6 @@ void ComboList::Draw()
 
 		index++;
 	}
-	dimBackground = false;
 }
 
 bool ComboList::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
