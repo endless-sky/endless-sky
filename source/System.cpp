@@ -154,7 +154,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				ramscoopMultiplier = 1.;
 			}
 			else if(key == "linger")
-				lingerTime.clear();
+				lingerTime = -1;
 			else if(key == "trade")
 				trade.clear();
 			else if(key == "fleet")

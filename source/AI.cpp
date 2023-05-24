@@ -319,7 +319,7 @@ namespace {
 
 		int maxLinger = personality.LingerTime();
 		if(maxLinger < 0)
-			system->DefaultLingerTime();
+			system->LingerTime();
 
 		// Ship cannot linger any longer in this system.
 		if(!system || ship.GetLingerSteps() >= maxLinger)

@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataWriter.h"
 
 #include <map>
+#include <string>
 #include <vector>
 
 using namespace std;
@@ -142,7 +143,7 @@ void Personality::Load(const DataNode &node)
 			else
 				confusionMultiplier = child.Value(1);
 		}
-		if(remove && child.Size() == 3 && child.Token(1) == "linger" && child.Token(2) == "time")
+		else if(remove && child.Size() == 3 && child.Token(1) == "linger" && child.Token(2) == "time")
 			lingerTime = -1;
 		else if(child.Size() == 3 + add && child.Token(add) == "linger" && child.Token(add + 1) == "time")
 			lingerTime = child.Value(add + 2);
@@ -167,7 +168,7 @@ void Personality::Save(DataWriter &out) const
 	}
 	out.EndChild();
 	if(lingerTime >= 0)
-		out.Write("linger", "time", tostring(lingerTime));
+		out.Write("linger", "time", lingerTime);
 }
 
 
