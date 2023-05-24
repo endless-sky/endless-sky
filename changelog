@@ -40,6 +40,7 @@ Version 0.10.1
       * The game will no longer give status messages for low-crew ships that aren't the player's. (@petervdmeer)
       * Ships with low max speeds no longer rubberband backwards when exiting hyperspace. (@1010todd)
       * Fixed incorrect string delimiting in DataWriter. (@tibetiroka)
+      * Having an outfit in storage no longer allows you to bypass the license requirement when purchasing new copies. (@TomGoodIdea)
   * Game content:
     * New content:
       * Various new landable gas giants outside of the Ember Waste. (@Azure3141)
