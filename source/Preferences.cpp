@@ -27,8 +27,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <map>
 
-#include <SDL.h>
-
 using namespace std;
 using namespace PreferenceSettings;
 
@@ -393,12 +391,10 @@ bool Preferences::SetVSync(VSync setting)
 			// Restore original saved setting.
 			Logger::LogError("Unable to change VSync state");
 			GameWindow::SetVSync(static_cast<VSync>(vsyncIndex));
-			SDL_ShowSimpleMessageBox(0, "Error", "Failed to chnage VSync state", nullptr);
 			return false;
 		}
 	}
 	vsyncIndex = targetIndex;
-	SDL_ShowSimpleMessageBox(0, "Error", "Failed to chnage VSync state", nullptr);
 	return true;
 }
 
