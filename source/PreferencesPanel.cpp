@@ -87,7 +87,7 @@ namespace {
 			make_pair(string("damaged"), [type](){Preferences::SetOverlaysState(type, Preferences::OverlayState::DAMAGED); }),
 			make_pair(string("disabled"), [type](){Preferences::SetOverlaysState(type, Preferences::OverlayState::DISABLED); })
 		};
-	};
+	}
 }
 
 

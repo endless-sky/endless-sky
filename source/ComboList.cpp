@@ -80,13 +80,13 @@ void ComboList::Draw()
 
 		if(index == currentIndex)
 		{
-			FillShader::Fill(labelRect.Center(), labelRect.Dimensions(), dimBackground ? gray : bright);
-			FillShader::Fill(labelRect.Center(), labelRect.Dimensions() - Point(padding, padding), dimBackground ? dim : gray);
+			FillShader::Fill(labelRect.Center(), labelRect.Dimensions(), gray);
+			FillShader::Fill(labelRect.Center(), labelRect.Dimensions() - Point(padding, padding), dim);
 		}
 		else
 		{
-			FillShader::Fill(labelRect.Center(), labelRect.Dimensions(), dimBackground ? dim : gray);
-			FillShader::Fill(labelRect.Center(), labelRect.Dimensions() - Point(padding, padding), dimBackground ? dark : dim);
+			FillShader::Fill(labelRect.Center(), labelRect.Dimensions(), dim);
+			FillShader::Fill(labelRect.Center(), labelRect.Dimensions() - Point(padding, padding), dark);
 		}
 
 

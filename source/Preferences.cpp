@@ -377,24 +377,10 @@ const string &Preferences::ScreenModeSetting()
 
 bool Preferences::SetVSync(VSync setting)
 {
-	int targetIndex = static_cast<int>(setting);
-	/*if(targetIndex == static_cast<int>(VSYNC_SETTINGS.size()))
-		targetIndex = 0;*/
 	if(!GameWindow::SetVSync(setting))
-	{
-		// Not all drivers support adaptive VSync. Increment desired VSync again.
-		++targetIndex;
-		if(targetIndex == static_cast<int>(VSYNC_SETTINGS.size()))
-			targetIndex = 0;
-		if(!GameWindow::SetVSync(static_cast<VSync>(targetIndex)))
-		{
-			// Restore original saved setting.
-			Logger::LogError("Unable to change VSync state");
-			GameWindow::SetVSync(static_cast<VSync>(vsyncIndex));
-			return false;
-		}
-	}
-	vsyncIndex = targetIndex;
+		ToggleVSync();
+	else
+		vsyncIndex = static_cast<int>(setting);
 	return true;
 }
 
