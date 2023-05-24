@@ -33,7 +33,7 @@ ComboList::ComboList(Rectangle box, const std::vector<std::pair<std::string, cal
 		padding(padding), dimBackground(dimBackground)
 {
 	int comboBoxHeight = ((FontSet::Get(14).Height() + padding) * elements.size()) + padding;
-	float maxVerticalHeight = rect.Bottom();  (rect.Bottom() + Screen::RawHeight() / 2);
+	float maxVerticalHeight = rect.Bottom();
 
 	facingUp = maxVerticalHeight < comboBoxHeight;
 
