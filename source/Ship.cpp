@@ -50,6 +50,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cassert>
 #include <cmath>
+#include <cstring>
 #include <limits>
 #include <sstream>
 
@@ -1870,13 +1871,10 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		if(isDisabled)
 			landingPlanet = nullptr;
 
-<<<<<<< HEAD
 		static const double zoomTriggerStart = 0.03f;
 
-=======
 		float landingSpeed = attributes.Get("landing speed");
 		landingSpeed = landingSpeed > 0 ? landingSpeed : .02f;
->>>>>>> master
 		// Special ships do not disappear forever when they land; they
 		// just slowly refuel.
 		if(landingPlanet && zoom)
@@ -4355,7 +4353,6 @@ const vector<weak_ptr<Ship>> &Ship::GetEscorts() const
 
 
 
-<<<<<<< HEAD
 // Register ship based conditions
 void Ship::RegisterDerivedConditions()
 {
@@ -4408,7 +4405,10 @@ void Ship::RegisterDerivedConditions()
 		}
 		return 0;
 	});
-=======
+}
+
+
+
 int Ship::GetLingerSteps() const
 {
 	return lingerSteps;
@@ -4419,7 +4419,6 @@ int Ship::GetLingerSteps() const
 void Ship::Linger()
 {
 	++lingerSteps;
->>>>>>> master
 }
 
 
