@@ -1234,7 +1234,7 @@ mission "<uhai> 16: Strength Of A Leader"
 		has "event: unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
-		"reputation: Unfettered" <?= -1000
+		"reputation: Hai (Unfettered)" <?= -1000
 	on complete
 		log `Officially joined the Unfettered Militia and received a license to purchase their heavy ships, that is, when they become available in the near future.`
 		"salary: Unfettered" = 5000
@@ -1377,6 +1377,8 @@ outfit "Mystery Cube"
 
 ship "Marauder Leviathan" "Leviathan (Cube)"
 	"crew" 69
+	add attributes
+		"self destruct" -.15
 	outfits
 		"A370 Atomic Thruster"
 		"A525 Atomic Steering"
