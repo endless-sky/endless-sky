@@ -269,7 +269,6 @@ mission "Efreti: Distress Call 1"
 	description "The Quarg have asked you investigate a distress call from the Efreti ship <EDC-ship> which has crashed on <destination> with <bunks> survivors."
 	source "Karek Fornati"
 	destination "Seleptra Nak"
-	passengers 40
 	blocked "A Quarg ship broadcasts that they need a ship with at least <bunks> bunks for an emergency evacuation."
 
 	to offer
@@ -312,6 +311,7 @@ mission "Efreti: Distress Call 2"
 	source "Seleptra Nak"
 	destination "Laki Nemparu"
 	passengers 40
+	blocked `Looking towards the downed <EDC-ship>, you suddenly realize you forgot the <bunks> bunks you need for the evacuees.`
 	to offer
 		has "Efreti: Distress Call 1: done"
 	on offer
