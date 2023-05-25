@@ -2997,9 +2997,10 @@ system Ain
 	minables silicon 13 6.3683456
 	minables gold 6 6.3147175
 	haze _menu/haze-133
-	fleet "Large Core Pirates" 800
-	fleet "Small Core Pirates" 1200
-	fleet "Small Core Merchants" 600
+	fleet "Small Core Merchants" 2000
+	fleet "Large Core Merchants" 3600
+	fleet "Small Core Pirates" 1000
+	fleet "Large Core Pirates" 2200
 	habitable 441.8
 	belt 1603
 	object
@@ -7031,9 +7032,9 @@ system "Beta Carinae"
 	minables aluminum 3 9.2244443
 	minables iron 9 8.601015
 	haze _menu/haze-133
-	fleet "Large Core Pirates" 800
-	fleet "Small Core Pirates" 1200
-	fleet "Small Core Merchants" 600
+	fleet "Large Core Merchants" 3000
+	fleet "Small Core Pirates" 2000
+	fleet "Large Core Pirates" 4000
 	habitable 11850
 	belt 1197
 	object
@@ -15209,9 +15210,10 @@ system Fulu
 	minables aluminum 32 6.6162542
 	minables platinum 8 5.1710371
 	haze _menu/haze-133
-	fleet "Large Core Pirates" 800
-	fleet "Small Core Pirates" 1200
-	fleet "Small Core Merchants" 600
+	fleet "Small Core Merchants" 2000
+	fleet "Large Core Merchants" 3600
+	fleet "Small Core Pirates" 1000
+	fleet "Large Core Pirates" 2200
 	habitable 200
 	belt 1529
 	object
@@ -19593,9 +19595,8 @@ system Kang
 	minables aluminum 1 5.7519675
 	minables lead 7 6.190245
 	haze _menu/haze-133
-	fleet "Large Core Pirates" 800
-	fleet "Small Core Pirates" 1200
-	fleet "Small Core Merchants" 600
+	fleet "Small Core Pirates" 3600
+	fleet "Small Core Merchants" 3000
 	habitable 3276.8
 	belt 1478
 	object
@@ -22335,9 +22336,12 @@ system Maia
 	minables lead 20 6.6434772
 	minables tungsten 16 9.2599851
 	haze _menu/haze-133
-	fleet "Large Core Pirates" 800
-	fleet "Small Core Pirates" 1200
-	fleet "Small Core Merchants" 600
+	fleet "Small Core Merchants" 1200
+	fleet "Large Core Merchants" 2000
+	fleet "Small Syndicate" 1600
+	fleet "Large Syndicate" 3000
+	fleet "Small Core Pirates" 2000
+	fleet "Large Core Pirates" 4000
 	habitable 5600
 	belt 1675
 	object
@@ -24273,9 +24277,9 @@ system Mira
 	minables tungsten 6 2.8114948
 	minables titanium 6 2.8286993
 	haze _menu/haze-133
-	fleet "Large Core Pirates" 800
-	fleet "Small Core Pirates" 1200
-	fleet "Small Core Merchants" 600
+	fleet "Large Core Merchants" 3000
+	fleet "Small Core Pirates" 2000
+	fleet "Large Core Pirates" 4000
 	habitable 6110
 	belt 1864
 	object
@@ -25866,9 +25870,9 @@ system Oneldiam
 	minables tungsten 6 2.8114948
 	minables titanium 6 2.8286993
 	haze _menu/haze-133
-	fleet "Large Core Pirates" 800
-	fleet "Small Core Pirates" 1200
-	fleet "Small Core Merchants" 600
+	fleet "Large Core Merchants" 3000
+	fleet "Small Core Pirates" 2000
+	fleet "Large Core Pirates" 4000
 	habitable 2205
 	belt 1864
 	object
