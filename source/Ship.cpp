@@ -4408,6 +4408,10 @@ void Ship::RegisterDerivedConditions()
 }
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9f91344f114d9ebf73502af475c035742bc5976a
 int Ship::GetLingerSteps() const
 {
 	return lingerSteps;
