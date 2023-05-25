@@ -16,11 +16,13 @@ target_sources(EndlessSkyTests PRIVATE
 	unit/src/test_account.cpp
 	unit/src/test_angle.cpp
 	unit/src/test_bitset.cpp
+	unit/src/test_categoryList.cpp
 	unit/src/test_conditionSet.cpp
 	unit/src/test_conditionsStore.cpp
 	unit/src/test_datafile.cpp
 	unit/src/test_datanode.cpp
 	unit/src/test_dictionary.cpp
+	unit/src/test_distance_calculation_settings.cpp
 	unit/src/test_esuuid.cpp
 	unit/src/test_exclusiveItem.cpp
 	unit/src/test_firecommand.cpp
@@ -41,6 +43,7 @@ target_sources(EndlessSkyTests PRIVATE
 
 list(APPEND INTEGRATION_TESTS
 	integration/config/plugins/integration-tests/data/tests/tests_afterburn_flight.txt
+	integration/config/plugins/integration-tests/data/tests/tests_capture_override.txt
 	integration/config/plugins/integration-tests/data/tests/tests_common.txt
 	integration/config/plugins/integration-tests/data/tests/tests_conditional_choice.txt
 	integration/config/plugins/integration-tests/data/tests/tests_disown.txt
@@ -59,7 +62,7 @@ list(APPEND INTEGRATION_TESTS
 )
 
 target_include_directories(EndlessSkyTests PRIVATE unit/include)
-target_link_libraries(EndlessSkyTests PRIVATE EndlessSkyLib)
+target_link_libraries(EndlessSkyTests PRIVATE ExternalLibraries $<TARGET_OBJECTS:EndlessSkyLib>)
 
 # CTest support for our unit tests.
 add_test(NAME unit COMMAND EndlessSkyTests)
@@ -70,14 +73,14 @@ set_tests_properties(benchmark PROPERTIES WORKING_DIRECTORY "${CMAKE_CURRENT_SOU
 # Integration tests.
 add_custom_command(OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/IntegrationTests_tests.cmake"
 	COMMENT "Discover every integration test"
-	COMMAND "${CMAKE_COMMAND}" -DES="$<TARGET_FILE:EndlessSky>"
-		-DBINARY_PATH="${CMAKE_CURRENT_BINARY_DIR}"
-		-DRESOURCE_PATH="${CMAKE_SOURCE_DIR}"
+	COMMAND "${CMAKE_COMMAND}" -DES=$<TARGET_FILE:EndlessSky>
+		-DBINARY_PATH=${CMAKE_CURRENT_BINARY_DIR}
+		-DRESOURCE_PATH=${CMAKE_SOURCE_DIR}
 		-DES_USE_OFFSCREEN=${ES_USE_OFFSCREEN}
 		-P "${CMAKE_CURRENT_SOURCE_DIR}/integration/IntegrationTests.cmake"
 	DEPENDS EndlessSky ${INTEGRATION_TESTS}
 		"${CMAKE_CURRENT_SOURCE_DIR}/integration/IntegrationTests.cmake"
-	WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
+	WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}" VERBATIM)
 set_property(DIRECTORY APPEND PROPERTY TEST_INCLUDE_FILES "${CMAKE_CURRENT_BINARY_DIR}/IntegrationTests_tests.cmake")
 add_custom_target(IntegrationTests ALL
 	DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/IntegrationTests_tests.cmake"

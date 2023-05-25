@@ -36,6 +36,16 @@ effect "ion spark"
 	"random spin" 10
 	"random velocity" 1
 
+# Needs unique graphics.
+effect "scramble spark"
+	sprite "effect/spark"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 9
+	"random angle" 360
+	"random spin" 10
+	"random velocity" 1
+
 effect "disruption spark"
 	sprite "effect/static"
 		"no repeat"
@@ -223,18 +233,6 @@ effect "asteroid crunch large"
 
 
 
-effect "basic launch"
-	sprite "effect/smoke"
-		"no repeat"
-		"random start frame"
-		"frame rate" 8
-	"lifetime" 30
-	"random angle" 15
-	"random spin" 360
-	"random velocity" 3
-
-
-
 effect "smoke"
 	sprite "effect/smoke"
 		"no repeat"
@@ -369,3 +367,93 @@ effect "pug huge explosion"
 	"random spin" 5
 	"random velocity" 1
 	"velocity scale" .4
+
+# Fighter launch effects/sounds.
+
+effect "basic launch"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 15
+	"random spin" 360
+	"random velocity" 3
+
+effect "human external"
+	sound "human launch external"
+
+effect "human internal"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 15
+	"random spin" 360
+	"random velocity" 3
+	sound "human launch"
+
+effect "hai launch"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 15
+	"random spin" 360
+	"random velocity" 3
+	sound "hai launch"
+	
+effect "remnant external"
+	sound "remnant launch external"
+	
+effect "remnant internal"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 15
+	"random spin" 360
+	"random velocity" 3
+	sound "remnant launch"
+
+effect "korath external"
+	sound "korath launch external"
+
+effect "korath internal"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 15
+	"random spin" 360
+	"random velocity" 3
+	sound "korath launch"
+
+effect "coalition launch"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 15
+	"random spin" 360
+	"random velocity" 3
+	sound "coalition launch"
+
+effect "sheragi launch"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 15
+	"random spin" 360
+	"random velocity" 3
+	sound "sheragi launch"
+
+effect "scin launch"
+	sound "scin launch"

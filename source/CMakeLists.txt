@@ -1,47 +1,14 @@
-add_library(EndlessSkyLib STATIC EXCLUDE_FROM_ALL)
+add_library(EndlessSkyLib OBJECT)
 
 # Set the appropriate compiler flags.
 target_include_directories(EndlessSkyLib PUBLIC "${LIBMAD_INCLUDE_DIR}")
-target_compile_definitions(EndlessSkyLib PUBLIC ES_CMAKE)
 if(MSVC)
 	target_compile_options(EndlessSkyLib PUBLIC "/W3" "/permissive-" "/sdl" "/GR-" "/analyze-"
-		"-Wno-nonportable-include-path" "$<$<CONFIG:Release>:/Gy;/WX;/Oi>")
+		"-Wno-nonportable-include-path" "$<$<CONFIG:Release>:/Gy;/Oi>")
 	target_compile_definitions(EndlessSkyLib PUBLIC "_UNICODE" "UNICODE")
 else()
 	target_compile_options(EndlessSkyLib PUBLIC
-		"-Wall" "-pedantic-errors" "-Wold-style-cast" "-fno-rtti" "$<$<CONFIG:Release>:-Werror>")
-endif()
-
-# The 'mingw32' lib needs to be linked first.
-if(MINGW)
-	target_link_libraries(EndlessSkyLib PUBLIC mingw32)
-endif()
-
-# Link with the general libraries.
-target_link_libraries(EndlessSkyLib PUBLIC SDL2::SDL2 PNG::PNG JPEG::JPEG OpenAL::OpenAL
-	"$<IF:$<CONFIG:Debug>,${LIBMAD_LIB_DEBUG},${LIBMAD_LIB_RELEASE}>")
-
-# Link the needed OS-specific dependencies, if any.
-if(WIN32)
-	target_link_libraries(EndlessSkyLib PUBLIC rpcrt4 Winmm)
-else()
-	target_link_libraries(EndlessSkyLib PUBLIC pthread)
-endif()
-
-# Link with the UUID library, which is different for each OS.
-if(UNIX)
-	if(APPLE)
-		find_library(UUID_LIB NAMES System PATHS /lib /usr/lib /usr/local/lib)
-		find_path(UUID_INCLUDE uuid/uuid.h /usr/local/include /usr/include)
-		target_link_libraries(EndlessSkyLib PUBLIC "${UUID_LIB}")
-		target_include_directories(EndlessSkyLib PUBLIC "${UUID_INCLUDE}")
-	elseif(ES_USE_SYSTEM_LIBRARIES)
-		find_library(UUID_LIB uuid)
-		target_link_libraries(EndlessSkyLib PUBLIC "${UUID_LIB}")
-	else()
-		find_package(unofficial-libuuid CONFIG REQUIRED)
-		target_link_libraries(EndlessSkyLib PUBLIC unofficial::UUID::uuid)
-	endif()
+		"-Wall" "-pedantic-errors" "-Wold-style-cast" "-fno-rtti")
 endif()
 
 # Every source file (and header file) should be listed here, except main.cpp.
@@ -53,6 +20,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Account.h
 	AlertLabel.cpp
 	AlertLabel.h
+	AmmoDisplay.cpp
+	AmmoDisplay.h
 	Angle.cpp
 	Angle.h
 	Armament.cpp
@@ -77,6 +46,8 @@ target_sources(EndlessSkyLib PRIVATE
 	CaptureOdds.h
 	CargoHold.cpp
 	CargoHold.h
+	CategoryList.cpp
+	CategoryList.h
 	CategoryTypes.h
 	ClickZone.h
 	CollisionSet.cpp
@@ -112,8 +83,12 @@ target_sources(EndlessSkyLib PRIVATE
 	Dialog.h
 	Dictionary.cpp
 	Dictionary.h
+	DistanceCalculationSettings.h
+	DistanceCalculationSettings.cpp
 	DistanceMap.cpp
 	DistanceMap.h
+	Distribution.cpp
+	Distribution.h
 	DrawList.cpp
 	DrawList.h
 	Effect.cpp
@@ -135,6 +110,8 @@ target_sources(EndlessSkyLib PRIVATE
 	FireCommand.h
 	Fleet.cpp
 	Fleet.h
+	FleetCargo.cpp
+	FleetCargo.h
 	Flotsam.cpp
 	Flotsam.h
 	FogShader.cpp
@@ -153,6 +130,8 @@ target_sources(EndlessSkyLib PRIVATE
 	GameEvent.h
 	GameLoadingPanel.cpp
 	GameLoadingPanel.h
+	Gamerules.cpp
+	Gamerules.h
 	GameWindow.cpp
 	GameWindow.h
 	Government.cpp
@@ -254,6 +233,8 @@ target_sources(EndlessSkyLib PRIVATE
 	PlayerInfo.h
 	PlayerInfoPanel.cpp
 	PlayerInfoPanel.h
+	Plugins.cpp
+	Plugins.h
 	Point.cpp
 	Point.h
 	PointerShader.cpp
@@ -351,12 +332,16 @@ target_sources(EndlessSkyLib PRIVATE
 	WeightedList.h
 	Wormhole.cpp
 	Wormhole.h
-	comparators/ByGivenOrder.h
-	comparators/ByName.h
+	WormholeStrategy.h
 	opengl.cpp
 	opengl.h
 	pi.h
 	shift.h
+	comparators/ByGivenOrder.h
+	comparators/ByName.h
+	comparators/BySeriesAndIndex.h
+	ship/ShipAICache.cpp
+	ship/ShipAICache.h
 	text/DisplayText.cpp
 	text/DisplayText.h
 	text/Font.cpp

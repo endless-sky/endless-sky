@@ -38,6 +38,8 @@ namespace {
 	// Keep track of any keycodes that are mapped to multiple commands, in order
 	// to display a warning to the player.
 	map<int, int> keycodeCount;
+	// Need a uint64_t 1 to generate Commands.
+	const uint64_t ONE = 1;
 }
 
 
@@ -45,36 +47,40 @@ namespace {
 // Command enumeration, including the descriptive strings that are used for the
 // commands both in the preferences panel and in the saved key settings.
 const Command Command::NONE(0, "");
-const Command Command::MENU(1uL << 0, "Show main menu");
-const Command Command::FORWARD(1uL << 1, "Forward thrust");
-const Command Command::LEFT(1uL << 2, "Turn left");
-const Command Command::RIGHT(1uL << 3, "Turn right");
-const Command Command::BACK(1uL << 4, "Reverse");
-const Command Command::PRIMARY(1uL << 5, "Fire primary weapon");
-const Command Command::SECONDARY(1uL << 6, "Fire secondary weapon");
-const Command Command::SELECT(1uL << 7, "Select secondary weapon");
-const Command Command::LAND(1uL << 8, "Land on planet / station");
-const Command Command::BOARD(1uL << 9, "Board selected ship");
-const Command Command::HAIL(1uL << 10, "Talk to selected ship");
-const Command Command::SCAN(1uL << 11, "Scan selected ship");
-const Command Command::JUMP(1uL << 12, "Initiate hyperspace jump");
-const Command Command::FLEET_JUMP(1uL << 13, "");
-const Command Command::TARGET(1uL << 14, "Select next ship");
-const Command Command::NEAREST(1uL << 15, "Select nearest hostile ship");
-const Command Command::DEPLOY(1uL << 16, "Deploy / recall fighters");
-const Command Command::AFTERBURNER(1uL << 17, "Fire afterburner");
-const Command Command::CLOAK(1uL << 18, "Toggle cloaking device");
-const Command Command::MAP(1uL << 19, "View star map");
-const Command Command::INFO(1uL << 20, "View player info");
-const Command Command::FULLSCREEN(1uL << 21, "Toggle fullscreen");
-const Command Command::FASTFORWARD(1uL << 22, "Toggle fast-forward");
-const Command Command::FIGHT(1uL << 23, "Fleet: Fight my target");
-const Command Command::GATHER(1uL << 24, "Fleet: Gather around me");
-const Command Command::HOLD(1uL << 25, "Fleet: Hold position");
-const Command Command::AMMO(1uL << 26, "Fleet: Toggle ammo usage");
-const Command Command::WAIT(1uL << 27, "");
-const Command Command::STOP(1ul << 28, "");
-const Command Command::SHIFT(1uL << 29, "");
+const Command Command::MENU(ONE << 0, "Show main menu");
+const Command Command::FORWARD(ONE << 1, "Forward thrust");
+const Command Command::LEFT(ONE << 2, "Turn left");
+const Command Command::RIGHT(ONE << 3, "Turn right");
+const Command Command::BACK(ONE << 4, "Reverse");
+const Command Command::MOUSE_TURNING_HOLD(ONE << 5, "Mouse turning (hold)");
+const Command Command::PRIMARY(ONE << 6, "Fire primary weapon");
+const Command Command::SECONDARY(ONE << 7, "Fire secondary weapon");
+const Command Command::SELECT(ONE << 8, "Select secondary weapon");
+const Command Command::LAND(ONE << 9, "Land on planet / station");
+const Command Command::BOARD(ONE << 10, "Board selected ship");
+const Command Command::HAIL(ONE << 11, "Talk to selected ship");
+const Command Command::SCAN(ONE << 12, "Scan selected ship");
+const Command Command::JUMP(ONE << 13, "Initiate hyperspace jump");
+const Command Command::FLEET_JUMP(ONE << 14, "");
+const Command Command::TARGET(ONE << 15, "Select next ship");
+const Command Command::NEAREST(ONE << 16, "Select nearest hostile ship");
+const Command Command::NEAREST_ASTEROID(ONE << 17, "Select nearest asteroid");
+const Command Command::DEPLOY(ONE << 18, "Deploy / recall fighters");
+const Command Command::AFTERBURNER(ONE << 19, "Fire afterburner");
+const Command Command::CLOAK(ONE << 20, "Toggle cloaking device");
+const Command Command::MAP(ONE << 21, "View star map");
+const Command Command::INFO(ONE << 22, "View player info");
+const Command Command::FULLSCREEN(ONE << 23, "Toggle fullscreen");
+const Command Command::FASTFORWARD(ONE << 24, "Toggle fast-forward");
+const Command Command::FIGHT(ONE << 25, "Fleet: Fight my target");
+const Command Command::GATHER(ONE << 26, "Fleet: Gather around me");
+const Command Command::HOLD(ONE << 27, "Fleet: Hold position");
+const Command Command::HARVEST(ONE << 28, "Fleet: Harvest Flotsam");
+const Command Command::AMMO(ONE << 29, "Fleet: Toggle ammo usage");
+const Command Command::AUTOSTEER(ONE << 30, "Auto steer");
+const Command Command::WAIT(ONE << 31, "");
+const Command Command::STOP(ONE << 32, "");
+const Command Command::SHIFT(ONE << 33, "");
 
 
 
@@ -207,9 +213,24 @@ const string &Command::Description() const
 // a combination of more than one command, an empty string is returned.
 const string &Command::KeyName() const
 {
-	static const string empty;
+	static const string empty = "(none)";
 	auto it = keyName.find(*this);
-	return (it == keyName.end() ? empty : it->second);
+
+	return (!HasBinding() ? empty : it->second);
+}
+
+
+
+// Check if the key has no binding.
+bool Command::HasBinding() const
+{
+	auto it = keyName.find(*this);
+
+	if(it == keyName.end())
+		return false;
+	if(it->second.empty())
+		return false;
+	return true;
 }
 
 
@@ -247,6 +268,7 @@ void Command::Load(const DataNode &node)
 			{"hail", Command::HAIL},
 			{"scan", Command::SCAN},
 			{"jump", Command::JUMP},
+			{"mouseturninghold", Command::MOUSE_TURNING_HOLD},
 			{"fleet jump", Command::FLEET_JUMP},
 			{"target", Command::TARGET},
 			{"nearest", Command::NEAREST},
@@ -261,6 +283,7 @@ void Command::Load(const DataNode &node)
 			{"gather", Command::GATHER},
 			{"hold", Command::HOLD},
 			{"ammo", Command::AMMO},
+			{"nearest asteroid", Command::NEAREST_ASTEROID},
 			{"wait", Command::WAIT},
 			{"stop", Command::STOP},
 			{"shift", Command::SHIFT}
@@ -387,7 +410,7 @@ Command &Command::operator|=(const Command &command)
 
 
 // Private constructor.
-Command::Command(uint32_t state)
+Command::Command(uint64_t state)
 	: state(state)
 {
 }
@@ -396,7 +419,7 @@ Command::Command(uint32_t state)
 
 // Private constructor that also stores the given description in the lookup
 // table. (This is used for the enumeration at the top of this file.)
-Command::Command(uint32_t state, const string &text)
+Command::Command(uint64_t state, const string &text)
 	: state(state)
 {
 	if(!text.empty())

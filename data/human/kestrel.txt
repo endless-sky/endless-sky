@@ -17,7 +17,11 @@ mission "Kestrel Testing"
 	source "Wayfarer"
 	waypoint "Umbral"
 	to offer
-		"combat rating" > 8000
+		or
+			"combat rating" > 8000
+			and
+				"combat rating" > 2000
+				has "global: unlocked kestrel"
 	
 	on offer
 		conversation
@@ -60,6 +64,7 @@ mission "Kestrel Testing"
 	
 	on complete
 		payment 2000000
+		"global: unlocked kestrel" ++
 		conversation
 			`Atinoda meets up with you soon after you land. "I see that you survived," he says. "Was it a difficult fight?"`
 			choice
@@ -340,7 +345,9 @@ ship "Kestrel"
 	turret -20.5 9 "Heavy Laser Turret"
 	turret 20.5 9 "Heavy Laser Turret"
 	bay "Fighter" -46 106 under
+		"launch effect" "human internal"
 	bay "Fighter" 46 106 under
+		"launch effect" "human internal"
 	explode "small explosion" 25
 	explode "medium explosion" 35
 	explode "large explosion" 45
