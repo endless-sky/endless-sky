@@ -620,7 +620,7 @@ ship "Bactrian" "Bactrian (Cerberus)"
 		outfits
 			"Building Materials" 142
 		commodities
-			"Equipement" 100
+			"Equipment" 100
 			"Electronics" 100
 			"Food" 188
 
