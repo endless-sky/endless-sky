@@ -338,8 +338,8 @@ mission "Midas: Who is the mad one?"
 		"outfit (all): Gold Bars" < "midas: bars"
 	on offer
 		conversation
-			`	You had just finished making the transactions for gold bars you sold when you hear someone shouting. "STOP!" You immediately notice the voice is very old. He comes to you in a rush, seemingly alarmed. "These are cursed! You should get rid of them. As soon as you can!" He shouts to you and the one you just sold these to.`
-			`	He then takes a closer look at the gold bars, and at you. "How did you even acquire these?" he asks, but he does not give you time to respond. "Di-did you join them? If you did, I am very sorry for any disturbance I may have caused, sir!" he exclaims in fear, moving back and kneeling, as if wanting to apologize.`
+			`	You had just finished making the transactions for gold bars you sold when you hear someone shouting. "STOP!" You immediately notice the voice is very old. He comes to you in a rush, seemingly alarmed. "These are cursed! You should get rid of them. As soon as you can!" He shouts to you and the one you just sold these to, who does not seem particularly surprised by this encounter.`
+			`	He then takes a closer look at the gold bars, even going as far as grabbing the last one you were giving to the buyer to take a closer look. He then stares at you. "How did you even acquire these?" he asks, but he does not give you time to respond. "Di-did you join them? If you did, I am very sorry for any disturbance I may have caused, sir!" he exclaims in fear, moving back and kneeling, as if wanting to apologize, and he presents the bar back as if it was some kind of offering. The buyer energetically takes the bar from his hands, not interested to hear any more, and gets away before you can react. You then turn back to this mysterious stranger.`
 			choice
 				`	"Who are 'they'?"`
 					goto who
@@ -372,7 +372,6 @@ mission "Midas: Who is the mad one?"
 		fleet "Marauders" 3
 	to fail
 		or
-			has "midas: proven worthy"
 			not "outfit: Gold Bars"
 			has "Midas: Betrayal For The Bars: offered"
 	to complete

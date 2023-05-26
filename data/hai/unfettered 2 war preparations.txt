@@ -1343,13 +1343,12 @@ mission "<uhai> 16: Strength Of A Leader: Trust Broken"
 	landing
 	to offer
 		has "<uhai> 16: Strength Of A Leader: active"
-		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 18
+		# you can cheat against if Si-Ra cheats against you.
+		not "unfettered: mad Si-Ra"
 	to fail
 		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 > 18
 		has "flagship system: Wah Yoot"
-		# you can cheat against Si-Ra if he cheats against you.
 		or
-			not "unfettered: mad Si-Ra"
 			has "unfettered: defeated Si-Ra"
 	on fail
 		dialog `You receive a message, "You must not disrespect the rules of the duel!"`
