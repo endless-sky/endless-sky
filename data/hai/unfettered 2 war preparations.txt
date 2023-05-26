@@ -378,10 +378,9 @@ mission "<uhai> 12: Outfitter Upgrade"
 		event "unfettered: darkcloak outfitter upgrade" 30
 		conversation
 			`After unloading all the cargo, you go check for He-Yi in the shipyard, but instead you find a herald, ready to rely a message to you, "Ah, <first>. You have completed your part of the bargain, now you may have your reward.`
-			`	"Go to Firelode, Mera has a very peculiar gift for you, should you prove yourself to be worthy of it.`
+			`	"This will help Mera prepare your reward, should you prove yourself to be worthy of it.`
 				to display
 					not "<uhai> 15: Modified Beetle: done"
-					has "Unfettered Jump Drive Trading: offered"
 			`	"There could be more opportunities on Darkcloak for you, we do not only buy Jump Drives against money.`
 				to display
 					not "Unfettered Jump Drive Trading: offered"
@@ -515,7 +514,7 @@ mission "<uhai> 13: Korath Specialty"
 		log `Brought human nitrogen cooling systems to the Unfettered. They should be able to retrofit them into something more useful.`
 		payment 2500000
 		dialog `Seeing you brought the coolers, Mera thanks you and hands you <payment>. "These systems should be useful. We'll upgrade the coolers you brought us into something less... primitive. The only thing we can use here is the base materials."`
-		event "unfettered: new cooling system" 40
+		event "unfettered: new cooling system" 25
 
 event "unfettered: new cooling system"
 	outfitter "Mera's Lab"

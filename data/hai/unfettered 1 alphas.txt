@@ -619,9 +619,8 @@ ship "Bactrian" "Bactrian (Cerberus)"
 	cargo
 		outfits
 			"Building Materials" 142
-		# NOTE: this does not work currently, and just displays them as "Military" instead of replacing it. Putting them in the fleet cargo can result in the ship having less than the defined amount of Building Materials in it's cargo.
 		commodities
-			"Military" 100
+			"Equipement" 100
 			"Electronics" 100
 			"Food" 188
 
