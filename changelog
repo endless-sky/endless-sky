@@ -1,6 +1,6 @@
 Version 0.10.1
   * Big changes:
-    * Created an extensive storyline that takes place after the main campaign is compeleted, focusing on the open secret of the existance of the Hai. (@MasterOfGrey, @NomadicVolcano, @UnorderedSigh)
+    * Created an extensive storyline that takes place after the main campaign is completed, focusing on the open secret of the existence of the Hai. (@MasterOfGrey, @NomadicVolcano, @UnorderedSigh)
       * Development help and fixes from many community members. (@Amazinite, @bene-dictator, @EjoThims, @warp-core)
   * Bug fixes:
     * Content bugs:
@@ -15,10 +15,10 @@ Version 0.10.1
       * Adjusted the source filter and offer conditions on the "Local Politics" mission to offer in more appropriate locations and at more appropriate times. (@Zitchas)
       * Removed the required reputation for landing on Zenith after completing the alternative route in the Sestor Invasion arc. (@warp-core)
       * Corrected various jobs that were intended to require that the player had a certain outfit installed, but also accepted that outfit being in your cargo hold. (@warp-core)
-      * The "Immigrant Workers" mission can now longer have a pirate planet destination. (@Anarchist2)
+      * The "Immigrant Workers" mission can no longer have a pirate planet destination. (@Anarchist2)
       * The "Southern Blockade" description can no longer overflow the description text box. (@Anarchist2)
       * "Unwanted Cargo" now only triggers from inhabited worlds. (@mOctave)
-      * Various Quarg missions no longer offer on the Gegno Quarg locations, since the Quarg there can't communicate in the same way as other location. (@Saugia)
+      * Various Quarg missions no longer offer on the Gegno Quarg locations, since the Quarg there can't communicate in the same way as other locations. (@Saugia)
       * Added a missing "blocked" dialog to "Saryd Students 2". (@Arachi-Lover)
       * Fixed missions which looked at the category of the player's ships to account for newer ship categories. (@warp-core)
       * Fixed an infinite money glitch. (@Hurleveur)
@@ -54,7 +54,7 @@ Version 0.10.1
       * Added a spaceport mission about an Argosy hijacking in Syndicate space. (@bene-dictator)
       * New civilian ship hails. (@mOctave)
       * Added a new mission interacting with the vyu-Ir. (@Saugia)
-      * Untranslated hails for Korath Exiles and Efreti. (@UnorderedSigh)
+      * Untranslated hails for Korath Exiles and Efreti. (@ravenshining, @UnorderedSigh)
       * There is now an alternative Gegno intro mission for if the player is hostile with the Quarg. (@Saugia)
       * Added continuation missions to the "Quicksilver Mixup" story. (@LorenzoBolla)
       * Various new Gegno ships and outfits, including new mining equipment and ships for the Gegno Vi. (@Saugia)
@@ -69,7 +69,7 @@ Version 0.10.1
       * Improved how certain Remnant missions are blocked if the player doesn't have a Research Laboratory outfit using newer mechanics. (@warp-core)
       * Add more detail to the dialogs in Han Sizer jobs. (@Zitchas)
       * Every choice at the end of the Sheragi Archaeology missions can now be chosen, instead of only allowing one. (@warp-core)
-      * Changed the Pookie mission to have a 100% offer rate, giving players a guaranteed next mission after finishing the James tutorial, should they visit the spaceport. (@warp-cores)
+      * Changed the Pookie mission to have a 100% offer rate, giving players a guaranteed next mission after finishing the James tutorial, should they visit the spaceport. (@warp-core)
       * The banker from the intro conversation now provides the exact amount of interest that will be paid for the loan instead of rounding to the nearest 1,000 credits. (@ziproot)
       * The game now remembers which Deep Security ships you destroyed in "Deep Archaeology 3", and doesn't spawn them in "Deep Archaeology 5" if they died. (@ziproot)
       * The combat rating requirement for unlocking the Kestrel is now greatly reduced if you had unlocked the Kestrel on a previous save file. (@mOctave)
@@ -131,9 +131,9 @@ Version 0.10.1
   * Game mechanics:
     * New mechanics:
       * Added a "<planet stopovers>" substitution that more concisely lists all stopover locations. (@Terin)
-      * The "inscrutable" attribute which makes the player unable to scan NPC ships now causes the player's ships to be unscannable by NPCs. (@ToomGoodIdea)
+      * The "inscrutable" attribute which makes the player unable to scan NPC ships now causes the player's ships to be unscannable by NPCs. (@TomGoodIdea)
       * Phrases can now be inserted into various mission texts using the same "${phrase name}" syntax that phrases use. (@UnorderedSigh)
-      * Created two new attributes, "high shield permeability" and "low shield permeability", which allow for shield which are not 100% effective at blocking damage to the hull. (@Quantumshark)
+      * Created two new attributes, "high shield permeability" and "low shield permeability", which allow for shields which are not 100% effective at blocking damage to the hull. (@Quantumshark)
       * Weapons can now define how their inaccuracy is distributed, allowing the default triangular distribution to be changed to a uniform or normal distribution. (@DeBlister)
       * Having asteroid scanners equipped can now automatically catalog the locations of minables should you be in close proximity to the minable for a short duration, in addition to the old behavior of targeting an asteroid causing it to be cataloged. (@samrocketman)
       * Governments can now be given minimum and maximum reputation limits outside of which your reputation with them cannot go. (@Terin)
@@ -153,6 +153,8 @@ Version 0.10.1
       * The maximum amount of time that mining NPCs spend mining in a system can now be controlled by a gamerule. (@1010todd)
       * The health threshold where frugal personality ships become active can now be controlled by a gamerule. (@1010todd)
       * Added a mission token to have the chosen destination ignore whether or not you have landing clearance. (@UnorderedSigh)
+      * Created a new "lingering" personality which causes ships to linger in a system and fly around, even if they have nothing else to do. (@UnorderedSigh)
+      * Conversation text can now contain formatted conditions that get converted to numeric text. (@UnorderedSigh)
     * Mechanic changes:
       * NPCs without the escort personality no longer follow the player's flagship if it is cloaked. (@UnorderedSigh)
       * Having "active cooling" without "cooling energy" now causes "active cooling" to scale with heat level, instead of always operating at 100% as it normally does when "cooling energy" is present. (@Ferociousfeind)
@@ -178,8 +180,8 @@ Version 0.10.1
     * Controls can now be unbound by pressing X or delete when hovering over the control. (@Koranir)
   * Under the hood:
     * Changed the Personality class from using a single integer to track personality flags to a bitset, allowing for more than just 32 NPC personality flags to exist. (@tibetiroka)
-    * The Personality class will fail compilation if the personality count enum doesn't match the number of possible personalities. (@UnorderedSigh)
-    * Corrected the declaration order of pirvate members of the Conversation class. (@warp-core)
+    * The Personality class will fail compilation if the personality count constant doesn't match the number of possible personalities. (@UnorderedSigh)
+    * Corrected the declaration order of private members of the Conversation class. (@warp-core)
     * Added a missing #include to the Preferences class. (@quyykk)
     * The planet, spaceport, bank, and trade panels are now defined by the interface file instead of entirely hardcoded, allowing for plugins to edit them. (@theweirdnut)
     * Simplified various conversations using new "to display" nodes. (@warp-core)
@@ -190,7 +192,7 @@ Version 0.10.1
     * Commands are now stored in a 64-bit integer, up from a 32-bit integer, to double the number of commands that can be used. (@UnorderedSigh)
     * Moved the storage of save file information from your conditions to dedicated storage locations, such as licenses and the planets you have dominated. This information can still be accessed via derived conditions, using the same condition names that would have been used before (e.g. "license: <license name>"). (@petervdmeer)
     * Added a missing copyright header to the tooltips file. (@mOctave)
-    * Created a cypher for generating Korath hails. (@UnorderedSigh)
+    * Created a cypher for generating Korath hails. (@ravenshining)
     * Reorganized some files that were in the data folder into subfolders. (@Zitchas)
       * Created _deprecated and _ui folders.
     * Added delimiters to string when printing data. (@warp-core)
@@ -493,7 +495,6 @@ Version 0.10.0
       * Added new NPC ship personalities:
         * "merciful": causes ships to avoid attacking hostile ships that are fleeing. (@Hurleveur, @quyykk)
         * "daring" and "hunting": separate behaviors of "heroic" so they can be applied with more granularity. "daring" ships will disregard the strength of their opponent, while "hunting" ships will disregard how far away their target is when pursuing them. (@UnorderedSigh)
-        * "lingering": causes ships to linger in a system and fly around, even if they have nothing else to do. (@UnorderedSigh)
       * Added "drag reduction" and "inertia reduction" attributes. (@Azure3141)
       * Systems can now define a "departure distance", a minimum distance a ship must be from the center to jump to another system. (@RisingLeaf, @petervdmeer, @quyykk)
       * When taking off from a planet with an outfitter while having more outfits in cargo than there is space for, store them instead of selling them. (@warp-core)
@@ -516,7 +517,6 @@ Version 0.10.0
       * Added an <npc model> text replacement for text in missions and NPCs. (@kaol)
       * Added support for a user to increase the number of previous saves created automatically by editing the preferences file. (@warp-core)
       * Added support for "gamerules," which allow for the tweaking of gameplay constants without the need to recompile the game. Currently available gamerules include activating or deactivating the universal ramscoop everywhere and adjusting the person ship spawn period and no-spawn chance. (@Amazinite)
-      * Conversation text can now contain formatted conditions that get converted to numeric text. (@UnorderedSigh)
     * Mechanic changes:
       * Improved the AI's awareness of their own weapon ranges. (@StuffPhotonDev, @Hurleveur)
       * Frugal ships now consider their health percentage instead of the sum of their shield and hull percentages. (@Hurleveur)
