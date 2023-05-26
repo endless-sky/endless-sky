@@ -28,6 +28,24 @@ mission "Hai Reveal: Media Retraction"
 
 
 
+event "pirates respond to leaks"
+	# Add pirate spawns to Waypoint and Heia Due
+	system "Waypoint"
+		government "Pirate"
+		add fleet "Large Northern Pirates" 3000
+		add fleet "Small Northern Pirates" 1000
+		add fleet "Large Core Pirates" 3000
+		add fleet "Small Core Pirates" 1000
+		remove fleet "Small Hai"
+		remove fleet "Large Hai"
+	system "Heia Due"
+		add fleet "Marauder fleet IX" 3000
+		add fleet "Large Northern Pirates" 3000
+		add fleet "Large Core Pirates" 3000
+		add fleet "Anti-Pirate Hai (Wormhole Travel)" 1000
+
+
+
 # This gets picked up silently on Hai-home when landing for response 2 - leads to go kill pirates mission with chat on Allhome.
 # No longer gets picked up silently due to write-read order style preferences - but may need to be moved back to Response 2 or have multiple versions of this mission when other campaigns exist.
 mission "Hai Leaks Response 3"

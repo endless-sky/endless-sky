@@ -235,7 +235,7 @@ mission "War Reactions: Syndicate Orphan"
 					goto chess
 				`	"It was an honor to protect the human race from our attackers."`
 					goto honor
-			`	"Woah, you sound really smart. Like one of those sensible experts in the vids! Still, without people like you, the Pugs' plan couldn't have worked. I still reckon you were the best, Captain."`
+			`	"Woah, you sound really smart. Like one of those sensible experts in the vids! Still, without people like you, the Pug's plan couldn't have worked. I still reckon you were the best, Captain."`
 				goto salute
 			label hell
 			`	"You went through hell for us, eh? That sounds less fun than I thought... Maybe I should stick to school and be an engineer instead of a pilot. I dunno."`
