@@ -398,7 +398,7 @@ mission "Unfettered: Improved Production"
 		has "event: unfettered: darkcloak outfitter upgrade"
 	on offer
 		conversation
-			`You receive a written message from He-Yi. "Thanks to you, the shipyard on Darkcloak is finally capable of producing Shield Beetles in great quantities. However, in order to buy them, you will require a license. You need one to even access the area where the Shield Beetles are produced. Continue helping me and you will have it in no time! In the meantime, you can enjoy the additional outfits we are now able to produce there."`
+			`You receive a written message from He-Yi. "Thanks to you, the shipyard on Darkcloak is capable of producing Shield Beetles in greater quantities. Continue helping us and you may have access to much bigger, brand new ships, once the time is right. In the meantime, you can enjoy the additional outfits we are now able to produce there."`
 
 
 

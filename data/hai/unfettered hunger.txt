@@ -95,7 +95,7 @@ event "unfettered: need for food"
 	
 	# increase the price of food by 100
 	system "Wah Yoot"
-		add fleet "Emergency Symathizer Food" 1200
+		add fleet "Emergency Sympathizer Food" 1200
 		trade Food 698
 	system "Ehma Ti"
 		add fleet "Emergency Sympathizer Food" 2500
@@ -142,7 +142,7 @@ event "unfettered: need for food stops"
 		remove fleet "Emergency Sympathizer Food"
 	
 	system "Wah Yoot"
-		remove fleet "Emergency Symathizer Food"
+		remove fleet "Emergency Sympathizer Food"
 		trade Food 598
 	system "Ehma Ti"
 		remove fleet "Emergency Sympathizer Food"
