@@ -53,6 +53,12 @@ public:
 	// Format the given value as a number with exactly the given number of
 	// decimal places (even if they are all 0).
 	static std::string Decimal(double value, int places);
+	// Convert numbers to word forms. Capitalize the first letter if at the start of a sentence.
+	static std::string WordForm(int64_t value, bool startOfSentence = false);
+	// Conditionally convert numbers to word forms, based on the Chicago Manual of Style.
+	static std::string ChicagoForm(int64_t value, bool startOfSentence = false);
+	// Conditionally convert numbers to word forms, based on the MLA Style guide.
+	static std::string MLAForm(int64_t value, bool startOfSentence = false);
 	// Convert a string into a number. As with the output of Number(), the
 	// string can have suffixes like "M", "B", etc.
 	static double Parse(const std::string &str);
