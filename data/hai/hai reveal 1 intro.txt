@@ -36,7 +36,6 @@ mission "Hai Reveal: Reputation Reset"
 		"reputation: Republic that won't enter wormhole" = "reputation: Republic"
 		"reputation: Free Worlds that won't enter wormhole" = "reputation: Free Worlds"
 		# Make sure the new governments start with appropriate rep:
-		"reputation: Hai (Friendly Unfettered)" = 1000
 		"reputation: Elenctic Commune" = 1000
 		"reputation: Pirate (Devil-Run Gang)" = -1000
 		fail
