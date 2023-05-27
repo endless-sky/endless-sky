@@ -256,7 +256,7 @@ mission "Hai Reveal: Navy News Report"
 conversation "hr: meet alondo"
 	branch settled1
 		has "event: hr: friend settled in"
-	`While wandering the spaceport, you spot a familiar face that you didn't expect to find here: Alondo is being escorted around the spaceport by a small group of Hai. One of the Hai seems to be explaining something to him, while two others, dressed in what look like loose-fitting tuxedos and sunglasses, stand nearby while surveying the crowd.`
+	`While wandering the spaceport, you spot a familiar face that you didn't expect to find here: Alondo is being escorted around the spaceport by a small group of Hai. One of the Hai seems to be explaining something to him, while two others, dressed in what look like loose-fitting tuxedos and sunglasses, stand nearby surveying the crowd.`
 	choice
 		`	(Walk up to him to see why he's here.)`
 			goto walk
@@ -268,7 +268,7 @@ conversation "hr: meet alondo"
 	action
 		set "hr: met alondo"
 	`	"Alondo!" you say as you approach.`
-	`	"Captain <last>!" Alondo responds, waving you over. But before you can get too close, one of the dressed Hai stands in your way.`
+	`	"Captain <last>!" Alondo responds, waving you over. Before you can get too close, one of the dressed Hai stands in your way.`
 		goto business
 	
 	label settled1
@@ -282,7 +282,7 @@ conversation "hr: meet alondo"
 	`	The Hai still seem energetic and chatty about the news of the Hai's existence being somewhat exposed to humanity.`
 	
 	label alondo
-	`	Luckily, it appears that nothing bad has come of it, at least not yet. Even if a lot of humans who saw the news believed it, it's likely that the Hai's location is still remote enough to prevent most captains from stumbling upon it, although it's likely only a matter of time before the lid gets entirely blown off of the situation.`
+	`	Luckily, it appears that nothing bad has come of it, at least not yet. Even if a lot of humans who saw the news believed it, it's likely that the Hai's location is still remote enough to prevent most captains from stumbling upon it. It's also likely to be only a matter of time before the lid gets entirely blown off of the situation.`
 	`	As you finish refueling your ship, you hear a familiar voice call to you. "Captain <last>! Funny seeing you here." You turn around to find Alondo approaching you, flanked by two Hai dressed in what look like loose-fitting tuxedos and sunglasses. Before Alondo can reach you, one of the Hai swiftly steps forward and stands directly in front of you.`
 	
 	label business
@@ -303,7 +303,7 @@ conversation "hr: meet alondo"
 	
 	branch settled2
 		has "event: hr: friend settled in"
-	`	"Anyway, the Hai have been giving me a tour of their systems since I got here within the past month. I'll be meeting with others from the Republic and Syndicate on <planet> for a briefing after I'm done my tour here. You should probably come with us, because Lord knows we'll need all the help we can get to prevent this situation from turning hot. We wouldn't want a misunderstanding between humanity and the Hai to turn into a conflict."`
+	`	"Anyway, the Hai have been giving me a tour of their systems since I got here within the past month. I'll be meeting with others from the Republic and Syndicate on <planet> for a briefing after I've done my tour here. You should probably come with us, because Lord knows we'll need all the help we can get to prevent this situation from turning hot. We wouldn't want a misunderstanding between humanity and the Hai to turn into a conflict."`
 		goto help
 	
 	label settled2
@@ -314,14 +314,14 @@ conversation "hr: meet alondo"
 		`	"I'd be glad to come."`
 		`	"Sorry, but I have other things to get to at the moment."`
 			goto busy
-	`	"That's good to hear," Alondo says. "In a situation like this, the Hai need humans they can trust. They seem to trust me enough so far, so hopefully they'll also trust you by proxy, or at the very least you can gain their trust in short order.`
+	`	"That's good to hear," Alondo says. "In a situation like this, the Hai need humans they can trust. They seem to trust me enough so far, so hopefully they'll also trust you by proxy, or, at the very least, you can gain their trust in short order.`
 	`	"Meet my ship, the <npc>, in orbit after I'm finished with my business here." You assure Alondo that you'll be there, and the Hai escort him away.`
 		accept
 	
 	label busy
 	action
 		event "hr: join later" 20
-	`	"I'll probably reach out to you for help later, then. In a situation like this, the Hai need humans they can trust. They seem to trust me enough so far, so hopefully they'll also trust you by proxy, or at the very least you can gain their trust in short order.`
+	`	"I'll probably reach out to you for help later, then. In a situation like this, the Hai need humans they can trust. They seem to trust me enough so far, so hopefully they'll also trust you by proxy, or, at the very least, you can gain their trust in short order.`
 	`	"Well, good luck with whatever it is that you're busy with," he says. You say your goodbyes to Alondo, and the Hai escort him away.`
 		decline
 
@@ -343,7 +343,7 @@ mission "Hai Reveal: Early Arrival: Alondo"
 		has "event: joined the free worlds"
 	on offer
 		conversation "hr: meet alondo"
-	npc save
+	npc accompany save
 		government "Hai"
 		personality escort timid
 		ship "Centipede" "Emissary"
@@ -373,7 +373,7 @@ mission "Hai Reveal: Late Arrival: Alondo"
 		set "First Contact: Hai: offered"
 	on accept
 		set "First Contact: Hai: offered"
-	npc save
+	npc accompany save
 		government "Hai"
 		personality escort timid
 		ship "Centipede" "Emissary"
