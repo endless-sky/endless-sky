@@ -53,8 +53,8 @@ mission "Hai Reveal: Secret Leaks: FW"
 	on offer
 		set "hr: heard the news"
 		conversation
-			`You are relaxing within the spaceport while your ship refuels after conducting a spot of business. On a video screen is some talk show that you haven't previously encountered, but apparently seems to be quite a popular one out of Tarazed.`
-			`	A young and fresh-faced man who looks incredibly ill at ease has just been brought out as a surprise guest by the host Jonathon Camembert.`
+			`You are relaxing within the spaceport while your ship refuels after conducting a spot of business. On a video screen is some talk show that you haven't previously encountered, but which seems to be a quite popular one out of Tarazed.`
+			`	A young and fresh-faced man who looks incredibly ill at ease has just been brought out as a surprise guest by the host, Jonathon Camembert.`
 			`	"So now in our surprise segment, let me introduce you to Ronald Campbell. He once crewed on one of these big trade ships, but after seeing what he saw, he just had to come forward!"`
 			`	The host stresses the word "had" so much his voice squeaks, but the audience's attention has certainly been gained.`
 			`	"But first, let's take a look at a clip."`
@@ -62,8 +62,8 @@ mission "Hai Reveal: Secret Leaks: FW"
 				or
 					has "First Contact: Hai: offered"
 					has "First Contact: Unfettered: offered"
-			`	They show a short video featuring alien ships, not Pug, or Quarg, but something else. They are engaged in combat with each other, and fire weapons quite unlike anything produced in human space.`
-			`	You raise your eyebrows. Actual footage of an unknown alien conflict doesn't seem likely.`
+			`	They show a short video featuring alien ships, not Pug or Quarg, but something else. They are engaged in combat with each other, firing weapons quite unlike anything produced in human space.`
+			`	Actual footage of an unknown alien conflict would be unlikely, however.`
 				goto campbell
 			
 			label recognize
@@ -98,13 +98,13 @@ mission "Hai Reveal: Secret Leaks: R/S"
 			`You are relaxing at the spaceport while your ship refuels, when a breaking news broadcast comes on; it's not urgent enough to actually interrupt scheduled content, but urgent enough to fill the first ad break.`
 			`	The severe-looking anchorwoman bores down the camera with an expression that demands attention.`
 			`	"An ex-crewman employed by an itinerant trader has come forward to media about hostile aliens just beyond our borders. He claims to have brought video proof of an ongoing conflict that threatens to spill over and drag all of humanity back to war. Stay tuned for our full segment at six."`
-			`	You raise your eyebrows. Actual footage of an unknown alien conflict doesn't seem likely. That such news should come out so soon after the Pug smacks of a hoax. A quick glance at the clock shows you only have ten minutes to wait, so you stick around for the full segment out of curiosity.`
+			`	Actual footage of an unknown alien conflict doesn't seem likely; that such news should come out so soon after the Pug smacks of a hoax. A quick glance at the clock shows you only have ten minutes to wait, so you stick around for the full segment out of curiosity.`
 			`	The news returns with the anchorwoman. It turns out that the crewman in question had been picked up by a minor media outlet on Tarazed. He had apparently traveled many weeks before deciding to seek the media in order to avoid being shut down by Republic Intelligence if he contacted them elsewhere. The man is fairly young, and appears very well presented, though he has a bit of the paranoid about him that is plain to see even through a screen.`
 			branch recognize
 				or
 					has "First Contact: Hai: offered"
 					has "First Contact: Unfettered: offered"
-			`	They show a short video featuring alien ships, not Pug, or Quarg, but something else. They are engaged in combat with each other, and fire weapons quite unlike anything produced in human space.`
+			`	They show a short video featuring alien ships, not Pug or Quarg, but something else. They are engaged in combat with each other, firing weapons quite unlike anything produced in human space.`
 				goto reveal
 			
 			label recognize
@@ -138,7 +138,7 @@ mission "Hai Reveal: Secret Leaks: Hai"
 		not "event: hr: friend settled in"
 	on offer
 		conversation
-			`As you go about your business, there is a buzz in the air that seems to be animating the Hai. Upon closer observation it seems that the same topic must be the talk of the hour, at least judging by the Hai phrases you keep hearing repeated, and both workers and visitors alike seem to be stopping to exchange comments at a far higher rate than usual.`
+			`As you go about your business, there is a buzz in the air that seems to be animating the Hai. Upon closer observation it seems that the same topic must be the talk of the hour, at least judging by the Hai phrases you keep hearing repeated, and both workers and visitors alike seem to be stopping to exchange comments at a far higher rate than you usually see.`
 			branch humans
 				has "flagship planet attribute: hai: human presence"
 			
@@ -146,13 +146,13 @@ mission "Hai Reveal: Secret Leaks: Hai"
 				`	(Ask a Hai what's going on.)`
 				`	(Carry on.)`
 					goto skip
-			`	You catch a Hai who doesn't appear to be in a rush just as they finish one of these exchanges you have observed and ask them what's going on.`
+			`	You catch a Hai, who doesn't appear to be in a rush, just as they finish one of these exchanges and ask them what's going on.`
 			`	"Oh, you have not seen? The Hai appear to be on human news. It has come through from a couple of the merchants who go between us and is causing much consternation."`
 			choice
-				`	"How would this happen?"`
+				`	"How could this happen?"`
 				`	"Can you show me?"`
 					goto clip
-			`	The Hai gives you a quizzical look. "Yes human merchants come and go regularly, but the main defense of our secret is that humans simply do not care unless the news is sensational. This makes it very easy to ask your media organizations to simply not publicize any leaks they get. A crewman who will lose their job for leaking information will not do so unless it is valuable to them.`
+			`	The Hai gives you a quizzical look. "Yes, human merchants come and go regularly, but the main defense of our secret is that humans simply do not care unless the news is sensational. This makes it very easy to ask your media organizations to simply not publicize any leaks they get. A crewman who will lose their job for leaking information will not do so unless it is valuable to them.`
 			`	"Now though, after the civil war and the Pug invasion, with your new government in the south, someone has taken advantage of the opportunity. Here, let me show you."`
 			`	The Hai pulls out a device and gestures for you to sit on a nearby bench.`
 			choice
@@ -165,7 +165,7 @@ mission "Hai Reveal: Secret Leaks: Hai"
 			label sit
 			branch seen1
 				has "Hai Reveal: Secret Leaks: FW: offered"
-			`	The Hai pulls up a video of some talk show that you haven't previously encountered, but is apparently quite a popular one out of Tarazed. In it, a young and fresh-faced man is brought out as a surprise guest by the host Jonathon Camembert.`
+			`	The Hai pulls up a video of some talk show that you haven't previously encountered, but which seems to be a quite popular one out of Tarazed. In it, a young and fresh-faced man is brought out as a surprise guest by the host, Jonathon Camembert.`
 			`	"So now in our surprise segment, let me introduce you to Ronald Campbell. He once crewed on one of these big trade ships, but after seeing what he saw, he just had to come forward!"`
 			`	The host stresses the word "had" so much his voice squeaks, but the audience's attention has certainly been gained.`
 			`	"But first, let's take a look at a clip."`
@@ -177,14 +177,14 @@ mission "Hai Reveal: Secret Leaks: Hai"
 			`	The Hai pulls up a video of some the same talk show that you saw being aired in Free Worlds space with Jonathon Camembert's interview of Ronald Campbell.`
 			
 			label hai
-			`	When it is done the Hai looks at you seriously. "We are told that this video has been seen by billions of people, and reported on by other media outlets in human space. We are not sure what will happen now, but something certainly will."`
+			`	When it is done the Hai looks at you seriously. "We are told that this video has been seen by billions of people and reported on by other media outlets in human space. We are not sure what will happen now, but something certainly will."`
 			`	The Hai wishes you well and then leaves you to return to their business.`
 				decline
 			
 			label skip
 			branch seen2
 				has "Hai Reveal: Secret Leaks: R/S: offered"
-			`	You keep going about your business, but eventually turn a corner and come face-to-face with a life-sized holographic display of a human news anchor with the familiar background and logo of a human news organization. This is being projected up from a portable device set up on a table that several Hai are gathered around. The severe-looking anchorwoman is rendered in clear detail as she bores down the camera with an expression that demands attention.`
+			`	You keep going about your business, but eventually turn a corner and come face-to-face with a life-sized holographic display of a human news anchor with the familiar background and logo of a human news organization. This is being projected up from a portable device set on a table that several Hai are gathered around. The severe-looking anchorwoman is rendered in clear detail as she bores down the camera with an expression that demands attention.`
 			`	"We return to our main story tonight. An ex-crewman employed by an itinerant trader has come forward to media about hostile aliens just beyond our borders. He claims to have brought video proof of an ongoing conflict that threatens to spill over and drag all of humanity back to war."`
 			`	As she continues it turns out that the crewman in question had been picked up by a minor media outlet on Tarazed. He had apparently traveled many weeks before deciding to seek the media in order to avoid being shut down by Republic Intelligence if he contacted them elsewhere. The man is fairly young, and appears very well presented, though he has a bit of the paranoid about him that is plain to see even through a screen.`
 			`	A clip of alien spaceships in combat with weapons quite unlike anything produced in human space is shown, and you recognize that the ships are Shield Beetles hammering away at each other with their Ion Cannons. This must be a video of the conflict between the Hai and Unfettered.`
@@ -192,11 +192,11 @@ mission "Hai Reveal: Secret Leaks: Hai"
 				goto table
 			
 			label seen2
-			`	You keep going about your business, but eventually turn a corner and come face-to-face with a life-sized holographic display of a human news anchor with the familiar background and logo of a human news organization. This is being projected up from a portable device set up on a table that several Hai are gathered around. You recognize it as the same news report you saw being aired outside of the Free Worlds, with the anchorwoman reporting on Campbell's appearance on the Tarazed talk show.`
+			`	You keep going about your business, but eventually turn a corner and come face-to-face with a life-sized holographic display of a human news anchor with the familiar background and logo of a human news organization. This is being projected up from a portable device set on a table that several Hai are gathered around. You recognize it as the same news report you saw being aired outside of the Free Worlds, with the anchorwoman reporting on Campbell's appearance on the Tarazed talk show.`
 			
 			label table
-			`	Two of the Hai at the table seem to have been seeing this for the first time. They make several loud comments that feel like they are some mixture of shock, excitement, and distress, though you only have their tone to go off.`
-			`	No wonder the place is abuzz though, this is clearly a major event for the Hai.`
+			`	Two of the Hai at the table seem to be seeing this for the first time. They make several loud comments that feel like they are some mixture of shock, excitement, and distress, though you only have their tone to go off.`
+			`	No wonder the place is abuzz; this is clearly a major event for the Hai.`
 				decline
 			
 			label humans
@@ -206,7 +206,7 @@ mission "Hai Reveal: Secret Leaks: Hai"
 				`	"What news?"`
 				`	"Clearly so."`
 					goto sharing
-			`	"The Hai have ended up on our news back home. Seems the war stirred things up and someone wanted their fifteen minutes of fame.`
+			`	"The Hai have ended up on our news back home. Seems the war stirred things up, and someone wanted their fifteen minutes of fame.`
 			label sharing
 			branch seen3
 				has "hr: heard the news"
@@ -225,7 +225,7 @@ mission "Hai Reveal: Secret Leaks: Hai"
 			`	The guy laughs. "It's not as if the Hai actually enforce their secrecy," he says, heavily emphasizing the word "enforce."`
 			`	"The merchants might fire a crewman for trying to leak information, but if the conditions are right to make more money by leaking it, someone was bound to eventually." He shrugs. "Guess the conditions were finally right for it."`
 			label now
-			`	He looks around for a moment with an almost conspiratorial expression. "My money is on some kind of crisis happening though. Keeping the secret is worth a lot of money to certain people. It's going to be an interesting few months I think."`
+			`	He looks around for a moment with an almost conspiratorial expression. "My money is on some kind of crisis. Keeping the secret is worth a lot of money to certain people. It's going to be an interesting few months, I think."`
 			`	He gives you a wink as he steps away. "Keep your eyes open, Captain. There may be new opportunities afoot."`
 				decline
 	on decline
@@ -245,8 +245,8 @@ mission "Hai Reveal: Navy News Report"
 	on offer
 		conversation
 			`After exiting your ship, you overhear an advisory warning being played on the spaceport's loudspeakers.`
-			`	"This is a report from the Republic Navy Advisory System. All civilian captains be aware of increased pirate activity in the uninhabited regions of the Far North. Captains are advised to stick to inhabited systems when traveling from the Far North to the Core." The message repeats every few minutes.`
-			`	You overhear two captains on the landing pad next to yours talking about the warning. "I know a few guys who aren't going to be very happy about that," says one of the captains.`
+			`	"This is a report from the Republic Navy Advisory System. All civilian captains be aware of increased pirate activity in the uninhabited regions between the Far North and the Core. Captains are advised to stick to inhabited systems when traveling between the Far North and the Core." The message repeats every few minutes.`
+			`	You overhear two captains on the landing pad next to yours talking about the warning. "I know a few guys who aren't going to be very happy about that," one says.`
 			`	"You think they're running cover for that alien story that was on the news recently?" says the other. "Plenty of space up there to hide aliens."`
 			`	"Stop talking like a nut," says the first. "Advisory warnings like this happen all the time. Don't read too much into it."`
 				decline
