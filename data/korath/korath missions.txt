@@ -322,7 +322,6 @@ mission "Efreti: Distress Call 2"
 				to display
 					"flagship crew" > 1
 				accept
-			# No "to display" is required here due to the "accept" above:
 			`	You quickly count the number of survivors and communicate to your guide that you can take them all. He mimics your nodding head gesture, shows you his palms, and makes quick circles. You think he is agreeing and wants to hurry. With no crew helping you, it takes several hours to transfer the survivors to the <ship>.`
 				accept
 	npc
@@ -531,7 +530,6 @@ mission "Efreti: Distress Call 7"
 		dialog "You arrive, but you notice the <EDC-ship> is absent. You'll have to bring it here to finish the salvage mission."
 
 	npc accompany save
-		# Ship name should match the <EDC-ship> substitution above.
 		government "Kor Efret"
 		personality timid escort
 		ship "Charm-Shallop (Distressed)" "Esketari"
@@ -539,7 +537,6 @@ mission "Efreti: Distress Call 7"
 	on complete
 		conversation
 			action
-				# Ship name should match the <EDC-ship> substitution above.
 				give ship "Charm-Shallop (Distressed)" "Esketari"
 			`This time, there are no crowds waiting for you when you land; rather, the ground crews seem astonished to see the ship. It takes you some time to arrange for additional repairs, but by the time you're finished, a pavilion has been set up near the <EDC-ship>, and small groups of Korath periodically stop by.`
 			choice
@@ -576,7 +573,6 @@ mission "Efreti: Distress Call 8"
 					decline
 			
 			`	You approach one of the Quarg in the spaceport and request assistance with the data chip. It stops and acknowledges you, but doesn't speak. It pauses for a few moments after you make your request, but then holds out its hand. Taking the data chip, it slots it into a communicator of some sort, slowly nods to itself, and hands it back to you.`
-			# The message is translated from Efreti. Korath languages have no tenses due to their biology. It was translated by Quarg, who use archaic writing and wording. Hence the odd writing style.
 			`	You return to your ship and try plugging the chip into your systems again, which now displays two files: one in the Korath language, and one in your own. You open the file in your language, and it reads: "The <EDC-ship> is a ship of grief, bringing great pain in memories that sing for generations. Love is a void in the souls of many. Know all that <first> <last> is a true Efret by heart, if not by skin. The <EDC-ship> is theirs, to save lives and keep memories."`
 			`	You carefully store the chip in a safe place.`
 
