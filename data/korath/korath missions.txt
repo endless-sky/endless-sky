@@ -352,7 +352,7 @@ mission "Efreti: Distress Call 3"
 
 	on offer
 		conversation
-			`A few hours later, you are relaxing at a spaceport restaurant now that the evacuation is complete when a delegation of Korath approach you somewhat hesitantly. They are dressed in what appears to be much finer clothing than most Korath you have met, certainly nothing you would wear to do work in a spaceport. As they make the traditional gesture of greeting, which you return, you are curious both as to what they want and how they will ask.`
+			`Before you can leave, a delegation of Korath approach you somewhat hesitantly. They are dressed in what appears to be much finer clothing than most Korath you have met, certainly nothing you would wear to do work in a spaceport. As they make the traditional gesture of greeting, which you return, you are curious both as to what they want and how they will ask.`
 			`	One of them takes a small case out of a pocket and removes a black device that looks like three triangles hooked together. He hisses at it for a moment and it rises out of his hand. The air around it begins to shimmer, followed by the appearance of a life-sized hologram of a Quarg.`
 			`	"Salutations, far traveler," the Quarg rumbles. "These Korath-Friends are the princes of the clan that you assisted. While grateful for the living, they cannot fully mourn those that lie dead. They beseech you travel back to <planet> and bring their lost ones home to <origin>."`
 			choice
