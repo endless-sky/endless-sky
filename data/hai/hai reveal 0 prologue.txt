@@ -56,7 +56,7 @@ mission "Hai Reveal: Secret Leaks: FW"
 			`You are relaxing within the spaceport while your ship refuels after conducting a spot of business. On a video screen is some talk show that you haven't previously encountered, but which seems to be a quite popular one out of Tarazed.`
 			`	A young and fresh-faced man who looks incredibly ill at ease has just been brought out as a surprise guest by the host, Jonathon Camembert.`
 			`	"So now in our surprise segment, let me introduce you to Ronald Campbell. He once crewed on one of these big trade ships, but after seeing what he saw, he just had to come forward!"`
-			`	The host stresses the word "had" so much his voice squeaks, but the audience's attention has certainly been gained.`
+			`	The host stresses the word "had" so much his voice squeaks, but it certainly grabs the audience's attention.`
 			`	"But first, let's take a look at a clip."`
 			branch recognize
 				or
@@ -70,7 +70,7 @@ mission "Hai Reveal: Secret Leaks: FW"
 			`	A clip of alien spaceships in combat with weapons quite unlike anything produced in human space is shown, and you recognize that the ships are Shield Beetles hammering away at each other with their Ion Cannons. This must be a video of the conflict between the Hai and Unfettered.`
 			
 			label campbell
-			`	When the clip ends, Campbell is encouraged by Camembert to talk about where he got the footage. Campbell is well presented, although his suit is definitely rented - you couldn't imagine how a crewman would be able to afford a suit like that on their salary - and he's clearly anxious. You can make out the beads of sweat on his brow as he considers his answer, and his neat suit is slightly crumpled in the way that happens when people wipe sweat off their palms a lot. When Campbell speaks, it is with a paranoid manner that is plain to see even through a screen. He talks at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war; a war waged by an alien species known as the "Hai." Although he does not give their exact whereabouts, he says they can be reached, and in turn reach us, with just a hyperdrive.`
+			`	When the clip ends, Campbell is encouraged by Camembert to talk about where he got the footage. Campbell is well presented, although his suit is obviously not his own - you couldn't imagine how a crewman would be able to afford an outfit like that on their salary - and he's clearly anxious. You can make out the beads of sweat on his brow as he considers his answer, and his neat suit is slightly crumpled in the way that happens when people wipe sweat off their palms a lot. When Campbell speaks, it is with a paranoid manner that is plain to see even through a screen. He talks at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war; a war waged by an alien species known as the "Hai." Although he does not give their exact whereabouts, he says they can be reached, and in turn reach us, with just a hyperdrive.`
 			branch hai
 				or
 					has "First Contact: Hai: offered"
@@ -167,10 +167,10 @@ mission "Hai Reveal: Secret Leaks: Hai"
 				has "Hai Reveal: Secret Leaks: FW: offered"
 			`	The Hai pulls up a video of some talk show that you haven't previously encountered, but which seems to be a quite popular one out of Tarazed. In it, a young and fresh-faced man is brought out as a surprise guest by the host, Jonathon Camembert.`
 			`	"So now in our surprise segment, let me introduce you to Ronald Campbell. He once crewed on one of these big trade ships, but after seeing what he saw, he just had to come forward!"`
-			`	The host stresses the word "had" so much his voice squeaks, but the audience's attention has certainly been gained.`
+			`	The host stresses the word "had" so much his voice squeaks, but it certainly grabs the audience's attention.`
 			`	"But first, let's take a look at a clip."`
 			`	A clip of alien spaceships in combat with weapons quite unlike anything produced in human space is shown, and you recognize that the ships are Shield Beetles hammering away at each other with their Ion Cannons. This must be a video of the conflict between the Hai and Unfettered.`
-			`	When the clip ends, Campbell is encouraged by Camembert to talk about where he got the footage. Campbell is well presented, although his suit is definitely rented - you couldn't imagine how a crewman would be able to afford a suit like that on their salary - and he's clearly anxious. You can make out the beads of sweat on his brow as he considers his answer, and his neat suit is slightly crumpled in the way that happens when people wipe sweat off their palms a lot. When Campbell speaks, it is with a paranoid manner that is plain to see even through a screen. He talks at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war; a war waged by an alien species known as the "Hai." Although he does not give their exact whereabouts, he says they can be reached, and in turn reach humanity, with just a hyperdrive.`
+			`	When the clip ends, Campbell is encouraged by Camembert to talk about where he got the footage. Campbell is well presented, although his suit is obviously not his own - you couldn't imagine how a crewman would be able to afford an outfit like that on their salary - and he's clearly anxious. You can make out the beads of sweat on his brow as he considers his answer, and his neat suit is slightly crumpled in the way that happens when people wipe sweat off their palms a lot. When Campbell speaks, it is with a paranoid manner that is plain to see even through a screen. He talks at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war; a war waged by an alien species known as the "Hai." Although he does not give their exact whereabouts, he says they can be reached, and in turn reach humanity, with just a hyperdrive.`
 				goto hai
 			
 			label seen1
@@ -523,7 +523,7 @@ mission "Hai Reveal: Meet the Team: Xilin"
 			`	"Excuse me, Captain. Do you care to answer a few questions?" Xilin shouts up to the captain.`
 			`	The captain looks concerned to see Xilin standing there in a Republic uniform, but agrees to talk after shooing her passengers off into the spaceport.`
 			`	"What is it you need to know, officer?" the captain asks. Although Xilin isn't a Navy officer, he doesn't correct her.`
-			`	"I'd like to know why it is that you decide to bring all these passengers to Hai space who had never been here before."`
+			`	"I'd like to know why it is that you decided to bring all these passengers who had never been to Hai space before."`
 			`	The captain scratches the back of her head. "Well after seeing the news back home, I figured the secret was already out. Might as well make the most of it, you know?"`
 			choice
 				`	(Let Xilin handle this.)`
@@ -558,7 +558,7 @@ mission "Hai Reveal: Meet the Team: Xilin"
 			`	"This is from that Berserker pilot. What's more is that if I run the ID of the ship, it's registered as stolen."`
 			`	Sayari gives a look of concern. "Are you suggesting that this captain was a criminal?"`
 			`	"Highly likely," Xilin responds. "A pirate with a stolen ship and a counterfeit license."`
-			`	"I will inform our spaceport authorities to look out for this captain and his ship," Sayari says. "It may also be beneficial if you were to make this database available to us, so that we may catch other potential criminal humans."`
+			`	"I will inform our spaceport authorities to look out for this captain and his ship," Sayari says. "It may also be beneficial if you were to make this database available to us, so that we may monitor other potential criminal humans."`
 			`	"Unfortunately, I'd have to gain authorization for that," says Xilin. "But I'll see what I can do."`
 			choice
 				`	"Should I help track down that captain?"`
@@ -655,7 +655,7 @@ mission "Hai Reveal: Meet the Team: Samuel"
 	on complete
 		conversation
 			`You return to the briefing room at the secure port with Remington and Sayari. "This Hai holographic tech is pretty nifty, isn't it?" Remington says while playing around with the device he used on <planet stopovers>. "Way more advanced than anything we've got back home. It's also pretty useful that there's a port for one of our cables, otherwise I never would have figured out how to get that Pug image on there."`
-			`	"Ah, yes," Sayari says. "Many decades of interaction with humans has led us to accommodate much of our technology to your needs. Humans are our guests here, so we saw it only right to make you feel more comfortable. A shame to see a few bad apples spoil the bunch."`
+			`	"Ah, yes," Sayari says. "Many decades of interaction with humans has led us to accommodate much of our technology to your needs. Humans are our guests here, so we saw it only right to make you feel more comfortable. A shame to see a few bad apples may spoil the bunch."`
 			`	"You have apples up here?" Remington asks.`
 			`	Sayari chuckles. "Just as we have adapted our technology to human needs, we have also imported many human foods and learned human sayings. It has all been very exciting."`
 			`	Sayari pauses for a moment. "Our civilization is tens of thousands of years old. There is little in that time that we have not done on our own. But seeing such a young species has led to much excitement. I wish for that excitement to not turn into strife. This is what I explained to the Hai on <planet stopovers>. 'These humans are young. Be patient with them.'"`
