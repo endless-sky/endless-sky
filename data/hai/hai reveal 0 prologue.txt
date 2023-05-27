@@ -553,7 +553,7 @@ mission "Hai Reveal: Meet the Team: Xilin"
 		dialog phrase "generic missing stopover or passengers"
 	on complete
 		conversation
-			`You return to the briefing room at the secure port with Xilin and Sayari, and Xilin begins frantically copying notes into a terminal. He then pauses while staring at something on the screen.`
+			`You return to the briefing room at the secure port with Xilin and Sayari, and Xilin begins transferring his notes into a terminal. He then pauses while staring at something on the screen.`
 			`	"I'm running each of the pilot's licenses and ship registrations through my copy of the Republic's pilot database. They've all come up as valid and with mostly clean records. All except for one." He turns the terminal screen toward you and Sayari, displaying an inputted license ID that the system says does not exist.`
 			`	"This is from that Berserker pilot. What's more is that if I run the ID of the ship, it's registered as stolen."`
 			`	Sayari gives a look of concern. "Are you suggesting that this captain was a criminal?"`
@@ -626,7 +626,7 @@ mission "Hai Reveal: Meet the Team: Samuel"
 			`	"Correct. And I take it you don't like them."`
 			`	"Why would I like someone who invaded my home planet?" says another captain.`
 			`	"Exactly. So why are you doing that to these Hai here? What's the issue you take with them, anyway?"`
-			`	"Well I'm not looking to get my home planet invaded again," the captain responds.`
+			`	"Well, I'm just..." the captain begins to trip through a response before being cut off.`
 			`	"Captain <last>," Remington says while turning to you. "Can you tell me what the difference between the Hai and the Pug is?"`
 			choice
 				`	"The Hai aren't invading us."`
