@@ -418,8 +418,8 @@ mission "Hai Reveal: Meet the Team: FW"
 		conversation
 			branch late
 				has "event: hr: join later"
-			`You follow Alondo's ship to the surface of <origin>. Instead of landing at the main spaceport, his ship veer's off to a separate area of the city. A Hai warship shadows you as you approach.`
-			`	Alondo's ship touches down in a smaller port atop one of the city's highrises, and you follow suit. As you touch your ship down next to Alondo's, the Hai warship following you moves to idle above the spaceport.`
+			`You follow Alondo's ship to the surface of <origin>. Instead of landing at the main spaceport, his ship veers off to a separate area of the city where a cluster of several large structures are set slightly apart from the rest. A Hai warship shadows you as you approach.`
+			`	Alondo's ship touches down in a smaller port atop one of the highrises here, and you follow suit. As you touch your ship down next to Alondo's, the Hai warship following you moves to idle above the spaceport.`
 			`	"Welcome to the secure port," Alondo greets you as you exit your ship. "Our home away from home."`
 				goto landed
 			
@@ -435,14 +435,14 @@ mission "Hai Reveal: Meet the Team: FW"
 				`	"What's so secure about it?"`
 				`	"Looks like a nice place. Let's get to that briefing you mentioned."`
 					goto briefing
-			`	"Well it's closed to the public, and as you can see," Alondo says while pointing up the the warship above you, "the Hai are guarding it well. There's no 'human embassy' or 'counsulate' for us to make use of, so the Hai decided to put one of their old court buildings to use, allowing us to use it as our base of operations while we're navigating this crisis."`
+			`	"Well it's closed to the public, and as you can see," Alondo says while pointing up at the warship above you, "the Hai are guarding it well. There's no 'human embassy' or 'consulate' for us to make use of, so the Hai decided to put one of their old court buildings to use, allowing us to use it as our base of operations while we're navigating this crisis."`
 			choice
 				`	"This entire building used to be a courthouse?"`
 				`	"It doesn't feel like much of a crisis to me."`
 					goto crisis
 				`	"Why the heavy guard? Are they expecting violence?"`
 					goto warship
-			`	"It was. From the little I've seen, the Hai have a rather, shall we say, labyrinthine system of government. This building was only a small part of that. Whatever the case, we have a briefing to get to," Alondo says while motioning to the door inside.`
+			`	"It was; apparently large reinforced rooms are easy to convert into landing spaces. From the little I've seen, the Hai have a rather, shall we say, labyrinthine system of government. This building was only a small part of that. Whatever the case, we have a briefing to get to," Alondo says while motioning to the door inside.`
 				goto briefing
 			label crisis
 			`	"Well... I could explain more, but that's what this briefing is for," Alondo says while motioning to the door inside.`
@@ -459,8 +459,8 @@ mission "Hai Reveal: Meet the Team: FW"
 				`	"Just that I'm good looking."`
 			`	"There we go!" says the man who was fiddling with the holoprojector as it whirs to life. "No time for introductions. We're late enough as is. Everyone, please sit down."`
 			`	The holoprojector displays a series of graphs. You're no expert in data analysis, but a highlighted "chance of total crisis" at the bottom ranging from 61% to 96% does not look promising.`
-			`	"Please turn your attention to this chart here," he says while pointing to a bar graph. "We've continued to track the number of new arrivals to Hai territory. As noted on the left, the number of new monthly arrivals numbered in only the low hundreds prior to the leaks being broadcast. Within only a short time after, that number quickly rose to the thousands. Mitigation efforts by the Navy to dissuade civilian captains from discovering the wormhole in Ultima Thule by circulating reports of increased pirate activity have since suppressed this number somewhat, but the rate of new arrivals is still well above what it once was.`
-			`	"It has been noted that the character of these new arrivals is also different. Where once a majority of new arrivals were lone explorers or lost captains, they are now increasingly captains following breadcrumbs while looking for the Hai, or even captains bringing large groups of 'tourists' with the promise of witnessing the aliens from the news reports. Further research will need to be done to determine the threat that these new arrivals pose to further escalating the situation."`
+			`	"Please turn your attention to this chart here," he says while pointing to a bar graph. "We've continued to track the number of new arrivals to Hai territory. As noted on the left, the number of new monthly arrivals was in the low hundreds prior to the leaks being broadcast. Within only a short time after, that number quickly rose to the thousands. Mitigation efforts by the Navy to dissuade civilian captains from discovering the wormhole in Ultima Thule by circulating reports of increased pirate activity have since suppressed this number somewhat, but the rate of new arrivals is still well above what it once was.`
+			`	"It has been noted that the character of these new arrivals is also different. Where once a majority of new arrivals were lone explorers or lost captains, they are now increasingly captains following breadcrumbs while looking for the Hai or bringing large groups of 'tourists' with the promise of witnessing the aliens from the news reports. Further research will need to be done to determine the threat that these new arrivals pose in continuing to escalate the situation."`
 			choice
 				`	"What's the problem with new arrivals?"`
 				`	"Do we not have a way of blocking captains from entering the wormhole?"`
@@ -479,10 +479,10 @@ mission "Hai Reveal: Meet the Team: FW"
 				`	"Would that be so bad?"`
 			`	"It is always bad to be forced into acknowledging a secret. If we act sooner, we may control the manner of that secret's release," he says. "Plus, while the Hai have let the trickle of humans that find the wormhole settle here peacefully, a massive influx is a problem nobody really wants to have to deal with.`
 			label plans
-			`	"We are currently still gathering information and weighing various potential plans. Complete containment of this situation may already be impossible, and so plans that aim for that may not be worth following. If so, we would instead follow plans which seek to formally reveal the existence of the Hai to humanity in as controlled a manner as possible. Only time will tell if that is the case, though."`
+			`	"We are currently still gathering information and weighing various potential options. Complete containment of this situation may already be impossible, and so plans which aim for that may not be worth following. If so, we would instead follow the plans which seek to formally reveal the existence of the Hai to humanity in as controlled a manner as possible. Only time will tell if that is the case, though."`
 			`	After the briefing is finished, the Hai woman approaches you. "Greetings, Captain <last>. I am grateful that you will be helping us. My name is Sayari. I was the envoy to the human government a century ago." The present situation is all the evidence needed to make it clear that the Republic has never mentioned the Hai, nor publicly acknowledged receiving an envoy from them.`
 			`	Before you can get into a conversation with Sayari, the presenter butts in. "Yes, yes, and I have a task for you to be helpful with now. Please meet me outside at the port," he says before swiftly leaving the room.`
-			`	Sayari chuckles. "So much on that human's mind. I have not seen him take a break since he has arrived. It is as if he is more stress about this situation than any Hai."`
+			`	Sayari chuckles. "So much on that human's mind. I have not seen him take a break since he has arrived. It is as if he is more stressed about this situation than any Hai."`
 				decline
 
 
@@ -529,7 +529,7 @@ mission "Hai Reveal: Meet the Team: Xilin"
 				`	(Let Xilin handle this.)`
 					goto xilin
 				`	"Didn't you hear the Navy's advisory? You could have gotten your passengers killed coming here."`
-			`	The captain scoffs. "Well yeah, but I figured it was just a coverup from the Navy to stop people from coming here."`
+			`	The captain scoffs. "Well yeah, but I figured it was just a coverup from the Navy to stop people."`
 			`	"Would that not imply that the secret isn't truly 'out' then?" Sayari asks while giving the captain a stern look.`
 				goto trouble
 			label xilin
@@ -538,10 +538,10 @@ mission "Hai Reveal: Meet the Team: Xilin"
 			`	"Well when you put it that way," the captain says nervously. "Ok, just spit it out already. Am I in trouble?"`
 			`	"No," Xilin says while looking away. Something else has caught his attention. "But they might be."`
 			`	You look up to see a beat-up Berserker that looks like it can barely fly landing in the spaceport. "You're free to go," Xilin says to the Star Queen captain.`
-			`	You approach the Berserker as it finishes landing. The captain of the ship exits looking far calmer than the condition of the Berserker would suggest its captain should be. "Uh, hi," he says akwardly. "Can I help you guys?"`
+			`	You approach the Berserker as it finishes landing. The captain of the ship exits looking far calmer than the condition of the Berserker would suggest he should be. "Uh, hi," he says awkwardly. "Can I help you guys?"`
 			choice
 				`	"What happened to your ship?"`
-				`	"Did you get attacked by pirates on the way here."`
+				`	"Did you get attacked by pirates on the way here?"`
 			`	The captain looks back at the poor state of his interceptor. "Oh, that. Yeah, I ran into a couple pirates on the way here. Nothing I haven't dealt with before, though."`
 			`	"So you've been to Hai space before?" Xilin asks.`
 			`	"Sure. Plenty of times," he responds.`
@@ -569,8 +569,8 @@ mission "Hai Reveal: Meet the Team: Xilin"
 			label track
 			`	"No, leave that to the Hai," Xilin says. "At least for so long as this is our only lead on pirate activity in Hai territory, although I imagine that we'll find more if we go looking for it."`
 			label pirates
-			`	"We have had run-ins with your pirates before," Sayari says. "Most of the time they cause only mischief. Very rarely do that raid our fleets and cause large trouble. I fear though that this situation will only embolden them."`
-			`	Just then, Alondo poke his head into the room looking somewhat exasperated. "Captain <last>. Could you give Remington a hand? He's out on the landing pads." He poke his head back out of the room, and you hear his heavy footsteps grow quieter as he walks away.`
+			`	"We have had run-ins with your pirates before," Sayari says. "Most of the time they cause only mischief. Very rarely do they raid our fleets or cause any large trouble. I fear though that this situation will only embolden them."`
+			`	Just then, Alondo pokes his head into the room looking somewhat exasperated. "Captain <last>. Could you give Remington a hand? He's out on the landing pads." He disappears again without waiting for a reply, and you hear his heavy footsteps grow quieter as he walks away.`
 			`	"You go help Remington," Xilin says. "I'll continue my work here."`
 
 
@@ -588,19 +588,19 @@ mission "Hai Reveal: Meet the Team: Samuel"
 	on offer
 		log "People" "Terry Adrianopoulos" `Terry Adrianopoulos is the secretary of Samuel Remington, or at least that's how he puts it. Remington mentioned an internal political situation within the Syndicate while glancing at Terry, so there may be something larger at play with her presence. Hopefully it doesn't conflict with resolving the situation with the Hai.`
 		conversation
-			`You exit the build onto the landing pads with Sayari following behind you and find the tall man and the woman from the front row of the briefing waiting by your ship.`
+			`You exit the building onto the landing pads with Sayari following behind you and find the tall man and the woman from the front row of the briefing waiting by your ship.`
 			branch met
 				has "met remington"
 			action
 				log "People" "Samuel Remington" `Samuel Remington is the Syndicate's head of public relations. He is acting as the Syndicate's representative in helping to deal with the situation regarding the Hai.`
-			`	"Captain <last>, is it? I don't believe we've met before," he says while shaking your hand, perhaps a little too firmly. "I'm Samuel Remington, head of the Syndicate's PR department. You may have not heard of me before, but I'm sure you've heard of my work. I..." He stops himself. "You know what, nevermind. We're not here to make small talk. We have bigger things to worry about. I'm looking forward to working alongside you to handle this emerging crisis."`
+			`	"Captain <last>, is it? I don't believe we've met before," he says while shaking your hand, perhaps a little too firmly. "I'm Samuel Remington, head of the Syndicate's PR department. You may not have heard of me before, but I'm sure you've heard of my work. I..." He stops himself. "You know what, nevermind. We're not here to make small talk. We have bigger things to worry about. I'm looking forward to working alongside you to handle this emerging crisis."`
 				goto terry
 			label met
 			action
 				log "People" "Samuel Remington" `Remington is being sent as the representative of the Syndicate to help deal with the situation regarding the Hai.`
 			`	"Captain <last>, is it? It's been a good while since we last met," he says while shaking your hand, perhaps a little too firmly. "We met back on Hephaestus near the start of the war. It's been a while, so I'll forgive you if you've forgotten me. I'm looking forward to working alongside you to handle this emerging crisis."`
 			label terry
-			`	You note that his appearance is rather casual compared to what you would expect of someone of importance in the Syndicate, wearing khakis and a collared tee as opposed to the typical suit and tie business attire that you see on Syndicate businessmen. It is certainly in contrast to a young woman standing behind him, who is wearing the usual business attire.`
+			`	You note that his appearance is rather casual compared to what you would expect from someone of importance in the Syndicate, wearing khakis and a collared tee as opposed to the typical suit and tie business attire that you see on Syndicate businessmen. It is certainly in contrast to the young woman standing behind him, who is wearing the usual business attire.`
 			`	"Now, allow me to introduce you to Terry," Remington says while gesturing to the woman behind him.`
 			`	"Terry Adrianopoulos. Pleasure to meet you," she says with a broad smile and a slight bow. The young woman goes from calculating to gregarious in the blink of an eye as your attention shifts to her. She seems at once pleasant and approachable while at the same time being slightly off-putting and uncanny. It's an eerie feeling.`
 			`	"Terry is... well, let's call her my secretary," Remington says with a sly smile. Terry seems none too pleased to hear that, but she doesn't correct him.`
@@ -608,7 +608,7 @@ mission "Hai Reveal: Meet the Team: Samuel"
 				`	"Alondo said you needed my help with something."`
 					goto help
 				`	"The Syndicate sent their PR team to deal with this?"`
-			`	"I'll have you know I'm considered something of a miracle worker among the Syndicate," Remington says in a sarcastic tone. "The Syndicate was sad to rent me out, but there's also an internal political situation going on within the Syndicate that has been causing me quite the headache recently." His eyes momentarily flick to Terry as he says that, but Remington presses on immediately. "It's nothing I can discuss in detail, with all the NDAs involved, you know, but something I'll certainly enjoy taking a break from."`
+			`	"I'll have you know I'm considered something of a miracle worker among the Syndicate," Remington says in a wry tone. "The Syndicate was sad to rent me out, but there's also an internal political situation going on that has been causing me quite the headache recently." His eyes momentarily flick to Terry as he says that, but Remington presses on immediately. "It's nothing I can discuss in detail, with all the NDAs involved, you know, but something I'll certainly enjoy taking a break from."`
 			`	"Alondo said you needed my help," you say.`
 			label help
 			`	"Ah, yes. Well you see, I'd like to travel to <stopovers> to get the lay of the land around the conflict between the two Hai groups. Care to give me a ride there? It'd be just the two of us."`
@@ -617,7 +617,7 @@ mission "Hai Reveal: Meet the Team: Samuel"
 				accept
 	on stopover
 		conversation
-			`It doesn't take long to prove Remington's hunch correct. You find a group of new arrivals gathered by a group of Hai captains and crewmen, asking them question after question. "Why are you guys hiding up here? Where can I buy some of those weapons of yours? Do you eat acorns?" Some of the Hai look intrigued by the attention they're being given, but other look annoyed.`
+			`It doesn't take long to prove Remington's hunch correct. You find a group of new arrivals gathered by a group of Hai captains and crewmen, asking them question after question. "Why are you guys hiding up here?" "Where can I buy some of those weapons of yours?" "Do you eat acorns?" Some of the Hai look intrigued by the attention they're being given, but others look annoyed.`
 			`	One of the human captains seems to be riling the others up and being rather hostile with his comments. "Do you really think you could invade us? You're like half my size, I could take you on in a fight any day."`
 			`	Remington shakes his head. "I'm going to step in before this turns ugly," he says while pulling a small device out of his pocket. It's not anything that you recognize, but it has a Hai appearance to it.`
 			`	He shouts to gain everyone's attention before tossing the device between the two groups. As it lands, a life-sized image of a Pug appears, looking almost realistic aside from the fact that its facing angle seems to follow your perspective. Most of the human captains jump back.`
@@ -625,7 +625,7 @@ mission "Hai Reveal: Meet the Team: Samuel"
 			`	"That's one of those Pug things!" says one of the human captains.`
 			`	"Correct. And I take it you don't like them."`
 			`	"Why would I like someone who invaded my home planet?" says another captain.`
-			`	"Exactly. Now what's the issue that you take with these Hai here?"`
+			`	"Exactly. So why are you doing that to these Hai here? What's the issue you take with them, anyway?"`
 			`	"Well I'm not looking to get my home planet invaded again," the captain responds.`
 			`	"Captain <last>," Remington says while turning to you. "Can you tell me what the difference between the Hai and the Pug is?"`
 			choice
@@ -639,14 +639,14 @@ mission "Hai Reveal: Meet the Team: Samuel"
 				goto sayari
 			label cute
 			`	"I've seen cute dogs turn fearsome before!" one of the captains pipes up.`
-			`	Remington gives the captain (and you) a slight look of disbelief, but he rolls with it. "Ok, so maybe cute things can be fearsome, but has a fearsome dog ever invaded your home plate?`
+			`	Remington gives the captain (and you) a slight look of disbelief, but he rolls with it. "Ok, so maybe cute things can be fearsome, but has a fearsome dog ever invaded your home planet?`
 				goto sayari
 			
 			label friendly
 			`	"But they might not always be!" one of the captains pipes up.`
 			`	"Perhaps not," Remington responds, "but is that any justification for you being hostile now? People had the same fear of the Quarg centuries ago when they were first discovered, but have the Quarg been anything but friendly in that time?`
 			label sayari
-			`	"My point is that if these Hai were really interesting in invading us, do you think we'd all be here right now? The Hai are not hostile to us, so why would we give them a reason to be by sitting here and bugging their warship captains?" Remington says to the crowd.`
+			`	"My point is that if these Hai were really interested in invading us, do you think we'd all be here right now? The Hai are not hostile to us, so why would we give them a reason to be by sitting here and bugging their warship captains?" Remington says to the crowd.`
 			`	You look over to the group of Hai to see Sayari speaking to them in their own language, likely trying to prevent the Hai from doing anything brash.`
 			`	Remington speaks with the crowd of humans for a little while longer, eventually convincing them to leave the Hai alone. "Let's head back to <planet>," Remington says. "I've seen enough here. And we should probably think about having the spaceport authority here restrict who can land, at least until all this blows over."`
 			`	"Perhaps," Sayari responds.`
@@ -654,16 +654,16 @@ mission "Hai Reveal: Meet the Team: Samuel"
 		dialog phrase "generic missing stopover or passengers"
 	on complete
 		conversation
-			`You return to the briefing room at the secure port with Remington and Sayari. "This Hai holographic tech is pretty nifty isn't it?" Remington says while playing around with the device he used on <planet stopovers>. "Way more advanced than anything we've got back home. It's also pretty useful that there's a port for one of our cables, otherwise I never would have figured out how to get that Pug image on there."`
+			`You return to the briefing room at the secure port with Remington and Sayari. "This Hai holographic tech is pretty nifty, isn't it?" Remington says while playing around with the device he used on <planet stopovers>. "Way more advanced than anything we've got back home. It's also pretty useful that there's a port for one of our cables, otherwise I never would have figured out how to get that Pug image on there."`
 			`	"Ah, yes," Sayari says. "Many decades of interaction with humans has led us to accommodate much of our technology to your needs. Humans are our guests here, so we saw it only right to make you feel more comfortable. A shame to see a few bad apples spoil the bunch."`
 			`	"You have apples up here?" Remington asks.`
-			`	Sayari chuckles. "Just as we have adapted out technology to human needs, we have also imported many human foods, and learned human sayings. It has all been very exciting."`
+			`	Sayari chuckles. "Just as we have adapted our technology to human needs, we have also imported many human foods and learned human sayings. It has all been very exciting."`
 			`	Sayari pauses for a moment. "Our civilization is tens of thousands of years old. There is little in that time that we have not done on our own. But seeing such a young species has led to much excitement. I wish for that excitement to not turn into strife. This is what I explained to the Hai on <planet stopovers>. 'These humans are young. Be patient with them.'"`
 			choice
 				`	"Glad to see that you still have a positive view of us."`
 				`	"Well we're here to do our best to make that wish come true."`
-			`	Sayari goes on about the history between Hai and humanity, how a colony exploration team sanctioned by the Republic found the wormhole in Ultima Thule and made first contact between the Hai and Republic. Early on, they used the Quarg as translators between the two parties, but eventually the Hai began to learn the human language, and even some humans began to learn Hai, although it seems much more difficult for a human to speak Hai than the other way around.`
-			`	While she is telling stories, Terry walks in and motions to you. "<last>. I need someone with a ship and enough skill to not get blown up. Meet me by the landing pads when you're ready."`
+			`	Sayari goes on about the history between Hai and humanity, how a colony exploration team sanctioned by the Republic found the wormhole in Ultima Thule and made first contact between the Hai and Republic. Early on, they used the Quarg as translators between the two parties, but eventually the Hai began to learn the human language. Some humans also began to learn Hai, but it seems much more difficult for a human to speak Hai than the other way around.`
+			`	While Sayari is telling stories, Terry walks in and motions to you. "<last>. I need someone with a ship and enough skill to not get blown up. Meet me by the landing pads when you're ready."`
 
 
 
@@ -686,8 +686,8 @@ mission "Hai Reveal: Meet the Team: Terry"
 		has "Hai Reveal: Meet the Team: Samuel: done"
 	on offer
 		conversation
-			`When you exit onto the landing pads, you find that Terry has just finished refueling your ship for you. "Alright, Captain. I have a simple mission for you. We need someone to scout out the ship frequencies in various uninhabited systems in the Far North. We know how many merchants are arriving here, but we're not sure how many are attempting and failing, for one reason or another. I need you to fly through these systems and report back here with what you find."`
-			`	She takes a deep breath before saying: "<waypoints>. Think you can remember all those? Good." She's didn't even wait for a response. "Stick around in each system if you can, as I want to know just how many merchants, pirates, and Navy ships are passing through that region."`
+			`When you exit onto the landing pads, you find that Terry has just finished ensuring your ship is refueled. "Alright, Captain. I have a simple mission for you. We need someone to scout out the ship frequencies in various uninhabited systems in the Far North. We know how many merchants are arriving here, but we're not sure how many are attempting and failing, for one reason or another. I need you to fly through these systems and report back here with what you find."`
+			`	She takes a deep breath before saying: "<waypoints>. Think you can remember all those? Good." She doesn't even wait for a response. "Stick around in each system if you can, as I want to know just how many merchants, pirates, and Navy ships are passing through that region."`
 			`	She tosses you a data pad containing coordinates to all the systems she mentioned and starts walking back inside. "Just come back here once you're finished."`
 				accept
 	on visit
@@ -705,9 +705,9 @@ mission "Hai Reveal: Meet the Team: Sayari"
 		has "Hai Reveal: Meet the Team: Terry: done"
 	on offer
 		conversation
-			`Terry quickly takes a copy of your ship's system logs upon your return. "Thank you, Cpatain. I'll have these analyzed in no time." Terry runs back into the building, passing Sayari on her way out, carrying a small box.`
-			`	"Captain <last>. I know we are asking much of you, but I have a task of my own." She hands you the box, which is officially branded by the Hai government. Inside is an encrypted data chip and a metallic badge. There is a symbol minutely engraved into the front that must be the Hai government's emblem. Surrounding it in a circle is some sort of pattern, which reminds you of the codes found on identification cards and licenses in human space. On the other side, there is extensive writing in a script that looks to be Hai. From this, you presume that the badge is some sort of diplomatic ID.`
-			`	"Please deliver this message to the Republic. I trust that they will disseminate this message to your other governments. This badge should make it easier if they give you trouble."`
+			`Terry quickly takes a copy of your ship's system logs upon your return. "Thank you, Captain. I'll have these analyzed in no time." Terry runs back into the building just as Sayari comes out carrying a small box.`
+			`	"Captain <last>. I know we are asking much of you, but I have a task of my own." She hands you the box, which displays official Hai government branding. Inside is an encrypted data chip and a metallic badge, with a symbol minutely engraved into the front that must be the Hai government's emblem. Surrounding it in a circle is some sort of pattern, which reminds you of the codes found on identification cards and licenses in human space. On the other side, there is extensive writing in a script that looks to be Hai. From this, you presume that the badge is some sort of diplomatic ID.`
+			`	"Please deliver this message to the Republic. I trust that they will disseminate it to your other governments. This badge should make it easier if they give you trouble."`
 			choice
 				`	"Consider it done."`
 					accept
@@ -716,21 +716,21 @@ mission "Hai Reveal: Meet the Team: Sayari"
 				accept
 	on stopover
 		conversation
-			`On approach to the spaceport on Earth, you request to speak to a diplomatic official. Given your renown from the Pug war, you're promise you a "speedy two to three business days" wait. But after showing the diplomatic ID that Sayari gave you, that quickly shrinks to "two hours."`
+			`On approach to the spaceport on Earth, you request to speak to a diplomatic official. Given your renown from the Pug war, they promise you a "speedy two to three business days" wait. But after showing the diplomatic ID that Sayari gave you, that quickly shrinks to "two hours."`
 			`	You meet with Jamal Rahman, the Chief Minister of Foreign Affairs and Xilin's boss. "I take it you've involved yourself with this 'Hai' situation," he says. You nod. "Well I apologize, but I do not have much time for small talk. What is it you need me for?" You hand him the encrypted message that Sayari gave you and explain where it's from. He thanks you, and leaves with the message.`
-			`	Some hours later, Rahman returns with the an encrypted data chip. "This is our response. Safe travels, Captain."`
+			`	Some hours later, Rahman returns with an encrypted data chip. "This is our response. Safe travels, Captain."`
 	on visit
 		dialog phrase "generic stopover on visit"
 	on complete
 		event "hr: exploration period" 45
 		conversation
-			`You meet Sayari at the secure port and hand her the response from the Republic. "Thank you, Captain <last>," she says. "Not only for this task, but for the other tasks you have completed for us. You've helped us gather much needed information to determine the path forward."`
+			`You meet Sayari at the secure port and hand her the response from the Republic. "Thank you, Captain <last>," she says. "Not only for this task, but for the other tasks you have completed for us. You've helped with many tasks which might otherwise have been sources of tension without you."`
 			choice
 				`	"Don't mention it. I don't do it for the praise."`
 				`	"Is there anything else you need me for?"`
 					goto more
 			`	Sayari smiles. "How humble. Although I suppose you're wondering what do to next.`
 			label more
-			`	"For now, there are no immediate tasks for you. The others will begin developing a plan to execute on, and we will call upon you once you are needed. I suggest you explore our systems while you wait, and gain a better understanding of the Hai people. It will do us well for you to have this knowledge."`
+			`	"For now, there are no immediate tasks for you. The others will continue working on the plan to manage the situation, and we will call upon you once you are needed. I suggest you explore our systems while you wait and gain a better understanding of the Hai people. It will do us well for you to have this knowledge."`
 
 event "hr: exploration period"
