@@ -30,6 +30,7 @@ mission "War Reactions: Asteroid Miners"
 		attributes "deep" "paradise" "north"
 		attributes "spaceport"
 	to offer
+		has "main plot completed date"
 		"days since start" - "main plot completed date" > 30
 		random < 30
 	on offer
@@ -99,6 +100,7 @@ mission "War Reactions: Navy and Free Worlds Captains"
 		attributes "spaceport"
 		near "Sirius" 5 100
 	to offer
+		has "main plot completed date"
 		"days since start" - "main plot completed date" > 30
 		random < 30
 	on offer
@@ -182,6 +184,7 @@ mission "War Reactions: Syndicate Orphan"
 		attributes "spaceport"
 		not attributes "station"
 	to offer
+		has "main plot completed date"
 		"days since start" - "main plot completed date" > 20
 		random < 30
 	on offer

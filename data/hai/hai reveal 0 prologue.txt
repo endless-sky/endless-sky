@@ -15,6 +15,7 @@ mission "Hai Reveal: Secret Leaks"
 	landing
 	invisible
 	to offer
+		has "main plot completed date"
 		"days since start" - "main plot completed date" > 230
 	on offer
 		set "hr: secret leaks"
@@ -131,6 +132,7 @@ mission "Hai Reveal: Secret Leaks: Hai"
 		government "Hai"
 		not attributes "uninhabited" "retirement"
 	to offer
+		has "main plot completed date"
 		"days since start" - "main plot completed date" > 260
 		has "First Contact: Hai: offered"
 		not "event: hr: friend settled in"
