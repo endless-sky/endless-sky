@@ -34,7 +34,7 @@ namespace {
 	ostream &operator<< (ostream &o, const Wrapped &num)
 	{
 		const int64_t K = 1000;
-		static const vector<pair<string, int64_t>> big = {
+		static const vector<pair<const char *, int64_t>> big = {
 			{ "quintillion", K * K * K * K * K * K },
 			{ "quadrillion", K * K * K * K * K },
 			{ "trillion", K * K * K * K },
@@ -42,13 +42,13 @@ namespace {
 			{ "million", K * K },
 			{ "thousand", K }
 		};
-		static const vector<string> onesNames = {
+		static const vector<const char *> onesNames = {
 			"zero ", "one ", "two ", "three ", "four ", "five ",
 			"six ", "seven ", "eight ", "nine ", "ten ", "eleven ",
 			"twelve ", "thirteen ", "fourteen ", "fifteen ",
 			"sixteen ", "seventeen ", "eighteen ", "nineteen "
 		};
-		static const vector<string> tensNames = {
+		static const vector<const char *> tensNames = {
 			"error", "error", "twenty", "thirty", "forty",
 			"fifty", "sixty", "seventy", "eighty", "ninety"
 		};
@@ -67,8 +67,7 @@ namespace {
 					o << above << nameValue.first;
 					if(!remaining.value)
 						return o;
-					else
-						o << ' ';
+					o << ' ';
 				}
 
 		if(remaining.value >= 100)
