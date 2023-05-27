@@ -334,13 +334,12 @@ mission "Efreti: Distress Call 2"
 			`	When you make it to the spaceport, you find a message from the Quarg. "Bold human! With profuse thanks we offer you for helping the stranded Korath. The Korath ever mourn the loss of their worlds, and, from time to time, brave their dangers. They salvage what they can among the ruins, and seek out worlds where they may one day live again. For the young, this gives them hope, but sometimes they are caught, and the Efreti are reminded why they live crushed together around these few stars."`
 			`	Your communicator notifies you of a payment of <payment>.`
 	npc
-		system "Seketra"
-		fleet "Small Kor Mereti"
 		government "Kor Mereti"
+		personality staying
+		system "Seketra"
 		to spawn
 			random < 30
-		personality
-			staying
+		fleet "Small Kor Mereti"
 
 
 mission "Efreti: Distress Call 3"
@@ -485,22 +484,23 @@ mission "Efreti: Distress Call 6"
 
 
 mission "Efreti: Distress Call 6 Ships"
-	invisible
 	landing
+	invisible
 	source "Greenwater"
 	to offer
 		has "Efreti: Distress Call 5: done"
+	to accept
+		has "Efreti: Distress Call 6: active"
 	to fail
 		or
 			has "Efreti: Distress Call 7: failed"
 			has "Efreti: Distress Call 7: aborted"
 			has "Efreti: Distress Call 7: done"
 	npc kill
+		government "Kor Mereti"
+		personality staying
 		system "Seketra"
 		fleet "Small Kor Mereti" 2
-		government "Kor Mereti"
-		personality
-			staying
 
 
 mission "Efreti: Distress Call 7"
