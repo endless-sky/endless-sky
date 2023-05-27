@@ -91,7 +91,7 @@ mission "Gift Store Interaction"
 outfit "Mug"
 	category "Hand to Hand"
 	cost 50
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/mug"
 	"capture attack" .1
 	"unplunderable" 1
 	description "You can throw it in a pinch, you guess."
