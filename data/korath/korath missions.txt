@@ -266,7 +266,7 @@ mission "Efreti: Distress Call 1"
 	minor
 	landing
 	name "Distress call from the <EDC-ship>"
-	description "The Quarg have asked you investigate a distress call from the Efreti ship <EDC-ship> which has crashed on <destination> with <bunks> survivors."
+	description "The Quarg have requested you respond to a distress call from the Efreti ship <EDC-ship>, which has crashed on <destination>. There are 40 survivors to rescue."
 	source "Karek Fornati"
 	destination "Seleptra Nak"
 	blocked "A Quarg ship broadcasts that they need a ship with at least <bunks> bunks for an emergency evacuation."
@@ -349,7 +349,6 @@ mission "Efreti: Distress Call 3"
 	source "Laki Nemparu"
 	destination "Seleptra Nak"
 	cargo "Efreti coffins" 13
-	landing
 
 	to offer
 		has "Efreti: Distress Call 2: done"
@@ -379,13 +378,12 @@ mission "Efreti: Distress Call 3"
 			`	The leader turns and speaks to you directly. His eyes never waver from yours even as you wait for the translation. "Efreti crews have families, as children learn by working with parents. For some families, three generations were lost. We will not try to salvage the ship, for none can bear to fly it. We offer you title to salvage the <EDC-ship> and carry our grief far from here."`
 				accept
 	npc
-		system "Seketra"
-		fleet "Small Kor Mereti"
 		government "Kor Mereti"
+		personality staying
+		system "Seketra"
 		to spawn
 			random < 30
-		personality
-			staying
+		fleet "Small Kor Mereti"
 
 mission "Efreti: Distress Call 4"
 	landing
@@ -430,13 +428,12 @@ mission "Efreti: Distress Call 4"
 			`	The crowd has been somber, but when the first coffin leaves your ship, they erupt in a cacophony of barking sounds. Some Korath try to rush forward but are held back by others, presumably their family.`
 			`	Rather than intrude on their grief, you return to your ship, slotting the data chip you received into your systems. Unfortunately, the information is in an alien language, so you set it aside and work on a plan to salvage the <EDC-ship>. Gathering some notes on the ship and the number of crew they were carrying, it's clear that you will need to carry at least 66 additional crew that you can communicate with to be able to salvage it. The closest system that comes to mind with many human speakers is on Greenwater, in Hai space.`
 	npc
-		system "Seketra"
-		fleet "Small Kor Mereti"
 		government "Kor Mereti"
+		personality staying
+		system "Seketra"
 		to spawn
 			random < 30
-		personality
-			staying
+		fleet "Small Kor Mereti"
 
 mission "Efreti: Distress Call 5"
 	name "<EDC-ship> salvage team"
@@ -445,6 +442,7 @@ mission "Efreti: Distress Call 5"
 	destination "Greenwater"
 	landing
 	passengers 66
+	blocked `You need <bunks> available to carry the salvage team.`
 	
 	to offer
 		has "Efreti: Distress Call 4: done"
@@ -452,7 +450,7 @@ mission "Efreti: Distress Call 5"
 	on complete
 		conversation
 			`Many stories tell of Hai who like change and excitement, but their enthusiasm seems to have died. Thoughts of the species that invaded them still inspire fear. No Hai have the courage to salvage a ship that has been caught in the crossfire of the Mereti and Sestor war.`
-			`	Fortunately, there are plenty of Humans who are willing to risk it for the right pay, even given the comfortable life they have in Hai space. You show the new crew members to their bunks and prepare to salvage the <EDC-ship>.`
+			`	Fortunately, there are plenty of humans who are willing to risk it for the right pay, even given the comfortable life they have in Hai space. You show the new crew members to their bunks and prepare to salvage the <EDC-ship>.`
 
 ship "Charm-Shallop" "Charm-Shallop (Distressed)"
 	outfits
@@ -467,18 +465,18 @@ ship "Charm-Shallop" "Charm-Shallop (Distressed)"
 		"Thermal Repeater Rifle" 19
 		"Thruster (Lunar Class)"
 		"Warder Anti-Missile"
-	turret 0 -35 "Warder Anti-Missile"
-	turret 0 97
 	gun 0 -118 "Digger Mining Beam"
 	gun -16.5 -114.5 "Digger Mining Beam"
 	gun 16.5 -114.5
+	turret 0 -35 "Warder Anti-Missile"
+	turret 0 97
 
 mission "Efreti: Distress Call 6"
+	landing
 	name "Salvage the <EDC-ship>"
 	description "Salvage the <EDC-ship> and return it to <planet> to claim rights to it."
 	source "Greenwater"
 	destination "Seleptra Nak"
-	landing
 	passengers 66
 	blocked "You need to be able to carry <bunks> additional crew to salvage the ship. Return here when you have sufficient crew capacity."
 
@@ -511,7 +509,6 @@ mission "Efreti: Distress Call 7"
 	description "Salvage the <EDC-ship> and return it to <planet> to claim rights to it."
 	source "Seleptra Nak"
 	destination "Karek Fornati"
-	landing
 	to offer
 		has "Efreti: Distress Call 6: done"
 	on offer
@@ -557,15 +554,15 @@ mission "Efreti: Distress Call 7"
 			label end
 	on visit
 		dialog "You arrive, but you notice the <EDC-ship> is absent. You'll have to bring it here to finish the salvage mission."
-	npc save accompany
+	npc accompany save
 		# Ship name should match the <EDC-ship> substitution above.
 		government "Kor Efret"
 		personality timid escort
 		ship "Charm-Shallop (Distressed)" "Esketari"
 
 mission "Efreti: Distress Call 8"
-	invisible
 	landing
+	invisible
 	source
 		attributes quarg
 	to offer
