@@ -340,6 +340,7 @@ mission "Efreti: Distress Call 2"
 
 
 mission "Efreti: Distress Call 3"
+	landing
 	name "Recover the fallen crew of the <EDC-ship>"
 	description "Recover the bodies of the dead <EDC-ship> crew on <destination> and return them to <origin>."
 	source "Laki Nemparu"
