@@ -673,8 +673,8 @@ mission "House Bebliss 4-FW"
 			label resistance
 			choice
 				`	(Explain everything, including the Lunarium.)`
-				`	(Don't mention the Lunarium.)`
 					goto tell
+				`	(Don't mention the Lunarium.)`
 			`	Everyone quietly listens as you explain to them all you've learned about the Coalition. You bring up a map of the Free Worlds and show them the rough area of Coalition space and where it borders Free Worlds territory. As you gesture towards the map, you tell them of the three species, about the Heliarchs and how they've taken the three Quarg rings. Eventually you get to the Arach Houses, explaining that House Bebliss are the ones who wish to go study the Pug artifacts with Freya.`
 			`	When you're done, Alondo is the first to speak up, "So far, we seem to be getting along better with these aliens than we did with the Pug. It's good that they're trying to be diplomatic, though I'm not sure it'd be a good idea for the general public to know of them, given past experiences. At least for right now."`
 			`	"Do they have jump drives?" Katya asks. You nod, but say that they can't make their own. "Well, as long as what stockpile they have isn't too large, we shouldn't be in too much trouble."`
