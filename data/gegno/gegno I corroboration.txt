@@ -57,7 +57,7 @@ mission "Foreign Spectator I"
 		never
 	on enter "Eogho"
 		fail
-		event "gegno: suspicions" 7 14
+		event "gegno: suspicions" 5 9
 	npc
 		on provoke
 			set "interrupted arena"

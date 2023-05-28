@@ -48,9 +48,11 @@ event "gegno: unified defense"
 		add fleet "Vi Warfleet" 600
 		add fleet "Quarg Large" 600
 
+
 event "gegno: suspicions"
 	government "Gegno"
-		add "friendly hail" "gegno untranslated"
+		"send untranslated hails"
+		"friendly hail" "gegno untranslated"
 
 
 # Will be defined in the future.
