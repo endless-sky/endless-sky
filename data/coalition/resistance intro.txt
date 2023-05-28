@@ -82,7 +82,7 @@ mission "Resistance: Smuggling: Charity 1"
 				decline
 			label metchiree
 			`You find the local charity workers, and they begin unloading the supplies from your ship. When they're about done, you receive a transmission from Chiree.`
-			`	"A simple job it was, Captain, but important nonetheless. More work for you, we'll have, so ask that you keep watch for more members in Kimek space, I do." Once the workers are done, they hand you <payment>, and move the crates to some building where Kimek are lining up to receive the supplies, while other workers continue getting the cargo from arriving ships.`
+			`	"A simple job it was, Captain, but important nonetheless. More work for you, we'll have, so ask that you keep watch for more members in Kimek space, I do." Once the workers are done, they hand you <payment>, and move the crates to some building where Kimek are lining up to receive the supplies. Other workers continue to unload more cargo from arriving ships.`
 
 mission "Resistance: Smuggling: Charity 2"
 	name "Charity Delivery"
@@ -190,7 +190,7 @@ mission "Resistance: Smuggling: Grenades"
 			`You drop off the crates full of charity goods, and the spaceport workers start getting them up on vehicles to transport them to the poor. One of the workers transfers 261,000 credits to your account, thanking you for the help.`
 			branch metchiree
 				has "Resistance: Questions: done"
-			`	As they move the last few crates, you hear a rapid tapping approaching from behind, and when you turn to investigate a Kimek tackles you. Some more join in, covering your head with some dark sack, and start shoving you around once they restrain you. You call out for help, but nobody comes. The Kimek keep pushing and tugging at you as they bring you around the city. After many minutes, you hear some doors close behind you, and your captors force you into some cramped room or compartment. You try to stand up straight, but hit your head against the ceiling. It soon becomes clear you're in an elevator, moving down, and when it stops, you're walked around for a while longer. Finally, the Kimek seat you and remove the sack from your head.`
+			`	As they move the last few crates, you hear a rapid tapping approaching from behind, and when you turn to investigate a Kimek tackles you. Some more join in, covering your head with some dark sack, and start shoving you around once they restrain you. You call out for help, but nobody comes. The Kimek keep pushing and tugging at you as they bring you around the city. After many minutes, you hear some doors close behind you, and your captors force you into some cramped room or compartment. You try to stand up straight, but hit your head against the ceiling. It soon becomes clear you're in a descending elevator, and when it stops, you're walked around for a while longer. Finally, the Kimek seat you and remove the sack from your head.`
 			`	Though you're underground, the insides remind you of an office building or call center; several Kimek are working in cubicles, most examining computer screens while others speak into communicators. You look back to where you reckon you came from, seeing the entrance to a short elevator by the end of a hallway. Coming around the corner, a Kimek you recognize approaches to sit opposite to you - the Kimek who first contacted you about the charity missions. A group of the blue uniformed Kimek follow after her as they bring a crate: one of the crates you transported here. "Forgive us for the discomfort you must, Captain," she says, as the workers open up the crate, revealing several Heliarch guns stuffed inside. "Wished to speak away from prying eyes, I did. Rest easy, you may, harm you, we will not."`
 			choice
 				`	"What do you want from me?"`
@@ -222,10 +222,10 @@ mission "Resistance: Smuggling: Grenades"
 					goto decline
 			label accept
 			`	Her mandibles click together for a few seconds. "100 boxes. Brought to <planet>, they must be. The exact coordinates, you will receive, once landing there, you are." She pauses as the other Kimek put her prosthetics back on. "Chiree, my name is. Hoping, I am, that help us a great deal you will, Captain <last>."`
-			`	She heads back into the strange grouping of cubicles, and the Kimek behind you have you get up, putting the sack back on your head. After another ride in the unpleasantly tight elevator, and some more pushing and tugging at your body, they have you back at your ship. The sack is removed from your head and the Kimek walk off as if nothing happened. Nobody around the hangar seems to have noticed anything unusual about it.`
+			`	She heads back into the strange grouping of cubicles, and the Kimek behind you have you get up, putting the sack back on your head. After another ride in the unpleasantly tight elevator, and some more pushing and tugging at your body, they have you back at your ship. The sack is removed from your head and the Kimek walk off as if nothing happened. Nobody around the hangar seems to have noticed anything unusual.`
 				accept
 			label decline
-			`	She breathes deeply for a moment, then asks the other Kimek to put her prosthetics back on. "Very well," she says, before walking back into the strange grouping of cubicles. The Kimek behind you have you get up, putting the sack back on your head. After another ride in the unpleasantly tight elevator, and some more pushing and tugging at your body, they have you back at your ship. The sack is removed from your head and the Kimek walk off as if nothing happened. Nobody around the hangar seems to have noticed anything unusual about it.`
+			`	She breathes deeply for a moment, then asks the other Kimek to put her prosthetics back on. "Very well," she says, before walking back into the strange grouping of cubicles. The Kimek behind you have you get up, putting the sack back on your head. After another ride in the unpleasantly tight elevator, and some more pushing and tugging at your body, they have you back at your ship. The sack is removed from your head and the Kimek walk off as if nothing happened. Nobody around the hangar seems to have noticed anything unusual.`
 				decline
 			label metchiree
 			`	While they're removing the crates from your hold, a familiar Kimek approaches you: it's Chiree, the local Lunarium leader. "Speak in your ship, may we, Captain?" You bring her inside <ship>, and she continues. "Since one of us, you now are, to help with acquiring some equipment, you I'd like to ask."`
@@ -246,7 +246,7 @@ mission "Resistance: Smuggling: Grenades"
 		outfit "Fragmentation Grenades" -100
 		payment 3400000
 		conversation
-			`As you approach the standard docking bay, a message pops up on your monitor telling you to go to the edge of the city. You follow the instructions and find yourself in the middle of several dozen warehouses. Another message arrives and asks that you unload the grenades and bring them to a specified warehouse. As this information comes in, you notice that a few Arachi have arrived just outside your ship with some cargo loaders, seemingly waiting for you to begin moving the smuggled weapons. You open up your hatch, and help them get the grenade crates out of your ship as fast as you can, worried that someone might see you, bringing them to the designated warehouse. The door is open, with a few more Arachi waiting inside by a staircase. They say nothing to you and simply take the grenade crates, taking them off of the cargo loader and bringing them down the stairs, crate by crate.`
+			`As you approach the standard docking bay, a message pops up on your monitor telling you to go to the edge of the city. You follow the instructions and find yourself in the middle of several dozen warehouses. Another message arrives and asks that you unload the grenades and bring them to a specified warehouse. As this information comes in, you notice that a few Arachi have arrived just outside your ship with some cargo loaders, seemingly waiting for you to begin moving the smuggled weapons. You open up your hatch, and help them get the grenade crates out of your ship and into the designated warehouse as fast as you can, worried that someone might see you. The door is open, with a few more Arachi waiting inside by a staircase. They say nothing to you and simply take the grenade crates, taking them off of the cargo loader and bringing them down the stairs, crate by crate.`
 			`	When you're done with the last one, one of the Arachi hands you several credit chips, worth <payment> in total. "Contact you for more deliveries of this kind, we will," they say as they head down with the final grenade box. You head back to your ship, and leave for the usual hangars.`
 
 mission "Resistance: Smuggling: AM"
@@ -266,7 +266,7 @@ mission "Resistance: Smuggling: AM"
 		has "Heliarch Investigation 2: active"
 	on offer
 		conversation
-			`Shortly after you land, an Arach approaches your ship, waiting for you to come out. When you do, she pulls out a Heliarch badge. "Forgive me for this intrusion, you must, Captain <last>, but orders to inspect your ship, I have." She heads inside your ship before you can say anything, and rushes to the cockpit, asking you to close the door after you get there too. Her eyes trail the interior for a while, then she approaches you. "Helped the Lunarium with supplies before, you have," she whispers. "In need of more such services, we are. Means to defend ourselves against the Heliarch missiles, we require, so sent to ask you for three of the largest human anti-missile turrets, I was."`
+			`Shortly after you land, an Arach approaches your ship, waiting for you to come out. When you do, she pulls out a Heliarch badge. "Forgive me for this intrusion, you must, Captain <last>, but orders to inspect your ship, I have." She heads inside your ship and rushes to the cockpit before you can say anything, and asks you to close the door once you get there too. Her eyes trail the interior for a while, then she approaches you. "Helped the Lunarium with supplies before, you have," she whispers. "In need of more such services, we are. Means to defend ourselves against the Heliarch missiles, we require, so sent to ask you for three of the largest human anti-missile turrets, I was."`
 			choice
 				`	"Where should I take them to?"`
 				`	"I'm not sure human anti-missiles will be very effective against your missiles."`
@@ -328,7 +328,7 @@ mission "Resistance: Smuggling: Torpedoes"
 		outfit "Typhoon Torpedo" -60
 		payment 1852000
 		conversation
-			`Once again, your monitor beeps, and some coordinates appear on the screen. You follow them, arriving to a snowfield, close to the base of a mountain. Donning your heavy winter clothing, you open the hatch to find several Saryds waiting for you, ready to take the launchers and the ammunition out of your ship. "A better fighting chance, these should give us," one of them tells you as she hands you <payment>, and others work on getting the launchers and their ammunition out of your ship. "Not as mighty as their own Finishers, these are, but still hurt their hulls good, they should."`
+			`Once again, your monitor beeps, and some coordinates appear on the screen. You follow them, arriving to a snowfield close to the base of a mountain. Donning your heavy winter clothing, you open the hatch to find several Saryds waiting for you, ready to take the launchers and the ammunition out of your ship. "A better fighting chance, these should give us," one of them tells you as she hands you <payment>, and others work on getting the launchers and their ammunition out of your ship. "Not as mighty as their own Finishers, these are, but still hurt their hulls good, they should."`
 			choice
 				`	"Are you sure they won't find you here?"`
 					goto find
@@ -374,7 +374,7 @@ mission "Resistance: Smuggling: Heat"
 			`	The beeping stops and your monitor screen goes back to normal.`
 				accept
 	on accept
-		log "Agreed to bring the Lunarium some Plasma Turrets and Flamethrowers They seem to believe heat damage will be effective against Heliarch ships."
+		log "Agreed to bring the Lunarium some Plasma Turrets and Flamethrowers. They seem to believe heat damage will be effective against Heliarch ships."
 	on visit
 		dialog `You've arrived on <planet>, but the ship carrying the plasma turret hasn't arrived in this system yet. Better depart and wait for it.`
 	on complete
@@ -547,7 +547,7 @@ mission "House Bebliss 2-FW"
 			label resistance
 			`	"To be trusted, you are. Assured us of that, Chiree has," the one Arach still by the blueprints chimes in. "The Lunarium's guardian angels, we are," she boasts. "Safeguard them against the Heliarchs, our meddling in the communication network does. To better serve that purpose, look further into this field, we must."`
 			label choice
-			`	Still gently swirling his drink in between periodic sips, the other Arach beside you asks, "Knowledge, we have acquired, of certain conflict in human space. Invaded by aliens, were you? Aliens with such technology?"`
+			`	Still gently swirling his drink in between periodic sips, the other Arach beside you asks, "Knowledge, we have acquired, of a certain conflict in human space. Invaded by aliens, were you? Aliens with such technology?"`
 			choice
 				`	"Yes, they're called Pug."`
 					goto pug
@@ -585,7 +585,7 @@ mission "House Bebliss 2-FW"
 				`	(Ask for one of the Arach drinks.)`
 					goto arach
 				`	(Just wait for your hosts to come back.)`
-			`	You politely decline the drinks, and the maid gives you a brief nod, silently going back to her post to stand still like the other. You go over to the table to look at the blueprints, seeing many charts drawn and what you guess are calculations on one corner, but you can't understand what's written. You sit as best as you can on what you guess is an Arach equivalent to an armchair, looking around the room for a few minutes.`
+			`	You politely decline the drinks, and the maid gives you a brief nod, silently going back to her post to stand still like the other. You go over to the table to look at the blueprints, seeing many charts drawn and symbols resembling calculations on one corner, but you can't understand what's written. You sit as best as you can on what you guess is an Arach equivalent to an armchair, looking around the room for a few minutes.`
 				goto accept
 			label human
 			`	Though House Bebliss seemed surprised with your talk about the Pug, they seem to know human drinks all too well. The coffee, while not too strong, still holds that distinct, slightly bitter taste. The tea, which appears to be chamomile, is as soothing as you remember it being the last time you had the drink. The variety of juices available all have a natural, sweet taste to them, save for the peach juice, which you avoided given that its consistency seemed to be closer to pudding than juice and oozed over the lip as you tilted the cup.`
@@ -653,7 +653,7 @@ mission "House Bebliss 4-FW"
 	destination "Factory of Eblumab"
 	on offer
 		conversation
-			`JJ is waiting for you when you land, wearing a uniform with various medals and honors on his chest. "It was nice to hear from Freya that you'd be stopping to pay us a visit. Well, until she started going on about how you had some 'critical' information, that is," he says as he shakes your hand, sighing gently. "So much for taking a break from managing fleets,"`
+			`JJ is waiting for you when you land, wearing a uniform with various medals and honors on his chest. "It was nice to hear from Freya that you'd be stopping to pay us a visit. Well, until she started going on about how you had some 'critical' information, that is," he says as he shakes your hand, sighing gently. "So much for taking a break from managing fleets."`
 			choice
 				`	"Sorry about that. It's nice to see you too, JJ. Are the others here yet?"`
 					goto others
@@ -751,7 +751,7 @@ mission "House Bebliss 6-FW"
 	destination "Pugglemug"
 	on offer
 		conversation
-			`One of the employees of House Bebliss spots you immediately as you enter the spaceport and guides you to what they claim is one of the top restaurants here. The members of the House are waiting inside, having already ordered their meals when you arrive, and being the only patrons within the establishment. They offer to buy you anything you want from the menu. Seeing the selection of "exotic dishes" on the other tables, though, you decide to decline their offer.`
+			`One of the employees of House Bebliss spots you immediately as you enter the spaceport and guides you to what they claim is one of the top restaurants here. The members of the House are waiting inside,  the only patrons within the establishment. Having already ordered their meals when you arrive, they offer to buy you anything you want from the menu. Seeing the selection of "exotic dishes" on the other tables, though, you decide to decline their offer.`
 			`	"Ready for takeoff, our ship is," one of them says, preparing some napkins as the waiters bring their orders to the table. "To the world where your friend is, bring us, you must."`
 			`	Another one bites into something that looks like a goat's leg, albeit much bonier, before saying, "Prepared for concealing our presence, we and the crew are. Worry about that, you need not."`
 			`	"Extra fuel, the ship has. Enough to reach the planet, it is," the last of them tells you. You stay at the restaurant for a surprisingly short while, as the Arachi devour the full-course meals in only a few minutes. You leave together, accompanying them to the hangars, where you see their Spindle landing next to the <ship>. They board it, saying they will follow your ship once you depart, and that you may take off at your earliest convenience.`
@@ -768,7 +768,7 @@ mission "House Bebliss 6-FW"
 		conversation
 			`As both your ships come in for a landing, you contact Freya and tell her the Arachi are with you this time. She tells you to land near the Free Worlds' warehouses, where you last met her, saying she'll be waiting there to greet them.`
 			`	When you arrive, you wait outside your ship while House Bebliss' ship keeps its hatch closed. It seems they intend to remain in there for the duration of their stay, most likely in fear that their appearance would cause a stir amongst other humans.`
-			`	A few minutes later Freya arrives, and you two approach Spindle's hatch. Once House Bebliss is satisfied with making sure no curious bystanders are nearby, the hatch opens, and you two go into the ship. Though you've grown used to Arach ships by now, Freya's eyes dart around the interiors as you move within the ship. You imagine she's holding in the desire to ask you some technical questions about the model. When you arrive at the cockpit, you're greeted by the members of House Bebliss. Despite you having told her about them previously, Freya is understandably taken aback for a second or two, upon first seeing the Arachi, but soon shakes it off, confidently walking up to greet them. "Hello, my name is Freya Winters. I've heard you're interested in the Pug artifacts we found on this world." Despite the initial shock in meeting them, for someone speaking with giant spiders for the first time she handles it surprisingly well.`
+			`	A few minutes later Freya arrives, and you two approach the Spindle's hatch. Once House Bebliss is satisfied with making sure no curious bystanders are nearby, the hatch opens, and you two go into the ship. Though you've grown used to Arach ships by now, Freya's eyes dart around the interiors as you move within the ship. You imagine she's holding in the desire to ask you some technical questions about the model. When you arrive at the cockpit, you're greeted by the members of House Bebliss. Despite you having told her about them previously, Freya is understandably taken aback for a second or two upon first seeing the Arachi, but soon shakes it off, confidently walking up to greet them. "Hello, my name is Freya Winters. I've heard you're interested in the Pug artifacts we found on this world." Despite the initial shock in meeting them, for someone speaking with giant spiders for the first time she handles it surprisingly well.`
 			`	"Indeed. The trade of our great House Bebliss for thousands of years, the study of hyperlanes has been," one of the Arachi says. "When Captain <last> told us of your achievements, know that need to come look into your work ourselves, we did."`
 			`	She quickly gets used to the translation box's odd speech quirk, as she and the members of House Bebliss discuss how to go about helping each other in researching the artifacts here. One of the crewmembers approaches you as they talk, and hands you <payment>, "as thanks for safely escorting us here," they whisper.`
 			`	Freya's talk with them goes on for almost an hour; they eventually settle on having some of the artifacts moved to their ship's cargo hold, so that some research can happen there without the risk of being seen. House Bebliss' representatives thank her for the reception, and you follow her back outside.`
@@ -835,7 +835,7 @@ mission "Resistance: Evacuation 1"
 		has "Heliarch Investigation 2: active"
 	on offer
 		conversation
-			`A few Kimek flag you down by the spaceport entrance. "Greetings, Captain. Work for a tourism company, employing dozens of ships across the Coalition we do. Interested in employing your services, our captain is. You see, run into some trouble with the deadline, one of our ships has, and pay you handsomely for aiding the company, she would. Waiting inside that Spire, she is," they point to a ship parked not too far from your own.`
+			`A few Kimek flag you down by the spaceport entrance. "Greetings, Captain. Work for a tourism company employing dozens of ships across the Coalition we do. Interested in employing your services, our captain is. You see, run into some trouble with the deadline, one of our ships has, and pay you handsomely for aiding the company, she would. Waiting inside that Spire, she is," they say, as they point to a ship parked not too far from your own.`
 			choice
 				`	"Alright, I'll see if I can help."`
 					goto alright
@@ -961,7 +961,7 @@ mission "Resistance: Evacuation 3"
 				`	"I'm just not interested in working with you anymore, no."`
 					decline
 			label talk
-			`	Once again you're brought to the Spire, only the Saryds come in with you, unlike the Kimek from last time. You're all escorted through the corridors, and are all searched by the devices, before you're finally brought to Elirom. He greets you, thanking you for coming, "Some more problems, we've had, so in need of a contractor's help once more, the company is.`
+			`	Once again you're brought to the Spire, but only the Saryds come in with you, unlike the Kimek from last time. You're all escorted through the corridors, and are all searched by the devices, before you're finally brought to Elirom. He greets you, thanking you for coming, "Some more problems, we've had, so in need of a contractor's help once more, the company is.`
 			`	"Contracted us for transport to <planet>, some Arach ranchers did. Attempting to start a longcow business on the deserts of Shifting Sand, they are, and hoping for a loan from a prestigious bank on <planet>, to start off a new expansion to the ranch they were. <bunks> they are, in total, both ranchers and their employees. Only..." He pauses for a moment, as if considering something. "Difficult, the Arachi can be at times. Once discovered they had, that originally from a rival Arach House, the captain of their original transport was, refuse to return with him, they did. Given us until <date> to find a new transport, before they cancel out on us, they have."`
 			`	He says you'll receive 748,300 credits once the ranchers are back on Shifting Sand, and urges you to hurry to <destination> before <date>, so that the Arachi don't cancel the transport. He wishes you good luck, and you're brought back out of the ship. The Saryds that went in with you stay inside, and the Spire departs not long after you've left.`
 				accept
@@ -1005,7 +1005,7 @@ mission "Resistance: Evacuation 4"
 			`	"What?" She looks at you with puzzled eyes, until another Arach lightly whacks one of her legs. "Ah, yes, the loan. Well enough. Agreed to grant us the amount needed, they have." She looks back at the other Arach, who stares at her for a moment. "Well, very tired we all are, Captain, so head to my bunk, I will."`
 				goto accept
 			label resistance
-			`	"Thought, I had, that left behind we would be," one Arach tells you after you've closed the hatch. "Hurry to <planet>, you should. Risk an 'inspection' by the Heliarchs, we cannot."`
+			`	"Thought I had, that left behind we would be," one Arach tells you after you've closed the hatch. "Hurry to <planet>, you should. Risk an 'inspection' by the Heliarchs, we cannot."`
 			choice
 				`	"Got it, we'll leave soon."`
 					goto accept
@@ -1318,7 +1318,7 @@ mission "Resistance: Propaganda 3"
 		has "Heliarch Investigation 2: active"
 	on offer
 		conversation
-			`The spaceport on <origin> shows fewer of the banners than you expected, with only a few scattered about the walls. Focusing on one Arach, you see them leave their work building and gasp at the first banner they see, taking it down and throwing it in a bin. They seem stunned for a second, and look around in a hurry, right before scurrying off. Another Arach has a similar reaction to a different banner, but after pondering for a bit, leaves it alone and walks away.`
+			`The spaceport on <origin> shows fewer of the banners than you expected, with only a few scattered about the walls. One Arach leaves their work building and gasps at the first banner they see, taking it down and throwing it in a bin. They seem stunned for a second, and look around in a hurry, right before scurrying off. Another Arach has a similar reaction to a different banner, but after pondering for a bit, leaves it alone and walks away.`
 			`	When you're done gauging the local reception to Tummug's banners, you go look for him. Eventually you arrive at a workshop, where he's talking with four other Arachi as they work on some small robots not too different from those employed in Arach hull repair systems. The only difference appears to be "wings" that the Arachi are testing by controlling them remotely. "Captain <last>!" Tummug exclaims when he notices you. "Apologize, I must, for not waiting for you in the spaceport. Caught up in testing the prototypes, we were."`
 			branch resistance
 				has "Resistance: Questions: done"
@@ -1333,7 +1333,7 @@ mission "Resistance: Propaganda 3"
 			`	He pulls back the flyer, looking closely at it. "It should be... 'Hottest Summer' and 'an attraction for all people.' A Kimek movie, it is. Not too used to reading Kimek, I am, but designed by some of our Kimek coworkers, these were, so no issues here, there should be." He looks back at the robots. "Only keep the skywriting correct as well, we need."`
 				goto accept
 			label resistance
-			`	He signals to one of the Arachi, and they walk past you to close the doors and windows to the workshop. "Headed for <destination> next, we are. Too populous a world it is, for us to cover all ground with posters or banners. Use the robots, we will." He asks one of the Arachi for their controller and brings the robot closer to you. He presses a button, and it prompts several compartments around the drone to open up, releasing a reddish smoke. "Leave our messages in skywriting, we will," he says as he hands the controller back to the Arachi, and approaches you, showing you a flyer small enough to fit in your palm, with some short messages in the Kimek language. "Use them to drop these around the main spaceport city, we also will."`
+			`	He signals to one of the Arachi, and they walk past you to close the doors and windows to the workshop. "Headed for <destination> next, we are. Too populous a world it is, for us to cover all ground with posters or banners. Use the robots, we will." He asks one of the Arachi for their controller and brings the robot closer to you. He presses a button, and it prompts several compartments around the drone to open up, releasing a reddish smoke. "Leave our messages in skywriting, we will," he says as he hands the controller back to the Arachi. He approaches you, showing you a flyer small enough to fit in your palm, with some short messages in the Kimek language. "Use them to drop these around the main spaceport city, we also will."`
 			choice
 				`	"Isn't that too risky? Wouldn't the Heliarchs find you out with ease?"`
 					goto risky
@@ -1358,8 +1358,8 @@ mission "Resistance: Propaganda 3"
 			label resistance
 			`	"Now <last>, safe here we should be, but even with fewer Heliarch ships now, stay docked here you should not. If traced to here, the signal controlling the drones is, ready to abandon the facility and flee, everyone is," he explains. "Meet you in the spaceport later, I will. Some more cargo space and bunks, we'll need." You head to your ship, and fly it back to the city.`
 			label end
-			`	Almost half an hour goes by with you watching the skies of <planet> before the first signs of the drones show: they're too small for you to see from where you are, but you make out the piles of red smoke swiftly growing into Kimek letters in the sky, appearing in spiralling columns and arcs, with small, spread out dots separating the letters. Crowds clog the streets, Kimek look out the windows and even gather atop apartment buildings to gaze at the messages. When the drones are done, the messages Tummug had shown you on the flyer are fully formed, and the drones take a short break. When they return, they get to work on another set of messages as the first one begins dissipating. After a few repetitions, and another pause, flyers begin raining down the city streets, the local Kimek picking them up in curiosity and discussing among themselves. The "rain" goes on for several minutes, before the drones start heading to other portions of the city and you lose sight of them.`
-			`	Focusing now on the crowds and their reception, you see the Kimek are split: nearly everywhere they are in heated discussion, with many on one side seemingly approving of the display, while others yell and gesture for the messages to be put out, throwing the flyers to the ground and stomping and ripping them. The Heliarch agents present on the ground do their best to separate the crowds and keep the order, but struggle against the sheer number of Kimek. Not long after the drones disappeared, however, Heliarch warships rain down the atmosphere in a fury, and speedily undo the skywriting, heading in the direction of the factory. Some ships leave more agents on the ground, and with increased personnel the Heliarchs now manage to stop the crowd infighting, and start clearing out the streets.`
+			`	Almost half an hour goes by with you watching the skies of <planet> before the first signs of the drones show: they're too small for you to see from where you are, but you make out the piles of red smoke swiftly growing into Kimek letters in the sky, appearing in spiraling columns and arcs, with small, spread out dots separating the letters. Crowds clog the streets, Kimek look out the windows and some even gather atop apartment buildings to gaze at the messages. When the drones are done, the messages Tummug had shown you on the flyer are fully formed, and the drones take a short break. When they return, they get to work on another set of messages as the first one begins dissipating. After a few repetitions, and another pause, flyers begin raining down the city streets, the local Kimek picking them up in curiosity and discussing among themselves. The "rain" goes on for several minutes, before the drones start heading to other portions of the city and you lose sight of them.`
+			`	Focusing now on the crowds and their reception, you see the Kimek are split: nearly everywhere they are in heated discussion, with many on one side seemingly approving of the display, while others yell and gesture for the messages to be put out, throwing the flyers to the ground and stomping on them. The Heliarch agents present on the ground do their best to separate the crowds and keep the order, but struggle against the sheer number of Kimek. Not long after the drones disappeared, however, Heliarch warships fly through the atmosphere in a fury, speedily undoing the skywriting as they head in the direction of the factory. Some ships leave more agents on the ground, and with increased personnel the Heliarchs now manage to stop the crowd infighting, and start clearing out the streets.`
 
 mission "Resistance: Propaganda 4"
 	name "Promoting Culture"
@@ -1391,7 +1391,7 @@ mission "Resistance: Propaganda 4"
 		"assisted resistance" ++
 		payment 894000
 		conversation
-			`Tummug gives you the <payment> and starts working on opening up the crates and boxes with the others. By the time you open the hatch, they've only managed to open some of the crates, but it seems like they've called in several Saryds from the hanger to help unload the remaining boxes and move them elsewhere. You approach Tummug, who's still picking through the posters. The posters are emblazoned with images of Saryds, Kimek and Arachi jailed and imprisoned in cages made out of chains. Looking closely, you realize the "chains" are made out of circlets like those used by the Heliarchs. Your eyes go to Tummug, who's looking back at you.`
+			`Tummug gives you the <payment> and starts working on opening up the crates and boxes with the others. By the time you open the hatch, they've only managed to open some of the crates, but it seems like they've called in several Saryds from the hangar to help unload the remaining boxes and move them elsewhere. You approach Tummug, who's still picking through the posters. The posters are emblazoned with images of Saryds, Kimek and Arachi jailed and imprisoned in cages made out of chains. Looking closely, you realize the "chains" are made out of circlets like those used by the Heliarchs. Your eyes go to Tummug, who's looking back at you.`
 			branch resistance
 				has "Resistance: Questions: done"
 			choice
@@ -1626,7 +1626,7 @@ mission "Resistance: Combat Training 4"
 	on offer
 		payment 3000000
 		conversation
-			`Pyakri's fleet lands on the pads around your ship, and they message you saying they will wait for nightfall to board your ship. Once the sun sets you notice them opening their hatches, so you open your own and help them quickly and quietly sneak into your ship. Perhaps because they'd grown used to human space, or maybe they simply did not care since they were going home for good, they proved a lot less cautious this time around, though you still don't imagine anyone saw them.`
+			`Pyakri's fleet lands on the pads around the <ship>, and they message you saying they will wait for nightfall to board your ship. Once the sun sets you notice them opening their hatches, so you open your own and help them quickly and quietly sneak into your ship. Perhaps because they'd grown used to human space, or maybe they simply did not care since they were going home for good, they proved a lot less cautious this time around, though you still don't imagine anyone saw them.`
 			`	Once everyone is in your ship, Pyakri approaches you and hands you some credit chips worth <payment> in total. "Tried splitting the fleet into smaller ones for a while, we did, so taken some simpler, less rewarding bounties, we also have," she explains. "But, hopefully made enough to pay you for your services, we have."`
 			choice
 				`	"Did you manage to fight the pirates well enough?"`
