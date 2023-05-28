@@ -20,7 +20,7 @@ mission "Passing Observations"
 		has "event: introduced scin"
 		has "First Contact: Gegno Scin: offered"
 		not "Gegno Genocide Defense: offered"
-	on visit
+	on complete
 		conversation
 			`While navigating the skies of this desert world, you notice familiar readings to the desert world you previously encountered a member of the Gegno Vi on. It's likely this world is also home to the same or similar species of creature you confronted back then. Eventually, you come across a large Gegno Vi vessel stationed on the surface, though unlike in your prior experience, the ship isn't sunken into the desert, likely having recently landed here. A group of Vi warriors are marching out and nearby the vessel, and while they do, your radar picks up two more ships descending from above.`
 			choice
@@ -29,11 +29,9 @@ mission "Passing Observations"
 				`	(Continue to observe.)`
 			`	The approaching ships continue their descent while paying you no attention. They appear to be ones you spotted in orbit when you first entered the system. One of them is the same type of model as the one on the ground, likely some type of transport. The other, however, isn't one you've seen before. It looks like some sort of interceptor vessel, though it is definitely larger than something like a Sparrow from human space, maybe even the size of a Headhunter. Perhaps that ship belongs to someone of importance.`
 			`	In any case, getting mixed up with what may be some sort of military exercise with the Vi could be dangerous, considering that the planet is home to more of those monsters from before. It's best you take your leave now before the situation gets out of control again.`
-				decline
 
 			label leave
 			`	You decide to withdraw from the area, and the approaching ships continue their way towards the one on the ground as if you weren't present. Regardless of whether or not they were hostile, getting mixed up with what may be some sort of military exercise could be dangerous, especially with the Vi.`
-				decline
 
 	npc save
 		on kill
