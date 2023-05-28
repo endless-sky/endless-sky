@@ -252,7 +252,7 @@ outfit "RG3 Torch Steering"
 	"steering flare sprite" "effect/vi flare/large"
 		"frame rate" 2.3
 	"steering flare sound" "ion torch large"
-	description `The oldest steering system used in Gegno space, RG3 Torch thrusters can only fit on the largest Gegno vessels, and are rarely seen as a result.`
+	description `The oldest steering system used in Gegno space, RG3 Torch Thrusters can only fit on the largest Gegno vessels, and are rarely seen as a result.`
 
 
 outfit "SC-1 Plasma Engines"
@@ -317,7 +317,7 @@ outfit "SC-12 Plasma Steering"
 	"steering flare sprite" "effect/scin flare/small"
 		"frame rate" 0.5
 	"steering flare sound" "scplasma small"
-	description `The new SC plasma engines allow Gegno Scin ships to outmanoeuvre their opposing brothers. What might take a Vi ship a long time takes only a moment on a Scin ship.`
+	description `The new SC plasma engines allow Gegno Scin ships to outmaneuver their opposing brothers. What might take a Vi ship a long time takes only a moment on a Scin ship.`
 
 
 outfit "SC-14 Plasma Thruster"
@@ -612,7 +612,7 @@ outfit "Ballistic Cannon Turret"
 		"hull damage" 970
 		"hit force" 360
 		"missile strength" 18
-	description `As the largest caliber cannon in the Gegno Vi's arsenal, Ballistic Cannons require a lot of work to be fitted on even the largest of ships. A huge, self-sustaining base with its own vent ports is necessary for one of these cannons to even be fitted on a turret mount, provided there are crew to operate it. Combining destructive force with adjustable aim, Ballisic Cannon Turrets are the deadliest weapons of Vi warships.`
+	description `As the largest caliber cannon in the Gegno Vi's arsenal, Ballistic Cannons require a lot of work to be fitted on even the largest of ships. A huge, self-sustaining base with its own vent ports is necessary for one of these cannons to even be fitted on a turret mount, provided there are crew to operate it. Combining destructive force with adjustable aim, Ballistic Cannon Turrets are the deadliest weapons of Vi warships.`
 
 effect "ballistic fire"
 	sprite "effect/balfire"
@@ -719,6 +719,48 @@ effect "acuit hit"
 	"velocity scale" -0.004
 
 
+outfit "Acumen Bolt Cannon"
+	category "Guns"
+	licenses
+		"Gegno Civilian"
+		"Scin Hoplologist"
+	cost 58000
+	thumbnail "outfit/acumen"
+	"mass" 15
+	"outfit space" -33
+	"weapon capacity" -33
+	"gun ports" -1
+	weapon
+		sprite "projectile/neutron bolt"
+			"scale" 0.5
+		"hit effect" "neutron explosion"
+		sound "neutron bolt"
+		"inaccuracy" 9
+		"velocity" 5
+		"lifetime" 62
+		"reload" 20
+		"turn" 4
+		"firing energy" 26
+		"firing heat" 66
+		"shield damage" 46
+		"hull damage" 60
+		"hit force" 86
+	description `Further progressing their research in energy weaponry, the Gegno Scin recently designed the Acumen Bolt Cannon - a proof-of-concept neutron cannon that fires dangerous balls of plasma capable of dealing decent damage to armor and shielding alike.`
+	description `	Although more powerful than Astuit blaster projectiles, Acumen plasma bolts are harder to fire accurately, travel much slower, and require more energy to fire.`
+
+effect "neutron explosion"
+	sprite "effect/explosion/neutron"
+		"no repeat"
+		"frame rate" 15
+	sound "explosion tiny"
+	"lifetime" 20
+	"random angle" 360
+	"random frame rate" 5
+	"random spin" 1
+	"random velocity" .2
+	"velocity scale" .4
+
+
 outfit "Guile Pulse Laser"
 	category "Guns"
 	licenses
@@ -752,6 +794,8 @@ outfit "Guile Pulse Laser"
 
 outfit "Excavator"
 	category "Guns"
+	licenses
+		"Gegno Civilian"
 	cost 500000
 	"thumbnail" "outfit/excavator"
 	"mass" 42
@@ -761,21 +805,22 @@ outfit "Excavator"
 	"drill port" -1
 	"drill lock" 1
 	weapon
-		sound "drill"
-		"hit effect" "drilling"
+		sound "excavator"
+		"hit effect" "excavate"
 		"inaccuracy" 90
-		"velocity" 18
+		"velocity" 20
 		"lifetime" 1
 		"reload" 1
+		"range override" 50
 		"firing energy" 4
-		"firing heat" 100
-		"shield damage" 8
+		"firing heat" 72
+		"shield damage" 6
 		"hull damage" 14
 		"minable damage" 104
 		"hit force" -4
 	description `Excavator Drills are large drills designed by the Gegno that rip materials out of asteroids in an efficient manner. These types of drill systems are only found on ships specifically designed around them as they require substantial infrastructure to be functional.`
 
-effect "drilling"
+effect "excavate"
 	sprite "effect/smoke"
 		"no repeat"
 	sound "explosion tiny"
@@ -787,9 +832,95 @@ effect "drilling"
 	"velocity scale" -0.01
 
 
+outfit "Burrower"
+	category "Guns"
+	licenses
+		"Gegno Civilian"
+		"Gegno Driller"
+	cost 326000
+	"thumbnail" "outfit/burrower"
+	"mass" 32
+	"outfit space" -28
+	"weapon capacity" -28
+	"gun ports" -1
+	"drill spar" -1
+	weapon
+		sound "drill"
+		"hardpoint sprite" "hardpoint/burrower"
+		"hardpoint offset" 14
+		"hit effect" "burrow"
+		"inaccuracy" 0.4
+		"velocity" 30
+		"lifetime" 1
+		"reload" 1
+		"range override" 56
+		"velocity override" 22
+		"firing energy" 1.8
+		"firing heat" 24
+		"shield damage" .4
+		"hull damage" 6
+		"minable damage" 3
+		"hit force" 4
+	description `Burrower Drills are longer, thinner, and more precise than the larger Excavator Drill system, although they are nowhere near as powerful. Burrowers can mine asteroids more carefully, preserving more materials in the process. Rather than constructing the spaceship around the base system, these drills are more compact and are mounted on self-sustaining drill spars, resulting in lower required internal space and machinery.`
+	description `	This mining outfit requires a drill spar port, in addition to a gun port, in order to be mounted.`
+
+effect "burrow"
+	sprite "effect/smoke"
+		"no repeat"
+		"scale" 0.25
+	sound "explosion tiny"
+	"lifetime" 12
+	"random angle" 360
+	"random frame rate" 5
+	"random spin" 2
+	"random velocity" 0.5
+	"velocity scale" -0.01
+
+
+outfit "Ion Torch"
+	category "Guns"
+	licenses
+		"Gegno Civilian"
+		"Gegno Driller"
+	cost 410000
+	"thumbnail" "outfit/ion torch"
+	"mass" 36
+	"outfit space" -32
+	"weapon capacity" -32
+	"gun ports" -1
+	"drill spar" -1
+	"reverse thrust" 4.6
+	"reverse thrusting energy" 0.4
+	"reverse thrusting heat" 0.9
+	weapon
+		"sprite" "projectile/torch"
+			"frame rate" 15
+			"scale" 0.75
+		"inaccuracy" 0.4
+		"velocity" 50
+		"lifetime" 1
+		sound "ion torch"
+		"hardpoint sprite" "hardpoint/ion torch"
+		"hardpoint offset" 10
+		"hit effect" "burning spark"
+		"reload" 1
+		"range override" 74
+		"velocity override" 12
+		"firing energy" 2.3
+		"firing heat" 46.2
+		"shield damage" 1.2
+		"hull damage" 1
+		"heat damage" 90
+		"minable damage" 6
+	description `Based on the RG-series Torch engine, Ion Torches are a unique type of utility mining weapon that focus the originally explosive exhaust into a thinner, more powerful flare. The more-controlled flame is akin to a heated blade allowing for more precise handling. In contrast to the Excavator, which aggressively grinds asteroids down, an Ion Torch can remove materials more accurately and safely from an asteroid. Additionally, the flare can be tuned down to serve as a makeshift reverse thruster.`
+	description `	This mining outfit requires a drill spar port, in addition to a gun port, in order to be mounted.`
+
+
 outfit "Savagery Bludgeon"
 	category "Guns"
 	cost 10000
+	licenses
+		"Vi Evocati"
 	thumbnail "outfit/unknown"
 	"mass" 10
 	"outfit space" -10
@@ -816,6 +947,9 @@ effect "bludgeon impact"
 
 outfit "Savagery Pike"
 	category "Hand to Hand"
+	licenses
+		"Vi Evocati"
+		"Vi Centurion"
 	cost 13000
 	thumbnail "outfit/savagery pike"
 	"capture attack" .9
@@ -825,6 +959,8 @@ outfit "Savagery Pike"
 
 outfit "Irate Carronade"
 	category "Hand to Hand"
+	licenses
+		"Vi Centurion"
 	cost 39000
 	thumbnail "outfit/irate carronade"
 	"mass" 3
@@ -835,6 +971,8 @@ outfit "Irate Carronade"
 	
 outfit "Plasmasickle"
 	category "Hand to Hand"
+	licenses
+		"Scin Hoplologist"
 	cost 11000
 	thumbnail "outfit/plasmasickle"
 	"capture attack" .7
@@ -845,12 +983,14 @@ outfit "Plasmasickle"
 outfit "Plasma Grenades"
 	plural "Plasma Grenades"
 	category "Hand to Hand"
+	licenses
+		"Scin Hoplologist"
 	cost 60000
 	thumbnail "outfit/plasma grenades"
 	"capture attack" 1.9
 	"capture defense" 1.2
 	"unplunderable" 1
-	description `With development of more plasma-based weaponry, the Scin invented their own type of grenades using plasma to create powerful explosions. They are effective at clearing out large groups of enemies and are less of a hazard than unpredictable fragmentation grenades, allowing them to be a bit more reliable for defensive use. These grenades are kept in odd magentic storage devices that prevent them from accidentally detonating - except on rare occasions.`
+	description `With development of more plasma-based weaponry, the Scin invented their own type of grenades using plasma to create powerful explosions. They are effective at clearing out large groups of enemies and are less of a hazard than unpredictable fragmentation grenades, allowing them to be a bit more reliable for defensive use. These grenades are kept in odd magnetic storage devices that prevent them from accidentally detonating - except on rare occasions.`
 	
 
 
@@ -859,7 +999,12 @@ outfit "Plasma Grenades"
 outfit "Gegno Civilian License"
 	category "Licenses"
 	thumbnail "outfit/unknown"
-	description "You have been accepted as a titular Gegno citizen that provides benefits for the Gegno race, and have been awarded access to their civilian technology."
+	description "You have been accepted as a titular Gegno citizen who provides benefits for the Gegno race, and have been awarded access to their civilian technology."
+
+outfit "Gegno Driller License"
+	category "Licenses"
+	thumbnail "outfit/unknown"
+	description "The Gegno now acknowledge your resourcefulness and ability to deliver more than acceptable results of work. You have been bestowed the right of access to their mining technology."
 
 outfit "Vi Lord License"
 	category "Licenses"

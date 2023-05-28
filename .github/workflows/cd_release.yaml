@@ -1,9 +1,9 @@
 name: Release CD
 
 on:
-  release:
-    types:
-      - published
+  push:
+    tags:
+      - v*
 
 jobs:
   release_appimage_x64:
@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-20.04
     env:
       ARCH: x86_64
-      OUTPUT: Endless_Sky-${{ github.event.release.tag_name }}-x86_64.AppImage
+      OUTPUT: Endless_Sky-${{ github.ref_name }}-x86_64.AppImage
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v3
@@ -25,23 +25,20 @@ jobs:
         with:
           read-only: 'true'
       - uses: lukka/get-cmake@latest
-      - uses: lukka/run-vcpkg@v10
+      - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '91dd61bd441a68b4017b61011d0350b2e6aeeccf'
+          vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
+          doNotCache: true
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'linux-release'
           buildPreset: 'linux-ci-release'
       - name: Package Application
         run: ./utils/build_appimage.sh build/release
-      - name: Prevent saving cache on failure
-        run: |
-          echo "RUNVCPKG_NO_CACHE=1" >> $GITHUB_ENV
-        if: ${{ failure() || cancelled() }}
-        shell: bash
       - name: Upload Release
         uses: softprops/action-gh-release@v1
         with:
+          draft: true
           files: ${{ env.OUTPUT }}
 
 
@@ -49,17 +46,17 @@ jobs:
     name: Windows x86
     runs-on: windows-2022
     env:
-      OUTPUT: EndlessSky-win32-${{ github.event.release.tag_name }}.zip
+      OUTPUT: EndlessSky-win32-${{ github.ref_name }}.zip
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v3
       - name: Install x86 MinGW
         run: choco install mingw --forcex86 --force
       - uses: lukka/get-cmake@latest
-      - uses: lukka/run-vcpkg@v10
+      - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '91dd61bd441a68b4017b61011d0350b2e6aeeccf'
-          prependedCacheKey: mingw-x86
+          vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
+          doNotCache: true
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'mingw32-release'
@@ -68,14 +65,10 @@ jobs:
         run: |
           cmake --install build/release
           7z a ${{ env.OUTPUT }} "./install/release/*"
-      - name: Prevent saving cache on failure
-        run: |
-          echo "RUNVCPKG_NO_CACHE=1" >> $GITHUB_ENV
-        if: ${{ failure() || cancelled() }}
-        shell: bash
       - name: Upload Release
         uses: softprops/action-gh-release@v1
         with:
+          draft: true
           files: ${{ env.OUTPUT }}
 
 
@@ -83,7 +76,7 @@ jobs:
     name: Windows x64
     runs-on: windows-2022
     env:
-      OUTPUT: EndlessSky-win64-${{ github.event.release.tag_name }}.zip
+      OUTPUT: EndlessSky-win64-${{ github.ref_name }}.zip
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v3
@@ -92,9 +85,10 @@ jobs:
         with:
           read-only: 'true'
       - uses: lukka/get-cmake@latest
-      - uses: lukka/run-vcpkg@v10
+      - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '91dd61bd441a68b4017b61011d0350b2e6aeeccf'
+          vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
+          doNotCache: true
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'mingw-release'
@@ -103,14 +97,10 @@ jobs:
         run: |
           cmake --install build/release
           7z a ${{ env.OUTPUT }} "./install/release/*"
-      - name: Prevent saving cache on failure
-        run: |
-          echo "RUNVCPKG_NO_CACHE=1" >> $GITHUB_ENV
-        if: ${{ failure() || cancelled() }}
-        shell: bash
       - name: Upload Release
         uses: softprops/action-gh-release@v1
         with:
+          draft: true
           files: ${{ env.OUTPUT }}
 
 
@@ -119,17 +109,20 @@ jobs:
     runs-on: macos-12
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      OUTPUT: Endless-Sky-${{ github.event.release.tag_name }}
+      OUTPUT: Endless-Sky-${{ github.ref_name }}
     steps:
       - uses: actions/checkout@v3
       - name: Setup sccache
         uses: ./.github/sccache
         with:
           read-only: 'true'
+      - name: Install pkg-config
+        run: type -P pkg-config || brew install pkg-config
       - uses: lukka/get-cmake@latest
-      - uses: lukka/run-vcpkg@v10
+      - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '91dd61bd441a68b4017b61011d0350b2e6aeeccf'
+          vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
+          doNotCache: true
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'macos-arm-release'
@@ -154,12 +147,8 @@ jobs:
           cp -r "Endless Sky.app" "${{ env.OUTPUT }}"
           ln -s /Applications "${{ env.OUTPUT }}"
           hdiutil create -ov -fs HFS+ -format UDZO -imagekey zlib-level=9 -srcfolder "${{ env.OUTPUT }}" "${{ github.workspace }}/${{ env.OUTPUT }}.dmg"
-      - name: Prevent saving cache on failure
-        run: |
-          echo "RUNVCPKG_NO_CACHE=1" >> $GITHUB_ENV
-        if: ${{ failure() || cancelled() }}
-        shell: bash
       - name: Upload Release
         uses: softprops/action-gh-release@v1
         with:
+          draft: true
           files: ${{ env.OUTPUT }}.dmg

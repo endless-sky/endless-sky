@@ -280,7 +280,7 @@ ship "Flea"
 	gun 0 -27 "Railgun"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
-	description `This combat drone is built to amplify the strength of any combat force for as few credits as possible. It was designed in conjunction with the tactical recoil of the railgun to allow it to kite its targets, prolonging its combat efficacy while it supports its allies with debilitating ion damage.`
+	description `This combat drone is built to amplify the strength of any combat force for as few credits as possible. It was designed in conjunction with the tactical recoil of the Railgun to allow it to kite its targets, prolonging its combat efficacy while it supports its allies with debilitating ion damage.`
 	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
 ship "Flea" "Flea (Pulse)"
@@ -507,7 +507,7 @@ ship "Lightning Bug"
 	explode "medium explosion" 24
 	explode "large explosion" 8
 	"final explode" "final explosion small"
-	description "The Lightning Bug is a small defensive ship, mostly used by the Hai as a convoy escort. The Lightning Bug, as with many insects, works best in a swarm: even a small number of Lightning Bugs can manage to leave the largest of ships helpless with their stock-fitted ion cannons."
+	description "The Lightning Bug is a small defensive ship, mostly used by the Hai as a convoy escort. The Lightning Bug, as with many insects, works best in a swarm: even a small number of Lightning Bugs can manage to leave the largest of ships helpless with their stock-fitted Ion Cannons."
 
 ship "Lightning Bug" "Lightning Bug (Pulse)"
 	outfits
@@ -546,7 +546,7 @@ ship "Lightning Bug" "Lightning Bug (Unfettered Shipyards)"
 		"Hai Corundum Regenerator"
 		"Hai Williwaw Cooling"
 		"Quantum Keystone"
-		"Value Detector" 2
+		"Value Detector"
 		"Pebble Core"
 		"Sand Cell"
 		"Hai Gorge Batteries"
@@ -1155,7 +1155,7 @@ ship "Shield Beetle" "Shield Beetle (Unfettered)"
 		"Hai Valley Batteries"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 3
-		"Value Detector" 4
+		"Value Detector" 2
 		"Quantum Keystone"
 		"Pulse Rifle" 65
 		`"Bondir" Atomic Thruster`
@@ -1175,11 +1175,11 @@ ship "Shield Beetle" "Shield Beetle (Unfettered Shipyards)"
 		"Hai Octopus Jammer" 3
 		"Hai Williwaw Cooling" 4
 		"Outfits Expansion" 2
-		"Value Detector" 3
+		"Value Detector" 2
 		"Geode Reactor" 2
 		"Pebble Core"
 		"Hai Gorge Batteries"
-		"Quantum Keystone" 2
+		"Quantum Keystone"
 		"Pulse Rifle" 75
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
@@ -1427,6 +1427,118 @@ ship "Shield Beetle" "Shield Beetle (Tracker)"
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
+
+
+
+# Flagship of the Unfettered Hai, filled with the spoils of wars against Korath and Wanderers:
+ship "Emperor Beetle"
+	sprite "ship/hai emperor beetle"
+	thumbnail "thumbnail/hai emperor beetle"
+	attributes
+		category "Heavy Warship"
+		"cost" 35100000
+		"shields" 26700
+		"hull" 19600
+		"required crew" 83
+		"bunks" 91
+		"mass" 870
+		"drag" 9.8
+		"outfit space" 891
+		"cargo space" 27
+		"weapon capacity" 352
+		"engine capacity" 139
+		# Expensive features inherited from Ladybug-era technology, with some fuel (and improved heat dissipation):
+		"heat dissipation" 0.7
+		"tactical scan power" 30
+		"ramscoop" .5
+		"fuel capacity" 600
+		weapon
+			"shield damage" 5000
+			"hull damage" 2500
+			# High hit force and wide radius for a spectacle if the leader dies.
+			# This should be adjusted downward if the ship is reused more widely.
+			"blast radius" 800
+			"hit force" 8000
+	outfits
+		"Tripulse Shredder" 2
+		"Ionic Blaster Prototype" 4
+		"Pulse Turret" 4
+		"Warder Anti-Missile" 2
+		
+		"Large Heat Shunt"
+		"Fuel Processor"
+		"Jump Drive"
+		"Quantum Keystone"
+		"Systems Core (Large)"
+		"Systems Core (Medium)"
+		"Wanderer Ramscoop"
+		
+		"White Sun Reactor"
+		"Large Biochemical Cell"
+		
+		"Afterburner (Comet Class)"
+		"Steering (Planetary Class)"
+		"Thruster (Planetary Class)"
+		
+		"Pulse Rifle" 65
+		"Fragmentation Grenades" 65
+		"Thermal Repeater Rifle" 25
+	engine -43 131
+		zoom 0.85
+	engine 43 131
+		zoom 0.85
+	engine 0 126.5
+		zoom 0.5
+	"reverse engine" -61 -18.5
+		angle -35
+	"reverse engine" 62 -18.5
+		angle 35
+	"steering engine" -61 -18.5
+		zoom 0.6
+		angle 145
+		left
+	"steering engine" 62 -18.5
+		zoom 0.6
+		angle 215
+		right
+	"steering engine" -73 46
+		zoom 0.5
+		angle 80
+		left
+	"steering engine" 73 46
+		zoom 0.5
+		angle -80
+		right
+	"steering engine" -43 131
+		zoom 0.45
+		right
+	"steering engine" 43 131
+		zoom 0.45
+		left
+	gun -42.5 -53.5 "Tripulse Shredder"
+	gun 43.5 -54.5 "Tripulse Shredder"
+	gun -23 -102.5
+	gun 24.5 -102.5
+	gun 12.5 -128
+	gun -10 -128
+	turret 0.5 -25.5 "Warder Anti-Missile"
+	turret -47.5 11.5
+	turret 48.5 11.5
+	turret 62.5 76
+	turret -61.5 76.5
+	turret 0 107.5 "Warder Anti-Missile"
+	leak "leak" 35 45
+	leak "flame" 60 95
+	leak "big leak" 50 45
+	explode "tiny explosion" 60
+	explode "small explosion" 51
+	explode "medium explosion" 54
+	explode "large explosion" 53
+	explode "huge explosion" 22
+	"final explode" "final explosion large"
+	description "Before the Shield Beetle, the Hai used the Titan Beetle, a weaker but more capable ship of a similar design. The Emperor Beetle is a Titan coated with many layers of modern armor, making it a more powerful warship than anything else the Hai have built in modern times. Unfortunately, the advanced features are quite expensive, so these ships are used sparingly as flagships and trophy ships."
+	description "	As it is not meant to plunder but to lead in glorious battle, many of the cargo bays were removed and converted to space for weapons and defensive improvements. This change came at the cost of increased mass and lowered agility, but that is a sacrifice the Unfettered are more than willing to make."
+	description "	More than just a ship, the Emperor Beetle was built to inspire fear in its enemies, making it known that they face no simple Hai, but the military leaders of the Unfettered leading at the front of those they command. Some believe it to be foolish to show their leaders' ships in such a manner, but that is not how the Unfettered think. This ship was built to withstand far more punishment than any normal Shield Beetle, while still being able to dish out damage of its own."
 
 
 

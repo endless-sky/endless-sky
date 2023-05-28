@@ -20,14 +20,12 @@ Files:
  images/outfit/fission?hai*
  images/outfit/fusion?hai*
  images/outfit/heavy?anti-missile?hai*
- images/ship/mbounder*
  images/ship/mfury*
 Copyright: Maximilian Korber
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
- images/outfit/gat*
  images/outfit/bullet*
  images/scene/sagittarius?a*
  images/ship/hai?solifuge*
@@ -66,7 +64,6 @@ Comment: Derived from works by Amazinite derived from works by Michael Zahniser 
 
 Files:
  images/ship/hai?pond?strider*
- images/ship/barb*
 Copyright: Iaz Poolar
 License: CC-BY-SA-4.0
 
@@ -84,11 +81,8 @@ Comment: Derived from works by Matthew Smestad (under the same license).
 License: CC-BY-SA-4.0
 
 Files:
- images/ship/vanguard*
  images/outfit/luxury accommodations*
- images/outfit/proton turret*
  images/hardpoint/proton turret*
- images/outfit/brig*
 Copyright: Nate Graham <pointedstick@zoho.com>
 License: CC-BY-SA-4.0
 
@@ -106,6 +100,19 @@ Files:
 Copyright: Amazinite
 License: CC-BY-SA-4.0
 Comment: Derived from works by Maximilian Korber (under the same license).
+
+Files:
+ images/outfit/gat*
+Copyright: Becca Tommaso
+License: CC-BY-SA-4.0
+Comment: Derived from works by Maximilian Korber (under the same license).
+
+
+Files:
+ images/outfit/scram?drive*
+Copyright: Becca Tommaso
+License: CC-BY-SA-4.0
+Comment: Derived from works by Evan Fluharty (under the same license).
 
 Files:
  images/icon/rail?gun*
@@ -150,13 +157,6 @@ Files:
 Copyright: Michael Zahniser (mzahniser@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Incorporating a photo by Aram Dulyan, under the CC-BY-2.0 license.
-
-Files:
- images/outfit/jump?drive?(broken)*
- images/outfit/plasma?repeater*
-Copyright: Darcy Manoel <Darcman00@gmail.com>
-License: CC-BY-SA-4.0
-Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
  images/scene/plasma?scene*
@@ -305,7 +305,6 @@ License: CC-BY-SA-4.0
 Files:
  images/outfit/korath?rifle*
  images/outfit/hai?rifle*
- images/outfit/scram?drive*
  images/outfit/korath?fuel?processor*
  images/outfit/remnant?rifle*
  images/ship/hai?centipede*
@@ -315,7 +314,6 @@ Files:
  images/ship/pelican*
  images/ship/peregrine/peregrine*
  images/ship/riptide*
- images/ship/auxiliary*
  images/ship/dropship*
  images/ship/heron*
  images/thumbnail/hai?centipede*
@@ -325,7 +323,6 @@ Files:
  images/thumbnail/pelican*
  images/thumbnail/peregrine*
  images/thumbnail/riptide*
- images/thumbnail/auxiliary*
  images/thumbnail/dropship*
  images/outfit/auxiliary?license*
 Copyright: Evan Fluharty (Evanfluharty@gmail.com)
@@ -395,7 +392,6 @@ Files:
  images/outfit/fragmentation?grenades*
  images/outfit/nerve?gas*
  images/outfit/catalytic?ramscoop*
- images/outfit/plasma?repeater*
  images/outfit/anti-missile*
  images/outfit/blaster?turret*
  images/outfit/blaster*
@@ -406,8 +402,6 @@ Files:
  images/outfit/electron?turret*
  images/outfit/fission*
  images/outfit/flamethrower*
- images/outfit/fuel?pod*
- images/outfit/gat*
  images/outfit/hai?ionic?blaster*
  images/outfit/hai?ionic?turret*
  images/outfit/heavy?anti-missile*
@@ -424,7 +418,6 @@ Files:
  images/outfit/small?shield*
  images/outfit/tiny?shield*
  images/outfit/hyperdrive*
- images/outfit/scram?drive*
  images/outfit/large?radar?jammer*
  images/outfit/small?radar?jammer*
  images/outfit/meteor*
@@ -944,13 +937,16 @@ License: CC-BY-SA-4.0
 Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
 
 Files:
+ images/projectile/sunbeam/*
  images/ship/blackbird*
+ images/ship/bounder*
  images/ship/falcon*
  images/ship/hawk*
  images/ship/quicksilver*
  images/ship/scout*
  images/ship/sparrow*
  images/thumbnail/blackbird*
+ images/thumbnail/bounder*
  images/thumbnail/falcon*
  images/thumbnail/hawk*
  images/thumbnail/quicksilver*
@@ -972,8 +968,10 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser and Anarchist2 under the same license. Incorporating texture made with JSPlacement by WindMillArt <https://windmillart.net/>.
 
 Files:
+ images/ship/mbounder*
  images/ship/mfalcon*
  images/ship/mquicksilver*
+ images/thumbnail/mbounder*
  images/thumbnail/mfalcon*
  images/thumbnail/mquicksilver*
 Copyright: Maximilian Korber
@@ -1013,6 +1011,7 @@ Files:
  images/planet/station15*
  images/planet/station16*
  images/planet/station17*
+ images/planet/station-bunrodea*
  images/ship/maeri'het*
  images/ship/subsidurial*
  images/ship/telis'het*
@@ -1022,6 +1021,14 @@ Files:
  images/ship/fetri'sei*
  images/ship/ember?waste?node/*
  images/ship/void?sprite/*
+ images/ship/ararebo*
+ images/ship/chigiriki*
+ images/ship/kaiken*
+ images/ship/kama*
+ images/ship/kunai*
+ images/ship/sasumata*
+ images/ship/tanto*
+ images/ship/tekkan*
  images/thumbnail/maeri'het*
  images/thumbnail/telis'het*
  images/thumbnail/faes'mar*
@@ -1032,7 +1039,18 @@ Files:
  images/thumbnail/fetri'sei*
  images/thumbnail/void?sprite?adult*
  images/thumbnail/void?sprite?infant*
+ images/thumbnail/ararebo*
+ images/thumbnail/chigiriki*
+ images/thumbnail/kaiken*
+ images/thumbnail/kama*
+ images/thumbnail/kunai*
+ images/thumbnail/sasumata*
+ images/thumbnail/tanto*
+ images/thumbnail/tekkan*
  images/effect/ravager?impact*
+ images/effect/swarm*
+ images/hardpoint/buzzer?am*
+ images/hardpoint/locust?turret*
  images/outfit/ka'het?annihilator?turret*
  images/outfit/ka'het?annihilator*
  images/outfit/ka'het?emp?deployer*
@@ -1083,8 +1101,32 @@ Files:
  images/outfit/outfit?expansion*
  images/outfit/cargo?expansion*
  images/outfit/control?transceiver*
+ images/outfit/buzzer*
+ images/outfit/dark?reactor*
+ images/outfit/electroweak?reactor*
+ images/outfit/quark?reactor*
  images/outfit/hai?jammer*
  images/outfit/hai?jammer?overclocked*
+ images/outfit/hydra?pod*
+ images/outfit/hydra*
+ images/outfit/*nanite?fabricator*
+ images/outfit/*shield?relay*
+ images/outfit/lasher?pistol*
+ images/outfit/locust?blaster*
+ images/outfit/locust?turret*
+ images/outfit/mandible?cannon*
+ images/outfit/nanite?enhancer*
+ images/outfit/nanite?limiter*
+ images/outfit/reactor?overclocker*
+ images/outfit/reactor?limiter*
+ images/outfit/solar?battery*
+ images/outfit/solar?cell*
+ images/outfit/swarm?missile*
+ images/outfit/swarm?pod*
+ images/outfit/swarm?storage*
+ images/outfit/swatter*
+ images/outfit/thorax?cannon*
+ images/outfit/*rift*
  images/planet/dyson1*
  images/planet/dyson2*
  images/planet/dyson3*
@@ -1260,7 +1302,6 @@ Files:
  images/outfit/*korath?reverser*
  images/projectile/expeller*
  images/projectile/heaver*
- images/projectile/korath?digger*
  images/projectile/shunt-strike*
  images/ship/kas-ik?tek?7*
  images/thumbnail/kas-ik?tek?7*
@@ -1595,6 +1636,13 @@ Copyright: Ejo Thims <https://github.com/EjoThims>
 License: CC-BY-SA-4.0
 
 Files:
+ images/ship/hai?emperor?beetle*
+ images/thumbnail/hai?emperor?beetle*
+Copyright: Ejo Thims <https://github.com/EjoThims>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Becca Tommaso and Michael Zahniser (under the same license)
+
+Files:
  images/planet/stationh-ancient0*
  images/planet/stationh-ancient1*
  images/planet/stationh-ancient2*
@@ -1610,7 +1658,6 @@ License: CC-BY-SA-3.0
 Comment: Derived from works by Becca Tommaso (under the same license).
 
 Files:
- images/ship/auxiliary*
  images/ship/carrier*
  images/ship/combat?drone*
  images/ship/cruiser*
@@ -1619,7 +1666,6 @@ Files:
  images/ship/lance*
  images/ship/rainmaker*
  images/ship/surveillance?drone*
- images/thumbnail/auxiliary*
  images/thumbnail/carrier*
  images/thumbnail/combat?drone*
  images/thumbnail/cruiser*
@@ -1633,28 +1679,43 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
+ images/ship/auxiliary*
+ images/thumbnail/auxiliary*
+Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Evan Fluharty (under the same license).
+
+Files:
+ images/asteroid/*bioroid*
  images/effect/acuit?hit*
  images/effect/ast?hit*
  images/effect/balfire*
  images/effect/blink*
+ images/effect/bunrodea?flare*
+ images/effect/buzzer?am*
  images/effect/chfire*
  images/effect/composed*
  images/effect/drain*
  images/effect/irfite*
- images/effect/*scin flare*
- images/effect/*vi flare*
+ images/effect/yellow?spark*
+ images/effect/*scin?flare*
+ images/effect/*vi?flare*
  images/hardpoint/acuit*
  images/hardpoint/ballistic*
+ images/hardpoint/burrower*
  images/hardpoint/choleric*
  images/hardpoint/firestorm?battery*
+ images/hardpoint/ion?torch*
  images/hardpoint/irate*
  images/outfit/acuit*
+ images/outfit/acumen*
  images/outfit/ameliorate?cell*
  images/outfit/astuit*
  images/outfit/ballistic?cannon*
  images/outfit/ballistic?turret*
  images/outfit/battlezone?battery*
  images/outfit/brawl?cell*
+ images/outfit/burrower*
  images/outfit/campaign?core*
  images/outfit/choleric?cannon*
  images/outfit/choleric?turret*
@@ -1663,6 +1724,7 @@ Files:
  images/outfit/firestorm?rack*
  images/outfit/firestorm?torpedo*
  images/outfit/guile?pulse?laser*
+ images/outfit/ion?torch*
  images/outfit/irate?carronade*
  images/outfit/irate?cannon*
  images/outfit/irate?turret*
@@ -1679,8 +1741,13 @@ Files:
  images/outfit/*torch?thruster?vi*
  images/outfit/warforge?battery*
  images/outfit/warzone?core*
+ images/planet/asura*
+ images/planet/*beryl*
  images/planet/tschyss*
+ images/planet/*vajra*
  images/planet/vesvi*
+ images/planet/yniu?eiu*
+ images/planet/yniu?ena*
  images/projectile/acuit*
  images/projectile/astuit*
  images/projectile/ballistic*
@@ -1688,12 +1755,19 @@ Files:
  images/projectile/firestorm?torpedo*
  images/projectile/guile?pulse?laser*
  images/projectile/irate*
+ images/projectile/locust?blaster*
+ images/projectile/mandible?cannon*
+ images/projectile/neutron?bolt*
+ images/projectile/thorax?cannon*
+ images/projectile/torch*
  images/scene/rulei?flash*
+ images/ship/*astral*
  images/ship/*ayym*
  images/ship/embersylph*
  images/ship/gegno?augen*
  images/ship/gegno?coesite*
  images/ship/gegno?conglomerate*
+ images/ship/gegno?corundum*
  images/ship/gegno?dolomite*
  images/ship/gegno?dunite*
  images/ship/gegno?eclogite*
@@ -1701,10 +1775,13 @@ Files:
  images/ship/gegno?feldspar*
  images/ship/gegno?felsic*
  images/ship/gegno?gneiss*
+ images/ship/gegno?granofel*
  images/ship/gegno?granulite*
  images/ship/gegno?gypsum*
  images/ship/gegno?halite*
+ images/ship/gegno?kyanite*
  images/ship/gegno?mica*
+ images/ship/gegno?protolith*
  images/ship/gegno?schist*
  images/ship/gegno?shale*
  images/ship/gegno?slate*
@@ -1712,7 +1789,8 @@ Files:
  images/ship/*jje*
  images/ship/modified?dromedary*
  images/ship/modified?dromedary?wreck*
- images/ship/*vyuira*
+ images/ship/*vyrmeid*
+ images/ship/*vyuir*
  images/thumbnail/gegno?augen*
  images/thumbnail/gegno?coesite*
  images/thumbnail/gegno?conglomerate*
@@ -1726,6 +1804,7 @@ Files:
  images/thumbnail/gegno?granulite*
  images/thumbnail/gegno?gypsum*
  images/thumbnail/gegno?halite*
+ images/thumbnail/gegno?kyanite*
  images/thumbnail/gegno?mica*
  images/thumbnail/gegno?schist*
  images/thumbnail/gegno?shale*
@@ -1733,7 +1812,7 @@ Files:
  images/thumbnail/gegno?tridymite*
  images/thumbnail/modified?dromedary*
  images/thumbnail/modified?dromedary?wreck*
- images/thumbnail/vyuira*
+ images/thumbnail/vyuir*
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 
@@ -1743,6 +1822,7 @@ Files:
  images/outfit/teciimach?bay*
  images/outfit/teciimach?pod*
  images/planet/gas3-c*
+ images/planet/gas7-r*
  images/ship/aerie*
  images/ship/bactrian*
  images/ship/hailstone*
@@ -1780,22 +1860,30 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and 1010todd (under the same license). Incorporating texture made with JSPlacement by WindMillArt <https://windmillart.net/>.
 
 Files:
+ sounds/bunrodea?am*
  sounds/coalition?launch*
  sounds/drill*
  sounds/ember?tear*
  sounds/ember?tear?hit*
+ sounds/gravity?well*
  sounds/hai?launch*
  sounds/human?launch*
  sounds/human?launch?external*
  sounds/ion?rain*
+ sounds/ion?torch*
  sounds/korath?afterburner*
  sounds/korath?launch*
  sounds/korath?launch?external*
+ sounds/locust?blaster*
+ sounds/mandible?cannon*
  sounds/remnant?afterburner*
  sounds/remnant?launch*
  sounds/remnant?launch?external*
+ sounds/neutron?bolt*
  sounds/scin?launch*
  sounds/sheragi?launch*
+ sounds/swarm?missile*
+ sounds/thorax?cannon*
 Copyright: Saugia <https://github.com/Saugia>
 License: public-domain
 Comment: Based on public domain sounds taken from freesound.org, edits done by Saugia.
@@ -2002,11 +2090,24 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Becca Tommaso and Michael Zahniser (under the same license).
 
 Files:
+ images/land/badlands13*
+ images/land/beach15*
  images/land/city19*
  images/land/city20*
  images/land/city21*
  images/land/city22*
  images/land/city23*
+ images/land/city24*
+ images/land/city25*
+ images/land/desert14*
+ images/land/desert15*
+ images/land/forest10*
+ images/land/mountain27*
+ images/land/mountain28*
+ images/land/mountain29*
+ images/land/mountain30*
+ images/land/sea22*
+ images/land/snow22*
 Copyright: Various
 License: CC0
 Comment: Taken from unsplash.com and cropped.
@@ -2025,6 +2126,11 @@ Comment: Derived from _menu/haze-133 (no copyright given).
 Files:
  images/star/proto-planetary-disk*
 Copyright: RisingLeaf (https://github.com/RisingLeaf)
+License: CC-BY-SA-4.0
+
+Files:
+ images/land/hills11*
+Copyright: CyberJudas (cyberjudas@dnmx.org)
 License: CC-BY-SA-4.0
 
 License: GPL-3+
