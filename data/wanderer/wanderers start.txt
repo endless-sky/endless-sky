@@ -1322,6 +1322,9 @@ mission "Wanderers: Alpha Surveillance E"
 						not "skip FW"
 					goto danforth
 			`	"Can you think of any other option?" he says.`
+			`	As you consider the prospect of speaking to the Navy, you recall the many stories you heard from merchants about one honourable navy group, the Oathkeepers, that were prisonners of war that accepted the deal to fight someone else. Indeed, they fought pirates, the very pirates at the border of Hai space.`
+				to display
+					has "skip FW"
 			`	"There's a branch of the Navy called the 'Oathkeepers,'" you tell him, "led by Admiral Danforth. If there is anyone in the Navy whom we can trust, it's them."`
 			label danforth
 			`	"Danforth?" says Elias. "William Danforth? The Hero of Hope? He's still in the service?" You nod. "Well then yes, let's go to him," says Elias.`
@@ -1335,7 +1338,7 @@ mission "Wanderers: Alpha Surveillance E"
 			`Admiral Danforth is very pleased to see you, but his expression turns grim when you explain why you have come.`
 				to display
 					not "skip FW"
-			`Admiral Danforth is curious as to why you came to him. You explain that you heard of him and the Oathkeepers when you were still on your homeworld, during the events of the war. He is very pleased that you choose to trust him, but his mood darkens the more you detail why you came here.`
+			`Admiral Danforth is curious as to why you came to him. You explain that you heard of him and the Oathkeepers when you were still on your homeworld, during the events of the war, and after it as well, from many thankfull merchants. He is very pleased that you choose to trust him, but his mood darkens the more you detail why you came here.`
 				to display
 					has "skip FW"
 			`	When you mention the Alphas, he hushes you. "Let's not speak of that, out here in the open," he says. "Not that I do not trust my people, but it is best to be safe. I will gather troops who I know are able to operate discreetly and have them be ready to join us on an expedition. Meet me in my private office at the spaceport when you're ready."`
