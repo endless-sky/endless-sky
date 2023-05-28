@@ -20,7 +20,7 @@ mission "Passing Observations"
 		has "event: introduced scin"
 		has "First Contact: Gegno Scin: offered"
 		not "Gegno Genocide Defense: offered"
-	on complete
+	on visit
 		conversation
 			`While navigating the skies of this desert world, you notice familiar readings to the desert world you previously encountered a member of the Gegno Vi on. It's likely this world is also home to the same or similar species of creature you confronted back then. Eventually, you come across a large Gegno Vi vessel stationed on the surface, though unlike in your prior experience, the ship isn't sunken into the desert, likely having recently landed here. A group of Vi warriors are marching out and nearby the vessel, and while they do, your radar picks up two more ships descending from above.`
 			choice
@@ -29,9 +29,11 @@ mission "Passing Observations"
 				`	(Continue to observe.)`
 			`	The approaching ships continue their descent while paying you no attention. They appear to be ones you spotted in orbit when you first entered the system. One of them is the same type of model as the one on the ground, likely some type of transport. The other, however, isn't one you've seen before. It looks like some sort of interceptor vessel, though it is definitely larger than something like a Sparrow from human space, maybe even the size of a Headhunter. Perhaps that ship belongs to someone of importance.`
 			`	In any case, getting mixed up with what may be some sort of military exercise with the Vi could be dangerous, considering that the planet is home to more of those monsters from before. It's best you take your leave now before the situation gets out of control again.`
+				decline
 
 			label leave
 			`	You decide to withdraw from the area, and the approaching ships continue their way towards the one on the ground as if you weren't present. Regardless of whether or not they were hostile, getting mixed up with what may be some sort of military exercise could be dangerous, especially with the Vi.`
+				decline
 
 	npc save
 		on kill
@@ -53,25 +55,27 @@ mission "Foreign Spectator I"
 	to offer
 		has "Passing Observations: offered"
 		not "Gegno Genocide Defense: offered"
+	to complete
+		never
 	on enter "Eogho"
 		fail
-		event "watcher" 7 14
+		event "gegno: suspicions" 7 14
 	npc
-		on kill
+		on provoke
 			set "interrupted arena"
 		government "Gegno Vi"
 		personality heroic vindictive ramming staying uninterested entering
 		system "Eogho"
 		ship "Eclogite" "Tschelgi Dueyu"
 	npc
-		on kill
+		on provoke
 			set "interrupted arena"
 		government "Gegno Scin"
 		personality heroic vindictive staying uninterested entering
 		system "Eogho"
 		ship "Felsic" "Tschelgi Dueich"
 	npc
-		on kill
+		on provoke
 			set "interrupted arena"
 		government "Gegno Vi (Neutral)"
 		personality heroic vindictive staying uninterested swarming
@@ -83,7 +87,7 @@ mission "Foreign Spectator I"
 				"Eclogite"
 				"Slate"
 	npc
-		on kill
+		on provoke
 			set "interrupted arena"
 		government "Gegno Scin (Neutral)"
 		personality heroic vindictive staying uninterested swarming
@@ -94,36 +98,6 @@ mission "Foreign Spectator I"
 				"Coesite" 2
 				"Tridymite"
 				"Mica" 2
-
-event "watcher"
-
-
-mission "Curious Civilians"
-	minor
-	repeat
-	invisible
-	landing
-	deadline 9
-	source
-		near "Heutesl" 100
-	to offer
-		has "Foreign Spectator I: offered"
-		not "Gegno Genocide Defense: offered"
-	to complete
-		never
-	npc save
-		government "Gegno (Hails)"
-		personality timid uninterested
-		system
-			government "Gegno"
-		fleet
-			variant
-				"Shale" 2
-			variant
-				"Dolomite"
-			variant
-				"Dolomite"
-				"Shale"
 
 
 mission "Veering Vi"
@@ -141,7 +115,7 @@ mission "Veering Vi"
 		never
 	npc save
 		government "Gegno Vi"
-		personality staying swarming
+		personality surveillance
 		system
 			government "Gegno Vi"
 		fleet
@@ -170,7 +144,7 @@ mission "Scin Suspicion"
 		never
 	npc save
 		government "Gegno Scin"
-		personality surveillance staying entering
+		personality surveillance entering
 		system
 			government "Gegno Scin"
 		fleet
@@ -178,7 +152,21 @@ mission "Scin Suspicion"
 				"Tridymite"
 
 
-#mission "Derelict Desponders"
+#mission "Derelict Desponders A"
+	invisible
+	landing
+	to offer
+		has "event: watcher"
+		has "Curious Civilians: offered"
+		has "Veering Vi: offered"
+		has "Scin Suspicion: offered"
+		not "Gegno Genocide Defense: offered"
+	on enter "Vilacira"
+		conversation
+			`Test.`
+			decline
+
+#mission "Derelict Desponders B"
 	invisible
 	landing
 	to offer
@@ -203,4 +191,3 @@ mission "Scin Suspicion"
 
 
 #mission "Heart of the Clever"
-
