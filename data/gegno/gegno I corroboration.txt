@@ -103,7 +103,7 @@ mission "Veering Vi"
 	repeat
 	invisible
 	landing
-	deadline 9
+	deadline 6
 	source
 		near "Heutesl" 100
 	to offer
@@ -112,7 +112,7 @@ mission "Veering Vi"
 	to complete
 		never
 	npc save
-		government "Gegno Vi"
+		government "Gegno Vi (Neutral)"
 		personality surveillance
 		system
 			government "Gegno Vi"
@@ -141,7 +141,7 @@ mission "Scin Suspicion"
 	to complete
 		never
 	npc save
-		government "Gegno Scin"
+		government "Gegno Scin (Neutral)"
 		personality surveillance entering
 		system
 			government "Gegno Scin"
