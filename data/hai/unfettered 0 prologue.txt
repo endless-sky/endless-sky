@@ -22,7 +22,6 @@ mission "First Contact: Unfettered"
 			branch news
 				has "hr: heard the news"
 			`This planet is populated by a hostile alien species that resembles giant, intelligent squirrels. Although despite their hostility while in orbit, they pay little mind to you on the surface. Do you want to approach one of them?`
-				goto choice
 			choice
 				`	(Sure.)`
 					goto sure
