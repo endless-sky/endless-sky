@@ -510,15 +510,15 @@ mission "Hai Reveal: Meet the Team: Xilin"
 			label humble
 			`	For a moment his expression falters, and then he seems almost relieved. "You may be a better person than I expected to meet.`
 			label mission
-			`	"Now, about that task. I mentioned during our briefing that we need to determine how much of a threat these new arrivals might be. Not a threat in the sense that they will become violent, but in the sense that they could exacerbate the situation, such as by returning to our space and making a big stink about what they've found here. The best place to go for this would be <stopovers>."`
+			`	"Now, about that task. I mentioned during our briefing that we need to determine how much of a threat these new arrivals might be. Not a threat in the sense that they will become violent, but in the sense that they could exacerbate the situation, such as by returning to our space and making a big stink about what they've found here. The best place to go for this would be <stopovers>. I have a sentry there keeping watch and recording new arrivals, but I'd like to meet some of them for myself."`
 			`	"I would like to follow and observe," says Sayari.`
 			`	"You're free to come," says Xilin. "Let me pack a few items into your ship, Captain <last>, and we can be on our way."`
 				accept
 	on stopover
 		conversation
-			`It doesn't take long after landing on <planet stopovers> to find new arrivals. Every so often a human ship will land and its crew will disembark while gawking at the spaceport, making it very obvious that they're newcomers.`
-			`	Xilin records information about each captain, including their pilot's license, ship registration, how exactly they found their way to the Hai, and more. One of the more concerning events is when a Star Queen full of passengers lands in the spaceport.`
-			`	"You have to be kidding me," Xilin says under his breath while approaching the Star Queen.`
+			`You meet with the sentry that Xilin mentioned back on <planet>, who turns out to be a Republic Intelligence officer who's been recording pilot's licenses and ship registration of all new arrivals. He hands over a data stick of notes to Xilin. "They make themselves very obvious with the way they gawk," he says. "We had two new ships come in yesterday, a Freighter and an Osprey, but there's been nothing today as of yet. It's normally only one or two smaller ships a day, if that."`
+			`	Xilin decides that it'd be best to search the spaceport for captains that showed up recently, but just before heading off a Star Queen full of passengers lands in the spaceport with everyone on board pressing their faces against the windows.`
+			`	"You have to be kidding me," Xilin says under his breath while approaching ship.`
 			`	"Welcome, one and all, to the land of the Hai," the ship's captain says while walking down the boarding ramp with all her passengers behind her.`
 			`	"Excuse me, Captain. Do you care to answer a few questions?" Xilin shouts up to the captain.`
 			`	The captain looks concerned to see Xilin standing there in a Republic uniform, but agrees to talk after shooing her passengers off into the spaceport.`
@@ -548,7 +548,7 @@ mission "Hai Reveal: Meet the Team: Xilin"
 			`	Xilin looks over the interceptor with a quizzical expression. "May I see your pilot's license?"`
 			`	"Yeah, no problem," the captain says, as he quickly pulls a license out of his pocket that looks almost as beat up as the interceptor. Xilin jots down the details and hands the license back to the captain. "Thank you. And maybe tag along with a merchant fleet on your way back home."`
 			`	"That sounds like a good idea," the captain says before walking off into the spaceport.`
-			`	You continue to question more captains in the spaceport over the course of the day with Xilin and Sayari. Some already knew of the Hai before, but many are new arrivals who heard of the way to the Hai through whispers in spaceport bars, or were sold coordinates by knowledgeable captains. Everyone seems peaceful enough in interacting with the Hai, but clearly the word is getting out more as time goes on.`
+			`	You continue to question more captains in the spaceport over the course of the day with Xilin and Sayari. Most turn out to be repeat visitors or those who have taken to conducting their business entirely in Hai space, but they are all familiar with arrivals who heard of the way to the Hai through whispers in spaceport bars or were sold coordinates by knowledgeable captains, and many are able to provide information about these encounters. It seems that everyone has been peaceful enough in interacting with the Hai so far, but clearly the word is getting out more as time goes on.`
 	on visit
 		dialog phrase "generic missing stopover or passengers"
 	on complete
