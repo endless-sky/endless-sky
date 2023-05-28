@@ -54,7 +54,8 @@ namespace {
 	const Command &AutopilotCancelCommands()
 	{
 		static const Command cancelers(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD
-			| Command::AFTERBURNER | Command::BACK | Command::FORWARD | Command::LEFT | Command::RIGHT | Command::STOP);
+			| Command::AFTERBURNER | Command::BACK | Command::FORWARD | Command::LEFT | Command::RIGHT
+			| Command::AUTOSTEER | Command::STOP);
 
 		return cancelers;
 	}
@@ -285,6 +286,42 @@ namespace {
 		// the target system cannot be reached.
 		ship.SetTargetSystem(to);
 		ship.SetTargetStellar(nullptr);
+	}
+
+	bool StayOrLinger(Ship &ship)
+	{
+		const Personality &personality = ship.GetPersonality();
+		if(personality.IsStaying())
+			return true;
+
+		const Government *government = ship.GetGovernment();
+		shared_ptr<const Ship> parent = ship.GetParent();
+		if(parent && government && parent->GetGovernment()->IsEnemy(government))
+			return true;
+
+		if(ship.IsFleeing())
+			return false;
+
+		// Everything after here is the lingering logic.
+
+		if(!personality.IsLingering())
+			return false;
+		// NPCs that can follow the player do not linger.
+		if(ship.IsSpecial() && !personality.IsUninterested())
+			return false;
+
+		const System *system = ship.GetSystem();
+		const System *destination = ship.GetTargetSystem();
+
+		// Ships not yet at their destination must go there before they can linger.
+		if(destination && destination != system)
+			return false;
+		// Ship cannot linger any longer in this system.
+		if(!system || ship.GetLingerSteps() >= system->MinimumFleetPeriod() / 4)
+			return false;
+
+		ship.Linger();
+		return true;
 	}
 
 	// Constants for the invisible fence timer.
@@ -1589,9 +1626,9 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		return;
 	}
 
-	// A ship has restricted movement options if it is 'staying' or is hostile to its parent.
-	const bool shouldStay = ship.GetPersonality().IsStaying()
-			|| (ship.GetParent() && ship.GetParent()->GetGovernment()->IsEnemy(gov));
+	// A ship has restricted movement options if it is 'staying', 'lingering', or hostile to its parent.
+	const bool shouldStay = StayOrLinger(ship);
+
 	// Ships should choose a random system/planet for travel if they do not
 	// already have a system/planet in mind, and are free to move about.
 	const System *origin = ship.GetSystem();
@@ -1986,11 +2023,23 @@ double AI::TurnToward(const Ship &ship, const Point &vector, const double precis
 	double dot = vector.Dot(facing);
 	if(dot > 0.)
 	{
-		if(precision < 1. && precision > 0. && dot * dot >= precision * vector.LengthSquared() * facing.LengthSquared())
-			return 0.;
+		// Is the facing direction aligned with the target direction with sufficient precision?
+		// The maximum angle between the two directions is given by: arccos(sqrt(precision)).
+		bool close = false;
+		if(precision < 1. && precision > 0. && dot * dot >= precision * vector.LengthSquared())
+			close = true;
 		double angle = asin(min(1., max(-1., cross / vector.Length()))) * TO_DEG;
-		if(fabs(angle) <= ship.TurnRate())
+		// Is the angle between the facing and target direction smaller than
+		// the angle the ship can turn through in one step?
+		if(fabs(angle) < ship.TurnRate())
+		{
+			// If the ship is within one step of the target direction,
+			// and the facing is already sufficiently aligned with the target direction,
+			// don't turn any further.
+			if(close)
+				return 0.;
 			return -angle / ship.TurnRate();
+		}
 	}
 
 	bool left = cross < 0.;
@@ -4010,7 +4059,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		{
 			if(!activeCommands.Has(Command::FORWARD) && ship.Attributes().Get("reverse thrust"))
 				command |= Command::BACK;
-			else if(!activeCommands.Has(Command::RIGHT | Command::LEFT))
+			else if(!activeCommands.Has(Command::RIGHT | Command::LEFT | Command::AUTOSTEER))
 				command.SetTurn(TurnBackward(ship));
 		}
 
@@ -4043,7 +4092,17 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	}
 	bool shouldAutoAim = false;
 	bool isFiring = activeCommands.Has(Command::PRIMARY) || activeCommands.Has(Command::SECONDARY);
-	if((Preferences::GetAutoAim() == Preferences::AutoAim::ALWAYS_ON
+	if(activeCommands.Has(Command::AUTOSTEER) && !command.Turn() && !ship.IsBoarding()
+			&& !autoPilot.Has(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD))
+	{
+		if(target && target->GetSystem() == ship.GetSystem() && target->IsTargetable())
+			command.SetTurn(TurnToward(ship, TargetAim(ship)));
+		else if(ship.GetTargetAsteroid())
+			command.SetTurn(TurnToward(ship, TargetAim(ship, *ship.GetTargetAsteroid())));
+		else if(ship.GetTargetStellar())
+			command.SetTurn(TurnToward(ship, ship.GetTargetStellar()->Position() - ship.Position()));
+	}
+	else if((Preferences::GetAutoAim() == Preferences::AutoAim::ALWAYS_ON
 			|| (Preferences::GetAutoAim() == Preferences::AutoAim::WHEN_FIRING && isFiring))
 			&& !command.Turn() && !ship.IsBoarding()
 			&& ((target && target->GetSystem() == ship.GetSystem() && target->IsTargetable()) || ship.GetTargetAsteroid())
