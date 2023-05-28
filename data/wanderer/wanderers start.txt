@@ -1775,6 +1775,7 @@ mission "Wanderers Invaded 3"
 	source "Varu Mer'ek"
 	destination "Var' Kar'i'i"
 	passengers 1
+	blocked "You receive a message from Isai indicating that she would like to join you for the next mission, but you don't have space right now. Return when you have a bunk free."
 	to offer
 		has "Wanderers Invaded 2: done"
 	on offer
@@ -1808,7 +1809,7 @@ mission "Wanderers Invaded 3"
 		ship "Deep River Transport" "Eka'ta Turuk'ta"
 	on visit
 		dialog
-			`You have reached <planet>, but the Wanderer transports have not all arrived yet. You should take off and wait for them to catch up with you.`
+			`You have reached <planet>, but the Wanderer transports, or your ship carrying Isai, have not all arrived yet. You should take off and wait for them to catch up with you.`
 
 
 
