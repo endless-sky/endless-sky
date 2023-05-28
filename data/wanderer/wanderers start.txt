@@ -2000,12 +2000,26 @@ mission "Wanderers Hai Assistance Fleet"
 	invisible
 	to offer
 		has "Wanderers Hai Assistance 1: done"
+	on offer
+		event "hai blockade"
 	npc kill
 		government "Hai"
 		personality heroic staying uninterested frugal
 		system "Wah Ki"
 		fleet "Large Hai" 6
 
+event "hai blockade"
+	government "Hai (Raided)"
+		remove raid
+
+mission "Wanderers Hai Assistance Fleet patch"
+	landing
+	invisible
+	to offer
+		has "Wanderers Hai Assistance Fleet: done"
+		not "event: hai blockade"
+	on offer
+		event "hai blockade"
 
 
 mission "Wanderers Hai Assistance 3"
