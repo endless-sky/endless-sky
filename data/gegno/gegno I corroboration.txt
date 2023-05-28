@@ -103,7 +103,7 @@ mission "Veering Vi"
 	repeat
 	invisible
 	landing
-	deadline 6
+	deadline 12
 	source
 		near "Heutesl" 100
 	to offer
