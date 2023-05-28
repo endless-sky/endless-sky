@@ -1334,7 +1334,7 @@ mission "Heliarch Contain True"
 	job
 	repeat
 	name `Contain Criminals`
-	description `Fly to <destination> by <date> so that you and <bunks> other Heliarch agents can combat criminals on the site.`
+	description `Fly to <destination> by <date> so that you and <bunks> other Heliarch agents can combat criminals on site.`
 	deadline
 	passengers 16 58
 	to offer
@@ -1358,7 +1358,7 @@ mission "Heliarch Contain Fail"
 	job
 	repeat
 	name `Contain Criminals`
-	description `Fly to <destination> by <date> so that you and <bunks> other Heliarch agents can combat criminals on the site.`
+	description `Fly to <destination> by <date> so that you and <bunks> other Heliarch agents can combat criminals on site.`
 	deadline
 	passengers 16 58
 	to offer
