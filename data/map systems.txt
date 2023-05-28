@@ -11325,7 +11325,7 @@ system "Ehma Ti"
 	trade Plastic 532
 	fleet "Unfettered Logistics" 600
 	fleet "Small Unfettered" 500
-	fleet "Large Unfettered" 750
+	fleet "Large Unfettered" 825
 	fleet "Unfettered Raid" 2500
 	fleet "Small Hai Merchant (Sympathizers)" 2400
 	fleet "Large Hai Merchant (Sympathizers)" 4800
@@ -16393,7 +16393,7 @@ system "Hi Yahr"
 	trade Plastic 372
 	fleet "Unfettered Logistics" 450
 	fleet "Small Unfettered" 500
-	fleet "Large Unfettered" 1000
+	fleet "Large Unfettered" 1100
 	fleet "Small Hai Merchant (Sympathizers)" 2400
 	fleet "Large Hai Merchant (Sympathizers)" 4800
 	object
@@ -33456,7 +33456,7 @@ system "Wah Yoot"
 	trade Plastic 472
 	fleet "Unfettered Logistics" 600
 	fleet "Small Unfettered" 1000
-	fleet "Large Unfettered" 500
+	fleet "Large Unfettered" 550
 	fleet "Small Hai Merchant (Sympathizers)" 1200
 	fleet "Large Hai Merchant (Sympathizers)" 2400
 	object
