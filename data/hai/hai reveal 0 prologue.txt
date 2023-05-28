@@ -510,18 +510,18 @@ mission "Hai Reveal: Meet the Team: Xilin"
 			label humble
 			`	For a moment his expression falters, and then he seems almost relieved. "You may be a better person than I expected to meet.`
 			label mission
-			`	"Now, about that task. I mentioned during our briefing that we need to determine how much of a threat these new arrivals might be. Not a threat in the sense that they will become violent, but in the sense that they could exacerbate the situation, such as by returning to our space and making a big stink about what they've found here. The best place to go for this would be <stopovers>. I have a sentry there keeping watch and recording new arrivals, but I'd like to meet some of them for myself."`
+			`	"Now, about that task. I mentioned during our briefing that we need to determine how much of a threat these new arrivals might be. Not a threat in the sense that they will become violent, but in the sense that they could exacerbate the situation, such as by returning to our space and making a big stink about what they've found here. The best place to go for this would be <stopovers>."`
 			`	"I would like to follow and observe," says Sayari.`
 			`	"You're free to come," says Xilin. "Let me pack a few items into your ship, Captain <last>, and we can be on our way."`
 				accept
 	on stopover
 		conversation
-			`You meet with the sentry that Xilin mentioned back on <planet>, who turns out to be a Republic Intelligence officer who's been recording pilot's licenses and ship registration of all new arrivals. He hands over a data stick of notes to Xilin. "They make themselves very obvious with the way they gawk," he says. "We had two new ships come in yesterday, a Freighter and an Osprey, but there's been nothing today as of yet. It's normally only one or two smaller ships a day, if that."`
-			`	Xilin decides that it'd be best to search the spaceport for captains that showed up recently, but just before heading off a Star Queen full of passengers lands in the spaceport with everyone on board pressing their faces against the windows.`
+			`The rate at which new ships show up isn't tremendous, so Xilin starts by speak with some of the older captains who have been here prior to the news. "You can learn a lot by sharing a drink with the right merchant," he says to you.`
+			`	One captain in particular has been camped out here to intercept new captains as they arrive and give them the induction tour. He also has a copious set of notes that he gladly shares with Xilin. "After I heard the news, I figured I'd help by keeping notes on new arrivals. They make themselves very obvious with the way they gawk," he says. "We had two new ships come in yesterday, a Freighter and an Osprey, but there's been nothing today as of yet. It's normally only one or two smaller ships a day, if that."`
+			`	Xilin decides to next search the spaceport for captains that showed up recently, but just before heading off, a Star Queen full of passengers lands in the spaceport with everyone on board pressing their faces against the windows.`
 			`	"You have to be kidding me," Xilin says under his breath while approaching ship.`
 			`	"Welcome, one and all, to the land of the Hai," the ship's captain says while walking down the boarding ramp with all her passengers behind her.`
-			`	"Excuse me, Captain. Do you care to answer a few questions?" Xilin shouts up to the captain.`
-			`	The captain looks concerned to see Xilin standing there in a Republic uniform, but agrees to talk after shooing her passengers off into the spaceport.`
+			`	"Excuse me, Captain. Do you care to answer a few questions?" Xilin shouts up to the captain. She looks concerned to see Xilin standing there in a Republic uniform, but agrees to talk after shooing her passengers off into the spaceport.`
 			`	"What is it you need to know, officer?" the captain asks. Although Xilin isn't a Navy officer, he doesn't correct her.`
 			`	"I'd like to know why it is that you decided to bring all these passengers who had never been to Hai space before."`
 			`	The captain scratches the back of her head. "Well after seeing the news back home, I figured the secret was already out. Might as well make the most of it, you know?"`
