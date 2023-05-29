@@ -19,12 +19,19 @@ mission "First Contact: Unfettered"
 		conversation
 			branch hai
 				has "First Contact: Hai: offered"
-				
-			`This planet is populated by a hostile alien species that resembles giant, intelligent squirrels. Do you want to approach one of them?`
+			branch news
+				has "hr: heard the news"
+			`This planet is populated by a hostile alien species that resembles giant, intelligent squirrels. Although despite their hostility while in orbit, they pay little mind to you on the surface. Do you want to approach one of them?`
 			choice
 				`	(Sure.)`
+					goto sure
 				`	(Not now, it's too risky.)`
 					defer
+			
+			label news
+			`This planet is populated by a hostile alien species that resembles giant, intelligent squirrels. Their ships look exactly like the ones that you saw on the news. Although despite their hostility while in orbit, they pay little mind to you on the surface.`
+			
+			label sure
 			`	You catch the eye of one of the alien dock workers and it walks over. "Ah," it says, "the monkey is curious. The monkey has never been face to face with a true Hai before?"`
 			choice
 				`	"Hai? Is that what you call yourselves?"`
