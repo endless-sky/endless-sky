@@ -56,7 +56,8 @@ jobs:
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
         sudo apt-get update
         sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libosmesa6 mesa-utils libglvnd-dev
-        sudo echo 'pcm.!default { type plug slave.pcm "null" }' >> /etc/asound.conf
+        echo 'pcm.!default { type plug slave.pcm "null" }' >> /tmp/asound.conf
+        sudo 'cat /tmp/asound.conf >> /etc/asound.conf'
     - name: Setup sccache
       uses: ./.github/sccache
     - uses: lukka/get-cmake@latest
