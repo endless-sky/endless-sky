@@ -399,8 +399,6 @@ mission "Hai Reveal: Meet the Team: FW"
 		has "hr: meet the team"
 		has "event: joined the free worlds"
 	on offer
-		set "Hai Reveal: Meet the Team: Alondo: offered"
-		set "Hai Reveal: Meet the Team: Alondo: done"
 		log "People" "Alondo Gruyere" `Alondo is working to develop the diplomatic corps for the Free Worlds. Due to a lack of serious appointed positions (with the few already existing occupied as ambassadors to the Republic), he is looking after the Free Worlds' interests as a diplomat to the Hai.`
 		log "People" "Sayari" `Ambassador Sayari, a Hai, served as their envoy to the human government a century ago (although no public records of this exist in human space). Her experience has placed her in charge of coordinating the Hai response to the crisis of their continued secrecy.`
 		conversation
@@ -475,17 +473,16 @@ mission "Hai Reveal: Meet the Team: FW"
 
 
 
-mission "Hai Reveal: Meet the Team: Xilin"
+mission "Hai Reveal: Meet the Team: Xilin 1"
 	name "New Arrivals"
-	description "Travel to <stopovers> with Xilin to interview new arrivals to Hai space to determine how they arrived and what they think about the Hai. Return to <destination> when finished."
+	description "Travel to <destination> with Xilin to interview new arrivals to Hai space to determine how they arrived and what they think about the Hai."
 	source "Hai-home"
-	clearance
-	stopover "Allhome"
+	destination "Allhome"
 	passengers 2
 	blocked "You will need <capacity> in order to take this mission."
 	to offer
 		has "hr: meet the team"
-		has "Hai Reveal: Meet the Team: Alondo: done"
+		has "hr: met alondo"
 	on offer
 		log "People" "Xilin Yang" `Deputy Minister Yang works in the Foreign Affairs department of the Republic government. He is a pleasant and astute man. Handling the Hai secrecy crisis has become his job while the majority of the foreign ministry remains engaged with the fallout from the Free Worlds and recent peace.`
 		conversation
@@ -503,7 +500,23 @@ mission "Hai Reveal: Meet the Team: Xilin"
 			`	"I would like to follow and observe," says Sayari.`
 			`	"You're free to come," says Xilin. "Let me pack a few items into your ship, Captain <last>, and we can be on our way."`
 				accept
-	on stopover
+	on visit
+		dialog phrase "generic passenger on visit"
+
+
+
+mission "Hai Reveal: Meet the Team: Xilin 2"
+	landing
+	name "New Arrivals"
+	description "Return to <destination>."
+	source "Allhome"
+	destination "Hai-home"
+	clearance
+	passengers 2
+	blocked "You will need <capacity> in order to take this mission."
+	to offer
+		has "Hai Reveal: Meet the Team: Xilin 1: done"
+	on offer
 		conversation
 			`The rate at which new ships show up isn't tremendous, so Xilin starts by speak with some of the older captains who have been here prior to the news. "You can learn a lot by sharing a drink with the right merchant," he says to you.`
 			`	One captain in particular has been camped out here to intercept new captains as they arrive and give them the induction tour. He also has a copious set of notes that he gladly shares with Xilin. "After I heard the news, I figured I'd help by keeping notes on new arrivals. They make themselves very obvious with the way they gawk," he says. "We had two new ships come in yesterday, a Freighter and an Osprey, but there's been nothing today as of yet. It's normally only one or two smaller ships a day, if that."`
@@ -538,9 +551,11 @@ mission "Hai Reveal: Meet the Team: Xilin"
 			`	"Yeah, no problem," the captain says, as he quickly pulls a license out of his pocket that looks almost as beat up as the interceptor. Xilin jots down the details and hands the license back to the captain. "Thank you. And maybe tag along with a merchant fleet on your way back home."`
 			`	"That sounds like a good idea," the captain says before walking off into the spaceport.`
 			`	You continue to question more captains in the spaceport over the course of the day with Xilin and Sayari. Most turn out to be repeat visitors or those who have taken to conducting their business entirely in Hai space, but they are all familiar with arrivals who heard of the way to the Hai through whispers in spaceport bars or were sold coordinates by knowledgeable captains, and many are able to provide information about these encounters. It seems that everyone has been peaceful enough in interacting with the Hai so far, but clearly the word is getting out more as time goes on.`
+				accept
 	on visit
-		dialog phrase "generic missing stopover or passengers"
+		dialog phrase "generic passenger on visit"
 	on complete
+		set "hr: met xilin"
 		conversation
 			`You return to the briefing room at the secure port with Xilin and Sayari, and Xilin begins transferring his notes into a terminal. He then pauses while staring at something on the screen.`
 			`	"I'm running each of the pilot's licenses and ship registrations through my copy of the Republic's pilot database. They've all come up as valid and with mostly clean records. All except for one." He turns the terminal screen toward you and Sayari, displaying an inputted license ID that the system says does not exist.`
@@ -564,17 +579,16 @@ mission "Hai Reveal: Meet the Team: Xilin"
 
 
 
-mission "Hai Reveal: Meet the Team: Samuel"
+mission "Hai Reveal: Meet the Team: Samuel 1"
 	name "High Tension"
-	description "Remington has heard news of tensions between new arrivals and local Hai on <stopovers>. Return to <destination> when finished."
+	description "Remington has heard news of tensions between new arrivals and local Hai on <destination>."
 	source "Hai-home"
-	clearance
-	stopover "Cloudfire"
+	destination "Cloudfire"
 	passengers 2
 	blocked "You will need <capacity> in order to take this mission."
 	to offer
 		has "hr: meet the team"
-		has "Hai Reveal: Meet the Team: Xilin: done"
+		has "hr: met xilin"
 	on offer
 		log "People" "Terry Adrianopoulos" `Terry Adrianopoulos is a member of the Syndicate assisting Samuel Remington in dealing with the situation regarding the Hai. Samuel claims that Terry is his secretary.`
 		conversation
@@ -605,7 +619,22 @@ mission "Hai Reveal: Meet the Team: Samuel"
 			`	"I will be accompanying you," Sayari says.`
 			`	"Just the three of us, then," Remington adds. "The Wah Ki system is where Mr. Campbell's video that's been plastered all over the news was taken. I imagine any new arrivals attempting to look into the validity of the video themselves would find their way there, so it'd be worth checking in on the place."`
 				accept
-	on stopover
+	on visit
+		dialog phrase "generic passenger on visit"
+
+
+
+mission "Hai Reveal: Meet the Team: Samuel 2"
+	name "High Tension"
+	description "Return to <destination>."
+	source "Cloudfire"
+	destination "Hai-home"
+	clearance
+	passengers 2
+	blocked "You will need <capacity> in order to take this mission."
+	to offer
+		has "Hai Reveal: Meet the Team: Samuel 1: done"
+	on offer
 		conversation
 			`It doesn't take long to prove Remington's hunch correct. You find a group of new arrivals gathered by a group of Hai captains and crewmen, asking them question after question. "Why are you guys hiding up here?" "Where can I buy some of those weapons of yours?" "Do you eat acorns?" Some of the Hai look intrigued by the attention they're being given, but others look annoyed.`
 			`	One of the human captains seems to be riling the others up and being rather hostile with his comments. "Do you really think you could invade us? You're like half my size; I could take you on in a fight any day."`
@@ -642,9 +671,11 @@ mission "Hai Reveal: Meet the Team: Samuel"
 			`	You look over to the group of Hai to see Sayari speaking to them in their own language, likely trying to prevent the Hai from doing anything brash.`
 			`	Remington speaks with the crowd of humans for a little while longer, eventually convincing them to leave the Hai alone. "Let's head back to <planet>," Remington says. "I've seen enough here. And we should probably think about having the spaceport authority here restrict who can land, at least until all this blows over."`
 			`	"Perhaps," Sayari responds.`
+				accept
 	on visit
-		dialog phrase "generic missing stopover or passengers"
+		dialog phrase "generic passenger on visit"
 	on complete
+		set "hr: met samuel"
 		conversation
 			`You return to the briefing room at the secure port with Remington and Sayari. "This Hai holographic tech is pretty nifty, isn't it?" Remington says while playing around with the device he used on <planet stopovers>. "Way more advanced than anything we've got back home. It's also pretty useful that there's a port for one of our cables, otherwise I never would have figured out how to get that Pug image on there."`
 			`	"Ah, yes," Sayari says. "Many decades of interaction with humans has led us to accommodate much of our technology to your needs. Humans are our guests here, so we saw it only right to make you feel more comfortable. A shame to see a few bad apples may spoil the bunch."`
@@ -674,9 +705,9 @@ mission "Hai Reveal: Meet the Team: Terry"
 	waypoint "Ultima Thule"
 	waypoint "Volax"
 	to offer
-		has "Hai Reveal: Meet the Team: Alondo: done"
-		has "Hai Reveal: Meet the Team: Xilin: done"
-		has "Hai Reveal: Meet the Team: Samuel: done"
+		has "hr: met alondo"
+		has "hr: met xilin"
+		has "hr: met samuel"
 	on offer
 		conversation
 			`When you exit onto the landing pads, you find that Terry has just finished ensuring your ship is refueled. "Alright, Captain. I have a simple mission for you. We need someone to scout out the ship frequencies in various uninhabited systems in the Far North. We know how many merchants are arriving here, but we're not sure how many are attempting and failing, for one reason or another. I need you to fly through these systems and report back here with what you find."`
@@ -688,13 +719,13 @@ mission "Hai Reveal: Meet the Team: Terry"
 
 
 
-mission "Hai Reveal: Meet the Team: Sayari"
+mission "Hai Reveal: Meet the Team: Sayari 1"
 	landing
 	name "Important Message"
 	description "Deliver an important message from the Hai to the Republic on <stopovers>. Return to <destination> when finished."
 	source "Hai-home"
+	destination "Earth"
 	clearance
-	stopover "Earth"
 	to offer
 		has "Hai Reveal: Meet the Team: Terry: done"
 	on offer
@@ -705,13 +736,24 @@ mission "Hai Reveal: Meet the Team: Sayari"
 			choice
 				`	"Consider it done."`
 					accept
-	on stopover
+
+
+
+mission "Hai Reveal: Meet the Team: Sayari 2"
+	landing
+	name "Important Message"
+	description "Return to <destination>"
+	source "Earth"
+	destination "Hai-home"
+	clearance
+	to offer
+		has "Hai Reveal: Meet the Team: Sayari 1: done"
+	on offer
 		conversation
 			`On approach to the spaceport on Earth, you request to speak to a diplomatic official. Given your renown from the Pug war, they promise you a "speedy two to three business days" wait. But after showing the diplomatic ID that Sayari gave you, that quickly shrinks to "two hours."`
 			`	You meet with Jamal Rahman, the Chief Minister of Foreign Affairs and Xilin's boss. "I take it you've involved yourself with this 'Hai' situation," he says. You nod. "Well I apologize, but I do not have much time for small talk. What is it you need me for?" You hand him the encrypted message that Sayari gave you and explain where it's from. He thanks you, and leaves with the message.`
 			`	Some hours later, Rahman returns with an encrypted data chip. "This is our response. Safe travels, Captain."`
-	on visit
-		dialog phrase "generic stopover on visit"
+				accept
 	on complete
 		event "hr: exploration period" 45
 		conversation
