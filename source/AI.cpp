@@ -4029,6 +4029,38 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	else if(activeCommands.Has(Command::SCAN))
 	{
 		command |= Command::SCAN;
+		if(Preferences::Has("Show buttons on map"))
+		{
+			// On android, chase the target if they get too far away while the
+			// user is holding the scan button.
+			auto target = ship.GetTargetShip();
+			double cargoDistanceSquared = ship.Attributes().Get("cargo scan power");
+			double outfitDistanceSquared = ship.Attributes().Get("outfit scan power");
+			double distance = cargoDistanceSquared;
+			if(cargoDistanceSquared > 0 && outfitDistanceSquared > 0)
+				distance = min(cargoDistanceSquared, outfitDistanceSquared);
+			else if(outfitDistanceSquared > 0)
+				distance = outfitDistanceSquared;
+			if(distance > 0 && target)
+			{
+				// 1 scan power == 100 px
+				double targetDistance = target->Position().DistanceSquared(ship.Position());
+				// convert from pixels to scan units. remember, this is a squared
+				// distance, so the conversion ratio has to be squared as well
+				targetDistance /= (100*100);
+				// try to stay close to the target
+				if(targetDistance > distance * .5)
+				{
+					// This code has an annoying side-effect that I'm not sure how
+					// to counter. if somebody in your fleet is being followed by
+					// the scan target, then everybody ends up moving after a point
+					// in front of your fleet, and you all just wander off together
+					// without being able to complete a scan
+					MoveTo(ship, command, target->Position(), target->Velocity(), 5.0, 0.8);
+				}
+			}
+		}
+	}
 	else if(activeCommands.Has(Command::HARVEST))
 	{
 		Orders newOrders;
@@ -4038,7 +4070,6 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	else if(activeCommands.Has(Command::NEAREST_ASTEROID))
 	{
 		TargetMinable(ship);
-	}
 
 		if(Preferences::Has("Show buttons on map"))
 		{
@@ -4082,10 +4113,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	AimTurrets(ship, firingCommands, !Preferences::Has("Turrets focus fire"));
 	if(Preferences::GetAutoFire() != Preferences::AutoFire::OFF && !ship.IsBoarding()
 			&& !(autoPilot | activeCommands).Has(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD)
-==== BASE ====
-			&& (!target || target->GetGovernment()->IsEnemy()))
+			&& (!target || target->GetGovernment()->IsEnemy() || activeCommands.Has(Command::FIGHT)))
 		AutoFire(ship, firingCommands, false);
-==== BASE ====
 
 	const bool mouseTurning = activeCommands.Has(Command::MOUSE_TURNING_HOLD);
 	if(mouseTurning && !ship.IsBoarding() && !ship.IsReversing())

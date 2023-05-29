@@ -65,6 +65,7 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/Body.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/CaptureOdds.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/CargoHold.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/CategoryList.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/CrashState.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/CollisionSet.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Color.cpp
@@ -82,7 +83,9 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/Depreciation.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Dialog.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Dictionary.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/DistanceCalculationSettings.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/DistanceMap.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/Distribution.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/DrawList.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Dropdown.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Effect.cpp
@@ -94,6 +97,7 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/FillShader.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/FireCommand.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Fleet.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/FleetCargo.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Flotsam.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/FogShader.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/FormationPattern.cpp
@@ -158,6 +162,7 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/PlanetPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/PlayerInfo.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/PlayerInfoPanel.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/Plugins.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Point.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/PointerShader.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Politics.cpp
