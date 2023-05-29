@@ -137,6 +137,8 @@ mission "War Reactions: Navy and Free Worlds Captains"
 					to display
 						"WR: Captains: question" > 1
 				`	"Hello. Sorry, but I don't have much time to talk."`
+					to display
+						"WR: Captains: question" <= 1
 			`	"Oh, we should've guessed you were too busy to chat," says Captain Rain.`
 			`	"The war might be over, but I'm sure there's still plenty of work for a captain such as yourself to do," says Captain Fiona. "Well it was at least nice to meet you. Stay well."`
 				decline
@@ -195,7 +197,7 @@ mission "War Reactions: Syndicate Orphan"
 				`	"Break it up, kids."`
 				`	(Ignore them and keep walking.)`
 					decline
-			`	The three attackers turn around, looking furious. They eye the gun on your holster and run away.`
+			`	The three attackers turn around, looking furious. They eye the gun in your holster and run away.`
 			`	The boy on the ground slowly rises to his feet. He looks about twelve years old. It takes him a few seconds to recover. "Thanks. Not a lot of people around here would help like that. I'm Gus." He looks worried and asks, "Can you walk me to the repair shop? I'm already late for work, and I'm afraid they'll attack me again."`
 			label questions
 			choice
