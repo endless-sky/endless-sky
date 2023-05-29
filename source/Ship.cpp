@@ -73,6 +73,8 @@ namespace {
 	// MAX_SCAN_RANGE is critical since anywhere within that range,
 	// you still have a maximum of SCAN_TIME AI steps to scan.
 	const double SCAN_TIME = 600.;
+	const double MIN_SCAN_STEPS = 1; // maximum of 10 seconds to scan
+	const double MAX_SCAN_STEPS = 5; // minimum of 2 seconds to scan
 	const double MAX_SCAN_RANGE = 2;
 	const double MAX_SCAN_RANGE_FACTOR = MAX_SCAN_RANGE * MAX_SCAN_RANGE;
 
@@ -2722,7 +2724,8 @@ int Ship::Scan(const PlayerInfo &player)
 			// Gaussian drop-off of scan speed.
 			double distanceExponent = -distanceSquared / max<double>(1e-3, 2 * scannerRangeSquared);
 
-			elapsed += max<double>(1, exp(distanceExponent) * sqrt(speed) * sizeAdjustment);
+			elapsed += max<double>(MIN_SCAN_STEPS, min<double>(MAX_SCAN_STEPS,
+				exp(distanceExponent) * sqrt(speed) * sizeAdjustment));
 
 			if(elapsed >= SCAN_TIME)
 				result |= event;
