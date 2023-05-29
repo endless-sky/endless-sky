@@ -4,6 +4,7 @@ Version 0.10.1
       * Development help and fixes from many community members. (@bene-dictator, @EjoThims, @UnorderedSigh, @warp-core)
       * More chapters coming in the future.
     * NPC nodes in missions can now be given "on *" nodes that behave similarly to "on *" nodes on missions, triggering actions on status changes for the NPC. (@Amazinite, @warp-core)
+    * Plugins are now able to be enabled and disabled within the Plugins menu. (@samrocketman, @quyykk)
     * Updated and added new mechanics around asteroid mining to increase its depth, including allowing player escorts to engage more in mining. See the game mechanics section for more details.
   * Bug fixes:
     * Content bugs:
@@ -164,7 +165,6 @@ Version 0.10.1
       * Removed the scan decay that occurred when a target that was being scanned got out of range of the scanner, as it made scanning faster ships after the recent scanning changes too difficult. (@Amazinite)
       * The "outfit: <outfit>" and "outfit (installed): <outfit>" conditions now skip over parked ships. (@Amazinite)
   * User interface:
-    * Plugins are now able to be enabled and disabled within the Plugins menu. (@samrocketman, @quyykk)
     * Broke the user preferences up into multiple pages. (@Terin)
     * Repeatedly clicking on a selected mission now cycles through every system involved with that mission, be that the waypoints, stopovers, or destination. (@alextd)
     * The credits on the main menu can now have their speed and direction of travel controlled using the up and down arrow keys. (@Koranir)
