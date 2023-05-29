@@ -2592,8 +2592,11 @@ mission "Paradise Fortune 1"
 		distance 1 1
 	passengers 1
 	to offer
-		has "main plot completed"
 		random < 50
+		has "main plot completed"
+		or
+			not "hr: secret leaks"
+			has "event: hai-human resolution announced"
 	
 	on offer
 		conversation
