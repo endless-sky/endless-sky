@@ -52,12 +52,12 @@ mission "Heliarch Investigation 2"
 	source "Ring of Friendship"
 	destination "Ring of Friendship"
 	to complete
-		has "HI2-MP: done"
-		has "HI2-SF: done"
-		has "HI2-SS: done"
-		has "HI2-FS: done"
-		has "HI2-IW: done"
-		has "HI2-RB: done"
+		has "Heliarch Investigation 2 - Mebla's Portion: done"
+		has "Heliarch Investigation 2 - Stronghold of Flugbu: done"
+		has "Heliarch Investigation 2 - Shifting Sand: done"
+		has "Heliarch Investigation 2 - Fourth Shadow: done"
+		has "Heliarch Investigation 2 - Into White: done"
+		has "Heliarch Investigation 2 - Remote Blue: done"
 	on offer
 		conversation
 			`Despite the immense traffic in <origin>'s spaceport, the Heliarch trio you brought here is quick to find you after you enter. Kirrie is the first to greet you, "Captain <last>! Glad I am, that still around, you are."`
@@ -112,7 +112,7 @@ mission "Heliarch Investigation 2"
 			`	The agents then get closer to her, and Kirrie whispers something to the consul, handing her three more reports. Iekie turns to you once more, saying, "Enviable, your prowess at investigation is, <last>. Outstanding work, Captain."`
 				goto finalthanks
 
-mission "HI2-Bonus 1"
+mission "Heliarch Investigation 2 - Bonus 1"
 	invisible
 	landing
 	to offer
@@ -129,7 +129,7 @@ mission "HI2-Bonus 1"
 			`	When she finishes, <payment> are transferred to your account.`
 				decline
 
-mission "HI2-Bonus 2"
+mission "Heliarch Investigation 2 - Bonus 2"
 	invisible
 	landing
 	to offer
@@ -146,7 +146,7 @@ mission "HI2-Bonus 2"
 			`	When she finishes, <payment> are transferred to your account.`
 				decline
 
-mission "HI2-Bonus 3"
+mission "Heliarch Investigation 2 - Bonus 3"
 	invisible
 	landing
 	to offer
@@ -163,7 +163,7 @@ mission "HI2-Bonus 3"
 			`	When she finishes, <payment> are transferred to your account.`
 				decline
 
-mission "HI2-MP"
+mission "Heliarch Investigation 2 - Mebla's Portion"
 	name "Investigate <planet>"
 	description "Transport the Heliarch trio to <destination> so that they can investigate signs of criminal activity."
 	to offer
@@ -256,7 +256,7 @@ mission "HI2-MP"
 			`	Kirrie leaves you behind and you sit there on your own for a number of hours. Eventually, the trio returns, revealing that only Tugroob had found evidence of illegal activity - smuggled weapons passing through the planet.`
 			`	The three agents get back in their bunks and suggest that you depart as soon as possible.`
 
-mission "HI2-SF"
+mission "Heliarch Investigation 2 - Stronghold of Flugbu"
 	name "Investigate <planet>"
 	description "Transport the Heliarch trio to <destination> so that they can investigate signs of criminal activity."
 	to offer
@@ -273,7 +273,7 @@ mission "HI2-SF"
 			`While you doubt anyone opposing the Heliarchs would find much success operating in this massive compound, it seems the strategic location held by the planet, the volume of resources invested, fortifications available, and sheer number of ships stationed here had it marked for investigation anyway.`
 			`	The three agents inform you that you're not allowed to enter most parts of the compound they will be headed to, so you stay inside your ship. They return right at sunset, telling you they found nothing worthwhile, "As expected," Kirrie comments with a sigh. They tell you they're ready to leave, and head to their bunks.`
 
-mission "HI2-SS"
+mission "Heliarch Investigation 2 - Shifting Sand"
 	name "Investigate <planet>"
 	description "Transport the Heliarch trio to <destination> so that they can investigate signs of criminal activity."
 	to offer
@@ -366,7 +366,7 @@ mission "HI2-SS"
 			`	"I see," he says. He gives you the coordinates he needs to go to and you drop him off before returning to the hangars.`
 			`	Kirrie and Iplora come back hours later and contact Tugroob, who says you can pick him up where you left him. Once he's back in your ship, he tells you he found nothing worthwhile.`
 
-mission "HI2-FS"
+mission "Heliarch Investigation 2 - Fourth Shadow"
 	name "Investigate <planet>"
 	description "Transport the Heliarch trio to <destination> so that they can investigate signs of criminal activity."
 	to offer
@@ -385,7 +385,7 @@ mission "HI2-FS"
 			`	After picking up Tugroob from the last factory, they all analyze their findings one last time. They do this by going over each individual factory, mechanically running down a long list of "possible abnormalities" for each, leaving a mark on the side, and briefly writing a description if any such "abnormality" was noted in a factory.`
 			`	"Unauthorized power surges to some replicators, we found. Missing as well, some records of storage transport were," Iplora says. You land on a Heliarch base, and they hand a copy of their findings to the Heliarchs stationed there before returning to your ship. As they head to their bunks, you see several Heliarch ships fly off in the direction of some of the factories.`
 
-mission "HI2-IW"
+mission "Heliarch Investigation 2 - Into White"
 	name "Investigate <planet>"
 	description "Transport the Heliarch trio to <destination> so that they can investigate signs of criminal activity."
 	to offer
@@ -505,7 +505,7 @@ mission "HI2-IW"
 			`	Each one houses a Heliarch Finisher Torpedo inside, to the agents' surprise. As they open them up and reveal dozens of the torpedoes, Iplora heads out with a group of agents, showing them signs of the shootout with the attacker, and giving her thoughts on where they could be fleeing to. She also instructs another group on the local caverns, before they head underground. When she's back with you, one of the captains of the Neutralizers tell you that they will handle everything from here, and have one of the ships take you two to where your own ship landed, leaving as you prepare to take off.`
 			`	You head back to pick up Kirrie and Tugroob, who are excited to hear about what happened. They themselves didn't find anything, but they're content with listening to Iplora as she tells the story.`
 
-mission "HI2-RB"
+mission "Heliarch Investigation 2 - Remote Blue"
 	name "Investigate <planet>"
 	description "Transport the Heliarch trio to investigate the isolated <planet>."
 	to offer
@@ -1403,7 +1403,7 @@ mission "Heliarch Containment 5"
 		government "Lunarium"
 		ship "Saryd Sojourner (Bombardments)" "Hodoviah"
 		conversation
-			`Unlike the other two vessels, this ship is equipped with Heliarch weaponry. Unfortunately you can neither verify the equipment it is using nor check for hostages, as a self destruction sequence starts when you're about to enter it.`
+			`As you suspected from when you were fighting it, this ship is equipped with Heliarch weaponry. Unfortunately you can neither verify the equipment it is using nor check for hostages, as a self destruction sequence starts when you're about to enter it.`
 				launch
 	npc board
 		personality timid plunders entering target
