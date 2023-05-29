@@ -20,29 +20,56 @@ mission "First Contact: Hai"
 		conversation
 			branch unfettered
 				has "First Contact: Unfettered: offered"
+			branch news1
+				has "hr: heard the news"
 			`This planet is populated by an alien species that resemble giant, intelligent squirrels. However, the most surprising aspect of the spaceport is not the aliens, but the fact that human merchants and other civilians are walking among them and are clearly at home here. Would you like to find someone who can tell you what is going on here?`
 			choice
 				`	(Sure.)`
+					goto sure1
 				`	(Not right now.)`
 					defer
 			
+			label news1
+			`This planet is populated by an alien species that resemble giant, intelligent squirrels. Their ships look exactly like the ones that you saw on the news. But despite the violence that Campbell spoke of, there are human merchants and other civilians walking among them that are clearly at home here.`
+			
+			label sure1
 			`	You walk up to a human merchant who is busy haggling with one of the aliens. They interrupt their conversation when they see you approaching, and the human gestures for you to join them. "You look totally lost," he says. "First time down the rabbit hole?"`
 			`	You nod. The alien reaches out a paw to shake hands with you. "Welcome to Hai space," it says. "We are people of peace, and you are free to visit us or even live among us. Our worlds provide enough bounty for all."`
 				goto next
 			
 			label unfettered
+			branch news2
+				has "hr: heard the news"
 			`The Hai here seem more friendly and approachable than those you met earlier. Even more surprising though is the fact that human merchants and other civilians are walking among them and are clearly at home here. Would you like to find someone who can tell you what is going on here?`
 			choice
 				`	(Sure.)`
+					goto sure2
 				`	(Not right now.)`
 					defer
 			
+			label news2
+			`The Hai here seem more friendly and approachable than those you met earlier. Surprisingly, there are human merchants and other civilians walking among them that are clearly at home here, in stark contrast to the other Hai and the violence that Campbell spoke of.`
+			
+			label sure2
 			`	You walk up to a human merchant who is busy haggling with one of the Hai. They interrupt their conversation when they see you approaching, and the human gestures for you to join them. "You look lost," he says. "First time down the rabbit hole?"`
 			`	"No, I've actually met with the Hai up north," you respond. The merchant looks slightly concerned with this, but the Hai only seems to sigh.`
 			`	"Ah, you have met our wayward sisters and brothers. I hope that they did not cause you too much trouble, for they are misled in their ways," it says. "Welcome to Hai space. Unlike those that you met before, the rest of us are a people of peace, and you are free to visit us or even live among us. Our worlds provide enough bounty for all."`
 			
 			label next
 			`	You glance quickly at the human merchant to see his expression, wondering if these aliens can indeed be so benign, but his expression is calm and untroubled. "It's true," he says, "look around you. These buildings have stood for thousands of years. Hai society is so advanced, they need almost no resources to maintain it."`
+			branch skip
+				not "hr: heard the news"
+			choice
+				`	"Campbell didn't mention anything about humans living here on the news."`
+				`	"This place looks a lot calmer than it did on the news."`
+			branch reached
+				has "main plot completed date"
+				"days since start" - "main plot completed date" > 260
+			`	"The news?" the merchant asks while raising an eyebrow? "What do you mean 'on the news'?" You explain the situation with Campbell's video of Hai ships in combat and how it was all over the news back in human space. "Ah, I see. Well there's a lot of stuff that this 'Campbell' left out," the merchant says while looking very disappointed. "Please, judge the Hai for yourself."`
+				goto skip
+			label reached
+			`	"Ah, yes. Well there's a lot of stuff that Campbell left out with that little stunt of his," the merchant says while looking very disappointed. "I'm just hoping that life here stays quiet. And please, judge the Hai for yourself."`
+			label skip
 			branch wormhole
 				has "wormhole alpha found"
 			choice
@@ -273,7 +300,7 @@ mission "Unwanted Cargo Trigger"
 	to offer
 		random < 1
 		"cargo space" > 0
-		not "event: hai secret leaks"
+		not "hr: secret leaks"
 	on offer
 		event "hai in cargo" 14
 		fail
@@ -290,7 +317,7 @@ mission "Unwanted Cargo"
 	destination "Allhome"
 	to offer
 		has "event: hai in cargo"
-		not "event: hai secret leaks"
+		not "hr: secret leaks"
 	on offer
 		conversation
 			`The "Check Cargo" light for your ship begins blinking when you land, meaning that a cargo crate may have come loose in flight. You shut off the ship's engines and walk to the cargo hold.`
@@ -739,7 +766,7 @@ mission "Hiding in Plain Sight"
 		random < 30
 		has "First Contact: Hai: offered"
 		or
-			not "event: hai secret leaks"
+			not "hr: secret leaks"
 			has "event: hai-human resolution announced"
 	on offer
 		conversation
@@ -841,7 +868,7 @@ mission "Nanachi 1"
 		"combat rating" > 1200
 		has "First Contact: Hai: offered"
 		or
-			not "event: hai secret leaks"
+			not "hr: secret leaks"
 			has "event: hai-human resolution announced"
 	on offer
 		conversation
