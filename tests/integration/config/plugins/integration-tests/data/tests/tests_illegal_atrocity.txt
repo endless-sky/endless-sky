@@ -303,9 +303,9 @@ test "Launch Quarg Scanning Mission And Board"
 		# board the ship so we're sure we get close to it to get scanned
 		input
 			command board
-		# wait for 5 seconds so it should be repaired and have scanned us
+		# wait for 7.5 seconds so it should be repaired and have scanned us
 		apply
-			"test: steps to wait" = 10 * 30
+			"test: steps to wait" = 7 * 60 + 30
 		label "floating"
 		# empty input to make time pass
 		input
