@@ -180,6 +180,7 @@ Version 0.10.1
     * Added a new control to auto-aim your ship toward your target when a key is pressed, default "E". Usable as an alternative to having the auto-aim setting always on. (@ChamEV, @UnorderedSigh)
     * Only scan messages that are considered important will now be displayed. Important scan messages are when you are being scanned, or an escort with illegal cargo is being scanned. (@TomGoodIdea)
     * Controls can now be unbound by pressing X or delete when hovering over the control. (@Koranir)
+    * Reordered settings in the settings menu to more sensibly group related settings. (@warp-core)
   * Under the hood:
     * Changed the Personality class from using a single integer to track personality flags to a bitset, allowing for more than just 32 NPC personality flags to exist. (@tibetiroka)
     * The Personality class will fail compilation if the personality count constant doesn't match the number of possible personalities. (@UnorderedSigh)
