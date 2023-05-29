@@ -4,6 +4,7 @@ Version 0.10.1
       * Development help and fixes from many community members. (@bene-dictator, @EjoThims, @UnorderedSigh, @warp-core)
       * More chapters coming in the future.
     * NPC nodes in missions can now be given "on *" nodes that behave similarly to "on *" nodes on missions, triggering actions on status changes for the NPC. (@Amazinite, @warp-core)
+    * Plugins are now able to be enabled and disabled within the Plugins menu. (@samrocketman, @quyykk)
     * Updated and added new mechanics around asteroid mining to increase its depth, including allowing player escorts to engage more in mining. See the game mechanics section for more details.
   * Bug fixes:
     * Content bugs:
@@ -34,7 +35,7 @@ Version 0.10.1
       * Surveillance ships now maintain the same target until they are finished scanning, preventing a bug where some surveillance ships would never succeed their scan. (@warp-core)
       * The shop will now properly report why it is that you can't "buy" an outfit from storage instead of saying that you can't place it into your cargo. (@alextd, @warp-core)
       * Governments are now required to explicilty state if they are able to send untranslated hails, preventing some aliens from sending English hails. (@warp-core)
-      * The save load UI no only accepts double clicking to start a save if both clicks were on the same save file, instead of allowing clicking on one save and then clicking on another save shortly afterward to count as double clicking the second save. (@warp-core)
+      * The save load UI now only accepts double clicking to open a save if both clicks were on the same save file, instead of allowing clicking on one save and then clicking on another save shortly afterward to count as double clicking the second save. (@warp-core)
       * Adding and removing tribute from a planet via conditions now properly changes that planet's dominated status immediately, instead of requiring that the save be reloaded before the changes take effect. (@petervdmeer)
       * The outfitter buy/install/cargo button now properly reflects whether you can click it (instead of appearing grayed out when you could actually use it under certain circumstances). (@TomGoodIdea)
       * Escort and storage map tooltips are now drawn on top of other UI elements instead of potentially appearing below menus. (@TomGoodIdea)
@@ -164,7 +165,6 @@ Version 0.10.1
       * Removed the scan decay that occurred when a target that was being scanned got out of range of the scanner, as it made scanning faster ships after the recent scanning changes too difficult. (@Amazinite)
       * The "outfit: <outfit>" and "outfit (installed): <outfit>" conditions now skip over parked ships. (@Amazinite)
   * User interface:
-    * Plugins are now able to be enabled and disabled within the Plugins menu. (@samrocketman, @quyykk)
     * Broke the user preferences up into multiple pages. (@Terin)
     * Repeatedly clicking on a selected mission now cycles through every system involved with that mission, be that the waypoints, stopovers, or destination. (@alextd)
     * The credits on the main menu can now have their speed and direction of travel controlled using the up and down arrow keys. (@Koranir)
