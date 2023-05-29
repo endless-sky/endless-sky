@@ -68,7 +68,7 @@ Version 0.10.1
       * Added a new human spaceport mission where a captain offers to escort the player if their fleet is weakly defended and high in cargo space. (@Quantumshark)
     * Mission changes:
       * Scrappers can now spawn in various bounty jobs. (@Anarchist2)
-      * Changed the description of the size of the black box in the Sheragi Arhcaeology missions to make more sense with how it is handled. (@ziproot)'
+      * Changed the description of the size of the black box in the Sheragi Archaeology missions to make more sense with how it is handled. (@ziproot)
       * Repeatable Unfettered jobs now have destination clearance. (@EjoThims)
       * Improved how certain Remnant missions are blocked if the player doesn't have a Research Laboratory outfit using newer mechanics. (@warp-core)
       * Add more detail to the dialogs in Han Sizer jobs. (@Zitchas)
