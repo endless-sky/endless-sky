@@ -230,7 +230,7 @@ mission "Hai Reveal: Navy News Report"
 		attributes "spaceport"
 	to offer
 		has "event: hr: friend arrives"
-		not "Hai Reveal: Meet the Team: FW: offered"
+		not "hr: meet the team"
 	on offer
 		conversation
 			`After exiting your ship, you overhear an advisory warning being played on the spaceport's loudspeakers.`
@@ -323,6 +323,7 @@ mission "Hai Reveal: Early Arrival: Alondo"
 		government "Hai"
 		not attributes "uninhabited" "station"
 	destination "Hai-home"
+	clearance
 	to offer
 		not "hr: met alondo"
 		has "First Contact: Hai: offered"
@@ -349,6 +350,7 @@ mission "Hai Reveal: Late Arrival: Alondo"
 		government "Hai"
 		not attributes "uninhabited" "station"
 	destination "Hai-home"
+	clearance
 	to offer
 		not "hr: met alondo"
 		has "First Contact: Hai: offered"
@@ -377,6 +379,7 @@ mission "Hai Reveal: Join Later: Alondo"
 		government "Hai"
 		not planet "Hai-home"
 	destination "Hai-home"
+	clearance
 	to offer
 		has "event: hr: join later"
 	on offer
@@ -476,6 +479,7 @@ mission "Hai Reveal: Meet the Team: Xilin"
 	name "New Arrivals"
 	description "Travel to <stopovers> with Xilin to interview new arrivals to Hai space to determine how they arrived and what they think about the Hai. Return to <destination> when finished."
 	source "Hai-home"
+	clearance
 	stopover "Allhome"
 	passengers 2
 	blocked "You will need <capacity> in order to take this mission."
@@ -564,6 +568,7 @@ mission "Hai Reveal: Meet the Team: Samuel"
 	name "High Tension"
 	description "Remington has heard news of tensions between new arrivals and local Hai on <stopovers>. Return to <destination> when finished."
 	source "Hai-home"
+	clearance
 	stopover "Cloudfire"
 	passengers 2
 	blocked "You will need <capacity> in order to take this mission."
@@ -658,6 +663,7 @@ mission "Hai Reveal: Meet the Team: Terry"
 	name "Scout the North"
 	description "Scout <waypoints> to determine the frequency of fleets traveling around the wormhole. Return to <destination> when finished."
 	source "Hai-home"
+	clearance
 	waypoint "Cardax"
 	waypoint "Hassaleh"
 	waypoint "Moktar"
@@ -687,6 +693,7 @@ mission "Hai Reveal: Meet the Team: Sayari"
 	name "Important Message"
 	description "Deliver an important message from the Hai to the Republic on <stopovers>. Return to <destination> when finished."
 	source "Hai-home"
+	clearance
 	stopover "Earth"
 	to offer
 		has "Hai Reveal: Meet the Team: Terry: done"

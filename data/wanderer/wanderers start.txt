@@ -2000,7 +2000,6 @@ mission "Wanderers Hai Assistance 3"
 	landing
 	name "Return to <planet>"
 	description "Return with Sayari to <destination>, and tell Iktat Rek that you had some success in convincing the Hai to interfere with the Unfettered."
-	clearance
 	autosave
 	source "Darkcloak"
 	destination "Vara K'chrai"
