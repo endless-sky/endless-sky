@@ -487,6 +487,11 @@ public:
 	std::shared_ptr<Ship> GetParent() const;
 	const std::vector<std::weak_ptr<Ship>> &GetEscorts() const;
 
+	// How many AI steps has this ship been lingering?
+	int GetLingerSteps() const;
+	// The AI wants the ship to linger for one AI step.
+	void Linger();
+
 
 private:
 	// Add or remove a ship from this ship's list of escorts.
@@ -559,6 +564,8 @@ private:
 	bool neverDisabled = false;
 	bool isCapturable = true;
 	bool isInvisible = false;
+	bool isDefeated = false;
+	bool isLooted = false;
 	int customSwizzle = -1;
 	double cloak = 0.;
 	double cloakDisruption = 0.;
@@ -572,8 +579,8 @@ private:
 	double attraction = 0.;
 	double deterrence = 0.;
 
-	bool isDefeated = false;
-	bool isLooted = false;
+	// Number of AI steps this ship has spent lingering
+	int lingerSteps = 0;
 
 	Command commands;
 	FireCommand firingCommands;
