@@ -625,6 +625,7 @@ mission "Hai Reveal: Meet the Team: Samuel 1"
 
 
 mission "Hai Reveal: Meet the Team: Samuel 2"
+	landing
 	name "High Tension"
 	description "Return to <destination>."
 	source "Cloudfire"
@@ -722,7 +723,7 @@ mission "Hai Reveal: Meet the Team: Terry"
 mission "Hai Reveal: Meet the Team: Sayari 1"
 	landing
 	name "Important Message"
-	description "Deliver an important message from the Hai to the Republic on <stopovers>. Return to <destination> when finished."
+	description "Deliver an important message from the Hai to the Republic on <destination>."
 	source "Hai-home"
 	destination "Earth"
 	clearance
