@@ -65,17 +65,16 @@ namespace {
 
 	const double MAXIMUM_TEMPERATURE = 100.;
 
-	// Scanning takes a maximum of SCAN_TIME AI steps, with a scan speed
-	// dependent on the range from the ship (among other factors).  The
-	// scan speed uses a gaussian drop-off with the reported scan radius
-	// as the standard deviation. At a range of MAX_SCAN_RANGE, which
-	// works out to 5% of the max scan speed, ships cease to scan. This
-	// MAX_SCAN_RANGE is critical since anywhere within that range,
-	// you still have a maximum of SCAN_TIME AI steps to scan.
+	// Scanning takes between 2 and 10 seconds (SCAN_TIME/MAX_SCAN_STEPS and SCAN_TIME/MIN_SCAN_STEPS)
+	// dependent on the range from the ship (among other factors).  The scan speed uses a gaussian
+	// drop-off with the reported scan radius as the standard deviation. Scanning goes out to the
+	// scanner's reported maximum range times MAX_SCAN_RANGE, beyond which the ships cease to scan.
+	// ships cease to scan. This MAX_SCAN_RANGE is critical since anywhere within that range, you
+	// still have a reasonable maximum scan time.
 	const double SCAN_TIME = 600.;
 	const double MIN_SCAN_STEPS = 1; // maximum of 10 seconds to scan
 	const double MAX_SCAN_STEPS = 5; // minimum of 2 seconds to scan
-	const double MAX_SCAN_RANGE = 2;
+	const double MAX_SCAN_RANGE = 2; // about 12% scan rate
 	const double MAX_SCAN_RANGE_FACTOR = MAX_SCAN_RANGE * MAX_SCAN_RANGE;
 
 	// These numbers ensure it takes 10 seconds for a Cargo Scanner to scan
