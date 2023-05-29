@@ -1,7 +1,10 @@
 Version 0.10.1
   * Big changes:
-    * Created an extensive storyline that takes place after the main campaign is completed, focusing on the open secret of the existence of the Hai. (@MasterOfGrey, @NomadicVolcano, @UnorderedSigh)
-      * Development help and fixes from many community members. (@Amazinite, @bene-dictator, @EjoThims, @warp-core)
+    * Releasing the first chapter of an extensive storyline that takes place after the main campaign is completed, focusing on the open secret of the existence of the Hai. (@MasterOfGrey, @Amazinite)
+      * Development help and fixes from many community members. (@bene-dictator, @EjoThims, @UnorderedSigh, @warp-core)
+      * More chapters coming in the future.
+    * NPC nodes in missions can now be given "on *" nodes that behave similarly to "on *" nodes on missions, triggering actions on status changes for the NPC. (@Amazinite, @warp-core)
+    * Updated and added new mechanics around asteroid mining to increase its depth, including allowing player escorts to engage more in mining. See the game mechanics section for more details.
   * Bug fixes:
     * Content bugs:
       * Typo fixes. (@bene-dictator, @Deltaspace0, @quyykk, @samrocketman, @shitwolfymakes, @Terin, @tibetiroka, @TomGoodIdea, @UnorderedSigh, @warp-core)
@@ -22,6 +25,7 @@ Version 0.10.1
       * Added a missing "blocked" dialog to "Saryd Students 2". (@Arachi-Lover)
       * Fixed missions which looked at the category of the player's ships to account for newer ship categories. (@warp-core)
       * Fixed an infinite money glitch. (@Hurleveur)
+      * Added a missing blocked dialog to "Wanderers Invaded 3". (@warp-core)
     * Engine bugs:
       * Outfits with the "uninstallable" attribute are no longer sold alongside minables when using the "Sell All" button on the trading panel. (@TomGoodIdea)
       * The string truncation functions now properly handle inputs that would have previously hit an infinite loop check. (@warp-core)
@@ -116,7 +120,6 @@ Version 0.10.1
       * Updated the Plasma Repeater scene with extra details and improved lighting. (@1010todd)
       * Created a unique Shield Beetle sprite for an important Unfettered character. (@Hurleveur)
       * Reworked the Bounder and its Marauder variants. (@Anarchist2)
-    * Sounds:
     * Other:
       * Created new subfactions to the Hai and Unfettered to better reflect dynamics between the Hai and Unfettered. (@EjoThims, @Hurleveur)
       * The Wanderer government now understands both the Wanderer and Hai languages, and the player gains the Hai language when receiving the Hai translation device instead of receiving the Wanderer language. (@UnorderedSigh)
@@ -138,7 +141,6 @@ Version 0.10.1
       * Having asteroid scanners equipped can now automatically catalog the locations of minables should you be in close proximity to the minable for a short duration, in addition to the old behavior of targeting an asteroid causing it to be cataloged. (@samrocketman)
       * Governments can now be given minimum and maximum reputation limits outside of which your reputation with them cannot go. (@Terin)
       * Plugins are now able to add to the menu credits by having their own credits.txt file. Plugin credits are appended to the bottom of the existing credits. (@Koranir)
-      * NPC nodes in missions can now be given "on *" nodes that behave similarly to "on *" nodes on missions, triggering actions on status changes for the NPC. (@Amazinite, @warp-core)
       * Events are now able to remove sprites from galaxies. (@warp-core)
       * Mission NPC blocks can now define cargo that the NPCs carry, instead of only allowing NPCs to carry a cargo if they're defined as a Fleet. (@warp-core)
       * Added a new "outfit (parked): <outfit>" condition for checking how many of a given outfit you have installed on parked ships that are landed with you. (@Amazinite)
