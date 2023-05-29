@@ -1,5 +1,5 @@
 Welcome to Endless Sky!
-version 0.10.1-alpha
+version 0.10.1
 
 The player's manual and other
 resources are available at:
@@ -132,6 +132,7 @@ people on GitHub who have
 contributed to Endless Sky:
   10010101001
   1010todd
+  3agleEmpire
   7even
   abenkovskii
   AdamKauffman
@@ -155,6 +156,7 @@ contributed to Endless Sky:
   Arrow2thekn33
   ashdnazg
   Aurelite
+  AvianGeneticist
   Azure3141
   barthalion
   beccabunny
@@ -264,6 +266,7 @@ contributed to Endless Sky:
   LocalGod79
   Lorantine
   LordInsane
+  LorenzoBolla
   Luckz
   luiges90
   LukeMarlin
@@ -321,6 +324,7 @@ contributed to Endless Sky:
   realityforge
   Red-57
   redschalken
+  ReimeiSky
   reizbar
   RestingImmortal
   retrue
@@ -407,6 +411,7 @@ contributed to Endless Sky:
   yjhn
   yobbo2020
   ZBok
+  ziproot
   Zitchas
   zlonghofer
   zwparchman
