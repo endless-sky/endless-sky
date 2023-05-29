@@ -317,7 +317,7 @@ outfit "SC-12 Plasma Steering"
 	"steering flare sprite" "effect/scin flare/small"
 		"frame rate" 0.5
 	"steering flare sound" "scplasma small"
-	description `The new SC plasma engines allow Gegno Scin ships to outmanoeuvre their opposing brothers. What might take a Vi ship a long time takes only a moment on a Scin ship.`
+	description `The new SC plasma engines allow Gegno Scin ships to outmaneuver their opposing brothers. What might take a Vi ship a long time takes only a moment on a Scin ship.`
 
 
 outfit "SC-14 Plasma Thruster"

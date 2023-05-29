@@ -1,0 +1,770 @@
+# Copyright (c) 2020 by MasterOfGrey
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+mission "Hai Reveal: Secret Leaks"
+	landing
+	invisible
+	to offer
+		has "main plot completed date"
+		"days since start" - "main plot completed date" > 230
+	on offer
+		set "hr: secret leaks"
+		event "hr: friend arrives" 30
+		event "hr: friend settled in" 60
+		"hr: knew of hai" = "First Contact: Hai: offered" + "First Contact: Unfettered: offered"
+		fail
+
+event "hr: friend arrives"
+
+event "hr: friend settled in"
+
+
+
+mission "Hai Reveal: Secret Leaks: FW"
+	landing
+	invisible
+	source
+		government "Free Worlds"
+		attributes "spaceport"
+	to offer
+		has "hr: secret leaks"
+		not "hr: heard the news"
+	on offer
+		set "hr: heard the news"
+		conversation
+			`You are relaxing within the spaceport while your ship refuels after conducting a spot of business. On a video screen is some talk show that you haven't previously encountered, but which seems to be a quite popular one out of Tarazed.`
+			`	A young and fresh-faced man who looks incredibly ill at ease has just been brought out as a surprise guest by the host, Jonathon Camembert.`
+			`	"So now in our surprise segment, let me introduce you to Ronald Campbell. He once crewed on one of these big trade ships, but after seeing what he saw, he just had to come forward!"`
+			`	The host stresses the word "had" so much his voice squeaks, but it certainly grabs the audience's attention.`
+			`	"But first, let's take a look at a clip."`
+			branch recognize
+				or
+					has "First Contact: Hai: offered"
+					has "First Contact: Unfettered: offered"
+			`	They show a short video featuring alien ships, not Pug or Quarg, but something else. They are engaged in combat with each other, firing weapons quite unlike anything produced in human space.`
+			`	Actual footage of an unknown alien conflict would be unlikely, however.`
+				goto campbell
+			
+			label recognize
+			`	A clip of alien spaceships in combat with weapons quite unlike anything produced in human space is shown, and you recognize that the ships are Shield Beetles hammering away at each other with their Ion Cannons. This must be a video of the conflict between the Hai and Unfettered.`
+			
+			label campbell
+			`	When the clip ends, Campbell is encouraged by Camembert to talk about where he got the footage. Campbell is well presented, although his suit is obviously not his own - you couldn't imagine how a crewman would be able to afford an outfit like that on their salary - and he's clearly anxious. You can make out the beads of sweat on his brow as he considers his answer, and his neat suit is slightly crumpled in the way that happens when people wipe sweat off their palms a lot. When Campbell speaks, it is with a paranoid manner that is plain to see even through a screen. He talks at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war; a war waged by an alien species known as the "Hai." Although he does not give their exact whereabouts, he says they can be reached, and in turn reach us, with just a hyperdrive.`
+			branch hai
+				or
+					has "First Contact: Hai: offered"
+					has "First Contact: Unfettered: offered"
+			`	The idea that there's a directly accessible alien race, at war, that has also somehow been kept a secret, may just be a ridiculous rumor. Nevertheless, it is intriguing...`
+				decline
+			label hai
+			`	The existence of the Hai is intended to be a secret to most humans. News like this being widespread could easily cause a crisis if many people believe it and find the Hai themselves...`
+				decline
+
+
+
+mission "Hai Reveal: Secret Leaks: R/S"
+	landing
+	invisible
+	source
+		government "Republic" "Syndicate"
+		attributes "spaceport"
+	to offer
+		has "hr: secret leaks"
+		not "hr: heard the news"
+	on offer
+		set "hr: heard the news"
+		conversation
+			`You are relaxing at the spaceport while your ship refuels, when a breaking news broadcast comes on; it's not urgent enough to actually interrupt scheduled content, but urgent enough to fill the first ad break.`
+			`	The severe-looking anchorwoman bores down the camera with an expression that demands attention.`
+			`	"An ex-crewman employed by an itinerant trader has come forward to media about hostile aliens just beyond our borders. He claims to have brought video proof of an ongoing conflict that threatens to spill over and drag all of humanity back to war. Stay tuned for our full segment at six."`
+			`	Actual footage of an unknown alien conflict doesn't seem likely; that such news should come out so soon after the Pug smacks of a hoax. A quick glance at the clock shows you only have ten minutes to wait, so you stick around for the full segment out of curiosity.`
+			`	The news returns with the anchorwoman. It turns out that the crewman in question had been picked up by a minor media outlet on Tarazed. He had apparently traveled many weeks before deciding to seek the media in order to avoid being shut down by Republic Intelligence if he contacted them elsewhere. The man is fairly young, and appears very well presented, though he has a bit of the paranoid about him that is plain to see even through a screen.`
+			branch recognize
+				or
+					has "First Contact: Hai: offered"
+					has "First Contact: Unfettered: offered"
+			`	They show a short video featuring alien ships, not Pug or Quarg, but something else. They are engaged in combat with each other, firing weapons quite unlike anything produced in human space.`
+				goto reveal
+			
+			label recognize
+			`	A clip of alien spaceships in combat with weapons quite unlike anything produced in human space is shown, and you recognize that the ships are Shield Beetles hammering away at each other with their Ion Cannons. This must be a video of the conflict between the Hai and Unfettered.`
+			
+			label reveal
+			`	It is only after this that the anchorwoman reveals that, while this was initially treated as a hoax, one of their own reporters posed a timely question to a well-respected trader, resulting in quite the stir when he slipped up and confirmed the existence of the aliens known as "Hai."`
+			branch hai
+				or
+					has "First Contact: Hai: offered"
+					has "First Contact: Unfettered: offered"
+			`	The idea that there's a directly accessible alien race, at war, that has also somehow been kept a secret, may just be a ridiculous rumor. Nevertheless, it is intriguing...`
+				decline
+			
+			label hai
+			`	The existence of the Hai is intended to be a secret to most humans. News like this being widespread could easily cause a crisis if many people believe it and find the Hai themselves...`
+				decline
+
+
+
+mission "Hai Reveal: Secret Leaks: Hai"
+	landing
+	invisible
+	source
+		government "Hai"
+		not attributes "uninhabited" "retirement"
+	to offer
+		has "main plot completed date"
+		"days since start" - "main plot completed date" > 260
+		has "First Contact: Hai: offered"
+		not "event: hr: friend settled in"
+	on offer
+		conversation
+			`As you go about your business, there is a buzz in the air that seems to be animating the Hai. Upon closer observation it seems that the same topic must be the talk of the hour, at least judging by the Hai phrases you keep hearing repeated, and both workers and visitors alike seem to be stopping to exchange comments at a far higher rate than you usually see.`
+			branch humans
+				has "flagship planet attribute: hai: human presence"
+			
+			choice
+				`	(Ask a Hai what's going on.)`
+				`	(Carry on.)`
+					goto skip
+			`	You catch a Hai, who doesn't appear to be in a rush, just as they finish one of these exchanges and ask them what's going on.`
+			`	"Oh, you have not seen? The Hai appear to be on human news. It has come through from a couple of the merchants who go between us and is causing much consternation."`
+			choice
+				`	"How could this happen?"`
+				`	"Can you show me?"`
+					goto clip
+			`	The Hai gives you a quizzical look. "Yes, human merchants come and go regularly, but the main defense of our secret is that humans simply do not care unless the news is sensational. This makes it very easy to ask your media organizations to simply not publicize any leaks they get. A crewman who will lose their job for leaking information will not do so unless it is valuable to them.`
+			`	"Now though, after the civil war and the Pug invasion, with your new government in the south, someone has taken advantage of the opportunity. Here, let me show you."`
+			`	The Hai pulls out a device and gestures for you to sit on a nearby bench.`
+			choice
+				`	(Sit.)`
+					goto sit
+				`	(Politely decline.)`
+					goto skip
+			label clip
+			`	The Hai pulls out a device and gestures for you to sit on a nearby bench.`
+			label sit
+			branch seen1
+				has "Hai Reveal: Secret Leaks: FW: offered"
+			`	The Hai pulls up a video of some talk show that you haven't previously encountered, but which seems to be a quite popular one out of Tarazed. In it, a young and fresh-faced man is brought out as a surprise guest by the host, Jonathon Camembert.`
+			`	"So now in our surprise segment, let me introduce you to Ronald Campbell. He once crewed on one of these big trade ships, but after seeing what he saw, he just had to come forward!"`
+			`	The host stresses the word "had" so much his voice squeaks, but it certainly grabs the audience's attention.`
+			`	"But first, let's take a look at a clip."`
+			`	A clip of alien spaceships in combat with weapons quite unlike anything produced in human space is shown, and you recognize that the ships are Shield Beetles hammering away at each other with their Ion Cannons. This must be a video of the conflict between the Hai and Unfettered.`
+			`	When the clip ends, Campbell is encouraged by Camembert to talk about where he got the footage. Campbell is well presented, although his suit is obviously not his own - you couldn't imagine how a crewman would be able to afford an outfit like that on their salary - and he's clearly anxious. You can make out the beads of sweat on his brow as he considers his answer, and his neat suit is slightly crumpled in the way that happens when people wipe sweat off their palms a lot. When Campbell speaks, it is with a paranoid manner that is plain to see even through a screen. He talks at length about an ongoing conflict that threatens to spill over and drag all of humanity back to war; a war waged by an alien species known as the "Hai." Although he does not give their exact whereabouts, he says they can be reached, and in turn reach humanity, with just a hyperdrive.`
+				goto hai
+			
+			label seen1
+			`	The Hai pulls up a video of some the same talk show that you saw being aired in Free Worlds space with Jonathon Camembert's interview of Ronald Campbell.`
+			
+			label hai
+			`	When it is done the Hai looks at you seriously. "We are told that this video has been seen by billions of people and reported on by other media outlets in human space. We are not sure what will happen now, but something certainly will."`
+			`	The Hai wishes you well and then leaves you to return to their business.`
+				decline
+			
+			label skip
+			branch seen2
+				has "Hai Reveal: Secret Leaks: R/S: offered"
+			`	You keep going about your business, but eventually turn a corner and come face-to-face with a life-sized holographic display of a human news anchor with the familiar background and logo of a human news organization. This is being projected up from a portable device set on a table that several Hai are gathered around. The severe-looking anchorwoman is rendered in clear detail as she bores down the camera with an expression that demands attention.`
+			`	"We return to our main story tonight. An ex-crewman employed by an itinerant trader has come forward to media about hostile aliens just beyond our borders. He claims to have brought video proof of an ongoing conflict that threatens to spill over and drag all of humanity back to war."`
+			`	As she continues it turns out that the crewman in question had been picked up by a minor media outlet on Tarazed. He had apparently traveled many weeks before deciding to seek the media in order to avoid being shut down by Republic Intelligence if he contacted them elsewhere. The man is fairly young, and appears very well presented, though he has a bit of the paranoid about him that is plain to see even through a screen.`
+			`	A clip of alien spaceships in combat with weapons quite unlike anything produced in human space is shown, and you recognize that the ships are Shield Beetles hammering away at each other with their Ion Cannons. This must be a video of the conflict between the Hai and Unfettered.`
+			`	It is only after this that the anchorwoman reveals that, while this was initially treated as a hoax, one of their own reporters posed a timely question to a well-respected trader and caused quite the stir when he slipped up and confirmed the existence of the aliens known as "Hai."`
+				goto table
+			
+			label seen2
+			`	You keep going about your business, but eventually turn a corner and come face-to-face with a life-sized holographic display of a human news anchor with the familiar background and logo of a human news organization. This is being projected up from a portable device set on a table that several Hai are gathered around. You recognize it as the same news report you saw being aired outside of the Free Worlds, with the anchorwoman reporting on Campbell's appearance on the Tarazed talk show.`
+			
+			label table
+			`	Two of the Hai at the table seem to be seeing this for the first time. They make several loud comments that feel like they are some mixture of shock, excitement, and distress, though you only have their tone to go off.`
+			`	No wonder the place is abuzz; this is clearly a major event for the Hai.`
+				decline
+			
+			label humans
+			`	Your expression must be one of obvious bewilderment. Another human, a man, steps out of one of the stores nearby, looks at your expression, and immediately hails you.`
+			`	"Ah, Captain! Is this the first time you have landed since the news broke?"`
+			choice
+				`	"What news?"`
+				`	"Clearly so."`
+					goto sharing
+			`	"The Hai have ended up on our news back home. Seems the war stirred things up, and someone wanted their fifteen minutes of fame.`
+			label sharing
+			branch seen3
+				has "hr: heard the news"
+			`	"Here, let me show you what they've got going around," he says as he pulls out a Hai data pad. He hits play on a video and a clip of alien spaceships in combat with weapons quite unlike anything produced in human space is shown, and you recognize that the ships are Shield Beetles hammering away at each other with their Ion Cannons. This must be a video of the conflict between the Hai and Unfettered.`
+				goto hoax
+			
+			label seen3
+			`	"Here, let me show you what they've got going around," he says as he pulls out a Hai data pad. He hits play on a video and shows you the same clip you saw circulating in human space.`
+			
+			label hoax
+			`	"Turns out," he says, "this was almost treated as a hoax, but some journo caught one of the regular traders off-guard and he let it slip. So now people know, or at least think they know, about the Hai."`
+			choice
+				`	"How could this happen?"`
+				`	"What'll happen now?"`
+					goto now
+			`	The guy laughs. "It's not as if the Hai actually enforce their secrecy," he says, heavily emphasizing the word "enforce."`
+			`	"The merchants might fire a crewman for trying to leak information, but if the conditions are right to make more money by leaking it, someone was bound to eventually." He shrugs. "Guess the conditions were finally right for it."`
+			label now
+			`	He looks around for a moment with an almost conspiratorial expression. "My money is on some kind of crisis. Keeping the secret is worth a lot of money to certain people. It's going to be an interesting few months, I think."`
+			`	He gives you a wink as he steps away. "Keep your eyes open, Captain. There may be new opportunities afoot."`
+				decline
+	on decline
+		set "hr: heard the news"
+
+
+
+mission "Hai Reveal: Navy News Report"
+	landing
+	invisible
+	source
+		government "Republic" "Syndicate" "Free Worlds" "Neutral"
+		attributes "spaceport"
+	to offer
+		has "event: hr: friend arrives"
+		not "hr: meet the team"
+	on offer
+		conversation
+			`After exiting your ship, you overhear an advisory warning being played on the spaceport's loudspeakers.`
+			`	"This is a report from the Republic Navy Advisory System. All civilian captains be aware of increased pirate activity in the uninhabited regions between the Far North and the Core. Captains are advised to stick to inhabited systems when traveling between the Far North and the Core." The message repeats every few minutes.`
+			`	You overhear two captains on the landing pad next to yours talking about the warning. "I know a few guys who aren't going to be very happy about that," one says.`
+			`	"You think they're running cover for that alien story that was on the news recently?" says the other. "Plenty of space up there to hide aliens."`
+			`	"Stop talking like a nut," says the first. "Advisory warnings like this happen all the time. Don't read too much into it."`
+				decline
+
+
+
+conversation "hr: meet alondo"
+	branch settled1
+		has "event: hr: friend settled in"
+	`While wandering the spaceport, you spot a familiar face that you didn't expect to find here: Alondo is being escorted around the spaceport by a small group of Hai. One of the Hai seems to be explaining something to him, while two others, dressed in what look like loose-fitting tuxedos and sunglasses, stand nearby surveying the crowd.`
+	choice
+		`	(Walk up to him to see why he's here.)`
+			goto walk
+		`	(Ignore him.)`
+	`	You keep your distance, and eventually Alondo and the Hai with him move on to another section of the spaceport, out of sight. It's curious that Alondo would be here. Perhaps it has something to do with the recent human news reports about the Hai.`
+		decline
+	
+	label walk
+	action
+		set "hr: met alondo"
+	`	"Alondo!" you say as you approach.`
+	`	"Captain <last>!" Alondo responds, waving you over. Before you can get too close, one of the dressed Hai stands in your way.`
+		goto business
+	
+	label settled1
+	`You land on <origin> and survey the people roaming the spaceport while you refill your ship.`
+	branch witnessed
+		has "Hai Reveal: Secret Leaks: Hai: offered"
+	`	It seems that news of the Hai's existence being somewhat exposed on human news networks has reached the Hai, as you can overhear discussions about the news reports and what might happen next.`
+		goto alondo
+	
+	label witnessed
+	`	The Hai still seem energetic and chatty about the news of the Hai's existence being somewhat exposed to humanity.`
+	
+	label alondo
+	`	Luckily, it appears that nothing bad has come of it, at least not yet. Even if a lot of humans who saw the news believed it, it's likely that the Hai's location is still remote enough to prevent most captains from stumbling upon it. It's also likely to be only a matter of time before the lid gets entirely blown off of the situation.`
+	`	As you finish refueling your ship, you hear a familiar voice call to you. "Captain <last>! Funny seeing you here." You turn around to find Alondo approaching you, flanked by two Hai dressed in what look like loose-fitting tuxedos and sunglasses. Before Alondo can reach you, one of the Hai swiftly steps forward and stands directly in front of you.`
+	
+	label business
+	`	"Please state your name and business," the Hai commands. This might be a bit more menacing of a situation if Hai weren't so short relative to most humans.`
+	`	"Don't worry, Mep. This is Captain <first> <last>, who I spoke of earlier," Alondo vouches for you. "We fought in the war together."`
+	`	The Hai seems to ponder Alondo's words for a moment, then steps aside while still keeping a close eye on you.`
+	choice
+		`	"What brings you here?"`
+			goto news
+		`	"What's up with him?"`
+	`	"The Hai government is very... on edge, at the moment," Alondo says. "They're typically quite open, from what I understand, but these recent news reports have many Hai officials feeling as though they've been betrayed. They're being highly cautious as a result."`
+	`	"So what brings you here?" you ask.`
+		goto task
+	label news
+	`	"I'm sure you've heard the news circulating around humanity," Alondo responds.`
+	label task
+	`	"I'm here on request of the Republic to act as an envoy between the Free Worlds and the Hai government. Although now that I say that out loud, I'm starting to realize just how absurd of a situation this is. I certainly didn't have 'Become engaged in an alien civil crisis' on my bingo card for this year. Although I also didn't have 'Fight off an alien invasion' on my bingo card for the war, so maybe I should just start expecting the unexpected from now on.`
+	
+	branch settled2
+		has "event: hr: friend settled in"
+	`	"Anyway, the Hai have been giving me a tour of their systems since I got here within the past month. I'll be meeting with others from the Republic and Syndicate on <planet> for a briefing after I've done my tour here. You should probably come with us, because Lord knows we'll need all the help we can get to prevent this situation from turning hot. We wouldn't want a misunderstanding between humanity and the Hai to turn into a conflict."`
+		goto help
+	
+	label settled2
+	`	"Anyway, I've been here for some time now doing what I can to help keep this situation from blowing up. I'll be meeting with others from the Republic and Syndicate on <planet> soon for a briefing. You should probably join us, because Lord knows we'll need all the help we can get to prevent this situation from turning hot. We wouldn't want a misunderstanding between humanity and the Hai to turn into a conflict."`
+	
+	label help
+	choice
+		`	"I'd be glad to come."`
+		`	"Sorry, but I have other things to get to at the moment."`
+			goto busy
+	`	"That's good to hear," Alondo says. "In a situation like this, the Hai need humans they can trust. They seem to trust me enough so far, so hopefully they'll also trust you by proxy, or, at the very least, you can gain their trust in short order.`
+	`	"Meet my ship, the <npc>, in orbit after I'm finished with my business here." You assure Alondo that you'll be there, and the Hai escort him away.`
+		accept
+	
+	label busy
+	action
+		event "hr: join later" 20
+	`	"I'll probably reach out to you for help later, then. In a situation like this, the Hai need humans they can trust. They seem to trust me enough so far, so hopefully they'll also trust you by proxy, or, at the very least, you can gain their trust in short order.`
+	`	"Well, good luck with whatever it is that you're busy with," he says. You say your goodbyes to Alondo, and the Hai escort him away.`
+		decline
+
+
+
+mission "Hai Reveal: Early Arrival: Alondo"
+	name "Unlikely Encounter"
+	description "Head to <destination> with Alondo to learn more about the fallout of the existence of the Hai being revealed to billions in human space."
+	source
+		government "Hai"
+		not attributes "uninhabited" "station"
+	destination "Hai-home"
+	clearance
+	to offer
+		not "hr: met alondo"
+		has "First Contact: Hai: offered"
+		has "hr: heard the news"
+		has "event: hr: friend arrives"
+		not "event: hr: friend settled in"
+		has "event: joined the free worlds"
+	on offer
+		conversation "hr: meet alondo"
+	npc accompany save
+		government "Hai"
+		personality escort timid
+		ship "Centipede" "Emissary"
+	on complete
+		set "hr: meet the team"
+
+
+
+mission "Hai Reveal: Late Arrival: Alondo"
+	landing
+	name "Unlikely Encounter"
+	description "Head to <destination> with Alondo to learn more about the fallout of the existence of the Hai being revealed to billions in human space."
+	source
+		government "Hai"
+		not attributes "uninhabited" "station"
+	destination "Hai-home"
+	clearance
+	to offer
+		not "hr: met alondo"
+		has "First Contact: Hai: offered"
+		has "hr: heard the news"
+		has "event: hr: friend settled in"
+		has "event: joined the free worlds"
+	on offer
+		set "hr: met alondo"
+		conversation "hr: meet alondo"
+	npc accompany save
+		government "Hai"
+		personality escort timid
+		ship "Centipede" "Emissary"
+	on complete
+		set "hr: meet the team"
+
+event "hr: join later"
+
+
+
+mission "Hai Reveal: Join Later: Alondo"
+	landing
+	name "Duty Calls"
+	description "Head to <destination> to meet Alondo and learn more about the fallout of the existence of the Hai being revealed to billions in human space."
+	source
+		government "Hai"
+		not planet "Hai-home"
+	destination "Hai-home"
+	clearance
+	to offer
+		has "event: hr: join later"
+	on offer
+		conversation
+			`You receive a message from Alondo. "Captain <last>. I hope you've finished your work, as I could use your assistance in dealing with this situation. Please join us on <destination> when you're able. We're holding a briefing on the latest updates."`
+				accept
+	on complete
+		set "hr: meet the team"
+
+
+
+mission "Hai Reveal: Meet the Team: FW"
+	landing
+	invisible
+	source "Hai-home"
+	to offer
+		has "hr: meet the team"
+		has "event: joined the free worlds"
+	on offer
+		log "People" "Alondo Gruyere" `Alondo is working to develop the diplomatic corps for the Free Worlds. Due to a lack of serious appointed positions (with the few already existing occupied as ambassadors to the Republic), he is looking after the Free Worlds' interests as a diplomat to the Hai.`
+		log "People" "Sayari" `Ambassador Sayari, a Hai, served as their envoy to the human government a century ago (although no public records of this exist in human space). Her experience has placed her in charge of coordinating the Hai response to the crisis of their continued secrecy.`
+		conversation
+			branch late
+				has "event: hr: join later"
+			`You follow Alondo's ship to the surface of <origin>. Instead of landing at the main spaceport, his ship veers off to a separate area of the city where a cluster of several large structures are set slightly apart from the rest. A Hai warship shadows you as you approach.`
+			`	Alondo's ship touches down in a smaller port atop one of the highrises here, and you follow suit. As you touch your ship down next to Alondo's, the Hai warship following you moves to idle above the spaceport.`
+			`	"Welcome to the secure port," Alondo greets you as you exit your ship. "Our home away from home."`
+				goto landed
+			
+			label late
+			`As you enter the atmosphere of <origin>, the spaceport authorities contact you and give you coordinates to a landing area that is separate from the main spaceport. A Hai warship shadows you as you approach.`
+			`	You find that the coordinates lead to a smaller port atop one of the city's highrises, and you spot a Hai Centipede already landed there, with Alondo standing just outside of it. As you touch your ship down next to Alondo, the Hai warship following you moves to idle above the spaceport.`
+			`	"Glad you could make it," Alondo greets you as you exit your ship. "Welcome to the secure port. Our home away from home."`
+			
+			label landed
+			choice
+				`	"What's with the warship?"`
+					goto warship
+				`	"What's so secure about it?"`
+				`	"Looks like a nice place. Let's get to that briefing you mentioned."`
+					goto briefing
+			`	"Well it's closed to the public, and as you can see," Alondo says while pointing up at the warship above you, "the Hai are guarding it well. There's no 'human embassy' or 'consulate' for us to make use of, so the Hai decided to put one of their old court buildings to use, allowing us to use it as our base of operations while we're navigating this crisis."`
+			choice
+				`	"This entire building used to be a courthouse?"`
+				`	"It doesn't feel like much of a crisis to me."`
+					goto crisis
+				`	"Why the heavy guard? Are they expecting violence?"`
+					goto warship
+			`	"It was; apparently large reinforced rooms are easy to convert into landing spaces. From the little I've seen, the Hai have a rather, shall we say, labyrinthine system of government. This building was only a small part of that. Whatever the case, we have a briefing to get to," Alondo says while motioning to the door inside.`
+				goto briefing
+			label crisis
+			`	"Well... I could explain more, but that's what this briefing is for," Alondo says while motioning to the door inside.`
+				goto briefing
+			label warship
+			`	"As I mentioned earlier, their government is on edge at the moment. I'm sure they aren't expecting us to be violent, but they also want to be prepared for anything. Whatever the case, we have a briefing to get to," Alondo says while motioning to the door inside.`
+			label briefing
+			`	Alondo leads you to a meeting room that feels large for the number of people present: it looks like a lecture hall that could easily fit a hundred people, but there are only six here. Aside from Alondo and yourself, there is a shorter man in what you recognize as a Republic diplomatic uniform messing with a holoprojector that doesn't appear to be working, a taller man in a suit sitting next to a woman in a formal dress in the front row, and an older looking Hai woman sitting alone at the end of a row of seats.`
+			`	"Glad you finally decided to show up, Alondo," says the man in the front.`
+			`	"And you brought a guest," says the Hai.`
+			`	"I did," Alondo responds. "This is Captain <first> <last>. Member of the Free Worlds Council during the war. Helped repel the Pug invasion. A capable pilot. Am I missing anything?"`
+			choice
+				`	"That sounds like everything."`
+				`	"Just that I'm good looking."`
+			`	"There we go!" says the man who was fiddling with the holoprojector as it whirs to life. "No time for introductions. We're late enough as is. Everyone, please sit down."`
+			`	The holoprojector displays a series of graphs. You're no expert in data analysis, but a highlighted "chance of total crisis" at the bottom ranging from 61% to 96% does not look promising.`
+			`	"Please turn your attention to this chart here," he says while pointing to a bar graph. "We've continued to track the number of new arrivals to Hai territory. As noted on the left, the number of new monthly arrivals was in the low hundreds prior to the leaks being broadcast. Within only a short time after, that number quickly rose to the thousands. Mitigation efforts by the Navy to dissuade civilian captains from discovering the wormhole in Ultima Thule by circulating reports of increased pirate activity have since suppressed this number somewhat, but the rate of new arrivals is still well above what it once was.`
+			`	"It has been noted that the character of these new arrivals is also different. Where once a majority of new arrivals were lone explorers or lost captains, they are now increasingly captains following breadcrumbs while looking for the Hai or bringing large groups of 'tourists' with the promise of witnessing the aliens from the news reports. Further research will need to be done to determine the threat that these new arrivals pose in continuing to escalate the situation."`
+			choice
+				`	"What's the problem with new arrivals?"`
+				`	"Do we not have a way of blocking captains from entering the wormhole?"`
+					goto block
+			`	"We do not have the means of handling a large influx of humans," says the Hai. "For decades, we have dealt with a small trickle of humans arriving through the wormhole. We have grown acustomed to it. But if that trickle were to suddenly become a downpour, then our services would quickly become overrun."`
+			`	The man presenting the graphs nods in agreement. "Of importance is also the effect that this situation may have for the Republic," he says while pointing at another graph labeled "artifact penetration" which shows a map of various stages of events and their outcomes.`
+				goto continue
+			label block
+			`	"We could get the Navy to blockade the wormhole," says Alondo, "but such an overt action would be no different than outright stating to everyone that Campbell was telling the truth, which could easily lead to civil unrest after the events of the Pug invasion."`
+			`	The man presenting the graphs nods in agreement. "Precisely my next topic," he says while pointing at another graph labeled "artifact penetration" which shows a map of various stages of events and their outcomes.`
+			label continue
+			`	"Artifact penetration is the point at which a government cannot reasonably attempt to pretend something is anything but the truth, at least not while still holding to the claim of being a representative government. Our most optimistic estimates suggest the Republic may be forced to acknowledge the existence of the Hai within three months, or we would lose so much credibility as to compromise electoral stability. The actual time limit is probably sooner."`
+			choice
+				`	"What are the plans to prevent that?"`
+					goto plans
+				`	"Would that be so bad?"`
+			`	"It is always bad to be forced into acknowledging a secret. If we act sooner, we may control the manner of that secret's release," he says. "Plus, while the Hai have let the trickle of humans that find the wormhole settle here peacefully, a massive influx is a problem nobody really wants to have to deal with.`
+			label plans
+			`	"We are currently still gathering information and weighing various potential options. Complete containment of this situation may already be impossible, and so plans which aim for that may not be worth following. If so, we would instead follow the plans which seek to formally reveal the existence of the Hai to humanity in as controlled a manner as possible. Only time will tell if that is the case, though."`
+			`	After the briefing is finished, the Hai woman approaches you. "Greetings, Captain <last>. I am grateful that you will be helping us. My name is Sayari. I was the envoy to the human government a century ago." The present situation is all the evidence needed to make it clear that the Republic has never mentioned the Hai, nor publicly acknowledged receiving an envoy from them.`
+			`	Before you can get into a conversation with Sayari, the presenter butts in. "Yes, yes, and I have a task for you to be helpful with now. Please meet me outside at the port," he says before swiftly leaving the room.`
+			`	Sayari chuckles. "So much on that human's mind. I have not seen him take a break since he has arrived. It is as if he is more stressed about this situation than any Hai."`
+				decline
+
+
+
+mission "Hai Reveal: Meet the Team: Xilin 1"
+	name "New Arrivals"
+	description "Travel to <destination> with Xilin to interview new arrivals to Hai space to determine how they arrived and what they think about the Hai."
+	source "Hai-home"
+	destination "Allhome"
+	passengers 2
+	blocked "You will need <capacity> in order to take this mission."
+	to offer
+		has "hr: meet the team"
+		has "hr: met alondo"
+	on offer
+		log "People" "Xilin Yang" `Deputy Minister Yang works in the Foreign Affairs department of the Republic government. He is a pleasant and astute man. Handling the Hai secrecy crisis has become his job while the majority of the foreign ministry remains engaged with the fallout from the Free Worlds and recent peace.`
+		conversation
+			`Sayari follows you out to the landing pads to meet the presenter. "Captain <last>," he says while grasping your hand in a firm handshake. "Xilin Yang, Republic Deputy Minister of Foreign Affairs. I apologize for not introducing myself sooner. It's an honor to meet a hero of the Pug crisis such as yourself."`
+			choice
+				`	"It was hard-fought, but it was necessary."`
+				`	"Thanks, but it wasn't as dramatic as they made it out to be. I'm just happy to have helped where I could."`
+					goto humble
+			`	"You're every inch what I expected," he assures you.`
+				goto mission
+			label humble
+			`	For a moment his expression falters, and then he seems almost relieved. "You may be a better person than I expected to meet.`
+			label mission
+			`	"Now, about that task. I mentioned during our briefing that we need to determine how much of a threat these new arrivals might be. Not a threat in the sense that they will become violent, but in the sense that they could exacerbate the situation, such as by returning to our space and making a big stink about what they've found here. The best place to go for this would be <stopovers>."`
+			`	"I would like to follow and observe," says Sayari.`
+			`	"You're free to come," says Xilin. "Let me pack a few items into your ship, Captain <last>, and we can be on our way."`
+				accept
+	on visit
+		dialog phrase "generic passenger on visit"
+
+
+
+mission "Hai Reveal: Meet the Team: Xilin 2"
+	landing
+	name "New Arrivals"
+	description "Return to <destination>."
+	source "Allhome"
+	destination "Hai-home"
+	clearance
+	passengers 2
+	blocked "You will need <capacity> in order to take this mission."
+	to offer
+		has "Hai Reveal: Meet the Team: Xilin 1: done"
+	on offer
+		conversation
+			`The rate at which new ships show up isn't tremendous, so Xilin starts by speak with some of the older captains who have been here prior to the news. "You can learn a lot by sharing a drink with the right merchant," he says to you.`
+			`	One captain in particular has been camped out here to intercept new captains as they arrive and give them the induction tour. He also has a copious set of notes that he gladly shares with Xilin. "After I heard the news, I figured I'd help by keeping notes on new arrivals. They make themselves very obvious with the way they gawk," he says. "We had two new ships come in yesterday, a Freighter and an Osprey, but there's been nothing today as of yet. It's normally only one or two smaller ships a day, if that."`
+			`	Xilin decides to next search the spaceport for captains that showed up recently, but just before heading off, a Star Queen full of passengers lands in the spaceport with everyone on board pressing their faces against the windows.`
+			`	"You have to be kidding me," Xilin says under his breath while approaching ship.`
+			`	"Welcome, one and all, to the land of the Hai," the ship's captain says while walking down the boarding ramp with all her passengers behind her.`
+			`	"Excuse me, Captain. Do you care to answer a few questions?" Xilin shouts up to the captain. She looks concerned to see Xilin standing there in a Republic uniform, but agrees to talk after shooing her passengers off into the spaceport.`
+			`	"What is it you need to know, officer?" the captain asks.`
+			`	Although Xilin isn't a Navy officer, he doesn't correct her. "I'd like to know why it is that you decided to bring all these passengers who had never been to Hai space before."`
+			`	The captain scratches the back of her head. "Well after seeing the news back home, I figured the secret was already out. Might as well make the most of it, you know?"`
+			choice
+				`	(Let Xilin handle this.)`
+					goto xilin
+				`	"Didn't you hear the Navy's advisory? You could have gotten your passengers killed coming here."`
+			`	The captain scoffs. "Well yeah, but I figured it was just a coverup from the Navy to stop people."`
+			`	"Would that not imply that the secret isn't truly 'out' then?" Sayari asks while giving the captain a stern look.`
+				goto trouble
+			label xilin
+			`	"No, I don't know," says Xilin while giving the captain a stern look. "Rumors of the Hai becoming mainstream don't constitute the secret being 'out' to me."`
+			label trouble
+			`	"Well, when you put it that way..." the captain says nervously. "Okay, just spit it out already. Am I in trouble?"`
+			`	"No," Xilin says while looking away. "But they might be."`
+			`	You follow Xilin's gaze to see a beat-up Berserker that looks like it can barely fly landing in the spaceport. "You're free to go," Xilin says to the Star Queen captain.`
+			`	You approach the Berserker as it finishes landing. The captain of the ship exits looking far calmer than the condition of the Berserker would suggest he should be. "Uh, hi," he says awkwardly. "Can I help you guys?"`
+			choice
+				`	"What happened to your ship?"`
+				`	"Did you get attacked by pirates on the way here?"`
+			`	The captain looks back at the poor state of his interceptor. "Oh, that. Yeah, I ran into a couple pirates on the way here. Nothing I haven't dealt with before, though."`
+			`	"So you've been to Hai space before?" Xilin asks.`
+			`	"Sure. Plenty of times," he responds.`
+			`	Xilin looks over the interceptor with a quizzical expression. "May I see your pilot's license?"`
+			`	"Yeah, no problem," the captain says, as he quickly pulls a license out of his pocket that looks almost as beat up as the interceptor. Xilin jots down the details and hands the license back to the captain. "Thank you. And maybe tag along with a merchant fleet on your way back home."`
+			`	"That sounds like a good idea," the captain says before walking off into the spaceport.`
+			`	You continue to question more captains in the spaceport over the course of the day with Xilin and Sayari. Most turn out to be repeat visitors or those who have taken to conducting their business entirely in Hai space, but they are all familiar with arrivals who heard of the way to the Hai through whispers in spaceport bars or were sold coordinates by knowledgeable captains, and many are able to provide information about these encounters. It seems that everyone has been peaceful enough in interacting with the Hai so far, but clearly the word is getting out more as time goes on.`
+				accept
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		set "hr: met xilin"
+		conversation
+			`You return to the briefing room at the secure port with Xilin and Sayari, and Xilin begins transferring his notes into a terminal. He then pauses while staring at something on the screen.`
+			`	"I'm running each of the pilot's licenses and ship registrations through my copy of the Republic's pilot database. They've all come up as valid and with mostly clean records. All except for one." He turns the terminal screen toward you and Sayari, displaying an inputted license ID that the system says does not exist.`
+			`	"This is from that Berserker pilot. What's more is that if I run the ID of the ship, it's registered as stolen."`
+			`	Sayari gives a look of concern. "Are you suggesting that this captain was a criminal?"`
+			`	"Highly likely," Xilin responds. "A pirate with a stolen ship and a counterfeit license."`
+			`	"I will inform our spaceport authorities to look out for this captain and his ship," Sayari says. "It may also be beneficial if you were to make this database available to us, so that we may monitor other potential criminal humans."`
+			`	"Unfortunately, I'd have to gain authorization for that," says Xilin. "But I'll see what I can do."`
+			choice
+				`	"Should I help track down that captain?"`
+					goto track
+				`	"So are pirates trying to sneak their way into Hai territory?"`
+			`	"That may be the case," Xilin says. "We'd be stupid to suspect this as only having been an isolated incident."`
+				goto pirates
+			label track
+			`	"No, leave that to the Hai," Xilin says. "At least for so long as this is our only lead on pirate activity in Hai territory, although I imagine that we'll find more if we go looking for it."`
+			label pirates
+			`	"We have had run-ins with your pirates before," Sayari says. "Most of the time they cause only mischief. Very rarely do they raid our fleets or cause any large trouble. I fear though that this situation will only embolden them."`
+			`	Just then, Alondo pokes his head into the room looking somewhat exasperated. "Captain <last>. Could you give Remington a hand? He's out on the landing pads." He disappears again without waiting for a reply, and you hear his heavy footsteps grow quieter as he walks away.`
+			`	"You go help Remington," Xilin says. "I'll continue my work here."`
+
+
+
+mission "Hai Reveal: Meet the Team: Samuel 1"
+	name "High Tension"
+	description "Remington has heard news of tensions between new arrivals and local Hai on <destination>."
+	source "Hai-home"
+	destination "Cloudfire"
+	passengers 2
+	blocked "You will need <capacity> in order to take this mission."
+	to offer
+		has "hr: meet the team"
+		has "hr: met xilin"
+	on offer
+		log "People" "Terry Adrianopoulos" `Terry Adrianopoulos is a member of the Syndicate assisting Samuel Remington in dealing with the situation regarding the Hai. Samuel claims that Terry is his secretary.`
+		conversation
+			`You exit the building onto the landing pads with Sayari following behind you and find the tall man and the woman from the front row of the briefing waiting by your ship.`
+			branch met
+				has "met remington"
+			action
+				log "People" "Samuel Remington" `Samuel Remington is the Syndicate's head of public relations. He is acting as the Syndicate's representative in helping to deal with the situation regarding the Hai, and thinks the role will be a good break from the Syndicate's current internal turmoil.`
+			`	"Captain <last>, is it? I don't believe we've met before," he says while shaking your hand, perhaps a little too firmly. "I'm Samuel Remington, head of the Syndicate's PR department. You may not have heard of me before, but I'm sure you've heard of my work. I..." He stops himself. "You know what, nevermind. We're not here to make small talk. We have bigger things to worry about. I'm looking forward to working alongside you to handle this emerging crisis."`
+				goto terry
+			label met
+			action
+				log "People" "Samuel Remington" `Remington is being sent as the representative of the Syndicate to help deal with the situation regarding the Hai. He considers his new role as a good break from the Syndicate's current internal turmoil.`
+			`	"Captain <last>, is it? It's been a good while since we last met," he says while shaking your hand, perhaps a little too firmly. "We met back on Hephaestus near the start of the war. It's been a while, so I'll forgive you if you've forgotten me. I'm looking forward to working alongside you to handle this emerging crisis."`
+			label terry
+			`	You note that his appearance is rather casual compared to what you would expect from someone of importance in the Syndicate, wearing khakis and a collared tee as opposed to the typical suit and tie business attire that you see on Syndicate businessmen. It is certainly in contrast to the young woman standing behind him, who is wearing the usual business attire.`
+			`	"Now, allow me to introduce you to Terry," Remington says while gesturing to the woman behind him.`
+			`	"Terry Adrianopoulos. Pleasure to meet you," she says with a broad smile and a slight bow. The young woman goes from calculating to gregarious in the blink of an eye as your attention shifts to her. She seems at once pleasant and approachable while at the same time being slightly off-putting and uncanny. It's an eerie feeling.`
+			`	"Terry is... well, let's call her my secretary," Remington says with a sly smile. Terry seems none too pleased to hear that, but she doesn't correct him.`
+			choice
+				`	"Alondo said you needed my help with something."`
+					goto help
+				`	"The Syndicate sent their PR team to deal with this?"`
+			`	"I'll have you know I'm considered something of a miracle worker among the Syndicate," Remington says in a wry tone. "The Syndicate was sad to rent me out, but there's also an internal political situation going on that has been causing me quite the headache recently." His eyes momentarily flick to Terry as he says that, but Remington presses on immediately. "It's nothing I can discuss in detail, with all the NDAs involved, you know, but something I'll certainly enjoy taking a break from."`
+			`	"Alondo said you needed my help," you say.`
+			label help
+			`	"Ah, yes. Well you see, I'd like to travel to <stopovers> to get the lay of the land around the conflict between the two Hai groups. Care to give me a ride there? It'd be just the two of us."`
+			`	"I will be accompanying you," Sayari says.`
+			`	"Just the three of us, then," Remington adds. "The Wah Ki system is where Mr. Campbell's video that's been plastered all over the news was taken. I imagine any new arrivals attempting to look into the validity of the video themselves would find their way there, so it'd be worth checking in on the place."`
+				accept
+	on visit
+		dialog phrase "generic passenger on visit"
+
+
+
+mission "Hai Reveal: Meet the Team: Samuel 2"
+	landing
+	name "High Tension"
+	description "Return to <destination>."
+	source "Cloudfire"
+	destination "Hai-home"
+	clearance
+	passengers 2
+	blocked "You will need <capacity> in order to take this mission."
+	to offer
+		has "Hai Reveal: Meet the Team: Samuel 1: done"
+	on offer
+		conversation
+			`It doesn't take long to prove Remington's hunch correct. You find a group of new arrivals gathered by a group of Hai captains and crewmen, asking them question after question. "Why are you guys hiding up here?" "Where can I buy some of those weapons of yours?" "Do you eat acorns?" Some of the Hai look intrigued by the attention they're being given, but others look annoyed.`
+			`	One of the human captains seems to be riling the others up and being rather hostile with his comments. "Do you really think you could invade us? You're like half my size; I could take you on in a fight any day."`
+			`	Remington shakes his head. "I'm going to step in before this turns ugly," he says while pulling a small device out of his pocket. It's not anything that you recognize, but it has a Hai appearance to it.`
+			`	He shouts to gain everyone's attention before tossing the device between the two groups. As it lands, a life-sized image of a Pug appears, looking almost realistic aside from the fact that its facing angle seems to follow your perspective. Most of the human captains jump back.`
+			`	"Can anyone tell me what that is?" Remington asks.`
+			`	"That's one of those Pug things!" says one of the human captains.`
+			`	"Correct. And I take it you don't like them."`
+			`	"Why would I like something that invaded my home planet?" says another captain.`
+			`	"Exactly. So why are you doing that to these Hai here? What's the issue you take with them, anyway?"`
+			`	"Well, I'm just..." the captain begins to trip through a response before being cut off.`
+			`	"Captain <last>," Remington says while turning to you. "Can you tell me what the difference between the Hai and the Pug is?"`
+			choice
+				`	"The Hai aren't invading us."`
+				`	"The Hai are cuter."`
+					goto cute
+				`	"The Hai are friendly."`
+					goto friendly
+			`	"But they could!" one of the captains pipes up.`
+			`	"Really?" Remington responds. "So because these Hai here are fighting pirates of their own species, you think they could invade us? Could the Syndicate's security forces invade the Republic because they fight off pirates, or the Republic decide to invade the Free Worlds because they fight off pirates? Maybe the answer is yes, but there's a big difference between could and will.`
+				goto sayari
+
+			label cute
+			`	"I've seen cute dogs turn fearsome before!" one of the captains pipes up.`
+			`	Remington gives the captain (and you) a slight look of disbelief, but he rolls with it. "Okay, so maybe cute things can be fearsome, but has a fearsome dog ever invaded your home planet?`
+				goto sayari
+			
+			label friendly
+			`	"But they might not always be!" one of the captains pipes up.`
+			`	"Perhaps not," Remington responds, "but is that any justification for you being hostile now? People had the same fear of the Quarg centuries ago when they were first discovered, but have the Quarg been anything but friendly in that time?`
+
+			label sayari
+			`	"My point is that if these Hai were really interested in invading us, do you think we'd all be here right now? The Hai are not hostile to us, so why would we give them a reason to be by sitting here and bugging their warship captains?" Remington says to the crowd.`
+			`	You look over to the group of Hai to see Sayari speaking to them in their own language, likely trying to prevent the Hai from doing anything brash.`
+			`	Remington speaks with the crowd of humans for a little while longer, eventually convincing them to leave the Hai alone. "Let's head back to <planet>," Remington says. "I've seen enough here. And we should probably think about having the spaceport authority here restrict who can land, at least until all this blows over."`
+			`	"Perhaps," Sayari responds.`
+				accept
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		set "hr: met samuel"
+		conversation
+			`You return to the briefing room at the secure port with Remington and Sayari. "This Hai holographic tech is pretty nifty, isn't it?" Remington says while playing around with the device he used on <planet stopovers>. "Way more advanced than anything we've got back home. It's also pretty useful that there's a port for one of our cables, otherwise I never would have figured out how to get that Pug image on there."`
+			`	"Ah, yes," Sayari says. "Many decades of interaction with humans has led us to accommodate much of our technology to your needs. Humans are our guests here, so we saw it only right to make you feel more comfortable. A shame to see a few bad apples may spoil the bunch."`
+			`	"You have apples up here?" Remington asks.`
+			`	Sayari chuckles. "Just as we have adapted our technology to human needs, we have also imported many human foods and learned human sayings. It has all been very exciting."`
+			`	Sayari pauses for a moment. "Our civilization is tens of thousands of years old. There is little in that time that we have not done on our own. But seeing such a young species has led to much excitement. I wish for that excitement to not turn into strife. This is what I explained to the Hai on <planet stopovers>. 'These humans are young. Be patient with them.'"`
+			choice
+				`	"Glad to see that you still have a positive view of us."`
+				`	"Well, we're here to do our best to make that wish come true."`
+			`	Sayari goes on about the history between Hai and humanity, how a colony exploration team sanctioned by the Republic found the wormhole in Ultima Thule and made first contact between the Hai and the Republic. Early on, they used the Quarg as translators between the two parties, but eventually the Hai began to learn the human language. Some humans also began to learn Hai, but it seems much more difficult for a human to speak Hai than the other way around.`
+			`	While Sayari is telling stories, Terry walks in and motions to you. "<last>. I need someone with a ship and enough skill to not get blown up. Meet me by the landing pads when you're ready."`
+
+
+
+mission "Hai Reveal: Meet the Team: Terry"
+	name "Scout the North"
+	description "Scout <waypoints> to determine the frequency of fleets traveling around the wormhole. Return to <destination> when finished."
+	source "Hai-home"
+	clearance
+	waypoint "Cardax"
+	waypoint "Hassaleh"
+	waypoint "Moktar"
+	waypoint "Oblate"
+	waypoint "Rajak"
+	waypoint "Rigel"
+	waypoint "Sumar"
+	waypoint "Ultima Thule"
+	waypoint "Volax"
+	to offer
+		has "hr: met alondo"
+		has "hr: met xilin"
+		has "hr: met samuel"
+	on offer
+		conversation
+			`When you exit onto the landing pads, you find that Terry has just finished ensuring your ship is refueled. "Alright, Captain. I have a simple mission for you. We need someone to scout out the ship frequencies in various uninhabited systems in the Far North. We know how many merchants are arriving here, but we're not sure how many are attempting and failing, for one reason or another. I need you to fly through these systems and report back here with what you find."`
+			`	She takes a deep breath before saying: "<waypoints>. Think you can remember all those? Good." She doesn't even wait for a response. "Stick around in each system if you can, as I want to know just how many merchants, pirates, and Navy ships are passing through that region."`
+			`	She tosses you a data pad containing coordinates to all the systems she mentioned and starts walking back inside. "Just come back here once you're finished."`
+				accept
+	on visit
+		dialog phrase "generic waypoint on visit"
+
+
+
+mission "Hai Reveal: Meet the Team: Sayari 1"
+	landing
+	name "Important Message"
+	description "Deliver an important message from the Hai to the Republic on <destination>."
+	source "Hai-home"
+	destination "Earth"
+	clearance
+	to offer
+		has "Hai Reveal: Meet the Team: Terry: done"
+	on offer
+		conversation
+			`Terry quickly takes a copy of your ship's system logs upon your return. "Thank you, Captain. I'll have these analyzed in no time." Terry runs back into the building just as Sayari comes out carrying a small box.`
+			`	"Captain <last>. I know we are asking much of you, but I have a task of my own." She hands you the box, which displays official Hai government branding. Inside is an encrypted data chip and a metallic badge, with a symbol minutely engraved into the front that must be the Hai government's emblem. Surrounding it in a circle is some sort of pattern, which reminds you of the codes found on identification cards and licenses in human space. On the other side, there is extensive writing in a script that looks to be Hai. From this, you presume that the badge is some sort of diplomatic ID.`
+			`	"Please deliver this message to the Republic. I trust that they will disseminate it to your other governments. This badge should make it easier if they give you trouble."`
+			choice
+				`	"Consider it done."`
+					accept
+
+
+
+mission "Hai Reveal: Meet the Team: Sayari 2"
+	landing
+	name "Important Message"
+	description "Return to <destination>"
+	source "Earth"
+	destination "Hai-home"
+	clearance
+	to offer
+		has "Hai Reveal: Meet the Team: Sayari 1: done"
+	on offer
+		conversation
+			`On approach to the spaceport on Earth, you request to speak to a diplomatic official. Given your renown from the Pug war, they promise you a "speedy two to three business days" wait. But after showing the diplomatic ID that Sayari gave you, that quickly shrinks to "two hours."`
+			`	You meet with Jamal Rahman, the Chief Minister of Foreign Affairs and Xilin's boss. "I take it you've involved yourself with this 'Hai' situation," he says. You nod. "Well I apologize, but I do not have much time for small talk. What is it you need me for?" You hand him the encrypted message that Sayari gave you and explain where it's from. He thanks you, and leaves with the message.`
+			`	Some hours later, Rahman returns with an encrypted data chip. "This is our response. Safe travels, Captain."`
+				accept
+	on complete
+		event "hr: exploration period" 45
+		conversation
+			`You meet Sayari at the secure port and hand her the response from the Republic. "Thank you, Captain <last>," she says. "Not only for this task, but for the other tasks you have completed for us. You've helped with many tasks which might otherwise have been sources of tension without you."`
+			choice
+				`	"Don't mention it. I don't do it for the praise."`
+				`	"Is there anything else you need me for?"`
+					goto more
+			`	Sayari smiles. "How humble. Although I suppose you're wondering what do to next.`
+			label more
+			`	"For now, there are no immediate tasks for you. The others will continue working on the plan to manage the situation, and we will call upon you once you are needed. I suggest you explore our systems while you wait and gain a better understanding of the Hai people. It will do us well for you to have this knowledge."`
+
+event "hr: exploration period"
