@@ -22,7 +22,7 @@ mission "Hai Reveal [C01] Cleanup"
 	passengers 4
 	blocked "You need <bunks> passenger spaces to transport Xilin, Alondo, Sayari and Teeneep."
 	to offer
-		has "Hai Reveal [B13] Freedom: done"
+		has "Hai Reveal [B14] Journey to Peace: done"
 	on offer
 		event "mountaintop ascendant"
 		fail "Hai Reveal [B12-A] Devil-Hide Fleet"
@@ -201,6 +201,8 @@ system "Al Hurr"
 	hidden
 	pos -432 -491
 	government "Uninhabited"
+	arrival 1715
+	habitable 1715
 	belt 1312
 	haze _menu/haze-brown
 	trade "Clothing" 201

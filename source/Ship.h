@@ -284,6 +284,7 @@ public:
 	void Destroy();
 	void SelfDestruct();
 	void Restore();
+	bool IsDamaged() const;
 	// Check if this ship has been destroyed.
 	bool IsDestroyed() const;
 	// Recharge and repair this ship (e.g. because it has landed).
@@ -444,12 +445,19 @@ public:
 	void SetTargetAsteroid(const std::shared_ptr<Minable> &asteroid);
 	void SetTargetFlotsam(const std::shared_ptr<Flotsam> &flotsam);
 
+	bool CanPickUp(const Flotsam &flotsam) const;
+
 	// Manage escorts. When you set this ship's parent, it will automatically
 	// register itself as an escort of that ship, and unregister itself from any
 	// previous parent it had.
 	void SetParent(const std::shared_ptr<Ship> &ship);
 	std::shared_ptr<Ship> GetParent() const;
 	const std::vector<std::weak_ptr<Ship>> &GetEscorts() const;
+
+	// How many AI steps has this ship been lingering?
+	int GetLingerSteps() const;
+	// The AI wants the ship to linger for one AI step.
+	void Linger();
 
 
 	// Direction to move toward if MOVETOWARD is active. These are relative to
@@ -536,6 +544,9 @@ private:
 
 	double attraction = 0.;
 	double deterrence = 0.;
+
+	// Number of AI steps this ship has spent lingering
+	int lingerSteps = 0;
 
 	Command commands;
 	FireCommand firingCommands;

@@ -12,6 +12,8 @@ on:
     - 'data/**'
     - 'tests/**'
     - '.github/workflows/**'
+    - 'CMakeLists.txt'
+    - 'CMakePresets.json'
     - keys.txt
   pull_request:
     # Run for any push to any pull request, if it modifies source code or game text.
@@ -22,6 +24,8 @@ on:
     - 'data/**'
     - 'tests/**'
     - '.github/workflows/**'
+    - 'CMakeLists.txt'
+    - 'CMakePresets.json'
     - keys.txt
 
 

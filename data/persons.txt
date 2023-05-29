@@ -154,17 +154,9 @@ person "Marauding Max"
 			"Do you think you "
 			"Ever wondered if you "
 			"Think you'll also need some luck if you "
-		word
-			"got what it takes to "
-			"got the gumption to "
-			"could "
-			"are capable of "
-			"have the guramba to "
-			"are good enough to "
-		word
-			"capture "
-			"collect "
-			"gather "
+		phrase
+			"MMK subphrase 1" 5
+			"MMK subphrase 2"
 		word
 			"all 28 Marauder models?"
 	phrase
@@ -216,6 +208,26 @@ person "Marauding Max"
 			"into a REAL marauding warship!"
 	ship "Marauder Fury" "Mad Quest"
 
+phrase "MMK subphrase 1"
+	word
+		"got what it takes to "
+		"got the gumption to "
+		"could "
+		"have the guramba to "
+		"are good enough to "
+	word
+		"capture "
+		"collect "
+		"gather "
+
+phrase "MMK subphrase 2"
+	word
+		"are capable of "
+	word
+		"capturing "
+		"collecting "
+		"gathering "
+
 ship "Marauder Fury"
 	plural "Marauder Furies"
 	sprite "ship/mfury"
@@ -256,13 +268,19 @@ ship "Marauder Fury"
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
 		
-	engine -21 42 .9
-	engine 0 48
-	engine 21 42 .9
-	gun -12 -33 "Meteor Missile Launcher"
-	gun 12 -33 "Meteor Missile Launcher"
+	engine -23 44.5 0.6
+	engine 23 44.5 0.6
+	engine -17 43 0.45
+	engine 17 43 0.45
+	engine -12.5 41 0.35
+	engine 12.5 41 0.35
+	engine 0 46
+	gun -13.5 -36 "Meteor Missile Launcher"
+	gun 13.5 -36 "Meteor Missile Launcher"
 	gun -20 -25 "Meteor Missile Launcher"
 	gun 20 -25 "Meteor Missile Launcher"
+	gun -6 -41.5
+	gun 6 -41.5
 	gun -43.5 2 "Hai Tracker Pod"
 	gun 43.5 2 "Hai Tracker Pod"
 	explode "tiny explosion" 10
@@ -671,7 +689,6 @@ ship "Modified Osprey"
 	turret 49.5 20 "Heliarch Repulsor"
 	turret 0 29 "Point Defense Turret"
 	turret 0 89.5 "Point Defense Turret"
-	
 	explode "medium explosion" 24
 	explode "large explosion" 16
 	explode "small explosion" 40

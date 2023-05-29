@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/alignment.hpp"
 #include "CategoryTypes.h"
 #include "Color.h"
+#include "Dialog.h"
 #include "text/DisplayText.h"
 #include "FillShader.h"
 #include "text/Font.h"
@@ -72,7 +73,7 @@ static const unsigned int LONG_CLICK_DURATION = 500; // milliseconds
 ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	: player(player), day(player.GetDate().DaysSinceEpoch()),
 	planet(player.GetPlanet()), playerShip(player.Flagship()),
-	categories(GameData::Category(isOutfitter ? CategoryType::OUTFIT : CategoryType::SHIP)),
+	categories(GameData::GetCategory(isOutfitter ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	collapsed(player.Collapsed(isOutfitter ? "outfitter" : "shipyard"))
 {
 	if(playerShip)
@@ -285,6 +286,10 @@ void ShopPanel::DrawShipsSidebar()
 			}
 		}
 
+		if(isSelected && playerShips.size() > 1 && ship->OutfitCount(selectedOutfit))
+			PointerShader::Draw(Point(point.X() - static_cast<int>(ICON_TILE / 3), point.Y()),
+				Point(1., 0.), 14.f, 12.f, 0., Color(.9f, .9f, .9f, .2f));
+
 		point.X() += ICON_TILE;
 	}
 	point.Y() += ICON_TILE;
@@ -411,10 +416,18 @@ void ShopPanel::DrawButtons()
 
 	const Point buyCenter = Screen::BottomRight() - Point(210, 25);
 	FillShader::Fill(buyCenter, Point(60, 30), back);
-	string BUY = IsAlreadyOwned() ? (playerShip ? "_Install" : "_Cargo") : "_Buy";
+	bool isOwned = IsAlreadyOwned();
+	const Color *buyTextColor;
+	if(!CanBuy(isOwned))
+		buyTextColor = &inactive;
+	else if(hoverButton == (isOwned ? 'i' : 'b'))
+		buyTextColor = &hover;
+	else
+		buyTextColor = &active;
+	string BUY = isOwned ? (playerShip ? "_Install" : "_Cargo") : "_Buy";
 	bigFont.Draw(BUY,
 		buyCenter - .5 * Point(bigFont.Width(BUY), bigFont.Height()),
-		CanBuy() ? hoverButton == 'b' ? hover : active : inactive);
+		*buyTextColor);
 
 	const Point sellCenter = Screen::BottomRight() - Point(130, 25);
 	FillShader::Fill(sellCenter, Point(60, 30), back);
@@ -484,9 +497,10 @@ void ShopPanel::DrawMain()
 	const float endX = Screen::Right() - (SIDE_WIDTH + 1);
 	double nextY = begin.Y() + TILE_SIZE;
 	int scrollY = 0;
-	for(const string &category : categories)
+	for(const auto &cat : categories)
 	{
-		map<string, set<string>>::const_iterator it = catalog.find(category);
+		const string &category = cat.Name();
+		map<string, vector<string>>::const_iterator it = catalog.find(category);
 		if(it == catalog.end())
 			continue;
 
@@ -687,11 +701,14 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		player.UpdateCargoCapacities();
 		GetUI()->Pop(this);
 	}
-	else if(key == 'b' || ((key == 'i' || key == 'c') && selectedOutfit && (player.Cargo().Get(selectedOutfit)
-			|| (player.Storage() && player.Storage()->Get(selectedOutfit)))))
+	else if(key == 'b' || key == 'i' || key == 'c')
 	{
-		if(!CanBuy(key == 'i' || key == 'c'))
-			FailBuy();
+		const auto result = CanBuy(key == 'i' || key == 'c');
+		if(!result)
+		{
+			if(result.HasMessage())
+				GetUI()->Push(new Dialog(result.Message()));
+		}
 		else
 		{
 			Buy(key == 'i' || key == 'c');
@@ -843,8 +860,8 @@ bool ShopPanel::Click(int x, int y, int /* clicks */)
 				{
 					selectedShip = nullptr;
 					selectedOutfit = nullptr;
-					for(const string &category : categories)
-						collapsed.insert(category);
+					for(const auto &category : categories)
+						collapsed.insert(category.Name());
 				}
 				else
 				{
@@ -1018,20 +1035,20 @@ bool ShopPanel::Scroll(double dx, double dy)
 
 
 
-int64_t ShopPanel::LicenseCost(const Outfit *outfit) const
+int64_t ShopPanel::LicenseCost(const Outfit *outfit, bool onlyOwned) const
 {
 	// If the player is attempting to install an outfit from cargo, storage, or that they just
 	// sold to the shop, then ignore its license requirement, if any. (Otherwise there
 	// would be no way to use or transfer license-restricted outfits between ships.)
-	if((player.Cargo().Get(outfit) && playerShip) || player.Stock(outfit) > 0 ||
-			(player.Storage() && player.Storage()->Get(outfit)))
+	bool owned = (player.Cargo().Get(outfit) && playerShip) || (player.Storage() && player.Storage()->Get(outfit));
+	if((owned && onlyOwned) || player.Stock(outfit) > 0)
 		return 0;
 
 	const Sale<Outfit> &available = player.GetPlanet()->Outfitter();
 
 	int64_t cost = 0;
 	for(const string &name : outfit->Licenses())
-		if(!player.Conditions().Get("license: " + name))
+		if(!player.HasLicense(name))
 		{
 			const Outfit *license = GameData::Outfits().Find(name + " License");
 			if(!license || !license->Cost() || !available.Has(license))

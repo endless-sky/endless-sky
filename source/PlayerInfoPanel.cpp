@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/layout.hpp"
 #include "LogbookPanel.h"
 #include "MissionPanel.h"
+#include "Planet.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Rectangle.h"
@@ -50,23 +51,6 @@ namespace {
 		return (bounds.Height() - 8 - 20 - 5) / 20;
 	}
 
-
-	// Find any condition strings that begin with the given prefix, and convert
-	// them to strings ending in the given suffix (if any). Return those strings
-	// plus the values of the conditions.
-	vector<pair<int64_t, string>> Match(const PlayerInfo &player, const string &prefix, const string &suffix)
-	{
-		vector<pair<int64_t, string>> match;
-		auto it = player.Conditions().PrimariesLowerBound(prefix);
-		for( ; it != player.Conditions().PrimariesEnd(); ++it)
-		{
-			if(it->first.compare(0, prefix.length(), prefix))
-				break;
-			if(it->second > 0)
-				match.emplace_back(it->second, it->first.substr(prefix.length()) + suffix);
-		}
-		return match;
-	}
 
 	// Draw a list of (string, value) pairs.
 	void DrawList(vector<pair<int64_t, string>> &list, Table &table, const string &title,
@@ -699,16 +683,22 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 			"(-" + Format::Decimal(deterrenceLevel, 1) + ")", dim, Truncate::MIDDLE, false);
 	}
 	// Other special information:
-	auto salary = Match(player, "salary: ", "");
+	vector<pair<int64_t, string>> salary;
+	for(const auto &it : player.Accounts().SalariesIncome())
+		salary.emplace_back(it.second, it.first);
 	sort(salary.begin(), salary.end());
 	DrawList(salary, table, "salary:", 4);
 
-	auto tribute = Match(player, "tribute: ", "");
+	vector<pair<int64_t, string>> tribute;
+	for(const auto &it : player.GetTribute())
+		tribute.emplace_back(it.second, it.first->TrueName());
 	sort(tribute.begin(), tribute.end());
 	DrawList(tribute, table, "tribute:", 4);
 
 	int maxRows = static_cast<int>(250. - 30. - table.GetPoint().Y()) / 20;
-	auto licenses = Match(player, "license: ", " License");
+	vector<pair<int64_t, string>> licenses;
+	for(const auto &it : player.Licenses())
+		licenses.emplace_back(1, it);
 	DrawList(licenses, table, "licenses:", maxRows, false);
 }
 

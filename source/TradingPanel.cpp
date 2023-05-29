@@ -45,9 +45,6 @@ namespace {
 		"(very high)"
 	};
 
-	//const int MIN_X = -310;
-	//const int MAX_X = 190;
-
 	const int NAME_X = 20;
 	const int PRICE_X = 140;
 	const int LEVEL_X = 180;
@@ -55,8 +52,6 @@ namespace {
 	const int BUY_X = 310;
 	const int SELL_X = 370;
 	const int HOLD_X = 430;
-
-	//const int FIRST_Y = 80;
 }
 
 
@@ -103,7 +98,11 @@ void TradingPanel::Draw()
 	const Color &back = *GameData::Colors().Get("faint");
 	int selectedRow = player.MapColoring();
 	if(selectedRow >= 0 && selectedRow < COMMODITY_COUNT)
-		FillShader::Fill(Point(MIN_X + 250., FIRST_Y + 20 * selectedRow + 33), Point(480., 20.), back);
+	{
+		const Point center(MIN_X + box.Width() / 2, FIRST_Y + 20 * selectedRow + 33);
+		const Point dimensions(box.Width() - 20., 20.);
+		FillShader::Fill(center, dimensions, back);
+	}
 
 	const Font &font = FontSet::Get(14);
 	const Color &unselected = *GameData::Colors().Get("medium");
@@ -130,25 +129,25 @@ void TradingPanel::Draw()
 	if(player.Cargo().HasOutfits() || missionCargo)
 	{
 		bool hasOutfits = false;
-		bool hasUninstallable = false;
+		bool hasMinables = false;
 		for(const auto &it : player.Cargo().Outfits())
 			if(it.second)
 			{
-				bool notInstallable = (it.first->Get("installable") < 0.);
-				(notInstallable ? hasUninstallable : hasOutfits) = true;
+				bool isMinable = it.first->Get("minable");
+				(isMinable ? hasMinables : hasOutfits) = true;
 			}
-		sellOutfits = (hasOutfits && !hasUninstallable);
+		sellOutfits = (hasOutfits && !hasMinables);
 
 		string str = Format::MassString(outfits + missionCargo) + " of ";
-		if(hasUninstallable && missionCargo)
+		if(hasMinables && missionCargo)
 			str += "mission cargo and other items.";
 		else if(hasOutfits && missionCargo)
 			str += "outfits and mission cargo.";
-		else if(hasOutfits && hasUninstallable)
+		else if(hasOutfits && hasMinables)
 			str += "outfits and special commodities.";
 		else if(hasOutfits)
 			str += "outfits.";
-		else if(hasUninstallable)
+		else if(hasMinables)
 			str += "special commodities.";
 		else
 			str += "mission cargo.";
@@ -256,7 +255,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		int day = player.GetDate().DaysSinceEpoch();
 		for(const auto &it : player.Cargo().Outfits())
 		{
-			if(it.first->Get("installable") >= 0. && !sellOutfits)
+			if(it.first->Get("minable") <= 0. && !sellOutfits)
 				continue;
 
 			int64_t value = player.FleetDepreciation().Value(it.first, day, it.second);

@@ -169,6 +169,10 @@ mission "Wanderers: Hai Diplomat"
 				accept
 	on accept
 		"reputation: Hai" >?= 20
+		"reputation: Hai (Wormhole Access)" >?= 20
+		"reputation: Hai Merchant" >?= 20
+		"reputation: Hai Merchant (Human)" >?= 20
+		"reputation: Hai Merchant (Sympathizers)" >?= 20
 		"reputation: Hai" += 30
 		"reputation: Hai (Wormhole Access)" += 30
 		"reputation: Hai Merchant" += 30
@@ -353,6 +357,7 @@ mission "Visit Wanderers Again"
 		has "human cultural data"
 	on offer
 		set "language: Wanderer"
+		set "language: Hai"
 		event "wanderer technology available"
 		log "Received a device, created by a Hai scientist, which can translate between human language and the Hai language. Since the Wanderers speak the Hai language, that should make it possible to communicate with them directly."
 		conversation "eruk cultural data"
@@ -363,6 +368,19 @@ event "wanderer technology available" # Name unchanged for compatibility
 		"friendly disabled hail" "friendly disabled wanderer"
 		"hostile hail" "hostile wanderer"
 		"hostile disabled hail" "hostile disabled wanderer"
+
+
+
+# Compatibility patch for saves before "language: Hai" variable was added.
+mission "Hai Language Patch"
+	landing
+	invisible
+	to offer
+		has "Visit Wanderers Again: offered"
+		not "language: Hai"
+	on offer
+		set "language: Hai"
+		fail
 
 
 
@@ -737,17 +755,15 @@ mission "Wanderers: Unfettered Diplomacy 1B"
 		ship "Deep River (Jump, Unarmed)" "Ayi'i Ki'ak'var"
 
 fleet "Unfettered Tribute"
-	government "Hai (Unfettered)"
+	government "Hai (Unfettered Wanderer Tribute)"
 	names "hai"
+	personality coward timid
 	cargo 3
 	variant
 		"Water Bug (Jump)"
 
 event "wanderer / unfettered peace"
 	"reputation: Hai (Unfettered)" >?= 1
-	government "Hai (Unfettered)"
-		"attitude toward"
-			"Wanderer" 0
 	system "Ehma Ti"
 		remove fleet "Unfettered Raid"
 		add fleet "Unfettered Tribute" 1000
@@ -780,7 +796,7 @@ mission "Wanderers: Unfettered Diplomacy 1C"
 		set "license: Wanderer"
 		log "Managed to broker a temporary ceasefire between the Unfettered Hai and the Wanderers. Was granted access to purchase the non-military Wanderer ships, as a reward."
 		conversation
-			`When you return to <planet>, Iktat Rek meets with Ambassador Sayari and a few of the Wanderer elders. The elders thank you for the role that you played in negotiating a temporary peace, and Rek says, "We will [reward, honor] you by allowing you to purchase our current [civilian, peacekeeping] ships."`
+			`When you return to <planet>, Iktat Rek meets with Ambassador Sayari and a few of the Wanderer elders. The elders thank you for the role that you played in negotiating a temporary peace, and Rek says, "We will [reward, honor] you by allowing you to purchase our current [civilian, peacekeeping] ships. And, we [request, insist] that you do not [attack, assault] the ships sent to collect [tribute], as long as they remain [peaceful, cooperative]."`
 			`	The elders seem to agree that this is only a temporary solution. The Unfettered cannot be granted a base in Wanderer territory: they would use their few jump drives to move a few warships at a time to that base until they had a fleet too strong for the Wanderers to defeat. Sooner or later, the Unfettered will grow tired of demanding such a base and will return to open warfare.`
 			`	In the meantime, the only way to defuse the situation would be to get all the jump drives out of the hands of the Unfettered - and that means discovering and stopping whoever is supplying those drives to them.`
 
@@ -958,7 +974,7 @@ mission "Wanderers: Alpha Surveillance A"
 		event "wanderers: alpha surveillance done" 30
 		conversation
 			`The surveillance cubes have all been deployed. While you wait for them to collect their recordings of the ship traffic in the Unfettered systems, you stop by the Hai center of government and ask for the human ambassador. When they realize that you are the one who made contact with the Wanderers, they quickly give you an appointment.`
-			`	The ambassador is an old, male Hai named Hiyamaharu. "Honored human," he says. "It is a pleasure to meet you. If I may assist you in any way, I shall do so."`
+			`	The ambassador is an old, male Hai named Hiyamaharu. "Honored human," he says, "it is a pleasure to meet you. If I may assist you in any way, I shall do so."`
 			choice
 				`	"Thank you." (Explain about the Alphas.)`
 			`	He says, "We know of them. Indeed, our first contact with the humans, two centuries ago, was with these green people. They sought to cheat us and dominate us. They are not merely misfits like the Unfettered; these Alpha humans are cruel and self-interested. They thought we were simple because we are peaceful, but we were too shrewd and too strong for them, and they are now banned from our territory. But then the peaceful humans came, and we learned that you are not all like the Alphas."`
@@ -1752,6 +1768,7 @@ mission "Wanderers Invaded 3"
 	source "Varu Mer'ek"
 	destination "Var' Kar'i'i"
 	passengers 1
+	blocked "You receive a message from Isai indicating that she would like to join you for the next mission, but you don't have space right now. Return when you have a bunk free."
 	to offer
 		has "Wanderers Invaded 2: done"
 	on offer
@@ -1785,7 +1802,7 @@ mission "Wanderers Invaded 3"
 		ship "Deep River Transport" "Eka'ta Turuk'ta"
 	on visit
 		dialog
-			`You have reached <planet>, but the Wanderer transports have not all arrived yet. You should take off and wait for them to catch up with you.`
+			`You have reached <planet>, but the Wanderer transports, or your ship carrying Isai, have not all arrived yet. You should take off and wait for them to catch up with you.`
 
 
 
@@ -1984,7 +2001,6 @@ mission "Wanderers Hai Assistance 3"
 	landing
 	name "Return to <planet>"
 	description "Return with Sayari to <destination>, and tell Iktat Rek that you had some success in convincing the Hai to interfere with the Unfettered."
-	clearance
 	autosave
 	source "Darkcloak"
 	destination "Vara K'chrai"
