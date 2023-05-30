@@ -34,7 +34,7 @@ class Sprite;
 class EscortDisplay {
 public:
 	void Clear();
-	void Add(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected);
+	void Add(const Ship &ship, bool isHere, bool systemNameKnown, bool fleetIsJumping, bool isSelected);
 
 	// Draw as many escort icons as will fit in the given bounding box.
 	void Draw(const Rectangle &bounds) const;
@@ -47,7 +47,7 @@ public:
 private:
 	class Icon {
 	public:
-		Icon(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected);
+		Icon(const Ship &ship, bool isHere, bool systemNameKnown, bool fleetIsJumping, bool isSelected);
 
 		// Sorting operator.
 		bool operator<(const Icon &other) const;

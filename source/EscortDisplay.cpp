@@ -53,9 +53,9 @@ void EscortDisplay::Clear()
 
 
 
-void EscortDisplay::Add(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected)
+void EscortDisplay::Add(const Ship &ship, bool isHere, bool systemNameKnown, bool fleetIsJumping, bool isSelected)
 {
-	icons.emplace_back(ship, isHere, fleetIsJumping, isSelected);
+	icons.emplace_back(ship, isHere, systemNameKnown, fleetIsJumping, isSelected);
 }
 
 
@@ -193,7 +193,7 @@ const vector<const Ship *> &EscortDisplay::Click(const Point &point) const
 
 
 
-EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected)
+EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool systemNameKnown, bool fleetIsJumping, bool isSelected)
 	: sprite(ship.GetSprite()),
 	isDisabled(ship.IsDisabled()),
 	isHere(isHere),
@@ -202,7 +202,7 @@ EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool fleetIsJumping, bo
 	cannotJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.JumpsRemaining()),
 	isSelected(isSelected),
 	cost(ship.Cost()),
-	system((!isHere && ship.GetSystem()) ? ship.GetSystem()->Name() : ""),
+	system((!isHere && ship.GetSystem()) ? systemNameKnown ? ship.GetSystem()->Name() : "???" : ""),
 	low{ship.Shields(), ship.Hull(), ship.Energy(), ship.Heat(), ship.Fuel()},
 	high(low),
 	ships(1, &ship)
