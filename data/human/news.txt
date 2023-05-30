@@ -756,7 +756,7 @@ phrase "athlete competition location"
 		"Bourne in the Gamma Corvi system"
 		"Trinket in the Sargas system"
 		"Shangri-La in the Polaris system"
-		
+
 
 
 news "athlete"
@@ -1762,7 +1762,7 @@ phrase "restaurant names"
 		"civilian subphrase 4"
 		"civilian subphrase 5"
 		"civilian subphrase 10"
-		
+
 
 
 news "syndicate pa system"
@@ -1812,7 +1812,7 @@ phrase "platform number"
 		"15" 100
 		"16" 100
 		"9 and three quarters"
-		
+
 
 news "tourist pa system"
 	location
@@ -1856,7 +1856,7 @@ phrase "deep motto graffiti"
 
 news "safety posters"
 	location
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" 
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "factory" "farming" "fishing" "mining" "textiles"
 	name
 		word
