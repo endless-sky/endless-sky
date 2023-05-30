@@ -2114,10 +2114,12 @@ phrase "friendly civilian"
 	word
 		" Captain <last>. "
 	word
-		"I'm living the dream as a CEO of my own company. "
-		"I used to be just like you, but now I'm really somebody! "
-		"Don't you want to be your own boss? "
-		"Everybody is talking about this slick new trend! "
+		"I'm living the dream as a CEO of my own company."
+		"I used to be just like you, but now I'm really somebody!"
+		"Don't you want to be your own boss?"
+		"Everybody is talking about this slick new trend!"
+	word
+		" "
 	word
 		"You could get rich selling for me!"
 		"Get in on the ground floor!"
