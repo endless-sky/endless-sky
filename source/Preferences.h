@@ -35,17 +35,32 @@ public:
 		ymd      // All-numeric ISO 8601. (1941-10-04)
 	};
 
-	enum class OverlayType : int {
+	enum class OverlayState : int_fast8_t {
 		OFF = 0,
 		ON,
 		DAMAGED,
 		DISABLED
 	};
 
+	enum class OverlayType : int_fast8_t {
+		ALL = 0,
+		FLAGSHIP,
+		ESCORT,
+		ENEMY,
+		NEUTRAL
+	};
+
 	enum class AutoAim : int_fast8_t {
 		OFF = 0,
 		ALWAYS_ON,
 		WHEN_FIRING
+	};
+
+	enum class AutoFire : int_fast8_t {
+		OFF = 0,
+		ON,
+		GUNS_ONLY,
+		TURRETS_ONLY
 	};
 
 	enum class BoardingPriority : int_fast8_t {
@@ -104,17 +119,19 @@ public:
 	static VSync VSyncState();
 	static const std::string &VSyncSetting();
 
-	static void SetStatusOverlaysGeneric(int &index, bool blank);
-	static void ResetStatusOverlayChildren(bool blank);
-
-	static void SetStatusOverlays(bool blank, int type);
-	static OverlayType StatusOverlaysState(int type);
-	static const std::string &StatusOverlaysSetting(int type);
+	static void CycleStatusOverlays(OverlayType type);
+	static OverlayState StatusOverlaysState(OverlayType type);
+	static const std::string &StatusOverlaysSetting(OverlayType type);
 
 	// Auto aim setting, either "off", "always on", or "when firing".
 	static void ToggleAutoAim();
 	static AutoAim GetAutoAim();
 	static const std::string &AutoAimSetting();
+
+	// Auto fire setting, either "off", "on", "guns only", or "turrets only".
+	static void ToggleAutoFire();
+	static AutoFire GetAutoFire();
+	static const std::string &AutoFireSetting();
 
 	// Background parallax setting, either "fast", "fancy", or "off".
 	static void ToggleParallax();

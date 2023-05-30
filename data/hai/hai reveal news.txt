@@ -518,14 +518,10 @@ phrase "person you could suspect to be aliens"
 		"cat"
 
 
-########################################################################
-
-# Many different missions have the potential to trigger this so an event is used instead of missions in the "to show".
-event "news: hai video clip published"
 
 news "Hai video: human response"
 	to show
-		has "event: news: hai video clip published"
+		has "hr: secret leaks"
 		not "event: news: hai video clip debunked"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Pirate"
@@ -554,9 +550,6 @@ news "Hai video: human response"
 			`"`
 
 
-########################################################################
-
-event "news: hai video clip debunked"
 
 news "Hai roleplay station: human response"
 	to show
@@ -585,7 +578,6 @@ news "Hai roleplay station: human response"
 			`"`
 
 
-########################################################################
 
 news "Hai news: generic citizen"
 	to show
@@ -644,4 +636,3 @@ news "Hai news: merchant captain"
 			"I hear Hai space wasn't peaceful a few centuries ago when some reptilian aliens were raiding the place. I wonder where they went?"
 		word
 			`"`
-

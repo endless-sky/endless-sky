@@ -2,6 +2,7 @@
 "Forward thrust" 1073741906
 "Turn left" 1073741904
 "Turn right" 1073741903
+"Auto steer" 101
 "Reverse" 1073741905
 "Fire primary weapon" 9
 "Fire secondary weapon" 113
@@ -27,4 +28,3 @@
 "Fleet: Toggle ammo usage" 117
 "Fleet: Harvest Flotsam" 122
 "Mouse turning (hold)" 1073742050
-"Mouse turning (toggle)" 1073742054
