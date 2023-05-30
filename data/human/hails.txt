@@ -2127,13 +2127,13 @@ phrase "friendly civilian"
 	word
 		" "
 	word
-		"Find me "
-		"You can get me "
-		"Call me "
-		"Drop me a line "
-		"Buzz me "
+		"Find me"
+		"You can get me"
+		"Call me"
+		"Drop me a line"
+		"Buzz me"
 	word
-		"at ${pyramid_scheme_company}. "
+		" at ${pyramid scheme company}. "
 	word
 		"Ask for ${name}."
 		"Tell them ${name} sent you."
