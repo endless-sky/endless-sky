@@ -12,7 +12,7 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 
-mission "Passing Observations"
+mission "Passive-Aggressive Observations"
 	invisible
 	landing
 	destination "Vigales"
@@ -27,11 +27,32 @@ mission "Passing Observations"
 				`	(Leave.)`
 					goto leave
 				`	(Continue to observe.)`
-			`	The approaching ships continue their descent while paying you no attention. They appear to be ones you spotted in orbit when you first entered the system. One of them is the same type of model as the one on the ground, likely some type of transport. The other, however, isn't one you've seen before. It looks like some sort of interceptor vessel, though it is definitely larger than something like a Sparrow from human space, maybe even the size of a Headhunter. Perhaps that ship belongs to someone of importance.`
-			`	In any case, getting mixed up with what may be some sort of military exercise with the Vi could be dangerous, considering that the planet is home to more of those monsters from before. It's best you take your leave now before the situation gets out of control again.`
+			`	The approaching ships continue their descent, paying you no attention. They appear to be ones that were in orbit when you first entered the system. One of them is the same type of model as the one on the ground, likely some type of transport. The other, however, isn't one you've seen before. It looks like some sort of interceptor vessel, though it is definitely larger than something like a Sparrow from human space, maybe even the size of a Headhunter. Perhaps that ship belongs to someone of importance.`
+			`	In any case, considering that the planet is home to more of those monsters from before, and the Vi are here in numbers, it might be best you take your leave now before the situation gets out of control again.`
+			choice
+				`	(Leave.)`
+					goto leave
+				`	(Approach the landing zone.)`
+			`	Throttling your ship forward, you head towards the Vi's landing zone. While the other transport vessel has touched down already, the interceptor is still in the process of landing, but suddenly whips around to face you as you approach. Unlike the initial reaction of the Scin's warships you confronted a few days ago, the Vi are quick to respond to your presence, and in contrast to a few minutes ago, are clearly acknowledging it. A moment later, you receive what sounds like an angry hail from the interceptor.`
+			`	"Tchii ciei escitch tchii iedf teih Voordhte!"`
+			choice
+				`	(Leave now.)`
+				`	(Continue.)`
+					goto continue
+			`	You decide it's best to not enroach on the Vi's area any more, as there's no telling what they'd do if you continued to do so. Once you back off, the interceptor briefly jerks forward at you in a vexed manner, continuing to observe you until you've left the area. While the Scin seemed more open to confrontation, the Vi are clearly adversive to it.`
+				decline
+
+			label continue
+			action
+				"reputation: Gegno Vi" = -1
+			action
+				set "provoked military"
+			`	You decide to continue flying towards the Vi without heeding their warning. With no hesitation, the intercepter begins to charge at you, and the ships on the surface start preparing for takeoff. Even some of the Vi solders on the ground are shouting and jesturing towards your vessel with their weapons. It would seem the Vi are no longer tolerative of your presence.`
+				decline
 
 			label leave
-			`	You decide to withdraw from the area, and the approaching ships continue their way towards the one on the ground as if you weren't present. Regardless of whether or not they were hostile, getting mixed up with what may be some sort of military exercise could be dangerous, especially with the Vi.`
+			`	You decide to withdraw from the area, and the ships continue on their way towards the surface as if you weren't present. Regardless of whether or not they could have been hostile, getting mixed up with what may be some sort of military exercise could be dangerous, especially with the Vi.`
+				decline
 
 	npc save
 		on kill
@@ -46,12 +67,59 @@ mission "Passing Observations"
 		system "Vorsuke"
 		ship "Schist" "Ess Ouec"
 
+mission "Vi Military Group"
+	invisible
+	landing
+	to offer
+		has "Passive-Aggressive Observations: offered"
+	to complete
+		never
+	on enter "Vorsuke"
+		fail
+
+	npc
+		to spawn
+			has "provoked military"
+		on kill
+			set "yvx killed"
+		government "Gegno Vi"
+		personality heroic vindictive ramming daring staying launching
+		system "Vorsuke"
+		ship "Rhyolite" "Imtydei"
+	npc
+		to spawn
+			has "provoked military"
+		government "Gegno Vi"
+		personality heroic vindictive staying launching
+		system "Vorsuke"
+		ship "Schist" "Ess Ouec"
+	npc
+		to spawn
+			has "provoked military"
+		government "Gegno Vi"
+		personality heroic vindictive staying launching
+		system "Vorsuke"
+		ship "Schist" "Ess Utchec"
+	npc
+		to spawn
+			has "provoked military"
+		government "Gegno Vi"
+		personality heroic vindictive staying entering
+		system "Vorsuke"
+		fleet
+			names "gegno vi"
+			variant
+				"Gneiss"
+				"Hornfel (Heavy Weapons)" 1
+				"Diorite" 1
+				"Eclogite" 3
+
 
 mission "Foreign Spectator I"
 	invisible
 	landing
 	to offer
-		has "Passing Observations: offered"
+		has "Passive-Aggressive Observations: offered"
 		not "Gegno Genocide Defense: offered"
 	to complete
 		never
@@ -113,18 +181,13 @@ mission "Veering Vi"
 		never
 	npc save
 		government "Gegno Vi (Neutral)"
-		personality surveillance
+		personality entering staying
 		system
 			government "Gegno Vi"
 		fleet
+			names "gegno vi"
 			variant
-				"Eclogite" 2
-			variant
-				"Eclogite"
-			variant
-				"Slate"
-			variant
-				"Slate" 2
+				"Eclogite" 3
 
 
 mission "Scin Suspicion"
@@ -146,6 +209,7 @@ mission "Scin Suspicion"
 		system
 			government "Gegno Scin"
 		fleet
+			names "gegno scin"
 			variant
 				"Tridymite"
 

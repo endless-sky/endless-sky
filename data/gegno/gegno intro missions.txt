@@ -575,7 +575,7 @@ mission "First Contact: Gegno Scin"
 			`	They escort you back to your ship, and along the way, several more Scin stand guard, wearing the same armor. Once you are at your ship, the blade is moved away from you neck. Getting a better look at it, the blade is curved like a sickle, as opposed to a sword, meaning there was little chance you could have escaped being decapitated if they chose to do so. Boarding your ship in a hurry, you prepare to take off, and you notice the two Scin warships also begin to power up. It's clear you've overstayed your welcome.`
 				flee
 	on decline
-		event "introduced scin" 0 7
+		event "introduced scin" 5 9
 
 event "introduced scin"
 
@@ -588,7 +588,6 @@ mission "Scin Intro Warships"
 		or
 			has "Giaru Gegno: Quarg Contact: offered"
 			has "Giaru Gegno: Revisit: offered"
-		not "Gegno Genocide Defense: offered"
 	npc
 		government "Gegno Scin"
 		personality launching uninterested
