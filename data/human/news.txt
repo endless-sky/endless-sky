@@ -1846,6 +1846,33 @@ phrase "deep motto graffiti"
 		`Underneath are the words "Power, Poverty, Pride."`
 		`Underneath are the words "Peace, Prosperity, Progress, for those who are born lucky."`
 
+news "safety posters"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" 
+		attributes "factory" "farming" "fishing" "mining" "textiles"
+	name
+		word
+			"Safety"
+			"Workplace"
+		word
+			" "
+		word
+			"Advertisement"
+			"Billboard"
+			"Panphlet"
+			"Placard"
+			"Poster"
+			"Warning"
+	message
+		word
+			`"`
+		word
+			"DAYS SINCE LAST ACCIDENT: ${digit}${digit}"
+			"HARD HATS MANDATORY"
+			"KEEP FINGERS CLEAR OF GRINDER"
+			"REPORT ALL WORKPLACE INJURIES"
+			"PROTECTIVE EQUIPMENT REQUIRED WITHIN HAZARD ZONE"
+
 news "graffiti on spaceport wall"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Pirate"
