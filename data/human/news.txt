@@ -235,6 +235,9 @@ news "miner"
 			"My team is sinking in the rankings again. I should have known better than to put 500 credits on them when they had such a bad season opener."
 			"I've heard that miners who work on Clink are several times more likely to develop cancer. I must admit that the wages are mighty tempting, though..."
 			"Check the spaceports around these parts. We might need an express delivery for extra equipment."
+			"When you think about it, just about everything we make is made from something that comes out of the ground."
+			"The dust from mining operations takes a toll; on the machines, on the environment, on our bodies."
+			"Mining really is something magical. Shovel goes in, money comes up!"
 		word
 			`"`
 
