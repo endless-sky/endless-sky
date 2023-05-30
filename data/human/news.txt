@@ -167,6 +167,32 @@ news "farmer"
 		word
 			`"`
 
+news "sailor"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "fishing"
+
+	name
+		word
+			"Fisher"
+			"Fisherman"
+			"Angler"
+			"Sailor"
+	message
+		word
+			`"`
+		word
+			"Storm's a-comin'. I can feel it in me bones."
+			"A gravity wave ain't got much on a regular one."
+			"I'll take the salt spray of the sea over the vacuum of space any day."
+			"Space doesn't sound so bad; there's certainly less corrosion."
+			"My family has been fishing one ocean or another for generations."
+			"Just last week, I caught a fish longer than my whole body!"
+			"The sea is a harsh mistress. Moons too, I expect."
+			"No, that's impossibly deep - you'd be out the other side of the planet and then some. Oh, you meant across the surface! Aye, I reckon I've travelled at least twenty thousand leagues."
+			"Seize the carp!"
+		word
+			`"`
 
 
 news "textile worker"
