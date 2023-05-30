@@ -4090,13 +4090,6 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 		// A realistic fraction applicable to all cases cannot be computed, so assume 50%.
 		heat -= weapon.AmmoUsage() * .5 * ammo->Mass() * MAXIMUM_TEMPERATURE * Heat();
 		AddOutfit(ammo, -weapon.AmmoUsage());
-		// Only the player's ships make use of attraction and deterrence.
-		if(isYours && !OutfitCount(ammo) && ammo->AmmoUsage())
-		{
-			// Recalculate the AI to account for the loss of this weapon.
-			aiCache.Calibrate(*this);
-			deterrence = CalculateDeterrence();
-		}
 	}
 
 	energy -= weapon.FiringEnergy() + relativeEnergyChange;
@@ -4399,8 +4392,6 @@ double Ship::CalculateDeterrence() const
 		if(hardpoint.GetOutfit())
 		{
 			const Outfit *weapon = hardpoint.GetOutfit();
-			if(weapon->Ammo() && weapon->AmmoUsage() && !OutfitCount(weapon->Ammo()))
-				continue;
 			double strength = weapon->ShieldDamage() + weapon->HullDamage()
 				+ (weapon->RelativeShieldDamage() * attributes.Get("shields"))
 				+ (weapon->RelativeHullDamage() * attributes.Get("hull"));
