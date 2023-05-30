@@ -301,6 +301,14 @@ bool Command::HasBinding() const
 {
 	auto it = keyName.find(*this);
 
+	for(auto& kv: commandForGesture)
+	{
+		if(kv.second == *this)
+		{
+			return true;
+		}
+	}
+
 	if(it == keyName.end())
 		return false;
 	if(it->second.empty())
