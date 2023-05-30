@@ -2107,10 +2107,10 @@ phrase "pyramid scheme company"
 
 phrase "friendly civilian"
 	word
-		"Hi! Good to see you, uh, "
-		"Well, if it isn't "
-		"Hi there, uhm, "
-		"I've been trying to get a hold of you, "
+		"Hi! Good to see you, uh,"
+		"Well, if it isn't"
+		"Hi there, uhm,"
+		"I've been trying to get a hold of you,"
 	word
 		"Captain <last>. "
 	word
