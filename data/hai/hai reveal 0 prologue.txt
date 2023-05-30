@@ -678,11 +678,11 @@ mission "Hai Reveal: Meet the Team: Samuel 2"
 	on complete
 		set "hr: met samuel"
 		conversation
-			`You return to the briefing room at the secure port with Remington and Sayari. "This Hai holographic tech is pretty nifty, isn't it?" Remington says while playing around with the device he used on <planet stopovers>. "Way more advanced than anything we've got back home. It's also pretty useful that there's a port for one of our cables, otherwise I never would have figured out how to get that Pug image on there."`
+			`You return to the briefing room at the secure port with Remington and Sayari. "This Hai holographic tech is pretty nifty, isn't it?" Remington says while playing around with the device he used on <origin>. "Way more advanced than anything we've got back home. It's also pretty useful that there's a port for one of our cables, otherwise I never would have figured out how to get that Pug image on there."`
 			`	"Ah, yes," Sayari says. "Many decades of interaction with humans has led us to accommodate much of our technology to your needs. Humans are our guests here, so we saw it only right to make you feel more comfortable. A shame to see a few bad apples may spoil the bunch."`
 			`	"You have apples up here?" Remington asks.`
 			`	Sayari chuckles. "Just as we have adapted our technology to human needs, we have also imported many human foods and learned human sayings. It has all been very exciting."`
-			`	Sayari pauses for a moment. "Our civilization is tens of thousands of years old. There is little in that time that we have not done on our own. But seeing such a young species has led to much excitement. I wish for that excitement to not turn into strife. This is what I explained to the Hai on <planet stopovers>. 'These humans are young. Be patient with them.'"`
+			`	Sayari pauses for a moment. "Our civilization is tens of thousands of years old. There is little in that time that we have not done on our own. But seeing such a young species has led to much excitement. I wish for that excitement to not turn into strife. This is what I explained to the Hai on <origin>. 'These humans are young. Be patient with them.'"`
 			choice
 				`	"Glad to see that you still have a positive view of us."`
 				`	"Well, we're here to do our best to make that wish come true."`
