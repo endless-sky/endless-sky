@@ -2112,7 +2112,7 @@ phrase "friendly civilian"
 		"Hi there, uhm,"
 		"I've been trying to get a hold of you,"
 	word
-		"Captain <last>. "
+		" Captain <last>. "
 	word
 		"I'm living the dream as a CEO of my own company. "
 		"I used to be just like you, but now I'm really somebody! "
