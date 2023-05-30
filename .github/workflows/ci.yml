@@ -57,8 +57,7 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libosmesa6 mesa-utils libglvnd-dev
         # Disable VM sound card because it is unreliable.
-        echo 'pcm.!default { type plug slave.pcm "null" }' >> /tmp/asound.conf
-        sudo sh -c 'cat /tmp/asound.conf >> /etc/asound.conf'
+        sudo sh -c 'echo "pcm.!default { type plug slave.pcm \"null\" }"  >> /etc/asound.conf'
     - name: Setup sccache
       uses: ./.github/sccache
     - uses: lukka/get-cmake@latest
