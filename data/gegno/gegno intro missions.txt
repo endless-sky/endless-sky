@@ -491,7 +491,10 @@ mission "First Contact: Gegno Scin"
 				`	(Extend your arm as well.)`
 				`	(Do nothing.)`
 					goto "imagery"
-			`	Reaching with your right hand, the Scin leans forward and carefully examines it, then makes another note on their device [END].`
+			action
+				set "scin: gestures"
+			`	Reaching with your right hand, the Scin leans forward and carefully examines it, then makes another note on their device. After writing down a few more things, they get up from the ground and gesture strangely towards you, crossing their arms together in a plus-shaped fashion towards their left. The other heavier-armored Scin raise from their stances and begin heading back to their ships, and the one in front of you follows behind them.`
+			`	You return to your own ship after the bewildering encounter, wondering what to make sense of it, and the Scin do not follow you any further.`
 				decline
 
 			label "imagery"
@@ -505,6 +508,8 @@ mission "First Contact: Gegno Scin"
 			choice
 				`	"Gegno Vi?"`
 				`	"Dueyu Vi?"`
+			action
+				set "scin: imagery"
 			`	Looking at you a bit confused, they draw another portrait that looks like the shorter leather-wearing Gegno from their homeworld, and move that image together with the images of the Vi and the Scin. "Gegno," they say, and begin to think to themselves. A brief moment passes, and they begin drawing on the device again. After turning it back to you, you see both a green-colored patch. and a brown-colored patch. "Vi," the Scin says, pointing to the brown. "Scin," they say, now pointing to the green. Afterwards, they point to the group of the three Gegno portraits. "Gegno."`
 			`	Once they mark down a few more notes, they get up from the ground and begin heading back to their ships. The heavier-armored Scin also raise from their stances and follow behind them.`
 			`	All of a sudden, a gust of sand rushes past from behind you, and you turn around to see three more armored Scin rising from the sand, one of them fairly close to you. Their armor is much different than that of the others, characterized by darker shades, sharper edges, and several gadgets, but what is most notable is their possession of sickle-esque blade weapons. It appears the Scin had more control of the situation than you thought, and had you made the wrong choice in the encounter, it's possible you would be on the receiving end of one of those blades.`
@@ -518,17 +523,28 @@ mission "First Contact: Gegno Scin"
 				`	(Tilt your head to the left.)`
 				`	(Do nothing.)`
 					goto "no thoughts"
+			action
+				set "scin: 
 			`	Once you tilt your head, they note down your behavior on the device. Subsequently, they get up from the ground and begin heading back to their ships. The heavier-armored Scin also raise from their stances and follow behind them.`
 			`	All of a sudden, a gust of sand rushes past from behind you, and you turn around to see three more armored Scin rising from the sand, one of them fairly close to you. Their armor is much different than that of the others, characterized by darker shades, sharper edges, and several gadgets, but what is most notable is their possession of sickle-esque blade weapons. It appears the Scin had more control of the situation than you thought, and had you made the wrong choice in the encounter, it's possible you would be on the receiving end of one of those blades.`
 			`	You return to your ship and take off from the planet, but the Scin do not follow you any further.`
 				decline
 				
 			label "no thoughts"
-
+				`	The Scin stares at you for an uncomfortable length of time, then sighs. They reach into their armor and pull out a small firearm, raising it at you.` 
+			choice
+				`	(Reach from your firearm.)`
+				`	(Raise your arms.)`
+			action
+				set "scin: provocative"
+			`As soon as you attempt to move, the first thing you notice is a blade around your neck, and a bunch of sand flying past you. The Scin casually marks another note on their device, then gets up and and starts heading back to their ship. Slowly turning your head, your eyes are met with the cold, expressionless look of another Scin's face, who then motions you to return to your ship. They follow you as you do, continuing to hold the blade to your throat. Two more Scin suddenly appear from the sand along the way, while the others you first met remain at their position. The armor of the Scin escorting you is considerably different from the rest, characterized by darker shades, sharper edges, and several gadgets.`
+			`	Once you are at your ship, they move their blade away from you neck. Getting a better look at it, the blade is curved like a sickle, as opposed to a sword, meaning there was little chance you could have avoided being decapitated if they chose to do so. You board your ship in a hurry, preparing to take off. It's clear you've overstayed your welcome.`
+				flee
+			
 			label "reach"
 			action
 				"reputation: Gegno Scin" = -1
-			`	It is rather alarming that the Scin be comfortable in approaching you casually, and considering how the encounter with the Vi went, anything could happen next. You decide to reach for your pistol, but as soon as you do, the first thing you notice is a blade around your neck, and a bunch of sand flying past you. Slowly turning your head, your eyes are met with the cold, expressionless look of another Scin's face, who then motions you to return to your ship. They follow you as you do, continuing to hold the blade to your throat. Two more Scin suddappear from the sand along the way, while the others you first met remain at their position. The armor of the Scin escorting you is considerably different from the rest, characterized by darker shades, sharper edges, and several gadgets.`
+			`	It is rather alarming that the Scin be comfortable in approaching you casually, and considering how the encounter with the Vi went, anything could happen next. You decide to reach for your pistol, but as soon as you do, the first thing you notice is a blade around your neck, and a bunch of sand flying past you. Slowly turning your head, your eyes are met with the cold, expressionless look of another Scin's face, who then motions you to return to your ship. They follow you as you do, continuing to hold the blade to your throat. Two more Scin suddenly appear from the sand along the way, while the others you first met remain at their position. The armor of the Scin escorting you is considerably different from the rest, characterized by darker shades, sharper edges, and several gadgets.`
 			`	Once you are at your ship, they move their blade away from you neck. Getting a better look at it, the blade is curved like a sickle, as opposed to a sword, meaning there was little chance you could have avoided being decapitated if they chose to do so. Boarding your ship in a hurry, you prepare to take off, and you notice the two Scin warships also begin to power up. It's clear you've overstayed your welcome.`
 				flee
 
@@ -550,7 +566,11 @@ mission "First Contact: Gegno Scin"
 				`	(Extend your arm as well.)`
 				`	(Do nothing.)`
 					goto "images"
-			`	Reaching with your right hand, the Scin leans forward and carefully examines it, then makes another note on their device.`
+			action
+				set "scin: gestures"
+			`	Reaching with your right hand, the Scin leans forward and carefully examines it, then makes another note on their device. After writing down a few more things, they turn to you gesture strangely, crossing their arms together in a plus-shaped fashion towards their left. The other heavier-armored Scin move closer, escort you back to the elevator and back to your ship, but along the way are a few Scin you haven't seen yet. Their armor is much different than that of the others, characterized by darker shades, sharper edges, and several gadgets, but what is most notable is their possession of sickle-esque blade weapons.`
+			`	Once you return to your ship, the Scin return to theirs, but remain on the planet. Although just as strange, this encounter went far better than the one with the Vi.`
+				decline
 
 			label "images"
 			`	Turning the device back around, the Scin types some sort of note on it then clears the display. They then begin to draw some sort of picture with one of their fingers. The finished image appears to be a portrait of themselves. "Dueyu Scin," they speak in a low tone. Clearing the image, they draw something that looks like you, albeit a bit out of proportion, then await some sort of answer.`
@@ -563,6 +583,8 @@ mission "First Contact: Gegno Scin"
 			choice
 				`	"Gegno Vi?"`
 				`	"Dueyu Vi?"`
+			action
+				set "scin: imagery"
 			`	Looking at you a bit confused, they draw another portrait that looks like the shorter leather-wearing Gegno from their homeworld, and move that image together with the images of the Vi and the Scin. "Gegno," they say, and begin to think to themselves. A brief moment passes, and they begin drawing on the device again. After turning it back to you, you see both a green-colored patch. and a brown-colored patch. "Vi," the Scin says, pointing to the brown. "Scin," they say, now pointing to the green. Afterwards, they point to the group of the three Gegno portraits. "Gegno."`
 			`	Once they mark down a few more notes, they lower their head, and the other Scin gesture you back to the elevator, activating it to lower you back to the surface. You're escorted back to your ship, and along the way are a few Scin you haven't seen yet. Their armor is much different than that of the others, characterized by darker shades, sharper edges, and several gadgets, but what is most notable is their possession of sickle-esque blade weapons.`
 			`	Once you return to your ship, the Scin return to theirs, but remain on the planet. Although just as strange, this encounter went far better than the one with the Vi.`
@@ -574,6 +596,18 @@ mission "First Contact: Gegno Scin"
 			`	The situation you find yourself in is rather precarious - inside an alien species' vessel, strange devices, anything could happen next. You decide to reach for your pistol, but as soon as you do, the first thing you notice is a blade around your neck. Slowly turning your head, your eyes are met with the cold, expressionless look of yet another Scin's face, who you haven't seen yet. They continue to hold the blade to your throat as they activate the elevator again, lowering you back to the surface. Their armor is considerably different from the rest, characterized by darker shades, sharper edges, and several gadgets.`
 			`	They escort you back to your ship, and along the way, several more Scin stand guard, wearing the same armor. Once you are at your ship, the blade is moved away from you neck. Getting a better look at it, the blade is curved like a sickle, as opposed to a sword, meaning there was little chance you could have escaped being decapitated if they chose to do so. Boarding your ship in a hurry, you prepare to take off, and you notice the two Scin warships also begin to power up. It's clear you've overstayed your welcome.`
 				flee
+			
+			label "nothing"
+				`	The Scin stares at you for an uncomfortable length of time, then sighs. They reach into their armor and pull out a small firearm, raising it at you.` 
+			choice
+				`	(Reach from your firearm.)`
+				`	(Raise your arms.)`
+			action
+				set "scin: provocative"
+			`As soon as you attempt to move, the first thing you notice is a blade around your neck. The Scin casually marks another note on their device, then leaves the scene, heading deeper into the vessel. Slowly turning your head, your eyes are met with the cold, expressionless look of yet another Scin's face, who you haven't seen yet. They continue to hold the blade to your throat as they activate the elevator again, lowering you back to the surface. Their armor is considerably different from the rest, characterized by darker shades, sharper edges, and several gadgets.`
+			`	They escort you back to your ship, and along the way, several more Scin stand guard, wearing the same armor. Once you are at your ship, the blade is moved away from you neck. Getting a better look at it, the blade is curved like a sickle, as opposed to a sword, meaning there was little chance you could have escaped being decapitated if they chose to do so. You board your ship in a hurry, preparing to take off. It's clear you've overstayed your welcome.`
+				flee
+
 	on decline
 		event "introduced scin" 5 9
 
@@ -589,6 +623,8 @@ mission "Scin Intro Warships"
 			has "Giaru Gegno: Quarg Contact: offered"
 			has "Giaru Gegno: Revisit: offered"
 	npc
+		to spawn
+			not "scin: gestures"
 		government "Gegno Scin"
 		personality launching uninterested
 		system "Ilirco"

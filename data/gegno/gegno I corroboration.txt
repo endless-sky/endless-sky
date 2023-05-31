@@ -175,7 +175,7 @@ mission "Veering Vi"
 	source
 		near "Heutesl" 100
 	to offer
-		has "Foreign Spectator I: offered"
+		has event: "gegno suspicions"
 		not "Gegno Genocide Defense: offered"
 	to complete
 		never
@@ -199,7 +199,7 @@ mission "Scin Suspicion"
 	source
 		near "Heutesl" 100
 	to offer
-		has "Foreign Spectator I: offered"
+		has event: "gegno suspicions"
 		not "Gegno Genocide Defense: offered"
 	to complete
 		never
@@ -213,31 +213,44 @@ mission "Scin Suspicion"
 			variant
 				"Tridymite"
 
+mission "Curious Civilians"
+	invisible
+	to offer
+		has event: "gegno suspicions"
+		not "Gegno Genocide Defense: offered"
+	to complete
+		never
+	on enter
+		system
+			government "Gegno"
+		fail
+	on fail
+		event "derelict a"
+		event "derelict b" 7
 
-#mission "Derelict Desponders A"
+
+mission "Derelict Desponders A"
 	invisible
 	landing
 	to offer
-		has "event: watcher"
-		has "Curious Civilians: offered"
-		has "Veering Vi: offered"
-		has "Scin Suspicion: offered"
+		has "event: derelict a"
+		not "event: derelict b"
 		not "Gegno Genocide Defense: offered"
+
 	on enter "Vilacira"
 		conversation
 			`Test.`
 			decline
 
-#mission "Derelict Desponders B"
+
+mission "Derelict Desponders B"
 	invisible
 	landing
 	to offer
-		has "event: watcher"
-		has "Curious Civilians: offered"
-		has "Veering Vi: offered"
-		has "Scin Suspicion: offered"
+		has "event: derelict b"
 		not "Gegno Genocide Defense: offered"
-	on enter "Vilacira"
+
+	on enter "Anbrim"
 		conversation
 			`Test.`
 			decline
