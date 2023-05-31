@@ -460,6 +460,11 @@ public:
 	std::shared_ptr<Ship> GetParent() const;
 	const std::vector<std::weak_ptr<Ship>> &GetEscorts() const;
 
+	// How many AI steps has this ship been lingering?
+	int GetLingerSteps() const;
+	// The AI wants the ship to linger for one AI step.
+	void Linger();
+
 
 private:
 	// Add or remove a ship from this ship's list of escorts.
@@ -535,6 +540,9 @@ private:
 
 	double attraction = 0.;
 	double deterrence = 0.;
+
+	// Number of AI steps this ship has spent lingering
+	int lingerSteps = 0;
 
 	Command commands;
 	FireCommand firingCommands;
