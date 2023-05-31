@@ -329,6 +329,7 @@ int Preferences::ScrollSpeed()
 void Preferences::SetScrollSpeed(int speed)
 {
 	scrollSpeed = speed;
+	Preferences::Save();
 }
 
 
@@ -361,13 +362,16 @@ bool Preferences::ZoomView(double amount)
 	if(viewZoom < ZOOM_MIN)
 	{
 		viewZoom = ZOOM_MIN;
+		Preferences::Save();
 		return false;
 	}
 	if(viewZoom > ZOOM_MAX)
 	{
 		viewZoom = ZOOM_MAX;
+		Preferences::Save();
 		return false;
 	}
+	Preferences::Save();
 	return true;
 }
 
@@ -394,6 +398,7 @@ void Preferences::ToggleParallax()
 	if(targetIndex == static_cast<int>(PARALLAX_SETTINGS.size()))
 		targetIndex = 0;
 	parallaxIndex = targetIndex;
+	Preferences::Save();
 }
 
 
@@ -416,6 +421,7 @@ void Preferences::ToggleScreenMode()
 {
 	GameWindow::ToggleFullscreen();
 	screenModeIndex = GameWindow::IsFullscreen();
+	Preferences::Save();
 }
 
 
@@ -447,6 +453,7 @@ bool Preferences::ToggleVSync()
 		}
 	}
 	vsyncIndex = targetIndex;
+	Preferences::Save();
 	return true;
 }
 
@@ -479,6 +486,7 @@ void Preferences::CycleStatusOverlays(Preferences::OverlayType type)
 		statusOverlaySettings[OverlayType::ALL] = OverlayState::DISABLED;
 	else
 		statusOverlaySettings[type].Increment();
+	Preferences::Save();
 }
 
 
@@ -509,6 +517,7 @@ const string &Preferences::StatusOverlaysSetting(Preferences::OverlayType type)
 void Preferences::ToggleAutoAim()
 {
 	autoAimIndex = (autoAimIndex + 1) % AUTO_AIM_SETTINGS.size();
+	Preferences::Save();
 }
 
 
@@ -530,6 +539,7 @@ const string &Preferences::AutoAimSetting()
 void Preferences::ToggleAutoFire()
 {
 	autoFireIndex = (autoFireIndex + 1) % AUTO_FIRE_SETTINGS.size();
+	Preferences::Save();
 }
 
 
@@ -555,6 +565,7 @@ void Preferences::ToggleBoarding()
 	if(targetIndex == static_cast<int>(BOARDING_SETTINGS.size()))
 		targetIndex = 0;
 	boardingIndex = targetIndex;
+	Preferences::Save();
 }
 
 
@@ -577,6 +588,7 @@ void Preferences::ToggleAlert()
 {
 	if(++alertIndicatorIndex >= static_cast<int>(ALERT_INDICATOR_SETTING.size()))
 		alertIndicatorIndex = 0;
+	Preferences::Save();
 }
 
 
