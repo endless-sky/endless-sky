@@ -1867,7 +1867,7 @@ news "safety posters"
 		word
 			"Advertisement"
 			"Billboard"
-			"Panphlet"
+			"Pamphlet"
 			"Placard"
 			"Poster"
 			"Warning"
