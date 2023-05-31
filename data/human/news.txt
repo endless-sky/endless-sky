@@ -1880,6 +1880,8 @@ news "safety posters"
 			"KEEP FINGERS CLEAR OF GRINDER"
 			"REPORT ALL WORKPLACE INJURIES"
 			"PROTECTIVE EQUIPMENT REQUIRED WITHIN HAZARD ZONE"
+		word
+			`"`
 
 news "graffiti on spaceport wall"
 	location
