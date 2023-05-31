@@ -1032,7 +1032,7 @@ news "museum curator"
 			"We recently put a restored 20th-century shipping container on display. You can hardly tell the difference from the ones in use today! Isn't historical inertia fascinating?"
 			"Every so often, we get contacted by someone shady wishing to donate something to our museum."
 			"Much of human technological progress has been driven by a desire to more effectively induce entropy in one's opponents."
-			"Did you know Cleopatra lived more closely in time to the invention of the hyperdrive than the building of the pyramids?"
+			"Did you know Cleopatra lived closer in time to the invention of the hyperdrive than the building of the pyramids?"
 		word
 			`"`
 
