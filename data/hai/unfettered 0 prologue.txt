@@ -50,7 +50,7 @@ mission "First Contact: Unfettered"
 					goto everyone
 			
 			label brethren
-			`	they hiss. "They are not true Hai. We are Hai. The unaltered. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
+			`	They hiss. "They are not true Hai. We are Hai. The unaltered. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
 				goto masters
 			
 			label true
