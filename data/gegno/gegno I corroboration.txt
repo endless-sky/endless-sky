@@ -175,7 +175,7 @@ mission "Veering Vi"
 	source
 		near "Heutesl" 100
 	to offer
-		has event: "gegno suspicions"
+		has "event: gegno suspicions"
 		not "Gegno Genocide Defense: offered"
 	to complete
 		never
@@ -199,7 +199,7 @@ mission "Scin Suspicion"
 	source
 		near "Heutesl" 100
 	to offer
-		has event: "gegno suspicions"
+		has "event: gegno suspicions"
 		not "Gegno Genocide Defense: offered"
 	to complete
 		never
@@ -216,7 +216,7 @@ mission "Scin Suspicion"
 mission "Curious Civilians"
 	invisible
 	to offer
-		has event: "gegno suspicions"
+		has "event: gegno suspicions"
 		not "Gegno Genocide Defense: offered"
 	to complete
 		never
@@ -256,13 +256,13 @@ mission "Derelict Desponders B"
 			decline
 
 
-#mission "Acquiescence"
+# mission "Acquiescence"
 
 
-#jobs
+# jobs
 
 
-#mission "Heart of the Mighty"
+# mission "Heart of the Mighty"
 
 
-#mission "Heart of the Clever"
+# mission "Heart of the Clever"

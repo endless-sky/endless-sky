@@ -503,7 +503,7 @@ mission "First Contact: Gegno Scin"
 				`	"Dueyu human..?"`
 				`	"I am human."`
 				`	(Say nothing.)`
-					goto "nothing"
+					goto "quiet"
 			`	The Scin looks at you in what you guess to be fascination. They grab the device and draw yet another picture. After setting it down, you recognize the familiar image of a Gegno Vi Warrior.`
 			choice
 				`	"Gegno Vi?"`
@@ -516,15 +516,13 @@ mission "First Contact: Gegno Scin"
 			`	You return to your ship and take off from the planet, but the Scin do not follow you any further.`
 				decline
 			
-			label "nothing"
+			label "quiet"
 			`	They stare at you for a few seconds, then retrieve their device. The Scin sits up more rigidly, giving you a deep look, then tilts their head to the right, followed by an awkward silence.`
 			choice
 				`	(Tilt your head to the right as well.)`
 				`	(Tilt your head to the left.)`
 				`	(Do nothing.)`
 					goto "no thoughts"
-			action
-				set "scin: 
 			`	Once you tilt your head, they note down your behavior on the device. Subsequently, they get up from the ground and begin heading back to their ships. The heavier-armored Scin also raise from their stances and follow behind them.`
 			`	All of a sudden, a gust of sand rushes past from behind you, and you turn around to see three more armored Scin rising from the sand, one of them fairly close to you. Their armor is much different than that of the others, characterized by darker shades, sharper edges, and several gadgets, but what is most notable is their possession of sickle-esque blade weapons. It appears the Scin had more control of the situation than you thought, and had you made the wrong choice in the encounter, it's possible you would be on the receiving end of one of those blades.`
 			`	You return to your ship and take off from the planet, but the Scin do not follow you any further.`
@@ -533,7 +531,7 @@ mission "First Contact: Gegno Scin"
 			label "no thoughts"
 				`	The Scin stares at you for an uncomfortable length of time, then sighs. They reach into their armor and pull out a small firearm, raising it at you.` 
 			choice
-				`	(Reach from your firearm.)`
+				`	(Reach for your firearm.)`
 				`	(Raise your arms.)`
 			action
 				set "scin: provocative"
@@ -578,7 +576,7 @@ mission "First Contact: Gegno Scin"
 				`	"Dueyu human..?"`
 				`	"I am human."`
 				`	(Say nothing.)`
-					goto "nothing"
+					goto "silence"
 			`	The Scin looks at you in what you guess to be fascination. They grab the device and draw yet another picture. After setting it down, you recognize the familiar image of a Gegno Vi Warrior.`
 			choice
 				`	"Gegno Vi?"`
@@ -597,10 +595,10 @@ mission "First Contact: Gegno Scin"
 			`	They escort you back to your ship, and along the way, several more Scin stand guard, wearing the same armor. Once you are at your ship, the blade is moved away from you neck. Getting a better look at it, the blade is curved like a sickle, as opposed to a sword, meaning there was little chance you could have escaped being decapitated if they chose to do so. Boarding your ship in a hurry, you prepare to take off, and you notice the two Scin warships also begin to power up. It's clear you've overstayed your welcome.`
 				flee
 			
-			label "nothing"
+			label "silence"
 				`	The Scin stares at you for an uncomfortable length of time, then sighs. They reach into their armor and pull out a small firearm, raising it at you.` 
 			choice
-				`	(Reach from your firearm.)`
+				`	(Reach for your firearm.)`
 				`	(Raise your arms.)`
 			action
 				set "scin: provocative"
