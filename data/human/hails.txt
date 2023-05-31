@@ -2082,6 +2082,99 @@ phrase "friendly civilian"
 		"Zug. I used to watch the militia ships fight against the pirate ships in the sky from my porch."
 		"New Holland. It gets too boring there, though, so I fly the stars instead."
 		"Bounty. I bought my first ship when the manufacturing industry started to develop there."
+		
+phrase "pyramid scheme company"
+	word
+		"Magellan"
+		"Dehydrated"
+		"Pontificated"
+		"General"
+		"Sacrosanct"
+		"Liberated"
+		"Literal"
+		"Family"
+		"Hyper-real"
+	word
+		" "
+	word
+		"Dynamix"
+		"Unlimited"
+		"Orbital"
+		"Gigalight"
+		"Traders"
+		"Voidcraft"
+		"Whispers"
+
+phrase "friendly civilian"
+	word
+		"Hi! Good to see you, uh,"
+		"Well, if it isn't"
+		"Hi there, uhm,"
+		"I've been trying to get a hold of you,"
+	word
+		" Captain <last>. "
+	word
+		"I'm living the dream as a CEO of my own company."
+		"I used to be just like you, but now I'm really somebody!"
+		"Don't you want to be your own boss?"
+		"Everybody is talking about this slick new trend!"
+	word
+		" "
+	word
+		"You could get rich selling for me!"
+		"Get in on the ground floor!"
+		"We're about to go orbital, you should sign up while you still can!"
+	word
+		" "
+	word
+		"Find me"
+		"You can get me"
+		"Call me"
+		"Drop me a line"
+		"Buzz me"
+	word
+		" at ${pyramid scheme company}. "
+	word
+		"Ask for ${human names} ${family names}."
+		"Tell them ${human names} ${family names} sent you."
+		"Mention my name, ${human names} ${family names}, for a discount on your first order!"
+
+phrase "friendly civilian"
+	word
+		"All I want is one day without running into"
+		"I just bought this ship and it already has"
+		"The warranty for my ship expired a week ago, and wouldn't you know it, I just found"
+	word
+		" "
+	word
+		"a fuel leak!"
+		"a loose coupling!"
+		"a fault in my nav-array!"
+		"a cascading failure in the power supply!"
+		"a severe oxygen leak!"
+		"an engine overheating!"
+		"unsynchronized repulsors!"
+		"a parasitic shield discharge!"
+		"a leaky fuel cell!"
+	word
+		" "
+	word
+		"The maintenance on this old bucket will cripple me."
+		"It's just one thing after another on these old ships."
+		"I wouldn't complain, but today is my birthday!"
+		"And it's not as though parts are cheap these days."
+		"It could be worse, I suppose. I could fly into a black hole."
+		"It's not like the customers even care, they just want their cargo yesterday."
+		"What else can you expect from shoddy Syndicated Systems manufacturing?"
+		"I'd repair it, but I got to pay my mortgage."
+		"Do you know where I could fix it for good?"
+		"I'd love to know how other captains get by without these problems."
+		
+phrase "friendly civilian"
+	word
+		`I just found out that a "duck" is a type of bird from Earth! Now I wonder why "duck tape" is named after it?`
+		`Apparently they want me to pay 5% of my paycheck for union dues! I'm gonna keep it. My boss is a good guy; he'll look out for me.`
+		`I saved up and bought extra bunk space so my wife could come on trips with me, and now she says "we need to talk." That can't be a good sign, can it?`
 
 phrase "friendly navy"
 	word
