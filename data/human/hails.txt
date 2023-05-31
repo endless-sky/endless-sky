@@ -2135,9 +2135,9 @@ phrase "friendly civilian"
 	word
 		" at ${pyramid scheme company}. "
 	word
-		"Ask for ${name}."
-		"Tell them ${name} sent you."
-		"Mention my name, ${name}, for a discount on your first order!"
+		"Ask for ${human names} ${family names}."
+		"Tell them ${human names} ${family names} sent you."
+		"Mention my name, ${human names} ${family names}, for a discount on your first order!"
 
 phrase "friendly civilian"
 	word
