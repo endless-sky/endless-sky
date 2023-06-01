@@ -4403,16 +4403,16 @@ double Ship::CalculateDeterrence() const
 				continue;
 			// Ignore disabled and asteroid damages because they don't apply here.
 			// Ignore fuel and slowing damage because they don't affect combat ability.
-			// Over time effects are per frame but dont affect instantaniously so only multiply by 30.
+			// Over time effects are per frame but dont affect instantaneously so only multiply by 30.
 			// Burning and ion do not affect ships as much, but ion does so more than heat.
 			double strength = (weapon->ShieldDamage() + weapon->RelativeShieldDamage() * attributes.Get("shields"))
 				+ weapon->DischargeDamage() * 30.
 				+ (weapon->HullDamage() + weapon->RelativeHullDamage() * attributes.Get("hull"))
 				+ weapon->CorrosionDamage() * 30.
 				+ weapon->DisruptionDamage() * 30.
-				+ ((weapon->EnergyDamage() + weapon->RelativeEnergyDamage() * attributes.Get("energy") / 2.)
+				+ ((weapon->EnergyDamage() + weapon->RelativeEnergyDamage() * attributes.Get("energy capacity") / 2.)
 				+ weapon->IonDamage() * 30. + weapon->DisruptionDamage() * 30.) / 4.
-				+ ((weapon->HeatDamage() + weapon->RelativeHeatDamage() * attributes.Get("heat"))
+				+ ((weapon->HeatDamage() + weapon->RelativeHeatDamage() * attributes.Get("heat capacity"))
 				+ weapon->BurnDamage() * 30.) / 6.;
 			tempDeterrence += .12 * strength / weapon->Reload();
 		}
