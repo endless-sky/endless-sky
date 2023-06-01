@@ -68,6 +68,8 @@ mission "Unfettered returning home"
 		"reputation: Hai Merchant (Human)" += 10
 		"reputation: Hai Merchant (Sympathizers)" += 10
 
+
+
 ship "Ancient Ladybug"
 	swizzle 0
 	sprite "ship/hai ladybug"
@@ -133,13 +135,12 @@ ship "Ancient Ladybug"
 	description "However, this ship is very useful as an agile cargo hauler, able to defend itself in small skirmishes and bring cargo to long distances. However you suspect that it does not operate at its full potential, as if it stayed in the ocean too long... Still, this ship is clearly proof of the durability of Hai technology."
 
 mission "Old but not that old"
-	shipyard
 	landing
-	clearance
-	source "Hai-Home"
+	shipyard
+	source "Hai-home"
 	destination "Firelode"
+	clearance
 	to offer
-		random < 40
 		has "First Contact: Unfettered: offered"
 		"reputation: Hai (Unfettered)" < 0
 		not "Unfettered Jump Drive 1: offered"
@@ -177,7 +178,7 @@ mission "Old but not that old"
 			action
 				give ship "Ancient Ladybug" "Good Omen"
 				fine 6000000
-			`	They give you access to the ship and then explain the details of the deal. "It is of no real significance, but surely you understand we cannot go trough official means for this, we will have to present it as a fine. Worry not, we will make it something of no consequence, like an old Korath forbidden tech you would not have known about, that we had to confiscate." You quickly realize they are not asking you for your opinion at all. In fact, you notice the fine has already been issued before you could say anything. "Oh, and you should not change its colours, you'll understand why later."`
+			`	They give you access to the ship and then explain the details of the deal. "It is of no real significance, but surely you understand we cannot go trough official means for this, we will have to present it as a fine. Worry not, we will make it something of no consequence, like an old Korath forbidden tech you would not have known about, that we had to confiscate." You quickly realize they are not asking you for your opinion at all. In fact, you notice the fine has already been issued before you could say anything. "Oh, and you should not change its colors, you'll understand why later."`
 
 mission "Young but not that young"
 	landing
@@ -194,7 +195,7 @@ mission "Young but not that young"
 	on fail
 		"reputation: Hai (Unfettered)" <?= -1000
 	on complete
-		dialog `You receive a message from the 'associates of Hai-Home', "thank you for helping our brethren, <last>. We will not forget this. Please accept these <payment> to get you started on paying back."`
+		dialog `You receive a message from the 'associates of Hai-home', "thank you for helping our brethren, <last>. We will not forget this. Please accept these <payment> to get you started on paying back."`
 		payment 1250000
 
 
@@ -225,7 +226,7 @@ mission "Unfettered Relic of old"
 				`	"I accept."`
 				`	"I have nothing to prove to you."`
 					decline
-			`	"Good! I will of course not be fighting you personaly, as it is too risky to do so."`
+			`	"Good! I will of course not be fighting you personally, as it is too risky to do so."`
 				accept
 	on decline
 		"reputation: Hai (Unfettered)" >?= -1000
