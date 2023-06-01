@@ -165,7 +165,7 @@ mission "Old but not that old"
 			label know
 			`	They grin, "Us knowing you is a necessity for you to land on our homeworld."`
 			label tellme
-			`	"We have a very interesting proposition for you: should you agree to bring supplies to our brethren, the Unfettered Hai for a while, we will offer you a ship, for a modest price of 6 million credits which you should be able to repay this quite easily. It is appropriate for bringing this important food cargo safely to destination, and defend yourself if need be."`
+			`	"We have a very interesting proposition for you: should you agree to bring supplies to our brethren, the Unfettered Hai for a while, we will offer you a ship, for a modest price of 6 million credits which you should be able to repay this quite easily. It is appropriate for bringing this important food cargo safely to destination, and defend yourself if need be. These supplies are needed on short notice."`
 			`	"This is a mighty relic of the past, from the times our Empire used to control the stars; a Ladybug. Of course, it has some... drawbacks, compared to how it was in its glory, and don't expect the best price in a shipyard. Nevertheless it is a fine vessel, capable of taking a respectable amount of cargo across large distances, and to protect it well enough as well! So, what do you say, <last>? This is the opportunity of a lifetime, as they simply don't make ships like these anymore!"`
 			choice
 				`	"I will take this deal."`
@@ -182,6 +182,7 @@ mission "Old but not that old"
 mission "Young but not that young"
 	landing
 	description "Use the newly acquired old Ladybug to bring aid to the Unfettered Hai."
+	deadline 20
 	cargo "food (aid)" 121
 	to offer
 		has "ship model: Ancient Ladybug"
@@ -190,11 +191,11 @@ mission "Young but not that young"
 			attributes "unfettered"
 		"reputation: Hai (Unfettered)" >?= 0
 		dialog `As you enter the system you notice that for once the Unfettered Hai are not shooting at you. They are not hailing you either, however. Perhaps they think you are one of the Hai aiding them, especially given your cargo.`
-	on abort
+	on fail
 		"reputation: Hai (Unfettered)" <?= -1000
 	on complete
 		dialog `You receive a message from the 'associates of Hai-Home', "thank you for helping our brethren, <last>. We will not forget this. Please accept these <payment> to get you started on paying back."`
-		payment 1000000
+		payment 1250000
 
 
 
@@ -230,7 +231,7 @@ mission "Unfettered Relic of old"
 		"reputation: Hai (Unfettered)" >?= -1000
 	on fail
 		"reputation: Hai (Unfettered)" >?= -1000
-	npc disable
+	npc
 		government "Hai (Unfettered Challenger)"
 		to spawn
 			"total ships" == 1
@@ -239,6 +240,12 @@ mission "Unfettered Relic of old"
 		personality unconstrained launching plunders staying target heroic
 		ship "Lightning Bug" "Thunder"
 		ship "Lightning Bug (Unfettered Shipyards)" "Struck"
+		on disable
+			set "beaten the bugs"
+	on visit
+		dialog "You have not beaten the two challenging ships yet. If they have not shown up it is probably because you have more than just the ladybug."
+	to complete
+		has "unfettered: beaten the bugs"
 	on complete
 		dialog `The engineer accepts to give you the license as agreed."Make sure you do not lose this until you may land on our worlds by other means, or we will take it very seriously."`
 		outfit "Unfettered Landing License"
