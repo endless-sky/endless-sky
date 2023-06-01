@@ -116,7 +116,7 @@ mission "Vi Military Group"
 
 
 mission "Foreign Spectator I"
-	invisible
+	#invisible
 	landing
 	to offer
 		has "Passive-Aggressive Observations: offered"
@@ -125,7 +125,7 @@ mission "Foreign Spectator I"
 		never
 	on enter "Eogho"
 		fail
-		event "gegno: suspicions" 5 9
+		event "gegno suspicions" 7
 	npc
 		on provoke
 			set "interrupted arena"
@@ -169,7 +169,7 @@ mission "Foreign Spectator I"
 mission "Veering Vi"
 	minor
 	repeat
-	invisible
+	#invisible
 	landing
 	deadline 12
 	source
@@ -193,7 +193,7 @@ mission "Veering Vi"
 mission "Scin Suspicion"
 	minor
 	repeat
-	invisible
+	#invisible
 	landing
 	deadline 9
 	source
@@ -214,7 +214,8 @@ mission "Scin Suspicion"
 				"Tridymite"
 
 mission "Curious Civilians"
-	invisible
+	#invisible
+	landing
 	to offer
 		has "event: gegno suspicions"
 		not "Gegno Genocide Defense: offered"
@@ -224,36 +225,62 @@ mission "Curious Civilians"
 		system
 			government "Gegno"
 		fail
-	on fail
-		event "derelict a"
-		event "derelict b" 7
 
 
 mission "Derelict Desponders A"
-	invisible
+	#invisible
 	landing
+	deadline 7
 	to offer
-		has "event: derelict a"
-		not "event: derelict b"
+		has "Curious Civilians: failed"
 		not "Gegno Genocide Defense: offered"
+	to complete
+		never
 
-	on enter "Vilacira"
-		conversation
-			`Test.`
-			decline
+	npc
+		on assist
+			conversation
+				`You found this derelict ship. Do you want to help them?`
+				choice
+					`	(Help.)`
+					`	(Leave.)`
+						goto leave
+					`	I have helped them.`
+						decline
+				label leave
+				`	I want to leave them.`
+					defer
+		on kill
+			set "tviemye killed"
+		government "Gegno"
+		personality derelict
+		system "Vilacira"
+		ship "Dolomite" "Tviemye"
 
 
 mission "Derelict Desponders B"
-	invisible
+	#invisible
 	landing
 	to offer
-		has "event: derelict b"
+		has "Derelict Desponders A"
 		not "Gegno Genocide Defense: offered"
-
-	on enter "Anbrim"
-		conversation
-			`Test.`
-			decline
+	npc
+		on assist
+			conversation
+				`You found this derelict ship. Do you want to help them?`
+				choice
+					`	(Help.)`
+					`	(Leave.)`
+						goto leave
+					`	I have helped them.`
+						decline
+				label leave
+				`	I want to leave them.`
+					defer
+		government "Gegno"
+		personality derelict
+		system "Anbrim"
+		ship "Gypsum"
 
 
 # mission "Acquiescence"
