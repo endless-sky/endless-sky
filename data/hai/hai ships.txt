@@ -555,6 +555,20 @@ ship "Lightning Bug" "Lightning Bug (Unfettered Shipyards)"
 		`"Biroo" Atomic Steering`
 		"Hyperdrive"
 
+ship "Lightning Bug" "Lighting Bug (Tripulse)"
+	outfits
+		"Tripulse Shredder"
+		"Pulse Turret"
+		"Hai Octopus Jammer"
+		"Geode Reactor"
+		"Hai Gorge Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling"
+		"Quantum Keystone"
+		"Pulse Rifle" 2
+		`"Benga" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		"Hyperdrive"
 
 ship "Ladybug"
 	sprite "ship/hai ladybug"

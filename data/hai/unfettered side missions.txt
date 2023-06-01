@@ -154,7 +154,7 @@ mission "Old but not that old"
 					defer
 				`	(Never.)`
 					decline
-			`	You proceed to hire a motorized antigrav vehicule to go there, and by the time you arrive it starts being dark. You set foot after double checking you are indeed at the right coordinates, for except a cave, vegetation, sand, and, of course, the beach, you cannot see much of interest in the vicinity. You can't help but put your hand close to your gun, feeling safer with its presence.`
+			`	You proceed to hire a motorized antigrav vehicle to go there, and by the time you arrive it starts being dark. You set foot after double checking you are indeed at the right coordinates, for except a cave, vegetation, sand, and, of course, the beach, you cannot see much of interest in the vicinity. You can't help but put your hand close to your gun, feeling safer with its presence.`
 			`	After waiting for what seems like an eternity you start to hear whisper, and two hooded figures approach you. You start to doubt whether or not this was a good idea but it is probably too late to back down now. They come to address you, their face hidden by the now almost total obscurity. "Hello, <last>," they say at the same time, almost in a comical way, removing some of the tension you felt until now. Then they look at each other, nod, and one of them addresses you in a more serious mood. "We are sorry for all of these complications, but the truth is we cannot afford to take risks. It has been some time since we stopped trying to understand, and started taking every precaution we could to be safe. You see, we simply do not know you, and neither do you us."`
 			choice
 				`	"Tell me more."`
@@ -167,8 +167,8 @@ mission "Old but not that old"
 			label know
 			`	They grin, "Us knowing you is a necessity for you to land on our homeworld."`
 			label tellme
-			`	"We have a very interesting proposition for you: should you agree to bring supplies to our brethren, the Unfettered Hai, we will offer you a ship, for a modest price of 6 million credits. This is a very useful ship, and you should be able to repay this quite easily by running more of the same kind of jobs. It is indeed appropriate for bringing this important food cargo safely to destination, and even defend yourself, if need be. You see, these supplies are needed on short notice, on <destination>, and we lakc the time and personel to bring them."`
-			`	They take you into the cave, finally showing the ship they were refering to. "This is a mighty relic of the past, from the times our Empire used to control the stars; a Ladybug!`
+			`	"We have a very interesting proposition for you: should you agree to bring supplies to our brethren, the Unfettered Hai, we will offer you a ship, for a modest price of 6 million credits. This is a very useful ship, and you should be able to repay this quite easily by running more of the same kind of jobs. It is indeed appropriate for bringing this important food cargo safely to destination, and even defend yourself, if need be. You see, these supplies are needed on short notice, on <destination>, and we lakc the time and personnel to bring them."`
+			`	They take you into the cave, finally showing the ship they were referring to. "This is a mighty relic of the past, from the times our Empire used to control the stars; a Ladybug!`
 			scene "thumbnail/hai ladybug"
 			`	"Of course, it has some... drawbacks, compared to its golden time, and don't expect the best price in a shipyard either. Nevertheless it is a fine vessel, capable of safely taking a respectable amount of cargo across large distances! So, what do you say, <last>? This is the opportunity of a lifetime, as they simply don't make ships like these anymore!"`
 			choice
@@ -236,6 +236,7 @@ mission "Unfettered Relic of old"
 		"reputation: Hai (Unfettered)" >?= -1000
 	on fail
 		"reputation: Hai (Unfettered)" >?= -1000
+		dialog `The Unfettered hail you, "You failed the mission, and as such, are no longer authorized to land on our worlds, and you will not enjoy unmerited respect any longer!"`
 	npc
 		government "Hai (Unfettered Challenger)"
 		to spawn
@@ -245,6 +246,7 @@ mission "Unfettered Relic of old"
 		personality unconstrained launching plunders staying target heroic
 		ship "Lightning Bug" "Thunder"
 		ship "Lightning Bug (Unfettered Shipyards)" "Struck"
+		ship "Lightning Bug (Tripulse)" ""
 		on disable
 			set "beaten the bugs"
 	on visit
