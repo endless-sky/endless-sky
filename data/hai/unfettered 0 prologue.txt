@@ -998,7 +998,7 @@ mission "<uhai> 3: Recover Jump Drives"
 			label leave
 			`	"One last warning for ye: Ye should sail the skies with a hyperdrive, especially with the dangers of where we be headed. A jump drive won't do us any favors getting there, but 'twill bring more than a mite of unwanted company. Nor should we risk the Wanderers decided to fit ye with a hempen halter from yer association with us."`
 			`	You accompany him to your ship, and he seems actually impressed, even more so when seeing the interior. "Your ship indeed be... adequate, for a warrior and this task," he begrudges.`
-			`	"Hold up right there matey, the sea sooner be green than I'd see ye can fit 8 drives in yer holds! Ya better make some space!"`
+			`	"Hold up right there matey, the sea sooner be purple than I'd see ye can fit 4 drives in yer holds! Ya better make some space!"`
 				to display
 					"cargo space" < 80
 			`	You show him to his bunk but he refuses to go there, "Where ye be sending me? Ye need me on the helm, you scabby sea bass!" You have no choice but to let him sit on the bridge.`
