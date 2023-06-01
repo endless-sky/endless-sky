@@ -546,6 +546,28 @@ government "Hai (Unfettered)"
 	"hostile hail" "hostile unfettered"
 	"hostile disabled hail" "hostile disabled unfettered"
 
+government "Hai (Unfettered Challenger)"
+	"display name" "True Hai (Glory Seeker)"
+	swizzle 5
+	"crew attack" 1.4
+	"crew defense" 2.2
+
+	"player reputation" -1000
+	"bribe" .0001
+	"fine" 0
+
+	"friendly hail" "unfettered challenger"
+	"friendly disabled hail" "friendly disabled unfettered"
+	"hostile hail" "hostile unfettered challenger"
+	"hostile disabled hail" "defeated unfettered challenger"
+	"penalty for"
+		# to easily count the amount of them that have been beaten without being killed
+		assist 0
+		disable -.1
+		board 0
+		capture .1
+		destroy .1
+
 government "Hai (Unfettered Wanderer Tribute)"
 	swizzle 4
 	"display name" "Hai (Unfettered)"

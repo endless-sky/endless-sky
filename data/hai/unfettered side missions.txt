@@ -1,0 +1,260 @@
+# Copyright (c) 2014 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+
+mission "Unfettered returning home"
+	description "This Hai has asked you to smuggle him out of Unfettered space and bring him to <destination>."
+	minor
+	source
+		attributes "unfettered"
+	destination "Hai-home"
+	clearance
+	passengers 1
+	to offer
+		has "Unfettered Tribute 3: done"
+		random < 40
+	on offer
+		conversation
+			`During the night, you hear a gentle scratching sound on your ship's main hatch. Do you investigate?`
+			choice
+				`	(Yes.)`
+				`	(No.)`
+					defer
+			`	You grab a flashlight and open the hatch, and find a juvenile Hai there, with a large satchel slung over his shoulder. "You are the <first> <last>, yes?" he says. You nod. He says, "Is it true what is written here?"`
+			`	In his hands he is holding a piece of foil paper. You recognize it as the wrapper from one of the food rations that you have been transporting to the Unfettered, the "tribute" that they demand from the peaceful Hai. But having never unwrapped one of the rations, you had not realized that there is writing on the inside, a few words in the angular alphabet of the Hai. The Unfettered youth sees your look of confusion, and translates the message. "It says, 'Hai-home is your home too. Rejoin your people.'"`
+			choice
+				`	"I think it is true. The Hai who gave this tribute said they hoped the Unfettered would turn from violence and be reconciled with them."`
+					goto true
+				`	"I'm sorry, but I don't think they will ever let you live among them, if it is your nature to be prone to violence."`
+			`	You have little experience reading Hai emotion, but the youth seems crestfallen. "You are certain?" he asks.`
+			choice
+				`	"I am certain. I can do nothing for you."`
+					goto refuse
+				`	"Perhaps you can come with me and find out, but don't get your hopes up."`
+					goto end
+			label true
+			`	"Will you take me to Hai-home?" he asks. "You are able to be outside Unfettered places. Can I go with you?"`
+			choice
+				`	"Yes, I will take you there."`
+					goto end
+				`	"Sorry, I can't risk angering the Unfettered by carrying a defector."`
+			label refuse
+			`	Disappointed, the youth leaves. You hope you made the right choice.`
+				decline
+			label end
+			`	You show the youth to one of your bunk rooms, and tell him to stay hidden there until you reach Hai-home.`
+				accept
+	
+	on visit
+		dialog `You look for the young Hai, but realize that he took a ride on one of your escorts! Better depart and wait for your escorts to arrive in this star system.`
+	on complete
+		payment 100000
+		dialog
+			`You need not have worried about the reception the Unfettered youth would receive here on Hai-home. Scarcely minutes after you hesitantly contact the Hai government, a happy crowd has gathered around your ship. When he steps out of the hatchway, he looks stunned at being welcomed so warmly. One of the Hai governors thanks you for transporting him, and pays you <payment>.`
+		"reputation: Hai" += 10
+		"reputation: Hai (Wormhole Access)" += 10
+		"reputation: Hai Merchant" += 10
+		"reputation: Hai Merchant (Human)" += 10
+		"reputation: Hai Merchant (Sympathizers)" += 10
+
+ship "Ancient Ladybug"
+	swizzle 0
+	sprite "ship/hai ladybug"
+	thumbnail "thumbnail/hai ladybug"
+	attributes
+		category "Medium Warship"
+		"cost" 8950000
+		"shields" 12000
+		"hull" 3300
+		"required crew" 11
+		"bunks" 33
+		"mass" 300
+		"drag" 5.5
+		"heat dissipation" .85
+		"fuel capacity" 900
+		"cargo space" 91
+		"outfit space" 460
+		"weapon capacity" 170
+		"engine capacity" 120
+
+		# Expensive features mentioned in description, nerfed:
+		"ramscoop" 0.2
+		"cargo scan power" 4
+		"cargo scan efficiency" 14
+		"outfit scan power" 15
+		"outfit scan efficiency" 12
+		"tactical scan power" 25
+		"atmosphere scan" 80
+		"asteroid scan power" 25
+		
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		`"Biroo" Atomic Steering`
+		`"Biroo" Atomic Thruster`
+		"Boulder Reactor"
+		"Bullfrog Anti-Missile" 2
+		"Cargo Expansion" 2
+		"Hai Diamond Regenerator"
+		"Hai Fissure Batteries"
+		"Hai Williwaw Cooling"
+		Hyperdrive
+		"Ion Cannon" 3
+		"Quantum Keystone"
+
+	gun 0 -69.5 "Ion Cannon"
+	gun -12 -68.5 "Ion Cannon"
+	gun 12 -68.5 "Ion Cannon"
+	turret -36 3 "Bullfrog Anti-Missile"
+	turret 36 3 "Bullfrog Anti-Missile"
+	engine -36 62 0.8
+	engine 36 62 0.8
+	explode "tiny explosion" 20
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large"
+	description "This sensor-laden exploration vessel hails back to a more peaceful era of the Hai. Though they have no true ramscoop, a technology the Hai never developed, their built-in collection gills magnify the natural ramscoop present in all ships. These expensive features are the reason the ship has been replaced with the Lightning Bug."
+	description "However, this ship is very useful as an agile cargo hauler, able to defend itself in small skirmishes and bring cargo to long distances. However you suspect that it does not operate at its full potential, as if it stayed in the ocean too long... Still, this ship is clearly proof of the durability of Hai technology."
+
+mission "Old but not that old"
+	shipyard
+	landing
+	clearance
+	source "Hai-Home"
+	destination "Firelode"
+	to offer
+		random < 40
+		has "First Contact: Unfettered: offered"
+		"reputation: Hai (Unfettered)" < 0
+		not "Unfettered Jump Drive 1: offered"
+		not "event: hai ladybug available"
+	on offer
+		conversation
+			`As you enter the shipyard, some shady individual comes to address you. "Captain <last>. Me and my associates have a business proposition for you, if you are interested to learn more about it go to these coordinates." They give you the proper location on a piece of paper and quickly fade in the crowd. Will you go there?`
+			choice
+				`	(Sure.)`
+				`	(Maybe another time.)`
+					defer
+				`	(Never.)`
+					decline
+			`	You go there, and by the time you arrive it starts being dark. You can't help to put your hand on your gun, and feel safer with its presence. You hear whispers, and as you were starting to wonder if this was a good idea, two hooded figures approach you. It is probably too late to back down now. "Hello, <last>," they say at the same time, almost in a comical way. "We are sorry for seeming not to trust you, but the truth is we cannot afford to. We don't trust some of our brethren enough for that."`
+			choice
+				`	"Tell me more."`
+					goto tellme
+				`	"How do you know me?"`
+					goto know
+				`	(Run away).`
+			`	They seem surprised at your sudden change of mind, but make no effort to stop you.`
+				decline
+			label know
+			`	They grin, "Us knowing you is a necessity for you to land on our homeworld."`
+			label tellme
+			`	"We have a very interesting proposition for you: should you agree to bring supplies to our brethren, the Unfettered Hai for a while, we will offer you a ship, for a modest price of 6 million credits which you should be able to repay this quite easily. It is appropriate for bringing this important food cargo safely to destination, and defend yourself if need be."`
+			`	"This is a mighty relic of the past, from the times our Empire used to control the stars; a Ladybug. Of course, it has some... drawbacks, compared to how it was in its glory, and don't expect the best price in a shipyard. Nevertheless it is a fine vessel, capable of taking a respectable amount of cargo across large distances, and to protect it well enough as well! So, what do you say, <last>? This is the opportunity of a lifetime, as they simply don't make ships like these anymore!"`
+			choice
+				`	"I will take this deal."`
+					goto take
+				`	"I am not interest in this deal."`
+			`	"A shame, this probably means we will not meet again," they say, before leaving, as discreetly as they came.`
+				decline
+			label take
+			action
+				give ship "Ancient Ladybug" "Good Omen"
+				fine 6000000
+			`	They give you access to the ship and then explain the details of the deal. "It is of no real significance, but surely you understand we cannot go trough official means for this, we will have to present it as a fine. Worry not, we will make it something of no consequence, like an old Korath forbidden tech you would not have known about, that we had to confiscate." You quickly realize they are not asking you for your opinion at all. In fact, you notice the fine has already been issued before you could say anything. "Oh, and you should not change its colours, you'll understand why later."`
+
+mission "Young but not that young"
+	landing
+	description "Use the newly acquired old Ladybug to bring aid to the Unfettered Hai."
+	cargo "food (aid)" 121
+	to offer
+		has "ship model: Ancient Ladybug"
+	on enter
+		system
+			attributes "unfettered"
+		"reputation: Hai (Unfettered)" >?= 0
+		dialog `As you enter the system you notice that for once the Unfettered Hai are not shooting at you. They are not hailing you either, however. Perhaps they think you are one of the Hai aiding them, especially given your cargo.`
+	on abort
+		"reputation: Hai (Unfettered)" <?= -1000
+	on complete
+		dialog `You receive a message from the 'associates of Hai-Home', "thank you for helping our brethren, <last>. We will not forget this. Please accept these <payment> to get you started on paying back."`
+		payment 1000000
+
+
+
+outfit "Unfettered Landing License"
+	category "Licenses"
+	thumbnail "outfit/unknown"
+	"maintenance costs" 600
+	description "This is needed in order to land on Unfettered planet, but can be sold at any time in order to cancel the arrangement."
+
+mission "Unfettered Relic of old"
+	landing
+	source "Firelode"
+	to offer
+		has "ship model: Ancient Ladybug"
+	on offer
+		conversation
+			`As you land and get out of your ship you quickly notice you have attracted a lot of attention, probably due to this old design. One Unfettered that looks like an engineer comes to speak to you, seeming much more open to speak than usual. "Welcome. I do not know how you have obtained this ship, and some will probably see it as a sign. As you may know it is a relic of our past, a past we are quite proud of."`
+			`	"In truth, I do not personally care about all of that. All I care about is that this ship is old, and has technology that would be very valuable because of how rare it is. Thus, I challenge you for it!"`
+			choice
+				`	"What do I get if I win?"`
+					goto win
+				`	"Can't I just sell it to you?"`
+			`	"No, because in the eyes of my brethren that would mean I did not deserve this ship."`
+			label win
+			`	"You will win the right to access our worlds for just a meagre daily fee of 600 credits. You will not be allowed to land like today any other time should you refuse this deal.  Beware, for there are no rules, other than the fact you may only use one ship, and only one ship! Tell me then, what say you, will you take to the skies, or are you too effrayed?"`
+			choice
+				`	"I accept."`
+				`	"I have nothing to prove to you."`
+					decline
+			`	"Good! I will of course not be fighting you personaly, as it is too risky to do so."`
+				accept
+	on decline
+		"reputation: Hai (Unfettered)" >?= -1000
+	on fail
+		"reputation: Hai (Unfettered)" >?= -1000
+	npc disable
+		government "Hai (Unfettered Challenger)"
+		to spawn
+			"total ships" == 1
+		to despawn
+			"total ships" != 1
+		personality unconstrained launching plunders staying target heroic
+		ship "Lightning Bug" "Thunder"
+		ship "Lightning Bug (Unfettered Shipyards)" "Struck"
+	on complete
+		dialog `The engineer accepts to give you the license as agreed."Make sure you do not lose this until you may land on our worlds by other means, or we will take it very seriously."`
+		outfit "Unfettered Landing License"
+
+mission "Unfettered Landing License Lost"
+	landing
+	source
+		attributes "unfettered"
+	to offer
+		has "Relic of old: done"
+		not "outfit (all): Unfettered Landing License"
+		not "Unfettered Jump Drive 1: offered"
+	on offer
+		dialog "As you land the Unfettered immediately notice you do not have your license anymore. They warn you that this is your last chance, but you may have another one if you accept a fine of 1 million credits."
+	on accept
+		outfit "Unfettered Landing License"
+		fine 1000000
+	on decline
+		"reputation: Hai (Unfettered)" <?= -1
