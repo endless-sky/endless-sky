@@ -555,7 +555,7 @@ ship "Lightning Bug" "Lightning Bug (Unfettered Shipyards)"
 		`"Biroo" Atomic Steering`
 		"Hyperdrive"
 
-ship "Lightning Bug" "Lighting Bug (Tripulse)"
+ship "Lightning Bug" "Lightning Bug (Tripulse)"
 	outfits
 		"Tripulse Shredder"
 		"Pulse Turret"

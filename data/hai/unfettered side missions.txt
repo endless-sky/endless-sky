@@ -1,4 +1,4 @@
-# Copyright (c) 2014 by Michael Zahniser
+# Copyright (c) 2023 by Hurleveur
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -246,7 +246,7 @@ mission "Unfettered Relic of old"
 		personality unconstrained launching plunders staying target heroic
 		ship "Lightning Bug" "Thunder"
 		ship "Lightning Bug (Unfettered Shipyards)" "Struck"
-		ship "Lightning Bug (Tripulse)" ""
+		ship "Lightning Bug (Tripulse)" "Erazer"
 		on disable
 			set "beaten the bugs"
 	on visit
