@@ -1587,7 +1587,7 @@ event "resistance training: shaula back to normal"
 		add fleet "Large Core Pirates" 7000
 		add fleet "Small Northern Pirates" 5000
 		add fleet "Large Northern Pirates" 9000
-		add fleet "Large Militia" 9000
+		add fleet "Large Free Worlds" 9000
 
 event "resistance training done"
 
