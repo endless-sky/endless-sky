@@ -739,13 +739,13 @@ news "athlete"
 			`"`
 		word
 			"I'm planning to compete in a game on ${athlete competition location}!"
-			"I tried to compete in the Burthen Triathalon once, but the gravity was too much for me. Now I'm training to try again next year!"
+			"I tried to compete in the Burthen Triathlon once, but the gravity was too much for me. Now I'm training to try again next year!"
 			"Have you ever done the long jump on Longjump? Even an untrained individual can jump ten meters in that environment!"
 			"I sure am glad we'll never have to compete against any Alphas. We would all lose!"
 			"Does your ship have a weight room?"
 			"I'm hoping to get a sponsorship, but nobody here wants to partner with me. Could you recommend a planet where I might find better results?"
 			"I don't expect everyone to be as fit as I am, but do remember to get up and exercise a little every once in a while!"
-			"I once went to a sports event on Dancer in the the Rastaban system, but never again! All activities were indoors because of the horrible weather the planet has."
+			"I once went to a sports event on Dancer in the Rastaban system, but never again! All activities were indoors because of the horrible weather the planet has."
 		word
 			`"`
 
@@ -851,7 +851,7 @@ news "mechanic"
 			"I've been restoring an old Flivver I bought from a scrapyard as a hobby project. She's going to be a beauty once I get her flying again!"
 			"Make sure your ship is running cool. An overheated ship will give you nothing but trouble."
 			"I did my apprenticeship with the Navy, but after I finished my tour, I just wanted to open up my own repair shop."
-			"I spent three years on a bulk freighter as the ship's mechanic. The pay was decent, but I like being my own boss."
+			"I spent three years on a Bulk Freighter as the ship's mechanic. The pay was decent, but I like being my own boss."
 			"Piracy is a problem, but I'd be lying if I said it didn't keep the ship repair business steady."
 			"Pass me the 10 mm socket wrench?"
 			"If it ain't broken, then don't come to me."

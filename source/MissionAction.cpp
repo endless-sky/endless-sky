@@ -360,7 +360,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	// Create any associated dialog text from phrases, or use the directly specified text.
 	string dialogText = !dialogPhrase->IsEmpty() ? dialogPhrase->Get() : this->dialogText;
 	if(!dialogText.empty())
-		result.dialogText = Format::Replace(dialogText, subs);
+		result.dialogText = Format::Replace(Phrase::ExpandPhrases(dialogText), subs);
 
 	if(!conversation->IsEmpty())
 		result.conversation = ExclusiveItem<Conversation>(conversation->Instantiate(subs, jumps, payload));

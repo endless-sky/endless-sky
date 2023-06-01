@@ -197,11 +197,7 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 		if(toFail.empty())
 			child.PrintTrace("Error: Skipping invalid \"fail\" with no mission:");
 		else
-		{
 			fail.insert(toFail);
-			// Create a GameData reference to this mission name.
-			GameData::Missions().Get(toFail);
-		}
 	}
 	else
 		conditions.Add(child);
