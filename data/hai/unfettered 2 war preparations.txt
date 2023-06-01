@@ -710,7 +710,7 @@ mission "<uhai> 14: Ion Materials"
 	on visit
 		dialog `You have landed on <origin> but you do not have the spoils yet, or the escorts carrying them haven't arrived in the system yet.`
 	on decline
-		event "unfettered: modded SB ready" 20
+		event "unfettered: modded SB ready" 25
 	on complete
 		event "unfettered: modded SB ready" 10
 		clear "unfettered: offered loot"
@@ -777,6 +777,7 @@ event "unfettered: modded SB ready"
 
 
 mission "<uhai> 15: Modified Beetle"
+	autosave
 	landing
 	name "Earn your prize"
 	description "The Unfettered have modified a Shield Beetle for you, but you must beat Mera in command of it in order to earn it."
@@ -951,6 +952,7 @@ mission "<uhai> 15: Modified Beetle: Trust Broken"
 	to fail
 		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 > 18
 		has "flagship system: Ehma Ti"
+		not "flagship landed"
 	on fail
 		dialog `Mera sends you a message, "What are you doing, trying to cheat? You're no fun, you do not deserve to be a part of us."`
 		fail "<uhai> 15: Modified Beetle"
@@ -1127,6 +1129,7 @@ event "unfettered: bribable challengers"
 
 # This mission partly is intended as a test to make sure you are strong enough for the following part of the campaign, but they also give you your license and salary, with official colors.
 mission "<uhai> 16: Strength Of A Leader"
+	autosave
 	name `Strength of a Leader`
 	description `Prove your strength against Si-Ra and He-Yi in a battle, but do not kill them.`
 	source "Darkcloak"
@@ -1343,13 +1346,14 @@ mission "<uhai> 16: Strength Of A Leader: Trust Broken"
 	landing
 	to offer
 		has "<uhai> 16: Strength Of A Leader: active"
-		# you can cheat against if Si-Ra cheats against you.
-		not "unfettered: mad Si-Ra"
+		# you can cheat if Si-Ra cheats against you, but only against him.
+		or
+			not "unfettered: mad Si-Ra"
+			has "unfettered: defeated Si-Ra"
 	to fail
 		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 > 18
 		has "flagship system: Wah Yoot"
-		or
-			has "unfettered: defeated Si-Ra"
+		not "flagship landed"
 	on fail
 		dialog `You receive a message, "You must not disrespect the rules of the duel!"`
 		fail "<uhai> 16: Strength Of A Leader"

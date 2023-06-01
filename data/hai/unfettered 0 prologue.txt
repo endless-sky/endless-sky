@@ -792,12 +792,13 @@ event "unfettered: access to Mera's lab"
 # SPOILER: he tests your military aptitude before asking you to take him to pirate space.
 # gameplay wise if you win this mission you should be able to do the following ones, it tests if your strength is high enough.
 mission "<uhai> 2: Prove Your Strength"
+	autosave
 	name `Defeat the captain`
 	description `A young Unfettered captain has provoked you into a duel. Disable his ship.`
 	source "Darkcloak"
 	to offer
 		or
-			has "Wanderers: Defend Vara Ke'sok: failed"
+			has "Wanderers: Defend Vara Ke'sok: aborted"
 			random < "Unfettered Jump Drive 1: offered" * 20 + "Unfettered Jump Drive 2: offered" * 25 + "Unfettered Jump Drive 3: offered" * 30 + "Unfettered Jump Drive 4: failed" * 25
 		# 3 is what a default built Sea Scorpion has
 		"armament deterrence" >= 3
@@ -853,6 +854,8 @@ mission "<uhai> 2: Prove Your Strength"
 			`	"Let us prove our worth in battle then, the time for words is over."`
 				accept
 			label "too many ships"
+			action
+				set "unfettered: brought too many ships"
 			`	"Ye cannot run a rig on me, monkey. First ye must park some of those ships! I will not be facing your whole armada. A heavy man-o-war is already over compensating, after all. When ye are ready for a fair duel, see me in orbit."`
 			``
 			`The Unfettered captain will only show up if you have a small enough fleet for the duel to be fair; you are currently bringing too many ships. (To park ships press "I", and then select "Park All" or manually select the ships you want to park. For this fight, you are limited to a single heavy warship or a small group of lighter vessels.)`
@@ -868,14 +871,14 @@ mission "<uhai> 2: Prove Your Strength"
 		conversation
 			`Now that you have disabled the <npc>, its captain hails you. "It seems ye fight admirably after all. Ye've earned my respect today," he says with a voice so calm you are surprised it came from the same captain who was recently provoking you for no apparent reason.`
 				to display
-					not "Wanderers: Defend Vara Ke'sok: failed"
+					not "Wanderers: Defend Vara Ke'sok: aborted"
 			`Now that you have disabled the <npc>, its captain hails you. "Well<, unfettered title>, it seems you be worthy of joining our crew! I was the one who contacted you on behalf of our ship captain, in the alien space up north! Ye've earned my respect today," he says with a voice so calm you are surprised it came from the same captain who was recently provoking you for no apparent reason. In the background you hear fires roaring, it seems the damage to his ship was quite serious indeed.`
 				to display
-					has "Wanderers: Defend Vara Ke'sok: failed"
+					has "Wanderers: Defend Vara Ke'sok: aborted"
 					has "Unfettered Jump Drive 1: offered"
 			`Now that you have disabled the <npc>, its captain hails you. "Well<, unfettered title>, it seems you be worthy of joining our crew! I was the one who contacted you on behalf of our ship captain, in the alien space up north! Ye've earned my respect today. However, since I knew you I made sure to allow you to prove yerself pretty fast, but if you want to continue doing business with us, jump drives are always appreciated..." he says this with a voice so calm you are surprised it came from the same captain who was recently provoking you for no apparent reason.`
 				to display
-					has "Wanderers: Defend Vara Ke'sok: failed"
+					has "Wanderers: Defend Vara Ke'sok: aborted"
 					not "Unfettered Jump Drive 1: offered"
 			`	In the background you hear fires roaring, it seems the damage to his ship was quite serious indeed.`
 			label choose
@@ -894,7 +897,7 @@ mission "<uhai> 2: Prove Your Strength"
 			`	"Worry not, matey. Respect only need be earned once. From me, at least. Do know there are other captains eager to challenge ye themselves, and most are stronger than me. Or, at least, they have more ships..."`
 				goto end
 			label weapons
-			"Aye, matey! The flashier yer weapons be when ye run a shot across their bow, the more likely these landlubbers be to strike colors and ditch their loot! No need to make these lily livered into shark food, just shiver their timbers a bit. Savvy? And not much else sets yer knees a knockin' quite like sending watching yer weapons go squiffy while yer energy levels drop straight ta Davy Jones' Locker! Always a good clap o' thunder for 'em!"
+			`	"Aye, matey! The flashier yer weapons be when ye run a shot across their bow, the more likely these landlubbers be to strike colors and ditch their loot! No need to make these lily livered into shark food, just shiver their timbers a bit. Savvy? And not much else sets yer knees a knockin' quite like sending watching yer weapons go squiffy while yer energy levels drop straight ta Davy Jones' Locker! Always a good clap o' thunder for 'em!"`
 			label end
 			action
 				log `Defeated a young Unfettered Captain in a duel.`
@@ -925,8 +928,9 @@ mission "<uhai> 2: Prove Your Strength: Trust Broken"
 	to fail
 		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 > 12
 		has "flagship system: Wah Yoot"
+		not "flagship landed"
 	on fail
-		dialog "You have broken the trust of the Unfettered captain by trying to come to a duel with too many ships. He will not show up again."
+		dialog "You have broken the trust of the Unfettered captain by trying to come to a duel with too many ships. He will not show up again. You may want to load back to the autosave to continue the Unfettered campaign."
 		fail "<uhai> 2: Prove Your Strength"
 	to complete
 		not "<uhai> 2: Prove Your Strength: active"
