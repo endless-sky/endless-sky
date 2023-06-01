@@ -147,27 +147,30 @@ mission "Old but not that old"
 		not "event: hai ladybug available"
 	on offer
 		conversation
-			`As you enter the shipyard, some shady individual comes to address you. "Captain <last>. Me and my associates have a business proposition for you, if you are interested to learn more about it go to these coordinates." They give you the proper location on a piece of paper and quickly fade in the crowd. Will you go there?`
+			`As you enter the shipyard you quickly get approached by someone wearing a hood, apparently not too keen to reveal their identity. They come to address you, discreetly. Seeing you stop to listen, they take your arm and make you follow them. "Keep walking," they say, quickly taking a look around the way someone looking for a new ship would, before addressing you again. "Me and my associates have a business proposition for you, if you are interested to learn more about it go to these coordinates." They give you a piece of paper containing the location, on a beach almost on the other side of the planet with an instruction to not go with you ship, before quickly fade in the crowd. Will you go there?`
 			choice
 				`	(Sure.)`
 				`	(Maybe another time.)`
 					defer
 				`	(Never.)`
 					decline
-			`	You go there, and by the time you arrive it starts being dark. You can't help to put your hand on your gun, and feel safer with its presence. You hear whispers, and as you were starting to wonder if this was a good idea, two hooded figures approach you. It is probably too late to back down now. "Hello, <last>," they say at the same time, almost in a comical way. "We are sorry for seeming not to trust you, but the truth is we cannot afford to. We don't trust some of our brethren enough for that."`
+			`	You proceed to hire a motorized antigrav vehicule to go there, and by the time you arrive it starts being dark. You set foot after double checking you are indeed at the right coordinates, for except a cave, vegetation, sand, and, of course, the beach, you cannot see much of interest in the vicinity. You can't help but put your hand close to your gun, feeling safer with its presence.`
+			`	After waiting for what seems like an eternity you start to hear whisper, and two hooded figures approach you. You start to doubt whether or not this was a good idea but it is probably too late to back down now. They come to address you, their face hidden by the now almost total obscurity. "Hello, <last>," they say at the same time, almost in a comical way, removing some of the tension you felt until now. Then they look at each other, nod, and one of them addresses you in a more serious mood. "We are sorry for all of these complications, but the truth is we cannot afford to take risks. It has been some time since we stopped trying to understand, and started taking every precaution we could to be safe. You see, we simply do not know you, and neither do you us."`
 			choice
 				`	"Tell me more."`
 					goto tellme
 				`	"How do you know me?"`
 					goto know
 				`	(Run away).`
-			`	They seem surprised at your sudden change of mind, but make no effort to stop you.`
+			`	They seem surprised at your sudden change of mind, but make no effort to stop you. You proceed to take the antigrav back to the shipyard without any incidents.`
 				decline
 			label know
 			`	They grin, "Us knowing you is a necessity for you to land on our homeworld."`
 			label tellme
-			`	"We have a very interesting proposition for you: should you agree to bring supplies to our brethren, the Unfettered Hai for a while, we will offer you a ship, for a modest price of 6 million credits which you should be able to repay this quite easily. It is appropriate for bringing this important food cargo safely to destination, and defend yourself if need be. These supplies are needed on short notice."`
-			`	"This is a mighty relic of the past, from the times our Empire used to control the stars; a Ladybug. Of course, it has some... drawbacks, compared to how it was in its glory, and don't expect the best price in a shipyard. Nevertheless it is a fine vessel, capable of taking a respectable amount of cargo across large distances, and to protect it well enough as well! So, what do you say, <last>? This is the opportunity of a lifetime, as they simply don't make ships like these anymore!"`
+			`	"We have a very interesting proposition for you: should you agree to bring supplies to our brethren, the Unfettered Hai, we will offer you a ship, for a modest price of 6 million credits. This is a very useful ship, and you should be able to repay this quite easily by running more of the same kind of jobs. It is indeed appropriate for bringing this important food cargo safely to destination, and even defend yourself, if need be. You see, these supplies are needed on short notice, on <destination>, and we lakc the time and personel to bring them."`
+			`	They take you into the cave, finally showing the ship they were refering to. "This is a mighty relic of the past, from the times our Empire used to control the stars; a Ladybug!`
+			scene "thumbnail/hai ladybug"
+			`	"Of course, it has some... drawbacks, compared to its golden time, and don't expect the best price in a shipyard either. Nevertheless it is a fine vessel, capable of safely taking a respectable amount of cargo across large distances! So, what do you say, <last>? This is the opportunity of a lifetime, as they simply don't make ships like these anymore!"`
 			choice
 				`	"I will take this deal."`
 					goto take
@@ -178,7 +181,8 @@ mission "Old but not that old"
 			action
 				give ship "Ancient Ladybug" "Good Omen"
 				fine 6000000
-			`	They give you access to the ship and then explain the details of the deal. "It is of no real significance, but surely you understand we cannot go trough official means for this, we will have to present it as a fine. Worry not, we will make it something of no consequence, like an old Korath forbidden tech you would not have known about, that we had to confiscate." You quickly realize they are not asking you for your opinion at all. In fact, you notice the fine has already been issued before you could say anything. "Oh, and you should not change its colors, you'll understand why later."`
+			`	They give you access to the ship and proceed to explain the details. "It is of no real significance, but surely you understand we cannot go trough official means for this, we will have to present it as a fine. Worry not, we will make it something of no consequence, like an old Korath forbidden tech you would not have known about, that we had to confiscate."`
+			`	You quickly realize they are not asking you for your opinion at all. In fact, you notice the fine has already been issued before you could say anything. "Oh, and you should not change its colors, you'll understand why later."`
 
 mission "Young but not that young"
 	landing
@@ -191,7 +195,7 @@ mission "Young but not that young"
 		system
 			attributes "unfettered"
 		"reputation: Hai (Unfettered)" >?= 0
-		dialog `As you enter the system you notice that for once the Unfettered Hai are not shooting at you. They are not hailing you either, however. Perhaps they think you are one of the Hai aiding them, especially given your cargo.`
+		dialog `As you enter the system you notice something... Or, more precisely, the lack of something. It is too quiet, probably due to the fact that, for the first time, the Unfettered Hai are not shooting at you. They are not hailing you either, however. Perhaps they think you are one of the Hai aiding them, especially given your cargo.`
 	on fail
 		"reputation: Hai (Unfettered)" <?= -1000
 	on complete
@@ -248,7 +252,7 @@ mission "Unfettered Relic of old"
 	to complete
 		has "unfettered: beaten the bugs"
 	on complete
-		dialog `The engineer accepts to give you the license as agreed."Make sure you do not lose this until you may land on our worlds by other means, or we will take it very seriously."`
+		dialog `The engineer seems shocked at first. "You... won? Alright, I will give you the license as agreed, but make sure you do not lose this until you may land on our worlds by other means, or we will take it very seriously."`
 		outfit "Unfettered Landing License"
 
 mission "Unfettered Landing License Lost"
