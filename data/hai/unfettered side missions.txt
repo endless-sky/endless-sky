@@ -153,8 +153,6 @@ mission "Hai Legacy 1"
 				`	(Sure.)`
 				`	(Maybe another time.)`
 					defer
-				`	(Never.)`
-					decline
 			`	You proceed to hire a motorized antigrav vehicle to go there, and by the time you arrive it starts being dark. You set foot after double checking you are indeed at the right coordinates, for except a cave, vegetation, sand, and, of course, the beach, you cannot see much of interest in the vicinity. You can't help but put your hand close to your gun, feeling safer with its presence.`
 			`	After waiting for what seems like an eternity you start to hear whisper, and two hooded figures approach you. You start to doubt whether or not this was a good idea but it is probably too late to back down now. They come to address you, their face hidden by the now almost total obscurity. "Hello, <last>," they say at the same time, almost in a comical way, removing some of the tension you felt until now. Then they look at each other, nod, and one of them addresses you in a more serious mood. "We are sorry for all of these complications, but the truth is we cannot afford to take risks. It has been some time since we stopped trying to understand, and started taking every precaution we could to be safe. You see, we simply do not know you, and neither do you us."`
 			choice
