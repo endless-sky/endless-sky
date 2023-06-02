@@ -134,7 +134,8 @@ ship "Ancient Ladybug"
 	description "This sensor-laden exploration vessel hails back to a more peaceful era of the Hai. Though they have no true ramscoop, a technology the Hai never developed, their built-in collection gills magnify the natural ramscoop present in all ships. These expensive features are the reason the ship has been replaced with the Lightning Bug."
 	description "However, this ship is very useful as an agile cargo hauler, able to defend itself in small skirmishes and bring cargo to long distances. However you suspect that it does not operate at its full potential, as if it stayed in the ocean too long... Still, this ship is clearly proof of the durability of Hai technology."
 
-mission "Old but not that old"
+mission "Hai Legacy 1"
+	invisible
 	landing
 	shipyard
 	source "Hai-home"
@@ -181,14 +182,20 @@ mission "Old but not that old"
 			action
 				give ship "Ancient Ladybug" "Good Omen"
 				fine 6000000
+				log "Accepted a somewhat shady deal for a old Hai ship, a Ladybug, that seems to still be in good functionning state."
 			`	They give you access to the ship and proceed to explain the details. "It is of no real significance, but surely you understand we cannot go trough official means for this, we will have to present it as a fine. Worry not, we will make it something of no consequence, like an old Korath forbidden tech you would not have known about, that we had to confiscate."`
 			`	You quickly realize they are not asking you for your opinion at all. In fact, you notice the fine has already been issued before you could say anything. "Oh, and you should not change its colors, you'll understand why later."`
+				accept
 
-mission "Young but not that young"
+mission "Hai Legacy 2"
 	landing
+	name "Young but not that young"
 	description "Use the newly acquired old Ladybug to bring aid to the Unfettered Hai."
+	clearance
 	deadline 20
 	cargo "food (aid)" 121
+	destination "Firelode"
+	blocked "You need space for the agreed rush cargo of food to Unfettered space."
 	to offer
 		has "ship model: Ancient Ladybug"
 	on enter
@@ -198,19 +205,25 @@ mission "Young but not that young"
 		dialog `As you enter the system you notice something... Or, more precisely, the lack of something. It is too quiet, probably due to the fact that, for the first time, the Unfettered Hai are not shooting at you. They are not hailing you either, however. Perhaps they think you are one of the Hai aiding them, especially given your cargo.`
 	on fail
 		"reputation: Hai (Unfettered)" <?= -1000
+		dialog `The Unfettered and their associates are not clearly happy when you tell them about this. "You will have to prove yourself another way."`
+	on visit
+		phrase "generic cargo on visit"
 	on complete
 		dialog `You receive a message from the 'associates of Hai-home', "thank you for helping our brethren, <last>. We will not forget this. Please accept these <payment> to get you started on paying back."`
 		payment 1250000
+		log "Delivered a pressing food cargo to the Unfettered using a newly acquired but pretty old Ladybug. They seem to not be firing on me, for now at least."
 
 
 
 outfit "Unfettered Landing License"
 	category "Licenses"
 	thumbnail "outfit/unknown"
-	"maintenance costs" 600
+	"maintenance costs" 1000
 	description "This is needed in order to land on Unfettered planet, but can be sold at any time in order to cancel the arrangement."
 
-mission "Unfettered Relic of old"
+mission "Hai Legacy 3"
+	name "Unfettered Relic of old"
+	description "Beat the Lighting Bugs in a merciless duel."
 	landing
 	source "Firelode"
 	to offer
@@ -225,7 +238,7 @@ mission "Unfettered Relic of old"
 				`	"Can't I just sell it to you?"`
 			`	"No, because in the eyes of my brethren that would mean I did not deserve this ship."`
 			label win
-			`	"You will win the right to access our worlds for just a meagre daily fee of 600 credits. You will not be allowed to land like today any other time should you refuse this deal. Beware, for there are no rules, other than the fact you may only use one ship, and only one ship! Tell me then, what say you, will you take to the skies, or are you too effrayed?"`
+			`	"You will win the right to access our worlds for just a meagre daily fee of 100 credits. You will not be allowed to land like today any other time should you refuse this deal. Beware, for there are no rules, other than the fact you may only use one ship, and only one ship! Tell me then, what say you, will you take to the skies, or are you too effrayed?"`
 			choice
 				`	"I accept."`
 				`	"I have nothing to prove to you."`
@@ -244,21 +257,29 @@ mission "Unfettered Relic of old"
 		to despawn
 			"total ships" != 1
 		personality unconstrained launching plunders staying target heroic
+		ship "Lightning Bug (Tripulse)" "Erazer"
 		ship "Lightning Bug" "Thunder"
 		ship "Lightning Bug (Unfettered Shipyards)" "Struck"
-		ship "Lightning Bug (Tripulse)" "Erazer"
 		on disable
 			set "beaten the bugs"
+	npc
+		government "Hai (Unfettered)"
+		ship "Lightning Bug (Unfettered Shipyards)"
+		personality launching staying surveillance
+		on kill
+			fail "Hai Legacy 3"
 	on visit
-		dialog "You have not beaten the two challenging ships yet. If they have not shown up it is probably because you have more than just the ladybug."
+		dialog "You have not beaten all challenging ships yet. If they have not shown up it is probably because you have more than just the ladybug."
 	to complete
 		has "unfettered: beaten the bugs"
 	on complete
 		dialog `The engineer seems shocked at first. "You... won? Alright, I will give you the license as agreed, but make sure you do not lose this until you may land on our worlds by other means, or we will take it very seriously."`
 		outfit "Unfettered Landing License"
+		log "Managed to use an old ladybug to overtake a swarm of Lightning Bugs, earning myself a place in Unfettered territory."
 
 mission "Unfettered Landing License Lost"
 	landing
+	invisible
 	source
 		attributes "unfettered"
 	to offer
@@ -266,9 +287,23 @@ mission "Unfettered Landing License Lost"
 		not "outfit (all): Unfettered Landing License"
 		not "Unfettered Jump Drive 1: offered"
 	on offer
-		dialog "As you land the Unfettered immediately notice you do not have your license anymore. They warn you that this is your last chance, but you may have another one if you accept a fine of 1 million credits."
+		dialog "As you land the Unfettered immediately notice you do not have your license anymore. They warn you that this is your last chance, but you may have another one if you accept a fine of 2.5 million credits."
 	on accept
+		fail "Unfettered Landing License Lost"
 		outfit "Unfettered Landing License"
-		fine 1000000
+		fine 2500000
+		log "Lost the landing license that the Unfettered provided but they were kind enough to provide another one for 2.5 million credits."
 	on decline
 		"reputation: Hai (Unfettered)" <?= -1
+		log "Lost the landing license that the Unfettered provided."
+
+mission "License Irrelevant"
+	landing
+	invisible
+	source
+		attributes "unfettered"
+	to offer
+		has "Unfettered Jump Drive 1: offered"
+	on offer
+		outfit "Unfettered Landing License" -1
+		fail
