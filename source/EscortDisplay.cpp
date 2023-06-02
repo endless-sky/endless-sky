@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "EscortDisplay.h"
 
 #include "Color.h"
+#include "text/DisplayText.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
@@ -100,7 +101,15 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 
 		// Draw the system name for any escort not in the current system.
 		if(!escort.system.empty())
-			font.Draw(escort.system, pos + Point(-10., 10.), elsewhereColor);
+		{
+			Point textPos = pos + Point(-10., 10.);
+			Rectangle systemZone = Rectangle::FromCorner(textPos, Point(WIDTH - 20., font.Height()));
+			Truncate truncate = Truncate::BACK;
+			if(systemZone.Contains(mouse))
+				truncate = Truncate::NONE;
+			font.Draw({escort.system, {static_cast<int>(WIDTH - 20.), Alignment::LEFT, truncate}},
+				textPos, elsewhereColor);
+		}
 
 		Color color;
 		if(escort.isDisabled)
@@ -193,7 +202,15 @@ const vector<const Ship *> &EscortDisplay::Click(const Point &point) const
 
 
 
-EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected)
+// Set mouse position for hover checks.
+void EscortDisplay::SetMousePosition(Point position)
+{
+	mouse = position;
+}
+
+
+
+EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool systemNameKnown, bool fleetIsJumping, bool isSelected)
 	: sprite(ship.GetSprite()),
 	isDisabled(ship.IsDisabled()),
 	isHere(isHere),
