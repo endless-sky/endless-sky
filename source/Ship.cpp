@@ -4090,6 +4090,9 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 		// A realistic fraction applicable to all cases cannot be computed, so assume 50%.
 		heat -= weapon.AmmoUsage() * .5 * ammo->Mass() * MAXIMUM_TEMPERATURE * Heat();
 		AddOutfit(ammo, -weapon.AmmoUsage());
+		if(!OutfitCount(ammo) && ammo->AmmoUsage())
+			// Recalculate the AI to account for the loss of this weapon.
+			aiCache.Calibrate(*this);
 	}
 
 	energy -= weapon.FiringEnergy() + relativeEnergyChange;
