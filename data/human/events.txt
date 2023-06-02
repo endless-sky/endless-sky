@@ -1967,7 +1967,7 @@ event "pug invasion 2"
 	unlink "Vega" "Menkent"
 	unlink "Vega" "Sol"
 	unlink "Altair" "Sol"
-	unlink "Fomalhaut" "Markab"
+	unlink "Fomalhaut" "Acrab"
 	link "Deneb" "Vega"
 	link "Deneb" "Altair"
 	unvisit "Vega"
@@ -1975,6 +1975,7 @@ event "pug invasion 2"
 	unvisit "Nocte"
 	unvisit "Fomalhaut"
 	unvisit "Markab"
+	unvisit "Acrab"
 	"tribute: Silver" /= 700
 	"tribute: Shiver" /= 300
 	"tribute: Millrace" /= 1400
@@ -2071,11 +2072,14 @@ event "pug invasion 4"
 	unlink "Caph" "Sol"
 	unlink "Caph" "Eteron"
 	unlink "Diphda" "Acamar"
-	unlink "Diphda" "Ankaa"
+	unlink "Diphda" "Puppis"
 	link "Fomalhaut" "Caph"
 	unvisit "Caph"
 	unvisit "Diphda"
-	unvisit "Ankaa"
+	unvisit "Puppis"
+	unvisit "Electra"
+	unvisit "Iklil"
+	unvisit "Tabit"
 	"tribute: Reunion" /= 2900
 	"tribute: Kraken Station" /= 500
 	"tribute: Tinker" /= 1100
@@ -2384,8 +2388,8 @@ event "pug link restoration 2"
 
 
 event "pug link restoration 3"
-	link "Diphda" "Ankaa"
-	link "Fomalhaut" "Markab"
+	link "Diphda" "Puppis"
+	link "Fomalhaut" "Acrab"
 	link "Rasalhague" "Ascella"
 
 
