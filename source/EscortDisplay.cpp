@@ -202,7 +202,7 @@ EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool systemNameKnown, b
 	cannotJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.JumpsRemaining()),
 	isSelected(isSelected),
 	cost(ship.Cost()),
-	system((!isHere && ship.GetSystem()) ? systemNameKnown ? ship.GetSystem()->Name() : "???" : ""),
+	system((!isHere && ship.GetSystem()) ? systemNameKnown ? ship.GetSystem()->Name() : "Unexplored System" : ""),
 	low{ship.Shields(), ship.Hull(), ship.Energy(), ship.Heat(), ship.Fuel()},
 	high(low),
 	ships(1, &ship)
