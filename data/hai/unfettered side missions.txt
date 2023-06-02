@@ -218,7 +218,7 @@ mission "Hai Legacy 2"
 outfit "Unfettered Landing License"
 	category "Licenses"
 	thumbnail "outfit/unknown"
-	"maintenance costs" 1000
+	"maintenance costs" 681
 	description "This is needed in order to land on Unfettered planet, but can be sold at any time in order to cancel the arrangement."
 
 mission "Hai Legacy 3"
@@ -238,7 +238,7 @@ mission "Hai Legacy 3"
 				`	"Can't I just sell it to you?"`
 			`	"No, because in the eyes of my brethren that would mean I did not deserve this ship."`
 			label win
-			`	"You will win the right to access our worlds for just a meagre daily fee of 1000 credits. You will not be allowed to land like today any other time should you refuse this deal. Beware, for there are no rules, other than the fact you may only use one ship, and only one ship! Tell me then, what say you, will you take to the skies, or are you too effrayed?"`
+			`	"You will win the right to access our worlds for just a meagre daily fee of 500 credits. You will not be allowed to land like today any other time should you refuse this deal. Beware, for there are no rules, other than the fact you may only use one ship, and only one ship! Tell me then, what say you, will you take to the skies, or are you too effrayed?"`
 			choice
 				`	"I accept."`
 				`	"I have nothing to prove to you."`
@@ -275,7 +275,7 @@ mission "Hai Legacy 3"
 	to complete
 		has "unfettered: beaten the bugs"
 	on complete
-		dialog `The engineer seems shocked at first. "You really... won? I did not participate in the fight, as you may have noticed. But I only have one word and will give you the license as agreed, but make sure you do not lose this until you may land on our worlds by other means, or we will take it very seriously."`
+		dialog `The engineer seems shocked at first. "You really... won? I did not participate in the fight, as you may have noticed. But I only have one word and will give you the license as agreed, but make sure you do not lose this until you may land on our worlds by other means, or we will take it very seriously. Oh, and we added taxes to the daily fee, I hope you don't mind."`
 		outfit "Unfettered Landing License"
 		log "Managed to use an old ladybug to overtake a swarm of Lightning Bugs, earning myself a place in Unfettered territory."
 
