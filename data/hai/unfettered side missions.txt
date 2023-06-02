@@ -273,7 +273,7 @@ mission "Hai Legacy 3"
 		to despawn
 			"total ships" != 1
 		personality unconstrained entering plunders staying target heroic
-		ship "Sea Scorpion (Ionic)"
+		ship "Sea Scorpion (Ionic)" "Karma"
 		on disable
 			set "unfettred: beaten extra bugs"
 	npc
@@ -288,7 +288,7 @@ mission "Hai Legacy 3"
 		has "unfettered: beaten the bugs"
 		or
 			"old reputation: Hai (Unfettered)" > -2000
-			"unfettered: beaten extra bugs"
+			has "unfettered: beaten extra bugs"
 	on complete
 		dialog `The engineer seems shocked at first. "You really... won? I did not participate in the fight, as you may have noticed. But I only have one word and will give you the license as agreed, but make sure you do not lose this until you may land on our worlds by other means, or we will take it very seriously. Oh, and we added taxes to the daily fee, I hope you don't mind."`
 		outfit "Unfettered Landing License"
