@@ -195,9 +195,11 @@ mission "Hai Legacy 2"
 	deadline 20
 	cargo "food (aid)" 121
 	destination "Firelode"
-	blocked "You need space for the agreed rush cargo of food to Unfettered space."
+	blocked "You need space for the agreed rush cargo of food to Unfettered space, and most use it as your flagship."
 	to offer
 		has "ship model: Ancient Ladybug"
+	to accept
+		has "flagship model: Ancient Ladybug"
 	on enter
 		system
 			attributes "unfettered"
@@ -228,7 +230,7 @@ mission "Hai Legacy 3"
 	landing
 	source "Firelode"
 	to offer
-		has "ship model: Ancient Ladybug"
+		has "flagship model: Ancient Ladybug"
 	on offer
 		conversation
 			`As you land and get out of your ship you quickly notice you have attracted a lot of attention, probably due to this old design. One Unfettered that looks like an engineer comes to speak to you, warmed than usual. "Welcome. I do not know how you have obtained this ship, and some will probably see it as a sign. As you may know it is a relic of our past, a past we are quite proud of."`
@@ -310,7 +312,7 @@ mission "Unfettered Landing License Lost"
 		fail "Unfettered Landing License Lost"
 		outfit "Unfettered Landing License"
 		fine 2500000
-		log "Lost the landing license that the Unfettered provided but they were kind enough to provide another one for 2.5 million credits."
+		log "Lost the landing license that the Unfettered provided but they were kind enough to provide another one for a loss fine of 2.5 million credits."
 	on decline
 		"reputation: Hai (Unfettered)" <?= -1
 		log "Lost the landing license that the Unfettered provided."
@@ -324,4 +326,6 @@ mission "License Irrelevant"
 		has "Unfettered Jump Drive 1: offered"
 	on offer
 		outfit "Unfettered Landing License" -1
+		# it will now become free of upkeep
+		set "license: Unfettered Landing"
 		fail

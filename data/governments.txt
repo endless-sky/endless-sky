@@ -555,7 +555,6 @@ government "Hai (Unfettered Challenger)"
 	"player reputation" -1000
 	"bribe" .0001
 	"fine" 0
-
 	"friendly hail" "friendly unfettered"
 	"friendly disabled hail" "friendly disabled unfettered"
 	"hostile hail" "hostile unfettered"
