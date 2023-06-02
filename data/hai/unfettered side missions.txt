@@ -201,6 +201,7 @@ mission "Hai Legacy 2"
 	on enter
 		system
 			attributes "unfettered"
+		"old reputation: Hai (Unfettered)" = "reputation: Hai (Unfettered)"
 		"reputation: Hai (Unfettered)" >?= 0
 		dialog `As you enter the system you notice something... Or, more precisely, the lack of something. It is too quiet, probably due to the fact that, for the first time, the Unfettered Hai are not shooting at you. They are not hailing you either, however. Perhaps they think you are one of the Hai aiding them, especially given your cargo.`
 	on fail
@@ -256,7 +257,7 @@ mission "Hai Legacy 3"
 			"total ships" == 1
 		to despawn
 			"total ships" != 1
-		personality unconstrained launching plunders staying target heroic
+		personality unconstrained launching plunders staying target heroic disables
 		ship "Lightning Bug (Tripulse)" "Erazer"
 		ship "Lightning Bug" "Thunder"
 		ship "Lightning Bug (Unfettered Shipyards)" "Lighting"
@@ -264,6 +265,17 @@ mission "Hai Legacy 3"
 		dialog "You receive a message from the remaining Unfettered ships: they surrender."
 		on disable
 			set "unfettered: beaten the bugs"
+	npc disable
+		government "Hai (Unfettered Challenger)"
+		to spawn
+			has "old reputation: Hai (Unfettered)" < -2000
+			"total ships" == 1
+		to despawn
+			"total ships" != 1
+		personality unconstrained entering plunders staying target heroic
+		ship "Sea Scorpion (Ionic)"
+		on disable
+			set "unfettred: beaten extra bugs"
 	npc
 		government "Hai (Unfettered)"
 		ship "Lightning Bug (Unfettered Shipyards)"
@@ -274,6 +286,9 @@ mission "Hai Legacy 3"
 		dialog "You have not beaten all challenging ships yet. If they have not shown up it is probably because you have more than just the ladybug."
 	to complete
 		has "unfettered: beaten the bugs"
+		or
+			"old reputation: Hai (Unfettered)" > -2000
+			"unfettered: beaten extra bugs"
 	on complete
 		dialog `The engineer seems shocked at first. "You really... won? I did not participate in the fight, as you may have noticed. But I only have one word and will give you the license as agreed, but make sure you do not lose this until you may land on our worlds by other means, or we will take it very seriously. Oh, and we added taxes to the daily fee, I hope you don't mind."`
 		outfit "Unfettered Landing License"
