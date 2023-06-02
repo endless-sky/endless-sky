@@ -210,7 +210,7 @@ void EscortDisplay::SetMousePosition(Point position)
 
 
 
-EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool systemNameKnown, bool fleetIsJumping, bool isSelected)
+EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected)
 	: sprite(ship.GetSprite()),
 	isDisabled(ship.IsDisabled()),
 	isHere(isHere),
