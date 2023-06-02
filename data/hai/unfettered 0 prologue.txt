@@ -168,7 +168,7 @@ mission "Unfettered Jump Drive 1"
 				`	"How will my ship leave here without my jump drive?"`
 			
 			`	"We will give you a hyperdrive in its place," it says, "and you will be counted as our friend, so you will not need to leave here quickly, or under threat of violence." You can't help but wonder if they will try to take your ship by force if you do not agree to the deal.`
-			`	"You will no longer require a license to garantee our friendship," they add.`
+			`	"You will no longer require a license to guarantee our friendship," they add.`
 				to display
 					has "Hai Legacy 3: done"
 			choice

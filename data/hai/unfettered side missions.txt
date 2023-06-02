@@ -182,7 +182,7 @@ mission "Hai Legacy 1"
 			action
 				give ship "Ancient Ladybug" "Good Omen"
 				fine 6000000
-				log "Accepted a somewhat shady deal for a old Hai ship, a Ladybug, that seems to still be in good functionning state."
+				log "Accepted a somewhat shady deal for a old Hai ship, a Ladybug, that seems to still be in good functioning state."
 			`	They give you access to the ship and proceed to explain the details. "It is of no real significance, but surely you understand we cannot go trough official means for this, we will have to present it as a fine. Worry not, we will make it something of no consequence, like an old Korath forbidden tech you would not have known about, that we had to confiscate."`
 			`	You quickly realize they are not asking you for your opinion at all. In fact, you notice the fine has already been issued before you could say anything. "Oh, and you should not change its colors, you'll understand why later."`
 				accept
@@ -207,7 +207,7 @@ mission "Hai Legacy 2"
 		"reputation: Hai (Unfettered)" <?= -1000
 		dialog `The Unfettered and their associates are not clearly happy when you tell them about this. "You will have to prove yourself another way."`
 	on visit
-		phrase "generic cargo on visit"
+		dialog phrase "generic cargo on visit"
 	on complete
 		dialog `You receive a message from the 'associates of Hai-home', "thank you for helping our brethren, <last>. We will not forget this. Please accept these <payment> to get you started on paying back."`
 		payment 1250000
@@ -230,7 +230,7 @@ mission "Hai Legacy 3"
 		has "ship model: Ancient Ladybug"
 	on offer
 		conversation
-			`As you land and get out of your ship you quickly notice you have attracted a lot of attention, probably due to this old design. One Unfettered that looks like an engineer comes to speak to you, seeming much more open to speak than usual. "Welcome. I do not know how you have obtained this ship, and some will probably see it as a sign. As you may know it is a relic of our past, a past we are quite proud of."`
+			`As you land and get out of your ship you quickly notice you have attracted a lot of attention, probably due to this old design. One Unfettered that looks like an engineer comes to speak to you, warmed than usual. "Welcome. I do not know how you have obtained this ship, and some will probably see it as a sign. As you may know it is a relic of our past, a past we are quite proud of."`
 			`	"In truth, I do not personally care about all of that. All I care about is that this ship is old, and has technology that would be very valuable because of how rare it is. Thus, I challenge you for it!"`
 			choice
 				`	"What do I get if I win?"`
@@ -250,7 +250,7 @@ mission "Hai Legacy 3"
 	on fail
 		"reputation: Hai (Unfettered)" >?= -1000
 		dialog `The Unfettered hail you, "You failed the mission, and as such, are no longer authorized to land on our worlds, and you will not enjoy unmerited respect any longer!"`
-	npc
+	npc disable
 		government "Hai (Unfettered Challenger)"
 		to spawn
 			"total ships" == 1
@@ -260,8 +260,9 @@ mission "Hai Legacy 3"
 		ship "Lightning Bug (Tripulse)" "Erazer"
 		ship "Lightning Bug" "Thunder"
 		ship "Lightning Bug (Unfettered Shipyards)" "Struck"
+		dialog "You receive a message from the remaining Unfettered ships: they surrender."
 		on disable
-			set "beaten the bugs"
+			set "unfettered: beaten the bugs"
 	npc
 		government "Hai (Unfettered)"
 		ship "Lightning Bug (Unfettered Shipyards)"
@@ -273,7 +274,7 @@ mission "Hai Legacy 3"
 	to complete
 		has "unfettered: beaten the bugs"
 	on complete
-		dialog `The engineer seems shocked at first. "You... won? Alright, I will give you the license as agreed, but make sure you do not lose this until you may land on our worlds by other means, or we will take it very seriously."`
+		dialog `The engineer seems shocked at first. "You really... won? I did not participate in the fight, as you may have noticed. But I only have one word and will give you the license as agreed, but make sure you do not lose this until you may land on our worlds by other means, or we will take it very seriously."`
 		outfit "Unfettered Landing License"
 		log "Managed to use an old ladybug to overtake a swarm of Lightning Bugs, earning myself a place in Unfettered territory."
 
@@ -283,7 +284,7 @@ mission "Unfettered Landing License Lost"
 	source
 		attributes "unfettered"
 	to offer
-		has "Relic of old: done"
+		has "Hai Legacy 3: done"
 		not "outfit (all): Unfettered Landing License"
 		not "Unfettered Jump Drive 1: offered"
 	on offer
