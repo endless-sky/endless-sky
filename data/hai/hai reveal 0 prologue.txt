@@ -496,7 +496,7 @@ mission "Hai Reveal: Meet the Team: Xilin 1"
 			label humble
 			`	For a moment his expression falters, and then he seems almost relieved. "You may be a better person than I expected to meet.`
 			label mission
-			`	"Now, about that task. I mentioned during our briefing that we need to determine how much of a threat these new arrivals might be. Not a threat in the sense that they will become violent, but in the sense that they could exacerbate the situation, such as by returning to our space and making a big stink about what they've found here. The best place to go for this would be <stopovers>."`
+			`	"Now, about that task. I mentioned during our briefing that we need to determine how much of a threat these new arrivals might be. Not a threat in the sense that they will become violent, but in the sense that they could exacerbate the situation, such as by returning to our space and making a big stink about what they've found here. The best place to go for this would be <destination>."`
 			`	"I would like to follow and observe," says Sayari.`
 			`	"You're free to come," says Xilin. "Let me pack a few items into your ship, Captain <last>, and we can be on our way."`
 				accept
@@ -615,7 +615,7 @@ mission "Hai Reveal: Meet the Team: Samuel 1"
 			`	"I'll have you know I'm considered something of a miracle worker among the Syndicate," Remington says in a wry tone. "The Syndicate was sad to rent me out, but there's also an internal political situation going on that has been causing me quite the headache recently." His eyes momentarily flick to Terry as he says that, but Remington presses on immediately. "It's nothing I can discuss in detail, with all the NDAs involved, you know, but something I'll certainly enjoy taking a break from."`
 			`	"Alondo said you needed my help," you say.`
 			label help
-			`	"Ah, yes. Well you see, I'd like to travel to <stopovers> to get the lay of the land around the conflict between the two Hai groups. Care to give me a ride there? It'd be just the two of us."`
+			`	"Ah, yes. Well you see, I'd like to travel to <destination> to get the lay of the land around the conflict between the two Hai groups. Care to give me a ride there? It'd be just the two of us."`
 			`	"I will be accompanying you," Sayari says.`
 			`	"Just the three of us, then," Remington adds. "The Wah Ki system is where Mr. Campbell's video that's been plastered all over the news was taken. I imagine any new arrivals attempting to look into the validity of the video themselves would find their way there, so it'd be worth checking in on the place."`
 				accept
@@ -678,11 +678,11 @@ mission "Hai Reveal: Meet the Team: Samuel 2"
 	on complete
 		set "hr: met samuel"
 		conversation
-			`You return to the briefing room at the secure port with Remington and Sayari. "This Hai holographic tech is pretty nifty, isn't it?" Remington says while playing around with the device he used on <planet stopovers>. "Way more advanced than anything we've got back home. It's also pretty useful that there's a port for one of our cables, otherwise I never would have figured out how to get that Pug image on there."`
+			`You return to the briefing room at the secure port with Remington and Sayari. "This Hai holographic tech is pretty nifty, isn't it?" Remington says while playing around with the device he used on <origin>. "Way more advanced than anything we've got back home. It's also pretty useful that there's a port for one of our cables, otherwise I never would have figured out how to get that Pug image on there."`
 			`	"Ah, yes," Sayari says. "Many decades of interaction with humans has led us to accommodate much of our technology to your needs. Humans are our guests here, so we saw it only right to make you feel more comfortable. A shame to see a few bad apples may spoil the bunch."`
 			`	"You have apples up here?" Remington asks.`
 			`	Sayari chuckles. "Just as we have adapted our technology to human needs, we have also imported many human foods and learned human sayings. It has all been very exciting."`
-			`	Sayari pauses for a moment. "Our civilization is tens of thousands of years old. There is little in that time that we have not done on our own. But seeing such a young species has led to much excitement. I wish for that excitement to not turn into strife. This is what I explained to the Hai on <planet stopovers>. 'These humans are young. Be patient with them.'"`
+			`	Sayari pauses for a moment. "Our civilization is tens of thousands of years old. There is little in that time that we have not done on our own. But seeing such a young species has led to much excitement. I wish for that excitement to not turn into strife. This is what I explained to the Hai on <origin>. 'These humans are young. Be patient with them.'"`
 			choice
 				`	"Glad to see that you still have a positive view of us."`
 				`	"Well, we're here to do our best to make that wish come true."`
