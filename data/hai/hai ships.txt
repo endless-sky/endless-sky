@@ -555,17 +555,18 @@ ship "Lightning Bug" "Lightning Bug (Unfettered Shipyards)"
 		`"Biroo" Atomic Steering`
 		"Hyperdrive"
 
-ship "Lightning Bug" "Lightning Bug (Tripulse)"
+# this design purposely lacks energy
+ship "Lightning Bug" "Lightning Bug (Ionic)"
 	outfits
-		"Tripulse Shredder"
-		"Pulse Turret"
-		"Hai Octopus Jammer"
-		"Geode Reactor"
-		"Hai Gorge Batteries"
+		"Ionic Blaster Prototype"
+		"Ionic Turret Prototype"
 		"Hai Corundum Regenerator"
 		"Hai Williwaw Cooling"
 		"Quantum Keystone"
-		"Pulse Rifle" 2
+		"Value Detector"
+		"Sand Cell" 3
+		"Hai Fissure Batteries"
+		"Pulse Rifle" 10
 		`"Benga" Atomic Thruster`
 		`"Biroo" Atomic Steering`
 		"Hyperdrive"
@@ -987,7 +988,7 @@ ship "Sea Scorpion" "Sea Scorpion (Ionic)"
 		"Ion Cannon"
 		"Ionic Blaster Prototype" 2
 		"Ionic Turret Prototype"
-		"Pulse Rifle" 15
+		"Pulse Rifle" 36
 
 ship "Sea Scorpion" "Sea Scorpion (Shredder)"
 	outfits
@@ -1000,7 +1001,7 @@ ship "Sea Scorpion" "Sea Scorpion (Shredder)"
 		"Hai Williwaw Cooling" 4
 		"Hyperdrive"
 		"Pulse Cannon" 2
-		"Pulse Rifle" 15
+		"Pulse Rifle" 36
 		"Pulse Turret"
 		"Quantum Keystone"
 		"Tripulse Shredder" 2

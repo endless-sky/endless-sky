@@ -258,7 +258,7 @@ mission "Hai Legacy 3"
 		to despawn
 			"total ships" != 1
 		personality unconstrained launching plunders staying target heroic disables
-		ship "Lightning Bug (Tripulse)" "Erazer"
+		ship "Lightning Bug (Ionic)" "Erazer"
 		ship "Lightning Bug" "Thunder"
 		ship "Lightning Bug (Unfettered Shipyards)" "Lighting"
 		ship "Lightning Bug (Pulse)" "Struck"
@@ -273,7 +273,8 @@ mission "Hai Legacy 3"
 		to despawn
 			"total ships" != 1
 		personality unconstrained entering plunders staying target heroic
-		ship "Sea Scorpion (Ionic)" "Karma"
+		ship "Sea Scorpion (Shredder)" "Karma"
+		system "Hi Yahr"
 		on disable
 			set "unfettred: beaten extra bugs"
 	npc
