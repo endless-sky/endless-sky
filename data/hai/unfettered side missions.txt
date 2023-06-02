@@ -259,8 +259,8 @@ mission "Hai Legacy 3"
 		personality unconstrained launching plunders staying target heroic
 		ship "Lightning Bug (Tripulse)" "Erazer"
 		ship "Lightning Bug" "Thunder"
-		ship "Lightning Bug (Unfettered Shipyards)" "Lightning"
-		ship "Lighting Bug (Pulse)" "Struck"
+		ship "Lightning Bug (Unfettered Shipyards)" "Lighting"
+		ship "Lightning Bug (Pulse)" "Struck"
 		dialog "You receive a message from the remaining Unfettered ships: they surrender."
 		on disable
 			set "unfettered: beaten the bugs"
