@@ -196,8 +196,8 @@ mission "Hai Legacy 2"
 	blocked "You need space for the agreed rush cargo of food to Unfettered space, and most use it as your flagship."
 	to offer
 		has "ship model: Ancient Ladybug"
-	to accept
-		has "flagship model: Ancient Ladybug"
+	on enter
+		dialog `As you take of from the planet you notice a message was left on the bridge, probably from the 'associates'. "You should use the Ladybug as your flagship and you should probably not bring any other ships. You'll understand why later." It occurs to you that you could also modify the ship.`
 	on enter
 		system
 			attributes "unfettered"
@@ -244,8 +244,21 @@ mission "Hai Legacy 3"
 				`	"I accept."`
 				`	"I have nothing to prove to you."`
 					decline
-			`	"Good! I will of course not be fighting you personally, as it is too risky to do so."`
-				accept
+			`	"Good! I will of course not be fighting you personally, as it is too risky to do so. I would also not want to deny my brethren the opportunity to prove themselves against a mighty human warrior!"`
+			`	You are not sure if they are being serious or not, but their friends seem to be in for it. What seems to be their leader approaches you. "So you think you deserve to fly this mighty ship of the Hai empire?"`
+			`	"Yeah, what makes you think that, human?" Another one adds.`
+			choice
+				`	(Say nothing.)`
+				`	"Are you trying to scare me out of the fight?"`
+					goto scare
+			`	"I guess we'll find out." Says a third.`
+			label scare
+			`	The leader gets closer and addresses you in a more serious tone, "You should be aware, <last>, this is not a friendly duel between allies. As far as I am concerned you are an enemy. You should see it more as a fight for you to truly earn this ship, and more, but make no mistakes: it has only one rule, and that is that nobody else than us may interfere."`
+			`	"Although sometimes the rules can bend a little. But you certainly did not earn that privilege."`
+				to display
+					"reputation: Hai (Unfettered)" < -1500
+			`	The engineer comes back, looking a bit impatient, "Are you going to talk all day, or are you going to fight?" On that note they all head to their ships, launching into space, and so do you.`
+				launch
 	on decline
 		"reputation: Hai (Unfettered)" >?= -1000
 	on fail
@@ -291,7 +304,7 @@ mission "Hai Legacy 3"
 			"old reputation: Hai (Unfettered)" > -2000
 			has "unfettered: beaten extra bugs"
 	on complete
-		dialog `The engineer seems shocked at first. "You really... won? I did not participate in the fight, as you may have noticed. But I only have one word and will give you the license as agreed, but make sure you do not lose this until you may land on our worlds by other means, or we will take it very seriously. Oh, and we added taxes to the daily fee, I hope you don't mind."`
+		dialog `The engineer seems shocked at first. "You really... won? It really was close until the end, wasn't it? Or did the captains already make stories for themselves? Anyway I must congratulate you, I never expected you had it in you. That said, I only have one word and will give you the license as agreed, but make sure you do not lose this until you may land on our worlds by other means, or we will take it very seriously. Oh, and we added taxes to the daily fee, I hope you don't mind."`
 		outfit "Unfettered Landing Allowance"
 		log "Managed to use an old ladybug to overtake a swarm of Lightning Bugs, earning myself a place in Unfettered territory."
 
