@@ -137,6 +137,10 @@ mission "First Contact: Unfettered"
 		log "Factions" "Sheragi" `The Unfettered Hai say that a dragon-like species called the "Sheragi" who are long extinct used to live in human space, back when much of what is now human territory was occupied by the Hai.`
 
 
+outfit "Unfettered Landing License"
+	category "Licenses"
+	thumbnail "outfit/unknown"
+	description "This is the license that allows you to land freely on Unfettered planets so long as you act responsibly towards them."
 
 mission "Unfettered Jump Drive 1"
 	minor
@@ -197,6 +201,7 @@ mission "Unfettered Jump Drive 1"
 		outfit "Jump Drive" -1
 		outfit "Hyperdrive" 1
 		payment 1000000
+		set "license: Unfettered Landing"
 		"reputation: Hai (Unfettered)" >?= 10
 
 

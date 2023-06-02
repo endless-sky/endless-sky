@@ -216,11 +216,11 @@ mission "Hai Legacy 2"
 
 
 
-outfit "Unfettered Landing License"
+outfit "Unfettered Landing Allowance"
 	category "Licenses"
 	thumbnail "outfit/unknown"
 	"maintenance costs" 681
-	description "This is needed in order to land on Unfettered planet, but can be sold at any time in order to cancel the arrangement."
+	description "This item is needed in order to land on Unfettered planet, but can be sold at any time in order to cancel the arrangement."
 
 mission "Hai Legacy 3"
 	name "Unfettered Relic of old"
@@ -292,28 +292,28 @@ mission "Hai Legacy 3"
 			has "unfettered: beaten extra bugs"
 	on complete
 		dialog `The engineer seems shocked at first. "You really... won? I did not participate in the fight, as you may have noticed. But I only have one word and will give you the license as agreed, but make sure you do not lose this until you may land on our worlds by other means, or we will take it very seriously. Oh, and we added taxes to the daily fee, I hope you don't mind."`
-		outfit "Unfettered Landing License"
+		outfit "Unfettered Landing Allowance"
 		log "Managed to use an old ladybug to overtake a swarm of Lightning Bugs, earning myself a place in Unfettered territory."
 
-mission "Unfettered Landing License Lost"
+mission "Unfettered Landing Allowance Lost"
 	landing
 	invisible
 	source
 		attributes "unfettered"
 	to offer
 		has "Hai Legacy 3: done"
-		not "outfit (all): Unfettered Landing License"
+		not "outfit (all): Unfettered Landing Allowance"
 		not "Unfettered Jump Drive 1: offered"
 	on offer
-		dialog "As you land the Unfettered immediately notice you do not have your license anymore. They warn you that this is your last chance, but you may have another one if you accept a fine of 2.5 million credits."
+		dialog "As you land the Unfettered immediately notice you do not have your landing authorization anymore. They warn you that this is your last chance, but you may have another one if you accept a fine of 2.5 million credits."
 	on accept
-		fail "Unfettered Landing License Lost"
-		outfit "Unfettered Landing License"
+		fail "Unfettered Landing Allowance Lost"
+		outfit "Unfettered Landing Allowance"
 		fine 2500000
-		log "Lost the landing license that the Unfettered provided but they were kind enough to provide another one for a loss fine of 2.5 million credits."
+		log "Lost the landing allowance that the Unfettered provided but they were kind enough to provide another one for a loss fine of 2.5 million credits."
 	on decline
 		"reputation: Hai (Unfettered)" <?= -1
-		log "Lost the landing license that the Unfettered provided."
+		log "Lost the landing allowance that the Unfettered provided."
 
 mission "License Irrelevant"
 	landing
@@ -323,7 +323,6 @@ mission "License Irrelevant"
 	to offer
 		has "Unfettered Jump Drive 1: offered"
 	on offer
-		outfit "Unfettered Landing License" -1
-		# it will now become free of upkeep
-		set "license: Unfettered Landing"
+		outfit "Unfettered Landing Allowance" -1
+		# the mission itself will set the proper license
 		fail
