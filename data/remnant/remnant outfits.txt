@@ -731,7 +731,7 @@ outfit "Crucible-Class Thruster"
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
-	"thrust" 14.4
+	"thrust" 16.55
 	"thrusting energy" 2.1
 	"thrusting heat" 2.0
 	"reverse thrust" 10.8
@@ -755,7 +755,7 @@ outfit "Forge-Class Thruster"
 	"mass" 39
 	"outfit space" -39
 	"engine capacity" -39
-	"thrust" 31.5
+	"thrust" 34
 	"thrusting energy" 4.4
 	"thrusting heat" 4.25
 	"reverse thrust" 23.6
