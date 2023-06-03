@@ -880,7 +880,7 @@ mission "FW Syndicate Capture 1B"
 			variant
 				"Manta (Nuclear)"
 	npc
-		system Beta Lyrae
+		system "Beta Lyrae"
 		government Syndicate
 		personality heroic nemesis staying
 		fleet
@@ -888,7 +888,7 @@ mission "FW Syndicate Capture 1B"
 			variant
 				"Manta (Nuclear)"
 	npc
-		system Beta Lyrae
+		system "Beta Lyrae"
 		government Syndicate
 		personality heroic nemesis staying
 		fleet
@@ -896,7 +896,7 @@ mission "FW Syndicate Capture 1B"
 			variant
 				"Manta (Nuclear)"
 	npc
-		system Beta Lyrae
+		system "Beta Lyrae"
 		government Syndicate
 		personality heroic nemesis staying
 		fleet
