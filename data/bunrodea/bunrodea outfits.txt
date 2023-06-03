@@ -225,7 +225,7 @@ outfit "Chiisana Rift Thruster"
 	"mass" 11
 	"outfit space" -11
 	"engine capacity" -11
-	"thrust" 6.25
+	"thrust" 7.775
 	"thrusting energy" 1.15
 	"thrusting heat" 0.65
 	"flare sprite" "effect/bunrodea flare/large"
@@ -242,7 +242,7 @@ outfit "Nami Rift Thruster"
 	"mass" 19
 	"outfit space" -19
 	"engine capacity" -19
-	"thrust" 12.1
+	"thrust" 14.09
 	"thrusting energy" 2.3
 	"thrusting heat" 1.3
 	"flare sprite" "effect/bunrodea flare/large"
@@ -259,7 +259,7 @@ outfit "Ookii Rift Thruster"
 	"mass" 32
 	"outfit space" -32
 	"engine capacity" -32
-	"thrust" 22.9
+	"thrust" 24.97
 	"thrusting energy" 4.4
 	"thrusting heat" 2.5
 	"flare sprite" "effect/bunrodea flare/large"
