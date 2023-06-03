@@ -166,7 +166,7 @@ mission "Hai Legacy 1"
 			label know
 			`	They grin, "Us knowing you is a necessity for you to land on our homeworld."`
 			label tellme
-			`	"We have a very interesting proposition for you: should you agree to bring supplies to our brethren, the Unfettered Hai, we will offer you a ship, for a modest price of 6 million credits. This is a very useful ship, and you should be able to repay this quite easily by running more of the same kind of jobs. It is indeed appropriate for bringing this important food cargo safely to destination, and even defend yourself, if need be. You see, these supplies are needed on short notice, on <destination>, and we lack the time and personnel to bring them."`
+			`	"We have a very interesting proposition for you: should you agree to bring supplies to our brethren, the Unfettered Hai, we will offer you a ship, for a modest price of 6.5 million credits. This is a very useful ship, and you should be able to repay this quite easily by running more of the same kind of jobs. It is indeed appropriate for bringing this important food cargo safely to destination, and even defend yourself, if need be. You see, these supplies are needed on short notice, on <destination>, and we lack the time and personnel to bring them."`
 			`	They take you into the cave, finally showing the ship they were referring to. "This is a mighty relic of the past, from the times our Empire used to control the stars; a Ladybug!`
 			scene "thumbnail/hai ladybug"
 			`	"Of course, it has some... drawbacks, compared to its golden time, and don't expect the best price in a shipyard either. Nevertheless it is a fine vessel, capable of safely taking a respectable amount of cargo across large distances! So, what do you say, <last>? This is the opportunity of a lifetime, as they simply don't make ships like these anymore!"`
@@ -179,18 +179,19 @@ mission "Hai Legacy 1"
 			label take
 			action
 				give ship "Ancient Ladybug" "Good Omen"
-				fine 6000000
+				fine 6500000
 				log "Accepted a somewhat shady deal for a old Hai ship, a Ladybug, that seems to still be in good functioning state."
 			`	They give you access to the ship and proceed to explain the details. "It is of no real significance, but surely you understand we cannot go trough official means for this, we will have to present it as a fine. Worry not, we will make it something of no consequence, like an old Korath forbidden tech you would not have known about, that we had to confiscate."`
 			`	You quickly realize they are not asking you for your opinion at all. In fact, you notice the fine has already been issued before you could say anything. "Oh, and you should not change its colors, you'll understand why later."`
 				accept
 
 mission "Hai Legacy 2"
+	shipyard
 	landing
 	name "Young but not that young"
 	description "Use the newly acquired old Ladybug to bring aid to the Unfettered Hai."
 	clearance
-	deadline 20
+	deadline 30
 	cargo "food (aid)" 121
 	destination "Firelode"
 	blocked "You need space for the agreed rush cargo of food to Unfettered space, and most use it as your flagship."
@@ -211,16 +212,15 @@ mission "Hai Legacy 2"
 		dialog phrase "generic cargo on visit"
 	on complete
 		dialog `You receive a message from the 'associates of Hai-home', "thank you for helping our brethren, <last>. We will not forget this. Please accept these <payment> to get you started on paying back."`
-		payment 1250000
+		payment 100000
 		log "Delivered a pressing food cargo to the Unfettered using a newly acquired but pretty old Ladybug. They seem to not be firing on me, for now at least."
 
 
 
+# no category, meaning you can't remove it from the Ladybug
 outfit "Unfettered Landing Permit"
-	category "Licenses"
-	thumbnail "outfit/unknown"
 	"maintenance costs" 681
-	description "This item is needed in order to land on Unfettered planet, but can be sold at any time in order to cancel the arrangement."
+	description "This item is needed in order to land on Unfettered planets, and its loss will cancel the arrangement."
 
 mission "Hai Legacy 3"
 	name "Unfettered Relic of old"
@@ -239,7 +239,8 @@ mission "Hai Legacy 3"
 				`	"Can't I just sell it to you?"`
 			`	"No, because in the eyes of my brethren that would mean I did not deserve this ship."`
 			label win
-			`	"You will win the right to access our worlds for just a meagre daily fee of 500 credits. You will not be allowed to land like today any other time should you refuse this deal. Beware, for there are no rules, other than the fact you may only use one ship, and only one ship! Tell me then, what say you, will you take to the skies, or are you too effrayed?"`
+			`	"You will win the right to access our worlds for just a meagre daily fee of 500 credits. You will not be allowed to land so easily as recently should you refuse this deal. Furthermore, this Ancient Ladybug may not be destroyed or sold."`
+			`	"Beware, for there are no rules, other than the fact you may only use one ship, and only one ship! Tell me then, what say you, will you take to the skies, or are you too effrayed?"`
 			choice
 				`	"I accept."`
 				`	"I have nothing to prove to you."`
@@ -304,7 +305,16 @@ mission "Hai Legacy 3"
 			"old reputation: Hai (Unfettered)" > -2000
 			has "unfettered: beaten extra bugs"
 	on complete
-		dialog `The engineer seems shocked at first. "You really... won? It really was close until the end, wasn't it? Or did the captains already make stories for themselves? Anyway I must congratulate you, I never expected you had it in you. That said, I only have one word and will give you the license as agreed, but make sure you do not lose this until you may land on our worlds by other means, or we will take it very seriously. Oh, and we added taxes to the daily fee, I hope you don't mind."`
+		conversation
+			`The engineer seems shocked at first. "You really... won? It really was close until the end, wasn't it? Or did the captains already make stories for themselves?"`
+			choice
+				`	"Indeed, but it was fun."`
+					goto next
+				`	"What are they talking about? This was easy!"`
+			`	"Don't become overconfident now, captain. I am sure you know what happens to such people."`
+			label next
+			`	"Anyway I must congratulate you, I never expected you had it in you. That said, I only have one word and will give you authorization to land, on the condition that you keep this relic from our past in good condition!"`
+			`	"Make sure you do not lose this until you permanently deserve the right to call us friends, or we will take it very seriously. Oh, and we added taxes to the daily fee, I hope you don't mind."`
 		outfit "Unfettered Landing Permit"
 		log "Managed to use an old ladybug to overtake a swarm of Lightning Bugs, earning myself a place in Unfettered territory."
 
@@ -318,17 +328,12 @@ mission "Unfettered Landing Permit Lost"
 		not "outfit (all): Unfettered Landing Permit"
 		not "Unfettered Jump Drive 1: offered"
 	on offer
-		dialog "As you land the Unfettered immediately notice you do not have your landing authorization anymore. They warn you that this is your last chance, but you may have another one if you accept a fine of 2.5 million credits."
-	on accept
-		fail "Unfettered Landing Permit Lost"
-		outfit "Unfettered Landing Permit"
-		fine 2500000
-		log "Lost the landing permit that the Unfettered provided but they were kind enough to provide another one for a loss fine of 2.5 million credits."
-	on decline
+		dialog "As you land the Unfettered tell you they have learned of the loss of the Ladybug, thereby ending your landing access and friendly relations with them until you give them a Jump Drive."
+		log "Lost the Ancient Ladybug and friendly access to Unfettered space with it."
 		"reputation: Hai (Unfettered)" <?= -1
-		log "Lost the landing permit that the Unfettered provided."
+		fail
 
-mission "License Irrelevant"
+mission "Free Permit"
 	landing
 	invisible
 	source
@@ -337,5 +342,4 @@ mission "License Irrelevant"
 		has "Unfettered Jump Drive 1: offered"
 	on offer
 		outfit "Unfettered Landing Permit" -1
-		# the mission itself will set the proper license
 		fail

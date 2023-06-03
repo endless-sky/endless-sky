@@ -137,10 +137,6 @@ mission "First Contact: Unfettered"
 		log "Factions" "Sheragi" `The Unfettered Hai say that a dragon-like species called the "Sheragi" who are long extinct used to live in human space, back when much of what is now human territory was occupied by the Hai.`
 
 
-outfit "Unfettered Landing License"
-	category "Licenses"
-	thumbnail "outfit/unknown"
-	description "This is the license that allows you to land freely on Unfettered planets so long as you act responsibly towards them."
 
 mission "Unfettered Jump Drive 1"
 	minor
@@ -172,7 +168,7 @@ mission "Unfettered Jump Drive 1"
 				`	"How will my ship leave here without my jump drive?"`
 			
 			`	"We will give you a hyperdrive in its place," it says, "and you will be counted as our friend, so you will not need to leave here quickly, or under threat of violence." You can't help but wonder if they will try to take your ship by force if you do not agree to the deal.`
-			`	"You will no longer require a license to guarantee our friendship," they add.`
+			`	"You will no longer require to keep the Ladybug in working condition to guarantee our friendship, and no longer need to pay for access to our territory," they add.`
 				to display
 					has "Hai Legacy 3: done"
 			choice
@@ -201,7 +197,6 @@ mission "Unfettered Jump Drive 1"
 		outfit "Jump Drive" -1
 		outfit "Hyperdrive" 1
 		payment 1000000
-		set "license: Unfettered Landing"
 		"reputation: Hai (Unfettered)" >?= 10
 
 
