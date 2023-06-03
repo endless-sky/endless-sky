@@ -99,7 +99,7 @@ mission "Unfettered Jump Drive 4"
 	job
 	repeat
 	name "Sell Jump Drive"
-	description "Exchange a jump drive for money or weapons, if an outfitter is available."
+	description "Exchange a jump drive on your flagship or in cargo for money, or for weapons, if an outfitter is available."
 	source
 		attributes "unfettered"
 	to offer
@@ -107,6 +107,10 @@ mission "Unfettered Jump Drive 4"
 		not "event: wanderers: unfettered invasion starts"
 	to fail
 		has "Unfettered Jump Drive 4: active"
+	to accept
+		or
+			has "outfit (flagship installed): Jump Drive"
+			has "outfit (cargo): Jump Drive"
 	on accept
 		conversation
 			branch "want outfits"

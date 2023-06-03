@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.21..3.25)
 include(CMakeDependentOption)
 option(ES_USE_VCPKG "Use vcpkg to get dependencies." ON)
 cmake_dependent_option(ES_GLES "Build the game with OpenGL ES" OFF UNIX OFF)
+cmake_dependent_option(ES_FLATPAK "Build the game inside the Flatpak runtime" OFF UNIX OFF)
 cmake_dependent_option(ES_STEAM "Build the game for the Steam Linux runtime" OFF UNIX OFF)
 cmake_dependent_option(ES_USE_SYSTEM_LIBRARIES "Use system libraries instead of the vcpkg ones." ON UNIX OFF)
 cmake_dependent_option(ES_USE_OFFSCREEN
@@ -24,8 +25,11 @@ set(CMAKE_BUILD_RPATH_USE_ORIGIN ON)
 
 # Setup vcpkg.
 if(ES_USE_VCPKG)
-	include(utils/vcpkg_bootstrap.cmake)
-	x_vcpkg_bootstrap()
+	# No need to bootstrap vcpkg if the toolchain file is explictly provided.
+	if(NOT CMAKE_TOOLCHAIN_FILE)
+		include(utils/vcpkg_bootstrap.cmake)
+		x_vcpkg_bootstrap()
+	endif()
 
 	set(VCPKG_BOOTSTRAP_OPTIONS "-disableMetrics")
 	set(VCPKG_INSTALL_OPTIONS "--no-print-usage")
@@ -40,8 +44,10 @@ if(NOT ES_USE_SYSTEM_LIBRARIES)
 	list(APPEND VCPKG_MANIFEST_FEATURES "system-libs")
 endif()
 
-# Some system libraries aren't available on the default Sniper runtime and need to be built from source.
-if(ES_STEAM)
+# Tell vcpkg to use system libraries that are missing in the Flatpak or Steam runtime if necessary.
+if(ES_FLATPAK)
+	list(APPEND VCPKG_MANIFEST_FEATURES "flatpak-libs")
+elseif(ES_STEAM)
 	list(APPEND VCPKG_MANIFEST_FEATURES "steam-libs")
 endif()
 
@@ -50,7 +56,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT EndlessSky)
 set(CMAKE_VS_JUST_MY_CODE_DEBUGGING ON)
 
-project("Endless Sky" VERSION 0.10.1
+project("Endless Sky" VERSION 0.10.2
 	DESCRIPTION "Space exploration, trading, and combat game."
 	HOMEPAGE_URL https://endless-sky.github.io/
 	LANGUAGES CXX)

@@ -167,8 +167,8 @@ mission "Wealthy Hai [1]"
 	to offer
 		random < 70
 	to accept
-		has "outfit: Luxury Accommodations"
-		has "outfit: Quantum Keystone"
+		has "outfit (installed): Luxury Accommodations"
+		has "outfit (installed): Quantum Keystone"
 	source
 		government "Hai"
 	destination
@@ -195,8 +195,8 @@ mission "Wealthy Hai [2]"
 	to offer
 		random < 30
 	to accept
-		has "outfit: Luxury Accommodations"
-		has "outfit: Quantum Keystone"
+		has "outfit (installed): Luxury Accommodations"
+		has "outfit (installed): Quantum Keystone"
 	source
 		government "Hai"
 	destination
@@ -407,7 +407,7 @@ mission "Delivery to Human Space [0]"
 	job
 	repeat
 	description "This human wishes for <cargo> to be delivered to <destination> in human space. Payment is <payment>."
-	cargo random 5 10
+	cargo random 2 2 .29
 	to offer
 		random < 30
 	source
@@ -415,10 +415,13 @@ mission "Delivery to Human Space [0]"
 		near "Heia Due" 2
 	destination
 		attributes "north"
+	"distance calculation settings"
+		"only unrestricted wormholes"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 60000
+		payment
+		payment 50000
 		"reputation: Hai" += 5
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
@@ -431,7 +434,7 @@ mission "Delivery to Human Space [1]"
 	job
 	repeat
 	description "This Hai wishes for <cargo> to be delivered to <destination> in human space. Payment is <payment>."
-	cargo random 5 10
+	cargo random 2 2 .29
 	to offer
 		random < 25
 	source
@@ -442,7 +445,8 @@ mission "Delivery to Human Space [1]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 60000
+		payment
+		payment 50000
 		"reputation: Hai" += 5
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
@@ -455,7 +459,7 @@ mission "Delivery to Human Space [2]"
 	job
 	repeat
 	description "This human wishes for <cargo> to be delivered to <destination> in human space. Payment is <payment>."
-	cargo random 5 10
+	cargo random 2 2 .29
 	to offer
 		random < 20
 	source
@@ -463,10 +467,13 @@ mission "Delivery to Human Space [2]"
 		near "Heia Due" 2
 	destination
 		attributes "north"
+	"distance calculation settings"
+		"only unrestricted wormholes"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 60000
+		payment
+		payment 50000
 		"reputation: Hai" += 5
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
@@ -479,7 +486,7 @@ mission "Hai Retrieve Human Luxury Goods"
 	job
 	repeat
 	description "A Hai socialite on <planet> wants to show off their knowledge of human culture to their peers. They want <cargo> from <stopovers> by <date>. Payment is <payment>."
-	cargo "Luxury Goods" 5 10
+	cargo "Luxury Goods" 2 2 .29
 	deadline 24
 	to offer
 		random < 15
@@ -489,12 +496,14 @@ mission "Hai Retrieve Human Luxury Goods"
 		not attributes "station"
 	stopover
 		attributes "north"
+	"distance calculation settings"
+		"only unrestricted wormholes"
 	on stopover
 		dialog "You gather the requested <commodity> and load them on your ship for return to <planet>."
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on complete
-		payment 120000
+		payment 100000 200
 		"reputation: Hai" += 5
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
@@ -507,7 +516,7 @@ mission "Hai Retrieve Human Food"
 	job
 	repeat
 	description "A Hai gourmet on <planet> is bored with local fare and wants to try food they heard about from human tourists. They want <cargo> from <stopovers> by <date>. Payment is <payment>."
-	cargo "Food" 5 10
+	cargo "Food" 2 2 .29
 	deadline 24
 	to offer
 		random < 15
@@ -516,12 +525,14 @@ mission "Hai Retrieve Human Food"
 		near "Heia Due" 2
 	stopover
 		attributes "north"
+	"distance calculation settings"
+		"only unrestricted wormholes"
 	on stopover
 		dialog "You gather the requested <commodity> and load them on your ship for return to <planet>."
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on complete
-		payment 120000
+		payment 100000 200
 		"reputation: Hai" += 5
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
@@ -534,7 +545,7 @@ mission "Hai Retrieve Human Electronics"
 	job
 	repeat
 	description "A Hai tinkerer on <planet> wants to experiment with human technology. They want <cargo> from <stopovers> by <date>. Payment is <payment>."
-	cargo "Electronics" 5 10
+	cargo "Electronics" 2 2 .29
 	deadline 24
 	to offer
 		random < 15
@@ -543,12 +554,14 @@ mission "Hai Retrieve Human Electronics"
 		near "Heia Due" 2
 	stopover
 		attributes "north"
+	"distance calculation settings"
+		"only unrestricted wormholes"
 	on stopover
 		dialog "You gather the requested <commodity> and load them on your ship for return to <planet>."
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on complete
-		payment 120000
+		payment 100000 200
 		"reputation: Hai" += 5
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
@@ -1483,7 +1496,7 @@ mission "Hai Prisoner Roleplay"
 		government "Hai"
 		not attributes "station"
 	to accept
-		has "outfit: Brig"
+		has "outfit (installed): Brig"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
