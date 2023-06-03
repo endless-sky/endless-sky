@@ -129,7 +129,7 @@ outfit "Reverse Thruster"
 	"mass" 22
 	"outfit space" -22
 	"weapon capacity" -22
-	"reverse thrust" 15.4
+	"reverse thrust" 18.68
 	"reverse thrusting energy" 1.8
 	"reverse thrusting heat" 3.5
 
