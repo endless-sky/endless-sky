@@ -16,7 +16,6 @@ mission "Unfettered: Hunger!"
 	landing
 	invisible
 	repeat
-	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land with the much needed tribute from the other Hai."
 	to offer
 		not "event: wanderers: unfettered invasion starts"
 		# to not make it restart if it's already going and is triggered by the Hai Escort mission and only make it last longer
