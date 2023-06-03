@@ -808,7 +808,7 @@ mission "FW Syndicate Capture 1B"
 				"Wasp" 12
 	
 	npc
-		system Ankaa
+		system Puppis
 		government Syndicate
 		personality heroic nemesis staying
 		fleet
@@ -816,7 +816,7 @@ mission "FW Syndicate Capture 1B"
 			variant
 				"Manta (Nuclear)"
 	npc
-		system Ankaa
+		system Puppis
 		government Syndicate
 		personality heroic nemesis staying
 		fleet
@@ -824,7 +824,31 @@ mission "FW Syndicate Capture 1B"
 			variant
 				"Manta (Nuclear)"
 	npc
-		system Ankaa
+		system Puppis
+		government Syndicate
+		personality heroic nemesis staying
+		fleet
+			names "syndicate capital"
+			variant
+				"Manta (Nuclear)"
+	npc
+		system Botein
+		government Syndicate
+		personality heroic nemesis staying
+		fleet
+			names "syndicate capital"
+			variant
+				"Manta (Nuclear)"
+	npc
+		system Botein
+		government Syndicate
+		personality heroic nemesis staying
+		fleet
+			names "syndicate capital"
+			variant
+				"Manta (Nuclear)"
+	npc
+		system Botein
 		government Syndicate
 		personality heroic nemesis staying
 		fleet
@@ -856,7 +880,7 @@ mission "FW Syndicate Capture 1B"
 			variant
 				"Manta (Nuclear)"
 	npc
-		system Sheratan
+		system Beta Lyrae
 		government Syndicate
 		personality heroic nemesis staying
 		fleet
@@ -864,7 +888,7 @@ mission "FW Syndicate Capture 1B"
 			variant
 				"Manta (Nuclear)"
 	npc
-		system Sheratan
+		system Beta Lyrae
 		government Syndicate
 		personality heroic nemesis staying
 		fleet
@@ -872,7 +896,7 @@ mission "FW Syndicate Capture 1B"
 			variant
 				"Manta (Nuclear)"
 	npc
-		system Sheratan
+		system Beta Lyrae
 		government Syndicate
 		personality heroic nemesis staying
 		fleet

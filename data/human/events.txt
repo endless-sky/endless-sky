@@ -3065,3 +3065,20 @@ mission "Martini Recovers"
 	on offer
 		event "martini recovers" 45
 		fail
+
+mission "Core Patch Links"
+	landing
+	invisible
+	to offer
+		has "main plot completed"
+		not "visited system: Tabit"
+	on offer
+		event "core fix links patch"
+		fail
+
+event "core fix links patch"
+	unlink "Diphda" "Ankaa"
+	link "Diphda" "Puppis"
+	unlink "Fomalhaut" "Markab"
+	link "Fomalhaut" "Caph"
+
