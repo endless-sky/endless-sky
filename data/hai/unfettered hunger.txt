@@ -50,7 +50,7 @@ mission "Unfettered: Hunger!"
 		"unfettered: hunger stops" += random
 	to fail
 		or
-			# lasts 30 to 120 days, if the player does nothing
+			# lasts approximately 60 days if the player does nothing
 			"unfettered: hunger stops" > 3000
 			has "event: wanderers: unfettered invasion starts"
 	on fail
@@ -225,7 +225,7 @@ mission "Unfettered: Hunger Stories 1"
 			branch translator
 				has "language: Wanderer"
 
-			`	Your approach startles her out of her distraction and she pulls the boy close. When you speak to her it's clear she doesn't understand you. You look around for an Unfettered who could translate, but she grabs your sleeve and shakes her head. Eventually one of your crew who understands a little Hai gives it a try.`
+			`	Your approach startles her out of her distraction and she pulls the boy close. When you speak to her it's clear she doesn't understand you. You look around for an Unfettered who could translate, but she grabs your sleeve and shakes her head. Eventually one hai who understands your language as well comes to help translate.`
 				goto message
 			label translator
 			`	Your approach startles her out of her distraction and she pulls the boy close. She is shaking her head to say she doesn't understand when your translator begins to relay your words. She relaxes somewhat but holds the boy's paw tightly.`
@@ -246,7 +246,7 @@ mission "Unfettered: Hunger Stories 1"
 				decline
 
 			label condolences
-			`	You tell her you are sorry for her loss. You see anger flare across her features as you turn to leave and if she wasn't holding an infant she might well have attacked you. "What good are your words monkey-man?" she shouts. "Will they feed my children? Did you come all this way to make fun of us? We have to choose between dying for a new world or starving on this one. Go back through the wormhole and give your words to your own kind!"`
+			`	You tell her you are sorry for her loss. You see anger flare across her features as you turn to leave and if she wasn't holding an infant she might well have attacked you. "What good are your words monkey?" she shouts. "Will they feed my children? Did you come all this way to make fun of us? We have to choose between dying for a new world or starving on this one. Go back through the wormhole and give your words to your own kind!"`
 			`	A group of Unfettered roughly screen you off from the distraught mother and tells you to leave. She continues screaming at you and crying as you walk away.`
 				decline
 
