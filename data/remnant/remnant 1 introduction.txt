@@ -390,6 +390,9 @@ mission "Remnant: Defense 3"
 conversation "remnant key stones"
 	branch found
 		has "Remnant: Found Keystones: offered"
+
+	branch equipped
+		has "outfit: Quantum Keystone"
 	
 	`As you are walking through the spaceport, a man comes up to you and introduces himself as the manager of the local outfitter. "Greetings, outsider," he says. "I have heard many good things about you and your assistance to our people. Would you be interested in going on a quest for me?"`
 	choice
@@ -423,7 +426,11 @@ conversation "remnant key stones"
 	label hai1
 	`	"I've seen that before," you say.`
 	`	He looks at you with surprise. "You found another world where these stones can be mined?"`
+		goto exchange
 	
+	label equipped
+	`As you are walking through the spaceport, a man comes up to you and introduces himself as the manager of the local outfitter. He says, "I could not help but notice that you have a Key Stone that looks different from the ones from our mines. You may have noticed the red anomalies scattered within this region of space. What you may not have known is that these are wormholes, accessible only with the possession of a Quantum Key Stone. My people highly value these Key Stones because of this, but our mines produce very few of them. Have you found another world where these stones can be mined?"`
+
 	label exchange
 	choice
 		`	"Yes, in the territory of some aliens far to the north of here."`
