@@ -541,7 +541,9 @@ mission "Remnant: Key Stones"
 		or
 			has "outfit: Quantum Keystone"
 			and
-				has "First Contact: Hai: offered"
+				or
+					has "First Contact: Hai: offered"
+					has "First Contact: Unfettered: offered"
 				or
 					has "event: remnant: void sprite research"
 					has "Remnant: Defense 3: done"
