@@ -3535,7 +3535,7 @@ mission "Earth Retirement"
 			label payment
 			action
 				payment 2000 80
-			`	As you count up the large clump of credits you were handed (the sum comes out to <payment>, as expected), they slowly make their way to the train station. Presumably, their new apartment is far from here.`
+			`	While you count up the large clump of credits you were handed (the sum comes out to <payment>, as expected), they slowly make their way to the train station. Presumably, their new apartment is far from here.`
 				accept
 			label reject
 			`	Charles looks surprised for a moment, and then, for the first time you've seen, he smiles. "Thank you, Captain <last>. I wish there were more people like you in the Paradise Worlds."`
