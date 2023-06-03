@@ -71,7 +71,7 @@ outfit "Fission Drive"
 	"engine capacity" -38
 	"energy generation" 5.2
 	"heat generation" 19.4
-	"thrust" 15.47
+	"thrust" 17.41
 	"thrusting energy" 1.508
 	"thrusting heat" 2.86
 	"turn" 319.8
