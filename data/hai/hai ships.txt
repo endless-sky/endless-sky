@@ -698,7 +698,7 @@ ship "Pond Strider"
 	sprite "ship/hai pond strider"
 	thumbnail "thumbnail/hai pond strider"
 	attributes
-		category "Medium Warship"
+		category "Heavy Carrier"
 		"cost" 5250000
 		"shields" 10000
 		"hull" 3000
@@ -1546,7 +1546,7 @@ ship "Solifuge"
 	sprite "ship/hai solifuge"
 	thumbnail "thumbnail/hai solifuge"
 	attributes
-		category "Heavy Warship"
+		category "Heavy Carrier"
 		licenses
 			"Unfettered Militia"
 		"cost" 22800000

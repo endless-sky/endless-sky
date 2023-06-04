@@ -1291,7 +1291,7 @@ ship "Feldspar"
 	sprite "ship/gegno feldspar"
 	thumbnail "thumbnail/gegno feldspar"
 	attributes
-		category "Heavy Warship"
+		category "Heavy Carrier"
 		licenses
 			"Scin Architect"
 			"Scin Hoplologist"

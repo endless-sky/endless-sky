@@ -15,7 +15,7 @@ ship "Aerie"
 	sprite "ship/aerie"
 	thumbnail "thumbnail/aerie"
 	attributes
-		category "Medium Warship"
+		category "Light Carrier"
 		"cost" 3500000
 		"shields" 5700
 		"hull" 1900
@@ -891,7 +891,7 @@ ship "Carrier"
 	sprite "ship/carrier"
 	thumbnail "thumbnail/carrier"
 	attributes
-		category "Heavy Warship"
+		category "Heavy Carrier"
 		licenses
 			"Navy Carrier"
 		"cost" 15200000
@@ -985,7 +985,7 @@ ship "Class C Freighter"
 	sprite "ship/bulk freighter"
 	thumbnail "thumbnail/bulk freighter"
 	attributes
-		category "Heavy Warship"
+		category "Heavy Carrier"
 		"cost" 13400000
 		"shields" 13500
 		"hull" 7600
@@ -2723,7 +2723,7 @@ ship "Nest"
 	sprite "ship/nest"
 	thumbnail "thumbnail/nest"
 	attributes
-		category "Utility"
+		category "Light Carrier"
 		"cost" 2500000
 		"shields" 2500
 		"hull" 3700
@@ -3130,7 +3130,7 @@ ship "Roost"
 	sprite "ship/roost"
 	thumbnail "thumbnail/roost"
 	attributes
-		category "Utility"
+		category "Light Carrier"
 		"cost" 3000000
 		"shields" 2900
 		"hull" 5200
@@ -3339,7 +3339,7 @@ ship "Skein"
 	sprite "ship/skein"
 	thumbnail "thumbnail/skein"
 	attributes
-		category "Utility"
+		category "Heavy Carrier"
 		licenses
 			"Militia"
 		"cost" 3500000

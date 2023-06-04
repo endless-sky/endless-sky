@@ -60,7 +60,7 @@ ship "Sasumata"
 	sprite "ship/sasumata"
 	thumbnail "thumbnail/sasumata"
 	attributes
-		category "Transport"
+		category "Light Carrier"
 		"cost" 12650000
 		"shields" 15500
 		"hull" 4200
@@ -176,7 +176,7 @@ ship "Ararebo"
 	sprite "ship/ararebo"
 	thumbnail "thumbnail/ararebo"
 	attributes
-		category "Utility"
+		category "Heavy Carrier"
 		"cost" 17565000
 		"shields" 50300
 		"hull" 13600

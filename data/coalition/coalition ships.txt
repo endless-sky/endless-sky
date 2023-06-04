@@ -839,7 +839,7 @@ ship "Heliarch Judicator"
 	sprite "ship/heliarch judicator"
 	thumbnail "thumbnail/heliarch judicator"
 	attributes
-		category "Medium Warship"
+		category "Heavy Carrier"
 		licenses
 			Heliarch
 		"cost" 33953000

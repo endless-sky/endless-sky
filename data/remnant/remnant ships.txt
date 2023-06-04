@@ -805,7 +805,7 @@ ship "Ibis"
 	sprite "ship/ibis"
 	thumbnail "thumbnail/ibis"
 	attributes
-		category "Medium Warship"
+		category "Light Carrier"
 		licenses
 			Remnant
 		"cost" 11627000

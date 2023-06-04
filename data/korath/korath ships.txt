@@ -904,7 +904,7 @@ ship "Ra'at Ik 621"
 	sprite "ship/world-ship e"
 	thumbnail "thumbnail/world-ship e"
 	attributes
-		category "Heavy Warship"
+		category "Heavy Carrier"
 		cost 43590000
 		shields 48000
 		hull 31400
@@ -1547,7 +1547,7 @@ ship "Tek Far 71 - Lek"
 	sprite "ship/tek far 71 lek"
 	thumbnail "thumbnail/tek far 71 lek"
 	attributes
-		category "Medium Warship"
+		category "Heavy Carrier"
 		"cost" 22870000
 		"shields" 25400
 		"hull" 29500
@@ -1627,7 +1627,7 @@ ship "Tek Far 78 - Osk"
 	sprite "ship/tek far 78 osk"
 	thumbnail "thumbnail/tek far 78 osk"
 	attributes
-		category "Medium Warship"
+		category "Heavy Carrier"
 		"cost" 25630000
 		"shields" 27600
 		"hull" 34100
@@ -1707,7 +1707,7 @@ ship "Tek Far 109"
 	sprite "ship/tek far 109"
 	thumbnail "thumbnail/tek far 109"
 	attributes
-		category "Medium Warship"
+		category "Heavy Carrier"
 		"cost" 18290000
 		"shields" 17900
 		"hull" 15800
