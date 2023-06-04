@@ -90,10 +90,12 @@ private:
 	std::set<const Government *> governments;
 	// The reference point and distance limits of a "near <system>" filter.
 	const System *center = nullptr;
+	int centerCount = -1;
 	int centerMinDistance = 0;
 	int centerMaxDistance = 1;
 	DistanceCalculationSettings centerDistanceOptions;
 	// Distance limits used in a "distance" filter.
+	int originCount = -1;
 	int originMinDistance = 0;
 	int originMaxDistance = -1;
 	DistanceCalculationSettings originDistanceOptions;

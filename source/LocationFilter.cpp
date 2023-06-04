@@ -71,7 +71,7 @@ namespace {
 	}
 
 	// Check if the given system is within the given distance of the center.
-	int Distance(const System *center, const System *system, int maximum, DistanceCalculationSettings distanceSettings)
+	int Distance(const System *center, const System *system, int count, int maximum, DistanceCalculationSettings distanceSettings)
 	{
 		// This function should only ever be called from the main thread, but
 		// just to be sure, use mutex protection on the static locals.
@@ -83,22 +83,25 @@ namespace {
 			center,
 			distanceSettings.WormholeStrat(),
 			distanceSettings.AssumesJumpDrive(),
-			-1,
+			count,
 			maximum
 		);
+		static int previousCount = count;
 		static int previousMaximum = maximum;
 		static DistanceCalculationSettings previousDistanceSettings = distanceSettings;
 
-		if(center != previousCenter || maximum > previousMaximum || distanceSettings != previousDistanceSettings)
+		if(center != previousCenter || count != previousCount || maximum > previousMaximum
+				|| distanceSettings != previousDistanceSettings)
 		{
 			previousCenter = center;
+			previousCount = count;
 			previousMaximum = maximum;
 			previousDistanceSettings = distanceSettings;
 			distance = DistanceMap(
 				center,
 				distanceSettings.WormholeStrat(),
 				distanceSettings.AssumesJumpDrive(),
-				-1,
+				count,
 				maximum
 			);
 		}
@@ -271,7 +274,7 @@ void LocationFilter::Save(DataWriter &out) const
 			out.EndChild();
 		}
 		if(center)
-			out.Write("near", center->Name(), centerMinDistance, centerMaxDistance);
+			out.Write("near", center->Name(), centerMinDistance, centerMaxDistance, centerCount);
 	}
 	out.EndChild();
 }
@@ -425,7 +428,7 @@ bool LocationFilter::Matches(const Ship &ship) const
 
 	// Check if this ship's current system meets a "near <system>" criterion.
 	// (Ships only offer missions, so no "distance" criteria need to be checked.)
-	if(center && Distance(center, origin, centerMaxDistance, centerDistanceOptions) < centerMinDistance)
+	if(center && Distance(center, origin, centerCount, centerMaxDistance, centerDistanceOptions) < centerMinDistance)
 		return false;
 
 	return true;
@@ -554,12 +557,13 @@ void LocationFilter::LoadChild(const DataNode &child)
 		center = GameData::Systems().Get(child.Token(valueIndex));
 		if(child.Size() == 2 + valueIndex)
 			centerMaxDistance = child.Value(1 + valueIndex);
-		else if(child.Size() == 3 + valueIndex)
+		else if(child.Size() >= 3 + valueIndex)
 		{
 			centerMinDistance = child.Value(1 + valueIndex);
 			centerMaxDistance = child.Value(2 + valueIndex);
 		}
-
+		if(child.Size() >= 4 + valueIndex)
+			centerCount = child.Value(3 + valueIndex);
 		if(child.HasChildren())
 			centerDistanceOptions.Load(child);
 	}
@@ -567,12 +571,13 @@ void LocationFilter::LoadChild(const DataNode &child)
 	{
 		if(child.Size() == 1 + valueIndex)
 			originMaxDistance = child.Value(valueIndex);
-		else if(child.Size() == 2 + valueIndex)
+		else if(child.Size() >= 2 + valueIndex)
 		{
 			originMinDistance = child.Value(valueIndex);
 			originMaxDistance = child.Value(1 + valueIndex);
 		}
-
+		if(child.Size() >= 3 + valueIndex)
+			originCount = child.Value(2 + valueIndex);
 		if(child.HasChildren())
 			originDistanceOptions.Load(child);
 	}
@@ -642,10 +647,10 @@ bool LocationFilter::Matches(const System *system, const System *origin, bool di
 		return false;
 
 	// Check this system's distance from the desired reference system.
-	if(center && Distance(center, system, centerMaxDistance, centerDistanceOptions) < centerMinDistance)
+	if(center && Distance(center, system, centerCount, centerMaxDistance, centerDistanceOptions) < centerMinDistance)
 		return false;
-	if(origin && originMaxDistance >= 0
-			&& Distance(origin, system, originMaxDistance, originDistanceOptions) < originMinDistance)
+	if(origin && ( originMaxDistance >= 0 || originCount > 0 )
+			&& Distance(origin, system, originCount, originMaxDistance, originDistanceOptions) < originMinDistance)
 		return false;
 
 	return true;
