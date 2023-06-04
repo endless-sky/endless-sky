@@ -57,6 +57,9 @@ news "merchant anywhere"
 			"No bread is better than half a loaf, because then the passengers won't fight over it."
 			"A painting is worth a thousand words, because the profit margin on transporting visual art is much higher than on dry literature."
 			"A journey of a thousand miles has too short of a distance to make any profit."
+			"The other day I happened across a rock band whose transport flaked out. Good thing I had seats for all eight of them, because it got me into a free concert at their next stop."
+			"Always look for work that provides a lot of detail. The more interesting it sounds, the more likely it is to end up giving you stories to tell your kids someday."
+			"For some reason, boring jobs almost never hang out in the spaceport. So, if you are looking for interesting or at least varied work..."
 		word
 			`"`
 
@@ -477,6 +480,7 @@ news "dock worker"
 			"I got a raise today. Only two credits more than my previous salary. Ridiculous!"
 			"Found a bomb in a crate the other day. Turns out I probably saved a very important diplomat from being blown to pieces."
 			"Apparently, the spaceports in the Deep have fully automated loading systems. Imagine that!"
+			"The other day I saw a band manager scrambling to find transport. She needed something with at least eight free bunks, and most of the ships around at the time were already full."
 		word
 			`"`
 
@@ -735,13 +739,13 @@ news "athlete"
 			`"`
 		word
 			"I'm planning to compete in a game on ${athlete competition location}!"
-			"I tried to compete in the Burthen Triathalon once, but the gravity was too much for me. Now I'm training to try again next year!"
+			"I tried to compete in the Burthen Triathlon once, but the gravity was too much for me. Now I'm training to try again next year!"
 			"Have you ever done the long jump on Longjump? Even an untrained individual can jump ten meters in that environment!"
 			"I sure am glad we'll never have to compete against any Alphas. We would all lose!"
 			"Does your ship have a weight room?"
 			"I'm hoping to get a sponsorship, but nobody here wants to partner with me. Could you recommend a planet where I might find better results?"
 			"I don't expect everyone to be as fit as I am, but do remember to get up and exercise a little every once in a while!"
-			"I once went to a sports event on Dancer in the the Rastaban system, but never again! All activities were indoors because of the horrible weather the planet has."
+			"I once went to a sports event on Dancer in the Rastaban system, but never again! All activities were indoors because of the horrible weather the planet has."
 		word
 			`"`
 
@@ -847,7 +851,7 @@ news "mechanic"
 			"I've been restoring an old Flivver I bought from a scrapyard as a hobby project. She's going to be a beauty once I get her flying again!"
 			"Make sure your ship is running cool. An overheated ship will give you nothing but trouble."
 			"I did my apprenticeship with the Navy, but after I finished my tour, I just wanted to open up my own repair shop."
-			"I spent three years on a bulk freighter as the ship's mechanic. The pay was decent, but I like being my own boss."
+			"I spent three years on a Bulk Freighter as the ship's mechanic. The pay was decent, but I like being my own boss."
 			"Piracy is a problem, but I'd be lying if I said it didn't keep the ship repair business steady."
 			"Pass me the 10 mm socket wrench?"
 			"If it ain't broken, then don't come to me."
@@ -1043,6 +1047,7 @@ news "musician"
 			"Some musicians think they are so sophisticated just because they play antique tunes. I prefer to innovate beyond what already exists, even if the result is different. Doesn't the art of music demand such creativity?"
 			"Stories about extra-terrestrials are very unpopular now that most of humanity is living off-Earth."
 			"Stories about alien lifeforms became a lot more popular after humanity actually met alien lifeforms."
+			"It takes surprisingly little space to transport a band on a tour. Eight free bunks and only a little cargo space, so long as they are good at packing."
 		word
 			`"`
 
@@ -1184,6 +1189,7 @@ news "chauffeur"
 			"You'll never believe what happened on my first day on the job. Someone tried to rob a building while I was in the parking lot. I had to ram their van to keep them from getting away!"
 			"They make me fly around the planet for ridiculous things, but you don't hear me complain with the salary they pay me."
 			"The vegetables are supposedly more fresh when I personally pick them up at the spaceport than when they get delivered through the 1-hour delivery service."
+			"I used to have a job flying a band around, but they wanted to spend some time in the Dirt Belt, and I was hoping for work closer to the Paradise Worlds."
 		word
 			`"`
 
@@ -1501,7 +1507,7 @@ news "republic soldier"
 			"Nice ship, captain. We trashed one just like it the other day during a pirate raid. Plating behind the engine room was real weak once the shields dropped, and a volley of sidewinders crippled her. You might want to look into that on yours."
 			"I used to be in the Syndicate Armed Forces before resigning my commission and joining the Navy. Here we actually train and fight instead of filling out paperwork all day."
 			"I can't wait until the day I get out. These rations are going to make me lose my mind. What I wouldn't give for a home-cooked meal..."
-			"Let me give you a piece of advice: particle cannons are some of the best weapons out there. Pirates don't stand a chance."
+			"Let me give you a piece of advice: Particle Cannons are some of the best weapons out there. Pirates don't stand a chance."
 			"I hope I don't get posted to fighter duty next week. Those things are deathtraps. By the time you get close enough to fire your lasers, you've already lost half your shields!"
 			"Nobody thinks about the Alphas anymore, but don't forget that they just disappeared. They could return at any time. If that happens, I'm going to kill every last one of 'em."
 			"While it seems pointless to have the Bactrian locked behind a license, don't forget that it's one of the oldest designs in human space. It was the Navy Carrier of its time - and it's still comparable to one."

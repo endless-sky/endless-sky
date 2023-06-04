@@ -161,14 +161,14 @@ mission "Wealthy Hai [1]"
 	name "Wealthy Hai to <planet>"
 	job
 	repeat
-	description "This wealthy family of <bunks> Hai will pay <payment> for a smooth and fast journey to <planet> by <date>."
+	description "This wealthy family of <bunks> Hai will pay <payment> for a fast and comfortable journey to <planet> by <date>."
 	passengers 2 4 .8
 	deadline
 	to offer
 		random < 70
-	on offer
-		require "Luxury Accommodations"
-		require "Quantum Keystone"
+	to accept
+		has "outfit (installed): Luxury Accommodations"
+		has "outfit (installed): Quantum Keystone"
 	source
 		government "Hai"
 	destination
@@ -189,14 +189,14 @@ mission "Wealthy Hai [2]"
 	name "Wealthy Hai to <planet>"
 	job
 	repeat
-	description "This wealthy family of <bunks> Hai will pay <payment> for a smooth and fast journey to <planet> by <date>."
+	description "This wealthy family of <bunks> Hai will pay <payment> for a fast and comfortable journey to <planet> by <date>."
 	passengers 2 4 .8
 	deadline
 	to offer
 		random < 30
-	on offer
-		require "Luxury Accommodations"
-		require "Quantum Keystone"
+	to accept
+		has "outfit (installed): Luxury Accommodations"
+		has "outfit (installed): Quantum Keystone"
 	source
 		government "Hai"
 	destination
@@ -297,7 +297,6 @@ mission "Hai Festival [3]"
 		dialog phrase "hai festival payment dialog"
 
 
-
 phrase "unfettered aid payment dialog"
 	word
 		`You drop off the aid (or as they like to refer to it, "tribute") for the Unfettered, and receive <payment> from your contact on <origin>.`
@@ -325,6 +324,7 @@ mission "Unfettered Aid [0]"
 		has "Ask the Hai about the Unfettered: offered"
 	source
 		government "Hai"
+		not attributes "station"
 	destination
 		distance 3 4
 		attributes "unfettered"
@@ -354,6 +354,7 @@ mission "Unfettered Aid [1]"
 		has "Ask the Hai about the Unfettered: offered"
 	source
 		government "Hai"
+		not attributes "station"
 	destination
 		distance 4 5
 		attributes "unfettered"
@@ -383,6 +384,7 @@ mission "Unfettered Aid [2]"
 		has "Ask the Hai about the Unfettered: offered"
 	source
 		government "Hai"
+		not attributes "station"
 	destination
 		distance 5 6
 		attributes "unfettered"
@@ -399,93 +401,13 @@ mission "Unfettered Aid [2]"
 		"reputation: Hai Merchant (Sympathizers)" += 5
 		dialog phrase "unfettered aid payment dialog"
 
-phrase "unfettered tribute payment dialog"
-	word
-		`You drop off the tribute to the Unfettered, and they pay you <payment>.`
-
-phrase "unfettered tribute pickup dialog"
-	word
-		`When you inform the Hai that you are here to receive a tribute payment for the Unfettered, they load the cargo onto your ship with a rather surprising swiftness and cheerfulness.`
-		`The Hai dockworkers load the tribute for the Unfettered onto your ship. One of them says to you, "Thank you. This is far better than watching our kinfolk starve."`
-		`As the Hai load the tribute onto your ship, one of them says, "Tell our brothers and sisters that if they will only repent, they will be welcome to come home."`
-
-mission "Unfettered Tribute 1"
-	name "Hai Tribute to <planet>"
-	job
-	repeat
-	description "Collect a tribute payment of <tons> of food from <stopovers>, and bring it to the Unfettered on <destination>. Your share of the tribute will be <payment>."
-	to offer
-		has "Unfettered Jump Drive 2: offered"
-		random < 80
-	cargo "food (tribute)" 25 2 .05
-	on complete
-		payment 5000 1600
-		dialog phrase "unfettered tribute payment dialog"
-	source
-		attributes "unfettered"
-	stopover
-		distance 3 4
-		attributes "hai"
-		attributes "spaceport"
-	on visit
-		dialog phrase "generic missing stopover or cargo"
-	on stopover
-		dialog phrase "unfettered tribute pickup dialog"
-
-mission "Unfettered Tribute 2"
-	name "Hai Tribute to <planet>"
-	job
-	repeat
-	description "Collect a tribute payment of <tons> of food from <stopovers>, and bring it to the Unfettered on <destination>. Your share of the tribute will be <payment>."
-	to offer
-		has "Unfettered Jump Drive 2: offered"
-		random < 60
-	cargo "food (tribute)" 35 2 .05
-	on complete
-		payment 7000 2000
-		dialog phrase "unfettered tribute payment dialog"
-	source
-		attributes "unfettered"
-	stopover
-		distance 4 5
-		attributes "hai"
-		attributes "spaceport"
-	on visit
-		dialog phrase "generic missing stopover or cargo"
-	on stopover
-		dialog phrase "unfettered tribute pickup dialog"
-
-mission "Unfettered Tribute 3"
-	name "Hai Tribute to <planet>"
-	job
-	repeat
-	description "Collect a tribute payment of <tons> of food from <stopovers>, and bring it to the Unfettered on <destination>. Your share of the tribute will be <payment>."
-	to offer
-		has "Unfettered Jump Drive 2: offered"
-		random < 40
-	cargo "food (tribute)" 45 2 .05
-	on complete
-		payment 9000 2400
-		dialog phrase "unfettered tribute payment dialog"
-	source
-		attributes "unfettered"
-	stopover
-		distance 5 6
-		attributes "hai"
-		attributes "spaceport"
-	on visit
-		dialog phrase "generic missing stopover or cargo"
-	on stopover
-		dialog phrase "unfettered tribute pickup dialog"
-
-
 
 mission "Delivery to Human Space [0]"
 	name "Special Delivery to <planet>"
 	job
 	repeat
 	description "This human wishes for <cargo> to be delivered to <destination> in human space. Payment is <payment>."
-	cargo random 5 10
+	cargo random 2 2 .29
 	to offer
 		random < 30
 	source
@@ -493,10 +415,13 @@ mission "Delivery to Human Space [0]"
 		near "Heia Due" 2
 	destination
 		attributes "north"
+	"distance calculation settings"
+		"only unrestricted wormholes"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 60000
+		payment
+		payment 50000
 		"reputation: Hai" += 5
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
@@ -509,7 +434,7 @@ mission "Delivery to Human Space [1]"
 	job
 	repeat
 	description "This Hai wishes for <cargo> to be delivered to <destination> in human space. Payment is <payment>."
-	cargo random 5 10
+	cargo random 2 2 .29
 	to offer
 		random < 25
 	source
@@ -520,7 +445,8 @@ mission "Delivery to Human Space [1]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 60000
+		payment
+		payment 50000
 		"reputation: Hai" += 5
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
@@ -533,7 +459,7 @@ mission "Delivery to Human Space [2]"
 	job
 	repeat
 	description "This human wishes for <cargo> to be delivered to <destination> in human space. Payment is <payment>."
-	cargo random 5 10
+	cargo random 2 2 .29
 	to offer
 		random < 20
 	source
@@ -541,10 +467,13 @@ mission "Delivery to Human Space [2]"
 		near "Heia Due" 2
 	destination
 		attributes "north"
+	"distance calculation settings"
+		"only unrestricted wormholes"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
-		payment 60000
+		payment
+		payment 50000
 		"reputation: Hai" += 5
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
@@ -557,21 +486,24 @@ mission "Hai Retrieve Human Luxury Goods"
 	job
 	repeat
 	description "A Hai socialite on <planet> wants to show off their knowledge of human culture to their peers. They want <cargo> from <stopovers> by <date>. Payment is <payment>."
-	cargo "Luxury Goods" 5 10
+	cargo "Luxury Goods" 2 2 .29
 	deadline 24
 	to offer
 		random < 15
 	source
 		government "Hai"
 		near "Heia Due" 2
+		not attributes "station"
 	stopover
 		attributes "north"
+	"distance calculation settings"
+		"only unrestricted wormholes"
 	on stopover
 		dialog "You gather the requested <commodity> and load them on your ship for return to <planet>."
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on complete
-		payment 120000
+		payment 100000 200
 		"reputation: Hai" += 5
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
@@ -584,7 +516,7 @@ mission "Hai Retrieve Human Food"
 	job
 	repeat
 	description "A Hai gourmet on <planet> is bored with local fare and wants to try food they heard about from human tourists. They want <cargo> from <stopovers> by <date>. Payment is <payment>."
-	cargo "Food" 5 10
+	cargo "Food" 2 2 .29
 	deadline 24
 	to offer
 		random < 15
@@ -593,12 +525,14 @@ mission "Hai Retrieve Human Food"
 		near "Heia Due" 2
 	stopover
 		attributes "north"
+	"distance calculation settings"
+		"only unrestricted wormholes"
 	on stopover
 		dialog "You gather the requested <commodity> and load them on your ship for return to <planet>."
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on complete
-		payment 120000
+		payment 100000 200
 		"reputation: Hai" += 5
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
@@ -611,7 +545,7 @@ mission "Hai Retrieve Human Electronics"
 	job
 	repeat
 	description "A Hai tinkerer on <planet> wants to experiment with human technology. They want <cargo> from <stopovers> by <date>. Payment is <payment>."
-	cargo "Electronics" 5 10
+	cargo "Electronics" 2 2 .29
 	deadline 24
 	to offer
 		random < 15
@@ -620,12 +554,14 @@ mission "Hai Retrieve Human Electronics"
 		near "Heia Due" 2
 	stopover
 		attributes "north"
+	"distance calculation settings"
+		"only unrestricted wormholes"
 	on stopover
 		dialog "You gather the requested <commodity> and load them on your ship for return to <planet>."
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on complete
-		payment 120000
+		payment 100000 200
 		"reputation: Hai" += 5
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
@@ -923,9 +859,11 @@ mission "Hai Family [0]"
 		"passenger space" >= 5
 	source
 		government "Hai"
+		not attributes "station"
 	destination
 		distance 4 16
 		government "Hai"
+		not attributes "station"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -949,9 +887,11 @@ mission "Hai Family [1]"
 		"passenger space" >= 5
 	source
 		government "Hai"
+		not attributes "station"
 	destination
 		distance 5 20
 		government "Hai"
+		not attributes "station"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -973,6 +913,7 @@ mission "Transport Hai miners to <planet>"
 		random < 40
 	source
 		government "Hai"
+		not attributes "station"
 	destination
 		attributes "mining"
 		distance 3 12
@@ -998,6 +939,7 @@ mission "Transport Hai farmers to <planet>"
 		random < 40
 	source
 		government "Hai"
+		not attributes "station"
 	destination
 		attributes "farming"
 		distance 3 12
@@ -1023,6 +965,7 @@ mission "Transport Hai mill workers to <planet>"
 		random < 40
 	source
 		government "Hai"
+		not attributes "station"
 	destination
 		attributes "textiles"
 		distance 3 12
@@ -1048,6 +991,7 @@ mission "Transport Hai workers to <planet>"
 		random < 70
 	source
 		government "Hai"
+		not attributes "station"
 	destination
 		attributes "factory"
 		distance 3 12
@@ -1539,17 +1483,20 @@ mission "Hai Prisoner Roleplay"
 	name `Hai "prison" cruise to <planet>`
 	job
 	repeat
-	description "A group of Hai want to experience what it's like to be human criminals. Transport them to <planet> in your brig. Payment is <payment>."
+	description "A group of Hai want to experience what it's like to be human criminals. Transport them to <planet> in a brig. Payment is <payment>."
 	passengers 3 20
 	to offer
 		random < 5
+		not "Hai Rescue [A09] Slaver Ships: offered"
 	source
 		government "Hai"
+		not attributes "station"
 	destination
 		distance 3 7
 		government "Hai"
-	on offer
-		require "Brig"
+		not attributes "station"
+	to accept
+		has "outfit (installed): Brig"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete

@@ -19,6 +19,7 @@ outfit "Drak Distancer"
 	"outfit space" -64
 	"weapon capacity" -64
 	"turret mounts" -1
+	"energy capacity" 6400
 	weapon
 		"fire effect" "distancer flare"
 		"turret turn" 4.
@@ -45,6 +46,7 @@ outfit "Drak Draining Field"
 	"outfit space" -84
 	"weapon capacity" -84
 	"turret mounts" -1
+	"energy capacity" 8400
 	weapon
 		"turret turn" 180
 		"velocity" 1
@@ -54,12 +56,13 @@ outfit "Drak Draining Field"
 		"blast radius" 1200
 		"trigger radius" 1200
 		"reload" 1
-		"firing energy" 20
+		"firing energy" -15
 		"firing heat" 5
 		"firing force" 30
 		"hit force" 100
 		"shield damage" 50
 		"ion damage" .5
+		"scrambling damage" .5
 		"disruption damage" 1
 		"safe"
 	description "This device is the Archon's primary defensive tool: Not only does it disrupt the shields and energy supplies of all hostile ships within it, it also exerts a powerful repelling force that keeps ships from closing in with the Archon."
@@ -73,6 +76,7 @@ outfit "Drak Draining Field (Augmented)"
 	"outfit space" -84
 	"weapon capacity" -84
 	"turret mounts" -1
+	"energy capacity" 8400
 	weapon
 		ammo "Jump Drive" 0
 		"turret turn" 180
@@ -83,12 +87,13 @@ outfit "Drak Draining Field (Augmented)"
 		"blast radius" 1100
 		"trigger radius" 1100
 		"reload" 1
-		"firing energy" 20
+		"firing energy" -25
 		"firing heat" 5
 		"firing force" 30
 		"hit force" 1000
 		"shield damage" 500
 		"ion damage" 1
+		"scrambling damage" 1
 		"disruption damage" 2
 		"safe"
 	description "This device is the Archon's primary defensive tool: Not only does it disrupt the shields and energy supplies of all hostile ships within it, it also exerts a powerful repelling force that keeps ships from closing in with the Archon."
@@ -103,6 +108,7 @@ outfit "Drak Anti-Missile Field"
 	"outfit space" -66
 	"weapon capacity" -66
 	"turret mounts" -1
+	"energy capacity" 6600
 	weapon
 		"velocity" 400
 		"lifetime" 1
@@ -121,6 +127,7 @@ outfit "Drak Anti-Missile Field (Augmented)"
 	"outfit space" -66
 	"weapon capacity" -66
 	"turret mounts" -1
+	"energy capacity" 6600
 	weapon
 		ammo "Jump Drive" 0
 		"velocity" 400
@@ -141,6 +148,7 @@ outfit "Drak Turret"
 	"outfit space" -48
 	"weapon capacity" -48
 	"turret mounts" -1
+	"energy capacity" 4800
 	weapon
 		sprite "projectile/drak bolt"
 			"frame rate" 13.318
@@ -167,6 +175,7 @@ outfit "Drak Turret (Augmented)"
 	"outfit space" -48
 	"weapon capacity" -48
 	"turret mounts" -1
+	"energy capacity" 4800
 	weapon
 		ammo "Jump Drive" 0
 		sprite "projectile/drak bolt"
@@ -205,6 +214,7 @@ outfit "Drak Antimatter Cannon"
 	"outfit space" -96
 	"weapon capacity" -96
 	"gun ports" -1
+	"energy capacity" 9600
 	"inscrutable" 1
 	weapon
 		"inaccuracy" 0
@@ -230,6 +240,7 @@ outfit "Drak Antimatter Cannon (Augmented)"
 	"outfit space" -96
 	"weapon capacity" -96
 	"gun ports" -1
+	"energy capacity" 9600
 	"inscrutable" 1
 	weapon
 		ammo "Jump Drive" 0

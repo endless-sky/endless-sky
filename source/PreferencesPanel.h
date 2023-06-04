@@ -58,10 +58,15 @@ private:
 	int editing;
 	int selected;
 	int hover;
+	int oldSelected;
+	int oldHover;
+	int latest;
 	Point hoverPoint;
 	// Which page of the preferences we're on.
 	char page = 'c';
 	std::string hoverPreference;
+
+	int currentSettingsPage = 0;
 
 	std::string selectedPlugin;
 	std::string hoverPlugin;

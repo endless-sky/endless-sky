@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "Logger.h"
 
 #include <utility>
 
@@ -141,75 +142,6 @@ ConditionsStore::ConditionEntry &ConditionsStore::ConditionEntry::operator-=(int
 
 
 
-ConditionsStore::PrimariesIterator::PrimariesIterator(CondMapItType it, CondMapItType endIt)
-	: condMapIt(it), condMapEnd(endIt)
-{
-	MoveToValueCondition();
-};
-
-
-
-pair<string, int64_t> ConditionsStore::PrimariesIterator::operator*() const
-{
-	return itVal;
-}
-
-
-
-const pair<string, int64_t> *ConditionsStore::PrimariesIterator::operator->()
-{
-	return &itVal;
-}
-
-
-
-ConditionsStore::PrimariesIterator &ConditionsStore::PrimariesIterator::operator++()
-{
-	condMapIt++;
-	MoveToValueCondition();
-	return *this;
-};
-
-
-
-ConditionsStore::PrimariesIterator ConditionsStore::PrimariesIterator::operator++(int)
-{
-	PrimariesIterator tmp = *this;
-	condMapIt++;
-	MoveToValueCondition();
-	return tmp;
-};
-
-
-
-// Equation operators, we can just compare the upstream iterators.
-bool ConditionsStore::PrimariesIterator::operator==(const ConditionsStore::PrimariesIterator &rhs) const
-{
-	return condMapIt == rhs.condMapIt;
-}
-
-
-
-bool ConditionsStore::PrimariesIterator::operator!=(const ConditionsStore::PrimariesIterator &rhs) const
-{
-	return condMapIt != rhs.condMapIt;
-}
-
-
-
-// Helper function to ensure that the primary-conditions iterator points
-// to a primary (value) condition or to the end-iterator value.
-void ConditionsStore::PrimariesIterator::MoveToValueCondition()
-{
-	while((condMapIt != condMapEnd) && (condMapIt->second).provider)
-		condMapIt++;
-
-	if(condMapIt != condMapEnd)
-		itVal = make_pair(condMapIt->first, (condMapIt->second).value);
-}
-
-
-
 // Constructor with loading primary conditions from datanode.
 ConditionsStore::ConditionsStore(const DataNode &node)
 {
@@ -246,22 +178,23 @@ void ConditionsStore::Load(const DataNode &node)
 
 void ConditionsStore::Save(DataWriter &out) const
 {
-	if(PrimariesBegin() != PrimariesEnd())
+	out.Write("conditions");
+	out.BeginChild();
+	for(auto it = storage.begin(); it != storage.end(); ++it)
 	{
-		out.Write("conditions");
-		out.BeginChild();
-		{
-			for(auto it = PrimariesBegin(); it != PrimariesEnd(); ++it)
-			{
-				// If the condition's value is 1, don't bother writing the 1.
-				if(it->second == 1)
-					out.Write(it->first);
-				else if(it->second)
-					out.Write(it->first, it->second);
-			}
-		}
-		out.EndChild();
+		// We don't need to save derived conditions that have a provider.
+		if(it->second.provider)
+			continue;
+		// If the condition's value is 0, don't write it at all.
+		if(!it->second.value)
+			continue;
+		// If the condition's value is 1, don't bother writing the 1.
+		if(it->second.value == 1)
+			out.Write(it->first);
+		else
+			out.Write(it->first, it->second.value);
 	}
+	out.EndChild();
 }
 
 
@@ -390,35 +323,37 @@ ConditionsStore::ConditionEntry &ConditionsStore::operator[](const string &name)
 
 
 
-ConditionsStore::PrimariesIterator ConditionsStore::PrimariesBegin() const
-{
-	return PrimariesIterator(storage.begin(), storage.end());
-}
-
-
-
-ConditionsStore::PrimariesIterator ConditionsStore::PrimariesEnd() const
-{
-	return PrimariesIterator(storage.end(), storage.end());
-}
-
-
-
-ConditionsStore::PrimariesIterator ConditionsStore::PrimariesLowerBound(const string &key) const
-{
-	return PrimariesIterator(storage.lower_bound(key), storage.end());
-}
-
-
-
 // Build a provider for a given prefix.
 ConditionsStore::DerivedProvider &ConditionsStore::GetProviderPrefixed(const string &prefix)
 {
 	auto it = providers.emplace(std::piecewise_construct,
 		std::forward_as_tuple(prefix),
 		std::forward_as_tuple(prefix, true));
-	storage[prefix].provider = &(it.first->second);
-	return it.first->second;
+	DerivedProvider *provider = &(it.first->second);
+	if(!provider->isPrefixProvider)
+	{
+		Logger::LogError("Error: Rewriting named provider \"" + prefix + "\" to prefixed provider.");
+		provider->isPrefixProvider = true;
+	}
+	if(VerifyProviderLocation(prefix, provider))
+	{
+		storage[prefix].provider = provider;
+		// Check if any matching later entries within the prefixed range use the same provider.
+		auto checkIt = storage.find(prefix);
+		while(checkIt != storage.end() && (0 == checkIt->first.compare(0, prefix.length(), prefix)))
+		{
+			ConditionEntry &ce = checkIt->second;
+			if(ce.provider != provider)
+			{
+				ce.provider = provider;
+				ce.fullKey = checkIt->first;
+				throw runtime_error("Replacing condition entries matching prefixed provider \""
+						+ prefix + "\".");
+			}
+			++checkIt;
+		}
+	}
+	return *provider;
 }
 
 
@@ -429,8 +364,12 @@ ConditionsStore::DerivedProvider &ConditionsStore::GetProviderNamed(const string
 	auto it = providers.emplace(std::piecewise_construct,
 		std::forward_as_tuple(name),
 		std::forward_as_tuple(name, false));
-	storage[name].provider = &(it.first->second);
-	return it.first->second;
+	DerivedProvider *provider = &(it.first->second);
+	if(provider->isPrefixProvider)
+		Logger::LogError("Error: Retrieving prefixed provider \"" + name + "\" as named provider.");
+	else if(VerifyProviderLocation(name, provider))
+		storage[name].provider = provider;
+	return *provider;
 }
 
 
@@ -440,6 +379,22 @@ void ConditionsStore::Clear()
 {
 	storage.clear();
 	providers.clear();
+}
+
+
+
+// Helper for testing; check how many primary conditions are registered.
+int64_t ConditionsStore::PrimariesSize() const
+{
+	int64_t result = 0;
+	for(auto it = storage.begin(); it != storage.end(); ++it)
+	{
+		// We only count primary conditions; conditions that don't have a provider.
+		if(it->second.provider)
+			continue;
+		++result;
+	}
+	return result;
 }
 
 
@@ -474,4 +429,33 @@ const ConditionsStore::ConditionEntry *ConditionsStore::GetEntry(const string &n
 
 	// And otherwise we don't have a match.
 	return nullptr;
+}
+
+
+
+// Helper function to check if we can safely add a provider with the given name.
+bool ConditionsStore::VerifyProviderLocation(const string &name, DerivedProvider *provider) const
+{
+	auto it = storage.upper_bound(name);
+	if(it == storage.begin())
+		return true;
+
+	--it;
+	const ConditionEntry &ce = it->second;
+
+	// If we find the provider we are trying to add, then it apparently
+	// was safe to add the entry since it was already added before.
+	if(ce.provider == provider)
+		return true;
+
+	if(!ce.provider && it->first == name)
+	{
+		Logger::LogError("Error: overwriting primary condition \"" + name + "\" with derived provider.");
+		return true;
+	}
+
+	if(ce.provider && ce.provider->isPrefixProvider && 0 == name.compare(0, ce.provider->name.length(), ce.provider->name))
+		throw runtime_error("Error: not adding provider for \"" + name + "\""
+				", because it is within range of prefixed derived provider \"" + ce.provider->name + "\".");
+	return true;
 }

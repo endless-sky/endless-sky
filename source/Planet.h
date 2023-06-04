@@ -32,6 +32,7 @@ class PlayerInfo;
 class Ship;
 class Sprite;
 class System;
+class Wormhole;
 
 
 
@@ -41,8 +42,20 @@ class System;
 // might choose it as a source or destination.
 class Planet {
 public:
+	enum class Friendliness : int_fast8_t {
+		FRIENDLY,
+		RESTRICTED,
+		HOSTILE,
+		DOMINATED
+	};
+
+
+public:
 	// Load a planet's description from a file.
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, Set<Wormhole> &wormholes);
+	// Legacy wormhole do not have an associated Wormhole object so
+	// we must auto generate one if we detect such legacy wormhole.
+	void FinishLoading(Set<Wormhole> &wormholes);
 	// Check if both this planet and its containing system(s) have been defined.
 	bool IsValid() const;
 
@@ -111,12 +124,12 @@ public:
 	// Remove the given system from the list of systems this planet is in. This
 	// must be done when game events rearrange the planets in a system.
 	void RemoveSystem(const System *system);
+	// Every system this planet is in. If this list has more than one entry, it's a wormhole.
+	const std::vector<const System *> &Systems() const;
 
-	// Check if this is a wormhole (that is, it appears in multiple systems).
+	// Check if planet is part of a wormhole (that is, landing on it will take you to a new system).
 	bool IsWormhole() const;
-	const System *WormholeSource(const System *to) const;
-	const System *WormholeDestination(const System *from) const;
-	const std::vector<const System *> &WormholeSystems() const;
+	const Wormhole *GetWormhole() const;
 
 	// Check if the given ship has all the attributes necessary to allow it to
 	// land on this planet.
@@ -129,6 +142,7 @@ public:
 	bool HasFuelFor(const Ship &ship) const;
 	bool CanLand(const Ship &ship) const;
 	bool CanLand() const;
+	Friendliness GetFriendliness() const;
 	bool CanUseServices() const;
 	void Bribe(bool fullAccess = true) const;
 
@@ -176,6 +190,7 @@ private:
 	// Ships that have been created by instantiating its defense fleets.
 	mutable std::list<std::shared_ptr<Ship>> defenders;
 
+	Wormhole *wormhole = nullptr;
 	std::vector<const System *> systems;
 };
 

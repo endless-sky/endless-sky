@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 
 #include <algorithm>
+#include <numeric>
 #include <sstream>
 
 using namespace std;
@@ -38,7 +39,7 @@ void Account::Load(const DataNode &node, bool clearFirst)
 	if(clearFirst)
 	{
 		credits = 0;
-		salariesOwed = 0;
+		crewSalariesOwed = 0;
 		maintenanceDue = 0;
 		creditScore = 400;
 		mortgages.clear();
@@ -49,8 +50,16 @@ void Account::Load(const DataNode &node, bool clearFirst)
 	{
 		if(child.Token(0) == "credits" && child.Size() >= 2)
 			credits = child.Value(1);
+		else if(child.Token(0) == "salaries income")
+			for(const DataNode &grand : child)
+			{
+				if(grand.Size() < 2)
+					grand.PrintTrace("Skipping incomplete salary income:");
+				else
+					salariesIncome[grand.Token(0)] = grand.Value(1);
+			}
 		else if(child.Token(0) == "salaries" && child.Size() >= 2)
-			salariesOwed = child.Value(1);
+			crewSalariesOwed = child.Value(1);
 		else if(child.Token(0) == "maintenance" && child.Size() >= 2)
 			maintenanceDue = child.Value(1);
 		else if(child.Token(0) == "score" && child.Size() >= 2)
@@ -60,6 +69,8 @@ void Account::Load(const DataNode &node, bool clearFirst)
 		else if(child.Token(0) == "history")
 			for(const DataNode &grand : child)
 				history.push_back(grand.Value(0));
+		else
+			child.PrintTrace("Skipping unrecognized account item:");
 	}
 }
 
@@ -72,8 +83,18 @@ void Account::Save(DataWriter &out) const
 	out.BeginChild();
 	{
 		out.Write("credits", credits);
-		if(salariesOwed)
-			out.Write("salaries", salariesOwed);
+		if(salariesIncome.size() > 0)
+		{
+			out.Write("salaries income");
+			out.BeginChild();
+			{
+				for(const auto &income : salariesIncome)
+					out.Write(income.first, income.second);
+			}
+			out.EndChild();
+		}
+		if(crewSalariesOwed)
+			out.Write("salaries", crewSalariesOwed);
 		if(maintenanceDue)
 			out.Write("maintenance", maintenanceDue);
 		out.Write("score", creditScore);
@@ -135,28 +156,28 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	ostringstream out;
 
 	// Keep track of what payments were made and whether any could not be made.
-	salariesOwed += salaries;
+	crewSalariesOwed += salaries;
 	maintenanceDue += maintenance;
 	bool missedPayment = false;
 
 	// Crew salaries take highest priority.
-	int64_t salariesPaid = salariesOwed;
-	if(salariesOwed)
+	int64_t salariesPaid = crewSalariesOwed;
+	if(crewSalariesOwed)
 	{
-		if(salariesOwed > credits)
+		if(crewSalariesOwed > credits)
 		{
 			// If you can't pay the full salary amount, still pay some of it and
 			// remember how much back wages you owe to your crew.
 			salariesPaid = max<int64_t>(credits, 0);
-			salariesOwed -= salariesPaid;
+			crewSalariesOwed -= salariesPaid;
 			credits -= salariesPaid;
 			missedPayment = true;
 			out << "You could not pay all your crew salaries.";
 		}
 		else
 		{
-			credits -= salariesOwed;
-			salariesOwed = 0;
+			credits -= crewSalariesOwed;
+			crewSalariesOwed = 0;
 		}
 	}
 
@@ -220,7 +241,7 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	// Keep track of your net worth over the last HISTORY days.
 	if(history.size() > HISTORY)
 		history.erase(history.begin());
-	history.push_back(credits + assets - salariesOwed - maintenanceDue);
+	history.push_back(credits + assets - crewSalariesOwed - maintenanceDue);
 
 	// If you failed to pay any debt, your credit score drops. Otherwise, even
 	// if you have no debts, it increases. (Because, having no debts at all
@@ -234,11 +255,6 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 		out << " ";
 
 	out << "You paid ";
-
-	auto creditString = [](int64_t payment) -> string
-	{
-		return payment == 1 ? "1 credit" : Format::Credits(payment) + " credits";
-	};
 
 	map<string, int64_t> typesPaid;
 	if(salariesPaid)
@@ -257,42 +273,74 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 		auto it = typesPaid.begin();
 		for(unsigned int i = 0; i < typesPaid.size() - 1; ++i)
 		{
-			out << creditString(it->second) << " in " << it->first << ", ";
+			out << Format::CreditString(it->second) << " in " << it->first << ", ";
 			++it;
 		}
-		out << "and " << creditString(it->second) << " in " << it->first + ".";
+		out << "and " << Format::CreditString(it->second) << " in " << it->first + ".";
 	}
 	else
 	{
 		if(salariesPaid)
-			out << creditString(salariesPaid) << " in crew salaries"
+			out << Format::CreditString(salariesPaid) << " in crew salaries"
 				<< ((mortgagesPaid || finesPaid || maintenancePaid) ? " and " : ".");
 		if(maintenancePaid)
-			out << creditString(maintenancePaid) << "  in maintenance"
+			out << Format::CreditString(maintenancePaid) << "  in maintenance"
 				<< ((mortgagesPaid || finesPaid) ? " and " : ".");
 		if(mortgagesPaid)
-			out << creditString(mortgagesPaid) << " in mortgages"
+			out << Format::CreditString(mortgagesPaid) << " in mortgages"
 				<< (finesPaid ? " and " : ".");
 		if(finesPaid)
-			out << creditString(finesPaid) << " in fines.";
+			out << Format::CreditString(finesPaid) << " in fines.";
 	}
 	return out.str();
 }
 
 
 
-int64_t Account::SalariesOwed() const
+const map<string, int64_t> &Account::SalariesIncome() const
 {
-	return salariesOwed;
+	return salariesIncome;
+}
+
+
+
+int64_t Account::SalariesIncomeTotal() const
+{
+	return accumulate(
+		salariesIncome.begin(),
+		salariesIncome.end(),
+		0,
+		[](int64_t value, const std::map<string, int64_t>::value_type &salary)
+		{
+			return value + salary.second;
+		}
+	);
+}
+
+
+
+void Account::SetSalaryIncome(string name, int64_t amount)
+{
+	if(amount == 0)
+		salariesIncome.erase(name);
+	else
+		salariesIncome[name] = amount;
+}
+
+
+
+int64_t Account::CrewSalariesOwed() const
+{
+	return crewSalariesOwed;
 }
 
 
 
 void Account::PaySalaries(int64_t amount)
 {
-	amount = min(min(amount, salariesOwed), credits);
+	amount = min(min(amount, crewSalariesOwed), credits);
 	credits -= amount;
-	salariesOwed -= amount;
+	crewSalariesOwed -= amount;
 }
 
 

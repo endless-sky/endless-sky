@@ -77,12 +77,12 @@ const vector<const Ship *> &Variant::Ships() const
 
 
 
-// The strength of a variant is the sum of the cost of its ships.
+// The strength of a variant is the sum of the strength of its ships.
 int64_t Variant::Strength() const
 {
 	int64_t strength = 0;
 	for(const Ship *ship : ships)
-		strength += ship->Cost();
+		strength += ship->Strength();
 	return strength;
 }
 

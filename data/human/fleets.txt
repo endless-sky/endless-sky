@@ -73,6 +73,8 @@ fleet "Small Southern Merchants"
 		"Berserker"
 	variant 1
 		"Scout"
+	variant 1
+		"Scrapper"
 
 fleet "Large Southern Merchants"
 	government "Merchant"
@@ -227,6 +229,8 @@ fleet "Small Core Merchants"
 		"Scout"
 	variant 1
 		"Scout (Speedy)"
+	variant 1
+		"Scrapper"
 
 fleet "Large Core Merchants"
 	government "Merchant"
@@ -529,6 +533,8 @@ fleet "Small Northern Merchants"
 		"Scout"
 	variant 5
 		"Scout (Speedy)"
+	variant 1
+		"Scrapper"
 
 fleet "Large Northern Merchants"
 	government "Merchant"
@@ -1171,7 +1177,7 @@ fleet "Large Free Worlds"
 
 fleet "Small Militia"
 	government "Militia"
-	names "militia"
+	names "militia small"
 	cargo 1
 	personality
 		heroic frugal
@@ -1226,7 +1232,7 @@ fleet "Small Militia"
 
 fleet "Large Militia"
 	government "Militia"
-	names "militia"
+	names "militia capital"
 	cargo 1
 	personality
 		heroic frugal
@@ -1699,6 +1705,7 @@ fleet "Large Syndicate"
 		"Quicksilver" 3
 	variant 2
 		"Splinter (Laser)"
+		"Quicksilver (Proton)" 3
 	variant 2
 		"Splinter (Proton)"
 		"Quicksilver" 3
@@ -1760,6 +1767,12 @@ fleet "Large Syndicate"
 	variant 1
 		"Vanguard (Missile)"
 		"Quicksilver (Proton)" 2
+	variant 1
+		"Protector"
+		"Vanguard (Particle)"
+	variant 1
+		"Protector (Proton)"
+		"Vanguard"
 
 fleet "Small Southern Pirates"
 	government "Pirate"
@@ -1830,6 +1843,24 @@ fleet "Small Southern Pirates"
 		"Clipper (Speedy)"
 	variant 1
 		"Modified Argosy"
+	variant 3
+		"Scrapper"
+	variant 2
+		"Scrapper (Minimal)"
+	variant 1
+		"Scrapper (Mod Blaster)"
+	variant 2
+		"Scrapper" 2
+	variant 2
+		"Scrapper (Minimal)" 2
+	variant 1
+		"Scrapper"
+		"Sparrow"
+	variant 1
+		"Sparrow"
+		"Scrapper (Minimal)"
+	variant 1
+		"Scrapper (Gatling)"
 
 fleet "Large Southern Pirates"
 	government "Pirate"
@@ -1997,6 +2028,10 @@ fleet "Small Independent"
 		"Clipper (Heavy)"
 	variant 1
 		"Clipper (Speedy)"
+	variant 4
+		"Scrapper"
+	variant 3
+		"Scrapper (Minimal)"
 
 fleet "Large Independent"
 	government "Independent"
@@ -2099,6 +2134,14 @@ fleet "Small Core Pirates"
 		"Wasp (Plasma)"
 	variant 2
 		"Wasp (Proton)"
+	variant 1
+		"Scrapper"
+	variant 2
+		"Scrapper (Minimal)"
+	variant 1
+		"Scrapper (Mod Blaster)"
+	variant 1
+		"Scrapper (Gatling)"
 
 fleet "Large Core Pirates"
 	government "Pirate"
@@ -2234,6 +2277,15 @@ fleet "Small Northern Pirates"
 		"Scout"
 	variant 4
 		"Scout (Speedy)"
+	variant 2
+		"Scrapper"
+	variant 1
+		"Scrapper (Mod Blaster)"
+	variant 1
+		"Scrapper" 2
+	variant 1
+		"Scrapper"
+		"Sparrow"
 
 fleet "Large Northern Pirates"
 	government "Pirate"
@@ -3137,3 +3189,28 @@ fleet "Hired Guns"
 		"Bactrian (Hired Gun)"
 		"Dagger" 3
 		"Splinter (Proton)"
+
+# The Navy forces which blockade the wormhole during the Hai crisis.
+fleet "Human Wormhole Guards"
+	government "Republic that won't enter wormhole"
+	names "republic capital"
+	fighters "republic fighter"
+	cargo 0
+	personality
+		heroic opportunistic
+	variant 2
+		"Carrier (Mark II)"
+		"Combat Drone" 6
+		"Lance (Gatling)" 4
+	variant 1
+		"Auxiliary (Transport Mark II)"
+	variant 2
+		"Cruiser (Plasma Anti-Missile)"
+		"Combat Drone" 4
+	variant 2
+		"Cruiser (Mark II)"
+		"Combat Drone" 4
+	variant 8
+		"Frigate (Mark II)"
+	variant 5
+		"Rainmaker (Mark II Old Weapons)"

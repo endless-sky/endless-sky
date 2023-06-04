@@ -1,75 +1,154 @@
 name: Release CD
 
 on:
-  release:
-    types:
-      - published
+  push:
+    tags:
+      - v*
 
 jobs:
-  appimage_amd64:
-    runs-on: ubuntu-18.04
+  release_appimage_x64:
+    name: AppImage x64
+    runs-on: ubuntu-20.04
     env:
       ARCH: x86_64
-      OUTPUT: endless-sky-amd64-${{ github.event.release.tag_name }}.AppImage
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      OUTPUT: Endless_Sky-${{ github.ref_name }}-x86_64.AppImage
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Install dependencies
         run: |
           sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev uuid-dev
-          python3 -m pip install --user scons
-      - name: Build AppImage
-        run: ./utils/build_appimage.sh
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
+          sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev
+      - name: Setup sccache
+        uses: ./.github/sccache
         with:
-          name: ${{ env.OUTPUT }}
-          path: ${{ env.OUTPUT }}
-      - name: Upload AppImage
-        uses: actions/upload-release-asset@v1.0.2
+          read-only: 'true'
+      - uses: lukka/get-cmake@latest
+      - uses: lukka/run-vcpkg@v11
         with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ${{ env.OUTPUT }}
-          asset_name: ${{ env.OUTPUT }}
-          asset_content_type: application/octet-stream
+          vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
+          doNotCache: true
+      - uses: lukka/run-cmake@v10
+        with:
+          configurePreset: 'linux-release'
+          buildPreset: 'linux-ci-release'
+      - name: Package Application
+        run: ./utils/build_appimage.sh build/release
+      - name: Upload Release
+        uses: softprops/action-gh-release@v1
+        with:
+          draft: true
+          files: ${{ env.OUTPUT }}
 
-  dmg_macos:
-    runs-on: macos-latest
+
+  release_windows_x86:
+    name: Windows x86
+    runs-on: windows-2022
     env:
-      OUTPUT: endless-sky-macos-${{ github.event.release.tag_name }}
-      SDL2_FRAMEWORK: build/SDL2.framework
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      OUTPUT: EndlessSky-win32-${{ github.ref_name }}.zip
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v2
-      - name: Update Homebrew
-        run: brew update
-      - name: Install dependencies
-        run: brew install libpng jpeg-turbo
-      - name: Restore cached SDL2 framework
-        uses: actions/cache@v2
+      - uses: actions/checkout@v3
+      - name: Install x86 MinGW
+        run: choco install mingw --forcex86 --force
+      - uses: lukka/get-cmake@latest
+      - uses: lukka/run-vcpkg@v11
         with:
-          path: ${{ env.SDL2_FRAMEWORK }}
-          key: macos-latest-sdl2-${{ hashFiles('EndlessSky.xcodeproj/**', 'utils/set_dylibs_rpath.sh', 'utils/fetch_sdl2_framework.sh') }}
-      - name: Build Application
-        run: xcodebuild -configuration "Release" -jobs $(sysctl -n hw.logicalcpu) -quiet
+          vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
+          doNotCache: true
+      - uses: lukka/run-cmake@v10
+        with:
+          configurePreset: 'mingw32-release'
+          buildPreset: 'mingw32-ci-release'
       - name: Package Application
         run: |
-          cd build/Release
-          mkdir ${{ env.OUTPUT }}
-          mv Endless\ Sky.app ${{ env.OUTPUT }}
-          ln -s /Applications ${{ env.OUTPUT }}
-          hdiutil create -ov -fs HFS+ -format UDZO -imagekey zlib-level=9 -srcfolder ${{ env.OUTPUT }} ${{ github.workspace }}/${{ env.OUTPUT }}.dmg
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
+          cmake --install build/release
+          7z a ${{ env.OUTPUT }} "./install/release/*"
+      - name: Upload Release
+        uses: softprops/action-gh-release@v1
         with:
-          name: ${{ env.OUTPUT }}.dmg
-          path: ${{ env.OUTPUT }}.dmg
-      - name: Upload disk image
-        uses: actions/upload-release-asset@v1.0.2
+          draft: true
+          files: ${{ env.OUTPUT }}
+
+
+  release_windows_x64:
+    name: Windows x64
+    runs-on: windows-2022
+    env:
+      OUTPUT: EndlessSky-win64-${{ github.ref_name }}.zip
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup sccache
+        uses: ./.github/sccache
         with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ${{ env.OUTPUT }}.dmg
-          asset_name: ${{ env.OUTPUT }}.dmg
-          asset_content_type: application/octet-stream
+          read-only: 'true'
+      - uses: lukka/get-cmake@latest
+      - uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
+          doNotCache: true
+      - uses: lukka/run-cmake@v10
+        with:
+          configurePreset: 'mingw-release'
+          buildPreset: 'mingw-ci-release'
+      - name: Package Application
+        run: |
+          cmake --install build/release
+          7z a ${{ env.OUTPUT }} "./install/release/*"
+      - name: Upload Release
+        uses: softprops/action-gh-release@v1
+        with:
+          draft: true
+          files: ${{ env.OUTPUT }}
+
+
+  release_macos_universal:
+    name: MacOS Universal
+    runs-on: macos-12
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      OUTPUT: Endless-Sky-${{ github.ref_name }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup sccache
+        uses: ./.github/sccache
+        with:
+          read-only: 'true'
+      - name: Install pkg-config
+        run: type -P pkg-config || brew install pkg-config
+      - uses: lukka/get-cmake@latest
+      - uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
+          doNotCache: true
+      - uses: lukka/run-cmake@v10
+        with:
+          configurePreset: 'macos-arm-release'
+          buildPreset: 'macos-ci-release'
+      - name: Prepare for x64 app bundle
+        run: |
+          mv "build/release/Endless Sky.app" "Endless Sky.app.arm"
+          rm -rf build/release
+      - uses: lukka/run-cmake@v10
+        with:
+          configurePreset: 'macos-release'
+          buildPreset: 'macos-ci-release'
+      - name: Create universal binary
+        run: |
+          mv "build/release/Endless Sky.app" "Endless Sky.app.x64"
+          cp -r "Endless Sky.app.arm" "Endless Sky.app"
+          lipo -create -output "Endless Sky.app/Contents/MacOS/Endless Sky" "Endless Sky.app.arm/Contents/MacOS/Endless Sky" "Endless Sky.app.x64/Contents/MacOS/Endless Sky"
+          for lib in "Endless Sky.app/Contents/Frameworks/"*; do lipo -create -output "$lib" "Endless Sky.app.arm/Contents/Frameworks/$(basename "$lib")" "Endless Sky.app.x64/Contents/Frameworks/$(basename "$lib")"; done
+      - name: Package Application
+        run: |
+          mkdir "${{ env.OUTPUT }}"
+          cp -r "Endless Sky.app" "${{ env.OUTPUT }}"
+          ln -s /Applications "${{ env.OUTPUT }}"
+          hdiutil create -ov -fs HFS+ -format UDZO -imagekey zlib-level=9 -srcfolder "${{ env.OUTPUT }}" "${{ github.workspace }}/${{ env.OUTPUT }}.dmg"
+      - name: Upload Release
+        uses: softprops/action-gh-release@v1
+        with:
+          draft: true
+          files: ${{ env.OUTPUT }}.dmg

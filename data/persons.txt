@@ -76,7 +76,9 @@ person "Michael Zahniser"
 		turret -23 14 "Heavy Anti-Missile Turret"
 		turret 23 14 "Heavy Anti-Missile Turret"
 		bay "Fighter" -46 106 under
+			"launch effect" "human internal"
 		bay "Fighter" 46 106 under
+			"launch effect" "human internal"
 		explode "small explosion" 50
 		explode "medium explosion" 80
 		explode "large explosion" 120
@@ -152,17 +154,9 @@ person "Marauding Max"
 			"Do you think you "
 			"Ever wondered if you "
 			"Think you'll also need some luck if you "
-		word
-			"got what it takes to "
-			"got the gumption to "
-			"could "
-			"are capable of "
-			"have the guramba to "
-			"are good enough to "
-		word
-			"capture "
-			"collect "
-			"gather "
+		phrase
+			"MMK subphrase 1" 5
+			"MMK subphrase 2"
 		word
 			"all 28 Marauder models?"
 	phrase
@@ -214,6 +208,26 @@ person "Marauding Max"
 			"into a REAL marauding warship!"
 	ship "Marauder Fury" "Mad Quest"
 
+phrase "MMK subphrase 1"
+	word
+		"got what it takes to "
+		"got the gumption to "
+		"could "
+		"have the guramba to "
+		"are good enough to "
+	word
+		"capture "
+		"collect "
+		"gather "
+
+phrase "MMK subphrase 2"
+	word
+		"are capable of "
+	word
+		"capturing "
+		"collecting "
+		"gathering "
+
 ship "Marauder Fury"
 	plural "Marauder Furies"
 	sprite "ship/mfury"
@@ -230,8 +244,8 @@ ship "Marauder Fury"
 		"heat dissipation" .85
 		"fuel capacity" 500
 		"cargo space" 15
-		"outfit space" 240
-		"weapon capacity" 80
+		"outfit space" 256
+		"weapon capacity" 96
 		"engine capacity" 100
 		"ramscoop" 2
 		weapon
@@ -254,13 +268,19 @@ ship "Marauder Fury"
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
 		
-	engine -21 42 .9
-	engine 0 48
-	engine 21 42 .9
-	gun -12 -33 "Meteor Missile Launcher"
-	gun 12 -33 "Meteor Missile Launcher"
+	engine -23 44.5 0.6
+	engine 23 44.5 0.6
+	engine -17 43 0.45
+	engine 17 43 0.45
+	engine -12.5 41 0.35
+	engine 12.5 41 0.35
+	engine 0 46
+	gun -13.5 -36 "Meteor Missile Launcher"
+	gun 13.5 -36 "Meteor Missile Launcher"
 	gun -20 -25 "Meteor Missile Launcher"
 	gun 20 -25 "Meteor Missile Launcher"
+	gun -6 -41.5
+	gun 6 -41.5
 	gun -43.5 2 "Hai Tracker Pod"
 	gun 43.5 2 "Hai Tracker Pod"
 	explode "tiny explosion" 10
@@ -616,6 +636,7 @@ ship "Modified Osprey"
 			"hull damage" 3500
 			"heat damage" 24000
 			"ion damage" 24000
+			"scrambling damage" 24000
 			"disruption damage" 1200
 			"hit force" 30000
 	outfits
@@ -668,7 +689,6 @@ ship "Modified Osprey"
 	turret 49.5 20 "Heliarch Repulsor"
 	turret 0 29 "Point Defense Turret"
 	turret 0 89.5 "Point Defense Turret"
-	
 	explode "medium explosion" 24
 	explode "large explosion" 16
 	explode "small explosion" 40
@@ -782,7 +802,7 @@ ship "Ursa Polaris"
 		"hull repair rate" 7
 		"energy generation" 200
 		"outfit scan power" 186
-		"outfit scan speed" 1
+		"outfit scan efficiency" 15
 		"tactical scan power" 99
 		"asteroid scan power" 69
 		"cargo space" 1408
@@ -1017,7 +1037,7 @@ ship "Shooting Star"
 	explode "pug large explosion" 15
 	"final explode" "final explosion medium"
 	description "This ship appears to be a hollowed-out asteroid filled with strange equipment. It is unclear what is creating the rays of light, but they must have something to do with how it moves without obvious engines."
-	description "	Its advanced properties also allow it to reject the influence of enemy command centers, nullifying their effect."
+	description "	Its advanced properties also allow it to reject the influence of enemy Command Centers, nullifying their effect."
 
 outfit "Crystal Projector"
 	category "Systems"
@@ -1475,3 +1495,355 @@ ship "Modified Boxwing"
 	explode "small explosion" 5
 	description `No matter how maligned, every ship has someone out there that loves it.`
 	description `Surprisingly, someone invested a lot of time, money, and effort into transforming this humble boxwing from a flying coffin into a palatial sarcophagus. It is still terribly cramped, but at least it is luxurious and shiny!`
+
+
+
+person "Gefullte Taubenbrust"
+	government "Author"
+	frequency 200
+	personality
+		heroic plunders opportunistic
+	phrase
+		word
+			"The whole room is spinning."
+			"I am fueling your nightmares."
+			"Turrets = woke. Spinals = broke."
+			"My eyes are on fire."
+			"Curve modifier is love. Curve modifier is life."
+			"Just use denoising."
+			"What is a blender internal?"
+			"You need new sprites?"
+			"Spot the difference."
+	ship "Modified Battleship" "RSS Smoking Dove"
+		"never disabled"
+
+ship "Modified Battleship"
+	sprite "ship/battleship"
+	thumbnail "thumbnail/battleship"
+	attributes
+		category "Heavy Warship"
+		"cost" 35000000
+		"shields" 36000
+		"hull" 26000
+		"required crew" 160
+		"bunks" 212
+		"mass" 1010
+		"drag" 19.4
+		"heat dissipation" .35
+		"fuel capacity" 1000
+		"cargo space" 30
+		"outfit space" 1152
+		"weapon capacity" 592
+		"engine capacity" 123
+		"spinal mount" 1
+		weapon
+			"blast radius" 340
+			"shield damage" 3400
+			"hull damage" 1700
+			"hit force" 5100
+	outfits
+		"Prototype Fusion Cannon"
+		"Quad Blaster Turret" 4
+		"Heavy Laser Turret" 4
+		"Electron Turret" 2
+		"Wanderer Anti-Missile"
+		"Torpedo Pod" 4
+		"Torpedo Storage Rack" 2
+		"Torpedo" 42
+		"Typhoon Pod" 2
+		"Typhoon Torpedo" 34
+		
+		"Dark Storm Shielding" 2
+		"Triple Plasma Core"
+		"LP036a Battery Pack"
+		"LP072a Battery Pack"
+		"Large Heat Shunt" 3
+		"Fuel Processor" 3
+		"Tactical Scanner"
+
+		"Afterburner (Lunar Class)"
+		"A370 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+		
+	engine 45 212
+	engine 21 220
+		zoom 0.8
+	engine -45 212
+	engine -21 220
+		zoom 0.8
+	gun -59 14 "Typhoon Pod"
+	gun 59 14 "Typhoon Pod"
+	gun -72 25 "Torpedo Pod"
+	gun 72 26 "Torpedo Pod"
+	gun -84 38 "Torpedo Pod"
+	gun 84 38 "Torpedo Pod"
+	gun 0 -223 "Prototype Fusion Cannon"
+	turret -37 -11 "Electron Turret"
+	turret 37 -11 "Electron Turret"
+	turret -37 31 "Quad Blaster Turret"
+	turret 37 31 "Quad Blaster Turret"
+	turret -39 73 "Quad Blaster Turret"
+	turret 39 73 "Quad Blaster Turret"
+	turret -23 108 "Heavy Laser Turret"
+	turret 23 108 "Heavy Laser Turret"
+	turret -75 108 "Heavy Laser Turret"
+	turret 75 108 "Heavy Laser Turret"
+	turret 0 10 "Wanderer Anti-Missile"
+	explode "tiny explosion" 20
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large"
+	description `Never underestimate how far an individual is willing to go to modify their favorite spacecraft - sometimes before it even exists.`
+
+outfit "Prototype Fusion Cannon"
+	category "Secondary Weapons"
+	cost 160000000
+	thumbnail "outfit/fusion cannon"
+	"mass" 145
+	"outfit space" -144
+	"weapon capacity" -144
+	"gun ports" -1
+	"spinal mount" -1
+	"required crew" 12
+	weapon
+		sprite "projectile/fusion gun bolt"
+			"no repeat"
+			"frame rate" .25
+		sound "dragonflame"
+		icon "icon/dragonflame"
+		"fire effect" "fusion cannon fire"
+		"die effect" "fusion cannon cloud" 5
+		"hit effect" "fusion cannon impact" 20
+		"hit effect" "fusion cannonspark" 40
+		"hit effect" "fusion cannon explosion 1" 10
+		"hit effect" "fusion cannon explosion 2" 10
+		"hit effect" "fusion cannon explosion 3" 10
+		"hit effect" "fusion cannon nuke" 1
+		"live effect" "fusion cannon cloud" 10
+		"inaccuracy" 0.2
+		"velocity" 66
+		"lifetime" 20
+		"reload" 40
+		"firing energy" 5000
+		"firing heat" 6000
+		"firing fuel" 100
+		"shield damage" 220
+		"hull damage" 330
+		"piercing" 0.2
+		"disruption damage" 5
+		"hit force" 100
+		"missile strength" 10
+	description "This is a personally obtained prototype Fusion Cannon, a deadly, massive spinal weapon. Where it came from, nobody knows except the owner, and those who wish to ask are too afraid of being on the receiving end."
+	
+effect "fusion cannon fire"
+	sprite "effect/plasma fire"
+		"no repeat"
+		"frame rate" 20
+	"lifetime" 12
+
+effect "fusion cannon impact"
+	sprite "effect/plasma impact"
+		"frame rate" 20
+		"start frame" 0
+		"no repeat"
+	"lifetime" 30
+	"random frame rate" 15
+	"random velocity" 15
+	"velocity scale" 0.
+	"random angle" 360
+
+effect "fusion cannon explosion 1"
+	sprite "effect/explosion/huge"
+		"no repeat"
+		"frame rate" 20
+	"lifetime" 28
+	"random angle" 360
+	"random velocity" 7
+	"random spin" 3
+	"random frame rate" 10
+	"velocity scale" .0
+	
+effect "fusion cannon explosion 2"
+	sprite "effect/explosion/large"
+		"no repeat"
+		"frame rate" 20
+	"lifetime" 28
+	"random angle" 360
+	"random velocity" 10
+	"random spin" 3
+	"random frame rate" 10
+	"velocity scale" .0
+	
+effect "fusion cannon explosion 3"
+	sprite "effect/explosion/medium"
+		"no repeat"
+		"frame rate" 20
+	"lifetime" 28
+	"random angle" 360
+	"random velocity" 13
+	"random spin" 3
+	"random frame rate" 10
+	"velocity scale" .0
+	
+effect "fusion cannon nuke"
+	sprite "effect/explosion/huge"
+		"no repeat"
+		"frame rate" 32
+	sound "explosion nuke"
+	"lifetime" 15
+	"random angle" 360
+	"random velocity" 1
+	"random spin" 3
+	"velocity scale" .0
+
+effect "fusion cannonspark"
+	sprite "effect/static"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 10
+	"random angle" 360
+	"random spin" 10
+	"random velocity" 30
+	"velocity scale" .0
+	"random frame rate" 10
+
+effect "fusion cannon cloud"
+	sprite "effect/plasma cloud"
+		"no repeat"
+		"frame rate" 15
+	"lifetime" 20
+	"random angle" 360
+	"random velocity" 10
+	"velocity scale" .2
+
+
+
+person "MasterOfGrey"
+	government "Author"
+	frequency 200
+	personality
+		heroic plunders opportunistic
+	system
+		government "Hai"
+	phrase
+		word
+			"Oh dear."
+			"Ah yes."
+			"Lovely."
+			"Suffering."
+			"Why is everything Alphas?"
+			"You're only a terrorist if the people experience terror."
+			"Have you finished the Free Worlds storyline yet?"
+			"Things don't have to mimic an Earth creature to be not very alien."
+			"I have questions. Questions that do not yet need answers."
+			"There are no bugs in my code, only Xapleaux precursors."
+			"If I were green I would photosynthesize."
+			`"Trust the process" isn't a joke for no reason.`
+			"Have you reviewed Hai Reveal yet?"
+			"I gotta go get ready for work. Play nice and don't @ me."
+			"I don't even like yellow."
+			"I really enjoy the backstory for the Marauders."
+			"Falling into the Ember Waste and emerging into absolute silence for the first time in dozens of gameplay hours was profoundly moving."
+			"Planet descriptions will be the death of me."
+			"Have you tried Quyykk's editor for map work?"
+			"Did systems get made big yet?"
+			"Heat lasers and hull lasers are different metas and shouldn't be combined."
+			"<placeholder text>"
+	ship "Modified Ladybug" "Revealer of Hai"
+		"never disabled"
+
+ship "Modified Ladybug"
+	sprite "ship/modified ladybug"
+	thumbnail "ship/modified ladybug"
+	attributes
+		category "Medium Warship"
+		"cost" 8950000
+		
+		# Shaming the Solifuge
+		"shields" 38000
+		"hull" 20000
+		
+		"required crew" 16
+		"bunks" 33
+		"mass" 280
+		"drag" 5.4
+		"heat dissipation" .85
+		"fuel capacity" 900
+		"cargo space" 91
+		"outfit space" 647
+		"weapon capacity" 206
+		"engine capacity" 153
+
+		# Features from original Ladybug:
+		"ramscoop" 0.5
+		"cargo scan power" 5
+		"cargo scan efficiency" 16
+		"outfit scan power" 17
+		"outfit scan efficiency" 15
+		"tactical scan power" 25
+		"atmosphere scan" 100
+		"asteroid scan power" 30
+		
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		# Offensive turrets will be replaced with better pulse turrets in the future.
+		"Bombardment Turret"
+		"Thermal Repeater Turret" 2
+		"Point Defense Turret"
+		"Warder Anti-Missile"
+
+		"Systems Core (Medium)"
+		"S-970 Regenerator"
+		"Crystal Capacitor"
+		"Double Plasma Core"
+		"Small Heat Shunt" 2
+		"Large Heat Shunt"
+		"Fuel Processor"
+		"Quantum Keystone"
+		"Thermal Repeater Rifle" 16
+		
+		`"Biroo" Reverse Thruster`
+		`"Bondir" Atomic Steering`
+		`"Bufaer" Atomic Thruster`
+		"Hyperdrive"
+		"Jump Drive"
+
+	turret 0 -47.5 "Bombardment Turret"
+	turret 35 -25 "Thermal Repeater Turret"
+	turret -35 -29 "Thermal Repeater Turret"
+	turret 39.5 5 "Warder Anti-Missile"
+	turret -39.5 5 "Point Defense Turret"
+	"reverse engine" 10.5 -64 0.7
+	"reverse engine" -10.5 -64 0.7
+	"reverse engine" 7.5 -64 0.7
+	"reverse engine" -7.5 -64 0.7
+	"reverse engine" 4.5 -64 0.7
+	"reverse engine" -4.5 -64 0.7
+	"reverse engine" 1.5 -64 0.7
+	"reverse engine" -1.5 -64 0.7
+	engine 10.5 56.5
+	engine -10.5 56.5
+	engine 40.5 57
+	engine -40.5 57
+	engine 16 57.5
+	engine -16 57.5
+	engine 35 58
+	engine -35 58
+	engine 22.5 58.5
+	engine -22.5 58.5
+	engine 29.5 59
+	engine -29.5 59
+	explode "tiny explosion" 20
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large"
+	description `This is an old war-torn Hai Ladybug with numerous modifications done on the hull. Apart from the additional turret mounts, the main adjustments on the vessel are three huge engine cells - two in the back replacing the old engine pods, and one in the front replacing the gun mounts. These push the Modified Ladybug to speeds only an insane captain would enjoy.`

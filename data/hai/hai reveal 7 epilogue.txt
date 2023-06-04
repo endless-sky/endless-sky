@@ -1,0 +1,750 @@
+# Copyright (c) 2020 MasterOfGrey
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+########################################################################
+
+mission "Hai Reveal [D00] Resolution Timer"
+	landing
+	invisible
+	to offer
+		has "event: hai-human resolution announced"
+	on offer
+		event "hai-human treaty prepared" 160 200
+		fail
+
+event "hai-human treaty prepared"
+
+
+mission "Hai Reveal [D01A] Summoned to Mountaintop"
+	landing
+	name "Treaty at <planet>"
+	description "Go to <destination> to witness the signing of the Hai-human treaty."
+	source
+		government "Republic" "Syndicate" "Free Worlds"
+		not attributes "uninhabited"
+	destination "Mountaintop"
+	to offer
+		not "Hai Reveal [D01B] Summoned to Mountaintop: offered"
+		# This makes sure that the background missions for the danger of traveling to Hai space can still happen (as they definitely don't work after this section).
+		# This also means that a lot of great content doesn't get excluded for players who don't find the Hai before finishing the main plot just because new content has been added.
+		has "event: hai-human treaty prepared"
+		has "Nanachi 4: done"
+		# Nanachi is too long a chain to do in the middle of the main story, the starting conditions have been changed to be available as soon as you're famous and not busy.
+		has "Expanding Business [4]: done"
+		# Expanding Business capitalizes on the situation to get the first part started.
+		has "Wanderers: Alpha Surveillance J: done"
+		# Sets the right characters and ensures the Unfettered are well distracted and out of the picture.
+	on offer
+		event "cardax site chosen"
+		conversation
+			# A message summons you for the treaty resolution.
+			`When you land at the spaceport, you find a message waiting for you from Teneep in the system buffer.`
+			`	The message has traveled a very long way and filtered through a great many relays to reach you, but it is nice that you can safely send messages across the wormhole now.`
+			`	The content of the message is very simple. The Hai-human treaty, which both peoples' governments resolved to work on, has reached its final stages of drafting and acceptance. Apparently there's something they want you to assist with to get it over the line. They'll be waiting for you on <destination> when you're ready.`
+				accept
+	
+mission "Hai Reveal [D01B] Summoned to Mountaintop"
+	landing
+	name "Treaty at <planet>"
+	description "Go to <destination> to witness the signing of the Hai-human treaty."
+	source
+		government "Hai"
+		not attributes "uninhabited"
+	destination "Mountaintop"
+	to offer
+		not "Hai Reveal [D01A] Summoned to Mountaintop: offered"
+		# This makes sure that the background missions for the danger of traveling to Hai space can still happen (as they definitely don't work after this section).
+		# This also means that a lot of great content doesn't get excluded for players who don't find the Hai before finishing the main plot just because new content has been added.
+		has "event: hai-human treaty prepared"
+		has "Nanachi 4: done"
+		# Nanachi is too long a chain to do in the middle of the main story, the starting conditions have been changed to be available as soon as you're famous and not busy.
+		has "Expanding Business [4]: done"
+		# Expanding Business capitalizes on the situation to get the first part started.
+		has "Wanderers: Alpha Surveillance J: done"
+		# Sets the right characters and ensures the Unfettered are well distracted and out of the picture.
+	on offer
+		event "cardax site chosen"
+		conversation
+			# A message summons you for the treaty resolution.
+			`When you land at the spaceport, you find a message waiting for you from Teneep in the system buffer.`
+			`	The content of the message is very simple. The Hai-human treaty, which both peoples' governments resolved to work on, has reached its final stages of drafting and acceptance. Apparently there's something they want you to assist with to get it over the line. They'll be waiting for you on <destination> when you're ready.`
+				accept
+	
+# Redefine Cardax to have a named location for the station.
+event "cardax site chosen"
+	system Cardax
+		add object
+			distance 667.205
+			period 166.95
+			object Mooncreek
+				sprite "effect/flotsam yottrite"
+				distance 212
+				period 31.1964
+	
+	planet Mooncreek
+		government "Unknown"
+		# Placeholder description; you can't actually land.
+		description `This tiny asteroid has a space hazard warning transmitter, of a type typically used to mark construction sites. Perhaps someone intends to build a space station here?`
+		"required reputation" 1000
+
+
+
+mission "Hai Reveal [D02] Escort to Cardax"
+	landing
+	name "<planet> Construction"
+	description "Escort a Geocoris to <destination> to begin the construction of a security station."
+	source "Mountaintop"
+	destination "Mooncreek"
+	clearance
+	on visit
+		dialog `You have arrived without the ship you are escorting. You must take off and wait for it to continue.`
+	to offer
+		or
+			has "Hai Reveal [D01A] Summoned to Mountaintop: done"
+			has "Hai Reveal [D01B] Summoned to Mountaintop: done"
+	on offer
+		event "cardax pirates waiting"
+		conversation
+			`Upon arriving at <planet>, you are greeted by Mr. Xilin Yang and the Hai ambassador, Hiyamaharu.`
+			`	"Captain <last>!" enthuses Xilin. "It has been too long. Welcome to <planet> again."`
+			`	Around you, the station appears to be prospering. A strong undercurrent of excited anticipation that seems to buoy everyone along as they go about their business.`
+			`	"Hiyamaharu here has been telling me stories about these so-called 'Wanderers' you've been off gallivanting with." He gives you a wink and a nudge, then continues, "I don't think he was meant to tell me, but it slipped out when I said we'd asked you back for this. I hear you two have been briefly acquainted before?"`
+			choice
+				`	"Yes, we met briefly over some business with Alphas."`
+					goto alphas
+				`	"I'm sorry, but I'm afraid I don't recall the occasion."`
+			`	Hiyamaharu looks hurt for a moment, but quickly saves face. "Not to worry, I'm sure the famous Captain has a great many adventures to recall. A short chat with an old Hai is no offense to have forgotten."`
+				goto main
+			label alphas
+			`	Hiyamaharu looks faintly pleased that you remember him. "Yes, that is quite right, I'm only sorry I wasn't able to offer more assistance at the time."`
+			`	Xilin looks shocked. "The Alphas? Seriously? Will there never be an end to their tale?"`
+			`	He waves his hand dismissively and continues.`
+			label main
+			`	"In any event," Xilin continues, "Hiyamaharu and I would like you to do something. You completed a similar task when this station was first built.`
+			`	"The pirate threat to ships traveling to and from Hai space is just as bad as it ever was, possibly worse for the increased number of ships. So, on top of a mountain of legalese, an endless stipulation of trade obligations, and a nightmare of judicial jurisprudence jurisdiction boundaries, there is a very physical and tangible action that needs to be taken.`
+			`	"The Navy base on Farpoint helps to limit the mobility of pirates coming from the Far North, but there is no restraint other than distance to put a check on the pirates that come out of Stormhold. Something needs to be done to secure the space lanes, and so the solution that has been agreed upon is to build a station in Cardax. The volume of pirate activity there is intense enough that the Hai's rapid ship conversion approach to building a station is the only really viable approach."`
+			choice
+				`	"So what am I going to do?"`
+			`	"Well," says Hiyamaharu, "the number of ships involved in this represents a considerable investment, and we'd hate for them to be destroyed during a vulnerable construction phase. The prior concerns about human agents observing the inner core of the station also continue to apply.`
+			`	"So, we would like you to escort a security force and the core Geocoris to the site in Cardax, clear out any threats in the system, and get the ship through the first construction phase so it can safely raise its shield again. Once that has been completed, the rest of the Geocoris will travel with their escort to join you. You and the security force will have to protect the station while the rest of the convoy arrives to finish the construction."`
+			choice
+				`"Why not just send all of them with their entire escort at once? Surely that would be safer?"`
+			`	Xilin shrugs. "We've heard a rumor that the pirates might have caught wind of what we're doing. The reality is that the marauders up here can field a truly formidable force, if they get their act together. They've overrun the Navy outpost on Farpoint a number of times before, and it would be devastating if an entire naval flotilla, the Hai construction fleet, and a whole security force were all caught out in the open by such a fleet, possibly attacked from both sides.`
+			`	"By separating them, we're less likely to tip them off as to when exactly we choose to act, and once the station is up, the fleet can use the station's projector and facilities to support their presence. Plus, if they are tipped off already and we can't deal with them, then we only lose the one Geocoris. We expect that you and the Hai security ships are capable enough to escape from trouble if it's more than you can handle."`
+			choice
+				`	"Makes sense."`
+				`	"I suppose..."`
+			`	"The Geocoris and security force are ready whenever you are. Be safe out there <last>, and remember: we can't have any pirates observing the construction."`
+				accept
+	on visit
+		dialog "You have arrived, but either the Geocoris has not arrived, or the pirates are still threatening the construction site."
+	npc accompany save
+		personality escort timid
+		government "Hai (Wormhole Access)"
+		ship Geocoris "Du Pli Hey"
+	npc
+		government "Hai (Wormhole Access)"
+		personality escort heroic
+		fleet "Anti-Pirate Hai (Wormhole Travel)" 2
+	npc kill
+		government "Pirate"
+		personality staying disables plunders harvests
+		system "Cardax"
+		fleet "Marauder fleet IX" 3
+	
+	
+# Specific pirates are added as NPC's in the mission.
+event "cardax pirates waiting"
+	system Cardax
+		remove fleet "Small Northern Pirates"
+		remove fleet "Large Northern Pirates"
+		remove fleet "Small Core Pirates"
+	planet Mooncreek
+		"required reputation" -10
+	
+	
+mission "Hai Reveal [D03] Defend Mooncreek Construction Site"
+	landing
+	name "<planet> Construction"
+	description "Defend until construction can be completed."
+	source "Mooncreek"
+	destination "Mooncreek"
+	on visit
+		dialog `You have arrived without the convoy you are escorting. You must take off and wait for it to continue.`
+	to offer
+		has "Hai Reveal [D02] Escort to Cardax: done"
+	on offer
+		event "mooncreek founded"
+		conversation
+			`While the system is clear of threats for a moment, you supervise closely as the Geocoris unfolds and deploys a massive, metal structural ring, before shifting hull plates and having its innards rearranged into a shielded station core. When the shield is back up, a confirmation message comes from Mountaintop. The rest of the construction fleet is en route.`
+			`	Now, you just need to keep the pirates away from the nascent station core until they can get here. The message from Mountaintop also warned that there may be a hasty response from the pirates.`
+				accept
+	npc
+		government "Hai (Wormhole Access)"
+		personality escort heroic
+		fleet "Anti-Pirate Hai (Wormhole Travel)" 2
+	npc accompany
+		government "Republic"
+		system "Ultima Thule"
+		personality heroic escort
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier (Mark II)" 3
+				"Lance" 12
+				"Combat Drone" 18
+				"Cruiser (Mark II)" 3
+				"Combat Drone" 12
+	npc accompany save
+		government "Hai (Wormhole Access)"
+		system "Ultima Thule"
+		personality escort timid
+		ship Geocoris "Du Cor Hey"
+		ship Geocoris "Mon Yo Sen"
+		ship Geocoris "Vai e Lur"
+		ship Geocoris "Du Woa Ow"
+		ship Geocoris "Luf Sook Hey"
+		ship Geocoris "Du Eh"
+		ship Geocoris "Mon e Ow"
+	npc
+		government "Pirate"
+		system Alcyone
+		personality heroic unconstrained waiting nemesis
+		fleet "Marauder fleet X"
+		fleet "Marauder fleet IX" 4
+	
+	
+# Update sprite & planet, and restore regular pirates.
+event "mooncreek founded"
+	system Cardax
+		remove object
+			distance 667.205
+			period 166.95
+		add object
+			distance 667.205
+			period 166.95
+			object Mooncreek
+				sprite "planet/station hai geocoris"
+				distance 212
+				period 31.1964
+		add fleet "Small Northern Pirates" 1000
+		add fleet "Large Northern Pirates" 3000
+		add fleet "Small Core Pirates" 2000
+	planet Mooncreek
+		government "Hai"
+		attributes uninhabited
+		landscape land/station0
+		description `There's a partially-dismantled Hai Geocoris with its innards rearranged into a shielded station core here.`
+		security 0.2
+	
+	
+mission "Hai Reveal [D04] Escort Republic Outfitters"
+	landing
+	name "<origin> Construction"
+	description "Escort outfitters to build up <origin> station."
+	source "Mooncreek"
+	destination "Maelstrom"
+	to offer
+		has "Hai Reveal [D03] Defend Mooncreek Construction Site: done"
+	on offer
+		event "mooncreek operational"
+		payment 10000000
+		conversation
+			`With a strong force ensuring that no one can interrupt the final construction stage, space-based cranes set about removing the three outer sections of the Geocoris and moving them to the steel ring deployed around the original station core. Within a few hours, all seven of the new Geocoris have been dismantled and integrated to the station structure, using lessons learnt from the construction of Mountaintop to rapidly finish a station that is fully battle-ready, if lacking in some of the amenities of life. In an unexpected reversal of the Mountaintop priorities, the construction workers unpack and assemble a massive holoprojector while wearing environmental suits before they begin unpacking the contents of the Geocoris storage pods and engaging principle life support systems.`
+			`	As soon as the life support systems around the docking section are engaged, the security ships begin landing those damaged by the hastily assembled pirate response for critical repairs.`
+			`	As you're attending to your own ships after their extended guard duty, you get pinged by a hail from Mountaintop. When you answer it, you are greeted by Xilin and Hiyamaharu, who look very pleased. "We hear that the operation to establish Mooncreek has been successful, Captain <last>! How'd things go with you?"`
+			choice
+				`	"Yeah, it was fairly chill."`
+					goto fantastic
+				`	"It was very close out there. There were some losses."`
+			`	Hiyamaharu is inscrutable, but Xilin adopts a somber expression. "Unfortunately, there was always a risk of that in such an endeavor."`
+			`	"Still," says Hiyamaharu, turning to Xilin.`
+			label fantastic
+			`	"A great success all round," replies Xilin. "The Republic and Hai governments have approved a reward of <payment> by the way, as thanks for your considerable assistance here.`
+			`	"If you have a moment though, we'd appreciate your continued help with a bit of PR now. To finalize the new station, the plan is to facilitate the set up of some of the major outfitters, both from Hai space and from ours. Predominantly, this would be so that we can ensure a ready supply of munitions on the station at all times. As well, a long-term garrison to act as security needs to be established. We'd like you to escort each of them on the last leg of their journeys, mostly for the photo ops.`
+			`	"Of course," Xilin adds, "we'll understand if you're too busy now."`
+			choice
+				`	"Sure, why not?"`
+					goto escort
+				`	"I think I've had enough of the limelight for now."`
+			`	Xilin performs a combination shrug and half-nod. "Fair enough <last>, be safe out there. We'll send you an invite for the final treaty ceremony. We'd all like you to be there."`
+			`	The call ends, leaving you to your own devices.`
+				decline
+			label escort
+			`	"Lovely. In that case, the first convoy will be waiting for you on <destination>. I'll meet you there on <origin> when you return."`
+				accept
+	
+	
+# Update sprite & planet, and add security patrol to counter regular pirates.
+event "mooncreek operational"
+	system Cardax
+		government "Hai"
+		remove object
+			distance 667.205
+			period 166.95
+		add object
+			distance 667.205
+			period 166.95
+			object Mooncreek
+				sprite "planet/station hai eight geocoris"
+				distance 212
+				period 31.1964
+		add fleet "Anti-Pirate Hai (Wormhole Travel)" 2000
+	planet Mooncreek
+		remove attributes uninhabited
+		description `This station is made of eight Geocoris ships dismantled and reassembled into a spherical structure with external storage and landing platforms. In this dangerous place, critical tactical systems have been installed first, with only minimal life support and amenities. Other than the docking and repair facilities, its main focus is a vast integrated holographic projection system, which projects false security ships into space to confuse attackers and draw fire away from the actual defenders of the station.`
+		security 0.4
+
+
+mission "Hai Reveal [D05] Escort Republic Outfitters"
+	landing
+	name "<planet> Construction"
+	description "Escort outfitters to build up <planet> station."
+	source "Maelstrom"
+	destination "Mooncreek"
+	on visit
+		dialog `You have arrived without the convoy you are escorting. You must take off and wait for it to continue.`
+	to offer
+		has "Hai Reveal [D04] Escort Republic Outfitters: done"
+	on offer
+		conversation
+			`When you arrive on <origin>, you are greeted by a representative of Lovelace Labs. They and their Navy escort are ready to depart on their PR flight immediately.`
+				accept
+	npc accompany save
+		personality escort heroic
+		government Republic
+		ship "Behemoth (Heavy)" "R.N.S. Bungles"
+		ship "Behemoth (Heavy)" "R.N.S. Humble"
+		ship "Behemoth (Heavy)" "R.N.S. Sensible"
+		ship "Behemoth (Heavy)" "R.N.S. Temperate"
+	npc accompany save
+		personality escort heroic
+		government Republic
+		fleet
+			names "republic capital"
+			fighters "republic fighter"
+			variant
+				"Carrier"
+				"Lance" 4
+				"Combat Drone" 6
+				"Frigate" 2
+				"Gunboat" 3
+				"Rainmaker" 3
+
+
+mission "Hai Reveal [D06] Escort Syndicate Outfitters"
+	landing
+	name "<origin> Construction"
+	description "Escort outfitters to build up <origin> station."
+	source "Mooncreek"
+	destination "Sunracer"
+	to offer
+		has "Hai Reveal [D05] Escort Republic Outfitters: done"
+	on offer
+		event "mooncreek republic garrison"
+		conversation
+			`The Republic garrison and Lovelace transports arrive to suitable fanfare and media pomp. Xilin and Hiyamaharu appear to have hitched a ride to Mooncreek in your absence, and they greet you in what passes for a spaceport that is not yet even serving drinks.`
+			`	"Good job out there, <last>," says Xilin.`
+			`	"I know it's trivial, but don't underestimate the impact of a stately arrival. After the crisis last time, it's really very important to penetrate the public consciousness and get people to appreciate the magnitude of these steps."`
+			choice
+				`	"I understand."`
+				`	"As long as I get paid for it."`
+			`	Xilin nods. "The Syndicate cohort will be waiting on Sunracer for the next one." He casts a look around. "With any luck, you'll actually be able to get a drink around here by the time you return."`
+				accept
+
+
+event "mooncreek republic garrison"
+	system Cardax
+		add fleet "Small Republic" 1500
+		add fleet "Large Republic" 3000
+
+
+mission "Hai Reveal [D07] Escort Syndicate Outfitters"
+	landing
+	name "<planet> Construction"
+	description "Escort outfitters to build up <planet> station."
+	source "Sunracer"
+	destination "Mooncreek"
+	on visit
+		dialog `You have arrived without the convoy you are escorting. You must take off and wait for it to continue.`
+	to offer
+		has "Hai Reveal [D06] Escort Syndicate Outfitters: done"
+	on offer
+		event "mooncreek spaceport"
+		conversation
+			`When you arrive on Sunracer, you are greeted by a Syndicate representative. They appear agitated by the delay and are ready to depart on their PR flight immediately.`
+				accept
+	npc accompany save
+		personality escort timid
+		government Syndicate
+		ship Freighter "S.S. Raleigh"
+		ship Freighter "S.S. Scott"
+		ship Freighter "S.S. Hudson"
+		ship Freighter "S.S. Drake"
+		ship Freighter "S.S. Magellan"
+		ship Freighter "S.S. Franklin"
+	npc accompany save
+		personality escort heroic
+		government Syndicate
+		fleet
+			names "syndicate capital"
+			variant
+				"Splinter (Mark II)" 2
+				"Manta (Mark II)" 3
+				"Quicksilver (Mark II)" 6
+				"Protector" 8
+
+
+event "mooncreek spaceport"
+	planet Mooncreek
+		attributes hai military north frontier
+		spaceport `The spaceport is essentially a military facility. Uniformed crew members of various stripes hurry back and forth without giving you a second glance. The food options are diverse, but all have that certain trend of solidity and mass over taste that is typical of military fare. There are few shops or other services catering to civilians.`
+		security 0.6
+
+
+mission "Hai Reveal [D08] Escort Hai Outfitters"
+	landing
+	name "Mooncreek Construction"
+	description "Escort outfitters to build up Mooncreek station."
+	source "Mooncreek"
+	destination "Mountaintop"
+	passengers 1
+	to offer
+		has "Hai Reveal [D07] Escort Syndicate Outfitters: done"
+	on offer
+		event "mooncreek syndicate garrison"
+		conversation
+			`The Syndicate convoy arrives to a more muted reception, but one that is thoroughly covered nonetheless. The rudimentary spaceport, still only days old, has now opened up a bar, and the Lovelace outfitters have begun work on their facilities here. Hiyamaharu is waiting for you in the spaceport and appears to be sampling a collection of cheap whiskies.`
+			`	"Welcome back, Captain," he says, "If you don't mind, I'll be coming with you for the Hai escort."`
+			choice
+				`	"This seems mildly ridiculous."`
+				`	"Of course."`
+			`	"I hear the intent of this affair is to prevent the news cycle in human space from turning over before the big event," he explains.`
+			`	"Well," you say, "at least I don't have to go very far."`
+				accept
+
+
+event "mooncreek syndicate garrison"
+	system Cardax
+		add fleet "Small Syndicate" 1500
+		add fleet "Large Syndicate" 3000
+
+
+mission "Hai Reveal [D09] Escort Hai Outfitters"
+	landing
+	name "<planet> Construction"
+	description "Escort outfitters to build up <planet> station."
+	source "Mountaintop"
+	destination "Mooncreek"
+	passengers 1
+	on visit
+		dialog `You have arrived without the convoy you are escorting. You must take off and wait for it to continue.`
+	to offer
+		has "Hai Reveal [D08] Escort Hai Outfitters: done"
+	on offer
+		conversation
+			`The Hai on Mountaintop are fully prepared. Everyone is eager to get this part over and done with.`
+				accept
+	npc accompany save
+		personality escort timid
+		government "Hai (Wormhole Access)"
+		ship Geocoris "Du Cor Hey"
+		ship Geocoris "Mon Yo Sen"
+		
+		
+# The Free Worlds demand a tour so they can be seen to be contributing to the wider benefit of humanity. (They're PR hogs.)
+# This will need branches in the event of future alternative campaigns.
+mission "Hai Reveal [D10] Escort Free World Outfitters"
+	landing
+	name "<origin> Construction"
+	description "Escort outfitters to build up <origin> station."
+	source "Mooncreek"
+	destination "Solace"
+	passengers 1
+	to offer
+		has "Hai Reveal [D09] Escort Hai Outfitters: done"
+	on offer
+		event "mooncreek main outfitters" 15
+		conversation
+			`On your arrival to <origin> with the Hai convoy, you are surprised to see a slightly put-out looking Alondo waiting for you at the docks.`
+			`	"<first>! How's it going?"`
+			choice
+				`	"Fine, I guess?"`
+				`	"It's going well."`
+			`	"Good, good," he says. "Now, I know that the last thing you probably want to do right now is traipse from one end of space to the other, but I need to ask you a favor."`
+			`	He finds somewhere to sit down with you and begins. "You may recall that I was helping the Free Worlds set up their diplomatic corps. Obviously, I wanted no part of the ambassadorial business to the Republic, but when all this Hai business started up well, let's just say they struggled to find anyone qualified. As it turns out, someone in the senate doesn't particularly like me, and they've been using my extended time away up here to try and influence the diplomatic corps. Meanwhile, the Hai want the Free Worlds to have some involvement with this station we're on so that everyone is tied in, but obviously the Free Worlds don't particularly care when they could hardly be further from it.`
+			`	"I have devised a compromise: the Free Worlds will not supply ships to the garrison, but they will instead sponsor both Kraz and Delta V, primarily based in the south, to set up outfitters here, with full upfront costs paid by the Free Worlds government. A defining success will allow me to return to the corps with the influence I need to counter this senator's influence. Otherwise, I fear I shall be stuck here, on the other side of space, for the rest of my career."`
+			`	You look at your friend, and you can tell he's waiting for you to accept his premise first, holding something back...`
+			choice
+				`	"What's the catch?"`
+			`	He chuckles. "You're getting to know me too well.`
+			`	"The catch is that the Free Worlds will only sponsor the outfitters if you agree to escort their convoys directly from Solace and Rust the entire way here. They want to make a big show of it - or rather, a certain senator has goaded them into making a show of it."`
+			`	He sighs. "On the plus side though, if you're interested, you do get paid diplomatic escort rates."`
+			choice
+				`	"I'll do it, friend."`
+					accept
+				`	"Of course I'll do it, but how much is that exactly?"`
+			`	He winks. "A hundred thousand credits per day, for a fifty-two day route with eight stops."`
+			`	"Of course, if you really don't want to do it, I'll understand. I don't imagine you're keen to deal with the politics."`
+			`	You take a moment to consider helping a good friend... for six million credits.`
+			choice
+				`	"Don't be silly! Of course I'll do it, friend."`
+					accept
+				`	"I'm sorry Alondo. Maybe I can find some other way of helping you later."`
+					decline
+			
+		
+
+mission "Hai Reveal [D11] Escort Free World Outfitters"
+	landing
+	name "Mooncreek Construction"
+	description "Meet up with more outfitters for Mooncreek on <destination>."
+	source "Solace"
+	destination "Rust"
+	passengers 1
+	on visit
+		dialog `You have arrived without the convoy you are escorting. You must take off and wait for it to continue.`
+	to offer
+		has "Hai Reveal [D10] Escort Free World Outfitters: done"
+	on offer
+		conversation
+			`When you arrive on Solace, the Delta V convoy is ready and waiting along with one of their head engineers. They also seem to have sent their most blustery and arrogant sales representative, much to the chagrin of their engineer. Fortunately for everyone, they will each be traveling on separate ships, and not on yours.`
+				accept
+	npc accompany save
+		personality escort timid
+		government "Free Worlds"
+		ship "Hauler III" "F.S. Terebinth"
+		ship "Hauler III" "F.S. Tamarack"
+		ship "Hauler III" "F.S. Juniper"
+
+
+mission "Hai Reveal [D12] Escort Free World Outfitters"
+	autosave
+	landing
+	name "<planet> Construction"
+	description "Escort outfitters to build up <planet> station."
+	source "Rust"
+	destination "Mooncreek"
+	passengers 1
+	on visit
+		dialog `You have arrived without the convoy you are escorting. You must take off and wait for it to continue.`
+	to offer
+		has "Hai Reveal [D11] Escort Free World Outfitters: done"
+	on offer
+		conversation
+			`On <origin>, it is tempting to take the time to go and catch up with Barmy Edward, but the Kraz convoy were already prepared a day early and near enough to meeting you in orbit.`
+			`	While you are briefly touched down though, you are greeted by a message from Alondo. "<first>! Navy intelligence has, in their infinite wisdom, deigned to let us know about a potential pirate threat. The marauders were outmaneuvered when <planet> went up so quickly, so it seems they might attempt to intercept the convoy. Please be safe out there!"`
+			`	It seems you'll have to keep your eyes peeled on your way back.`
+				accept
+	on fail
+		dialog "You have failed to safely escort the convoy of Free World outfitters."
+	npc accompany save
+		personality escort timid
+		government "Free Worlds"
+		ship "Hauler III" "F.S. Terebinth"
+		ship "Hauler III" "F.S. Tamarack"
+		ship "Hauler III" "F.S. Juniper"
+		ship "Hauler III" "F.S. Ponderosa"
+		ship "Hauler III" "F.S. Bartlett"
+		ship "Hauler III" "F.S. Sycamore"
+	npc
+		government "Pirate"
+		system Shaula
+		personality heroic unconstrained waiting nemesis
+		fleet "Marauder fleet X"
+		fleet "Marauder fleet IX" 2
+	npc
+		government "Pirate"
+		system Gienah
+		personality heroic unconstrained waiting nemesis
+		fleet "Marauder fleet X"
+		fleet "Marauder fleet IX" 2
+	npc
+		government "Pirate"
+		system Alcyone
+		personality heroic unconstrained waiting nemesis
+		fleet "Marauder fleet X"
+		fleet "Marauder fleet IX" 2
+	npc
+		government "Pirate"
+		system Almaaz
+		personality heroic unconstrained waiting nemesis
+		fleet "Marauder fleet X"
+		fleet "Marauder fleet IX" 2
+
+
+event "mooncreek main outfitters"
+	planet Mooncreek
+		add outfitter "Lovelace Security"
+		add outfitter "Syndicate Security"
+		add outfitter "Hai Security"
+		security 0.8
+
+# Kraz & Delta V
+event "mooncreek fw outfitters"
+	planet Mooncreek
+		add outfitter "FW Security"
+
+
+# add syndicate hai and republic outfitters event - do not add FW outfitter event - proceed to trigger story conclusion.
+mission "Hai Reveal [D0XA] Skipped Mooncreek Escorts"
+	landing
+	invisible
+	to offer
+		has "Hai Reveal [D04] Escort Republic Outfitters: declined"
+	on offer
+		event "mooncreek main outfitters" 30
+		fail
+	
+mission "Hai Reveal [D0XB] Skipped Mooncreek Escorts"
+	landing
+	name "Hai-Human Treaty Signing"
+	description "Travel to Mountaintop for the final treaty signing."
+	destination "Mountaintop"
+	to offer
+		has "mooncreek main outfitters"
+		not "Hai Reveal [D04] Escort Republic Outfitters: done"
+	on offer
+		conversation
+			`In your absence the Mooncreek station has been fully completed. You are summoned to Mountaintop for the final treaty signing.`
+				accept
+
+mission "Hai Reveal [D0XC] Skipped Mooncreek Escorts"
+	landing
+	name "Hai-Human Treaty Signing"
+	description "Travel to Mountaintop for the final treaty signing."
+	destination "Mountaintop"
+	to offer
+		has "mooncreek main outfitters"
+		has "Hai Reveal [D10] Escort Free World Outfitters: declined"
+	on offer
+		conversation
+			`In your absence the Mooncreek station has been fully completed. You are summoned to Mountaintop for the final treaty signing.`
+				accept
+	
+
+mission "Hai Reveal [D13] Travel to Mountaintop"
+	landing
+	name "Hai Treaty"
+	description "Travel to <destination> for the official signing of the Human-Hai Treaty."
+	source "Mooncreek"
+	destination "Mountaintop"
+	passengers 1
+	to offer
+		has "Hai Reveal [D12] Escort Free World Outfitters: done"
+	on offer
+		event "mooncreek fw outfitters" 12
+		payment 6000000
+		conversation
+			`With the Free World outfitters safely at Mooncreek, there's nothing left except to go to Mountaintop for the treaty signing. Alondo hitches a ride and transfers you the <payment> promised by the Free Worlds.`
+				accept
+
+
+mission "Hai Reveal [D14] Hai-Human Treaty"
+	landing
+	name "Hai Treaty"
+	description "Participate in the official signing of the Human-Hai Treaty."
+	source "Mountaintop"
+	to offer
+		or
+			has "Hai Reveal [D13] Travel to Mountaintop: done"
+			has "Hai Reveal [D0XB] Skipped Mooncreek Escorts: done"
+			has "Hai Reveal [D0XC] Skipped Mooncreek Escorts: done"
+	on offer
+		event "hai-human treaty signed"
+		event "mooncreek realized" 15
+		payment 12000000
+		conversation
+			`Arriving on <origin> once again brings with it full diplomatic regalia. The gallery "Where Mountains Touch The Sky" is filled to the brim with a great many representatives from the Core and Paradise worlds, and some of the more notable representatives from the Syndicate and Free Worlds. The entire Hai Elder Council is in attendance, and the Chancellor of the Free Worlds and President of the Republic are again schmoozing about in their most respectable suits. Alondo, Xilin, and Hiyamaharu have their symbols of office, and it looks like the Free Worlds have now finalized their design for Alondo's.`
+			`	The speeches in the grand Borealis Chamber turn out to be rather long and dry. Teeneep makes an appearance along with one of the other Elder Hai, whom you think you recognize as the one who asked you strange questions once before. Only the Republic President makes a head of state address, but the highest officer of the Navy also makes an address on the value of the Mooncreek station to the security of both nations and the benefits of long-term cooperation with mutual friends.`
+			`	You are asked to stand for a great many photos, make occasional comments, and shake an absolutely endless series of hands. Xilin is kind enough to make sure you get some of the better hors d'oeuvres in between exchanging pleasantries.`
+			`	When it's over, Xilin and Hiyamaharu quietly inform you that you have a reward of <payment> for your earlier efforts setting up Mooncreek. You're free to go back about your business now.`
+				decline
+
+
+# The final conclusion event.
+event "hai-human treaty signed"
+
+
+ship "Boxwing" "Boxwing (Miner)"
+	outfits
+		"KP-6 Photovoltaic Array"
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
+
+
+ship "Dagger" "Dagger (Miner)"
+	outfits
+		"Beam Laser" 2
+		"Small Radar Jammer"
+		"nGVF-BB Fuel Cell"
+		"Supercapacitor"
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
+
+
+fleet "Cardax Miners"
+	government "Republic"
+	names "republic fighter"
+	cargo 0
+	personality
+		plunders mining harvests
+	variant 6
+		"Boxwing (Miner)" 4
+		"Dagger (Miner)" 4
+	variant 4
+		"Boxwing (Miner)" 5
+		"Dagger (Miner)" 5
+	variant 3
+		"Boxwing (Miner)" 6
+		"Dagger (Miner)" 6
+	variant 2
+		"Boxwing (Miner)" 7
+		"Dagger (Miner)" 7
+
+
+shipyard "Cardax Miners"
+	"Boxwing (Miner)"
+	"Dagger (Miner)"
+
+
+event "mooncreek realized"
+	system Cardax
+		add fleet "Cardax Miners" 1800
+	planet Mooncreek
+		spaceport `The spaceport is essentially a military facility. Uniformed crew members of various stripes hurry back and forth without giving you a second glance. The food options are diverse, but all have that certain trend of solidity and mass over taste that is typical of military fare. Outside of outfitters, there are few shops or other services catering to civilians, and a very busy section devoted to the fighter groups that mine the asteroids here to keep the outfitters supplied with basic resources for manufacture.`
+		add shipyard "Cardax Miners"
+		security 0.9
+	system Moktar
+		add fleet "Anti-Pirate Hai (Wormhole Travel)" 2000
+	system Volax
+		add fleet "Anti-Pirate Hai (Wormhole Travel)" 2000
+	system Sumar
+		fleet "Small Northern Pirates" 4000
+		fleet "Large Northern Pirates" 8000
+		add fleet "Anti-Pirate Hai (Wormhole Travel)" 2000
+	system Danoa
+		fleet "Small Northern Pirates" 7000
+		fleet "Large Northern Pirates" 16000
+		add fleet "Anti-Pirate Hai (Wormhole Travel)" 5000
+	system Hassaleh
+		fleet "Small Northern Pirates" 8000
+		fleet "Large Northern Pirates" 20000
+		add fleet "Anti-Pirate Hai (Wormhole Travel)" 5000
+	system Rajak
+		fleet "Small Northern Pirates" 7000
+		fleet "Large Northern Pirates" 12000
+		add fleet "Anti-Pirate Hai (Wormhole Travel)" 2000
+	system Rigel
+		add fleet "Anti-Pirate Hai (Wormhole Travel)" 11000

@@ -151,11 +151,11 @@ ship "Marauder Bounder"
 		"Volcano Afterburner"
 		"Hyperdrive"
 		
-	engine -12 44
-	engine 12 44
-	gun 0 -85 "Particle Cannon"
-	turret -38 7 "Quad Blaster Turret"
-	turret 38 7 "Quad Blaster Turret"
+	engine -10 44
+	engine 10 44
+	gun 0 -84.5 "Particle Cannon"
+	turret -38 12 "Quad Blaster Turret"
+	turret 38 12 "Quad Blaster Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 15
@@ -183,9 +183,9 @@ ship "Marauder Bounder" "Marauder Bounder (Engines)"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 		
-	engine -12 58 .7
-	engine 0 51
-	engine 12 58 .7
+	engine -12.5 56 .7
+	engine 0 52.5
+	engine 12.5 56 .7
 	description "The previous owner of this Bounder has modified an already fast courier-scout into an even faster heavy escort interceptor with some truly enormous engines, giving it incredible maneuverability for its size."
 
 
@@ -210,12 +210,12 @@ ship "Marauder Bounder" "Marauder Bounder (Weapons)"
 		"A255 Atomic Steering"
 		"Hyperdrive"
 		
-	engine -15 44
-	engine 15 44
-	gun -7 -77 "Modified Blaster"
-	gun 7 -77 "Modified Blaster"
-	turret -37 4 "Heavy Laser Turret"
-	turret 37 4 "Heavy Laser Turret"
+	engine -10 44
+	engine 10 44
+	gun -9 -84.5 "Modified Blaster"
+	gun 9 -84.5 "Modified Blaster"
+	turret -38 12 "Heavy Laser Turret"
+	turret 38 12 "Heavy Laser Turret"
 	description "Simultaneously the deadliest and most graceful interceptor in the galaxy, this former Bounder courier-scout has been equipped with incredibly powerful weapons for a ship of its size."
 
 
@@ -228,15 +228,15 @@ ship "Marauder Falcon"
 		"cost" 13900000
 		"shields" 14100
 		"hull" 4100
-		"required crew" 43
-		"bunks" 80
+		"required crew" 57
+		"bunks" 96
 		"mass" 560
 		"drag" 6.7
 		"heat dissipation" .8
 		"fuel capacity" 600
-		"cargo space" 60
-		"outfit space" 580
-		"weapon capacity" 265
+		"cargo space" 80
+		"outfit space" 620
+		"weapon capacity" 275
 		"engine capacity" 165
 		"self destruct" .15
 		weapon
@@ -477,8 +477,8 @@ ship "Marauder Leviathan"
 		"hull" 5500
 		"required crew" 48
 		"bunks" 69
-		"mass" 640
-		"drag" 7.6
+		"mass" 680
+		"drag" 8.1
 		"heat dissipation" .5
 		"fuel capacity" 500
 		"cargo space" 40
@@ -605,7 +605,7 @@ ship "Marauder Manta"
 		"heat dissipation" .8
 		"fuel capacity" 400
 		"cargo space" 10
-		"outfit space" 390
+		"outfit space" 400
 		"weapon capacity" 155
 		"engine capacity" 110
 		"self destruct" .25
@@ -615,8 +615,7 @@ ship "Marauder Manta"
 			"hull damage" 450
 			"hit force" 1350
 	outfits
-		"Plasma Cannon" 2
-		"Particle Cannon" 2
+		"Plasma Cannon" 4
 		"Meteor Missile Launcher" 2
 		"Meteor Missile" 60
 		"Quad Blaster Turret"
@@ -634,8 +633,8 @@ ship "Marauder Manta"
 	
 	engine -33 40
 	engine 33 40
-	gun -20 -31 "Particle Cannon"
-	gun 20 -31 "Particle Cannon"
+	gun -20 -31 "Plasma Cannon"
+	gun 20 -31 "Plasma Cannon"
 	gun -26.5 -30 "Plasma Cannon"
 	gun 26.5 -30 "Plasma Cannon"
 	gun -68.5 -33 "Meteor Missile Launcher"

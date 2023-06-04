@@ -1,0 +1,309 @@
+test-data "Outfit Take Off Storage Save"
+	category "savegame"
+	contents
+		pilot Billy Bughunter
+		date 29 11 3013
+		system Betelgeuse
+		planet Prime
+		# Set some reputations to positive to avoid combat
+		"reputation with"
+			Bounty 1
+			"Bounty Hunter" 1
+			Pirate 1
+		# What you own:
+		ship Sparrow
+			name "Agincourt"
+			sprite ship/sparrow
+			thumbnail thumbnail/sparrow
+			uuid 65f19ee4-5cc2-452c-9695-cc918710853c
+			attributes
+				category Interceptor
+				cost 225000
+				mass 50
+				bunks 3
+				"cargo space" 15
+				drag 0.9
+				"engine capacity" 40
+				"fuel capacity" 300
+				"gun ports" 2
+				"heat dissipation" 0.8
+				hull 300
+				"outfit space" 130
+				"required crew" 1
+				shields 1400
+				"weapon capacity" 25
+			outfits
+				"Beam Laser" 2
+				"Chipmunk Plasma Steering"
+				"Chipmunk Plasma Thruster"
+				"D14-RN Shield Generator"
+				Hyperdrive
+				"LP036a Battery Pack"
+				"nGVF-BB Fuel Cell"
+			crew 1
+			fuel 300
+			shields 1400
+			hull 300
+			engine -5 35
+				zoom 1
+				angle 0
+				under
+			engine 5 35
+				zoom 1
+				angle 0
+				under
+			gun -7 -10 "Beam Laser"
+				under
+			gun 7 -10 "Beam Laser"
+				under
+			leak flame 60 80
+			explode "small explosion" 5
+			explode "tiny explosion" 15
+			system Betelgeuse
+			planet Prime
+		ship Shuttle
+			name "Arkhangelsk"
+			sprite ship/shuttle
+				"frame rate" 15
+				delay 14
+			thumbnail thumbnail/shuttle
+			uuid aa995c01-8b9f-43ca-8a46-a5fb77797af8
+			attributes
+				category Transport
+				cost 180000
+				mass 70
+				bunks 6
+				"cargo space" 20
+				drag 1.7
+				"engine capacity" 60
+				"fuel capacity" 400
+				"gun ports" 1
+				"heat dissipation" 0.8
+				hull 600
+				"outfit space" 120
+				"required crew" 1
+				shields 500
+				"weapon capacity" 10
+			outfits
+				"D14-RN Shield Generator"
+				Hyperdrive
+				"LP036a Battery Pack"
+				"X2200 Ion Steering"
+				"X2700 Ion Thruster"
+				"nGVF-AA Fuel Cell"
+			crew 1
+			fuel 400
+			shields 500
+			hull 600
+			engine -6 30
+				zoom 1
+				angle 0
+				under
+			engine 6 30
+				zoom 1
+				angle 0
+				under
+			gun 0 -31
+				under
+			leak leak 60 50
+			explode "small explosion" 5
+			explode "tiny explosion" 10
+			system Betelgeuse
+			planet Prime
+		account
+			credits 100
+			score 400
+			history
+		cargo
+			outfits
+				"D23-QP Shield Generator" 1
+		visited Betelgeuse
+		"visited planet" Prime
+
+
+test-data "Outfit Take Off Selling Save"
+	category "savegame"
+	contents
+		pilot Billy Bughunter
+		date 29 11 3013
+		system "Yed Prior"
+		planet Winter
+		# Set some reputations to positive to avoid combat
+		"reputation with"
+			Bounty 1
+			"Bounty Hunter" 1
+			Pirate 1
+		# What you own:
+		ship Sparrow
+			name "Agincourt"
+			sprite ship/sparrow
+			thumbnail thumbnail/sparrow
+			uuid 65f19ee4-5cc2-452c-9695-cc918710853c
+			attributes
+				category Interceptor
+				cost 225000
+				mass 50
+				bunks 3
+				"cargo space" 15
+				drag 0.9
+				"engine capacity" 40
+				"fuel capacity" 300
+				"gun ports" 2
+				"heat dissipation" 0.8
+				hull 300
+				"outfit space" 130
+				"required crew" 1
+				shields 1400
+				"weapon capacity" 25
+			outfits
+				"Beam Laser" 2
+				"Chipmunk Plasma Steering"
+				"Chipmunk Plasma Thruster"
+				"D14-RN Shield Generator"
+				Hyperdrive
+				"LP036a Battery Pack"
+				"nGVF-BB Fuel Cell"
+			crew 1
+			fuel 300
+			shields 1400
+			hull 300
+			engine -5 35
+				zoom 1
+				angle 0
+				under
+			engine 5 35
+				zoom 1
+				angle 0
+				under
+			gun -7 -10 "Beam Laser"
+				under
+			gun 7 -10 "Beam Laser"
+				under
+			leak flame 60 80
+			explode "small explosion" 5
+			explode "tiny explosion" 15
+			system "Yed Prior"
+			planet Winter
+		ship Shuttle
+			name "Arkhangelsk"
+			sprite ship/shuttle
+				"frame rate" 15
+				delay 14
+			thumbnail thumbnail/shuttle
+			uuid aa995c01-8b9f-43ca-8a46-a5fb77797af8
+			attributes
+				category Transport
+				cost 180000
+				mass 70
+				bunks 6
+				"cargo space" 20
+				drag 1.7
+				"engine capacity" 60
+				"fuel capacity" 400
+				"gun ports" 1
+				"heat dissipation" 0.8
+				hull 600
+				"outfit space" 120
+				"required crew" 1
+				shields 500
+				"weapon capacity" 10
+			outfits
+				"D14-RN Shield Generator"
+				Hyperdrive
+				"LP036a Battery Pack"
+				"X2200 Ion Steering"
+				"X2700 Ion Thruster"
+				"nGVF-AA Fuel Cell"
+			crew 1
+			fuel 400
+			shields 500
+			hull 600
+			engine -6 30
+				zoom 1
+				angle 0
+				under
+			engine 6 30
+				zoom 1
+				angle 0
+				under
+			gun 0 -31
+				under
+			leak leak 60 50
+			explode "small explosion" 5
+			explode "tiny explosion" 10
+			system "Yed Prior"
+			planet Winter
+		account
+			credits 0
+			score 400
+			history
+		cargo
+			outfits
+				"D23-QP Shield Generator" 1
+		visited "Yed Prior"
+		"visited planet" Winter
+
+
+test "Store Outfit On Take Off"
+	status active
+	description "Test the automatic storing of an outfit in cargo that cannot fit in any ships after taking off."
+	sequence
+		# Create/inject the savegame and load it.
+		inject "Outfit Take Off Storage Save"
+		call "Load First Savegame"
+		# Check startup conditions.
+		assert
+			and
+				"credits" == 100
+				"outfit: D23-QP Shield Generator" == 1
+				"outfit (cargo): D23-QP Shield Generator" == 1
+				"outfit (storage): D23-QP Shield Generator" == 0
+		call "Depart"
+		# Re-check startup conditions.
+		assert
+			and
+				"credits" == 0
+				"outfit: D23-QP Shield Generator" == 0
+				"outfit (cargo): D23-QP Shield Generator" == 0
+				"outfit (storage): D23-QP Shield Generator" == 1
+		watchdog 90000
+		call "Land"
+		assert
+			and
+				"flagship landed" > 0
+				"credits" == 0
+				"outfit (cargo): D23-QP Shield Generator" == 0
+				"outfit (storage): D23-QP Shield Generator" == 1
+
+
+test "Sell Outfit On Take Off"
+	status active
+	description "Test the automatic selling of an outfit in cargo that cannot fit in any ships after taking off from a planet with no outfitter."
+	sequence
+		# Create/inject the savegame and load it.
+		inject "Outfit Take Off Selling Save"
+		call "Load First Savegame"
+		# Check startup conditions.
+		assert
+			and
+				"credits" == 0
+				"outfit: D23-QP Shield Generator" == 1
+				"outfit (cargo): D23-QP Shield Generator" == 1
+				"outfit (storage): D23-QP Shield Generator" == 0
+		call "Depart"
+		# Re-check startup conditions.
+		assert
+			and
+				"credits" > 0
+				"outfit: D23-QP Shield Generator" == 0
+				"outfit (cargo): D23-QP Shield Generator" == 0
+				"outfit (storage): D23-QP Shield Generator" == 0
+		watchdog 90000
+		call "Land"
+		assert
+			and
+				"flagship landed" > 0
+				"credits" > 0
+				"outfit: D23-QP Shield Generator" == 0
+				"outfit (cargo): D23-QP Shield Generator" == 0
+				"outfit (storage): D23-QP Shield Generator" == 0

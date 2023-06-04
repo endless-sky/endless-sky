@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "Random.h"
 #include "Ship.h"
+#include "ShipJumpNavigation.h"
 #include "StellarObject.h"
 #include "System.h"
 
@@ -44,104 +45,6 @@ namespace {
 		// Since it is sensible that ships would be nearer to the object of
 		// interest on average, do not apply the sqrt(rand) correction.
 		return (Random::Real() + minimumOffset) * 400. + 2. * center.second;
-	}
-
-	// Construct a list of all outfits for sale in this system and its linked neighbors.
-	Sale<Outfit> GetOutfitsForSale(const System *here)
-	{
-		auto outfits = Sale<Outfit>();
-		if(here)
-		{
-			for(const StellarObject &object : here->Objects())
-			{
-				const Planet *planet = object.GetPlanet();
-				if(planet && planet->IsValid() && planet->HasOutfitter())
-					outfits.Add(planet->Outfitter());
-			}
-		}
-		return outfits;
-	}
-
-	// Construct a list of varying numbers of outfits that were either specified for
-	// this fleet directly, or are sold in this system or its linked neighbors.
-	vector<const Outfit *> OutfitChoices(const set<const Sale<Outfit> *> &outfitters, const System *hub, int maxSize)
-	{
-		auto outfits = vector<const Outfit *>();
-		if(maxSize > 0)
-		{
-			auto choices = Sale<Outfit>();
-			// If no outfits were directly specified, choose from those sold nearby.
-			if(outfitters.empty() && hub)
-			{
-				choices = GetOutfitsForSale(hub);
-				for(const System *other : hub->Links())
-					choices.Add(GetOutfitsForSale(other));
-			}
-			else
-				for(const auto outfitter : outfitters)
-					choices.Add(*outfitter);
-
-			if(!choices.empty())
-			{
-				for(const auto outfit : choices)
-				{
-					double mass = outfit->Mass();
-					// Avoid free outfits, massless outfits, and those too large to fit.
-					if(mass > 0. && mass < maxSize && outfit->Cost() > 0)
-					{
-						// Also avoid outfits that add space (such as Outfits / Cargo Expansions)
-						// or modify bunks.
-						// TODO: Specify rejection criteria in datafiles as ConditionSets or similar.
-						const auto &attributes = outfit->Attributes();
-						if(attributes.Get("outfit space") > 0.
-								|| attributes.Get("cargo space") > 0.
-								|| attributes.Get("bunks"))
-							continue;
-
-						outfits.push_back(outfit);
-					}
-				}
-			}
-		}
-		// Sort this list of choices ascending by mass, so it can be easily trimmed to just
-		// the outfits that fit as the ship's free space decreases.
-		sort(outfits.begin(), outfits.end(), [](const Outfit *a, const Outfit *b)
-			{ return a->Mass() < b->Mass(); });
-		return outfits;
-	}
-
-	// Add a random commodity from the list to the ship's cargo.
-	void AddRandomCommodity(Ship &ship, int freeSpace, const vector<string> &commodities)
-	{
-		int index = Random::Int(GameData::Commodities().size());
-		if(!commodities.empty())
-		{
-			// If a list of possible commodities was given, pick one of them at
-			// random and then double-check that it's a valid commodity name.
-			const string &name = commodities[Random::Int(commodities.size())];
-			for(const auto &it : GameData::Commodities())
-				if(it.name == name)
-				{
-					index = &it - &GameData::Commodities().front();
-					break;
-				}
-		}
-
-		const Trade::Commodity &commodity = GameData::Commodities()[index];
-		int amount = Random::Int(freeSpace) + 1;
-		ship.Cargo().Add(commodity.name, amount);
-	}
-
-	// Add a random outfit from the list to the ship's cargo.
-	void AddRandomOutfit(Ship &ship, int freeSpace, const vector<const Outfit *> &outfits)
-	{
-		if(outfits.empty())
-			return;
-		int index = Random::Int(outfits.size());
-		const Outfit *picked = outfits[index];
-		int maxQuantity = floor(static_cast<double>(freeSpace) / picked->Mass());
-		int amount = Random::Int(maxQuantity) + 1;
-		ship.Cargo().Add(picked, amount);
 	}
 }
 
@@ -186,20 +89,12 @@ void Fleet::Load(const DataNode &node)
 			names = GameData::Phrases().Get(child.Token(1));
 		else if(key == "fighters" && hasValue)
 			fighterNames = GameData::Phrases().Get(child.Token(1));
-		else if(key == "cargo" && hasValue)
-			cargo = static_cast<int>(child.Value(1));
-		else if(key == "commodities" && hasValue)
-		{
-			commodities.clear();
-			for(int i = 1; i < child.Size(); ++i)
-				commodities.push_back(child.Token(i));
-		}
-		else if(key == "outfitters" && hasValue)
-		{
-			outfitters.clear();
-			for(int i = 1; i < child.Size(); ++i)
-				outfitters.insert(GameData::Outfitters().Get(child.Token(i)));
-		}
+		else if(key == "cargo settings" && child.HasChildren())
+			cargo.Load(child);
+		// Allow certain individual cargo settings to be direct children
+		// of Fleet for backwards compatibility.
+		else if(key == "cargo" || key == "commodities" || key == "outfitters")
+			cargo.LoadSingle(child);
 		else if(key == "personality")
 			personality.Load(child);
 		else if(key == "variant" && !remove)
@@ -274,6 +169,7 @@ const Government *Fleet::GetGovernment() const
 }
 
 
+
 // Choose a fleet to be created during flight, and have it enter the system via jump or planetary departure.
 void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Planet *planet) const
 {
@@ -307,13 +203,13 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		double jumpDistance = System::DEFAULT_NEIGHBOR_DISTANCE;
 		for(const Ship *ship : variantShips)
 		{
-			if(ship->Attributes().Get("jump drive"))
+			if(ship->JumpNavigation().HasJumpDrive())
 			{
 				hasJump = true;
-				jumpDistance = ship->JumpRange();
+				jumpDistance = ship->JumpNavigation().JumpRange();
 				break;
 			}
-			if(ship->Attributes().Get("hyperdrive"))
+			if(ship->JumpNavigation().HasHyperdrive())
 				hasHyper = true;
 		}
 		// Don't try to make a fleet "enter" from another system if none of the
@@ -436,7 +332,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		else
 			flagship = ship;
 
-		SetCargo(&*ship);
+		cargo.SetCargo(&*ship);
 	}
 }
 
@@ -444,7 +340,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 
 // Place one of the variants in the given system, already "in action." If the carried flag is set,
 // only uncarried ships will be added to the list (as any carriables will be stored in bays).
-void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carried) const
+void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carried, bool addCargo) const
 {
 	if(variants.empty())
 		return;
@@ -483,7 +379,8 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 		else
 			flagship = ship;
 
-		SetCargo(&*ship);
+		if(addCargo)
+			cargo.SetCargo(&*ship);
 	}
 }
 
@@ -595,48 +492,4 @@ bool Fleet::PlaceFighter(shared_ptr<Ship> fighter, vector<shared_ptr<Ship>> &pla
 			return true;
 
 	return false;
-}
-
-
-
-// Choose the cargo associated with this ship in the fleet.
-// If outfits were specified, but not commodities, do not pick commodities.
-// If commodities were specified, but not outfits, do not pick outfits.
-// If neither or both were specified, choose commodities more often..
-void Fleet::SetCargo(Ship *ship) const
-{
-	const bool canChooseOutfits = commodities.empty() || !outfitters.empty();
-	const bool canChooseCommodities = outfitters.empty() || !commodities.empty();
-	// Populate the possible outfits that may be chosen.
-	int free = ship->Cargo().Free();
-	auto outfits = OutfitChoices(outfitters, ship->GetSystem(), free);
-
-	// Choose random outfits or commodities to transport.
-	for(int i = 0; i < cargo; ++i)
-	{
-		if(free <= 0)
-			break;
-		// Remove any outfits that do not fit into remaining cargo.
-		if(canChooseOutfits && !outfits.empty())
-			outfits.erase(remove_if(outfits.begin(), outfits.end(),
-					[&free](const Outfit *a) { return a->Mass() > free; }),
-				outfits.end());
-
-		if(canChooseCommodities && canChooseOutfits)
-		{
-			if(Random::Real() < .8)
-				AddRandomCommodity(*ship, free, commodities);
-			else
-				AddRandomOutfit(*ship, free, outfits);
-		}
-		else if(canChooseCommodities)
-			AddRandomCommodity(*ship, free, commodities);
-		else
-			AddRandomOutfit(*ship, free, outfits);
-
-		free = ship->Cargo().Free();
-	}
-	int extraCrew = ship->Attributes().Get("bunks") - ship->RequiredCrew();
-	if(extraCrew > 0)
-		ship->AddCrew(Random::Int(extraCrew + 1));
 }

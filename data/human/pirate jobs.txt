@@ -727,7 +727,7 @@ mission "Stealth Cargo Smuggling (South) [0]"
 		system
 			distance 3
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -735,7 +735,7 @@ mission "Stealth Cargo Smuggling (South) [0]"
 		personality heroic waiting
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -743,7 +743,7 @@ mission "Stealth Cargo Smuggling (South) [0]"
 		personality heroic staying
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	on abort
@@ -785,7 +785,7 @@ mission "Stealth Cargo Smuggling (South) [1]"
 		system
 			distance 3 5
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -794,7 +794,7 @@ mission "Stealth Cargo Smuggling (South) [1]"
 		system
 			distance 2 4
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -803,7 +803,7 @@ mission "Stealth Cargo Smuggling (South) [1]"
 		system
 			distance 3
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -811,7 +811,7 @@ mission "Stealth Cargo Smuggling (South) [1]"
 		personality heroic waiting
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -819,7 +819,7 @@ mission "Stealth Cargo Smuggling (South) [1]"
 		personality heroic waiting entering
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -827,7 +827,7 @@ mission "Stealth Cargo Smuggling (South) [1]"
 		personality heroic staying
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)" 2
 	on abort
@@ -1150,7 +1150,7 @@ mission "Stealth Drug Running (South) [0]"
 		system
 			distance 3
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1158,7 +1158,7 @@ mission "Stealth Drug Running (South) [0]"
 		personality heroic waiting
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1166,7 +1166,7 @@ mission "Stealth Drug Running (South) [0]"
 		personality heroic staying
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	on abort
@@ -1208,7 +1208,7 @@ mission "Stealth Drug Running (South) [1]"
 		system
 			distance 3 5
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1217,7 +1217,7 @@ mission "Stealth Drug Running (South) [1]"
 		system
 			distance 2 4
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1226,7 +1226,7 @@ mission "Stealth Drug Running (South) [1]"
 		system
 			distance 3
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1234,7 +1234,7 @@ mission "Stealth Drug Running (South) [1]"
 		personality heroic waiting
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1242,7 +1242,7 @@ mission "Stealth Drug Running (South) [1]"
 		personality heroic waiting entering
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1250,7 +1250,7 @@ mission "Stealth Drug Running (South) [1]"
 		personality heroic staying
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)" 2
 	on abort
@@ -1591,7 +1591,7 @@ mission "Highly Wanted Passenger (South)"
 		government Militia
 		personality heroic waiting
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1600,7 +1600,7 @@ mission "Highly Wanted Passenger (South)"
 		system
 			distance 3 5
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1609,7 +1609,7 @@ mission "Highly Wanted Passenger (South)"
 		system
 			distance 2 4
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1618,7 +1618,7 @@ mission "Highly Wanted Passenger (South)"
 		system
 			distance 3
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1626,7 +1626,7 @@ mission "Highly Wanted Passenger (South)"
 		personality heroic waiting
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1634,7 +1634,7 @@ mission "Highly Wanted Passenger (South)"
 		personality heroic waiting entering
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1642,7 +1642,7 @@ mission "Highly Wanted Passenger (South)"
 		personality heroic staying
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)" 2
 	on abort
@@ -1665,15 +1665,15 @@ mission "Slave Transport [0]"
 	name "Transfer slaves to <planet>"
 	job
 	repeat
-	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
+	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves in secure cells to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 2 10 .9
 	illegal -1
 	to offer
 		random < 25
 		"reputation: Pirate" > 0
 		"combat rating" > 1100
-	on offer
-		require "Brig"
+	to accept
+		has "outfit (installed): Brig"
 	source
 		government "Pirate"
 	destination
@@ -1689,15 +1689,15 @@ mission "Slave Transport [1]"
 	name "Transfer slaves to <planet>"
 	job
 	repeat
-	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
+	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves in secure cells to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 2 10 .9
 	illegal -1
 	to offer
 		random < 25
 		"reputation: Pirate" > 0
 		"combat rating" > 1100
-	on offer
-		require "Brig"
+	to accept
+		has "outfit (installed): Brig"
 	source
 		government "Pirate"
 	destination
@@ -1713,15 +1713,15 @@ mission "Slave Transport [2]"
 	name "Transfer slaves to <planet>"
 	job
 	repeat
-	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
+	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves in secure cells to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 2 10 .9
 	illegal -1
 	to offer
 		random < 25
 		"reputation: Pirate" > 0
 		"combat rating" > 1100
-	on offer
-		require "Brig"
+	to accept
+		has "outfit (installed): Brig"
 	source
 		government "Pirate"
 	destination
@@ -1739,15 +1739,15 @@ mission "Bulk Slave Transport [0]"
 	name "Transfer slaves to <planet>"
 	job
 	repeat
-	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
+	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves in secure cells to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 10 4 .1
 	illegal -1
 	to offer
 		random < 15
 		"reputation: Pirate" > 0
 		"combat rating" > 3000
-	on offer
-		require "Brig"
+	to accept
+		has "outfit (installed): Brig"
 	source
 		government "Pirate"
 	destination
@@ -1763,15 +1763,15 @@ mission "Bulk Slave Transport [1]"
 	name "Transfer slaves to <planet>"
 	job
 	repeat
-	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
+	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves in secure cells to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 10 4 .1
 	illegal -1
 	to offer
 		random < 15
 		"reputation: Pirate" > 0
 		"combat rating" > 3000
-	on offer
-		require "Brig"
+	to accept
+		has "outfit (installed): Brig"
 	source
 		government "Pirate"
 	destination
@@ -2226,7 +2226,8 @@ mission "Eliminating Law Enforcement (North, Small)"
 	name "Navy near <system>"
 	repeat
 	job
-	description "A Navy fleet near the <system> system has halted our raids. Destroy them and return to <planet> for a payment of <payment>."
+	description "A Navy fleet near the <system> system has halted our raids. Destroy them and return to <planet> by <day> for a payment of <payment>."
+	deadline 20
 	to offer
 		random < 25
 		"combat rating" > 1100
@@ -2241,7 +2242,7 @@ mission "Eliminating Law Enforcement (North, Small)"
 		fleet "Small Republic" 2
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
-		payment 250000
+		payment 360000
 		"reputation: Pirate" += 5
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the Navy fleet."
 
@@ -2249,7 +2250,8 @@ mission "Eliminating Law Enforcement (North, Large)"
 	name "Navy near <system>"
 	repeat
 	job
-	description "A large Navy fleet near the <system> system has halted our raids. Destroy them and return to <planet> for a payment of <payment>."
+	description "A large Navy fleet near the <system> system has halted our raids. Destroy them and return to <planet> by <day> for a payment of <payment>."
+	deadline 20
 	to offer
 		random < 15
 		"combat rating" > 3000
@@ -2265,7 +2267,7 @@ mission "Eliminating Law Enforcement (North, Large)"
 		fleet "Small Republic" 2
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
-		payment 400000
+		payment 600000
 		"reputation: Pirate" += 10
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the Navy fleet."
 
@@ -2273,7 +2275,8 @@ mission "Eliminating Law Enforcement (Core, Small)"
 	name "Syndicate near <system>"
 	repeat
 	job
-	description "A Syndicate fleet near the <system> system has halted our raids. Destroy them and return to <planet> for a payment of <payment>."
+	description "A Syndicate fleet near the <system> system has halted our raids. Destroy them and return to <planet> by <day> for a payment of <payment>."
+	deadline 25
 	to offer
 		random < 25
 		"combat rating" > 1100
@@ -2288,7 +2291,7 @@ mission "Eliminating Law Enforcement (Core, Small)"
 		fleet "Small Syndicate" 2
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
-		payment 250000
+		payment 360000
 		"reputation: Pirate" += 5
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the Syndicate fleet."
 
@@ -2296,7 +2299,8 @@ mission "Eliminating Law Enforcement (Core, Large)"
 	name "Syndicate near <system>"
 	repeat
 	job
-	description "A large Syndicate fleet near the <system> system has halted our raids. Destroy them and return to <planet> for a payment of <payment>."
+	description "A large Syndicate fleet near the <system> system has halted our raids. Destroy them and return to <planet> by <day> for a payment of <payment>."
+	deadline 25
 	to offer
 		random < 15
 		"combat rating" > 3000
@@ -2312,7 +2316,7 @@ mission "Eliminating Law Enforcement (Core, Large)"
 		fleet "Small Syndicate" 2
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
-		payment 400000
+		payment 600000
 		"reputation: Pirate" += 10
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the Syndicate fleet."
 
@@ -2320,7 +2324,8 @@ mission "Eliminating Law Enforcement (South, Small)"
 	name "Militia near <system>"
 	repeat
 	job
-	description "A militia fleet near the <system> system has halted our raids. Destroy them and return to <planet> for a payment of <payment>."
+	description "A militia fleet near the <system> system has halted our raids. Destroy them and return to <planet> by <day> for a payment of <payment>."
+	deadline 14
 	to offer
 		random < 25
 		"combat rating" > 1100
@@ -2331,11 +2336,11 @@ mission "Eliminating Law Enforcement (South, Small)"
 		government "Militia"
 		personality heroic staying target
 		system
-			distance 1 3
+			distance 1 2
 		fleet "Small Militia" 2
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
-		payment 250000
+		payment 320000
 		"reputation: Pirate" += 5
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the militia fleet."
 
@@ -2343,7 +2348,8 @@ mission "Eliminating Law Enforcement (South, Large)"
 	name "Militia near <system>"
 	repeat
 	job
-	description "A large militia fleet near the <system> system has halted our raids. Destroy them and return to <planet> for a payment of <payment>."
+	description "A large militia fleet near the <system> system has halted our raids. Destroy them and return to <planet> by <day> for a payment of <payment>."
+	deadline 14
 	to offer
 		random < 15
 		"combat rating" > 3000
@@ -2354,12 +2360,12 @@ mission "Eliminating Law Enforcement (South, Large)"
 		government "Militia"
 		personality heroic staying target
 		system
-			distance 1 3
+			distance 1 2
 		fleet "Large Militia"
 		fleet "Small Militia" 2
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
-		payment 400000
+		payment 520000
 		"reputation: Pirate" += 10
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the militia fleet."
 
@@ -2367,9 +2373,10 @@ mission "Eliminating Law Enforcement (South, Large)"
 
 mission "Eliminating Competition (North, Small)"
 	name "Competition near <system>"
-	description "A small rival gang is causing trouble near the <system> system. Take them out and return to <planet> for a payment of <payment>."
+	description "A small rival gang is causing trouble near the <system> system. Take them out and return to <planet> by <day> for a payment of <payment>."
 	repeat
 	job
+	deadline 20
 	to offer
 		random < 20
 		"combat rating" > 400
@@ -2391,9 +2398,10 @@ mission "Eliminating Competition (North, Small)"
 
 mission "Eliminating Competition (North, Large)"
 	name "Competition near <system>"
-	description "A large rival gang is gaining too much power. Their leader is currently near the <system> system. Take them and their escorts out and return to <planet> for a payment of <payment>."
+	description "A large rival gang is gaining too much power. Their leader is currently near the <system> system. Take them and their escorts out and return to <planet> by <day> for a payment of <payment>."
 	repeat
 	job
+	deadline 20
 	to offer
 		random < 10
 		"combat rating" > 1100
@@ -2404,7 +2412,7 @@ mission "Eliminating Competition (North, Large)"
 		government "Pirate (Rival)"
 		personality heroic staying target marked
 		system
-			distance 1 3
+			distance 1 2
 		fleet "Large Northern Pirates" 2
 		fleet "Small Northern Pirates" 2
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
@@ -2416,9 +2424,10 @@ mission "Eliminating Competition (North, Large)"
 
 mission "Eliminating Competition (Core, Small)"
 	name "Competition near <system>"
-	description "A small rival gang is causing trouble near the <system> system. Take them out and return to <planet> for a payment of <payment>."
+	description "A small rival gang is causing trouble near the <system> system. Take them out and return to <planet> by <day> for a payment of <payment>."
 	repeat
 	job
+	deadline 20
 	to offer
 		random < 20
 		"combat rating" > 400
@@ -2440,9 +2449,10 @@ mission "Eliminating Competition (Core, Small)"
 
 mission "Eliminating Competition (Core, Large)"
 	name "Competition near <system>"
-	description "A large rival gang is gaining too much power. Their leader is currently near the <system> system. Take them and their escorts out and return to <planet> for a payment of <payment>."
+	description "A large rival gang is gaining too much power. Their leader is currently near the <system> system. Take them and their escorts out and return to <planet> by <day> for a payment of <payment>."
 	repeat
 	job
+	deadline 20
 	to offer
 		random < 10
 		"combat rating" > 1100
@@ -2453,7 +2463,7 @@ mission "Eliminating Competition (Core, Large)"
 		government "Pirate (Rival)"
 		personality heroic staying target marked
 		system
-			distance 1 3
+			distance 1 2
 		fleet "Large Core Pirates" 2
 		fleet "Small Core Pirates" 2
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
@@ -2465,9 +2475,10 @@ mission "Eliminating Competition (Core, Large)"
 
 mission "Eliminating Competition (South, Small)"
 	name "Competition near <system>"
-	description "A small rival gang is causing trouble near the <system> system. Take them out and return to <planet> for a payment of <payment>."
+	description "A small rival gang is causing trouble near the <system> system. Take them out and return to <planet> by <day> for a payment of <payment>."
 	repeat
 	job
+	deadline 14
 	to offer
 		random < 20
 		"combat rating" > 400
@@ -2489,9 +2500,10 @@ mission "Eliminating Competition (South, Small)"
 
 mission "Eliminating Competition (South, Large)"
 	name "Competition near <system>"
-	description "A large rival gang is gaining too much power. Their leader is currently near the <system> system. Take them and their escorts out and return to <planet> for a payment of <payment>."
+	description "A large rival gang is gaining too much power. Their leader is currently near the <system> system. Take them and their escorts out and return to <planet> by <day> for a payment of <payment>."
 	repeat
 	job
+	deadline 14
 	to offer
 		random < 10
 		"combat rating" > 1100
@@ -2502,7 +2514,7 @@ mission "Eliminating Competition (South, Large)"
 		government "Pirate (Rival)"
 		personality heroic staying target marked
 		system
-			distance 1 3
+			distance 1 2
 		fleet "Large Southern Pirates" 2
 		fleet "Small Southern Pirates" 2
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
@@ -2514,9 +2526,10 @@ mission "Eliminating Competition (South, Large)"
 
 mission "Eliminating Competition (Marauders, Small)"
 	name "Competition near <system>"
-	description "A small marauder gang is causing trouble near the <system> system. Take them out and return to <planet> for a payment of <payment>."
+	description "A small marauder gang is causing trouble near the <system> system. Take them out and return to <planet> by <day> for a payment of <payment>."
 	repeat
 	job
+	deadline 20
 	to offer
 		random < 5
 		"combat rating" > 600
@@ -2538,9 +2551,10 @@ mission "Eliminating Competition (Marauders, Small)"
 
 mission "Eliminating Competition (Marauders, Medium)"
 	name "Competition near <system>"
-	description "A marauder gang is gaining too much power. Their leader is currently near the <system> system. Take them and their escorts out and return to <planet> for a payment of <payment>."
+	description "A marauder gang is gaining too much power. Their leader is currently near the <system> system. Take them and their escorts out and return to <planet> by <day> for a payment of <payment>."
 	repeat
 	job
+	deadline 20
 	to offer
 		random < 5
 		"combat rating" > 1100
@@ -2563,9 +2577,10 @@ mission "Eliminating Competition (Marauders, Medium)"
 
 mission "Eliminating Competition (Marauders, Large)"
 	name "Marauder Elimination"
-	description "The pirates of the <system> system have grown dissatisified with the actions of the ruling Marauder gang. Take them out and return to <planet> for a payment of <payment>."
+	description "The pirates of the <system> system have grown dissatisfied with the actions of the ruling Marauder gang. Take them out and return to <planet> by <day> for a payment of <payment>."
 	repeat
 	job
+	deadline 20
 	to offer
 		random < 5
 		"combat rating" > 2100
@@ -2575,7 +2590,7 @@ mission "Eliminating Competition (Marauders, Large)"
 		government "Pirate (Rival)"
 		personality heroic staying target marked
 		system
-			distance 1 3
+			distance 1 2
 		fleet "Marauder I" 2
 		fleet "Marauder II" 2
 		fleet "Marauder III"
@@ -2585,7 +2600,7 @@ mission "Eliminating Competition (Marauders, Large)"
 		"reputation: Pirate (Rival)" = "reputation: Pirate"
 	on complete
 		payment 900000
-		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the rival gang."
+		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the ruling gang."
 
 
 
@@ -2593,7 +2608,7 @@ mission "Raid on Merchants (North)"
 	name "Merchants near <system>"
 	repeat
 	job
-	description "A merchant fleet has been spotted near the <system> system. Join in destroying them and return to <planet> for a cut of the loot (<payment>)."
+	description "A merchant fleet has been spotted near the <system> system. Join in destroying them and return to <planet> by <day> for a cut of the loot (<payment>)."
 	to offer
 		random < 50
 		"combat rating" > 150
@@ -2879,10 +2894,11 @@ mission "Cargo Theft (North)"
 	name "Convoy near <system>"
 	job
 	repeat
-	description `A merchant convoy has been spotted near the <system> system. A local warlord is interested in having the cargo on the <npc>. Plunder it and return to <planet> for payment of <payment>.`
+	description `A merchant convoy has been spotted near the <system> system. A local warlord is interested in having the cargo on the <npc>. Plunder it and return to <planet> by <day> for payment of <payment>.`
 	to offer
 		random < 15
 		"combat rating" > 3000
+	deadline 20
 	source
 		government Pirate
 		attributes "north pirate"
@@ -2890,7 +2906,8 @@ mission "Cargo Theft (North)"
 		government "Merchant"
 		personality staying heroic target
 		system
-			distance 2 3
+			not government "Pirate"
+			distance 1 4
 		fleet
 			names "civilian"
 			variant
@@ -2913,10 +2930,11 @@ mission "Cargo Theft (Core)"
 	name "Convoy near <system>"
 	job
 	repeat
-	description `A merchant convoy has been spotted near the <system> system. A local warlord is interested in having the cargo on the <npc>. Plunder it and return to <planet> for payment of <payment>.`
+	description `A merchant convoy has been spotted near the <system> system. A local warlord is interested in having the cargo on the <npc>. Plunder it and return to <planet> by <day> for payment of <payment>.`
 	to offer
 		random < 15
 		"combat rating" > 3000
+	deadline 20
 	source
 		government Pirate
 		attributes "core pirate"
@@ -2924,7 +2942,8 @@ mission "Cargo Theft (Core)"
 		government "Merchant"
 		personality staying heroic target
 		system
-			distance 2 3
+			not government "Pirate"
+			distance 2 2
 		fleet
 			names "civilian"
 			variant
@@ -2947,10 +2966,11 @@ mission "Cargo Theft (South)"
 	name "Convoy near <system>"
 	job
 	repeat
-	description `A merchant convoy has been spotted near the <system> system. A local warlord is interested in having the cargo on the <npc>. Plunder it and return to <planet> for payment of <payment>.`
+	description `A merchant convoy has been spotted near the <system> system. A local warlord is interested in having the cargo on the <npc>. Plunder it and return to <planet> by <day> for payment of <payment>.`
 	to offer
 		random < 15
 		"combat rating" > 3000
+	deadline 14
 	source
 		government Pirate
 		attributes "south pirate"
@@ -2958,7 +2978,7 @@ mission "Cargo Theft (South)"
 		government "Merchant"
 		personality staying heroic target
 		system
-			distance 2 3
+			distance 1 2
 		fleet
 			names "civilian"
 			variant
@@ -2981,11 +3001,12 @@ mission "Cargo Theft (South)"
 
 mission "FW Assassination [1]"
 	name "Assassinate a political target"
-	description "A Free Worlds politician who is worrying local slave traders was spotted in their ship, the <npc>, in a nearby system. Assassinate them in order to send a message to the Free Worlds. Payment is <payment>. Be advised that they may have escorts."
+	description "A Free Worlds politician who is worrying local slave traders was spotted in their ship, the <npc>, in a nearby system. Assassinate them by <day> to send a message to the Free Worlds. Payment is <payment>. Be advised that they may have escorts."
 	repeat
 	job
+	deadline 14
 	to offer
-		"combat rating" > 200
+		"combat rating" > 300
 		random < 5
 		"reputation: Pirate" > -100
 		has "event: war begins"
@@ -2996,32 +3017,39 @@ mission "FW Assassination [1]"
 		government "Free Worlds"
 		personality staying target
 		system
-			distance 2 5
+			government "Free Worlds"
+			distance 2 2
 		fleet
 			names civilian
-			variant
-				"Flivver"
-				"Osprey" 2
-			variant
-				"Osprey"
-				"Bastion"
-			variant
-				"Falcon"
+			variant 10
+				"Blackbird"
+			variant 2
+				"Blackbird"
+				"Sparrow"
+			variant 4
+				"Blackbird"
 				"Fury" 2
+			variant 3
+				"Blackbird"
+				"Hawk" 3
+			variant 1
+				"Blackbird"
+				"Osprey"
 		dialog "The target has been destroyed. Return to <destination> for your payment."
 	on complete
-		payment 350000
+		payment 460000
 		dialog "A band of slave traders thank you for eliminating the politician and pay you <payment>."
 		"reputation: Free Worlds" -= 10
 		"reputation: Pirate" += 3
 		
 mission "FW Assassination [2]"
 	name "Assassinate a political target"
-	description "A Free Worlds politician who has angered a powerful pirate warlord was spotted in their ship, the <npc>, in a nearby system. Assassinate them in order to send a message to the Free Worlds. Payment is <payment>. Be advised that they are heavily defended."
+	description "A Free Worlds politician who angered a pirate warlord was spotted in their ship, the <npc>, in a nearby system. Assassinate them by <day> to send a message to the Free Worlds. Payment is <payment>. Be advised that they may be heavily defended."
 	repeat
 	job
+	deadline 14
 	to offer
-		"combat rating" > 400
+		"combat rating" > 600
 		random < 5
 		"reputation: Pirate" > -50
 		has "event: war begins"
@@ -3032,104 +3060,45 @@ mission "FW Assassination [2]"
 		government "Free Worlds"
 		personality staying target
 		system
-			distance 2 5
+			government "Free Worlds"
+			distance 2 2
 		fleet
 			names civilian
-			variant
-				"Star Queen"
-				"Osprey"
-				"Argosy" 2
-			variant
-				"Star Queen"
+			variant 3
+				"Blackbird"
+			variant 2
+				"Blackbird"
 				"Falcon"
-				"Argosy"
+			variant 3
+				"Blackbird"
+				"Osprey" 2
+			variant 3
+				"Blackbird"
+				"Bastion"
+				"Osprey"
+			variant 2
+				"Blackbird"
+				"Bastion"
+				"Sparrow" 4
+			variant 1
+				"Blackbird"
+				"Fury" 5
+				"Hawk" 4
 		dialog "The target has been destroyed. Return to <destination> for your payment."
 	on complete
-		payment 600000
+		payment 800000
 		dialog "The pirate warlord thanks you for eliminating the politician that threatened them and pays you <payment>."
 		"reputation: Free Worlds" -= 15
 		"reputation: Pirate" += 5
 		
-mission "FW Assassination [3]"
-	name "Assassinate a military target"
-	description "A Free Worlds militia commander who has led a number of small raids against pirate gangs in the region has been spotted patrolling a nearby system with their fleet. Assassinate them in order to send a message to the Free Worlds. Payment is <payment>."
-	repeat
-	job
-	to offer
-		"combat rating" > 500
-		random < 5
-		"reputation: Pirate" > 50
-		has "event: war begins"
-	source
-		government "Pirate"
-		attributes "south pirate"
-	npc kill
-		government "Free Worlds"
-		personality staying target
-		system
-			distance 2 4
-		fleet
-			names "free worlds small"
-			variant
-				"Falcon"
-				"Osprey" 2
-				"Sparrow" 4
-			variant
-				"Falcon"
-				"Argosy (Laser)" 3
-				"Hawk" 2
-				"Fury" 2
-		dialog "The target has been destroyed. Return to <destination> for your payment."
-	on complete
-		payment 750000
-		dialog "A gang of pirates on <planet> thank you for taking out the Free Worlds commander and pay you <payment>."
-		"reputation: Free Worlds" -= 20
-		"reputation: Pirate" += 7
-		
-mission "FW Assassination [4]"
-	name "Assassinate a military target"
-	description "Rumor is the Free Worlds are planning a raid on regional pirate gangs. A militia commander said to be leading this raid has been spotted in a nearby system with a large fleet. Assassinate them in order to send a message to the Free Worlds. Payment is <payment>."
-	repeat
-	job
-	to offer
-		"combat rating" > 800
-		random < 5
-		"reputation: Pirate" > 100
-		has "event: war begins"
-	source
-		government "Pirate"
-		attributes "south pirate"
-	npc kill
-		government "Free Worlds"
-		personality staying target
-		system
-			distance 2 4
-		fleet
-			names "free worlds small"
-			variant
-				"Falcon" 2
-				"Bastion" 3
-				"Osprey" 2
-				"Argosy" 2
-			variant
-				"Falcon"
-				"Bastion" 2
-				"Argosy" 5
-				"Fury" 4
-		dialog "The target fleet has been destroyed. Return to <destination> for your payment."
-	on complete
-		payment 1000000
-		dialog "You are greeted by applause from many pirates when you land and a powerful pirate warlord pays you <payment>."
-		"reputation: Free Worlds" -= 25
-		"reputation: Pirate" += 10
-		
 mission "Syndicate Assassination [1]"
 	name "Assassinate a political target"
-	description "A Syndicate politician was spotted passing through a nearby system in their ship, the <npc>. Assassinate them in order to send a message to the Syndicate. Payment is <payment>. Be advised that they may have escorts."
+	description "A Syndicate politician was spotted passing through a nearby system in their ship, the <npc>. Assassinate them by <day> to send a message to the Syndicate. Payment is <payment>. Be advised that they may have escorts."
 	repeat
 	job
+	deadline 25
 	to offer
-		"combat rating" > 200
+		"combat rating" > 300
 		random < 5
 		"reputation: Pirate" > -100
 	source
@@ -3139,26 +3108,48 @@ mission "Syndicate Assassination [1]"
 		government "Syndicate"
 		personality staying target
 		system
-			distance 2 5
+			government "Syndicate"
+			distance 2 3
 		fleet
 			names civilian
-			variant
-				"Star Queen"
+			variant 6
+				"Arrow"
+			variant 6
+				"Bounder"
+			variant 2
+				"Arrow"
 				"Quicksilver" 2
+			variant 2
+				"Bounder"
+				"Manta"
+			variant 3
+				"Arrow"
+				"Wasp" 3
+			variant 3
+				"Bounder"
+				"Quicksilver"
+				"Wasp" 2
+			variant 1
+				"Arrow"
+				"Splinter"
+			variant 1
+				"Bounder"
+				"Splinter"
 		dialog "The target has been destroyed. Return to <destination> for your payment."
 	on complete
-		payment 350000
+		payment 460000
 		dialog "A pirate warlord thanks you for eliminating the politician and pays you <payment>."
 		"reputation: Syndicate" -= 10
 		"reputation: Pirate" += 3
 		
 mission "Syndicate Assassination [2]"
 	name "Assassinate a political target"
-	description "A Syndicate politician who has plans that worry many local pirate gangs was spotted in their ship, the <npc>, in a nearby system. Assassinate them in order to send a message to the Syndicate. Payment is <payment>. Be advised that they are heavily defended."
+	description "A Syndicate politician with plans that worry local pirate gangs was spotted in their ship, the <npc>, in a nearby system. Assassinate them by <day> to send a message to the Syndicate. Payment is <payment>. Be advised that they may be heavily defended."
 	repeat
 	job
+	deadline 25
 	to offer
-		"combat rating" > 400
+		"combat rating" > 600
 		random < 5
 		"reputation: Pirate" > -50
 	source
@@ -3168,101 +3159,58 @@ mission "Syndicate Assassination [2]"
 		government "Syndicate"
 		personality staying target
 		system
-			distance 2 5
+			government "Syndicate"
+			distance 2 3
 		fleet
 			names civilian
-			variant
-				"Star Queen"
-				"Splinter" 2
-			variant
-				"Star Queen"
+			variant 2
+				"Arrow"
+			variant 3
+				"Bounder"
+			variant 2
+				"Arrow"
+				"Vanguard"
+			variant 2
+				"Bounder"
+				"Protector"
+			variant 4
+				"Arrow"
+				"Quicksilver" 4
+			variant 2
+				"Bounder"
 				"Manta" 2
-		dialog "The targets have been destroyed. Return to <destination> for payment."
+			variant 2
+				"Arrow"
+				"Manta"
+				"Quicksilver" 2
+			variant 4
+				"Bounder"
+				"Splinter"
+				"Wasp" 3
+			variant 2
+				"Arrow"
+				"Manta"
+				"Splinter"
+			variant 2
+				"Bounder"
+				"Splinter" 2
+			variant 1
+				"Arrow" 10
+		dialog "The target has been destroyed. Return to <destination> for payment."
 	on complete
-		payment 600000
+		payment 800000
 		dialog "A band of pirates thank you for eliminating the politician and pay you <payment>."
 		"reputation: Syndicate" -= 15
 		"reputation: Pirate" += 5
 		
-mission "Syndicate Assassination [3]"
-	name "Assassinate a military target"
-	description "A Syndicated Security commander who has led a number of small raids against pirate gangs in the region has been spotted patrolling a nearby system with their fleet. Assassinate them in order to send a message to the Syndicate. Payment is <payment>."
-	repeat
-	job
-	to offer
-		"combat rating" > 500
-		random < 5
-		"reputation: Pirate" > 50
-	source
-		government "Pirate"
-		attributes "core pirate"
-	npc kill
-		government "Syndicate"
-		personality staying target
-		system
-			distance 2 4
-		fleet
-			names "syndicate small"
-			variant
-				"Vanguard"
-				"Manta" 2
-				"Splinter"
-				"Quicksilver" 3
-			variant
-				"Vanguard"
-				"Protector"
-				"Quicksilver" 4
-		dialog "The target has been destroyed. Return to <destination> for your payment."
-	on complete
-		payment 750000
-		dialog "A gang of pirates on <planet> thank you for taking out the Syndicated Security commander and pay you <payment>."
-		"reputation: Syndicate" -= 20
-		"reputation: Pirate" += 7
-		
-mission "Syndicate Assassination [4]"
-	name "Assassinate a military target"
-	description "Rumor is the Syndicate is planning a raid on regional pirate gangs. An important security commander said to be leading this raid has been spotted in a nearby system with a large fleet. Assassinate them in order to send a message to the Syndicate. Payment is <payment>."
-	repeat
-	job
-	to offer
-		"combat rating" > 800
-		random < 5
-		"reputation: Pirate" > 100
-	source
-		government "Pirate"
-		attributes "core pirate"
-	npc kill
-		government "Syndicate"
-		personality staying target
-		system
-			distance 2 4
-		fleet
-			names "syndicate small"
-			variant
-				"Vanguard"
-				"Protector" 2
-				"Splinter" 3
-				"Manta"
-				"Quicksilver" 2
-			variant
-				"Vanguard" 3
-				"Splinter" 2
-				"Manta" 2
-				"Quicksilver" 3
-		dialog "The target and their fleet has been destroyed. Return to <destination> for your payment."
-	on complete
-		payment 1000000
-		dialog "You are greeted by applause from many pirates when you land and a powerful pirate warlord pays you <payment>."
-		"reputation: Syndicate" -= 25
-		"reputation: Pirate" += 10
-		
 mission "Republic Assassination [1]"
 	name "Assassinate a political target"
-	description "A Republic politician who is worrying local pirate gangs was spotted in their ship, the <npc>, in a nearby system. Assassinate them in order to send a message to the Republic. Payment is <payment>. Be advised that they may have escorts."
+	description "A Republic politician who is worrying local pirate gangs was spotted in their ship, the <npc>, in Northern space. Assassinate them by <day> to send a message to the Republic. Payment is <payment>. Be advised that they may have escorts."
 	repeat
 	job
+	deadline 20
 	to offer
-		"combat rating" > 200
+		"combat rating" > 300
 		random < 5
 		"reputation: Pirate" > -100
 	source
@@ -3272,16 +3220,43 @@ mission "Republic Assassination [1]"
 		government "Republic"
 		personality staying target
 		system
-			distance 3 5
+			government "Republic"
+			distance 3 6
+			not near "Cardax" 3
 		fleet
 			names civilian
-			variant
+			variant 7
 				"Flivver"
+			variant 7
+				"Scout"
+			variant 3
+				"Flivver"
+				"Raven"
+				"Berserker"
+			variant 2
+				"Scout"
+				"Aerie"
+				"Dagger" 2
+			variant 2
+				"Flivver"
+				"Firebird"
+			variant 3
+				"Scout"
 				"Headhunter" 2
-				"Corvette"
+			variant 1
+				"Flivver"
+				"Gunboat" 2
+			variant 1
+				"Scout"
+				"Frigate"
+			variant 1
+				"Mule"
+				"Dagger"
+			variant 1
+				"Star Queen"
 		dialog "The target has been destroyed. Return to <destination> for your payment."
 	on complete
-		payment 350000
+		payment 460000
 		dialog "A pirate warlord thanks you for eliminating the politician pays you <payment>."
 		"reputation: Republic" -= 10
 		"reputation: Navy (Oathkeeper)" -= 10
@@ -3289,11 +3264,12 @@ mission "Republic Assassination [1]"
 		
 mission "Republic Assassination [2]"
 	name "Assassinate a political target"
-	description "A Republic politician who is worrying local drug traders was spotted in their ship, the <npc>, in a nearby system. Assassinate them in order to send a message to the Republic. Payment is <payment>. Be advised that they are heavily defended."
+	description "A Republic politician who is worrying local drug traders was spotted in their ship, the <npc>, in a nearby system. Assassinate them by <day> to send a message to the Republic. Payment is <payment>. Be advised that they may be heavily defended."
 	repeat
 	job
+	deadline 20
 	to offer
-		"combat rating" > 400
+		"combat rating" > 600
 		random < 5
 		"reputation: Pirate" > -50
 	source
@@ -3303,99 +3279,58 @@ mission "Republic Assassination [2]"
 		government "Republic"
 		personality staying target
 		system
-			distance 3 5
+			government "Republic"
+			distance 3 6
+			not near "Cardax" 3
 		fleet
 			names civilian
-			variant
+			variant 1
+				"Flivver"
+			variant 1
+				"Scout"
+			variant 2
+				"Mule"
+				"Dagger"
+			variant 2
 				"Star Queen"
-				"Headhunter" 3
-				"Firebird" 2
-			variant
-				"Star Queen"
-				"Gunboat" 2
+			variant 2
+				"Flivver"
+				"Aerie"
+				"Dagger" 2
 				"Frigate"
-		dialog "The targets have been destroyed. Return to <destination> for payment."
+			variant 4
+				"Scout"
+				"Headhunter" 4
+			variant 3
+				"Mule"
+				"Dagger"
+				"Raven" 2
+			variant 2
+				"Star Queen"
+				"Corvette"
+				"Firebird"
+			variant 2
+				"Flivver"
+				"Leviathan"
+			variant 2
+				"Scout"
+				"Corvette"
+				"Mule"
+				"Dagger"
+			variant 1
+				"Mule"
+				"Dagger"
+				"Cruiser"
+				"Combat Drone" 4
+			variant 1
+				"Star Queen"
+				"Carrier"
+				"Lance" 4
+				"Combat Drone" 6
+		dialog "The target has been destroyed. Return to <destination> for payment."
 	on complete
-		payment 600000
+		payment 800000
 		dialog "A band of drug traders thank you for eliminating the politician and pay you <payment>."
 		"reputation: Republic" -= 15
 		"reputation: Navy (Oathkeeper)" -= 15
 		"reputation: Pirate" += 5
-		
-mission "Republic Assassination [3]"
-	name "Assassinate a military target"
-	description "A Republic Navy commander who has led a number of small raids against pirate gangs in the region has been spotted patrolling a nearby system with their fleet. Assassinate them in order to send a message to the Republic. Payment is <payment>."
-	repeat
-	job
-	to offer
-		"combat rating" > 600
-		random < 5
-		"reputation: Pirate" > 50
-	source
-		government "Pirate"
-		attributes "north pirate"
-	npc kill
-		government "Republic"
-		personality staying target
-		system
-			distance 3 4
-		fleet
-			names "republic small"
-			variant
-				"Cruiser"
-				"Combat Drone" 4
-				"Frigate" 2
-			variant
-				"Carrier"
-				"Lance" 4
-				"Combat Drone" 6
-				"Gunboat" 2
-				"Rainmaker"
-		dialog "The target has been destroyed. Return to <destination> for your payment."
-	on complete
-		payment 750000
-		dialog "A gang of pirates on <planet> thank you for taking out the Navy commander and pay you <payment>."
-		"reputation: Republic" -= 20
-		"reputation: Navy (Oathkeeper)" -= 20
-		"reputation: Pirate" += 7
-		
-mission "Republic Assassination [4]"
-	name "Assassinate a military target"
-	description "Rumor is the Republic is planning a raid on regional pirate gangs. An important Navy commander said to be leading this raid has been spotted in a nearby system with a large fleet. Assassinate them in order to send a message to the Republic. Payment is <payment>."
-	repeat
-	job
-	to offer
-		"combat rating" > 800
-		random < 5
-		"reputation: Pirate" > 100
-	source
-		government "Pirate"
-		attributes "north pirate"
-	npc kill
-		government "Republic"
-		personality staying target
-		system
-			distance 3 4
-		fleet
-			names "republic small"
-			variant
-				"Carrier" 2
-				"Lance" 8
-				"Combat Drone" 12
-				"Frigate" 3
-			variant
-				"Carrier"
-				"Lance" 4
-				"Combat Drone" 6
-				"Cruiser" 2
-				"Combat Drone" 8
-				"Frigate" 2
-				"Rainmaker" 2
-				"Gunboat" 2
-		dialog "The target and their fleet has been destroyed. Return to <destination> for your payment."
-	on complete
-		payment 1000000
-		dialog "You are greeted by applause from many pirates when you land and a powerful pirate warlord pays you <payment>."
-		"reputation: Republic" -= 25
-		"reputation: Navy (Oathkeeper)" -= 25
-		"reputation: Pirate" += 10

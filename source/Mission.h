@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ConditionSet.h"
 #include "Date.h"
+#include "DistanceCalculationSettings.h"
 #include "EsUuid.h"
 #include "LocationFilter.h"
 #include "MissionAction.h"
@@ -86,10 +87,11 @@ public:
 	bool IsMinor() const;
 
 	// Find out where this mission is offered.
-	enum Location {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING};
+	enum Location {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING, SHIPYARD, OUTFITTER};
 	bool IsAtLocation(Location location) const;
 
 	// Information about what you are doing.
+	const Ship *SourceShip() const;
 	const Planet *Destination() const;
 	const std::set<const System *> &Waypoints() const;
 	const std::set<const System *> &VisitedWaypoints() const;
@@ -101,6 +103,11 @@ public:
 	std::string IllegalCargoMessage() const;
 	bool FailIfDiscovered() const;
 	int Passengers() const;
+	int64_t DisplayedPayment() const;
+	// The mission should take this many jumps.
+	// Only matters to available jobs (not saved to file)
+	const int ExpectedJumps() const;
+	int CalculateJumps(const System *const sourceSystem);
 	// The mission must be completed by this deadline (if there is a deadline).
 	const Date &Deadline() const;
 	// If this mission's deadline was before the given date and it has not been
@@ -127,6 +134,7 @@ public:
 	bool IsSatisfied(const PlayerInfo &player) const;
 	bool HasFailed(const PlayerInfo &player) const;
 	bool IsFailed() const;
+	bool OverridesCapture() const;
 	// Mark a mission failed (e.g. due to a "fail" action in another mission).
 	void Fail();
 	// Get a string to show if this mission is "blocked" from being offered
@@ -195,10 +203,14 @@ private:
 	bool hasPriority = false;
 	bool isMinor = false;
 	bool autosave = false;
+	bool overridesCapture = false;
 	Date deadline;
+	int expectedJumps = 0;
 	int deadlineBase = 0;
 	int deadlineMultiplier = 0;
+	DistanceCalculationSettings distanceCalcSettings;
 	std::string clearance;
+	bool ignoreClearance = false;
 	LocationFilter clearanceFilter;
 	bool hasFullClearance = true;
 
@@ -215,12 +227,16 @@ private:
 	// Parameters for generating random passenger amounts:
 	int passengerLimit = 0;
 	double passengerProb = 0.;
+	int64_t paymentApparent = 0;
 
 	ConditionSet toOffer;
+	ConditionSet toAccept;
 	ConditionSet toComplete;
 	ConditionSet toFail;
 
 	const Planet *source = nullptr;
+	// The ship this mission originated from, if it is a boarding mission.
+	const Ship *sourceShip = nullptr;
 	LocationFilter sourceFilter;
 	const Planet *destination = nullptr;
 	LocationFilter destinationFilter;

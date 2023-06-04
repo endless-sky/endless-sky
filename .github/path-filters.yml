@@ -1,35 +1,10 @@
 data:
-  - 'changelog*'
-  - 'copyright*'
-  - credits.txt
-  - icon.png
-  - keys.txt
-  - license.txt
   - 'data/**/*'
   - 'images/**/*'
   - 'sounds/**/*'
 
-game_code: &build
+game_code:
   - 'source/**'
-
-macos:
-  - 'XCode/**'
-  - '**/*.xcodeproj'
-  - 'icons/endless-sky.iconset/**'
-  - 'utils/fetch_sdl2_framework.sh'
-  - 'utils/set_dylibs_rpath.sh'
-  - *build
-
-windows:
-  - '**/*.cbp'
-  - EndlessSky.workspace
-  - SConstruct
-  - .winmake
-  - *build
-
-linux:
-  - SConstruct
-  - *build
 
 unit_tests:
   - 'tests/unit/**/*.h'
@@ -37,21 +12,27 @@ unit_tests:
   - 'tests/unit/**/*.cpp'
 
 integration_tests:
-  - 'utils/test_parse.*'
-  - 'tests/integration/run_tests*'
-  - 'data/tests/**'
-  - 'tests/integration/universes/**'
+  - 'tests/integration/config/plugins/integration-tests/**'
 
 codespell:
   - .codespell.exclude
-
-xcode_files:
-  - 'EndlessSky.xcodeproj/**'
-  - 'utils/check_xcode.sh'
 
 codeblocks_files:
   - '*.cbp'
   - 'utils/check_codeblocks.sh'
 
+cmake_files:
+  - CMakeLists.txt
+  - source/CMakeLists.txt
+  - tests/CMakeLists.txt
+  - tests/integration/IntegrationTests.cmake
+  - utils/vcpkg_bootstrap.cmake
+  - CMakePresets.json
+  - vcpkg.json
+  - vcpkg-configuration.json
+
 copyright:
   - 'copyright'
+
+parse_script:
+  - 'utils/test_parse.ps1'

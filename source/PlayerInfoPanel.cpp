@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/layout.hpp"
 #include "LogbookPanel.h"
 #include "MissionPanel.h"
+#include "Planet.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Rectangle.h"
@@ -46,23 +47,6 @@ using namespace std;
 namespace {
 	// Number of lines per page of the fleet listing.
 	const int LINES_PER_PAGE = 26;
-
-	// Find any condition strings that begin with the given prefix, and convert
-	// them to strings ending in the given suffix (if any). Return those strings
-	// plus the values of the conditions.
-	vector<pair<int64_t, string>> Match(const PlayerInfo &player, const string &prefix, const string &suffix)
-	{
-		vector<pair<int64_t, string>> match;
-		auto it = player.Conditions().PrimariesLowerBound(prefix);
-		for( ; it != player.Conditions().PrimariesEnd(); ++it)
-		{
-			if(it->first.compare(0, prefix.length(), prefix))
-				break;
-			if(it->second > 0)
-				match.emplace_back(it->second, it->first.substr(prefix.length()) + suffix);
-		}
-		return match;
-	}
 
 	// Draw a list of (string, value) pairs.
 	void DrawList(vector<pair<int64_t, string>> &list, Table &table, const string &title,
@@ -216,19 +200,26 @@ void PlayerInfoPanel::Draw()
 	// Fill in the information for how this interface should be drawn.
 	Information interfaceInfo;
 	interfaceInfo.SetCondition("player tab");
-	if(panelState.CanEdit() && panelState.Ships().size() > 1)
+	if(panelState.CanEdit() && !panelState.Ships().empty())
 	{
 		bool allParked = true;
+		bool allParkedSystem = true;
 		bool hasOtherShips = false;
 		const Ship *flagship = player.Flagship();
+		const System *flagshipSystem = flagship ? flagship->GetSystem() : player.GetSystem();
 		for(const auto &it : panelState.Ships())
 			if(!it->IsDisabled() && it.get() != flagship)
 			{
 				allParked &= it->IsParked();
 				hasOtherShips = true;
+				if(it->GetSystem() == flagshipSystem)
+					allParkedSystem &= it->IsParked();
 			}
 		if(hasOtherShips)
+		{
 			interfaceInfo.SetCondition(allParked ? "show unpark all" : "show park all");
+			interfaceInfo.SetCondition(allParkedSystem ? "show unpark system" : "show park system");
+		}
 
 		// If ships are selected, decide whether the park or unpark button
 		// should be shown.
@@ -400,7 +391,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 				ScrollAbsolute(selected);
 		}
 	}
-	else if(panelState.CanEdit() && (key == 'P' || (key == 'p' && shift)) && !panelState.AllSelected().empty())
+	else if(panelState.CanEdit() && (key == 'k' || (key == 'p' && shift)) && !panelState.AllSelected().empty())
 	{
 		// Toggle the parked status for all selected ships.
 		bool allParked = true;
@@ -419,7 +410,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 				player.ParkShip(&ship, !allParked);
 		}
 	}
-	else if(panelState.CanEdit() && (key == 'A' || (key == 'a' && shift)) && panelState.Ships().size() > 1)
+	else if(panelState.CanEdit() && (key == 'a') && !panelState.Ships().empty())
 	{
 		// Toggle the parked status for all ships except the flagship.
 		bool allParked = true;
@@ -430,6 +421,20 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 
 		for(const auto &it : panelState.Ships())
 			if(!it->IsDisabled() && (allParked || it.get() != flagship))
+				player.ParkShip(it.get(), !allParked);
+	}
+	else if(panelState.CanEdit() && (key == 'c') && !panelState.Ships().empty())
+	{
+		// Toggle the parked status for all ships in system except the flagship.
+		bool allParked = true;
+		const Ship *flagship = player.Flagship();
+		const System *flagshipSystem = flagship ? flagship->GetSystem() : player.GetSystem();
+		for(const auto &it : panelState.Ships())
+			if(!it->IsDisabled() && it.get() != flagship && it->GetSystem() == flagshipSystem)
+				allParked &= it->IsParked();
+
+		for(const auto &it : panelState.Ships())
+			if(!it->IsDisabled() && (allParked || it.get() != flagship) && it->GetSystem() == flagshipSystem)
 				player.ParkShip(it.get(), !allParked);
 	}
 	// If "Save order" button is pressed.
@@ -595,7 +600,7 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 
 	table.DrawTruncatedPair("player:", dim, player.FirstName() + " " + player.LastName(),
 		bright, Truncate::MIDDLE, true);
-	table.DrawTruncatedPair("net worth:", dim, Format::Credits(player.Accounts().NetWorth()) + " credits",
+	table.DrawTruncatedPair("net worth:", dim, Format::CreditString(player.Accounts().NetWorth()),
 		bright, Truncate::MIDDLE, true);
 	table.DrawTruncatedPair("time played:", dim, Format::PlayTime(player.GetPlayTime()),
 		bright, Truncate::MIDDLE, true);
@@ -603,7 +608,7 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	// Determine the player's combat rating.
 	int combatExperience = player.Conditions().Get("combat rating");
 	int combatLevel = log(max<int64_t>(1, combatExperience));
-	const string &combatRating = GameData::Rating("combat", combatLevel);
+	string combatRating = GameData::Rating("combat", combatLevel);
 	if(!combatRating.empty())
 	{
 		table.DrawGap(10);
@@ -627,8 +632,8 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	auto factors = player.RaidFleetFactors();
 	double attractionLevel = max(0., log2(max(factors.first, 0.)));
 	double deterrenceLevel = max(0., log2(max(factors.second, 0.)));
-	const string &attractionRating = GameData::Rating("cargo attractiveness", attractionLevel);
-	const string &deterrenceRating = GameData::Rating("armament deterrence", deterrenceLevel);
+	string attractionRating = GameData::Rating("cargo attractiveness", attractionLevel);
+	string deterrenceRating = GameData::Rating("armament deterrence", deterrenceLevel);
 	if(!attractionRating.empty() && !deterrenceRating.empty())
 	{
 		double attraction = max(0., min(1., .005 * (factors.first - factors.second - 2.)));
@@ -648,16 +653,22 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 			"(-" + Format::Decimal(deterrenceLevel, 1) + ")", dim, Truncate::MIDDLE, false);
 	}
 	// Other special information:
-	auto salary = Match(player, "salary: ", "");
+	vector<pair<int64_t, string>> salary;
+	for(const auto &it : player.Accounts().SalariesIncome())
+		salary.emplace_back(it.second, it.first);
 	sort(salary.begin(), salary.end());
 	DrawList(salary, table, "salary:", 4);
 
-	auto tribute = Match(player, "tribute: ", "");
+	vector<pair<int64_t, string>> tribute;
+	for(const auto &it : player.GetTribute())
+		tribute.emplace_back(it.second, it.first->TrueName());
 	sort(tribute.begin(), tribute.end());
 	DrawList(tribute, table, "tribute:", 4);
 
 	int maxRows = static_cast<int>(250. - 30. - table.GetPoint().Y()) / 20;
-	auto licenses = Match(player, "license: ", " License");
+	vector<pair<int64_t, string>> licenses;
+	for(const auto &it : player.Licenses())
+		licenses.emplace_back(1, it);
 	DrawList(licenses, table, "licenses:", maxRows, false);
 }
 

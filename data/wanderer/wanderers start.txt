@@ -27,7 +27,7 @@ mission "First Contact: Wanderer (Before Hai)"
 				`	"Hello. I come in peace."`
 				`	"My name is <first>. I am glad to meet you."`
 			`	The alien leans forward as you speak, as if trying to decipher your words. "Iyik'ka'ak kareek elik, ek karu karai kavet," it says. You shake your head to indicate that you do not understand, and again try to speak to it in your own language. Again it leans forward as if deeply focused on what you are saying.`
-			`	The other aliens standing beside it are inspecting you with equal curiosity. Finally, one of them says to the leader, "Ek kalek kiro suk i'hai, sek speru siyek ka'hai esek'ru fer'ek." The leader gestures in response, turning up open palms, and the second alien steps forward and addresses you in an entirely different language, one that does not sound like birdsong at all. In fact, you suspect that it is the language of a different species entirely, but unfortunately it is no more comprehensible to you than the bird's own language.`
+			`	The other aliens standing beside it are inspecting you with equal curiosity. Finally, one of them says to the leader, "Ek kalek kiro suk i'hai, sek speru siyek ka'hai esek'ru fer'ek." The leader gestures in response, turning up open palms, and the second alien steps forward and addresses you in an entirely different language, one that does not sound like birdsong at all. In fact, judging by the difficulty it seems to be having in trying to speak it, you suspect that it is the language of a different species entirely. Unfortunately, it is no more comprehensible to you than the bird's own language.`
 			`	They make some further attempts to communicate with you, but without success. Eventually they give up and all but the leader leaves. The leader makes a sweeping gesture to the rest of the spaceport, apparently inviting you to explore.`
 				decline
 
@@ -63,7 +63,7 @@ mission "First Contact: Wanderer"
 			`As before, you are ushered to the ground by a flock of the small alien ships, and a few of them fly over to your ship and wait for your to come out and try to talk to them. Also as before, you do not recognize their language and they do not understand yours, although their leader seems to be focused intently on trying to understand you.`
 			
 			label hai
-			`	The other aliens standing beside it are inspecting you with equal curiosity. Finally, one of them says to the leader, "Ek kalek kiro suk i'hai, sek speru siyek ka'hai esek'ru fer'ek." The leader gestures in response, turning up open palms, and the second alien steps forward and begins speaking in an entirely different language. After a moment, you are startled to realize that it is speaking the language of the Hai.`
+			`	The other aliens standing beside it are inspecting you with equal curiosity. Finally, one of them says to the leader, "Ek kalek kiro suk i'hai, sek speru siyek ka'hai esek'ru fer'ek." The leader gestures in response, turning up open palms, and the second alien steps forward and begins speaking in an entirely different language. After a moment, you are startled to realize that it is speaking the language of the Hai. The difficulty it has producing the sounds lends it a rather coarse accent, but it is almost certainly Hai.`
 			`	"Hai, you speak the Hai language?" you ask. You cup your hands above your ears to mimic the large, rodent-like ears of the Hai.`
 			`	"Iy, ka'hai!" says the alien, rustling its wings in what you take as a gesture of excitement, "Speru ek ka'hai?" At the same time, though, one of the other aliens takes a step back and flexes its talons at you. It occurs to you that the Hai may or may not be viewed favorably here.`
 			choice
@@ -169,6 +169,10 @@ mission "Wanderers: Hai Diplomat"
 				accept
 	on accept
 		"reputation: Hai" >?= 20
+		"reputation: Hai (Wormhole Access)" >?= 20
+		"reputation: Hai Merchant" >?= 20
+		"reputation: Hai Merchant (Human)" >?= 20
+		"reputation: Hai Merchant (Sympathizers)" >?= 20
 		"reputation: Hai" += 30
 		"reputation: Hai (Wormhole Access)" += 30
 		"reputation: Hai Merchant" += 30
@@ -353,6 +357,7 @@ mission "Visit Wanderers Again"
 		has "human cultural data"
 	on offer
 		set "language: Wanderer"
+		set "language: Hai"
 		event "wanderer technology available"
 		log "Received a device, created by a Hai scientist, which can translate between human language and the Hai language. Since the Wanderers speak the Hai language, that should make it possible to communicate with them directly."
 		conversation "eruk cultural data"
@@ -363,6 +368,19 @@ event "wanderer technology available" # Name unchanged for compatibility
 		"friendly disabled hail" "friendly disabled wanderer"
 		"hostile hail" "hostile wanderer"
 		"hostile disabled hail" "hostile disabled wanderer"
+
+
+
+# Compatibility patch for saves before "language: Hai" variable was added.
+mission "Hai Language Patch"
+	landing
+	invisible
+	to offer
+		has "Visit Wanderers Again: offered"
+		not "language: Hai"
+	on offer
+		set "language: Hai"
+		fail
 
 
 
@@ -737,17 +755,15 @@ mission "Wanderers: Unfettered Diplomacy 1B"
 		ship "Deep River (Jump, Unarmed)" "Ayi'i Ki'ak'var"
 
 fleet "Unfettered Tribute"
-	government "Hai (Unfettered)"
+	government "Hai (Unfettered Wanderer Tribute)"
 	names "hai"
+	personality coward timid
 	cargo 3
 	variant
 		"Water Bug (Jump)"
 
 event "wanderer / unfettered peace"
 	"reputation: Hai (Unfettered)" >?= 1
-	government "Hai (Unfettered)"
-		"attitude toward"
-			"Wanderer" 0
 	system "Ehma Ti"
 		remove fleet "Unfettered Raid"
 		add fleet "Unfettered Tribute" 1000
@@ -780,7 +796,7 @@ mission "Wanderers: Unfettered Diplomacy 1C"
 		set "license: Wanderer"
 		log "Managed to broker a temporary ceasefire between the Unfettered Hai and the Wanderers. Was granted access to purchase the non-military Wanderer ships, as a reward."
 		conversation
-			`When you return to <planet>, Iktat Rek meets with Ambassador Sayari and a few of the Wanderer elders. The elders thank you for the role that you played in negotiating a temporary peace, and Rek says, "We will [reward, honor] you by allowing you to purchase our current [civilian, peacekeeping] ships."`
+			`When you return to <planet>, Iktat Rek meets with Ambassador Sayari and a few of the Wanderer elders. The elders thank you for the role that you played in negotiating a temporary peace, and Rek says, "We will [reward, honor] you by allowing you to purchase our current [civilian, peacekeeping] ships. And, we [request, insist] that you do not [attack, assault] the ships sent to collect [tribute], as long as they remain [peaceful, cooperative]."`
 			`	The elders seem to agree that this is only a temporary solution. The Unfettered cannot be granted a base in Wanderer territory: they would use their few jump drives to move a few warships at a time to that base until they had a fleet too strong for the Wanderers to defeat. Sooner or later, the Unfettered will grow tired of demanding such a base and will return to open warfare.`
 			`	In the meantime, the only way to defuse the situation would be to get all the jump drives out of the hands of the Unfettered - and that means discovering and stopping whoever is supplying those drives to them.`
 
@@ -871,7 +887,6 @@ mission "Unfettered: Jump Drive Source"
 	to offer
 		has "Wanderers: Jump Drive Source: active"
 	on offer
-		log `Learned from the Unfettered Hai that they have been purchasing jump drives from the Alphas (whom they refer to as "unfettered humans").`
 		conversation
 			`Following Iktat Rek's suggestion, would you like to sell a jump drive to the Hai and see what information you can get in return?`
 			choice
@@ -907,6 +922,7 @@ mission "Unfettered: Jump Drive Source"
 			`	You are able to get no further information from him, but what you already know is quite valuable. You should report back to Iktat Rek and see what he says.`
 				accept
 	on accept
+		log `Learned from the Unfettered Hai that they have been purchasing jump drives from the Alphas (whom they refer to as "unfettered humans").`
 		outfit "Jump Drive" -1
 		outfit "Hyperdrive" 1
 		payment 1000000
@@ -946,7 +962,7 @@ mission "Wanderers: Alpha Surveillance A"
 			`	You split the devices up into three groups to launch out your airlock in each of the three Unfettered systems. Hopefully the Unfettered will not notice what you are doing.`
 				accept
 			label steal
-			apply
+			action
 				set "stole a wanderer micro-sat"
 			`	You split the devices up into three piles, one for each of the Unfettered systems, and keep one of them for yourself, well hidden in a safe place on your ship.`
 				accept
@@ -958,7 +974,7 @@ mission "Wanderers: Alpha Surveillance A"
 		event "wanderers: alpha surveillance done" 30
 		conversation
 			`The surveillance cubes have all been deployed. While you wait for them to collect their recordings of the ship traffic in the Unfettered systems, you stop by the Hai center of government and ask for the human ambassador. When they realize that you are the one who made contact with the Wanderers, they quickly give you an appointment.`
-			`	The ambassador is an old, male Hai named Hiyamaharu. "Honored human," he says. "It is a pleasure to meet you. If I may assist you in any way, I shall do so."`
+			`	The ambassador is an old, male Hai named Hiyamaharu. "Honored human," he says, "it is a pleasure to meet you. If I may assist you in any way, I shall do so."`
 			choice
 				`	"Thank you." (Explain about the Alphas.)`
 			`	He says, "We know of them. Indeed, our first contact with the humans, two centuries ago, was with these green people. They sought to cheat us and dominate us. They are not merely misfits like the Unfettered; these Alpha humans are cruel and self-interested. They thought we were simple because we are peaceful, but we were too shrewd and too strong for them, and they are now banned from our territory. But then the peaceful humans came, and we learned that you are not all like the Alphas."`
@@ -1066,7 +1082,7 @@ mission "Wanderers: Alpha Surveillance C (Naughty)"
 			`	"I see," says Rek. You wish you were able to read Wanderer facial expressions; you are not sure if he believes you. You go into your ship, wait long enough to make it appear that you needed to search, then return and give the device back to him.`
 				goto carrier
 			label apologized
-			apply
+			action
 				clear "stole a wanderer micro-sat"
 			`	"I am glad you [admitted, confessed] that," says Rek. "Please be more [honest, obedient] in the future." You retrieve the hidden surveillance device and return it to him.`
 			label carrier
@@ -1297,7 +1313,7 @@ mission "Wanderers: Alpha Surveillance E"
 
 mission "Wanderers: Alpha Surveillance F"
 	name "Invade Avalon"
-	description "Escort Admiral Danforth's Navy Cruiser to <destination> and land on the planet with them. They will attempt to locate and eliminate the Alpha base."
+	description "Escort Admiral Danforth's Navy <npc model> to <destination> and land on the planet with them. They will attempt to locate and eliminate the Alpha base."
 	autosave
 	source "Farpoint"
 	destination "Avalon"
@@ -1330,7 +1346,7 @@ mission "Wanderers: Alpha Surveillance F"
 	
 	npc accompany save
 		government "Navy (Oathkeeper)"
-		personality escort heroic
+		personality escort timid
 		ship "Cruiser (Jump)" "N.S. Peacemaker"
 
 
@@ -1359,7 +1375,7 @@ mission "Wanderers: Alpha Surveillance G"
 	
 	npc accompany save
 		government "Navy (Oathkeeper)"
-		personality escort heroic
+		personality escort timid
 		ship "Cruiser (Jump)" "N.S. Peacemaker"
 	npc
 		government "Alpha"
@@ -1752,6 +1768,7 @@ mission "Wanderers Invaded 3"
 	source "Varu Mer'ek"
 	destination "Var' Kar'i'i"
 	passengers 1
+	blocked "You receive a message from Isai indicating that she would like to join you for the next mission, but you don't have space right now. Return when you have a bunk free."
 	to offer
 		has "Wanderers Invaded 2: done"
 	on offer
@@ -1785,7 +1802,7 @@ mission "Wanderers Invaded 3"
 		ship "Deep River Transport" "Eka'ta Turuk'ta"
 	on visit
 		dialog
-			`You have reached <planet>, but the Wanderer transports have not all arrived yet. You should take off and wait for them to catch up with you.`
+			`You have reached <planet>, but the Wanderer transports, or your ship carrying Isai, have not all arrived yet. You should take off and wait for them to catch up with you.`
 
 
 
@@ -2093,7 +2110,7 @@ mission "Wanderers Solifuge Recon 3"
 			has "Wanderers Pond Strider Recon 2: done"
 	on offer
 		conversation
-			`Tele'ek and Sayari listen carefully as you outline the strengths and weaknesses of the new Unfettered carriers. "I am not greatly [concerned, frightened] by tiny fighters," Tele'ek says. "The weapon that has done us most harm is their ion cannons, which no ship so small can [wield, carry]. But thank you for your assistance."`
+			`Tele'ek and Sayari listen carefully as you outline the strengths and weaknesses of the new Unfettered carriers. "I am not greatly [concerned, frightened] by tiny fighters," Tele'ek says. "The weapon that has done us most harm is their Ion Cannons, which no ship so small can [wield, carry]. But thank you for your assistance."`
 			`	Sayari looks more concerned about this information. "These carriers may not be an issue for the Wanderers, but this development could cause trouble for the Hai. I have written a message describing the situation." She hands you a data chip. "Please deliver it to the council of elders on <planet>."`
 			`	"Please be quick if you are to deliver this message now," Tele'ek says. "We have no other [fights, brawls] for you to take part in right now, but once you return here, you will find another evacuation fleet that needs an [escort, protector]."`
 				accept

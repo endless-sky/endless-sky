@@ -1,0 +1,1532 @@
+# Copyright (c) 2020 MasterOfGrey
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+mission "Hai Reveal [B01] Information Blackout"
+	landing
+	name "Information Blackout"
+	description "Meet the Syndicate Security Captain in the spaceport on <origin> when you're ready."
+	source "Sunracer"
+	clearance
+	to offer
+		has "Hai Reveal [A13] A New Elder: done"
+	to complete
+		never
+	on offer
+		event "hai and human ships at wormhole"
+		conversation
+			`Arriving on Sunracer, the entire port seems to be abuzz with the news. It has not gone unnoticed that the Navy moved a large fleet into the uninhabited systems in the northern corridor between Syndicate space and the Far North. Now, it seems that blockades are going up in Rigel, Nihal, Mirfak & Zaurak using Navy or Syndicate security vessels depending on jurisdiction. The theories are flying thick and fast, but everyone seems to agree on one thing; there is some sort of major crisis happening.`
+			`Your communicator beeps and you realize you have received a message from Remington. There's a Captain of one of their security detachments waiting to meet you in the spaceport. Apparently there have been developments while you were in flight. Now might be the last opportunity to sort anything else out for a little while.`
+				accept
+
+
+# Ensure there are some impressive fleets at each system.
+mission "Hai Reveal [B01-A] The Blockade Goes Up"
+	landing
+	invisible
+	source "Mountaintop"
+	to offer
+		has "Hai Reveal [A13] A New Elder: done"
+	to complete
+		never
+	npc
+		government "Republic"
+		system "Rigel"
+		personality heroic opportunistic staying
+		fleet
+			names "republic capital"
+			fighters "syndicate fighter"
+			variant
+				"Carrier (Mark II)" 2
+				"Cruiser (Mark II)" 6
+				"Combat Drone" 36
+				"Lance (Gatling)" 8
+				"Frigate (Mark II)" 12
+				"Rainmaker (Mark II)" 8
+				"Rainmaker (Mark II Old Weapons)" 8
+	npc
+		government "Republic"
+		system "Nihal"
+		personality heroic opportunistic staying
+		fleet
+			names "republic capital"
+			fighters "syndicate fighter"
+			variant
+				"Carrier (Mark II)" 2
+				"Cruiser (Mark II)" 6
+				"Combat Drone" 36
+				"Lance (Gatling)" 8
+				"Frigate (Mark II)" 12
+				"Rainmaker (Mark II)" 8
+				"Rainmaker (Mark II Old Weapons)" 8
+	npc
+		government "Syndicate"
+		system "Mirfak"
+		personality heroic staying
+		fleet "Large Syndicate" 8
+	npc
+		government "Syndicate"
+		system "Zaurak"
+		personality heroic staying
+		fleet "Large Syndicate" 8
+
+
+# The fact that you have to actively go to the spaceport to proc this mission is intentional. It allows the player to take a pause to reorganize themselves if they need to, B01 stays active as a reminder.
+# The fight in this mission is very large, but it's also a complete roflstomp. The pirates are outnumbered 2-1, and out-gunned significantly worse than that.
+# You as the player have one job: make sure everyone jumps in together, and don't die. During the first campaign it was really important the fights were all balanced for you to be able to tip the balance.
+# THIS mission is designed to give you a spectacle. A little visual demonstration of what a real battle could potentially look and feel like with low stakes for you. It's a visual feast, not a challenge.
+mission "Hai Reveal [B02] Join the Fleet"
+	autosave
+	name "Join the Fleet and Invade Stormhold"
+	description "The fleet will arrive in <waypoints> soon. Join it, and lead it to Stormhold."
+	deadline 9
+	# The minimum journey time is 7
+	source "Sunracer"
+	waypoint "Moktar"
+	destination "Stormhold"
+	clearance
+	to offer
+		has "Hai Reveal [A14] A Time of Trouble: done"
+	on offer
+		conversation
+			`The Syndicate security captain in the spaceport is very easy to find. She hands you a pad with a secure validation sequence to confirm her briefing comes from the Navy, co-signed by Xilin.`
+			`	She appears to have a posse of other captains with her who conveniently enforce a bubble of privacy around you just by taking up space. "So," she says. "The Republic has agreed to accompany the Hai to precisely one world. Combined intelligence indicates that <planet> is the most likely place for any kidnapped Hai to be, assuming they exist. The blockades that have gone up are to secure this area of space against the secret of this exercise... or at least try to.`
+			`	"There's going to be a battle, and you have a critical role entrusted to you for coordinating the fleet. There can be no detours. Once we start moving it will be one jump to the rendezvous and then two to our target. Are you ready for it?"`
+			choice
+				`	"I'm ready now."`
+				`	"I need time to prepare."`
+					goto prepare
+			`	"Very good." So far she hasn't introduced herself, but as she puts the pad away her flight jacket moves enough for you to see 'Captain Valeria Estrada' printed on the jumpsuit underneath. "Now, to bring you up to speed: At least two pirate groups at <planet> have been involved in smuggling or kidnappings. <planet> is a fortress of anonymity and discretion, as well as being a literal fortress. An agreed upon force of overwhelming numbers has been prepared at Mountaintop. The objective is to overwhelm the defenders, prevent any escapes, and occupy the planet while they ferret out all the groups intelligence has flagged.`
+			`	"The Navy, Unfettered, and Hai fleets will travel from Mountaintop to meet you. We must fly with all haste to <waypoints> to meet them, where you will lead the fleet and coordinate the attack. My security force will follow, but until we get to Sumar don't worry about waiting for us. We'll handle ourselves. Once we're all together in Sumar, your job will be to make sure everyone moves as one for each jump from there to <system>."`
+			`	She lowers her voice even further, despite the privacy afforded already. "There will be two Navy Carrier groups, our full Syndicate Special Security Detachment, the Unfettered Expeditionary Fleet, and a full Hai Taskforce. I haven't heard of a fleet this large in one place since the Alpha Wars. This coordination role is not a joke. There's lots of scope for things to go wrong. We will go in, clean up, and search for Hai. Parliament will reassess the scope of concern later, depending on what we find down there. We follow your lead, Captain <last>."`
+				accept
+			label prepare
+			`	She nods. "Very well, but don't take too long. We'll be waiting here for as long as we're able."`
+				defer
+	npc
+		government "Syndicate"
+		personality escort coward opportunistic vindictive
+		fleet
+			names "syndicate capital"
+			variant
+				"Protector" 2
+				"Vanguard" 3
+				"Vanguard (Particle)" 3
+				"Splinter (Flamethrower Blaster)" 4
+		# This special security force has acquired outfits in the post-war condition that were surplus or black market to upgrade their Splinters.
+		# However, they haven't had the time to refit and test out new options for their Protectors or Vanguards.
+	# Fleets start at Rajak instead of Ultima Thule to ensure they
+	# have enough fuel to reach Stormhold.
+	npc accompany
+		government "Republic"
+		system "Rajak"
+		personality escort heroic opportunistic waiting
+		fleet "Human Wormhole Guards" 20
+	npc accompany
+		government "Hai"
+		system "Rajak"
+		personality escort heroic opportunistic waiting
+		fleet "Hai Wormhole Guards" 20
+	npc accompany
+		government "Hai (Friendly Unfettered)"
+		system "Rajak"
+		personality escort heroic opportunistic vindictive waiting
+		fleet "Large Unfettered" 7
+	# Guard fleets are 1 ship each. Unfet are 2.7 on average. Total Fleet Size is roughly 57 + 10 Syndicate.
+
+	npc kill
+		government "Pirate"
+		personality staying waiting heroic opportunistic vindictive
+		system "Alcyone"
+		fleet "Marauder fleet IX" 3
+	npc kill
+		government "Pirate"
+		personality staying waiting heroic opportunistic vindictive
+		system "Alcyone"
+		fleet "Marauder fleet X" 4
+	# IX is 4 decent ships each, X is 6 ships but 2 are weak each. Total Fleet Size is roughly 28 + some chaff (~8).
+	on fail
+		dialog `You have failed an essential mission (ALL of one fleet has been wiped out). To complete this story line, revert to the autosave or another earlier snapshot of the game.`
+	on accept
+		fail "Hai Reveal [B01] Information Blackout"
+		fail "Hai Reveal [A11-B] Permanent Fleets"
+	on enter "Moktar"
+		dialog `You have reached the rendezvous and various fleets are arriving. As promised, both Hai and human ships have tied their navigation to your systems for coordinating the next couple of jumps to Alcyone. You have never seen so many military vessels in one place.`
+	on enter "Oblate"
+		dialog `The next jump from here is to Alcyone. Make sure all ships are ready to jump all at once. The pirate and marauder lords of <planet> have prepared for the invasion and are expected to be waiting. A disciplined arrival is essential.`
+	on complete
+		event "stormhold suppressed"
+	on visit
+		dialog
+			`When the Hai and humans try to deploy troops, they're drawn off by orbital bombardment. You must defeat the entire pirate and marauder defense fleet before landing.`
+
+event "stormhold suppressed"
+	# Update pirate and anti-pirate spawns in Alcyone - Hai ships stay landed so they don't travel into Syndi space. Korath ships keep away.
+	system "Alcyone"
+		remove fleet "Small Core Pirates" # 400
+		remove fleet "Large Core Pirates"# 600
+		remove fleet "Korath Large Raid" # 50000
+		add fleet "Human Wormhole Guards" 500
+
+
+mission "Hai Reveal [B02-A] The Blockade Goes Up"
+	landing
+	invisible
+	source "Stormhold"
+	to offer
+		has "Hai Reveal [B02] Join the Fleet: done"
+	to complete
+		never
+	npc
+		government "Syndicate"
+		system "Alcyone"
+		personality staying waiting opportunistic vindictive
+		fleet
+			names "syndicate capital"
+			variant
+				"Protector" 2
+				"Vanguard" 3
+				"Vanguard (Particle)" 3
+				"Splinter (Flamethrower Blaster)" 4
+		# This special security force remains local to represent Syndicate interests and security integrity.
+
+
+mission "Hai Reveal [B02-S] Republic Intelligence Stalkers"
+	landing
+	invisible
+	source "Stormhold"
+	to offer
+		has "Hai Reveal [B02] Join the Fleet: done"
+	to complete
+		or
+			has "Hai Reveal [B05-short] The Road Not Taken: offered"
+			has "Hai Reveal [B08-long] The Other Just As Fair: offered"
+	npc
+		government "Republic Intelligence"
+		system "Alcyone"
+		personality launching mute marked
+		ship "Frigate (Republic Intelligence)" "R.I.S. Adrasteia"
+
+
+mission "Hai Reveal [B03] Contact Giti"
+	landing
+	name "Contact Giti"
+	description "Go to <planet> to get a line of communication out to Giti."
+	source "Stormhold"
+	destination "Canyon"
+	clearance
+	to offer
+		has "Hai Reveal [B02] Join the Fleet: done"
+	on offer
+		conversation
+			`While you join the fleet that lands to occupy the spaceport, other assault ships pursue priority targets elsewhere on <origin>. There's a significant wait to ensure that ground troops have secured the port before everyone can reconvene to discuss the next steps.`
+			`	You eventually reach the secured command area set up in the spaceport as Choot'k and Danforth come in discussing tactical minutiae. They are trailed by Batu, and eventually joined by Sayari and Teeneep. One of Danforth's lieutenants brings up the rear and closes the door behind you all.`
+			`	There is a moment of uncertainty where Danforth continues conversing in a low voice with his lieutenant and Batu catches your gaze with a questioning look.`
+			choice
+				`	"Admiral, would you like to lead this?"`
+					goto "cede to danforth"
+				`	"Good to see everyone arrive here safely."`
+			action
+				set "HR: Allied Leader"
+			`	Everyone is waiting for you to speak. It seems this is your final briefing as the commander of the forces before diplomats and military leaders take over.`
+			label briefing
+			choice
+				`	"What is the status of the <origin> operation?"`
+					goto operation
+					to display
+						not "Hai Reveal [B03] Contact Giti: label operation"
+				`	"Is the Hai disinformation campaign still working?"`
+					goto disinformation
+					to display
+						not "Hai Reveal [B03] Contact Giti: label disinformation"
+				`	"Sayari and Teeneep, what are your plans?"`
+					goto squirrels
+					to display
+						has "Hai Reveal [B03] Contact Giti: label operation"
+						not "Hai Reveal [B03] Contact Giti: label squirrels"
+				`	"I'm honored to have served you as fleet commander."`
+					goto honored
+					to display
+						has "Hai Reveal [B03] Contact Giti: label operation"
+						has "Hai Reveal [B03] Contact Giti: label disinformation"
+						has "Hai Reveal [B03] Contact Giti: label squirrels"
+				`	"Excellent work, everyone! Carry on!"`
+					goto offended
+					to display
+						has "Hai Reveal [B03] Contact Giti: label operation"
+						has "Hai Reveal [B03] Contact Giti: label disinformation"
+						has "Hai Reveal [B03] Contact Giti: label squirrels"
+
+			label operation
+			action
+				set "Hai Reveal [B03] Contact Giti: label operation"
+			`	Danforth begins the report. "Stage one has been successful. However, as I expected, it looks like we're going to be here a while. <origin> is a rabbit warren of hidden places. Even with the Hai resources on top of everything we've brought, it could take weeks to root things out sufficiently."`
+			`	"General Choot'k, would you agree with the human's assessment of the effort required here?" asks Teeneep.`
+			`	The Unfettered warlord does not even hesitate to respond, "Yes. Even with our superior capacities we will be here a while."`
+				goto briefing
+			label disinformation
+			action
+				set "Hai Reveal [B03] Contact Giti: label disinformation"
+			`	Batu clears his throat and Danforth glances at him before evidently remembering something discussed earlier. "I'm sorry, Captain <last> and Elder Teeneep. I must advise you that at this stage all hope of keeping the Hai a secret is lost. Even if we could convince all factions to keep the secret, the blockade has drawn too much attention, so all that remains is to resolve the matters at hand before the Hai become irretrievably common knowledge."`
+			`	Teeneep responds, "We all knew that day would come soon. Be glad we're here together to usher it in peacefully and with strength."`
+				goto briefing
+			label squirrels
+			action
+				set "Hai Reveal [B03] Contact Giti: label squirrels"
+			`	"Our place is here, Captain <last>," says Teeneep, definitively.`
+			`	Danforth looks between them. "Perhaps, Elder, you and the Ambassador would find it more comfortable to return to Mountaintop? There will be little diplomacy here, and scarcely more safety, and it would seem to me that, even with Batu here as the Deputy Minister's eyes on the ground, it would be easier to conduct your responsibilities directly."`
+			`	Teeneep seems to bristle but Sayari smoothly cuts in. "You should not concern yourself with our comfort, Admiral. It would not be seemly for the Elder to abandon the field while another leader remains." She looks pointedly at Choot'k. "You may have forgotten also but there are Hai representatives of two governments in this room. It would also be unseemly for our ships to act in concert with the Unfettered without a diplomatic liaison here. And so I too have my place here. Things have happened quickly, of course, but my colleague Hiyamaharu will soon arrive at Mountaintop to act as my counterpart there. I trust things are being attended to, but you might consider checking that your people are properly aware of that."`
+				goto briefing
+
+			label "cede to danforth"
+			action
+				set "HR: Allied Supporter"
+			`	Danforth looks around and, without missing a beat, steps up to the table in the middle of the room. "Thank you, Captain. The Hai and Unfettered are coordinating through me and my command for the ground operation, and so far, stage one has been successful. However, as I expected, it looks like we're going to be here a while. <origin> is a labyrinth of hidden places. Even with the Hai resources on top of everything we've brought, it could take weeks to root things out sufficiently."`
+			`	"General Choot'k, would you agree with the human's assessment of the effort required here?" asks Teeneep.`
+			`	The Unfettered warlord does not even hesitate to respond, "Yes. Even with our superior capacities we will be here a while."`
+			`	Batu clears his throat and Danforth glances at him before evidently remembering something discussed earlier. "I'm sorry, Captain <last> and Elder Teeneep. After the assault our situation has been reassessed and I must advise you that we no longer consider it feasible to maintain the secrecy of the Hai. Even if we could convince all factions to keep the secret, the blockade has drawn too much attention, so all that remains is to resolve the matters at hand before the Hai become irretrievably common knowledge."`
+			`	Teeneep responds, "We all knew that day would come soon. Be glad we're here together to usher it in peacefully and with strength."`
+			`	Danforth looks between Sayari and Teeneep speculatively, as if considering something for the first time. "Perhaps, Elder, you and the Ambassador would find it more comfortable to return to Mountaintop? There will be little diplomacy here, and scarcely more safety, and it would seem to me that, even with Batu here as the Deputy Minister's eyes on the ground, it would be easier to conduct your responsibilities directly."`
+			`	Teeneep seems to bristle but Sayari smoothly cuts in. "You should not concern yourself with our comfort, Admiral. It would not be seemly for the Elder to abandon the field while another leader remains." She looks pointedly at Choot'k. "You may have forgotten also but there are Hai representatives of two governments in this room. It would also be unseemly for our ships to act in concert with the Unfettered without a diplomatic liaison here. And so I too have my place here. Things have happened quickly, of course, but my colleague Hiyamaharu will soon arrive at Mountaintop to act as my counterpart there. I trust things are being attended to, but you might consider checking that your people are properly aware of that."`
+			`	Danforth nods in acknowledgment and turns back to you. "Captain, you may consider your fleet command duties to be complete now that we're on the ground. You did a good job, and we'll take it back from here."`
+			choice
+				`	"I'm honored to have served you as temporary fleet commander."`
+					goto honored
+				`	"I did no more than I would expect anyone else to have done."`
+					goto humble
+				`	"All in a day's work! Excellent work, everyone! Carry on!"`
+					goto offended
+
+			label offended
+			`	Everyone looks surprised or offended, as if you are the court jester who thought he was king. They're dismissive of your comment, as they begin to discuss your departure.`
+				goto done
+			label humble
+			`	Danforth suppresses a smile, while Batu expresses his openly. General Choot'k says, "You've surpassed my expectations, Captain <last>. I've never seen a fleet so large, but you led it to victory with the speed and skill of a veteran general."`
+				goto done
+			label honored
+			`	The leaders all look pleased. General Choot'k says, "You've surpassed my expectations, Captain <last>. I've never seen a fleet so large, but you led it to victory with the speed and skill of a veteran general." Danforth looks just as impressed.`
+			label done
+			action
+			`	Danforth explains, "For now, all communication in and out of the area is blocked at the relay unless it is to or from specific high-level Navy or Syndicate sources. Captain <last>, I'm afraid that also includes you. We don't have time or equipment to harden your systems against potential intrusion, but you do have the nearly exclusive freedom to pass through the blockade. You're a pilot, not a ground combat troop operator, so you should pursue other matters."`
+			`	On your way out Sayari catches you. "Let's meet aboard Teeneep's ship. We have sensitive matters to discuss." You follow her to the ship.`
+			choice
+				`	"What is it, Sayari?"`
+				`	"Do you have more leads on the smuggling operation?"`
+			`	Once there she pulls up information on known or possible smuggling operations used to justify the <origin> operation. Her focus is on what they hadn't reconciled. "Unfortunately, while many matches were found, there was nothing in the new data that conclusively linked to the mysterious symbol. No human escapees had been tested for mild cadmium poisoning, so that was a dead end too. I know it's been thrust into the background pretty heavily, but did you find anything yourself? We need to decide if we're setting this aside or not."`
+			choice
+				`	"I've met a researcher named Giti who has been quite informative."`
+					goto giti
+				`	"I need to leave the communication blackout to check."`
+			`	Sayari responds. "Yes, of course.`
+				goto end
+			label giti
+			`	You relate to her your meetings with Giti and the evidence she gathered.`
+			`	"If you haven't heard from her in a while," Sayari says, "then perhaps she has more information by now?`
+			label end
+			`	"Please, while we have some time. Follow up that thread and then return. At this point if it proves to be a fruitless search then so be it, but I insist on having no loose ends we haven't tried our best to follow to conclusion. If you come back and that's the end, I'll bring Teeneep around."`
+			`	Recalling the star charts, you remember that <destination> is the nearest planet outside the communications blackout zone.`
+				accept
+
+
+
+mission "Hai Reveal [B04] The Road Not Taken"
+	landing
+	name "Investigate Coordinates"
+	description "Investigate the coordinates Giti found via jump drive"
+	source "Canyon"
+	waypoint "Devil-Run"
+	destination "Earth"
+	to offer
+		has "Hai Reveal [B03] Contact Giti: done"
+	on visit
+		dialog `You need to pass through the system at the coordinates before coming here.`
+	on enter "Devil-Run"
+		log `Found a previously unknown system with a red wormhole in the most pirate-infested region of Syndicate space.`
+		dialog `You enter the system and find it to be largely barren, and yet there is what appears to be a red wormhole here. It is entirely possible that here, in the middle of the most pirate-infested region of Syndicate space, there is a route to somewhere else. This is an important discovery that needs to be reported. It would be safest to meet Giti in person and discuss what to do next.`
+	on enter "Deep Space 7C"
+		log `Passed through the wormhole in Syndicate space to a region just outside the Milky Way galaxy. It looks like a good place to hide.`
+		dialog `It takes your computer a few seconds to triangulate, but it says you've left the Milky Way galaxy and are now just beyond the edge of the known galactic disc. Your computer is identifying the system name as "Deep Space 7C" from old astronomical surveys done in the early 22nd century. This is definitely a good place to hide. It is past time to return to Giti now and discuss what to do next.`
+	on offer
+		event "reveal devil-run"
+		conversation
+			`Once safely parked and hooked into the relay network from Canyon you check timezones and place a call to Giti. Astonishingly, you manage to get a remarkably clean connection and don't have to leave a message. Perhaps by fluke it's night in all the most populous places between here and there. She's at her desk when she answers, and it occurs to you for the first time that a research console on a Navy grade connection probably has pretty good bandwidth. "Oh it's a relief to see you Captain. There's been so much going on, I feared you'd been caught up and detained with all that blockade stuff that all over the news right now. You're lucky though, it's quite late here and I was just about to pack up."`
+			choice
+				`	"I was a little caught up, actually."`
+				`	"What do you know about the blockades?"`
+			`	As you draw breath to speak she cuts you off. "I actually don't have a lot of time or I'll miss my ride, so we'll skip the pleasantries. Obviously if you're calling me back you want to know what I found about the notation. That too is something you have good timing on, I was delayed on that until just a couple days ago. Now where was that file... ah here it is.`
+			`	"So, the notation is actually quite dense, and is mostly some probably meaningless prose about something called 'Elenchus'. It sounds aspirational. However, it also refers to a secret gateway. I'm sending you some coordinates." You receive a simple text message a moment later with some system coordinates in it.`
+			choice
+				`	"What is Elenchus?"`
+				`	"I've never seen this system on a star map. What do you expect to find there?"`
+			`	Giti ignores your question and continues. "What I've just sent you is the modern representation of coordinates in the notation. Now it's possible there's some kind of code or cipher, in which case they'd be wrong, but if they are direct from the notation, they indicate a system in Syndicate space that is not on the regular star maps. It must require a jump drive to access, but fortunately I know you happen to have one."`
+			`	She shrugs. "Of course, I have no idea how they'd have a jump drive, but that's not my problem. Whether you find something or not, come back and see me. If that turns up bust, I found an online community who seem to be a support group for people who've had family members kidnapped. The missing person reports for some of them are suspiciously close matches or share features with those in the files you left for me. I haven't looked deeply though, it just came up yesterday while I was chasing down loose threads."`
+			choice
+				`	"Can you tell me more about the victim support group?"`
+				`	"How do you know I have a jump drive?"`
+				`	(Give up on getting any more information out of her.)`
+					goto giveup
+			`	She seems rushed and ignores you, picking up a bag and putting some items from her desk into it.`
+				goto end
+			label giveup
+			`	She picks up a bag and starts putting some items from her desk into it.`
+			label end
+			`	"In any event, I really must go. Check out those coordinates, and then come see me. Fly safe, Captain!"`
+				accept
+
+event "reveal devil-run"
+	system "Devil-Run"
+		remove hidden
+
+
+
+# This mission exists to set a condition about whether or not you already knew about keystones going through red wormholes. (It doesn't care how you know.)
+# This is used to send you on a side-quest to Tarazed if it's your first encounter with them.
+# This can trigger anywhere and should trigger when you're sent to find the system with the wormhole so it's active before you reach the split.
+mission "Hai Reveal [B04-A] The Road Not Taken"
+	landing
+	invisible
+	to offer
+		has "Hai Reveal [B03] Contact Giti: done"
+		not "event: knows about keystones and wormholes"
+		or
+			# These check criteria from the Deep missions
+			has "deep: knew of stones before scientists"
+			has "Deep: Remnant: Keystone Research: offered"
+			# These check criteria from Remnant missions - Remnant First Contact doesn't actually explain them.
+			has "Remnant: Key Stones: offered"
+			has "Remnant: Key Stones (Pre-Hai) 1: offered"
+			has "Remnant: Key Stones (Hai): offered"
+			has "Remnant: Lost in Ember Waste: offered"
+	on offer
+		event "knows about keystones and wormholes"
+
+event "knows about keystones and wormholes"
+
+# Relevant conditions origins:
+#	from: various "Remnant: Key Stones" missions
+#		has "Remnant: Key Stones: offered"
+#		has "Remnant: Key Stones (Pre-Hai) 1: offered"
+#		has "Remnant: Key Stones (Hai): offered"
+#	from: mission "Remnant: Lost in Ember Waste"
+#		has "Remnant: Lost in Ember Waste: offered"
+#	from: mission "Deep: Remnant 0"
+#		has "Deep: Remnant: Keystone Research: offered"
+#		has "deep: knew of stones before scientists" (redundant with remnant explanations for knowledge, may be useful for conversation branches)
+#		has "deep: did reveal remnant" (may be useful for conversation branches)
+#		has "deep: did not reveal remnant" (may be useful for conversation branches)
+
+
+
+# This is if you already know how the wormholes work - otherwise you follow the other chain to Tarazed before stumbling upon the same issue.
+mission "Hai Reveal [B05-short] The Road Not Taken"
+	autosave
+	landing
+	name "Syndicate Internal Affairs"
+	description "Go directly to <planet> or you will become a fugitive in Republic space."
+	deadline
+	source "Earth"
+	destination "Hephaestus"
+	clearance
+	passengers 1
+	to offer
+		has "Hai Reveal [B04] The Road Not Taken: done"
+		has "event: knows about keystones and wormholes"
+		not "Hai Reveal [B05-long] The Red Mystery: offered"
+	on offer
+		fail "Hai Reveal [B02-S] Republic Intelligence Stalkers"
+		log `Giti tripped an alert which places you both under the jurisdiction of a Syndicate Internal Affairs investigation. You've were sent directly to Hephaestus.`
+		log "Minor People" "Agent Kopkow" `A Republic Intelligence officer who intercepted your investigation with Giti before involving you with Syndicate Internal Affairs.`
+		conversation "giti tripped an alert"
+	on fail
+		"reputation: Republic" <?= -100
+		"reputation: Syndicate" <?= -100
+		dialog `You have failed a critical narrative mission and are now considered an outlaw. If you want to complete this story line, revert to the autosave or another earlier snapshot of the game.`
+
+
+
+conversation "giti tripped an alert"
+	`After a long series of shuttles, high-speed rails, and a several-minute-long elevator ride, you once again reach Giti's office.`
+	`	As soon as she sees you she says, "Captain <last>! Welcome back. Please, come in."`
+	`	She walks into the room and as you follow you go to shut the door, since she didn't, and come face to face with four people in Republic Intelligence uniforms standing either side of the door waiting for you. They each have a hand on their holstered weapons, but none make any move to draw them.`
+	`	"Captain <last>," says the man to your right, "please shut the door."`
+	choice
+		`	(Shut the door.)`
+			goto talk
+		`	(Draw your weapon.)`
+	`	You are not faster than four trained intelligence operatives.`
+		die
+	label talk
+	`	The man, whose Republic Intelligence uniform is labeled with the name "Agent Kopkow", nods very firmly and gestures for you to take one of the only seats in the room. He takes the one opposite and Giti sits at her desk. The three agents remain standing.`
+	`	You've had some encounters with Republic Intelligence, but you know what everyone knows. They're the top police force of the Republic, dealing with high-profile civilian crimes that local authorities can't handle: murder investigations, interplanetary kidnappings, and the like. They also gather intelligence throughout human space, and possibly beyond, reporting directly to the Republic Parliament... which mostly means it's beholden to the interests of the members of Parliament.`
+	choice
+		`	"What's the problem?"`
+			goto uncomplaining
+		`	"I'm on an urgent mission that is critical for three governments. Don't bar my way."`
+	`	Uncannily, the agents all smirk at you at the same time. Kopkow responds flatly, "We don't respond well to threats."`
+	label uncomplaining
+	`	"Now, Captain <last>, your friend Giti here has tripped a flag in our systems that marks what you're looking into as an item of particular interest to Syndicate Internal Affairs. In fact, it is an interest which they have exclusive and sole jurisdiction over, even over and above us." He looks at you meaningfully. "That requires an Act of Parliament in a closed session, which has not occurred for a significant length of time, if you catch my drift."`
+	`	He clears his throat. "We've been following you recently, and interrogating some people you've met. Since we have determined that you have found... something, and that it is meaningful, we must send you to Hephaestus. We request that you take Giti, any information or equipment you were planning to take, and go immediately and directly. Do you understand?"`
+	choice
+		`	"Yes"`
+			accept
+		`	"I would prefer not to."`
+	`	Agent Kopkow narrows his eyes at you very slightly. "This is not an optional request." Beyond your line of sight you can hear the faint rustle of clothing shift where the agents are still standing.`
+	choice
+		`	(Comply.)`
+			accept
+		`	(Draw your weapon.)`
+	`	You are not faster than four trained intelligence operatives.`
+		die
+
+
+
+mission "Hai Reveal [B05-long] The Red Mystery"
+	landing
+	name "Seeking Aid"
+	description `Seek out a man Giti has identified who has been independently looking into this with some degree of competence.`
+	source Earth
+	destination Wayfarer
+	clearance `Curious about your story, the authorities let you land.`
+	to offer
+		has "Hai Reveal [B04] The Road Not Taken: done"
+		not "event: knows about keystones and wormholes"
+		not "Hai Reveal [B05-short] The Road Not Taken: offered"
+	on offer
+		conversation
+			`At length you return again to tell Giti about the system with the unstable wormhole in it. You aren't required to land elsewhere on the planet this time, so it's a shorter, if equally crowded, journey to her office.`
+			`	After the both of you spend some time pouring over things for a while, she concludes that they must have some sort of special feature they're using to access it. "It just doesn't make sense that there'd be a system there, that they have coordinates to, that they're not using. Especially when we can't find them anywhere else."`
+			choice
+				`	"Do you have any other leads I can follow?"`
+				`	"Even if I've found them, I don't know what they're doing or how. Any ideas?"`
+			`	She looks at the many tabs displaying the information you've brought or she's found. "You remember that online community on unexplained kidnappings? I came across a man who might, just maybe, know something useful. He claims to have found something odd related to cases in the set in your data, and one of the cases in your set is the disappearance of his wife, which is where his motivation comes from.`
+			`	"His theory is... well, it's a bit crackpot for the local authorities. I wouldn't have believed it either, were it not for the vastly superior swathe of information we now have at our disposal, but it might be what you need. I think you should go seek him out on <planet>."`
+			`	She rummages around and then presents you with a data stick. "This has the information he gave me to follow him up. I convinced him to trust me, so hopefully he's receptive to you. It also has all the data that explicitly identifies all the ship IDs that are associated with our suspicious cases. That's the best I've got for you, though. If this doesn't pan out we'll need to go a different way."`
+				accept
+
+
+
+mission "Hai Reveal [B06-long] Tarazed Analysis"
+	landing
+	name "Hunting Smugglers"
+	description `Find and board a smuggler's ship. Your display will identify them as the "Smuggler" government, but they will still look like merchants. Try Syndicate space or the Far North. Then investigate any leads and return to <planet>.`
+	source Wayfarer
+	destination Earth
+	clearance
+	to offer
+		has "Hai Reveal [B05-long] The Red Mystery: done"
+	to complete
+		has "Hai Reveal [B06-long] Boarded Smuggler: offered"
+		not "Hai Reveal [B06-long] Boarded Smuggler: active"
+	on visit
+		dialog `You have not yet boarded a ship to learn anything about the smugglers. You will need to do this to continue.`
+	on offer
+		event "devil-run smugglers visible"
+		log "People" "Goraz Zoltof" `Goraz is a communications researcher from Tarazed Shipyards. His wife went missing some time ago, and he hopes his research will lead to her rescue.`
+		log "Factions" "Smugglers" `Some pirate or merchant ships (identified by the computer as "Smuggler") are identifiable by an odd frequency variance in their relay signatures. They are probably involved in kidnapping human or Hai specialists.`
+		log `Goraz Zoltof has installed a program allowing you to check the logs of hyperspace relay stations to identify possible smuggling ships involved in the kidnappings you're investigating. The data he has acquired with his limited resources only indicates coreward parts of Syndicate space, but your other data suggests comparable evidence might be found in the Far North.`
+		conversation
+			`Following Giti's directions you make your way to the communications research laboratory for Tarazed Shipyards in search of a man named Goraz Zoltof who works there. The brief contains an address and detailed information about the man, whose wife went missing under mysterious circumstances some time ago, though it's mostly information you've already been told. After a short commute by subway you reach his house and knock on the door.`
+			`	He's a little groggy, but manages to ask, "Yes?" You explain about the kidnappings and how your colleague thinks his theory is worth investigating. You avoid mentioning that some of the people are Hai, just in case he's never heard of them. He seems to awaken immediately. "You found a lead on my wife's disappearance? Wait, you're with 'BookWyrm23'?!" He turns and steps into a pair of slip-on shoes while grabbing a jacket. "Let's go to my laboratory at once! I can show you."`
+			choice
+				`	"Sure." (Head to the laboratory.)`
+					goto lab
+				`	"A lead of a sort."`
+					goto lead
+				`	"Oh that's her handle?"`
+			`	He blinks at you. "I mean, I assume you're with the librarian?"`
+			`	"Research librarian," you clarify.`
+			`	"Exactly, come on, lets go." He quickly leads the way back to the tube.`
+				goto lab
+			label lead
+			`	You clarify that technically it's a lead on cases that match the same profile as his wife's, not strictly his wife's case. His expression falters momentarily and then he seems to find some internal resolve to draw upon. "Good enough for me... Thank you, for your honesty."`
+			label lab
+			`	After a short return trip, you reach what looks like a small private spaceport. From the extra equipment and unusual ship designs, it must be a Tarazed Corporation research shipyard. Goraz's laboratory is an entire docking bay with a modified Blackbird, but despite its size, it is conspicuously absent any other personnel. He takes you on board and, noting your attention to your surroundings, explains that he has a few assistants who are off-world most of the time.`
+			`	Goraz says, "Here, let me take a look at what you've brought me." He's eyeing your pockets.`
+			choice
+				`	"It's all in this data stick."`
+				`	"I think this is what you've been looking for."`
+			`	Goraz takes the data stick you brought and plugs it into the communicator. After several minutes of mucking about with list formats and muttering incoherently to himself, a search result collates matches on his screen and he pauses. You're not sure exactly what you're looking at, but when it finishes he lets out a long slow breath and comments to himself in a low voice. "Bastijn Biesterveld, you absolute legend. He was right - it's the interference."`
+			`	He turns back to you and explains. "Normally interference isn't something that's logged, but when you're in civilized space with hyperspace relays, your ship does a final handshake with the local relay station as it jumps." He pauses briefly, maybe to see if you understand him.`
+			`	You see a long technical explanation coming on.`
+			choice
+				`	"Skip the technical bits, please. Can you tell me what I need to do?"`
+					goto skip
+				`	"I've helped with hyperspace relays recently, and I can never get enough lectures about hyperspace network issues. Please don't spare any details."`
+			`	He nods and begins his lecture. "The local relay station your ship contacts sends that handshake signature to the destination station so it knows exactly who you are to be able to reconnect communications at the other end. It's a fully automatic process, and it's independent of ship IDs. It's just buried in there as a check from back in the days when hyperdrives would occasionally explode and we'd need to work out who went missing. It gets logged and automatically overwritten every couple days, and someone would probably have gotten rid of it if it wasn't so deeply baked into the way the system works. If you know when a ship jumped and where it jumped to, you can use it to confirm it didn't blow up; and if there's something wrong with the communications equipment you can use the log info to identify if a specific ship is the same ship talking to you later, but neither of those are particularly useful since the same information can be acquired more easily and in much higher quality through other means.`
+			`	"There's a small group of us comms geeks that have lost people, or know people who have, that the authorities can't help. We're scattered all over and we've been looking at this ourselves. Together we identified some ships we thought were suspicious, but we've not been able to pin down anything concrete. Bastijn was convinced there was a pattern of interference signatures from the logs; he made the analysis program, but it was never definitively distinct from the noise. This data set you've brought, though. Well, once you filter for the subset of ships in our data set, what you've given me matches so completely to the set of ships we've found with interference that it has to be a match! Ninety-eight point five percent confidence interval completely annihilates the idea that it could be random."`
+				goto wait
+			label skip
+			`	Goraz pauses for a moment, struggling to lower the content to layman's terms. "There's some ships that don't show up right on comms, which only a few experts like me can spot. Some of it could be random noise, but that's unlikely. We can filter out the subset of ships in our dataset. Hold on..."`
+			`	After a few moments of fiddling with terminals, he continues. "What you've given me matches so completely to the set of ships we've found with interference that it has to be a match! Ninety-eight point five percent confidence interval completely annihilates the idea that it could be random."`
+			label wait
+			`	He casts around for a moment and then plugs a freshly unpacked data card into his console. "Give me a little time: I can do something for you now. I'll be back with you in ten minutes."`
+			choice
+				`	"Take your time."`
+				`	"I'll be here waiting."`
+			`	After some time, in which he looks like he's installing a series of programs, he returns your original data card and the second one. "Load this new card into one of your communicator's extra data storage slots, preferably the first one. This new card will run maintenance level processes with the communicator to download the logs from the local relay when you enter a system, match the log signatures for ships that are in-system, and code up extra info for their ID's. Functionally, they'll show up as 'Smuggler' on your display. You'll have to hunt for them though, cause you'll have to be in the same system as them for any of this to work."`
+			choice
+				`	"That's some impressive work in such a short time."`
+				`	"Thank you for the help."`
+			`	He nods in response. "Also... maybe keep this quiet. This is," he pauses and clears his throat conspicuously, "somewhat less than strictly legal, though there's no penalty attached to accessing the data at the level this card will use. My data sets only cover coreward parts of Syndicate space, but your other data is heavily weighted to the Far North. Maybe if you have no luck in Syndicate space it'll be worth the trip to try up there."`
+			`	All business and technical explanation now out of the way, you watch as the reality of what's happening seems to suddenly sink in, and his demeanor changes suddenly as his eyes shine with faint hope, "And please, if you do find my wife Janitza... please bring her home."`
+			`	After one last ride through the metro system of <origin>, you arrive at your ship. You plug the data card into your computer, and a new "government" shows up: Smuggler. The ships will be colored differently than pirates.`
+			`	It may be risky, but you should disable one and board it.`
+				accept
+
+event "devil-run smugglers visible"
+	# Uninhabited systems near Hai space
+#	system "Ultima Thule"
+#		add fleet "Smuggler (Hai Traffickers)" 1000
+#	system "Rajak"
+#		add fleet "Smuggler (Hai Traffickers)" 2000
+#	system "Hassaleh"
+#		add fleet "Smuggler (Hai Traffickers)" 3000
+#	system "Sumar"
+#		add fleet "Smuggler (Hai Traffickers)" 3000
+#	system "Danoa"
+#		add fleet "Smuggler (Hai Traffickers)" 3000
+#	system "Cardax"
+#		add fleet "Smuggler (Hai Traffickers)" 3000
+#	system "Hassaleh"
+#		add fleet "Smuggler (Hai Traffickers)" 3000
+#	system "Volax"
+#		add fleet "Smuggler (Hai Traffickers)" 3000
+#	system "Moktar"
+#		add fleet "Smuggler (Hai Traffickers)" 3000
+# These systems are presently behind the blockade
+
+	# Route to Almaaz (and nearby systems)
+	system "Rigel"
+		add fleet "Smuggler (Hai Traffickers)" 5000
+	system "Alnitak"
+		add fleet "Smuggler (Hai Traffickers)" 7000
+	system "Saiph"
+		add fleet "Smuggler (Hai Traffickers)" 10000
+	system "Betelgeuse"
+		add fleet "Smuggler (Hai Traffickers)" 10000
+	system "Mintaka"
+		add fleet "Smuggler (Hai Traffickers)" 5000
+	system "Gorvi"
+		add fleet "Smuggler (Hai Traffickers)" 5000
+	system "Tortor"
+		add fleet "Smuggler (Hai Traffickers)" 5000
+	system "Unagi"
+		add fleet "Smuggler (Hai Traffickers)" 7000
+	system "Hatysa"
+		add fleet "Smuggler (Hai Traffickers)" 5000
+	
+	# Route to Almach
+	system "Zaurak"
+		add fleet "Smuggler (Hai Traffickers)" 7000
+	system "Sheratan"
+		add fleet "Smuggler (Hai Traffickers)" 7000
+	system "Ruchbah"
+		add fleet "Smuggler (Hai Traffickers)" 7000
+	system "Alpheratz"
+		add fleet "Smuggler (Hai Traffickers)" 7000
+	system "Al Dhanab"
+		add fleet "Smuggler (Hai Traffickers)" 7000
+	system "Achernar"
+		add fleet "Smuggler (Hai Traffickers)" 7000
+	system "Mirach"
+		add fleet "Smuggler (Hai Traffickers)" 7000
+	system "Schedar"
+		add fleet "Smuggler (Hai Traffickers)" 3500
+	
+	# Staging areas for transfers
+	system "Alcyone"
+		add fleet "Smuggler (Hai Traffickers)" 2500
+	system "Almaaz"
+		add fleet "Smuggler (Hai Traffickers)" 2500
+	system "Arneb"
+		add fleet "Smuggler (Hai Traffickers)" 2500
+	system "Alnilam"
+		add fleet "Smuggler (Hai Traffickers)" 2500
+
+	# Final holding area before Devil-Run
+	system "Almach"
+		add fleet "Smuggler (Hai Traffickers)" 1000
+	
+
+fleet "Smuggler (Hai Traffickers)"
+	government "Smuggler (Hai Trafficker)"
+	names "civilian"
+	cargo 0
+	personality timid
+	variant 3
+		"Blackbird (Hai Trafficker)"
+	variant 2
+		"Clipper (Hai Trafficker)"
+	variant 2
+		"Freighter (Hai Trafficker)"
+	variant 1
+		# The Corvettes are infrequent because they're nearly impossible to catch and serve mostly to show that the smugglers are desperate to avoid capture.
+		"Corvette (Hai Trafficker)"
+
+
+mission "Hai Reveal [B06-long] Boarded Smuggler"
+	name "Learn about Keystones"
+	description "You need to know what the message means by asking Sayari or Teeneep on <planet> before going back to Giti."
+	boarding
+	destination Stormhold
+	clearance
+	to offer
+		has "Hai Reveal [B06-long] Tarazed Analysis: active"
+	source
+		government "Smuggler (Hai Trafficker)"
+	on offer
+		conversation
+			`As you maneuver to board this ship you send a message telling them that you know they're smugglers and demand their surrender. There is no response, but once you dock and open your side of the airlock, the door to the smuggler ship <origin> also opens partway and a Hai pokes their head through. The Hai's eyes are wide with fear but also determination as they shout at you through the docking tube.`
+			choice
+				`	"Come on, you can do it! Just push a little harder!"`
+				`	"There should be an access panel above you! Maybe you can short-circuit the door?"`
+			`	The Hai says, "This door is jammed, they're locking down the ship and going to blow it up!" In the background you hear a booming sound. "They're using the keystones, tell them they're using the keystones!"`
+			`	Inside your ship you hear alarms blare into full volume and you have just enough time to nod an acknowledgment to the doomed Hai before the airlock's automatic safeties shut it. A moment later, you hear an explosion and the sound of tearing metal as the docking tube is shredded and your ship is forced away from the expanding debris of the smuggler ship. When you return to the controls it seems the smugglers signaled for help before the ship exploded. An escape pod is flying away from the scene; apparently the smugglers care more about not being caught than about finishing their mission.`
+			`	You need to relay this to Giti, but the keystones are a Hai thing and that message didn't really explain much; you'll have to contact Sayari or Teeneep first, which means crossing the blockade again. You begin to set a course for <planet>, but your scanners report multiple new contacts; hostile ships entering the system. You prepare for battle.`
+				launch
+	npc
+		government "Pirate"
+		personality nemesis harvests plunders entering
+		fleet "pirate raid" 3
+
+
+mission "Hai Reveal [B06-long A] Smuggler Ambush"
+	# The second smuggler serves to show they don't always carry slaves
+	invisible
+	boarding
+	destination Earth
+	deadline 1
+	to offer
+		has "Hai Reveal [B06-long] Boarded Smuggler: offered"
+	source
+		government "Smuggler (Hai Trafficker)"
+	on offer
+		conversation
+			`You scan this smuggling ship and notice only the basic crew are on board. Even so, the ship begins to self-destruct, and escape pods float away, just like before. Just as you wrap up, your ship informs you of incoming hostile ships. You prepare for another wave.`
+				launch
+	npc kill
+		government "Pirate"
+		personality nemesis harvests plunders entering
+		fleet "pirate raid" 2
+
+
+mission "Hai Reveal [B06-long B] Smuggler Ambush"
+	# After the second smuggler, you get no more information, but the
+	# smugglers always blow up and call pirates.
+	invisible
+	repeat
+	boarding
+	destination Earth
+	deadline 1
+	to offer
+		has "Hai Reveal [B06-long A] Smuggler Ambush: offered"
+	source
+		government "Smuggler (Hai Trafficker)"
+	on offer
+		conversation
+			`As before, the smugglers set the self-destruct mechanism and abandon their ship and its contents, and your ship detects more incoming hostile vessels. You prepare for another wave.`
+				launch
+	npc kill
+		government "Pirate"
+		personality nemesis harvests plunders entering
+		fleet "pirate raid" 2
+
+
+mission "Hai Reveal [B06-long] Cleanup"
+	invisible
+	to offer
+		has "Hai Reveal [B06-long] Tarazed Analysis: active"
+		has "Hai Reveal [B07-long] Learn of Keystones: offered"
+	on offer
+		fail "Hai Reveal [B06-long] Tarazed Analysis"
+
+
+
+mission "Hai Reveal [B07-long] Learn of Keystones"
+	landing
+	name "Missing Researchers"
+	description "You have the information Giti Gilani will need. It is time to visit her on <planet>."
+	source Stormhold
+	destination Earth
+	clearance
+	to offer
+		has "Hai Reveal [B06-long] Boarded Smuggler: done"
+	on offer
+		conversation
+			`The progressive search of <origin> still seems to be underway, and a cursory question directed to the Navy personnel now managing the spaceport indicates that they're less than happy about it. Despite the Navy promising to leave as soon as they've searched and confirmed the status of a handful of remaining pirate gangs' hideouts, those gangs remain resolutely hidden and haven't been exposed by any of their compatriots as yet.`
+			`	Fortunately this makes it easy to find Sayari, who has comparatively little to do at the moment and is mostly just helping to keep everyone communicating effectively. When you tell her of the system you found and the message from the Hai on the smuggler ship, she winces. "What a terrible fate, but it does confirm what we suspected. We'll have to see what more we can find out in the meantime while we're still bogged down here."`
+			choice
+				`	"What does the Hai's message mean?"`
+				`	"Let's make sure that Hai didn't die in vain. What can you tell me?"`
+			`	"I have always believed the Keystones were to indicate respect for traditional superstitions. I fear it has lured some Hai into thinking they're trustworthy when they were clearly not. Perhaps there is more though. We have folktales of these stones making travel between the stars easier, and our space once extended to this region where the wormhole is. It is possible there may be a relation."`
+			`	She chuckles, "Maybe it is fortunate I insisted you have one for me to travel on your ship. If our quantum keystones have some effect on the wormhole... Please, continue your investigation, talk to whoever you need to talk to, and don't go unprepared. This may be key to a peaceful resolution at the end of all this."`
+			choice
+				`	"What is going on back in Hai space?"`
+				`	"How are the Hai recovering from the election?"`
+			`	"There's a bit of a problem. Certain people have noticed that you have had close interactions with Teeneep and I through this, and questions have indeed been asked as to whether you are responsible for the mess that was caused by Teeneep going public with the information you helped her find." Her expression is very serious. "We have not told them absolutely every detail, but we have made it clear to your diplomats that the issue was a matter which would have blocked any solution until it was resolved, regardless of if you helped or not. They understand that your involvement has helped move towards a solution, even if parts of it could be misconstrued when seen from the outside."`
+			`	You thank her for explaining. Now you definitely need to take the information to Giti. She may be able to use what you've found to predict what preparations should be made.`
+				accept
+
+
+
+# This is the end of learning how the wormholes work.
+mission "Hai Reveal [B08-long] The Other Just As Fair"
+	autosave
+	landing
+	name "Syndicate Internal Affairs"
+	description "Go directly to <planet>. Do not pass Go. Do not collect $200."
+	deadline
+	source "Earth"
+	destination "Hephaestus"
+	clearance
+	passengers 1
+	to offer
+		has "Hai Reveal [B07-long] Learn of Keystones: done"
+		not "event: knows about keystones and wormholes"
+	on offer
+		fail "Hai Reveal [B02-S] Republic Intelligence Stalkers"
+		log `Giti tripped an alert which places you both under the jurisdiction of a Syndicate Internal Affairs investigation. You've were sent directly to Hephaestus.`
+		log "Minor People" `Agent Kopkow` `A Republic Intelligence officer who intercepted your investigation with Giti before involving you with Syndicate Internal Affairs.`
+		conversation "giti tripped an alert"
+	on fail
+		"reputation: Republic" <?= -100
+		"reputation: Syndicate" <?= -100
+		dialog `You have failed a critical narrative mission and are now considered an outlaw. If you want to complete this story line, revert to the autosave or another earlier snapshot of the game.`
+
+
+
+mission "Hai Reveal [B09] Scanning Devil-Hide"
+	landing
+	name "Searching Beyond the Wormhole"
+	description "Return to <planet> after finding and scanning the key system beyond the unstable wormhole. The Syndicate will pay <payment>."
+	source "Hephaestus"
+	waypoint "Devil-Hide"
+	passengers 1
+	cargo "advanced scanning equipment" 7
+	blocked `You need room for 7t of <cargo>.`
+	on visit
+		dialog `Giti or her equipment are in one of your escorts. You need to wait for your escorts to arrive before landing again.`
+	to offer
+		or
+			has "Hai Reveal [B05-short] The Road Not Taken: done"
+			has "Hai Reveal [B08-long] The Other Just As Fair: done"
+	on offer
+		log "People" "Stephen Moray" `Deputy Director Moray works for Syndicate Internal Affairs dealing with pirate-related matters. In addition to enforcing the law, he also smuggles slaves from pirate worlds into freedom in Syndicate space. He claims to be an ally in this investigation and has provided equipment to further the goal.`
+		log `You've been told to take Giti and some scanning equipment to the unexplored region beyond the Syndicate wormhole to seek a base of operations and bring back information.`
+		conversation
+			`Despite expectations, you are told to leave Giti on the ship, and a man who immediately identifies himself to you as Deputy Director Stephen Moray meets you at the entrance of the docking tube at the spaceport and gestures you into the private antechamber attached to each dock in the <origin> port. "I work for Syndicate Internal Affairs. We're the internal police of the Syndicate; when an employee of any rank does misdeeds, we track them down. Janitor or executive; it doesn't matter. My department of Internal Affairs works on piracy-related matters."`
+			`	After you both sit, Stephen Moray turns on a device and places it on the table. "Communications jammer," he explains, "so we're not heard."`
+			choice
+				`	"What is this about?"`
+					goto about
+				`	"I don't appreciate how your goons treated me."`
+			`	He shrugs. "Those 'goons' were from Republic Intelligence. I have no say as to how they do their jobs. Now that you're here, let's get down to business.`
+			label about
+			`	"I know that you have been working closely with the Hai lately, helping to achieve an outcome with lasting stability. I communicated with Remington and he's informed me that while it might appear to an observer that you've caused a mess, that the Hai representatives have now explained that previous stalling on their part was because some things needed to be known first. It would seem that, as per usual, there is as much going on behind the scenes as in front and you have become embroiled in it.`
+			`	"I also understand what the Hai are grappling with right now," he says. "When I was a teenager, pirates kidnapped my brother and father, and forced them to serve on pirate vessels, calling them 'indentured servants.' My father watched helplessly as a Navy Frigate disabled my brother's just as it exited hyperspace. He escaped - but he's now serving his seventeenth year of a twenty-five-year sentence for piracy, even though his deeds were against his will," Moray explains as he lays out reports to emphasize his point.`
+			`	"I tell you this because it is important you understand I'm on your side. We haven't met before, but we must trust one another. You know the hails of the Navy: loyalty, honor, bravery - half-truths at best. We see the Navy as heroes because they are the only large organization capable of self-sacrifice. Yes, they do many good deeds, but those deeds blind us to their brutality and immorality. Not all humans are like that, many members of the Navy disagree with the barbaric rules about slavery. Some of us in the Syndicate, Free Worlds, and elsewhere, are trying to solve this problem.`
+			`	"In my time here, I have arranged for over eighty thousand slaves to be smuggled away from pirate planets to gain their freedom in Syndicate space. I have extensive contacts within the slaver community."`
+			choice
+				`	"I'm glad to see there are good guys in the Syndicate."`
+				`	"That's a lot of good deeds for a Syndicate executive."`
+				`	"Did that freedom involve 100 hours a week of work in Syndicate factories?"`
+			`	He shrugs off your remark. "Now I understand you have found some things, that are also of historic interest to us. For this reason I am doubly invested; so now I need to know what you know."`
+			`	It would seem that this is the opportunity to hasten a desirable outcome most swiftly, though maybe the Syndicate doesn't need to know about the Hai's theories of cadmium poisoning from alien technology being used.`
+			choice
+				`	"Here's some case location data on kidnapping victims." (Share only case location data, and don't mention the cadmium poisoning.)`
+					goto mission
+				`	"I have a lot of data I'd like you to analyze." (Don't mention the cadmium poisoning, but share all other data.)`
+			action
+				set "syndicate learns of alien tech anyway"
+			`	Director Moray looks through some of the data you share while you summarize the key points. "Thank you very much, we will have our experts go over this promptly."`
+			label mission
+			`	With your explanation finished, he seems to straighten in preparation for something. "I have some leads to follow up. Someone has an extensive array of contacts, possibly close to home in the Syndicate - perhaps even executives, but for certain at least a department head somewhere. This is too much to be entirely independent. I can say for sure though that they're doing this without permission from the Syndicate proper.`
+			`	"The Hai have insisted they be involved in any solution which could involve captured Hai. Which means I will have to send you back to them soon, but before that I need information. So do you, but my due diligence demands I ensure you are properly equipped to retrieve what I need. Take Giti and the scanning equipment I am now loading onto your ship. I recommend a ramscoop for safety. Investigate the systems and bring her back here, after that you'll have to go back to the Hai without her."`
+			`	He pauses while getting ready to leave. "Oh, and you should probably tell her about the Hai at this point. We don't know if she knows, but if she doesn't she needs to know the basics. The scanners will flag anything we can explicitly identify as Hai tech, so the time has come. Good luck."`
+				accept
+	on enter "Devil-Run"
+		dialog `During the trip you take the time to tell Giti the basics about the Hai. She had already known they existed, but hadn't been privy to any details of what was going on now. Knowing that the disappearances you've been hunting extend to Hai space seems to answer more questions than it creates and she takes the revelation of how significant this is to current events easily in stride.`
+	on enter "Devil-Hide"
+		log `Found a bizarre planet with a subterranean colony in its moon. The planet defies analysis and seems to violate the known laws of physics. There is enough evidence of Hai tech to assume Hai presence in addition to the humans able to be detected. However, the scanners could not see the full extent of what's there due to interference from the planet.`
+		conversation
+			`Giti turns on the scanning equipment.`
+			label scan
+			choice
+				`	"Tell me about the moon."`
+					goto moon
+					to display
+						not "Hai Reveal [B09] Scanning Devil-Hide: label moon"
+				`	"Tell me about that planet."`
+					goto planet
+					to display
+						not "Hai Reveal [B09] Scanning Devil-Hide: label planet"
+				`	"We found what we need. Let's get out before we're noticed."`
+					goto leave
+					to display
+						has "Hai Reveal [B09] Scanning Devil-Hide: label moon"
+			label planet
+			action
+				set "Hai Reveal [B09] Scanning Devil-Hide: label planet"
+			`	"Okay, the planet..." Her voice trails off. "Wow! That's odd. This scanner is definitely not designed to properly scan this thing; I can only get surface readings.`
+			`	"Whatever it is, this planet is not normal by any stretch. It is completely inhospitable and appears to have a huge network of caves and caverns with crystalline structures that are radiating... something. Whatever it is, it's messing with the scanner's attempts to identify it. I'd have to know more about this scanner's functions to guess what the interference is. There's deuterium, though. Maybe the denizens of this system siphon the deuterium to make hyperspace fuel? Doesn't seem very efficient, but the solar wind is thin here. There's some kind of gravitational anomaly though, or maybe its just some kind of interference lensing. It looks like the planet has about a thousand times the mass it should, but with gravity around Earth normal. That... can't be right."`
+			`	She shakes it off and looks at you. "Whatever it is we're looking for, it's not down there."`
+				goto scan
+			label moon
+			action
+				set "Hai Reveal [B09] Scanning Devil-Hide: label moon"
+			`	"The moon? Hmmm... okay, it's just an ordinary chunk of rock, but radiation from the planet is disturbing the sensors. I can only see a few dozen meters below ground, even though the scanner should be able to look down at least ten times that far... Aha!`
+			`	"I found something. There's a facility buried in the moon's surface. There is definitely a lot of Hai tech too, your concerns were spot on. I can only see the uppermost part of the facility, but it appears to be divided into two parts. One section has hydroponics, big cargo bays, docking bays for ships, even a small shipyard. Doesn't look like they have space for more than a handful of large ships, though. It also seems to have the only decently sized air processor I can identify. The other section is deeper, and appears to have some spacious living areas. I can see some support systems, but it seems that the air supply is effectively controlled from the surface access section. I can detect 1,387 people, though no details about them, and that's just in the upper three floors that I can see."`
+			`	She looks at you, eyes wide. "This isn't just a base; there's a base down there, but it's controlling a whole colony."`
+			`	There is a pregnant pause for a moment and then she suddenly gasps. "Captain, this must be Elenchus!"`
+				goto scan
+			label leave
+			`	As you say this, you notice on your regular sensors that there are some ships heading your way and, more horrifyingly, some ground-based turrets coming online. It's time to go.`
+	on complete
+		payment 775000
+	npc
+		government "Pirate (Devil-Run Gang)"
+		system "Devil-Hide"
+		fleet "Devil-Run Warships" 2
+		personality nemesis harvests plunders disables
+
+
+
+mission "Hai Reveal [B10] Report to Teeneep"
+	landing
+	name "Report the Discovery to Teeneep"
+	description "Return to <planet> and explain what you have found about Elenchus to Teeneep."
+	source "Hephaestus"
+	destination "Stormhold"
+	clearance
+	to offer
+		has "Hai Reveal [B09] Scanning Devil-Hide: done"
+	on offer
+		log `While Syndicate Internal Affairs looks over the scan data, it is time to report to Teeneep again.`
+		conversation
+			`When you return to <origin>, Moray reclaims his scanning equipment and requests Giti's assistance with providing testimony to those interpreting it. She still may not know everything that's going on, but by this point she knows more than enough that she's happy to be able to assist in some way.`
+			`	Now there's nothing for it but to head straight on to <planet>.`
+				accept
+
+
+
+mission "Hai Reveal [B11] Moving Together"
+	landing
+	name "Rendezvous with the Assault Team"
+	description "Return to <planet> and explain what you have found."
+	source "Stormhold"
+	destination "Foundry"
+	clearance
+	to offer
+		has "Hai Reveal [B10] Report to Teeneep: done"
+	on offer
+		conversation
+			`When you return to <origin> to tell Teeneep what you have found, she seems to already know much of what you have to say. "We've been waiting for you. Thanks to your visit to the Syndicate, we've found a lot of information in very short order. You'll have to lead another international task force through the wormhole at Devil-Eye. This time, they'll have jump drives from the Unfettered, which the Hai are renting for quite a hefty price. We expect all jump drives to be returned intact. Everyone is gathering to brief you on the status so you can prepare for the mission. A high-ranking Marshal Kaine is here with more information."`
+			`	Sayari seems anxious when she joins you on the way, and the two of them draw you along towards one of the meeting areas in the secured spaceport. There you are led past a selection of Navy personnel on guard into a meeting room with several people. Some appear to have just arrived, but others must have been here for a while, and to your surprise Alondo and Remington are also present. The place looks to have been acting as a war room of sorts. As soon you've walked through the door, someone says, "We're all here," and Choot'k and Remington stand up from where they'd been looking at something intently.`
+			label briefing
+			choice
+				`	"I see new faces here. Can everyone introduce themselves?"`
+					goto introductions
+					to display
+						not "Hai Reveal [B11] Moving Together: label introductions"
+				`	"What have you found about the smuggling routes?"`
+					goto smuggling
+					to display
+						not "Hai Reveal [B11] Moving Together: label smuggling"
+				`	"How have you dealt with the smugglers so far?"`
+					goto dealt
+					to display
+						has "Hai Reveal [B11] Moving Together: label smuggling"
+						not "Hai Reveal [B11] Moving Together: label dealt"
+				`	"How do the Hai feel about the approach to the smugglers?"`
+					goto hai
+					to display
+						has "Hai Reveal [B11] Moving Together: label smuggling"
+						not "Hai Reveal [B11] Moving Together: label hai"
+				`	"Are you still able to keep the Hai a secret?"`
+					goto secret
+					to display
+						not "Hai Reveal [B11] Moving Together: label secret"
+				`	"What do you know about Elenchus?"`
+					goto elenchus
+					to display
+						not "Hai Reveal [B11] Moving Together: label elenchus"
+				`	"How will we penetrate the Elenchus defenses?"`
+					goto penetration
+					to display
+						has "Hai Reveal [B11] Moving Together: label elenchus"
+						not "Hai Reveal [B11] Moving Together: label penetration"
+				`	"We've discussed enough. It's time to get started."`
+					goto solution
+			label smuggling
+			action
+				set "Hai Reveal [B11] Moving Together: label smuggling"
+			`	Remington looks at you. "I know it's rough when news travels ahead of you, but Moray's team identified two bases which act as holding facilities in human space for the previously unidentified group that you've been investigating. That's where the largest number of kidnapped Hai have been taken for processing, before being taken to this mysterious 'Elenchus' place you've found. One of the bases is on Deadman's Cove, and arrangements are already being made to deal with it, but the other one is right here on Stormhold.`
+			`	"This operation narrowed down our remaining search here to a single target in one area up in the north. It should take us no more than a few days to pinpoint it, and a few days more to plan and execute an action against it." He shrugs. "The information was just too important to delay it for your arrival. That, and they decided they wanted me here personally since Terry appears to be busy off doing something else."`
+				goto briefing
+			label dealt
+			action
+				set "Hai Reveal [B11] Moving Together: label dealt"
+			`	Marshal Kaine continues, "While there is intel on some captured Hai in the North, we have worked out a program to address that side of things more subtly, and with a lower risk to all parties involved. Raiding pirate ships is a deadly affair and their bases more so. While it may seem heroic, even with the help of the Hai, the casualty rate is unsustainable. However, while they may be allowed to go by intact, we have much better tabs on slaver and smuggler ships in the north, so we have options that don't require the sort of thorough manhunt that's occurring here to be effective."`
+				goto briefing
+			label hai
+			action
+				set "Hai Reveal [B11] Moving Together: label hai"
+			`	Sayari speaks up. "The Elders have accepted the proposed plans, but with this new information we have decided that this organization you've uncovered must still be dealt with directly. It is our main concern now. As long as the Republic remains willing to negotiate on how they deal with smugglers in the future, resolving this one issue will be sufficient for us to move forward. The overwhelming majority of the other groups who appear to have been exploiting Hai seem to have been here on <origin> and so we consider there to have been serious inroads made into resolving the problem more broadly."`
+				goto briefing
+			label introductions
+			action
+				set "Hai Reveal [B11] Moving Together: label introductions"
+			`	Remington responds. "Good point. I don't think everyone here knows everyone yet."`
+			`	You look around the room as Remington does introductions for the benefit of the new people, and counts off Teeneep, Sayari, Choot'k, Batu, Danforth, Adurath Kaine - a Marshal for the Navy, which is an ex-service political appointment - Alondo, and himself.`
+			`	Remington clearly did not need to be introduced, but doing so gives him a disarming charm, and you see for a moment some of the charisma that he must utilize as head of PR.`
+			`	Marshal Kaine introduces himself to you directly. "I'm the Marshal of the Third Armada, the guards of the Far North and the uninhabited regions near it. I know you've worked with my admiral William Danforth in the past, and he has spoken highly of your work. I'm here because occasionally the Navy needs a politician, and the politicians need someone from the service that understands politicians."`
+			`	Batu jumps in. "The Marshal has been very effective in helping to develop some solutions with Hiyamaharu, and has just arrived here to make sure everything is set in order."`
+				goto briefing
+			label secret
+			action
+				set "Hai Reveal [B11] Moving Together: label secret"
+			`	Remington explains. "This operation has gone on long enough that the popular opinion is that the Hai must obviously exist, even though there are no explicit voices saying as such. It has in fact almost become a joke; the perception being that, 'The Navy are blockading the Hai to hide humanity from them, because the blockade isn't doing a good job of being inconspicuous.' There have been memes of the Navy hiding their ships behind far too narrow light poles while they distract a squirrel with their headlights. Now it's a matter of being able to present good news. Place a successful spin on things."`
+			`	"Our problem," says Kaine, "is Elenchus."`
+				goto briefing
+			label elenchus
+			action
+				set "Hai Reveal [B11] Moving Together: label elenchus"
+			`	Marshal Kaine explains, "Reaching Elenchus would seem to be a problem, because it is behind systems we cannot reach with our hyperdrives. However, the Unfettered are willing to loan us a few jump drives. Additionally, the base on Elenchus appears to be a hardened target. It will need specialized and suitably equipped shock troops to be sure of taking it. In our assessment so far we have determined that the Syndicate have suitable troopers they can mobilize quickly, but no way of getting them there, and our suitable shock troops are largely pre-occupied; either being needed here on <origin>, or are at least a week away from being available. We need a resolution sooner than that."`
+			choice
+				`	"What pressure is making this so urgent?"`
+				`	"Yes, clearly we need a quick resolution."`
+					goto briefing
+			`	Kaine sighs, and responds. "The thing about governments is that all crises are either to be solved, delayed, or weathered. This crisis cannot be delayed, and so they must choose to weather or resolve. There are enough representatives who feel that their positions are too fragile to weather it, and so they have pushed to resolve. The timeline is set by their perception of the urgency." He looks to the Hai. "And obviously, there are also those who value our historic relationship with the Hai and seek to resolve it for those reasons too. Those are only the first two reasons on a long list. At the end of the day, it's politics."`
+				goto briefing
+
+			label penetration
+			action
+				set "Hai Reveal [B11] Moving Together: label penetration"
+			`	Teeneep explains, "We also need a way to deal with the surface turrets and, short of bringing overwhelming firepower which we do not have, there's only one ship available with the systems to be able to affect that within our timeline. That ship is my Centipede. I had installed electronic warfare systems on it to baffle pirate defenses when I was investigating this before. It is our assessment that I should be able to baffle the turrets long enough to deal with any spaceship defenders, and land where the turrets will no longer matter." She looks to Choot'k. "The General has generously offered to loan a drive for my use."`
+			`	Choot'k addresses the group. "The designs of the facility show a weak point in one of the hangars, which we can exploit. My flagship has advanced ionic weaponry, that combined with enough raw burst firepower will disable and get rid of the hangar door without destroying too much of the hangar itself.`
+			`	"I also have two trusted captains who have been exploring the value of human weapons while they've been here, and think they have some winning combinations they would like to test in battle. I have chosen them to make use of our remaining available drives, and out of consideration for you humans. It would seem that the fewer alien weapons we carry through your space, the better."`
+				goto briefing
+
+			label solution
+			`	Marshal Kaine nods in agreement. "We have all the pieces. The solution therefore, is this: <last> will escort Danforth's Cruiser, the Elder and her Centipede, the General and his Shield Beetle, and two of his closest captains to Foundry. There you'll meet up with Agent Kopkow and Captain Wallace - a decorated Navy captain who has a Parliamentary Medal of Valor for handling the rescue of slaves - who will be bringing her empty Auxiliary, and one Free World Dreadnought that the good Alondo here had the foresight to make sure was stationed nearby. There you'll load up the Syndicate troopers and go to Elenchus."`
+			# One crack team of people from all over working together.
+			# Alondo did this as a backup after his experience being briefly trapped on Hai-home.
+			`	Kaine looks at you all with an odd expression and concludes, "As plans go, it's mental. But every one of you will be heroes if you can pull it off."`
+			`	General Choot'k says, "I look forward to joining your people in combat. We haven't had enough chances to fight with - or against - your species. I hope we won't be disappointed."`
+			`	"I can vouch for the skill of our people, but not the pirates," Kaine replies, smiling.`
+			`	Danforth turns to you, "So, Captain, to Foundry, when you're ready."`
+				accept
+# Everyone has to make it safely to Foundry, even if they don't all make it home from Elenchus.
+	npc save accompany
+		government "Hai (Wormhole Access)"
+		personality timid escort opportunistic
+		ship "Centipede (Teeneep Jump)" "Teeneep's Ship"
+	npc save accompany
+		government "Hai (Friendly Unfettered)"
+		personality escort heroic opportunistic vindictive
+		ship "Emperor Beetle" "Kratos"
+	npc save accompany
+		government "Hai (Friendly Unfettered)"
+		personality escort heroic opportunistic vindictive
+		fleet
+			names "hai"
+			variant
+				"Shield Beetle (Particle Jump)"
+				"Shield Beetle (Plasma Blaster Jump)"
+	npc save accompany
+		government "Navy (Oathkeeper)"
+		personality escort heroic opportunistic
+		ship "Cruiser (Jump Plasma Anti-Missile)" "N.S. Peacemaker"
+	on complete
+		payment 600000
+		dialog `You are provided <payment> on arrival to cover ongoing expenses while helping out.`
+	on visit
+		dialog `You've arrived on <planet>, but you've left one or more of your escorts behind.`
+
+
+
+# Ambassadorial Centipede designed to fly deep into hostile space if necessary:
+ship "Centipede" "Centipede (Teeneep Jump)"
+	# Add some ambassadorial staff:
+	add attributes
+		"required crew" 50
+	outfits
+		"Catalytic Ramscoop"
+		"Jump Drive"
+		"Chameleon Anti-Missile" 3
+		"Quantum Keystone"
+		"Outfits Expansion"
+		`"Biroo" Atomic Steering`
+		"Hai Diamond Regenerator"
+		"Hai Corundum Regenerator"
+		"Hai Chasm Batteries"
+		"Liquid Nitrogen Cooler"
+		"Boulder Reactor"
+		Brig
+		"Fuel Pod" 2
+		Supercapacitor
+		"A370 Atomic Thruster"
+		"Pulse Rifle" 131
+
+
+
+mission "Hai Reveal [B12] Devil-Hide Battle"
+	autosave
+	landing
+	name "Storm Elenchus"
+	description "Dominate <planet>. Land with Choot'k, Teeneep, Danforth and Wallace's ships all intact..."
+	source "Foundry"
+	destination "Elenchus"
+	to offer
+		has "Hai Reveal [B11] Moving Together: done"
+	on offer
+		conversation
+			`You arrive on Foundry to a little-used spaceport which usually sees only private, Syndicate executive vessels. Kopkow gives you a mildly apologetic smile as he greets you for the second time, and introduces you to Captain Anna Wallace. She expresses her satisfaction that some serious efforts are being made to stem the plague of slavery that pirate factions get away with. Apparently many officers like her disagree with the Navy's standard non-boarding policy. They want to rescue slaves whenever possible, regardless of risk or orders.`
+			`	Just Wallace speaking seems to make Kopkow nervous to move on though; in fact he appears very stressed at the present. Kopkow explains, "It's becoming increasingly difficult to cover up the existence of the Hai."`
+			label kopkow
+			choice
+				`	"We only need to maintain the ruse a little longer."`
+					goto maintain
+				`	"You don't know that we've given up on that?"`
+					goto giveup
+				`	"Is it still working at all?"`
+					goto working
+					to display
+						not "Hai Reveal [B12] Devil-Hide Battle: working"
+			label working
+			action
+				set "Hai Reveal [B12] Devil-Hide Battle: working"
+			`	"Our ruse is getting preposterous. The captains at Ultima Thule already know about the Hai, but we had to tell the crews that we were dealing with a major pirate threat. We hired a few pirate gangs to fly through the area to back our story. The Shield Beetles you've just flown here have been explained away as experimental ship designs from the movie production being tested out. Still though, our cover stories have passed the point of plausibility into the realm of barefaced lying. I hope you can finish this without too many more public displays, otherwise we won't be able to hide the Hai anymore."`
+				goto kopkow
+			label giveup
+			`	He blinks at you, "Wait, what?"`
+				goto explain
+			label maintain
+			`	"We've decided on an end point to this deception?"`
+			label explain
+			`	You explain how they're just trying to keep things going long enough to resolve this mission. It is like a load has been lifted off the man, although he takes it in his stride fairly professionally.`
+			`	"Of course, nobody tells me anything in a timely manner..."`
+			`	"Anyway, I've organized the Syndicate's 'hostile urban insertion security operatives' to be loaded onto the Auxiliary. They look like intelligence operatives, if you ask me, so that'll be a conversation for me to follow up on later, but for now they're specially trained for attacking pirate strongholds and equipped with state of the art equipment that... is on a need-to-know basis. As long as we can protect the Auxiliary we'll be fine. The intel you brought back doesn't suggest particularly strong resistance. Wallace, good luck."`
+			choice
+				`	"It's good to hear you have the ground combat situation under control."`
+					goto control
+				`	"That equipment sounds ominous."`
+			`	Kopkow gives you a disturbing smile that has an 'I love my work' appearance. He departs as everyone else assembles.`
+				goto leave
+			label control
+			`	"It's more of a collaboration, really, but like I said: need-to-know basis." He nods to you and departs as everyone else assembles.`
+			label leave
+			`	After a large meeting about logistics, and an unsurmountable buffet, everyone disperses. General Choot'k finds you to discuss critical tactical matters.`
+			`	"There's a problem with the plan," he says, "which we found after more analysis of the scans. The bay where we need to land already has ships inside, and if we try to fly in there, they'll blow us to pieces. You have lure them out and kill them all."`
+			choice
+				`	"How do I lure them out?"`
+					goto how
+				`	"Can't we blow them up on the way down?"`
+			`	"Have you ever tried to land on a pile of blown-up space ships in the wreck of a spaceport a half kilometer underground? It ain't easy."`
+			`	Choot'k looks amused by your surprise at his pointed use of a colloquialism. Maybe one day you should investigate how and why the Unfettered learn your language. In the meantime, not blowing up your landing site is a sufficient lesson.`
+			action
+				set "Choot'k: ain't"
+			label how
+			`	"I've spent a lot of time interrogating pirate leaders these past few weeks, and they all have one thing in common: narcissism. Threaten their precious egos, and they'll fight when they should hide. All you have to do is demand tribute from their planet and the fools will rush out and fight you.`
+			`	"The pirates won't believe it if we demand the tribute, but they will believe it if you demand it. Then their defense fleets will rush out. You have to defeat them on your own to maintain the ruse. Eventually they'll give up and pay tribute. That's when we know it's safe to land."`
+			choice
+				`	"Sounds good. I look forward to the tribute payments."`
+					goto done
+				`	"Why do I have to do that myself?"`
+			`	"In your culture, governments don't demand tribute from enemy planets." He shrugs. "The pirates will see it as an obvious trap if we do it. You, though? They'll see a pilot taking advantage of the situation. Just lure them out, and blow them up, while we hold off any incoming ships."`
+			choice
+				`	"Sounds good. I look forward to the tribute payments."`
+					goto done
+				`	"Why won't our fleet help me destroy the pirates coming from the planet?"`
+			`	"Ah, they could, but they won't. Consider it a test. I want to see you prove yourself in battle before I open the entrance to <planet>."`
+			label done
+			`	He seems to admire your ship for a moment. "If you succeed today you shall be Hai-friend, wherever you go."`
+				accept
+	on accept
+		event "elenchus can be dominated"
+	on fail
+		fail "Hai Reveal [B12-A] Devil-Hide Fleet"
+	on decline
+		fail "Hai Reveal [B12-A] Devil-Hide Fleet"
+	on visit
+		conversation
+			`To complete this mission, you must land with Choot'k, Teeneep, Danforth and Wallace's ships all present in the system and intact...`
+	on enter
+		dialog `Right after the fleet takes off, Danforth hails you. "We have just received additional fighters and drones from the Syndicate, please wait for them before jumping."`
+	on enter "Devil-Hide"
+		conversation
+			`Teeneep sends out a message to the fleet informing you that she is engaging the electronic warfare baffling and reminds you that everyone needs to get onto the ground intact if this is to go well. The general's ship is the Emperor Beetle, Kratos. The baffling won't work forever, so get to it.`
+			`	(NOTE: You need to dominate this planet to finish the battle. To do that, talk to the planet and demand tribute. The planet will send multiple waves of defense fleets. Demand tribute after defeating the final wave, and they'll agree. Then land to finish the mission.)`
+			`	(WARNING: The allies you are escorting will not help you fight the defense fleets sent in response to your tribute demands, but they will fight any other pirate ships in the system.)`
+	on visit
+		conversation
+			`To finish this mission, you must destroy all defending pirate vessels, and land with Choot'k, Teeneep, Danforth and Wallace's ships all present in the system and intact...`
+				launch
+	on complete
+		event "liberated elenchus"
+	on fail
+		dialog `You have failed an essential mission. To complete this story line, revert to the autosave or another earlier snapshot of the game.`
+
+	# IMPORTANT: For story reasons, all non-Unfettered ships must have "save" to ensure
+	# the Unfettered get their jump drives back.
+
+	# The fleet on the way to elenchus
+	npc save accompany
+		government "Hai (Wormhole Access)"
+		personality timid escort opportunistic
+		ship "Centipede (Teeneep Jump)" "Teeneep's Ship"
+	npc save accompany
+		government "Hai (Friendly Unfettered)"
+		personality escort heroic opportunistic vindictive
+		ship "Emperor Beetle" "Kratos"
+
+	npc save accompany
+		government "Navy (Oathkeeper)"
+		personality escort heroic opportunistic
+		ship "Cruiser (Jump Plasma Anti-Missile)" "N.S. Peacemaker"
+	npc
+		government "Navy (Oathkeeper)"
+		personality escort opportunistic
+		fleet
+			fighters "republic fighter"
+			variant
+				"Combat Drone (Sidewinder Missiles)" 4
+	npc save accompany
+		government "Republic"
+		personality timid escort opportunistic
+		ship "Auxiliary (Jump Transport)" "N.S. Braveheart"
+	npc
+		government "Republic"
+		personality escort opportunistic
+		fleet
+			fighters "syndicate fighter"
+			variant
+				"Barb (Proton)" 4
+	npc accompany
+		government "Free Worlds"
+		personality escort heroic opportunistic
+		ship "Dreadnought (Plasma Jump Keystone)" "F.S. Ironwood"
+
+	# The defenders waiting for you. There are 4 of them, and you have 5 competent allies, and 2 vulnerable allies.
+	# This shouldn't be hard, but the longer you take the greater the odds that another pirate ship returns from somewhere and complicates things.
+	npc
+		government "Pirate (Devil-Run Gang)"
+		personality heroic staying waiting
+		system "Devil-Hide"
+		fleet "Devil-Run Warships" 3
+	npc
+		government "Pirate (Devil-Run Gang)"
+		personality heroic staying waiting
+		system "Devil-Hide"
+		fleet
+			names "pirate"
+			variant
+				"Palavret"
+
+
+fleet "Elenchus Tribute"
+	government "Pirate (Devil-Run Gang)"
+	names "pirate"
+	cargo 0
+	personality
+		heroic plunders harvests
+	variant
+		"Bactrian"
+		"Dagger" 3
+
+		"Leviathan (Laser)"
+		"Protector (Proton)"
+		"Vanguard (Missile)"
+		"Firebird"
+
+# They suspect you're coming so they're on alert, and non-essential ships aren't flying about.
+# Also, removing the warship spawn stops your NPC escorts from getting overwhelmed inappropriately.
+event "elenchus can be dominated"
+	planet "Elenchus"
+		tribute 5000
+			threshold 2400
+			fleet "Elenchus Tribute"
+	system "Devil-Hide"
+		remove fleet "Devil-Run Warships"
+		remove fleet "Devil-Run Miners"
+
+
+# This allows the mission to preserve the correct number of Unfettered support ships - if one dies it will stay dead:
+mission "Hai Reveal [B12-A] Devil-Hide Fleet"
+	landing
+	invisible
+	source "Foundry"
+	destination "Hai-home"
+	to offer
+		has "Hai Reveal [B11] Moving Together: done"
+# Safety Feature: Workaround for bug #1938 is to introduce another bug the user is unlikely to trigger. Visit Hai-home with this fleet and it vanishes.
+	to complete
+		has "Hai Reveal [C01] Cleanup: done"
+	to fail
+		or
+			has "Hai Reveal [B12] Devil-Hide Battle: failed"
+			has "Hai Reveal [B12] Devil-Hide Battle: declined"
+			has "Hai Reveal [C01] Cleanup: failed"
+			has "Hai Reveal [C01] Cleanup: declined"
+			has "Hai Reveal [B13] Freedom: failed"
+			has "Hai Reveal [B13] Freedom: declined"
+	npc accompany
+		government "Hai (Friendly Unfettered)"
+		personality escort heroic opportunistic vindictive
+		fleet
+			names "hai"
+			variant
+				"Shield Beetle (Particle Jump)"
+				"Shield Beetle (Plasma Blaster Jump)"
+
+
+
+mission "Hai Reveal [B13] Freedom"
+	landing
+	name "Take them Home"
+	description "Escort the Hai back to <planet>. Payment to cover your ongoing expenses is <payment>."
+	source "Elenchus"
+	destination "Stormhold"
+	clearance
+	to offer
+		has "Hai Reveal [B12] Devil-Hide Battle: done"
+	on visit
+		dialog `To finish this mission, you need to wait for Teeneep, Choot'k, and Danforth's ships to arrive and then land again.`
+	on fail
+		fail "Hai Reveal [B12-A] Devil-Hide Fleet"
+	on decline
+		fail "Hai Reveal [B12-A] Devil-Hide Fleet"
+	on offer
+		log `Factions` `Elenchus` `Formerly a pirate stronghold, this city built by generations of kidnapped specialists is a hundred twenty years old now. Humans, Hai, and even Korath live peacefully, working side-by-side, and most have no desire to leave. They value their independence and have refused Republic membership. This city orbits a strange world that defies analysis in a region of space untouched by civilization.`
+		log `Liberated Elenchus.`
+		conversation
+			`General Choot'k cuts open the doors of a large hangar, and your ships land. The two hundred Syndicate operatives pour out, wearing exoskeletons with high density armor plating and equipped with all manner of weapons and gadgetry. They storm through the complex and you follow in their wake. Their tools melt through security locks in seconds, and most of their opposition lacks protection against the suits' stun gas bombs. With pirates focusing their efforts on the imposing suits, the Unfettered make many attacks of opportunity, inflicting massive casualties. The pirates outnumber the attackers ten to one, but this huge advantage in equipment, training, and discipline gives the attackers an overwhelming advantage.`
+			`	The squads move room to room, neutralizing all opposition with ease, until their opponents switch tactics. The pirates begin using electromagnetic pulse devices to shut down the Syndicate suits (and all other electronics nearby), leaving affected operatives helpless for ten long seconds. Here, some of General Choot'k's Unfettered show their strength, outmaneuvering the pirates long enough for the suits to recharge. They dart between operatives and bound off walls with Pulse Rifles and long knives. They strike rapidly and in an organized manner, before withdrawing as the operatives suits re-engage, preventing the pirates from coordinating a counter-assault.`
+			`	After a bloody struggle, forty-three operatives reach the end of the fight, clearing the way to a blast door. Only a couple dozen operatives are known to be seriously wounded, but many have been missing since the pirates switched tactics and began using traps and machinery to pin, crush, or disable the operatives or their suits. The Unfettered fared comparatively better, as the pirates focused most attacks on the Syndicate operatives, letting the fast, maneuverable Hai pass through. Still, over a dozen of them will take their own tails home as trophies, after the pirates used a miner's cutting power-arm extensions to great effect.`
+			`	The blast door that the force now stands before is twelve meters high and wide, and scanners show it to be six meters deep. It is designed to be closed from this side, though, and has not been sealed well against being reopened. Soon it grinds open but, evidently sabotaged, only part-way. Despite this attempt, the operatives put on their goggles and easily pass through into the darkness of the next room.`
+			`	You could be forgiven for hesitating to follow them, but General Choot'k appears beside you and places one strong paw on your shoulder. "Come, now. We will discover if our task is finished or impossible. It is time for bravery." He guides you in after the operatives, along with his own troops.`
+			choice
+				`	"Lead on."`
+					goto leadon
+				`	"Treating me like a coward? That's grounds for a duel."`
+			`	"Heh heh," he laughs in a low voice. "Maybe soon."`
+			action
+				set "Hai Reveal [B13] Freedom: challenged Choot'k"
+			label leadon
+			`	It's pitch black when you enter, but scanners show the room is a vast cavern, some sort of public space suitable for ten thousand people or more. As the last of the troops file in, a second blast door closes behind you. High roof lights snap on making the room as bright as day in the blink of an eye.`
+			`	You see before you scores of pirates, corralled and held captive by an equally large crowd of heavily-armed civilians - all of which are hesitantly pointing guns at the operatives. It seems the citizens arranged a violent rebellion to coincide with the Republic's attack. Three unarmed civilians wearing distinctive hooded robes walk towards the operatives: one Hai, one human, and to your surprise one lizard-like Korath. The leader of the Syndicate operatives exits her suit and approaches them.`
+			`	The Hai speaks. "We are the leaders of the civilian government of Elenchus. Although we are grateful for your assistance in defeating our violent rulers, we will not accept your dominion either. We have heard of your civil war. Elenchus is an independent nation, and we intend to stay so unless you intend to force otherwise. I can, however, promise that unlike our overlords, we have no interest in anything other than peace. We will send no military ships through the wormhole.`
+			`	After several hours of discussion, Agent Kopkow prepares the documents for the provisional recognition of the new "Elenctic Commune" with Admiral Danforth and Captain Wallace as witnesses. The wounded are finally attended to in the Elenctic hospital facilities, and most of the human operatives pack up their gear and return to the Auxiliary. Meanwhile, Teeneep and Choot'k go to lengths to engage with the Hai here and discover what they would best like to do.`
+			choice
+				`	"Thank you. I have a few questions for you before I go."`
+				`	"I wish you a successful future with your newfound freedom. For now, it is time for me to depart."`
+					goto leave
+			label questions
+			choice
+				`	"Do you want me to take you home?"`
+					goto home
+					to display
+						not "Hai Reveal [B13] Freedom: label home"
+				`	"Do you know anything about the cadmium poisoning?"`
+					goto "cadmium"
+					to display
+						not "Hai Reveal [B13] Freedom: label cadmium"
+				`	"What can you tell me about this city?"`
+					goto place
+					to display
+						not "Hai Reveal [B13] Freedom: label place"
+				`	"What do you do here?"`
+					goto do
+					to display
+						not "Hai Reveal [B13] Freedom: label do"
+						or
+							has "Hai Reveal [B13] Freedom: label place"
+							has "Hai Reveal [B13] Freedom: label home"
+				`	"What do you know about this area of space?"`
+					goto space
+					to display
+						not "Hai Reveal [B13] Freedom: label space"
+						has "Hai Reveal [B13] Freedom: label place"
+				`	"How did the Korath get here?"`
+					goto korath
+					to display
+						not "Hai Reveal [B13] Freedom: label korath"
+				`	"Can you speak to other Korath for me?"`
+					goto "translation services"
+					to display
+						not "Hai Reveal [B13] Freedom: label translation services"
+						has "Hai Reveal [B13] Freedom: label korath"
+				`	"I wish you a successful future with your newfound freedom. For now, it is time for me to depart."`
+			`	"It was a pleasure meeting you," says the human leader.`
+				goto leave
+			label korath
+			action
+				set "Hai Reveal [B13] Freedom: label korath"
+			`	The Korath leader speaks, with a thick, sibilant accent. "Several generations ago, three of our raiding ships jumped to the Alcyone system. Numerous pirate vessels left Stormhold and disabled our ships. A large human ship boarded our flagship, and used what you call 'nerve gas' to kill the entire crew. The death is excruciatingly painful to Korath. The pirates broadcast the footage over to us, so we could see the screaming. Not wanting that fate, most of the raiders on the other Korath ships surrendered. We worked as slaves for the pirate gangs, but now we're here, safe, and free. We are not specialists or their descendants like the others here, but we have other talents.`
+			`	"The pirates must defend this planet against a space-based lifeform that attacks in flocks. Our ships gave them a significant advantage. Fortunately, we have one more left to defend against any threats." The Korath eyes the Syndicate operatives as he waits for the translator to catch up.`
+			`	"I must ask you keep the presence of Korath here a secret. If the Archons or other Exiles hear of this place, they may attack to retrieve us, or the Exiles may simply pillage. We will remain here in hiding unless the Exiles finally learn to settle on their planet."`
+				goto questions
+			label "translation services"
+			action
+				set "Hai Reveal [B13] Freedom: label translation services"
+			`	The Korath leader hisses. "No, we cannot. We here do not even speak a full form of our own language anymore. Even if we did, we must remain here in secret. Perhaps in time there will be a reconnection, but not yet."`
+				goto questions
+			label "cadmium"
+			action
+				set "Hai Reveal [B13] Freedom: label cadmium"
+			`	The Korath leader looks to the Hai, who responds, "Is that how you were led back here?"`
+			`	"Indirectly," you reply.`
+			`	The Hai leader continues, "Fascinating, we always wondered if it would pique someone's attention! Our Korath friends have ships equipped with these remarkable "Systems Cores", which are apparently vital to all Korath ships. None of the surviving Korath had the knowledge to replicate it, but they were asked to try and many of them have an uncanny knack for engineering. With their help, we attempted to build some equivalents of our own. Being not quite right, they work, but they fuse irrevocably with the ship, and some flaw in their function causes cadmium particulate. The cadmium is shed by the system maintenance processes into the air, where it is recirculated, and ignored by the system intended to filter it out since it's a part of the system itself."`
+			`	The human leader adds, "We worked out how to reduce that effect to safe levels, but kept that information to ourselves in the hope that it would draw some attention. It tended to make the pirates sick more often than anyone else, which also seemed to mean that more of their victims escaped."`
+				goto questions
+			label home
+			action
+				set "Hai Reveal [B13] Freedom: label home"
+			`	The three leaders laugh, and the Hai answers. "We are home. Most of us were born here, or have lived most of our adult lives here. This is a place of learning, where three races join as one to progress together. Even several of the new arrivals had few connections back in Hai space and have viewed this place as a grand new novelty. An adventure without compare. Some recent kidnapping victims wish to leave, of course, and we will help you find them and send them home."`
+			`	The Korath speaks next. "Where my people came from, everyone was starving, barely subsisting. We had to raid for supplies, or slave away in bleak factory stations. This is a much better place for us."`
+			`	The human leader concludes, "Most of the humans in this city have been here for several generations. This has always been home to us."`
+				goto questions
+			label place
+			action
+				set "Hai Reveal [B13] Freedom: label place"
+			`	"It must seem strange to you," the human replies, "but I shall explain. This place was founded over a hundred and twenty years ago by anarchists from the colony of Freedom. Their community had been working within the Syndicate for a long time, evolving into anarcho-syndicalists that worked to bring the Syndicate down from within. At some point they discovered this place after stealing a drive and other paraphernalia that were unearthed from a construction site on Foundry. With the Syndicate on its doorstep and difficult access requirements, they saw the potential in this place but needed more manpower to exploit it. To do this, they allied with less peaceful anarchists and pirates. Those less savory types kidnapped researchers and engineers, forcing them to expand the base and devise new weapons or medicines. They eventually inherited control here after the syndicalists were wiped out. Our city also has manufacturing facilities where we created goods the pirates could not easily build in human space, where their facilities are destroyed regularly.`
+			`	"There have been various attempts to take the spaceport and the city by force or by money. Early on, there were attempts by Alpha groups, and then various illegal organizations who tracked this place down from rumors about their rivals. There was even someone from the Syndicate who came with his personal fleet. There are those who have controlled this place by controlling the spaceport and treating with us, and there are those who have tried to force their way in here and bend us to their will. None of them returned home from the latter attempts. Some used chemical or biological weapons, others sent ships. Many offered money or favors. Elenchus has always been an independent country, and with control of our own spaceport, perhaps we always will be.`
+			`	"Now that the pirates are gone, us civilians may govern without fear, and for that you have our gratitude. As expendable upper regions of the spaceport have already been destroyed, we have little to fear from attack by space creatures in the short-term, and soon we'll have our shipyards and facilities at full capacity again, such that we may defend ourselves.`
+			`	"We won't ever join the Republic or any other government beyond the wormhole, but you personally will always be welcome, along with those you trust, for what you have done today. Our research and manufacturing facilities are damaged now, but as they are repaired, we will make them available to you."`
+				goto questions
+			label do
+			action
+				set "Hai Reveal [B13] Freedom: label do"
+			`	"We're scientists, engineers, philosophers, people of learning. Intergenerational traditions of knowledge and scholarship are strong here. There are laboratories and workshops throughout this city where we work on all manner of things. We seek knowledge. This place is far from being a paradise, but it is a community that strives together. Under the pirates we were allowed this freedom, as they realized it was the most effective way to get results that helped them. Now that our most recent abusive masters are gone, we need not have our priorities guided by their violent motives."`
+			`	"Of course, this is also a city. People have lived here for several generations, multiplying fruitfully. We have had to carve out more and more of the moon. There is plenty of space left before our growth will have to stop."`
+				goto questions
+			label space
+			action
+				set "Hai Reveal [B13] Freedom: label space"
+			`	"Very little. The pirates wouldn't let us leave the planet, and jump drives are precious to them. They cannot risk drives on science expeditions. Still, we have managed a few trips under different regimes."`
+			`	"There is no evidence that any civilization has ever reached this region of space until us, and this system is not native to the others around it. It was flung from our galaxy millions of years ago, and is still traveling relatively fast. One day, far from now, this system will pass beyond even this loose collection of systems that it is now close to. There are also many space-faring indigenous creatures that live in gas giants, and sometimes venture beyond. Most are harmless, so long as you leave them alone. There are flocking apex predators who hunt anything that moves.`
+			`	"The planet below is a mystery to us. It has a thousand times the mass it realistically should, and its gravitational field reads as such from a great distance. This tremendous gravitational field sustains the large asteroid belt. Despite its incredible mass, as you approach the surface, the field does not increase at anywhere near the rate that it should. Thus, when you stand upon it, the gravity is only similar to that of Earth. There are many forms of radiation and strange materials inside the planet's caves. We believe it is a relic from a forgotten past, but we have no idea what sort of relic it is. Perhaps, now that we are not developing pirate weapons, we can focus on exploration."`
+				goto questions
+			label leave
+			`	There is one last critical matter to be addressed with the three representatives and you raise it with them. "Did we have all of the leaders of this group? Are they all accounted for?"`
+			`	They consult with some of their people who have been scouring the spaceport, helping to account for both the living, and the dead on both sides. At length, just the human comes to you.`
+			`	"Your question was wise. There is one unaccounted for. Before I tell you, though, I think perhaps you should know more than you do." They reach up and push back their hood, revealing a bald head, as they gesture to the city in general. To your surprise you realize for the first time that they are a woman, though that seems like it could be the least important part of their identity.`
+			choice
+				`	"What do you wish to tell me?"`
+				`	"I've had enough history lessons for one day. Can you tell me the leader's name?"`
+					goto impatient
+			`	"Many different overlords we have had, and always they have relied on recruits from the city for some capacities while rallying other lesser groups to their banner. As such, ever have there been factions. Some, kinder than others."`
+			`	They look at you meaningfully. "There was a factional shift in progress here before you arrived. A little over a decade ago, for the first time in a century, a new anarcho-syndicalist faction from Freedom took over the control of the spaceport and reclaimed the mantle of our original founders who called themselves 'Base Principles'. While we as a city didn't particularly care, there were some who sympathized with them more than most. As overlords went they were, fair enough. After only a decade, and despite significantly greater access to resources than their predecessors, their control was already slipping. Deviants and extremists who lacked the capacity to subscribe to a nuanced view had supplanted most of their major players. If they did not succeed in their quest imminently, they were already doomed to be replaced. Still, they were nevertheless exploitative overlords, and we don't pity them... but their goals were more noble than most.`
+			`	"I tell you all this because I suspect you must seek out this one leader who is unaccounted for, and you should do so with all the knowledge at your disposal. The one leader who is not here was the last major player from the new 'Base Principles'. I do not know where your loyalties lie, so I ask you: why do you wish to know?"`
+				goto reason
+			label impatient
+			`	They sigh. "The one leader who is not here was the last major player from the new 'Base Principles'. I do not know where your loyalties lie, so I ask you: why do you wish to know?"`
+			label reason
+			choice
+				`	"I do not, but I must, out of duty."`
+					goto knowduty
+				`	"I wish to know, for the Hai."`
+					goto knowhai
+				`	"I wish to know, for the Syndicate."`
+					goto knowsyndi
+				`	"I wish to know, for the people."`
+			`	They regard you thoughtfully. "You are well suited to the neutral ground. It is little wonder you are here as an agent of no single faction. That is appropriate then.`
+				goto finished
+			label knowhai
+			`	They incline their head respectfully. "The Hai are perhaps the greatest valuers of truth among us. If they have set you to this, then they will be honored by your diligence.`
+				goto finished
+			label knowsyndi
+			`	They focus on you closely. "The Syndicate is perhaps the most impressive machine ever wrought by man. It is worthy of both respect and fear, and will do to people as any machine does to the product of its design. Treat it as such and it will always do precisely what you expect it to; both good and bad.`
+				goto finished
+			label knowduty
+			`	They lift their head and smile. "A promise made is a promise kept. If your word is your bond then it would not do for me to stand in its way.`
+				goto finished
+			label finished
+			`	"The missing leader you seek is embedded within the Syndicate and is known by the name Terry Adrianopoulos."`
+			choice
+				`	"Terry did this!?"`
+					goto surprised
+				`	"I suspected as much."`
+			`	Their words scratch an itch of suspicion that you didn't realize had been irritating you until now. They smirk knowingly. "I have merely confirmed that which you already guessed. Very well, I need say no more. This matter is yours to do with as you will." They leave you to ponder your course.`
+				goto done
+			label surprised
+			`	They smile with subtle mirth at your surprise. "I see you know of this person but did not suspect. I think it is to you, and you alone, I shall impart this knowledge. Do with it as you will." They leave you to ponder your course.`
+			label done
+			`	As you return to your ship, Teeneep interrupts you. "I need you to escort me one last time, Captain <last>. I must return to <planet> to resolve things now that the threat is ended. You will be well-paid, of course."`
+			`	Anticipating your next question, she says, "The ships of the Unfettered Hai will be escorted back with us, since the Elenctics are convinced they are at no risk and still have a ship at their disposal. Some of those who came as crew on the Unfettered vessels have chosen to remain here and join the Elenctics. More than enough bunks have subsequently been freed to return those who have chosen to come home with us. Danforth will come with us, but the other human vessels will make their way home themselves. Now we must rejoin our people on <planet> and set about resolving this matter for good, finally."`
+				accept
+	on complete
+		payment 1000000
+	npc save accompany
+		government "Hai (Wormhole Access)"
+		personality timid escort opportunistic
+		ship "Centipede (Teeneep Jump)" "Teeneep's Ship"
+	npc save accompany
+		government "Hai (Friendly Unfettered)"
+		personality escort heroic opportunistic vindictive
+		ship "Emperor Beetle" "Kratos"
+	npc save accompany
+		government "Navy (Oathkeeper)"
+		personality escort heroic opportunistic
+		ship "Cruiser (Jump Plasma Anti-Missile)" "N.S. Peacemaker"
+
+
+
+mission "Hai Reveal [B13-G] Elenctic Guard"
+	landing
+	invisible
+	source "Elenchus"
+	to offer
+		has "Hai Reveal [B12] Devil-Hide Battle: done"
+	npc kill
+		government "Elenctic Commune"
+		personality heroic staying
+		system "Devil-Hide"
+		fleet
+			names "civilian"
+			variant
+				"Palavret"
+				"Leviathan (Hai Engines)"
+				"Leviathan (Hai Weapons)"
+				"Firebird (Laser)"
+				"Firebird (Laser)"
+				"Firebird (Laser)"
+
+
+
+mission "Hai Reveal [B14] Journey to Peace"
+	landing
+	name "Take them Home"
+	description "Pick up the Deputy Minister at <stopovers> and escort Teeneep's ship back to <destination>."
+	source "Stormhold"
+	stopover "Mountaintop"
+	destination "Hai-home"
+	clearance
+	passengers 4
+	to offer
+		has "Hai Reveal [B13] Freedom: done"
+	on visit
+		dialog `To finish this mission, you need to wait for Teeneep and Choot'k's ships to arrive and then land again.`
+	on offer
+		conversation
+			`Your arrival on <origin> is met with much fanfare. In your absence the remaining staging ground here was eventually found and purged, and an agreement of sorts has been made between the Republic authorities and the remaining major players here - or at least those whose lists of possible crimes aren't so long and well-evidenced as to be arrested for appearing. The hope is that after such a thorough purge, <origin> will manage to be less of a source of problems for a while, but the expectation is merely that people smuggling will no longer be an industry that is widely tolerated by the local powers that be.`
+			`	The Unfettered are treated as heroes by both their comrades and the other Hai crews as they return to the fold. This causes some, like Remington and Alondo, to share some concerned looks among each other and have a number of surreptitious chats with Danforth and Marshal Kaine, but the distinction between the two groups remains pronounced throughout.`
+			`	Once people have had a chance to get sorted Teeneep approaches you again. "There will be much work in the future, but for now it is time to return to <planet>. I have been too long away, and there are obligations to be discharged. I have returned the borrowed jump drive, so we should pick up the Deputy Minister from Mountaintop on the way."`
+				accept
+	npc save accompany
+		government "Hai (Wormhole Access)"
+		personality timid escort opportunistic
+		ship "Centipede (Teeneep)" "Teeneep's Ship"
+	npc save accompany
+		government "Hai (Friendly Unfettered)"
+		personality escort heroic opportunistic vindictive
+		ship "Emperor Beetle" "Kratos"

@@ -57,7 +57,7 @@ namespace {
 
 		Ship *flagship = player.Flagship();
 		bool isSingle = (abs(count) == 1);
-		string nameWas = (isSingle ? outfit->Name() : outfit->PluralName());
+		string nameWas = (isSingle ? outfit->DisplayName() : outfit->PluralName());
 		if(!flagship || !count || nameWas.empty())
 			return;
 
@@ -208,11 +208,7 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 		if(toFail.empty())
 			child.PrintTrace("Error: Skipping invalid \"fail\" with no mission:");
 		else
-		{
 			fail.insert(toFail);
-			// Create a GameData reference to this mission name.
-			GameData::Missions().Get(toFail);
-		}
 	}
 	else
 		conditions.Add(child);
@@ -248,7 +244,7 @@ void GameAction::Save(DataWriter &out) const
 	for(auto &&it : giftShips)
 		out.Write("give", "ship", it.first->VariantName(), it.second);
 	for(auto &&it : giftOutfits)
-		out.Write("outfit", it.first->Name(), it.second);
+		out.Write("outfit", it.first->TrueName(), it.second);
 	if(payment)
 		out.Write("payment", payment);
 	if(fine)
@@ -269,8 +265,11 @@ string GameAction::Validate() const
 {
 	// Events which get activated by this action must be valid.
 	for(auto &&event : events)
-		if(!event.first->IsValid())
-			return "event \"" + event.first->Name() + "\"";
+	{
+		string reason = event.first->IsValid();
+		if(!reason.empty())
+			return "event \"" + event.first->Name() + "\" - Reason: " + reason;
+	}
 
 	// Transferred content must be defined & valid.
 	for(auto &&it : giftShips)
@@ -278,7 +277,7 @@ string GameAction::Validate() const
 			return "gift ship model \"" + it.first->VariantName() + "\"";
 	for(auto &&outfit : giftOutfits)
 		if(!outfit.first->IsDefined())
-			return "gift outfit \"" + outfit.first->Name() + "\"";
+			return "gift outfit \"" + outfit.first->TrueName() + "\"";
 
 	// It is OK for this action to try to fail a mission that does not exist.
 	// (E.g. a plugin may be designed for interoperability with other plugins.)
@@ -393,13 +392,11 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 
 	result.payment = payment + (jumps + 1) * payload * paymentMultiplier;
 	if(result.payment)
-		subs["<payment>"] = Format::Credits(abs(result.payment))
-			+ (result.payment == 1 ? " credit" : " credits");
+		subs["<payment>"] = Format::CreditString(abs(result.payment));
 
 	result.fine = fine;
 	if(result.fine)
-		subs["<fine>"] = Format::Credits(result.fine)
-			+ (result.fine == 1 ? " credit" : " credits");
+		subs["<fine>"] = Format::CreditString(result.fine);
 
 	if(!logText.empty())
 		result.logText = Format::Replace(logText, subs);

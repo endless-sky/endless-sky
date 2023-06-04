@@ -1,17 +1,12 @@
 test "Sell 0 ships"
-	# Known failure, see https://github.com/endless-sky/endless-sky/issues/6628
-	status "known failure"
+	status active
 	description "Test departing without sell a ship."
 	sequence
 		# Create/inject the savegame and load it.
-		inject "Fighters and Carriers and Escorts"
+		inject "Fighters and Carriers and Escorts Save"
 		call "Load First Savegame"
 		call "Depart"
 		# We can only check the conditions after departing, since the conditions are not updated directly after loading or selling.
-		apply
-			"test: ships: Fighter" = "ships: Fighter"
-			"test: ships: Heavy Warship" = "ships: Heavy Warship"
-			"test: ships: ships: Medium Warship" = "ships: Medium Warship"
 		assert
 			and
 				"ships: Fighter" == 2
@@ -24,7 +19,7 @@ test "Sell 1 ship"
 	description "Test selling a single ship."
 	sequence
 		# Create/inject the savegame and load it.
-		inject "Fighters and Carriers and Escorts"
+		inject "Fighters and Carriers and Escorts Save"
 		call "Load First Savegame"
 		call "Sell first ship"
 		call "Depart"
@@ -43,7 +38,7 @@ test "Sell 2 ships"
 	description "Test selling two ships."
 	sequence
 		# Create/inject the savegame and load it.
-		inject "Fighters and Carriers and Escorts"
+		inject "Fighters and Carriers and Escorts Save"
 		call "Load First Savegame"
 		call "Sell first ship"
 		call "Sell first ship"
@@ -63,7 +58,7 @@ test "Sell 3 ships"
 	description "Test selling three ships."
 	sequence
 		# Create/inject the savegame and load it.
-		inject "Fighters and Carriers and Escorts"
+		inject "Fighters and Carriers and Escorts Save"
 		call "Load First Savegame"
 		call "Sell first ship"
 		call "Sell first ship"

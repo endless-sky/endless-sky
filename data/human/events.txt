@@ -136,11 +136,14 @@ event "war begins"
 		"required reputation" 100
 	planet "Martini"
 		description `Martini is a world of exotic beaches and perfect weather. The Republic's central bank and the galactic stock exchange were previously headquartered here, before a terrorist attack destroyed them and a large portion of the capital city as well.`
+		description `	Currently, a massive rescue and evacuation operation is underway in and around the capital to find and treat survivors and contain the radiation. As to be expected, the planet's supplies are running dangerously low, and what remains of Martini's government has called for civilian ships to help deliver goods and provisions for the operation.`
+		spaceport `Instead of the immaculate spaceport that Martini once sported, this temporary spaceport consists of randomly-scattered makeshift landing areas, in order to support the large number of Navy and civilian ships assisting with the rescue and evacuation operation.`
 		"required reputation" 100
 		security .9
 	planet "Bourne"
 		description `Bourne is a well-developed industrial world that was first settled four centuries ago. Its cities are home to some of the richest individuals in this section of the galaxy, but also home to tens of thousands of homeless people, and many others whose factory jobs are barely providing enough to make ends meet.`
-		description `Bourne is also the seat of government for the newly formed Free Worlds.`
+		description `	Outside the cities, the climate is somewhat dry, but the deep valleys and some coastal regions are suitable for farming. Very little of the planet remains that is untouched by human hands.`
+		description `	Bourne is also the seat of government for the newly formed Free Worlds.`
 
 mission "event: war begins"
 	landing
@@ -783,6 +786,21 @@ event "initial deployment 4"
 
 
 
+event "fw zug expansion underway"
+	planet Zug
+		spaceport `The spaceport of Zug has been growing by amalgamation for centuries. At its core is the "Old Port," a set of quaint and rudimentary shops and warehouses. The landing pads for the Old Port were torn up to make room for what the locals call "The Port," a set of buildings that were constructed a century ago, with bolder architecture and more modern design.`
+		spaceport `	Some distance away is the "New Port," a towering structure with robotic cargo lifts and large hangars for more expensive ships. Meanwhile, an expansion to the New Port is currently ongoing. You can't help but wonder what the new expansion will be named.`
+
+
+
+event "fw zug expansion complete"
+	planet Zug
+		add shipyard "Tarazed Advanced"
+		spaceport `The spaceport of Zug has been growing by amalgamation for centuries. At its core is the "Old Port," a set of quaint and rudimentary shops and warehouses. The landing pads for the Old Port were torn up to make room for what the locals call "The Port," a set of buildings that were constructed a century ago, with bolder architecture and more modern design.`
+		spaceport `	Some distance away is the "New Port," a towering structure with robotic cargo lifts and large hangars for more expensive ships. It was recently expanded to handle the increased activity demanded by the Free Worlds, making Zug the chief ship foundry of the galactic south. It's not surprising to learn that the addition to the New Port has quickly been dubbed "The Expansion."`
+
+
+
 event "capture of Kornephoros"
 	system "Kornephoros"
 		government "Republic"
@@ -992,6 +1010,16 @@ event "syndicate assistance"
 
 
 
+event "tarazed assistance"
+	planet "Glaze"
+		shipyard "Tarazed Basics"
+	planet "Rust"
+		shipyard "Tarazed Basics"
+	planet "Zug"
+		shipyard "Tarazed Basics"
+
+
+
 # TODO: Expand this event to other Dirt Belt systems.
 # TODO: Create Republic fleets neutral to FW patrols.
 event "unofficial ceasefire"
@@ -1034,12 +1062,33 @@ event "Thule becomes independent"
 		fleet "Large Southern Pirates" 5000
 		fleet "Large Free Worlds" 1500
 	planet "Thule"
+		add attributes "ex-pirate"
 		description `Thule is a mountainous world with a population of nearly a billion, settled in the early days of space exploration. When the colony was first established, the Earth government did not yet have the strength to control any system but its own, and when the Republic was formed, Thule did not join, and has repulsed all efforts to force them to do so.`
 		description `	Until recently, Thule was a well-known den of pirate activity, but the major tribal authorities have now forsworn piracy in the interest of keeping the Free Worlds from further meddling in their affairs. However, it is likely that all manner of illegal activity is still going on in secret here.`
 	planet "Smuggler's Den"
 		description `Smuggler's Den was formerly known as Grendel Station, back when it was an operating refinery. After that, it was taken over by pirates, and became a haven for all manner of smugglers and privateers. Now, at least in theory it is an independent station, no longer allied with the pirates. In practice, you suspect a fair amount of piracy still goes on here.`
 		description `The repair shops here can make a variety of legal and illegal modifications to your ship, and in the shipyard you can buy refurbished starships... if it does not trouble your conscience to think about the likely fates of their previous owners.`
 		spaceport `It is a strange but indisputable fact that anarchists smell worse than ordinary human beings. In this day and age, where even the cheapest shuttlecraft at least has a sonic shower, there is no logical explanation for it, except that anarchist tendencies must somehow go hand in hand with a tendency to reject society's norms around hygiene. Here in a space station, with nothing but recycled air to breathe, the effect is overpowering.`
+
+
+
+# These two events are no longer used but preserved in case a now deleted mission calling these events is already active.
+event "fw suppressed Bloodsea"
+	system Antares
+		government "Free Worlds"
+		fleet "Small Free Worlds" 800
+		fleet "Large Free Worlds" 1600
+		fleet "Small Southern Pirates" 4000
+		fleet "Large Southern Pirates" 8000
+
+
+
+event "fw abandoned Bloodsea"
+	system Antares
+		government "Pirate"
+		fleet "Small Southern Pirates" 1000
+		fleet "Large Southern Pirates" 2000
+		fleet "Large Militia" 5000
 
 
 
@@ -1072,7 +1121,7 @@ event "fw abandoned Greenrock"
 		fleet "Large Free Worlds" 9000
 	planet "Greenrock"
 		description `Greenrock was the closest thing that the pirates in southern human space had to a center of government, at least until the Free Worlds occupied it. When rival pirate bands sought to negotiate on neutral territory, this is where they met. Nearly everything was for sale here: illegal weapons, ships customized for pirating, and even slaves.`
-		description `	That was until the Free Worlds occupied the system and cleaned up many of the major population centers. With the Free Worlds gone though, the planet has begun to return to its natural state of crime and villainy .`
+		description `	That was until the Free Worlds occupied the system and cleaned up many of the major population centers. With the Free Worlds gone though, the planet has begun to return to its natural state of crime and villainy.`
 		spaceport `You have heard enough about this port's reputation that you are not surprised to see the remnants of slave markets, now empty as a result of the Free Worlds occupation. The spaceport's shady establishments are beginning to return to their normal clientele and services.`
 		spaceport `	With the Free Worlds now gone, dark alleyways are absolutely to be avoided. Down one alley you see a shop called "Mike's Mustelids," the inside like a jungle. You hear the howls and yells of various exotic animals coming from inside, and the alleyway is home to a number of presumably-escaped weasels, ferrets, and wolverines running about.`
 
@@ -1121,6 +1170,95 @@ event "navy occupying the south"
 event "catalytic ramscoop available"
 	outfitter "Deep Sky Basics"
 		"Catalytic Ramscoop"
+	fleet "Republic Logistics"
+		add variant 19
+			"Auxiliary (Mark II)"
+			"Dropship" 2
+			"Lance" 2
+			"Cruiser"
+			"Combat Drone" 4
+			"Frigate"
+			"Gunboat" 2
+		add variant 19
+			"Auxiliary (Cargo Mark II)"
+			"Dropship" 2
+			"Lance" 2
+			"Cruiser"
+			"Combat Drone" 4
+			"Frigate"
+			"Gunboat" 2
+		add variant 19
+			"Auxiliary (Transport Mark II)"
+			"Dropship" 2
+			"Lance" 2
+			"Cruiser"
+			"Combat Drone" 4
+			"Frigate"
+			"Gunboat" 2
+		add variant 1
+			"Auxiliary (Cargo Mark II)" 3
+			"Dropship" 3
+			"Lance" 9
+			"Cruiser" 2
+			"Combat Drone" 8
+		add variant 1
+			"Auxiliary (Transport Mark II)"
+			"Auxiliary (Cargo Mark II)"
+			"Auxiliary (Mark II)"
+			"Dropship" 6
+			"Lance" 6
+			"Cruiser" 2
+			"Combat Drone" 8
+		add variant 1
+			"Auxiliary (Transport Mark II)" 3
+			"Dropship" 9
+			"Lance" 3
+			"Cruiser" 2
+			"Combat Drone" 8
+		remove variant
+			"Auxiliary"
+			"Dropship" 2
+			"Lance" 2
+			"Cruiser"
+			"Combat Drone" 4
+			"Frigate"
+			"Gunboat" 2
+		remove variant
+			"Auxiliary (Cargo)"
+			"Dropship" 2
+			"Lance" 2
+			"Cruiser"
+			"Combat Drone" 4
+			"Frigate"
+			"Gunboat" 2
+		remove variant
+			"Auxiliary (Transport)"
+			"Dropship" 2
+			"Lance" 2
+			"Cruiser"
+			"Combat Drone" 4
+			"Frigate"
+			"Gunboat" 2
+		remove variant
+			"Auxiliary (Cargo)" 3
+			"Dropship" 3
+			"Lance" 9
+			"Cruiser" 2
+			"Combat Drone" 8
+		remove variant
+			"Auxiliary (Transport)"
+			"Auxiliary (Cargo)"
+			"Auxiliary"
+			"Dropship" 6
+			"Lance" 6
+			"Cruiser" 2
+			"Combat Drone" 8
+		remove variant
+			"Auxiliary (Transport)" 3
+			"Dropship" 9
+			"Lance" 3
+			"Cruiser" 2
+			"Combat Drone" 8
 
 
 
@@ -1436,7 +1574,7 @@ event "liberation of Poisonwood"
 		fleet "Human Miners" 2000
 	planet "Poisonwood"
 		spaceport `The starport is a hodgepodge of small metal structures, built from the remains of Navy and pirate ships that fought for control of this world. The locals here welcome you to their planet heartily.`
-		spaceport `	The tavern in the center of the port is named The Parting Glass. Its walls are covered with photographs from after the war: liberated slaves boarding Navy ships to leave this planet that had brought them so much pain; Navy officers leaving their ships to retire on this world that they liberated; friends gone away; friends left behind. There are also newer photos mixed in amongst the older ones: two Falcons and a Navy Cruiser landed side by side; troops clad in armor walking away from a factory, and a familiar captain talking to a man you know as Commander Nguyen. It is a strange feeling to be shown among heroes of a history that you have had only the smallest effect on.`
+		spaceport `	The tavern in the center of the port is named The Parting Glass. Its walls are covered with photographs from after the war: liberated slaves boarding Navy ships to leave this planet that had brought them so much pain; Navy officers leaving their ships to retire on this world that they liberated; friends gone away; friends left behind. There are newer pictures, too: a Cruiser and two Falcons, side by side; armored troops walking away from a factory; a familiar captain talking to a man you know as Commander Nguyen. It is a strange feeling to be shown among heroes of a history that you have had only the smallest effect on.`
 
 event "Poisonwood reverts to Republic"
 	system "Graffias"
@@ -1482,6 +1620,7 @@ event "dreadnought deployment"
 
 event "bloodsea joins free worlds"
 	planet "Bloodsea"
+		add attributes "ex-pirate"
 		description `Bloodsea is nearly uninhabited, except for a few small outposts. Its name comes from the planet's oceans, which are blood-red due to rhodophyte algae. Although the climate is temperate and there are many white sand beaches, no one comes here hoping to go swimming.`
 		description `	Until recently, this was a pirate world, but as the Free Worlds continued to expand they saw the writing on the wall and decided to become a civilized world. The Free Worlds is building a new spaceport here, but that will take months, and in the meantime the old spaceport is still in use.`
 	system "Antares"
@@ -1529,6 +1668,7 @@ event "bloodsea independent"
 
 event "albatross joins free worlds"
 	planet "Albatross"
+		add attributes "ex-pirate"
 		description `Albatross is a cold ocean world orbiting a small, cold sun. The first settlers on Albatross were anarchists who believed that in a society free from unnatural laws and constraints, everyone would happily and freely work for the common good. The next settlers were pirates who believed that a planet free from laws and constraints would be a great base of operations.`
 		description `	Recently, the Free Worlds has liberated Albatross from their pirate oppressors, but many of the locals remain skeptical, seeing the Free Worlds as little different from the other protection rackets that have held sway over them.`
 	system "Nunki"
@@ -2904,4 +3044,20 @@ mission "Geminus Rebuilt"
 		has "main plot completed"
 	on offer
 		event "geminus rebuilt" 90
+		fail
+
+event "martini recovers"
+	planet "Martini"
+		description `Martini is a world of exotic beaches and perfect weather. The Republic's central bank and the galactic stock exchange were previously headquartered here, before a terrorist attack destroyed them and a large portion of the old capital city as well.`
+		description `	The new capital city is on the other side of the main continent, where lingering radiation will not affect the rest of the population. It is not so grand as the old capital, but its population has swelled from resettlement from the irradiated areas and it is quickly gaining the air of a major metropolis. The inhabitants, many of whom are survivors of the blast, have rallied behind a sort of 'will-do' attitude that only occurs after such a devastating and destructive event.`
+		spaceport `Currently, the newly-designated planetary spaceport does not possess the infrastructure to act as the main spaceport of Martini. The expansive temporary spaceport from the relief operation is still being used, and since then, permanent landing pads have been built, but there are now plans to demolish it and give the new planetary spaceport a desperately needed expansion.`
+		spaceport `	Martini's old spaceport still remains, as it was located just outside the blast zone and its deflector shields bore the brunt of the shockwave, but its towers partially collapsed in the days following the devastation. It now appears from a distance to be a few unevenly-levelled black spires rising before a backdrop of the smoke and remnants of a ruined city, no longer gleaming as it once did.`
+
+mission "Martini Recovers"
+	landing
+	invisible
+	to offer
+		has "main plot completed"
+	on offer
+		event "martini recovers" 45
 		fail

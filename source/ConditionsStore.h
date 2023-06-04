@@ -100,49 +100,6 @@ public:
 	};
 
 
-	// Input_iterator helper class to iterate over primary conditions.
-	// This can be used when saving primary conditions to savegames and/or
-	// for displaying some data based on primary conditions.
-	class PrimariesIterator {
-		using CondMapItType = std::map<std::string, ConditionEntry>::const_iterator;
-
-	public:
-		PrimariesIterator(CondMapItType it, CondMapItType endIt);
-
-		// Iterator traits
-		using iterator_category = std::input_iterator_tag;
-		using value_type = std::pair<const std::string, int64_t>;
-		using difference_type = void;
-		// TODO: this should point to something that actually works.
-		using pointer = const std::pair<const std::string, int64_t> *;
-		// TODO: this should be a reference.
-		using reference = std::pair<const std::string, int64_t>;
-
-		// Default input_iterator operations.
-		std::pair<std::string, int64_t> operator*() const;
-		const std::pair<std::string, int64_t> *operator->();
-		PrimariesIterator &operator++();
-		PrimariesIterator operator++(int);
-		bool operator==(const PrimariesIterator &rhs) const;
-		bool operator!=(const PrimariesIterator &rhs) const;
-
-
-	public:
-		// Helper function to ensure that the primary-conditions iterator points
-		// to a primary (value) condition or to the end-iterator value.
-		void MoveToValueCondition();
-
-
-	private:
-		// The operator->() requires a return value that is a pointer, but in this
-		// case there is no original pair-object to point to, so we generate a
-		// virtual object on the fly while iterating.
-		std::pair<std::string, int64_t> itVal;
-		CondMapItType condMapIt;
-		CondMapItType condMapEnd;
-	};
-
-
 
 public:
 	// Constructors to initialize this class.
@@ -170,17 +127,15 @@ public:
 	// Direct access to a specific condition (using the ConditionEntry as proxy).
 	ConditionEntry &operator[](const std::string &name);
 
-	// Direct (read-only) access to the stored primary conditions.
-	PrimariesIterator PrimariesBegin() const;
-	PrimariesIterator PrimariesEnd() const;
-	PrimariesIterator PrimariesLowerBound(const std::string &key) const;
-
 	// Builds providers for derived conditions based on prefix and name.
 	DerivedProvider &GetProviderPrefixed(const std::string &prefix);
 	DerivedProvider &GetProviderNamed(const std::string &name);
 
 	// Helper to completely remove all data and linked condition-providers from the store.
 	void Clear();
+
+	// Helper for testing; check how many primary conditions are registered.
+	int64_t PrimariesSize() const;
 
 
 private:
@@ -189,6 +144,7 @@ private:
 	// creation if required).
 	ConditionEntry *GetEntry(const std::string &name);
 	const ConditionEntry *GetEntry(const std::string &name) const;
+	bool VerifyProviderLocation(const std::string &name, DerivedProvider *provider) const;
 
 
 

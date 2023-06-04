@@ -1,0 +1,135 @@
+{
+	"dataRoots": ["data/**"],
+	"rules": {
+		"indentation": "\t",
+		"maxIndentationIncrease": 1,
+		"indentEmptyLines": "either",
+		"forceUnixLineSeparator": true,
+		"trailingEmptyLine": "always",
+		"checkCopyright": true,
+		"copyrightBlacklist": [],
+		"copyrightFormats": [
+			{
+				"holder": "^# (Based on earlier text copyright|Copyright) \\(c\\) \\d{4}(?:(?:-|, )\\d{4})? (by )?.+$",
+				"notice": [
+					"#",
+					"# Endless Sky is free software: you can redistribute it and/or modify it under the",
+					"# terms of the GNU General Public License as published by the Free Software",
+					"# Foundation, either version 3 of the License, or \\(at your option\\) any later version\\.",
+					"#",
+					"# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY",
+					"# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A",
+					"# PARTICULAR PURPOSE\\. See the GNU General Public License for more details\\.",
+					"#",
+					"# You should have received a copy of the GNU General Public License along with",
+					"# this program\\. If not, see <https\\://www\\.gnu\\.org/licenses/>\\.",
+					""
+				]
+			}
+		],
+		"regexChecks": [
+			{
+				"excludedNodes": [],
+				"checks": [
+					{
+						"description": "multiple consecutive space characters",
+						"regex": "(?<!^tip .*)([^ ])  +([^# ])",
+						"correction": {
+							"replaceWith": "\\1 \\2"
+						}
+					},
+					{
+						"description": "mixed indentation inside text",
+						"regex": "([\"'`]\t+) +",
+						"correction":{
+							"replaceWith": "\\1"
+						}
+					},
+					{
+						"description": "extra space before punctuation",
+						"regex": "(?<!\\\\.*)\\s+([:,.?!;][^\\s]*)",
+						"except":["\\.[0-9]*$", "!="],
+						"correction": {
+							"replaceWith": "\\1"
+						}
+					},
+					{
+						"description": "missing space after punctuation",
+						"regex": "([^\\s]*[:,.?!;]+)(?!(?:[ \"'`\\)\\]:,.?!;<]|$))([^\\s\"`'.!?]*)",
+						"except": ["[.,][0-9]", "https?://", "[A-Z]\\.", "\\.{3}[\\w\\(\\[\"'`]", "[><]\\?=", "^[\\(\\[]?([\\w-]+\\.)*[\\w-]*[\\)\\]]?$", "^[\"`']*!"],
+						"correction": {
+							"replaceWith": "\\1 \\2"
+						}
+					},
+					{
+						"description": "unnecessarily split word (space ship -> spaceship, an other -> another)",
+						"regex": "(?<![^\\s])(space|an) (ship|other)(?![^\\s])",
+						"except": ["^(?!(space ship|an other)$)"],
+						"correction": {
+							"replaceWith": "\\1\\2"
+						}
+					}
+				]
+			},
+			{
+				"excludedNodes": [],
+				"excludeComments": false,
+				"excludeKeywords": false,
+				"checks":[
+					{
+						"description": "trailing whitespace",
+						"regex": "([^\\s])\\s+$",
+						"correction": {
+							"replaceWith": "\\1"
+						}
+					},
+					{
+						"description": "non-ASCII apostrophe",
+						"regex": "[’‘]",
+						"correction": {
+							"replaceWith": "'"
+						}
+					},
+					{
+						"description": "non-ASCII quotation mark",
+						"regex": "[“”]",
+						"correction": {
+							"replaceWith": "\""
+						}
+					},
+					{
+						"description": "non-ASCII character",
+						"regex": "[^\\x00-\\x7F]+"
+					},
+					{
+						"description": "missing space before comment",
+						"regex": "(^\\s*#+)([^\\s#])",
+						"isError": false,
+						"correction": {
+							"replaceWith": "\\1 \\2"
+						}
+					}
+				]
+			},
+			{
+				"excludedNodes": ["^word$", "^replace$"],
+				"checks": [
+					{
+						"description": "whitespace before end of text",
+						"regex": "([^\"` ]+)\\s+([\"`'])$",
+						"correction": {
+							"replaceWith": "\\1\\2"
+						}
+					},
+					{
+						"description": "whitespace before beginning of text",
+						"regex": "^([^`\"]+[\"`]+)(?<!^tip .*) +(?! *[\"`]$)",
+						"correction": {
+							"replaceWith": "\\1"
+						}
+					}
+				]
+			}
+		]
+	}
+}

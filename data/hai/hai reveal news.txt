@@ -1,0 +1,638 @@
+# Copyright (c) 2017 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+news "alien paranoia: generic citizen"
+	to show
+		has "main plot completed"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not system Deneb
+	name
+		word
+			"Concerned citizen"
+			"Reporter"
+			"Merchant captain"
+			"Worried parent"
+			"Bystander"
+			"Pug war survivor"
+			"Conspiracy theorist"
+	message
+		word
+			`"`
+		phrase
+			"paranoia: generic alien fear"
+		word
+			`"`
+		
+news "Pug paranoia: generic citizen"
+	to show
+		has "main plot completed"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not system Deneb
+	name
+		word
+			"Concerned citizen"
+			"Reporter"
+			"Merchant captain"
+			"Worried parent"
+			"Bystander"
+			"Pug war survivor"
+			"Conspiracy theorist"
+	message
+		word
+			`"`
+		word
+			"I never realized how vulnerable we were until the Pug attacked Earth."
+			"I always suspected there were more aliens than the Quarg, but I never thought they would be so hostile."
+			"I hear the Pug were so frail we could squish them. How can a race so weak get such powerful ships?"
+			"The Pug went easy on us, if you ask me. I bet they have ships far more powerful, hiding among the stars. Why didn't they use them?"
+			"Did you hear about the shattered ringworld? How did the Pug destroy a structure so strong, and why?"
+			"Why didn't our governments discover the Pug before they got so strong?"
+			"Why didn't the Pug attack earlier?"
+			"I wonder if the Quarg know about the Pug?"
+			"Are the Pug really evil, or do they have some kind of plan for us?"
+			"I thought it was just humans and Quarg in this galaxy, until we met the Pug. How many other alien races are out there? Are we ready for them?"
+			"Do the Pug even see us as people? They act like we're just stories in a big game of theirs."
+			"I bet the Pug caused the Ten Plagues. And World War II, and the Great Chinese Famine, and the Yangtze river floods, and the Black Plague, and the Minoan Eruption, and the Alpha Wars, and the fall of the Tower of Babel, and..."
+		word
+			`"`
+		
+news "Quarg paranoia: generic citizen"
+	to show
+		has "main plot completed"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		near Tarazed 0 10
+		not system Deneb
+	name
+		word
+			"Concerned citizen"
+			"Reporter"
+			"Merchant captain"
+			"Worried parent"
+			"Bystander"
+			"Pug war survivor"
+			"Conspiracy theorist"
+	message
+		word
+			`"`
+		word
+			"Did you hear about the smashed ringworld? I bet that came from a Pug-Quarg war. If the Quarg can't beat the Pug, why did we win our war?"
+			"Accursed Quarg. I never trust anyone twice my size. Yes, I'm a meter and a half tall. Stop laughing."
+			"The Quarg always treat us like little kids when we visit. That's so rude."
+			"I never trusted those Quarg with their strange side-blinking eyes, and I never will!"
+			"I wonder if the Quarg have been manipulating our society for millennia. Or was it the Pug? Or another alien race? Biblical plagues? World War II? How many atrocities did they cause?"
+			"I'm never going to a Quarg planet again. I swear they read your mind and plant nightmares within. I keep dreaming of mighty space-cockroaches, reptiles, and big robot-ships. Owls! Owls everywhere!"
+		word
+			`"`
+
+news "Korath ship sightings: generic citizen"
+	to show
+		has "main plot completed"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes core
+		not system Deneb
+	name
+		word
+			"Concerned citizen"
+			"Reporter"
+			"Merchant captain"
+			"Worried parent"
+			"Bystander"
+			"Pug war survivor"
+			"Conspiracy theorist"
+	message
+		word
+			`"`
+		word
+			"I saw a video of a big I-shaped ship shooting Syndicate vessels. I wonder if it was faked?"
+			"They say there are strange vessels at the edge of the core which keep attacking human ships. Do you think they're Pug?"
+			"A merchant was flying me back from one of the frontier core worlds, and we were attacked by a ship as big as a carrier. The engines were so hot they glowed."
+			"Nobody believes me, but I think there is another alien race out in the far east near the core."
+			"I keep having nightmares of reptiles in fiery ships. Why won't my nightmares end? Please make my nightmares end! Why are you walking away?"
+			"The local maps say there are planets east of the core worlds. Do you think there are aliens there? Do they visit us?"
+			"I went on a school trip long ago, out to Canyon. One of the school ships' escorts was blown out of the sky by a ship shooting little yellow dots. We barely escaped."
+		word
+			`"`
+
+news "Hai sightings: generic citizen"
+	to show
+		has "main plot completed"
+		not "Hai Reveal [D01] Cleanup: done"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		near Cardax 12
+	name
+		word
+			"Concerned citizen"
+			"Reporter"
+			"Merchant captain"
+			"Worried parent"
+			"Bystander"
+			"Pug war survivor"
+			"Conspiracy theorist"
+	message
+		word
+			`"`
+		word
+			"I thought I saw a squirrel jumping in a tree, until I looked harder. It was the size of a person! And it was eating acorns! I was going to call the police but I was so mesmerized by its cuteness that I forgot."
+			"On my way home from a trip five systems away, I saw this big teardrop-shaped ship with castles on it. It was huge! Bigger than a Navy Cruiser. I bet it was an alien ship. It seemed friendly though."
+			"I saw a man walking down the street... or I thought it was a man, until it walked past a transformer. The man flickered; it was a hologram covering some kind of fuzzy creature."
+			"I saw Nuclear Martini playing at a concert on Prime, and I swear the hairy drummer is some kind of giant squirrel."
+			"There's these game conventions up in the paradise worlds, and I see a lot of short kids wearing full-body squirrel outfits. I'm starting to wonder if they're really aliens."
+			"There was a crashed ship near me, and I heard rumors of some crazy squirrel inside. The police cleaned it up really quick and now all we see is some scorch marks. The authorities won't say anything."
+			"The pickled acorns they sell in the store taste so good they can't possibly be of human manufacture."
+		word
+			`"`
+
+news "Deneb scientist"
+	to show
+		has "main plot completed"
+	location
+		system Deneb
+	name
+		word
+			"Astrophysicist"
+			"Materials science researcher"
+			"Research engineer"
+			"Anthropologist"
+			"Student"
+			"Xenoarchaeologist"
+			"Historian"
+			"Cryptozoologist"
+	message
+		word
+			`"`
+		word
+			"We assumed this planet was always inhabitable, but it turns out it had a dangerously-toxic atmosphere a while ago. The Pug made it fertile again, and according to our studies, they did it in under 40 years."
+			"The Pug left the strangest objects behind for us to study. It's like solving a thousand educational puzzles."
+			"Studying this planet will accelerate human science by decades. Maybe centuries. I think the Pug may have done us more good than harm."
+			"I used to think the Pug were evil after all they did, but look at the consequences of their actions. We're at peace, we allied together as a single species, and we have endless technology to study."
+			"I found the strangest holographic art piece. Both the technology and aesthetics were elegant. I saw no transmitters; they must be using nanotransmitters or something. It's amazing!"
+			"We make a major breakthrough every day on this planet."
+			"I think we're starting to really understand the principles behind interstellar travel now, at a far deeper level than we ever thought possible."
+			"My grandmother came out of retirement just to study this planet. She's terminally ill, but she's sworn to work here until the day she dies. These discoveries are that important to her."
+			"I'm skipping my honeymoon to research this city. I hope I don't end up divorced."
+			"We had to add four new elements to the periodic table in the first week we studied this place."
+			"There's a building near here where space literally folds in upon itself and gravity goes in multiple directions. You can walk in one direction and come back the way you came in, up-side-down. We have a nurse station outside for the inevitable concussions."
+			"It's odd, but some of the buildings near here bear a striking resemblance to ancient Minoan architecture. We also found tablets with Sanskrit writing and samples of ancient cave paintings. How long have the Pug been manipulating us?"
+			"We're still studying what lies beyond the wormhole. There's a never-ending slue of discoveries from the Quarg ruins that are almost as valuable as what we found on this planet."
+			"There are residual space-time distortions at the Quarg ringworld past the wormhole. We suspect it was moved in minutes. The energy required would be more than the total energy ever produced by the human race."
+			"A ringworld is such a stupid idea. If you break clean through one piece, the centrifugal force tears the whole ring apart. If the Quarg were smart, they would've made a Dyson swarm instead."
+		word
+			`"`
+
+news "pirate: smug about Pug"
+	to show
+		has "main plot completed"
+	location
+		government "Pirate"
+	name
+		word
+			"Pirate"
+	message
+		word
+			`"`
+		word
+			"When I saw the Pug attacking Earth, I laughed so hard I almost cried. Smug navy keeps shooting up our ships, and now it's their turn to die!"
+			"Them Syndicate was torn in half by the Pug. Serves them right, I say. They make it too hard to earn a dishonest living around here."
+			"It just ain't right. The Pug should've smashed up Earth. They're anarchists like us, you know? Sneak in, blow up things, demand obedience. Why did they stop? Just ain't right."
+			"When I was little, and our gang was fighting, my gang's leader used to threaten to kill us so we'd unite against him. Then he smacked us around until we did what he said. I bet that's what the Pug did. It worked, too."
+			"Psychological manipulation, that's all it is. Any good anarchist will tell you that's what the Pug are all about. Murder, death, kill... to trick you into doing what THEY want."
+			"I wish the Pug hadn't stopped the Syndicate from nuking Earth. Can you imagine the collapse of the galactic Republic? Galactic anarchy! It's how the galaxy should be."
+		word
+			`"`
+
+news "pirate: korath collector"
+	to show
+		has "main plot completed"
+	location
+		attributes "core pirate"
+	name
+		word
+			"Pirate"
+	message
+		word
+			`"`
+		word
+			"We flew near Stormhold and saw this big ship that looked like a huge letter 'I' and it destroyed half our fleet. We nearly blew it up, but it disappeared in a bunch of sparkles."
+			"My pirate gang has been hunting these big ships near Stormhold. They usually blow up, but occasionally we can pillage some nice stuff. It sells for a fortune on the black market."
+			"The Syndicate is always buying the stuff we pillage from those strange ships near Stormhold."
+			"We picked up some nice goods off of a strange alien ship near Stormhold. My captain almost installed it on our ship, but we're afraid the little repair bots will eat us alive."
+			"The engines we pillaged from those weird ships near Stormhold nearly melted our ship. We switched back to those green engines from the Deep after that."
+			"Ever since we installed those strange red alien turrets, no missile has been able to get anywhere near us. We lost five ships getting it, but we've captured five more to replace them!"
+			"The power generator we pillaged off of that alien ship near Stormhold is larger than some of our interceptors. It melted through the hull when we tried to install it."
+			"I hear a rich pirate gang to the north tried to capture one of those big alien ships near Stormhold. They packed a Bactrian with four hundred teenagers and nerve gas. I don't know if they won the fight. Waste of slaves if you ask me."
+			"My captain installed two of those big alien turrets that shoot yellow sparks. Now we can throw Syndicate Wasps half way across the star system."
+			"We captured one of those alien fighters near Stormhold. I'm not sure what the creature was that we found inside, but I can tell you it was delicious. Our ship's chef really knows his trade."
+			"From an alien ship near Stormhold, my crew pillaged one of the... sparkle drive systems? We jumped past human space and regretted it quickly. I sold the drive to the Syndicate for a hefty sum. Let them deal with the insanity that lies beyond."
+			"I still have nightmares about my time at Durax. I'm never going back there."
+		word
+			`"`
+
+phrase "paranoia: generic alien fear"
+	phrase
+		"paranoia: band members are aliens"
+		"paranoia: media creators are aliens"
+		"paranoia: people in my life are aliens"
+		"paranoia: people in power are aliens"
+
+phrase "somebody suspects that"
+	word
+		"I suspect that"
+		"I'm positive that"
+		"People say"
+		"People say that"
+		"They say"
+		"I hear rumors that"
+		"I wouldn't be surprised if"
+		"I can't help feeling like"
+		"There's a good chance that"
+		"It's definitely possible that"
+		"I'm pretty sure"
+		"Everyone I know is certain that"
+		"My crazy uncle is always jabbering on about how"
+		"My crazy mother-in-law is always jabbering on about how"
+		"My last girlfriend wouldn't stop ranting about how she thinks"
+		"My last boyfriend wouldn't stop ranting about how he thinks"
+		"I can't believe how some people could think that"
+		"You'd have to be a real dope to believe that"
+		"I find myself believing that"
+		"Nobody believes me when I tell them about how"
+		"I think"
+		"I really do think"
+		"I believe that"
+		"I really do believe that"
+		"I'm sure that"
+		"Everyone knows"
+		"Everyone knows that"
+		"Everybody knows"
+		"Everybody knows that"
+		"I wish more people realized"
+		"I wish more people realized that"
+		"My nutty cousin claims that"
+		"The voices in my head say"
+		"My invisible friend knows that"
+
+phrase "paranoia: people in power are aliens"
+	phrase
+		"somebody suspects that"
+	word
+		" "
+	word
+		"the politicians"
+		"government officials"
+		"members of Parliament"
+		"people on the Paradise worlds"
+		"people on the rich worlds"
+		"those weird folks from the Deep"
+		"corporate executives"
+		"the Republic's intelligence operatives"
+		"bank managers"
+		"Syndicate executives"
+		"most planetary governors"
+		"the executives of the Tarazed corporation"
+		"the executives of the Lionheart corporation"
+		"the executives of the Megaparsec corporation"
+		"the executives of the Lovelace corporation"
+	word
+		" are actually aliens."
+		" are aliens in disguise."
+		" are just pretending to be human."
+		" are aliens."
+
+phrase "paranoia: band members are aliens"
+	word
+		"I watched the video of"
+		"I listened to"
+		"I just got tickets to see"
+		"I just got back from seeing"
+		"I'm just coming back from seeing"
+		"I just heard"
+		"I just saw"
+		"I had a backstage pass to"
+	word
+		" "
+	phrase
+		"band"
+	word
+		" "
+	word
+		"playing a concert"
+		"doing a show"
+		"in concert"
+		"at their concert"
+		"playing a benefit concert"
+		"live"
+		"on tour"
+		"at a live concert"
+		"playing a gig"
+		"live in concert"
+	word
+		" at Tarazed Stadium"
+		" at the amphitheater"
+		" at a concert hall"
+		" in a nightclub"
+		" at Betelgeuse Stadium"
+		" at Lionheart Arena"
+		" at the Grange"
+		" at a resort"
+		" at Canyonland Park"
+		" in a stylin' party-hall"
+		""
+	word
+		", but after what I heard"
+		", but after what I've seen"
+		", and now that I've really looked at them"
+	word
+		" I'm sure they're"
+		" I know they're"
+		" it's clear to me now they're"
+		" I know they have to be"
+	word
+		" aliens"
+	word
+		" in disguise."
+		" wearing holograms."
+		" hiding among us."
+		" pretending to be human."
+
+phrase "paranoia: media creators are aliens"
+	word
+		"I checked out the latest installment of "
+		"I got hooked on "
+		"I was catching up on "
+		"I went to a fan convention for "
+	word
+		"'"
+	phrase
+		"media name"
+	word
+		"'"
+	word
+		" but now I'm sure that"
+		" but I think"
+		" and I know now that"
+	word
+		" the one of the actors is"
+		" the director is"
+		" the lead actor is"
+		" the set designer is"
+		" the producer is"
+	word
+		" an alien"
+		" an alien"
+		" some kind of alien"
+	word
+		" in disguise."
+		" wearing holograms."
+		" hiding among us."
+		" pretending to be human."
+
+phrase "paranoia: people in my life are aliens"
+	phrase
+		"My (person in my life) must be"
+		"The (person in my life) near me must be"
+	word
+		" an alien because "
+	phrase
+		"(reason why someone is an alien)"
+	word
+		"."
+
+phrase "(reason why someone is an alien)"
+	word
+		"someone saw them"
+		"I saw them"
+	word
+		" sneeze non-stop for an hour"
+		" wearing dark sunglasses in a movie theater"
+		" eating a piece of metal"
+		" speaking in their dreams"
+		" speaking some strange language"
+		" moving too quickly for a human"
+		" lifting a one-ton crate"
+		" reciting 2000 digits of pi"
+		" using a full-body hologram"
+
+phrase "The (person in my life) near me must be"
+	word
+		"The "
+	word
+		"tailor"
+		"gardener"
+		"lawyer"
+		"neighbor"
+		"proctologist"
+		"fortune teller"
+		"veterinarian"
+		"masseuse"
+		"chiropractor"
+		"janitor"
+		"neurologist"
+		"social worker"
+		"psychologist"
+		"psychiatrist"
+		"therapist"
+	word
+		" near me"
+		" next door"
+		" across the street"
+		" down the block"
+		" in the next apartment"
+	word
+		" must be"
+		" is"
+		" has to be"
+
+phrase "My (person in my life) must be"
+	word
+		"My "
+	word
+		"landlord"
+		"boss"
+		"tailor"
+		"gardener"
+		"friend"
+		"lawyer"
+		"in-law"
+		"neighbor"
+		"proctologist"
+		"stepbrother"
+		"evil stepmother"
+		"fortune teller"
+		"veterinarian"
+		"masseuse"
+		"chiropractor"
+		"janitor"
+		"neurologist"
+		"social worker"
+		"psychologist"
+		"psychiatrist"
+		"therapist"
+		"beau"
+	word
+		" is"
+		" must be"
+		" could be"
+
+# A person who provides you a service, is a major part of your life,
+# or lives near you. Must not be a genetic relative.
+phrase "person you could suspect to be aliens"
+	word
+		"landlord"
+		"boss"
+		"tailor"
+		"gardener"
+		"friend"
+		"lawyer"
+		"in-law"
+		"neighbor"
+		"proctologist"
+		"stepbrother"
+		"evil stepmother"
+		"fortune teller"
+		"veterinarian"
+		"masseuse"
+		"chiropractor"
+		"janitor"
+		"neurologist"
+		"social worker"
+		"psychologist"
+		"psychiatrist"
+		"therapist"
+		"beau"
+		"dog"
+		"cat"
+
+
+
+news "Hai video: human response"
+	to show
+		has "hr: secret leaks"
+		not "event: news: hai video clip debunked"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Pirate"
+	name
+		word
+			"Concerned citizen"
+			"Reporter"
+			"Merchant captain"
+			"Worried parent"
+			"Bystander"
+			"Pug war survivor"
+			"Conspiracy theorist"
+	message
+		word
+			`"`
+		word
+			"Did you see that video of the alien ships fighting? I heard that my sister's best friend's husband saw a bunch of those ships near Cardax."
+			"I saw that video of the alien ships fighting, and it looked a lot like another ship I saw one time. It was a teardrop-shaped luxury liner. The captain called it a Centipede, but wouldn't say where it came from."
+			"That ship video was amazing. I saw those ships in a game called, 'Boundless Frontiers.' The 'Death-Squirrel' and 'Hippie Love Squirrel' factions both use them in a non-stop battle above the planet 'Skyflame.' It's clear some fan is pulling a giant prank."
+			"Did you see that alien ship video? Whoever those aliens are, I hope they sell those huge shield-shaped ships to us. We could really use those to protect our merchant caravans near pirate space."
+			"I hope the aliens in that video don't invade us. We've had enough alien trouble already."
+			"That alien ship video was so fake. I could see the strings the ship models were flying along. Sloppy job."
+			"I know a fake video when I see one. There's enough real alien problems in the galaxy to worry about without thinking about a FAKE group of aliens."
+			"Did you see the alien ship fight video? I swear, I was using Blender version 17.47, and I found 3D models of those ships made back in the 21st century. Am I losing my mind?"
+		word
+			`"`
+
+
+
+news "Hai roleplay station: human response"
+	to show
+		has "event: news: hai video clip debunked"
+		not "Hai Reveal [D01] Cleanup: done"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Pirate"
+	name
+		word
+			"Concerned citizen"
+			"Reporter"
+			"Merchant captain"
+			"Worried parent"
+			"Bystander"
+			"Pug war survivor"
+			"Conspiracy theorist"
+	message
+		word
+			`"`
+		word
+			"I visited the new Syndicate station at Ultima Thule. It's hilarious. They have alien-looking architecture and a huge ad banner."
+			"It turns out the alien video was just a marketing gimmick for the new Syndicate station."
+			"We're supposed to believe this absurd story about the alien ships past Ultima Thule? There's no wormhole there. It was all a Syndicate marketing gimmick."
+			"I don't like how the Syndicate tricked us with that fake alien video as a silly marketing gimmick, but at least they're not trying to nuke Earth or destroy starlanes."
+		word
+			`"`
+
+
+
+news "Hai news: generic citizen"
+	to show
+		has "Hai Reveal [D01] Cleanup: done"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	name
+		word
+			"Reporter"
+			"Citizen"
+			"Parent"
+	message
+		word
+			`"`
+		word
+			"Did you try the Hai beer made of fermented nuts? It's amazing."
+			"I always knew those pickled acorns were too good to be of human manufacture."
+			"My daughter saw a Hai on the news and asked for one as a pet. I've been trying to explain that they're people, but she's too young to understand. All she sees is their cuteness."
+			"I wonder if Hai have pirates of their own, like we do?"
+			"I hear Hai defensive technology is amazing. I hope we start using it on merchant vessels. We'll lose much fewer ships to pirates."
+			"Did you hear there's a completed Quarg ringworld in Hai space? Can you imagine the size of such a thing? It must have taken a thousand years to build."
+			"How did the Hai hide themselves from us for so long? Did our government help them?"
+			"I love the Hai. They're not psychotic like the Pug or anti-social like the Quarg."
+			"I'm in a joint Hai-human sewing club. We send clothing to each other. They look so cute in mittens."
+			"The Hai look like cute little stuffed animals, until you see their fencing matches. I bet a Hai could out-maneuver an Alpha if they had to."
+			"Hopefully meeting a friendly and peaceful alien species will send our society's development ahead a few years. Between this and the Pug technology discoveries, I think we've gotten very lucky."
+			"I hear the Hai let pirates live in their territory, as part of reformation programs. That may not be the wisest decision they've ever made, but it's certainly a compassionate one."
+			"I hope nobody is smuggling Hai technology to the pirates. I don't want to think of what would happen if pirates got their hands on that stuff."
+		word
+			`"`
+
+
+# Visual suggestion: a bit quirky or weird; expression is content, confident, or stoic
+news "Hai news: merchant captain"
+	to show
+		has "Hai Reveal [D01] Cleanup: done"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	name
+		word
+			"Merchant captain"
+	message
+		word
+			`"`
+		word
+			"I wonder if Hai have pirates of their own, like we do?"
+			"I hear Hai defensive technology is amazing. I'm going to stock up on shields and anti-missile turrets when I get there. Hopefully I'll lose fewer ships when I fly near pirate space."
+			"Ever since I got my hands on a Shield Beetle, I've taken up bounty hunting. Replace those wimpy Hai weapons with some particle or Plasma Cannons, and the ships are unstoppable."
+			"I hear the Hai let pirates live in their territory, as part of reformation programs. That may not be the wisest decision they've ever made, but it's certainly a compassionate one."
+			"I hope nobody is smuggling Hai technology to the pirates. I don't want to think of what would happen if pirates got their hands on that stuff."
+			"I've flown through Cardax many times. How did I not notice there was a wormhole just a few systems away?"
+			"I've made a fortune flying acorn cookies back here from Hai space. It's amazing how many people love them."
+			"Last time I flew to Hai space, I visited the Quarg ringworld. If you fly to the inner edge of the ring and look out, the panorama is awe-inspiring."
+			"The alloys Hai use in their ships are way beyond our technology. They're twice as strong with half the weight. No wonder their ships are so fast."
+			"Don't go too far north in Hai space. They have their own pirates, and they're much more powerful than anything we're used to in human space."
+			"I hear Hai space wasn't peaceful a few centuries ago when some reptilian aliens were raiding the place. I wonder where they went?"
+		word
+			`"`

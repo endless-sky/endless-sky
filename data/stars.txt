@@ -160,10 +160,10 @@ star "star/g-supergiant"
 	wind 2.9
 star "star/k-supergiant"
 	power 1.8
-	wind 2
+	wind 3
 star "star/m-supergiant"
 	power 1.6
-	wind 2
+	wind 3.1
 
 # Special stars.
 star "star/carbon"
@@ -181,6 +181,18 @@ star "star/nova-small"
 star "star/wr"
 	power 0.4
 	wind 4
+star "star/protostar-orange"
+	power 0.5
+	wind 3
+star "star/protostar-yellow"
+	power 0.4
+	wind 5
+
+# Rogue planet with unusual properties
+star "planet/rogue-radiating"
+	power .2
+	wind .6
+
 star "star/neutron"
 	power 4
 	wind 0.4

@@ -17,7 +17,11 @@ mission "Kestrel Testing"
 	source "Wayfarer"
 	waypoint "Umbral"
 	to offer
-		"combat rating" > 8000
+		or
+			"combat rating" > 8000
+			and
+				"combat rating" > 2000
+				has "global: unlocked kestrel"
 	
 	on offer
 		conversation
@@ -60,6 +64,7 @@ mission "Kestrel Testing"
 	
 	on complete
 		payment 2000000
+		"global: unlocked kestrel" ++
 		conversation
 			`Atinoda meets up with you soon after you land. "I see that you survived," he says. "Was it a difficult fight?"`
 			choice
@@ -86,19 +91,19 @@ mission "Kestrel Testing"
 					goto shields
 			
 			label weapons
-			apply
+			action
 				set "kestrel: more weapons"
 			`	"Very well," he says, "we'll see if we can expand the weapon capacity so that even the biggest weapons will fit."`
 				goto name
 			
 			label engines
-			apply
+			action
 				set "kestrel: more engines"
 			`	"Very well," he says, "we'll see if we can expand the engine capacity enough that even the biggest engines will fit."`
 				goto name
 			
 			label shields
-			apply
+			action
 				set "kestrel: more shields"
 			`	"Okay," he says, "we'll focus on strengthening the hull and the shield matrix."`
 				goto name
@@ -340,7 +345,9 @@ ship "Kestrel"
 	turret -20.5 9 "Heavy Laser Turret"
 	turret 20.5 9 "Heavy Laser Turret"
 	bay "Fighter" -46 106 under
+		"launch effect" "human internal"
 	bay "Fighter" 46 106 under
+		"launch effect" "human internal"
 	explode "small explosion" 25
 	explode "medium explosion" 35
 	explode "large explosion" 45

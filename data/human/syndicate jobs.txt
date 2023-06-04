@@ -16,12 +16,12 @@ mission "Transport executive to <planet>"
 	job
 	repeat
 	deadline
-	description "A busy executive needs immediate transportation to attend an urgent meeting on <destination> by <date>. Payment is <payment>."
+	description "A Syndicate executive needs immediate yet comfortable transportation to attend an urgent meeting on <destination> by <date>. Payment is <payment>."
 	passengers 1
 	to offer
 		random < 20
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		has "outfit (installed): Luxury Accommodations"
 	source
 		government "Syndicate"
 	destination
@@ -32,24 +32,24 @@ mission "Transport executive to <planet>"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 5000 250
-		dialog "The executive rushes off your ship without even a goodbye, fancy briefcase in hand. You collect your payment of <payment>."
+		dialog "The Syndicate executive rushes off your ship without even a goodbye, fancy briefcase in hand. You collect your payment of <payment>."
 
 
 mission "Corporate retreat from <origin>"
 	job
 	repeat
 	deadline
-	description "A team of <bunks> engineers needs transport to a corporate retreat on the exotic planet of <stopovers>, after which they require return transport back to <origin> by <date>. Payment is <payment>."
+	description "A team of <bunks> engineers needs transport to a corporate retreat on <stopovers>, after which they must return back to <origin> by <date>. They want a comfortable journey, so your ship must be outfitted suitably. Payment is <payment>."
 	passengers 7 18
 	to offer
 		random < 20
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		has "outfit (installed): Luxury Accommodations"
 	source
 		government "Syndicate"
 	stopover
 		attributes "quarg" "volcanic" "frontier" "north" "south"
-		not attributes "station"
+		not attributes "station" "military"
 		distance 3 12
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg"
 	on stopover
@@ -91,7 +91,7 @@ mission "Document delivery to <planet>"
 	job
 	repeat
 	description "Deliver <tons> of ordinary documents to <destination>. Payment is <payment>."
-	cargo "Confidential documents" 6 12
+	cargo "Confidential documents" 1 16 .69
 	to offer
 		random < 10
 	source
@@ -111,7 +111,7 @@ mission "Waste recycling on <planet>"
 	job
 	repeat
 	description "Syndicated Systems is looking for intrepid captains willing to make a difference as part of our new Green Initiative! Deliver <tons> of recyclable <commodity> to our special facility on <destination>. Payment is <payment>."
-	cargo "Garbage" 6 40
+	cargo "Garbage" 5 2 .1
 	to offer
 		random < 20
 	source
@@ -156,7 +156,7 @@ mission "Rush equipment Delivery"
 	repeat
 	deadline
 	description "Syndicate techs on <destination> need a rush shipment of <tons> of specialized <commodity> by <date>. Payment is <payment>."
-	cargo "Equipment" 5 20
+	cargo "Equipment" 5 2 .15
 	to offer
 		random < 20
 	source
@@ -202,9 +202,9 @@ mission "Syndicate target practice [0]"
 		dialog "The robotic target ship has been destroyed. You are hailed by an angry Syndicate official who fines you <payment> and warns you that further mistakes of this nature may remove you from eligibility for these jobs."
 		"destroyed Syndicate target ship" ++
 		"reputation: Syndicate" --
-		payment -40000
+		fine 160000
 	on complete
-		payment 20000
+		payment 80000
 		dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
 
 
@@ -221,7 +221,7 @@ mission "Syndicate target practice [1]"
 	to offer
 		random < 20
 		"combat rating" > 50
-		"combat rating" < 200
+		"combat rating" < 250
 		"destroyed Syndicate target ship" < 3
 	npc save disable "scan cargo"
 		government "Test Dummy"
@@ -238,9 +238,9 @@ mission "Syndicate target practice [1]"
 		dialog "The robotic target ship has been destroyed. You are hailed by an angry Syndicate official who fines you <payment> and warns you that further mistakes of this nature may remove you from eligibility for these jobs."
 		"destroyed Syndicate target ship" ++
 		"reputation: Syndicate" --
-		payment -80000
+		fine 300000
 	on complete
-		payment 40000
+		payment 150000
 		dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
 
 
@@ -256,7 +256,7 @@ mission "Syndicate target practice [2]"
 		government Syndicate
 	to offer
 		random < 20
-		"combat rating" > 150
+		"combat rating" > 200
 		"combat rating" < 1000
 		"destroyed Syndicate target ship" < 3
 	npc save disable "scan cargo"
@@ -274,9 +274,9 @@ mission "Syndicate target practice [2]"
 		dialog "The robotic target ship has been destroyed. You are hailed by an angry Syndicate official who fines you <payment> and warns you that further mistakes of this nature may remove you from eligibility for these jobs."
 		"destroyed Syndicate target ship" ++
 		"reputation: Syndicate" --
-		payment -120000
+		fine 520000
 	on complete
-		payment 60000
+		payment 260000
 		dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
 
 
@@ -309,9 +309,9 @@ mission "Syndicate target practice [3]"
 		dialog "The robotic target ship has been destroyed. You are hailed by an angry Syndicate official who fines you <payment> and warns you that further mistakes of this nature may remove you from eligibility for these jobs."
 		"destroyed Syndicate target ship" ++
 		"reputation: Syndicate" --
-		payment -200000
+		fine 800000
 	on complete
-		payment 100000
+		payment 400000
 		dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
 
 ship "Berserker" "Berserker Test Dummy"
@@ -339,7 +339,7 @@ mission "Syndicate Prisoner Transport [0]"
 	name "Transport executive to house arrest"
 	job
 	repeat
-	description `Transport an indicted white-collar criminal with his assistants, lawyers, and collection of <cargo> to <planet>, where he will await trial under "house arrest." Payment is <payment>.`
+	description `Transport an indicted white-collar criminal with his assistants, lawyers, and collection of <cargo> to <planet>, where he will await trial under "house arrest." He requires a suitably comfortable ship for the journey. Payment is <payment>.`
 	cargo "Luxury Goods" 1 10
 	passengers 5 12
 	source
@@ -352,8 +352,8 @@ mission "Syndicate Prisoner Transport [0]"
 		attributes "frontier"
 	to offer
 		random < 5
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		has "outfit (installed): Luxury Accommodations"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
@@ -365,7 +365,7 @@ mission "Syndicate Prisoner Transport [1]"
 	name "Transport convicted saboteur"
 	job
 	repeat
-	description `Transport a convicted industrial saboteur to <planet> for their sentence. Payment is <payment>.`
+	description `Transport a convicted industrial saboteur to <planet> for their sentence. They must be held in suitable facilities made for the transfer of criminals. Payment is <payment>.`
 	passengers 1
 	source
 		government "Syndicate"
@@ -376,8 +376,8 @@ mission "Syndicate Prisoner Transport [1]"
 		attributes "military"
 	to offer
 		random < 15
-	on offer
-		require "Brig"
+	to accept
+		has "outfit (installed): Brig"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -389,7 +389,7 @@ mission "Syndicate Prisoner Transport [2]"
 	name "Transport convicted corporate spies"
 	job
 	repeat
-	description `Transport a group of convicted corporate spies to <planet> for their sentences. Payment is <payment>.`
+	description `Transport a group of convicted corporate spies to <planet> for their sentences. They must be held in suitable facilities made for the transfer of criminals. Payment is <payment>.`
 	passengers 3 5
 	source
 		government "Syndicate"
@@ -400,8 +400,8 @@ mission "Syndicate Prisoner Transport [2]"
 		attributes "military"
 	to offer
 		random < 15
-	on offer
-		require "Brig"
+	to accept
+		has "outfit (installed): Brig"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -413,7 +413,7 @@ mission "Syndicate Prisoner Transport [3]"
 	name "Transport detained protesters"
 	job
 	repeat
-	description `Transport a group of detained protesters to <planet> where they will await trial for inciting a riot. Payment is <payment>.`
+	description `Transport a group of detained protesters to <planet> where they will await trial for inciting a riot. They must be held in suitable facilities made for the transfer of criminals. Payment is <payment>.`
 	passengers 10 40 .9
 	source
 		government "Syndicate"
@@ -425,8 +425,8 @@ mission "Syndicate Prisoner Transport [3]"
 		attributes "military"
 	to offer
 		random < 15
-	on offer
-		require "Brig"
+	to accept
+		has "outfit (installed): Brig"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -438,7 +438,7 @@ mission "Syndicate Prisoner Transport [4]"
 	name "Transport detained labor organizers"
 	job
 	repeat
-	description `Transport a group of detained labor organizers to <planet> for "processing" as suspected terrorists. Payment is <payment>.`
+	description `Transport a group of detained labor organizers to <planet> for "processing" as suspected terrorists. They must be held in suitable facilities made for the transfer of criminals. Payment is <payment>.`
 	passengers 3 15
 	source
 		government "Syndicate"
@@ -450,8 +450,8 @@ mission "Syndicate Prisoner Transport [4]"
 		attributes "military"
 	to offer
 		random < 10
-	on offer
-		require "Brig"
+	to accept
+		has "outfit (installed): Brig"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -463,7 +463,7 @@ mission "Return Syndicate Prisoners [0]"
 	name "Return executive back from house arrest"
 	job
 	repeat
-	description `Transport an acquitted white-collar criminal with his assistants, lawyers, and collection of <cargo> home to <planet>. Payment is <payment>.`
+	description `Transport an acquitted white-collar criminal with his assistants, lawyers, and collection of <cargo> home to <planet>. He requires a suitably comfortable ship for the journey. Payment is <payment>.`
 	cargo "Luxury Goods" 1 10
 	passengers 5 12
 	source
@@ -476,8 +476,8 @@ mission "Return Syndicate Prisoners [0]"
 		attributes "urban"
 	to offer
 		random < 5
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		has "outfit (installed): Luxury Accommodations"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete

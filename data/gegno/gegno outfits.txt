@@ -1,0 +1,1037 @@
+# Copyright (c) 2022 by Saugia
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+# Power:
+
+outfit "R01 Skirmish Battery"
+	plural "R01 Skirmish Batteries"
+	category "Power"
+	licenses
+		"Gegno Civilian"
+	cost 5900
+	thumbnail "outfit/skirmish battery"
+	"mass" 12
+	"outfit space" -12
+	"energy capacity" 4506
+	description `Skirmish Batteries are very common outfits on Gegno ships. They can be either a cheaper alternative than upgrading to a larger reactor, or a nice addition alongside one where short bursts of high energy may be needed.`
+
+
+outfit "R02 Battlezone Battery"
+	plural "R02 Battlezone Batteries"
+	category "Power"
+	licenses
+		"Gegno Civilian"
+	cost 12600
+	thumbnail "outfit/battlezone battery"
+	"mass" 23
+	"outfit space" -23
+	"energy capacity" 8987
+	description `Battlezone Batteries are primarily used on the Gegno's medium-range combat vessels, holding a moderate amount of power for long-lasting engagements. They also fit nicely on larger vessels as a buffer to power their more energy-hungry systems.`
+
+
+outfit "R03 Warforge Battery"
+	plural "R03 Warforge Batteries"
+	category "Power"
+	licenses
+		"Gegno Civilian"
+	cost 27800
+	thumbnail "outfit/warforge battery"
+	"mass" 41
+	"outfit space" -41
+	"energy capacity" 16646
+	description `Warforge Batteries have proven their usefulness over the years as large, sturdy battery packs. They support the equally large volleys that are fired from Gegno ships, and help maintain an excess of power for engine usage.`
+
+
+outfit "R04 Crusade Battery"
+	plural "R04 Crusade Batteries"
+	category "Power"
+	licenses
+		"Gegno Civilian"
+		"Vi Evocati"
+		"Vi Centurion"
+		"Vi Lord"
+	cost 44700
+	thumbnail "outfit/crusade battery"
+	"mass" 70
+	"outfit space" -70
+	"energy capacity" 28140
+	description `As the largest battery mounted on power-hungry Gegno ships, the Crusade Battery holds an immense amount of energy, more than a Scrap Cell could produce in almost two minutes. However, the Gegno are inefficient at increasing density with size. As a result, these batteries are generally only used on ships that consistently need this sort of power reserve, while most other ships simply stack multiple smaller batteries that are more convenient to install or remove according to their needs.`
+
+
+outfit "C3 Scrap Cell"
+	category "Power"
+	licenses
+		"Gegno Civilian"
+	cost 47000
+	thumbnail "outfit/scrap cell"
+	"mass" 25
+	"outfit space" -25
+	"energy generation" 1.4
+	"heat generation" 2
+	description `The Scrap Cell is a small radiothermal generator that produces a limited amount of energy. It is only used on the Gegno's smaller-sized vessels, or in tandem with their less energy-hungry internals.`
+
+
+outfit "C7 Brawl Cell"
+	category "Power"
+	licenses
+		"Gegno Civilian"
+	cost 64000
+	thumbnail "outfit/brawl cell"
+	"mass" 39
+	"outfit space" -39
+	"energy generation" 2.7
+	"heat generation" 3.4
+	description `When developing the C7 Brawl Cell, the Gegno decided to scale up the smaller C3 Scrap Cell. Unfortunately, the new design became so tall that the Gegno struggled to fit it into some of their ships, requiring them to turn the entire thing sideways. This design still serves the Gegno well, though it will likely be phased out in favor of newer generators as they become more compact and efficient.`
+
+
+outfit "C17 Warzone Core"
+	category "Power"
+	licenses
+		"Gegno Civilian"
+	cost 1620000
+	thumbnail "outfit/warzone core"
+	"mass" 87
+	"outfit space" -87
+	"energy generation" 10.2
+	"heat generation" 22.9
+	description `The Gegno began developing nuclear technology once their cities grew massive enough to require it. The Warzone Core is a medium-sized nuclear fission reactor that is a suitable power source for most of the Gegno's large ships, though it appears to lack many of the fail-safes you would expect to find on a human nuclear reactor.`
+
+
+outfit "C27 Campaign Core"
+	category "Power"
+	licenses
+		"Gegno Civilian"
+		"Vi Evocati"
+		"Vi Centurion"
+		"Vi Lord"
+	cost 3672000
+	thumbnail "outfit/campaign core"
+	"mass" 145
+	"outfit space" -145
+	"energy generation" 19.9
+	"heat generation" 46.3
+	description `In order to power the largest of vessels along with their energy-guzzling systems and engines, the Gegno designed the Campaign fusion reactor from earlier prototypes dating back to their generation ship era. It's still used to this day and is efficient enough to satisfy the requirements of the largest of Gegno warships, but just looking at it raises safety concerns.`
+
+
+outfit "I70 Ameliorate Cell"
+	category "Power"
+	licenses
+		"Gegno Civilian"
+		"Scin Hoplologist"
+		"Scin Architect"
+	cost 57000
+	thumbnail "outfit/ameliorate cell"
+	"mass" 27
+	"outfit space" -27
+	"energy capacity" 2520
+	"energy generation" 1.4
+	"heat generation" 2.9
+	description `The I70 Cell was designed by the Scin as a smaller, more compact power system for their Halite fighters. It has enough energy generation and capacity to fuel the Halite's thrusters and their weapons for a short period. Unfortunately, as a side effect, a bit more excess heat is also generated.`
+
+
+# Engines:
+
+outfit "RG15 Torch Thruster"
+	category "Engines"
+	licenses
+		"Gegno Civilian"
+	cost 17000
+	thumbnail "outfit/small torch thruster vi"
+	"mass" 31
+	"outfit space" -31
+	"engine capacity" -31
+	"thrust" 9.7
+	"thrusting energy" 0.7
+	"thrusting heat" 1.5
+	"flare sprite" "effect/vi flare/small"
+		"frame rate" 2.5
+	"flare sound" "ion torch small"
+	description `The RG15 Ion Torch Thruster is the Gegno Vi's smallest torch thruster, found almost exclusively on the Slate. It is somewhat inefficient, weighing more and producing more heat than most thrusters of a similar size in exchange for using slightly less energy.`
+
+
+outfit "RG15 Torch Steering"
+	category "Engines"
+	licenses
+		"Gegno Civilian"
+	cost 15000
+	thumbnail "outfit/small torch steering vi"
+	"mass" 25
+	"outfit space" -25
+	"engine capacity" -25
+	"turn" 287
+	"turning energy" 0.4
+	"turning heat" 0.85
+	"steering flare sprite" "effect/vi flare/small"
+		"frame rate" 2.4
+	"steering flare sound" "ion torch small"
+	description `This steering system is meant for the smallest of Gegno Vi ships. However, some Gegno pilots use it to cheaply supplement their main steering engines.`
+
+
+outfit "RG18 Torch Thruster"
+	category "Engines"
+	licenses
+		"Gegno Civilian"
+	cost 38000
+	thumbnail "outfit/medium torch thruster vi"
+	"mass" 51
+	"outfit space" -51
+	"engine capacity" -51
+	"thrust" 18.7
+	"thrusting energy" 1.25
+	"thrusting heat" 2.9
+	"flare sprite" "effect/vi flare/medium"
+		"frame rate" 2.4
+	"flare sound" "ion torch medium"
+	description `The RG18 is a moderately large thruster used by the Gegno Vi. Ion Torch Thrusters are similar to human ion thrusters, but their explosive exhaust causes them to run hotter. However, they also require slightly less energy.`
+
+
+outfit "RG18 Torch Steering"
+	category "Engines"
+	licenses
+		"Gegno Civilian"
+	cost 32000
+	thumbnail "outfit/medium torch steering vi"
+	"mass" 39
+	"outfit space" -39
+	"engine capacity" -39
+	"turn" 523
+	"turning energy" 0.65
+	"turning heat" 1.5
+	"steering flare sprite" "effect/vi flare/medium"
+		"frame rate" 2.4
+	"steering flare sound" "ion torch medium"
+	description `The RG18 Steering system is quite large for a steering system of its power. Many Gegno Vi ships install these as a minimum to be able to turn their already heavy ships.`
+
+
+outfit "RG3 Torch Thruster"
+	category "Engines"
+	licenses
+		"Gegno Civilian"
+		"Vi Evocati"
+		"Vi Centurion"
+		"Vi Lord"
+	cost 84000
+	thumbnail "outfit/large torch thruster vi"
+	"mass" 83
+	"outfit space" -83
+	"engine capacity" -83
+	"thrust" 36
+	"thrusting energy" 2.2
+	"thrusting heat" 5.4
+	"flare sprite" "effect/vi flare/large"
+		"frame rate" 2.3
+	"flare sound" "ion torch large"
+	description `Derived from the massive thrusters that powered early Gegno generation ships, RG3 Ion Torch Thrusters are the Gegno's largest thrusters and the oldest still used. Smaller ships that attempt to use these engines often end up overheating themselves.`
+
+
+outfit "RG3 Torch Steering"
+	category "Engines"
+	licenses
+		"Gegno Civilian"
+		"Vi Evocati"
+		"Vi Centurion"
+		"Vi Lord"
+	cost 70000
+	thumbnail "outfit/large torch steering vi"
+	"mass" 64
+	"outfit space" -64
+	"engine capacity" -64
+	"turn" 1004
+	"turning energy" 1.15
+	"turning heat" 2.8
+	"steering flare sprite" "effect/vi flare/large"
+		"frame rate" 2.3
+	"steering flare sound" "ion torch large"
+	description `The oldest steering system used in Gegno space, RG3 Torch Thrusters can only fit on the largest Gegno vessels, and are rarely seen as a result.`
+
+
+outfit "SC-1 Plasma Engines"
+	plural "SC-1 Plasma Engines"
+	category "Engines"
+	licenses
+		"Gegno Civilian"
+		"Scin Hoplologist"
+		"Scin Architect"
+	cost 21200
+	thumbnail "outfit/tiny plasma engines scin"
+	"mass" 21
+	"outfit space" -21
+	"engine capacity" -21
+	"thrust" 5.1
+	"thrusting energy" 0.4
+	"thrusting heat" 1
+	"flare sprite" "effect/scin flare/tiny"
+		"frame rate" 0.6
+	"flare sound" "scplasma tiny"
+	"turn" 160
+	"turning energy" 0.35
+	"turning heat" 0.8
+	"steering flare sprite" "effect/scin flare/tiny"
+		"frame rate" 0.6
+	"steering flare sound" "scplasma tiny"
+	description `In order to power the tiny Halite frame, the Gegno Scin developed this smaller engine system. Based on their larger plasma thrusters, these engines are much more efficient than the Vi's bigger, more sluggish ion engines, which would never be compact or light enough to run on a fighter.`
+
+
+outfit "SC-12 Plasma Thruster"
+	category "Engines"
+	licenses
+		"Gegno Civilian"
+		"Scin Adjutant"
+	cost 20900
+	thumbnail "outfit/small plasma thruster scin"
+	"mass" 25
+	"outfit space" -25
+	"engine capacity" -25
+	"thrust" 11.1
+	"thrusting energy" 0.85
+	"thrusting heat" 2.25
+	"flare sprite" "effect/scin flare/small"
+		"frame rate" 0.5
+	"flare sound" "scplasma small"
+	description `Rather than developing on the Ion Torch design of the Vi, the Scin began work on a plasma-based thruster. They are more compact, weigh less, and produce significantly more thrust. However, since Ion Torches expel some of their heat in their thrust, the more stable and powerful SC thrusters tend to run hotter.`
+
+
+outfit "SC-12 Plasma Steering"
+	category "Engines"
+	licenses
+		"Gegno Civilian"
+		"Scin Adjutant"
+	cost 17000
+	thumbnail "outfit/small plasma steering scin"
+	"mass" 19
+	"outfit space" -19
+	"engine capacity" -19
+	"turn" 297
+	"turning energy" 0.45
+	"turning heat" 1.15
+	"steering flare sprite" "effect/scin flare/small"
+		"frame rate" 0.5
+	"steering flare sound" "scplasma small"
+	description `The new SC plasma engines allow Gegno Scin ships to outmaneuver their opposing brothers. What might take a Vi ship a long time takes only a moment on a Scin ship.`
+
+
+outfit "SC-14 Plasma Thruster"
+	category "Engines"
+	licenses
+		"Gegno Civilian"
+		"Scin Adjutant"
+	cost 52500
+	thumbnail "outfit/medium plasma thruster scin"
+	"mass" 45
+	"outfit space" -45
+	"engine capacity" -45
+	"thrust" 24
+	"thrusting energy" 1.7
+	"thrusting heat" 4.95
+	"flare sprite" "effect/scin flare/med"
+		"frame rate" 0.4
+	"flare sound" "scplasma medium"
+	description `SC-14 class thrusters power the Scin's average gunboat or transport, giving their ships reliable speed. They can quickly propel any medium-sized ship forward with reasonable efficiency.`
+
+
+outfit "SC-14 Plasma Steering"
+	category "Engines"
+	licenses
+		"Gegno Civilian"
+		"Scin Adjutant"
+	cost 41500
+	thumbnail "outfit/medium plasma steering scin"
+	"mass" 34
+	"outfit space" -34
+	"engine capacity" -34
+	"turn" 638
+	"turning energy" 1
+	"turning heat" 2.95
+	"steering flare sprite" "effect/scin flare/med"
+		"frame rate" 0.4
+	"steering flare sound" "scplasma medium"
+	description `Larger than SC-12 engines, SC-14 class steering is one of the most powerful steering systems in Gegno space, allowing the Scin to reposition even their largest ships many times faster than their Vi counterparts.`
+
+
+outfit "SC-15 Plasma Thrusters"
+	plural "SC-15 Plasma Thrusters"
+	category "Engines"
+	licenses
+		"Gegno Civilian"
+		"Scin Hoplologist"
+		"Scin Architect"
+	cost 170400
+	thumbnail "outfit/large plasma engines scin"
+	"mass" 112
+	"outfit space" -112
+	"engine capacity" -112
+	"thrust" 48.6
+	"thrusting energy" 3.1
+	"thrusting heat" 9.5
+	"flare sprite" "effect/scin flare/large"
+		"frame rate" 0.3
+	"flare sound" "scplasma large"
+	"reverse thrust" 22.75
+	"reverse thrusting energy" 1.45
+	"reverse thrusting heat" 4.45
+	"reverse flare sprite" "effect/scin flare/large"
+		"frame rate" 0.3
+	"reverse flare sound" "scplasma large"
+	description `The Gegno Scin have taken another step forward from the SC-14 class engine system, incorporating both reverse and forward thrust into a single engine. In order to field the SC-15, the Scin had to design their largest ships around the thrusters, rather than fit it on later. The ability to reverse is especially important in engagements with the Gegno Vi's forward-heavy combat vessels.`
+
+# Weapons:
+
+outfit "Irate Cannon"
+	category "Guns"
+	licenses
+		"Gegno Civilian"
+		"Vi Evocati"
+	cost 12000
+	thumbnail "outfit/irate cannon"
+	"mass" 12
+	"outfit space" -12
+	"weapon capacity" -12
+	"gun ports" -1
+	weapon
+		sprite "projectile/irate"
+		sound "irate"
+		"fire effect" "irate fire"
+		"live effect" "irate smoke" 12
+		"hit effect" "tiny explosion"
+		"inaccuracy" 2
+		"velocity" 22
+		"lifetime" 15
+		"reload" 20
+		"firing energy" 1
+		"firing heat" 9
+		"shield damage" 6
+		"hull damage" 16
+		"hit force" 40
+	description `Irate Cannons are a rudimentary cannon technology that fire explosive projectiles made out of condensed scrap metal, making them effective against armor. They fire decently fast, but one cannon alone is barely enough to output any sort of meaningful damage, which is why they are often found clustered together in numbers.`
+
+
+outfit "Irate Cannon Turret"
+	category "Turrets"
+	licenses
+		"Gegno Civilian"
+		"Vi Evocati"
+	cost 30000
+	thumbnail "outfit/irate turret"
+	"mass" 28
+	"outfit space" -28
+	"weapon capacity" -28
+	"turret mounts" -1
+	"required crew" 2
+	weapon
+		sprite "projectile/irate"
+		"hardpoint sprite" "hardpoint/irate"
+		"hardpoint offset" -0.8 12
+		sound "irate"
+		"fire effect" "irate fire"
+		"live effect" "irate smoke" 12
+		"hit effect" "tiny explosion"
+		"inaccuracy" 2
+		"turret turn" 2
+		"velocity" 22
+		"lifetime" 15
+		"reload" 10
+		"firing energy" 1
+		"firing heat" 9
+		"shield damage" 6
+		"hull damage" 16
+		"hit force" 40
+	description `While the Irate Cannon Turret originally saw little use due to Vi ships having enough space to field larger caliber weapons in their turret mounts, this turret has become more popular as the Vi produce smaller ships with more limited weapon space. To offset the lack of raw firepower from a single cannon, the turret boasts two mounted on a rotating platform, doubling its rate of fire in a single mount.`
+
+effect "irate fire"
+	sprite "effect/irfire"
+		"frame rate" 40
+		"no repeat"
+	"lifetime" 5
+	
+effect "irate smoke"
+	sprite "effect/smoke"
+		"scale" 0.1
+		"no repeat"
+		"frame rate" 20
+	"lifetime" 2
+	"random spin" 6
+	"random angle" 360
+	"random velocity" 1
+	"velocity scale" 0.4
+
+
+outfit "Choleric Cannon"
+	category "Guns"
+	licenses
+		"Gegno Civilian"
+		"Vi Evocati"
+		"Vi Centurion"
+	cost 45000
+	thumbnail "outfit/choleric cannon"
+	"mass" 37
+	"outfit space" -37
+	"weapon capacity" -37
+	"gun ports" -1
+	weapon
+		sprite "projectile/choleric"
+		sound "choleric"
+		"fire effect" "choleric fire"
+		"live effect" "choleric smoke" 24
+		"hit effect" "small explosion"
+		"inaccuracy" 2
+		"velocity" 11
+		"lifetime" 55
+		"reload" 100
+		"firing energy" 65
+		"firing heat" 222
+		"shield damage" 106
+		"hull damage" 311
+		"hit force" 180
+	description `A higher caliber than the Irate Cannon, Choleric Cannons fire larger, slower rounds that do a noticeable chunk of damage to a ship's hull. However, due to the nature of the cannon, it is, along with other Gegno weaponry, very ineffective against any sort of shielding.`
+
+
+outfit "Choleric Cannon Turret"
+	category "Turrets"
+	licenses
+		"Gegno Civilian"
+		"Vi Evocati"
+		"Vi Centurion"
+	cost 112500
+	thumbnail "outfit/choleric turret"
+	"mass" 42
+	"outfit space" -42
+	"weapon capacity" -42
+	"turret mounts" -1
+	"required crew" 2
+	weapon
+		sprite "projectile/choleric"
+		"hardpoint sprite" "hardpoint/choleric"
+		"hardpoint offset" 15
+		sound "choleric"
+		"fire effect" "choleric fire"
+		"live effect" "choleric smoke" 24
+		"hit effect" "small explosion"
+		"inaccuracy" 2
+		"turret turn" 1.2
+		"velocity" 9
+		"lifetime" 55
+		"reload" 80
+		"firing energy" 65
+		"firing heat" 222
+		"shield damage" 106
+		"hull damage" 311
+		"hit force" 180
+	description `Mounted on a turret, a Choleric Cannon is much more devastating without the need to keep a target in front of the ship to land shots. It can consistently put out damage to a target's hull, and with multiple turrets, any shieldless vessel is forced to retreat after a decent enough bombardment lest they be destroyed.`
+	
+effect "choleric fire"
+	sprite "effect/chfire"
+		"frame rate" 25
+		"no repeat"
+	"lifetime" 7
+
+effect "choleric smoke"
+	sprite "effect/smoke"
+		"scale" 0.1
+		"no repeat"
+		"frame rate" 18
+	"lifetime" 16
+	"random spin" 6
+	"random angle" 360
+	"random velocity" 0.5
+	"velocity scale" 0.4
+	
+
+outfit "Ballistic Cannon"
+	category "Guns"
+	licenses
+		"Gegno Civilian"
+		"Vi Evocati"
+		"Vi Centurion"
+		"Vi Lord"
+	cost 128000
+	thumbnail "outfit/ballistic cannon"
+	"mass" 96
+	"outfit space" -96
+	"weapon capacity" -96
+	"gun ports" -1
+	weapon
+		sprite "projectile/ballistic"
+		sound "ballistic"
+		"fire effect" "ballistic fire"
+		"live effect" "ballistic smoke" 36
+		"hit effect" "ballistic hit"
+		"inaccuracy" 3
+		"velocity" 8
+		"lifetime" 100
+		"reload" 120
+		"firing energy" 252
+		"firing heat" 566
+		"shield damage" 181
+		"hull damage" 970
+		"hit force" 360
+		"stream"
+		"missile strength" 18
+	description `The Gegno Vi Ballistic Cannon tops its sister cannons as the highest caliber weapon that the Gegno field. Each cannon round can inflict tremendous damage to a target's exposed hull. Due to the size and power of these cannons, their shells have a slow reload time and travel speed. As such, they can often be dodged by faster or smaller craft, but if able to be equipped in numbers, they can create a deadly wall of fire.`
+
+
+outfit "Ballistic Cannon Turret"
+	category "Turrets"
+	licenses
+		"Gegno Civilian"
+		"Vi Evocati"
+		"Vi Centurion"
+		"Vi Lord"
+	cost 320000
+	thumbnail "outfit/ballistic turret"
+	"mass" 120
+	"outfit space" -120
+	"weapon capacity" -120
+	"turret mounts" -1
+	"required crew" 3
+	weapon
+		sprite "projectile/ballistic"
+		"hardpoint sprite" "hardpoint/ballistic"
+		"hardpoint offset" 10
+		sound "ballistic"
+		"fire effect" "ballistic fire"
+		"live effect" "ballistic smoke" 36
+		"hit effect" "ballistic hit"
+		"inaccuracy" 3
+		"turret turn" 0.6
+		"velocity" 8
+		"lifetime" 100
+		"reload" 100
+		"firing energy" 328
+		"firing heat" 537
+		"shield damage" 181
+		"hull damage" 970
+		"hit force" 360
+		"missile strength" 18
+	description `As the largest caliber cannon in the Gegno Vi's arsenal, Ballistic Cannons require a lot of work to be fitted on even the largest of ships. A huge, self-sustaining base with its own vent ports is necessary for one of these cannons to even be fitted on a turret mount, provided there are crew to operate it. Combining destructive force with adjustable aim, Ballistic Cannon Turrets are the deadliest weapons of Vi warships.`
+
+effect "ballistic fire"
+	sprite "effect/balfire"
+		"frame rate" 15
+		"no repeat"
+	"lifetime" 25
+
+effect "ballistic hit"
+	sprite "effect/explosion/medium"
+		"frame rate" 15
+		"no repeat"
+	sound "explosion huge"
+	"lifetime" 36
+	"random angle" 360
+	"random frame rate" 5
+	"random velocity" 1
+	"random spin" 5
+	"velocity scale" 0.4
+	
+effect "ballistic smoke"
+	sprite "effect/smoke"
+		"scale" 0.1
+		"no repeat"
+		"frame rate" 10
+	"lifetime" 30
+	"random spin" 6
+	"random angle" 360
+	"random velocity" 0.5
+	"velocity scale" 0.01
+
+outfit "Astuit Battery"
+	category "Turrets"
+	licenses
+		"Gegno Civilian"
+		"Scin Adjutant"
+	cost 42000
+	thumbnail "outfit/astuit"
+	"mass" 28
+	"outfit space" -28
+	"weapon capacity" -28
+	"turret mounts" -1
+	weapon
+		sprite "projectile/astuit"
+		"hardpoint sprite" "hardpoint/astuit"
+		"hardpoint offset" 8
+		sound "astuit"
+		"hit effect" "astuit hit"
+		"inaccuracy" 5
+		"turret turn" 2.2
+		"velocity" 8
+		"lifetime" 44
+		"reload" 6
+		"firing energy" 10
+		"firing heat" 25.5
+		"shield damage" 8.8
+		"hull damage" 9.4
+	description "The Gegno Scin are the first Gegno to advance plasma technology to the point where it can be used in combat, although the energy requirement of such technology is still significant. Astuit Batteries work very similar to human Energy Blasters, firing small condensed plasma projectiles at high rates of fire. With four Astuit Blasters on a turreted mount, it produces a constant stream of damage which adds up over time, despite the minor damage that each individual projectile creates."
+
+effect "astuit hit"
+	sprite "effect/ast hit"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 6
+	"velocity scale" .001
+
+
+outfit "Acuit Artillery"
+	plural "Acuit Artillery"
+	category "Turrets"
+	licenses
+		"Gegno Civilian"
+		"Scin Hoplologist"
+	cost 244000
+	thumbnail "outfit/acuit"
+	"mass" 81
+	"outfit space" -81
+	"weapon capacity" -81
+	"turret mounts" -1
+	"required crew" 1
+	weapon
+		sprite "projectile/acuit"
+			"random start frame"
+		"hardpoint sprite" "hardpoint/acuit"
+		"hardpoint offset" 14
+		"hit effect" "acuit hit"
+		sound "acuit"
+		"inaccuracy" 3
+		"turret turn" 1.3
+		"velocity" 18
+		"lifetime" 60
+		"reload" 60
+		"firing energy" 195
+		"firing heat" 306
+		"shield damage" 195
+		"hull damage" 332
+		"hit force" 40
+	description `With a better grasp on plasma and energy weaponry, the Gegno Scin developed a larger blaster weapon to mount on the Feldspar Carrier as a counter to the Gegno Vi's huge cannon weaponry. Acuit Artillery turrets outrange most weapons in Gegno space, while having a higher rate of fire as well, making them very efficient bombardment weapons.`
+
+effect "acuit hit"
+	sprite "effect/acuit hit"
+		"frame rate" 18
+		"no repeat"
+	"lifetime" 18
+	"velocity scale" -0.004
+
+
+outfit "Acumen Bolt Cannon"
+	category "Guns"
+	licenses
+		"Gegno Civilian"
+		"Scin Hoplologist"
+	cost 58000
+	thumbnail "outfit/acumen"
+	"mass" 15
+	"outfit space" -33
+	"weapon capacity" -33
+	"gun ports" -1
+	weapon
+		sprite "projectile/neutron bolt"
+			"scale" 0.5
+		"hit effect" "neutron explosion"
+		sound "neutron bolt"
+		"inaccuracy" 9
+		"velocity" 5
+		"lifetime" 62
+		"reload" 20
+		"turn" 4
+		"firing energy" 26
+		"firing heat" 66
+		"shield damage" 46
+		"hull damage" 60
+		"hit force" 86
+	description `Further progressing their research in energy weaponry, the Gegno Scin recently designed the Acumen Bolt Cannon - a proof-of-concept neutron cannon that fires dangerous balls of plasma capable of dealing decent damage to armor and shielding alike.`
+	description `	Although more powerful than Astuit blaster projectiles, Acumen plasma bolts are harder to fire accurately, travel much slower, and require more energy to fire.`
+
+effect "neutron explosion"
+	sprite "effect/explosion/neutron"
+		"no repeat"
+		"frame rate" 15
+	sound "explosion tiny"
+	"lifetime" 20
+	"random angle" 360
+	"random frame rate" 5
+	"random spin" 1
+	"random velocity" .2
+	"velocity scale" .4
+
+
+outfit "Guile Pulse Laser"
+	category "Guns"
+	licenses
+		"Gegno Civilian"
+		"Scin Hoplologist"
+	cost 31000
+	"thumbnail" "outfit/guile pulse laser"
+	"mass" 15
+	"outfit space" -15
+	"weapon capacity" -15
+	"gun ports" -1
+	weapon
+		"sprite" "projectile/guile pulse laser"
+			"frame rate" 6
+		sound "guile pulse"
+		"hit effect" "heavy laser impact"
+		"inaccuracy" 0.2
+		"velocity" 150
+		"lifetime" 1
+		"reload" 6
+		"burst count" 3
+		"burst reload" 1
+		"firing energy" 8.2
+		"firing heat" 6.7
+		"shield damage" 12.4
+		"hull damage" 20.2
+		"cluster"
+	description `The Guile Pulse Laser is a recent experimental advancement in Scin plasma weapon technology. Rather than rapid firing plasma slugs, this weapon fires concentrated pulses of energy that only last for a brief moment. Each blast impacts the target ship almost instantaneously with a powerful hit, and a consistent amount of fire from Guile Lasers is extremely effective against slow moving targets.`
+	description `	Guile Pulse Lasers have noticeable drawbacks as they quickly consume energy and generate notable heat per shot. Unlike a beam-type weapon, they are incapable of consistent output, and have a fairly short range.`
+
+
+outfit "Excavator"
+	category "Guns"
+	licenses
+		"Gegno Civilian"
+	cost 500000
+	"thumbnail" "outfit/excavator"
+	"mass" 42
+	"outfit space" -42
+	"weapon capacity" -42
+	"gun ports" -1
+	"drill port" -1
+	"drill lock" 1
+	weapon
+		sound "excavator"
+		"hit effect" "excavate"
+		"inaccuracy" 90
+		"velocity" 20
+		"lifetime" 1
+		"reload" 1
+		"range override" 50
+		"firing energy" 4
+		"firing heat" 72
+		"shield damage" 6
+		"hull damage" 14
+		"minable damage" 104
+		"hit force" -4
+	description `Excavator Drills are large drills designed by the Gegno that rip materials out of asteroids in an efficient manner. These types of drill systems are only found on ships specifically designed around them as they require substantial infrastructure to be functional.`
+
+effect "excavate"
+	sprite "effect/smoke"
+		"no repeat"
+	sound "explosion tiny"
+	"lifetime" 20
+	"random angle" 360
+	"random frame rate" 5
+	"random spin" 2
+	"random velocity" 0.4
+	"velocity scale" -0.01
+
+
+outfit "Burrower"
+	category "Guns"
+	licenses
+		"Gegno Civilian"
+		"Gegno Driller"
+	cost 326000
+	"thumbnail" "outfit/burrower"
+	"mass" 32
+	"outfit space" -28
+	"weapon capacity" -28
+	"gun ports" -1
+	"drill spar" -1
+	weapon
+		sound "drill"
+		"hardpoint sprite" "hardpoint/burrower"
+		"hardpoint offset" 14
+		"hit effect" "burrow"
+		"inaccuracy" 0.4
+		"velocity" 30
+		"lifetime" 1
+		"reload" 1
+		"range override" 56
+		"velocity override" 22
+		"firing energy" 1.8
+		"firing heat" 24
+		"shield damage" .4
+		"hull damage" 6
+		"minable damage" 3
+		"hit force" 4
+	description `Burrower Drills are longer, thinner, and more precise than the larger Excavator Drill system, although they are nowhere near as powerful. Burrowers can mine asteroids more carefully, preserving more materials in the process. Rather than constructing the spaceship around the base system, these drills are more compact and are mounted on self-sustaining drill spars, resulting in lower required internal space and machinery.`
+	description `	This mining outfit requires a drill spar port, in addition to a gun port, in order to be mounted.`
+
+effect "burrow"
+	sprite "effect/smoke"
+		"no repeat"
+		"scale" 0.25
+	sound "explosion tiny"
+	"lifetime" 12
+	"random angle" 360
+	"random frame rate" 5
+	"random spin" 2
+	"random velocity" 0.5
+	"velocity scale" -0.01
+
+
+outfit "Ion Torch"
+	category "Guns"
+	licenses
+		"Gegno Civilian"
+		"Gegno Driller"
+	cost 410000
+	"thumbnail" "outfit/ion torch"
+	"mass" 36
+	"outfit space" -32
+	"weapon capacity" -32
+	"gun ports" -1
+	"drill spar" -1
+	"reverse thrust" 4.6
+	"reverse thrusting energy" 0.4
+	"reverse thrusting heat" 0.9
+	weapon
+		"sprite" "projectile/torch"
+			"frame rate" 15
+			"scale" 0.75
+		"inaccuracy" 0.4
+		"velocity" 50
+		"lifetime" 1
+		sound "ion torch"
+		"hardpoint sprite" "hardpoint/ion torch"
+		"hardpoint offset" 10
+		"hit effect" "burning spark"
+		"reload" 1
+		"range override" 74
+		"velocity override" 12
+		"firing energy" 2.3
+		"firing heat" 46.2
+		"shield damage" 1.2
+		"hull damage" 1
+		"heat damage" 90
+		"minable damage" 6
+	description `Based on the RG-series Torch engine, Ion Torches are a unique type of utility mining weapon that focus the originally explosive exhaust into a thinner, more powerful flare. The more-controlled flame is akin to a heated blade allowing for more precise handling. In contrast to the Excavator, which aggressively grinds asteroids down, an Ion Torch can remove materials more accurately and safely from an asteroid. Additionally, the flare can be tuned down to serve as a makeshift reverse thruster.`
+	description `	This mining outfit requires a drill spar port, in addition to a gun port, in order to be mounted.`
+
+
+outfit "Savagery Bludgeon"
+	category "Guns"
+	cost 10000
+	licenses
+		"Vi Evocati"
+	thumbnail "outfit/unknown"
+	"mass" 10
+	"outfit space" -10
+	"weapon capacity" -10
+	"gun ports" -1
+	"unplunderable" 1
+	weapon
+		"hit effect" "bludgeon impact"
+		"inaccuracy" 360
+		"velocity" 30
+		"lifetime" 1
+		"reload" 40
+		"shield damage" 8
+		"hull damage" 40
+		"hit force" 500
+	description `A Savagery Bludgeon is a mace-like weapon found jammed into the Gegno Vi's Dunite duelist ships. They are used as melee weapons for close-quarter rams and jousts during duels. However, they have hardly any use as a weapon outside of this as they merely scratch larger ship's hulls and barely put a dent into anything shielded.`
+	
+effect "bludgeon impact"
+	sound "bludgeon impact"
+
+
+
+# Hand to Hand Weapons
+
+outfit "Savagery Pike"
+	category "Hand to Hand"
+	licenses
+		"Vi Evocati"
+		"Vi Centurion"
+	cost 13000
+	thumbnail "outfit/savagery pike"
+	"capture attack" .9
+	"capture defense" .9
+	"unplunderable" 1
+	description `This is a ceremonial spear-like weapon presented to Vi warriors when they officially become part of the military. On the forward end are several long, sharp pikes that can easily pierce enemies, and on the rear end is a built-in cannon that can fire up to two explosive rounds. The cannon rounds are rarely used by the Vi unless they deem it absolutely necessary to defeat their foe or deal with unanticipated outside factors.`
+
+outfit "Irate Carronade"
+	category "Hand to Hand"
+	licenses
+		"Vi Centurion"
+	cost 39000
+	thumbnail "outfit/irate carronade"
+	"mass" 3
+	"outfit space" -3
+	"capture defense" 3.7
+	"unplunderable" 1
+	description `Miniaturizing ship-to-ship cannons and haphazardly shoving them into small makeshift barricades isn't exactly the safest way to install boarding defenses. Despite this, the hard-armored hulls of larger Gegno warships prove resilient enough to field Irate Carronades. Anyone, or anything, that unknowingly approaches a corridor where one is installed will likely become a new paint layer on the nearby walls.`
+	
+outfit "Plasmasickle"
+	category "Hand to Hand"
+	licenses
+		"Scin Hoplologist"
+	cost 11000
+	thumbnail "outfit/plasmasickle"
+	"capture attack" .7
+	"capture defense" .6
+	"unplunderable" 1
+	description `Plasmasickles are weapons specialized for close-quarters combat. Incorporating the Scin's recently developed plasma technology, the blade is heated to high temperatures, enabling it to slice through tough targets. Only select groups of Scin crew are equipped with these, but they are trained well enough to use them effectively.`
+
+outfit "Plasma Grenades"
+	plural "Plasma Grenades"
+	category "Hand to Hand"
+	licenses
+		"Scin Hoplologist"
+	cost 60000
+	thumbnail "outfit/plasma grenades"
+	"capture attack" 1.9
+	"capture defense" 1.2
+	"unplunderable" 1
+	description `With development of more plasma-based weaponry, the Scin invented their own type of grenades using plasma to create powerful explosions. They are effective at clearing out large groups of enemies and are less of a hazard than unpredictable fragmentation grenades, allowing them to be a bit more reliable for defensive use. These grenades are kept in odd magnetic storage devices that prevent them from accidentally detonating - except on rare occasions.`
+	
+
+
+# Special Outfits
+
+outfit "Gegno Civilian License"
+	category "Licenses"
+	thumbnail "outfit/unknown"
+	description "You have been accepted as a titular Gegno citizen who provides benefits for the Gegno race, and have been awarded access to their civilian technology."
+
+outfit "Gegno Driller License"
+	category "Licenses"
+	thumbnail "outfit/unknown"
+	description "The Gegno now acknowledge your resourcefulness and ability to deliver more than acceptable results of work. You have been bestowed the right of access to their mining technology."
+
+outfit "Vi Lord License"
+	category "Licenses"
+	thumbnail "outfit/unknown"
+	description "A majority of the Vi's military hierarchy recognizes you as a respectable foe and invaluable asset for their ambitions. The responsibility of maintaining the largest of Vi vessels is now within your grasp."
+	
+outfit "Vi Centurion License"
+	category "Licenses"
+	thumbnail "outfit/unknown"
+	description "Amongst the Vi's Evocati you have proven yourself as a powerful leader in combat and a successful user of judgment. Access to a portion of the Vi's military arsenal awaits your interests."
+
+outfit "Vi Evocati License"
+	category "Licenses"
+	thumbnail "outfit/unknown"
+	description "The Gegno Vi have recognized you as a committed warrior to their cause, and see usefulness in you. Low level Vi technology now becomes accessible for your leisure."
+
+outfit "Scin Hoplologist License"
+	category "Licenses"
+	thumbnail "outfit/unknown"
+	description "Your intelligence is most desirable in the eyes of the Gegno Scin, and your reward is the usage of advanced Scin weaponry."
+
+outfit "Scin Architect License"
+	category "Licenses"
+	thumbnail "outfit/unknown"
+	description "Showing that you are advantageous to the Scin's constructive efforts, you are now given permission to operate their most advanced vessels."
+
+outfit "Scin Adjutant License"
+	category "Licenses"
+	thumbnail "outfit/unknown"
+	description "Productive acts perpetrated by you have raised the interests of the Gegno Scin, and they authorize you to purchase their most basic technology."

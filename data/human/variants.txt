@@ -43,8 +43,7 @@ ship "Argosy" "Argosy (Missile)"
 		"Meteor Missile Launcher" 4
 		"Meteor Missile" 165
 		"Meteor Missile Box" 3
-		"Anti-Missile Turret"
-		"Heavy Anti-Missile Turret"
+		"Anti-Missile Turret" 2
 		"Fission Reactor"
 		"Supercapacitor"
 		"D41-HY Shield Generator"
@@ -53,7 +52,7 @@ ship "Argosy" "Argosy (Missile)"
 		"A255 Atomic Steering"
 		"Hyperdrive"
 	turret "Anti-Missile Turret"
-	turret "Heavy Anti-Missile Turret"
+	turret "Anti-Missile Turret"
 
 
 ship "Argosy" "Argosy (Proton)"
@@ -98,12 +97,126 @@ ship "Arrow" "Arrow (Hai)"
 
 
 
+ship "Auxiliary" "Auxiliary (Mark II)"
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 90
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		
+		"Fusion Reactor"
+		"LP288a Battery Pack"
+		"D94-YV Shield Generator"
+		"D67-TM Shield Generator"
+		"Water Coolant System"
+		"Large Radar Jammer"
+		"Catalytic Ramscoop"
+		
+		"X4700 Ion Thruster"
+		"X1700 Ion Thruster"
+		"X5200 Ion Steering"
+		"Scram Drive"
+
+
+ship "Auxiliary" "Auxiliary (Cargo Mark II)"
+	plural "Auxiliaries"
+	sprite "ship/auxiliaryc"
+	thumbnail "thumbnail/auxiliaryc"
+	add attributes
+		"bunks" -112
+		"cargo space" 200
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 90
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		
+		"Fusion Reactor"
+		"LP288a Battery Pack"
+		"D94-YV Shield Generator"
+		"D67-TM Shield Generator"
+		"Water Coolant System"
+		"Large Radar Jammer"
+		"Catalytic Ramscoop"
+		
+		"X4700 Ion Thruster"
+		"X1700 Ion Thruster"
+		"X5200 Ion Steering"
+		"Scram Drive"
+
+
+ship "Auxiliary" "Auxiliary (Transport Mark II)"
+	plural "Auxiliaries"
+	sprite "ship/auxiliaryt"
+	thumbnail "thumbnail/auxiliaryt"
+	add attributes
+		"bunks" 112
+		"cargo space" -200
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 90
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		
+		"Fusion Reactor"
+		"LP288a Battery Pack"
+		"D94-YV Shield Generator"
+		"D67-TM Shield Generator"
+		"Water Coolant System"
+		"Large Radar Jammer"
+		"Catalytic Ramscoop"
+		
+		"X4700 Ion Thruster"
+		"X1700 Ion Thruster"
+		"X5200 Ion Steering"
+		"Scram Drive"
+
+
+ship "Auxiliary" "Auxiliary (Jump Transport)"
+	plural "Auxiliaries"
+	sprite "ship/auxiliaryt"
+	thumbnail "thumbnail/auxiliaryt"
+	"crew" 362
+	add attributes
+		"bunks" 112
+		"cargo space" -200
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 90
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		"Jump Drive"
+		"Catalytic Ramscoop"
+		"Liquid Helium Cooler"
+		"Cooling Ducts"
+		"Outfits Expansion" 2
+		"S-970 Regenerator" 5
+		"Quantum Keystone"
+		"Armageddon Core"
+		"LP288a Battery Pack"
+		"A520 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Laser Rifle" 362
+		"Fragmentation Grenades" 500
+	gun -12 -186
+	gun 12.5 -186
+	turret 0 -74 "Heavy Anti-Missile Turret"
+	turret 0 -17
+	turret 0 20
+	turret 0 78 "Heavy Anti-Missile Turret"
+	bay "Fighter" 0 -74
+	bay "Fighter" 0 -17
+	bay "Fighter" 0 20
+	bay "Fighter" 0 78
+
+
+
 ship "Bactrian" "Bactrian (Hai Engines)"
 	outfits
 		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 90
-		"Torpedo Launcher" 2
-		"Torpedo" 60
+		"Torpedo Launcher"
+		"Torpedo" 30
 		"Heavy Laser Turret" 4
 		"Heavy Anti-Missile Turret" 2
 		"Fusion Reactor"
@@ -166,6 +279,54 @@ ship "Bactrian" "Bactrian (Hired Gun)"
 		"A520 Atomic Thruster"
 		"A525 Atomic Steering"
 		"Hyperdrive"
+
+
+# Troop transport Bactrians
+ship "Bactrian" "Bactrian (Troop Jump)"
+	outfits
+		"Liquid Helium Cooler"
+		"Catalytic Ramscoop"
+		"Hai Tracker Pod" 4
+		"Hai Tracker" 224
+		`"Bufaer" Atomic Thruster`
+		"Jump Drive"
+		"Outfits Expansion"
+		"Boulder Reactor" 2
+		`"Bufaer" Atomic Steering`
+		"Pulse Rifle" 247
+		"Bullfrog Anti-Missile" 4
+		"Hai Diamond Regenerator" 2
+		"Hai Chasm Batteries"
+		Brig
+		Supercapacitor 2
+		"Small Bunk Room"
+		"Fuel Pod"
+		"Liquid Nitrogen Cooler"
+		"Security Station"
+		"Fragmentation Grenades" 247
+		"Quad Blaster Turret" 2
+		"Quantum Key Stone"
+
+
+# This variant uses outfits acquired in the post-war condition that were surplus or black market for diversity *after* the main campaign.
+ship "Bactrian" "Bactrian (Plasma Blaster Anti-Missile)"
+	outfits
+		"Heavy Anti-Missile Turret" 3
+		"Armageddon Core"
+		"LP036a Battery Pack"
+		"S-970 Regenerator"
+		"Liquid Helium Cooler" 2
+		Hyperdrive
+		"LP072a Battery Pack"
+		"Outfits Expansion" 5
+		"Liquid Nitrogen Cooler"
+		"Plasma Cannon" 4
+		"A520 Atomic Thruster"
+		"A255 Atomic Steering"
+		"A525 Atomic Steering"
+		"Fission Reactor"
+		"Quad Blaster Turret" 3
+		"Laser Rifle" 15
 
 
 
@@ -264,7 +425,8 @@ ship "Behemoth" "Behemoth (Heavy)"
 		Torpedo 60
 		"Quad Blaster Turret" 2
 		"Plasma Turret" 2
-		"Heavy Anti-Missile Turret" 2
+		"Heavy Anti-Missile Turret"
+		"Anti-Missile Turret"
 		"Laser Rifle" 16
 		"Fusion Reactor"
 		"Supercapacitor"
@@ -280,7 +442,7 @@ ship "Behemoth" "Behemoth (Heavy)"
 	turret "Plasma Turret"
 	turret "Plasma Turret"
 	turret "Heavy Anti-Missile Turret"
-	turret "Heavy Anti-Missile Turret"
+	turret "Anti-Missile Turret"
 
 
 ship "Behemoth" "Behemoth (Proton)"
@@ -309,8 +471,8 @@ ship "Behemoth" "Behemoth (Proton)"
 
 ship "Behemoth" "Behemoth (Speedy)"
 	outfits
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 90
+		"Sidewinder Missile Launcher"
+		"Sidewinder Missile" 45
 		"Heavy Laser Turret" 6
 		"Breeder Reactor"
 		"LP144a Battery Pack"
@@ -369,6 +531,32 @@ ship "Blackbird" "Blackbird (Prisoner Transport)"
 		"Hyperdrive"
 
 
+ship "Blackbird" "Blackbird (Hai Trafficker)"
+	add attributes
+		"mass" 53
+		"outfit space" -51
+		"energy capacity" 5200
+		"shield generation" 3.1
+		"shield energy" 4.6
+		"hull repair rate" 0.4
+		"hull energy" 0.4
+		"hull heat" 0.6
+	outfits
+		`"Bondir" Atomic Thruster`
+		"Pulse Rifle" 12
+		Brig
+		"Fuel Pod" 2
+		`"Benga" Atomic Steering`
+		"Scram Drive"
+		"Chameleon Anti-Missile"
+		Ramscoop
+		"Pulse Turret"
+		"Boulder Reactor"
+		"Outfits Expansion"
+		"Liquid Nitrogen Cooler"
+		"Security Station" 3
+
+
 ship "Bounder" "Bounder (Hai)"
 	outfits
 		"Pulse Turret"
@@ -400,8 +588,8 @@ ship "Bulk Freighter" "Bulk Freighter (Blaster)"
 		"Anti-Missile Turret"
 		"Heavy Anti-Missile Turret"
 		"Quad Blaster Turret" 3
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Meteor Missile Launcher"
+		"Meteor Missile" 30
 		"Fusion Reactor"
 		"LP036a Battery Pack"
 		"D94-YV Shield Generator"
@@ -445,8 +633,8 @@ ship "Bulk Freighter" "Bulk Freighter (Heavy)"
 		"Laser Turret" 2
 		"Heavy Laser Turret" 2
 		"Heavy Anti-Missile Turret"
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Sidewinder Missile Launcher"
+		"Sidewinder Missile" 45
 		"Fission Reactor"
 		"LP072a Battery Pack"
 		"KP-6 Photovoltaic Panel" 2
@@ -468,8 +656,8 @@ ship "Bulk Freighter" "Bulk Freighter (Long Haul)"
 		"Laser Turret" 2
 		"Anti-Missile Turret" 2
 		"Quad Blaster Turret"
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Sidewinder Missile Launcher"
+		"Sidewinder Missile" 45
 		"Fission Reactor"
 		"KP-6 Photovoltaic Panel"
 		"LP144a Battery Pack"
@@ -494,8 +682,8 @@ ship "Bulk Freighter" "Bulk Freighter (Proton)"
 		"Proton Turret" 3
 		"Heavy Anti-Missile Turret"
 		"Anti-Missile Turret"
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Sidewinder Missile Launcher"
+		"Sidewinder Missile" 45
 		"Fission Reactor"
 		"LP072a Battery Pack"
 		"Water Coolant System"
@@ -510,6 +698,34 @@ ship "Bulk Freighter" "Bulk Freighter (Proton)"
 	turret "Proton Turret"
 	turret "Proton Turret"
 	turret "Anti-Missile Turret"
+
+
+
+ship "Bulwark" "Bulwark (Heavy)"
+	outfits
+		"Plasma Cannon" 2
+		"Torpedo Launcher" 2
+		"Torpedo" 60
+		"Heavy Laser Turret"
+		"Anti-Missile Turret" 2
+		"Fission Reactor"
+		"LP144a Battery Pack"
+		"nGVF-BB Fuel Cell"
+		"D94-YV Shield Generator"
+		"Water Coolant System"
+		"Tactical Scanner"
+		"Laser Rifle" 19
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+	
+	gun "Torpedo Launcher"
+	gun "Plasma Cannon"
+	gun "Torpedo Launcher"
+	gun "Plasma Cannon"
+	turret "Anti-Missile Turret"
+	turret "Anti-Missile Turret"
+	turret "Heavy Laser Turret"
 
 
 
@@ -530,8 +746,7 @@ ship "Carrier" "Carrier (Jump)"
 		"Liquid Helium Cooler"
 		"Water Coolant System"
 		"Fuel Pod"
-		"Outfits Expansion" 4
-		"Brig"
+		"Outfits Expansion" 5
 		"A860 Atomic Thruster"
 		"A525 Atomic Steering"
 		"Jump Drive"
@@ -561,9 +776,9 @@ ship "Carrier" "Carrier (Mark II)"
 		"LP036a Battery Pack"
 		"Supercapacitor" 3
 		"D94-YV Shield Generator"
-		"Large Radar Jammer" 2
+		"Large Radar Jammer"
 		"Liquid Helium Cooler"
-		"Outfits Expansion" 3
+		"Outfits Expansion" 4
 		"Brig"
 		"Laser Rifle" 45
 		"Fragmentation Grenades" 45
@@ -624,12 +839,47 @@ ship "Clipper" "Clipper (Speedy)"
 		"Hyperdrive"
 
 
+ship "Clipper" "Clipper (Hai Trafficker)"
+	add attributes
+		"mass" 31
+		"outfit space" -25
+		"energy capacity" 2600
+		"shield generation" 1.6
+		"shield energy" 2.4
+		"hull repair rate" 0.2
+		"hull energy" 0.2
+		"hull heat" 0.3
+	outfits
+		"Pulse Rifle" 3
+		Brig
+		"Fuel Pod"
+		"A370 Atomic Thruster"
+		"A255 Atomic Steering"
+		Hyperdrive
+		"Hai Tracker Pod" 3
+		Ramscoop
+		"Outfits Expansion" 3
+		"Liquid Nitrogen Cooler"
+		"Breeder Reactor"
+		"Security Station" 2
+
+
+
+ship "Combat Drone" "Combat Drone (Sidewinder Missiles)"
+	outfits
+		"Sidewinder Missile" 50
+		"Sidewinder Missile Pod"
+		"Sidewinder Missile Rack" 2
+		"X1050 Ion Engines"
+		"nGVF-AA Fuel Cell"
+
+
 
 ship "Container Transport" "Container Transport (Blaster)"
 	outfits
 		"Quad Blaster Turret" 5
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Sidewinder Missile Launcher"
+		"Sidewinder Missile" 30
 		"Fusion Reactor"
 		"LP072a Battery Pack"
 		"D94-YV Shield Generator"
@@ -643,8 +893,8 @@ ship "Container Transport" "Container Transport (Blaster)"
 
 ship "Container Transport" "Container Transport (Hai)"
 	outfits
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 90
+		"Sidewinder Missile Launcher"
+		"Sidewinder Missile" 45
 		"Pulse Turret" 3
 		"Chameleon Anti-Missile" 2
 		"Geode Reactor"
@@ -666,8 +916,8 @@ ship "Container Transport" "Container Transport (Heavy)"
 		"Laser Turret" 2
 		"Heavy Laser Turret" 2
 		"Heavy Anti-Missile Turret"
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Sidewinder Missile Launcher"
+		"Sidewinder Missile" 45
 		"Fission Reactor"
 		"LP072a Battery Pack"
 		"KP-6 Photovoltaic Panel" 2
@@ -689,8 +939,8 @@ ship "Container Transport" "Container Transport (Proton)"
 		"Proton Turret" 3
 		"Heavy Anti-Missile Turret"
 		"Anti-Missile Turret"
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 90
+		"Sidewinder Missile Launcher"
+		"Sidewinder Missile" 45
 		"Fission Reactor"
 		"LP072a Battery Pack"
 		"KP-6 Photovoltaic Panel"
@@ -711,8 +961,8 @@ ship "Container Transport" "Container Transport (Short Haul)"
 	outfits
 		"Anti-Missile Turret" 2
 		"Blaster Turret" 3
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Sidewinder Missile Launcher"
+		"Sidewinder Missile" 45
 		"RT-I Radiothermal"
 		"KP-6 Photovoltaic Array"
 		"LP036a Battery Pack"
@@ -753,12 +1003,12 @@ ship "Corvette" "Corvette (Missile)"
 		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 159
 		"Sidewinder Missile Rack" 3
-		"Heavy Anti-Missile Turret" 2
+		"Anti-Missile Turret"
+		"Heavy Anti-Missile Turret"
 		"Fission Reactor"
 		"LP036a Battery Pack"
 		"D67-TM Shield Generator"
 		"Cooling Ducts"
-		"Cargo Expansion"
 		"Laser Rifle" 4
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
@@ -767,6 +1017,8 @@ ship "Corvette" "Corvette (Missile)"
 	gun "Sidewinder Missile Launcher"
 	gun "Torpedo Launcher"
 	gun "Torpedo Launcher"
+	turret "Anti-Missile Turret"
+	turret "Heavy Anti-Missile Turret"
 
 
 ship "Corvette" "Corvette (Speedy)"
@@ -782,6 +1034,71 @@ ship "Corvette" "Corvette (Speedy)"
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
+
+ship "Corvette" "Corvette (Particle Chaser)"
+	outfits
+		"Particle Cannon" 4
+		"Heavy Anti-Missile Turret"
+		"Fusion Reactor"
+		"Supercapacitor"
+		"D41-HY Shield Generator"
+		"Liquid Nitrogen Cooler"
+		"Water Coolant System"
+		"Laser Rifle" 2
+		"A370 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+		"Fuel Pod"
+		"Outfits Expansion" 2
+		"Catalytic Ramscoop"
+
+
+ship "Corvette" "Corvette (Hai Trafficker)"
+	add attributes
+		"mass" 53
+		"outfit space" -51
+		"energy capacity" 5200
+		"shield generation" 3.1
+		"shield energy" 4.6
+		"hull repair rate" 0.4
+		"hull energy" 0.4
+		"hull heat" 0.6
+	outfits
+		`"Bondir" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		"Pulse Rifle" 16
+		Brig
+		"Fuel Pod" 4
+		"Hai Tracker" 224
+		"Scram Drive"
+		"Bullfrog Anti-Missile" 2
+		"Hai Tracker Pod" 4
+		Ramscoop
+		"Boulder Reactor"
+		"Outfits Expansion"
+		"Liquid Nitrogen Cooler"
+		"Security Station" 4
+
+
+# This variant uses outfits acquired in the post-war condition that were surplus or black market for diversity *after* the main campaign.
+ship "Corvette" "Corvette (Flamethrower Electron Anti-Missile)"
+	outfits
+		"Heavy Anti-Missile Turret" 2
+		"LP036a Battery Pack"
+		"S-970 Regenerator"
+		"Catalytic Ramscoop"
+		Hyperdrive
+		Supercapacitor
+		"Fuel Pod" 3
+		"Outfits Expansion" 2
+		"Liquid Nitrogen Cooler"
+		"A370 Atomic Thruster"
+		"A375 Atomic Steering"
+		Flamethrower 2
+		"Electron Beam" 2
+		"Laser Rifle" 3
+		"Water Coolant System"
+		"Fusion Reactor"
 
 
 
@@ -802,7 +1119,7 @@ ship "Cruiser" "Cruiser (Heavy)"
 		"Small Radar Jammer"
 		"Liquid Helium Cooler"
 		"Ramscoop"
-		"Outfits Expansion"
+		"Outfits Expansion" 2
 		"Brig"
 		"A520 Atomic Thruster"
 		"A525 Atomic Steering"
@@ -824,8 +1141,8 @@ ship "Cruiser" "Cruiser (Jump)"
 	outfits
 		"Typhoon Launcher" 2
 		"Typhoon Torpedo" 60
-		"Sidewinder Missile Launcher" 4
-		"Sidewinder Missile" 180
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 90
 		"Electron Turret" 3
 		"Heavy Anti-Missile Turret"
 		"Laser Rifle" 20
@@ -837,7 +1154,7 @@ ship "Cruiser" "Cruiser (Jump)"
 		"Small Radar Jammer"
 		"Liquid Helium Cooler"
 		"Fuel Pod" 2
-		"Ramscoop"
+		"Catalytic Ramscoop"
 		"Outfits Expansion" 2
 		"A520 Atomic Thruster"
 		"A525 Atomic Steering"
@@ -846,8 +1163,8 @@ ship "Cruiser" "Cruiser (Jump)"
 	gun "Sidewinder Missile Launcher"
 	gun "Typhoon Launcher"
 	gun "Typhoon Launcher"
-	gun "Sidewinder Missile Launcher"
-	gun "Sidewinder Missile Launcher"
+	gun
+	gun
 	turret "Electron Turret"
 	turret "Electron Turret"
 	turret "Electron Turret"
@@ -858,8 +1175,8 @@ ship "Cruiser" "Cruiser (Mark II)"
 	outfits
 		"Typhoon Launcher" 2
 		"Typhoon Torpedo" 60
-		"Sidewinder Missile Launcher" 4
-		"Sidewinder Missile" 180
+		"Sidewinder Missile Launcher" 3
+		"Sidewinder Missile" 134
 		"Electron Turret" 2
 		"Heavy Anti-Missile Turret" 2
 		"Armageddon Core"
@@ -875,16 +1192,124 @@ ship "Cruiser" "Cruiser (Mark II)"
 		"A520 Atomic Thruster"
 		"A525 Atomic Steering"
 		"Hyperdrive"
+		"Outfits Expansion"
 	gun "Sidewinder Missile Launcher"
 	gun "Sidewinder Missile Launcher"
 	gun "Sidewinder Missile Launcher"
-	gun "Sidewinder Missile Launcher"
+	gun
 	gun "Typhoon Launcher"
 	gun "Typhoon Launcher"
 	turret "Heavy Anti-Missile Turret"
 	turret "Electron Turret"
 	turret "Electron Turret"
 	turret "Heavy Anti-Missile Turret"
+
+
+ship "Cruiser" "Cruiser (Republic Intelligence)"
+	outfits
+		"Typhoon Launcher" 2
+		"Typhoon Torpedo" 60
+		"Sidewinder Missile Launcher" 3
+		"Sidewinder Missile" 134
+		"Electron Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		"Armageddon Core"
+		"LP144a Battery Pack"
+		"S-970 Regenerator"
+		"Large Radar Jammer"
+		"Small Radar Jammer" 2
+		"Liquid Helium Cooler"
+		"Fuel Pod"
+		"Tactical Scanner"
+		"Laser Rifle" 25
+		"Fragmentation Grenades" 25
+		"A520 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Hyperdrive"
+		"Outfit Scanner" 3
+		"Cargo Scanner" 2
+		"Catalytic Ramscoop"
+		"Outfits Expansion"
+	gun "Sidewinder Missile Launcher"
+	gun "Sidewinder Missile Launcher"
+	gun "Sidewinder Missile Launcher"
+	gun
+	gun "Typhoon Launcher"
+	gun "Typhoon Launcher"
+	turret "Heavy Anti-Missile Turret"
+	turret "Electron Turret"
+	turret "Electron Turret"
+	turret "Heavy Anti-Missile Turret"
+
+
+# Used in the Hai Reveal campaign, Danforth pulls strings with the Free Worlds to get some cruisers equipped for deep-range deployment, intended against the Hai.
+ship "Cruiser" "Cruiser (Plasma Anti-Missile)"
+	outfits
+		"Heavy Anti-Missile Turret" 3
+		"Armageddon Core"
+		"S-970 Regenerator"
+		"Liquid Helium Cooler" 2
+		"Catalytic Ramscoop"
+		Hyperdrive
+		"Volcano Afterburner"
+		"Outfits Expansion" 2
+		"Plasma Cannon" 6
+		"A520 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Fragmentation Grenades" 20
+		"Fission Reactor"
+		"Laser Rifle" 20
+		"LP144a Battery Pack"
+
+
+# Danforth's personal ship in HR. Outfitted against the Hai and then modified to fight devil hide.
+ship "Cruiser" "Cruiser (Jump Plasma Anti-Missile)"
+	crew 136
+	outfits
+		"Plasma Cannon" 6
+		"Plasma Turret"
+		"Heavy Anti-Missile Turret" 2
+		
+		"Catalytic Ramscoop"
+		"Fuel Pod" 3
+		"Jump Drive"
+		"Quantum Keystone"
+		"S-970 Regenerator" 3
+		"Liquid Helium Cooler"
+		"Outfits Expansion" 2
+		
+		"A370 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Volcano Afterburner"
+		
+		"Stack Core"
+		"LP144a Battery Pack"
+		"Supercapacitor" 2
+		"Laser Rifle" 82
+		"Fragmentation Grenades" 60
+
+
+
+ship "Cutthroat" "Cutthroat (Jousting)"
+	outfits
+		"Twin Modified Blaster" 2
+		"Heavy Rocket Pod" 2
+		"Heavy Rocket Rack"
+		"Heavy Rocket" 14
+		
+		"Fission Reactor"
+		"Supercapacitor"
+		"Water Coolant System"
+		"D23-QP Shield Generator"
+		"Laser Rifle" 5
+		
+		"A520 Atomic Thruster"
+		"A255 Atomic Steering"
+		"Hyperdrive"
+	gun -21.5 -18 "Heavy Rocket Pod"
+	gun 21.5 -18 "Heavy Rocket Pod"
+	gun -11 -8.5 "Twin Modified Blaster"
+	gun 11 -8.5 "Twin Modified Blaster"
 
 
 
@@ -895,7 +1320,7 @@ ship "Dreadnought" "Dreadnought (Jump)"
 		"Plasma Turret" 3
 		"Heavy Anti-Missile Turret" 2
 		"Stack Core"
-		"LP144a Battery Pack"
+		"LP072a Battery Pack"
 		"D41-HY Shield Generator"
 		"Small Radar Jammer"
 		"Liquid Helium Cooler"
@@ -910,6 +1335,47 @@ ship "Dreadnought" "Dreadnought (Jump)"
 	turret "Plasma Turret"
 	turret "Plasma Turret"
 
+
+# This variant uses outfits acquired in the post-war condition that were surplus or black market for diversity *after* the main campaign.
+ship "Dreadnought" "Dreadnought (Plasma Blaster Anti-Missile)"
+	outfits
+		"Heavy Anti-Missile Turret" 3
+		"Armageddon Core"
+		"S-970 Regenerator"
+		"Liquid Helium Cooler" 2
+		Hyperdrive
+		"Volcano Afterburner"
+		Supercapacitor
+		"Outfits Expansion" 2
+		"Plasma Cannon" 4
+		"A520 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Breeder Reactor"
+		"Quad Blaster Turret" 2
+		"Laser Rifle" 25
+		"Water Coolant System"
+		"S-270 Regenerator" 2
+		"LP144a Battery Pack"
+
+
+# Same as above but repurposed for Hai Reveal.
+ship "Dreadnought" "Dreadnought (Plasma Jump Keystone)"
+	outfits
+		"Heavy Anti-Missile Turret" 2
+		"Plasma Turret" 3
+		"Stack Core"
+		"S-970 Regenerator" 3
+		"Liquid Helium Cooler" 2
+		"Jump Drive"
+		"Volcano Afterburner"
+		"Outfits Expansion" 2
+		"A520 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Laser Rifle" 25
+		"LP144a Battery Pack"
+		"Quantum Keystone"
+		"Fuel Pod" 2
+		"Catalytic Ramscoop"
 
 
 ship "Falcon" "Falcon (Heavy)"
@@ -928,6 +1394,8 @@ ship "Falcon" "Falcon (Heavy)"
 		"Orca Plasma Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
+		"Supercapacitor"
+		"Outfits Expansion"
 	gun "Torpedo Launcher"
 	gun "Torpedo Launcher"
 	gun "Meteor Missile Launcher"
@@ -981,6 +1449,22 @@ ship "Falcon" "Falcon (Plasma)"
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
+
+ship "Falcon" "Falcon (Laser Chaser)"
+	outfits
+		"Outfits Expansion" 2
+		Hyperdrive
+		"A370 Atomic Thruster"
+		"A525 Atomic Steering"
+		"Liquid Helium Cooler"
+		"D94-YV Shield Generator"
+		"Catalytic Ramscoop"
+		"Heavy Anti-Missile Turret"
+		"Quad Blaster Turret" 3
+		"Laser Rifle" 30
+		"LP036a Battery Pack"
+		"Heavy Laser" 4
+		"Armageddon Core"
 
 
 
@@ -1039,7 +1523,8 @@ ship "Firebird" "Firebird (Missile)"
 		"Torpedo Launcher" 2
 		"Torpedo" 75
 		"Torpedo Storage Rack"
-		"Heavy Laser Turret" 2
+		"Heavy Laser Turret"
+		"Laser Turret"
 		"Fission Reactor"
 		"LP072a Battery Pack"
 		"D67-TM Shield Generator"
@@ -1052,6 +1537,8 @@ ship "Firebird" "Firebird (Missile)"
 	gun "Meteor Missile Launcher"
 	gun "Torpedo Launcher"
 	gun "Torpedo Launcher"
+	turret "Laser Turret"
+	turret "Heavy Laser Turret"
 
 
 ship "Firebird" "Firebird (Plasma)"
@@ -1172,6 +1659,57 @@ ship "Freighter" "Freighter (Secret Cargo)"
 	turret "Heavy Anti-Missile Turret"
 	turret "Blaster Turret"
 
+
+ship "Freighter" "Freighter (Hai Trafficker)"
+	add attributes
+		"mass" 31
+		"outfit space" -25
+		"energy capacity" 2600
+		"shield generation" 1.6
+		"shield energy" 2.4
+		"hull repair rate" 0.2
+		"hull energy" 0.2
+		"hull heat" 0.3
+	outfits
+		"Pulse Rifle" 3
+		Brig
+		"Fuel Pod" 2
+		`"Biroo" Atomic Thruster`
+		"A255 Atomic Steering"
+		Hyperdrive
+		"Bullfrog Anti-Missile"
+		"Pulse Turret" 2
+		Ramscoop
+		"Outfits Expansion" 5
+		"Liquid Nitrogen Cooler"
+		"Breeder Reactor"
+		"Security Station" 2
+
+
+ship "Frigate" "Frigate (Republic Intelligence)"
+	outfits
+		"A370 Atomic Thruster"
+		"Blaster Turret" 2
+		Brig
+		"Cargo Scanner"
+		"Catalytic Ramscoop"
+		"Electron Beam" 2
+		"Fission Reactor"
+		"Fuel Pod"
+		"Heavy Anti-Missile Turret"
+		Hyperdrive
+		"Impala Plasma Steering"
+		"LP144a Battery Pack"
+		"Laser Rifle" 15
+		"Fragmentation Grenades" 15
+		"Outfit Scanner"
+		"Outfits Expansion"
+		"S-270 Regenerator"
+		"Sidewinder Missile" 45
+		"Sidewinder Missile Launcher"
+		Torpedo 30
+		"Torpedo Launcher"
+		"Water Coolant System"
 
 
 ship "Frigate" "Frigate (Mark II)"
@@ -1612,13 +2150,31 @@ ship "Leviathan" "Leviathan (Plasma Repeater)"
 	turret "Heavy Anti-Missile Turret"
 	turret "Heavy Anti-Missile Turret"
 
+ship "Leviathan" "Leviathan (Particle Chaser)"
+	outfits
+		"Scram Drive"
+		"Outfits Expansion" 3
+		"A370 Atomic Thruster"
+		"A525 Atomic Steering"
+		"D94-YV Shield Generator"
+		"Heavy Anti-Missile Turret"
+		"Liquid Helium Cooler"
+		"Liquid Nitrogen Cooler"
+		"Catalytic Ramscoop"
+		"Fuel Pod" 4
+		"LP072a Battery Pack"
+		"Particle Cannon" 4
+		"Laser Rifle" 32
+		"Quad Blaster Turret" 2
+		"Armageddon Core"
+
 
 
 ship "Manta" "Manta (Mark II)"
 	outfits
 		"Particle Cannon" 4
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Sidewinder Missile Launcher"
+		"Sidewinder Missile" 45
 		"Fission Reactor"
 		"LP072a Battery Pack"
 		"S-270 Regenerator"
@@ -1633,8 +2189,8 @@ ship "Manta" "Manta (Mark II)"
 	gun "Particle Cannon"
 	gun "Particle Cannon"
 	gun "Particle Cannon"
-	gun "Meteor Missile Launcher"
-	gun "Meteor Missile Launcher"
+	gun "Sidewinder Missile Launcher"
+	gun
 
 
 ship "Manta" "Manta (Nuclear)"
@@ -1792,7 +2348,7 @@ ship "Modified Argosy" "Modified Argosy (Missile)"
 		"Meteor Missile Box" 3
 		"Torpedo Launcher" 2
 		"Torpedo" 60
-		"Heavy Laser Turret"
+		"Laser Turret"
 		"Heavy Anti-Missile Turret"
 		"S3 Thermionic"
 		"LP072a Battery Pack"
@@ -1825,7 +2381,8 @@ ship "Mule" "Mule (Hai Engines)"
 	outfits
 		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 90
-		"Heavy Laser Turret" 3
+		"Heavy Laser Turret" 2
+		"Laser Turret"
 		"Chameleon Anti-Missile"
 		"Boulder Reactor"
 		"Hai Fissure Batteries"
@@ -1884,7 +2441,8 @@ ship "Nest" "Nest (Sidewinder)"
 		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 90
 		"Quad Blaster Turret" 2
-		"Heavy Anti-Missile Turret" 2
+		"Anti-Missile Turret"
+		"Heavy Anti-Missile Turret"
 		"S3 Thermionic"
 		"LP144a Battery Pack"
 		"D94-YV Shield Generator"
@@ -1893,6 +2451,46 @@ ship "Nest" "Nest (Sidewinder)"
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		Hyperdrive
+
+
+
+ship "Nighthawk" "Nighthawk (Raider)"
+	crew 28
+	outfits
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret"
+		
+		"RT-I Radiothermal"
+		"KP-6 Photovoltaic Array" 3
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		"Large Radar Jammer"
+		"Tactical Scanner"
+		"Laser Rifle" 28
+		"Nerve Gas" 10
+		
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+
+
+
+ship "Nighthawk" "Nighthawk (Slaver)"
+	outfits
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret"
+		
+		"RT-I Radiothermal"
+		"KP-6 Photovoltaic Array" 3
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		"Large Radar Jammer"
+		"Laser Rifle" 6
+		"Brig"
+		
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
 
 
 
@@ -1932,11 +2530,9 @@ ship "Osprey" "Osprey (Laser)"
 ship "Osprey" "Osprey (Missile)"
 	outfits
 		"Torpedo Launcher" 2
-		"Torpedo" 75
-		"Torpedo Storage Rack"
+		"Torpedo" 60
 		"Heavy Rocket Launcher" 2
-		"Heavy Rocket" 60
-		"Heavy Rocket Rack" 2
+		"Heavy Rocket" 40
 		"Heavy Laser Turret"
 		"Heavy Anti-Missile Turret"
 		"Breeder Reactor"
@@ -1956,11 +2552,30 @@ ship "Osprey" "Osprey (Missile)"
 	gun "Torpedo Launcher"
 
 
+# This variant uses outfits acquired in the post-war condition that were surplus or black market for diversity *after* the main campaign.
+ship "Osprey" "Osprey (Particle Anti-Missile)"
+	outfits
+		"Heavy Anti-Missile Turret"
+		"LP036a Battery Pack"
+		"S-970 Regenerator"
+		Hyperdrive
+		"LP072a Battery Pack"
+		"Volcano Afterburner"
+		"Outfits Expansion" 2
+		"Liquid Nitrogen Cooler"
+		"Particle Cannon" 4
+		"A370 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Laser Rifle" 3
+		"Water Coolant System"
+		"Fusion Reactor"
+
+
 
 ship "Protector" "Protector (Laser)"
 	outfits
-		"Sidewinder Missile Launcher" 2
-		"Sidewinder Missile" 90
+		"Sidewinder Missile Launcher"
+		"Sidewinder Missile" 45
 		"Anti-Missile Turret" 2
 		"Heavy Laser Turret" 4
 		"Fusion Reactor"
@@ -1984,8 +2599,8 @@ ship "Protector" "Protector (Laser)"
 
 ship "Protector" "Protector (Proton)"
 	outfits
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Sidewinder Missile Launcher"
+		"Sidewinder Missile" 45
 		"Proton Turret" 4
 		"Heavy Anti-Missile Turret" 2
 		"Fusion Reactor"
@@ -2062,8 +2677,8 @@ ship "Quicksilver" "Quicksilver (Scanner)"
 
 ship "Rainmaker" "Rainmaker (Mark II)"
 	outfits
-		"Sidewinder Missile Launcher" 4
-		"Sidewinder Missile" 180
+		"Sidewinder Missile Launcher" 3
+		"Sidewinder Missile" 135
 		"nGVF-CC Fuel Cell"
 		"LP036a Battery Pack"
 		"D67-TM Shield Generator"
@@ -2076,7 +2691,24 @@ ship "Rainmaker" "Rainmaker (Mark II)"
 	gun "Sidewinder Missile Launcher"
 	gun "Sidewinder Missile Launcher"
 	gun "Sidewinder Missile Launcher"
-	gun "Sidewinder Missile Launcher"
+	gun
+
+
+ship "Rainmaker" "Rainmaker (Mark II Old Weapons)"
+	outfits
+		"Energy Blaster" 2
+		"Meteor Missile Launcher" 4
+		"Meteor Missile" 180
+		"Meteor Missile Box" 4
+		"Dwarf Core"
+		"Supercapacitor"
+		"Water Coolant System"
+		"D67-TM Shield Generator"
+		"Fuel Pod" 2
+		"Outfits Expansion"
+		"A120 Atomic Thruster"
+		"A125 Atomic Steering"
+		"Hyperdrive"
 
 
 
@@ -2085,6 +2717,7 @@ ship "Raven" "Raven (Afterburner)"
 		"Heavy Laser" 4
 		"NT-200 Nucleovoltaic"
 		"D41-HY Shield Generator"
+		"Fuel Pod"
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
@@ -2099,7 +2732,6 @@ ship "Raven" "Raven (Heavy)"
 		"Fission Reactor"
 		"Supercapacitor" 3
 		"D23-QP Shield Generator"
-		"Water Coolant System"
 		"Cooling Ducts"
 		"Laser Rifle" 3
 		"A250 Atomic Thruster"
@@ -2117,7 +2749,8 @@ ship "Roost" "Roost (Sidewinder)"
 		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 90
 		"Quad Blaster Turret" 2
-		"Heavy Anti-Missile Turret" 2
+		"Heavy Anti-Missile Turret"
+		"Anti-Missile Turret"
 		"LP144a Battery Pack"
 		"S3 Thermionic"
 		"D94-YV Shield Generator" 2
@@ -2147,12 +2780,49 @@ ship "Scout" "Scout (Speedy)"
 
 
 
+ship "Scrapper" "Scrapper (Minimal)"
+	outfits
+		"Energy Blaster"
+		"KP-6 Photovoltaic Panel"
+		"LP036a Battery Pack"
+		"X1700 Ion Thruster"
+		"X1200 Ion Steering"
+		"Hyperdrive"
+
+
+
+ship "Scrapper" "Scrapper (Gatling)"
+	outfits
+		"Gatling Gun"
+		"Gatling Gun Ammo" 3000
+		"nGVF-AA Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"Chipmunk Plasma Thruster"
+		"Chipmunk Plasma Steering"
+		"Hyperdrive"
+
+
+
+ship "Scrapper" "Scrapper (Mod Blaster)"
+	outfits
+		"Modified Blaster"
+		"nGVF-AA Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		"Hyperdrive"
+
+
+
 ship "Skein" "Skein (Sidewinder)"
 	outfits
 		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 90
 		"Quad Blaster Turret" 2
-		"Heavy Anti-Missile Turret" 2
+		"Heavy Anti-Missile Turret"
+		"Anti-Missile Turret"
 		"LP144a Battery Pack"
 		"Fission Reactor"
 		"D94-YV Shield Generator" 3
@@ -2243,6 +2913,27 @@ ship "Splinter" "Splinter (Proton)"
 	turret "Proton Turret"
 
 
+# Used in the Hai Reveal campaign by a special Syndicate Security team. Should not be used before.
+ship "Splinter" "Splinter (Flamethrower Blaster)"
+	outfits
+		"Heavy Anti-Missile Turret"
+		"Catalytic Ramscoop"
+		Hyperdrive
+		"LP072a Battery Pack"
+		"Fuel Pod" 5
+		"Outfits Expansion" 3
+		"Liquid Nitrogen Cooler"
+		"A370 Atomic Thruster"
+		"A375 Atomic Steering"
+		Flamethrower 2
+		"Quad Blaster Turret" 2
+		"Cooling Ducts"
+		"Laser Rifle"
+		"Water Coolant System"
+		"S-270 Regenerator" 2
+		"Fusion Reactor"
+
+
 
 ship "Star Barge" "Star Barge (Armed)"
 	outfits
@@ -2276,11 +2967,10 @@ ship "Star Queen" "Star Queen (Hai)"
 ship "Vanguard" "Vanguard (Missile)"
 	outfits
 		"Sidewinder Missile Launcher" 4
-		"Sidewinder Missile" 295
-		"Sidewinder Missile Rack" 5
+		"Sidewinder Missile" 226
+		"Sidewinder Missile Rack" 2
 		"Torpedo Launcher" 3
-		"Torpedo" 120
-		"Torpedo Storage Rack" 2
+		"Torpedo" 90
 		"Heavy Anti-Missile Turret"
 		"Fission Reactor"
 		"Supercapacitor"
@@ -2347,7 +3037,9 @@ ship "Wasp" "Wasp (Javelin)"
 	gun
 	gun "Javelin Pod"
 	gun "Javelin Pod"
-		
+	gun
+	gun
+	
 
 ship "Wasp" "Wasp (Meteor)"
 	outfits

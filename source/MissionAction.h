@@ -68,6 +68,7 @@ public:
 	MissionAction Instantiate(std::map<std::string, std::string> &subs,
 		const System *origin, int jumps, int64_t payload) const;
 
+	int64_t Payment() const noexcept;
 
 private:
 	std::string trigger;

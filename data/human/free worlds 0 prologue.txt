@@ -19,6 +19,7 @@ mission "Pact Recon 0"
 		attributes "rim" "south"
 		not government "Pirate"
 		not system "Alniyat" "Atria" "Lesath" "Han"
+		not planet "Glaze"
 	destination "Glaze"
 	waypoint "Alniyat"
 	waypoint "Atria"
@@ -174,22 +175,25 @@ mission "Pact Recon 3"
 
 
 mission "Pact Questioning"
+	landing
 	source
 		attributes "near earth" "paradise"
 		government "Republic"
 	to offer
 		not "chosen sides"
+		not "FW Katya 1B: active"
 		random < 7 * ( "Pact Recon 1: done" + "Pact Recon 2: done" + "Pact Recon 3: done" )
 	
 	on offer
 		log "Apparently the Navy is suspicious of anyone who worked with the Southern Mutual Defense Pact; got questioned about it by an officer. It was unclear what his rank or position in the Navy was."
 		conversation
-			`As you are walking through the spaceport, a middle-aged man in a Navy uniform walks up to you and says, "Excuse me, Captain <last>. I would like to speak with you for a few minutes."`
+			`As you complete the usual landing documents with the Navy inspector outside your ship, another officer, a middle-aged man in the same uniform, walks up from behind him. As he passes by he gives a curt nod to the inspector, who suddenly walks away swiftly without saying anything, not even a "good day" to you or this new officer. He must have some sort of seniority over the inspector.`
+			`	Once the inspector is out of the way, the new officer turns to you and says, "Excuse me, Captain <last>. I would like to speak with you for a few minutes."`
 			choice
 				`	"Okay."`
 					goto branch
 				`	"Sorry, I'm really busy right now."`
-			`	"Unfortunately, this cannot wait," he responds as he pulls you aside from the crowd.`
+			`	"Unfortunately, this cannot wait," he responds.`
 			label branch
 			branch free
 				has "event: war begins"
@@ -209,7 +213,7 @@ mission "Pact Questioning"
 					goto quit
 			`	He has been looking intently into your eye, and when you lie to him, he frowns. "It really isn't necessary to lie to me," he says. You are not sure what to say in response, so you remain quiet.`
 			label pact
-			`	"Tell me," he says, "was there one particular militia officer who you reported to, or was it someone different every time?" As he is speaking, you look for clues of who he is or why he is questioning you, and you notice something very odd. All Navy personnel you have encountered in the past have a name badge on their lapel and rank insignia on their collar, but his uniform is entirely blank.`
+			`	"Tell me," he says, "was there one particular militia officer who you reported to, or was it someone different every time?" As he is speaking, you look for clues of who he is or why he is questioning you, and you notice something very odd. The Navy inspector before, and all Navy personnel you have encountered in the past, had a name badge on their lapel and rank insignia on their collar. But this officer's uniform is entirely blank.`
 			choice
 				`	"I don't remember anyone's name in particular."`
 				`	"I would rather not name any names."`
@@ -240,10 +244,10 @@ mission "Pact Questioning"
 			`	"I see," he says. "I wonder why they didn't share more of the details of their work with you."`
 			`	"Why are you asking me all these questions?" you say.`
 			label questions
-			`	"I'm just collecting information," he says. "Anything you tell me is interesting to me." Then, with a mischievous grin, he adds, "Anything you refuse to tell me is also interesting. Anyway, I won't detain you any longer. Thank you for your time." He smiles and walks away. You are left with no idea of what is going on.`
+			`	"I'm just collecting information," he says. "Anything you tell me is interesting to me." Then, with a mischievous grin, he adds, "Anything you refuse to tell me is also interesting. Anyway, I won't detain you any longer. Thank you for your time." He smiles and walks away, leaving you with no idea of what is going on.`
 				decline
 			label quit
-			`	"Understood," he says. "Thank you for your time." He makes no effort to detain you. As you walk away, you glance over your shoulder a few times to make sure you are not being watched or followed, but see no one.`
+			`	"Understood," he says. "Thank you for your time." He makes no effort to detain you, and walks away in the direction of the Navy garrison.`
 				decline
 
 
@@ -259,7 +263,9 @@ mission "FW Recon 0"
 	passengers 1
 	to offer
 		has "event: initial deployment 4"
-		random < 35 + 5 * "assisted free worlds" * "assisted free worlds"
+		or
+			random < 35 + 5 * "assisted free worlds" * "assisted free worlds"
+			has "flagship planet: Deep"
 	to fail
 		has "chosen sides"
 	
@@ -305,7 +311,7 @@ mission "FW Recon 1"
 				`	"Perhaps. What do you want me to do?"`
 				`	"Sorry, I want no part in your rebellion."`
 					decline
-			`	"It's a rather simple matter," he says. "Most of the Republic ships that have come through this system seem to be outfitted for surveillance, not combat. But there is one in orbit right now, the <npc>, that seems to be equipped as a warship. Would you be willing to scan its outfits and report to us what you find? We will pay <payment>."`
+			`	"It's a rather simple matter," he says. "Most of the Republic ships that have come through this system seem to be outfitted for surveillance, not combat. But there is one in orbit right now, the <npc>, that seems to be equipped as a warship. Would you be willing to scan its outfits and report to us what you find? The oufitter stocks scanners if you don't have one, though you might want to install a few of them to improve performance. We will pay <payment>."`
 			choice
 				`	"Sure, that sounds simple enough."`
 					accept
@@ -540,7 +546,11 @@ mission "FW Escort 0"
 		near "Sabik" 1 100
 	destination "Longjump"
 	to offer
-		random < 20 * "assisted free worlds"
+		has "assisted free worlds"
+		not "FW Escort 1: offered"
+		or
+			random < 20 * "assisted free worlds"
+			has "flagship planet: Glaze"
 	to fail
 		has "chosen sides"
 	
@@ -992,7 +1002,7 @@ mission "FW Escort Second Chance"
 				`	"I will. Thank you for giving me a second chance, sir."`
 				`	"I'll try my best."`
 			`	He shakes your hand and leaves, without ordering anything to drink. You get the feeling that he still does not think very highly of you.`
-			apply
+			action
 				"assisted free worlds" ++
 
 
@@ -1045,7 +1055,7 @@ mission "FW Bounty 1"
 		government "Bounty"
 		personality heroic staying nemesis target
 		system
-			near "Seginus" 1 2
+			near "Seginus" 1 1
 		ship "Hawk (Rocket)" "Cluny"
 		ship "Hawk (Speedy)" "Ferret"
 		ship "Berserker (Afterburner)" "Weasel"
@@ -1059,6 +1069,33 @@ mission "FW Bounty 1"
 	on complete
 		payment 200000
 		dialog `The militia officer who asked you to hunt down the "Rat Pack" arrives at your ship soon after you land and thanks you profusely. "Now we won't have to worry about them bothering ships in this sector anymore." She pays you the bounty of <payment> and says she'll tell other militia leaders how helpful you were.`
+
+
+
+ship "Mammoth" "Mammoth (Moonless)"
+	outfits
+		"Modified Blaster Turret" 2
+		"Heavy Laser Turret" 6
+		
+		"Fission Reactor"
+		"LP144a Battery Pack"
+		"D41-HY Shield Generator"
+		"Large Radar Jammer"
+		"Cooling Ducts"
+		"Laser Rifle" 18
+		
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Scram Drive"
+
+	turret "Heavy Laser Turret"
+	turret "Heavy Laser Turret"
+	turret "Heavy Laser Turret"
+	turret "Heavy Laser Turret"
+	turret "Modified Blaster Turret"
+	turret "Modified Blaster Turret"
+	turret "Heavy Laser Turret"
+	turret "Heavy Laser Turret"
 
 
 
@@ -1082,7 +1119,7 @@ mission "FW Bounty 2"
 				`	"Sorry, I'm way too busy right now."`
 					defer
 			
-			`	"There's a retrofitted heavy freighter by the name of <npc> that has been stealing large amounts of cargo from our supply convoys. It was last seen in the Delta Sagittarii system. Be warned that this ship is a tough one, fitted with more heavy lasers than I've ever seen anyone install on a single ship, but it's slow as a sloth, so you might be able to hit it from afar. The bounty on it is <payment>."`
+			`	"There's a retrofitted heavy freighter by the name of <npc> that has been stealing large amounts of cargo from our supply convoys. It was last seen in the Delta Sagittarii system. Be warned that this ship is a tough one, fitted with more Heavy Lasers than I've ever seen anyone install on a single ship, but it's slow as a sloth, so you might be able to hit it from afar. The bounty on it is <payment>."`
 			choice
 				`	"Sounds like this shouldn't be too difficult. I'm in."`
 				`	"I could handle a group of interceptors, but this sounds like too much for me. You'll have to find someone else."`
@@ -1092,15 +1129,15 @@ mission "FW Bounty 2"
 				accept
 			
 			label accept
-			`	He grins. "Your target is a retrofitted heavy freighter by the name of <npc> that has been stealing large amounts of cargo from our supply convoys. It was last seen in the Delta Sagittarii system. Be warned that this ship is a tough one, fitted with more heavy lasers than I've ever seen anyone install on a single ship, but it's slow as a sloth, so you might be able to hit it from afar. Good luck, Captain."`
+			`	He grins. "Your target is a retrofitted heavy freighter by the name of <npc> that has been stealing large amounts of cargo from our supply convoys. It was last seen in the Delta Sagittarii system. Be warned that this ship is a tough one, fitted with more Heavy Lasers than I've ever seen anyone install on a single ship, but it's slow as a sloth, so you might be able to hit it from afar. Good luck, Captain."`
 				accept
 	
 	npc kill
 		government "Bounty"
 		personality heroic staying nemesis target
 		system
-			near "Delta Sagittarii" 1 2
-		ship "Behemoth (Speedy)" "Moonless Night"
+			near "Delta Sagittarii" 1 1
+		ship "Mammoth (Moonless)" "Moonless Night"
 		dialog phrase "generic hunted bounty eliminated dialog"
 	
 	on visit
@@ -1166,7 +1203,9 @@ mission "FW Katya 1"
 		government "Free Worlds"
 	destination "Glory"
 	to offer
-		random < 10 + 7 * "assisted free worlds" * "assisted free worlds"
+		or
+			random < 10 + 7 * "assisted free worlds" * "assisted free worlds"
+			has "flagship planet: Zug"
 	to fail
 		has "chosen sides"
 	
@@ -1388,7 +1427,10 @@ mission "FW Katya Alt 2"
 	passengers 1
 	to offer
 		has "event: FW Katya Alt 2: ready"
-		random < 25 * "assisted free worlds"
+		has "assisted free worlds"
+		or
+			random < 25 * "assisted free worlds"
+			has "flagship planet: Zug"
 	to fail
 		has "chosen sides"
 	
@@ -2071,7 +2113,7 @@ mission "Rescue Katya 1"
 			`	"But I'm a reasonable man," he continues, his expression changing to a smile. "If my friends trust you, then I will give you a second chance, even if it is against my better judgment. Now please, join us."`
 			
 			label next
-			`	That night you are introduced to the rest of the Council: Alondo Gruyere, the Council's chief diplomat, Freya Winters, an adept engineer and the Council's head of logistics, and Jean-Jacques "JJ" Soleau, an ex-Navy officer who now leads the training of the Free Worlds miltias. Katya Reynolds, the final member of the Council, is not present.`
+			`	That night you are introduced to the rest of the Council: Alondo Gruyere, the Council's chief diplomat, Freya Winters, an adept engineer and the Council's head of logistics, and Jean-Jacques "JJ" Soleau, an ex-Navy officer who now leads the training of the Free Worlds militias. Katya Reynolds, the final member of the Council, is not present.`
 			`	They take you out to dinner at a very fancy restaurant. Halfway through the third course of the meal, Tomek's communicator beeps. He reaches over to turn it off, then sees the message and turns pale. A hush falls over the table. "<system> has been captured by the Navy," he announces.`
 			`	After a long silence, JJ asks, "How many casualties?"`
 			`	"None," says Tomek. "The Navy claimed that <system> was the source of the terrorist attack, and after they showed the evidence to the militia commander on Deep he surrendered and yielded control of the system to them without a fight."`
