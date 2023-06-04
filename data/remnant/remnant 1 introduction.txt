@@ -803,9 +803,9 @@ mission "Remnant: Gascraft-Puffin Compatibility"
 
 
 mission "Remnant: Technology Available"
+	landing
 	name "License Training"
 	description "Transport a prefect to <destination> so he can tell you more about the Remnant license."
-	landing
 	source
 		government "Remnant"
 	destination
