@@ -806,7 +806,6 @@ mission "Remnant: Technology Available"
 	name "License Training"
 	description "Transport a prefect to <destination> so he can tell you more about the Remnant license."
 	landing
-	invisible
 	source
 		government "Remnant"
 	destination
