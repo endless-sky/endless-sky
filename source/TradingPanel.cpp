@@ -127,10 +127,10 @@ void TradingPanel::Draw()
 	int outfits = player.Cargo().OutfitsSize();
 	int missionCargo = player.Cargo().MissionCargoSize();
 	sellOutfits = false;
+	bool hasOutfits = false;
+	bool hasMinables = false;
 	if(player.Cargo().HasOutfits() || missionCargo)
 	{
-		bool hasOutfits = false;
-		bool hasMinables = false;
 		for(const auto &it : player.Cargo().Outfits())
 			if(it.second)
 			{
@@ -156,7 +156,7 @@ void TradingPanel::Draw()
 	}
 
 	int i = 0;
-	bool canSell = false;
+	bool canSell = hasMinables;
 	bool canBuy = false;
 	bool showProfit = false;
 	for(const Trade::Commodity &commodity : GameData::Commodities())
@@ -236,27 +236,25 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		Buy(-1);
 	else if(key == 'B' || (key == 'b' && (mod & KMOD_SHIFT)))
 		Buy(1000000000);
-	else if(keyS)
-	{
-		for(const auto &it : GameData::Commodities())
-		{
-			int64_t amount = player.Cargo().Get(it.name);
-			int64_t price = system.Trade(it.name);
-			if(!price || !amount)
-				continue;
-
-			int64_t basis = player.GetBasis(it.name, -amount);
-			player.AdjustBasis(it.name, basis);
-			profit += amount * price + basis;
-			tonsSold += amount;
-
-			player.Cargo().Remove(it.name, amount);
-			player.Accounts().AddCredits(amount * price);
-			GameData::AddPurchase(system, it.name, -amount);
-		}
-	}
 	else if(keyX || keyS)
 	{
+		if(keyS)
+			for(const auto &it : GameData::Commodities())
+			{
+				int64_t amount = player.Cargo().Get(it.name);
+				int64_t price = system.Trade(it.name);
+				if(!price || !amount)
+					continue;
+
+				int64_t basis = player.GetBasis(it.name, -amount);
+				player.AdjustBasis(it.name, basis);
+				profit += amount * price + basis;
+				tonsSold += amount;
+
+				player.Cargo().Remove(it.name, amount);
+				player.Accounts().AddCredits(amount * price);
+				GameData::AddPurchase(system, it.name, -amount);
+			}
 		int day = player.GetDate().DaysSinceEpoch();
 		for(const auto &it : player.Cargo().Outfits())
 		{
