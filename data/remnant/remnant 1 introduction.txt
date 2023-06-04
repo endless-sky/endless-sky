@@ -2111,6 +2111,7 @@ mission "Remnant: Return the Samples 2"
 	on complete
 		"reputation: Drak" += 1
 		event "remnant: return the samples timer" 2 4
+		set "remnant: return the samples timer triggered"
 		conversation
 			`Back on Aventine, you share the recording of the void sprite's behavior with Plume. "These Sprites demonstrate considerably more communication than we originally thought. And obviously they must have communicated what you did on Nasqueron. Interesting..." Plume's excited staccato exclamations trail off as he begins to make notes on a data pad he has on hand. "Thank you for your help, we will let you know what we find out."`
 
@@ -2122,7 +2123,7 @@ mission "Remnant: Return the Samples Compatibility Patch"
 	invisible
 	to offer
 		has "Remnant: Return the Samples 2: done"
-		not "event: remnant: return the samples timer"
+		not "remnant: return the samples timer triggered"
 	on offer
 		event "remnant: return the samples timer" 2
 		fail
