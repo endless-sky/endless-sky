@@ -1990,6 +1990,24 @@ mission "Remnant: S-970 Regenerator"
 
 
 
+# For players who did the original versions of these missions before ccbc671.
+# The main "Remnant: Tech Retrieval" mission did not exist and only the
+# Heavy Laser, Plasma Cannon, and Catalytic Ramscoop missions existed.
+mission "Remnant: Tech Retrieval Patch"
+	landing
+	invisible
+	to offer
+		not "Remnant: Tech Retrieval: offered"
+		or
+			has "Remnant: Heavy Laser: done"
+			has "Remnant: Plasma Cannon: done"
+			has "Remnant: Catalytic Ramscoop: done"
+	on offer
+		set "Remnant: Tech Retrieval: done"
+		fail
+
+
+
 mission "Remnant: Taely Intro Log"
 	invisible
 	source
