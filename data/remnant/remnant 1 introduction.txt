@@ -2137,6 +2137,8 @@ mission "Remnant: Return the Samples 3 Exploration Hint"
 	to offer
 		has "event: remnant: return the samples timer"
 		or
+			has "Remnant: Face to Maw 2: done"
+			has "Remnant: Face to Maw 2B: done"
 			and
 				not "Remnant: Face to Maw 1: active"
 				not "Remnant: Face to Maw 1: done"
@@ -2144,9 +2146,6 @@ mission "Remnant: Return the Samples 3 Exploration Hint"
 				not "Remnant: Face to Maw 1B: done"
 				not "Remnant: Face to Maw 2: active"
 				not "Remnant: Face to Maw 2B: active"
-			or
-				has "Remnant: Face to Maw 2: done"
-				has "Remnant: Face to Maw 2B: done"
 	on offer
 		event "remnant: wait for plume" 7 14
 		conversation
