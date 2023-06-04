@@ -649,7 +649,7 @@ bool LocationFilter::Matches(const System *system, const System *origin, bool di
 	// Check this system's distance from the desired reference system.
 	if(center && Distance(center, system, centerCount, centerMaxDistance, centerDistanceOptions) < centerMinDistance)
 		return false;
-	if(origin && ( originMaxDistance >= 0 || originCount > 0 )
+	if(origin && (originMaxDistance >= 0 || originCount > 0)
 			&& Distance(origin, system, originCount, originMaxDistance, originDistanceOptions) < originMinDistance)
 		return false;
 
