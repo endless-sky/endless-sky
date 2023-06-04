@@ -2730,7 +2730,6 @@ mission "Bounty Hunting (Very Tiny)"
 			"combat rating" > 15
 			has "ships: Interceptor"
 			has "ships: Light Warship"
-			has "ships: Light Carrier"
 		"combat rating" < 80
 		random < 50
 	source
@@ -2777,7 +2776,6 @@ mission "Bounty Hunting (Tiny)"
 			"combat rating" > 30
 			has "ships: Interceptor"
 			has "ships: Light Warship"
-			has "ships: Light Carrier"
 		"combat rating" < 200
 		random < 45
 	source
@@ -3261,7 +3259,6 @@ mission "Bounty Hunting (Solo Marauder II)"
 			has "ships: Light Warship"
 			has "ships: Medium Warship"
 			has "ships: Light Carrier"
-			has "ships: Heavy Carrier"
 		"combat rating" > 100
 		"combat rating" < 500
 		random < 5
