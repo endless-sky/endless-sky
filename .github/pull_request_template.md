@@ -34,7 +34,7 @@ This save file can be used to verify the bugfix. The bug will occur when using {
 -----------------------
 **Balance:**
 
-## Changes Made
+## Summary
 {{add details}}
 
 ## Reasoning
