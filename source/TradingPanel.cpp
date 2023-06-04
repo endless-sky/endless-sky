@@ -126,7 +126,6 @@ void TradingPanel::Draw()
 
 	int outfits = player.Cargo().OutfitsSize();
 	int missionCargo = player.Cargo().MissionCargoSize();
-	sellOutfits = false;
 	bool hasOutfits = false;
 	bool hasMinables = false;
 	if(player.Cargo().HasOutfits() || missionCargo)
@@ -137,7 +136,6 @@ void TradingPanel::Draw()
 				bool isMinable = it.first->Get("minable");
 				(isMinable ? hasMinables : hasOutfits) = true;
 			}
-		sellOutfits = (hasOutfits && !hasMinables);
 
 		string str = Format::MassString(outfits + missionCargo) + " of ";
 		if(hasMinables && missionCargo)
@@ -210,7 +208,7 @@ void TradingPanel::Draw()
 		font.Draw("Profit", Point(MIN_X + PROFIT_X, FIRST_Y), selected);
 
 	Information info;
-	if(sellOutfits)
+	if(hasOutfits)
 		info.SetCondition("can sell outfits");
 	if(canSell)
 		info.SetCondition("can sell");
