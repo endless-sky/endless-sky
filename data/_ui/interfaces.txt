@@ -1051,7 +1051,7 @@ interface "trade"
 		dimensions 90 30
 	
 	active if "can sell outfits"
-	button X "Sell Outfits"
+	button L "Sell Outfits"
 		center -250 355
 		dimensions 90 30
 

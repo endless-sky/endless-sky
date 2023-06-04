@@ -225,7 +225,7 @@ void TradingPanel::Draw()
 bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	bool keyS = key == 'S' || (key == 's' && (mod & KMOD_SHIFT));
-	bool keyX = key == 'X' || (key == 'x' && (mod & KMOD_SHIFT));
+	bool keyL = key == 'L' || (key == 'l' && (mod & KMOD_SHIFT));
 	if(key == SDLK_UP)
 		player.SetMapColoring(max(0, player.MapColoring() - 1));
 	else if(key == SDLK_DOWN)
@@ -236,7 +236,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		Buy(-1);
 	else if(key == 'B' || (key == 'b' && (mod & KMOD_SHIFT)))
 		Buy(1000000000);
-	else if(keyX || keyS)
+	else if(keyL || keyS)
 	{
 		if(keyS)
 			for(const auto &it : GameData::Commodities())
@@ -258,8 +258,8 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		int day = player.GetDate().DaysSinceEpoch();
 		for(const auto &it : player.Cargo().Outfits())
 		{
-			// X only sells outfits
-			if(keyX && it.first->Get("minable"))
+			// L only sells outfits
+			if(keyL && it.first->Get("minable"))
 				continue;
 			// S only sells minables
 			else if(keyS && !it.first->Get("minable"))
