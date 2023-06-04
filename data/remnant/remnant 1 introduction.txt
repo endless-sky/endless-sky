@@ -2208,11 +2208,7 @@ mission "Remnant: Salvage 1"
 		not "human cultural data"
 		has "Remnant: Learn Sign Follow Up: offered"
 		random < 50
-		or
-			has "Remnant: Catalytic Ramscoop: done"
-			has "Remnant: Plasma Cannon: done"
-			has "Remnant: Heavy Laser: done"
-			has "Remnant: Tech Retrieval: done"
+		has "Remnant: Tech Retrieval: done"
 	on offer
 		conversation "taely cultural data"
 	on visit
@@ -2252,11 +2248,7 @@ mission "Remnant: Salvage 2"
 				has "human cultural data"
 				has "Remnant: Learn Sign Follow Up: offered"
 				random < 50
-				or
-					has "Remnant: Catalytic Ramscoop: done"
-					has "Remnant: Plasma Cannon: done"
-					has "Remnant: Heavy Laser: done"
-					has "Remnant: Tech Retrieval: done"
+				has "Remnant: Tech Retrieval: done"
 	on offer
 		conversation "taely cultural data"
 	npc
