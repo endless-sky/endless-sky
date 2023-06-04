@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapDetailPanel.h"
 #include "Messages.h"
 #include "Outfit.h"
+#include "Planet.h"
 #include "PlayerInfo.h"
 #include "System.h"
 #include "UI.h"
@@ -200,7 +201,6 @@ void TradingPanel::Draw()
 
 		if(hold)
 		{
-			sellOutfits = false;
 			canSell |= (price != 0);
 			font.Draw(to_string(hold), Point(MIN_X + HOLD_X, y), selected);
 		}
@@ -212,7 +212,7 @@ void TradingPanel::Draw()
 	Information info;
 	if(sellOutfits)
 		info.SetCondition("can sell outfits");
-	else if(player.Cargo().HasOutfits() || canSell)
+	if(canSell)
 		info.SetCondition("can sell");
 	if(player.Cargo().Free() > 0 && canBuy)
 		info.SetCondition("can buy");
@@ -224,6 +224,8 @@ void TradingPanel::Draw()
 // Only override the ones you need; the default action is to return false.
 bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	bool keyS = key == 'S' || (key == 's' && (mod & KMOD_SHIFT));
+	bool keyX = key == 'X' || (key == 'x' && (mod & KMOD_SHIFT));
 	if(key == SDLK_UP)
 		player.SetMapColoring(max(0, player.MapColoring() - 1));
 	else if(key == SDLK_DOWN)
@@ -234,7 +236,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		Buy(-1);
 	else if(key == 'B' || (key == 'b' && (mod & KMOD_SHIFT)))
 		Buy(1000000000);
-	else if(key == 'S' || (key == 's' && (mod & KMOD_SHIFT)))
+	else if(keyS)
 	{
 		for(const auto &it : GameData::Commodities())
 		{
@@ -252,10 +254,17 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 			player.Accounts().AddCredits(amount * price);
 			GameData::AddPurchase(system, it.name, -amount);
 		}
+	}
+	else if(keyX || keyS)
+	{
 		int day = player.GetDate().DaysSinceEpoch();
 		for(const auto &it : player.Cargo().Outfits())
 		{
-			if(it.first->Get("minable") <= 0. && !sellOutfits)
+			// X only sells outfits
+			if(keyX && it.first->Get("minable"))
+				continue;
+			// S only sells minables
+			else if(keyS && !it.first->Get("minable"))
 				continue;
 
 			int64_t value = player.FleetDepreciation().Value(it.first, day, it.second);
