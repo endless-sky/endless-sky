@@ -71,7 +71,8 @@ namespace {
 	}
 
 	// Check if the given system is within the given distance of the center.
-	int Distance(const System *center, const System *system, int count, int maximum, DistanceCalculationSettings distanceSettings)
+	int Distance(const System *center, const System *system, int count, int maximum,
+			DistanceCalculationSettings distanceSettings)
 	{
 		// This function should only ever be called from the main thread, but
 		// just to be sure, use mutex protection on the static locals.
