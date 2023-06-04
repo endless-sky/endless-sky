@@ -3396,6 +3396,8 @@ mission "Pirate Duel"
 		random < 35
 		not "ships: Medium Warship"
 		not "ships: Heavy Warship"
+		has "ships: Light Carrier"
+		has "ships: Heavy Carrier"
 		not "ships: Heavy Freighter"
 		not "ships: Space Liner"
 		not "ships: Utility"
