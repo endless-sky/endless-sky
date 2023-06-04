@@ -2444,9 +2444,9 @@ mission "Remnant: Salvage 6"
 
 
 mission "Remnant: Scanning Tolerances"
+	landing
 	name "Deliver Data to <planet>"
 	description `Deliver data crystal to a Remnant named Torza on <destination>.`
-	landing
 	deadline 15
 	source
 		government "Remnant"
@@ -2500,9 +2500,9 @@ mission "Remnant: Scanning Tolerances"
 
 
 mission "Remnant: Expanded Horizons Quarg 1"
+	minor
 	name "Visiting the Quarg"
 	description "Take Remnant researchers to <destination> to see the Quarg."
-	minor
 	source
 		government "Remnant"
 	destination "Wayfarer"
@@ -2900,9 +2900,9 @@ mission "Remnant: Face to Maw 1"
 
 
 mission "Remnant: Face to Maw 1B"
+	landing
 	name "Talk to Plume about the void sprites"
 	description "Plume would be very interested in a report on what happened with the void sprites."
-	landing
 	to offer
 		has "event: remnant: return the samples timer"
 		or
@@ -3023,9 +3023,9 @@ mission "Remnant: Face to Maw 2B"
 
 
 mission "Remnant: Keystone Research 1"
+	minor
 	name "Retrieve more keystones"
 	description `Retrieve quantum keystones from the Hai for the Remnant to study, starting in <destination>.`
-	minor
 	source "Viminal"
 	destination "Greenwater"
 	cargo "(reserved)" 19
@@ -3126,9 +3126,9 @@ mission "Remnant: Keystone Research 1"
 
 
 mission "Remnant: Keystone Research 2"
+	landing
 	name "Retrieve more keystones"
 	description `Retrieve quantum keystones from the Hai for the Remnant to study, next from <destination>`
-	landing
 	source "Greenwater"
 	destination "Allhome"
 	cargo "Keystones" 2
@@ -3140,9 +3140,9 @@ mission "Remnant: Keystone Research 2"
 
 
 mission "Remnant: Keystone Research 3"
+	landing
 	name "Retrieve more keystones"
 	description `Retrieve quantum keystones from several Hai worlds, ending on Newhome.`
-	landing
 	source "Allhome"
 	destination "Newhome"
 	stopover "Makerplace"
@@ -3260,10 +3260,10 @@ mission "Remnant: Keystone Research 3G"
 
 
 mission "Remnant: Keystone Research 4"
+	landing
 	name "Retrieve more keystones"
 	description `Return the quantum keystones to Viminal.`
 	blocked `The cargo is ready to load, however you do not have enough free space. Come back when you have <tons> of free space.`
-	landing
 	source "Newhome"
 	destination "Viminal"
 	cargo "Keystones" 19
@@ -3301,9 +3301,9 @@ ship "Starling" "Starling (Keystone)"
 
 
 mission "Remnant: Keystone Research 5"
+	landing
 	name "Scan the <npc>"
 	description `Go scan the <npc> in <waypoints> to record the keystone post-wormhole.`
-	landing
 	waypoint "Peragenor"
 	source "Viminal"
 	to offer
@@ -3343,9 +3343,9 @@ mission "Remnant: Keystone Research 5"
 
 
 mission "Remnant: Keystone Research 6"
+	landing
 	name "Scan the <npc>"
 	description `Go scan the <npc> in <waypoints> to record the Key Stone post-wormhole.`
-	landing
 	waypoint "Peragenor"
 	source "Viminal"
 	npc "scan outfits" "save"
