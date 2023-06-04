@@ -186,7 +186,7 @@ void ConditionsStore::Save(DataWriter &out) const
 		if(it->second->provider)
 			continue;
 		// If the condition's value is 0, don't write it at all.
-		if(!it->second.value)
+		if(!it->second->value)
 			continue;
 		// If the condition's value is 1, don't bother writing the 1.
 		if(it->second->value == 1)
