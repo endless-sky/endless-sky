@@ -35,7 +35,7 @@ This save file can be used to verify the bugfix. The bug will occur when using {
 **Balance:**
 
 ## Summary
-{{add details}}
+{{summarize all the changes you made}}
 
 ## Reasoning
 {{explain why you think your balance changes are an improvement, including links to any issues you think your balance changes are addressing}}
