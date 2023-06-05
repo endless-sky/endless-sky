@@ -684,7 +684,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 	for( ; shipIt != stockShips.end() && nameIt != shipNames.end(); ++shipIt, ++nameIt)
 	{
 		result.ships.push_back(make_shared<Ship>(**shipIt));
-		result.ships.back()->SetName(*nameIt);
+		result.ships.back()->SetName(Format::Replace(Phrase::ExpandPhrases(*nameIt), subs));
 	}
 	for(const ExclusiveItem<Fleet> &fleet : fleets)
 		fleet->Place(*result.system, result.ships, false, !overrideFleetCargo);

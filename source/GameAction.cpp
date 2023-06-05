@@ -387,7 +387,9 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 	}
 
 	for(auto &&it : giftShips)
-		result.giftShips.emplace_back(it.first, !it.second.empty() ? it.second : GameData::Phrases().Get("civilian")->Get());
+		result.giftShips.emplace_back(it.first, !it.second.empty()
+			? Format::Replace(Phrase::ExpandPhrases(it.second), subs)
+			: GameData::Phrases().Get("civilian")->Get());
 	result.giftOutfits = giftOutfits;
 
 	result.payment = payment + (jumps + 1) * payload * paymentMultiplier;
