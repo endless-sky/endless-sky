@@ -1539,7 +1539,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	StepPassiveEffects(visuals, flotsam);
 	StepJettison(flotsam);
 	StepCloakDecision();
-	
+
 	// If the ship is not being destroyed, see if it is entering hyperspace
 	if(!destroyResult && StepHyperspaceLogic(visuals))
 		return;
