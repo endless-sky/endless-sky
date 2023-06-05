@@ -4411,9 +4411,9 @@ double Ship::CalculateDeterrence() const
 				+ weapon->CorrosionDamage() * 30.
 				+ weapon->DisruptionDamage() * 30.
 				+ ((weapon->EnergyDamage() + weapon->RelativeEnergyDamage() * attributes.Get("energy capacity") / 2.)
-				+ weapon->IonDamage() * 30. + weapon->DisruptionDamage() * 30.) / 4.
+					+ weapon->IonDamage() * 30. + weapon->DisruptionDamage() * 30.) / 4.
 				+ ((weapon->HeatDamage() + weapon->RelativeHeatDamage() * attributes.Get("heat capacity"))
-				+ weapon->BurnDamage() * 30.) / 6.;
+					+ weapon->BurnDamage() * 30.) / 6.;
 			tempDeterrence += .12 * strength / weapon->Reload();
 		}
 	return tempDeterrence;
