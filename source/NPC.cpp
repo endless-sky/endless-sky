@@ -689,7 +689,6 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 		result.ships.back()->SetName(Format::Replace(Format::Replace(
 			Phrase::ExpandPhrases(*nameIt), subs), playerSubs));
 	}
-
 	for(const ExclusiveItem<Fleet> &fleet : fleets)
 		fleet->Place(*result.system, result.ships, false, !overrideFleetCargo);
 	// Ships should either "enter" the system or start out there.
