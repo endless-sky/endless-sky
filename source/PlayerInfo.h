@@ -246,6 +246,7 @@ public:
 	ConditionsStore &Conditions();
 	const ConditionsStore &Conditions() const;
 	std::map<std::string, std::string> GetSubstitutions() const;
+	void AddPlayerSubstitutions(std::map<std::string, std::string> &subs) const;
 
 	// Get and set the "tribute" that the player receives from dominated planets.
 	bool SetTribute(const Planet *planet, int64_t payment);
