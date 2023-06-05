@@ -2516,6 +2516,7 @@ mission "Remnant: Expanded Horizons Quarg 1"
 	minor
 	source
 		government "Remnant"
+		attributes "remnant primary"
 	destination "Wayfarer"
 	passengers 3
 	to offer
@@ -3454,6 +3455,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 	passengers 1
 	source
 		government "Remnant"
+		attributes "remnant primary"
 	destination
 		government "Remnant"
 		not distance 0
@@ -3733,6 +3735,7 @@ mission "Remnant: Expanded Horizons Storms 1"
 	passengers 1
 	source
 		government "Remnant"
+		attributes "remnant primary"
 	waypoint
 		system "Aescolanus"
 	to offer
