@@ -439,8 +439,14 @@ mission "Remnant: Cognizance 11"
 			`As you finish unloading, you spot Gavriil approaching. They gesture in greeting as they approach. "Thanks for the delivery. We've got standard logistics routes set up now for the rest." They pause and fish a data crystal out of a pouch. "Could you take this to Prefect Taely on <planet>? She is overseeing some retrofits and will need this data."`
 				accept
 	on complete
+		"remnant met taely" ++
 		conversation
-			`On Viminal you easily locate the maintenance yards and eventually find Taely buried in a Pelican. She spots you approaching and frees herself from the machinery. "Greetings, <first>. How is our station faring?" You reply that it is improving rapidly and hand her the data crystal. "Ah, good. The detailed chemical analysis and profiles." She slots it into her console and taps a few commands. "Okay, I just need to incorporate these profiles into the system and make a few more adjustments. Meet me in the spaceport cafeteria in a couple hours."`
+			branch familiar
+				has "remnant met taely"
+			`On Viminal, you easily locate the maintenance yards. You ask around for Prefect Taely and are eventually directed towards a solidly built woman working on a Pelican. She spots you approaching and frees herself from the machinery. "Greetings, Captain <last>, I am Prefect Taely. I understand you have something for me." You hand her the data crystal. "The detailed chemical analysis and profiles, thanks you." She slots it into her console and taps a few commands. "Okay, I just need to incorporate these profiles into the system and make a few more adjustments. Meet me in the spaceport cafeteria in a couple hours."`
+				decline
+			label familiar
+			`On Viminal, you easily locate the maintenance yards and eventually find Taely buried in a Pelican. She spots you approaching and frees herself from the machinery. "Greetings, <first>. How is our station faring?" You reply that it is improving rapidly and hand her the data crystal. "Ah, good. The detailed chemical analysis and profiles." She slots it into her console and taps a few commands. "Okay, I just need to incorporate these profiles into the system and make a few more adjustments. Meet me in the spaceport cafeteria in a couple hours."`
 
 
 
