@@ -681,10 +681,8 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 	}
 	auto shipIt = stockShips.begin();
 	auto nameIt = shipNames.begin();
-
 	map<string, string> playerSubs;
 	player.AddPlayerSubstitutions(playerSubs);
-
 	for( ; shipIt != stockShips.end() && nameIt != shipNames.end(); ++shipIt, ++nameIt)
 	{
 		result.ships.push_back(make_shared<Ship>(**shipIt));
