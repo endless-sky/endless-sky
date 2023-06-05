@@ -235,7 +235,6 @@ private:
 	void StepMovement(double slowMultiplier, bool &isUsingAfterburner);
 	void StepTargeting();
 	void StepEngineVisuals(std::vector<Visual> &visuals, bool isUsingAfterburner);
-	// Generate energy, heat, etc. (This is called by StepPassiveEffects().)
 	void DoGeneration();
 
 

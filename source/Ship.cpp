@@ -2341,7 +2341,7 @@ void Ship::StepEngineVisuals(vector<Visual> &visuals, bool isUsingAfterburner)
 
 
 
-// Generate energy, heat, etc. (This is called by StepPassiveEffects().)
+// Generate energy, heat, etc. (This is called by Move().)
 void Ship::DoGeneration()
 {
 	// First, allow any carried ships to do their own generation.
