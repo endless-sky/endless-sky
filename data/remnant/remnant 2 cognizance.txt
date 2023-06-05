@@ -678,6 +678,7 @@ mission "Remnant: Cognizance 19"
 		attributes "remnant primary"
 	to offer
 		has "Remnant: Cognizance 18: done"
+		has "Remnant: Expanded Horizons Astral 2: done"
 	on offer
 		conversation
 			`As you finish your landing checks, your commlink notifies you of an incoming message from Dawn:`
