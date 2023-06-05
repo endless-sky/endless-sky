@@ -214,7 +214,8 @@ public:
 
 
 private:
-	// Various steps of Ship::Move
+	// Various steps of Ship::Move (not necessarily in order)
+
 	// Check if this ship has been in a different system from the player for so
 	// long that it should be "forgotten." Also eliminate ships that have no
 	// system set because they just entered a fighter bay. Clear the hyperspace
