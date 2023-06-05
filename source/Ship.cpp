@@ -1520,9 +1520,60 @@ const FireCommand &Ship::FiringCommands() const noexcept
 // should be deleted.
 void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 {
-	// Check if this ship has been in a different system from the player for so
-	// long that it should be "forgotten." Also eliminate ships that have no
-	// system set because they just entered a fighter bay.
+	// Do nothing with ships that are being forgotten.
+	if(StepFlags())
+		return;
+
+	int requiredCrew = RequiredCrew();
+	double slowMultiplier = 1. / (1. + slowness * .05);
+	bool isUsingAfterburner = false;
+
+	// We're done if the ship was destroyed.
+	int destroyResult = StepDestroyed(visuals, flotsam);
+	if(destroyResult > 0)
+		return;
+
+	// Generate energy, heat, etc. if we're not being destroyed.
+	if(!destroyResult)
+		DoGeneration();
+	StepPassiveEffects(visuals, flotsam);
+	StepJettison(flotsam);
+	StepCloakDecision();
+	
+	// If the ship is not being destroyed, see if it is entering hyperspace
+	if(!destroyResult && StepHyperspaceLogic(visuals))
+		return;
+
+	// If we're not being destroyed or trying to enter hyperspace, check if we're trying to land.
+	// If we landed, we're done.
+	if(!destroyResult && StepLandingLogic())
+		return;
+
+	// Don't let the ship do anything else if it is being destroyed.
+	if(!destroyResult)
+	{
+		StepInitializeMovement();
+		StepPilot(requiredCrew);
+		StepMovement(slowMultiplier, isUsingAfterburner);
+		StepTargeting();
+	}
+
+	// Move the ship.
+	position += velocity;
+
+	// Show afterburner flares unless the ship is being destroyed.
+	if(!destroyResult)
+		StepEngineVisuals(visuals, isUsingAfterburner);
+}
+
+
+
+// Check if this ship has been in a different system from the player for so
+// long that it should be "forgotten." Also eliminate ships that have no
+// system set because they just entered a fighter bay. Clear the hyperspace
+// targets of ships that can't enter hyperspace.
+bool Ship::StepFlags()
+{
 	forget += !isInSystem;
 	isThrusting = false;
 	isReversing = false;
@@ -1531,17 +1582,20 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	if((!isSpecial && forget >= 1000) || !currentSystem)
 	{
 		MarkForRemoval();
-		return;
+		return true;
 	}
 	isInSystem = false;
 	if(!fuel || !(navigation.HasHyperdrive() || navigation.HasJumpDrive()))
 		hyperspaceSystem = nullptr;
+	return false;
+}
 
+
+
+void Ship::StepPassiveEffects(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
+{
 	// Adjust the error in the pilot's targeting.
 	personality.UpdateConfusion(firingCommands.IsFiring());
-
-	// Generate energy, heat, etc.
-	DoGeneration();
 
 	// Handle ionization effects, etc.
 	if(ionization)
@@ -1560,19 +1614,28 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		CreateSparks(visuals, "leakage spark", leakage * .1);
 	if(burning)
 		CreateSparks(visuals, "burning spark", burning * .1);
+
+	// Move the turrets.
+	if(!isDisabled)
+		armament.Aim(firingCommands);
+}
+
+
+
+void Ship::StepJettison(list<shared_ptr<Flotsam>> &flotsam)
+{
 	// Jettisoned cargo effects (only for ships in the current system).
 	if(!jettisoned.empty() && !forget)
 	{
 		jettisoned.front()->Place(*this);
 		flotsam.splice(flotsam.end(), jettisoned, jettisoned.begin());
 	}
-	int requiredCrew = RequiredCrew();
-	double slowMultiplier = 1. / (1. + slowness * .05);
+}
 
-	// Move the turrets.
-	if(!isDisabled)
-		armament.Aim(firingCommands);
 
+
+void Ship::StepCloakDecision()
+{
 	if(!isInvisible)
 	{
 		// If you are forced to decloak (e.g. by running out of fuel) you can't
@@ -1603,7 +1666,14 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		else
 			cloak = 0.;
 	}
+}
 
+
+
+// Step ship destruction logic. Returns 1 if the ship has been destroyed, -1 if it is being
+// destroyed, or 0 otherwise.
+int Ship::StepDestroyed(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
+{
 	if(IsDestroyed())
 	{
 		// Make sure the shields are zero, as well as the hull.
@@ -1674,7 +1744,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			fuel = 0.;
 			velocity = Point();
 			MarkForRemoval();
-			return;
+			return 1;
 		}
 
 		// If the ship is dead, it first creates explosions at an increasing
@@ -1709,8 +1779,16 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				if(leak.closePeriod > 0 && !Random::Int(leak.closePeriod))
 					leak.effect = nullptr;
 			}
+		return -1;
 	}
-	else if(hyperspaceSystem || hyperspaceCount)
+	return 0;
+}
+
+
+
+bool Ship::StepHyperspaceLogic(vector<Visual> &visuals)
+{
+	if(hyperspaceSystem || hyperspaceCount)
 	{
 		// Don't apply external acceleration while jumping.
 		acceleration = Point();
@@ -1790,7 +1868,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			if(isUsingJumpDrive)
 			{
 				position = target + Angle::Random().Unit() * (300. * (Random::Real() + 1.) + extraArrivalDistance);
-				return;
+				return true;
 			}
 
 			// Have all ships exit hyperspace at the same distance so that
@@ -1845,9 +1923,16 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				hyperspaceOffset *= 1000. / length;
 		}
 
-		return;
+		return true;
 	}
-	else if(landingPlanet || zoom < 1.f)
+	return false;
+}
+
+
+
+bool Ship::StepLandingLogic()
+{
+	if(landingPlanet || zoom < 1.f)
 	{
 		// Don't apply external acceleration while landing.
 		acceleration = Point();
@@ -1885,7 +1970,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				else if(!isSpecial || personality.IsFleeing())
 				{
 					MarkForRemoval();
-					return;
+					return true;
 				}
 
 				zoom = 0.f;
@@ -1907,8 +1992,15 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		if(zoom > 0.f)
 			position += velocity * zoom;
 
-		return;
+		return true;
 	}
+	return false;
+}
+
+
+
+void Ship::StepInitializeMovement()
+{
 	if(isDisabled)
 	{
 		// If you're disabled, you can't initiate landing or jumping.
@@ -1922,7 +2014,12 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		isUsingJumpDrive = (jumpUsed.first == JumpType::JUMP_DRIVE);
 		hyperspaceFuelCost = jumpUsed.second;
 	}
+}
 
+
+
+void Ship::StepPilot(int requiredCrew)
+{
 	if(pilotError)
 		--pilotError;
 	else if(pilotOkay)
@@ -1946,11 +2043,16 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	}
 	else
 		pilotOkay = 30;
+}
 
-	// This ship is not landing or entering hyperspace. So, move it. If it is
-	// disabled, all it can do is slow down to a stop.
+
+
+// This ship is not landing or entering hyperspace. So, move it. If it is
+// disabled, all it can do is slow down to a stop.
+void Ship::StepMovement(double slowMultiplier, bool &isUsingAfterburner)
+{
 	double mass = InertialMass();
-	bool isUsingAfterburner = false;
+	isUsingAfterburner = false;
 	if(isDisabled)
 		velocity *= 1. - Drag() / mass;
 	else if(!pilotError)
@@ -2142,7 +2244,12 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		}
 		acceleration = Point();
 	}
+}
 
+
+
+void Ship::StepTargeting()
+{
 	// Boarding:
 	shared_ptr<const Ship> target = GetTargetShip();
 	// If this is a fighter or drone and it is not assisting someone at the
@@ -2213,9 +2320,13 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	target = GetTargetShip();
 	if(target && target->IsDestroyed() && target->explosionCount >= target->explosionTotal)
 		targetShip.reset();
+}
 
-	// Finally, move the ship and create any movement visuals.
-	position += velocity;
+
+
+// Finally, move the ship and create any movement visuals.
+void Ship::StepEngineVisuals(vector<Visual> &visuals, bool isUsingAfterburner)
+{
 	if(isUsingAfterburner && !Attributes().AfterburnerEffects().empty())
 		for(const EnginePoint &point : enginePoints)
 		{
@@ -2230,7 +2341,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 
 
-// Generate energy, heat, etc. (This is called by Move().)
+// Generate energy, heat, etc. (This is called by StepPassiveEffects().)
 void Ship::DoGeneration()
 {
 	// First, allow any carried ships to do their own generation.
