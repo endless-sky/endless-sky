@@ -1552,6 +1552,9 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	// Don't let the ship do anything else if it is being destroyed.
 	if(!destroyResult)
 	{
+		// Move the turrets.
+		if(!isDisabled)
+			armament.Aim(firingCommands);
 		StepInitializeMovement();
 		StepPilot(requiredCrew);
 		StepMovement(slowMultiplier, isUsingAfterburner);
@@ -1614,10 +1617,6 @@ void Ship::StepPassiveEffects(vector<Visual> &visuals, list<shared_ptr<Flotsam>>
 		CreateSparks(visuals, "leakage spark", leakage * .1);
 	if(burning)
 		CreateSparks(visuals, "burning spark", burning * .1);
-
-	// Move the turrets.
-	if(!isDisabled)
-		armament.Aim(firingCommands);
 }
 
 
