@@ -1848,7 +1848,7 @@ mission "Hai Reveal [A13] A New Elder"
 		"reputation: Hai Merchant" -= 10000
 		"reputation: Hai Merchant (Human)" -= 10000
 		"reputation: Hai Merchant (Sympathizers)" -= 10000
-	on fail
+	on abort
 		dialog `You have failed an essential narrative mission. You've also made the Hai hostile. If you want to complete this story line, revert to the autosave or another earlier snapshot of the game.`
 		"reputation: Hai" -= 10000
 		"reputation: Hai (Wormhole Access)" -= 10000
@@ -2006,13 +2006,22 @@ mission "Hai Reveal [A14] A Time of Trouble"
 			`	Turner smiles, "And I think it would be appropriate if you, as the famous war hero, were the one to escort them to safety and keep everyone's eyes away from what's happening here."`
 			`	The two of them look at each other for a second before Terry says, "We also need to get out of here ourselves. With the movie cover shutting down, we both have other things we really should be doing, and so we'd like to come with you. It would be much safer on your ship than with any of the merchant ships that need escorting."`
 				accept
-	npc accompany
+	on enter Mirfak
+		log `Teeneep has recommended that nobody visits Unfettered space while their leader is here with the fleet.`
+		conversation
+			`A message comes through just as you arrive at Mirfak, and it's from Teeneep.`
+			`	It reads: "While this situation is ongoing with Choot'k here away from his people, you should not go near the Unfettered. It will likely be seen as duplicitous, which would be a disaster."`
+	npc accompany save
 		government "Merchant"
 		system "Ultima Thule"
 		personality timid escort coward
 		fleet "Large Northern Merchants" 2
-	npc accompany
+	npc accompany save
 		government "Merchant"
 		system "Ultima Thule"
 		personality timid escort coward
 		fleet "Paradise Merchants" 3
+	on fail
+		dialog `You have failed an essential narrative mission. You've also made the Hai hostile. If you want to complete this story line, revert to the autosave or another earlier snapshot of the game.`
+	on abort
+		dialog `You have failed an essential narrative mission. You've also made the Hai hostile. If you want to complete this story line, revert to the autosave or another earlier snapshot of the game.`
