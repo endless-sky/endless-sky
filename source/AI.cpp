@@ -301,14 +301,14 @@ namespace {
 
 		if(personality.IsStaying())
 			return false;
-		
+
 		const bool lowHealth = ship.Health() < RETREAT_HEALTH + .25 * personality.IsCoward();
 		if(!personality.IsDaring() && lowHealth)
 			return true;
 
 		if(ship.GetAICache().NeedsAmmo())
 			return true;
-		
+
 		return false;
 	}
 
