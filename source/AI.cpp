@@ -1203,8 +1203,12 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 
 
 // Determine if the selected ship is physically able to render assistance.
-bool AI::CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel)
+bool AI::CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel) const
 {
+	// A ship being assisted cannot assist.
+	if(helperList.find(&helper) != helperList.end())
+		return false;
+
 	// Fighters, drones, and disabled / absent ships can't offer assistance.
 	if(helper.CanBeCarried() || helper.GetSystem() != ship.GetSystem()
 			|| (helper.Cloaking() == 1. && helper.GetGovernment() != ship.GetGovernment())
@@ -1615,9 +1619,17 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		// An AI ship that is targeting a non-hostile ship should scan it, or move on.
 		bool cargoScan = ship.Attributes().Get("cargo scan power");
 		bool outfitScan = ship.Attributes().Get("outfit scan power");
-		if((!cargoScan || Has(gov, target, ShipEvent::SCAN_CARGO))
-				&& (!outfitScan || Has(gov, target, ShipEvent::SCAN_OUTFITS)))
+		if(ship.GetSystem() != target->GetSystem())
+		{
 			target.reset();
+			ship.SetTargetShip(nullptr);
+		}
+		else if((!cargoScan || Has(gov, target, ShipEvent::SCAN_CARGO))
+				&& (!outfitScan || Has(gov, target, ShipEvent::SCAN_OUTFITS)))
+		{
+			target.reset();
+			ship.SetTargetShip(nullptr);
+		}
 		else
 		{
 			if(target->Velocity().Length() > ship.MaxVelocity() * 0.9)
@@ -1626,8 +1638,8 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 				MoveTo(ship, command, target->Position(), target->Velocity(), 1., 1.);
 			if(!ship.IsYours() && (ship.IsSpecial() || scanPermissions.at(gov)))
 				command |= Command::SCAN;
+			return;
 		}
-		return;
 	}
 
 	// A ship has restricted movement options if it is 'staying', 'lingering', or hostile to its parent.
