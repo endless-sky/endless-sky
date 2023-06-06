@@ -29,6 +29,8 @@ using namespace std;
 void ShipAICache::Calibrate(const Ship &ship)
 {
 	mass = ship.Mass();
+	hasWeapons = false;
+	canFight = false;
 	double totalDPS = 0.;
 	double splashDPS = 0.;
 	double artilleryDPS = 0.;
