@@ -1755,6 +1755,9 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		unsigned i = Random::Int(origin->Objects().size());
 		ship.SetTargetStellar(&origin->Objects()[i]);
 	}
+	else if(shouldStay)
+		// Nowhere to go, and nothing to do, so stay near the system center.
+		MoveTo(ship, command, Point(), Point(), 40, 0.8);
 }
 
 
