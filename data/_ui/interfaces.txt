@@ -1,0 +1,1336 @@
+# Copyright (c) 2014 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+# Colors used to reflect the active or hovered interface button.
+color "hover" 1. 1. 1. 0.
+color "active" .75 .75 .75 0.
+color "inactive" .25 .25 .25 0.
+
+# Colors generally used for drawing text or lines.
+color "bright" .75 .75 .75 0.
+color "medium" .5 .5 .5 0.
+color "dim" .25 .25 .25 0.
+color "dimmer" .18 .18 .18 0.
+color "faint" .1 .1 .1 0.
+color "dark" .05 .05 .05 0.
+
+# Colors used for drawing ship list in player info panel.
+color "flagship" .5 .5 .1 0.
+color "disabled" .5 .3 .1 0.
+color "dead" .4 0. 0. 0.
+
+# Colors used for certain UI elements. These elements generally have a variable
+# size (e.g. they may fit to the current screen dimensions).
+color "panel background" .1 .1 .1 1.
+color "dialog backdrop" 0. 0. 0. .7
+color "conversation background" .125 .125 .125 1.
+color "map side panel background" .125 .125 .125 1.
+color "map view range color" .1 .1 .1 .0
+color "map jump range color" .3 .3 .3 .0
+color "shop side panel background" .2 .2 .2 1.
+color "shop side panel footer" .3 .3 .3 1.
+color "shop info panel background" .055 .055 .055 1.
+color "tooltip background" .2 .2 .2 1.
+color "logbook sidebar" .09 .09 .09 1.
+color "logbook background" .125 .125 .125 1.
+color "logbook line" .2 .2 .2 1.
+color "item selected" 0. 0. 0. .3
+
+# Colors used to draw certain HUD elements in-flight.
+color "shields" .43 .55 .70 .75
+color "hull" .70 .62 .43 .75
+color "disabled hull" .3 0 0 .3
+color "heat" .70 .43 .43 .75
+color "overheat" .70 .61 .43 .75
+color "energy" .6 .6 .6 .75
+color "fuel" .70 .62 .43 .75
+
+color "flagship highlight" .5 .8 .2 0.
+
+color "drag select" .2 1. 0. 0.
+
+# Colors used for drawing mission or job pointers on the map,
+# to indicate where the player should go.
+color "available job" .9 .6 0. 1.
+color "available back" .5 .3 0. .5
+color "unavailable job" .5 .3 0. 1.
+color "unavailable back" .3 .1 0. .5
+color "active mission" .2 .7 1. 1.
+color "active back" 0. .4 .5 .5
+color "blocked mission" 0. .4 .6 1.
+color "blocked back" 0. .15 .2 .5
+color "special mission" 1. 1. 1. 1.
+color "waypoint" .1 .2 .9 1.
+color "waypoint back" 0. .3 .7 .5
+
+# Colors for the Escort HUD that is displayed in-flight.
+color "escort disabled" .4 .4 .4 0.
+color "escort present" .8 .8 .8 1.
+color "escort elsewhere" .4 .4 .6 1.
+color "escort not ready" .9 .8 0. 1.
+color "escort blocked" .9 .2 0. 1.
+color "escort selected" .2 .8 0. 1.
+color "escort hostile" 1. .6 .4 1.
+
+# Colors used when "status overlays" are enabled, and to show scan progress.
+color "overlay friendly shields" 0. .5 0. .25
+color "overlay friendly hull" .45 .5 0. .25
+color "overlay friendly disabled" .5 0 0 .25
+color "overlay hostile shields" .5 .15 0. .25
+color "overlay hostile hull" .5 .3 0. .25
+color "overlay hostile disabled" .3 .3 0 .25
+color "overlay neutral shields" .43 .55 .70 .75
+color "overlay neutral hull" .45 .5 0. .25
+color "overlay neutral disabled" .5 0 0 .25
+color "overlay outfit scan" .5 .5 .5 .25
+color "overlay cargo scan" .7 .7 .7 .25
+
+# Colors used when "missile overlays" are enabled
+color "missile enemy" 1. 1. .25 .7
+color "missile locked" 1. .9 0. .9
+color "missile dangerous" 1. .1 .1 1.
+
+# Colors used in the radar map while in-flight.
+color "radar player" .2 1. 0. 0.
+color "radar friendly" .4 .6 1. 0.
+color "radar unfriendly" .8 .8 .3 0.
+color "radar hostile" .85 .3 .2 0.
+color "radar inactive" .4 .4 .4 0.
+color "radar special" 1. 1. 1. 0.
+color "radar anomalous" .7 0. 1. 0.
+color "radar blink" 1. 1. 1. 0.
+color "radar viewport" 0. .3 0. 0.
+color "radar star" .6 .6 .6 0.
+
+# Colors used for the outline of the targeted ship.
+color "ship target outline player" .2 1. 0. 0.
+color "ship target outline friendly" .4 .6 1. 0.
+color "ship target outline unfriendly" .8 .8 .3 0.
+color "ship target outline hostile" .85 .3 .2 0.
+color "ship target outline inactive" .4 .4 .4 0.
+color "ship target outline special" 1. 1. 1. 0.
+color "ship target outline blink" 1. 1. 1. 0.
+
+# Colors used for ship target pointers.
+color "ship target pointer player" .2 1. 0. 0.
+color "ship target pointer friendly" .4 .6 1. 0.
+color "ship target pointer unfriendly" .8 .8 .3 0.
+color "ship target pointer hostile" .85 .3 .2 0.
+color "ship target pointer inactive" .4 .4 .4 0.
+color "ship target pointer special" 1. 1. 1. 0.
+color "ship target pointer blink" 1. 1. 1. 0.
+
+# Colors used for minable target pointers.
+color "minable target pointer selected" 1. 1. 1. 0.
+color "minable target pointer unselected" .4 .4 .4 0.
+
+# Colors used for planet target pointers.
+color "planet target pointer friendly" .4 .6 1. 0.
+color "planet target pointer restricted" .8 .8 .3 0.
+color "planet target pointer hostile" .85 .3 .2 0.
+color "planet target pointer dominated" 1. 1. 1. 0.
+
+# Colors used for warnings and errors.
+color "error back" .25 .1 .1 1.
+color "warning back" .21 .18 .08 1.
+color "warning conflict" .315 .27 .12 1.
+color "warning no command" 0.16 0.16 0.13 1.
+
+# Colors used for messages
+color "message importance highest"	1. .5 0. 1.
+color "message importance default"	1. 1. 1. 1.
+
+# Colors used when drawing the map (system names, links, and the player's desired route).
+# (The color of the ring that represents a given system is context-sensitive.)
+color "map link" .6 .6 .6 .6
+color "map name" .6 .6 .6 .6
+color "map travel ok fleet" .2 .5 0. 0.
+color "map travel ok flagship" .5 .4 0. 0.
+color "map travel ok none" .55 .1 0. 0.
+color "map travel wormhole" .5 .2 .9 1.
+color "map wormhole" .5 .2 .9 1.
+color "map orbits fleet destination" 1. 1. 1. 1.
+
+# Miscellaneous colors
+color "wormholes: Ember Waste" .7 .1 .3
+
+# Color of warning message when users enable or disable plugins via in-game UI.
+color "plugin reload required" .75 .1 .1 0.
+
+
+
+interface "map detail panel"
+	value "min planet panel height" 195
+	value "max planet panel height" 2022
+	value "starting X" 100
+	value "starting Y" 45
+	value "government Y" 280
+	value "text margin" 15
+	value "trade height" 120
+	value "arrow x offset" 3
+	value "arrow y offset" 10
+
+
+
+interface "map planet card"
+	value "text start" 13
+	value "category size" 20
+	value "height" 130
+	value "width" 235
+	value "planet icon max size" 100
+	value "categories" 5
+
+
+
+interface "menu background"
+	sprite "_menu/g5"
+		center 0 -280
+	sprite "_menu/forest2"
+		center 0 280
+	sprite "_menu/oberon"
+		center 140 180
+	sprite "_menu/compass"
+		center 0 0
+	sprite "_menu/title"
+		center 0 -200
+
+
+
+interface "main menu"
+	# Credits:
+	sprite "_menu/side panel"
+		center -360 0
+	box "credits"
+		from -470 -165
+		to -250 115
+
+	sprite "_menu/side panel"
+		center 360 0
+	
+	visible if "pilot loaded"
+	button e "_Enter Ship"
+		center 435 155
+		dimensions 90 30
+	visible if "!pilot loaded"
+	button n "_New Pilot"
+		center 435 155
+		dimensions 90 30
+	
+	visible
+	button l "_Load / Save..."
+		center 300 155
+		dimensions 120 30
+	
+	# Left panel (credits):
+	button q "_Quit"
+		center -285 155
+		dimensions 90 30
+	button p "_Preferences..."
+		center -420 155
+		dimensions 120 30
+
+
+
+interface "menu player info"
+	outline "ship sprite"
+		center 360 -105
+		dimensions 100 100
+	label "pilot:"
+		from 250 -35
+		align left
+	string "pilot"
+		from 315 -35
+		align left
+		width 165
+		truncate middle
+	label "ship:"
+		from 250 -15
+		align left
+	string "ship"
+		from 315 -15
+		align left
+		width 165
+		truncate back
+	label "planet:"
+		from 250 15
+		align left
+	string "planet"
+		from 315 15
+		align left
+		width 165
+		truncate back
+	label "system:"
+		from 250 35
+		align left
+	string "system"
+		from 315 35
+		align left
+		width 165
+		truncate back
+	label "credits:"
+		from 250 65
+		align left
+	string "credits"
+		from 315 65
+		align left
+	label "date:"
+		from 250 85
+		align left
+	string "date"
+		from 315 85
+		align left
+	label "playtime:"
+		from 250 105
+		align left
+	string "playtime"
+		from 315 105
+		align left
+
+
+
+interface "menu start info"
+	visible if "chosen start"
+	image "thumbnail"
+		center 360 -100
+		dimensions 220 240
+	label "name:"
+		from 250 -35
+		align left
+	string "name"
+		from 310 -35
+		align left
+	label "date:"
+		from 250 -15
+		align left
+	string "date"
+		from 310 -15
+		align left
+	label "planet:"
+		from 250 15
+		align left
+	string "planet"
+		from 310 15
+		align left
+	label "system:"
+		from 250 35
+		align left
+	string "system"
+		from 310 35
+		align left
+	label "credits:"
+		from 250 65
+		align left
+	string "credits"
+		from 310 65
+		align left
+	label "debt:"
+		from 250 85
+		align left
+	string "debt"
+		from 310 85
+		align left
+
+
+
+interface "start conditions menu"
+	sprite "_menu/side panel"
+		center -360 0
+	sprite "_menu/buttonless side panel"
+		center 0 0
+	sprite "_menu/buttonless side panel"
+		center 360 0
+	
+	button b "_Back to Menu"
+		center -420 155
+		dimensions 120 30
+	active if "unlocked start"
+	button s "_Start Game"
+		center -285 155
+		dimensions 90 30
+	
+	# The box that will contain the description text
+	box "start description"
+		from -105 -160
+		to 105 160
+	# Bounding box for the list of start conditions.
+	box "start entry list"
+		from -475 -160
+		to -245 120
+	# Size of the highlighted box for the selected start
+	box "start entry item bounds"
+		dimensions 230 20
+	# Visual padding applied to each scenario item
+	box "start entry text padding"
+		dimensions 5 2
+
+
+
+interface "load menu"
+	sprite "_menu/side panel"
+		center -360 0
+	sprite "_menu/side panel"
+		center 0 0
+	sprite "_menu/side panel"
+		center 360 0
+	
+	button n "_New Pilot"
+		center -420 155
+		dimensions 120 30
+	active if "pilot selected"
+	button d "_Delete"
+		center -285 155
+		dimensions 90 30
+	
+	active if "pilot alive"
+	button a "_Add Snapshot"
+		center -60 155
+		dimensions 120 30
+	active if "snapshot selected"
+	button R "Remove"
+		center 75 155
+		dimensions 90 30
+	
+	active
+	button b "_Back to Menu"
+		center 300 155
+		dimensions 120 30
+	active if "pilot loaded"
+	button l "_Load Game"
+		center 435 155
+		dimensions 90 30
+
+
+
+interface "controls"
+	sprite "ui/keys panel"
+		center -65 -20
+	button c "_Controls"
+		center -300 -230
+		dimensions 90 30
+		color bright
+	button s "_Settings"
+		center -300 -190
+		dimensions 90 30
+		color medium
+		hover bright
+	button p "_Plugins"
+		center -300 -150
+		dimensions 90 30
+		color medium
+		hover bright
+	label "Press '_x' over keybind to unbind"
+		from -255 200
+		color "bright"
+		align left
+		width 240
+		truncate back
+
+
+
+interface "settings"
+	sprite "ui/settings panel"
+		center -20 -20
+	button c "_Controls"
+		center -300 -230
+		dimensions 90 30
+		color medium
+		hover bright
+	button s "_Settings"
+		center -300 -190
+		dimensions 90 30
+		color bright
+	button p "_Plugins"
+		center -300 -150
+		dimensions 90 30
+		color medium
+		hover bright
+	visible if "multiple pages"
+	sprite "ui/dialog cancel"
+		center -115 210
+	active if "show next"
+	button n "_Next"
+		center -115 210
+		dimensions 70 30
+	sprite "ui/wide button"
+		center -210 210
+	active if "show previous"
+	button r "P_revious"
+		center -210 210
+		dimensions 90 30
+	
+
+
+
+interface "plugins"
+	sprite "ui/plugins panel"
+		center -20 -20
+	button c "_Controls"
+		center -300 -230
+		dimensions 90 30
+		color medium
+		hover bright
+	button s "_Settings"
+		center -300 -190
+		dimensions 90 30
+		color medium
+		hover bright
+	button p "_Plugins"
+		center -300 -150
+		dimensions 90 30
+		color bright
+	button o "_Open Plugins"
+		center -195 210
+		dimensions 120 30
+	visible if "show plugins changed"
+	label "Restart to apply changes"
+		from -225 -236
+		align top left
+		color "plugin reload required"
+	visible if "!show plugins changed"
+	label "Installed Plugins:"
+		from -225 -236
+		align top left
+		color bright
+
+
+
+interface "preferences"
+	button b "_Back to Menu..."
+		center 195 210
+		dimensions 120 30
+	bar "volume"
+		from 280.5 15
+		dimensions 0 -200
+		color "energy"
+		size 3
+
+
+
+interface "hud"
+	# Player status.
+	anchor top right
+	
+	sprite "ui/status"
+		from 0 0
+		align top right
+	
+	string "location"
+		from -160 25
+		color "medium"
+		align right
+		width 140
+		truncate back
+	string "date"
+		from -20 45
+		color "medium"
+		align right
+	string "credits"
+		from -20 65
+		color "medium"
+		align right
+	
+	outline "player sprite"
+		center -75 155
+		dimensions 70 70
+	ring "shields"
+		center -75 155
+		dimensions 120 120
+		color "shields"
+		size 1.5
+	ring "hull"
+		center -75 155
+		dimensions 110 110
+		color "hull"
+		size 1.5
+	ring "disabled hull"
+		center -75 155
+		dimensions 110 110
+		color "disabled hull"
+		size 1.5
+	bar "fuel"
+		from -53.5 425
+		dimensions 0 -192
+		color "fuel"
+		size 2
+	bar "energy"
+		from -33.5 415
+		dimensions 0 -192
+		color "energy"
+		size 2
+	bar "heat"
+		from -13.5 403
+		dimensions 0 -192
+		color "heat"
+		size 2
+	bar "overheat"
+		from -13.5 403
+		dimensions 0 -192
+		color "overheat"
+		size 2
+	bar "overheat blink"
+		from -13.5 403
+		dimensions 0 -192
+		color "dim"
+		size 2
+
+	# Targets.
+	anchor top left
+	visible if "red alert"
+	sprite "ui/red alert"
+		from 10 10
+		align top left
+	visible
+	sprite "ui/radar"
+		from 0 0
+		align top left
+	point "radar"
+		center 128 128
+	value "radar radius" 110
+	value "radar pointer radius" 130
+	
+	sprite "ui/navigation"
+		from 200 0
+		align top left
+	string "navigation mode"
+		from 215 20
+		align left
+		color "medium"
+	string "destination"
+		from 230 40
+		align left
+		color "medium"
+		width 135
+		truncate back
+	
+	sprite "ui/target"
+		from 0 240
+		align top left
+	point "target"
+		center 75 315
+		dimensions 140 140
+	value "target radius" 70
+	outline "target sprite"
+		center 75 315
+		dimensions 70 70
+		colored
+	ring "target shields"
+		center 75 315
+		dimensions 120 120
+		color "shields"
+		size 1.5
+	ring "target hull"
+		center 75 315
+		dimensions 110 110
+		color "hull"
+		size 1.5
+	ring "target disabled hull"
+		center 75 315
+		dimensions 110 110
+		color "disabled hull"
+		size 1.5
+	
+	visible if "range display"
+	sprite "ui/range"
+		from 130 263
+		align top left
+	string "target range"
+		from 160 260
+		align top left
+	visible if "tactical display"
+	sprite "ui/tactical"
+		from 130 290
+		align top left
+	string "target crew"
+		from 162 298
+		align top left
+	string "target fuel"
+		from 162 318
+		align top left
+	string "target energy"
+		from 157 338
+		align top left
+	string "target heat"
+		from 147 358
+		align top left
+	visible
+	
+	string "target name"
+		center 75 395
+		color "bright"
+		width 150
+		truncate middle
+	string "target type"
+		center 75 415
+		color "medium"
+		width 150
+		truncate middle
+	string "target government"
+		center 75 435
+		color "medium"
+		width 150
+		truncate middle
+	point "faction markers"
+		center 75 435
+	string "mission target"
+		center 75 455
+		color "medium"
+	
+	# Other HUD elements:
+	box "escorts"
+		from 0 460 top left
+		to 120 0 bottom left
+	box "messages"
+		from 120 0 bottom left
+		to -110 -200 bottom right
+	box "ammo"
+		from -110 450 top right
+		to 0 0 bottom right
+	value "ammo icon height" 30
+	value "ammo icon width" 80
+	anchor top
+	point "mini-map"
+		center 0 100
+
+
+
+interface "planet"
+	image "land"
+		center -60 -140
+	sprite "ui/planet dialog"
+		center -60 0
+	button l
+		center -60 -140
+		dimensions 720 360
+
+	box "content"
+		from -300 80 to 180 355
+
+	visible if "has shipyard"
+	sprite "ui/planet dialog button"
+		center 280 90
+	button s "_Shipyard"
+		center 280 90
+		dimensions 140 40
+		size 18
+		align right
+		pad 10 0
+	
+	visible if "has outfitter"
+	sprite "ui/planet dialog button"
+		center 280 150
+	button o "_Outfitter"
+		center 280 150
+		dimensions 140 40
+		size 18
+		align right
+		pad 10 0
+	
+	visible if "is inhabited"
+	sprite "ui/planet dialog button"
+		center -400 150
+	button j "_Job Board"
+		center -400 150
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+	sprite "ui/planet dialog button"
+		center 280 210
+	button h "_Hire Crew"
+		center 280 210
+		dimensions 140 40
+		size 18
+		align right
+		pad 10 0
+	
+	visible if "has trade"
+	sprite "ui/planet dialog button"
+		center -400 90
+	button t "_Trading"
+		center -400 90
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+	
+	visible if "has bank"
+	sprite "ui/planet dialog button"
+		center -400 210
+	button b "_Bank"
+		center -400 210
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+	
+	visible if "has spaceport"
+	sprite "ui/planet dialog button"
+		center -400 270
+	button p "Space_port"
+		center -400 270
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+	
+	visible if "has ship"
+	sprite "ui/planet dialog button"
+		center 280 270
+	button d "_Depart"
+		center 280 270
+		dimensions 140 40
+		size 18
+		align right
+		pad 10 0
+
+
+
+interface "spaceport"
+	box "content"
+		from -300 80 to 180 355
+
+
+
+interface "news"
+	sprite "ui/news"
+		center -160 -45
+	image "portrait"
+		center 20 -40
+	string "name"
+		from -400 -100
+		align center left
+		color "bright"
+	box "message portrait"
+		from -400 -80
+		to -50 10
+	box "message"
+		from -400 -80
+		to 80 10
+
+
+
+interface "boarding"
+	sprite "ui/boarding dialog"
+	
+	label "item"
+		from -320 -189
+		align left
+	label "value"
+		from -60 -189
+		align right
+	label "size"
+		from 10 -189
+		align right
+	
+	label "cargo space free:"
+		from -320 75
+		align left
+	string "cargo space"
+		from 10 75
+		align right
+	
+	label "crew"
+		from 190 -112
+		align right
+	label "attack"
+		from 260 -112
+		align right
+	label "defense"
+		from 330 -112
+		align right
+	
+	label "your ship:"
+		from 50 -92
+		align left
+	string "your crew"
+		from 190 -92
+		align right
+	string "your attack"
+		from 260 -92
+		align right
+	string "your defense"
+		from 330 -92
+		align right
+	
+	label "enemy ship:"
+		from 50 -72
+		align left
+	string "enemy crew"
+		from 190 -72
+		align right
+	string "enemy attack"
+		from 260 -72
+		align right
+	string "enemy defense"
+		from 330 -72
+		align right
+	
+	label "capture odds (attacking):"
+		from 50 -42
+		align left
+	string "attack odds"
+		from 330 -42
+		align right
+	label "expected casualties:"
+		from 50 -22
+		align left
+	string "attack casualties"
+		from 330 -22
+		align right
+	
+	label "survival odds (defending):"
+		from 50 8
+		align left
+	string "defense odds"
+		from 330 8
+		align right
+	label "expected casualties:"
+		from 50 28
+		align left
+	string "defense casualties"
+		from 330 28
+		align right
+	
+	active if "can take"
+	button t "_Take"
+		center -235 115
+		dimensions 70 30
+	
+	active if "can exit"
+	button x "_Done"
+		center -155 115
+		dimensions 70 30
+	
+	active if "can capture"
+	button c "Attempt _Capture"
+		center -40 115
+		dimensions 140 30
+	
+	active if "can attack"
+	button a "_Attack"
+		center 120 185
+		dimensions 80 30
+	
+	active if "can defend"
+	button d "_Defend"
+		center 210 185
+		dimensions 80 30
+
+
+
+# The top of the text panel is the planet dialog is at +70, and it is 500 x 260.
+interface "hiring"
+	label "flagship"
+		center -70 85
+		color "bright"
+		align right
+	label "entire fleet"
+		center 50 85
+		color "bright"
+		align right
+	label "salary"
+		center 170 85
+		color "bright"
+		align right
+	
+	line
+		center -60 95
+		dimensions 480 1
+
+	label "bunks"
+		center -290 110
+		align left
+	string "flagship bunks"
+		center -70 110
+		align right
+	string "fleet bunks"
+		center 50 110
+		align right
+	
+	label "required crew"
+		center -290 130
+		align left
+	string "flagship required"
+		center -70 130
+		align right
+	string "fleet required"
+		center 50 130
+		align right
+	string "salary required"
+		center 170 130
+		align right
+	
+	label "extra crew"
+		center -290 150
+		align left
+	string "flagship extra"
+		center -70 150
+		align right
+	string "salary extra"
+		center 170 150
+		align right
+	
+	active if "can hire"
+	sprite "ui/dialog cancel"
+		center 140 355
+	button h "_Hire"
+		center 140 355
+		dimensions 80 40
+	
+	active if "can fire"
+	sprite "ui/dialog cancel"
+		center 60 355
+	button f "_Fire"
+		center 60 355
+		dimensions 80 40
+	
+	active
+	string "modifier"
+		from -65 150
+		color "dim"
+		align left
+	
+	label "passenger space"
+		center -290 180
+		align left
+	string "flagship unused"
+		center -70 180
+		align right
+	string "fleet unused"
+		center 50 180
+		align right
+	
+	label "passengers"
+		center -290 200
+		align left
+	string "passengers"
+		center 50 200
+		align right
+	
+	label "(Extra crew for your flagship increases your odds of capturing ships,"
+		center -60 290
+	label "and once you capture a ship you need crew members to serve on it.)"
+		center -60 310
+
+
+
+interface "trade"
+	box "content"
+		from -310 80 to 190 355
+
+	line
+		center -60 95
+		dimensions 480 1
+
+	active if "can buy"
+	sprite "ui/dialog cancel"
+		center 40 355
+	button B "Buy All"
+		center 40 355
+		dimensions 70 30
+	
+	sprite "ui/wide button"
+		center 130 355
+	
+	active if "can sell"
+	visible if "!can sell outfits"
+	button S "Sell All"
+		center 130 355
+		dimensions 90 30
+	
+	active if "can sell outfits"
+	visible if "can sell outfits"
+	button S "Sell Outfits"
+		center 130 355
+		dimensions 90 30
+
+
+
+interface "bank"
+	box "content"
+		from -310 78 to 190 355
+
+	line
+		center -60 95
+		dimensions 480 1
+
+	active if "can pay"
+	sprite "ui/dialog cancel"
+		center 140 355
+	button a "Pay _All"
+		center 140 355
+		dimensions 80 40
+
+
+
+interface "mission" bottom
+	sprite "ui/mission"
+		align bottom
+	
+	label "cargo space free:"
+		center -130 -85
+	string "cargo free"
+		center -130 -65
+	
+	label "passenger space:"
+		center 0 -85
+	string "bunks free"
+		center 0 -65
+	
+	label "today's date:"
+		center 130 -85
+	string "today"
+		center 130 -65
+	
+	active if "can accept"
+	button a "_Accept Mission"
+		center -45 -25
+		dimensions 130 30
+	
+	active if "can abort"
+	button A "Abort"
+		center 70 -25
+		dimensions 80 30
+
+
+
+interface "map buttons" bottom right
+	active if "!is shipyards"
+	sprite "ui/wide button"
+		from -464 -50 to -354 0
+	button s "_Shipyards"
+		from -454 -40 to -364 -10
+	
+	active if "!is outfitters"
+	sprite "ui/wide button"
+		from -364 -50 to -254 0
+	button o "_Outfitters"
+		from -354 -40 to -264 -10
+	
+	active if "!is missions"
+	sprite "ui/dialog cancel"
+		from -264 -50 to -174 0
+	button i "M_issions"
+		from -254 -40 to -184 -10
+	
+	active if "!is ports"
+	sprite "ui/dialog cancel"
+		from -184 -50 to -94 0
+	button p "_Ports"
+		from -174 -40 to -104 -10
+	
+	active
+	sprite "ui/dialog cancel"
+		from -90 -50 to 0 0
+	button d "_Done"
+		from -80 -40 to -10 -10
+	
+	active
+	sprite "ui/dialog cancel"
+		from 0 -40 to -90 -90
+	button f "_Find"
+		from -80 -80 to -10 -50
+
+	sprite "ui/zoom"
+		from 0 -80 to -90 -130
+	active if "!max zoom"
+	button + "_+"
+		from -10 -90 to -40 -120
+		size 18
+	active if "!min zoom"
+	button - "_-"
+		from -50 -90 to -80 -120
+		size 18
+
+
+
+interface "map"
+	value "max zoom" 2
+	value "min zoom" -2
+
+
+
+interface "info panel"
+	sprite "ui/info panel"
+		center 0 -5
+	visible if "five buttons"
+	sprite "ui/five info buttons"
+		center 0 305
+	visible if "three buttons"
+	sprite "ui/three info buttons"
+		center 0 305
+	
+	box "player"
+		from -500 -290 to -250 280
+	box "fleet"
+		from -250 -290 to 500 280
+	
+	box "stats"
+		from -500 -290 to -250 280
+	box "outfits"
+		from -250 -290 to 500 30
+	box "weapons"
+		from -250 30 to 250 280
+	box "cargo"
+		from 250 -290 to 500 280
+	
+	visible if "ship tab"
+	button R
+		center -375 -270
+		dimensions 250 30
+	sprite "ui/ship tab"
+		center 0 -310
+	label "Ship Info"
+		center -300 -305
+		color "bright"
+	label "Player _Info"
+		center -420 -305
+	button i
+		center -420 -305
+		dimensions 120 30
+	
+	visible if "player tab"
+	sprite "ui/player tab"
+		center 0 -310
+	label "_Ship Info"
+		center -300 -305
+	label "Player Info"
+		center -420 -305
+		color "bright"
+	button s
+		center -300 -305
+		dimensions 120 30
+	
+	visible
+	button d "_Done"
+		center 455 305
+		dimensions 90 30
+	button m "_Missions..."
+		center 355 305
+		dimensions 90 30
+	active if "enable logbook"
+	button l "_Logbook..."
+		center 255 305
+		dimensions 90 30
+	active
+	
+	visible if "five buttons"
+	button n "_Next"
+		center 145 305
+		dimensions 90 30
+	button p "_Previous"
+		center 45 305
+		dimensions 90 30
+	
+	visible if "show park"
+	active if "can park"
+	sprite "ui/dialog cancel"
+		center -55 305
+	button k "Par_k"
+		center -55 305
+		dimensions 70 30
+	active
+	
+	visible if "show unpark"
+	sprite "ui/dialog cancel"
+		center -55 305
+	button k "Unpar_k"
+		center -55 305
+		dimensions 70 30
+	
+	visible if "show disown"
+	sprite "ui/dialog cancel"
+		center -150 305
+	button D "Disown"
+		center -150 305
+		dimensions 70 30
+	
+	visible if "show dump"
+	active if "enable dump"
+	sprite "ui/wide button"
+		center -65 305
+	button c "Dump _Cargo"
+		center -65 305
+		dimensions 90 30
+	active
+	
+	visible if "show park all"
+	sprite "ui/wide button"
+		center 145 305
+	button a "Park _All"
+		center 145 305
+		dimensions 90 30
+	visible if "show unpark all"
+	sprite "ui/wide button"
+		center 145 305
+	button a "Unpark _All"
+		center 145 305
+		dimensions 90 30
+	visible if "show park system"
+	sprite "ui/wide button"
+		center 40 305
+	button c "Park Lo_cal"
+		center 40 305
+		dimensions 90 30
+	visible if "show unpark system"
+	sprite "ui/wide button"
+		center 40 305
+	button c "Unpark Lo_cal"
+		center 40 305
+		dimensions 90 30
+	visible if "show save order"
+	sprite "ui/wide button"
+		center -195 305
+	button v "Sa_ve Order"
+		center -195 305
+		dimensions 90 30
+
+
+
+interface "hail panel"
+	sprite "ui/hail panel"
+	string "header"
+		from -50 -65
+		align left
+		width 330
+		truncate back
+
+	button d "_Done"
+		center 250 115
+		dimensions 80 30
+
+	visible if "!show pay bribe"
+	active if "can bribe"
+	button b "Offer _Bribe"
+		center 130 115
+		dimensions 140 30
+	visible if "show pay bribe"
+	active if "can pay bribe"
+	button b "Pay _Bribe"
+		center 130 115
+		dimensions 140 30
+		
+	visible if "show dominate"
+	active if "can dominate"
+	button t "Demand _Tribute"
+		center -20 115
+		dimensions 140 30
+	visible if "show relinquish"
+	button t "Relinquish _Tribute"
+		center -20 115
+		dimensions 140 30
+	visible if "show assist"
+	active if "can assist"
+	button h "Ask For _Help"
+		center -20 115
+		dimensions 140 30

@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Outfit.h"
 #include "Phrase.h"
 #include "Politics.h"
+#include "Ship.h"
 #include "ShipEvent.h"
 
 #include <algorithm>
@@ -193,6 +194,8 @@ void Government::Load(const DataNode &node)
 				hostileDisabledHail = nullptr;
 			else if(key == "language")
 				language.clear();
+			else if(key == "send untranslated hails")
+				sendUntranslatedHails = false;
 			else if(key == "trusted")
 				trusted.clear();
 			else if(key == "enforces")
@@ -355,6 +358,8 @@ void Government::Load(const DataNode &node)
 		else if(key == "foreign penalties for")
 			for(const DataNode &grand : child)
 				useForeignPenaltiesFor.insert(GameData::Governments().Get(grand.Token(0))->id);
+		else if(key == "send untranslated hails")
+			sendUntranslatedHails = true;
 		else if(!hasValue)
 			child.PrintTrace("Error: Expected key to have a value:");
 		else if(key == "player reputation")
@@ -584,6 +589,14 @@ const string &Government::Language() const
 
 
 
+// Find out if this government should send custom hails even if the player does not know its language.
+bool Government::SendUntranslatedHails() const
+{
+	return sendUntranslatedHails;
+}
+
+
+
 // Pirate raids in this government's systems use these fleet definitions. If
 // it is empty, there are no pirate raids.
 // The second attribute denotes the minimal and maximal attraction required for the fleet to appear.
@@ -666,6 +679,17 @@ int Government::Fines(const Outfit *outfit) const
 		if(it.first == outfit)
 			return it.second;
 	return outfit->Get("illegal");
+}
+
+
+
+bool Government::FinesContents(const Ship *ship) const
+{
+	for(auto &it : ship->Outfits())
+		if(this->Fines(it.first) || this->Condemns(it.first))
+			return true;
+
+	return ship->Cargo().IllegalCargoFine(this);
 }
 
 
