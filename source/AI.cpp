@@ -1619,17 +1619,20 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		// An AI ship that is targeting a non-hostile ship should scan it, or move on.
 		bool cargoScan = ship.Attributes().Get("cargo scan power");
 		bool outfitScan = ship.Attributes().Get("outfit scan power");
+		// De-target if the target left my system.
 		if(ship.GetSystem() != target->GetSystem())
 		{
 			target.reset();
 			ship.SetTargetShip(nullptr);
 		}
+		// Detarget if I cannot scan, or if I already scanned the ship.
 		else if((!cargoScan || Has(gov, target, ShipEvent::SCAN_CARGO))
 				&& (!outfitScan || Has(gov, target, ShipEvent::SCAN_OUTFITS)))
 		{
 			target.reset();
 			ship.SetTargetShip(nullptr);
 		}
+		// Move to (or near) the ship and scan it.
 		else
 		{
 			if(target->Velocity().Length() > ship.MaxVelocity() * 0.9)
@@ -1755,8 +1758,8 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		unsigned i = Random::Int(origin->Objects().size());
 		ship.SetTargetStellar(&origin->Objects()[i]);
 	}
+	// Nowhere to go, and nothing to do, so stay near the system center.
 	else if(shouldStay)
-		// Nowhere to go, and nothing to do, so stay near the system center.
 		MoveTo(ship, command, Point(), Point(), 40, 0.8);
 }
 
