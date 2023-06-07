@@ -124,29 +124,22 @@ void TradingPanel::Draw()
 	font.Draw("free:", Point(MIN_X + SELL_X + 5, lastY), selected);
 	font.Draw(to_string(player.Cargo().Free()), Point(MIN_X + HOLD_X, lastY), selected);
 
-	int outfits = player.Cargo().OutfitsSize();
 	int missionCargo = player.Cargo().MissionCargoSize();
-	bool hasOutfits = false;
-	bool hasMinables = false;
-	if(player.Cargo().HasOutfits() || missionCargo)
+	double allOutfitCargo = player.Cargo().OutfitsSizePrecise();
+	double minableCargo = player.Cargo().MinablesSizePrecise();
+	double outfitCargo = max(0.0, allOutfitCargo - minableCargo);
+	if(allOutfitCargo || missionCargo)
 	{
-		for(const auto &it : player.Cargo().Outfits())
-			if(it.second)
-			{
-				bool isMinable = it.first->Get("minable");
-				(isMinable ? hasMinables : hasOutfits) = true;
-			}
-
-		string str = Format::MassString(outfits + missionCargo) + " of ";
-		if(hasMinables && missionCargo)
+		string str = Format::MassString(ceil(allOutfitCargo + missionCargo)) + " of ";
+		if(minableCargo && missionCargo)
 			str += "mission cargo and other items.";
-		else if(hasOutfits && missionCargo)
+		else if(outfitCargo && missionCargo)
 			str += "outfits and mission cargo.";
-		else if(hasOutfits && hasMinables)
+		else if(allOutfitCargo)
 			str += "outfits and special commodities.";
-		else if(hasOutfits)
+		else if(outfitCargo)
 			str += "outfits.";
-		else if(hasMinables)
+		else if(minableCargo)
 			str += "special commodities.";
 		else
 			str += "mission cargo.";
@@ -154,7 +147,7 @@ void TradingPanel::Draw()
 	}
 
 	int i = 0;
-	bool canSell = hasMinables;
+	bool canSell = false;
 	bool canBuy = false;
 	bool showProfit = false;
 	for(const Trade::Commodity &commodity : GameData::Commodities())
@@ -208,8 +201,10 @@ void TradingPanel::Draw()
 		font.Draw("Profit", Point(MIN_X + PROFIT_X, FIRST_Y), selected);
 
 	Information info;
-	if(hasOutfits)
+	if(outfitCargo)
 		info.SetCondition("can sell outfits");
+	if(minableCargo)
+		info.SetCondition("can sell specials");
 	if(canSell)
 		info.SetCondition("can sell");
 	if(player.Cargo().Free() > 0 && canBuy)
@@ -223,6 +218,7 @@ void TradingPanel::Draw()
 bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	bool keyS = key == 'S' || (key == 's' && (mod & KMOD_SHIFT));
+	bool keyM = key == 'M' || (key == 'm' && (mod & KMOD_SHIFT));
 	bool keyL = key == 'L' || (key == 'l' && (mod & KMOD_SHIFT));
 	if(key == SDLK_UP)
 		player.SetMapColoring(max(0, player.MapColoring() - 1));
@@ -234,33 +230,33 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		Buy(-1);
 	else if(key == 'B' || (key == 'b' && (mod & KMOD_SHIFT)))
 		Buy(1000000000);
-	else if(keyL || keyS)
+	if(keyS)
+		for(const auto &it : GameData::Commodities())
+		{
+			int64_t amount = player.Cargo().Get(it.name);
+			int64_t price = system.Trade(it.name);
+			if(!price || !amount)
+				continue;
+
+			int64_t basis = player.GetBasis(it.name, -amount);
+			player.AdjustBasis(it.name, basis);
+			profit += amount * price + basis;
+			tonsSold += amount;
+
+			player.Cargo().Remove(it.name, amount);
+			player.Accounts().AddCredits(amount * price);
+			GameData::AddPurchase(system, it.name, -amount);
+		}
+	else if(keyL || keyM)
 	{
-		if(keyS)
-			for(const auto &it : GameData::Commodities())
-			{
-				int64_t amount = player.Cargo().Get(it.name);
-				int64_t price = system.Trade(it.name);
-				if(!price || !amount)
-					continue;
-
-				int64_t basis = player.GetBasis(it.name, -amount);
-				player.AdjustBasis(it.name, basis);
-				profit += amount * price + basis;
-				tonsSold += amount;
-
-				player.Cargo().Remove(it.name, amount);
-				player.Accounts().AddCredits(amount * price);
-				GameData::AddPurchase(system, it.name, -amount);
-			}
 		int day = player.GetDate().DaysSinceEpoch();
 		for(const auto &it : player.Cargo().Outfits())
 		{
 			// L only sells outfits
 			if(keyL && it.first->Get("minable"))
 				continue;
-			// S only sells minables
-			else if(keyS && !it.first->Get("minable"))
+			// M only sells minables
+			else if(keyM && !it.first->Get("minable"))
 				continue;
 
 			int64_t value = player.FleetDepreciation().Value(it.first, day, it.second);

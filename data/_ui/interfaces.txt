@@ -1044,10 +1044,18 @@ interface "trade"
 
 	sprite "ui/wide button"
 		center -250 355
+
+	sprite "ui/wide button"
+		center -150 355
 	
 	active if "can sell"
 	button S "Sell All"
 		center 130 355
+		dimensions 90 30
+
+	active if "can sell specials"
+	button M "Sell Specials"
+		center -150 355
 		dimensions 90 30
 	
 	active if "can sell outfits"

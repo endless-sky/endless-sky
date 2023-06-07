@@ -230,6 +230,26 @@ double CargoHold::OutfitsSizePrecise() const
 
 
 
+
+// Get the total mass of minable outfit cargo, rounded up to the nearest ton.
+int CargoHold::MinablesSize() const
+{
+	return ceil(MinablesSizePrecise());
+}
+
+
+
+double CargoHold::MinablesSizePrecise() const
+{
+	double size = 0.;
+	for(const auto &it : outfits)
+		if(it.first->Get("minable"))
+		size += it.second * it.first->Mass();
+	return size;
+}
+
+
+
 // Check if any outfits are being carried. Note that some outfits may have mass
 // zero, so this check cannot be done by calling OutfitsSize().
 bool CargoHold::HasOutfits() const
