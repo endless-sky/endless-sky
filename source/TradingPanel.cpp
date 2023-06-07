@@ -27,7 +27,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapDetailPanel.h"
 #include "Messages.h"
 #include "Outfit.h"
-#include "Planet.h"
 #include "PlayerInfo.h"
 #include "System.h"
 #include "UI.h"
