@@ -1034,31 +1034,28 @@ interface "trade"
 
 	active if "can buy"
 	sprite "ui/dialog cancel"
-		center 40 355
+		center 60 355
 	button B "Buy All"
-		center 40 355
+		center 60 355
 		dimensions 70 30
-	
-	sprite "ui/wide button"
-		center 130 355
 
-	sprite "ui/wide button"
-		center -250 355
-
-	sprite "ui/wide button"
-		center -150 355
-	
 	active if "can sell"
+	sprite "ui/dialog cancel"
+		center 140 355
 	button S "Sell All"
-		center 130 355
-		dimensions 90 30
+		center 140 355
+		dimensions 70 30
 
 	active if "can sell specials"
+	sprite "ui/wide button"
+		center -150 355
 	button M "Sell Specials"
 		center -150 355
 		dimensions 90 30
 	
 	active if "can sell outfits"
+	sprite "ui/wide button"
+		center -250 355
 	button L "Sell Outfits"
 		center -250 355
 		dimensions 90 30
