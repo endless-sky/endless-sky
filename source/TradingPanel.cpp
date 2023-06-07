@@ -124,17 +124,16 @@ void TradingPanel::Draw()
 	font.Draw(to_string(player.Cargo().Free()), Point(MIN_X + HOLD_X, lastY), selected);
 
 	int missionCargo = player.Cargo().MissionCargoSize();
-	double allOutfitCargo = player.Cargo().OutfitsSizePrecise();
 	double minableCargo = player.Cargo().MinablesSizePrecise();
-	double outfitCargo = max(0.0, allOutfitCargo - minableCargo);
-	if(allOutfitCargo || missionCargo)
+	double outfitCargo = max(0.0, player.Cargo().OutfitsSizePrecise() - minableCargo);
+	if(minableCargo || outfitCargo || missionCargo)
 	{
-		string str = Format::MassString(ceil(allOutfitCargo + missionCargo)) + " of ";
+		string str = Format::MassString(ceil(minableCargo + outfitCargo + missionCargo)) + " of ";
 		if(minableCargo && missionCargo)
 			str += "mission cargo and other items.";
 		else if(outfitCargo && missionCargo)
 			str += "outfits and mission cargo.";
-		else if(allOutfitCargo)
+		else if(outfitCargo && minableCargo)
 			str += "outfits and special commodities.";
 		else if(outfitCargo)
 			str += "outfits.";
@@ -216,7 +215,6 @@ void TradingPanel::Draw()
 // Only override the ones you need; the default action is to return false.
 bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	bool keyS = key == 'S' || (key == 's' && (mod & KMOD_SHIFT));
 	bool keyM = key == 'M' || (key == 'm' && (mod & KMOD_SHIFT));
 	bool keyL = key == 'L' || (key == 'l' && (mod & KMOD_SHIFT));
 	if(key == SDLK_UP)
@@ -229,7 +227,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		Buy(-1);
 	else if(key == 'B' || (key == 'b' && (mod & KMOD_SHIFT)))
 		Buy(1000000000);
-	if(keyS)
+	else if(key == 'S' || (key == 's' && (mod & KMOD_SHIFT)))
 		for(const auto &it : GameData::Commodities())
 		{
 			int64_t amount = player.Cargo().Get(it.name);
@@ -251,11 +249,8 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		int day = player.GetDate().DaysSinceEpoch();
 		for(const auto &it : player.Cargo().Outfits())
 		{
-			// L only sells outfits
-			if(keyL && it.first->Get("minable"))
-				continue;
-			// M only sells minables
-			else if(keyM && !it.first->Get("minable"))
+			bool minable = it.first->Get("minable");
+			if((keyL && minable) || (keyM && !minable))
 				continue;
 
 			int64_t value = player.FleetDepreciation().Value(it.first, day, it.second);
