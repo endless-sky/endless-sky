@@ -359,7 +359,7 @@ mission "Giaru Gegno: Quarg Contact"
 			`	"The Gegno believe it necessary to pursue what they choose must be, in order to imagine a grand future for themselves. Thus, they have separated into two different branches. One brandishes themselves as the honorable Vi - mightiest of warriors, toughest of kin. They are brutes that see proof of strength being the one and only variable in determining their path. That of the Scin, the more technologically able, believe that only through progression of sciences and discovery will the Gegno prosper."`
 				goto next
 			label sacrifice
-			`	"The Gegno believe it necessary to overwhelmingly sacrifice whatever must be, no matter the consequence or reason, in order to imagine a future for themselves. Thus, they have separated into two different branches. One brandishes themselves as the honorable Vi - mightiest of warriors, toughest of kin. They are brutes that see proof of strength being the one and only variable in determining their path. That of the Scin, the more technologically able, believe that only through progression of sciences and discovery will the Gegno prosper."`
+			`	"The Gegno believe it necessary to overwhelmingly sacrifice whatever must be, in order to imagine a future for themselves. Thus, they have separated into two different branches. One brandishes themselves as the honorable Vi - mightiest of warriors, toughest of kin. They are brutes that see proof of strength being the one and only variable in determining their path. That of the Scin, the more technologically able, believe that only through progression of sciences and discovery will the Gegno prosper."`
 			label next
 			choice
 				`	"The Vi are right, the strength to survive is more important than anything else."`
