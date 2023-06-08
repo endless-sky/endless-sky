@@ -1032,6 +1032,9 @@ interface "trade"
 		center -60 95
 		dimensions 480 1
 
+	sprite "ui/trading panel bottom"
+		center 99 359
+
 	active if "can buy"
 	sprite "ui/dialog cancel"
 		center 60 355
