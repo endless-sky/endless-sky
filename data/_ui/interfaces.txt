@@ -1051,9 +1051,9 @@ interface "trade"
 
 	active if "can sell specials"
 	sprite "ui/wide button"
-		center -150 355
+		center -145 355
 	button M "Sell Specials"
-		center -150 355
+		center -145 355
 		dimensions 90 30
 	
 	active if "can sell outfits"
