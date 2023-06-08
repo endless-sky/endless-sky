@@ -1799,7 +1799,38 @@ news "tourist pa system"
 		word
 			`"`
 
+news "republic navy advisory system"
+        location
+                government "Republic"
+        name 
+                "Republic Navy Advisory System"
+        message
+                word 
+                        `"`  
+                word 
+                        "Please be advised: a travel advisory remains in effect for Greenrock."
+                        "Please notify Republic officials immediately if you have been detained by any ship not granted legal authority to do so by the Republic Navy."
+                        "Report all sightings of pirate vessels immediately."
+                        "The following message is a test. The following message is a test. The following message is a test: Radiation hazard. Evacuate immediately. Radiation hazard. Evacuate immediately. Radiation hazard. Evacuate immediately."
+                word 
+                        `"`  
 
+news "republic navy advisory system [wartime]"
+        location
+                government "Republic"
+        name 
+                "Republic Navy Advisory System"
+        to show 
+                not "event: fw armistice"
+                has "chosen sides"
+        message
+                word 
+                        `"`  
+                word 
+                        "Attention: Travel by civilians to rebel-held systems is strictly prohibited."
+                        "Attention: Dangerous combat conditions persist in the galactic South. Avoid all travel to affected systems unless strictly necessary."
+                word 
+                        `"`  
 
 phrase "republic motto graffiti"
 	word
