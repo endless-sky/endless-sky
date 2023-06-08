@@ -351,7 +351,7 @@ mission "Giaru Gegno: Quarg Contact"
 				`	"What is this guidance they pursue?"`
 					goto guidance
 			label ships
-			`	"Indeed, the vessels of such stature represent the robust Gegno. Not in sorrow, but greatness do they pursue their future, bearing the fruit of sacrifice as a trophy to their name." As the Quarg says this, you notice a few blue marks appear on their normally grey skin, though they fade back away shortly after.`
+			`	"Indeed, the vessels of such stature represent the robust Gegno. Not in sorrow, but greatness do they pursue their future, bearing the fruit of sacrifice as a trophy to their name."
 			choice
 				`	"Do the Gegno upset you in some way?"`
 					goto sacrifice
@@ -396,12 +396,6 @@ mission "Giaru Gegno: Quarg Contact"
 			`	The Quarg motions a bow to you, and the first one from earlier escorts you out of the room. It seems associating with these so-called "Gegno" is very unlikely for you, and you will have to deal with their xenophobia for the foreseeable future.`
 				decline
 
-
-As you ask yout question, you notice as a few blue marks appear on the Quarg's normally grey skin, though they fade away shortly after. 
-
-As you ask yout question, you watch as a few red marks appear on the Quarg's normally grey skin, though they fade away shortly after.
-
-Once again, a few patches of color briefly appear on the Quarg's skin, though this time they appear a slight purple before fading back to grey again. 
 
 mission "Gegno Quarg Direction to Ringworld"
 	name `Visit Quarg Ringworld`
