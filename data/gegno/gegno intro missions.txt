@@ -351,9 +351,9 @@ mission "Giaru Gegno: Quarg Contact"
 				`	"What is this guidance they pursue?"`
 					goto guidance
 			label ships
-			`	"Indeed, the vessels of such stature represent the robust Gegno. Not in sorrow, but greatness do they pursue their future, bearing the fruit of sacrifice as a trophy to their name."
+			`	"Indeed, the vessels of such stature represent the robust Gegno. Not in sorrow, but greatness do they pursue their future, bearing the fruit of sacrifice as a trophy to their name."`
 			choice
-				`	"Do the Gegno upset you in some way?"`
+				`	"Sacrifice?"`
 					goto sacrifice
 			label guidance
 			`	"The Gegno believe it necessary to pursue what they choose must be, in order to imagine a grand future for themselves. Thus, they have separated into two different branches. One brandishes themselves as the honorable Vi - mightiest of warriors, toughest of kin. They are brutes that see proof of strength being the one and only variable in determining their path. That of the Scin, the more technologically able, believe that only through progression of sciences and discovery will the Gegno prosper."`
