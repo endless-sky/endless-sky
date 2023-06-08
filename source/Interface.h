@@ -193,6 +193,8 @@ private:
 		const Color *color = nullptr;
 		float width = 2.f;
 		bool isRing = false;
+		double spanAngle = 360.;
+		double startAngle = 0.;
 	};
 
 
