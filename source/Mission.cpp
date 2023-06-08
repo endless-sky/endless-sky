@@ -733,6 +733,8 @@ bool Mission::HasFullClearance() const
 // Check if it's possible to offer or complete this mission right now.
 bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardingShip) const
 {
+	if(wasPrepared)
+		return false;
 	if(location == BOARDING || location == ASSISTING)
 	{
 		if(!boardingShip)
@@ -985,6 +987,13 @@ bool Mission::IsUnique() const
 
 
 
+bool Mission::WasPrepared() const
+{
+	return wasPrepared;
+}
+
+
+
 // When the state of this mission changes, it may make changes to the player
 // information or show new UI panels. PlayerInfo::MissionCallback() will be
 // used as the callback for any UI panel that returns a value.
@@ -1066,6 +1075,9 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	// player's mission callback.
 	if(trigger == OFFER && location == JOB)
 		ui = nullptr;
+
+	if(trigger == OFFER)
+		wasPrepared = true;
 
 	// If this trigger has actions tied to it, perform them. Otherwise, check
 	// if this is a non-job mission that just got offered and if so,

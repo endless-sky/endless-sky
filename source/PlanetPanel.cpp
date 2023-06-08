@@ -79,16 +79,32 @@ void PlanetPanel::Step()
 		return;
 	}
 
+	// Offer landing missions. In each Step, any number of non-UI missions
+	// will be offered, but only one UI mission. This ensures the player
+	// cannot accidentally depart or switch screens until all landing
+	// missions have been processed.
+	//
+	// Bank is a special case:
 	// If the player starts a new game, exits the shipyard without buying
 	// anything, clicks to the bank, then returns to the shipyard and buys a
 	// ship, make sure they are shown an intro mission.
-	if(GetUI()->IsTop(this) || GetUI()->IsTop(bank.get()))
+	shared_ptr<Panel> planetPanel = shared_from_this();
+	// Can't use IsTop() because IsTop() doesn't see Panels loaded in this Step.
+	while(GetUI()->Top() == planetPanel || GetUI()->Top() == bank)
 	{
+		// Offer no more missions if the player is dead or launching.
+		if(player.IsDead())
+			return;
+		const Ship *flagship = player.Flagship();
+		if(flagship && flagship->CanBeFlagship() && player.ShouldLaunch())
+			return;
+
+		// Offer a mission or display a blocked message.
 		Mission *mission = player.MissionToOffer(Mission::LANDING);
 		if(mission)
 			mission->Do(Mission::OFFER, player, GetUI());
-		else
-			player.HandleBlockedMissions(Mission::LANDING, GetUI());
+		else if(!player.HandleBlockedMissions(Mission::LANDING, GetUI()))
+			return;
 	}
 }
 

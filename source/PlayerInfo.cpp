@@ -2001,12 +2001,12 @@ void PlayerInfo::ClearActiveBoardingMission()
 
 // If one of your missions cannot be offered because you do not have enough
 // space for it, and it specifies a message to be shown in that situation,
-// show that message.
-void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
+// show that message. Returns true if anything was shown.
+bool PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
 {
 	list<Mission> &missionList = availableMissions.empty() ? boardingMissions : availableMissions;
 	if(ships.empty() || missionList.empty())
-		return;
+		return false;
 
 	for(auto it = missionList.begin(); it != missionList.end(); ++it)
 		if(it->IsAtLocation(location) && it->CanOffer(*this) && !it->CanAccept(*this))
@@ -2015,9 +2015,10 @@ void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
 			if(!message.empty())
 			{
 				ui->Push(new Dialog(message));
-				return;
+				return true;
 			}
 		}
+	return false;
 }
 
 
@@ -3000,6 +3001,39 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto &&creditScoreProvider = conditions.GetProviderNamed("credit score");
 	creditScoreProvider.SetGetFunction([this](const string &name) {
 		return accounts.CreditScore(); });
+
+	auto &&availableProvider = conditions.GetProviderPrefixed("mission available: ");
+	auto availableHasGetFun = [this](const string &nameAndPrefix) -> int64_t
+	{
+		string name = nameAndPrefix.substr(strlen("mission available: "));
+		for(auto &mission : availableMissions)
+			if(mission.Name() == name)
+				return 1;
+		for(auto &mission : availableJobs)
+			if(mission.Name() == name)
+				return 1;
+		return 0;
+	};
+	availableProvider.SetHasFunction(availableHasGetFun);
+	availableProvider.SetGetFunction(availableHasGetFun);
+
+	auto &&preparedProvider = conditions.GetProviderPrefixed("mission prepared: ");
+	auto preparedHasGetFun = [this](const string &nameAndPrefix) -> int64_t
+	{
+		string name = nameAndPrefix.substr(strlen("mission prepared: "));
+		for(auto &mission : availableMissions)
+			if(mission.Name() == name && mission.WasPrepared())
+				return 1;
+		for(auto &mission : availableJobs)
+			if(mission.Name() == name && mission.WasPrepared())
+				return 1;
+		for(auto &mission : missions)
+			if(mission.Name() == name && mission.WasPrepared())
+				return 1;
+		return 0;
+	};
+	preparedProvider.SetHasFunction(preparedHasGetFun);
+	preparedProvider.SetGetFunction(preparedHasGetFun);
 
 	// Read/write assets and debts.
 	auto &&salaryIncomeProvider = conditions.GetProviderPrefixed("salary: ");

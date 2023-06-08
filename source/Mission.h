@@ -149,7 +149,10 @@ public:
 	// Check if this mission is unique, i.e. not something that will be offered
 	// over and over again in different variants.
 	bool IsUnique() const;
-
+	// Check whether the game prepared to offer the mission to the player. This
+	// differs from the ": offered" variable in that it is set before the
+	// conversation or dialog instead of after.
+	bool WasPrepared() const;
 	// When the state of this mission changes, it may make changes to the player
 	// information or show new UI panels. PlayerInfo::MissionCallback() will be
 	// used as the callback for an `on offer` conversation, to handle its response.
@@ -213,6 +216,7 @@ private:
 	bool ignoreClearance = false;
 	LocationFilter clearanceFilter;
 	bool hasFullClearance = true;
+	bool wasPrepared = false;
 
 	int repeat = 1;
 	std::string cargo;

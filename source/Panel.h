@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <functional>
 #include <list>
+#include <memory>
 #include <string>
 
 #include <SDL2/SDL.h>
@@ -36,7 +37,7 @@ class UI;
 // Panel, and panels can stack on top of each other like "real" UI windows. By
 // default, a panel allows the panels under it to show through, but does not
 // allow them to receive any events that it does not know how to handle.
-class Panel {
+class Panel: public std::enable_shared_from_this<Panel> {
 public:
 	// Make the destructor virtual just in case any derived class needs it.
 	virtual ~Panel() = default;
