@@ -381,7 +381,7 @@ mission "Giaru Gegno: Quarg Contact"
 				`	"Thank you for the information."`
 					goto end
 				`	"It seems that you do not like the paths they've chosen."`
-			`	The Quarg stands up, but as it does so, you watch as a few marks on its otherwise grey skin shift into blue hues with faint traces of purple, though they fade away shortly after. "It is not in our prosperous grasp to persuade the Gegno, as once we did attempt to. They would ensure conflict with us should we interfere, and we have no desire to witness an imperiled uprising of such a sort once more." It pauses for an extended time, then gestures you to stand up as well.`
+			`	The Quarg stands up, but as it does so, you watch as a few marks on its otherwise gray skin shift into blue hues with faint traces of purple, though they fade away shortly after. "It is not in our prosperous grasp to persuade the Gegno, as once we did attempt to. They would ensure conflict with us should we interfere, and we have no desire to witness an imperiled uprising of such a sort once more." It pauses for an extended time, then gestures you to stand up as well.`
 			
 			branch "interacted with outsider"
 				has "Visit Quarg in Gegno Space: offered"
