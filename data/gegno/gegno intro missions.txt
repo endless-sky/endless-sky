@@ -346,7 +346,7 @@ mission "Giaru Gegno: Quarg Contact"
 				`	"Do the ships I've seen around belong to these Gegno?"`
 					goto ships
 			label gegno
-			`	"Yes, the imperious Gegno. A juvenile race, they are, many decades younger than that of you humans. They do not find themselves in the struggle of leadership the same way as others do. Rather, they glorify their pursuit of guidance between one another to share a noble future." You wonder if the Quarg's use of boastful adjectives is because of gaps in its translations, or if they are intentionally speaking that way. Its voice still comes from the lower tones of Quarg speech, clashing with the excited pace it is speaking at.`
+			`	"Yes, the imperious Gegno. A juvenile race, they are, many decades younger than that of you humans. They do not find themselves in the struggle of leadership the same way as others do. Rather, they glorify their pursuit of guidance between one another to share a noble future." You wonder if the Quarg's use of boastful adjectives is because of gaps in its translations, or if it is intentionally speaking that way. Its voice still comes from the lower tones of Quarg speech, clashing with the excited pace it is speaking at.`
 			choice
 				`	"What is this guidance they pursue?"`
 					goto guidance
