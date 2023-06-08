@@ -348,7 +348,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 			"so there is no reason to buy another.";
 
 	// Check that the player has any necessary licenses.
-	int64_t licenseCost = LicenseCost(selectedOutfit);
+	int64_t licenseCost = LicenseCost(selectedOutfit, onlyOwned);
 	if(licenseCost < 0)
 		return "You cannot buy this outfit, because it requires a license that you don't have.";
 
@@ -394,7 +394,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 	}
 
 	// Check if you need to pay, and can't afford it.
-	if(!isInCargo && !isInStorage)
+	if(!onlyOwned)
 	{
 		// Determine what you will have to pay to buy this outfit.
 		int64_t cost = player.StockDepreciation().Value(selectedOutfit, day);
@@ -489,7 +489,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 
 void OutfitterPanel::Buy(bool onlyOwned)
 {
-	int64_t licenseCost = LicenseCost(selectedOutfit);
+	int64_t licenseCost = LicenseCost(selectedOutfit, onlyOwned);
 	if(licenseCost)
 	{
 		player.Accounts().AddCredits(-licenseCost);

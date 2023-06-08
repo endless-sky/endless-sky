@@ -74,6 +74,7 @@ color "waypoint" .1 .2 .9 1.
 color "waypoint back" 0. .3 .7 .5
 
 # Colors for the Escort HUD that is displayed in-flight.
+color "escort disabled" .4 .4 .4 0.
 color "escort present" .8 .8 .8 1.
 color "escort elsewhere" .4 .4 .6 1.
 color "escort not ready" .9 .8 0. 1.
@@ -143,6 +144,7 @@ color "planet target pointer dominated" 1. 1. 1. 0.
 color "error back" .25 .1 .1 1.
 color "warning back" .21 .18 .08 1.
 color "warning conflict" .315 .27 .12 1.
+color "warning no command" 0.16 0.16 0.13 1.
 
 # Colors used for messages
 color "message importance highest"	1. .5 0. 1.
@@ -426,6 +428,12 @@ interface "controls"
 		dimensions 90 30
 		color medium
 		hover bright
+	label "Press '_x' over keybind to unbind"
+		from -255 200
+		color "bright"
+		align left
+		width 240
+		truncate back
 
 
 
