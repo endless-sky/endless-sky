@@ -215,7 +215,7 @@ void TradingPanel::Draw()
 // Only override the ones you need; the default action is to return false.
 bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	bool keyM = key == 'M' || (key == 'm' && (mod & KMOD_SHIFT));
+	bool keyP = key == 'P' || (key == 'p' && (mod & KMOD_SHIFT));
 	bool keyL = key == 'L' || (key == 'l' && (mod & KMOD_SHIFT));
 	if(key == SDLK_UP)
 		player.SetMapColoring(max(0, player.MapColoring() - 1));
@@ -244,13 +244,13 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 			player.Accounts().AddCredits(amount * price);
 			GameData::AddPurchase(system, it.name, -amount);
 		}
-	else if(keyL || keyM)
+	else if(keyL || keyP)
 	{
 		int day = player.GetDate().DaysSinceEpoch();
 		for(const auto &it : player.Cargo().Outfits())
 		{
 			bool minable = it.first->Get("minable");
-			if((keyL && minable) || (keyM && !minable))
+			if((keyL && minable) || (keyP && !minable))
 				continue;
 
 			int64_t value = player.FleetDepreciation().Value(it.first, day, it.second);

@@ -1052,7 +1052,7 @@ interface "trade"
 	active if "can sell specials"
 	sprite "ui/wide button"
 		center -145 355
-	button M "Sell Specials"
+	button P "Sell Specials"
 		center -145 355
 		dimensions 90 30
 	
