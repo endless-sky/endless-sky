@@ -1033,20 +1033,20 @@ interface "trade"
 		dimensions 480 1
 
 	sprite "ui/trading panel bottom"
-		center 99 359
+		center 99 357
 
 	active if "can buy"
-	sprite "ui/dialog cancel"
-		center 60 355
+	sprite "ui/embedded small button"
+		center 55 355
 	button B "Buy All"
-		center 60 355
+		center 55 355
 		dimensions 70 30
 
 	active if "can sell"
-	sprite "ui/dialog cancel"
-		center 140 355
+	sprite "ui/embedded small button"
+		center 141 355
 	button S "Sell All"
-		center 140 355
+		center 141 355
 		dimensions 70 30
 
 	active if "can sell specials"
