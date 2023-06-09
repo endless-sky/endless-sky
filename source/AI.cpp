@@ -415,7 +415,7 @@ void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
 	// Only toggle the "cloak" command if one of your ships has a cloaking device.
 	if(activeCommands.Has(Command::CLOAK))
 		for(const auto &it : player.Ships())
-			if(!it->IsParked() && it->CanCloak())
+			if(!it->IsParked() && it->Attributes().Get("cloak"))
 			{
 				isCloaking = !isCloaking;
 				Messages::Add(isCloaking ? "Engaging cloaking device." : "Disengaging cloaking device."
