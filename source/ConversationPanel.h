@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Panel.h"
 
+#include "Conversation.h"
 #include "text/WrappedText.h"
 
 #include <functional>
@@ -112,7 +113,7 @@ private:
 	bool useTransactions = false;
 
 	// The conversation we are displaying.
-	const Conversation &conversation;
+	Conversation conversation;
 	// All conversations start with node 0.
 	int node = 0;
 	// This function should be called with the conversation outcome.
