@@ -1,0 +1,3 @@
+* Fix info scroll
+* Fix shop scroll button
+* Merge 0.10.1 upstream release
