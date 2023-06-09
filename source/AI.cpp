@@ -2854,7 +2854,7 @@ bool AI::DoHarvesting(Ship &ship, Command &command) const
 // Check if this ship should cloak. Returns true if this ship decided to run away while cloaking.
 bool AI::DoCloak(Ship &ship, Command &command)
 {
-	if(ship.CanCloak())
+	if(it->Attributes().Get("cloak") && !it->GetPersonality().IsDecloaked())
 	{
 		// Never cloak if it will cause you to be stranded.
 		const Outfit &attributes = ship.Attributes();
