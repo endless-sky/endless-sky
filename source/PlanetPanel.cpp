@@ -47,7 +47,7 @@ using namespace std;
 
 
 PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
-	: player(player), callback(callback),
+	: LandedOfferPanel(player, Mission::LANDING), callback(callback),
 	planet(*player.GetPlanet()), system(*player.GetSystem()),
 	ui(*GameData::Interfaces().Get("planet"))
 {
@@ -55,6 +55,7 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	bank.reset(new BankPanel(player));
 	spaceport.reset(new SpaceportPanel(player));
 	hiring.reset(new HiringPanel(player));
+	otherPanel = bank;
 
 	text.SetFont(FontSet::Get(14));
 	text.SetAlignment(Alignment::JUSTIFIED);
@@ -78,34 +79,8 @@ void PlanetPanel::Step()
 		TakeOffIfReady();
 		return;
 	}
-
-	// Offer landing missions. In each Step, any number of non-UI missions
-	// will be offered, but only one UI mission. This ensures the player
-	// cannot accidentally depart or switch screens until all landing
-	// missions have been processed.
-	//
-	// Bank is a special case:
-	// If the player starts a new game, exits the shipyard without buying
-	// anything, clicks to the bank, then returns to the shipyard and buys a
-	// ship, make sure they are shown an intro mission.
-	shared_ptr<Panel> planetPanel = shared_from_this();
-	// Can't use IsTop() because IsTop() doesn't see Panels loaded in this Step.
-	while(GetUI()->Top() == planetPanel || GetUI()->Top() == bank)
-	{
-		// Offer no more missions if the player is dead or launching.
-		if(player.IsDead())
-			return;
-		const Ship *flagship = player.Flagship();
-		if(flagship && flagship->CanBeFlagship() && player.ShouldLaunch())
-			return;
-
-		// Offer a mission or display a blocked message.
-		Mission *mission = player.MissionToOffer(Mission::LANDING);
-		if(mission)
-			mission->Do(Mission::OFFER, player, GetUI());
-		else if(!player.HandleBlockedMissions(Mission::LANDING, GetUI()))
-			return;
-	}
+	LandedOfferPanel::Step();
+	spaceportWasTop = GetUI()->WillBeTop(spaceport.get());
 }
 
 
@@ -169,9 +144,14 @@ void PlanetPanel::Draw()
 // Only override the ones you need; the default action is to return false.
 bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	// If a conversation or dialog just closed, there is a one frame delay before the
+	// spaceport is able to react to that, and offer more missions. Allowing the planet
+	// panel to change screens will lead to UI glitches, or missions being missed.
+	// So, we give the spaceport a one frame reprieve in which to react.
+	if(GetUI()->WillBeTop(spaceport.get()) && !spaceportWasTop)
+		return false;
 	Panel *oldPanel = selectedPanel;
 	const Ship *flagship = player.Flagship();
-
 	bool hasAccess = planet.CanUseServices();
 	if(key == 'd' && flagship && flagship->CanBeFlagship())
 	{

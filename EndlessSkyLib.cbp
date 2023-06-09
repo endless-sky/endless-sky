@@ -203,6 +203,8 @@
 		<Unit filename="source/ItemInfoDisplay.cpp" />
 		<Unit filename="source/ItemInfoDisplay.h" />
 		<Unit filename="source/JumpTypes.h" />
+		<Unit filename="source/LandedOfferPanel.cpp" />
+		<Unit filename="source/LandedOfferPanel.h" />
 		<Unit filename="source/LineShader.cpp" />
 		<Unit filename="source/LineShader.h" />
 		<Unit filename="source/LoadPanel.cpp" />

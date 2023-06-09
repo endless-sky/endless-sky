@@ -16,11 +16,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef SHOP_PANEL_H_
 #define SHOP_PANEL_H_
 
-#include "Panel.h"
+#include "LandedOfferPanel.h"
 
 #include "CategoryList.h"
 #include "ClickZone.h"
-#include "Mission.h"
 #include "OutfitInfoDisplay.h"
 #include "Point.h"
 #include "ShipInfoDisplay.h"
@@ -39,9 +38,9 @@ class Ship;
 
 // Class representing the common elements of both the shipyard panel and the
 // outfitter panel (e.g. the sidebar with the ships you own).
-class ShopPanel : public Panel {
+class ShopPanel : public LandedOfferPanel {
 public:
-	explicit ShopPanel(PlayerInfo &player, bool isOutfitter);
+	explicit ShopPanel(PlayerInfo &player, Mission::Location location);
 
 	virtual void Step() override;
 	virtual void Draw() override;
@@ -77,8 +76,6 @@ protected:
 	void DrawMain();
 
 	void DrawShip(const Ship &ship, const Point &center, bool isSelected);
-
-	void CheckForMissions(Mission::Location location);
 
 	// These are for the individual shop panels to override.
 	virtual int TileSize() const = 0;
@@ -146,7 +143,6 @@ protected:
 
 
 protected:
-	PlayerInfo &player;
 	// Remember the current day, for calculating depreciation.
 	int day;
 	const Planet *planet = nullptr;

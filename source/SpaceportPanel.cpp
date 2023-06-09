@@ -32,7 +32,7 @@ using namespace std;
 
 
 SpaceportPanel::SpaceportPanel(PlayerInfo &player)
-	: player(player), ui(*GameData::Interfaces().Get("spaceport"))
+	: LandedOfferPanel(player, Mission::SPACEPORT), ui(*GameData::Interfaces().Get("spaceport"))
 {
 	SetTrapAllEvents(false);
 
@@ -67,41 +67,6 @@ void SpaceportPanel::UpdateNews()
 	newsInfo.SetString("name", news->Name() + ':');
 	newsMessage.SetWrapWidth(hasPortrait ? portraitWidth : normalWidth);
 	newsMessage.Wrap(news->Message());
-}
-
-
-
-void SpaceportPanel::Step()
-{
-	// Offer spaceport missions. In each Step, any number of non-UI missions
-	// will be offered, but only one UI mission. This ensures the player
-	// cannot accidentally depart or switch screens until all spaceport
-	// missions have been processed (along with landing missions they trigger).
-	shared_ptr<Panel> thisShared = shared_from_this();
-	// Can't use IsTop() because IsTop() doesn't see Panels loaded in this Step.
-	while(GetUI()->Top() == thisShared)
-	{
-		// Offer no more missions if the player is dead or launching.
-		if(player.IsDead())
-			return;
-		const Ship *flagship = player.Flagship();
-		if(flagship && flagship->CanBeFlagship() && player.ShouldLaunch())
-			return;
-
-		Mission *mission = player.MissionToOffer(Mission::SPACEPORT);
-		// It is possible for spaceport missions to cause a landing mission's
-		// "to accept" to be true, when it was false at the landing screen.
-		// This ensures those landing missions will be offered
-		if(!mission)
-			player.MissionToOffer(Mission::LANDING);
-		// Offer a mission if we have one
-		if(mission)
-			mission->Do(Mission::OFFER, player, GetUI());
-		// Otherwise, show "blocked mission" dialogs.
-		else if(!player.HandleBlockedMissions(Mission::SPACEPORT, GetUI())
-				&& !player.HandleBlockedMissions(Mission::LANDING, GetUI()))
-			return;
-	}
 }
 
 

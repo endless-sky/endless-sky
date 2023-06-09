@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef PLANET_PANEL_H_
 #define PLANET_PANEL_H_
 
-#include "Panel.h"
+#include "LandedOfferPanel.h"
 
 #include "Ship.h"
 #include "text/WrappedText.h"
@@ -35,7 +35,7 @@ class System;
 // Dialog that pops up when you land on a planet. The shipyard and outfitter are
 // shown in full-screen panels that pop up above this one, but the remaining views
 // (trading, jobs, bank, port, and crew) are displayed within this dialog.
-class PlanetPanel : public Panel {
+class PlanetPanel : public LandedOfferPanel {
 public:
 	PlanetPanel(PlayerInfo &player, std::function<void()> callback);
 
@@ -55,7 +55,6 @@ private:
 
 
 private:
-	PlayerInfo &player;
 	std::function<void()> callback = nullptr;
 	bool requestedLaunch = false;
 
@@ -68,7 +67,7 @@ private:
 	std::shared_ptr<SpaceportPanel> spaceport;
 	std::shared_ptr<Panel> hiring;
 	Panel *selectedPanel = nullptr;
-
+	bool spaceportWasTop = false;
 	WrappedText text;
 
 	// Out of system (absent) ships that cannot fly for some reason.
