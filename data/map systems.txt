@@ -2129,6 +2129,7 @@ system Acrab
 	fleet "Republic Logistics" 3600
 	fleet "Small Core Pirates" 1200
 	fleet "Small Core Merchants" 600
+	arrival 500
 	habitable 151.25
 	belt 1453
 	object
@@ -3001,6 +3002,7 @@ system Ain
 	fleet "Large Core Merchants" 3600
 	fleet "Small Core Pirates" 1000
 	fleet "Large Core Pirates" 2200
+	arrival 500
 	habitable 441.8
 	belt 1603
 	object
@@ -3050,6 +3052,7 @@ system Aircakap
 	minables silver 56 2.3580674
 	haze _menu/haze-133
 	fleet "Large Quarg" 1000
+	arrival 2099.2
 	habitable 2099.2
 	belt 1754
 	trade Clothing 322
@@ -6186,6 +6189,7 @@ system Atlas
 	fleet "Republic Logistics" 5800
 	fleet "Small Core Pirates" 2000
 	fleet "Large Core Pirates" 3000
+	arrival 5000
 	habitable 13107.2
 	belt 1848
 	object
@@ -6552,6 +6556,7 @@ system Bahagian
 	asteroids "large metal" 6 2.016
 	haze _menu/haze-133
 	fleet "Large Quarg" 1000
+	arrival 500
 	habitable 259.2
 	belt 1702
 	trade Clothing 322
@@ -6691,6 +6696,7 @@ system Belak'kor
 	minables uranium 13 3.05224
 	haze _menu/haze-orange
 	fleet "Korath Raid" 1600
+	arrival 1703.2
 	habitable 1703.2
 	belt 1444
 	trade Clothing 409
@@ -7035,6 +7041,7 @@ system "Beta Carinae"
 	fleet "Large Core Merchants" 3000
 	fleet "Small Core Pirates" 2000
 	fleet "Large Core Pirates" 4000
+	arrival 5000
 	habitable 11850
 	belt 1197
 	object
@@ -7159,6 +7166,7 @@ system "Beta Lyrae"
 	fleet "Large Syndicate" 2500
 	fleet "Small Core Pirates" 2000
 	fleet "Large Core Pirates" 4000
+	arrival 5000
 	habitable 39560
 	belt 1130
 	trade Clothing 310
@@ -7805,6 +7813,7 @@ system Botein
 	fleet "Large Syndicate" 3000
 	fleet "Small Core Pirates" 1900
 	fleet "Large Core Pirates" 3200
+	arrival 500
 	habitable 151.25
 	belt 1523
 	object
@@ -8735,6 +8744,7 @@ system Chikapmukti
 	minables iron 7 9.6900905
 	haze _menu/haze-133
 	fleet "Large Quarg" 1000
+	arrival 500
 	habitable 361.25
 	belt 1453
 	trade Clothing 322
@@ -12335,6 +12345,7 @@ system Electra
 	fleet "Small Core Pirates" 1000
 	fleet "Large Core Pirates" 2500
 	fleet "Small Core Merchants" 1800
+	arrival 5000
 	habitable 42560
 	belt 1607
 	object
@@ -12620,6 +12631,7 @@ system Embe'kor
 	fleet "Korath Raid" 1600
 	fleet "Korath Ember Waste Raid" 10000
 	fleet "Korath Rescue" 30000
+	arrival 3450
 	habitable 3450
 	belt 1942
 	trade Clothing 227
@@ -12991,6 +13003,7 @@ system Epo'kor
 	minables uranium 13 3.05224
 	haze _menu/haze-orange
 	fleet "Korath Raid" 1600
+	arrival 4500
 	habitable 4500
 	belt 1444
 	trade Clothing 223
@@ -13057,6 +13070,7 @@ system "Epsilon Indi"
 	fleet "Small Syndicate" 1600
 	fleet "Small Core Pirates" 2000
 	fleet "Large Core Pirates" 4000
+	arrival 500
 	habitable 28.8
 	belt 1130
 	trade Clothing 310
@@ -14633,6 +14647,7 @@ system Feromansaath
 	minables aluminum 1 7.5744573
 	haze _menu/haze-133
 	fleet "Large Quarg" 1000
+	arrival 2163.2
 	habitable 2163.2
 	belt 1559
 	trade Clothing 322
@@ -15214,6 +15229,7 @@ system Fulu
 	fleet "Large Core Merchants" 3600
 	fleet "Small Core Pirates" 1000
 	fleet "Large Core Pirates" 2200
+	arrival 500
 	habitable 200
 	belt 1529
 	object
@@ -17951,6 +17967,7 @@ system Iklil
 	fleet "Small Core Pirates" 1000
 	fleet "Large Core Pirates" 2500
 	fleet "Small Core Merchants" 2000
+	arrival 500
 	habitable 468.25
 	belt 1265
 	object
@@ -19597,6 +19614,7 @@ system Kang
 	haze _menu/haze-133
 	fleet "Small Core Pirates" 3600
 	fleet "Small Core Merchants" 3000
+	arrival 3276.8
 	habitable 3276.8
 	belt 1478
 	object
@@ -20017,6 +20035,7 @@ system Kertasir
 	minables copper 2 1.9409954
 	haze _menu/haze-133
 	fleet "Large Quarg" 1000
+	arrival 748.45
 	habitable 748.45
 	belt 1461
 	trade Clothing 322
@@ -22342,6 +22361,7 @@ system Maia
 	fleet "Large Syndicate" 3000
 	fleet "Small Core Pirates" 2000
 	fleet "Large Core Pirates" 4000
+	arrival 5000
 	habitable 5600
 	belt 1675
 	object
@@ -23349,6 +23369,7 @@ system Meissa
 	fleet "Small Core Pirates" 3000
 	fleet "Small Core Merchants" 2000
 	fleet "Large Core Merchants" 4000
+	arrival 1288.45
 	habitable 1288.45
 	belt 1163
 	object
@@ -23806,6 +23827,7 @@ system Messiah
 	fleet "Small Core Pirates" 2000
 	fleet "Large Core Pirates" 4000
 	fleet "Human Miners" 2000
+	arrival 500
 	habitable 37.25
 	belt 1130
 	trade Clothing 310
@@ -24280,6 +24302,7 @@ system Mira
 	fleet "Large Core Merchants" 3000
 	fleet "Small Core Pirates" 2000
 	fleet "Large Core Pirates" 4000
+	arrival 5000
 	habitable 6110
 	belt 1864
 	object
@@ -25498,6 +25521,7 @@ system Noitakt
 	fleet "Large Syndicate" 4500
 	fleet "Small Core Pirates" 2500
 	fleet "Large Core Pirates" 4000
+	arrival 500
 	habitable 176.8
 	belt 1478
 	object
@@ -25873,6 +25897,7 @@ system Oneldiam
 	fleet "Large Core Merchants" 3000
 	fleet "Small Core Pirates" 2000
 	fleet "Large Core Pirates" 4000
+	arrival 2205
 	habitable 2205
 	belt 1864
 	object
@@ -26248,6 +26273,7 @@ system Otrisiti
 	minables titanium 3 3.2984021
 	haze _menu/haze-133
 	fleet "Large Quarg" 1000
+	arrival 500
 	habitable 12.8
 	belt 1407
 	trade Clothing 322
@@ -26888,6 +26914,7 @@ system Pemuka
 	minables silicon 1 3.2372957
 	haze _menu/haze-133
 	fleet "Large Quarg" 1000
+	arrival 500
 	habitable 490
 	belt 1257
 	trade Clothing 322
@@ -27792,6 +27819,7 @@ system Poli'kor
 	minables uranium 13 3.05224
 	haze _menu/haze-orange
 	fleet "Korath Raid" 1600
+	arrival 2560
 	habitable 2560
 	belt 1444
 	trade Clothing 312
@@ -28401,6 +28429,7 @@ system Puppis
 	fleet "Large Syndicate" 3500
 	fleet "Small Core Pirates" 1000
 	fleet "Large Core Pirates" 2500
+	arrival 5000
 	habitable 17505
 	belt 1429
 	object
@@ -30796,6 +30825,7 @@ system Sejuka
 	minables aluminum 1 3.0425517
 	haze _menu/haze-133
 	fleet "Large Quarg" 1000
+	arrival 1641.25
 	habitable 1641.25
 	belt 1029
 	trade Clothing 322
@@ -30898,6 +30928,7 @@ system Semutir
 	minables lead 6 3.4052361
 	haze _menu/haze-133
 	fleet "Large Quarg" 1000
+	arrival 3400
 	habitable 3400
 	belt 1999
 	trade Clothing 322
@@ -33024,6 +33055,7 @@ system Tabit
 	fleet "Small Core Pirates" 1000
 	fleet "Large Core Pirates" 2500
 	fleet "Small Core Merchants" 2000
+	arrival 3125
 	habitable 3125
 	belt 1154
 	object
@@ -33341,6 +33373,7 @@ system "Tau Ceti"
 	fleet "Small Core Pirates" 2000
 	fleet "Large Core Pirates" 4000
 	fleet "Human Miners" 2000
+	arrival 3161
 	habitable 3161
 	belt 1130
 	trade Clothing 310
@@ -33702,6 +33735,7 @@ system Tidursangat
 	minables neodymium 26 2.9721354
 	haze _menu/haze-133
 	fleet "Large Quarg" 1000
+	arrival 905
 	habitable 905
 	belt 1057
 	trade Clothing 322
