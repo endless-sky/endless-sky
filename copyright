@@ -2130,13 +2130,6 @@ Files:
 Copyright: CyberJudas (cyberjudas@dnmx.org)
 License: CC-BY-SA-4.0
 
-Files:
- images/ui/embedded button.png
- images/ui/trading planel bottom.png
-Copyright: Michael Zahniser
-License: CC-BY-SA-4.0
-Comment: Modified by anonymous author from original Endless Sky ui images.
-
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
