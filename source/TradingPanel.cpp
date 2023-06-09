@@ -252,7 +252,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	else if((key == 'L' || (key == 'l' && (mod & KMOD_SHIFT))) && canSellOutfits)
 	{
 		if(Preferences::Has("Confirm 'Sell Outfits' button"))
-			GetUI()->Push(new Dialog(this, &TradingPanel::SellAllOutfits,
+			GetUI()->Push(new Dialog(this, &TradingPanel::SellOutfitsCallback,
 				"Are you sure you want to sell all outfits from your cargo bay?\n"
 				"(You can disable this warning in the game settings.)\n",
 				Truncate::NONE, true));
@@ -327,7 +327,7 @@ void TradingPanel::Buy(int64_t amount)
 
 
 
-void TradingPanel::SellAllOutfits()
+void TradingPanel::SellOutfitsCallback()
 {
 	SellOutfitsOrMinables(false);
 }

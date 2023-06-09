@@ -44,7 +44,7 @@ protected:
 
 private:
 	void Buy(int64_t amount);
-	void SellAllOutfits();
+	void SellOutfitsCallback();
 	void SellOutfitsOrMinables(bool sellMinable);
 
 
