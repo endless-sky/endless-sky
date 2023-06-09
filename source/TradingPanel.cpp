@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Color.h"
 #include "Command.h"
+#include "Dialog.h"
 #include "FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -27,7 +28,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapDetailPanel.h"
 #include "Messages.h"
 #include "Outfit.h"
+#include "Planet.h"
 #include "PlayerInfo.h"
+#include "Preferences.h"
 #include "System.h"
 #include "UI.h"
 
@@ -198,8 +201,10 @@ void TradingPanel::Draw()
 	if(showProfit)
 		font.Draw("Profit", Point(MIN_X + PROFIT_X, FIRST_Y), selected);
 
+	canSellOutfits = outfitCargo &&
+		(player.GetPlanet()->HasOutfitter() || Preferences::Has("'Sell Outfits' without outfitter"));
 	Information info;
-	if(outfitCargo)
+	if(canSellOutfits)
 		info.SetCondition("can sell outfits");
 	if(minableCargo)
 		info.SetCondition("can sell specials");
@@ -215,8 +220,6 @@ void TradingPanel::Draw()
 // Only override the ones you need; the default action is to return false.
 bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	bool keyP = key == 'P' || (key == 'p' && (mod & KMOD_SHIFT));
-	bool keyL = key == 'L' || (key == 'l' && (mod & KMOD_SHIFT));
 	if(key == SDLK_UP)
 		player.SetMapColoring(max(0, player.MapColoring() - 1));
 	else if(key == SDLK_DOWN)
@@ -244,23 +247,17 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 			player.Accounts().AddCredits(amount * price);
 			GameData::AddPurchase(system, it.name, -amount);
 		}
-	else if(keyL || keyP)
+	else if(key == 'P' || (key == 'p' && (mod & KMOD_SHIFT)))
+		SellOutfitsOrMinables(true);
+	else if((key == 'L' || (key == 'l' && (mod & KMOD_SHIFT))) && canSellOutfits)
 	{
-		int day = player.GetDate().DaysSinceEpoch();
-		for(const auto &it : player.Cargo().Outfits())
-		{
-			bool minable = it.first->Get("minable");
-			if((keyL && minable) || (keyP && !minable))
-				continue;
-
-			int64_t value = player.FleetDepreciation().Value(it.first, day, it.second);
-			profit += value;
-			tonsSold += static_cast<int>(it.second * it.first->Mass());
-
-			player.AddStock(it.first, it.second);
-			player.Accounts().AddCredits(value);
-			player.Cargo().Remove(it.first, it.second);
-		}
+		if(Preferences::Has("Confirm 'Sell Outfits' button"))
+			GetUI()->Push(new Dialog(this, &TradingPanel::SellAllOutfits,
+				"Are you sure you want to sell all outfits from your cargo bay?\n"
+				"(You can disable this warning in the game settings.)\n",
+				Truncate::NONE, true));
+		else
+			SellOutfitsOrMinables(false);
 	}
 	else if(command.Has(Command::MAP))
 		GetUI()->Push(new MapDetailPanel(player));
@@ -326,4 +323,30 @@ void TradingPanel::Buy(int64_t amount)
 	amount = player.Cargo().Add(type, amount);
 	player.Accounts().AddCredits(-amount * price);
 	GameData::AddPurchase(system, type, amount);
+}
+
+
+
+void TradingPanel::SellAllOutfits()
+{
+	SellOutfitsOrMinables(false);
+}
+
+
+
+void TradingPanel::SellOutfitsOrMinables(bool sellMinable)
+{
+	int day = player.GetDate().DaysSinceEpoch();
+	for(const auto &it : player.Cargo().Outfits())
+	{
+		if(sellMinable != static_cast<bool>(it.first->Get("minable")))
+			continue;
+		int64_t value = player.FleetDepreciation().Value(it.first, day, it.second);
+		profit += value;
+		tonsSold += static_cast<int>(it.second * it.first->Mass());
+
+		player.AddStock(it.first, it.second);
+		player.Accounts().AddCredits(value);
+		player.Cargo().Remove(it.first, it.second);
+	}
 }

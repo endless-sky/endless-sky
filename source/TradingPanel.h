@@ -44,12 +44,16 @@ protected:
 
 private:
 	void Buy(int64_t amount);
+	void SellAllOutfits();
+	void SellOutfitsOrMinables(bool sellMinable);
 
 
 private:
 	PlayerInfo &player;
 	const System &system;
 	const int COMMODITY_COUNT;
+	// There are multiple requirements to selling outfits. This caches the calculation in Step().
+	bool canSellOutfits;
 
 	// Keep track of how much we sold and how much profit was made.
 	int tonsSold = 0;

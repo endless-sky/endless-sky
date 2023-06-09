@@ -577,7 +577,9 @@ void PreferencesPanel::DrawSettings()
 		"Always underline shortcuts",
 		REACTIVATE_HELP,
 		"Interrupt fast-forward",
-		SCROLL_SPEED
+		SCROLL_SPEED,
+		"'Sell Outfits' without outfitter",
+		"Confirm 'Sell Outfits' button"
 	};
 
 	bool isCategory = true;
