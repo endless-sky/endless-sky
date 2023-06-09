@@ -152,6 +152,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		return false;
 	Panel *oldPanel = selectedPanel;
 	const Ship *flagship = player.Flagship();
+
 	bool hasAccess = planet.CanUseServices();
 	if(key == 'd' && flagship && flagship->CanBeFlagship())
 	{

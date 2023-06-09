@@ -3002,39 +3002,6 @@ void PlayerInfo::RegisterDerivedConditions()
 	creditScoreProvider.SetGetFunction([this](const string &name) {
 		return accounts.CreditScore(); });
 
-	auto &&availableProvider = conditions.GetProviderPrefixed("mission available: ");
-	auto availableHasGetFun = [this](const string &nameAndPrefix) -> int64_t
-	{
-		string name = nameAndPrefix.substr(strlen("mission available: "));
-		for(auto &mission : availableMissions)
-			if(mission.Name() == name)
-				return 1;
-		for(auto &mission : availableJobs)
-			if(mission.Name() == name)
-				return 1;
-		return 0;
-	};
-	availableProvider.SetHasFunction(availableHasGetFun);
-	availableProvider.SetGetFunction(availableHasGetFun);
-
-	auto &&preparedProvider = conditions.GetProviderPrefixed("mission prepared: ");
-	auto preparedHasGetFun = [this](const string &nameAndPrefix) -> int64_t
-	{
-		string name = nameAndPrefix.substr(strlen("mission prepared: "));
-		for(auto &mission : availableMissions)
-			if(mission.Name() == name && mission.WasPrepared())
-				return 1;
-		for(auto &mission : availableJobs)
-			if(mission.Name() == name && mission.WasPrepared())
-				return 1;
-		for(auto &mission : missions)
-			if(mission.Name() == name && mission.WasPrepared())
-				return 1;
-		return 0;
-	};
-	preparedProvider.SetHasFunction(preparedHasGetFun);
-	preparedProvider.SetGetFunction(preparedHasGetFun);
-
 	// Read/write assets and debts.
 	auto &&salaryIncomeProvider = conditions.GetProviderPrefixed("salary: ");
 	auto salaryIncomeHasGetFun = [this](const string &name) -> int64_t
