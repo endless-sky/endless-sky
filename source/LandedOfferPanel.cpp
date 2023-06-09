@@ -1,4 +1,4 @@
-/* LandedOfferPanel.h
+/* LandedOfferPanel.cpp
 Copyright (c) 2023 by an anonymous author
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -14,6 +14,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "LandedOfferPanel.h"
+
 #include "PlayerInfo.h"
 #include "Ship.h"
 #include "UI.h"
