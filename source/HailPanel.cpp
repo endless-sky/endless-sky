@@ -268,8 +268,9 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		else
 			GetUI()->Push(new Dialog(this, &HailPanel::TributeConfirmed,
 				"Demanding tribute will cause this planet to launch defense fleets to kill you. "
-				"It will also anger the planet's government, the governments of the defense fleets, "
-				"and their allies. Are you sure you want to do this?"));
+				"Those defense fleets may be from another government than the planet. "
+				"Doing this will anger the planet's government, the defense fleets' governments, "
+				"and their allies.\n\nAre you sure you want to do this?"));
 		return true;
 	}
 	else if(key == 'h' && hasLanguage && ship && canAssistPlayer)
