@@ -424,17 +424,19 @@ phrase "friendly civilian"
 	word
 		"the "
 	word
-		"best "
-		"coolest "
-		"weirdest "
-		"funniest "
-		"most shocking "
-		"most fascinating "
-		"most surreal "
-		"most surprising "
-		"most enjoyable "
-		"most original "
-		"most engrossing "
+		"best"
+		"coolest"
+		"weirdest"
+		"funniest"
+		"most shocking"
+		"most fascinating"
+		"most surreal"
+		"most surprising"
+		"most enjoyable"
+		"most original"
+		"most engrossing"
+	word
+		" "
 	phrase
 		"visual media"
 	word
@@ -948,8 +950,7 @@ phrase "friendly civilian"
 		"How many Delvians does it take to change a lightbulb? Zero, the room caves in before you can replace the bulb."
 		"How many Sinterians does it take to change a lightbulb? Zero, they just send in a robot to do the job."
 	word
-		""
-		""
+		"" 2
 		" What? Not funny?"
 		" Hey, I thought it was good!"
 		" C'mon, at least laugh a little!"
@@ -1659,10 +1660,12 @@ phrase "friendly civilian"
 	word
 		" sometimes "
 	word
-		"transport "
-		"smuggle "
-		"steal "
-		"plunder "
+		"transport"
+		"smuggle"
+		"steal"
+		"plunder"
+	word
+		" "
 	phrase
 		"contraband"
 	word
