@@ -53,6 +53,7 @@ protected:
 
 private:
 	void SetBribe(double scale);
+	void TributeConfirmed();
 
 
 private:

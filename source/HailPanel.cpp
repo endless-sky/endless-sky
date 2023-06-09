@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "HailPanel.h"
 
 #include "text/alignment.hpp"
+#include "Dialog.h"
 #include "DrawList.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -265,7 +266,10 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			message = "Thank you for granting us our freedom!";
 		}
 		else
-			message = planet->DemandTribute(player);
+			GetUI()->Push(new Dialog(this, &HailPanel::TributeConfirmed,
+				"Demanding tribute will cause this planet to launch defense fleets to kill you. "
+				"It will also anger the planet's government, the governments of the defense fleets, "
+				"and their allies. Are you sure you want to do this?"));
 		return true;
 	}
 	else if(key == 'h' && hasLanguage && ship && canAssistPlayer)
@@ -353,4 +357,11 @@ void HailPanel::SetBribe(double scale)
 	bribe = 1000 * static_cast<int64_t>(sqrt(value) * scale);
 	if(scale && !bribe)
 		bribe = 1000;
+}
+
+
+
+void HailPanel::TributeConfirmed()
+{
+	message = planet->DemandTribute(player);
 }
