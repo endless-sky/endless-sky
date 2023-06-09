@@ -61,8 +61,10 @@ void LandedOfferPanel::Step()
 		Mission *mission = player.MissionToOffer(location);
 		// It is possible for non-landing missions to cause a landing mission's
 		// "to accept" to be true, when it was false at the landing screen.
-		// This ensures those landing missions will be offered.
-		if(location != Mission::LANDING && !mission)
+		// This ensures those landing missions will be offered at the spaceport.
+		// For the shops, it makes more sense to wait until the player returns
+		// to the landing area.
+		if(location == Mission::SPACEPORT && !mission)
 			mission = player.MissionToOffer(Mission::LANDING);
 
 		// Offer a mission if we have one
@@ -72,7 +74,7 @@ void LandedOfferPanel::Step()
 		else if(player.HandleBlockedMissions(location, GetUI()))
 			return;
 		// If a landing mission could have been offered but was blocked, warn about that now.
-		else if(location != Mission::LANDING && player.HandleBlockedMissions(Mission::LANDING, GetUI()))
+		else if(location == Mission::SPACEPORT && player.HandleBlockedMissions(Mission::LANDING, GetUI()))
 			return;
 		// Nothing could be offered, so we're done.
 		else
