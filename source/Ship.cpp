@@ -2964,6 +2964,13 @@ double Ship::Cloaking() const
 
 
 
+bool Ship::CanCloak() const
+{
+	return attributes.Get("cloak") && !personality.IsDecloaked();
+}
+
+
+
 bool Ship::IsEnteringHyperspace() const
 {
 	return hyperspaceSystem;

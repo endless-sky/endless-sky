@@ -256,6 +256,8 @@ public:
 	// Get the degree to which this ship is cloaked. 1 means invisible and
 	// impossible to hit or target; 0 means fully visible.
 	double Cloaking() const;
+	// Is this ship capable of cloaking?
+	bool CanCloak() const;
 	// Check if this ship is entering (rather than leaving) hyperspace.
 	bool IsEnteringHyperspace() const;
 	// Check if this ship is entering or leaving hyperspace.
