@@ -1803,7 +1803,8 @@ news "republic navy advisory system"
 	location
 		government "Republic"
 	name
-		"Republic Navy Advisory System"
+		word
+			"Republic Navy Advisory System"
 	message
 		word
 			`"`
@@ -1819,7 +1820,8 @@ news "republic navy advisory system [wartime]"
 	location
 		government "Republic"
 	name
-		"Republic Navy Advisory System"
+		word
+			"Republic Navy Advisory System"
 	to show
 		not "event: fw armistice"
 		has "chosen sides"
