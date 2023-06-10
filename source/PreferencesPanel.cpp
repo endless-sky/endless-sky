@@ -580,6 +580,7 @@ void PreferencesPanel::DrawSettings()
 		SCROLL_SPEED,
 		"'Sell Outfits' without outfitter",
 		"Confirm 'Sell Outfits' button"
+		"Confirm 'Sell Specials' button"
 	};
 
 	bool isCategory = true;

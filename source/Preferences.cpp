@@ -154,6 +154,7 @@ void Preferences::Load()
 	settings["Extra fleet status messages"] = true;
 	settings["Target asteroid based on"] = true;
 	settings["Confirm 'Sell Outfits' button"] = true;
+	settings["Confirm 'Sell Specials' button"] = true;
 	settings["'Sell Outfits' without outfitter"] = true;
 
 	DataFile prefs(Files::Config() + "preferences.txt");
@@ -199,6 +200,8 @@ void Preferences::Load()
 			settings["Control ship with mouse"] = (node.Size() == 1 || node.Value(1));
 		else if(node.Token(0) == "Confirm 'Sell Outfits' button")
 			settings["Confirm 'Sell Outfits' button"] = (node.Size() == 1 || node.Value(1));
+		else if(node.Token(0) == "Confirm 'Sell Specials' button")
+			settings["Confirm 'Sell Specials' button"] = (node.Size() == 1 || node.Value(1));
 		else if(node.Token(0) == "Allow 'Sell Outfits' with no outfitter")
 			settings["'Sell Outfits' without outfitter"] = (node.Size() == 1 || node.Value(1));
 		else

@@ -38,6 +38,10 @@ class System;
 // callback function can be given to receive the player's response.
 class Dialog : public Panel {
 public:
+	// An OK / Cancel dialog where Cancel can be disabled. The okIsActive lets
+	// you select whether "OK" (true) or "Cancel" (false) are selected.
+	Dialog(std::function<void()> okFunction, const std::string &message, Truncate truncate,
+		bool canCancel, bool okIsActive);
 	// Dialog that has no callback (information only). In this form, there is
 	// only an "ok" button, not a "cancel" button.
 	explicit Dialog(const std::string &text, Truncate truncate = Truncate::NONE, bool allowsFastForward = false);
