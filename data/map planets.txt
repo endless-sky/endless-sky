@@ -158,7 +158,7 @@ planet Angko
 	security 0
 
 planet Antipode
-	attributes core frontier mining
+	attributes core frontier mining frozen
 	landscape land/snow17
 	description `Antipode is a world of creeping glaciers and year-round snow, orbiting far enough from a dim star that even when the sun breaks through the clouds, it brings little warmth. The few settlements that exist here are built near surface deposits of rare earth metals that were discovered recently, and that are mined for use in electronics and equipment throughout this sector.`
 	description `	The inhabitants of Antipode are among the best downhill skiers in the galaxy, and they have made some attempts to draw off-world tourists to the ski resorts here, but the weather is so hostile that they have had very little success.`
@@ -1082,7 +1082,7 @@ planet Earth
 		fleet "Large Republic" 50
 
 planet Eavine
-	attributes ka'het uninhabited
+	attributes ka'het uninhabited frozen
 	landscape land/snow8
 	description `Although its climate is very cold and most of the surface is covered in snow, Eavine has a crust rich with rare metals and minerals hard to find elsewhere. Entire valleys on the surface have been completely stripped of their resources, likely used in the massive complex of half buried buildings which appears to be the only settlement on this moon that remains today.`
 
@@ -1205,7 +1205,7 @@ wormhole "Ember Wormhole"
 	color "wormholes: Ember Waste"
 
 planet Eminonu
-	attributes uninhabited
+	attributes uninhabited frozen
 	landscape land/snow12
 	description `Eminonu's notably green rocks show a remarkably high copper content and the historic presence of atmospheric water. Scattered vegetative debris suggests that this world was, until recently, some variety of garden planet, albeit likely a cold one. Today the vast majority of moisture is locked up in ice fields, and the ambient temperatures are far too cold for even hardy lichens to survive.`
 	government Uninhabited
@@ -1721,7 +1721,7 @@ planet Glaze
 		fleet "Large Militia" 25
 
 planet "Glittering Ice"
-	attributes saryd
+	attributes saryd frozen
 	landscape land/snow7
 	description `The climate on Glittering Ice is so cold for most of the year that the creatures here have evolved thick layers of feathers, fur, or fat to keep themselves warm. As a result nearly all of them, from the smallest rodents to the largest predators, are practically spherical, appearing as shapeless blobs; for many of them it is hard for a casual observer to even figure out which side of them is their head.`
 	description `	Colonies of one particularly clever species of large rodents that live near the equator are capable of using ice and snow to build interconnected, multi-layered warrens.`
@@ -2054,7 +2054,7 @@ planet Hippocrates
 		fleet "Small Syndicate" 9
 
 planet Hope
-	attributes uninhabited
+	attributes uninhabited frozen
 	landscape land/snow9
 	description `In the year 2994, Hope was a somewhat cold but otherwise hospitable planet, home to a burgeoning population of almost two million people. But that year, a supervolcano eruption ejected so much dust into the upper atmosphere that a new ice age set in and the planet became unlivable.`
 	description `	As the temperatures steadily dropped, nearly half the Republic Navy was mobilized to evacuate settlers from Hope and transport them to nearby colonies. The evacuation effort took six months.`
@@ -2112,7 +2112,7 @@ planet "Hydra Station"
 		fleet "Small Militia" 8
 
 planet Icefall
-	attributes core farming frontier oil
+	attributes core farming frontier oil frozen
 	landscape land/dmottl3
 	description `Icefall is far from its sun, with an axial tilt of roughly 38 degrees. This means that the climate is cold, the year is also long, and each hemisphere has a short summer - barely enough to fit a terrestrial growing season. Nevertheless, most of the inhabitants are farmers, with the exception of the oil drilling industry at the equator. There are only a few major towns, and no major metropolitan centers. Icefall's oceans are filled with constantly shifting pack ice and icebergs, making them nearly unnavigable.`
 	description `	The most distinctive feature of the local ecology is the vast flocks of gooselike migratory birds, which raise two broods a year: one in each hemisphere's summer. The farm workers migrate in similar fashion, and many landowners have farms in both hemispheres.`
@@ -2146,7 +2146,7 @@ planet Iddesato
 	security 0
 
 planet "Iemn Eitch"
-	attributes gegno
+	attributes gegno frozen
 	landscape land/desert2
 	description `Although too cold for a proper civilization, Iemn Eitch has been extensively used in the past as an outpost for the growing Gegno space race. As one of their first few explored worlds, antique-looking architecture is scattered about the surface and looks significantly different to structures found on Dueyu Eitch, perhaps due to the nature of construction in an unfamiliar environment. A few large shipyard-esque platforms continue to service a small number of still active Gegno generation vessels from times past, presumably at a much slower pace than during the earliest days of their space colonization.`
 	spaceport `	Rather than a traditional spaceport, a large and extensive shipyard engulfs a portion of the moon's surface, cluttered with numerous structures from an early colonial period. Several immense hangars, mostly reduced to their bare metal frames, house various archaic spacecraft of times past, with a few of them still servicing the remaining active vessels.`
