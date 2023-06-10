@@ -579,7 +579,7 @@ void PreferencesPanel::DrawSettings()
 		"Interrupt fast-forward",
 		SCROLL_SPEED,
 		"'Sell Outfits' without outfitter",
-		"Confirm 'Sell Outfits' button"
+		"Confirm 'Sell Outfits' button",
 		"Confirm 'Sell Specials' button"
 	};
 
