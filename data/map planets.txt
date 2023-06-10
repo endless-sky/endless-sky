@@ -265,7 +265,7 @@ planet Babiali
 	security 0
 
 planet Baianus
-	attributes uninhabited
+	attributes uninhabited frozen
 	landscape land/snow20
 	description `This frozen water world is reminiscent of Titan back in Sol: the surface is little more than a shattered wasteland of ice and the occasional rock outcropping, but the unbreathably thin atmosphere contains countless tantalizing traces of chemicals that suggest that something more might exist below the surface.`
 	description `	Unlike Titan, however, Baianus is regularly wracked by both waves of heat and energy, and a stay of any length on the surface is likely to see waves of auroras accompanied by glows and sparks rippling across the terrain. Your environmental system strongly recommends remaining inside your ship whenever ion storms are active.`
@@ -1288,7 +1288,7 @@ planet "Esek Stovar"
 	security 0
 
 planet "Eskar Kortuka"
-	attributes korath
+	attributes korath frozen
 	landscape land/snow19
 	description `This is a barely habitable frozen world. The Korath built nothing here except for a few small mining facilities, now abandoned. There is no sign that the occupants were forced to leave by violence. Rather, it seems that they simply packed up their things one day and moved out. The buildings they left behind are now half-covered by snowdrifts.`
 	security 0
@@ -3664,7 +3664,7 @@ planet "Sebra Skira"
 	security 0
 
 planet "Second Cerulean"
-	attributes kimek research
+	attributes kimek research frozen
 	landscape land/snow2
 	description `From above this ocean world looks like a frozen wasteland, but a wide variety of uncanny creatures inhabit the rift valleys and hydrothermal vents deep underwater. The Kimek operate a small research station on the surface, because this is one of the few worlds in Coalition territory where there are still new species left undiscovered, kilometers below the frozen surface. Above ground, only a few species of birds and insects are able to survive.`
 	spaceport `The spaceport station is a cylindrical tower rising above the snowdrifts, anchored to the volcanic rock of one of the few islands that protrudes above the ice sheets near the equator. Near the station a hole about ten meters in diameter has been bored through the ice to allow submersible research craft access to the ocean depths.`
@@ -3840,7 +3840,7 @@ planet "Shih's Locker"
 	government Uninhabited
 
 planet Shiver
-	attributes "near earth"
+	attributes "near earth" frozen
 	landscape land/snow15
 	description `Shiver is a dead and frozen world. The only settlement is a small refueling station that services cargo fleets on their way to Earth. Precipitation is rare here, but sometimes the wind whips up snow and ice from the surface into something akin to a desert sandstorm, and even on days when the wind dies down the air sparkles with tiny, floating ice crystals.`
 	description `	Most people who come here for work only stay for a few months or half a year, just long enough for the sense of adventure to die away.`
@@ -4403,7 +4403,7 @@ planet Tschyss
 	security 0
 
 planet Tundra
-	attributes "dirt belt" oil textiles
+	attributes "dirt belt" oil textiles frozen
 	landscape land/dmottl1
 	description `Millions of years ago, this was a warm world, perhaps even tropical. But some cataclysmic event, perhaps a meteor strike or a massive volcanic eruption, altered the planet's atmosphere enough to turn it into the nearly lifeless, frozen planet it is today.`
 	description `	The first settlers came here to drill for the oil trapped deep under the surface, a relic of Tundra's former, more lively days. Instead of refining the oil into plastic, which sells relatively cheap in this region, they have developed an industry in synthetic fabrics and clothing.`
@@ -4640,7 +4640,7 @@ planet Vatican
 	security 0
 
 planet Veiuye
-	attributes moon uninhabited
+	attributes moon uninhabited frozen
 	landscape land/sea2
 	description `Like the other moons of the nearby gas giant, Veiuye is a frozen world. However, the surface layer of Veiyue is rather thin, and more detailed scans show large, hollow caverns beneath the exterior of the moon. These areas are abnormally warm compared to the rest of the moon, and appear to be filled with oceans primarily made up of water. Strange readings come from these areas, which could possibly be due to microbial life.`
 	government Uninhabited
