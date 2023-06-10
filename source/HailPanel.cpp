@@ -266,11 +266,10 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			message = "Thank you for granting us our freedom!";
 		}
 		else
-			GetUI()->Push(new Dialog(this, &HailPanel::TributeConfirmed,
+			GetUI()->Push(new Dialog([this]() { message = planet->DemandTribute(player); },
 				"Demanding tribute may cause this planet to launch defense fleets to fight you. "
-				"Those defense fleets may be from another government than the planet. "
-				"Doing this will anger the planet's government, the defense fleets' governments, "
-				"and their allies.\n\nAre you sure you want to do this?"));
+				"Tribute battles can hurt your reputation.\n\nAre you sure you want to do this?",
+				Truncate::NONE, true, false));
 		return true;
 	}
 	else if(key == 'h' && hasLanguage && ship && canAssistPlayer)
@@ -358,11 +357,4 @@ void HailPanel::SetBribe(double scale)
 	bribe = 1000 * static_cast<int64_t>(sqrt(value) * scale);
 	if(scale && !bribe)
 		bribe = 1000;
-}
-
-
-
-void HailPanel::TributeConfirmed()
-{
-	message = planet->DemandTribute(player);
 }
