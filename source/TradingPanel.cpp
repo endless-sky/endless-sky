@@ -387,7 +387,8 @@ string TradingPanel::OutfitSalesMessage(bool sellMinable, size_t displayLimit)
 	if(outfitValue.size() == 1)
 		return "Sell " + outfitValue[0].name + " for " + Format::CreditString(profit) + "?";
 	ostringstream out;
-	out	<< "Sell "
+	out
+		<< "Sell "
 		<< Format::CargoString(tonsSold, sellMinable ? "of special commodities" : "of outfits")
 		<< " for " << Format::CreditString(profit) << '?' << endl;
 
