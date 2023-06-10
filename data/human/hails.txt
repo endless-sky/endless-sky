@@ -4978,7 +4978,7 @@ phrase "friendly pirate"
 		"making credit"
 		"enjoying myself while"
 		"having a good time"
-	wird
+	word
 		" "
 	word
 		"transporting"
