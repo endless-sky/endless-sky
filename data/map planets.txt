@@ -764,7 +764,7 @@ planet Crossroads
 		fleet "Small Syndicate" 11
 
 planet Cyife
-	attributes moon uninhabited
+	attributes moon uninhabited frozen
 	landscape land/snow13
 	description `This lonely, icy moon is the only non-gaseous celestial body within this rather quiet star system. Although there are no signs of life here due to the extremely low temperatures, certain parts of the surface glimmer oddly compared to others, as if to imply something may once have been here before.`
 	government Uninhabited
