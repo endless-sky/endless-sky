@@ -3051,7 +3051,7 @@ system Aircakap
 	asteroids "large metal" 21 1.65
 	minables silver 56 2.3580674
 	haze _menu/haze-133
-	fleet "Large Quarg" 1000
+	fleet "Large Quarg" 1500
 	arrival 2099.2
 	habitable 2099.2
 	belt 1754
@@ -6555,7 +6555,7 @@ system Bahagian
 	asteroids "medium metal" 1 1.596
 	asteroids "large metal" 6 2.016
 	haze _menu/haze-133
-	fleet "Large Quarg" 1000
+	fleet "Large Quarg" 1500
 	arrival 500
 	habitable 259.2
 	belt 1702
@@ -8743,7 +8743,7 @@ system Chikapmukti
 	minables aluminum 3 10.167916
 	minables iron 7 9.6900905
 	haze _menu/haze-133
-	fleet "Large Quarg" 1000
+	fleet "Large Quarg" 5000
 	arrival 500
 	habitable 361.25
 	belt 1453
@@ -14646,7 +14646,7 @@ system Feromansaath
 	minables titanium 2 9.0204489
 	minables aluminum 1 7.5744573
 	haze _menu/haze-133
-	fleet "Large Quarg" 1000
+	fleet "Large Quarg" 2000
 	arrival 2163.2
 	habitable 2163.2
 	belt 1559
@@ -20034,7 +20034,7 @@ system Kertasir
 	minables neodymium 2 2.5000463
 	minables copper 2 1.9409954
 	haze _menu/haze-133
-	fleet "Large Quarg" 1000
+	fleet "Large Quarg" 2500
 	arrival 748.45
 	habitable 748.45
 	belt 1461
@@ -26272,7 +26272,7 @@ system Otrisiti
 	minables copper 1 2.5314219
 	minables titanium 3 3.2984021
 	haze _menu/haze-133
-	fleet "Large Quarg" 1000
+	fleet "Large Quarg" 2500
 	arrival 500
 	habitable 12.8
 	belt 1407
@@ -26913,7 +26913,7 @@ system Pemuka
 	minables tungsten 1 2.6314035
 	minables silicon 1 3.2372957
 	haze _menu/haze-133
-	fleet "Large Quarg" 1000
+	fleet "Large Quarg" 2500
 	arrival 500
 	habitable 490
 	belt 1257
@@ -30824,7 +30824,7 @@ system Sejuka
 	minables tungsten 1 3.1570134
 	minables aluminum 1 3.0425517
 	haze _menu/haze-133
-	fleet "Large Quarg" 1000
+	fleet "Large Quarg" 2000
 	arrival 1641.25
 	habitable 1641.25
 	belt 1029
@@ -30927,7 +30927,7 @@ system Semutir
 	minables iron 3 2.380914
 	minables lead 6 3.4052361
 	haze _menu/haze-133
-	fleet "Large Quarg" 1000
+	fleet "Large Quarg" 2000
 	arrival 3400
 	habitable 3400
 	belt 1999
@@ -33734,7 +33734,7 @@ system Tidursangat
 	minables titanium 23 3.5180974
 	minables neodymium 26 2.9721354
 	haze _menu/haze-133
-	fleet "Large Quarg" 1000
+	fleet "Large Quarg" 5000
 	arrival 905
 	habitable 905
 	belt 1057
