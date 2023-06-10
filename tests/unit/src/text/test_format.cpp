@@ -437,6 +437,7 @@ TEST_CASE( "Format::ExpandConditions", "[Format][ExpandConditions]") {
 		CHECK( Format::ExpandConditions("&[words@twelve thousand]", getter) == "twelve thousand" );
 		CHECK( Format::ExpandConditions("&[chicago@twelve thousand]", getter) == "twelve thousand" );
 		CHECK( Format::ExpandConditions("&[mla@twelve thousand]", getter) == "12,000" );
+		CHECK( Format::ExpandConditions("&[mla@credits test]", getter) == "negative 2.361 million" );
 	}
 }
 

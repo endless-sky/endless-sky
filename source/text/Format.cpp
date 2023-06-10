@@ -24,6 +24,26 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	const int64_t K = 1000;
+	static const vector<pair<const char *, int64_t>> WORD_NUMBERS = {
+		{ "quintillion", K * K * K * K * K * K },
+		{ "quadrillion", K * K * K * K * K },
+		{ "trillion", K * K * K * K },
+		{ "billion", K * K * K },
+		{ "million", K * K },
+		{ "thousand", K }
+	};
+	static const vector<const char *> ONES_NAMES = {
+		"zero ", "one ", "two ", "three ", "four ", "five ",
+		"six ", "seven ", "eight ", "nine ", "ten ", "eleven ",
+		"twelve ", "thirteen ", "fourteen ", "fifteen ",
+		"sixteen ", "seventeen ", "eighteen ", "nineteen "
+	};
+	static const vector<const char *> TENS_NAMES = {
+		"error", "error", "twenty", "thirty", "forty",
+		"fifty", "sixty", "seventy", "eighty", "ninety"
+	};
+
 	// This struct exists just to allow the operator<< below.
 	struct Wrapped {
 		int64_t value;
@@ -33,25 +53,6 @@ namespace {
 	// followed by a space.
 	ostream &operator<< (ostream &o, const Wrapped &num)
 	{
-		const int64_t K = 1000;
-		static const vector<pair<const char *, int64_t>> big = {
-			{ "quintillion", K * K * K * K * K * K },
-			{ "quadrillion", K * K * K * K * K },
-			{ "trillion", K * K * K * K },
-			{ "billion", K * K * K },
-			{ "million", K * K },
-			{ "thousand", K }
-		};
-		static const vector<const char *> onesNames = {
-			"zero ", "one ", "two ", "three ", "four ", "five ",
-			"six ", "seven ", "eight ", "nine ", "ten ", "eleven ",
-			"twelve ", "thirteen ", "fourteen ", "fifteen ",
-			"sixteen ", "seventeen ", "eighteen ", "nineteen "
-		};
-		static const vector<const char *> tensNames = {
-			"error", "error", "twenty", "thirty", "forty",
-			"fifty", "sixty", "seventy", "eighty", "ninety"
-		};
 
 		if(num.value < 0)
 			return o << "negative " << Wrapped { -num.value };
@@ -59,7 +60,7 @@ namespace {
 		Wrapped remaining { num };
 
 		if(remaining.value >= 1000)
-			for(auto &nameValue : big)
+			for(auto &nameValue : WORD_NUMBERS)
 				if(remaining.value >= nameValue.second)
 				{
 					Wrapped above { remaining.value / nameValue.second };
@@ -72,20 +73,45 @@ namespace {
 
 		if(remaining.value >= 100)
 		{
-			o << onesNames[(remaining.value / 100) % 10] << "hundred ";
+			o << ONES_NAMES[(remaining.value / 100) % 10] << "hundred ";
 			remaining.value %= 100;
 			if(!remaining.value)
 				return o;
 		}
 
 		if(remaining.value < 20)
-			return o << onesNames[remaining.value];
+			return o << ONES_NAMES[remaining.value];
 
-		o << tensNames[remaining.value / 10];
+		o << TENS_NAMES[remaining.value / 10];
 		int64_t ones = remaining.value % 10;
 		if(ones)
-			return o << '-' << onesNames[ones];
+			return o << '-' << ONES_NAMES[ones];
 		return o << ' ';
+	}
+
+	string MLAShorthand(int64_t value)
+	{
+		bool negative = value < 0;
+		if(negative)
+			value = -value;
+		for(size_t magnitude = 0; magnitude < WORD_NUMBERS.size() - 1; ++magnitude)
+		{
+			int64_t above = value / WORD_NUMBERS[magnitude + 1].second;
+			int64_t below = value % WORD_NUMBERS[magnitude + 1].second;
+			if(above < 1000)
+				continue;
+			if(above >= 1000000 || !(above%1000))
+				break;
+			if(below)
+				continue;
+			const size_t BUFLEN = 100;
+			char buf[BUFLEN] = { 0 };
+			snprintf(buf, BUFLEN, "%s%.3f %s",
+				negative ? "negative " : "", above/1000.0, WORD_NUMBERS[magnitude].first);
+			buf[BUFLEN - 1] = '\0';
+			return string(buf);
+		}
+		return string();
 	}
 
 	// Format an integer value, inserting its digits into the given string in
@@ -376,6 +402,12 @@ string Format::MLAForm(int64_t value, bool startOfSentence)
 		return WordForm(value, true);
 	if(value >= -99 && value <= 99)
 		return WordForm(value, startOfSentence);
+
+	// 21350000 => 21.35 million
+	string shorthand = MLAShorthand(value);
+	if(!shorthand.empty())
+		return shorthand;
+
 	int64_t above = value, below = 0;
 	for(int i = 0; above && i < 6; i++)
 	{
