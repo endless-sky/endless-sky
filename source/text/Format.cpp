@@ -100,14 +100,14 @@ namespace {
 			int64_t below = value % WORD_NUMBERS[magnitude + 1].second;
 			if(above < 1000)
 				continue;
-			if(above >= 1000000 || !(above%1000))
+			if(above >= 1000000 || !(above % 1000))
 				break;
 			if(below)
 				continue;
 			const size_t BUFLEN = 100;
 			char buf[BUFLEN] = { 0 };
 			snprintf(buf, BUFLEN, "%s%.3f %s",
-				negative ? "negative " : "", above/1000.0, WORD_NUMBERS[magnitude].first);
+				negative ? "negative " : "", above / 1000.0, WORD_NUMBERS[magnitude].first);
 			buf[BUFLEN - 1] = '\0';
 			return string(buf);
 		}
