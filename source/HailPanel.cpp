@@ -265,11 +265,15 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			player.SetTribute(planet, 0);
 			message = "Thank you for granting us our freedom!";
 		}
-		else
+		else if(!planet->IsDefending())
 			GetUI()->Push(new Dialog([this]() { message = planet->DemandTribute(player); },
 				"Demanding tribute may cause this planet to launch defense fleets to fight you. "
-				"Tribute battles can hurt your reputation.\n\nAre you sure you want to do this?",
+				"Once you defeat all of the tribute fleets, demand tribute again to receive "
+				"a daily payment.\n"
+				"Tribute battles can hurt your reputation severely. Are you sure you want to do this?",
 				Truncate::NONE, true, false));
+		else
+			message = planet->DemandTribute(player);
 		return true;
 	}
 	else if(key == 'h' && hasLanguage && ship && canAssistPlayer)
