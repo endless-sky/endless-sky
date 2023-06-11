@@ -32,6 +32,20 @@ This save file can be used to verify the bugfix. The bug will occur when using {
 
 
 -----------------------
+**Balance:**
+
+## Summary
+{{summarize all the changes you made}}
+
+## Reasoning
+{{explain why you think your balance changes are an improvement, including links to any issues you think your balance changes are addressing}}
+
+## Save File
+This save file can be used to test the balance changes.
+{{attach a save file that allows people to easily test the results of your balance changes, if one is useful}}
+
+
+-----------------------
 **Feature:** This PR implements the feature request detailed and discussed in issue #{{insert number}}
 
 ## Feature Details
