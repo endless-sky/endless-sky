@@ -726,6 +726,7 @@ mission "FW Southern Break"
 			label salary
 			branch end
 				not "FW Pirates 4.1: offered"
+				not "event: fw stripped of service"
 			`	"Before you leave, Captain," Freya says. "The Senate has decided to reinstate your pay after these recent events. You should now have a salary of 2,100 credits, just like before."`
 			
 			label end
