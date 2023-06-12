@@ -50,6 +50,7 @@ public:
 
 	// Draw a sprite.
 	static void Draw(const Sprite *sprite, const Point &position, float zoom = 1.f, int swizzle = 0, float frame = 0.f);
+	static void DrawBuffer(uint32_t texture, float width, float height);
 	static Item Prepare(const Sprite *sprite, const Point &position, float zoom = 1.f, int swizzle = 0, float frame = 0.f);
 
 	static void Bind();

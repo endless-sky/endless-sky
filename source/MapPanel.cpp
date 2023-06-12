@@ -24,8 +24,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
+#include "FrameBuffer.h"
 #include "Galaxy.h"
 #include "GameData.h"
+#include "GameWindow.h"
+#include "Screen.h"
 #include "Government.h"
 #include "Information.h"
 #include "Interface.h"
@@ -222,9 +225,16 @@ void MapPanel::Step()
 void MapPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-
+	
+	int buffer = FrameBuffer::CreateFrameBuffer();
+	uint32_t bufferTex = FrameBuffer::CreateTextureAttachment(Screen::Width(), Screen::Height());
+	FrameBuffer::BindFrameBuffer(buffer, Screen::Width(), Screen::Height());
 	for(const auto &it : GameData::Galaxies())
 		SpriteShader::Draw(it.second.GetSprite(), Zoom() * (center + it.second.Position()), Zoom());
+	FrameBuffer::UnbindCurrentFrameBuffer();
+	FrameBuffer::StoreTexture("mapBack", bufferTex);
+	GameWindow::AdjustViewport();
+	SpriteShader::DrawBuffer(bufferTex, static_cast<float>(Screen::Width()), -static_cast<float>(Screen::Height()));
 
 	if(Preferences::Has("Hide unexplored map regions"))
 		FogShader::Draw(center, Zoom(), player);

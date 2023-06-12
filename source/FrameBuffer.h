@@ -1,5 +1,7 @@
 #include "opengl.h"
 
+#include <string>
+
 
 
 // All functions for handling framebuffers can be found here.
@@ -13,8 +15,9 @@
 //  4. execute as many glDrawArrays or glDrawInstanced as you need
 //  5. UnbindCurrentFrameBuffer();
 //   - you are now back to drawing on the screen and have a texture that contains everything you just drew
-namespace FrameBuffer
+class FrameBuffer
 {
+public:
 	// Creates a framebuffer for color.
 	static int CreateFrameBuffer();
 	// Create a texture for a color framebuffer.
@@ -23,4 +26,7 @@ namespace FrameBuffer
 	static void BindFrameBuffer(int buffer, int width, int height);
 	// Unbinds any active framebuffer, making the screen drawspace again
 	static void UnbindCurrentFrameBuffer();
+
+	static void StoreTexture(std::string id, int texture);
+	static int GetTexture(std::string id);
 };

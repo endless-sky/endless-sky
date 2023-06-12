@@ -311,6 +311,28 @@ void SpriteShader::Draw(const Sprite *sprite, const Point &position, float zoom,
 
 
 
+void SpriteShader::DrawBuffer(uint32_t texture, float width, float height)
+{
+	if(texture < 0)
+		return;
+
+	Item item;
+	item.texture = texture;
+	item.frame = 0;
+	item.frameCount = 1;
+	item.position[0] = 0.f;
+	item.position[1] = 0.f;
+	item.transform[0] = width;
+	item.transform[3] = height;
+	item.swizzle = 0;
+
+	Bind();
+	Add(item);
+	Unbind();
+}
+
+
+
 SpriteShader::Item SpriteShader::Prepare(const Sprite *sprite, const Point &position,
 	float zoom, int swizzle, float frame)
 {
