@@ -49,18 +49,6 @@ DataWriter &DataWriter::WriteRaw(const string &c)
 
 
 
-// Raw write for numeric types.
-template <class C>
-DataWriter &DataWriter::WriteRaw(const C &c)
-{
-	static_assert(is_arithmetic<C>::value,
-		"DataWriter cannot output anything but strings and arithmetic types.");
-	out << c;
-	return *this;
-}
-
-
-
 // Writes the string that separates two tokens. If no tokens are present on the current line,
 // it writes the indentation string instead.
 DataWriter &DataWriter::WriteSeparator()

@@ -110,6 +110,18 @@ private:
 
 
 
+// Raw write for numeric types.
+template <class C>
+DataWriter &DataWriter::WriteRaw(const C &c)
+{
+	static_assert(is_arithmetic<C>::value,
+		"DataWriter cannot output anything but strings and arithmetic types.");
+	out << c;
+	return *this;
+}
+
+
+
 // The Write() function can take any number of arguments, each of which becomes
 // a token. They must be either strings or numeric types.
 template <class A, class ...B>
