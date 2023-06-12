@@ -141,7 +141,7 @@ shipyard "Luxury Ships"
 	"Flivver"
 
 # Note on Humanika Mimicry.
-# For a few decades, New Tortuga has had advanced technology, Syndicate defectors, and a steady supply of poached employees. One of their top priorities has been technological advancement. They are only one planet though, so even with help from an advanced species, their success has been limited. Thus, this list is restricted low-to-mid-range tech from older companies. This is with the exception the the Syndicate, for which they already had access to top technology.
+# For a few decades, New Tortuga has had advanced technology, Syndicate defectors, and a steady supply of poached employees. One of their top priorities has been technological advancement. They are only one planet though, so even with help from an advanced species, their success has been limited. Thus, this list is restricted low-to-mid-range tech from older companies. This is with the exception of the Syndicate, for which they already had access to top technology.
 shipyard "Humanika Mimicry"
 	# Advanced Southern Pirates without the Osprey:
 	"Falcon"
