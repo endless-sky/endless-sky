@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "Files.h"
 #include "text/Format.h"
 
 #include <SDL2/SDL.h>
@@ -166,7 +167,7 @@ void Command::LoadSettings(const string &path)
 // Save the keyboard preferences.
 void Command::SaveSettings(const string &path)
 {
-	DataWriter out(path);
+	DataWriter out;
 
 	for(const auto &it : keycodeForCommand)
 	{
@@ -174,6 +175,7 @@ void Command::SaveSettings(const string &path)
 		if(dit != description.end())
 			out.Write(dit->second, it.second);
 	}
+	Files::Write(path, out.GetText());
 }
 
 

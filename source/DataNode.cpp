@@ -294,7 +294,7 @@ int DataNode::PrintTrace(const string &message, DataWriter *writer) const
 		DataWriter w;
 		w.SetIndentation("  ");
 		int temp = PrintTrace(message, &w);
-		w.SaveToFunction(&Logger::LogError);
+		Logger::LogError(w.GetText());
 		return temp;
 	}
 

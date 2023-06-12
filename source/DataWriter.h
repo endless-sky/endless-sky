@@ -35,24 +35,15 @@ class DataNode;
 // automatically adds quotation marks around strings if they contain whitespace.
 class DataWriter {
 public:
-	// Constructor, specifying the file to write.
-	explicit DataWriter(const std::string &path);
 	// Constructor for a DataWriter that will not save its contents automatically
 	DataWriter();
 	DataWriter(const DataWriter &) = delete;
 	DataWriter(DataWriter &&) = delete;
 	DataWriter &operator=(const DataWriter &) = delete;
 	DataWriter operator=(DataWriter &&) = delete;
-	// The file is not actually saved until the destructor is called. This makes
-	// it possible to write the whole file in a single chunk.
-	~DataWriter();
 
-	// Save the contents to a file.
-	void SaveToPath(const std::string &path);
-	// Save the contents to a stream.
-	void SaveToStream(std::ostream &stream);
-	// Pass the contents to a function.
-	void SaveToFunction(const std::function<void(std::string)> func);
+	// Gets the current contents of the DataWriter.
+	std::string GetText();
 
 	// Writes the contents of the string without any escaping, quoting or
 	// any other kind of modification.
@@ -102,8 +93,6 @@ public:
 
 
 private:
-	// Save path (in UTF-8). Empty string for in-memory DataWriter.
-	std::string path;
 	// Current indentation level.
 	std::string indent;
 	// The string used for indentation.
@@ -146,17 +135,12 @@ DataWriter &DataWriter::WriteToken(const A &a)
 	return *this;
 }
 
-#include <iostream>
-
 // Writes a series of tokens without terminating the line.
 template <class A, class ...B>
 DataWriter &DataWriter::WriteToken(const A &a, B... others)
 {
-	std::cerr << "token" << std::endl;
 	WriteToken(a);
-	const std::size_t n = sizeof...(B);
-	if(n)
-		WriteToken(others...);
+	WriteToken(others...);
 	return *this;
 }
 

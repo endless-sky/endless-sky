@@ -73,7 +73,7 @@ namespace {
 			}
 			writer.Write();
 		}
-		writer.SaveToStream(cout);
+		cout << writer.GetText();
 	}
 
 	// Take a set of sales and print a list of each followed by the items it contains.
@@ -93,7 +93,7 @@ namespace {
 				writer.WriteToken(ObjectName(*item));
 			writer.Write().SetSeparator(",");
 		}
-		writer.SaveToStream(cout);
+		cout << writer.GetText();
 	}
 
 
@@ -109,7 +109,7 @@ namespace {
 		else
 			for(const auto &it : objects)
 				writer.WriteRaw(it.first).Write();
-		writer.SaveToStream(cout);
+		cout << writer.GetText();
 	}
 
 	// Takes a Set of objects and prints the key for each, followed by a list of its attributes.
@@ -129,7 +129,7 @@ namespace {
 				writer.WriteToken(attribute);
 			writer.Write().SetSeparator(",");
 		}
-		writer.SaveToStream(cout);
+		cout << writer.GetText();
 	}
 
 	// Takes a Set of objects, which must have an accessible member `Attributes()`, returning a collection of strings.
@@ -155,7 +155,7 @@ namespace {
 					writer.WriteToken(it.first);
 			writer.Write().SetSeparator(",");
 		}
-		writer.SaveToStream(cout);
+		cout << writer.GetText();
 	}
 
 
@@ -210,7 +210,7 @@ namespace {
 				writer.WriteToken(numFighters, numDrones);
 				writer.Write().SetSeparator(",");
 			}
-			writer.SaveToStream(cout);
+			cout << writer.GetText();
 		};
 
 		auto PrintLoadedShipStats = [](bool variants) -> void
@@ -316,7 +316,7 @@ namespace {
 					}
 				writer.Write(deterrence).SetSeparator(",");
 			}
-			writer.SaveToStream(cout);
+			cout << writer.GetText();
 		};
 
 		auto PrintShipList = [](bool variants) -> void
@@ -330,7 +330,7 @@ namespace {
 
 				writer.Write(it.first);
 			}
-			writer.SaveToStream(cout);
+			cout << writer.GetText();
 		};
 
 		bool loaded = false;
@@ -446,7 +446,7 @@ namespace {
 				double deterrence = .12 * damage / outfit.Reload();
 				writer.Write(deterrence).SetSeparator(",");
 			}
-			writer.SaveToStream(cout);
+			cout << writer.GetText();
 		};
 
 		auto PrintEngineStats = []() -> void
@@ -482,7 +482,7 @@ namespace {
 				writer.Write().SetSeparator(",");
 			}
 
-			writer.SaveToStream(cout);
+			cout << writer.GetText();
 		};
 
 		auto PrintPowerStats = []() -> void
@@ -509,7 +509,7 @@ namespace {
 				writer.Write().SetSeparator(",");
 			}
 
-			writer.SaveToStream(cout);
+			cout << writer.GetText();
 		};
 
 		auto PrintOutfitsAllStats = []() -> void
@@ -541,7 +541,7 @@ namespace {
 					writer.WriteToken(outfit.Attributes().Get(attribute));
 				writer.Write().SetSeparator(",");
 			}
-			writer.SaveToStream(cout);
+			cout << writer.GetText();
 		};
 
 		bool weapons = false;
@@ -620,7 +620,7 @@ namespace {
 				writer.WriteToken(planet.Description(), planet.SpaceportDescription());
 				writer.Write().SetSeparator(",");
 			}
-			writer.SaveToStream(cout);
+			cout << writer.GetText();
 		};
 
 		bool descriptions = false;

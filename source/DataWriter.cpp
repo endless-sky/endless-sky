@@ -22,15 +22,6 @@ using namespace std;
 
 
 
-// Constructor, specifying the file to save.
-DataWriter::DataWriter(const string &path)
-	: DataWriter()
-{
-	this->path = path;
-}
-
-
-
 // Constructor for a DataWriter that will not save its contents automatically
 DataWriter::DataWriter()
 	: before(&indent)
@@ -40,35 +31,10 @@ DataWriter::DataWriter()
 
 
 
-// Destructor, which saves the file all in one block.
-DataWriter::~DataWriter()
+// Gets the current contents of the DataWriter.
+string DataWriter::GetText()
 {
-	if(!path.empty())
-		SaveToPath(path);
-}
-
-
-
-// Save the contents to a file.
-void DataWriter::SaveToPath(const string &filepath)
-{
-	Files::Write(filepath, out.str());
-}
-
-
-
-// Save the contents to a stream.
-void DataWriter::SaveToStream(ostream &stream)
-{
-	stream << out.str();
-}
-
-
-
-// Pass the contents to a function.
-void DataWriter::SaveToFunction(const function<void(string)> func)
-{
-	func(out.str());
+	return out.str();
 }
 
 

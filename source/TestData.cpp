@@ -113,9 +113,10 @@ bool TestData::InjectSavegame() const
 	// Then write out the complete contents to the target file
 	// Savegame data is written to the saves directory. Other test data
 	// types might be injected differently, e.g. direct object loading.
-	DataWriter dataWriter(Files::Saves() + dataSetName + ".txt");
+	DataWriter dataWriter;
 	for(const DataNode &child : dataNode)
 		dataWriter.Write(child);
+	Files::Write(Files::Saves() + dataSetName + ".txt", dataWriter.GetText());
 
 	// Data was found and written. We are done successfully.
 	return true;

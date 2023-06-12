@@ -498,8 +498,9 @@ void PlayerInfo::Save() const
 	Save(filePath);
 
 	// Save global conditions:
-	DataWriter globalConditions(Files::Config() + "global conditions.txt");
+	DataWriter globalConditions;
 	GameData::GlobalConditions().Save(globalConditions);
+	Files::Write(Files::Config() + "global conditions.txt", globalConditions.GetText());
 }
 
 
@@ -3971,11 +3972,12 @@ void PlayerInfo::Autosave() const
 void PlayerInfo::Save(const string &filePath) const
 {
 	if(transactionSnapshot)
-		transactionSnapshot->SaveToPath(filePath);
+		Files::Write(filePath, transactionSnapshot->GetText());
 	else
 	{
-		DataWriter out(filePath);
+		DataWriter out;
 		Save(out);
+		Files::Write(filePath, out.GetText());
 	}
 }
 
