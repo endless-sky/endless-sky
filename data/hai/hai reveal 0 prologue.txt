@@ -322,6 +322,7 @@ mission "Hai Reveal: Early Arrival: Alondo"
 	source
 		government "Hai"
 		not attributes "uninhabited" "station"
+		not planet "Hai-home"
 	destination "Hai-home"
 	clearance
 	to offer
@@ -349,6 +350,7 @@ mission "Hai Reveal: Late Arrival: Alondo"
 	source
 		government "Hai"
 		not attributes "uninhabited" "station"
+		not planet "Hai-home"
 	destination "Hai-home"
 	clearance
 	to offer
