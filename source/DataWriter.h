@@ -114,7 +114,7 @@ private:
 template <class C>
 DataWriter &DataWriter::WriteRaw(const C &c)
 {
-	static_assert(is_arithmetic<C>::value,
+	static_assert(std::is_arithmetic<C>::value,
 		"DataWriter cannot output anything but strings and arithmetic types.");
 	out << c;
 	return *this;
