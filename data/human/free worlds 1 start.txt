@@ -1871,7 +1871,7 @@ mission "FW Early Warning 3"
 			`	"The actions that were taken on Greenrock were unsanctioned by the Free Worlds Senate or Council," JJ responds. "It was the result of rogue elements that have been taken care of."`
 			`	"Rogue elements within your ranks? You certainly have a history of those if it was a rogue element within your insurgency that committed the terrorist acts that took the lives of thousands of Republic citizens. At least, I presume it was a rogue element, as I've never known the venerable Jean-Jacques Soleau to be a liar, so I certainly believe you when you tell me that your 'Free Worlds' wouldn't do that. Although I'm sure you would have also told me that your 'Free Worlds' would never subjugate the population of Greenrock, either."`
 			choice
-				`	"This guy doesn't seem to interested in peace talks. We should go."`
+				`	"This guy doesn't seem too interested in peace talks. We should go."`
 				`	(Let JJ handle the situation.)`
 					goto handle
 			`	You whisper your concerns to JJ. "No," he responds. "I can handle this."`
