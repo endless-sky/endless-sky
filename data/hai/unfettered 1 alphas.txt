@@ -805,9 +805,10 @@ mission "<uhai> 7: Stolen Cargo"
 					goto leaving
 			action
 				set "midas: accepted duel"
+				event "cerberus revealed"
 			branch cleanupdone
 				"unfettered: cleaned up cerberus" > 1
-			`	"First we need to finish off all Cerberus pirates remaining, do not let them live to tell the tale. After that, we will let you land and repair before starting the fight. If you want to surrender, just abort the mission of land again after the battle has started, after giving us the symbolic fee to stop the fight. We do not have the luxury of time!"`
+			`	"First we need to finish off all of these Cerberus pirates remaining. Those dogs only obey the Alphas and cannot be reasoned with. Do not let them live to tell the tale. After that, we will let you land and repair before starting the fight. If you want to surrender, just abort the mission of land again after the battle has started, after giving us the symbolic fee to stop the fight. We do not have the luxury of time!"`
 				accept
 			label cleanupdone
 			`	"We will let you land and repair before starting the fight. If you want to surrender, just abort the mission of land again after the battle has started, after giving us the symbolic fee to stop the fight. We do not have the luxury of time!"`
