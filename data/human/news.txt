@@ -167,6 +167,32 @@ news "farmer"
 		word
 			`"`
 
+news "sailor"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "fishing"
+
+	name
+		word
+			"Fisher"
+			"Fisherman"
+			"Angler"
+			"Sailor"
+	message
+		word
+			`"`
+		word
+			"Storm's a-comin'. I can feel it in me bones."
+			"A gravity wave ain't got much on a regular one."
+			"I'll take the salt spray of the sea over the vacuum of space any day."
+			"Space doesn't sound so bad; there's certainly less corrosion."
+			"My family has been fishing one ocean or another for generations."
+			"Just last week, I caught a fish longer than my whole body!"
+			"The sea is a harsh mistress. Moons too, I expect."
+			"No, that's impossibly deep - you'd be out the other side of the planet and then some. Oh, you meant across the surface! Aye, I reckon I've travelled at least twenty thousand leagues."
+			"Seize the carp!"
+		word
+			`"`
 
 
 news "textile worker"
@@ -209,6 +235,9 @@ news "miner"
 			"My team is sinking in the rankings again. I should have known better than to put 500 credits on them when they had such a bad season opener."
 			"I've heard that miners who work on Clink are several times more likely to develop cancer. I must admit that the wages are mighty tempting, though..."
 			"Check the spaceports around these parts. We might need an express delivery for extra equipment."
+			"When you think about it, just about everything we make is made from something that comes out of the ground."
+			"The dust from mining operations takes a toll; on the machines, on the environment, on our bodies."
+			"Mining really is something magical. Shovel goes in, money comes up!"
 		word
 			`"`
 
@@ -459,6 +488,7 @@ news "dock worker"
 	name
 		word
 			"Dock worker"
+			"Stevedore"
 	message
 		word
 			`"`
@@ -622,6 +652,8 @@ news "loan officer"
 			"I still think we should be able to charge double the interest on loans to buy a Sparrow, but the regulators won't let us."
 			"Do you know how hard it is to force somebody that joined the pirates to pay off their loans?"
 			"Some people say that we're loan sharks, but I don't understand why. I think that killer whales are way cooler than sharks."
+			"Credit is the lifeblood of any economy."
+			"Is that ship you want just out of reach? Apply now for the lowest mortgage rates in the sector!"
 		word
 			`"`
 
@@ -724,7 +756,7 @@ phrase "athlete competition location"
 		"Bourne in the Gamma Corvi system"
 		"Trinket in the Sargas system"
 		"Shangri-La in the Polaris system"
-		
+
 
 
 news "athlete"
@@ -999,6 +1031,8 @@ news "museum curator"
 			"Did you know that humans used to rely on explosive fuel mixtures to propel them into orbit? Imagine how mad you'd have to be to do that!"
 			"We recently put a restored 20th-century shipping container on display. You can hardly tell the difference from the ones in use today! Isn't historical inertia fascinating?"
 			"Every so often, we get contacted by someone shady wishing to donate something to our museum."
+			"Much of human technological progress has been driven by a desire to more effectively induce entropy in one's opponents."
+			"Did you know Cleopatra lived closer in time to the invention of the hyperdrive than the building of the pyramids?"
 		word
 			`"`
 
@@ -1102,6 +1136,7 @@ news "chef"
 	name
 		word
 			"Chef"
+			"Restauranteur"
 	message
 		word
 			`"`
@@ -1141,6 +1176,7 @@ news "insurance agent"
 			"It's a real shame that not everyone is able to afford insurance. More people insured means more money for us."
 			"I used to be a gambler. Still am in a way, but I'm acceptable to society now."
 			"A spaceship controller... is that someone that controls a spaceship, or a spaceship that controls something? The premiums and amounts of paperwork for those are quite different."
+			"What keeps me up at night? Correlated risk."
 		word
 			`"`
 
@@ -1190,6 +1226,7 @@ news "chauffeur"
 			"They make me fly around the planet for ridiculous things, but you don't hear me complain with the salary they pay me."
 			"The vegetables are supposedly more fresh when I personally pick them up at the spaceport than when they get delivered through the 1-hour delivery service."
 			"I used to have a job flying a band around, but they wanted to spend some time in the Dirt Belt, and I was hoping for work closer to the Paradise Worlds."
+			"You're not in traffic, you're part of traffic."
 		word
 			`"`
 
@@ -1413,7 +1450,7 @@ news "tourist"
 			"Can you tell me again which planet this is? No, I'm not lost, I just don't know where I am."
 			"We did a ride on an ancient spacecraft the other day. It was called something like Soyuz or Shuttle Dragon. I don't remember the name exactly, but it was horrible; my back still hurts from the bumpy ride."
 			"I almost missed my transport last week; someone was wrong on the hypernet and I was in a long, heated discussion to correct it."
-			"Hey! Where's platform 5? I need to board there in a few minutes!"
+			"Hey! Where's platform ${platform number}? I need to board there in a few minutes!"
 			"Have you seen my luggage? I'm sure I put it here some minutes ago."
 			"We visited an exhibition about ancient military weapons; stuff like stealth fighters, artillery and tanks. It all became obsolete so fast when we got cheap spaceflight."
 			"I can travel millions of kilometers to another planet, cheaply and within a day; but going to the other side of this planet, just a few thousand kilometers, costs me a fortune and a week of travel time."
@@ -1725,7 +1762,7 @@ phrase "restaurant names"
 		"civilian subphrase 4"
 		"civilian subphrase 5"
 		"civilian subphrase 10"
-		
+
 
 
 news "syndicate pa system"
@@ -1775,7 +1812,7 @@ phrase "platform number"
 		"15" 100
 		"16" 100
 		"9 and three quarters"
-		
+
 
 news "tourist pa system"
 	location
@@ -1816,6 +1853,35 @@ phrase "deep motto graffiti"
 		`Underneath are the words "Peace, Prosperity, Progress."` 2
 		`Underneath are the words "Power, Poverty, Pride."`
 		`Underneath are the words "Peace, Prosperity, Progress, for those who are born lucky."`
+
+news "safety posters"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "factory" "farming" "fishing" "mining" "textiles"
+	name
+		word
+			"Safety"
+			"Workplace"
+		word
+			" "
+		word
+			"Advertisement"
+			"Billboard"
+			"Pamphlet"
+			"Placard"
+			"Poster"
+			"Warning"
+	message
+		word
+			`"`
+		word
+			"DAYS SINCE LAST ACCIDENT: ${digit}${digit}"
+			"HARD HATS MANDATORY"
+			"KEEP FINGERS CLEAR OF GRINDER"
+			"REPORT ALL WORKPLACE INJURIES"
+			"PROTECTIVE EQUIPMENT REQUIRED WITHIN HAZARD ZONE"
+		word
+			`"`
 
 news "graffiti on spaceport wall"
 	location
