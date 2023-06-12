@@ -278,7 +278,7 @@ mission "First Contact: Korath Exiles"
 			# of the first two available Korath pilots knowing such details is
 			# quite small. An armed landing on Far'en Lai is an emergency, and they
 			# couldn't wait for a diplomat from La'ab Bamen to arrive.
-			`Before you even step out of your ship, two Korath fighters come hurtling down out of the sky to land, sending up a spray of sand as they skid to a stop about ten meters away from you as you open the hatch. The pilots get out and approach you. They are short, stocky, and somewhat reptilian in appearance, and both have a crest of red and brown feathers running along the top of their heads and hanging down their backs. Their clothes are a brightly colored patchwork material. They do not seem to be armed. One of them stretches both arms out sideways and says, "Oi, oi!"`
+			`Before you even step out of your ship, two fighters come hurtling down out of the sky to land, sending up a spray of sand as they skid to a stop about ten meters away from you as you open the hatch. The pilots get out and approach you. They are short, stocky, and somewhat reptilian in appearance, and both have a crest of red and brown feathers running along the top of their heads and hanging down their backs. Their clothes are a brightly colored patchwork material. They do not seem to be armed. One of them stretches both arms out sideways and says, "Oi, oi!"`
 			# Names:
 			# Pilot to the left: Akafavah, meaning "steel eyes"
 			# Pilot to the right: Tak Ratabomlek, or Takra for short, means "unforgotten"
