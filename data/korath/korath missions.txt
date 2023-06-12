@@ -530,8 +530,6 @@ mission "Korath [F02]: A Fishy Proposition"
 			choice
 				`	(Pull out your gun.)`
 					goto gun
-					to display
-						not "pulled gun on Iris"
 				`	"She wasn't using the fish, so I took it."`
 					goto taunt
 				`	"Her mother is unwell, but she knew you needed this delivery."`
