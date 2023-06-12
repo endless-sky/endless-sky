@@ -15,6 +15,8 @@
 //  4. execute as many glDrawArrays or glDrawInstanced as you need
 //  5. UnbindCurrentFrameBuffer();
 //   - you are now back to drawing on the screen and have a texture that contains everything you just drew
+//  6. IMPORTANT, dont skip this step: DestroyBuffer(myBuffer, mytexture)
+//   - If you skip this step you will allocate more and more memory over time and crash the system. (or activate failsafes)
 class FrameBuffer
 {
 public:
@@ -26,6 +28,8 @@ public:
 	static void BindFrameBuffer(int buffer, int width, int height);
 	// Unbinds any active framebuffer, making the screen drawspace again
 	static void UnbindCurrentFrameBuffer();
+	// Clears up memory of the buffer and the texture, only do after using the texture
+	static void DestroyBuffer(GLuint buffer, GLuint texture);
 
 	static void StoreTexture(std::string id, int texture);
 	static int GetTexture(std::string id);

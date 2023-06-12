@@ -266,6 +266,7 @@ void MapPanel::Draw()
 	DrawSystems();
 	DrawNames();
 	DrawMissions();
+	FrameBuffer::DestroyBuffer(buffer, bufferTex);
 }
 
 
@@ -867,7 +868,7 @@ void MapPanel::UpdateCache()
 	// Draw the circles for the systems, colored based on the selected criterion,
 	// which may be government, services, or commodity prices.
 	const Color &closeNameColor = *GameData::Colors().Get("map name");
-	const Color &farNameColor = closeNameColor.Transparent(.5);
+	const Color &farNameColor = closeNameColor.Transparent(.8);
 	for(const auto &it : GameData::Systems())
 	{
 		const System &system = it.second;

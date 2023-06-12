@@ -53,6 +53,14 @@ void FrameBuffer::UnbindCurrentFrameBuffer()
 
 
 
+void FrameBuffer::DestroyBuffer(GLuint buffer, GLuint texture)
+{
+	glDeleteFramebuffers(1, &buffer);
+	glDeleteTextures(1, &texture);
+}
+
+
+
 void FrameBuffer::StoreTexture(std::string id, int texture)
 {
 	bufferStore[id] = texture;

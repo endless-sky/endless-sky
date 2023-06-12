@@ -153,7 +153,7 @@ color "message importance default"	1. 1. 1. 1.
 # Colors used when drawing the map (system names, links, and the player's desired route).
 # (The color of the ring that represents a given system is context-sensitive.)
 color "map link" .6 .6 .6 .6
-color "map name" .6 .6 .6 .6
+color "map name" .9 .9 .9 .9
 color "map travel ok fleet" .2 .5 0. 0.
 color "map travel ok flagship" .5 .4 0. 0.
 color "map travel ok none" .55 .1 0. 0.
