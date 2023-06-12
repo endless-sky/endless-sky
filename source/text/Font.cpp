@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "alignment.hpp"
 #include "../Color.h"
 #include "DisplayText.h"
+#include "../FrameBuffer.h"
 #include "../ImageBuffer.h"
 #include "../Point.h"
 #include "../Preferences.h"
@@ -51,11 +52,13 @@ namespace {
 
 		// Output to the fragment shader.
 		"out vec2 texCoord;\n"
+		"out vec2 vertCoord;\n"
 
 		// Pick the proper glyph out of the texture.
 		"void main() {\n"
 		"  texCoord = vec2((float(glyph) + corner.x) / 98.f, corner.y);\n"
 		"  gl_Position = vec4((aspect * vert.x + position.x) * scale.x, (vert.y + position.y) * scale.y, 0.f, 1.f);\n"
+		"  vertCoord = gl_Position.xy;"
 		"}\n";
 
 	const char *fragmentCode =
@@ -63,17 +66,26 @@ namespace {
 		"precision mediump float;\n"
 		// The user must supply a texture and a color (white by default).
 		"uniform sampler2D tex;\n"
+		"uniform sampler2DArray background;\n"
+		"uniform int matchBack;\n"
 		"uniform vec4 color;\n"
 
 		// This comes from the vertex shader.
 		"in vec2 texCoord;\n"
+		"in vec2 vertCoord;\n"
 
 		// Output color.
 		"out vec4 finalColor;\n"
 
 		// Multiply the texture by the user-specified color (including alpha).
 		"void main() {\n"
-		"  finalColor = texture(tex, texCoord).a * color;\n"
+		"  if(matchBack > 0){\n"
+		"    vec4 backColor = texture(background, vec3((vertCoord.x + 1.0f) / 2.f, (vertCoord.y + 1.0f) / 2.f, 0));\n"
+		"    float brightness = (backColor.r + backColor.g + backColor.b) / 3.f;\n"
+		"    finalColor = vec4(vec3(pow(1.0f - brightness, 4)), 1.f) * texture(tex, texCoord).a * color;\n"
+		"  }\n"
+		"  else\n"
+		"    finalColor = texture(tex, texCoord).a * color;\n"
 		"}\n";
 
 	const int KERN = 2;
@@ -127,18 +139,28 @@ void Font::DrawAliased(const DisplayText &text, double x, double y, const Color 
 
 
 
-void Font::Draw(const string &str, const Point &point, const Color &color) const
+void Font::Draw(const string &str, const Point &point, const Color &color, bool matchBack) const
 {
-	DrawAliased(str, round(point.X()), round(point.Y()), color);
+	DrawAliased(str, round(point.X()), round(point.Y()), color, matchBack);
 }
 
 
 
-void Font::DrawAliased(const string &str, double x, double y, const Color &color) const
+void Font::DrawAliased(const string &str, double x, double y, const Color &color, bool matchBack) const
 {
 	glUseProgram(shader.Object());
+	glUniform1i(texI, 0);
+	glUniform1i(backgroundI, 1);
+	glActiveTexture(GL_TEXTURE0 + 0);
 	glBindTexture(GL_TEXTURE_2D, texture);
+	if(matchBack)
+	{
+		glActiveTexture(GL_TEXTURE0 + 1);
+		glBindTexture(GL_TEXTURE_2D_ARRAY, FrameBuffer::GetTexture("mapBack"));
+	}
 	glBindVertexArray(vao);
+
+	glUniform1i(matchBackI, matchBack);
 
 	glUniform4fv(colorI, 1, color.Get());
 
@@ -199,6 +221,7 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 		previous = glyph;
 	}
 
+	glActiveTexture(GL_TEXTURE0 + 0);
 	glBindVertexArray(0);
 	glUseProgram(0);
 }
@@ -374,6 +397,9 @@ void Font::SetUpShader(float glyphW, float glyphH)
 	screenWidth = 0;
 	screenHeight = 0;
 
+	texI = shader.Uniform("tex");
+	backgroundI = shader.Uniform("background");
+	matchBackI = shader.Uniform("matchBack");
 	colorI = shader.Uniform("color");
 	scaleI = shader.Uniform("scale");
 	glyphI = shader.Uniform("glyph");

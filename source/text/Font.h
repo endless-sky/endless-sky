@@ -44,8 +44,8 @@ public:
 	void Draw(const DisplayText &text, const Point &point, const Color &color) const;
 	void DrawAliased(const DisplayText &text, double x, double y, const Color &color) const;
 	// Draw the given text string, e.g. post-formatting (or without regard to formatting).
-	void Draw(const std::string &str, const Point &point, const Color &color) const;
-	void DrawAliased(const std::string &str, double x, double y, const Color &color) const;
+	void Draw(const std::string &str, const Point &point, const Color &color, bool matchBack = false) const;
+	void DrawAliased(const std::string &str, double x, double y, const Color &color, bool matchBack = false) const;
 
 	// Determine the string's width, without considering formatting.
 	int Width(const std::string &str, char after = ' ') const;
@@ -79,6 +79,9 @@ private:
 	GLuint vao = 0;
 	GLuint vbo = 0;
 
+	GLint texI = 0;
+	GLint backgroundI = 0;
+	GLint matchBackI = 0;
 	GLint colorI = 0;
 	GLint scaleI = 0;
 	GLint glyphI = 0;
