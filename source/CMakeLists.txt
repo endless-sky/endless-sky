@@ -118,6 +118,8 @@ target_sources(EndlessSkyLib PRIVATE
 	FogShader.h
 	FormationPattern.cpp
 	FormationPattern.h
+	FrameBuffer.cpp
+	FrameBuffer.h
 	FrameTimer.cpp
 	FrameTimer.h
 	Galaxy.cpp
