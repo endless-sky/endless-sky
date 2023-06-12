@@ -5,8 +5,25 @@
 
 
 namespace {
-	std::map<std::string, int> bufferStore;
+	std::map<std::string, FrameBufferHandle> bufferStorage;
 };
+
+
+
+void FrameBuffer::FrameBufferHandle::FrameBufferHandle(int width, int height)
+{
+	width, height = width, height;
+	buffer = CreateFrameBuffer();
+	texture = CreateTextureAttachment(width, height);
+	UnbindCurrentFrameBuffer();
+}
+
+
+
+void FrameBuffer::FrameBufferHandle::Bind()
+{
+	BindFrameBuffer(width, height);
+}
 
 
 
@@ -26,9 +43,8 @@ int FrameBuffer::CreateTextureAttachment(int width, int height)
 	GLuint texture;
 	glGenTextures(1, &texture);
 	glBindTexture(GL_TEXTURE_2D_ARRAY, texture);
-	glTexImage3D(GL_TEXTURE_2D_ARRAY, 0, GL_RGB, // target, mipmap level, internal format,
-		width, height, 1,          // width, height, depth,
-		0, GL_RGB, GL_UNSIGNED_BYTE, nullptr);   // border, input format, data type, data.
+	// target, mipmap level, internal format, width, height, depth, border, input format, data type, data.
+	glTexImage3D(GL_TEXTURE_2D_ARRAY, 0, GL_RGB, width, height, 1, 0, GL_RGB, GL_UNSIGNED_BYTE, nullptr);
 	glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, texture, 0);
@@ -53,14 +69,14 @@ void FrameBuffer::UnbindCurrentFrameBuffer()
 
 
 
-void FrameBuffer::StoreTexture(std::string id, int texture)
+void FrameBuffer::StoreBuffer(std::string id, FrameBuffer::FrameBufferHandle buffer)
 {
-	bufferStore[id] = texture;
+	bufferStorage[id] = buffer;
 }
 
 
 
-int FrameBuffer::GetTexture(std::string id)
+FrameBuffer::FrameBufferHandle FrameBuffer::GetBuffer(std::string id)
 {
-	return bufferStore[id];
+	return bufferStorage[id];
 }

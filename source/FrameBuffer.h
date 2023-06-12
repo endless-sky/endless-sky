@@ -18,15 +18,27 @@
 class FrameBuffer
 {
 public:
+	struct FrameBufferHandle
+	{
+		FrameBufferHandle(int width, int height);
+		void Bind();
+
+		int buffer;
+		int texture;
+		int width;
+		int height;
+	};
+public:
 	// Creates a framebuffer for color.
 	static int CreateFrameBuffer();
 	// Create a texture for a color framebuffer.
 	static int CreateTextureAttachment(int width, int height);
 	// Bind a framebuffer (haha unneccessary comment)
 	static void BindFrameBuffer(int buffer, int width, int height);
-	// Unbinds any active framebuffer, making the screen drawspace again
+	// Unbinds any active framebuffer, making the screen drawspace again.
+	// It is recommend to call GameWindow::AdjustViewport() after unbinding a buffer.
 	static void UnbindCurrentFrameBuffer();
 
-	static void StoreTexture(std::string id, int texture);
-	static int GetTexture(std::string id);
+	static void StoreBuffer(std::string id, FrameBufferHandle texture);
+	static FrameBufferHandle GetBuffer(std::string id);
 };
