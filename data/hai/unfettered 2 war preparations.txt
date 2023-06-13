@@ -779,9 +779,9 @@ event "unfettered: modded SB ready"
 mission "<uhai> 15: Modified Beetle"
 	autosave
 	landing
+	source "Firelode"
 	name "Earn your prize"
 	description "The Unfettered have modified a Shield Beetle for you, but you must beat Mera in command of it in order to earn it."
-	source "Firelode"
 	to offer
 		or
 			has "<uhai> 14: Ion Materials: done"
@@ -793,10 +793,10 @@ mission "<uhai> 15: Modified Beetle"
 	on offer
 		conversation
 			`Passing by the labs on the way down, you notice some kind of modified beetle outside, in the middle of what must be a test field, filled with craters you assume to be made during weapon testing.`
-			`Do you want to go see Mera to see what you can learn about this ship?`
+			`	Do you want to go see Mera to see what you can learn about this ship?`
 				to display
 					not "<uhai> 12: Outfitter Upgrade: done"
-			`It may be your prize, do you want to go see Mera now, as He-Yi's herald suggested?`
+			`	It may be your prize, do you want to go see Mera now, as He-Yi's herald suggested?`
 				to display
 					has "<uhai> 12: Outfitter Upgrade: done"
 			choice
