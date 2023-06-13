@@ -48,11 +48,15 @@ namespace {
 	}
 }
 
+
+
 // Checks whether this plugin is valid, i.e. whether it exists.
 bool Plugin::IsValid() const
 {
 	return !name.empty();
 }
+
+
 
 // Try to load a plugin at the given path. Returns true if loading succeeded.
 const Plugin *Plugins::Load(const string &path)
