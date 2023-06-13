@@ -160,10 +160,10 @@ star "star/g-supergiant"
 	wind 2.9
 star "star/k-supergiant"
 	power 1.8
-	wind 2
+	wind 3
 star "star/m-supergiant"
 	power 1.6
-	wind 2
+	wind 3.1
 
 # Special stars.
 star "star/carbon"
