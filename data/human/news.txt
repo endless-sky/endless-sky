@@ -259,7 +259,7 @@ news "New Tortuga citizen"
 		word
 			"Local citizen"
 			"Recent immigrant"
-			"Syndicate refugee"
+			"Refugee"
 			"New Tortugan"
 	message
 		word
@@ -272,6 +272,12 @@ news "New Tortuga citizen"
 			`Last weekend, after Sunday worship, I practiced throwing grenades in a pirate-run shooting gallery.`
 			`On Wednesday, I attended a Hindu wedding for the first time. The groom rode in on an elephant!`
 			`The people that live near me are from eleven different religions.`
+			`I think we should grant pirates greater access to the cities. They are the reason we can smuggle supplies past the Syndicate.`
+			`My father runs a pirate hotel in one of the free trade zones. You wouldn't believe some of the bizarre requests he gets.`
+			`The bunker city to the south-west is rumored to conceal powerful marauder groups.`
+			`Sometimes I have nightmares of the things pirates do off-planet.`
+			`I often volunteer to work at the emancipation shelters, where we rehabilitate victims. It helps them to meet someone who has recovered from the same ordeal.`
+			`On my trip over here, Syndicate ships intercepted us. Before they could get a shot off, one of those big ships jumped in from nowhere. The last thing I saw was a Syndicate Protector being boarded.`
 		word
 			`"`
 
