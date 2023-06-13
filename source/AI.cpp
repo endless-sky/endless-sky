@@ -1849,6 +1849,10 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 			if(!(parent.IsEnteringHyperspace() || parent.IsReadyToJump()) || !EscortsReadyToJump(ship))
 				command |= Command::WAIT;
 		}
+		else if(needsFuel && systemHasFuel)
+		{
+			Refuel(ship, command);
+		}
 		else if(ship.GetTargetStellar())
 		{
 			MoveToPlanet(ship, command);
