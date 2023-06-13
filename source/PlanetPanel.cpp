@@ -375,7 +375,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 				if(planet.HasOutfitter())
 					out << "store ";
 				else
-					out << (planet.IsInhabited() ? "sell " : "dump ");
+					out << ( (planet.IsInhabited() && system.HasTrade()) ? "sell " : "dump ");
 			}
 			else
 				out << "dump ";
