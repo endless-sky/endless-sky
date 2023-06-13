@@ -54,6 +54,8 @@ public:
 
 	// Whether the path points to a valid plugin.
 	static bool IsPlugin(const std::string &path);
+	// Returns true if the plugin uses the old plugin format.
+	static bool IsClassicPlugin(const std::string& path);
 	// Returns true if any plugin enabled or disabled setting has changed since
 	// launched via user preferences.
 	static bool HasChanged();

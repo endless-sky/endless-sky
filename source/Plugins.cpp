@@ -48,15 +48,11 @@ namespace {
 	}
 }
 
-
-
 // Checks whether this plugin is valid, i.e. whether it exists.
 bool Plugin::IsValid() const
 {
 	return !name.empty();
 }
-
-
 
 // Try to load a plugin at the given path. Returns true if loading succeeded.
 const Plugin *Plugins::Load(const string &path)
@@ -66,10 +62,30 @@ const Plugin *Plugins::Load(const string &path)
 	string name = path.substr(pos, path.length() - 1 - pos);
 
 	auto *plugin = plugins.Get(name);
-	plugin->name = std::move(name);
-	plugin->path = path;
-	plugin->aboutText = Files::Read(path + "about.txt");
+	if (IsClassicPlugin(path))
+	{
+		plugin->name = std::move(name);
+		plugin->path = path;
+		plugin->aboutText = Files::Read(path + "about.txt");
+	}
+	else
+	{
+		DataFile data(path + "plugin.txt");
 
+		for(const DataNode& child : data)
+		{
+			if(child.Token(0) == "name")
+				plugin->name = child.Token(1);
+			else if (child.Token(0) == "about")
+				plugin->aboutText = child.Token(1);
+		}
+
+		// Fallback to using the folder name if the plugin hasn't set a name.
+		if(plugin->name.empty())
+			plugin->name = std::move(name);
+
+		plugin->path = path;
+	}
 	return plugin;
 }
 
@@ -108,6 +124,15 @@ bool Plugins::IsPlugin(const string &path)
 	// A folder is a valid plugin if it contains one (or more) of the assets folders.
 	// (They can be empty too).
 	return Files::Exists(path + "data") || Files::Exists(path + "images") || Files::Exists(path + "sounds");
+}
+
+
+
+// Whether the plugin uses the old plugin format.
+bool Plugins::IsClassicPlugin(const string &path)
+{
+	// A plugin is a classic plugin when it doesn't contain a plugin.txt.
+	return !Files::Exists(path + "plugin.txt");
 }
 
 
