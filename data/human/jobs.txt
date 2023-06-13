@@ -3877,28 +3877,6 @@ mission "Syndicate Defectors [2]"
 		system
 			distance 1 2
 
-# Can't do phrases in the right places for this yet:
-phrase "syndicate defectors"
-	word
-		"religious" 3
-		"overworked" 2
-		"persecuted" 3
-		"abused" 2
-	word
-		" Syndicate "
-	word
-		"union organizers" 3
-		"low-level managers" 2
-		"workers" 5
-		"human rights observers"
-		"managers"
-		"engineers"
-		"security personnel"
-		"technicians"
-
-# NOTE: Slavery rescue missions can have an uninhabited Pirate planet
-# stopover since that is a valid place for slaves to have escaped to.
-
 mission "Rescue Slaves [0]"
 	name "Emancipation on <planet stopovers>"
 	job
