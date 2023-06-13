@@ -2002,7 +2002,7 @@ phrase "friendly civilian"
 		"When I was younger"
 		"When I was a kid"
 		"When I was your age"
-		"Long ago,"
+		"Long ago"
 		"Back in high school"
 		"A long time ago"
 	word
