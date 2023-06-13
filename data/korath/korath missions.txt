@@ -283,7 +283,6 @@ mission "First Contact: Korath Exiles"
 			# Pilot to the left: Akafavah, meaning "steel eyes"
 			# Pilot to the right: Tak Ratabomlek, or Takra for short, means "unforgotten"
 
-			# I don't know what "Oi" means.
 			choice
 				`	"I am <first> <last>."`
 					goto name
