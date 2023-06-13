@@ -4104,7 +4104,7 @@ mission "Emancipation Raid Escort [0]"
 		fleet
 			names "Humanika emancipation fleet"
 			variant
-				"Nighthawk (New Tortuga Emancipation)"
+				"Nighthawk (New Tortuga)"
 	npc
 		government "Bounty Hunter"
 		personality heroic unconstrained nemesis plunders harvests waiting
@@ -4148,7 +4148,7 @@ mission "Emancipation Raid Escort [1]"
 		fleet
 			names "Humanika emancipation fleet"
 			variant
-				"Nighthawk (New Tortuga Emancipation)" 3
+				"Nighthawk (New Tortuga)" 3
 	npc
 		government "Bounty Hunter"
 		personality heroic unconstrained nemesis plunders harvests waiting
@@ -4192,11 +4192,11 @@ mission "Emancipation Raid Escort [2]"
 		fleet
 			names "Humanika emancipation fleet"
 			variant
-				"Nighthawk (New Tortuga Emancipation)" 5
+				"Nighthawk (New Tortuga)" 5
 			variant 3
-				"Nighthawk (New Tortuga Emancipation)" 6
+				"Nighthawk (New Tortuga)" 6
 			variant
-				"Nighthawk (New Tortuga Emancipation)" 7
+				"Nighthawk (New Tortuga)" 7
 	npc
 		government "Bounty Hunter"
 		personality heroic unconstrained nemesis plunders harvests waiting
@@ -4242,17 +4242,17 @@ mission "Emancipation Raid Escort [3]"
 		fleet
 			names "Humanika emancipation fleet"
 			variant 1
-				"Nighthawk (New Tortuga Emancipation)" 7
+				"Nighthawk (New Tortuga)" 7
 			variant 1
-				"Nighthawk (New Tortuga Emancipation)" 8
+				"Nighthawk (New Tortuga)" 8
 			variant 2
-				"Nighthawk (New Tortuga Emancipation)" 9
+				"Nighthawk (New Tortuga)" 9
 			variant 5
-				"Nighthawk (New Tortuga Emancipation)" 10
+				"Nighthawk (New Tortuga)" 10
 			variant 1
-				"Nighthawk (New Tortuga Emancipation)" 11
+				"Nighthawk (New Tortuga)" 11
 			variant 1
-				"Nighthawk (New Tortuga Emancipation)" 12
+				"Nighthawk (New Tortuga)" 12
 	npc
 		government "Bounty Hunter"
 		personality heroic unconstrained nemesis plunders harvests waiting

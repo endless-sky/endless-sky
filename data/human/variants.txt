@@ -2485,27 +2485,7 @@ ship "Nighthawk" "Nighthawk (New Tortuga)"
 		"D41-HY Shield Generator"
 		"Fission Reactor"
 		"Fragmentation Grenades" 16
-		"Heavy Anti-Missile Turret"
-		Hyperdrive
-		"Impala Plasma Steering"
-		"LP072a Battery Pack"
-		"Large Radar Jammer"
 		"Laser Rifle" 24
-		"Proton Turret" 2
-		"Tactical Scanner"
-		"Water Coolant System"
-	description `This expensive modification of the Blackbird was not invented at New Tortuga, but is a reproduction. The first New Tortuga Nighthawk was seized from slavers who used it for kidnappings. Seeing the obvious uses for smuggling, the local shipyards reproduced them for their own purposes. Ironically, this means the Nighthawks, originally designed for enslavement, are used just as often for freeing slaves.`
-
-
-
-ship "Nighthawk" "Nighthawk (New Tortuga Emancipation)"
-	outfits
-		"A370 Atomic Thruster"
-		"Cooling Ducts"
-		"D41-HY Shield Generator"
-		"Fission Reactor"
-		# Rifles left over from the New Tortuga slave revolt:
-		"Thermal Repeater Rifle" 14
 		"Heavy Anti-Missile Turret"
 		Hyperdrive
 		"Impala Plasma Steering"
