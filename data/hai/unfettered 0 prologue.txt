@@ -522,8 +522,8 @@ phrase "Essential Unfettered Mission Fail If Killed"
 
 substitutions
 	"<uhai>" "Unfettered: Path To Glory"
-	"<, unfettered title>" ", outsider"
-	"<, unfettered title>" ""
+	"<, unfettered title>" ", monkey"
+	"<, unfettered title>" ", space-monkey"
 		has "Unfettered Jump Drive 1: done"
 	"<, unfettered title>" ", Captain"
 		has "unfettered: beaten the captain"
@@ -815,7 +815,7 @@ mission "<uhai> 2: Prove Your Strength"
 				has "<uhai> 2: Prove Your Strength: deferred"
 			`You start wandering in the spaceport, and notice that everything around you here is incredibly simple, efficient, and ordered. The Unfettered here are proudly showing their weapons, more so than on other planets, and some of them are even armored. It seems they are ready for action at any time. It is good they no longer consider you an enemy, at least for the moment.`
 			`	Eventually you find a gathering, someone speaking to a small crowd of people. They all seem very familiar with each other, and as you watch, they have noticed you too. The one who was addressing the others saunters through the group and over to you. This could mean trouble.`
-			`	"Arrr, be this the bilge-sucking monkey ye all speak so highly of? The one who fears not to come into our ports, to fight our ships?" He asks the others, apparently mocking you. You're a little surprised at his creative grasp of your language.`
+			`	"Arrr, be this the bilge-sucking space-monkey ye all speak so highly of? The one who fears not to come into our ports, to fight our ships?" He asks the others, apparently mocking you. You're a little surprised at his creative grasp of your language.`
 			choice
 				`	"I fear nothing. Do you?"`
 					goto provoke
@@ -832,7 +832,7 @@ mission "<uhai> 2: Prove Your Strength"
 			`	"Sink me! That flotsam really be your ship? Given the hornswoggle of your reputation, I pegged you for a fancier type. Your prowess is no lie, indeed then, if you land in such a scow, but can ye truly fight in it?" he says, and then he turns to address the crowd once again. "I wonder if it can even launch again. Perhaps we should scuttle it right here."`
 				goto lesson
 			label provoke
-			`	"So the monkey can speak? Let us see if it can fight as well," he says with a provocative tone.`
+			`	"So the space-monkey can speak? Let us see if it can fight as well," he says with a provocative tone.`
 			label lesson
 			`	Time for him to learn a lesson. The thought that you may be in over your head briefly crosses your mind, but you brush it aside.`
 			`	After a cheering from his crowd, the arrogant Hai then speaks to you directly. "Ye and me then, a battle of flagships. Face me above the tallest trees, whenever ye find the courage. But rest assured, monkey, I have the skill to humiliate ye without feeding ye to the fishes."`
@@ -859,7 +859,12 @@ mission "<uhai> 2: Prove Your Strength"
 			`	You rush his way, fist raised, giving his friends in the crowd the exact excuse they were looking for to open fire on you. You wake up later, left alone on the floor. Luckily their weapons only stunned you, but you can forget about doing any further business with the Unfettered.`
 				decline
 			label waiting
-			`You call the captain saying you are ready to resume the duel, and he comes as planned.`
+			`Do you want to resume the duel with the Captain now?`
+			choice
+				`	(Yes.)`
+				`	(Later.)`
+					defer
+			`	You call the captain who comes surprisingly quickly, his ship already in the air above you. He hails you directly.`
 			label accept
 			branch "too many ships"
 				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 > 12
@@ -868,7 +873,7 @@ mission "<uhai> 2: Prove Your Strength"
 			label "too many ships"
 			action
 				set "unfettered: brought too many ships"
-			`	"Ye cannot run a rig on me, monkey. First ye must park some of those ships! I will not be facing your whole armada. A heavy man-o-war is already over compensating, after all. When ye are ready for a fair duel, see me in orbit."`
+			`	"Ye cannot run a rig on me, monkey! First ye must park some of those ships! I will not be facing your whole armada. A heavy man-o-war is already over compensating, after all. When ye are ready for a fair duel, see me in orbit."`
 			``
 			`The Unfettered captain will only show up if you have a small enough fleet for the duel to be fair; you are currently bringing too many ships. (To park ships press "I", and then select "Park All" or manually select the ships you want to park. For this fight, you are limited to a single heavy warship or a small group of lighter vessels.)`
 			`Land again when you meet those specifications.`
@@ -882,7 +887,7 @@ mission "<uhai> 2: Prove Your Strength"
 			`The captain hails you, "May we both see the stars again. Let it begin!"`
 				accept
 			label "cheating bugger"
-			`The captain hails you, "That is too big of a fleet ye maggot! This challenge sinked, come back to me again when ye 'r ready to do it by the code! It'll cost ye <fine> for wasting my time."`
+			`The captain hails you, "That is too big of a fleet, ye monkey! This challenge sinked, come back to me again when ye 'r ready to do it by the code! It'll cost ye <fine> for wasting my time."`
 			action
 				fail "<uhai> 2: Prove Your Strength"
 				fine 25000
