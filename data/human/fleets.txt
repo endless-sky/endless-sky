@@ -3215,10 +3215,10 @@ fleet "Human Wormhole Guards"
 	variant 5
 		"Rainmaker (Mark II Old Weapons)"
 
-# The Humanika have access to Syndicate hulls, and any Pirate tech,
+# The New Tortugans have access to Syndicate hulls, and any Pirate tech,
 # and more varied objectives, so their ships are a quite a mix.
-fleet "Humanika Merchants"
-	government "Humanika (Ship)"
+fleet "Humanika Rafeki Merchants"
+	government "Humanika Rafeki"
 	names "civilian"
 	cargo 3
 	personality
@@ -3276,8 +3276,8 @@ fleet "Humanika Merchants"
 
 # Asteroids beyond Alcyone are often much more durable, so the
 # ordinary mining ships are insufficient.
-fleet "Humanika Miners"
-	government "Humanika (Ship)"
+fleet "Humanika Rafeki Miners"
+	government "Humanika Rafeki"
 	names "civilian"
 	cargo 0
 	personality
@@ -3294,8 +3294,8 @@ fleet "Humanika Miners"
 
 # The odd combination of defense comes from the association with
 # pirates and marauders; and their varied shipyard.
-fleet "Humanika Defense"
-	government "Humanika (Ship)"
+fleet "Humanika Rafeki Defense"
+	government "Humanika Rafeki"
 	names "militia small"
 	cargo 1
 	personality

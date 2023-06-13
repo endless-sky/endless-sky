@@ -140,9 +140,9 @@ shipyard "Luxury Ships"
 	"Star Queen"
 	"Flivver"
 
-# Note on Humanika Mimicry.
+# Note on Humanika Rafeki Mimicry.
 # For a few decades, New Tortuga has had advanced technology, Syndicate defectors, and a steady supply of poached employees. One of their top priorities has been technological advancement. They are only one planet though, so even with help from an advanced species, their success has been limited. Thus, this list is restricted low-to-mid-range tech from older companies. This is with the exception of the Syndicate, for which they already had access to top technology.
-shipyard "Humanika Mimicry"
+shipyard "Humanika Rafeki Mimicry"
 	# Advanced Southern Pirates without the Osprey:
 	"Falcon"
 	"Modified Argosy"
@@ -170,8 +170,8 @@ shipyard "Humanika Mimicry"
 	"Mammoth"
 
 
-# See note above about capabilities and limitations of "Humanika Mimicry"
-outfitter "Humanika Mimicry"
+# See note above about capabilities and limitations of "Humanika Rafeki Mimicry"
+outfitter "Humanika Rafeki Mimicry"
 	# Primitive versions of Korath technology:
 	"Capybara Reverse Thruster"
 	"Impala Plasma Thruster"

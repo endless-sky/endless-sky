@@ -24,10 +24,10 @@ mission "Cargo Smuggling [0]"
 			"reputation: Pirate" > -100
 			"combat rating" > 150
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 	destination
 		distance 3 6
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika (Port)"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika Rafeki Port"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on abort
@@ -53,10 +53,10 @@ mission "Cargo Smuggling [1]"
 			"reputation: Pirate" > -100
 			"combat rating" > 150
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 	destination
 		distance 3 8
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika (Port)"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika Rafeki Port"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on abort
@@ -82,10 +82,10 @@ mission "Cargo Smuggling [2]"
 			"reputation: Pirate" > -100
 			"combat rating" > 150
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 	destination
 		distance 4 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika (Port)"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika Rafeki Port"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on abort
@@ -111,10 +111,10 @@ mission "Cargo Smuggling [3]"
 			"reputation: Pirate" > -100
 			"combat rating" > 150
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 	destination
 		distance 5 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika (Port)"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika Rafeki Port"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on abort
@@ -141,10 +141,10 @@ mission "Drug Running [0]"
 			"reputation: Pirate" > -50
 			"combat rating" > 400
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 	destination
 		distance 3 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika (Port)"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika Rafeki Port"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on abort
@@ -170,10 +170,10 @@ mission "Drug Running [1]"
 			"reputation: Pirate" > -50
 			"combat rating" > 400
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 	destination
 		distance 4 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika (Port)"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika Rafeki Port"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on abort
@@ -199,10 +199,10 @@ mission "Drug Running [2]"
 			"reputation: Pirate" > -50
 			"combat rating" > 400
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 	destination
 		distance 5 14
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika (Port)"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika Rafeki Port"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on abort
@@ -228,10 +228,10 @@ mission "Drug Running [3]"
 			"reputation: Pirate" > -50
 			"combat rating" > 400
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 	destination
 		distance 6 16
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika (Port)"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika Rafeki Port"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on abort
@@ -259,10 +259,10 @@ mission "Bulk Cargo Smuggling [0]"
 			"reputation: Pirate" > -50
 			"combat rating" > 400
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 	destination
 		distance 3 8
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika (Port)"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika Rafeki Port"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on abort
@@ -288,10 +288,10 @@ mission "Bulk Cargo Smuggling [1]"
 			"reputation: Pirate" > -50
 			"combat rating" > 400
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 	destination
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika (Port)"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika Rafeki Port"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on abort
@@ -317,10 +317,10 @@ mission "Bulk Cargo Smuggling [2]"
 			"reputation: Pirate" > -50
 			"combat rating" > 400
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 	destination
 		distance 4 16
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika (Port)"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika Rafeki Port"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on abort
@@ -348,10 +348,10 @@ mission "Bulk Drug Running [0]"
 			"reputation: Pirate" > -25
 			"combat rating" > 1100
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 	destination
 		distance 4 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika (Port)"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika Rafeki Port"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on abort
@@ -377,10 +377,10 @@ mission "Bulk Drug Running [1]"
 			"reputation: Pirate" > -25
 			"combat rating" > 1100
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 	destination
 		distance 5 14
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika (Port)"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika Rafeki Port"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on abort
@@ -406,10 +406,10 @@ mission "Bulk Drug Running [2]"
 			"reputation: Pirate" > -25
 			"combat rating" > 1100
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 	destination
 		distance 6 16
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika (Port)"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika Rafeki Port"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on abort
@@ -437,11 +437,11 @@ mission "Stealth Cargo Smuggling (North) [0]"
 		"reputation: Pirate" > -10
 		"combat rating" > 1100
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "north pirate"
 	destination
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika (Port)"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika Rafeki Port"
 	npc
 		government Republic
 		personality heroic waiting
@@ -495,11 +495,11 @@ mission "Stealth Cargo Smuggling (North) [1]"
 		"reputation: Pirate" > -10
 		"combat rating" > 1100
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "north pirate"
 	destination
 		distance 4 14
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika (Port)"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika Rafeki Port"
 	npc
 		government Republic
 		personality heroic waiting
@@ -576,11 +576,11 @@ mission "Stealth Cargo Smuggling (Core) [0]"
 		"reputation: Pirate" > -10
 		"combat rating" > 1100
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "core pirate"
 	destination
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika (Port)"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika Rafeki Port"
 	npc
 		government Syndicate
 		personality heroic waiting
@@ -633,11 +633,11 @@ mission "Stealth Cargo Smuggling (Core) [1]"
 		"reputation: Pirate" > -10
 		"combat rating" > 1100
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "core pirate"
 	destination
 		distance 4 14
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika (Port)"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika Rafeki Port"
 	npc
 		government Syndicate
 		personality heroic waiting
@@ -716,11 +716,11 @@ mission "Stealth Cargo Smuggling (South) [0]"
 		"reputation: Pirate" > -10
 		"combat rating" > 1100
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "south pirate"
 	destination
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika (Port)"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika Rafeki Port"
 	npc
 		government Militia
 		personality heroic waiting
@@ -774,11 +774,11 @@ mission "Stealth Cargo Smuggling (South) [1]"
 		"reputation: Pirate" > -10
 		"combat rating" > 1100
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "south pirate"
 	destination
 		distance 4 14
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika (Port)"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika Rafeki Port"
 	npc
 		government Militia
 		personality heroic waiting
@@ -860,11 +860,11 @@ mission "Stealth Drug Running (North) [0]"
 		"reputation: Pirate" > 0
 		"combat rating" > 1100
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "north pirate"
 	destination
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika (Port)"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika Rafeki Port"
 	npc
 		government Republic
 		personality heroic waiting
@@ -918,11 +918,11 @@ mission "Stealth Drug Running (North) [1]"
 		"reputation: Pirate" > 0
 		"combat rating" > 1100
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "north pirate"
 	destination
 		distance 4 14
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika (Port)"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika Rafeki Port"
 	npc
 		government Republic
 		personality heroic waiting
@@ -999,11 +999,11 @@ mission "Stealth Drug Running (Core) [0]"
 		"reputation: Pirate" > 0
 		"combat rating" > 1100
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "core pirate"
 	destination
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika (Port)"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika Rafeki Port"
 	npc
 		government Syndicate
 		personality heroic waiting
@@ -1056,11 +1056,11 @@ mission "Stealth Drug Running (Core) [1]"
 		"reputation: Pirate" > 0
 		"combat rating" > 1100
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "core pirate"
 	destination
 		distance 4 14
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika (Port)"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika Rafeki Port"
 	npc
 		government Syndicate
 		personality heroic waiting
@@ -1139,11 +1139,11 @@ mission "Stealth Drug Running (South) [0]"
 		"reputation: Pirate" > 0
 		"combat rating" > 1100
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "south pirate"
 	destination
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika (Port)"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika Rafeki Port"
 	npc
 		government Militia
 		personality heroic waiting
@@ -1197,11 +1197,11 @@ mission "Stealth Drug Running (South) [1]"
 		"reputation: Pirate" > 0
 		"combat rating" > 1100
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "south pirate"
 	destination
 		distance 4 14
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika (Port)"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika Rafeki Port"
 	npc
 		government Militia
 		personality heroic waiting
@@ -1283,7 +1283,7 @@ mission "Wanted Passenger [0]"
 			"reputation: Pirate" > -100
 			"combat rating" > 400
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 	destination
 		distance 2 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
@@ -1312,7 +1312,7 @@ mission "Wanted Passengers [1]"
 		"reputation: Pirate" > -50
 		"combat rating" > 1100
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 	destination
 		distance 2 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
@@ -1341,7 +1341,7 @@ mission "Wanted Passengers [2]"
 		"reputation: Pirate" > -50
 		"combat rating" > 1100
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 	destination
 		distance 2 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
@@ -1370,7 +1370,7 @@ mission "Wanted Passengers [3]"
 		"reputation: Pirate" > -50
 		"combat rating" > 1100
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 	destination
 		distance 2 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral"
@@ -1402,11 +1402,11 @@ mission "Highly Wanted Passenger (North)"
 		"reputation: Pirate" > 10
 		"combat rating" > 3000
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "north pirate"
 	destination
 		distance 4 14
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika (Port)"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika Rafeki Port"
 	npc
 		government Republic
 		personality heroic waiting
@@ -1491,11 +1491,11 @@ mission "Highly Wanted Passenger (Core)"
 		"reputation: Pirate" > 10
 		"combat rating" > 3000
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "core pirate"
 	destination
 		distance 4 14
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika (Port)"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika Rafeki Port"
 	npc
 		government Syndicate
 		personality heroic waiting
@@ -1582,11 +1582,11 @@ mission "Highly Wanted Passenger (South)"
 		"reputation: Pirate" > 10
 		"combat rating" > 3000
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "south pirate"
 	destination
 		distance 4 14
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika (Port)"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate" "Humanika Rafeki Port"
 	npc
 		government Militia
 		personality heroic waiting
@@ -1675,11 +1675,11 @@ mission "Slave Transport [0]"
 	to accept
 		has "outfit (installed): Brig"
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		not attributes "slavery ban"
 	destination
 		distance 3 30
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		not attributes "slavery ban"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -1701,11 +1701,11 @@ mission "Slave Transport [1]"
 	to accept
 		has "outfit (installed): Brig"
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		not attributes "slavery ban"
 	destination
 		distance 3 30
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		not attributes "slavery ban"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -1727,11 +1727,11 @@ mission "Slave Transport [2]"
 	to accept
 		has "outfit (installed): Brig"
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		not attributes "slavery ban"
 	destination
 		distance 3 30
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		not attributes "slavery ban"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -1755,11 +1755,11 @@ mission "Bulk Slave Transport [0]"
 	to accept
 		has "outfit (installed): Brig"
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		not attributes "slavery ban"
 	destination
 		distance 3 30
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		not attributes "slavery ban"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -1781,11 +1781,11 @@ mission "Bulk Slave Transport [1]"
 	to accept
 		has "outfit (installed): Brig"
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		not attributes "slavery ban"
 	destination
 		distance 3 30
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		not attributes "slavery ban"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -1809,7 +1809,7 @@ mission "Mercenary Job (Medium, North, Dangerous Origin)"
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes frontier north
 	destination
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "north pirate"
 		distance 3 4
 	npc
@@ -1823,7 +1823,7 @@ mission "Mercenary Job (Medium, North, Dangerous Origin)"
 		fleet "Small Republic"
 	
 	npc accompany save
-		government Pirate "Humanika (Port)"
+		government Pirate "Humanika Rafeki Port"
 		personality escort
 		fleet
 			names "pirate"
@@ -1858,11 +1858,11 @@ mission "Escort Illegal Cargo (Large, North, Dangerous Path)"
 		"combat rating" > 1100
 		"reputation: Pirate" > 0
 	source
-		government Republic "Free Worlds" Syndicate Neutral Pirate "Humanika (Port)"
+		government Republic "Free Worlds" Syndicate Neutral Pirate "Humanika Rafeki Port"
 		attributes frontier north "north pirate"
 		distance 3 6
 	destination
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "north pirate"
 	npc
 		government Republic
@@ -1906,10 +1906,10 @@ mission "Escort Stolen Vessel (Extra Large, North, Dangerous Path)"
 		"combat rating" > 3000
 		"reputation: Pirate" > 0
 	source
-		government Republic "Free Worlds" Syndicate Neutral Pirate "Humanika (Port)"
+		government Republic "Free Worlds" Syndicate Neutral Pirate "Humanika Rafeki Port"
 		attributes frontier north "north pirate"
 	destination
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "north pirate"
 		distance 3 6
 	npc
@@ -1956,7 +1956,7 @@ mission "Mercenary Job (Medium, Core, Dangerous Origin)"
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes core
 	destination
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "core pirate"
 		distance 3 4
 	npc
@@ -1999,11 +1999,11 @@ mission "Escort Illegal Cargo (Large, Core, Dangerous Path)"
 		"combat rating" > 1100
 		"reputation: Pirate" > 0
 	source
-		government Republic "Free Worlds" Syndicate Neutral Pirate "Humanika (Port)"
+		government Republic "Free Worlds" Syndicate Neutral Pirate "Humanika Rafeki Port"
 		attributes core "core pirate"
 		distance 3 6
 	destination
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "core pirate"
 	npc
 		government Syndicate
@@ -2043,10 +2043,10 @@ mission "Escort Stolen Vessel (Extra Large, Core, Dangerous Path)"
 		"combat rating" > 3000
 		"reputation: Pirate" > 0
 	source
-		government Republic "Free Worlds" Syndicate Neutral Pirate "Humanika (Port)"
+		government Republic "Free Worlds" Syndicate Neutral Pirate "Humanika Rafeki Port"
 		attributes core "core pirate"
 	destination
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "core pirate"
 		distance 3 6
 	npc
@@ -2099,7 +2099,7 @@ mission "Mercenary Job (Medium, South, Dangerous Origin)"
 		government Republic "Free Worlds" Syndicate Neutral
 		attributes south
 	destination
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "south pirate"
 		distance 3 4
 	npc
@@ -2142,11 +2142,11 @@ mission "Escort Illegal Cargo (Large, South, Dangerous Path)"
 		"combat rating" > 1100
 		"reputation: Pirate" > 0
 	source
-		government Republic "Free Worlds" Syndicate Neutral Pirate "Humanika (Port)"
+		government Republic "Free Worlds" Syndicate Neutral Pirate "Humanika Rafeki Port"
 		attributes south "south pirate"
 		distance 3 6
 	destination
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "south pirate"
 	npc
 		government Militia
@@ -2188,10 +2188,10 @@ mission "Escort Stolen Vessel (Extra Large, South, Dangerous Path)"
 		"combat rating" > 3000
 		"reputation: Pirate" > 0
 	source
-		government Republic "Free Worlds" Syndicate Neutral Pirate "Humanika (Port)"
+		government Republic "Free Worlds" Syndicate Neutral Pirate "Humanika Rafeki Port"
 		attributes south "south pirate"
 	destination
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "south pirate"
 		distance 3 6
 	npc
@@ -2242,7 +2242,7 @@ mission "Eliminating Law Enforcement (North, Small)"
 		random < 25
 		"combat rating" > 1100
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "north pirate"
 	npc kill
 		government "Republic"
@@ -2266,7 +2266,7 @@ mission "Eliminating Law Enforcement (North, Large)"
 		random < 15
 		"combat rating" > 3000
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "north pirate"
 	npc kill
 		government "Republic"
@@ -2291,7 +2291,7 @@ mission "Eliminating Law Enforcement (Core, Small)"
 		random < 25
 		"combat rating" > 1100
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "core pirate"
 	npc kill
 		government "Syndicate"
@@ -2315,7 +2315,7 @@ mission "Eliminating Law Enforcement (Core, Large)"
 		random < 15
 		"combat rating" > 3000
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "core pirate"
 	npc kill
 		government "Syndicate"
@@ -2340,7 +2340,7 @@ mission "Eliminating Law Enforcement (South, Small)"
 		random < 25
 		"combat rating" > 1100
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "south pirate"
 	npc kill
 		government "Militia"
@@ -2364,7 +2364,7 @@ mission "Eliminating Law Enforcement (South, Large)"
 		random < 15
 		"combat rating" > 3000
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "south pirate"
 	npc kill
 		government "Militia"
@@ -2391,7 +2391,7 @@ mission "Eliminating Competition (North, Small)"
 		random < 20
 		"combat rating" > 400
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "north pirate"
 	npc kill
 		government "Pirate (Rival)"
@@ -2416,7 +2416,7 @@ mission "Eliminating Competition (North, Large)"
 		random < 10
 		"combat rating" > 1100
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "north pirate"
 	npc kill
 		government "Pirate (Rival)"
@@ -2442,7 +2442,7 @@ mission "Eliminating Competition (Core, Small)"
 		random < 20
 		"combat rating" > 400
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "core pirate"
 	npc kill
 		government "Pirate (Rival)"
@@ -2467,7 +2467,7 @@ mission "Eliminating Competition (Core, Large)"
 		random < 10
 		"combat rating" > 1100
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "core pirate"
 	npc kill
 		government "Pirate (Rival)"
@@ -2493,7 +2493,7 @@ mission "Eliminating Competition (South, Small)"
 		random < 20
 		"combat rating" > 400
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "south pirate"
 	npc kill
 		government "Pirate (Rival)"
@@ -2518,7 +2518,7 @@ mission "Eliminating Competition (South, Large)"
 		random < 10
 		"combat rating" > 1100
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "south pirate"
 	npc kill
 		government "Pirate (Rival)"
@@ -2544,7 +2544,7 @@ mission "Eliminating Competition (Marauders, Small)"
 		random < 5
 		"combat rating" > 600
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 	npc kill
 		government "Pirate (Rival)"
 		personality heroic staying target marked
@@ -2569,7 +2569,7 @@ mission "Eliminating Competition (Marauders, Medium)"
 		random < 5
 		"combat rating" > 1100
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 	npc kill
 		government "Pirate (Rival)"
 		personality heroic staying target marked
@@ -2595,7 +2595,7 @@ mission "Eliminating Competition (Marauders, Large)"
 		random < 5
 		"combat rating" > 2100
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 	npc kill
 		government "Pirate (Rival)"
 		personality heroic staying target marked
@@ -2624,7 +2624,7 @@ mission "Raid on Merchants (North)"
 		"combat rating" > 150
 		"reputation: Pirate" > 0
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "north pirate"
 	npc
 		government "Pirate"
@@ -2653,7 +2653,7 @@ mission "Raid on Merchants (Core)"
 		"combat rating" > 150
 		"reputation: Pirate" > 0
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "core pirate"
 	npc
 		government "Pirate"
@@ -2682,7 +2682,7 @@ mission "Raid on Merchants (South)"
 		"combat rating" > 150
 		"reputation: Pirate" > 0
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "south pirate"
 	npc
 		government "Pirate"
@@ -2711,7 +2711,7 @@ mission "Northern Pirate Defense"
 		random < 15
 		"reputation: Pirate" >= 0
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "north pirate"
 	npc evade
 		government "Republic"
@@ -2738,7 +2738,7 @@ mission "Northern Pirate Defense [Unpaid]"
 		random < 5
 		"reputation: Pirate" >= 0
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "north pirate"
 	npc evade
 		government "Republic"
@@ -2775,7 +2775,7 @@ mission "Core Pirate Defense"
 		random < 15
 		"reputation: Pirate" >= 0
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "core pirate"
 	npc evade
 		government "Syndicate"
@@ -2802,7 +2802,7 @@ mission "Core Pirate Defense [Unpaid]"
 		random < 5
 		"reputation: Pirate" >= 0
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "core pirate"
 	npc evade
 		government "Syndicate"
@@ -2838,7 +2838,7 @@ mission "Southern Pirate Defense"
 		random < 15
 		"reputation: Pirate" >= 0
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "south pirate"
 	npc evade
 		government "Militia"
@@ -2865,7 +2865,7 @@ mission "Southern Pirate Defense [Unpaid]"
 		random < 5
 		"reputation: Pirate" >= 0
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "south pirate"
 	npc evade
 		government "Militia"
@@ -2910,7 +2910,7 @@ mission "Cargo Theft (North)"
 		"combat rating" > 3000
 	deadline 20
 	source
-		government Pirate "Humanika (Port)"
+		government Pirate "Humanika Rafeki Port"
 		attributes "north pirate"
 	npc
 		government "Merchant"
@@ -2946,7 +2946,7 @@ mission "Cargo Theft (Core)"
 		"combat rating" > 3000
 	deadline 20
 	source
-		government Pirate "Humanika (Port)"
+		government Pirate "Humanika Rafeki Port"
 		attributes "core pirate"
 	npc
 		government "Merchant"
@@ -2982,7 +2982,7 @@ mission "Cargo Theft (South)"
 		"combat rating" > 3000
 	deadline 14
 	source
-		government Pirate "Humanika (Port)"
+		government Pirate "Humanika Rafeki Port"
 		attributes "south pirate"
 	npc
 		government "Merchant"
@@ -3021,7 +3021,7 @@ mission "FW Assassination [1]"
 		"reputation: Pirate" > -100
 		has "event: war begins"
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "south pirate"
 	npc kill
 		government "Free Worlds"
@@ -3064,7 +3064,7 @@ mission "FW Assassination [2]"
 		"reputation: Pirate" > -50
 		has "event: war begins"
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "south pirate"
 	npc kill
 		government "Free Worlds"
@@ -3112,7 +3112,7 @@ mission "Syndicate Assassination [1]"
 		random < 5
 		"reputation: Pirate" > -100
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "core pirate"
 	npc kill
 		government "Syndicate"
@@ -3163,7 +3163,7 @@ mission "Syndicate Assassination [2]"
 		random < 5
 		"reputation: Pirate" > -50
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "core pirate"
 	npc kill
 		government "Syndicate"
@@ -3224,7 +3224,7 @@ mission "Republic Assassination [1]"
 		random < 5
 		"reputation: Pirate" > -100
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "north pirate"
 	npc kill
 		government "Republic"
@@ -3283,7 +3283,7 @@ mission "Republic Assassination [2]"
 		random < 5
 		"reputation: Pirate" > -50
 	source
-		government "Pirate" "Humanika (Port)"
+		government "Pirate" "Humanika Rafeki Port"
 		attributes "north pirate"
 	npc kill
 		government "Republic"

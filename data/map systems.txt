@@ -3253,7 +3253,7 @@ system Alcyone
 	fleet "Large Core Pirates" 600
 	fleet "Large Syndicate" 1200
 	fleet "Korath Large Raid" 50000
-	fleet "Humanika Merchants" 7000
+	fleet "Humanika Rafeki Merchants" 7000
 	object
 		sprite star/m5
 		distance 49.6028
@@ -5945,7 +5945,7 @@ system Aspidiske
 
 system Atik
 	pos -66 -52
-	government "Humanika (Restricted)"
+	government "Humanika Rafeki Restricted"
 	attributes "bright star" "giant star" "multi-star" "notable star"
 	arrival 1800
 	habitable 1800
@@ -5973,12 +5973,12 @@ system Atik
 	trade Plastic 416
 	fleet "Small Core Pirates" 10000
 	fleet "Large Core Pirates" 18000
-	fleet "Humanika Miners" 10000
+	fleet "Humanika Rafeki Miners" 10000
 	fleet "Large Syndicate" 15000
 	fleet "Human Miners" 15000
 	fleet "Korath Miners" 15000
 	fleet "Korath Civilian Delivery" 30000
-	fleet "Humanika Merchants" 20000
+	fleet "Humanika Rafeki Merchants" 20000
 	object
 		sprite star/b-giant
 		distance 150
@@ -6425,7 +6425,7 @@ system Bellatrix
 	fleet "Small Syndicate" 1000
 	fleet "Large Syndicate" 2000
 	fleet "Small Core Pirates" 3000
-	fleet "Humanika Merchants" 30000
+	fleet "Humanika Rafeki Merchants" 30000
 	object
 		sprite star/k3
 		distance 37.4638
@@ -7818,7 +7818,7 @@ system Cardax
 	fleet "Small Core Pirates" 3000
 	fleet "Small Republic" 2000
 	fleet "Large Republic" 5000
-	fleet "Humanika Merchants" 20000
+	fleet "Humanika Rafeki Merchants" 20000
 	object
 		sprite star/g0
 		distance 36.6984
@@ -10890,8 +10890,8 @@ system Durax
 	fleet "Large Syndicate" 2500
 	fleet "Korath Raid" 7000
 	fleet "Korath Miners" 17000
-	fleet "Humanika Miners" 5000
-	fleet "Humanika Merchants" 10000
+	fleet "Humanika Rafeki Miners" 5000
+	fleet "Humanika Rafeki Merchants" 10000
 	object
 		sprite star/g0-old
 		period 10
@@ -22369,7 +22369,7 @@ system Menkar
 	fleet "Large Syndicate" 2000
 	fleet "Large Core Pirates" 4000
 	fleet "Human Miners" 2000
-	fleet "Humanika Merchants" 30000
+	fleet "Humanika Rafeki Merchants" 30000
 	object
 		sprite star/k3
 		period 10
@@ -23056,7 +23056,7 @@ system Mirfak
 	fleet "Large Core Merchants" 700
 	fleet "Small Syndicate" 1000
 	fleet "Large Syndicate" 1800
-	fleet "Humanika Merchants" 30000
+	fleet "Humanika Rafeki Merchants" 30000
 	object
 		sprite star/k8
 		period 10
@@ -23146,7 +23146,7 @@ system Mirzam
 
 system Misam
 	pos -9 -80
-	government "Humanika (Port)"
+	government "Humanika Rafeki Port"
 	attributes "multi-star" "notable star"
 	arrival 3835
 	habitable 3835
@@ -23176,10 +23176,10 @@ system Misam
 	fleet "Korath Raid" 5000
 	fleet "Korath Large Raid" 11000
 	fleet "Korath Civilian Delivery" 50000
-	fleet "Humanika Miners" 7000
+	fleet "Humanika Rafeki Miners" 7000
 	fleet "Large Syndicate" 15000
 	fleet "Korath Miners" 15000
-	fleet "Humanika Merchants" 3000
+	fleet "Humanika Rafeki Merchants" 3000
 	object
 		sprite star/f5-old
 		distance 50
@@ -23424,7 +23424,7 @@ system Moktar
 	fleet "Large Syndicate" 4000
 	fleet "Small Core Pirates" 2000
 	fleet "Small Northern Pirates" 3000
-	fleet "Humanika Merchants" 20000
+	fleet "Humanika Rafeki Merchants" 20000
 	object
 		sprite star/k8
 		distance 31.0221
@@ -23914,7 +23914,7 @@ system Nihal
 	fleet "Small Republic" 4000
 	fleet "Large Republic" 7000
 	fleet "Human Miners" 2000
-	fleet "Humanika Merchants" 10000
+	fleet "Humanika Rafeki Merchants" 10000
 	object
 		sprite star/k8
 		distance 26.8556
@@ -24380,7 +24380,7 @@ system Oblate
 	fleet "Small Core Pirates" 600
 	fleet "Large Core Pirates" 1000
 	fleet "Large Syndicate" 3000
-	fleet "Humanika Merchants" 20000
+	fleet "Humanika Rafeki Merchants" 20000
 	fleet "Korath Raid" 30000
 	fleet "Korath Large Raid" 50000
 	object
@@ -30653,7 +30653,7 @@ system Sospi
 	fleet "Small Republic" 5000
 	fleet "Large Republic" 9000
 	fleet "Human Miners" 5000
-	fleet "Humanika Merchants" 30000
+	fleet "Humanika Rafeki Merchants" 30000
 	object
 		sprite star/wr
 		period 10
@@ -33160,7 +33160,7 @@ system Volax
 	fleet "Large Northern Pirates" 3000
 	fleet "Small Republic" 5000
 	fleet "Large Republic" 9000
-	fleet "Humanika Merchants" 20000
+	fleet "Humanika Rafeki Merchants" 20000
 	object
 		sprite star/f5
 		period 10
@@ -34456,7 +34456,7 @@ system Zaurak
 	fleet "Small Core Pirates" 2000
 	fleet "Large Core Pirates" 4000
 	fleet "Human Miners" 2000
-	fleet "Humanika Merchants" 20000
+	fleet "Humanika Rafeki Merchants" 20000
 	object
 		sprite star/g5
 		period 10

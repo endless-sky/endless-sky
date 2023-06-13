@@ -5110,7 +5110,7 @@ phrase "bounty hunter subphrase 2"
 		"Hector"
 		"Rome"
 
-phrase "Humanika emancipation fleet"
+phrase "emancipation fleet"
 	word
 		"I.S. "
 	word

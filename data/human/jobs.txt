@@ -1297,7 +1297,7 @@ mission "Southern Pirate Attack"
 		"combat rating" > 100
 		random < 10
 	source
-		not government "Pirate" "Humanika (Port)"
+		not government "Pirate" "Humanika Rafeki Port"
 		attributes "frontier"
 		attributes "rim" "south" "dirt belt"
 	npc evade
@@ -1333,7 +1333,7 @@ mission "Northern Pirate Attack"
 		"combat rating" > 100
 		random < 10
 	source
-		not government "Pirate" "Humanika (Port)"
+		not government "Pirate" "Humanika Rafeki Port"
 		attributes "frontier"
 		attributes "north" "paradise" "deep"
 	npc evade
@@ -1369,7 +1369,7 @@ mission "Core Pirate Attack"
 		"combat rating" > 100
 		random < 10
 	source
-		not government "Pirate" "Humanika (Port)"
+		not government "Pirate" "Humanika Rafeki Port"
 		attributes "frontier"
 		attributes "core" "near earth"
 	npc evade
@@ -2688,7 +2688,7 @@ mission "Wildfire Aid [1]"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
-		not government "Pirate" "Humanika (Port)"
+		not government "Pirate" "Humanika Rafeki Port"
 		distance 2 8
 		attributes "forest"
 	on visit
@@ -2709,7 +2709,7 @@ mission "Wildfire Aid [2]"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
-		not government "Pirate" "Humanika (Port)"
+		not government "Pirate" "Humanika Rafeki Port"
 		distance 2 8
 		attributes "forest"
 	on visit
@@ -3792,9 +3792,9 @@ mission "Syndicate Defectors [0]"
 	to offer
 		random < 60
 	source
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 	destination
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 	stopover
 		government "Pirate"
 		not attributes uninhabited
@@ -3824,9 +3824,9 @@ mission "Syndicate Defectors [1]"
 		random < 50
 		"passenger space" > 5
 	source
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 	destination
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 	stopover
 		government "Pirate"
 		not attributes uninhabited
@@ -3856,9 +3856,9 @@ mission "Syndicate Defectors [2]"
 		random < 40
 		"passenger space" > 10
 	source
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 	destination
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 	stopover
 		government "Pirate"
 		not attributes uninhabited
@@ -3887,7 +3887,7 @@ mission "Rescue Slaves [0]"
 	to offer
 		random < 60
 	source
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 		attributes "slavery ban"
 	stopover
 		government "Pirate"
@@ -3919,7 +3919,7 @@ mission "Rescue Slaves [1]"
 		random < 50
 		"passenger space" > 5
 	source
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 		attributes "slavery ban"
 	stopover
 		government "Pirate"
@@ -3951,7 +3951,7 @@ mission "Rescue Slaves [2]"
 		random < 40
 		"passenger space" > 10
 	source
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 		attributes "slavery ban"
 	stopover
 		government "Pirate"
@@ -3984,7 +3984,7 @@ mission "Escaped Slaves [0]"
 		government "Pirate"
 		not attributes "slavery ban"
 	destination
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 		attributes "slavery ban"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -4011,7 +4011,7 @@ mission "Escaped Slaves [1]"
 		government "Pirate"
 		not attributes "slavery ban"
 	destination
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 		attributes "slavery ban"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -4038,7 +4038,7 @@ mission "Escaped Slaves [2]"
 		government "Pirate"
 		not attributes "slavery ban"
 	destination
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 		attributes "slavery ban"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -4062,7 +4062,7 @@ mission "Emancipation Raid Escort [0]"
 		"combat rating" > 50
 		random < 40
 	source
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 		attributes "slavery ban"
 	stopover
 		government "Pirate"
@@ -4077,10 +4077,10 @@ mission "Emancipation Raid Escort [0]"
 		payment 130000
 		dialog phrase "generic completed emancipation raid mission"
 	npc save accompany
-		government "Humanika (Ship)"
+		government "Humanika Rafeki"
 		personality timid escort
 		fleet
-			names "Humanika emancipation fleet"
+			names "emancipation fleet"
 			variant
 				"Nighthawk (New Tortuga)"
 	npc
@@ -4106,7 +4106,7 @@ mission "Emancipation Raid Escort [1]"
 		"combat rating" > 100
 		random < 40
 	source
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 		attributes "slavery ban"
 	stopover
 		government "Pirate"
@@ -4121,10 +4121,10 @@ mission "Emancipation Raid Escort [1]"
 		payment 240000
 		dialog phrase "generic completed emancipation raid mission"
 	npc save accompany
-		government "Humanika (Ship)"
+		government "Humanika Rafeki"
 		personality timid escort
 		fleet
-			names "Humanika emancipation fleet"
+			names "emancipation fleet"
 			variant
 				"Nighthawk (New Tortuga)" 3
 	npc
@@ -4150,7 +4150,7 @@ mission "Emancipation Raid Escort [2]"
 		"combat rating" > 150
 		random < 25
 	source
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 		attributes "slavery ban"
 	stopover
 		government "Pirate"
@@ -4165,10 +4165,10 @@ mission "Emancipation Raid Escort [2]"
 		payment 380000
 		dialog phrase "generic completed emancipation raid mission"
 	npc save accompany
-		government "Humanika (Ship)"
+		government "Humanika Rafeki"
 		personality timid escort
 		fleet
-			names "Humanika emancipation fleet"
+			names "emancipation fleet"
 			variant
 				"Nighthawk (New Tortuga)" 5
 			variant 3
@@ -4200,7 +4200,7 @@ mission "Emancipation Raid Escort [3]"
 		"combat rating" > 250
 		random < 15
 	source
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 		attributes "slavery ban"
 	stopover
 		government "Pirate"
@@ -4215,10 +4215,10 @@ mission "Emancipation Raid Escort [3]"
 		payment 640000
 		dialog phrase "generic completed emancipation raid mission"
 	npc save accompany
-		government "Humanika (Ship)"
+		government "Humanika Rafeki"
 		personality timid escort
 		fleet
-			names "Humanika emancipation fleet"
+			names "emancipation fleet"
 			variant 1
 				"Nighthawk (New Tortuga)" 7
 			variant 1
@@ -4257,7 +4257,7 @@ mission "Transport recruiters [0]"
 	to offer
 		random < 40
 	source
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 		attributes research
 	destination
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -4280,7 +4280,7 @@ mission "Transport recruiters [1]"
 	to offer
 		random < 40
 	source
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 		attributes research
 	destination
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -4305,7 +4305,7 @@ mission "Transport recruiters [2]"
 		"cargo space" > 10
 		"passenger space" > 5
 	source
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 		attributes research
 	destination
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -4327,7 +4327,7 @@ mission "Retrieve recruiters [0]"
 	to offer
 		random < 40
 	source
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 		attributes research
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -4349,7 +4349,7 @@ mission "Retrieve recruiters [1]"
 	to offer
 		random < 40
 	source
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 		attributes research
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -4372,7 +4372,7 @@ mission "Retrieve recruiters [2]"
 		random < 40
 		"passenger space" > 5
 	source
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 		attributes research
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -4403,7 +4403,7 @@ mission "Farming Employee Poaching"
 		attributes farming
 		distance 5 100
 	destination
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -4429,7 +4429,7 @@ mission "Mining Employee Poaching"
 		attributes mining
 		distance 5 100
 	destination
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -4455,7 +4455,7 @@ mission "Science Employee Poaching"
 		attributes research
 		distance 5 100
 	destination
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -4481,7 +4481,7 @@ mission "Factory Employee Poaching"
 		attributes factory
 		distance 5 100
 	destination
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -4507,7 +4507,7 @@ mission "Urban Employee Poaching"
 		attributes urban
 		distance 5 100
 	destination
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -4524,7 +4524,7 @@ mission "Farming Team Recruitment"
 	to offer
 		random < 40
 	source
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 		attributes research
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -4532,7 +4532,7 @@ mission "Farming Team Recruitment"
 		not attributes uninhabited
 		distance 5 100
 	destination
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 	on stopover
 		dialog phrase "generic passenger stopover pickup"
 	on visit
@@ -4551,7 +4551,7 @@ mission "Mining Team Recruitment"
 	to offer
 		random < 40
 	source
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 		attributes research
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -4559,7 +4559,7 @@ mission "Mining Team Recruitment"
 		not attributes uninhabited
 		distance 5 100
 	destination
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 	on stopover
 		dialog phrase "generic passenger stopover pickup"
 	on visit
@@ -4578,7 +4578,7 @@ mission "Science Team Recruitment"
 	to offer
 		random < 40
 	source
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 		attributes research
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -4586,7 +4586,7 @@ mission "Science Team Recruitment"
 		not attributes uninhabited
 		distance 5 100
 	destination
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 	on stopover
 		dialog phrase "generic passenger stopover pickup"
 	on visit
@@ -4605,7 +4605,7 @@ mission "Factory Team Recruitment"
 	to offer
 		random < 40
 	source
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 		attributes research
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -4613,7 +4613,7 @@ mission "Factory Team Recruitment"
 		not attributes uninhabited
 		distance 5 100
 	destination
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 	on stopover
 		dialog phrase "generic passenger stopover pickup"
 	on visit
@@ -4632,7 +4632,7 @@ mission "Urban Employee Team Recruitment"
 	to offer
 		random < 40
 	source
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 		attributes research
 	stopover
 		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
@@ -4640,7 +4640,7 @@ mission "Urban Employee Team Recruitment"
 		not attributes uninhabited
 		distance 5 100
 	destination
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 	on stopover
 		dialog phrase "generic passenger stopover pickup"
 	on visit
@@ -4659,7 +4659,7 @@ mission "Banned Syndicate Items [0]"
 	to offer
 		random < 50
 	source
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 	destination
 		government Syndicate
 		not attributes uninhabited
@@ -4683,7 +4683,7 @@ mission "Banned Syndicate Items [1]"
 		random < 50
 		"cargo space" > 3
 	source
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 	destination
 		government Syndicate
 		not attributes uninhabited
@@ -4707,7 +4707,7 @@ mission "Banned Syndicate Items [2]"
 		random < 50
 		"cargo space" > 5
 	source
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 	destination
 		government Syndicate
 		not attributes uninhabited
@@ -4731,7 +4731,7 @@ mission "Banned Syndicate Items [3]"
 		random < 40
 		"cargo space" > 20
 	source
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 	destination
 		government Syndicate
 		not attributes uninhabited
@@ -4755,7 +4755,7 @@ mission "Banned Syndicate Items [4]"
 		random < 40
 		"cargo space" > 40
 	source
-		government "Humanika (Port)"
+		government "Humanika Rafeki Port"
 	destination
 		government Syndicate
 		not attributes uninhabited

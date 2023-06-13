@@ -611,8 +611,30 @@ government "Heliarch"
 
 color "governments: Independent" .78 .36 .36
 
-# Korath-friendly, pirate-friendly, human, settlements or stations that dislike the Syndicate
-government "Humanika (Port)"
+# Humanika Rafeki means "friendly human" or "human friend" in the language of the Korath Exiles.
+# They are Korath-friendly, pirate-friendly, human, ships that dislike the Syndicate
+government "Humanika Rafeki"
+	swizzle 9
+	color "governments: Independent"
+	"display name" "Independent"
+
+	"player reputation" 10
+	"bribe" .05
+	"fine" 0
+	"friendly hail" "friendly civilian"
+	"hostile hail" "hostile civilian"
+	"attitude toward"
+		"Korath (Civilian)" .01
+
+	# These hails are mostly placeholders. Humanika Rafeki pilots are
+	# non-violent smugglers, people persecuted by the Syndicate, and
+	# peaceful misfits. The pirate hails don't fit at all, but most of
+	# the civilian hails fit.
+	"friendly hail" "friendly civilian"
+	"hostile hail" "hostile civilian"
+
+# These are Korath-friendly, pirate-friendly, human, settlements or stations that dislike the Syndicate
+government "Humanika Rafeki Port"
 	swizzle 9
 	color "governments: Independent"
 	"display name" "Independent"
@@ -629,15 +651,15 @@ government "Humanika (Port)"
 		"Republic that won't enter wormhole" -.01
 		"Navy Intelligence" -.01
 		"Republic Intelligence" -.01
-		"Humanika (Ship)" 1
+		"Humanika Rafeki" 1
 		# Negative for Korath ensures the Korath raiding groups will not come
-		# from Humanika (Port) planets and stations.
-		"Korath" -.001
-		"Kor Alaji" -.001
-		"Kor Isaha" -.001
+		# from Humanika Rafeki Port planets and stations.
+		"Korath" -.01
+		"Kor Alaji" -.01
+		"Kor Isaha" -.01
 
 # Used for smuggling sites and other restricted-access stations. Allows Korath to land.
-government "Humanika (Restricted)"
+government "Humanika Rafeki Restricted"
 	swizzle 9
 	color "governments: Independent"
 	"display name" "Independent"
@@ -664,28 +686,7 @@ government "Humanika (Restricted)"
 		"Pirate (Devil-Run Gang)" -.01
 		"Navy Intelligence" -.01
 		"Republic Intelligence" -.01
-		"Humanika (Ship)" 1
-
-# Korath-friendly, pirate-friendly, human, ships that dislike the Syndicate
-government "Humanika (Ship)"
-	swizzle 9
-	color "governments: Independent"
-	"display name" "Independent"
-
-	"player reputation" 10
-	"bribe" .05
-	"fine" 0
-	"friendly hail" "friendly civilian"
-	"hostile hail" "hostile civilian"
-	"attitude toward"
-		"Korath (Civilian)" .01
-
-	# These hails are mostly placeholders. Humanika (Ship) pilots are
-	# non-violent smugglers, people persecuted by the Syndicate, and
-	# peaceful misfits. The pirate hails don't fit at all, but most of
-	# the civilian hails fit.
-	"friendly hail" "friendly civilian"
-	"hostile hail" "hostile civilian"
+		"Humanika Rafeki" 1
 
 government "Independent"
 	swizzle 6
@@ -814,7 +815,7 @@ government "Korath"
 		"Kor Sestor" -.01
 		"Korath (Civilian)" 1
 		"Hai (Friendly Unfettered)" -.01
-		"Humanika (Ship)" .1
+		"Humanika Rafeki" .1
 		"Pug (Wanderer)" -.01
 	"penalty for"
 		assist -0.25
@@ -839,7 +840,7 @@ government "Korath (Civilian)"
 
 	"attitude toward"
 		"Korath" .01
-		"Humanika (Ship)" .2
+		"Humanika Rafeki" .2
 		"Pug (Wanderer)" -.01
 	"penalty for"
 		assist -0.25
@@ -1501,7 +1502,7 @@ government "Syndicate"
 		"Pirate (Devil-Run Gang)" -.4
 		"Smuggler (Hai Trafficker)" .3
 		"Korath" -.5
-		"Humanika (Ship)" -.4
+		"Humanika Rafeki" -.4
 	"bribe" .08
 	"friendly hail" "friendly syndicate"
 	"hostile hail" "hostile syndicate"

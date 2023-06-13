@@ -246,7 +246,7 @@ mission "Kor Efreti to Wanderers: Farming"
 
 # This is your key to entering La'ab Bamen without a bribe.
 # Hence the lack of randomness.
-mission "Korath Humanika: Fish Trade (small)"
+mission "New Tortuga Fish Trade (small)"
 	name "New Tortuga fish trade"
 	job
 	repeat
@@ -260,7 +260,7 @@ mission "Korath Humanika: Fish Trade (small)"
 	stopover "La'ab Bamen"
 	to offer
 		has "event: know about Korath fish jobs"
-		not "Korath Humanika: Fish Trade (small): active"
+		not "New Tortuga Fish Trade (small): active"
 		"reputation: Korath" > -3000
 	on stopover
 		dialog "You drop off your <tons> of illicit fish, and receive <tons> of unknown cargo."
@@ -269,7 +269,7 @@ mission "Korath Humanika: Fish Trade (small)"
 		dialog "An inventory officer meets you to trade your cargo for <payment>."
 		"reputation: Korath" += 2
 
-mission "Korath Humanika: Fish Trade (medium)"
+mission "New Tortuga Fish Trade (medium)"
 	name "New Tortuga fish trade"
 	job
 	repeat
@@ -284,7 +284,7 @@ mission "Korath Humanika: Fish Trade (medium)"
 	to offer
 		random < 20
 		has "event: know about Korath fish jobs"
-		not "Korath Humanika: Fish Trade (medium): active"
+		not "New Tortuga Fish Trade (medium): active"
 		"cargo space" > 20
 		"reputation: Korath" > -3000
 	on stopover
@@ -294,7 +294,7 @@ mission "Korath Humanika: Fish Trade (medium)"
 		dialog "An inventory officer meets you to trade your cargo for <payment>."
 		"reputation: Korath" += 4
 
-mission "Korath Humanika: Fish Trade (bulk)"
+mission "New Tortuga Fish Trade (bulk)"
 	name "New Tortuga fish trade"
 	job
 	repeat
@@ -309,7 +309,7 @@ mission "Korath Humanika: Fish Trade (bulk)"
 	to offer
 		random < 5
 		has "event: know about Korath fish jobs"
-		not "Korath Humanika: Fish Trade (bulk): active"
+		not "New Tortuga Fish Trade (bulk): active"
 		"cargo space" > 50
 		"reputation: Korath" > -3000
 	on stopover

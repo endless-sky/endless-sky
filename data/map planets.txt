@@ -2383,7 +2383,7 @@ planet "Kuwaru Efreti"
 	security 1
 
 planet "La'ab Bamen"
-	attributes humanika korath "korath exile" "slavery ban"
+	attributes korath "korath exile" "slavery ban"
 	landscape land/monterey-bay-aquarium
 	# This station was constructed by the Korath, hence the large size and advanced technology.
 	# The fish within are from the New Tortuga Korath fish trade. You're looking at the
@@ -2392,13 +2392,13 @@ planet "La'ab Bamen"
 	description `This moon is only a few kilometers in diameter, and it has been hollowed out and turned into an aquarium. There's several cubic kilometers of salt water inside, with numerous creatures that look like small translucent glowing dolphins, and a few that look like a hybrid of an ankylorhiza and a giant squid. A machine at the moon's center maintains precise conditions, including typical ocean temperatures and a slow electric current. There are corridors throughout this asteroid aquarium, lit by a glow from the water itself.`
 	description `At the surface of the asteroid, there are hidden hangar doors disguised as craters, leading to bays designed for ships larger than anything the human race has ever produced. The facility looks like it was constructed from human technology, but at an impossibly large scale.`
 	spaceport `This spaceport is tightly compartmentalized, with zones carefully marked out for certain purposes. Each zone can only be accessed by an elevator-like system that moves both horizontally and vertically. With this setup, it is nearly impossible for one group of visitors to see another inside the spaceport. The only shared area is the gigantic hangar bays, which are few in number, but those too seem to be divided by purpose.`
-	government "Humanika (Restricted)"
+	government "Humanika Rafeki Restricted"
 	"required reputation" 100
 	bribe 0.04
 	security 0
 	tribute 1200
 		threshold 7000
-		fleet "Humanika Defense" 7
+		fleet "Humanika Rafeki Defense" 7
 		fleet "Korath Humanika Tribute Response" 3
 
 planet Lagrange
@@ -3013,7 +3013,7 @@ planet "New Tibet"
 
 planet "New Tortuga"
 	# Although New Tortuga is not a pirate-run planet, there are pirates, so it has to retain the "pirate" attribute.
-	attributes core "core pirate" factory pirate religious humanika fishing research mining "slavery ban" "pirate-friendly"
+	attributes core "core pirate" factory pirate religious fishing research mining "slavery ban" "pirate-friendly"
 	landscape land/fog6
 	# This description barely fits; any new hyphens or commas will break it.
 	description `A planet of violent storms and frequent earthquakes, New Tortuga looks on the surface to be uninhabitable. The few cities on the planet are built underground, far from any fault lines, with only obscure, hardened, access areas. With fortress-like blast doors protecting all entrances, New Tortuga is the perfect place for those looking for somewhere to hide.`
@@ -3027,8 +3027,8 @@ planet "New Tortuga"
 	shipyard "Advanced Northern Pirates"
 	shipyard "Northern Pirates"
 	shipyard "Syndicate Basics"
-	shipyard "Humanika Mimicry"
-	outfitter "Humanika Mimicry"
+	shipyard "Humanika Rafeki Mimicry"
+	outfitter "Humanika Rafeki Mimicry"
 	outfitter "Common Outfits"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
@@ -3041,7 +3041,7 @@ planet "New Tortuga"
 	security 0
 	tribute 6000
 		threshold 10000
-		fleet "Humanika Defense" 25
+		fleet "Humanika Rafeki Defense" 25
 		fleet "Korath Civilian Delivery" 2
 
 planet "New Wales"
