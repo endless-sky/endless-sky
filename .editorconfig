@@ -18,6 +18,11 @@ indent_style = tab
 [catch.hpp]
 indent_style = unset
 
+# Changelog file
+[changelog]
+indent_style = space
+indent_size = 2
+
 # Markdown
 [*.md]
 trim_trailing_whitespace = false
