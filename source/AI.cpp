@@ -645,15 +645,6 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		if(it->IsOverheated())
 			continue;
 
-		// Special case: if the player's flagship tries to board a ship to
-		// refuel it, that escort should hold position for boarding.
-		isStranded |= (flagship && it == flagship->GetTargetShip() && CanBoard(*flagship, *it)
-			&& autoPilot.Has(Command::BOARD));
-
-		// Stranded ships that have a helper need to stop and be assisted.
-		bool strandedWithHelper = isStranded &&
-			(HasHelper(*it, isStranded) || it->GetPersonality().IsDerelict() || it->IsYours());
-
 		Command command;
 		firingCommands.SetHardpoints(it->Weapons().size());
 		if(it->IsYours())
@@ -805,6 +796,15 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		target = it->GetTargetShip();
 		if(target)
 			targetDistance = target->Position().Distance(it->Position());
+
+		// Special case: if the player's flagship tries to board a ship to
+		// refuel it, that escort should hold position for boarding.
+		isStranded |= (flagship && it == flagship->GetTargetShip() && CanBoard(*flagship, *it)
+			&& autoPilot.Has(Command::BOARD));
+
+		// Stranded ships that have a helper need to stop and be assisted.
+		bool strandedWithHelper = isStranded &&
+			(HasHelper(*it, isStranded) || it->GetPersonality().IsDerelict() || it->IsYours());
 
 		// Behave in accordance with personality traits.
 		if(isPresent && personality.IsSwarming() && !strandedWithHelper)
