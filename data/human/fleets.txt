@@ -3270,7 +3270,7 @@ fleet "Humanika Merchants"
 		"Splinter (Proton)"
 	variant 7
 		"Aerie"
-		"Finch" 2
+		"Dagger" 2
 		"Bounder" 2
 		"Fury (Missile)" 2
 
