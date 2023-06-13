@@ -2717,9 +2717,8 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 			// If there is nothing for this ship to scan, have it patrol the entire system
 			// instead of drifting or stopping.
 			// Also allows the ship to land.
-			double radius = 1000. * 1000. * 1.1;
-			for(const StellarObject &object : ship.GetSystem()->Objects())
-				radius = max(radius, object.Position().LengthSquared() * 1.1);
+			double radius = ship.GetSystem()->ExtraHyperArrivalDistance();
+			radius *= radius;
 
 			// The ship is outside of the effective range of the system,
 			// so we turn it around
@@ -2741,7 +2740,9 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 					}
 				}
 				// Hacky way of differentiating ship behaviour without additional storage,
-				// while keeping it consistent for each ship.
+				// while keeping it consistent for each ship. TODO: change when Ship::SetTargetLocation exists.
+				// This uses the pointer of the ship to choose a pseudo-random angle and instructs it to
+				// partol the system in a criss-crossing pattern, where each turn is this specific angle.
 				intptr_t seed = reinterpret_cast<intptr_t>(&ship);
 				int behaviour = abs(seed % 23);
 				Angle delta = Angle(360. / (behaviour / 2. + 2) * (behaviour % 2 ? -1 : 1));
