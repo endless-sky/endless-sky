@@ -882,9 +882,10 @@ mission "<uhai> 2: Prove Your Strength"
 			`The captain hails you, "May we both see the stars again. Let it begin!"`
 				accept
 			label "cheating bugger"
-			`The captain hails you, "That is too big of a fleet ye maggot! This challenge sinked, come back to me again when ye 'r ready to do it by the code!"`
+			`The captain hails you, "That is too big of a fleet ye maggot! This challenge sinked, come back to me again when ye 'r ready to do it by the code! It'll cost ye <fine> for wasting my time."`
 			action
 				fail "<uhai> 2: Prove Your Strength"
+				fine 25000
 	npc save disable
 		government "Hai (Unfettered Challenger)"
 		personality disables staying heroic target launching
