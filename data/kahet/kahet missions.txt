@@ -372,7 +372,7 @@ mission "Ka'het: Patir Mystery 1"
 					goto wait
 			`	"I am afraid there is not. Give me, say, half an hour and I will have the results ready."`
 			label wait
-			`	Almost an hour passes, but Taely finally responds. "The scan is complete. The system is currently processing all the data it gathered into something usable; there's nothing we can do but wait." She starts staring out of the cockpit windows. "Black holes are such wonderful phenomena. They are so mysterious, and each one is peculiar in its own way, this one especially."`
+			`	Almost an hour passes, but Taely finally responds. "The scan is complete. The system is currently processing all the data it gathered into something usable; there's nothing we can do but wait." She starts staring out of the cockpit windows. "Black holes are such a wonderful phenomenon. They are so mysterious, and each one is peculiar in its own way, this one especially."`
 			choice
 				`	"Did you find anything new on how this system appeared?"`
 					goto how
