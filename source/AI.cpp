@@ -1850,9 +1850,7 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 				command |= Command::WAIT;
 		}
 		else if(needsFuel && systemHasFuel)
-		{
 			Refuel(ship, command);
-		}
 		else if(ship.GetTargetStellar())
 		{
 			MoveToPlanet(ship, command);
