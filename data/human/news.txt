@@ -1809,7 +1809,23 @@ news "republic navy advisory system"
 		word
 			`"`
 		word
-			"Please be advised: a travel advisory remains in effect for Greenrock."
+			"Please be advised: a travel advisory remains in effect for "
+		word
+			"Albatross"
+			"Bloodsea"
+			"Buccaneer Bay"
+			"Covert"
+			"Deadman's Cove"
+			"Freedom"
+			"Greenrock"
+			"Haven"
+			"New Tortuga"
+			"Smuggler's Den"
+			"Stormhold"
+			"Thule"
+			"Zenith"
+		word
+			"."
 			"Please notify Republic officials immediately if you have been detained by any ship not granted legal authority to do so by the Republic Navy."
 			"Report all sightings of pirate vessels immediately."
 			"The following message is a test. The following message is a test. The following message is a test: Radiation hazard. Evacuate immediately. Radiation hazard. Evacuate immediately. Radiation hazard. Evacuate immediately."
