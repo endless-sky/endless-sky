@@ -401,7 +401,7 @@ mission "First Contact: Korath Exiles"
 			`	On the map, you draw a line between Korath space and human space. "Humans will stay here," you say, "if the Korath will stay here. Humans here, Korath here." You point to each location for emphasis.`
 				goto parting
 			label fight
-			`	They pushes their finger deep into the ground at a point on the map not too far from Earth. "Ka puk soru, nik ka korath."`
+			`	They push their finger deep into the ground at a point on the map not too far from Earth. "Ka puk soru, nik ka korath."`
 			label parting
 			`	"Kai," says the Korath, and they stretch out both arms toward you, palms out. You make the same gesture and touch their hands, palm to palm. You're not sure if that is the right response, but the Korath seem satisfied, saying, "Nik lak'mal." They get back in their fighters, take off, and hover nearby.`
 				decline
