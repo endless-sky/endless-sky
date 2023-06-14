@@ -296,16 +296,16 @@ mission "First Contact: Korath Exiles"
 					goto attack
 
 			label name
-			`	"Takra," it says, pointing to itself. Then it points to the other and says, "Akafavah."`
-			`	"Korath," it says, gesturing to the two of them. Then it looks at you expectantly.`
+			`	"Takra," one says, pointing at themself. Takra points to their compatriot and says, "Akafavah."`
+			`	"Korath," Takra says, gesturing to the two of them. They both look at you expectantly.`
 				goto humanika
 
 			# With a longer starting sentence, they suspect you're speaking human standard
 			# (even if you may not be human) so they try to use the same language in response.
 			label peaceleader
 			`	Both of them seem confused, like they half-understand parts of what you said, but can't put the pieces together.`
-			`	"Peeese? Takra," it says, pointing to itself. Then it points to the other and says, "Akafavah." You respond with "<first> <last>."`
-			`	"Weee Korath," it says, gesturing to the two of them. Then it gestures at you and says, "Yee ess...?"`
+			`	"Peeese? Takra," one says, pointing to themself. Then Takra points to the other and says, "Akafavah." You respond with "<first> <last>."`
+			`	"Weee Korath," Takra says, gesturing to the two of them. Then Takra gestures at you and says, "Yee ess...?"`
 				goto humanika
 
 			label humanika
@@ -316,8 +316,8 @@ mission "First Contact: Korath Exiles"
 				goto map
 
 			label silence
-			`	The left gestures at itself and says, "Akafavah." The right does a similar gesture and says, "Takra." You respond almost instinctively with "<first> <last>."`
-			`	Pleased with this success, Akafavah continues. "Korath," it says, gesturing at the two pilots.`
+			`	The left gestures at themself and says, "Akafavah." The right does a similar gesture and says, "Takra." You respond almost instinctively with "<first> <last>."`
+			`	Pleased with this success, Akafavah continues. "Korath," they say, gesturing at the two pilots.`
 			`	"I'm a human," you say, "from Earth."`
 			`	Akafavah says suddenly, "Oi! Humanika!" It's unclear what emotion the Korath is expressing, but it is a strong one.`
 			`	They see your confusion and seem to give up on communicating with words. It's time for a different approach.`
@@ -327,11 +327,11 @@ mission "First Contact: Korath Exiles"
 			action
 				set "First Contact: Korath Exiles: pointed gun on Far'en Lai"
 			`	You reach for your gun. They move faster than you would have expected possible. One of them strikes a pose with their arms and shouts, "Nag! Nag! Koreshi far'en lai!" Simultaneously, the other dives at you, grabbing the gun out of your hands before you have a chance to fire it.`
-			`	Then, instead of attacking you, the one who took your gun begins waving it in your face and talking very quickly, as if scolding you. It points to the sky with a sweeping gesture, then mimics drawing the gun as you just did. Then it points to the ground, puts the gun on the ground, and says, "Far'en lai ko forei lak'far." Then it picks up the gun and repeats both gestures: at the sky, gun drawn. Down, gun on ground. Then it tosses the gun near your feet and waits, expectantly.`
+			`	Then, instead of attacking you, the one who took your gun begins waving it in your face and talking very quickly, as if scolding you. They point to the sky with a sweeping gesture, then mimic drawing the gun as you just did. Then they point to the ground, put the gun on the ground, and says, "Far'en lai ko forei lak'far." They pick up the gun and repeat both gestures: at the sky, gun drawn. Down, gun on ground. Then they toss the gun near your feet and wait, expectantly.`
 				goto map
 
 			label map
-			`	There is a long awkward silence, like a cocktail party where you are standing next to someone but have no idea how to start a conversation. Then one of the Korath stoops down and begins drawing in the sand, a spiral with many arms: the galaxy. Near the center of the spiral, it draws the outline of one of their warships. "Korath soru nar," it says.`
+			`	There is a long awkward silence, like a cocktail party where you are standing next to someone but have no idea how to start a conversation. Then one of the Korath stoops down and begins drawing in the sand, a spiral with many arms: the galaxy. Near the center of the spiral, they draw the outline of one of their warships. "Korath soru nar," they say.`
 			choice
 				`	(Draw where human territory is.)`
 					goto draw
@@ -339,7 +339,7 @@ mission "First Contact: Korath Exiles"
 					goto wait
 
 			label draw
-			`	You draw the outline of your own ship on the same side of the core as theirs, but farther out, then draw a line around it marking the extents of human space. The Korath responds by drawing something that looks like a spider, beyond the southern edge of human space. It covers one whole galactic arm. Then, near the top of human space it pushes its finger deep into the ground, and again just north of there, and connects the two holes with a line.`
+			`	You draw the outline of your own ship on the same side of the core as theirs, but farther out, then draw a line around it marking the extents of human space. The Korath responds by drawing something that looks like a spider, beyond the southern edge of human space. It covers one whole galactic arm. Then, near the top of human space they push their finger deep into the ground, and again just north of there, and connect the two holes with a line.`
 			choice
 				`	(Add some details I know to the map.)`
 					goto add
@@ -351,9 +351,9 @@ mission "First Contact: Korath Exiles"
 			`	Near the southern end of human space, you draw a dot with a partial ring around it: the Quarg ringworld, under construction. The Korath respond by both beginning to draw more rings, spread out all over the galaxy, some broken, some complete. Then they draw more of the spiders, again spread out all over the galaxy, and then sprinkle sand over them so the lines are barely visible.`
 
 			label wait
-			`	The Korath pause for a minute and look at you, then begin drawing again. "Korath," says one of them, and draws another outline of one of their warships, but much larger, on the northern side of the galactic core. Then it brushes away the outline of that big ship and draws three smaller ones, facing each other. "Korath," it says again, "no'lai en vas, certu forgu, mik'lak'nal torq." It rakes its fingers through the sand, erasing the outlines of the three ships.`
+			`	The Korath pause for a minute and look at you, then begin drawing again. "Korath," says one of them, and draws another outline of one of their warships, but much larger, on the northern side of the galactic core. Then they brush away the outline of that big ship and draw three smaller ones, facing each other. "Korath," they says again, "no'lai en vas, certu forgu, mik'lak'nal torq." They rake their fingers through the sand, erasing the outlines of the three ships.`
 			`	Their companion picks up the story. "Vas, certu vas. Minli ka Korath torq. Kem'lor ka forli, ka merru, ka plee. Teka korma ka draki, rekki korath, marre fa long." They draw a bunch of small spiders, surrounding the Korath ships, then gather the sand from that part of the map and toss it onto the place where the first Korath ship was drawn. "Tarre ta fo'lu korath."`
-			`	The other one says, "Far'en lai, soru ka'lai en ka korath. Soti far'en lai ko forei lak'far." It points to the gun at the front of its fighter, then makes a gesture, hands turned downward toward the ground. "Far'en lai ka let'mari nik lak'mal." It points to a few places, hundreds of meters away, where you see green plants growing. "Nik lak'mal." Then it points to you. "Hoomani ka Korath nik lak'mal."`
+			`	The other one says, "Far'en lai, soru ka'lai en ka korath. Soti far'en lai ko forei lak'far." They point to the gun at the front of their fighter, then makes a gesture, hands turned downward toward the ground. "Far'en lai ka let'mari nik lak'mal." They point to a few places, hundreds of meters away, where you see green plants growing. "Nik lak'mal." Then they point to you. "Humani ka Korath nik lak'mal."`
 			`	To emphasize the point, on a blank part of the sand they draw a large circle with lots of dots on it, pointing to the plants as they make each dot. They then draw on outline of all three of your ships inside the circle, pointing towards each other. Finally, one picks up the sand they just used to make your ship, and tosses it back onto the map of human space, while the other picks up the sand that makes up their ships and likewise tosses it onto the map of their own space.`
 			choice
 				`	(Try to assure them you do not mean to fight them.)`
@@ -388,22 +388,22 @@ mission "First Contact: Korath Exiles"
 			label fire
 			`	A furious exchange of gestures and vocalizations ensues between the two Korath; they begin vigorously drawing, erasing, and drawing more things in the sand between themselves, out of your sight. Eventually, the pace of their conversation slows and they turn back to you.`
 			# This Korath is asking you to return here with food.
-			`	They draw your ships back on the illustration of the planet, pick up the sand for your ship, and throw it back in human space again. Then they collect a few pebbles from human space, redraw your ship back on the planet again, and place the pebbles inside. Picking up one of the pebbles, one of them reaches into its coat, takes out a glowing red orb, unscrews a cap from the top, and drinks the thick, red fluid. They gesture with the pebble, gesture with the now-empty orb, and place all the pebbles on the drawing of the planet between your three ships.`
+			`	They draw your ships back on the illustration of the planet, pick up the sand for your ship, and throw it back in human space again. Then they collect a few pebbles from human space, redraw your ship back on the planet again, and place the pebbles inside. Picking up one of the pebbles, one of them reaches into their coat, takes out a glowing red orb, unscrews a cap from the top, and drinks the thick, red fluid. They gesture with the pebble, gesture with the now-empty orb, and place all the pebbles on the drawing of the planet between your three ships.`
 			choice
 				`	(Nod.)`
 				`	(Make a motion like a ship landing and point to the Korath's mouth.)`
 			action
 				set "First Contact: Korath Exiles: agreed to bring food"
-			`	"Lasel," says the Korath, and it stretches out both arms toward you, fingers curled back towards its body. You make the same gesture, and they reverse their hands, linking their scaly fingers with yours. You're not sure if that is the right response, but the Korath seem satisfied, saying, "Nik lak'mal." They get back in their fighters and take off, circling above you.`
+			`	"Lasel," says the Korath, stretching out both arms toward you, fingers curled back towards its body. You make the same gesture, and they reverse their hands, linking their scaly fingers with yours. You're not sure if that is the right response, but the Korath seem satisfied, saying, "Nik lak'mal." They get back in their fighters and take off, circling above you.`
 				decline
 
 			label alone
 			`	On the map, you draw a line between Korath space and human space. "Humans will stay here," you say, "if the Korath will stay here. Humans here, Korath here." You point to each location for emphasis.`
 				goto parting
 			label fight
-			`	It pushes its finger deep into the ground at a point on the map not too far from Earth. "Ka puk soru, nik ka korath."`
+			`	They pushes their finger deep into the ground at a point on the map not too far from Earth. "Ka puk soru, nik ka korath."`
 			label parting
-			`	"Kai," says the Korath, and it stretches out both arms toward you, palms out. You make the same gesture and touch its hands, palm to palm. You're not sure if that is the right response, but the Korath seem satisfied, saying, "Nik lak'mal." They get back in their fighters, take off, and hover nearby.`
+			`	"Kai," says the Korath, and they stretch out both arms toward you, palms out. You make the same gesture and touch their hands, palm to palm. You're not sure if that is the right response, but the Korath seem satisfied, saying, "Nik lak'mal." They get back in their fighters, take off, and hover nearby.`
 				decline
 
 
