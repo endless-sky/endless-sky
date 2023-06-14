@@ -76,7 +76,7 @@ jobs:
   style_check:
     name: Style
     needs: changed
-    if: ${{ needs.changed.outputs.editorconfig_files }}
+    if: ${{ needs.changed.outputs.editorconfig_files == 'true' }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
