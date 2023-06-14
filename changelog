@@ -25,7 +25,7 @@ Version 0.10.2
       * Small wording change to "Earth Retirement" mission. (@lumbar527)
       * Various wording changes to Gegno intro missions. (@Saugia)
       * The missions that trigger the events for the Kestrel to be made available will now fail immediately instead of staying active indefinitely doing nothing. (@warp-core)
-      * Added a branch for "FW Senate 1B" for if hte player already has a jump drive installed. (@lumbar527)
+      * Added a branch for "FW Senate 1B" for if the player already has a jump drive installed. (@lumbar527)
       * Renamed some jobs involving stopovers to include the stopover planet in the name instead of the source/destination. (@warp-core)
       * The Starling that the player needs to scan in the "Remnant: Keystone Research" missions now has the new "decloaked" personality. (@UnorderedSigh)
       * The "Remnant: Broken Jump Drive" missions and job can no longer select planets with the "remnant station" attribute as destinations. (@Smedley-SC)
