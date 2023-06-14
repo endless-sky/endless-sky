@@ -672,7 +672,7 @@ mission "Unfettered Darkcloak Ship Materials"
 	to offer
 		random < 50
 		has "Unfettered Jump Drive 3: done"
-		has "<uhai> 16: Strength Of A Leader: done"
+		has "<uhai> 17: Spy On Hai A: offered"
 	on stopover
 		dialog `After some searching, you manage to find your contacts: a few shady individuals who seem especially anxious not to be noticed dealing with you. Together you find a quieter place to proceed with the exchange, and later find the materials at the agreed location. You prepare to head back to <origin> and deliver them.`
 	on visit

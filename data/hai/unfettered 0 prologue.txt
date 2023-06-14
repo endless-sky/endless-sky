@@ -800,7 +800,7 @@ mission "<uhai> 2: Prove Your Strength"
 	repeat
 	deadline 2
 	name `Defeat the captain`
-	description `A young Unfettered captain has provoked you into a duel. Disable his ship in one day.`
+	description `A young Unfettered captain has provoked you into a duel. Disable his ship in one day and then land back on <destination>.`
 	source "Darkcloak"
 	to offer
 		or
@@ -876,15 +876,15 @@ mission "<uhai> 2: Prove Your Strength"
 			`	"Ye cannot run a rig on me, monkey! First ye must park some of those ships! I will not be facing your whole armada. A heavy man-o-war is already over compensating, after all. When ye are ready for a fair duel, see me in orbit."`
 			``
 			`The Unfettered captain will only show up if you have a small enough fleet for the duel to be fair; you are currently bringing too many ships. (To park ships press "I", and then select "Park All" or manually select the ships you want to park. For this fight, you are limited to a single heavy warship or a small group of lighter vessels.)`
+			action
+				"<uhai> 2: Prove Your Strength: deferred" ++
 			`Land again when you meet those specifications.`
 				defer
-	on defer
-		"<uhai> 2: Prove Your Strength: deferred" ++
 	on enter
 		conversation
 			branch "cheating bugger"
 				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 > 12
-			`The captain hails you, "May we both see the stars again. Let it begin!"`
+			`The captain hails you, "May crossing swords sharpen our blades. Let it begin!"`
 				accept
 			label "cheating bugger"
 			`The captain hails you, "That is too big of a fleet, ye monkey! This challenge sinked, come back to me again when ye 'r ready to do it by the code! It'll cost ye <fine> for wasting my time."`
@@ -939,7 +939,7 @@ mission "<uhai> 2: Prove Your Strength"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail If Killed"
 	on visit
-		dialog "You have not yet defeated the Unfettered Captain. If he did not show up it is probably because your fleet is too large."
+		dialog "You have not yet defeated the Unfettered Captain, and landing like this means you choose to delay the duel to another time."
 	on complete
 		dialog
 			`You land and the Captain joins you once he is done with repairs. He hands you his weapon in a ceremonial way: a pair of pulse pistols.`

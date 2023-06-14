@@ -777,21 +777,26 @@ event "unfettered: modded SB ready"
 
 
 mission "<uhai> 15: Modified Beetle"
-	autosave
 	landing
+	repeat
+	deadline 2
 	source "Firelode"
 	name "Earn your prize"
-	description "The Unfettered have modified a Shield Beetle for you, but you must beat Mera in command of it in order to earn it."
+	description "The Unfettered have modified a Shield Beetle for you, but you must beat Mera in command of it today and then land back on <destination> in order to earn it."
 	to offer
 		or
 			has "<uhai> 14: Ion Materials: done"
 			has "<uhai> 14: Ion Materials: declined"
 		has "event: unfettered: new cooling system"
-		random < 20 + "<uhai> 12: Outfitter Upgrade: done" * 50
+		or
+			random < 20 + "<uhai> 12: Outfitter Upgrade: done" * 50
+			has "<uhai> 15: Modified Beetle: deferred"
 		has "event: unfettered: modded SB ready"
 		has "Unfettered Jump Drive Trading: offered"
 	on offer
 		conversation
+			branch waiting
+				has "<uhai> 15: Modified Beetle: deferred"
 			`Passing by the labs on the way down, you notice some kind of modified beetle outside, in the middle of what must be a test field, filled with craters you assume to be made during weapon testing.`
 			`	Do you want to go see Mera to see what you can learn about this ship?`
 				to display
@@ -823,23 +828,38 @@ mission "<uhai> 15: Modified Beetle"
 			label justSB
 			`	"This ship may look like a Shield Beetle to you, because that is indeed what it used to be, but I modified it heavily, to make sure it would be able to take on heavy damage, and thus play an important role in the coming Wanderer conflict. On top of that, I equipped it with unique prototype weaponry, different attempts at increasing the ionizing payload of our weapons. The turrets are intended to disable even the most powerful reactors! And the blasters should offer reasonable firepower, combined with a touch of ion - not enough to disable enemy ships, but enough to scramble their weapons if they are not equipped against it!" She seems to care about that ship a great deal.`
 			`	"But I talk too much... You shall see how mighty this ship is in the only context that matters: battle! I challenge you in a duel, <first>. Should you win, you will earn the right to use this ship. The usual rules of challenges still apply, of course!"`
-			branch duelrd
+				goto duel
+			branch waiting
+			`	Do you wish to go see Mera now?`
+			branch duel
 				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 18
+			action
+				"<uhai> 15: Modified Beetle: deferred"
 			`	"Speaking of which, your fleet is too big at the moment, please park ships until you have less than 2 heavy warships, say 3 medium warships at most or a heavy and a medium, and then come back to me. Best leave any ships not meant for battle out of it too.`
-				accept
-			label duelrd
+				defer
+			label duel
 			`	"Launch your ship whenever you feel ready for the fight, I will be waiting for you in space, trying some of these new fancy toys. I may not be a warlord, or a captain even, but I will give you my best!"`
 				accept
+	on enter
+		conversation
+			branch "cheating bugger"
+				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 > 18
+			`Mera hails you, "May crossing swords sharpen our blades<, unfettered title>. I would tell you not to hold back but if I'm being honest I probably will seem like holding back, given my lack of experience piloting ships. Fight well!"`
+				accept
+			label "cheating bugger"
+			`Mera hails you, "That is too big of a fleet for me, you overestimate my power. I cancel this challenge, come back to me again when you are ready to do it by the book."`
+			action
+				fail "<uhai> 15: Modified Beetle"
 	npc save disable
 		government "Hai (Unfettered Challenger)"
 		personality
 			confusion 50
 			disables staying heroic target waiting
 		ship "Modified Shield Beetle" "Basilisk"
+		on kill
+			event "unfettered: outcast"
 		to spawn
 			"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 18
-		to despawn
-			has "unfettered: defeated Mera"
 		conversation
 			action
 				set "unfettered: defeated Mera"
@@ -861,12 +881,13 @@ mission "<uhai> 15: Modified Beetle"
 			`	"Thanks! I hope they will surprise the aliens up north as well!"`
 			label suggestions
 			`	"You are NOT to take any weapons from this ship, since you will receive it shortly. You should land so we can talk about suggestions on how to improve the outfit loadout in greater details."`
+			`	"Furthermore, I would love to examine the effect these prototypes had on your ship, but you must land today for that!"`
 	to fail
 		has "event: unfettered: outcast"
 	on fail
-		dialog phrase "Essential Unfettered Mission Fail"
+		dialog phrase "Essential Unfettered Mission Fail If Killed"
 	on visit
-		dialog "You have not yet defeated Mera. If she did not show up it is probably because your fleet is too large."
+		dialog "You have not yet defeated Mera, and landing like this means you choose to delay the duel to another time."
 	to complete
 		has "unfettered: defeated Mera"
 	on complete
@@ -934,30 +955,12 @@ mission "<uhai> 15: Modified Beetle"
 				decline
 
 			label "took weapons"
-			`	She seems upset, "I told you not to take any weapons, what were you thinking?`
+			`	She seems upset, "I told you not to take any weapons, what were you thinking? That was not officialy part of the duels so you can get away with it, but I certainly do not approve of it. Don't conut on me to give you any special treatment for this ship.`
 			action
 				clear "unfettered: Mera's favor"
 				set "unfettered: prize right away"
 			label "nothing special"
 			`	"I will make the needed repairs to the ship, you can go pick it up on Darkcloak when you are ready."`
-
-
-
-mission "<uhai> 15: Modified Beetle: Trust Broken"
-	invisible
-	landing
-	to offer
-		has "<uhai> 15: Modified Beetle: active"
-		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 18
-	to fail
-		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 > 18
-		has "flagship system: Ehma Ti"
-		not "flagship landed"
-	on fail
-		dialog `Mera sends you a message, "What are you doing, trying to cheat? You're no fun, you do not deserve to be a part of us."`
-		fail "<uhai> 15: Modified Beetle"
-	to complete
-		not "<uhai> 15: Modified Beetle: active"
 
 
 
@@ -1128,27 +1131,24 @@ event "unfettered: bribable challengers"
 
 
 # This mission partly is intended as a test to make sure you are strong enough for the following part of the campaign, but they also give you your license and salary, with official colors.
-mission "<uhai> 16: Strength Of A Leader"
+mission "<uhai> 16: Strength Of A Leader: Si-Ra"
 	autosave
-	name `Strength of a Leader`
-	description `Prove your strength against Si-Ra and He-Yi in a battle, but do not kill them.`
+	repeat
+	deadline 2
 	source "Darkcloak"
-	substitutions
-		<question> "How does your ship cloak?"
-			not "<uhai> 20: Bigeminate Sigil: Cloak: done"
-		<question> "Why is your hull black?"
-			has "<uhai> 20: Bigeminate Sigil: Cloak: done"
+	name `Strength of a Champion`
+	description `Prove your strength against He-Yi in battle, and then land again on <destination> on the same day.`
 	to offer
 		has "event: unfettered: darkcloak outfitter upgrade"
 		has "language: Wanderer"
 		has "<uhai> 15: Modified Beetle: done"
 	on offer
 		conversation
-			branch "came alone"
+			branch "small fleet"
 				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 18
 			`You find Si-Ra and He-Yi waiting for you on the spaceport. Si-Ra starts speaking to you, "You have brought too many ships, come back with only your flagship, or a few lighter ships."`
 				defer
-			label "came alone"
+			label "small fleet"
 			`You find Si-Ra and He-Yi waiting for you on the spaceport. Si-Ra asks, "Are you ready for war, <last>?" It seems to be a rhetorical question, and he does not wait for you to answer at all. He adds, "All Unfettered are expected to be ready for war, at any time."`
 			`	Si-Ra comes closer and takes you aside to speak to you, privately.`
 			`	"You should know I do not approve of your rise of power, even though there is probably nothing I can do about it. Fight well, your life may depend on it."`
@@ -1179,13 +1179,27 @@ mission "<uhai> 16: Strength Of A Leader"
 			label later
 			`	"Be sure to come back soon. War cannot wait forever."`
 				defer
+	on enter
+		conversation
+			branch "cheating bugger"
+				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 > 18
+			`Si-Ra hails you, "May crossing swords sharpen our blades<, unfettered title>. Do not hold back until I am disabled!"`
+				accept
+			label "cheating bugger"
+			`Si-Ra hails you, "That is too big of a fleet. Are you trying to trick me? I cancel this challenge, come back to me again when you are ready to show some respect. It'll be <fine> for wasting my time!"`
+			action
+				fail "<uhai> 16: Strength Of A Leader: Si-Ra"
+				fine 100000
 	npc save disable
-		to spawn
-			not "unfettered: mad Si-Ra"
-		to despawn
-			has "unfettered: defeated Si-Ra"
 		government "Hai (Unfettered Challenger)"
 		ship "Si-Ra' Golden Beetle" "Defiant"
+		on kill
+			event "unfettered: outcast"
+		to spawn
+			not "unfettered: mad Si-Ra"
+			"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 18
+		to despawn
+			has "unfettered: defeated Si-Ra"
 		personality disables staying heroic target launching
 		conversation
 			`"You have defeated me, but He-Yi will not be as easy to beat! Land to repair, and then take off when you're be ready to face him." He launches an escape pod.`
@@ -1194,12 +1208,13 @@ mission "<uhai> 16: Strength Of A Leader"
 	# if you made him be kicked from Midas he'll be angry and not respect the rules of the fight, in which case you may kill him
 	# he'd get demoted for this anyway
 	npc disable
-		to spawn
-			has "unfettered: mad Si-Ra"
-		to despawn
-			has "unfettered: defeated Si-Ra"
 		government "Hai (Unfettered Challenger)"
 		ship "Si-Ra' angry Beetle" "Defiant"
+		to spawn
+			has "unfettered: mad Si-Ra"
+			"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 18
+		to despawn
+			has "unfettered: defeated Si-Ra"
 		personality vindictive nemesis heroic target launching
 		conversation
 			`"Dammit! You just humiliated me, again? I take comfort in knowing He-Yi will most likely give you a lesson! Land to repair, and then take off when you're be ready to face him."`
@@ -1216,18 +1231,50 @@ mission "<uhai> 16: Strength Of A Leader"
 		personality entering vindictive nemesis heroic
 		ship "Shield Beetle (Jump)" "Ghost"
 		system "Prakacha'a"
+	to fail
+		has "event: unfettered: outcast"
+	on fail
+		dialog phrase "Essential Unfettered Mission Fail If Killed"
+
+
+mission "<uhai> 16: Strength Of A Leader: He-Yi"
+	landing
+	deadline 2
+	repeat
+	source "Darkcloak"
+	name `Strength of a Leader`
+	description `Prove your strength against He-Yi in battle, and then land again on <destination> on the same day.`
+	substitutions
+		<question> "How does your ship cloak?"
+			not "<uhai> 20: Bigeminate Sigil: Cloak: done"
+		<question> "Why is your hull black?"
+			has "<uhai> 20: Bigeminate Sigil: Cloak: done"
+	to offer
+		has "<uhai> 16: Strength Of A Leader: Si-Ra: done"
+	on offer
+		dialog `He-Yi comes to see you on your ship. "Are you ready to fight now? The rules are the same as always."`
+	on enter
+		conversation
+			branch "cheating bugger"
+				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 > 18
+			`He-Yi hails you, "May crossing swords sharpen our blades<, unfettered title> <last>."`
+				accept
+			label "cheating bugger"
+			`He-Yi hails you, "What is this big fleet you field? Are you scared? You should be, but coming with numbers only makes you appear weak! Consider this challenge [void, canceled], come back to me again when you are ready."`
+			action
+				fail "<uhai> 16: Strength Of A Leader: He-Yi"
 	npc save disable
 		to spawn
-			has "unfettered: defeated Si-Ra"
 			not "Unfettered Bring Fire: done"
+			"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 18
 		government "Hai (Unfettered Challenger)"
 		ship "Stag Beetle" "Tejolis"
 		personality disables staying heroic target launching
 		conversation "unfettered war ready"
 	npc save disable
 		to spawn
-			has "unfettered: defeated Si-Ra"
 			has "Unfettered Bring Fire: done"
+			"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 18
 		government "Hai (Unfettered Challenger)"
 		ship "Stag Beetle (Flamer)" "Tejolis"
 		personality disables staying heroic target launching
@@ -1235,8 +1282,7 @@ mission "<uhai> 16: Strength Of A Leader"
 	to fail
 		has "event: unfettered: outcast"
 	on fail
-		dialog phrase "Essential Unfettered Mission Fail"
-		"reputation: Hai (Unfettered)" <?= -1000
+		dialog phrase "Essential Unfettered Mission Fail If Killed"
 	on complete
 		log `Officially joined the Unfettered Militia and received a license to purchase their heavy ships, that is, when they become available in the near future.`
 		"salary: Unfettered" = 5000
@@ -1340,25 +1386,6 @@ mission "<uhai> 16: Strength Of A Leader"
 				clear "unfettered: hull choice"
 				clear "unfettered: cloak choice"
 				clear "unfettered: weapon choice"
-
-mission "<uhai> 16: Strength Of A Leader: Trust Broken"
-	invisible
-	landing
-	to offer
-		has "<uhai> 16: Strength Of A Leader: active"
-		# you can cheat if Si-Ra cheats against you, but only against him.
-		or
-			not "unfettered: mad Si-Ra"
-			has "unfettered: defeated Si-Ra"
-	to fail
-		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 > 18
-		has "flagship system: Wah Yoot"
-		not "flagship landed"
-	on fail
-		dialog `You receive a message, "You must not disrespect the rules of the duel!"`
-		fail "<uhai> 16: Strength Of A Leader"
-	to complete
-		not "<uhai> 16: Strength Of A Leader: active"
 
 event "joined the unfettered"
 	government "Escort"
