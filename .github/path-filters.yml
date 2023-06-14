@@ -37,7 +37,7 @@ cmake_files:
   - tests/CMakeLists.txt
   - tests/integration/IntegrationTests.cmake
   - utils/vcpkg_bootstrap.cmake
-  - utils/test_cmake.sh
+  - utils/check_cmake.sh
   - CMakePresets.json
   - vcpkg.json
   - vcpkg-configuration.json
