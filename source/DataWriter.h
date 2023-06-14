@@ -55,7 +55,8 @@ public:
 	DataWriter &WriteSeparator();
 
 	// The Write() function can take any number of arguments. Each argument is
-	// converted to a token. Arguments may be strings or numeric values.
+	// converted to a token. Arguments may be strings or numeric values. The line is terminated
+	// after all tokens are written.
 	template <class A, class ...B>
 	DataWriter &Write(const A &a, B... others);
 	// Write the entire structure represented by a DataNode, including any
