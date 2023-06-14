@@ -1,3 +1,47 @@
+Version 0.10.2
+  * Bug fixes:
+    * Content bugs:
+      * Typo fixes. (@nothing-but-the-rain, @warp-core, @waterhouse)
+      * "Pact Recon 0" can no longer be offered from Glaze. (@UnorderedSigh)
+      * "Hai Reveal: Early Arrival: Alondo" and "Hai Reveal: Late Arrival: Alondo" can no longer offer from Hai-home. (@warp-core)
+      * Text in "Liberate Kornephoros" now correctly refers to Carriers as the attacking ships, not Cruisers. (@tibetiroka)
+      * Updated the "try out fighters transfer cargo" help message to refer to the correct section of the settings, "Gameplay" instead of "AI." (@tibetiroka)
+      * The Heliarch government will now also be hostile to the new split Quarg governments, not just the original one. (@Saugia)
+      * Conversations in "FW Diplomacy 1" and "FW Southern Break" will now check the correct conditions to branch if the player was previously suspended from the FW militia. (@warp-core)
+    * Engine bugs:
+      * Fixed some situations where ships will stop acting and drift forever. (@UnorderedSigh)
+      * Fixed a case in AI::DoScatter where ships may get stuck together. (@UnorderedSigh)
+  * Game content:
+    * New content:
+      * New civilian ship hails. (@LazerLit)
+      * New human news items. (@dorbarker)
+      * New jobs in Free Worlds space during the war that involve Military cargo. (@dorbarker)
+    * Mission changes:
+      * The "FW Pug 2C" missions now use autoconditions to ensure the appropriate one is offered instead of relying on MissionAction blocking. (@warp_core)
+      * The "Street Swindle" mission is now invisible, and uses conversation actions to take credits from the player and is always declined. (@lumbar527)
+      * Small wording change to "Earth Retirement" mission. (@lumbar527)
+      * Various wording changes to Gegno intro missions. (@Saugia)
+      * The missions that trigger the events for the Kestrel to be made available will now fail immediately instead of staying active indefinitely doing nothing. (@warp-core)
+      * Added a branch for "FW Senate 1B" for if hte player already has a jump drive installed. (@lumbar527)
+    * Other:
+      * Removed a mention of Tomek drinking whiskey in FW Middle. (@QuantumShark)
+      * Added a "human names" phrase that can combines the results of the "male names" and "female names" phrases. (@warp-core)
+      * Change the pronoun used for Hai of unknown gender from "it" to "they". (@tibetiroka)
+      * Increased the power of "star/wr" from 0.4 to 5. (@Quantumshark)
+      * Refactored some hails to separate punctuation that is common to every element in a "word" in its own "word" to avoid unnecessary repetition. (@lumbar527)
+  * Game mechanics:
+    * New mechanics:
+      * Added two new parameters for rings drawn by interfaces: (@warp-core)
+        * "start angle": starts drawing the ring from a custom angle, instead of 0 degrees (straight up.)
+        * "span angle": draws an arc spanning the given angle, instead of a full ring (360 degrees.)
+  * Under the hood:
+    * Prevent false positive warnings for dangling references by making copies. (@quyykk)
+    * Zero valued conditions will no longer be saved. (@warp-core)
+  * CI/CD and development environment:
+    * Removed references to the old Google Group from the issue template. (@lumbar527, @ntabris)
+    * Disabled the sound card when running CI to suppress errors. (@UnorderedSigh, @MCOfficer)
+    * Created a section in the PR template for balance changes. (@Quantumshark)
+
 Version 0.10.1
   * Big changes:
     * Releasing the first chapter of an extensive storyline that takes place after the main campaign is completed, focusing on the open secret of the existence of the Hai. (@MasterOfGrey, @Amazinite)
