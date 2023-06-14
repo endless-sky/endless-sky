@@ -2383,7 +2383,7 @@ planet "Kuwaru Efreti"
 	security 1
 
 planet "La'ab Bamen"
-	attributes korath "korath exile" "slavery ban"
+	attributes korath "korath exile" "slavery ban" "humanika rafeki"
 	landscape land/monterey-bay-aquarium
 	# This station was constructed by the Korath, hence the large size and advanced technology.
 	# The fish within are from the New Tortuga Korath fish trade. You're looking at the
@@ -3012,8 +3012,9 @@ planet "New Tibet"
 	security 0.1
 
 planet "New Tortuga"
-	# Although New Tortuga is not a pirate-run planet, there are pirates, so it has to retain the "pirate" attribute.
-	attributes core "core pirate" factory pirate religious fishing research mining "slavery ban" "pirate-friendly"
+	# Although New Tortuga is not a pirate-run planet, there are pirates, so it has to retain the pirate-related attributes.
+	# The planet is self-sufficient, hence the many other attributes.
+	attributes core "core pirate" factory pirate religious fishing research mining "slavery ban" "pirate-friendly" "humanika rafeki"
 	landscape land/fog6
 	# This description barely fits; any new hyphens or commas will break it.
 	description `A planet of violent storms and frequent earthquakes, New Tortuga looks on the surface to be uninhabitable. The few cities on the planet are built underground, far from any fault lines, with only obscure, hardened, access areas. With fortress-like blast doors protecting all entrances, New Tortuga is the perfect place for those looking for somewhere to hide.`

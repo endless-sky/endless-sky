@@ -1182,7 +1182,7 @@ news "actor"
 news "musician"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Humanika Rafeki Port"
-		attributes "south" "paradise" "near earth" "humanika"
+		attributes "south" "paradise" "near earth" "humanika rafeki"
 	name
 		word
 			"Musician"
