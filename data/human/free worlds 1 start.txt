@@ -29,7 +29,7 @@ mission "Liberate Kornephoros"
 			`	You find Tomek walking among the fleet, conversing with a large group of captains and crew members and assessing the damage they have suffered. When he sees you he says, "Captain <last>! How is <ship> holding together?"`
 			choice
 				`	"She took a bit of a pounding, but I've patched her up."`
-				`	"Just fine. It'd take more than a few Cruisers to destroy the <ship>."`
+				`	"Just fine. It'd take more than a few Carriers to destroy the <ship>."`
 			
 			`	"Glad to hear it," he says before returning to the crowd. "Listen! We need to press our advantage before the Republic has time to call for reinforcements. If we strike quickly, we could be able to retake Kornephoros from them. It's important to break the blockade on that system for the sake of trade with the rest of the galaxy. And on top of that, if you were not aware, Councilor Katya Reynolds was on Clink when the Navy took the system and needs to be rescued." You hear some chatter coming from the crowd as a result of this news; it seems like Katya's investigation on Clink was not public knowledge.`
 			`	"We have a large fleet of reinforcements coming in from the Rim," Tomek continues, "and a few ships here that are able to fight another battle. I need you all to take off, wait for the reinforcements to arrive, and then retake Kornephoros. If the Navy ships retreat, let them retreat. If they surrender, let them surrender. If they stay and fight, disable them if you can. Destroy them only if you must. Am I understood?"`
@@ -1292,7 +1292,7 @@ mission "FW Pirates: Attack 2"
 	
 	on offer
 		conversation
-			`When you land on <planet>, you find the fleet that Tomek mentioned: a few militia heavy and medium warships, a couple of carriers, three squadrons of interceptors, and even four merchant ships of varying sizes. In total the fleet is nearly as large as one of the fleets that defended Sabik or Kornephoros, but as you survey the motley mix of grizzled militia veterans, young, naive interceptor pilots, and eager merchant captains, you can't help but wonder if a fleet of this size has a good chance against the strongest pirate world in Southern space.`
+			`When you land on <origin>, you find the fleet that Tomek mentioned: a few militia heavy and medium warships, a couple of carriers, three squadrons of interceptors, and even four merchant ships of varying sizes. In total the fleet is nearly as large as one of the fleets that defended Sabik or Kornephoros, but as you survey the motley mix of grizzled militia veterans, young, naive interceptor pilots, and eager merchant captains, you can't help but wonder if a fleet of this size has a good chance against the strongest pirate world in Southern space.`
 			`	The Navy failed to conquer Longjump. Why would a fleet of a similar size be capable of conquering Greenrock? Perhaps the Senate was right in suggesting a diplomatic solution. Or perhaps luck will be in your favor.`
 			choice
 				`	(Go ahead and attack Greenrock, disobeying the Senate's orders regardless of the consequences.)`
