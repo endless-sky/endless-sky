@@ -312,7 +312,7 @@ mission "Unfettered Small Medicals Rush"
 	job
 	repeat
 	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land with the much needed medical supplies."
-	name "Express medical supplies from <planet stopovers>"
+	name "Express medical stock from <planet stopovers>"
 	description "The Unfettered hospitals on <destination> are in urgent need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered before <date> for <payment>."
 	deadline 5 1
 	cargo "medical supplies" 15 2 .05
