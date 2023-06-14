@@ -126,7 +126,7 @@ help "fighters transfer cargo"
 help "try out fighters transfer cargo"
 	`You have a carrier which can use fighters to collect dropped materials if the fighter has cargo space.`
 	``
-	`	In Preferences and Settings under the AI section, turn on "Fighters transfer cargo" to learn more.`
+	`	In Preferences and Settings under the Gameplay section, turn on "Fighters transfer cargo" to learn more.`
 
 help "navigation"
 	`Welcome to the sky! To travel to another star system, press <View star map> to view your map, and click on the system you want to travel to. Your hyperdrive can only travel along the "links" shown on your map. After selecting a destination, close your map and press <Initiate hyperspace jump> to jump to that system.`
