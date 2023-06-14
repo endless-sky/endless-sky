@@ -2618,6 +2618,7 @@ mission "Remnant: Broken Jump Drive 1"
 		attributes outfitter
 		not attributes "requires: gaslining"
 		not distance 0
+		not "Ssil Vida"
 	on offer
 		require "Jump Drive (Broken)"
 		conversation
@@ -2675,6 +2676,7 @@ mission "Remnant: Broken Jump Drive 2"
 		attributes outfitter
 		not attributes "requires: gaslining"
 		not distance 0
+		not "Ssil Vida"
 	on offer
 		require "Jump Drive (Broken)"
 		conversation
@@ -2720,6 +2722,7 @@ mission "Remnant: Broken Jump Drive 3"
 		attributes outfitter
 		not attributes "requires: gaslining"
 		not distance 0
+		not "Ssil Vida"
 	on offer
 		require "Jump Drive (Broken)"
 		conversation
@@ -2764,6 +2767,7 @@ mission "Remnant: Broken Jump Drive 4"
 		attributes outfitter
 		not attributes "requires: gaslining"
 		not distance 0
+		not "Ssil Vida"
 	on offer
 		require "Jump Drive (Broken)"
 		conversation
@@ -2808,6 +2812,7 @@ mission "Remnant: Broken Jump Drive 5"
 		attributes outfitter
 		not attributes "requires: gaslining"
 		not distance 0
+		not "Ssil Vida"
 	on offer
 		require "Jump Drive (Broken)"
 		conversation
