@@ -33,7 +33,7 @@ mission "Coalition: First Contact"
 			`	The spider speaks, and the box around its neck translates. "Our nearest and most recent neighbor you are. The Heliarchs in their great wisdom, all things that come to pass in our region of space, they are aware of."`
 			label next
 			`	Speaking through its own translation box, the beetle says, "To the seat of the Heliarch government must you go. Once to the Heliarchs you have become known, in many ways to our society, contribute you may."`
-			`	The centaur pulls out a map printed on a thin sheet of plastic. You recognize it as a star map of this region. Lines mark out three different territories, and where they meet are three star systems colored yellow. The centaur points to the southernmost of the three. "Where you must go, here it is," it says.`
+			`	The centaur pulls out a map printed on a thin sheet of plastic. You recognize it as a star map of this region. Lines mark out three different territories, and where they meet are three star systems colored yellow. The centaur points to the southernmost of the three. "Where you must go, here it is," they say.`
 			choice
 				`	"Thank you. I will go there."`
 					goto end
@@ -49,7 +49,7 @@ mission "Coalition: First Contact"
 		log "Factions" "Heliarchs" `The Heliarchs are the rulers of Coalition space: apparently not elected, but instead selected by merit from among the citizens of the Coalition in such a way as to ensure that all three species are equally represented. Thousands of years ago, the Heliarchs led their three species to band together and drive the Quarg out of Coalition space. The Heliarch centers of government are the three Quarg ringworlds that they captured in that war. They are the only ones in Coalition space who are allowed to have weapons on their starships, and they act as a sort of police force, maintaining peace between the Coalition species.`
 		conversation
 			`Your first view of the landing area confirms beyond a doubt that this is a Quarg ringworld, not just an imitation of one. The interior architecture is unmistakable. But no Quarg are present here, only the three species of the Coalition. Soon after you land, a delegation approaches your ship: again, one of each species, but these are wearing golden circlets around their heads. The circlets are not merely decorative, but seem to contain some electronics as well.`
-			`	Again, the centaur speaks first. "To our territory, to welcome you we are glad," it says.`
+			`	Again, the centaur speaks first. "To our territory, to welcome you we are glad," they say.`
 			`	The beetle says, "With our people you may mingle. The beauty of our culture, you may experience."`
 			`	The spider adds, "Our people and yours perhaps one day may trade. Perhaps one day the humans our great and free Coalition may join."`
 			choice
@@ -64,7 +64,7 @@ mission "Coalition: First Contact"
 				goto next
 			label oppressive
 			`	The spider says, "In separate boxes, they each species keep. And in subtle ways, your development and discoveries they limit. And on your technology, restrictions they place."`
-			`	The beetle says, "Or, wrong are we? And the jump drive that brought you here, a gift from the Quarg it is? They its secret no longer hoard?" You tell it that the Quarg do indeed refuse to give jump drives to humans, and it says, "Then, prisoners indeed you are."`
+			`	The beetle says, "Or, wrong are we? And the jump drive that brought you here, a gift from the Quarg it is? They its secret no longer hoard?" You tell them that the Quarg do indeed refuse to give jump drives to humans, and they say, "Then, prisoners indeed you are."`
 			label next
 			branch hai
 				has "First Contact: Hai: offered"
@@ -72,14 +72,14 @@ mission "Coalition: First Contact"
 				`	"I suppose you may be right about the Quarg."`
 					goto end
 				`	"Perhaps the Quarg will change their minds in the future."`
-			`	The giant beetle considers you gravely. "Hope, we can only," it says.`
+			`	The giant beetle considers you gravely. "Hope, we can only," they say.`
 				goto end
 			label hai
 			choice
 				`	"I suppose you may be right about the Quarg."`
 					goto end
 				`	"But, the Quarg do let the humans and the Hai make contact with each other."`
-			`	This, apparently, is news to them. You explain to them who the Hai are, and that some humans have made contact with them and are living in their territory. "A second Coalition you are forming!" says the centaur, tapping its hooves on the floor in excitement. "Once again, foiled the Quarg are. A secret way for species to work together, they have overlooked. Great things, from this may come."`
+			`	This, apparently, is news to them. You explain to them who the Hai are, and that some humans have made contact with them and are living in their territory. "A second Coalition you are forming!" says the centaur, tapping their hooves on the floor in excitement. "Once again, foiled the Quarg are. A secret way for species to work together, they have overlooked. Great things, from this may come."`
 			action
 				set "coalition knows hai"
 			label end
