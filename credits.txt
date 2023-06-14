@@ -359,6 +359,7 @@ contributed to Endless Sky:
   sigus
   skilaa
   skyegallup
+  Smedley-SC
   solardawning
   SolraBizna
   SpearDane
