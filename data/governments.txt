@@ -1118,7 +1118,7 @@ government "Quarg (Gegno)"
 		"Quarg" 1
 		"Quarg (Hai)" 1
 		"Quarg (Kor Efret)" 1
-		"Gegno" 1
+		"Gegno" 0.1
 	"foreign penalties for"
 		"Gegno"
 	"death sentence" "quarg imprisonment"
