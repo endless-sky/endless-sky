@@ -59,7 +59,7 @@ jobs:
 
   spellcheck:
     name: Spelling
-    needs: [changed]
+    needs: changed
     if: ${{ needs.changed.outputs.data == 'true' || needs.changed.outputs.codespell == 'true' }}
     runs-on: ubuntu-latest
     steps:
@@ -75,6 +75,8 @@ jobs:
 
   style_check:
     name: Style
+    needs: changed
+    if: ${{ needs.changed.outputs.editorconfig_files == 'true' }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -85,7 +87,7 @@ jobs:
   check_coding_style:
     name: Code Style
     needs: changed
-    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' }}
+    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.code_style_check == 'true' }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -101,7 +103,7 @@ jobs:
   check_content_style:
     name: Content Style
     needs: changed
-    if: ${{ needs.changed.outputs.data == 'true' }}
+    if: ${{ needs.changed.outputs.data == 'true' || needs.changed.outputs.content_style_check == 'true' }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
