@@ -111,7 +111,7 @@
 					},
 					{
 						"description": "incorrect indefinite article",
-						"regex": "(\\sa) ((?!one|once|hour)[aeio](?!u))",
+						"regex": "((?:\\sa|^A)) ((?!one|once|hour)[aeio](?!u))",
 						"isError": false,
 						"correction": {
 							"replaceWith": "\\1n \\2"
@@ -119,7 +119,7 @@
 					},
 					{
 						"description": "incorrect indefinite article",
-						"regex": "(\\sa)n ([^aAeEiIoOuUhH\\[\\]\"\\'\\d<\\-])",
+						"regex": "((?:\\sa|^A))n ([^aAeEiIoOuUhH\\[\\]\"\\'\\d<\\-])",
 						"isError": false,
 						"correction": {
 							"replaceWith": "\\1 \\2"
