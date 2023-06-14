@@ -2617,8 +2617,8 @@ mission "Remnant: Broken Jump Drive 1"
 		government "Remnant"
 		attributes outfitter
 		not attributes "requires: gaslining"
-		not distance 0
 		not attributes "remnant station"
+		not distance 0
 	on offer
 		require "Jump Drive (Broken)"
 		conversation
@@ -2675,8 +2675,8 @@ mission "Remnant: Broken Jump Drive 2"
 		government "Remnant"
 		attributes outfitter
 		not attributes "requires: gaslining"
-		not distance 0
 		not attributes "remnant station"
+		not distance 0
 	on offer
 		require "Jump Drive (Broken)"
 		conversation
@@ -2721,8 +2721,8 @@ mission "Remnant: Broken Jump Drive 3"
 		government "Remnant"
 		attributes outfitter
 		not attributes "requires: gaslining"
-		not distance 0
 		not attributes "remnant station"
+		not distance 0
 	on offer
 		require "Jump Drive (Broken)"
 		conversation
@@ -2766,8 +2766,8 @@ mission "Remnant: Broken Jump Drive 4"
 		government "Remnant"
 		attributes outfitter
 		not attributes "requires: gaslining"
-		not distance 0
 		not attributes "remnant station"
+		not distance 0
 	on offer
 		require "Jump Drive (Broken)"
 		conversation
@@ -2811,8 +2811,8 @@ mission "Remnant: Broken Jump Drive 5"
 		government "Remnant"
 		attributes outfitter
 		not attributes "requires: gaslining"
-		not distance 0
 		not attributes "remnant station"
+		not distance 0
 	on offer
 		require "Jump Drive (Broken)"
 		conversation
