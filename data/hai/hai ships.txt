@@ -268,19 +268,19 @@ ship "Flea"
 			"hull damage" 30
 			"hit force" 80
 	outfits
-		"Railgun" 3
-		"Railgun Slug" 3000
+		"Hai Railgun" 3
+		"Hai Railgun Slug" 3000
 		"Sand Cell"
 		"Supercapacitor" 2
 		`"Baellie" Atomic Engines`
 
 	engine 0 27 1.4
-	gun 0 -27 "Railgun"
-	gun 0 -27 "Railgun"
-	gun 0 -27 "Railgun"
+	gun 0 -27 "Hai Railgun"
+	gun 0 -27 "Hai Railgun"
+	gun 0 -27 "Hai Railgun"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
-	description `This combat drone is built to amplify the strength of any combat force for as few credits as possible. It was designed in conjunction with the tactical recoil of the Railgun to allow it to kite its targets, prolonging its combat efficacy while it supports its allies with debilitating ion damage.`
+	description `This combat drone is built to amplify the strength of any combat force for as few credits as possible. It was designed in conjunction with the tactical recoil of the Hai Railgun to allow it to kite its targets, prolonging its combat efficacy while it supports its allies with debilitating ion damage.`
 	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
 ship "Flea" "Flea (Pulse)"
@@ -719,9 +719,9 @@ ship "Pond Strider"
 			"hull damage" 750
 			"hit force" 1750
 	outfits
-		"Railgun"
+		"Hai Railgun"
 		"Ion Cannon" 2
-		"Railgun Slug" 1000
+		"Hai Railgun Slug" 1000
 		"Chameleon Anti-Missile"
 		"Bullfrog Anti-Missile" 2
 		"Hai Corundum Regenerator" 2
@@ -737,7 +737,7 @@ ship "Pond Strider"
 		
 	engine -23 80
 	engine 23 80
-	gun 0 -76 "Railgun"
+	gun 0 -76 "Hai Railgun"
 	gun -15 -72 "Ion Cannon"
 	gun 15 -72 "Ion Cannon"
 	turret -18 -53 "Bullfrog Anti-Missile"
@@ -768,14 +768,14 @@ ship "Pond Strider"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description "The Hai upgraded their original Pond Strider after acquiring hull repair technology through alien diplomacy. These improvements have greatly reduced casualties in their conflict with the Unfettered, since the light Pond Striders become vulnerable as they collect damaged drones. Besides enabling the ship to repair damaged drones, the Hai have cleverly innovated the Railgun to make the Pond Strider and Fleas into very efficient combat support for their fleets."
+	description "The Hai upgraded their original Pond Strider after acquiring hull repair technology through alien diplomacy. These improvements have greatly reduced casualties in their conflict with the Unfettered, since the light Pond Striders become vulnerable as they collect damaged drones. Besides enabling the ship to repair damaged drones, the Hai have cleverly innovated the Hai Railgun to make the Pond Strider and Fleas into very efficient combat support for their fleets."
 
 ship "Pond Strider" "Pond Strider (Tracker)"
 	outfits
 		"Hai Tracker Pod"
 		"Hai Tracker" 112
-		"Railgun" 2
-		"Railgun Slug" 2000
+		"Hai Railgun" 2
+		"Hai Railgun Slug" 2000
 		"Tracker Storage Pod" 2
 		"Chameleon Anti-Missile" 3
 		"Hai Diamond Regenerator"
@@ -790,9 +790,9 @@ ship "Pond Strider" "Pond Strider (Tracker)"
 
 ship "Pond Strider" "Pond Strider (Ion)"
 	outfits
-		"Railgun"
+		"Hai Railgun"
 		"Ion Cannon" 2
-		"Railgun Slug" 1000
+		"Hai Railgun Slug" 1000
 		"Chameleon Anti-Missile"
 		"Bullfrog Anti-Missile" 2
 		"Hai Corundum Regenerator"
@@ -808,8 +808,8 @@ ship "Pond Strider" "Pond Strider (Ion)"
 ship "Pond Strider" "Pond Strider (Pulse)"
 	outfits
 		"Pulse Cannon" 2
-		"Railgun"
-		"Railgun Slug" 1000
+		"Hai Railgun"
+		"Hai Railgun Slug" 1000
 		"Pulse Turret"
 		"Chameleon Anti-Missile" 2
 		"Hai Diamond Regenerator"
@@ -825,8 +825,8 @@ ship "Pond Strider" "Pond Strider (Pulse)"
 
 ship "Pond Strider" "Pond Strider (Railgun)"
 	outfits
-		"Railgun" 3
-		"Railgun Slug" 3000
+		"Hai Railgun" 3
+		"Hai Railgun Slug" 3000
 		"Chameleon Anti-Missile" 3
 		"Hai Corundum Regenerator"
 		"Hai Diamond Regenerator"
