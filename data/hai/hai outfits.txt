@@ -225,7 +225,7 @@ outfit "Hai Railgun"
 		sprite "projectile/hai rail slug"
 			"frame rate" 30
 		ammo "Hai Railgun Slug"
-		icon "icon/hai rail gun"
+		icon "icon/hai railgun"
 		sound "ion impact"
 		"fire effect" "rail sparks"
 		"hit effect" "bullet impact"

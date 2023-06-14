@@ -609,3 +609,53 @@ outfit "Korath Repeater Rifle"
 	"capture defense" 2.4
 	"unplunderable" 1
 	description "This rifle is commonplace among the Korath, predating the creation of the Repeater by at least two centuries. As it uses superheated plasma instead of lasers, the rifle is slow to fire and can sometimes burn its user's hands if they aren't careful. It makes up for these setbacks by guaranteeing that those hit won't live long enough to fire back."
+
+
+
+outfit "Railgun Slug"
+	category "Ammunition"
+	cost 13
+	thumbnail "outfit/hai railslug"
+	"mass" 0.003
+	"hai railgun slug capacity" -1
+	description "These Railgun Slugs incorporate energy-discharging capacitors that deal a small amount of ion damage to their target. Although not terribly damaging, this ion damage combined with the significant recoil that each shot has turns Flea drones into effective long-range support ships."
+
+outfit "Railgun Slug Rack"
+	category "Ammunition"
+	cost 15000
+	thumbnail "outfit/hai railslug rack"
+	"mass" 1
+	"outfit space" -3
+	"railgun slug capacity" 500
+	ammo "Railgun Slug"
+	description "The railgun slug rack is used to store and load extra railgun ammunition."
+
+outfit "Railgun"
+	category "Secondary Weapons"
+	cost 20000
+	thumbnail "outfit/hai railgun"
+	"mass" 1
+	"outfit space" -4
+	"weapon capacity" -4
+	"gun ports" -1
+	"hai railgun slug capacity" 1000
+	weapon
+		sprite "projectile/hai rail slug"
+			"frame rate" 30
+		ammo "Hai Railgun Slug"
+		icon "icon/hai railgun"
+		sound "ion impact"
+		"fire effect" "rail sparks"
+		"hit effect" "bullet impact"
+		"inaccuracy" 3
+		"velocity" 44
+		"lifetime" 1
+		"range override" 2100
+		"reload" 12
+		"firing energy" 3.5
+		"firing heat" 7.2
+		"firing force" 70
+		"stream"
+		"submunition" "rslug" 1
+	description "The Hai designed this weapon to best complement their Flea drones. Each Hai Railgun provides a significant amount of force upon firing, pushing the Flea drone backwards and therefore forcing it to keep its distance from its target."
+	description "	Flea drone pilots joke that they provide more thrust than engines of similar size, so Unfettered should be using them at the back of their ships. There's probably a cultural component to the joke that many miss, because it's told quite often and the Hai laugh hysterically about it - every time."
