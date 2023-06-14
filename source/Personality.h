@@ -81,6 +81,7 @@ public:
 	bool IsTarget() const;
 	bool IsMarked() const;
 	bool IsMute() const;
+	bool IsDecloaked() const;
 
 	// Current inaccuracy in this ship's targeting:
 	const Point &Confusion() const;
@@ -98,7 +99,7 @@ private:
 private:
 	// Make sure this matches the number of items in PersonalityTrait,
 	// or the build will fail.
-	static const int PERSONALITY_COUNT = 33;
+	static const int PERSONALITY_COUNT = 34;
 
 	bool isDefined = false;
 
