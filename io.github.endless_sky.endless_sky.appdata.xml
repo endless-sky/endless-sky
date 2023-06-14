@@ -47,6 +47,31 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="0.10.1" date="2023-5-29" type="development" urgency="low">
+      <description>
+        <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
+        <p>Major new changes include:</p>
+        <ul>
+          <li>Released the first chapter of Hai Reveal, a storyline that involves the open secret of the Hai being exposed to humanity.</li>
+          <li>NPCs in missions are now able to trigger game actions on status changes to the NPC.</li>
+          <li>Updated and added new mechanics around asteroid mining to make it a more engaging system, including allowing your escorts to take a more active role in mining.</li>
+          <li>Continued development of the Gegno, including new ships, outfits, and missions.</li>
+          <li>Split the Quarg government into a series of regional governments, allowing for more fine-tuned interactions with different groups of Quarg.</li>
+          <li>Plugins are now able to be enabled and disabled within the Plugins menu.</li>
+          <li>Replaced the mouse control toggle button with a preference to prevent accidental activations.</li>
+          <li>Controls can now be unbound by pressing X or delete when hovering over the control.</li>
+        </ul>
+        <p>Some notable bug fixes include:</p>
+        <ul>
+          <li>Patched an infinite money glitch caused by bad offer conditions on an Unfettered mission.</li>
+          <li>Ships with low max speeds no longer rubberband backwards when exiting hyperspace.</li>
+          <li>Fixed various issues with buying and selling outfits caused by having outfits in cargo or storage.</li>
+        </ul>
+        <p>There's much more in the changelog!</p>
+        <p>Special thanks to the 37 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.1/changelog</url>
+    </release>
     <release version="0.10.0" date="2023-2-19" type="development" urgency="low">
       <description>
         <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
