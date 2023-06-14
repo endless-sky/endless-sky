@@ -1598,7 +1598,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 	{
 		flagship->AddCrew(-extra);
 		if(extra == 1)
-				Messages::Add("You fired a crew member because you have no bunk for them.", Messages::Importance::High);
+			Messages::Add("You fired a crew member because you have no bunk for them.", Messages::Importance::High);
 		else
 			Messages::Add("You fired " + to_string(extra) + " crew members because you have no bunks for them.",
 					Messages::Importance::High);
