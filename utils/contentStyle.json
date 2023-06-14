@@ -104,7 +104,6 @@
 					{
 						"description": "missing space before comment",
 						"regex": "(^\\s*#+)([^\\s#])",
-						"isError": false,
 						"correction": {
 							"replaceWith": "\\1 \\2"
 						}
@@ -112,7 +111,6 @@
 					{
 						"description": "incorrect indefinite article",
 						"regex": "((?:\\sa|^A)) ((?!one|once|hour)[aeio](?!u))",
-						"isError": false,
 						"correction": {
 							"replaceWith": "\\1n \\2"
 						}
@@ -120,7 +118,6 @@
 					{
 						"description": "incorrect indefinite article",
 						"regex": "((?:\\sa|^A))n ([^aAeEiIoOuUhH\\[\\]\"\\'\\d<\\-])",
-						"isError": false,
 						"correction": {
 							"replaceWith": "\\1 \\2"
 						}
