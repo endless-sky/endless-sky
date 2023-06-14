@@ -2618,7 +2618,7 @@ mission "Remnant: Broken Jump Drive 1"
 		attributes outfitter
 		not attributes "requires: gaslining"
 		not distance 0
-		not "Ssil Vida"
+		not attributes "remnant station"
 	on offer
 		require "Jump Drive (Broken)"
 		conversation
