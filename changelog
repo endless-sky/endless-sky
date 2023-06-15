@@ -34,7 +34,7 @@ Version 0.10.1
       * NPCs will no longer attempt to target flotsams that they cannot pick up. (@UnorderedSigh)
       * Surveillance ships now maintain the same target until they are finished scanning, preventing a bug where some surveillance ships would never succeed their scan. (@warp-core)
       * The shop will now properly report why it is that you can't "buy" an outfit from storage instead of saying that you can't place it into your cargo. (@alextd, @warp-core)
-      * Governments are now required to explicilty state if they are able to send untranslated hails, preventing some aliens from sending English hails. (@warp-core)
+      * Governments are now required to explicitly state if they are able to send untranslated hails, preventing some aliens from sending English hails. (@warp-core)
       * The save load UI now only accepts double clicking to open a save if both clicks were on the same save file, instead of allowing clicking on one save and then clicking on another save shortly afterward to count as double clicking the second save. (@warp-core)
       * Adding and removing tribute from a planet via conditions now properly changes that planet's dominated status immediately, instead of requiring that the save be reloaded before the changes take effect. (@petervdmeer)
       * The outfitter buy/install/cargo button now properly reflects whether you can click it (instead of appearing grayed out when you could actually use it under certain circumstances). (@TomGoodIdea)
@@ -249,7 +249,7 @@ Version 0.10.0
       * Remove a duplicated "Fury" in pirate ship name phrases. (@bene-dictator)
       * Allowed Nanachi missions to start on Giverstone again. (@williaji)
       * Ensured the laborer mission cannot select the source as the destination. (@quyykk)
-      * Prevent "Remnant: Celebration" mission from occuring in non-sensical places. (@warp-core)
+      * Prevent "Remnant: Celebration" mission from occurring in non-sensical places. (@warp-core)
       * The "Remnant: Cognizance 32" blocked message now works as intended. (@warp-core)
       * The player now always has clearance for Pugglemug in the Free Worlds mission to visit the Pug. (@TomGoodIdea)
       * Earth Day jobs can no longer offer with deadlines after Earth Day itself. (@warp-core)
@@ -278,7 +278,7 @@ Version 0.10.0
       * Don't try to load non-existent plugin icons. (@quyykk)
       * Ensured ships will always have an attraction and deterrence value. (@quyykk)
       * Ensured options in conversation choices which aren't being displayed can't be selected with keyboard navigation. (@UnorderedSigh)
-      * Improved behaviour of out of system escorts without fuel. (@wjp)
+      * Improved behavior of out of system escorts without fuel. (@wjp)
       * Fixed a null pointer dereference in the player info panel when the player has multiple ships but no flagship. (@warp-core)
       * Do not offer landing missions in the shipyard or outfitter. (@warp-core)
       * Do not allow disabled ships to dock with carriers. (@UnorderedSigh)
@@ -294,7 +294,7 @@ Version 0.10.0
       * Fixed building in gcc 13 by including <cstdint>. (@heirecka)
       * Fixed an issue with displaying the text of the selected choice when some choices are hidden in conversations. (@warp-core)
       * Ships which can be carried no longer select targets for plundering. (@tibetiroka)
-      * Use a PlayerInfo transaction to prevent repitition of actions in missions when saving and reloading during a conversation. (@wjp, @UnorderedSigh, @warp-core)
+      * Use a PlayerInfo transaction to prevent repetition of actions in missions when saving and reloading during a conversation. (@wjp, @UnorderedSigh, @warp-core)
       * Prevent plundering ships from retargeting a ship they've already boarded for plundering. (@tibetiroka)
       * Carryable ships no longer offer to assist the player when hailed, since they are not able to assist. (@warp-core, @tibetiroka)
       * Correct the minimum required crew check when installing or uninstalling an outfit to allow uninstalling a Command Center with no other required crew. (@TomGoodIdea, @RisingLeaf)
@@ -529,7 +529,7 @@ Version 0.10.0
       * Ships with the "forbearing" personality will now also react to special damage types, instead of just based on health. (@Hurleveur)
       * Both a dialog and conversation may now be displayed upon completing the objective for a mission NPC. (@Hurleveur)
       * Made wormholes root-defined objects, allowing for more customization of wormhole behavior. (@quyykk, @tibetiroka)
-      * Restored the old overheating behaviour where a ship is completely unable to act, instead of just not having energy generation while overheated. (@warp-core)
+      * Restored the old overheating behavior where a ship is completely unable to act, instead of just not having energy generation while overheated. (@warp-core)
       * Initiating a hyperspace jump with no travel plan set does not set one. (@Zitchas)
       * Hazard environmental effects may now be given non-integer magnitudes. (@RisingLeaf)
       * Weapon jamming is now its own damage type, "scrambling," separated from ion damage. (@Hurleveur)
@@ -551,7 +551,7 @@ Version 0.10.0
     * Added indicator overlays for missiles. (@Koranir)
     * Added an 's' unit symbol for attributes that are in seconds. (@Koranir)
     * Improvements to the selecting of targets for boarding. (@Hurleveur)
-      * Automatic target selection can prioritise either proximity or value, based on a user controlled setting.
+      * Automatic target selection can prioritize either proximity or value, based on a user controlled setting.
       * Pressing the 'board' key multiple times in quick succession will now cycle through boarding targets.
     * An additional autosave at the most recent planet with a spaceport. (@Hurleveur)
     * Added a visual warning icon alongside the audible warning siren. (@Zitchas, @warp-core)
@@ -563,7 +563,7 @@ Version 0.10.0
     * It is now possible to aim your ship and fire primary weapons using your mouse! (@CAPTAIN1947, @samrocketman, @Hurleveur, @Terin)
     * Made the secondary weapon icons in the HUD clickable. (@warp-core, @quyykk, @tehhowch, @tibetiroka, @Hurleveur)
     * Minables can now have custom display names and nouns. (@warp-core)
-    * Wormhole arrows and links colors can now be customised in the wormhole definition. (@Azure3141, @RisingLeaf)
+    * Wormhole arrows and links colors can now be customized in the wormhole definition. (@Azure3141, @RisingLeaf)
     * Trade commodity profit is now displayed in its own column, separate to the price level. (@hmglasgow, @warp-core)
     * Improved the display of requirements to install an outfit. (@alextd)
     * The order of outfit attributes in the outfitter is now cost, requirements (e.g. outfit space used), then all other attributes. (@warp-core)
@@ -1247,7 +1247,7 @@ Version 0.9.15:
     * Added the EditorConfig style checker to the CI. (@quyykk)
     * Updated the XCode checker to account for dasherized filenames. (@tehhowch)
     * Created a CI job for validating copyright entries. (@quyykk)
-    * Maked Windows Actions compatible with new CI image. (@samrocketman, @quyykk)
+    * Made Windows Actions compatible with new CI image. (@samrocketman, @quyykk)
     * Added a three-second delay to UI steps when debugging. (@petervdmeer)
     * Moved the tests definitions out of the general data folder. (@quyykk)
 
@@ -1980,7 +1980,7 @@ Version 0.9.9:
       * Test dummy ships now only aim to disable instead of destroying. (@tehhowch, @Amazinite)
       * Command centers are now unplunderable. (@AlexBassett)
       * Added small numbers of hand to hand weapons to various human ships. (@Fzzr)
-      * Ship names are now always preceeded by the word "the" in missions and jobs. (@DrBlight)
+      * Ship names are now always preceded by the word "the" in missions and jobs. (@DrBlight)
       * Lead's description no longer incorrectly claims that it is the heaviest non-radioactive element. (@Janaszar)
       * Added more content definition warnings & checks, to help modders develop functional content. (@tehhowch)
       * Content definition checks do not warn for certain objects defined solely by game events. (@comnom)
@@ -2575,7 +2575,7 @@ Version 0.9.5:
     * Split the preferences panel into separate pages for keys, settings, and plugins.
     * If a plugin has an icon or an about.txt, those are now shown in the plugins list.
     * Zoom preferences can now be adjusted with the scroll wheel instead of clicking to cycle.
-    * Overheated targets now blink grey to show that they're only half disabled.
+    * Overheated targets now blink gray to show that they're only half disabled.
     * Switched to a less cartoony icon, particularly for use by the Mac OS X application.
     * The game now sets the "window icon" to show in the corner of the window and in the switcher.
     * Put a limit on how many messages will display at the bottom of the screen.
@@ -2935,7 +2935,7 @@ Version 0.9.1:
     * The 'D' key now works as a shortcut for "leave" in the shop panels.
     * You can now cancel "capture ship" without fighting by clicking "defend" as your first action.
     * The shipyard now shows full stats for the player's ship.
-    * Categories in the shipyard and outfitter are now "collapsable."
+    * Categories in the shipyard and outfitter are now "collapsible."
     * You can now buy outfits directly into cargo by deselecting all your ships (control + click).
   * Under the hood:
     * The compiler now uses the CPPFLAGS in addition to CXXFLAGS. (@kilobyte)
@@ -3059,7 +3059,7 @@ Version 0.9.0:
     * The find function in the map panels now prefers strings that start with the given text.
     * In the ship info, the line to whatever weapon you hover over is now always drawn on top.
     * Added Shift+B and Shift+S as shortcuts for "buy all" and "sell all" in the trade panel.
-    * The commodity price maps now grey out systems where a given commodity is not sold.
+    * The commodity price maps now gray out systems where a given commodity is not sold.
   * Under the hood:
     * Made the Linux dependency list easier to copy-paste to the command line. (@anarcat)
     * Merged DotShader and RingShader, and merged SpriteShader and BlurShader.
@@ -3073,9 +3073,8 @@ Version 0.9.0:
     * Added sanity checks for some weapon attributes that must be within certain ranges.
     * Moved the code for determining the "target color" of a planet into Planet itself.
     * Moved the data for the Korath and the Wanderers into separate files.
-    * Deleted the very outdated) "extra" directory.
+    * Deleted the very outdated "extra" directory.
     * Code cleanup in various other places.
-
 
 Version 0.8.11:
   * Bug fixes:
@@ -3329,14 +3328,14 @@ Version 0.8.4:
       * If you have a jump drive, the radar now includes pointers to "neighbor" systems.
     * Main map panel ("Ports"):
       * The map now shows commodity prices relative to the current system, rather than absolute price.
-      * Unexplored systems are now a dimmer grey than uninhabited ones.
+      * Unexplored systems are now a dimmer gray than uninhabited ones.
     * Jobs / missions panel:
       * Unique missions are now shown at the start of your mission list instead of the end.
       * Mission lists now support the scroll wheel in addition to click and drag.
       * Selecting a different mission in the jobs map no longer changes your travel plan.
     * Maps of shipyards and outfitters:
       * Show the attributes of the currently selected item.
-      * Grey out items that are not for sale in the selected system.
+      * Gray out items that are not for sale in the selected system.
       * Distinguish between systems with nothing for sale vs. systems with other items but not the selected one.
     * Outfitter panel:
       * Attributes are now always shown in units per second instead of units per frame.
