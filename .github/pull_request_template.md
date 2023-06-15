@@ -65,3 +65,20 @@ This save file can be used to test the balance changes.
 
 ## Performance Impact
 {{describe any performance impact (positive or negative). "N/A" if no performance-critical code is changed. }}
+
+
+-----------------------
+**Refactor:** This PR refactors {{insert file name}}.
+
+## Reasoning
+{{explain why you thing the refactor was necessary, and how it is an improvement}}
+
+## Details
+{{describe the changes you have made and how content was moved. Consider using a table for a more transparent description.}}
+| Moved from      | Moved to           |
+| --------------- | ------------------ |
+| file/name       | new/file/name      |
+| Class::Function | NewClass::Function |
+
+## Testing Done
+{{describe how you tested the changes}}
