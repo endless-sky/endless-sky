@@ -1260,6 +1260,7 @@ news "retiree"
 news "financial analyst"
 	location
 		attributes "paradise" "near earth"
+		not government Pug
 	name
 		word
 			"Financial analyst"
@@ -1387,7 +1388,7 @@ news "student"
 			"Tuition is so high these days that I've had to take three side jobs just to get through the semester. It's hard to focus on my studies, but I'll manage somehow."
 			"After graduation, I think I'd like to work in industry somewhere, but my advisor is encouraging me to go on and get my master's degree. What do you think?"
 			"Sorry, no time to chat. My master's thesis is already late and I'm hiding from my advisor."
-			"This is the life! I'm only in class like 3, so my days are totally open! I know it'll end in a few years, but I'm going to enjoy it while I can. After you graduate, it's just work work work until you're dead."
+			"This is the life! I'm only in like 3 classes, so my days are totally open! I know it'll end in a few years, but I'm going to enjoy it while I can. After you graduate, it's just work work work until you're dead."
 		word
 			`"`
 
@@ -1641,17 +1642,8 @@ news "merchant in pirate space"
 	location
 		government "Pirate"
 	name
-		word
-			"Merchant captain"
-			"Starship captain"
-			"Spacecraft captain"
-			"Spaceship captain"
-			"Freelance captain"
-			"Merchant pilot"
-			"Starship pilot"
-			"Spacecraft pilot"
-			"Spaceship pilot"
-			"Freelance pilot"
+		phrase
+			"merchant names"
 	message
 		word
 			`"`
