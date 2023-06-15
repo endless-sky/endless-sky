@@ -2883,7 +2883,7 @@ planet "New Finding"
 	security 0.3
 
 planet "New Greenland"
-	attributes "dirt belt" forest textiles
+	attributes "dirt belt" forest textiles frozen
 	landscape land/snow16
 	description `New Greenland was first settled about six hundred years ago, at the peak of the "Turf Wars" era where most planets were controlled by powerful corporations and their struggles often turned into outright warfare with privately owned fleets and armies. The people who came to New Greenland were looking for a world so marginal and undesirable that they could live here in peace without being caught in the crossfire.`
 	description `	The locals here grow food in greenhouses and specialize in making warm winter clothing, which is this planet's only export.`
