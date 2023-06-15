@@ -617,7 +617,7 @@ outfit "Railgun Slug"
 	cost 13
 	thumbnail "outfit/railslug"
 	"mass" 0.003
-	"hai railgun slug capacity" -1
+	"railgun slug capacity" -1
 	description "These Railgun Slugs incorporate energy-discharging capacitors that deal a small amount of ion damage to their target. Although not terribly damaging, this ion damage combined with the significant recoil that each shot has turns Flea drones into effective long-range support ships."
 
 outfit "Railgun Slug Rack"
@@ -638,12 +638,12 @@ outfit "Railgun"
 	"outfit space" -4
 	"weapon capacity" -4
 	"gun ports" -1
-	"hai railgun slug capacity" 1000
+	"railgun slug capacity" 1000
 	weapon
-		sprite "projectile/hai rail slug"
+		sprite "projectile/rail slug"
 			"frame rate" 30
-		ammo "Hai Railgun Slug"
-		icon "icon/hai railgun"
+		ammo "Railgun Slug"
+		icon "icon/rail gun"
 		sound "ion impact"
 		"fire effect" "rail sparks"
 		"hit effect" "bullet impact"
