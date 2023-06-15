@@ -299,8 +299,7 @@ news "merchant on post-fw Deneb"
 news "worker on pug-occupied planet after fw"
 	location
 		neighbor system Deneb
-		not
-			government Pug
+		not government Pug
 	name
 		word
 			"Dock worker"
