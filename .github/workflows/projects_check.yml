@@ -60,7 +60,7 @@ jobs:
   spellcheck:
     name: Spelling
     needs: changed
-    if: ${{ needs.changed.outputs.data == 'true' || needs.changed.outputs.codespell == 'true' }}
+    if: ${{ needs.changed.outputs.data == 'true' || needs.changed.outputs.codespell == 'true' || needs.changed.outputs.changelog == 'true' }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -69,7 +69,7 @@ jobs:
     - uses: codespell-project/actions-codespell@master
       with:
         builtin: clear,en-GB_to_en-US
-        path: data/
+        path: changelog data/
         exclude_file: .codespell.exclude
 
 
