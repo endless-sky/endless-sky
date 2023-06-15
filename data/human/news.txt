@@ -1641,17 +1641,8 @@ news "merchant in pirate space"
 	location
 		government "Pirate"
 	name
-		word
-			"Merchant captain"
-			"Starship captain"
-			"Spacecraft captain"
-			"Spaceship captain"
-			"Freelance captain"
-			"Merchant pilot"
-			"Starship pilot"
-			"Spacecraft pilot"
-			"Spaceship pilot"
-			"Freelance pilot"
+		phrase
+			"merchant names"
 	message
 		word
 			`"`
