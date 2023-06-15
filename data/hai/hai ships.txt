@@ -268,16 +268,16 @@ ship "Flea"
 			"hull damage" 30
 			"hit force" 80
 	outfits
-		"Hai Railgun" 3
-		"Hai Railgun Slug" 3000
+		"Skipper Railgun" 3
+		"Skipper Railgun Slug" 3000
 		"Sand Cell"
 		"Supercapacitor" 2
 		`"Baellie" Atomic Engines`
 
 	engine 0 27 1.4
-	gun 0 -27 "Hai Railgun"
-	gun 0 -27 "Hai Railgun"
-	gun 0 -27 "Hai Railgun"
+	gun 0 -27 "Skipper Railgun"
+	gun 0 -27 "Skipper Railgun"
+	gun 0 -27 "Skipper Railgun"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
 	description `This combat drone is built to amplify the strength of any combat force for as few credits as possible. It was designed in conjunction with the tactical recoil of the Hai Railgun to allow it to kite its targets, prolonging its combat efficacy while it supports its allies with debilitating ion damage.`
@@ -719,9 +719,9 @@ ship "Pond Strider"
 			"hull damage" 750
 			"hit force" 1750
 	outfits
-		"Hai Railgun"
+		"Skipper Railgun"
 		"Ion Cannon" 2
-		"Hai Railgun Slug" 1000
+		"Skipper Railgun Slug" 1000
 		"Chameleon Anti-Missile"
 		"Bullfrog Anti-Missile" 2
 		"Hai Corundum Regenerator" 2
@@ -737,7 +737,7 @@ ship "Pond Strider"
 		
 	engine -23 80
 	engine 23 80
-	gun 0 -76 "Hai Railgun"
+	gun 0 -76 "Skipper Railgun"
 	gun -15 -72 "Ion Cannon"
 	gun 15 -72 "Ion Cannon"
 	turret -18 -53 "Bullfrog Anti-Missile"
@@ -774,8 +774,8 @@ ship "Pond Strider" "Pond Strider (Tracker)"
 	outfits
 		"Hai Tracker Pod"
 		"Hai Tracker" 112
-		"Hai Railgun" 2
-		"Hai Railgun Slug" 2000
+		"Skipper Railgun" 2
+		"Skipper Railgun Slug" 2000
 		"Tracker Storage Pod" 2
 		"Chameleon Anti-Missile" 3
 		"Hai Diamond Regenerator"
@@ -790,9 +790,9 @@ ship "Pond Strider" "Pond Strider (Tracker)"
 
 ship "Pond Strider" "Pond Strider (Ion)"
 	outfits
-		"Hai Railgun"
+		"Skipper Railgun"
 		"Ion Cannon" 2
-		"Hai Railgun Slug" 1000
+		"Skipper Railgun Slug" 1000
 		"Chameleon Anti-Missile"
 		"Bullfrog Anti-Missile" 2
 		"Hai Corundum Regenerator"
@@ -808,8 +808,8 @@ ship "Pond Strider" "Pond Strider (Ion)"
 ship "Pond Strider" "Pond Strider (Pulse)"
 	outfits
 		"Pulse Cannon" 2
-		"Hai Railgun"
-		"Hai Railgun Slug" 1000
+		"Skipper Railgun"
+		"Skipper Railgun Slug" 1000
 		"Pulse Turret"
 		"Chameleon Anti-Missile" 2
 		"Hai Diamond Regenerator"
@@ -825,8 +825,8 @@ ship "Pond Strider" "Pond Strider (Pulse)"
 
 ship "Pond Strider" "Pond Strider (Railgun)"
 	outfits
-		"Hai Railgun" 3
-		"Hai Railgun Slug" 3000
+		"Skipper Railgun" 3
+		"Skipper Railgun Slug" 3000
 		"Chameleon Anti-Missile" 3
 		"Hai Corundum Regenerator"
 		"Hai Diamond Regenerator"

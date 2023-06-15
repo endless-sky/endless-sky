@@ -194,25 +194,25 @@ outfit "Ionic Turret Prototype"
 	description "	This design cannot yet be mass produced, but those that have been produced are prized by the few lucky enough to possess them."
 
 
-outfit "Hai Railgun Slug"
+outfit "Skipper Railgun Slug"
 	category "Ammunition"
 	cost 13
 	thumbnail "outfit/railslug"
 	"mass" 0.003
-	"hai railgun slug capacity" -1
-	description "These Railgun Slugs incorporate energy-discharging capacitors that deal a small amount of ion damage to their target. Although not terribly damaging, this ion damage combined with the significant recoil that each shot has turns Flea drones into effective long-range support ships."
+	"skipper railgun slug capacity" -1
+	description "Skipper Railgun Slugs incorporate energy-discharging capacitors that deal a small amount of ion damage to their target. Although not terribly damaging, this ion damage combined with the significant recoil that each shot has turns Flea drones into effective long-range support ships."
 
-outfit "Hai Railgun Slug Rack"
+outfit "Skipper Railgun Slug Rack"
 	category "Ammunition"
 	cost 15000
 	thumbnail "outfit/railslug rack"
 	"mass" 1
 	"outfit space" -3
-	"railgun slug capacity" 500
-	ammo "Railgun Slug"
-	description "The railgun slug rack is used to store and load extra railgun ammunition."
+	"skipper railgun slug capacity" 500
+	ammo "Skipper Railgun Slug"
+	description "This railgun slug rack is used to store and load extra Skipper Railgun ammunition."
 
-outfit "Hai Railgun"
+outfit "Skipper Railgun"
 	category "Secondary Weapons"
 	cost 20000
 	thumbnail "outfit/railgun"
@@ -220,11 +220,11 @@ outfit "Hai Railgun"
 	"outfit space" -4
 	"weapon capacity" -4
 	"gun ports" -1
-	"hai railgun slug capacity" 1000
+	"skipper railgun slug capacity" 1000
 	weapon
 		sprite "projectile/rail slug"
 			"frame rate" 30
-		ammo "Hai Railgun Slug"
+		ammo "Skipper Railgun Slug"
 		icon "icon/rail gun"
 		sound "ion impact"
 		"fire effect" "rail sparks"
@@ -239,7 +239,7 @@ outfit "Hai Railgun"
 		"firing force" 70
 		"stream"
 		"submunition" "rslug" 1
-	description "The Hai designed this weapon to best complement their Flea drones. Each Hai Railgun provides a significant amount of force upon firing, pushing the Flea drone backwards and therefore forcing it to keep its distance from its target."
+	description "The Hai designed this weapon to best complement their Flea drones. Each Skipper Railgun provides a significant amount of force upon firing, pushing the Flea drone backwards and therefore forcing it to keep its distance from its target."
 	description "	Flea drone pilots joke that they provide more thrust than engines of similar size, so Unfettered should be using them at the back of their ships. There's probably a cultural component to the joke that many miss, because it's told quite often and the Hai laugh hysterically about it - every time."
 
 outfit "rslug"
