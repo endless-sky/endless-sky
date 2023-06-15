@@ -661,8 +661,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		}
 
 		// Cloak if the AI considers it appropriate.
-		bool escortShouldCloak = !isCloaking && Preferences::Has("Defensive escort cloaking");
-		if(!it->IsYours() || escortShouldCloak)
+		if(!it->IsYours() || !isCloaking)
 			if(DoCloak(*it, command))
 			{
 				// The ship chose to retreat from its target, e.g. to repair.

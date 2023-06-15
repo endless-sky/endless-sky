@@ -563,7 +563,6 @@ void PreferencesPanel::DrawSettings()
 		BOARDING_PRIORITY,
 		"Flagship flotsam collection",
 		EXPEND_AMMO,
-		"Defensive escort cloaking",
 		FIGHTER_REPAIR,
 		"Fighters transfer cargo",
 		"Rehire extra crew when lost",
