@@ -1,13 +1,15 @@
 Version 0.10.2
   * Bug fixes:
     * Content bugs:
-      * Typo fixes. (@nothing-but-the-rain, @warp-core, @waterhouse)
+      * Typo fixes. (@nothing-but-the-rain, @Saugia, @tibetiroka, @warp-core, @waterhouse)
       * "Pact Recon 0" can no longer be offered from Glaze. (@UnorderedSigh)
       * "Hai Reveal: Early Arrival: Alondo" and "Hai Reveal: Late Arrival: Alondo" can no longer offer from Hai-home. (@warp-core)
       * Text in "Liberate Kornephoros" now correctly refers to Carriers as the attacking ships, not Cruisers. (@tibetiroka)
       * Updated the "try out fighters transfer cargo" help message to refer to the correct section of the settings, "Gameplay" instead of "AI." (@tibetiroka)
       * The Heliarch government will now also be hostile to the new split Quarg governments, not just the original one. (@Saugia)
       * Conversations in "FW Diplomacy 1" and "FW Southern Break" will now check the correct conditions to branch if the player was previously suspended from the FW militia. (@warp-core)
+      * Actions against the Gegno civilian government will now correctly impact the player's reputation with the Quarg in Gegno space. (@Saugia)
+      * The "financial analyst" news item will no longer appear on human worlds while they are occupied by the Pug. (@tibetiroka)
     * Engine bugs:
       * Fixed some situations where ships will stop acting and drift forever. (@UnorderedSigh)
       * Fixed a case in AI::DoScatter where ships may get stuck together. (@UnorderedSigh)
@@ -41,9 +43,12 @@ Version 0.10.2
         * "start angle": starts drawing the ring from a custom angle, instead of 0 degrees (straight up.)
         * "span angle": draws an arc spanning the given angle, instead of a full ring (360 degrees.)
       * Added a new personality, "decloaked," which prevents ships from cloaking. (@UnorderedSigh)
+  * User interface:
+    * The system names in the escort display for out of system escorts will now be truncated if they would exceed the escorts display box. (@TomGoodIdea)
   * Under the hood:
     * Prevent false positive warnings for dangling references by making copies. (@quyykk)
     * Zero valued conditions will no longer be saved. (@warp-core)
+    * The "merchant in pirate space" news item now refers to the "merchant names" phrase for its name instead of reproducing all the possible results of that phrase. (@tibetiroka)
   * CI/CD and development environment:
     * Removed references to the old Google Group from the issue template. (@lumbar527, @ntabris)
     * Disabled the sound card when running CI to suppress errors. (@UnorderedSigh, @MCOfficer)
@@ -51,6 +56,8 @@ Version 0.10.2
     * Added an EditorConfig rule for the indentation of the changelog file and Unix style (lf) line endings for all files. (@warp-core)
     * Various GitHub Actions jobs will now also be triggered if their scripts or configuration files are updated, in addition to when the files they check are updated. (@tibetiroka)
     * Add new entries to the .codespell.exclude file after the spell checker was updated. (@warp-core)
+    * Creating a GitHub release will now automatically generate Steam depots. (@quyykk)
+    * The codespell job will now also be run on the changelog. (@tibetiroka)
 
 Version 0.10.1
   * Big changes:
