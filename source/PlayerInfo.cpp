@@ -1817,7 +1817,7 @@ void PlayerInfo::UpdateCargoCapacities()
 	int bunks = 0;
 	flagship = FlagshipPtr();
 	for(const shared_ptr<Ship> &ship : ships)
-		if(ship->GetPlanet() == planet && !ship->IsParked() && !ship->IsDisabled())
+		if(ship->GetPlanet() == planet && !ship->IsParked())
 		{
 			size += ship->Attributes().Get("cargo space");
 			int crew = (ship == flagship ? ship->Crew() : ship->RequiredCrew());
