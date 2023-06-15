@@ -6142,7 +6142,7 @@ mission "Republic Navy Advisory System [frozen]"
 		dialog `Relieved-looking aid workers welcome your shipment. You look on, feeling satisfied that <cargo> will soon arrive to those that need it most.`
 
 mission "Republic Navy Advisory System [volcanic]"
-	name "Cold Relief"
+	name "Volcanic Relief"
 	description "Humanitarian aid of <cargo> to <destination> following a severe volcanic eruption."
 	minor
 	repeat
