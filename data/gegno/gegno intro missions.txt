@@ -346,20 +346,20 @@ mission "Giaru Gegno: Quarg Contact"
 				`	"Do the ships I've seen around belong to these Gegno?"`
 					goto ships
 			label gegno
-			`	"Yes, the imperious Gegno. A juvenile race, they are, many decades younger than that of you humans. They do not find themselves in the struggle of leadership the same way as others do. Rather, they glorify their pursuit of guidance between one another to share a noble future." You wonder if the Quarg's use of boastful adjectives is because of gaps in his translations, or if they are intentionally speaking that way. Its voice still comes from the lower tones of Quarg speech, clashing with the excited pace it is speaking at.`
+			`	"Yes, the imperious Gegno. A juvenile race, they are, many decades younger than that of you humans. They do not find themselves in the struggle of leadership the same way as others do. Rather, they glorify their pursuit of guidance between one another to share a noble future." You wonder if the Quarg's use of boastful adjectives is because of gaps in its translations, or if it is intentionally speaking that way. Its voice still comes from the lower tones of Quarg speech, clashing with the excited pace it is speaking at.`
 			choice
 				`	"What is this guidance they pursue?"`
 					goto guidance
 			label ships
-			`	"Indeed, the vessels of such stature represent the robust Gegno. Not in sorrow, but greatness do they pursue their future, bearing the fruit of sacrifice as a trophy to their name." The Quarg now shifts facial expressions in such a way to suggest a small hint of frustration.`
+			`	"Indeed, the vessels of such stature represent the robust Gegno. Not in sorrow, but greatness do they pursue their future, bearing the fruit of sacrifice as a trophy to their name."`
 			choice
-				`	"Do the Gegno upset you in some way?"`
+				`	"Sacrifice?"`
 					goto sacrifice
 			label guidance
-			`	The Quarg now shifts facial expressions in such a way to suggest a small hint of frustration. "The Gegno believe it to be necessary to overwhelmingly sacrifice whatever must be, in order to imagine a grand future for themselves. Thus, they have separated into two different branches. One brandishes themselves as the honorable Vi - mightiest of warriors, toughest of kin. They are brutes that see proof of strength being the one and only variable in determining their path. That of the Scin, the more technologically able, believe that only through progression of sciences and discovery will the Gegno prosper."`
+			`	"The Gegno believe it necessary to pursue what they choose must be, in order to imagine a grand future for themselves. Thus, they have separated into two different branches. One brandishes themselves as the honorable Vi - mightiest of warriors, toughest of kin. They are brutes that see proof of strength being the one and only variable in determining their path. That of the Scin, the more technologically able, believe that only through progression of sciences and discovery will the Gegno prosper."`
 				goto next
 			label sacrifice
-			`	"The Gegno believe it to be necessary to sacrifice whatever must be, in order to imagine a future for themselves. Thus, they have separated into two different branches. One brandishes themselves as the honorable Vi - mightiest of warriors, toughest of kin. They are brutes that see proof of strength being the one and only variable in determining their path. That of the Scin, the more technologically able, believe that only through progression of sciences and discovery will the Gegno prosper."`
+			`	"The Gegno believe it necessary to overwhelmingly sacrifice whatever must be, in order to imagine a future for themselves. Thus, they have separated into two different branches. One brandishes themselves as the honorable Vi - mightiest of warriors, toughest of kin. They are brutes that see proof of strength being the one and only variable in determining their path. That of the Scin, the more technologically able, believe that only through progression of sciences and discovery will the Gegno prosper."`
 			label next
 			choice
 				`	"The Vi are right, the strength to survive is more important than anything else."`
@@ -372,7 +372,7 @@ mission "Giaru Gegno: Quarg Contact"
 			`	"While it is characteristic, such a tremendous proposition is rather dull for a marvelously growing species. Be that as it may, you humans follow this harsh doctrine, though to a much lesser degree than that of the Vi."`
 				goto "wrap up"
 			label scin
-			`	The Quarg now shifts facial expressions in such a way to suggest a small hint of disappointment. "The pursuit of technology leaves behind many values important to a glorious species' growth, that of which we have seen plentifully."`
+			`	"The pursuit of technology leaves behind many values important to a glorious species' growth, that of which we have seen plentifully."`
 				goto "wrap up"
 			label together
 			`	"Regrettably, most Gegno do not have a drive to pursue their principal future, diluting themselves far into their stagnant present. Segregation of followings was one of few ways to seek motivation beyond the fact."`
@@ -381,7 +381,7 @@ mission "Giaru Gegno: Quarg Contact"
 				`	"Thank you for the information."`
 					goto end
 				`	"It seems that you do not like the paths they've chosen."`
-			`	The Quarg stands up, darting its gaze off to the side. The energy it exhibited earlier is gone. "It is not in our prosperous grasp to persuade the Gegno, as once we did attempt to. They would ensure conflict with us should we interfere, and we have no desire to witness an imperiled uprising of such a sort once more." It pauses, then gestures you to stand up as well.`
+			`	The Quarg stands up, but as it does so, you watch as a few marks on its otherwise gray skin shift into blue hues with faint traces of purple, though they fade away shortly after. "It is not in our prosperous grasp to persuade the Gegno, as once we did attempt to. They would ensure conflict with us should we interfere, and we have no desire to witness an imperiled uprising of such a sort once more." It pauses for an extended time, then gestures you to stand up as well.`
 			
 			branch "interacted with outsider"
 				has "Visit Quarg in Gegno Space: offered"
@@ -390,7 +390,7 @@ mission "Giaru Gegno: Quarg Contact"
 				goto end
 			
 			label "interacted with outsider"
-			`	"However, it is still quite staggering that the Gegno interacted with an audacious outsider such as yourself." The Quarg pauses for a moment and takes a longer breath than usual. "Please do be distinctly cautious in encounters with the Gegno. Unfortunately, we cannot advocate virtuous pleasantries between you and them. Only a brief history of them can we tell. Although, you are appreciably welcome at this ring should you find yourself here again."`
+			`	"However, it is still quite staggering that the Gegno interacted with an audacious outsider such as yourself." The Quarg pauses again for a moment and takes a longer breath than usual. "Please do be distinctly cautious in encounters with the Gegno. Unfortunately, we cannot advocate virtuous pleasantries between you and them. Only a brief history of them can we tell. Although, you are appreciably welcome at this ring should you find yourself here again."`
 			
 			label end
 			`	The Quarg motions a bow to you, and the first one from earlier escorts you out of the room. It seems associating with these so-called "Gegno" is very unlikely for you, and you will have to deal with their xenophobia for the foreseeable future.`
@@ -435,7 +435,7 @@ mission "Giaru Gegno: Revisit"
 			`	"Indeed yes, strange coincidences do curiously happen. Many coincidences are as mere fleeting moments of subtle peculiarity." The Quarg then displays a soft grimace. "Sometimes, one may be grand and powerful, in addition to having potent consequences. The Gegno have learned this a great number of times.`
 			label "trouble"
 			`	"Quite a brave one you indeed are. Most would think to not leap into the daunting face of uncertainty as you have." The Quarg momentarily meditates on its next thought. "Though, as the Gegno have throughout their history, some may make monumentous jumps undeterred by any amount of hesitance."`
-			`	The Quarg raises from its seat, and you act in accordance. "Please do be distinctly cautious in your encounters with the Gegno. Always feel gracious to visit here once more, should you mindfully chose to do so." As you are directed out of the room, you turn back to see the Quarg bowing. You can't help but wonder what was on their mind during the conversation, but it might be for the best you are more careful from now on.`
+			`	The Quarg raises from its seat, and you act in accordance. "Please do be distinctly cautious in your encounters with the Gegno. Always feel gracious to visit here once more, should you mindfully chose to do so." As you are directed out of the room, you turn back to see the Quarg bowing. You can't help but wonder what was on its mind during the conversation, but it might be for the best you are more careful from now on.`
 				decline
 
 
