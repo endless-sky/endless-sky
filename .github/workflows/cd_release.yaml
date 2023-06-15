@@ -75,7 +75,7 @@ jobs:
         with:
           name: steam-win32-depot
           path: |
-            './install/release/Endless Sky.exe'
+            ./install/release/Endless Sky.exe
             ./install/release/*.dll
 
 
@@ -114,7 +114,7 @@ jobs:
         with:
           name: steam-win64-depot
           path: |
-            './install/release/Endless Sky.exe'
+            ./install/release/Endless Sky.exe
             ./install/release/*.dll
 
 
