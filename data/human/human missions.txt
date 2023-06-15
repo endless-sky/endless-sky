@@ -6129,7 +6129,7 @@ mission "Republic Navy Advisory System [frozen]"
 	source
 		government "Republic"
 	destination
-		goverment "Republic" "Syndicate" "Independent" "Neutral"
+		government "Republic" "Syndicate" "Independent" "Neutral"
 		attribute "frozen"
 	substitution
 		"<problem>" "cold snap"
@@ -6149,7 +6149,7 @@ mission "Republic Navy Advisory System [volcanic]"
 	source
 		government "Republic"
 	destination
-		goverment "Republic" "Syndicate" "Independent" "Neutral"
+		government "Republic" "Syndicate" "Independent" "Neutral"
 		attribute "volcanic"
 	substitution
 		"<problem>" "volcanic event"
