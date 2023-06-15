@@ -689,7 +689,7 @@ planet Cloudfire
 	security 0.9
 
 planet "Cold Horizon"
-	attributes folklore saryd tourism
+	attributes folklore saryd tourism frozen
 	landscape land/snow11-sfiera
 	description `In the early mornings on Cold Horizon, the trees are often coated in a thin layer of glittering frost that burns away a few hours after sunrise. In the short summer season, flocks of migratory birds arrive in the forest, bringing a cacophony of music and a riot of color to the otherwise serene woodlands.`
 	description `	Half a billion Saryds live here, drawn not so much by the planet's resources, which are scarce, as by its natural beauty.`
