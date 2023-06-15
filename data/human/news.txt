@@ -1260,8 +1260,7 @@ news "retiree"
 news "financial analyst"
 	location
 		attributes "paradise" "near earth"
-		not
-			government Pug
+		not government Pug
 	name
 		word
 			"Financial analyst"
