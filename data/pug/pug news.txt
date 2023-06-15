@@ -182,7 +182,7 @@ news "reporter on post-fw Deneb"
 			"Correspondent"
 	message
 		word
-			"I don't think there is anything "
+			"I don't think there is anything"
 			"I don't find anything to be"
 			"There isn't anything"
 		word
