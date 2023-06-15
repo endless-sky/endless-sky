@@ -6160,3 +6160,4 @@ mission "Republic Navy Advisory System [volcanic]"
 		dialog `This is the Republic Navy Advisory System: <planet> is experiencing a severe <problem>. Volunteers are requested to supply <cargo> to <planet>.`
 	on complete
 		dialog `Relieved-looking aid workers welcome your shipment. You look on, feeling satisfied that <cargo> will soon arrive to those that need it most.`
+
