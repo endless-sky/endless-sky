@@ -839,6 +839,7 @@ mission "<uhai> 15: Modified Beetle"
 				defer
 			label duel
 			`	"Launch your ship whenever you feel ready for the fight, I will be waiting for you in space, trying some of these new fancy toys. I may not be a warlord, or a captain even, but I will give you my best!"`
+			`	"And don't forget to disable the extra challengers from the job board, except if you really want a challenge."`
 				accept
 	on enter
 		conversation
@@ -892,7 +893,7 @@ mission "<uhai> 15: Modified Beetle"
 		has "unfettered: defeated Mera"
 	on complete
 		conversation
-			`	Mera rejoins you in the lab when you land. Her ship does not look very damaged.`
+			`	Mera rejoins you in the lab when you land, and sends a small team with scanners to take a look at your ship. Her ship appears to only have been superficially damaged.`
 			branch "took weapons"
 				or
 					"outfit (all): Ionic Blaster Prototype" > "blasters owned"
@@ -1169,6 +1170,7 @@ mission "<uhai> 16: Strength Of A Leader: Si-Ra"
 				"unfettered: took Si-Ra' gold" > 5
 				has "unfettered: offended Si-Ra"
 			`	"And may you die ready as well. Let us fight, on the same terms of honor as before. Take off when you're ready, I will be waiting for you. Once you defeat me you will be able to fight the Tejolis."`
+			`	"I would highly advise you mark yourself as not ready for spontaneous challenges from the job board, for they may disrupt the fight."`
 				accept
 			label "mad Si-Ra"
 			action
