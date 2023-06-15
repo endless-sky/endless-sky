@@ -58,7 +58,7 @@ public:
 	// converted to a token. Arguments may be strings or numeric values. The line is terminated
 	// after all tokens are written.
 	template <class A, class ...B>
-	DataWriter &Write(const A &a, B... others);
+	DataWriter &Write(const A &a, const B &... others);
 	// Write the entire structure represented by a DataNode, including any
 	// children that it has.
 	DataWriter &Write(const DataNode &node);
@@ -83,7 +83,7 @@ public:
 	DataWriter &WriteToken(const A &a);
 	// Writes a series of tokens without terminating the line.
 	template <class A, class ...B>
-	DataWriter &WriteToken(const A &a, B... others);
+	DataWriter &WriteToken(const A &a, const B &... others);
 	// Write the tokens of this DataNode without writing its children.
 	DataWriter &WriteTokens(const DataNode &node);
 
@@ -126,7 +126,7 @@ DataWriter &DataWriter::WriteRaw(const C &c)
 // The Write() function can take any number of arguments, each of which becomes
 // a token. They must be either strings or numeric types.
 template <class A, class ...B>
-DataWriter &DataWriter::Write(const A &a, B... others)
+DataWriter &DataWriter::Write(const A &a, const B &... others)
 {
 	WriteToken(a);
 	Write(others...);
@@ -150,7 +150,7 @@ DataWriter &DataWriter::WriteToken(const A &a)
 
 // Writes a series of tokens without terminating the line.
 template <class A, class ...B>
-DataWriter &DataWriter::WriteToken(const A &a, B... others)
+DataWriter &DataWriter::WriteToken(const A &a, const B &... others)
 {
 	WriteToken(a);
 	WriteToken(others...);
