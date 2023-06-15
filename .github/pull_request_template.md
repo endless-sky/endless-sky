@@ -71,7 +71,7 @@ This save file can be used to test the balance changes.
 **Refactor:** This PR refactors {{insert file name}}.
 
 ## Reasoning
-{{explain why you thing the refactor was necessary, and how it is an improvement}}
+{{explain why you think the refactor was necessary, and how it is an improvement}}
 
 ## Details
 {{describe the changes you have made and how content was moved. Consider using a table for a more transparent description.}}
