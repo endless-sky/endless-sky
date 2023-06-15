@@ -1849,6 +1849,8 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 			if(!(parent.IsEnteringHyperspace() || parent.IsReadyToJump()) || !EscortsReadyToJump(ship))
 				command |= Command::WAIT;
 		}
+		else if(needsFuel && systemHasFuel)
+			Refuel(ship, command);
 		else if(ship.GetTargetStellar())
 		{
 			MoveToPlanet(ship, command);
@@ -2876,94 +2878,98 @@ bool AI::DoHarvesting(Ship &ship, Command &command) const
 // Check if this ship should cloak. Returns true if this ship decided to run away while cloaking.
 bool AI::DoCloak(Ship &ship, Command &command)
 {
-	if(ship.Attributes().Get("cloak"))
+	if(ship.GetPersonality().IsDecloaked())
+		return false;
+
+	const Outfit &attributes = ship.Attributes();
+	if(!attributes.Get("cloak"))
+		return false;
+
+	// Never cloak if it will cause you to be stranded.
+	double fuelCost = attributes.Get("cloaking fuel") + attributes.Get("fuel consumption")
+		- attributes.Get("fuel generation");
+	if(attributes.Get("cloaking fuel") && !attributes.Get("ramscoop"))
 	{
-		// Never cloak if it will cause you to be stranded.
-		const Outfit &attributes = ship.Attributes();
-		double fuelCost = attributes.Get("cloaking fuel") + attributes.Get("fuel consumption")
-			- attributes.Get("fuel generation");
-		if(attributes.Get("cloaking fuel") && !attributes.Get("ramscoop"))
+		double fuel = ship.Fuel() * attributes.Get("fuel capacity");
+		int steps = ceil((1. - ship.Cloaking()) / attributes.Get("cloak"));
+		// Only cloak if you will be able to fully cloak and also maintain it
+		// for as long as it will take you to reach full cloak.
+		fuel -= fuelCost * (1 + 2 * steps);
+		if(fuel < ship.JumpNavigation().JumpFuel())
+			return false;
+	}
+
+	// If your parent has chosen to cloak, cloak and rendezvous with them.
+	const shared_ptr<const Ship> &parent = ship.GetParent();
+	bool shouldCloakWithParent = false;
+	if(parent && parent->GetGovernment() && parent->Commands().Has(Command::CLOAK)
+			&& parent->GetSystem() == ship.GetSystem())
+	{
+		const Government *parentGovernment = parent->GetGovernment();
+		bool isPlayer = parentGovernment->IsPlayer();
+		if(isPlayer && ship.GetGovernment() == parentGovernment)
+			shouldCloakWithParent = true;
+		else if(isPlayer && ship.GetPersonality().IsEscort() && !ship.GetPersonality().IsUninterested())
+			shouldCloakWithParent = true;
+		else if(!isPlayer && !parent->GetGovernment()->IsEnemy(ship.GetGovernment()))
+			shouldCloakWithParent = true;
+	}
+	if(shouldCloakWithParent)
+	{
+		command |= Command::CLOAK;
+		KeepStation(ship, command, *parent);
+		return true;
+	}
+
+	// Otherwise, always cloak if you are in imminent danger.
+	static const double MAX_RANGE = 10000.;
+	double range = MAX_RANGE;
+	const Ship *nearestEnemy = nullptr;
+	// Find the nearest targetable, in-system enemy that could attack this ship.
+	const auto enemies = GetShipsList(ship, true);
+	for(const auto &foe : enemies)
+		if(!foe->IsDisabled())
 		{
-			double fuel = ship.Fuel() * attributes.Get("fuel capacity");
-			int steps = ceil((1. - ship.Cloaking()) / attributes.Get("cloak"));
-			// Only cloak if you will be able to fully cloak and also maintain it
-			// for as long as it will take you to reach full cloak.
-			fuel -= fuelCost * (1 + 2 * steps);
-			if(fuel < ship.JumpNavigation().JumpFuel())
-				return false;
+			double distance = ship.Position().Distance(foe->Position());
+			if(distance < range)
+			{
+				range = distance;
+				nearestEnemy = foe;
+			}
 		}
 
-		// If your parent has chosen to cloak, cloak and rendezvous with them.
-		const shared_ptr<const Ship> &parent = ship.GetParent();
-		bool shouldCloakWithParent = false;
-		if(parent && parent->GetGovernment() && parent->Commands().Has(Command::CLOAK)
-				&& parent->GetSystem() == ship.GetSystem())
+	// If this ship has started cloaking, it must get at least 40% repaired
+	// or 40% farther away before it begins decloaking again.
+	double hysteresis = ship.Commands().Has(Command::CLOAK) ? .4 : 0.;
+	// If cloaking costs nothing, and no one has asked you for help, cloak at will.
+	bool cloakFreely = (fuelCost <= 0.) && !ship.GetShipToAssist();
+	// If this ship is injured / repairing, it should cloak while under threat.
+	bool cloakToRepair = (ship.Health() < RETREAT_HEALTH + hysteresis)
+			&& (attributes.Get("shield generation") || attributes.Get("hull repair rate"));
+	if(cloakToRepair && (cloakFreely || range < 2000. * (1. + hysteresis)))
+	{
+		command |= Command::CLOAK;
+		// Move away from the nearest enemy.
+		if(nearestEnemy)
 		{
-			const Government *parentGovernment = parent->GetGovernment();
-			bool isPlayer = parentGovernment->IsPlayer();
-			if(isPlayer && ship.GetGovernment() == parentGovernment)
-				shouldCloakWithParent = true;
-			else if(isPlayer && ship.GetPersonality().IsEscort() && !ship.GetPersonality().IsUninterested())
-				shouldCloakWithParent = true;
-			else if(!isPlayer && !parent->GetGovernment()->IsEnemy(ship.GetGovernment()))
-				shouldCloakWithParent = true;
-		}
-		if(shouldCloakWithParent)
-		{
-			command |= Command::CLOAK;
-			KeepStation(ship, command, *parent);
+			Point safety;
+			// TODO: This could use an "Avoid" method, to account for other in-system hazards.
+			// Simple approximation: move equally away from both the system center and the
+			// nearest enemy, until the constrainment boundary is reached.
+			if(ship.GetPersonality().IsUnconstrained() || !fenceCount.count(&ship))
+				safety = 2 * ship.Position().Unit() - nearestEnemy->Position().Unit();
+			else
+				safety = -ship.Position().Unit();
+
+			safety *= ship.MaxVelocity();
+			MoveTo(ship, command, ship.Position() + safety, safety, 1., .8);
 			return true;
 		}
-
-		// Otherwise, always cloak if you are in imminent danger.
-		static const double MAX_RANGE = 10000.;
-		double range = MAX_RANGE;
-		const Ship *nearestEnemy = nullptr;
-		// Find the nearest targetable, in-system enemy that could attack this ship.
-		const auto enemies = GetShipsList(ship, true);
-		for(const auto &foe : enemies)
-			if(!foe->IsDisabled())
-			{
-				double distance = ship.Position().Distance(foe->Position());
-				if(distance < range)
-				{
-					range = distance;
-					nearestEnemy = foe;
-				}
-			}
-
-		// If this ship has started cloaking, it must get at least 40% repaired
-		// or 40% farther away before it begins decloaking again.
-		double hysteresis = ship.Commands().Has(Command::CLOAK) ? .4 : 0.;
-		// If cloaking costs nothing, and no one has asked you for help, cloak at will.
-		bool cloakFreely = (fuelCost <= 0.) && !ship.GetShipToAssist();
-		// If this ship is injured / repairing, it should cloak while under threat.
-		bool cloakToRepair = (ship.Health() < RETREAT_HEALTH + hysteresis)
-				&& (attributes.Get("shield generation") || attributes.Get("hull repair rate"));
-		if(cloakToRepair && (cloakFreely || range < 2000. * (1. + hysteresis)))
-		{
-			command |= Command::CLOAK;
-			// Move away from the nearest enemy.
-			if(nearestEnemy)
-			{
-				Point safety;
-				// TODO: This could use an "Avoid" method, to account for other in-system hazards.
-				// Simple approximation: move equally away from both the system center and the
-				// nearest enemy, until the constrainment boundary is reached.
-				if(ship.GetPersonality().IsUnconstrained() || !fenceCount.count(&ship))
-					safety = 2 * ship.Position().Unit() - nearestEnemy->Position().Unit();
-				else
-					safety = -ship.Position().Unit();
-
-				safety *= ship.MaxVelocity();
-				MoveTo(ship, command, ship.Position() + safety, safety, 1., .8);
-				return true;
-			}
-		}
-		// Choose to cloak if there are no enemies nearby and cloaking is sensible.
-		if(range == MAX_RANGE && cloakFreely && !ship.GetTargetShip())
-			command |= Command::CLOAK;
 	}
+	// Choose to cloak if there are no enemies nearby and cloaking is sensible.
+	if(range == MAX_RANGE && cloakFreely && !ship.GetTargetShip())
+		command |= Command::CLOAK;
+
 	return false;
 }
 
