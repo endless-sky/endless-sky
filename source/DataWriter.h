@@ -35,15 +35,23 @@ class DataNode;
 // automatically adds quotation marks around strings if they contain whitespace.
 class DataWriter {
 public:
+	// Constructor, specifying the file to write.
+	explicit DataWriter(const std::string &path);
 	// Constructor for a DataWriter that will not save its contents automatically
 	DataWriter();
 	DataWriter(const DataWriter &) = delete;
 	DataWriter(DataWriter &&) = delete;
 	DataWriter &operator=(const DataWriter &) = delete;
 	DataWriter operator=(DataWriter &&) = delete;
+	// The file is not actually saved until the destructor is called. This makes
+	// it possible to write the whole file in a single chunk.
+	~DataWriter();
 
 	// Gets the current contents of the DataWriter.
 	std::string GetText();
+
+	// Save the contents to a file.
+	void SaveToPath(const std::string &path);
 
 	// Writes the contents of the string without any escaping, quoting or
 	// any other kind of modification.
@@ -94,6 +102,8 @@ public:
 
 
 private:
+	// Save path (in UTF-8). Empty string for in-memory DataWriter.
+	std::string path;
 	// Current indentation level.
 	std::string indent;
 	// The string used for indentation.

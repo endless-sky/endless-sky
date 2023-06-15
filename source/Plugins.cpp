@@ -89,7 +89,7 @@ void Plugins::Save()
 {
 	if(plugins.empty())
 		return;
-	DataWriter out;
+	DataWriter out(Files::Config() + "plugins.txt");
 
 	out.Write("state");
 	out.BeginChild();
@@ -98,7 +98,6 @@ void Plugins::Save()
 			out.Write(it.first, it.second.currentState);
 	}
 	out.EndChild();
-	Files::Write(Files::Config() + "plugins.txt", out.GetText());
 }
 
 

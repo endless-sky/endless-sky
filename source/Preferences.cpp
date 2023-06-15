@@ -224,7 +224,7 @@ void Preferences::Load()
 
 void Preferences::Save()
 {
-	DataWriter out;
+	DataWriter out(Files::Config() + "preferences.txt");
 
 	out.Write("volume", Audio::Volume() / VOLUME_SCALE);
 	out.Write("window size", Screen::RawWidth(), Screen::RawHeight());
@@ -246,8 +246,6 @@ void Preferences::Save()
 
 	for(const auto &it : settings)
 		out.Write(it.first, it.second);
-
-	Files::Write(Files::Config() + "preferences.txt", out.GetText());
 }
 
 
