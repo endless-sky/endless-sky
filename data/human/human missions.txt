@@ -6150,7 +6150,7 @@ mission "Republic Navy Advisory System [volcanic]"
 		government "Republic"
 	destination
 		government "Republic" "Syndicate" "Independent" "Neutral"
-		attribute "volcanic"
+		attribute "volcanic" "lava"
 	substitution
 		"<problem>" "volcanic event"
 	cargo "cold aid" 10 15 0.5
