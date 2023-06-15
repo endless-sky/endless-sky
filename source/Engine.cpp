@@ -2063,18 +2063,8 @@ void Engine::HandleMouseClicks()
 
 
 // Determines alternate mouse turning, setting player mouse angle, and right-click firing weapons.
-// Also passes mouse position to EscortDisplay.
 void Engine::HandleMouseInput(Command &activeCommands)
 {
-	int mousePosX;
-	int mousePosY;
-	auto mouseState = SDL_GetMouseState(&mousePosX, &mousePosY);
-	double relX = mousePosX - Screen::RawWidth() / 2;
-	double relY = mousePosY - Screen::RawHeight() / 2;
-
-	// Pass mouse position to EscortDisplay.
-	escorts.SetMousePosition(Point(relX, relY));
-
 	isMouseHoldEnabled = activeCommands.Has(Command::MOUSE_TURNING_HOLD);
 	bool isMouseToggleEnabled = Preferences::Has("Control ship with mouse");
 
@@ -2086,8 +2076,12 @@ void Engine::HandleMouseInput(Command &activeCommands)
 		return;
 	activeCommands.Set(Command::MOUSE_TURNING_HOLD);
 	bool rightMouseButtonHeld = false;
-	if((mouseState & SDL_BUTTON_RMASK) != 0)
+	int mousePosX;
+	int mousePosY;
+	if((SDL_GetMouseState(&mousePosX, &mousePosY) & SDL_BUTTON_RMASK) != 0)
 		rightMouseButtonHeld = true;
+	double relX = mousePosX - Screen::RawWidth() / 2;
+	double relY = mousePosY - Screen::RawHeight() / 2;
 	ai.SetMousePosition(Point(relX, relY));
 
 	// Activate firing command.

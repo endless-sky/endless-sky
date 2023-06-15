@@ -101,15 +101,8 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 
 		// Draw the system name for any escort not in the current system.
 		if(!escort.system.empty())
-		{
-			Point textPos = pos + Point(-10., 10.);
-			Rectangle systemZone = Rectangle::FromCorner(textPos, Point(WIDTH - 20., font.Height()));
-			Truncate truncate = Truncate::BACK;
-			if(systemZone.Contains(mouse))
-				truncate = Truncate::NONE;
-			font.Draw({escort.system, {static_cast<int>(WIDTH - 20.), Alignment::LEFT, truncate}},
-				textPos, elsewhereColor);
-		}
+			font.Draw({escort.system, {static_cast<int>(WIDTH - 20.), Alignment::LEFT, Truncate::BACK}},
+				pos + Point(-10., 10.), elsewhereColor);
 
 		Color color;
 		if(escort.isDisabled)
@@ -198,14 +191,6 @@ const vector<const Ship *> &EscortDisplay::Click(const Point &point) const
 
 	static const vector<const Ship *> empty;
 	return empty;
-}
-
-
-
-// Set mouse position for hover checks.
-void EscortDisplay::SetMousePosition(Point position)
-{
-	mouse = position;
 }
 
 

@@ -23,7 +23,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
-class Point;
 class Rectangle;
 class Ship;
 class Sprite;
@@ -43,9 +42,6 @@ public:
 	// Check if the given point is a click on an escort icon. If so, return the
 	// stack of ships represented by the icon. Otherwise, return an empty stack.
 	const std::vector<const Ship *> &Click(const Point &point) const;
-
-	// Set mouse position for hover checks.
-	void SetMousePosition(Point position);
 
 
 private:
@@ -82,7 +78,6 @@ private:
 	mutable std::list<Icon> icons;
 	mutable std::vector<std::vector<const Ship *>> stacks;
 	mutable std::vector<Point> zones;
-	Point mouse;
 };
 
 
