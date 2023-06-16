@@ -1835,6 +1835,68 @@ news "tourist pa system"
 			"Dear travelers: please take the time to adjust to normal gravity."
 		word
 			`"`
+phrase "pirate worlds"
+	word
+		"Albatross"
+		"Bloodsea"
+		"Buccaneer Bay"
+		"Covert"
+		"Deadman's Cove"
+		"Freedom"
+		"Greenrock"
+		"Haven"
+		"New Tortuga"
+		"Smuggler's Den"
+		"Stormhold"
+		"Thule"
+		"Zenith"
+
+phrase "rnas travel advisory [1]"
+	word
+		"Please be advised: a travel advisory remains in effect for"
+		"The Republic Navy strongly discourages travel to"
+	word
+		" "
+	word
+		"${pirate worlds}"
+	word
+		"."
+
+phrase "rnas travel advisory [2]"
+	word
+		"The Republic Navy Civilian Safety Board considers travel to"
+	word
+		" "
+	word
+		"${pirate worlds}"
+	word
+		" "
+	word
+		"to represent an unacceptable risk."
+		"to be extremely dangerous."
+		"to place Navy rescue personnel in unnecessary danger."
+
+phrase "rnas travel advisory [3]"
+	word
+		"Navigational hazard: "
+	word
+		" "
+	word
+		"${pirate worlds}"
+	word
+		" - "
+	word
+		"dangerous conditions"
+		"threat to life and property"
+		"violent non-state actors"
+	word
+		"."
+
+phrase "rnas travel advisory"
+	word
+		"${rnas travel advisory [1]}"
+		"${rnas travel advisory [2]}"
+		"${rnas travel advisory [3]}"
 
 news "republic navy advisory system"
 	location
@@ -1846,23 +1908,7 @@ news "republic navy advisory system"
 		word
 			`"`
 		word
-			"Please be advised: a travel advisory remains in effect for "
-		word
-			"Albatross"
-			"Bloodsea"
-			"Buccaneer Bay"
-			"Covert"
-			"Deadman's Cove"
-			"Freedom"
-			"Greenrock"
-			"Haven"
-			"New Tortuga"
-			"Smuggler's Den"
-			"Stormhold"
-			"Thule"
-			"Zenith"
-		word
-			"."
+			"${rnas travel advisory}"
 			"Please notify Republic officials immediately if you have been detained by any ship not granted legal authority to do so by the Republic Navy."
 			"Report all sightings of pirate vessels immediately."
 			"The following message is a test. The following message is a test. The following message is a test: Radiation hazard. Evacuate immediately. Radiation hazard. Evacuate immediately. Radiation hazard. Evacuate immediately."
