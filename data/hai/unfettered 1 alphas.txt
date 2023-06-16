@@ -165,24 +165,26 @@ mission "Unfettered: Alpha Supplies: Leaving"
 			branch leaving
 				has "alpha: leaving"
 			`As you launch, the local authorities hail you, "An important guest is arriving, you should not be here when they do. Get out, fast."`
-			`	They insist: "Whatever you do, do not interfere with that incoming ship."`
+			`	They insist: "Whatever you do, do not destroy that incoming ship."`
 				accept
 			label leaving
 			`As you launch, the local authorities hail you, "An important guest is leaving with you. They seem to have activated their weapon systems... Get out, fast. And do not interfere with that launching ship, or at least do not destroy it."`
 				accept
 			label enough
 			branch consequences
-				"alpha: worry" == 4
+				"alpha: worry" >= 4
 			`As you launch, the local authorities hail you, "We are getting tired by this little game you have with the Alphas, we cannot tolerate these disruption to our supplies for much longer. If you keep on doing this there will be consequences!"`
+			`	You hear them speak among themselves, "Is this monkey truly the one Mera said could be useful?"`
 				accept
 			label consequences
-			`You had just finished the launching procedures when one angry sounding Hai hails you, "Enough is enough. You better bring us a Jump Drive to make yourself be forgiven, but until then you have lost the privileges you had with us."`
+			`One angry sounding Hai hails you as you enter orbit, "Enough is enough. You better bring us a Jump Drive to make yourself be forgiven, but until then you have lost the privileges you had with us."`
 			action
-				"reputation: Hai (Unfettered)" <= -1000
+				"reputation: Hai (Unfettered)" -= 1000
 	npc kill
 		government "Alpha"
 		to spawn
 			has "alpha: arriving"
+		system "Hi Yahr"
 		personality entering uninterested fleeing timid
 		"cargo settings"
 			cargo 4
@@ -195,6 +197,7 @@ mission "Unfettered: Alpha Supplies: Leaving"
 	npc kill
 		government "Alpha"
 		personality launching uninterested fleeing timid
+		system "Hi Yahr"
 		to spawn
 			has "alpha: leaving"
 		"cargo settings"
@@ -230,7 +233,7 @@ mission "<uhai> 5: Scan Auxiliary"
 	deadline 4
 	to offer
 		has "event: unfettered: analyzed the scans"
-		"alpha: worry" <= 3
+		random < 100 - "alpha: worry" * 25
 	on offer
 		clear "event: unfettered: analyzed the scans"
 		conversation
