@@ -6137,8 +6137,9 @@ mission "Republic Navy Advisory System [frozen]"
 	to offer
 		random < 1
 	on offer
-		dialog `This is the Republic Navy Advisory System: <planet> is experiencing a severe <problem>. Volunteers are requested to supply <cargo> to <planet>.`
+		dialog `This is the Republic Navy Advisory System: <planet> is experiencing a severe <problem>. Volunteers are requested to supply <cargo> to <planet>. A stipend of <payment> is provided to cover fuel, crew, and any incidental expenses.`
 	on complete
+		payment 8000
 		dialog `Relieved-looking aid workers welcome your shipment. You look on, feeling satisfied that <cargo> will soon arrive to those that need it most.`
 
 mission "Republic Navy Advisory System [volcanic]"
@@ -6157,7 +6158,8 @@ mission "Republic Navy Advisory System [volcanic]"
 	to offer
 		random < 1
 	on offer
-		dialog `This is the Republic Navy Advisory System: <planet> is experiencing a severe <problem>. Volunteers are requested to supply <cargo> to <planet>.`
+		dialog `This is the Republic Navy Advisory System: <planet> is experiencing a severe <problem>. Volunteers are requested to supply <cargo> to <planet>. A stipend of <payment> is provided to cover fuel, crew, and any incidental expenses.`
 	on complete
+		payment 8000
 		dialog `Relieved-looking aid workers welcome your shipment. You look on, feeling satisfied that <cargo> will soon arrive to those that need it most.`
 
