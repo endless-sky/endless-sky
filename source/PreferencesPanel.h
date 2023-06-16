@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ClickZone.h"
 #include "Command.h"
 #include "Point.h"
+#include "text/WrappedText.h"
 
 #include <string>
 #include <vector>
@@ -64,7 +65,10 @@ private:
 	Point hoverPoint;
 	// Which page of the preferences we're on.
 	char page = 'c';
+	int hoverCount = 0;
 	std::string hoverPreference;
+	std::string tooltip;
+	WrappedText hoverText;
 
 	int currentSettingsPage = 0;
 

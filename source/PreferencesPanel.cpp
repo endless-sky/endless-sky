@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "Dialog.h"
 #include "Files.h"
+#include "FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
@@ -76,6 +77,8 @@ namespace {
 
 	// How many pages of settings there are.
 	const int SETTINGS_PAGE_COUNT = 2;
+	// Hovering a preference for this many frames activates the tooltip.
+	const int HOVER_TIME = 60;
 }
 
 
@@ -92,6 +95,11 @@ PreferencesPanel::PreferencesPanel()
 		}
 
 	SetIsFullScreen(true);
+
+	// Initialize a centered tooltip.
+	hoverText.SetFont(FontSet::Get(14));
+	hoverText.SetWrapWidth(150);
+	hoverText.SetAlignment(Alignment::LEFT);
 }
 
 
@@ -126,6 +134,35 @@ void PreferencesPanel::Draw()
 		DrawSettings();
 	else if(page == 'p')
 		DrawPlugins();
+
+	// Update the tooltip timer [0-60].
+	hoverCount += !hoverPreference.empty() ? (hoverCount < HOVER_TIME) : (hoverCount ? -1 : 0);
+
+	if(!hoverPreference.empty() && hoverCount >= HOVER_TIME)
+	{
+		// Create the tooltip text.
+		if(tooltip.empty())
+		{
+			tooltip = GameData::Tooltip(hoverPreference);
+			hoverText.Wrap(tooltip);
+		}
+		if(!tooltip.empty())
+		{
+			Point size(hoverText.WrapWidth(), hoverText.Height() - hoverText.ParagraphBreak());
+			size += Point(20., 20.);
+			Point topLeft = hoverPoint;
+
+			// Do not overflow the screen dimensions.
+			if(topLeft.X() + size.X() > Screen::Right())
+				topLeft.X() -= size.X();
+			if(topLeft.Y() + size.Y() > Screen::Bottom())
+				topLeft.Y() -= size.Y();
+				
+			// Draw the background fill and the tooltip text.
+			FillShader::Fill(topLeft + .5 * size, size, *GameData::Colors().Get("tooltip background"));
+			hoverText.Draw(topLeft + Point(10., 10.), *GameData::Colors().Get("medium"));
+		}
+	}
 }
 
 
@@ -291,6 +328,7 @@ bool PreferencesPanel::Hover(int x, int y)
 	for(const auto &zone : prefZones)
 		if(zone.Contains(hoverPoint))
 			hoverPreference = zone.Value();
+	tooltip.clear();
 
 	hoverPlugin.clear();
 	for(const auto &zone : pluginZones)
