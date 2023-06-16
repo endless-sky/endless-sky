@@ -49,16 +49,17 @@ void AmmoDisplay::Update(const Ship &flagship)
 			continue;
 
 		double ammoCount = -1.;
-		// TODO: if a weapon has both an ammo requirement and consumes fuel, the ammo display will only show the ammo,
-		// not the fuel, so the weapon may not fire because it is out of fuel even though it still has ammo,
-		// and will not show a '0' in the ammo display.
 		if(secWeapon->Ammo())
 			ammoCount = flagship.OutfitCount(secWeapon->Ammo());
 		else if(secWeapon->FiringFuel())
 		{
 			double remaining = flagship.Fuel()
 				* flagship.Attributes().Get("fuel capacity");
-			ammoCount = remaining / secWeapon->FiringFuel();
+			double fuelAmmoCount = remaining / secWeapon->FiringFuel();
+			if(ammoCount == -1.)
+				ammoCount = fuelAmmoCount;
+			else
+				ammoCount = min(ammoCount, fuelAmmoCount);
 		}
 		ammo[secWeapon] = ammoCount;
 	}
