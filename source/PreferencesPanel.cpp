@@ -157,7 +157,7 @@ void PreferencesPanel::Draw()
 				topLeft.X() -= size.X();
 			if(topLeft.Y() + size.Y() > Screen::Bottom())
 				topLeft.Y() -= size.Y();
-				
+
 			// Draw the background fill and the tooltip text.
 			FillShader::Fill(topLeft + .5 * size, size, *GameData::Colors().Get("tooltip background"));
 			hoverText.Draw(topLeft + Point(10., 10.), *GameData::Colors().Get("medium"));
