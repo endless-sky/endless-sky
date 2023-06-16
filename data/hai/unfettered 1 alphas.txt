@@ -111,41 +111,6 @@ outfitter "Korath Drones Alpha Loot"
 	"Thermal Repeater Rifle"
 	"Banisher Grav-Turret"
 
-mission "Unfettered: Alpha Supplies: Coming"
-	invisible
-	minor
-	repeat
-	landing
-	source "Warfeed"
-	deadline
-	to offer
-		not "<uhai> 9: Alpha Quest: offered"
-		not "unfettered: destroyed auxiliary"
-		not "Unfettered: Alpha Supplies: Coming: active"
-		not "Unfettered: Alpha Supplies: Leaving: active"
-		# if you're hostile to the Unfettered they will warn the Alphas not to come when you're there
-		"reputation: Hai (Unfettered)" >= 0
-		or
-			and
-				not "unfettered: saw auxiliary"
-				random < 30
-			random < 8
-	on enter "Hi Yahr"
-		set "unfettered: saw auxiliary"
-		dialog
-			`As you launch, the local authorities hail you, "An important guest is arriving, you should not be here when they do. Get out, fast."`
-			`	They insist: "Whatever you do, do not interfere with that incoming ship."`
-	npc kill
-		government "Alpha"
-		personality entering uninterested fleeing timid
-		system "Hi Yahr"
-		"cargo settings"
-			cargo 4
-			commodities "Military" "Electronics"
-			outfitters "Korath Drones Alpha Loot"
-		ship "Auxiliary (Alpha)" "Settler"
-		conversation "unfettered: destroyed auxiliary"
-
 # The Unfettered do not give any prototype weaponry, but do give advanced things, including Wanderer loot.
 # However, like the Alphas, they keep the most advanced loot (white sun, dark storm shielding, large bio cell)
 outfitter "Unfettered Alpha Trade"
@@ -177,32 +142,83 @@ mission "Unfettered: Alpha Supplies: Leaving"
 	repeat
 	landing
 	source "Warfeed"
-	deadline
+	deadline 3
 	to offer
 		not "<uhai> 9: Alpha Quest: offered"
 		not "unfettered: destroyed auxiliary"
-		not "Unfettered: Alpha Supplies: Coming: active"
-		not "Unfettered: Alpha Supplies: Leaving: active"
+		not "Unfettered: Alpha Supplies: active"
 		"reputation: Hai (Unfettered)" >= 0
 		or
+			day <= 2
 			and
-				not "unfettered: saw auxiliary"
-				random < 30
-			random < 8
+				"day" >= 14
+				"day" <= 15
+		random < 40 - "alpha: worry" * 5
+	on offer
+		"alpha: arriving" = ((day == 1) + (day == 14))
+		"alpha: leaving" = 1 - "alpha: arriving"
 	on enter "Hi Yahr"
-		set "unfettered: saw auxiliary"
-		dialog `As you launch, the local authorities hail you, "An important guest is leaving with you. They seem to have activated their weapon systems... Get out, fast. And do not interfere with that launching ship."`
+		"unfettered: saw auxiliary" ++
+		conversation
+			branch enough
+				"alpha: worry" >= 2
+			branch leaving
+				has "alpha: leaving"
+			`As you launch, the local authorities hail you, "An important guest is arriving, you should not be here when they do. Get out, fast."`
+			`	They insist: "Whatever you do, do not interfere with that incoming ship."`
+				accept
+			label leaving
+			`As you launch, the local authorities hail you, "An important guest is leaving with you. They seem to have activated their weapon systems... Get out, fast. And do not interfere with that launching ship, or at least do not destroy it."`
+				accept
+			label enough
+			branch consequences
+				"alpha: worry" == 4
+			`As you launch, the local authorities hail you, "We are getting tired by this little game you have with the Alphas, we cannot tolerate these disruption to our supplies for much longer. If you keep on doing this there will be consequences!"`
+				accept
+			label consequences
+			`You had just finished the launching procedures when one angry sounding Hai hails you, "Enough is enough. You better bring us a Jump Drive to make yourself be forgiven, but until then you have lost the privileges you had with us."`
+			action
+				"reputation: Hai (Unfettered)" <= -1000
+	npc kill
+		government "Alpha"
+		to spawn
+			has "alpha: arriving"
+		personality entering uninterested fleeing timid
+		"cargo settings"
+			cargo 4
+			commodities "Military" "Electronics"
+			outfitters "Korath Drones Alpha Loot"
+		ship "Auxiliary (Alpha)" "Settler"
+		conversation "unfettered: destroyed auxiliary"
+		on board
+			"alpha: worry" ++
 	npc kill
 		government "Alpha"
 		personality launching uninterested fleeing timid
-		system "Hi Yahr"
+		to spawn
+			has "alpha: leaving"
 		"cargo settings"
 			cargo 6
 			commodities "Metal" "Heavy Metals"
 			outfitters "Unfettered Alpha Trade"
 		ship "Auxiliary (Alpha)" "Settler"
 		conversation "unfettered: destroyed auxiliary"
-
+		on board
+			"alpha: worry" ++
+	npc
+		government "Alpha"
+		to spawn
+			or
+				"alpha: worry" == 2
+				"alpha: worry" == 3
+		personality vindictive heroic entering coward
+		ship "Met Par Tek 53" 2
+	npc
+		government "Alpha"
+		to spawn
+			"alpha: worry" == 3
+		personality vindictive heroic entering coward
+		ship "Met Par Tek 53" 3
 
 
 # SPOILER: this mission is what sets the Alphas against you, because they can't afford to let you know they operate here, thinking you could be with the Navy.
@@ -214,6 +230,7 @@ mission "<uhai> 5: Scan Auxiliary"
 	deadline 4
 	to offer
 		has "event: unfettered: analyzed the scans"
+		"alpha: worry" <= 3
 	on offer
 		clear "event: unfettered: analyzed the scans"
 		conversation
@@ -250,6 +267,8 @@ mission "<uhai> 5: Scan Auxiliary"
 			commodities "Military" "Electronics"
 			outfitters "Korath Drones Alpha Loot"
 		ship "Auxiliary (Alpha)" "Settler"
+		on board
+			"alpha: worry" ++
 		on kill
 			dialog `The local authorities hail you, with a code purple message. "You have disappointed us. Think very carefully before you make any more mistakes, or it will be war!"`
 			"reputation: Hai (Unfettered)" <?= 0
@@ -296,7 +315,8 @@ mission "<uhai> 5: Scan Auxiliary"
 	on complete
 		dialog
 			`You are offered some surprisingly high-quality beverages to keep you waiting, that are much better than what you normally would be able to get on Unfettered worlds. This special treatment is probably in part due to your ongoing mission for Mera.`
-			`	After a while, the ship goes away, you can now go back to <origin> with the scanner logs.`
+			`	One of them comes to talk to you, "I don't know if I should be telling you this, but this ship comes regularly, in the middle and at the end of each month. As far as we are concerned, this is a duel between you and them, meaning so long as they keep coming we will not mind. Just do not destroy them!"`
+			`	After a while, the ship goes away, you can now go back to <origin> with the scanner logs, at your own conveniance.`
 
 
 
