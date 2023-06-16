@@ -63,7 +63,7 @@ mission "Hai Leaks Response 3"
 	on offer
 		conversation
 			`You are directed to an official landing pad on your return to Hai-home, and it is not long before you are introducing your entourage to Sayari. Alondo in particular seems excited to be here and seems to have a knack for charming Sayari with polite and insightful, if rather simple, questions throughout the diplomatic niceties.`
-			`	A functionary leads you to what appears to be a situation room, filled with monitors, holoprojectors, and other equipment. Everyone takes their seats at an semicircle-shaped table, and the functionary motions you to the middle seat. A massive holoprojector in front of the table turns on.`
+			`	A functionary leads you to what appears to be a situation room, filled with monitors, holoprojectors, and other equipment. Everyone takes their seats at a semicircle-shaped table, and the functionary motions you to the middle seat. A massive holoprojector in front of the table turns on.`
 			choice
 				`	"I don't recall there being nearly so many pirates before."`
 			`	Sayari frowns and exhales a long breath through her nose, "Yes. Well, it seems that the rumors making their way through your media have attracted every opportunist this side of the Deep."`

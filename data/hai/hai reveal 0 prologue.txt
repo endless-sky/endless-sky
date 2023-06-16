@@ -520,10 +520,10 @@ mission "Hai Reveal: Meet the Team: Xilin 2"
 		has "Hai Reveal: Meet the Team: Xilin 1: done"
 	on offer
 		conversation
-			`The rate at which new ships show up isn't tremendous, so Xilin starts by speak with some of the older captains who have been here prior to the news. "You can learn a lot by sharing a drink with the right merchant," he says to you.`
+			`The rate at which new ships show up isn't tremendous, so Xilin starts by speaking with some of the older captains who have been here prior to the news. "You can learn a lot by sharing a drink with the right merchant," he says to you.`
 			`	One captain in particular has been camped out here to intercept new captains as they arrive and give them the induction tour. He also has a copious set of notes that he gladly shares with Xilin. "After I heard the news, I figured I'd help by keeping notes on new arrivals. They make themselves very obvious with the way they gawk," he says. "We had two new ships come in yesterday, a Freighter and an Osprey, but there's been nothing today as of yet. It's normally only one or two smaller ships a day, if that."`
 			`	Xilin decides to next search the spaceport for captains that showed up recently, but just before heading off, a Star Queen full of passengers lands in the spaceport with everyone on board pressing their faces against the windows.`
-			`	"You have to be kidding me," Xilin says under his breath while approaching ship.`
+			`	"You have to be kidding me," Xilin says under his breath while approaching the ship.`
 			`	"Welcome, one and all, to the land of the Hai," the ship's captain says while walking down the boarding ramp with all her passengers behind her.`
 			`	"Excuse me, Captain. Do you care to answer a few questions?" Xilin shouts up to the captain. She looks concerned to see Xilin standing there in a Republic uniform, but agrees to talk after shooing her passengers off into the spaceport.`
 			`	"What is it you need to know, officer?" the captain asks.`
