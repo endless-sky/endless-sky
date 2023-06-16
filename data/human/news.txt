@@ -1331,7 +1331,7 @@ news "work coach"
 	name
 		word
 			"Corporate consultant"
-			"Work/Life balance coach"
+			"Work/life balance coach"
 			"Work efficiency coach"
 	message
 		word
