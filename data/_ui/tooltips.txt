@@ -1073,3 +1073,18 @@ tip "insufficient energy to fire?"
 # Boolean attributes:
 tip "This outfit is considered an atrocity."
 	`Governments that scan for illegal goods will attack you upon discovering this item in your possession in space, or arrest you if found when landed.`
+
+
+
+# Settings
+tip "Automatic aiming"
+	`Automatically turn your ship towards your target to aim fixed weapons.`
+
+tip "Automatic firing"
+	`Automatically fire your guns, turrets, or all weapons if your enemy is reachable.`
+
+tip "Flagship flotsam collection"
+	`Control if your flagship can pick up cargo floating in space.`
+
+tip "System map sends move orders"
+	`Right-click on a spot in the orbits view to send your escort there.`
