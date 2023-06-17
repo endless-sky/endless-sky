@@ -424,17 +424,19 @@ phrase "friendly civilian"
 	word
 		"the "
 	word
-		"best "
-		"coolest "
-		"weirdest "
-		"funniest "
-		"most shocking "
-		"most fascinating "
-		"most surreal "
-		"most surprising "
-		"most enjoyable "
-		"most original "
-		"most engrossing "
+		"best"
+		"coolest"
+		"weirdest"
+		"funniest"
+		"most shocking"
+		"most fascinating"
+		"most surreal"
+		"most surprising"
+		"most enjoyable"
+		"most original"
+		"most engrossing"
+	word
+		" "
 	phrase
 		"visual media"
 	word
@@ -948,8 +950,7 @@ phrase "friendly civilian"
 		"How many Delvians does it take to change a lightbulb? Zero, the room caves in before you can replace the bulb."
 		"How many Sinterians does it take to change a lightbulb? Zero, they just send in a robot to do the job."
 	word
-		""
-		""
+		"" 2
 		" What? Not funny?"
 		" Hey, I thought it was good!"
 		" C'mon, at least laugh a little!"
@@ -1659,10 +1660,12 @@ phrase "friendly civilian"
 	word
 		" sometimes "
 	word
-		"transport "
-		"smuggle "
-		"steal "
-		"plunder "
+		"transport"
+		"smuggle"
+		"steal"
+		"plunder"
+	word
+		" "
 	phrase
 		"contraband"
 	word
@@ -1856,11 +1859,13 @@ phrase "friendly civilian"
 		"testing computer fabrication machines"
 		"writing firmware for embedded computer chips"
 	word
-		", and look what a nice ship I'm flying now."
-		", and now I'm retired and flying spaceships for fun."
-		", but being a pilot on a spaceship beats it all."
-		", but I still had to take a big loan to buy my first ship."
-		", but it was my grandma's inheritance that allowed me to buy this ship."
+		", "
+	word
+		"and look what a nice ship I'm flying now."
+		"and now I'm retired and flying spaceships for fun."
+		"but being a pilot on a spaceship beats it all."
+		"but I still had to take a big loan to buy my first ship."
+		"but it was my grandma's inheritance that allowed me to buy this ship."
 
 phrase "friendly civilian"
 	word
@@ -1937,10 +1942,12 @@ phrase "friendly civilian"
 		"the ACME company"
 		"the Astronomical Conglomeration of Manufacturing Entities"
 	word
-		", a company many times smaller than the Syndicate."
-		", a minor company, but with much better service than the Syndicate."
-		", a pretty insignificant company located on just one planet."
-		", but next time, I'll buy from the Syndicate again."
+		", "
+	word
+		"a company many times smaller than the Syndicate."
+		"a minor company, but with much better service than the Syndicate."
+		"a pretty insignificant company located on just one planet."
+		"but next time, I'll buy from the Syndicate again."
 
 phrase "friendly civilian"
 	word
@@ -1992,24 +1999,30 @@ phrase "friendly civilian"
 
 phrase "friendly civilian"
 	word
-		"When I was younger,"
-		"When I was a kid,"
-		"When I was your age,"
-		"Long ago,"
-		"Back in high school,"
-		"A long time ago,"
+		"When I was younger"
+		"When I was a kid"
+		"When I was your age"
+		"Long ago"
+		"Back in high school"
+		"A long time ago"
 	word
-		" I dreamed of "
-		" I had hopes of "
-		" I had dreams of "
-		" I fancied "
-		" I thought about "
+		", "
 	word
-		"flying "
-		"owning "
-		"piloting "
-		"captaining "
-		"commanding "
+		"I dreamed of"
+		"I had hopes of"
+		"I had dreams of"
+		"I fancied"
+		"I thought about"
+	word
+		" "
+	word
+		"flying"
+		"owning"
+		"piloting"
+		"captaining"
+		"commanding"
+	word
+		" "
 	word
 		"an Auxiliary. Too bad only the Navy can use those."
 		"a Bactrian, but the Deep's government won't allow me to purchase one."
@@ -2026,17 +2039,19 @@ phrase "friendly civilian"
 
 phrase "friendly civilian"
 	word
-		"I was born on "
-		"I come from "
-		"Before I bought my first ship, I lived on "
-		"I hail from "
-		"I'm a native of "
-		"My homeworld is "
-		"I'm from "
-		"I grew up on "
-		"I spent my childhood on "
-		"I lived most of my life on "
-		"I used to live on "
+		"I was born on"
+		"I come from"
+		"Before I bought my first ship, I lived on"
+		"I hail from"
+		"I'm a native of"
+		"My homeworld is"
+		"I'm from"
+		"I grew up on"
+		"I spent my childhood on"
+		"I lived most of my life on"
+		"I used to live on"
+	word
+		" "
 	word
 		"New Sahara. It's not often you meet someone else from there."
 		"Hope. If not for the Navy, I'd still be a human popsicle there."
@@ -2394,17 +2409,13 @@ phrase "friendly navy"
 		"the Republic for"
 		"the Navy for"
 	word
-		" "
-	word
 		"" 6
-		"providing"
-		"ensuring"
-		"giving you"
-		"giving us"
-		"giving humanity"
-		"giving mankind"
-	word
-		" "
+		" providing "
+		" ensuring "
+		" giving you "
+		" giving us "
+		" giving humanity "
+		" giving mankind "
 	word
 		"three centuries"
 		"three hundred years"
@@ -2636,17 +2647,17 @@ phrase "friendly navy"
 		"navy purpose b" 4
 		"navy purpose c"
 	word
-		". "
+		"."
 	word
 		"" 5
-		"Your cooperation is greatly valued."
-		"We thank you for your cooperation."
-		"We appreciate your complicance."
-		"Be thankful for our protection."
-		"Be grateful for our protection."
-		"Be thankful for our sacrifice."
-		"Be grateful for our sacrifice."
-		"Remember that our sacrifice is for your sake."
+		" Your cooperation is greatly valued."
+		" We thank you for your cooperation."
+		" We appreciate your complicance."
+		" Be thankful for our protection."
+		" Be grateful for our protection."
+		" Be thankful for our sacrifice."
+		" Be grateful for our sacrifice."
+		" Remember that our sacrifice is for your sake."
 
 phrase "navy purpose a"
 	word
@@ -2692,10 +2703,12 @@ phrase "navy purpose b"
 
 phrase "navy purpose b"
 	word
-		"fight for "
-		"defend "
-		"protect "
-		"advance "
+		"fight for"
+		"defend"
+		"protect"
+		"advance"
+	word
+		" "
 	word
 		"the Republic"
 		"humanity"
@@ -2710,9 +2723,11 @@ phrase "navy purpose b"
 
 phrase "navy purpose b"
 	word
-		"defend "
-		"protect "
-		"guard "
+		"defend"
+		"protect"
+		"guard"
+	word
+		" "
 	word
 		"humanity"
 		"mankind"
@@ -2854,18 +2869,24 @@ phrase "friendly navy"
 	word
 		" "
 	word
-		"civilian "
-		"merchant "
-		"private "
+		"civilian"
+		"merchant"
+		"private"
 	word
-		"ships "
-		"vessels "
-		"warships "
+		" "
 	word
-		"in "
-		"within "
-		"passing through "
-		"traveling in "
+		"ships"
+		"vessels"
+		"warships"
+	word
+		" "
+	word
+		"in"
+		"within"
+		"passing through"
+		"traveling in"
+	word
+		" "
 	word
 		"the Republic"
 		"Republic space"
@@ -3002,9 +3023,11 @@ phrase "friendly navy"
 		"a criminal act"
 		"a punishable act"
 	word
-		" under Republic law"
-		" by the laws of the Republic"
-		" by the laws of Parliament"
+		" "
+	word
+		"under Republic law"
+		"by the laws of the Republic"
+		"by the laws of Parliament"
 	word
 		" to "
 	word
@@ -3020,34 +3043,42 @@ phrase "friendly navy"
 
 phrase "navy illegal acts"
 	word
-		"install "
-		"use "
-		"employ "
-		"utilize "
+		"install"
+		"use"
+		"employ"
+		"utilize"
 	word
-		"illegal "
-		"unauthorized "
-		"unlicenced "
+		" "
+	word
+		"illegal"
+		"unauthorized"
+		"unlicenced"
+	word
+		" "
 	word
 		"outfits"
 		"equipment"
 
 phrase "navy illegal acts"
 	word
-		"traffic "
-		"transport "
-		"smuggle "
-		"trade "
-		"deal "
-		"carry "
+		"traffic"
+		"transport"
+		"smuggle"
+		"trade"
+		"deal"
+		"carry"
+	word
+		" "
 	word
 		"${contraband}"
 
 phrase "navy illegal acts"
 	word
-		"engage in "
-		"participate in "
-		"become involved in "
+		"engage in"
+		"participate in"
+		"become involved in"
+	word
+		" "
 	word
 		"the transportation of slaves"
 		"the trafficking of slaves"
@@ -3057,12 +3088,16 @@ phrase "navy illegal acts"
 
 phrase "navy illegal acts"
 	word
-		"operate "
-		"pilot "
+		"operate"
+		"pilot"
 	word
-		"an unlicensed "
-		"an unauthorized "
-		"an illegal "
+		" "
+	word
+		"an unlicensed"
+		"an unauthorized"
+		"an illegal"
+	word
+		" "
 	word
 		"ship"
 		"warship"
@@ -3070,12 +3105,16 @@ phrase "navy illegal acts"
 
 phrase "navy illegal acts"
 	word
-		"operate "
-		"pilot "
+		"operate"
+		"pilot"
 	word
-		"unlicensed "
-		"unauthorized "
-		"illegal "
+		" "
+	word
+		"unlicensed"
+		"unauthorized"
+		"illegal"
+	word
+		" "
 	word
 		"ships"
 		"warships"
@@ -3107,9 +3146,11 @@ phrase "navy illegal acts"
 
 phrase "navy illegal acts"
 	word
-		"disrupt "
-		"disturb "
-		"interrupt "
+		"disrupt"
+		"disturb"
+		"interrupt"
+	word
+		" "
 	word
 		"the peace"
 		"the order"
@@ -3402,12 +3443,14 @@ phrase "friendly militia 4 variation"
 	word
 		" and "
 	word
-		"do something about "
-		"do anything about "
-		"help us with "
-		"assist us with "
-		"clear out "
-		"deal with "
+		"do something about"
+		"do anything about"
+		"help us with"
+		"assist us with"
+		"clear out"
+		"deal with"
+	word
+		" "
 	word
 		"these pirates"
 		"these criminals"
@@ -3782,11 +3825,13 @@ phrase "free worlds 6 variations"
 		"respect"
 		"stand by"
 	word
-		" " 4
-		" the principles of "
-		" the Free Worlds' struggle for "
-		" the cause of "
-		" our cause of "
+		"" 4
+		" the principles of"
+		" the Free Worlds' struggle for"
+		" the cause of"
+		" our cause of"
+	word
+		" "
 	word
 		"freedom"
 		"welfare"
@@ -3812,10 +3857,12 @@ phrase "free worlds 6 variations"
 	word
 		" "
 	word
-		"the Republic's "
-		"Parliament's "
-		"the Syndicate's "
-		"the Paradise Planets' "
+		"the Republic's"
+		"Parliament's"
+		"the Syndicate's"
+		"the Paradise Planets'"
+	word
+		" "
 	word
 		"decadence"
 		"corruption"
@@ -4210,12 +4257,16 @@ phrase "friendly pirate"
 		"robbed"
 		"ravaged"
 	word
-		" a "
-		" a whole "
-		" an entire "
-		" the weakest "
-		" the wimpiest "
-		" the stupidest "
+		" "
+	word
+		"a"
+		"a whole"
+		"an entire"
+		"the weakest"
+		"the wimpiest"
+		"the stupidest"
+	word
+		" "
 	word
 		"merchant"
 		"law enforcement"
@@ -4256,13 +4307,15 @@ phrase "friendly pirate"
 		"tried this"
 		"used this"
 	word
-		" new "
-		" crazy "
-		" amazing "
-		" fantastic "
-		" incredible "
-		" facinating "
 		" "
+	word
+		"new "
+		"crazy "
+		"amazing "
+		"fantastic "
+		"incredible "
+		"facinating "
+		""
 	phrase
 		"drugs"
 	word
@@ -4290,12 +4343,14 @@ phrase "friendly pirate"
 		"tried this"
 		"used this"
 	word
-		" new "
-		" terrible "
-		" horrendous "
-		" atrocious "
-		" horrid "
 		" "
+	word
+		"new "
+		"terrible "
+		"horrendous "
+		"atrocious "
+		"horrid "
+		""
 	word
 		"bad blue"
 		"booster"
@@ -4373,9 +4428,11 @@ phrase "friendly pirate"
 	word
 		" that a "
 	word
-		"new batch of "
-		"new delivery of "
-		"new shipment of "
+		"new batch of"
+		"new delivery of"
+		"new shipment of"
+	word
+		" "
 	phrase
 		"contraband"
 	word
@@ -4922,14 +4979,18 @@ phrase "friendly pirate"
 		"enjoying myself while"
 		"having a good time"
 	word
-		" transporting "
-		" delivering "
-		" ferrying "
-		" hauling "
-		" supplying "
-		" exchanging "
-		" moving around "
-		" turning around "
+		" "
+	word
+		"transporting"
+		"delivering"
+		"ferrying"
+		"hauling"
+		"supplying"
+		"exchanging"
+		"moving around"
+		"turning around"
+	word
+		" "
 	phrase
 		"contraband"
 	word
@@ -5673,9 +5734,11 @@ phrase "hostile navy"
 	word
 		" "
 	word
-		"defend "
-		"protect "
-		"guard "
+		"defend"
+		"protect"
+		"guard"
+	word
+		" "
 	word
 		"humanity"
 		"mankind"
@@ -6725,16 +6788,21 @@ phrase "hostile militia"
 		"I "
 		"We "
 	word
-		"hope "
-		"wonder if "
+		"hope"
+		"wonder if"
 	word
-		"you "
-		"criminals like you "
-		
+		" "
 	word
-		"like "
-		"enjoy "
-		"appreciate "
+		"you"
+		"criminals like you"
+	word
+		" "
+	word
+		"like"
+		"enjoy"
+		"appreciate"
+	word
+		" "
 	word
 		"the prison food"
 		"the jail cells"
@@ -6742,13 +6810,17 @@ phrase "hostile militia"
 		"the prison life"
 		"the jail life"
 	word
-		" on "
-		" at "
-		" of "
-		" over on "
-		" over at "
-		" out on "
-		" out at "
+		" "
+	word
+		"on"
+		"at"
+		"of"
+		"over on"
+		"over at"
+		"out on"
+		"out at"
+	word
+		" "
 	word
 		"Bourne"
 		"Spica"
@@ -6781,9 +6853,13 @@ phrase "hostile free worlds"
 		"Democracy"
 		"Liberty"
 	word
-		" shall be "
-		" must be "
-		" will be "
+		" "
+	word
+		"shall be"
+		"must be"
+		"will be"
+	word
+		" "
 	word
 		"defended"
 		"protected"

@@ -73,7 +73,7 @@ outfit "Nanite Enhancer"
 	"hull repair rate" 0.25
 	"hull energy" 0.75
 	"nanite upgrades" -2
-	description "The Nanite Enhancer is a component that can be installed into a Bunrodean nanite fabricator in order to modify its effectiveness. Enhancers increase the strength of the hull repair of an fabricator, but at the cost of reduced energy efficiency."
+	description "The Nanite Enhancer is a component that can be installed into a Bunrodean nanite fabricator in order to modify its effectiveness. Enhancers increase the strength of the hull repair of a fabricator, but at the cost of reduced energy efficiency."
 
 outfit "Nanite Limiter"
 	category "Systems"
