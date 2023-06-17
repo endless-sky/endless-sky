@@ -6182,7 +6182,7 @@ mission "Republic Navy Advisory System [wildfire]"
 		government "Republic" "Syndicate" "Independent" "Neutral"
 		attributes "forest"
 	substitutions
-		"<problem>" "forest fire" 
+		"<problem>" "forest fire"
 		"<problem>" "brush fire"
 			"random" < 60
 		"<problem>" "wildfire"
