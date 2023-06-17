@@ -6133,6 +6133,10 @@ mission "Republic Navy Advisory System [frozen]"
 		attributes "frozen"
 	substitutions
 		"<problem>" "cold snap"
+		"<problem>" "freeze"
+			"random" < 60
+		"<problem>" "snowfall"
+			"random" < 30
 	cargo "cold aid" 10 15 0.5
 	to offer
 		random < 1
@@ -6154,6 +6158,10 @@ mission "Republic Navy Advisory System [volcanic]"
 		attributes "volcanic" "lava"
 	substitutions
 		"<problem>" "volcanic event"
+		"<problem>" "volcanic eruption"
+			"random" < 60
+		"<problem>" "gas eruption"
+			"random" < 30
 	cargo "cold aid" 10 15 0.5
 	to offer
 		random < 1
