@@ -1890,6 +1890,22 @@ phrase "rnas travel advisory"
 		"${rnas travel advisory [2]}"
 		"${rnas travel advisory [3]}"
 
+phrase "possible port disasters"
+	word
+		"Radiation hazard"
+		"Hyperspace fuel leak"
+		"Incoming meteor"
+		"Uncontrolled spacecraft landing"
+		"Fire"
+		"Cryogenic fluid release"
+		"Orbital bombardment"
+
+phrase "how to survive port disasters"
+	word
+		"Evacuate"
+		"Flee"
+		"Seek shelter"
+
 news "republic navy advisory system"
 	location
 		government "Republic"
@@ -1903,7 +1919,7 @@ news "republic navy advisory system"
 			"${rnas travel advisory}"
 			"Please notify Republic officials immediately if you have been detained by any ship not granted legal authority to do so by the Republic Navy."
 			"Report all sightings of pirate vessels immediately."
-			"The following message is a test. The following message is a test. The following message is a test: Radiation hazard. Evacuate immediately. Radiation hazard. Evacuate immediately. Radiation hazard. Evacuate immediately."
+			"The following message is a test. The following message is a test. The following message is a test: ${possible port disasters}. ${how to survive port disasters} immediately. ${possible port disasters}. ${how to survive port diasters} immediately. ${possible port disasters}. ${how to survive port diasters} immediately."
 		word
 			`"`
 
