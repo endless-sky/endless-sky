@@ -1919,7 +1919,7 @@ news "republic navy advisory system"
 			"${rnas travel advisory}"
 			"Please notify Republic officials immediately if you have been detained by any ship not granted legal authority to do so by the Republic Navy."
 			"Report all sightings of pirate vessels immediately."
-			"The following message is a test. The following message is a test. The following message is a test: ${possible port disasters}. ${how to survive port disasters} immediately. ${possible port disasters}. ${how to survive port diasters} immediately. ${possible port disasters}. ${how to survive port diasters} immediately."
+			"The following message is a test. The following message is a test. The following message is a test: ${possible port disasters}. ${how to survive port disasters} immediately. ${possible port disasters}. ${how to survive port disasters} immediately. ${possible port disasters}. ${how to survive port disasters} immediately."
 		word
 			`"`
 
