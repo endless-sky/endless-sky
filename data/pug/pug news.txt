@@ -119,7 +119,7 @@ news "conspiracy theorist on post-fw Deneb"
 		system Deneb
 	name
 		word
-			"Conspiracy Theorist"
+			"Conspiracy theorist"
 			"Critical Thinker"
 			"Truth Seeker"
 	message
