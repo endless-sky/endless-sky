@@ -210,9 +210,9 @@ news "reporter on post-fw Deneb"
 			"like the sound of an alien history"
 			"find it fascinating"
 		word
-			". Anyway, I "
+			". Anyway, I"
 		word
-			"have to go now"
+			" have to go now"
 			"'m off to the studio"
 			"have to get going"
 			"stayed too long already"
