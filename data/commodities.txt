@@ -907,3 +907,14 @@ trade
 		"trenching robots"
 		"airborne fire suppressant drones"
 		"flame-resistant balaclavas"
+	commodity "wildfire aid"
+		"fire retardant"
+		"trenching robots"
+		"airborne fire suppressant drones"
+		"flame-resistant balaclavas"
+		"seed packets"
+		"field hospital equipment"
+		"firehoses"
+		"air quality detectors"
+
+

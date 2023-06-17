@@ -6171,3 +6171,29 @@ mission "Republic Navy Advisory System [volcanic]"
 		payment 8000
 		dialog `Relieved-looking aid workers welcome your shipment. You look on, feeling satisfied that <cargo> will soon arrive to those that need it most.`
 
+mission "Republic Navy Advisory System [wildfire]"
+	name "Volcanic Relief"
+	description "Humanitarian aid of <cargo> to <destination> following a severe wildfire."
+	minor
+	repeat
+	source
+		government "Republic"
+	destination
+		government "Republic" "Syndicate" "Independent" "Neutral"
+		attributes "forest"
+	substitutions
+		"<problem>" "forest fire" 
+		"<problem>" "brush fire"
+			"random" < 60
+		"<problem>" "wildfire"
+			"random" < 30
+	cargo "wildfire aid" 10 15 0.5
+	to offer
+		random < 1
+	on offer
+		dialog `This is the Republic Navy Advisory System: <planet> is experiencing a severe <problem>. Volunteers are requested to supply <cargo> to <planet>. A stipend of <payment> is provided to cover fuel, crew, and any incidental expenses.`
+	on complete
+		payment 8000
+		dialog `Relieved-looking aid workers welcome your shipment. You look on, feeling satisfied that <cargo> will soon arrive to those that need it most.`
+
+
