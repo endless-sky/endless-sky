@@ -898,11 +898,13 @@ news "ship salesperson"
 	# TODO: Add filter for only planets with shipyards (once we can use conditions to filter this).
 	name
 		word
-			"Used spaceship salesman"
-			"Used spaceship saleswoman"
-			"Used spaceship salesperson"
-			"Used spaceship seller"
-			"Used spaceship dealer"
+			"Used spaceship "
+		word
+			"salesman"
+			"saleswoman"
+			"salesperson"
+			"seller"
+			"dealer"
 	message
 		word
 			`"`
