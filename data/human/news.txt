@@ -1890,21 +1890,19 @@ phrase "rnas travel advisory"
 		"${rnas travel advisory [2]}"
 		"${rnas travel advisory [3]}"
 
-phrase "possible port disasters"
+phrase "rnas port emergency alert test"
 	word
-		"Radiation hazard"
-		"Hyperspace fuel leak"
-		"Incoming meteor"
-		"Uncontrolled spacecraft landing"
-		"Fire"
-		"Cryogenic fluid release"
-		"Orbital bombardment"
-
-phrase "how to survive port disasters"
+		"The following message is a test. The following message is a test. The following message is a test:"
 	word
-		"Evacuate"
-		"Flee"
-		"Seek shelter"
+		" "
+	word
+		"Radiation hazard. Evacuate immediately. Radiation hazard. Evacuate immediately. Radiation hazard. Evacuate immediately."
+		"Hyperspace fuel leak. Evacuate immediately. Hyperspace fuel leak. Evacuate immediately. Hyperspace fuel leak. Evacuate immediately."
+		"Incoming meteor. Evacuate immediately. Incoming meteor. Evacuate immediately. Incoming meteor. Evacuate immediately."
+		"Uncontrolled spacecraft landing. Evacuate immediately. Uncontrolled spacecraft landing. Evacuate immediately. Uncontrolled spacecraft landing. Evacuate immediately."
+		"Fire. Evacuate immediately. Fire. Evacuate immediately. Fire. Evacuate immediately."
+		"Cryogenic fluid release. Evacuate immediately. Cryogenic fluid release. Evacuate immediately. Cryogenic fluid release. Evacuate immediately."
+		"Orbital bombardment. Evacuate immediately. Orbital bombardment. Evacuate immediately. Orbital bombardment. Evacuate immediately."
 
 news "republic navy advisory system"
 	location
@@ -1919,7 +1917,7 @@ news "republic navy advisory system"
 			"${rnas travel advisory}"
 			"Please notify Republic officials immediately if you have been detained by any ship not granted legal authority to do so by the Republic Navy."
 			"Report all sightings of pirate vessels immediately."
-			"The following message is a test. The following message is a test. The following message is a test: ${possible port disasters}. ${how to survive port disasters} immediately. ${possible port disasters}. ${how to survive port disasters} immediately. ${possible port disasters}. ${how to survive port disasters} immediately."
+			"${rnas port emergency alert test}"
 		word
 			`"`
 
