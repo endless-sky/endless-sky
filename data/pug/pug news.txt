@@ -77,7 +77,7 @@ news "tourist on post-fw Deneb"
 		word
 			"this entire"
 			"this whole"
-			"all this"
+			"every part of this"
 		word
 			" "
 		word
