@@ -895,7 +895,7 @@ news "mechanic"
 news "ship salesperson"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-	# TODO: Add filter for only planets with shipyards (once we can use conditions to filter this).
+		attributes "shipyard"
 	name
 		word
 			"Used spaceship "
