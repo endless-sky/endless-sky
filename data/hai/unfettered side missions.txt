@@ -299,7 +299,7 @@ mission "Hai Legacy 3"
 		on kill
 			fail "Hai Legacy 3"
 	on visit
-		dialog "You have not beaten all challenging ships yet. If they have not shown up it is probably because you have more than just the ladybug."
+		dialog "You have not beaten all challenging ships yet. If they have not shown up it is probably because you have cheated and brought more ships into the fight."
 	to complete
 		has "unfettered: beaten the bugs"
 		or
