@@ -225,7 +225,7 @@ void MapPanel::Step()
 void MapPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	
+
 	int buffer = FrameBuffer::CreateFrameBuffer();
 	uint32_t bufferTex = FrameBuffer::CreateTextureAttachment(Screen::Width(), Screen::Height());
 	FrameBuffer::BindFrameBuffer(buffer, Screen::Width(), Screen::Height());
