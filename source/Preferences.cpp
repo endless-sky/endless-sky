@@ -104,9 +104,9 @@ namespace {
 
 	map<Preferences::OverlayType, OverlaySetting> statusOverlaySettings = {
 		{Preferences::OverlayType::ALL, Preferences::OverlayState::DISABLED},
-		{Preferences::OverlayType::FLAGSHIP, Preferences::OverlayState::ON},
-		{Preferences::OverlayType::ESCORT, Preferences::OverlayState::ON},
-		{Preferences::OverlayType::ENEMY, Preferences::OverlayState::ON},
+		{Preferences::OverlayType::FLAGSHIP, Preferences::OverlayState::OFF},
+		{Preferences::OverlayType::ESCORT, Preferences::OverlayState::OFF},
+		{Preferences::OverlayType::ENEMY, Preferences::OverlayState::OFF},
 		{Preferences::OverlayType::NEUTRAL, Preferences::OverlayState::OFF},
 	};
 
@@ -214,8 +214,7 @@ void Preferences::Load()
 	it = settings.find("Show status overlays");
 	if(it != settings.end())
 	{
-		if(!it->second)
-			statusOverlaySettings[OverlayType::ALL] = OverlayState::OFF;
+		statusOverlaySettings[OverlayType::ALL] = it->second ? OverlayState::ON : OverlayState::OFF;
 		settings.erase(it);
 	}
 }
