@@ -198,7 +198,7 @@ mission "Hai Legacy 2"
 	to offer
 		has "ship model: Ancient Ladybug"
 	on enter
-		dialog `As you take of from the planet you notice a message was left on the bridge, probably from the 'associates'. "You should use the Ladybug as your flagship and you should probably not bring any other ships. You'll understand why later." It occurs to you that you could also modify the ship.`
+		dialog `As you take of from the planet you notice a message was left on the bridge, probably from the "associates". "You should use the Ladybug as your flagship and you should probably not bring any other ships. You'll understand why later." It occurs to you that you could also modify the ship.`
 	on enter
 		system
 			attributes "unfettered"
