@@ -214,19 +214,20 @@ public:
 
 
 private:
-	// Various steps of Ship::Move (not necessarily in order)
+	// Various steps of Ship::Move:
 
 	// Check if this ship has been in a different system from the player for so
 	// long that it should be "forgotten." Also eliminate ships that have no
 	// system set because they just entered a fighter bay. Clear the hyperspace
 	// targets of ships that can't enter hyperspace.
 	bool StepFlags();
-	void DoPassiveEffects(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
-	void DoJettison(std::list<std::shared_ptr<Flotsam>> &flotsam);
-	void DoCloakDecision();
 	// Step ship destruction logic. Returns 1 if the ship has been destroyed, -1 if it is being
 	// destroyed, or 0 otherwise.
 	int StepDestroyed(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
+	void DoGeneration();
+	void DoPassiveEffects(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
+	void DoJettison(std::list<std::shared_ptr<Flotsam>> &flotsam);
+	void DoCloakDecision();
 	// Step hyperspace enter/exit logic. Returns true if ship is hyperspacing in or out.
 	bool DoHyperspaceLogic(std::vector<Visual> &visuals);
 	// Step landing logic. Returns true if the ship is landing or departing.
@@ -236,7 +237,6 @@ private:
 	void StepMovement(bool &isUsingAfterburner);
 	void StepTargeting();
 	void StepEngineVisuals(std::vector<Visual> &visuals, bool isUsingAfterburner);
-	void DoGeneration();
 
 
 public:
