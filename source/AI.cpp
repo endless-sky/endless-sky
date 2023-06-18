@@ -597,6 +597,9 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 	const int npcMaxMiningTime = GameData::GetGamerules().NPCMaxMiningTime();
 	for(const auto &it : ships)
 	{
+		// A destroyed ship can't do anything.
+		if(it->IsDestroyed())
+			continue;
 		// Skip any carried fighters or drones that are somehow in the list.
 		if(!it->GetSystem())
 			continue;
@@ -617,12 +620,9 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		bool thisIsLaunching = (isPresent && HasDeployments(*it));
 		if(isStranded || it->IsDisabled())
 		{
-			// Derelicts never ask for help (only the player should repair them).
-			if(it->IsDestroyed() || it->GetPersonality().IsDerelict())
-				continue;
-
 			// Attempt to find a friendly ship to render assistance.
-			AskForHelp(*it, isStranded, flagship);
+			if(!it->GetPersonality().IsDerelict())
+				AskForHelp(*it, isStranded, flagship);
 
 			if(it->IsDisabled())
 			{
@@ -645,11 +645,6 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		// Overheated ships are effectively disabled, and cannot fire, cloak, etc.
 		if(it->IsOverheated())
 			continue;
-
-		// Special case: if the player's flagship tries to board a ship to
-		// refuel it, that escort should hold position for boarding.
-		isStranded |= (flagship && it == flagship->GetTargetShip() && CanBoard(*flagship, *it)
-			&& autoPilot.Has(Command::BOARD));
 
 		Command command;
 		firingCommands.SetHardpoints(it->Weapons().size());
@@ -690,7 +685,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		shared_ptr<Flotsam> targetFlotsam = it->GetTargetFlotsam();
 		if(isPresent && it->IsYours() && targetFlotsam && FollowOrders(*it, command))
 			continue;
-		if(isPresent && !personality.IsSwarming() && !targetAsteroid)
+		if(isPresent && !personality.IsSwarming())
 		{
 			// Each ship only switches targets twice a second, so that it can
 			// focus on damaging one particular ship.
@@ -803,8 +798,17 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		if(target)
 			targetDistance = target->Position().Distance(it->Position());
 
+		// Special case: if the player's flagship tries to board a ship to
+		// refuel it, that escort should hold position for boarding.
+		isStranded |= (flagship && it == flagship->GetTargetShip() && CanBoard(*flagship, *it)
+			&& autoPilot.Has(Command::BOARD));
+
+		// Stranded ships that have a helper need to stop and be assisted.
+		bool strandedWithHelper = isStranded &&
+			(HasHelper(*it, isStranded) || it->GetPersonality().IsDerelict() || it->IsYours());
+
 		// Behave in accordance with personality traits.
-		if(isPresent && personality.IsSwarming() && !isStranded)
+		if(isPresent && personality.IsSwarming() && !strandedWithHelper)
 		{
 			// Swarming ships should not wait for (or be waited for by) any ship.
 			if(parent)
@@ -830,7 +834,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 
 		// Surveillance NPCs with enforcement authority (or those from
 		// missions) should perform scans and surveys of the system.
-		if(isPresent && personality.IsSurveillance() && !isStranded
+		if(isPresent && personality.IsSurveillance() && !strandedWithHelper
 				&& (scanPermissions[gov] || it->IsSpecial()))
 		{
 			DoSurveillance(*it, command, target);
@@ -848,7 +852,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		}
 
 		// Attacking a hostile ship, fleeing and stopping to be refueled are more important than mining.
-		if(isPresent && personality.IsMining() && !shouldFlee && !target && !isStranded && maxMinerCount)
+		if(isPresent && personality.IsMining() && !shouldFlee && !target && !strandedWithHelper && maxMinerCount)
 		{
 			// Miners with free cargo space and available mining time should mine. Mission NPCs
 			// should mine even if there are other miners or they have been mining a while.
@@ -996,7 +1000,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			}
 
 		// Construct movement / navigation commands as appropriate for the ship.
-		if(mustRecall || isStranded)
+		if(mustRecall || (strandedWithHelper && !it->GetPersonality().IsDerelict()))
 		{
 			// Stopping to let fighters board or to be refueled takes priority
 			// even over following orders from the player.
@@ -1054,7 +1058,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			MoveIndependent(*it, command);
 		// This is a friendly escort. If the parent is getting ready to
 		// jump, always follow.
-		else if(parent->Commands().Has(Command::JUMP) && !isStranded)
+		else if(parent->Commands().Has(Command::JUMP) && !strandedWithHelper)
 			MoveEscort(*it, command);
 		// Timid ships always stay near their parent. Injured player
 		// escorts will stay nearby until they have repaired a bit.
@@ -1200,8 +1204,12 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 
 
 // Determine if the selected ship is physically able to render assistance.
-bool AI::CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel)
+bool AI::CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel) const
 {
+	// A ship being assisted cannot assist.
+	if(helperList.find(&helper) != helperList.end())
+		return false;
+
 	// Fighters, drones, and disabled / absent ships can't offer assistance.
 	if(helper.CanBeCarried() || helper.GetSystem() != ship.GetSystem()
 			|| (helper.Cloaking() == 1. && helper.GetGovernment() != ship.GetGovernment())
@@ -1612,9 +1620,20 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		// An AI ship that is targeting a non-hostile ship should scan it, or move on.
 		bool cargoScan = ship.Attributes().Get("cargo scan power");
 		bool outfitScan = ship.Attributes().Get("outfit scan power");
-		if((!cargoScan || Has(gov, target, ShipEvent::SCAN_CARGO))
-				&& (!outfitScan || Has(gov, target, ShipEvent::SCAN_OUTFITS)))
+		// De-target if the target left my system.
+		if(ship.GetSystem() != target->GetSystem())
+		{
 			target.reset();
+			ship.SetTargetShip(nullptr);
+		}
+		// Detarget if I cannot scan, or if I already scanned the ship.
+		else if((!cargoScan || Has(gov, target, ShipEvent::SCAN_CARGO))
+				&& (!outfitScan || Has(gov, target, ShipEvent::SCAN_OUTFITS)))
+		{
+			target.reset();
+			ship.SetTargetShip(nullptr);
+		}
+		// Move to (or near) the ship and scan it.
 		else
 		{
 			if(target->Velocity().Length() > ship.MaxVelocity() * 0.9)
@@ -1623,8 +1642,8 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 				MoveTo(ship, command, target->Position(), target->Velocity(), 1., 1.);
 			if(!ship.IsYours() && (ship.IsSpecial() || scanPermissions.at(gov)))
 				command |= Command::SCAN;
+			return;
 		}
-		return;
 	}
 
 	// A ship has restricted movement options if it is 'staying', 'lingering', or hostile to its parent.
@@ -1740,6 +1759,9 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		unsigned i = Random::Int(origin->Objects().size());
 		ship.SetTargetStellar(&origin->Objects()[i]);
 	}
+	// Nowhere to go, and nothing to do, so stay near the system center.
+	else if(shouldStay)
+		MoveTo(ship, command, Point(), Point(), 40, 0.8);
 }
 
 
@@ -1828,6 +1850,8 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 			if(!(parent.IsEnteringHyperspace() || parent.IsReadyToJump()) || !EscortsReadyToJump(ship))
 				command |= Command::WAIT;
 		}
+		else if(needsFuel && systemHasFuel)
+			Refuel(ship, command);
 		else if(ship.GetTargetStellar())
 		{
 			MoveToPlanet(ship, command);
@@ -2855,94 +2879,98 @@ bool AI::DoHarvesting(Ship &ship, Command &command) const
 // Check if this ship should cloak. Returns true if this ship decided to run away while cloaking.
 bool AI::DoCloak(Ship &ship, Command &command)
 {
-	if(ship.Attributes().Get("cloak"))
+	if(ship.GetPersonality().IsDecloaked())
+		return false;
+
+	const Outfit &attributes = ship.Attributes();
+	if(!attributes.Get("cloak"))
+		return false;
+
+	// Never cloak if it will cause you to be stranded.
+	double fuelCost = attributes.Get("cloaking fuel") + attributes.Get("fuel consumption")
+		- attributes.Get("fuel generation");
+	if(attributes.Get("cloaking fuel") && !attributes.Get("ramscoop"))
 	{
-		// Never cloak if it will cause you to be stranded.
-		const Outfit &attributes = ship.Attributes();
-		double fuelCost = attributes.Get("cloaking fuel") + attributes.Get("fuel consumption")
-			- attributes.Get("fuel generation");
-		if(attributes.Get("cloaking fuel") && !attributes.Get("ramscoop"))
+		double fuel = ship.Fuel() * attributes.Get("fuel capacity");
+		int steps = ceil((1. - ship.Cloaking()) / attributes.Get("cloak"));
+		// Only cloak if you will be able to fully cloak and also maintain it
+		// for as long as it will take you to reach full cloak.
+		fuel -= fuelCost * (1 + 2 * steps);
+		if(fuel < ship.JumpNavigation().JumpFuel())
+			return false;
+	}
+
+	// If your parent has chosen to cloak, cloak and rendezvous with them.
+	const shared_ptr<const Ship> &parent = ship.GetParent();
+	bool shouldCloakWithParent = false;
+	if(parent && parent->GetGovernment() && parent->Commands().Has(Command::CLOAK)
+			&& parent->GetSystem() == ship.GetSystem())
+	{
+		const Government *parentGovernment = parent->GetGovernment();
+		bool isPlayer = parentGovernment->IsPlayer();
+		if(isPlayer && ship.GetGovernment() == parentGovernment)
+			shouldCloakWithParent = true;
+		else if(isPlayer && ship.GetPersonality().IsEscort() && !ship.GetPersonality().IsUninterested())
+			shouldCloakWithParent = true;
+		else if(!isPlayer && !parent->GetGovernment()->IsEnemy(ship.GetGovernment()))
+			shouldCloakWithParent = true;
+	}
+	if(shouldCloakWithParent)
+	{
+		command |= Command::CLOAK;
+		KeepStation(ship, command, *parent);
+		return true;
+	}
+
+	// Otherwise, always cloak if you are in imminent danger.
+	static const double MAX_RANGE = 10000.;
+	double range = MAX_RANGE;
+	const Ship *nearestEnemy = nullptr;
+	// Find the nearest targetable, in-system enemy that could attack this ship.
+	const auto enemies = GetShipsList(ship, true);
+	for(const auto &foe : enemies)
+		if(!foe->IsDisabled())
 		{
-			double fuel = ship.Fuel() * attributes.Get("fuel capacity");
-			int steps = ceil((1. - ship.Cloaking()) / attributes.Get("cloak"));
-			// Only cloak if you will be able to fully cloak and also maintain it
-			// for as long as it will take you to reach full cloak.
-			fuel -= fuelCost * (1 + 2 * steps);
-			if(fuel < ship.JumpNavigation().JumpFuel())
-				return false;
+			double distance = ship.Position().Distance(foe->Position());
+			if(distance < range)
+			{
+				range = distance;
+				nearestEnemy = foe;
+			}
 		}
 
-		// If your parent has chosen to cloak, cloak and rendezvous with them.
-		const shared_ptr<const Ship> &parent = ship.GetParent();
-		bool shouldCloakWithParent = false;
-		if(parent && parent->GetGovernment() && parent->Commands().Has(Command::CLOAK)
-				&& parent->GetSystem() == ship.GetSystem())
+	// If this ship has started cloaking, it must get at least 40% repaired
+	// or 40% farther away before it begins decloaking again.
+	double hysteresis = ship.Commands().Has(Command::CLOAK) ? .4 : 0.;
+	// If cloaking costs nothing, and no one has asked you for help, cloak at will.
+	bool cloakFreely = (fuelCost <= 0.) && !ship.GetShipToAssist();
+	// If this ship is injured / repairing, it should cloak while under threat.
+	bool cloakToRepair = (ship.Health() < RETREAT_HEALTH + hysteresis)
+			&& (attributes.Get("shield generation") || attributes.Get("hull repair rate"));
+	if(cloakToRepair && (cloakFreely || range < 2000. * (1. + hysteresis)))
+	{
+		command |= Command::CLOAK;
+		// Move away from the nearest enemy.
+		if(nearestEnemy)
 		{
-			const Government *parentGovernment = parent->GetGovernment();
-			bool isPlayer = parentGovernment->IsPlayer();
-			if(isPlayer && ship.GetGovernment() == parentGovernment)
-				shouldCloakWithParent = true;
-			else if(isPlayer && ship.GetPersonality().IsEscort() && !ship.GetPersonality().IsUninterested())
-				shouldCloakWithParent = true;
-			else if(!isPlayer && !parent->GetGovernment()->IsEnemy(ship.GetGovernment()))
-				shouldCloakWithParent = true;
-		}
-		if(shouldCloakWithParent)
-		{
-			command |= Command::CLOAK;
-			KeepStation(ship, command, *parent);
+			Point safety;
+			// TODO: This could use an "Avoid" method, to account for other in-system hazards.
+			// Simple approximation: move equally away from both the system center and the
+			// nearest enemy, until the constrainment boundary is reached.
+			if(ship.GetPersonality().IsUnconstrained() || !fenceCount.count(&ship))
+				safety = 2 * ship.Position().Unit() - nearestEnemy->Position().Unit();
+			else
+				safety = -ship.Position().Unit();
+
+			safety *= ship.MaxVelocity();
+			MoveTo(ship, command, ship.Position() + safety, safety, 1., .8);
 			return true;
 		}
-
-		// Otherwise, always cloak if you are in imminent danger.
-		static const double MAX_RANGE = 10000.;
-		double range = MAX_RANGE;
-		const Ship *nearestEnemy = nullptr;
-		// Find the nearest targetable, in-system enemy that could attack this ship.
-		const auto enemies = GetShipsList(ship, true);
-		for(const auto &foe : enemies)
-			if(!foe->IsDisabled())
-			{
-				double distance = ship.Position().Distance(foe->Position());
-				if(distance < range)
-				{
-					range = distance;
-					nearestEnemy = foe;
-				}
-			}
-
-		// If this ship has started cloaking, it must get at least 40% repaired
-		// or 40% farther away before it begins decloaking again.
-		double hysteresis = ship.Commands().Has(Command::CLOAK) ? .4 : 0.;
-		// If cloaking costs nothing, and no one has asked you for help, cloak at will.
-		bool cloakFreely = (fuelCost <= 0.) && !ship.GetShipToAssist();
-		// If this ship is injured / repairing, it should cloak while under threat.
-		bool cloakToRepair = (ship.Health() < RETREAT_HEALTH + hysteresis)
-				&& (attributes.Get("shield generation") || attributes.Get("hull repair rate"));
-		if(cloakToRepair && (cloakFreely || range < 2000. * (1. + hysteresis)))
-		{
-			command |= Command::CLOAK;
-			// Move away from the nearest enemy.
-			if(nearestEnemy)
-			{
-				Point safety;
-				// TODO: This could use an "Avoid" method, to account for other in-system hazards.
-				// Simple approximation: move equally away from both the system center and the
-				// nearest enemy, until the constrainment boundary is reached.
-				if(ship.GetPersonality().IsUnconstrained() || !fenceCount.count(&ship))
-					safety = 2 * ship.Position().Unit() - nearestEnemy->Position().Unit();
-				else
-					safety = -ship.Position().Unit();
-
-				safety *= ship.MaxVelocity();
-				MoveTo(ship, command, ship.Position() + safety, safety, 1., .8);
-				return true;
-			}
-		}
-		// Choose to cloak if there are no enemies nearby and cloaking is sensible.
-		if(range == MAX_RANGE && cloakFreely && !ship.GetTargetShip())
-			command |= Command::CLOAK;
 	}
+	// Choose to cloak if there are no enemies nearby and cloaking is sensible.
+	if(range == MAX_RANGE && cloakFreely && !ship.GetTargetShip())
+		command |= Command::CLOAK;
+
 	return false;
 }
 
@@ -2950,9 +2978,10 @@ bool AI::DoCloak(Ship &ship, Command &command)
 
 void AI::DoScatter(Ship &ship, Command &command)
 {
-	if(!command.Has(Command::FORWARD))
+	if(!command.Has(Command::FORWARD) && !command.Has(Command::BACK))
 		return;
 
+	double flip = command.Has(Command::BACK) ? -1 : 1;
 	double turnRate = ship.TurnRate();
 	double acceleration = ship.Acceleration();
 	// TODO: If there are many ships, use CollisionSet::Circle or another
@@ -2973,8 +3002,9 @@ void AI::DoScatter(Ship &ship, Command &command)
 		if(fabs(other->Acceleration() / acceleration - 1.) > .05)
 			continue;
 
-		// Move away from this ship. What side of me is it on?
-		command.SetTurn(offset.Cross(ship.Facing().Unit()) > 0. ? 1. : -1.);
+		// We are too close to this ship. Turn away from it if we aren't already facing away.
+		if(fabs(other->Facing().Unit().Dot(ship.Facing().Unit())) > 0.99) // 0.99 => 8 degrees
+			command.SetTurn(flip * offset.Cross(ship.Facing().Unit()) > 0. ? 1. : -1.);
 		return;
 	}
 }

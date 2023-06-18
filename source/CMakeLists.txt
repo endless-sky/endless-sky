@@ -213,6 +213,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Music.h
 	NPC.cpp
 	NPC.h
+	NPCAction.cpp
+	NPCAction.h
 	News.cpp
 	News.h
 	Outfit.cpp

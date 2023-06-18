@@ -190,7 +190,7 @@ const string &ImageSet::Name() const
 // Whether this image set is empty, i.e. has no images.
 bool ImageSet::IsEmpty() const
 {
-	return framePaths[0].empty() || framePaths[1].empty();
+	return framePaths[0].empty() && framePaths[1].empty();
 }
 
 

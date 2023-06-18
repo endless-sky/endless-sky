@@ -111,7 +111,7 @@ namespace {
 	const vector<string> OverlaySetting::OVERLAY_SETTINGS = {"off", "always on", "damaged", "--"};
 
 	map<Preferences::OverlayType, OverlaySetting> statusOverlaySettings = {
-		{Preferences::OverlayType::ALL, Preferences::OverlayState::DISABLED},
+		{Preferences::OverlayType::ALL, Preferences::OverlayState::OFF},
 		{Preferences::OverlayType::FLAGSHIP, Preferences::OverlayState::ON},
 		{Preferences::OverlayType::ESCORT, Preferences::OverlayState::ON},
 		{Preferences::OverlayType::ENEMY, Preferences::OverlayState::ON},
@@ -241,8 +241,8 @@ void Preferences::Load()
 	it = settings.find("Show status overlays");
 	if(it != settings.end())
 	{
-		if(!it->second)
-			statusOverlaySettings[OverlayType::ALL] = OverlayState::OFF;
+		if(it->second)
+			statusOverlaySettings[OverlayType::ALL] = OverlayState::DISABLED;
 		settings.erase(it);
 	}
 

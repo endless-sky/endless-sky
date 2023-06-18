@@ -34,7 +34,7 @@ mission "First Contact: Hai"
 			
 			label sure1
 			`	You walk up to a human merchant who is busy haggling with one of the aliens. They interrupt their conversation when they see you approaching, and the human gestures for you to join them. "You look totally lost," he says. "First time down the rabbit hole?"`
-			`	You nod. The alien reaches out a paw to shake hands with you. "Welcome to Hai space," it says. "We are people of peace, and you are free to visit us or even live among us. Our worlds provide enough bounty for all."`
+			`	You nod. The alien reaches out a paw to shake hands with you. "Welcome to Hai space," they say. "We are people of peace, and you are free to visit us or even live among us. Our worlds provide enough bounty for all."`
 				goto next
 			
 			label unfettered
@@ -53,7 +53,7 @@ mission "First Contact: Hai"
 			label sure2
 			`	You walk up to a human merchant who is busy haggling with one of the Hai. They interrupt their conversation when they see you approaching, and the human gestures for you to join them. "You look lost," he says. "First time down the rabbit hole?"`
 			`	"No, I've actually met with the Hai up north," you respond. The merchant looks slightly concerned with this, but the Hai only seems to sigh.`
-			`	"Ah, you have met our wayward sisters and brothers. I hope that they did not cause you too much trouble, for they are misled in their ways," it says. "Welcome to Hai space. Unlike those that you met before, the rest of us are a people of peace, and you are free to visit us or even live among us. Our worlds provide enough bounty for all."`
+			`	"Ah, you have met our wayward sisters and brothers. I hope that they did not cause you too much trouble, for they are misled in their ways," they say. "Welcome to Hai space. Unlike those that you met before, the rest of us are a people of peace, and you are free to visit us or even live among us. Our worlds provide enough bounty for all."`
 			
 			label next
 			`	You glance quickly at the human merchant to see his expression, wondering if these aliens can indeed be so benign, but his expression is calm and untroubled. "It's true," he says, "look around you. These buildings have stood for thousands of years. Hai society is so advanced, they need almost no resources to maintain it."`
@@ -80,7 +80,7 @@ mission "First Contact: Hai"
 				`	"Why do you allow humans to settle here?"`
 				`	"What do you ask for in return for letting humans settle here?"`
 			
-			`	"Humans are a young species," the Hai says, "full of energy, full of new ideas. And the Hai are old, and everything we do is what we have done before. When humans go on vacation, they travel to a world with perfect weather, sunny every day. When Hai go on vacation, we visit the stormiest world, to find unpredictability and change. Humans are so strange, that to speak with a human is like a small vacation." It smiles, and you catch a glimpse of its massive incisors. Based on your knowledge of xenobiology you would guess that the Hai are herbivores, but you can't be certain.`
+			`	"Humans are a young species," the Hai says, "full of energy, full of new ideas. And the Hai are old, and everything we do is what we have done before. When humans go on vacation, they travel to a world with perfect weather, sunny every day. When Hai go on vacation, we visit the stormiest world, to find unpredictability and change. Humans are so strange, that to speak with a human is like a small vacation." They smile, and you catch a glimpse of its massive incisors. Based on your knowledge of xenobiology you would guess that the Hai are herbivores, but you can't be certain.`
 			branch hostile
 				has "First Contact: Unfettered: offered"
 			choice
@@ -102,7 +102,7 @@ mission "First Contact: Hai"
 			`	"So I can travel anywhere I want in your territory?" you ask the Hai.`
 			
 			label travel
-			`	"Yes," it says, "but be careful. The north is the territory of some renegade Hai who are misled in their ways: bandits and pirates, living off what they steal from the rest of us. If you travel among them, you will not be safe."`
+			`	"Yes," they say, "but be careful. The north is the territory of some renegade Hai who are misled in their ways: bandits and pirates, living off what they steal from the rest of us. If you travel among them, you will not be safe."`
 			`	"Also," the human adds, "I've heard rumors that the 'Unfettered' Hai are trying to get human captains who land on their worlds to do some tasks for them. I'm not particularly interested in finding out what those tasks are, but if you see something suspicious happening, that might be it."`
 				goto end
 			
@@ -110,7 +110,7 @@ mission "First Contact: Hai"
 			`	"If your people are peaceful then why are the Hai from the north so hostile?" you ask the Hai.`
 			
 			label why
-			`	"I am young, and the origins of our 'Unfettered' brethren are before my time," it responds. "If you want to know more, it might be wise to find someone much older than myself to ask."`
+			`	"I am young, and the origins of our 'Unfettered' brethren are before my time," they respond. "If you want to know more, it might be wise to find someone much older than myself to ask."`
 			
 			label end
 			`	You talk for a while longer, but do not gain much additional information except that several of their worlds are willing to sell Hai technology even to human beings. You thank them both for stopping to talk with you, and the Hai responds, "We are always glad to welcome new friends. May peace dwell in your heart until we meet again."`
@@ -328,13 +328,13 @@ mission "Unwanted Cargo"
 			`	You hear a voice come from the crate, but it is not a language you understand. The voice continues to speak, and you recognize it as the Hai language.`
 			choice
 				`	(Open the crate.)`
-			`	You open the crate and are met face to face with a Hai child. You aren't sure how old it is, but it looks to be about the size of a one-year-old human child. It tries to communicate with you, but begins to cry when it sees the confused look on your face.`
+			`	You open the crate and are met face to face with a Hai child. You aren't sure how old they are, but they look to be about the size of a one-year-old human child. They try to communicate with you, but begins to cry when they see the confused look on your face.`
 			choice
 				`	"Don't cry, little guy."`
 					goto cry
 				`	(Pick up the Hai.)`
 				
-			`	The child waves its hands around when you try to pick it up, making it impossible to grab on to. After waiting for a few minutes, the child finally calms down, eventually going to sleep in the crate.`
+			`	The child waves its hands around when you try to pick them up, making it impossible to grab on to. After waiting for a few minutes, the child finally calms down, eventually going to sleep in the crate.`
 				goto end
 			
 			label cry
@@ -345,11 +345,11 @@ mission "Unwanted Cargo"
 			`	You hear a voice come from the crate, and surprisingly your Hai translator begins speaking. "Let me out! I want to go home!"`
 			choice
 				`	(Open the crate.)`
-			`	You open the crate and are met eye to eye with a Hai child. You aren't sure how old it is, but it looks to be about the size of a one-year-old human child. "I want my mommy!" it says as its eyes begin to tear up.`
+			`	You open the crate and are met eye to eye with a Hai child. You aren't sure how old they are, but it looks to be about the size of a one-year-old human child. "I want my mommy!" they say as its eyes begin to tear up.`
 			choice
 				`	"Where's your mommy?"`
 				`	"Don't cry, little guy."`
-			`	The child looks surprised when your translation device speaks to it in Hai. "Take me home!" it yells back at you. You attempt to find out where the child's home is, but it continues to cry for its mother without giving any important information.`
+			`	The child looks surprised when your translation device speaks to them in Hai. "Take me home!" they yell back at you. You attempt to find out where the child's home is, but they continue to cry for its mother without giving any important information.`
 			
 			label end
 			`	This child must have somehow gotten into your cargo hold while you were in Hai space. Leaving a Hai child on this world would be an extremely bad idea. Perhaps someone on <destination> will be able to bring the child back to its family.`

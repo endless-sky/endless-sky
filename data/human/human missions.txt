@@ -3535,7 +3535,7 @@ mission "Earth Retirement"
 			label payment
 			action
 				payment 2000 80
-			`	As you count up the large clump of credits you were handed (the sum comes out to <payment>), they slowly make their way to the train station. Presumably, their new apartment is far from here.`
+			`	As you count up the large clump of credits you were handed (the sum comes out to the expected <payment>), they slowly make their way to the train station. Presumably, their new apartment is far from here.`
 				accept
 			label reject
 			`	Charles looks surprised for a moment, and then, for the first time you've seen, he smiles. "Thank you, Captain <last>. I wish there were more people like you in the Paradise Worlds."`
@@ -3926,12 +3926,10 @@ mission "Mafia Extortion"
 
 mission "Street Swindle"
 	minor
+	invisible
 	source
 		government "Free Worlds" "Republic" "Syndicate"
 		attributes "urban"
-	on accept
-		payment -6000
-		fail
 	to offer
 		random < 4
 		credits >= 10000
@@ -4012,17 +4010,23 @@ mission "Street Swindle"
 				`	"Right."`
 					goto right
 			label left
+			action
+				payment -6000
 			`	With a grin, she reveals the left cup, and it's... wrong! "Nice try," she says, pocketing your money. "It is a bit tricky."`
 			`	"Well, that's all for today, folks!" the announcer says as you realize you've been conned. Worse still, after they pack up and leave, you notice that the first winner walks away beside them.`
-				accept
+				decline
 			label center
+			action
+				payment -6000
 			`	With a raised eyebrow, she reveals the center cup. It's... wrong! "Nice try," she says, pocketing your money. "That one was a bit tricky."`
 			`	"Well, that's all for today, folks!" the announcer says. As they pack up and leave, you notice that the first winner walks away beside them.`
-				accept
+				decline
 			label right
+			action
+				payment -6000
 			`	With a raised eyebrow, she reveals the right cup. It's... wrong! "Nice try," she says, pocketing your money. "That one was a bit tricky."`
 			`	"Well, that's all for today, folks!" the announcer says. As they pack up and leave, you notice that the first winner walks away beside them.`
-				accept
+				decline
 			label secondgamewatch
 			`	Sensing that something's up, you decide to watch the next game. A sprightly young fellow confidently hands over 6000 credits; when the cups stop, you feel like the ball is under the left one. The boy points to it; with a grin, the magician reveals the left cup, and it's... wrong! "Nice try," she says, pocketing the shocked boy's money. "It is a bit tricky."`
 			`	"Well, that's all for today, folks!" the announcer says. You're glad you avoided the con. As they pack up and leave, you notice that the first winner walks away beside them.`
