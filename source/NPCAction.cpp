@@ -37,6 +37,7 @@ void NPCAction::Load(const DataNode &node, const string &missionName)
 {
 	if(node.Size() >= 2)
 		trigger = node.Token(1);
+
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);

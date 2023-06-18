@@ -152,7 +152,7 @@ private:
 	// The ShipEvent actions that have been done to each ship.
 	std::map<const Ship *, int> shipEvents;
 
-	// The NPCAction that this NPC can run on certain events/triggers.
+	// The NPCActions that this NPC can run on certain events/triggers.
 	std::map<Trigger, NPCAction> npcActions;
 };
 
