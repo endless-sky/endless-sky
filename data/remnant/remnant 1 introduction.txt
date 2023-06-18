@@ -2617,6 +2617,7 @@ mission "Remnant: Broken Jump Drive 1"
 		government "Remnant"
 		attributes outfitter
 		not attributes "requires: gaslining"
+		not attributes "remnant station"
 		not distance 0
 	on offer
 		require "Jump Drive (Broken)"
@@ -2674,6 +2675,7 @@ mission "Remnant: Broken Jump Drive 2"
 		government "Remnant"
 		attributes outfitter
 		not attributes "requires: gaslining"
+		not attributes "remnant station"
 		not distance 0
 	on offer
 		require "Jump Drive (Broken)"
@@ -2719,6 +2721,7 @@ mission "Remnant: Broken Jump Drive 3"
 		government "Remnant"
 		attributes outfitter
 		not attributes "requires: gaslining"
+		not attributes "remnant station"
 		not distance 0
 	on offer
 		require "Jump Drive (Broken)"
@@ -2763,6 +2766,7 @@ mission "Remnant: Broken Jump Drive 4"
 		government "Remnant"
 		attributes outfitter
 		not attributes "requires: gaslining"
+		not attributes "remnant station"
 		not distance 0
 	on offer
 		require "Jump Drive (Broken)"
@@ -2807,6 +2811,7 @@ mission "Remnant: Broken Jump Drive 5"
 		government "Remnant"
 		attributes outfitter
 		not attributes "requires: gaslining"
+		not attributes "remnant station"
 		not distance 0
 	on offer
 		require "Jump Drive (Broken)"
@@ -3324,7 +3329,7 @@ mission "Remnant: Keystone Research 5"
 				accept
 	npc "scan outfits" "save"
 		government "Remnant (Research)"
-		personality coward disables plunders staying surveillance target mining
+		personality coward decloaked disables mining plunders staying surveillance target
 		system "Peragenor"
 		ship "Starling (Keystone)" "Winds of Light"
 		dialog
@@ -3344,7 +3349,7 @@ mission "Remnant: Keystone Research 6"
 	source "Viminal"
 	npc "scan outfits" "save"
 		government "Remnant (Research)"
-		personality coward disables plunders staying surveillance target mining
+		personality coward decloaked disables mining plunders staying surveillance target
 		system "Peragenor"
 		ship "Starling" "Winds of Light"
 		dialog
