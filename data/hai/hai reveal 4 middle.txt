@@ -1848,13 +1848,6 @@ mission "Hai Reveal [A13] A New Elder"
 		"reputation: Hai Merchant" -= 10000
 		"reputation: Hai Merchant (Human)" -= 10000
 		"reputation: Hai Merchant (Sympathizers)" -= 10000
-	on abort
-		dialog `You have failed an essential narrative mission. You've also made the Hai hostile. If you want to complete this story line, revert to the autosave or another earlier snapshot of the game.`
-		"reputation: Hai" -= 10000
-		"reputation: Hai (Wormhole Access)" -= 10000
-		"reputation: Hai Merchant" -= 10000
-		"reputation: Hai Merchant (Human)" -= 10000
-		"reputation: Hai Merchant (Sympathizers)" -= 10000
 		# Maybe we'll put in an alternative pathway later.
 
 
@@ -2022,6 +2015,4 @@ mission "Hai Reveal [A14] A Time of Trouble"
 		personality timid escort coward
 		fleet "Paradise Merchants" 3
 	on fail
-		dialog `You have failed an essential narrative mission. You've also made the Hai hostile. If you want to complete this story line, revert to the autosave or another earlier snapshot of the game.`
-	on abort
 		dialog `You have failed an essential narrative mission. You've also made the Hai hostile. If you want to complete this story line, revert to the autosave or another earlier snapshot of the game.`
