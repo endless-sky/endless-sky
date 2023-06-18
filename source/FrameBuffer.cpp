@@ -21,7 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 namespace {
 	std::map<std::string, int> textureStorage;
-};
+}
 
 
 
