@@ -1034,7 +1034,13 @@ mission "FW Senate 1B"
 				`	"I have no idea."`
 				`	"Ummm... they both involve momentous decisions that have serious consequences?"`
 				`	"They both require someone skilled and decisive to be in command?"`
+			branch jd
+				has "outfit (flagship installed): Jump Drive"
 			`	"The correct answer," she says, "was, 'nothing whatsoever; they are entirely different disciplines.' Now, hurry up, I hope to be on Bourne a week from now." You consider explaining to her that it's impossible to get there that fast, but decide against it.`
+				accept
+			label jd
+			`	"The correct answer," she says, "was, 'nothing whatsoever; they are entirely different disciplines.' Now, hurry up, I hope to be on Bourne a week from now." You consider explaining to her that it's impossible to get there that fast using a hyperdrive, but decide against it.`
+			`	It's a good thing you have a jump drive.`
 				accept
 	
 	on visit
