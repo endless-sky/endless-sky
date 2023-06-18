@@ -288,7 +288,7 @@ mission "Mystery Cube Delivery Job Station"
 mission "Mystery Cube Retrieval Job"
 	job
 	repeat
-	name "Mystery retrieval"
+	name "Mystery retrieval from <planet stopovers>"
 	description "Retrieve a package from <stopovers>, then return to <destination>. Payment is <payment>."
 	source
 		attributes "deep"
