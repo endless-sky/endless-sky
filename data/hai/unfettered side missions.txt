@@ -204,7 +204,7 @@ mission "Hai Legacy 2"
 			attributes "unfettered"
 		"old reputation: Hai (Unfettered)" = "reputation: Hai (Unfettered)"
 		"reputation: Hai (Unfettered)" >?= 0
-		dialog `As you enter the system you notice something... Or, more precisely, the lack of something. It is too quiet, probably due to the fact that, for the first time, the Unfettered Hai are not shooting at you. They are not hailing you either, however. Perhaps they think you are one of the Hai aiding them, especially given your cargo.`
+		dialog `As you enter the system you notice something... Or, more precisely, the lack of something. It is too quiet, probably due to the fact that, for the first time, the Unfettered Hai are not shooting at you. They are not hailing you either. Perhaps they think you are one of the Hai aiding them, especially given your cargo.`
 	on fail
 		"reputation: Hai (Unfettered)" <?= -1000
 		dialog `The Unfettered and their associates are not clearly happy when you tell them about this. "You will have to prove yourself another way."`
