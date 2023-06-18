@@ -194,7 +194,7 @@ mission "Hai Legacy 2"
 	deadline 30
 	cargo "food (aid)" 121
 	destination "Firelode"
-	blocked "You need space for the agreed rush cargo of food to Unfettered space, and most use it as your flagship."
+	blocked "You need space for the agreed rush cargo of food to Unfettered space, and must use it as your flagship."
 	to offer
 		has "ship model: Ancient Ladybug"
 	on enter
