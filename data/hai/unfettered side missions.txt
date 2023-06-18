@@ -315,7 +315,7 @@ mission "Hai Legacy 3"
 			`	"Don't become overconfident now, captain. I am sure you know what happens to such people."`
 			label next
 			`	"Anyway I must congratulate you, I never expected you had it in you. That said, I only have one word and will give you authorization to land, on the condition that you keep this relic from our past in good condition!"`
-			`	"Make sure you do not lose this until you permanently deserve the right to call us friends, or we will take it very seriously. Oh, and we added taxes to the daily fee, I hope you don't mind."`
+			`	"Make sure you do not lose this until you permanently deserve the right to call us friends, or we will take it very seriously. Oh, and there are taxes on the daily fee, I hope you don't mind."`
 		outfit "Unfettered Landing Permit"
 		log "Managed to use an old ladybug to overtake a swarm of Lightning Bugs, earning myself a place in Unfettered territory."
 
