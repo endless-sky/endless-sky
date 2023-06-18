@@ -53,8 +53,14 @@ namespace {
 	const int ZOOM_FACTOR_INCREMENT = 10;
 	const string VIEW_ZOOM_FACTOR = "View zoom factor";
 	const string AUTO_AIM_SETTING = "Automatic aiming";
+	const string AUTO_FIRE_SETTING = "Automatic firing";
 	const string SCREEN_MODE_SETTING = "Screen mode";
 	const string VSYNC_SETTING = "VSync";
+	const string STATUS_OVERLAYS_ALL = "Show status overlays";
+	const string STATUS_OVERLAYS_FLAGSHIP = "   Show flagship overlay";
+	const string STATUS_OVERLAYS_ESCORT = "   Show escort overlays";
+	const string STATUS_OVERLAYS_ENEMY = "   Show enemy overlays";
+	const string STATUS_OVERLAYS_NEUTRAL = "   Show neutral overlays";
 	const string EXPEND_AMMO = "Escorts expend ammo";
 	const string TURRET_TRACKING = "Turret tracking";
 	const string FOCUS_PREFERENCE = "Turrets focus fire";
@@ -64,6 +70,7 @@ namespace {
 	const string FIGHTER_REPAIR = "Repair fighters in";
 	const string SHIP_OUTLINES = "Ship outlines in shops";
 	const string BOARDING_PRIORITY = "Boarding target priority";
+	const string TARGET_ASTEROIDS_BASED_ON = "Target asteroid based on";
 	const string BACKGROUND_PARALLAX = "Parallax background";
 	const string ALERT_INDICATOR = "Alert indicator";
 
@@ -148,6 +155,11 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		++currentSettingsPage;
 	else if((key == 'r' || key == SDLK_PAGEDOWN) && currentSettingsPage > 0)
 		--currentSettingsPage;
+	else if((key == 'x' || key == SDLK_DELETE) && (page == 'c'))
+	{
+		if(zones[latest].Value().KeyName() != Command::MENU.KeyName())
+			Command::SetKey(zones[latest].Value(), 0);
+	}
 	else
 		return false;
 
@@ -215,8 +227,20 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 					GetUI()->Push(new Dialog(
 						"Unable to change VSync state. (Your system's graphics settings may be controlling it instead.)"));
 			}
+			else if(zone.Value() == STATUS_OVERLAYS_ALL)
+				Preferences::CycleStatusOverlays(Preferences::OverlayType::ALL);
+			else if(zone.Value() == STATUS_OVERLAYS_FLAGSHIP)
+				Preferences::CycleStatusOverlays(Preferences::OverlayType::FLAGSHIP);
+			else if(zone.Value() == STATUS_OVERLAYS_ESCORT)
+				Preferences::CycleStatusOverlays(Preferences::OverlayType::ESCORT);
+			else if(zone.Value() == STATUS_OVERLAYS_ENEMY)
+				Preferences::CycleStatusOverlays(Preferences::OverlayType::ENEMY);
+			else if(zone.Value() == STATUS_OVERLAYS_NEUTRAL)
+				Preferences::CycleStatusOverlays(Preferences::OverlayType::NEUTRAL);
 			else if(zone.Value() == AUTO_AIM_SETTING)
 				Preferences::ToggleAutoAim();
+			else if(zone.Value() == AUTO_FIRE_SETTING)
+				Preferences::ToggleAutoFire();
 			else if(zone.Value() == EXPEND_AMMO)
 				Preferences::ToggleAmmoUsage();
 			else if(zone.Value() == TURRET_TRACKING)
@@ -336,8 +360,17 @@ void PreferencesPanel::DrawControls()
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
 
-	// Check for conflicts.
+	// Colors for highlighting.
 	const Color &warning = *GameData::Colors().Get("warning conflict");
+	const Color &noCommand = *GameData::Colors().Get("warning no command");
+
+	if(selected != oldSelected)
+		latest = selected;
+	if(hover != oldHover)
+		latest = hover;
+
+	oldSelected = selected;
+	oldHover = hover;
 
 	Table table;
 	table.AddColumn(-115, {230, Alignment::LEFT});
@@ -348,10 +381,10 @@ void PreferencesPanel::DrawControls()
 	table.DrawAt(Point(-130, firstY));
 
 	static const string CATEGORIES[] = {
-		"Navigation",
-		"Weapons",
+		"Keyboard Navigation",
+		"Interface",
 		"Targeting",
-		"Navigation",
+		"Weapons",
 		"Interface",
 		"Fleet"
 	};
@@ -363,26 +396,27 @@ void PreferencesPanel::DrawControls()
 		Command::RIGHT,
 		Command::BACK,
 		Command::AFTERBURNER,
+		Command::AUTOSTEER,
 		Command::LAND,
 		Command::JUMP,
 		Command::NONE,
-		Command::PRIMARY,
-		Command::SELECT,
-		Command::SECONDARY,
-		Command::CLOAK,
+		Command::MAP,
+		Command::INFO,
 		Command::NONE,
 		Command::NEAREST,
 		Command::TARGET,
 		Command::HAIL,
 		Command::BOARD,
+		Command::NEAREST_ASTEROID,
 		Command::SCAN,
 		Command::NONE,
+		Command::PRIMARY,
+		Command::SELECT,
+		Command::SECONDARY,
+		Command::CLOAK,
 		Command::MOUSE_TURNING_HOLD,
-		Command::MOUSE_TURNING_TOGGLE,
 		Command::NONE,
 		Command::MENU,
-		Command::MAP,
-		Command::INFO,
 		Command::FULLSCREEN,
 		Command::FASTFORWARD,
 		Command::NONE,
@@ -390,7 +424,8 @@ void PreferencesPanel::DrawControls()
 		Command::FIGHT,
 		Command::GATHER,
 		Command::HOLD,
-		Command::AMMO
+		Command::AMMO,
+		Command::HARVEST
 	};
 	static const Command *BREAK = &COMMANDS[19];
 	for(const Command &command : COMMANDS)
@@ -415,11 +450,12 @@ void PreferencesPanel::DrawControls()
 			int index = zones.size();
 			// Mark conflicts.
 			bool isConflicted = command.HasConflict();
+			bool isEmpty = !command.HasBinding();
 			bool isEditing = (index == editing);
-			if(isConflicted || isEditing)
+			if(isConflicted || isEditing || isEmpty)
 			{
 				table.SetHighlight(56, 120);
-				table.DrawHighlight(isEditing ? dim : warning);
+				table.DrawHighlight(isEditing ? dim : isEmpty ? noCommand : warning);
 			}
 
 			// Mark the selected row.
@@ -445,7 +481,7 @@ void PreferencesPanel::DrawControls()
 	Table shiftTable;
 	shiftTable.AddColumn(125, {150, Alignment::RIGHT});
 	shiftTable.SetUnderline(0, 130);
-	shiftTable.DrawAt(Point(-400, 52));
+	shiftTable.DrawAt(Point(-400, 32));
 
 	shiftTable.DrawUnderline(medium);
 	shiftTable.Draw("With <shift> key", bright);
@@ -491,15 +527,7 @@ void PreferencesPanel::DrawSettings()
 		VIEW_ZOOM_FACTOR,
 		SCREEN_MODE_SETTING,
 		VSYNC_SETTING,
-		"Show status overlays",
-		"Show missile overlays",
-		"Highlight player's flagship",
-		"Rotate flagship in HUD",
-		"Show planet labels",
-		"Show mini-map",
-		"Show asteroid scanner overlay",
-		"Always underline shortcuts",
-		"\t",
+		"",
 		"Performance",
 		"Show CPU / GPU load",
 		"Render motion blur",
@@ -509,27 +537,49 @@ void PreferencesPanel::DrawSettings()
 		BACKGROUND_PARALLAX,
 		"Show hyperspace flash",
 		SHIP_OUTLINES,
+		"\t",
+		"HUD",
+		STATUS_OVERLAYS_ALL,
+		STATUS_OVERLAYS_FLAGSHIP,
+		STATUS_OVERLAYS_ESCORT,
+		STATUS_OVERLAYS_ENEMY,
+		STATUS_OVERLAYS_NEUTRAL,
+		"Show missile overlays",
+		"Show asteroid scanner overlay",
+		"Highlight player's flagship",
+		"Rotate flagship in HUD",
+		"Show planet labels",
+		"Show mini-map",
+		"Clickable radar display",
+		ALERT_INDICATOR,
+		"Extra fleet status messages",
 		"\n",
 		"Gameplay",
+		"Control ship with mouse",
 		AUTO_AIM_SETTING,
-		"Automatic firing",
+		AUTO_FIRE_SETTING,
+		TURRET_TRACKING,
+		TARGET_ASTEROIDS_BASED_ON,
 		BOARDING_PRIORITY,
+		"Flagship flotsam collection",
 		EXPEND_AMMO,
 		FIGHTER_REPAIR,
-		TURRET_TRACKING,
+		"Fighters transfer cargo",
 		"Rehire extra crew when lost",
-		"\t",
-		"Other",
-		"Clickable radar display",
+		"",
+		"Map",
 		"Hide unexplored map regions",
-		REACTIVATE_HELP,
-		"Interrupt fast-forward",
-		SCROLL_SPEED,
 		"Show escort systems on map",
 		"Show stored outfits on map",
 		"System map sends move orders",
-		ALERT_INDICATOR
+		"\t",
+		"Other",
+		"Always underline shortcuts",
+		REACTIVATE_HELP,
+		"Interrupt fast-forward",
+		SCROLL_SPEED
 	};
+
 	bool isCategory = true;
 	int page = 0;
 	for(const string &setting : SETTINGS)
@@ -596,9 +646,39 @@ void PreferencesPanel::DrawSettings()
 			text = Preferences::VSyncSetting();
 			isOn = text != "off";
 		}
+		else if(setting == STATUS_OVERLAYS_ALL)
+		{
+			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::ALL);
+			isOn = text != "off";
+		}
+		else if(setting == STATUS_OVERLAYS_FLAGSHIP)
+		{
+			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::FLAGSHIP);
+			isOn = text != "off" && text != "--";
+		}
+		else if(setting == STATUS_OVERLAYS_ESCORT)
+		{
+			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::ESCORT);
+			isOn = text != "off" && text != "--";
+		}
+		else if(setting == STATUS_OVERLAYS_ENEMY)
+		{
+			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::ENEMY);
+			isOn = text != "off" && text != "--";
+		}
+		else if(setting == STATUS_OVERLAYS_NEUTRAL)
+		{
+			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::NEUTRAL);
+			isOn = text != "off" && text != "--";
+		}
 		else if(setting == AUTO_AIM_SETTING)
 		{
 			text = Preferences::AutoAimSetting();
+			isOn = text != "off";
+		}
+		else if(setting == AUTO_FIRE_SETTING)
+		{
+			text = Preferences::AutoFireSetting();
 			isOn = text != "off";
 		}
 		else if(setting == EXPEND_AMMO)
@@ -622,6 +702,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = true;
 			text = Preferences::BoardingSetting();
+		}
+		else if(setting == TARGET_ASTEROIDS_BASED_ON)
+		{
+			isOn = true;
+			text = Preferences::Has(TARGET_ASTEROIDS_BASED_ON) ? "proximity" : "value";
 		}
 		else if(setting == BACKGROUND_PARALLAX)
 		{
