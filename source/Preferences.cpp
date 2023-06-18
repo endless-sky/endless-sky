@@ -104,9 +104,9 @@ namespace {
 
 	map<Preferences::OverlayType, OverlaySetting> statusOverlaySettings = {
 		{Preferences::OverlayType::ALL, Preferences::OverlayState::OFF},
-		{Preferences::OverlayType::FLAGSHIP, Preferences::OverlayState::OFF},
-		{Preferences::OverlayType::ESCORT, Preferences::OverlayState::OFF},
-		{Preferences::OverlayType::ENEMY, Preferences::OverlayState::OFF},
+		{Preferences::OverlayType::FLAGSHIP, Preferences::OverlayState::ON},
+		{Preferences::OverlayType::ESCORT, Preferences::OverlayState::ON},
+		{Preferences::OverlayType::ENEMY, Preferences::OverlayState::ON},
 		{Preferences::OverlayType::NEUTRAL, Preferences::OverlayState::OFF},
 	};
 
@@ -215,13 +215,7 @@ void Preferences::Load()
 	if(it != settings.end())
 	{
 		if(it->second)
-		{
 			statusOverlaySettings[OverlayType::ALL] = OverlayState::DISABLED;
-			statusOverlaySettings[OverlayType::FLAGSHIP] = OverlayState::ON;
-			statusOverlaySettings[OverlayType::ESCORT] = OverlayState::ON;
-			statusOverlaySettings[OverlayType::ENEMY] = OverlayState::ON;
-			statusOverlaySettings[OverlayType::NEUTRAL] = OverlayState::OFF;
-		}
 		settings.erase(it);
 	}
 }
