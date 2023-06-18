@@ -511,7 +511,7 @@ const Wormhole *Planet::GetWormhole() const
 bool Planet::IsAccessible(const Ship *ship) const
 {
 	// If this is a wormhole that leads to an inaccessible system, no ship can land here.
-	if(wormhole && ship->GetSystem() && wormhole->WormholeDestination(*ship->GetSystem()).Inaccessible())
+	if(wormhole && ship && ship->GetSystem() && wormhole->WormholeDestination(*ship->GetSystem()).Inaccessible())
 		return false;
 	// If there are no required attributes, then any ship may land here.
 	if(IsUnrestricted())
@@ -557,6 +557,20 @@ bool Planet::CanLand() const
 
 
 
+Planet::Friendliness Planet::GetFriendliness() const
+{
+	if(GameData::GetPolitics().HasDominated(this))
+		return Friendliness::DOMINATED;
+	else if(GetGovernment()->IsEnemy())
+		return Friendliness::HOSTILE;
+	else if(CanLand())
+		return Friendliness::FRIENDLY;
+	else
+		return Friendliness::RESTRICTED;
+}
+
+
+
 bool Planet::CanUseServices() const
 {
 	return GameData::GetPolitics().CanUseServices(this);
@@ -574,12 +588,12 @@ void Planet::Bribe(bool fullAccess) const
 // Demand tribute, and get the planet's response.
 string Planet::DemandTribute(PlayerInfo &player) const
 {
-	auto &playerConditions = player.Conditions();
-	if(playerConditions.Get("tribute: " + name))
+	const auto &playerTribute = player.GetTribute();
+	if(playerTribute.find(this) != playerTribute.end())
 		return "We are already paying you as much as we can afford.";
 	if(!tribute || defenseFleets.empty())
 		return "Please don't joke about that sort of thing.";
-	if(playerConditions.Get("combat rating") < defenseThreshold)
+	if(player.Conditions().Get("combat rating") < defenseThreshold)
 		return "You're not worthy of our time.";
 
 	// The player is scary enough for this planet to take notice. Check whether
@@ -612,9 +626,8 @@ string Planet::DemandTribute(PlayerInfo &player) const
 	if(!isDefeated)
 		return "We're not ready to surrender yet.";
 
-	playerConditions["tribute: " + name] = tribute;
-	GameData::GetPolitics().DominatePlanet(this);
-	return "We surrender. We will pay you " + Format::Credits(tribute) + " credits per day to leave us alone.";
+	player.SetTribute(this, tribute);
+	return "We surrender. We will pay you " + Format::CreditString(tribute) + " per day to leave us alone.";
 }
 
 

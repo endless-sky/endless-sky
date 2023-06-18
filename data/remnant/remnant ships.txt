@@ -31,7 +31,7 @@ ship "Albatross"
 		"drag" 8.6
 		"heat dissipation" 0.6
 		"fuel capacity" 600
-		"ramscoop" 2
+		"ramscoop" 2.75
 		"outfit space" 672
 		"weapon capacity" 236
 		"engine capacity" 142
@@ -40,7 +40,7 @@ ship "Albatross"
 		"hull repair rate" 1.5
 		"hull energy" 1.2
 		"outfit scan power" 18
-		"outfit scan speed" 24
+		"outfit scan efficiency" 24
 		"tactical scan power" 39
 		weapon
 			"blast radius" 360
@@ -290,8 +290,9 @@ ship "Modified Dromedary"
 		"outfit space" 740
 		"weapon capacity" 270
 		"engine capacity" 195
+		"solar collection" 1.1
 		"outfit scan power" 18
-		"outfit scan speed" 48
+		"outfit scan efficiency" 48
 		"tactical scan power" 39
 		"asteroid scan power" 42
 		"atmosphere scan" 100
@@ -333,7 +334,9 @@ ship "Modified Dromedary"
 	turret -63.5 120 "Thrasher Turret"
 	turret 52.5 143 "Point Defense Turret"
 	bay "Fighter" -51 -54 under
+		"launch effect" "human internal"
 	bay "Fighter" 47 -40 under
+		"launch effect" "human internal"
 	leak "leak" 30 50
 	leak "flame" 30 80
 	leak "big leak" 50 30
@@ -368,6 +371,7 @@ ship "Modified Dromedary" "Modified Dromedary Ghost"
 		"heat protection" 100
 		"hull protection" 100
 		"ion protection" 1
+		"scramble protection" 1
 		"leak protection" 100
 		"piercing protection" 100
 		"shield protection" 100
@@ -407,6 +411,7 @@ ship "Modified Dromedary" "Modified Dromedary Specter"
 		"fuel protection" 100
 		"hull protection" 100
 		"ion protection" 1
+		"scramble protection" 1
 		"leak protection" 100
 		"piercing protection" 100
 		"shield protection" 100
@@ -441,6 +446,7 @@ ship "Modified Dromedary" "Modified Dromedary Wreck"
 		"energy protection" 1
 		"hull protection" 1
 		"ion protection" 1
+		"scramble protection" 1
 		"slowing protection" 1
 	outfits
 		"Laser Turret" 2
@@ -484,7 +490,7 @@ ship "Gull"
 		"drag" 6
 		"heat dissipation" 0.7
 		"fuel capacity" 600
-		"ramscoop" 1
+		"ramscoop" 1.75
 		"cargo space" 175
 		"outfit space" 311
 		"weapon capacity" 83
@@ -497,7 +503,7 @@ ship "Gull"
 		"cloaking energy" 5
 		"cloaking fuel" .1
 		"outfit scan power" 12
-		"outfit scan speed" 20
+		"outfit scan efficiency" 20
 		"tactical scan power" 26
 		weapon
 			"blast radius" 80
@@ -644,7 +650,7 @@ ship "Heron"
 		"drag" 25
 		"heat dissipation" .80
 		"fuel capacity" 2500
-		"ramscoop" 10
+		"ramscoop" 10.75
 		"cargo space" 1110
 		"outfit space" 2150
 		"weapon capacity" 470
@@ -659,11 +665,12 @@ ship "Heron"
 		"gaslining" 1
 		"atmosphere scan" 100
 		"outfit scan power" 175
-		"outfit scan speed" 120
+		"outfit scan efficiency" 120
 		"tactical scan power" 350
 		"force protection" 1
 		"heat protection" 1.5
 		"ion resistance" 0.3
+		"scramble resistance" 0.3
 		"slowing resistance" 3
 		"remnant node" 11
 		"spinal mount" 1
@@ -712,41 +719,77 @@ ship "Heron"
 	turret 0 0 "Point Defense Turret"
 	turret 0 250 "Point Defense Turret"
 	bay "Drone" -124 -122.5
+		"launch effect" "remnant internal"
 	bay "Drone" 124 -122.5
+		"launch effect" "remnant internal"
 	bay "Drone" -176 -50.5
+		"launch effect" "remnant internal"
 	bay "Drone" 176 -50.5
+		"launch effect" "remnant internal"
 	bay "Drone" -148.5 4
+		"launch effect" "remnant internal"
 	bay "Drone" 148.5 4
+		"launch effect" "remnant internal"
 	bay "Drone" -56 -150
+		"launch effect" "remnant internal"
 	bay "Drone" 56 -150
+		"launch effect" "remnant internal"
 	bay "Drone" -37 -121.5
+		"launch effect" "remnant internal"
 	bay "Drone" 37 -121.5
+		"launch effect" "remnant internal"
 	bay "Drone" -33.5 -99
+		"launch effect" "remnant internal"
 	bay "Drone" 33.5 -99
+		"launch effect" "remnant internal"
 	bay "Drone" -27 -81
+		"launch effect" "remnant internal"
 	bay "Drone" 27 -81
+		"launch effect" "remnant internal"
 	bay "Drone" -24 -49.5
+		"launch effect" "remnant internal"
 	bay "Drone" 24 -49.5
+		"launch effect" "remnant internal"
 	bay "Drone" -40 -3
+		"launch effect" "remnant internal"
 	bay "Drone" 40 -3
+		"launch effect" "remnant internal"
 	bay "Drone" -28 22.5
+		"launch effect" "remnant internal"
 	bay "Drone" 28 22.5
+		"launch effect" "remnant internal"
 	bay "Drone" -77.5 71.5
+		"launch effect" "remnant internal"
 	bay "Drone" 77.5 71.5
+		"launch effect" "remnant internal"
 	bay "Drone" -89.5 114
+		"launch effect" "remnant internal"
 	bay "Drone" 89.5 114
+		"launch effect" "remnant internal"
 	bay "Drone" -138.5 152.5
+		"launch effect" "remnant internal"
 	bay "Drone" 138.5 152.5
+		"launch effect" "remnant internal"
 	bay "Drone" -171 165.5
+		"launch effect" "remnant internal"
 	bay "Drone" 171 165.5
+		"launch effect" "remnant internal"
 	bay "Drone" -190.5 197.5
+		"launch effect" "remnant internal"
 	bay "Drone" 190.5 197.5
+		"launch effect" "remnant internal"
 	bay "Drone" -105 229.5
+		"launch effect" "remnant internal"
 	bay "Drone" 105 229.5
+		"launch effect" "remnant internal"
 	bay "Fighter" -31 70.5
+		"launch effect" "remnant internal"
 	bay "Fighter" 31 70.5
+		"launch effect" "remnant internal"
 	bay "Fighter" -40 190
+		"launch effect" "remnant internal"
 	bay "Fighter" 40 190
+		"launch effect" "remnant internal"
 	explode "small explosion" 40
 	explode "medium explosion" 30
 	explode "large explosion" 20
@@ -764,7 +807,7 @@ ship "Ibis"
 	attributes
 		category "Medium Warship"
 		licenses
-			"Remnant Capital"
+			Remnant
 		"cost" 11627000
 		"shields" 14400
 		"hull" 6200
@@ -774,7 +817,7 @@ ship "Ibis"
 		"drag" 5.1
 		"heat dissipation" 0.7
 		"fuel capacity" 700
-		"ramscoop" 2
+		"ramscoop" 2.75
 		"cargo space" 103
 		"outfit space" 427
 		"weapon capacity" 147
@@ -784,7 +827,7 @@ ship "Ibis"
 		"hull repair rate" 1.2
 		"hull energy" 0.95
 		"outfit scan power" 18
-		"outfit scan speed" 20
+		"outfit scan efficiency" 20
 		"tactical scan power" 39
 		weapon
 			"blast radius" 240
@@ -810,11 +853,17 @@ ship "Ibis"
 		"Scram Drive"
 		
 	bay "Drone" 0 30 over
+		"launch effect" "remnant external"
 	bay "Drone" -34 68 over
+		"launch effect" "remnant external"
 	bay "Drone" 0 81 over
+		"launch effect" "remnant external"
 	bay "Drone" 34 68 over
+		"launch effect" "remnant external"
 	bay "Fighter" -25 10 under
+		"launch effect" "remnant external"
 	bay "Fighter" 25 10 under
+		"launch effect" "remnant external"
 	engine -16.5 120 0.7
 	engine 0 116.5 1
 	engine 16.5 120 0.7
@@ -850,7 +899,7 @@ ship "Merganser"
 		"bunks" 3
 		"cargo space" 11
 		"fuel capacity" 600
-		"ramscoop" 1
+		"ramscoop" 1.75
 		"mass" 30
 		"drag" 1.5
 		"heat dissipation" .9
@@ -865,10 +914,12 @@ ship "Merganser"
 		"cloaking fuel" .05
 		"atmosphere scan" 100
 		"outfit scan power" 12
-		"outfit scan speed" 12
+		"outfit scan efficiency" 12
 		"tactical scan power" 26
 		"ion resistance" 0.1
 		"ion resistance energy" -0.05
+		"scramble resistance" 0.1
+		"scramble resistance energy" -0.05
 		"thrust" 5.0
 		"turn" 60.0
 		"reverse thrust" 5.0
@@ -954,7 +1005,7 @@ ship "Pelican"
 		"drag" 7.2
 		"heat dissipation" 0.7
 		"fuel capacity" 600
-		"ramscoop" 2
+		"ramscoop" 2.75
 		"outfit space" 480
 		"weapon capacity" 157
 		"engine capacity" 144
@@ -963,7 +1014,7 @@ ship "Pelican"
 		"hull repair rate" 1
 		"hull energy" 0.75
 		"outfit scan power" 12
-		"outfit scan speed" 12
+		"outfit scan efficiency" 12
 		"tactical scan power" 26
 		weapon
 			"blast radius" 160
@@ -1035,7 +1086,7 @@ ship "Penguin"
 		"heat dissipation" 0.9
 		"fuel capacity" 800
 		"energy capacity" 300
-		"ramscoop" 0.5
+		"ramscoop" 1.25
 		"cargo space" 19
 		"outfit space" 109
 		"weapon capacity" 33
@@ -1049,11 +1100,13 @@ ship "Penguin"
 		"cloaking energy" 3
 		"cloaking fuel" .05
 		"outfit scan power" 50
-		"outfit scan speed" 36
+		"outfit scan efficiency" 36
 		"tactical scan power" 50
 		"atmosphere scan" 100
 		"ion protection" 0.25
+		"scramble protection" 0.25
 		"ion resistance" 0.05
+		"scramble resistance" 0.05
 		"thrust" 4.2
 		"turn" 80.0
 		"reverse thrust" 4.2
@@ -1138,7 +1191,7 @@ ship "Peregrine"
 		"drag" 4.3
 		"heat dissipation" 0.85
 		"fuel capacity" 1100
-		"ramscoop" 2.5
+		"ramscoop" 3.25
 		"cargo space" 59
 		"outfit space" 552
 		"weapon capacity" 220
@@ -1152,9 +1205,10 @@ ship "Peregrine"
 		"cloaking fuel" .05
 		"gaslining" 1
 		"outfit scan power" 18
-		"outfit scan speed" 22
+		"outfit scan efficiency" 22
 		"tactical scan power" 50
 		"ion protection" 0.25
+		"scramble protection" 0.25
 		"slowing protection" 0.25
 		"remnant node" 5
 		weapon
@@ -1249,7 +1303,7 @@ ship "Petrel"
 		"hull" 2500
 		"cargo space" 15
 		"fuel capacity" 100
-		"ramscoop" 0.5
+		"ramscoop" 1.25
 		"required crew" 2
 		"bunks" 3
 		"mass" 50
@@ -1264,7 +1318,7 @@ ship "Petrel"
 		"hull energy" 0.54
 		"gaslining" 1
 		"outfit scan power" 10
-		"outfit scan speed" 14
+		"outfit scan efficiency" 14
 		"tactical scan power" 20
 		"asteroid scan power" 30
 		weapon
@@ -1313,7 +1367,7 @@ ship "Puffin"
 		"heat dissipation" 0.9
 		"fuel capacity" 700
 		"energy capacity" 150
-		"ramscoop" 0.5
+		"ramscoop" 1.25
 		"cargo space" 8
 		"outfit space" 80
 		"engine capacity" 26
@@ -1326,11 +1380,13 @@ ship "Puffin"
 		"active cooling" 8
 		"cooling energy" .4
 		"outfit scan power" 24
-		"outfit scan speed" 28
+		"outfit scan efficiency" 28
 		"tactical scan power" 52
 		"atmosphere scan" 100
 		"ion protection" 0.25
+		"scramble protection" 0.25
 		"ion resistance" 0.05
+		"scramble resistance" 0.05
 	outfits
 		"Millennium Cell"
 		"Emergency Ramscoop"
@@ -1369,13 +1425,14 @@ ship "Smew"
 		"engine capacity" 46
 		"energy capacity" 3000
 		"ion resistance" 0.002
-		"ramscoop" 0.8
+		"scramble resistance" 0.002
+		"ramscoop" 1.55
 		"shield generation" 0.48
 		"shield energy" 0.32
 		"hull repair rate" 0.9
 		"hull energy" 0.58
 		"outfit scan power" 14
-		"outfit scan speed" 20
+		"outfit scan efficiency" 20
 		"tactical scan power" 28
 		"asteroid scan power" 50
 		weapon
@@ -1447,7 +1504,7 @@ ship "Starling"
 		"drag" 3.8
 		"heat dissipation" 0.7
 		"fuel capacity" 900
-		"ramscoop" 1
+		"ramscoop" 1.75
 		"cargo space" 36
 		"outfit space" 316
 		"weapon capacity" 83
@@ -1460,7 +1517,7 @@ ship "Starling"
 		"cloaking energy" 5
 		"cloaking fuel" .1
 		"outfit scan power" 12
-		"outfit scan speed" 20
+		"outfit scan efficiency" 20
 		"tactical scan power" 26
 		weapon
 			"blast radius" 80
@@ -1607,7 +1664,7 @@ ship "Tern"
 		"heat dissipation" .9
 		"fuel capacity" 50
 		"energy capacity" 500
-		"ramscoop" 0.5
+		"ramscoop" 1.25
 		"outfit space" 76
 		"weapon capacity" 16
 		"engine capacity" 26
@@ -1617,7 +1674,7 @@ ship "Tern"
 		"hull energy" 0.37
 		"gaslining" 1
 		"outfit scan power" 10
-		"outfit scan speed" 12
+		"outfit scan efficiency" 12
 		"tactical scan power" 20
 		"atmosphere scan" 100
 		"asteroid scan power" 30
