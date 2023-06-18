@@ -234,9 +234,9 @@ private:
 	bool DoLandingLogic();
 	void DoInitializeMovement();
 	void StepPilot();
-	void StepMovement(bool &isUsingAfterburner);
+	void DoMovement(bool &isUsingAfterburner);
 	void StepTargeting();
-	void StepEngineVisuals(std::vector<Visual> &visuals, bool isUsingAfterburner);
+	void DoEngineVisuals(std::vector<Visual> &visuals, bool isUsingAfterburner);
 
 
 public:
