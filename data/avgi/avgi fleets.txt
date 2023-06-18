@@ -1,0 +1,180 @@
+
+
+
+fleet "Avgi Core Defense"
+	government "Avgi (Spaceguard)"
+	names "avgi fighter"
+	personality
+		confusion 10
+		lingering surveillance heroic 
+	variant 10
+		"Cascade"
+		"Wavelet" 12
+		"Phonon" 6
+
+
+fleet "Avgi Static Defense"
+	government "Avgi (Spaceguard)"
+	names "avgi fighter"
+	personality
+		confusion 10
+		lingering heroic swarming
+	variant 10
+		"Lumen" 3
+	variant 10
+		"Wavelet" 6
+	variant 10
+		"Phonon" 3
+
+
+fleet "Avgi Patrol"
+	government "Avgi (Spaceguard)"
+	names "avgi military"
+	fighters "avgi fighter"
+	personality
+		confusion 10
+		surveillance merciful disables
+	variant 10
+		"Vibe"
+	variant 10
+		"Vibe" 3
+	variant 10
+		"Timbre"
+	variant 10
+		"Rhythm"
+
+fleet "Avgi Scouts"
+	government "Avgi (Spaceguard)"
+	names "avgi military"
+	fighters "avgi fighter"
+	personality
+		confusion 10
+		surveillance coward merciful disables
+	variant 10
+		"Crest"
+		"Lens"
+	variant 10
+		"Crest"
+		"Lens"
+		"Vibe"
+	variant 5
+		"Crest" 2
+		"Lens" 4
+		"Damper"
+		"Vibe" 2
+
+fleet "Avgi Escort Group"
+	government "Avgi (Spaceguard)"
+	names "avgi military"
+	fighters "avgi fighter"
+	personality
+		confusion 10
+		heroic merciful disables
+	variant 10
+		"Rhythm" 2
+	variant 10
+		"Coherence"
+		"Wavelet" 6
+	variant 10
+		"Coherence"
+		"Wavelet" 4
+		"Phonon" 2
+
+
+fleet "Avgi Strike Group"
+	government "Avgi (Spaceguard)"
+	names "avgi military"
+	fighters "avgi fighter"
+	personality
+		confusion 10
+		heroic merciful disables
+	variant 10
+		"Coherence"
+		"Wavelet" 6
+
+
+fleet "Avgi Battlegroup"
+	government "Avgi (Spaceguard)"
+	names "avgi military"
+	fighters "avgi fighter"
+	personality
+		confusion 10
+		heroic
+	variant 10
+		"Cascade"
+		"Wavelet" 12
+		"Phonon" 6
+
+
+
+fleet "Avgi Small Merchant"
+	government "Avgi"
+	names "avgi civilian"
+	fighters "avgi fighter"
+	personality
+		confusion 30
+		timid coward appeasing disables opportunistic
+	variant 10
+		"Swell (Crew)"
+
+
+fleet "Avgi Large Merchant"
+	government "Avgi"
+	names "avgi civilian"
+	fighters "avgi fighter"
+	personality
+		confusion 30
+		timid coward appeasing disables opportunistic
+	variant 10
+		"Flutter (Crew)"
+	variant 10
+		"Wake (Crew)" 2
+	variant 10
+		"Flutter (Cargo)"
+	variant 10
+		"Wake (Cargo)" 2
+
+
+fleet "Avgi Miners"
+	government "Avgi"
+	names "avgi civilian"
+	fighters "avgi fighter"
+	personality
+		confusion 30
+		mining harvests timid coward appeasing disables
+	variant 10
+		"Quake"
+
+
+fleet "Avgi Small Dissonance"
+	government "Avgi"
+	names "avgi civilian"
+	fighters "avgi fighter"
+	personality
+		confusion 15
+		coward timid disables plunders secretive
+	variant 10
+		"Swell (Crew)"
+
+
+fleet "Avgi Large Dissonance"
+	government "Avgi"
+	names "avgi civilian"
+	fighters "avgi fighter"
+	personality
+		confusion 15
+		coward timid disables plunders secretive
+	variant 10
+		"Swell (Crew)"
+
+
+
+fleet "Avgi Dissonance Miners"
+	government "Avgi"
+	names "avgi civilian"
+	fighters "avgi fighter"
+	personality
+		confusion 20
+		mining harvests timid coward hunting disables plunders secretive
+	variant 10
+		"Swell (Crew)"

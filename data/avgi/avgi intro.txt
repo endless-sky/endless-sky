@@ -36,6 +36,15 @@ Perturbance
 https://www.lexilogos.com/keyboard/greek_modern_conversion.htm
 
 
+The Tangles
+
+
+
+Synchisi Perturbance
+
+
+
+
 
 Peripheria Station
 Kiklos Station / Kyklos Station
@@ -58,116 +67,212 @@ an early, pre FW news report in human space
 the x, a Mule that was sent off to scout away from the main fleet
 
 
-New intro mission outline
+
+mission "First Contact: Avgi 1"
+	name "First Contact: Avgi"
+	landing
+	source
+		attributes "avgi"
+	destination "Peripheria"
+	on offer
+		event "label twilight"
+		log "Factions" "Avgi" `Met an alien race calling themselves the "Avgi"`
+		conversation
+			branch aviskir
+				has "flagship planet: Aviskir"
+			branch coreworld
+				has "flagship planet attribute: avgi core"
+				not "flagship planet attribute: station"
+			branch station
+				has "flagship planet attribute: station"
+			branch uninhabited
+				has "flagship planet attribute: uninhabited"
+
+			label aviskir
+				`The first thing you notice about this Earthlike world is the utter devastation in orbit. Your ship's sensors pick up the remains of what appear to be dozens of wrecked stations and countless destroyed satellites, forming a large swath of debris scattered in various orbits. A few larger objects are mostly intact, but lifeless, with no signal emissions or heat signatures. As your ship touches the upper atmosphere, you can see, even with your naked eye, glittering fragments of an immensely long tether slowly spinning in orbit.`
+				`	Your observations are interrupted by a blared warning from your ship. You barely manage to yank your ship aside as a bright trail of plasma nearly clips your ship, the wake of a hypervelocity projectile fired from the ground. Clearly, someone is still alive down there, despite the destruction in orbit. Proceeding could be dangerous, if your ship isn't able to withstand a direct hit from those planetary defense batteries.`
+			choice
+		    `	(Attempt to land)`
+		    	to display
+		    		and
+		        		"flagship attribute: shields" =< 35000 * 1000
+		        		"flagship attribute: hull" =< 40000 * 1000
+		        goto explode
+		    `	(Attempt to land)`
+		    	to display
+		    		or
+		        		"flagship attribute: shields" > 35000 * 1000
+		        		"flagship attribute: hull" > 40000 * 1000
+		        		
+		        	not
+		        		or
+		        			"flagship attribute: shields" > 60000 * 1000
+		        			"flagship attribute: hull" > 60000 * 1000
+		        goto hit
+		    `	(Attempt to land)`
+		    	to display
+		    		or
+		        		"flagship attribute: shields" > 60000 * 1000
+		        		"flagship attribute: hull" > 60000 * 1000
+		        goto scratched
+		    `  (Move to a higher orbit)`
+		    	goto orbit
+
+			label coreworld
+				`The first thing you notice about this world is the utter devastation in orbit. Your ship's sensors pick up the remains of what appear to be a handful of wrecked stations and countless destroyed satellites, forming a large swath of debris scattered in various orbits. A few larger objects are mostly intact, but lifeless, with no signal emissions or heat signatures. As your ship touches the upper atmosphere, you can see the tumbling remains of what looks like half of an enormous starship with an equally large drive, splintered and broken along its spine.`
+				`	Your observations are interrupted by a blared warning from your ship. You barely manage to yank your ship aside as a bright trail of plasma nearly clips your ship, the wake of a hypervelocity projectile fired from the ground. Clearly, someone is still alive down there, despite the destruction in orbit. Proceeding could be dangerous, if your ship isn't able to withstand a direct hit from those planetary defense batteries.`
+			choice
+		    `	(Attempt to land)`
+		    	to display
+		    		and
+		        		"flagship attribute: shields" =< 20000 * 1000
+		        		"flagship attribute: hull" =< 30000 * 1000
+		        goto explode
+		    `	(Attempt to land)`
+		    	to display
+		    		or
+		        		"flagship attribute: shields" > 20000 * 1000
+		        		"flagship attribute: hull" > 30000 * 1000
+		        		
+		        	not
+		        		or
+		        			"flagship attribute: shields" > 40000 * 1000
+		        			"flagship attribute: hull" > 40000 * 1000
+		        goto hit
+		    `	(Attempt to land)`
+		    	to display
+		    		or
+		        		"flagship attribute: shields" > 40000 * 1000
+		        		"flagship attribute: hull" > 40000 * 1000
+		        goto scratched
+		    `  (Move to a higher orbit)`
+		    	goto orbit
+
+			label explode
+				`	You make it no more than a few seconds before your ship is lanced by a rapid succession of shots from below. Your shields shatter almost instantly, your hull pierced as though it is tissue paper. You don't even have time to think before you are consumed by the rapidly expanding cloud of plasma that was once the <ship>.`
+				explode
+
+			label hit
+				`	You make it no more than a few seconds before the <ship> is lanced by a rapid succession of shots from below. Your ship appears to be holding up under the fire, but the species that lives here doesn't seem willing to welcome you. When you detect the launch of a rather unreasonable number of missiles, you decide it would be safer to proceed back to orbit.
+				goto orbit
+
+			label scratched
+				`	You make it no more than a few seconds before the <ship> is lanced by a rapid succession of shots from below. Your ship easily shrugs off the kinetic impacts, but the species that lives here doesn't seem willing to welcome you. When you detect the launch of a rather unreasonable number of missiles, you decide it would be safer to proceed back to orbit.
+				goto orbit
+
+			label uninhabited
+				`While this world is lifeless, you can clearly make out signs that it has been explored, and even exploited, by an alien civilization. However, the signs also show that something disastrous happened here. Ruined satellites litter low orbit, and you can detect the broken remnants of surface outposts smeared across the land below. You take the <ship> in for a close pass over one of the structures, and can see small craters and patches of glassed terrain scattered around it.`
+				goto orbit
+
+			label orbit
+				`	Back in orbit, you are startled when another ship appears over the horizon, on an intercept trajectory with you. It doesn't look like any other ship you've seen before, appearing more than a little ungainly compared to the sleeker human ships you're accustomed to. You aren't sure whether it belongs to the same species that inhabits this space, or an entirely different one, but it at least definitely isn't similar to the hostile ships that seem to infest this star cluster.`
+			choice
+				`	(Transmit a standard hail)`
+					goto talk
+				`	(Transmit a series of prime numbers)`
+					goto prime
+				`	(Attack)`
+					goto attack
 
 
-You arrive at one of the occupied Avgi worlds, and as you land a scout ship happens to be making a risky supply run with you
+			label station
+				`This alien station has certainly seen better days. While the bulk of the structure is still intact, avoiding the fate of whatever became the debris fields you have seen elsewhere, the hull is scored and chipped by what appears to be powerful weapons fire. The station's systems all seem to be powered down, as you can detect no emissions of light or heat. Without expecting to find anyone or anything alive, you maneuver near what you think is an open docking bay.`
+				`	Just as the <ship> pulls alongside the 'docking bay,' you spot what looks like a ship tucked away inside. It is like no ship you have ever seen before, appearing more than a little ungainly compared to the sleeker human ships you're accustomed to. You aren't sure whether it belongs to the same species that inhabits this space, or an entirely different one, but it at least definitely isn't similar to the hostile ships that seem to infest this star cluster. What's more, its reactor is powered up and it seems to have an active shield matrix. It appears someone was indeed home.`
+			choice
+				`	(Transmit a standard hail)`
+					goto talk
+				`	(Transmit a series of prime numbers)`
+					goto prime
+				`	(Attack)`
+					goto attack
 
-It lands near you and you pantomime a bit to communicate, before the Avgi pilot (who becomes a main character later) gets you to follow them
+			label talk
+				`	You aren't quite sure how to proceed in communicating with a completely unknown species, but you transmit a standard hail, if only to assure the alien vessel that you're trying to signal it.`
+				`To your shock, however, the alien vessel responds after only a few minutes, not only in the same frequency band, but with an encoding your ship's computer is able to interpret: a standard human data format, similar to the one you've just sent. Either these aliens have an astonishing ability to decipher transmissions, or they have somehow encountered humanity before.`
+				`The message is short and direct:`
+				`	"Salutations. I am of the Avgi. You human, question? Important. You will follow. This space, Twilight, not safe. You have hyperdrive, correct? Emphasis. Space we will travel is unstable, a maze. Follow closely and be careful."`
+				`The message includes an alien-looking star chart, pointing to a system far to the south. Something appears to have been lost in translation, as the hyperlanes leading there are mostly unmarked, labeled as "perturbed," whatever that means. Just as you are still processing first contact with an alien civilization, a group of the same ships that attacked you earlier jump into the system.`
+				launch
 
-A marker appears on your map and you have to escort it back to Meridian Station.
+			label prime
+				`	You can't expect a new alien species to be able to decode your transmissions, let alone understand your language, so you transmit a short list of prime numbers via simple amplitude modulated signals, if only to assure the alien vessel that you're attempting to communicate`
+				`To your shock, however, the alien vessel interrupts you just as you send the number "37", with a transmission not only in the same frequency band, but with an encoding your ship's computer is able to interpret: a standard human data format, similar to the one you've just sent. They must have somehow encountered humanity before.`
+				`The message is short and direct:`
+				`	"Salutations. I am of the Avgi. You human, question? Important. You will follow. This space is not safe. You have hyperdrive, correct? Emphasis. Space we will visit is unstable, a maze. Follow closely and be careful."`
+				`The message includes an alien-looking star chart, pointing to a system far to the south. Something appears to have been lost in translation, as the hyperlanes leading there are mostly unmarked, labeled as "perturbed," whatever that means. Just as you are still processing first contact with an alien civilization, a group of the same ships that attacked you earlier jump into the system.`
+				launch
+
+			label attack
+				`	You power up your weapons and prepare to attack, but the alien ship responds in kind.`
+				apply
+					set "avgi: attacked scout"
+					"reputation: Avgi" <?= -10
+				launch
+				fail
+
+			npc
+				government "Ka'xan"
+				personality entering heroic
+				fleet "Mis'xan A" 4
+			npc save
+				government "Avgi"
+				personality fleeing waiting escort
+				ship "Crest" "Forward Shores"
+		on accept
+			"reputation: Avgi" >?= 5
+
+		on fail
+			log "Met an alien race and attacked them."
 
 
 
-
-
-
-mission "First Contact: Avgi 1A"
+mission "First Contact: Avgi 2"
 	landing
 	invisible
-	source
-		government Avgi
-		planet "Aviskir"
-		not attributes "Station"
-	destination "Peripheria Prime"
+	source Peripheria
 	to offer
-		not "First Contact: Avgi 1B: failed"
-		not "First Contact: Avgi 1C: failed"
+		"First Contact: Avgi 1: done"
 	on offer
+		log "Factions" "Avgi" `The Avgi are a young race of dragonfly-like aliens inhabiting this part of the galaxy. Their homeworld and core space have been occupied by an alien invasion.`
+		event "label twilight"
 		conversation
-			`The first thing you notice about this Earthlike world is the utter devastation in orbit. Your ship's sensors pick up the remains of what appear to be dozens of wrecked stations and countless destroyed satellites, forming huge bands of debris scattered in various orbits. A few larger objects are mostly intact, but lifeless, with no signal emissions or heat signatures. As your ship touches the upper atmosphere, you can see, even with the naked eye, glittering fragments of an immensely long tether, perhaps the remannts of some kind of space elevator.`
-			`	Your observations are interrupted by a blared warning from your ship. You barely manage to yank your ship aside as a bright trail of plasma nearly clips your ship, the wake of a hypervelocity projectile fired from the ground. Clearly, someone is still alive down there, despite the destruction in orbit. Proceeding could be dangerous, if your ship isn't strong enough to withstand a direct hit.`
+			`After a confusing journey through the winding hyperlanes, you finally arrive at the system the alien marked on your map. You notice that your flight computer has failed to record the location of the systems you passed through, probably due to the same anomaly that made your ship almost completely blind within the region. This system appears unaffected however, and your computer is able to chart its position.`
+			`	You accompany the alien ship to the largest structure in the system, a huge station shaped like a circular disc. The center of the disc is exposed to space, cut open to reveal hundreds of docking bays, where you can see other alien ships moored to what looks like the main spaceport. As you watch, a trio of sleek looking fightercraft launch from the station and take up escort positions around you and the other alien ship you have followed all this way.` 
+			`	Your companion speeds ahead, neatly pulling into one of the bays on the outer levels. When you attempt to follow, the fightercraft zip in front of you, herding you towards a different bay closer to the middle decks.`
+
+
+
+
+
+
+		`	You are led into what you think is some kind of office, a small, round room with a high ceiling. Waiting there, behind a lectern, is another alien, this one colored bright green. It is perched upon a smooth metal bar, hung from a short stand by thin wires, but gestures towards a human style seat on the other side of the lectern. One of two seats, in fact, which puzzles you.
+
+
+
+
+
 		choice
-	    `	(Attempt to land)`
-	    	to display
-	        	"flagship attribute: shields" =< 30000
-	        	and "flagship attribute: hull" =< 30000
-	        goto explode
-	    `	(Attempt to land)`
-	    	to display
-	        	"flagship attribute: shields" > 30000
-	        	or "flagship attribute: hull" > 30000
-	        goto land
-	    `  (Move to a higher orbit)`
-	    	goto orbit
-
-		label explode
-			`	You make it no more than a few seconds before your ship is lanced by a rapid succession of shots from below. Your shields shatter almost instantly, your hull pierced as though it is tissue paper. You don't even have time to think before you are consumed by the rapidly expanding cloud of gas that was once the <ship>.`
-			explode
-
-		label land
-			`	You make it no more than a few seconds before your ship is lanced by a rapid succession of shots from below. Your ship appears to be holding up under the fire, but the species that lives here doesn't seem willing to welcome you. When you detect the launch of an unreasonable number of missiles, you decide it would be safer to proceed back to orbit.
-			goto orbit
-
-		label orbit
-			`	Back in orbit, you are startled when another ship exits a hyperlane relatively nearby, flying towards this planet. It doesn't look like any other ship you've seen before, appearing rather ungainly compared to the sleeker human ships you're accustomed to. You aren't sure whether it belongs to the same species that inhabits this world, or an entirely different one, but it at least definitely isn't similar to the hostile ships that seem to infest this group of systems.`
-
-		choice
-			`	(Attempt to communicate)`
-				goto talk
-			`	(Attack it)`
-		apply
-			set "avgi: attacked scout"
-			"reputation: Avgi" <?= -10
-			launch
-
-		label talk
-			`	You aren't quite sure how to proceed in communicating with a brand new species, but you transmit a standard hail, if only to assure the alien vessel that you're trying to signal it.`
-			`	To your shock, however, the alien vessel quickly responds, not only in the same frequency band, but with an encoding your ship's computer is able to interpret: a standard human data format, similar to the one you've just sent. Either these aliens have an astonishing ability to decipher , or they have encountered humanity before.`
-			`	The message is short and direct. These aliens call themselves the "Avgi", and they want you to follow them back to a system further south, marked on your map. Something appears to have been lost in translation, as the hyperlane paths leading there are mostly unmarked, labeled as "perturbed," whatever that means. Just as you get to a warning, warning you that it is not safe to remain here, a group of the mysterious ships that attacked you earlier jump into the sytem.`
-			launch
-		npc
-			government "Ka'sei (Twilight)"
-			personality entering heroic
-			fleet "Ka'sei 1" 3
-		npc save
-			government "Avgi"
-			personality fleeing waiting escort
-			fleet "Crest"
-
-
-
-mission "First Contact: Avgi 1B"
-	landing
-	invisible
-	source
-		government Avgi
-		not "Aviskir"
-	to offer
-		not "First Contact: Avgi 1A: failed"
-		not "First Contact: Avgi 1C: failed"
-	on offer
-		conversation
-			"	The first thing you notice about this world is the utter devastation in orbit. Your ship's sensors pick up the remains of what appear to be hundreds of destroyed stations
-			launch
+			`	"Who are you?"`
+			`	"Who's the second chair for?"`
 
 
 
 
-mission "First Contact: Avgi 1C"
-	landing
-	invisible
-	source
-		government Avgi
-		not planet "Peripheria Prime"
-		attributes "Station"
-	to offer
-		not "First Contact: Avgi 1A: failed"
-		not "First Contact: Avgi 1B: failed"
-	on offer
-		conversation
-			"	The first thing you notice about this world is the utter devastation in orbit. Your ship's sensors pick up the remains of what appear to be hundreds of destroyed stations
-			launch
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+We are lucky they are so stupid
 
 
 
@@ -187,6 +292,34 @@ mission "First Contact: Avgi 1C"
 
 
 
+
+
+
+
+
+
+
+The license is covered with a quantum dot phased array, allowing it to recieve and transmit information across the electromagnetic spectrum between microwaves and visible light. It can handshake with our systems remotely
+
+
+
+
+
+
+`	"Where and how did you get a Jump Drive!?"`
+choice
+	`	"I took it from a hostile alien race"`
+		goto aliens
+	`	"I took it from an alien race living in Deneb"`
+		to display
+			has "FWC Pug 2D"
+		goto aliens
+	`	"It was given to me by the Syndicate, who took it from an alien race near the Core"`
+		to display
+			has "FW Pug 2B: done"
+	`	"I stole it from the Quarg"`
+		goto unbelievable
+	`	"I'm afraid I can't tell you that"`
 
 
 
@@ -204,34 +337,9 @@ choice
 
 
 
+"Before we discovered the starways, to travel faster than light was thought impossible with an ironclad certainty"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+"Sometimes I feel as though our race is out of place with the universe"
 
 
 

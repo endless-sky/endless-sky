@@ -37,6 +37,8 @@ outfitter omnis
 	"Electrostatic Ramscoop"
 	"Dipole Ramscoop"
 	"Protium Fusion Ramscoop"
+	"Deuterium Slush Tank"
+	"Partition Thermal Sink"
 	"Multispectral Scanner"
 	"Spectrometer Array"
 	"Small Auxiliary Radiator"
@@ -46,8 +48,8 @@ outfitter omnis
 	"Mirror Deflector"
 	"Fractal Capacitor Cell"
 	"Fractal Capacitor Bank"
+	"Concentrating Solar Cell"
 	"Concentrating Solar Array"
-	"Trifold Solar Array"
 	"Photovoltaic Scales"
 	"Pebble Bed Cell"
 	"Luminous Fusion Core"
@@ -74,16 +76,12 @@ outfit "Local Map"
 # Weapons:
 
 
-
-
-
-
 outfit "Speck Round"
 	category "Ammunition"
 	cost 6
 	thumbnail "outfit/thunderhead"
-	"mass" 0.006
-	"sabot capacity" -1
+	"mass" 0.003
+	"speck capacity" -1
 	"flotsam chance" 1
 	description "These dense metallic glass sabots are capable of inflicting kinetic damage via hypervelocity impacts, but are easily stopped by momentum-repulsion shield systems."
 	description "Due to their simple makeup, they can be easily manufactured out of most commonly found metals."
@@ -98,25 +96,24 @@ outfit "Speckle Railgun"
 	"mass" 6
 	"outfit space" -9
 	"weapon capacity" -9
-	"energy capacity" 72
+	"energy capacity" 36
 	"gun ports" -1
-	"sabot capacity" 900
+	"speck capacity" 1800
 	weapon
 		sound "repeater"
-		ammo "Mass Driver Round"
-		icon "icon/rail gun"
+		ammo "Speck Round"
 		"fire effect" "finisher sparks"
 		"hit effect" "bombardment impact"
-		"inaccuracy" 1.8
-		"velocity" 48
-		"range override" 2400
+		"inaccuracy" 1.2
+		"velocity" 60
+		"range override" 1800
 		"lifetime" 1
-		"reload" 12
+		"reload" 6
 		"burst reload" 3
-		"burst count" 3
-		"firing energy" 24
-		"firing heat" 36
-		"firing force" 42
+		"burst count" 6
+		"firing energy" 18
+		"firing heat" 42
+		"firing force" 36
 		"submunition" "speckle slug"
 	description "This compact railgun fires a stream of hypervelocity metallic sabots, trading accuracy for firing rate. The Speckle Railgun files in short bursts in order to minimize rail ablation, giving the gun a chance to cool down."
 	description "A small internal capacitor allows the Speckle Railgun to be trickle charged, even if a ship's power supply would otherwise be insufficient to fire a single shot."
@@ -126,29 +123,25 @@ outfit "Speckle Turret"
 	category "Turrets"
 	cost 40000
 	thumbnail "outfit/speckle turret"
-	"mass" 18
-	"outfit space" -24
-	"weapon capacity" -24
-	"energy capacity" 144
+	"mass" 15
+	"outfit space" -21
+	"weapon capacity" -21
+	"energy capacity" 72
 	"turret mounts" -1
-	"sabot capacity" 3600
+	"speck capacity" 3600
 	weapon
 		sound "repeater"
-		ammo "Mass Driver Round"
-		icon "icon/rail gun"
+		ammo "Speck Round"
 		"fire effect" "finisher sparks"
 		"hit effect" "bombardment impact"
-		"inaccuracy" 1.8
-		"velocity" 48
-		"range override" 2400
+		"inaccuracy" 1.5
+		"velocity" 60
 		"lifetime" 1
-		"reload" 6
-		"turret turn" 9.0
-		"burst reload" 3
-		"burst count" 3
-		"firing energy" 24
-		"firing heat" 72
-		"firing force" 84
+		"turret turn" 9
+		"reload" 3
+		"firing energy" 18
+		"firing heat" 42
+		"firing force" 36
 		"submunition" "speckle slug"
 	description "The turreted version of the Speckle Railgun mounts a pair of railguns onto a nimble swiveling base. Its light weight and minimal size allows even the smallest ships to fit one, enabling them to engage much larger targets at extreme ranges."
 
@@ -159,50 +152,50 @@ outfit "speckle slug"
 			"zoom" 0.25
 			"frame rate" 30
 		"hit effect" "bombardment impact"
-		"lifetime" 48
-		"random lifetime" 30
-		"shield damage" 24
-		"hull damage" 54
-		"hit force" 84
+		"lifetime" 36
+		"random lifetime" 15
+		"shield damage" 9
+		"hull damage" 21
+		"hit force" 36
 
 
 outfit "Fleck Round"
 	category "Ammunition"
 	cost 6
 	thumbnail "outfit/thunderhead"
-	"mass" 0.006
+	"mass" 0.03
 	"sabot capacity" -1
 	"flotsam chance" 1
-	description "These dense metallic glass slugs are capable of inflicting kinetic damage via hypervelocity impacts, but are easily stopped by momentum-repulsion shield systems."
-	description "Due to their simple makeup, they can be easily manufactured out of most commonly found metals."
+	description "These copper slugs are capable of inflicting kinetic damage via hypervelocity impacts, but are easily stopped by momentum-repulsion shield systems."
+	description "Due to their homogenous design, they can be easily manufactured out of common copper ore."
 
 
 outfit "Fleck Coilgun"
 	category "Guns"
 	cost 40000
 	thumbnail "outfit/particle cannon"
-	"mass" 18
+	"mass" 12
 	"outfit space" -18
 	"weapon capacity" -18
-	"energy capacity" 1260
 	"gun ports" -1
 	"sabot capacity" 1000
 	weapon
 		sound "repeater"
 		ammo "Fleck Round" 1
-		icon "icon/rail gun"
 		"fire effect" "finisher sparks"
 		"hit effect" "bombardment impact"
-		"inaccuracy" 1
-		"velocity" 42
+		"inaccuracy" 0.3
+		"velocity" 45
 		"range override" 3600
+		"cluster"
 		"lifetime" 1
-		"reload" 30
+		"reload" 18
+		"turret turn" 3
 		"firing energy" 180
-		"firing heat" 120
-		"firing force" 180
+		"firing heat" 90
+		"firing force" 120
 		"submunition" "fleck slug"
-	description `A dedicated artillery weapon, the Fleck Coilgun launches a forty-two kilogram hypervelocity projectile at extreme ranges, dealing devastating damage on any ship unfortunate enough to cross its line of fire. `
+	description `redo this`
 
 
 
@@ -210,33 +203,28 @@ outfit "Fleck Turret"
 	category "Turrets"
 	cost 40000
 	thumbnail "outfit/particle cannon"
-	"mass" 42
-	"outfit space" -42
-	"weapon capacity" -42
-	"energy capacity" 2520
+	"mass" 24
+	"outfit space" -36
+	"weapon capacity" -36
 	"turret mounts" -1
 	"sabot capacity" 3600
 	weapon
 		sound "repeater"
 		ammo "Fleck Round" 2
-		icon "icon/rail gun"
 		"fire effect" "finisher sparks"
 		"hit effect" "bombardment impact"
-		"inaccuracy" 0.9
-		"velocity" 42
+		"inaccuracy" 0.6
+		"velocity" 45
 		"range override" 3600
 		"lifetime" 1
-		"reload" 30
+		"reload" 9
+		"cluster"
 		"turret turn" 3.6
-		"firing energy" 360
-		"firing heat" 240
-		"firing force" 360
+		"firing energy" 120
+		"firing heat" 72
+		"firing force" 180
 		"submunition" "fleck slug"
-			"offset" 3 0
-		"submunition" "fleck slug"
-			"offset" -3 0
-	description "A pair of Fleck Coilguns on a sturdy turret mount produces a powerful kinetic artillery piece capable of lobbing projectiles across an entire battlefield. The sheer momentum behind each forty-two kilogram slug can push around even the heaviest warships, while also inflicting serious damage to any physical barrier."
-	description "Like its fixed gun version, the Fleck Turret is unfortunately much less effective against the momentum-repulsion technology of shields."
+	description `A pair of Fleck Coilguns on a sturdy turret mount produces a powerful kinetic artillery piece capable of lobbing projectiles across an entire battlefield. An inductive energy recovery system allows the firing of one coilgun to prime the other instead of simply dissipating the charge as heat, making the turret more thermally efficient compared to its single gun variant. The sheer momentum behind each slug can inflict serious damage on any conventional material, though it is less effective against momentum-repulsion shielding technologies.`
 
 
 outfit "fleck slug"
@@ -244,12 +232,12 @@ outfit "fleck slug"
 		sprite "projectile/coilgun"
 			"frame rate" 6
 		"hit effect" "bombardment impact"
-		"lifetime" 180
+		"lifetime" 120
+		"random lifetime" 30
 		"inaccuracy" 0.3
-		"shield damage" 90
-		"hull damage" 180
-		"hit force" 360
-		"missile strength" 60
+		"shield damage" 60
+		"hull damage" 84
+		"hit force" 180
 
 
 
@@ -322,27 +310,24 @@ outfit "Phased Array Laser (450 nm)"
 	thumbnail "outfit/t3 anti missile"
 	"mass" 42
 	"outfit space" -42
-	"weapon capacity" -32
+	"weapon capacity" -30
 	"turret mounts" -1
+	"optical jamming" 18
+	"energy consumption" 1.2
 	weapon
 		"hardpoint sprite" "hardpoint/blue phaser"
 		"die effect" "blue phaser die"
 		"die effect" "blue phaser die 1"
 		"fire effect" "blue phaser fire"
-		"anti-missile" 2
+		"anti-missile" 3
 		"velocity" 900
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 15
-		"firing heat" 21
-		"shield damage" 60
-		"hull damage" 60
-
-
-	description "This compact phased array laser turret uses a set of individually targetable fiber lasers to create a single collimated beam precise enough to target projectiles in flight. An azure glow strong enough to blind the naked eye is the only indication of this weapon firing."
+		"firing energy" 24
+		"firing heat" 24
+	description "This compact phased array laser is actually a set of microscopicturret uses a set of individually targetable fiber lasers to create a single collimated beam. An azure glow strong enough to blind the naked eye is the only indication of this weapon firing."
 	description "Unlike the beam weapons used by many species, which incorporate exotic fields to mitigate beam diffraction, this weapon's effectiveness quickly drops off with range. However, the Avgi have managed to pump enough power into this laser to render it a potent missile defense system, even if its damage against other ships is lacking."
 	description "The lasing medium itself is a tightly wrapped coil of optical fiber, which would be more than a kilometer long if unraveled. This allows much of the laser to be stored internally inside the ship, with the turret itself merely containing the optics needed to aim it."
-	description "In the future, when the engineers known as "Code Herders" add the ability for turrets to contain both weapons attributes and antimissile attributes, this turret is planned to also double as a rather weak invisible beam weapon."
 	
 
 
@@ -354,6 +339,8 @@ outfit "Phased Array Laser (540 nm)"
 	"outfit space" -24
 	"weapon capacity" -18
 	"turret mounts" -1
+	"optical jamming" 12
+	"energy consumption" 0.6
 	weapon
 		"hardpoint sprite" "hardpoint/green phaser"
 		"die effect" "blue phaser die"
@@ -364,10 +351,9 @@ outfit "Phased Array Laser (540 nm)"
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 9
-		"firing heat" 12
+		"firing heat" 9
 	description "This compact phased array laser turret uses a set of individually targetable fiber lasers to create a single collimated beam precise enough to target projectiles in flight. A verdant glow strong enough to blind the naked eye is the only indication of this weapon firing."
 	description "Unlike the beam weapons used by many species, which are not just simple lasers, there is nothing to stop the beam from diffracting with distance, and as such this weapon's effectiveness quickly drops off with range. However, the Avgi have managed to pump enough power into this laser to render it a potent missile defense system, even if its damage against other ships is lacking."
-	description "In the future, when the engineers known as "Code Herders" add the ability for turrets to contain both weapons attributes and antimissile attributes, this turret is planned to also double as a rather weak invisible beam weapon."
 
 
 
@@ -472,7 +458,7 @@ outfit "Sidereal Pod"
 		"radar tracking" .9
 		"missile strength" 9
 		"submunition" "Sidereal Active"
-	description `Standard nuke launcher`
+	description `Mini flak missile launcher`
 
 
 outfit "Sidereal Active"
@@ -568,7 +554,7 @@ outfit "Equinox Torpedo Pylon"
 		"die effect" "missile death"
 		"missile strength" 24
 		"submunition" "Equinox Active"
-	description "Designed concurrently with the Phonon-class Torpedo Bomber, the Equinox Torpedo is a large, minimally guided thermonuclear torpedo that allows even small drones to pose a credible threat to a capital warship."
+	description "Developed concurrently with the Phonon-class Torpedo Bomber, the Equinox Torpedo is a large, minimally guided thermonuclear torpedo that allows even small drones to pose a credible threat to a capital warship."
 	description "Unlike the nuclear missiles employed by the Avgi, the Equinox carries only enough propellant to make small adjustments to its trajectory, and lacks the ability to accelerate entirely. It instead relies on the speed of the bomber carrying it, trading an independent propulsive capability for an oversized warhead."
 	description "This pylon externally mounts a single Equinox Torpedo, employing a small electromagnetic catapult to fling the torpedo towards its target."
 
@@ -667,10 +653,10 @@ outfit "Nadir Active"
 		"homing" 4
 		"radar tracking" .9
 		"optical tracking" .6
-		"trigger radius" 36
+		"trigger radius" 18
 		"blast radius" 150
-		"shield damage" 4800
-		"hull damage" 3600
+		"shield damage" 5400
+		"hull damage" 4200
 		"hit force" 1800
 		"missile strength" 36
 
@@ -932,8 +918,30 @@ outfit "Protium Fusion Ramscoop"
 	"spinal mount" -1
 	"ramscoop" 90
 	"fuel generation" 1.2
+	"fuel capacity" 600
 	"energy consumption" 12
-	description "The largest of the Avgi's sublight starships used direct cycle ramjet engines to collect hydrogen from the interstellar medium, fusing it while it sped by at a small fraction of the speed of light to produce thrust. This ramscoop takes that original design and strips out the thruster, modifying the fusion reactor to fuse protium into deuterium while preventing the deuterium from then fusing. While the process needed to inhibit deuterium fusion does make the reaction net energy negative, this ramscoop's ability to produce hyperspace fuel is unparalleled. However, it usually needs a dedicated reactor to run it, and is usually installed only on the largest Avgi tankers."
+	description "The largest of the Avgi's sublight starships once used direct cycle ramjet engines to collect hydrogen from the interstellar medium, fusing it while it sped by at a small fraction of the speed of light to produce thrust. This ramscoop takes that original ramjet design and strips out the thruster, modifying the fusion reactor to fuse raw hydrogen into deuterium while preventing the deuterium from further fusing. While the polarization process needed to inhibit deuterium fusion, a direct conjugate to the spin polarization that enables Avgi fusion torches, does make the reaction net energy negative, this ramscoop's ability to produce hyperspace fuel is unparalleled. However, it usually needs a dedicated reactor to run it, and is usually installed only on the largest Avgi tankers."
+
+
+outfit "Deuterium Slush Tank"
+	category "Systems"
+	cost 60000
+	thumbnail "outfit/cryo fuel tank"
+	"mass" 12
+	"outfit space" -12
+	"fuel capacity" 300
+	"energy consumption" 0.6
+
+
+outfit "Partition Thermal Sink"
+	category "Systems"
+	cost 30000
+	thumbnail "outfit/densified fuel tank"
+	"mass" 9
+	"outfit space" -3
+	"fuel capacity" -100
+	"heat capacity" 180
+	description `This lightweight modification partitions off a section of a ship's fuel tanks with an insulating membrane, allowing them to be partially filled with a nanofluid with a high specific heat capacity. As a heatsink, it does not assist with cooling a ship, but allows it to take greater thermal loads while remaining at the same temperature.`
 
 
 outfit "Multispectral Scanner"
@@ -993,10 +1001,10 @@ outfit "Diffuse Deflector"
 	thumbnail "outfit/small shield"
 	"mass" 24
 	"outfit space" -24
-	"shield generation" .24
+	"shield generation" 0.12
 	"shield energy" .9
 	"shield heat" 2.4
-	"shield delay" 6
+	"shield delay" 3
 	description "Avgi shield generators are primitive at best, which is especially evident in their attempt to scale them down to a manageable size for their drones and interceptors. This shield generator requires a prodigious amount of cooling after Avgi engineers miniturized it to the limits of their knowledge of shielding principles."
 
 
@@ -1006,10 +1014,10 @@ outfit "Specular Deflector"
 	thumbnail "outfit/large shield"
 	"mass" 54
 	"outfit space" -54
-	"shield generation" .84
+	"shield generation" 0.6
 	"shield energy" 1.8
 	"shield heat" 4.8
-	"shield delay" 6
+	"shield delay" 3
 	description "For its size, you would expect this shield generator to be far more powerful than it actually is. While it is nearly as large as the heaviest human shield generators, it is only about three quarters as strong, while also consuming much more power."
 
 outfit "Mirror Deflector"
@@ -1018,10 +1026,10 @@ outfit "Mirror Deflector"
 	thumbnail "outfit/huge shield"
 	"mass" 72
 	"outfit space" -72
-	"shield generation" 1.08
+	"shield generation" 0.84
 	"shield energy" 3.6
 	"shield heat" 9.6
-	"shield delay" 6
+	"shield delay" 3
 	description "The largest shield generator manufactured by the Avgi is impressive, if only because of how far the Avgi have pushed their limited theory of shielding principles. While their engineering ingenuity is admirable, there is a limit to how far you can take an incomplete understanding of the base physics behind shielding, and this generator approaches that limit."
 
 
@@ -1046,24 +1054,24 @@ outfit "Mirror Deflector"
 # Power:
 
 
-outfit "Concentrating Solar Array"
+outfit "Concentrating Solar Cell"
 	category "Power"
 	cost 200000
 	thumbnail "outfit/tiny photovoltaic"
 	"mass" 1
 	"outfit space" -6
-	"solar collection" 0.3
+	"solar collection" 0.45
 	"solar heat" 0.3
 	description "This small set of concentrating solar cells efficiently collects sunlight, turning it into usable energy. Fresnel lenses concentrate sunlight onto a smaller number of highly efficient solar cells, reducing weight."
 
 
-outfit "Trifold Solar Array"
+outfit "Concentrating Solar Array"
 	category "Power"
 	cost 200000
 	thumbnail "outfit/small photovoltaic"
 	"mass" 3
 	"outfit space" -18
-	"solar collection" 1.2
+	"solar collection" 1.8
 	"solar heat" 1.2
 	description "This large set of concentrating solar cells efficiently collects sunlight, turning it into usable energy. Fresnel lenses concentrate sunlight onto a smaller number of highly efficient solar cells, reducing weight."
 

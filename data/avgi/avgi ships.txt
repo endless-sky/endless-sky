@@ -58,19 +58,18 @@ ship "Swell (Transport)"
 		"weapon capacity" 36
 		"engine capacity" 72
 		"solar collection" 2.1
-		"surface space" 27
+		"hull scales" 27
 		weapon
-			"blast radius" 18
+			"blast radius" 36
 			"shield damage" 180
 			"hull damage" 90
 			"hit force" 270
 		outfits
 
 
-
-ship "Flutter (Transport)"
-	sprite "ship/swell crew"
-	thumbnail "thumbnail/swell crew"
+ship "Wake (Transport)"
+	sprite "ship/wake crew"
+	thumbnail "thumbnail/wake crew"
 	attributes
 		category "Transport"
 		"shields" 700
@@ -85,9 +84,36 @@ ship "Flutter (Transport)"
 		"weapon capacity" 36
 		"engine capacity" 72
 		"solar collection" 2.1
+		"hull scales" 27
+		weapon
+			"blast radius" 36
+			"shield damage" 180
+			"hull damage" 90
+			"hit force" 270
+		outfits
+
+
+
+ship "Flutter (Transport)"
+	sprite "ship/swell crew"
+	thumbnail "thumbnail/swell crew"
+	attributes
+		category "Space Liner"
+		"shields" 700
+		"hull" 1100
+		"required crew" 2
+		"bunks" 36
+		"mass" 114
+		"drag" 1.4
+		"heat dissipation" 1.3
+		"fuel capacity" 600
+		"outfit space" 186
+		"weapon capacity" 36
+		"engine capacity" 72
+		"solar collection" 2.1
 		"surface space" 27
 		weapon
-			"blast radius" 18
+			"blast radius" 36
 			"shield damage" 180
 			"hull damage" 90
 			"hit force" 270
@@ -110,7 +136,7 @@ ship "Swell (Cargo)"
 		"shields" 700
 		"hull" 1400
 		"automaton" 1
-		"cargo space" 228
+		"cargo space" 240
 		"mass" 114
 		"drag" 1.4
 		"heat dissipation" 1.3
@@ -121,7 +147,33 @@ ship "Swell (Cargo)"
 		"solar collection" 2.1
 		"surface space" 27
 		weapon
-			"blast radius" 21
+			"blast radius" 36
+			"shield damage" 210
+			"hull damage" 105
+			"hit force" 315 
+		outfits
+
+
+ship "Wake (Cargo)"
+	sprite "ship/wake cargo"
+	thumbnail "thumbnail/wake cargo"
+	attributes
+		category "Heavy Freighter"
+		"shields" 700
+		"hull" 1400
+		"automaton" 1
+		"cargo space" 480
+		"mass" 114
+		"drag" 1.4
+		"heat dissipation" 1.3
+		"fuel capacity" 600
+		"outfit space" 186
+		"weapon capacity" 36
+		"engine capacity" 72
+		"solar collection" 2.1
+		"surface space" 27
+		weapon
+			"blast radius" 36
 			"shield damage" 210
 			"hull damage" 105
 			"hit force" 315 
@@ -133,11 +185,11 @@ ship "Flutter (Cargo)"
 	sprite "ship/flutter cargo"
 	thumbnail "thumbnail/flutter cargo"
 	attributes
-		category "Light Freighter"
+		category "Heavy Freighter"
 		"shields" 700
 		"hull" 1400
 		"automaton" 1
-		"cargo space" 228
+		"cargo space" 600
 		"mass" 114
 		"drag" 1.4
 		"heat dissipation" 1.3
@@ -148,7 +200,7 @@ ship "Flutter (Cargo)"
 		"solar collection" 2.1
 		"surface space" 27
 		weapon
-			"blast radius" 21
+			"blast radius" 36
 			"shield damage" 210
 			"hull damage" 105
 			"hit force" 315 
@@ -223,9 +275,9 @@ ship "Damper"
 		"engine capacity" 84
 		"surface space" 40
 		weapon
-			"blast radius" 600
-			"shield damage" 8000
-			"hull damage" 16000
+			"blast radius" 660
+			"shield damage" 12600
+			"hull damage" 18000
 			"hit force" 8000
 		outfits
 	description "Damper-class Tanker"
@@ -280,13 +332,13 @@ ship "Vibe"
 		"engine capacity" 66
 		"surface space" 31
 		weapon
-			"blast radius" 21
+			"blast radius" 120
 			"shield damage" 204
 			"hull damage" 102
 			"hit force" 306
 	outfits
 		"Speckle Railgun" 2
-		"Mass Driver Round" 3000
+		"Speck Round" 3000
 		
 		"Pebble Bed Cell" 1
 		"Fractal Capacitor Cell" 3
@@ -333,13 +385,13 @@ ship "Timbre"
 		"engine capacity" 96
 		"surface space" 49
 		weapon
-			"blast radius" 126
+			"blast radius" 180
 			"shield damage" 1284
 			"hull damage" 852
 			"hit force" 960
 	outfits
 		"Speckle Turret" 2
-		"Mass Driver Round" 6000
+		"Speck Round" 6000
 		"Phased Array Laser (540 nm)"
 
 		"Luminous Fusion Core" 1
@@ -392,14 +444,14 @@ ship "Rhythm"
 		"engine capacity" 96
 		"surface space" 46
 		weapon
-			"blast radius" 52
+			"blast radius" 120
 			"shield damage" 520
 			"hull damage" 260
 			"hit force" 780
 	outfits
 
 		"Speckle Turret" 2
-		"Mass Driver Round" 6000
+		"Speck Round" 6000
 
 		"Luminous Fusion Core" 1
 		"Fractal Capacitor Bank" 1
@@ -459,13 +511,13 @@ ship "Coherence"
 		"weapon capacity" 144
 		"engine capacity" 114
 		weapon
-			"blast radius" 240
+			"blast radius" 360
 			"shield damage" 4800
 			"hull damage" 3600
 			"hit force" 3600
 	outfits
 		"Speckle Turret" 2
-		"Mass Driver Round" 7200
+		"Speck Round" 7200
 		"Phased Array Laser (450 nm)" 1
 
 		"Brilliant Fusion Core" 1
@@ -529,13 +581,13 @@ ship "Resonance"
 		"weapon capacity" 202
 		"engine capacity" 96
 		weapon
-			"blast radius" 240
+			"blast radius" 420
 			"shield damage" 4800
 			"hull damage" 3600
 			"hit force" 3600
 	outfits
 		"Fleck Turret" 4
-		"Mass Driver Round" 10800
+		"Fleck Round" 10800
 
 		"Radiant Fusion Core" 1
 		"Fractal Capacitor Bank" 2
@@ -591,13 +643,13 @@ ship "Reverberance"
 		"engine capacity" 132
 		"surface space" 58
 		weapon
-			"blast radius" 88
+			"blast radius" 420
 			"shield damage" 880
 			"hull damage" 440
 			"hit force" 1320
 	outfits
 		"Speckle Turret" 1
-		"Mass Driver Round" 7200
+		"Speck Round" 7200
 		"Phased Array Laser (540 nm)" 1
 		"Nadir Rotary Launcher" 2
 		"Nadir Magazine" 6
@@ -666,19 +718,19 @@ ship "Cascade"
 		"engine capacity" 174
 		"surface space" 73
 		weapon
-			"blast radius" 360
+			"blast radius" 540
 			"shield damage" 6400
 			"hull damage" 4800
 			"hit force" 4200
 	outfits
 		"Fleck Turret" 1
-		"Mass Driver Round" 6000
+		"Fleck Round" 6000
 		"Phased Array Laser (450 nm)" 2
 		"Equinox Torpedo Stockpile" 3
 		"Equinox Torpedo" 36
 		
 		"Radiant Fusion Core" 1
-		"Trifold Solar Array" 1
+		"Concentrating Solar Array" 1
 		"Fractal Capacitor Bank" 2
 		
 		"Hyperdrive" 1
@@ -760,12 +812,12 @@ ship "Quake"
 		"engine capacity" 28
 		"surface space" 20
 		weapon
-			"blast radius" 8
+			"blast radius" 18
 			"shield damage" 80
 			"hull damage" 40
 			"hit force" 120
 	outfits
-		"Trifold Solar Array" 1
+		"Concentrating Solar Array" 1
 		"Fractal Capacitor Cell" 3
 
 		"Diffuse Deflector"
@@ -799,12 +851,12 @@ ship "Lens"
 		"engine capacity" 24
 		"surface space" 6
 		weapon
-			"blast radius" 3
+			"blast radius" 6
 			"shield damage" 30
 			"hull damage" 15
 			"hit force" 45
 	outfits
-		"Trifold Solar Array" 1
+		"Concentrating Solar Array" 1
 		"Fractal Capacitor Cell" 1
 		
 		"Multispectral Scanner" 1
@@ -833,7 +885,7 @@ ship "Lumen"
 		"weapon capacity" 42
 		"engine capacity" 18
 		weapon
-			"blast radius" 6
+			"blast radius" 9
 			"shield damage" 36
 			"hull damage" 18
 			"hit force" 72
@@ -841,7 +893,7 @@ ship "Lumen"
 		"Nadir Rotary Launcher" 1
 		"Nadir Missile" 6
 		
-		"Concentrating Solar Array" 2
+		"Concentrating Solar Cell" 2
 		"Fractal Capacitor Cell" 1
 		
 		"Multispectral Scanner" 1
@@ -855,7 +907,7 @@ ship "Lumen"
 
 	explode "tiny explosion" 6
 
-	description "The Lumen-class Siloship was first envisioned as a cheap static defense satellite, little more than a tube capable of storing and launching nuclear missiles. Over time, this specialization was broadened, and the modern line of Lumens is also capable of mounting a large fixed gun, and the energy supply to support it, in order to serve as in the ranged artillery role. Their mostly hollow construction provides a great deal of internal space for their size, but also makes the drone quite fragile."
+	description "The Lumen-class Orbital Silo was first envisioned as a cheap static defense satellite, little more than a tube capable of storing and launching nuclear missiles. Over time, this specialization was broadened, and the modern line of Lumens is alternatively capable of mounting a large fixed gun, and carrying the energy supply to support it, in order to serve as in the ranged artillery role. Their mostly hollow construction provides a great deal of internal space for their size, but also makes the drone quite fragile."
 	description "Lumens are usually seen defending important Avgi systems, ready to fire their payloads on any hostile ships that jump into the system."
 	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
@@ -877,22 +929,24 @@ ship "Wavelet"
 		"weapon capacity" 24
 		"engine capacity" 24
 		weapon
-			"blast radius" 9
+			"blast radius" 12
 			"shield damage" 60
 			"hull damage" 18
 			"hit force" 72
 	outfits
 		"Speckle Railgun" 2
-		"Mass Driver Round" 1800
+		"Speck Round" 1800
+		"Sidereal Pod"
+		"Sidereal Missile" 6
 		
-		"Pebble Bed Cell" 1
-		"Fractal Capacitor Cell" 1
+		"Pebble Bed Cell"
+		"Fractal Capacitor Cell"
 		
-		"Multispectral Scanner" 1
-		"Small Auxiliary Radiator" 1
+		"Multispectral Scanner"
+		"Small Auxiliary Radiator"
 		
-		"M018 Magnetoplasma Drive" 1
-		
+		"M018 Magnetoplasma Drive"
+
 	engine -8.5 28.5 0.9
 	engine 8.5 28.5 0.9
 	gun -3 -30 "Speckle Railgun"
@@ -930,7 +984,7 @@ ship "Phonon"
 		"Equinox Torpedo Pylon" 2
 		"Equinox Torpedo" 2
 		
-		"Trifold Solar Array" 1
+		"Concentrating Solar Array" 1
 		"Fractal Capacitor Cell" 3
 		
 		"Multispectral Scanner" 1
@@ -960,7 +1014,7 @@ ship "Phonon"
 ship "Wavelet" "Wavelet (Fusion)"
 	outfits
 		"Speckle Railgun" 2
-		"Mass Driver Round" 1800
+		"Speck Round" 1800
 		"Sidereal Pod" 1
 		"Sidereal Missile" 6
 		

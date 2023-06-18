@@ -1,6 +1,6 @@
-government "Avgi"
-	color 0 0.78 0.84
+government Avgi
 	swizzle 3
+	color 0 0.78 0.84
 	"attitude toward"
 		"" -0.1
 		Merchant 0.01
@@ -10,46 +10,62 @@ government "Avgi"
 	"hostile hail" "hostile hai"
 	"hostile disabled hail" "hostile disabled hai"
 
-
-
-
-
-
-
-
-
-
-
-
 government "Avgi (Consonance)"
 	"display name" "Avgi Consonance"
 	swizzle 3
 	color 0.047 0.273 0.686
 	"attitude toward"
-		"Ka'sei (Twilight)" -.01
-		"Dissonance (Aggressive)" -.01
+		"Dissonance (Aggressive)" -0.01
+		"Ka'sei (Twilight)" -0.01
 
-government Dissonance
+government "Avgi (Dissonance)"
+	"display name" "Avgi Dissonance"
 	color 1 0 0.588
-
 
 government "Dissonance (Aggressive)"
 	color 1 0 0.588
 
-
 government Shroud
 	color 0.235 0.235 0.235
 
-government "Ka'sei (Twilight)"
-	"diplay name" "Intruders"
-	color 0.43 0.1 0.7
-	"attitude toward"
-		"Avgi" -.01
-		"Avgi (Spaceguard)" -.01
-
+government Ka'twil
+	color 0.4 0.1 0.7
 	"player reputation" -1
+	"attitude toward"
+		"" -0.1
+		Avgi -0.1
 
+star star/magnetar
+	power 4
+	wind 0.8
+	icon map/magnetar
 
+hazard "Magnetar Induction"
+	"constant strength"
+	range 900
+	weapon
+		"heat damage" 30
+		"slowing damage" 0.5
+		"hit force" 12
+		"warp damage" 1.5
+		"fog damage" 1
+		gravitational
+		"damage dropoff" 20 1500
+
+hazard "Magnetar Magnetic Field"
+	"constant strength"
+	range 1800
+	weapon
+		"disruption damage" 0.5
+		"discharge damage" 1
+		"damage dropoff" 120 1800
+		
+
+hazard "Tangles Fog"
+	"constant strength"
+	"system-wide"
+	weapon
+		"fog damage" 10
 
 
 effect "power beaming"
@@ -67,13 +83,13 @@ effect "power beaming"
 
 hazard "Microwave Power Transmission"
 	range 600
-	"environmental effect" "power beaming" 1
+	"environmental effect" "power beaming" 16
 	weapon
 		"energy damage" -6
 		"relative energy damage" -0.03
 		"damage dropoff" 100 0
 		"dropoff modifier" 0.9
-		"target effect" "power beaming" 1
+		"target effect" "power beaming" 16
 
 hazard "Smoke Ring Drag"
 	range 2000 2600
@@ -83,56 +99,47 @@ hazard "Smoke Ring Drag"
 		"relative heat damage" 0.006
 
 hazard "System Fog"
-	"system-wide"
 	"constant strength"
-	weapon
-		"fog damage" 1
 
-
-minable "droplet1"
-	"display name" "Small"
+minable "small droplet"
+	"display name" Small
 	noun "Water Droplet"
-	sprite "asteroid/droplet1/droplet1"
+	sprite "asteroid/small droplet/small droplet"
 	hull 60
 	"random hull" 30
 	payload "Boiled Fish" 1
-	explode "puff"
+	explode puff
 
-
-minable "droplet2"
-	"display name" "Medium"
+minable "medium droplet"
+	"display name" Medium
 	noun "Water Droplet"
-	sprite "asteroid/droplet2/droplet2"
+	sprite "asteroid/medium droplet/medium droplet"
 	hull 120
 	"random hull" 60
 	payload "Boiled Fish" 6
-	explode "puff"
+	explode puff
 
-
-minable "droplet3"
-	"display name" "Large"
+minable "large droplet"
+	"display name" Large
 	noun "Water Droplet"
-	sprite "asteroid/droplet3/droplet3"
+	sprite "asteroid/large droplet/large droplet"
 	hull 300
 	"random hull" 120
 	payload "Boiled Fish" 15
-	explode "puff"
-
+	explode puff
 
 minable "integral tree"
-	"display name" "Integral"
-	noun "Tree"
+	"display name" Integral
+	noun Tree
 	sprite "asteroid/integral tree/tree"
 	hull 120
 	"random hull" 120
 	payload "Integral Wood" 6
-	explode "puff"
-
-
+	explode puff
 
 outfit "Boiled Fish"
+	category Minerals
 	plural "Boiled Fish"
-	category "Minerals"
 	cost 2400
 	thumbnail "outfit/cooked fish"
 	"flotsam sprite" "outfit/cooked fish"
@@ -143,161 +150,99 @@ outfit "Boiled Fish"
 
 
 outfit "Integral Wood"
+	category Minerals
 	plural "Integral Wood"
-	category "Minerals"
 	cost 9000
 	thumbnail "outfit/integral wood"
 	"flotsam sprite" "outfit/integral wood"
 	"mass" 0.3
 	"installable" -1
 	"minable" 1
-	description "Exotic wood harvested from an integral tree. Strong, lightweight, and radiation resistant, it fetches extraordinary prices on the market for luxury materials."
-
-
-fleet "Ka'sei Incursion"
-	government "Ka'sei (Twilight)"
-	names "ka'het"
-	personality
-		heroic
-	variant 10
-		"Reali'sei" 4
+	description "Wood harvested from an integral tree. Exquisitely lightweight and radiation resistant, it fetches extraordinary prices on the market for exotic goods."
 
 
 
-
-
-
-
-fleet "Avgi Core Defense"
-	government "Avgi (Spaceguard)"
-	names "avgi drone names"
-	personality
-		heroic
-	variant 10
-		"Cascade"
-		"Wavelet" 9
-		"Phonon" 3
-
-
-
-fleet "Avgi Escort Carrier"
-	government "Avgi (Spaceguard)"
-	names "avgi drone names"
-	personality
-		heroic
-	variant 10
-		"Coherence"
-		"Wavelet" 6
-
-
-
-fleet "Remnant Carrier"
-	government "Ka'sei (Twilight)"
-	names "avgi drone names"
-	personality
-		heroic
-	variant 4
-		"Ibis"
-		"Petrel" 2
-		"Tern" 4
-
-
-
-phrase "avgi names 1"
+phrase "avgi civilian"
 	phrase
-		"avgi phases"
+		"avgi colors" 10
+		"avgi qualities" 5
+		"avgi phases" 5
 	word
 		" "
 	phrase
-		"avgi element nouns"
+		"avgi nature"
+		"avgi celestial"
+		"avgi elements"
 
 
-phrase "avgi names 1"
-	phrase
-		"avgi colors"
-	word
-		" "
-	phrase
-		"avgi element nouns"
 
-
-phrase "avgi names 3"
-	phrase
-		"avgi colors"
-	word
-		" "
-	phrase
-		"avgi celestial nouns"
-
-
-phrase "avgi names 4"
-	phrase
-		"avgi quality adjectives"
-	word
-		" "
-	phrase
-		"avgi nature nouns"
-
-
-phrase "avgi military names"
+phrase "avgi military"
 	word
 		"ACV "
 	phrase
-		"avgi quality adjectives"
+		"avgi qualities"
 	word
 		" "
 	phrase
-		"avgi physics nouns"
+		"avgi physics"
+		"avgi elements"
 
 
 
-
-
-phrase "avgi drone names"
-	word
-		"#"
-	phrase
-		"avgi hex colors"
-	word
-		"-"
+phrase "avgi fighter"
 	phrase
 		"avgi digits"
 	phrase
 		"avgi digits"
+	word
+		-
+	phrase
+		"avgi digits"
+	phrase
+		"avgi digits"
+	word
+		-
+	phrase
+		"avgi digits"
+	phrase
+		"avgi digits"
+
+
+
+
+
 
 
 
 phrase "avgi digits"
 	word
-		"0"
-		"1"
-		"2"
-		"3"
-		"4"
-		"5"
+		0
+		1
+		2
+		3
+		4
+		5
 
 phrase "avgi hexadecimals"
 	word
-		"0"
-		"1"
-		"2"
-		"3"
-		"4"
-		"5"
-		"6"
-		"7"
-		"8"
-		"9"
-		"A"
-		"B"
-		"C"
-		"D"
-		"E"
-		"F"
-
+		0
+		1
+		2
+		3
+		4
+		5
+		6
+		7
+		8
+		9
+		A
+		B
+		C
+		D
+		E
+		F
 
 phrase "avgi hex colors"
-
 	phrase
 		"avgi hexadecimals"
 	phrase
@@ -310,7 +255,6 @@ phrase "avgi hex colors"
 		"avgi hexadecimals"
 	phrase
 		"avgi hexadecimals"
-
 
 phrase "avgi colors"
 	word
@@ -327,7 +271,6 @@ phrase "avgi colors"
 		Gray
 		Silver
 		Gold
-
 		Azure
 		Alabaster
 		Alizarin
@@ -450,8 +393,7 @@ phrase "avgi colors"
 		Yinmn
 		Zaffre
 
-
-phrase "avgi element nouns"
+phrase "avgi elements"
 	word
 		Hydrogen
 		Helium
@@ -551,305 +493,272 @@ phrase "avgi element nouns"
 		Adamantine
 		Unobtanium
 
-
-phrase "avgi celestial nouns"
+phrase "avgi celestial"
 	word
-		"Star"
-		"Sun"
-		"Sky"
-		"Moon"
-		"Nova"
-		"Corona"
-		"Aurora"
-		"Void"
-		"Shockwave"
-		"Cloud"
-		"Nebula"
-		"Quasar"
-		"Magnetar"
-		"Filament"
-		"Cluster"
-		"Pulsar"
-		"Planet"
-		"Horizon"
-		"Zenith"
-		"Nadir"
-		"Azimuth"
-		"Comet"
-		"Flare"
-		"Prominence"
-		"Galaxy"
-		"Light"
-		"Gaze"
-		"Trail"
-		"Flash"
-		"Dawn"
-		"Dusk"
-		"Twilight"
-		"Midnight"
-		"Equinox"
-		"Solstice"
-		"Sunset"
-		"Sunrise"
-		"Shadow"
-		"Umbra"
-		"Penumbra"
-		"World"
-		"Wave"
-		"Zephyr"
-
-
-phrase "avgi nature nouns"
-	word
-		"Stars"
-		"Waves"
-		"Storms"
-		"Echoes"
-		"Winds"
-		"Leaves"
-		"Clouds"
-		"Oceans"	
-		"Roots"
-		"Fronds"
-		"Branches"
-		"Vines"
-		"Flowers"
-		"Stones"
-		"Seas"
-		"Paths"
-		"Feathers"
-		"Scales"
-		"Skies"
-		"Wisps"
-		"Memories"
-		"Strings"
-		"Lands"
-		"Eggs"
-		"Hills"
-		"Mountains"
-		"Lakes"
-		"Songs"
-		"Shores"
-		"Tides"
-		"Motes"
-		"Jade"
-		"Rain"
-		"Glass"
-		"Crystal"
-		"Sand"
-		"Moonlight"
-		"Dawn"
-		"Dusk"
-		"Fire"
-		"Ice"
-		"Water"
-		"Starlight"
-		"Lightning"
-		"Thunder"
-		"Steel"
-		"Stone"
-		"Light"
-		"Grass"
-		"Salt"
-		"Flint"
-		"Spring"
-		"Summer"
-		"Autumn"
-		"Winter"
-		"Snow"
-		"Ash"
-		"Brush"
-		"Foliage"
-		"Slate"
-		"Wood"
-		"Ore"
-		"Grain"
-		"Smoke"
-		"Clay"
-		"Jewel"
-		"Gemstone"
-		"Fruit"
-		"Wings"
-
-
-
-phrase "avgi physics nouns"
-	word
-		"Negentropy"
-		"Entropy"
-		"Energy"
-		"Uncertainty"
-		"Momentum"
-		"Displacement"
-		"Velocity"
-		"Acceleration"
-		"Position"
-		"Enthalpy"
-		"Diffraction"
-		"Dispersion"
-		"Refraction"
-		"Collision"
-		"Vector"
-		"Scalar"
-		"Tensor"
-		"Pressure"
-		"Absorption"
-		"Albedo"
-		"Emissivity"
-		"Adhesion"
-		"Cohesion"
-		"Proton"
-		"Neutron"
-		"Lepton"
-		"Electron"
-		"Quark"
-		"Tauon"
-		"Muon"
-		"Neutrino"
-		"Meson"
-		"Hadron"
-		"Attenuation"
-		"Axion"
-		"Boson"
-		"Fermion"
-		"Asymptote"
-		"Integral"
-		"Derivative"
-		"Horizon"
-		"Metric"
-		"Exergy"
-		"Constant"
-		"Spin"
-		"Mass"
-		"Charge"
-		"Dynamics"
-		"Static"
-		"Brittleness"
-		"Toughness"
-		"Hardness"
-		"Strength"
-
-
-
-
-
-phrase "avgi quality adjectives"
-	word
-		"Agreeable"
-		"Amazing"
-		"Beautiful"
-		"Brave"
-		"Changed"
-		"Charitable"
-		"Clarified"
-		"Compromising"
-		"Content"
-		"Destined"
-		"Enlightened"
-		"Enthusiastic"
-		"Fanciful"
-		"Fated"
-		"Forgiving"
-		"Fortified"
-		"Fortituous"
-		"Forward"
-		"Gloriful"
-		"Guarded"
-		"Harmonious"
-		"Honest"
-		"Hopeful"
-		"Languid"
-		"Magical"
-		"Merciful"
-		"Mighty"
-		"Mirthful"
-		"Mysterious"
-		"Negligible"
-		"Overwhelming"
-		"Patriotic"
-		"Penitent"
-		"Poetic"
-		"Powerful"
-		"Promised"
-		"Protective"
-		"Qualified"
-		"Relaxed"
-		"Reluctant"
-		"Repentive"
-		"Reserved"
-		"Sanguine"
-		"Serene"
-		"Sorry"
-		"Tranquiline"
-		"Trustworthy"
-		"Unashamed"
-		"Unbounded"
-		"Virtuous"
-		"Unyielding"
-		"Indestructable"
-		"Insurmountable"
-		"Unavoidable"
-
-
-		
-
-
-
-
-
-
-
-
-
-phrase "Things"
-	word
-		Creation's
-		Heavenly
-		Celestial
-		Otherworldly
-	word
+		Aether
+		Aurora
+		Azimuth
+		Cloud
+		Cluster
+		Comet
+		Corona
 		Dawn
-		Spark
+		Dusk
+		Equinox
+		Filament
+		Flare
+		Flash
+		Galaxy
+		Gaze
+		Horizon
+		Light
+		Magnetar
+		Midnight
+		Moon
+		Moonlight
+		Nadir
+		Nebula
+		Nova
+		Penumbra
+		Planet
+		Prominence
+		Pulsar
+		Quasar
+		Shadow
+		Shockwave
+		Sky
+		Solstice
+		Star
+		Starlight
+		Sun
+		Sunrise
+		Sunset
+		Trail
+		Twilight
+		Umbra
+		Void
+		Wave
+		World
+		Zenith
+		Zephyr
 
-
-
-phrase "avgi phase states"
+phrase "avgi nature"
 	word
-		"Solidifed"
-		"Precipitated"
-		"Condensed"
-		"Sublimated"
-		"Evaporated"
-		"Vaporized"
-		"Gasified"
-		"Gaseous"
-		"Liquified"
-		"Liquifacted"
-		"Crystallized"
-		"Crystalline"
-		"Ionized"
-		"Excited"
-		"Energized"
-		"Thawed"
-		"Frozen"
-		"Melted"
-		"Boiled"
-		"Vitrified"
-		"Vitreous"
+		Ash
+		Autumn
+		Branches
+		Brush
+		Clay
+		Clouds
+		Crystal
+		Dawn
+		Dusk
+		Echoes
+		Eggs
+		Feathers
+		Fire
+		Flint
+		Flowers
+		Foliage
+		Fronds
+		Fruit
+		Gemstone
+		Glass
+		Grain
+		Grass
+		Hills
+		Ice
+		Jade
+		Jewel
+		Lakes
+		Lands
+		Leaves
+		Light
+		Lightning
+		Memories
+		Moonlight
+		Motes
+		Mountains
+		Oceans
+		Ore
+		Paths
+		Rain
+		Roots
+		Salt
+		Sand
+		Scales
+		Seas
+		Shores
+		Skies
+		Slate
+		Smoke
+		Snow
+		Songs
+		Spring
+		Starlight
+		Stars
+		Steel
+		Stone
+		Stones
+		Storms
+		Strings
+		Summer
+		Thunder
+		Tides
+		Vines
+		Water
+		Waves
+		Winds
+		Wings
+		Winter
+		Wisps
+		Wood
 
+phrase "avgi physics"
+	word
+		Absorption
+		Acceleration
+		Adhesion
+		Albedo
+		Asymptote
+		Attenuation
+		Axion
+		Boson
+		Brittleness
+		Charge
+		Cohesion
+		Collision
+		Constant
+		Derivative
+		Diffraction
+		Dispersion
+		Displacement
+		Dynamics
+		Electron
+		Emissivity
+		Energy
+		Enthalpy
+		Entropy
+		Exergy
+		Fermion
+		Hadron
+		Hardness
+		Horizon
+		Integral
+		Lepton
+		Mass
+		Meson
+		Metric
+		Momentum
+		Muon
+		Negentropy
+		Neutrino
+		Neutron
+		Position
+		Pressure
+		Proton
+		Quark
+		Refraction
+		Scalar
+		Spin
+		Static
+		Strength
+		Tauon
+		Tensor
+		Toughness
+		Uncertainty
+		Vector
+		Velocity
 
+phrase "avgi qualities"
+	word
+		Agreeable
+		Amazing
+		Beautiful
+		Brave
+		Celestial
+		Changed
+		Charitable
+		Clarified
+		Compromising
+		Content
+		Creation's
+		Defending
+		Destined
+		Etheral
+		Enlightened
+		Enthusiastic
+		Fanciful
+		Fated
+		Forgiving
+		Fortified
+		Fortituous
+		Forward
+		Gloriful
+		Guarded
+		Harmonious
+		Heavenly
+		Honest
+		Hopeful
+		Indestructable
+		Insurmountable
+		Languid
+		Magical
+		Merciful
+		Mighty
+		Mirthful
+		Mysterious
+		Negligible
+		Otherworldly
+		Overwhelming
+		Patriotic
+		Penitent
+		Poetic
+		Powerful
+		Promised
+		Protective
+		Qualified
+		Relaxed
+		Reluctant
+		Repentive
+		Reserved
+		Sanguine
+		Serene
+		Sorry
+		Tranquiline
+		Trustworthy
+		Unashamed
+		Unavoidable
+		Unbounded
+		Unyielding
+		Virtuous
 
-
-
-
-
-
-
-
-
-
-
-
+phrase "avgi phases"
+	word
+		Boiled
+		Condensed
+		Crystalline
+		Crystallized
+		Energized
+		Evaporated
+		Excited
+		Frozen
+		Gaseous
+		Gasified
+		Ionized
+		Liquid
+		Liquifacted
+		Liquified
+		Melted
+		Precipitated
+		Solid
+		Solidifed
+		Sublimated
+		Thawed
+		Vaporized
+		Vaporized
+		Vitreous
+		Vitrified
 
 phrase "avgi untranslated"
 	word

@@ -1,0 +1,885 @@
+government "Avgi"
+	color 0 0.78 0.84
+	swizzle 3
+	"attitude toward"
+		"" -0.1
+		Merchant 0.01
+	bribe 0.2
+	"friendly hail" "friendly hai"
+	"friendly disabled hail" "friendly disabled hai"
+	"hostile hail" "hostile hai"
+	"hostile disabled hail" "hostile disabled hai"
+
+
+
+
+
+
+
+
+
+
+
+
+government "Avgi (Consonance)"
+	"display name" "Avgi Consonance"
+	swizzle 3
+	color 0.047 0.273 0.686
+	"attitude toward"
+		"Ka'sei (Twilight)" -.01
+		"Dissonance (Aggressive)" -.01
+
+government Dissonance
+	color 1 0 0.588
+
+
+government "Dissonance (Aggressive)"
+	color 1 0 0.588
+
+
+government Shroud
+	color 0.235 0.235 0.235
+
+government "Ka'sei (Twilight)"
+	"diplay name" "Intruders"
+	color 0.43 0.1 0.7
+	"attitude toward"
+		"Avgi" -.01
+		"Avgi (Spaceguard)" -.01
+
+	"player reputation" -1
+
+
+
+
+
+
+
+star "star/magnetar"
+	power 4
+	wind 0.4
+	icon map/magnetar
+
+
+
+effect "power beaming"
+	sprite "effect/mhd spark"
+		scale 0.25
+		"frame rate" 5
+		"random start frame"
+		rewind
+	lifetime 60
+	"random lifetime" 30
+	"random angle" 180
+	"random velocity" 0.5
+	"random spin" 10
+	"random frame rate" 5
+
+hazard "Microwave Power Transmission"
+	range 600
+	"environmental effect" "power beaming" 1
+	weapon
+		"energy damage" -6
+		"relative energy damage" -0.03
+		"damage dropoff" 100 0
+		"dropoff modifier" 0.9
+		"target effect" "power beaming" 1
+
+hazard "Smoke Ring Drag"
+	range 2000 2600
+	weapon
+		"shield damage" 6
+		"heat damage" 6
+		"relative heat damage" 0.006
+
+hazard "System Fog"
+	"system-wide"
+	"constant strength"
+	weapon
+		"fog damage" 1
+
+
+minable "small droplet"
+	"display name" "Small"
+	noun "Water Droplet"
+	sprite "asteroid/small droplet/small droplet"
+	hull 60
+	"random hull" 30
+	payload "Boiled Fish" 1
+	explode "puff"
+
+
+minable "medium droplet"
+	"display name" "Medium"
+	noun "Water Droplet"
+	sprite "asteroid/medium droplet/medium droplet"
+	hull 120
+	"random hull" 60
+	payload "Boiled Fish" 6
+	explode "puff"
+
+
+minable "large droplet"
+	"display name" "Large"
+	noun "Water Droplet"
+	sprite "asteroid/large droplet/large droplet"
+	hull 300
+	"random hull" 120
+	payload "Boiled Fish" 15
+	explode "puff"
+
+
+minable "integral tree"
+	"display name" "Integral"
+	noun "Tree"
+	sprite "asteroid/integral tree/tree"
+	hull 120
+	"random hull" 120
+	payload "Integral Wood" 6
+	explode "puff"
+
+
+
+outfit "Boiled Fish"
+	plural "Boiled Fish"
+	category "Minerals"
+	cost 2400
+	thumbnail "outfit/cooked fish"
+	"flotsam sprite" "outfit/cooked fish"
+	"mass" 1
+	"installable" -1
+	"minable" 1
+	description "Alien fish harvested in a perhaps unconventional manner. Despite being both flash-boiled and freeze dried, they are surprisingly appetizing."
+
+
+outfit "Integral Wood"
+	plural "Integral Wood"
+	category "Minerals"
+	cost 9000
+	thumbnail "outfit/integral wood"
+	"flotsam sprite" "outfit/integral wood"
+	"mass" 0.3
+	"installable" -1
+	"minable" 1
+	description "Exotic wood harvested from an integral tree. Strong, lightweight, and radiation resistant, it fetches extraordinary prices on the market for luxury materials."
+
+
+fleet "Ka'sei Incursion"
+	government "Ka'sei (Twilight)"
+	names "ka'het"
+	personality
+		heroic
+	variant 10
+		"Reali'sei" 4
+
+
+
+fleet "Magnetar Sparks"
+	government "Ka'sei (Twilight)"
+	names "ka'het"
+	personality
+		heroic surveiling
+	variant 10
+		"Spark" 30
+
+
+
+fleet "Avgi Core Defense"
+	government "Avgi (Spaceguard)"
+	names "avgi drone names"
+	personality
+		heroic
+	variant 10
+		"Cascade"
+		"Wavelet" 9
+		"Phonon" 3
+
+
+
+fleet "Avgi Escort Carrier"
+	government "Avgi (Spaceguard)"
+	names "avgi drone names"
+	personality
+		heroic
+	variant 10
+		"Coherence"
+		"Wavelet" 6
+
+
+
+fleet "Remnant Carrier"
+	government "Ka'sei (Twilight)"
+	names "avgi drone names"
+	personality
+		heroic
+	variant 4
+		"Ibis"
+		"Petrel" 2
+		"Tern" 4
+
+
+
+phrase "avgi names 1"
+	phrase
+		"avgi phases"
+	word
+		" "
+	phrase
+		"avgi element nouns"
+
+
+phrase "avgi names 1"
+	phrase
+		"avgi colors"
+	word
+		" "
+	phrase
+		"avgi element nouns"
+
+
+phrase "avgi names 3"
+	phrase
+		"avgi colors"
+	word
+		" "
+	phrase
+		"avgi celestial nouns"
+
+
+phrase "avgi names 4"
+	phrase
+		"avgi quality adjectives"
+	word
+		" "
+	phrase
+		"avgi nature nouns"
+
+
+phrase "avgi military names"
+	word
+		"ACV "
+	phrase
+		"avgi quality adjectives"
+	word
+		" "
+	phrase
+		"avgi physics nouns"
+
+
+
+
+
+phrase "avgi drone names"
+	word
+		"#"
+	phrase
+		"avgi hex colors"
+	word
+		"-"
+	phrase
+		"avgi digits"
+	phrase
+		"avgi digits"
+
+
+
+phrase "avgi digits"
+	word
+		"0"
+		"1"
+		"2"
+		"3"
+		"4"
+		"5"
+
+phrase "avgi hexadecimals"
+	word
+		"0"
+		"1"
+		"2"
+		"3"
+		"4"
+		"5"
+		"6"
+		"7"
+		"8"
+		"9"
+		"A"
+		"B"
+		"C"
+		"D"
+		"E"
+		"F"
+
+
+phrase "avgi hex colors"
+
+	phrase
+		"avgi hexadecimals"
+	phrase
+		"avgi hexadecimals"
+	phrase
+		"avgi hexadecimals"
+	phrase
+		"avgi hexadecimals"
+	phrase
+		"avgi hexadecimals"
+	phrase
+		"avgi hexadecimals"
+
+
+phrase "avgi colors"
+	word
+		Red
+		Orange
+		Yellow
+		Green
+		Blue
+		Purple
+		Pink
+		Brown
+		Black
+		White
+		Gray
+		Silver
+		Gold
+
+		Azure
+		Alabaster
+		Alizarin
+		Aqua
+		Arylide
+		Aureolin
+		Bistre
+		Bole
+		Carmine
+		Carnelian
+		Catawba
+		Celadon
+		Cerise
+		Cerul
+		Chartreuse
+		Chiffon
+		Cinereous
+		Citron
+		Claret
+		Coquelicot
+		Cordovan
+		Corsa
+		Drab
+		Fuchsia
+		Fulvous
+		Gainsboro
+		Gamboge
+		Glaucous
+		Gloss
+		Grullo
+		Hansa
+		Heliotrope
+		Icterine
+		Indigo
+		Ivory
+		Jade
+		Jasmine
+		Jet
+		Jonquil
+		Keppel
+		Kobe
+		Kobi
+		Kobicha
+		Kombu
+		Lait
+		Lapis
+		Laurel
+		Lazuli
+		Lilac
+		Linen
+		Lisera
+		Magnolia
+		Maize
+		Majorelle
+		Mauve
+		Meringue
+		Mikado
+		Mimi
+		Mindaro
+		Mulberry
+		Nadeshiko
+		Noir
+		Nyanza
+		Ochre
+		Olive
+		Onyx
+		Opera
+		Orchid
+		Palatinate
+		Paolo
+		Paua
+		Payne
+		Periwinkle
+		Persimmon
+		Phlox
+		Phthalo
+		Picotee
+		Pine
+		Prune
+		Puce
+		Purpureus
+		Quinacridone
+		Rajah
+		Razzmatazz
+		Razzmic
+		Roje
+		Rosso
+		Ruber
+		Rufous
+		Russet
+		Saffron
+		Sage
+		Satin
+		Schauss
+		Sepia
+		Sienna
+		Sinopia
+		Skobeloff
+		Slate
+		Syracuse
+		Taupe
+		Tenne
+		Thulian
+		Tourmaline
+		Trypan
+		Tyrian
+		Umber
+		Vale
+		Verdigris
+		Vermilion
+		Verdant
+		Vermillion
+		Veron
+		Violet
+		Viridian
+		Wisteria
+		Xanadu
+		Xanthic
+		Xanthous
+		Yinmn
+		Zaffre
+
+
+phrase "avgi element nouns"
+	word
+		Hydrogen
+		Helium
+		Lithium
+		Beryllium
+		Boron
+		Carbon
+		Nitrogen
+		Oxygen
+		Fluorine
+		Neon
+		Sodium
+		Magnesium
+		Aluminium
+		Silicon
+		Phosphorus
+		Sulfur
+		Chlorine
+		Argon
+		Potassium
+		Calcium
+		Scandium
+		Titanium
+		Vanadium
+		Chromium
+		Manganese
+		Iron
+		Cobalt
+		Nickel
+		Copper
+		Zinc
+		Gallium
+		Germanium
+		Arsenic
+		Selenium
+		Bromine
+		Krypton
+		Rubidium
+		Strontium
+		Yttrium
+		Zirconium
+		Niobium
+		Molybdenum
+		Technetium
+		Ruthenium
+		Rhodium
+		Palladium
+		Silver
+		Cadmium
+		Indium
+		Tin
+		Antimony
+		Tellurium
+		Iodine
+		Xenon
+		Caesium
+		Barium
+		Lanthanum
+		Cerium
+		Praseodymium
+		Neodymium
+		Promethium
+		Samarium
+		Europium
+		Gadolinium
+		Terbium
+		Dysprosium
+		Holmium
+		Erbium
+		Thulium
+		Ytterbium
+		Lutetium
+		Hafnium
+		Tantalum
+		Tungsten
+		Rhenium
+		Osmium
+		Iridium
+		Platinum
+		Gold
+		Mercury
+		Thallium
+		Lead
+		Bismuth
+		Polonium
+		Astatine
+		Radon
+		Francium
+		Radium
+		Actinium
+		Thorium
+		Protactinium
+		Uranium
+		Neptunium
+		Plutonium
+		Adamantium
+		Adamantine
+		Unobtanium
+
+
+phrase "avgi celestial nouns"
+	word
+		"Star"
+		"Sun"
+		"Sky"
+		"Moon"
+		"Nova"
+		"Corona"
+		"Aurora"
+		"Void"
+		"Shockwave"
+		"Cloud"
+		"Nebula"
+		"Quasar"
+		"Magnetar"
+		"Filament"
+		"Cluster"
+		"Pulsar"
+		"Planet"
+		"Horizon"
+		"Zenith"
+		"Nadir"
+		"Azimuth"
+		"Comet"
+		"Flare"
+		"Prominence"
+		"Galaxy"
+		"Light"
+		"Gaze"
+		"Trail"
+		"Flash"
+		"Dawn"
+		"Dusk"
+		"Twilight"
+		"Midnight"
+		"Equinox"
+		"Solstice"
+		"Sunset"
+		"Sunrise"
+		"Shadow"
+		"Umbra"
+		"Penumbra"
+		"World"
+		"Wave"
+		"Zephyr"
+
+
+phrase "avgi nature nouns"
+	word
+		"Stars"
+		"Waves"
+		"Storms"
+		"Echoes"
+		"Winds"
+		"Leaves"
+		"Clouds"
+		"Oceans"	
+		"Roots"
+		"Fronds"
+		"Branches"
+		"Vines"
+		"Flowers"
+		"Stones"
+		"Seas"
+		"Paths"
+		"Feathers"
+		"Scales"
+		"Skies"
+		"Wisps"
+		"Memories"
+		"Strings"
+		"Lands"
+		"Eggs"
+		"Hills"
+		"Mountains"
+		"Lakes"
+		"Songs"
+		"Shores"
+		"Tides"
+		"Motes"
+		"Jade"
+		"Rain"
+		"Glass"
+		"Crystal"
+		"Sand"
+		"Moonlight"
+		"Dawn"
+		"Dusk"
+		"Fire"
+		"Ice"
+		"Water"
+		"Starlight"
+		"Lightning"
+		"Thunder"
+		"Steel"
+		"Stone"
+		"Light"
+		"Grass"
+		"Salt"
+		"Flint"
+		"Spring"
+		"Summer"
+		"Autumn"
+		"Winter"
+		"Snow"
+		"Ash"
+		"Brush"
+		"Foliage"
+		"Slate"
+		"Wood"
+		"Ore"
+		"Grain"
+		"Smoke"
+		"Clay"
+		"Jewel"
+		"Gemstone"
+		"Fruit"
+		"Wings"
+
+
+
+phrase "avgi physics nouns"
+	word
+		"Negentropy"
+		"Entropy"
+		"Energy"
+		"Uncertainty"
+		"Momentum"
+		"Displacement"
+		"Velocity"
+		"Acceleration"
+		"Position"
+		"Enthalpy"
+		"Diffraction"
+		"Dispersion"
+		"Refraction"
+		"Collision"
+		"Vector"
+		"Scalar"
+		"Tensor"
+		"Pressure"
+		"Absorption"
+		"Albedo"
+		"Emissivity"
+		"Adhesion"
+		"Cohesion"
+		"Proton"
+		"Neutron"
+		"Lepton"
+		"Electron"
+		"Quark"
+		"Tauon"
+		"Muon"
+		"Neutrino"
+		"Meson"
+		"Hadron"
+		"Attenuation"
+		"Axion"
+		"Boson"
+		"Fermion"
+		"Asymptote"
+		"Integral"
+		"Derivative"
+		"Horizon"
+		"Metric"
+		"Exergy"
+		"Constant"
+		"Spin"
+		"Mass"
+		"Charge"
+		"Dynamics"
+		"Static"
+		"Brittleness"
+		"Toughness"
+		"Hardness"
+		"Strength"
+
+
+
+
+
+phrase "avgi quality adjectives"
+	word
+		"Agreeable"
+		"Amazing"
+		"Beautiful"
+		"Brave"
+		"Changed"
+		"Charitable"
+		"Clarified"
+		"Compromising"
+		"Content"
+		"Destined"
+		"Enlightened"
+		"Enthusiastic"
+		"Fanciful"
+		"Fated"
+		"Forgiving"
+		"Fortified"
+		"Fortituous"
+		"Forward"
+		"Gloriful"
+		"Guarded"
+		"Harmonious"
+		"Honest"
+		"Hopeful"
+		"Languid"
+		"Magical"
+		"Merciful"
+		"Mighty"
+		"Mirthful"
+		"Mysterious"
+		"Negligible"
+		"Overwhelming"
+		"Patriotic"
+		"Penitent"
+		"Poetic"
+		"Powerful"
+		"Promised"
+		"Protective"
+		"Qualified"
+		"Relaxed"
+		"Reluctant"
+		"Repentive"
+		"Reserved"
+		"Sanguine"
+		"Serene"
+		"Sorry"
+		"Tranquiline"
+		"Trustworthy"
+		"Unashamed"
+		"Unbounded"
+		"Virtuous"
+		"Unyielding"
+		"Indestructable"
+		"Insurmountable"
+		"Unavoidable"
+
+
+		
+
+
+
+
+
+
+
+
+
+phrase "Things"
+	word
+		Creation's
+		Heavenly
+		Celestial
+		Otherworldly
+	word
+		Dawn
+		Spark
+
+
+
+phrase "avgi phase states"
+	word
+		"Solidifed"
+		"Precipitated"
+		"Condensed"
+		"Sublimated"
+		"Evaporated"
+		"Vaporized"
+		"Gasified"
+		"Gaseous"
+		"Liquified"
+		"Liquifacted"
+		"Crystallized"
+		"Crystalline"
+		"Ionized"
+		"Excited"
+		"Energized"
+		"Thawed"
+		"Frozen"
+		"Melted"
+		"Boiled"
+		"Vitrified"
+		"Vitreous"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+phrase "avgi untranslated"
+	word
+		"You are sent a series of short, excited tones reminiscent of a plucked string instrument."
+
+phrase "friendly avgi"
+	word
+		"ya like jazz?"
+
+phrase "friendly disabled avgi"
+
+phrase "hostile avgi"
+
+phrase "hostile disabled avgi"
+	word
+		"ecks dee "
+
