@@ -103,7 +103,7 @@ namespace {
 	const vector<string> OverlaySetting::OVERLAY_SETTINGS = {"off", "always on", "damaged", "--"};
 
 	map<Preferences::OverlayType, OverlaySetting> statusOverlaySettings = {
-		{Preferences::OverlayType::ALL, Preferences::OverlayState::DISABLED},
+		{Preferences::OverlayType::ALL, Preferences::OverlayState::OFF},
 		{Preferences::OverlayType::FLAGSHIP, Preferences::OverlayState::OFF},
 		{Preferences::OverlayType::ESCORT, Preferences::OverlayState::OFF},
 		{Preferences::OverlayType::ENEMY, Preferences::OverlayState::OFF},
