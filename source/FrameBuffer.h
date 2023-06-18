@@ -15,6 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <string>
 
+#include "opengl.h"
+
 
 
 // All functions for handling framebuffers can be found here.
