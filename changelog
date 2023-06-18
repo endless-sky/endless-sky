@@ -10,6 +10,7 @@ Version 0.10.2
       * Conversations in "FW Diplomacy 1" and "FW Southern Break" will now check the correct conditions to branch if the player was previously suspended from the FW militia. (@warp-core)
       * Actions against the Gegno civilian government will now correctly impact the player's reputation with the Quarg in Gegno space. (@Saugia)
       * The "financial analyst" news item will no longer appear on human worlds while they are occupied by the Pug. (@tibetiroka)
+      * Ensure that the Unfettered escort fleet in Hai Reveal "A13-A" are not erroneously hostile to the player. (@MasterOfGrey)
     * Engine bugs:
       * Fixed some situations where ships will stop acting and drift forever. (@UnorderedSigh)
       * Fixed a case in AI::DoScatter where ships may get stuck together. (@UnorderedSigh)
