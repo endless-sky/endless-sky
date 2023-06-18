@@ -214,7 +214,14 @@ void Preferences::Load()
 	it = settings.find("Show status overlays");
 	if(it != settings.end())
 	{
-		statusOverlaySettings[OverlayType::ALL] = it->second ? OverlayState::ON : OverlayState::OFF;
+		if(it->second)
+		{
+			statusOverlaySettings[OverlayType::ALL] = OverlayState::DISABLED;
+			statusOverlaySettings[OverlayType::FLAGSHIP] = OverlayState::ON;
+			statusOverlaySettings[OverlayType::ESCORT] = OverlayState::ON;
+			statusOverlaySettings[OverlayType::ENEMY] = OverlayState::ON;
+			statusOverlaySettings[OverlayType::NEUTRAL] = OverlayState::OFF;
+		}
 		settings.erase(it);
 	}
 }
