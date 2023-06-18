@@ -31,7 +31,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 //  5. UnbindCurrentFrameBuffer();
 //   - you are now back to drawing on the screen and have a texture that contains everything you just drew
 //  6. IMPORTANT, dont skip this step: DestroyBuffer(myBuffer, mytexture)
-//   - If you skip this step you will allocate more and more memory over time and crash the system. (or activate failsafes)
+//   - If you skip this step you will allocate more and more memory over time and crash the system.
+//    (or activate failsafes)
 class FrameBuffer
 {
 public:
