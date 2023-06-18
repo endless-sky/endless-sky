@@ -28,7 +28,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Galaxy.h"
 #include "GameData.h"
 #include "GameWindow.h"
-#include "Screen.h"
 #include "Government.h"
 #include "Information.h"
 #include "Interface.h"
