@@ -818,12 +818,11 @@ mission "Korath [F06]: The Rainbow Feather"
 			action
 				set "Korath [F05]: The Rainbow Feather: exile"
 			`	"Before their exile, the Korath had a vast and thriving civilization that spanned many systems. Unfortunately, due to their very nature, they could not resolve differences easily. This led to a terrible war that left their civilization weakened.`
-			# Iris's explanation is extremely biased because her primary source
-			# is the Korath exiles. She is presenting a human interpretation of
-			# the Exiles' feelings about their own fate.
+			# Iris's explanation is extremely biased because her primary source is the Korath exiles. She is presenting a human interpretation of the Exiles' feelings about their own fate.
 			`	"The imperialist Drak race sent living weapons, the Archons, to conquer the Korath under the guise of protection. The Archons' antimatter weapons and seeming invincibility was too much, until the Korath gathered a larger fleet. When they managed to injure one Archon, the others revealed frightening powers. They tore open rifts in reality, simply swallowing up Korath ships. Hidden super-weapons in planetoids, intended as mines, were harmless, as the Archons shattered the planetoids and atomized the weapons. In every battle, all Korath military ships were destroyed, but the civilians were somehow unscathed.`
 			`	"The Korath saw certain defeat, and in surrender the Drak offered two options. The Korath may give up their religions and live as pets of their own former friends, the Quarg. Or, they could keep their religions and live in starving exile near us.`
 			# The "YOU" in all caps is to indicate Iris is briefly raising her voice. Iris momentarily departs from the calm and kind persona she usually displays because she's infuriated beyond reason. This unusual departure from the typical Endless Sky writing rules is to emphasize the importance of what you did wrong.
+			# Some of this paragraph is not 100% correct; her information is based on what a Korath told her. The myth that the Drak would kill the Korath is common among the Korath. She perpetuates it here, not realizing it is false.
 			`	"The Drak left the exiles with a warning: destroy Far'en Lai, and we will kill you all. You may never leave exile until you live peacefully on Far'en Lai and make it thrive. As a precaution, and almost as a religion, they forbid weapons on that planet. A condition YOU violated." She looks heated for a moment before continuing.`
 			`	"As to their guardianship over us, it violates the letter of the law, but not the intent. The Korath hope this protection of the innocent will temper the Drak's rage. Along with defending us against major attacks, they have provided extensive assistance. Their aid - at our insistence - has been purely civilian: Anything we receive, the Syndicate may somehow obtain, and I shudder to think of what they may do with the wrong knowledge."`
 				goto check
