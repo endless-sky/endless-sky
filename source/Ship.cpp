@@ -1524,40 +1524,43 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	if(StepFlags())
 		return;
 
-	int requiredCrew = RequiredCrew();
-	double slowMultiplier = 1. / (1. + slowness * .05);
-	bool isUsingAfterburner = false;
-
 	// We're done if the ship was destroyed.
-	int destroyResult = StepDestroyed(visuals, flotsam);
+	const int destroyResult = StepDestroyed(visuals, flotsam);
 	if(destroyResult > 0)
 		return;
 
+	const bool isBeingDestroyed = destroyResult;
+
 	// Generate energy, heat, etc. if we're not being destroyed.
-	if(!destroyResult)
+	if(!isBeingDestroyed)
 		DoGeneration();
-	StepPassiveEffects(visuals, flotsam);
-	StepJettison(flotsam);
-	StepCloakDecision();
 
-	// If the ship is not being destroyed, see if it is entering hyperspace
-	if(!destroyResult && StepHyperspaceLogic(visuals))
-		return;
+	DoPassiveEffects(visuals, flotsam);
+	DoJettison(flotsam);
+	DoCloakDecision();
 
-	// If we're not being destroyed or trying to enter hyperspace, check if we're trying to land.
-	// If we landed, we're done.
-	if(!destroyResult && StepLandingLogic())
-		return;
+	bool isUsingAfterburner = false;
 
 	// Don't let the ship do anything else if it is being destroyed.
-	if(!destroyResult)
+	if(!isBeingDestroyed)
 	{
+		// See if the ship is entering hyperspace.
+		// If it is, nothing more needs to be done here.
+		if(DoHyperspaceLogic(visuals))
+			return;
+
+		// Check if we're trying to land.
+		// If we landed, we're done.
+		if(DoLandingLogic())
+			return;
+
 		// Move the turrets.
 		if(!isDisabled)
 			armament.Aim(firingCommands);
-		StepInitializeMovement();
-		StepPilot(requiredCrew);
-		StepMovement(slowMultiplier, isUsingAfterburner);
+
+		DoInitializeMovement();
+		StepPilot();
+		StepMovement(isUsingAfterburner);
 		StepTargeting();
 	}
 
@@ -1565,7 +1568,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	position += velocity;
 
 	// Show afterburner flares unless the ship is being destroyed.
-	if(!destroyResult)
+	if(!isBeingDestroyed)
 		StepEngineVisuals(visuals, isUsingAfterburner);
 }
 
@@ -1595,7 +1598,7 @@ bool Ship::StepFlags()
 
 
 
-void Ship::StepPassiveEffects(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
+void Ship::DoPassiveEffects(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 {
 	// Adjust the error in the pilot's targeting.
 	personality.UpdateConfusion(firingCommands.IsFiring());
@@ -1621,7 +1624,7 @@ void Ship::StepPassiveEffects(vector<Visual> &visuals, list<shared_ptr<Flotsam>>
 
 
 
-void Ship::StepJettison(list<shared_ptr<Flotsam>> &flotsam)
+void Ship::DoJettison(list<shared_ptr<Flotsam>> &flotsam)
 {
 	// Jettisoned cargo effects (only for ships in the current system).
 	if(!jettisoned.empty() && !forget)
@@ -1633,38 +1636,39 @@ void Ship::StepJettison(list<shared_ptr<Flotsam>> &flotsam)
 
 
 
-void Ship::StepCloakDecision()
+void Ship::DoCloakDecision()
 {
-	if(!isInvisible)
-	{
-		// If you are forced to decloak (e.g. by running out of fuel) you can't
-		// initiate cloaking again until you are fully decloaked.
-		if(!cloak)
-			cloakDisruption = max(0., cloakDisruption - 1.);
+	if(isInvisible)
+		return;
 
-		double cloakingSpeed = attributes.Get("cloak");
-		bool canCloak = (!isDisabled && cloakingSpeed > 0. && !cloakDisruption
-			&& fuel >= attributes.Get("cloaking fuel")
-			&& energy >= attributes.Get("cloaking energy"));
-		if(commands.Has(Command::CLOAK) && canCloak)
-		{
-			cloak = min(1., cloak + cloakingSpeed);
-			fuel -= attributes.Get("cloaking fuel");
-			energy -= attributes.Get("cloaking energy");
-			heat += attributes.Get("cloaking heat");
-		}
-		else if(cloakingSpeed)
-		{
-			cloak = max(0., cloak - cloakingSpeed);
-			// If you're trying to cloak but are unable to (too little energy or
-			// fuel) you're forced to decloak fully for one frame before you can
-			// engage cloaking again.
-			if(commands.Has(Command::CLOAK))
-				cloakDisruption = max(cloakDisruption, 1.);
-		}
-		else
-			cloak = 0.;
+	// If you are forced to decloak (e.g. by running out of fuel) you can't
+	// initiate cloaking again until you are fully decloaked.
+	if(!cloak)
+		cloakDisruption = max(0., cloakDisruption - 1.);
+
+	double cloakingSpeed = attributes.Get("cloak");
+	bool canCloak = (!isDisabled && cloakingSpeed > 0. && !cloakDisruption
+		&& fuel >= attributes.Get("cloaking fuel")
+		&& energy >= attributes.Get("cloaking energy"));
+
+	if(commands.Has(Command::CLOAK) && canCloak)
+	{
+		cloak = min(1., cloak + cloakingSpeed);
+		fuel -= attributes.Get("cloaking fuel");
+		energy -= attributes.Get("cloaking energy");
+		heat += attributes.Get("cloaking heat");
 	}
+	else if(cloakingSpeed)
+	{
+		cloak = max(0., cloak - cloakingSpeed);
+		// If you're trying to cloak but are unable to (too little energy or
+		// fuel) you're forced to decloak fully for one frame before you can
+		// engage cloaking again.
+		if(commands.Has(Command::CLOAK))
+			cloakDisruption = max(cloakDisruption, 1.);
+	}
+	else
+		cloak = 0.;
 }
 
 
@@ -1673,338 +1677,335 @@ void Ship::StepCloakDecision()
 // destroyed, or 0 otherwise.
 int Ship::StepDestroyed(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 {
-	if(IsDestroyed())
+	if(!IsDestroyed())
+		return 0;
+
+	// Make sure the shields are zero, as well as the hull.
+	shields = 0.;
+
+	// Once we've created enough little explosions, die.
+	if(explosionCount == explosionTotal || forget)
 	{
-		// Make sure the shields are zero, as well as the hull.
-		shields = 0.;
+		if(IsYours() && Preferences::Has("Extra fleet status messages"))
+			Messages::Add("Your ship \"" + Name() + "\" has been destroyed.", Messages::Importance::Highest);
 
-		// Once we've created enough little explosions, die.
-		if(explosionCount == explosionTotal || forget)
+		if(!forget)
 		{
-			if(IsYours() && Preferences::Has("Extra fleet status messages"))
-				Messages::Add("Your ship \"" + Name() + "\" has been destroyed.", Messages::Importance::Highest);
+			const Effect *effect = GameData::Effects().Get("smoke");
+			double size = Width() + Height();
+			double scale = .03 * size + .5;
+			double radius = .2 * size;
+			int debrisCount = attributes.Mass() * .07;
 
-			if(!forget)
+			// Estimate how many new visuals will be added during destruction.
+			visuals.reserve(visuals.size() + debrisCount + explosionTotal + finalExplosions.size());
+
+			for(int i = 0; i < debrisCount; ++i)
 			{
-				const Effect *effect = GameData::Effects().Get("smoke");
-				double size = Width() + Height();
-				double scale = .03 * size + .5;
-				double radius = .2 * size;
-				int debrisCount = attributes.Mass() * .07;
+				Angle angle = Angle::Random();
+				Point effectVelocity = velocity + angle.Unit() * (scale * Random::Real());
+				Point effectPosition = position + radius * angle.Unit();
 
-				// Estimate how many new visuals will be added during destruction.
-				visuals.reserve(visuals.size() + debrisCount + explosionTotal + finalExplosions.size());
-
-				for(int i = 0; i < debrisCount; ++i)
-				{
-					Angle angle = Angle::Random();
-					Point effectVelocity = velocity + angle.Unit() * (scale * Random::Real());
-					Point effectPosition = position + radius * angle.Unit();
-
-					visuals.emplace_back(*effect, std::move(effectPosition), std::move(effectVelocity), std::move(angle));
-				}
-
-				for(unsigned i = 0; i < explosionTotal / 2; ++i)
-					CreateExplosion(visuals, true);
-				for(const auto &it : finalExplosions)
-					visuals.emplace_back(*it.first, position, velocity, angle);
-				// For everything in this ship's cargo hold there is a 25% chance
-				// that it will survive as flotsam.
-				for(const auto &it : cargo.Commodities())
-					Jettison(it.first, Random::Binomial(it.second, .25));
-				for(const auto &it : cargo.Outfits())
-					Jettison(it.first, Random::Binomial(it.second, .25));
-				// Ammunition has a default 5% chance to survive as flotsam.
-				for(const auto &it : outfits)
-				{
-					double flotsamChance = it.first->Get("flotsam chance");
-					if(flotsamChance > 0.)
-						Jettison(it.first, Random::Binomial(it.second, flotsamChance));
-					// 0 valued 'flotsamChance' means default, which is 5% for ammunition.
-					// At this point, negative values are the only non-zero values possible.
-					// Negative values override the default chance for ammunition
-					// so the outfit cannot be dropped as flotsam.
-					else if(it.first->Category() == "Ammunition" && !flotsamChance)
-						Jettison(it.first, Random::Binomial(it.second, .05));
-				}
-				for(shared_ptr<Flotsam> &it : jettisoned)
-					it->Place(*this);
-				flotsam.splice(flotsam.end(), jettisoned);
-
-				// Any ships that failed to launch from this ship are destroyed.
-				for(Bay &bay : bays)
-					if(bay.ship)
-						bay.ship->Destroy();
+				visuals.emplace_back(*effect, std::move(effectPosition), std::move(effectVelocity), std::move(angle));
 			}
-			energy = 0.;
-			heat = 0.;
-			ionization = 0.;
-			scrambling = 0.;
-			fuel = 0.;
-			velocity = Point();
-			MarkForRemoval();
-			return 1;
+
+			for(unsigned i = 0; i < explosionTotal / 2; ++i)
+				CreateExplosion(visuals, true);
+			for(const auto &it : finalExplosions)
+				visuals.emplace_back(*it.first, position, velocity, angle);
+			// For everything in this ship's cargo hold there is a 25% chance
+			// that it will survive as flotsam.
+			for(const auto &it : cargo.Commodities())
+				Jettison(it.first, Random::Binomial(it.second, .25));
+			for(const auto &it : cargo.Outfits())
+				Jettison(it.first, Random::Binomial(it.second, .25));
+			// Ammunition has a default 5% chance to survive as flotsam.
+			for(const auto &it : outfits)
+			{
+				double flotsamChance = it.first->Get("flotsam chance");
+				if(flotsamChance > 0.)
+					Jettison(it.first, Random::Binomial(it.second, flotsamChance));
+				// 0 valued 'flotsamChance' means default, which is 5% for ammunition.
+				// At this point, negative values are the only non-zero values possible.
+				// Negative values override the default chance for ammunition
+				// so the outfit cannot be dropped as flotsam.
+				else if(it.first->Category() == "Ammunition" && !flotsamChance)
+					Jettison(it.first, Random::Binomial(it.second, .05));
+			}
+			for(shared_ptr<Flotsam> &it : jettisoned)
+				it->Place(*this);
+			flotsam.splice(flotsam.end(), jettisoned);
+
+			// Any ships that failed to launch from this ship are destroyed.
+			for(Bay &bay : bays)
+				if(bay.ship)
+					bay.ship->Destroy();
 		}
-
-		// If the ship is dead, it first creates explosions at an increasing
-		// rate, then disappears in one big explosion.
-		++explosionRate;
-		if(Random::Int(1024) < explosionRate)
-			CreateExplosion(visuals);
-
-		// Handle hull "leaks."
-		for(const Leak &leak : leaks)
-			if(GetMask().IsLoaded() && leak.openPeriod > 0 && !Random::Int(leak.openPeriod))
-			{
-				activeLeaks.push_back(leak);
-				const auto &outlines = GetMask().Outlines();
-				const vector<Point> &outline = outlines[Random::Int(outlines.size())];
-				int i = Random::Int(outline.size() - 1);
-
-				// Position the leak along the outline of the ship, facing "outward."
-				activeLeaks.back().location = (outline[i] + outline[i + 1]) * .5;
-				activeLeaks.back().angle = Angle(outline[i] - outline[i + 1]) + Angle(90.);
-			}
-		for(Leak &leak : activeLeaks)
-			if(leak.effect)
-			{
-				// Leaks always "flicker" every other frame.
-				if(Random::Int(2))
-					visuals.emplace_back(*leak.effect,
-						angle.Rotate(leak.location) + position,
-						velocity,
-						leak.angle + angle);
-
-				if(leak.closePeriod > 0 && !Random::Int(leak.closePeriod))
-					leak.effect = nullptr;
-			}
-		return -1;
+		energy = 0.;
+		heat = 0.;
+		ionization = 0.;
+		scrambling = 0.;
+		fuel = 0.;
+		velocity = Point();
+		MarkForRemoval();
+		return 1;
 	}
-	return 0;
+
+	// If the ship is dead, it first creates explosions at an increasing
+	// rate, then disappears in one big explosion.
+	++explosionRate;
+	if(Random::Int(1024) < explosionRate)
+		CreateExplosion(visuals);
+
+	// Handle hull "leaks."
+	for(const Leak &leak : leaks)
+		if(GetMask().IsLoaded() && leak.openPeriod > 0 && !Random::Int(leak.openPeriod))
+		{
+			activeLeaks.push_back(leak);
+			const auto &outlines = GetMask().Outlines();
+			const vector<Point> &outline = outlines[Random::Int(outlines.size())];
+			int i = Random::Int(outline.size() - 1);
+
+			// Position the leak along the outline of the ship, facing "outward."
+			activeLeaks.back().location = (outline[i] + outline[i + 1]) * .5;
+			activeLeaks.back().angle = Angle(outline[i] - outline[i + 1]) + Angle(90.);
+		}
+	for(Leak &leak : activeLeaks)
+		if(leak.effect)
+		{
+			// Leaks always "flicker" every other frame.
+			if(Random::Int(2))
+				visuals.emplace_back(*leak.effect,
+					angle.Rotate(leak.location) + position,
+					velocity,
+					leak.angle + angle);
+
+			if(leak.closePeriod > 0 && !Random::Int(leak.closePeriod))
+				leak.effect = nullptr;
+		}
+	return -1;
 }
 
 
 
-bool Ship::StepHyperspaceLogic(vector<Visual> &visuals)
+bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 {
-	if(hyperspaceSystem || hyperspaceCount)
+	if(!hyperspaceSystem && !hyperspaceCount)
+		return false;
+
+	// Don't apply external acceleration while jumping.
+	acceleration = Point();
+
+	// Enter hyperspace.
+	int direction = hyperspaceSystem ? 1 : -1;
+	hyperspaceCount += direction;
+	// Number of frames it takes to enter or exit hyperspace.
+	static const int HYPER_C = 100;
+	// Rate the ship accelerate and slow down when exiting hyperspace.
+	static const double HYPER_A = 2.;
+	static const double HYPER_D = 1000.;
+	if(hyperspaceSystem)
+		fuel -= hyperspaceFuelCost / HYPER_C;
+
+	// Create the particle effects for the jump drive. This may create 100
+	// or more particles per ship per turn at the peak of the jump.
+	if(isUsingJumpDrive && !forget)
 	{
-		// Don't apply external acceleration while jumping.
-		acceleration = Point();
-
-		// Enter hyperspace.
-		int direction = hyperspaceSystem ? 1 : -1;
-		hyperspaceCount += direction;
-		// Number of frames it takes to enter or exit hyperspace.
-		static const int HYPER_C = 100;
-		// Rate the ship accelerate and slow down when exiting hyperspace.
-		static const double HYPER_A = 2.;
-		static const double HYPER_D = 1000.;
-		if(hyperspaceSystem)
-			fuel -= hyperspaceFuelCost / HYPER_C;
-
-		// Create the particle effects for the jump drive. This may create 100
-		// or more particles per ship per turn at the peak of the jump.
-		if(isUsingJumpDrive && !forget)
+		double sparkAmount = hyperspaceCount * Width() * Height() * .000006;
+		const map<const Effect *, int> &jumpEffects = attributes.JumpEffects();
+		if(jumpEffects.empty())
+			CreateSparks(visuals, "jump drive", sparkAmount);
+		else
 		{
-			double sparkAmount = hyperspaceCount * Width() * Height() * .000006;
-			const map<const Effect *, int> &jumpEffects = attributes.JumpEffects();
-			if(jumpEffects.empty())
-				CreateSparks(visuals, "jump drive", sparkAmount);
+			// Spread the amount of particle effects created among all jump effects.
+			sparkAmount /= jumpEffects.size();
+			for(const auto &effect : jumpEffects)
+				CreateSparks(visuals, effect.first, sparkAmount);
+		}
+	}
+
+	if(hyperspaceCount == HYPER_C)
+	{
+		SetSystem(hyperspaceSystem);
+		hyperspaceSystem = nullptr;
+		targetSystem = nullptr;
+		// Check if the target planet is in the destination system or not.
+		const Planet *planet = (targetPlanet ? targetPlanet->GetPlanet() : nullptr);
+		if(!planet || planet->IsWormhole() || !planet->IsInSystem(currentSystem))
+			targetPlanet = nullptr;
+		// Check if your parent has a target planet in this system.
+		shared_ptr<Ship> parent = GetParent();
+		if(!targetPlanet && parent && parent->targetPlanet)
+		{
+			planet = parent->targetPlanet->GetPlanet();
+			if(planet && !planet->IsWormhole() && planet->IsInSystem(currentSystem))
+				targetPlanet = parent->targetPlanet;
+		}
+		direction = -1;
+
+		// If you have a target planet in the destination system, exit
+		// hyperspace aimed at it. Otherwise, target the first planet that
+		// has a spaceport.
+		Point target;
+		// Except when you arrive at an extra distance from the target,
+		// in that case always use the system-center as target.
+		double extraArrivalDistance = isUsingJumpDrive
+			? currentSystem->ExtraJumpArrivalDistance() : currentSystem->ExtraHyperArrivalDistance();
+
+		if(extraArrivalDistance == 0)
+		{
+			if(targetPlanet)
+				target = targetPlanet->Position();
 			else
 			{
-				// Spread the amount of particle effects created among all jump effects.
-				sparkAmount /= jumpEffects.size();
-				for(const auto &effect : jumpEffects)
-					CreateSparks(visuals, effect.first, sparkAmount);
+				for(const StellarObject &object : currentSystem->Objects())
+					if(object.HasSprite() && object.HasValidPlanet()
+							&& object.GetPlanet()->HasSpaceport())
+					{
+						target = object.Position();
+						break;
+					}
 			}
 		}
 
-		if(hyperspaceCount == HYPER_C)
+		if(isUsingJumpDrive)
 		{
-			SetSystem(hyperspaceSystem);
-			hyperspaceSystem = nullptr;
-			targetSystem = nullptr;
-			// Check if the target planet is in the destination system or not.
-			const Planet *planet = (targetPlanet ? targetPlanet->GetPlanet() : nullptr);
-			if(!planet || planet->IsWormhole() || !planet->IsInSystem(currentSystem))
-				targetPlanet = nullptr;
-			// Check if your parent has a target planet in this system.
-			shared_ptr<Ship> parent = GetParent();
-			if(!targetPlanet && parent && parent->targetPlanet)
+			position = target + Angle::Random().Unit() * (300. * (Random::Real() + 1.) + extraArrivalDistance);
+			return true;
+		}
+
+		// Have all ships exit hyperspace at the same distance so that
+		// your escorts always stay with you.
+		double distance = (HYPER_C * HYPER_C) * .5 * HYPER_A + HYPER_D;
+		distance += extraArrivalDistance;
+		position = (target - distance * angle.Unit());
+		position += hyperspaceOffset;
+		// Make sure your velocity is in exactly the direction you are
+		// traveling in, so that when you decelerate there will not be a
+		// sudden shift in direction at the end.
+		velocity = velocity.Length() * angle.Unit();
+	}
+	if(!isUsingJumpDrive)
+	{
+		velocity += (HYPER_A * direction) * angle.Unit();
+		if(!hyperspaceSystem)
+		{
+			// Exit hyperspace far enough from the planet to be able to land.
+			// This does not take drag into account, so it is always an over-
+			// estimate of how long it will take to stop.
+			// We start decelerating after rotating about 150 degrees (that
+			// is, about acos(.8) from the proper angle). So:
+			// Stopping distance = .5*a*(v/a)^2 + (150/turn)*v.
+			// Exit distance = HYPER_D + .25 * v^2 = stopping distance.
+			double exitV = max(HYPER_A, MaxVelocity());
+			double a = (.5 / Acceleration() - .25);
+			double b = 150. / TurnRate();
+			double discriminant = b * b - 4. * a * -HYPER_D;
+			if(discriminant > 0.)
 			{
-				planet = parent->targetPlanet->GetPlanet();
-				if(planet && !planet->IsWormhole() && planet->IsInSystem(currentSystem))
-					targetPlanet = parent->targetPlanet;
+				double altV = (-b + sqrt(discriminant)) / (2. * a);
+				if(altV > 0. && altV < exitV)
+					exitV = altV;
 			}
-			direction = -1;
-
-			// If you have a target planet in the destination system, exit
-			// hyperspace aimed at it. Otherwise, target the first planet that
-			// has a spaceport.
-			Point target;
-			// Except when you arrive at an extra distance from the target,
-			// in that case always use the system-center as target.
-			double extraArrivalDistance = isUsingJumpDrive
-				? currentSystem->ExtraJumpArrivalDistance() : currentSystem->ExtraHyperArrivalDistance();
-
-			if(extraArrivalDistance == 0)
+			// If current velocity is less than or equal to targeted velocity
+			// consider the hyperspace exit done.
+			const Point facingUnit = angle.Unit();
+			if(velocity.Dot(facingUnit) <= exitV)
 			{
-				if(targetPlanet)
-					target = targetPlanet->Position();
-				else
-				{
-					for(const StellarObject &object : currentSystem->Objects())
-						if(object.HasSprite() && object.HasValidPlanet()
-								&& object.GetPlanet()->HasSpaceport())
-						{
-							target = object.Position();
-							break;
-						}
-				}
+				velocity = facingUnit * exitV;
+				hyperspaceCount = 0;
 			}
+		}
+	}
+	position += velocity;
+	if(GetParent() && GetParent()->currentSystem == currentSystem)
+	{
+		hyperspaceOffset = position - GetParent()->position;
+		double length = hyperspaceOffset.Length();
+		if(length > 1000.)
+			hyperspaceOffset *= 1000. / length;
+	}
 
-			if(isUsingJumpDrive)
+	return true;
+}
+
+
+
+bool Ship::DoLandingLogic()
+{
+	if(!landingPlanet && zoom >= 1.f)
+		return false;
+
+	// Don't apply external acceleration while landing.
+	acceleration = Point();
+
+	// If a ship was disabled at the very moment it began landing, do not
+	// allow it to continue landing.
+	if(isDisabled)
+		landingPlanet = nullptr;
+
+	float landingSpeed = attributes.Get("landing speed");
+	landingSpeed = landingSpeed > 0 ? landingSpeed : .02f;
+	// Special ships do not disappear forever when they land; they
+	// just slowly refuel.
+	if(landingPlanet && zoom)
+	{
+		// Move the ship toward the center of the planet while landing.
+		if(GetTargetStellar())
+			position = .97 * position + .03 * GetTargetStellar()->Position();
+		zoom -= landingSpeed;
+		if(zoom < 0.f)
+		{
+			// If this is not a special ship, it ceases to exist when it
+			// lands on a true planet. If this is a wormhole, the ship is
+			// instantly transported.
+			if(landingPlanet->IsWormhole())
 			{
-				position = target + Angle::Random().Unit() * (300. * (Random::Real() + 1.) + extraArrivalDistance);
+				SetSystem(&landingPlanet->GetWormhole()->WormholeDestination(*currentSystem));
+				for(const StellarObject &object : currentSystem->Objects())
+					if(object.GetPlanet() == landingPlanet)
+						position = object.Position();
+				SetTargetStellar(nullptr);
+				SetTargetSystem(nullptr);
+				landingPlanet = nullptr;
+			}
+			else if(!isSpecial || personality.IsFleeing())
+			{
+				MarkForRemoval();
 				return true;
 			}
 
-			// Have all ships exit hyperspace at the same distance so that
-			// your escorts always stay with you.
-			double distance = (HYPER_C * HYPER_C) * .5 * HYPER_A + HYPER_D;
-			distance += extraArrivalDistance;
-			position = (target - distance * angle.Unit());
-			position += hyperspaceOffset;
-			// Make sure your velocity is in exactly the direction you are
-			// traveling in, so that when you decelerate there will not be a
-			// sudden shift in direction at the end.
-			velocity = velocity.Length() * angle.Unit();
+			zoom = 0.f;
 		}
-		if(!isUsingJumpDrive)
-		{
-			velocity += (HYPER_A * direction) * angle.Unit();
-			if(!hyperspaceSystem)
-			{
-				// Exit hyperspace far enough from the planet to be able to land.
-				// This does not take drag into account, so it is always an over-
-				// estimate of how long it will take to stop.
-				// We start decelerating after rotating about 150 degrees (that
-				// is, about acos(.8) from the proper angle). So:
-				// Stopping distance = .5*a*(v/a)^2 + (150/turn)*v.
-				// Exit distance = HYPER_D + .25 * v^2 = stopping distance.
-				double exitV = max(HYPER_A, MaxVelocity());
-				double a = (.5 / Acceleration() - .25);
-				double b = 150. / TurnRate();
-				double discriminant = b * b - 4. * a * -HYPER_D;
-				if(discriminant > 0.)
-				{
-					double altV = (-b + sqrt(discriminant)) / (2. * a);
-					if(altV > 0. && altV < exitV)
-						exitV = altV;
-				}
-				// If current velocity is less than or equal to targeted velocity
-				// consider the hyperspace exit done.
-				const Point facingUnit = angle.Unit();
-				if(velocity.Dot(facingUnit) <= exitV)
-				{
-					velocity = facingUnit * exitV;
-					hyperspaceCount = 0;
-				}
-			}
-		}
-		position += velocity;
-		if(GetParent() && GetParent()->currentSystem == currentSystem)
-		{
-			hyperspaceOffset = position - GetParent()->position;
-			double length = hyperspaceOffset.Length();
-			if(length > 1000.)
-				hyperspaceOffset *= 1000. / length;
-		}
-
-		return true;
 	}
-	return false;
-}
-
-
-
-bool Ship::StepLandingLogic()
-{
-	if(landingPlanet || zoom < 1.f)
+	// Only refuel if this planet has a spaceport.
+	else if(fuel >= attributes.Get("fuel capacity")
+			|| !landingPlanet || !landingPlanet->HasSpaceport())
 	{
-		// Don't apply external acceleration while landing.
-		acceleration = Point();
-
-		// If a ship was disabled at the very moment it began landing, do not
-		// allow it to continue landing.
-		if(isDisabled)
-			landingPlanet = nullptr;
-
-		float landingSpeed = attributes.Get("landing speed");
-		landingSpeed = landingSpeed > 0 ? landingSpeed : .02f;
-		// Special ships do not disappear forever when they land; they
-		// just slowly refuel.
-		if(landingPlanet && zoom)
-		{
-			// Move the ship toward the center of the planet while landing.
-			if(GetTargetStellar())
-				position = .97 * position + .03 * GetTargetStellar()->Position();
-			zoom -= landingSpeed;
-			if(zoom < 0.f)
-			{
-				// If this is not a special ship, it ceases to exist when it
-				// lands on a true planet. If this is a wormhole, the ship is
-				// instantly transported.
-				if(landingPlanet->IsWormhole())
-				{
-					SetSystem(&landingPlanet->GetWormhole()->WormholeDestination(*currentSystem));
-					for(const StellarObject &object : currentSystem->Objects())
-						if(object.GetPlanet() == landingPlanet)
-							position = object.Position();
-					SetTargetStellar(nullptr);
-					SetTargetSystem(nullptr);
-					landingPlanet = nullptr;
-				}
-				else if(!isSpecial || personality.IsFleeing())
-				{
-					MarkForRemoval();
-					return true;
-				}
-
-				zoom = 0.f;
-			}
-		}
-		// Only refuel if this planet has a spaceport.
-		else if(fuel >= attributes.Get("fuel capacity")
-				|| !landingPlanet || !landingPlanet->HasSpaceport())
-		{
-			zoom = min(1.f, zoom + landingSpeed);
-			SetTargetStellar(nullptr);
-			landingPlanet = nullptr;
-		}
-		else
-			fuel = min(fuel + 1., attributes.Get("fuel capacity"));
-
-		// Move the ship at the velocity it had when it began landing, but
-		// scaled based on how small it is now.
-		if(zoom > 0.f)
-			position += velocity * zoom;
-
-		return true;
+		zoom = min(1.f, zoom + landingSpeed);
+		SetTargetStellar(nullptr);
+		landingPlanet = nullptr;
 	}
-	return false;
+	else
+		fuel = min(fuel + 1., attributes.Get("fuel capacity"));
+
+	// Move the ship at the velocity it had when it began landing, but
+	// scaled based on how small it is now.
+	if(zoom > 0.f)
+		position += velocity * zoom;
+
+	return true;
 }
 
 
 
-void Ship::StepInitializeMovement()
+void Ship::DoInitializeMovement()
 {
+	// If you're disabled, you can't initiate landing or jumping.
 	if(isDisabled)
-	{
-		// If you're disabled, you can't initiate landing or jumping.
-	}
-	else if(commands.Has(Command::LAND) && CanLand())
+		return;
+
+	if(commands.Has(Command::LAND) && CanLand())
 		landingPlanet = GetTargetStellar()->GetPlanet();
 	else if(commands.Has(Command::JUMP) && IsReadyToJump())
 	{
@@ -2017,8 +2018,10 @@ void Ship::StepInitializeMovement()
 
 
 
-void Ship::StepPilot(int requiredCrew)
+void Ship::StepPilot()
 {
+	int requiredCrew = RequiredCrew();
+
 	if(pilotError)
 		--pilotError;
 	else if(pilotOkay)
@@ -2048,10 +2051,13 @@ void Ship::StepPilot(int requiredCrew)
 
 // This ship is not landing or entering hyperspace. So, move it. If it is
 // disabled, all it can do is slow down to a stop.
-void Ship::StepMovement(double slowMultiplier, bool &isUsingAfterburner)
+void Ship::StepMovement(bool &isUsingAfterburner)
 {
-	double mass = InertialMass();
 	isUsingAfterburner = false;
+
+	double mass = InertialMass();
+	double slowMultiplier = 1. / (1. + slowness * .05);
+
 	if(isDisabled)
 		velocity *= 1. - Drag() / mass;
 	else if(!pilotError)

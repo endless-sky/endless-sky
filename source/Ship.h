@@ -221,19 +221,19 @@ private:
 	// system set because they just entered a fighter bay. Clear the hyperspace
 	// targets of ships that can't enter hyperspace.
 	bool StepFlags();
-	void StepPassiveEffects(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
-	void StepJettison(std::list<std::shared_ptr<Flotsam>> &flotsam);
-	void StepCloakDecision();
+	void DoPassiveEffects(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
+	void DoJettison(std::list<std::shared_ptr<Flotsam>> &flotsam);
+	void DoCloakDecision();
 	// Step ship destruction logic. Returns 1 if the ship has been destroyed, -1 if it is being
 	// destroyed, or 0 otherwise.
 	int StepDestroyed(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
 	// Step hyperspace enter/exit logic. Returns true if ship is hyperspacing in or out.
-	bool StepHyperspaceLogic(std::vector<Visual> &visuals);
+	bool DoHyperspaceLogic(std::vector<Visual> &visuals);
 	// Step landing logic. Returns true if the ship is landing or departing.
-	bool StepLandingLogic();
-	void StepInitializeMovement();
-	void StepPilot(int requiredCrew);
-	void StepMovement(double slowMultiplier, bool &isUsingAfterburner);
+	bool DoLandingLogic();
+	void DoInitializeMovement();
+	void StepPilot();
+	void StepMovement(bool &isUsingAfterburner);
 	void StepTargeting();
 	void StepEngineVisuals(std::vector<Visual> &visuals, bool isUsingAfterburner);
 	void DoGeneration();
