@@ -16,6 +16,7 @@ Version 0.10.2
       * Correct pluralization in some messages about automatically fired crew. (@tibetiroka)
       * Fixed a bug where plugin icons would not be correctly loaded if an @2x version was not present. (@warp-core)
       * Fixed an issue where out of system escorts would not land to refuel and instead get stuck. (@warp-core)
+      * Removed the capitalization of "flotsam" in the command name "Fleet: Harvest flotsam" in order to match other commands. (@TomGoodIdea)
   * Game content:
     * New content:
       * New civilian ship hails. (@LazerLit)
@@ -37,6 +38,7 @@ Version 0.10.2
       * Change the pronoun used for Hai of unknown gender from "it" to "they". (@tibetiroka)
       * Increased the power of "star/wr" from 0.4 to 5. (@Quantumshark)
       * Refactored some hails to separate punctuation that is common to every element in a "word" in its own "word" to avoid unnecessary repetition. (@lumbar527)
+      * The "ship salesperson" spaceport news will now only appear on planets with a shipyard. (@tibetiroka)
   * Game mechanics:
     * New mechanics:
       * Added two new parameters for rings drawn by interfaces: (@warp-core)
