@@ -30,7 +30,8 @@ int FrameBuffer::CreateFrameBuffer()
 	GLuint frameBuffer;
 	glGenFramebuffers(1, &frameBuffer);
 	glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
-	glDrawBuffer(GL_COLOR_ATTACHMENT0);
+	const GLenum buffers[] { GL_COLOR_ATTACHMENT0 };
+	glDrawBuffers(1, buffers);
 	return frameBuffer;
 }
 
@@ -46,7 +47,7 @@ int FrameBuffer::CreateTextureAttachment(int width, int height)
 		0, GL_RGB, GL_UNSIGNED_BYTE, nullptr);   // border, input format, data type, data.
 	glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, texture, 0);
+	glFramebufferTextureLayer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, texture, 0, 0);
 	return texture;
 }
 
