@@ -65,11 +65,11 @@ const Plugin *Plugins::Load(const string &path)
 	size_t pos = path.rfind('/', path.length() - 2) + 1;
 	string name = path.substr(pos, path.length() - 1 - pos);
 
-	auto* plugin = plugins.Get(name);
+	auto * plugin = plugins.Get(name);
 
 	// Loads plugin metadata from plugin.txt.
 	DataFile file(path + "/plugin.txt");
-	for(const DataNode& child : file)
+	for(const DataNode & child : file)
 	{
 		if(child.Token(0) == "name" && child.Size() >= 2)
 			plugin->name = child.Token(1);
@@ -81,7 +81,7 @@ const Plugin *Plugins::Load(const string &path)
 	// Also sets values for classic plugins without plugin.txt.
 	if(plugin->name.empty())
 		plugin->name = std::move(name);
-	if (plugin->aboutText.empty())
+	if(plugin->aboutText.empty())
 		plugin->aboutText = Files::Read(path + "about.txt");
 
 	plugin->path = path;
