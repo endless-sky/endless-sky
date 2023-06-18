@@ -81,7 +81,7 @@ namespace {
 		"void main() {\n"
 		"  if(matchBack > 0){\n"
 		"    vec4 backColor = texture(background, vec3((vertCoord.x + 1.0f) / 2.f, (vertCoord.y + 1.0f) / 2.f, 0));\n"
-		"    float brightness = (0.299*backColor.r + 0.587*backColor.g + 0.114*backColor.b);\n"
+		"    float brightness = (0.299*backColor.r + 0.587*backColor.g + 0.114*backColor.b);\n" // percieved brightness
 		"    if(brightness < 0.3)\n"
 		"      finalColor = texture(tex, texCoord).a * color;\n"
 		"    else if(brightness < 0.5)\n"

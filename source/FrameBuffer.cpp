@@ -15,12 +15,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "FrameBuffer.h"
 
+#include "opengl.h"
+
 #include <map>
 
 
 
 namespace {
-	std::map<std::string, int> bufferStore;
+	std::map<std::string, int> textureStorage;
 };
 
 
@@ -78,12 +80,12 @@ void FrameBuffer::DestroyBuffer(GLuint buffer, GLuint texture)
 
 void FrameBuffer::StoreTexture(std::string id, int texture)
 {
-	bufferStore[id] = texture;
+	textureStorage[id] = texture;
 }
 
 
 
 int FrameBuffer::GetTexture(std::string id)
 {
-	return bufferStore[id];
+	return textureStorage[id];
 }
