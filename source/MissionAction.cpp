@@ -73,58 +73,63 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 		system = node.Token(2);
 
 	for(const DataNode &child : node)
-	{
-		const string &key = child.Token(0);
-		bool hasValue = (child.Size() >= 2);
+		LoadSingle(child, missionName);
+}
 
-		if(key == "dialog")
+
+
+void MissionAction::LoadSingle(const DataNode &child, const string &missionName)
+{
+	const string &key = child.Token(0);
+	bool hasValue = (child.Size() >= 2);
+
+	if(key == "dialog")
+	{
+		if(hasValue && child.Token(1) == "phrase")
 		{
-			if(hasValue && child.Token(1) == "phrase")
-			{
-				if(!child.HasChildren() && child.Size() == 3)
-					dialogPhrase = ExclusiveItem<Phrase>(GameData::Phrases().Get(child.Token(2)));
-				else
-					child.PrintTrace("Skipping unsupported dialog phrase syntax:");
-			}
-			else if(!hasValue && child.HasChildren() && (*child.begin()).Token(0) == "phrase")
-			{
-				const DataNode &firstGrand = (*child.begin());
-				if(firstGrand.Size() == 1 && firstGrand.HasChildren())
-					dialogPhrase = ExclusiveItem<Phrase>(Phrase(firstGrand));
-				else
-					firstGrand.PrintTrace("Skipping unsupported dialog phrase syntax:");
-			}
+			if(!child.HasChildren() && child.Size() == 3)
+				dialogPhrase = ExclusiveItem<Phrase>(GameData::Phrases().Get(child.Token(2)));
 			else
-				Dialog::ParseTextNode(child, 1, dialogText);
+				child.PrintTrace("Skipping unsupported dialog phrase syntax:");
 		}
-		else if(key == "conversation" && child.HasChildren())
-			conversation = ExclusiveItem<Conversation>(Conversation(child, missionName));
-		else if(key == "conversation" && hasValue)
-			conversation = ExclusiveItem<Conversation>(GameData::Conversations().Get(child.Token(1)));
-		else if(key == "require" && hasValue)
+		else if(!hasValue && child.HasChildren() && (*child.begin()).Token(0) == "phrase")
 		{
-			int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
-			if(count >= 0)
-				requiredOutfits[GameData::Outfits().Get(child.Token(1))] = count;
+			const DataNode &firstGrand = (*child.begin());
+			if(firstGrand.Size() == 1 && firstGrand.HasChildren())
+				dialogPhrase = ExclusiveItem<Phrase>(Phrase(firstGrand));
 			else
-				child.PrintTrace("Error: Skipping invalid \"require\" amount:");
-		}
-		// The legacy syntax "outfit <outfit> 0" means "the player must have this outfit installed."
-		else if(key == "outfit" && child.Size() >= 3 && child.Token(2) == "0")
-		{
-			child.PrintTrace("Warning: Deprecated use of \"outfit\" with count of 0. Use \"require <outfit>\" instead:");
-			requiredOutfits[GameData::Outfits().Get(child.Token(1))] = 1;
-		}
-		else if(key == "system")
-		{
-			if(system.empty() && child.HasChildren())
-				systemFilter.Load(child);
-			else
-				child.PrintTrace("Error: Unsupported use of \"system\" LocationFilter:");
+				firstGrand.PrintTrace("Skipping unsupported dialog phrase syntax:");
 		}
 		else
-			action.LoadSingle(child, missionName);
+			Dialog::ParseTextNode(child, 1, dialogText);
 	}
+	else if(key == "conversation" && child.HasChildren())
+		conversation = ExclusiveItem<Conversation>(Conversation(child, missionName));
+	else if(key == "conversation" && hasValue)
+		conversation = ExclusiveItem<Conversation>(GameData::Conversations().Get(child.Token(1)));
+	else if(key == "require" && hasValue)
+	{
+		int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
+		if(count >= 0)
+			requiredOutfits[GameData::Outfits().Get(child.Token(1))] = count;
+		else
+			child.PrintTrace("Error: Skipping invalid \"require\" amount:");
+	}
+	// The legacy syntax "outfit <outfit> 0" means "the player must have this outfit installed."
+	else if(key == "outfit" && child.Size() >= 3 && child.Token(2) == "0")
+	{
+		child.PrintTrace("Warning: Deprecated use of \"outfit\" with count of 0. Use \"require <outfit>\" instead:");
+		requiredOutfits[GameData::Outfits().Get(child.Token(1))] = 1;
+	}
+	else if(key == "system")
+	{
+		if(system.empty() && child.HasChildren())
+			systemFilter.Load(child);
+		else
+			child.PrintTrace("Error: Unsupported use of \"system\" LocationFilter:");
+	}
+	else
+		action.LoadSingle(child, missionName);
 }
 
 
@@ -139,31 +144,38 @@ void MissionAction::Save(DataWriter &out) const
 		out.Write("on", trigger, system);
 	out.BeginChild();
 	{
-		if(!systemFilter.IsEmpty())
-		{
-			out.Write("system");
-			// LocationFilter indentation is handled by its Save method.
-			systemFilter.Save(out);
-		}
-		if(!dialogText.empty())
-		{
-			out.Write("dialog");
-			out.BeginChild();
-			{
-				// Break the text up into paragraphs.
-				for(const string &line : Format::Split(dialogText, "\n\t"))
-					out.Write(line);
-			}
-			out.EndChild();
-		}
-		if(!conversation->IsEmpty())
-			conversation->Save(out);
-		for(const auto &it : requiredOutfits)
-			out.Write("require", it.first->TrueName(), it.second);
-
-		action.Save(out);
+		SaveBody(out);
 	}
 	out.EndChild();
+}
+
+
+
+void MissionAction::SaveBody(DataWriter &out) const
+{
+	if(!systemFilter.IsEmpty())
+	{
+		out.Write("system");
+		// LocationFilter indentation is handled by its Save method.
+		systemFilter.Save(out);
+	}
+	if(!dialogText.empty())
+	{
+		out.Write("dialog");
+		out.BeginChild();
+		{
+			// Break the text up into paragraphs.
+			for(const string &line : Format::Split(dialogText, "\n\t"))
+				out.Write(line);
+		}
+		out.EndChild();
+	}
+	if(!conversation->IsEmpty())
+		conversation->Save(out);
+	for(const auto &it : requiredOutfits)
+		out.Write("require", it.first->TrueName(), it.second);
+
+	action.Save(out);
 }
 
 

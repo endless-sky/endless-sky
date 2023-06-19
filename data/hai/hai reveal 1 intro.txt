@@ -26,6 +26,11 @@ mission "Hai Reveal: Media Retraction"
 	to offer
 		has "event: hr: media retraction"
 	on offer
+	# Sync reputations for aliases of governments:
+		"reputation: Republic that won't enter wormhole" = "reputation: Republic"
+		"reputation: Free Worlds that won't enter wormhole" = "reputation: Free Worlds"
+		# Make sure the new governments start with appropriate rep:
+		"reputation: Elenctic Commune" = 1000
 		conversation
 			`News report that says that the guy who showed the video of the Hai ships five months prior was just a viral marketing stunt for an upcoming movie.`
 				decline
