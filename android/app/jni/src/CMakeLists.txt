@@ -28,6 +28,7 @@ option(ALSOFT_EAX "" OFF)
 OPTION(ALSOFT_REQUIRE_OPENSL "" ON)
 OPTION(ALSOFT_BACKEND_OBOE "" OFF)
 OPTION(ALSOFT_BACKEND_SDL2 "" OFF)
+OPTION(ALSOFT_BACKEND_PIPEWIRE "" OFF)
 set(LIBTYPE STATIC)
 add_definitions("-DAL_LIBTYPE_STATIC")
 add_subdirectory(openal-soft-1.22.0  EXCLUDE_FROM_ALL)
@@ -148,6 +149,7 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/Music_stub.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/News.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/NPC.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/NPCAction.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/opengl.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Outfit.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/OutfitInfoDisplay.cpp
