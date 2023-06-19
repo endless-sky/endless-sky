@@ -1568,6 +1568,10 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	position += velocity;
 
 
+	// Show afterburner flares unless the ship is being destroyed.
+	if(!isBeingDestroyed)
+		DoEngineVisuals(visuals, isUsingAfterburner);
+}
 
 // Launch any ships that are ready to launch.
 void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
