@@ -680,13 +680,15 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			if(isCloaking)
 				command |= Command::CLOAK;
 		}
+
 		// Cloak if the AI considers it appropriate.
-		else if(DoCloak(*it, command))
-		{
-			// The ship chose to retreat from its target, e.g. to repair.
-			it->SetCommands(command);
-			continue;
-		}
+		if(!it->IsYours() || !isCloaking)
+			if(DoCloak(*it, command))
+			{
+				// The ship chose to retreat from its target, e.g. to repair.
+				it->SetCommands(command);
+				continue;
+			}
 
 		shared_ptr<Ship> parent = it->GetParent();
 		if(parent && parent->IsDestroyed())
@@ -2962,7 +2964,8 @@ bool AI::DoCloak(Ship &ship, Command &command)
 	// or 40% farther away before it begins decloaking again.
 	double hysteresis = ship.Commands().Has(Command::CLOAK) ? .4 : 0.;
 	// If cloaking costs nothing, and no one has asked you for help, cloak at will.
-	bool cloakFreely = (fuelCost <= 0.) && !ship.GetShipToAssist();
+	// Player ships should never cloak automatically if they are not in danger.
+	bool cloakFreely = (fuelCost <= 0.) && !ship.GetShipToAssist() && !ship.IsYours();
 	// If this ship is injured / repairing, it should cloak while under threat.
 	bool cloakToRepair = (ship.Health() < RETREAT_HEALTH + hysteresis)
 			&& (attributes.Get("shield generation") || attributes.Get("hull repair rate"));
