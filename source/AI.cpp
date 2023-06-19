@@ -224,30 +224,6 @@ namespace {
 		return fuel < route.RequiredFuel(from, (to ? to : route.End()));
 	}
 
-	const StellarObject *GetRefuelLocation(const Ship &ship)
-	{
-		const StellarObject *target = nullptr;
-		const System *system = ship.GetSystem();
-		if(system)
-		{
-			// Determine which, if any, planet with fuel is closest.
-			double closest = numeric_limits<double>::infinity();
-			const Point &p = ship.Position();
-			for(const StellarObject &object : system->Objects())
-				if(object.HasSprite() && object.HasValidPlanet() && !object.GetPlanet()->IsWormhole()
-						&& object.GetPlanet()->HasFuelFor(ship))
-				{
-					double distance = p.Distance(object.Position());
-					if(distance < closest)
-					{
-						target = &object;
-						closest = distance;
-					}
-				}
-		}
-		return target;
-	}
-
 	// Set the ship's TargetStellar or TargetSystem in order to reach the
 	// next desired system. Will target a landable planet to refuel.
 	void SelectRoute(Ship &ship, const System *targetSystem)
@@ -279,7 +255,7 @@ namespace {
 		else if(needsRefuel)
 		{
 			// There is at least one planet that can refuel the ship.
-			ship.SetTargetStellar(GetRefuelLocation(ship));
+			ship.SetTargetStellar(AI::FindLandingLocation(ship));
 			return;
 		}
 		// Either there is no viable wormhole route to this system, or
@@ -1127,6 +1103,36 @@ int64_t AI::EnemyStrength(const Government *government)
 
 
 
+// Find nearest landing location.
+const StellarObject *AI::FindLandingLocation(const Ship &ship, const bool refuel)
+{
+	const StellarObject *target = nullptr;
+	const System *system = ship.GetSystem();
+	if(system)
+	{
+		// Determine which, if any, planet with fuel or without fuel is closest.
+		double closest = numeric_limits<double>::infinity();
+		const Point &p = ship.Position();
+		for(const StellarObject &object : system->Objects())
+		{
+			const Planet *planet = object.GetPlanet();
+			if(object.HasSprite() && object.HasValidPlanet() && !planet->IsWormhole()
+					&& planet->CanLand(ship) && planet->HasFuelFor(ship) == refuel)
+			{
+				double distance = p.Distance(object.Position());
+				if(distance < closest)
+				{
+					target = &object;
+					closest = distance;
+				}
+			}
+		}
+	}
+	return target;
+}
+
+
+
 // Check if the given target can be pursued by this ship.
 bool AI::CanPursue(const Ship &ship, const Ship &target) const
 {
@@ -1943,7 +1949,7 @@ void AI::Refuel(Ship &ship, Command &command)
 	if(CanRefuel(ship, parentTarget))
 		ship.SetTargetStellar(parentTarget);
 	else if(!CanRefuel(ship, ship.GetTargetStellar()))
-		ship.SetTargetStellar(GetRefuelLocation(ship));
+		ship.SetTargetStellar(FindLandingLocation(ship));
 
 	if(ship.GetTargetStellar())
 	{
