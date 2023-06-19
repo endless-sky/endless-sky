@@ -121,7 +121,7 @@ news "conspiracy theorist on post-fw Deneb"
 		word
 			"Conspiracy theorist"
 			"Critical thinker"
-			"Truth Seeker"
+			"Truth seeker"
 	message
 		word
 			"Do you really"
