@@ -105,7 +105,7 @@ help "fleet asteroid mining shortcuts"
 	`Shortcuts for asteroid targeting:`
 	`	<Select nearest asteroid> selects the nearest asteroid if you have an asteroid scanner.`
 	`	<Fleet: Fight my target> will focus your fleet on mining a targeted asteroid.`
-	`	<Fleet: Harvest Flotsam> will toggle whether your fleet tries to pick up flotsams.`
+	`	<Fleet: Harvest flotsam> will toggle whether your fleet tries to pick up flotsams.`
 	``
 	`Alternate targeting:`
 	`	Left click - will target an asteroid without mining it.`
@@ -114,7 +114,7 @@ help "fleet asteroid mining shortcuts"
 help "fleet harvest tutorial"
 	`You can order your escort to pick up discarded cargo or asteroid flotsam.`
 	``
-	`<Fleet: Harvest Flotsam> will order your fleet to collect flotsam if they have free cargo.`
+	`<Fleet: Harvest flotsam> will order your fleet to collect flotsam if they have free cargo.`
 	``
 	`Equip an asteroid scanner to learn more.`
 
