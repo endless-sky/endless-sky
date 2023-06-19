@@ -251,6 +251,8 @@
 		<Unit filename="source/Music.h" />
 		<Unit filename="source/NPC.cpp" />
 		<Unit filename="source/NPC.h" />
+		<Unit filename="source/NPCAction.cpp" />
+		<Unit filename="source/NPCAction.h" />
 		<Unit filename="source/News.cpp" />
 		<Unit filename="source/News.h" />
 		<Unit filename="source/Outfit.cpp" />

@@ -482,7 +482,7 @@ mission "Delivery to Human Space [2]"
 		dialog phrase "generic cargo delivery payment"
 
 mission "Hai Retrieve Human Luxury Goods"
-	name "Special order to <planet>"
+	name "Special order from <planet stopovers>"
 	job
 	repeat
 	description "A Hai socialite on <planet> wants to show off their knowledge of human culture to their peers. They want <cargo> from <stopovers> by <date>. Payment is <payment>."
@@ -512,7 +512,7 @@ mission "Hai Retrieve Human Luxury Goods"
 		dialog "Your payment of <payment> is waiting when you touch down, along with delivery instructions. You send the <commodity> by dedicated courier."
 
 mission "Hai Retrieve Human Food"
-	name "Special order to <planet>"
+	name "Special order from <planet stopovers>"
 	job
 	repeat
 	description "A Hai gourmet on <planet> is bored with local fare and wants to try food they heard about from human tourists. They want <cargo> from <stopovers> by <date>. Payment is <payment>."
@@ -541,7 +541,7 @@ mission "Hai Retrieve Human Food"
 		dialog "As soon as you touch down you receive a message from the Hai gourmet with thanks and your payment of <payment>."
 
 mission "Hai Retrieve Human Electronics"
-	name "Special order to <planet>"
+	name "Special order from <planet stopovers>"
 	job
 	repeat
 	description "A Hai tinkerer on <planet> wants to experiment with human technology. They want <cargo> from <stopovers> by <date>. Payment is <payment>."

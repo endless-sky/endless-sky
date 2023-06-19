@@ -1583,8 +1583,11 @@ bool PlayerInfo::TakeOff(UI *ui)
 		if(extra)
 		{
 			flagship->AddCrew(-extra);
-			Messages::Add("You fired " + to_string(extra) + " crew members to free up bunks for passengers."
-				, Messages::Importance::High);
+			if(extra == 1)
+				Messages::Add("You fired a crew member to free up a bunk for a passenger.", Messages::Importance::High);
+			else
+				Messages::Add("You fired " + to_string(extra) + " crew members to free up bunks for passengers.",
+						Messages::Importance::High);
 			flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - flagship->Crew());
 			cargo.TransferAll(flagship->Cargo());
 		}
@@ -1594,8 +1597,11 @@ bool PlayerInfo::TakeOff(UI *ui)
 	if(extra > 0)
 	{
 		flagship->AddCrew(-extra);
-		Messages::Add("You fired " + to_string(extra) + " crew members because you have no bunks for them."
-			, Messages::Importance::High);
+		if(extra == 1)
+			Messages::Add("You fired a crew member because you have no bunk for them.", Messages::Importance::High);
+		else
+			Messages::Add("You fired " + to_string(extra) + " crew members because you have no bunks for them.",
+					Messages::Importance::High);
 		flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - flagship->Crew());
 	}
 
