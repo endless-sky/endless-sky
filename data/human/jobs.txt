@@ -2676,19 +2676,19 @@ mission "Recycle garbage"
 		payment
 		payment 20000
 
-mission "Wildfire Aid [1]"
+mission "FW Wildfire Aid [1]"
 	job
 	repeat
-	name "Fire retardant to <planet>"
+	name "Wildfire aid to <planet>"
 	description "A major wildfire has occurred on <destination> and various settlements on the planet have been affected. Bring <cargo> to <planet> by <date> to assist in the firefighting efforts. Payment is <payment>."
-	cargo "fire retardant" 25 2 .05
+	cargo "flames aid" 25 2 .05
 	deadline
 	to offer
 		random < 5
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Free Worlds"
 	destination
-		not government "Pirate"
+		government "Free Worlds"
 		distance 2 8
 		attributes "forest"
 	on visit
@@ -2697,7 +2697,7 @@ mission "Wildfire Aid [1]"
 		payment 8500 80
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>. A group of <planet> citizens thank you for your assistance and bid you farewell."
 
-mission "Wildfire Aid [2]"
+mission "FW Wildfire Aid [2]"
 	job
 	repeat
 	name "Firefighters to <planet>"
@@ -2707,9 +2707,9 @@ mission "Wildfire Aid [2]"
 	to offer
 		random < 5
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Free Worlds"
 	destination
-		not government "Pirate"
+		government "Free Worlds"
 		distance 2 8
 		attributes "forest"
 	on visit
