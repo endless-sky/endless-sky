@@ -58,7 +58,7 @@ namespace {
 		"void main() {\n"
 		"  texCoord = vec2((float(glyph) + corner.x) / 98.f, corner.y);\n"
 		"  gl_Position = vec4((aspect * vert.x + position.x) * scale.x, (vert.y + position.y) * scale.y, 0.f, 1.f);\n"
-		"  vertCoord = gl_Position.xy;"
+		"  vertCoord = (position * aspect * scale).xy;"
 		"}\n";
 
 	const char *fragmentCode =
@@ -83,13 +83,9 @@ namespace {
 		"    vec4 backColor = texture(background, vec3((vertCoord.x + 1.0f) / 2.f, (vertCoord.y + 1.0f) / 2.f, 0));\n"
 		"    float brightness = (0.299*backColor.r + 0.587*backColor.g + 0.114*backColor.b);\n" // percieved brightness
 		"    if(brightness < 0.3)\n"
-		"      finalColor = texture(tex, texCoord).a * color;\n"
-		"    else if(brightness < 0.5)\n"
-		"      finalColor = vec4(vec3(0.7f), 1.f) * texture(tex, texCoord).a * color;\n"
-		"    else if(brightness < 0.7)\n"
-		"      finalColor = vec4(vec3(0.3f), 1.f) * texture(tex, texCoord).a * color;\n"
+		"      finalColor = vec4(vec3(0.6f), 1.f) * texture(tex, texCoord).a * color;\n"
 		"    else\n"
-		"      finalColor = vec4(vec3(0.1f), 1.f) * texture(tex, texCoord).a * color;\n"
+		"      finalColor = vec4(vec3(0.2f), 1.f) * texture(tex, texCoord).a * color;\n"
 		"  }\n"
 		"  else\n"
 		"    finalColor = texture(tex, texCoord).a * color;\n"
