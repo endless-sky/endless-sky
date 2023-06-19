@@ -3781,3 +3781,79 @@ mission "Hunted"
 		system
 			distance 5 5
 		fleet "Marauder fleet X"
+
+
+mission "Republic Navy Advisory System [frozen]"
+	name "Cold Relief"
+	description "Humanitarian aid of <cargo> to <destination> following a severe cold snap."
+	minor
+	repeat
+	source
+		government "Republic"
+	destination
+		government "Republic" "Syndicate" "Independent" "Neutral"
+		attributes "frozen"
+	substitutions
+		"<problem>" "cold snap"
+		"<problem>" "freeze"
+			"random" < 60
+		"<problem>" "snowstorm"
+			"random" < 30
+	cargo "cold aid" 10 15 0.5
+	to offer
+		random < 1
+	on offer
+		dialog `This is the Republic Navy Advisory System: <planet> is experiencing a severe <problem>. Volunteers are requested to supply <cargo> to <planet>. A stipend of <payment> is provided to cover fuel, crew, and any incidental expenses.`
+	on complete
+		payment 8000
+		dialog `Shivering, yet appreciative aid workers welcome your shipment. You look on, feeling satisfied that <cargo> will soon arrive to those that need it most.`
+
+mission "Republic Navy Advisory System [volcanic]"
+	name "Volcanic Relief"
+	description "Humanitarian aid of <cargo> to <destination> following a severe volcanic eruption."
+	minor
+	repeat
+	source
+		government "Republic"
+	destination
+		government "Republic" "Syndicate" "Independent" "Neutral"
+		attributes "volcanic" "lava"
+	substitutions
+		"<problem>" "volcanic event"
+		"<problem>" "volcanic eruption"
+			"random" < 60
+		"<problem>" "gas eruption"
+			"random" < 30
+	cargo "flames aid" 10 15 0.5
+	to offer
+		random < 1
+	on offer
+		dialog `This is the Republic Navy Advisory System: <planet> is experiencing a severe <problem>. Volunteers are requested to supply <cargo> to <planet>. A stipend of <payment> is provided to cover fuel, crew, and any incidental expenses.`
+	on complete
+		payment 8000
+		dialog `Relieved-looking aid workers welcome your shipment. You look on, feeling satisfied that <cargo> will soon arrive to those that need it most.`
+
+mission "Republic Navy Advisory System [wildfire]"
+	name "Wildfire Relief"
+	description "Humanitarian aid of <cargo> to <destination> following a severe wildfire."
+	minor
+	repeat
+	source
+		government "Republic"
+	destination
+		government "Republic" "Syndicate" "Independent" "Neutral"
+		attributes "forest"
+	substitutions
+		"<problem>" "forest fire"
+		"<problem>" "brush fire"
+			"random" < 60
+		"<problem>" "wildfire"
+			"random" < 30
+	cargo "flames aid" 10 15 0.5
+	to offer
+		random < 1
+	on offer
+		dialog `This is the Republic Navy Advisory System: <planet> is experiencing a severe <problem>. Volunteers are requested to supply <cargo> to <planet>. A stipend of <payment> is provided to cover fuel, crew, and any incidental expenses.`
+	on complete
+		payment 8000
+		dialog `Ash-covered, but relieved aid workers welcome your shipment. You look on, feeling satisfied that <cargo> will soon arrive to those that need it most.`
