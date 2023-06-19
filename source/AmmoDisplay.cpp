@@ -58,10 +58,7 @@ void AmmoDisplay::Update(const Ship &flagship)
 			double fuelAmmoCount = remaining / secWeapon->FiringFuel();
 			// If the weapon doesn't have ammo, use the fuel ammo count.
 			// Otherwise, use the least of the two ammo counts.
-			if(ammoCount == -1.)
-				ammoCount = fuelAmmoCount;
-			else
-				ammoCount = min(ammoCount, fuelAmmoCount);
+			ammoCount = ammoCount == -1. ? fuelAmmoCount : min(ammoCount, fuelAmmoCount);
 		}
 		ammo[secWeapon] = ammoCount;
 	}
