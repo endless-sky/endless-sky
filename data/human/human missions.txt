@@ -6162,7 +6162,7 @@ mission "Republic Navy Advisory System [volcanic]"
 			"random" < 60
 		"<problem>" "gas eruption"
 			"random" < 30
-	cargo "cold aid" 10 15 0.5
+	cargo "flames aid" 10 15 0.5
 	to offer
 		random < 1
 	on offer
@@ -6187,7 +6187,7 @@ mission "Republic Navy Advisory System [wildfire]"
 			"random" < 60
 		"<problem>" "wildfire"
 			"random" < 30
-	cargo "wildfire aid" 10 15 0.5
+	cargo "flames aid" 10 15 0.5
 	to offer
 		random < 1
 	on offer
