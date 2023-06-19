@@ -3629,7 +3629,12 @@ bool AI::TargetMinable(Ship &ship) const
 	};
 	auto UpdateBestMinable = MinableStrategy();
 	for(auto &&minable : minables)
-		UpdateBestMinable(minable);
+	{
+		if(bestMinable)
+			UpdateBestMinable(minable);
+		else
+			bestMinable = minable;
+	}
 	if(bestMinable)
 		ship.SetTargetAsteroid(bestMinable);
 	return static_cast<bool>(ship.GetTargetAsteroid());
