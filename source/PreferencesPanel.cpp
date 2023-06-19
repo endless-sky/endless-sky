@@ -298,6 +298,7 @@ bool PreferencesPanel::Hover(int x, int y)
 
 	tooltip.clear();
 
+	hoverControl.clear();
 	hover = -1;
 	for(unsigned index = 0; index < zones.size(); ++index)
 		if(zones[index].Contains(hoverPoint))
