@@ -46,6 +46,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cmath>
 #include <limits>
 #include <set>
+#include <iostream>
 
 using namespace std;
 
@@ -3629,7 +3630,11 @@ bool AI::TargetMinable(Ship &ship) const
 	};
 	auto UpdateBestMinable = MinableStrategy();
 	for(auto &&minable : minables)
+	{
+		if(!bestMinable)
+			bestMinable = minable;
 		UpdateBestMinable(minable);
+	}
 	if(bestMinable)
 		ship.SetTargetAsteroid(bestMinable);
 	return static_cast<bool>(ship.GetTargetAsteroid());
