@@ -56,7 +56,7 @@ void AmmoDisplay::Update(const Ship &flagship)
 			double remaining = flagship.Fuel()
 				* flagship.Attributes().Get("fuel capacity");
 			double fuelAmmoCount = remaining / secWeapon->FiringFuel();
-			// If ammoCount is -1, this weapon only requires fuel.
+			// Decide what remaining ammunition value to display.
 			ammoCount = (ammoCount == -1. ? fuelAmmoCount : min(ammoCount, fuelAmmoCount));
 		}
 		ammo[secWeapon] = ammoCount;
