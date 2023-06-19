@@ -1,3 +1,73 @@
+Version 0.10.2
+  * Bug fixes:
+    * Content bugs:
+      * Typo fixes. (@nothing-but-the-rain, @Saugia, @tibetiroka, @warp-core, @waterhouse)
+      * "Pact Recon 0" can no longer be offered from Glaze. (@UnorderedSigh)
+      * "Hai Reveal: Early Arrival: Alondo" and "Hai Reveal: Late Arrival: Alondo" can no longer offer from Hai-home. (@warp-core)
+      * Text in "Liberate Kornephoros" now correctly refers to Carriers as the attacking ships, not Cruisers. (@tibetiroka)
+      * Updated the "try out fighters transfer cargo" help message to refer to the correct section of the settings, "Gameplay" instead of "AI." (@tibetiroka)
+      * The Heliarch government will now also be hostile to the new split Quarg governments, not just the original one. (@Saugia)
+      * Conversations in "FW Diplomacy 1" and "FW Southern Break" will now check the correct conditions to branch if the player was previously suspended from the FW militia. (@warp-core)
+      * Actions against the Gegno civilian government will now correctly impact the player's reputation with the Quarg in Gegno space. (@Saugia)
+      * The "financial analyst" news item will no longer appear on human worlds while they are occupied by the Pug. (@tibetiroka)
+      * Ensure that the Unfettered escort fleet in Hai Reveal "A13-A" are not erroneously hostile to the player. (@MasterOfGrey)
+      * Make the new status overlay settings respect the old one and turn it off by default (@quyykk, @warp-core)
+    * Engine bugs:
+      * Fixed some situations where ships will stop acting and drift forever. (@UnorderedSigh)
+      * Fixed a case in AI::DoScatter where ships may get stuck together. (@UnorderedSigh)
+      * Correct pluralization in some messages about automatically fired crew. (@tibetiroka)
+      * Fixed a bug where plugin icons would not be correctly loaded if an @2x version was not present. (@warp-core)
+      * Fixed an issue where out of system escorts would not land to refuel and instead get stuck. (@warp-core)
+      * Removed the capitalization of "flotsam" in the command name "Fleet: Harvest flotsam" in order to match other commands. (@TomGoodIdea)
+      * Fixed a bug where the "explode" conversation endpoint wouldn't proper destroy the player's ship if it has more than 60 hull regeneration per second. (@UnorderedSigh)
+      * Fixed a bug with the new NPC Actions where a conversation was deleted while a conversation panel was still using it, leading to a crash. (@Amazinite)
+      * Fixed a bug where ships ordered to fire on a ship after being ordered to fire on an asteroid that still exists would behave improperly and leave the system. (@warp-core)
+  * Game content:
+    * New content:
+      * New civilian ship hails. (@LazerLit)
+      * New human news items. (@dorbarker)
+      * New jobs in Free Worlds space during the war that involve Military cargo. (@dorbarker)
+    * Mission changes:
+      * The "FW Pug 2C" missions now use autoconditions to ensure the appropriate one is offered instead of relying on MissionAction blocking. (@warp_core)
+      * The "Street Swindle" mission is now invisible, and uses conversation actions to take credits from the player and is always declined. (@lumbar527)
+      * Small wording change to "Earth Retirement" mission. (@lumbar527)
+      * Various wording changes to Gegno intro missions. (@Saugia)
+      * The missions that trigger the events for the Kestrel to be made available will now fail immediately instead of staying active indefinitely doing nothing. (@warp-core)
+      * Added a branch for "FW Senate 1B" for if the player already has a jump drive installed. (@lumbar527)
+      * Renamed some jobs involving stopovers to include the stopover planet in the name instead of the source/destination. (@warp-core)
+      * The Starling that the player needs to scan in the "Remnant: Keystone Research" missions now has the new "decloaked" personality. (@UnorderedSigh)
+      * The "Remnant: Broken Jump Drive" missions and job can no longer select planets with the "remnant station" attribute as destinations. (@Smedley-SC)
+    * Other:
+      * Removed a mention of Tomek drinking whiskey in FW Middle. (@QuantumShark)
+      * Added a "human names" phrase that can combines the results of the "male names" and "female names" phrases. (@warp-core)
+      * Change the pronoun used for Hai of unknown gender from "it" to "they". (@tibetiroka)
+      * Increased the power of "star/wr" from 0.4 to 5. (@Quantumshark)
+      * Refactored some hails to separate punctuation that is common to every element in a "word" in its own "word" to avoid unnecessary repetition. (@lumbar527)
+      * The "ship salesperson" spaceport news will now only appear on planets with a shipyard. (@tibetiroka)
+  * Game mechanics:
+    * New mechanics:
+      * Added two new parameters for rings drawn by interfaces: (@warp-core)
+        * "start angle": starts drawing the ring from a custom angle, instead of 0 degrees (straight up.)
+        * "span angle": draws an arc spanning the given angle, instead of a full ring (360 degrees.)
+      * Added a new personality, "decloaked," which prevents ships from cloaking. (@UnorderedSigh)
+  * User interface:
+    * The system names in the escort display for out of system escorts will now be truncated if they would exceed the escorts display box. (@TomGoodIdea)
+  * Under the hood:
+    * Prevent false positive warnings for dangling references by making copies. (@quyykk)
+    * Zero valued conditions will no longer be saved. (@warp-core)
+    * The "merchant in pirate space" news item now refers to the "merchant names" phrase for its name instead of reproducing all the possible results of that phrase. (@tibetiroka)
+    * Split Ship::Move into a number of separate methods to handle each step of the process to improve readability and maintainability. (@UnorderedSigh, @warp-core)
+    * Created a new NPCAction class to wrap MissionActions used directly by NPCs. (@Amazinite)
+  * CI/CD and development environment:
+    * Removed references to the old Google Group from the issue template. (@lumbar527, @ntabris)
+    * Disabled the sound card when running CI to suppress errors. (@UnorderedSigh, @MCOfficer)
+    * Created a section in the PR template for balance changes. (@Quantumshark)
+    * Added an EditorConfig rule for the indentation of the changelog file and Unix style (lf) line endings for all files. (@warp-core)
+    * Various GitHub Actions jobs will now also be triggered if their scripts or configuration files are updated, in addition to when the files they check are updated. (@tibetiroka)
+    * Add new entries to the .codespell.exclude file after the spell checker was updated. (@warp-core)
+    * Creating a GitHub release will now automatically generate Steam depots. (@quyykk)
+    * The codespell job will now also be run on the changelog. (@tibetiroka)
+
 Version 0.10.1
   * Big changes:
     * Releasing the first chapter of an extensive storyline that takes place after the main campaign is completed, focusing on the open secret of the existence of the Hai. (@MasterOfGrey, @Amazinite)

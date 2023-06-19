@@ -288,6 +288,30 @@ namespace {
 		ship.SetTargetStellar(nullptr);
 	}
 
+	// The health remaining before becoming disabled, at which fighters and
+	// other ships consider retreating from battle.
+	const double RETREAT_HEALTH = .25;
+
+	bool ShouldFlee(Ship &ship)
+	{
+		const Personality &personality = ship.GetPersonality();
+
+		if(personality.IsFleeing())
+			return true;
+
+		if(personality.IsStaying())
+			return false;
+
+		const bool lowHealth = ship.Health() < RETREAT_HEALTH + .25 * personality.IsCoward();
+		if(!personality.IsDaring() && lowHealth)
+			return true;
+
+		if(ship.GetAICache().NeedsAmmo())
+			return true;
+
+		return false;
+	}
+
 	bool StayOrLinger(Ship &ship)
 	{
 		const Personality &personality = ship.GetPersonality();
@@ -327,9 +351,6 @@ namespace {
 	// Constants for the invisible fence timer.
 	const int FENCE_DECAY = 4;
 	const int FENCE_MAX = 600;
-	// The health remaining before becoming disabled, at which fighters and
-	// other ships consider retreating from battle.
-	const double RETREAT_HEALTH = .25;
 
 	// An offset to prevent the ship from being not quite over the point to departure.
 	const double SAFETY_OFFSET = 1.;
@@ -659,13 +680,15 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			if(isCloaking)
 				command |= Command::CLOAK;
 		}
+
 		// Cloak if the AI considers it appropriate.
-		else if(DoCloak(*it, command))
-		{
-			// The ship chose to retreat from its target, e.g. to repair.
-			it->SetCommands(command);
-			continue;
-		}
+		if(!it->IsYours() || !isCloaking)
+			if(DoCloak(*it, command))
+			{
+				// The ship chose to retreat from its target, e.g. to repair.
+				it->SetCommands(command);
+				continue;
+			}
 
 		shared_ptr<Ship> parent = it->GetParent();
 		if(parent && parent->IsDestroyed())
@@ -684,7 +707,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		shared_ptr<Flotsam> targetFlotsam = it->GetTargetFlotsam();
 		if(isPresent && it->IsYours() && targetFlotsam && FollowOrders(*it, command))
 			continue;
-		if(isPresent && !personality.IsSwarming() && !targetAsteroid)
+		if(isPresent && !personality.IsSwarming())
 		{
 			// Each ship only switches targets twice a second, so that it can
 			// focus on damaging one particular ship.
@@ -714,12 +737,11 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			continue;
 		}
 
-		// Run away if your hostile target is not disabled and you are badly damaged.
+		// Run away if your hostile target is not disabled
+		// and you are either badly damaged or have run out of ammo.
 		// Player ships never stop targeting hostiles, while hostile mission NPCs will
 		// do so only if they are allowed to leave.
-		const bool shouldFlee = (personality.IsFleeing() ||
-			(!personality.IsDaring() && !personality.IsStaying()
-			&& healthRemaining < RETREAT_HEALTH + .25 * personality.IsCoward()));
+		const bool shouldFlee = ShouldFlee(*it);
 		if(!it->IsYours() && shouldFlee && target && target->GetGovernment()->IsEnemy(gov) && !target->IsDisabled()
 			&& (!it->GetParent() || !it->GetParent()->GetGovernment()->IsEnemy(gov)))
 		{
@@ -2942,7 +2964,8 @@ bool AI::DoCloak(Ship &ship, Command &command)
 	// or 40% farther away before it begins decloaking again.
 	double hysteresis = ship.Commands().Has(Command::CLOAK) ? .4 : 0.;
 	// If cloaking costs nothing, and no one has asked you for help, cloak at will.
-	bool cloakFreely = (fuelCost <= 0.) && !ship.GetShipToAssist();
+	// Player ships should never cloak automatically if they are not in danger.
+	bool cloakFreely = (fuelCost <= 0.) && !ship.GetShipToAssist() && !ship.IsYours();
 	// If this ship is injured / repairing, it should cloak while under threat.
 	bool cloakToRepair = (ship.Health() < RETREAT_HEALTH + hysteresis)
 			&& (attributes.Get("shield generation") || attributes.Get("hull repair rate"));
@@ -3629,7 +3652,12 @@ bool AI::TargetMinable(Ship &ship) const
 	};
 	auto UpdateBestMinable = MinableStrategy();
 	for(auto &&minable : minables)
-		UpdateBestMinable(minable);
+	{
+		if(bestMinable)
+			UpdateBestMinable(minable);
+		else
+			bestMinable = minable;
+	}
 	if(bestMinable)
 		ship.SetTargetAsteroid(bestMinable);
 	return static_cast<bool>(ship.GetTargetAsteroid());
