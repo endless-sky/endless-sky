@@ -52,6 +52,8 @@ private:
 	void DrawSettings();
 	void DrawPlugins();
 
+	void DrawTooltips();
+
 	void Exit();
 
 
@@ -66,6 +68,7 @@ private:
 	// Which page of the preferences we're on.
 	char page = 'c';
 	int hoverCount = 0;
+	std::string hoverControl;
 	std::string hoverPreference;
 	std::string tooltip;
 	WrappedText hoverText;

@@ -129,40 +129,17 @@ void PreferencesPanel::Draw()
 	prefZones.clear();
 	pluginZones.clear();
 	if(page == 'c')
+	{
 		DrawControls();
+		DrawTooltips();
+	}
 	else if(page == 's')
+	{
 		DrawSettings();
+		DrawTooltips();
+	}
 	else if(page == 'p')
 		DrawPlugins();
-
-	// Update the tooltip timer [0-60].
-	hoverCount += !hoverPreference.empty() ? (hoverCount < HOVER_TIME) : (hoverCount ? -1 : 0);
-
-	if(!hoverPreference.empty() && hoverCount >= HOVER_TIME)
-	{
-		// Create the tooltip text.
-		if(tooltip.empty())
-		{
-			tooltip = GameData::Tooltip(hoverPreference);
-			hoverText.Wrap(tooltip);
-		}
-		if(!tooltip.empty())
-		{
-			Point size(hoverText.WrapWidth(), hoverText.Height() - hoverText.ParagraphBreak());
-			size += Point(20., 20.);
-			Point topLeft = hoverPoint;
-
-			// Do not overflow the screen dimensions.
-			if(topLeft.X() + size.X() > Screen::Right())
-				topLeft.X() -= size.X();
-			if(topLeft.Y() + size.Y() > Screen::Bottom())
-				topLeft.Y() -= size.Y();
-
-			// Draw the background fill and the tooltip text.
-			FillShader::Fill(topLeft + .5 * size, size, *GameData::Colors().Get("tooltip background"));
-			hoverText.Draw(topLeft + Point(10., 10.), *GameData::Colors().Get("medium"));
-		}
-	}
 }
 
 
@@ -507,7 +484,10 @@ void PreferencesPanel::DrawControls()
 			// Highlight whichever row the mouse hovers over.
 			table.SetHighlight(-120, 120);
 			if(isHovering)
+			{
 				table.DrawHighlight(back);
+				hoverControl = COMMANDS[hover + 1].Description();
+			}
 
 			zones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), command);
 
@@ -869,6 +849,42 @@ void PreferencesPanel::DrawPlugins()
 			static const string EMPTY = "(No description given.)";
 			wrap.Wrap(plugin.aboutText.empty() ? EMPTY : plugin.aboutText);
 			wrap.Draw(top, medium);
+		}
+	}
+}
+
+
+
+void PreferencesPanel::DrawTooltips()
+{
+	string &hoverItem = (page == 'c' ? hoverControl : hoverPreference);
+
+	// Update the tooltip timer [0-60].
+	hoverCount += !hoverItem.empty() ? (hoverCount < HOVER_TIME) : (hoverCount ? -1 : 0);
+
+	if(!hoverItem.empty() && hoverCount >= HOVER_TIME)
+	{
+		// Create the tooltip text.
+		if(tooltip.empty())
+		{
+			tooltip = GameData::Tooltip(hoverItem);
+			hoverText.Wrap(tooltip);
+		}
+		if(!tooltip.empty())
+		{
+			Point size(hoverText.WrapWidth(), hoverText.Height() - hoverText.ParagraphBreak());
+			size += Point(20., 20.);
+			Point topLeft = hoverPoint;
+
+			// Do not overflow the screen dimensions.
+			if(topLeft.X() + size.X() > Screen::Right())
+				topLeft.X() -= size.X();
+			if(topLeft.Y() + size.Y() > Screen::Bottom())
+				topLeft.Y() -= size.Y();
+
+			// Draw the background fill and the tooltip text.
+			FillShader::Fill(topLeft + .5 * size, size, *GameData::Colors().Get("tooltip background"));
+			hoverText.Draw(topLeft + Point(10., 10.), *GameData::Colors().Get("medium"));
 		}
 	}
 }

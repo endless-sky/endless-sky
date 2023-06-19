@@ -1076,6 +1076,12 @@ tip "This outfit is considered an atrocity."
 
 
 
+# Controls
+tip `Reverse`
+	`Turn opposite to the flight direction (or use reverse engines if you have them installed). Combine with <shift> key to stop your ship.`
+
+
+
 # Settings
 tip "Automatic aiming"
 	`Automatically turn your ship towards your target to aim fixed weapons.`
