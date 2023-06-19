@@ -1,6 +1,3 @@
-
-
-
 fleet "Avgi Core Defense"
 	government "Avgi (Spaceguard)"
 	names "avgi fighter"
@@ -13,7 +10,7 @@ fleet "Avgi Core Defense"
 		"Phonon" 6
 
 
-fleet "Avgi Static Defense"
+fleet "Avgi Orbital Defense"
 	government "Avgi (Spaceguard)"
 	names "avgi fighter"
 	personality
@@ -44,11 +41,11 @@ fleet "Avgi Patrol"
 		"Rhythm"
 
 fleet "Avgi Scouts"
-	government "Avgi (Spaceguard)"
+	government "Avgi (Consonance)"
 	names "avgi military"
 	fighters "avgi fighter"
 	personality
-		confusion 10
+		confusion 20
 		surveillance coward merciful disables
 	variant 10
 		"Crest"

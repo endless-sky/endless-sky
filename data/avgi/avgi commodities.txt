@@ -1,11 +1,3 @@
-
-
-
-
-
-
-
-
 trade
 	commodity "Avgi Food"
 		
@@ -21,13 +13,16 @@ trade
 		"protein concentrate"
 		"juice concentrate"
 		"soup concentrate"
+		"nutrient slurry"
 		"fish"
 		"spices"
 		"seafood"
 		"seaweed"
+		"vitamins"
 		
 		"starclams"
 		"amine concentrate"
+		"juiced galleons"
 		"sweetfeathers"
 		"calowax"
 		"frondresin"
@@ -37,18 +32,11 @@ trade
 		"foiegrass"
 		
 		
-		
-		
-		
-		
-		
 	commodity "Avgi Consumer Goods"
 		"wirecloth"
 		"silk sashes"
 		"foil wrap"
 		"nanoweave"
-
-
 
 	commodity "Avgi Industrial"
 		"aluminized steel"
@@ -112,7 +100,9 @@ trade
 		"titanium"
 		"vanadium"
 		"zinc"
-	
+
+	commodity "Avgi Equipment"
+		"nanofabricators"
 
 	commodity "Avgi Nuclear Weapons"
 		"pulse drive charges"
@@ -120,14 +110,14 @@ trade
 		"atomic propulsion packets"
 		"nuclear mining charges"
 
-	commodity "Avgi Radioisotopes"
+	commodity "Avgi Fissiles"
 		"americium"
 		"californium"
 		"curium"
 		"depleted uranium"
 		"enriched uranium"
 		"highly enriched uranium"
-		"liquid radon"
+		"nuclear isomers"
 		"plutonium pebbles"
 		"plutonium pellets"
 		"plutonium salts"
@@ -138,6 +128,7 @@ trade
 		"polonium"
 		"powdered plutonium"
 		"powdered uranium"
+		"pressurized radon"
 		"radium"
 		"technetium"
 		"thorium"
