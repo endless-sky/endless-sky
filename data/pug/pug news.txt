@@ -120,7 +120,7 @@ news "conspiracy theorist on post-fw Deneb"
 	name
 		word
 			"Conspiracy theorist"
-			"Critical Thinker"
+			"Critical thinker"
 			"Truth Seeker"
 	message
 		word
@@ -214,9 +214,9 @@ news "reporter on post-fw Deneb"
 		word
 			" have to go now"
 			"'m off to the studio"
-			"have to get going"
-			"stayed too long already"
-			"shouldn't be chatting with you"
+			" have to get going"
+			" stayed too long already"
+			" shouldn't be chatting with you"
 		word
 			", "
 		word
