@@ -3835,7 +3835,7 @@ mission "Republic Navy Advisory System [volcanic]"
 		payment 8000
 		dialog `Relieved-looking aid workers welcome your shipment. You look on, feeling satisfied that <cargo> will soon arrive to those that need it most.`
 
-mission "Republic Navy Advisory System [wildfire]"
+mission "Republic Navy Advisory System [wildfire cargo]"
 	name "Wildfire Relief"
 	description "Humanitarian aid of <cargo> to <destination> following a severe wildfire."
 	minor
@@ -3859,3 +3859,28 @@ mission "Republic Navy Advisory System [wildfire]"
 	on complete
 		payment 8000
 		dialog `Ash-covered, but relieved aid workers welcome your shipment. You look on, feeling satisfied that <cargo> will soon arrive to those that need it most.`
+
+mission "Republic Navy Advisory System [wildfire firefighters]"
+	name "Transport Firefighters"
+	description "Bring <bunks> firefighters to <planet>."
+	minor
+	repeat
+	source
+		government "Republic"
+	destination
+		government "Republic" "Syndicate" "Independent" "Neutral"
+		attributes "forest"
+	substitutions
+		"<problem>" "forest fire"
+		"<problem>" "brush fire"
+			"random" < 60
+		"<problem>" "wildfire"
+			"random" < 30
+	passengers 5 15
+	to offer
+		random < 1
+	on offer
+		dialog `This is the Republic Navy Advisory System: <planet> is experiencing a severe <problem>. Volunteers are requested to transport <bunks> firefighters to <planet>. A stipend of <payment> is provided to cover fuel, crew, and any incidental expenses.`
+	on complete
+		payment 9000
+		dialog "You land at a makeshift landing site a few kilometres from the blaze. The smoky haze that drifts into your ship when the firefighters open the hatch to depart makes your eyes and nose itch. As you watch your passengers heading toward a staging area nearby, you think about the inferno they will soon be voluntarily entering. A chirp from your communications system indicates your stipend of <payment> has been deposited, and you begin your atmospheric flight back to <planet>'s main spaceport."
