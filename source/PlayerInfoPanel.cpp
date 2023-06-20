@@ -744,7 +744,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 
 		const Ship &ship = **sit;
 		bool isElsewhere = (ship.GetSystem() != player.GetSystem());
-		isElsewhere |= (ship.CanBeCarried() && player.GetPlanet());
+		isElsewhere |= ((ship.CanBeCarried() || ship.GetPlanet() != player.GetPlanet()) && player.GetPlanet());
 		bool isDead = ship.IsDestroyed();
 		bool isDisabled = ship.IsDisabled();
 		bool isFlagship = &ship == player.Flagship();

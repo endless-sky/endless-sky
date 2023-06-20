@@ -1,5 +1,5 @@
 Welcome to Endless Sky!
-version 0.10.2-alpha
+version 0.10.3-alpha
 
 The player's manual and other
 resources are available at:
@@ -270,6 +270,7 @@ contributed to Endless Sky:
   Luckz
   luiges90
   LukeMarlin
+  lumbar527
   macfreek
   Mach565
   MageKing17
@@ -295,7 +296,9 @@ contributed to Endless Sky:
   Nescio0
   nobodywasishere
   NomadicVolcano
+  nothing-but-the-rain
   NRK4
+  ntabris
   oo13
   opusforlife2
   Ornok
@@ -356,6 +359,7 @@ contributed to Endless Sky:
   sigus
   skilaa
   skyegallup
+  Smedley-SC
   solardawning
   SolraBizna
   SpearDane

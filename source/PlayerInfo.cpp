@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "PlayerInfo.h"
 
+#include "AI.h"
 #include "Audio.h"
 #include "ConversationPanel.h"
 #include "DataFile.h"
@@ -961,7 +962,7 @@ const set<string> &PlayerInfo::Licenses() const
 
 
 
-// Get a pointer to the ship that the player controls. This is always the first
+// Get a pointer to the ship that the player controls. This is usually the first
 // ship in the list.
 const Ship *PlayerInfo::Flagship() const
 {
@@ -970,7 +971,7 @@ const Ship *PlayerInfo::Flagship() const
 
 
 
-// Get a pointer to the ship that the player controls. This is always the first
+// Get a pointer to the ship that the player controls. This is usually the first
 // ship in the list.
 Ship *PlayerInfo::Flagship()
 {
@@ -983,14 +984,13 @@ Ship *PlayerInfo::Flagship()
 const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 {
 	if(!flagship)
-	{
 		for(const shared_ptr<Ship> &it : ships)
-			if(!it->IsParked() && it->GetSystem() == system && it->CanBeFlagship())
+			if(!it->IsParked() && it->GetSystem() == system && it->CanBeFlagship()
+					&& (!planet || planet->CanLand(*it)))
 			{
 				flagship = it;
 				break;
 			}
-	}
 
 	static const shared_ptr<Ship> empty;
 	return (flagship && flagship->IsYours()) ? flagship : empty;
@@ -1445,10 +1445,31 @@ void PlayerInfo::Land(UI *ui)
 		{
 			if(ship->GetSystem() == system)
 			{
-				ship->Recharge(hasSpaceport);
-				ship->Cargo().TransferAll(cargo);
-				if(!ship->GetPlanet())
-					ship->SetPlanet(planet);
+				if(planet->CanLand(*ship))
+				{
+					ship->Recharge(hasSpaceport);
+					ship->Cargo().TransferAll(cargo);
+					if(!ship->GetPlanet())
+						ship->SetPlanet(planet);
+				}
+				// Ships that cannot land with the flagship choose the most suitable planet
+				// in the system.
+				else
+				{
+					const StellarObject *landingObject = AI::FindLandingLocation(*ship);
+					if(landingObject)
+					{
+						ship->SetPlanet(landingObject->GetPlanet());
+						ship->Recharge();
+					}
+					else
+					{
+						landingObject = AI::FindLandingLocation(*ship, false);
+						if(landingObject)
+							ship->SetPlanet(landingObject->GetPlanet());
+						ship->Recharge(false);
+					}
+				}
 			}
 			else
 				ship->Recharge(false);
@@ -1802,7 +1823,7 @@ void PlayerInfo::UpdateCargoCapacities()
 	int bunks = 0;
 	flagship = FlagshipPtr();
 	for(const shared_ptr<Ship> &ship : ships)
-		if(ship->GetSystem() == system && !ship->IsParked() && !ship->IsDisabled())
+		if(ship->GetPlanet() == planet && !ship->IsParked())
 		{
 			size += ship->Attributes().Get("cargo space");
 			int crew = (ship == flagship ? ship->Crew() : ship->RequiredCrew());
