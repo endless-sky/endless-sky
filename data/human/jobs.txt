@@ -3799,6 +3799,8 @@ mission "Republic Navy Advisory System [frozen]"
 			"random" < 60
 		"<problem>" "snowstorm"
 			"random" < 30
+		"<problem>" "blizzard"
+			"random" < 10
 	cargo "cold aid" 10 15 0.5
 	to offer
 		random < 1
