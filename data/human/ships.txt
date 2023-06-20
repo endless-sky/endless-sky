@@ -2396,8 +2396,8 @@ ship "Lance"
 	engine -14.5 30.5 0.5
 	engine 14.5 30.5 0.5
 	gun -13.5 -6.5 "Sidewinder Missile Pod"
-	gun 13.5 -6.5 "Energy Blaster"
-	gun 0 -34 "Sidewinder Missile Pod"
+	gun 13.5 -6.5 "Sidewinder Missile Pod"
+	gun 0 -34 "Energy Blaster"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description "The Lance is the primary fighter used by the Republic Navy. As with all fighters, it is weak by itself but very effective as part of a larger squadron."
