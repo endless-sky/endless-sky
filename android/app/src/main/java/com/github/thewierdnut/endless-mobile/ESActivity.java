@@ -207,6 +207,9 @@ public class ESActivity extends SDLActivity
                         unzipped_path = unzipped_path + "tmp_" + zipfilename + "/";
                     }
 
+                    File base_path = new File(unzipped_path);
+                    base_path.mkdirs();
+
                     InputStream is = getContext().getContentResolver().openInputStream(uri);
                     ZipInputStream zip = new ZipInputStream(new BufferedInputStream(is));
                     ZipEntry e;
@@ -268,6 +271,7 @@ public class ESActivity extends SDLActivity
                 }
                 catch(IOException e)
                 {
+                    Log.e("SDL-Debug", "IOException", e);
                     status = 2; // failure
                     Toast.makeText(this, "Endless-mobile unable to open " + uri.getEncodedPath(), Toast.LENGTH_SHORT).show();
                 }
