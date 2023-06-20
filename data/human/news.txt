@@ -1957,6 +1957,22 @@ phrase "deep motto graffiti"
 		`Underneath are the words "Power, Poverty, Pride."`
 		`Underneath are the words "Peace, Prosperity, Progress, for those who are born lucky."`
 
+news "republic navy advisory system [alphas]"
+	location
+		government "Republic"
+	name
+		word
+			"Republic Navy Advisory System"
+	to show
+		has "alphas capture Poisonwood"
+	message
+		word
+			`"`
+		word
+			"Attention: Report suspected Alpha activity to Republic authorities."
+			"For your safety, do not attempt to apprehend an Alpha. Instead, contact Republic Navy personnel at once."
+		word
+			`"`
 news "safety posters"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
