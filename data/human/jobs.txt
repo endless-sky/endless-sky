@@ -3839,7 +3839,7 @@ mission "Republic Navy Advisory System [volcanic]"
 
 mission "Republic Navy Advisory System [wildfire cargo]"
 	name "Wildfire Relief"
-	description "Humanitarian aid of <cargo> to <destination>  by <date> following a severe wildfire."
+	description "Humanitarian aid of <cargo> to <destination> by <date> following a severe wildfire."
 	minor
 	repeat
 	deadline
