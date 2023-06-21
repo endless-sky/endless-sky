@@ -74,7 +74,7 @@ namespace {
 
 		// Multiply the texture by the user-specified color (including alpha).
 		"void main() {\n"
-		"  finalColor = texture(tex, texCoord).a * (dark > 0 ? vec4(0.0f, 0.0f, 0.0f, 1.0f / dark) : color);\n"
+		"  finalColor = texture(tex, texCoord).a * (dark > 0 ? vec4(0.0f, 0.0f, 0.0f, 0.7f / dark) : color);\n"
 		"}\n";
 
 	const int KERN = 2;
