@@ -63,6 +63,7 @@ namespace {
 		"precision mediump float;\n"
 		// The user must supply a texture and a color (white by default).
 		"uniform sampler2D tex;\n"
+		"uniform int dark;\n"
 		"uniform vec4 color;\n"
 
 		// This comes from the vertex shader.
@@ -73,7 +74,7 @@ namespace {
 
 		// Multiply the texture by the user-specified color (including alpha).
 		"void main() {\n"
-		"  finalColor = texture(tex, texCoord).a * color;\n"
+		"  finalColor = texture(tex, texCoord).a * (dark > 0 ? vec4(0.0f, 0.0f, 0.0f, 1.0f / dark) : color);\n"
 		"}\n";
 
 	const int KERN = 2;
@@ -127,14 +128,14 @@ void Font::DrawAliased(const DisplayText &text, double x, double y, const Color 
 
 
 
-void Font::Draw(const string &str, const Point &point, const Color &color) const
+void Font::Draw(const string &str, const Point &point, const Color &color, bool outline) const
 {
-	DrawAliased(str, round(point.X()), round(point.Y()), color);
+	DrawAliased(str, round(point.X()), round(point.Y()), color, outline);
 }
 
 
 
-void Font::DrawAliased(const string &str, double x, double y, const Color &color) const
+void Font::DrawAliased(const string &str, double x, double y, const Color &color, bool outline) const
 {
 	glUseProgram(shader.Object());
 	glBindTexture(GL_TEXTURE_2D, texture);
@@ -180,6 +181,33 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 		glUniform1f(aspectI, 1.f);
 
 		textPos[0] += advance[previous * GLYPHS + glyph] + KERN;
+
+		if(outline)
+		{
+			const static GLfloat shifts[4][2] = 
+			{
+				{-0.05f, -0.05f},
+				{-0.05f, +0.05f},
+				{+0.05f, -0.05f},
+				{+0.05f, +0.05f},
+			};
+			glUniform1i(darkI, 2);
+			for(int x = 0; x < 4; x++)
+			{
+				GLfloat shiftPos[2] = {textPos[0] + shifts[x][0] * 2, textPos[1] + shifts[x][1] * 2};
+				glUniform2fv(positionI, 1, shiftPos);
+				glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+			}
+			glUniform1i(darkI, 1);
+			for(int x = 0; x < 4; x++)
+			{
+				GLfloat shiftPos[2] = {textPos[0] + shifts[x][0] * 2, textPos[1] + shifts[x][1] * 2};
+				glUniform2fv(positionI, 1, shiftPos);
+				glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+			}
+		}
+
+		glUniform1i(darkI, 0);
 		glUniform2fv(positionI, 1, textPos);
 
 		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
@@ -374,6 +402,7 @@ void Font::SetUpShader(float glyphW, float glyphH)
 	screenWidth = 0;
 	screenHeight = 0;
 
+	darkI = shader.Uniform("dark");
 	colorI = shader.Uniform("color");
 	scaleI = shader.Uniform("scale");
 	glyphI = shader.Uniform("glyph");
