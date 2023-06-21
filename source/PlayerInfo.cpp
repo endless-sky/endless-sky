@@ -687,7 +687,9 @@ const Date &PlayerInfo::GetDate() const
 // Supports zero negative values.
 void PlayerInfo::AdvanceDate(int amount)
 {
-	if(amount > 0)
+	if(amount)
+		return;
+	else if(amount > 0)
 	{
 		while(amount--)
 		{
@@ -716,16 +718,13 @@ void PlayerInfo::AdvanceDate(int amount)
 			DoAccounting();
 		}
 	}
-	else if(amount < 0)
+	else
 	{
 		date = date + amount;
 	}
-	if(amount)
-	{
-		// Reset the reload counters for all your ships.
-		for(const shared_ptr<Ship> &ship : ships)
-			ship->GetArmament().ReloadAll();
-	}
+	// Reset the reload counters for all your ships.
+	for(const shared_ptr<Ship> &ship : ships)
+		ship->GetArmament().ReloadAll();
 }
 
 
