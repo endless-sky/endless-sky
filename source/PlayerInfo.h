@@ -99,7 +99,7 @@ public:
 	// Apply the given changes and store them in the player's saved game file.
 	void AddChanges(std::list<DataNode> &changes);
 	// Add an event that will happen at the given date.
-	void AddEvent(const GameEvent &event, const Date &date);
+	void AddEvent(GameEvent event, const Date &date);
 
 	// Mark the player as dead, or check if they have died.
 	void Die(int response = 0, const std::shared_ptr<Ship> &capturer = nullptr);

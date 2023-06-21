@@ -257,38 +257,3 @@ bool GameEvent::operator<(const GameEvent &other) const
 {
 	return date < other.date;
 }
-
-
-
-bool GameEvent::operator<=(const GameEvent &other) const
-{
-	return date <= other.date;
-}
-
-
-
-bool GameEvent::operator>(const GameEvent &other) const
-{
-	return date > other.date;
-}
-
-
-
-bool GameEvent::operator>=(const GameEvent &other) const
-{
-	return date >= other.date;
-}
-
-
-
-bool GameEvent::operator==(const GameEvent &other) const
-{
-	return date == other.date;
-}
-
-
-
-bool GameEvent::operator!=(const GameEvent &other) const
-{
-	return date != other.date;
-}

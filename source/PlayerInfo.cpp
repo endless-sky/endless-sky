@@ -569,9 +569,9 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 
 
 // Add an event that will happen at the given date.
-void PlayerInfo::AddEvent(const GameEvent &event, const Date &date)
+void PlayerInfo::AddEvent(GameEvent event, const Date &date)
 {
-	const_cast<GameEvent&>(event).SetDate(date);
+	event.SetDate(date);
 	gameEvents.insert(event);
 }
 
