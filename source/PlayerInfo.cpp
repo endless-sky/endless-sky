@@ -687,7 +687,7 @@ const Date &PlayerInfo::GetDate() const
 // Supports zero negative values.
 void PlayerInfo::AdvanceDate(int amount)
 {
-	if(amount)
+	if(!amount)
 		return;
 	else if(amount > 0)
 	{
