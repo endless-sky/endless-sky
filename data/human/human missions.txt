@@ -5408,7 +5408,7 @@ mission "Deal Change 2"
 			`	You open your mouth as you lift yourself up, only to find that the other person is already gone. As you look around, you spot a piece of paper with writing lying on the ground beside you. You pick up the note and read it:`
 			``
 			`<first> <last>,`
-			`		You are currently carrying five tons of cargo to Skymoot. This cargo has been described to you as an "inheritance," and you have been promised 100,000 credits as payment for the job. Under no circumstances should you allow the cargo to reach the destination. Instead, bring it to <destination>. You will be paid <payment> if you do so. The back of this note has a code you can use to pass through spaceport security.`
+			`		You are currently carrying five tons of cargo to Skymoot. This cargo has been described to you as an "inheritance," and you have been promised 100,000 credits as payment for the job. Under no circumstances should you allow the cargo to reach the destination. Instead, bring it to <destination>. You will be paid <payment> if you do so. The back of this note has a code you can use to gain clearance to land without the usual toll.`
 			``
 			`	You flip the paper over and see a string of letters and numbers. The note has no signature, nor anything else to identify the person who wrote it.`
 			choice
