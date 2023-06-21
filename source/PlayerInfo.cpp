@@ -842,8 +842,7 @@ Account &PlayerInfo::Accounts()
 
 
 
-// Handle the daily salaries and payments. In reverse mode, payments and salaries are reversed,
-// but still have an impact on your account history. Doesn't print messages in reverse mode.
+// Handle the daily salaries and payments.
 void PlayerInfo::DoAccounting()
 {
 	// Check what salaries and tribute the player receives.

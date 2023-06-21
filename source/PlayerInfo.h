@@ -352,8 +352,7 @@ private:
 
 	// Check that this player's current state can be saved.
 	bool CanBeSaved() const;
-	// Handle the daily salaries and payments. In reverse mode, payments and salaries are reversed,
-	// but still have an impact on your account history. Doesn't print messages in reverse mode.
+	// Handle the daily salaries and payments.
 	void DoAccounting();
 
 
