@@ -569,4 +569,4 @@ mission "Unfettered returning home"
 		"reputation: Hai (Wormhole Access)" += 10
 		"reputation: Hai Merchant" += 10
 		"reputation: Hai Merchant (Human)" += 10
-		"reputation: Hai Merchant (Sympathizers)" += 10
+		"reputation: Hai Merchant (Sympathizers)" += 15
