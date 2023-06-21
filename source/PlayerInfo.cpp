@@ -337,7 +337,7 @@ void PlayerInfo::Load(const string &path)
 		else if(child.Token(0) == "conditions")
 			conditions.Load(child);
 		else if(child.Token(0) == "event")
-			gameEvents.emplace_back(child);
+			gameEvents.insert(child);
 		else if(child.Token(0) == "changes")
 		{
 			for(const DataNode &grand : child)
@@ -570,8 +570,8 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 // Add an event that will happen at the given date.
 void PlayerInfo::AddEvent(const GameEvent &event, const Date &date)
 {
-	gameEvents.push_back(event);
-	gameEvents.back().SetDate(date);
+	const_cast<GameEvent&>(event).SetDate(date);
+	gameEvents.insert(event);
 }
 
 
@@ -682,81 +682,49 @@ const Date &PlayerInfo::GetDate() const
 	return date;
 }
 
-
-
-// Set the date to the next day, and perform all daily actions.
-void PlayerInfo::IncrementDate()
+// Set the date, and perform all daily actions the given number of times.
+// Supports zero negative values.
+void PlayerInfo::AdvanceDate(int amount)
 {
-	++date;
-
-	// Check if any special events should happen today.
-	auto it = gameEvents.begin();
-	while(it != gameEvents.end())
+	if(amount > 0)
 	{
-		if(date < it->GetDate())
-			++it;
-		else
+		while(amount--)
 		{
-			it->Apply(*this);
-			it = gameEvents.erase(it);
+			++date;
+
+			// Check if any special events should happen today.
+			auto it = gameEvents.begin();
+			while(it != gameEvents.end() && date >= it->GetDate())
+			{
+				GameEvent event = *it;
+				event.Apply(*this);
+				it = gameEvents.erase(it);
+			}
+
+			// Check if any missions have failed because of deadlines and
+			// do any daily mission actions for those that have not failed.
+			for(Mission &mission : missions)
+			{
+				if(mission.CheckDeadline(date) && mission.IsVisible())
+					Messages::Add("You failed to meet the deadline for the mission \"" + mission.Name() + "\".",
+						Messages::Importance::Highest);
+				if(!mission.IsFailed())
+					mission.Do(Mission::DAILY, *this);
+			}
+
+			DoAccounting();
 		}
 	}
-
-	// Check if any missions have failed because of deadlines and
-	// do any daily mission actions for those that have not failed.
-	for(Mission &mission : missions)
+	else if(amount < 0)
 	{
-		if(mission.CheckDeadline(date) && mission.IsVisible())
-			Messages::Add("You failed to meet the deadline for the mission \"" + mission.Name() + "\".",
-				Messages::Importance::Highest);
-		if(!mission.IsFailed())
-			mission.Do(Mission::DAILY, *this);
+		date = date + amount;
 	}
-
-	// Check what salaries and tribute the player receives.
-	int64_t salariesIncome = accounts.SalariesIncomeTotal();
-	int64_t tributeIncome = GetTributeTotal();
-	FleetBalance b = MaintenanceAndReturns();
-	if(salariesIncome || tributeIncome || b.assetsReturns)
+	if(amount)
 	{
-		string message = "You receive ";
-		if(salariesIncome)
-			message += Format::CreditString(salariesIncome) + " salary";
-		if(salariesIncome && tributeIncome)
-		{
-			if(b.assetsReturns)
-				message += ", ";
-			else
-				message += " and ";
-		}
-		if(tributeIncome)
-			message += Format::CreditString(tributeIncome) + " in tribute";
-		if(salariesIncome && tributeIncome && b.assetsReturns)
-			message += ",";
-		if((salariesIncome || tributeIncome) && b.assetsReturns)
-			message += " and ";
-		if(b.assetsReturns)
-			message += Format::CreditString(b.assetsReturns) + " based on outfits and ships";
-		message += ".";
-		Messages::Add(message, Messages::Importance::High);
-		accounts.AddCredits(salariesIncome + tributeIncome + b.assetsReturns);
+		// Reset the reload counters for all your ships.
+		for(const shared_ptr<Ship> &ship : ships)
+			ship->GetArmament().ReloadAll();
 	}
-
-	// For accounting, keep track of the player's net worth. This is for
-	// calculation of yearly income to determine maximum mortgage amounts.
-	int64_t assets = depreciation.Value(ships, date.DaysSinceEpoch());
-	for(const shared_ptr<Ship> &ship : ships)
-		assets += ship->Cargo().Value(system);
-
-	// Have the player pay salaries, mortgages, etc. and print a message that
-	// summarizes the payments that were made.
-	string message = accounts.Step(assets, Salaries(), b.maintenanceCosts);
-	if(!message.empty())
-		Messages::Add(message, Messages::Importance::High);
-
-	// Reset the reload counters for all your ships.
-	for(const shared_ptr<Ship> &ship : ships)
-		ship->GetArmament().ReloadAll();
 }
 
 
@@ -870,6 +838,54 @@ const Account &PlayerInfo::Accounts() const
 Account &PlayerInfo::Accounts()
 {
 	return accounts;
+}
+
+
+
+// Handle the daily salaries and payments. In reverse mode, payments and salaries are reversed,
+// but still have an impact on your account history. Doesn't print messages in reverse mode.
+void PlayerInfo::DoAccounting()
+{
+	// Check what salaries and tribute the player receives.
+	int64_t salariesIncome = accounts.SalariesIncomeTotal();
+	int64_t tributeIncome = GetTributeTotal();
+	FleetBalance b = MaintenanceAndReturns();
+	if(salariesIncome || tributeIncome || b.assetsReturns)
+	{
+		string message = "You receive ";
+		if(salariesIncome)
+			message += Format::CreditString(salariesIncome) + " salary";
+		if(salariesIncome && tributeIncome)
+		{
+			if(b.assetsReturns)
+				message += ", ";
+			else
+				message += " and ";
+		}
+		if(tributeIncome)
+			message += Format::CreditString(tributeIncome) + " in tribute";
+		if(salariesIncome && tributeIncome && b.assetsReturns)
+			message += ",";
+		if((salariesIncome || tributeIncome) && b.assetsReturns)
+			message += " and ";
+		if(b.assetsReturns)
+			message += Format::CreditString(b.assetsReturns) + " based on outfits and ships";
+		message += ".";
+		Messages::Add(message, Messages::Importance::High);
+		accounts.AddCredits(salariesIncome + tributeIncome + b.assetsReturns);
+	}
+
+	// For accounting, keep track of the player's net worth. This is for
+	// calculation of yearly income to determine maximum mortgage amounts.
+	int64_t assets = depreciation.Value(ships, date.DaysSinceEpoch());
+	for(const shared_ptr<Ship> &ship : ships)
+		assets += ship->Cargo().Value(system);
+
+	// Have the player pay salaries, mortgages, etc. and print a message that
+	// summarizes the payments that were made.
+	string message = accounts.Step(assets, Salaries(), b.maintenanceCosts);
+	if(!message.empty())
+		Messages::Add(message, Messages::Importance::High);
 }
 
 

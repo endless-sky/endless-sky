@@ -112,7 +112,7 @@ public:
 
 	// Get or change the current date.
 	const Date &GetDate() const;
-	void IncrementDate();
+	void AdvanceDate(int amount = 1);
 
 	// Get basic data about the player's starting scenario.
 	const CoreStartData &StartData() const noexcept;
@@ -352,6 +352,9 @@ private:
 
 	// Check that this player's current state can be saved.
 	bool CanBeSaved() const;
+	// Handle the daily salaries and payments. In reverse mode, payments and salaries are reversed,
+	// but still have an impact on your account history. Doesn't print messages in reverse mode.
+	void DoAccounting();
 
 
 private:
@@ -431,7 +434,7 @@ private:
 	// Persons that have been killed in this player's universe:
 	std::vector<std::string> destroyedPersons;
 	// Events that are going to happen some time in the future:
-	std::list<GameEvent> gameEvents;
+	std::multiset<GameEvent> gameEvents;
 
 	// The system and position therein to which the "orbits" system UI issued a move order.
 	std::pair<const System *, Point> interstellarEscortDestination;
