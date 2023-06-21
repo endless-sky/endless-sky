@@ -78,6 +78,9 @@ template <class Type>
 	int64_t AllyStrength(const Government *government);
 	int64_t EnemyStrength(const Government *government);
 
+	// Find nearest landing location.
+	static const StellarObject *FindLandingLocation(const Ship &ship, const bool refuel = true);
+
 
 private:
 	// Check if a ship can pursue its target (i.e. beyond the "fence").
