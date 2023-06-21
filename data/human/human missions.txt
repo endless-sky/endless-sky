@@ -5391,7 +5391,7 @@ mission "Deal Change 1"
 mission "Deal Change 2"
 	landing
 	name "Inheritance to <planet>"
-	description "Instead of bringing the inheritance to Skymoot, deliver it to <destination>. You were promised <payment> for doing so. To bypass <planet>'s spaceport toll, hail <planet> and read out the code to the spaceport authority."
+	description "Instead of bringing the inheritance to Skymoot, deliver it to <destination>. You were promised <payment> for doing so. To bypass the spaceport toll, hail <planet> and read out the code to the spaceport authority."
 	source
 		attributes "dirt belt" "south" "rim"
 		not planet "Greenrock"
