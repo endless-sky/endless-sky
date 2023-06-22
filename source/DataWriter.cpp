@@ -199,7 +199,7 @@ DataWriter &DataWriter::SetSeparator(const string &sep)
 
 
 // Changes the indentation used before child tokens. The default is a single tabulator.
-DataWriter &DataWriter::SetIndentation(const std::string &indent)
+DataWriter &DataWriter::SetIndentation(const string &indent)
 {
 	indentString = indent;
 	return *this;
