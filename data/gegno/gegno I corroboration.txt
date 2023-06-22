@@ -39,7 +39,7 @@ mission "Passive-Aggressive Observations"
 				`	(Leave now.)`
 				`	(Continue.)`
 					goto continue
-			`	You decide it's best to not enroach on the Vi's area any more, as there's no telling what they'd do if you continued to do so. Once you back off, the interceptor briefly jerks forward at you in a vexed manner, continuing to observe you until you've left the area. While the Scin seemed more open to confrontation, the Vi are clearly adversive to it.`
+			`	You decide it's best to not enroach on the Vi's area any more, as there's no telling what they'd do if you continued to do so. Once you back off, the interceptor briefly jerks forward at you in a vexed manner, continuing to observe you until you've left the area. While the Scin seemed more open to interaction, the Vi are clearly adversive to it.`
 				decline
 
 			label continue
@@ -47,7 +47,7 @@ mission "Passive-Aggressive Observations"
 				"reputation: Gegno Vi" = -1
 			action
 				set "provoked military"
-			`	You decide to continue flying towards the Vi without heeding their warning. With no hesitation, the intercepter begins to charge at you, and the ships on the surface start preparing for takeoff. Even some of the Vi solders on the ground are shouting and jesturing towards your vessel with their weapons. It would seem the Vi are no longer tolerative of your presence.`
+			`	You decide to continue flying towards the Vi without heeding their warning. With no hesitation, the interceptor begins to charge at you, and the ships on the surface start preparing for takeoff. Even some of the Vi solders on the ground are shouting and gesturing towards your vessel with their weapons. It would seem the Vi are no longer tolerative of your presence.`
 				decline
 
 			label leave
@@ -116,7 +116,7 @@ mission "Vi Military Group"
 
 
 mission "Foreign Spectator I"
-	#invisible
+	# invisible
 	landing
 	to offer
 		random < 40
@@ -170,7 +170,7 @@ mission "Foreign Spectator I"
 mission "Veering Vi"
 	minor
 	repeat
-	#invisible
+	# invisible
 	landing
 	deadline 12
 	source
@@ -194,7 +194,7 @@ mission "Veering Vi"
 mission "Scin Suspicion"
 	minor
 	repeat
-	#invisible
+	# invisible
 	landing
 	deadline 9
 	source
@@ -216,7 +216,7 @@ mission "Scin Suspicion"
 
 
 mission "Curious Civilians"
-	#invisible
+	# invisible
 	landing
 	to offer
 		has "First Contact: Gegno Scin: offered"
@@ -276,7 +276,7 @@ mission "Bystander"
 
 
 # mission "Derelict Desponders A"
-	#invisible
+	# invisible
 	landing
 	deadline 7
 	to offer
@@ -305,8 +305,8 @@ mission "Bystander"
 		ship "Dolomite" "Tviemye"
 
 
-#mission "Derelict Desponders B"
-	#invisible
+# mission "Derelict Desponders B"
+	# invisible
 	landing
 	to offer
 		not "Gegno Genocide Defense: offered"
