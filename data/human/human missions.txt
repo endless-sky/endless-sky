@@ -5194,7 +5194,7 @@ mission "Riley"
 			`	"No," he replies. "Not under Republic law. I assure you that my only intention is to continue my work: nothing more."`
 			`	The authorities would probably release a substantial reward if you informed them of this.`
 			label continue
-			`	"Riley, what do you think?" you ask.`
+			`	"Riley, what do you think?" Church asks.`
 			`	"Dad, is that really you? How do you feel?"`
 			`	She steps closer to the Core. Church pauses. "Riley, what do you think?" it repeats. The voice coming from the machine is oddly flat in affect. "I feel fine. Do you feel fine?" They talk for a few tentative minutes, at first about how he's feeling, before moving onto the memories that Church retained during the transfer. You begin to relax as the two interact when you realize that Church is retelling the story of how he evaded the police to fix Riley's ankle for the third time in a row.`
 			`	Finally, she turns to you. "I'll admit that he doesn't sound as lively as he used to, but... how many people get a second chance to spend time with their father before he's gone? Thank you for bringing me out here, and for coming. I'll never forget your part in this. For now, I'd like to stay here. You go - I'll find my own way back." She seems genuinely happy.`
