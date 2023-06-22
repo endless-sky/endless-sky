@@ -16,11 +16,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef DATA_NODE_H_
 #define DATA_NODE_H_
 
-#include "DataWriter.h"
-
 #include <list>
 #include <string>
 #include <vector>
+
+class DataWriter;
 
 
 

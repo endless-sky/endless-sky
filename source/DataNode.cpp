@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DataNode.h"
 
+#include "DataWriter.h"
 #include "Logger.h"
 
 #include <algorithm>
