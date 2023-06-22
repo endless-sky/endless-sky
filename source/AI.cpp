@@ -2718,7 +2718,6 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 			// instead of drifting or stopping.
 			// Also allows the ship to land.
 			double radius = ship.GetSystem()->ExtraHyperArrivalDistance();
-			radius *= radius;
 
 			// The ship is outside of the effective range of the system,
 			// so we turn it around.
