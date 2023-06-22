@@ -2747,7 +2747,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 				int behaviour = abs(seed % 23);
 				Angle delta = Angle(360. / (behaviour / 2. + 2) * (behaviour % 2 ? -1 : 1));
 				Angle target = Angle(ship.Position()) + delta;
-				MoveTo(ship, command, target.Unit() * sqrt(radius) / 2, Point(), 10, 1.);
+				MoveTo(ship, command, target.Unit() * radius / 2, Point(), 10., 1.);
 			}
 			// Otherwise, keep going forward.
 			else
