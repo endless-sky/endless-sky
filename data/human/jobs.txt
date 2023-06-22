@@ -3815,7 +3815,7 @@ mission "Republic Navy Advisory System [frozen]"
 	on offer
 		dialog `This is the Republic Navy Advisory System: <planet> is experiencing a severe <problem>. Volunteers are requested to supply <cargo> to <planet> by <date>. A stipend of <payment> is provided to cover fuel, crew, and any incidental expenses.`
 	on complete
-		payment 8000
+		payment 8500 80
 		dialog `Shivering, yet appreciative aid workers welcome your shipment. You look on, feeling satisfied that <cargo> will soon arrive to those that need it most. Back in your ship, you're notified that you've recieved <payment> for your service.`
 
 mission "Republic Navy Advisory System [volcanic]"
@@ -3842,7 +3842,7 @@ mission "Republic Navy Advisory System [volcanic]"
 	on offer
 		dialog `This is the Republic Navy Advisory System: <planet> is experiencing a severe <problem>. Volunteers are requested to supply <cargo> to <planet> by <date>. A stipend of <payment> is provided to cover fuel, crew, and any incidental expenses.`
 	on complete
-		payment 8000
+		payment 8500 80
 		dialog `Relieved-looking aid workers welcome your shipment. You look on, feeling satisfied that <cargo> will soon arrive to those that need it most. Back in your ship, you're notified that you've recieved <payment> for your service.`
 
 mission "Republic Navy Advisory System [wildfire cargo]"
@@ -3869,7 +3869,7 @@ mission "Republic Navy Advisory System [wildfire cargo]"
 	on offer
 		dialog `This is the Republic Navy Advisory System: <planet> is experiencing a severe <problem>. Volunteers are requested to supply <cargo> to <planet> by <date>. A stipend of <payment> is provided to cover fuel, crew, and any incidental expenses.`
 	on complete
-		payment 8000
+		payment 8500 80
 		dialog `Ash-covered, but relieved aid workers welcome your shipment. You look on, feeling satisfied that <cargo> will soon arrive to those that need it most. Back in your ship, you're notified that you've recieved <payment> for your service.`
 
 mission "Republic Navy Advisory System [wildfire firefighters]"
@@ -3896,5 +3896,5 @@ mission "Republic Navy Advisory System [wildfire firefighters]"
 	on offer
 		dialog `This is the Republic Navy Advisory System: <planet> is experiencing a severe <problem>. Volunteers are requested to transport <bunks> firefighters to <planet> by <date>. A stipend of <payment> is provided to cover fuel, crew, and any incidental expenses.`
 	on complete
-		payment 9000
+		payment 9000 85
 		dialog "You land at a makeshift landing site a few minutes flight from the blaze. The smoky haze that drifts into your ship when the firefighters open the hatch to depart makes your eyes and nose itch. As you watch your passengers heading toward a staging area nearby, you think about the inferno they will soon be voluntarily entering. A chirp from your communications system indicates your stipend of <payment> has been deposited, and you begin your atmospheric flight back to <planet>'s main spaceport."
