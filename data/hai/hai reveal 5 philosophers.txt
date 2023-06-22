@@ -141,7 +141,7 @@ mission "Hai Reveal [B02] Join the Fleet"
 		system "Rajak"
 		personality escort heroic opportunistic vindictive waiting
 		fleet "Large Unfettered" 7
-	# Guard fleets are 1 ship each. Unfet are 2.7 on average. Total Fleet Size is is roughly 57 + 10 Syndicate.
+	# Guard fleets are 1 ship each. Unfet are 2.7 on average. Total Fleet Size is roughly 57 + 10 Syndicate.
 
 	npc kill
 		government "Pirate"
@@ -230,6 +230,13 @@ mission "Hai Reveal [B03] Contact Giti"
 		conversation
 			`While you join the fleet that lands to occupy the spaceport, other assault ships pursue priority targets elsewhere on <origin>. There's a significant wait to ensure that ground troops have secured the port before everyone can reconvene to discuss the next steps.`
 			`	You eventually reach the secured command area set up in the spaceport as Choot'k and Danforth come in discussing tactical minutiae. They are trailed by Batu, and eventually joined by Sayari and Teeneep. One of Danforth's lieutenants brings up the rear and closes the door behind you all.`
+			`	There is a moment of uncertainty where Danforth continues conversing in a low voice with his lieutenant and Batu catches your gaze with a questioning look.`
+			choice
+				`	"Admiral, would you like to lead this?"`
+					goto "cede to danforth"
+				`	"Good to see everyone arrive here safely."`
+			action
+				set "HR: Allied Leader"
 			`	Everyone is waiting for you to speak. It seems this is your final briefing as the commander of the forces before diplomats and military leaders take over.`
 			label briefing
 			choice
@@ -262,14 +269,14 @@ mission "Hai Reveal [B03] Contact Giti"
 			label operation
 			action
 				set "Hai Reveal [B03] Contact Giti: label operation"
-			`	Danforth begins the report. "Stage one has been successful. However, it looks like we're going to be here a while. <origin> is a rabbit warren of hidden places. Even with the Hai resources on top of everything we've brought, it could take weeks to root things out sufficiently."`
+			`	Danforth begins the report. "Stage one has been successful. However, as I expected, it looks like we're going to be here a while. <origin> is a rabbit warren of hidden places. Even with the Hai resources on top of everything we've brought, it could take weeks to root things out sufficiently."`
 			`	"General Choot'k, would you agree with the human's assessment of the effort required here?" asks Teeneep.`
 			`	The Unfettered warlord does not even hesitate to respond, "Yes. Even with our superior capacities we will be here a while."`
 				goto briefing
 			label disinformation
 			action
 				set "Hai Reveal [B03] Contact Giti: label disinformation"
-			`	Batu clears his throat and Danforth glances at him before evidently remembering something discussed earlier. "I'm sorry, Captain <last> and Elder Teeneep. I must advise you that at this stage all hope of keeping the Hai a secret is lost. Even if we could convince all factions to keep the secret, the blockade has drawn too much attention, so all that remains is to resolve our common issues before the Hai become irretrievably common knowledge."`
+			`	Batu clears his throat and Danforth glances at him before evidently remembering something discussed earlier. "I'm sorry, Captain <last> and Elder Teeneep. I must advise you that at this stage all hope of keeping the Hai a secret is lost. Even if we could convince all factions to keep the secret, the blockade has drawn too much attention, so all that remains is to resolve the matters at hand before the Hai become irretrievably common knowledge."`
 			`	Teeneep responds, "We all knew that day would come soon. Be glad we're here together to usher it in peacefully and with strength."`
 				goto briefing
 			label squirrels
@@ -280,8 +287,30 @@ mission "Hai Reveal [B03] Contact Giti"
 			`	Teeneep seems to bristle but Sayari smoothly cuts in. "You should not concern yourself with our comfort, Admiral. It would not be seemly for the Elder to abandon the field while another leader remains." She looks pointedly at Choot'k. "You may have forgotten also but there are Hai representatives of two governments in this room. It would also be unseemly for our ships to act in concert with the Unfettered without a diplomatic liaison here. And so I too have my place here. Things have happened quickly, of course, but my colleague Hiyamaharu will soon arrive at Mountaintop to act as my counterpart there. I trust things are being attended to, but you might consider checking that your people are properly aware of that."`
 				goto briefing
 
+			label "cede to danforth"
+			action
+				set "HR: Allied Supporter"
+			`	Danforth looks around and, without missing a beat, steps up to the table in the middle of the room. "Thank you, Captain. The Hai and Unfettered are coordinating through me and my command for the ground operation, and so far, stage one has been successful. However, as I expected, it looks like we're going to be here a while. <origin> is a labyrinth of hidden places. Even with the Hai resources on top of everything we've brought, it could take weeks to root things out sufficiently."`
+			`	"General Choot'k, would you agree with the human's assessment of the effort required here?" asks Teeneep.`
+			`	The Unfettered warlord does not even hesitate to respond, "Yes. Even with our superior capacities we will be here a while."`
+			`	Batu clears his throat and Danforth glances at him before evidently remembering something discussed earlier. "I'm sorry, Captain <last> and Elder Teeneep. After the assault our situation has been reassessed and I must advise you that we no longer consider it feasible to maintain the secrecy of the Hai. Even if we could convince all factions to keep the secret, the blockade has drawn too much attention, so all that remains is to resolve the matters at hand before the Hai become irretrievably common knowledge."`
+			`	Teeneep responds, "We all knew that day would come soon. Be glad we're here together to usher it in peacefully and with strength."`
+			`	Danforth looks between Sayari and Teeneep speculatively, as if considering something for the first time. "Perhaps, Elder, you and the Ambassador would find it more comfortable to return to Mountaintop? There will be little diplomacy here, and scarcely more safety, and it would seem to me that, even with Batu here as the Deputy Minister's eyes on the ground, it would be easier to conduct your responsibilities directly."`
+			`	Teeneep seems to bristle but Sayari smoothly cuts in. "You should not concern yourself with our comfort, Admiral. It would not be seemly for the Elder to abandon the field while another leader remains." She looks pointedly at Choot'k. "You may have forgotten also but there are Hai representatives of two governments in this room. It would also be unseemly for our ships to act in concert with the Unfettered without a diplomatic liaison here. And so I too have my place here. Things have happened quickly, of course, but my colleague Hiyamaharu will soon arrive at Mountaintop to act as my counterpart there. I trust things are being attended to, but you might consider checking that your people are properly aware of that."`
+			`	Danforth nods in acknowledgment and turns back to you. "Captain, you may consider your fleet command duties to be complete now that we're on the ground. You did a good job, and we'll take it back from here."`
+			choice
+				`	"I'm honored to have served you as temporary fleet commander."`
+					goto honored
+				`	"I did no more than I would expect anyone else to have done."`
+					goto humble
+				`	"All in a day's work! Excellent work, everyone! Carry on!"`
+					goto offended
+
 			label offended
 			`	Everyone looks surprised or offended, as if you are the court jester who thought he was king. They're dismissive of your comment, as they begin to discuss your departure.`
+				goto done
+			label humble
+			`	Danforth suppresses a smile, while Batu expresses his openly. General Choot'k says, "You've surpassed my expectations, Captain <last>. I've never seen a fleet so large, but you led it to victory with the speed and skill of a veteran general."`
 				goto done
 			label honored
 			`	The leaders all look pleased. General Choot'k says, "You've surpassed my expectations, Captain <last>. I've never seen a fleet so large, but you led it to victory with the speed and skill of a veteran general." Danforth looks just as impressed.`
@@ -553,7 +582,7 @@ mission "Hai Reveal [B06-long] Tarazed Analysis"
 			choice
 				`	"That's some impressive work in such a short time."`
 				`	"Thank you for the help."`
-			`	He nods in response. "Also... maybe keep this quiet. This is," he pauses and clears his throat conspicuously, "somewhat less than strictly legal, though there's no penalty attached to accessing the data at the level this card will use. My data sets only only cover coreward parts of Syndicate space, but your other data is heavily weighted to the Far North. Maybe if you have no luck in Syndicate space it'll be worth the trip to try up there."`
+			`	He nods in response. "Also... maybe keep this quiet. This is," he pauses and clears his throat conspicuously, "somewhat less than strictly legal, though there's no penalty attached to accessing the data at the level this card will use. My data sets only cover coreward parts of Syndicate space, but your other data is heavily weighted to the Far North. Maybe if you have no luck in Syndicate space it'll be worth the trip to try up there."`
 			`	All business and technical explanation now out of the way, you watch as the reality of what's happening seems to suddenly sink in, and his demeanor changes suddenly as his eyes shine with faint hope, "And please, if you do find my wife Janitza... please bring her home."`
 			`	After one last ride through the metro system of <origin>, you arrive at your ship. You plug the data card into your computer, and a new "government" shows up: Smuggler. The ships will be colored differently than pirates.`
 			`	It may be risky, but you should disable one and board it.`
@@ -1356,7 +1385,7 @@ mission "Hai Reveal [B13] Freedom"
 			label "translation services"
 			action
 				set "Hai Reveal [B13] Freedom: label translation services"
-			`	The Korath leader hisses. "No, we cannot. We here do not even speak a full form of our own language anymore. Even if we did, we must remain here in secret. Perhaps in time there there will be a reconnection, but not yet."`
+			`	The Korath leader hisses. "No, we cannot. We here do not even speak a full form of our own language anymore. Even if we did, we must remain here in secret. Perhaps in time there will be a reconnection, but not yet."`
 				goto questions
 			label "cadmium"
 			action
