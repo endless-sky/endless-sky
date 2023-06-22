@@ -279,7 +279,7 @@ news "street vendor"
 	name
 		word
 			"Street vendor"
-			"Open-Air Market vendor"
+			"Open-air market vendor"
 			"Food stall operator"
 	message
 		word
@@ -895,14 +895,16 @@ news "mechanic"
 news "ship salesperson"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-	# TODO: Add filter for only planets with shipyards (once we can use conditions to filter this).
+		attributes "shipyard"
 	name
 		word
-			"Used Spaceship Salesman"
-			"Used Spaceship Saleswoman"
-			"Used Spaceship Salesperson"
-			"Used Spaceship Seller"
-			"Used Spaceship Dealer"
+			"Used spaceship "
+		word
+			"salesman"
+			"saleswoman"
+			"salesperson"
+			"seller"
+			"dealer"
 	message
 		word
 			`"`
@@ -1001,7 +1003,7 @@ news "public relations worker"
 	name
 		word
 			"PR consultant"
-			"Crisis Consultant"
+			"Crisis consultant"
 	message
 		word
 			`"`
@@ -1331,7 +1333,7 @@ news "work coach"
 	name
 		word
 			"Corporate consultant"
-			"Work/Life balance coach"
+			"Work/life balance coach"
 			"Work efficiency coach"
 	message
 		word
@@ -1535,7 +1537,7 @@ news "republic soldier"
 		attributes "military"
 	name
 		word
-			"Republic Soldier"
+			"Republic soldier"
 	message
 		word
 			`"`
@@ -1561,7 +1563,7 @@ news "syndicate soldier"
 		attributes "military"
 	name
 		word
-			"Syndicate Soldier"
+			"Syndicate soldier"
 	message
 		word
 			`"`
@@ -1728,7 +1730,7 @@ news "spaceport video advertisement"
 		government "Republic"
 	name
 		word
-			"Spaceport Video Screen"
+			"Spaceport video screen"
 	message
 		word
 			`You see a video of stuntmen making a jump from the edge of space. The "do not try this at home", "illegal on many planets", and "high risk/deadly" warnings at the end of the video suggest that this might become quite a popular sport.`
@@ -1763,7 +1765,7 @@ news "syndicate pa system"
 		not attributes "station"
 	name
 		word
-			"Public Announcement System"
+			"Public announcement system"
 	message
 		word
 			`"`
@@ -1812,7 +1814,7 @@ news "tourist pa system"
 		attributes "deep" "rich" "paradise" "tourism"
 	name
 		word
-			"Public Announcement System"
+			"Public announcement system"
 	message
 		word
 			`"`
