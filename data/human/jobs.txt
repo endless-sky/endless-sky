@@ -2707,7 +2707,13 @@ mission "FW Wildfire Aid [2]"
 	job
 	repeat
 	name "Firefighters to <planet>"
-	description "A major wildfire has occurred on <destination> and various settlements on the planet have been affected. Bring a team of <bunks> firefighters to <planet> by <date> to assist in the firefighting efforts. Payment is <payment>."
+	substitutions
+		"<problem>" "forest fire"
+		"<problem>" "brush fire"
+			"random" < 60
+		"<problem>" "wildfire"
+			"random" < 30
+	description "A major <problem> has occurred on <destination> and various settlements on the planet have been affected. Transport a team of <bunks> firefighters to <planet> by <date> to assist in the firefighting efforts. Payment is <payment>."
 	passengers 5 10
 	deadline
 	to offer
