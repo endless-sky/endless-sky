@@ -65,16 +65,6 @@ void DataWriter::SaveToPath(const string &filepath)
 
 
 
-// Writes the contents of the string without any escaping, quoting or
-// any other kind of modification.
-DataWriter &DataWriter::WriteRaw(const string &c)
-{
-	out << c;
-	return *this;
-}
-
-
-
 // Writes the string that separates two tokens. If no tokens are present on the current line,
 // it writes the indentation string instead.
 DataWriter &DataWriter::WriteSeparator()

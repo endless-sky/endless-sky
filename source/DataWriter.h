@@ -53,9 +53,8 @@ public:
 	// Save the contents to a file.
 	void SaveToPath(const std::string &path);
 
-	// Writes the contents of the string without any escaping, quoting or
+	// Writes the contents of the string or arithmetic type without any escaping, quoting or
 	// any other kind of modification.
-	DataWriter &WriteRaw(const std::string &c);
 	template <class C>
 	DataWriter &WriteRaw(const C &c);
 	// Writes the string that separates two tokens. If no tokens are present on the current line,
@@ -125,8 +124,6 @@ private:
 template <class C>
 DataWriter &DataWriter::WriteRaw(const C &c)
 {
-	static_assert(std::is_arithmetic<C>::value,
-		"DataWriter cannot output anything but strings and arithmetic types.");
 	out << c;
 	return *this;
 }
