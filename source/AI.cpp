@@ -2721,7 +2721,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 
 			// The ship is outside of the effective range of the system,
 			// so we turn it around.
-			if(ship.Position().LengthSquared() > radius)
+			if(ship.Position().LengthSquared() > radius * radius)
 			{
 				// Allow ships to land after a while, otherwise they would continue to accumulate in the system.
 				if(!isStaying && !Random::Int(10000))
