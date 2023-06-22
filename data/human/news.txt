@@ -1851,8 +1851,8 @@ phrase "rnas travel advisory [1]"
 		"The Republic Navy strongly discourages travel to"
 	word
 		" "
-	word
-		"${pirate worlds}"
+	phrase
+		"pirate worlds"
 	word
 		"."
 
@@ -1861,8 +1861,8 @@ phrase "rnas travel advisory [2]"
 		"The Republic Navy Civilian Safety Board considers travel to"
 	word
 		" "
-	word
-		"${pirate worlds}"
+	phrase
+		"pirate worlds"
 	word
 		" "
 	word
@@ -1875,8 +1875,8 @@ phrase "rnas travel advisory [3]"
 		"Navigational hazard: "
 	word
 		" "
-	word
-		"${pirate worlds}"
+	phrase
+		"pirate worlds"
 	word
 		" - "
 	word
@@ -1887,10 +1887,10 @@ phrase "rnas travel advisory [3]"
 		"."
 
 phrase "rnas travel advisory"
-	word
-		"${rnas travel advisory [1]}"
-		"${rnas travel advisory [2]}"
-		"${rnas travel advisory [3]}"
+	phrase
+		"rnas travel advisory [1]"
+		"rnas travel advisory [2]"
+		"rnas travel advisory [3]"
 
 phrase "rnas port emergency alert test"
 	word
