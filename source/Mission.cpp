@@ -158,9 +158,8 @@ void Mission::Load(const DataNode &node)
 			LocationFilter loaded(child);
 			if(!loaded.IsValid())
 				continue;
-			completeAnywhere = loaded.IsEmpty();
-			if(completeAnywhere)
-				completionFilter = LocationFilter();
+			if(loaded.IsEmpty())
+				child.PrintTrace("Error: The \"complete at\" filter must not be empty. Ignoring this line.");
 			else
 				completionFilter = loaded;
 		}
