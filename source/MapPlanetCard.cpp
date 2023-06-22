@@ -43,6 +43,7 @@ MapPlanetCard::MapPlanetCard(const StellarObject &object, unsigned number, bool 
 	hasSpaceport = planet->HasSpaceport();
 	hasShipyard = planet->HasShipyard();
 	hasOutfitter = planet->HasOutfitter();
+	governmentName = planet->GetGovernment()->GetName();
 
 	if(!hasSpaceport)
 		reputationLabel = "No Spaceport";
@@ -102,8 +103,9 @@ MapPlanetCard::ClickAction MapPlanetCard::Click(int x, int y, int clicks)
 			else
 				clickAction = ClickAction::SELECTED;
 
-			static const int SHOW[4] = {MapPanel::SHOW_REPUTATION, MapPanel::SHOW_SHIPYARD,
-										MapPanel::SHOW_OUTFITTER, MapPanel::SHOW_VISITED};
+			static const int SHOW[5] = {MapPanel::SHOW_GOVERNMENT, MapPanel::SHOW_REPUTATION,
+										MapPanel::SHOW_SHIPYARD, MapPanel::SHOW_OUTFITTER,
+										MapPanel::SHOW_VISITED};
 			if(clickAction != ClickAction::SELECTED)
 			{
 				clickAction = static_cast<ClickAction>(SHOW[selectedCategory]);
@@ -182,23 +184,26 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 		};
 
 		// Draw the name of the planet.
-		if(FitsCategory(5.))
+		if(FitsCategory(6.))
 			font.Draw({ planetName, alignLeft }, uiPoint + Point(0, textStart), isSelected ? medium : dim);
 
-		// Draw the reputation, shipyard, outfitter and visited.
+		// Draw the government name, reputation, shipyard, outfitter and visited.
 		const double margin = mapInterface->GetValue("text margin");
+		if(FitsCategory(5.))
+			font.Draw(governmentName, uiPoint + Point(margin, textStart + categorySize),
+				governmentName == "Uninhabited" ? faint : medium);
 		if(FitsCategory(4.))
-			font.Draw(reputationLabel, uiPoint + Point(margin, textStart + categorySize),
+			font.Draw(reputationLabel, uiPoint + Point(margin, textStart + categorySize * 2.),
 				hasSpaceport ? medium : faint);
 		if(FitsCategory(3.))
-			font.Draw("Shipyard", uiPoint + Point(margin, textStart + categorySize * 2.),
+			font.Draw("Shipyard", uiPoint + Point(margin, textStart + categorySize * 3.),
 				hasShipyard ? medium : faint);
 		if(FitsCategory(2.))
-			font.Draw("Outfitter", uiPoint + Point(margin, textStart + categorySize * 3.),
+			font.Draw("Outfitter", uiPoint + Point(margin, textStart + categorySize * 4.),
 				hasOutfitter ? medium : faint);
 		if(FitsCategory(1.))
 			font.Draw(hasVisited ? "(has been visited)" : "(not yet visited)",
-				uiPoint + Point(margin, textStart + categorySize * 4.), dim);
+				uiPoint + Point(margin, textStart + categorySize * 5.), dim);
 
 		// Draw the arrow pointing to the selected category.
 		if(FitsCategory(categories - (selectedCategory + 1.)))
