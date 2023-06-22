@@ -25,6 +25,8 @@ on:
         value: ${{ jobs.changed.outputs.cmake_files }}
       copyright:
         value: ${{ jobs.changed.outputs.copyright }}
+      changelog:
+        value: ${{ jobs.changed.outputs.changelog }}
       parse_script:
         value: ${{ jobs.changed.outputs.parse_script }}
 
@@ -43,6 +45,7 @@ jobs:
       code_style_check: ${{ steps.filter.outputs.code_style_check }}
       cmake_files: ${{ steps.filter.outputs.cmake_files }}
       copyright: ${{ steps.filter.outputs.copyright }}
+      changelog: ${{ steps.filter.outputs.changelog }}
       parse_script: ${{ steps.filter.outputs.parse_script }}
     steps:
     - uses: actions/checkout@v3
