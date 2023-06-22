@@ -17,7 +17,7 @@ mission "Passive-Aggressive Observations"
 	landing
 	destination "Vigales"
 	to offer
-		has "event: introduced scin"
+		random < 40
 		has "First Contact: Gegno Scin: offered"
 		not "Gegno Genocide Defense: offered"
 	on complete
@@ -119,13 +119,14 @@ mission "Foreign Spectator I"
 	#invisible
 	landing
 	to offer
-		has "Passive-Aggressive Observations: offered"
+		random < 40
+		has "First Contact: Gegno Scin: offered"
 		not "Gegno Genocide Defense: offered"
 	to complete
 		never
 	on enter "Eogho"
 		fail
-		event "gegno suspicions" 7
+
 	npc
 		on provoke
 			set "interrupted arena"
@@ -213,11 +214,12 @@ mission "Scin Suspicion"
 			variant
 				"Tridymite"
 
+
 mission "Curious Civilians"
 	#invisible
 	landing
 	to offer
-		has "event: gegno suspicions"
+		has "First Contact: Gegno Scin: offered"
 		not "Gegno Genocide Defense: offered"
 	to complete
 		never
@@ -225,14 +227,59 @@ mission "Curious Civilians"
 		system
 			government "Gegno"
 		fail
+		event "gegno suspicions"
 
 
-mission "Derelict Desponders A"
+mission "Esstch Visit Tracker"
+	landing
+	invisible
+	repeat 2
+	source "Esstch"
+	on offer
+		fail
+
+
+mission "Bystander"
+	invisible
+	landing
+	destination "Esstch"
+	to offer
+		has "Esstch Visit Tracker: offered" >= 2
+		has "First Contact: Gegno Scin: offered"
+		not "Gegno Genocide Defense: offered"
+		not "attributes: gegno"
+	on complete
+		conversation
+			`As usual, the scattered recording instruments on the surface of this planet contradicts what little interest the Gegno appear to be giving it nowadays, despite its location within the Gegno's high-traffic home system of Heutesl. Still, since this planet isn't strictly owned by the Gegno, it makes for a place to stop, and they haven't seemed to either notice or care when you have before.`
+			`	However, as you fly around this time, you notice a small Gegno shuttle parked on the ground. The tan coloration of its hull suggest that it's a civilian craft, but what it's doing here is unknown.`
+			choice
+				`	Investigate.`
+					goto investigate
+				`	Leave them be.`
+					decline
+			label investigate
+			`	You steer your ship towards the shuttle, and once you approach it, you are able to see a Gegno on the ground nearby fiddling with one of the nearby devices on the surface. Though, as you fly closer, they stop ther work and return to their shuttle, taking off shortly after. It seems like they weren't interested in any potential interaction with you.`
+			`	The satellite they were tinkering with doesn't strike you as anything special, being just another antique device amongst the others.`
+				decline
+
+
+# mission "Acquiescence"
+
+
+# jobs
+
+
+# mission "Heart of the Mighty"
+
+
+# mission "Heart of the Clever"
+
+
+# mission "Derelict Desponders A"
 	#invisible
 	landing
 	deadline 7
 	to offer
-		has "Curious Civilians: failed"
 		not "Gegno Genocide Defense: offered"
 	to complete
 		never
@@ -258,11 +305,10 @@ mission "Derelict Desponders A"
 		ship "Dolomite" "Tviemye"
 
 
-mission "Derelict Desponders B"
+#mission "Derelict Desponders B"
 	#invisible
 	landing
 	to offer
-		has "Derelict Desponders A"
 		not "Gegno Genocide Defense: offered"
 	npc
 		on assist
@@ -281,15 +327,3 @@ mission "Derelict Desponders B"
 		personality derelict
 		system "Anbrim"
 		ship "Gypsum"
-
-
-# mission "Acquiescence"
-
-
-# jobs
-
-
-# mission "Heart of the Mighty"
-
-
-# mission "Heart of the Clever"

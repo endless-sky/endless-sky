@@ -541,7 +541,7 @@ mission "First Contact: Gegno Scin"
 			
 			label "reach"
 			action
-				"reputation: Gegno Scin" = -1
+				"reputation: Gegno Scin" = -0.01
 			`	It is rather alarming that the Scin be comfortable in approaching you casually, and considering how the encounter with the Vi went, anything could happen next. You decide to reach for your pistol, but as soon as you do, the first thing you notice is a blade around your neck, and a bunch of sand flying past you. Slowly turning your head, your eyes are met with the cold, expressionless look of another Scin's face, who then motions you to return to your ship. They follow you as you do, continuing to hold the blade to your throat. Two more Scin suddenly appear from the sand along the way, while the others you first met remain at their position. The armor of the Scin escorting you is considerably different from the rest, characterized by darker shades, sharper edges, and several gadgets.`
 			`	Once you are at your ship, they move their blade away from you neck. Getting a better look at it, the blade is curved like a sickle, as opposed to a sword, meaning there was little chance you could have avoided being decapitated if they chose to do so. Boarding your ship in a hurry, you prepare to take off, and you notice the two Scin warships also begin to power up. It's clear you've overstayed your welcome.`
 				flee
@@ -605,11 +605,6 @@ mission "First Contact: Gegno Scin"
 			`As soon as you attempt to move, the first thing you notice is a blade around your neck. The Scin casually marks another note on their device, then leaves the scene, heading deeper into the vessel. Slowly turning your head, your eyes are met with the cold, expressionless look of yet another Scin's face, who you haven't seen yet. They continue to hold the blade to your throat as they activate the elevator again, lowering you back to the surface. Their armor is considerably different from the rest, characterized by darker shades, sharper edges, and several gadgets.`
 			`	They escort you back to your ship, and along the way, several more Scin stand guard, wearing the same armor. Once you are at your ship, the blade is moved away from you neck. Getting a better look at it, the blade is curved like a sickle, as opposed to a sword, meaning there was little chance you could have escaped being decapitated if they chose to do so. You board your ship in a hurry, preparing to take off. It's clear you've overstayed your welcome.`
 				flee
-
-	on decline
-		event "introduced scin" 5 9
-
-event "introduced scin"
 
 
 mission "Scin Intro Warships"
