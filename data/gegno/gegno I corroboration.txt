@@ -258,7 +258,7 @@ mission "Bystander"
 				`	Leave them be.`
 					decline
 			label investigate
-			`	You steer your ship towards the shuttle, and once you approach it, you are able to see a Gegno on the ground nearby fiddling with one of the nearby devices on the surface. Though, as you fly closer, they stop ther work and return to their shuttle, taking off shortly after. It seems like they weren't interested in any potential interaction with you.`
+			`	You steer your ship towards the shuttle, and once you approach it, you are able to see a Gegno on the ground nearby fiddling with one of the nearby devices on the surface. Though, as you fly closer, they stop their work and return to their shuttle, taking off shortly after. It seems like they weren't interested in any potential interaction with you.`
 			`	The satellite they were tinkering with doesn't strike you as anything special, being just another antique device amongst the others.`
 				decline
 
