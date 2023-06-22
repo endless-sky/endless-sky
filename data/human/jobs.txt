@@ -2680,7 +2680,13 @@ mission "FW Wildfire Aid [1]"
 	job
 	repeat
 	name "Wildfire aid to <planet>"
-	description "A major wildfire has occurred on <destination> and various settlements on the planet have been affected. Bring <cargo> to <planet> by <date> to assist in the firefighting efforts. Payment is <payment>."
+	substitutions
+		"<problem>" "forest fire"
+		"<problem>" "brush fire"
+			"random" < 60
+		"<problem>" "wildfire"
+			"random" < 30
+	description "A major <problem> has occurred on <destination> and various settlements on the planet have been affected. Bring <cargo> to <planet> by <date> to assist in the firefighting efforts. Payment is <payment>."
 	cargo "flames aid" 25 2 .05
 	deadline
 	to offer
@@ -3785,14 +3791,15 @@ mission "Hunted"
 
 mission "Republic Navy Advisory System [frozen]"
 	name "Cold Relief"
-	description "Humanitarian aid of <cargo> to <destination> by <date> following a severe cold snap."
+	description "Deliver humanitarian aid of <cargo> to <destination> by <date> following a severe cold snap. Payment is <payment>."
 	minor
 	repeat
 	deadline
 	source
-		government "Republic"
+		government "Republic" "Syndicate"
 	destination
 		government "Republic" "Syndicate" "Independent" "Neutral"
+		distance 1 8
 		attributes "frozen"
 	substitutions
 		"<problem>" "cold snap"
@@ -3809,18 +3816,19 @@ mission "Republic Navy Advisory System [frozen]"
 		dialog `This is the Republic Navy Advisory System: <planet> is experiencing a severe <problem>. Volunteers are requested to supply <cargo> to <planet> by <date>. A stipend of <payment> is provided to cover fuel, crew, and any incidental expenses.`
 	on complete
 		payment 8000
-		dialog `Shivering, yet appreciative aid workers welcome your shipment. You look on, feeling satisfied that <cargo> will soon arrive to those that need it most.`
+		dialog `Shivering, yet appreciative aid workers welcome your shipment. You look on, feeling satisfied that <cargo> will soon arrive to those that need it most. Back in your ship, you're notified that you've recieved <payment> for your service.`
 
 mission "Republic Navy Advisory System [volcanic]"
 	name "Volcanic Relief"
-	description "Humanitarian aid of <cargo> to <destination> by <date> following a severe volcanic eruption."
+	description "Deliver humanitarian aid of <cargo> to <destination> by <date> following a severe volcanic eruption. Payment is <payment>."
 	minor
 	repeat
 	deadline
 	source
-		government "Republic"
+		government "Republic" "Syndicate"
 	destination
 		government "Republic" "Syndicate" "Independent" "Neutral"
+		distance 1 8
 		attributes "volcanic" "lava"
 	substitutions
 		"<problem>" "volcanic event"
@@ -3835,11 +3843,11 @@ mission "Republic Navy Advisory System [volcanic]"
 		dialog `This is the Republic Navy Advisory System: <planet> is experiencing a severe <problem>. Volunteers are requested to supply <cargo> to <planet> by <date>. A stipend of <payment> is provided to cover fuel, crew, and any incidental expenses.`
 	on complete
 		payment 8000
-		dialog `Relieved-looking aid workers welcome your shipment. You look on, feeling satisfied that <cargo> will soon arrive to those that need it most.`
+		dialog `Relieved-looking aid workers welcome your shipment. You look on, feeling satisfied that <cargo> will soon arrive to those that need it most. Back in your ship, you're notified that you've recieved <payment> for your service.`
 
 mission "Republic Navy Advisory System [wildfire cargo]"
 	name "Wildfire Relief"
-	description "Humanitarian aid of <cargo> to <destination> by <date> following a severe wildfire."
+	description "Deliver humanitarian aid of <cargo> to <destination> by <date> following a severe wildfire. Payment is <payment>."
 	minor
 	repeat
 	deadline
@@ -3847,6 +3855,7 @@ mission "Republic Navy Advisory System [wildfire cargo]"
 		government "Republic"
 	destination
 		government "Republic" "Syndicate" "Independent" "Neutral"
+		distance 1 8
 		attributes "forest"
 	substitutions
 		"<problem>" "forest fire"
@@ -3861,18 +3870,19 @@ mission "Republic Navy Advisory System [wildfire cargo]"
 		dialog `This is the Republic Navy Advisory System: <planet> is experiencing a severe <problem>. Volunteers are requested to supply <cargo> to <planet> by <date>. A stipend of <payment> is provided to cover fuel, crew, and any incidental expenses.`
 	on complete
 		payment 8000
-		dialog `Ash-covered, but relieved aid workers welcome your shipment. You look on, feeling satisfied that <cargo> will soon arrive to those that need it most.`
+		dialog `Ash-covered, but relieved aid workers welcome your shipment. You look on, feeling satisfied that <cargo> will soon arrive to those that need it most. Back in your ship, you're notified that you've recieved <payment> for your service.`
 
 mission "Republic Navy Advisory System [wildfire firefighters]"
 	name "Transport Firefighters"
-	description "Bring <bunks> firefighters to <planet> by <date>."
+	description "Transport <bunks> firefighters to <planet> by <date>. Payment is <payment>."
 	minor
 	repeat
 	deadline
 	source
-		government "Republic"
+		government "Republic" "Syndicate"
 	destination
 		government "Republic" "Syndicate" "Independent" "Neutral"
+		distance 1 8
 		attributes "forest"
 	substitutions
 		"<problem>" "forest fire"
