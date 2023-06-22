@@ -4117,7 +4117,7 @@ mission "The Book of Skadenga"
 	on offer
 		conversation
 			`As you wander through the spaceport, something catches your eye at a kiosk selling gifts, trinkets, and other odds and ends.`
-			`	There's an old-style book there, bound up in a ice-blue cover, titled: "The Skadenga Saga: Against All Odds, by Hjlod Hrimnirsdottir."`
+			`	There's an old-style book there, bound up in an ice-blue cover, titled: "The Skadenga Saga: Against All Odds, by Hjlod Hrimnirsdottir."`
 			choice
 				`	(Ignore the book and move on.)`
 					goto ignore
@@ -4140,4 +4140,3 @@ mission "The Book of Skadenga"
 			label ignore
 			`	You keep walking. You already know that story.`
 				decline
-
