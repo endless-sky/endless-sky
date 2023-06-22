@@ -91,6 +91,8 @@ mission "First Contact: Avgi 1"
 			label aviskir
 				`The first thing you notice about this Earthlike world is the utter devastation in orbit. Your ship's sensors pick up the remains of what appear to be dozens of wrecked stations and countless destroyed satellites, forming a large swath of debris scattered in various orbits. A few larger objects are mostly intact, but lifeless, with no signal emissions or heat signatures. As your ship touches the upper atmosphere, you can see, even with your naked eye, glittering fragments of an immensely long tether slowly spinning in orbit.`
 				`	Your observations are interrupted by a blared warning from your ship. You barely manage to yank your ship aside as a bright trail of plasma nearly clips your ship, the wake of a hypervelocity projectile fired from the ground. Clearly, someone is still alive down there, despite the destruction in orbit. Proceeding could be dangerous, if your ship isn't able to withstand a direct hit from those planetary defense batteries.`
+		        action
+		        	set "avgi: fired on by planets"
 			choice
 		    `	(Attempt to land)`
 		    	to display
@@ -121,6 +123,8 @@ mission "First Contact: Avgi 1"
 			label coreworld
 				`The first thing you notice about this world is the utter devastation in orbit. Your ship's sensors pick up the remains of what appear to be a handful of wrecked stations and countless destroyed satellites, forming a large swath of debris scattered in various orbits. A few larger objects are mostly intact, but lifeless, with no signal emissions or heat signatures. As your ship touches the upper atmosphere, you can see the tumbling remains of what looks like half of an enormous starship with an equally large drive, splintered and broken along its spine.`
 				`	Your observations are interrupted by a blared warning from your ship. You barely manage to yank your ship aside as a bright trail of plasma nearly clips your ship, the wake of a hypervelocity projectile fired from the ground. Clearly, someone is still alive down there, despite the destruction in orbit. Proceeding could be dangerous, if your ship isn't able to withstand a direct hit from those planetary defense batteries.`
+		        action
+		        	set "avgi: fired on by planets"
 			choice
 		    `	(Attempt to land)`
 		    	to display
@@ -237,18 +241,25 @@ mission "First Contact: Avgi 2"
 		event "label twilight"
 		conversation
 			`After a confusing journey through the winding hyperlanes, you finally arrive at the system the alien marked on your map. You notice that your flight computer has failed to record the location of the systems you passed through, probably due to the same anomaly that made your ship almost completely blind within the region. This system appears unaffected however, and your computer is able to chart its position.`
-			`	You accompany the alien ship to the largest structure in the system, a huge station shaped like a circular disc. The center of the disc is exposed to space, cut open to reveal hundreds of docking bays, where you can see other alien ships moored to what looks like the main spaceport. As you watch, a trio of sleek looking fightercraft launch from the station and take up escort positions around you and the other alien ship you have followed all this way.` 
+			`	The alien ship pings you, indicating to follow as it flies towards what looks to be a large inhabited station in the system. Shaped like a circular disk, a large cutout in the center exposes hundreds of docking bays and what looks to be a spaceport. As you watch, a trio of sleek looking fightercraft launch from the station and take up escort positions around you and the other alien ship you have followed all this way. You can only assume your escort is in communication with the station authorities.` 
 			`	Your companion speeds ahead, neatly pulling into one of the bays on the outer levels. When you attempt to follow, the fightercraft zip in front of you, herding you towards a different bay closer to the middle decks.`
+			`	The docking bay is already full of activity, and when you disembark you finally get your first glimpse at this new species up close. They appear to be something analogous to an Earth dragonfly, or maybe more closely to a damselfly, maybe a meter and a half long on average. A group of them quickly close in around your ship as you finally land in a clear space, moving precisely. These aliens have clearly been expecting you.`
+			`	None of the aliens look to be armed, but are arrayed around your ship in a clearly defensive pattern, both on foot and hovering in the air. Some of them look to be wearing some kind of body armor, though you can't be sure.`
+			choice
+				`	"I come in peace"`
+				`	"Hello"`
+				`	"Who are you?"`
+				`	Shoot them`
+					goto die
+
+			`	The aliens 
+
+
+			`	You are led into what you think is some kind of office, a small, round room with a high ceiling. Waiting there, behind a lectern, is another alien, this one colored bright green. It is perched upon a smooth metal bar, hung from a short stand by thin wires, but gestures towards a human style seat on the other side of the lectern. One of two seats, in fact, which puzzles you.
 
 
 
-
-
-
-		`	You are led into what you think is some kind of office, a small, round room with a high ceiling. Waiting there, behind a lectern, is another alien, this one colored bright green. It is perched upon a smooth metal bar, hung from a short stand by thin wires, but gestures towards a human style seat on the other side of the lectern. One of two seats, in fact, which puzzles you.
-
-
-
+why did your planets shoot at me?
 
 
 		choice
@@ -263,7 +274,10 @@ mission "First Contact: Avgi 2"
 
 
 
+The next few hours are a blur, a confusing medley of dignitaries and officials whose names you cannot pronounce, let alone remember
 
+
+x pulls you to the side. "You look like you could use a break"
 
 
 
@@ -285,7 +299,45 @@ We are lucky they are so stupid
 
 
 
+Would you like to see a nuclear test? (implied to be pure fusion research but they can't tell you much cause you're still new)
 
+1st test succeeds
+
+2nd fails
+
+politics between military and scientists
+
+
+
+
+
+
+mission "Avgi Nuclear Testing: 1"
+	landing
+	source 
+		attributes "avgi diaspora"
+		government "Avgi (Consonance)"
+	to offer
+		"First Contact: Avgi 1: done"
+	on offer
+		log "Factions" "Avgi" `The Avgi are a young race of dragonfly-like aliens inhabiting this part of the galaxy. Their homeworld and core space have been occupied by an alien invasion.`
+conversation
+	`	"Would you like to see a test of a small nuclear device, question?"`
+	choice
+		`	"Seeing your nukes? Isn't that a security risk?"`
+			goto public
+		`	"Sure, that sounds like it could be interesting."`
+		`	"I'm not a fan of weapons of mass destruction."`
+			goto lame
+
+
+	label public
+		`	Dismissal. A foreign representative witnessing a weapons test from afar is no threat to our security, and in any cases the tests are open to the public. The Fleet could not legally keep you from it, unless they appealed to the Assembly for an injunction."`
+
+
+	label lame
+		`	"As you wish," he says. "Though you should realize we have no other effective way to defend ourselves from the Abberant."`
+		decline
 
 
 
