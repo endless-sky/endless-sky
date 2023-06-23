@@ -132,7 +132,7 @@ ship "Ancient Ladybug"
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
 	description "This sensor-laden exploration vessel hails back to a more peaceful era of the Hai. Though they have no true ramscoop, a technology the Hai never developed, their built-in collection gills magnify the natural ramscoop present in all ships. These expensive features are the reason the ship has been replaced with the Lightning Bug."
-	description "However, this ship is very useful as an agile cargo hauler, able to defend itself in small skirmishes and bring cargo across long distances. Besides that, you suspect that it does not operate at its full potential, as if it stayed underwater for some time... Still, this ship is clearly proof of the durability of Hai technology."
+	description "This ship is now appropriate as an agile, long distance, cargo hauler and blockade runner. It is able to defend itself in small skirmishes, even though you suspect that it does not operate at its full potential, as if it stayed underwater for some time... The simple fact that it is still running at all after so many years is clearly proof of the durability of Hai technology."
 
 mission "Hai Legacy 1"
 	invisible
@@ -194,17 +194,20 @@ mission "Hai Legacy 2"
 	deadline 30
 	cargo "food (aid)" 121
 	destination "Firelode"
-	blocked "You need space for the agreed rush cargo of food to Unfettered space, and must use it as your flagship."
+	blocked "You need space for the agreed rush cargo of food to Unfettered space on the Ancient Ladybug, and should use it as flagship."
 	to offer
 		has "ship model: Ancient Ladybug"
 	on enter
-		dialog `As you take of from the planet you notice a message was left on the bridge, probably from the "associates". "You should use the Ladybug as your flagship and you should probably not bring any other ships. You'll understand why later." It occurs to you that you could also modify the ship.`
+		dialog `As you take of from the planet you notice a message was left on the bridge, probably from the "associates". "You should use the Ladybug as your flagship and you should probably not bring any other ships. You'll understand why later."`
+			`	Given the dangers of Unfettered space, you figure it would be a good idea to familiarize yourself with the design, and maybe to modify it.`
 	on enter
 		system
 			attributes "unfettered"
 		"old reputation: Hai (Unfettered)" = "reputation: Hai (Unfettered)"
 		"reputation: Hai (Unfettered)" >?= 0
-		dialog `As you enter the system you notice something... Or, more precisely, the lack of something. It is too quiet, probably due to the fact that, for the first time, the Unfettered Hai are not shooting at you. They are not hailing you either. Perhaps they think you are one of the Hai aiding them, especially given your cargo.`
+		dialog `As you enter the system, you prepare for a fight to get the cargo trough, but, surprisingly, it is very quiet this time.`
+			`	Indeed, for the first time, entering Unfettered space does not mean getting shot at, potentially by missiles all sides.`
+			`	They are not hailing you either. Perhaps they think you are one of the Hai aiding them, especially given your cargo and the ship you are flying.`
 	on fail
 		"reputation: Hai (Unfettered)" <?= -1000
 		dialog `The Unfettered and their associates are not clearly happy when you tell them about this. "You will have to prove yourself another way."`
@@ -256,9 +259,11 @@ mission "Hai Legacy 3"
 			`	"I guess we'll find out." Says a third.`
 			label scare
 			`	The leader gets closer and addresses you in a more serious tone, "You should be aware, <last>, this is not a friendly competition between allies. As far as I am concerned you are an enemy. You should see it more as a fight for you to truly earn this ship, and more, but make no mistakes: it has only one rule, and that is that nobody else than us may interfere."`
+			# this is a "warning" for the incoming extra ship that happens because you killed/captured 10 Shield Beetles
+			# (but in reality with disabling a lot of ships it goes faster than that)
 			`	"Although sometimes the rules can bend a little. But you certainly did not earn that privilege."`
 				to display
-					"reputation: Hai (Unfettered)" < -1500
+					"reputation: Hai (Unfettered)" < -2000
 			`	The engineer comes back, looking a bit impatient, "Are you going to talk all day, or are you going to fight?" The Unfettered pilots immediately head to their ships to get the initiative. The engineer utters a word to you once they are far enough away, "I want this done as quickly as possible, do not try my patience. You are lucky I offered this deal in the first place, make sure I do not regret it. Now, quick, get to your ship!" You see the contestants have already begon the launching procedures, and launch as soon as you can.`
 				launch
 	on decline
@@ -330,6 +335,8 @@ mission "Unfettered Landing Permit Lost"
 		not "Unfettered Jump Drive 1: offered"
 	on offer
 		dialog "As you land the Unfettered tell you they have learned of the loss of the Ladybug, thereby ending your landing access and friendly relations with them until you give them a Jump Drive."
+		# since you had to have that ship as a flagship when you received the license that means that if you lose the license you lost the ship
+		# except if you somehow moved the license hackily but then uncoherent dialog is to be expected
 		log "Lost the Ancient Ladybug and friendly access to Unfettered space with it."
 		"reputation: Hai (Unfettered)" <?= -1
 		fail
