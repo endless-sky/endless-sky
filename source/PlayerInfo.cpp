@@ -850,13 +850,15 @@ void PlayerInfo::DoAccounting()
 	{
 		string message = "You receive ";
 		if(salariesIncome)
-			message += Format::CreditString(salariesIncome) + " salary";
-		if(salariesIncome && tributeIncome)
 		{
-			if(b.assetsReturns)
-				message += ", ";
-			else
-				message += " and ";
+			message += Format::CreditString(salariesIncome) + " salary";
+			if(tributeIncome)
+			{
+				if(b.assetsReturns)
+					message += ", ";
+				else
+					message += " and ";
+			}
 		}
 		if(tributeIncome)
 			message += Format::CreditString(tributeIncome) + " in tribute";
