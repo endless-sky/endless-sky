@@ -828,16 +828,16 @@ mission "<uhai> 15: Modified Beetle"
 			label justSB
 			`	"This ship may look like a Shield Beetle to you, because that is indeed what it used to be, but I modified it heavily, to make sure it would be able to take on heavy damage, and thus play an important role in the coming Wanderer conflict. On top of that, I equipped it with unique prototype weaponry, different attempts at increasing the ionizing payload of our weapons. The turrets are intended to disable even the most powerful reactors! And the blasters should offer reasonable firepower, combined with a touch of ion - not enough to disable enemy ships, but enough to scramble their weapons if they are not equipped against it!" She seems to care about that ship a great deal.`
 			`	"But I talk too much... You shall see how mighty this ship is in the only context that matters: battle! I challenge you in a duel, <first>. Should you win, you will earn the right to use this ship. The usual rules of challenges still apply, of course!"`
-				goto duel
-			branch waiting
+				goto fight
+			label waiting
 			`	Do you wish to go see Mera now?`
 			branch duel
 				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 18
 			action
-				"<uhai> 15: Modified Beetle: deferred"
+				set "<uhai> 15: Modified Beetle: deferred"
 			`	"Speaking of which, your fleet is too big at the moment, please park ships until you have less than 2 heavy warships, say 3 medium warships at most or a heavy and a medium, and then come back to me. Best leave any ships not meant for battle out of it too.`
 				defer
-			label duel
+			label fight
 			`	"Launch your ship whenever you feel ready for the fight, I will be waiting for you in space, trying some of these new fancy toys. I may not be a warlord, or a captain even, but I will give you my best!"`
 			`	"And don't forget to disable the extra challengers from the job board, except if you really want a challenge."`
 				accept

@@ -155,7 +155,7 @@ mission "Unfettered: Alpha Supplies: Leaving"
 				"day" <= 15
 		random < 40 - "alpha: worry" * 5
 	on offer
-		"alpha: arriving" = ((day == 1) + (day == 14))
+		"alpha: arriving" = (("day" == 1) + ("day" == 14)) >= 1
 		"alpha: leaving" = 1 - "alpha: arriving"
 	on enter "Hi Yahr"
 		"unfettered: saw auxiliary" ++
