@@ -976,7 +976,7 @@ mission "<uhai> 2: Prove Your Strength"
 				accept
 			label stay
 			`	You stay there, surely impressing all Hai present! However it also means you get hit by the tail of the monster as it jumps out to hit you, and everything gets dark in a minute.`
-			`	You hear voices around you, someone screaming for help but also Si-Ra speaking calmly, "There is no cure for humans," as you hear this you sink deeper and deeper, almost losing consciousness, "there is nothing to be done." This are the last words you will ever hear.`
+			`	You hear voices around you, someone screaming for help but also Si-Ra speaking calmly, "There is no cure for humans," as you hear this you sink deeper and deeper, almost losing consciousness, "there is nothing to be done." These are the last words you will ever hear.`
 				die
 			label run
 			action

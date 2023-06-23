@@ -353,7 +353,7 @@ mission "<uhai> 5: Auxiliary Scans"
 			label questions
 			# She almost reveals to you the existence of the old super drone carrier project; the Lycosidae.
 			`	"I already have access to the specs of the ship. My questions are mostly related to how well they fare in battle. As far as I know, we have never seriously tried ships carrying fighters before. Well, to be fair, we did-" She stops herself, this is probably not something she can talk to you about. "We, hum, did - think of it. We just never tested them in battle.`
-			`	"The limitations could have been the ethical implications, but I think it was mostly due to technical difficulties building a ship large enough to contain and launch multiple interceptors-like crafts. I want to know how effective they are and how are they countered." She is clearly very excited to learn more about them.`
+			`	"The limitations could have been the ethical implications, but I think it was mostly due to technical difficulties building a ship large enough to contain and launch multiple interceptor-like crafts. I want to know how effective they are and how are they countered." She is clearly very excited to learn more about them.`
 			choice
 				`	"Well, I've never seen them in combat personally, so you will have to ask someone else. I've only heard stories."`
 					goto stories
@@ -962,7 +962,7 @@ mission "<uhai> 7: Cavalry Arrives"
 
 
 
-mission "<uhai> 8: Unfettered humans?"
+mission "<uhai> 8: Unfettered Humans?"
 	landing
 	name "Who are the 'unfettered humans'?"
 	description `The Auxiliary was manned by 'unfettered humans'. Find out what this means, pirates may have the answers.`
@@ -1061,7 +1061,7 @@ phrase "dubious leads about an Auxiliary"
 		" You quickly realize you are being scammed."
 
 # if you betrayed Midas, you will suffer to find answers
-mission "<uhai> 8: Unfettered humans? Hint"
+mission "<uhai> 8: Unfettered Humans? Hint"
 	landing
 	invisible
 	to offer
@@ -1078,17 +1078,29 @@ mission "<uhai> 8: Unfettered humans? Hint"
 			`	"Come to us if you truly want to know who that Auxiliary belongs to." The message comes with a location on New Tortuga.`
 				to display
 					not "unfettered: it's the Alphas!"
-			`	"Congratulation<, unfettered title>. It seemed that you did not need our help to find these Alphas."`
+			`	"Congratulations. It seemed that you did not need our help to find these Alphas."`
 				to display
 					has "unfettered: it's the Alphas!"
 	to complete
 		never
 
+mission "<uhai> 8: Unfettered Humans Hint"
+	landing
+	destination "New Tortuga"
+	name "Unfettered humans information"
+	description "Some mysterious contact promised information if you were to head to <destination>."
+	to offer
+		has "<uhai> 8: Unfettered Humans? Hint: failed"
+		not "<uhai> 8: It's The Alphas: offered"
+		not "flagship planet: New Tortuga"
+
+
+
 mission "<uhai> 8: It's The Alphas"
 	landing
 	invisible
 	to offer
-		has "<uhai> 8: Unfettered humans?: active"
+		has "<uhai> 8: Unfettered Humans?: active"
 	source "New Tortuga"
 	on offer
 		conversation
