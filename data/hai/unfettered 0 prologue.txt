@@ -765,7 +765,7 @@ mission "<uhai> 1: Bring Medicine"
 				`	"What is a 'Heshi'?"`
 				`	"Glad to have prevented a disaster then."`
 					decline
-			`	"The Heshi is a great predator which rules the seas on our homeworld. It is swift and nimble, so you do not see it coming, and when you do, it is already too late. They are not very big, however, so they often hunt in groups. Your people have described it as looking like a 'sea scorpion', I believe, and rumour has it you acquired one from Si-Ra."`
+			`	"The Heshi is a great predator which rules the seas on our homeworld. It is swift and nimble, so you do not see it coming, and when you do, it is already too late. Most are not very big, however, so they often hunt in groups. Your people have described it as looking like a 'sea scorpion', I believe, and rumour has it Si-Ra possesses one of monstruous size."`
 				decline
 			label soldiers
 			`	He looks around him, before answering, "Do I look like a soldier to you? Does this medic look like one? No, we Unfettered only dare to think in another way. In truth, quite a few of us would like to be artists! It is the principle of the matter which drives us though, and it is a shame we must help fight for our right to live by another philosophy than the Hai one of stagnation, to break out of the prison they have cast for all of us! Our soldiers indeed suffer the most from that fight."`
@@ -945,7 +945,7 @@ mission "<uhai> 2: Prove Your Strength"
 			`	"Hopefully we see each other again, sometime." He and his crew seem quite busy with the repairs. "I transferred yer booty of <payment> to pay to repair any damage I may have done to yer ship. I be landing on the surface soon, to drown the sorrow of this humiliating defeat I have just suffered. I do not need nor want yer assistance in repairing, for that is a task best suited for the vanquished."`
 			`	"If ye be feeling up to the challenge, there be other captains that would be willing to duel ye, if ye keep fighting fair, of course. None accept to fight more than a pair o' heavy men-o-war, some others, like me, still prefer fighting with a single vessel. Like me, they will wish to fight to test the strength of yer exotic technologies or strategies, savvy?"`
 			``
-			`	"Now land at once, we must officialy conclude this duel, matey, else it will be worth no more than an empty chest!"`
+			`	"Now land at once, we must officially conclude this duel, matey, else it will be worth no more than an empty chest!"`
 	to fail
 		has "event: unfettered: outcast"
 	on fail
@@ -971,7 +971,7 @@ mission "<uhai> 2: Prove Your Strength"
 				"unfettered: took Si-Ra' gold" = "outfit (all): Gold Bars"
 				"unfettered: took Si-Ra' weapons" = "outfit (all): Ionic Blaster Prototype" + "outfit (all): Ionic Turret Prototype" * 3
 				log `Defeated a young Unfettered Captain in a duel, and took part in a surprisingly scary Unfettered martial ceremony.`
-			`	 Si-Ra does not give you any explanation, instead he proceeds to raise his fist. As you do not react he geastures with his other hand, clearly meaning you ought to do the same.`
+			`	Si-Ra does not give you any explanation, instead he proceeds to raise his fist. As you do not react he geastures with his other hand, clearly meaning you ought to do the same.`
 			`	After you rise your fist in response, he bows his head so slightly you barely notice it, and moves away. You wonder what you should do with the creature, but refusing the gift does not seem like an option.`
 				accept
 			label stay

@@ -956,7 +956,7 @@ mission "<uhai> 15: Modified Beetle"
 				decline
 
 			label "took weapons"
-			`	She seems upset, "I told you not to take any weapons, what were you thinking? That was not officialy part of the duels so you can get away with it, but I certainly do not approve of it. Don't conut on me to give you any special treatment for this ship.`
+			`	She seems upset, "I told you not to take any weapons, what were you thinking? That was not officially part of the duels so you can get away with it, but I certainly do not approve of it. Don't conut on me to give you any special treatment for this ship.`
 			action
 				clear "unfettered: Mera's favor"
 				set "unfettered: prize right away"

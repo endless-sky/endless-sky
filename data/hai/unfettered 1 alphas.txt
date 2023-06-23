@@ -155,7 +155,7 @@ mission "Unfettered: Alpha Supplies: Leaving"
 				"day" <= 15
 		random < 40 - "alpha: worry" * 5
 	on offer
-		"alpha: arriving" = (("day" == 1) + ("day" == 14)) >= 1
+		"alpha: arriving" = "day" == 1 + "day" == 14
 		"alpha: leaving" = 1 - "alpha: arriving"
 	on enter "Hi Yahr"
 		"unfettered: saw auxiliary" ++
@@ -319,7 +319,7 @@ mission "<uhai> 5: Scan Auxiliary"
 		dialog
 			`You are offered some surprisingly high-quality beverages to keep you waiting, that are much better than what you normally would be able to get on Unfettered worlds. This special treatment is probably in part due to your ongoing mission for Mera.`
 			`	One of them comes to talk to you, "I don't know if I should be telling you this, but this ship comes regularly, in the middle and at the end of each month. As far as we are concerned, this is a duel between you and them, meaning so long as they keep coming we will not mind. Just do not destroy them!"`
-			`	After a while, the ship goes away, you can now go back to <origin> with the scanner logs, at your own conveniance.`
+			`	After a while, the ship goes away, you can now go back to <origin> with the scanner logs, at your own convenience.`
 
 
 
