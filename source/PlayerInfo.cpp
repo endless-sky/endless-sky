@@ -699,7 +699,8 @@ void PlayerInfo::AdvanceDate(int amount)
 			auto it = gameEvents.begin();
 			while(it != gameEvents.end() && date >= it->GetDate())
 			{
-				(*it).Apply(*this);
+				GameEvent event = *it;
+				event.Apply(*this);
 				it = gameEvents.erase(it);
 			}
 
@@ -845,8 +846,8 @@ void PlayerInfo::DoAccounting()
 	// Check what salaries and tribute the player receives.
 	int64_t salariesIncome = accounts.SalariesIncomeTotal();
 	int64_t tributeIncome = GetTributeTotal();
-	FleetBalance b = MaintenanceAndReturns();
-	if(salariesIncome || tributeIncome || b.assetsReturns)
+	FleetBalance balance = MaintenanceAndReturns();
+	if(salariesIncome || tributeIncome || balance.assetsReturns)
 	{
 		string message = "You receive ";
 		if(salariesIncome)
@@ -854,7 +855,7 @@ void PlayerInfo::DoAccounting()
 			message += Format::CreditString(salariesIncome) + " salary";
 			if(tributeIncome)
 			{
-				if(b.assetsReturns)
+				if(balance.assetsReturns)
 					message += ", ";
 				else
 					message += " and ";
@@ -862,17 +863,17 @@ void PlayerInfo::DoAccounting()
 		}
 		if(tributeIncome)
 			message += Format::CreditString(tributeIncome) + " in tribute";
-		if(b.assetsReturns)
+		if(balance.assetsReturns)
 		{
 			if(salariesIncome && tributeIncome)
 				message += ",";
 			if(salariesIncome || tributeIncome)
 				message += " and ";
-			message += Format::CreditString(b.assetsReturns) + " based on outfits and ships";
+			message += Format::CreditString(balance.assetsReturns) + " based on outfits and ships";
 		}
 		message += ".";
 		Messages::Add(message, Messages::Importance::High);
-		accounts.AddCredits(salariesIncome + tributeIncome + b.assetsReturns);
+		accounts.AddCredits(salariesIncome + tributeIncome + balance.assetsReturns);
 	}
 
 	// For accounting, keep track of the player's net worth. This is for
@@ -883,7 +884,7 @@ void PlayerInfo::DoAccounting()
 
 	// Have the player pay salaries, mortgages, etc. and print a message that
 	// summarizes the payments that were made.
-	string message = accounts.Step(assets, Salaries(), b.maintenanceCosts);
+	string message = accounts.Step(assets, Salaries(), balance.maintenanceCosts);
 	if(!message.empty())
 		Messages::Add(message, Messages::Importance::High);
 }
