@@ -186,7 +186,7 @@ mission "Veering Vi"
 		system
 			government "Gegno Vi"
 		fleet
-			names "gegno vi squadron"
+			names "gegno vi"
 			variant
 				"Eclogite" 2
 
