@@ -261,7 +261,7 @@ mission "Hai Legacy 3"
 			`	The leader gets closer and addresses you in a more serious tone, "You should be aware, <last>, this is not a friendly competition between allies. As far as I am concerned you are an enemy. You should see it more as a fight for you to truly earn this ship, and more, but make no mistakes: it has only one rule, and that is that nobody else than us may interfere. And do not even think about bringing more than this Ladybug as a flagship or we will not bother showing up!"`
 			# this is a "warning" for the incoming extra ship that happens because you killed/captured 10 Shield Beetles
 			# (but in reality with disabling a lot of ships it goes faster than that)
-			`	"Although sometimes the rules can bend a little. But you certainly did not earn that privilege."`
+			`	"Sometimes the rules can be bent a little. But you certainly did not earn that privilege."`
 				to display
 					"reputation: Hai (Unfettered)" < -2000
 			`	The engineer comes back, looking a bit impatient, "Are you going to talk all day, or are you going to fight?" The Unfettered pilots immediately head to their ships to get the initiative. The engineer utters a word to you once they are far enough away, "I want this done as quickly as possible, do not try my patience. You are lucky I offered this deal in the first place, make sure I do not regret it. Now, quick, get to your ship!" You see the contestants have already begon the launching procedures, and launch as soon as you can.`
