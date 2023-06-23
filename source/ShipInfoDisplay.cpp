@@ -45,11 +45,11 @@ ShipInfoDisplay::ShipInfoDisplay(const Ship &ship, const PlayerInfo &player, boo
 
 
 // Call this every time the ship changes.
-// infinitePanel is for panels such as the shipyard and outfitter that scroll and thus can fit extra information.
-void ShipInfoDisplay::Update(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed, bool infinitePanel)
+// scrollingPanel is for panels such as the shipyard and outfitter that cannot overflow because they scroll.
+void ShipInfoDisplay::Update(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed, bool scrollingPanel)
 {
 	UpdateDescription(ship.Description(), ship.Attributes().Licenses(), true);
-	UpdateAttributes(ship, player, descriptionCollapsed, infinitePanel);
+	UpdateAttributes(ship, player, descriptionCollapsed, scrollingPanel);
 	const Depreciation &depreciation = ship.IsYours() ? player.FleetDepreciation() : player.StockDepreciation();
 	UpdateOutfits(ship, player, depreciation);
 
@@ -134,7 +134,7 @@ void ShipInfoDisplay::DrawOutfits(const Point &topLeft) const
 
 
 void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &player,
-bool descriptionCollapsed, bool infinitePanel = false)
+bool descriptionCollapsed, bool scrollingPanel = false)
 {
 	bool isGeneric = ship.Name().empty() || ship.GetPlanet();
 
@@ -376,7 +376,7 @@ bool descriptionCollapsed, bool infinitePanel = false)
 		* (1. + attributes.Get("hull heat multiplier")) : 0.;
 	heatTable.push_back(Format::Number(60. * (shieldHeat + hullHeat)));
 
-	if(infinitePanel)
+	if(scrollingPanel)
 	{
 		// Add up the maximum possible changes and add the total to the table.
 		attributesHeight += 20;
