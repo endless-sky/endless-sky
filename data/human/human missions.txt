@@ -2592,8 +2592,11 @@ mission "Paradise Fortune 1"
 		distance 1 1
 	passengers 1
 	to offer
-		has "main plot completed"
 		random < 50
+		has "main plot completed"
+		or
+			not "hr: secret leaks"
+			has "event: hai-human resolution announced"
 	
 	on offer
 		conversation
@@ -3394,7 +3397,10 @@ mission "Pirate Duel"
 		not "ships: Medium Warship"
 		not "ships: Heavy Warship"
 		not "ships: Heavy Freighter"
-		"ships: Light Warship" + "ships: Light Freighter" + "ships: Transport" + "ships: Interceptor" == 1
+		not "ships: Space Liner"
+		not "ships: Utility"
+		not "ships: Superheavy"
+		"ships: Light Warship" + "ships: Light Freighter" + "ships: Transport" + "ships: Interceptor" + "ships: Fighter" + "ships: Drone" == 1
 	
 	on offer
 		conversation
@@ -3529,7 +3535,7 @@ mission "Earth Retirement"
 			label payment
 			action
 				payment 2000 80
-			`	As you count up the large clump of credits you were handed (the sum comes out to <payment>), they slowly make their way to the train station. Presumably, their new apartment is far from here.`
+			`	As you count up the large clump of credits you were handed (the sum comes out to the expected <payment>), they slowly make their way to the train station. Presumably, their new apartment is far from here.`
 				accept
 			label reject
 			`	Charles looks surprised for a moment, and then, for the first time you've seen, he smiles. "Thank you, Captain <last>. I wish there were more people like you in the Paradise Worlds."`
@@ -3920,12 +3926,10 @@ mission "Mafia Extortion"
 
 mission "Street Swindle"
 	minor
+	invisible
 	source
 		government "Free Worlds" "Republic" "Syndicate"
 		attributes "urban"
-	on accept
-		payment -6000
-		fail
 	to offer
 		random < 4
 		credits >= 10000
@@ -4006,17 +4010,23 @@ mission "Street Swindle"
 				`	"Right."`
 					goto right
 			label left
+			action
+				payment -6000
 			`	With a grin, she reveals the left cup, and it's... wrong! "Nice try," she says, pocketing your money. "It is a bit tricky."`
 			`	"Well, that's all for today, folks!" the announcer says as you realize you've been conned. Worse still, after they pack up and leave, you notice that the first winner walks away beside them.`
-				accept
+				decline
 			label center
+			action
+				payment -6000
 			`	With a raised eyebrow, she reveals the center cup. It's... wrong! "Nice try," she says, pocketing your money. "That one was a bit tricky."`
 			`	"Well, that's all for today, folks!" the announcer says. As they pack up and leave, you notice that the first winner walks away beside them.`
-				accept
+				decline
 			label right
+			action
+				payment -6000
 			`	With a raised eyebrow, she reveals the right cup. It's... wrong! "Nice try," she says, pocketing your money. "That one was a bit tricky."`
 			`	"Well, that's all for today, folks!" the announcer says. As they pack up and leave, you notice that the first winner walks away beside them.`
-				accept
+				decline
 			label secondgamewatch
 			`	Sensing that something's up, you decide to watch the next game. A sprightly young fellow confidently hands over 6000 credits; when the cups stop, you feel like the ball is under the left one. The boy points to it; with a grin, the magician reveals the left cup, and it's... wrong! "Nice try," she says, pocketing the shocked boy's money. "It is a bit tricky."`
 			`	"Well, that's all for today, folks!" the announcer says. You're glad you avoided the con. As they pack up and leave, you notice that the first winner walks away beside them.`
@@ -5184,7 +5194,7 @@ mission "Riley"
 			`	"No," he replies. "Not under Republic law. I assure you that my only intention is to continue my work: nothing more."`
 			`	The authorities would probably release a substantial reward if you informed them of this.`
 			label continue
-			`	"Riley, what do you think?" you ask.`
+			`	"Riley, what do you think?" Church asks.`
 			`	"Dad, is that really you? How do you feel?"`
 			`	She steps closer to the Core. Church pauses. "Riley, what do you think?" it repeats. The voice coming from the machine is oddly flat in affect. "I feel fine. Do you feel fine?" They talk for a few tentative minutes, at first about how he's feeling, before moving onto the memories that Church retained during the transfer. You begin to relax as the two interact when you realize that Church is retelling the story of how he evaded the police to fix Riley's ankle for the third time in a row.`
 			`	Finally, she turns to you. "I'll admit that he doesn't sound as lively as he used to, but... how many people get a second chance to spend time with their father before he's gone? Thank you for bringing me out here, and for coming. I'll never forget your part in this. For now, I'd like to stay here. You go - I'll find my own way back." She seems genuinely happy.`
@@ -5381,7 +5391,7 @@ mission "Deal Change 1"
 mission "Deal Change 2"
 	landing
 	name "Inheritance to <planet>"
-	description "Instead of bringing the inheritance to Skymoot, deliver it to <destination>. You were promised <payment> for doing so."
+	description "Instead of bringing the inheritance to Skymoot, deliver it to <destination>. You were promised <payment> for doing so. To bypass the spaceport toll, hail <planet> and read out the code to the spaceport authority."
 	source
 		attributes "dirt belt" "south" "rim"
 		not planet "Greenrock"
@@ -5398,7 +5408,7 @@ mission "Deal Change 2"
 			`	You open your mouth as you lift yourself up, only to find that the other person is already gone. As you look around, you spot a piece of paper with writing lying on the ground beside you. You pick up the note and read it:`
 			``
 			`<first> <last>,`
-			`		You are currently carrying five tons of cargo to Skymoot. This cargo has been described to you as an "inheritance," and you have been promised 100,000 credits as payment for the job. Under no circumstances should you allow the cargo to reach the destination. Instead, bring it to <destination>. You will be paid <payment> if you do so. The back of this note has a code you can use to pass through spaceport security.`
+			`		You are currently carrying five tons of cargo to Skymoot. This cargo has been described to you as an "inheritance," and you have been promised 100,000 credits as payment for the job. Under no circumstances should you allow the cargo to reach the destination. Instead, bring it to <destination>. You will be paid <payment> if you do so. The back of this note has a code you can use to gain clearance to land without the usual toll.`
 			``
 			`	You flip the paper over and see a string of letters and numbers. The note has no signature, nor anything else to identify the person who wrote it.`
 			choice
@@ -5444,6 +5454,58 @@ mission "Deal Change 2"
 				die
 			label skip
 			`	After a few minutes, the pirates finish unloading the cargo, and Ci steps forward, holding out a credit chip. "<payment>, for making the right choice." Ci and the pirates return to their ships as you take off and head towards the main spaceport of <planet>.`
+
+
+
+mission "Escort offer (Betrayal)"
+	minor
+	landing
+	name "Cargo to <planet>"
+	description "Transport <tons> of cargo to <destination> by <date>. You will be paid <payment>. The captain of the <npc> has offered to protect you from any pirates along the way in exchange for a cut of the profits."
+	deadline
+	"apparent payment" 280000
+	cargo "sealed barrels" 220
+	source Sunracer
+	destination Maelstrom
+	to offer
+		"armament deterrence" <= 2
+		"cargo attractiveness" >= 6
+	on offer
+		"reputation: Escort (Betraying)" = 10
+		conversation
+			`As you land, a heavily modified Firebird with oversized guns follows you down, settling on the pad next to you. A young man with short hair steps out, walks over to your ship, and says, "Hey, you've got a lot of cargo space there. I bet you make loads of dough with it, trading or running jobs. Say, I know somebody who could use a ship like yours. He needs to get <tons> of cargo to <destination> by <day>, you see. Payment's about 350,000 credits. Lot of pirates round there, though. I can fight 'em, but there's not much money to be made hauling cargo in this thing." He gestures to his ship. "Tell you what, for 20% of the payment, I'll see to it that you arrive there safely. What do you think?"`
+			choice
+				`	"Sounds like a plan. You'll be taking 70,000 credits, then?"`
+				`	"Sorry, that just sounds too dangerous for me."`
+					decline
+			`	"That's right. Now, let's go! The cargo'll be loaded on your ship by sundown. Oh, and if you didn't already know, you can get to <planet> from here in just four jumps. North, west, southwest, then south."`
+				accept
+	on enter Moktar
+		dialog `As expected, there are pirates waiting for you in Moktar. Unfortunately, the <npc> makes no attempt to attack them, instead turning its guns on you.`
+		dialog `You receive a hail from the <npc>: "Gotcha, you didn't suspect a thing!"`
+		"reputation: Escort (Betraying)" <?= -1000
+		fail
+	on enter Menkar
+		dialog `The <npc> hails you: "Wrong way, mate! You'll miss the deadline if you go the whole way round. Head back up to Mirfak, then north, west, southwest and south."`
+	on enter Zaurak
+		dialog `The <npc> hails you again: "Figured it out, did you? Bit late for that now, mate. You're still going down."`
+		"reputation: Escort (Betraying)" <?= -1000
+		fail
+	on enter Oblate Cardax Volax Nihal Elnath Acamar Kugel Algol Hamal
+		dialog `You receive a message from the <npc>, which is now several systems away: "Hello? You still there? I don't know what just happened, but on the off chance you're still alive, I thought I'd just let you know that the deal's off." You open up the cargo that he wanted you to carry, and find nothing but worthless barrels of water.`
+		fail
+	on abort
+		dialog `The <npc> hails you: "Figured it out, did you? Bit late for that now, mate. You're still going down."`
+		"reputation: Escort (Betraying)" <?= -1000
+	npc
+		government "Pirate"
+		personality staying nemesis harvests plunders
+		system Moktar
+		ship "Splinter" "Hellblade"
+	npc accompany save
+		government "Escort (Betraying)"
+		personality nemesis harvests plunders
+		ship "Marauder Firebird (Weapons)" "Hellspear"
 
 
 

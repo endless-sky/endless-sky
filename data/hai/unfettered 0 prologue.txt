@@ -20,13 +20,20 @@ mission "First Contact: Unfettered"
 		conversation
 			branch hai
 				has "First Contact: Hai: offered"
-				
-			`This planet is populated by a hostile alien species that resembles giant, intelligent squirrels. Do you want to approach one of them?`
+			branch news
+				has "hr: heard the news"
+			`This planet is populated by a hostile alien species that resembles giant, intelligent squirrels. Although despite their hostility while in orbit, they pay little mind to you on the surface. Do you want to approach one of them?`
 			choice
 				`	(Sure.)`
+					goto sure
 				`	(Not now, it's too risky.)`
 					defer
-			`	One of the alien dock workers walks over after you catch their eye. "Ah," they say, "the monkey is curious. The monkey has never been face to face with a true Hai before?"`
+
+			label news
+			`This planet is populated by a hostile alien species that resembles giant, intelligent squirrels. Their ships look exactly like the ones that you saw on the news. Although despite their hostility while in orbit, they pay little mind to you on the surface.`
+			
+			label sure
+			`	You catch the eye of one of the alien dock workers and it walks over. "Ah," it says, "the monkey is curious. The monkey has never been face to face with a true Hai before?"`
 			choice
 				`	"Hai? Is that what you call yourselves?"`
 					goto name
@@ -41,7 +48,7 @@ mission "First Contact: Unfettered"
 				`	(Sure.)`
 				`	(Not now, it's too risky.)`
 					defer
-			`	One of the alien dock workers walks over after you catch their eye. "Ah," they say, "the monkey is curious. The monkey has never been face to face with a true Hai before?"`
+			`	You catch the eye of one of the Hai dock workers and they walk over. "Ah," they say, "the monkey is curious. The monkey has never been face to face with a true Hai before?"`
 			choice
 				`	"No, I've encountered many of your brethren south of here."`
 					goto brethren
@@ -169,7 +176,7 @@ mission "Unfettered Jump Drive 1"
 					goto refuse
 			
 			label refuse
-			`	They ponder this for a while, and say, "Very well. Our offer stands, whenever you choose to return." They allow you to return to your ship peacefully.`
+			`	They ponder this for a while, and says, "Very well. Our offer stands, whenever you choose to return." They allow you to return to your ship peacefully.`
 				defer
 			
 			label more
@@ -181,7 +188,7 @@ mission "Unfettered Jump Drive 1"
 					goto refuse
 			
 			label end
-			`	The Unfettered engineers quickly and carefully remove your jump drive and replace it with an ordinary hyperdrive. You sincerely hope that you are not making a mistake by giving them this new technology. "Remember," one of them says as it hands you your payment, "when you acquire more jump drives, return here with them and we will give you further rewards. Until then, may fortune favor you, human friend."`
+			`	The Unfettered engineers quickly and carefully remove your jump drive and replace it with an ordinary hyperdrive. You sincerely hope that you are not making a mistake by giving them this new technology. "Remember," one of them says as they hand you your payment, "when you acquire more jump drives, return here with them and we will give you further rewards. Until then, may fortune favor you, human friend."`
 				accept
 	
 	on accept
