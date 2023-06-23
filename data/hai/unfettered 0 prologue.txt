@@ -28,7 +28,7 @@ mission "First Contact: Unfettered"
 					goto sure
 				`	(Not now, it's too risky.)`
 					defer
-
+			
 			label news
 			`This planet is populated by a hostile alien species that resembles giant, intelligent squirrels. Their ships look exactly like the ones that you saw on the news. Although despite their hostility while in orbit, they pay little mind to you on the surface.`
 			
@@ -225,7 +225,7 @@ mission "Unfettered Jump Drive 2"
 				`	"Sorry, I need this jump drive right now, but I will come back later and sell it to you."`
 					defer
 				`	"Yes, I will sell you my jump drive."`
-			`	Once again, they swap your jump drive for a hyperdrive, and pay you far more than what you could sell a jump drive for anywhere else. "We will tell the other true Hai to offer you jobs in our job boards," they tell you, "and remember that we need still more jump drives."`
+			`	Once again, they swap your jump drive for a hyperdrive, and pay you far more than you could sell a jump drive for anywhere else. "We will tell the other true Hai to offer you jobs in our job boards," they tell you, "and remember that we need still more jump drives."`
 			choice
 				`	"Then I will find more, and bring them to you."`
 					accept
