@@ -283,18 +283,20 @@ mission "Hai Legacy 3"
 		ship "Lightning Bug (Unfettered Shipyards)" "Lighting"
 		ship "Lightning Bug (Pulse)" "Struck"
 		dialog "You receive a message from the remaining Unfettered ships: they surrender. They will not wait on the planet forever, however, so you need to land on this day to claim the rewards."
-		set "unfettered: beaten the bugs"
+		on disable
+			set "unfettered: beaten the bugs"
 	npc disable
 		government "Hai (Unfettered Challenger)"
 		to spawn
-			has "old reputation: Hai (Unfettered)" < -2000
+			"old reputation: Hai (Unfettered)" < -2000
 			"total ships" == 1
 		to despawn
 			"total ships" != 1
 		personality unconstrained entering plunders staying target heroic
-		ship "Sea Scorpion (Shredder)" "Karma"
+		ship "Sea Scorpion (Shredder)" "Requiem"
 		system "Hi Yahr"
-		set "unfettred: beaten extra bugs"
+		on disable
+			set "unfettred: beaten extra bugs"
 	npc
 		government "Hai (Unfettered)"
 		ship "Lightning Bug (Unfettered Shipyards)"
