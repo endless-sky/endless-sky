@@ -2764,48 +2764,10 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		}
 
 		unsigned total = targetShips.size() + targetPlanets.size() + targetSystems.size();
+		// If there is nothing for this ship to scan, have it patrol the entire system
+		// instead of drifting or stopping.
 		if(!total)
-		{
-			// If there is nothing for this ship to scan, have it patrol the entire system
-			// instead of drifting or stopping.
-			// Also allows the ship to land.
-			double radius = ship.GetSystem()->ExtraHyperArrivalDistance();
-
-			// The ship is outside of the effective range of the system,
-			// so we turn it around.
-			if(ship.Position().LengthSquared() > radius * radius)
-			{
-				// Allow ships to land after a while, otherwise they would continue to accumulate in the system.
-				if(!isStaying && !Random::Int(10000))
-				{
-					vector<const StellarObject *> landingTargets;
-					for(const StellarObject &object : system->Objects())
-						if(object.HasSprite() && object.GetPlanet() && object.GetPlanet()->CanLand(ship))
-							landingTargets.push_back(&object);
-					if(landingTargets.size())
-					{
-						ship.SetTargetStellar(landingTargets[Random::Int(landingTargets.size())]);
-						MoveToPlanet(ship, command);
-						command |= Command::LAND;
-						return;
-					}
-				}
-				// Hacky way of differentiating ship behaviour without additional storage,
-				// while keeping it consistent for each ship. TODO: change when Ship::SetTargetLocation exists.
-				// This uses the pointer of the ship to choose a pseudo-random angle and instructs it to
-				// partol the system in a criss-crossing pattern, where each turn is this specific angle.
-				intptr_t seed = reinterpret_cast<intptr_t>(&ship);
-				int behaviour = abs(seed % 23);
-				Angle delta = Angle(360. / (behaviour / 2. + 2.) * (behaviour % 2 ? -1. : 1.));
-				Angle target = Angle(ship.Position()) + delta;
-				MoveTo(ship, command, target.Unit() * radius / 2, Point(), 10., 1.);
-			}
-			// Otherwise, keep going forward.
-			else
-				MoveTo(ship, command, ship.Position() + ship.Facing().Unit() * (ship.MaxVelocity() + 1),
-						ship.Facing().Unit() * (ship.MaxVelocity() + 1), 10., 1.);
-			return;
-		}
+			DoPatrol(ship, command);
 
 		unsigned index = Random::Int(total);
 		if(index < targetShips.size())
@@ -3035,6 +2997,48 @@ bool AI::DoCloak(Ship &ship, Command &command)
 		command |= Command::CLOAK;
 
 	return false;
+}
+
+
+
+void AI::DoPatrol(Ship &ship, Command &command) const
+{
+	double radius = ship.GetSystem()->ExtraHyperArrivalDistance();
+
+	// The ship is outside of the effective range of the system,
+	// so we turn it around.
+	if(ship.Position().LengthSquared() > radius * radius)
+	{
+		// Allow ships to land after a while, otherwise they would continue to accumulate in the system.
+		if(!ship.GetPersonality().IsStaying() && !Random::Int(10000))
+		{
+			vector<const StellarObject *> landingTargets;
+			for(const StellarObject &object : ship.GetSystem()->Objects())
+				if(object.HasSprite() && object.GetPlanet() && object.GetPlanet()->CanLand(ship))
+					landingTargets.push_back(&object);
+			if(landingTargets.size())
+			{
+				ship.SetTargetStellar(landingTargets[Random::Int(landingTargets.size())]);
+				MoveToPlanet(ship, command);
+				command |= Command::LAND;
+				return;
+			}
+		}
+		// Hacky way of differentiating ship behaviour without additional storage,
+		// while keeping it consistent for each ship. TODO: change when Ship::SetTargetLocation exists.
+		// This uses the pointer of the ship to choose a pseudo-random angle and instructs it to
+		// partol the system in a criss-crossing pattern, where each turn is this specific angle.
+		intptr_t seed = reinterpret_cast<intptr_t>(&ship);
+		int behaviour = abs(seed % 23);
+		Angle delta = Angle(360. / (behaviour / 2. + 2.) * (behaviour % 2 ? -1. : 1.));
+		Angle target = Angle(ship.Position()) + delta;
+		MoveTo(ship, command, target.Unit() * radius / 2, Point(), 10., 1.);
+	}
+	// Otherwise, keep going forward.
+	else
+		MoveTo(ship, command, ship.Position() + ship.Facing().Unit() * (ship.MaxVelocity() + 1),
+				ship.Facing().Unit() * (ship.MaxVelocity() + 1), 10., 1.);
+	return;
 }
 
 
