@@ -524,7 +524,7 @@ substitutions
 	"<uhai>" "Unfettered: Path To Glory"
 	"<, unfettered title>" ", monkey"
 	"<, unfettered title>" ", space-monkey"
-		has "Unfettered Jump Drive 1: done"
+		has "Unfettered Jump Drive 1: offered"
 	"<, unfettered title>" ", Captain"
 		has "unfettered: beaten the captain"
 	"<, unfettered title>" ", Herald"
@@ -700,14 +700,14 @@ mission "<uhai> 1: Bring Medicine"
 	source "Darkcloak"
 	stopover "Snowfeather"
 	cargo "medicals" 50
-	blocked `You need <tons> of cargo space available to carry the medicals supplies.`
+	blocked `You need <tons> of cargo space available to carry the medical supplies.`
 	deadline 8
 	to offer
 		has "<uhai> 0: Bring Hai: done"
 	substitutions
 		<prioritymessage> `Unfortunately, because it's in Hai, you can only guess at the meaning out of it, but it is clearly important. You can see the Hai word for "Unfettered" repeated several times, as well as numbers in the hundreds.`
 			not "language: Wanderer"
-		<prioritymessage> `"Assistance requested from all available pilots, Unfettered or not. Local outbreak of broiling sickness has spread catastrophically in our space, and is now classified as an uncontrolled [epidemic, plague]. Hundreds of Hai are already critically ill and Unfettered hospitals have declared an emergency situation, fearing the consequences of current [medical, treatment] supply levels. Medical supplies are to be retrieved from <stopovers> for immediate return."`
+		<prioritymessage> `"Assistance requested from all available pilots, Unfettered or not. Local outbreak of broiling sickness has spread catastrophically in our space, and is now classified as an uncontrolled [epidemic, plague]. Hundreds of Hai are already critically ill and Unfettered hospitals have declared an emergency situation, fearing the consequences of current [medical, treatment] supply levels. Medical supplies are to be retrieved from Snowfeather for immediate return."`
 			has "language: Wanderer"
 	on offer
 		conversation
@@ -953,17 +953,36 @@ mission "<uhai> 2: Prove Your Strength"
 	on visit
 		dialog "You have not yet defeated the Unfettered Captain, and landing like this means you choose to delay the duel to another time."
 	on complete
-		dialog
+		conversation
 			`You land and the Captain joins you once he is done with repairs. He presents what looks like an aquarium as a reward for the duel.`
-			`	As you move closer to it to inspect it you are almost frightened to death by the huge scorpion looking creature in it and leap backwards. Some of the Unfettered around you look amused, but Si-Ra keeps his serious.`
-			`	 He does not give you any explanation, instead he proceeds to raise his fist. As you do not react he geastures with his other hand, clearly meaning you ought to do the same.`
+			`	As you move closer to it to inspect it you are almost frightened to death by the huge scorpion looking creature rushing towards you.`
+			`	There is little time to think as the huge creature gets closer and closer!`
+			choice
+				`	(Run far away in case it escapes!)`
+					goto run
+				`	(Leap back to be at a respectable distance!)`
+				`	(Stay there.)`
+					goto stay
+			`	Surprisingly, no Unfettered look amused by the apparent cowardiness. "Fear is good, so long as it does not control you," one of them says.`
+			action
+				outfit "Heshi"
+				event "unfettered: JD raid plan ready" 5 15
+				set "unfettered: duel ready"
+				"unfettered: took Si-Ra' gold" = "outfit (all): Gold Bars"
+				"unfettered: took Si-Ra' weapons" = "outfit (all): Ionic Blaster Prototype" + "outfit (all): Ionic Turret Prototype" * 3
+				log `Defeated a young Unfettered Captain in a duel, and took part in a surprisingly scary Unfettered martial ceremony.`
+			`	 Si-Ra does not give you any explanation, instead he proceeds to raise his fist. As you do not react he geastures with his other hand, clearly meaning you ought to do the same.`
 			`	After you rise your fist in response, he bows his head so slightly you barely notice it, and moves away. You wonder what you should do with the creature, but refusing the gift does not seem like an option.`
-		log `Defeated a young Unfettered Captain in a duel, and took part in one Unfettered martial ceremony.`
-		outfit "Heshi"
-		event "unfettered: JD raid plan ready" 5 15
-		set "unfettered: duel ready"
-		"unfettered: took Si-Ra' gold" = "outfit (all): Gold Bars"
-		"unfettered: took Si-Ra' weapons" = "outfit (all): Ionic Blaster Prototype" + "outfit (all): Ionic Turret Prototype" * 3
+				accept
+			label stay
+			`	You stay there, surely impressing all Hai present! However it also means you get hit by the tail of the monster as it jumps out to hit you, and everything gets dark in a minute.`
+			`	You hear voices around you, someone screaming for help but also Si-Ra speaking calmly, "There is no cure for humans," as you hear this you sink deeper and deeper, almost losing consciousness, "there is nothing to be done." This are the last words you will ever hear.`
+				die
+			label run
+			action
+				log "Defeated a young Unfettered Captain in a duel, but it seems that was not the whole test. The second part involved a monstruous scorpion from which it felt like a good idea to run at the time. The Unfettered did not see it that way, however."
+			`	You start running away and hear Si-Ra speak to his crew, loud enough for you to hear, "The monkey is running away from danger. It would not be fit to join us indeed. It will not fight for us."`
+				decline
 
 event "unfettered: JD raid plan ready"
 
