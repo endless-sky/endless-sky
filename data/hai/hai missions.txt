@@ -261,7 +261,7 @@ mission "Hai Sympathizer Warning"
 				"reputation: Hai Merchant (Human)" >?= 1
 			`	He slides a data stick across to you. "Fortunately for you, in this case, I happened to see the event, and have argued that you did not know what you were getting into. This stick contains the security report file which indicates that you have been given a warning... keep this for your records, Hai Security certainly will. There will not be future warnings."`
 			
-			label "less trouble
+			label "less trouble"
 			# Only the Sympathizers are upset.
 			`	"So far, you have been lucky. Hai Security has taken your history into account, and decided your recent activities are within the tolerable range of responses to the hostile situations you have got yourself into..." He slides a data stick across to you. "Nevertheless, this is a copy of the file on you that states you have now been advised of the situation. If you now proceed to upset Hai Security, they will not provide you with a warning."`
 			
