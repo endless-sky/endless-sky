@@ -556,7 +556,7 @@ mission "<uhai> 0: Bring Hai"
 		# Translate it if you have a translator, otherwise someone will offer to do it for you.
 		<firstgroup> "but because it is in Hai you cannot make sense of the words. Even from afar you can see how malnurished the children are."
 			not "language: Wanderer"
-		<firstgroup> `thankfully you have your translator device to make sense of what is say. "... and we fear the next season will be even more [rough, hard, taxing]. We need funding to restore the lands; nothing grows on them anymore!"`
+		<firstgroup> `thankfully you have your translator device to make sense of what is said. "... and we fear the next season will be even more [rough, hard, taxing]. We need funding to restore the lands; nothing grows on them anymore!"`
 			has "language: Wanderer"
 		<secondgroup> "He does not seem pleased at all, and appears to speak with contained anger. It appears he demands something of the council."
 			not "language: Wanderer"
@@ -765,7 +765,7 @@ mission "<uhai> 1: Bring Medicine"
 				`	"What is a 'Heshi'?"`
 				`	"Glad to have prevented a disaster then."`
 					decline
-			`	"The Heshi is a great predator which rules the seas on our homeworld. It is swift and nimble, so you do not see it coming, and when you do, it is already too late. They are not very big, however, so they often hunt in groups. Your people have described it as looking like a 'sea scorpion', I believe."`
+			`	"The Heshi is a great predator which rules the seas on our homeworld. It is swift and nimble, so you do not see it coming, and when you do, it is already too late. They are not very big, however, so they often hunt in groups. Your people have described it as looking like a 'sea scorpion', I believe, and rumour has it you acquired one from Si-Ra."`
 				decline
 			label soldiers
 			`	He looks around him, before answering, "Do I look like a soldier to you? Does this medic look like one? No, we Unfettered only dare to think in another way. In truth, quite a few of us would like to be artists! It is the principle of the matter which drives us though, and it is a shame we must help fight for our right to live by another philosophy than the Hai one of stagnation, to break out of the prison they have cast for all of us! Our soldiers indeed suffer the most from that fight."`
@@ -792,6 +792,18 @@ event "unfettered: access to Mera's lab"
 		add outfitter "Mera's Lab"
 
 
+
+outfit "Heshi"
+	category "Unique"
+	cost 10000
+	thumbnail "outfit/unknown"
+	"mass" 1
+	"outfit space" 1
+	"capture attack" 4
+	"capture defense" 8
+	"maintenance costs" 100
+	description "This is an aquarium containing what the Hai call a 'Heshi' - a huge scorpion looking creature. It must be fed and cared for but can be very useful in damaging the moral of enemies attacking the ship."
+	description "	On the offensive it can be used to intimidate enemies into surrendering, with the knowledge they could become its next meal if they do not... Furthermore, it is very useful in the event of an interrogation."
 
 # SPOILER: he tests your military aptitude before asking you to take him to pirate space.
 # gameplay wise if you win this mission you should be able to do the following ones, it tests if your strength is high enough.
@@ -942,11 +954,12 @@ mission "<uhai> 2: Prove Your Strength"
 		dialog "You have not yet defeated the Unfettered Captain, and landing like this means you choose to delay the duel to another time."
 	on complete
 		dialog
-			`You land and the Captain joins you once he is done with repairs. He hands you his weapon in a ceremonial way: a pair of pulse pistols.`
-			`	He then proceeds to raise his fist. As you do not react he geastures with his other hand, clearly meaning you ought to do the same.`
-			`	After you rise your fist in response, he bows his head so slightly you barely notice it, and moves away.`
+			`You land and the Captain joins you once he is done with repairs. He presents what looks like an aquarium as a reward for the duel.`
+			`	As you move closer to it to inspect it you are almost frightened to death by the huge scorpion looking creature in it and leap backwards. Some of the Unfettered around you look amused, but Si-Ra keeps his serious.`
+			`	 He does not give you any explanation, instead he proceeds to raise his fist. As you do not react he geastures with his other hand, clearly meaning you ought to do the same.`
+			`	After you rise your fist in response, he bows his head so slightly you barely notice it, and moves away. You wonder what you should do with the creature, but refusing the gift does not seem like an option.`
 		log `Defeated a young Unfettered Captain in a duel, and took part in one Unfettered martial ceremony.`
-		outfit "Dual Pulse Pistols"
+		outfit "Heshi"
 		event "unfettered: JD raid plan ready" 5 15
 		set "unfettered: duel ready"
 		"unfettered: took Si-Ra' gold" = "outfit (all): Gold Bars"
