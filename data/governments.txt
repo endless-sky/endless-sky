@@ -547,7 +547,7 @@ government "Hai (Unfettered)"
 	"hostile disabled hail" "hostile disabled unfettered"
 
 government "Hai (Unfettered Challenger)"
-	"display name" "True Hai (Glory Seeker)"
+	"display name" "Unfettered Heshi"
 	swizzle 5
 	"crew attack" 1.4
 	"crew defense" 2.2
