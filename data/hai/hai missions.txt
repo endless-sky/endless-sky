@@ -212,7 +212,7 @@ mission "Ask the Hai about the Unfettered"
 mission "Hai Sympathizer Warning"
 	invisible
 	source
-		government "Hai" 
+		government "Hai"
 		not attributes "uninhabited" "retirement"
 	to offer
 		"reputation: Hai Merchant (Sympathizers)" < 0
