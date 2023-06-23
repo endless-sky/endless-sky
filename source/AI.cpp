@@ -2796,7 +2796,7 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 				// partol the system in a criss-crossing pattern, where each turn is this specific angle.
 				intptr_t seed = reinterpret_cast<intptr_t>(&ship);
 				int behaviour = abs(seed % 23);
-				Angle delta = Angle(360. / (behaviour / 2. + 2) * (behaviour % 2 ? -1 : 1));
+				Angle delta = Angle(360. / (behaviour / 2. + 2.) * (behaviour % 2 ? -1. : 1.));
 				Angle target = Angle(ship.Position()) + delta;
 				MoveTo(ship, command, target.Unit() * radius / 2, Point(), 10., 1.);
 			}
