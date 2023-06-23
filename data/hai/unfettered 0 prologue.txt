@@ -1250,7 +1250,6 @@ ship "Geocoris" "Geocoris (Keystones)"
 		"Hai Diamond Regenerator"
 		"Hai Corundum Regenerator"
 		"Hai Williwaw Cooling" 4
-		`"Biroo" Reverse Thruster`
 		`"Biroo" Atomic Thruster`
 		`"Bondir" Atomic Steering`
 		Hyperdrive
