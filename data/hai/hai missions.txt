@@ -251,12 +251,14 @@ mission "Hai Sympathizer Warning"
 				"reputation: Hai" >= 1
 				"reputation: Hai (Wormhole Access)" >= 1
 				"reputation: Hai Merchant" >= 1
+				"reputation: Hai Merchant (Human)" >= 1
 			# At least one other group besides the Sympathizers are upset.
 			`	"You have gotten yourself in trouble Captain."`
 			action
 				"reputation: Hai" >?= 1
 				"reputation: Hai (Wormhole Access)" = "reputation: Hai"
 				"reputation: Hai Merchant" >?= 1
+				"reputation: Hai Merchant (Human)" >?= 1
 			`	He slides a data stick across to you. "Fortunately for you, in this case, I happened to see the event, and have argued that you did not know what you were getting into. This stick contains the security report file which indicates that you have been given a warning... keep this for your records, Hai Security certainly will. There will not be future warnings."`
 			
 			label "less trouble
