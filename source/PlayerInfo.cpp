@@ -684,7 +684,7 @@ const Date &PlayerInfo::GetDate() const
 }
 
 // Set the date, and perform all daily actions the given number of times.
-// Supports zero negative values.
+// Offers limited support for negative values.
 void PlayerInfo::AdvanceDate(int amount)
 {
 	if(!amount)
@@ -719,9 +719,7 @@ void PlayerInfo::AdvanceDate(int amount)
 		}
 	}
 	else
-	{
 		date = date + amount;
-	}
 	// Reset the reload counters for all your ships.
 	for(const shared_ptr<Ship> &ship : ships)
 		ship->GetArmament().ReloadAll();
