@@ -542,7 +542,7 @@ mission "<uhai> 0: Bring Hai"
 	source "Firelode"
 	stopover "Snowfeather"
 	passengers 10
-	blocked "You will need room for <passengers> in order to take the next Unfettered mission."
+	blocked "You will need room for <bunks> <passengers> in order to take the next Unfettered mission."
 	to offer
 		"reputation: Hai (Unfettered)" >= 0
 		# guaranteed to offer the first time and then 20% chance
