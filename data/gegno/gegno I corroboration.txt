@@ -248,6 +248,7 @@ mission "Brief Bystander"
 		has "Esstch Visit Tracker: offered" == 2
 		has "First Contact: Gegno Scin: offered"
 		not "Gegno Genocide Defense: offered"
+		not attributes "gegno"
 	on complete
 		conversation
 			`As usual, the scattered recording instruments on the surface of this planet contradicts what little interest the Gegno appear to be giving it nowadays, despite its location within the Gegno's high-traffic home system of Heutesl. Still, since this planet isn't strictly owned by the Gegno, it makes for a place to stop, and they haven't seemed to either notice or care when you have before.`
