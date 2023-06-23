@@ -699,8 +699,7 @@ void PlayerInfo::AdvanceDate(int amount)
 			auto it = gameEvents.begin();
 			while(it != gameEvents.end() && date >= it->GetDate())
 			{
-				GameEvent event = *it;
-				event.Apply(*this);
+				(*it).Apply(*this);
 				it = gameEvents.erase(it);
 			}
 
