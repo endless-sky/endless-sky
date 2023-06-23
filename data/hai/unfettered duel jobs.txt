@@ -864,7 +864,7 @@ phrase "defeated unfettered challenger"
 		"a% e" "an e"
 		"a%" "a"
 
-phrase "unfettered duelling"
+phrase "unfettered dueling"
 	word
 		"Do not presume to interrupt us"
 		"I am in the middle of a duel, there is no time for petty talk"

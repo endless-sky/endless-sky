@@ -946,7 +946,7 @@ mission "<uhai> 2: Prove Your Strength"
 			`	He then proceeds to raise his fist. As you do not react he geastures with his other hand, clearly meaning you ought to do the same.`
 			`	After you rise your fist in response, he bows his head so slightly you barely notice it, and moves away.`
 		log `Defeated a young Unfettered Captain in a duel, and took part in one Unfettered martial ceremony.`
-		outfit "Dual Pulse Pistol"
+		outfit "Dual Pulse Pistols"
 		event "unfettered: JD raid plan ready" 5 15
 		set "unfettered: duel ready"
 		"unfettered: took Si-Ra' gold" = "outfit (all): Gold Bars"
