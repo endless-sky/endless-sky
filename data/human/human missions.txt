@@ -5194,7 +5194,7 @@ mission "Riley"
 			`	"No," he replies. "Not under Republic law. I assure you that my only intention is to continue my work: nothing more."`
 			`	The authorities would probably release a substantial reward if you informed them of this.`
 			label continue
-			`	"Riley, what do you think?" you ask.`
+			`	"Riley, what do you think?" Church asks.`
 			`	"Dad, is that really you? How do you feel?"`
 			`	She steps closer to the Core. Church pauses. "Riley, what do you think?" it repeats. The voice coming from the machine is oddly flat in affect. "I feel fine. Do you feel fine?" They talk for a few tentative minutes, at first about how he's feeling, before moving onto the memories that Church retained during the transfer. You begin to relax as the two interact when you realize that Church is retelling the story of how he evaded the police to fix Riley's ankle for the third time in a row.`
 			`	Finally, she turns to you. "I'll admit that he doesn't sound as lively as he used to, but... how many people get a second chance to spend time with their father before he's gone? Thank you for bringing me out here, and for coming. I'll never forget your part in this. For now, I'd like to stay here. You go - I'll find my own way back." She seems genuinely happy.`
@@ -5391,7 +5391,7 @@ mission "Deal Change 1"
 mission "Deal Change 2"
 	landing
 	name "Inheritance to <planet>"
-	description "Instead of bringing the inheritance to Skymoot, deliver it to <destination>. You were promised <payment> for doing so."
+	description "Instead of bringing the inheritance to Skymoot, deliver it to <destination>. You were promised <payment> for doing so. To bypass the spaceport toll, hail <planet> and read out the code to the spaceport authority."
 	source
 		attributes "dirt belt" "south" "rim"
 		not planet "Greenrock"
@@ -5408,7 +5408,7 @@ mission "Deal Change 2"
 			`	You open your mouth as you lift yourself up, only to find that the other person is already gone. As you look around, you spot a piece of paper with writing lying on the ground beside you. You pick up the note and read it:`
 			``
 			`<first> <last>,`
-			`		You are currently carrying five tons of cargo to Skymoot. This cargo has been described to you as an "inheritance," and you have been promised 100,000 credits as payment for the job. Under no circumstances should you allow the cargo to reach the destination. Instead, bring it to <destination>. You will be paid <payment> if you do so. The back of this note has a code you can use to pass through spaceport security.`
+			`		You are currently carrying five tons of cargo to Skymoot. This cargo has been described to you as an "inheritance," and you have been promised 100,000 credits as payment for the job. Under no circumstances should you allow the cargo to reach the destination. Instead, bring it to <destination>. You will be paid <payment> if you do so. The back of this note has a code you can use to gain clearance to land without the usual toll.`
 			``
 			`	You flip the paper over and see a string of letters and numbers. The note has no signature, nor anything else to identify the person who wrote it.`
 			choice
