@@ -201,7 +201,7 @@ mission "Scin Suspicion"
 	to offer
 		random < 70
 		has "event: gegno suspicions"
-		not "Scin Suspicions: offered"
+		not "Scin Suspicion: offered"
 		not "Gegno Genocide Defense: offered"
 	to complete
 		never
@@ -245,7 +245,7 @@ mission "Brief Bystander"
 	landing
 	destination "Esstch"
 	to offer
-		has "Esstch Visit Tracker: offered" >= 2
+		has "Esstch Visit Tracker: offered" == 2
 		has "First Contact: Gegno Scin: offered"
 		not "Gegno Genocide Defense: offered"
 	on complete
