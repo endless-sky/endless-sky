@@ -226,7 +226,7 @@ outfit "Unfettered Landing Permit"
 	description "This item is needed in order to land on Unfettered planets, and its loss will cancel the arrangement."
 
 mission "Hai Legacy 3"
-	name "Unfettered Relic of old"
+	name "Relic of a long lost era"
 	description "Beat the Lighting Bugs in a merciless fight. Careful, you only have one day."
 	landing
 	source "Firelode"
@@ -283,8 +283,7 @@ mission "Hai Legacy 3"
 		ship "Lightning Bug (Unfettered Shipyards)" "Lighting"
 		ship "Lightning Bug (Pulse)" "Struck"
 		dialog "You receive a message from the remaining Unfettered ships: they surrender. They will not wait on the planet forever, however, so you need to land on this day to claim the rewards."
-		on disable
-			set "unfettered: beaten the bugs"
+		set "unfettered: beaten the bugs"
 	npc disable
 		government "Hai (Unfettered Challenger)"
 		to spawn
@@ -295,8 +294,7 @@ mission "Hai Legacy 3"
 		personality unconstrained entering plunders staying target heroic
 		ship "Sea Scorpion (Shredder)" "Karma"
 		system "Hi Yahr"
-		on disable
-			set "unfettred: beaten extra bugs"
+		set "unfettred: beaten extra bugs"
 	npc
 		government "Hai (Unfettered)"
 		ship "Lightning Bug (Unfettered Shipyards)"
@@ -316,7 +314,7 @@ mission "Hai Legacy 3"
 			choice
 				`	"Indeed, but it was fun."`
 					goto next
-				`	"What are they talking about? This was easy!"`
+				`	"What are you talking about? This was easy!"`
 			`	"Don't become overconfident now, captain. I am sure you know what happens to such people."`
 			label next
 			`	"Anyway I must congratulate you, I never expected you had it in you. That said, I only have one word and will give you authorization to land, on the condition that you keep this relic from our past in good condition!"`
