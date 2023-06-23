@@ -68,7 +68,7 @@ mission "Passive-Aggressive Observations"
 		ship "Schist" "Ess Ouec"
 
 mission "Vi Military Group"
-	invisible
+	# invisible
 	landing
 	to offer
 		has "Passive-Aggressive Observations: offered"
@@ -248,7 +248,6 @@ mission "Brief Bystander"
 		has "Esstch Visit Tracker: offered" == 2
 		has "First Contact: Gegno Scin: offered"
 		not "Gegno Genocide Defense: offered"
-		not attributes "gegno"
 	on complete
 		conversation
 			`As usual, the scattered recording instruments on the surface of this planet contradicts what little interest the Gegno appear to be giving it nowadays, despite its location within the Gegno's high-traffic home system of Heutesl. Still, since this planet isn't strictly owned by the Gegno, it makes for a place to stop, and they haven't seemed to either notice or care when you have before.`
@@ -258,6 +257,7 @@ mission "Brief Bystander"
 					goto investigate
 				`	Leave them be.`
 					decline
+
 			label investigate
 			`	You steer your ship towards the shuttle, and once you approach it, you are able to see a Gegno on the ground nearby fiddling with one of the nearby devices on the surface. Though, as you fly closer, they stop their work and return to their shuttle, taking off shortly after. It seems like they weren't interested in any potential interaction with you.`
 			`	The satellite they were tinkering with doesn't strike you as anything special, being just another antique device amongst the others.`
@@ -267,7 +267,7 @@ mission "Brief Bystander"
 # mission "Acquiescence"
 
 
-# jobs
+# jobs (mining)
 
 
 # mission "Heart of the Mighty"
@@ -276,55 +276,17 @@ mission "Brief Bystander"
 # mission "Heart of the Clever"
 
 
-# mission "Derelict Desponders A"
-	# invisible
-	landing
-	deadline 7
-	to offer
-		not "Gegno Genocide Defense: offered"
-	to complete
-		never
+# jobs (cargo)
 
-	npc
-		on assist
-			conversation
-				`You found this derelict ship. Do you want to help them?`
-				choice
-					`	(Help.)`
-					`	(Leave.)`
-						goto leave
-					`	I have helped them.`
-						decline
-				label leave
-				`	I want to leave them.`
-					defer
-		on kill
-			set "tviemye killed"
-		government "Gegno"
-		personality derelict
-		system "Vilacira"
-		ship "Dolomite" "Tviemye"
+
+# mission "Derelict Desponders A"
 
 
 # mission "Derelict Desponders B"
-	# invisible
-	landing
-	to offer
-		not "Gegno Genocide Defense: offered"
-	npc
-		on assist
-			conversation
-				`You found this derelict ship. Do you want to help them?`
-				choice
-					`	(Help.)`
-					`	(Leave.)`
-						goto leave
-					`	I have helped them.`
-						decline
-				label leave
-				`	I want to leave them.`
-					defer
-		government "Gegno"
-		personality derelict
-		system "Anbrim"
-		ship "Gypsum"
+
+
+# Don't forget edits based on rep:
+# 	Vi more angry at you if hostile to them during Passive-Aggressive
+#	Interruption Consequence for Eogho Duel (set a condition)
+#	Fleet size difference for level of hostility for either faction in Aquiescence
+# 	Etc..
