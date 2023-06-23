@@ -258,7 +258,7 @@ mission "Hai Legacy 3"
 					goto scare
 			`	"I guess we'll find out." Says a third.`
 			label scare
-			`	The leader gets closer and addresses you in a more serious tone, "You should be aware, <last>, this is not a friendly competition between allies. As far as I am concerned you are an enemy. You should see it more as a fight for you to truly earn this ship, and more, but make no mistakes: it has only one rule, and that is that nobody else than us may interfere."`
+			`	The leader gets closer and addresses you in a more serious tone, "You should be aware, <last>, this is not a friendly competition between allies. As far as I am concerned you are an enemy. You should see it more as a fight for you to truly earn this ship, and more, but make no mistakes: it has only one rule, and that is that nobody else than us may interfere. And do not even think about bringing more than this Ladybug as a flagship or we will not bother showing up!"`
 			# this is a "warning" for the incoming extra ship that happens because you killed/captured 10 Shield Beetles
 			# (but in reality with disabling a lot of ships it goes faster than that)
 			`	"Although sometimes the rules can bend a little. But you certainly did not earn that privilege."`
