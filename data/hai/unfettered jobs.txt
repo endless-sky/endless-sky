@@ -23,10 +23,10 @@ phrase "unfettered tribute pickup dialog"
 		`As the Hai load the tribute onto your ship, one of them says, "Tell our brothers and sisters that if they will only repent, they will be welcome to come home."`
 
 mission "Unfettered Tribute 1"
+	name "Hai Tribute from <planet stopovers>"
 	job
 	repeat
 	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land with the tribute from the other Hai."
-	name "Hai Tribute to <planet>"
 	description "Collect a tribute payment of <tons> of food from <stopovers>, and bring it to the Unfettered on <destination>. Your share of the tribute will be <payment>."
 	cargo "food (tribute)" 25 2 .05
 	source
@@ -48,10 +48,10 @@ mission "Unfettered Tribute 1"
 		"unfettered: hunger stops" += 20
 
 mission "Unfettered Tribute 2"
+	name "Hai Tribute from <planet stopovers>"
 	job
 	repeat
 	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land with the tribute from the other Hai."
-	name "Hai Tribute to <planet>"
 	description "Collect a tribute payment of <tons> of food from <stopovers>, and bring it to the Unfettered on <destination>. Your share of the tribute will be <payment>."
 	cargo "food (tribute)" 35 2 .05
 	source
@@ -73,10 +73,10 @@ mission "Unfettered Tribute 2"
 		"unfettered: hunger stops" += 40
 
 mission "Unfettered Tribute 3"
+	name "Hai Tribute from <planet stopovers>"
 	job
 	repeat
 	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land with the tribute from the other Hai."
-	name "Hai Tribute to <planet>"
 	description "Collect a tribute payment of <tons> of food from <stopovers>, and bring it to the Unfettered on <destination>. Your share of the tribute will be <payment>."
 	cargo "food (tribute)" 45 2 .05
 	source
@@ -103,7 +103,7 @@ mission "Unfettered Jump Drive 4"
 	job
 	repeat
 	name "Sell Jump Drive"
-	description "Exchange a jump drive for money or weapons, if an outfitter is available."
+	description "Exchange a jump drive on your flagship or in cargo for money, or for weapons, if an outfitter is available."
 	source
 		attributes "unfettered"
 	to offer
@@ -111,6 +111,10 @@ mission "Unfettered Jump Drive 4"
 		not "event: wanderers: unfettered invasion starts"
 	to fail
 		has "Unfettered Jump Drive 4: active"
+	to accept
+		or
+			has "outfit (flagship installed): Jump Drive"
+			has "outfit (cargo): Jump Drive"
 	on accept
 		conversation
 			branch "want outfits"
@@ -347,7 +351,7 @@ mission "Unfettered Small Medicals Rush"
 	job
 	repeat
 	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land with the much needed medical supplies."
-	name "Express medical supplies to <planet>"
+	name "Express medical stock from <planet stopovers>"
 	description "The Unfettered hospitals on <destination> are in urgent need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered before <date> for <payment>."
 	deadline 5 1
 	cargo "medical supplies" 15 2 .05
@@ -373,7 +377,7 @@ mission "Unfettered Big Medicals Rush"
 	job
 	repeat
 	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land with the much needed medical supplies."
-	name "Medical supplies to <planet>"
+	name "Medical supplies from <planet stopovers>"
 	description "The Unfettered hospitals on <destination> are in need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered before <date> for <payment>."
 	deadline 10 1
 	cargo "medicals" 35 2 .05

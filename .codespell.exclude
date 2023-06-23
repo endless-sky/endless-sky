@@ -102,3 +102,10 @@ mission "Midas: Nemo Me Impune Lacessit 2"
 		" Nemo Me Impune Lacessit"
 		"Nemo Me Impune Lacessit" 3
 			`Once you are alone in your quarters you hear a voice, darker and more serious than ever before. "You have betrayed us. Nemo Me Impune Laccessit, <first>. We have a message to transmit to you on behalf of the council of Chiefs.`
+			`	She gives you a little smile and nods. "If you come across someone and have difficulty getting them to trust you, try telling them 'Luf e ow, vai, luf e eh'."`
+			`	She gives you a very serious look and nods. "If you come across any others and have difficulty getting them to trust you, try telling them 'Luf e ow, vai, luf e eh'."`
+		ship Geocoris "Vai e Lur"
+				`	"Uh, luf e ow, vai, luf e eh?"`
+				`	"No wait! Luf e ow, vai, luf e eh?"`
+		"Vai"
+		"Mis"
