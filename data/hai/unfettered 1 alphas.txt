@@ -154,16 +154,15 @@ mission "Unfettered: Alpha Supplies: Leaving"
 				"day" >= 14
 				"day" <= 15
 		random < 40 - "alpha: worry" * 5
-	on offer
-		"alpha: arriving" = "day" == 1 + "day" == 14
-		"alpha: leaving" = 1 - "alpha: arriving"
 	on enter "Hi Yahr"
 		"unfettered: saw auxiliary" ++
 		conversation
 			branch enough
 				"alpha: worry" >= 2
 			branch leaving
-				has "alpha: leaving"
+				or
+					day == 2
+					day == 15
 			`As you launch, the local authorities hail you, "An important guest is arriving, you should not be here when they do. Get out, fast."`
 			`	They insist: "Whatever you do, do not destroy that incoming ship."`
 				accept
@@ -183,7 +182,9 @@ mission "Unfettered: Alpha Supplies: Leaving"
 	npc kill
 		government "Alpha"
 		to spawn
-			has "alpha: arriving"
+			or
+				"day" == 1
+				"day" == 14
 		system "Hi Yahr"
 		personality entering uninterested fleeing timid
 		"cargo settings"
@@ -199,7 +200,9 @@ mission "Unfettered: Alpha Supplies: Leaving"
 		personality launching uninterested fleeing timid
 		system "Hi Yahr"
 		to spawn
-			has "alpha: leaving"
+			or
+				"day" == 2
+				"day" == 15
 		"cargo settings"
 			cargo 6
 			commodities "Metal" "Heavy Metals"
@@ -245,7 +248,7 @@ mission "<uhai> 5: Scan Auxiliary"
 				`	"Okay, I better get going right now then."`
 					goto beforeugo
 				`	"Why not just do it yourself?"`
-			`	"We don't know what their reaction could be. It would be preferable if you did it because they are more likely to think of you as separate from us. We value trust a lot, with anyone. Once it is damaged, even by an misinterpreted act as simple as this, it cannot easily be repaired." She still seems to be in a hurry, but you figure one more minute would not change much in your ability to catch that ship.`
+			`	"We don't know what their reaction could be. It would be preferable if you did it because they are more likely to think of you as separate from us. We value trust a lot, with anyone. Once it is damaged, even by a misinterpreted act as simple as this, it cannot easily be repaired." She still seems to be in a hurry, but you figure one more minute would not change much in your ability to catch that ship.`
 			choice
 				`	"Seems good to me. I'll do it."`
 					goto beforeugo
