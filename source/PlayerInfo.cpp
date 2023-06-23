@@ -862,12 +862,14 @@ void PlayerInfo::DoAccounting()
 		}
 		if(tributeIncome)
 			message += Format::CreditString(tributeIncome) + " in tribute";
-		if(salariesIncome && tributeIncome && b.assetsReturns)
-			message += ",";
-		if((salariesIncome || tributeIncome) && b.assetsReturns)
-			message += " and ";
 		if(b.assetsReturns)
+		{
+			if(salariesIncome && tributeIncome)
+				message += ",";
+			if(salariesIncome || tributeIncome)
+				message += " and ";
 			message += Format::CreditString(b.assetsReturns) + " based on outfits and ships";
+		}
 		message += ".";
 		Messages::Add(message, Messages::Importance::High);
 		accounts.AddCredits(salariesIncome + tributeIncome + b.assetsReturns);
