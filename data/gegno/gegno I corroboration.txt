@@ -171,11 +171,11 @@ mission "Veering Vi"
 	repeat
 	# invisible
 	landing
-	deadline 7
+	deadline 4
 	source
 		near "Heutesl" 100
 	to offer
-		random < 70
+		random < 60
 		has "event: gegno suspicions"
 		not "Gegno Genocide Defense: offered"
 	to complete
@@ -195,12 +195,12 @@ mission "Scin Suspicion"
 	repeat
 	# invisible
 	landing
-	deadline 5
 	source
 		near "Heutesl" 100
 	to offer
 		random < 70
 		has "event: gegno suspicions"
+		not "Scin Suspicions: offered"
 		not "Gegno Genocide Defense: offered"
 	to complete
 		never
@@ -231,15 +231,15 @@ mission "Curious Civilians"
 
 
 mission "Esstch Visit Tracker"
-	landing
 	# invisible
+	landing
 	repeat 2
 	source "Esstch"
 	on offer
 		fail
 
 
-mission "Bystander"
+mission "Brief Bystander"
 	# invisible
 	landing
 	destination "Esstch"
