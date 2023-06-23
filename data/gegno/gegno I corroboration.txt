@@ -171,7 +171,7 @@ mission "Veering Vi"
 	repeat
 	# invisible
 	landing
-	deadline 4
+	deadline 3
 	source
 		near "Heutesl" 100
 	to offer
@@ -195,6 +195,7 @@ mission "Scin Suspicion"
 	repeat
 	# invisible
 	landing
+	deadline 7
 	source
 		near "Heutesl" 100
 	to offer
