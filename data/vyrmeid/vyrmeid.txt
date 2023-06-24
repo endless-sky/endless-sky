@@ -201,6 +201,7 @@ ship "Astral Cetacean"
 		"ramscoop" 5
 		"energy capacity" 2000
 		"energy generation" 160
+		"inscrutable" 1
 
 		"thrust" 24
 		"flare sound" "astral cetacean"
