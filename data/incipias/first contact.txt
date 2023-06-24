@@ -185,11 +185,11 @@ mission "coalition peace proof"
 			`	After some time has passed it is finally your turn to discuss your matter. You explain that you would like to have something that displays the good relationship between the Coalition and you. The Heliarch is quite surprised and says: "An interesting request of yours that is. Why you want this, may I ask?"`
 			choice
 				"I am gathering proofs of friendship from all over the galaxy."
-					goto cages
+					goto friends
 				"I want to show that species do not have to be in cages."
 			`	The Heliarch seems very happy when you say that, he says "A good reason that is, here you wait, while some people above me about this I ask." He turns around and goes away.`
 				goto c1
-			label cages
+			label friends
 			`	"An unusual project that is, what the reason for this is?"`
 			choice
 				"I am a passionate collector."
