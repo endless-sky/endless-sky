@@ -124,7 +124,7 @@ mission "Incipias: First Contact III"
 			label species
 			`	Now that you have this very special gift from the Wanderers you decide to show it to the Hai, to proof you are trustworthy. Luckily the plant is small enough to be carried with you to the embassy.`
 			`	When you arrive at the embassy you are a little bit exhausted from carrying it all the way and you are really grateful that the Hai remember you and directly guide you to the person you spoke to last time. "Hello Captain <first> <last>, nice to see you again and I see you are carrying something special with you, may I ask what this plant is?". "Of course," You say, "This is the proof you asked me to bring you." Now the Hai looks closer at the plant. "I see that this is an unusual plant but why is this a proof of friendship with another species?" You answer him, "This plant was genetically manipulated to such a degree that it can survive in nearly any climate, this is nothing humans could have done." The Hai looks at you, "You mind if we test this? We will make sure not to use too extreme methods, we do not want to kill it." You agree. The Hai gets two helpers to carry the plant and tells you to wait for his return.`
-			`	About an hour later the Hai returns with the plant and a excited looking face. "This plant is a wonder, we exposed it to various environmental factors and some of them were really extreme, but all that happened was that the air got more breathable. This really is a worthy proof of a friendship with another species."`
+			`	About an hour later the Hai returns with the plant and an excited looking face. "This plant is a wonder, we exposed it to various environmental factors and some of them were really extreme, but all that happened was that the air got more breathable. This really is a worthy proof of a friendship with another species."`
 			label haihelp
 			`	Now the Hai turn to you with a very serious expression, "We have promised you to help you and now we will do so. Please come back in no earlier than four days to take a delegation of us to the Quarg ringworld. We need some time to prepare some stuff. You will meet us on Mirrorlake." You agree and say goodbye.`
 		event "Hai preparation time" 4
@@ -155,7 +155,7 @@ mission "wanderer peace proof"
 			`	"That sounds interesting, let me think about it." The Wanderer becomes silent for some time. Then he says, "I have an idea, but I need to ask some people about it first. Please wait here for a second." He leaves the room without waiting for your respond. Forced to wait for him, you ask yourself what this gift of friendship of the wanderers could be.`
 				goto c1
 			label unique
-			`	"Why are you searching for something like this? That is an quite unusual request."`
+			`	"Why are you searching for something like this? That is a quite unusual request."`
 			choice
 				"I am a passionate collector."
 				"I want something to remember you."
