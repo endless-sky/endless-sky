@@ -85,7 +85,7 @@ mission "Incipias: First Contact III"
 	on offer
 		set "searching for a proof"
 		conversation
-			`Now that you are on a Hai world you think it would be a good opportunity to ask the Hai government how to proof yourself to the Quarg. You head to the closest embassy to ask for their support.`
+			`Now that you are on a Hai world you think it would be a good opportunity to ask the Hai government how to prove yourself to the Quarg. You head to the closest embassy to ask for their support.`
 			`	At the embassy a friendly Hai guides you to a waiting room where a lot of Hai are sitting before you even told them what you want. Annoyed by that, you sit down and wait.`
 			`	After some time, you cannot say how long because time in waiting rooms seems to flow differently, another Hai guides you to into an office. Both of you sit down. The Hai begins to talk "What can I do for you today? It is not often that we have humans here." You begin to tell the Hai your matter, and he listens carefully while you are talking.`
 			`	When you are finished he says "That seems like something very important, I fear I am not the right person to talk to. I will hand you over to my superior. He might be able to help you." Please wait here while I go and get him.`
