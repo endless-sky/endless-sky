@@ -236,21 +236,21 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		Buy(1000000000);
 	else if(key == 'S' || (key == 's' && (mod & KMOD_SHIFT)))
 	{
-		for(const auto &it : GameData::Commodities())
+		for(const auto &it : player.Cargo().Commodities())
 		{
-			int64_t amount = player.Cargo().Get(it.name);
-			int64_t price = system.Trade(it.name);
+			int64_t amount = it.second;
+			int64_t price = system.Trade(it.first);
 			if(!price || !amount)
 				continue;
 
-			int64_t basis = player.GetBasis(it.name, -amount);
-			player.AdjustBasis(it.name, basis);
+			int64_t basis = player.GetBasis(it.first, -amount);
+			player.AdjustBasis(it.first, basis);
 			profit += amount * price + basis;
 			tonsSold += amount;
 
-			player.Cargo().Remove(it.name, amount);
 			player.Accounts().AddCredits(amount * price);
-			GameData::AddPurchase(system, it.name, -amount);
+			player.Cargo().Remove(it.first, amount);
+			GameData::AddPurchase(system, it.first, -amount);
 		}
 		int day = player.GetDate().DaysSinceEpoch();
 		for(const auto &it : player.Cargo().Outfits())
