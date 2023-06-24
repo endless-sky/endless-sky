@@ -1471,7 +1471,7 @@ void PlayerInfo::Land(UI *ui)
 			else
 				ship->Recharge(false);
 		}
-	// do this after updating ship locations (above)
+	// Cargo management needs to be done after updating ship locations (above).
 	UpdateCargoCapacities();
 	// Ships that are landed with you on the planet should pool all their cargo together.
 	for(const shared_ptr<Ship> &ship : ships)
