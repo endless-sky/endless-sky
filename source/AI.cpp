@@ -2768,17 +2768,19 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		// instead of drifting or stopping.
 		if(!total)
 			DoPatrol(ship, command);
-
-		unsigned index = Random::Int(total);
-		if(index < targetShips.size())
-			ship.SetTargetShip(targetShips[index]->shared_from_this());
 		else
 		{
-			index -= targetShips.size();
-			if(index < targetPlanets.size())
-				ship.SetTargetStellar(targetPlanets[index]);
+			unsigned index = Random::Int(total);
+			if(index < targetShips.size())
+				ship.SetTargetShip(targetShips[index]->shared_from_this());
 			else
-				ship.SetTargetSystem(targetSystems[index - targetPlanets.size()]);
+			{
+				index -= targetShips.size();
+				if(index < targetPlanets.size())
+					ship.SetTargetStellar(targetPlanets[index]);
+				else
+					ship.SetTargetSystem(targetSystems[index - targetPlanets.size()]);
+			}
 		}
 	}
 }
