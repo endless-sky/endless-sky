@@ -17,10 +17,10 @@ mission "Incipias: First Contact I"
 	to complete
 		never
 	on enter Dom'us
-		fail
 		set "saw the Incipias"
 		conversation
 			`As you enter the system, you notice ships of a type you have never seen before. You try to hail them but all that comes back is static. After some more unsuccessful attempts, you give up. Maybe you can find some more information in nearby systems.`
+			fail
 
 mission "Incipias: First Contact II"
 	invisible
@@ -216,7 +216,7 @@ mission "Incipias: First Contact IV"
 			`	Once again you are overwhelmed by the size of a Quarg ringworld. It takes you some time to get to your destination. When you get to the location the Quarg told you to go, one of the Hai turns towards you. "It will be the best if we talk to them without you being present. I hope you understand that." He tells you. Surprised by this you just nod in agreement. The Hai walk into the room and leave you alone.`
 			`	After spending hours of time on waiting the door opens and not the Hai but a Quarg comes out. "Could you please follow me?" It asks and without waiting for a response it leads the way. Left no real choice you just follow it.`
 			choice
-				"[continue]"
+				"(Continue)"
 			`	You arrive at another room. "This is... an unusual situation." The Quarg begins talk. "It is seldom that our friends, the Hai, are asking for something like this. Actually this never happened before. They brought up some good arguments and we know that they have no bad intentions." It pauses for a moment. "But this leaves us in a dilemma situation. We do not want to dismiss their request, but we also have concerns. Not concerns about you anymore, but concerns about what happens after you made contact. This will change this species for sure. But we do not know in which direction. But here comes the one reason, why we will allow you to make contact and giive you a translation device. If this species continues the path it currently is moving on. It will lead to their distinction. We see this for some time now, but we can not step in, because that is not our role in this galaxy. But you, you can change something and now that the Hai have proved you, we do not have concerns about you anymore." It takes something that looks like a tablet and hands it you. "This is the translation device. Their communication is based on light, so you have to face them while you are talking to them. This also works over video communication, you just have to hold it, so that the back of the device shows to the screen. Also their language is a lot different than yours, human, you will see what that means." You take the device and thank it. "Oh, and two other things, if you sell hyperdrives or other advanced spacetravelling technology to them we will remotely destroy them, and second, if you ever try to harm them, we will harm you. I hope this is alright for you." A little bit shocked you agree. "Go now and make contact to them. We will give the Hai a ride home." Without any further words, he leaves you alone.`
 
 mission "Incipias: First Contact V"
@@ -233,7 +233,7 @@ mission "Incipias: First Contact V"
 				"Hello beings of another kind, I want to communicate with you."
 			`	At first nothing happens. Then your scanners register a huge raise in communication between the alien ships, their planet and their spacestation. At first it seems to be very chaotic but then slowly the spacestation dominates the communication. Then there is nothing.`
 			choice
-				"[wait for some time]"
+				"(Wait for some time)"
 			`	After some time the space station opens a communication channel to you. A creature like you never seen one before appears on the screen. Formed like a balloon, with some weird shaped extremeties and four eyes? at the bottom. It is floating in front of a blank wall. You remember what the Quarg told you and hold the tablet in the direction of the screen. Something on the surface of the creature begins flickering and words start appearing on the tablet screen. "Welcome, [stranger, traveller, alien] [I, we] are [happy, surprised, scared] by your visit." It seems like this is the difference the Quarg talked about, the translation device is trying to combine words to give you the actual meaning. More words appear, "[I, we] see another [intelligence, feeling one] the first time, please [explain, show, tell us] the reason for your presence."`
 			choice
 				"I am exploring the limits of space."
@@ -262,10 +262,10 @@ mission "Incipias: First Contact VI"
 				set "hicemus knowledge: hyperlanes"
 				"hicemus knowledge" = 0
 			choice
-				"[show them a map of human systems]"
+				"(Show them a map of human systems)"
 					goto map
-				"[show them the location of Sol in the Galaxy]"
-			`	You show them a picture of the galaxy and point out where the Sol system is and where the Dom'us system is. The Incipias move closer to see and you notice some excitement in their rows. Their speaker turns towards you "A [long, unexpected distance is between our [systems, homes], [you, your kind] has to be [very, far more] advanced." You type in the tablet, "No, it is only a few of us who can travel that far between stars. My kind has not yet the technology to travel that far, I got this technology from another species." Again some rumor starts between the Incipias. "So we and [your kind] are not [the only ones, alone in space]?" Their speaker asks you.`
+				"(Show them the location of Sol)"
+			`	You show them a picture of the galaxy and point out where the Sol system is and where the Dom'us system is. The Incipias move closer to see and you notice some excitement in their rows. Their speaker turns towards you "A [long, unexpected] distance is between our [systems, homes], [you, your kind] has to be [very, far more] advanced." You type in the tablet, "No, it is only a few of us who can travel that far between stars. My kind has not yet the technology to travel that far, I got this technology from another species." Again some rumor starts between the Incipias. "So we and [your kind] are not [the only ones, alone in space]?" Their speaker asks you.`
 				goto c1
 			label map
 			action
