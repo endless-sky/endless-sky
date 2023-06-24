@@ -278,9 +278,40 @@ ship "Sea Dragon"
 
 
 
+# Note: this is very very ancient latin for them so it is normal that some of these do not make sense.
+phrase "ancient script"
+	word
+		"Lumen" # light
+		"Mare" # sea
+		"Solis" # sun
+		"Ignus" # fire
+		"Ventus" # wind
+		"Caelorum" # heaven
+		"Improbus" # rogue
+		"Semper" # always
+		"Ad" # for the
+	word
+		" "
+	word
+		"Domine" # lord
+		"Regem" # ruler
+		"Regina" # queen
+		"Quaesitor" # seeker
+		"Ex" # out of
+		"Sapentia" # wisdom
+		"Requiem" # song for the dead
+		"Invictus" # unbeaten
+		"Infinitum" # infinite
+		"Veritas" # truth
+		"Glorium" # glory
+		"Argentius" # silver
+		"Arcana" # secrets
+		"Culpa" # gulty
+		"Fortuna" # luck
+
 fleet "Marauders"
 	government "Midas"
-	names "pirate"
+	names "ancient script"
 	personality
 		disables plunders harvests
 	variant 2
