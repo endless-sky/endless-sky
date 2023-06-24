@@ -828,6 +828,7 @@ mission "<uhai> 2: Prove Your Strength"
 			random < "Unfettered Jump Drive 1: offered" * 20 + "Unfettered Jump Drive 2: offered" * 25 + "Unfettered Jump Drive 3: offered" * 30 + "Unfettered Jump Drive 4: failed" * 25
 		# 3 is what a default built Sea Scorpion has
 		"armament deterrence" >= 3
+		not "<uhai> 2: Prove Your Strength: done"
 	on offer
 		conversation
 			branch waiting

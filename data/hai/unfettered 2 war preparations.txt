@@ -793,6 +793,7 @@ mission "<uhai> 15: Modified Beetle"
 			has "<uhai> 15: Modified Beetle: deferred"
 		has "event: unfettered: modded SB ready"
 		has "Unfettered Jump Drive Trading: offered"
+		not "<uhai> 15: Modified Beetle: done"
 	on offer
 		conversation
 			branch waiting
@@ -1143,6 +1144,7 @@ mission "<uhai> 16: Strength Of A Leader: Si-Ra"
 		has "event: unfettered: darkcloak outfitter upgrade"
 		has "language: Wanderer"
 		has "<uhai> 15: Modified Beetle: done"
+		not "<uhai> 16: Strength Of A Leader: Si-Ra: done"
 	on offer
 		conversation
 			branch "small fleet"
@@ -1253,6 +1255,7 @@ mission "<uhai> 16: Strength Of A Leader: He-Yi"
 			has "<uhai> 20: Bigeminate Sigil: Cloak: done"
 	to offer
 		has "<uhai> 16: Strength Of A Leader: Si-Ra: done"
+		not "<uhai> 16: Strength Of A Leader: He-Yi: done"
 	on offer
 		dialog `He-Yi comes to see you on your ship. "Are you ready to fight now? The rules are the same as always."`
 	on enter
