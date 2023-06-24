@@ -197,7 +197,7 @@ mission "coalition peace proof"
 			`	"Your project understand I can. The people over me about your request let me ask." He turns around and goes away.`
 			label c1
 			`	When noises in the line behind you are growing louder he finally comes back. With him he carries a small box. "A decent gift for you I got." He opens the box and in it lies a small gem like none you have seen before, reflecting the light in green, red and blue shades. "This gem a fusion of three others is, an emerald for the Saryds, a ruby for the Kimek and a sapphire for the Arachi. A fusion of our three species it is, you could say. This gem representing our species best it is. You appreciate this gift I hope." You are really thankful for this gift and thank the Heliarch a lot. But then you have to leave because there is still a line behind you.`
-				fail
+				decline
 
 mission "Incipias: First Contact IV"
 	landing
