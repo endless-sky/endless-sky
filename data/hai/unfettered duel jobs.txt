@@ -172,9 +172,9 @@ phrase "unfettered challenger defeated"
 
 phrase "unfettered challenger boarded"
 	word
-		`You receive a message from the <ship>`
-		`The captain of the <ship> hails you`
-		`Now that you board them, the <ship> sends you a hail`
+		`You receive a message from the <npc>`
+		`The captain of the <npc> hails you`
+		`Now that you board them, the <npc> sends you a hail`
 	word
 		`: ${unfettered challenger defeat message}`
 
@@ -332,7 +332,7 @@ mission "Unfettered Space Challenge Small"
 	name "Collect your payment on <destination>"
 	description `An Unfettered captain has offered you a payment of <payment> for beating them in battle, land on <destination> to collect it.`
 	substitutions
-		<payment> 200000
+		<payment> "200 thousand credits"
 		"<boarding message>" " Do you want to accept the payment offer or plunder the ship? Keep in mind that you are in no way allowed to capture or destroy the ship."
 	source
 		government "Hai (Unfettered Challenger)"
@@ -350,7 +350,7 @@ mission "Unfettered Space Challenge Big"
 	name "Collect your payment on <destination>"
 	description "An Unfettered captain has offered you a payment of <payment> for beating them in battle, land on <destination> to collect it."
 	substitutions
-		<payment> 500000
+		<payment> "500 thousand credits"
 		"<boarding message>" " Do you want to accept the payment offer or plunder the ship? Keep in mind that you are in no way allowed to capture or destroy the ship."
 	source
 		government "Hai (Unfettered Challenger)"

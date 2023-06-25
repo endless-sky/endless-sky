@@ -805,7 +805,7 @@ outfit "Heshi"
 	cost 10000
 	thumbnail "outfit/unknown"
 	"mass" 1
-	"outfit space" 1
+	"outfit space" -1
 	"capture attack" 4
 	"capture defense" 8
 	"maintenance costs" 100
