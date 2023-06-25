@@ -2238,7 +2238,7 @@ void Engine::HandleTouchEvents()
 
 	if(isFingerDown != -1)
 	{
-		if(moveTowardActive)
+		if(moveTowardActive && !Preferences::Has("Onscreen Joystick"))
 		{
 			activeCommands |= Command::MOVETOWARD;
 			if(isDoubleTap)
