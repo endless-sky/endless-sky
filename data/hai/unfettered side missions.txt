@@ -264,8 +264,8 @@ mission "Hai Legacy 3"
 			`	"Sometimes the rules can be bent a little. But you certainly did not earn that privilege."`
 				to display
 					"reputation: Hai (Unfettered)" < -2000
-			`	The engineer comes back, looking a bit impatient, "Are you going to talk all day, or are you going to fight?" The Unfettered pilots immediately head to their ships to get the initiative. The engineer utters a word to you once they are far enough away, "I want this done as quickly as possible, do not try my patience. You are lucky I offered this deal in the first place, make sure I do not regret it. Now, quick, get to your ship!" You see the contestants have already begon the launching procedures, and launch as soon as you can.`
-				launch
+			`	The engineer comes back, looking a bit impatient, "Are you going to talk all day, or are you going to fight?" The Unfettered pilots immediately head to their ships to get the initiative. The engineer utters a word to you once they are far enough away, "I want this done as quickly as possible, do not try my patience. You are lucky I offered this deal in the first place, make sure I do not regret it. Now, quick, get to your ship!" You see the contestants have already begun the launching procedures, and launch as soon as you can. (Remember to park your other ships and make sure your flagship is the Ladybug)`
+				accept
 	on decline
 		"reputation: Hai (Unfettered)" >?= -1000
 	on fail
