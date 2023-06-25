@@ -307,6 +307,7 @@ mission "Hai Legacy 3"
 		dialog "You have not beaten all challenging ships yet. If they have not shown up it is probably because you have cheated and brought more ships into the fight."
 	to complete
 		has "unfettered: beaten the bugs"
+		has "flagship model: Ancient Ladybug"
 		or
 			"old reputation: Hai (Unfettered)" > -2000
 			has "unfettered: beaten extra bugs"
