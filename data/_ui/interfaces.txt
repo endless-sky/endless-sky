@@ -83,6 +83,9 @@ color "escort selected" .2 .8 0. 1.
 color "escort hostile" 1. .6 .4 1.
 
 # Colors used when "status overlays" are enabled, and to show scan progress.
+color "overlay flagship shields" 0. .5 0. .25
+color "overlay flagship hull" .45 .5 0. .25
+color "overlay flagship disabled" .5 0 0 .25
 color "overlay friendly shields" 0. .5 0. .25
 color "overlay friendly hull" .45 .5 0. .25
 color "overlay friendly disabled" .5 0 0 .25
