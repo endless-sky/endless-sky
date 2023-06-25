@@ -202,6 +202,20 @@ interface "hiring"
 		center 60 214
 		dimensions 80 40
 
+	active if "can hire"
+	sprite "ui/dialog cancel"
+		center -182 214
+	button z "Hire All"
+		center -182 214
+		dimensions 80 40
+
+	active if "can fire"
+	sprite "ui/dialog cancel"
+		center -262 214
+	button x "Fire All"
+		center -262 214
+		dimensions 80 40
+
 	active
 	string "modifier"
 		from -65 49
