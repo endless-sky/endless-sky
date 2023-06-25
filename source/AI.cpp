@@ -4166,32 +4166,49 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 
 		if(activeCommands.Has(Command::PRIMARY))
 		{
+			bool onscreenButtons = Preferences::Has("Show buttons on map");
+			bool autoFire = Preferences::GetAutoFire() != Preferences::AutoFire::OFF;
+			auto targetShip = ship.GetTargetShip();
+			auto targetAsteroid = ship.GetTargetAsteroid();
+			Body* targetBody = targetShip.get();
+			if (!targetBody)
+				targetBody = targetAsteroid.get();
 			int index = 0;
 			double maxRange = -1;
 			for(const Hardpoint &hardpoint : ship.Weapons())
 			{
 				if(hardpoint.IsReady() && !hardpoint.GetOutfit()->Icon())
 				{
-					firingCommands.SetFire(index);
+					double range = hardpoint.GetOutfit()->Range();
+					if(autoFire)
+					{
+						// don't actually fire if we have a target selected, and its
+						// out of range.
+						if (!targetBody || targetBody->Position().DistanceSquared(ship.Position()) < range * range * 1.5)
+						{
+							firingCommands.SetFire(index);
+						}
+					}
+					else
+					{
+						// normal behavior, just fire when told to.
+						firingCommands.SetFire(index);
+					}
+
 					maxRange = max(maxRange, hardpoint.GetOutfit()->Range());
 				}
 				++index;
 			}
-			if(Preferences::Has("Show buttons on map"))
+			if(onscreenButtons)
 			{
 				// On android, chase the target if they get too far away while the
 				// user is holding the fire button.
 				maxRange *= .5;
-				auto targetShip = ship.GetTargetShip();
-				auto targetAsteroid = ship.GetTargetAsteroid();
-				Body* target = targetShip.get();
-				if (!target)
-					target = targetAsteroid.get();
 
-				if(target && target->Position().DistanceSquared(ship.Position()) > maxRange * maxRange)
+				if(targetBody && targetBody->Position().DistanceSquared(ship.Position()) > maxRange * maxRange)
 				{
 					// target is too far away. lets chase it
-					MoveToAttack(ship, command, *target);
+					MoveToAttack(ship, command, *targetBody);
 				}
 			}
 		}
