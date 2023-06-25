@@ -48,6 +48,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 
 #include <SDL2/SDL_events.h>
+#include <SDL_scancode.h>
 #include <chrono>
 #include <iostream>
 #include <map>
@@ -366,6 +367,10 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 				fingerEvent.tfinger.y = static_cast<float>(event.button.y) / Screen::RawHeight();
 			
 				event = fingerEvent;
+			}
+			else if(event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE)
+			{
+				event.key.keysym.sym = SDLK_AC_BACK;
 			}
 #endif
 			
