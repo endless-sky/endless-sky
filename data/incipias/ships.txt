@@ -52,6 +52,10 @@ ship "Nimbus"
 		"Plasma Discharger" 4
 		"Tractor Beam"
 		"Heavy Machine Gun" 20
+
+		"MH Red-Class Engine"
+		"MH Red-Class Steering"
+
 	engine 0 120
 	engine 0 120
 	engine -30.5 120
@@ -89,22 +93,14 @@ ship "Stratus"
 		"gaslining" 1
 		"fuel capacity" 200
 
-		"steering flare sound" "plasma huge"
-		"turn" 332
-		"turning energy" 1.
-		"turning heat" 3
-
-		"flare sprite" "effect/metallic hydrogen"
-			"frame rate" 24
-		"flare sound" "plasma huge"
-		"thrust" 16
-		"thrusting energy" 2
-		"thrusting heat" 2.5
-
 	outfits
 		"Gas Class Shield"
 		"Liquid Hydrogen Cell"
 		"Plasma Discharger" 2
+
+		"MH Blue-Class Engine"
+		"MH Blue-Class Steering"
+
 	gun -13 -48.5
 	gun 13 -48.5
 	engine 0 61.5
@@ -148,6 +144,10 @@ ship "Cirrus"
 	outfits
 		"Gas Class Shield"
 		"Liquid Hydrogen Cell"
+
+		"MH Green-Class Engine"
+		"MH Green-Class Steering"
+
 	engine -32 80
 	engine 32 80
 	engine 0 80

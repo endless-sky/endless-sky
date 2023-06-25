@@ -126,6 +126,62 @@ outfit "Liquid Hydrogen Cell"
 	"energy capacity" 2000
 	description "This form of energy storage was discovered early by the Incipias because of the great amount of hydrogen on their homeworld. Because the Incipias mostly access its energy at the time it is produced only a small storage is needed. That is why most of their ships have only one cell installed."
 
+# Engines:
+outfit "MH Blue-Class Engine"
+	category "Engines"
+	thumbnail "outfit/mh blue-class engine"
+	"flare sprite" "effect/metallic hydrogen"
+		"frame rate" 24
+	"flare sound" "plasma huge"
+	"thrust" 16
+	"thrusting energy" 2
+	"thrusting heat" 2.5
+
+outfit "MH Blue-Class Steering"
+	category "Engines"
+	thumbnail "outfit/mh blue-class steering"
+	"steering flare sound" "plasma huge"
+	"turn" 332
+	"turning energy" 1.
+	"turning heat" 3
+
+outfit "MH Green-Class Engine"
+	category "Engines"
+	thumbnail "outfit/mh green-class engine"
+	"flare sprite" "effect/metallic hydrogen"
+		"frame rate" 24
+	"flare sound" "plasma huge"
+	"thrust" 16
+	"thrusting energy" 2
+	"thrusting heat" 2.5
+
+outfit "MH Green-Class Steering"
+	category "Engines"
+	thumbnail "outfit/mh green-class steering"
+	"steering flare sound" "plasma huge"
+	"turn" 343
+	"turning energy" 1.
+	"turning heat" 3
+
+outfit "MH Red-Class Engine"
+	category "Engines"
+	thumbnail "outfit/mh red-class engine"
+	"flare sprite" "effect/metallic hydrogen"
+		"frame rate" 24
+	"flare sound" "plasma huge"
+	"thrust" 32
+	"thrusting energy" 5
+	"thrusting heat" 10
+
+outfit "MH Red-Class Steering"
+	category "Engines"
+	thumbnail "outfit/mh red-class steering"
+	"steering flare sound" "plasma huge"
+	"turn" 756
+	"turning energy" 2.5
+	"turning heat" 12
+
+
 # Hand to Hand
 outfit "Heavy Machine Gun"
 	category "Hand to Hand"

@@ -147,6 +147,13 @@ outfitter "Hicemus"
 	"Liquid Hydrogen Cell"
 	"Heavy Machine Gun"
 
+	"MH Blue-Class Engine"
+	"MH Blue-Class Steering"
+	"MH Green-Class Engine"
+	"MH Green-Class Steering"
+	"MH Red-Class Engine"
+	"MH Red-Class Steering"
+
 shipyard "Hicemus"
 	"Cirrus"
 	"Stratus"
