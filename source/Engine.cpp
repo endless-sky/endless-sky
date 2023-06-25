@@ -995,15 +995,18 @@ void Engine::Draw() const
 
 	for(const auto &it : statuses)
 	{
-		static const Color color[11] = {
+		static const Color color[14] = {
+			*colors.Get("overlay flagship shields"),
 			*colors.Get("overlay friendly shields"),
 			*colors.Get("overlay hostile shields"),
 			*colors.Get("overlay neutral shields"),
 			*colors.Get("overlay outfit scan"),
+			*colors.Get("overlay flagship hull"),
 			*colors.Get("overlay friendly hull"),
 			*colors.Get("overlay hostile hull"),
 			*colors.Get("overlay neutral hull"),
 			*colors.Get("overlay cargo scan"),
+			*colors.Get("overlay flagship disabled"),
 			*colors.Get("overlay friendly disabled"),
 			*colors.Get("overlay hostile disabled"),
 			*colors.Get("overlay neutral disabled")
