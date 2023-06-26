@@ -31837,7 +31837,7 @@ system "Supra"
 
 system "Cura Dic"
 	pos 340.667 -859.667
-	government Quarg
+	government "Quarg (Incipias)"
 	attributes ringworld
 	arrival 700
 	habitable 700

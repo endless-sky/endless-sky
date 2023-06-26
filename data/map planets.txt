@@ -4074,7 +4074,7 @@ planet Sopoyra
 	security 0
 
 planet "Spec Inci"
-	attributes "hai quarg" quarg station
+	attributes "incipias quarg" quarg station
 	landscape land/station19
 	description `Although you have seen a lot of space stations, you are always impressed by the Quarg ringworlds, constructions that replace all the planets in a system.`
 	spaceport `Despite the size of the ringworld not many Quarg are seen around the spaceport. It seems like they have nothing to do right now, as if they are waiting for something to happen.`
