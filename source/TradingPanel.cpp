@@ -238,32 +238,36 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	{
 		for(const auto &it : player.Cargo().Commodities())
 		{
-			int64_t price = system.Trade(it.first);
-			if(!price || !it.second)
+			const auto commodity = it.first;
+			const auto amount = it.second;
+			int64_t price = system.Trade(commodity);
+			if(!price || !amount)
 				continue;
 
-			int64_t basis = player.GetBasis(it.first, -it.second);
-			profit += it.second * price + basis;
-			tonsSold += it.second;
+			int64_t basis = player.GetBasis(commodity, -amount);
+			profit += amount * price + basis;
+			tonsSold += amount;
 
-			GameData::AddPurchase(system, it.first, -it.second);
-			player.AdjustBasis(it.first, basis);
-			player.Accounts().AddCredits(it.second * price);
-			player.Cargo().Remove(it.first, it.second);
+			GameData::AddPurchase(system, commodity, -amount);
+			player.AdjustBasis(commodity, basis);
+			player.Accounts().AddCredits(amount * price);
+			player.Cargo().Remove(commodity, amount);
 		}
 		int day = player.GetDate().DaysSinceEpoch();
 		for(const auto &it : player.Cargo().Outfits())
 		{
-			if(it.first->Get("minable") <= 0. && !sellOutfits)
+			const auto outfit = it.first;
+			const auto amount = it.second;
+			if(outfit->Get("minable") <= 0. && !sellOutfits)
 				continue;
 
-			int64_t value = player.FleetDepreciation().Value(it.first, day, it.second);
+			int64_t value = player.FleetDepreciation().Value(outfit, day, amount);
 			profit += value;
-			tonsSold += static_cast<int>(it.second * it.first->Mass());
+			tonsSold += static_cast<int>(amount * outfit->Mass());
 
-			player.AddStock(it.first, it.second);
+			player.AddStock(outfit, amount);
 			player.Accounts().AddCredits(value);
-			player.Cargo().Remove(it.first, it.second);
+			player.Cargo().Remove(outfit, amount);
 		}
 	}
 	else if(command.Has(Command::MAP))
