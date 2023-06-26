@@ -185,17 +185,27 @@ mission "Hai Legacy 1"
 			`	You quickly realize they are not asking you for your opinion at all. In fact, you notice the fine has already been issued before you could say anything. "Oh, and you should not change its colors, you'll understand why later."`
 				accept
 
+# This mission should trigger right after the one above.
 mission "Hai Legacy 2"
+	autosave
 	shipyard
 	landing
 	name "Young but not that young"
-	description "Use the newly acquired old Ladybug to bring aid to the Unfettered Hai."
+	description "Use the newly acquired old Ladybug to bring aid to the Unfettered Hai, as your flagship."
 	clearance
+	# deadline to make sure you don't just enjoy free rep
 	deadline 30
 	cargo "food (aid)" 121
+	source "Hai-home"
 	destination "Firelode"
 	blocked "You need space for the agreed rush cargo of food to Unfettered space on the Ancient Ladybug, and should use it as flagship."
+	# same condition set as the one above so it is in the offering queue until you get that ladybug
 	to offer
+		has "First Contact: Unfettered: offered"
+		"reputation: Hai (Unfettered)" < 0
+		not "Unfettered Jump Drive 1: offered"
+		not "event: hai ladybug available"
+	to accept
 		has "ship model: Ancient Ladybug"
 	on enter
 		dialog `As you take of from the planet you notice a message was left on the bridge, probably from the "associates". "You should use the Ladybug as your flagship and you should probably not bring any other ships. You'll understand why later."`
@@ -212,7 +222,9 @@ mission "Hai Legacy 2"
 		"reputation: Hai (Unfettered)" <?= -1000
 		dialog `The Unfettered and their associates are not clearly happy when you tell them about this. "You will have to prove yourself another way."`
 	on visit
-		dialog phrase "generic cargo on visit"
+		dialog `You have reached <planet>, but you either did not bring the Ancient Ladybug, some of the cargo was on another ship, or you are not using it as your flagship.`
+	to complete
+		has "flagship model: Ancient Ladybug"
 	on complete
 		dialog `You receive a message from the 'associates of Hai-home', "thank you for helping our brethren, <last>. We will not forget this. Please accept these <payment> to get you started on paying back."`
 		payment 100000
@@ -227,12 +239,13 @@ outfit "Unfettered Landing Permit"
 
 mission "Hai Legacy 3"
 	name "Relic of a long lost era"
-	description "Beat the Lighting Bugs in a merciless fight. Careful, you only have one day."
+	description "Beat the Lighting Bugs in a merciless fight. You only have one day."
 	landing
 	source "Firelode"
 	deadline 2
 	to offer
 		has "flagship model: Ancient Ladybug"
+		has "Hai Legacy 2: done"
 	on offer
 		conversation
 			`As you land and get out of your ship you quickly notice you have attracted a lot of attention, probably due to this old design. One Unfettered that looks like an engineer comes to speak to you, warmed than usual. "Welcome. I do not know how you have obtained this ship, and some will probably see it as a sign. As you may know it is a relic of our past, a past we are quite proud of."`
@@ -264,7 +277,8 @@ mission "Hai Legacy 3"
 			`	"Sometimes the rules can be bent a little. But you certainly did not earn that privilege."`
 				to display
 					"reputation: Hai (Unfettered)" < -2000
-			`	The engineer comes back, looking a bit impatient, "Are you going to talk all day, or are you going to fight?" The Unfettered pilots immediately head to their ships to get the initiative. The engineer utters a word to you once they are far enough away, "I want this done as quickly as possible, do not try my patience. You are lucky I offered this deal in the first place, make sure I do not regret it. Now, quick, get to your ship!" You see the contestants have already begun the launching procedures, and launch as soon as you can. (Remember to park your other ships and make sure your flagship is the Ladybug)`
+			`	The engineer comes back, looking a bit impatient, "Are you going to talk all day, or are you going to fight?" The Unfettered pilots immediately head to their ships to get the initiative. The engineer utters a word to you once they are far enough away, "I want this done as quickly as possible, do not try my patience. You are lucky I offered this deal in the first place, make sure I do not regret it. Now, quick, get to your ship!" You see the contestants have already begun the launching procedures, and launch as soon as you can.`
+			`	(Remember to park your other ships and make sure your flagship is the Ladybug. The fight will not be valid otherwise.)`
 				accept
 	on decline
 		"reputation: Hai (Unfettered)" >?= -1000
@@ -275,6 +289,7 @@ mission "Hai Legacy 3"
 		government "Hai (Unfettered Challenger)"
 		to spawn
 			"total ships" == 1
+			has "flagship model: Ancient Ladybug"
 		to despawn
 			"total ships" != 1
 		personality unconstrained launching plunders staying target heroic disables
