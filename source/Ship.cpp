@@ -3879,8 +3879,8 @@ void Ship::DoJettison(list<shared_ptr<Flotsam>> &flotsam)
 
 void Ship::DoCloakDecision()
 {
-  if(isInvisible)
-    return;
+	if(isInvisible)
+		return;
 	// If you are forced to decloak (e.g. by running out of fuel) you can't
 	// initiate cloaking again until you are fully decloaked.
 	if(!cloak)

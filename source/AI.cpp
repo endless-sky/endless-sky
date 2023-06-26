@@ -2926,7 +2926,7 @@ bool AI::DoCloak(Ship &ship, Command &command)
 		fuel -= fuelCost * (1 + 2 * steps);
 		if(fuel < ship.JumpNavigation().JumpFuel())
 			return false;
-  }
+	}
 
 	// If your parent has chosen to cloak, cloak and rendezvous with them.
 	const shared_ptr<const Ship> &parent = ship.GetParent();
