@@ -349,7 +349,7 @@ void Engine::Place()
 		{
 			const Personality &person = ship->GetPersonality();
 			bool hasOwnPlanet = ship->GetPlanet();
-			bool launchesWithPlayer = (ship->IsYours() || (planet && planet->CanLand(*ship)))
+			bool launchesWithPlayer = (planet && planet->CanLand(*ship))
 					&& !(person.IsStaying() || person.IsWaiting() || hasOwnPlanet);
 			const StellarObject *object = hasOwnPlanet ?
 					ship->GetSystem()->FindStellar(ship->GetPlanet()) : nullptr;
@@ -1930,6 +1930,10 @@ void Engine::HandleKeyboardInputs()
 		else if(keyHeld.Has(Command::JUMP))
 			activeCommands |= Command::FLEET_JUMP;
 	}
+
+	if(keyHeld.Has(Command::AUTOSTEER) && !activeCommands.Turn()
+			&& !activeCommands.Has(Command::LAND | Command::JUMP | Command::BOARD | Command::STOP))
+		activeCommands |= Command::AUTOSTEER;
 }
 
 

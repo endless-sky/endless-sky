@@ -83,6 +83,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Dialog.h
 	Dictionary.cpp
 	Dictionary.h
+	DistanceCalculationSettings.h
+	DistanceCalculationSettings.cpp
 	DistanceMap.cpp
 	DistanceMap.h
 	Distribution.cpp
@@ -203,6 +205,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Music.h
 	NPC.cpp
 	NPC.h
+	NPCAction.cpp
+	NPCAction.h
 	News.cpp
 	News.h
 	Outfit.cpp
