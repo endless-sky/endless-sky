@@ -264,6 +264,63 @@ mission "Brief Bystander"
 				decline
 
 
+mission "Recurring Rumors"
+	invisible
+	landing
+	to offer
+		has "event: gegno suspicions"
+		has "Brief Bystander: declined"
+		has "Foreign Spectator I: failed"
+		has "Passive-Aggressive Observations: declined"
+	on offer
+		fail
+		event "recurring rumors" 5 7
+
+
+event "recurring rumors"
+
+
+mission "Irritable Intervention"
+	# invisible
+	landing
+	source "Giaru Gegno"
+	destination "Dueyu Eitch"
+	to offer
+		has "event: recurring rumors"
+		not "Gegno Geoncide Defense: offered"
+	on offer
+		conversation
+			`After you go through your post-docking routine and enter the ringworld, you can't help but feel that something is a bit off. Normally the Quarg here would be swiftly walking about, focused on attending to their duties, but for some reason, there seems to be less of them walking around than usual. Morevover, the ones you do come across are occasionally having discussions with one another, sometimes looking in your direction even for the slightest second. What stands out most is the lack of any Gegno in the area you're in at all.`
+			`	A few minutes later, while you are making your way through the pristine interior, you hear a voice call to you from down one of the various branching corridors. Turning around, you recognize the Quarg that has helped you in the past, along with a few others.
+			`	"Circumstantial greetings once more, <first> <last>. Might we have a significant moment of your attention?`
+			choice
+				`	"Sure."`
+				`	"How long will it take?"`
+					goto "long"
+
+			label long
+			`	"As long as is required, for this matter is of symbolic importance," it says, with a slightly elevated tone.`
+
+			`	You follow the group of Quarg to a smaller discussion room, similar to the one you've visited before. Or perhaps you've been visiting a different room each time, considering how unfathomably large a ringworld is. Once you sit down with the Quarg from before, they look at you for a moment, look down at the table, then back up to you.`
+			`	"Formerly, I have offered suggestions of heedful interplay regarding the Gegno. However, we are increasingly aware of correlative happenings upon them involving yourself. It would seem consequential events have indeed occured. Not often previously were we approached by Gegno, but a few notable occasions now have meaningful figures sought us out for inquiry as to your necessitations in meddling.`
+			choice
+				`	"I haven't done any harm to them."`
+				`	"It was more coincidential than anything."`
+					goto coincidence
+				`	"Most of the time they were dismissive."`
+					goto dismissive
+				`	"They showed some interest in interaction."`
+					goto interest
+
+
+
+
+			label dismissive
+			`	The Quarg ponders for a moment. "Indeed, Gegno are definitively contemptuous referencing circumstances consulting other than their own.
+
+			# IN PROGRESS
+
+
 # mission "Acquiescence"
 
 
