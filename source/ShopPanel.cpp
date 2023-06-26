@@ -819,7 +819,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 
 
-bool ShopPanel::Click(int x, int y, int /* clicks */)
+bool ShopPanel::Click(int x, int y, int clicks)
 {
 	dragShip = nullptr;
 	// Handle clicks on the buttons.
@@ -889,19 +889,43 @@ bool ShopPanel::Click(int x, int y, int /* clicks */)
 		{
 			if(zone.GetShip())
 			{
-				lastShipClickTime = SDL_GetTicks();
-
-				// Is the ship that was clicked one of the player's?
-				for(const shared_ptr<Ship> &ship : player.Ships())
-					if(ship.get() == zone.GetShip())
+				if(clicks > 1)
+				{
+					playerShips.clear();
+					bool foundSelectedShip = false;
+					// select all contiguous ships that are the same type as the
+					// ship that was double-clicked.
+					for(const shared_ptr<Ship> &ship : player.Ships())
 					{
-						dragShip = ship.get();
-						dragPoint.Set(x, y);
-						SideSelect(dragShip);
-						return true;
-					}
+						if(!CanShowInSidebar(*ship, player.GetSystem()))
+							continue;
 
-				selectedShip = zone.GetShip();
+						if(ship.get() == zone.GetShip())
+							foundSelectedShip = true;
+					   if(ship->ModelName() == zone.GetShip()->ModelName())
+							playerShips.insert(ship.get());
+						else if(!foundSelectedShip) // not the correct range
+							playerShips.clear();
+						else
+							break; // we hit the end of the correct range.
+					}
+				}
+				else
+				{
+					lastShipClickTime = SDL_GetTicks();
+
+					// Is the ship that was clicked one of the player's?
+					for(const shared_ptr<Ship> &ship : player.Ships())
+						if(ship.get() == zone.GetShip())
+						{
+							dragShip = ship.get();
+							dragPoint.Set(x, y);
+							SideSelect(dragShip);
+							return true;
+						}
+
+					selectedShip = zone.GetShip();
+				}
 			}
 			else
 				selectedOutfit = zone.GetOutfit();
