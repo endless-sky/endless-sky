@@ -201,6 +201,7 @@ mission "Hai Legacy 2"
 	blocked "You need space for the agreed rush cargo of food to Unfettered space on the Ancient Ladybug, and should use it as flagship."
 	# same condition set as the one above so it is in the offering queue until you get that ladybug
 	to offer
+		not "Hai Legacy 1: declined"
 		has "First Contact: Unfettered: offered"
 		"reputation: Hai (Unfettered)" < 0
 		not "Unfettered Jump Drive 1: offered"
