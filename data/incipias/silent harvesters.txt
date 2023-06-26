@@ -53,7 +53,6 @@ ship "Silent Harvester"
 		"required crew" 1
 		"drag" 13.3
 		"bunks" 40
-		"gaslining" 1
 	outfits
 		"Strange Ray"
 	gun 0 -64 "Strange Ray"
