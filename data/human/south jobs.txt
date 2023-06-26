@@ -128,7 +128,7 @@ mission "Pirate Occupation [2]"
 		dialog phrase "generic pirate attack payment dialog"
 
 conversation "pirate occupation"
-	`Suddenly you hear raised voices and shouting outside as pilots run for their ships: "<destination> is being occupied by a pirate fleet! They are requesting help from any combat-worthy ship in the region to join the defenses!" The authorities of <planet> will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
+	`Suddenly you hear raised voices and shouting outside as pilots run for their ships: "<destination> is being occupied by a pirate fleet! They are requesting help from any combat-worthy ship that can get there by <date> to join the defenses!" The authorities of <planet> will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
 	choice
 		`	(Don't join the fight.)`
 			decline
