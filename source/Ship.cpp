@@ -2041,9 +2041,29 @@ bool Ship::CanLand() const
 
 
 
-bool Ship::CannotAct() const
+bool Ship::CannotAct(ActionType actionType) const
 {
-	return (zoom != 1.f || isDisabled || hyperspaceCount || pilotError || cloak);
+	bool canActCloaked = true;
+	if(cloak)
+		switch(actionType)
+		{
+			case ActionType::AFTERBURNER:
+				canActCloaked = attributes.Get("cloaked afterburner");
+			case ActionType::BOARD:
+				canActCloaked = attributes.Get("cloaked boarding");
+			case ActionType::COMMUNICATION:
+				canActCloaked = attributes.Get("cloaked communication");
+			case ActionType::FIRE:
+				canActCloaked = attributes.Get("cloaked firing");
+			case ActionType::PICKUP:
+				canActCloaked = attributes.Get("cloaked pickup");
+			case ActionType::SCAN:
+				canActCloaked = attributes.Get("cloaked scanning");
+		}
+	bool canSendHail = (actionType != ActionType::COMMUNICATION || crew);
+	return (zoom != 1.f || isDisabled || hyperspaceCount || pilotError || !canSendHail
+		|| ((cloak == 1. && !canActCloaked)
+		|| (cloak != 1. && cloak && !cloakDisruption && !canActCloaked)));
 }
 
 
@@ -2552,34 +2572,6 @@ double Ship::IdleHeat() const
 	double dissipation = HeatDissipation() + activeCooling / MaximumHeat();
 	if(!dissipation) return production ? numeric_limits<double>::max() : 0;
 	return production / dissipation;
-}
-
-
-
-
-bool Ship::CannotAct(ActionType actionType) const
-{
-	bool canActCloaked = true;
-	if(cloak)
-		switch(actionType)
-		{
-			case ActionType::AFTERBURNER:
-				canActCloaked = attributes.Get("cloaked afterburner");
-			case ActionType::BOARD:
-				canActCloaked = attributes.Get("cloaked boarding");
-			case ActionType::COMMUNICATION:
-				canActCloaked = attributes.Get("cloaked communication");
-			case ActionType::FIRE:
-				canActCloaked = attributes.Get("cloaked firing");
-			case ActionType::PICKUP:
-				canActCloaked = attributes.Get("cloaked pickup");
-			case ActionType::SCAN:
-				canActCloaked = attributes.Get("cloaked scanning");
-		}
-	bool canSendHail = (actionType != ActionType::COMMUNICATION || crew);
-	return (zoom != 1.f || isDisabled || hyperspaceCount || pilotError || !canSendHail
-		|| ((cloak == 1. && !canActCloaked)
-		|| (cloak != 1. && cloak && !cloakDisruption && !canActCloaked)));
 }
 
 
