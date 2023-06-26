@@ -351,6 +351,6 @@ void HailPanel::SetBribe(double scale)
 		value += it->Cost();
 
 	bribe = 1000 * static_cast<int64_t>(sqrt(value) * scale);
-	if(scale && !bribe)
+	if(scale && bribe <= 0)
 		bribe = 1000;
 }
