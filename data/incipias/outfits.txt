@@ -130,7 +130,7 @@ outfit "Liquid Hydrogen Cell"
 outfit "MH Blue-Class Engine"
 	category "Engines"
 	thumbnail "outfit/mh blue-class engine"
-	"flare sprite" "effect/metallic hydrogen"
+	"flare sprite" "effect/incipias flare/metallic hydrogen small"
 		"frame rate" 24
 	"flare sound" "plasma huge"
 	"thrust" 16
@@ -148,7 +148,7 @@ outfit "MH Blue-Class Steering"
 outfit "MH Green-Class Engine"
 	category "Engines"
 	thumbnail "outfit/mh green-class engine"
-	"flare sprite" "effect/metallic hydrogen"
+	"flare sprite" "effect/incipias flare/metallic hydrogen medium"
 		"frame rate" 24
 	"flare sound" "plasma huge"
 	"thrust" 16
@@ -166,7 +166,7 @@ outfit "MH Green-Class Steering"
 outfit "MH Red-Class Engine"
 	category "Engines"
 	thumbnail "outfit/mh red-class engine"
-	"flare sprite" "effect/metallic hydrogen"
+	"flare sprite" "effect/incipias flare/metallic hydrogen large"
 		"frame rate" 24
 	"flare sound" "plasma huge"
 	"thrust" 32
