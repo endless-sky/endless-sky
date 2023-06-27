@@ -68,7 +68,8 @@ const Plugin *Plugins::Load(const string &path)
 
 	auto * plugin = plugins.Get(name);
 
-	bool isClassicPlugin = !Files::Exists(path);
+	string pluginFile = path + "/plugin.txt";
+	bool hasPluginFile = Files::Exists(pluginFile);
 
 	// Loads plugin metadata from plugin.txt.
 	DataFile file(path + "/plugin.txt");
@@ -85,7 +86,7 @@ const Plugin *Plugins::Load(const string &path)
 	if (plugin->name.empty())
 	{
 		plugin->name = std::move(name);
-		if(!isClassicPlugin)
+		if(hasPluginFile)
 		{
 			Logger::LogError("Failed to find name field in plugin.txt. Defaulting plugin name to folder name: \"" + plugin->name + "\"");
 		}
