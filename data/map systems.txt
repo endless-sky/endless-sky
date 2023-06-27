@@ -8922,17 +8922,9 @@ system Currus
 		distance 999
 		period 3994.002
 	object
-		sprite planet/gas10-b
-		distance 1996
-		period 11279.784
-	object
 		sprite planet/luna-b
 		distance 2838
 		period 19123.993
-	object
-		sprite planet/gas11
-		distance 7091
-		period 75530.302
 		object
 			sprite planet/rock20
 			distance 273
@@ -8975,22 +8967,6 @@ system "Porta Terra"
 			sprite planet/desert4
 			distance 251
 			period 188.115
-	object
-		sprite planet/gas13
-		distance 4915
-		period 2281.386
-		object
-			sprite planet/rock0-b
-			distance 303
-			period 199.372
-		object
-			sprite planet/desert4-b
-			distance 433
-			period 426.23
-	object
-		sprite planet/jupiter-b
-		distance 4127.799
-		period 2990.574
 
 system "Da Ent"
 	pos -6.22391 -462.536
@@ -12528,14 +12504,6 @@ system Equus
 		sprite planet/europa-b
 		distance 1771
 		period 888.815
-	object
-		sprite planet/uranus
-		distance 3814
-		period 2809.02
-	object
-		sprite planet/gas9
-		distance 14533
-		period 20893.762
 
 system "Era Natta"
 	pos 129.2 -134.8
@@ -29506,26 +29474,6 @@ system Sedes
 			sprite planet/dust1
 			distance 478
 			period 325.028
-	object
-		sprite planet/gas16
-		distance 5041
-		period 14316.44
-		object
-			sprite planet/tethys-b
-			distance 209
-			period 186.086
-		object
-			sprite planet/desert4-b
-			distance 317
-			period 266.994
-	object
-		sprite planet/neptune
-		distance 5844
-		period 17870.031
-		object
-			sprite planet/desert4
-			distance 249
-			period 185.871
 
 system Segesta
 	pos 111.87 294.242
@@ -31822,18 +31770,6 @@ system "Supra"
 			sprite planet/miranda
 			distance 404
 			period 384.135
-	object
-		sprite planet/gas16-b
-		distance 2597
-		period 493.633
-	object
-		sprite planet/uranus
-		distance 3257
-		period 693.302
-		object
-			sprite planet/io
-			distance 242
-			period 142.306
 
 system "Cura Dic"
 	pos 340.667 -859.667
@@ -32330,10 +32266,6 @@ system Tectum
 			distance 222
 			period 203.715
 	object
-		sprite planet/gas7-b
-		distance 1573
-		period 163.229
-	object
 		sprite planet/browndwarf-t
 		distance 2550
 		period 336.91
@@ -32341,14 +32273,6 @@ system Tectum
 			sprite planet/ice7-b
 			distance 300
 			period 135.988
-	object
-		sprite planet/gas10
-		distance 3622
-		period 570.331
-		object
-			sprite planet/miranda-b
-			distance 229
-			period 163.932
 
 system Tejat
 	pos -489 -107
