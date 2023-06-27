@@ -85,7 +85,7 @@ const Plugin *Plugins::Load(const string &path)
 	if (plugin->name.empty())
 	{
 		plugin->name = std::move(name);
-		if (!isClassicPlugin)
+		if(!isClassicPlugin)
 		{
 			Logger::LogError("Failed to find name field in plugin.txt. Defaulting plugin name to folder name: \"" + plugin->name + "\"");
 		}
