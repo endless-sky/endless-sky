@@ -238,7 +238,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	{
 		for(const auto &it : player.Cargo().Commodities())
 		{
-			const std::string &commodity = it.first;
+			const string &commodity = it.first;
 			const int64_t &amount = it.second;
 			int64_t price = system.Trade(commodity);
 			if(!price || !amount)
