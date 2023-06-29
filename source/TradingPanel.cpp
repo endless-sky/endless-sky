@@ -238,8 +238,8 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	{
 		for(const auto &it : player.Cargo().Commodities())
 		{
-			const auto commodity = it.first;
-			const auto amount = it.second;
+			const std::string commodity = it.first;
+			const int64_t amount = it.second;
 			int64_t price = system.Trade(commodity);
 			if(!price || !amount)
 				continue;
@@ -256,8 +256,8 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		int day = player.GetDate().DaysSinceEpoch();
 		for(const auto &it : player.Cargo().Outfits())
 		{
-			const auto outfit = it.first;
-			const auto amount = it.second;
+			const Outfit *outfit = it.first;
+			const int64_t amount = it.second;
 			if(outfit->Get("minable") <= 0. && !sellOutfits)
 				continue;
 
