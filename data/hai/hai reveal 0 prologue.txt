@@ -141,7 +141,7 @@ mission "Hai Reveal: Secret Leaks: Hai"
 				`	"How could this happen?"`
 				`	"Can you show me?"`
 					goto clip
-			`	The Hai gives you a quizzical look. "Yes, human merchants come and go regularly, but the main defense of our secret is that humans simply do not care unless the news is sensational. This makes it very easy to ask your media organizations to simply not publicize any leaks they get. A crewman who will lose their job for leaking information will not do so unless it is valuable to them.`
+			`	The Hai gives you a quizzical look. "Yes, human merchants come and go regularly, but the main defense of our secret is that humans simply do not care unless the news is sensational. This makes it very easy to ask your media organizations to simply not publicize any leaks they get. A crewman who will lose their job for leaking information will not do so unless it is valuable to them."`
 			`	"Now though, after the civil war and the Pug invasion, with your new government in the south, someone has taken advantage of the opportunity. Here, let me show you."`
 			`	The Hai pulls out a device and gestures for you to sit on a nearby bench.`
 			choice
@@ -195,7 +195,7 @@ mission "Hai Reveal: Secret Leaks: Hai"
 				`	"What news?"`
 				`	"Clearly so."`
 					goto sharing
-			`	"The Hai have ended up on our news back home. Seems the war stirred things up, and someone wanted their fifteen minutes of fame.`
+			`	"The Hai have ended up on our news back home. Seems the war stirred things up, and someone wanted their fifteen minutes of fame."`
 			label sharing
 			branch seen3
 				has "hr: heard the news"
@@ -288,7 +288,7 @@ conversation "hr: meet alondo"
 	label news
 	`	"I'm sure you've heard the news circulating around humanity," Alondo responds.`
 	label task
-	`	"I'm here on request of the Republic to act as an envoy between the Free Worlds and the Hai government. Although now that I say that out loud, I'm starting to realize just how absurd of a situation this is. I certainly didn't have 'Become engaged in an alien civil crisis' on my bingo card for this year. Although I also didn't have 'Fight off an alien invasion' on my bingo card for the war, so maybe I should just start expecting the unexpected from now on.`
+	`	"I'm here on request of the Republic to act as an envoy between the Free Worlds and the Hai government. Although now that I say that out loud, I'm starting to realize just how absurd of a situation this is. I certainly didn't have 'Become engaged in an alien civil crisis' on my bingo card for this year. Although I also didn't have 'Fight off an alien invasion' on my bingo card for the war, so maybe I should just start expecting the unexpected from now on."`
 	
 	branch settled2
 		has "event: hr: friend settled in"
@@ -303,14 +303,14 @@ conversation "hr: meet alondo"
 		`	"I'd be glad to come."`
 		`	"Sorry, but I have other things to get to at the moment."`
 			goto busy
-	`	"That's good to hear," Alondo says. "In a situation like this, the Hai need humans they can trust. They seem to trust me enough so far, so hopefully they'll also trust you by proxy, or, at the very least, you can gain their trust in short order.`
+	`	"That's good to hear," Alondo says. "In a situation like this, the Hai need humans they can trust. They seem to trust me enough so far, so hopefully they'll also trust you by proxy, or, at the very least, you can gain their trust in short order."`
 	`	"Meet my ship, the <npc>, in orbit after I'm finished with my business here." You assure Alondo that you'll be there, and the Hai escort him away.`
 		accept
 	
 	label busy
 	action
 		event "hr: join later" 20
-	`	"I'll probably reach out to you for help later, then. In a situation like this, the Hai need humans they can trust. They seem to trust me enough so far, so hopefully they'll also trust you by proxy, or, at the very least, you can gain their trust in short order.`
+	`	"I'll probably reach out to you for help later, then. In a situation like this, the Hai need humans they can trust. They seem to trust me enough so far, so hopefully they'll also trust you by proxy, or, at the very least, you can gain their trust in short order."`
 	`	"Well, good luck with whatever it is that you're busy with," he says. You say your goodbyes to Alondo, and the Hai escort him away.`
 		decline
 
@@ -447,7 +447,7 @@ mission "Hai Reveal: Meet the Team: FW"
 				`	"Just that I'm good looking."`
 			`	"There we go!" says the man who was fiddling with the holoprojector as it whirs to life. "No time for introductions. We're late enough as is. Everyone, please sit down."`
 			`	The holoprojector displays a series of graphs. You're no expert in data analysis, but a highlighted "chance of total crisis" at the bottom ranging from 61% to 96% does not look promising.`
-			`	"Please turn your attention to this chart here," he says while pointing to a bar graph. "We've continued to track the number of new arrivals to Hai territory. As noted on the left, the number of new monthly arrivals was in the low hundreds prior to the leaks being broadcast. Within only a short time after, that number quickly rose to the thousands. Mitigation efforts by the Navy to dissuade civilian captains from discovering the wormhole in Ultima Thule by circulating reports of increased pirate activity have since suppressed this number somewhat, but the rate of new arrivals is still well above what it once was.`
+			`	"Please turn your attention to this chart here," he says while pointing to a bar graph. "We've continued to track the number of new arrivals to Hai territory. As noted on the left, the number of new monthly arrivals was in the low hundreds prior to the leaks being broadcast. Within only a short time after, that number quickly rose to the thousands. Mitigation efforts by the Navy to dissuade civilian captains from discovering the wormhole in Ultima Thule by circulating reports of increased pirate activity have since suppressed this number somewhat, but the rate of new arrivals is still well above what it once was."`
 			`	"It has been noted that the character of these new arrivals is also different. Where once a majority of new arrivals were lone explorers or lost captains, they are now increasingly captains following breadcrumbs while looking for the Hai or bringing large groups of 'tourists' with the promise of witnessing the aliens from the news reports. Further research will need to be done to determine the threat that these new arrivals pose in continuing to escalate the situation."`
 			choice
 				`	"What's the problem with new arrivals?"`
@@ -465,7 +465,7 @@ mission "Hai Reveal: Meet the Team: FW"
 				`	"What are the plans to prevent that?"`
 					goto plans
 				`	"Would that be so bad?"`
-			`	"It is always bad to be forced into acknowledging a secret. If we act sooner, we may control the manner of that secret's release," he says. "Plus, while the Hai have let the trickle of humans that find the wormhole settle here peacefully, a massive influx is a problem nobody really wants to have to deal with.`
+			`	"It is always bad to be forced into acknowledging a secret. If we act sooner, we may control the manner of that secret's release," he says. "Plus, while the Hai have let the trickle of humans that find the wormhole settle here peacefully, a massive influx is a problem nobody really wants to have to deal with."`
 			label plans
 			`	"We are currently still gathering information and weighing various potential options. Complete containment of this situation may already be impossible, and so plans which aim for that may not be worth following. If so, we would instead follow the plans which seek to formally reveal the existence of the Hai to humanity in as controlled a manner as possible. Only time will tell if that is the case, though."`
 			`	After the briefing is finished, the Hai woman approaches you. "Greetings, Captain <last>. I am grateful that you will be helping us. My name is Sayari. I was the envoy to the human government a century ago." The present situation is all the evidence needed to make it clear that the Republic has never mentioned the Hai, nor publicly acknowledged receiving an envoy from them.`
@@ -496,7 +496,7 @@ mission "Hai Reveal: Meet the Team: Xilin 1"
 			`	"You're every inch what I expected," he assures you.`
 				goto mission
 			label humble
-			`	For a moment his expression falters, and then he seems almost relieved. "You may be a better person than I expected to meet.`
+			`	For a moment his expression falters, and then he seems almost relieved. "You may be a better person than I expected to meet."`
 			label mission
 			`	"Now, about that task. I mentioned during our briefing that we need to determine how much of a threat these new arrivals might be. Not a threat in the sense that they will become violent, but in the sense that they could exacerbate the situation, such as by returning to our space and making a big stink about what they've found here. The best place to go for this would be <destination>."`
 			`	"I would like to follow and observe," says Sayari.`
@@ -657,17 +657,17 @@ mission "Hai Reveal: Meet the Team: Samuel 2"
 				`	"The Hai are friendly."`
 					goto friendly
 			`	"But they could!" one of the captains pipes up.`
-			`	"Really?" Remington responds. "So because these Hai here are fighting pirates of their own species, you think they could invade us? Could the Syndicate's security forces invade the Republic because they fight off pirates, or the Republic decide to invade the Free Worlds because they fight off pirates? Maybe the answer is yes, but there's a big difference between could and will.`
+			`	"Really?" Remington responds. "So because these Hai here are fighting pirates of their own species, you think they could invade us? Could the Syndicate's security forces invade the Republic because they fight off pirates, or the Republic decide to invade the Free Worlds because they fight off pirates? Maybe the answer is yes, but there's a big difference between could and will."`
 				goto sayari
 
 			label cute
 			`	"I've seen cute dogs turn fearsome before!" one of the captains pipes up.`
-			`	Remington gives the captain (and you) a slight look of disbelief, but he rolls with it. "Okay, so maybe cute things can be fearsome, but has a fearsome dog ever invaded your home planet?`
+			`	Remington gives the captain (and you) a slight look of disbelief, but he rolls with it. "Okay, so maybe cute things can be fearsome, but has a fearsome dog ever invaded your home planet?"`
 				goto sayari
 			
 			label friendly
 			`	"But they might not always be!" one of the captains pipes up.`
-			`	"Perhaps not," Remington responds, "but is that any justification for you being hostile now? People had the same fear of the Quarg centuries ago when they were first discovered, but have the Quarg been anything but friendly in that time?`
+			`	"Perhaps not," Remington responds, "but is that any justification for you being hostile now? People had the same fear of the Quarg centuries ago when they were first discovered, but have the Quarg been anything but friendly in that time?"`
 
 			label sayari
 			`	"My point is that if these Hai were really interested in invading us, do you think we'd all be here right now? The Hai are not hostile to us, so why would we give them a reason to be by sitting here and bugging their warship captains?" Remington says to the crowd.`
@@ -765,7 +765,7 @@ mission "Hai Reveal: Meet the Team: Sayari 2"
 				`	"Don't mention it. I don't do it for the praise."`
 				`	"Is there anything else you need me for?"`
 					goto more
-			`	Sayari smiles. "How humble. Although I suppose you're wondering what do to next.`
+			`	Sayari smiles. "How humble. Although I suppose you're wondering what do to next."`
 			label more
 			`	"For now, there are no immediate tasks for you. The others will continue working on the plan to manage the situation, and we will call upon you once you are needed. I suggest you explore our systems while you wait and gain a better understanding of the Hai people. It will do us well for you to have this knowledge."`
 

@@ -279,7 +279,7 @@ mission "Intro [2 Freighter]"
 			`	He pauses for a moment to think, then says, "Unless you want to do something really risky like hunting pirates, your best bet is to work with the Navy, or the Syndicate, or one of the local militias. Any of those would be a decent choice, although they've each got their own problems. If any of them offer you a mission, go ahead and take it; that's a good way to build connections and get to know the lay of the land."`
 				goto end
 			label career
-			`	"Well," he says, "Back when I was a bit older than you, I piloted a Firebird for a while, escorting merchant convoys up and down the Rim. I used to hope we'd get attacked; I'd disable the pirate ships and rob them blind. Turnabout is fair play, after all.`
+			`	"Well," he says, "Back when I was a bit older than you, I piloted a Firebird for a while, escorting merchant convoys up and down the Rim. I used to hope we'd get attacked; I'd disable the pirate ships and rob them blind. Turnabout is fair play, after all."`
 			`	"Then one day I got a bit too greedy and thought I'd try to capture a pirate ship or two, to add more firepower to my fleet. We boarded their ship, and I sent my crew through the airlock to kill off the pirates. And it turns out the pirates had grenades. Four of my men were dead before I even realized what was happening. We had to retreat, and then limp back to port without even enough crew left uninjured to pilot the ship right. After that I decided to stick to less risky jobs."`
 				goto end
 			label end
@@ -390,7 +390,7 @@ mission "Intro [2 Interceptor]"
 		conversation
 			`You find James in the spaceport bar, talking with a woman wearing a business suit. The expression on James' face is growing increasingly concerned as she speaks. Seeing you come in, he waves to you and you join them at the table.`
 			`	"Hello <first>," says James. "This is Marissa, a senior manager at the mines." You shake hands with her.`
-			`	"Here's the deal," says Marissa. "Most of the gemstones we mine here are industrial grade, not pretty enough to be worth using as anything but sandpaper grit or drill bits. But every once in a while we happen on some higher quality gems. No one in this sector has the money to spend on jewelry, so we ship them north to the Paradise Worlds.`
+			`	"Here's the deal," says Marissa. "Most of the gemstones we mine here are industrial grade, not pretty enough to be worth using as anything but sandpaper grit or drill bits. But every once in a while we happen on some higher quality gems. No one in this sector has the money to spend on jewelry, so we ship them north to the Paradise Worlds."`
 			`	"But in the past few months, every shipment we've sent has been attacked by a pirate ship, the Hammer of Thor. We don't have the money to pay a bounty hunter to take out the Hammer, so instead we're going to pay you to outrun it. Is the <ship> a fast ship?"`
 			choice
 				`	"As fast as they come. Nothing bigger than a fighter could chase it down."`
@@ -469,7 +469,7 @@ conversation "end of intro missions"
 		goto next
 	
 	label next
-	`	There's an awkward pause. You're unsure of how to respond. Then he says, "Thing is, this here planet is one of the most exclusive retirement communities in the galaxy. Plenty of the locals are probably worth more than a billion credits. But they're mostly financial or business types, or old money. I'm rich enough to be here, but I just hope they're willing to socialize with someone who made his fortune flying a ship.`
+	`	There's an awkward pause. You're unsure of how to respond. Then he says, "Thing is, this here planet is one of the most exclusive retirement communities in the galaxy. Plenty of the locals are probably worth more than a billion credits. But they're mostly financial or business types, or old money. I'm rich enough to be here, but I just hope they're willing to socialize with someone who made his fortune flying a ship."`
 	`	"Before you go, is there anything else you'd like to ask me about being a new pilot?"`
 	label choices
 	choice
@@ -484,23 +484,23 @@ conversation "end of intro missions"
 			goto jobs
 		`	"I think I'll manage."`
 			goto end
-	`	"Stay near Sol and around the Paradise Worlds. The Navy stays there the most, so even if a pirate does show up, they won't last long. The Deep is also a pretty safe place, as they have their own security forces. Once you start moving farther south, things get riskier. The worlds down there don't bring in as much tax revenue as the Paradise Worlds do, so the Navy tends to ignore them. You'll find some local militia to back you up, but they're nothing compared to one of the Navy's Cruisers.`
+	`	"Stay near Sol and around the Paradise Worlds. The Navy stays there the most, so even if a pirate does show up, they won't last long. The Deep is also a pretty safe place, as they have their own security forces. Once you start moving farther south, things get riskier. The worlds down there don't bring in as much tax revenue as the Paradise Worlds do, so the Navy tends to ignore them. You'll find some local militia to back you up, but they're nothing compared to one of the Navy's Cruisers."`
 		goto more
 	
 	label asteroids
-	`	"Well to start off, you'll want to stay right here in the Paradise Worlds. The asteroids aren't the best, but it's the safest place to mine while you're still in a small ship. But once you're in something that's able to take a hit, you'll want to explore for an uninhabited system with lots of asteroids. You'll encounter more pirates, but you'll likely find better asteroids.`
+	`	"Well to start off, you'll want to stay right here in the Paradise Worlds. The asteroids aren't the best, but it's the safest place to mine while you're still in a small ship. But once you're in something that's able to take a hit, you'll want to explore for an uninhabited system with lots of asteroids. You'll encounter more pirates, but you'll likely find better asteroids."`
 		goto more
 	
 	label aliens
-	`	"I've spoken with the Quarg a few times, but what captain hasn't? You'll find them down south by Tarazed. I haven't met any other aliens," he pauses for a moment, "as far as I'm aware, that is, but I'm sure they're out there if you go looking hard enough. I've explored all of Republic space in my many years, but there are far more systems out there that we don't even know how to reach.`
+	`	"I've spoken with the Quarg a few times, but what captain hasn't? You'll find them down south by Tarazed. I haven't met any other aliens," he pauses for a moment, "as far as I'm aware, that is, but I'm sure they're out there if you go looking hard enough. I've explored all of Republic space in my many years, but there are far more systems out there that we don't even know how to reach."`
 		goto more
 	
 	label trade
-	`	"One of the most reliable trade routes is to bring food from the Dirt Belt to Earth or the other urban worlds around it. There are billions of mouths to feed on those worlds, and the Dirt Belt sells food for cheap, so it's a great place to get started. Just remember though that if you use the same trade route for too long, you might end up causing the prices to stabilize. The Dirt Belt can only produce food and people can only eat it so fast, so change up your trade routes if you notice the return getting worse.`
+	`	"One of the most reliable trade routes is to bring food from the Dirt Belt to Earth or the other urban worlds around it. There are billions of mouths to feed on those worlds, and the Dirt Belt sells food for cheap, so it's a great place to get started. Just remember though that if you use the same trade route for too long, you might end up causing the prices to stabilize. The Dirt Belt can only produce food and people can only eat it so fast, so change up your trade routes if you notice the return getting worse."`
 		goto more
 	
 	label jobs
-	`	"Getting good jobs is more about having the space to accept the good jobs than it is finding them, but if you're looking for jobs that pay well for little effort, then you'll want to watch out around the holidays. There's always a big celebration on Earth every April 22nd, Earth Day, so pay attention to the job board in the months leading up to that. The people down in the Rim have some month-long celebration every August that you should look out for too.`
+	`	"Getting good jobs is more about having the space to accept the good jobs than it is finding them, but if you're looking for jobs that pay well for little effort, then you'll want to watch out around the holidays. There's always a big celebration on Earth every April 22nd, Earth Day, so pay attention to the job board in the months leading up to that. The people down in the Rim have some month-long celebration every August that you should look out for too."`
 	
 	label more
 	`	"Anything else you want to ask me?"`

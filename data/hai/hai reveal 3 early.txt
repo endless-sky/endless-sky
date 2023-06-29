@@ -32,7 +32,7 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 			branch buildingdeferred
 				has "Building Mountaintop Deferred"
 			`	"I am very glad to see you returned, Captain <last>. Sayari said you were away on an important errand, but I've been hoping for a day now that you would reappear. I think you might be the solution to the current impasse."`
-			`	"You see," says Sayari, "while you've been away it's been decided that a 'tourist trap type theme park destination' is a critical part of the cover story." Despite her Hai inflections, you can still hear the air quotes around that phrase in the tone of her voice. "So far it seems the movie cover has been circulating quite successfully, so we're leaning into it.`
+			`	"You see," says Sayari, "while you've been away it's been decided that a 'tourist trap type theme park destination' is a critical part of the cover story." Despite her Hai inflections, you can still hear the air quotes around that phrase in the tone of her voice. "So far it seems the movie cover has been circulating quite successfully, so we're leaning into it."`
 			`	"This means we need a station, on your side of the wormhole in Ultima Thule. It also means we need it fast, much faster than your people could ever hope to assemble it. The Hai can build it much quicker than humanity can; we actually considered the possibility of needing to raise a station quickly a while back. The alien look that the station will have if we build it has been considered just another favorable aspect of the movie and it provides a long-term commercial justification for the whole idea; the, uh, 'tourist trap'."`
 			choice
 				`	"It would help if I oversaw the construction, wouldn't it?"`
@@ -51,7 +51,7 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 				goto elders
 			label oversee
 			`	"You're learning to navigating the maze of galactic politics quickly, Captain <last>," says Sayari. "We are at an impasse. The Elders are less than keen on allowing a partisan observer to see the construction."`
-			`	Xilin continues her thought. "The Republic won't let the Hai build a station on our side of the wormhole without a trusted observer monitoring construction.`
+			`	Xilin continues her thought. "The Republic won't let the Hai build a station on our side of the wormhole without a trusted observer monitoring construction."`
 			`	"Both sides trust you, though," he says, as Sayari nods.`
 			label elders
 			choice
@@ -283,7 +283,7 @@ mission "Hai Building Mountaintop [2] Recruits"
 				`	"What's the problem?"`
 					goto problem
 				`	"The movie production is real?"`
-			`	She looks and blinks at you as if caught slightly off-guard. "Yes, didn't they tell you? In order to keep up the cover they actually have to start making a movie, or at least believable clips from one. The director they found, an eccentric chap called David Cohen, seems to have got quite enthusiastic now he's not busy bemoaning the 'big reveal' of his 'secret project.' There's a Mr Turner who's now the cover story's guy bankrolling the thing.`
+			`	She looks and blinks at you as if caught slightly off-guard. "Yes, didn't they tell you? In order to keep up the cover they actually have to start making a movie, or at least believable clips from one. The director they found, an eccentric chap called David Cohen, seems to have got quite enthusiastic now he's not busy bemoaning the 'big reveal' of his 'secret project.' There's a Mr Turner who's now the cover story's guy bankrolling the thing."`
 			`	"That's Sam's business though, and he can do that without a secretary. I'm dealing with the operational side of things, as I should be." Something in the tilt of her head gives you the sense that she's supremely satisfied with this turn of events.`
 			label problem
 			`	"While you've been watching early construction, we've been gauging public interest and... at the moment it's not going to work. In order to sell this, they're going to need at least four thousand volunteers by the end of the month, and twelve thousand by the time the station is built. We have to cover crews, staff, roles, extras; gauge needs for facilities, amenities, supplies, and livability requirements. We estimate they'll only get a third of that unless something changes."`
@@ -403,7 +403,7 @@ mission "Hai Building Mountaintop [3] Furnishings"
 		log `Of all the hilariously mundane things that could trip up a deception, it turned out to be Hai-made furniture. Acquired a large shipment of human-made furniture from Prime in order to complete the station.`
 		conversation
 			`By the time you return, you are shocked to notice that the station seems to be rapidly approaching a completed state. Some four thousand people have already arrived, though some are still on board ships docked at the station. Once you register your delivery amidst the station chaos, it's only a few minutes later that you get a "thank you" message from Sayari.`
-			`	The note is short, but accompanies a surprising amount of credits. "Captain <last> - Thank you for your prompt assistance, but I fear I must now ask it again. A friend of mine who leads an organization investigating interactions with Hai and pirates needs help in human space. I can vouch for her and her organization, and I implore you to trade information and resources to solve our pirate troubles. Please keep quiet about this, lest it spark a diplomatic event.`
+			`	The note is short, but accompanies a surprising amount of credits. "Captain <last> - Thank you for your prompt assistance, but I fear I must now ask it again. A friend of mine who leads an organization investigating interactions with Hai and pirates needs help in human space. I can vouch for her and her organization, and I implore you to trade information and resources to solve our pirate troubles. Please keep quiet about this, lest it spark a diplomatic event."`
 			`	"She will contact you soon."`
 
 event "role-play station active"
@@ -495,15 +495,15 @@ mission "Pirates with Hai Weapons 1: Katya's Message"
 				`	"What is it, Katya?"`
 					goto whaizzit
 				`	"You've taken a lot of precautions for this call."`
-			`	"Yes," she says. "This is a sensitive matter.`
+			`	"Yes," she says. "This is a sensitive matter."`
 			label whaizzit
-			`	"There's a problem I need you to solve... discreetly. The Free Worlds have seen pirates with Hai weapons for quite a while. Most weapons were on ships, but recently we've found a large stock in a warehouse on an anarchist world.`
+			`	"There's a problem I need you to solve... discreetly. The Free Worlds have seen pirates with Hai weapons for quite a while. Most weapons were on ships, but recently we've found a large stock in a warehouse on an anarchist world."`
 				to display
 					not "FW Bounty 3: done"
-			`	"There's a problem I need you to solve... discreetly. The Free Worlds have seen pirates with Hai weapons for quite a while. I know you fought the pirate ship Silverhawk back before the war. We know now that it had Hai outfits. Recently we've found a large stock in a warehouse on an anarchist world.`
+			`	"There's a problem I need you to solve... discreetly. The Free Worlds have seen pirates with Hai weapons for quite a while. I know you fought the pirate ship Silverhawk back before the war. We know now that it had Hai outfits. Recently we've found a large stock in a warehouse on an anarchist world."`
 				to display
 					has "FW Bounty 3: done"
-			`	"Such a vast supply is unlikely to have come from individual smugglers, so we must assume it's the result of a large-scale operation. I'm worried the Hai government may be arming pirates. If they are, I hope the weapons are just misguided tribute payments. In the south, we well know how useful bounties and tributes are when dealing with pirates, but from my time as a councilor, I can tell you the Republic will not be so understanding.`
+			`	"Such a vast supply is unlikely to have come from individual smugglers, so we must assume it's the result of a large-scale operation. I'm worried the Hai government may be arming pirates. If they are, I hope the weapons are just misguided tribute payments. In the south, we well know how useful bounties and tributes are when dealing with pirates, but from my time as a councilor, I can tell you the Republic will not be so understanding."`
 			`	"You must discreetly find out if the Hai government is arming the pirates and, if they are, put a stop to it. Don't tell them the Free Worlds asked you to do it, and whatever you do, don't let the Republic know. It could lead to an explosive diplomatic incident."`
 			label loop
 			choice

@@ -211,7 +211,7 @@ mission "FW Conservatory 2"
 		conversation
 			branch deferred
 				has "FW Conservatory 2: deferred"
-			`In the spaceport, it does not take long to locate Ijs; he is supervising a crew that is loading trade goods onto several Free Worlds ships. "Glad to see you, <first>," he says. "These three ships need to get to Tarazed and back without being destroyed by pirates... or by the Republic. They'll be bringing back a selection of terraforming equipment supplied from Tarazed and, if you can believe it, the Syndicate as well! I'm pretty sure they know I'm involved in this, so I wonder if this is just a ploy to keep me out of their hair after the war is over, but I won't be complaining about the help.`
+			`In the spaceport, it does not take long to locate Ijs; he is supervising a crew that is loading trade goods onto several Free Worlds ships. "Glad to see you, <first>," he says. "These three ships need to get to Tarazed and back without being destroyed by pirates... or by the Republic. They'll be bringing back a selection of terraforming equipment supplied from Tarazed and, if you can believe it, the Syndicate as well! I'm pretty sure they know I'm involved in this, so I wonder if this is just a ploy to keep me out of their hair after the war is over, but I won't be complaining about the help."`
 			`	"Think you can tag along and protect the freighters?"`
 			choice
 				`	"Sure thing!"`

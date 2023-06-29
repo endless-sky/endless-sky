@@ -487,7 +487,7 @@ mission "FW Recon 3B"
 				`	"Gunboat? What Gunboat?"`
 				`	"I knew I had a feeling that I was being followed."`
 					goto followed
-			`	"You didn't notice? I have scouts that report that you were being followed by a Gunboat by the name of the <npc> ever since you left <origin>. Keeping an eye on where you were going, no doubt.`
+			`	"You didn't notice? I have scouts that report that you were being followed by a Gunboat by the name of the <npc> ever since you left <origin>. Keeping an eye on where you were going, no doubt."`
 				goto followed
 			
 			label caught
@@ -523,11 +523,11 @@ mission "FW Recon 3B"
 				`	"Free Worlds Council? What's that?"`
 					goto council
 			
-			`	"Full of questions, aren't we?" JJ chuckles. "We will not attack this naval base, so you don't need to worry about anyone being hurt by your actions today. But should the Free Worlds and the Republic go to war, information will be a vital resource, including the information that you've provided me, so thank you for that.`
+			`	"Full of questions, aren't we?" JJ chuckles. "We will not attack this naval base, so you don't need to worry about anyone being hurt by your actions today. But should the Free Worlds and the Republic go to war, information will be a vital resource, including the information that you've provided me, so thank you for that."`
 				goto end
 			
 			label council
-			`	"Full of questions, aren't we?" JJ chuckles. "The Council is a collection of leaders born out of what used to be the Southern Mutual Defense Pact. It includes myself and a few others. We are currently responsible for commanding the militias of the Free Worlds, and should it come to it, we will be the commanding officers in a war with the Republic.`
+			`	"Full of questions, aren't we?" JJ chuckles. "The Council is a collection of leaders born out of what used to be the Southern Mutual Defense Pact. It includes myself and a few others. We are currently responsible for commanding the militias of the Free Worlds, and should it come to it, we will be the commanding officers in a war with the Republic."`
 				goto end
 			
 			label end
@@ -564,13 +564,13 @@ mission "FW Escort 0"
 				`	"I've gone to great lengths because I believe you have a great cause."`
 					goto cause
 				`	"I'm just looking to get paid, and the Free Worlds pays well."`
-			`	Tomek raises an eyebrow. "A no nonsense captain, I see. Well if it's pay you're looking for, I have another job for you on behalf of the Free Worlds.`
+			`	Tomek raises an eyebrow. "A no nonsense captain, I see. Well if it's pay you're looking for, I have another job for you on behalf of the Free Worlds."`
 				goto mission
 			label humble
-			`	Tomek smiles. "A humble captain, I see. Well, if you're just looking to help people out, I have another job for you on behalf of the Free Worlds.`
+			`	Tomek smiles. "A humble captain, I see. Well, if you're just looking to help people out, I have another job for you on behalf of the Free Worlds."`
 				goto mission
 			label cause
-			`	Tomek grins. "Ah, a fellow freedom fighter. Always glad to see more captains earnestly joining the cause. I have another job for you on behalf of the Free Worlds.`
+			`	Tomek grins. "Ah, a fellow freedom fighter. Always glad to see more captains earnestly joining the cause. I have another job for you on behalf of the Free Worlds."`
 			label mission
 			`	"We're looking for ships to help escort a freighter convoy that is traveling to Tarazed to pick up supplies. Our last few convoys have been attacked by pirates, and we suspect this one will be as well. We already have a few captains on the job, but we could always use more help. Are you interested?"`
 			choice
@@ -943,9 +943,9 @@ mission "FW Escort 3"
 					decline
 				`	"What exactly is the Council?"`
 			
-			`	Tomek pauses to think for a moment. "Before there was the Free Worlds, there was the Southern Mutual Defense Pact, little more than a defense agreement between the worlds that now comprise the Free Worlds. Any group needs leadership, and the Council is what was once the leadership of the Pact.`
-			`	"We've retained all our powers that we held under the Pact, being the organizers and commanding officers of the various militias of the Free Worlds. With the Free Worlds having declared itself as a formal government and with tensions with the Republic so high, however, the militias are now obligated to answer to the Council as an emergency power, as opposed to the prior agreement where worlds could refuse to answer to the Pact if, for whatever reason, they chose not to.`
-			`	"But the Council is only a transitional organization; upon the establishment of the Free Worlds Senate, which is already in the works, the Council will be dissolved and all its responsibilities moved to the Senate.`
+			`	Tomek pauses to think for a moment. "Before there was the Free Worlds, there was the Southern Mutual Defense Pact, little more than a defense agreement between the worlds that now comprise the Free Worlds. Any group needs leadership, and the Council is what was once the leadership of the Pact."`
+			`	"We've retained all our powers that we held under the Pact, being the organizers and commanding officers of the various militias of the Free Worlds. With the Free Worlds having declared itself as a formal government and with tensions with the Republic so high, however, the militias are now obligated to answer to the Council as an emergency power, as opposed to the prior agreement where worlds could refuse to answer to the Pact if, for whatever reason, they chose not to."`
+			`	"But the Council is only a transitional organization; upon the establishment of the Free Worlds Senate, which is already in the works, the Council will be dissolved and all its responsibilities moved to the Senate."`
 			`	"Does that answer your question?" Tomek asks.`
 			`	"It does," you say. "Thank you."`
 
@@ -2109,7 +2109,7 @@ mission "Rescue Katya 1"
 				goto next
 			
 			label mistrust
-			`	You find the Free Worlds offices and give your name to the person at the front desk. A few minutes later Tomek Voigt, who manages supplies and fleet movements for the Council, comes down the stairs to greet you. "Captain <last>," he says with a stern glare. "If it were up to me alone you would not be standing in front of me today, but it would appear that your continued help has earned you enough good will to surpass my mistrust of you.`
+			`	You find the Free Worlds offices and give your name to the person at the front desk. A few minutes later Tomek Voigt, who manages supplies and fleet movements for the Council, comes down the stairs to greet you. "Captain <last>," he says with a stern glare. "If it were up to me alone you would not be standing in front of me today, but it would appear that your continued help has earned you enough good will to surpass my mistrust of you."`
 			`	"But I'm a reasonable man," he continues, his expression changing to a smile. "If my friends trust you, then I will give you a second chance, even if it is against my better judgment. Now please, join us."`
 			
 			label next
@@ -2228,7 +2228,7 @@ mission "Defend Sabik"
 			`	You take the paintbrush, climb on top of your ship, and begin painting it in the green and gold of the Free Worlds. Suddenly you hear a cheer from one of the other ships parked nearby; someone has seen what you are doing and is shouting, "For freedom! Another ship for freedom!" Soon several other people see you, and before long it seems like everyone in the port has picked up the cheer.`
 			`	Tomek stands by, silently, until you finish, and then approaches you with an outstretched arm holding onto a license. "Here. You're going to need this. I'm sure your assistance will be invaluable to our cause," he says as you accept the militia license. "Now if you'll excuse me, I must gather the militia for the coming battle."`
 			`	You find that the militia are collecting at the spaceport bar. Some congratulate you on joining the Free Worlds, but most are standing around quietly, waiting for something to happen. More gather as time goes by, to the point that the bar becomes overcrowded and militia are waiting in the streets outside the building.`
-			`	An hour later, while standing outside the bar, you look up and notice the flashing lights of ship weapon fire off in the distance above the planet. Some militia begin running to their ships, but most stand there like a deer in headlights. Just then, Tomek returns with a megaphone and begins shouting orders. "The Navy has entered the system! We can't let them take it, or they'll have us completely bottled up. This is where it begins. We need to fight! Get to your ships, quickly! We have more reinforcements on their way from deeper in the Rim!`
+			`	An hour later, while standing outside the bar, you look up and notice the flashing lights of ship weapon fire off in the distance above the planet. Some militia begin running to their ships, but most stand there like a deer in headlights. Just then, Tomek returns with a megaphone and begins shouting orders. "The Navy has entered the system! We can't let them take it, or they'll have us completely bottled up. This is where it begins. We need to fight! Get to your ships, quickly! We have more reinforcements on their way from deeper in the Rim!"`
 			`	"And if you can, disable their ships instead of destroying them. These are Navy ships, after all, and most of them don't want war any more than we do. Now go! Your worlds need you!" You hurry to join all the other ships taking off to defend the system.`
 				launch
 	

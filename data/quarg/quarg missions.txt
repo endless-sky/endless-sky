@@ -205,7 +205,7 @@ mission "Lagrange Ring: Cargo"
 				`	"Are those other Captains also doing this? What do you need so much cargo for?"`
 				`	"I'm not looking for any more cargo jobs right now, sorry."`
 					decline
-			`	"Many have agreed to help us already, but we still need many more. Those that have agreed to help are headed all to different portions of human space, to safely bring us the materials we have ordered.`
+			`	"Many have agreed to help us already, but we still need many more. Those that have agreed to help are headed all to different portions of human space, to safely bring us the materials we have ordered."`
 			`	"Our ringworld, under construction around the star of <system>, is to have a special open section for humans to visit soon. We wish to make the internal style and decoration of that section closer to human standards, so we are asking every capable captain to help. You are one such captain, are you willing to help us?"`
 			choice
 				`	"Alright, I'm interested. Where should I go to pick up the cargo?"`
@@ -246,7 +246,7 @@ mission "Ask Quarg About Coalition Early"
 				`	(No.)`
 					decline
 			`	You stop the first Quarg that passes by you, and ask if they could tell their side of the story about the Coalition.`
-			`	"Ah, so you have encountered the foolish Coalition," it begins. "They once were three promising species, before they succumbed to the unwise desire for usurpation of the great deeds of others.`
+			`	"Ah, so you have encountered the foolish Coalition," it begins. "They once were three promising species, before they succumbed to the unwise desire for usurpation of the great deeds of others."`
 			`	"Not that all of them are petty thieves, but sadly the civilization they have become is now ruled by a fanatical military, as I am sure you have seen, having spoken with those wretched Heliarchs."`
 			choice
 				`	"Is it true that they defeated you?"`
@@ -308,7 +308,7 @@ mission "Quarg Pug Arfecta Warning"
 				`	"I saw something I liked, so I made it mine."`
 					goto greedy
 			label evasive
-			`	It scoffs, "It matters not how it happened.`
+			`	It scoffs, "It matters not how it happened."`
 				goto end
 			label righteous
 			`	"You fancy yourself a savior or a revolutionary then?" the Quarg says with what you assume is a sarcastic tone.`
@@ -317,11 +317,11 @@ mission "Quarg Pug Arfecta Warning"
 			`	"So you deign to prove them wrong?" the Quarg says with an almost amused, or perhaps incredulous tone.`
 				goto end
 			label greedy
-			`	"A baby in swaddling, indeed...`
+			`	"A baby in swaddling, indeed..."`
 				goto end
 			label end
-			`	"We give you a warning. You know not what you have, human - what weapon you wield.`
-			`	"We have seen its power. We have felt it, and learned from it. But you and your kind know nothing of the burdens and dangers that follow it. Be careful that you are the one who directs this power, and not it you.`
+			`	"We give you a warning. You know not what you have, human - what weapon you wield."`
+			`	"We have seen its power. We have felt it, and learned from it. But you and your kind know nothing of the burdens and dangers that follow it. Be careful that you are the one who directs this power, and not it you."`
 			`	"Know well that we have learned how to overcome it."`
 			`	The Quarg takes one last long look at your ship, then makes a curt farewell motion, leaving you to your business. The crowd, too, starts to disperse, with only a few staying behind to gawk at the ship.`
 			`	As you make your way through the ring, you notice occasional glares from the Quarg onboard the ring.`

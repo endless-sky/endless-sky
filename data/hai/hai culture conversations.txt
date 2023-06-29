@@ -200,7 +200,7 @@ mission "Gambling Judgment"
 			choice
 				`	"Some would say poker is more about skill than chance."`
 				`	"Surely if it's just a game though, there's no harm in it?"`
-			`	"Oh no, I'm afraid the first tenet ensures that it's really not favorable either way. The first is 'To have clear separation of fantasy and reality,' so a game cannot have real consequences or it is reality, not fantasy. So to gamble money on the game is to bring real consequences to a fantasy exercise. This is taboo for an adult.`
+			`	"Oh no, I'm afraid the first tenet ensures that it's really not favorable either way. The first is 'To have clear separation of fantasy and reality,' so a game cannot have real consequences or it is reality, not fantasy. So to gamble money on the game is to bring real consequences to a fantasy exercise. This is taboo for an adult."`
 			`	"If you interpret the game as being played for the skill, without the wagering, then you clear the first and third tenet, but you have the issue that the principle skills are bluffing and manipulation, which violates the second tenet. Bluffing isn't a skill seen as having virtue, nor is manipulation."`
 			choice
 				`	"Wait, do the Hai not lie or bluff?"`
@@ -256,8 +256,8 @@ mission "Academy Motto"
 			label question
 			`	As they clear your plate from the table you ask them about the text on the gateway.`
 			`	"Oh, that's the city Academy. It's a... uh..." she pauses for a moment and relays something in Hai which your translator immediately converts to, "non-technical university."`
-			`	Giving the box a surprised look she smiles and continues in Hai, "If you want to be a manager, a politician, a social worker, or even just a public speaker, you go to the Academy and do courses on leadership and communications. Strictly speaking, it's not necessary to go, but lots of places simply won't accept you into those sorts of roles without some sort of Academy qualification, and they really do provide some great skills. I'm actually going there next year to do a proper human language course.`
-			`	"Technically the Academies are all independent, but they all share the same motto. It's an obligatory thing too though, that's what the motto is about. I'm told most humans think it's backwards, but it's not. The Academies keep tabs on their graduates; if you lead with self-interest, serve without studying, study without learning or waste your knowledge without applying it, they've been known to revoke people's qualifications. Attendance is free, so there's an expectation that you don't waste what they spend time teaching you.`
+			`	Giving the box a surprised look she smiles and continues in Hai, "If you want to be a manager, a politician, a social worker, or even just a public speaker, you go to the Academy and do courses on leadership and communications. Strictly speaking, it's not necessary to go, but lots of places simply won't accept you into those sorts of roles without some sort of Academy qualification, and they really do provide some great skills. I'm actually going there next year to do a proper human language course."`
+			`	"Technically the Academies are all independent, but they all share the same motto. It's an obligatory thing too though, that's what the motto is about. I'm told most humans think it's backwards, but it's not. The Academies keep tabs on their graduates; if you lead with self-interest, serve without studying, study without learning or waste your knowledge without applying it, they've been known to revoke people's qualifications. Attendance is free, so there's an expectation that you don't waste what they spend time teaching you."`
 			`	"This one is quite prestigious, but the ones near the spaceports always are." She winks. "Experience through natural exposure is worth more than what money can buy, after all."`
 			`	A moment later your comm pad alerts you that you've been assigned a departure window from the spaceport in relatively short order.`
 			`	"Well, I must be attending to other customers. You have a great day!" she says, leaving you to go about your business.`
@@ -295,11 +295,11 @@ mission "Robotic Musical 1"
 				`	"Oh, it's the first of its kind."`
 					goto first
 				`	"I think I got the gist of it, though it only reads things out if I look directly at them."`
-			`	"Ah yes, I suppose that's a logical feature," he says. "I can only imagine it would be quite unwieldy if it tried to read out every piece of text in its vicinity.`
+			`	"Ah yes, I suppose that's a logical feature," he says. "I can only imagine it would be quite unwieldy if it tried to read out every piece of text in its vicinity."`
 				goto resolve
 			label first
 			`	"The first?" He studies you for a second. "Oh, you're Captain <last>! What a pleasure to meet you."`
-			`	He looks you up and down with a wry grin. "Somehow you're shorter than I expected.`
+			`	He looks you up and down with a wry grin. "Somehow you're shorter than I expected."`
 			label resolve
 			`	"Well if you do get the chance, I do recommend the performance. I saw it a few months back and it really is quite good. Particularly popular on our worlds with many humans."`
 			`	He flicks you a friendly wave. "I must be off. Don't get too close to the displays, they don't like being touched!"`

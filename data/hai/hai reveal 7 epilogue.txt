@@ -130,16 +130,16 @@ mission "Hai Reveal [D02] Escort to Cardax"
 			`	Xilin looks shocked. "The Alphas? Seriously? Will there never be an end to their tale?"`
 			`	He waves his hand dismissively and continues.`
 			label main
-			`	"In any event," Xilin continues, "Hiyamaharu and I would like you to do something. You completed a similar task when this station was first built.`
-			`	"The pirate threat to ships traveling to and from Hai space is just as bad as it ever was, possibly worse for the increased number of ships. So, on top of a mountain of legalese, an endless stipulation of trade obligations, and a nightmare of judicial jurisprudence jurisdiction boundaries, there is a very physical and tangible action that needs to be taken.`
+			`	"In any event," Xilin continues, "Hiyamaharu and I would like you to do something. You completed a similar task when this station was first built."`
+			`	"The pirate threat to ships traveling to and from Hai space is just as bad as it ever was, possibly worse for the increased number of ships. So, on top of a mountain of legalese, an endless stipulation of trade obligations, and a nightmare of judicial jurisprudence jurisdiction boundaries, there is a very physical and tangible action that needs to be taken."`
 			`	"The Navy base on Farpoint helps to limit the mobility of pirates coming from the Far North, but there is no restraint other than distance to put a check on the pirates that come out of Stormhold. Something needs to be done to secure the space lanes, and so the solution that has been agreed upon is to build a station in Cardax. The volume of pirate activity there is intense enough that the Hai's rapid ship conversion approach to building a station is the only really viable approach."`
 			choice
 				`	"So what am I going to do?"`
-			`	"Well," says Hiyamaharu, "the number of ships involved in this represents a considerable investment, and we'd hate for them to be destroyed during a vulnerable construction phase. The prior concerns about human agents observing the inner core of the station also continue to apply.`
+			`	"Well," says Hiyamaharu, "the number of ships involved in this represents a considerable investment, and we'd hate for them to be destroyed during a vulnerable construction phase. The prior concerns about human agents observing the inner core of the station also continue to apply."`
 			`	"So, we would like you to escort a security force and the core Geocoris to the site in Cardax, clear out any threats in the system, and get the ship through the first construction phase so it can safely raise its shield again. Once that has been completed, the rest of the Geocoris will travel with their escort to join you. You and the security force will have to protect the station while the rest of the convoy arrives to finish the construction."`
 			choice
 				`"Why not just send all of them with their entire escort at once? Surely that would be safer?"`
-			`	Xilin shrugs. "We've heard a rumor that the pirates might have caught wind of what we're doing. The reality is that the marauders up here can field a truly formidable force, if they get their act together. They've overrun the Navy outpost on Farpoint a number of times before, and it would be devastating if an entire naval flotilla, the Hai construction fleet, and a whole security force were all caught out in the open by such a fleet, possibly attacked from both sides.`
+			`	Xilin shrugs. "We've heard a rumor that the pirates might have caught wind of what we're doing. The reality is that the marauders up here can field a truly formidable force, if they get their act together. They've overrun the Navy outpost on Farpoint a number of times before, and it would be devastating if an entire naval flotilla, the Hai construction fleet, and a whole security force were all caught out in the open by such a fleet, possibly attacked from both sides."`
 			`	"By separating them, we're less likely to tip them off as to when exactly we choose to act, and once the station is up, the fleet can use the station's projector and facilities to support their presence. Plus, if they are tipped off already and we can't deal with them, then we only lose the one Geocoris. We expect that you and the Hai security ships are capable enough to escape from trouble if it's more than you can handle."`
 			choice
 				`	"Makes sense."`
@@ -271,8 +271,8 @@ mission "Hai Reveal [D04] Escort Republic Outfitters"
 			`	Hiyamaharu is inscrutable, but Xilin adopts a somber expression. "Unfortunately, there was always a risk of that in such an endeavor."`
 			`	"Still," says Hiyamaharu, turning to Xilin.`
 			label fantastic
-			`	"A great success all round," replies Xilin. "The Republic and Hai governments have approved a reward of <payment> by the way, as thanks for your considerable assistance here.`
-			`	"If you have a moment though, we'd appreciate your continued help with a bit of PR now. To finalize the new station, the plan is to facilitate the set up of some of the major outfitters, both from Hai space and from ours. Predominantly, this would be so that we can ensure a ready supply of munitions on the station at all times. As well, a long-term garrison to act as security needs to be established. We'd like you to escort each of them on the last leg of their journeys, mostly for the photo ops.`
+			`	"A great success all round," replies Xilin. "The Republic and Hai governments have approved a reward of <payment> by the way, as thanks for your considerable assistance here."`
+			`	"If you have a moment though, we'd appreciate your continued help with a bit of PR now. To finalize the new station, the plan is to facilitate the set up of some of the major outfitters, both from Hai space and from ours. Predominantly, this would be so that we can ensure a ready supply of munitions on the station at all times. As well, a long-term garrison to act as security needs to be established. We'd like you to escort each of them on the last leg of their journeys, mostly for the photo ops."`
 			`	"Of course," Xilin adds, "we'll understand if you're too busy now."`
 			choice
 				`	"Sure, why not?"`
@@ -483,12 +483,12 @@ mission "Hai Reveal [D10] Escort Free World Outfitters"
 				`	"Fine, I guess?"`
 				`	"It's going well."`
 			`	"Good, good," he says. "Now, I know that the last thing you probably want to do right now is traipse from one end of space to the other, but I need to ask you a favor."`
-			`	He finds somewhere to sit down with you and begins. "You may recall that I was helping the Free Worlds set up their diplomatic corps. Obviously, I wanted no part of the ambassadorial business to the Republic, but when all this Hai business started up well, let's just say they struggled to find anyone qualified. As it turns out, someone in the senate doesn't particularly like me, and they've been using my extended time away up here to try and influence the diplomatic corps. Meanwhile, the Hai want the Free Worlds to have some involvement with this station we're on so that everyone is tied in, but obviously the Free Worlds don't particularly care when they could hardly be further from it.`
+			`	He finds somewhere to sit down with you and begins. "You may recall that I was helping the Free Worlds set up their diplomatic corps. Obviously, I wanted no part of the ambassadorial business to the Republic, but when all this Hai business started up well, let's just say they struggled to find anyone qualified. As it turns out, someone in the senate doesn't particularly like me, and they've been using my extended time away up here to try and influence the diplomatic corps. Meanwhile, the Hai want the Free Worlds to have some involvement with this station we're on so that everyone is tied in, but obviously the Free Worlds don't particularly care when they could hardly be further from it."`
 			`	"I have devised a compromise: the Free Worlds will not supply ships to the garrison, but they will instead sponsor both Kraz and Delta V, primarily based in the south, to set up outfitters here, with full upfront costs paid by the Free Worlds government. A defining success will allow me to return to the corps with the influence I need to counter this senator's influence. Otherwise, I fear I shall be stuck here, on the other side of space, for the rest of my career."`
 			`	You look at your friend, and you can tell he's waiting for you to accept his premise first, holding something back...`
 			choice
 				`	"What's the catch?"`
-			`	He chuckles. "You're getting to know me too well.`
+			`	He chuckles. "You're getting to know me too well."`
 			`	"The catch is that the Free Worlds will only sponsor the outfitters if you agree to escort their convoys directly from Solace and Rust the entire way here. They want to make a big show of it - or rather, a certain senator has goaded them into making a show of it."`
 			`	He sighs. "On the plus side though, if you're interested, you do get paid diplomatic escort rates."`
 			choice

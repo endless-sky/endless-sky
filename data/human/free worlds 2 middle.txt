@@ -277,9 +277,9 @@ mission "FW Southern Recon 1B: Alnasl Hint 1"
 				`	"Yes I am."`
 				`	"Do you have any information on them?"`
 					goto information
-			`	"Good, because we have some information that could help you.`
+			`	"Good, because we have some information that could help you."`
 			label information
-			`	"We've had to stop all scouting parties into Republic space because of the strength of these new weapons, so we're flying in the dark on where the Navy is, but luckily we have received word from sympathizers in the Dirt Belt. The Navy has gathered forces with these new weapons in Alioth and Seginus, frequently entering the Wei system.`
+			`	"We've had to stop all scouting parties into Republic space because of the strength of these new weapons, so we're flying in the dark on where the Navy is, but luckily we have received word from sympathizers in the Dirt Belt. The Navy has gathered forces with these new weapons in Alioth and Seginus, frequently entering the Wei system."`
 			`	"They haven't been coming into Kornephoros, so they're likely just patrolling the area to dissuade us from making any sudden moves. This means that Wei likely isn't your best bet for stealing a weapon given the traffic, but I hear that things aren't much better beyond Lesath. I wish we had some ships to spare to help you, but we just don't have that kind of freedom right now."`
 			`	You thank the Captain for the information and he wishes you good luck.`
 				decline
@@ -1468,7 +1468,7 @@ mission "FW Bloodsea 1.1"
 				not "event: fw suppressed Bloodsea"
 			`	"They didn't seem very happy about you doing that the first time. But..." Alondo pauses for a moment.`
 			label hostile
-			`	"That's certainly the simpler option," he says. "Tomek may have been punished for disobeying the Senate's orders, but we're in a different situation now. Our numbers have swelled because of our victories and new territory, and we now have the Dreadnoughts at our disposal, so occupying Bloodsea is now a viable option.`
+			`	"That's certainly the simpler option," he says. "Tomek may have been punished for disobeying the Senate's orders, but we're in a different situation now. Our numbers have swelled because of our victories and new territory, and we now have the Dreadnoughts at our disposal, so occupying Bloodsea is now a viable option."`
 			`	"You're on the Council now," he says. "I'll leave it up to you. Option one is, we bring them the supplies and workers, in merchant ships, but use very heavily armed merchant ships in case they double cross us. Option two is, we go to Dancer and see if JJ can lend us an invasion fleet while I convince the Senate that attacking Bloodsea is the better decision."`
 				accept
 	on visit

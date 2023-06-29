@@ -456,7 +456,7 @@ mission "Slave Crew Rescue"
 					goto "crew missing"
 
 			label probe
-			`	Tarquin laughs self-consciously. "The truth is, I'm a bit desperate," he says. "My cargo hold is full of perishable goods that need to be delivered in three days to a very important client who will probably cut me off if I don't make the deadline. I thought I could save money by hiring inexperienced peasants to crew the ship, but as you can see, that hasn't worked out very well. They're cowering in their quarters even now. I'm offering you my profits from being a cheapskate. We'll call it paying for a lesson learned.`
+			`	Tarquin laughs self-consciously. "The truth is, I'm a bit desperate," he says. "My cargo hold is full of perishable goods that need to be delivered in three days to a very important client who will probably cut me off if I don't make the deadline. I thought I could save money by hiring inexperienced peasants to crew the ship, but as you can see, that hasn't worked out very well. They're cowering in their quarters even now. I'm offering you my profits from being a cheapskate. We'll call it paying for a lesson learned."`
 				goto "get to work"
 
 			label "crew missing"

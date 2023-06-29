@@ -128,13 +128,13 @@ mission "Hai Rescue: Yeertle Family"
 				`	"Do you need a ride home to Hai space?"`
 					goto "ride offer"
 				`	"You're a Hai. Why are you in human space?"`
-			`	"I'm from Icelake. I chartered a flight from Icelake to Allhome with my family. They would have gone on vacation while I would have been at a conference. Instead, the human merchants locked us in a cell and took us here.`
+			`	"I'm from Icelake. I chartered a flight from Icelake to Allhome with my family. They would have gone on vacation while I would have been at a conference. Instead, the human merchants locked us in a cell and took us here."`
 				goto "questioned first"
 			label far
 			`	He pauses for a second, perhaps pondering if he can trust you with the answer.`
-			`	"I'm a holographer from Icelake. I chartered a flight from Icelake to Allhome with my family. They would have gone on vacation while I would have been at a conference. Instead, the human merchants locked us in a cell and took us here.`
+			`	"I'm a holographer from Icelake. I chartered a flight from Icelake to Allhome with my family. They would have gone on vacation while I would have been at a conference. Instead, the human merchants locked us in a cell and took us here."`
 			label "questioned first"
-			`	"My youngest daughter is very small for her age, and was able to sneak through a vent to unlock our cell. The ship was under-crewed and so we overpowered them. Unfortunately, they had already landed and the ship was locked down. I didn't know how to disable the lock so we could not take off, and for lack of options we've been hiding near here ever since.`
+			`	"My youngest daughter is very small for her age, and was able to sneak through a vent to unlock our cell. The ship was under-crewed and so we overpowered them. Unfortunately, they had already landed and the ship was locked down. I didn't know how to disable the lock so we could not take off, and for lack of options we've been hiding near here ever since."`
 			`	"Can you take us back to <destination>? I have considerable savings back there and can pay you well. Say, <payment>?"`
 			choice
 				`	"Sure!"`
@@ -145,12 +145,12 @@ mission "Hai Rescue: Yeertle Family"
 			`	"Thank you. My name is Duniip Yeertle, by the way. My wife and three children are nearby. They have holoprojectors as well."`
 				goto leave
 			label "ride offer"
-			`	"Yes! Thank you. Some crooked human merchants locked us in a cell and took us here. I've been unable to find anyone who has even heard of Hai space, and I'm afraid to approach the human authorities. You're the first lead I have! I promise I'll pay you well when we return. I can afford <payment> once we're back at <destination>.`
+			`	"Yes! Thank you. Some crooked human merchants locked us in a cell and took us here. I've been unable to find anyone who has even heard of Hai space, and I'm afraid to approach the human authorities. You're the first lead I have! I promise I'll pay you well when we return. I can afford <payment> once we're back at <destination>."`
 			`	"My name is Duniip Yeertle, by the way. My wife and three children are nearby. They have holoprojectors as well."`
 				goto leave
 			label looking
 			`	The man's holographic expression doesn't change, but his body language shifts in a way that speaks of distress.`
-			`	"The Hai government... no. No, they wouldn't. Let's just say that it's not entirely uncommon for Hai to willingly go missing. An occasional tour of duty with the military, a thrill-seeking adventure with the hopes of getting a reaction upon returning, or even... defection to our brethren. If the authorities tried to track down every single Hai who went missing as soon as they went missing, they'd spend their time chasing their tails fruitlessly.`
+			`	"The Hai government... no. No, they wouldn't. Let's just say that it's not entirely uncommon for Hai to willingly go missing. An occasional tour of duty with the military, a thrill-seeking adventure with the hopes of getting a reaction upon returning, or even... defection to our brethren. If the authorities tried to track down every single Hai who went missing as soon as they went missing, they'd spend their time chasing their tails fruitlessly."`
 			`	"Doubtlessly I'm on a register somewhere, with a timer counting down. It is even possible that someone has been told to watch for if I show up on Darkcloak. Ultimately though, the authorities don't often look for missing persons, unless they're very wealthy, until at least four months have passed by. We have been gone for only two."`
 			choice
 				`	"Do you need a ride home to Hai space?"`
@@ -577,7 +577,7 @@ mission "Hai Rescue: Gipeep"
 				`	(Leave.)`
 					decline
 			`	You put the key in the lock, turn, and the next thump you hear pushes the crate open so hard it falls over. An angry-looking Hai jumps out and starts yelling at you in its own language.`
-			`	After a few seconds, the Hai calms down and speaks in your tongue. "They locked me in a box! I was walking home from a store on <planet>, and some humans pulled me into an alley. They shoved me in a box and now I'm..." the Hai pauses and looks around, "not in Hai space?`
+			`	After a few seconds, the Hai calms down and speaks in your tongue. "They locked me in a box! I was walking home from a store on <planet>, and some humans pulled me into an alley. They shoved me in a box and now I'm..." the Hai pauses and looks around, "not in Hai space?"`
 			`	"Please take me home. I'm a ship architect from <planet>. We should hurry before they come back."`
 			choice
 				`	"Of course. Just hop in my ship."`
