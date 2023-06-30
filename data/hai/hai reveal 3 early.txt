@@ -241,10 +241,6 @@ event "role-play station after construction"
 
 
 
-event "hai dog and pony done"
-	clear "hai dog and pony final stop"
-
-
 mission "Hai Building Mountaintop [2] Recruits"
 	name "Encourage recruits for Mountaintop"
 	description "Now that the station is going ahead, the Hai need to recruit people to be actors in this movie production. Someone needs to sell it to them, and apparently that someone is you."
@@ -321,6 +317,9 @@ mission "Hai Building Mountaintop [2] Recruits"
 		log `Had to go on a lengthy promotional tour to rustle up volunteers for the new station. Terry took care of all the details and seemed especially keen. Presumably she has some marketing background, which may explain her success within the Syndicate.`
 		payment 10000000
 		dialog `You finally dock at <planet>, your tedious tour complete. Shortly after, you receive a ping informing you that <payment> has been deposited into your account. Terry must've set it up to happen automatically.`
+
+event "hai dog and pony done"
+	clear "hai dog and pony final stop"
 
 
 mission "ZZ Hai Building Mountaintop [2a] Sales Job"
