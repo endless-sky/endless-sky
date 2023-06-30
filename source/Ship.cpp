@@ -3711,14 +3711,14 @@ void Ship::DoGeneration()
 	isDisabled = isOverheated || hull < MinimumHull() || (!crew && RequiredCrew());
 
 	double coolingEfficiency = CoolingEfficiency();
+	heat -= coolingEfficiency * attributes.Get("cooling");
 	// Update ship supply levels.
 	if(isDisabled)
 	{
 		PauseAnimation();
-		// If overheated, but otherwise not disabled, still apply cooling.
+		// If overheated, but otherwise not disabled, apply active cooling.
 		if(!(hull < MinimumHull() || (!crew && RequiredCrew())))
 		{
-			heat -= coolingEfficiency * attributes.Get("cooling");
 			// If overheated, heat must be >= 100%
 			// So there is no need to check it again when handling active cooling.
 			// Still need to check for energy though.
@@ -3746,7 +3746,6 @@ void Ship::DoGeneration()
 		energy += attributes.Get("energy generation") - attributes.Get("energy consumption");
 		fuel += attributes.Get("fuel generation");
 		heat += attributes.Get("heat generation");
-		heat -= coolingEfficiency * attributes.Get("cooling");
 
 		// Convert fuel into energy and heat only when the required amount of fuel is available.
 		if(attributes.Get("fuel consumption") <= fuel)
