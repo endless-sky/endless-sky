@@ -66,14 +66,13 @@ const Plugin *Plugins::Load(const string &path)
 	size_t pos = path.rfind('/', path.length() - 2) + 1;
 	string name = path.substr(pos, path.length() - 1 - pos);
 
-	auto * plugin = plugins.Get(name);
+	auto *plugin = plugins.Get(name);
 
-	string pluginFile = path + "/plugin.txt";
-	bool hasPluginFile = Files::Exists(pluginFile);
+	string pluginFile = path + "plugin.txt";
 
 	// Loads plugin metadata from plugin.txt.
-	DataFile file(path + "/plugin.txt");
-	for(const DataNode & child : file)
+	DataFile file(pluginFile);
+	for(const DataNode &child : file)
 	{
 		if(child.Token(0) == "name" && child.Size() >= 2)
 			plugin->name = child.Token(1);
@@ -86,7 +85,7 @@ const Plugin *Plugins::Load(const string &path)
 	if(plugin->name.empty())
 	{
 		plugin->name = std::move(name);
-		if(hasPluginFile)
+		if(Files::Exists(pluginFile))
 		{
 			Logger::LogError(
 				"Failed to find name field in plugin.txt. Defaulting plugin name to folder name: \"" + plugin->name + "\"");
