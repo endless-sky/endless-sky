@@ -83,12 +83,13 @@ const Plugin *Plugins::Load(const string &path)
 
 	// Sets missing required values.
 	// Also sets values for classic plugins without plugin.txt.
-	if (plugin->name.empty())
+	if(plugin->name.empty())
 	{
 		plugin->name = std::move(name);
 		if(hasPluginFile)
 		{
-			Logger::LogError("Failed to find name field in plugin.txt. Defaulting plugin name to folder name: \"" + plugin->name + "\"");
+			Logger::LogError(
+				"Failed to find name field in plugin.txt. Defaulting plugin name to folder name: \"" + plugin->name + "\"");
 		}
 	}
 	if(plugin->aboutText.empty())
