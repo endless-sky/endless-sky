@@ -3736,9 +3736,7 @@ void Ship::DoGeneration()
 
 	// Update ship supply levels.
 	if(isDisabled)
-	{
 		PauseAnimation();
-	}
 	else
 	{
 		// Ramscoops work much better when close to the system center.
