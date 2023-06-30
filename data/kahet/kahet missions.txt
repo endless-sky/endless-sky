@@ -118,7 +118,7 @@ mission "First Contact: Ka'het: Remnant 1B"
 			choice
 				`	"Wait, why did you call them 'shells' and not ships?"`
 			label shells
-			`	"You see, <first>," she says, "the Ka'het aren't normal spaceships. The debris we found were artificial exoskeletons, built around huge living beings; it's unlikely a species that big could have developed that sort of technology, so we presume someone must have created it for them. We call them the Builders."`
+			`	"You see, <first>," she says, "the Ka'het aren't normal spaceships. The debris we found were artificial exoskeletons, built around huge living beings; it's unlikely a species that big could have developed that sort of technology, so we presume someone must have created it for them. We call them the Builders.`
 			`	"After we lost the first scout ships in the Graveyard, the prefects decided that we should continue to scout the region but take necessary precautions. Thanks to those protocols, some of which are still applied today, we were able to extensively explore most of the Graveyard and decipher a good amount of the written language we found. There is still much we have yet to discover."`
 			`	You discuss the Graveyard with Taely for a while longer until one of the people she was talking to earlier comes closer and shows her something on a data pad. "I have to go now, Captain," she tells you. "Good luck."`
 				decline
@@ -273,7 +273,7 @@ mission "Ringworld Debris: Quarg"
 			choice
 				`	"What happened after that?"`
 			label ka'het
-			`	The Quarg stops for a few seconds before continuing, as if it was reflecting on something. "For many millennia they grew, developing brilliant pieces of technology. Then, compelled by their past experiences, they began creating weapons not only to defend themselves, but also to retaliate; these 'Ka'het', as they named them, turned on their creators shortly after they were complete."`
+			`	The Quarg stops for a few seconds before continuing, as if it was reflecting on something. "For many millennia they grew, developing brilliant pieces of technology. Then, compelled by their past experiences, they began creating weapons not only to defend themselves, but also to retaliate; these 'Ka'het', as they named them, turned on their creators shortly after they were complete.`
 			`	"For a few more centuries the Builders lasted, before falling under their very own hubris. Their space is still populated by the Ka'het they gave birth to through the immense facilities they assembled, a being that does not yet possess a vast intelligence." The Quarg bows, still holding on to the piece of debris, and seems to be preparing to walk away.`
 			choice
 				`	"What happened to your ringworld in the Graveyard? Was it in the system I found that thing?"`
@@ -347,7 +347,7 @@ mission "Ka'het: Patir Mystery 1"
 			choice
 				`	"What is that?"`
 				`	"A bunch of rods?"`
-			`	"It is an old tracking and surveillance device, developed specifically for the Graveyard," she says. "It was supposed to track all Ka'het it could find and make detailed imagery of their actions, in order to find the patterns that they follow or ways to exploit their controls. The mission was a long-term one, so when an urgent project came up, resources were diverted away from it, leaving some sensors unused."`
+			`	"It is an old tracking and surveillance device, developed specifically for the Graveyard," she says. "It was supposed to track all Ka'het it could find and make detailed imagery of their actions, in order to find the patterns that they follow or ways to exploit their controls. The mission was a long-term one, so when an urgent project came up, resources were diverted away from it, leaving some sensors unused.`
 			`	"My plan is to install some in the <ship> and go to <waypoints> to find out more about the ships there. It needs to be calibrated precisely before use, but luckily for you, I was the person who developed the deployment procedures," she says with a smirk on her face. "Are you ready?"`
 			choice
 				`	"Let's go!"`
@@ -378,10 +378,10 @@ mission "Ka'het: Patir Mystery 1"
 				`	"Did you find anything new on how this system appeared?"`
 					goto how
 				`	"Was this one already known to the Remnant?"`
-			`	"That is the oddest part; it was not. We knew about the existence of the stars beyond Postverta as they could be observed from our own systems; they just were not reachable with a jump drive. But, from what I can tell from these readings, Patir did not exist until a short time ago."`
+			`	"That is the oddest part; it was not. We knew about the existence of the stars beyond Postverta as they could be observed from our own systems; they just were not reachable with a jump drive. But, from what I can tell from these readings, Patir did not exist until a short time ago.`
 			`	"Do you have anything on why this system appeared?" you ask.`
 			label how
-			`	"I only have theories for now, none of which can be confirmed. People more knowledgeable than me in the subject are examining the phenomenon right now. But look at this," she says, opening a star map on a holographic projector. "This white dot is Postverta, and we are here. When Ssil Vida first appeared, it released a strong burst of ionizing radiation, and when we were able to calculate its velocity, we found it was going much faster than the speed of light. It is gradually slowing down, so it will not go much further, but exactly the same day that the energy burst was supposed to arrive here, Patir appeared! It would be an incredible coincidence if the two events were not connected."`
+			`	"I only have theories for now, none of which can be confirmed. People more knowledgeable than me in the subject are examining the phenomenon right now. But look at this," she says, opening a star map on a holographic projector. "This white dot is Postverta, and we are here. When Ssil Vida first appeared, it released a strong burst of ionizing radiation, and when we were able to calculate its velocity, we found it was going much faster than the speed of light. It is gradually slowing down, so it will not go much further, but exactly the same day that the energy burst was supposed to arrive here, Patir appeared! It would be an incredible coincidence if the two events were not connected.`
 			`	"We have even less information about how this system disappeared. If I may venture a guess, I would say that the black hole is involved. The Builders never seemed to possess the ability to make a system disappear, and we have seen in the past that some black holes can render any hyperlane they are connected to inaccessible given enough time. Perhaps a young, non-rotating black hole like this one can do even more. There is a part of me that thinks this system could disappear again any moment, but if anything that motivates me to find as much as we can about it in the time we have," she says with a wink.`
 			choice
 				`	"Wait, are we in danger?"`
@@ -421,14 +421,14 @@ mission "Ka'het: Patir Mystery 1"
 			label kahet
 			action
 				set "patir: asked about ka'het"
-			`	Taely looks towards the console again. On the screen a tactical view of the Fetri'sei appears. "Well, consider that the Ka'het are true battleships, heavily shielded and always with their weapons ready. These are more akin to reconnaissance and mining probes. Their structure is extremely weak, and they do not have any weapons except the equipment necessary to mine asteroids. I imagine it would take decades for even just a Maeri'het to replicate itself."`
+			`	Taely looks towards the console again. On the screen a tactical view of the Fetri'sei appears. "Well, consider that the Ka'het are true battleships, heavily shielded and always with their weapons ready. These are more akin to reconnaissance and mining probes. Their structure is extremely weak, and they do not have any weapons except the equipment necessary to mine asteroids. I imagine it would take decades for even just a Maeri'het to replicate itself.`
 			`	"There is also the tactical problem: forcing a Ka'het to spend such a long time building copies of itself makes them vulnerable to enemy attacks and unable to effectively fight back, making them ill-suited for the job."`
 				goto questions
 			label jumpdrive
 			`	"They do not have any drives on board, not even a hyperdrive. Limited to sub-light velocity, they would need hundreds of years to pass from one system to another, which is a testament to the Builders' patience. Most species we have encountered abandon any form of sub-light transportation between star systems immediately after developing hyperdrive technology. For all we know, the Ember Waste could have been visited by these Fetri'sei or some other Ka'sei, but they had to leave for some reason we are not aware of. The last Builder died almost 100,000 years ago - so long that having a clear idea of what happened is impossible."`
 			choice
 				`	"What's the difference between Ka'sei and Fetri'sei?"`
-			`	"Well, there is no difference," Taely responds, "not in this case at least. The naming scheme the Builders used is a bit odd: we know that 'Ka,' in their language, has a meaning close to the one of 'group,' 'team,' and sometimes even 'ring,' although it can never be used without a name next to it. So we have 'group mar,' 'group het,' and so on. These are not limited to spaceships: the Ka'het, for example, includes both the biological spacecrafts around the Graveyard and the stations that constructs them, while until now we thought that the Ka'sei included only a handful of large scale construction projects. We know 'Fetri' to be a sort of spaceship sub-classification, but we are not aware of its exact meaning. So the Fetri'sei, or 'ship sei' are a part of the Ka'sei, or 'group sei.' To put it simply, it is similar to how all squares are rectangles, but not all rectangles are squares. It just so happens that everything in this system is classified as a Fetri'sei, so we can use either interchangeably."`
+			`	"Well, there is no difference," Taely responds, "not in this case at least. The naming scheme the Builders used is a bit odd: we know that 'Ka,' in their language, has a meaning close to the one of 'group,' 'team,' and sometimes even 'ring,' although it can never be used without a name next to it. So we have 'group mar,' 'group het,' and so on. These are not limited to spaceships: the Ka'het, for example, includes both the biological spacecrafts around the Graveyard and the stations that constructs them, while until now we thought that the Ka'sei included only a handful of large scale construction projects. We know 'Fetri' to be a sort of spaceship sub-classification, but we are not aware of its exact meaning. So the Fetri'sei, or 'ship sei' are a part of the Ka'sei, or 'group sei.' To put it simply, it is similar to how all squares are rectangles, but not all rectangles are squares. It just so happens that everything in this system is classified as a Fetri'sei, so we can use either interchangeably.`
 			branch busy
 				has "remnant: dusk busy"
 			`	"I know someone who will want to see all this. Meet me in the spaceport when you have the chance."`
@@ -464,7 +464,7 @@ mission "Ka'het: Patir Mystery 2"
 				`	"Dusk? Are names like that common?"`
 				`	"Pleased to meet you too, Dusk."`
 					goto greet
-			`	"You mean names of the various phases of daylight? Mmm, I would not say they are common, but nor are they rare, either. Our ancestors devoted their lives, one way or another, to studying the stars and the everchanging light of the universe. It should not be surprising that their vocabulary should be so entwined in our culture."`
+			`	"You mean names of the various phases of daylight? Mmm, I would not say they are common, but nor are they rare, either. Our ancestors devoted their lives, one way or another, to studying the stars and the everchanging light of the universe. It should not be surprising that their vocabulary should be so entwined in our culture.`
 				goto greet
 			
 			label known
@@ -486,20 +486,20 @@ mission "Ka'het: Patir Mystery 2"
 				`	"Good to see you too, Dusk."`
 					goto greet
 				`	"Has Taely told you about what we found?"`
-			`	"Yes, a new system has appeared in the Graveyard. How exciting! Taely sent me the data as soon as she could."`
+			`	"Yes, a new system has appeared in the Graveyard. How exciting! Taely sent me the data as soon as she could.`
 				goto greet
 			
 			label greet
-			`	"I have found something interesting in the data Taely sent me, Captain." Dusk shows you a map of the system Patir with various lines drawn all over it. "This image shows the route followed by every Ka'sei the scanner was able to track. At first sight they do not seem to have much in common, right? However, upon closer examination, there is something consistent about almost every path: once in a while, every ship spends a few minutes on a single asteroid - one of the biggest in the entire asteroid belt."`
+			`	"I have found something interesting in the data Taely sent me, Captain." Dusk shows you a map of the system Patir with various lines drawn all over it. "This image shows the route followed by every Ka'sei the scanner was able to track. At first sight they do not seem to have much in common, right? However, upon closer examination, there is something consistent about almost every path: once in a while, every ship spends a few minutes on a single asteroid - one of the biggest in the entire asteroid belt.`
 			`	"However, this could have easily been just a coincidence; it takes a lot of effort to extract resources from asteroids that size, so maybe they were just combining their forces to harvest it. So, at this point I had an idea." The screen on the touchpad changes, now showing raw numbers separated on a spreadsheet. "The sensors you carried to Patir had various functions, one of which was a high power asteroid scanner. The asteroid in particular was shown to be extremely rich in a particular metal, iridium. There is more iridium in it than the whole of half a dozen Ember Waste systems, planets included. However, here is the odd part: the concentration of iridium on the asteroid when you jumped away was not lower than when the scanning begun, it was higher! For whatever reason, the Fetri'sei are depositing iridium on the asteroid."`
 			choice
 				`	"Are you sure that it isn't just an error in the measurement?"`
 				`	"Why are they doing that?"`
 					goto why
-			`	"Well, it is a possibility; this instrumentation has not been tested in years. But if it is not, this could give us a lot of insight on the real purpose of these Ka'sei and why they are around that black hole. It is at least worth studying!"`
+			`	"Well, it is a possibility; this instrumentation has not been tested in years. But if it is not, this could give us a lot of insight on the real purpose of these Ka'sei and why they are around that black hole. It is at least worth studying!`
 				goto end
 			label why
-			`	"That is what we are going to find out together! The only way we can find insights on their real purpose is to study this asteroid and what the Ka'sei are doing there."`
+			`	"That is what we are going to find out together! The only way we can find insights on their real purpose is to study this asteroid and what the Ka'sei are doing there.`
 			label end
 			`	"The plan is to take a short range high power scanner and map the entire asteroid to analyze the site where the Ka'sei are bringing the iridium. After you have made extensive scans of the sites I indicate to you, reach me back here on <origin> so that I can analyze the data. If everything goes well, you should be back here in a couple weeks. Now I have already directed the spaceport engineers to install the scanners on your ship. I almost can't wait to see what you find there!" Dusk is so excited that he leaves before you can respond.`
 				accept
@@ -574,7 +574,7 @@ mission "Ka'het: Patir Mystery 4"
 			`You meet Dusk again in the cafeteria with his touchpad, as usual. "Thank you again for your help, <first>. There is a lot we can learn about the Builders with this discovery." He shows you a black and white image of a building inside a hemispherical dome. The complex appears to be made of interconnected cylinders, presumably habitation modules.`
 			choice
 				`	"What is that?"`
-			`	"Oh, it is the scan you made of the Builder structure. Here, look: the external cupola is completely pressurized, which could give us insights about the biology of the Builders. The composition of the atmosphere on their planets is likely to have changed after so much time, and every manned station the Ka'het could reach was long destroyed. This is the first time we have the possibility to study the gases they could breathe without having the results compromised by millennia of biological activity. Inside the cupola there is also a large intact complex, which could give us more answers about all of this."`
+			`	"Oh, it is the scan you made of the Builder structure. Here, look: the external cupola is completely pressurized, which could give us insights about the biology of the Builders. The composition of the atmosphere on their planets is likely to have changed after so much time, and every manned station the Ka'het could reach was long destroyed. This is the first time we have the possibility to study the gases they could breathe without having the results compromised by millennia of biological activity. Inside the cupola there is also a large intact complex, which could give us more answers about all of this.`
 			`	"If you can bring me to the asteroid, I could be able use the controls and enter in the cupola to measure the composition of the atmosphere."`
 			choice
 				`	"I'm ready to go."`
@@ -605,13 +605,13 @@ mission "Ka'het: Patir Mystery 5"
 				`	"Do you have all the equipment ready?"`
 					goto skip
 			
-			`	"I presume Taely already told you about the troubled beginnings we had in exploring the area; as a consequence of that, we had to reevaluate the procedures for exploring the nearby systems and species, especially beyond the Ossipago wormhole. Every scout ship entering the area has to always remain cloaked to prevent attacks from the countless Ka'het patrolling the area; this means that the further we need to travel to reach the destination, the more fuel we have to spend to return home, which considerably impacts the time we can spend cloaked in the destination. Some of the systems at the other end of the Graveyard have seen very few Starlings, most of them staying for less than a day."`
-			`	"Still, even with these limitations we were able to make considerable progress. We can read some of the words in their language, and we were able to retrieve a countless number of partly intact Builder artifacts. Perhaps some day we will be able to understand how to control the Ka'het. Who knows?"`
+			`	"I presume Taely already told you about the troubled beginnings we had in exploring the area; as a consequence of that, we had to reevaluate the procedures for exploring the nearby systems and species, especially beyond the Ossipago wormhole. Every scout ship entering the area has to always remain cloaked to prevent attacks from the countless Ka'het patrolling the area; this means that the further we need to travel to reach the destination, the more fuel we have to spend to return home, which considerably impacts the time we can spend cloaked in the destination. Some of the systems at the other end of the Graveyard have seen very few Starlings, most of them staying for less than a day.`
+			`	"Still, even with these limitations we were able to make considerable progress. We can read some of the words in their language, and we were able to retrieve a countless number of partly intact Builder artifacts. Perhaps some day we will be able to understand how to control the Ka'het. Who knows?`
 				goto skip
 			
 			label planets
-			`	"Oh I have, many times. I have never been on a Builder station, but on a few occasions I have participated to expeditions to newly discovered cities or semi-submersed bunkers. I presume Taely already told you about the troubled beginnings we had in exploring the area; as a consequence of that, we had to reevaluate the procedures for exploring the nearby systems and species, especially beyond the Ossipago wormhole. Every scout ship entering the area has to always remain cloaked for safety; this means that exploring planets is only possible for a limited time and that you cannot leave your ship if you do not have a means of hiding yourself from them."`
-			`	"Because of this, most of the planetary exploration is done with robotic probes. The Ka'het are able to detect and destroy devices that use faster than light communication, so only remote control with a Starling in the same system is possible. There are a lot of compromises that must be taken, but we can still make considerable progress even with these restrictions."`
+			`	"Oh I have, many times. I have never been on a Builder station, but on a few occasions I have participated to expeditions to newly discovered cities or semi-submersed bunkers. I presume Taely already told you about the troubled beginnings we had in exploring the area; as a consequence of that, we had to reevaluate the procedures for exploring the nearby systems and species, especially beyond the Ossipago wormhole. Every scout ship entering the area has to always remain cloaked for safety; this means that exploring planets is only possible for a limited time and that you cannot leave your ship if you do not have a means of hiding yourself from them.`
+			`	"Because of this, most of the planetary exploration is done with robotic probes. The Ka'het are able to detect and destroy devices that use faster than light communication, so only remote control with a Starling in the same system is possible. There are a lot of compromises that must be taken, but we can still make considerable progress even with these restrictions.`
 			
 			label skip
 			`	"I need to prepare a few more instruments before we land," Dusk says as he stops staring at the dome and returns to his equipment. As you reach the complex, you do a few flights around it in search for a good landing site. Dusk points out a spot right next to a set of small circular indentations on the structure. After touching down, you and Dusk don extravehicular suits and start walking towards the cupola. He stops in front of a ring on its surface and starts looking through his equipment.`
@@ -625,10 +625,10 @@ mission "Ka'het: Patir Mystery 5"
 					goto open
 				`	"Are you sure this won't put us in danger?"`
 					goto danger
-			`	"I can, yes. The first row of switches controls the lights inside the complex, the second row controls redundant pressurization systems, and there are similar such operations controlled by the rest of the panel."`
+			`	"I can, yes. The first row of switches controls the lights inside the complex, the second row controls redundant pressurization systems, and there are similar such operations controlled by the rest of the panel.`
 				goto open
 			label danger
-			`	"There is no way to be certain, but this is the only possible way to get in without destroying half of the complex."`
+			`	"There is no way to be certain, but this is the only possible way to get in without destroying half of the complex.`
 			label open
 			`	"This," Dusk says as he presses a switch in the middle of the panel, "is what we were looking for." Soon after, the door in front of you opens, revealing a small room with another door at the opposite end. You follow Dusk inside, where he takes out the scanner again to look for another control panel. Once that is open, another switch allows him to close the door. Only the lights on your helmet keep you from being submerged in complete darkness. Looking around, you notice that the architecture is distinctly alien, with rounded angles on every side of the room and buttresses on either side of the doors. The ring itself is too small for you to pass through it standing upright, but the low gravity of the asteroid lets you almost fly though it without much trouble. "We now have to wait for the room to pressurize," he tells you.`
 			choice

@@ -3620,11 +3620,11 @@ mission "Raid Warning"
 				`	"Yeah, I'm pretty fresh. Is there something I'm doing wrong by walking in here?"`
 				`	"I've been piloting for a while. I think I know what I'm doing."`
 					goto think
-			`	The old man chuckles. "Ain't nothing wrong with walking in here. It's what you're flying in with that's the issue."`
+			`	The old man chuckles. "Ain't nothing wrong with walking in here. It's what you're flying in with that's the issue.`
 				goto advice
 			
 			label think
-			`	The old man chuckles. "Well I don't think so after what I've seen."`
+			`	The old man chuckles. "Well I don't think so after what I've seen.`
 			
 			label advice
 			`	"I seen those ships of yours. That fleet is juicy pickings for pirates if I've ever seen it." You look confusedly at the man. "Oh, do I need to spell it out for you? Pirates love to take out soft targets with lots of potential cargo, and your fleet is looking pretty heavy on cargo space with hardly any defenses."`
@@ -3634,7 +3634,7 @@ mission "Raid Warning"
 					goto solution
 				`	"Don't you think I know that already?"`
 					goto rebuff
-			`	"What, you think they just had it out for you because you look funny? No, pirates have their reasons."`
+			`	"What, you think they just had it out for you because you look funny? No, pirates have their reasons.`
 			label solution
 			`	"Either get yourself more guns in that fleet or get rid of some cargo space. Park your ships, sell them, doesn't matter, so long as the pirates don't see them, or you make it not worth it to try and steal whatever you might have. Pirates see a bunch of freighters flying around unprotected and they're going to take their chances. Doesn't matter if you actually have anything or not."`
 			choice

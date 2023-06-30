@@ -416,7 +416,7 @@ mission "Deep: Mystery Cubes 2"
 			
 			`	The admiral looks at you. "Doubtful." Paris nods, as if to back up this claim.`
 			label next
-			`	He clears his throat and continues, "Allow me to explain the situation. Roughly two weeks after the last of your 'deliveries' were activated, the sensors identified Beelzebub's ship in the northern reaches of the Dirt Belt. We dispatched half of the nearest Navy garrison to apprehend the vessel, only to arrive and find a convoy of Star Barges instead."`
+			`	He clears his throat and continues, "Allow me to explain the situation. Roughly two weeks after the last of your 'deliveries' were activated, the sensors identified Beelzebub's ship in the northern reaches of the Dirt Belt. We dispatched half of the nearest Navy garrison to apprehend the vessel, only to arrive and find a convoy of Star Barges instead.`
 			`	"Worse, while our ships were in pursuit of the decoys, a pirate fleet managed to assault their home base and captured a handful of docked Cruisers. And, amidst the chaos, most of the cubes you placed in the Dirt Belt and Core were disabled!"`
 			`	Before the admiral can work himself up further, Paris intercedes with the rest of the story. "The cubes that Deep Security had you position on multiple worlds were surveillance devices - sensor cubes, as we call them - designed to track Beelzebub's ship and notify us when the ship was located. It can be presumed that Beelzebub now has access to these cubes and has undoubtedly converted them to work in his favor. It may take us weeks to retrieve them, but at the moment it can be assumed that Beelzebub knows where we will be."`
 			choice
@@ -435,7 +435,7 @@ mission "Deep: Mystery Cubes 2"
 			
 			label accept
 			`	In the end, only one of the merchant captains declines. She is escorted out of the room, and the admiral explains each merchant captain's new role.`
-			`	"We assume that Beelzebub knows where we will be, but we know where he is as well - the stolen Cruisers and the pirate fleet that attacked our base moved toward the Core. Given the severity of the crime that Beelzebub has just committed, he will undoubtedly attempt to get as far away from the law as possible. That leaves us only two possible destinations: Buccaneer Bay, or the anarchist colonies of the Far North. Our best guess is that the colonies are the more appealing option to a warlord."`
+			`	"We assume that Beelzebub knows where we will be, but we know where he is as well - the stolen Cruisers and the pirate fleet that attacked our base moved toward the Core. Given the severity of the crime that Beelzebub has just committed, he will undoubtedly attempt to get as far away from the law as possible. That leaves us only two possible destinations: Buccaneer Bay, or the anarchist colonies of the Far North. Our best guess is that the colonies are the more appealing option to a warlord.`
 			`	"We'll be setting up multiple blockades in hopes of boxing Beelzebub in as a number of fleets sweep the galaxy. Captain <last>, you will be stationed on <destination> with Lieutenant Paris and a small Navy fleet. Please gather your things and travel there immediately."`
 				accept
 			
@@ -642,7 +642,7 @@ mission "Deep: Mystery Cubes 4"
 				not "deep: passed through north"
 			
 			`	"Beelzebub can't have gone to the Core," Paris butts in. "We traveled here through the uninhabited systems. We would have seen Beelzebub had he gone that way."`
-			`	"That's good news then. All we have to do is wait Beelzebub out until he decides to poke his little head back out."`
+			`	"That's good news then. All we have to do is wait Beelzebub out until he decides to poke his little head back out.`
 			
 			label core
 			`	"Luckily, all six stolen Cruisers are accounted for, albeit destroyed. Deep Security forces have begun to collect the stolen sensor cubes. We can confirm that Beelzebub was watching our every move, since the cubes are being found all over the Paradise Worlds and Core. They should all be retrieved within the next week." The admiral then turns to the merchant captains. "Now that Beelzebub doesn't have the upper hand anymore, you are no longer needed. As promised, <payment> will be transferred to each of your accounts for your services."`
@@ -866,11 +866,11 @@ conversation "deep: questioning"
 			goto clueless
 		`	"I didn't commit any crimes, so you have no right to detain me."`
 	
-	`	"Indeed, no crimes were committed during your work for Albert Foster, but we still have the right to detain you to keep the Deep safe. Cause us no trouble during this little meeting, answer my questions, and you will be on your way in a few minutes' time."`
+	`	"Indeed, no crimes were committed during your work for Albert Foster, but we still have the right to detain you to keep the Deep safe. Cause us no trouble during this little meeting, answer my questions, and you will be on your way in a few minutes' time.`
 		goto foster
 	
 	label clueless
-	`	"Well if you don't then let me jog your memory: You took a small chip of wood from a historical church on Midgard - nothing criminal, mind you - and returned it to Vinci, where I assume you handed it over to the 'archaeologist' Albert Foster." The tone of her voice as she says "archaeologist," clearly conveys her disdain for his title. "Later you returned to Midgard with Albert Foster in tow, prompting us to run you out of the Deep."`
+	`	"Well if you don't then let me jog your memory: You took a small chip of wood from a historical church on Midgard - nothing criminal, mind you - and returned it to Vinci, where I assume you handed it over to the 'archaeologist' Albert Foster." The tone of her voice as she says "archaeologist," clearly conveys her disdain for his title. "Later you returned to Midgard with Albert Foster in tow, prompting us to run you out of the Deep.`
 	
 	label foster
 	`	"My first question to you: what exactly were you doing with Albert Foster?"`
@@ -919,7 +919,7 @@ conversation "deep: questioning"
 	label helped
 	action
 		set "deep: helped before archaeology"
-	`	The woman's mouth turns into a sly smile as she leans back in her chair. "Thank you for the information, Captain. Before I let you go, I'd like to thank you for the work you've done for the Deep. I was interested to hear that the same Captain who helped us pursue Beelzebub also helped Albert Foster. Don't worry, we all make stupid mistakes. We'll scratch this one off your record."`
+	`	The woman's mouth turns into a sly smile as she leans back in her chair. "Thank you for the information, Captain. Before I let you go, I'd like to thank you for the work you've done for the Deep. I was interested to hear that the same Captain who helped us pursue Beelzebub also helped Albert Foster. Don't worry, we all make stupid mistakes. We'll scratch this one off your record.`
 	`	"You clearly mean no harm to the Deep, so I'll give you the privilege of asking me any questions you might have after this encounter."`
 		goto questions
 	
@@ -1165,8 +1165,8 @@ mission "Deep: Project Hawking: Carbuncle"
 			`	"Project Hawking?" you ask. Garrison nods.`
 			
 			label project
-			`	"The exact details of Project Hawking are classified. I'm not able to tell you much aside from the fact that we're doing energy and weapons research. Scientists from the Deep who are highly specialized in a certain field will be asked to work on government projects every so often."`
-			`	"In the field of energy engineering, I'm among the best that the Deep has to offer. I worked on the Dwarf Core." Garrison pauses and chuckles to himself before saying, "I also contributed toward the creation of those comically impractical LP576a Battery Packs that I have yet to see a single ship using."`
+			`	"The exact details of Project Hawking are classified. I'm not able to tell you much aside from the fact that we're doing energy and weapons research. Scientists from the Deep who are highly specialized in a certain field will be asked to work on government projects every so often.`
+			`	"In the field of energy engineering, I'm among the best that the Deep has to offer. I worked on the Dwarf Core." Garrison pauses and chuckles to himself before saying, "I also contributed toward the creation of those comically impractical LP576a Battery Packs that I have yet to see a single ship using.`
 			`	"Anyhow, because of my past work, the Deep approached me to work on this project. The pay was better than what I was getting before so I accepted it. It was a pleasant surprise to meet my partners as well. Hannah graduated in the same undergrad class as me, double majoring in quantum mechanics and ancient history, of all things."`
 			choice
 				`	"What is it that you need from Carbuncle Station that is so secret?"`
@@ -1179,11 +1179,11 @@ mission "Deep: Project Hawking: Carbuncle"
 			label partners
 			branch electron
 				has "event: navy using mark ii ships"
-			`	"Pierre is an older guy, he's been working on laser weaponry for the better part of three decades now. Before this he was working on a separate project, but the Deep asked that he take time away from that to work on Project Hawking while they try to find a replacement for him, since the project needed someone with better knowledge in laser weaponry than the rest of us."`
+			`	"Pierre is an older guy, he's been working on laser weaponry for the better part of three decades now. Before this he was working on a separate project, but the Deep asked that he take time away from that to work on Project Hawking while they try to find a replacement for him, since the project needed someone with better knowledge in laser weaponry than the rest of us.`
 				goto laura
 			
 			label electron
-			`	"Pierre is an older guy. He has been working on laser weaponry for the better part of three decades now. If you've ever seen an Electron Beam in action, you have him to thank for that. And a few others, of course, but one of his findings is really what brought the whole project together."`
+			`	"Pierre is an older guy. He has been working on laser weaponry for the better part of three decades now. If you've ever seen an Electron Beam in action, you have him to thank for that. And a few others, of course, but one of his findings is really what brought the whole project together.`
 			
 			label laura
 			`	"Laura, on the other hand--"`
@@ -1221,7 +1221,7 @@ mission "Deep: Project Hawking: Prime"
 				`	"Why did we need to come all the way to Prime to get these materials?"`
 					goto alloys
 			
-			`	Pierre cocks his head to the side as he looks at you. "We're going to destroy them. Short and simple. We need to see how different ship alloys hold up to the technology we're working on."`
+			`	Pierre cocks his head to the side as he looks at you. "We're going to destroy them. Short and simple. We need to see how different ship alloys hold up to the technology we're working on.`
 			
 			label alloys
 			`	"We could have gotten materials from a shipyard local to the Deep, but Betelgeuse Shipyards gets regular shipments of metals more commonly used by shipyards in the Dirt Belt, so it's really the closest place to get everything we need."`
@@ -1231,7 +1231,7 @@ mission "Deep: Project Hawking: Prime"
 			
 			label story
 			`	"Let me answer that question with a short story of my life." Pierre clears his throat and puffs up his chest a little, as if preparing himself to tell a great epic. He may enjoy talking about himself a little too much...`
-			`	"I was born on Windblain in the Regor system. It's a small, quiet world of little galactic importance, but you should give it a visit sometime. My family wasn't the most well off, so I needed to work hard in my studies, which paid off immensely. Thanks to my exceptional grades in university, I was offered a government job even before graduation. I've been working directly for the Deep for the past 35 years and counting, and I've loved every minute of it! My younger sister though... well, let's just say she wasn't so focused on being successful in school and ended up on the wrong side of the law."`
+			`	"I was born on Windblain in the Regor system. It's a small, quiet world of little galactic importance, but you should give it a visit sometime. My family wasn't the most well off, so I needed to work hard in my studies, which paid off immensely. Thanks to my exceptional grades in university, I was offered a government job even before graduation. I've been working directly for the Deep for the past 35 years and counting, and I've loved every minute of it! My younger sister though... well, let's just say she wasn't so focused on being successful in school and ended up on the wrong side of the law.`
 			`	"How about you?"`
 			`	You tell Pierre about your life on New Boston, and how you saved up your money working at the textile mill from the age of fifteen until you were able to buy a pilot's license and finally leave your home world for the stars.`
 			`	"We aren't too different then," Pierre remarks. "We both worked hard to get where we are today. Thanks for sharing, <first>."`
@@ -1274,7 +1274,7 @@ mission "Deep: Project Hawking: Vinci"
 			`	"What did you learn in ancient history?" you ask.`
 			
 			label history
-			`	"I could spend weeks on end talking about what I learned in those classes. The most interesting thing I learned has to be my ancestry. Most of my ancestors came from a place on Earth called Scandinavia, and my last name means 'garden' in an ancient language."`
+			`	"I could spend weeks on end talking about what I learned in those classes. The most interesting thing I learned has to be my ancestry. Most of my ancestors came from a place on Earth called Scandinavia, and my last name means 'garden' in an ancient language.`
 			`	"It's interesting to know where my ancestors lived over a thousand years ago when humanity was still stuck on Earth. It's amazing that the hyperdrive was invented when it was too, because we could have easily wiped ourselves out if we hadn't. Life still isn't perfect across the galaxy, but it's still far better on average than it was on Earth alone."`
 			`	Hannah looks like she is ready to endlessly blather on about Earth before the hyperdrive was invented, but you are saved by Laura. "We got the electronics we need loaded onto your ship, Captain. Garrison and Pierre are waiting for us there."`
 				accept
@@ -1462,22 +1462,22 @@ conversation "deep: remnant"
 		has "deep: knew of stones before scientists"
 	
 	label "knew before"
-	`	"As you mentioned before, a single keystone is sufficient to enter the wormhole," Ivan says. "We've determined that there is a stabilization effect, either on the ship or the wormhole, that allows matter to cross the threshold. However, we'll need much more time and data to fully understand the true mechanism."`
+	`	"As you mentioned before, a single keystone is sufficient to enter the wormhole," Ivan says. "We've determined that there is a stabilization effect, either on the ship or the wormhole, that allows matter to cross the threshold. However, we'll need much more time and data to fully understand the true mechanism.`
 	branch remnant1
 		has "deep: did reveal remnant"
 	`	"Last time, you mentioned that there were alien creatures able to survive the vacuum of space, correct?"`
 	`	You nod.`
-	`	"Right. Well, it would be extremely interesting if we were to learn more about these alien creatures."`
+	`	"Right. Well, it would be extremely interesting if we were to learn more about these alien creatures.`
 		goto end
 
 	label remnant1
 	`	"Last time, you mentioned that there were humans living in this space, the... the 'Remainder?'"`
 	`	"Remnant," you say.`
-	`	"Right, that was it. Well, it would be extremely interesting if we were to learn more about this people."`
+	`	"Right, that was it. Well, it would be extremely interesting if we were to learn more about this people.`
 		goto end
 	
 	label "didn't know before"
-	`	"We've analyzed the keystones, and surprisingly they do allow entry into the wormhole in Terminus," Ivan explains. "It would appear that the stones stabilize the wormhole as the ship passes through it, or maybe it is stabilizing the ship in some way and not the wormhole. We'll need much more time to fully understand the true mechanism that is at play here. Whatever the case is, one stone is required for each ship to pass through the wormhole."`
+	`	"We've analyzed the keystones, and surprisingly they do allow entry into the wormhole in Terminus," Ivan explains. "It would appear that the stones stabilize the wormhole as the ship passes through it, or maybe it is stabilizing the ship in some way and not the wormhole. We'll need much more time to fully understand the true mechanism that is at play here. Whatever the case is, one stone is required for each ship to pass through the wormhole.`
 	`	"We sent a single drone through the wormhole to test that it was passable, and programmed it to return immediately in case the region beyond is hostile or dangerous. Would you be willing to explore the region for us? You may want to install a ramscoop, as we are unsure if there will be anywhere for your ship to refuel."`
 	branch "know now" "still don't know"
 		has "First Contact: Remnant: offered"
@@ -1725,7 +1725,7 @@ mission "Deep: Remnant: Engines"
 	
 	on offer
 		conversation
-			`Thanks to the new funding grants from the Deep, the team has moved their research lab into a more advanced facility closer to the spaceport. "This new location will make transferring cargo from your ship to the lab much easier, something we expect to do a lot of in the next few months. It's also much closer to my office, which will make life much easier," Ivan adds. "A careful study of the outfit scans you collected has indicated that the Remnant technology uses unprecedented advancements and improvements that haven't been seen in any human technology before."`
+			`Thanks to the new funding grants from the Deep, the team has moved their research lab into a more advanced facility closer to the spaceport. "This new location will make transferring cargo from your ship to the lab much easier, something we expect to do a lot of in the next few months. It's also much closer to my office, which will make life much easier," Ivan adds. "A careful study of the outfit scans you collected has indicated that the Remnant technology uses unprecedented advancements and improvements that haven't been seen in any human technology before.`
 			
 			branch friendly
 				has "event: ember waste label"
@@ -1789,7 +1789,7 @@ mission "Deep: Remnant: Generators"
 		payment 417000
 		conversation
 			`An unloading crew quickly removes the engines from your ship and transports them to Ivan's research lab. You are escorted into a lobby where one of the administrative staff pays you <payment> in exchange for the engines. He asks you to wait, indicating that Ivan or one of the other scientists should be out to meet you shortly. After about three hours of waiting, Ivan enters the room.`
-			`	"These engines, they are fantastic! The scans made them seem similar to human ion engines, but surprisingly they can outperform even atomic engines! The thrust-to-mass ratio is great, and they have somehow avoided the immense heat generation that our engines emit. They do have some downsides, but it's still amazing that such an isolated group of humans could make technological leaps beyond even what the Deep has accomplished."`
+			`	"These engines, they are fantastic! The scans made them seem similar to human ion engines, but surprisingly they can outperform even atomic engines! The thrust-to-mass ratio is great, and they have somehow avoided the immense heat generation that our engines emit. They do have some downsides, but it's still amazing that such an isolated group of humans could make technological leaps beyond even what the Deep has accomplished.`
 			`	"We've decided that the next Remnant technology we'd like to examine is their power generation. Could you bring us one of their Millennium Cells?"`
 			choice
 				`	"Sure. I'll be back in no time at all."`
@@ -1816,7 +1816,7 @@ mission "Deep: Remnant: Inhibitor Cannon"
 		payment 276500
 		conversation
 			`Again, the Remnant technology is removed from your ship and transported to the research lab. You wander into the waiting area and are paid <payment>. After several hours, the scientists come to you with their initial findings.`
-			`	"This Millennium Cell is little more than a radiothermal generator. Not exactly the best kind of generator if you're looking for lots of power - our Fusion Reactors are far better at that - but for a radiothermal generator, it produces remarkably little heat. We'll have to take it apart to find out how they are manipulating the decay heat so effectively, but preparing for that will take some time."`
+			`	"This Millennium Cell is little more than a radiothermal generator. Not exactly the best kind of generator if you're looking for lots of power - our Fusion Reactors are far better at that - but for a radiothermal generator, it produces remarkably little heat. We'll have to take it apart to find out how they are manipulating the decay heat so effectively, but preparing for that will take some time.`
 			`	"I suppose by now you've seen the Remnant ships in combat more than a few times. The outfit scans showed one of their primary weapons is a modified Particle Cannon, but we'd need to see the actual weapon in order to understand how the modification works. Would you retrieve an Inhibitor Cannon for us?"`
 			choice
 				`	"I'd be glad to."`
@@ -1961,14 +1961,14 @@ mission "Deep: Scientist Rescue 0"
 					decline
 			
 			label situation
-			`	"A number of scientists have been kidnapped during a venture to the Far North. Their intent was to research the Wolf-Rayet star in the Gorvi system. Due to this system's proximity to the anarchist worlds, very little research has been conducted on it. Pierre, Hannah, and... and Laura were all aboard the Star Queen which contained the scientists. Since you know them I only thought it fair that you should know about the situation."`
+			`	"A number of scientists have been kidnapped during a venture to the Far North. Their intent was to research the Wolf-Rayet star in the Gorvi system. Due to this system's proximity to the anarchist worlds, very little research has been conducted on it. Pierre, Hannah, and... and Laura were all aboard the Star Queen which contained the scientists. Since you know them I only thought it fair that you should know about the situation.`
 			`	"It was yesterday that we were informed of the kidnapping. The Star Queen and its escorts were preparing to refuel on Prime in the Betelgeuse system when a large pirate fleet entered the system. The Star Queen's escorts were swiftly destroyed, and she was captured. We lost all communications with the vessel after that. Would you be willing to help us locate the Star Queen while we prepare a rescue force?"`
 			choice
 				`	"I would be glad to help. I'll prepare my ship immediately."`
 					accept
 				`	"Why can't you locate it yourself?"`
 			
-			`	"Given the importance of the scientists aboard the Star Queen, we took great care in providing them with some of the strongest warships we had. The loss of these ships and their crew is a major blow to Deep Security's combat capabilities. We are recoiling from the impact of this loss while we assemble a proper rescue fleet and are unable to spare any ships for a scout fleet at this moment."`
+			`	"Given the importance of the scientists aboard the Star Queen, we took great care in providing them with some of the strongest warships we had. The loss of these ships and their crew is a major blow to Deep Security's combat capabilities. We are recoiling from the impact of this loss while we assemble a proper rescue fleet and are unable to spare any ships for a scout fleet at this moment.`
 			`	"In a situation like this, every minute matters, and if someone like you can find the Star Queen quickly then that means that there is a higher chance everyone can come out of this alive."`
 			choice
 				`	"Okay, I'm willing to help."`
@@ -2778,7 +2778,7 @@ mission "Home for Skadenga 1"
 			`	But now this place is a ghost-town, and you walk its empty halls unsure of why you even bothered to explore it in the first place.`
 			`	You turn a corner and find a woman standing near a booth with blown up images of ice-covered scenery. She waves at you excitedly.`
 			`	"Hello, ser! I hope you've been enjoying your stay in our state of the art spaceport! But why stay cooped up in here, when you could be out there?" She gestures toward the windows.`
-			`	"Explore the breath-taking Glaesisvellir ice-plains, or the boiling Slidr river. We'll even take you to the Hrimbrimr valley where the famous Rigellian cure was discovered!"`
+			`	"Explore the breath-taking Glaesisvellir ice-plains, or the boiling Slidr river. We'll even take you to the Hrimbrimr valley where the famous Rigellian cure was discovered!`
 			`	"So ser," she continues, "what do you say? Should I sign you up for the VIP Winter-Wonder Excursion Package for a special time limited-only offer of 2,000 credits?"`
 			choice
 				`	"Sure, I'd love to see more of this world."`
@@ -2872,7 +2872,7 @@ mission "Home for Skadenga 1"
 					goto riverlike
 				`	"Wait, is that part of a man's face carved into it? What is so special about this rock?"`
 			`	"That rock is supposed to celebrate man who discover Rigellian cure. He was called Hank, or Henry, or Bill, or something." Hjlod shrugs with evident disdain. "The cure was found here, but back when tundra was melting and Nifel was a little varmer. They say this man discover it and they want to make grand statue for him. But it turn out Nifel not so great place for statue. Beside, no one like statue of liar."`
-			`	Hjlod turns back to her controls and gets the Ice-Crawler moving forward again. "That is enough about stupid rock and stupider man."`
+			`	Hjlod turns back to her controls and gets the Ice-Crawler moving forward again. "That is enough about stupid rock and stupider man.`
 			label riverlike
 			`	"Now ve go to river," she tells you. The large, oddly shaped rock falls out of your field of view as the Ice-Crawler turns away from it.`
 			scene "scene/snowfield"
@@ -3043,8 +3043,8 @@ mission "Home for Skadenga 1"
 				`	"What do you expect me to do?"`
 					goto expect
 				`	"What do you mean a century? How long have you been here? Why were you waiting for me?"`
-			`	The Ondurdis raises an eyebrow. "So you want to know our secrets? We ask much, so I will tell you more than most know. Long ago, the so-called-elves brought the Skadenga to Deep. We had to make penance for some mistakes. Our volva, or seeress, saw that to make amends we must come to Nifel. We did not know why, but when we found the Goddess-Stone, we knew we had made right decision."`
-			`	"Since then, we have lived here and acted as guides and pathfinders to others. It was one of our sisters, Eymani, an herbalist, who discovered the cure to Rigellian plague. We thought this was why we had been sent here. Our duty to act as handmaidens of healing."`
+			`	The Ondurdis raises an eyebrow. "So you want to know our secrets? We ask much, so I will tell you more than most know. Long ago, the so-called-elves brought the Skadenga to Deep. We had to make penance for some mistakes. Our volva, or seeress, saw that to make amends we must come to Nifel. We did not know why, but when we found the Goddess-Stone, we knew we had made right decision.`
+			`	"Since then, we have lived here and acted as guides and pathfinders to others. It was one of our sisters, Eymani, an herbalist, who discovered the cure to Rigellian plague. We thought this was why we had been sent here. Our duty to act as handmaidens of healing.`
 			label expect
 			`	"With each passing year, Nifel grows colder and outsiders less frequent. Our numbers dwindle as does our usefulness. This is dying world, and we need new home. Eighty years ago one of our holiest sisters had vision. She saw that stranger with mark of Skade would arrive and that stranger would help us find new home."`
 			`	The Ondurdis points a boney finger right at you. "First, you must discover which world will be our home. Then you must find us transportation. We will of course pay you in one way or another. Would you do this for us?"`
@@ -3125,7 +3125,7 @@ mission "Home for Skadenga 2"
 				`	"Pay my respects to what?"`
 				`	"Who are you?"`
 					goto who
-			`	"Why, the Ran-Stone, of course." The old man points toward the metal tower in the sea. "Few come here any more. Few remember, or care, about the old ways. But the goddess Ran, she is as patient and as terrible as the sea, and like the sea, she has claimed this world."`
+			`	"Why, the Ran-Stone, of course." The old man points toward the metal tower in the sea. "Few come here any more. Few remember, or care, about the old ways. But the goddess Ran, she is as patient and as terrible as the sea, and like the sea, she has claimed this world.`
 			`	"So why are you here bothering old Aldfrith, if not to look upon the great countenance of divinity?"`
 				goto why
 			label who
@@ -3179,20 +3179,20 @@ mission "Home for Skadenga 2"
 			`	"Of course I knew." Jakob answers. "It is my business to know. The only people who live here anymore are employees of my firm and those hill-witches." Holding up both hands in a placating gesture, he adds, "And I really am sorry we could not extract you from that avalanche. We don't have the resources allocated to support rescue missions anymore; various services, including emergency ones, are only barely functional. The whole operation on this planet is being shut down, you know. Not enough opportunity to make a profit left here. That's why it will be completely uninhabited within 50 years."`
 			choice
 				`	"You're abandoning an entire planet?"`
-			`	He leans forward with a sly look on his face. "Think about it. Why employ a worldwide workforce of 300,000 in the vain hope of discovering new pharmaceutical products on a snowy wasteland? There hasn't been a profitable discovery here in generations. It's a money pit. You run a ship, a business, you understand."`
+			`	He leans forward with a sly look on his face. "Think about it. Why employ a worldwide workforce of 300,000 in the vain hope of discovering new pharmaceutical products on a snowy wasteland? There hasn't been a profitable discovery here in generations. It's a money pit. You run a ship, a business, you understand.`
 			`	"There is, however, one hiccup." Jakob leans back. "A thorn that has been in our side since our research firm first colonized this world over 600 years ago. Those crazy hill-witches. Sure, early on they had their uses as guides and whatnot. But, they are a cultural dead end, an atavistic blight on our corporate world. You know," he continues with a humorous glint in his eye, "They actually believe that they were brought here during Earth's stone-age by magical space-fairies."`
 			`	"Now, now." Henrik finally cuts in. "We here in the Deep do value all our resident people and cultures. We are not here to denigrate our citizens, no matter how unusual."`
 			choice
 				`	"But they're leaving. So what's the problem?"`
 					goto leaving
 				`	"I thought folk tales of elves were common in the Deep. What makes the Skadenga so different from the rest of you?"`
-			`	Henrik leans back. "Well, you're not wrong. In fact, there's been studies about whether the Skadenga are truly a traditional reflection of the Deep people or an extreme offshoot of what we used to be. Suffice to say, I believe it's the latter, and most modern Deep historians would agree with me."`
+			`	Henrik leans back. "Well, you're not wrong. In fact, there's been studies about whether the Skadenga are truly a traditional reflection of the Deep people or an extreme offshoot of what we used to be. Suffice to say, I believe it's the latter, and most modern Deep historians would agree with me.`
 			`	"Here's what really makes them different: our popular folk tales are like the childhood stories you heard of, say, the boogeyman. The Skadenga don't just tell them - they formed a religion out of those stories. If you've spoken with them, I'm sure you can tell that it's quite reminiscent of ancient paganism. Certainly they can practice whatever they want, but we're concerned about some of the usual connotations of paganism. We haven't been able to prove any extreme behavior, but their religion gives us reason to suspect it. If they stay culturally isolated from the rest of the Deep, their religion could progress in ways more... harmful. I'll leave it at that."`
 				goto resettle
 			label leaving
 			`	Henrik clears his throat. "Leaving, yes, but to where? These poor people are in grave need of our help, our public services. Their primitive, superstitious existence is both an embarrassment to the Deep, and a humanitarian crisis that we need to solve."`
 			label resettle
-			`	"The Deep would never forcibly resettle a population. But with your help, we have an opportunity to guide them to a place where they could receive the help they need. We know you recently visited Windblain and Asgard. Sending them to Windblain, a barely inhabited world with no useful public services, would be a huge mistake. These poor wretches would disappear into the uncharted wilds. Asgard, however, has a robust civil service and safety net that would be perfect to help them adapt to our modern culture."`
+			`	"The Deep would never forcibly resettle a population. But with your help, we have an opportunity to guide them to a place where they could receive the help they need. We know you recently visited Windblain and Asgard. Sending them to Windblain, a barely inhabited world with no useful public services, would be a huge mistake. These poor wretches would disappear into the uncharted wilds. Asgard, however, has a robust civil service and safety net that would be perfect to help them adapt to our modern culture.`
 			`	"This is why I asked the Vice Planetary-Governor to hold this meeting. The Deep needs you to convince these poor, backwards people that they should live on Asgard." Henrik shrugs. "For all we know, you've already decided to tell them Asgard is the best choice, in which case we're really not asking you to do anything you weren't already planning on doing. We will also help facilitate the move by providing transportation. Furthermore, for your support in this delicate matter, we will transfer 850,000 credits to your account upon their arrival in Asgard. Really, everyone wins this way."`
 			choice
 				`	"But the Skadenga-"`
@@ -3231,7 +3231,7 @@ mission "Home for Skadenga 3"
 				`	(Grin and say, "Hey!")`
 				`	(Ignore her.)`
 			`	"Hello!" She gives you a professional smile. "It's a beautiful place, isn't it? Not just the mall, but the town of Helsingor itself."`
-			`	She sits next to you. "You might not realize it, but homes here are incredibly affordable right now. If you're looking for a new place to live, now is the time." She lowers her voice. "But you'll have to act soon. The Helsingor secret is about to get out, and once it does, prices here will skyrocket!"`
+			`	She sits next to you. "You might not realize it, but homes here are incredibly affordable right now. If you're looking for a new place to live, now is the time." She lowers her voice. "But you'll have to act soon. The Helsingor secret is about to get out, and once it does, prices here will skyrocket!`
 			`	"There are three huge prefabricated housing developments that have just completed construction on the edges of town. I could get you an appointment today if you're interested." She hands you a card. "My name is Carla Von Hausen, and I'd be happy to serve as your real-estate agent." She gives you a sharp, practiced smile that does not quite reach her eyes.`
 			choice
 				`	"Beat it, lady."`
@@ -3284,7 +3284,7 @@ mission "Home for Skadenga 4"
 					goto waiting
 				`	"I was abducted by the Vice Planetary-Governor."`
 			`	"That is no surprise," Hjlod says nonchalantly. "They alvays do thing like this. It matters not to us."`
-			`	You ask her if she's worried you've been compromised - that you might be working against the Skadenga's best interests. Hjlod shakes her head. "No. Future is set. Vhat vill, vill be. You are given task to tell us vhere to go, ve go vhere you say. The rest is just noise."`
+			`	You ask her if she's worried you've been compromised - that you might be working against the Skadenga's best interests. Hjlod shakes her head. "No. Future is set. Vhat vill, vill be. You are given task to tell us vhere to go, ve go vhere you say. The rest is just noise.`
 			label waiting
 			`	"Now," Hjlod says, "Tell me about Setstokkr. Did you find it?"`
 			choice
@@ -3303,13 +3303,13 @@ mission "Home for Skadenga 4"
 			action
 				set "Nifel"
 			`	You answer, "There is a nearly abandoned village called Hrithfjall next to a coastal God-Stone. Something about that place felt right. I believe that is where the Skadenga should migrate."`
-			`	Hjlod nods. "Hrithfjall sounds like good place. I vill tell Ondurdis."`
+			`	Hjlod nods. "Hrithfjall sounds like good place. I vill tell Ondurdis.`
 				goto end
 			label asgard
 			action
 				set "Asgard"
 			`	You answer, "On Asgard, there is a great market built around their God-Stone, and many new homes in need of people to fill them. The people there have lost their way and they need the Skadenga to remind them of who they were."`
-			`	Hjlod nods. "The Skadenga have alvays been guides, pathfinders. I vill tell Ondurdis."`
+			`	Hjlod nods. "The Skadenga have alvays been guides, pathfinders. I vill tell Ondurdis.`
 			label end
 			`	"Vhen you were gone, thing, or assembly, vas held. Ondurdis called in all Skadenga from all villages across Nifel. You must find transportation for 2,200 folk. That is what Onderduis told me to tell you."`
 			`	You frown and ask, "Did she provide money?"`
@@ -3319,7 +3319,7 @@ mission "Home for Skadenga 4"
 		conversation
 			`	Outside your ship, you are met by a representative of the Transport Union. "We have been expecting you, Captain <last>." They escort you to an elevator and up to the penthouse of the tallest building in Valhalla's capital of Himinbjorg.`
 			scene "scene/tower"
-			`	Three youngish men adorned in trending clothes smile as you enter. "Ah, Captain <last>, what a pleasure to finally meet you. I am Kaiden, and these are my associates Braiden and Grayden. We are executives of the Transport Union. Obviously, we were made aware you would be coming and are looking forward toward creating a lasting and beneficial relationship with you and your... clients."`
+			`	Three youngish men adorned in trending clothes smile as you enter. "Ah, Captain <last>, what a pleasure to finally meet you. I am Kaiden, and these are my associates Braiden and Grayden. We are executives of the Transport Union. Obviously, we were made aware you would be coming and are looking forward toward creating a lasting and beneficial relationship with you and your... clients.`
 			`	"We've heard that you have this inspiring idea to transport an entire backwater community from one world to another," Kaiden says.`
 			`	"Really inspirational," Braiden chimes in.`
 			`	"So inspiring," Grayden adds with an opaque hand gesture you think you've seen done by celebrities.`
@@ -3387,7 +3387,7 @@ mission "Mani Refit"
 	on offer
 		conversation
 			`Your inbox blinks with a new message from the Transport Union:`
-			`	"The fleet is ready for its inspirational journey. Please return to Mani."`
+			`	"The fleet is ready for its inspirational journey. Please return to Mani.`
 			`		-Jayden, Mani Administrator, Transport Union"`
 				accept
 
@@ -3459,7 +3459,7 @@ mission "Home for Skadenga 7"
 			`	You back away slowly and bump into someone. You turn to see the real-estate agent Carla Von Hausen smiling at you. "Well done, Captain <last>. I've been authorized to tell you that my superiors have deposited 850,000 credits into your account, as was agreed upon earlier."`
 			choice
 				`	"Your superiors!?"`
-			`	Carla grins. "The Census and Culture Bureau. I am one of their field agents. They are most pleased with how you handled this. Helping the Skadenga reintegrate into our culture is a big win for both the Bureau and the Skadenga."`
+			`	Carla grins. "The Census and Culture Bureau. I am one of their field agents. They are most pleased with how you handled this. Helping the Skadenga reintegrate into our culture is a big win for both the Bureau and the Skadenga.`
 			`	"Anyways, I just wanted to pass that on. I have lots of work to do, thanks to you." She winks and wanders into the crowd.`
 			`	You return to your ship to count your money as you hear the Transport Union ships engage their engines to pick up another load of the Skadenga.`
 
@@ -3506,12 +3506,12 @@ mission "Skadenga Call 2"
 				`	"What do you want from me?"`
 				`	"Who are these people?"`
 					goto who
-			`	Hjlod glares at you. "From you? Everything. For that is what you took from us."`
+			`	Hjlod glares at you. "From you? Everything. For that is what you took from us.`
 			`	"I do not know vhy you did it. Vhy you brought us here. If Skade really let us down. Or if you ignored her," she growls. "But it does not matter. All that matters is that ve leave, and that is vhy ve need you."`
 				goto here
 			label who
 			`	Hjlod laughs and tears run down her cheeks. "Do you not recognize us? Our great savior? Ve are the Skadenga, and this is your handivwork."`
-			`	She look away from you and continues. "The rest are not dead, no. But they have left us. Most are happy; happy to be fed, happy to be entertained, happy to forget vho they are, happy to be Skadenga in name, but not in practice. But those here cannot accept that. Ve refuse to become them."`
+			`	She look away from you and continues. "The rest are not dead, no. But they have left us. Most are happy; happy to be fed, happy to be entertained, happy to forget vho they are, happy to be Skadenga in name, but not in practice. But those here cannot accept that. Ve refuse to become them.`
 			`	"Ve hide now. From the social workers, from the service providers, from the government. They can still find us, they know ve are here, but vhat they don't know is that ve can leave. That you can take us avay from here."`
 			label here
 			`	Hjlod takes a deep, calming breath. "I call because you are our only hope. They vill not let us leave. They vill not let us be. They will steal our souls." She points a shaky finger at you. "Take us back to Nifel. All those who are left. Take us home. Ve know the cold vill get us eventually. But better to live on a dying vorld as Skadenga than to live here as nothing."`
@@ -3527,7 +3527,7 @@ mission "Skadenga Call 2"
 				`	(Find Carla.)`
 			`	You leave Hjlod and her gang of stubborn savages behind, and return to the active parts of the thrumming spaceport. Carla's contact information, as an alleged real estate agent, is easy to find, and in a few minutes you have her on call. "Captain <last>, it is a pleasure to hear from you again. What-so-ever can I help you with?" she says with believable cheerfulness.`
 			`	You tell her about the Skadenga hiding in the spaceport and their plans to escape to Nifel.`
-			`	"Oh dear!" Carla says. "How terrible. Those poor, foolish simpletons would surely suffer on that terrible frozen world. How misguided of them. We are aware that some have struggled to assimilate. It's quite tragic, but we will handle things from here. Hopefully, we can convince them to integrate eventually. It really is for the best. I wish their old leader could have seen that before she died. It would have been easier for everyone."`
+			`	"Oh dear!" Carla says. "How terrible. Those poor, foolish simpletons would surely suffer on that terrible frozen world. How misguided of them. We are aware that some have struggled to assimilate. It's quite tragic, but we will handle things from here. Hopefully, we can convince them to integrate eventually. It really is for the best. I wish their old leader could have seen that before she died. It would have been easier for everyone.`
 			`	"As always, we appreciate your valuable contributions. I'll authorize a generous sum of credits to be transferred to your account. I need to get some approvals so it may take a couple of days to come through. Thank you, and buh-bye!"`
 				decline
 			label Hjlod
@@ -3562,7 +3562,7 @@ mission "Skadenga Call 2"
 		conversation
 			scene "scene/snowvillage"
 			`Your ship touches down just outside the abandoned village of Udainskar. Silently, your passengers disembark and drift into the world they once knew and thought never to see again. The village appears to have weathered its abandonment well, and it appears the people here will not have too much trouble picking up where they left off.`
-			`	Hjlod lingers besides your ship for just a moment. "The credits are in hard-drive on your ship's console. I hope it makes you happy."`
+			`	Hjlod lingers besides your ship for just a moment. "The credits are in hard-drive on your ship's console. I hope it makes you happy.`
 			`	"I do not know vhy you sent us to that place. But I am happy to be home. So go, and maybe one day I vill not hate to see you again."`
 
 
@@ -3674,7 +3674,7 @@ mission "Home for Skadenga 9"
 				`	"I was not sent by the Allen whoevers, and if you even touch me, I will burn this entire planet to ash."`
 			branch buffboi
 				"combat rating" > 8104
-			`	Hroar breaks into uproarious laughter. People sitting the booth over, who were obviously listening, also start laughing. "Don't make threats you can't back up. Or you're gonna be a messenger in a bodybag."`
+			`	Hroar breaks into uproarious laughter. People sitting the booth over, who were obviously listening, also start laughing. "Don't make threats you can't back up. Or you're gonna be a messenger in a bodybag.`
 			label prenext
 			`	"If it wasn't the Allen boys who sent you, who do you work for? The Leshinskis? Mad Mikkel's Gang? Or maybe the Hanovarian?" Hroar pauses. "Nah, not his style. So who?"`
 				goto next
@@ -3684,7 +3684,7 @@ mission "Home for Skadenga 9"
 			label next
 			choice
 				`	(Explain the situation.)`
-			`	After you finish your explanation, Hroar frowns. "This is some kind of pickle you've gotten yourself into. And humanitarian or not, I ain't a man who is known for working for free. But what you heard is correct: if you need people moved and the Union won't do it, I'm your best bet in the Deep."`
+			`	After you finish your explanation, Hroar frowns. "This is some kind of pickle you've gotten yourself into. And humanitarian or not, I ain't a man who is known for working for free. But what you heard is correct: if you need people moved and the Union won't do it, I'm your best bet in the Deep.`
 			`	"It would be something to give the Union a black eye like this. And I would generate some good will - I could probably even recoup most the costs in tax-write offs and government grants. But still..." He drifts off, then looks at you hard for a moment. "Tell you what. I'll do it, for free, if you promise to owe me a favor in the future. A favor for a favor. What'dya say?"`
 			choice
 				`	"Deal."`
@@ -3734,7 +3734,7 @@ mission "Home for Skadenga 10"
 	on offer
 		conversation
 			`Your inbox blinks with a new message from Hroar on <planet>.`
-			`	"Everything is ready. Get back here."`
+			`	"Everything is ready. Get back here.`
 			`				-Hroar`
 			`			CEO of Hardy Hroar's Haulers`
 			`			'We're an unstoppable force that has never met an immovable object!'"`
@@ -3935,7 +3935,7 @@ mission "Homecoming to Skadenga"
 			`	You explain you've already done enough for them and are needed elsewhere. They graciously accept your excuses, and you leave back to your ship.`
 				decline
 			label task
-			`	The Ondurdis smiles. "I knew you would accept."`
+			`	The Ondurdis smiles. "I knew you would accept.`
 			`	"We have folk here who have died over last year. Mostly old, a few in accidents, nothing out of ordinary. But each Skadenga carries with them life-stone, upon which they carve their memories. When Skadenga dies, these stones must be returned to their Family-Cairns by their nearest relative or closest friend. But, all our Family-Cairns are on <planet>."`
 			`	She then nods at you. "If you could transport family members of deceased to return their stones, it would mean much to everyone here. We would pay you <payment>."`
 			choice
@@ -4058,7 +4058,7 @@ mission "Hjlod Remembers Windblain"
 	on offer
 		dialog
 			`Your inbox hums with a new message from <planet>:`
-			`	"Dear <first>,"`
+			`	"Dear <first>,`
 			`	I never properly thanked you for saving my life on Nifel all those years ago. If you're ever in the neighborhood, please stop by <planet>.`
 			`				Signed, Hjlod"`
 	on complete
@@ -4088,7 +4088,7 @@ mission "Hjlod Remembers Nifel"
 	on offer
 		dialog
 			`Your inbox hums with a new message from Nifel.`
-			`	"Dear <first>,"`
+			`	"Dear <first>,`
 			`	I never properly thanked you for saving my life all those years ago. If you're ever in the neighborhood, please stop by <planet>.`
 			`				Signed, Hjlod"`
 			

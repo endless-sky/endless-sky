@@ -184,7 +184,7 @@ mission "Ask the Hai about the Unfettered"
 			label war
 			`	He says, "I would not call it war. We launch no raids on them. We only defend when they attack. And, we supply them with food and other things needful for life. They are not our enemies, they are just those who do not fit in. You have surely seen what our society is like: safe, stable, predictable, deliberate. It suits most of us well. But there are those..."`
 			label raids
-			`	He pauses. "No, I am telling this unfairly. I will start again. Hundreds of years ago, when I was young, our territory was raided by aliens from the east, who came in massive warships and plundered our worlds. In those days there were some Hai who were brave enough to risk their lives to defend us. The raids lasted for decades, then abruptly stopped."`
+			`	He pauses. "No, I am telling this unfairly. I will start again. Hundreds of years ago, when I was young, our territory was raided by aliens from the east, who came in massive warships and plundered our worlds. In those days there were some Hai who were brave enough to risk their lives to defend us. The raids lasted for decades, then abruptly stopped.`
 			`	"Most of those who had fought the invaders were glad to return to ordinary life, but there were some for whom life now seemed bland and meaningless without the excitement and chaos of war. They started colonies in the systems to the north, and fought amongst themselves, and mismanaged the land, and grew in numbers. And now their worlds cannot feed them all, and they invade us and tell stories to put blame on us for their failures."`
 			choice
 				`	"Shouldn't they be treated with gratitude for defending you against the raiders?"`
@@ -238,8 +238,8 @@ mission "Returning Home"
 			`	"Good. My name is Elliot." You introduce yourself to Elliot and shake hands.`
 			`	"Can you take me to <destination>?" Elliot asks.`
 			`	"That's all the way in the Dirt Belt," you say. "Why do you want to go that far?"`
-			`	Elliot looks down at the ground for a second and takes a deep breath while gripping his hat in his hands. "You see, I haven't lived here all my life. I was born on <planet> to a poor farming family. Most of my days were spent working on the farm, which I hated with a passion. One day I just got fed up with things and I ran away."`
-			`	"I ran away from home to the spaceport city and snuck my way into the cargo hold of a freighter. The captain didn't open the cargo hold for three weeks while I stayed in it. Lucky for me the freighter was transporting food, so I had plenty to eat."`
+			`	Elliot looks down at the ground for a second and takes a deep breath while gripping his hat in his hands. "You see, I haven't lived here all my life. I was born on <planet> to a poor farming family. Most of my days were spent working on the farm, which I hated with a passion. One day I just got fed up with things and I ran away.`
+			`	"I ran away from home to the spaceport city and snuck my way into the cargo hold of a freighter. The captain didn't open the cargo hold for three weeks while I stayed in it. Lucky for me the freighter was transporting food, so I had plenty to eat.`
 			`	"When the cargo hold doors finally opened, I ran out as fast as I could, only to run back in at the sight of a group of Hai. I had no idea where I was at the time, but I've been living here ever since. That was when I was thirteen, nearly five years ago now."`
 			`	Elliot looks down at the ground again and wipes a tear from the corner of his eye.`
 			choice
@@ -392,14 +392,14 @@ mission "Expanding Business [1]"
 				`	"Sorry, but I don't have the time to talk about this."`
 					goto walk
 			
-			`	"Of course you're worth more than me, Captain <last>, but you are no business owner. I have the connections and skills, but a name like yours will always help."`
+			`	"Of course you're worth more than me, Captain <last>, but you are no business owner. I have the connections and skills, but a name like yours will always help.`
 				goto opportunity
 			
 			label walk
 			`	You try to walk away, but Turner stops you by grabbing your arm and continues to talk.`
 			
 			label opportunity
-			`	"Allow me to explain. The journey to the Hai can be a dangerous one, even with the new commitment to safety made by both governments. I heard many stories during the war of merchants trying to reach the Hai, but thanks to the Navy being distracted, those merchants fell victim to pirates patrolling the systems of the Far North. Even now, those pirates roam almost unchallenged, and many merchants are trapped here without the means to safely return. They expended most, if not all, of their ammunition trying to get here, and now they have none to defend them on their way back. Human ammunition has become a scarce commodity among human captains in this region of space, leaving open a market that's just waiting to be cornered."`
+			`	"Allow me to explain. The journey to the Hai can be a dangerous one, even with the new commitment to safety made by both governments. I heard many stories during the war of merchants trying to reach the Hai, but thanks to the Navy being distracted, those merchants fell victim to pirates patrolling the systems of the Far North. Even now, those pirates roam almost unchallenged, and many merchants are trapped here without the means to safely return. They expended most, if not all, of their ammunition trying to get here, and now they have none to defend them on their way back. Human ammunition has become a scarce commodity among human captains in this region of space, leaving open a market that's just waiting to be cornered.`
 			`	"I'd like you, Captain <last>, hero of humanity, to help me set up an outfitter here on <origin>, an outfitter that would supply these desperate merchants with relief by supplying them with the ammunition they need, along with outfits they might want to buy for their old ships. I've already received approval from the Hai government for the construction of an outfitter, and with a name like yours backing up this business, the profits are sure to be phenomenal, profits that you would be sharing in by being a founding member of this outfitter."`
 			label choices
 			choice
@@ -597,7 +597,7 @@ mission "Expanding Business [6]"
 				`	"You need me to help you escort freighters again?"`
 				`	"Do you want to build a shipyard selling human ships?"`
 			
-			`	"Yes, Captain. Right now, the only realistic way that a human born here can get a ship is if they know a captain willing to retire. Even then, prices for a human ship can be more than twice what they are across the wormhole. You'd think they could just get passage and buy a human ship over there, but those banks just don't recognize credit histories from this side. It's preposterous, Captain <last>!"`
+			`	"Yes, Captain. Right now, the only realistic way that a human born here can get a ship is if they know a captain willing to retire. Even then, prices for a human ship can be more than twice what they are across the wormhole. You'd think they could just get passage and buy a human ship over there, but those banks just don't recognize credit histories from this side. It's preposterous, Captain <last>!`
 			`	"I've already made arrangements with the local Hai government. The rest of the park next to the outfitter is now my property, and I intend to use it to build the shipyard. I've also contacted Megaparsec and bought a license to build their ships and some of the outfits they sell on <planet>. My freighters are at the ready in the spaceport right now. All I need you to do is escort them to <destination> and back, and in six to seven months' time when the shipyard is done, you'll reap the rewards. What do you say, Captain <last>? Do you want to be a hero to millions once again?"`
 			choice
 				`	"Sure, this sounds like a great idea."`

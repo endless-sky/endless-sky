@@ -337,13 +337,13 @@ mission "Hai Reveal [C05] Cleanup"
 			`	Her voice drops to a more reasonable level. "I never wanted to kidnap people," Terry says, then lowers her voice even more. "I inherited that legacy..."`
 			`	"You still profited off it, did nothing to stop it," you point out.`
 			`	Your tone had not been accusatory, but merely matter of fact, and yet they seem to have struck her like a sack of bricks. Her composure shatters, and she begins to sob, sinking to her knees and shielding her face from the wind.`
-			`	"It was never meant to be like this," she forces out between sobs. "But the Philosophers were our only resource, and we weren't in control anymore."`
+			`	"It was never meant to be like this," she forces out between sobs. "But the Philosophers were our only resource, and we weren't in control anymore.`
 			`	"We wanted to reform the government, make it better, make it work for the people instead of against them. We dealt with the devil to keep that dream alive. I guess I should have expected it to get us burnt eventually."`
 			choice
 				`	"Who is 'us?'"`
 			`	She sighs. "My father and I, and a couple of the old survivors of the purge. It's only me left now though, just one Base Principle."`
 			`	You shake your head and ask, "Do you realize you nearly started a war that would have killed millions? Possibly ended human government entirely?"`
-			`	"I know," she says, calm now. "Obviously not my intent, but maybe that would have been better in the long run than the Republic and its corruption. There's no apology appropriate for it, and I can't pretend it would be totally sincere on that front. War changes things; sometimes some pain in the short term is needed for a better future."`
+			`	"I know," she says, calm now. "Obviously not my intent, but maybe that would have been better in the long run than the Republic and its corruption. There's no apology appropriate for it, and I can't pretend it would be totally sincere on that front. War changes things; sometimes some pain in the short term is needed for a better future.`
 			`	"The Free Worlds were almost the perfect catalyst, but none of us could have predicted the Pug. Still, that nearly forced Alastair into retirement; it was almost enough. Were it not for the Pug, I would already be running the Syndicate, and there would have been no further risk with the Hai. None of this would have ever happened."`
 			`	Her expression is defiant. "No one would have cared about a few missing people in the world I would have built! It's a necessary sacrifice in the name of progress, and I would've shut down the pirates myself!"`
 			choice
@@ -413,8 +413,8 @@ mission "Hai Reveal [C05] Cleanup"
 				set "Hai Reveal [C05] Cleanup: label judge"
 			`	"You'd better be," she says. "You and I both know that this can't become public. If you take me to the Syndicate they will do away with me if they find out, and I doubt they could manage to not."`
 			`	"Oh, Moray told me to say you're fired if you don't get back quickly... that was over a week ago now," you tell her.`
-			`	She rolls her eyes. "Of course, this is exactly the sort of callous governance I expect of them."`
-			`	"Don't distract from the point though. I can never go back. You're the only one who knows everything, and no one else can know it all. Taking me back is a guarantee that I'll be 'disappeared' - you might as well pull the trigger yourself. You must decide here, now, how this ends."`
+			`	She rolls her eyes. "Of course, this is exactly the sort of callous governance I expect of them.`
+			`	"Don't distract from the point though. I can never go back. You're the only one who knows everything, and no one else can know it all. Taking me back is a guarantee that I'll be 'disappeared' - you might as well pull the trigger yourself. You must decide here, now, how this ends.`
 			`	"You are the judge, whether you like it or not, and no one else will carry out your judgment."`
 				goto decide
 			label return

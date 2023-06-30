@@ -993,9 +993,9 @@ mission "There Might Be Riots part 3B"
 		log `Brought "There Might Be Riots" to the Hai world of Allhome after escaping a swarm of combat drones that disrupted their performance on Pilot. Ulrich spoke of a cloudy star in the Rim where he heard a voice in his head after parking his ship.`
 		conversation
 			`You drop off There Might Be Riots on Allhome. Ulrich is looking around the spaceport in wide-eyed excitement. "This is it, guys!" he says. "We're back in the land of the peaceful squirrels. Captain <last>, I don't know how to thank you, but here's a start." He hands you <payment>.`
-			`	As the rest of the band begins unloading their things, Ulrich adds speaking more quietly, "And, in good minstrel fashion I will pay you not just with money, but with a story."`
-			`	"Back when the fame first became too much for me, I rented a shuttlecraft under an assumed name and went tooling around the galaxy just to get away from it all. I found some cloudy star out along the Rim, parked my ship where no one would bother me, shut down everything but life support, and just sat there meditating and enjoying the silence for two or three days."`
-			`	"Then suddenly clear as day I heard a voice say, 'Are you okay? Do you need anything?' I was so shocked that without even thinking I said, 'I'm fine. How about you?' And the voice told me he was sad. Sad, because that part of space used to be the home of another species, and now they're all dead. He said we humans built our cities on the graveyards of a great civilization and didn't even know it. And if we didn't stop fighting each other, our species would die off too."`
+			`	As the rest of the band begins unloading their things, Ulrich adds speaking more quietly, "And, in good minstrel fashion I will pay you not just with money, but with a story.`
+			`	"Back when the fame first became too much for me, I rented a shuttlecraft under an assumed name and went tooling around the galaxy just to get away from it all. I found some cloudy star out along the Rim, parked my ship where no one would bother me, shut down everything but life support, and just sat there meditating and enjoying the silence for two or three days.`
+			`	"Then suddenly clear as day I heard a voice say, 'Are you okay? Do you need anything?' I was so shocked that without even thinking I said, 'I'm fine. How about you?' And the voice told me he was sad. Sad, because that part of space used to be the home of another species, and now they're all dead. He said we humans built our cities on the graveyards of a great civilization and didn't even know it. And if we didn't stop fighting each other, our species would die off too.`
 			`	"That's when the band started to speak out against war."`
 			choice
 				`	"Do you think the voice was real, or just in your head?"`
@@ -2303,9 +2303,9 @@ mission "Terraforming Follow-up"
 		event "terraforming follow-up"
 		conversation
 			`When you land, you receive a message from Amy, the girl you helped to terraform Rand and Tundra.`
-			`	"I hope everything is going well, Captain. I just wanted to give you an update on what has occurred in the past year."`
-			`	"Tundra's climate has drastically improved. Areas around the equator are starting to become completely snow-free, and I was amazed when I was able to walk outside without a heavy coat on. The Republic has placed a halt on any more experiments, as they wish to see how the situations on Tundra and Rand turn out."`
-			`	"Speaking of Rand, last month I got to catch up with Eric and Alaric when I visited the planet. They've told me that Rand is becoming a far better place to live on now. It's even becoming a popular tourist destination. They wanted me to relay their gratitude to you for making their dream come true."`
+			`	"I hope everything is going well, Captain. I just wanted to give you an update on what has occurred in the past year.`
+			`	"Tundra's climate has drastically improved. Areas around the equator are starting to become completely snow-free, and I was amazed when I was able to walk outside without a heavy coat on. The Republic has placed a halt on any more experiments, as they wish to see how the situations on Tundra and Rand turn out.`
+			`	"Speaking of Rand, last month I got to catch up with Eric and Alaric when I visited the planet. They've told me that Rand is becoming a far better place to live on now. It's even becoming a popular tourist destination. They wanted me to relay their gratitude to you for making their dream come true.`
 			`	"That's all I have to say. Thanks again for all the help. I don't know where I would be without it."`
 				decline
 
@@ -2456,7 +2456,7 @@ mission "Lost Boy 1"
 				`	"Can I help you?"`
 				`	"Why are you crying?"`
 			
-			`	You ask the woman if she needs help. She wipes away the tears with the sleeve of her shirt and tells you that she is looking for her son, Tod. "I sent him away to a mining job on Placer because I don't have the money to support him myself, but on the way the ship he was on was attacked and boarded by pirates." She begins to sob again. "I d-don't know if he's d-dead or a slave. I tried t-talking to someone from the Syndicate, but they said that saving him wouldn't be w-worth it."`
+			`	You ask the woman if she needs help. She wipes away the tears with the sleeve of her shirt and tells you that she is looking for her son, Tod. "I sent him away to a mining job on Placer because I don't have the money to support him myself, but on the way the ship he was on was attacked and boarded by pirates." She begins to sob again. "I d-don't know if he's d-dead or a slave. I tried t-talking to someone from the Syndicate, but they said that saving him wouldn't be w-worth it.`
 			`	"W-would you be able to help? Please do if you c-can."`
 			choice
 				`	"Alright, I'll help you. Where should I look for him?"`
@@ -2642,7 +2642,7 @@ mission "Paradise Fortune 2"
 			`	"No, wait! Let me explain!" Diana protests.`
 			
 			label story
-			`	"All my life I've been fascinated with the world outside my little bubble of the Paradise Planets. My father met my mother on Heartland in the Cor Caroli system while he was on a business trip, so my mother would often take me on trips to the Dirt Belt. The last time I went was before the war though; my mother didn't want me anywhere near the 'Free Loafers,' as she called them. Back then life in the Dirt Belt didn't seem anywhere near comparable to life in the Paradise Worlds, and I can only imagine how much worse it might be after being so close to a war, so I decided that I needed to do something to help."`
+			`	"All my life I've been fascinated with the world outside my little bubble of the Paradise Planets. My father met my mother on Heartland in the Cor Caroli system while he was on a business trip, so my mother would often take me on trips to the Dirt Belt. The last time I went was before the war though; my mother didn't want me anywhere near the 'Free Loafers,' as she called them. Back then life in the Dirt Belt didn't seem anywhere near comparable to life in the Paradise Worlds, and I can only imagine how much worse it might be after being so close to a war, so I decided that I needed to do something to help.`
 			`	"Now, can you take me to <destination>? I wish to hand this over to the government there to help them. It may not seem like much in the grand scheme of how many credits go into running a planet, but it should be a huge boost to their economy."`
 			choice
 				`	"Alright, I'll help you."`
@@ -3043,7 +3043,7 @@ mission "Pirate Blockade"
 			
 			label need
 			`	"It isn't what I want, it's what I need," she whispers, putting heavy emphasis on the word "need."`
-			`	"You undoubtedly know about the horrendous slave trade that still exists on pirate worlds today. A slave trade that the Republic doesn't care to abolish, leaving innocent people to waste away like rats in a cage, working for their lives. As if the politicians of the Republic aren't vermin themselves..." Her face twists into a hate-filled scorn as she speaks of the Republic. It then returns to normal as she continues. "I'm part of a group of people who have decided to take matters into our own hands. We're mostly people who grew up on pirate worlds, but some of us were born elsewhere."`
+			`	"You undoubtedly know about the horrendous slave trade that still exists on pirate worlds today. A slave trade that the Republic doesn't care to abolish, leaving innocent people to waste away like rats in a cage, working for their lives. As if the politicians of the Republic aren't vermin themselves..." Her face twists into a hate-filled scorn as she speaks of the Republic. It then returns to normal as she continues. "I'm part of a group of people who have decided to take matters into our own hands. We're mostly people who grew up on pirate worlds, but some of us were born elsewhere.`
 			`	"I assassinated a pirate warlord a couple of days ago, and I have been sheltering his slaves ever since. What I need from you is to transport the <bunks> people in my care to <destination>. Another member of my group should be there to pay you <payment> and take the people somewhere far away from here." She cocks her head to the right. "Will you fight for justice and transport these people, Captain?" The look in her eyes suggests that she won't take no for an answer.`
 			choice
 				`	"Anything for the freedom of the innocent."`
@@ -3174,9 +3174,9 @@ mission "Inheritance Redirection"
 					goto proposal
 				`	"This sounds like a credits-stealing scam, I will not fall for this!"`
 					decline
-			`	"Oh, uh, Mr. Pappa was specialized into tricking rich victims to transfer credits to him."`
+			`	"Oh, uh, Mr. Pappa was specialized into tricking rich victims to transfer credits to him.`
 			label proposal
-			`	"I obviously cannot make myself an heir to Mr. Pappa. So what I propose is to present you as an heir and have the inheritance transferred to you."`
+			`	"I obviously cannot make myself an heir to Mr. Pappa. So what I propose is to present you as an heir and have the inheritance transferred to you.`
 			`	"When you receive the inheritance on <destination>, then you send half of it back to me."`
 			choice
 				`	"Okay, let's do this."`
@@ -3190,7 +3190,7 @@ mission "Inheritance Redirection"
 				`	"Are you trying to trick me?"`
 				`	"Sounds too risky, I don't want to pay anything upfront."`
 					goto no
-			`	"Of course I'm not trying to trick you! Mr. Pappa's victims were all persons that had more credits than common sense. But you look a lot smarter than any of Mr. Pappa's victims."`
+			`	"Of course I'm not trying to trick you! Mr. Pappa's victims were all persons that had more credits than common sense. But you look a lot smarter than any of Mr. Pappa's victims.`
 			`	"Think of the huge amount of credits you will receive just for acting as heir! Can I count on you to pay the tax and make both of us very wealthy?"`
 			choice
 				`	"Sure, no problem."`
@@ -3241,7 +3241,7 @@ mission "Hauler VI cargo prototype 1"
 				`	"'Oxygenpocket' is an uncommon name."`
 				`	"And what help do you need from me?"`
 					goto "help request"
-			`	Veronica responds, "Well, it might sound uncommon to people from a planet with a breathable atmosphere, but it is actually similar to Vanderberg, which means 'from the mountain,' or Langley, which means 'woodland.'"`
+			`	Veronica responds, "Well, it might sound uncommon to people from a planet with a breathable atmosphere, but it is actually similar to Vanderberg, which means 'from the mountain,' or Langley, which means 'woodland.'`
 			`	"Oxygenpockets were as much a feature on my home-planet as mountains and woodlands are on more habitable planets."`
 			label "help request"
 			`	Veronica pauses for a moment and then continues, "We're testing the VI's cargo refrigeration system using the Testament, a modified Hauler III. This system is one of our biggest achievements. To show how well it works, we plan to throw a formal dinner on <destination> with fresh sushi transported from here. I'm sure everyone at the dinner will be amazed by how well the food has been preserved despite the travel time. I'd like you to escort the ship and its cargo to <planet>."`
@@ -3269,7 +3269,7 @@ mission "Hauler VI cargo prototype 1"
 				`	"Why do you need me to escort the ship?"`
 					goto internal
 			label "invited"
-			`	"I'm sorry, but you are not invited. This dinner is only for Southbound Shipyards top-level management and representatives of the <planet> government."`
+			`	"I'm sorry, but you are not invited. This dinner is only for Southbound Shipyards top-level management and representatives of the <planet> government.`
 			label "internal"
 			`	"Normally we'd look internally to satisfy any escort needs, that's true. But we suspect there is a mole in our organization spying for Syndicated Shipyards. Going externally is safer in this case, and you came recommended when we searched through the list of captains available on short notice. You will be paid well for your time. Will you help us?"`
 			choice
@@ -3428,10 +3428,10 @@ mission "Pirate Duel"
 				`	"What sort of vessel is the Esca?"`
 					goto vessel
 				`	"Why did you need to bring me to here? Couldn't you have made this offer in the spaceport?"`
-			`	The man hesitates for a moment. "Well, being in the open when admitting that you're the leader of the ragtag that hunts down pirates in a potentially pirate-infested spaceport isn't a good idea. You can't ever be too sure about who's listening."`
+			`	The man hesitates for a moment. "Well, being in the open when admitting that you're the leader of the ragtag that hunts down pirates in a potentially pirate-infested spaceport isn't a good idea. You can't ever be too sure about who's listening.`
 				goto end
 			label vessel
-			`	The man hesitates for a moment. "Oh, just some low-end Southbound Shipyards light warship. Nothing to worry about for a captain like you."`
+			`	The man hesitates for a moment. "Oh, just some low-end Southbound Shipyards light warship. Nothing to worry about for a captain like you.`
 			label end
 			`	"Well, I better be going now. Meet me at Umbral as fast as you can if you want to take up my challenge." The man walks away, leaving you to your own devices.`
 			choice
@@ -3783,7 +3783,7 @@ mission "Mafia Extortion"
 				`	"I really don't have time to talk to you."`
 					goto funeral
 			label unconcerned
-			`	The man responds, "Maybe you want to improve that situation?"`
+			`	The man responds, "Maybe you want to improve that situation?`
 				goto donation
 			label mafia
 			`	The man acts shocked by your remark. "No way! I'm just a simple man walking around the spaceport and helping people out. You would be wise to listen to locals with experience, especially in dangerous places like this."`
@@ -4461,13 +4461,13 @@ mission "Hai Wormhole Warning"
 					goto maybe
 				`	"Aliens? I don't know of any aliens up there."`
 				`	"Hey! That's no way to talk about the pirates in the Far North."`
-			`	"Don't play coy with me, <last>. The Republic is aware that you've made contact with the Hai."`
+			`	"Don't play coy with me, <last>. The Republic is aware that you've made contact with the Hai.`
 				goto secret
 			label maybe
-			`	The officer chuckles. "I think the answer you're looking for is 'Yes,' not 'Perhaps.' The Republic is aware that you've made contact with the Hai."`
+			`	The officer chuckles. "I think the answer you're looking for is 'Yes,' not 'Perhaps.' The Republic is aware that you've made contact with the Hai.`
 				goto secret
 			label yes
-			`	"There is no problem, <last>. I am just letting you know that the Republic is aware that you've made contact with the Hai."`
+			`	"There is no problem, <last>. I am just letting you know that the Republic is aware that you've made contact with the Hai.`
 			label secret
 			`	"But you may not be aware of the arrangement that the Republic has with the Hai. The Republic works hard to ensure that the existence of the Hai remains an open secret; they do not disallow captains such as yourself from stumbling upon them, but they will not allow this existence to be widely publicized."`
 			choice
@@ -4476,13 +4476,13 @@ mission "Hai Wormhole Warning"
 				`	"An arrangement between the Republic and Hai? When did that happen?"`
 					goto arrangement
 				`	"So you're threatening me to stay quiet?"`
-			`	"No threats. I only provide a... warning, so to say, that you should keep the Hai a secret."`
+			`	"No threats. I only provide a... warning, so to say, that you should keep the Hai a secret.`
 				goto chaos
 			label why
-			`	"I'm telling you this as something of a... warning, so to say, that you should keep the Hai a secret."`
+			`	"I'm telling you this as something of a... warning, so to say, that you should keep the Hai a secret.`
 				goto chaos
 			label arrangement
-			`	"The details of the arrangement are none of your concern. All you need to know is that I am providing a... warning, so to say, that you should keep the Hai a secret."`
+			`	"The details of the arrangement are none of your concern. All you need to know is that I am providing a... warning, so to say, that you should keep the Hai a secret.`
 			label chaos
 			`	"I'm sure that you can imagine that should the existence of the Hai become public, it would cause a great deal of chaos, both for the Republic and for the Hai. Chaos that could easily end badly, particularly for the one who caused it. So it would be in everyone's interest if you kept this knowledge a secret."`
 			choice
@@ -5573,7 +5573,7 @@ mission "Quicksilver Mixup 1"
 				`	"Is something wrong?"`
 					goto misdirected
 				`	"What do you mean? Surely you can."`
-			`	"Again, I'm sorry, but we can't send the package," they reiterate. "It's got an incorrect address."`
+			`	"Again, I'm sorry, but we can't send the package," they reiterate. "It's got an incorrect address.`
 			label misdirected
 			`	"This package is addressed to 2081 Amethyst Avenue, Mercury City, <origin>. Mercury City is <planet>'s capital. Y'know, that planet out east in Algol. Syndicate space. Not a place on <origin>. The package was posted to the wrong planet."`
 			`	"Oh," you say.`
@@ -6032,7 +6032,7 @@ mission "Blind Man from Martini"
 				set "Blind Man from Martini: label blind"
 				"Blind Man from Martini: taxi questions count" ++
 			`	"It was the fourth of July, 3014. I was in my office, on one of the high rises on the outskirts of the capital, with my office window pointed right at the city center." He turns to look out the window, as if he knew New Sydney's skyline was out there where he couldn't see. In the small lull, he takes an audible breath.`
-			`	"It was a beautiful day that day. I... I remember that Pollux was especially bright and colorful that day, and the songbirds that inhabited the city were alive with sound. They were unusually so. It was very vivid, very strange. Maybe I should have listened to the birds..."`
+			`	"It was a beautiful day that day. I... I remember that Pollux was especially bright and colorful that day, and the songbirds that inhabited the city were alive with sound. They were unusually so. It was very vivid, very strange. Maybe I should have listened to the birds...`
 			`	"But when the bomb dropped, I was looking right at it, from my office window. All I could remember next was that I was in a lot of pain, that I couldn't see, but one of my colleagues - thank goodness for her - found me afterwards, during the evacuation, covered in glass from the shockwave. I survived mostly because I was sitting at my terminal and that protected me from the bulk of the shards."`
 				goto taxi
 
@@ -6047,7 +6047,7 @@ mission "Blind Man from Martini"
 			action
 				set "Blind Man from Martini: label atomic-bombings"
 				"Blind Man from Martini: taxi questions count" ++
-			`	"How do I feel about the bombings? Well, they changed everything. In some ways I'm very grateful that it showed - no, it exposed to me, that people, they- there's people that live this way. With no sight. Who need other people to help them just... live. And that there are plenty of people who don't have people to help them live. I was lucky, I could get treatment for my blindness. But others, no..."`
+			`	"How do I feel about the bombings? Well, they changed everything. In some ways I'm very grateful that it showed - no, it exposed to me, that people, they- there's people that live this way. With no sight. Who need other people to help them just... live. And that there are plenty of people who don't have people to help them live. I was lucky, I could get treatment for my blindness. But others, no...`
 			# This will need to be updated once new Human campaigns are written.
 			branch reconciliation checkmate
 				has "free worlds reconciliation"

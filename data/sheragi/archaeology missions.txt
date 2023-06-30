@@ -721,7 +721,7 @@ mission "Sheragi Archaeology: The Box 2"
 			`	There is a tunnel going deep underground inside the room, but Albert sets his attention on a large safe instead. As he opens it up, he begins to explain the situation.`
 			`	"So, from what we know, the Sheragi died off in a war of catastrophic proportions. One of our interns suggested we survey deeper underground, to check for military facilities or bunkers, even though our previous scans didn't show anything interesting, so we allowed her to play around with the ground-penetrating radar. And wouldn't you believe it, there were some angled pieces of metal under the dirt. Clearly man-made. Well... Sheragi-made, in this case. So we dug deeper, and found what we can only assume to have been a bunker, showing signs of having been hit by a powerful kinetic weapon. Despite the damage, we could still salvage some artifacts from the debris. Particularly, this thing."`
 			`	Albert opens the safe and shows you a weathered, red metal cube, around a quarter of a meter on each side. He struggles with the weight, but manages to set it down on the floor.`
-			`	"This appears to be a data storage device of some sort. It was connected to what we think were once computers, but nothing else was salvageable after spending thousands of years under the wet soil. Based on how sturdy this thing is, it's plausible that some of the data could have survived, like a time capsule."`
+			`	"This appears to be a data storage device of some sort. It was connected to what we think were once computers, but nothing else was salvageable after spending thousands of years under the wet soil. Based on how sturdy this thing is, it's plausible that some of the data could have survived, like a time capsule.`
 			`	"I have a contact back on Vinci who could probably figure this out, and this is where you come in. You remember John, right? I can't leave the dig site, but I also don't have anyone else I could trust to carry such a valuable artifact. Will you take it there for me?"`
 			choice
 				`	"Sure, I'll take the cube to him."`
@@ -802,7 +802,7 @@ mission "Sheragi Archaeology: The Box 3"
 				`	"What do you mean?"`
 					goto info
 				`	"Are you trying to extort me?"`
-			`	"What? No, of course not! Do you think I would steal my own work? Let me explain."`
+			`	"What? No, of course not! Do you think I would steal my own work? Let me explain.`
 			label info
 			`	"Albert's methods are... nonstandard, to say the least, and we've dealt with a certain individual once. An information dealer who lives on Stormhold. Sketchy person, seems to have informants nearly everywhere and knows about everything. The individual in question is known as Mammon. If you want to find the box, dealing with Mammon is probably your best bet."`
 			choice
@@ -838,12 +838,12 @@ mission "Sheragi Archaeology: The Box 4"
 				`	"Who are you? How do you know my name?"`
 					goto who
 				`	"You did? How?"`
-			`	"In my line of business, I have to know everything. That includes the identities of any potential clients, such as yourself. How else would you hope to find me?"`
+			`	"In my line of business, I have to know everything. That includes the identities of any potential clients, such as yourself. How else would you hope to find me?`
 				goto intro
 			
 			label who
 			`	The mysterious person laughs.`
-			`	"It looks like I know you more than you know yourself. I am who you're looking for, of course."`
+			`	"It looks like I know you more than you know yourself. I am who you're looking for, of course.`
 			
 			label intro
 			`	"Mammon, information vendor. At your service," the voice states ominously. "Come meet me in person to discuss the specifics of what you're looking for." The connection cuts and you receive coordinates to land in a seemingly random location that appears to be in the middle of the sea.`
@@ -857,7 +857,7 @@ mission "Sheragi Archaeology: The Box 4"
 			`	They cut you off, grinning. "Forget it. You'd need to steal whole planets for that information."`
 			
 			label middle
-			`	"Let's get to what matters. You want to find that alien artifact, yes?" You nod in response. "I have the information you need. Finding lost objects is the most trivial of my services, but as with everything, it has a price."`
+			`	"Let's get to what matters. You want to find that alien artifact, yes?" You nod in response. "I have the information you need. Finding lost objects is the most trivial of my services, but as with everything, it has a price.`
 			`	"Ten million credits," they say. "Non-negotiable. And don't try anything funny."`
 			
 			branch cash
@@ -942,7 +942,7 @@ mission "Sheragi Archaeology: The Box 4"
 			
 			label pay
 			`	You slide the credit chips to Mammon, but they decline it, grinning with their sharp teeth.`
-			`	"Don't worry about paying right now. I only needed you to agree to the deal. I will withdraw the credits in the future, when I desire."`
+			`	"Don't worry about paying right now. I only needed you to agree to the deal. I will withdraw the credits in the future, when I desire.`
 			`	"Now that we're done with that, the artifact you're looking for has been taken by some mercenaries. It seems to me that your friend messed with the wrong people, but I digress. That is not the information you paid for."`
 			`	Mammon lifts their hands to the holographic map of the galaxy in the ceiling. It zooms in, filling up the entire room with stars. In front of you, you recognize the border between the Deep and the Dirt Belt.`
 			`	"They have kept the artifact for themselves to sell on the black market, and their base of operations is right... here. Algieba."`
@@ -1033,7 +1033,7 @@ mission "Sheragi Archaeology: The Box 6a"
 			
 			`	You land and cautiously open the hatch to talk with them.`
 			`	"Who do you work for? Where is the cube you stole?" you ask.`
-			`	"So that old thing was yours?" one woman up front says. "I knew that mission was sketchy... We're mercenaries. We were employed by fancy-looking people who paid us really well to steal it, but when we returned with it, they just scanned it and told us to dispose of it. Said that a digital copy is fine, and the trouble should be enough retribution. We don't know who they were, we don't ask questions. That might be about to change now."`
+			`	"So that old thing was yours?" one woman up front says. "I knew that mission was sketchy... We're mercenaries. We were employed by fancy-looking people who paid us really well to steal it, but when we returned with it, they just scanned it and told us to dispose of it. Said that a digital copy is fine, and the trouble should be enough retribution. We don't know who they were, we don't ask questions. That might be about to change now.`
 			`	"If you want the cube, you can have it if you spare us. It's not worth our lives."`
 			choice
 				`	(Spare them.)`
@@ -1156,11 +1156,11 @@ mission "Sheragi Archaeology: The Box 7b"
 				`	"It's a pity they had to focus so much on conflict. They seemed very capable."`
 				`	"They lived fast, died young, and left good-looking corpses."`
 					goto approve
-			`	"Well, it's not like we are ones to talk. At the time, we Hai were a troubled species too. We even tried invading Sheragi territory. Perhaps if we had been successful, they might have united against a common enemy and might have even survived their rebellious phase, at our own expense."`
+			`	"Well, it's not like we are ones to talk. At the time, we Hai were a troubled species too. We even tried invading Sheragi territory. Perhaps if we had been successful, they might have united against a common enemy and might have even survived their rebellious phase, at our own expense.`
 				goto next
 			label approve
 			`	The curator laughs in the distinctive Hai way.`
-			`	"That's one way to put it. I can't deny the scale of their engineering was a marvel even for the Hai of that time, and our civilization was already old. Some things scale well with size, and they had no choice but to build big. But it's still a shame. Imagine such capability being used for peace."`
+			`	"That's one way to put it. I can't deny the scale of their engineering was a marvel even for the Hai of that time, and our civilization was already old. Some things scale well with size, and they had no choice but to build big. But it's still a shame. Imagine such capability being used for peace.`
 			label next
 			`	"Anyway, it's rare to see a human face here, and even more intriguing for them to be staring at Sheragi artifacts. What brings you here?"`
 			`	You explain about the ruins recently discovered on Zug.`
@@ -1173,10 +1173,10 @@ mission "Sheragi Archaeology: The Box 7b"
 				`	"We found a kind of storage device that seems to still be functioning. A black box."`
 					goto truth
 				`	"I'm just curious. Studying their technology might allow us to improve ours."`
-			`	"I see. I'll have to warn you though, following the footsteps of a doomed species can only get you so far."`
+			`	"I see. I'll have to warn you though, following the footsteps of a doomed species can only get you so far.`
 				goto end
 			label truth
-			`	"A Sheragi black box? That's an incredible find! Be careful about the information it contains, though. They are a doomed species. Don't you humans have a legend about a cursed box? What was it... Pandora's Box?"`
+			`	"A Sheragi black box? That's an incredible find! Be careful about the information it contains, though. They are a doomed species. Don't you humans have a legend about a cursed box? What was it... Pandora's Box?`
 			label end
 			`	"In any case... I am not authorized to sell you documents, I just take care of artifacts here. Giving Sheragi technology to humans will likely be a very bureaucratic process. I suggest you contact the Ministry of Culture on Hai-home."`
 			`	You thank him for his help, and make your way back to the spaceport, mentally preparing yourself for what is likely to be a long meeting.`
@@ -1191,7 +1191,7 @@ mission "Sheragi Archaeology: The Box 7b"
 		conversation
 			`Arriving on Hai-home, you manage to contact the Ministry of Culture, expressing your interests in obtaining Sheragi documents and manuals. After some time on hold, you're scheduled to meet them in person.`
 			`	You get ready and make your way to the city hall, where the Ministry is, to meet with the Hai officials, who are accompanied by a few diplomats. You all sit down at a round table. You describe the discovery of the Sheragi ruins to them and they begin inquiring more about it, curious about the state of preservation of the ruins and what artifacts were found. They seem very excited.`
-			`	"This is a unique opportunity! Even when our species were in... active contact, millennia ago, we Hai never had the opportunity to study Sheragi cities up close. Brief skirmishes and diplomatic meetings were as close as our ancestors got."`
+			`	"This is a unique opportunity! Even when our species were in... active contact, millennia ago, we Hai never had the opportunity to study Sheragi cities up close. Brief skirmishes and diplomatic meetings were as close as our ancestors got.`
 			`	"You'll understand, however, that we can't simply sell you the documents you're requesting. Instead, we have a proposition for you: cooperation between our species, so both Hai and human can mutually benefit in ways more significant than the financial one."`
 			`	Given this opportunity, you tell them about the Sheragi black box found in the dig site, and the possibility of decrypting it and uncovering its secrets.`
 			`	"With the proper tools, we could decode it. But in return, we'd like to have a copy of the contents as well, and to learn more about your findings."`
@@ -1385,9 +1385,9 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 					goto who
 				`	"What... What is this feeling?"`
 			`	There is a pause. The feeling of being watched becomes intense, as if you're being studied intently.`
-			`	"A human would call it... dread. Regret. Loss. You are standing in the last untouched graveyard of a lost civilization."`
+			`	"A human would call it... dread. Regret. Loss. You are standing in the last untouched graveyard of a lost civilization.`
 			label who
-			`	"I am the guardian of this site. I am also the one who guided you towards the buried city, so your species would bear witness and take heed of the lessons of ones who have long succumbed to their own folly. I did not intend for you to reach this far."`
+			`	"I am the guardian of this site. I am also the one who guided you towards the buried city, so your species would bear witness and take heed of the lessons of ones who have long succumbed to their own folly. I did not intend for you to reach this far.`
 			`	"Here is where the Sheragi came to an end. The tools that drove them to extinction are long gone. We witnessed as they cast those tools into the heart of this star."`
 			choice
 				`	"You mean this ship? Its weapons systems seem to be intact."`
@@ -1441,7 +1441,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 				`	"What banging sound?"`
 				`	"I don't hear anything."`
 			`	"Strange. I've asked the others here but they don't hear anything either... Anyway, we've found many amazing things. This farm is just the tip of the iceberg. Given that the Emerald Sword had to be able to survive the long flight through interstellar space at sublight speeds, it's no surprise that the crew had to make the ship self-sustaining. I'm sure there's much we could learn technologically from this ship. But we've also found many... disturbing things..." his voice trails off again.`
-			`	"These bodies tell stories, <last>. Terrible stories. The entrance into this area of the ship was welded shut. Almost all the corpses outside of this area were skeletons, while those inside, like this one, were mummified. My best guess is that at some point after arriving here, they realized that even with a facility like this they'd run out of food in due time." Foster kneels down to get closer to the corpse. "I'm having very vivid visions of it all, almost as if I'm there in the moment, but it's all happening so fast... They turned on each other in desperation. A small group decided to shut the rest off from the food supply, leaving them to starve. Then those in here lived off of what they had left until the life support systems gave out."`
+			`	"These bodies tell stories, <last>. Terrible stories. The entrance into this area of the ship was welded shut. Almost all the corpses outside of this area were skeletons, while those inside, like this one, were mummified. My best guess is that at some point after arriving here, they realized that even with a facility like this they'd run out of food in due time." Foster kneels down to get closer to the corpse. "I'm having very vivid visions of it all, almost as if I'm there in the moment, but it's all happening so fast... They turned on each other in desperation. A small group decided to shut the rest off from the food supply, leaving them to starve. Then those in here lived off of what they had left until the life support systems gave out.`
 			`	"In all my years, I've never felt as impacted by my work as I do now. I'm feeling very uncharacteristically... emotional at the sight of all this." Foster turns away from you and wipes a tear from his eyes.`
 			choice
 				`	"You have every right to be emotional. We've made an amazing but tragic discovery."`
@@ -1482,7 +1482,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 					goto young
 				`	"Who is Rekla?"`
 
-			`	"From what we know, Rekla was a divine warrior among the Sheragi. Sheragi legends stated that she united the warring Sheragi tribes and led them all to the stars."`
+			`	"From what we know, Rekla was a divine warrior among the Sheragi. Sheragi legends stated that she united the warring Sheragi tribes and led them all to the stars.`
 			label young
 			`	"This ship has to have traveled between the stars for many of your years in order to reach this system without a hyperdrive. The engines are powerful, so it perhaps took them 120 years to arrive here. Many of the Sheragi would have survived the trip, but would be very old when they arrived. This would have made it difficult for them to colonize the planet."`
 			choice
@@ -1520,7 +1520,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 				set "saes: spoke with rakei"
 			`	As you are looking for Rakei, you hear a low hum begin emanating through the ship, followed by the dim glow of the emergency lights being replaced by the bright main lights. You eventually find Rakei with her crew walking through the halls of the underbelly of the ship. "Greetings, Captain," she says. "Is there something you need?"`
 			`	"Have you found anything interesting down here?" you ask.`
-			`	"Nothing out of the ordinary," she responds. "We just finished getting the power back online. We had to swap out some parts that look like they broke of old age. Seems like the power generation was active until the end."`
+			`	"Nothing out of the ordinary," she responds. "We just finished getting the power back online. We had to swap out some parts that look like they broke of old age. Seems like the power generation was active until the end.`
 			`	"It turns out that the power generation and engines are all one unit, so I guess that's how they were able to make such powerful engines. We're heading to the life support systems now to make sure they're online so that you can safely disconnect your ship."`
 			`	You follow her to the life support systems of the ship, a massive unit designed to scrub carbon dioxide out of the ship's atmosphere, keep the oxygen levels balanced, and warn about any potential leaks in the ship. Rakei finds the main control panel and begins tapping away at it. "Need to make sure this doesn't kill us when we turn it on." After a short while of working on the panel she simply flips a switch, turning it on.`
 			`	"Huh," she says. "That was a bit too easy."`

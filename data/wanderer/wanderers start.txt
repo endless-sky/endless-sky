@@ -526,7 +526,7 @@ mission "Wanderers: Defend Vara Ke'sok Hint"
 				`	"That's me, but I would prefer some payment as well."`
 					goto jerk
 			label jerk
-			`	The speaking Wanderer looks at you with a blank expression, and simply says, "There can be [compensation, arrangements] of <payment> for the work."`
+			`	The speaking Wanderer looks at you with a blank expression, and simply says, "There can be [compensation, arrangements] of <payment> for the work.`
 			label proposal
 			`	"At the [body, planet] named Vara Ke'sok, there are [raids, conquests] by Unfettered that take place. During these, various structures get [damaged, hurt]. We wish you to help [fix, mend] these by carrying <tons> of [supplies, materials]."`
 			choice

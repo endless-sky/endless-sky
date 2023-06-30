@@ -108,7 +108,7 @@ mission "War Reactions: Navy and Free Worlds Captains"
 		conversation
 			`You are relaxing in a cafe while your ship refuels, and a pair of middle-aged captains come to your table. One is Navy, the other is Free Worlds, and they bear a striking resemblance to each other.`
 			`	"Captain Rain, R.N.S. Camuy," says one. "How's the <ship>, Captain <last>?"`
-			`	"Captain Fiona, F.S. Baobab," says the other. "We both saw you in battle against the Pug. You're the war's most accomplished captain!"`
+			`	"Captain Fiona, F.S. Baobab," says the other. "We both saw you in battle against the Pug. You're the war's most accomplished captain!`
 			`	"We've been patrolling together and we saw your ship, so we've come to say hi."`
 			label questions
 			action
@@ -157,7 +157,7 @@ mission "War Reactions: Navy and Free Worlds Captains"
 			action
 				set "WR: Captains: aliens"
 			`	"Only the usual assortment of hoaxes," says Rain. They both laugh at this.`
-			`	"Seriously, though, both the Free Worlds Senate and Republic Parliament are up in arms over fear of aliens," says Fiona. Rain adds, "Only metaphorically up in arms, this time."`
+			`	"Seriously, though, both the Free Worlds Senate and Republic Parliament are up in arms over fear of aliens," says Fiona. Rain adds, "Only metaphorically up in arms, this time.`
 			`	"If we find new aliens, we'll let the necessary authorities know as soon as possible. You should do the same. Be discrete, avoid conflicts, and seek help if you need it."`
 				goto questions
 			
@@ -215,7 +215,7 @@ mission "War Reactions: Syndicate Orphan"
 			`	"My brother is a private, third class, in the Syndicate's Ancillary Security Service." He grins proudly, clearly having practiced that delivery. "He monitors the Syndicate workplaces and he turned those boys in for smoking on the job last week. I guess they finally got a break for the repair shop and came after me since they can't hurt my brother."`
 				goto questions
 			label young
-			`	As you start walking, he answers. "No, I'm an orphan." He sees your confusion and explains. "The Syndicate lets some of us orphans work in industry. In return they give us better schooling, nicer housing, and doctor's visits." He puffs himself up. "Only the cleverest of us get to do it. All of the jobs for orphans are safe too; we don't use big dangerous equipment. Just ordinary stuff, like hammers, soldering irons, or sewing machines."`
+			`	As you start walking, he answers. "No, I'm an orphan." He sees your confusion and explains. "The Syndicate lets some of us orphans work in industry. In return they give us better schooling, nicer housing, and doctor's visits." He puffs himself up. "Only the cleverest of us get to do it. All of the jobs for orphans are safe too; we don't use big dangerous equipment. Just ordinary stuff, like hammers, soldering irons, or sewing machines.`
 			`	"Wait a minute!" He suddenly looks at you with wide eyes. "You're a captain, right? Were you in the big fights? I was on Maker when I saw some Pug ships fighting our ships on our school's big edu-screen."`
 			choice
 				`	"Yes, I'm Captain <first> <last>."`
