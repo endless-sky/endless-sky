@@ -3708,7 +3708,8 @@ void Ship::DoGeneration()
 	double maxHull = attributes.Get("hull");
 	hull = min(hull, maxHull);
 
-	isDisabled = isOverheated || hull < MinimumHull() || (!crew && RequiredCrew());
+	bool isIncapacitated = hull < MinimumHull() || (!crew && RequiredCrew());
+	isDisabled = isOverheated || isIncapacitated;
 
 	double coolingEfficiency = CoolingEfficiency();
 	heat -= coolingEfficiency * attributes.Get("cooling");
@@ -3717,7 +3718,7 @@ void Ship::DoGeneration()
 	{
 		PauseAnimation();
 		// If overheated, but otherwise not disabled, apply active cooling.
-		if(!(hull < MinimumHull() || (!crew && RequiredCrew())))
+		if(!isIncapacitated)
 		{
 			// If overheated, heat must be >= 100%
 			// So there is no need to check it again when handling active cooling.
