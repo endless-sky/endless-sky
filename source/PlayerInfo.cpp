@@ -1458,10 +1458,8 @@ void PlayerInfo::Land(UI *ui)
 					if(!landingObject)
 						landingObject = AI::FindLandingLocation(*ship, false);
 					if(landingObject)
-					{
 						ship->SetPlanet(landingObject->GetPlanet());
-						ship->Recharge(foundSpaceport);
-					}
+					ship->Recharge(foundSpaceport);
 				}
 			}
 			else
