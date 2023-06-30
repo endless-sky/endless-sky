@@ -1666,7 +1666,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 
 	// For a fighter or drone, "board" means "return to ship." Except when the ship is
 	// explicitly of the nonDocking type.
-	if(CanBeCarried() && !nonDocking)
+	if(CanBeCarried() && !nonDocking && !attributes.Get("boarding equipment"))
 	{
 		SetTargetShip(shared_ptr<Ship>());
 		if(!victim->IsDisabled() && victim->GetGovernment() == government)
