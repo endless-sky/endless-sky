@@ -312,11 +312,25 @@ mission "Irritable Intervention"
 				`	"They showed some interest in interaction."`
 					goto interest
 
+			`	The Quarg ponders for a moment. "One does not need envoke violence to greatly harm another. However purest intentions may be, even the smallest unbeknownst action may rapidly tumble to one not forseenly desired."
+				goto cases
 
-
+			label coincidence
+			`	The Quarg ponders for a moment. "Even a mere blandful coincidence can cause the greatest of tragedies. An untroubled stone becomes a deadly meteor if it should fall many enough lengths."
+				goto cases
 
 			label dismissive
-			`	The Quarg ponders for a moment. "Indeed, Gegno are definitively contemptuous referencing circumstances consulting other than their own.
+			`	The Quarg ponders for a moment. "It takes for an occurence to exist in a first place to be dismissive of its happening. Despite this, perhaps the situation is ultimately not happily welcome beforehand."
+				goto cases
+
+			label interest
+			`	The Quarg ponders for a moment. "Great curiousity does not equal great benefit. Even the most dangerous of creatures may glance but with curiousity at a moment's first."
+				goto cases
+
+			label cases
+			`	In present cases, we have been reluctantly contacted by numerous members of high Gegno standing. We wish for it to be matter only for further strict cautionaries, but despite this, the Gegno believe it a matter beyond attentiveness. 
+
+
 
 			# IN PROGRESS
 
