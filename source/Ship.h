@@ -460,6 +460,7 @@ public:
 	// The AI wants the ship to linger for one AI step.
 	void Linger();
 
+	const Sprite *GetHardpointIcon(const Outfit* outfit) const;
 
 private:
 	// Various steps of Ship::Move:

@@ -4562,3 +4562,14 @@ double Ship::CalculateDeterrence() const
 		}
 	return tempDeterrence;
 }
+
+
+
+const Sprite *Ship::GetHardpointIcon(const Outfit* outfit) const
+{
+	for(const Hardpoint &weapon : Weapons())
+		if(outfit == weapon.GetOutfit())
+			return weapon.Icon();
+
+	return NULL;
+}
