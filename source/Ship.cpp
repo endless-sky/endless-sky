@@ -3722,7 +3722,7 @@ void Ship::DoGeneration()
 			// If overheated, heat must be >= 100%
 			// So there is no need to check it again when handling active cooling.
 			// Still need to check for energy though.
-			if (energy >= 0.)
+			if(energy >= 0.)
 			{
 				heat -= coolingEfficiency * attributes.Get("active cooling");
 				energy -= attributes.Get("cooling energy");
