@@ -3710,9 +3710,21 @@ void Ship::DoGeneration()
 
 	isDisabled = isOverheated || hull < MinimumHull() || (!crew && RequiredCrew());
 
+	double coolingEfficiency = CoolingEfficiency();
 	// Update ship supply levels.
 	if(isDisabled)
+	{
 		PauseAnimation();
+		// If overheated, but otherwise not disabled, still apply cooling.
+		if(!(hull < MinimumHull() || (!crew && RequiredCrew())))
+		{
+			heat -= coolingEfficiency * attributes.Get("cooling");
+			// If overheated, heat must be >= 100%
+			// So there is no need to check it again when handling active cooling.
+			heat -= coolingEfficiency * attributes.Get("active cooling");
+			energy -= attributes.Get("cooling energy");
+		}
+	}
 	else
 	{
 		// Ramscoops work much better when close to the system center.
@@ -3727,7 +3739,6 @@ void Ship::DoGeneration()
 			heat += solarScaling * attributes.Get("solar heat");
 		}
 
-		double coolingEfficiency = CoolingEfficiency();
 		energy += attributes.Get("energy generation") - attributes.Get("energy consumption");
 		fuel += attributes.Get("fuel generation");
 		heat += attributes.Get("heat generation");
