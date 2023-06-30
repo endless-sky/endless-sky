@@ -45,7 +45,8 @@ void AmmoDisplay::Update(const Ship &flagship)
 	for(const auto &it : flagship.Weapons())
 	{
 		const Outfit *secWeapon = it.GetOutfit();
-		if(!secWeapon || !secWeapon->Icon() || ammo.find(secWeapon) != ammo.end())
+
+		if(!secWeapon || !flagship.GetHardpointIcon(secWeapon) || ammo.find(secWeapon) != ammo.end())
 			continue;
 
 		double ammoCount = -1.;
@@ -94,8 +95,14 @@ void AmmoDisplay::Draw(const Rectangle &ammoBox, const Point &iconDim) const
 
 		const auto &playerSelectedWeapons = player.SelectedSecondaryWeapons();
 		bool isSelected = (playerSelectedWeapons.find(it.first) != playerSelectedWeapons.end());
+		const Sprite *icon = it.first->Icon();
+		if (!icon)
+			icon = player.Flagship()->GetHardpointIcon(it.first);
 
-		SpriteShader::Draw(it.first->Icon(), pos + iconOff);
+		if (!icon)
+			continue;
+
+		SpriteShader::Draw(icon, pos + iconOff);
 		SpriteShader::Draw(isSelected ? selectedSprite : unselectedSprite, pos + boxOff);
 
 		auto iconCenter = Point(iconCenterX, pos.Y() + ammoIconHeight / 2.);
