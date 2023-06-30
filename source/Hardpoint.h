@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Outfit;
 class Projectile;
 class Ship;
+class Sprite;
 class Visual;
 
 
@@ -84,8 +85,11 @@ public:
 	void Reload();
 	// Uninstall the outfit from this port (if it has one).
 	void Uninstall();
-
-
+	// get the hardpoint's icon (weapon's one or custom sec one)
+	const Sprite *Icon() const;
+	// set hardpoint for custom secondary
+	void SetCustomSecIdx(int idx);
+	const int GetCustomSecIdx() const;
 private:
 	// Reset the reload counters and expend ammunition, if any.
 	void Fire(Ship &ship, const Point &start, const Angle &aim);
@@ -113,6 +117,7 @@ private:
 	int burstCount = 0;
 	bool isFiring = false;
 	bool wasFiring = false;
+	int customSecWeaponIconIdx;
 };
 
 

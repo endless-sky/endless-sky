@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Hardpoint.h"
 
 #include "Audio.h"
+#include "GameData.h"
 #include "Effect.h"
 #include "Outfit.h"
 #include "pi.h"
@@ -44,7 +45,8 @@ namespace {
 // Constructor.
 Hardpoint::Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret,
 	bool isParallel, bool isUnder, const Outfit *outfit)
-	: outfit(outfit), point(point * .5), baseAngle(baseAngle), isTurret(isTurret), isParallel(isParallel), isUnder(isUnder)
+	: outfit(outfit), point(point * .5), baseAngle(baseAngle), isTurret(isTurret), isParallel(isParallel),
+	isUnder(isUnder), customSecWeaponIconIdx(-1)
 {
 }
 
@@ -345,6 +347,7 @@ void Hardpoint::Reload()
 void Hardpoint::Uninstall()
 {
 	outfit = nullptr;
+	customSecWeaponIconIdx = -1;
 }
 
 
@@ -373,4 +376,32 @@ void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 	// Expend any ammo that this weapon uses. Do this as the very last thing, in
 	// case the outfit is its own ammunition.
 	ship.ExpendAmmo(*outfit);
+}
+
+
+
+const Sprite *Hardpoint::Icon() const
+{
+	const Sprite *icon;
+
+	if(customSecWeaponIconIdx != -1)
+		icon = GameData::SecondaryCustomIcons().at(customSecWeaponIconIdx);
+	else
+		icon = outfit->Icon();
+
+	return icon;
+}
+
+
+
+void Hardpoint::SetCustomSecIdx(int idx)
+{
+	customSecWeaponIconIdx = idx;
+}
+
+
+
+const int Hardpoint::GetCustomSecIdx() const
+{
+	return customSecWeaponIconIdx;
 }
