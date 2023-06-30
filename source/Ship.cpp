@@ -3735,7 +3735,7 @@ void Ship::DoGeneration()
 					energy -= spentEnergy;
 				}
 				else
-					heat -= coolingEfficiency * attributes.Get("active cooling");
+					heat -= coolingEfficiency * activeCooling;
 			}
 		}
 	}
