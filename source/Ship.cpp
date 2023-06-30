@@ -3738,8 +3738,6 @@ void Ship::DoGeneration()
 	if(isDisabled)
 	{
 		PauseAnimation();
-			}
-		}
 	}
 	else
 	{
