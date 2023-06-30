@@ -3713,6 +3713,8 @@ void Ship::DoGeneration()
 
 	double coolingEfficiency = CoolingEfficiency();
 	heat -= coolingEfficiency * attributes.Get("cooling");
+	double activeCooling = coolingEfficiency * attributes.Get("active cooling");
+
 	// Update ship supply levels.
 	if(isDisabled)
 	{
@@ -3723,10 +3725,17 @@ void Ship::DoGeneration()
 			// If overheated, heat must be >= 100%
 			// So there is no need to check it again when handling active cooling.
 			// Still need to check for energy though.
-			if(energy >= 0.)
+			if(activeCooling)
 			{
-				heat -= coolingEfficiency * attributes.Get("active cooling");
-				energy -= attributes.Get("cooling energy");
+				double coolingEnergy = attributes.Get("cooling energy");
+				if(coolingEnergy)
+				{
+					double spentEnergy = min(energy, coolingEnergy);
+					heat -= activeCooling * spentEnergy / coolingEnergy;
+					energy -= spentEnergy;
+				}
+				else
+					heat -= coolingEfficiency * attributes.Get("active cooling");
 			}
 		}
 	}
@@ -3758,7 +3767,6 @@ void Ship::DoGeneration()
 
 		// Apply active cooling. The fraction of full cooling to apply equals
 		// your ship's current fraction of its maximum temperature.
-		double activeCooling = coolingEfficiency * attributes.Get("active cooling");
 		if(activeCooling > 0. && heat > 0. && energy >= 0.)
 		{
 			// Handle the case where "active cooling"
