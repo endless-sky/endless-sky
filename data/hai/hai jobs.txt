@@ -338,7 +338,7 @@ mission "Unfettered Aid [0]"
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
 		"reputation: Hai Merchant (Human)" += 5
-		"reputation: Hai Merchant (Sympathizers)" += 5
+		"reputation: Hai Merchant (Sympathizers)" += 7.5
 		"unfettered: hunger stops" += 20
 		dialog phrase "unfettered aid payment dialog"
 
@@ -369,7 +369,7 @@ mission "Unfettered Aid [1]"
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
 		"reputation: Hai Merchant (Human)" += 5
-		"reputation: Hai Merchant (Sympathizers)" += 5
+		"reputation: Hai Merchant (Sympathizers)" += 7.5
 		"unfettered: hunger stops" += 40
 		dialog phrase "unfettered aid payment dialog"
 
@@ -400,7 +400,7 @@ mission "Unfettered Aid [2]"
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
 		"reputation: Hai Merchant (Human)" += 5
-		"reputation: Hai Merchant (Sympathizers)" += 5
+		"reputation: Hai Merchant (Sympathizers)" += 7.5
 		"unfettered: hunger stops" += 70
 		dialog phrase "unfettered aid payment dialog"
 
