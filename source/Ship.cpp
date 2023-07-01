@@ -1666,7 +1666,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 
 	shared_ptr<Ship> victim = GetTargetShip();
 	if(CannotAct() || !victim || victim->IsDestroyed() || victim->HasLanded()
-	 || victim->GetSystem() != GetSystem())
+		|| victim->GetSystem() != GetSystem())
 		return shared_ptr<Ship>();
 
 	// For a fighter or drone, "board" means "return to ship." Except when the ship is
@@ -4113,8 +4113,8 @@ bool Ship::DoLandingLogic()
 
 	float landingSpeed = attributes.Get("landing speed");
 	landingSpeed = landingSpeed > 0 ? landingSpeed : .02f;
-  // Special ships do not disappear forever when they land; they just slowly refuel.
-  // Exception: mission NPCs given the 'land' directive will delete when they land on their target.
+	// Special ships do not disappear forever when they land; they just slowly refuel.
+	// Exception: mission NPCs given the 'land' directive will delete when they land on their target.
 	if(landingPlanet && zoom)
 	{
 		// Move the ship toward the center of the planet while landing.
