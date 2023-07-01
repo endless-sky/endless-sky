@@ -3738,7 +3738,10 @@ void Ship::DoGeneration()
 				energy -= spentEnergy;
 			}
 			else
-				heat -= activeCooling * min(1., Heat());
+				if(isOverheated)
+					heat -= activeCooling;
+				else
+					heat -= activeCooling * min(1., Heat());
 		}
 	}
 
