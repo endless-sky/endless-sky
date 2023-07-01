@@ -462,6 +462,8 @@ public:
 
 	const Sprite *GetHardpointIcon(const Outfit* outfit) const;
 
+	const bool DefineAsCustomSecWeapon(const Outfit *selectedWeapon);
+	const bool UnDefineAsCustomSecWeapon(const Outfit *selectedWeapon);
 private:
 	// Various steps of Ship::Move:
 
