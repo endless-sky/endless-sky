@@ -97,6 +97,12 @@ ShipyardPanel::ShipyardPanel(PlayerInfo &player)
 
 	if(player.GetPlanet())
 		shipyard = player.GetPlanet()->Shipyard();
+	if(player.IsDesignPlayer())
+		// Add all ships sold by shipyards of visited planets.
+		for(const auto &it : GameData::Planets())
+			if(it.second.IsValid() && player.HasVisited(*it.second.GetSystem()))
+				shipyard.Add(it.second.Shipyard());
+
 }
 
 

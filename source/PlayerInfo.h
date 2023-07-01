@@ -79,6 +79,10 @@ public:
 	bool IsLoaded() const;
 	// Make a new player.
 	void New(const StartConditions &start);
+	// Make a design player for design panels.
+	void NewDesign(const PlayerInfo &player);
+	// Check if player is the design player (so panels know what to show).
+	bool IsDesignPlayer() const;
 	// Load an existing player.
 	void Load(const std::string &path);
 	// Load the most recently saved player. If no save could be loaded, returns false.
@@ -367,6 +371,7 @@ private:
 	bool shouldLaunch = false;
 	bool isDead = false;
 	bool displayCarrierHelp = false;
+	bool isDesignPlayer = false;
 
 	// The amount of in-game time played, in seconds.
 	double playTime = 0.;

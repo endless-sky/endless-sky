@@ -181,9 +181,21 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 			spaceport->UpdateNews();
 		GetUI()->Push(spaceport);
 	}
+	else if(key == 's' && (mod & KMOD_SHIFT))
+	{
+		designPlayer.NewDesign(player);
+		GetUI()->Push(new ShipyardPanel(designPlayer));
+		return true;
+	}
 	else if(key == 's' && hasAccess && planet.HasShipyard())
 	{
 		GetUI()->Push(new ShipyardPanel(player));
+		return true;
+	}
+	else if(key == 'o' && (mod & KMOD_SHIFT))
+	{
+		designPlayer.NewDesign(player);
+		GetUI()->Push(new OutfitterPanel(designPlayer));
 		return true;
 	}
 	else if(key == 'o' && hasAccess && planet.HasOutfitter())

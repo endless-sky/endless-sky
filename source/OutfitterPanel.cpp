@@ -87,6 +87,11 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 
 	if(player.GetPlanet())
 		outfitter = player.GetPlanet()->Outfitter();
+	if(player.IsDesignPlayer())
+		// Add all outfits sold by outfitters of visited planets.
+		for(auto &it : GameData::Planets())
+			if(it.second.IsValid() && player.HasVisited(*it.second.GetSystem()))
+				outfitter.Add(it.second.Outfitter());
 }
 
 

@@ -177,6 +177,33 @@ void PlayerInfo::New(const StartConditions &start)
 
 
 
+// Make a new design player.
+void PlayerInfo::NewDesign(const PlayerInfo &player)
+{
+	isDesignPlayer = true;
+	date = player.GetDate();
+	// Make sure the fleet depreciation object knows it is tracking the player's
+	// fleet, not the planet's stock.
+	depreciation.Init(ships, date.DaysSinceEpoch());
+	// Used to stock stores with items known to be for sale.
+	visitedSystems = player.visitedSystems;
+
+	SetSystem(*player.GetSystem());
+	SetPlanet(player.GetPlanet());
+	// Zero accounts.
+	Accounts().AddCredits(-Accounts().Credits());
+	// Max out accounts (/2 to prevent any off by one errors from causing overflow).
+	Accounts().AddCredits(numeric_limits<int64_t>::max() / 2);
+	// XXX - set licenses to allow purchase of everything available for sale
+	licenses = player.Licenses();
+
+	Cargo().Clear();
+	// XXX - add any outfits installed or in cargo that aren't available for sale
+	// into the player's cargo hold
+}
+
+
+
 // Load player information from a saved game file.
 void PlayerInfo::Load(const string &path)
 {
@@ -620,6 +647,14 @@ void PlayerInfo::Die(int response, const shared_ptr<Ship> &capturer)
 		if(it != ships.end())
 			ships.erase(it);
 	}
+}
+
+
+
+// Query whether this player is the design panel player.
+bool PlayerInfo::IsDesignPlayer() const
+{
+	return isDesignPlayer;
 }
 
 
