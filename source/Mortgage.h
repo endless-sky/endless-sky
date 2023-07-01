@@ -68,6 +68,8 @@ public:
 	int Term() const;
 	// Check the amount of the next payment due (rounded to the nearest credit).
 	int64_t Payment() const;
+	// Check the amount of the next payment due.
+	double PrecisePayment() const;
 
 
 private:
