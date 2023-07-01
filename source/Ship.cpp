@@ -3720,30 +3720,18 @@ void Ship::DoGeneration()
 		// your ship's current fraction of its maximum temperature.
 		if(activeCooling > 0. && heat > 0. && energy >= 0.)
 		{
+			double heatFraction = (isOverheated ? 1. : Heat());
 			// Handle the case where "active cooling"
 			// does not require any energy.
 			double coolingEnergy = attributes.Get("cooling energy");
 			if(coolingEnergy)
 			{
-				double spentEnergy = 0;
-				if(isOverheated)
-				{
-					spentEnergy = min(energy, coolingEnergy);
-				}
-				else
-				{
-					spentEnergy = min(energy, coolingEnergy * min(1., Heat()));
-				}
+				double spentEnergy = min(energy, coolingEnergy * heatFraction);
 				heat -= activeCooling * spentEnergy / coolingEnergy;
 				energy -= spentEnergy;
 			}
 			else
-			{
-				if(isOverheated)
-					heat -= activeCooling;
-				else
-					heat -= activeCooling * min(1., Heat());
-			}
+				heat -= activeCooling * heatFraction;
 		}
 	}
 
