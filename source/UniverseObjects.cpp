@@ -166,6 +166,11 @@ void UniverseObjects::FinishLoading()
 	// Sort all category lists.
 	for(auto &list : categories)
 		list.second.Sort();
+
+	// allow up to 6
+	secondaryCustomIcons.resize(6);
+	for(uint32_t i = 0; i < secondaryCustomIcons.size(); i++)
+		secondaryCustomIcons[i] = SpriteSet::Get("icon/custom" + std::to_string(i));
 }
 
 
