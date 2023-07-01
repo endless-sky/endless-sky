@@ -3720,6 +3720,8 @@ void Ship::DoGeneration()
 		// your ship's current fraction of its maximum temperature.
 		if(activeCooling > 0. && heat > 0. && energy >= 0.)
 		{
+			// Active cooling always runs at 100% power if overheated
+			// even if below 100% heat.
 			double heatFraction = (isOverheated ? 1. : Heat());
 			// Handle the case where "active cooling"
 			// does not require any energy.
