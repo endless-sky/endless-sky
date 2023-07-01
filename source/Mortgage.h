@@ -32,7 +32,7 @@ class Mortgage {
 public:
 	// Find out how much you can afford to borrow with the given annual revenue
 	// and the given credit score (which should be between 200 and 800).
-	static int64_t Maximum(int64_t annualRevenue, int creditScore, int64_t currentPayments);
+	static int64_t Maximum(int64_t annualRevenue, int creditScore, double currentPayments);
 
 
 public:
