@@ -390,11 +390,11 @@ void Account::AddFine(int64_t amount)
 // Check how big a mortgage the player can afford to pay at their current income.
 int64_t Account::Prequalify() const
 {
-	int64_t payments = 0;
+	double payments = 0;
 	int64_t liabilities = 0;
 	for(const Mortgage &mortgage : mortgages)
 	{
-		payments += mortgage.Payment();
+		payments += mortgage.PrecisePayment();
 		liabilities += mortgage.Principal();
 	}
 
