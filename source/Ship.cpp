@@ -3725,7 +3725,14 @@ void Ship::DoGeneration()
 			double coolingEnergy = attributes.Get("cooling energy");
 			if(coolingEnergy)
 			{
-				double spentEnergy = min(energy, coolingEnergy * min(1., Heat()));
+				if(isOverheated)
+				{
+					double spentEnergy = min(energy, coolingEnergy);
+				}
+				else
+				{
+					double spentEnergy = min(energy, coolingEnergy * min(1., Heat()));
+				}
 				heat -= activeCooling * spentEnergy / coolingEnergy;
 				energy -= spentEnergy;
 			}
