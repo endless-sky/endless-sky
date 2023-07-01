@@ -1666,7 +1666,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 
 	shared_ptr<Ship> victim = GetTargetShip();
 	if(CannotAct() || !victim || victim->IsDestroyed() || victim->HasLanded()
-     || victim->GetSystem() != GetSystem())
+	 || victim->GetSystem() != GetSystem())
 		return shared_ptr<Ship>();
 
 	// For a fighter or drone, "board" means "return to ship." Except when the ship is
@@ -4136,23 +4136,23 @@ bool Ship::DoLandingLogic()
 				SetTargetSystem(nullptr);
 				landingPlanet = nullptr;
 			}
-      else if(isSpecial && !isYours && !travelDestinations.empty())
-      {
-        // This mission NPC has a directive to land on at least one specific planet.
-        // If this is one of them, this ship may 'land' (permanently), or 'visit'.
-        auto it = travelDestinations.find(landingPlanet);
-        if(it != travelDestinations.end())
-        {
-          if(doVisit)
-            it->second = true;
-          else
-          {
-            MarkForRemoval();
-            hasLanded = true;
-            return;
-          }
-        }
-      }
+			else if(isSpecial && !isYours && !travelDestinations.empty())
+			{
+				// This mission NPC has a directive to land on at least one specific planet.
+				// If this is one of them, this ship may 'land' (permanently), or 'visit'.
+				auto it = travelDestinations.find(landingPlanet);
+				if(it != travelDestinations.end())
+				{
+					if(doVisit)
+					it->second = true;
+					else
+					{
+						MarkForRemoval();
+						hasLanded = true;
+						return true;
+					}
+				}
+			}
 
 			zoom = 0.f;
 		}
