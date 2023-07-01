@@ -63,6 +63,9 @@ mission "FW Epilogue: Alondo"
 		or
 			not "Paradise Fortune 3: done"
 			has "Paradise Fortune 4: offered"
+		or
+			not "hr: secret leaks"
+			has "event: hai-human resolution announced"
 	
 	on offer
 		conversation

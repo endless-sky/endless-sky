@@ -246,7 +246,7 @@ test-data "Outfit Take Off Selling Save"
 
 test "Store Outfit On Take Off"
 	status active
-	description "Test the automatic storing of a an outfit in cargo that cannot fit in any ships after taking off."
+	description "Test the automatic storing of an outfit in cargo that cannot fit in any ships after taking off."
 	sequence
 		# Create/inject the savegame and load it.
 		inject "Outfit Take Off Storage Save"

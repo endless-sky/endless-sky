@@ -1841,7 +1841,6 @@ ship "Met Par Tek 53"
 	turret 38 -28 "Thermal Repeater Turret"
 	turret -40 -8 "Thermal Repeater Turret"
 	turret 40 -8 "Thermal Repeater Turret"
-	
 	explode "tiny explosion" 60
 	explode "small explosion" 30
 	explode "medium explosion" 35

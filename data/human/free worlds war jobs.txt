@@ -583,6 +583,36 @@ mission "FW Frontline Resupply [2]"
 		payment 2000 180
 		dialog phrase "free worlds thanked resupply payment"
 
+mission "FW Frontline Resupply [3]"
+	job
+	repeat
+	name `Resupply <planet>`
+	description `The frontlines of the war are in need of a resupply. Immediately deliver <cargo> to <destination> by <date>. Payment is <payment>.`
+	deadline 2 1
+	cargo "Military" 5 2 .1
+	to offer
+		random < 20
+		has "salary: Free Worlds"
+		not "event: fw armistice"
+	source
+		government "Free Worlds"
+		not
+			neighbor government "Republic"
+		not
+			neighbor
+				neighbor government "Republic"
+	destination
+		distance 2 10
+		government "Free Worlds"
+		neighbor
+			neighbor government "Republic"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 2000 180
+		dialog phrase "free worlds thanked resupply payment"
+
+
 mission "FW Bulk Frontline Resupply [0]"
 	job
 	repeat
@@ -619,6 +649,35 @@ mission "FW Bulk Frontline Resupply [1]"
 	description `The frontlines of the war are in need of a resupply. Immediately deliver <cargo> to <destination> by <date>. Payment is <payment>.`
 	deadline 2 1
 	cargo "medical" 25 2 .95
+	to offer
+		random < 15
+		has "salary: Free Worlds"
+		not "event: fw armistice"
+	source
+		government "Free Worlds"
+		not
+			neighbor government "Republic"
+		not
+			neighbor
+				neighbor government "Republic"
+	destination
+		distance 3 12
+		government "Free Worlds"
+		neighbor
+			neighbor government "Republic"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 5000 180
+		dialog phrase "free worlds thanked resupply payment"
+
+mission "FW Bulk Frontline Resupply [2]"
+	job
+	repeat
+	name `Resupply <planet>`
+	description `The frontlines of the war are in need of a resupply. Immediately deliver <cargo> to <destination> by <date>. Payment is <payment>.`
+	deadline 2 1
+	cargo "Military" 25 2 .95
 	to offer
 		random < 15
 		has "salary: Free Worlds"

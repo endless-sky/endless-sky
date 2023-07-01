@@ -26,5 +26,5 @@
 "Fleet: Gather around me" 103
 "Fleet: Hold position" 104
 "Fleet: Toggle ammo usage" 117
-"Fleet: Harvest Flotsam" 122
+"Fleet: Harvest flotsam" 122
 "Mouse turning (hold)" 1073742050

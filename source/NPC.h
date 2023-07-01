@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Fleet.h"
 #include "FleetCargo.h"
 #include "LocationFilter.h"
+#include "NPCAction.h"
 #include "Personality.h"
 #include "Phrase.h"
 
@@ -33,7 +34,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class DataNode;
 class DataWriter;
 class Government;
-class MissionAction;
 class Planet;
 class PlayerInfo;
 class Ship;
@@ -152,8 +152,8 @@ private:
 	// The ShipEvent actions that have been done to each ship.
 	std::map<const Ship *, int> shipEvents;
 
-	// The MissionActions that this NPC can run on certain events/triggers.
-	std::map<Trigger, MissionAction> npcActions;
+	// The NPCActions that this NPC can run on certain events/triggers.
+	std::map<Trigger, NPCAction> npcActions;
 };
 
 

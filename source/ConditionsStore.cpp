@@ -185,8 +185,11 @@ void ConditionsStore::Save(DataWriter &out) const
 		// We don't need to save derived conditions that have a provider.
 		if(it->second.provider)
 			continue;
+		// If the condition's value is 0, don't write it at all.
+		if(!it->second.value)
+			continue;
 		// If the condition's value is 1, don't bother writing the 1.
-		else if(it->second.value == 1)
+		if(it->second.value == 1)
 			out.Write(it->first);
 		else
 			out.Write(it->first, it->second.value);

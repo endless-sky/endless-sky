@@ -1,3 +1,288 @@
+Version 0.10.2
+  * Bug fixes:
+    * Content bugs:
+      * Typo fixes. (@nothing-but-the-rain, @Saugia, @tibetiroka, @warp-core, @waterhouse)
+      * "Pact Recon 0" can no longer be offered from Glaze. (@UnorderedSigh)
+      * "Hai Reveal: Early Arrival: Alondo" and "Hai Reveal: Late Arrival: Alondo" can no longer offer from Hai-home. (@warp-core)
+      * Text in "Liberate Kornephoros" now correctly refers to Carriers as the attacking ships, not Cruisers. (@tibetiroka)
+      * Updated the "try out fighters transfer cargo" help message to refer to the correct section of the settings, "Gameplay" instead of "AI." (@tibetiroka)
+      * The Heliarch government will now also be hostile to the new split Quarg governments, not just the original one. (@Saugia)
+      * Conversations in "FW Diplomacy 1" and "FW Southern Break" will now check the correct conditions to branch if the player was previously suspended from the FW militia. (@warp-core)
+      * Actions against the Gegno civilian government will now correctly impact the player's reputation with the Quarg in Gegno space. (@Saugia)
+      * The "financial analyst" news item will no longer appear on human worlds while they are occupied by the Pug. (@tibetiroka)
+      * Ensure that the Unfettered escort fleet in Hai Reveal "A13-A" are not erroneously hostile to the player. (@MasterOfGrey)
+      * Make the new status overlay settings respect the old one and turn it off by default (@quyykk, @warp-core)
+    * Engine bugs:
+      * Fixed some situations where ships will stop acting and drift forever. (@UnorderedSigh)
+      * Fixed a case in AI::DoScatter where ships may get stuck together. (@UnorderedSigh)
+      * Correct pluralization in some messages about automatically fired crew. (@tibetiroka)
+      * Fixed a bug where plugin icons would not be correctly loaded if an @2x version was not present. (@warp-core)
+      * Fixed an issue where out of system escorts would not land to refuel and instead get stuck. (@warp-core)
+      * Removed the capitalization of "flotsam" in the command name "Fleet: Harvest flotsam" in order to match other commands. (@TomGoodIdea)
+      * Fixed a bug where the "explode" conversation endpoint wouldn't proper destroy the player's ship if it has more than 60 hull regeneration per second. (@UnorderedSigh)
+      * Fixed a bug with the new NPC Actions where a conversation was deleted while a conversation panel was still using it, leading to a crash. (@Amazinite)
+      * Fixed a bug where ships ordered to fire on a ship after being ordered to fire on an asteroid that still exists would behave improperly and leave the system. (@warp-core)
+  * Game content:
+    * New content:
+      * New civilian ship hails. (@LazerLit)
+      * New human news items. (@dorbarker)
+      * New jobs in Free Worlds space during the war that involve Military cargo. (@dorbarker)
+    * Mission changes:
+      * The "FW Pug 2C" missions now use autoconditions to ensure the appropriate one is offered instead of relying on MissionAction blocking. (@warp_core)
+      * The "Street Swindle" mission is now invisible, and uses conversation actions to take credits from the player and is always declined. (@lumbar527)
+      * Small wording change to "Earth Retirement" mission. (@lumbar527)
+      * Various wording changes to Gegno intro missions. (@Saugia)
+      * The missions that trigger the events for the Kestrel to be made available will now fail immediately instead of staying active indefinitely doing nothing. (@warp-core)
+      * Added a branch for "FW Senate 1B" for if the player already has a jump drive installed. (@lumbar527)
+      * Renamed some jobs involving stopovers to include the stopover planet in the name instead of the source/destination. (@warp-core)
+      * The Starling that the player needs to scan in the "Remnant: Keystone Research" missions now has the new "decloaked" personality. (@UnorderedSigh)
+      * The "Remnant: Broken Jump Drive" missions and job can no longer select planets with the "remnant station" attribute as destinations. (@Smedley-SC)
+    * Other:
+      * Removed a mention of Tomek drinking whiskey in FW Middle. (@QuantumShark)
+      * Added a "human names" phrase that can combines the results of the "male names" and "female names" phrases. (@warp-core)
+      * Change the pronoun used for Hai of unknown gender from "it" to "they". (@tibetiroka)
+      * Increased the power of "star/wr" from 0.4 to 5. (@Quantumshark)
+      * Refactored some hails to separate punctuation that is common to every element in a "word" in its own "word" to avoid unnecessary repetition. (@lumbar527)
+      * The "ship salesperson" spaceport news will now only appear on planets with a shipyard. (@tibetiroka)
+  * Game mechanics:
+    * New mechanics:
+      * Added two new parameters for rings drawn by interfaces: (@warp-core)
+        * "start angle": starts drawing the ring from a custom angle, instead of 0 degrees (straight up.)
+        * "span angle": draws an arc spanning the given angle, instead of a full ring (360 degrees.)
+      * Added a new personality, "decloaked," which prevents ships from cloaking. (@UnorderedSigh)
+  * User interface:
+    * The system names in the escort display for out of system escorts will now be truncated if they would exceed the escorts display box. (@TomGoodIdea)
+  * Under the hood:
+    * Prevent false positive warnings for dangling references by making copies. (@quyykk)
+    * Zero valued conditions will no longer be saved. (@warp-core)
+    * The "merchant in pirate space" news item now refers to the "merchant names" phrase for its name instead of reproducing all the possible results of that phrase. (@tibetiroka)
+    * Split Ship::Move into a number of separate methods to handle each step of the process to improve readability and maintainability. (@UnorderedSigh, @warp-core)
+    * Created a new NPCAction class to wrap MissionActions used directly by NPCs. (@Amazinite)
+  * CI/CD and development environment:
+    * Removed references to the old Google Group from the issue template. (@lumbar527, @ntabris)
+    * Disabled the sound card when running CI to suppress errors. (@UnorderedSigh, @MCOfficer)
+    * Created a section in the PR template for balance changes. (@Quantumshark)
+    * Added an EditorConfig rule for the indentation of the changelog file and Unix style (lf) line endings for all files. (@warp-core)
+    * Various GitHub Actions jobs will now also be triggered if their scripts or configuration files are updated, in addition to when the files they check are updated. (@tibetiroka)
+    * Add new entries to the .codespell.exclude file after the spell checker was updated. (@warp-core)
+    * Creating a GitHub release will now automatically generate Steam depots. (@quyykk)
+    * The codespell job will now also be run on the changelog. (@tibetiroka)
+
+Version 0.10.1
+  * Big changes:
+    * Releasing the first chapter of an extensive storyline that takes place after the main campaign is completed, focusing on the open secret of the existence of the Hai. (@MasterOfGrey, @Amazinite)
+      * Development help and fixes from many community members. (@bene-dictator, @EjoThims, @UnorderedSigh, @warp-core)
+      * More chapters coming in the future.
+    * NPC nodes in missions can now be given "on *" nodes that behave similarly to "on *" nodes on missions, triggering actions on status changes for the NPC. (@Amazinite, @warp-core)
+    * Plugins are now able to be enabled and disabled within the Plugins menu. (@samrocketman, @quyykk)
+    * Updated and added new mechanics around asteroid mining to increase its depth, including allowing player escorts to engage more in mining. See the game mechanics section for more details.
+  * Bug fixes:
+    * Content bugs:
+      * Typo fixes. (@bene-dictator, @Deltaspace0, @quyykk, @samrocketman, @shitwolfymakes, @Terin, @tibetiroka, @TomGoodIdea, @UnorderedSigh, @warp-core)
+      * Fixed the offer requirements for various Coalition missions that had been unable to offer under the correct circumstances. (@Arachi-Lover)
+      * Added a proper plural form to the Solar Batteries outfit. (@Terin)
+      * Fixed the displaying of the Basrem Reverse Thrusters description. (@Fzzr)
+      * Cleaned up the brown haze graphics. (@RisingLeaf)
+      * The "Puny" outfit no longer disappears after reloading the game. (@warp-core)
+      * The "Stranded field trip to <planet>" job description now mentions that there is cargo involved. (@3agleEmpire)
+      * Fixed the NPC spawn distance on a Marauder job that was using an older value, spawning ships up to three systems away instead of up to one. (@Terin)
+      * Adjusted the source filter and offer conditions on the "Local Politics" mission to offer in more appropriate locations and at more appropriate times. (@Zitchas)
+      * Removed the required reputation for landing on Zenith after completing the alternative route in the Sestor Invasion arc. (@warp-core)
+      * Corrected various jobs that were intended to require that the player had a certain outfit installed, but also accepted that outfit being in your cargo hold. (@warp-core)
+      * The "Immigrant Workers" mission can no longer have a pirate planet destination. (@Anarchist2)
+      * The "Southern Blockade" description can no longer overflow the description text box. (@Anarchist2)
+      * "Unwanted Cargo" now only triggers from inhabited worlds. (@mOctave)
+      * Various Quarg missions no longer offer on the Gegno Quarg locations, since the Quarg there can't communicate in the same way as other locations. (@Saugia)
+      * Added a missing "blocked" dialog to "Saryd Students 2". (@Arachi-Lover)
+      * Fixed missions which looked at the category of the player's ships to account for newer ship categories. (@warp-core)
+      * Fixed an infinite money glitch. (@Hurleveur)
+      * Added a missing blocked dialog to "Wanderers Invaded 3". (@warp-core)
+    * Engine bugs:
+      * Outfits with the "uninstallable" attribute are no longer sold alongside minables when using the "Sell All" button on the trading panel. (@TomGoodIdea)
+      * The string truncation functions now properly handle inputs that would have previously hit an infinite loop check. (@warp-core)
+      * The location of outfit thumnails on the UI is now rounded to an integer, preventing blurry thumbnails. (@TomGoodIdea)
+      * NPCs will no longer attempt to target flotsams that they cannot pick up. (@UnorderedSigh)
+      * Surveillance ships now maintain the same target until they are finished scanning, preventing a bug where some surveillance ships would never succeed their scan. (@warp-core)
+      * The shop will now properly report why it is that you can't "buy" an outfit from storage instead of saying that you can't place it into your cargo. (@alextd, @warp-core)
+      * Governments are now required to explicitly state if they are able to send untranslated hails, preventing some aliens from sending English hails. (@warp-core)
+      * The save load UI now only accepts double clicking to open a save if both clicks were on the same save file, instead of allowing clicking on one save and then clicking on another save shortly afterward to count as double clicking the second save. (@warp-core)
+      * Adding and removing tribute from a planet via conditions now properly changes that planet's dominated status immediately, instead of requiring that the save be reloaded before the changes take effect. (@petervdmeer)
+      * The outfitter buy/install/cargo button now properly reflects whether you can click it (instead of appearing grayed out when you could actually use it under certain circumstances). (@TomGoodIdea)
+      * Escort and storage map tooltips are now drawn on top of other UI elements instead of potentially appearing below menus. (@TomGoodIdea)
+      * The turn radius of a ship is now correctly calculated based on its current speed instead of assuming that the ship is at its max speed, which was causing ships to target incorrectly. (@samrocketman)
+      * Ships are now considered to be turned toward their target if they are within about 0.5 degrees of the target, instead of requiring pin-point accuracy that could cause ships to bounce back and forth around the target without ever hitting it. (@samrocketman)
+      * Fixed some ships being unable to jump as a result of the above change to turn accuracy. (@warp-core)
+      * The game will no longer give status messages for low-crew ships that aren't the player's. (@petervdmeer)
+      * Ships with low max speeds no longer rubberband backwards when exiting hyperspace. (@1010todd)
+      * Fixed incorrect string delimiting in DataWriter. (@tibetiroka)
+      * Having an outfit in storage no longer allows you to bypass the license requirement when purchasing new copies. (@TomGoodIdea)
+  * Game content:
+    * New content:
+      * Various new landable gas giants outside of the Ember Waste. (@Azure3141)
+      * Various new landable objects in Gegno space. (@Saugia)
+      * Created jobs that only appear around the time of the bombings of Martini and Geminus. (@bene-dictator)
+      * Landing on a Quarg ringworld with a Pug Arfecta now provokes a reaction from the Quarg. (@rovermicrover)
+      * Added a spaceport mission about a package with a mixed up destination. (@bene-dictator, Improvise#7330)
+      * Split the single Quarg government into a set of regional governments, allowing for more fine-tuned story interactions with different groups of Quarg. (@Saugia)
+      * Added Paradise World jobs with pirate planets as intentional destinations (replacing some jobs where pirate worlds were accidentally destinations). (@mOctave)
+      * Added attributes to various systems to catalog the number and type of stars in those systems, for use by missions and jobs. (@Ferociousfeind)
+      * Added a spaceport mission about an Argosy hijacking in Syndicate space. (@bene-dictator)
+      * New civilian ship hails. (@mOctave)
+      * Added a new mission interacting with the vyu-Ir. (@Saugia)
+      * Untranslated hails for Korath Exiles and Efreti. (@ravenshining, @UnorderedSigh)
+      * There is now an alternative Gegno intro mission for if the player is hostile with the Quarg. (@Saugia)
+      * Added continuation missions to the "Quicksilver Mixup" story. (@LorenzoBolla)
+      * Various new Gegno ships and outfits, including new mining equipment and ships for the Gegno Vi. (@Saugia)
+      * New planet attributes to Hai planets for use in missions and jobs. (@MasterOfGrey)
+      * Added a new human spaceport mission transporting a blind man from Martini. (@bene-dictator)
+      * Added various new phrase possibilities for human ship names. (@dorbarker)
+      * Added a new human spaceport mission where a captain offers to escort the player if their fleet is weakly defended and high in cargo space. (@Quantumshark)
+    * Mission changes:
+      * Scrappers can now spawn in various bounty jobs. (@Anarchist2)
+      * Changed the description of the size of the black box in the Sheragi Archaeology missions to make more sense with how it is handled. (@ziproot)
+      * Repeatable Unfettered jobs now have destination clearance. (@EjoThims)
+      * Improved how certain Remnant missions are blocked if the player doesn't have a Research Laboratory outfit using newer mechanics. (@warp-core)
+      * Add more detail to the dialogs in Han Sizer jobs. (@Zitchas)
+      * Every choice at the end of the Sheragi Archaeology missions can now be chosen, instead of only allowing one. (@warp-core)
+      * Changed the Pookie mission to have a 100% offer rate, giving players a guaranteed next mission after finishing the James tutorial, should they visit the spaceport. (@warp-core)
+      * The banker from the intro conversation now provides the exact amount of interest that will be paid for the loan instead of rounding to the nearest 1,000 credits. (@ziproot)
+      * The game now remembers which Deep Security ships you destroyed in "Deep Archaeology 3", and doesn't spawn them in "Deep Archaeology 5" if they died. (@ziproot)
+      * The combat rating requirement for unlocking the Kestrel is now greatly reduced if you had unlocked the Kestrel on a previous save file. (@mOctave)
+      * The "Saryd University Lecture" mission now more properly assesses the player's knowledge of certain factions. (@warp-core)
+    * Balance:
+      * Added a reverse thruster to the stock Mule loadout. (@LorenzoBolla)
+      * Added built-in solar collection to the Dromedary to reflect that the sprite has a solar panel array on it. (@Zitchas)
+      * Increased the number of gun hardpoints on various smaller human ships to allow them to saturate their weapon space with smaller weaponry. (@Anarchist2)
+        * Dagger: 2 -> 3
+        * Finch: 2 -> 3
+        * Lance: 2 -> 3
+        * Sparrow: 2 -> 4
+        * Wasp: 3 -> 5
+        * Fury: 4 -> 6
+        * Marauder Fury: 6 -> 8
+      * Changed the Ka'het Nullifier to fire in cluster mode, firing all equipped Nullifiers at once. (@1001010100)
+      * Added a fuel pod to the "Raven (Afterburner)" variant. (@LorenzoBolla)
+      * Wanderer crew now has non-default base hand-to-hand stats. (@Quantumshark)
+        * Attack: 1 -> 1.4
+        * Defense: 2 -> 1.8
+      * Wanderers will now defend the Unfettered tribute ships from early in the Wanderer campaign if you attempt to farm them. (@warp-core)
+      * Shifted the balance of some Unfettered prototype ion weaponry so that their ion and scrambling damage isn't equal. (@EjoThims)
+        * Ionic Blaster:
+          * Ion damage: 1 -> 0.5
+          * Scrambling damage: 1 -> 1.45
+        * Ionic Turret:
+          * Ion damage: 14 -> 17.5
+          * Scrambling damage: 14 -> 10
+      * Adjusted range overrides on the Javelin and Heavy Rocket pods. (@Anarchist2)
+        * Removed on Javelin Mini Pod.
+        * 500 -> 1000 on Heavy Rocket Pod.
+      * Changed reward and risk of "Deal Change 2". (@Anarchist2)
+        * Offer chance: 35 -> 10
+        * Payment: 500k -> 300k
+        * Added bounty hunters that impede your path to the destination.
+      * Changed various jobs that used fixed cargo ranges to now use negative binomial distributions. (@Anarchist2)
+      * Hai cross-wormhole jobs now account for the wormhole in their distance calculations, meaning they aren't always the same payment anymore. (@Anarchist2)
+      * Lowered the payment of "Wool Smuggling" from 200k to 90k. (@Anarchist2)
+    * Graphics:
+      * New Sunbeam projectile sprites. (@Anarchist2)
+      * Added a new hills landscape image, used on Blubipad's Workshop. (@mOctave)
+      * Reworked the appearance of the vyu-Ir ship to appear more alien. (@Saugia)
+      * Added 14 new landscape images to remove more duplicate landscape image uses. (@bene-dictator)
+      * Updated the Plasma Repeater scene with extra details and improved lighting. (@1010todd)
+      * Created a unique Shield Beetle sprite for an important Unfettered character. (@Hurleveur)
+      * Reworked the Bounder and its Marauder variants. (@Anarchist2)
+    * Other:
+      * Created new subfactions to the Hai and Unfettered to better reflect dynamics between the Hai and Unfettered. (@EjoThims, @Hurleveur)
+      * The Wanderer government now understands both the Wanderer and Hai languages, and the player gains the Hai language when receiving the Hai translation device instead of receiving the Wanderer language. (@UnorderedSigh)
+      * Changed the Heliarch swizzle to gold instead of red/orange/yellow. (@Arachi-Lover)
+      * Added a Mark II variant of the Auxiliary. (@LorenzoBolla)
+      * Added a random lifetime to Flamethrower projectiles so that they don't all disappear at the same time. (@Anarchist2)
+      * Improved the source filter of "Remnant Rescue 4" using new location filter syntax. (@warp-core)
+      * Adjusted the trade prices in Gegno space to be more lore-appropriate. (@Saugia)
+      * Tweaked the solar wind values of M and K supergiants to follow the same trend as the other supergiants. (@Quantumshark)
+        * K-supergiant: 2 -> 3
+        * M-supergiant: 2 -> 3.1
+  * Game mechanics:
+    * New mechanics:
+      * Added a "<planet stopovers>" substitution that more concisely lists all stopover locations. (@Terin)
+      * The "inscrutable" attribute which makes the player unable to scan NPC ships now causes the player's ships to be unscannable by NPCs. (@TomGoodIdea)
+      * Phrases can now be inserted into various mission texts using the same "${phrase name}" syntax that phrases use. (@UnorderedSigh)
+      * Created two new attributes, "high shield permeability" and "low shield permeability", which allow for shields which are not 100% effective at blocking damage to the hull. (@Quantumshark)
+      * Weapons can now define how their inaccuracy is distributed, allowing the default triangular distribution to be changed to a uniform or normal distribution. (@DeBlister)
+      * Having asteroid scanners equipped can now automatically catalog the locations of minables should you be in close proximity to the minable for a short duration, in addition to the old behavior of targeting an asteroid causing it to be cataloged. (@samrocketman)
+      * Governments can now be given minimum and maximum reputation limits outside of which your reputation with them cannot go. (@Terin)
+      * Plugins are now able to add to the menu credits by having their own credits.txt file. Plugin credits are appended to the bottom of the existing credits. (@Koranir)
+      * Events are now able to remove sprites from galaxies. (@warp-core)
+      * Mission NPC blocks can now define cargo that the NPCs carry, instead of only allowing NPCs to carry a cargo if they're defined as a Fleet. (@warp-core)
+      * Added a new "outfit (parked): <outfit>" condition for checking how many of a given outfit you have installed on parked ships that are landed with you. (@Amazinite)
+      * Having both an asteroid scanner and a tactical scanner installed now displays the health of the targeted ship. (@RugnirViking, @samrocketman)
+      * Created new escort commands and preferences to increase asteroid mining engagement. (@samrocketman)
+        * Escorts can now be made to focus fire asteroids.
+        * Escorts will harvest asteroid flotsams, and can also be commanded to harvest cargo flotsams from ships.
+        * Added a preference to have your fighters offload cargo onto your carriers upon docking.
+        * Added a new key to target the nearest asteroid, or the asteroid of highest value in range, when an asteroid scanner is equipped.
+        * Added various new tutorial help dialogs relating to mining for the above information.
+      * How distances are calculated can now be customized, such as whether wormholes or jump drives are used or if only hyperspace links can be used (old, default behavior). Works for destinations for mission and the distance and near keywords for location filters. (@warp-core)
+      * The maximum amount of time that mining NPCs spend mining in a system can now be controlled by a gamerule. (@1010todd)
+      * The health threshold where frugal personality ships become active can now be controlled by a gamerule. (@1010todd)
+      * Added a mission token to have the chosen destination ignore whether or not you have landing clearance. (@UnorderedSigh)
+      * Created a new "lingering" personality which causes ships to linger in a system and fly around, even if they have nothing else to do. (@UnorderedSigh)
+      * Conversation text can now contain formatted conditions that get converted to numeric text. (@UnorderedSigh)
+    * Mechanic changes:
+      * NPCs without the escort personality no longer follow the player's flagship if it is cloaked. (@UnorderedSigh)
+      * Having "active cooling" without "cooling energy" now causes "active cooling" to scale with heat level, instead of always operating at 100% as it normally does when "cooling energy" is present. (@Ferociousfeind)
+      * Disruption and discharge damage now deal 50% damage against hull, while still dealing 100% damage against shields. (@Ferociousfeind)
+      * Removed the scan decay that occurred when a target that was being scanned got out of range of the scanner, as it made scanning faster ships after the recent scanning changes too difficult. (@Amazinite)
+      * The "outfit: <outfit>" and "outfit (installed): <outfit>" conditions now skip over parked ships. (@Amazinite)
+  * User interface:
+    * Broke the user preferences up into multiple pages. (@Terin)
+    * Repeatedly clicking on a selected mission now cycles through every system involved with that mission, be that the waypoints, stopovers, or destination. (@alextd)
+    * The credits on the main menu can now have their speed and direction of travel controlled using the up and down arrow keys. (@Koranir)
+    * Added a message that appears at the bottom left when one of your escorts is destroyed. This message can be disabled by the "Extra fleet status messages" preference. (@Koranir)
+    * Licenses required to buy a ship or outfit now appear under the cost of the item in the shop if you have the description for the item collapsed. (@alextd, @warp-core)
+    * Expanded the customization of status overlays, including allowing overlays to only exist for specific groups of ships (e.g. your escorts, friendly NPCs, hostile NPCs), and controlling when the overlays appear (e.g. always active, only when the ship is damaged). (@Terin, @warp-core)
+    * Shop items (outfits and ships) are now able to be custom sorted within categories by the item's definition, instead of always being alphabetical. (@warp-core, @Amazinite)
+    * When multiple ships are selected in the outfitter and an outfit is also selected, an extra marker will appear next to any selected ships that have the selected outfit installed. (@TomGoodIdea)
+    * Replaced the mouse control toggle button with a preference to prevent accidental activations. (@samrocketman)
+    * Added a preference to toggle whether the flagship will collect flotsams. (@TomGoodIdea)
+    * Disabled ships now appear as gray in the escort UI at the bottom left to avoid confusion with docked ships, and selected ships have a pointer next to them. (@TomGoodIdea)
+    * The autofire preference can now be limited to only guns or only turrets. (@TomGoodIdea)
+    * Added a new control to auto-aim your ship toward your target when a key is pressed, default "E". Usable as an alternative to having the auto-aim setting always on. (@ChamEV, @UnorderedSigh)
+    * Only scan messages that are considered important will now be displayed. Important scan messages are when you are being scanned, or an escort with illegal cargo is being scanned. (@TomGoodIdea)
+    * Controls can now be unbound by pressing X or delete when hovering over the control. (@Koranir)
+    * Reordered settings in the settings menu to more sensibly group related settings. (@warp-core)
+  * Under the hood:
+    * Changed the Personality class from using a single integer to track personality flags to a bitset, allowing for more than just 32 NPC personality flags to exist. (@tibetiroka)
+    * The Personality class will fail compilation if the personality count constant doesn't match the number of possible personalities. (@UnorderedSigh)
+    * Corrected the declaration order of private members of the Conversation class. (@warp-core)
+    * Added a missing #include to the Preferences class. (@quyykk)
+    * The planet, spaceport, bank, and trade panels are now defined by the interface file instead of entirely hardcoded, allowing for plugins to edit them. (@theweirdnut)
+    * Simplified various conversations using new "to display" nodes. (@warp-core)
+    * Cleaned up and updated information in the README and CONTRIBUTING files. (@quyykk)
+    * Cleaned up the syntax of the Ringworld Debris missions. (@warp-core)
+    * Refactored and improved the shop's handling of purchasing errors. (@alextd, @warp-core)
+    * The game will no longer print a warning if a GameAction uses a "fail" node for a mission name with no matching definition. (@Amazinite)
+    * Commands are now stored in a 64-bit integer, up from a 32-bit integer, to double the number of commands that can be used. (@UnorderedSigh)
+    * Moved the storage of save file information from your conditions to dedicated storage locations, such as licenses and the planets you have dominated. This information can still be accessed via derived conditions, using the same condition names that would have been used before (e.g. "license: <license name>"). (@petervdmeer)
+    * Added a missing copyright header to the tooltips file. (@mOctave)
+    * Created a cypher for generating Korath hails. (@ravenshining)
+    * Reorganized some files that were in the data folder into subfolders. (@Zitchas)
+      * Created _deprecated and _ui folders.
+    * Added delimiters to string when printing data. (@warp-core)
+    * Removed unnecessary code from Interface class. (@warp-core)
+    * Removed extraneous whitespace in data files. (@AvianGeneticist)
+  * CI/CD and development environment:
+    * Removed use of deprecated attributes in test data. (@UnorderedSigh)
+    * Added a CMake preset to run the unit tests in Release mode. (@UnorderedSigh)
+    * CI tests now also run when the CMake files have been edited. (@quyykk)
+    * The creation of the static library is now skipped to increase build speed, as it was unnecessary to have. (@quyykk)
+    * Fixed MacOS CI/CD failures. (@quyykk)
+    * Warnings are no longer treated as errors for release builds. (@quyykk)
+    * Switched the Steam Linux build to use the Sniper runtime. (@quyykk)
+    * Enhanced the error detection capabilities of the content style checker. (@tibetiroka)
+    * Added support for building for Flatpak from CMake. (@quyykk)
+    * Disabled the style checker for vcpkg and cmake C++ files. (@tibetiroka)
+
 Version 0.10.0
   * Breaking changes:
     * The accompany objective on mission npcs no longer implicitly sets the save objective. Plugin missions that had "accompany" but not "save" should be changed to include "save" if the intention of the mission is that the npcs live (without the bug this time). (@Amazinite, @RisingLeaf)
@@ -34,7 +319,7 @@ Version 0.10.0
       * Remove a duplicated "Fury" in pirate ship name phrases. (@bene-dictator)
       * Allowed Nanachi missions to start on Giverstone again. (@williaji)
       * Ensured the laborer mission cannot select the source as the destination. (@quyykk)
-      * Prevent "Remnant: Celebration" mission from occuring in non-sensical places. (@warp-core)
+      * Prevent "Remnant: Celebration" mission from occurring in non-sensical places. (@warp-core)
       * The "Remnant: Cognizance 32" blocked message now works as intended. (@warp-core)
       * The player now always has clearance for Pugglemug in the Free Worlds mission to visit the Pug. (@TomGoodIdea)
       * Earth Day jobs can no longer offer with deadlines after Earth Day itself. (@warp-core)
@@ -63,7 +348,7 @@ Version 0.10.0
       * Don't try to load non-existent plugin icons. (@quyykk)
       * Ensured ships will always have an attraction and deterrence value. (@quyykk)
       * Ensured options in conversation choices which aren't being displayed can't be selected with keyboard navigation. (@UnorderedSigh)
-      * Improved behaviour of out of system escorts without fuel. (@wjp)
+      * Improved behavior of out of system escorts without fuel. (@wjp)
       * Fixed a null pointer dereference in the player info panel when the player has multiple ships but no flagship. (@warp-core)
       * Do not offer landing missions in the shipyard or outfitter. (@warp-core)
       * Do not allow disabled ships to dock with carriers. (@UnorderedSigh)
@@ -79,7 +364,7 @@ Version 0.10.0
       * Fixed building in gcc 13 by including <cstdint>. (@heirecka)
       * Fixed an issue with displaying the text of the selected choice when some choices are hidden in conversations. (@warp-core)
       * Ships which can be carried no longer select targets for plundering. (@tibetiroka)
-      * Use a PlayerInfo transaction to prevent repitition of actions in missions when saving and reloading during a conversation. (@wjp, @UnorderedSigh, @warp-core)
+      * Use a PlayerInfo transaction to prevent repetition of actions in missions when saving and reloading during a conversation. (@wjp, @UnorderedSigh, @warp-core)
       * Prevent plundering ships from retargeting a ship they've already boarded for plundering. (@tibetiroka)
       * Carryable ships no longer offer to assist the player when hailed, since they are not able to assist. (@warp-core, @tibetiroka)
       * Correct the minimum required crew check when installing or uninstalling an outfit to allow uninstalling a Command Center with no other required crew. (@TomGoodIdea, @RisingLeaf)
@@ -314,7 +599,7 @@ Version 0.10.0
       * Ships with the "forbearing" personality will now also react to special damage types, instead of just based on health. (@Hurleveur)
       * Both a dialog and conversation may now be displayed upon completing the objective for a mission NPC. (@Hurleveur)
       * Made wormholes root-defined objects, allowing for more customization of wormhole behavior. (@quyykk, @tibetiroka)
-      * Restored the old overheating behaviour where a ship is completely unable to act, instead of just not having energy generation while overheated. (@warp-core)
+      * Restored the old overheating behavior where a ship is completely unable to act, instead of just not having energy generation while overheated. (@warp-core)
       * Initiating a hyperspace jump with no travel plan set does not set one. (@Zitchas)
       * Hazard environmental effects may now be given non-integer magnitudes. (@RisingLeaf)
       * Weapon jamming is now its own damage type, "scrambling," separated from ion damage. (@Hurleveur)
@@ -336,7 +621,7 @@ Version 0.10.0
     * Added indicator overlays for missiles. (@Koranir)
     * Added an 's' unit symbol for attributes that are in seconds. (@Koranir)
     * Improvements to the selecting of targets for boarding. (@Hurleveur)
-      * Automatic target selection can prioritise either proximity or value, based on a user controlled setting.
+      * Automatic target selection can prioritize either proximity or value, based on a user controlled setting.
       * Pressing the 'board' key multiple times in quick succession will now cycle through boarding targets.
     * An additional autosave at the most recent planet with a spaceport. (@Hurleveur)
     * Added a visual warning icon alongside the audible warning siren. (@Zitchas, @warp-core)
@@ -348,7 +633,7 @@ Version 0.10.0
     * It is now possible to aim your ship and fire primary weapons using your mouse! (@CAPTAIN1947, @samrocketman, @Hurleveur, @Terin)
     * Made the secondary weapon icons in the HUD clickable. (@warp-core, @quyykk, @tehhowch, @tibetiroka, @Hurleveur)
     * Minables can now have custom display names and nouns. (@warp-core)
-    * Wormhole arrows and links colors can now be customised in the wormhole definition. (@Azure3141, @RisingLeaf)
+    * Wormhole arrows and links colors can now be customized in the wormhole definition. (@Azure3141, @RisingLeaf)
     * Trade commodity profit is now displayed in its own column, separate to the price level. (@hmglasgow, @warp-core)
     * Improved the display of requirements to install an outfit. (@alextd)
     * The order of outfit attributes in the outfitter is now cost, requirements (e.g. outfit space used), then all other attributes. (@warp-core)
@@ -1032,7 +1317,7 @@ Version 0.9.15:
     * Added the EditorConfig style checker to the CI. (@quyykk)
     * Updated the XCode checker to account for dasherized filenames. (@tehhowch)
     * Created a CI job for validating copyright entries. (@quyykk)
-    * Maked Windows Actions compatible with new CI image. (@samrocketman, @quyykk)
+    * Made Windows Actions compatible with new CI image. (@samrocketman, @quyykk)
     * Added a three-second delay to UI steps when debugging. (@petervdmeer)
     * Moved the tests definitions out of the general data folder. (@quyykk)
 
@@ -1765,7 +2050,7 @@ Version 0.9.9:
       * Test dummy ships now only aim to disable instead of destroying. (@tehhowch, @Amazinite)
       * Command centers are now unplunderable. (@AlexBassett)
       * Added small numbers of hand to hand weapons to various human ships. (@Fzzr)
-      * Ship names are now always preceeded by the word "the" in missions and jobs. (@DrBlight)
+      * Ship names are now always preceded by the word "the" in missions and jobs. (@DrBlight)
       * Lead's description no longer incorrectly claims that it is the heaviest non-radioactive element. (@Janaszar)
       * Added more content definition warnings & checks, to help modders develop functional content. (@tehhowch)
       * Content definition checks do not warn for certain objects defined solely by game events. (@comnom)
@@ -2360,7 +2645,7 @@ Version 0.9.5:
     * Split the preferences panel into separate pages for keys, settings, and plugins.
     * If a plugin has an icon or an about.txt, those are now shown in the plugins list.
     * Zoom preferences can now be adjusted with the scroll wheel instead of clicking to cycle.
-    * Overheated targets now blink grey to show that they're only half disabled.
+    * Overheated targets now blink gray to show that they're only half disabled.
     * Switched to a less cartoony icon, particularly for use by the Mac OS X application.
     * The game now sets the "window icon" to show in the corner of the window and in the switcher.
     * Put a limit on how many messages will display at the bottom of the screen.
@@ -2720,7 +3005,7 @@ Version 0.9.1:
     * The 'D' key now works as a shortcut for "leave" in the shop panels.
     * You can now cancel "capture ship" without fighting by clicking "defend" as your first action.
     * The shipyard now shows full stats for the player's ship.
-    * Categories in the shipyard and outfitter are now "collapsable."
+    * Categories in the shipyard and outfitter are now "collapsible."
     * You can now buy outfits directly into cargo by deselecting all your ships (control + click).
   * Under the hood:
     * The compiler now uses the CPPFLAGS in addition to CXXFLAGS. (@kilobyte)
@@ -2844,7 +3129,7 @@ Version 0.9.0:
     * The find function in the map panels now prefers strings that start with the given text.
     * In the ship info, the line to whatever weapon you hover over is now always drawn on top.
     * Added Shift+B and Shift+S as shortcuts for "buy all" and "sell all" in the trade panel.
-    * The commodity price maps now grey out systems where a given commodity is not sold.
+    * The commodity price maps now gray out systems where a given commodity is not sold.
   * Under the hood:
     * Made the Linux dependency list easier to copy-paste to the command line. (@anarcat)
     * Merged DotShader and RingShader, and merged SpriteShader and BlurShader.
@@ -2858,9 +3143,8 @@ Version 0.9.0:
     * Added sanity checks for some weapon attributes that must be within certain ranges.
     * Moved the code for determining the "target color" of a planet into Planet itself.
     * Moved the data for the Korath and the Wanderers into separate files.
-    * Deleted the very outdated) "extra" directory.
+    * Deleted the very outdated "extra" directory.
     * Code cleanup in various other places.
-
 
 Version 0.8.11:
   * Bug fixes:
@@ -3114,14 +3398,14 @@ Version 0.8.4:
       * If you have a jump drive, the radar now includes pointers to "neighbor" systems.
     * Main map panel ("Ports"):
       * The map now shows commodity prices relative to the current system, rather than absolute price.
-      * Unexplored systems are now a dimmer grey than uninhabited ones.
+      * Unexplored systems are now a dimmer gray than uninhabited ones.
     * Jobs / missions panel:
       * Unique missions are now shown at the start of your mission list instead of the end.
       * Mission lists now support the scroll wheel in addition to click and drag.
       * Selecting a different mission in the jobs map no longer changes your travel plan.
     * Maps of shipyards and outfitters:
       * Show the attributes of the currently selected item.
-      * Grey out items that are not for sale in the selected system.
+      * Gray out items that are not for sale in the selected system.
       * Distinguish between systems with nothing for sale vs. systems with other items but not the selected one.
     * Outfitter panel:
       * Attributes are now always shown in units per second instead of units per frame.

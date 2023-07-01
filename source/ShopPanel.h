@@ -110,7 +110,7 @@ protected:
 	virtual bool Release(int x, int y) override;
 	virtual bool Scroll(double dx, double dy) override;
 
-	int64_t LicenseCost(const Outfit *outfit) const;
+	int64_t LicenseCost(const Outfit *outfit, bool onlyOwned = false) const;
 
 
 protected:
