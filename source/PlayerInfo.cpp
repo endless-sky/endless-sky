@@ -197,9 +197,38 @@ void PlayerInfo::NewDesign(const PlayerInfo &player)
 	// XXX - set licenses to allow purchase of everything available for sale
 	licenses = player.Licenses();
 
+	// Add any outfits installed or in storage somewhere that aren't
+	// available for sale into the player's cargo hold.
 	Cargo().Clear();
-	// XXX - add any outfits installed or in cargo that aren't available for sale
-	// into the player's cargo hold
+        set<const Outfit *> seen;
+	// Find all outfits sold by outfitters of visited systems.
+	for(const auto &it : GameData::Planets())
+		if(it.second.IsValid() && player.HasVisited(*it.second.GetSystem()))
+			for(const Outfit *outfit : it.second.Outfitter())
+				if(!seen.count(outfit))
+					seen.insert(outfit);
+	// Add not-for-sale outfits in planetary storage
+	for(const auto &it : player.PlanetaryStorage())
+		for(const auto &oit : it.second.Outfits())
+			if(!seen.count(oit.first))
+				Cargo().Add(oit.first, oit.second);
+	// Add not-for-sale outfits in player storage
+	for(const auto &it : player.Cargo().Outfits())
+		if(!seen.count(it.first))
+			Cargo().Add(it.first, it.second);
+	// Add not-for-sale outfits installed in ships, or in ship storage
+	for(const auto &it : player.Ships())
+	{
+		for(const auto &oit : it->Outfits())
+			if(!seen.count(oit.first))
+				Cargo().Add(oit.first, oit.second);
+		for(const auto &oit : it->Cargo().Outfits())
+			if(!seen.count(oit.first))
+				Cargo().Add(oit.first, oit.second);
+	}
+	// We don't add not-for-sale outfits that can be gotten from
+	// for-sale ships - players can manage those themselves in the
+	// sandbox by buying those ships and stripping those outfits.
 }
 
 
