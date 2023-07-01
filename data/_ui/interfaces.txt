@@ -728,10 +728,30 @@ interface "planet"
 		align right
 		pad 10 0
 	
+	visible if "has design shipyard"
+	sprite "ui/planet dialog button"
+		center 280 90
+	button S "Design _Shipyard"
+		center 280 90
+		dimensions 140 40
+		size 18
+		align right
+		pad 10 0
+	
 	visible if "has outfitter"
 	sprite "ui/planet dialog button"
 		center 280 150
 	button o "_Outfitter"
+		center 280 150
+		dimensions 140 40
+		size 18
+		align right
+		pad 10 0
+	
+	visible if "has design outfitter"
+	sprite "ui/planet dialog button"
+		center 280 150
+	button O "Design _Outfitter"
 		center 280 150
 		dimensions 140 40
 		size 18

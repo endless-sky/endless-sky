@@ -106,6 +106,16 @@ void PlanetPanel::Draw()
 	if(flagship && flagship->CanBeFlagship())
 		info.SetCondition("has ship");
 
+	SDL_Keymod mod = SDL_GetModState();
+	bool designUI = false;
+	if(mod & KMOD_SHIFT)
+		designUI = true;
+
+	if (designUI)
+	{
+		info.SetCondition("has design shipyard");
+		info.SetCondition("has design outfitter");
+	}
 	if(planet.CanUseServices())
 	{
 		if(planet.IsInhabited())
@@ -122,10 +132,10 @@ void PlanetPanel::Draw()
 		if(flagship && planet.HasSpaceport())
 			info.SetCondition("has spaceport");
 
-		if(planet.HasShipyard())
+		if(!designUI && planet.HasShipyard())
 			info.SetCondition("has shipyard");
 
-		if(planet.HasOutfitter())
+		if(!designUI && planet.HasOutfitter())
 			for(const auto &it : player.Ships())
 				if(it->GetSystem() == &system && !it->IsDisabled())
 				{
@@ -181,7 +191,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 			spaceport->UpdateNews();
 		GetUI()->Push(spaceport);
 	}
-	else if(key == 's' && (mod & KMOD_SHIFT))
+	else if(key == 'S' || (key == 's' && (mod & KMOD_SHIFT)))
 	{
 		designPlayer.NewDesign(player);
 		GetUI()->Push(new ShipyardPanel(designPlayer));
@@ -192,7 +202,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		GetUI()->Push(new ShipyardPanel(player));
 		return true;
 	}
-	else if(key == 'o' && (mod & KMOD_SHIFT))
+	else if(key == 'O' || (key == 'o' && (mod & KMOD_SHIFT)))
 	{
 		designPlayer.NewDesign(player);
 		GetUI()->Push(new OutfitterPanel(designPlayer));
