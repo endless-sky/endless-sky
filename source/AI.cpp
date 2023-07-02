@@ -1685,7 +1685,6 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		}
 	}
 
-
 	// A ship has restricted movement options if it is 'staying', 'lingering', or hostile to its parent.
 	const bool shouldStay = StayOrLinger(ship);
 
