@@ -13,43 +13,365 @@
 
 ########################################################################
 
-event "hr: media retraction"
+mission "Hai Reveal Exploration Period: Concerned Hai"
+	minor
+	landing
+	invisible
+	source
+		government "Hai"
+		not attributes "uninhabited" "retirement"
+	to offer
+		has "Hai Reveal: Meet the Team: Sayari 2: done"
+		not "event: hr: exploration period"
+		random < 20
+	on offer
+		conversation
+			`Some Hai are beginning to disaster prep.`
+				decline
+
+
+mission "Hai Reveal Exploration Period: Human Population Feeling Pressured"
+	minor
+	landing
+	invisible
+	source
+		government "Hai"
+		not attributes "uninhabited" "retirement"
+	to offer
+		has "Hai Reveal Exploration Period: Concerned Hai: declined"
+		not "event: hr: exploration period"
+		random < 30
+	on offer
+		conversation
+			`More and more Hai are asking their human friends to vet other humans before they deal with them.`
+				decline
+
+
+
+mission "Hai Reveal Exploration Period: Local Human Merchants Speak Up"
+	minor
+	landing
+	invisible
+	source
+		government "Hai"
+		not attributes "uninhabited" "retirement"
+	to offer
+		has "Hai Reveal: Meet the Team: Sayari 2: done"
+		not "event: hr: exploration period"
+		random < 20
+	on offer
+		conversation
+			`Merchants are conflicted about unscrupulous visitors.`
+				decline
+
+
+
+mission "Hai Reveal Exploration Period: Hei Low Io Stocks Up"
+	landing
+	invisible
+	source
+		government "Hai"
+		not attributes "uninhabited" "retirement"
+	to offer
+		has "Hai Reveal: Meet the Team: Sayari 2: done"
+		not "event: hr: exploration period"
+		random < 10
+	on offer
+		conversation
+			`More and more Hai are asking their human friends to vet other humans before they deal with them.`
+				decline
+
+
 
 mission "Hai Reveal: Media Retraction"
+	landing
+	invisible
+	to offer
+		has "event: hr: exploration period"
+	on offer
+		set "hr: media retraction"
+		event "hr: media retraction reaches hai" 25
+	# Sync reputations for aliases of governments:
+		"reputation: Republic that won't enter wormhole" = "reputation: Republic"
+		"reputation: Free Worlds that won't enter wormhole" = "reputation: Free Worlds"
+	# Make sure the new governments start with appropriate rep:
+		"reputation: Elenctic Commune" = 1000
+
+event "hr: media retraction reaches hai"
+
+
+mission "Hai Reveal: Media Retraction (Human)"
 	landing
 	invisible
 	source
 		government "Republic" "Syndicate" "Free Worlds" "Neutral"
 		attributes "spaceport"
 	to offer
-		has "event: hr: media retraction"
+		has "hr: media retraction"
+		not "Hai Reveal: Media Retraction (Hai): offered"
 	on offer
-	# Sync reputations for aliases of governments:
-		"reputation: Republic that won't enter wormhole" = "reputation: Republic"
-		"reputation: Free Worlds that won't enter wormhole" = "reputation: Free Worlds"
-		# Make sure the new governments start with appropriate rep:
-		"reputation: Elenctic Commune" = 1000
 		conversation
 			`News report that says that the guy who showed the video of the Hai ships five months prior was just a viral marketing stunt for an upcoming movie.`
 				decline
 
 
+mission "Hai Reveal: Media Retraction (Hai)"
+	landing
+	invisible
+	source
+		government "Republic" "Syndicate" "Free Worlds" "Neutral"
+		attributes "spaceport"
+	to offer
+		has "event: hr: media retraction reaches hai"
+	on offer
+		event "hr: pirates respond to leaks" 1
+		event "hr: concern period" 35
+		conversation
+			`News report that says that the guy who showed the video of the Hai ships five months prior was just a viral marketing stunt for an upcoming movie. With additional advisory warning for Hai merchants.`
+				decline
 
-event "pirates respond to leaks"
+
+event "hr: pirates respond to leaks"
 	# Add pirate spawns to Waypoint and Heia Due
 	system "Waypoint"
 		government "Pirate"
-		add fleet "Large Northern Pirates" 3000
-		add fleet "Small Northern Pirates" 1000
-		add fleet "Large Core Pirates" 3000
-		add fleet "Small Core Pirates" 1000
+		add fleet "Large Northern Pirates" 5000
+		add fleet "Small Northern Pirates" 2500
+		add fleet "Large Core Pirates" 6000
+		add fleet "Small Core Pirates" 3000
 		remove fleet "Small Hai"
 		remove fleet "Large Hai"
 	system "Heia Due"
-		add fleet "Marauder fleet IX" 3000
-		add fleet "Large Northern Pirates" 3000
-		add fleet "Large Core Pirates" 3000
-		add fleet "Anti-Pirate Hai (Wormhole Travel)" 1000
+		add fleet "Marauder fleet IX" 15000
+		add fleet "Large Northern Pirates" 10000
+		add fleet "Large Core Pirates" 12000
+		add fleet "Anti-Pirate Hai (Wormhole Travel)" 2000
+
+
+
+mission "Hai Reveal Concern Period: Humans Going Home"
+	landing
+	invisible
+	source
+		government "Hai"
+		not attributes "uninhabited" "retirement"
+	destination
+		attributes "hai: human presence"
+	to offer
+		has "event: hr: pirates respond to leaks"
+		random < 10
+	on offer
+		conversation
+			`Humans with business on worlds that have very little human presence are moving or returning to homes where there are more humans. They're not coping with the suspicion directed at them.`
+				accept
+
+
+
+mission "Hai Reveal Concern Period: Raid on Allhome (local)"
+	landing
+	invisible
+	source "Allhome"
+	to offer
+		has "event: hr: pirates respond to leaks"
+		not "Hai Reveal Concern Period: Raid on Allhome (away): offered"
+	on offer
+		set "hr: allhome raided"
+		conversation
+			`Landing on <origin> you are greeted by an unexpected atmosphere of dread. Normally the Hai are very friendly, but here suddenly mothers are keeping tight grips on their children, and passers-by look upon you with a hint of wariness.`
+			`	You realize that the few humans who have settled here among the Hai are all wearing pink at the moment. When you catch the eye of one lady who looks friendly, you greet her to ask a few questions.`
+			choice
+				`	"Why does everyone seem so afraid?"`
+				`	"Why are you all wearing pink?"`
+					goto pink
+			`	She shakes her head and wrinkles her nose with a look of distaste. "Some marauder came here just yesterday, posing as a trader to investigate the rumors. We thought the Hai had means of keeping them out, but this one snuck in and landed at the spaceport without any opposition. Then his crew hijacked a ship straight off the landing pad! We're just... in shock, I suppose. It's completely unprecedented for something like that to happen in broad daylight."`
+			`	She sighs deeply and says, "Naturally they've ramped up security, but half the Hai crew were still on board and we have no idea what their fate has been. It's got everyone a bit shaken and distrustful at the moment."`
+			`	"Oh, that's awful!" you say.`
+			`	She nods and forces a little bit of false cheer into her voice, "This is why we're all wearing pink, just a little show of local solidarity.`
+				goto main
+			label pink
+			`	A sad smile crosses her face and her expression goes somber as she explains, "A pirate marauder recently snuck down onto the planet and hijacked a ship straight off the landing pad. The Hai are in shock, it's just completely unprecedented for something like that to happen in broad daylight. Naturally, they've ramped up security, but half the Hai crew were still on board and we have no idea what their fate has been. Everyone is a bit shaken up so us locals are wearing pink in solidarity... and so we're not mistaken for a security risk.`
+			label main
+			`	"Unfortunately, it's taking a while for them to redistribute an appropriately resourced security force thanks to the Unfettered. So far they've only been able to recall those on leave and up their vigilance."`
+			label questions
+			choice
+				`	"Could I do anything to help?"`
+					goto help
+					to display
+						not "Hai Reveal Concern Period: Raid on Allhome (local): label help"
+				`	"Who are the Unfettered?"`
+					goto unfettered
+					to display
+						not "First Contact: Unfettered: offered"
+						not "Hai Reveal Concern Period: Raid on Allhome (local): label unfettered"
+				`	"Thank you for your time."`
+					goto end
+					to display
+						or
+							has "Hai Reveal Concern Period: Raid on Allhome (local): label help"
+							has "Hai Reveal Concern Period: Raid on Allhome (local): label unfettered"
+			label unfettered
+			set "Hai Reveal Concern Period: Raid on Allhome (local): label unfettered"
+			`	She seems surprised that you asked and responds, "Oh, they're a sort of rebel Hai group. If you don't know you could go visit Cloudfire in the Wah Ki system up north, or maybe even Darkcloak if you dare. A short visit would explain it far better than I ever could.`
+			`	"Be very careful if you do though, they're very likely to shoot at you."`
+				goto questions
+			label help
+			set "Hai Reveal Concern Period: Raid on Allhome (local): label help"
+			`	She shrugs. "I've heard talk of some things that have been suggested to help, but I don't know myself. I guess you should just do the right thing, whatever that is."`
+			`	She seems to be at a loss for what else to say.`
+				goto questions
+			label end
+			`	"No, thank you for caring," she says. "Whatever you do, just be cautious about it. People are scared, and I have a hunch that when they're under pressure, the Hai are a little stranger than people think they are.`
+			`	"Safe travels, Captain."`
+				decline
+
+
+mission "Hai Reveal Concern Period: Raid on Allhome (away)"
+	landing
+	invisible
+	source
+		government "Hai"
+		attributes "hai: human presence"
+		not attributes "uninhabited" "retirement"
+		not "Allhome"
+	to offer
+		has "event: hr: pirates respond to leaks"
+		has "First Contact: Unfettered: offered"
+		not "Hai Reveal Concern Period: Raid on Allhome (local): offered"
+		random < 20
+	on offer
+		set "hr: allhome raided"
+		conversation
+			`A wall screen situated between two food stands just outside the docking area is playing through a news segment, and your ears suddenly perk up at the word "marauder".`
+			`	"Yesterday, a marauder terrorized the inhabitants of Allhome. They arrived by posing as a trader to investigate rumors currently circulating in human space about our existence. Hai security failed to identify the danger, and the individual snuck his ship in and landed at the spaceport without any opposition. Then his crew hijacked a vessel with some of the crew still on board and made off with it successfully. At this time it is unclear what has happened to those crewhai."`
+			`	At a table nearby, a Hai says, "Oh, that's awful!" and the human next to her responds, "Feels like being back on Solace."`
+			choice
+				`	(Approach the pair.)`
+				`	(Keep walking.)`
+					goto walking
+			
+			`	As you approach the human, a relatively young-looking man, glances up at you. "Oh hello, just arrived did you? You didn't happen to see an Argosy out there on your way in?"`
+			`	"Oh shush," says the Hai, "Your uncle will be here when said he will, no need to bother random folks just going about their business."`
+			`	She looks at you with a wary eye, but then seems to relent. "Though I suppose you did come over here of your own volition didn't you. Can we help you at all Captain?"`
+			choice
+				`	"Is this a common problem for Allhome?"`
+				`	"I heard you say this happened on Solace?"`
+					goto solace
+					
+			`	"Oh imperishables, no, not at all. It's completely unprecedented for something like that to happen, and in broad daylight too from the looks of the footage," she says.`
+			`	"It's like I was saying before, Auntie, ever since the retraction and that advisory, I swear no one except pirates is trying to get through the wormhole anymore."`
+			`	He looks at you seriously, "It's getting so bad that it's starting to feel like it did during the war, when all the militia were away and before the Free Worlds got a handle on the pirates. It seemed like every new ship that arrived was there to try and rob us, and it's the same now. We came here to be safe, but now it feels like all the government has managed to do is make sure that no one friendly is willing to risk the journey..."`
+				goto resolve
+			
+			label solace
+			`	The guy sits up a little straighter. "When the war started and most of the militia went away to the front, before the Free Worlds got a handle on the pirates, Solace essentially came under siege. Other than the regular merchants that we were familiar with, it seemed like every new ship that arrived was there to try and rob us. Either raiding the regulars, or raiding the planet.`
+			`	"And now with all this," he says, gesturing to the screen. "It feels much the same now, and the Hai seem no better prepared for it than we were. Ever since the retraction and that advisory, it feels like pirates are the only ones showing up through the wormhole anymore. We came here to be safe, but now it feels like all the government has managed to do is make sure that no one friendly is willing to risk the journey..."`
+			
+			label resolve
+			`	His lip quivers and she takes his hand firmly in her own. "You are safe with your Uncle and I," she says, forcefully emphasizing the word 'are', "it will take far more than some pressure from a few pirates to threaten the peace here."`
+			`	He nods and stands up, heading towards the restroom. "Excuse me Auntie, I need a minute."`
+			
+			choice
+				`	"I'll leave you in peace."`
+					goto leave
+				`	"Will he be ok?"`
+					goto "him ok"
+				`	"Are you ok?"`
+					goto "she ok"
+				`	"You're his Aunt?"`
+			`	She gives you a strange look, as if unsure whether to dignify that with a response, and then answers. "His mother was in the militia during the war. She died. His father did not survive that loss. He came to be looked after by his uncle who had heard rumors of the Hai, and couldn't afford to both look after him and pay his debts in the Free Worlds. So they came here and found me."`
+				goto uncle
+			label "him ok"
+			`	"Rightfully, I do not know."`
+				goto uncle
+			label "she ok"
+			`	"I will be fine, though it is challenging adapting to how humans deal with crisis and trauma," she says. "No doubt they will be having a far worse time of things on Allhome. Still..."`
+			
+			label uncle
+			`	She looks wistfully towards the docks. "His uncle is meant to be returning from having gone to pay off the final sum on his debt and wrap up some final business in human space. With the current events, we are both very worried he will not return, though I am doing my best to pretend otherwise."`
+			`	She settles back in her seat with deliberate dignity.`
+			
+			label peace
+			`	"Thank you, but it is okay Captain.`
+			label finish
+			`	"Do not trouble yourself over having questioned us. There is no shortcut for processing trauma, and it does the boy no good to hide from the world."`
+			`	She gestures at the screen. "No doubt many people will have many ideas for how to help things soon enough. If it troubles you, lend them a hand. Now, be about your business and farewell."`
+			label walking
+			`	Barely ten minutes later there is already someone on the screen arguing for a range of measures to help with the pirate situation.`
+				decline
+
+
+
+mission "HR: Call for Aid with Sandsnap"
+	name "Join an effort on <planet>"
+	job
+	repeat
+	description "Experienced combat pilots are requested to apply at the spaceport on <destination> for a project."
+	to offer
+		not "hr: sandsnap project"
+	source
+		government "Hai"
+		not "Makerplace"
+	destination "Makerplace"
+	to complete
+		has "hr: sandsnap project"
+	on complete
+		payment 1000 150
+
+
+
+mission "Hai Reveal Concern Period: Reactivating Sandsnap"
+	priority
+	name "Transport the Stationkeeper to Sandsnap."
+	description "Travel to <destination> and safely deliver the Stationkeeper to reactivate the station."
+	source "Makerplace"
+	destination "Sandsnap"
+	passengers 1
+	to offer
+		has "hr: allhome raided"
+	on offer
+		conversation
+			`	Some Hai would like to reopen the Sandsnap station in Heia Due as a better place for coordinating security efforts from after the raid on Allhome. The first mission is to go there with the motley hired guns and the Stationkeeper to reactivate it and make sure it's in working order.`
+				accept
+	on accept
+		set "hr: sandsnap project"
+
+
+
+mission "Hai Reveal Concern Period: Securing Sandsnap"
+	name "Defend the supply convoy on arrival."
+	description "Keep <system> secure against pirates for the supply convoy so that they can reach <planet> safely."
+	landing
+	source "Sandsnap"
+	passengers 1
+	to offer
+		has "hr: allhome raided"
+	on offer
+		conversation
+			`	Keep the station secure and ensure the supply convoy arrives safely.`
+				accept
+	on accept
+		set "hr: sandsnap project"
+	on visit
+		dialog "The supply ships have not all arrived safely yet."
+	on fail
+		dialog "The supply convoy has been lost."
+	npc accompany
+		government "Hai Merchant"
+		personality escort timid
+		system "Makerplace"
+		fleet "Large Hai Merchant" 3
+	on complete
+		"reputation: Hai" += 200
+		"reputation: Hai (Wormhole Access)" += 200
+		"reputation: Hai Merchant" += 200
+		"reputation: Hai Merchant (Human)" += 200
+		"reputation: Hai Merchant (Sympathizers)" += 200
+		event "hr: sansnap awoken"
+		conversation
+			`Peeps are all set up, Sandsnap will help out a little.`
+
+
+event "hr: sansnap awoken"
 
 
 

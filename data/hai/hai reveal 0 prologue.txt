@@ -26,6 +26,7 @@ mission "Hai Reveal: Secret Leaks"
 		"hr: knew of hai" = "First Contact: Hai: offered" + "First Contact: Unfettered: offered"
 		fail
 
+
 event "hr: friend arrives"
 
 event "hr: friend settled in"
@@ -370,6 +371,7 @@ mission "Hai Reveal: Late Arrival: Alondo"
 		ship "Centipede" "Emissary"
 	on complete
 		set "hr: meet the team"
+
 
 event "hr: join later"
 
@@ -773,5 +775,6 @@ mission "Hai Reveal: Meet the Team: Sayari 2"
 			label "familiar"
 			`	"For now, there are no immediate tasks for you. The others will continue working on the plan to manage the situation, and we will call upon you once you are needed. I suggest you tie up any unfinished business you have around here while you wait. There may not be much opportunity to do so in the future."`
 			label end
+
 
 event "hr: exploration period"
