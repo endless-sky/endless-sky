@@ -147,6 +147,8 @@ event "hr: pirates respond to leaks"
 		add fleet "Large Core Pirates" 12000
 		add fleet "Anti-Pirate Hai (Wormhole Travel)" 2000
 
+event "hr: concern period"
+
 
 
 mission "Hai Reveal Concern Period: Humans Going Home"
@@ -210,12 +212,14 @@ mission "Hai Reveal Concern Period: Raid on Allhome (local)"
 							has "Hai Reveal Concern Period: Raid on Allhome (local): label help"
 							has "Hai Reveal Concern Period: Raid on Allhome (local): label unfettered"
 			label unfettered
-			set "Hai Reveal Concern Period: Raid on Allhome (local): label unfettered"
+			action
+				set "Hai Reveal Concern Period: Raid on Allhome (local): label unfettered"
 			`	She seems surprised that you asked and responds, "Oh, they're a sort of rebel Hai group. If you don't know you could go visit Cloudfire in the Wah Ki system up north, or maybe even Darkcloak if you dare. A short visit would explain it far better than I ever could.`
 			`	"Be very careful if you do though, they're very likely to shoot at you."`
 				goto questions
 			label help
-			set "Hai Reveal Concern Period: Raid on Allhome (local): label help"
+			action
+				set "Hai Reveal Concern Period: Raid on Allhome (local): label help"
 			`	She shrugs. "I've heard talk of some things that have been suggested to help, but I don't know myself. I guess you should just do the right thing, whatever that is."`
 			`	She seems to be at a loss for what else to say.`
 				goto questions
@@ -230,9 +234,9 @@ mission "Hai Reveal Concern Period: Raid on Allhome (away)"
 	invisible
 	source
 		government "Hai"
+		not planet "Allhome"
 		attributes "hai: human presence"
 		not attributes "uninhabited" "retirement"
-		not "Allhome"
 	to offer
 		has "event: hr: pirates respond to leaks"
 		has "First Contact: Unfettered: offered"
@@ -272,7 +276,7 @@ mission "Hai Reveal Concern Period: Raid on Allhome (away)"
 			
 			choice
 				`	"I'll leave you in peace."`
-					goto leave
+					goto peace
 				`	"Will he be ok?"`
 					goto "him ok"
 				`	"Are you ok?"`
@@ -289,10 +293,11 @@ mission "Hai Reveal Concern Period: Raid on Allhome (away)"
 			label uncle
 			`	She looks wistfully towards the docks. "His uncle is meant to be returning from having gone to pay off the final sum on his debt and wrap up some final business in human space. With the current events, we are both very worried he will not return, though I am doing my best to pretend otherwise."`
 			`	She settles back in her seat with deliberate dignity.`
-			
+				goto leave
+				
 			label peace
 			`	"Thank you, but it is okay Captain.`
-			label finish
+			label leave
 			`	"Do not trouble yourself over having questioned us. There is no shortcut for processing trauma, and it does the boy no good to hide from the world."`
 			`	She gestures at the screen. "No doubt many people will have many ideas for how to help things soon enough. If it troubles you, lend them a hand. Now, be about your business and farewell."`
 			label walking
@@ -310,7 +315,7 @@ mission "HR: Call for Aid with Sandsnap"
 		not "hr: sandsnap project"
 	source
 		government "Hai"
-		not "Makerplace"
+		not planet "Makerplace"
 	destination "Makerplace"
 	to complete
 		has "hr: sandsnap project"
@@ -358,7 +363,7 @@ mission "Hai Reveal Concern Period: Securing Sandsnap"
 	npc accompany
 		government "Hai Merchant"
 		personality escort timid
-		system "Makerplace"
+		system "Ula Mon"
 		fleet "Large Hai Merchant" 3
 	on complete
 		"reputation: Hai" += 200
