@@ -4590,7 +4590,7 @@ void AI::UpdateOrders(const Ship &ship)
 	}
 }
 
-// Job / Mission NPC blocks may use keywords (waypoint, patrol, visit, land) to define travel plans.
+// Job / Mission NPC blocks may use keywords (waypoint, visit, land) to define travel plans.
 void AI::IssueNPCOrders(Ship &ship, const System *waypoint, const std::map<const Planet *, bool> stopovers)
 {
 	Orders newOrders;
