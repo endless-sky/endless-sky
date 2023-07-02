@@ -200,6 +200,7 @@ void PlayerInfo::NewDesign(const PlayerInfo &player)
 	// Add any outfits installed or in storage somewhere that aren't
 	// available for sale into the player's cargo hold.
 	Cargo().Clear();
+	Cargo().SetSize(-1);
 	set<const Outfit *> seen;
 	// Find all outfits sold by outfitters of visited systems.
 	for(const auto &it : GameData::Planets())
