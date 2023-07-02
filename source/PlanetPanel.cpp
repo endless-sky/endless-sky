@@ -111,7 +111,7 @@ void PlanetPanel::Draw()
 	if(mod & KMOD_SHIFT)
 		designUI = true;
 
-	if (designUI)
+	if(designUI)
 	{
 		info.SetCondition("has design shipyard");
 		info.SetCondition("has design outfitter");
