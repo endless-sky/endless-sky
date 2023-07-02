@@ -1338,7 +1338,7 @@ mission "Wanderers: Alpha Surveillance F"
 			choice
 				`	"Yes."`
 					goto jump
-				`	"You seem to be very familiar with the Hai's space?"`
+				`	"You seem to be very familiar with Hai space?"`
 			`	Danforth looks bemused. "Living on their doorstep? I've known about them from long before the secret broke. Why do you think the Navy maintains such a large base on Farpoint in the first place? It's not like the human anarchists up north pose that much of a threat."`
 			label jump
 			`	"It's not just the distance," says Elias. "The only way to get there is by jump drive. Fortunately Captain <last> has one."`
