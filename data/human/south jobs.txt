@@ -15,7 +15,7 @@ mission "Pirate Occupation [0]"
 	name `Pirates occupying <system>`
 	minor
 	repeat
-	description `A small band of pirates have been occupying <system>, and the local government has asked for help. Defeat the pirates in the system and land on <planet> before <deadline>, to receive the payment of <payment>.`
+	description `A small band of pirates have been occupying <system>, and the local government has asked for help. Defeat the pirates in the system and land on <planet> before <date>, to receive the payment of <payment>.`
 	deadline
 	to offer
 		random < 5
@@ -53,7 +53,7 @@ mission "Pirate Occupation [1]"
 	name `Pirates occupying <system>`
 	minor
 	repeat
-	description `A gang of pirates have been occupying <system>, and the local government has asked for help. Defeat the pirates in the system and land on <planet> before <deadline>, to receive the payment of <payment>.`
+	description `A gang of pirates have been occupying <system>, and the local government has asked for help. Defeat the pirates in the system and land on <planet> before <date>, to receive the payment of <payment>.`
 	deadline
 	to offer
 		random < 5
@@ -92,7 +92,7 @@ mission "Pirate Occupation [2]"
 	name `Pirates occupying <system>`
 	minor
 	repeat
-	description `A large gang of pirates have been occupying <system>, and the local government has asked for help. Defeat the pirates in the system and land on <planet> before <deadline>, to receive the payment of <payment>.`
+	description `A large gang of pirates have been occupying <system>, and the local government has asked for help. Defeat the pirates in the system and land on <planet> before <date>, to receive the payment of <payment>.`
 	deadline
 	to offer
 		random < 5
