@@ -199,7 +199,7 @@ outfit "Cooling Module"
 	"outfit space" -5
 	"active cooling" 21
 	"cooling energy" 1.4
-	description "This Cooling Module consumes energy. To conserve power, it does not ramp up to full strength unless a ship is very close to overheating."
+	description "This Cooling Module consumes energy. To conserve power, it does not ramp up to full strength unless a ship is overheated."
 
 outfit "Fuel Module"
 	category "Systems"
