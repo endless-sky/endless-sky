@@ -95,6 +95,7 @@ mission "Remnant: Broken Jump Drive job"
 	destination
 		government "Remnant"
 		attributes outfitter
+		not attributes "remnant station"
 		not distance 0
 	on visit
 		dialog phrase "broken jump drive on visit"
@@ -609,10 +610,9 @@ mission "Remnant: Rescue 4"
 	npc accompany save
 		system
 			attributes "graveyard"
-			not attributes "inaccessible"
 			not government "Remnant"
-			not system "Patir"
-			not system "Aki'il"
+			near "Nona" 20
+				"only unrestricted wormholes"
 		personality escort derelict heroic plunders
 		government "Remnant"
 		fleet

@@ -44,10 +44,10 @@ void Gamerules::Load(const DataNode &node)
 			noPersonSpawnWeight = max<int>(0, child.Value(1));
 		else if(key == "npc max mining time")
 			npcMaxMiningTime = max<int>(0, child.Value(1));
-		else if(key == "default lateral thrust ratio")
-			defaultLateralThrustRatio = child.Value(1);
 		else if(key == "universal frugal threshold")
 			universalFrugalThreshold = min<double>(1., max<double>(0., child.Value(1)));
+		else if(key == "default lateral thrust ratio")
+			defaultLateralThrustRatio = child.Value(1);
 		else
 			child.PrintTrace("Skipping unrecognized gamerule:");
 	}
@@ -83,14 +83,14 @@ int Gamerules::NPCMaxMiningTime() const
 
 
 
-double Gamerules::DefaultLateralThrustRatio() const
+double Gamerules::UniversalFrugalThreshold() const
 {
-	return defaultLateralThrustRatio;
+	return universalFrugalThreshold;
 }
 
 
 
-double Gamerules::UniversalFrugalThreshold() const
+double Gamerules::DefaultLateralThrustRatio() const
 {
-	return universalFrugalThreshold;
+	return defaultLateralThrustRatio;
 }

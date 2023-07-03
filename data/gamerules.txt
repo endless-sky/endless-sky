@@ -44,6 +44,11 @@ gamerules
 	# DEFAULT: 3600 frames (one minute)
 	# ALLOWABLE VALUES: any integer >= 0
 	"npc max mining time" 3600
+	
+	# Ships with the "frugal" personality will only use weapons that consume ammo or fuel while their health is at or below this fraction.
+	# DEFAULT: .75 (75 percent)
+	# ALLOWABLE VALUES: any value between 0. and 1.
+	"universal frugal threshold" .75
 
 	# All ships typically need some degree of station keeping lateral thrust capability,
 	# as such, while ships should have a defined ratio of how much lateral thrust they have
@@ -53,9 +58,3 @@ gamerules
 	# ALLOWABLE VALUES: any double (negatives will cause lateral left and right to be inverted,
 	# while values greater than 1 will result in ships that can go faster sideways than forwards)
 	"default lateral thrust ratio" 0.25
-	
-	# Ships with the "frugal" personality will only use weapons that consume ammo or fuel while their health is at or below this fraction.
-	# DEFAULT: .75 (75 percent)
-	# ALLOWABLE VALUES: any value between 0. and 1.
-	"universal frugal threshold" .75
-

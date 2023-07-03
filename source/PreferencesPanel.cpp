@@ -156,6 +156,11 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		++currentSettingsPage;
 	else if((key == 'r' || key == SDLK_PAGEDOWN) && currentSettingsPage > 0)
 		--currentSettingsPage;
+	else if((key == 'x' || key == SDLK_DELETE) && (page == 'c'))
+	{
+		if(zones[latest].Value().KeyName() != Command::MENU.KeyName())
+			Command::SetKey(zones[latest].Value(), 0);
+	}
 	else
 		return false;
 
@@ -358,8 +363,17 @@ void PreferencesPanel::DrawControls()
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
 
-	// Check for conflicts.
+	// Colors for highlighting.
 	const Color &warning = *GameData::Colors().Get("warning conflict");
+	const Color &noCommand = *GameData::Colors().Get("warning no command");
+
+	if(selected != oldSelected)
+		latest = selected;
+	if(hover != oldHover)
+		latest = hover;
+
+	oldSelected = selected;
+	oldHover = hover;
 
 	Table table;
 	table.AddColumn(-115, {230, Alignment::LEFT});
@@ -439,11 +453,12 @@ void PreferencesPanel::DrawControls()
 			int index = zones.size();
 			// Mark conflicts.
 			bool isConflicted = command.HasConflict();
+			bool isEmpty = !command.HasBinding();
 			bool isEditing = (index == editing);
-			if(isConflicted || isEditing)
+			if(isConflicted || isEditing || isEmpty)
 			{
 				table.SetHighlight(56, 120);
-				table.DrawHighlight(isEditing ? dim : warning);
+				table.DrawHighlight(isEditing ? dim : isEmpty ? noCommand : warning);
 			}
 
 			// Mark the selected row.
@@ -515,21 +530,7 @@ void PreferencesPanel::DrawSettings()
 		VIEW_ZOOM_FACTOR,
 		SCREEN_MODE_SETTING,
 		VSYNC_SETTING,
-		STATUS_OVERLAYS_ALL,
-		STATUS_OVERLAYS_FLAGSHIP,
-		STATUS_OVERLAYS_ESCORT,
-		STATUS_OVERLAYS_ENEMY,
-		STATUS_OVERLAYS_NEUTRAL,
-		"Show missile overlays",
-		"Highlight player's flagship",
-		"Rotate flagship in HUD",
-		FLAGSHIP_VELOCITY_INDICATOR,
-		"Show flagship data in HUD",
-		"Show planet labels",
-		"Show mini-map",
-		"Show asteroid scanner overlay",
-		"Always underline shortcuts",
-		"\t",
+		"",
 		"Performance",
 		"Show CPU / GPU load",
 		"Render motion blur",
@@ -539,33 +540,57 @@ void PreferencesPanel::DrawSettings()
 		BACKGROUND_PARALLAX,
 		"Show hyperspace flash",
 		SHIP_OUTLINES,
+		"\t",
+		"HUD",
+		STATUS_OVERLAYS_ALL,
+		STATUS_OVERLAYS_FLAGSHIP,
+		STATUS_OVERLAYS_ESCORT,
+		STATUS_OVERLAYS_ENEMY,
+		STATUS_OVERLAYS_NEUTRAL,
+		"Show missile overlays",
+		"Show asteroid scanner overlay",
+		"Highlight player's flagship",
+		"Rotate flagship in HUD",
+		FLAGSHIP_VELOCITY_INDICATOR,
+		"Show flagship data in HUD",
+		"Show planet labels",
+		"Show mini-map",
+		"Show asteroid scanner overlay",
+		"Always underline shortcuts",
+		"Show planet labels",
+		"Show mini-map",
+		"Clickable radar display",
+		ALERT_INDICATOR,
+		"Extra fleet status messages",
 		"\n",
 		"Gameplay",
+		"Control ship with mouse",
 		AUTO_AIM_SETTING,
 		AUTO_FIRE_SETTING,
+		TURRET_TRACKING,
+		TARGET_ASTEROIDS_BASED_ON,
 		BOARDING_PRIORITY,
 		"Control ship with mouse",
 		"Disable auto-stabilization",
 		"Flagship flotsam collection",
 		EXPEND_AMMO,
-		"Extra fleet status messages",
+		FIGHTER_REPAIR,
 		"Fighters transfer cargo",
 		"Rehire extra crew when lost",
-		FIGHTER_REPAIR,
-		TARGET_ASTEROIDS_BASED_ON,
-		TURRET_TRACKING,
-		"\t",
-		"Other",
-		"Clickable radar display",
+		"",
+		"Map",
 		"Hide unexplored map regions",
-		REACTIVATE_HELP,
-		"Interrupt fast-forward",
-		SCROLL_SPEED,
 		"Show escort systems on map",
 		"Show stored outfits on map",
 		"System map sends move orders",
-		ALERT_INDICATOR
+		"\t",
+		"Other",
+		"Always underline shortcuts",
+		REACTIVATE_HELP,
+		"Interrupt fast-forward",
+		SCROLL_SPEED
 	};
+
 	bool isCategory = true;
 	int page = 0;
 	for(const string &setting : SETTINGS)
