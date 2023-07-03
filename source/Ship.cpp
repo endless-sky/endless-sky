@@ -4336,6 +4336,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				"thrusting energy" : "reverse thrusting energy");
 			if(cost > 0. && energy < cost)
 				thrustCommand *= energy / cost;
+
 			cost = attributes.Get((thrustCommand > 0.) ?
 				"thrusting shields" : "reverse thrusting shields");
 			if(cost > 0. && shields < cost)

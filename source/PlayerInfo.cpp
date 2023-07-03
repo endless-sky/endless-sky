@@ -1454,18 +1454,12 @@ void PlayerInfo::Land(UI *ui)
 				else
 				{
 					const StellarObject *landingObject = AI::FindLandingLocation(*ship);
-					if(landingObject)
-					{
-						ship->SetPlanet(landingObject->GetPlanet());
-						ship->Recharge();
-					}
-					else
-					{
+					const bool foundSpaceport = landingObject;
+					if(!landingObject)
 						landingObject = AI::FindLandingLocation(*ship, false);
-						if(landingObject)
-							ship->SetPlanet(landingObject->GetPlanet());
-						ship->Recharge(false);
-					}
+					if(landingObject)
+						ship->SetPlanet(landingObject->GetPlanet());
+					ship->Recharge(foundSpaceport);
 				}
 			}
 			else

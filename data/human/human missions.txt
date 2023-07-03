@@ -6096,7 +6096,7 @@ mission "Blind Man from Martini"
 			`	After a short queue, you reach the reception with Douglas. The receptionist, placed behind a sterile-looking screen that looks far out of place with the colorful hallways, asks with a well-practiced smile, "How may I help you?"`
 			choice
 				`	"We're looking for Anita Pears. Where can we find her?"`
-			`	For a moment, the receptionist shuffles information around on her terminal. "Are one of you a parent?"`
+			`	For a moment, the receptionist shuffles information around on her terminal. "Is one of you a parent?"`
 			`	"I'm the father, Douglas Pears," he replies.`
 			`	She takes a few more seconds before looking at you and saying, "Ah, but we cannot let you in. Only Mr. Pears is booked in for his daughter's procedure; we have a family-only policy, to keep the privacy of our patients."`
 			choice
