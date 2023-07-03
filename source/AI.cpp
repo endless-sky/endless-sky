@@ -807,7 +807,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		// Behave in accordance with personality traits.
 		if(isPresent && personality.IsSwarming() && !strandedWithHelper)
 		{
-			// Swarming ships should not wait for(or be waited for by) any ship.
+			// Swarming ships should not wait for (or be waited for by) any ship.
 			if(parent)
 			{
 				parent.reset();
