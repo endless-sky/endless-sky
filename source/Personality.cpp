@@ -62,6 +62,7 @@ namespace {
 		SECRETIVE,
 		RAMMING,
 		UNRESTRICTED,
+		DECLOAKED,
 
 		// This must be last so it can be used for bounds checking.
 		LAST_ITEM_IN_PERSONALITY_TRAIT_ENUM
@@ -102,6 +103,7 @@ namespace {
 		{"secretive", SECRETIVE},
 		{"ramming", RAMMING},
 		{"unrestricted", UNRESTRICTED}
+		{"decloaked", DECLOAKED}
 	};
 
 	// Tokens that combine two or more flags.
@@ -412,6 +414,13 @@ bool Personality::IsMarked() const
 bool Personality::IsMute() const
 {
 	return flags.test(MUTE);
+}
+
+
+
+bool Personality::IsDecloaked() const
+{
+	return flags.test(DECLOAKED);
 }
 
 
