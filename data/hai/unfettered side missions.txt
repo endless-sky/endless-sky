@@ -148,13 +148,13 @@ mission "Hai Legacy 1"
 		not "event: hai ladybug available"
 	on offer
 		conversation
-			`As you enter the shipyard you quickly get approached by someone wearing a hood, apparently not too keen to reveal their identity. They come to address you, discreetly. Seeing you stop to listen, they take your arm and make you follow them. "Keep walking," they say, quickly taking a look around the way someone looking for a new ship would, before addressing you again. "My associates and I have a business proposition for you, if you are interested to learn more about it go to these coordinates." They give you a piece of paper containing the location, on a beach almost on the other side of the planet with an instruction to not go with you ship, before quickly fade in the crowd. Will you go there?`
+			`As you enter the shipyard you quickly get approached by someone wearing a hood, apparently not too keen to reveal their identity. They come to address you, discreetly. Seeing you stop to listen, they take your arm and make you follow them. "Keep walking," they say, quickly taking a look around the way someone looking for a new ship would, before addressing you again. "My associates and I have a business proposition for you, if you are interested to learn more about it go to these coordinates." They give you a piece of paper containing the location, on a beach almost on the other side of the planet with an instruction to not go with your ship, before quickly fading into the crowd. Will you go there?`
 			choice
 				`	(Sure.)`
 				`	(Maybe another time.)`
 					defer
-			`	You proceed to hire a motorized antigrav vehicle to go there, and by the time you arrive it starts being dark. You set foot after double checking you are indeed at the right coordinates, for except a cave, vegetation, sand, and, of course, the beach, you cannot see much of interest in the vicinity. You can't help but put your hand close to your gun, feeling safer with its presence.`
-			`	After waiting for what seems like an eternity you start to hear whisper, and two hooded figures approach you. You start to doubt whether or not this was a good idea but it is probably too late to back down now. They come to address you, their face hidden by the now almost total obscurity. "Hello, <last>," they say at the same time, almost in a comical way, removing some of the tension you felt until now. Then they look at each other, nod, and one of them addresses you in a more serious mood. "We are sorry for all of these complications, but the truth is we cannot afford to take risks. It has been some time since we stopped trying to understand, and started taking every precaution we could to be safe. You see, we simply do not know you, and neither do you us."`
+			`	You proceed to hire a motorized antigrav vehicle to go there, and by the time you arrive it has started to get dark. You set foot after double checking you are indeed at the right coordinates, for except a cave, vegetation, sand, and, of course, the beach, you cannot see much of interest in the vicinity. You can't help but put your hand close to your gun, feeling safer with its presence.`
+			`	After waiting for what seems like an eternity you start to hear whispering, and two hooded figures approach you. You start to doubt whether or not this was a good idea but it is probably too late to back down now. They come to address you, their face hidden by the now almost total obscurity. "Hello, <last>," they say at the same time, almost in a comical way, removing some of the tension you felt until now. Then they look at each other, nod, and one of them addresses you in a more serious mood. "We are sorry for all of these complications, but the truth is we cannot afford to take risks. It has been some time since we stopped trying to understand, and started taking every precaution we could to be safe. You see, we simply do not know you, and neither do you us."`
 			choice
 				`	"Tell me more."`
 					goto tellme
@@ -173,7 +173,7 @@ mission "Hai Legacy 1"
 			choice
 				`	"I will take this deal."`
 					goto take
-				`	"I am not interest in this deal."`
+				`	"I have no interest in this deal."`
 			`	"A shame, this probably means we will not meet again," they say, before leaving, as discreetly as they came.`
 				decline
 			label take
@@ -216,7 +216,7 @@ mission "Hai Legacy 2"
 			attributes "unfettered"
 		"old reputation: Hai (Unfettered)" = "reputation: Hai (Unfettered)"
 		"reputation: Hai (Unfettered)" >?= 0
-		dialog `As you enter the system, you prepare for a fight to get the cargo trough, but, surprisingly, it is very quiet this time.`
+		dialog `As you enter the system, you prepare for a fight to get the cargo through, but, surprisingly, it is very quiet this time.`
 			`	Indeed, for the first time, entering Unfettered space does not mean getting shot at, potentially by missiles all sides.`
 			`	They are not hailing you either. Perhaps they think you are one of the Hai aiding them, especially given your cargo and the ship you are flying.`
 	on fail
@@ -249,7 +249,7 @@ mission "Hai Legacy 3"
 		has "Hai Legacy 2: done"
 	on offer
 		conversation
-			`As you land and get out of your ship you quickly notice you have attracted a lot of attention, probably due to this old design. One Unfettered that looks like an engineer comes to speak to you, warmed than usual. "Welcome. I do not know how you have obtained this ship, and some will probably see it as a sign. As you may know it is a relic of our past, a past we are quite proud of."`
+			`As you land and get out of your ship you quickly notice you have attracted a lot of attention, probably due to this old design. One Unfettered that looks like an engineer comes to speak to you, warmer than usual. "Welcome. I do not know how you have obtained this ship, and some will probably see it as a sign. As you may know it is a relic of our past, a past we are quite proud of."`
 			`	"In truth, I do not personally care about all of that. All I care about is that this ship is old, and has technology that would be very valuable because of how rare it is. Thus, I challenge you for it!"`
 			choice
 				`	"What do I get if I win?"`
