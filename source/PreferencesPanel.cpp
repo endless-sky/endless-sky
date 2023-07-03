@@ -860,9 +860,6 @@ void PreferencesPanel::DrawPlugins()
 
 void PreferencesPanel::DrawTooltips()
 {
-	if(page != 'c' && page != 's')
-		return;
-
 	if(hoverItem.empty())
 	{
 		// Step the tooltip timer back.
