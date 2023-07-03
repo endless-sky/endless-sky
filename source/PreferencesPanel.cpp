@@ -488,7 +488,7 @@ void PreferencesPanel::DrawControls()
 			if(isHovering)
 			{
 				table.DrawHighlight(back);
-				hoverControl = COMMANDS[hover + 1].Description();
+				hoverControl = command.Description();
 			}
 
 			zones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), command);
@@ -859,36 +859,44 @@ void PreferencesPanel::DrawPlugins()
 
 void PreferencesPanel::DrawTooltips()
 {
-	string &hoverItem = (page == 'c' ? hoverControl : hoverPreference);
+	const string &hoverItem = (page == 'c' ? hoverControl : hoverPreference);
 
-	// Update the tooltip timer [0-60].
-	hoverCount += !hoverItem.empty() ? (hoverCount < HOVER_TIME) : (hoverCount ? -1 : 0);
-
-	if(!hoverItem.empty() && hoverCount >= HOVER_TIME)
+	if(hoverItem.empty())
 	{
-		// Create the tooltip text.
+		// Step the tooltip timer back.
+		hoverCount -= hoverCount ? 1 : 0;
+		return;
+	}
+
+	// Step the tooltip timer forward [0-60].
+	hoverCount += hoverCount < HOVER_TIME;
+
+	if(hoverCount < HOVER_TIME)
+		return;
+
+	// Create the tooltip text.
+	if(tooltip.empty())
+	{
+		tooltip = GameData::Tooltip(hoverItem);
 		if(tooltip.empty())
 		{
-			tooltip = GameData::Tooltip(hoverItem);
-			hoverText.Wrap(tooltip);
+			// No tooltip for this item.
+			return;
 		}
-		if(!tooltip.empty())
-		{
-			Point size(hoverText.WrapWidth(), hoverText.Height() - hoverText.ParagraphBreak());
-			size += Point(20., 20.);
-			Point topLeft = hoverPoint;
-
-			// Do not overflow the screen dimensions.
-			if(topLeft.X() + size.X() > Screen::Right())
-				topLeft.X() -= size.X();
-			if(topLeft.Y() + size.Y() > Screen::Bottom())
-				topLeft.Y() -= size.Y();
-
-			// Draw the background fill and the tooltip text.
-			FillShader::Fill(topLeft + .5 * size, size, *GameData::Colors().Get("tooltip background"));
-			hoverText.Draw(topLeft + Point(10., 10.), *GameData::Colors().Get("medium"));
-		}
+		hoverText.Wrap(tooltip);
 	}
+	
+	Point size(hoverText.WrapWidth(), hoverText.Height() - hoverText.ParagraphBreak());
+	size += Point(20., 20.);
+	Point topLeft = hoverPoint;
+	// Do not overflow the screen dimensions.
+	if(topLeft.X() + size.X() > Screen::Right())
+		topLeft.X() -= size.X();
+	if(topLeft.Y() + size.Y() > Screen::Bottom())
+		topLeft.Y() -= size.Y();
+	// Draw the background fill and the tooltip text.
+	FillShader::Fill(topLeft + .5 * size, size, *GameData::Colors().Get("tooltip background"));
+	hoverText.Draw(topLeft + Point(10., 10.), *GameData::Colors().Get("medium"));
 }
 
 
