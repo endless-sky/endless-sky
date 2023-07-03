@@ -102,7 +102,7 @@ namespace {
 		{"daring", DARING},
 		{"secretive", SECRETIVE},
 		{"ramming", RAMMING},
-		{"unrestricted", UNRESTRICTED}
+		{"unrestricted", UNRESTRICTED},
 		{"decloaked", DECLOAKED}
 	};
 
