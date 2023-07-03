@@ -571,6 +571,7 @@ mission "Expedition to Hope 2"
 	destination
 		distance 2 5
 		government Republic "Free Worlds" Neutral
+	clearance
 	to offer
 		has "Expedition to Hope 1: done"
 	passengers 4
