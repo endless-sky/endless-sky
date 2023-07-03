@@ -885,7 +885,7 @@ void PreferencesPanel::DrawTooltips()
 		}
 		hoverText.Wrap(tooltip);
 	}
-	
+
 	Point size(hoverText.WrapWidth(), hoverText.Height() - hoverText.ParagraphBreak());
 	size += Point(20., 20.);
 	Point topLeft = hoverPoint;
