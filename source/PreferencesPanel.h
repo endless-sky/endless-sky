@@ -64,19 +64,18 @@ private:
 	int oldSelected;
 	int oldHover;
 	int latest;
-	Point hoverPoint;
 	// Which page of the preferences we're on.
 	char page = 'c';
+
+	Point hoverPoint;
 	int hoverCount = 0;
-	std::string hoverControl;
-	std::string hoverPreference;
+	std::string hoverItem;
 	std::string tooltip;
 	WrappedText hoverText;
 
 	int currentSettingsPage = 0;
 
 	std::string selectedPlugin;
-	std::string hoverPlugin;
 
 	std::vector<ClickZone<Command>> zones;
 	std::vector<ClickZone<std::string>> prefZones;
