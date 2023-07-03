@@ -56,9 +56,9 @@ namespace {
 	constexpr int ICON_COLS = 4;
 	constexpr float ICON_SIZE = ICON_TILE - 8;
 
-	bool CanShowInSidebar(const Ship &ship, const System *here)
+	bool CanShowInSidebar(const Ship &ship, const Planet *here)
 	{
-		return ship.GetSystem() == here && !ship.IsDisabled();
+		return ship.GetPlanet() == here;
 	}
 }
 
@@ -203,7 +203,7 @@ void ShopPanel::DrawShipsSidebar()
 		Screen::Right() - SIDEBAR_WIDTH / 2 - 93,
 		Screen::Top() + SIDEBAR_WIDTH / 2 - sidebarScroll + 40 - 93);
 
-	const System *here = player.GetSystem();
+	const Planet *here = player.GetPlanet();
 	int shipsHere = 0;
 	for(const shared_ptr<Ship> &ship : player.Ships())
 		shipsHere += CanShowInSidebar(*ship, here);
@@ -719,7 +719,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			if(allWereSelected)
 				added.clear();
 
-			const System *here = player.GetSystem();
+			const Planet *here = player.GetPlanet();
 			for(Ship *ship : added)
 				if(CanShowInSidebar(*ship, here))
 					playerShips.insert(ship);
@@ -733,7 +733,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			playerShips.clear();
 			set<Ship *> wanted = player.GetGroup(group);
 
-			const System *here = player.GetSystem();
+			const Planet *here = player.GetPlanet();
 			for(Ship *ship : wanted)
 				if(CanShowInSidebar(*ship, here))
 					playerShips.insert(ship);
@@ -1054,7 +1054,7 @@ void ShopPanel::SideSelect(int count)
 	}
 
 
-	const System *here = player.GetSystem();
+	const Planet *here = player.GetPlanet();
 	if(count < 0)
 	{
 		while(count)
@@ -1092,7 +1092,7 @@ void ShopPanel::SideSelect(Ship *ship)
 	if(shift)
 	{
 		bool on = false;
-		const System *here = player.GetSystem();
+		const Planet *here = player.GetPlanet();
 		for(const shared_ptr<Ship> &other : player.Ships())
 		{
 			// Skip any ships that are "absent" for whatever reason.
