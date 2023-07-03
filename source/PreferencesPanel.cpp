@@ -548,6 +548,7 @@ void PreferencesPanel::DrawSettings()
 		STATUS_OVERLAYS_ENEMY,
 		STATUS_OVERLAYS_NEUTRAL,
 		"Show missile overlays",
+		"Show asteroid scanner overlay",
 		"Highlight player's flagship",
 		"Rotate flagship in HUD",
 		FLAGSHIP_VELOCITY_INDICATOR,
