@@ -2706,7 +2706,9 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	if(IsYours() && CanBeCarried() && hull <= 0.1)
 	{
 		hull = 0.1;
-	} else {
+	}
+	else
+	{
 		// Wrecked fighters take no further damage of any kind
 		
 		energy -= damage.Energy();
@@ -4112,7 +4114,7 @@ int Ship::DoRepairMyWreckedFighters()
 int Ship::DoRepairWreckedFighter()
 {
 
-	if (IsWrecked())
+	if(IsWrecked())
 	{
 		double hullAvailable = attributes.Get("hull");
 		double shieldsAvailable = attributes.Get("shields");
