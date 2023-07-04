@@ -331,6 +331,68 @@ def check_indentation(contents, auto_correct, config):
 	return result
 
 
+# Checks whether the order of child nodes for every node are in the correct order.
+# Parameters:
+# contents: the contents of the file
+# auto_correct: whether to attempt to correct the issue
+# config: the script configuration
+# Return value: a CheckResult
+def check_child_node_order(contents, auto_correct, config):
+	# Parses the name of the data node from the line. Please note that not all values returned are actual data nodes; they are what the data node would be, if this line had any.
+	# Parameters:
+	# line: the line to parse from
+	def parse_node(line):
+		line = line.lstrip()
+		if line.startswith("on ") or line.startswith("to "):
+			return " ".join(line.split(" ")[0:2])
+		if line.startswith("\""):
+			return line.split("\"")[1]
+		if line.startswith("`"):
+			return line.split("`")[1]
+		return line.split(" ")[0]
+
+	result = CheckResult()
+	result.new_file_contents = [line for line in contents]
+
+	ordering = config["nodeOrdering"]
+	if ordering is None or len(ordering) == 0:
+		return result
+
+	indentation = config["indentation"]
+	# Keep track of which nodes are we currently inside.
+	# We store the list of nodes, and the list of direct children for each node.
+	nodes = []
+	for index, line in enumerate(contents):
+		# Ignoring comments and empty lines
+		if line.lstrip().startswith("#") or len(line.strip()) == 0:
+			continue
+
+		indent = count_indent(indentation, line)
+		node = parse_node(line)
+		while 0 < len(nodes) > indent:
+			nodes.pop()
+		parent = None if len(nodes) == 0 else nodes[-1]
+
+		# Checking node order
+		if parent is not None and len(parent[1]) > 0:
+			for ruleset in ordering:
+				for expectedNode in ruleset["nodes"]:
+					if re.fullmatch(expectedNode, parent[0]):
+						if ruleset["alphabetical"]:
+							if parent[1][-1] > node:
+								result.errors.append(Error(index + 1, f"child nodes of '{parent[0]}' are not in alphabetical order; '{node}' should precede '{parent[1][-1]}'"))
+						else:
+							if "order" in ruleset and node in ruleset["order"]:
+								if ruleset["order"].index(parent[1][-1]) > ruleset["order"].index(node):
+									result.errors.append(Error(index + 1, f"child nodes of '{parent[0]}' are not in the expected order; '{node}' should precede '{parent[1][-1]}'"))
+						break
+		# Storing the node
+		if parent is not None:
+			parent[-1].append(node)
+		nodes.append((parse_node(line), []))
+	return result
+
+
 # Uses the specified list of regexes to find formatting issues.
 # Parameters:
 # check_group: the group of checks to execute
@@ -405,7 +467,7 @@ def find_text_lines(contents, config, excluded_nodes, exclude_comments, exclude_
 	word_indent_level = 0
 
 	for line in contents:
-		if ('#' in line and exclude_comments):
+		if '#' in line and exclude_comments:
 			line = line.split("#")[0].strip()
 		if line == "" or line.isspace():
 			new_contents.append(None)
@@ -497,6 +559,13 @@ def check_content_style(file, auto_correct, config):
 			do_reload()
 			continue
 
+		# Checking the order of child nodes everywhere
+		issues.combine_with(check_child_node_order(contents, auto_correct, config))
+		if issues.should_reload():
+			do_reload()
+			continue
+
+		# Regex-based checks
 		for check_group in config["regexChecks"]:
 			excluded_nodes = [] if "excludedNodes" not in check_group else check_group["excludedNodes"]
 			exclude_comments = True if "excludeComments" not in check_group else check_group["excludeComments"]
