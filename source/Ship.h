@@ -457,6 +457,12 @@ public:
 	int GetLingerSteps() const;
 	// The AI wants the ship to linger for one AI step.
 	void Linger();
+    // Check if this ship is a wrecked fighter
+    bool IsWrecked() const;
+    // Restore this ship to full health if it is a wrecked fighter
+    int DoRepairWreckedFighter();
+    // Restore all carried wrecked fighters to full health
+    int DoRepairMyWreckedFighters();
 
 
 private:
@@ -536,6 +542,7 @@ private:
 	bool shouldDeploy = false;
 	bool isOverheated = false;
 	bool isDisabled = false;
+    bool isWrecked = false;
 	bool isBoarding = false;
 	bool hasBoarded = false;
 	bool isFleeing = false;

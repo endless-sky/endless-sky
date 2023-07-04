@@ -1531,8 +1531,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 	const bool isBeingDestroyed = destroyResult;
 
-	// Generate energy, heat, etc. if we're not being destroyed.
-	if(!isBeingDestroyed)
+	// Generate energy, heat, etc. if we're not being destroyed and not a wrecked fighter.
+	if(!isBeingDestroyed && !isWrecked)
 		DoGeneration();
 
 	DoPassiveEffects(visuals, flotsam);
@@ -1541,8 +1541,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 	bool isUsingAfterburner = false;
 
-	// Don't let the ship do anything else if it is being destroyed.
-	if(!isBeingDestroyed)
+	// Don't let the ship do anything else if it is being destroyed or is a wrecked fighter.
+	if(!isBeingDestroyed && !isWrecked)
 	{
 		// See if the ship is entering hyperspace.
 		// If it is, nothing more needs to be done here.
@@ -1567,8 +1567,8 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	// Move the ship.
 	position += velocity;
 
-	// Show afterburner flares unless the ship is being destroyed.
-	if(!isBeingDestroyed)
+	// Show afterburner flares unless the ship is being destroyed or is a wrecked fighter.
+	if(!isBeingDestroyed && !isWrecked)
 		DoEngineVisuals(visuals, isUsingAfterburner);
 }
 
@@ -1586,6 +1586,7 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 
 	for(Bay &bay : bays)
 		if(bay.ship
+            && !bay.ship->IsWrecked()
 			&& ((bay.ship->Commands().Has(Command::DEPLOY) && !Random::Int(40 + 20 * !bay.ship->attributes.Get("automaton")))
 			|| (ejecting && !Random::Int(6))))
 		{
@@ -1673,26 +1674,37 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 			victim->Carry(shared_from_this());
 		return shared_ptr<Ship>();
 	}
+    
+    // If, on the other hand, the target is a wrecked fighter or drone, we pick it up
+    if(victim->CanBeCarried() && victim->IsWrecked())
+    {
+        Carry(victim);
+        return shared_ptr<Ship>();
+    }
 
 	// Board a friendly ship, to repair or refuel it.
 	if(!government->IsEnemy(victim->GetGovernment()))
 	{
 		SetShipToAssist(shared_ptr<Ship>());
 		SetTargetShip(shared_ptr<Ship>());
-		bool helped = victim->isDisabled;
-		victim->hull = min(max(victim->hull, victim->MinimumHull() * 1.5), victim->attributes.Get("hull"));
-		victim->isDisabled = false;
-		// Transfer some fuel if needed.
-		if(victim->NeedsFuel() && CanRefuel(*victim))
-		{
-			helped = true;
-			TransferFuel(victim->JumpFuelMissing(), victim.get());
-		}
-		if(helped)
-		{
-			pilotError = 120;
-			victim->pilotError = 120;
-		}
+        // Never repair a wrecked fighter.
+        if(!victim->IsWrecked())
+        {
+            bool helped = victim->isDisabled;
+            victim->hull = min(max(victim->hull, victim->MinimumHull() * 1.5), victim->attributes.Get("hull"));
+            victim->isDisabled = false;
+            // Transfer some fuel if needed.
+            if(victim->NeedsFuel() && CanRefuel(*victim))
+            {
+                helped = true;
+                TransferFuel(victim->JumpFuelMissing(), victim.get());
+            }
+            if(helped)
+            {
+                pilotError = 120;
+                victim->pilotError = 120;
+            }
+        }
 		return victim;
 	}
 	if(!victim->IsDisabled())
@@ -2678,6 +2690,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 {
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
+    bool wasWrecked = IsWrecked();
 
 	shields -= damage.Shield();
 	if(damage.Shield() && !isDisabled)
@@ -2689,23 +2702,30 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	hull -= damage.Hull();
 	if(damage.Hull() && !isDisabled)
 		hullDelay = max(hullDelay, static_cast<int>(attributes.Get("repair delay")));
-
-	energy -= damage.Energy();
-	heat += damage.Heat();
-	fuel -= damage.Fuel();
-
-	discharge += damage.Discharge();
-	corrosion += damage.Corrosion();
-	ionization += damage.Ion();
-	scrambling += damage.Scrambling();
-	burning += damage.Burn();
-	leakage += damage.Leak();
-
-	disruption += damage.Disruption();
-	slowness += damage.Slowing();
-
-	if(damage.HitForce())
-		ApplyForce(damage.HitForce(), damage.GetWeapon().IsGravitational());
+    
+    if(IsYours() && CanBeCarried() && hull <= 0.1)
+    {
+        hull = 0.1;
+    } else {
+        // Wrecked fighters take no further damage of any kind
+        
+        energy -= damage.Energy();
+        heat += damage.Heat();
+        fuel -= damage.Fuel();
+        
+        discharge += damage.Discharge();
+        corrosion += damage.Corrosion();
+        ionization += damage.Ion();
+        scrambling += damage.Scrambling();
+        burning += damage.Burn();
+        leakage += damage.Leak();
+        
+        disruption += damage.Disruption();
+        slowness += damage.Slowing();
+        
+        if(damage.HitForce())
+            ApplyForce(damage.HitForce(), damage.GetWeapon().IsGravitational());
+    }
 
 	// Prevent various stats from reaching unallowable values.
 	hull = min(hull, attributes.Get("hull"));
@@ -2719,15 +2739,17 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	// Recalculate the disabled ship check.
 	isDisabled = true;
 	isDisabled = IsDisabled();
+    isWrecked = IsWrecked();
 
 	// Report what happened to this ship from this weapon.
+    // Wrecking a fighter counts the same as destroying it.
 	int type = 0;
 	if(!wasDisabled && isDisabled)
 	{
 		type |= ShipEvent::DISABLE;
 		hullDelay = max(hullDelay, static_cast<int>(attributes.Get("disabled repair delay")));
 	}
-	if(!wasDestroyed && IsDestroyed())
+	if(!wasDestroyed && (IsDestroyed() || isWrecked))
 		type |= ShipEvent::DESTROY;
 
 	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event.
@@ -2854,7 +2876,7 @@ bool Ship::CanBeCarried() const
 
 bool Ship::Carry(const shared_ptr<Ship> &ship)
 {
-	if(!ship || !ship->CanBeCarried() || ship->IsDisabled())
+	if(!ship || !ship->CanBeCarried() || (ship->IsDisabled() && !ship->IsWrecked()))
 		return false;
 
 	// Check only for the category that we are interested in.
@@ -3386,6 +3408,13 @@ int Ship::StepDestroyed(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flot
 	if(!IsDestroyed())
 		return 0;
 
+    // If it's your fighter, it doesn't get destroyed; it gets wrecked.
+    if(CanBeCarried() && IsYours())
+    {
+        hull = 0.1;
+        return 0;
+    }
+    
 	// Make sure the shields are zero, as well as the hull.
 	shields = 0.;
 
@@ -3555,10 +3584,13 @@ void Ship::DoGeneration()
 					{ return lhs.first < rhs.first; }
 			);
 
-			// Apply shield and hull repair to carried fighters.
+			// Apply shield and hull repair to carried fighters, ignoring those that are wrecked.
 			for(const pair<double, Ship *> &it : carried)
 			{
 				Ship &ship = *it.second;
+                
+                if(ship.IsWrecked())
+                    continue;
 				if(!hullDelay)
 					DoRepair(ship.hull, hullRemaining, ship.attributes.Get("hull"),
 						energy, hullEnergy, heat, hullHeat, fuel, hullFuel);
@@ -4053,7 +4085,47 @@ bool Ship::DoLandingLogic()
 	return true;
 }
 
+bool Ship::IsWrecked() const
+{
+    return IsYours() && CanBeCarried() && hull == 0.1;
+}
 
+int Ship::DoRepairMyWreckedFighters()
+{
+    
+    int repairedFighters = 0;
+    for(Bay &bay : bays)
+        if(bay.ship && !bay.ship->IsWrecked())
+        {
+            repairedFighters++;
+            double hullAvailable = bay.ship->attributes.Get("hull");
+            double shieldsAvailable = bay.ship->attributes.Get("shields");
+            if(!hullDelay)
+                DoRepair(bay.ship->hull, hullAvailable, bay.ship->attributes.Get("hull"));
+            if(!shieldDelay)
+                DoRepair(bay.ship->shields, shieldsAvailable, bay.ship->attributes.Get("shields"));
+        }
+    
+    return repairedFighters;
+}
+
+int Ship::DoRepairWreckedFighter()
+{
+    
+    if (IsWrecked())
+    {
+        double hullAvailable = attributes.Get("hull");
+        double shieldsAvailable = attributes.Get("shields");
+        if(!hullDelay)
+            DoRepair(hull, hullAvailable, attributes.Get("hull"));
+        if(!shieldDelay)
+            DoRepair(shields, shieldsAvailable, attributes.Get("shields"));
+        
+        return 1;
+    }
+    
+    return 0;
+}
 
 void Ship::DoInitializeMovement()
 {

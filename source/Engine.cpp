@@ -2128,11 +2128,13 @@ void Engine::DoCollisions(Projectile &projectile)
 	else
 	{
 		// For weapons with a trigger radius, check if any detectable object will set it off.
+        // The player's wrecked fighters will be ignored.
 		double triggerRadius = projectile.GetWeapon().TriggerRadius();
 		if(triggerRadius)
 			for(const Body *body : shipCollisions.Circle(projectile.Position(), triggerRadius))
 				if(body == projectile.Target() || (gov->IsEnemy(body->GetGovernment())
-						&& reinterpret_cast<const Ship *>(body)->Cloaking() < 1.))
+						&& reinterpret_cast<const Ship *>(body)->Cloaking() < 1.
+                        && !(reinterpret_cast<const Ship *>(body)->IsWrecked())))
 				{
 					closestHit = 0.;
 					break;

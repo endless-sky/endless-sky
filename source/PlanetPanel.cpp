@@ -90,6 +90,33 @@ void PlanetPanel::Step()
 		else
 			player.HandleBlockedMissions(Mission::LANDING, GetUI());
 	}
+    
+    if(planet.HasShipyard())
+    {
+        int repairedFighters = 0;
+        for(const auto &it : player.Ships())
+        {
+            int repairSelf = it->DoRepairWreckedFighter();
+            if(repairSelf == 0)
+                repairedFighters += it->DoRepairMyWreckedFighters();
+            else
+                repairedFighters += repairSelf;
+        }
+        
+        if(repairedFighters > 0)
+        {
+            ostringstream out;
+            
+            string fighterWord = "fighters";
+            if(repairedFighters == 1)
+            {
+                fighterWord = "fighter";
+            }
+            out << "You quickly see your wrecked " << fighterWord << " transported to the shipyard for repair.";
+            
+            GetUI()->Push(new Dialog(out.str()));
+        }
+    }
 }
 
 
