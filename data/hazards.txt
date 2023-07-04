@@ -76,7 +76,7 @@ hazard "Core Exposed Heat"
 	weapon
 		"burn damage" 0.06
 		"relative heat damage" 0.0012
-#replace 0.0006 rel. heat damage with 0.00006 rel. burn damage if/when implemented.
+# replace 0.0006 rel. heat damage with 0.00006 rel. burn damage if/when implemented.
 
 hazard "Core Heat Flare"
 	"duration" 10 60
@@ -86,7 +86,7 @@ hazard "Core Heat Flare"
 		"heat damage" 50
 		"burn damage" 1
 		"relative heat damage" 0.04
-#replace 0.04 rel. heat damage with 0.0004 rel. burn damage if/when implemented.
+# replace 0.04 rel. heat damage with 0.0004 rel. burn damage if/when implemented.
 
 hazard "Core Sheltered Heat"
 	"duration" 1
@@ -95,7 +95,7 @@ hazard "Core Sheltered Heat"
 	weapon
 		"burn damage" 0.06
 		"relative heat damage" 0.0012
-#replace 0.0006 rel. heat damage with 0.00006 rel. burn damage if/when implemented.
+# replace 0.0006 rel. heat damage with 0.00006 rel. burn damage if/when implemented.
 
 hazard "Core Shadow Passing"
 	"duration" 10 360

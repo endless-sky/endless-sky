@@ -201,7 +201,7 @@ outfit "Repulsor Split"
 		sprite "projectile/repulsor split"
 			"frame rate" 3
 			"no repeat"
-			#"scale" 0.8
+			# "scale" 0.8
 		"lifetime" 34
 		"hit force" 10
 		"inaccuracy" 15

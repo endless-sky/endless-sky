@@ -97,7 +97,7 @@ mission "Xapleaux: First Contact"
 			label calm
 			`	The assembled aliens spring into motion, carrying equipment and hoses towards your ships and proceeding to clamber more or less all over it, inspecting it for heat damage and refuelling it, hopefully with something your ship can handle.`
 
-#This is only one of various future possible paths to unlock access to them, but for now it's the only one with requirements already in-game.
+# This is only one of various future possible paths to unlock access to them, but for now it's the only one with requirements already in-game.
 			branch automata
 				has "event: wanderers: exiles have drones"
 				has "event: remnant: sign studies complete"
@@ -107,8 +107,8 @@ mission "Xapleaux: First Contact"
 			choice
 				`	(Make two noises and nod.)`
 			`	It points at itself, makes two sharp whistles and nods again. It looks at a nearby alien who also makes two sharp whistles and nods, and before you know it every alien in the vicinity seems to be making two sharp whistles and nodding to each other in fascination.`
-			action
-				
+			# action
+			# set some condition that I need to work out
 			`	When the cacophony has settled the first alien looks at you, holds up its upper arms peaceably, and points to your ship with one of its middle arms. It would seem that, while you are certainly welcome here to some extent, for now your stay is firmly over.`
 
 				depart
@@ -137,14 +137,14 @@ mission "Xapleaux: First Contact"
 			`	Slowly, tentatively, painstakingly, the alien nods and carefully signs back, "You, go and come back again."`
 			`	So great is the tension as you board your ship again, you suspect that had you moved any slower they'd have carried you in there themselves.`
 				flee
-#This is accompanied by a mission that triggers on the same conditions as the branch to direct you to where you go. This is used so that multiple different sets of conditions can be used to resolve this in various different ways when alternative first contact options become available.
+# This is accompanied by a mission that triggers on the same conditions as the branch to direct you to where you go. This is used so that multiple different sets of conditions can be used to resolve this in various different ways when alternative first contact options become available.
 	on defer
 		"Met X Already" ++
 
 
-#The below are commented out until more than just the landing mission are ready.
+# The below are commented out until more than just the landing mission are ready.
 
-#mission "Discovered Xapleaux Space"
+# mission "Discovered Xapleaux Space"
 #	landing
 #	invisible
 #	source
@@ -153,7 +153,7 @@ mission "Xapleaux: First Contact"
 #		event "label the brilliance"
 #		fail
 
-#event "label the brilliance"
+# event "label the brilliance"
 #	galaxy "label brilliance"
 #		sprite "label/brilliance"
 
@@ -178,7 +178,7 @@ mission "Xapleaux: First Contact In Progress"
 
 
 
-#mission "Xapleaux Contact: Remnant Path 1"
+# mission "Xapleaux Contact: Remnant Path 1"
 #	name "Remnant Linguist"
 #	description "The strange aliens in the brilliant core of the galaxy seem to both know of the Remnant, and use some kind of sign-assisted language. Perhaps they would be interested in helping establish contact?"
 #	landing
