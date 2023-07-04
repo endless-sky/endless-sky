@@ -280,7 +280,7 @@ mission "Recurring Rumors"
 event "recurring rumors"
 
 
-mission "Irritable Intervention"
+mission "Intervention"
 	# invisible
 	landing
 	source "Giaru Gegno"
@@ -300,7 +300,7 @@ mission "Irritable Intervention"
 
 			label follow
 			`	You follow the group of Quarg to a smaller discussion room, similar to the one you've visited before. Or perhaps you've been visiting a different room each time, considering how unfathomably large a ringworld is. Once you sit down with the Quarg from before, it looks at you for a moment, looks down at the table, then back up to you.`
-			`	"Formerly, I have offered suggestions of heedful interplay regarding the Gegno. However, we are increasingly aware of correlative happenings upon them involving yourself. It would seem consequential events have indeed occured. Not often previously were we approached by Gegno, but a few notable occasions now have meaningful figures sought us out for inquiry as to your necessitations in meddling."`
+			`	"Formerly, I have offered suggestions of heedful interplay regarding the Gegno. However, we are increasingly aware of correlative happenings upon them involving yourself. It would seem consequential events have indeed occurred. Not often previously were we approached by Gegno, but a few notable occasions now have meaningful figures sought us out for inquiry as to your necessitations in meddling."`
 			choice
 				`	"I haven't done any harm to them."`
 				`	"It was more coincidential than anything."`
@@ -310,7 +310,7 @@ mission "Irritable Intervention"
 				`	"They showed some interest in interaction."`
 					goto interest
 
-			`	"One does not need envoke violence to greatly harm another. However purest intentions may be, even the smallest unbeknownst action may rapidly tumble to one not forseenly desired." The Quarg then ponders for a moment.`
+			`	"One does not need invoke violence to greatly harm another. However purest intentions may be, even the smallest unbeknownst action may rapidly tumble to one not forseenly desired." The Quarg then ponders for a moment.`
 				goto cases
 
 			label coincidence
@@ -318,16 +318,16 @@ mission "Irritable Intervention"
 				goto cases
 
 			label dismissive
-			`	"It takes for an occurence to exist in a first place to be dismissive of its happening. Despite this, the situation may not ultimately be happily welcomed beforehand." The Quarg then ponders for a moment.`
+			`	"It takes for an occurrence to exist in a first place to be dismissive of its happening. Despite this, the situation may not ultimately be happily welcomed beforehand." The Quarg then ponders for a moment.`
 				goto cases
 
 			label interest
-			`	"Great curiousity does not equal great benefit. Even the most dangerous of creatures may glance but with interest at a moment's first." The Quarg then ponders for a moment.`
+			`	"Great curiosity does not equal great benefit. Even the most dangerous of creatures may glance but with interest at a moment's first." The Quarg then ponders for a moment.`
 				goto cases
 
 			label cases
 			`	"Imagine, if you will, during the substantial conflicts the humans call the Turf Wars, a strange alien came to human space. We Quarg woefully witnessed that hazardous conflict - it was a time of great waste, unfortunate peril, and unsavory distrust among humanity. The Gegno are in a vulnerable state notably comparable to such a time. Reluctantly, the truth remains that we have been contacted by numerous members of high Gegno standing in respect to your continued interference. We wish for it to be matter only for further strict cautionaries, but regrettably, the Gegno believe it a matter beyond intricate attentiveness." The Quarg leaves its chair and motions you to do the same.`
-			`	"Our best of reccommendations to you is in departure from Gegno space as of this decisive moment. Meanwhile, we shall attempt a most careful negotiation with their hierarchy to come in terms of an acceptable toleration of storts. Should we find commonality, you will receive communication from one of the title "Adrauni", as has been bestowed upon me."`
+			`	"Our best of recommendations to you is in departure from Gegno space as of this decisive moment. Meanwhile, we shall attempt a most careful negotiation with their hierarchy to come in terms of an acceptable toleration of storts. Should we find commonality, you will receive communication from one of the title "Adrauni", as has been bestowed upon me."`
 			`	The rest of the Quarg, who have been listening to the conversation attentively the whole time, begin to escort you out of the room. If the Gegno are willing to go as far as to contact the Quarg about your appearances, then this is truly an important matter to them. For the time being, it's probably best to listen to the Quarg's warnings this time around and leave Gegno space until some kind of resolution is found, if at all.`
 				decline
 
