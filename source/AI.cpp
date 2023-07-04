@@ -1174,18 +1174,18 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 
 			// If any able enemies of this ship are in its system, it cannot call for help.
 			const System *system = ship.GetSystem();
-            
-            // If you're a wrecked fighter, and your parent is around, only ask them for help
-            // Otherwise, only ask escorts with bays for help
-            if(ship.IsWrecked())
-            {
-                if(ship.GetParent() && system == ship.GetParent()->GetSystem() && helper != ship.GetParent())
-                    continue;
-                else if((helper->IsYours() && !ship.IsYours()) || !helper->HasBays())
-                    continue;
-                    
-            }
-            
+
+			// If you're a wrecked fighter, and your parent is around, only ask them for help
+			// Otherwise, only ask escorts with bays for help
+			if(ship.IsWrecked())
+			{
+				if(ship.GetParent() && system == ship.GetParent()->GetSystem() && helper != ship.GetParent())
+					continue;
+				else if((helper->IsYours() && !ship.IsYours()) || !helper->HasBays())
+					continue;
+
+			}
+
 			if(helper->GetGovernment()->IsEnemy(gov) && flagship && system == flagship->GetSystem())
 			{
 				// Disabled, overheated, or otherwise untargetable ships pose no threat.
@@ -1322,8 +1322,8 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	if(oldTarget && person.IsTimid() && oldTarget->IsDisabled()
 			&& ship.Position().Distance(oldTarget->Position()) > 1000.)
 		oldTarget.reset();
-    if(oldTarget && !ship.IsYours() && oldTarget->IsWrecked())
-        oldTarget.reset();
+	if(oldTarget && !ship.IsYours() && oldTarget->IsWrecked())
+		oldTarget.reset();
 	// Ships with 'plunders' personality always destroy the ships they have boarded
 	// unless they also have either or both of the 'disables' or 'merciful' personalities.
 	if(oldTarget && person.Plunders() && !person.Disables() && !person.IsMerciful()
@@ -1363,10 +1363,10 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 			continue;
 		if(!CanPursue(ship, *foe))
 			continue;
-        // If this is not a player ship, and it has found one of the player's
-        // wrecked fighters, it will ignore it.
-        if(!ship.IsYours() && foe->IsWrecked())
-            continue;
+		// If this is not a player ship, and it has found one of the player's
+		// wrecked fighters, it will ignore it.
+		if(!ship.IsYours() && foe->IsWrecked())
+			continue;
 
 		// Estimate the range a second from now, so ships prefer foes they are approaching.
 		double range = (foe->Position() + 60. * foe->Velocity()).Distance(
@@ -3601,11 +3601,11 @@ double AI::RendezvousTime(const Point &p, const Point &v, double vp)
 	// to intersect the target?
 	// (p.x + v.x*t)^2 + (p.y + v.y*t)^2 = vp^2*t^2
 	// p.x^2 + 2*p.x*v.x*t + v.x^2*t^2
-	//    + p.y^2 + 2*p.y*v.y*t + v.y^2t^2
-	//    - vp^2*t^2 = 0
+	//	+ p.y^2 + 2*p.y*v.y*t + v.y^2t^2
+	//	- vp^2*t^2 = 0
 	// (v.x^2 + v.y^2 - vp^2) * t^2
-	//    + (2 * (p.x * v.x + p.y * v.y)) * t
-	//    + (p.x^2 + p.y^2) = 0
+	//	+ (2 * (p.x * v.x + p.y * v.y)) * t
+	//	+ (p.x^2 + p.y^2) = 0
 	double a = v.Dot(v) - vp * vp;
 	double b = 2. * p.Dot(v);
 	double c = p.Dot(p);
