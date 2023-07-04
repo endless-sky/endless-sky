@@ -22,7 +22,7 @@ mission "Passive-Aggressive Observations"
 		not "Gegno Genocide Defense: offered"
 	on complete
 		conversation
-			`While navigating the skies of this desert world, you notice familiar readings to the desert world you previously encountered a member of the Gegno Vi on. It's likely this world is also home to the same or similar species of creature you confronted back then. Eventually, you come across a large Gegno Vi vessel stationed on the surface, though unlike in your prior experience, the ship isn't sunken into the desert, likely having recently landed here. A group of Vi warriors are marching out and nearby the vessel, and while they do, your radar picks up two more ships descending from above.`
+			`While navigating the skies of this desert world, you notice familiar readings to the planet you previously encountered a member of the Gegno Vi on. It's likely this world is also home to the same or similar species of large, worm-like creatures you confronted back then. Eventually, you come across a large Gegno Vi vessel stationed on the surface, though unlike in your prior experience, the ship isn't sunken into the desert, likely having recently landed here. A group of Vi warriors are marching out and nearby the vessel, and while they do, your radar picks up two more ships descending from above.`
 			choice
 				`	(Leave.)`
 					goto leave
@@ -71,7 +71,7 @@ mission "Vi Military Group"
 	# invisible
 	landing
 	to offer
-		has "Passive-Aggressive Observations: offered"
+		has "Passive-Aggressive Observations: done"
 	to complete
 		never
 	on enter "Vorsuke"
@@ -131,14 +131,14 @@ mission "Foreign Spectator I"
 		on provoke
 			set "interrupted arena"
 		government "Gegno Vi"
-		personality heroic vindictive ramming staying uninterested entering
+		personality heroic vindictive ramming staying uninterested
 		system "Eogho"
 		ship "Eclogite" "Tschelgi Dueyu"
 	npc
 		on provoke
 			set "interrupted arena"
 		government "Gegno Scin"
-		personality heroic vindictive staying uninterested entering
+		personality heroic vindictive staying uninterested
 		system "Eogho"
 		ship "Felsic" "Tschelgi Dueich"
 	npc
@@ -171,7 +171,7 @@ mission "Veering Vi"
 	repeat
 	# invisible
 	landing
-	deadline 3
+	deadline 5
 	source
 		near "Heutesl" 100
 	to offer
@@ -181,7 +181,7 @@ mission "Veering Vi"
 	to complete
 		never
 	npc save
-		government "Gegno Vi (Neutral)"
+		government "Gegno Vi"
 		personality entering staying
 		system
 			government "Gegno Vi"
@@ -195,7 +195,7 @@ mission "Scin Suspicion"
 	repeat
 	# invisible
 	landing
-	deadline 7
+	deadline 9
 	source
 		near "Heutesl" 100
 	to offer
@@ -206,7 +206,7 @@ mission "Scin Suspicion"
 	to complete
 		never
 	npc save
-		government "Gegno Scin (Neutral)"
+		government "Gegno Scin"
 		personality surveillance entering
 		system
 			government "Gegno Scin"
@@ -250,8 +250,8 @@ mission "Brief Bystander"
 		not "Gegno Genocide Defense: offered"
 	on complete
 		conversation
-			`As usual, the scattered recording instruments on the surface of this planet contradicts what little interest the Gegno appear to be giving it nowadays, despite its location within the Gegno's high-traffic home system of Heutesl. Still, since this planet isn't strictly owned by the Gegno, it makes for a place to stop, and they haven't seemed to either notice or care when you have before.`
-			`	However, as you fly around this time, you notice a small Gegno shuttle parked on the ground. The tan coloration of its hull suggest that it's a civilian craft, but what it's doing here is unknown.`
+			`As usual, the scattered recording instruments on the surface of this planet contradicts what little interest the Gegno appear to be giving it nowadays, despite its location within the Gegno's home system of Heutesl. Still, since this planet isn't strictly owned by the Gegno, it makes for a convenient place to stop, and they haven't seemed to either notice nor care when you have landed here before.`
+			`	However, as you fly around this time, you notice a small Gegno shuttle parked on the ground. The tan coloration of its hull suggests that it's a civilian craft, but what it's doing here is unknown.`
 			choice
 				`	Investigate.`
 					goto investigate
@@ -284,15 +284,14 @@ mission "Irritable Intervention"
 	# invisible
 	landing
 	source "Giaru Gegno"
-	destination "Dueyu Eitch"
 	to offer
 		has "event: recurring rumors"
 		not "Gegno Geoncide Defense: offered"
 	on offer
 		conversation
-			`After you go through your post-docking routine and enter the ringworld, you can't help but feel that something is a bit off. Normally the Quarg here would be swiftly walking about, focused on attending to their duties, but for some reason, there seems to be less of them walking around than usual. Morevover, the ones you do come across are occasionally having discussions with one another, sometimes looking in your direction even for the slightest second. What stands out most is the lack of any Gegno in the area you're in at all.`
-			`	A few minutes later, while you are making your way through the pristine interior, you hear a voice call to you from down one of the various branching corridors. Turning around, you recognize the Quarg that has helped you in the past, along with a few others.`
-			`	"Circumstantial greetings once more, <first> <last>. Might we have a significant moment of your attention?"`
+			`After you go through your post-docking routine and enter the ringworld, you can't help but feel that something is a bit off. Normally the Quarg here would be swiftly walking about, focused on attending to their duties, but for some reason, there seems to be less of them around than usual. Moreover, those you do come across are occasionally having discussions with one another, sometimes looking in your direction even for the slightest second. What stands out the most is the lack of any Gegno in the area you're in at all.`
+			`	A few minutes later, while you are making your way through the pristine interior of the ring, you hear a voice call to you from down one of the various branching corridors. Turning around, you recognize the unique attire of the Quarg that has helped you in the past, along with a few others.`
+			`	"Circumstantial greetings once more, <first><last>. Might we have a significant moment of your attention?"`
 			choice
 				`	"Sure."`
 					goto "follow"
@@ -300,7 +299,7 @@ mission "Irritable Intervention"
 			`	"As long as is required, for this matter is of symbolic importance," it says, with a slightly elevated tone.`
 
 			label follow
-			`	You follow the group of Quarg to a smaller discussion room, similar to the one you've visited before. Or perhaps you've been visiting a different room each time, considering how unfathomably large a ringworld is. Once you sit down with the Quarg from before, they look at you for a moment, look down at the table, then back up to you.`
+			`	You follow the group of Quarg to a smaller discussion room, similar to the one you've visited before. Or perhaps you've been visiting a different room each time, considering how unfathomably large a ringworld is. Once you sit down with the Quarg from before, it looks at you for a moment, looks down at the table, then back up to you.`
 			`	"Formerly, I have offered suggestions of heedful interplay regarding the Gegno. However, we are increasingly aware of correlative happenings upon them involving yourself. It would seem consequential events have indeed occured. Not often previously were we approached by Gegno, but a few notable occasions now have meaningful figures sought us out for inquiry as to your necessitations in meddling."`
 			choice
 				`	"I haven't done any harm to them."`
@@ -311,26 +310,42 @@ mission "Irritable Intervention"
 				`	"They showed some interest in interaction."`
 					goto interest
 
-			`	The Quarg ponders for a moment. "One does not need envoke violence to greatly harm another. However purest intentions may be, even the smallest unbeknownst action may rapidly tumble to one not forseenly desired."`
+			`	"One does not need envoke violence to greatly harm another. However purest intentions may be, even the smallest unbeknownst action may rapidly tumble to one not forseenly desired." The Quarg then ponders for a moment.`
 				goto cases
 
 			label coincidence
-			`	The Quarg ponders for a moment. "Even a mere blandful coincidence can cause the greatest of tragedies. An untroubled stone becomes a deadly meteor if it should fall many enough lengths."`
+			`	"Even a mere blandful coincidence can cause the greatest of tragedies. An untroubled stone becomes a deadly meteor if it should fall many enough lengths." The Quarg then ponders for a moment.`
 				goto cases
 
 			label dismissive
-			`	The Quarg ponders for a moment. "It takes for an occurence to exist in a first place to be dismissive of its happening. Despite this, perhaps the situation is ultimately not happily welcome beforehand."`
+			`	"It takes for an occurence to exist in a first place to be dismissive of its happening. Despite this, the situation may not ultimately be happily welcomed beforehand." The Quarg then ponders for a moment.`
 				goto cases
 
 			label interest
-			`	The Quarg ponders for a moment. "Great curiousity does not equal great benefit. Even the most dangerous of creatures may glance but with interest at a moment's first."`
+			`	"Great curiousity does not equal great benefit. Even the most dangerous of creatures may glance but with interest at a moment's first." The Quarg then ponders for a moment.`
 				goto cases
 
 			label cases
-			`	"Reluctantly, the truth remains that we have been contacted by numerous members of high Gegno standing in respect to your continued interference. We wish for it to be matter only for further strict cautionaries, but despite this, the Gegno believe it a matter beyond intricate attentiveness."`
+			`	"Imagine, if you will, during the substantial conflicts the humans call the Turf Wars, a strange alien came to human space. We Quarg woefully witnessed that hazardous conflict - it was a time of great waste, unfortunate peril, and unsavory distrust among humanity. The Gegno are in a vulnerable state notably comparable to such a time. Reluctantly, the truth remains that we have been contacted by numerous members of high Gegno standing in respect to your continued interference. We wish for it to be matter only for further strict cautionaries, but regrettably, the Gegno believe it a matter beyond intricate attentiveness." The Quarg leaves its chair and motions you to do the same.`
+			`	"Our best of reccommendations to you is in departure from Gegno space as of this decisive moment. Meanwhile, we shall attempt a most careful negotiation with their hierarchy to come in terms of an acceptable toleration of storts. Should we find commonality, you will receive communication from one of the title "Adrauni", as has been bestowed upon me."`
+			`	The rest of the Quarg, who have been listening to the conversation attentively the whole time, begin to escort you out of the room. If the Gegno are willing to go as far as to contact the Quarg about your appearances, then this is truly an important matter to them. For the time being, it's probably best to listen to the Quarg's warnings this time around and leave Gegno space until some kind of resolution is found, if at all.`
+				decline
 
 
-			# IN PROGRESS
+
+
+
+# Various ambient missions that the player can get sucked into if they continue to be nosy
+
+
+
+# mission "Quarg Reach Understanding" (Quarg follow player to Dueyu Eitch and find grounds with the Gegno"
+
+
+
+# mission "Too far" (The player continues to be nosy with the Gegno and conseqences occur"
+
+
 
 
 # mission "Acquiescence"
