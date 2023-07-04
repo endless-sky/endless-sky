@@ -221,6 +221,17 @@ government "Escort"
 	swizzle 5
 	"fine" 0
 
+government "Escort (Betraying)"
+	"display name" "Merchant"
+	swizzle 5
+
+	"player reputation" 10
+	"attitude toward"
+		"Korath" -.01
+	"fine" 0
+	"friendly hail" "friendly civilian"
+	"hostile hail" "hostile pirate"
+	
 government "Forest (Prey)"
 	# Indigenous creatures in large forest zones outside the Milky Way.
 	# Drak don't look after these since they're beyond Drak territory.
@@ -595,6 +606,9 @@ government "Heliarch"
 	"hostile disabled hail" "hostile disabled heliarch"
 	"attitude toward"
 		"Quarg" -.01
+		"Quarg (Hai)" -.01
+		"Quarg (Kor Efret)" -.01
+		"Quarg (Gegno)" -.01
 		"Coalition" 1
 
 color "governments: Independent" .78 .36 .36
@@ -1107,9 +1121,6 @@ government "Quarg (Gegno)"
 		"Gegno" 0.1
 	"foreign penalties for"
 		"Gegno"
-	"custom penalties for"
-		"Gegno"
-			provoke 0.01
 	"death sentence" "quarg imprisonment"
 	"hostile hail" "hostile quarg"
 	"hostile disabled hail" "hostile quarg"

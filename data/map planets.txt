@@ -120,7 +120,7 @@ planet Alix
 	description `Alix is a small moon of the gas giant Pathera, lacking a breathable atmosphere but rich in minerals. While settlements on the moon have been destroyed to the extent that all that remains are debris scattered across the terrain, some automated facilities are still functioning and see a constant flow of cargo drones that stop by the moon to gather raw materials before quickly bringing them to the nearby station's reserves.`
 
 planet Allhome
-	attributes farming hai "human tourism" urban
+	attributes farming hai "hai: human presence" "human tourism" urban
 	landscape land/dmottl0
 	description `This Earth-like planet has been settled both by human beings and by the Hai, the species that controls this region of space. The human settlements are relatively small, mostly farming communities founded by people who came here to escape the chaos and uncertainty of human space. More substantial urban settlements exist, particularly near the spaceport, but from the air they appear to exist within strict boundaries.`
 	spaceport `In the spaceport, a handful of human merchants and colonists wander about amid throngs of Hai - vaguely squirrel-like aliens who are somewhat shorter than the average human being, but make up for it with an abundance of energy. You feel a little bit like an adult wading through a sea of hyperactive children as you try to locate the commodity exchange and the other services offered here.`
@@ -128,7 +128,7 @@ planet Allhome
 	security 0.6
 
 planet "Alta Hai"
-	attributes "hai quarg" quarg station
+	attributes "hai quarg" quarg station ringworld
 	landscape land/station19
 	description `This is a complete Quarg ringworld, the product of millennia of construction effort which has consumed every other stellar object in this system in order to provide the raw materials. The inner edge of the ring is filled with solar panels, hydroponic gardens, living quarters, and sunlit common spaces. The outer edge contains hangars and docks for ships, and storage facilities for cargo.`
 	description `	Massive station-keeping thrusters on the ring's exterior keep its orbit from becoming unstable.`
@@ -1717,7 +1717,7 @@ planet Ghneoe
 	government Uninhabited
 
 planet "Giaru Gegno"
-	attributes "gegno quarg" quarg station
+	attributes "gegno quarg" quarg station ringworld
 	landscape land/station2
 	description `The quality of its structure suggests that this Quarg ringworld had to have been completed rather recently, but there are some notable differences that don't seem Quarg-like. Some of the hangers and docks on the ring are oddly larger than others, and the inner quarters are wider and taller than what is normal for a Quarg. The hangar you currently are parked in, however, seems to be void of these characteristics, and is similar to ones at the Quarg ringworld in human space.`
 	description `	Despite seeing numerous non-Quarg ships before landing on the ring, you are only guided around parts of the ring where they are not present.`
@@ -1829,7 +1829,7 @@ wormhole "Graveyard Wormhole (Unstable)"
 	color "wormholes: Ember Waste"
 
 planet Greenbloom
-	attributes hai "hai tourism" "human tourism"
+	attributes hai "hai tourism" "hai: human presence" "human tourism"
 	landscape land/water3
 	description `The islands and continents on this planet are almost entirely covered in marshes, rainforests, and (near the poles) dense coniferous forests, and the oceans appear green from above due to thick algae blooms and floating kelp mats. The overabundance of flora is caused by Greenbloom's major volcanoes, which constantly spew carbon dioxide into the atmosphere.`
 	spaceport `The spaceport is a massive floating island built by the Hai - a network of hexagonal platforms, each roughly half a kilometer in diameter, linked by bridges that can bend to accommodate the platforms rising and falling in rough weather. You are not sure what sort of alloy the platforms are built from, but judging by the fact that some of them have coral colonies growing on their edges, they can probably last for centuries without requiring any maintenance.`
@@ -1859,7 +1859,7 @@ planet Greenrock
 		fleet "Large Northern Pirates" 13
 
 planet Greenview
-	attributes hai station
+	attributes hai station "hai tourism" "hai: human presence" "human tourism"
 	landscape land/station38
 	description `Although not strictly humid by the standards of a planet, the air here has a rich, moist, and faintly verdant quality atypical of a space station. The station is run by the Hei Low Io species preservation foundation, and each of its four branches features a different internal climate showcasing life from distant worlds. An infographic proclaims it to be the largest collection in the galaxy of rare organisms sourced from private collections, rebuilt from genetic samples, or rescued before being exterminated after being deemed invasive on Hai worlds. It also mentions that certain exhibits have been improved in some cases with species recently acquired from human space through secret trade deals.`
 	description `	The central spire is still largely residential, with some nursery and laboratory facilities.`
@@ -1868,7 +1868,7 @@ planet Greenview
 	security 0.5
 
 planet Greenwater
-	attributes farming fishing hai "human tourism"
+	attributes farming fishing hai "hai: human presence" "human tourism"
 	landscape land/myrabella2
 	description `Greenwater is one of the few worlds in Hai space that is home to a sizable human population. The temperature on most of the planet's surface is too warm for the Hai, but tolerable for human beings. Close to the equator are scattered human settlements for farming or fishing, which trade with the Hai cities closer to the poles for technology and equipment.`
 	spaceport `In this bustling spaceport, deeply tanned human merchants are busy haggling with the Hai natives over the price of loads of fish and produce. The atmosphere is quite friendly and relaxed - even here, well into the planet's temperate zone, it is warm enough that everyone, Hai and human alike, moves at a languid pace.`
@@ -1887,7 +1887,7 @@ planet "Gresku Fodar"
 	security 0
 
 planet Greymoon
-	attributes hai station
+	attributes hai "human tourism" station
 	landscape land/station13
 	description `This station is owned and operated by the Far Loo Bah fuel collection corporation. Their logo is emblazoned on nearly every possible surface and sign, indicating their sponsorship of all manner of services and features on the station. Interestingly, this includes a "History of Spaceflight" museum which takes up an entire wing of the facility. Naturally, the museum focuses very heavily on the Far Loo Bah corporation's role in that history.`
 	spaceport `The spaceport consists of a wide, two-level promenade encircling the interior of the station, with the docking access opening directly onto the mezzanine. The upper level is mostly devoted to amenities, light commercial businesses, a medical center, and a bank. The lower level has all of the real businesses: multiple manufacturers, which are supplied by the heavier elements filtered out from the supply of fuel stock from the planet below, have store frontage here. A virtual outfitter provides sale options for locally-manufactured outfits that can be installed on your ship without you ever leaving the comfort of the promenade.`
@@ -2469,7 +2469,7 @@ planet Kumkapi
 	security 0
 
 planet "Kuwaru Efreti"
-	attributes "korath quarg" quarg station
+	attributes "korath quarg" quarg station ringworld
 	landscape land/station20
 	description `This Quarg ringworld is almost half completed, but there are no signs of active construction, and your ship's sensors picked up no energy signals from any section of the ring except for this one. You also observed superficial weapon scars on some parts of the ring, damage that the Quarg have not bothered to repair - although clearly the attackers did not possess weapons powerful enough to do any serious harm to the ring.`
 	spaceport `Despite their size, the Quarg are generally almost silent when they move, and there seem to be very few of them left inhabiting this ringworld. As you walk through some parts of the spaceport it is utterly silent and seemingly deserted, and you are jolted by surprise each time the illusion of solitude is broken by a Quarg emerging suddenly from a doorway and striding silently past you. Every once in a while, louder footsteps announce the presence of a group of Korath visiting the station.`
@@ -3142,11 +3142,11 @@ planet "New Washington"
 		fleet "Large Militia" 3
 
 planet Newhome
-	attributes hai textiles urban
+	attributes hai "hai: human presence" textiles urban
 	landscape land/myrabella7
 	description `Newhome's gravity, climate, and geography is very similar to the Hai homeworld. Several billion Hai live here. Most dwell in large factory cities, but there are also ranches in the undeveloped areas where the Hai raise animals that are larger than elephants but produce wool similar to sheep. Shearing them is a dangerous undertaking, but their wool can be used to make excellent, long-lasting clothing.`
 	spaceport `The roads in the spaceport are very wide, so that Hai ranchers can lead their massive, sheep-like beasts along them. The animals seem docile enough, but their size is alarming.`
-	spaceport `	Most of the shops only sell clothing made for the Hai, but a few enterprising artisans have begun making clothing for humans as well: larger dimensions, and no tail holes in the pants.`
+	spaceport `	Most of the shops only sell clothing made for the Hai, but a few enterprising artisans have responded to the growing human population in the spaceport district and begun making clothing for humans as well: larger dimensions, and no tail holes in the pants.`
 	outfitter "Hai Basics"
 	security 0.2
 
@@ -3598,7 +3598,7 @@ planet Revelation
 	"required reputation" 15
 
 planet "Ring of Friendship"
-	attributes heliarch station
+	attributes heliarch station ringworld
 	landscape land/station21
 	description `This is the crown jewel of the Heliarchs, a ringworld that was completed by the Quarg before the Coalition formed and drove them away. It now serves both as a center of finance and trade, and as the seat of the Heliarch government, which is made up of "consuls" who have been selected by the other Heliarchs from among their number in such a way that all three species always have equal representation. The Heliarchs, in turn, are selected from among the best and brightest members of each species. Despite the occasional resistance to it, this meritocracy has survived ten times longer than any human democracy.`
 	spaceport `At any given time, thousands of young people are in training here to become "interpreters," the Heliarch agents who serve as translators and mediators on all the Coalition worlds. As they rise through the ranks, some of those agents will be honored by being elevated to the rank of Heliarch, gaining a voice in the selection of new consuls and perhaps one day even being selected themselves.`
@@ -3608,7 +3608,7 @@ planet "Ring of Friendship"
 	security 0.8
 
 planet "Ring of Power"
-	attributes heliarch station
+	attributes heliarch station ringworld
 	landscape land/station22
 	description `This ringworld is the center of operations for the Heliarch defense forces. Although they have not had to fight a major space battle in thousands of years, they still maintain a sizable fleet, believing that if they ever allow their vigilance to waver, the Quarg may return and try to reclaim what was once theirs.`
 	spaceport `The hallways of the spaceport echo with the footsteps of groups of marching defense force cadets. Each group contains a mixture of Saryds, Kimek, and Arachi, to help them learn allegiance to all the peoples of the Coalition instead of just identifying with their own species.`
@@ -3618,7 +3618,7 @@ planet "Ring of Power"
 	security 0.8
 
 planet "Ring of Wisdom"
-	attributes heliarch station
+	attributes heliarch station ringworld
 	landscape land/station2
 	description `This Heliarch ringworld is their center for science, mostly trying to understand and reverse engineer Quarg technology rather than inventing new devices of their own. But after thousands of years of controlling these ringworlds, it seems that their inner workings are still something of a mystery to the Heliarchs.`
 	description `	"Construction" work is always ongoing here, but rather than extending the backbone of the ring itself, which uses exotic materials that they cannot replicate, the Heliarchs are just adding sheets of solar panels and other extensions to the sides of the ring.`
@@ -4290,7 +4290,7 @@ planet Sunracer
 		fleet "Large Syndicate" 10
 
 planet Swiftsong
-	attributes hai "hai tourism" station
+	attributes hai "hai tourism" "hai: human presence" "human tourism" station
 	landscape land/station39
 	description `Swiftsong Station is operated and maintained by the Imo Blep corporation as a giant convention center. Most Hai stations restrict access beyond the docking bay or the promenade to at least some degree, but Swiftsong is almost completely open.`
 	description `	Tens of thousands of Hai pass through on an almost daily basis as the continual churn of summits, forums, conventions, symposiums, productions, conferences, weddings, festivals, and the like roll on in an endless cavalcade of life. With Icelake nearby and Hai-home just one jump away, this station is a major cultural hub that even houses the head office of one of the biggest music labels in Hai space.`
@@ -4798,7 +4798,7 @@ planet Violetwake
 planet "Vivid Aether"
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/nasa29
-	description `Whether it be from local evolution or panspermia, Vivid Aether's clouds are home to colonies of anaerobic microbial life, feeding on both sunlight and traces of methane in the atmosphere. These form colorful streaks in the upper atmosphere, which were what initially attracted Saryd explorers to the planet. Now, it is common for Heliarch research patrols to sit in orbit for weeks at a time in order to study the simple, yet exotic, ecology. Occasionally, they send down hardened research vessels capable of withstanding the extreme pressures, though none happen to be nearby right now.`
+	description `Whether it be from local evolution or panspermia, Vivid Aether's clouds are home to colonies of anaerobic microbial life, feeding on both sunlight and traces of methane in the atmosphere. These form colorful streaks in the upper atmosphere, which were what initially attracted Saryd explorers to the planet. Now, it is common for Heliarch research patrols to sit in orbit for weeks at a time in order to study the simple, yet exotic, ecology. Occasionally, they send down small vessels capable of withstanding the extreme pressures, though none happen to be nearby right now.`
 	description `	The life-bearing layer only extends downward a few hundred kilometers before pressures rise and the temperature becomes inhospitable to life. Deeper down, the atmosphere is barren and lifeless.`
 	government Uninhabited
 

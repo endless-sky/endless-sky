@@ -24,7 +24,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Government.h"
 #include "Logger.h"
 #include "Messages.h"
-#include "MissionAction.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Random.h"
@@ -778,9 +777,6 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 				}))
 		{
 			it->second.Do(player, ui);
-			// All actions are currently one-time-use. Erase the action from
-			// the map so that it can't be reused.
-			npcActions.erase(it);
 		}
 	}
 }
