@@ -1564,6 +1564,7 @@ news "lawyer"
 		word
 			"Lawyer"
 			"Attorney"
+	message
 		word
 			`"`
 		word
