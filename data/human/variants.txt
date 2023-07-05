@@ -401,7 +401,7 @@ ship "Bastion" "Bastion (Scanner)"
 	gun "Heavy Rocket Launcher"
 	gun "Plasma Cannon"
 	gun "Heavy Rocket Launcher"
-	gun  "Plasma Cannon"
+	gun "Plasma Cannon"
 
 
 
