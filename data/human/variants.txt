@@ -398,6 +398,10 @@ ship "Bastion" "Bastion (Scanner)"
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
+	gun "Heavy Rocket Launcher"
+	gun "Plasma Cannon"
+	gun "Heavy Rocket Launcher"
+	gun  "Plasma Cannon"
 
 
 
