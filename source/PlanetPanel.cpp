@@ -102,18 +102,18 @@ void PlanetPanel::Step()
 			else
 				repairedFighters += repairSelf;
 		}
-		
+
 		if(repairedFighters > 0)
 		{
 			ostringstream out;
-			
+
 			string fighterWord = "fighters";
 			if(repairedFighters == 1)
 			{
 				fighterWord = "fighter";
 			}
 			out << "You quickly see your wrecked " << fighterWord << " transported to the shipyard for repair.";
-			
+
 			GetUI()->Push(new Dialog(out.str()));
 		}
 	}

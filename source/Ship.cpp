@@ -2710,21 +2710,21 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	else
 	{
 		// Wrecked fighters take no further damage of any kind
-		
+
 		energy -= damage.Energy();
 		heat += damage.Heat();
 		fuel -= damage.Fuel();
-		
+
 		discharge += damage.Discharge();
 		corrosion += damage.Corrosion();
 		ionization += damage.Ion();
 		scrambling += damage.Scrambling();
 		burning += damage.Burn();
 		leakage += damage.Leak();
-		
+
 		disruption += damage.Disruption();
 		slowness += damage.Slowing();
-		
+
 		if(damage.HitForce())
 			ApplyForce(damage.HitForce(), damage.GetWeapon().IsGravitational());
 	}
@@ -3590,7 +3590,7 @@ void Ship::DoGeneration()
 			for(const pair<double, Ship *> &it : carried)
 			{
 				Ship &ship = *it.second;
-				
+
 				if(ship.IsWrecked())
 					continue;
 				if(!hullDelay)
@@ -4122,7 +4122,7 @@ int Ship::DoRepairWreckedFighter()
 			DoRepair(hull, hullAvailable, attributes.Get("hull"));
 		if(!shieldDelay)
 			DoRepair(shields, shieldsAvailable, attributes.Get("shields"));
-		
+
 		return 1;
 	}
 
