@@ -348,7 +348,7 @@ SCENARIO( "Obtaining a random value", "[WeightedList][Usage]" ) {
 			REQUIRE( list.empty() );
 			THEN( "an informative runtime exception is thrown" ) {
 				CHECK_THROWS_AS( list.Get(), std::runtime_error );
-				CHECK_THROWS_WITH( list.Get(), Catch::Matchers::Contains("empty weighted list") );
+				CHECK_THROWS_WITH( list.Get(), Catch::Matchers::ContainsSubstring("empty weighted list") );
 			}
 		}
 	}

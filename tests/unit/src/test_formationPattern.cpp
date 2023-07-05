@@ -30,7 +30,7 @@ namespace { // test namespace
 // #region mock data
 bool Near(const Point a, const Point b)
 {
-	if(!(a.Distance(b) == Approx(0.)))
+	if(!WithinRel(0., 0.01).match(a.Distance(b)))
 	{
 		if(a.Distance(b) < 0.001)
 		{
