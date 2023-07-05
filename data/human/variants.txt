@@ -727,9 +727,9 @@ ship "Bulwark" "Bulwark (Heavy)"
 	gun "Plasma Cannon"
 	gun "Torpedo Launcher"
 	gun "Plasma Cannon"
-	turret "Anti-Missile Turret"
-	turret "Anti-Missile Turret"
 	turret "Heavy Laser Turret"
+	turret "Anti-Missile Turret"
+	turret "Anti-Missile Turret"
 
 
 
