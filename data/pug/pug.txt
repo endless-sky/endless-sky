@@ -719,9 +719,9 @@ ship "Pug Arfecta"
 	engine 17.5 157.5
 	turret -62 -17.5 "Tier 3 Anti-Missile"
 	turret 62 -17.5 "Tier 3 Anti-Missile"
+	turret 0 76.5 "Pug Gridfire Turret"
 	turret -84 114.5 "Pug Gridfire Turret"
 	turret 84 114.5 "Pug Gridfire Turret"
-	turret 0 76.5 "Pug Gridfire Turret"
 	explode "pug tiny explosion" 100
 	explode "pug small explosion" 60
 	explode "pug medium explosion" 30
