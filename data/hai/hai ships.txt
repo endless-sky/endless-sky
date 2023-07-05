@@ -332,11 +332,11 @@ ship "Geocoris"
 	engine -100 39
 	gun 24 -118 "Pulse Cannon"
 	gun -24 -118 "Pulse Cannon"
+	turret 0 -89 "Bullfrog Anti-Missile"
 	turret 110 -23 "Pulse Turret"
 	turret -110 -23 "Pulse Turret"
 	turret 35 94 "Bullfrog Anti-Missile"
 	turret -35 94 "Bullfrog Anti-Missile"
-	turret 0 -89 "Bullfrog Anti-Missile"
 	leak "leak" 40 50
 	leak "flame" 40 80
 	leak "big leak" 70 30
