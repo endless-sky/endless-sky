@@ -66,7 +66,8 @@ SCENARIO( "Test basic ByGivenOrder functionality." , "[ByGivenOrder]" ) {
 			std::vector<int> toSort = { 2, 4, 6, 8, 5, 1, 3 };
 			const std::vector<int> expectedOrder = { 4, 2, 8, 6, 1, 3, 5 };
 
-			std::random_shuffle(toSort.begin(), toSort.end());
+			unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+			std::shuffle(toSort.begin(), toSort.end(), std::default_random_engine(seed));
 			std::sort(toSort.begin(), toSort.end(), c);
 			CHECK( toSort == expectedOrder );
 		}
