@@ -2578,12 +2578,12 @@ ship "Manta"
 		
 	engine -33 40
 	engine 33 40
+	gun -68.5 -33 "Torpedo Pod"
+	gun 68.5 -33 "Torpedo Pod"
 	gun -20 -31 "Particle Cannon"
 	gun 20 -31 "Particle Cannon"
 	gun -26.5 -30 "Particle Cannon"
 	gun 26.5 -30 "Particle Cannon"
-	gun -68.5 -33 "Torpedo Pod"
-	gun 68.5 -33 "Torpedo Pod"
 	leak "leak" 60 50
 	leak "flame" 40 80
 	explode "tiny explosion" 10
