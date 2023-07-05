@@ -17,7 +17,7 @@ mission "Passive-Aggressive Observations"
 	landing
 	destination "Vigales"
 	to offer
-		random < 40
+		random < 30
 		has "First Contact: Gegno Scin: offered"
 		not "Gegno Genocide Defense: offered"
 	on complete
@@ -51,6 +51,8 @@ mission "Passive-Aggressive Observations"
 				decline
 
 			label leave
+			action
+				set "gegno: left observations"
 			`	You decide to withdraw from the area, and the ships continue on their way towards the surface as if you weren't present. Regardless of whether or not they could have been hostile, getting mixed up with what may be some sort of military exercise could be dangerous, especially with the Vi.`
 				decline
 
@@ -234,7 +236,7 @@ mission "Curious Civilians"
 mission "Esstch Visit Tracker"
 	# invisible
 	landing
-	repeat 2
+	repeat 1
 	source "Esstch"
 	on offer
 		fail
@@ -245,7 +247,7 @@ mission "Brief Bystander"
 	landing
 	destination "Esstch"
 	to offer
-		has "Esstch Visit Tracker: offered" == 2
+		has "Esstch Visit Tracker: offered" == 1
 		has "First Contact: Gegno Scin: offered"
 		not "Gegno Genocide Defense: offered"
 	on complete
@@ -259,6 +261,8 @@ mission "Brief Bystander"
 					decline
 
 			label investigate
+			action
+				set "gegno: approached bystander"
 			`	You steer your ship towards the shuttle, and once you approach it, you are able to see a Gegno on the ground nearby fiddling with one of the nearby devices on the surface. Though, as you fly closer, they stop their work and return to their shuttle, taking off shortly after. It seems like they weren't interested in any potential interaction with you.`
 			`	The satellite they were tinkering with doesn't strike you as anything special, being just another antique device amongst the others.`
 				decline
@@ -300,9 +304,22 @@ mission "Intervention"
 
 			label follow
 			`	You follow the group of Quarg to a smaller discussion room, similar to the one you've visited before. Or perhaps you've been visiting a different room each time, considering how unfathomably large a ringworld is. Once you sit down with the Quarg from before, it looks at you for a moment, looks down at the table, then back up to you.`
+			
+			branch "pacifist"
+				has "gegno: left observations"
+				has "gegno: left scin"
+				not "gegno: approached bystander"
+				not or
+					"reputation: Gegno Vi" < 0
+					"reputation: Gegno Scin" < 0
+
 			`	"Formerly, I have offered suggestions of heedful interplay regarding the Gegno. However, we are increasingly aware of correlative happenings upon them involving yourself. It would seem consequential events have indeed occurred. Not often previously were we approached by Gegno, but a few notable occasions now have meaningful figures sought us out for inquiry as to your necessitations in meddling."`
 			choice
 				`	"I haven't done any harm to them."`
+					to display
+						not or
+							"reputation: Gegno Vi" < 0
+							"reputation: Gegno Scin" < 0
 				`	"It was more coincidential than anything."`
 					goto coincidence
 				`	"Most of the time they were dismissive."`
@@ -331,21 +348,18 @@ mission "Intervention"
 			`	The rest of the Quarg, who have been listening to the conversation attentively the whole time, begin to escort you out of the room. If the Gegno are willing to go as far as to contact the Quarg about your appearances, then this is truly an important matter to them. For the time being, it's probably best to listen to the Quarg's warnings this time around and leave Gegno space until some kind of resolution is found, if at all.`
 				decline
 
-
-
+			label pacifist
+			`	"Test."`
+				decline
 
 
 # Various ambient missions that the player can get sucked into if they continue to be nosy
 
 
-
 # mission "Quarg Reach Understanding" (Quarg follow player to Dueyu Eitch and find grounds with the Gegno"
 
 
-
 # mission "Too far" (The player continues to be nosy with the Gegno and conseqences occur"
-
-
 
 
 # mission "Acquiescence"

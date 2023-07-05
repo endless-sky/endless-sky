@@ -461,6 +461,8 @@ mission "First Contact: Gegno Scin"
 				`	(Leave.)`
 					goto "leave"
 			label "leave"
+			action
+				set "gegno: left scin"
 			`	Wary of the Scin warship, you turn around and begin to ascend back into space. The Scin ship advances towards yours, but as it comes closer, it begins to take on an escort formation with you, following you as you leave the planet's atmosphere. Once you finally make it back into space, the Scin ship breaks from formation and flies away. You're unsure of what they're doing on the planet, but it's probably better you are careful not to get involved.`
 				decline
 
