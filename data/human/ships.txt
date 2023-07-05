@@ -2885,10 +2885,10 @@ ship "Osprey"
 	engine 42.5 62.5 .8
 	engine -16.5 105 .6
 	engine 16.5 105 .6
-	gun -25 -49.5 "Plasma Cannon"
-	gun 25 -49.5 "Plasma Cannon"
 	gun -9.5 -95.5 "Plasma Cannon"
 	gun 9.5 -95.5 "Plasma Cannon"
+	gun -25 -49.5 "Plasma Cannon"
+	gun 25 -49.5 "Plasma Cannon"
 	turret -15.5 -12 "Quad Blaster Turret"
 	turret 15.5 -12 "Heavy Anti-Missile Turret"
 	leak "leak" 40 50
