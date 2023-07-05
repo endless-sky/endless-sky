@@ -396,12 +396,12 @@ ship "Kama"
 		
 	engine -11.5 132.5
 	engine 11.5 132.5
+	gun -24.5 -129 "Swarm Pod"
+	gun 24.5 -129 "Swarm Pod"
 	gun -5 -114 "Mandible Cannon"
 	gun 5 -114 "Mandible Cannon"
 	gun -14 -105.5 "Mandible Cannon"
 	gun 14 -105.5 "Mandible Cannon"
-	gun -24.5 -129 "Swarm Pod"
-	gun 24.5 -129 "Swarm Pod"
 	gun -54.5 -20 "Swarm Pod"
 	gun 54.5 -20 "Swarm Pod"
 	gun -62.5 -9.5 "Swarm Pod"
