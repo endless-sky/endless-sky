@@ -1092,10 +1092,10 @@ ship "Mammoth" "Mammoth (Moonless)"
 	turret "Heavy Laser Turret"
 	turret "Heavy Laser Turret"
 	turret "Heavy Laser Turret"
-	turret "Modified Blaster Turret"
-	turret "Modified Blaster Turret"
 	turret "Heavy Laser Turret"
 	turret "Heavy Laser Turret"
+	turret "Modified Blaster Turret"
+	turret "Modified Blaster Turret"
 
 
 

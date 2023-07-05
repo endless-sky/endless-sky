@@ -2520,12 +2520,12 @@ ship "Mammoth"
 	gun 47.5 -57.5
 	turret -31 -50 "Anti-Missile Turret"
 	turret 31 -50 "Anti-Missile Turret"
+	turret -14.5 0 "Quad Blaster Turret"
+	turret 14.5 0 "Quad Blaster Turret"
 	turret -47.5 33.5 "Proton Turret"
 	turret 47.5 33.5 "Proton Turret"
 	turret -22 66.5 "Anti-Missile Turret"
 	turret 22 66.5 "Anti-Missile Turret"
-	turret -14.5 0 "Quad Blaster Turret"
-	turret 14.5 0 "Quad Blaster Turret"
 	leak "leak" 30 50
 	leak "flame" 30 80
 	leak "big leak" 50 30
