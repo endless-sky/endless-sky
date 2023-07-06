@@ -212,7 +212,7 @@ mission "War Reactions: Syndicate Orphan"
 			label attacking
 			action
 				set "WR: Orphan: attacking"
-			`	"My sister is a private, third class, in the Syndicate's Ancillary Security Service." He grins proudly, clearly having practiced that delivery. "She monitors the Syndicate workplaces and he turned those boys in for smoking on the job last week. I guess they finally got a break for the repair shop and came after me since they can't hurt my sister."`
+			`	"My sister is a private, third class, in the Syndicate's Ancillary Security Service." He grins proudly, clearly having practiced that delivery. "She monitors the Syndicate workplaces and she turned those boys in for smoking on the job last week. I guess they finally got a break for the repair shop and came after me since they can't hurt my sister."`
 				goto questions
 			label young
 			`	As you start walking, he answers. "No, I'm an orphan." He sees your confusion and explains. "The Syndicate lets some of us orphans work in industry. In return they give us better schooling, nicer housing, and doctor's visits." He puffs himself up. "Only the cleverest of us get to do it. All of the jobs for orphans are safe too; we don't use big dangerous equipment. Just ordinary stuff, like hammers, soldering irons, or sewing machines.`
