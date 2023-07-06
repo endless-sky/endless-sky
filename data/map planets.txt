@@ -128,7 +128,7 @@ planet Allhome
 	security 0.6
 
 planet "Alta Hai"
-	attributes "hai quarg" quarg station
+	attributes "hai quarg" quarg station ringworld
 	landscape land/station19
 	description `This is a complete Quarg ringworld, the product of millennia of construction effort which has consumed every other stellar object in this system in order to provide the raw materials. The inner edge of the ring is filled with solar panels, hydroponic gardens, living quarters, and sunlit common spaces. The outer edge contains hangars and docks for ships, and storage facilities for cargo.`
 	description `	Massive station-keeping thrusters on the ring's exterior keep its orbit from becoming unstable.`
@@ -1682,7 +1682,7 @@ planet Ghneoe
 	government Uninhabited
 
 planet "Giaru Gegno"
-	attributes "gegno quarg" quarg station
+	attributes "gegno quarg" quarg station ringworld
 	landscape land/station2
 	description `The quality of its structure suggests that this Quarg ringworld had to have been completed rather recently, but there are some notable differences that don't seem Quarg-like. Some of the hangers and docks on the ring are oddly larger than others, and the inner quarters are wider and taller than what is normal for a Quarg. The hangar you currently are parked in, however, seems to be void of these characteristics, and is similar to ones at the Quarg ringworld in human space.`
 	description `	Despite seeing numerous non-Quarg ships before landing on the ring, you are only guided around parts of the ring where they are not present.`
@@ -2372,7 +2372,7 @@ planet Kumkapi
 	security 0
 
 planet "Kuwaru Efreti"
-	attributes "korath quarg" quarg station
+	attributes "korath quarg" quarg station ringworld
 	landscape land/station20
 	description `This Quarg ringworld is almost half completed, but there are no signs of active construction, and your ship's sensors picked up no energy signals from any section of the ring except for this one. You also observed superficial weapon scars on some parts of the ring, damage that the Quarg have not bothered to repair - although clearly the attackers did not possess weapons powerful enough to do any serious harm to the ring.`
 	spaceport `Despite their size, the Quarg are generally almost silent when they move, and there seem to be very few of them left inhabiting this ringworld. As you walk through some parts of the spaceport it is utterly silent and seemingly deserted, and you are jolted by surprise each time the illusion of solitude is broken by a Quarg emerging suddenly from a doorway and striding silently past you. Every once in a while, louder footsteps announce the presence of a group of Korath visiting the station.`
@@ -3501,7 +3501,7 @@ planet Revelation
 	"required reputation" 15
 
 planet "Ring of Friendship"
-	attributes heliarch station
+	attributes heliarch station ringworld
 	landscape land/station21
 	description `This is the crown jewel of the Heliarchs, a ringworld that was completed by the Quarg before the Coalition formed and drove them away. It now serves both as a center of finance and trade, and as the seat of the Heliarch government, which is made up of "consuls" who have been selected by the other Heliarchs from among their number in such a way that all three species always have equal representation. The Heliarchs, in turn, are selected from among the best and brightest members of each species. Despite the occasional resistance to it, this meritocracy has survived ten times longer than any human democracy.`
 	spaceport `At any given time, thousands of young people are in training here to become "interpreters," the Heliarch agents who serve as translators and mediators on all the Coalition worlds. As they rise through the ranks, some of those agents will be honored by being elevated to the rank of Heliarch, gaining a voice in the selection of new consuls and perhaps one day even being selected themselves.`
@@ -3511,7 +3511,7 @@ planet "Ring of Friendship"
 	security 0.8
 
 planet "Ring of Power"
-	attributes heliarch station
+	attributes heliarch station ringworld
 	landscape land/station22
 	description `This ringworld is the center of operations for the Heliarch defense forces. Although they have not had to fight a major space battle in thousands of years, they still maintain a sizable fleet, believing that if they ever allow their vigilance to waver, the Quarg may return and try to reclaim what was once theirs.`
 	spaceport `The hallways of the spaceport echo with the footsteps of groups of marching defense force cadets. Each group contains a mixture of Saryds, Kimek, and Arachi, to help them learn allegiance to all the peoples of the Coalition instead of just identifying with their own species.`
@@ -3521,7 +3521,7 @@ planet "Ring of Power"
 	security 0.8
 
 planet "Ring of Wisdom"
-	attributes heliarch station
+	attributes heliarch station ringworld
 	landscape land/station2
 	description `This Heliarch ringworld is their center for science, mostly trying to understand and reverse engineer Quarg technology rather than inventing new devices of their own. But after thousands of years of controlling these ringworlds, it seems that their inner workings are still something of a mystery to the Heliarchs.`
 	description `	"Construction" work is always ongoing here, but rather than extending the backbone of the ring itself, which uses exotic materials that they cannot replicate, the Heliarchs are just adding sheets of solar panels and other extensions to the sides of the ring.`
