@@ -27,6 +27,7 @@ mission "Hai Reveal [C01] Cleanup"
 		event "mountaintop ascendant"
 		fail "Hai Reveal [B12-A] Devil-Hide Fleet"
 		log `Returned the Hai to their own space to bring an end to the missing Hai saga. Choot'k tried, unsuccessfully, to recruit Teeneep to the Unfettered. They spoke of a future peaceful unification of the Hai, though differ on the specifics despite their closeness. There is one last trip to do for official matters.`
+		"reputation: Hai (Unfettered)" >?= 10
 		conversation
 			`When you land, you, Teeneep, and the Unfettered Hai are greeted as heroes. Word has traveled ahead of you through the new message links, and you are greeted by a hastily planned celebration in the capitol. After a few hours involving a brief formal parade, a great deal of cheering, some minor speeches with Xilin and Alondo trotted out to reassure everyone that there would be no conflict, and finally some more discrete parties outside the public eye, General Choot'k comes to you and Teeneep to bid his farewell.`
 			`	He shakes your hand and says, "You're a fine warrior, Captain <last>. You are as much a True Hai as any human can be, and it was an honor to fight alongside you in battle."`

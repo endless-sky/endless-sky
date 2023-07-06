@@ -24849,6 +24849,21 @@ system Paeli
 		sprite planet/desert6-b
 		distance 1013.03
 		period 2883.88
+	object
+		sprite planet/gas2-b
+		distance 2010.84
+		period 8065.10
+		offset 270.243
+		object Eavine
+			sprite planet/ice8-b
+			distance 302.81
+			period 31.9279
+			offset 256.243
+		object
+			sprite planet/oberon-b
+			distance 457.81
+			period 59.353
+			offset 360
 
 system Pantica
 	pos 303.87 445.242
