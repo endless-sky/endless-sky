@@ -34,11 +34,11 @@ ship "Vyrmeid"
 		"outfit space" 0
 		"weapon capacity" 0
 		"engine capacity" 0
+		"inscrutable" 1
 
 		"hull repair rate" 1
 		"energy capacity" 100
 		"energy generation" 1
-		"inscrutable" 1
 		
 		"thrust" 10
 		"turn" 120
@@ -91,9 +91,9 @@ ship "Vyrmeid" "Vyrmeid (B)"
 		"outfit space" 10
 		"weapon capacity" 0
 		"engine capacity" 0
+		"inscrutable" 1
 
 		"hull repair rate" 1
-		"inscrutable" 1
 
 		"thrust" 12
 		"turn" 60
@@ -142,10 +142,10 @@ ship "Vyrmeid" "Vyrmeid (C)"
 		"outfit space" 0
 		"weapon capacity" 0
 		"engine capacity" 0
+		"inscrutable" 1
 
 		"energy capacity" 1000
 		"energy generation" 100
-		"inscrutable" 1
 
 		"thrust" 6
 		"turn" 80
@@ -196,6 +196,7 @@ ship "Astral Cetacean"
 		"outfit space" 0
 		"weapon capacity" 0
 		"engine capacity" 0
+		"inscrutable" 1
 
 		"hull repair rate" 3
 		"ramscoop" 5
