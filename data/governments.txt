@@ -454,29 +454,6 @@ government "Hai (Wormhole Access)"
 	"hostile hail" "hostile hai"
 	"hostile disabled hail" "hostile disabled hai"
 
-# A government that is used to allow Unfettered raids in Wah Ki and nearby systems.
-government "Hai (Raided)"
-	swizzle 0
-	color "governments: Hai"
-	
-	"player reputation" 0
-	"attitude toward"
-		"Hai (Wormhole Access)" 1
-		"Hai Merchant" 1
-		"Hai Merchant (Sympathizers)" 1
-		"Hai Merchant (Human)" 1
-		"Hai (Unfettered)" -.1
-		"Hai (Friendly Unfettered)" .1
-		"Hai (Unfettered Civilians)" .1
-		"Merchant" .01
-		"Elenctic Commune" .1
-	"bribe" .2
-	"friendly hail" "friendly hai"
-	"friendly disabled hail" "friendly disabled hai"
-	"hostile hail" "hostile hai"
-	"hostile disabled hail" "hostile disabled hai"
-	raid "Large Plundering Unfettered" 10
-
 government "Hai Merchant"
 	"display name" "Hai"
 	swizzle 0
@@ -518,6 +495,12 @@ government "Hai Merchant (Sympathizers)"
 	"friendly disabled hail" "friendly disabled hai"
 	"hostile hail" "hostile hai"
 	"hostile disabled hail" "hostile disabled hai"
+	# 3 Geocoris woth of undefended cargo
+	#TODO: make it 4x worse and only SBs and sea scorps, full of ion/tracker/pulse
+	raid "Large Plundering Unfettered" 30
+	raid "Large Plundering Unfettered" 30
+	raid "Large Plundering Unfettered" 30
+	raid "Large Plundering Unfettered" 30
 
 government "Hai Merchant (Human)"
 	"display name" "Hai"
