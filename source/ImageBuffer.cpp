@@ -400,12 +400,8 @@ namespace {
 				uint64_t blue = value & 0xFF;
 				uint64_t alpha = (red + green + blue) / 3;
 
-				value = (alpha << 24) |
-						(red   << 16) |
-						(green <<  8) |
-						(blue       );
+				value = (alpha << 24) | (red << 16) | (green << 8) | (blue);
 				
-
 				*it = static_cast<uint32_t>(value);
 			}
 		}
