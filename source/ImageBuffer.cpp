@@ -31,6 +31,7 @@ namespace {
 	bool ReadPNG(const string &path, ImageBuffer &buffer, int frame);
 	bool ReadJPG(const string &path, ImageBuffer &buffer, int frame);
 	void Premultiply(ImageBuffer &buffer, int frame, int additive);
+	void GenerateAlpha(ImageBuffer &buffer, int frame);
 }
 
 
@@ -183,6 +184,8 @@ bool ImageBuffer::Read(const string &path, int frame)
 		int additive = (path[pos] == '+') ? 2 : (path[pos] == '~') ? 1 : 0;
 		if(isPNG || (isJPG && additive == 2))
 			Premultiply(*this, frame, additive);
+		if(isJPG && (path[pos] == '-'))
+			GenerateAlpha(*this, frame);
 	}
 	return true;
 }
@@ -372,6 +375,34 @@ namespace {
 					alpha >>= 2;
 				if(additive != 2)
 					value |= (alpha << 24);
+
+				*it = static_cast<uint32_t>(value);
+			}
+		}
+	}
+
+
+
+	void GenerateAlpha(ImageBuffer &buffer, int frame)
+	{
+		for(int y = 0; y < buffer.Height(); ++y)
+		{
+			uint32_t *it = buffer.Begin(y, frame);
+
+			for(uint32_t *end = it + buffer.Width(); it != end; ++it)
+			{
+				uint64_t value = *it;
+
+				uint64_t red = (value & 0xFF0000) >> 16;
+				uint64_t green = (value & 0xFF00) >> 8;
+				uint64_t blue = value & 0xFF;
+				uint64_t alpha = (red + green + blue) / 3;
+
+				value = (alpha << 24) |
+						(red   << 16) |
+						(green <<  8) |
+						(blue       );
+				
 
 				*it = static_cast<uint32_t>(value);
 			}
