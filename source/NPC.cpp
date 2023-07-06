@@ -149,23 +149,23 @@ void NPC::Load(const DataNode &node, const string &missionName)
 				for(const DataNode &grand : child)
 					waypointFilters.emplace_back(grand);
 		}
-		else if(child.Token(0) == "land" || child.Token(0) == "visit")
+		else if(child.Token(0) == "destination" || child.Token(0) == "stopover")
 		{
 			// Stopovers can be added one-by-one (e.g. if from LocationFilters) or
-			// from multiple "visit" / "land" nodes. If any nodes are "visit", all
-			// stopovers are visited (no permanent landing on the stopovers). If no
+			// from multiple "destination" / "stopover" nodes. If any nodes are "stopover",
+			// all stopovers are visited (no permanent landing on the stopovers). If no
 			// planet is passed to the node, the mission's destination will be used.
-			doVisit |= child.Token(0) == "visit";
+			doVisit |= child.Token(0) == "stopover";
 			if(!child.HasChildren())
 			{
-				// Given "land/visit" or "land/visit <planet 1> ... <planet N>".
+				// Given "destination/stopover" or "destination/stopover <planet 1> ... <planet N>".
 				if(child.Size() == 1)
 					needsStopover = true;
 				else
 					for(int i = 1; i < child.Size(); ++i)
 						stopovers.push_back(GameData::Planets().Get(child.Token(i)));
 			}
-			// Given "land/visit" and child nodes. These get processed during NPC instantiation.
+			// Given "destination/stopover" and child nodes. These get processed during NPC instantiation.
 			else
 				for(const DataNode &grand : child)
 					stopoverFilters.emplace_back(grand);
@@ -381,7 +381,7 @@ void NPC::Save(DataWriter &out) const
 
 		if(!stopovers.empty())
 		{
-			out.WriteToken(doVisit ? "visit" : "land");
+			out.WriteToken(doVisit ? "stopover" : "destination");
 			for(const auto &stopover : stopovers)
 				out.WriteToken(stopover->Name());
 			out.Write();

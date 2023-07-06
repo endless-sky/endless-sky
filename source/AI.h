@@ -206,7 +206,7 @@ private:
 	void IssueOrders(const PlayerInfo &player, const Orders &newOrders, const std::string &description);
 	// Convert order types based on fulfillment status.
 	void UpdateOrders(const Ship &ship);
-	// NPC commands from mission events.
+	// Job / Mission NPC blocks may use keywords (waypoint, visit, land) to define travel plans.
 	void IssueNPCOrders(Ship &ship, const System *waypoint, const std::map<const Planet *, bool> stopovers);
 
 

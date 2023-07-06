@@ -1775,21 +1775,14 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 
 	if(ship.GetTargetSystem())
 	{
-		// Refuel if able to now, but unable to in the destination system.
-		if(!ship.JumpsRemaining() || (ship.JumpsRemaining() == 1 && ship.GetSystem()->HasFuelFor(ship)
-				&& !ship.GetTargetSystem()->HasFuelFor(ship)))
-			Refuel(ship, command);
-		else
-		{
-			PrepareForHyperspace(ship, command);
-			// Issuing the JUMP command prompts the escorts to get ready to jump.
-			command |= Command::JUMP;
-			// Issuing the WAIT command will prevent this parent from jumping.
-			// When all its non-carried, in-system escorts that are not disabled and
-			// have the ability to jump are ready, the WAIT command will be omitted.
-			if(!EscortsReadyToJump(ship))
-				command |= Command::WAIT;
-		}
+		PrepareForHyperspace(ship, command);
+		// Issuing the JUMP command prompts the escorts to get ready to jump.
+		command |= Command::JUMP;
+		// Issuing the WAIT command will prevent this parent from jumping.
+		// When all its non-carried, in-system escorts that are not disabled and
+		// have the ability to jump are ready, the WAIT command will be omitted.
+		if(!EscortsReadyToJump(ship))
+			command |= Command::WAIT;
 	}
 	else if(ship.GetTargetStellar())
 	{
@@ -1861,7 +1854,8 @@ void AI::MoveEscort(Ship &ship, Command &command) const
 		{
 			// Route to the destination (either the parent ship's system or a system
 			// marked by the NPC's mission definition) by landing or jumping.
-			SelectRoute(ship, ship.GetDestinationSystem() ? ship.GetDestinationSystem() : parent.GetSystem());
+			const System * destinationSystem = ship.GetDestinationSystem();
+			SelectRoute(ship, destinationSystem ? destinationSystem : parent.GetSystem());
 		}
 
 		// Perform the action that this ship previously decided on.
