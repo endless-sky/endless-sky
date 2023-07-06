@@ -2009,7 +2009,7 @@ mission "Wanderers Hai Assistance Fleet"
 		fleet "Large Hai" 6
 
 event "hai blockade"
-	government "Hai (Raided)"
+	government "Hai Merchant (Sympathizers)"
 		remove raid
 
 mission "Wanderers Hai Assistance Fleet patch"
