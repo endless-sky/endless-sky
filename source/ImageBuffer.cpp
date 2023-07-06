@@ -184,7 +184,9 @@ bool ImageBuffer::Read(const string &path, int frame)
 		int additive = (path[pos] == '+') ? 2 : (path[pos] == '~') ? 1 : 0;
 		if(isPNG || (isJPG && additive == 2))
 			Premultiply(*this, frame, additive);
-		if(isJPG && (path[pos] == '-'))
+		// If the image is a jpg and requires an alpha channel, generate it from
+		// premultiplication.
+		if(isJPG && (path[pos] == '-' || path[pos] == '~'))
 			GenerateAlpha(*this, frame);
 	}
 	return true;
