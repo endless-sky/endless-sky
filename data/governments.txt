@@ -495,7 +495,7 @@ government "Hai Merchant (Sympathizers)"
 	"friendly disabled hail" "friendly disabled hai"
 	"hostile hail" "hostile hai"
 	"hostile disabled hail" "hostile disabled hai"
-	# 3 Geocoris woth of undefended cargo
+	# 3 Geocoris worth of undefended cargo
 	# TODO: make it 4x worse and only SBs and sea scorps, full of ion/tracker/pulse
 	raid "Large Plundering Unfettered" 30
 	raid "Large Plundering Unfettered" 30
