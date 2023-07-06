@@ -29,9 +29,9 @@ using namespace std;
 // and the given credit score (which should be between 200 and 800).
 int64_t Mortgage::Maximum(int64_t annualRevenue, int creditScore, double currentPayments)
 {
-	const static int term = 365;
+	static const int term = 365;
 	const double revenue = annualRevenue - term * currentPayments;
-	if(revenue <= 0)
+	if(revenue <= 0.)
 		return 0;
 
 	const double interest = (600 - creditScore / 2) * .00001;
