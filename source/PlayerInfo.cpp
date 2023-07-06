@@ -188,17 +188,33 @@ void PlayerInfo::NewDesign(const PlayerInfo &player)
 	// Used to stock stores with items known to be for sale.
 	visitedSystems = player.visitedSystems;
 
+	// Put the player on the map.
 	SetSystem(*player.GetSystem());
 	SetPlanet(player.GetPlanet());
 	// Zero accounts.
 	Accounts().AddCredits(-Accounts().Credits());
 	// Max out accounts (/2 to prevent any off by one errors from causing overflow).
 	Accounts().AddCredits(numeric_limits<int64_t>::max() / 2);
-	// XXX - set licenses to allow purchase of everything available for sale
+	// Allow the player their existing licenses.
 	licenses = player.Licenses();
 
-	// Add any outfits installed or in storage somewhere that aren't
-	// available for sale into the player's cargo hold.
+	// As there is no way to track if a given ship is a variant, just give
+	// access to copies of all the ships the player currently has.
+	// (But avoid duplicating them!  UUID seems to be unique, so use that.)
+	set<string> current_ships;
+	for(const auto &it : Ships())
+		current_ships.insert(it->UUID().ToString());
+	for(const auto &it : player.Ships())
+		if(!current_ships.count(it->UUID().ToString()))
+		{
+			BuyShip(&(*it), it->Name(), false);
+			// UUID isn't copyable, so set it by hand.
+			Ships().back()->SetUUID(it->UUID());
+		}
+
+	// Add any not-for-sale outfits in storage somewhere into the
+	// player's cargo, so they'll show up in the Design Outfitter.
+
 	Cargo().Clear();
 	Cargo().SetSize(-1);
 	set<const Outfit *> seen;
@@ -213,23 +229,20 @@ void PlayerInfo::NewDesign(const PlayerInfo &player)
 		for(const auto &oit : it.second.Outfits())
 			if(!seen.count(oit.first))
 				Cargo().Add(oit.first, oit.second);
-	// Add not-for-sale outfits in player storage
+	// Add not-for-sale outfits in player cargo
 	for(const auto &it : player.Cargo().Outfits())
 		if(!seen.count(it.first))
 			Cargo().Add(it.first, it.second);
-	// Add not-for-sale outfits installed in ships, or in ship storage
+	// Add not-for-sale outfits in ship cargo
 	for(const auto &it : player.Ships())
-	{
-		for(const auto &oit : it->Outfits())
-			if(!seen.count(oit.first))
-				Cargo().Add(oit.first, oit.second);
 		for(const auto &oit : it->Cargo().Outfits())
 			if(!seen.count(oit.first))
 				Cargo().Add(oit.first, oit.second);
-	}
+
 	// We don't add not-for-sale outfits that can be gotten from
 	// for-sale ships - players can manage those themselves in the
 	// sandbox by buying those ships and stripping those outfits.
+	// Likewise with installed outfits, as the fleet is available.
 }
 
 

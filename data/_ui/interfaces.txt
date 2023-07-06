@@ -729,13 +729,13 @@ interface "planet"
 		pad 10 0
 	
 	visible if "has design shipyard"
-	sprite "ui/planet dialog button"
-		center 280 90
-	button S "Design _Shipyard"
-		center 280 90
-		dimensions 140 40
-		size 18
-		align right
+	sprite "ui/design button"
+		center 390 90
+	button S "Design"
+		center 390 90
+		dimensions 54 20
+		size 14
+		align center
 		pad 10 0
 	
 	visible if "has outfitter"
@@ -749,13 +749,13 @@ interface "planet"
 		pad 10 0
 	
 	visible if "has design outfitter"
-	sprite "ui/planet dialog button"
-		center 280 150
-	button O "Design _Outfitter"
-		center 280 150
-		dimensions 140 40
-		size 18
-		align right
+	sprite "ui/design button"
+		center 390 150
+	button O "Design"
+		center 390 150
+		dimensions 54 20
+		size 14
+		align center
 		pad 10 0
 	
 	visible if "is inhabited"

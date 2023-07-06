@@ -286,7 +286,7 @@ void ShopPanel::DrawShipsSidebar()
 		sideDetailHeight = DrawPlayerShipInfo(point + offset);
 		point.Y() += sideDetailHeight + SHIP_SIZE / 2;
 	}
-	else if(player.Cargo().Size())
+	else if(player.Cargo().Size() > 0)
 	{
 		point.X() = Screen::Right() - SIDEBAR_WIDTH + 10;
 		font.Draw("cargo space:", point, medium);

@@ -102,7 +102,6 @@ ShipyardPanel::ShipyardPanel(PlayerInfo &player)
 		for(const auto &it : GameData::Planets())
 			if(it.second.IsValid() && player.HasVisited(*it.second.GetSystem()))
 				shipyard.Add(it.second.Shipyard());
-
 }
 
 

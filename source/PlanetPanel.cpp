@@ -106,16 +106,6 @@ void PlanetPanel::Draw()
 	if(flagship && flagship->CanBeFlagship())
 		info.SetCondition("has ship");
 
-	SDL_Keymod mod = SDL_GetModState();
-	bool designUI = false;
-	if(mod & KMOD_SHIFT)
-		designUI = true;
-
-	if(designUI)
-	{
-		info.SetCondition("has design shipyard");
-		info.SetCondition("has design outfitter");
-	}
 	if(planet.CanUseServices())
 	{
 		if(planet.IsInhabited())
@@ -132,14 +122,18 @@ void PlanetPanel::Draw()
 		if(flagship && planet.HasSpaceport())
 			info.SetCondition("has spaceport");
 
-		if(!designUI && planet.HasShipyard())
+		if(planet.HasShipyard())
+		{
 			info.SetCondition("has shipyard");
+			info.SetCondition("has design shipyard");
+		}
 
-		if(!designUI && planet.HasOutfitter())
+		if(planet.HasOutfitter())
 			for(const auto &it : player.Ships())
 				if(it->GetSystem() == &system && !it->IsDisabled())
 				{
 					info.SetCondition("has outfitter");
+					info.SetCondition("has design outfitter");
 					break;
 				}
 	}
@@ -191,21 +185,15 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 			spaceport->UpdateNews();
 		GetUI()->Push(spaceport);
 	}
-	else if(key == 'S' || (key == 's' && (mod & KMOD_SHIFT)))
-	{
-		designPlayer.NewDesign(player);
-		GetUI()->Push(new ShipyardPanel(designPlayer));
-		return true;
-	}
 	else if(key == 's' && hasAccess && planet.HasShipyard())
 	{
 		GetUI()->Push(new ShipyardPanel(player));
 		return true;
 	}
-	else if(key == 'O' || (key == 'o' && (mod & KMOD_SHIFT)))
+	else if(key == 'S' && hasAccess && planet.HasShipyard())
 	{
 		designPlayer.NewDesign(player);
-		GetUI()->Push(new OutfitterPanel(designPlayer));
+		GetUI()->Push(new ShipyardPanel(designPlayer));
 		return true;
 	}
 	else if(key == 'o' && hasAccess && planet.HasOutfitter())
@@ -214,6 +202,16 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 			if(it->GetSystem() == &system && !it->IsDisabled())
 			{
 				GetUI()->Push(new OutfitterPanel(player));
+				return true;
+			}
+	}
+	else if(key == 'O' && hasAccess && planet.HasOutfitter())
+	{
+		for(const auto &it : player.Ships())
+			if(it->GetSystem() == &system && !it->IsDisabled())
+			{
+				designPlayer.NewDesign(player);
+				GetUI()->Push(new OutfitterPanel(designPlayer));
 				return true;
 			}
 	}
