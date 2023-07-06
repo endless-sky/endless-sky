@@ -2263,6 +2263,9 @@ void Engine::DoCollection(Flotsam &flotsam)
 		return;
 	if(collector == player.Flagship() && !Preferences::Has("Flagship flotsam collection"))
 		return;
+	// If the collector is one of the player's ships and the player has Fleet flotsam collection disable, it won't act
+	if(collector->IsYours() && !Preferences::Has("Fleet flotsam collection"))
+		return;
 
 	// Transfer cargo from the flotsam to the collector ship.
 	int amount = flotsam.TransferTo(collector);

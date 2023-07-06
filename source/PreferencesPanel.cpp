@@ -562,6 +562,7 @@ void PreferencesPanel::DrawSettings()
 		TARGET_ASTEROIDS_BASED_ON,
 		BOARDING_PRIORITY,
 		"Flagship flotsam collection",
+		"Fleet flotsam collection",
 		EXPEND_AMMO,
 		FIGHTER_REPAIR,
 		"Fighters transfer cargo",

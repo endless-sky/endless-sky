@@ -137,6 +137,7 @@ void Preferences::Load()
 	// values for settings that are off by default.
 	settings["Render motion blur"] = true;
 	settings["Flagship flotsam collection"] = true;
+	settings["Fleet flotsam collection"] = true;
 	settings[FRUGAL_ESCORTS] = true;
 	settings[EXPEND_AMMO] = true;
 	settings["Damaged fighters retreat"] = true;
