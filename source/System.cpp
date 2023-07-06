@@ -976,7 +976,7 @@ int System::MinimumFleetPeriod() const
 
 int System::LingerTime() const
 {
-	return lingerTime >= 0 ? lingerTime : minimumFleetPeriod;
+	return lingerTime >= 0 ? lingerTime : minimumFleetPeriod / 4;
 }
 
 
