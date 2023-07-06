@@ -124,8 +124,11 @@ int OutfitterPanel::DrawPlayerShipInfo(const Point &point)
 {
 	shipInfo.Update(*playerShip, player, collapsed.count("description"));
 	shipInfo.DrawAttributes(point);
+	const int attributesHeight = shipInfo.AttributesHeight();
+	const Point outfPoint(point.X(), point.Y() + attributesHeight);
+	shipInfo.DrawOutfits(outfPoint);
 
-	return shipInfo.AttributesHeight();
+	return attributesHeight + shipInfo.OutfitsHeight();
 }
 
 
