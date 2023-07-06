@@ -17109,7 +17109,7 @@ system Ilirco
 
 system "Imo Dep"
 	pos -56.2764 -600.1
-	government Hai
+	government "Hai Merchant (Sympathizers)"
 	arrival 1715
 	habitable 1715
 	belt 1416
