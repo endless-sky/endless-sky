@@ -127,7 +127,7 @@ void PlanetPanel::Draw()
 
 		if(planet.HasOutfitter())
 			for(const auto &it : player.Ships())
-				if(it->GetPlanet() == &planet && !it->IsDisabled())
+				if(it->GetPlanet() == &planet)
 				{
 					info.SetCondition("has outfitter");
 					break;
@@ -189,7 +189,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	else if(key == 'o' && hasAccess && planet.HasOutfitter())
 	{
 		for(const auto &it : player.Ships())
-			if(it->GetPlanet() == &planet && !it->IsDisabled())
+			if(it->GetPlanet() == &planet)
 			{
 				GetUI()->Push(new OutfitterPanel(player));
 				return true;
