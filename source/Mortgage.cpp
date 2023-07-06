@@ -194,6 +194,6 @@ double Mortgage::PrecisePayment() const
 	if(!interest)
 		return static_cast<double>(principal) / term;
 
-	double power = pow(1. + interest, term);
+	const double power = pow(1. + interest, term);
 	return principal * interest * power / (power - 1.);
 }
