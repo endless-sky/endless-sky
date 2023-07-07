@@ -53,6 +53,7 @@ namespace {
 	const int ZOOM_FACTOR_INCREMENT = 10;
 	const string VIEW_ZOOM_FACTOR = "View zoom factor";
 	const string AUTO_AIM_SETTING = "Automatic aiming";
+	const string FLOTSAM_SETTINGS = "Flotsam pick-up";
 	const string AUTO_FIRE_SETTING = "Automatic firing";
 	const string SCREEN_MODE_SETTING = "Screen mode";
 	const string VSYNC_SETTING = "VSync";
@@ -239,6 +240,8 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 				Preferences::CycleStatusOverlays(Preferences::OverlayType::NEUTRAL);
 			else if(zone.Value() == AUTO_AIM_SETTING)
 				Preferences::ToggleAutoAim();
+			else if(zone.Value() == FLOTSAM_SETTINGS)
+				Preferences::ToggleFlotsam();
 			else if(zone.Value() == AUTO_FIRE_SETTING)
 				Preferences::ToggleAutoFire();
 			else if(zone.Value() == EXPEND_AMMO)
@@ -557,12 +560,11 @@ void PreferencesPanel::DrawSettings()
 		"Gameplay",
 		"Control ship with mouse",
 		AUTO_AIM_SETTING,
+		FLOTSAM_SETTINGS,
 		AUTO_FIRE_SETTING,
 		TURRET_TRACKING,
 		TARGET_ASTEROIDS_BASED_ON,
 		BOARDING_PRIORITY,
-		"Flagship flotsam collection",
-		"Fleet flotsam collection",
 		EXPEND_AMMO,
 		FIGHTER_REPAIR,
 		"Fighters transfer cargo",
@@ -675,6 +677,11 @@ void PreferencesPanel::DrawSettings()
 		else if(setting == AUTO_AIM_SETTING)
 		{
 			text = Preferences::AutoAimSetting();
+			isOn = text != "off";
+		}
+		else if(setting == FLOTSAM_SETTINGS)
+		{
+			text = Preferences::FlotsamSetting();
 			isOn = text != "off";
 		}
 		else if(setting == AUTO_FIRE_SETTING)

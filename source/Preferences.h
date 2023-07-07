@@ -50,6 +50,13 @@ public:
 		WHEN_FIRING
 	};
 
+	enum class Flotsam : int_fast8_t {
+		OFF = 0,
+		ON,
+		FLAGSHIP,
+		ESCORT
+	};
+
 	enum class AutoFire : int_fast8_t {
 		OFF = 0,
 		ON,
@@ -116,6 +123,11 @@ public:
 	static void ToggleAutoAim();
 	static AutoAim GetAutoAim();
 	static const std::string &AutoAimSetting();
+
+	// Flotsam setting, either "off", "on", "flagship only", or "escorts only".
+	static void ToggleFlotsam();
+	static Flotsam GetFlotsam();
+	static const std::string &FlotsamSetting();
 
 	// Auto fire setting, either "off", "on", "guns only", or "turrets only".
 	static void ToggleAutoFire();

@@ -2261,10 +2261,12 @@ void Engine::DoCollection(Flotsam &flotsam)
 	}
 	if(!collector)
 		return;
-	if(collector == player.Flagship() && !Preferences::Has("Flagship flotsam collection"))
+	const auto flotsamSetting = Preferences::GetFlotsam();
+	// If the collector is the Flagship and of the flotsam pick-up setting is setted to either 'off' or 'escorts only', it will pass
+	if(( collector == player.Flagship() && flotsamSetting == Preferences::Flotsam::OFF ) || ( collector == player.Flagship() && flotsamSetting == Preferences::Flotsam::ESCORT ))
 		return;
-	// If the collector is one of the player's ships and it is not the player flagship and the player has Fleet flotsam collection disable, it won't act
-	if(collector->IsYours() && !Preferences::Has("Fleet flotsam collection") && collector != player.Flagship())
+	// If the collector is one of the player's ships and it is not the player flagship and the flotsam pick-up setting is setted to either 'off' or 'flagship only', it will pass
+	if(( collector->IsYours() && collector != player.Flagship() && flotsamSetting == Preferences::Flotsam::OFF ) || ( collector->IsYours() && collector != player.Flagship() && flotsamSetting == Preferences::Flotsam::FLAGSHIP ))
 		return;
 
 	// Transfer cargo from the flotsam to the collector ship.

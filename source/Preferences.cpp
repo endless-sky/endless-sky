@@ -113,6 +113,9 @@ namespace {
 	const vector<string> AUTO_AIM_SETTINGS = {"off", "always on", "when firing"};
 	int autoAimIndex = 2;
 
+	const vector<string> FLOTSAM_SETTINGS = {"off", "on", "flagship only", "escorts only"};
+	int flotsamIndex = 2;
+
 	const vector<string> AUTO_FIRE_SETTINGS = {"off", "on", "guns only", "turrets only"};
 	int autoFireIndex = 0;
 
@@ -136,8 +139,6 @@ void Preferences::Load()
 	// These settings should be on by default. There is no need to specify
 	// values for settings that are off by default.
 	settings["Render motion blur"] = true;
-	settings["Flagship flotsam collection"] = true;
-	settings["Fleet flotsam collection"] = true;
 	settings[FRUGAL_ESCORTS] = true;
 	settings[EXPEND_AMMO] = true;
 	settings["Damaged fighters retreat"] = true;
@@ -184,6 +185,8 @@ void Preferences::Load()
 			statusOverlaySettings[OverlayType::NEUTRAL].SetState(node.Value(1));
 		else if(node.Token(0) == "Automatic aiming")
 			autoAimIndex = max<int>(0, min<int>(node.Value(1), AUTO_AIM_SETTINGS.size() - 1));
+		else if(node.Token(0) == "Flotsam pick-up")
+			flotsamIndex = max<int>(0, min<int>(node.Value(1), FLOTSAM_SETTINGS.size() - 1));
 		else if(node.Token(0) == "Automatic firing")
 			autoFireIndex = max<int>(0, min<int>(node.Value(1), AUTO_FIRE_SETTINGS.size() - 1));
 		else if(node.Token(0) == "Parallax background")
@@ -241,6 +244,7 @@ void Preferences::Save()
 	out.Write("Show neutral overlays", statusOverlaySettings[OverlayType::NEUTRAL].ToInt());
 	out.Write("Automatic aiming", autoAimIndex);
 	out.Write("Automatic firing", autoFireIndex);
+	out.Write("Flotsam pick-up", flotsamIndex);
 	out.Write("Parallax background", parallaxIndex);
 	out.Write("alert indicator", alertIndicatorIndex);
 	out.Write("previous saves", previousSaveCount);
@@ -480,6 +484,24 @@ const string &Preferences::AutoAimSetting()
 	return AUTO_AIM_SETTINGS[autoAimIndex];
 }
 
+void Preferences::ToggleFlotsam()
+{
+	flotsamIndex = (flotsamIndex + 1) % FLOTSAM_SETTINGS.size();
+}
+
+
+
+Preferences::Flotsam Preferences::GetFlotsam()
+{
+	return static_cast<Flotsam>(flotsamIndex);
+}
+
+
+
+const string &Preferences::FlotsamSetting()
+{
+	return FLOTSAM_SETTINGS[flotsamIndex];
+}
 
 
 void Preferences::ToggleAutoFire()
