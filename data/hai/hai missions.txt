@@ -218,7 +218,7 @@ mission "Hai Sympathizer Warning"
 		"reputation: Hai Merchant (Sympathizers)" < 0
 		not "warned about hai merchant politics"
 	on offer
-		log `Got spoken to by a Hai merchant at a spaceport bar after a firefight. Was warned about the factions among Hai merchants and the danger of getting in trouble if sympathisers to the Unfettered get caught in the cross-fire when fighting the Unfettered themselves. Learned that, as an outsider, "self-defence" is not an adequate argument where the deaths of Hai citizens are involved.`
+		log `Got spoken to by a Hai merchant at a spaceport bar after a firefight. Was warned about the factions among Hai merchants and the danger of getting in trouble if sympathisers to the Unfettered get caught in the cross-fire when fighting the Unfettered themselves. Learned that, as an outsider, "self-defense" is not an adequate argument where the deaths of Hai citizens are involved.`
 		set "warned about hai merchant politics"
 		conversation
 			`As you sit in a spaceport bar waiting for the food that you've ordered, a Hai unceremoniously pulls up a chair opposite you and takes a seat. He looks to be a merchant, and one who has seen more than a few things besides. He squints at you before speaking, "You are Captain <last>, are you not?"`
@@ -228,8 +228,8 @@ mission "Hai Sympathizer Warning"
 				`	"I think you have the wrong captain."`
 			`	He slaps a device on the table, and a small holographic projection of your face springs up and begins rotating around. "No, I think not."`
 			label acknowledge
-			`	He heaves a sigh. "You've been fighting the Unfettered, you see, and there are some Hai that don't take too kindly to that. They view you as an outsider sticking your nose into Hai internal politics. Some of those are what we merchants like to call Sympathizers; and they can get a little carried away with themselves and fire off a few shots if they see someone like yourself getting a little too gun-happy where the Unfettered are concerned."`
-			`	With a wave of his hand he indicates the spaceport around you. "You might have potentially noticed some difficulty landing. You see because there are lots of people who don't like outsiders putting their noses in where they're not wanted, if you happen to shoot back and accidentally destroy a Sympathizer's ship, the authorities don't much care who shot first. There are enough of those opinions to ensure that if you shoot down a Sympathizer, it is treated no differently than if you shot down any other Hai merchant. The security forces will treat it the same.`
+			`	He heaves a sigh. "You've been fighting the Unfettered, you see, and there are some Hai that don't take too kindly to that. They view you as an outsider sticking your nose into Hai internal politics. Some of those are what we merchants like to call Sympathizers, and they can get a little carried away with themselves and fire off a few shots if they see someone like yourself getting a little too gun-happy where the Unfettered are concerned."`
+			`	With a wave of his hand he indicates the spaceport around you. "You might have potentially noticed some difficulty landing. You see, because there are lots of people who don't like outsiders putting their noses in where they're not wanted, if you happen to shoot back and accidentally destroy a Sympathizer's ship, the authorities don't much care who shot first. There are enough of those opinions to ensure that if you shoot down a Sympathizer, it is treated no differently than if you shot down any other Hai merchant. The security forces will treat it the same.`
 			`	"Now the merchants, we're a different matter. It is a topic of great and ongoing debate among us, so you might notice that some people are less offended when you shoot down someone they've been arguing with, but everyone has friends on all sides, so you should watch yourself nonetheless. Sympathizers may become upset enough to shoot at you anywhere they see you. Despite that, the simple fact of the matter is that, if you retaliate against a Hai, any Hai, it'll upset someone and count against you. Even if that Hai was a Sympathizer, and even if they shot first..."`
 			`	He looks at you very seriously to make sure what he's said has sunk in.`
 			choice
@@ -269,7 +269,7 @@ mission "Hai Sympathizer Warning"
 				"reputation: Hai (Wormhole Access)" = "reputation: Hai"
 				"reputation: Hai Merchant" >?= 1
 				"reputation: Hai Merchant (Human)" >?= 1
-			`	He slides a data stick across to you. "Fortunately for you, in this case, I happened to see the event, and have argued that you did not know what you were getting into. This stick contains the security report file which indicates that you have been given a warning... keep this for your records, Hai Security certainly will. There will not be future warnings."`
+			`	He slides a data stick across to you. "Fortunately for you, in this case, I happened to see the event, and have argued that you did not know what you were getting into. This stick contains the security report file which indicates that you have been given a warning... keep this for your records; Hai Security certainly will. There will not be future warnings."`
 				goto end
 			label "less trouble"
 			# Only the Sympathizers are upset.
