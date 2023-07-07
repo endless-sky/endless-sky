@@ -363,7 +363,7 @@ mission "Veering Vi A"
 
 	npc
 		on kill
-			vi backlash++
+			"vi backlash" ++
 		system "Ookmya"
 		government "Gegno Vi (Combative)"
 		personality heroic staying
@@ -388,7 +388,7 @@ mission "Veering Vi B"
 
 	npc
 		on kill
-			vi backlash++
+			"vi backlash" ++
 		system
 			government "Gegno Vi"
 		government "Gegno Vi (Combative)"
@@ -419,8 +419,7 @@ mission "Scin Presence on Cyife"
 		has "Gegno Intervention: declined"
 		not "Gegno Genocide Defense: offered"
 	on complete
-		action
-			set "visited cyfie"
+		set "visited cyfie"
 		conversation
 			`Test.`
 				decline
@@ -437,8 +436,7 @@ mission "Battle over Zydee"
 	to complete
 		never
 	on offer
-		action
-			set "zydee appearance"
+		set "zydee appearance"
 		conversation
 			`Test.`
 				decline
