@@ -501,6 +501,7 @@ void Engine::Step(bool isActive)
 	{
 		center = flagship->Position();
 		centerVelocity = flagship->Velocity();
+		centerVelocity *= 1. + pow(flagship->IsHyperspacing() / 20., 2);
 		if(doEnter && flagship->Zoom() == 1. && !flagship->IsHyperspacing())
 		{
 			doEnter = false;

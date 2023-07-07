@@ -2052,9 +2052,9 @@ bool Ship::IsEnteringHyperspace() const
 
 
 
-bool Ship::IsHyperspacing() const
+int Ship::IsHyperspacing() const
 {
-	return hyperspaceCount != 0;
+	return hyperspaceCount;
 }
 
 
