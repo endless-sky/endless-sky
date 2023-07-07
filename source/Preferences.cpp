@@ -549,6 +549,8 @@ const string &Preferences::FlotsamSetting()
 	return FLOTSAM_SETTINGS[flotsamIndex];
 }
 
+
+
 void Preferences::ToggleAlert()
 {
 	if(++alertIndicatorIndex >= static_cast<int>(ALERT_INDICATOR_SETTING.size()))
