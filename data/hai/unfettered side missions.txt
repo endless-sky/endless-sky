@@ -90,7 +90,7 @@ ship "Ancient Ladybug"
 		"weapon capacity" 170
 		"engine capacity" 120
 		# Default due to the ship' sea time, that Unfettered know about
-		"treshold percentage" 0.4
+		"threshold percentage" 0.4
 		# Expensive features mentioned in description:
 		"ramscoop" 0.25
 		"cargo scan power" 5
