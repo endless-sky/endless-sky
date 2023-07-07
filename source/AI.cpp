@@ -3601,11 +3601,11 @@ double AI::RendezvousTime(const Point &p, const Point &v, double vp)
 	// to intersect the target?
 	// (p.x + v.x*t)^2 + (p.y + v.y*t)^2 = vp^2*t^2
 	// p.x^2 + 2*p.x*v.x*t + v.x^2*t^2
-	//	+ p.y^2 + 2*p.y*v.y*t + v.y^2t^2
-	//	- vp^2*t^2 = 0
+	//    + p.y^2 + 2*p.y*v.y*t + v.y^2t^2
+	//    - vp^2*t^2 = 0
 	// (v.x^2 + v.y^2 - vp^2) * t^2
-	//	+ (2 * (p.x * v.x + p.y * v.y)) * t
-	//	+ (p.x^2 + p.y^2) = 0
+	//    + (2 * (p.x * v.x + p.y * v.y)) * t
+	//    + (p.x^2 + p.y^2) = 0
 	double a = v.Dot(v) - vp * vp;
 	double b = 2. * p.Dot(v);
 	double c = p.Dot(p);
