@@ -53,7 +53,7 @@ namespace {
 	const int ZOOM_FACTOR_INCREMENT = 10;
 	const string VIEW_ZOOM_FACTOR = "View zoom factor";
 	const string AUTO_AIM_SETTING = "Automatic aiming";
-	const string FLOTSAM_SETTINGS = "Flotsam pick-up";
+	const string FLOTSAM_SETTINGS = "Flotsam collection";
 	const string AUTO_FIRE_SETTING = "Automatic firing";
 	const string SCREEN_MODE_SETTING = "Screen mode";
 	const string VSYNC_SETTING = "VSync";
