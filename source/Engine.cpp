@@ -2265,14 +2265,14 @@ void Engine::DoCollection(Flotsam &flotsam)
 	if(collector->IsYours())
 	{
 		const auto flotsamSetting = Preferences::GetFlotsam();
-		if(flotsamSetting == Preferences::Flotsam::OFF)
+		if(flotsamSetting == Preferences::FlotsamSetting::OFF)
 			return;
 		if(collector == player.Flagship())
 		{
-			if(flotsamSetting == Preferences::Flotsam::ESCORT)
+			if(flotsamSetting == Preferences::FlotsamSetting::ESCORT)
 				return;
 		}
-		else if(flotsamSetting == Preferences::Flotsam::FLAGSHIP)
+		else if(flotsamSetting == Preferences::FlotsamSetting::FLAGSHIP)
 			return;
 	}
 

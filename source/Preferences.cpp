@@ -119,7 +119,7 @@ namespace {
 	const vector<string> BOARDING_SETTINGS = {"proximity", "value", "mixed"};
 	int boardingIndex = 0;
 
-	const vector<string> FLOTSAM_SETTINGS = {"off", "on", "flagship only", "escorts only"};
+	const vector<string> FLOTSAM_SETTING = {"off", "on", "flagship only", "escorts only"};
 	int flotsamIndex = 2;
 
 	// Enable "fast" parallax by default. "fancy" is too GPU heavy, especially for low-end hardware.
@@ -170,7 +170,7 @@ void Preferences::Load()
 		else if(node.Token(0) == "boarding target")
 			boardingIndex = max<int>(0, min<int>(node.Value(1), BOARDING_SETTINGS.size() - 1));
 		else if(node.Token(0) == "Flotsam collection")
-			flotsamIndex = max<int>(0, min<int>(node.Value(1), FLOTSAM_SETTINGS.size() - 1));
+			flotsamIndex = max<int>(0, min<int>(node.Value(1), FLOTSAM_SETTING.size() - 1));
 		else if(node.Token(0) == "view zoom")
 			zoomIndex = max<int>(0, min<int>(node.Value(1), ZOOMS.size() - 1));
 		else if(node.Token(0) == "vsync")
@@ -534,12 +534,12 @@ const string &Preferences::BoardingSetting()
 
 void Preferences::ToggleFlotsam()
 {
-	flotsamIndex = (flotsamIndex + 1) % FLOTSAM_SETTINGS.size();
+	flotsamIndex = (flotsamIndex + 1) % FLOTSAM_SETTING.size();
 }
 
 
 
-Preferences::Flotsam Preferences::GetFlotsam()
+Preferences::FlotsamSetting Preferences::GetFlotsam()
 {
 	return static_cast<Flotsam>(flotsamIndex);
 }
@@ -548,7 +548,7 @@ Preferences::Flotsam Preferences::GetFlotsam()
 
 const string &Preferences::FlotsamSetting()
 {
-	return FLOTSAM_SETTINGS[flotsamIndex];
+	return FLOTSAM_SETTING[flotsamIndex];
 }
 
 
