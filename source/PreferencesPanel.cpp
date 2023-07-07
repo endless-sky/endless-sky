@@ -244,7 +244,7 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 				Preferences::ToggleAutoFire();
 			else if(zone.Value() == EXPEND_AMMO)
 				Preferences::ToggleAmmoUsage();
-			else if(zone.Value() == FLOTSAM_SETTINGS)
+			else if(zone.Value() == FLOTSAM_SETTING)
 				Preferences::ToggleFlotsam();
 			else if(zone.Value() == TURRET_TRACKING)
 				Preferences::Set(FOCUS_PREFERENCE, !Preferences::Has(FOCUS_PREFERENCE));
