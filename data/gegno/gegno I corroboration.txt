@@ -363,7 +363,7 @@ mission "Veering Vi A"
 
 	npc
 		on kill
-			set "backlash a"
+			set "vi backlash"
 		system "Ookmya"
 		government "Gegno Vi (Combative)"
 		personality heroic staying
@@ -387,7 +387,7 @@ mission "Veering Vi B"
 
 	npc
 		on kill
-			set "backlash b"
+			set "vi backlash"
 		system
 			government "Gegno Vi"
 		government "Gegno Vi (Combative)"
@@ -412,7 +412,7 @@ mission "Scin Presence on Cyife"
 			decline
 
 
-mission "Battle over Zydee"  
+mission "Battle over Zydee"
 	# invisible
 	landing
 	to offer
@@ -431,28 +431,24 @@ mission "Battle over Zydee"
 
 	npc
 		on provoke
-			set "
-		governmnet "Gegno Vi"
+			set "zydee interference"
+		government "Gegno Vi"
 		personality heroic entering
 		system "Kneirc"
 
 	npc
 		on provoke
-			set "
-		governmnet "Gegno Scin"
+			set "zydee interference"
+		government "Gegno Scin"
 		personality heroic staying
 		system "Kneirc"
 
 	npc
 		on provoke
-			set "
-		governmnet "Gegno Scin"
+			set "zydee interference"
+		government "Gegno Scin"
 		personality heroic entering
-		system "Kneirc" ????
-
-
-
-
+		system "Kneirc"
 
 
 
