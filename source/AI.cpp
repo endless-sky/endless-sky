@@ -3223,7 +3223,7 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool reve
 	Point position = ship.Position();
 	Point velocity = ship.Velocity();
 	Angle angle = ship.Facing();
-	double acceleration;
+	double acceleration = 0.;
 	if(!reverse)
 		acceleration = ship.Acceleration();
 	else
@@ -3273,11 +3273,11 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool reve
 	double A = r.LengthSquared();
 	double B = 2 * r.Dot(p);
 	double C = p.LengthSquared() -
-		(acceleration * ship.InertialMass() / ship.Drag()) * (acceleration * ship.InertialMass() / ship.Drag());
+		pow(acceleration * ship.InertialMass() / ship.Drag(), 2);
 	double D = B * B - 4 * A * C;
 	Point accel;
 	double s = 0.;
-	if(D >= 0)
+	if(D >= 0.)
 	{
 		s = (-B + sqrt(D)) / (2 * A);
 		accel = (p + s * r) * ship.Drag() / ship.InertialMass();
