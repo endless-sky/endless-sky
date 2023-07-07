@@ -422,8 +422,8 @@ mission "Scin Presence on Cyife"
 		action
 			set "visited cyfie"
 		conversation
-		`Test.`
-			decline
+			`Test.`
+				decline
 
 
 mission "Battle over Zydee"
@@ -440,8 +440,8 @@ mission "Battle over Zydee"
 		action
 			set "zydee appearance"
 		conversation
-		`Test`.
-			decline
+			`Test.`
+				decline
 	on enter "Kneirc"
 		fail
 
