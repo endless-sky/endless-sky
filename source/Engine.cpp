@@ -2265,7 +2265,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 	// Checks for player FlotsamCollection setting
 	if(collector->IsYours())
 	{
-		const auto flotsamSetting = Preferences::GetFlotsam();
+		const auto flotsamSetting = Preferences::GetFlotsamCollection();
 		if(flotsamSetting == Preferences::FlotsamCollection::OFF)
 			return;
 		if(collector == player.Flagship())
