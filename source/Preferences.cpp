@@ -119,8 +119,13 @@ namespace {
 	const vector<string> BOARDING_SETTINGS = {"proximity", "value", "mixed"};
 	int boardingIndex = 0;
 
+<<<<<<< HEAD
 	const vector<string> FLOTSAM_SETTING = {"off", "on", "flagship only", "escorts only"};
 	int flotsamIndex = 2;
+=======
+	const vector<string> FLOTSAM_SETTINGS = {"off", "on", "flagship only", "escorts only"};
+	int flotsamIndex = 1;
+>>>>>>> d9787bb4adbd0b800587f4e8d44cb5d10affe523
 
 	// Enable "fast" parallax by default. "fancy" is too GPU heavy, especially for low-end hardware.
 	const vector<string> PARALLAX_SETTINGS = {"off", "fancy", "fast"};
