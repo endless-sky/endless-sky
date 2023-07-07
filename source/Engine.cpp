@@ -2261,13 +2261,20 @@ void Engine::DoCollection(Flotsam &flotsam)
 	}
 	if(!collector)
 		return;
-	const auto flotsamSetting = Preferences::GetFlotsam();
-	// If the collector is the Flagship and of the flotsam pick-up setting is setted to either 'off' or 'escorts only', it will pass
-	if(( collector == player.Flagship() && flotsamSetting == Preferences::Flotsam::OFF ) || ( collector == player.Flagship() && flotsamSetting == Preferences::Flotsam::ESCORT ))
-		return;
-	// If the collector is one of the player's ships and it is not the player flagship and the flotsam pick-up setting is setted to either 'off' or 'flagship only', it will pass
-	if(( collector->IsYours() && collector != player.Flagship() && flotsamSetting == Preferences::Flotsam::OFF ) || ( collector->IsYours() && collector != player.Flagship() && flotsamSetting == Preferences::Flotsam::FLAGSHIP ))
-		return;
+
+	if(collector->IsYours())
+	{
+		const auto flotsamSetting = Preferences::GetFlotsam();
+		if(flotsamSetting == Preferences::Flotsam::OFF)
+			return;
+		if(collector == player.Flagship())
+		{
+			if(flotsamSetting == Preferences::Flotsam::ESCORT)
+				return;
+		}
+		else if(flotsamSetting == Preferences::Flotsam::FLAGSHIP)
+			return;
+	}
 
 	// Transfer cargo from the flotsam to the collector ship.
 	int amount = flotsam.TransferTo(collector);
