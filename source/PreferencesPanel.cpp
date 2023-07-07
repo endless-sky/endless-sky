@@ -686,7 +686,7 @@ void PreferencesPanel::DrawSettings()
 		}
 		else if(setting == EXPEND_AMMO)
 			text = Preferences::AmmoUsage();
-		else if(setting == FLOTSAM_SETTINGS)
+		else if(setting == FLOTSAM_SETTING)
 		{
 			text = Preferences::FlotsamSetting();
 			isOn = text != "off";
