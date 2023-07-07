@@ -413,12 +413,12 @@ mission "Vi Backlash"
 mission "Scin Presence on Cyife"
 	# invisible
 	landing
-	destination "Cyife"
+	source "Cyife"
 	to offer
 		random < 30
 		has "Gegno Intervention: declined"
 		not "Gegno Genocide Defense: offered"
-	on complete
+	on offer
 		set "visited cyfie"
 		conversation
 			`Test.`
@@ -439,7 +439,7 @@ mission "Battle over Zydee"
 		set "zydee appearance"
 		conversation
 			`Test.`
-				decline
+
 	on enter "Kneirc"
 		fail
 
