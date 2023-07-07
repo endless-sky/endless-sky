@@ -63,7 +63,7 @@ public:
 		MIXED
 	};
 
-	enum class FlotsamSetting : int {
+	enum class FlotsamSetting : int_fast8_t {
 		OFF = 0,
 		ON,
 		FLAGSHIP,
