@@ -91,6 +91,7 @@ ship "Ancient Ladybug"
 		"engine capacity" 120
 
 		# Expensive features mentioned in description, nerfed:
+		"threshold percentage" 0.4
 		"ramscoop" 0.2
 		"cargo scan power" 4
 		"cargo scan efficiency" 14
