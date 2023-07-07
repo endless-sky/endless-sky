@@ -113,14 +113,14 @@ namespace {
 	const vector<string> AUTO_AIM_SETTINGS = {"off", "always on", "when firing"};
 	int autoAimIndex = 2;
 
-	const vector<string> FLOTSAM_SETTINGS = {"off", "on", "flagship only", "escorts only"};
-	int flotsamIndex = 2;
-
 	const vector<string> AUTO_FIRE_SETTINGS = {"off", "on", "guns only", "turrets only"};
 	int autoFireIndex = 0;
 
 	const vector<string> BOARDING_SETTINGS = {"proximity", "value", "mixed"};
 	int boardingIndex = 0;
+
+	const vector<string> FLOTSAM_SETTINGS = {"off", "on", "flagship only", "escorts only"};
+	int flotsamIndex = 2;
 
 	// Enable "fast" parallax by default. "fancy" is too GPU heavy, especially for low-end hardware.
 	const vector<string> PARALLAX_SETTINGS = {"off", "fancy", "fast"};
