@@ -530,6 +530,8 @@ const string &Preferences::BoardingSetting()
 	return BOARDING_SETTINGS[boardingIndex];
 }
 
+
+
 void Preferences::ToggleFlotsam()
 {
 	flotsamIndex = (flotsamIndex + 1) % FLOTSAM_SETTINGS.size();
