@@ -141,7 +141,7 @@ public:
 
 	// Flotsam setting, either "off", "on", "flagship only", or "escorts only".
 	static void ToggleFlotsam();
-	static FlotsamCollection GetFlotsam();
+	static FlotsamCollection GetFlotsamCollection();
 	static const std::string &FlotsamSetting();
 
 	// Red alert siren and symbol
