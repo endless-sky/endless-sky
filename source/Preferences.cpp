@@ -484,6 +484,8 @@ const string &Preferences::AutoAimSetting()
 	return AUTO_AIM_SETTINGS[autoAimIndex];
 }
 
+
+
 void Preferences::ToggleAutoFire()
 {
 	autoFireIndex = (autoFireIndex + 1) % AUTO_FIRE_SETTINGS.size();
