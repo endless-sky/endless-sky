@@ -77,29 +77,29 @@ ship "Ancient Ladybug"
 	attributes
 		category "Medium Warship"
 		"cost" 8950000
-		"shields" 12000
-		"hull" 3300
+		"shields" 12300
+		"hull" 3600
 		"required crew" 11
 		"bunks" 33
-		"mass" 300
-		"drag" 5.5
+		"mass" 280
+		"drag" 5.4
 		"heat dissipation" .85
 		"fuel capacity" 900
 		"cargo space" 91
 		"outfit space" 460
 		"weapon capacity" 170
 		"engine capacity" 120
-
-		# Expensive features mentioned in description, nerfed:
-		"threshold percentage" 0.4
-		"ramscoop" 0.2
-		"cargo scan power" 4
-		"cargo scan efficiency" 14
-		"outfit scan power" 15
-		"outfit scan efficiency" 12
+		# Default due to the ship' sea time, that Unfettered know about
+		"treshold percentage" 0.4
+		# Expensive features mentioned in description:
+		"ramscoop" 0.25
+		"cargo scan power" 5
+		"cargo scan efficiency" 16
+		"outfit scan power" 17
+		"outfit scan efficiency" 15
 		"tactical scan power" 25
-		"atmosphere scan" 80
-		"asteroid scan power" 25
+		"atmosphere scan" 100
+		"asteroid scan power" 30
 		
 		weapon
 			"blast radius" 100
@@ -202,11 +202,13 @@ mission "Hai Legacy 2"
 		not "Hai Legacy 1: declined"
 	to accept
 		has "flagship model: Ancient Ladybug"
-	on enter
-		dialog
+	on offer
+		conversation
 			`Going into the spaceport one could say the cargo finds you more than you found it: a worker comes to you with crates, which are already allocated in your name for this ship. All that is left to do is to bring it to <destination> for the big promised sum of <payment>.`
-	on enter
-		dialog `As you take of from the planet you notice a message was left on the bridge, probably from the "associates". "You should use the Ladybug as your flagship and you should probably not bring any other ships. You'll understand why later."`
+			choice
+				`(Prepare for take off.)`
+			`	As you head to the bridge, preparing to take of from the planet, you notice a message on the command panel, probably from the "associates".`
+			`	It reads: "You should use the Ladybug as your flagship and you should probably not bring any other ships. You'll understand why later."`
 			`	Given the dangers of Unfettered space, you figure it would be a good idea to familiarize yourself with the design, and maybe to modify it.`
 	on enter
 		system
