@@ -565,7 +565,7 @@ void PreferencesPanel::DrawSettings()
 		TARGET_ASTEROIDS_BASED_ON,
 		BOARDING_PRIORITY,
 		EXPEND_AMMO,
-		FLOTSAM_SETTINGS,
+		FLOTSAM_SETTING,
 		FIGHTER_REPAIR,
 		"Fighters transfer cargo",
 		"Rehire extra crew when lost",
