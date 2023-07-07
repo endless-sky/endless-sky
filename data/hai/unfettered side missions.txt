@@ -154,7 +154,8 @@ mission "Hai Legacy 1"
 				`	(Sure.)`
 				`	(Maybe another time.)`
 					defer
-			`	You proceed to hire a motorized antigrav vehicle to go there, and arrive around sunset. You set foot after double checking you are indeed at the right coordinates, for except a cave, vegetation, sand, and, of course, the beach, you cannot see much of interest in the vicinity in the dimming light. You can't help but keep your hand close to your gun, feeling safer with its presence.`
+			`	As you ponder how to make your way to the rendez-vous point, you notice a conveniant train ticket in your pocket, with instructions on how to find your way to the destination. You proceed to take the train, walking for hours to get the rest of the way there, and arrive around sunset without any complications.`
+			`	You look around you, double checking you are indeed at the right coordinates, for except a cave, vegetation, sand, and, of course, the beach, you cannot see much of interest in the vicinity in the dimming light. You can't help but keep your hand close to your gun, feeling safer with its presence.`
 			`	After waiting for what seems like an eternity you start to hear whispering, and two hooded figures approach you. You start to doubt whether or not this was a good idea but it is probably too late to back down now. They come to address you, their face hidden by the now almost total obscurity. "Hello, <last>," they say at the same time, almost in a comical way, removing some of the tension you felt until now. Then they look at each other, nod, and one of them addresses you in a more serious mood. "We are sorry for all of these complications, but the truth is we cannot afford to take risks. It has been some time since we stopped trying to understand, and started taking every precaution we could to be safe. You see, we simply do not know you, and neither do you us."`
 			choice
 				`	"Tell me more."`
