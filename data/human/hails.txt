@@ -424,17 +424,19 @@ phrase "friendly civilian"
 	word
 		"the "
 	word
-		"best "
-		"coolest "
-		"weirdest "
-		"funniest "
-		"most shocking "
-		"most fascinating "
-		"most surreal "
-		"most surprising "
-		"most enjoyable "
-		"most original "
-		"most engrossing "
+		"best"
+		"coolest"
+		"weirdest"
+		"funniest"
+		"most shocking"
+		"most fascinating"
+		"most surreal"
+		"most surprising"
+		"most enjoyable"
+		"most original"
+		"most engrossing"
+	word
+		" "
 	phrase
 		"visual media"
 	word
@@ -760,7 +762,7 @@ phrase "friendly civilian"
 		"fly a ship that isn't totally defenseless against pirates"
 		"stick to the safe parts of the galaxy"
 		"take a lot of risks at the beginning so you can afford a better ship ASAP"
-		"keep your ship running cool to confuse Meteor missiles"
+		"keep your ship running cool to confuse Meteor Missiles"
 		"invest in a bigger reactor and downsize your batteries"
 		"always install a ramscoop"
 		"always install an afterburner"
@@ -808,12 +810,12 @@ phrase "friendly civilian"
 		"stick to systems patrolled by the Navy"
 		"get so rich that you can just buy them off"
 		"outfight the small ones, and outrun the big ones"
-		"blast them to bits with particle cannons before they can get within close range"
-		"put a pair of heavy laser turrets on each of your cargo ships"
+		"blast them to bits with Particle Cannons before they can get within close range"
+		"put a pair of Heavy Laser Turrets on each of your cargo ships"
 		"blow them out of the sky with a barrage of missiles before they can get anywhere near you"
 		"buy a light warship that still has decent passenger capacity"
 		"fly a multipurpose ship that has room for cargo, shields, and heavy weapons"
-		"equip anti-missile turrets so they can't get you with missiles, and then you can run away"
+		"equip Anti-Missile Turrets so they can't get you with missiles, and then you can run away"
 		"have a fleet with interceptors to tie them up while the cargo ships can warp to safety"
 		"slap on a scram drive and easily jump away"
 		"overheat them with a plasma volley"
@@ -948,8 +950,7 @@ phrase "friendly civilian"
 		"How many Delvians does it take to change a lightbulb? Zero, the room caves in before you can replace the bulb."
 		"How many Sinterians does it take to change a lightbulb? Zero, they just send in a robot to do the job."
 	word
-		""
-		""
+		"" 2
 		" What? Not funny?"
 		" Hey, I thought it was good!"
 		" C'mon, at least laugh a little!"
@@ -1127,7 +1128,7 @@ phrase "friendly civilian"
 	word
 		" " 4
 		" a meal of "
-		" a serving of"
+		" a serving of "
 	word
 		"asparagus"
 		"garlic"
@@ -1659,10 +1660,12 @@ phrase "friendly civilian"
 	word
 		" sometimes "
 	word
-		"transport "
-		"smuggle "
-		"steal "
-		"plunder "
+		"transport"
+		"smuggle"
+		"steal"
+		"plunder"
+	word
+		" "
 	phrase
 		"contraband"
 	word
@@ -1856,11 +1859,13 @@ phrase "friendly civilian"
 		"testing computer fabrication machines"
 		"writing firmware for embedded computer chips"
 	word
-		", and look what a nice ship I'm flying now."
-		", and now I'm retired and flying spaceships for fun."
-		", but being a pilot on a spaceship beats it all."
-		", but I still had to take a big loan to buy my first ship."
-		", but it was my grandma's inheritance that allowed me to buy this ship."
+		", "
+	word
+		"and look what a nice ship I'm flying now."
+		"and now I'm retired and flying spaceships for fun."
+		"but being a pilot on a spaceship beats it all."
+		"but I still had to take a big loan to buy my first ship."
+		"but it was my grandma's inheritance that allowed me to buy this ship."
 
 phrase "friendly civilian"
 	word
@@ -1937,10 +1942,12 @@ phrase "friendly civilian"
 		"the ACME company"
 		"the Astronomical Conglomeration of Manufacturing Entities"
 	word
-		", a company many times smaller than the Syndicate."
-		", a minor company, but with much better service than the Syndicate."
-		", a pretty insignificant company located on just one planet."
-		", but next time, I'll buy from the Syndicate again."
+		", "
+	word
+		"a company many times smaller than the Syndicate."
+		"a minor company, but with much better service than the Syndicate."
+		"a pretty insignificant company located on just one planet."
+		"but next time, I'll buy from the Syndicate again."
 
 phrase "friendly civilian"
 	word
@@ -1963,6 +1970,226 @@ phrase "friendly civilian"
 		"then you might get lucky and have just enough room to help out some celebrities"
 	word
 		"."
+
+phrase "friendly civilian"
+	word
+		"Sometimes it's too good to be true. "
+		"Don't take unnecessary risks. "
+		"Don't get on the bad side of the authorities. "
+		"I always try to be an honest captain. "
+		"Crime doesn't pay in the end. "
+		""
+	word
+		"It's a fact"
+		"I've heard"
+		"I heard a rumor"
+		"You should know"
+		"They say"
+		"It's said"
+	word
+		" that "
+	word
+		"smugglers almost always get caught in the end."
+		"even the most powerful warship won't save you from a knife in the back."
+		"the Quarg will arrest you if they catch a whiff of any of their equipment on your ship."
+		"the Quarg imprison anyone they catch carrying their outfits."
+		"nine out of ten pirates die within their first year."
+		"Republic Intelligence has their eyes everywhere."
+		"the law will always catch up to those who try to bypass it."
+
+phrase "friendly civilian"
+	word
+		"When I was younger"
+		"When I was a kid"
+		"When I was your age"
+		"Long ago"
+		"Back in high school"
+		"A long time ago"
+	word
+		", "
+	word
+		"I dreamed of"
+		"I had hopes of"
+		"I had dreams of"
+		"I fancied"
+		"I thought about"
+	word
+		" "
+	word
+		"flying"
+		"owning"
+		"piloting"
+		"captaining"
+		"commanding"
+	word
+		" "
+	word
+		"an Auxiliary. Too bad only the Navy can use those."
+		"a Bactrian, but the Deep's government won't allow me to purchase one."
+		"a Leviathan. The maintenance costs though? I'm not so sure anymore."
+		"a Bulk Freighter. They may be slow, but they're worth their weight in gold."
+		"a Protector. Sure, it's an ugly ship, but the firepower?"
+		"a Shuttle. A lot has changed since then!"
+		"a Flivver. Now, I could buy ten."
+		"an Osprey. I still can't afford one."
+		"a Corvette. Look how sleek they are!"
+		"a Sparrow. My parents talked me out of it, though."
+		"a Star Queen. It's just too bad its crew quarters aren't as good as its passenger bunks, though."
+		"a Scout. Something about exploring the fringes of human space still appeals to me."
+
+phrase "friendly civilian"
+	word
+		"I was born on"
+		"I come from"
+		"Before I bought my first ship, I lived on"
+		"I hail from"
+		"I'm a native of"
+		"My homeworld is"
+		"I'm from"
+		"I grew up on"
+		"I spent my childhood on"
+		"I lived most of my life on"
+		"I used to live on"
+	word
+		" "
+	word
+		"New Sahara. It's not often you meet someone else from there."
+		"Hope. If not for the Navy, I'd still be a human popsicle there."
+		"Earth. I was lucky to escape that dump."
+		"Earth. It may be the ancestral home for humanity, but that doesn't make it a nice place to live."
+		"Earth. It may be the capital of the Republic, but it isn't the place for me."
+		"Earth. Despite what you hear, there's still some countryside left there."
+		"Earth. If you tried to look out the window of my old apartment, you wouldn't be able to see the bottom."
+		"Chiron, one of the most populous planets in the galaxy. Look at me now!"
+		"Chiron. It was the first extrasolar planet humans ever colonized."
+		"Chiron. I couldn't survive the universities, so I took up piloting instead."
+		"Chiron. We've got the best universities in the galaxy!"
+		"Moonshake. I was a factory employee, but I saved up until I could afford a mortgage for a shuttle."
+		"Valhalla. I still go there once a year to visit my family. It's not a bad place."
+		"Midgard, and I fought my way from the mines to the stars."
+		"Hephaesteus. I was a Syndicate employee for a while, believe it or not."
+		"Hephaesteus. I don't know how people still live there, with all the pollution."
+		"Foundry. I knew how to fly a starship before I turned fifteen."
+		"Millrace. Life there sucked, but at least I got paid enough that I didn't have to stay too long."
+		"New China. Whenever I go back there, I cram my cargo hold full of food first. People there always need it."
+		"Bivrost. I had a place right outside Rainbridge."
+		"Solace. My father was a rocket scientist, but I wanted to do something more with my life."
+		"Asgard. Maybe I had it easy, but I still invest most of my earnings."
+		"Reunion. I owned a farm, until I sold it in exchange for this beauty."
+		"New Britain. I grew up around the birds, and I always dreamed of flying like them."
+		"Bourne, but there's nothing for me there now."
+		"Prime. It's about as far away from Sol as you can get while still being somewhere civilized."
+		"Prime. My parents both were engineers for Betelgeuse Shipyards, so I learned my way around a starship at a young age."
+		"Maker. I spent ten years in the mines, and got a starship out of it."
+		"Sunracer. I was my school's hovercraft racing champion three years in a row."
+		"Mars. Sometimes when it's been a hard run between stops, I wish I still lived there."
+		"Haze. Other planets always smell strange, to me."
+		"Tinker, but I wasn't cut out for manufacturing work."
+		"Burden. Everyone laughs about my height, but nobody jokes about my muscles."
+		"Follower. They like to talk about how great the terraforming is there, but my city was lost to one of the disasters."
+		"Skymoot. You'd think the dragons would be a nuisance, but most people who live there actually live on the other continent."
+		"the Moon. I used to work at the Tycho shipyards, but now I'm flying in this ship."
+		"Thule. You can tell my accent's changed after all these years of flying, though."
+		"Longjump. When I can, I go back every August for Han Sizer month."
+		"New Greenland. It's not as cold as other people think."
+		"Relic. The first time I saw a Cruiser, I knew I wanted to be a starship pilot."
+		"Shangri-La. My family lived quite well, until pirates came and raided the planet."
+		"Zug. I used to watch the militia ships fight against the pirate ships in the sky from my porch."
+		"New Holland. It gets too boring there, though, so I fly the stars instead."
+		"Bounty. I bought my first ship when the manufacturing industry started to develop there."
+		
+phrase "pyramid scheme company"
+	word
+		"Magellan"
+		"Dehydrated"
+		"Pontificated"
+		"General"
+		"Sacrosanct"
+		"Liberated"
+		"Literal"
+		"Family"
+		"Hyper-real"
+	word
+		" "
+	word
+		"Dynamix"
+		"Unlimited"
+		"Orbital"
+		"Gigalight"
+		"Traders"
+		"Voidcraft"
+		"Whispers"
+
+phrase "friendly civilian"
+	word
+		"Hi! Good to see you, uh,"
+		"Well, if it isn't"
+		"Hi there, uhm,"
+		"I've been trying to get a hold of you,"
+	word
+		" Captain <last>. "
+	word
+		"I'm living the dream as a CEO of my own company."
+		"I used to be just like you, but now I'm really somebody!"
+		"Don't you want to be your own boss?"
+		"Everybody is talking about this slick new trend!"
+	word
+		" "
+	word
+		"You could get rich selling for me!"
+		"Get in on the ground floor!"
+		"We're about to go orbital, you should sign up while you still can!"
+	word
+		" "
+	word
+		"Find me"
+		"You can get me"
+		"Call me"
+		"Drop me a line"
+		"Buzz me"
+	word
+		" at ${pyramid scheme company}. "
+	word
+		"Ask for ${human names} ${family names}."
+		"Tell them ${human names} ${family names} sent you."
+		"Mention my name, ${human names} ${family names}, for a discount on your first order!"
+
+phrase "friendly civilian"
+	word
+		"All I want is one day without running into"
+		"I just bought this ship and it already has"
+		"The warranty for my ship expired a week ago, and wouldn't you know it, I just found"
+	word
+		" "
+	word
+		"a fuel leak!"
+		"a loose coupling!"
+		"a fault in my nav-array!"
+		"a cascading failure in the power supply!"
+		"a severe oxygen leak!"
+		"an engine overheating!"
+		"unsynchronized repulsors!"
+		"a parasitic shield discharge!"
+		"a leaky fuel cell!"
+	word
+		" "
+	word
+		"The maintenance on this old bucket will cripple me."
+		"It's just one thing after another on these old ships."
+		"I wouldn't complain, but today is my birthday!"
+		"And it's not as though parts are cheap these days."
+		"It could be worse, I suppose. I could fly into a black hole."
+		"It's not like the customers even care, they just want their cargo yesterday."
+		"What else can you expect from shoddy Syndicated Systems manufacturing?"
+		"I'd repair it, but I got to pay my mortgage."
+		"Do you know where I could fix it for good?"
+		"I'd love to know how other captains get by without these problems."
+		
+phrase "friendly civilian"
+	word
+		`I just found out that a "duck" is a type of bird from Earth! Now I wonder why "duck tape" is named after it?`
+		`Apparently they want me to pay 5% of my paycheck for union dues! I'm gonna keep it. My boss is a good guy; he'll look out for me.`
+		`I saved up and bought extra bunk space so my wife could come on trips with me, and now she says "we need to talk." That can't be a good sign, can it?`
 
 phrase "friendly navy"
 	word
@@ -2182,17 +2409,13 @@ phrase "friendly navy"
 		"the Republic for"
 		"the Navy for"
 	word
-		" "
-	word
-		"" 6
-		"providing"
-		"ensuring"
-		"giving you"
-		"giving us"
-		"giving humanity"
-		"giving mankind"
-	word
-		" "
+		" " 6
+		" providing "
+		" ensuring "
+		" giving you "
+		" giving us "
+		" giving humanity "
+		" giving mankind "
 	word
 		"three centuries"
 		"three hundred years"
@@ -2424,17 +2647,17 @@ phrase "friendly navy"
 		"navy purpose b" 4
 		"navy purpose c"
 	word
-		". "
+		"."
 	word
 		"" 5
-		"Your cooperation is greatly valued."
-		"We thank you for your cooperation."
-		"We appreciate your complicance."
-		"Be thankful for our protection."
-		"Be grateful for our protection."
-		"Be thankful for our sacrifice."
-		"Be grateful for our sacrifice."
-		"Remember that our sacrifice is for your sake."
+		" Your cooperation is greatly valued."
+		" We thank you for your cooperation."
+		" We appreciate your complicance."
+		" Be thankful for our protection."
+		" Be grateful for our protection."
+		" Be thankful for our sacrifice."
+		" Be grateful for our sacrifice."
+		" Remember that our sacrifice is for your sake."
 
 phrase "navy purpose a"
 	word
@@ -2480,10 +2703,12 @@ phrase "navy purpose b"
 
 phrase "navy purpose b"
 	word
-		"fight for "
-		"defend "
-		"protect "
-		"advance "
+		"fight for"
+		"defend"
+		"protect"
+		"advance"
+	word
+		" "
 	word
 		"the Republic"
 		"humanity"
@@ -2498,9 +2723,11 @@ phrase "navy purpose b"
 
 phrase "navy purpose b"
 	word
-		"defend "
-		"protect "
-		"guard "
+		"defend"
+		"protect"
+		"guard"
+	word
+		" "
 	word
 		"humanity"
 		"mankind"
@@ -2642,18 +2869,24 @@ phrase "friendly navy"
 	word
 		" "
 	word
-		"civilian "
-		"merchant "
-		"private "
+		"civilian"
+		"merchant"
+		"private"
 	word
-		"ships "
-		"vessels "
-		"warships "
+		" "
 	word
-		"in "
-		"within "
-		"passing through "
-		"traveling in "
+		"ships"
+		"vessels"
+		"warships"
+	word
+		" "
+	word
+		"in"
+		"within"
+		"passing through"
+		"traveling in"
+	word
+		" "
 	word
 		"the Republic"
 		"Republic space"
@@ -2790,9 +3023,11 @@ phrase "friendly navy"
 		"a criminal act"
 		"a punishable act"
 	word
-		" under Republic law"
-		" by the laws of the Republic"
-		" by the laws of Parliament"
+		" "
+	word
+		"under Republic law"
+		"by the laws of the Republic"
+		"by the laws of Parliament"
 	word
 		" to "
 	word
@@ -2808,34 +3043,42 @@ phrase "friendly navy"
 
 phrase "navy illegal acts"
 	word
-		"install "
-		"use "
-		"employ "
-		"utilize "
+		"install"
+		"use"
+		"employ"
+		"utilize"
 	word
-		"illegal "
-		"unauthorized "
-		"unlicenced "
+		" "
+	word
+		"illegal"
+		"unauthorized"
+		"unlicenced"
+	word
+		" "
 	word
 		"outfits"
 		"equipment"
 
 phrase "navy illegal acts"
 	word
-		"traffic "
-		"transport "
-		"smuggle "
-		"trade "
-		"deal "
-		"carry "
+		"traffic"
+		"transport"
+		"smuggle"
+		"trade"
+		"deal"
+		"carry"
+	word
+		" "
 	word
 		"${contraband}"
 
 phrase "navy illegal acts"
 	word
-		"engage in "
-		"participate in "
-		"become involved in "
+		"engage in"
+		"participate in"
+		"become involved in"
+	word
+		" "
 	word
 		"the transportation of slaves"
 		"the trafficking of slaves"
@@ -2845,12 +3088,16 @@ phrase "navy illegal acts"
 
 phrase "navy illegal acts"
 	word
-		"operate "
-		"pilot "
+		"operate"
+		"pilot"
 	word
-		"an unlicensed "
-		"an unauthorized "
-		"an illegal "
+		" "
+	word
+		"an unlicensed"
+		"an unauthorized"
+		"an illegal"
+	word
+		" "
 	word
 		"ship"
 		"warship"
@@ -2858,12 +3105,16 @@ phrase "navy illegal acts"
 
 phrase "navy illegal acts"
 	word
-		"operate "
-		"pilot "
+		"operate"
+		"pilot"
 	word
-		"unlicensed "
-		"unauthorized "
-		"illegal "
+		" "
+	word
+		"unlicensed"
+		"unauthorized"
+		"illegal"
+	word
+		" "
 	word
 		"ships"
 		"warships"
@@ -2895,9 +3146,11 @@ phrase "navy illegal acts"
 
 phrase "navy illegal acts"
 	word
-		"disrupt "
-		"disturb "
-		"interrupt "
+		"disrupt"
+		"disturb"
+		"interrupt"
+	word
+		" "
 	word
 		"the peace"
 		"the order"
@@ -3190,12 +3443,14 @@ phrase "friendly militia 4 variation"
 	word
 		" and "
 	word
-		"do something about "
-		"do anything about "
-		"help us with "
-		"assist us with "
-		"clear out "
-		"deal with "
+		"do something about"
+		"do anything about"
+		"help us with"
+		"assist us with"
+		"clear out"
+		"deal with"
+	word
+		" "
 	word
 		"these pirates"
 		"these criminals"
@@ -3310,8 +3565,8 @@ phrase "friendly syndicate"
 		"Beam Turrets too small? Install a Quad Blaster Turret!"
 		"Fusion too expensive? Try a Fission Reactor!"
 		"Radioisotopes too weak? Try a Fission Reactor!"
-		"Atomic engines too expensive? Use Ion engines!"
-		"Plasma engines too intensive? Attach Ion engines!"
+		"Atomic engines too expensive? Use ion engines!"
+		"Plasma engines too intensive? Attach ion engines!"
 		"We have guns, turrets, engines, reactors, ships; the Syndicate has everything you need!"
 		
 phrase "friendly syndicate"
@@ -3570,11 +3825,13 @@ phrase "free worlds 6 variations"
 		"respect"
 		"stand by"
 	word
-		" " 4
-		" the principles of "
-		" the Free Worlds' struggle for "
-		" the cause of "
-		" our cause of "
+		"" 4
+		" the principles of"
+		" the Free Worlds' struggle for"
+		" the cause of"
+		" our cause of"
+	word
+		" "
 	word
 		"freedom"
 		"welfare"
@@ -3600,10 +3857,12 @@ phrase "free worlds 6 variations"
 	word
 		" "
 	word
-		"the Republic's "
-		"Parliament's "
-		"the Syndicate's "
-		"the Paradise Planets' "
+		"the Republic's"
+		"Parliament's"
+		"the Syndicate's"
+		"the Paradise Planets'"
+	word
+		" "
 	word
 		"decadence"
 		"corruption"
@@ -3998,12 +4257,16 @@ phrase "friendly pirate"
 		"robbed"
 		"ravaged"
 	word
-		" a "
-		" a whole "
-		" an entire "
-		" the weakest "
-		" the wimpiest "
-		" the stupidest "
+		" "
+	word
+		"a"
+		"a whole"
+		"an entire"
+		"the weakest"
+		"the wimpiest"
+		"the stupidest"
+	word
+		" "
 	word
 		"merchant"
 		"law enforcement"
@@ -4044,13 +4307,15 @@ phrase "friendly pirate"
 		"tried this"
 		"used this"
 	word
-		" new "
-		" crazy "
-		" amazing "
-		" fantastic "
-		" incredible "
-		" facinating "
 		" "
+	word
+		"new "
+		"crazy "
+		"amazing "
+		"fantastic "
+		"incredible "
+		"facinating "
+		""
 	phrase
 		"drugs"
 	word
@@ -4078,12 +4343,14 @@ phrase "friendly pirate"
 		"tried this"
 		"used this"
 	word
-		" new "
-		" terrible "
-		" horrendous "
-		" atrocious "
-		" horrid "
 		" "
+	word
+		"new "
+		"terrible "
+		"horrendous "
+		"atrocious "
+		"horrid "
+		""
 	word
 		"bad blue"
 		"booster"
@@ -4161,9 +4428,11 @@ phrase "friendly pirate"
 	word
 		" that a "
 	word
-		"new batch of "
-		"new delivery of "
-		"new shipment of "
+		"new batch of"
+		"new delivery of"
+		"new shipment of"
+	word
+		" "
 	phrase
 		"contraband"
 	word
@@ -4483,7 +4752,7 @@ phrase "friendly pirate"
 		"planned"
 		"executed"
 		"wasn't counting, but I musta' destroyed at least a dozen ships in"
-		"destroyed a Falcon with just energy blasters at"
+		"destroyed a Falcon with just Energy Blasters at"
 		"disabled a Leviathan with my shields down at"
 		"obliterated a Protector at"
 		"took on a Vanguard by myself at"
@@ -4710,14 +4979,18 @@ phrase "friendly pirate"
 		"enjoying myself while"
 		"having a good time"
 	word
-		" transporting "
-		" delivering "
-		" ferrying "
-		" hauling "
-		" supplying "
-		" exchanging "
-		" moving around "
-		" turning around "
+		" "
+	word
+		"transporting"
+		"delivering"
+		"ferrying"
+		"hauling"
+		"supplying"
+		"exchanging"
+		"moving around"
+		"turning around"
+	word
+		" "
 	phrase
 		"contraband"
 	word
@@ -4734,10 +5007,10 @@ phrase "friendly pirate"
 		"and the Syndicate starts chasing me."
 	word
 		"" 2
-		" More interference plating would have helped."
-		" This interference plating is useless!"
+		" More Interference Plating would have helped."
+		" This Interference Plating is useless!"
 		" I could have gotten out faster if I had a scram drive."
-		" I know I should have installed more interference plating."
+		" I know I should have installed more Interference Plating."
 		" If only I was strong enough to stand up to them."
 		" I would have blasted them out of the sky if I could!"
 		" There were so many of them!"
@@ -5461,9 +5734,11 @@ phrase "hostile navy"
 	word
 		" "
 	word
-		"defend "
-		"protect "
-		"guard "
+		"defend"
+		"protect"
+		"guard"
+	word
+		" "
 	word
 		"humanity"
 		"mankind"
@@ -5824,7 +6099,7 @@ phrase "hostile pirate"
 		"abstinence from taxes"
 		"anarchism"
 		"piracy"
-		"being the equaliser between men"
+		"being the equalizer between men"
 		"equality without government"
 		"life without taxes"
 		"making death the only constant of life"
@@ -5947,7 +6222,7 @@ phrase "hostile pirate"
 		"boil you alive"
 		"make you walk across hot coals"
 		"throw you into acid"
-		"make you stand in front of a beam laser"
+		"make you stand in front of a Beam Laser"
 		"shoot energy blasts at your body"
 		"test how long you survive in vacuum"
 		"capture you and hunt you in the forests of Stormhold"
@@ -6513,16 +6788,21 @@ phrase "hostile militia"
 		"I "
 		"We "
 	word
-		"hope "
-		"wonder if "
+		"hope"
+		"wonder if"
 	word
-		"you "
-		"criminals like you "
-		
+		" "
 	word
-		"like "
-		"enjoy "
-		"appreciate "
+		"you"
+		"criminals like you"
+	word
+		" "
+	word
+		"like"
+		"enjoy"
+		"appreciate"
+	word
+		" "
 	word
 		"the prison food"
 		"the jail cells"
@@ -6530,13 +6810,17 @@ phrase "hostile militia"
 		"the prison life"
 		"the jail life"
 	word
-		" on "
-		" at "
-		" of "
-		" over on "
-		" over at "
-		" out on "
-		" out at "
+		" "
+	word
+		"on"
+		"at"
+		"of"
+		"over on"
+		"over at"
+		"out on"
+		"out at"
+	word
+		" "
 	word
 		"Bourne"
 		"Spica"
@@ -6569,9 +6853,13 @@ phrase "hostile free worlds"
 		"Democracy"
 		"Liberty"
 	word
-		" shall be "
-		" must be "
-		" will be "
+		" "
+	word
+		"shall be"
+		"must be"
+		"will be"
+	word
+		" "
 	word
 		"defended"
 		"protected"

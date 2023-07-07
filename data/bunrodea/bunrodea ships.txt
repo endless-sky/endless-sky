@@ -1,0 +1,496 @@
+# Copyright (c) 2021 by Amazinite
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+ship "Kaiken"
+	sprite "ship/kaiken"
+	thumbnail "thumbnail/kaiken"
+	attributes
+		category "Fighter"
+		"cost" 1199000
+		"shields" 3200
+		"hull" 800
+		"required crew" 1
+		"bunks" 1
+		"mass" 50
+		"drag" 1
+		"heat dissipation" 0.95
+		"outfit space" 121
+		"weapon capacity" 35
+		"engine capacity" 45
+		weapon
+			"blast radius" 40
+			"shield damage" 400
+			"hull damage" 200
+			"hit force" 600
+	outfits
+		"Locust Blaster" 3
+		
+		"Solar Battery"
+		"Solar Cell" 27
+		"Small Shield Relay"
+		"Shield Relay Limiter" 6
+		
+		"Chiisana Rift Thruster" 2
+		"Chiisana Rift Steering"
+	
+	engine -5.5 30.5
+	engine 5.5 30.5
+	gun -7 -31
+	gun 7 -31
+	gun 0 -20
+	leak "flame" 60 80
+	explode "tiny explosion" 20
+	explode "small explosion" 15
+	description "While not particularly fast by fighter standards, where the Kaiken lacks in speed it makes up for in durability and firepower; it boasts a significant amount of weapon space and ports for up to three guns, allowing for the use of a trio of Locust Blasters or the option of using a larger Mandible Cannon."
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
+
+
+
+ship "Sasumata"
+	sprite "ship/sasumata"
+	thumbnail "thumbnail/sasumata"
+	attributes
+		category "Transport"
+		"cost" 12650000
+		"shields" 15500
+		"hull" 4200
+		"required crew" 10
+		"bunks" 72
+		"mass" 340
+		"drag" 4.7
+		"heat dissipation" 0.8
+		"fuel capacity" 700
+		"cargo space" 32
+		"outfit space" 397
+		"weapon capacity" 122
+		"engine capacity" 126
+		"cloak" .05
+		"cloaking energy" 10
+		"cloaking fuel" .05
+		weapon
+			"blast radius" 90
+			"shield damage" 900
+			"hull damage" 450
+			"hit force" 1350
+	outfits
+		"Swarm Pod" 2
+		"Swarm Missile" 1000
+		"Swarm Clip"
+		"Buzzer Anti-Missile" 2
+		
+		"Quark Reactor"
+		"Reactor Overclocker" 2
+		"Solar Battery" 2
+		"Solar Cell" 30
+		"Large Shield Relay"
+		"Shield Relay Limiter" 10
+		
+		"Subarashii Rift Thruster"
+		"Ookii Rift Steering"
+		"Hyperdrive"
+	
+	engine -11 109
+	engine 11 109
+	gun -12.5 -110.5
+	gun 12.5 -110.5
+	turret -10 -5
+	turret 10 -5
+	bay "Fighter" 0 -93
+	bay "Fighter" 0 -93
+	bay "Fighter" 0 -93
+	bay "Fighter" 0 -93
+	leak "leak" 50 50
+	leak "big leak" 80 30
+	explode "tiny explosion" 30
+	explode "small explosion" 30
+	explode "medium explosion" 20
+	explode "large explosion" 5
+	"final explode" "final explosion small"
+	description "The Sasumata is the chief scout ship of the Bunrodea. While not designed for combat, this stealth transport vessel is still capable of holding its all against some smaller warships; its four fighter bays turn the Sasumata into a force to be reckoned with when its fighters are deployed."
+
+
+
+ship "Tanto"
+	sprite "ship/tanto"
+	thumbnail "thumbnail/tanto"
+	attributes
+		category "Light Freighter"
+		"cost" 5995000
+		"shields" 16200
+		"hull" 3600
+		"required crew" 3
+		"bunks" 7
+		"mass" 137
+		"drag" 3
+		"heat dissipation" 0.9
+		"fuel capacity" 600
+		"cargo space" 219
+		"outfit space" 231
+		"weapon capacity" 56
+		"engine capacity" 102
+		weapon
+			"blast radius" 120
+			"shield damage" 1200
+			"hull damage" 600
+			"hit force" 1800
+	outfits
+		"Buzzer Anti-Missile" 2
+		
+		"Solar Battery" 2
+		"Solar Cell" 42
+		"Small Shield Relay"
+		
+		"Ookii Rift Thruster"
+		"Ookii Rift Steering"
+		"Chiisana Rift Thruster"
+		"Hyperdrive"
+		
+	engine -20 148
+	engine 20 148
+	gun -16.5 -135
+	gun 16.5 -135
+	turret 0 -74.5
+	turret 0 108
+	leak "leak" 60 50
+	leak "flame" 40 80
+	leak "big leak" 80 30
+	explode "tiny explosion" 30
+	explode "small explosion" 30
+	explode "medium explosion" 15
+	"final explode" "final explosion small"
+	description "The Tanto freighter was designed as a fast blockade runner. While being lightly armed and armored, the Tanto is incredibly swift for a ship of its size, allowing it to jump into and out of systems before any hostile force can bear its full might down on the small ship."
+
+
+
+ship "Ararebo"
+	sprite "ship/ararebo"
+	thumbnail "thumbnail/ararebo"
+	attributes
+		category "Utility"
+		"cost" 17565000
+		"shields" 50300
+		"hull" 13600
+		"required crew" 15
+		"bunks" 43
+		"mass" 445
+		"drag" 12.3
+		"heat dissipation" 0.85
+		"fuel capacity" 700
+		"cargo space" 414
+		"outfit space" 594
+		"weapon capacity" 112
+		"engine capacity" 108
+		weapon
+			"blast radius" 200
+			"shield damage" 2000
+			"hull damage" 1000
+			"hit force" 3000
+	outfits
+		"Locust Turret" 2
+		"Buzzer Anti-Missile" 2
+		
+		"Dark Reactor"
+		"Reactor Overclocker" 8
+		"Reactor Limiter" 3
+		"Solar Battery"
+		"Solar Cell" 36
+		"Large Shield Relay"
+		"Shield Relay Booster" 16
+		"Large Nanite Fabricator"
+		"Nanite Enhancer" 5
+		
+		"Ookii Rift Thruster"
+		"Ookii Rift Steering"
+		"Hyperdrive"
+	
+	engine -17 185
+	engine 17 185
+	turret 0 -118.5 "Buzzer Anti-Missile"
+	turret 0 -41 "Locust Turret"
+	turret 0 79.5 "Locust Turret"
+	turret 0 112 "Buzzer Anti-Missile"
+	bay "Fighter" 0 -132
+	bay "Fighter" 0 -132
+	bay "Fighter" -7 -132
+	bay "Fighter" 7 -132
+	bay "Fighter" -17 -132
+	bay "Fighter" 17 -132
+	bay "Fighter" -29 -133.5
+	bay "Fighter" 29 -133.5
+	leak "leak" 40 50
+	leak "flame" 30 80
+	leak "big leak" 50 30
+	explode "tiny explosion" 50
+	explode "small explosion" 30
+	explode "medium explosion" 10
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+	description "The Ararebo is one of the Bunrodea's main methods for shipping large volumes of cargo across space, but anyone who would dare to think that this freighter is an easy target would be sorely mistaken. The Ararebo doubles as the Bunrodea's primary support carrier, carrying a squadron of eight fighters that can tear almost any ship to shreds."
+
+
+
+ship "Tekkan"
+	sprite "ship/tekkan"
+	thumbnail "thumbnail/tekkan"
+	attributes
+		category "Light Warship"
+		"cost" 10119000
+		"shields" 18600
+		"hull" 5200
+		"required crew" 6
+		"bunks" 9
+		"mass" 250
+		"drag" 3.3
+		"heat dissipation" 0.9
+		"fuel capacity" 700
+		"cargo space" 21
+		"outfit space" 321
+		"weapon capacity" 100
+		"engine capacity" 85
+		weapon
+			"blast radius" 140
+			"shield damage" 1400
+			"hull damage" 700
+			"hit force" 2100
+	outfits
+		"Locust Blaster" 2
+		"Locust Turret"
+		"Buzzer Anti-Missile" 2
+		
+		"Quark Reactor"
+		"Solar Battery"
+		"Solar Cell" 36
+		"Small Shield Relay"
+		"Shield Relay Booster" 5
+		
+		"Ookii Rift Thruster"
+		"Ookii Rift Steering"
+		"Hyperdrive"
+	
+	engine -11.5 66.5
+	engine 11.5 66.5
+	gun -24 -62.5
+	gun 24 -62.5
+	turret 0 -42 "Locust Turret"
+	turret -25 -2 "Buzzer Anti-Missile"
+	turret 25 -2 "Buzzer Anti-Missile"
+	leak "leak" 50 50
+	leak "flame" 80 80
+	explode "tiny explosion" 40
+	explode "small explosion" 20
+	explode "medium explosion" 10
+	explode "large explosion" 5
+	"final explode" "final explosion small"
+	description "The Tekkan is the one ship in the Bunrodean arsenal that favors turrets over forward facing guns. This allows the small and fast vessel to act as the primary means of anti-missile defense for larger Bunrodean ships that are lacking in turret mounts compared to their guns. Tekkans are also able to take advantage of the rarely used but powerful Locust Turrets, packing a considerable amount of damage into a small ship."
+
+
+
+ship "Kunai"
+	sprite "ship/kunai"
+	thumbnail "thumbnail/kunai"
+	attributes
+		category "Light Warship"
+		"cost" 12444000
+		"shields" 21400
+		"hull" 5700
+		"required crew" 15
+		"bunks" 37
+		"mass" 370
+		"drag" 5.2
+		"heat dissipation" 0.85
+		"fuel capacity" 700
+		"cargo space" 28
+		"outfit space" 407
+		"weapon capacity" 158
+		"engine capacity" 102
+		weapon
+			"blast radius" 210
+			"shield damage" 2100
+			"hull damage" 1050
+			"hit force" 3150
+	outfits
+		"Mandible Cannon" 4
+		"Locust Blaster" 2
+		
+		"Quark Reactor"
+		"Solar Battery" 2
+		"Solar Cell" 28
+		"Small Shield Relay"
+		"Shield Relay Booster" 4
+		"Small Nanite Fabricator"
+		
+		"Ookii Rift Thruster"
+		"Ookii Rift Steering"
+		"Chiisana Rift Steering"
+		"Hyperdrive"
+	
+	engine -8 49
+	engine 8 49
+	gun -5.5 -29.5 "Locust Blaster"
+	gun 5.5 -29.5 "Locust Blaster"
+	gun -13.5 -20.5 "Mandible Cannon"
+	gun 13.5 -20.5 "Mandible Cannon"
+	gun -40 -19 "Mandible Cannon"
+	gun 40 -19 "Mandible Cannon"
+	leak "leak" 50 50
+	leak "flame" 80 80
+	explode "tiny explosion" 60
+	explode "small explosion" 30
+	explode "medium explosion" 40
+	explode "large explosion" 20
+	"final explode" "final explosion small"
+	description "The Kunai is the smallest of the Bunrodea's gunships, warships which focus heavily on the power of their forward-facing guns. Lacking any turret mounts and focusing more on turning quickly than traveling fast, the Kunai is highly susceptible to missile weaponry and must rely on other ships in the fleet to carry anti-missile turrets."
+
+
+
+ship "Kama"
+	sprite "ship/kama"
+	thumbnail "thumbnail/kama"
+	attributes
+		category "Medium Warship"
+		"cost" 20580000
+		"shields" 43700
+		"hull" 11500
+		"required crew" 39
+		"bunks" 43
+		"mass" 580
+		"drag" 8.4
+		"heat dissipation" 0.75
+		"fuel capacity" 800
+		"cargo space" 56
+		"outfit space" 573
+		"weapon capacity" 247
+		"engine capacity" 121
+		weapon
+			"blast radius" 350
+			"shield damage" 3500
+			"hull damage" 1750
+			"hit force" 5250
+	outfits
+		"Mandible Cannon" 4
+		"Swarm Pod" 6
+		"Swarm Missile" 2400
+		
+		"Electroweak Reactor"
+		"Reactor Overclocker" 2
+		"Solar Battery"
+		"Solar Cell" 36
+		"Large Shield Relay"
+		"Shield Relay Booster" 6
+		"Outfits Expansion" 2
+		
+		"Ookii Rift Thruster"
+		"Ookii Rift Steering"
+		"Nami Rift Steering"
+		"Hyperdrive"
+		
+	engine -11.5 132.5
+	engine 11.5 132.5
+	gun -5 -114 "Mandible Cannon"
+	gun 5 -114 "Mandible Cannon"
+	gun -14 -105.5 "Mandible Cannon"
+	gun 14 -105.5 "Mandible Cannon"
+	gun -24.5 -129 "Swarm Pod"
+	gun 24.5 -129 "Swarm Pod"
+	gun -54.5 -20 "Swarm Pod"
+	gun 54.5 -20 "Swarm Pod"
+	gun -62.5 -9.5 "Swarm Pod"
+	gun 62.5 -9.5 "Swarm Pod"
+	turret 0 54.5
+	leak "leak" 50 50
+	leak "flame" 80 80
+	leak "big leak" 80 30
+	explode "tiny explosion" 80
+	explode "small explosion" 40
+	explode "medium explosion" 40
+	explode "large explosion" 30
+	explode "huge explosion" 10
+	"final explode" "final explosion medium"
+	description "The Kama gunship is a formidable warship, capable of carrying up to ten guns as well as having a single turret mount typically equipped with an anti-missile turret. This makes the Kama less susceptible to missile weaponry than its smaller sibling, the Kunai."
+
+
+
+ship "Chigiriki"
+	sprite "ship/chigiriki"
+	thumbnail "thumbnail/chigiriki"
+	attributes
+		category "Heavy Warship"
+		"cost" 30876000
+		"shields" 64200
+		"hull" 21000
+		"required crew" 49
+		"bunks" 69
+		"mass" 650
+		"drag" 9.4
+		"heat dissipation" 0.7
+		"fuel capacity" 900
+		"cargo space" 102
+		"outfit space" 747
+		"weapon capacity" 504
+		"engine capacity" 145
+		weapon
+			"blast radius" 410
+			"shield damage" 4100
+			"hull damage" 2050
+			"hit force" 6600
+	outfits
+		"Thorax Cannon"
+		"Locust Blaster" 6
+		"Swarm Pod" 10
+		"Swarm Missile" 4000
+		
+		"Dark Reactor"
+		"Reactor Limiter" 3
+		"Solar Battery" 3
+		"Solar Cell" 19
+		"Large Shield Relay"
+		"Shield Relay Booster" 16
+		"Outfits Expansion" 4
+		
+		"Ookii Rift Thruster"
+		"Subarashii Rift Steering"
+		"Hyperdrive"
+		
+	engine -75 155
+	engine 75 155
+	engine -22.5 183.5
+	engine 22.5 183.5
+	gun 0 -143 "Thorax Cannon"
+	gun -14.5 -153 "Locust Blaster"
+	gun 14.5 -153 "Locust Blaster"
+	gun -24 -157.5 "Locust Blaster"
+	gun 24 -157.5 "Locust Blaster"
+	gun -33.5 -175 "Locust Blaster"
+	gun 33.5 -175 "Locust Blaster"
+	gun -67 -26.5 "Swarm Pod"
+	gun 67 -26.5 "Swarm Pod"
+	gun -75 12.5 "Swarm Pod"
+	gun 75 12.5 "Swarm Pod"
+	gun -82.5 21.5 "Swarm Pod"
+	gun 82.5 21.5 "Swarm Pod"
+	gun -95.5 85.5 "Swarm Pod"
+	gun 95.5 85.5 "Swarm Pod"
+	gun -106.5 105.5 "Swarm Pod"
+	gun 106.5 105.5 "Swarm Pod"
+	turret -20.5 40
+	turret 20.5 40
+	leak "leak" 30 50
+	leak "flame" 30 80
+	leak "big leak" 30 30
+	explode "tiny explosion" 90
+	explode "small explosion" 70
+	explode "medium explosion" 45
+	explode "large explosion" 20
+	explode "huge explosion" 10
+	"final explode" "final explosion large"
+	description "The Chigiriki is the largest of the Bunrodea's gunships, boasting an astonishing seventeen gun ports. One of these ports is equipped with the devastating Thorax Cannon, a massive cannon capable of dealing significant damage to any ship that dares get in the Chigiriki's way. Some Chigiriki also double as missile platforms, raining down a walls of missiles so thick on their target that it can blot out the nearest star."

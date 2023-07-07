@@ -246,10 +246,10 @@ mission "Hai Rescue: Ooonem"
 			`	Following reports of the last time the 'angel of death' was sighted, you end up loitering in a twisting street parallel to a main thoroughfare. The few people using it hurry by quickly, and rarely seem to travel any great distance down this street. One very surly looking individual gives you a sour glare on his way past, a collection of weapons on full display. He looks a lot like you'd expect a bounty hunter to look, and as he moves out of sight you observe a shadow, previously motionless, detach from a spot on a wall and head back your direction, laser rifle pointed in the direction of the departing individual. As the shadow approaches, you see there's a lot of hair sticking out from their hood. Seems you may have indeed found a Hai. Do you want to talk to them?`
 			label start
 			choice
-				`	(Talk to her.)`
+				`	(Talk to them.)`
 				`	(Come back later.)`
 					defer
-			`	As step into her path, she swings the laser rifle towards you and says, "You're either very brave, very stupid, or know something... I should warn you, I'm not going back to them!"`
+			`	As you step into their path, the Hai swings the laser rifle towards you and says, "You're either very brave, very stupid, or know something... I should warn you, I'm not going back to them!"`
 			`	She watches your expression closely and, when you don't appear to be hostile, settles into a wary but more relaxed stance. "You're not one of them. What do you want with me?"`
 			choice
 				`	"I was wondering why a Hai is on a pirate planet."`
@@ -502,7 +502,7 @@ mission "Hai Rescue: Meroot and Lucy"
 				`	"Sure. Let's go."`
 				`	"No, you'll have to find another pilot."`
 					decline
-			`	The two women put on clothing that thoroughly covers their person. They lead you through a series of ducts and alleys back to the pad where your ship is parked. Just as your airlock opens there's a sharp zapping sound as someone shoots Meroot with a stun gun. You and Lucy duck and a couple other shots dissipate harmlessly on the bulkhead of your ship. You fire off a couple shots back and between the two of you you manage to drag Meroot through the airlock, seal it behind you and lift off. It appears you're being followed into orbit.`
+			`	The two women put on clothing that thoroughly covers their person. They lead you through a series of ducts and alleys back to the pad where your ship is parked. Just as your airlock opens there's a sharp zapping sound as someone shoots Meroot with a stun gun. You and Lucy duck, and a couple other shots dissipate harmlessly on the bulkhead of your ship. You fire off a couple shots back and, between the two of you, manage to drag Meroot through the airlock, seal it behind you, and lift off. It appears you're being followed into orbit.`
 				launch
 	on complete
 		log `Rescued a pair of researchers: a Hai woman named Meroot and a human woman named Lucy. They were kidnapped by men who brought them to Canyon. Returned them to <planet> where they now live together. They don't know the identities of the kidnappers.`
@@ -560,7 +560,7 @@ mission "Hai Rescue: Gipeep"
 				has "Hai Rescue: Gipeep Hint: offered"
 			`As you come in to land one guy is on the comms, bragging particularly odiously about some lucrative transport jobs he'd picked up. This catches your attention only because <origin> is not known for lucrative transport jobs. It could likely be contraband, or worse...`
 			label hint
-			`After some quiet investigation you find out that all the lucrative transport jobs are coming out of one particular warehouse. The paperwork all looks to be in order but that just means that at the very least maybe you should pick up a job yourself.`
+			`After some quiet investigation you find out that all the lucrative transport jobs are coming out of one particular warehouse. The paperwork all looks to be in order, but to be sure you should pick up a job yourself.`
 			choice
 				`	(Check it out.)`
 				`	(Leave.)`
