@@ -169,6 +169,8 @@ void Preferences::Load()
 			scrollSpeed = node.Value(1);
 		else if(node.Token(0) == "boarding target")
 			boardingIndex = max<int>(0, min<int>(node.Value(1), BOARDING_SETTINGS.size() - 1));
+		else if(node.Token(0) == "Flotsam collection")
+			flotsamIndex = max<int>(0, min<int>(node.Value(1), FLOTSAM_SETTINGS.size() - 1));
 		else if(node.Token(0) == "view zoom")
 			zoomIndex = max<int>(0, min<int>(node.Value(1), ZOOMS.size() - 1));
 		else if(node.Token(0) == "vsync")
@@ -185,8 +187,6 @@ void Preferences::Load()
 			statusOverlaySettings[OverlayType::NEUTRAL].SetState(node.Value(1));
 		else if(node.Token(0) == "Automatic aiming")
 			autoAimIndex = max<int>(0, min<int>(node.Value(1), AUTO_AIM_SETTINGS.size() - 1));
-		else if(node.Token(0) == "Flotsam collection")
-			flotsamIndex = max<int>(0, min<int>(node.Value(1), FLOTSAM_SETTINGS.size() - 1));
 		else if(node.Token(0) == "Automatic firing")
 			autoFireIndex = max<int>(0, min<int>(node.Value(1), AUTO_FIRE_SETTINGS.size() - 1));
 		else if(node.Token(0) == "Parallax background")
@@ -235,6 +235,7 @@ void Preferences::Save()
 	out.Write("zoom", Screen::UserZoom());
 	out.Write("scroll speed", scrollSpeed);
 	out.Write("boarding target", boardingIndex);
+	out.Write("Flotsam collection", flotsamIndex);
 	out.Write("view zoom", zoomIndex);
 	out.Write("vsync", vsyncIndex);
 	out.Write("Show all status overlays", statusOverlaySettings[OverlayType::ALL].ToInt());
@@ -244,7 +245,6 @@ void Preferences::Save()
 	out.Write("Show neutral overlays", statusOverlaySettings[OverlayType::NEUTRAL].ToInt());
 	out.Write("Automatic aiming", autoAimIndex);
 	out.Write("Automatic firing", autoFireIndex);
-	out.Write("Flotsam collection", flotsamIndex);
 	out.Write("Parallax background", parallaxIndex);
 	out.Write("alert indicator", alertIndicatorIndex);
 	out.Write("previous saves", previousSaveCount);
@@ -484,26 +484,6 @@ const string &Preferences::AutoAimSetting()
 	return AUTO_AIM_SETTINGS[autoAimIndex];
 }
 
-void Preferences::ToggleFlotsam()
-{
-	flotsamIndex = (flotsamIndex + 1) % FLOTSAM_SETTINGS.size();
-}
-
-
-
-Preferences::Flotsam Preferences::GetFlotsam()
-{
-	return static_cast<Flotsam>(flotsamIndex);
-}
-
-
-
-const string &Preferences::FlotsamSetting()
-{
-	return FLOTSAM_SETTINGS[flotsamIndex];
-}
-
-
 void Preferences::ToggleAutoFire()
 {
 	autoFireIndex = (autoFireIndex + 1) % AUTO_FIRE_SETTINGS.size();
@@ -548,7 +528,24 @@ const string &Preferences::BoardingSetting()
 	return BOARDING_SETTINGS[boardingIndex];
 }
 
+void Preferences::ToggleFlotsam()
+{
+	flotsamIndex = (flotsamIndex + 1) % FLOTSAM_SETTINGS.size();
+}
 
+
+
+Preferences::Flotsam Preferences::GetFlotsam()
+{
+	return static_cast<Flotsam>(flotsamIndex);
+}
+
+
+
+const string &Preferences::FlotsamSetting()
+{
+	return FLOTSAM_SETTINGS[flotsamIndex];
+}
 
 void Preferences::ToggleAlert()
 {

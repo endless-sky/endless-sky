@@ -53,7 +53,6 @@ namespace {
 	const int ZOOM_FACTOR_INCREMENT = 10;
 	const string VIEW_ZOOM_FACTOR = "View zoom factor";
 	const string AUTO_AIM_SETTING = "Automatic aiming";
-	const string FLOTSAM_SETTINGS = "Flotsam collection";
 	const string AUTO_FIRE_SETTING = "Automatic firing";
 	const string SCREEN_MODE_SETTING = "Screen mode";
 	const string VSYNC_SETTING = "VSync";
@@ -63,6 +62,7 @@ namespace {
 	const string STATUS_OVERLAYS_ENEMY = "   Show enemy overlays";
 	const string STATUS_OVERLAYS_NEUTRAL = "   Show neutral overlays";
 	const string EXPEND_AMMO = "Escorts expend ammo";
+	const string FLOTSAM_SETTINGS = "Flotsam collection";
 	const string TURRET_TRACKING = "Turret tracking";
 	const string FOCUS_PREFERENCE = "Turrets focus fire";
 	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
@@ -240,12 +240,12 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 				Preferences::CycleStatusOverlays(Preferences::OverlayType::NEUTRAL);
 			else if(zone.Value() == AUTO_AIM_SETTING)
 				Preferences::ToggleAutoAim();
-			else if(zone.Value() == FLOTSAM_SETTINGS)
-				Preferences::ToggleFlotsam();
 			else if(zone.Value() == AUTO_FIRE_SETTING)
 				Preferences::ToggleAutoFire();
 			else if(zone.Value() == EXPEND_AMMO)
 				Preferences::ToggleAmmoUsage();
+			else if(zone.Value() == FLOTSAM_SETTINGS)
+				Preferences::ToggleFlotsam();
 			else if(zone.Value() == TURRET_TRACKING)
 				Preferences::Set(FOCUS_PREFERENCE, !Preferences::Has(FOCUS_PREFERENCE));
 			else if(zone.Value() == REACTIVATE_HELP)
@@ -679,11 +679,6 @@ void PreferencesPanel::DrawSettings()
 			text = Preferences::AutoAimSetting();
 			isOn = text != "off";
 		}
-		else if(setting == FLOTSAM_SETTINGS)
-		{
-			text = Preferences::FlotsamSetting();
-			isOn = text != "off";
-		}
 		else if(setting == AUTO_FIRE_SETTING)
 		{
 			text = Preferences::AutoFireSetting();
@@ -691,6 +686,11 @@ void PreferencesPanel::DrawSettings()
 		}
 		else if(setting == EXPEND_AMMO)
 			text = Preferences::AmmoUsage();
+		else if(setting == FLOTSAM_SETTINGS)
+		{
+			text = Preferences::FlotsamSetting();
+			isOn = text != "off";
+		}
 		else if(setting == TURRET_TRACKING)
 		{
 			isOn = true;
