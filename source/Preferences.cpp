@@ -539,7 +539,7 @@ void Preferences::ToggleFlotsam()
 
 
 
-Preferences::FlotsamCollection Preferences::GetFlotsam()
+Preferences::FlotsamCollection Preferences::GetFlotsamCollection()
 {
 	return static_cast<FlotsamCollection>(flotsamIndex);
 }
