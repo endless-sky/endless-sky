@@ -63,7 +63,7 @@ public:
 		MIXED
 	};
 
-	enum class FlotsamSetting : int_fast8_t {
+	enum class FlotsamCollection : int_fast8_t {
 		OFF = 0,
 		ON,
 		FLAGSHIP,
@@ -141,7 +141,7 @@ public:
 
 	// Flotsam setting, either "off", "on", "flagship only", or "escorts only".
 	static void ToggleFlotsam();
-	static FlotsamSetting GetFlotsam();
+	static FlotsamCollection GetFlotsam();
 	static const std::string &FlotsamSetting();
 
 	// Red alert siren and symbol
