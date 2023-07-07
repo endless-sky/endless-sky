@@ -2127,14 +2127,23 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 	if(isClose && speed < slow)
 		return true;
 
-	Point sp, face;
-	double t;
-	sp = targetPosition - StoppingPoint(ship, targetVelocity, false, t, face);
+	// Calculate this ship's stopping info if reverse thrusters were not used.
+	StoppingInfo info = StoppingPoint(ship, targetVelocity, false);
+	double t = info.timeToStop;
+	Point sp = targetPosition - info.point;
+	Point face = info.toFace;
 
-	Point rsp, rface;
+	// If this ship has reverse thrusters, calculate its stopping point if they were used.
+	Point rsp;
+	Poinrt rface;
 	double rt = 1e9;
 	if(ship.Attributes().Get("reverse thrust"))
-		rsp = targetPosition - StoppingPoint(ship, targetVelocity, true, rt, rface);
+	{
+		StoppingInfo rinfo = StoppingPoint(ship, targetVelocity, true);
+		rt = info.timeToStop;
+		rsp = targetPosition - rinfo.point;
+		rface = rinfo.toFace;
+	}
 
 	Point toFace;
 	bool forwardIfAligned = false;
@@ -3218,27 +3227,23 @@ bool AI::DoSecretive(Ship &ship, Command &command)
 
 
 // Instead of coming to a full stop, adjust to a target velocity vector
-Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool reverse, double &timeToStop, Point &toFace)
+AI::StoppingInfo AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool reverse)
 {
+	StoppingInfo info;
 	Point position = ship.Position();
 	Point velocity = ship.Velocity();
 	Angle angle = ship.Facing();
-	double acceleration = 0.;
-	if(!reverse)
-		acceleration = ship.Acceleration();
-	else
-		acceleration = ship.Attributes().Get("reverse thrust") / ship.InertialMass();
-
+	double acceleration = reverse ? ship.ReverseAcceleration() : ship.Acceleration();
 	double turnRate = ship.TurnRate();
 
 	// If I were to turn around and stop now the relative movement, where would that put me?
-
 	double v = (velocity - targetVelocity).Length();
 	if(v < 1e-6)
 	{
-		timeToStop = 0.;
-		toFace = angle.Unit();
-		return position;
+		info.timeToStop = 0.;
+		info.point = position;
+		info.toFace = angle.Unit();
+		return info;
 	}
 
 	double jumpTime = 0.;
@@ -3247,9 +3252,10 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool reve
 		// It makes no sense to calculate a stopping point for a ship entering hyperspace.
 		if(ship.IsUsingJumpDrive() || ship.IsEnteringHyperspace())
 		{
-			timeToStop = 0.;
-			toFace = angle.Unit();
-			return position;
+			info.timeToStop = 0.;
+			info.point = position;
+			info.toFace = angle.Unit();
+			return info;
 		}
 
 		// We need to slow down to MaxVelocity before doing anything else
@@ -3286,12 +3292,11 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool reve
 	if(s <= 1. + 1e-6)
 	{
 		// This case should only happen if the targetVelocity is faster than maxVelocity.
-
 		// We try to return something semi-sensible
-		timeToStop = 10000. / ship.MaxVelocity();
-		Point sp = position + timeToStop * targetVelocity.Unit();
-		toFace = (sp - ship.Position()).Unit();
-		return position + timeToStop * targetVelocity.Unit();
+		info.timeToStop = 10000. / ship.MaxVelocity();
+		info.point = position + info.timeToStop * targetVelocity.Unit();
+		info.toFace = (info.point - ship.Position()).Unit();
+		return info;
 	}
 
 	double t = 1 - 1. / s;
@@ -3304,18 +3309,16 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool reve
 	// integral of velocity over time
 	Point dist = (accel * c * d * T + (d * velocity - accel) * (1. - t)) / (c * d * d);
 
-	if(!reverse)
-		toFace = accel.Unit();
-	else
-		toFace = -accel.Unit();
+	info.toFace = reverse ? -accel.Unit() : accel.Unit();
 
-	double degreesToTurn = TO_DEG * acos(min(1., max(-1., toFace.Dot(angle.Unit()))));
+	double degreesToTurn = TO_DEG * acos(min(1., max(-1., info.toFace.Dot(angle.Unit()))));
 	Point stopDistance = velocity * (degreesToTurn / turnRate);
 
-	timeToStop = T + jumpTime + degreesToTurn / turnRate;
+	info.timeToStop = T + jumpTime + degreesToTurn / turnRate;
 
 	// distance travelled while accelerating, plus distance travelled while turning, minus distance target moved
-	return position + dist + stopDistance - targetVelocity * timeToStop;
+	info.point = position + dist + stopDistance - targetVelocity * info.timeToStop;
+	return info;
 }
 
 
@@ -4703,11 +4706,9 @@ void AI::IssueOrders(const PlayerInfo &player, const Orders &newOrders, const st
 			}
 			else if(existing.type == Orders::HOLD_POSITION)
 			{
-				double t;
-				Point f;
 				// Set the point this ship will "guard," so it can return
 				// to it if knocked away by projectiles / explosions.
-				existing.point = StoppingPoint(*ship, Point(), false, t, f);
+				existing.point = StoppingPoint(*ship, Point(), false).point;
 			}
 		}
 		if(!gaveOrder)

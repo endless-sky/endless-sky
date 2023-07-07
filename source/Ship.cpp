@@ -2658,7 +2658,7 @@ double Ship::MaxVelocity() const
 
 double Ship::ReverseAcceleration() const
 {
-	return attributes.Get("reverse thrust");
+	return attributes.Get("reverse thrust") / InertialMass();
 }
 
 

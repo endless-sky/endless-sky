@@ -48,6 +48,15 @@ class System;
 // the same target over and over.
 class AI {
 public:
+	class StoppingInfo {
+	public:
+		double timeToStop = 0.;
+		Point point;
+		Point toFace;
+	};
+
+
+public:
 	// Any object that can be a ship's target is in a list of this type:
 template <class Type>
 	using List = std::list<std::shared_ptr<Type>>;
@@ -133,8 +142,7 @@ private:
 	void DoScatter(Ship &ship, Command &command);
 	bool DoSecretive(Ship &ship, Command &command);
 
-	static Point StoppingPoint(const Ship &ship, const Point &targetVelocity, bool reverse,
-		double &timeToStop, Point &toFace);
+	static StoppingInfo StoppingPoint(const Ship &ship, const Point &targetVelocity, bool reverse);
 	// Get a vector giving the direction this ship should aim in in order to do
 	// maximum damage to a target at the given position with its non-turret,
 	// non-homing weapons. If the ship has no non-homing weapons, this just
