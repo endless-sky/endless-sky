@@ -120,7 +120,7 @@ namespace {
 	int boardingIndex = 0;
 
 	const vector<string> FLOTSAM_SETTINGS = {"off", "on", "flagship only", "escorts only"};
-	int flotsamIndex = 2;
+	int flotsamIndex = 1;
 
 	// Enable "fast" parallax by default. "fancy" is too GPU heavy, especially for low-end hardware.
 	const vector<string> PARALLAX_SETTINGS = {"off", "fancy", "fast"};
