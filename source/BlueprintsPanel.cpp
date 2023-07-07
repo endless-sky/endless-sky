@@ -201,14 +201,6 @@ bool BlueprintsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 		GetUI()->Pop(this);
 		GetUI()->Push(new PlayerInfoPanel(player, std::move(panelState)));
 	}
-	else if(key == 's' || key == SDLK_RETURN || key == SDLK_KP_ENTER || (control && key == SDLK_TAB))
-	{
-		if(!panelState.Ships().empty())
-		{
-			GetUI()->Pop(this);
-			GetUI()->Push(new ShipInfoPanel(player, std::move(panelState)));
-		}
-	}
 	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
 	{
 		int direction = (key == SDLK_PAGEDOWN) - (key == SDLK_PAGEUP);
