@@ -211,8 +211,7 @@ public:
 	// Move this ship. A ship may create effects as it moves, in particular if
 	// it is in the process of blowing up.
 	void Move(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
-	// Generate energy, heat, etc. (This is called by Move().)
-	void DoGeneration();
+
 	// Launch any ships that are ready to launch.
 	void Launch(std::list<std::shared_ptr<Ship>> &ships, std::vector<Visual> &visuals);
 	// Check if this ship is boarding another ship. If it is, it either plunders
@@ -461,6 +460,31 @@ public:
 
 
 private:
+	// Various steps of Ship::Move:
+
+	// Check if this ship has been in a different system from the player for so
+	// long that it should be "forgotten." Also eliminate ships that have no
+	// system set because they just entered a fighter bay. Clear the hyperspace
+	// targets of ships that can't enter hyperspace.
+	bool StepFlags();
+	// Step ship destruction logic. Returns 1 if the ship has been destroyed, -1 if it is being
+	// destroyed, or 0 otherwise.
+	int StepDestroyed(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
+	void DoGeneration();
+	void DoPassiveEffects(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
+	void DoJettison(std::list<std::shared_ptr<Flotsam>> &flotsam);
+	void DoCloakDecision();
+	// Step hyperspace enter/exit logic. Returns true if ship is hyperspacing in or out.
+	bool DoHyperspaceLogic(std::vector<Visual> &visuals);
+	// Step landing logic. Returns true if the ship is landing or departing.
+	bool DoLandingLogic();
+	void DoInitializeMovement();
+	void StepPilot();
+	void DoMovement(bool &isUsingAfterburner);
+	void StepTargeting();
+	void DoEngineVisuals(std::vector<Visual> &visuals, bool isUsingAfterburner);
+
+
 	// Add or remove a ship from this ship's list of escorts.
 	void AddEscort(Ship &ship);
 	void RemoveEscort(const Ship &ship);

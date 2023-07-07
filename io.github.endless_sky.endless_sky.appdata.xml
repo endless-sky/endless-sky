@@ -47,6 +47,26 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="0.10.2" date="2023-6-18">
+      <description>
+        <p>This is a stable release, focused on fixing bugs and making some other small improvements.</p>
+        <p>Some of those improvements are:</p>
+        <ul>
+          <li>More customisation options for rings drawn through interfaces.</li>
+          <li>A new personality that will prevent ships from ever cloaking.</li>
+          <li>Various new spaceport news items and civilian ship hails.</li>
+        </ul>
+        <p>Some notable bug fixes include:</p>
+        <ul>
+          <li>Various missions and spaceport news items will no longer appear at inappropriate locations.</li>
+          <li>Fixed some instances of ships ceasing to act and drifting forever inappropriately.</li>
+          <li>Fixed a problem with out of system escorts not landing to refuel when an appropriate planet is available.</li>
+        </ul>
+        <p>There's much more in the changelog!</p>
+        <p>Special thanks to the 16 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.2/changelog</url>
+    </release>
     <release version="0.10.1" date="2023-5-29" type="development" urgency="low">
       <description>
         <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
