@@ -121,8 +121,7 @@ int ShipyardPanel::DrawPlayerShipInfo(const Point &point)
 	shipInfo.Update(*playerShip, player, collapsed.count("description"));
 	shipInfo.DrawAttributes(point, true);
 	const int attributesHeight = shipInfo.GetAttributesHeight(true);
-	const Point outfitsPoint(point.X(), point.Y() + attributesHeight);
-	shipInfo.DrawOutfits(outfitsPoint);
+	shipInfo.DrawOutfits(Point(point.X(), point.Y() + attributesHeight));
 
 	return attributesHeight + shipInfo.OutfitsHeight();
 }
