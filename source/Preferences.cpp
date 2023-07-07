@@ -103,7 +103,7 @@ namespace {
 	const vector<string> OverlaySetting::OVERLAY_SETTINGS = {"off", "always on", "damaged", "--"};
 
 	map<Preferences::OverlayType, OverlaySetting> statusOverlaySettings = {
-		{Preferences::OverlayType::ALL, Preferences::OverlayState::DISABLED},
+		{Preferences::OverlayType::ALL, Preferences::OverlayState::OFF},
 		{Preferences::OverlayType::FLAGSHIP, Preferences::OverlayState::ON},
 		{Preferences::OverlayType::ESCORT, Preferences::OverlayState::ON},
 		{Preferences::OverlayType::ENEMY, Preferences::OverlayState::ON},
@@ -112,6 +112,9 @@ namespace {
 
 	const vector<string> AUTO_AIM_SETTINGS = {"off", "always on", "when firing"};
 	int autoAimIndex = 2;
+
+	const vector<string> AUTO_FIRE_SETTINGS = {"off", "on", "guns only", "turrets only"};
+	int autoFireIndex = 0;
 
 	const vector<string> BOARDING_SETTINGS = {"proximity", "value", "mixed"};
 	int boardingIndex = 0;
@@ -134,6 +137,7 @@ void Preferences::Load()
 	// values for settings that are off by default.
 	settings["Landing zoom"] = true;
 	settings["Render motion blur"] = true;
+	settings["Flagship flotsam collection"] = true;
 	settings[FRUGAL_ESCORTS] = true;
 	settings[EXPEND_AMMO] = true;
 	settings["Damaged fighters retreat"] = true;
@@ -180,6 +184,8 @@ void Preferences::Load()
 			statusOverlaySettings[OverlayType::NEUTRAL].SetState(node.Value(1));
 		else if(node.Token(0) == "Automatic aiming")
 			autoAimIndex = max<int>(0, min<int>(node.Value(1), AUTO_AIM_SETTINGS.size() - 1));
+		else if(node.Token(0) == "Automatic firing")
+			autoFireIndex = max<int>(0, min<int>(node.Value(1), AUTO_FIRE_SETTINGS.size() - 1));
 		else if(node.Token(0) == "Parallax background")
 			parallaxIndex = max<int>(0, min<int>(node.Value(1), PARALLAX_SETTINGS.size() - 1));
 		else if(node.Token(0) == "fullscreen")
@@ -209,8 +215,8 @@ void Preferences::Load()
 	it = settings.find("Show status overlays");
 	if(it != settings.end())
 	{
-		if(!it->second)
-			statusOverlaySettings[OverlayType::ALL] = OverlayState::OFF;
+		if(it->second)
+			statusOverlaySettings[OverlayType::ALL] = OverlayState::DISABLED;
 		settings.erase(it);
 	}
 }
@@ -234,6 +240,7 @@ void Preferences::Save()
 	out.Write("Show enemy overlays", statusOverlaySettings[OverlayType::ENEMY].ToInt());
 	out.Write("Show neutral overlays", statusOverlaySettings[OverlayType::NEUTRAL].ToInt());
 	out.Write("Automatic aiming", autoAimIndex);
+	out.Write("Automatic firing", autoFireIndex);
 	out.Write("Parallax background", parallaxIndex);
 	out.Write("alert indicator", alertIndicatorIndex);
 	out.Write("previous saves", previousSaveCount);
@@ -472,6 +479,28 @@ const string &Preferences::AutoAimSetting()
 {
 	return AUTO_AIM_SETTINGS[autoAimIndex];
 }
+
+
+
+void Preferences::ToggleAutoFire()
+{
+	autoFireIndex = (autoFireIndex + 1) % AUTO_FIRE_SETTINGS.size();
+}
+
+
+
+Preferences::AutoFire Preferences::GetAutoFire()
+{
+	return static_cast<AutoFire>(autoFireIndex);
+}
+
+
+
+const string &Preferences::AutoFireSetting()
+{
+	return AUTO_FIRE_SETTINGS[autoFireIndex];
+}
+
 
 
 

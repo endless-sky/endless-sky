@@ -689,7 +689,6 @@ ship "Modified Osprey"
 	turret 49.5 20 "Heliarch Repulsor"
 	turret 0 29 "Point Defense Turret"
 	turret 0 89.5 "Point Defense Turret"
-	
 	explode "medium explosion" 24
 	explode "large explosion" 16
 	explode "small explosion" 40

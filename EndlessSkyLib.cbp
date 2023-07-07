@@ -129,6 +129,8 @@
 		<Unit filename="source/Dialog.h" />
 		<Unit filename="source/Dictionary.cpp" />
 		<Unit filename="source/Dictionary.h" />
+		<Unit filename="source/DistanceCalculationSettings.cpp" />
+		<Unit filename="source/DistanceCalculationSettings.h" />
 		<Unit filename="source/DistanceMap.cpp" />
 		<Unit filename="source/DistanceMap.h" />
 		<Unit filename="source/Distribution.cpp" />
@@ -249,6 +251,8 @@
 		<Unit filename="source/Music.h" />
 		<Unit filename="source/NPC.cpp" />
 		<Unit filename="source/NPC.h" />
+		<Unit filename="source/NPCAction.cpp" />
+		<Unit filename="source/NPCAction.h" />
 		<Unit filename="source/News.cpp" />
 		<Unit filename="source/News.h" />
 		<Unit filename="source/Outfit.cpp" />
