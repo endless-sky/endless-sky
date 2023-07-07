@@ -62,7 +62,7 @@ namespace {
 	const string STATUS_OVERLAYS_ENEMY = "   Show enemy overlays";
 	const string STATUS_OVERLAYS_NEUTRAL = "   Show neutral overlays";
 	const string EXPEND_AMMO = "Escorts expend ammo";
-	const string FLOTSAM_SETTINGS = "Flotsam collection";
+	const string FLOTSAM_SETTING = "Flotsam collection";
 	const string TURRET_TRACKING = "Turret tracking";
 	const string FOCUS_PREFERENCE = "Turrets focus fire";
 	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
