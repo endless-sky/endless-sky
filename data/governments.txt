@@ -334,10 +334,11 @@ government "Gegno Vi"
 	"crew defense" 1.5
 	"attitude toward"
 		"Gegno" 1
+		"Gegno Vi (Duelist A)" 1
+		"Gegno Vi (Duelist B)" 1
 		"Gegno Scin" -0.01
 	"penalty for"
 		assist 0
-
 
 # Gegno Scin and Vi governments that do not fight each other.
 government "Gegno Scin (Neutral)"
@@ -372,7 +373,6 @@ government "Gegno Vi (Neutral)"
 	"foreign penalties for"
 		"Gegno"
 
-
 # Gegno Vi governments used for dueling.
 government "Gegno Vi (Duelist A)"
 	swizzle 0
@@ -405,6 +405,23 @@ government "Gegno Vi (Duelist B)"
 		"Gegno Scin" -0.01
 		"Gegno Vi" 1
 		"Gegno Vi (Duelist A)" -0.01
+	"penalty for"
+		assist 0
+
+# Gegno Vi government that is always hostile.
+government "Gegno Vi (Combative)"
+	swizzle 0
+	"display name" "Gegno Vi"
+	language "Gegno"
+	color "governments: Gegno Vi"
+
+	"player reputation" -0.1
+	"crew attack" 1.3
+	"crew defense" 1.5
+	"attitude toward"
+		"Gegno" 1
+		"Gegno Vi" 1
+		"Gegno Scin" -0.01
 	"penalty for"
 		assist 0
 

@@ -169,35 +169,11 @@ mission "Foreign Spectator I"
 				"Mica" 2
 
 
-mission "Veering Vi"
-	repeat
-	# invisible
-	landing
-	deadline 5
-	source
-		near "Heutesl" 100
-	to offer
-		random < 60
-		has "event: gegno suspicions"
-		not "Gegno Genocide Defense: offered"
-	to complete
-		never
-	npc save
-		government "Gegno Vi"
-		personality entering staying
-		system
-			government "Gegno Vi"
-		fleet
-			names "gegno vi"
-			variant
-				"Eclogite" 2
-
-
 mission "Scin Suspicion"
 	repeat
 	# invisible
 	landing
-	deadline 9
+	deadline 11
 	source
 		near "Heutesl" 100
 	to offer
@@ -209,7 +185,7 @@ mission "Scin Suspicion"
 		never
 	npc save
 		government "Gegno Scin"
-		personality surveillance entering
+		personality surveillance
 		system
 			government "Gegno Scin"
 		fleet
@@ -284,13 +260,13 @@ mission "Recurring Rumors"
 event "recurring rumors"
 
 
-mission "Intervention"
+mission "Gegno Intervention"
 	# invisible
 	landing
 	source "Giaru Gegno"
 	to offer
 		has "event: recurring rumors"
-		not "Gegno Geoncide Defense: offered"
+		not "Gegno Genocide Defense: offered"
 	on offer
 		conversation
 			`After you go through your post-docking routine and enter the ringworld, you can't help but feel that something is a bit off. Normally the Quarg here would be swiftly walking about, focused on attending to their duties, but for some reason, there seems to be less of them around than usual. Moreover, those you do come across are occasionally having discussions with one another, sometimes looking in your direction even for the slightest second. What stands out the most is the lack of any Gegno in the area you're in at all.`
@@ -353,7 +329,131 @@ mission "Intervention"
 				decline
 
 
-# Various ambient missions that the player can get sucked into if they continue to be nosy
+mission "Under the Nose"
+	# invisible
+	landing
+	source "Giaru Gegno"
+	to offer
+		has "event: recurring rumors"
+		not "Gegno Genocide Defense: offered"
+	to complete
+		never
+	on enter "Aleit"
+		fail
+
+	npc
+		on kill
+			set "yvx killed"
+		government "Gegno Vi"
+		personality heroic vindictive ramming daring entering fleeing uninterested
+		system "Aleit"
+		ship "Rhyolite" "Imtydei"
+
+
+mission "Veering Vi A"
+	repeat
+	# invisible
+	landing
+	deadline 7
+	to offer
+		random < 30
+		has "Gegno Intervention: declined"
+		not "Vi Backlash A: active"
+		not "Gegno Genocide Defense: offered"
+
+	npc
+		on kill
+			set "backlash a"
+		system "Ookmya"
+		government "Gegno Vi (Combative)"
+		personality heroic staying
+		fleet
+			names "gegno vi"
+			variant 5
+				"Dunite"
+			variant
+				"Dunite" 2
+
+mission "Veering Vi B"
+	repeat
+	# invisible
+	landing
+	deadline 7
+	to offer
+		random < 30
+		has "Gegno Intervention: declined"
+		not "Vi Backlash B: active"
+		not "Gegno Genocide Defense: offered"
+
+	npc
+		on kill
+			set "backlash b"
+		system
+			government "Gegno Vi"
+		government "Gegno Vi (Combative)"
+		personality heroic staying
+		fleet
+			names "gegno vi"
+			variant
+				"Eclogite"
+
+
+mission "Scin Presence on Cyife"
+	# invisible
+	landing
+	destination "Cyife"
+	to offer
+		random < 30
+		has "Gegno Intervention: declined"
+		not "Gegno Genocide Defense: offered"
+	on complete
+		conversation
+		`Test.`
+			decline
+
+
+mission "Battle over Zydee"  
+	# invisible
+	landing
+	to offer
+		random < 30
+		has "Gegno Intervention: declined"
+		not "Gegno Genocide Defense: offered"
+	source "Zydee"
+	to complete
+		never
+	on offer
+		conversation
+		`Test`.
+			decline
+	on enter "Kneirc"
+		fail
+
+	npc
+		on provoke
+			set "
+		governmnet "Gegno Vi"
+		personality heroic entering
+		system "Kneirc"
+
+	npc
+		on provoke
+			set "
+		governmnet "Gegno Scin"
+		personality heroic staying
+		system "Kneirc"
+
+	npc
+		on provoke
+			set "
+		governmnet "Gegno Scin"
+		personality heroic entering
+		system "Kneirc" ????
+
+
+
+
+
 
 
 # mission "Quarg Reach Understanding" (Quarg follow player to Dueyu Eitch and find grounds with the Gegno"
