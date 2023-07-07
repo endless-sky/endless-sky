@@ -130,20 +130,20 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 {
 	double density = system ? system->StarfieldDensity() : 1.;
 
-	double baseZoom = sqrt(zoom * 0.5);
-
 	// Check preferences for the parallax quality.
 	const auto parallaxSetting = Preferences::GetBackgroundParallax();
 	int layers = (parallaxSetting == Preferences::BackgroundParallax::FANCY) ? 3 : 1;
 	bool isParallax = (parallaxSetting == Preferences::BackgroundParallax::FANCY ||
 						parallaxSetting == Preferences::BackgroundParallax::FAST);
 
+	double baseZoom = isParallax ? zoom * 0.8 : zoom;
+
 	// Draw the starfield unless it is disabled in the preferences.
 	if(Preferences::Has("Draw starfield") && density > 0.)
 	{
 		for(int pass = 1; pass <= layers; pass++)
 		{
-			Point backgroundPos = (pos / 2) + Point(pass * Screen::Width(), pass * Screen::Height());
+			Point backgroundPos = (isParallax ? (pos / 2) : pos) + Point(pass * Screen::Width(), pass * Screen::Height());
 			Point backgroundVel = vel / 2;
 
 			// Draw the star layer
@@ -153,7 +153,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 
 				// Modify zoom for the first parallax layer.
 				if(isParallax)
-					zoom = baseZoom * STAR_ZOOM * pow(pass, 0.2);
+					zoom = sqrt(baseZoom * STAR_ZOOM * pow(pass, 0.2));
 
 				float length = backgroundVel.Length();
 				Point unit = length ? backgroundVel.Unit() : Point(1., 0.);
@@ -211,7 +211,11 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 			if(Preferences::Has("Draw background haze"))
 			{
 				backgroundPos /= pass;
-				double hazeZoom = baseZoom * HAZE_ZOOM * pass;
+				double hazeZoom;
+				if(isParallax)
+					hazeZoom = sqrt(baseZoom * HAZE_ZOOM * pass);
+				else
+					hazeZoom = zoom;
 
 				DrawList drawList;
 				drawList.Clear(0, hazeZoom);
