@@ -192,8 +192,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	}
 	else if(key == 'S' && hasAccess && planet.HasShipyard())
 	{
-		designPlayer.NewDesign(player);
-		GetUI()->Push(new ShipyardPanel(designPlayer));
+		GetUI()->Push(new ShipyardPanel(player.DesignPlayer()));
 		return true;
 	}
 	else if(key == 'o' && hasAccess && planet.HasOutfitter())
@@ -210,8 +209,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		for(const auto &it : player.Ships())
 			if(it->GetSystem() == &system && !it->IsDisabled())
 			{
-				designPlayer.NewDesign(player);
-				GetUI()->Push(new OutfitterPanel(designPlayer));
+				GetUI()->Push(new OutfitterPanel(player.DesignPlayer()));
 				return true;
 			}
 	}

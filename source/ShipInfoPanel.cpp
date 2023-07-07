@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipInfoPanel.h"
 
 #include "text/alignment.hpp"
+#include "BlueprintsPanel.h"
 #include "CategoryList.h"
 #include "CategoryTypes.h"
 #include "Command.h"
@@ -158,6 +159,11 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 	{
 		GetUI()->Pop(this);
 		GetUI()->Push(new PlayerInfoPanel(player, std::move(panelState)));
+	}
+	else if(key == 'b')
+	{
+		GetUI()->Pop(this);
+		GetUI()->Push(new BlueprintsPanel(player, std::move(panelState)));
 	}
 	else if(key == 'R' || (key == 'r' && shift))
 		GetUI()->Push(new Dialog(this, &ShipInfoPanel::Rename, "Change this ship's name?", (*shipIt)->Name()));

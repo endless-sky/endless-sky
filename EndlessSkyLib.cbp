@@ -84,6 +84,8 @@
 		<Unit filename="source/BatchShader.h" />
 		<Unit filename="source/Bitset.cpp" />
 		<Unit filename="source/Bitset.h" />
+		<Unit filename="source/Blueprints.cpp" />
+		<Unit filename="source/Blueprints.h" />
 		<Unit filename="source/BoardingPanel.cpp" />
 		<Unit filename="source/BoardingPanel.h" />
 		<Unit filename="source/Body.cpp" />
