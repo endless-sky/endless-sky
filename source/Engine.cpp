@@ -2262,7 +2262,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 	if(!collector)
 		return;
 
-	// Checks for player Flotsam Collection Settings
+	// Checks for player FlotsamCollection setting
 	if(collector->IsYours())
 	{
 		const auto flotsamSetting = Preferences::GetFlotsam();
