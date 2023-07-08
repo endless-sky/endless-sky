@@ -139,108 +139,106 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 	double baseZoom = isParallax ? zoom * 0.8 : zoom;
 
 	// Draw the starfield unless it is disabled in the preferences.
-	if(Preferences::Has("Draw starfield") && density > 0.)
+	for(int pass = 1; pass <= layers; pass++)
 	{
-		for(int pass = 1; pass <= layers; pass++)
-		{
-			Point backgroundPos = (isParallax ? (pos / 2) : pos) + Point(pass * Screen::Width(), pass * Screen::Height());
-			Point backgroundVel = vel / 2;
+		Point backgroundPos = (isParallax ? (pos / 2) : pos) + Point(pass * Screen::Width(), pass * Screen::Height());
+		Point backgroundVel = vel / 2;
 
-			// Draw the star layer
+		// Draw the star layer
+		if(Preferences::Has("Draw starfield") && density > 0.) {
+			glUseProgram(shader.Object());
+			glBindVertexArray(vao);
+
+			// Modify zoom for the first parallax layer.
+			if(isParallax)
+				zoom = sqrt(baseZoom * STAR_ZOOM * pow(pass, 0.2));
+
+			float length = backgroundVel.Length();
+			Point unit = length ? backgroundVel.Unit() : Point(1., 0.);
+			// Don't zoom the stars at the same rate as the field; otherwise, at the
+			// farthest out zoom they are too small to draw well.
+			unit /= pow(zoom, .75);
+
+			float starfieldZoom = static_cast<float>(2. * zoom);
+			GLfloat scale[2] = {starfieldZoom / Screen::Width(), -starfieldZoom / Screen::Height()};
+			glUniform2fv(scaleI, 1, scale);
+
+			GLfloat rotate[4] = {
+				static_cast<float>(unit.Y()), static_cast<float>(-unit.X()),
+				static_cast<float>(unit.X()), static_cast<float>(unit.Y())};
+			glUniformMatrix2fv(rotateI, pass, false, rotate);
+
+			glUniform1f(elongationI, length * zoom);
+			glUniform1f(brightnessI, min(1., pow(zoom, .5)));
+
+			// Stars this far beyond the border may still overlap the screen.
+			double borderX = fabs(backgroundVel.X()) + 1.;
+			double borderY = fabs(backgroundVel.Y()) + 1.;
+			// Find the absolute bounds of the star field we must draw.
+			int minX = backgroundPos.X() + (Screen::Left() - borderX) / zoom;
+			int minY = backgroundPos.Y() + (Screen::Top() - borderY) / zoom;
+			int maxX = backgroundPos.X() + (Screen::Right() + borderX) / zoom;
+			int maxY = backgroundPos.Y() + (Screen::Bottom() + borderY) / zoom;
+			// Round down to the start of the nearest tile.
+			minX &= ~(TILE_SIZE - 1l);
+			minY &= ~(TILE_SIZE - 1l);
+
+			for(int gy = minY; gy < maxY; gy += TILE_SIZE)
 			{
-				glUseProgram(shader.Object());
-				glBindVertexArray(vao);
-
-				// Modify zoom for the first parallax layer.
-				if(isParallax)
-					zoom = sqrt(baseZoom * STAR_ZOOM * pow(pass, 0.2));
-
-				float length = backgroundVel.Length();
-				Point unit = length ? backgroundVel.Unit() : Point(1., 0.);
-				// Don't zoom the stars at the same rate as the field; otherwise, at the
-				// farthest out zoom they are too small to draw well.
-				unit /= pow(zoom, .75);
-
-				float baseZoom = static_cast<float>(2. * zoom);
-				GLfloat scale[2] = {baseZoom / Screen::Width(), -baseZoom / Screen::Height()};
-				glUniform2fv(scaleI, 1, scale);
-
-				GLfloat rotate[4] = {
-					static_cast<float>(unit.Y()), static_cast<float>(-unit.X()),
-					static_cast<float>(unit.X()), static_cast<float>(unit.Y())};
-				glUniformMatrix2fv(rotateI, pass, false, rotate);
-
-				glUniform1f(elongationI, length * zoom);
-				glUniform1f(brightnessI, min(1., pow(zoom, .5)));
-
-				// Stars this far beyond the border may still overlap the screen.
-				double borderX = fabs(backgroundVel.X()) + 1.;
-				double borderY = fabs(backgroundVel.Y()) + 1.;
-				// Find the absolute bounds of the star field we must draw.
-				int minX = backgroundPos.X() + (Screen::Left() - borderX) / zoom;
-				int minY = backgroundPos.Y() + (Screen::Top() - borderY) / zoom;
-				int maxX = backgroundPos.X() + (Screen::Right() + borderX) / zoom;
-				int maxY = backgroundPos.Y() + (Screen::Bottom() + borderY) / zoom;
-				// Round down to the start of the nearest tile.
-				minX &= ~(TILE_SIZE - 1l);
-				minY &= ~(TILE_SIZE - 1l);
-
-				for(int gy = minY; gy < maxY; gy += TILE_SIZE)
+				float shove = pow(-5., pass);
+				for(int gx = minX; gx < maxX; gx += TILE_SIZE)
 				{
-					float shove = pow(-5., pass);
-					for(int gx = minX; gx < maxX; gx += TILE_SIZE)
-					{
-						Point off = Point(gx + shove, gy + shove) - backgroundPos;
-						GLfloat translate[2] = {
-							static_cast<float>(off.X()),
-							static_cast<float>(off.Y())
-						};
-						glUniform2fv(translateI, 1, translate);
+					Point off = Point(gx + shove, gy + shove) - backgroundPos;
+					GLfloat translate[2] = {
+						static_cast<float>(off.X()),
+						static_cast<float>(off.Y())
+					};
+					glUniform2fv(translateI, 1, translate);
 
-						int index = (gx & widthMod) / TILE_SIZE + ((gy & widthMod) / TILE_SIZE) * tileCols;
-						int first = 6 * tileIndex[index];
-						int count = 6 * tileIndex[index + 1] - first;
-						glDrawArrays(GL_TRIANGLES, first, density * count / (pass * layers));
-					}
+					int index = (gx & widthMod) / TILE_SIZE + ((gy & widthMod) / TILE_SIZE) * tileCols;
+					int first = 6 * tileIndex[index];
+					int count = 6 * tileIndex[index + 1] - first;
+					glDrawArrays(GL_TRIANGLES, first, density * count / (pass * layers));
 				}
-
-				glBindVertexArray(0);
-				glUseProgram(0);
 			}
-			// Draw the haze layer
-			if(Preferences::Has("Draw background haze"))
-			{
-				backgroundPos /= pass;
-				double hazeZoom;
-				if(isParallax)
-					hazeZoom = sqrt(baseZoom * HAZE_ZOOM * pass);
-				else
-					hazeZoom = zoom;
 
-				DrawList drawList;
-				drawList.Clear(0, hazeZoom);
-				drawList.SetCenter(backgroundPos);
+			glBindVertexArray(0);
+			glUseProgram(0);
+		}
+		
+		// Draw the haze layer
+		if(Preferences::Has("Draw background haze"))
+		{
+			backgroundPos /= pass;
+			double hazeZoom;
+			if(isParallax)
+				hazeZoom = sqrt(baseZoom * HAZE_ZOOM * pass);
+			else
+				hazeZoom = zoom;
 
-				if(transparency > FADE_PER_FRAME)
-					transparency -= FADE_PER_FRAME;
-				else
-					transparency = 0.;
+			DrawList drawList;
+			drawList.Clear(0, hazeZoom);
+			drawList.SetCenter(backgroundPos);
 
-				// Set zoom to a higher level than stars to avoid premature culling.
-				hazeZoom = min(.25, hazeZoom / 1.4);
+			if(transparency > FADE_PER_FRAME)
+				transparency -= FADE_PER_FRAME;
+			else
+				transparency = 0.;
 
-				// Any object within this range must be drawn. Some haze sprites may repeat
-				// more than once if the view covers a very large area.
-				Point size = Point(1., 1.) * haze[0].front().Radius();
-				Point topLeft = backgroundPos + (Screen::TopLeft() - size) / hazeZoom;
-				Point bottomRight = backgroundPos + (Screen::BottomRight() + size) / hazeZoom;
-				double transparencyMod = 1. - ((2. * ((layers - pass + 1))) / (layers * (layers + 1.))) / pow(layers, 0.1);
-				if(transparency > 0.)
-					AddHaze(drawList, haze[1], topLeft, bottomRight, (1 - transparency) + transparencyMod);
-				AddHaze(drawList, haze[0], topLeft, bottomRight, transparency + transparencyMod);
+			// Set zoom to a higher level than stars to avoid premature culling.
+			hazeZoom = min(.25, hazeZoom / 1.4);
 
-				drawList.Draw();
-			}
+			// Any object within this range must be drawn. Some haze sprites may repeat
+			// more than once if the view covers a very large area.
+			Point size = Point(1., 1.) * haze[0].front().Radius();
+			Point topLeft = backgroundPos + (Screen::TopLeft() - size) / hazeZoom;
+			Point bottomRight = backgroundPos + (Screen::BottomRight() + size) / hazeZoom;
+			double transparencyMod = 1. - ((2. * ((layers - pass + 1))) / (layers * (layers + 1.))) / pow(layers, 0.1);
+			if(transparency > 0.)
+				AddHaze(drawList, haze[1], topLeft, bottomRight, (1 - transparency) + transparencyMod);
+			AddHaze(drawList, haze[0], topLeft, bottomRight, transparency + transparencyMod);
+
+			drawList.Draw();
 		}
 	}
 }
