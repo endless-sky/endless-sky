@@ -1192,6 +1192,7 @@ vector<string> Ship::FlightCheck() const
 	double afterburner = attributes.Get("afterburner thrust");
 	double thrustEnergy = attributes.Get("thrusting energy");
 	double turn = attributes.Get("turn");
+	double vectoredThrust = attributes.Get("vectored thrust");
 	double turnEnergy = attributes.Get("turning energy");
 	double hyperDrive = navigation.HasHyperdrive();
 	double jumpDrive = navigation.HasJumpDrive();
@@ -1205,7 +1206,7 @@ vector<string> Ship::FlightCheck() const
 		checks.emplace_back("no fuel!");
 	else if(!thrust && !reverseThrust && !afterburner)
 		checks.emplace_back("no thruster!");
-	else if(!turn)
+	else if(!turn && !vectoredThrust)
 		checks.emplace_back("no steering!");
 	else if(RequiredCrew() > attributes.Get("bunks"))
 		checks.emplace_back("insufficient bunks!");
@@ -2632,7 +2633,7 @@ double Ship::InertialMass() const
 
 double Ship::TurnRate() const
 {
-	return attributes.Get("turn") / InertialMass();
+	return (attributes.Get("turn") + attributes.Get("vectored thrust") * Commands().Has(Command::FORWARD)) / InertialMass();
 }
 
 
@@ -4118,6 +4119,8 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 		velocity *= 1. - Drag() / mass;
 	else if(!pilotError)
 	{
+		double thrustCommand = commands.Has(Command::FORWARD) - commands.Has(Command::BACK);
+		double thrust = 0.;
 		if(commands.Turn())
 		{
 			// Check if we are able to turn.
@@ -4167,8 +4170,6 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				angle += commands.Turn() * TurnRate() * slowMultiplier;
 			}
 		}
-		double thrustCommand = commands.Has(Command::FORWARD) - commands.Has(Command::BACK);
-		double thrust = 0.;
 		if(thrustCommand)
 		{
 			// Check if we are able to apply this thrust.

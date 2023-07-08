@@ -159,6 +159,9 @@ namespace {
 	void DrawFlareSprites(const Ship &ship, DrawList &draw, const vector<Ship::EnginePoint> &enginePoints,
 		const vector<pair<Body, int>> &flareSprites, uint8_t side)
 	{
+		int thrustVectoring = (ship.Commands().Has(Command::FORWARD) + ship.Commands().Has(Command::BACK)) * ( 180 - ship.Commands().Turn());
+		Angle flareVector = Angle(double(30) * thrustVectoring);
+
 		for(const Ship::EnginePoint &point : enginePoints)
 		{
 			Point pos = ship.Facing().Rotate(point) * ship.Zoom() + ship.Position();
@@ -170,7 +173,7 @@ namespace {
 					|| (point.steering == Ship::EnginePoint::RIGHT && ship.SteeringDirection() > 0.)))
 					for(int i = 0; i < it.second && i < 3; ++i)
 					{
-						Body sprite(it.first, pos, ship.Velocity(), ship.Facing() + point.facing, point.zoom);
+						Body sprite(it.first, pos, ship.Velocity(), ship.Facing() + flareVector + point.facing, point.zoom);
 						draw.Add(sprite, ship.Cloaking());
 					}
 		}
