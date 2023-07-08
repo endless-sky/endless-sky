@@ -42,8 +42,8 @@ SCENARIO( "Creating a Ship::Bay instance", "[ship][bay]" ) {
 	GIVEN( "a reference position" ) {
 		auto bay = Ship::Bay(20., 40., "Fighter");
 		THEN( "the position is scaled by 50%" ) {
-			CHECK_THAT( bay.point.X(), WithinRel(10., 0.01) );
-			CHECK_THAT( bay.point.Y(), WithinRel(20., 0.01) );
+			CHECK( bay.point.X() == Approx(10.) );
+			CHECK( bay.point.Y() == Approx(20.) );
 		}
 	}
 	GIVEN( "a category string" ) {

@@ -6,8 +6,7 @@ endif()
 # Every source file (and header file) should be listed here.
 # If you add a new file, add it to this list.
 target_sources(EndlessSkyTests PRIVATE
-	unit/include/catch_amalgamated.hpp
-	unit/include/catch_amalgamated.cpp
+	unit/include/catch.hpp
 	unit/include/datanode-factory.h
 	unit/include/es-test.hpp
 	unit/include/output-capture.hpp
