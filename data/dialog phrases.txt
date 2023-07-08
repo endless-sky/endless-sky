@@ -87,7 +87,8 @@ phrase "generic waypoint on visit"
 
 phrase "generic hunted bounty eliminated dialog"
 	word
-		`The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>.`
+		`The <npc> has been eliminated. Shortly afterwards, the government of <planet> sends you <payment> along with a message of gratitude.`
+
 phrase "generic bounty hunting payment dialog"
 	word
 		`The government of <planet> gratefully pays you <payment> for eliminating the <npc>.`
@@ -100,7 +101,8 @@ phrase "generic bounty hunting boarding on visit"
 
 phrase "generic hunted bounty fleet eliminated dialog"
 	word
-		`The <npc> and their fleet have been eliminated. You can claim the bounty payment by returning to <destination>.`
+		`The <npc> and their fleet have been eliminated. Shortly afterwards, the government of <planet> sends you <payment> along with a message of gratitude.`
+
 phrase "generic fleet bounty hunting payment dialog"
 	word
 		`The government of <planet> gratefully pays you <payment> for eliminating the <npc> and their fleet.`
