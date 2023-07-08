@@ -25,6 +25,8 @@ namespace { // test namespace
 // #region mock data
 // #endregion mock data
 
+
+
 // #region unit tests
 SCENARIO( "Creating a FireCommand instance", "[firecommand]") {
 	GIVEN( "an instance" ) {
@@ -54,15 +56,15 @@ SCENARIO( "A FireCommand instance is being copied", "[firecommand]" ) {
 				CHECK( copy.HasFire(2) == command.HasFire(2) );
 				CHECK( copy.HasFire(3) == command.HasFire(3) );
 				CHECK( copy.HasFire(4) == command.HasFire(4) );
-				CHECK_THAT( copy.Aim(0), WithinRel(command.Aim(0), 0.01) );
-				CHECK_THAT( copy.Aim(1), WithinRel(command.Aim(1), 0.01) );
-				CHECK_THAT( copy.Aim(2), WithinRel(command.Aim(2), 0.01) );
-				CHECK_THAT( copy.Aim(3), WithinRel(command.Aim(3), 0.01) );
-				CHECK_THAT( copy.Aim(4), WithinRel(command.Aim(4), 0.01) );
+				CHECK( copy.Aim(0) == Approx(command.Aim(0)) );
+				CHECK( copy.Aim(1) == Approx(command.Aim(1)) );
+				CHECK( copy.Aim(2) == Approx(command.Aim(2)) );
+				CHECK( copy.Aim(3) == Approx(command.Aim(3)) );
+				CHECK( copy.Aim(4) == Approx(command.Aim(4)) );
 			}
 			THEN( "the two bitsets are independent" ) {
 				command.SetAim(1, -1.);
-				CHECK_THAT( command.Aim(1), WithinRel(-1., 0.01) );
+				CHECK( command.Aim(1) == Approx(-1) );
 				CHECK_FALSE( copy.Aim(1) );
 
 				copy.SetFire(4);
@@ -110,15 +112,15 @@ SCENARIO( "A FireCommand instance is being used", "[firecommand]") {
 			command.SetAim(4, 1.);
 			command.SetAim(9, 1.);
 
-			REQUIRE_THAT( command.Aim(0), WithinRel(-1., 0.01) );
-			REQUIRE_THAT( command.Aim(4), WithinRel(1., 0.01) );
-			REQUIRE_THAT( command.Aim(9), WithinRel(1., 0.01) );
+			REQUIRE( command.Aim(0) == Approx(-1.) );
+			REQUIRE( command.Aim(4) == Approx(1.) );
+			REQUIRE( command.Aim(9) == Approx(1.) );
 			WHEN( "clear is called" ) {
 				command.Clear();
 				THEN( "the command is empty" ) {
-					CHECK_THAT( command.Aim(0), WithinRel(0., 0.01) );
-					CHECK_THAT( command.Aim(4), WithinRel(0., 0.01) );
-					CHECK_THAT( command.Aim(9), WithinRel(0., 0.01) );
+					CHECK( command.Aim(0) == Approx(0.) );
+					CHECK( command.Aim(4) == Approx(0.) );
+					CHECK( command.Aim(9) == Approx(0.) );
 				}
 			}
 		}

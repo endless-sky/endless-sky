@@ -30,58 +30,58 @@ namespace { // test namespace
 // #region unit tests
 TEST_CASE( "Angle::Angle", "[angle]") {
 	Angle defaultAngle;
-	CHECK_THAT( defaultAngle.Degrees(), WithinAbs(0., 0.01) );
+	CHECK( defaultAngle.Degrees() == Approx(0.) );
 	Point defaultUnit = defaultAngle.Unit();
-	CHECK_THAT( defaultUnit.X(), WithinAbs(0., 0.01) );
-	CHECK_THAT( defaultUnit.Y(), WithinRel(-1., 0.01) );
-	CHECK_THAT( Angle(defaultUnit).Degrees(), WithinRel(defaultAngle.Degrees(), 0.01) );
+	CHECK( defaultUnit.X() == Approx(0.) );
+	CHECK( defaultUnit.Y() == Approx(-1.) );
+	CHECK( Angle(defaultUnit).Degrees() == Approx(defaultAngle.Degrees()) );
 
 	Angle halfAngle = 180.;
-	CHECK_THAT( halfAngle.Degrees(), WithinRel(-180., 0.01) );
+	CHECK( halfAngle.Degrees() == Approx(-180.) );
 	Point halfUnit = halfAngle.Unit();
-	CHECK_THAT( halfUnit.X(), WithinAbs(0., 0.01) );
-	CHECK_THAT( halfUnit.Y(), WithinRel(1., 0.01) );
-	CHECK_THAT( Angle(halfUnit).Degrees(), WithinRel(halfAngle.Degrees(), 0.01) );
+	CHECK( halfUnit.X() == Approx(0.).margin(0.01) );
+	CHECK( halfUnit.Y() == Approx(1.) );
+	CHECK( Angle(halfUnit).Degrees() == Approx(halfAngle.Degrees()) );
 
 	Angle fullAngle = 360.;
-	CHECK_THAT( fullAngle.Degrees(), WithinAbs(0., 0.01) );
+	CHECK( fullAngle.Degrees() == Approx(0.) );
 	Point fullUnit = fullAngle.Unit();
-	CHECK_THAT( fullUnit.X(), WithinAbs(0., 0.01) );
-	CHECK_THAT( fullUnit.Y(), WithinRel(-1., 0.01) );
-	CHECK_THAT( Angle(fullUnit).Degrees(), WithinRel(fullAngle.Degrees(), 0.01) );
+	CHECK( fullUnit.X() == Approx(0.) );
+	CHECK( fullUnit.Y() == Approx(-1.) );
+	CHECK( Angle(fullUnit).Degrees() == Approx(fullAngle.Degrees()) );
 }
 
 TEST_CASE( "Angle::Rotate", "[angle][rotate]" ) {
 	Angle angle = 180.;
-	REQUIRE_THAT( angle.Degrees(), WithinRel(-180., 0.01) );
+	REQUIRE( angle.Degrees() == Approx(-180.) );
 
 	auto rotate1 = angle.Rotate(Point(0., 1.));
-	CHECK_THAT( rotate1.X(), WithinAbs(0., 0.01) );
-	CHECK_THAT( rotate1.Y(), WithinRel(-1., 0.01) );
+	CHECK( rotate1.X() == Approx(0.).margin(0.01) );
+	CHECK( rotate1.Y() == Approx(-1.) );
 
 	auto rotate2 = angle.Rotate(Point(1., -1.));
-	CHECK_THAT( rotate2.X(), WithinRel(-1., 0.01) );
-	CHECK_THAT( rotate2.Y(), WithinRel(1., 0.01) );
+	CHECK( rotate2.X() == Approx(-1.) );
+	CHECK( rotate2.Y() == Approx(1.) );
 }
 
 TEST_CASE( "Angle arithmetic", "[angle][arithmetic]") {
 	Angle angle = 60.;
-	REQUIRE_THAT( angle.Degrees(), WithinRel(60., 0.05) );
+	REQUIRE( angle.Degrees() == Approx(60.).margin(0.05) );
 
 	angle += 45.;
-	REQUIRE_THAT( angle.Degrees(), WithinRel(105., 0.05) );
+	REQUIRE( angle.Degrees() == Approx(105.).margin(0.05) );
 
 	angle = angle + 100.;
-	REQUIRE_THAT( angle.Degrees(), WithinRel(-155., 0.05) );
+	REQUIRE( angle.Degrees() == Approx(-155.).margin(0.05) );
 
 	angle -= 50.;
-	REQUIRE_THAT( angle.Degrees(), WithinRel(155., 0.05) );
+	REQUIRE( angle.Degrees() == Approx(155.).margin(0.05) );
 
 	angle = angle - 25.;
-	REQUIRE_THAT( angle.Degrees(), WithinRel(130., 0.05) );
+	REQUIRE( angle.Degrees() == Approx(130.).margin(0.05) );
 
 	angle = -angle;
-	REQUIRE_THAT( angle.Degrees(), WithinRel(-130., 0.05) );
+	REQUIRE( angle.Degrees() == Approx(-130.).margin(0.05) );
 }
 
 TEST_CASE( "Angle::Random", "[angle][random]") {
@@ -90,14 +90,14 @@ TEST_CASE( "Angle::Random", "[angle][random]") {
 	for(int i = 0; i < 10; ++i)
 	{
 		auto random = Angle::Random(value);
-		CHECK( random.Degrees() >= -180. - 0.05 );
-		CHECK( random.Degrees() <= 180. + 0.05 );
+		CHECK( random.Degrees() >= Approx(-180.).margin(0.05));
+		CHECK( random.Degrees() <= Approx(180.).margin(0.05));
 
 		auto unit = random.Unit();
-		CHECK( unit.X() >= -1. );
-		CHECK( unit.X() <= 1. );
-		CHECK( unit.Y() >= -1. );
-		CHECK( unit.Y() <= 1. );
+		CHECK( unit.X() >= Approx(-1.) );
+		CHECK( unit.X() <= Approx(1.) );
+		CHECK( unit.Y() >= Approx(-1.) );
+		CHECK( unit.Y() <= Approx(1.) );
 	}
 }
 

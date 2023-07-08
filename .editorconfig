@@ -15,7 +15,7 @@ indent_style = tab
 [{*.{cpp,h,rc,hpp}, SConstruct, SConscript}]
 indent_style = tab
 # Except any third-party libraries
-[{catch_amalgamated.{hpp,cpp}}]
+[catch.hpp]
 indent_style = unset
 
 # Changelog file

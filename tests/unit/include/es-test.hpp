@@ -26,7 +26,5 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // #define CATCH_CONFIG_WINDOWS_CRTDBG
 #endif
 
-#include "catch_amalgamated.hpp"
-
-using namespace Catch;
-using namespace Catch::Matchers;
+#define CATCH_CONFIG_NO_CPP17_UNCAUGHT_EXCEPTIONS
+#include "catch.hpp"
