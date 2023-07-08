@@ -109,7 +109,7 @@ void MainPanel::Step()
 		if(isActive && flagship->IsDisabled() && !flagship->IsDestroyed())
 			isActive = !DoHelp("disabled");
 		bool canRefuel = player.GetSystem()->HasFuelFor(*flagship);
-		if(isActive && !flagship->IsHyperspacing() && !flagship->JumpsRemaining() && !canRefuel)
+		if(isActive && !flagship->GetHyperpacePercentage() && !flagship->JumpsRemaining() && !canRefuel)
 			isActive = !DoHelp("stranded");
 		shared_ptr<Ship> target = flagship->GetTargetShip();
 		if(isActive && target && target->IsDisabled() && !target->GetGovernment()->IsEnemy())
@@ -126,7 +126,7 @@ void MainPanel::Step()
 			isActive = !DoHelp("try out fighters transfer cargo");
 		if(isActive && Preferences::Has("Fighters transfer cargo"))
 			isActive = !DoHelp("fighters transfer cargo");
-		if(isActive && !flagship->IsHyperspacing() && flagship->Position().Length() > 10000.
+		if(isActive && !flagship->GetHyperpacePercentage() && flagship->Position().Length() > 10000.
 				&& player.GetDate() <= player.StartData().GetDate() + 4)
 		{
 			++lostness;

@@ -80,7 +80,7 @@ namespace {
 	// Check if the given ship can "swarm" the targeted ship, e.g. to provide anti-missile cover.
 	bool CanSwarm(const Ship &ship, const Ship &target)
 	{
-		if(target.GetPersonality().IsSwarming() || target.IsHyperspacing())
+		if(target.GetPersonality().IsSwarming() || target.GetHyperpacePercentage())
 			return false;
 		if(target.GetGovernment()->IsEnemy(ship.GetGovernment()))
 			return false;
@@ -706,7 +706,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 
 		// If this ship is hyperspacing, or in the act of
 		// launching or landing, it can't do anything else.
-		if(it->IsHyperspacing() || it->Zoom() < 1.)
+		if(it->GetHyperpacePercentage() || it->Zoom() < 1.)
 		{
 			it->SetCommands(command);
 			it->SetCommands(firingCommands);
@@ -767,7 +767,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		if(shipToAssist)
 		{
 			if(shipToAssist->IsDestroyed() || shipToAssist->GetSystem() != it->GetSystem()
-					|| shipToAssist->IsLanding() || shipToAssist->IsHyperspacing()
+					|| shipToAssist->IsLanding() || shipToAssist->GetHyperpacePercentage()
 					|| shipToAssist->GetGovernment()->IsEnemy(gov)
 					|| (!shipToAssist->IsDisabled() && !shipToAssist->NeedsFuel()))
 			{
@@ -1240,7 +1240,7 @@ bool AI::CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel) con
 	// Fighters, drones, and disabled / absent ships can't offer assistance.
 	if(helper.CanBeCarried() || helper.GetSystem() != ship.GetSystem()
 			|| (helper.Cloaking() == 1. && helper.GetGovernment() != ship.GetGovernment())
-			|| helper.IsDisabled() || helper.IsOverheated() || helper.IsHyperspacing())
+			|| helper.IsDisabled() || helper.IsOverheated() || helper.GetHyperpacePercentage())
 		return false;
 
 	// An enemy cannot provide assistance, and only ships of the same government will repair disabled ships.
@@ -1486,7 +1486,7 @@ vector<Ship *> AI::GetShipsList(const Ship &ship, bool targetEnemies, double max
 		const Point &p = ship.Position();
 		for(const auto &target : it->second)
 			if(target->IsTargetable() && target->GetSystem() == here
-					&& !(target->IsHyperspacing() && target->Velocity().Length() > 10.)
+					&& !(target->GetHyperpacePercentage() && target->Velocity().Length() > 10.)
 					&& p.Distance(target->Position()) < maxRange
 					&& (ship.IsYours() || !target->GetPersonality().IsMarked())
 					&& (target->IsYours() || !ship.GetPersonality().IsMarked()))
@@ -3094,7 +3094,7 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &sho
 	if(!v)
 		return position;
 	// It makes no sense to calculate a stopping point for a ship entering hyperspace.
-	if(ship.IsHyperspacing())
+	if(ship.GetHyperpacePercentage())
 	{
 		if(ship.IsUsingJumpDrive() || ship.IsEnteringHyperspace())
 			return position;
@@ -3701,7 +3701,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			ship.SetTargetSystem(system);
 	}
 
-	if(ship.IsEnteringHyperspace() && !ship.IsHyperspacing())
+	if(ship.IsEnteringHyperspace() && !ship.GetHyperpacePercentage())
 	{
 		// Check if there's a particular planet there we want to visit.
 		const System *system = ship.GetTargetSystem();

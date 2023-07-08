@@ -501,8 +501,8 @@ void Engine::Step(bool isActive)
 	{
 		center = flagship->Position();
 		centerVelocity = flagship->Velocity();
-		centerVelocity *= 1. + pow(flagship->IsHyperspacing() / 20., 2);
-		if(doEnter && flagship->Zoom() == 1. && !flagship->IsHyperspacing())
+		centerVelocity *= 1. + pow(flagship->GetHyperpacePercentage() / 20., 2);
+		if(doEnter && flagship->Zoom() == 1. && !flagship->GetHyperpacePercentage())
 		{
 			doEnter = false;
 			events.emplace_back(flagship, flagship, ShipEvent::JUMP);
@@ -907,7 +907,7 @@ void Engine::Step(bool isActive)
 	if(shouldShowAsteroidOverlay || shouldCatalogAsteroids)
 	{
 		double scanRangeMetric = flagship ? 10000. * flagship->Attributes().Get("asteroid scan power") : 0.;
-		if(flagship && scanRangeMetric && !flagship->IsHyperspacing())
+		if(flagship && scanRangeMetric && !flagship->GetHyperpacePercentage())
 		{
 			bool scanComplete = true;
 			for(const shared_ptr<Minable> &minable : asteroids.Minables())
@@ -944,7 +944,7 @@ void Engine::Step(bool isActive)
 		}
 	}
 	const auto targetAsteroidPtr = flagship ? flagship->GetTargetAsteroid() : nullptr;
-	if(targetAsteroidPtr && !flagship->IsHyperspacing())
+	if(targetAsteroidPtr && !flagship->GetHyperpacePercentage())
 		targets.push_back({
 			targetAsteroidPtr->Position() - center,
 			targetAsteroidPtr->Facing(),
@@ -1643,7 +1643,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 
 	bool isJump = ship->IsUsingJumpDrive();
 	bool wasHere = (flagship && ship->GetSystem() == flagship->GetSystem());
-	bool wasHyperspacing = ship->IsHyperspacing();
+	bool wasHyperspacing = ship->GetHyperpacePercentage();
 	bool wasDisabled = ship->IsDisabled();
 	// Give the ship the list of visuals so that it can draw explosions,
 	// ion sparks, jump drive flashes, etc.
@@ -1673,7 +1673,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 		// The position from where sounds will be played.
 		Point position = ship->Position();
 		// Did this ship just begin hyperspacing?
-		if(wasHere && !wasHyperspacing && ship->IsHyperspacing())
+		if(wasHere && !wasHyperspacing && ship->GetHyperpacePercentage())
 		{
 			const map<const Sound *, int> &jumpSounds = isJump
 				? ship->Attributes().JumpOutSounds() : ship->Attributes().HyperOutSounds();
