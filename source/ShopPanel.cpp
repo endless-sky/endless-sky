@@ -117,7 +117,8 @@ void ShopPanel::Draw()
 
 	DrawShipsSidebar();
 	DrawDetailsSidebar();
-	DrawButtons();
+	DrawShopButtons();
+	DrawDesignButtons();
 	DrawMain();
 	DrawKey();
 
@@ -325,17 +326,18 @@ void ShopPanel::DrawDetailsSidebar()
 
 	int heightOffset = DrawDetails(point);
 
-	maxInfobarScroll = max(0., heightOffset + infobarScroll - Screen::Bottom());
+	maxInfobarScroll = max(0., heightOffset + infobarScroll - Screen::Bottom() + BUTTON_HEIGHT);
 
+	// Draw scroll arrows at top and bottom of sidebar.
 	PointerShader::Draw(Point(Screen::Right() - SIDEBAR_WIDTH - 10, Screen::Top() + 10),
 		Point(0., -1.), 10.f, 10.f, 5.f, Color(infobarScroll > 0 ? .8f : .2f, 0.f));
-	PointerShader::Draw(Point(Screen::Right() - SIDEBAR_WIDTH - 10, Screen::Bottom() - 10),
+	PointerShader::Draw(Point(Screen::Right() - SIDEBAR_WIDTH - 10, Screen::Bottom() - 80),
 		Point(0., 1.), 10.f, 10.f, 5.f, Color(infobarScroll < maxInfobarScroll ? .8f : .2f, 0.f));
 }
 
 
 
-void ShopPanel::DrawButtons()
+void ShopPanel::DrawShopButtons()
 {
 	// The last 70 pixels on the end of the side panel are for the buttons:
 	Point buttonSize(SIDEBAR_WIDTH, BUTTON_HEIGHT);

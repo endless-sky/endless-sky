@@ -18,7 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Panel.h"
 
-#include "PlayerInfo.h"
 #include "Ship.h"
 #include "text/WrappedText.h"
 
@@ -27,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class Interface;
 class Planet;
+class PlayerInfo;
 class SpaceportPanel;
 class System;
 
@@ -56,7 +56,6 @@ private:
 
 private:
 	PlayerInfo &player;
-	PlayerInfo designPlayer;
 	std::function<void()> callback = nullptr;
 	bool requestedLaunch = false;
 

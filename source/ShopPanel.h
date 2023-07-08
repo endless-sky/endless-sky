@@ -73,7 +73,7 @@ protected:
 protected:
 	void DrawShipsSidebar();
 	void DrawDetailsSidebar();
-	void DrawButtons();
+	void DrawShopButtons();
 	void DrawMain();
 
 	void DrawShip(const Ship &ship, const Point &center, bool isSelected);
@@ -89,6 +89,7 @@ protected:
 	virtual int DividerOffset() const = 0;
 	virtual int DetailWidth() const = 0;
 	virtual int DrawDetails(const Point &center) = 0;
+	virtual void DrawDesignButtons() = 0;
 	virtual BuyResult CanBuy(bool onlyOwned = false) const = 0;
 	virtual void Buy(bool onlyOwned = false) = 0;
 	virtual bool CanSell(bool toStorage = false) const = 0;

@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
+#include "FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -243,6 +244,19 @@ int ShipyardPanel::DrawDetails(const Point &center)
 		selectedPoint, bright);
 
 	return heightOffset;
+}
+
+
+
+void ShipyardPanel::DrawDesignButtons()
+{
+        // The last 70 pixels on the end of the info panel are for the design buttons:
+        Point buttonSize(INFOBAR_WIDTH, BUTTON_HEIGHT);
+        FillShader::Fill(Screen::BottomRight() - .5 * buttonSize - Point(SIDEBAR_WIDTH, 0),
+                buttonSize, *GameData::Colors().Get("shop side panel background"));
+        FillShader::Fill(
+                Point(Screen::Right() - INFOBAR_WIDTH / 2, Screen::Bottom() - BUTTON_HEIGHT),
+                Point(INFOBAR_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
 }
 
 

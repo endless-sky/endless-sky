@@ -180,19 +180,18 @@ void PlayerInfo::New(const StartConditions &start)
 // Make a new design player.
 void PlayerInfo::NewDesignPlayer(const PlayerInfo &player)
 {
+	// Clear any previously loaded data.
+	Clear();
+
 	isDesignPlayer = true;
 	date = player.GetDate();
-	// Make sure the fleet depreciation object knows it is tracking the player's
-	// fleet, not the planet's stock.
-	depreciation.Init(ships, date.DaysSinceEpoch());
+	depreciation = player.FleetDepreciation();
 	// Used to stock stores with items known to be for sale.
 	visitedSystems = player.visitedSystems;
 
 	// Put the player on the map.
 	SetSystem(*player.GetSystem());
 	SetPlanet(player.GetPlanet());
-	// Zero accounts.
-	Accounts().AddCredits(-Accounts().Credits());
 	// Max out accounts (/2 to prevent any off by one errors from causing overflow).
 	Accounts().AddCredits(numeric_limits<int64_t>::max() / 2);
 	// Allow the player their existing licenses.
@@ -200,21 +199,11 @@ void PlayerInfo::NewDesignPlayer(const PlayerInfo &player)
 
 	// As there is no way to track if a given ship is a variant, just give
 	// access to copies of all the ships the player currently has.
-	// (But avoid duplicating them!  UUID seems to be unique, so use that.)
-	set<string> current_ships;
-	for(const auto &it : Ships())
-		current_ships.insert(it->UUID().ToString());
 	for(const auto &it : player.Ships())
-		if(!current_ships.count(it->UUID().ToString()))
-		{
-			BuyShip(&(*it), it->Name(), false);
-			// UUID isn't copyable, so set it by hand.
-			Ships().back()->SetUUID(it->UUID());
-		}
+		BuyShip(&(*it), it->Name(), false);
 
 	// Add any not-for-sale outfits in storage somewhere into the
 	// player's cargo, so they'll show up in the Design Outfitter.
-
 	Cargo().Clear();
 	Cargo().SetSize(-1);
 	set<const Outfit *> seen;

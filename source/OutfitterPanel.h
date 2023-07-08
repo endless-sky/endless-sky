@@ -55,6 +55,7 @@ protected:
 	virtual int DividerOffset() const override;
 	virtual int DetailWidth() const override;
 	virtual int DrawDetails(const Point &center) override;
+	virtual void DrawDesignButtons() override;
 	virtual BuyResult CanBuy(bool onlyOwned = false) const override;
 	virtual void Buy(bool onlyOwned = false) override;
 	virtual bool CanSell(bool toStorage = false) const override;
