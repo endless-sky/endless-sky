@@ -80,7 +80,7 @@ public:
 	// Make a new player.
 	void New(const StartConditions &start);
 	// Make a design player for design panels.
-	void NewDesign(const PlayerInfo &player);
+	void NewDesignPlayer(const PlayerInfo &player);
 	// Check if player is the design player (so panels know what to show).
 	bool IsDesignPlayer() const;
 	// Load an existing player.

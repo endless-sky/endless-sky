@@ -178,7 +178,7 @@ void PlayerInfo::New(const StartConditions &start)
 
 
 // Make a new design player.
-void PlayerInfo::NewDesign(const PlayerInfo &player)
+void PlayerInfo::NewDesignPlayer(const PlayerInfo &player)
 {
 	isDesignPlayer = true;
 	date = player.GetDate();
@@ -243,6 +243,14 @@ void PlayerInfo::NewDesign(const PlayerInfo &player)
 	// for-sale ships - players can manage those themselves in the
 	// sandbox by buying those ships and stripping those outfits.
 	// Likewise with installed outfits, as the fleet is available.
+}
+
+
+
+// Query whether this player is the design panel player.
+bool PlayerInfo::IsDesignPlayer() const
+{
+	return isDesignPlayer;
 }
 
 
@@ -690,14 +698,6 @@ void PlayerInfo::Die(int response, const shared_ptr<Ship> &capturer)
 		if(it != ships.end())
 			ships.erase(it);
 	}
-}
-
-
-
-// Query whether this player is the design panel player.
-bool PlayerInfo::IsDesignPlayer() const
-{
-	return isDesignPlayer;
 }
 
 
