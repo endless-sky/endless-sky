@@ -47,11 +47,11 @@ public:
 
 	// Average the result of the given function by the choices' weights.
 	template <class Callable>
-	typename std::enable_if<
-		std::is_arithmetic<typename std::invoke_result<Callable&&, const Type&&>::type>::value,
+	std::enable_if_t<
+		std::is_arithmetic_v<std::invoke_result_t<Callable&&, const Type&&>>,
 		// The return type of WeightedList::Average, if the above test passes:
-		typename std::invoke_result<Callable&&, const Type&&>::type
-	>::type Average(Callable c) const;
+		std::invoke_result_t<Callable&&, const Type&&>
+	> Average(Callable c) const;
 	// Supplying a callable that does not return an arithmetic value will fail to compile.
 
 	iterator begin() noexcept { return choices.begin(); }
@@ -141,15 +141,15 @@ const Type &WeightedList<Type>::Get() const
 
 template <class Type>
 template <class Callable>
-typename std::enable_if<
-	std::is_arithmetic<typename std::invoke_result<Callable&&, const Type&&>::type>::value,
-	typename std::invoke_result<Callable&&, const Type&&>::type
->::type WeightedList<Type>::Average(Callable fn) const
+std::enable_if_t<
+		std::is_arithmetic_v<std::invoke_result_t<Callable&&, const Type&&>>,
+		std::invoke_result_t<Callable&&, const Type&&>
+	> WeightedList<Type>::Average(Callable fn) const
 {
 	std::size_t tw = TotalWeight();
 	if(tw == 0) return 0;
 
-	auto sum = typename std::invoke_result<Callable, const Type &>::type{};
+	auto sum = typename std::invoke_result_t<Callable, const Type &>{};
 	for(unsigned index = 0; index < choices.size(); ++index)
 		sum += fn(choices[index]) * weights[index];
 	return sum / tw;
