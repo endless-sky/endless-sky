@@ -2769,7 +2769,7 @@ mission "Bounty Hunting (Very Tiny)"
 
 mission "Bounty Hunting (Tiny)"
 	name "Wanted outlaw near <system>"
-	description "A well armed pirate fighter named the <npc> has been attacking merchants one jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
+	description "A well armed pirate fighter named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
@@ -2822,7 +2822,7 @@ mission "Bounty Hunting (Tiny)"
 
 mission "Bounty Hunting (Very Small)"
 	name "Wanted criminal near <system>"
-	description "A light pirate warship named the <npc> has been attacking merchants one jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
+	description "A light pirate warship named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
@@ -2873,7 +2873,7 @@ mission "Bounty Hunting (Very Small)"
 
 mission "Bounty Hunting (Small)"
 	name "Wanted bandit near <system>"
-	description "A medium pirate warship named the <npc> has been attacking merchants one jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
+	description "A medium pirate warship named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
@@ -2917,7 +2917,7 @@ mission "Bounty Hunting (Small)"
 
 mission "Bounty Hunting (Medium)"
 	name "Wanted pirate near <system>"
-	description "A sizeable pirate warship named the <npc> has been attacking merchants one jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
+	description "A sizeable pirate warship named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
@@ -2955,7 +2955,7 @@ mission "Bounty Hunting (Medium)"
 
 mission "Bounty Hunting (Big)"
 	name "Wanted warlord near <system>"
-	description "A heavy warship known as the <npc> has been attacking merchants one jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
+	description "A heavy warship known as the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
@@ -3210,7 +3210,7 @@ mission "Bounty Hunting (Medium, Boarding, Entering)"
 
 mission "Bounty Hunting (Solo Marauder I)"
 	name "Marauder interceptor near <system>"
-	description "A Marauder interceptor named the <npc> has been attacking merchants one jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
+	description "A Marauder interceptor named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
@@ -3239,7 +3239,7 @@ mission "Bounty Hunting (Solo Marauder I)"
 
 mission "Bounty Hunting (Solo Marauder II)"
 	name "Small Marauder near <system>"
-	description "A small Marauder ship named the <npc> has been attacking merchants one jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
+	description "A small Marauder ship named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
@@ -3268,7 +3268,7 @@ mission "Bounty Hunting (Solo Marauder II)"
 
 mission "Bounty Hunting (Solo Marauder III)"
 	name "Marauder near <system>"
-	description "A Marauder ship named the <npc> has been attacking merchants one jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
+	description "A Marauder ship named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
@@ -3293,7 +3293,7 @@ mission "Bounty Hunting (Solo Marauder III)"
 
 mission "Bounty Hunting (Solo Marauder IV)"
 	name "Large Marauder near <system>"
-	description "A large Marauder ship named the <npc> has been attacking merchants one jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
+	description "A large Marauder ship named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
@@ -3318,7 +3318,7 @@ mission "Bounty Hunting (Solo Marauder IV)"
 
 mission "Bounty Hunting (Marauder I)"
 	name "Small Marauders near <system>"
-	description "A fleet of small Marauder ships, led by a vessel named the <npc>, has been attacking merchants one jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
+	description "A fleet of small Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
@@ -3346,7 +3346,7 @@ mission "Bounty Hunting (Marauder I)"
 
 mission "Bounty Hunting (Marauder II)"
 	name "Small Marauders near <system>"
-	description "A fleet of small Marauder ships, led by a vessel named the <npc>, has been attacking merchants one jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
+	description "A fleet of small Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
@@ -3374,7 +3374,7 @@ mission "Bounty Hunting (Marauder II)"
 
 mission "Bounty Hunting (Marauder III)"
 	name "Small Marauders near <system>"
-	description "A fleet of small Marauder ships, led by a vessel named the <npc>, has been attacking merchants one jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
+	description "A fleet of small Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
@@ -3402,7 +3402,7 @@ mission "Bounty Hunting (Marauder III)"
 
 mission "Bounty Hunting (Marauder IV)"
 	name "Marauders near <system>"
-	description "A fleet of Marauder ships, led by a vessel named the <npc>, has been attacking merchants one jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
+	description "A fleet of Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
@@ -3430,7 +3430,7 @@ mission "Bounty Hunting (Marauder IV)"
 
 mission "Bounty Hunting (Marauder V)"
 	name "Marauders near <system>"
-	description "A fleet of Marauder ships, led by a vessel named the <npc>, has been attacking merchants one jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
+	description "A fleet of Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
@@ -3459,7 +3459,7 @@ mission "Bounty Hunting (Marauder V)"
 
 mission "Bounty Hunting (Marauder VI)"
 	name "Marauders near <system>"
-	description "A fleet of Marauder ships, led by a vessel named the <npc>, has been attacking merchants one jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
+	description "A fleet of Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
@@ -3487,7 +3487,7 @@ mission "Bounty Hunting (Marauder VI)"
 
 mission "Bounty Hunting (Marauder VII)"
 	name "Large Marauders near <system>"
-	description "A fleet of large Marauder ships, led by a vessel named the <npc>, has been attacking merchants one jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
+	description "A fleet of large Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
@@ -3511,7 +3511,7 @@ mission "Bounty Hunting (Marauder VII)"
 
 mission "Bounty Hunting (Marauder VIII)"
 	name "Large Marauders near <system>"
-	description "A fleet of large Marauder ships, led by a vessel named the <npc>, has been attacking merchants one jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
+	description "A fleet of large Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
@@ -3535,7 +3535,7 @@ mission "Bounty Hunting (Marauder VIII)"
 
 mission "Bounty Hunting (Marauder IX)"
 	name "Large Marauders near <system>"
-	description "A fleet of large Marauder ships, led by a vessel named the <npc>, has been attacking merchants one jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
+	description "A fleet of large Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
@@ -3559,7 +3559,7 @@ mission "Bounty Hunting (Marauder IX)"
 
 mission "Bounty Hunting (Marauder X)"
 	name "Large Marauders near <system>"
-	description "A fleet of large Marauder ships, led by a vessel named the <npc>, has been attacking merchants one jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
+	description "A fleet of large Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
