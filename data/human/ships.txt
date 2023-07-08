@@ -1883,15 +1883,14 @@ ship "Frigate"
 			"hit force" 1500
 	outfits
 		"Particle Cannon" 2
-		"Torpedo Launcher"
-		"Sidewinder Missile Launcher"
+		"Torpedo Launcher" 2
 		"Torpedo" 60
-		"Sidewinder Missile" 45
 		"Blaster Turret" 2
 		"Anti-Missile Turret"
 		
 		"NT-200 Nucleovoltaic"
-		"LP144a Battery Pack"
+		"LP072a Battery Pack"
+		"LP036a Battery Pack"
 		"D41-HY Shield Generator"
 		"Large Radar Jammer"
 		"Laser Rifle" 5
@@ -1907,7 +1906,7 @@ ship "Frigate"
 	gun -11 -84.5 "Particle Cannon"
 	gun 11 -84.5 "Particle Cannon"
 	gun -11 -84.5 "Torpedo Launcher"
-	gun 11 -84.5 "Sidewinder Missile Launcher"
+	gun 11 -84.5 "Torpedo Launcher"
 	turret 0 -37.5 "Anti-Missile Turret"
 	turret -15.5 -12.5 "Blaster Turret"
 	turret 15.5 -12.5 "Blaster Turret"
