@@ -145,7 +145,8 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 		Point backgroundVel = vel / 2;
 
 		// Draw the star layer
-		if(Preferences::Has("Draw starfield") && density > 0.) {
+		if(Preferences::Has("Draw starfield") && density > 0.)
+		{
 			glUseProgram(shader.Object());
 			glBindVertexArray(vao);
 
@@ -205,7 +206,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 			glBindVertexArray(0);
 			glUseProgram(0);
 		}
-		
+
 		// Draw the haze layer
 		if(Preferences::Has("Draw background haze"))
 		{
