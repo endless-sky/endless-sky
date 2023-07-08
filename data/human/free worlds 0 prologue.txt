@@ -1138,7 +1138,7 @@ mission "FW Bounty 2"
 		system
 			near "Delta Sagittarii" 1 1
 		ship "Mammoth (Moonless)" "Moonless Night"
-		dialog phrase "The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>."
+		dialog `The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>.`
 	
 	on visit
 		dialog phrase "generic bounty hunting on visit"
@@ -1183,7 +1183,7 @@ mission "FW Bounty 3"
 		personality heroic staying nemesis target
 		system "Shaula"
 		ship "Osprey (Alien Weapons)" "Silverhawk"
-		dialog phrase "The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>."
+		dialog `The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>.`
 	
 	on visit
 		dialog phrase "generic bounty hunting on visit"
