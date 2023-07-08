@@ -142,9 +142,9 @@ const Type &WeightedList<Type>::Get() const
 template <class Type>
 template <class Callable>
 std::enable_if_t<
-		std::is_arithmetic_v<std::invoke_result_t<Callable&&, const Type&&>>,
-		std::invoke_result_t<Callable&&, const Type&&>
-	> WeightedList<Type>::Average(Callable fn) const
+	std::is_arithmetic_v<std::invoke_result_t<Callable&&, const Type&&>>,
+	std::invoke_result_t<Callable&&, const Type&&>
+> WeightedList<Type>::Average(Callable fn) const
 {
 	std::size_t tw = TotalWeight();
 	if(tw == 0) return 0;
