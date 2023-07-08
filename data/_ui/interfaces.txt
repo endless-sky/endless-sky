@@ -1299,13 +1299,16 @@ interface "info panel"
 	visible if "blueprints tab"
 	sprite "ui/blueprints tab"
 		center 0 -310
-	label "Ship Info"
+	label "_Ship Info"
 		center -300 -305
 	label "Player _Info"
 		center -420 -305
 	label "Blueprints"
 		center -180 -305
 		color "bright"
+	button s
+		center -300 -305
+		dimensions 120 30
 	button i
 		center -420 -305
 		dimensions 120 30
