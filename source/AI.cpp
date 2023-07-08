@@ -2135,7 +2135,7 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 
 	// If this ship has reverse thrusters, calculate its stopping point if they were used.
 	Point rsp;
-	Poinrt rface;
+	Point rface;
 	double rt = 1e9;
 	if(ship.Attributes().Get("reverse thrust"))
 	{
