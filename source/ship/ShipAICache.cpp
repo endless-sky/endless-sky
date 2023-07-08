@@ -29,8 +29,8 @@ using namespace std;
 void ShipAICache::Calibrate(const Ship &ship)
 {
 	mass = ship.Mass();
-	bool hasWeapons = false;
-	bool canFight = false;
+	hasWeapons = false;
+	canFight = false;
 	double totalDPS = 0.;
 	double splashDPS = 0.;
 	double artilleryDPS = 0.;
@@ -81,7 +81,7 @@ void ShipAICache::Calibrate(const Ship &ship)
 	// can make while at full speed.
 	double stepsInHalfTurn = 180. / ship.TurnRate();
 	double circumference = stepsInHalfTurn * ship.MaxForwardSpeed(false);
-	turningRadius = circumference / PI;
+	maxTurningRadius = circumference / PI;
 
 	// If this ship was using the artillery AI to run away and bombard its
 	// target from a distance, have it stop running once it is out of ammo. This
@@ -98,12 +98,12 @@ void ShipAICache::Calibrate(const Ship &ship)
 		// The AI shouldn't use the artillery AI if it has no reverse and it's turning
 		// capabilities are very bad. Otherwise it spends most of it's time flying around.
 		useArtilleryAI = (artilleryDPS > totalDPS / 2.
-			&& (ship.MaxReverseSpeed() || turningRadius < 0.2 * shortestArtillery));
+			&& (ship.MaxReverseSpeed() || maxTurningRadius < 0.2 * shortestArtillery));
 
 		// Don't try to avoid your own splash damage if it means you whould be losing out
 		// on a lot of DPS. Helps with ships with very slow turning and not a lot of splash
 		// weapons being overly afraid of dying.
-		if(minSafeDistance && !(useArtilleryAI || shortestRange * (splashDPS / totalDPS) > turningRadius))
+		if(minSafeDistance && !(useArtilleryAI || shortestRange * (splashDPS / totalDPS) > maxTurningRadius))
 			minSafeDistance = 0.;
 	}
 }

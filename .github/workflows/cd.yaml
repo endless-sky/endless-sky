@@ -35,20 +35,16 @@ jobs:
       - name: Adjust version strings
         run: ./utils/cd_update_versions.sh
       - uses: lukka/get-cmake@latest
-      - uses: lukka/run-vcpkg@v10
+      - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '91dd61bd441a68b4017b61011d0350b2e6aeeccf'
+          vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
+          doNotCache: true
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'linux-release'
           buildPreset: 'linux-ci-release'
       - name: Package Application
         run: ./utils/build_appimage.sh build/release
-      - name: Prevent saving cache on failure
-        run: |
-          echo "RUNVCPKG_NO_CACHE=1" >> $GITHUB_ENV
-        if: ${{ failure() || cancelled() }}
-        shell: bash
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
@@ -71,9 +67,10 @@ jobs:
         run: ./utils/cd_update_versions.sh
         shell: bash
       - uses: lukka/get-cmake@latest
-      - uses: lukka/run-vcpkg@v10
+      - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '91dd61bd441a68b4017b61011d0350b2e6aeeccf'
+          vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
+          doNotCache: true
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'mingw-release'
@@ -82,11 +79,6 @@ jobs:
         run: |
           cmake --install build/release
           7z a ${{ env.OUTPUT }} "./install/release/*"
-      - name: Prevent saving cache on failure
-        run: |
-          echo "RUNVCPKG_NO_CACHE=1" >> $GITHUB_ENV
-        if: ${{ failure() || cancelled() }}
-        shell: bash
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
@@ -105,10 +97,13 @@ jobs:
         uses: ./.github/sccache
         with:
           read-only: 'true'
+      - name: Install pkg-config
+        run: type -P pkg-config || brew install pkg-config
       - uses: lukka/get-cmake@latest
-      - uses: lukka/run-vcpkg@v10
+      - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '91dd61bd441a68b4017b61011d0350b2e6aeeccf'
+          vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
+          doNotCache: true
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'macos-release'
@@ -117,11 +112,6 @@ jobs:
         run: |
           cmake --install build/release
           7z a ${{ env.OUTPUT }} "./install/release/*"
-      - name: Prevent saving cache on failure
-        run: |
-          echo "RUNVCPKG_NO_CACHE=1" >> $GITHUB_ENV
-        if: ${{ failure() || cancelled() }}
-        shell: bash
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:

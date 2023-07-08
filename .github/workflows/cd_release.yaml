@@ -25,20 +25,16 @@ jobs:
         with:
           read-only: 'true'
       - uses: lukka/get-cmake@latest
-      - uses: lukka/run-vcpkg@v10
+      - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '91dd61bd441a68b4017b61011d0350b2e6aeeccf'
+          vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
+          doNotCache: true
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'linux-release'
           buildPreset: 'linux-ci-release'
       - name: Package Application
         run: ./utils/build_appimage.sh build/release
-      - name: Prevent saving cache on failure
-        run: |
-          echo "RUNVCPKG_NO_CACHE=1" >> $GITHUB_ENV
-        if: ${{ failure() || cancelled() }}
-        shell: bash
       - name: Upload Release
         uses: softprops/action-gh-release@v1
         with:
@@ -57,10 +53,10 @@ jobs:
       - name: Install x86 MinGW
         run: choco install mingw --forcex86 --force
       - uses: lukka/get-cmake@latest
-      - uses: lukka/run-vcpkg@v10
+      - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '91dd61bd441a68b4017b61011d0350b2e6aeeccf'
-          prependedCacheKey: mingw-x86
+          vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
+          doNotCache: true
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'mingw32-release'
@@ -69,16 +65,18 @@ jobs:
         run: |
           cmake --install build/release
           7z a ${{ env.OUTPUT }} "./install/release/*"
-      - name: Prevent saving cache on failure
-        run: |
-          echo "RUNVCPKG_NO_CACHE=1" >> $GITHUB_ENV
-        if: ${{ failure() || cancelled() }}
-        shell: bash
       - name: Upload Release
         uses: softprops/action-gh-release@v1
         with:
           draft: true
           files: ${{ env.OUTPUT }}
+      - name: Upload Steam Depot
+        uses: actions/upload-artifact@v3
+        with:
+          name: steam-win32-depot
+          path: |
+            ./install/release/Endless Sky.exe
+            ./install/release/*.dll
 
 
   release_windows_x64:
@@ -94,9 +92,10 @@ jobs:
         with:
           read-only: 'true'
       - uses: lukka/get-cmake@latest
-      - uses: lukka/run-vcpkg@v10
+      - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '91dd61bd441a68b4017b61011d0350b2e6aeeccf'
+          vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
+          doNotCache: true
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'mingw-release'
@@ -105,16 +104,18 @@ jobs:
         run: |
           cmake --install build/release
           7z a ${{ env.OUTPUT }} "./install/release/*"
-      - name: Prevent saving cache on failure
-        run: |
-          echo "RUNVCPKG_NO_CACHE=1" >> $GITHUB_ENV
-        if: ${{ failure() || cancelled() }}
-        shell: bash
       - name: Upload Release
         uses: softprops/action-gh-release@v1
         with:
           draft: true
           files: ${{ env.OUTPUT }}
+      - name: Upload Steam Depot
+        uses: actions/upload-artifact@v3
+        with:
+          name: steam-win64-depot
+          path: |
+            ./install/release/Endless Sky.exe
+            ./install/release/*.dll
 
 
   release_macos_universal:
@@ -129,10 +130,13 @@ jobs:
         uses: ./.github/sccache
         with:
           read-only: 'true'
+      - name: Install pkg-config
+        run: type -P pkg-config || brew install pkg-config
       - uses: lukka/get-cmake@latest
-      - uses: lukka/run-vcpkg@v10
+      - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '91dd61bd441a68b4017b61011d0350b2e6aeeccf'
+          vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
+          doNotCache: true
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'macos-arm-release'
@@ -157,13 +161,89 @@ jobs:
           cp -r "Endless Sky.app" "${{ env.OUTPUT }}"
           ln -s /Applications "${{ env.OUTPUT }}"
           hdiutil create -ov -fs HFS+ -format UDZO -imagekey zlib-level=9 -srcfolder "${{ env.OUTPUT }}" "${{ github.workspace }}/${{ env.OUTPUT }}.dmg"
-      - name: Prevent saving cache on failure
-        run: |
-          echo "RUNVCPKG_NO_CACHE=1" >> $GITHUB_ENV
-        if: ${{ failure() || cancelled() }}
-        shell: bash
       - name: Upload Release
         uses: softprops/action-gh-release@v1
         with:
           draft: true
           files: ${{ env.OUTPUT }}.dmg
+      - name: Prepare Steam Depot
+        run: |
+          mv "Endless Sky.app/Contents/Resources/endless-sky.icns" .
+          rm -rf "Endless Sky.app/Contents/Resources"
+          mkdir "Endless Sky.app/Contents/Resources"
+          mv endless-sky.icns "Endless Sky.app/Contents/Resources"
+          mkdir depot/
+          mv "Endless Sky.app/" depot/
+      - name: Upload Steam Depot
+        uses: actions/upload-artifact@v3
+        with:
+          name: steam-macos-depot
+          path: depot
+
+
+  release_steam_linux:
+    name: Steam Linux
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        arch: [x64, x86]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build Endless Sky
+      run: |
+        cd steam
+        docker-compose run steam-${{ matrix.arch }}
+    - name: Prepare binary
+      run: cp build/steam-${{ matrix.arch }}/endless-sky .
+    - name: Upload Steam Depot
+      uses: actions/upload-artifact@v3
+      with:
+        name: steam-linux${{ matrix.arch == 'x64' && '64' || '32' }}-depot
+        path: endless-sky
+
+
+  deploy_steam:
+    name: Deploy Steam
+    needs: [release_steam_linux, release_windows_x64, release_windows_x86, release_macos_universal]
+    runs-on: ubuntu-latest
+    # environment: steam
+    env:
+      data: steam-data-depot
+      linux32: steam-linux-x86
+      linux64: steam-linux-x64
+      win32: steam-win32
+      win64: steam-win64
+      macos: steam-macos
+    steps:
+    - uses: actions/checkout@v3
+    - name: Upload Steam Data Depot
+      uses: actions/upload-artifact@v3
+      with:
+        name: ${{ env.data }}
+        path: |
+          changelog
+          copyright
+          credits.txt
+          icon.png
+          keys.txt
+          license.txt
+          data/
+          images/
+          sounds/
+    # - uses: game-ci/steam-deploy@v1
+    #   with:
+    #     appId: 404410
+    #     buildDescription: canary-${{ github.sha }}
+    #     username: ${{ secrets.STEAM_DEPLOY_UN }}
+    #     password: ${{ secrets.STEAM_DEPLOY_PW }}
+    #     configVdf: ${{ secrets.STEAM_DEPLOY_VDF }}
+    #     ssfnFileName: ${{ secrets.STEAM_DEPLOY_SSFN_NAME }}
+    #     ssfnFileContents: ${{ secrets.STEAM_DEPLOY_SSFN }}
+    #     rootPath: ''
+    #     depot1Path: ${{ env.data }}
+    #     depot3Path: ${{ env.win32 }}
+    #     depot4Path: ${{ env.win64 }}
+    #     depot5Path: ${{ env.macos }}
+    #     depot6Path: ${{ env.linux32 }}
+    #     depot7Path: ${{ env.linux64 }}
+    #     releaseBranch: canary

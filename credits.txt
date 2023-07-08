@@ -1,5 +1,5 @@
 Welcome to Endless Sky!
-version 0.10.0-alpha
+version 0.10.3-alpha
 
 The player's manual and other
 resources are available at:
@@ -132,6 +132,7 @@ people on GitHub who have
 contributed to Endless Sky:
   10010101001
   1010todd
+  3agleEmpire
   7even
   abenkovskii
   AdamKauffman
@@ -146,15 +147,20 @@ contributed to Endless Sky:
   AMDmi3
   anarcat
   Anarchist2
+  Aneutronic
   AraCaputDraco
   Arachi-Lover
+  aradapilot
   a-random-lemurian
   arkhne
   Arrow2thekn33
   ashdnazg
   Aurelite
+  AvianGeneticist
+  Azure3141
   barthalion
   beccabunny
+  bene-dictator
   benflodge
   BlackVegetable
   Bladewood
@@ -164,21 +170,26 @@ contributed to Endless Sky:
   Brick63
   CAPTAIN1947
   ChamEV
-  colbygallup
   comnom
   corecontingency
   Corraban2
   CyberShadow
   czartrak
+  Daeridanii1
+  daggs1
   DarcyManoel
+  dashkal16
   davidarcher
   davidwhitman
   dazuma
   db47h
   DeBlister
+  Deltaspace0
+  DimlyMoonbeam
   DingusShingleton
   Disiuze
   DJF113
+  doches
   dorbarker
   DownsB
   dplepage
@@ -193,8 +204,10 @@ contributed to Endless Sky:
   elgeonmb
   Eloraam
   Elyssaen
+  Ember369
   EndrosG
   EricFromCanada
+  Faileas
   fakepass
   fcfort
   Ferociousfeind
@@ -202,6 +215,7 @@ contributed to Endless Sky:
   FixItYondu
   flaviojs
   Floppa-Priest
+  FoxSylv
   FranchuFranchu
   Fzzr
   Galaucus
@@ -211,7 +225,11 @@ contributed to Endless Sky:
   Hacklin
   Hadron1776
   har9862
+  Hatrask
   Hecter94
+  heirecka
+  hexarobi
+  hmglasgow
   Hurleveur
   Hyugat
   InfiniteDonuts
@@ -231,12 +249,14 @@ contributed to Endless Sky:
   jozef-mitro
   Jugosloven1612
   Just-Existing
+  justinw1320
   kaol
   Karirawri
+  Kepler-69c
   kestrel1110
-  KevinKorzekwa
   kilobyte
   kkuchta
+  Koranir
   kozbot
   Kryes-Omega
   leklachu
@@ -246,9 +266,11 @@ contributed to Endless Sky:
   LocalGod79
   Lorantine
   LordInsane
+  LorenzoBolla
   Luckz
   luiges90
   LukeMarlin
+  lumbar527
   macfreek
   Mach565
   MageKing17
@@ -262,6 +284,7 @@ contributed to Endless Sky:
   MCOfficer
   MessyMix
   michel-slm
+  mike-f1
   MillerNerd
   mimirzero
   mOctave
@@ -273,8 +296,11 @@ contributed to Endless Sky:
   Nescio0
   nobodywasishere
   NomadicVolcano
+  nothing-but-the-rain
   NRK4
+  ntabris
   oo13
+  opusforlife2
   Ornok
   OverYrPaygrade
   pakyinw
@@ -293,12 +319,15 @@ contributed to Endless Sky:
   Pointedstick
   prophile
   pscamman
+  Quantumshark
   quyykk
   Rakete1111
   ravenshining
+  real-dam
   realityforge
   Red-57
   redschalken
+  ReimeiSky
   reizbar
   RestingImmortal
   retrue
@@ -309,6 +338,8 @@ contributed to Endless Sky:
   roadrunner56
   Rob59er
   Rocketeer456
+  rovermicrover
+  rrigby
   rugk
   rzahniser
   salqadri
@@ -322,10 +353,13 @@ contributed to Endless Sky:
   ScruffyKitty
   sdennie
   seanfahey
+  sevu
   sfiera
   shitwolfymakes
   sigus
   skilaa
+  skyegallup
+  Smedley-SC
   solardawning
   SolraBizna
   SpearDane
@@ -344,6 +378,7 @@ contributed to Endless Sky:
   TheUnfetteredOne
   thewierdnut
   thomasballinger
+  ThrawnCA
   ThrosturX
   Thunderforge
   tibetiroka
@@ -352,16 +387,20 @@ contributed to Endless Sky:
   TJesionowski
   tmbutterworth
   toilethinges
+  TomGoodIdea
   TotalCaesar659
+  tstanke
   TurkeyMcMac
   Turtleroku
   tux2603
   unjown
+  UnorderedSigh
   Vilhelm16
   vitalchip
   W1zrad
   Waffleship
   Waladil
+  wallphoenix
   warp-core
   waterhouse
   Wedge009
@@ -373,10 +412,12 @@ contributed to Endless Sky:
   wjp
   Wrzlprnft
   YellowApple
-  yobbo2020
   yjhn
+  yobbo2020
   ZBok
+  ziproot
   Zitchas
+  zlonghofer
   zwparchman
 
 Special thanks to MCOfficer for

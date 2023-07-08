@@ -92,6 +92,8 @@
 		<Unit filename="source/CaptureOdds.h" />
 		<Unit filename="source/CargoHold.cpp" />
 		<Unit filename="source/CargoHold.h" />
+		<Unit filename="source/CategoryList.cpp" />
+		<Unit filename="source/CategoryList.h" />
 		<Unit filename="source/CategoryTypes.h" />
 		<Unit filename="source/ClickZone.h" />
 		<Unit filename="source/CollisionSet.cpp" />
@@ -127,8 +129,12 @@
 		<Unit filename="source/Dialog.h" />
 		<Unit filename="source/Dictionary.cpp" />
 		<Unit filename="source/Dictionary.h" />
+		<Unit filename="source/DistanceCalculationSettings.cpp" />
+		<Unit filename="source/DistanceCalculationSettings.h" />
 		<Unit filename="source/DistanceMap.cpp" />
 		<Unit filename="source/DistanceMap.h" />
+		<Unit filename="source/Distribution.cpp" />
+		<Unit filename="source/Distribution.h" />
 		<Unit filename="source/DrawList.cpp" />
 		<Unit filename="source/DrawList.h" />
 		<Unit filename="source/Effect.cpp" />
@@ -150,6 +156,8 @@
 		<Unit filename="source/FireCommand.h" />
 		<Unit filename="source/Fleet.cpp" />
 		<Unit filename="source/Fleet.h" />
+		<Unit filename="source/FleetCargo.cpp" />
+		<Unit filename="source/FleetCargo.h" />
 		<Unit filename="source/Flotsam.cpp" />
 		<Unit filename="source/Flotsam.h" />
 		<Unit filename="source/FogShader.cpp" />
@@ -168,6 +176,8 @@
 		<Unit filename="source/GameEvent.h" />
 		<Unit filename="source/GameLoadingPanel.cpp" />
 		<Unit filename="source/GameLoadingPanel.h" />
+		<Unit filename="source/Gamerules.cpp" />
+		<Unit filename="source/Gamerules.h" />
 		<Unit filename="source/GameWindow.cpp" />
 		<Unit filename="source/GameWindow.h" />
 		<Unit filename="source/Government.cpp" />
@@ -241,6 +251,8 @@
 		<Unit filename="source/Music.h" />
 		<Unit filename="source/NPC.cpp" />
 		<Unit filename="source/NPC.h" />
+		<Unit filename="source/NPCAction.cpp" />
+		<Unit filename="source/NPCAction.h" />
 		<Unit filename="source/News.cpp" />
 		<Unit filename="source/News.h" />
 		<Unit filename="source/Outfit.cpp" />
@@ -269,6 +281,8 @@
 		<Unit filename="source/PlayerInfo.h" />
 		<Unit filename="source/PlayerInfoPanel.cpp" />
 		<Unit filename="source/PlayerInfoPanel.h" />
+		<Unit filename="source/Plugins.cpp" />
+		<Unit filename="source/Plugins.h" />
 		<Unit filename="source/Point.cpp" />
 		<Unit filename="source/Point.h" />
 		<Unit filename="source/PointerShader.cpp" />
@@ -364,14 +378,18 @@
 		<Unit filename="source/Weather.cpp" />
 		<Unit filename="source/Weather.h" />
 		<Unit filename="source/WeightedList.h" />
-		<Unit filename="source/comparators/ByGivenOrder.h" />
-		<Unit filename="source/comparators/ByName.h" />
 		<Unit filename="source/Wormhole.cpp" />
 		<Unit filename="source/Wormhole.h" />
+		<Unit filename="source/WormholeStrategy.h" />
 		<Unit filename="source/opengl.cpp" />
 		<Unit filename="source/opengl.h" />
 		<Unit filename="source/pi.h" />
 		<Unit filename="source/shift.h" />
+		<Unit filename="source/comparators/ByGivenOrder.h" />
+		<Unit filename="source/comparators/ByName.h" />
+		<Unit filename="source/comparators/BySeriesAndIndex.h" />
+		<Unit filename="source/ship/ShipAICache.cpp" />
+		<Unit filename="source/ship/ShipAICache.h" />
 		<Unit filename="source/text/DisplayText.cpp" />
 		<Unit filename="source/text/DisplayText.h" />
 		<Unit filename="source/text/Font.cpp" />
@@ -389,8 +407,6 @@
 		<Unit filename="source/text/alignment.hpp" />
 		<Unit filename="source/text/layout.hpp" />
 		<Unit filename="source/text/truncate.hpp" />
-		<Unit filename="source/ship/ShipAICache.cpp" />
-		<Unit filename="source/ship/ShipAICache.h" />
 		<Extensions>
 			<editor_config active="1" use_tabs="1" tab_indents="1" tab_width="4" indent="4" eol_mode="0" />
 			<lib_finder disable_auto="1" />
