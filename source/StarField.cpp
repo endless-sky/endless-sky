@@ -150,7 +150,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 			if(isParallax)
 				zoom = baseZoom * STAR_ZOOM * pow(pass, 0.2);
 
-			float length = Preferences::Has("Render motion blur") ? vel.Length() : 0.;
+			float length = vel.Length();
 			Point unit = length ? vel.Unit() : Point(1., 0.);
 			// Don't zoom the stars at the same rate as the field; otherwise, at the
 			// farthest out zoom they are too small to draw well.
