@@ -56,6 +56,7 @@ private:
 
 private:
 	PlayerInfo &player;
+	PlayerInfo designPlayer;
 	std::function<void()> callback = nullptr;
 	bool requestedLaunch = false;
 

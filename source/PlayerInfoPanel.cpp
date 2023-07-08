@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfoPanel.h"
 
 #include "text/alignment.hpp"
-#include "BlueprintsPanel.h"
 #include "Command.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -291,11 +290,6 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 			GetUI()->Pop(this);
 			GetUI()->Push(new ShipInfoPanel(player, std::move(panelState)));
 		}
-	}
-	else if(key == 'b')
-	{
-		GetUI()->Pop(this);
-		GetUI()->Push(new BlueprintsPanel(player, std::move(panelState)));
 	}
 	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
 	{

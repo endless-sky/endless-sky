@@ -1235,9 +1235,6 @@ interface "map"
 interface "info panel"
 	sprite "ui/info panel"
 		center 0 -5
-	visible if "seven buttons"
-	sprite "ui/seven info buttons"
-		center 0 305
 	visible if "five buttons"
 	sprite "ui/five info buttons"
 		center 0 305
@@ -1270,13 +1267,8 @@ interface "info panel"
 		color "bright"
 	label "Player _Info"
 		center -420 -305
-	label "_Blueprints"
-		center -180 -305
 	button i
 		center -420 -305
-		dimensions 120 30
-	button b
-		center -180 -305
 		dimensions 120 30
 	
 	visible if "player tab"
@@ -1287,30 +1279,8 @@ interface "info panel"
 	label "Player Info"
 		center -420 -305
 		color "bright"
-	label "_Blueprints"
-		center -180 -305
 	button s
 		center -300 -305
-		dimensions 120 30
-	button b
-		center -180 -305
-		dimensions 120 30
-	
-	visible if "blueprints tab"
-	sprite "ui/blueprints tab"
-		center 0 -310
-	label "_Ship Info"
-		center -300 -305
-	label "Player _Info"
-		center -420 -305
-	label "Blueprints"
-		center -180 -305
-		color "bright"
-	button s
-		center -300 -305
-		dimensions 120 30
-	button i
-		center -420 -305
 		dimensions 120 30
 	
 	visible
@@ -1325,20 +1295,6 @@ interface "info panel"
 		center 255 305
 		dimensions 90 30
 	active
-
-	visible if "seven buttons"
-	button r "_Reset Fleet"
-		center 145 305
-		dimensions 90 30
-	button u "_Update Fleet"
-		center 45 305
-		dimensions 90 30
-	button o "_Outfitter"
-		center -65 305
-		dimensions 90 30
-	button s "_Shipyard"
-		center -165 305
-		dimensions 90 30
 	
 	visible if "five buttons"
 	button n "_Next"

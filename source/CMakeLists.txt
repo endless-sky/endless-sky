@@ -38,8 +38,6 @@ target_sources(EndlessSkyLib PRIVATE
 	BatchShader.h
 	Bitset.cpp
 	Bitset.h
-	BlueprintsPanel.cpp
-	BlueprintsPanel.h
 	BoardingPanel.cpp
 	BoardingPanel.h
 	Body.cpp

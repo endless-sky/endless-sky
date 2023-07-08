@@ -177,87 +177,72 @@ void PlayerInfo::New(const StartConditions &start)
 
 
 
-// Return the design player (and initialize if needed).
-PlayerInfo &PlayerInfo::DesignPlayer()
+// Make a new design player.
+void PlayerInfo::NewDesign(const PlayerInfo &player)
 {
-	if(designPlayer != nullptr)
-		return *designPlayer;
-
-	designPlayer = new PlayerInfo;
-
-	designPlayer->isDesignPlayer = true;
-	designPlayer->date = GetDate();
+	isDesignPlayer = true;
+	date = player.GetDate();
 	// Make sure the fleet depreciation object knows it is tracking the player's
 	// fleet, not the planet's stock.
-	designPlayer->depreciation.Init(designPlayer->ships, designPlayer->date.DaysSinceEpoch());
+	depreciation.Init(ships, date.DaysSinceEpoch());
 	// Used to stock stores with items known to be for sale.
-	designPlayer->visitedSystems = visitedSystems;
+	visitedSystems = player.visitedSystems;
 
 	// Put the player on the map.
-	designPlayer->SetSystem(*GetSystem());
-	designPlayer->SetPlanet(GetPlanet());
+	SetSystem(*player.GetSystem());
+	SetPlanet(player.GetPlanet());
 	// Zero accounts.
-	designPlayer->Accounts().AddCredits(-designPlayer->Accounts().Credits());
+	Accounts().AddCredits(-Accounts().Credits());
 	// Max out accounts (/2 to prevent any off by one errors from causing overflow).
-	designPlayer->Accounts().AddCredits(numeric_limits<int64_t>::max() / 2);
+	Accounts().AddCredits(numeric_limits<int64_t>::max() / 2);
 	// Allow the player their existing licenses.
-	designPlayer->licenses = Licenses();
+	licenses = player.Licenses();
 
 	// As there is no way to track if a given ship is a variant, just give
 	// access to copies of all the ships the player currently has.
-	// (But avoid duplicating them!  UUID is unique, so check that.)
+	// (But avoid duplicating them!  UUID seems to be unique, so use that.)
 	set<string> current_ships;
-	for(const auto &it : designPlayer->Ships())
-		current_ships.insert(it->UUID().ToString());
 	for(const auto &it : Ships())
+		current_ships.insert(it->UUID().ToString());
+	for(const auto &it : player.Ships())
 		if(!current_ships.count(it->UUID().ToString()))
 		{
-			designPlayer->BuyShip(&(*it), it->Name(), false);
+			BuyShip(&(*it), it->Name(), false);
 			// UUID isn't copyable, so set it by hand.
-			designPlayer->Ships().back()->SetUUID(it->UUID());
+			Ships().back()->SetUUID(it->UUID());
 		}
 
 	// Add any not-for-sale outfits in storage somewhere into the
 	// player's cargo, so they'll show up in the Design Outfitter.
 
-	designPlayer->Cargo().Clear();
-	designPlayer->Cargo().SetSize(-1);
+	Cargo().Clear();
+	Cargo().SetSize(-1);
 	set<const Outfit *> seen;
 	// Find all outfits sold by outfitters of visited systems.
 	for(const auto &it : GameData::Planets())
-		if(it.second.IsValid() && HasVisited(*it.second.GetSystem()))
+		if(it.second.IsValid() && player.HasVisited(*it.second.GetSystem()))
 			for(const Outfit *outfit : it.second.Outfitter())
 				if(!seen.count(outfit))
 					seen.insert(outfit);
 	// Add not-for-sale outfits in planetary storage
-	for(const auto &it : PlanetaryStorage())
+	for(const auto &it : player.PlanetaryStorage())
 		for(const auto &oit : it.second.Outfits())
 			if(!seen.count(oit.first))
-				designPlayer->Cargo().Add(oit.first, oit.second);
+				Cargo().Add(oit.first, oit.second);
 	// Add not-for-sale outfits in player cargo
-	for(const auto &it : Cargo().Outfits())
+	for(const auto &it : player.Cargo().Outfits())
 		if(!seen.count(it.first))
-			designPlayer->Cargo().Add(it.first, it.second);
+			Cargo().Add(it.first, it.second);
 	// Add not-for-sale outfits in ship cargo
-	for(const auto &it : Ships())
+	for(const auto &it : player.Ships())
 		for(const auto &oit : it->Cargo().Outfits())
 			if(!seen.count(oit.first))
-				designPlayer->Cargo().Add(oit.first, oit.second);
+				Cargo().Add(oit.first, oit.second);
 
 	// We don't add not-for-sale outfits that can be gotten from
 	// for-sale ships - players can manage those themselves in the
 	// sandbox by buying those ships and stripping those outfits.
 	// Likewise with installed outfits, as the fleet is available.
-
-	return *designPlayer;
-}
-
-
-
-// Query whether this player is the design panel player.
-bool PlayerInfo::IsDesignPlayer() const
-{
-	return isDesignPlayer;
 }
 
 
@@ -705,6 +690,14 @@ void PlayerInfo::Die(int response, const shared_ptr<Ship> &capturer)
 		if(it != ships.end())
 			ships.erase(it);
 	}
+}
+
+
+
+// Query whether this player is the design panel player.
+bool PlayerInfo::IsDesignPlayer() const
+{
+	return isDesignPlayer;
 }
 
 
