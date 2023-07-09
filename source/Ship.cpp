@@ -150,9 +150,9 @@ namespace {
 		return equipped;
 	}
 
-	void LogWarning(const string &modelName, const string &name, string &&warning)
+	void LogWarning(const string &trueModelName, const string &name, string &&warning)
 	{
-		string shipID = modelName + (name.empty() ? ": " : " \"" + name + "\": ");
+		string shipID = trueModelName + (name.empty() ? ": " : " \"" + name + "\": ");
 		Logger::LogError(shipID + std::move(warning));
 	}
 
@@ -206,10 +206,10 @@ Ship::Ship(const DataNode &node)
 void Ship::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
-		modelName = node.Token(1);
+		trueModelName = node.Token(1);
 	if(node.Size() >= 3)
 	{
-		base = GameData::Ships().Get(modelName);
+		base = GameData::Ships().Get(trueModelName);
 		variantName = node.Token(2);
 	}
 	isDefined = true;
@@ -242,6 +242,8 @@ void Ship::Load(const DataNode &node)
 			thumbnail = SpriteSet::Get(child.Token(1));
 		else if(key == "name" && child.Size() >= 2)
 			name = child.Token(1);
+		else if(key == "display name" && child.Size() >= 2)
+			displayModelName = child.Token(1);
 		else if(key == "plural" && child.Size() >= 2)
 			pluralModelName = child.Token(1);
 		else if(key == "noun" && child.Size() >= 2)
@@ -518,13 +520,16 @@ void Ship::Load(const DataNode &node)
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 
+	if(displayModelName.empty())
+		displayModelName = trueModelName;
+
 	// If no plural model name was given, default to the model name with an 's' appended.
 	// If the model name ends with an 's' or 'z', print a warning because the default plural will never be correct.
 	// Variants will import their plural name from the base model in FinishLoading.
 	if(pluralModelName.empty() && variantName.empty())
 	{
-		pluralModelName = modelName + 's';
-		if(modelName.back() == 's' || modelName.back() == 'z')
+		pluralModelName = displayModelName + 's';
+		if(displayModelName.back() == 's' || displayModelName.back() == 'z')
 			node.PrintTrace("Warning: explicit plural name definition required, but none is provided. Defaulting to \""
 					+ pluralModelName + "\".");
 	}
@@ -540,10 +545,12 @@ void Ship::FinishLoading(bool isNewInstance)
 	// definition stored safely in the ship model, which will not be destroyed
 	// until GameData is when the program quits. Also copy other attributes of
 	// the base model if no overrides were given.
-	if(GameData::Ships().Has(modelName))
+	if(GameData::Ships().Has(trueModelName))
 	{
-		const Ship *model = GameData::Ships().Get(modelName);
+		const Ship *model = GameData::Ships().Get(trueModelName);
 		explosionWeapon = &model->BaseAttributes();
+		if(displayModelName.empty())
+			displayModelName = model->displayModelName;
 		if(pluralModelName.empty())
 			pluralModelName = model->pluralModelName;
 		if(noun.empty())
@@ -702,15 +709,15 @@ void Ship::FinishLoading(bool isNewInstance)
 		string message;
 		if(isYours)
 		{
-			message = "Player ship " + modelName + " \"" + name + "\":";
+			message = "Player ship " + trueModelName + " \"" + name + "\":";
 			string PREFIX = plural ? "\n\tUndefined outfit " : " undefined outfit ";
 			for(auto &&outfit : undefinedOutfits)
 				message += PREFIX + outfit;
 		}
 		else
 		{
-			message = variantName.empty() ? "Stock ship \"" + modelName + "\": "
-				: modelName + " variant \"" + variantName + "\": ";
+			message = variantName.empty() ? "Stock ship \"" + trueModelName + "\": "
+				: trueModelName + " variant \"" + variantName + "\": ";
 			message += to_string(undefinedOutfits.size()) + " undefined outfit" + (plural ? "s" : "") + " installed.";
 		}
 
@@ -726,7 +733,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		if(outfit && outfit->IsDefined()
 				&& (hardpoint.IsTurret() != (outfit->Get("turret mounts") != 0.)))
 		{
-			string warning = (!isYours && !variantName.empty()) ? "variant \"" + variantName + "\"" : modelName;
+			string warning = (!isYours && !variantName.empty()) ? "variant \"" + variantName + "\"" : trueModelName;
 			if(!name.empty())
 				warning += " \"" + name + "\"";
 			warning += ": outfit \"" + outfit->TrueName() + "\" installed as a ";
@@ -818,8 +825,8 @@ void Ship::FinishLoading(bool isNewInstance)
 	// account for systems accessible via wormholes, but also does not need to as AI will route the ship properly.
 	if(!isNewInstance && targetSystem)
 	{
-		string message = "Warning: " + string(isYours ? "player-owned " : "NPC ") + modelName + " \"" + name + "\": "
-			"Cannot reach target system \"" + targetSystem->Name();
+		string message = "Warning: " + string(isYours ? "player-owned " : "NPC ")
+			+ trueModelName + " \"" + name + "\": Cannot reach target system \"" + targetSystem->Name();
 		if(!currentSystem)
 		{
 			Logger::LogError(message + "\" (no current system).");
@@ -851,11 +858,13 @@ bool Ship::IsValid() const
 // Save a full description of this ship, as currently configured.
 void Ship::Save(DataWriter &out) const
 {
-	out.Write("ship", modelName);
+	out.Write("ship", trueModelName);
 	out.BeginChild();
 	{
 		out.Write("name", name);
-		if(pluralModelName != modelName + 's')
+		if(displayModelName != trueModelName)
+			out.Write("display name", displayModelName);
+		if(pluralModelName != displayModelName + 's')
 			out.Write("plural", pluralModelName);
 		if(!noun.empty())
 			out.Write("noun", noun);
@@ -1082,16 +1091,23 @@ const string &Ship::Name() const
 
 
 // Set / Get the name of this class of ships, e.g. "Marauder Raven."
-void Ship::SetModelName(const string &model)
+void Ship::SetTrueModelName(const string &model)
 {
-	this->modelName = model;
+	this->trueModelName = model;
 }
 
 
 
-const string &Ship::ModelName() const
+const string &Ship::TrueModelName() const
 {
-	return modelName;
+	return trueModelName;
+}
+
+
+
+const string &Ship::DisplayModelName() const
+{
+	return displayModelName;
 }
 
 
@@ -1106,7 +1122,7 @@ const string &Ship::PluralModelName() const
 // Get the name of this ship as a variant.
 const string &Ship::VariantName() const
 {
-	return variantName.empty() ? modelName : variantName;
+	return variantName.empty() ? trueModelName : variantName;
 }
 
 
@@ -1207,12 +1223,12 @@ vector<string> Ship::FlightCheck() const
 		checks.emplace_back("no thruster!");
 	else if(!turn)
 		checks.emplace_back("no steering!");
-	else if(RequiredCrew() > attributes.Get("bunks"))
-		checks.emplace_back("insufficient bunks!");
 
 	// If no errors were found, check all warning conditions:
 	if(checks.empty())
 	{
+		if(RequiredCrew() > attributes.Get("bunks"))
+			checks.emplace_back("insufficient bunks?");
 		if(!thrust && !reverseThrust)
 			checks.emplace_back("afterburner only?");
 		if(!thrust && !afterburner)
@@ -1757,8 +1773,11 @@ int Ship::Scan(const PlayerInfo &player)
 	// scan as one with 10 tons. This avoids small sizes being scanned instantly, or
 	// causing a divide by zero error at sizes of 0.
 	// If instantly scanning very small ships is desirable, this can be removed.
-	double outfits = max(10., target->baseAttributes.Get("outfit space")) * .005;
-	double cargo = max(10., target->attributes.Get("cargo space")) * .005;
+	// One point of scan opacity is the equivalent of an additional ton of cargo / outfit space
+	double outfits = max(10., (target->baseAttributes.Get("outfit space")
+		+ target->attributes.Get("outfit scan opacity"))) * .005;
+	double cargo = max(10., (target->attributes.Get("cargo space")
+		+ target->attributes.Get("cargo scan opacity"))) * .005;
 
 	// Check if either scanner has finished scanning.
 	bool startedScanning = false;
@@ -1823,7 +1842,7 @@ int Ship::Scan(const PlayerInfo &player)
 			if(!target->Name().empty())
 				tag = gov + " " + target->Noun() + " \"" + target->Name() + "\": ";
 			else
-				tag = target->ModelName() + " (" + gov + "): ";
+				tag = target->DisplayModelName() + " (" + gov + "): ";
 			Messages::Add(tag + "Please refrain from scanning us or we will be forced to take action.",
 				Messages::Importance::Highest);
 		}
@@ -3579,6 +3598,18 @@ void Ship::DoGeneration()
 				if(fuelRemaining > 0.)
 					DoRepair(ship.fuel, fuelRemaining, ship.attributes.Get("fuel capacity"));
 			}
+
+			// Carried ships can recharge energy from their parent's batteries,
+			// if they are preparing for deployment. Otherwise, they replenish the
+			// parent's batteries.
+			for(const pair<double, Ship *> &it : carried)
+			{
+				Ship &ship = *it.second;
+				if(ship.HasDeployOrder())
+					DoRepair(ship.energy, energy, ship.attributes.Get("energy capacity"));
+				else
+					DoRepair(energy, ship.energy, attributes.Get("energy capacity"));
+			}
 		}
 		// Decrease the shield and hull delays by 1 now that shield generation
 		// and hull repair have been skipped over.
@@ -4353,7 +4384,7 @@ void Ship::StepTargeting()
 					bool isEnemy = government->IsEnemy(target->government);
 					if(isEnemy && Random::Real() < target->Attributes().Get("self destruct"))
 					{
-						Messages::Add("The " + target->ModelName() + " \"" + target->Name()
+						Messages::Add("The " + target->DisplayModelName() + " \"" + target->Name()
 							+ "\" has activated its self-destruct mechanism.", Messages::Importance::High);
 						GetTargetShip()->SelfDestruct();
 					}

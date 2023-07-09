@@ -91,7 +91,7 @@ namespace {
 
 	bool CompareModelName(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
 	{
-		return lhs->ModelName() < rhs->ModelName();
+		return lhs->DisplayModelName() < rhs->DisplayModelName();
 	}
 
 	bool CompareSystem(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
@@ -744,7 +744,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 
 		const Ship &ship = **sit;
 		bool isElsewhere = (ship.GetSystem() != player.GetSystem());
-		isElsewhere |= (ship.CanBeCarried() && player.GetPlanet());
+		isElsewhere |= ((ship.CanBeCarried() || ship.GetPlanet() != player.GetPlanet()) && player.GetPlanet());
 		bool isDead = ship.IsDestroyed();
 		bool isDisabled = ship.IsDisabled();
 		bool isFlagship = &ship == player.Flagship();
@@ -760,7 +760,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 
 		// Indent the ship name if it is a fighter or drone.
 		table.Draw(ship.CanBeCarried() ? "    " + ship.Name() : ship.Name());
-		table.Draw(ship.ModelName());
+		table.Draw(ship.DisplayModelName());
 
 		const System *system = ship.GetSystem();
 		table.Draw(system ? system->Name() : "");
