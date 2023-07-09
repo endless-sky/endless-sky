@@ -198,6 +198,24 @@ private:
 	};
 
 
+	// This class handles "pointer" elements.
+	class PointerElement : public Element {
+	public:
+		PointerElement(const DataNode &node, const Point &globalAnchor);
+
+	protected:
+		// Parse the given data line: one that is not recognized by Element
+		// itself. This returns false if it does not recognize the line, either.
+		virtual bool ParseLine(const DataNode &node) override;
+		// Draw this element in the given rectangle.
+		virtual void Draw(const Rectangle &rect, const Information &info, int state) const override;
+
+	private:
+		const Color *color = nullptr;
+		Point orientation;
+	};
+
+
 	// This class handles "line" elements.
 	class LineElement : public Element {
 	public:
