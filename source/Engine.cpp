@@ -176,13 +176,15 @@ namespace {
 					else if(point.steering == Ship::EnginePoint::LEFT && ship.TurnLeftHeldFrames())
 						for(int i = 0; i < it.second && i < 3; ++i)
 						{
-							Body sprite(it.first, pos, ship.Velocity(), ship.Facing() + point.facing, point.zoom, scale * Point(1., pow(ship.TurnLeftHeldFrames() / 10., 3)));
+							Body sprite(it.first, pos, ship.Velocity(), ship.Facing() + point.facing, point.zoom,
+								scale * Point(1., pow(ship.TurnLeftHeldFrames() / 10., 3)));
 							draw.Add(sprite, ship.Cloaking());
 						}
 					else if(point.steering == Ship::EnginePoint::RIGHT && ship.TurnRightHeldFrames())
 						for(int i = 0; i < it.second && i < 3; ++i)
 						{
-							Body sprite(it.first, pos, ship.Velocity(), ship.Facing() + point.facing, point.zoom, scale * Point(1., pow(ship.TurnRightHeldFrames() / 10., 3)));
+							Body sprite(it.first, pos, ship.Velocity(), ship.Facing() + point.facing, point.zoom,
+								scale * Point(1., pow(ship.TurnRightHeldFrames() / 10., 3)));
 							draw.Add(sprite, ship.Cloaking());
 						}
 				}
@@ -1042,7 +1044,8 @@ void Engine::Draw() const
 	// Draw the flagship highlight, if any.
 	if(highlightSprite)
 	{
-		Point size(highlightSprite->Width() * player.Flagship()->Scale().X(), highlightSprite->Height() * player.Flagship()->Scale().Y());
+		Point size(highlightSprite->Width() * player.Flagship()->Scale().X(),
+			highlightSprite->Height() * player.Flagship()->Scale().Y());
 		const Color &color = *colors.Get("flagship highlight");
 		// The flagship is always in the dead center of the screen.
 		OutlineShader::Draw(highlightSprite, Point(), size, color, highlightUnit, highlightFrame);
@@ -2449,7 +2452,6 @@ void Engine::AddSprites(const Ship &ship)
 
 	double thrustMul = pow(ship.Zoom() * ship.ThrustHeldFrames() / 10., 3);
 	double reverseMul = pow(ship.Zoom() * ship.ReverseHeldFrames() / 10., 3);
-	// double turnMul = pow(ship.Zoom() * (ship.SteeringDirection() ? ship.TurnRightHeldFrames() : ship.TurnLeftHeldFrames()) / 10., 2);
 
 	if(thrustMul && !ship.EnginePoints().empty())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.EnginePoints(),
