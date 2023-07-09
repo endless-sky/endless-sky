@@ -151,7 +151,7 @@ namespace {
 		if(!ship->Name().empty())
 			tag = gov + " " + ship->Noun() + " \"" + ship->Name() + "\": ";
 		else
-			tag = ship->ModelName() + " (" + gov + "): ";
+			tag = ship->DisplayModelName() + " (" + gov + "): ";
 
 		Messages::Add(tag + message, Messages::Importance::High);
 	}
@@ -243,7 +243,6 @@ namespace {
 
 Engine::Engine(PlayerInfo &player)
 	: player(player), ai(ships, asteroids.Minables(), flotsam),
-	isMouseToggleEnabled(Preferences::Has("alt-mouse turning")),
 	ammoDisplay(player), shipCollisions(256u, 32u)
 {
 	zoom = Preferences::ViewZoom();
@@ -351,7 +350,7 @@ void Engine::Place()
 		{
 			const Personality &person = ship->GetPersonality();
 			bool hasOwnPlanet = ship->GetPlanet();
-			bool launchesWithPlayer = (ship->IsYours() || (planet && planet->CanLand(*ship)))
+			bool launchesWithPlayer = (planet && planet->CanLand(*ship))
 					&& !(person.IsStaying() || person.IsWaiting() || hasOwnPlanet);
 			const StellarObject *object = hasOwnPlanet ?
 					ship->GetSystem()->FindStellar(ship->GetPlanet()) : nullptr;
@@ -785,7 +784,7 @@ void Engine::Step(bool isActive)
 			targetUnit = target->Facing().Unit();
 		info.SetSprite("target sprite", target->GetSprite(), targetUnit, target->GetFrame(step));
 		info.SetString("target name", target->Name());
-		info.SetString("target type", target->ModelName());
+		info.SetString("target type", target->DisplayModelName());
 		if(!target->GetGovernment())
 			info.SetString("target government", "No Government");
 		else
@@ -843,7 +842,7 @@ void Engine::Step(bool isActive)
 		double width = max(target->Width(), target->Height());
 		Point pos = target->Position() - center;
 		statuses.emplace_back(pos, flagship->OutfitScanFraction(), flagship->CargoScanFraction(),
-			0, 10. + max(20., width * .5), 2, Angle(pos).Degrees() + 180.);
+			0., 10. + max(20., width * .5), 4, Angle(pos).Degrees() + 180.);
 	}
 	// Handle any events that change the selected ships.
 	if(groupSelect >= 0)
@@ -982,8 +981,8 @@ list<ShipEvent> &Engine::Events()
 // Draw a frame.
 void Engine::Draw() const
 {
-	GameData::Background().Draw(center, centerVelocity, zoom, (player.Flagship() ?
-		player.Flagship()->GetSystem() : player.GetSystem()));
+	GameData::Background().Draw(center, Preferences::Has("Render motion blur") ? centerVelocity : Point(),
+		zoom, (player.Flagship() ? player.Flagship()->GetSystem() : player.GetSystem()));
 	static const Set<Color> &colors = GameData::Colors();
 	const Interface *hud = GameData::Interfaces().Get("hud");
 
@@ -996,15 +995,18 @@ void Engine::Draw() const
 
 	for(const auto &it : statuses)
 	{
-		static const Color color[11] = {
+		static const Color color[14] = {
+			*colors.Get("overlay flagship shields"),
 			*colors.Get("overlay friendly shields"),
 			*colors.Get("overlay hostile shields"),
 			*colors.Get("overlay neutral shields"),
 			*colors.Get("overlay outfit scan"),
+			*colors.Get("overlay flagship hull"),
 			*colors.Get("overlay friendly hull"),
 			*colors.Get("overlay hostile hull"),
 			*colors.Get("overlay neutral hull"),
 			*colors.Get("overlay cargo scan"),
+			*colors.Get("overlay flagship disabled"),
 			*colors.Get("overlay friendly disabled"),
 			*colors.Get("overlay hostile disabled"),
 			*colors.Get("overlay neutral disabled")
@@ -1015,9 +1017,9 @@ void Engine::Draw() const
 			RingShader::Draw(pos, radius + 3., 1.5f, it.outer, color[it.type], 0.f, it.angle);
 		double dashes = (it.type >= 3) ? 0. : 20. * min(1., zoom);
 		if(it.inner > 0.)
-			RingShader::Draw(pos, radius, 1.5f, it.inner, color[4 + it.type], dashes, it.angle);
+			RingShader::Draw(pos, radius, 1.5f, it.inner, color[5 + it.type], dashes, it.angle);
 		if(it.disabled > 0.)
-			RingShader::Draw(pos, radius, 1.5f, it.disabled, color[8 + it.type], dashes, it.angle);
+			RingShader::Draw(pos, radius, 1.5f, it.disabled, color[10 + it.type], dashes, it.angle);
 	}
 
 	// Draw labels on missiles
@@ -1932,6 +1934,10 @@ void Engine::HandleKeyboardInputs()
 		else if(keyHeld.Has(Command::JUMP))
 			activeCommands |= Command::FLEET_JUMP;
 	}
+
+	if(keyHeld.Has(Command::AUTOSTEER) && !activeCommands.Turn()
+			&& !activeCommands.Has(Command::LAND | Command::JUMP | Command::BOARD | Command::STOP))
+		activeCommands |= Command::AUTOSTEER;
 }
 
 
@@ -2063,11 +2069,8 @@ void Engine::HandleMouseClicks()
 void Engine::HandleMouseInput(Command &activeCommands)
 {
 	isMouseHoldEnabled = activeCommands.Has(Command::MOUSE_TURNING_HOLD);
-	if(activeCommands.Has(Command::MOUSE_TURNING_TOGGLE))
-	{
-		isMouseToggleEnabled = !isMouseToggleEnabled;
-		Preferences::Set("alt-mouse turning", isMouseToggleEnabled);
-	}
+	bool isMouseToggleEnabled = Preferences::Has("Control ship with mouse");
+
 	// XOR mouse hold and mouse toggle. If mouse toggle is OFF, then mouse hold
 	// will temporarily turn ON mouse control. If mouse toggle is ON, then mouse
 	// hold will temporarily turn OFF mouse control.
@@ -2257,6 +2260,8 @@ void Engine::DoCollection(Flotsam &flotsam)
 		}
 	}
 	if(!collector)
+		return;
+	if(collector == player.Flagship() && !Preferences::Has("Flagship flotsam collection"))
 		return;
 
 	// Transfer cargo from the flotsam to the collector ship.
@@ -2595,11 +2600,11 @@ void Engine::CreateStatusOverlays()
 		if(it == flagship)
 			EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::FLAGSHIP], 0);
 		else if(it->GetGovernment()->IsEnemy())
-			EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::ENEMY], 1);
+			EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::ENEMY], 2);
 		else if(it->IsYours() || it->GetPersonality().IsEscort())
-			EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::ESCORT], 0);
+			EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::ESCORT], 1);
 		else
-			EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::NEUTRAL], 2);
+			EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::NEUTRAL], 3);
 	}
 }
 

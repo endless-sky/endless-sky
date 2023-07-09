@@ -78,13 +78,16 @@ template <class Type>
 	int64_t AllyStrength(const Government *government);
 	int64_t EnemyStrength(const Government *government);
 
+	// Find nearest landing location.
+	static const StellarObject *FindLandingLocation(const Ship &ship, const bool refuel = true);
+
 
 private:
 	// Check if a ship can pursue its target (i.e. beyond the "fence").
 	bool CanPursue(const Ship &ship, const Ship &target) const;
 	// Disabled or stranded ships coordinate with other ships to get assistance.
 	void AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship);
-	static bool CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel);
+	bool CanHelp(const Ship &ship, const Ship &helper, const bool needsFuel) const;
 	bool HasHelper(const Ship &ship, const bool needsFuel);
 	// Pick a new target for the given ship.
 	std::shared_ptr<Ship> FindTarget(const Ship &ship) const;
@@ -104,7 +107,7 @@ private:
 	// Determine the value to use in Command::SetTurn() to turn the ship towards the desired facing.
 	// "precision" is an optional argument corresponding to a value of the dot product of the current and target facing
 	// vectors above which no turning should be attempting, to reduce constant, minute corrections.
-	static double TurnToward(const Ship &ship, const Point &vector, const double precision = 1.);
+	static double TurnToward(const Ship &ship, const Point &vector, const double precision = 0.9999);
 	static bool MoveToPlanet(Ship &ship, Command &command);
 	static bool MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 		const Point &targetVelocity, double radius, double slow);
@@ -141,7 +144,7 @@ private:
 	void AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic = false) const;
 	// Fire whichever of the given ship's weapons can hit a hostile target.
 	// Return a bitmask giving the weapons to fire.
-	void AutoFire(const Ship &ship, FireCommand &command, bool secondary = true) const;
+	void AutoFire(const Ship &ship, FireCommand &command, bool secondary = true, bool isFlagship = false) const;
 	void AutoFire(const Ship &ship, FireCommand &command, const Body &target) const;
 
 	// Calculate how long it will take a projectile to reach a target given the
