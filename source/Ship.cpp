@@ -2633,7 +2633,8 @@ double Ship::InertialMass() const
 
 double Ship::TurnRate() const
 {
-	return (attributes.Get("turn") + attributes.Get("vectored thrust") * Commands().Has(Command::FORWARD)) / InertialMass();
+	return (attributes.Get("turn") + attributes.Get("vectored thrust") * Commands().Has(Command::FORWARD))
+		/ InertialMass();
 }
 
 

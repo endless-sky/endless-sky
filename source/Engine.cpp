@@ -159,7 +159,8 @@ namespace {
 	void DrawFlareSprites(const Ship &ship, DrawList &draw, const vector<Ship::EnginePoint> &enginePoints,
 		const vector<pair<Body, int>> &flareSprites, uint8_t side)
 	{
-		int thrustVectoring = (ship.Commands().Has(Command::FORWARD) + ship.Commands().Has(Command::BACK)) * ( 180 - ship.Commands().Turn());
+		int thrustVectoring = (ship.Commands().Has(Command::FORWARD) + ship.Commands().Has(Command::BACK))
+			* (180 - ship.Commands().Turn());
 		Angle flareVector = Angle(double(30) * thrustVectoring);
 
 		for(const Ship::EnginePoint &point : enginePoints)
