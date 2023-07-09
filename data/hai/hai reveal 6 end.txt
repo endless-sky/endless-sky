@@ -202,6 +202,7 @@ system "Al Hurr"
 	hidden
 	pos -432 -491
 	government "Uninhabited"
+	attributes "inaccessible"
 	arrival 1715
 	habitable 1715
 	belt 1312
