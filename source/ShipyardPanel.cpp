@@ -173,7 +173,7 @@ int ShipyardPanel::DrawDetails(const Point &center)
 	if(selectedShip)
 	{
 		shipInfo.Update(*selectedShip, player, collapsed.count("description"));
-		selectedItem = selectedShip->ModelName();
+		selectedItem = selectedShip->DisplayModelName();
 
 		const Sprite *background = SpriteSet::Get("ui/shipyard selected");
 		const Sprite *shipSprite = selectedShip->GetSprite();
@@ -301,7 +301,7 @@ void ShipyardPanel::Buy(bool onlyOwned)
 		message = "Enter a name for your brand new ";
 
 	if(modifier == 1)
-		message += selectedShip->ModelName() + "! (Or leave it blank to use a randomly chosen name.)";
+		message += selectedShip->DisplayModelName() + "! (Or leave it blank to use a randomly chosen name.)";
 	else
 		message += selectedShip->PluralModelName() + "! (Or leave it blank to use randomly chosen names.)";
 
