@@ -267,7 +267,7 @@ void ShipyardPanel::DrawDesignButtons()
 	const Point buttonCenter = Screen::BottomRight() - Point(210 + SIDEBAR_WIDTH, 25);
 	FillShader::Fill(buttonCenter, Point(140, 30), back);
 
-	const string TEXT = designMode ? "Outfitter _Design" : "_Design Center";
+	const string TEXT = designMode ? "_Design Outfitter" : "_Design Center";
 
 	bigFont.Draw(TEXT,
 		buttonCenter - .5 * Point(bigFont.Width(TEXT), bigFont.Height()),
@@ -417,8 +417,11 @@ bool ShipyardPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		}
 		else
 		{
+			// Only initialize the design player once per shipyard.
 			if (!designPlayer.IsDesignPlayer())
 				designPlayer.NewDesignPlayer(player);
+			// The design screens are effectively subpanels of
+			// the ShipyardPanel so don't pop the shipyard ui.
 			GetUI()->Push(new ShipyardPanel(designPlayer));
 		}
 	}

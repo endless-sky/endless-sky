@@ -356,7 +356,7 @@ void OutfitterPanel::DrawDesignButtons()
 	const Point buttonCenter = Screen::BottomRight() - Point(210 + SIDEBAR_WIDTH, 25);
 	FillShader::Fill(buttonCenter, Point(140, 30), back);
 
-	const string TEXT = "Shipyard _Design";
+	const string TEXT = "_Design Shipyard";
 
 	bigFont.Draw(TEXT,
 		buttonCenter - .5 * Point(bigFont.Width(TEXT), bigFont.Height()),
