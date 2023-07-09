@@ -149,7 +149,7 @@ mission "Hai Legacy 1"
 		not "event: hai ladybug available"
 	on offer
 		conversation
-			`As you enter the shipyard you quickly get approached by someone wearing a hood, apparently not too keen to reveal their identity. They come to address you, discreetly. Seeing you stop to listen, they take your arm and make you follow them. "Keep walking," they say, quickly taking a look around the way someone looking for a new ship would, before addressing you again. "My associates and I have a business proposition for you, if you are interested to learn more about it go to these coordinates." They give you a piece of paper containing the location, a beach almost on the other side of the planet with an instruction to not go with your ship, before quickly fading into the crowd. Will you go there?`
+			`As you enter the shipyard you quickly get approached by a hooded figure. They come to address you, discreetly. Seeing you stop to listen, they take your arm and make you follow them. "Keep walking," they say, taking a look around the way someone looking for a new ship would, before addressing you again. "My associates and I have a business proposition for you, if you are interested to learn more about it go to these coordinates." They give you a piece of paper containing the location, a beach almost on the other side of the planet with instructions not to go with your ship, before quickly fading into the crowd. Will you go there?`
 			choice
 				`	(Sure.)`
 				`	(Maybe another time.)`
@@ -184,6 +184,8 @@ mission "Hai Legacy 1"
 				`	(Wait.)`
 					goto wait
 				`	(Try to contact my fleet for help.)`
+				`	(Shoot it!)`
+					goto dumb
 			`	As you try to react to this imminent threat, the Hai closest to you firmly holds your arm and shouts to get trough the ambiant noise. "Wait! If this ship wanted to kill you, <last>, you would already be dead. We are not in space, its weapons would easily destroy this beach before we could do anything about it."`
 			label wait
 			`	You are having a hard time hearing anything with the sound of the engines, but the ship proceeds to land on the beach, and it is as if the elements themselves are at rest.`
@@ -205,12 +207,30 @@ mission "Hai Legacy 1"
 			`	They give you access to the ship and proceed to explain the details. "It is of no real significance, but surely you understand we cannot go trough official means for this, we will have to present it as a fine. Worry not, we will make it something of no consequence, like an old Korath forbidden tech you would not have known about, that we had to confiscate."`
 			`	You quickly realize they are not asking you for your opinion at all. In fact, you notice the fine has already been issued before you could say anything. "Oh, and you should not change its colors, you'll understand why later. Also make sure you go to the spaceport to get the cargo loaded onto your ship!"`
 				accept
+			label dumb
+			# how will you die? spin the wheel!
+			`	You get your hand weapon out and proceed to shoot on the ship.`
+			branch lucky?
+				random < 2
+			branch lucky??
+				random < 40
+			`	You shoot the ship, but the small weapon has no chance of doing anything to the heavy armor, even in this state. The ship's speakers then turn up. "MY TURN!"`
+			`	Apparently the ship is using ion cannons, that manage to take you down without even hurting the Hai.`
+				die
+			label lucky??
+			`	You manage to land a lucky hit on what you assume to be the ship's navigation system, because it comes down, seemingly crashing.`
+			`	Except that it crashes right on you, and it seems more like a landing than an actual crash, especially considering the Hai are left mostly untouched, having taken a few leaps back right in time.`
+				die
+			label lucky?
+			`	Probably thanks to the fact the ship's shields are down, and of its depreciated state, you manage to land a very lucky shot, going trough a layer of rust and severely damaging the reactor of the ship.`
+			`	At least it felt lucky until it blew up, taking you and everyone else on this beach with it.`
+				die
 
 mission "Hai Legacy 2"
 	autosave
 	landing
-	name "Young but not that young"
-	description "Use the newly acquired old Ladybug to bring aid to the Unfettered Hai, as your flagship."
+	name "Heritage reclaimed"
+	description "Use the newly acquired Ancient Ladybug to bring aid to the Unfettered Hai, with it as your flagship and preferably without any fleet."
 	clearance
 	# deadline to make sure you don't just enjoy free rep
 	deadline 30
@@ -265,7 +285,7 @@ outfit "Unfettered Landing Permit"
 	description "This item is needed in order to land on Unfettered planets, and its loss will cancel the arrangement."
 
 mission "Hai Legacy 3"
-	name "Relic of a long lost era"
+	name "Ancient claim"
 	description "Beat the Lightning Bugs in a merciless fight. You only have one day, and being disabled will result in losing the fight."
 	landing
 	source "Firelode"
@@ -275,8 +295,9 @@ mission "Hai Legacy 3"
 		has "Hai Legacy 2: done"
 	on offer
 		conversation
-			`As you land and get out of your ship, you quickly notice you have attracted a lot of attention, probably due to this old design. One Unfettered that looks like an engineer comes to speak to you, warmer than usual. "Welcome. I do not know how you have obtained this ship, and some will probably see it as a sign. As you may know it is a relic of our past, a past we are quite proud of."`
-			`	"In truth, I do not personally care about all of that. All I care about is that this ship is old, and has technology that would be very valuable because of how rare it is. Thus, I challenge you for it!"`
+			`As you land and get out of your ship, you quickly notice you have attracted a lot of attention, probably due to this old design. One Unfettered that looks like an engineer comes to speak to you, warmer than usual. "Welcome. I do not know how you have obtained this ship, although I imagine some of us will see it as a sign. It is a relic of our past, a past we are quite proud of.`
+			`	"As such, most will say that you have no right to use that ship. However, thankfully for you, I do not believe in any of that. What matters to me is that this ship is very durable, given the time it obviously spent in the water. It also has ancient technology that would be very valuable to us."`
+			`	They raise their voice for everyone to hear, "I challenge you! The winner will earn the right to own this relic."`
 			choice
 				`	"What do I get if I win?"`
 					goto win
