@@ -2670,6 +2670,34 @@ double Ship::MaxReverseVelocity() const
 
 
 
+unsigned short Ship::ThrustHeldFrames() const
+{
+	return thrusterHeldFrames;
+}
+
+
+
+unsigned short Ship::ReverseHeldFrames() const
+{
+	return reverseHeldFrames;
+}
+
+
+
+unsigned short Ship::TurnRightHeldFrames() const
+{
+	return turnRightHeldFrames;
+}
+
+
+
+unsigned short Ship::TurnLeftHeldFrames() const
+{
+	return turnLeftHeldFrames;
+}
+
+
+
 // This ship just got hit by a weapon. Take damage according to the
 // DamageDealt from that weapon. The return value is a ShipEvent type,
 // which may be a combination of PROVOKED, DISABLED, and DESTROYED.
@@ -4114,6 +4142,15 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 	double mass = InertialMass();
 	double slowMultiplier = 1. / (1. + slowness * .05);
 
+	if(thrusterHeldFrames != 0)
+		thrusterHeldFrames--;
+	if(reverseHeldFrames != 0)
+		reverseHeldFrames--;
+	if(turnRightHeldFrames != 0)
+		turnRightHeldFrames--;
+	if(turnLeftHeldFrames != 0)
+		turnLeftHeldFrames--;
+
 	if(isDisabled)
 		velocity *= 1. - Drag() / mass;
 	else if(!pilotError)
@@ -4145,6 +4182,10 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 			{
 				isSteering = true;
 				steeringDirection = commands.Turn();
+				if(steeringDirection < 0.)
+					turnLeftHeldFrames = min(10, turnLeftHeldFrames + 2);
+				else
+					turnRightHeldFrames = min(10, turnRightHeldFrames + 2);
 				// If turning at a fraction of the full rate (either from lack of
 				// energy or because of tracking a target), only consume a fraction
 				// of the turning energy and produce a fraction of the heat.
@@ -4204,6 +4245,12 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				isThrusting = (thrustCommand > 0.);
 				isReversing = !isThrusting && attributes.Get("reverse thrust");
 				thrust = attributes.Get(isThrusting ? "thrust" : "reverse thrust");
+
+				if(isReversing)
+					reverseHeldFrames = min(10, reverseHeldFrames + 2);
+				else
+					thrusterHeldFrames = min(10, thrusterHeldFrames + 2);
+
 				if(thrust)
 				{
 					double scale = fabs(thrustCommand);
