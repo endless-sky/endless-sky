@@ -1042,7 +1042,7 @@ tip "reverse only?"
 	`This ship has a reverse thruster but no forward thruster. It could be very difficult to maneuver.`
 
 tip "battery only?"
-	`This ship has no means of generating energy. If its batteries are depleted, you could end up stranded and unable to move.`
+	`This ship has no means of generating energy. It could end up stranded and unable to move if its batteries are depleted.`
 
 tip "limited thrust?"
 	`This ship's energy supply is not sufficient to run the thrusters at full power. Its top speed and acceleration will be diminished.`
@@ -1051,10 +1051,10 @@ tip "limited turn?"
 	`This ship's energy supply is not sufficient to run the steering at full power. Its turn rate will be diminished.`
 
 tip "solar power?"
-	`This ship is powered entirely by solar energy. If you fly too far from the center of a star system, maneuvering may become difficult because your engines will only have a fraction of the power they require.`
+	`This ship is powered entirely by solar energy. It could be difficult to maneuver if you fly too far from the center of a star system, because your engines will only have a fraction of the power they require.`
 
 tip "fuel?"
-	`This ship consumes fuel, but has insufficient storage. If it departs, it would immediately run out of fuel.`
+	`This ship consumes fuel, but has insufficient storage. If it took off, it would immediately run out of fuel.`
 
 tip "no hyperdrive?"
 	`This ship has no hyperdrive. If it took off, it would be unable to leave this star system.`
@@ -1063,7 +1063,7 @@ tip "no fuel?"
 	`This ship has insufficient fuel capacity to make a hyperspace jump. If it took off, it would be unable to leave this star system.`
 
 tip "no bays?"
-	`There are insufficient bays available to carry this ship. If you take off, it would be unable to leave this star system.`
+	`There are insufficient bays available to carry this ship. If it took off, it would be unable to leave this star system.`
 
 tip "insufficient energy to fire?"
 	`This ship has insufficient energy storage to fire an installed weapon.`
