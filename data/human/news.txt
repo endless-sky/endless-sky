@@ -279,7 +279,7 @@ news "street vendor"
 	name
 		word
 			"Street vendor"
-			"Open-Air Market vendor"
+			"Open-air market vendor"
 			"Food stall operator"
 	message
 		word
@@ -895,14 +895,16 @@ news "mechanic"
 news "ship salesperson"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-	# TODO: Add filter for only planets with shipyards (once we can use conditions to filter this).
+		attributes "shipyard"
 	name
 		word
-			"Used Spaceship Salesman"
-			"Used Spaceship Saleswoman"
-			"Used Spaceship Salesperson"
-			"Used Spaceship Seller"
-			"Used Spaceship Dealer"
+			"Used spaceship "
+		word
+			"salesman"
+			"saleswoman"
+			"salesperson"
+			"seller"
+			"dealer"
 	message
 		word
 			`"`
@@ -1001,7 +1003,7 @@ news "public relations worker"
 	name
 		word
 			"PR consultant"
-			"Crisis Consultant"
+			"Crisis consultant"
 	message
 		word
 			`"`
@@ -1260,6 +1262,7 @@ news "retiree"
 news "financial analyst"
 	location
 		attributes "paradise" "near earth"
+		not government Pug
 	name
 		word
 			"Financial analyst"
@@ -1330,7 +1333,7 @@ news "work coach"
 	name
 		word
 			"Corporate consultant"
-			"Work/Life balance coach"
+			"Work/life balance coach"
 			"Work efficiency coach"
 	message
 		word
@@ -1387,7 +1390,7 @@ news "student"
 			"Tuition is so high these days that I've had to take three side jobs just to get through the semester. It's hard to focus on my studies, but I'll manage somehow."
 			"After graduation, I think I'd like to work in industry somewhere, but my advisor is encouraging me to go on and get my master's degree. What do you think?"
 			"Sorry, no time to chat. My master's thesis is already late and I'm hiding from my advisor."
-			"This is the life! I'm only in class like 3, so my days are totally open! I know it'll end in a few years, but I'm going to enjoy it while I can. After you graduate, it's just work work work until you're dead."
+			"This is the life! I'm only in like 3 classes, so my days are totally open! I know it'll end in a few years, but I'm going to enjoy it while I can. After you graduate, it's just work work work until you're dead."
 		word
 			`"`
 
@@ -1534,7 +1537,7 @@ news "republic soldier"
 		attributes "military"
 	name
 		word
-			"Republic Soldier"
+			"Republic soldier"
 	message
 		word
 			`"`
@@ -1554,13 +1557,35 @@ news "republic soldier"
 
 
 
+news "lawyer"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	name
+		word
+			"Lawyer"
+			"Attorney"
+	message
+		word
+			`"`
+		word
+			"The Dereliction and Salvage Act of 2976 states unmanned vessels gain abandoned status as soon as their owners leave the system. This makes drones a prime target for pirates and scavengers."
+			"The Capable Rescue Act of 2318 requires all manned vessels to be capable of individual spaceflight in case of an emergency. This is the oldest interstellar law still recognized today, predating the Republic by four centuries."
+			"In 2937, the Parliament voted to classify crewing spaceships as hazardous duty, raising the crew's minimum wage to a 100 credits. Their salary has not changed since."
+			"I'm reviewing a case on the destruction of an abandoned drone. The owner argues it was a personal hyperspace relay, which exempts it from salvage law."
+			"My client is accused of destroying a landing pad and flooding the surrounding area with leaked reactor plasma. Really, it's the spaceport's fault for not verifying whether he had a pilot's license in the first place."
+			"I was involved in a case of an out-of-spec Syndicate nuclear reactor. Allegedly, the Syndicate threatened the inspector to prevent him from publishing his results, but he didn't give in."
+		word
+			`"`
+
+
+
 news "syndicate soldier"
 	location
 		government "Syndicate"
 		attributes "military"
 	name
 		word
-			"Syndicate Soldier"
+			"Syndicate soldier"
 	message
 		word
 			`"`
@@ -1641,17 +1666,8 @@ news "merchant in pirate space"
 	location
 		government "Pirate"
 	name
-		word
-			"Merchant captain"
-			"Starship captain"
-			"Spacecraft captain"
-			"Spaceship captain"
-			"Freelance captain"
-			"Merchant pilot"
-			"Starship pilot"
-			"Spacecraft pilot"
-			"Spaceship pilot"
-			"Freelance pilot"
+		phrase
+			"merchant names"
 	message
 		word
 			`"`
@@ -1736,7 +1752,7 @@ news "spaceport video advertisement"
 		government "Republic"
 	name
 		word
-			"Spaceport Video Screen"
+			"Spaceport video screen"
 	message
 		word
 			`You see a video of stuntmen making a jump from the edge of space. The "do not try this at home", "illegal on many planets", and "high risk/deadly" warnings at the end of the video suggest that this might become quite a popular sport.`
@@ -1771,7 +1787,7 @@ news "syndicate pa system"
 		not attributes "station"
 	name
 		word
-			"Public Announcement System"
+			"Public announcement system"
 	message
 		word
 			`"`
@@ -1820,7 +1836,7 @@ news "tourist pa system"
 		attributes "deep" "rich" "paradise" "tourism"
 	name
 		word
-			"Public Announcement System"
+			"Public announcement system"
 	message
 		word
 			`"`
