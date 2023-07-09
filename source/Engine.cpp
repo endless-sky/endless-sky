@@ -151,7 +151,7 @@ namespace {
 		if(!ship->Name().empty())
 			tag = gov + " " + ship->Noun() + " \"" + ship->Name() + "\": ";
 		else
-			tag = ship->ModelName() + " (" + gov + "): ";
+			tag = ship->DisplayModelName() + " (" + gov + "): ";
 
 		Messages::Add(tag + message, Messages::Importance::High);
 	}
@@ -784,7 +784,7 @@ void Engine::Step(bool isActive)
 			targetUnit = target->Facing().Unit();
 		info.SetSprite("target sprite", target->GetSprite(), targetUnit, target->GetFrame(step));
 		info.SetString("target name", target->Name());
-		info.SetString("target type", target->ModelName());
+		info.SetString("target type", target->DisplayModelName());
 		if(!target->GetGovernment())
 			info.SetString("target government", "No Government");
 		else
