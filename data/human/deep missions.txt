@@ -3387,8 +3387,9 @@ mission "Mani Refit"
 	on offer
 		conversation
 			`Your inbox blinks with a new message from the Transport Union:`
-			`	"The fleet is ready for its inspirational journey. Please return to Mani.`
-			`		-Jayden, Mani Administrator, Transport Union"`
+			``
+			`	The fleet is ready for its inspirational journey. Please return to Mani.`
+			`				Jayden, Mani Administrator, Transport Union`
 				accept
 
 
@@ -3734,10 +3735,11 @@ mission "Home for Skadenga 10"
 	on offer
 		conversation
 			`Your inbox blinks with a new message from Hroar on <planet>.`
-			`	"Everything is ready. Get back here.`
-			`				-Hroar`
+			``
+			`	Everything is ready. Get back here.`
+			`				Hroar`
 			`			CEO of Hardy Hroar's Haulers`
-			`			'We're an unstoppable force that has never met an immovable object!'"`
+			`			We're an unstoppable force that has never met an immovable object!`
 				accept
 
 
@@ -4058,9 +4060,10 @@ mission "Hjlod Remembers Windblain"
 	on offer
 		dialog
 			`Your inbox hums with a new message from <planet>:`
-			`	"Dear <first>,`
+			``
+			`Dear <first>,`
 			`	I never properly thanked you for saving my life on Nifel all those years ago. If you're ever in the neighborhood, please stop by <planet>.`
-			`				Signed, Hjlod"`
+			`				Signed, Hjlod`
 	on complete
 		outfit "Tear of Skade"
 		conversation
@@ -4088,9 +4091,10 @@ mission "Hjlod Remembers Nifel"
 	on offer
 		dialog
 			`Your inbox hums with a new message from Nifel.`
-			`	"Dear <first>,`
+			``
+			`Dear <first>,`
 			`	I never properly thanked you for saving my life all those years ago. If you're ever in the neighborhood, please stop by <planet>.`
-			`				Signed, Hjlod"`
+			`				Signed, Hjlod`
 			
 	on complete
 		outfit "Tear of Skade"
