@@ -72,7 +72,7 @@ mission "Hai Reveal Exploration Period: Concerned Hai"
 			`	He smiles. "Oh, about what just happened? Sure, I've got time."`
 				goto "was polite"
 			label "crowd sign"
-			`	He seems a little affronted but, after squinting at you, evidently decides to humor you.
+			`	He seems a little affronted but, after squinting at you, evidently decides to humor you.`
 			label "was polite"
 			`	Gesturing to the sign he says, "Haycorn snus is a tobacco product. All tobacco is imported from human space. Since more of you lot have been appearing and disrupting things, some of the merchants aren't doing the usual supply runs as much. It's got some Hai all in a panic, stockpiling in case the supply shuts off entirely.`
 			`	"The captain there," he says, gesturing to the now empty space where the argument took place, "was particularly upset over the restriction, and tried to get away with two packs. Turns out the clerk was actually pretty fit, took them both right back off him after a bit of a scuffle. Kinda hot actually."`
@@ -89,7 +89,7 @@ mission "Hai Reveal Exploration Period: Concerned Hai"
 				`	"Shadows and portents?"`
 			`	He rolls his eyes. "Isn't that what you humans say? Hai oldies are almost always superstitious. The more things change the more they start arranging crystals and gnawing on sticks."`
 			label "dismissed"
-			`	 "Now," he says, "good day to you. I'm getting a snack."`
+			`	"Now," he says, "good day to you. I'm getting a snack."`
 				decline
 
 
