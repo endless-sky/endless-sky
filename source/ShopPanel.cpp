@@ -65,7 +65,7 @@ namespace {
 
 
 ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
-	: player(player), day(player.GetDate().DaysSinceEpoch()),
+	: player(player), isShipyard(!isOutfitter), day(player.GetDate().DaysSinceEpoch()),
 	planet(player.GetPlanet()), playerShip(player.Flagship()),
 	categories(GameData::GetCategory(isOutfitter ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	collapsed(player.Collapsed(isOutfitter ? "outfitter" : "shipyard"))
@@ -334,6 +334,30 @@ void ShopPanel::DrawDetailsSidebar()
 		Point(0., -1.), 10.f, 10.f, 5.f, Color(infobarScroll > 0 ? .8f : .2f, 0.f));
 	PointerShader::Draw(Point(Screen::Right() - SIDEBAR_WIDTH - 10, Screen::Bottom() - 80),
 		Point(0., 1.), 10.f, 10.f, 5.f, Color(infobarScroll < maxInfobarScroll ? .8f : .2f, 0.f));
+}
+
+
+
+void ShopPanel::DrawDesignButtons()
+{
+	// The last 70 pixels on the end of the info panel are for the design buttons:
+	Point buttonSize(INFOBAR_WIDTH, BUTTON_HEIGHT);
+	FillShader::Fill(Screen::BottomRight() - .5 * buttonSize - Point(SIDEBAR_WIDTH, 0),
+		buttonSize, *GameData::Colors().Get("shop side panel background"));
+	FillShader::Fill(
+		Point(Screen::Right() - INFOBAR_WIDTH / 2, Screen::Bottom() - BUTTON_HEIGHT),
+		Point(INFOBAR_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
+
+	const Font &bigFont = FontSet::Get(18);
+	const Color &active = *GameData::Colors().Get("active");
+	const Color &back = *GameData::Colors().Get("design panel background");
+	const Point buttonCenter = Screen::BottomRight() - Point(210 + SIDEBAR_WIDTH, 25);
+	FillShader::Fill(buttonCenter, Point(140, 30), back);
+
+	// "Design Outfitter" is the longest text, so use that to left-justify the text.
+	bigFont.Draw(isShipyard ? (player.IsDesignPlayer() ? "_Design Outfitter" : "_Design Center") : "_Design Shipyard",
+		buttonCenter - .5 * Point(bigFont.Width("Design Outfitter"), bigFont.Height()),
+		active);
 }
 
 

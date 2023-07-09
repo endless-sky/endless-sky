@@ -340,31 +340,6 @@ int OutfitterPanel::DrawDetails(const Point &center)
 
 
 
-void OutfitterPanel::DrawDesignButtons()
-{
-	// The last 70 pixels on the end of the info panel are for the design buttons:
-	Point buttonSize(INFOBAR_WIDTH, BUTTON_HEIGHT);
-	FillShader::Fill(Screen::BottomRight() - .5 * buttonSize - Point(SIDEBAR_WIDTH, 0),
-		buttonSize, *GameData::Colors().Get("shop side panel background"));
-	FillShader::Fill(
-		Point(Screen::Right() - INFOBAR_WIDTH / 2, Screen::Bottom() - BUTTON_HEIGHT),
-		Point(INFOBAR_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
-
-	const Font &bigFont = FontSet::Get(18);
-	const Color &active = *GameData::Colors().Get("active");
-	const Color &back = *GameData::Colors().Get("design panel background");
-	const Point buttonCenter = Screen::BottomRight() - Point(210 + SIDEBAR_WIDTH, 25);
-	FillShader::Fill(buttonCenter, Point(140, 30), back);
-
-	const string TEXT = "_Design Shipyard";
-
-	bigFont.Draw(TEXT,
-		buttonCenter - .5 * Point(bigFont.Width("Design Outfitter"), bigFont.Height()),
-		active);
-}
-
-
-
 ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 {
 	if(!planet || !selectedOutfit)

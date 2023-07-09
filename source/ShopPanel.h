@@ -73,6 +73,7 @@ protected:
 protected:
 	void DrawShipsSidebar();
 	void DrawDetailsSidebar();
+	void DrawDesignButtons();
 	void DrawShopButtons();
 	void DrawMain();
 
@@ -89,7 +90,6 @@ protected:
 	virtual int DividerOffset() const = 0;
 	virtual int DetailWidth() const = 0;
 	virtual int DrawDetails(const Point &center) = 0;
-	virtual void DrawDesignButtons() = 0;
 	virtual BuyResult CanBuy(bool onlyOwned = false) const = 0;
 	virtual void Buy(bool onlyOwned = false) = 0;
 	virtual bool CanSell(bool toStorage = false) const = 0;
@@ -148,6 +148,7 @@ protected:
 
 protected:
 	PlayerInfo &player;
+	bool isShipyard;
 	// Remember the current day, for calculating depreciation.
 	int day;
 	const Planet *planet = nullptr;
