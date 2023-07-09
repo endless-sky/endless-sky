@@ -299,9 +299,9 @@ void UniverseObjects::CheckReferences()
 			NameAndWarn("planet", it);
 	// Ship model names are used by missions and depreciation.
 	for(auto &&it : ships)
-		if(it.second.ModelName().empty())
+		if(it.second.TrueModelName().empty())
 		{
-			it.second.SetModelName(it.first);
+			it.second.SetTrueModelName(it.first);
 			Warn("ship", it.first);
 		}
 	// Shipyards are never serialized.

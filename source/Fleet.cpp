@@ -461,7 +461,7 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const vector<const Ship *> &ships) c
 		// At least one of this variant's ships is valid, but we should avoid spawning any that are not defined.
 		if(!model->IsValid())
 		{
-			Logger::LogError("Warning: Skipping invalid ship model \"" + model->ModelName()
+			Logger::LogError("Warning: Skipping invalid ship model \"" + model->TrueModelName()
 				+ "\" in fleet \"" + fleetName + "\".");
 			continue;
 		}

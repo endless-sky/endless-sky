@@ -40,7 +40,7 @@ namespace {
 	string ObjectName(const Type &object) = delete;
 
 	template <>
-	string ObjectName(const Ship &object) { return object.ModelName(); }
+	string ObjectName(const Ship &object) { return object.TrueModelName(); }
 
 	template <>
 	string ObjectName(const Outfit &object) { return object.TrueName(); }
@@ -177,7 +177,7 @@ namespace {
 			for(auto &it : GameData::Ships())
 			{
 				// Skip variants and unnamed / partially-defined ships.
-				if(it.second.ModelName() != it.first)
+				if(it.second.TrueModelName() != it.first)
 					continue;
 
 				// The first value is separated with a comma,
@@ -227,7 +227,7 @@ namespace {
 			for(auto &it : GameData::Ships())
 			{
 				// Skip variants and unnamed / partially-defined ships, unless specified otherwise.
-				if(it.second.ModelName() != it.first && !variants)
+				if(it.second.TrueModelName() != it.first && !variants)
 					continue;
 
 				// The first value is separated with a comma,
@@ -325,7 +325,7 @@ namespace {
 			for(auto &it : GameData::Ships())
 			{
 				// Skip variants and unnamed / partially-defined ships, unless specified otherwise.
-				if(it.second.ModelName() != it.first && !variants)
+				if(it.second.TrueModelName() != it.first && !variants)
 					continue;
 
 				writer.Write(it.first);
