@@ -214,6 +214,7 @@ outfit "Lasher Pistol"
 	thumbnail "outfit/lasher pistol"
 	"capture attack" 2.6
 	"capture defense" 1.4
+	"unplunderable" 1
 	description "During their wars with the Korath, it was not uncommon for Bunrodean vessels to be boarded by Korath raiders looking for technology and supplies to steal. As such, effective small arms weapons became an essential part of every Bunrodean crew that may need to fight off any boarding parties."
 
 

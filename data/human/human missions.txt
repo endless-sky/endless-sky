@@ -571,6 +571,7 @@ mission "Expedition to Hope 2"
 	destination
 		distance 2 5
 		government Republic "Free Worlds" Neutral
+	clearance
 	to offer
 		has "Expedition to Hope 1: done"
 	passengers 4
@@ -3744,7 +3745,7 @@ mission "Mafia Extortion"
 			`A man in a tailored suit, sunglasses, shiny shoes, and green hair approaches you. "Hey, that's a very nice ship you have there. Would be a shame if anything happened to it."`
 			`	You notice that he is missing a finger on each hand.`
 			choice
-				`	"Thank you. My name is <first> <last>. To whom do I have the pleasure of speaking?`
+				`	"Thank you. My name is <first> <last>. To whom do I have the pleasure of speaking?"`
 					goto nameless
 				`	"Yes, I'm very happy with my ship."`
 					goto specifics
@@ -4582,7 +4583,7 @@ mission "Saving Artifacts 2"
 			choice
 				`	"Never mind, I'll pay."`
 					goto pay
-				`	"All right, I'll fight him.`
+				`	"All right, I'll fight him."`
 			`	"Heh, good choice. If you're worried about his crew, don't be. I'm sure if Alexandria thinks you're good enough to hire, you can handle it. I'll call him up so you don't have to go chasing him down." He pulls up a hologram communicator and noticeably stiffens up. "Hello Lokust. Hope you're not too busy right now, because someone wants to see you." He turns the communicator towards you, and you see a man in clothes more befitting of a prince than a pirate.`
 			choice
 				`	"Fight me."`
@@ -4783,7 +4784,7 @@ mission "Dangerous Games 2"
 			`	A crude sign behind him reads, 'Dangerous Games - Karengo's Galactic Adventures'.`
 			`	"Like it?" Karengo follows your gaze. "Decided to make this an official thing. Well... an unofficial official thing. Feds wouldn't understand. Doesn't matter; I need a pilot again, and a good one. Your ship's waterproof, right?"`
 			choice
-				`	"Uh, yeah. I think so.`
+				`	"Uh, yeah. I think so."`
 				`	"Of course."`
 				`	"Sorry, mate. You'll have to find another pilot."`
 					decline
@@ -5793,7 +5794,7 @@ mission "Argosy Hijacking"
 				`	(Find the captain.)`
 				`	(Don't worry about it.)`
 					decline
-			`	You find him in the spaceport lounge. As you walk in, he recognizes you and calls you over. "How are you doing? Did you recover the <npc>?`
+			`	You find him in the spaceport lounge. As you walk in, he recognizes you and calls you over. "How are you doing? Did you recover the <npc>?"`
 			choice
 				`	"No, I wasn't able to."`
 				`	"It fled before I could disable it."`
@@ -6096,7 +6097,7 @@ mission "Blind Man from Martini"
 			`	After a short queue, you reach the reception with Douglas. The receptionist, placed behind a sterile-looking screen that looks far out of place with the colorful hallways, asks with a well-practiced smile, "How may I help you?"`
 			choice
 				`	"We're looking for Anita Pears. Where can we find her?"`
-			`	For a moment, the receptionist shuffles information around on her terminal. "Are one of you a parent?"`
+			`	For a moment, the receptionist shuffles information around on her terminal. "Is one of you a parent?"`
 			`	"I'm the father, Douglas Pears," he replies.`
 			`	She takes a few more seconds before looking at you and saying, "Ah, but we cannot let you in. Only Mr. Pears is booked in for his daughter's procedure; we have a family-only policy, to keep the privacy of our patients."`
 			choice
