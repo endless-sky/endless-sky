@@ -390,6 +390,9 @@ mission "Remnant: Defense 3"
 conversation "remnant key stones"
 	branch found
 		has "Remnant: Found Keystones: offered"
+
+	branch equipped
+		has "outfit: Quantum Keystone"
 	
 	`As you are walking through the spaceport, a man comes up to you and introduces himself as the manager of the local outfitter. "Greetings, outsider," he says. "I have heard many good things about you and your assistance to our people. Would you be interested in going on a quest for me?"`
 	choice
@@ -423,7 +426,11 @@ conversation "remnant key stones"
 	label hai1
 	`	"I've seen that before," you say.`
 	`	He looks at you with surprise. "You found another world where these stones can be mined?"`
+		goto exchange
 	
+	label equipped
+	`As you are walking through the spaceport, a man comes up to you and introduces himself as the manager of the local outfitter. He says, "I could not help but notice that you have a Key Stone that looks different from the ones from our mines. You may have noticed the red anomalies scattered within this region of space. What you may not have known is that these are wormholes, accessible only with the possession of a Quantum Key Stone. My people highly value these Key Stones because of this, but our mines produce very few of them. Have you found another world where these stones can be mined?"`
+
 	label exchange
 	choice
 		`	"Yes, in the territory of some aliens far to the north of here."`
@@ -526,79 +533,25 @@ mission "Remnant: Key Stones (Pre-Hai) 2"
 	
 	
 	
-mission "Remnant: Key Stones (Hai)"
-	name "Keystones"
-	description "The manager of the outfitter on <planet> has offered to pay you six million credits in exchange for a shipment of fifty quantum keystones (which you will have to purchase from the Hai)."
-	source "Viminal"
-	to offer
-		not "outfit: Quantum Keystone"
-		not "Remnant: Key Stones (Pre-Hai) 1: offered"
-		not "Remnant: Key Stones: offered"
-		has "First Contact: Hai: offered"
-		or
-			has "event: remnant: void sprite research"
-			has "Remnant: Defense 3: done"
-	on offer
-		conversation "remnant key stones"
-		
-	on visit
-		dialog `You have returned to <planet>, but you don't have 50 "quantum keystones" to give to the outfitter. Buy the keystones from the Hai before returning here.`
-	on complete
-		outfit "Quantum Keystone" -50
-		payment 6000000
-		conversation "remnant key stones done"
-		
-
-
 mission "Remnant: Key Stones"
 	name "Keystones"
 	description "The manager of the outfitter on <planet> has offered to pay you six million credits in exchange for a shipment of fifty quantum keystones (which you will have to purchase from the Hai)."
 	source "Viminal"
 	to offer
-		has "outfit: Quantum Keystone"
+		or
+			has "outfit: Quantum Keystone"
+			and
+				or
+					has "First Contact: Hai: offered"
+					has "First Contact: Unfettered: offered"
+				or
+					has "event: remnant: void sprite research"
+					has "Remnant: Defense 3: done"
 		has "remnant: blood test pure"
 		not "Remnant: Key Stones (Pre-Hai) 1: offered"
 		not "Remnant: Key Stones (Hai): offered"
 	on offer
-		conversation
-			`As you are walking through the spaceport, a man comes up to you and introduces himself as the manager of the local outfitter. He says, "I could not help but notice that you have a Key Stone that looks different from the ones from our mines. You may have noticed the red anomalies scattered within this region of space. What you may not have known is that these are wormholes, accessible only with the possession of a Quantum Key Stone. My people highly value these Key Stones because of this, but our mines produce very few of them. Have you found another world where these stones can be mined?"`
-			choice
-				`	"Yes, in the territory of some aliens far to the north of here."`
-					goto hai
-				`	"Yes, but I would prefer not to tell you where."`
-			
-			`	"That is understandable," he says. "I am a businessman and I understand how valuable certain trade secrets can be. But perhaps I can interest you in a mutually profitable endeavor?"`
-				goto more
-			
-			label hai
-			`	"Intriguing," he sings. "Are they aware of how valuable these stones are?" You tell him about the Hai, that they are an old species and that to them the Key Stones are just good luck charms. "Perhaps they have forgotten the true use of the Stones," says the man. "This may give us an opportunity for a mutually profitable endeavor."`
-			
-			label more
-			`	"Tell me more," you say.`
-			`	He says, "If you could fetch me a large supply of these stones, say fifty of them, I would purchase them from you for a high enough price that you would earn a tidy profit. What do you say?"`
-			choice
-				`	"Sure, I would be glad to accept that deal."`
-				`	"Sorry, I'm really not interested in doing business with you Remnant folks."`
-					decline
-			
-			`	After a bit of haggling, he agrees to pay you six million credits in exchange for a cargo of fifty Hai "keystones." Given how cheap they are to purchase in Hai space, you will be earning a very tidy profit on the deal.`
-			`	"We look forward to receiving this shipment," he sings. "Just so we are clear, however: you do not need to install them on your ship - delivering them in your cargo hold will work just fine."`
-			choice
-				`	"I can purchase outfits into my cargo bay?"`
-				`	"Why would you even need to specify that?"`
-					goto whymention
-				`	"Okay."`
-					accept
-			`	"Of course. There are several different methods available for doing so." He switches to a chant as he begins listing methods.`
-			`	"Firstly, our outfitter interface has a small toggle labeled 'in-cargo' that - when checked - will instruct the dockworkers to load any outfits you purchase into your cargo bay instead of installing it.`
-			`	"Secondly, if you do not have any ships selected in the outfitter control panel when you make a purchase, our logistics system will assign it for delivery to your cargo hold instead of scheduling an installation.`
-			`	"Lastly, if you have an outfit installed, just tap the 'U' key on the outfitter to request that the selected outfit be uninstalled. After removal they will be left in your cargo hold."`
-			`	He glances at his commlink and starts tapping at something. "We look forward to your return," he trills, before striding away still looking at his display.`
-				accept
-			label whymention
-			`	"What seems straightforward to you and I is not always so simple for others. I have met more than a few pilots who thought that outfits could only be transported installed on their hull." He smiles briefly at the thought before turning and heading away.`
-				accept
-	
+		conversation "remnant key stones"
 	on visit
 		dialog `You have returned to <planet>, but you don't have 50 "quantum keystones" to give to the outfitter. Buy the keystones from the Hai before returning here.`
 	on complete
