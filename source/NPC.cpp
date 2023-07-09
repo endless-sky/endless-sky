@@ -24,7 +24,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Government.h"
 #include "Logger.h"
 #include "Messages.h"
-#include "MissionAction.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Random.h"
@@ -718,7 +717,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 	if(!result.ships.empty())
 	{
 		subs["<npc>"] = result.ships.front()->Name();
-		subs["<npc model>"] = result.ships.front()->ModelName();
+		subs["<npc model>"] = result.ships.front()->DisplayModelName();
 	}
 	// Do string replacement on any dialog or conversation.
 	string dialogText = !dialogPhrase->IsEmpty() ? dialogPhrase->Get() : this->dialogText;
@@ -778,9 +777,6 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 				}))
 		{
 			it->second.Do(player, ui);
-			// All actions are currently one-time-use. Erase the action from
-			// the map so that it can't be reused.
-			npcActions.erase(it);
 		}
 	}
 }

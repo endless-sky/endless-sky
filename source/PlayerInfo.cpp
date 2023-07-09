@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "PlayerInfo.h"
 
+#include "AI.h"
 #include "Audio.h"
 #include "ConversationPanel.h"
 #include "DataFile.h"
@@ -961,7 +962,7 @@ const set<string> &PlayerInfo::Licenses() const
 
 
 
-// Get a pointer to the ship that the player controls. This is always the first
+// Get a pointer to the ship that the player controls. This is usually the first
 // ship in the list.
 const Ship *PlayerInfo::Flagship() const
 {
@@ -970,7 +971,7 @@ const Ship *PlayerInfo::Flagship() const
 
 
 
-// Get a pointer to the ship that the player controls. This is always the first
+// Get a pointer to the ship that the player controls. This is usually the first
 // ship in the list.
 Ship *PlayerInfo::Flagship()
 {
@@ -983,14 +984,13 @@ Ship *PlayerInfo::Flagship()
 const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 {
 	if(!flagship)
-	{
 		for(const shared_ptr<Ship> &it : ships)
-			if(!it->IsParked() && it->GetSystem() == system && it->CanBeFlagship())
+			if(!it->IsParked() && it->GetSystem() == system && it->CanBeFlagship()
+					&& (!planet || planet->CanLand(*it)))
 			{
 				flagship = it;
 				break;
 			}
-	}
 
 	static const shared_ptr<Ship> empty;
 	return (flagship && flagship->IsYours()) ? flagship : empty;
@@ -1077,7 +1077,7 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 				// The bays should always be empty. But if not, count that ship too.
 				if(bay.ship)
 				{
-					Logger::LogError("Expected bay to be empty for " + ship->ModelName() + ": " + ship->Name());
+					Logger::LogError("Expected bay to be empty for " + ship->TrueModelName() + ": " + ship->Name());
 					categoryCount[bay.ship->Attributes().Category()].emplace_back(bay.ship);
 				}
 			}
@@ -1435,24 +1435,43 @@ void PlayerInfo::Land(UI *ui)
 	for(const shared_ptr<Ship> &ship : ships)
 		ship->UnloadBays();
 
-	// Ships that are landed with you on the planet should fully recharge
-	// and pool all their cargo together. Those in remote systems restore
-	// what they can without landing.
+	// Ships that are landed with you on the planet should fully recharge.
+	// Those in remote systems restore what they can without landing.
 	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();
-	UpdateCargoCapacities();
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsParked() && !ship->IsDisabled())
 		{
 			if(ship->GetSystem() == system)
 			{
-				ship->Recharge(hasSpaceport);
-				ship->Cargo().TransferAll(cargo);
-				if(!ship->GetPlanet())
-					ship->SetPlanet(planet);
+				if(planet->CanLand(*ship))
+				{
+					ship->Recharge(hasSpaceport);
+					if(!ship->GetPlanet())
+						ship->SetPlanet(planet);
+				}
+				// Ships that cannot land with the flagship choose the most suitable planet
+				// in the system.
+				else
+				{
+					const StellarObject *landingObject = AI::FindLandingLocation(*ship);
+					const bool foundSpaceport = landingObject;
+					if(!landingObject)
+						landingObject = AI::FindLandingLocation(*ship, false);
+					if(landingObject)
+						ship->SetPlanet(landingObject->GetPlanet());
+					ship->Recharge(foundSpaceport);
+				}
 			}
 			else
 				ship->Recharge(false);
 		}
+
+	// Cargo management needs to be done after updating ship locations (above).
+	UpdateCargoCapacities();
+	// Ships that are landed with you on the planet should pool all their cargo together.
+	for(const shared_ptr<Ship> &ship : ships)
+		if(ship->GetPlanet() == planet && !ship->IsParked())
+			ship->Cargo().TransferAll(cargo);
 	// Adjust cargo cost basis for any cargo lost due to a ship being destroyed.
 	for(const auto &it : lostCargo)
 		AdjustBasis(it.first, -(costBasis[it.first] * it.second) / (cargo.Get(it.first) + it.second));
@@ -1583,8 +1602,11 @@ bool PlayerInfo::TakeOff(UI *ui)
 		if(extra)
 		{
 			flagship->AddCrew(-extra);
-			Messages::Add("You fired " + to_string(extra) + " crew members to free up bunks for passengers."
-				, Messages::Importance::High);
+			if(extra == 1)
+				Messages::Add("You fired a crew member to free up a bunk for a passenger.", Messages::Importance::High);
+			else
+				Messages::Add("You fired " + to_string(extra) + " crew members to free up bunks for passengers.",
+						Messages::Importance::High);
 			flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - flagship->Crew());
 			cargo.TransferAll(flagship->Cargo());
 		}
@@ -1594,8 +1616,11 @@ bool PlayerInfo::TakeOff(UI *ui)
 	if(extra > 0)
 	{
 		flagship->AddCrew(-extra);
-		Messages::Add("You fired " + to_string(extra) + " crew members because you have no bunks for them."
-			, Messages::Importance::High);
+		if(extra == 1)
+			Messages::Add("You fired a crew member because you have no bunk for them.", Messages::Importance::High);
+		else
+			Messages::Add("You fired " + to_string(extra) + " crew members because you have no bunks for them.",
+					Messages::Importance::High);
 		flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - flagship->Crew());
 	}
 
@@ -1796,7 +1821,7 @@ void PlayerInfo::UpdateCargoCapacities()
 	int bunks = 0;
 	flagship = FlagshipPtr();
 	for(const shared_ptr<Ship> &ship : ships)
-		if(ship->GetSystem() == system && !ship->IsParked() && !ship->IsDisabled())
+		if(ship->GetPlanet() == planet && !ship->IsParked())
 		{
 			size += ship->Attributes().Get("cargo space");
 			int crew = (ship == flagship ? ship->Crew() : ship->RequiredCrew());
@@ -3087,10 +3112,18 @@ void PlayerInfo::RegisterDerivedConditions()
 	{
 		if(!flagship)
 			return false;
-		return name == "flagship model: " + flagship->ModelName();
+		return name == "flagship model: " + flagship->TrueModelName();
 	};
 	flagshipModelProvider.SetHasFunction(flagshipModelFun);
 	flagshipModelProvider.SetGetFunction(flagshipModelFun);
+
+	auto &&flagshipDisabledProvider = conditions.GetProviderNamed("flagship disabled");
+	auto flagshipDisabledFun = [this](const string &name) -> bool
+	{
+		return flagship && flagship->IsDisabled();
+	};
+	flagshipDisabledProvider.SetHasFunction(flagshipDisabledFun);
+	flagshipDisabledProvider.SetGetFunction(flagshipDisabledFun);
 
 	auto flagshipAttributeHelper = [](const Ship *flagship, const string &attribute, bool base) -> int64_t
 	{
@@ -3246,7 +3279,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
 			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetActualSystem() == system
-					&& name == "ship model: " + ship->ModelName())
+					&& name == "ship model: " + ship->TrueModelName())
 				++retVal;
 		return retVal;
 	});
@@ -3257,7 +3290,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	{
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
-			if(!ship->IsDestroyed() && name == "ship model (all): " + ship->ModelName())
+			if(!ship->IsDestroyed() && name == "ship model (all): " + ship->TrueModelName())
 				++retVal;
 		return retVal;
 	});
