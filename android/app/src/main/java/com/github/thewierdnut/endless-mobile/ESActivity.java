@@ -230,6 +230,9 @@ public class ESActivity extends SDLActivity
                         }
                         else
                         {
+                            File f = new File(path);
+                            f = f.getParentFile();
+                            f.mkdirs();
                             FileOutputStream os = new FileOutputStream(path);
                             byte[] buffer = new byte[8192];
                             int len;
