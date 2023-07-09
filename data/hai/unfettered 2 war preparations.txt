@@ -161,7 +161,7 @@ mission "<uhai> 11: Shipyard Intel"
 				"unfettered: monke!" ++
 			`	He was about to say something, but instead ignores your question.`
 			label mighty
-			`	"If you want to [help, assist] us and get access to advanced Hai outfits and eventually more, go to <stopovers>. The Hai's main shipyard is located there, and we need [intel, details] on how they mass produce them. Intel on how they manage to make Geocoris which such ease will be of use, too."`
+			`	"If you want to [help, assist] us and get access to advanced Hai outfits and eventually more, go to <stopovers>. The Hai's main shipyard is located there, and we need [intel, details] on how they mass-produce them. Intel on how they manage to make Geocoris which such ease will be of use, too."`
 			choice
 				`	"Will the Hai will let me land on their home world?"`
 			`	"Why would you need a [permission, authorization]? Discreetly land in an [isolated, far away] region, while nobody is looking. If they detect you, just pretend you had a navigation [issue, malfunction], and were forced to land." This plan seems very risky to you.`
