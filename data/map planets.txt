@@ -3191,7 +3191,7 @@ planet "Oup Je"
 planet Palarei
 	attributes ka'het uninhabited
 	landscape land/valley5
-	description `While its short distance from Gerenus makes it seem only barely capable of supporting life, Palarei's surface is full of thickets of a small spiky bush native to this planet. Oddly enough, very few settlements on the planet appear to have been destroyed by weapon fire; most facilities are covered in meters of dust and sand but, other than that, appear to be quite operative.`
+	description `While its short distance from Gerenus makes it seem only barely capable of supporting life, Palarei's surface is full of thickets of a small spiky bush native to this planet. Oddly enough, very few settlements on the planet appear to have been destroyed by weapons fire; most facilities are covered in meters of dust and sand but, other than that, appear to be quite operative.`
 
 planet Palatine
 	attributes "gas giant" "requires: gaslining" uninhabited
@@ -3702,7 +3702,7 @@ planet "Secret Sky"
 planet "Sek Alarfarat"
 	attributes korath
 	landscape land/canyon15
-	description `A hideously powerful weapon tore open scars on this planet's surface so deep that pools of magma bled out through them. Presumably these wounds were inflicted on the planet by yet another Korath super-weapon devised in the final years of their civil war. A few ruined cities remain, some of which were sliced in two by the trail of weapon fire.`
+	description `A hideously powerful weapon tore open scars on this planet's surface so deep that pools of magma bled out through them. Presumably these wounds were inflicted on the planet by yet another Korath super-weapon devised in the final years of their civil war. A few ruined cities remain, some of which were sliced in two by the trail of weapons fire.`
 
 planet "Selefkar Refinery"
 	attributes korath station
@@ -3721,7 +3721,7 @@ planet Seli'het
 	attributes ka'het uninhabited
 	landscape land/station18
 	music ambient/machinery
-	description `This massive station, despite its age, does not appear to have any visible damage: everything inside it is perfectly in order, and no section shows signs of weapon fire on it. If it wasn't for the absence of its inhabitants and the complete lack of atmosphere, it would probably be identical to when it was first constructed.`
+	description `This massive station, despite its age, does not appear to have any visible damage: everything inside it is perfectly in order, and no section shows signs of weapons fire on it. If it wasn't for the absence of its inhabitants and the complete lack of atmosphere, it would probably be identical to when it was first constructed.`
 	government Builder
 
 planet "Separa Tiklar"
