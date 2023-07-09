@@ -90,6 +90,9 @@ tip "capture attack:"
 tip "capture defense:"
 	`Increases the "strength" of one crew member when defending against an attempt to capture this ship. Each crew member can only wield one weapon at a time, but they will use whichever weapons provide the highest power.`
 
+tip "cargo:"
+	`Tons of cargo this ship is carrying right now, out of its maximum.`
+
 tip "cargo scan:"
 	`Allows scanning your target ship's cargo from up to this distance away.`
 
@@ -105,9 +108,6 @@ tip "cargo scan efficiency:"
 tip "cargo scan opacity:"
 	`Increases the time required for other ships to perform a cargo scan of this ship. A value of one has the same influence on the time taken as adding one more ton of cargo space to scan.`
 
-tip "cargo:"
-	`Cargo this ship is carrying right now, out of its maximum.`
-
 tip "cargo space:"
 	`Tons of cargo (commodities, mission cargo, and plundered outfits) this ship can carry.`
 
@@ -115,7 +115,7 @@ tip "cargo space needed:"
 	`Tons of cargo space this outfit uses up.`
 
 tip "cloak:"
-	`This outfit allows your ship to cloak. The value represents how long it takes to fully activate or deactivate cloaking. Ships cannot fire while cloaked.`
+	`Allows your ship to cloak. The value represents how long it takes to fully activate or deactivate cloaking. Ships cannot fire while cloaked.`
 
 tip "cloaking energy:"
 	`Energy consumed per second when cloaked.`
