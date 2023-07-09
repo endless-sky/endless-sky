@@ -655,7 +655,7 @@ mission "<uhai> 14: Ion Materials"
 	npc board
 		government "Cerberus"
 		system "Sumar"
-		personality derelict staying target
+		personality derelict target
 		fleet
 			names "Blood and Thunder"
 			cargo 0
@@ -675,7 +675,7 @@ mission "<uhai> 14: Ion Materials"
 				"Fury"
 	npc evade
 		government "Midas"
-		personality disables plunders harvests staying coward
+		personality disables harvests staying coward
 			confusion 20
 		system "Sumar"
 		# this is a quick fleet of captured ships
@@ -744,7 +744,7 @@ mission "<uhai> 14: Ion Materials"
 			choice
 				`	(Celebrate.)`
 					goto celebrate
-				`	"We really did the Alphas a nasty one by stealing their jump drives earlier, right?" (Pretend you know who the drives belonged to.)`
+				`	"We really did the Alphas a nasty one by stealing their jump drives earlier from the vault, right?" (Pretend you know who the drives belonged to.)`
 				`	"Those pirates did not see the stealing of their jump drives on Freedom, am I right?" (Pretend you know who the drives belonged to.)`
 					goto pirates
 			action

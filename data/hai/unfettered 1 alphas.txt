@@ -420,7 +420,7 @@ mission "<uhai> 6 A: Loyal Escort"
 			label help
 			`	"It is not that I do not trust the Hai not to fire on their own people, but a misunderstanding happens quickly. Someone of your expertise would be helpful, and I cannot simply trust any Unfettered Hai captain with this, as he could easily be provoked into making a fatal mistake. I hope, though, that you will be able to make a rational decision. I also need your presence because I want someone that is quick to respond to danger, and with the right tools. Hearing of your duel with a fellow Unfettered captain, you strike me as such a person."`
 			choice
-				`	"Yes nothing would scare me, not even an Unfettered captain."`
+				`	"Nothing would scare me, not even an Unfettered captain."`
 				`	"Those stories may have been slightly exaggerated..."`
 					goto exaggerated
 			`	"I knew I could count on you! The stories must be true."`
@@ -759,7 +759,7 @@ mission "<uhai> 7: Stolen Cargo"
 					# cost of a Shield Beetle
 					credits < 32000000
 			# the stock SB has barely enough cargo to fit the 142 tons
-			`	"I would advise you to lead this mission a Shield Beetle, like a true warrior. You deserve it."`
+			`	"I would advise you to lead this mission with a Shield Beetle, like a true warrior. You deserve it, and it could prove useful in the upcoming mission."`
 			label nvm
 			# no need to accept because this is a job; it was already accepted.
 	on enter "Misam"
@@ -840,7 +840,7 @@ mission "<uhai> 7: Stolen Cargo"
 			`	"We will let you land and repair before starting the fight. If you want to surrender, just abort the mission of land again after the battle has started, after giving us the symbolic fee to stop the fight. We do not have the luxury of time!"`
 				accept
 			label leaving
-			`	They end the discussion, and proceed to probably take care of another mission in the name of their Queen. You are left with as many questions as you had before starting the conversation.`
+			`	They end the transmission. You are left with as many questions as you had before starting the conversation.`
 				decline
 			label "allies died"
 			`	You are left wondering who those mysterious allies coming to help you were. Their death will probably mean you won't ever be able to have missions from their organization. They may even hunt you down for this.`
@@ -1222,7 +1222,7 @@ mission "<uhai> 9: Capture The Alpha Auxiliary"
 			`	You seem to have stressed her a bit. "Are you always in a rush?" she asks. "Just look for traces of these particles; it should lead you to them. Based on chemical composition, these particles seem to be coming from the jump drive - it must be malfunctioning, but I have no idea in what way it is. This Auxiliary is no joke - it has room for over 100 crew members, so be sure to have what it takes to capture it. You could always disable it and then come back later to board them; but in that case, make sure to be quick, or else the Alphas could repair it." You remember it also had fighters accompanying it.`
 				goto agree
 			label capture
-				`	She takes a while to answer, "We never focused too much on capturing ships at any cost, preferring to see the enemy eye to eye and only stun them, so they may live to fight another day but I am sure you humans may have... alternative approaches. Their base is probably isolated, so you could always disable them and come back later with a different ship, or just outfit the one you have differently."`
+			`	She takes a while to answer, "We never focused too much on capturing ships at any cost, preferring to see the enemy eye to eye and only stun them, so they may live to fight another day but I am sure you humans may have... alternative approaches. Their base is probably isolated, so you could always disable them and come back later with a different ship, or just outfit the one you have differently."`
 			choice
 				`	"What about the damage on their ship? How is that relevant to my mission?"`
 					goto information
@@ -1245,7 +1245,8 @@ mission "<uhai> 9: Capture The Alpha Auxiliary"
 			`	"Obviously, this amount of damage has consequences. It looks like they've quickly patched it up, so it won't affect their hull resistance to weapon's fire. However, this is interesting," she says, pointing out particles on her pad you have not seen before. "Another captain found weird particles in that same system. We've never found traces of those particles before. I guess it could mean a shot got through and did some damage to one of the jump drives they are carrying - maybe even the one they use to jump. One thing is certain: these particles are not left by normal human ships, or Hai for that matter. My best guess would be that when the ship jumped, the hole it left behind did not close as quickly as it should, and antimatter came from the other side. Perhaps it left these peculiar particles when being annihilated by contacting matter. Or maybe the particles just came through the opening in space?`
 			`	"It doesn't matter much anyway. I suspect that they would have gone back to their base to at least take a look at it, so there should be traces leading to it. Something bothers me about this: from our experience, jump drives either work or explode. Maybe it's because the jump drive is not actually being used, and is only leaking particles passively, that this is possible? Or maybe the damage done by these weapons is really special. After all, they are more advanced than what we have, or what the aliens up north possess. Only the Quarg and Korath have a similar level of technology, and those are the races that are rumoured to have invented the jump drives, so it could be some of these weapons are intended to disrupt it specifically."`
 			label agree
-			`	You were ready to go, but she seems to have something more to say. "Oh, and one last thing before you leave: the base is probably far away, so I would advise taking some fuel pods, especially considering the damage left on the Auxiliary means you will probably not have much time to wait to fuel up from the local stars either, and you should be ready to jump between systems as fast as possible. Also, be prepared for a fight in space, as well as within the ship itself, to claim it."`
+			`	You were ready to go, but she seems to have something more to say. "Oh, and one last thing before you leave: the base is probably far away, so I would advise taking some fuel pods.`
+			`	"Considering the damage left on the Auxiliary you will probably not have much time to wait to fuel up from the local stars. Finally, be prepared for a fight in space, as well as within the ship itself, in order to claim it, although I suspect you should be able to leave the ship disabled and come back to gear for boarding, given how isolated it has to be."`
 				accept
 	waypoint "Hi Yahr"
 	on waypoint
