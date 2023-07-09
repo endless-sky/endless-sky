@@ -399,7 +399,7 @@ mission "Hai Building Mountaintop [3] Furnishings"
 		payment 300000
 		event "role-play station active" 12
 		event "ladybug surveillance" 32 42
-		event "news: hai video clip debunked"
+		# event "news: hai video clip debunked"
 		log `Of all the hilariously mundane things that could trip up a deception, it turned out to be Hai-made furniture. Acquired a large shipment of human-made furniture from Prime in order to complete the station.`
 		conversation
 			`By the time you return, you are shocked to notice that the station seems to be rapidly approaching a completed state. Some four thousand people have already arrived, though some are still on board ships docked at the station. Once you register your delivery amidst the station chaos, it's only a few minutes later that you get a "thank you" message from Sayari.`

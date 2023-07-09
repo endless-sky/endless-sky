@@ -95,6 +95,7 @@ mission "Remnant: Broken Jump Drive job"
 	destination
 		government "Remnant"
 		attributes outfitter
+		not attributes "remnant station"
 		not distance 0
 	on visit
 		dialog phrase "broken jump drive on visit"

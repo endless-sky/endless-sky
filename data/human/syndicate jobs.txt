@@ -35,7 +35,7 @@ mission "Transport executive to <planet>"
 		dialog "The Syndicate executive rushes off your ship without even a goodbye, fancy briefcase in hand. You collect your payment of <payment>."
 
 
-mission "Corporate retreat from <origin>"
+mission "Corporate retreat to <planet stopovers>"
 	job
 	repeat
 	deadline
