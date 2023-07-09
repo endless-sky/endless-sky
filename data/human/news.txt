@@ -1557,6 +1557,28 @@ news "republic soldier"
 
 
 
+news "lawyer"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	name
+		word
+			"Lawyer"
+			"Attorney"
+	message
+		word
+			`"`
+		word
+			"The Dereliction and Salvage Act of 2976 states unmanned vessels gain abandoned status as soon as their owners leave the system. This makes drones a prime target for pirates and scavengers."
+			"The Capable Rescue Act of 2318 requires all manned vessels to be capable of individual spaceflight in case of an emergency. This is the oldest interstellar law still recognized today, predating the Republic by four centuries."
+			"In 2937, the Parliament voted to classify crewing spaceships as hazardous duty, raising the crew's minimum wage to a 100 credits. Their salary has not changed since."
+			"I'm reviewing a case on the destruction of an abandoned drone. The owner argues it was a personal hyperspace relay, which exempts it from salvage law."
+			"My client is accused of destroying a landing pad and flooding the surrounding area with leaked reactor plasma. Really, it's the spaceport's fault for not verifying whether he had a pilot's license in the first place."
+			"I was involved in a case of an out-of-spec Syndicate nuclear reactor. Allegedly, the Syndicate threatened the inspector to prevent him from publishing his results, but he didn't give in."
+		word
+			`"`
+
+
+
 news "syndicate soldier"
 	location
 		government "Syndicate"
