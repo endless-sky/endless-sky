@@ -779,7 +779,8 @@ government "Kor Efret"
 	"attitude toward"
 		"Kor Mereti" -.01
 		"Kor Sestor" -.01
-	
+	"penalty for"
+		provoke 0.1
 	"player reputation" 1
 	"send untranslated hails"
 	"friendly hail" "friendly kor efret untranslated"
@@ -1092,9 +1093,11 @@ government "Quarg (Kor Efret)"
 		"Quarg" 1
 		"Quarg (Hai)" 1
 		"Quarg (Gegno)" 1
-		"Kor Efret" .01
+		"Kor Efret" 1
 		"Kor Mereti" -.01
 		"Kor Sestor" -.01
+	"foreign penalties for"
+		"Kor Efret"
 	"death sentence" "quarg imprisonment"
 	"hostile hail" "hostile quarg"
 	"hostile disabled hail" "hostile quarg"
