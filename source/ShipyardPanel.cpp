@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Government.h"
 #include "Mission.h"
+#include "OutfitterPanel.h"
 #include "Phrase.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -250,13 +251,27 @@ int ShipyardPanel::DrawDetails(const Point &center)
 
 void ShipyardPanel::DrawDesignButtons()
 {
-        // The last 70 pixels on the end of the info panel are for the design buttons:
-        Point buttonSize(INFOBAR_WIDTH, BUTTON_HEIGHT);
-        FillShader::Fill(Screen::BottomRight() - .5 * buttonSize - Point(SIDEBAR_WIDTH, 0),
-                buttonSize, *GameData::Colors().Get("shop side panel background"));
-        FillShader::Fill(
-                Point(Screen::Right() - INFOBAR_WIDTH / 2, Screen::Bottom() - BUTTON_HEIGHT),
-                Point(INFOBAR_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
+	const bool designMode = player.IsDesignPlayer();
+
+	// The last 70 pixels on the end of the info panel are for the design buttons:
+	Point buttonSize(INFOBAR_WIDTH, BUTTON_HEIGHT);
+	FillShader::Fill(Screen::BottomRight() - .5 * buttonSize - Point(SIDEBAR_WIDTH, 0),
+		buttonSize, *GameData::Colors().Get("shop side panel background"));
+	FillShader::Fill(
+		Point(Screen::Right() - INFOBAR_WIDTH / 2, Screen::Bottom() - BUTTON_HEIGHT),
+		Point(INFOBAR_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
+
+	const Font &bigFont = FontSet::Get(18);
+	const Color &active = *GameData::Colors().Get("active");
+	const Color &back = *GameData::Colors().Get("design panel background");
+	const Point buttonCenter = Screen::BottomRight() - Point(210 + SIDEBAR_WIDTH, 25);
+	FillShader::Fill(buttonCenter, Point(140, 30), back);
+
+	const string TEXT = designMode ? "Outfitter _Design" : "_Design Center";
+
+	bigFont.Draw(TEXT,
+		buttonCenter - .5 * Point(bigFont.Width(TEXT), bigFont.Height()),
+		active);
 }
 
 
@@ -386,6 +401,31 @@ void ShipyardPanel::Sell(bool toStorage)
 bool ShipyardPanel::CanSellMultiple() const
 {
 	return false;
+}
+
+
+
+// Only override the ones you need; the default action is to return false.
+bool ShipyardPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
+{
+	if(key == 'd')
+	{
+		if (player.IsDesignPlayer())
+		{
+			GetUI()->Pop(this);
+			GetUI()->Push(new OutfitterPanel(player));
+		}
+		else
+		{
+			if (!designPlayer.IsDesignPlayer())
+				designPlayer.NewDesignPlayer(player);
+			GetUI()->Push(new ShipyardPanel(designPlayer));
+		}
+	}
+	else
+		return ShopPanel::KeyDown(key, mod, command, isNewPress);
+
+	return true;
 }
 
 

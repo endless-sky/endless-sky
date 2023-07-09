@@ -179,6 +179,7 @@ void ShopPanel::Draw()
 
 void ShopPanel::DrawShipsSidebar()
 {
+	const bool designMode = player.IsDesignPlayer();
 	const Font &font = FontSet::Get(14);
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
@@ -188,7 +189,7 @@ void ShopPanel::DrawShipsSidebar()
 	FillShader::Fill(
 		Point(Screen::Right() - SIDEBAR_WIDTH / 2, 0.),
 		Point(SIDEBAR_WIDTH, Screen::Height()),
-		*GameData::Colors().Get("panel background"));
+		*GameData::Colors().Get(designMode ? "design panel background" : "panel background"));
 	FillShader::Fill(
 		Point(Screen::Right() - SIDEBAR_WIDTH, 0.),
 		Point(1, Screen::Height()),
@@ -632,8 +633,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 {
 	scrollDetailsIntoView = false;
 	bool toStorage = selectedOutfit && (key == 'r' || key == 'u');
-	if(key == 'l' || key == 'd' || key == SDLK_ESCAPE
-			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
+	if(key == 'l' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 	{
 		player.UpdateCargoCapacities();
 		GetUI()->Pop(this);

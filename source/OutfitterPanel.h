@@ -67,6 +67,8 @@ protected:
 	virtual void ToggleStorage() override;
 	virtual void ToggleCargo() override;
 
+	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
+
 
 
 

@@ -55,6 +55,7 @@ protected:
 	virtual void Sell(bool toStorage = false) override;
 	virtual bool CanSellMultiple() const override;
 
+	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 
 private:
 	void BuyShip(const std::string &name);
