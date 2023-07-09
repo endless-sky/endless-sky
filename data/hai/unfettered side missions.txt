@@ -149,7 +149,7 @@ mission "Hai Legacy 1"
 		not "event: hai ladybug available"
 	on offer
 		conversation
-			`As you enter the shipyard you quickly get approached by a hooded figure. They come to address you, discreetly. Seeing you stop to listen, they take your arm and make you follow them. "Keep walking," they say, taking a look around the way someone looking for a new ship would, before addressing you again. "My associates and I have a business proposition for you, if you are interested to learn more about it go to these coordinates." They give you a piece of paper containing the location, a beach almost on the other side of the planet with instructions not to go with your ship, before quickly fading into the crowd. Will you go there?`
+			`As you enter the shipyard you quickly get approached by a hooded figure. They come to address you, discreetly. Seeing you stop to listen, they take your arm and make you follow them. "Keep walking," they say, taking a look around the way someone looking for a new ship would, before addressing you again. "My associates and I have a business proposition for you, if you are interested to learn more about it go to these coordinates." They give you a piece of paper containing the location, a beach almost on the other side of the planet with instructions, before quickly fading into the crowd. Will you go there?`
 			choice
 				`	(Sure.)`
 				`	(Maybe another time.)`
