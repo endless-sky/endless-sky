@@ -18,6 +18,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #ifdef __SSE3__
 #include <pmmintrin.h>
+#else
+#include <algorithm>
+#include <cmath>
 #endif
 
 
@@ -30,12 +33,30 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // extensions are used to optimize all operations.
 class Point {
 public:
-	Point() noexcept;
-	Point(double x, double y) noexcept;
+	constexpr Point() noexcept
+	#ifdef __SSE3__
+		: v(_mm_setzero_pd())
+	#else
+		: x(0.), y(0.)
+	#endif
+	{
+	};
+
+	constexpr Point(double x, double y) noexcept
+	#ifdef __SSE3__
+		: v(_mm_set_pd(y, x))
+	#else
+		: x(x), y(y)
+	#endif
+	{
+	};
 
 	// Check if the point is anything but (0, 0).
 	explicit operator bool() const noexcept;
 	bool operator!() const noexcept;
+	bool operator==(const Point &other) const noexcept;
+	bool operator!=(const Point &other) const noexcept;
+	bool operator<(const Point &other) const noexcept;
 
 	// No comparison operators are provided because I never expect to use them
 	// and because comparisons with doubles are inherently unsafe due to the

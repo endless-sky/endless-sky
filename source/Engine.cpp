@@ -157,7 +157,7 @@ namespace {
 	}
 
 	void DrawFlareSprites(const Ship &ship, DrawList &draw, const vector<Ship::EnginePoint> &enginePoints,
-		const vector<pair<Body, int>> &flareSprites, uint8_t side)
+		const vector<pair<Body, int>> &flareSprites, uint8_t side, Point scale)
 	{
 		for(const Ship::EnginePoint &point : enginePoints)
 		{
@@ -170,7 +170,7 @@ namespace {
 					|| (point.steering == Ship::EnginePoint::RIGHT && ship.SteeringDirection() > 0.)))
 					for(int i = 0; i < it.second && i < 3; ++i)
 					{
-						Body sprite(it.first, pos, ship.Velocity(), ship.Facing() + point.facing, point.zoom);
+						Body sprite(it.first, pos, ship.Velocity(), ship.Facing() + point.facing, point.zoom, scale);
 						draw.Add(sprite, ship.Cloaking());
 					}
 		}
@@ -1029,7 +1029,7 @@ void Engine::Draw() const
 	// Draw the flagship highlight, if any.
 	if(highlightSprite)
 	{
-		Point size(highlightSprite->Width(), highlightSprite->Height());
+		Point size(highlightSprite->Width() * player.Flagship()->Scale().X(), highlightSprite->Height() * player.Flagship()->Scale().Y());
 		const Color &color = *colors.Get("flagship highlight");
 		// The flagship is always in the dead center of the screen.
 		OutlineShader::Draw(highlightSprite, Point(), size, color, highlightUnit, highlightFrame);
@@ -2434,15 +2434,20 @@ void Engine::AddSprites(const Ship &ship)
 			if(bay.side == Ship::Bay::UNDER && bay.ship)
 				drawObject(*bay.ship);
 
+	double flareMultiplier;
+	double velPercent = ship.Velocity().Length() / ship.MaxVelocity();
+	double velDot = ship.Facing().Unit().Dot(ship.Velocity().Unit());
+	flareMultiplier = 1. - velDot * (velDot < 0. ? 1. - velPercent : velPercent) / 2;
+
 	if(ship.IsThrusting() && !ship.EnginePoints().empty())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.EnginePoints(),
-			ship.Attributes().FlareSprites(), Ship::EnginePoint::UNDER);
+			ship.Attributes().FlareSprites(), Ship::EnginePoint::UNDER, Point(1., flareMultiplier));
 	else if(ship.IsReversing() && !ship.ReverseEnginePoints().empty())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.ReverseEnginePoints(),
-			ship.Attributes().ReverseFlareSprites(), Ship::EnginePoint::UNDER);
+			ship.Attributes().ReverseFlareSprites(), Ship::EnginePoint::UNDER, Point(1., flareMultiplier));
 	if(ship.IsSteering() && !ship.SteeringEnginePoints().empty())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.SteeringEnginePoints(),
-			ship.Attributes().SteeringFlareSprites(), Ship::EnginePoint::UNDER);
+			ship.Attributes().SteeringFlareSprites(), Ship::EnginePoint::UNDER, Point(1, 1));
 
 	auto drawHardpoint = [&drawObject, &ship](const Hardpoint &hardpoint) -> void
 	{
@@ -2468,13 +2473,13 @@ void Engine::AddSprites(const Ship &ship)
 
 	if(ship.IsThrusting() && !ship.EnginePoints().empty())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.EnginePoints(),
-			ship.Attributes().FlareSprites(), Ship::EnginePoint::OVER);
+			ship.Attributes().FlareSprites(), Ship::EnginePoint::OVER, Point(1., flareMultiplier));
 	else if(ship.IsReversing() && !ship.ReverseEnginePoints().empty())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.ReverseEnginePoints(),
-			ship.Attributes().ReverseFlareSprites(), Ship::EnginePoint::OVER);
+			ship.Attributes().ReverseFlareSprites(), Ship::EnginePoint::OVER, Point(1., flareMultiplier));
 	if(ship.IsSteering() && !ship.SteeringEnginePoints().empty())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.SteeringEnginePoints(),
-			ship.Attributes().SteeringFlareSprites(), Ship::EnginePoint::OVER);
+			ship.Attributes().SteeringFlareSprites(), Ship::EnginePoint::OVER, Point(1, 1));
 
 	if(hasFighters)
 		for(const Ship::Bay &bay : ship.Bays())

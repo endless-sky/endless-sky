@@ -16,32 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 
 #ifndef __SSE3__
-#include <algorithm>
-#include <cmath>
-using namespace std;
+	using namespace std;
 #endif
-
-
-
-Point::Point() noexcept
-#ifdef __SSE3__
-	: v(_mm_setzero_pd())
-#else
-	: x(0.), y(0.)
-#endif
-{
-}
-
-
-
-Point::Point(double x, double y) noexcept
-#ifdef __SSE3__
-	: v(_mm_set_pd(y, x))
-#else
-	: x(x), y(y)
-#endif
-{
-}
 
 
 
@@ -60,6 +36,35 @@ bool Point::operator!() const noexcept
 #else
 	return (!x & !y);
 #endif
+}
+
+
+
+bool Point::operator==(const Point &other) const noexcept
+{
+#ifdef __SSE3__
+	return (val.x == other.x) && (val.y == other.y);
+#else
+	return (x == other.x) && (y == other.y);
+#endif
+}
+
+
+
+bool Point::operator!=(const Point &other) const noexcept
+{
+#ifdef __SSE3__
+	return !((val.x == other.x) && (val.y == other.y));
+#else
+	return !((x == other.x) && (y == other.y));
+#endif
+}
+
+
+
+bool Point::operator<(const Point &other) const noexcept
+{
+	return LengthSquared() < other.LengthSquared();
 }
 
 

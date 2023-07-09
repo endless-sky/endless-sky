@@ -21,12 +21,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	constexpr double DEFAULT = 1.;
+	constexpr Point DEFAULT = Point(1., 1.);
 	map<const Sprite *, bool> warned;
 
-	string PrintScale(double s)
+	string PrintScale(Point s)
 	{
-		return to_string(100. * s) + "%";
+		return to_string(100. * s.X()) + "x" + to_string(100. * s.Y()) + "%";
 	}
 }
 
@@ -47,7 +47,7 @@ void MaskManager::SetMasks(const Sprite *sprite, vector<Mask> &&masks)
 
 
 // Add a scale that the given sprite needs to have a mask for.
-void MaskManager::RegisterScale(const Sprite *sprite, double scale)
+void MaskManager::RegisterScale(const Sprite *sprite, Point scale)
 {
 	lock_guard<mutex> lock(spriteMutex);
 	auto &scales = spriteMasks[sprite];
@@ -93,7 +93,7 @@ void MaskManager::ScaleMasks()
 
 // Get the masks for the given sprite at the given scale. If a
 // sprite has no masks, an empty mask is returned.
-const std::vector<Mask> &MaskManager::GetMasks(const Sprite *sprite, double scale) const
+const std::vector<Mask> &MaskManager::GetMasks(const Sprite *sprite, Point scale) const
 {
 	static const vector<Mask> EMPTY;
 	const auto scalesIt = spriteMasks.find(sprite);
