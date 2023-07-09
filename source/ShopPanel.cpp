@@ -760,7 +760,7 @@ bool ShopPanel::Click(int x, int y, int /* clicks */)
 	if(button)
 		return DoKey(button);
 
-	// Check for clicks in the ShipsSidebar Panel arrows.
+	// Check for clicks on the ShipsSidebar pane arrows.
 	if(x >= Screen::Right() - 20)
 	{
 		if(y < Screen::Top() + 20)
@@ -768,7 +768,7 @@ bool ShopPanel::Click(int x, int y, int /* clicks */)
 		if(y < Screen::Bottom() - BUTTON_HEIGHT && y >= Screen::Bottom() - BUTTON_HEIGHT - 20)
 			return Scroll(0, -4);
 	}
-	// Check for clicks in the DetailsSidebar Panel arrows.
+	// Check for clicks on the DetailsSidebar pane arrows.
 	else if(x >= Screen::Right() - SIDEBAR_WIDTH - 20 && x < Screen::Right() - SIDEBAR_WIDTH)
 	{
 		if(y < Screen::Top() + 20)
@@ -776,7 +776,7 @@ bool ShopPanel::Click(int x, int y, int /* clicks */)
 		if(y >= Screen::Bottom() - 20)
 			return Scroll(0, -4);
 	}
-	// Check for clicks in the Main Panel arrows.
+	// Check for clicks on the Main pane arrows.
 	else if(x >= Screen::Right() - SIDE_WIDTH - 20 && x < Screen::Right() - SIDE_WIDTH)
 	{
 		if(y < Screen::Top() + 20)
