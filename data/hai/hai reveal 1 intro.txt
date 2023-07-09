@@ -26,7 +26,70 @@ mission "Hai Reveal Exploration Period: Concerned Hai"
 		random < 20
 	on offer
 		conversation
-			`Some Hai are beginning to disaster prep.`
+			`Upon arrival, your way is briefly blocked by a loud commotion with a small crowd of people. Two Hai, a shopkeeper and a merchant captain, are arguing loudly with each other outside the spaceport convenience outlet. You can't tell what they're saying - but the store, a chain whose name has been translated to "Spacorns" for the benefit of human visitors, has a big sign up in both languages that reads: "ONE Haycorn Snus pack per customer. No Exceptions. ID Required."`
+			`	It appears to be almost concluded, and a moment later the captain makes a disgusted noise, taps his pad, swipes his solitary pack, and stalks off into the spaceport looking altogether a lot like a frustrated predator.`
+			choice
+				`	(Ask someone what's going on.)`
+					goto "query an onlooker"
+				`	(Talk to the shopkeeper.)`
+			`	Stepping into the store, the Hai has only just returned to behind the counter where he's carefully putting back another pack of the haycorn snus. Now getting a closer look at him, his fur is mussed up and it seems that he might have had to wrestle the second pack away from the captain. He's certainly on edge, for he jumps with a little start as he hears you enter.`
+			`	"Ah, Captain, sorry about all that. What can I do for you?"`
+			choice
+				`	"Did you have to fight that man?"`
+				`	"What's with the sign?"`
+					goto "shop sign"
+			`	He takes a deep breath to steady himself before responding. "Unfortunately, yes. Fortunately for me, he was one of those captains who forget that walking up and down the length of your ship doesn't really qualify as regular exercise.`
+			label "shop sign"
+			`	"It's all a very unfortunate situation at the moment. With the increased appearance of humans in our space, and the uncertainty over what's going on, some merchants aren't plying the trade they usually do back and forth. The supplies of a few select things that are imported from the Republic have not been appearing quite as often, and so some Hai have taken to stockpiling certain commodities in case the supply shuts off entirely." He looks pointedly at the snus packs. "Tobacco is one of those commodities. Regulations prevent it from being grown on any Hai worlds. So, unless someone goes to the effort of setting up a greenhouse in space, that's entirely imported."`
+			`	He shrugs. "Personally, I think it's a gross habit, but it's far from being the only addictive substance around. It gives Hai a slightly improved intuition for maths btw, not quite the same effect as on humans. Which is why it's popular with merchants, but that captain has had some bad luck, and they'd been sold out at his last three stops."`
+			choice
+				`	"Sounds like the supply is short."`
+				`	"Sounds like a recipe for danger. Are you ok?"`
+					goto danger
+			`	He makes a very human-sounding tutting noise with his tongue and chuckles. "It's not that short. The brands are still manufactured here, and they have supply stockpiles because the imports are irregular anyway. It's just addicts being addicts.`
+			label danger
+			`	"As long as they don't start bringing weapons with them, things should be fine; and by the time it gets to that point, I imagine I'll have shut up shop and be staying home... either that, or I'll have joined a protest group somewhere for my own purposes." He winks.`
+			`	"Anyway, while you're here, can I interest you in any snacks? A beverage? Some holo-stickers? Probably not those, we've sold out of the ones with human memes."`
+			choice
+				`	"No thank you, have a nice day!"`
+					goto "no purchase"
+				`	"Just a snack thanks."`
+				`	"Do you have coffee?"`
+			`	You make your purchase and go about your business.`
+				decline
+			label "no purchase"
+			`	He thanks you for concern and wishes you safe travels.`
+				decline
+			
+			label "query an onlooker"
+			
+			`	Before the crowd disperses fully you spot a Hai waving goodbye to a human walking away from you, and quickly make your way over to him.`
+			`	"Ah, hello uh, Captain? Were you looking for me?"`
+			choice
+				`	"Could I ask you a question?"`
+				`	"What's was all that about?"`
+					goto "crowd sign"
+			`	He smiles. "Oh, about what just happened? Sure, I've got time."`
+				goto "was polite"
+			label "crowd sign"
+			`	He seems a little affronted but, after squinting at you, evidently decides to humor you.
+			label "was polite"
+			`	Gesturing to the sign he says, "Haycorn snus is a tobacco product. All tobacco is imported from human space. Since more of you lot have been appearing and disrupting things, some of the merchants aren't doing the usual supply runs as much. It's got some Hai all in a panic, stockpiling in case the supply shuts off entirely.`
+			`	"The captain there," he says, gesturing to the now empty space where the argument took place, "was particularly upset over the restriction, and tried to get away with two packs. Turns out the clerk was actually pretty fit, took them both right back off him after a bit of a scuffle. Kinda hot actually."`
+			choice
+				`	"Sounds like the supply is short."`
+				`	"Sounds like a serious concern."`
+					goto concern
+			`	He makes a very human-sounding tutting noise with his tongue and barks out a loud laugh. "It's not that short, it's just addicts being addicts and panicking.`
+			label concern
+			`	"The older generation has too little trust, always jumping at shadows and portents. Especially with so many new humans arriving. It'll sort itself out. Anyway, are you done?"`
+			choice
+				`	"Yes, thank you."`
+					goto "dismissed"
+				`	"Shadows and portents?"`
+			`	He rolls his eyes. "Isn't that what you humans say? Hai oldies are almost always superstitious. The more things change the more they start arranging crystals and gnawing on sticks."`
+			label "dismissed"
+			`	 "Now," he says, "good day to you. I'm getting a snack."`
 				decline
 
 
@@ -37,6 +100,7 @@ mission "Hai Reveal Exploration Period: Human Population Feeling Pressured"
 	source
 		government "Hai"
 		not attributes "uninhabited" "retirement"
+		attributes "hai: human presence"
 	to offer
 		has "Hai Reveal Exploration Period: Concerned Hai: declined"
 		not "event: hr: exploration period"
