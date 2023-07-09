@@ -359,7 +359,7 @@ void OutfitterPanel::DrawDesignButtons()
 	const string TEXT = "_Design Shipyard";
 
 	bigFont.Draw(TEXT,
-		buttonCenter - .5 * Point(bigFont.Width(TEXT), bigFont.Height()),
+		buttonCenter - .5 * Point(bigFont.Width("Design Outfitter"), bigFont.Height()),
 		active);
 }
 

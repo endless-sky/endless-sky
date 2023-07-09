@@ -270,7 +270,7 @@ void ShipyardPanel::DrawDesignButtons()
 	const string TEXT = designMode ? "_Design Outfitter" : "_Design Center";
 
 	bigFont.Draw(TEXT,
-		buttonCenter - .5 * Point(bigFont.Width(TEXT), bigFont.Height()),
+		buttonCenter - .5 * Point(bigFont.Width("Design Outfitter"), bigFont.Height()),
 		active);
 }
 
