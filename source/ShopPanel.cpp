@@ -348,15 +348,20 @@ void ShopPanel::DrawDesignButtons()
 		Point(Screen::Right() - INFOBAR_WIDTH / 2, Screen::Bottom() - BUTTON_HEIGHT),
 		Point(INFOBAR_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
 
+	// The normal Outfitter doesn't have a button here.
+	if(!isShipyard && !player.IsDesignPlayer())
+		return;
+
 	const Font &bigFont = FontSet::Get(18);
 	const Color &active = *GameData::Colors().Get("active");
 	const Color &back = *GameData::Colors().Get("design panel background");
 	const Point buttonCenter = Screen::BottomRight() - Point(210 + SIDEBAR_WIDTH, 25);
 	FillShader::Fill(buttonCenter, Point(140, 30), back);
 
-	// "Design Outfitter" is the longest text, so use that to left-justify the text.
+	// Use the widest text to left-justify the text.
+	const int width = max(bigFont.Width("_Design Center"), max(bigFont.Width("_Design Shipyard"), bigFont.Width("_Design Outfitter")));
 	bigFont.Draw(isShipyard ? (player.IsDesignPlayer() ? "_Design Outfitter" : "_Design Center") : "_Design Shipyard",
-		buttonCenter - .5 * Point(bigFont.Width("Design Outfitter"), bigFont.Height()),
+		buttonCenter - .5 * Point(width, bigFont.Height()),
 		active);
 }
 
