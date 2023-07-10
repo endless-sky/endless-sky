@@ -105,7 +105,7 @@ bool ShipManager::CanBeDone(const PlayerInfo &player) const
 
 void ShipManager::Do(PlayerInfo &player) const
 {
-	if(model->ModelName().empty())
+	if(model->TrueModelName().empty())
 		return;
 
 	string shipName;
@@ -122,7 +122,7 @@ void ShipManager::Do(PlayerInfo &player) const
 		for(const auto &ship : toTake)
 			player.TakeShip(ship.get(), model, takeOutfits);
 	}
-	Messages::Add((amount == 1 ? "The " + model->ModelName() + " \"" + shipName + "\" was " :
+	Messages::Add((amount == 1 ? "The " + model->DisplayModelName() + " \"" + shipName + "\" was " :
 		to_string(amount) + " " + model->PluralModelName() + " were ") +
 		(Giving() ? "added to" : "removed from") + " your fleet.", Messages::Importance::High);
 }
