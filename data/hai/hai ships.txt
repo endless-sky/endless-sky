@@ -973,7 +973,7 @@ ship "Sea Scorpion" "Sea Scorpion (Ionic)"
 		"Ion Cannon"
 		"Ionic Blaster Prototype" 2
 		"Ionic Turret Prototype"
-		"Pulse Rifle" 15
+		"Pulse Rifle" 36
 
 ship "Sea Scorpion" "Sea Scorpion (Shredder)"
 	outfits
@@ -986,7 +986,7 @@ ship "Sea Scorpion" "Sea Scorpion (Shredder)"
 		"Hai Williwaw Cooling" 4
 		"Hyperdrive"
 		"Pulse Cannon" 2
-		"Pulse Rifle" 15
+		"Pulse Rifle" 36
 		"Pulse Turret"
 		"Quantum Keystone"
 		"Tripulse Shredder" 2
