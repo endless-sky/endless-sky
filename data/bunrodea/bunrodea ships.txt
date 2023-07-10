@@ -465,13 +465,13 @@ ship "Chigiriki"
 	engine 75 155
 	engine -22.5 183.5
 	engine 22.5 183.5
-	gun 0 -143 "Thorax Cannon"
-	gun -14.5 -153 "Locust Blaster"
-	gun 14.5 -153 "Locust Blaster"
-	gun -24 -157.5 "Locust Blaster"
-	gun 24 -157.5 "Locust Blaster"
 	gun -33.5 -175 "Locust Blaster"
 	gun 33.5 -175 "Locust Blaster"
+	gun -24 -157.5 "Locust Blaster"
+	gun 24 -157.5 "Locust Blaster"
+	gun -14.5 -153 "Locust Blaster"
+	gun 14.5 -153 "Locust Blaster"
+	gun 0 -143 "Thorax Cannon"
 	gun -67 -26.5 "Swarm Pod"
 	gun 67 -26.5 "Swarm Pod"
 	gun -75 12.5 "Swarm Pod"
