@@ -1575,24 +1575,24 @@ ship "Modified Battleship"
 	engine -45 212
 	engine -21 220
 		zoom 0.8
+	gun 0 -223 "Prototype Fusion Cannon"
 	gun -59 14 "Typhoon Pod"
 	gun 59 14 "Typhoon Pod"
 	gun -72 25 "Torpedo Pod"
 	gun 72 26 "Torpedo Pod"
 	gun -84 38 "Torpedo Pod"
 	gun 84 38 "Torpedo Pod"
-	gun 0 -223 "Prototype Fusion Cannon"
 	turret -37 -11 "Electron Turret"
 	turret 37 -11 "Electron Turret"
+	turret 0 10 "Wanderer Anti-Missile"
 	turret -37 31 "Quad Blaster Turret"
 	turret 37 31 "Quad Blaster Turret"
 	turret -39 73 "Quad Blaster Turret"
 	turret 39 73 "Quad Blaster Turret"
-	turret -23 108 "Heavy Laser Turret"
-	turret 23 108 "Heavy Laser Turret"
 	turret -75 108 "Heavy Laser Turret"
 	turret 75 108 "Heavy Laser Turret"
-	turret 0 10 "Wanderer Anti-Missile"
+	turret -23 108 "Heavy Laser Turret"
+	turret 23 108 "Heavy Laser Turret"
 	explode "tiny explosion" 20
 	explode "small explosion" 45
 	explode "medium explosion" 50
