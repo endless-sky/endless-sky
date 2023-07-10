@@ -360,7 +360,8 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 	// Check if the outfit is available to get at all.
 	bool isInCargo = player.Cargo().Get(selectedOutfit);
 	bool isInStorage = player.Storage() && player.Storage()->Get(selectedOutfit);
-	bool isInStore = (outfitter.Has(selectedOutfit) && CustomSaleManager::CanBuy(*selectedOutfit)) ||
+	bool isSold = CustomSaleManager::CanBuy(*selectedOutfit);
+	bool isInStore = (outfitter.Has(selectedOutfit) && isSold ||
 		player.Stock(selectedOutfit) > 0;
 	if(isInStorage && (onlyOwned || isInStore || playerShip))
 	{
@@ -393,10 +394,16 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 	}
 	else if(!isInStore)
 	{
-		// The store doesn't have it.
-		return "You cannot buy this outfit here. "
-			"It is being shown in the list because you have one, "
-			"but this " + planet->Noun() + " does not sell them.";
+		if(isSold)
+			// The store doesn't have it.
+			return "You cannot buy this outfit here. "
+				"It is being shown in the list because you have one, "
+				"but this " + planet->Noun() + " does not sell them.";
+		else
+			// The store has it but you can't buy it.
+			return "You can only sell this outfit here. "
+				"It is being shown in the list because it is an imported item, typically "
+				"sold at a higher price then normal.";
 	}
 
 	// Check if you need to pay, and can't afford it.
@@ -415,11 +422,6 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 		if(cost + licenseCost > credits)
 			return "You don't have enough money to buy this outfit, because it will cost you an extra "
 				+ Format::CreditString(licenseCost) + " to buy the necessary licenses.";
-		
-		if(!CustomSaleManager::CanBuy(*selectedOutfit))
-		return "You can only sell this outfit here. "
-			"It is being shown in the list because it is an imported item, typically "
-			"sold at a higher price then normal.";
 	}
 
 	// Check if the outfit will fit
