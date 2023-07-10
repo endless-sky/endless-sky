@@ -326,7 +326,7 @@ mission "Hai Legacy 3"
 				`	"Can't I just sell it to you?"`
 			`	"No, because in the eyes of my brethren that would mean I did not deserve this ship."`
 			label win
-			`	"You will win the right to access our worlds for just a meagre daily fee of 500 credits. In order to keep our respect, and to not lose on this priceless artefact, this Ancient Ladybug may not be destroyed or sold. You will not be allowed to land so easily as you just did, should you refuse.`
+			`	"You will win the right to access our worlds for just a meagre daily fee of 500 credits. In order to keep our respect, and to not lose on this priceless artifact, this Ancient Ladybug may not be destroyed or sold. You will not be allowed to land so easily as you just did, should you refuse.`
 			`	"Beware, for there are no rules, other than the fact you may only use this one ship. Tell me then, what say you, will you take to the skies, or are you too afraid?"`
 			choice
 				`	"I accept."`
