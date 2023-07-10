@@ -1520,12 +1520,12 @@ ship "Emperor Beetle"
 	"steering engine" 43 131
 		zoom 0.45
 		left
-	gun -42.5 -53.5 "Tripulse Shredder"
-	gun 43.5 -54.5 "Tripulse Shredder"
-	gun -23 -102.5
-	gun 24.5 -102.5
 	gun 12.5 -128
 	gun -10 -128
+	gun -23 -102.5
+	gun 24.5 -102.5
+	gun -42.5 -53.5 "Tripulse Shredder"
+	gun 43.5 -54.5 "Tripulse Shredder"
 	turret 0.5 -25.5 "Warder Anti-Missile"
 	turret -47.5 11.5
 	turret 48.5 11.5
