@@ -508,3 +508,13 @@ conversation "end of intro missions"
 		
 	label end
 	`	He hands you a credit chip worth <payment>, and says, "Best of luck to you, Captain. Don't hesitate to look me up if you're ever in the area. And remember to check the spaceports wherever you land. You never know who you'll find wandering around there."`
+
+mission "Design Center Intro"
+	shipyard
+	source
+		not planet "New Boston"
+	on offer
+		conversation
+			`As you enter the shipyard an automated voice greets you. "Thank you for visiting our fine shipyard. As a service to all our potential customers, we offer not only the finest ships around but also a virtual ship design center that allows you to choose and customize any ship of your choice. You can match our ships against those offered by any other shipyard you've visited, as well as any ships you may already own. We're confident you'll find our ships are the best available!"`
+			`	It continues in a brisk and quiet monotone. "As required by <planet>'s privacy laws, all information you enter will be erased when you leave, so be careful to note down any designs you find promising beforehand."`
+				decline
