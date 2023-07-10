@@ -57,7 +57,6 @@ protected:
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 
 
-
 private:
 	void BuyShip(const std::string &name);
 	void SellShip();
