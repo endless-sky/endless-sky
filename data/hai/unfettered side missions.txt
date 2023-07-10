@@ -151,7 +151,7 @@ mission "Hai Legacy 1"
 		conversation
 			branch first
 				not "Hai Legacy 1: deferred"
-			`Do you want to head to the coordinates as the hooded figure suggested the previous time?`
+			`Do you want to head to the coordinates as the hooded figure suggested?`
 			choice
 				`	(Sure.)`
 					goto go
