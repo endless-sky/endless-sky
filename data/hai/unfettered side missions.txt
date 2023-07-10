@@ -232,7 +232,7 @@ mission "Hai Legacy 1"
 				random < 2
 			branch lucky??
 				random < 40
-			`	You shoot the ship, but the small weapon has no chance of doing anything to the heavy armor, even in this state. The ship's speakers then turn up. "MY TURN!"`
+			`	You shoot the ship, but the small weapon has no chance of doing anything to the heavy armor, even in this state. The ship's speakers then activate, almost breaking your ears with their volume. "MY TURN!"`
 			`	The ship surgically shoots you down using its Bullfrog Anti-Missiles.`
 				die
 			label lucky??
@@ -343,7 +343,7 @@ mission "Hai Legacy 3"
 			`	The leader gets closer and addresses you in a more serious tone, "You should be aware, <last>, that this is not a friendly competition between allies. As far as I am concerned, you are an enemy. You should see it more as a fight for you to truly earn this ship, and more, but make no mistakes: it has only two rules: nobody else than us may interfere, and being disabled results in losing the fight. And do not even think about bringing more than this Ladybug as a flagship or we will not bother showing up!"`
 			# this is a "warning" for the incoming extra ship that happens because you killed/captured 10 Shield Beetles
 			# (but in reality with disabling a lot of ships it goes faster than that)
-			`	"Sometimes the rules can be bent a little. But you certainly did not earn that privilege."`
+			`	They suddenly look at you intensively, straight in the eyes, "We sometimes will bend the rules for our friends, but that is not your case," they say with a sudden change of tone, before leaving.`
 				to display
 					"reputation: Hai (Unfettered)" < -2000
 			`	The engineer comes back, looking a bit impatient, "Are you going to talk all day, or are you going to fight?" The Unfettered pilots immediately head to their ships to get the initiative. The engineer utters a word to you once they are far enough away, "I want this done by the end of the day, do not try my patience. You are lucky I offered this deal in the first place, make sure I do not regret it. Now, quick, get to your ship!" You see the contestants have already begun the launching procedures, and launch as soon as you can.`
@@ -419,7 +419,7 @@ mission "Hai Legacy 3"
 			`	"I must congratulate you, I never expected you had it in you. I only have one word and will give you authorization to land, on the condition that you keep this relic from our past in good condition!`
 			`	"Make sure you do not lose it until you earn the right to call us friends, or we will take it very seriously. Oh, and there are taxes on the daily fee. I hope you don't mind."`
 		outfit "Unfettered Landing Permit"
-		log "Managed to use an old ladybug to overtake a swarm of Lightning Bugs, earning myself a place in Unfettered territory, for a daily cost, and only if I manage to keep the Ancient Ladybug intact."
+		log "Managed to use an old ladybug to beat a few Lightning Bugs, earning myself a place in Unfettered territory, for a daily cost. That is, only the Ancient Ladybug is kept intact."
 
 mission "Unfettered Landing Permit Lost"
 	landing
