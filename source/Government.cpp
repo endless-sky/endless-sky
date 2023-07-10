@@ -699,7 +699,7 @@ bool Government::Condemns(const Outfit *outfit) const
 
 bool Government::Condemns(const Ship *ship) const
 {
-	const auto isAtrocity = atrocityShips.find(ship->ModelName());
+	const auto isAtrocity = atrocityShips.find(ship->TrueModelName());
 	bool found = isAtrocity != atrocityShips.cend();
 	return (found && isAtrocity->second) || (!found && ship->BaseAttributes().Get("atrocity") > 0.);
 }
@@ -722,12 +722,12 @@ int Government::Fines(const Outfit *outfit) const
 
 int Government::Fines(const Ship *ship) const
 {
-	// If this government doesn't fine anything it won't fine this outfit.
+	// If this government doesn't fine anything it won't fine this ship.
 	if(!fine)
 		return 0;
 
 	for(const auto &it : illegalShips)
-		if(it.first == ship->ModelName())
+		if(it.first == ship->TrueModelName())
 			return it.second;
 	return ship->BaseAttributes().Get("illegal");
 }
