@@ -1461,9 +1461,9 @@ ship "Dagger"
 		
 	engine -8 34
 	engine 8 34
+	gun 0 -35 "Beam Laser"
 	gun -11 -21 "Javelin Mini Pod"
 	gun 11 -21 "Javelin Mini Pod"
-	gun 0 -35 "Beam Laser"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
 	explode "small explosion" 5
