@@ -1348,7 +1348,7 @@ vector<ShopPanel::Zone>::const_iterator ShopPanel::MainStart() const
 // letter of the button (or ' ' if it's not on a button).
 char ShopPanel::CheckButton(int x, int y)
 {
-	if(x < Screen::Right() - SIDEBAR_WIDTH || y < Screen::Bottom() - BUTTON_HEIGHT)
+	if(x < Screen::Right() - SIDE_WIDTH || y < Screen::Bottom() - BUTTON_HEIGHT)
 		return '\0';
 
 	if(y < Screen::Bottom() - 40 || y >= Screen::Bottom() - 10)
@@ -1366,6 +1366,8 @@ char ShopPanel::CheckButton(int x, int y)
 		return 's';
 	else if(x > 169 && x < 240)
 		return 'l';
+	else if(x > -280 && x < -140)
+		return 'd';
 
 	return ' ';
 }
