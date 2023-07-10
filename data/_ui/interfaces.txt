@@ -42,13 +42,17 @@ color "shop side panel background" .2 .2 .2 1.
 color "shop side panel footer" .3 .3 .3 1.
 color "shop info panel background" .055 .055 .055 1.
 color "tooltip background" .2 .2 .2 1.
+color "player info hardpoint gun" .5 .375 0. 1.
+color "player info hardpoint gun hover" .8 .6 0. 1.
+color "player info hardpoint turret" 0. .375 .5 1.
+color "player info hardpoint turret hover" 0. .6 .8 1.
 color "logbook sidebar" .09 .09 .09 1.
 color "logbook background" .125 .125 .125 1.
 color "logbook line" .2 .2 .2 1.
 color "item selected" 0. 0. 0. .3
 
 # Colors used to draw certain HUD elements in-flight.
-color "shields" .43 .55 .70 .75
+color "shields" .43 .55 .85 .8
 color "hull" .70 .62 .43 .75
 color "disabled hull" .3 0 0 .3
 color "heat" .70 .43 .43 .75
