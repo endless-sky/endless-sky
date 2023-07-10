@@ -361,7 +361,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 	bool isInCargo = player.Cargo().Get(selectedOutfit);
 	bool isInStorage = player.Storage() && player.Storage()->Get(selectedOutfit);
 	bool isSold = CustomSaleManager::CanBuy(*selectedOutfit);
-	bool isInStore = (outfitter.Has(selectedOutfit) && isSold ||
+	bool isInStore = (outfitter.Has(selectedOutfit) && isSold) ||
 		player.Stock(selectedOutfit) > 0;
 	if(isInStorage && (onlyOwned || isInStore || playerShip))
 	{
