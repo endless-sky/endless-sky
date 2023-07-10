@@ -714,7 +714,7 @@ ship "Marauder Manta" "Marauder Manta (Weapons)"
 	gun -20 -33 "Particle Cannon"
 	gun 20 -33 "Particle Cannon"
 	turret 0 -28.5 "Heavy Anti-Missile Turret"
-	description `This Manta has undergone extensive modification, featuring extra gun ports, hull plating, and shield emitters. Whoever modified it seems to have forgotten to include dedicated space for the power systems, as they're crammed in and around everything else like an afterthought. If its dry tonnage were any higher, it would be classified as a heavy warship.`
+	description `This Manta has undergone extensive modification, featuring extra hull plating, shield emitters, weapon space, and even a turret mount. Whoever modified it seems to have forgotten to include dedicated space for the power systems, as they're crammed in and around everything else like an afterthought. If its dry tonnage were any higher, it would be classified as a heavy warship.`
 
 
 

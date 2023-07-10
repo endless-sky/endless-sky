@@ -116,7 +116,7 @@ ship "Pug Enfolta"
 	description `The Enfolta is a medium-sized Pug warship. It has a formidable armament of advanced weaponry supported by powerful integrated energy generation. A single Enfolta can take on multiple smaller human ships.`
 
 
-        o"
+ship "Pug Maboro"
 	sprite "ship/pug maboro"
 	thumbnail "thumbnail/pug maboro"
 	attributes
