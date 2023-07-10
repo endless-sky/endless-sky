@@ -15,7 +15,8 @@ mission "Pirate Occupation [0]"
 	name `Pirates occupying <system>`
 	minor
 	repeat
-	description `A small band of pirates have been occupying <system>, and the local government has asked for help. Defeat the pirates in the system and land on <planet> when done. Payment is <payment>.`
+	description `A small band of pirates have been occupying <system>, and the local government has asked for help. Defeat the pirates in the system and land on <planet> before <date>, to receive the payment of <payment>.`
+	deadline
 	to offer
 		random < 5
 		"combat rating" > 100
@@ -52,7 +53,8 @@ mission "Pirate Occupation [1]"
 	name `Pirates occupying <system>`
 	minor
 	repeat
-	description `A gang of pirates have been occupying <system>, and the local government has asked for help. Defeat the pirates in the system and land on <planet> when done. Payment is <payment>.`
+	description `A gang of pirates have been occupying <system>, and the local government has asked for help. Defeat the pirates in the system and land on <planet> before <date>, to receive the payment of <payment>.`
+	deadline
 	to offer
 		random < 5
 		"combat rating" > 200
@@ -90,7 +92,8 @@ mission "Pirate Occupation [2]"
 	name `Pirates occupying <system>`
 	minor
 	repeat
-	description `A large gang of pirates have been occupying <system>, and the local government has asked for help. Defeat the pirates in the system and land on <planet> when done. Payment is <payment>.`
+	description `A large gang of pirates have been occupying <system>, and the local government has asked for help. Defeat the pirates in the system and land on <planet> before <date>, to receive the payment of <payment>.`
+	deadline
 	to offer
 		random < 5
 		"combat rating" > 300
@@ -125,7 +128,7 @@ mission "Pirate Occupation [2]"
 		dialog phrase "generic pirate attack payment dialog"
 
 conversation "pirate occupation"
-	`Suddenly you hear raised voices and shouting outside as pilots run for their ships: "<destination> is being occupied by a pirate fleet! They are requesting help from any combat-worthy ship in the region to join the defenses!" The authorities of <planet> will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
+	`Suddenly you hear raised voices and shouting outside as pilots run for their ships: "<destination> is being occupied by a pirate fleet! They are requesting help from any combat-worthy ship that can get there by <date> to join the defenses!" The authorities of <planet> will probably pay you quite well if you assist them, but this could also be an easy way to get yourself killed.`
 	choice
 		`	(Don't join the fight.)`
 			decline

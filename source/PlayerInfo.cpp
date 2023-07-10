@@ -1077,7 +1077,7 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 				// The bays should always be empty. But if not, count that ship too.
 				if(bay.ship)
 				{
-					Logger::LogError("Expected bay to be empty for " + ship->ModelName() + ": " + ship->Name());
+					Logger::LogError("Expected bay to be empty for " + ship->TrueModelName() + ": " + ship->Name());
 					categoryCount[bay.ship->Attributes().Category()].emplace_back(bay.ship);
 				}
 			}
@@ -1435,11 +1435,9 @@ void PlayerInfo::Land(UI *ui)
 	for(const shared_ptr<Ship> &ship : ships)
 		ship->UnloadBays();
 
-	// Ships that are landed with you on the planet should fully recharge
-	// and pool all their cargo together. Those in remote systems restore
-	// what they can without landing.
+	// Ships that are landed with you on the planet should fully recharge.
+	// Those in remote systems restore what they can without landing.
 	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();
-	UpdateCargoCapacities();
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsParked() && !ship->IsDisabled())
 		{
@@ -1448,7 +1446,6 @@ void PlayerInfo::Land(UI *ui)
 				if(planet->CanLand(*ship))
 				{
 					ship->Recharge(hasSpaceport);
-					ship->Cargo().TransferAll(cargo);
 					if(!ship->GetPlanet())
 						ship->SetPlanet(planet);
 				}
@@ -1457,23 +1454,24 @@ void PlayerInfo::Land(UI *ui)
 				else
 				{
 					const StellarObject *landingObject = AI::FindLandingLocation(*ship);
-					if(landingObject)
-					{
-						ship->SetPlanet(landingObject->GetPlanet());
-						ship->Recharge();
-					}
-					else
-					{
+					const bool foundSpaceport = landingObject;
+					if(!landingObject)
 						landingObject = AI::FindLandingLocation(*ship, false);
-						if(landingObject)
-							ship->SetPlanet(landingObject->GetPlanet());
-						ship->Recharge(false);
-					}
+					if(landingObject)
+						ship->SetPlanet(landingObject->GetPlanet());
+					ship->Recharge(foundSpaceport);
 				}
 			}
 			else
 				ship->Recharge(false);
 		}
+
+	// Cargo management needs to be done after updating ship locations (above).
+	UpdateCargoCapacities();
+	// Ships that are landed with you on the planet should pool all their cargo together.
+	for(const shared_ptr<Ship> &ship : ships)
+		if(ship->GetPlanet() == planet && !ship->IsParked())
+			ship->Cargo().TransferAll(cargo);
 	// Adjust cargo cost basis for any cargo lost due to a ship being destroyed.
 	for(const auto &it : lostCargo)
 		AdjustBasis(it.first, -(costBasis[it.first] * it.second) / (cargo.Get(it.first) + it.second));
@@ -3114,10 +3112,18 @@ void PlayerInfo::RegisterDerivedConditions()
 	{
 		if(!flagship)
 			return false;
-		return name == "flagship model: " + flagship->ModelName();
+		return name == "flagship model: " + flagship->TrueModelName();
 	};
 	flagshipModelProvider.SetHasFunction(flagshipModelFun);
 	flagshipModelProvider.SetGetFunction(flagshipModelFun);
+
+	auto &&flagshipDisabledProvider = conditions.GetProviderNamed("flagship disabled");
+	auto flagshipDisabledFun = [this](const string &name) -> bool
+	{
+		return flagship && flagship->IsDisabled();
+	};
+	flagshipDisabledProvider.SetHasFunction(flagshipDisabledFun);
+	flagshipDisabledProvider.SetGetFunction(flagshipDisabledFun);
 
 	auto flagshipAttributeHelper = [](const Ship *flagship, const string &attribute, bool base) -> int64_t
 	{
@@ -3273,7 +3279,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
 			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetActualSystem() == system
-					&& name == "ship model: " + ship->ModelName())
+					&& name == "ship model: " + ship->TrueModelName())
 				++retVal;
 		return retVal;
 	});
@@ -3284,7 +3290,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	{
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
-			if(!ship->IsDestroyed() && name == "ship model (all): " + ship->ModelName())
+			if(!ship->IsDestroyed() && name == "ship model (all): " + ship->TrueModelName())
 				++retVal;
 		return retVal;
 	});

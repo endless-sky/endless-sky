@@ -122,7 +122,7 @@ phrase "generic completed highly illegal pirate cargo mission"
 
 phrase "generic aborted pirate passenger mission"
 	word
-		`Your passenger never arrived at <destination>. This doesn't help to establish your reputation as reliable, no-questions-asked transporter.`
+		`Your passenger never arrived at <destination>. This doesn't help to establish your reputation as a reliable, no-questions-asked transporter.`
 
 phrase "generic aborted pirate cargo mission"
 	word
