@@ -874,19 +874,19 @@ tip "turret turn rate:"
 	`Degrees this turret can turn per second.`
 
 tip "homing:"
-	`How well this projectile tracks its target. Weapons with better homing can adjust to the target's speed to plot a more effective intercept course.`
+	`This projectile's ability to track its target. Weapons with better homing can adjust to the target's speed to plot a more effective intercept course.`
 
 tip "tracking:"
-	`How well this weapon maintains its target lock.`
+	`This projectile's ability to maintain its target lock.`
 
 tip "optical tracking:"
-	`How well this weapon maintains an optical target lock, which depends on the size of the target; negatively affected by any potential optical jamming equipement.`
+	`This projectile's ability to maintain an optical target lock, which depends on the size of the target; negatively affected by any potential optical jamming equipement.`
 
 tip "infrared tracking:"
-	`How well this weapon maintains an infrared target lock, which depends on the target ship's heat level and distance from the missile; IR-guided missiles become more accurate the closer they are to their targets.`
+	`This projectile's ability to maintain an infrared target lock, which depends on the target ship's heat level and distance from the missile; IR-guided missiles become more accurate the closer they are to their targets.`
 
 tip "radar tracking:"
-	`How well this weapon maintains a radar target lock; negatively affected by the target ship's radar jamming equipment.`
+	`This projectile's ability to maintain a radar target lock; negatively affected by the target ship's radar jamming equipment.`
 
 tip "piercing:"
 	`Percentage of this weapon's damage that leaks through to the hull.`
