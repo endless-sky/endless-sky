@@ -495,8 +495,7 @@ government "Hai Merchant (Sympathizers)"
 	"friendly disabled hail" "friendly disabled hai"
 	"hostile hail" "hostile hai"
 	"hostile disabled hail" "hostile disabled hai"
-	# the most undefended Merchant fleet + 1 Geocoris
-	raid "Unfettered Hai Space Raid" 17
+	raid "Unfettered Hai Space Raid" 20
 
 government "Hai Merchant (Human)"
 	"display name" "Hai"

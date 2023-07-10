@@ -881,29 +881,29 @@ fleet "Unfettered Hai Space Raid"
 	personality
 		disables plunders coward
 	variant
-		"Lightning Bug (Pulse)" 16
+		"Lightning Bug (Pulse)" 7
 	variant 2
-		"Shield Beetle" 5
+		"Shield Beetle" 2
 	variant 2
-		"Shield Beetle (Tracker)" 4
+		"Shield Beetle (Tracker)"
 	variant 2
-		"Shield Beetle (Pulse)" 5
+		"Shield Beetle (Pulse)" 2
 	variant 3
-		"Sea Scorpion (Pulse)" 10
+		"Sea Scorpion (Pulse)" 5
 	variant 3
-		"Sea Scorpion (Tracker)" 9
+		"Sea Scorpion (Tracker)" 4
 	variant 2
-		"Sea Scorpion (Ion)" 11
+		"Sea Scorpion (Ion)" 5
 	# run, you fool! (bigger less likely ones to prevent easy farming)
 	variant 6
-		"Shield Beetle (Pulse)" 3
-		"Sea Scorpion (Pulse)" 5
-		"Lightning Bug (Pulse)" 10
+		"Shield Beetle (Pulse)"
+		"Sea Scorpion (Pulse)"
+		"Lightning Bug (Pulse)" 2
 	variant 10
 		"Sea Scorpion (Shredder)"
 		"Sea Scorpion (Ionic)"
-		"Shield Beetle (Pulse)" 3
-		"Shield Beetle" 3
+		"Shield Beetle (Pulse)"
+		"Shield Beetle"
 
 fleet "Unfettered Raid"
 	government "Hai (Unfettered)"
