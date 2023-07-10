@@ -123,17 +123,13 @@ void PlanetPanel::Draw()
 			info.SetCondition("has spaceport");
 
 		if(planet.HasShipyard())
-		{
 			info.SetCondition("has shipyard");
-			info.SetCondition("has design shipyard");
-		}
 
 		if(planet.HasOutfitter())
 			for(const auto &it : player.Ships())
 				if(it->GetSystem() == &system && !it->IsDisabled())
 				{
 					info.SetCondition("has outfitter");
-					info.SetCondition("has design outfitter");
 					break;
 				}
 	}
