@@ -351,10 +351,6 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 		return "You already have one of these licenses, "
 			"so there is no reason to buy another.";
 
-	if(!CustomSaleManager::CanBuy(*selectedOutfit))
-		return "You can only sell this outfit here. "
-			"It is being shown in the list because it is an imported item, typically "
-			"sold at a higher price then normal.";
 
 	// Check that the player has any necessary licenses.
 	int64_t licenseCost = LicenseCost(selectedOutfit, onlyOwned);
@@ -419,6 +415,11 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 		if(cost + licenseCost > credits)
 			return "You don't have enough money to buy this outfit, because it will cost you an extra "
 				+ Format::CreditString(licenseCost) + " to buy the necessary licenses.";
+		
+		if(!CustomSaleManager::CanBuy(*selectedOutfit))
+		return "You can only sell this outfit here. "
+			"It is being shown in the list because it is an imported item, typically "
+			"sold at a higher price then normal.";
 	}
 
 	// Check if the outfit will fit
