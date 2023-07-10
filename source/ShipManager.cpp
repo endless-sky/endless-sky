@@ -158,7 +158,7 @@ vector<shared_ptr<Ship>> ShipManager::SatisfyingShips(const PlayerInfo &player) 
 	vector<shared_ptr<Ship>> satisfyingShips;
 
 	for(const auto &ship : player.Ships())
-		if((ship->ModelName() == model->ModelName())
+		if((ship->TrueModelName() == model->TrueModelName())
 			&& (unconstrained || (ship->GetSystem() == here && !ship->IsDisabled() && !ship->IsParked()))
 			&& (id.empty() || (foundShip && ship->UUID() == shipToTakeId->second))
 			&& (name.empty() || name == ship->Name()))
