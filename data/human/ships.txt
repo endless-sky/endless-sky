@@ -1688,9 +1688,9 @@ ship "Finch"
 		
 	engine -5 32
 	engine 5 32
+	gun 0 -31.5 "Beam Laser"
 	gun -7 -14 "Javelin Mini Pod"
 	gun 7 -14 "Javelin Mini Pod"
-	gun 0 -31.5 "Beam Laser"
 	leak "flame" 60 80
 	explode "tiny explosion" 15
 	explode "small explosion" 5

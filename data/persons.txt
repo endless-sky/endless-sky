@@ -111,6 +111,9 @@ ship "Finch" "Finch (MZ)"
 		"A125 Atomic Steering"
 		"A120 Atomic Thruster"
 		"Ionic Afterburner"
+	gun
+	gun "Electron Beam"
+	gun "Electron Beam"
 
 
 
