@@ -425,6 +425,8 @@ government "Hai"
 		"Hai (Unfettered Civilians)" .1
 		"Merchant" .01
 		"Elenctic Commune" .1
+	"penalty for"
+		assist -.2
 	"custom penalties for"
 		"Hai (Unfettered)"
 			capture 0
@@ -452,6 +454,8 @@ government "Hai (Wormhole Access)"
 		"Hai (Unfettered Civilians)" .1
 		"Merchant" .01
 		"Elenctic Commune" .1
+	"penalty for"
+		assist -.2
 	"custom penalties for"
 		"Hai (Unfettered)"
 			capture 0
@@ -477,6 +481,8 @@ government "Hai Merchant"
 		"Hai (Friendly Unfettered)" .1
 		"Hai (Unfettered Civilians)" .1
 		"Merchant" .01
+	"penalty for"
+		assist -.2
 	"custom penalties for"
 		"Hai (Unfettered)"
 			capture 0
@@ -502,6 +508,8 @@ government "Hai Merchant (Sympathizers)"
 		"Hai (Friendly Unfettered)" .5
 		"Hai (Unfettered Civilians)" .5
 		"Merchant" .01
+	"penalty for"
+		assist -.2
 	"bribe" .02
 	"friendly hail" "friendly hai"
 	"friendly disabled hail" "friendly disabled hai"
@@ -523,6 +531,8 @@ government "Hai Merchant (Human)"
 		"Hai (Friendly Unfettered)" .1
 		"Hai (Unfettered Civilians)" .1
 		"Merchant" .01
+	"penalty for"
+		assist -.2
 	"custom penalties for"
 		"Hai (Unfettered)"
 			capture 0
