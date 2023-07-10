@@ -354,7 +354,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
   if(!CustomSaleManager::CanBuy(*selectedOutfit))
 		return "You can only sell this outfit here. "
 			"It is being shown in the list because it is an imported item, typically "
-			"sold at a higher price then normal."));
+			"sold at a higher price then normal.";
 
 	// Check that the player has any necessary licenses.
 	int64_t licenseCost = LicenseCost(selectedOutfit, onlyOwned);
