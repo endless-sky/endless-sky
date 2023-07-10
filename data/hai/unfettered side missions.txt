@@ -149,35 +149,49 @@ mission "Hai Legacy 1"
 		not "event: hai ladybug available"
 	on offer
 		conversation
-			`As you enter the shipyard you quickly get approached by a hooded figure. They come to address you, discreetly. Seeing you stop to listen, they take your arm and make you follow them. "Keep walking," they say, taking a look around the way someone looking for a new ship would, before addressing you again. "My associates and I have a business proposition for you, if you are interested to learn more about it go to these coordinates." They give you a piece of paper containing the location, a beach almost on the other side of the planet with instructions, before quickly fading into the crowd. Will you go there?`
+			branch first
+				not "Hai Legacy 1: deferred"
+			`Do you want to head to the coordinates as the hooded figure suggested last time?`
+			choice
+				`	(Sure.)`
+					goto go
+				`	(Maybe another time.)`
+					defer
+				`	(Never.)`
+					decline
+			label first
+			`As you enter the shipyard you quickly get approached by a hooded figure. They come to address you discreetly, and, seeing you stop to listen, they take your arm and make you follow them. "Keep walking," they say, taking a look around the way someone looking for a new ship would, pointing at one with little conviction before addressing you again. "My associates and I have a lucrative business proposition for you, if you are interested go to these coordinates." They give you a piece of paper with the location, a beach on the other side of the planet, before quickly fading into the crowd. Will you go there?`
 			choice
 				`	(Sure.)`
 				`	(Maybe another time.)`
 					defer
-			`	As you ponder how to make your way to the rendez-vous point, you notice a convenient train ticket in your pocket, with instructions on how to find your way to the destination. You proceed to take the train, walking for hours to get the rest of the way there, and arrive around sunset without any complications.`
-			`	You look around you, double checking you are indeed at the right coordinates, for except a cave, vegetation, sand, and, of course, the beach, you cannot see much of interest in the vicinity in the dimming light. You can't help but keep your hand close to your gun, feeling safer with its presence.`
-			`	After waiting for what seems like an eternity you start to hear whispering, and two hooded figures approach you. You start to doubt whether or not this was a good idea but it is probably too late to back down now. They come to address you, their face hidden by the now almost total obscurity. "Hello, <last>," they say at the same time, almost in a comical way, removing some of the tension you felt until now. Then they look at each other, nod, and one of them addresses you in a more serious mood. "We are sorry for all of these complications, but the truth is we cannot afford to take risks. It has been some time since we stopped trying to understand, and started taking every precaution we could to be safe. You see, we simply do not know you, and neither do you us."`
+			label go
+			`	As you ponder how to make your way to the rendez-vous point, you notice a convenient train ticket in your pocket, with instructions on how to find your way to the destination. You proceed to take the train, and then have to walk for hours to get the rest of the way there.`
+			`	You look around you, double checking you are indeed at the right coordinates, for except a cave, vegetation, and, of course, the beach, you cannot see much of interest in the vicinity. You can't help but keep your hand close to your gun, feeling safer with its presence.`
+			`	After waiting for what seems like an eternity you start to hear whispering, and two hooded figures approach you. You start to doubt whether or not this was a good idea but it is probably too late to back down now. They come to address you, their face somehow impossible to glimpse at, even below the hoodie. "Hello, <last>," they say at the same time, almost in a comical way, removing some of the tension you felt until now. Then they look at each other, nod, and one of them addresses you in a more serious mood. "We are sorry for all of these complications, but the truth is we cannot afford to take risks. You see, we simply do not know how you might react. Furthermore, it is best for all if you do not come to know us."`
 			choice
 				`	"Tell me more."`
 					goto tellme
 				`	"How do you know me?"`
 					goto know
 				`	(Run away).`
-			`	They seem surprised at your sudden change of mind, but make no effort to stop you. You proceed to take the antigrav back to the shipyard without any incidents.`
+			`	They seem surprised at your sudden change of mind, but make no effort to stop you.`
+			label trainback
+			`	You proceed to head to the nearest spaceport by getting yourself another train ticket, without any incidents.`
 				decline
 			label know
 			`	They grin, "You need to become known by the Hai in order to land on our homeworld."`
-			`	"We know you have provided help for the Hai, notably by doing various jobs."`
+			`	"We know you have provided help, by doing various jobs."`
 				to display
 					"reputation: Hai (Unfettered)" >= -1250
-			`	"And do not think we are unaware of your skirmishes with the Unfettered," they add with a smirk on their face.`
+			`	"Do not think we are unaware of your skirmishes with the Unfettered," they add with a serious tone.`
 				to display
 					"reputation: Hai (Unfettered)" < -1250
 			label tellme
-			`	Suddenly the ground starts to shake. You start hearing a huge roaring behind you.`
-			`	You turn towards the sea, that seems to be the source of this noise, and as you do water starts showering on you, the wind rises, and a shape comes out of the water surrounded by fumes and boiling waters, as if an ancient sea monster was coming for you.`
-			`	But it is no monster, indeed it is so, so much worse.`
-			`	It is a ship, and its guns are pointed straight at you.`
+			`	Suddenly, the ground starts to shake. You start hearing a huge roaring behind you.`
+			`	You turn towards the sea, that seems to be the source of this noise, and as you do the waters keep getting more agitated, the wind rises, and a shape comes out of the water surrounded by fumes, as if an ancient sea monster was emerging.`
+			`	But it is no monster. Indeed it is so, so much worse.`
+			`	It is a ship, and its guns are pointed straight at you!`
 			scene "scene/emerging ladybug"
 			choice
 				`	(Run.)`
@@ -186,36 +200,40 @@ mission "Hai Legacy 1"
 				`	(Try to contact my fleet for help.)`
 				`	(Shoot it!)`
 					goto dumb
-			`	As you try to react to this imminent threat, the Hai closest to you firmly holds your arm and shouts to get trough the ambiant noise. "Wait! If this ship wanted to kill you, <last>, you would already be dead. We are not in space, its weapons would easily destroy this beach before we could do anything about it."`
+			`	As you try to react to this imminent threat, the Hai closest to you firmly holds your arm and shouts to get trough the ambiant noise. "Wait! If this ship wanted to kill you, <last>, you would already be dead."`
 			label wait
-			`	You are having a hard time hearing anything with the sound of the engines, but the ship proceeds to land on the beach, and it is as if the elements themselves are at rest.`
-			`	They turn to you, surprisingly perfectly calm in this situation. "Lucky for you, this is our ship.`
-			`	"But not any ship! This is a mighty relic of the past, from the times our Empire used to control the stars: a Ladybug!`
-			`	"We have a very interesting proposition for you: should you agree to bring supplies to our brethren, the Unfettered Hai, we will sell it to you for the modest price of 6.5 million credits. This is a very useful ship, and you should be able to repay this quite easily by running more of the same kind of jobs. It is adequate for bringing cargo safely to destination. You see, these supplies are needed on short notice, on <destination>, and we lack the time and personnel to bring them."`
-			`	"Of course, the ship has some... drawbacks, compared to its golden time, and don't expect the best price in a shipyard either. Nevertheless it is a fine vessel, capable of safely taking a respectable amount of cargo across large distances! So, what do you say, <last>? This is the opportunity of a lifetime; they simply don't make ships like these anymore!"`
+			`	You are having a hard time hearing anything with the sound of the engines as the ship proceeds to land on the beach. Suddenly, all is calm.`
+			`	They turn to you, surprisingly perfectly calm in this situation. "Lucky for you, this is our ship. But not any ship! This is a mighty relic of the past, from the times our Empire used to control the stars: a Ladybug!`
+			choice
+				`	(Say nothing.)`
+					goto explain
+				`	"You could have told me before."`
+			`	"Yes, but where is the fun in that? We also wanted to see how you would react.`
+			label explain
+			`	"We have a very interesting proposition for you: should you agree to bring supplies to our brethren, the Unfettered Hai, we will sell this ship to you for the modest price of 6.5 million credits. This is a very useful ship, and you should be able to repay this quite easily by running more of the same kind of jobs. These supplies are needed on short notice, on <destination>, and we lack the time and personnel to bring them."`
+			`	"Of course, the ship has some... drawbacks, compared to its golden time, and you should not expect the best price in a shipyard either. Nevertheless it is a fine vessel, capable of safely taking a respectable amount of cargo across large distances! So, what do you say, <last>? This is the opportunity of a lifetime; they simply don't make ships like these anymore!"`
 			choice
 				`	"I will take this deal."`
 					goto take
 				`	"I have no interest in this deal."`
-			`	"A shame. If you decided not to help us, we will probably not meet again," they say, before leaving as discreetly as they came.`
-				decline
+			`	"A shame. We will probably not meet again," they say, before going on the ship and putting it back in the ocean.`
+				goto trainback
 			label take
 			action
 				give ship "Ancient Ladybug" "Good Omen"
 				fine 6500000
 				log "Accepted a somewhat shady deal for an old Hai ship, a Ladybug, that seems to still be in good functioning state."
 			`	They give you access to the ship and proceed to explain the details. "It is of no real significance, but surely you understand we cannot go trough official means for this, we will have to present it as a fine. Worry not, we will make it something of no consequence, like an old Korath forbidden tech you would not have known about, that we had to confiscate."`
-			`	You quickly realize they are not asking you for your opinion at all. In fact, you notice the fine has already been issued before you could say anything. "Oh, and you should not change its colors, you'll understand why later. Also make sure you go to the spaceport to get the cargo loaded onto your ship!"`
+			`	You quickly realize they are not asking you for your opinion at all. In fact, you notice the fine has already been issued before you could say anything. "I would advise against repainting the ship, you will understand why later. Also make sure you go to the spaceport to get the cargo loaded onto your ship!"`
 				accept
 			label dumb
-			# how will you die? spin the wheel!
-			`	You get your hand weapon out and proceed to shoot on the ship.`
+			`	You get your weapon out and proceed to shoot on the ship.`
 			branch lucky?
 				random < 2
 			branch lucky??
 				random < 40
 			`	You shoot the ship, but the small weapon has no chance of doing anything to the heavy armor, even in this state. The ship's speakers then turn up. "MY TURN!"`
-			`	Apparently the ship is using ion cannons, that manage to take you down without even hurting the Hai.`
+			`	Apparently the ship is using ion cannons, that manage to take you down without even hurting the two Hai.`
 				die
 			label lucky??
 			`	You manage to land a lucky hit on what you assume to be the ship's navigation system, because it comes down, seemingly crashing.`
@@ -223,8 +241,10 @@ mission "Hai Legacy 1"
 				die
 			label lucky?
 			`	Probably thanks to the fact the ship's shields are down, and of its depreciated state, you manage to land a very lucky shot, going trough a layer of rust and severely damaging the reactor of the ship.`
-			`	At least it felt lucky until it blew up, taking you and everyone else on this beach with it.`
+			`	At least it felt lucky until it blew up, taking you and everyone else on this beach down with it.`
 				die
+	on defer
+		set "Hai Legacy 1: deferred"
 
 mission "Hai Legacy 2"
 	autosave
@@ -248,8 +268,8 @@ mission "Hai Legacy 2"
 			choice
 				`(Prepare for take off.)`
 			`	As you head to the bridge, preparing to take of from the planet, you notice a message on the command panel, probably from the "associates".`
-			`	It reads: "You should use the Ladybug as your flagship and you should probably not bring any other ships. You'll understand why later."`
-			`	Given the dangers of Unfettered space, you figure it would be a good idea to familiarize yourself with the design, and maybe to modify it.`
+			`	It reads: "You should use the Ladybug as your flagship and you should not bring any other ships."`
+			`	Given the dangers of Unfettered space, you figure it would be a good idea to familiarize yourself with the design, and maybe to modify it, especially if you are to go with only this ship.`
 	on enter
 		system
 			attributes "unfettered"
@@ -257,25 +277,26 @@ mission "Hai Legacy 2"
 			branch "not single ship"
 				"total ships" != 1
 			`As you enter the system, you prepare for a fight to get the cargo through, but, surprisingly, it is very quiet this time.`
-			`	Indeed, for the first time, entering Unfettered space does not mean getting shot at, potentially by missiles all sides.`
+			`	Indeed, for the first time, entering Unfettered space does not mean getting shot at by missiles from all sides.`
 			`	They are not hailing you either. Perhaps they think you are one of the Hai aiding them, especially given your cargo and the ship you are flying.`
 			action
 				"old reputation: Hai (Unfettered)" = "reputation: Hai (Unfettered)"
 				"reputation: Hai (Unfettered)" >?= 0
 			label "not single ship"
-			`You enter the system, and, for a moment, nobody is shooting you.`
-			`	The Unfettered quickly change their mind, however, and happily head your way, most probably with the intention of looting your cargo. You probably should have only come with the Ancient Ladybug.`
+			`You enter the system, and, for a brief moment, nobody is shooting you.`
+			`	The Unfettered quickly change their mind, however, and happily head your way, weapons ready, most probably with the intention of looting your cargo.`
+			`	You figure you should only have come with the Ancient Ladybug, as the associates suggested.`
 	on fail
 		"reputation: Hai (Unfettered)" <?= -1000
-		dialog `The Unfettered and their associates are not clearly happy when you tell them about this. "You will have to prove yourself another way."`
+		dialog `The Unfettered and their associates are not clearly happy when they somehow find out you did not get the cargo there in time. "You will have to prove yourself another way."`
 	on visit
-		dialog `You have reached <planet>, but you either did not bring the Ancient Ladybug, some of the cargo was on another ship, or you are not using the Ladybug as your flagship.`
+		dialog `You have reached <planet>, but you either did not bring the Ancient Ladybug, some of the cargo was on another ship, or you are not using the Ladybug as your flagship. You should park your fleet and only use the Ancient Ladybug.`
 	to complete
 		has "flagship model: Ancient Ladybug"
 	on complete
 		dialog `You receive a message from the 'associates of Hai-home', "thank you for helping our brethren, <last>. We will not forget this. Please accept these <payment> to get you started on paying back."`
 		payment 1000000
-		log "Delivered a pressing food cargo to the Unfettered using a newly acquired but pretty old Ladybug. They seem to not be firing on me, for now at least."
+		log "Delivered a pressing food cargo to the Unfettered using a newly acquired but rather old Ladybug. They seem to not be firing on me, for now at least."
 
 
 
@@ -283,20 +304,21 @@ mission "Hai Legacy 2"
 outfit "Unfettered Landing Permit"
 	"maintenance costs" 681
 	description "This item is needed in order to land on Unfettered planets, and its loss will cancel the arrangement."
+	description "You should not see this."
 
 mission "Hai Legacy 3"
 	name "Ancient claim"
 	description "Beat the Lightning Bugs in a merciless fight. You only have one day, and being disabled will result in losing the fight."
 	landing
 	source "Firelode"
-	deadline 2
+	deadline
 	to offer
 		has "flagship model: Ancient Ladybug"
 		has "Hai Legacy 2: done"
 	on offer
 		conversation
-			`As you land and get out of your ship, you quickly notice you have attracted a lot of attention, probably due to this old design. One Unfettered that looks like an engineer comes to speak to you, warmer than usual. "Welcome. I do not know how you have obtained this ship, although I imagine some of us will see it as a sign. It is a relic of our past, a past we are quite proud of.`
-			`	"As such, most will say that you have no right to use that ship. However, thankfully for you, I do not believe in any of that. What matters to me is that this ship is very durable, given the time it obviously spent in the water. It also has ancient technology that would be very valuable to us."`
+			`As you land and exit your ship, you quickly notice you have attracted a lot of attention, probably due to this old design. One Unfettered that looks like an engineer comes to speak to you, warmer than usual. "Welcome. I do not know how you have obtained this ship, although I imagine some of us will see it as a sign. It is a relic of our past, a past we are quite proud of.`
+			`	"As such, most will say that you have no right to use that ship. Thankfully for you, I do not believe in any of that. What matters to me is that this ship is very durable, given the time it obviously spent in the water. It also has ancient technology that would be very valuable to us."`
 			`	They raise their voice for everyone to hear, "I challenge you! The winner will earn the right to own this relic."`
 			choice
 				`	"What do I get if I win?"`
@@ -304,8 +326,8 @@ mission "Hai Legacy 3"
 				`	"Can't I just sell it to you?"`
 			`	"No, because in the eyes of my brethren that would mean I did not deserve this ship."`
 			label win
-			`	"You will win the right to access our worlds for just a meagre daily fee of 500 credits. You will not be allowed to land so easily as recently should you refuse this deal. Furthermore, this Ancient Ladybug may not be destroyed or sold.`
-			`	"Beware, for there are no rules, other than the fact you may only use one ship, and only one ship! Tell me then, what say you, will you take to the skies, or are you too afraid?"`
+			`	"You will win the right to access our worlds for just a meagre daily fee of 500 credits. In order to keep our respect, and to not lose on this priceless artefact, this Ancient Ladybug may not be destroyed or sold. You will not be allowed to land so easily as you just did, should you refuse.`
+			`	"Beware, for there are no rules, other than the fact you may only use this one ship. Tell me then, what say you, will you take to the skies, or are you too afraid?"`
 			choice
 				`	"I accept."`
 				`	"I have nothing to prove to you."`
@@ -319,24 +341,24 @@ mission "Hai Legacy 3"
 					goto scare
 			`	"I guess we'll find out." Says a third.`
 			label scare
-			`	The leader gets closer and addresses you in a more serious tone, "You should be aware, <last>, this is not a friendly competition between allies. As far as I am concerned, you are an enemy. You should see it more as a fight for you to truly earn this ship, and more, but make no mistakes: it has only one rule, and that is that nobody else than us may interfere. And do not even think about bringing more than this Ladybug as a flagship or we will not bother showing up!"`
+			`	The leader gets closer and addresses you in a more serious tone, "You should be aware, <last>, that this is not a friendly competition between allies. As far as I am concerned, you are an enemy. You should see it more as a fight for you to truly earn this ship, and more, but make no mistakes: it has only two rules: nobody else than us may interfere, and being disabled results in losing the fight. And do not even think about bringing more than this Ladybug as a flagship or we will not bother showing up!"`
 			# this is a "warning" for the incoming extra ship that happens because you killed/captured 10 Shield Beetles
 			# (but in reality with disabling a lot of ships it goes faster than that)
 			`	"Sometimes the rules can be bent a little. But you certainly did not earn that privilege."`
 				to display
 					"reputation: Hai (Unfettered)" < -2000
-			`	The engineer comes back, looking a bit impatient, "Are you going to talk all day, or are you going to fight?" The Unfettered pilots immediately head to their ships to get the initiative. The engineer utters a word to you once they are far enough away, "I want this done as quickly as possible, do not try my patience. You are lucky I offered this deal in the first place, make sure I do not regret it. Now, quick, get to your ship!" You see the contestants have already begun the launching procedures, and launch as soon as you can.`
+			`	The engineer comes back, looking a bit impatient, "Are you going to talk all day, or are you going to fight?" The Unfettered pilots immediately head to their ships to get the initiative. The engineer utters a word to you once they are far enough away, "I want this done by the end of the day, do not try my patience. You are lucky I offered this deal in the first place, make sure I do not regret it. Now, quick, get to your ship!" You see the contestants have already begun the launching procedures, and launch as soon as you can.`
 			`	(Remember to park your other ships and make sure your flagship is the Ancient Ladybug.)`
 				accept
 	on decline
 		"reputation: Hai (Unfettered)" >?= -1000
 	on disabled
 		fail "Hai Legacy 3"
-		dialog `The enemy ships hail you, "You have failed the challenge, we will take the technology we want when you land, and have already arranged to sell you replacements for it."`
+		dialog `The enemy ships hail you, "You have failed the challenge, we will take the technology we want when you land, and have already arranged to sell you replacements for it, for this fine of <fine>."`
 		fine 1500000
 	on fail
 		"reputation: Hai (Unfettered)" >?= -1000
-		dialog `The Unfettered hail you, "You failed the mission, and as such, are no longer authorized to land on our worlds, and you will not enjoy unmerited respect any longer!"`
+		dialog `The Unfettered hail you, "You failed the mission, and as such, are no longer authorized to land on our worlds. You will not enjoy unwarranted respect any longer!"`
 	npc disable
 		government "Hai (Unfettered Challenger)"
 		to spawn
@@ -349,19 +371,27 @@ mission "Hai Legacy 3"
 		ship "Lightning Bug" "Thunder"
 		ship "Lightning Bug (Unfettered Shipyards)" "Lighting"
 		ship "Lightning Bug (Pulse)" "Struck"
-		dialog "You receive a message from the remaining Unfettered ships: they surrender. They will not wait on the planet forever, however, so you need to land today to claim the rewards."
-		on disable
-			set "unfettered: beaten the bugs"
+		conversation
+			`You receive a message from the remaining Unfettered ships: "We surrender." You remember you were asked to land on the same day in order to claim your reward of permanent access to Unfettered space.`
+			branch "good boy or bad boy enough"
+				has "unfettred: beaten extra bugs"
+				"old reputation: Hai (Unfettered)" < -2000
+			`	"Do not shout victory too soon, however, for we were not the only ones you had to beat," they add.`
+			label "good boy or bad boy enough"
+			action
+				set "unfettered: beaten the bugs"
 	npc disable
 		government "Hai (Unfettered Challenger)"
 		to spawn
 			"old reputation: Hai (Unfettered)" < -2000
+			has "flagship model: Ancient Ladybug"
 			"total ships" == 1
 		to despawn
 			"total ships" != 1
 		personality unconstrained entering plunders staying target heroic
 		ship "Sea Scorpion (Shredder)" "Requiem"
 		system "Hi Yahr"
+		dialog "You have managed to defeat the last of the Unfettered challengers, it is now time to land to claim your reward."
 		on disable
 			set "unfettred: beaten extra bugs"
 	npc
@@ -371,7 +401,7 @@ mission "Hai Legacy 3"
 		on kill
 			fail "Hai Legacy 3"
 	on visit
-		dialog "You have not beaten all challenging ships yet. If they have not shown up it is probably because you have cheated and brought more ships into the fight."
+		dialog "You have not beaten all challenging ships yet. If they have not shown up it is probably because you have cheated and brought more ships into the fight, load a save and try again if you want to finish this mission."
 	to complete
 		has "unfettered: beaten the bugs"
 		has "flagship model: Ancient Ladybug"
@@ -380,17 +410,17 @@ mission "Hai Legacy 3"
 			has "unfettered: beaten extra bugs"
 	on complete
 		conversation
-			`The engineer seems shocked at first. "You really... won? It really was close until the end, wasn't it? Or did the captains already make stories for themselves?"`
+			`The engineer seems shocked at first. "You really... won? It really was close until the end, was it not? Or did the captains already make stories to justify their incompetence?"`
 			choice
 				`	"Indeed, but it was fun."`
 					goto next
 				`	"What are you talking about? This was easy!"`
-			`	"Don't become overconfident now, captain. I am sure you know what happens to such people."`
+			`	"Don't become overconfident now, captain. I am sure you know what happens to such people.`
 			label next
-			`	"Anyway I must congratulate you, I never expected you had it in you. That said, I only have one word and will give you authorization to land, on the condition that you keep this relic from our past in good condition!"`
-			`	"Make sure you do not lose this until you permanently deserve the right to call us friends, or we will take it very seriously. Oh, and there are taxes on the daily fee, I hope you don't mind."`
+			`	"I must congratulate you, I never expected you had it in you. I only have one word and will give you authorization to land, on the condition that you keep this relic from our past in good condition!`
+			`	"Make sure you do not lose it until you earn the right to call us friends, or we will take it very seriously. Oh, and there are taxes on the daily fee, I hope you don't mind."`
 		outfit "Unfettered Landing Permit"
-		log "Managed to use an old ladybug to overtake a swarm of Lightning Bugs, earning myself a place in Unfettered territory."
+		log "Managed to use an old ladybug to overtake a swarm of Lightning Bugs, earning myself a place in Unfettered territory, for a daily cost, and only if I manage to keep the Ancient Ladybug intact."
 
 mission "Unfettered Landing Permit Lost"
 	landing
@@ -404,7 +434,6 @@ mission "Unfettered Landing Permit Lost"
 	on offer
 		dialog "As you land the Unfettered tell you they have learned of the loss of the Ladybug, thereby ending your landing access and friendly relations with them until you give them a Jump Drive."
 		# since you had to have that ship as a flagship when you received the license that means that if you lose the license you lost the ship
-		# except if you somehow moved the license hackily but then uncoherent dialog is to be expected
 		log "Lost the Ancient Ladybug and friendly access to Unfettered space with it."
 		"reputation: Hai (Unfettered)" <?= -1
 		fail
