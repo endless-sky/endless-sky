@@ -316,10 +316,10 @@ tip "ion protection:"
 	`Protection provided against ion damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in ion damage, while a total value of 11 only results in a 10 percent reduction.`
 
 tip "scramble protection:"
-	`Protection provided against weapons that do scrambling damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in ion damage, while a total value of 11 only results in a 10 percent reduction.`
+	`Protection provided against weapons that do scrambling damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in scramble damage, while a total value of 11 only results in a 10 percent reduction.`
 
 tip "ion resistance:"
-	`Ionization damage resisted per second.`
+	`Ion damage resisted per second.`
 
 tip "ion resistance energy:"
 	`Energy consumed per second when resisting ion damage.`
@@ -331,7 +331,7 @@ tip "ion resistance heat:"
 	`Heat generated per second when resisting ion damage.`
 
 tip "landing speed:"
-	`How fast this ship is able to land on a planet, or travel through a wormhole.`
+	`Speed at which this ship appears to land or travel through a wormhole.`
 
 tip "scramble resistance:"
 	`Scrambling damage resisted per second.`
@@ -913,7 +913,7 @@ tip "energy damage / shot:"
 	`Reduces the target ship's energy by this amount per shot, or half this amount if its shields are up.`
 
 tip "ion damage / shot:"
-	`Increases the target's ionization by this amount per shot. Only half as effective when the target's shields are up. Ionization reduces the target's energy. Ionization slowly wears off over time.`
+	`Increases the target's ionization by this amount per shot. Only half as effective when the target's shields are up. Ionization reduces the target's energy, and slowly wears off over time.`
 
 tip "scrambling damage / shot:"
 	`Increases the target's chance of weapon failure. Only half as effective when the target's shields are up. Scrambling slowly wears off over time.`
