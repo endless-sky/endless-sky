@@ -185,7 +185,6 @@ void PlayerInfo::NewDesignPlayer(const PlayerInfo &player)
 
 	isDesignPlayer = true;
 	date = player.GetDate();
-	depreciation = player.FleetDepreciation();
 	// Used to stock stores with items known to be for sale.
 	visitedSystems = player.visitedSystems;
 
@@ -200,7 +199,17 @@ void PlayerInfo::NewDesignPlayer(const PlayerInfo &player)
 	// As there is no way to track if a given ship is a variant, just give
 	// access to copies of all the ships the player currently has.
 	for(const auto &it : player.Ships())
-		BuyShip(&(*it), it->Name(), false);
+	{
+		ships.emplace_back(new Ship(*it));
+		ships.back()->SetSystem(player.GetSystem());
+		ships.back()->SetPlanet(player.GetPlanet());
+		ships.back()->SetIsSpecial();
+		ships.back()->SetIsYours();
+		ships.back()->SetGovernment(GameData::PlayerGovernment());
+	}
+	// Make sure the fleet depreciation object knows it is tracking the player's
+	// fleet, not the planet's stock.
+	depreciation.Init(ships, date.DaysSinceEpoch());
 
 	// Add any not-for-sale outfits in storage somewhere into the
 	// player's cargo, so they'll show up in the Design Outfitter.

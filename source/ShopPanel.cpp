@@ -373,17 +373,22 @@ void ShopPanel::DrawShopButtons()
 		Point(SIDEBAR_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
 
 	const Font &font = FontSet::Get(14);
-	const Color &bright = *GameData::Colors().Get("bright");
 	const Color &dim = *GameData::Colors().Get("medium");
 	const Color &back = *GameData::Colors().Get("panel background");
 
-	const Point creditsPoint(
-		Screen::Right() - SIDEBAR_WIDTH + 10,
-		Screen::Bottom() - 65);
-	font.Draw("You have:", creditsPoint, dim);
+	// No need to show the credits in the Design Center.
+	if (!player.IsDesignPlayer())
+	{
+		const Color &bright = *GameData::Colors().Get("bright");
 
-	const auto credits = Format::CreditString(player.Accounts().Credits());
-	font.Draw({credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, creditsPoint, bright);
+		const Point creditsPoint(
+			Screen::Right() - SIDEBAR_WIDTH + 10,
+			Screen::Bottom() - 65);
+		font.Draw("You have:", creditsPoint, dim);
+
+		const auto credits = Format::CreditString(player.Accounts().Credits());
+		font.Draw({credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, creditsPoint, bright);
+	}
 
 	const Font &bigFont = FontSet::Get(18);
 	const Color &hover = *GameData::Colors().Get("hover");
