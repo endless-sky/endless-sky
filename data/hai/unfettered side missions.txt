@@ -233,7 +233,7 @@ mission "Hai Legacy 1"
 			branch lucky??
 				random < 40
 			`	You shoot the ship, but the small weapon has no chance of doing anything to the heavy armor, even in this state. The ship's speakers then turn up. "MY TURN!"`
-			`	Apparently the ship is using ion cannons, that manage to take you down without even hurting the two Hai.`
+			`	The ship surgically shoots you down using its Bullfrog Anti-Missiles.`
 				die
 			label lucky??
 			`	You manage to land a lucky hit on what you assume to be the ship's navigation system, because it comes down, seemingly crashing.`
