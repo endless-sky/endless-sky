@@ -241,7 +241,7 @@ mission "Hai Legacy 1"
 				die
 			label lucky?
 			`	Probably thanks to the fact the ship's shields are down, and of its depreciated state, you manage to land a very lucky shot, going trough a layer of rust and severely damaging the reactor of the ship.`
-			`	At least it felt lucky until it blew up, taking you and everyone else on this beach down with it.`
+			`	At least, it might have seemed lucky until it blew up, taking you and everyone else on this beach down with it.`
 				die
 	on defer
 		set "Hai Legacy 1: deferred"
@@ -304,7 +304,6 @@ mission "Hai Legacy 2"
 outfit "Unfettered Landing Permit"
 	"maintenance costs" 681
 	description "This item is needed in order to land on Unfettered planets, and its loss will cancel the arrangement."
-	description "You should not see this."
 
 mission "Hai Legacy 3"
 	name "Ancient claim"
@@ -358,7 +357,7 @@ mission "Hai Legacy 3"
 		fine 1500000
 	on fail
 		"reputation: Hai (Unfettered)" >?= -1000
-		dialog `The Unfettered hail you, "You failed the mission, and as such, are no longer authorized to land on our worlds. You will not enjoy unwarranted respect any longer!"`
+		dialog `The Unfettered hail you, "You failed to complete the duel properly, and as such, are no longer authorized to land on our worlds. You will not enjoy unwarranted respect any longer!"`
 	npc disable
 		government "Hai (Unfettered Challenger)"
 		to spawn
@@ -418,7 +417,7 @@ mission "Hai Legacy 3"
 			`	"Don't become overconfident now, captain. I am sure you know what happens to such people.`
 			label next
 			`	"I must congratulate you, I never expected you had it in you. I only have one word and will give you authorization to land, on the condition that you keep this relic from our past in good condition!`
-			`	"Make sure you do not lose it until you earn the right to call us friends, or we will take it very seriously. Oh, and there are taxes on the daily fee, I hope you don't mind."`
+			`	"Make sure you do not lose it until you earn the right to call us friends, or we will take it very seriously. Oh, and there are taxes on the daily fee. I hope you don't mind."`
 		outfit "Unfettered Landing Permit"
 		log "Managed to use an old ladybug to overtake a swarm of Lightning Bugs, earning myself a place in Unfettered territory, for a daily cost, and only if I manage to keep the Ancient Ladybug intact."
 
