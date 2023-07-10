@@ -1015,10 +1015,10 @@ tip "blast radius:"
 	`Everything within this distance (including friendly ships) will be damaged when the weapon hits something.`
 
 tip "missile strength:"
-	`How resistant this missile is to anti-missile shots.`
+	`This missile's resistance to anti-missile shots.`
 
 tip "anti-missile:"
-	`How powerful this anti-missile system's shots are. Some missiles are harder to destroy than others.`
+	`The power of the anti-missile shots. Higher values make it easier to destroy stronger missiles.`
 
 
 
