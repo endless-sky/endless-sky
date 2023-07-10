@@ -350,8 +350,8 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 	if(HasLicense(selectedOutfit->TrueName()))
 		return "You already have one of these licenses, "
 			"so there is no reason to buy another.";
-  
-  if(!CustomSaleManager::CanBuy(*selectedOutfit))
+
+	if(!CustomSaleManager::CanBuy(*selectedOutfit))
 		return "You can only sell this outfit here. "
 			"It is being shown in the list because it is an imported item, typically "
 			"sold at a higher price then normal.";
@@ -364,7 +364,8 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 	// Check if the outfit is available to get at all.
 	bool isInCargo = player.Cargo().Get(selectedOutfit);
 	bool isInStorage = player.Storage() && player.Storage()->Get(selectedOutfit);
-	bool isInStore = (outfitter.Has(selectedOutfit) && CustomSaleManager::CanBuy(*selectedOutfit)) || player.Stock(selectedOutfit) > 0;
+	bool isInStore = (outfitter.Has(selectedOutfit) && CustomSaleManager::CanBuy(*selectedOutfit)) ||
+		player.Stock(selectedOutfit) > 0;
 	if(isInStorage && (onlyOwned || isInStore || playerShip))
 	{
 		// In storage, the outfit is certainly available to get,
