@@ -66,7 +66,7 @@ bool Point::operator!() const noexcept
 bool Point::operator==(const Point &other) const noexcept
 {
 #ifdef __SSE3__
-	return (val.x == other.x) && (val.y == other.y);
+	return (v == other.v);
 #else
 	return (x == other.x) && (y == other.y);
 #endif
@@ -77,7 +77,7 @@ bool Point::operator==(const Point &other) const noexcept
 bool Point::operator!=(const Point &other) const noexcept
 {
 #ifdef __SSE3__
-	return !((val.x == other.x) && (val.y == other.y));
+	return !(v == other.v);
 #else
 	return !((x == other.x) && (y == other.y));
 #endif

@@ -177,14 +177,14 @@ namespace {
 						for(int i = 0; i < it.second && i < 3; ++i)
 						{
 							Body sprite(it.first, pos, ship.Velocity(), ship.Facing() + point.facing, point.zoom,
-								scale * Point(1., pow(ship.TurnLeftHeldFrames() / 10., 3)));
+								scale * Point(ship.TurnLeftHeldFrames() / 10., pow(ship.TurnLeftHeldFrames() / 10., 3)));
 							draw.Add(sprite, ship.Cloaking());
 						}
 					else if(point.steering == Ship::EnginePoint::RIGHT && ship.TurnRightHeldFrames())
 						for(int i = 0; i < it.second && i < 3; ++i)
 						{
 							Body sprite(it.first, pos, ship.Velocity(), ship.Facing() + point.facing, point.zoom,
-								scale * Point(1., pow(ship.TurnRightHeldFrames() / 10., 3)));
+								scale * Point(ship.TurnRightHeldFrames() / 10., pow(ship.TurnRightHeldFrames() / 10., 3)));
 							draw.Add(sprite, ship.Cloaking());
 						}
 				}
@@ -2455,10 +2455,10 @@ void Engine::AddSprites(const Ship &ship)
 
 	if(thrustMul && !ship.EnginePoints().empty())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.EnginePoints(),
-			ship.Attributes().FlareSprites(), Ship::EnginePoint::UNDER, Point(1., thrustMul));
+			ship.Attributes().FlareSprites(), Ship::EnginePoint::UNDER, Point(sqrt(thrustMul), thrustMul));
 	else if(reverseMul && !ship.ReverseEnginePoints().empty())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.ReverseEnginePoints(),
-			ship.Attributes().ReverseFlareSprites(), Ship::EnginePoint::UNDER, Point(1., reverseMul));
+			ship.Attributes().ReverseFlareSprites(), Ship::EnginePoint::UNDER, Point(sqrt(reverseMul), reverseMul));
 	if(!ship.SteeringEnginePoints().empty())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.SteeringEnginePoints(),
 			ship.Attributes().SteeringFlareSprites(), Ship::EnginePoint::UNDER, Point(1, 1));
@@ -2487,10 +2487,10 @@ void Engine::AddSprites(const Ship &ship)
 
 	if(thrustMul && !ship.EnginePoints().empty())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.EnginePoints(),
-			ship.Attributes().FlareSprites(), Ship::EnginePoint::OVER, Point(1., thrustMul));
+			ship.Attributes().FlareSprites(), Ship::EnginePoint::OVER, Point(sqrt(thrustMul), thrustMul));
 	else if(reverseMul && !ship.ReverseEnginePoints().empty())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.ReverseEnginePoints(),
-			ship.Attributes().ReverseFlareSprites(), Ship::EnginePoint::OVER, Point(1., reverseMul));
+			ship.Attributes().ReverseFlareSprites(), Ship::EnginePoint::OVER, Point(sqrt(reverseMul), reverseMul));
 	if(!ship.SteeringEnginePoints().empty())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.SteeringEnginePoints(),
 			ship.Attributes().SteeringFlareSprites(), Ship::EnginePoint::OVER, Point(1, 1));
