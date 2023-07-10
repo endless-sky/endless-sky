@@ -382,7 +382,7 @@ bool ShipyardPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 {
 	if(key == 'd')
 	{
-		if (player.IsDesignPlayer())
+		if(player.IsDesignPlayer())
 		{
 			GetUI()->Pop(this);
 			GetUI()->Push(new OutfitterPanel(player));
@@ -390,7 +390,7 @@ bool ShipyardPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		else
 		{
 			// Only initialize the design player once per shipyard.
-			if (!designPlayer.IsDesignPlayer())
+			if(!designPlayer.IsDesignPlayer())
 				designPlayer.NewDesignPlayer(player);
 			// The design screens are effectively subpanels of
 			// the ShipyardPanel so don't pop the shipyard ui.

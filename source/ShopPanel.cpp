@@ -359,7 +359,8 @@ void ShopPanel::DrawDesignButtons()
 	FillShader::Fill(buttonCenter, Point(140, 30), back);
 
 	// Use the widest text to left-justify the text.
-	const int width = max(bigFont.Width("_Design Center"), max(bigFont.Width("_Design Shipyard"), bigFont.Width("_Design Outfitter")));
+	const int width = max(bigFont.Width("_Design Center"), max(bigFont.Width("_Design Shipyard"),
+		bigFont.Width("_Design Outfitter")));
 	bigFont.Draw(isShipyard ? (player.IsDesignPlayer() ? "_Design Outfitter" : "_Design Center") : "_Design Shipyard",
 		buttonCenter - .5 * Point(width, bigFont.Height()),
 		active);
@@ -382,7 +383,7 @@ void ShopPanel::DrawShopButtons()
 	const Color &back = *GameData::Colors().Get("panel background");
 
 	// No need to show the credits in the Design Center.
-	if (!player.IsDesignPlayer())
+	if(!player.IsDesignPlayer())
 	{
 		const Color &bright = *GameData::Colors().Get("bright");
 
