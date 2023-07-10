@@ -84,10 +84,10 @@ void Depreciation::Save(DataWriter &out, int day) const
 		using ShipElement = pair<const Ship *const, map<int, int>>;
 		WriteSorted(ships,
 			[](const ShipElement *lhs, const ShipElement *rhs)
-				{ return lhs->first->ModelName() < rhs->first->ModelName(); },
+				{ return lhs->first->TrueModelName() < rhs->first->TrueModelName(); },
 			[=, &out](const ShipElement &sit)
 			{
-				out.Write("ship", sit.first->ModelName());
+				out.Write("ship", sit.first->TrueModelName());
 				out.BeginChild();
 				{
 					// If this is a planet's stock, remember how many outfits in
@@ -137,7 +137,7 @@ void Depreciation::Init(const vector<shared_ptr<Ship>> &fleet, int day)
 	// Every ship and outfit in the given fleet starts out with no depreciation.
 	for(const shared_ptr<Ship> &ship : fleet)
 	{
-		const Ship *base = GameData::Ships().Get(ship->ModelName());
+		const Ship *base = GameData::Ships().Get(ship->TrueModelName());
 		++ships[base][day];
 
 		for(const auto &it : ship->Outfits())
@@ -156,7 +156,7 @@ void Depreciation::Buy(const Ship &ship, int day, Depreciation *source)
 			Buy(it.first, day, source);
 
 	// Then, check the base day for the ship chassis itself.
-	const Ship *base = GameData::Ships().Get(ship.ModelName());
+	const Ship *base = GameData::Ships().Get(ship.TrueModelName());
 	if(source)
 	{
 		// Check if the source has any instances of this ship.
@@ -219,7 +219,7 @@ int64_t Depreciation::Value(const vector<shared_ptr<Ship>> &fleet, int day) cons
 
 	for(const shared_ptr<Ship> &ship : fleet)
 	{
-		const Ship *base = GameData::Ships().Get(ship->ModelName());
+		const Ship *base = GameData::Ships().Get(ship->TrueModelName());
 		++shipCount[base];
 
 		for(const auto &it : ship->Outfits())
@@ -251,8 +251,8 @@ int64_t Depreciation::Value(const Ship &ship, int day) const
 int64_t Depreciation::Value(const Ship *ship, int day, int count) const
 {
 	// Check whether a record exists for this ship. If not, its value is full
-	// if this is the planet's stock, or fully depreciated if this is the player.
-	ship = GameData::Ships().Get(ship->ModelName());
+	// if this is  planet's stock, or fully depreciated if this is the player.
+	ship = GameData::Ships().Get(ship->TrueModelName());
 	auto recordIt = ships.find(ship);
 	if(recordIt == ships.end() || recordIt->second.empty())
 		return DefaultDepreciation() * count * ship->ChassisCost();

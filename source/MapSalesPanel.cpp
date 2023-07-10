@@ -55,7 +55,7 @@ const int MapSalesPanel::WIDTH = 270;
 
 MapSalesPanel::MapSalesPanel(PlayerInfo &player, bool isOutfitters)
 	: MapPanel(player, SHOW_SPECIAL),
-	categories(GameData::Category(isOutfitters ? CategoryType::OUTFIT : CategoryType::SHIP)),
+	categories(GameData::GetCategory(isOutfitters ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	isOutfitters(isOutfitters),
 	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map"))
 {
@@ -66,7 +66,7 @@ MapSalesPanel::MapSalesPanel(PlayerInfo &player, bool isOutfitters)
 
 MapSalesPanel::MapSalesPanel(const MapPanel &panel, bool isOutfitters)
 	: MapPanel(panel),
-	categories(GameData::Category(isOutfitters ? CategoryType::OUTFIT : CategoryType::SHIP)),
+	categories(GameData::GetCategory(isOutfitters ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	isOutfitters(isOutfitters),
 	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map"))
 {
@@ -90,8 +90,8 @@ void MapSalesPanel::Draw()
 	DrawKey();
 	DrawPanel();
 	DrawItems();
-	DrawButtons(isOutfitters ? "is outfitters" : "is shipyards");
 	DrawInfo();
+	FinishDrawing(isOutfitters ? "is outfitters" : "is shipyards");
 }
 
 
@@ -448,8 +448,8 @@ void MapSalesPanel::ClickCategory(const string &name)
 		if(isHidden)
 			collapsed.clear();
 		else
-			for(const string &category : categories)
-				collapsed.insert(category);
+			for(const auto &category : categories)
+				collapsed.insert(category.Name());
 	}
 	else if(isHidden)
 		collapsed.erase(name);

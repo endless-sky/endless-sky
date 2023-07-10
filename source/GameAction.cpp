@@ -35,11 +35,11 @@ using namespace std;
 namespace {
 	void DoGift(PlayerInfo &player, const Ship *model, const string &name)
 	{
-		if(model->ModelName().empty())
+		if(model->TrueModelName().empty())
 			return;
 
 		player.BuyShip(model, name, true);
-		Messages::Add("The " + model->ModelName() + " \"" + name + "\" was added to your fleet."
+		Messages::Add("The " + model->DisplayModelName() + " \"" + name + "\" was added to your fleet."
 			, Messages::Importance::High);
 	}
 
@@ -208,11 +208,7 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 		if(toFail.empty())
 			child.PrintTrace("Error: Skipping invalid \"fail\" with no mission:");
 		else
-		{
 			fail.insert(toFail);
-			// Create a GameData reference to this mission name.
-			GameData::Missions().Get(toFail);
-		}
 	}
 	else
 		conditions.Add(child);

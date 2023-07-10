@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ConditionSet.h"
 #include "Date.h"
+#include "DistanceCalculationSettings.h"
 #include "EsUuid.h"
 #include "LocationFilter.h"
 #include "MissionAction.h"
@@ -153,7 +154,7 @@ public:
 	// information or show new UI panels. PlayerInfo::MissionCallback() will be
 	// used as the callback for an `on offer` conversation, to handle its response.
 	// If it is not possible for this change to happen, this function returns false.
-	enum Trigger {COMPLETE, OFFER, ACCEPT, DECLINE, FAIL, ABORT, DEFER, VISIT, STOPOVER, WAYPOINT, DAILY};
+	enum Trigger {COMPLETE, OFFER, ACCEPT, DECLINE, FAIL, ABORT, DEFER, VISIT, STOPOVER, WAYPOINT, DAILY, DISABLED};
 	bool Do(Trigger trigger, PlayerInfo &player, UI *ui = nullptr, const std::shared_ptr<Ship> &boardingShip = nullptr);
 
 	// Get a list of NPCs associated with this mission. Every time the player
@@ -207,7 +208,9 @@ private:
 	int expectedJumps = 0;
 	int deadlineBase = 0;
 	int deadlineMultiplier = 0;
+	DistanceCalculationSettings distanceCalcSettings;
 	std::string clearance;
+	bool ignoreClearance = false;
 	LocationFilter clearanceFilter;
 	bool hasFullClearance = true;
 
