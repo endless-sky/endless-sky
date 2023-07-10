@@ -1009,7 +1009,7 @@ tip "% firing shields / shot:"
 	`Shield damage dealt to your ship per shot, as a percentage of your total shield strength.`
 
 tip "inaccuracy:"
-	`Maximum inaccuracy of this weapon, in degrees.`
+	`Maximum inaccuracy of this weapon, in degrees. A value of one means the weapon's aim will be at most one degree off-target.`
 
 tip "blast radius:"
 	`Everything within this distance (including friendly ships) will be damaged when the weapon hits something.`
