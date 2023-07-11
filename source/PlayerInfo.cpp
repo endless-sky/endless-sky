@@ -1216,15 +1216,14 @@ void PlayerInfo::TakeShip(const Ship *shipToTake, const Ship *model, bool takeOu
 				{
 					// We only take all of the outfits specified in the model without putting them in the stock.
 					// The extra outfits of this ship are transfered into the stock.
+					int amountToTake = 0;
 					if(model)
 					{
 						auto outfit = model->Outfits().find(it.first);
-						int amountRequired = (outfit != model->Outfits().end() ? outfit->second : 0);
-						if(amountRequired < it.second)
-							stock[it.first] += it.second - amountRequired;
+						if(outfit != model->Outfits().end())
+							amountToTake = max(it.second, amountRequired);
 					}
-					else
-						stock[it.first] += it.second;
+					stock[it.first] += it.second - amountToTake;
 				}
 			ForgetGiftedShip(*it->get(), false);
 			ships.erase(it);
@@ -4508,7 +4507,7 @@ void PlayerInfo::ForgetGiftedShip(const Ship &oldShip, bool failsMissions)
 {
 	const EsUuid &id = oldShip.UUID();
 	auto shipToForget = find_if(giftedShips.begin(), giftedShips.end(),
-		[&id](const std::pair<const string, EsUuid> &shipId) { return shipId.second == id; });
+		[&id](const pair<const string, EsUuid> &shipId) { return shipId.second == id; });
 	if(shipToForget != giftedShips.end())
 	{
 		if(failsMissions)
