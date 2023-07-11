@@ -92,10 +92,12 @@ void Fleet::Load(const DataNode &node)
 		else if(key == "fighters" && child.HasChildren())
 		{
 			for(const DataNode &child : node)
+			{
 				if(key == "names")
 					fighterNames = GameData::Phrases().Get(child.Token(1));
 				else if(key== "personality")
 					fighterPersonality.Load(child);
+			}
 		}
 		else if(key == "cargo settings" && child.HasChildren())
 			cargo.Load(child);
