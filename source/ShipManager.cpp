@@ -160,33 +160,47 @@ vector<shared_ptr<Ship>> ShipManager::SatisfyingShips(const PlayerInfo &player) 
 	vector<shared_ptr<Ship>> satisfyingShips;
 
 	for(const auto &ship : player.Ships())
-		if((ship->TrueModelName() == model->TrueModelName())
-			&& (unconstrained || (ship->GetSystem() == here && !ship->IsDisabled() && !ship->IsParked()))
-			&& (id.empty() || (foundShip && ship->UUID() == shipToTakeId->second))
-			&& (name.empty() || name == ship->Name()))
+	{
+		if(ship->TrueModelName() != model->TrueModelName())
+			continue;
+		if(!unconstrained)
 		{
-			bool hasRequiredOutfits = true;
-			// If "with outfits" or "require outfits" is specified,
-			// this ship must have each outfit specified in that variant definition.
-			if(requiresOutfits)
-				for(const auto &it : model->Outfits())
-				{
-					const auto &outfit = ship->Outfits().find(it.first);
-					int amountEquipped = (outfit != ship->Outfits().end() ? outfit->second : 0);
-					if(it.second > amountEquipped)
-					{
-						hasRequiredOutfits = false;
-						break;
-					}
-				}
-
-			if(hasRequiredOutfits)
-				satisfyingShips.emplace_back(ship);
-
-			// We do not want any more ships than is specified.
-			if(static_cast<int>(satisfyingShips.size()) >= amount)
-				break;
+			if(ship->GetSystem() != here)
+				continue;
+			if(ship->IsDisabled())
+				continue;
+			if(ship->IsParked())
+				continue;
 		}
+		if(!id.empty())
+		{
+			if(!foundShip)
+				continue;
+			if(ship->UUID() != shipToTakeId->second)
+				continue;
+		}
+		if(!name.empty() && name != ship->Name())
+			continue;
+		bool hasRequiredOutfits = true;
+		// If "with outfits" or "requires outfits" is specified,
+		// this ship must have each outfit specified in that variant definition.
+		if(requiresOutfits)
+			for(const auto &it : model->Outfits())
+			{
+				const auto &outfit = ship->Outfits().find(it.first);
+				int amountEquipped = (outfit != ship->Outfits().end() ? outfit->second : 0);
+				if(it.second > amountEquipped)
+				{
+					hasRequiredOutfits = false;
+					break;
+				}
+			}
+		if(hasRequiredOutfits)
+			satisfyingShips.emplace_back(ship);
+		// We do not want any more ships than is specified.
+		if(static_cast<int>(satisfyingShips.size()) >= amount)
+			break;
+	}
 
 	return satisfyingShips;
 }
