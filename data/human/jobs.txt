@@ -3822,7 +3822,7 @@ mission "Republic Navy Advisory System [frozen]"
 		dialog `This is the Republic Navy Advisory System: <planet> is experiencing a severe <problem>. Volunteers are requested to supply <cargo> to <planet> by <date>. A stipend of <payment> is provided to cover fuel, crew, and any incidental expenses.`
 	on complete
 		payment 8500 80
-		dialog `Shivering, yet appreciative aid workers welcome your shipment. You look on, feeling satisfied that <cargo> will soon arrive to those that need it most. Back in your ship, you're notified that you've received <payment> for your service.`
+		dialog `Shivering, appreciative aid workers welcome your shipment. You look on, feeling satisfied that <cargo> will soon arrive to those that need it most. Back in your ship, you're notified that you've received <payment> for your service.`
 
 mission "Republic Navy Advisory System [volcanic]"
 	name "Volcanic relief to <planet>"
@@ -3876,7 +3876,7 @@ mission "Republic Navy Advisory System [wildfire cargo]"
 		dialog `This is the Republic Navy Advisory System: <planet> is experiencing a severe <problem>. Volunteers are requested to supply <cargo> to <planet> by <date>. A stipend of <payment> is provided to cover fuel, crew, and any incidental expenses.`
 	on complete
 		payment 8500 80
-		dialog `Ash-covered, but relieved aid workers welcome your shipment. You look on, feeling satisfied that <cargo> will soon arrive to those that need it most. Back in your ship, you're notified that you've received <payment> for your service.`
+		dialog `Ash-covered, relieved aid workers welcome your shipment. You look on, feeling satisfied that <cargo> will soon arrive to those that need it most. Back in your ship, you're notified that you've received <payment> for your service.`
 
 mission "Republic Navy Advisory System [wildfire firefighters]"
 	name "Transport Firefighters"
