@@ -16,8 +16,8 @@ android {
         }
         minSdkVersion 18
         targetSdkVersion 29
-        versionCode 36
-        versionName "0.10.2-36"
+        versionCode 37
+        versionName "0.10.2-37"
         externalNativeBuild {
             // ndkBuild {
             //     arguments "APP_PLATFORM=android-18"
