@@ -207,7 +207,7 @@ news "reporter on post-fw Deneb"
 			"believe otherwise"
 			"always love when I report from here"
 			"still love to see me here"
-			"like the sound of an alien history"
+			"want me here, so here I am"
 			"find it fascinating"
 		word
 			". Anyway, I"
