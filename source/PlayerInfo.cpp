@@ -181,23 +181,11 @@ void PlayerInfo::New(const StartConditions &start)
 void PlayerInfo::NewDesignPlayer(const PlayerInfo &player)
 {
 	// Clear any previously loaded data.
-	Clear();
+	*this = PlayerInfo();
 
 	isDesignPlayer = true;
-	date = player.GetDate();
-	// Used to stock stores with items known to be for sale.
-	visitedSystems = player.visitedSystems;
 
-	// Put the player on the map.
-	SetSystem(*player.GetSystem());
-	SetPlanet(player.GetPlanet());
-	// Max out accounts (/2 to prevent any off by one errors from causing overflow).
-	Accounts().AddCredits(numeric_limits<int64_t>::max() / 2);
-	// Allow the player their existing licenses.
-	licenses = player.Licenses();
-
-	// As there is no way to track if a given ship is a variant, just give
-	// access to copies of all the ships the player currently has.
+	// Copy any ships the player has.
 	for(const auto &it : player.Ships())
 	{
 		ships.emplace_back(new Ship(*it));
@@ -207,9 +195,19 @@ void PlayerInfo::NewDesignPlayer(const PlayerInfo &player)
 		ships.back()->SetIsYours();
 		ships.back()->SetGovernment(GameData::PlayerGovernment());
 	}
+	date = player.GetDate();
 	// Make sure the fleet depreciation object knows it is tracking the player's
 	// fleet, not the planet's stock.
 	depreciation.Init(ships, date.DaysSinceEpoch());
+
+	SetSystem(*player.GetSystem());
+	SetPlanet(player.GetPlanet());
+	// Max out accounts (/2 to prevent any off by one errors from causing overflow).
+	Accounts().AddCredits(numeric_limits<int64_t>::max() / 2);
+	// Allow the player their existing licenses.
+	licenses = player.Licenses();
+	// Used to stock stores with items known to be for sale.
+	visitedSystems = player.visitedSystems;
 
 	// Add any not-for-sale outfits in storage somewhere into the
 	// player's cargo, so they'll show up in the Design Outfitter.
