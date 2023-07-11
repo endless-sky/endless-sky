@@ -2216,7 +2216,7 @@ mission "Defend Sabik"
 		conversation
 			`When you land on <planet>, you discover that Tomek has already found transportation here; he meets you almost as soon as your ship lands. When you step out of the hatch alone, without Katya, he turns away in grief. "I'm sorry," you say, "I couldn't locate her. The whole place is under guard."`
 			`	"Very well," he says, "we'll have to pray that she's still hidden there somewhere. In the meantime, we need to make your allegiance official so that you can fight alongside us if it comes to that."`
-			`	"I am pretty sure the current painting job on your ship is not legal anyway. You should be flying merchant colors."`
+			`	"I'm pretty sure the current paint job on your ship is not legal anyway. You should be flying merchant colors."`
 				to display
 					or
 						has "event: joined midas"

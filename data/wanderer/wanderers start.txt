@@ -79,13 +79,10 @@ mission "First Contact: Wanderer"
 				`	"Sorry, I don't speak their language."`
 				`	"Are there any Hai here?"`
 			`	The same alien speaks again, pantomiming your ship flying into the sky and then returning, and then points to your airlock and mimics your rodent-ear gesture for the Hai. You think it is telling you to go find one of the Hai who can serve as an interpreter, and bring them back here.`
-			branch fettered
+			branch accept
 				not "<uhai> 18: Hai Language: active"
 			`	You should probably go back to the Unfettered and speak to them about the need for a diplomat, or any way to understand these aliens. He-Yi should be able to help you with this.`
 			`	Alternatively, you could go to the Hai and get your translator that way, although He-Yi will probably respect that less.`
-				decline
-			label fettered
-			``
 				accept
 	on visit
 		dialog `Your ship is surrounded by the birdlike aliens. When you step onto the planet, one of the aliens seems to recognize you. "Ka'hai?" it seems to ask, once again mimicking the rodent-like ears of the Hai with its feathered limbs. You shake your head, for you have returned without a Hai to act as an interpreter. Maybe it would be wise to actually go to the Hai before returning to see if one will come with you.`
@@ -1058,7 +1055,7 @@ mission "Wanderers: Alpha Surveillance A"
 				`	"Is it possible that they have a hidden base on one of your worlds?"`
 				`	"Do you know where they went when you banned them from your space?"`
 					goto where
-				`	"I am pretty sure I found one of their old bases."`
+				`	"I'm pretty sure I found one of their old bases."`
 					to display
 						has "found alpha base"
 					goto oldbase
