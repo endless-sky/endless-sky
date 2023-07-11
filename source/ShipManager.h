@@ -55,7 +55,7 @@ private:
 	const Ship *model = nullptr;
 	std::string name;
 	std::string id;
-	int amount = 1;
+	int count = 1;
 	bool taking = false;
 	bool unconstrained = false;
 	bool requiresOutfits = false;

@@ -48,13 +48,13 @@ void ShipManager::Load(const DataNode &node)
 
 		if(key == "id" && hasValue)
 			id = child.Token(1);
-		else if(key == "amount" && hasValue)
+		else if(key == "count" && hasValue)
 		{
 			int val = child.Value(1);
 			if(val <= 0)
-				child.PrintTrace("Error: \"amount\" must be a non-zero, positive number.");
+				child.PrintTrace("Error: \"count\" must be a non-zero, positive number.");
 			else
-				amount = val;
+				count = val;
 		}
 		else if(taking)
 		{
@@ -71,8 +71,8 @@ void ShipManager::Load(const DataNode &node)
 			child.PrintTrace("Error: Skipping unrecognized token.");
 	}
 
-	if(taking && !id.empty() && amount > 1)
-		node.PrintTrace("Error: Use of \"id\" to refer to the ship is only supported when \"amount\" is equal to 1.");
+	if(taking && !id.empty() && count > 1)
+		node.PrintTrace("Error: Use of \"id\" to refer to the ship is only supported when \"count\" is equal to 1.");
 }
 
 
@@ -82,7 +82,7 @@ void ShipManager::Save(DataWriter &out) const
 	out.Write(Giving() ? "give" : "take", "ship", model->VariantName(), name);
 	out.BeginChild();
 	{
-		out.Write("amount", amount);
+		out.Write("count", count);
 		if(!id.empty())
 			out.Write("id", id);
 		if(unconstrained)
@@ -100,7 +100,7 @@ void ShipManager::Save(DataWriter &out) const
 bool ShipManager::CanBeDone(const PlayerInfo &player) const
 {
 	// If we are giving ships there are no conditions to meet.
-	return Giving() || static_cast<int>(SatisfyingShips(player).size()) == amount;
+	return Giving() || static_cast<int>(SatisfyingShips(player).size()) == count;
 }
 
 
@@ -113,7 +113,7 @@ void ShipManager::Do(PlayerInfo &player) const
 	string shipName;
 	if(Giving())
 	{
-		for(int i = 0; i < amount; ++i)
+		for(int i = 0; i < count; ++i)
 			shipName = player.GiftShip(model, name, id)->Name();
 	}
 	else
@@ -124,8 +124,8 @@ void ShipManager::Do(PlayerInfo &player) const
 		for(const auto &ship : toTake)
 			player.TakeShip(ship.get(), model, takeOutfits);
 	}
-	Messages::Add((amount == 1 ? "The " + model->DisplayModelName() + " \"" + shipName + "\" was " :
-		to_string(amount) + " " + model->PluralModelName() + " were ") +
+	Messages::Add((count == 1 ? "The " + model->DisplayModelName() + " \"" + shipName + "\" was " :
+		to_string(count) + " " + model->PluralModelName() + " were ") +
 		(Giving() ? "added to" : "removed from") + " your fleet.", Messages::Importance::High);
 }
 
@@ -198,7 +198,7 @@ vector<shared_ptr<Ship>> ShipManager::SatisfyingShips(const PlayerInfo &player) 
 		if(hasRequiredOutfits)
 			satisfyingShips.emplace_back(ship);
 		// We do not want any more ships than is specified.
-		if(static_cast<int>(satisfyingShips.size()) >= amount)
+		if(static_cast<int>(satisfyingShips.size()) >= count)
 			break;
 	}
 
