@@ -1221,7 +1221,7 @@ void PlayerInfo::TakeShip(const Ship *shipToTake, const Ship *model, bool takeOu
 					{
 						auto outfit = model->Outfits().find(it.first);
 						if(outfit != model->Outfits().end())
-							amountToTake = max(it.second, amountRequired);
+							amountToTake = max(it.second, outfit->second);
 					}
 					stock[it.first] += it.second - amountToTake;
 				}
