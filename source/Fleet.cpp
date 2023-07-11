@@ -89,6 +89,14 @@ void Fleet::Load(const DataNode &node)
 			names = GameData::Phrases().Get(child.Token(1));
 		else if(key == "fighters" && hasValue)
 			fighterNames = GameData::Phrases().Get(child.Token(1));
+		else if(key == "fighters" && child.HasChildren())
+		{
+			for(const DataNode &child : node)
+				if(key == "names")
+					fighterNames = GameData::Phrases().Get(child.Token(1));
+				else if(key== "personality")
+					fighterPersonality.Load(child);
+		}
 		else if(key == "cargo settings" && child.HasChildren())
 			cargo.Load(child);
 		// Allow certain individual cargo settings to be direct children
