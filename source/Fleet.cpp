@@ -88,15 +88,22 @@ void Fleet::Load(const DataNode &node)
 		else if(key == "names" && hasValue)
 			names = GameData::Phrases().Get(child.Token(1));
 		else if(key == "fighters" && hasValue)
+		{
 			fighterNames = GameData::Phrases().Get(child.Token(1));
+			child.PrintTrace("Warning: Deprecated use of \"fighters\" <names>."
+				"Use \"names\" <names> node under \"fighters\" instead.");
+		}
 		else if(key == "fighters" && child.HasChildren())
 		{
-			for(const DataNode &child : node)
+			for(const DataNode &grand : child)
 			{
-				if(key == "names")
-					fighterNames = GameData::Phrases().Get(child.Token(1));
-				else if(key== "personality")
-					fighterPersonality.Load(child);
+				const string &fighterKey = grand.Token(0);
+				if(fighterKey == "names" && grand.Size() >= 2)
+					fighterNames = GameData::Phrases().Get(grand.Token(1));
+				else if(fighterKey == "personality")
+					fighterPersonality.Load(grand);
+				else
+					grand.PrintTrace("Skipping unrecognized attribute under fighters:");
 			}
 		}
 		else if(key == "cargo settings" && child.HasChildren())
