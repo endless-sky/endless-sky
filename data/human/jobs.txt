@@ -3796,7 +3796,7 @@ mission "Hunted"
 
 
 mission "Republic Navy Advisory System [frozen]"
-	name "Cold Relief"
+	name "Cold relief to <planet>"
 	description "Deliver humanitarian aid of <cargo> to <destination> by <date> following a severe cold snap. Payment is <payment>."
 	minor
 	repeat
@@ -3825,7 +3825,7 @@ mission "Republic Navy Advisory System [frozen]"
 		dialog `Shivering, yet appreciative aid workers welcome your shipment. You look on, feeling satisfied that <cargo> will soon arrive to those that need it most. Back in your ship, you're notified that you've received <payment> for your service.`
 
 mission "Republic Navy Advisory System [volcanic]"
-	name "Volcanic Relief"
+	name "Volcanic relief to <planet>"
 	description "Deliver humanitarian aid of <cargo> to <destination> by <date> following a severe volcanic eruption. Payment is <payment>."
 	minor
 	repeat
@@ -3852,7 +3852,7 @@ mission "Republic Navy Advisory System [volcanic]"
 		dialog `Relieved-looking aid workers welcome your shipment. You look on, feeling satisfied that <cargo> will soon arrive to those that need it most. Back in your ship, you're notified that you've received <payment> for your service.`
 
 mission "Republic Navy Advisory System [wildfire cargo]"
-	name "Wildfire Relief"
+	name "Wildfire relief to <planet>"
 	description "Deliver humanitarian aid of <cargo> to <destination> by <date> following a severe wildfire. Payment is <payment>."
 	minor
 	repeat
