@@ -58,7 +58,7 @@ private:
 	int count = 1;
 	bool taking = false;
 	bool unconstrained = false;
-	bool requiresOutfits = false;
+	bool requireOutfits = false;
 	bool takeOutfits = false;
 };
 
