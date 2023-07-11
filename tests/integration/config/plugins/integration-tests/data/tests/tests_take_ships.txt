@@ -193,7 +193,7 @@ test-data "Taking Ship With Outfits And Unconstrained Test Missions"
 			on offer
 				# the ship is not here
 				take ship "Star Barge (Armed)"
-					"requires outfits"
+					"require outfits"
 		mission "%TEST%: Switch 2"
 			landing
 			on offer
@@ -206,7 +206,7 @@ test-data "Taking Ship With Outfits And Unconstrained Test Missions"
 				# correct, takes the other ship
 				take ship "Star Barge (Armed)"
 					unconstrained
-					"requires outfits"
+					"require outfits"
 
 test "Taking Ship With Outfits And Unconstrained"
 	status active
