@@ -1894,7 +1894,7 @@ phrase "rnas travel advisory [2]"
 
 phrase "rnas travel advisory [3]"
 	word
-		"Navigational hazard: "
+		"Navigational hazard:"
 	word
 		" "
 	phrase
