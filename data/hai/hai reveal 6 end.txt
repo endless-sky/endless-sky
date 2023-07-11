@@ -454,7 +454,8 @@ fleet "Navy Surveillance that won't enter the wormhole"
 	government "Republic that won't enter wormhole"
 	# ... otherwise the surveillance drones fly through the wormhole
 	names "republic capital"
-	fighters "republic fighter"
+	fighters
+		names "republic fighter"
 	cargo 0
 	personality
 		surveillance opportunistic disables plunders
@@ -467,7 +468,8 @@ fleet "Navy Surveillance that won't enter the wormhole"
 fleet "Navy Friendly Wormhole Guards"
 	government "Republic that won't enter wormhole"
 	names "republic capital"
-	fighters "republic fighter"
+	fighters
+		names "republic fighter"
 	cargo 0
 	personality
 		heroic disables plunders frugal opportunistic
