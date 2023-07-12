@@ -85,3 +85,10 @@ planet "Sies Upi"
 		"Brocken"
 			`	"What part of non-negotiable did you not understand? You're pushing your luck, Captain <last>. I didn't expect you to be such a petty money pincher."`
 		"Shepard"
+			`	She gives you a little smile and nods. "If you come across someone and have difficulty getting them to trust you, try telling them 'Luf e ow, vai, luf e eh'."`
+			`	She gives you a very serious look and nods. "If you come across any others and have difficulty getting them to trust you, try telling them 'Luf e ow, vai, luf e eh'."`
+		ship Geocoris "Vai e Lur"
+				`	"Uh, luf e ow, vai, luf e eh?"`
+				`	"No wait! Luf e ow, vai, luf e eh?"`
+		"Vai"
+		"Mis"
