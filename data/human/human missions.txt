@@ -6121,3 +6121,4 @@ mission "Blind Man from Martini"
 				clear "Blind Man from Martini: label far"
 				clear "Blind Man from Martini: label looking"
 			`	With that, he grabs his cane and his luggage, and follows a hospital attendant toward his daughter's room, leaving you in the reception.`
+
