@@ -318,7 +318,7 @@ mission "Hai Legacy 3"
 	on offer
 		conversation
 			`As you land and exit your ship, you quickly notice you have attracted a lot of attention, probably due to its old design. One Unfettered that looks like an engineer comes to speak to you, warmer than usual. "Welcome. I do not know how you have obtained this ship, although I imagine some of us will see it as a sign. It is a relic of our past, a past we are quite proud of.`
-			`	"As such, most will say that you have no right to use that ship. Luckily for you, I do not believe in any of that. What matters to me is that this ship is very durable, given the time it obviously spent in the water. It also has ancient technology that would be very valuable to us."`
+			`	"As such, most will say that you have to prove us you have a right to use that ship. Luckily for you, I do not believe in any of that. What matters to me is that this ship is very durable, given the time it obviously spent in the water. It also has ancient technology that would be very valuable to us."`
 			`	They raise their voice for everyone to hear, "I challenge you! The winner will earn the right to own this relic."`
 			choice
 				`	"What do I get if I win?"`
@@ -326,7 +326,7 @@ mission "Hai Legacy 3"
 				`	"Can't I just sell it to you?"`
 			`	"No, because in the eyes of my brethren that would mean I did not deserve this ship."`
 			label win
-			`	"You will win the right to access our worlds for just a meagre daily fee of 500 credits. In order to keep our respect, and to not lose out on this priceless artifact, this Ancient Ladybug may not be destroyed or sold. You will not be allowed to land so easily as you just did, should you refuse.`
+			`	"You will win the right to access our worlds for just a meagre daily fee of 500 credits. In order to keep our respect, and to not lose out on this priceless artifact, this Ancient Ladybug may not be destroyed or sold. You will not be allowed to land so easily as you just did, should you refuse to prove your worth.`
 			`	"Beware, for there are no rules, other than the fact you may only use this one ship. Tell me then, what say you, will you take to the skies, or are you too afraid?"`
 			choice
 				`	"I accept."`
