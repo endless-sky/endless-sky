@@ -222,6 +222,16 @@ void Preferences::Load()
 			statusOverlaySettings[OverlayType::ALL] = OverlayState::DISABLED;
 		settings.erase(it);
 	}
+
+	// For people updating from a version after 0.10.1 (where "Flagship flotsam collection" was added),
+	// but before 0.10.3 (when it was replaaced with "Flotsam Collection").
+	it = settings.find("Flagship flotsam collection");
+	if(it != settings.end())
+	{
+		if(!it->second)
+			flotsamIndex = static_cast<int>(FlotsamCollection::ESCORT);
+		settings.erase(it);
+	}
 }
 
 
