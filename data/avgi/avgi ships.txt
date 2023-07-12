@@ -1,22 +1,3 @@
-shipyard "omnis"
-	"Flutter (Transport)"
-	"Flutter (Cargo)"
-	"Echo"
-	"Vibe"
-	"Timbre"
-	"Rhythm"
-	"Coherence"
-	"Resonance"
-	"Reverberance"
-	"Crest"
-	"Cascade"
-	"Quake"
-	"Lumen"
-	"Lens"
-	"Wavelet"
-	"Phonon"
-
-
 shipyard Avgi
 	"Flutter (Transport)"
 	"Flutter (Cargo)"
@@ -38,7 +19,6 @@ shipyard Avgi
 
 
 # Transports:
-
 
 
 ship "Swell (Transport)"

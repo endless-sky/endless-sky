@@ -1,73 +1,5 @@
 
 
-reali'sei
-
-fetri'sei
-
-ka'rchon
-
-ka'chthon
-
-ka'thon
-
-
-
-
-
-Kyanos
-Prasinos
-Erythros
-Kitrinos
-Portokali
-
-
-Perturbed Limits
-
-Perturbed Fringe
-
-Perturbed Periphery
-
-Pertiphery
-
-Shattered Periphery
-
-Perturbance
-
-https://www.lexilogos.com/keyboard/greek_modern_conversion.htm
-
-
-The Tangles
-
-
-
-Synchisi Perturbance
-
-
-
-
-
-Peripheria Station
-Kiklos Station / Kyklos Station
-Aktina Station
-Diametros Station
-Gonia Station
-Yirizo Station / Gyrizo Station
-Periochi Station
-Simeio Station
-
-
-Napigeo Station
-
-
-
-
-an early, pre FW news report in human space
-
-
-the x, a Mule that was sent off to scout away from the main fleet
-
-
-
 mission "First Contact: Avgi 1"
 	name "First Contact: Avgi"
 	landing
@@ -89,8 +21,8 @@ mission "First Contact: Avgi 1"
 				has "flagship planet attribute: uninhabited"
 
 			label aviskir
-				`The first thing you notice about this Earthlike world is the utter devastation in orbit. Your ship's sensors pick up the remains of what appear to be dozens of wrecked stations and countless destroyed satellites, forming a large swath of debris scattered in various orbits. A few larger objects are mostly intact, but lifeless, with no signal emissions or heat signatures. As your ship touches the upper atmosphere, you can see, even with your naked eye, glittering fragments of an immensely long tether slowly spinning in orbit.`
-				`	Your observations are interrupted by a blared warning from your ship. You barely manage to yank your ship aside as a bright trail of plasma nearly clips your ship, the wake of a hypervelocity projectile fired from the ground. Clearly, someone is still alive down there, despite the destruction in orbit. Proceeding could be dangerous, if your ship isn't able to withstand a direct hit from those planetary defense batteries.`
+			`The first thing you notice about this Earthlike world is the utter devastation in orbit. Your ship's sensors pick up the remains of what appear to be dozens of wrecked stations and countless destroyed satellites, forming a large swath of debris scattered in various orbits. A few larger objects are mostly intact, but lifeless, with no signal emissions or heat signatures. As your ship touches the upper atmosphere, you can see, even with your naked eye, glittering fragments of an immensely long tether slowly spinning in orbit.`
+			`	Your observations are interrupted by a blared warning from your ship. You barely manage to yank your ship aside as a bright trail of plasma nearly clips your ship, the wake of a hypervelocity projectile fired from the ground. Clearly, someone is still alive down there, despite the destruction in orbit. Proceeding could be dangerous, if your ship isn't able to withstand a direct hit from those planetary defense batteries.`
 		        action
 		        	set "avgi: fired on by planets"
 			choice
@@ -121,8 +53,8 @@ mission "First Contact: Avgi 1"
 		    	goto orbit
 
 			label coreworld
-				`The first thing you notice about this world is the utter devastation in orbit. Your ship's sensors pick up the remains of what appear to be a handful of wrecked stations and countless destroyed satellites, forming a large swath of debris scattered in various orbits. A few larger objects are mostly intact, but lifeless, with no signal emissions or heat signatures. As your ship touches the upper atmosphere, you can see the tumbling remains of what looks like half of an enormous starship with an equally large drive, splintered and broken along its spine.`
-				`	Your observations are interrupted by a blared warning from your ship. You barely manage to yank your ship aside as a bright trail of plasma nearly clips your ship, the wake of a hypervelocity projectile fired from the ground. Clearly, someone is still alive down there, despite the destruction in orbit. Proceeding could be dangerous, if your ship isn't able to withstand a direct hit from those planetary defense batteries.`
+			`The first thing you notice about this world is the utter devastation in orbit. Your ship's sensors pick up the remains of what appear to be a handful of wrecked stations and countless destroyed satellites, forming a large swath of debris scattered in various orbits. A few larger objects are mostly intact, but lifeless, with no signal emissions or heat signatures. As your ship touches the upper atmosphere, you can see the tumbling remains of what looks like half of an enormous starship with an equally large drive, splintered and broken along its spine.`
+			`	Your observations are interrupted by a blared warning from your ship. You barely manage to yank your ship aside as a bright trail of plasma nearly clips your ship, the wake of a hypervelocity projectile fired from the ground. Clearly, someone is still alive down there, despite the destruction in orbit. Proceeding could be dangerous, if your ship isn't able to withstand a direct hit from those planetary defense batteries.`
 		        action
 		        	set "avgi: fired on by planets"
 			choice
@@ -153,23 +85,23 @@ mission "First Contact: Avgi 1"
 		    	goto orbit
 
 			label explode
-				`	You make it no more than a few seconds before your ship is lanced by a rapid succession of shots from below. Your shields shatter almost instantly, your hull pierced as though it is tissue paper. You don't even have time to think before you are consumed by the rapidly expanding cloud of plasma that was once the <ship>.`
+			`	You make it no more than a few seconds before your ship is lanced by a rapid succession of shots from below. Your shields shatter almost instantly, your hull pierced as though it is tissue paper. You don't even have time to think before you are consumed by the rapidly expanding cloud of plasma that was once the <ship>.`
 				explode
 
 			label hit
-				`	You make it no more than a few seconds before the <ship> is lanced by a rapid succession of shots from below. Your ship appears to be holding up under the fire, but the species that lives here doesn't seem willing to welcome you. When you detect the launch of a rather unreasonable number of missiles, you decide it would be safer to proceed back to orbit.
+			`	You make it no more than a few seconds before the <ship> is lanced by a rapid succession of shots from below. Your ship appears to be holding up under the fire, but the species that lives here doesn't seem willing to welcome you. When you detect the launch of a rather unreasonable number of missiles, you decide it would be safer to proceed back to orbit.
 				goto orbit
 
 			label scratched
-				`	You make it no more than a few seconds before the <ship> is lanced by a rapid succession of shots from below. Your ship easily shrugs off the kinetic impacts, but the species that lives here doesn't seem willing to welcome you. When you detect the launch of a rather unreasonable number of missiles, you decide it would be safer to proceed back to orbit.
+			`	You make it no more than a few seconds before the <ship> is lanced by a rapid succession of shots from below. Your ship easily shrugs off the kinetic impacts, but the species that lives here doesn't seem willing to welcome you. When you detect the launch of a rather unreasonable number of missiles, you decide it would be safer to proceed back to orbit.
 				goto orbit
 
 			label uninhabited
-				`While this world is lifeless, you can clearly make out signs that it has been explored, and even exploited, by an alien civilization. However, the signs also show that something disastrous happened here. Ruined satellites litter low orbit, and you can detect the broken remnants of surface outposts smeared across the land below. You take the <ship> in for a close pass over one of the structures, and can see small craters and patches of glassed terrain scattered around it.`
+			`While this world is lifeless, you can clearly make out signs that it has been explored, and even exploited, by an alien civilization. However, the signs also show that something disastrous happened here. Ruined satellites litter low orbit, and you can detect the broken remnants of surface outposts smeared across the land below. You take the <ship> in for a close pass over one of the structures, and can see small craters and patches of glassed terrain scattered around it.`
 				goto orbit
 
 			label orbit
-				`	Back in orbit, you are startled when another ship appears over the horizon, on an intercept trajectory with you. It doesn't look like any other ship you've seen before, appearing more than a little ungainly compared to the sleeker human ships you're accustomed to. You aren't sure whether it belongs to the same species that inhabits this space, or an entirely different one, but it at least definitely isn't similar to the hostile ships that seem to infest this star cluster.`
+			`	Back in orbit, you are startled when another ship appears over the horizon, on an intercept trajectory with you. It doesn't look like any other ship you've seen before, appearing more than a little ungainly compared to the sleeker human ships you're accustomed to. You aren't sure whether it belongs to the same species that inhabits this space, or an entirely different one, but it at least definitely isn't similar to the hostile ships that seem to infest this star cluster.`
 			choice
 				`	(Transmit a standard hail)`
 					goto talk
@@ -180,8 +112,8 @@ mission "First Contact: Avgi 1"
 
 
 			label station
-				`This alien station has certainly seen better days. While the bulk of the structure is still intact, avoiding the fate of whatever became the debris fields you have seen elsewhere, the hull is scored and chipped by what appears to be powerful weapons fire. The station's systems all seem to be powered down, as you can detect no emissions of light or heat. Without expecting to find anyone or anything alive, you maneuver near what you think is an open docking bay.`
-				`	Just as the <ship> pulls alongside the 'docking bay,' you spot what looks like a ship tucked away inside. It is like no ship you have ever seen before, appearing more than a little ungainly compared to the sleeker human ships you're accustomed to. You aren't sure whether it belongs to the same species that inhabits this space, or an entirely different one, but it at least definitely isn't similar to the hostile ships that seem to infest this star cluster. What's more, its reactor is powered up and it seems to have an active shield matrix. It appears someone was indeed home.`
+			`This alien station has certainly seen better days. While the bulk of the structure is still intact, avoiding the fate of whatever became the debris fields you have seen elsewhere, the hull is scored and chipped by what appears to be powerful weapons fire. The station's systems all seem to be powered down, as you can detect no emissions of light or heat. Without expecting to find anyone or anything alive, you maneuver near what you think is an open docking bay.`
+			`	Just as the <ship> pulls alongside the 'docking bay,' you spot what looks like a ship tucked away inside. It is like no ship you have ever seen before, appearing more than a little ungainly compared to the sleeker human ships you're accustomed to. You aren't sure whether it belongs to the same species that inhabits this space, or an entirely different one, but it at least definitely isn't similar to the hostile ships that seem to infest this star cluster. What's more, its reactor is powered up and it seems to have an active shield matrix. It appears someone was indeed home.`
 			choice
 				`	(Transmit a standard hail)`
 					goto talk
@@ -191,19 +123,19 @@ mission "First Contact: Avgi 1"
 					goto attack
 
 			label talk
-				`	You aren't quite sure how to proceed in communicating with a completely unknown species, but you transmit a standard hail, if only to assure the alien vessel that you're trying to signal it.`
-				`To your shock, however, the alien vessel responds after only a few minutes, not only in the same frequency band, but with an encoding your ship's computer is able to interpret: a standard human data format, similar to the one you've just sent. Either these aliens have an astonishing ability to decipher transmissions, or they have somehow encountered humanity before.`
-				`The message is short and direct:`
-				`	"Salutations. I am of the Avgi. You human, question? Important. You will follow. This space, Twilight, not safe. You have hyperdrive, correct? Emphasis. Space we will travel is unstable, a maze. Follow closely and be careful."`
-				`The message includes an alien-looking star chart, pointing to a system far to the south. Something appears to have been lost in translation, as the hyperlanes leading there are mostly unmarked, labeled as "perturbed," whatever that means. Just as you are still processing first contact with an alien civilization, a group of the same ships that attacked you earlier jump into the system.`
+			`	You aren't quite sure how to proceed in communicating with a completely unknown species, but you transmit a standard hail, if only to assure the alien vessel that you're trying to signal it.`
+			`To your shock, however, the alien vessel responds after only a few minutes, not only in the same frequency band, but with an encoding your ship's computer is able to interpret: a standard human data format, similar to the one you've just sent. Either these aliens have an astonishing ability to decipher transmissions, or they have somehow encountered humanity before.`
+			`The message is short and direct:`
+			`	"Salutations. I am of the Avgi. You human, question? Important. You will follow. This space, Twilight, not safe. You have hyperdrive, correct? Emphasis. Space we will travel is unstable, a maze. Follow closely and be careful."`
+			`The message includes an alien-looking star chart, pointing to a system far to the south. Something appears to have been lost in translation, as the hyperlanes leading there are mostly unmarked, labeled as "perturbed," whatever that means. Just as you are still processing first contact with an alien civilization, a group of the same ships that attacked you earlier jump into the system.`
 				launch
 
 			label prime
-				`	You can't expect a new alien species to be able to decode your transmissions, let alone understand your language, so you transmit a short list of prime numbers via simple amplitude modulated signals, if only to assure the alien vessel that you're attempting to communicate`
-				`To your shock, however, the alien vessel interrupts you just as you send the number "37", with a transmission not only in the same frequency band, but with an encoding your ship's computer is able to interpret: a standard human data format, similar to the one you've just sent. They must have somehow encountered humanity before.`
-				`The message is short and direct:`
-				`	"Salutations. I am of the Avgi. You human, question? Important. You will follow. This space is not safe. You have hyperdrive, correct? Emphasis. Space we will visit is unstable, a maze. Follow closely and be careful."`
-				`The message includes an alien-looking star chart, pointing to a system far to the south. Something appears to have been lost in translation, as the hyperlanes leading there are mostly unmarked, labeled as "perturbed," whatever that means. Just as you are still processing first contact with an alien civilization, a group of the same ships that attacked you earlier jump into the system.`
+			`	You can't expect a new alien species to be able to decode your transmissions, let alone understand your language, so you transmit a short list of prime numbers via simple amplitude modulated signals, if only to assure the alien vessel that you're attempting to communicate`
+			`To your shock, however, the alien vessel interrupts you just as you send the number "37", with a transmission not only in the same frequency band, but with an encoding your ship's computer is able to interpret: a standard human data format, similar to the one you've just sent. They must have somehow encountered humanity before.`
+			`The message is short and direct:`
+			`	"Salutations. I am of the Avgi. You human, question? Important. You will follow. This space is not safe. You have hyperdrive, correct? Emphasis. Space we will visit is unstable, a maze. Follow closely and be careful."`
+			`The message includes an alien-looking star chart, pointing to a system far to the south. Something appears to have been lost in translation, as the hyperlanes leading there are mostly unmarked, labeled as "perturbed," whatever that means. Just as you are still processing first contact with an alien civilization, a group of the same ships that attacked you earlier jump into the system.`
 				launch
 
 			label attack
@@ -228,6 +160,27 @@ mission "First Contact: Avgi 1"
 		on fail
 			log "Met an alien race and attacked them."
 
+		on complete
+			log "Factions" "Avgi" `The Avgi are a young race of dragonfly-like aliens inhabiting this part of the galaxy. Their homeworld and core space have been occupied by an alien invasion.`
+			event "label twilight"
+			conversation
+				`After a confusing journey through the winding hyperlanes, you finally arrive at the system the alien marked on your map. You notice that your flight computer has failed to record the location of the systems you passed through, probably due to the same anomaly that made your ship almost completely blind within the region. This system appears unaffected however, and your computer is able to chart its position.`
+				`	The alien ship pings you, indicating to follow as it flies towards what looks to be a large inhabited station in the system. Shaped like a circular disk, a large cutout in the center exposes hundreds of docking bays and what looks to be a spaceport. As you watch, a trio of sleek looking fightercraft launch from the station and take up escort positions around you and the other alien ship you have followed all this way. You can only assume your escort is in communication with the station authorities.` 
+				`	Your companion speeds ahead, neatly pulling into one of the bays on the outer levels. When you attempt to follow, the fightercraft zip in front of you, herding you towards a different bay closer to the middle decks.`
+				`	The docking bay is already full of activity, and when you disembark you finally get your first glimpse at this new species up close. They appear to be something analogous to an Earth dragonfly, or maybe more closely to a damselfly, maybe a meter and a half long on average. A group of them quickly close in around your ship as you finally land in a clear space, moving precisely. These aliens have clearly been expecting you.`
+				`	None of the aliens look to be armed, but are arrayed around your ship in a clearly defensive pattern, both on foot and hovering in the air. Some of them look to be wearing some kind of body armor, though you can't be sure.`
+				choice
+					`	"I come in peace"`
+					`	"Hello"`
+					`	"Who are you?"`
+					`	Shoot them`
+						goto die
+
+				`	The aliens 
+
+
+				`	You are led into what you think is some kind of office, a small, round room with a high ceiling. Waiting there, behind a lectern, is another alien, this one colored bright green. It is perched upon a smooth metal bar, hung from a short stand by thin wires, but gestures towards a human style seat on the other side of the lectern. One of two seats, in fact, which puzzles you.
+
 
 
 mission "First Contact: Avgi 2"
@@ -243,8 +196,8 @@ mission "First Contact: Avgi 2"
 			`After a confusing journey through the winding hyperlanes, you finally arrive at the system the alien marked on your map. You notice that your flight computer has failed to record the location of the systems you passed through, probably due to the same anomaly that made your ship almost completely blind within the region. This system appears unaffected however, and your computer is able to chart its position.`
 			`	The alien ship pings you, indicating to follow as it flies towards what looks to be a large inhabited station in the system. Shaped like a circular disk, a large cutout in the center exposes hundreds of docking bays and what looks to be a spaceport. As you watch, a trio of sleek looking fightercraft launch from the station and take up escort positions around you and the other alien ship you have followed all this way. You can only assume your escort is in communication with the station authorities.` 
 			`	Your companion speeds ahead, neatly pulling into one of the bays on the outer levels. When you attempt to follow, the fightercraft zip in front of you, herding you towards a different bay closer to the middle decks.`
-			`	The docking bay is already full of activity, and when you disembark you finally get your first glimpse at this new species up close. They appear to be something analogous to an Earth dragonfly, or maybe more closely to a damselfly, maybe a meter and a half long on average. A group of them quickly close in around your ship as you finally land in a clear space, moving precisely. These aliens have clearly been expecting you.`
-			`	None of the aliens look to be armed, but are arrayed around your ship in a clearly defensive pattern, both on foot and hovering in the air. Some of them look to be wearing some kind of body armor, though you can't be sure.`
+			`	The docking bay is already full of activity, and when you disembark you finally get your first glimpse at this new species up close. They appear to be something analogous to an Earth dragonfly, maybe a meter and a half long on average. A group of them quickly close in around your ship, both on the ground and in the air, as you finally land the <ship> on an open pad. These aliens have clearly been expecting you.`
+			`	None of the aliens look to be armed, but are arrayed around your ship in a clearly defensive pattern. Some of them look to be wearing some kind of body armor, though you can't be sure where their physiology ends and their technology begins.`
 			choice
 				`	"I come in peace"`
 				`	"Hello"`
@@ -272,6 +225,15 @@ why did your planets shoot at me?
 
 
 
+		choice
+			`	"What are they?"`
+			goto aberration
+
+		label aberration
+		`	"Something that may not be of this reality"
+
+		choice
+			`	"I've seen something like them before"`
 
 
 The next few hours are a blur, a confusing medley of dignitaries and officials whose names you cannot pronounce, let alone remember
@@ -312,6 +274,10 @@ politics between military and scientists
 
 
 
+
+
+
+
 mission "Avgi Nuclear Testing: 1"
 	landing
 	source 
@@ -339,6 +305,41 @@ conversation
 		`	"As you wish," he says. "Though you should realize we have no other effective way to defend ourselves from the Abberant."`
 		decline
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+CO2 pools in the valleys of Aviskir
+
+humans can only survive in the highlands
+
+Avgi are fine though
+
+Carbon rich environment on Aviskir, lots of metallic / carbon rich soils
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+I'm the Director of Logistics for the Consonance Fleet. 
 
 
 
@@ -396,202 +397,4 @@ choice
 
 
 
-
-
-
-mission "Deep: Investigations 1"
-	name "Deep Investigations: Core"
-	description "Investigate rumors of alien pirates in the Syndicate systems near the Core, then return to <destination>."
-	source
-		attributes deep
-	destination Valhalla
-	to offer
-		random < 60
-		has "main plot completed"
-		not "Deep Investigations 1: Offered"
-	on offer
-		conversation
-			"	On your way back to the <ship> from the spaceport, you are surprised to find a woman in a Deep Security uniform with the insignia of a Lieutenant waiting beside it."
-			`	"Are you Captain <first> <last>?"`
-			`	"That's me," you respond.`
-			`	"I'm Lieutenant Sarina, Deep Security. Are you available right now?" she asks.`
-			choice
-				`	"Sure."`
-				`	"Sorry, I'm busy right now."`
-					defer
-			`	She shakes your hand. "It's an honor to meet you in person. I've heard quite a bit from Admiral Danforth about your exploits during the Pug War."`
-			choice
-				`	"You know Admiral Danforth?"`
-					goto danforth
-				`	"I'm just glad I was there to help."`
-			`	"As were we all. I just wish I had been there, alongside my comrades, to help as well."`
-			`	At your questioning look, she says, "I was in the Navy, actually. A lieutenant, at least until I left to work for Deep Security just before the war started."`
-				goto next
-			label danforth
-			`	"I was in the Navy, actually. A lieutenant, at least until I left to work for Deep Security just before the war started."`
-			`	Sarina grimaces. "I just barely avoided having to fight our own people down in the South, but I wish I had been there to stand against the Pug. But I've still kept up with my friends and comrades, all of whom survived, thank the heavens."`
-			`	"Admiral Danforth was very impressed by you, you know. Especially given your lack of professional experience. He said 'you fought with gallantry,' a high compliment from someone like the Admiral."`
-				goto next
-			label next
-			`	"Anyway, I'm here for a reason, not just to thank you. After the ordeal with the Pug, who apparently lived practically next door to Sol without anyone knowing, both Republic Intelligence and our own institutions have taken an interest in certain rumors and stories. Namely, those that claimed to involve encounters with unknown aliens or connections outside known space."`
-			`	"A lot of these are being checked on by our other agents, but given that you now have a Jump Drive, a few higher-ups thought it would be worth it to ask you to take a look at a few cases we haven't been able to solve. How does that sound?"`
-			choice
-				`	"I'm interested."`
-				`	"Sorry, no thanks. I've had enough of alien civilizations for now."`
-					decline
-			`	"Great! There are three cases we want you to look at, but for now there's one we want you to prioritize. I'll send the files to your ship remotely, but we've been hearing rumors of attacks in Syndicate space by ships that don't look human. After you've checked that out, drop by the Deep Security office on Valhalla for debriefing."`
-			"	You read through the report Deep Security has compiled for you, which is quite extensive. From what you can tell, piracy by potentially alien ships with powerful weapons has been ongoing for decades in the Syndicate, especially on the border systems."
-			branch korath
-				has "free worlds reconciliation"
-			label korath
-			`	From what you were told by Alastair Korban, it sounds like these could be the enigmatic "Korath Raiders" the Syndicate obtained their Jump Drives from. Based on what Korban said, they sound dangerous, so it would be best to be careful.`
-				accept
-	on enter Polaris
-		dialog "You jump into the Polaris system and are greeted by the sight of a large warship that does not look human in origin. Given that it is attacking human merchants, it is clearly hostile and should be destroyed."
-	npc disable
-		government Korath
-		system Polaris
-		personality target uninterested waiting staying
-		fleet
-			names korath
-			variant
-				Palavret
-				'olofez 2
-		dialog "You have destroyed a clearly alien ship preying on human merchants. Return to <destination> with your report and inform Deep Security that the rumors were true."
-	on visit
-		dialog "You land on <planet>, but you haven't investigated the rumors of alien attacks in the Core. Head there and take a look around before returning."
-	on complete
-		payment 100000
-		conversation
-			"	You land on Valhalla and are quickly ushered into a private conference room. Waiting for you are Lieutenant Sarina, flanked by two suited men you don't recognize."
-			`	"It's good to see you, Captain <last>. We received your report on the way here, which I'm happy to say was quite thorough."`
-			`	"So, the rumors are true," says the man on the left. "It seems our sources in the Syndicate were reliable."`
-			`	"For the first time in their lives," the man on the right grumbles. "I still can't believe they missed that Oracle business completely."`
-				goto end
-			branch oracle
-				not "free worlds reconciliation"
-			label oracle
-			`	Before you can ask what the "Oracle" is, Sarina continues.`
-			label end
-			`	"These "Korath," as they're called, are both actively hostile to humanity and advanced enough to be a threat. However, from what we can tell, their attacks have not escalated at all since they began. Maybe they're content with preying on merchants for now, but either way they represent a threat we should prepare for."`
-			`	She turns to one of the suited men. "Luis, I want this report sent over our priority line to Republic Intelligence within the hour. Perhaps they can get the Syndicate to step up patrols near the Core, or direct the Navy to base more of their heavier warships there."`
-			`	She returns her focus to you. "Thank you for the report, Captain <last>. I've requisitioned <payment> for your services, and if you're still interested in this line of work, visit the spaceport and read through the next file. We have a second case waiting for you - this one in the Paradise Worlds."`
-		log Factions Korath "The Korath, an advanced alien species currently living near the core, have been raiding Human space for the last few decades, stealing food, raw materials, and supplies."
-
-mission "Deep: Investigations 2"
-	name "Deep Investigations: Paradise"
-	description "Investigate a rumored sighting of an alien ship in the <waypoint> system, then return to <destination>."
-	source Valhalla
-	waypoint Capella
-	to offer
-		has "Deep: Investigations 1: done"
-	on offer
-		conversation
-			"	After taking a seat in the spaceport cafe, you wave off a waiter and open the second file."
-			"	You read through the report, which is much sparser than the one you were given about the Korath. Apparently, multiple pilots in a convoy passing through the Capella system witnessed a sleek black ship appear literally out of nowhere before quickly vanishing, seemingly in orbit of Hermes. The incident was recent: only a few weeks ago, so there's a chance you might be able to find something if you head there quickly."
-			branch remnant
-				has "First Contact: Remnant: offered"
-			"	On the other hand, this could be nothing more than a rumor. If you don't find anything, you should come back to Valhalla and report that anyway."
-			label remnant
-			"	This sounds like it could fit the description of the cloaking ships used by the Remnant. Given how much they value their secrecy, it might be best to report nothing if you end up encountering a Remnant scout."
-				accept
-	on visit
-		dialog "You land on <planet>, but you haven't investigated the rumors of the alien ship in the Capella system. Head there and take a look around before returning."
-	on enter Capella
-		dialog "You jump into the Capella system, but nothing out of the ordinary strikes you immediately. It seems likely the rumors were simply rumors. Perhaps you could wait around for a bit, but if you don't see anything you should return to Valhalla."
-	on complete
-		payment 50000
-		event "Primeval Reveal"
-		conversation
-			"	You land on Valhalla and send in your report, but this time you recieve a message from Lieutenant Sarina."
-			`	"Sorry, <first>, but I'm busy with something urgent that just came up. I heard you didn't find anything, which was honestly about what we expected, but we'll be sending you <payment> regardless. After you drop off your full report, can you pick up the next file from the spaceport desk? That one is a more complicated, but I'm sure you can figure it out."`
-
-event "Primeval Reveal"
-	system Primeval
-		remove hidden
-
-mission "Deep: Investigations 3"
-	name "Deep Investigations: Dirt Belt"
-	description "Investigate the disapperance of a scientific expedition near the <waypoint> system, then return to <destination>."
-	source Valhalla
-	waypoint Sadr
-	to offer
-		has "Deep: Investigations 2: done"
-	on offer
-		conversation
-			"	This file is long, and is stamped with various official-looking seals from prestigious Deep universities, and even the insignia of Deep Security."
-			"	Apparently, six years ago a research expedition sponsored by multiple Deep universities was on its way back from a visit to Quarg space when it sent an unplanned transmission. They claimed to have discovered a new hyperlane in the Sadr system, supposedly heading South. They reported that they planned on detouring to explore the hyperlane --their last transmission-- and the expedition was never seen again."
-			"	Local authorities in the South, including the militias, were contacted to launch a search and rescue operation, but nothing was ever found. The purported hyperlane in the Sadr system was never detected by anyone else, and the whole incident was written off as either sabotage, mass delusion, or a serious sensor failure."
-			"	The loss of the expedition actually made headline news for weeks, because one of the ships in the expedition fleet was a prized Bactrian."
-				accept
-	on visit
-		dialog "You land on <planet>, but you haven't investigated the disappearance of the Deep expedition near the Sadr system. Head there and take a look around before returning."
-	on enter Primeval
-		conversation
-			"	As you jump into the system, the first thing you notice is the rapidly rotating neutron star at its center. Your ship's sensors are confused by the powerful radio beams emitted by the pulsar, but they are able to tell you something shocking: you apparently cannot jump back into the Sadr system you just left. However, a new system further south is apparently still within reach. It seems you have no choice but to continue."
-			"	(If you do not have a ramscoop installed on your ship, reload a previous save and install one before continuing)"
-		fail
-
-mission "First Contact: Avgi (Directions)"
-	landing
-	invisible
-	source
-		government Avgi
-		not "Disc IV"
-	to offer
-		not "First Contact: Avgi
-"
-	on offer
-		conversation
-			"	As your ship approaches, you are flanked by a pair of angular fightercraft. They take up positions on either side of you, and you begin recieving a transmission in what looks to be multiple data formats. Astonishingly, one of them seems to look familiar: a human format."
-			"	Decoding the transmission reveals a marking on a nearby star on your map, as well as an image of what looks to be a massive circular space station, shaped like a flat disc. The escorting fighters peel off, and you follow them back into space."
-			fail
-			launch
-
-mission "First Contact: Avgi"
-	landing
-	invisible
-	source
-		government Avgi
-		"Disc IV"
-	on offer
-		conversation
-			"	You easily guide the <ship> into the gap in the middle of the disc shaped station, where you can see numerous docking bays lining the sides. You pick an empy spot and carefully pull in, settling next to a large ship of a clearly alien design."
-			"	You look out a viewport and can see several brightly colored aliens, resembling dragonflies, flit around your ship. They seem to be examining it, and your ship's sensors can detect multiple low power scanning beams criscross the hull. A few of them also seem to be carrying weapons"
-			"	Checking your ship's instruments to make sure the atmosphere outside is breathable, you find it is rather richer in oxygen than an Earthlike atmosphere. There doesn't seem to be anything toxic or otherwise hostile to humans, so you prepare to leave your ship."
-			look out a viewport and see dozens of aliens resembling brighly colored dragonflies cautiously flitting around your ship. Their bodies seem to be about a meter in length, but their wingspan looks to be a few times larger than that. You can also see occasional flashes of light come from the ends of their tails, like a firefly if they came in different colors.
-			"	You prepare yourself before stepping out of your ship's airlock.
-"
-		log Factions Avgi "The Avgi are space dragonflies, lmao."
-
-mission "MHD Retrieval"
-	landing
-	invisible
-	source
-		government Avgi
-		not "Disc IV"
-	to offer
-		not "First Contact: Avgi
-"
-	on offer
-		conversation
-			"	You dock and the MHD Generators are quickly unloaded from your ship, a pair of technicians carefully guiding them onto a long cart. The Emergency Deployer is carried out even more carefully, a team quickly escorting it away."
-			"	A few hours later you meet with Alizar in his workshop. Spread across one of the tables is what looks like an MHD Generator, dismantled into what looks like hundreds of parts. As you watch, a slim robotic arm mounted on the ceiling reaches down and smoothly picks up a curved piece of metal taller than you are, bringing it over to where you can see Alizar talking to a few other Avgi. When he sees you, he lights up in excitement."
-			`	"Ah, Captain <last>! Many, many thanks for your help! This device is simply marvelous, ingenious!" He chatters on about fusion reaction chains and nuclear isomers until his forearms are playing too quickly for the translator to keep up.`
-			choice
-				`	"So, it looks like you've learned something from it?"`
-				`	"How will it help your pure fusion bomb project?"`
-			`	"You truly have no idea. This could perhaps be the greatest breakthrough in energy research in over a century, perhaps more!" He flaps over to the side of the workshop, where a small cylinder of a silver-white metal rests on a shielded pedestal.`
-			`	"What's that?" you ask.`
-			`	"The key to all our troubles, hopefully. Or at least those involving nuclear explosives," he adds as an afterthought.
-`
-			`	"Creating the conditions necessary for fusion is trivial - we've been doing it for hundreds of years in our reactors, engines, and stardrives. But to create a chain reaction, the kind that propagates and feeds itself even on unheated fuel, special conditions are necessary."`
-			`	"The Emergency Deployer does not just launch the MHD Generator, it is able to trigger it as well. It injects a slug of Lutetium-177m - an excited nuclear isomer - at the edge of the reactor. It of course immediately vaporizes spun into a swirl that coats the walls of the confinement field, but the intense energies inside the reactor also trigger a state change in its nucleus, causing it to release a burst of gamma rays that immediately initiate complete fusion of everything within the reactor "`
-			choice
-				`	"What is a nuclear isomer?"`
-				`	"So what does it do?"`
-			choice
-				`	"So, what are the Avgi like?"`
-				`	"What do you make of their society?"`
-			`	He looks thoughtful for a moment. "It's hard to say. The circumstances we've found them in... Well, it's unusual, to put it lightly. It's like asking an alien to judge human society during the Alpha Wars, but even more extreme- imagine if the Alphas had won and only some remnant of humanity was left. How could you tell what their society was normally like?"`
 

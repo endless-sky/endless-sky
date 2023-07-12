@@ -65,7 +65,6 @@ outfitter omnis
 	"M030 Transverse Thrusters"
 	"M052 Transverse Thrusters"
 	"M089 Transverse Thrusters"
-	"Fog Laser"
 
 
 

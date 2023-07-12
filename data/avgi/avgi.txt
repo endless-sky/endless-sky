@@ -5,10 +5,10 @@ government Avgi
 		"" -0.1
 		Merchant 0.01
 	bribe 0.2
-	"friendly hail" "friendly hai"
-	"friendly disabled hail" "friendly disabled hai"
-	"hostile hail" "hostile hai"
-	"hostile disabled hail" "hostile disabled hai"
+	"friendly hail" "friendly avgi"
+	"friendly disabled hail" "friendly disabled avgi"
+	"hostile hail" "hostile avgi"
+	"hostile disabled hail" "hostile disabled avgi"
 
 government "Avgi (Consonance)"
 	"display name" "Avgi Consonance"
@@ -21,9 +21,19 @@ government "Avgi (Consonance)"
 government "Avgi (Dissonance)"
 	"display name" "Avgi Dissonance"
 	color 1 0 0.588
+	"attitude toward"
+		"Avgi (Consonance)" -0.01
+		"Ka'sei (Twilight)" -0.01
 
-government "Dissonance (Aggressive)"
+government "Avgi (Dissonance Aggressive)"
+	"display name" "Avgi Dissonance"
 	color 1 0 0.588
+
+government "Avgi (Siege)"
+	"display name" "Avgi"
+	color 0.047 0.273 0.686
+	"attitude toward"
+		"Ka'sei (Twilight)" -0.01
 
 government Shroud
 	color 0.235 0.235 0.235
@@ -34,6 +44,86 @@ government Ka'twil
 	"attitude toward"
 		"" -0.1
 		Avgi -0.1
+
+
+
+
+
+
+
+
+
+reali'sei
+
+fetri'sei
+
+ka'rchon
+
+ka'chthon
+
+ka'thon
+
+
+
+
+
+Kyanos
+Prasinos
+Erythros
+Kitrinos
+Portokali
+
+
+Perturbed Limits
+
+Perturbed Fringe
+
+Perturbed Periphery
+
+Pertiphery
+
+Shattered Periphery
+
+Perturbance
+
+https://www.lexilogos.com/keyboard/greek_modern_conversion.htm
+
+
+The Tangles
+
+
+
+Synchisi Perturbance
+
+
+
+
+
+Peripheria Station
+Kiklos Station / Kyklos Station
+Aktina Station
+Diametros Station
+Gonia Station
+Yirizo Station / Gyrizo Station
+Periochi Station
+Simeio Station
+
+
+Napigeo Station
+
+
+
+
+an early, pre FW news report in human space
+
+
+the x, a Mule that was sent off to scout away from the main fleet
+
+
+
+
+
+
 
 star star/magnetar
 	power 4

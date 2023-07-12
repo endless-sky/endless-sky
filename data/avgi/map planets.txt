@@ -4,8 +4,8 @@
 
 planet "Antivli Station"
 	attributes twilight avgi station
-	government Uninhabited
 	description "This was once a particle accelerator several kilometers in diameter. With beamed power provided by the hundreds of solar collection satellites in low orbit around Anax, enough antimatter could be produced each year to supply both Avgi research and industrial efforts."
+	government Uninhabited
 
 
 planet Omanet
@@ -13,6 +13,7 @@ planet Omanet
 	landscape land/mars0
 	description "Omanet is thought to be a chthonian world, a former gas giant whose atmosphere was stripped away until the rocky core was left bare. For whatever reason, Omanet went a step further, and its silicate crust and mantle were also boiled off, leaving behind an extraordinarily dense planet made almost entirely out of metal."
 	description "Despite its unfavorable position deep in Anax's gravity well, Omanet was heavily industrialized, with autofabs building enormous discs of nickel-iron, anodized with silver. These orbital mirrors are then launched via mass driver, collecting sunlight for uses from industrial asteroid smelting to remote beamed power. Avgi futurists saw this as first steps of a Dyson swarm, but the current rate of mirror assembly will take millenia to exploit a meaningful fraction of Anax's output."
+	government Uninhabited
 	
 
 planet Melatos
@@ -28,6 +29,7 @@ planet Aviskir
 	description "Aviskir is a world of sweeping mountains and sparkling oceans. It also happens to be the Avgi homeworld, bustling with nine billion members of the species. Civilization has concentrated largely around bountiful mountain valleys and fjords, many warmed by hot springs and geothermal heat. The largest cities are built around the smaller peaks, laced with slender bridges and bright skyscrapers. They stand in contrast to the rural valley settlements below, which are said to offer simpler, more traditional lives."
 	description "The Incursion has forced the remaining Avgi on the surface to dedicate a large part of their industry towards building defensive missile systems and banks of lasers, all in the hope of turning away the attack runs the Ka'sei sometimes make on the surface."
 	spaceport "The largest spaceports once hosted 'beanstalks,' space elevators capable of lifting cargo en masse to geostationary orbit. After the invention of the gravity repulsor, they were largely relegated to historical curiosities, but the Ka'sei still severed them during their attack on Avgiskir's orbital infrastructure."
+	government "Avgi (Siege)"
 	shipyard Avgi
 	outfitter Avgi
 
@@ -350,7 +352,7 @@ planet Ashkelon
 
 planet "Peripheria"
 	attributes avgi station urban "avgi diaspora"
-	landscape land/station18
+	landscape land/avgi1
 	description "This enormous, kilometer wide rotating station is the capital of the Avgi civilization in exile. Shaped like a solid disc, it is home to almost a million Avgi, made up of both civilians that were able to flee the core worlds during the invasion and those who already led independent lives in deep space."
 	description "The station contains hundreds of levels, with centripetal gravity on the edges being the strongest. The outer rim is perpetually expanded to create more living space, and will likely continue to grow until the structural limits of the station are reached. Of course, before that limit is reached, installed gravity plating may allow the station to be spun down, reducing the structural strain significantly."
 	description "The station also hosts the Assembly of Polities, a league of various nations and communities that now serves as the de-facto species wide government."

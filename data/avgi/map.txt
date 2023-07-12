@@ -2,9 +2,9 @@ galaxy "label twilight"
 	pos -420 770
 	sprite label/twilight
 
-galaxy "label tangles"
+galaxy "label tangled shroud"
 	pos -240 880
-	sprite label/tangles
+	sprite label/tangled shroud
 
 system Methuselah
 	pos -1625.734 2244.733
@@ -348,6 +348,7 @@ system Anax
 				offset 225
 	object "Feo Platform"
 		sprite planet/station-weapon-a3
+			scale 0.5
 		distance 2400
 		period 1002.687
 		offset 30
@@ -409,7 +410,7 @@ system Anax
 			offset 180
 		object
 			sprite planet/station-reflector-a1
-				scale 0.1
+				scale 0.25
 			distance 120
 			period 42
 		object
@@ -420,7 +421,7 @@ system Anax
 			offset 40
 		object
 			sprite planet/station-reflector-a1
-				scale 0.1
+				scale 0.25
 			distance 125
 			period 42
 			offset 80
@@ -432,7 +433,7 @@ system Anax
 			offset 120
 		object
 			sprite planet/station-reflector-a1
-				scale 0.1
+				scale 0.25
 			distance 120
 			period 42
 			offset 200
@@ -495,13 +496,13 @@ system Anax
 		period 5274.096
 		offset -15
 	object
-		sprite planet/o'neil-cylinder-broken
+		sprite planet/station-cylinder-broken
 			scale 0.5
 		distance 7258.824
 		period 5274.096
 		offset -20
 	object
-		sprite planet/o'neil-cylinder-broken
+		sprite planet/station-cylinder-broken
 			scale 0.5
 		distance 7258.824
 		period 5274.096
@@ -2949,7 +2950,7 @@ system Antiphon
 			sprite planet/rock3
 			distance 592
 			period 544.482
-	object "Avgi Wormhole B"
+	object ""
 		sprite planet/wormhole-red
 		distance 9744.307
 		period 8278.65
@@ -3112,7 +3113,7 @@ system Katoptrizo
 		sprite planet/ice7-b
 		distance 5471
 		period 2076.763
-	object "Non-Orientable Wormhole"
+	object ""
 		sprite planet/wormhole-red
 		distance 16000
 		period 10386.443
