@@ -288,7 +288,8 @@ void ShopPanel::DrawShipsSidebar()
 		sideDetailHeight = DrawPlayerShipInfo(point + offset);
 		point.Y() += sideDetailHeight + SHIP_SIZE / 2;
 	}
-	else if(player.Cargo().Size() > 0)
+	// Don't show cargo capacity if none is available or in design mode.
+	else if(player.Cargo().Size() && !player.IsDesignPlayer())
 	{
 		point.X() = Screen::Right() - SIDEBAR_WIDTH + 10;
 		font.Draw("cargo space:", point, medium);
