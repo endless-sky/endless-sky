@@ -61,6 +61,9 @@ public:
 
 	void Select(bool select = true);
 
+	static double Height();
+
+	static void ResetSize();
 
 protected:
 	// Highlight this card; this is to be called when it is selected.
@@ -92,6 +95,9 @@ private:
 	const std::string &planetName;
 	// The currently select category (outfitter, shipyard, ...)
 	unsigned selectedCategory = 0;
+
+	static std::string systemGovernmentName;
+	static bool hasGovernments;
 };
 
 

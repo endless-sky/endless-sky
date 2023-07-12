@@ -185,10 +185,10 @@ interface "map detail panel"
 interface "map planet card"
 	value "text start" 13
 	value "category size" 20
-	value "height" 150
+	value "categories" 5
+	value "extra height" 30
 	value "width" 235
 	value "planet icon max size" 100
-	value "categories" 6
 
 
 
