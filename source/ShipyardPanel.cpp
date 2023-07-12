@@ -111,6 +111,8 @@ void ShipyardPanel::Step()
 {
 	ShopPanel::Step();
 	ShopPanel::CheckForMissions(Mission::SHIPYARD);
+	if(player.IsDesignPlayer())
+		DoHelp("design center");
 }
 
 

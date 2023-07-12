@@ -170,5 +170,6 @@ help "control ship with mouse"
 	`<Mouse turning (hold)> will toggle mouse turning while it is held.`
 
 help "design center"
-	`The Design Center allows you to freely design ships with any ship or outfit you have or can purchase. No changes you make here will affect your actual ships or credit balance.`
-	`You can toggle between the Design Shipyard and the Design Outfitter with the Design button (or press 'd').`
+	`The Design Center allows you to freely design ships using any ship or outfit you own or can purchase. No changes you make here will affect your actual ships, credit balance, or legal standing.`
+	`You can toggle between the Design Shipyard and the Design Outfitter with the "Design Outfitter" or "Design Shipyard" button (or press D, which can also be used to enter the Design Center in the first place).`
+	`If you want to transfer installed outfits from your existing fleet to new ships, just sell or uninstall them as you would normally.`
