@@ -354,8 +354,8 @@ mission "Hai Legacy 3"
 		"reputation: Hai (Unfettered)" >?= -1000
 	on disabled
 		fail "Hai Legacy 3"
-		dialog `The enemy ships hail you, "You have failed the challenge. We will take the technology we want when you land, and have already arranged to sell you replacements for it, for this fine of <fine>."`
-		fine 1500000
+		dialog `The enemy ships hail you, "You have failed the challenge. We will take the ship from you when we see fit, making sure not to strandle you. But do not try to keep it from us!"`
+		set "unfettered: undeserved ladybug"
 	on fail
 		"reputation: Hai (Unfettered)" >?= -1000
 		dialog `The Unfettered hail you, "You failed to complete the duel properly, and as such, are no longer authorized to land on our worlds. You will not enjoy unwarranted respect any longer!"`
@@ -421,6 +421,37 @@ mission "Hai Legacy 3"
 			`	"Make sure you do not lose it until you earn the right to call us friends, or we will take it very seriously. Oh, and there are taxes on the daily fee. I hope you don't mind."`
 		outfit "Unfettered Landing Permit"
 		log "Managed to use an old ladybug to beat a few Lightning Bugs, earning myself a place in Unfettered territory for a daily cost, as long as the Ancient Ladybug is kept intact."
+
+mission "Undeserved Ladybug"
+	landing
+	invisible
+	to offer
+		has "ship model: Ancient Ladybug"
+		# to make sure you can buy another one
+		or
+			"flagship planet attribute: shipyard"
+			"total ships" > 1
+	on offer
+		conversation
+			branch "unfet space"
+				has "flagship planet attribute: unfettered"
+			`As you land on this planet with the Ancient Ladybug, all warnings go on; it's as if the ship is going to fall apart!`
+			`	You order the evacuation of the ship, but as soon as every member of your crew exited...`
+			action
+				take ship "Ancient Ladybug"
+			`	It takes off, seemingly on its own! Looks like the Unfettered are getting this ship back at any cost.`
+				decline
+			label "unfet space"
+			`You land on this Unfettered world in posession of the Ancient Ladybug, and as you do countless Unfettered head to your ship, armed as they always are.`
+			`	Except that they seem much more intimidating than usual...`
+			choice
+				`	(Let them have it.)`
+				`	(Take off, now!)`
+					depart
+			`	You exit your ship with your crew and inform the Unfettered it is theirs now, they give you <payment> for your trouble.`
+			action
+				payment 1000000
+				take ship "Ancient Ladybug"
 
 mission "Unfettered Landing Permit Lost"
 	landing
