@@ -354,7 +354,7 @@ mission "Hai Legacy 3"
 		"reputation: Hai (Unfettered)" >?= -1000
 	on disabled
 		fail "Hai Legacy 3"
-		dialog `The enemy ships hail you, "You have failed the challenge. We will take the ship from you when we see fit, making sure not to strandle you. But do not try to keep it from us!"`
+		dialog `The enemy ships hail you, "You have failed the challenge. We will take the ship from you when we see fit, I heavily suggest you land on Darkcloak so that we take it from you without trouble - we can even leave you with the outfits. Do not try to keep it from us!"`
 		set "unfettered: undeserved ladybug"
 	on fail
 		"reputation: Hai (Unfettered)" >?= -1000
@@ -427,6 +427,7 @@ mission "Undeserved Ladybug"
 	invisible
 	to offer
 		has "ship model: Ancient Ladybug"
+		has "unfettered: undeserved ladybug"
 		# to make sure you can buy another one
 		or
 			"flagship planet attribute: shipyard"
@@ -438,7 +439,7 @@ mission "Undeserved Ladybug"
 			`As you land on this planet with the Ancient Ladybug, all warnings go on; it's as if the ship is going to fall apart!`
 			`	You order the evacuation of the ship, but as soon as every member of your crew exited...`
 			action
-				take ship "Ancient Ladybug"
+				take ship "Ancient Ladybug" "with outfits"
 			`	It takes off, seemingly on its own! Looks like the Unfettered are getting this ship back at any cost.`
 				decline
 			label "unfet space"
@@ -448,10 +449,12 @@ mission "Undeserved Ladybug"
 				`	(Let them have it.)`
 				`	(Take off, now!)`
 					depart
-			`	You exit your ship with your crew and inform the Unfettered it is theirs now, they give you <payment> for your trouble.`
+			`	You exit your ship with your crew and inform the Unfettered it is theirs now. They happily claim it and inform you the outfits are still available in the outfitter, if you wish to buy them back at a reduced price. Here are <payment> for them, we only had claim on the ship itself, after all.`
 			action
-				payment 1000000
 				take ship "Ancient Ladybug"
+				payment 2000000
+	on decline
+		clear "unfettered: undeserved ladybug"
 
 mission "Unfettered Landing Permit Lost"
 	landing
