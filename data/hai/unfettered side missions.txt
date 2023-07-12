@@ -372,7 +372,7 @@ mission "Hai Legacy 3"
 		ship "Lightning Bug (Unfettered Shipyards)" "Lighting"
 		ship "Lightning Bug (Pulse)" "Struck"
 		conversation
-			`You receive a message from the remaining Unfettered ships: "We surrender." You remember you were asked to land on the same day in order to claim your reward of permanent access to Unfettered space.`
+			`You receive a message from the remaining Unfettered ships: "We surrender. If you land now, you will receive your reward."`
 			branch "good boy or bad boy enough"
 				has "unfettred: beaten extra bugs"
 				"old reputation: Hai (Unfettered)" < -2000
