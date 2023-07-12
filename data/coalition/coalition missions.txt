@@ -3599,7 +3599,7 @@ conversation "anna invites you to book signing"
 		goto "ending dialog"
 	label "player didn't go with anna to book signing"
 	`	"Not a problem!", says Anna. "I'll go to your ship later." She then walks away.`
-	`	Sitting in your ship you see a long line form at the spaceport over the next few hours, presumably to that bookstore where Anna is happily signing books. As the night begins to take over, the queue becomes shorter and shorter until you see Anna approaching you. She enters your ship.`
+	`	As you sit in your ship, you watch a long line form at the spaceport over the next few hours, presumably to that bookstore where Anna is happily signing books. As the night begins to take over, the queue becomes shorter and eventually disappears, at which point you see Anna walk out of the bookstore. She enters your ship.`
 	label "ending dialog"
 	`	"Today was a resounding success. My book succeeded beyond my wildest dreams, and it was all because of you <first>!" she says, almost in a teary voice. She pulls out a credit chip. "Here, <payment>. You've done so much for me and my career, and you deserve it. Additionally, you will be receiving a salary of 5,000 credits daily, a small but significant portion of my royalties."`
 	branch "player understands coalition edition"
