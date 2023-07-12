@@ -3172,12 +3172,10 @@ mission "Heliarchs Buy Jump Drive Mission"
 conversation "cultural data for coalition group"
 	branch "return"
 		has "Fangvin: Struggling Author - Data: done"
-	`As you walk through the spaceport, you see a group of Coalition citizens are on a table speaking to each other. One of them glances you. As if something clicked in their heads, and you were the person they were looking for, the group then quickly rise from their seats and begin approaching you.`
+	`As you walk through the spaceport, you see a group of Coalition citizens are on a table speaking to each other. One of them glances you. As if something suddenly clicked, the group quickly rise from their seats and begin approaching you.`
 	choice
 		`	"Excuse me, what do you all want?"`
-			goto "mission intro"
-	label "mission intro"
-	`	"Greetings, human friend. Collectors of literature, we are. Curious about your race, and the books they have written, we are, so for you, a mission we have.", says a Kimek. Literature of many kinds, we read. Many types of stories we read, from science fiction to tales of alien worlds outside of our homeland.`
+	`	"Greetings, human friend. Collectors of literature, we are. Curious about your race, and the books they have written, we are, so for you, a mission we have," says a Kimek. "Literature of many kinds, we read, from science fiction to tales of alien worlds outside of our homeland.`
 	`	"A small mission, it is. Knowledge from your race, we seek. Pay you 180,000 credits and be very grateful, we would, if accept this mission, you will", explains the citizen.`
 	branch "you already have everything"
 		has "human cultural data"
@@ -3186,20 +3184,20 @@ conversation "cultural data for coalition group"
 			decline
 		`	"What should I be worried about?"`
 		`	"Is this going to get me in trouble?"`
-	`	"The Heliarchs, review everything they must. Heavy-handed, the censorship is. Media from your space, to consume them we want to. Because to break free from Heliarch censorship, we wish. And if forbidden knowledge, on your ship they find, heavy-handed the punishment will be, so avoid scans, you must."`
+	`	"The Heliarchs, review everything they must. Heavy-handed, the censorship is. To break free from Heliarch censorship, media from your space, we would like to learn from. And if forbidden knowledge, on your ship they find, heavy-handed the punishment will be, so avoid scans, you must."`
 	choice
 		`	"I'm not willing to risk it. Sorry."`
 			decline
 		`	"I'm in. What do you want me to collect?"`
 	label "what do they want"
-	`	"Anything. A translation device we have, so the language it is in, of no importance it is. As for the topic, a great story about oppressing dictatorships or tyranny, we want. Histories of humanity's resistance movements, we seek."`
+	`	"Anything. A translation device we have, so translate the human language into our own, we are able to. As for the topic, a great story about oppressing dictatorships or tyranny, we want. Histories of humanity's resistance movements, we seek."`
 	choice
 		`	"I'm not interested. Sorry."`
 			decline
 		`	"I see. I will bring you all the knowledge you want."`
 	label "accept mission"
 	`	"Thank you. Enlighten us and the rest of the Coalition, your actions will. A safe trip, we hope you have." They give you instructions on where they can be found.`
-	`	You think of how you would be able to bring all of humanity's knowledge with you, until you think of Alexandria, humanity's largest library and museum. Head to Alexandria and see if you can find a copy of the entire archive there.`
+	`	You wonder how you would be able to bring some of humanity's knowledge with you. Alexandria, humanity's largest library and museum, comes to mind. Head to Alexandria and see if you can find a way to acquire this information.`
 		accept
 	label "return"
 	`	You return to the group of Coalition citizens and hand them the datachip. "For this chip, thankful to you we are."`
@@ -3211,17 +3209,16 @@ conversation "cultural data for coalition group"
 		set "gave group of coalition human cultural data"
 	`	You recall that on Alexandria, the gift shop sold a copy of the entire archives for forty credits. You still have the datachip on your ship.`
 	choice
-		`	"I have a copy of my race's entire cultural archives. Please wait, I will bring you the datachip."`
-	`	You run to your ship, look through the storage room, and find the datachip. You quickly make a copy of it, run back to the group and hand it to them.`
+		`	"I have a copy of my race's entire cultural archives. I'll go get it."`
+	`	You run to your ship, look through the storage room, and find the datachip. You quickly make a copy of it, run back to the group, and hand it to them.`
 	action
 		event "coalition citizens discover fangvin" 14 27
 	`	"Thank you. Enlighten us and the rest of the Coalition, this datachip will. And as promised, a chip of 180,000 credits, we have." One member of the group places it within your hand.`
 		accept
 
 mission "Coalition: Struggling Author - Human Media 1"
-	minor
 	name "Collect Human Media"
-	description "A group of Coalition citizens have asked you for some books from human space. Go to <destination> and buy as many books as possible."
+	description "A group of Coalition citizens have asked you for some books from human space. Go to <destination> to see what you can get for them."
 	source "Ki Patek Ka"
 	destination "Alexandria"
 	to offer
@@ -3230,7 +3227,7 @@ mission "Coalition: Struggling Author - Human Media 1"
 		not "human cultural data"
 	on visit
 		dialog
-			`The station has a small museum gift shop that sells a copy of the entire archive on a data card. It only costs 40 credits, but because you have done a horrible job at managing your finances you do not have even that much cash on hand right now.`
+			`The station has a small museum gift shop that sells a copy of the entire archive on a data card. It only costs 40 credits, but because you have done a horrible job at managing your finances, you can't afford it.`
 			`	Go earn some money, then return here.`
 	on offer
 		conversation "cultural data for coalition group"
@@ -3240,7 +3237,7 @@ mission "Coalition: Struggling Author - Human Media 1"
 
 mission "Coalition: Struggling Author - Data"
 	name "Cultural Data to Sol Kimek"
-	description "Bring back the datachip to <destination>, for the group of Coalition citizens who asked for it."
+	description "Bring back the datachip to <destination> for the group of Coalition citizens who asked for it."
 	source "Alexandria"
 	destination "Ki Patek Ka"
 	on offer
@@ -3271,14 +3268,14 @@ mission "Coalition: Book Discovered"
 		has "event: coalition citizens discover fangvin"
 	on offer
 		conversation
-			`Upon landing in the spaceport, you get a message from the same group of Coalition citizens. You recall that you had provided them with a datachip containing the entire knowledge of humanity.`
+			`Upon landing in the spaceport, you get a message from the same group of Coalition citizens. You recall that you had provided them with a datachip containing the a copy of Alexandria's archive.`
 			``
 			`		Dear <first>,`
 			`	Interested in an author from the datachip, we are. 'Anna Fangvin', her name is. The story about your race's actions against the oppressors, captivate us it did. To converse with her, we wish.`
 			choice
-				`	(Disregard.)`
-					decline
 				`	(Look for Anna Fangvin.)`
+				`	(Disregard the message.)`
+					decline
 			`A quick look through your encyclopedia reveals Anna Fangvin to be an author from <destination>. You decide to meet her there for an interview and set a course.`
 	on complete
 		conversation
@@ -3291,10 +3288,10 @@ mission "Coalition: Struggling Author 1"
 	source "Zug"
 	destination "Ki Patek Ka"
 	to offer
-		has "Fangvin: Book Discovered: done"
+		has "Coalition: Book Discovered: done"
 	on offer
 		conversation
-			`Upon entering the spaceport, you walk past a restaurant. A woman then raises her arms, waving towards you. She must be Anna Fangvin, that author the Coalition citizens showed interest in.`
+			`Upon entering the spaceport, you walk past a restaurant. A woman then raises her arms, waving towards you. She must be Anna Fangvin, the author the Coalition citizens showed interest in.`
 			choice
 				`	(Approach her.)`
 			`	You approach the woman and sit right next to her. "Hello, are you <first>?`
@@ -3304,8 +3301,8 @@ mission "Coalition: Struggling Author 1"
 				`	"What do you write?"`
 					goto "what do you write"
 			label "what do you write"
-			`	"I write science fiction novels. My latest novel was 'Beyond the Hyperdrive', which I released a few weeks ago. It is an exciting novel chronicling the story of a group of humans who steal the Quarg's jumping technology and see what's truly beyond the hyperlanes we've known for so long. Here, have a copy."`
-			`	Anna retrieves a hardcover book from her bag. It has an image of a human right next to a Quarg ship on it. You take the book. You read over the front and back flaps, which confirms most of what Anna tells you about her book, and see her signature on the title page.`
+			`	"I write science fiction novels. I just released 'Beyond the Hyperdrive', the story of a group of humans who steal the Quarg's jumping technology and see what's truly beyond the hyperlanes we've known for so long. Here, have a copy!"`
+			`	Anna retrieves a hardcover book from her bag. The cover shows a human next to a Quarg ship, and skimming front and back flaps, confirms most of what Anna told you about it. Her signature is on the title page.`
 			`	"You'll like it, I promise. It's a signed copy too, just for you."`
 			choice
 				`	"How long is the book?`
@@ -3313,7 +3310,7 @@ mission "Coalition: Struggling Author 1"
 				`	"Why is it a story about humanity stealing from the Quarg?"`
 					goto "anna hates quarg"
 			label "how long is the book"
-			`	It isn't very long, it should be three hundred pages.`
+			`	"About three hundred pages. Not too long."`
 			label "anna hates quarg"
 			`	"I have a lot of problems with them. I just don't trust them. I remember when my parents took me to Humanika. Naturally, I wanted to explore, so I wandered off. I was lost. This creepy-looking Quarg found me, and when it tried to approach, I cried."`
 			`	"And then when I grew up, when I was a teenager, I decided to do a project on them for college. They responded with silence to my questions, as if they had something to hide. I worked as an assistant for a journalist for a few months. He kept asking me for help with the Quarg. They just would not budge."`
@@ -3375,18 +3372,18 @@ mission "Coalition: Struggling Author 2"
 				`	"That's just how they eat."`
 				`	"My ship still has a decent amount of food you can eat."`
 				`	"There should be another restaurant."`
-			`	"<first>! It's you again!", says Anna in an excited tone. "Is the ship ready? Remember, we need to go to the <destination> so I can get registered with the Heliarchs."`
+			`	"Oh, hello again <first>!" Anna says. "Is the ship ready? Remember, we need to go to the <destination> so I can get registered with the Heliarchs."`
 			choice
 				`	"It's all ready now. Come."`
 			`	Anna stands up from her chair and begins following you to the ship. She settles into her bunk as you prepare for a trip to the <destination>.`
 				accept
 	on enter "Quaru"
 		conversation
-			`As you enter <system>, Anna walks out of her bunk and finds a spot on the side of the bridge, to peer into space. "What a massive ringworld!", she exclaims.`
+			`As you enter <system>, Anna walks out of her bunk and finds a spot on the side of the bridge, to peer into space. "What a massive ringworld!" she exclaims.`
 			choice
-				`	"It's enormous. They actually stole it from the Quarg, who they rebelled against roughly seven thousand years ago."`
-				`	"I'm used to it."`
-			`	"Awesome! This is going to be a great setting and certainly a source of inspiration for my next novel!", says Anna, her voice still in an enthusiastic and excited tone. "This must be where I'm supposed to register, right?"`
+				`	"It's enormous. They actually stole it from the Quarg. Roughly seven thousand years ago, the Coalition rebelled against them."`
+				`	(Say nothing.)`
+			`	"This is going to be a great source of inspiration for my next novel," says Anna, still in awe. "This must be where I'm supposed to register, right?"`
 			`	"Yes, this is the <planet>. Let's go."`
 	on complete
 		conversation
@@ -3405,13 +3402,13 @@ mission "Coalition: Struggling Author 3"
 		has "Fangvin: Struggling Author 2: done"
 	on offer
 		conversation
-			`Going through the spaceport looking for Anna, you finally find her at a restaurant serving food made for Saryds, eating from a plate of vegetables, her laptop next to the plate of food. She sees you and motions for you to take a seat.`
+			`Going through the spaceport looking for Anna, you finally find her at a restaurant serving food made for Saryds. She's typing away furiously at her laptop, and a plate of vegetables next to her. She sees you and motions for you to take a seat.`
 			`	You sit down next to Anna. "These vegetables are so delicious! After months of instant noodles and takeout back home, it finally feels good to eat something that's actually much healthier."`
 			choice
 				`	"How good is it?"`
 					goto "it's very good"
 				`	"What did you usually eat back in human space?"`
-			`	"My diet was not exactly the best. All I could eat were instant noodles and takeout food as I never could find time in my schedule to cook at home. I was working hard on Beyond the Hyperdrive at the time. This food is better than any instant noodle brand I could ever find on Zug."`
+			`	"My diet wasn't exactly the best. All I could eat were instant noodles and takeout food; I never could find time in my schedule to cook at home. I was working hard on 'Beyond the Hyperdrive' at the time. This food is better than any instant noodle brand I could ever find on Zug."`
 			choice
 				`	"What's our plan now?"`
 				`	"What are we going to do next?"`
@@ -3432,7 +3429,7 @@ mission "Coalition: Struggling Author 3"
 				`	"I'll help you get one. You probably won't need to pay for one."`
 			`	"Great! So, where will we get the translator?"`
 			`	"We'll go to <destination> to ask the Heliarchs for a translation box", you tell Anna. "Finish your meal, then go back to my ship. I'll be ready." You walk off to your ship.`
-			`	After 15 minutes, you see Anna walking towards you. You open the hatch as she enters. She settles into her bunk, as you prepare to depart.`
+			`	After 15 minutes, you see Anna walking towards you. You open the hatch as she enters. She settles into her bunk as you prepare to depart.`
 				accept
 	on complete
 		conversation
@@ -3451,7 +3448,7 @@ mission "Coalition: Struggling Author 3"
 			choice
 				`	"Great! So, Anna, what are we doing next?"`
 			`	"Getting my book published, of course. We need to find a publishing company!"`
-			`	"We should go for the Kimek", you say. "Their population is 200 billion. For comparison, the human population is only 100 billion."`
+			`	"We should go for the Kimek," you say. "Their population is 200 billion; they're bound to have some company that's interested."`
 			`	"But where can we find a Kimek publishing company? We haven't even translated our book into their language yet!"`
 			choice
 				`	"We'll find a company. There has to be one out there."`
@@ -3466,27 +3463,26 @@ mission "Coalition: Struggling Author 4"
 		has "Fangvin: Struggling Author 3: done"
 	on offer
 		conversation
-			`The spaceport of Ki Patek Ka is vast. You decide to search for Anna, who has chosen to settle in the cafeteria, with her laptop, She is typing away at the keyboard, presumably writing a new novel.`
-			`	"<first>! I found a publishing company who's willing to publish my book! I sent them a digital copy of my book and they have instructed me to visit their office on <destination>!", exclaims Anna, once again in an enthusiastic tone.`
+			`The spaceport of Ki Patek Ka is vast. You decide to search for Anna, who has chosen to settle in the cafeteria with her laptop. She is typing away at the keyboard, presumably writing a new novel.`
+			`	"<first>! I found a company who's willing to publish me! I sent them a digital copy of my book and they instructed me to visit their office on <destination>," explains Anna, once again enthusiastic.`
 			choice
 				`	"What's the publishing company called?"`
-			`	"They're called 'Kimek Reader Publishing'.`
+			`	"They're called 'Kimek Reader Publishing.'"`
 			choice
 				`	"Great!"`
 				`	"Let's go!"`
-			`	Anna closes her laptop, places her things in her bag, and begins walking to your ship. You and Anna enter the ship, as she settles into her bunk. It's time to go to <destination>, where the main offices of 'Kimek Reader Publishing' are located.`
+			`	Anna closes her laptop, places her things in her bag, and begins walking to your ship. You and Anna enter the ship, and she settles into her bunk. It's time to go to <destination>, where the main offices of 'Kimek Reader Publishing' are located.`
 				accept
 	on complete
 		event "beyond the hyperdrive is published" 165 197
 		conversation
-			`Landing on <planet>, Anna is excitedly holding a copy of 'Beyond the Hyperdrive', her novel about humans stealing jump drives from the Quarg. She hastily opens the hatch as soon as it unlocks.`
+			`Landing on <planet>, Anna is excitedly holding a copy of 'Beyond the Hyperdrive.' She hastily opens the hatch as soon as it unlocks.`
 			choice
 				`	"Wait for me!"`
-			`	Anna hears your scream and stops. "We're here, Anna. Now, we need to find their offices.", you say.`
-			`	"That won't be necessary. In the message they sent me, they included precise instructions on how to reach their offices."`
+			`	Anna waits for you to catch up. "In the message they sent me, they included precise instructions on how to reach their offices," she explains. "Let's go!"`
 			`	You begin following Anna to the publisher's offices. You walk through endless rows of shops and streets, take a train to a large white building, and eventually find what looks like the Kimek equivalent of an elevator.`
 			`	You and Anna enter the elevator, as Anna presses a button that closes the door and takes you up. When the door opens, you see a Kimek in front of you, a necklace around it with ornate jewelry and a translation device.`
-			`	"Greetings, humans. Follow me, you must, so publish your book, we can.", says the Kimek through its translation box.`
+			`	"Greetings, humans. Follow me, you must, so discuss your book, we can," says the Kimek through its translation box.`
 			`	At the direction of the Kimek, you and Anna begin walking until directed to a room with glass walls. Anna puts down the copy of her book on the table, and the three of you take a seat.`
 			choice
 				`	"Hello. My name is <first> <last>, and this is my friend Anna Fangvin."`
@@ -3499,7 +3495,7 @@ mission "Coalition: Struggling Author 4"
 				`	"Should I stay here to accompany Anna?`
 					goto "should I accompany anna"
 			label "how long"
-			`	"Wait a few hours, you must. But quick, this will be.", says the Kimek, interviewing you.`
+			`	"Wait a few hours, you must," explains the Kimek.`
 			choice
 				`	"Should I stay here to accompany Anna?"`
 			label "should I accompany anna"
@@ -3513,16 +3509,16 @@ mission "Coalition: Struggling Author 4"
 				`	(Leave the room to avoid spoilers.)`
 					goto "lounge"
 				`	(Stay in the room.)`
-			`	Under the watchful eye of the two Heliarchs in the room, Anna explains her anti-Quarg sentiments, the reasoning behind her choice to write the book, the content of the book. She is still talking in fluent English, but sometimes is forced to repeat statements due to the translator having issues with deciphering her enthusiastic tone.`
+			`	Under the watchful eye of the two Heliarchs in the room, Anna explains her anti-Quarg sentiments, the reasoning behind her choice to write the book, and the content of the book. She speaks quickly, but the Haliarchs' numerous questions for clarification and elaboration make the process a long one.`
 			`	As the hours pass, Anna's enthusiastic tone remains strong and constant. The Kimek then takes the book, puts it in a nearby filing cabinet (or the Kimek equivalent) and thanks you and Anna.`
 				goto "interview over"
 			label "lounge"
 			`	You leave the room and walk to the lounge. Several Kimek are chatting in their native language, while a Saryd and Arach have chosen to rest.`
-			`	After a few hours, you see Anna emerge out of the room, and walk towards you.`
+			`	After a few hours, you see Anna emerge out of the room and walk toward you.`
 			choice
 				`	"How did the interview go?"`
 			label "interview over"
-			`	"They told me that due to the censorship and review process, I would have to wait for roughly half a year. Thankfully, they have arranged a small apartment for me to live in. You can go on your own now, but please make sure you come back. If you want to return to human space, please add a reminder to come back and meet me."`
+			`	"They told me that due to the censorship and review process, I'll have to wait for roughly half a year. Thankfully, they have arranged a small apartment for me to live in. You can go on your own now, but please make sure you come back. If you want to return to human space, please add a reminder to come back and meet me."`
 			choice
 				`	"Why don't you just go back to human space?"`
 					goto "why not go to human space"
@@ -3531,11 +3527,11 @@ mission "Coalition: Struggling Author 4"
 			`	"Thanks again, <first> <last>." I'll forever be grateful to you for helping me. I never thought I'd be successful as an author, but when I met you, you helped me turn my career into something I thought I'd never see.`
 			choice
 				`	"Just helping out."`
-				`	"It's okay."`
-			`	With that, you leave the room, and eventually the building. You board the train, walk past the same series of endless shops and streets in the spaceport city, before returning to your ship. As soon as you're in your ship, you add a reminder to visit Anna within six months.`
+				`	"I'm happy to have helped you."`
+			`	With that, you leave the room, and eventually the building. You board the train and walk past the same series of endless shops and streets in the spaceport city before returning to your ship. As soon as you're in your ship, you add a reminder to visit Anna later.`
 				decline
 			label "why not go to human space"
-			`	"I need to be available at all times, so I can answer their questions. Do not worry about me."`
+			`	"I need to stay here I can answer their questions during the review process. Don't worry about me."`
 			choice
 				`	"Got it. Good luck publishing your book."`
 					goto "anna thanks you"
@@ -3553,7 +3549,7 @@ mission "Coalition: Struggling Author 5A"
 	on offer
 		conversation
 			`Checking your computer feed for the latest galactic news and trade prices, you get a reminder from your computer.`
-			`	You read it, and recall that you had helped an author named Anna Fangvin get her book, 'Beyond the Hyperdrive', published about half a year ago. You should return to <destination> and check on her.`
+			`	You read it, and recall that you had helped an author named Anna Fangvin get her book, 'Beyond the Hyperdrive,' published about half a year ago. You should return to <destination> and check on her.`
 				accept
 	on complete
 		conversation "anna invites you to book signing"
@@ -3568,38 +3564,38 @@ mission "Coalition: Struggling Author 5B"
 		not "Fangvin: Struggling Author 5A: offered"
 	on offer
 		conversation
-			`As you land on the spaceport, you check your messages. You see a message from Anna Fangvin, the author who you helped about half a year ago. In the message, she explains that her novel, 'Beyond the Hyperdrive', has been approved. You should return to <destination> and meet her.`
+			`As you land on the spaceport, you check your messages. You see a message from Anna Fangvin, the author who you helped about half a year ago. In the message, she explains that her novel, 'Beyond the Hyperdrive,' has been approved. You should return to <destination> and meet her.`
 				accept
 	on complete
 		conversation "anna invites you to book signing"
 
 conversation "anna invites you to book signing"
 	action
-		log "People" "Anna Fangvin" "Anna is an author of science fiction books. She never found success in human space, until she visited the Coalition and got her novel, 'Beyond the Hyperdrive', about a group of humans stealing jump drives from the Quarg, published. Upon publication, her book quickly became a bestseller in Kimek space."
-		log "Helped somebody named Anna Fangvin get her book published in Coalition space. Apparently, it's a bestseller now. The book was 'Beyond the Hyperdrive', something about humans stealing jump drives from the Quarg. Also found out she was ambidextrous."
+		log "People" "Anna Fangvin" "Anna is a science fiction writer. She was a struggling author in human space, but found success upon publishing her novel 'Beyond the Hyperdrive' in Coalition space. Her book is a bestseller in Kimek space."
+		log "Helped somebody named Anna Fangvin get her book published in Coalition space. Apparently, it's a bestseller now. The book was 'Beyond the Hyperdrive,' something about humans stealing jump drives from the Quarg. Also found out she was ambidextrous."
 		"salary: Anna Fangvin" = 5000
 		payment 2000000
 		set "beyond the hyperdrive news can show now"
 	`The moment you land, Anna is all too happy to see you. She grabs your shoulders with both arms and in an excited tone explains that her book has been approved for publication.`
-	`	"Today, they will be publishing 'Beyond the Hyperdrive' and I will be signing copies! Thanks for everything you've done, <first>!"`
+	`	"They're publishing 'Beyond the Hyperdrive' today, and there's a full release event where I'll be signing copies! Thanks for everything you've done, <first>!"`
 	choice
 		`	"It got approved? That's awesome!"`
 	`	"I know, right? So do you want to join me during the book signing?"`
 	choice
 		`	"I've been with you through the whole process. Count me in!"`
-	`	"Great! Let's walk to the bookstore and prepare everything! I already have my pen ready, and the staff have already prepared seats for the both of us."`
+	`	"Great! Let's walk to the bookstore and prepare everything! The staff have already prepared seats for the both of us."`
 	`	You and Anna walk into the massive bookstore at the spaceport. There are already several Heliarchs present, their Enforcer Riot Staffs in place for crowd control.`
-	`	A Kimek, dressed in what looks like the bookstore's uniform, takes out the Kimek equivalent of a loudspeaker and begins announcing the release of 'Beyond the Hyperdrive'. Within ten minutes, the bookstore has become crowded, with a long queue forming between the cashiers and your table, as Anna signs every copy brought to her by each individual Kimek.`
+	`	A Kimek, dressed in what looks like the bookstore's uniform, takes out the Kimek equivalent of a loudspeaker and begins announcing the release of 'Beyond the Hyperdrive.' Within minutes, the bookstore has become crowded, with a long queue forming between the cashiers and your table, as Anna signs every copy brought to her by Kimek.`
 	`	Occasionally, Anna alternates between her left and right hand to sign books whenever the other is tired. For hours, this continues. You tried to keep count of how many copies she signed, but gave up when it reached six hundred.`
 	choice
 		`	"Are you left or right handed?"`
 	`	"I was originally born left-handed, but as a child I chose to learn how to use my right hand, because I thought being able to use both hands would be cool."`
-	`	The signing continues for what feels like four hours. Then, the same Kimek in the bookstore uniform announces that the store is to close within an hour.`
-	`	As the store closes and the queue shortens, Anna signs the last Kimek's copy. With that, the event is over. Anna then tells you to meet her at your ship. You and Anna walk back to your ship. You open the hatch to allow Anna inside, and you both walk through.`
-	`	"Today was a resounding success. My book succeeded beyond my wildest dreams, and it was all because of you <first>!", she says, almost in a teary voice. She pulls out a credit chip. "Here, two million credits. You've done so much for me and my career, and you deserve it. Additionally, you will be receiving a salary of 5,000 credits daily, a small but significant portion of my royalties."`
+	`	The signing continues for several hours. Eventually, the same Kimek in the bookstore uniform announces that the store is closing soon.`
+	`	As the store closes and the queue shortens, Anna signs the last Kimek's copy. With that, the event is over. Anna walks with you back to your ship to say goodbye.`
+	`	"Today was a resounding success. My book succeeded beyond my wildest dreams, and it was all because of you <first>!" she says, almost in a teary voice. She pulls out a credit chip. "Here, <payment>. You've done so much for me and my career, and you deserve it. Additionally, you will be receiving a salary of 5,000 credits daily, a small but significant portion of my royalties."`
 	branch "player understands coalition edition"
 		has "language: Coalition"
-	`	Anna then takes out another copy of "Beyond the Hyperdrive", which she signs in front of you. It is the Coalition edition of the book. The symbols are completely indecipherable to you. Just another book for your collection.`
+	`	Anna then takes out a Coalition copy of "Beyond the Hyperdrive," which she signs in front of you. The symbols are completely indecipherable to you. You thank her and say your goodbyes before boarding your ship.`
 		accept
 	label "player understands coalition edition"
 		`	Anna then takes out another copy of "Beyond the Hyperdrive", which she signs in front of you. It is the Coalition edition of the book, but translated to your language. Quickly reading through it, you realize that the book has been significantly altered from the version sold in human space. "Here, take it. A special copy just for you, as a thank you for all you've done."`
