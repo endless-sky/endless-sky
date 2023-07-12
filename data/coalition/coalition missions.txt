@@ -3581,6 +3581,8 @@ conversation "anna invites you to book signing"
 		`	"It got approved? That's awesome!"`
 	`	"I know, right? So do you want to join me during the book signing?"`
 	choice
+		`	"No, I don't have the time."`
+			goto "player didn't go with anna to book signing"
 		`	"I've been with you through the whole process. Count me in!"`
 	`	"Great! Let's walk to the bookstore and prepare everything! The staff have already prepared seats for the both of us."`
 	`	You and Anna walk into the massive bookstore at the spaceport. There are already several Heliarchs present, their Enforcer Riot Staffs in place for crowd control.`
@@ -3594,6 +3596,11 @@ conversation "anna invites you to book signing"
 	label "signing continues"
 	`	The signing continues for several hours. Eventually, the same Kimek in the bookstore uniform announces that the store is closing soon.`
 	`	As the store closes and the queue shortens, Anna signs the last Kimek's copy. With that, the event is over. Anna walks with you back to your ship to say goodbye.`
+		goto "ending dialog"
+	label "player didn't go with anna to book signing"
+	`	"Not a problem!", says Anna. "I'll go to your ship later." She then walks away.`
+	`	Sitting in your ship you see a long line form at the spaceport over the next few hours, presumably to that bookstore where Anna is happily signing books. As the night begins to take over, the queue becomes shorter and shorter until you see Anna approaching you. She enters your ship.`
+	label "ending dialog"
 	`	"Today was a resounding success. My book succeeded beyond my wildest dreams, and it was all because of you <first>!" she says, almost in a teary voice. She pulls out a credit chip. "Here, <payment>. You've done so much for me and my career, and you deserve it. Additionally, you will be receiving a salary of 5,000 credits daily, a small but significant portion of my royalties."`
 	branch "player understands coalition edition"
 		has "language: Coalition"
@@ -3607,3 +3614,4 @@ conversation "anna invites you to book signing"
 		`	"As for the special copy, it was so I could verify and look at the changes they made, in my language, so I wouldn't have to learn their language. They agreed to print another copy for me so I could give it to you."`
 		`	"I've got to go now. I want to see how well my book is selling. Goodbye!"`
 		`	Anna then leaves your ship. You ponder what to do next, but you do feel rewarded having helped a struggling author make it big.`
+
