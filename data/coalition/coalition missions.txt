@@ -3573,7 +3573,6 @@ conversation "anna invites you to book signing"
 	action
 		log "People" "Anna Fangvin" "Anna is a science fiction writer. She was a struggling author in human space, but found success upon publishing her novel 'Beyond the Hyperdrive' in Coalition space. Her book is a bestseller in Kimek space."
 		log "Helped somebody named Anna Fangvin get her book published in Coalition space. Apparently, it's a bestseller now. The book was 'Beyond the Hyperdrive,' something about humans stealing jump drives from the Quarg. Also found out she was ambidextrous."
-		"salary: Anna Fangvin" = 5000
 		payment 2000000
 		set "beyond the hyperdrive news can show now"
 	`The moment you land, Anna is all too happy to see you. She grabs your shoulders with both arms and in an excited tone explains that her book has been approved for publication.`
