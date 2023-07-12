@@ -3588,8 +3588,11 @@ conversation "anna invites you to book signing"
 	`	A Kimek, dressed in what looks like the bookstore's uniform, takes out the Kimek equivalent of a loudspeaker and begins announcing the release of 'Beyond the Hyperdrive.' Within minutes, the bookstore has become crowded, with a long queue forming between the cashiers and your table, as Anna signs every copy brought to her by Kimek.`
 	`	Occasionally, Anna alternates between her left and right hand to sign books whenever the other is tired. For hours, this continues. You tried to keep count of how many copies she signed, but gave up when it reached six hundred.`
 	choice
+		`	(Say nothing.)`
+			goto "signing continues"
 		`	"Are you left or right handed?"`
 	`	"I was originally born left-handed, but as a child I chose to learn how to use my right hand, because I thought being able to use both hands would be cool."`
+	label "signing continues"
 	`	The signing continues for several hours. Eventually, the same Kimek in the bookstore uniform announces that the store is closing soon.`
 	`	As the store closes and the queue shortens, Anna signs the last Kimek's copy. With that, the event is over. Anna walks with you back to your ship to say goodbye.`
 	`	"Today was a resounding success. My book succeeded beyond my wildest dreams, and it was all because of you <first>!" she says, almost in a teary voice. She pulls out a credit chip. "Here, <payment>. You've done so much for me and my career, and you deserve it. Additionally, you will be receiving a salary of 5,000 credits daily, a small but significant portion of my royalties."`
