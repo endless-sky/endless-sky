@@ -4,7 +4,7 @@ galaxy "label twilight"
 
 galaxy "label tangled shroud"
 	pos -240 880
-	sprite label/tangled shroud
+	sprite label/"tangled shroud"
 
 system Methuselah
 	pos -1625.734 2244.733
