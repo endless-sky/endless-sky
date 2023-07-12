@@ -430,7 +430,7 @@ mission "Undeserved Ladybug"
 		has "unfettered: undeserved ladybug"
 		# to make sure you can buy another one
 		or
-			"flagship planet attribute: shipyard"
+			has "flagship planet attribute: shipyard"
 			"total ships" > 1
 	on offer
 		conversation
@@ -443,7 +443,7 @@ mission "Undeserved Ladybug"
 			`	It takes off, seemingly on its own! Looks like the Unfettered are getting this ship back at any cost.`
 				decline
 			label "unfet space"
-			`You land on this Unfettered world in posession of the Ancient Ladybug, and as you do countless Unfettered head to your ship, armed as they always are.`
+			`You land on this Unfettered world in possession of the Ancient Ladybug, and as you do countless Unfettered head to your ship, armed as they always are.`
 			`	Except that they seem much more intimidating than usual...`
 			choice
 				`	(Let them have it.)`
