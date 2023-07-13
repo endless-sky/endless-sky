@@ -62,6 +62,7 @@ namespace {
 		SECRETIVE,
 		RAMMING,
 		DECLOAKED,
+		ARTILLERY,
 
 		// This must be last so it can be used for bounds checking.
 		LAST_ITEM_IN_PERSONALITY_TRAIT_ENUM
@@ -101,7 +102,8 @@ namespace {
 		{"daring", DARING},
 		{"secretive", SECRETIVE},
 		{"ramming", RAMMING},
-		{"decloaked", DECLOAKED}
+		{"decloaked", DECLOAKED},
+		{"artillery", ARTILLERY}
 	};
 
 	// Tokens that combine two or more flags.
@@ -286,6 +288,13 @@ bool Personality::IsMerciful() const
 bool Personality::IsRamming() const
 {
 	return flags.test(RAMMING);
+}
+
+
+
+bool Personality::IsArtillery() const
+{
+	return flags.test(ARTILLERY);
 }
 
 
