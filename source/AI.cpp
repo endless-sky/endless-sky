@@ -2436,8 +2436,8 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 	// If this ship has mostly long-range weapons, or some weapons have a
 	// blast radius, it should keep some distance instead of closing in.
 	// If a weapon has blast radius, some leeway helps avoid getting hurt.
-	if(minSafeDistance || (useArtilleryAI && shortestRange < weaponDistanceFromTarget)
-		|| artilleryOverride && shortestArtillery < weaponDistanceFromTarget)
+	if(minSafeDistance || (artilleryOverride && shortestArtillery < weaponDistanceFromTarget)
+		|| (useArtilleryAI && shortestRange < weaponDistanceFromTarget))
 	{
 		minSafeDistance = 1.25 * minSafeDistance + totalRadius;
 
