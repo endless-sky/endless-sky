@@ -464,14 +464,14 @@ mission "<uhai> 6 A: Loyal Escort"
 				"Centipede"
 				"Geocoris"
 				"Water Bug"
-		on disabled
+		on disable
 			conversation
 				branch "feasting wolves"
 					has "<uhai> 6 B: To The Wolves: active"
 				`The governor hails you, "We.. need.. immediate.. assistance..." you can only parse these few words trough the chaos but it is clear that your escort is disabled. You must quickly help them or you will have failed the escort, and since you did not accept the mysterious deal that was offered to you earlier, you would get no reward for it. It could already be too late if one of the ship was destroyed.`
 					decline
 				label "feasting wolves"
-				`You receive a hail from both the governor. You quickly discard it, pretending to be busy in the middle of the battle. You notice that the remaining ships are disable. If the Midas ships do not hail you it is probably to not reveal your involvment in this.`
+				`You receive a hail from both the governor. You quickly discard it, pretending to be busy in the middle of the battle. You notice that the remaining ships are disable. If the Midas ships do not hail you it is probably to not reveal your involvement in this.`
 				`	Now all that is left is to go to <destination> to get your reward, Midas will surely handle this, and you can pretend going to this system was a simple navigation error...`
 				action
 					fail "<uhai> 6 A: Loyal Escort"
