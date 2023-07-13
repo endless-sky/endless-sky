@@ -82,7 +82,7 @@ void PlanetPanel::Step()
 	// If the player starts a new game, exits the shipyard without buying
 	// anything, clicks to another location, then returns to the shipyard
 	// and buys a ship, make sure they are shown an intro mission.
-	if(GetUI()->IsTop(this) || GetUI()->IsTop(bank.get()) || GetUI()->IsTop(trading.get()) || GetUI()->IsTop(hiring.get()))
+	if(GetUI()->IsTop(selectedPanel && selectedPanel != spaceport.get() ? selectedPanel : this))
 	{
 		Mission *mission = player.MissionToOffer(Mission::LANDING);
 		if(mission)
