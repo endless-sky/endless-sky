@@ -2422,10 +2422,11 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 	const bool isAbleToRun = target.MaxVelocity() * SAFETY_MULTIPLIER < ship.MaxVelocity();
 
 	ShipAICache &shipAICache = ship.GetAICache();
-	const bool useArtilleryAI = ship.GetPersonality().IsArtillery() || (shipAICache.IsArtilleryAI() && isAbleToRun);
+	const bool artilleryOverride = ship.GetPersonality().IsArtillery();
+	const bool useArtilleryAI = artilleryOverride || (shipAICache.IsArtilleryAI() && isAbleToRun);
 	const double shortestRange = shipAICache.ShortestRange();
 	const double shortestArtillery = shipAICache.ShortestArtillery();
-	double minSafeDistance = isAbleToRun ? shipAICache.MinSafeDistance() : 0.;
+	double minSafeDistance = (isAbleToRun || artilleryOverride) ? shipAICache.MinSafeDistance() : 0.;
 
 	const double totalRadius = ship.Radius() + target.Radius();
 	const Point direction = target.Position() - ship.Position();
