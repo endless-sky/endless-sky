@@ -682,6 +682,7 @@ planet Cloudfire
 	attributes hai military
 	landscape land/sea11-sfiera
 	description `Cloudfire's atmosphere is unusually hazy, with almost constant cloud cover, making agriculture unproductive here even though it is a warm and damp environment. There are several major cities here that were abandoned centuries ago, due to conflict with the Unfettered. The one major city that remains is the closest thing the Hai have to a military base, with new supplies of weapons and ammunition constantly pouring in from the rest of Hai space.`
+	government "Hai"
 	spaceport `The spaceport has massive hangars and advanced repair facilities designed to accommodate the largest Hai warships. Where a fleet has just returned from a recent battle, the hangars are lit with flashes from robotic welders as damaged hull plates are swapped out for fresh ones and weakened joints are reinforced. The actual process of building these warships, however, takes place on the Hai homeworld, where the facilities will not be vulnerable to attack.`
 	shipyard "Imo Loo Mer Basics"
 	shipyard "Mon Ki i'Hiya Basics"
@@ -1695,6 +1696,7 @@ planet Giverstone
 	attributes hai mining
 	landscape land/mountain19-harro
 	description `On this mining world, the Hai are using boring machines to drill tunnels straight into the hearts of the mountains. Each tunnel twists and turns to intersect the regions of rock with the highest concentrations of valuable ore. Most of the tunnels also join up with other tunnels that have been dug through the same mountains, so that there are multiple exits from any given point in the mines.`
+	government "Hai"
 	spaceport `The spaceport is in the center of one of the large cities that are built high up in the mountains where the air is cooler. It consists mostly of open-air landing pads: enormous slabs of metal embedded into the mountainside at different levels, with winding roads connecting them to the main marketplace and warehouse district. Several old mine entrances, well reinforced with metal struts, have been converted into hangar bays or warehouse space.`
 	shipyard "Imo Loo Mer Basics"
 	shipyard "Mon Ki i'Hiya Basics"
@@ -3998,6 +4000,7 @@ planet Snowfeather
 	attributes hai "hai tourism"
 	landscape land/dmottl4
 	description `Snowfeather is a world with unusually chaotic weather patterns, where snow can fall even in the middle of summer but will melt away within days when the temperature shifts and becomes warmer again. Surprisingly, it is a popular vacation spot for the Hai, who find the unpredictability and occasional violence of the weather here to be invigorating.`
+	government "Hai"
 	spaceport `The core of the spaceport is two rows of hangars, back to back. Their thick metal roofs slope backwards, away from the entrance to each hangar, so that any snow or ice that slides off the roofs will not fall across the opening while ships or people are passing through. The hangars are also elevated about six meters above the ground, to protect against flash floods.`
 	outfitter "Hai Basics"
 	security 0.2
@@ -4113,6 +4116,7 @@ planet Stonebreak
 	attributes hai manufacturing urban
 	landscape land/hills7-harro
 	description `Stonebreak is home to some of the largest cities in Hai space aside from their homeworld: massive planned communities built in concentric rings, where housing space and community buildings alternate with zones of factories and shipyards. This star system has an unusual number of metallic asteroids, which the Hai harvest for the raw materials for Stonebreak's industries.`
+	government "Hai"
 	spaceport `From above, this city has almost perfect radial symmetry, a sure sign that it was planned and built as a single unit rather than expanding at random over time. Every single building in the city is made from the same metal alloy, a dull and slightly irregular gray color. The corners of each building are slightly beveled instead of meeting at right angles.`
 	spaceport `	Even the spaceport is symmetrical: a ring of hangars, facing outwards, at evenly spaced intervals, with warehouses and living quarters inside the ring.`
 	shipyard "Imo Loo Mer Advanced"
