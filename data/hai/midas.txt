@@ -351,11 +351,12 @@ mission "Midas: Stash of Bars"
 	invisible
 	repeat
 	to offer
-		has "outfit (all): Gold Bars"
+		has "outfit: Gold Bars"
 		# only used for counting for that mission
 		not "Midas: Who is the mad one?: offered"
+		not "Midas: Betrayal For The Bars: offered"
 	on offer
-		"midas: bars" = "outfit (all): Gold Bars"
+		"midas: bars" = "outfit: Gold Bars"
 		fail
 
 mission "Midas: Who is the mad one?"
@@ -364,9 +365,9 @@ mission "Midas: Who is the mad one?"
 	name "A golden opportunity!"
 	description "Go to any pirate world to see if you can sell these gold bars for a good price."
 	to offer
-		has "outfit (all): Gold Bars"
+		has "outfit: Gold Bars"
 	to accept
-		"outfit (all): Gold Bars" < "midas: bars"
+		"outfit: Gold Bars" < "midas: bars"
 	on offer
 		conversation
 			`	You had just finished making the transactions for gold bars you sold when you hear someone shouting. "STOP!" You immediately notice the voice is very old. He comes to you in a rush, seemingly alarmed. "These are cursed! You should get rid of them. As soon as you can!" He shouts to you and the one you just sold these to, who does not seem particularly surprised by this encounter.`
