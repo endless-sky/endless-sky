@@ -2426,7 +2426,7 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 	const bool useArtilleryAI = artilleryOverride || (shipAICache.IsArtilleryAI() && isAbleToRun);
 	const double shortestRange = shipAICache.ShortestRange();
 	const double shortestArtillery = shipAICache.ShortestArtillery();
-	double minSafeDistance = (isAbleToRun || ship.GetPersonality().IsArtillery()) ? shipAICache.MinSafeDistance() : 0.;
+	double minSafeDistance = isAbleToRun ? shipAICache.MinSafeDistance() : 0.;
 
 	const double totalRadius = ship.Radius() + target.Radius();
 	const Point direction = target.Position() - ship.Position();
