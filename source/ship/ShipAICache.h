@@ -45,6 +45,7 @@ private:
 	bool useArtilleryAI = false;
 	double shortestRange = 1000.;
 	double shortestArtillery = 4000.;
+	double biggestRange = 0.;
 	double minSafeDistance = 0.;
 	double maxTurningRadius = 200.;
 	bool hasWeapons = false;
