@@ -280,6 +280,7 @@ mission "<uhai> 15: Modified Beetle: Normal Prize"
 	on offer
 		conversation "modified shield beetle prize"
 		give ship "Modified Shield Beetle" "Basilisk"
+			id "unfettered: personal beetle"
 
 mission "<uhai> 15: Modified Beetle: Custom Price Notification"
 	landing
@@ -321,6 +322,7 @@ mission "<uhai> 15: Modified Beetle: Custom Price A"
 	on offer
 		conversation "modified shield beetle prize"
 		give ship "Modified Shield Beetle (Blaster)" "Basilisk"
+			id "unfettered: personal beetle"
 
 
 event "unfettered: cooler"
@@ -352,6 +354,7 @@ mission "<uhai> 15: Modified Beetle: Custom Price B"
 	on offer
 		conversation "modified shield beetle prize"
 		give ship "Modified Shield Beetle (Heat Shunt)" "Basilisk"
+			id "unfettered: personal beetle"
 
 
 event "unfettered: disable-er"
@@ -382,6 +385,7 @@ mission "<uhai> 15: Modified Beetle: Custom Price: C"
 	on offer
 		conversation "modified shield beetle prize"
 		give ship "Modified Shield Beetle (Ionic Turret)" "Basilisk"
+			id "unfettered: personal beetle"
 
 
 event "unfettered: syscore's got it"
@@ -414,6 +418,7 @@ mission "<uhai> 15: Modified Beetle: Custom Price: D"
 	on offer
 		conversation "modified shield beetle prize"
 		give ship "Modified Shield Beetle (Large Systems Core)" "Basilisk"
+			id "unfettered: personal beetle"
 
 
 

@@ -693,7 +693,37 @@ mission "Unfettered: Betrayed"
 		event "unfettered: outcast"
 		dialog
 			`Once you are alone in your quarters you hear a voice, darker and more serious than ever before. "You have betrayed us. Nemo Me Impune Laccessit, <first>. We have a message to transmit to you on behalf of the council of Chiefs.`
-			`	"<last>. From now on, you are an outcast. Your history has been erased and your exploits forgotten. You did bring us Jump Drives, however, and we will continue to allow you to do so, but we will do without your help for any more advanced missions. Your license is now meaningless, so you may as well toss it."`
+			`	"<last>. From now on, you are an outcast. Your history has been erased and your exploits forgotten. You did bring us Jump Drives, however, and we will continue to allow you to do so, but we will do without your help for any more advanced missions. Your license is now meaningless, so you may as well toss it.`
+			`	"Consider yourself lucky we do not blow you up, in honor of our past. But you will give this ship back."`
+				to display
+					has "flagship model: Modified Shield Beetle"
+
+mission "Unfettered: Restitution"
+	invisible
+	to offer
+		has "event: unfettered: outcast"
+		has "ship model (all): Modified Shield Beetle"
+		or
+			has "flagship planet attribute: shipyard"
+			"total ships" > 1
+	on offer
+		take ship "Modified Shield Beetle"
+			id "unfettered: personal beetle"
+			"with outfits"
+			"unconstrained"
+		conversation
+			`As soon as you exit your ship to go to the spaceport, it flies off. Confused, you hail your first mate.`
+				to display
+					has "flagship model: Modified Shield Beetle"
+				goto message
+			`As you exit your flagship, you notice one of your escorts powers all engines on without any of the usual checks or security measures. You hail the Captain in charge of that ship.`
+			`Following on a hunch, you routinely check your ships before going to the spaceport. But it is quickly apparent that something is missing: the Modified Shield Beetle. It looks like the Unfettered were not kidding about getting the ship back at any cost."`
+				to display
+					not "ship model: Modified Shield Beetle"
+					has "ship model (all): Modified Shield Beetle"
+				decline
+			label message
+			`	They respond, in a state of panick, "I swear I did not order takeoff, Captain! I have no idea what is going on, it's as if the ship is flying itself. We'll head to the escape pods at once and abandon it. I'm sorry, there's nothing we can do, the engineer tells me this is a command that has been in the ship all along: return home."`
 
 
 
