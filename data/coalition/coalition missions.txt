@@ -3366,11 +3366,7 @@ mission "Coalition: Struggling Author 2"
 		has "Fangvin: Struggling Author 1: done"
 	on offer
 		conversation
-			`You walk through the spaceport, looking for Anna. She is at a restaurant, but has ordered nothing with a disgusted look on her face. "These aliens! They vomit on their food and slurp all the soup! Disgusting!", she mutters.`
-			choice
-				`	"That's just how they eat."`
-				`	"My ship still has a decent amount of food you can eat."`
-				`	"There should be another restaurant."`
+			`You walk through the spaceport, looking for Anna. She is typing away on her laptop at a table in the middle of a public square.`
 			`	"Oh, hello again <first>!" Anna says. "Is the ship ready? Remember, we need to go to the <destination> so I can get registered with the Heliarchs."`
 			choice
 				`	"It's all ready now. Come."`
