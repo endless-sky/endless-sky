@@ -45,17 +45,15 @@ void HiringPanel::Step()
 
 void HiringPanel::Draw()
 {
-	if(!player.Flagship())
-		return;
-	const Ship &flagship = *player.Flagship();
+	const Ship *flagship = player.Flagship();
 
 	const Interface *hiring = GameData::Interfaces().Get("hiring");
 	Information info;
 
-	int flagshipBunks = flagship.Attributes().Get("bunks");
-	int flagshipRequired = flagship.RequiredCrew();
-	int flagshipExtra = flagship.Crew() - flagshipRequired;
-	int flagshipUnused = flagshipBunks - flagship.Crew();
+	int flagshipBunks = flagship ? flagship->Attributes().Get("bunks") : 0;
+	int flagshipRequired = flagship ? flagship->RequiredCrew() : 0;
+	int flagshipExtra = flagship ? flagship->Crew() - flagshipRequired : 0;
+	int flagshipUnused = flagship ? flagshipBunks - flagship->Crew() : 0;
 	info.SetString("flagship bunks", to_string(flagshipBunks));
 	info.SetString("flagship required", to_string(flagshipRequired));
 	info.SetString("flagship extra", to_string(flagshipExtra));
@@ -79,7 +77,7 @@ void HiringPanel::Draw()
 	info.SetString("passengers", to_string(passengers));
 
 	static const int DAILY_SALARY = 100;
-	int salary = DAILY_SALARY * (fleetRequired - 1);
+	int salary = DAILY_SALARY * (flagship ? fleetRequired - 1 : 0);
 	int extraSalary = DAILY_SALARY * flagshipExtra;
 	info.SetString("salary required", to_string(salary));
 	info.SetString("salary extra", to_string(extraSalary));

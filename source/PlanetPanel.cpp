@@ -110,28 +110,20 @@ void PlanetPanel::Draw()
 	{
 		if(planet.IsInhabited())
 		{
+			info.SetCondition("is inhabited");
 			info.SetCondition("has bank");
-			if(flagship)
-			{
-				info.SetCondition("is inhabited");
-				if(system.HasTrade())
-					info.SetCondition("has trade");
-			}
+			if(system.HasTrade())
+				info.SetCondition("has trade");
 		}
 
-		if(flagship && planet.HasSpaceport())
+		if(planet.HasSpaceport())
 			info.SetCondition("has spaceport");
 
 		if(planet.HasShipyard())
 			info.SetCondition("has shipyard");
 
 		if(planet.HasOutfitter())
-			for(const auto &it : player.Ships())
-				if(it->GetSystem() == &system && !it->IsDisabled())
-				{
-					info.SetCondition("has outfitter");
-					break;
-				}
+			info.SetCondition("has outfitter");
 	}
 
 	ui.Draw(info, this);
@@ -164,7 +156,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	}
 	else if(key == 'l')
 		selectedPanel = nullptr;
-	else if(key == 't' && hasAccess && flagship && planet.IsInhabited() && system.HasTrade())
+	else if(key == 't' && hasAccess && planet.IsInhabited() && system.HasTrade())
 	{
 		selectedPanel = trading.get();
 		GetUI()->Push(trading);
@@ -174,7 +166,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		selectedPanel = bank.get();
 		GetUI()->Push(bank);
 	}
-	else if(key == 'p' && hasAccess && flagship && planet.HasSpaceport())
+	else if(key == 'p' && hasAccess && planet.HasSpaceport())
 	{
 		selectedPanel = spaceport.get();
 		if(isNewPress)
@@ -188,19 +180,15 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	}
 	else if(key == 'o' && hasAccess && planet.HasOutfitter())
 	{
-		for(const auto &it : player.Ships())
-			if(it->GetSystem() == &system && !it->IsDisabled())
-			{
-				GetUI()->Push(new OutfitterPanel(player));
-				return true;
-			}
+		GetUI()->Push(new OutfitterPanel(player));
+		return true;
 	}
-	else if(key == 'j' && hasAccess && flagship && planet.IsInhabited())
+	else if(key == 'j' && hasAccess && planet.IsInhabited())
 	{
 		GetUI()->Push(new MissionPanel(player));
 		return true;
 	}
-	else if(key == 'h' && hasAccess && flagship && planet.IsInhabited())
+	else if(key == 'h' && hasAccess && planet.IsInhabited())
 	{
 		selectedPanel = hiring.get();
 		GetUI()->Push(hiring);
