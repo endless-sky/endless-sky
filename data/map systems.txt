@@ -9274,7 +9274,7 @@ system Debrugt
 system "Deep Space 19K12"
 	pos -1113 -747
 	government Uninhabited
-	attributes "proto-system" "notable star"
+	attributes "proto-system" "notable star" "inaccessible"
 	arrival 500
 	habitable 135
 	belt 1977
@@ -9305,7 +9305,7 @@ system "Deep Space 19K12"
 system "Deep Space 19M1"
 	pos -895 -745
 	government Uninhabited
-	attributes "giant star" "notable star"
+	attributes "giant star" "notable star" "inaccessible"
 	arrival 4050
 	habitable 4050
 	belt 2115
@@ -9379,6 +9379,7 @@ system "Deep Space 19M1"
 system "Deep Space 19M2"
 	pos -960 -777
 	government Uninhabited
+	attributes "inaccessible"
 	arrival 3430
 	habitable 3430
 	belt 1977
@@ -9434,7 +9435,7 @@ system "Deep Space 19M2"
 system "Deep Space 19M5"
 	pos -1133 -828
 	government Uninhabited
-	attributes "proto-system" "notable star"
+	attributes "proto-system" "notable star" "inaccessible"
 	arrival 500
 	habitable 370
 	belt 1977
@@ -9491,7 +9492,7 @@ system "Deep Space 19M5"
 system "Deep Space 1Q"
 	pos -920 -668
 	government Uninhabited
-	attributes "bright star" "notable star"
+	attributes "bright star" "notable star" "inaccessible"
 	arrival 3650
 	habitable 3650
 	belt 2577
@@ -9562,7 +9563,7 @@ system "Deep Space 1Q"
 system "Deep Space 1X"
 	pos -935 -695
 	government Uninhabited
-	attributes "notable star" "nova"
+	attributes "notable star" "nova" "inaccessible"
 	arrival 500
 	habitable 100
 	belt 1751
@@ -9588,6 +9589,7 @@ system "Deep Space 1X"
 system "Deep Space 5J"
 	pos -890 -532
 	government Uninhabited
+	attributes "inaccessible"
 	arrival 1715
 	habitable 1715
 	belt 1869
@@ -9651,6 +9653,7 @@ system "Deep Space 5J"
 system "Deep Space 5N"
 	pos -895 -584
 	government Uninhabited
+	attributes "inaccessible"
 	arrival 980
 	habitable 980
 	belt 1236
@@ -9701,6 +9704,7 @@ system "Deep Space 5N"
 system "Deep Space 5T"
 	pos -863 -615
 	government Uninhabited
+	attributes "inaccessible"
 	arrival 500
 	habitable 320
 	belt 1302
@@ -9753,6 +9757,7 @@ system "Deep Space 5T"
 system "Deep Space 7C"
 	pos -774 -450
 	government Uninhabited
+	attributes "inaccessible"
 	arrival 500
 	habitable 425
 	belt 2309
@@ -9809,6 +9814,7 @@ system "Deep Space 7C"
 system "Deep Space 7F"
 	pos -814 -472
 	government Uninhabited
+	attributes "inaccessible"
 	arrival 1080
 	habitable 1080
 	belt 1319
@@ -10264,6 +10270,7 @@ system Denebola
 system Devil-Hide
 	pos -1047 -775
 	government "Pirate (Devil-Run Gang)"
+	attributes "inaccessible"
 	arrival 500
 	habitable 10
 	belt 5000
@@ -10301,6 +10308,7 @@ system Devil-Run
 	hidden
 	pos -19 179
 	government Uninhabited
+	attributes "inaccessible"
 	arrival 1080
 	habitable 1080
 	asteroids "small rock" 121 1.9558
@@ -24849,6 +24857,21 @@ system Paeli
 		sprite planet/desert6-b
 		distance 1013.03
 		period 2883.88
+	object
+		sprite planet/gas2-b
+		distance 2010.84
+		period 8065.10
+		offset 270.243
+		object Eavine
+			sprite planet/ice8-b
+			distance 302.81
+			period 31.9279
+			offset 256.243
+		object
+			sprite planet/oberon-b
+			distance 457.81
+			period 59.353
+			offset 360
 
 system Pantica
 	pos 303.87 445.242
