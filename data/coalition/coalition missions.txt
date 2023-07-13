@@ -3318,8 +3318,7 @@ mission "Coalition: Struggling Author 1"
 				`	"Well that's all well and good. But I have my own business to attend to now. Good luck, and goodbye."`
 					decline
 				`	(Tell her about the Coalition.)`
-			`	You are about to reveal sensitive information that you might not want to spread. You are on a busy street with high foot traffic. You tell Anna you have something to tell her, and ask her to walk to a secluded corner of the store.`
-			`	Once confirming that you and Anna will not be heard, you begin explaining the Coalition to Anna, going in-depth about their history and their culture, and their long history of opposing the Quarg, seeing as Anna has less than positive opinions of them.`
+			`	You begin explaining the Coalition to Anna, going in-depth about their history and their culture, and their long history of opposing the Quarg, seeing as Anna has less than positive opinions of them.`
 			`	"Will they really like my books?"`
 			choice
 				`	"They will, hopefully."`
