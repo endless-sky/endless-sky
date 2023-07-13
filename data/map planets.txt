@@ -128,7 +128,7 @@ planet Allhome
 	security 0.6
 
 planet "Alta Hai"
-	attributes "hai quarg" quarg station
+	attributes "hai quarg" quarg station ringworld
 	landscape land/station19
 	description `This is a complete Quarg ringworld, the product of millennia of construction effort which has consumed every other stellar object in this system in order to provide the raw materials. The inner edge of the ring is filled with solar panels, hydroponic gardens, living quarters, and sunlit common spaces. The outer edge contains hangars and docks for ships, and storage facilities for cargo.`
 	description `	Massive station-keeping thrusters on the ring's exterior keep its orbit from becoming unstable.`
@@ -158,7 +158,7 @@ planet Angko
 	security 0
 
 planet Antipode
-	attributes core frontier mining
+	attributes core frontier mining frozen
 	landscape land/snow17
 	description `Antipode is a world of creeping glaciers and year-round snow, orbiting far enough from a dim star that even when the sun breaks through the clouds, it brings little warmth. The few settlements that exist here are built near surface deposits of rare earth metals that were discovered recently, and that are mined for use in electronics and equipment throughout this sector.`
 	description `	The inhabitants of Antipode are among the best downhill skiers in the galaxy, and they have made some attempts to draw off-world tourists to the ski resorts here, but the weather is so hostile that they have had very little success.`
@@ -257,7 +257,7 @@ planet Aventine
 		fleet "Heavy Remnant Defense" 30
 
 planet Babiali
-	attributes "ice giant" uninhabited
+	attributes "ice giant" uninhabited frozen
 	landscape land/canyon12
 	description `Babiali's surface is a bona fide example of cataclysm. Ice and rock extends from horizon to horizon, with vast networks of cracks and fissures suggesting it was subject to some kind of sudden force fairly recently in its geological history.`
 	description `	At present, Babiali has a regular stream of mining and research craft systematically flying over the crust looking for rare metals or anything else of value. Despite the activity, no one has bothered to set up anything resembling a spaceport.`
@@ -265,7 +265,7 @@ planet Babiali
 	security 0
 
 planet Baianus
-	attributes uninhabited
+	attributes uninhabited frozen
 	landscape land/snow20
 	description `This frozen water world is reminiscent of Titan back in Sol: the surface is little more than a shattered wasteland of ice and the occasional rock outcropping, but the unbreathably thin atmosphere contains countless tantalizing traces of chemicals that suggest that something more might exist below the surface.`
 	description `	Unlike Titan, however, Baianus is regularly wracked by both waves of heat and energy, and a stay of any length on the surface is likely to see waves of auroras accompanied by glows and sparks rippling across the terrain. Your environmental system strongly recommends remaining inside your ship whenever ion storms are active.`
@@ -689,7 +689,7 @@ planet Cloudfire
 	security 0.9
 
 planet "Cold Horizon"
-	attributes folklore saryd tourism
+	attributes folklore saryd tourism frozen
 	landscape land/snow11-sfiera
 	description `In the early mornings on Cold Horizon, the trees are often coated in a thin layer of glittering frost that burns away a few hours after sunrise. In the short summer season, flocks of migratory birds arrive in the forest, bringing a cacophony of music and a riot of color to the otherwise serene woodlands.`
 	description `	Half a billion Saryds live here, drawn not so much by the planet's resources, which are scarce, as by its natural beauty.`
@@ -764,7 +764,7 @@ planet Crossroads
 		fleet "Small Syndicate" 11
 
 planet Cyife
-	attributes moon uninhabited
+	attributes moon uninhabited frozen
 	landscape land/snow13
 	description `This lonely, icy moon is the only non-gaseous celestial body within this rather quiet star system. Although there are no signs of life here due to the extremely low temperatures, certain parts of the surface glimmer oddly compared to others, as if to imply something may once have been here before.`
 	government Uninhabited
@@ -923,7 +923,7 @@ planet "Delve of Bloptab"
 	security 0.6
 
 planet "Desi Seledrak"
-	attributes korath
+	attributes korath frozen
 	landscape land/lava13
 	description `Plumes of soot and ash rise from a cluster of several dozen volcanoes on this planet's main continent, shrouding the planet in a thick layer of clouds and choking out the sunlight. The ruins of several Korath cities and the geometric grids of cleared land surrounding them show that this was once a farming world, but now few plants are able to survive and kilometer-high glaciers have begun creeping down from the poles. It may be centuries before the skies clear and this world begins to thaw.`
 	security 0
@@ -1082,7 +1082,7 @@ planet Earth
 		fleet "Large Republic" 50
 
 planet Eavine
-	attributes ka'het uninhabited
+	attributes ka'het uninhabited frozen
 	landscape land/snow8
 	description `Although its climate is very cold and most of the surface is covered in snow, Eavine has a crust rich with rare metals and minerals hard to find elsewhere. Entire valleys on the surface have been completely stripped of their resources, likely used in the massive complex of half buried buildings which appears to be the only settlement on this moon that remains today.`
 
@@ -1205,7 +1205,7 @@ wormhole "Ember Wormhole"
 	color "wormholes: Ember Waste"
 
 planet Eminonu
-	attributes uninhabited
+	attributes uninhabited frozen
 	landscape land/snow12
 	description `Eminonu's notably green rocks show a remarkably high copper content and the historic presence of atmospheric water. Scattered vegetative debris suggests that this world was, until recently, some variety of garden planet, albeit likely a cold one. Today the vast majority of moisture is locked up in ice fields, and the ambient temperatures are far too cold for even hardy lichens to survive.`
 	government Uninhabited
@@ -1288,7 +1288,7 @@ planet "Esek Stovar"
 	security 0
 
 planet "Eskar Kortuka"
-	attributes korath
+	attributes korath frozen
 	landscape land/snow19
 	description `This is a barely habitable frozen world. The Korath built nothing here except for a few small mining facilities, now abandoned. There is no sign that the occupants were forced to leave by violence. Rather, it seems that they simply packed up their things one day and moved out. The buildings they left behind are now half-covered by snowdrifts.`
 	security 0
@@ -1682,7 +1682,7 @@ planet Ghneoe
 	government Uninhabited
 
 planet "Giaru Gegno"
-	attributes "gegno quarg" quarg station
+	attributes "gegno quarg" quarg station ringworld
 	landscape land/station2
 	description `The quality of its structure suggests that this Quarg ringworld had to have been completed rather recently, but there are some notable differences that don't seem Quarg-like. Some of the hangers and docks on the ring are oddly larger than others, and the inner quarters are wider and taller than what is normal for a Quarg. The hangar you currently are parked in, however, seems to be void of these characteristics, and is similar to ones at the Quarg ringworld in human space.`
 	description `	Despite seeing numerous non-Quarg ships before landing on the ring, you are only guided around parts of the ring where they are not present.`
@@ -1721,7 +1721,7 @@ planet Glaze
 		fleet "Large Militia" 25
 
 planet "Glittering Ice"
-	attributes saryd
+	attributes saryd frozen
 	landscape land/snow7
 	description `The climate on Glittering Ice is so cold for most of the year that the creatures here have evolved thick layers of feathers, fur, or fat to keep themselves warm. As a result nearly all of them, from the smallest rodents to the largest predators, are practically spherical, appearing as shapeless blobs; for many of them it is hard for a casual observer to even figure out which side of them is their head.`
 	description `	Colonies of one particularly clever species of large rodents that live near the equator are capable of using ice and snow to build interconnected, multi-layered warrens.`
@@ -2054,7 +2054,7 @@ planet Hippocrates
 		fleet "Small Syndicate" 9
 
 planet Hope
-	attributes uninhabited
+	attributes uninhabited frozen
 	landscape land/snow9
 	description `In the year 2994, Hope was a somewhat cold but otherwise hospitable planet, home to a burgeoning population of almost two million people. But that year, a supervolcano eruption ejected so much dust into the upper atmosphere that a new ice age set in and the planet became unlivable.`
 	description `	As the temperatures steadily dropped, nearly half the Republic Navy was mobilized to evacuate settlers from Hope and transport them to nearby colonies. The evacuation effort took six months.`
@@ -2112,7 +2112,7 @@ planet "Hydra Station"
 		fleet "Small Militia" 8
 
 planet Icefall
-	attributes core farming frontier oil
+	attributes core farming frontier oil frozen
 	landscape land/dmottl3
 	description `Icefall is far from its sun, with an axial tilt of roughly 38 degrees. This means that the climate is cold, the year is also long, and each hemisphere has a short summer - barely enough to fit a terrestrial growing season. Nevertheless, most of the inhabitants are farmers, with the exception of the oil drilling industry at the equator. There are only a few major towns, and no major metropolitan centers. Icefall's oceans are filled with constantly shifting pack ice and icebergs, making them nearly unnavigable.`
 	description `	The most distinctive feature of the local ecology is the vast flocks of gooselike migratory birds, which raise two broods a year: one in each hemisphere's summer. The farm workers migrate in similar fashion, and many landowners have farms in both hemispheres.`
@@ -2146,7 +2146,7 @@ planet Iddesato
 	security 0
 
 planet "Iemn Eitch"
-	attributes gegno
+	attributes gegno frozen
 	landscape land/desert2
 	description `Although too cold for a proper civilization, Iemn Eitch has been extensively used in the past as an outpost for the growing Gegno space race. As one of their first few explored worlds, antique-looking architecture is scattered about the surface and looks significantly different to structures found on Dueyu Eitch, perhaps due to the nature of construction in an unfamiliar environment. A few large shipyard-esque platforms continue to service a small number of still active Gegno generation vessels from times past, presumably at a much slower pace than during the earliest days of their space colonization.`
 	spaceport `	Rather than a traditional spaceport, a large and extensive shipyard engulfs a portion of the moon's surface, cluttered with numerous structures from an early colonial period. Several immense hangars, mostly reduced to their bare metal frames, house various archaic spacecraft of times past, with a few of them still servicing the remaining active vessels.`
@@ -2201,7 +2201,7 @@ planet "Inmost Blue"
 	security 0.3
 
 planet "Into White"
-	attributes kimek
+	attributes kimek frozen
 	landscape land/snow10
 	description `Formerly a fruitful farming world, this planet is now in the grips of an approaching ice age. The Kimek have chosen to wait it out rather than risking destabilizing the planet's ecosystems by trying to correct the temperature change, and the population has dwindled to less than a billion, mostly living near the equator where the climate is still somewhat temperate.`
 	spaceport `The spaceport city was once the largest on the planet, but now more than half of it is uninhabited, buried in snowdrifts. Within the next century, the Kimek will probably need to build a new spaceport closer to the equator, unless they choose to abandon this world altogether.`
@@ -2372,7 +2372,7 @@ planet Kumkapi
 	security 0
 
 planet "Kuwaru Efreti"
-	attributes "korath quarg" quarg station
+	attributes "korath quarg" quarg station ringworld
 	landscape land/station20
 	description `This Quarg ringworld is almost half completed, but there are no signs of active construction, and your ship's sensors picked up no energy signals from any section of the ring except for this one. You also observed superficial weapon scars on some parts of the ring, damage that the Quarg have not bothered to repair - although clearly the attackers did not possess weapons powerful enough to do any serious harm to the ring.`
 	spaceport `Despite their size, the Quarg are generally almost silent when they move, and there seem to be very few of them left inhabiting this ringworld. As you walk through some parts of the spaceport it is utterly silent and seemingly deserted, and you are jolted by surprise each time the illusion of solitude is broken by a Quarg emerging suddenly from a doorway and striding silently past you. Every once in a while, louder footsteps announce the presence of a group of Korath visiting the station.`
@@ -2883,7 +2883,7 @@ planet "New Finding"
 	security 0.3
 
 planet "New Greenland"
-	attributes "dirt belt" forest textiles
+	attributes "dirt belt" forest textiles frozen
 	landscape land/snow16
 	description `New Greenland was first settled about six hundred years ago, at the peak of the "Turf Wars" era where most planets were controlled by powerful corporations and their struggles often turned into outright warfare with privately owned fleets and armies. The people who came to New Greenland were looking for a world so marginal and undesirable that they could live here in peace without being caught in the crossfire.`
 	description `	The locals here grow food in greenhouses and specialize in making warm winter clothing, which is this planet's only export.`
@@ -3191,7 +3191,7 @@ planet "Oup Je"
 planet Palarei
 	attributes ka'het uninhabited
 	landscape land/valley5
-	description `While its short distance from Gerenus makes it seem only barely capable of supporting life, Palarei's surface is full of thickets of a small spiky bush native to this planet. Oddly enough, very few settlements on the planet appear to have been destroyed by weapon fire; most facilities are covered in meters of dust and sand but, other than that, appear to be quite operative.`
+	description `While its short distance from Gerenus makes it seem only barely capable of supporting life, Palarei's surface is full of thickets of a small spiky bush native to this planet. Oddly enough, very few settlements on the planet appear to have been destroyed by weapons fire; most facilities are covered in meters of dust and sand but, other than that, appear to be quite operative.`
 
 planet Palatine
 	attributes "gas giant" "requires: gaslining" uninhabited
@@ -3501,7 +3501,7 @@ planet Revelation
 	"required reputation" 15
 
 planet "Ring of Friendship"
-	attributes heliarch station
+	attributes heliarch station ringworld
 	landscape land/station21
 	description `This is the crown jewel of the Heliarchs, a ringworld that was completed by the Quarg before the Coalition formed and drove them away. It now serves both as a center of finance and trade, and as the seat of the Heliarch government, which is made up of "consuls" who have been selected by the other Heliarchs from among their number in such a way that all three species always have equal representation. The Heliarchs, in turn, are selected from among the best and brightest members of each species. Despite the occasional resistance to it, this meritocracy has survived ten times longer than any human democracy.`
 	spaceport `At any given time, thousands of young people are in training here to become "interpreters," the Heliarch agents who serve as translators and mediators on all the Coalition worlds. As they rise through the ranks, some of those agents will be honored by being elevated to the rank of Heliarch, gaining a voice in the selection of new consuls and perhaps one day even being selected themselves.`
@@ -3511,7 +3511,7 @@ planet "Ring of Friendship"
 	security 0.8
 
 planet "Ring of Power"
-	attributes heliarch station
+	attributes heliarch station ringworld
 	landscape land/station22
 	description `This ringworld is the center of operations for the Heliarch defense forces. Although they have not had to fight a major space battle in thousands of years, they still maintain a sizable fleet, believing that if they ever allow their vigilance to waver, the Quarg may return and try to reclaim what was once theirs.`
 	spaceport `The hallways of the spaceport echo with the footsteps of groups of marching defense force cadets. Each group contains a mixture of Saryds, Kimek, and Arachi, to help them learn allegiance to all the peoples of the Coalition instead of just identifying with their own species.`
@@ -3521,7 +3521,7 @@ planet "Ring of Power"
 	security 0.8
 
 planet "Ring of Wisdom"
-	attributes heliarch station
+	attributes heliarch station ringworld
 	landscape land/station2
 	description `This Heliarch ringworld is their center for science, mostly trying to understand and reverse engineer Quarg technology rather than inventing new devices of their own. But after thousands of years of controlling these ringworlds, it seems that their inner workings are still something of a mystery to the Heliarchs.`
 	description `	"Construction" work is always ongoing here, but rather than extending the backbone of the ring itself, which uses exotic materials that they cannot replicate, the Heliarchs are just adding sheets of solar panels and other extensions to the sides of the ring.`
@@ -3664,7 +3664,7 @@ planet "Sebra Skira"
 	security 0
 
 planet "Second Cerulean"
-	attributes kimek research
+	attributes kimek research frozen
 	landscape land/snow2
 	description `From above this ocean world looks like a frozen wasteland, but a wide variety of uncanny creatures inhabit the rift valleys and hydrothermal vents deep underwater. The Kimek operate a small research station on the surface, because this is one of the few worlds in Coalition territory where there are still new species left undiscovered, kilometers below the frozen surface. Above ground, only a few species of birds and insects are able to survive.`
 	spaceport `The spaceport station is a cylindrical tower rising above the snowdrifts, anchored to the volcanic rock of one of the few islands that protrudes above the ice sheets near the equator. Near the station a hole about ten meters in diameter has been bored through the ice to allow submersible research craft access to the ocean depths.`
@@ -3702,7 +3702,7 @@ planet "Secret Sky"
 planet "Sek Alarfarat"
 	attributes korath
 	landscape land/canyon15
-	description `A hideously powerful weapon tore open scars on this planet's surface so deep that pools of magma bled out through them. Presumably these wounds were inflicted on the planet by yet another Korath super-weapon devised in the final years of their civil war. A few ruined cities remain, some of which were sliced in two by the trail of weapon fire.`
+	description `A hideously powerful weapon tore open scars on this planet's surface so deep that pools of magma bled out through them. Presumably these wounds were inflicted on the planet by yet another Korath super-weapon devised in the final years of their civil war. A few ruined cities remain, some of which were sliced in two by the trail of weapons fire.`
 
 planet "Selefkar Refinery"
 	attributes korath station
@@ -3721,7 +3721,7 @@ planet Seli'het
 	attributes ka'het uninhabited
 	landscape land/station18
 	music ambient/machinery
-	description `This massive station, despite its age, does not appear to have any visible damage: everything inside it is perfectly in order, and no section shows signs of weapon fire on it. If it wasn't for the absence of its inhabitants and the complete lack of atmosphere, it would probably be identical to when it was first constructed.`
+	description `This massive station, despite its age, does not appear to have any visible damage: everything inside it is perfectly in order, and no section shows signs of weapons fire on it. If it wasn't for the absence of its inhabitants and the complete lack of atmosphere, it would probably be identical to when it was first constructed.`
 	government Builder
 
 planet "Separa Tiklar"
@@ -3741,7 +3741,7 @@ planet "Septar Lorku"
 	security 0
 
 planet Seraglio
-	attributes "ice giant" uninhabited
+	attributes "ice giant" uninhabited frozen
 	landscape land/snow22
 	description `Seraglio's vast ice fields hint at a variety of mysteries, most notably the chasms that suggest the planet was somehow subjected to massive compressive forces at some point in its recent geological history.`
 	description `At present, Seraglio is the focus of considerable attention from researchers searching for clues as to the planet's history.`
@@ -3785,7 +3785,7 @@ planet "Sestor Ikfar"
 	security 0
 
 planet "Setar Fort"
-	attributes efret korath
+	attributes efret korath frozen
 	landscape land/snow5
 	description `There are several large Korath cities on this planet, but the ones farther from the equator have been covered by encroaching glaciers as the planet slowly enters a new ice age. A small number of crops are still grown in the open air, but many of the fields have now been covered with row upon row of gleaming glass as the Korath resort to greenhouse farming to lengthen the growing season and feed their remaining population more efficiently. Farther from the city, Korath ranchers tend herds of creatures that resemble giant, six-legged yaks.`
 	spaceport `This spaceport is the only place where you have ever encountered the Korath cooking food that actually smells appetizing. But in other places, the stench of the enormous cattle that they are trading more than makes up for it. Occasionally as you walk by the stalls, one of the cattle will lower its head to sniff at you. They seem docile enough, although perhaps a bit undernourished, but their horns are alarming.`
@@ -3840,7 +3840,7 @@ planet "Shih's Locker"
 	government Uninhabited
 
 planet Shiver
-	attributes "near earth"
+	attributes "near earth" frozen
 	landscape land/snow15
 	description `Shiver is a dead and frozen world. The only settlement is a small refueling station that services cargo fleets on their way to Earth. Precipitation is rare here, but sometimes the wind whips up snow and ice from the surface into something akin to a desert sandstorm, and even on days when the wind dies down the air sparkles with tiny, floating ice crystals.`
 	description `	Most people who come here for work only stay for a few months or half a year, just long enough for the sense of adventure to die away.`
@@ -4026,7 +4026,7 @@ planet "Solima Skarati"
 	description `The Korath were endlessly creative in devising new weapons of war during the twilight years of their empire, but what destroyed this planet in the end was not a military disaster but an ecological one. Small villages along the ocean shores and rusting fleets of boats bear witness to the fact that this ocean world was once a fruitful fishery. But now the ocean carries high levels of industrial toxins, and in place of large fish only small invertebrates remain.`
 
 planet "Sopi Lefarkata"
-	attributes korath
+	attributes korath frozen
 	landscape land/mountain24-spfld
 	description `This is a cold and mountainous world, and most of its oceans are covered in ice. A handful of giant craters gouged out from the sides of mountains are the only sign that there were once Korath settlements here. But, the Kor Sestor robots have begun building settlements of their own, in caverns deep under the mountains where they are safe from orbital bombardment. Where recent Kor Mereti attacks have collapsed one of the access tunnels, swarms of robots have gathered to dig them out like ants when their hill has been stepped on.`
 	spaceport `The caverns of the Kor Sestor are hidden deep under the mountains, but there are also a handful of refueling stations on the surface. Each one is guarded by towering weapon platforms and swarms of autonomous fighter drones.`
@@ -4298,7 +4298,7 @@ planet Thunder
 		fleet "Small Militia" 20
 
 planet Tibernia
-	attributes "ice moon" uninhabited
+	attributes "ice moon" uninhabited frozen
 	landscape land/mars2
 	description `Tibernia is a classic ice planet, but unlike most, it is nearly a perfect sphere with a remarkably smooth surface blemished by few craters. Many have speculated that it is artificial, but so far no one has found conclusive evidence of this.`
 	government Uninhabited
@@ -4403,7 +4403,7 @@ planet Tschyss
 	security 0
 
 planet Tundra
-	attributes "dirt belt" oil textiles
+	attributes "dirt belt" oil textiles frozen
 	landscape land/dmottl1
 	description `Millions of years ago, this was a warm world, perhaps even tropical. But some cataclysmic event, perhaps a meteor strike or a massive volcanic eruption, altered the planet's atmosphere enough to turn it into the nearly lifeless, frozen planet it is today.`
 	description `	The first settlers came here to drill for the oil trapped deep under the surface, a relic of Tundra's former, more lively days. Instead of refining the oil into plastic, which sells relatively cheap in this region, they have developed an industry in synthetic fabrics and clothing.`
@@ -4512,7 +4512,7 @@ planet "Var' Kayi"
 	bribe 0
 
 planet "Var' Roi"
-	attributes moon research wanderer
+	attributes moon research wanderer frozen
 	landscape land/snow14
 	description `The surface of this small icy moon is constantly cracked and broken by tidal force from the gas giant that it orbits. The tidal disturbances also heat the moon enough to keep its oceans warm enough to support life despite the small amount of sunlight that reaches here.`
 	spaceport `The only habitation on this moon is a Wanderer research station suspended on metal pylons well above the icy surface of the ocean. The gravity here is low enough that even though the atmosphere is thin, the Wanderers who work in the station can fly out across the ocean on their own power, wearing some sort of breathing gear. The researchers also have a fleet of submarine ships, sturdy enough to pierce through the shifting ice and travel deep below the ocean surface.`
@@ -4640,7 +4640,7 @@ planet Vatican
 	security 0
 
 planet Veiuye
-	attributes moon uninhabited
+	attributes moon uninhabited frozen
 	landscape land/sea2
 	description `Like the other moons of the nearby gas giant, Veiuye is a frozen world. However, the surface layer of Veiyue is rather thin, and more detailed scans show large, hollow caverns beneath the exterior of the moon. These areas are abnormally warm compared to the rest of the moon, and appear to be filled with oceans primarily made up of water. Strange readings come from these areas, which could possibly be due to microbial life.`
 	government Uninhabited
@@ -4666,7 +4666,7 @@ planet Vigales
 	government Uninhabited
 
 planet Viminal
-	attributes remnant "remnant primary"
+	attributes remnant "remnant primary" frozen
 	landscape land/snow3
 	description `This cold and dreary world would certainly not be attractive to any modern settlers, but to those who were fleeing the chaos of the Alpha Wars it had the undeniable advantage of being isolated and undiscovered. Today the main reason for the continuing Remnant presence here is that this is the only world they have found where the Key Stones that enable ships to travel through certain wormholes in the Ember Waste can be found.`
 	spaceport `The spaceport is an enormous dome, built of the same resilient and semi-organic material as the hulls of Remnant ships. An opening at one end of the dome allows ships to fly in and out. Inside, the air is still cold, but at least you are sheltered from the violent winds that sweep across the rest of the planet's surface. Some of the locals, accustomed to the cold, walk about in their shirtsleeves as if this were a balmy summer day.`
@@ -4781,7 +4781,7 @@ planet Windblain
 		fleet "Small Deep Security" 18
 
 planet Winter
-	attributes factory frontier south
+	attributes factory frontier south frozen
 	landscape land/snow18
 	description `The dense clouds in Winter's atmosphere block out much of the sunlight, creating a frigid landscape below. The planet was not settled until about a century ago, when a group of investors from Pherkad decided to build a manufacturing center here, rather than trying to find more land on the already overcrowded planet of Solace. Claiming that the industrial emissions of carbon dioxide and other greenhouse gases would eventually warm the planet and turn it into a tropical paradise, they were able to draw enough settlers to keep the factories going.`
 	description `	The temperatures have risen measurably since the arrival of the human colonists, but without more intentional efforts it may be another century before the planet warms enough to be truly comfortable to live on.`

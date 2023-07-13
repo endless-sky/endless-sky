@@ -2676,19 +2676,25 @@ mission "Recycle garbage"
 		payment
 		payment 20000
 
-mission "Wildfire Aid [1]"
+mission "FW Wildfire Aid [1]"
 	job
 	repeat
-	name "Fire retardant to <planet>"
-	description "A major wildfire has occurred on <destination> and various settlements on the planet have been affected. Bring <cargo> to <planet> by <date> to assist in the firefighting efforts. Payment is <payment>."
-	cargo "fire retardant" 25 2 .05
+	name "Wildfire aid to <planet>"
+	substitutions
+		"<problem>" "forest fire"
+		"<problem>" "brush fire"
+			"random" < 60
+		"<problem>" "wildfire"
+			"random" < 30
+	description "A major <problem> has occurred on <destination> and various settlements on the planet have been affected. Bring <cargo> to <planet> by <date> to assist in the firefighting efforts. Payment is <payment>."
+	cargo "flames aid" 25 2 .05
 	deadline
 	to offer
 		random < 5
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Free Worlds"
 	destination
-		not government "Pirate"
+		government "Free Worlds"
 		distance 2 8
 		attributes "forest"
 	on visit
@@ -2697,19 +2703,25 @@ mission "Wildfire Aid [1]"
 		payment 8500 80
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>. A group of <planet> citizens thank you for your assistance and bid you farewell."
 
-mission "Wildfire Aid [2]"
+mission "FW Wildfire Aid [2]"
 	job
 	repeat
 	name "Firefighters to <planet>"
-	description "A major wildfire has occurred on <destination> and various settlements on the planet have been affected. Bring a team of <bunks> firefighters to <planet> by <date> to assist in the firefighting efforts. Payment is <payment>."
+	substitutions
+		"<problem>" "forest fire"
+		"<problem>" "brush fire"
+			"random" < 60
+		"<problem>" "wildfire"
+			"random" < 30
+	description "A major <problem> has occurred on <destination> and various settlements on the planet have been affected. Transport a team of <bunks> firefighters to <planet> by <date> to assist in the firefighting efforts. Payment is <payment>."
 	passengers 5 10
 	deadline
 	to offer
 		random < 5
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Free Worlds"
 	destination
-		not government "Pirate"
+		government "Free Worlds"
 		distance 2 8
 		attributes "forest"
 	on visit
@@ -3602,3 +3614,115 @@ mission "Bounty Hunting (Marauder X)"
 	on complete
 		payment 1000000
 		dialog phrase "generic fleet bounty hunting payment dialog"
+
+
+
+mission "Republic Navy Advisory System [frozen]"
+	name "Cold relief to <planet>"
+	description "Deliver humanitarian aid of <cargo> to <destination> by <date> following a severe cold snap. Payment is <payment>."
+	minor
+	repeat
+	deadline
+	source
+		government "Republic" "Syndicate"
+	destination
+		government "Republic" "Syndicate" "Independent" "Neutral"
+		distance 1 8
+		attributes "frozen"
+	substitutions
+		"<problem>" "cold snap"
+		"<problem>" "freeze"
+			"random" < 60
+		"<problem>" "snowstorm"
+			"random" < 30
+		"<problem>" "blizzard"
+			"random" < 10
+	cargo "cold aid" 10 15 0.5
+	to offer
+		random < 1
+	on offer
+		dialog `This is the Republic Navy Advisory System: <planet> is experiencing a severe <problem>. Volunteers are requested to supply <cargo> to <planet> by <date>. A stipend of <payment> is provided to cover fuel, crew, and any incidental expenses.`
+	on complete
+		payment 8500 80
+		dialog `Shivering, appreciative aid workers welcome your shipment. You look on, feeling satisfied that <cargo> will soon arrive to those that need it most. Back in your ship, you're notified that you've received <payment> for your service.`
+
+mission "Republic Navy Advisory System [volcanic]"
+	name "Volcanic relief to <planet>"
+	description "Deliver humanitarian aid of <cargo> to <destination> by <date> following a severe volcanic eruption. Payment is <payment>."
+	minor
+	repeat
+	deadline
+	source
+		government "Republic" "Syndicate"
+	destination
+		government "Republic" "Syndicate" "Independent" "Neutral"
+		distance 1 8
+		attributes "volcanic" "lava"
+	substitutions
+		"<problem>" "volcanic event"
+		"<problem>" "volcanic eruption"
+			"random" < 60
+		"<problem>" "gas eruption"
+			"random" < 30
+	cargo "flames aid" 10 15 0.5
+	to offer
+		random < 1
+	on offer
+		dialog `This is the Republic Navy Advisory System: <planet> is experiencing a severe <problem>. Volunteers are requested to supply <cargo> to <planet> by <date>. A stipend of <payment> is provided to cover fuel, crew, and any incidental expenses.`
+	on complete
+		payment 8500 80
+		dialog `Relieved-looking aid workers welcome your shipment. You look on, feeling satisfied that <cargo> will soon arrive to those that need it most. Back in your ship, you're notified that you've received <payment> for your service.`
+
+mission "Republic Navy Advisory System [wildfire cargo]"
+	name "Wildfire relief to <planet>"
+	description "Deliver humanitarian aid of <cargo> to <destination> by <date> following a severe wildfire. Payment is <payment>."
+	minor
+	repeat
+	deadline
+	source
+		government "Republic"
+	destination
+		government "Republic" "Syndicate" "Independent" "Neutral"
+		distance 1 8
+		attributes "forest"
+	substitutions
+		"<problem>" "forest fire"
+		"<problem>" "brush fire"
+			"random" < 60
+		"<problem>" "wildfire"
+			"random" < 30
+	cargo "flames aid" 10 15 0.5
+	to offer
+		random < 1
+	on offer
+		dialog `This is the Republic Navy Advisory System: <planet> is experiencing a severe <problem>. Volunteers are requested to supply <cargo> to <planet> by <date>. A stipend of <payment> is provided to cover fuel, crew, and any incidental expenses.`
+	on complete
+		payment 8500 80
+		dialog `Ash-covered, relieved aid workers welcome your shipment. You look on, feeling satisfied that <cargo> will soon arrive to those that need it most. Back in your ship, you're notified that you've received <payment> for your service.`
+
+mission "Republic Navy Advisory System [wildfire firefighters]"
+	name "Transport Firefighters"
+	description "Transport <bunks> firefighters to <planet> by <date>. Payment is <payment>."
+	minor
+	repeat
+	deadline
+	source
+		government "Republic" "Syndicate"
+	destination
+		government "Republic" "Syndicate" "Independent" "Neutral"
+		distance 1 8
+		attributes "forest"
+	substitutions
+		"<problem>" "forest fire"
+		"<problem>" "brush fire"
+			"random" < 60
+		"<problem>" "wildfire"
+			"random" < 30
+	passengers 5 15
+	to offer
+		random < 1
+	on offer
+		dialog `This is the Republic Navy Advisory System: <planet> is experiencing a severe <problem>. Volunteers are requested to transport <bunks> firefighters to <planet> by <date>. A stipend of <payment> is provided to cover fuel, crew, and any incidental expenses.`
+	on complete
+		payment 9000 85
+		dialog "You land at a makeshift landing site a few minutes flight from the blaze. The smoky haze that drifts into your ship when the firefighters open the hatch to depart makes your eyes and nose itch. As you watch your passengers heading toward a staging area nearby, you think about the inferno they will soon be voluntarily entering. A chirp from your communications system indicates your stipend of <payment> has been deposited, and you begin your atmospheric flight back to <planet>'s main spaceport."

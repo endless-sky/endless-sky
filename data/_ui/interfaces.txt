@@ -41,13 +41,17 @@ color "shop side panel background" .2 .2 .2 1.
 color "shop side panel footer" .3 .3 .3 1.
 color "shop info panel background" .055 .055 .055 1.
 color "tooltip background" .2 .2 .2 1.
+color "player info hardpoint gun" .5 .375 0. 1.
+color "player info hardpoint gun hover" .8 .6 0. 1.
+color "player info hardpoint turret" 0. .375 .5 1.
+color "player info hardpoint turret hover" 0. .6 .8 1.
 color "logbook sidebar" .09 .09 .09 1.
 color "logbook background" .125 .125 .125 1.
 color "logbook line" .2 .2 .2 1.
 color "item selected" 0. 0. 0. .3
 
 # Colors used to draw certain HUD elements in-flight.
-color "shields" .43 .55 .70 .75
+color "shields" .43 .55 .85 .8
 color "hull" .70 .62 .43 .75
 color "disabled hull" .3 0 0 .3
 color "heat" .70 .43 .43 .75
@@ -83,15 +87,18 @@ color "escort selected" .2 .8 0. 1.
 color "escort hostile" 1. .6 .4 1.
 
 # Colors used when "status overlays" are enabled, and to show scan progress.
+color "overlay flagship shields" 0. .5 0. .25
+color "overlay flagship hull" .45 .5 0. .25
+color "overlay flagship disabled" .5 0. 0. .25
 color "overlay friendly shields" 0. .5 0. .25
 color "overlay friendly hull" .45 .5 0. .25
-color "overlay friendly disabled" .5 0 0 .25
+color "overlay friendly disabled" .5 0. 0. .25
 color "overlay hostile shields" .5 .15 0. .25
 color "overlay hostile hull" .5 .3 0. .25
-color "overlay hostile disabled" .3 .3 0 .25
+color "overlay hostile disabled" .3 .3 0. .25
 color "overlay neutral shields" .43 .55 .70 .75
 color "overlay neutral hull" .45 .5 0. .25
-color "overlay neutral disabled" .5 0 0 .25
+color "overlay neutral disabled" .5 0. 0. .25
 color "overlay outfit scan" .5 .5 .5 .25
 color "overlay cargo scan" .7 .7 .7 .25
 
@@ -1135,6 +1142,55 @@ interface "map buttons" bottom right
 	button d "_Done"
 		from -80 -40 to -10 -10
 	
+	active
+	sprite "ui/dialog cancel"
+		from 0 -40 to -90 -90
+	button f "_Find"
+		from -80 -80 to -10 -50
+
+	sprite "ui/zoom"
+		from 0 -80 to -90 -130
+	active if "!max zoom"
+	button + "_+"
+		from -10 -90 to -40 -120
+		size 18
+	active if "!min zoom"
+	button - "_-"
+		from -50 -90 to -80 -120
+		size 18
+
+
+interface "map buttons (small screen)" bottom right
+	active if "!is shipyards"
+	sprite "ui/wide button"
+		from -270 -40 to -160 -90
+	button s "_Shipyards"
+		from -260 -50 to -170 -80
+
+	active if "!is outfitters"
+	sprite "ui/wide button"
+		from -270 -50 to -160 0
+	button o "_Outfitters"
+		from -260 -40 to -170 -10
+
+	active if "!is missions"
+	sprite "ui/dialog cancel"
+		from -170 -40 to -80 -90
+	button i "M_issions"
+		from -160 -80 to -90 -50
+
+	active if "!is ports"
+	sprite "ui/dialog cancel"
+		from -170 -50 to -80 0
+	button p "_Ports"
+		from -160 -40 to -90 -10
+
+	active
+	sprite "ui/dialog cancel"
+		from -90 -50 to 0 0
+	button d "_Done"
+		from -80 -40 to -10 -10
+
 	active
 	sprite "ui/dialog cancel"
 		from 0 -40 to -90 -90
