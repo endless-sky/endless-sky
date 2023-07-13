@@ -2426,7 +2426,7 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 	const bool useArtilleryAI = artilleryOverride || (shipAICache.IsArtilleryAI() && isAbleToRun);
 	const double shortestRange = shipAICache.ShortestRange();
 	const double shortestArtillery = shipAICache.ShortestArtillery();
-	double minSafeDistance = (isAbleToRun || artilleryOverride) ? shipAICache.MinSafeDistance() : 0.;
+	double minSafeDistance = (isAbleToRun || ship.GetPersonality().IsArtillery()) ? shipAICache.MinSafeDistance() : 0.;
 
 	const double totalRadius = ship.Radius() + target.Radius();
 	const Point direction = target.Position() - ship.Position();
@@ -2468,8 +2468,15 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 		}
 		else
 		{
+			// Forced artillery AI will not joust, instead staying near the maximum range.
+			if(artilleryOverride)
+			{
+				if(approachSpeed > 0.)
+					command |= Command::STOP;
+				AimToAttack(ship, command, target);
+			}
 			// This isn't perfect, but it works well enough.
-			if((useArtilleryAI && (approachSpeed > 0. && weaponDistanceFromTarget < shortestArtillery * .9)) ||
+			else if((useArtilleryAI && (approachSpeed > 0. && weaponDistanceFromTarget < shortestArtillery * .9)) ||
 					weaponDistanceFromTarget < shortestRange * .75)
 				AimToAttack(ship, command, target);
 			else
