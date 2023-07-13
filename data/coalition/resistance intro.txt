@@ -432,7 +432,7 @@ mission "Resistance: Smuggling: Reactors"
 		payment 33000000
 		"assisted resistance" ++
 		log "After delivering some nuclear reactors, Chiree says she won't make further contact via the usual communicator, but others of the Lunarium on Coalition worlds may offer similar work."
-		log "Factions" "Lunarium Redoubt" "Apparently, some Arach houses are not entirely happy with the status of the Coalition under the Heliarchs, and so they help fund the Lunarium."
+		log "Factions" "Lunarium Redoubt" "Apparently, some Arach Houses are not entirely happy with the status of the Coalition under the Heliarchs, and so they help fund the Lunarium."
 		conversation
 			`When you come in to land, the local Lunarium contacts direct you to a site far away from any of the cities. You are led close to a gigantic cave entrance, on a valley already blanketed by the planet's typical heavy downpours. Dozens of Arachi and Kimek are waiting for you, and once you land they use hulking cargo loaders to carefully take each reactor from your ship, slowly bringing them inside the cave. They repeat this slow, arduous process with each reactor that you were tasked to bring to them.`
 			`	Most of those not working on moving the reactors are heavily armed, keeping careful watch of the skies and occasionally tuning into a communicator for any signs of Heliarch ships that may be approaching. After over an hour, once the last reactor is finally taken out of your cargo hold, one of the Arachi comes up to you and hands you <payment>, thanking you for your service to their cause. "A lot of money, this is, but worth it, the reactors should be."`
