@@ -1965,7 +1965,7 @@ system Sail
 
 system Symphony
 	pos -143.221 954.266
-	government Dissonance
+	government "Avgi (Dissonance)"
 	habitable 7906.478
 	belt 3024 10
 	link "#01a9a9"
@@ -2520,7 +2520,7 @@ system Gossamer
 
 system Oratorio
 	pos -140.018 843.077
-	government Dissonance
+	government "Avgi (Dissonance)"
 	habitable 4050
 	belt 1664 5
 	link "#2b5d50"

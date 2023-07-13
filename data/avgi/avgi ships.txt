@@ -18,6 +18,120 @@ shipyard Avgi
 
 
 
+
+# Transports
+
+
+
+# Freighters
+
+
+
+# Utility
+
+
+
+
+
+
+
+# Interceptors
+
+
+
+
+
+
+
+# Light Warships
+
+
+
+
+
+
+
+
+
+
+
+# Medium Warships
+
+
+
+
+
+
+
+
+
+
+# Heavy Warships
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Fighters
+
+
+
+
+
+
+
+# Drones
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Transports:
 
 
