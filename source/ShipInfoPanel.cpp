@@ -561,10 +561,13 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 			zonesLeft.emplace_back(zoneCenter, LINE_SIZE, weaponIndex);
 
 		// Determine what color to use for the line.
-		float high = (weaponIndex == hoverIndex && (right ? hoverRight : !hoverRight) ? .8f : .5f);
-		Color color(high, .75f * high, 0.f, 1.f);
+		Color color;
 		if(isTurret)
-			color = Color(0.f, .75f * high, high, 1.f);
+			color = *GameData::Colors().Get(isHover ? "player info hardpoint turret hover"
+			: "player info hardpoint turret");
+		else
+			color = *GameData::Colors().Get(isHover ? "player info hardpoint gun hover"
+			: "player info hardpoint gun");
 
 		// Draw the line.
 		Point from(fromX[right], zoneCenter.Y());
