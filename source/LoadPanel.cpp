@@ -303,20 +303,33 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		else if(pit != files.end())
 		{
 			auto it = pit->second.begin();
-			for( ; it != pit->second.end(); ++it)
+			int index = 0;
+			for( ; it != pit->second.end(); ++it, ++index)
 				if(it->first == selectedFile)
 					break;
 
 			if(key == SDLK_DOWN)
 			{
 				++it;
+				const int lastVisibleIndex = (centerScroll / 20.) + 14.;
+				if(index >= lastVisibleIndex)
+					centerScroll += 20.;
 				if(it == pit->second.end())
+				{
 					it = pit->second.begin();
+					centerScroll = 0.;
+				}
 			}
 			else
 			{
+				const int firstVisibleIndex = centerScroll / 20.;
+				if(index <= firstVisibleIndex)
+					centerScroll -= 20.;
 				if(it == pit->second.begin())
+				{
 					it = pit->second.end();
+					centerScroll = 20. * pit->second.size() - 280.;
+				}
 				--it;
 			}
 			selectedFile = it->first;
