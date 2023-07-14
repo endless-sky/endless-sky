@@ -711,10 +711,10 @@ ship "Bounder"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 		
-	engine -12 44
-	engine 12 44
-	turret -37 4 "Anti-Missile Turret"
-	turret 37 4 "Anti-Missile Turret"
+	engine -10 44
+	engine 10 44
+	turret -38 12 "Anti-Missile Turret"
+	turret 38 12 "Anti-Missile Turret"
 	leak "leak" 60 50
 	explode "tiny explosion" 10
 	explode "small explosion" 20
@@ -1448,12 +1448,12 @@ ship "Dagger"
 			"hit force" 180
 	outfits
 		"Beam Laser"
-		"Javelin Mini Pod"
-		"Javelin" 40
+		"Javelin Mini Pod" 2
+		"Javelin" 80
 		
 		"nGVF-AA Fuel Cell"
 		"Supercapacitor"
-		"D14-RN Shield Generator"
+		"D23-QP Shield Generator"
 		"Small Radar Jammer"
 		
 		"X1700 Ion Thruster"
@@ -1461,9 +1461,9 @@ ship "Dagger"
 		
 	engine -8 34
 	engine 8 34
-	gun -11 -21 "Beam Laser"
+	gun -11 -21 "Javelin Mini Pod"
 	gun 11 -21 "Javelin Mini Pod"
-	gun 0 -35
+	gun 0 -35 "Beam Laser"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
 	explode "small explosion" 5
@@ -1675,8 +1675,9 @@ ship "Finch"
 			"hit force" 180
 	outfits
 		"Beam Laser"
-		"Javelin Mini Pod"
-		"Javelin" 40
+		"Javelin Mini Pod" 2
+		"Javelin Storage Crate"
+		"Javelin" 180
 		
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
@@ -1687,9 +1688,9 @@ ship "Finch"
 		
 	engine -5 32
 	engine 5 32
-	gun -7 -14 "Beam Laser"
+	gun -7 -14 "Javelin Mini Pod"
 	gun 7 -14 "Javelin Mini Pod"
-	gun 0 -31.5
+	gun 0 -31.5 "Beam Laser"
 	leak "flame" 60 80
 	explode "tiny explosion" 15
 	explode "small explosion" 5
@@ -1882,15 +1883,14 @@ ship "Frigate"
 			"hit force" 1500
 	outfits
 		"Particle Cannon" 2
-		"Torpedo Launcher"
-		"Sidewinder Missile Launcher"
+		"Torpedo Launcher" 2
 		"Torpedo" 60
-		"Sidewinder Missile" 45
 		"Blaster Turret" 2
 		"Anti-Missile Turret"
 		
 		"NT-200 Nucleovoltaic"
-		"LP144a Battery Pack"
+		"LP072a Battery Pack"
+		"LP036a Battery Pack"
 		"D41-HY Shield Generator"
 		"Large Radar Jammer"
 		"Laser Rifle" 5
@@ -1906,7 +1906,7 @@ ship "Frigate"
 	gun -11 -84.5 "Particle Cannon"
 	gun 11 -84.5 "Particle Cannon"
 	gun -11 -84.5 "Torpedo Launcher"
-	gun 11 -84.5 "Sidewinder Missile Launcher"
+	gun 11 -84.5 "Torpedo Launcher"
 	turret 0 -37.5 "Anti-Missile Turret"
 	turret -15.5 -12.5 "Blaster Turret"
 	turret 15.5 -12.5 "Blaster Turret"
@@ -2380,11 +2380,12 @@ ship "Lance"
 			"hit force" 180
 	outfits
 		"Energy Blaster"
-		"Sidewinder Missile Pod"
-		"Sidewinder Missile" 4
+		"Sidewinder Missile Pod" 2
+		"Sidewinder Missile Rack"
+		"Sidewinder Missile" 31
 		
 		"nGVF-AA Fuel Cell"
-		"LP036a Battery Pack"
+		"Supercapacitor" 4
 		"D14-RN Shield Generator"
 		"Small Radar Jammer" 2
 		
@@ -2393,9 +2394,9 @@ ship "Lance"
 		
 	engine -14.5 30.5 0.5
 	engine 14.5 30.5 0.5
-	gun -13.5 -6.5 "Energy Blaster"
+	gun -13.5 -6.5 "Sidewinder Missile Pod"
 	gun 13.5 -6.5 "Sidewinder Missile Pod"
-	gun 0 -34
+	gun 0 -34 "Energy Blaster"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description "The Lance is the primary fighter used by the Republic Navy. As with all fighters, it is weak by itself but very effective as part of a larger squadron."

@@ -173,7 +173,7 @@ int ShipyardPanel::DrawDetails(const Point &center)
 	if(selectedShip)
 	{
 		shipInfo.Update(*selectedShip, player, collapsed.count("description"));
-		selectedItem = selectedShip->ModelName();
+		selectedItem = selectedShip->DisplayModelName();
 
 		const Sprite *background = SpriteSet::Get("ui/shipyard selected");
 		const Sprite *shipSprite = selectedShip->GetSprite();
@@ -301,7 +301,7 @@ void ShipyardPanel::Buy(bool onlyOwned)
 		message = "Enter a name for your brand new ";
 
 	if(modifier == 1)
-		message += selectedShip->ModelName() + "! (Or leave it blank to use a randomly chosen name.)";
+		message += selectedShip->DisplayModelName() + "! (Or leave it blank to use a randomly chosen name.)";
 	else
 		message += selectedShip->PluralModelName() + "! (Or leave it blank to use randomly chosen names.)";
 
@@ -374,13 +374,12 @@ bool ShipyardPanel::CanSellMultiple() const
 void ShipyardPanel::BuyShip(const string &name)
 {
 	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
-	auto &playerConditions = player.Conditions();
 	if(licenseCost)
 	{
 		player.Accounts().AddCredits(-licenseCost);
 		for(const string &licenseName : selectedShip->Attributes().Licenses())
-			if(playerConditions.Get("license: " + licenseName) <= 0)
-				playerConditions["license: " + licenseName] = true;
+			if(!player.HasLicense(licenseName))
+				player.AddLicense(licenseName);
 	}
 
 	for(int i = 1; i <= modifier; ++i)

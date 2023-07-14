@@ -129,6 +129,8 @@
 		<Unit filename="source/Dialog.h" />
 		<Unit filename="source/Dictionary.cpp" />
 		<Unit filename="source/Dictionary.h" />
+		<Unit filename="source/DistanceCalculationSettings.cpp" />
+		<Unit filename="source/DistanceCalculationSettings.h" />
 		<Unit filename="source/DistanceMap.cpp" />
 		<Unit filename="source/DistanceMap.h" />
 		<Unit filename="source/Distribution.cpp" />
@@ -249,6 +251,8 @@
 		<Unit filename="source/Music.h" />
 		<Unit filename="source/NPC.cpp" />
 		<Unit filename="source/NPC.h" />
+		<Unit filename="source/NPCAction.cpp" />
+		<Unit filename="source/NPCAction.h" />
 		<Unit filename="source/News.cpp" />
 		<Unit filename="source/News.h" />
 		<Unit filename="source/Outfit.cpp" />
@@ -320,6 +324,8 @@
 		<Unit filename="source/ShipInfoDisplay.h" />
 		<Unit filename="source/ShipInfoPanel.cpp" />
 		<Unit filename="source/ShipInfoPanel.h" />
+		<Unit filename="source/ShipManager.cpp" />
+		<Unit filename="source/ShipManager.h" />
 		<Unit filename="source/ShipJumpNavigation.cpp" />
 		<Unit filename="source/ShipJumpNavigation.h" />
 		<Unit filename="source/ShipyardPanel.cpp" />
@@ -374,10 +380,9 @@
 		<Unit filename="source/Weather.cpp" />
 		<Unit filename="source/Weather.h" />
 		<Unit filename="source/WeightedList.h" />
-		<Unit filename="source/comparators/ByGivenOrder.h" />
-		<Unit filename="source/comparators/ByName.h" />
 		<Unit filename="source/Wormhole.cpp" />
 		<Unit filename="source/Wormhole.h" />
+		<Unit filename="source/WormholeStrategy.h" />
 		<Unit filename="source/opengl.cpp" />
 		<Unit filename="source/opengl.h" />
 		<Unit filename="source/pi.h" />
@@ -385,6 +390,8 @@
 		<Unit filename="source/comparators/ByGivenOrder.h" />
 		<Unit filename="source/comparators/ByName.h" />
 		<Unit filename="source/comparators/BySeriesAndIndex.h" />
+		<Unit filename="source/ship/ShipAICache.cpp" />
+		<Unit filename="source/ship/ShipAICache.h" />
 		<Unit filename="source/text/DisplayText.cpp" />
 		<Unit filename="source/text/DisplayText.h" />
 		<Unit filename="source/text/Font.cpp" />
@@ -402,8 +409,6 @@
 		<Unit filename="source/text/alignment.hpp" />
 		<Unit filename="source/text/layout.hpp" />
 		<Unit filename="source/text/truncate.hpp" />
-		<Unit filename="source/ship/ShipAICache.cpp" />
-		<Unit filename="source/ship/ShipAICache.h" />
 		<Extensions>
 			<editor_config active="1" use_tabs="1" tab_indents="1" tab_width="4" indent="4" eol_mode="0" />
 			<lib_finder disable_auto="1" />

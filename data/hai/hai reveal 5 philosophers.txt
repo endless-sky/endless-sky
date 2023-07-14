@@ -141,7 +141,7 @@ mission "Hai Reveal [B02] Join the Fleet"
 		system "Rajak"
 		personality escort heroic opportunistic vindictive waiting
 		fleet "Large Unfettered" 7
-	# Guard fleets are 1 ship each. Unfet are 2.7 on average. Total Fleet Size is is roughly 57 + 10 Syndicate.
+	# Guard fleets are 1 ship each. Unfet are 2.7 on average. Total Fleet Size is roughly 57 + 10 Syndicate.
 
 	npc kill
 		government "Pirate"
@@ -230,6 +230,13 @@ mission "Hai Reveal [B03] Contact Giti"
 		conversation
 			`While you join the fleet that lands to occupy the spaceport, other assault ships pursue priority targets elsewhere on <origin>. There's a significant wait to ensure that ground troops have secured the port before everyone can reconvene to discuss the next steps.`
 			`	You eventually reach the secured command area set up in the spaceport as Choot'k and Danforth come in discussing tactical minutiae. They are trailed by Batu, and eventually joined by Sayari and Teeneep. One of Danforth's lieutenants brings up the rear and closes the door behind you all.`
+			`	There is a moment of uncertainty where Danforth continues conversing in a low voice with his lieutenant and Batu catches your gaze with a questioning look.`
+			choice
+				`	"Admiral, would you like to lead this?"`
+					goto "cede to danforth"
+				`	"Good to see everyone arrive here safely."`
+			action
+				set "HR: Allied Leader"
 			`	Everyone is waiting for you to speak. It seems this is your final briefing as the commander of the forces before diplomats and military leaders take over.`
 			label briefing
 			choice
@@ -262,14 +269,14 @@ mission "Hai Reveal [B03] Contact Giti"
 			label operation
 			action
 				set "Hai Reveal [B03] Contact Giti: label operation"
-			`	Danforth begins the report. "Stage one has been successful. However, it looks like we're going to be here a while. <origin> is a rabbit warren of hidden places. Even with the Hai resources on top of everything we've brought, it could take weeks to root things out sufficiently."`
+			`	Danforth begins the report. "Stage one has been successful. However, as I expected, it looks like we're going to be here a while. <origin> is a rabbit warren of hidden places. Even with the Hai resources on top of everything we've brought, it could take weeks to root things out sufficiently."`
 			`	"General Choot'k, would you agree with the human's assessment of the effort required here?" asks Teeneep.`
 			`	The Unfettered warlord does not even hesitate to respond, "Yes. Even with our superior capacities we will be here a while."`
 				goto briefing
 			label disinformation
 			action
 				set "Hai Reveal [B03] Contact Giti: label disinformation"
-			`	Batu clears his throat and Danforth glances at him before evidently remembering something discussed earlier. "I'm sorry, Captain <last> and Elder Teeneep. I must advise you that at this stage all hope of keeping the Hai a secret is lost. Even if we could convince all factions to keep the secret, the blockade has drawn too much attention, so all that remains is to resolve our common issues before the Hai become irretrievably common knowledge."`
+			`	Batu clears his throat and Danforth glances at him before evidently remembering something discussed earlier. "I'm sorry, Captain <last> and Elder Teeneep. I must advise you that at this stage all hope of keeping the Hai a secret is lost. Even if we could convince all factions to keep the secret, the blockade has drawn too much attention, so all that remains is to resolve the matters at hand before the Hai become irretrievably common knowledge."`
 			`	Teeneep responds, "We all knew that day would come soon. Be glad we're here together to usher it in peacefully and with strength."`
 				goto briefing
 			label squirrels
@@ -280,8 +287,30 @@ mission "Hai Reveal [B03] Contact Giti"
 			`	Teeneep seems to bristle but Sayari smoothly cuts in. "You should not concern yourself with our comfort, Admiral. It would not be seemly for the Elder to abandon the field while another leader remains." She looks pointedly at Choot'k. "You may have forgotten also but there are Hai representatives of two governments in this room. It would also be unseemly for our ships to act in concert with the Unfettered without a diplomatic liaison here. And so I too have my place here. Things have happened quickly, of course, but my colleague Hiyamaharu will soon arrive at Mountaintop to act as my counterpart there. I trust things are being attended to, but you might consider checking that your people are properly aware of that."`
 				goto briefing
 
+			label "cede to danforth"
+			action
+				set "HR: Allied Supporter"
+			`	Danforth looks around and, without missing a beat, steps up to the table in the middle of the room. "Thank you, Captain. The Hai and Unfettered are coordinating through me and my command for the ground operation, and so far, stage one has been successful. However, as I expected, it looks like we're going to be here a while. <origin> is a labyrinth of hidden places. Even with the Hai resources on top of everything we've brought, it could take weeks to root things out sufficiently."`
+			`	"General Choot'k, would you agree with the human's assessment of the effort required here?" asks Teeneep.`
+			`	The Unfettered warlord does not even hesitate to respond, "Yes. Even with our superior capacities we will be here a while."`
+			`	Batu clears his throat and Danforth glances at him before evidently remembering something discussed earlier. "I'm sorry, Captain <last> and Elder Teeneep. After the assault our situation has been reassessed and I must advise you that we no longer consider it feasible to maintain the secrecy of the Hai. Even if we could convince all factions to keep the secret, the blockade has drawn too much attention, so all that remains is to resolve the matters at hand before the Hai become irretrievably common knowledge."`
+			`	Teeneep responds, "We all knew that day would come soon. Be glad we're here together to usher it in peacefully and with strength."`
+			`	Danforth looks between Sayari and Teeneep speculatively, as if considering something for the first time. "Perhaps, Elder, you and the Ambassador would find it more comfortable to return to Mountaintop? There will be little diplomacy here, and scarcely more safety, and it would seem to me that, even with Batu here as the Deputy Minister's eyes on the ground, it would be easier to conduct your responsibilities directly."`
+			`	Teeneep seems to bristle but Sayari smoothly cuts in. "You should not concern yourself with our comfort, Admiral. It would not be seemly for the Elder to abandon the field while another leader remains." She looks pointedly at Choot'k. "You may have forgotten also but there are Hai representatives of two governments in this room. It would also be unseemly for our ships to act in concert with the Unfettered without a diplomatic liaison here. And so I too have my place here. Things have happened quickly, of course, but my colleague Hiyamaharu will soon arrive at Mountaintop to act as my counterpart there. I trust things are being attended to, but you might consider checking that your people are properly aware of that."`
+			`	Danforth nods in acknowledgment and turns back to you. "Captain, you may consider your fleet command duties to be complete now that we're on the ground. You did a good job, and we'll take it back from here."`
+			choice
+				`	"I'm honored to have served you as temporary fleet commander."`
+					goto honored
+				`	"I did no more than I would expect anyone else to have done."`
+					goto humble
+				`	"All in a day's work! Excellent work, everyone! Carry on!"`
+					goto offended
+
 			label offended
 			`	Everyone looks surprised or offended, as if you are the court jester who thought he was king. They're dismissive of your comment, as they begin to discuss your departure.`
+				goto done
+			label humble
+			`	Danforth suppresses a smile, while Batu expresses his openly. General Choot'k says, "You've surpassed my expectations, Captain <last>. I've never seen a fleet so large, but you led it to victory with the speed and skill of a veteran general."`
 				goto done
 			label honored
 			`	The leaders all look pleased. General Choot'k says, "You've surpassed my expectations, Captain <last>. I've never seen a fleet so large, but you led it to victory with the speed and skill of a veteran general." Danforth looks just as impressed.`
@@ -547,7 +576,7 @@ mission "Hai Reveal [B06-long] Tarazed Analysis"
 			choice
 				`	"That's some impressive work in such a short time."`
 				`	"Thank you for the help."`
-			`	He nods in response. "Also... maybe keep this quiet. This is," he pauses and clears his throat conspicuously, "somewhat less than strictly legal, though there's no penalty attached to accessing the data at the level this card will use. My data sets only only cover coreward parts of Syndicate space, but your other data is heavily weighted to the Far North. Maybe if you have no luck in Syndicate space it'll be worth the trip to try up there."`
+			`	He nods in response. "Also... maybe keep this quiet. This is," he pauses and clears his throat conspicuously, "somewhat less than strictly legal, though there's no penalty attached to accessing the data at the level this card will use. My data sets only cover coreward parts of Syndicate space, but your other data is heavily weighted to the Far North. Maybe if you have no luck in Syndicate space it'll be worth the trip to try up there."`
 			`	All business and technical explanation now out of the way, you watch as the reality of what's happening seems to suddenly sink in, and his demeanor changes suddenly as his eyes shine with faint hope, "And please, if you do find my wife Janitza... please bring her home."`
 			`	After one last ride through the metro system of <origin>, you arrive at your ship. You plug the data card into your computer, and a new "government" shows up: Smuggler. The ships will be colored differently than pirates.`
 			`	It may be risky, but you should disable one and board it.`
@@ -982,8 +1011,8 @@ mission "Hai Reveal [B11] Moving Together"
 			label penetration
 			action
 				set "Hai Reveal [B11] Moving Together: label penetration"
-			`	Teeneep explains, "We also need a way to deal with the surface turrets and, short of bringing overwhelming firepower which we do not have, there's only one ship available with the systems to be able to affect that within our timeline. That ship is my Centipede. I had electronic warfare systems installed on it to baffle pirate defenses when I was investigating this before. It is our assessment that I should be able to baffle the turrets long enough to deal with any spaceship defenders, and land where the turrets will no longer matter." She looks to Choot'k. "The General has generously offered to loan a drive for my use."`
-			`	Choot'k addresses the group. "The designs of the facility show a weak point in one of the hangars, which we can exploit. My flagship has weapons pillaged from another species, which are strong enough to cut open the hangar doors yet precise enough not to destroy the hangar.`
+			`	Teeneep explains, "We also need a way to deal with the surface turrets and, short of bringing overwhelming firepower which we do not have, there's only one ship available with the systems to be able to affect that within our timeline. That ship is my Centipede. I had installed electronic warfare systems on it to baffle pirate defenses when I was investigating this before. It is our assessment that I should be able to baffle the turrets long enough to deal with any spaceship defenders, and land where the turrets will no longer matter." She looks to Choot'k. "The General has generously offered to loan a drive for my use."`
+			`	Choot'k addresses the group. "The designs of the facility show a weak point in one of the hangars, which we can exploit. My flagship has advanced ionic weaponry, that combined with enough raw burst firepower will disable and get rid of the hangar door without destroying too much of the hangar itself.`
 			`	"I also have two trusted captains who have been exploring the value of human weapons while they've been here, and think they have some winning combinations they would like to test in battle. I have chosen them to make use of our remaining available drives, and out of consideration for you humans. It would seem that the fewer alien weapons we carry through your space, the better."`
 				goto briefing
 
@@ -1004,7 +1033,7 @@ mission "Hai Reveal [B11] Moving Together"
 	npc save accompany
 		government "Hai (Friendly Unfettered)"
 		personality escort heroic opportunistic vindictive
-		ship "Shield Beetle (Sunbeam Korath Jump)" "Choot'k's Ship"
+		ship "Emperor Beetle" "Kratos"
 	npc save accompany
 		government "Hai (Friendly Unfettered)"
 		personality escort heroic opportunistic vindictive
@@ -1023,22 +1052,6 @@ mission "Hai Reveal [B11] Moving Together"
 	on visit
 		dialog `You've arrived on <planet>, but you've left one or more of your escorts behind.`
 
-
-# Flagship of the Unfettered Hai, filled with the spoils of wars against Korath and Wanderers:
-ship "Shield Beetle" "Shield Beetle (Sunbeam Korath Jump)"
-	outfits
-		"Large Heat Shunt" 2
-		"Jump Drive"
-		"Systems Core (Large)"
-		"Quantum Keystone"
-		"Outfits Expansion" 3
-		"Boulder Reactor" 3
-		`"Bufaer" Atomic Steering`
-		Sunbeam 6
-		"Korath Warder"
-		"Small Heat Shunt"
-		"Thruster (Planetary Class)"
-		"Fuel Processor" 2
 
 
 # Ambassadorial Centipede designed to fly deep into hostile space if necessary:
@@ -1151,7 +1164,7 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 		dialog `Right after the fleet takes off, Danforth hails you. "We have just received additional fighters and drones from the Syndicate, please wait for them before jumping."`
 	on enter "Devil-Hide"
 		conversation
-			`Teeneep sends out a message to the fleet informing you that she is engaging the electronic warfare baffling and reminds you that everyone needs to get onto the ground intact if this is to go well. Choot'k's Shield Beetle has red engine flares; the others have blue. So if he gets into trouble you should be able to tell at a distance. The baffling won't work forever, so get to it.`
+			`Teeneep sends out a message to the fleet informing you that she is engaging the electronic warfare baffling and reminds you that everyone needs to get onto the ground intact if this is to go well. The general's ship is the Emperor Beetle, Kratos. The baffling won't work forever, so get to it.`
 			`	(NOTE: You need to dominate this planet to finish the battle. To do that, talk to the planet and demand tribute. The planet will send multiple waves of defense fleets. Demand tribute after defeating the final wave, and they'll agree. Then land to finish the mission.)`
 			`	(WARNING: The allies you are escorting will not help you fight the defense fleets sent in response to your tribute demands, but they will fight any other pirate ships in the system.)`
 	on visit
@@ -1174,7 +1187,7 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 	npc save accompany
 		government "Hai (Friendly Unfettered)"
 		personality escort heroic opportunistic vindictive
-		ship "Shield Beetle (Sunbeam Korath Jump)" "Choot'k's Ship"
+		ship "Emperor Beetle" "Kratos"
 
 	npc save accompany
 		government "Navy (Oathkeeper)"
@@ -1311,7 +1324,7 @@ mission "Hai Reveal [B13] Freedom"
 			label leadon
 			`	It's pitch black when you enter, but scanners show the room is a vast cavern, some sort of public space suitable for ten thousand people or more. As the last of the troops file in, a second blast door closes behind you. High roof lights snap on making the room as bright as day in the blink of an eye.`
 			`	You see before you scores of pirates, corralled and held captive by an equally large crowd of heavily-armed civilians - all of which are hesitantly pointing guns at the operatives. It seems the citizens arranged a violent rebellion to coincide with the Republic's attack. Three unarmed civilians wearing distinctive hooded robes walk towards the operatives: one Hai, one human, and to your surprise one lizard-like Korath. The leader of the Syndicate operatives exits her suit and approaches them.`
-			`	The Hai speaks. "We are the leaders of the civilian government of Elenchus. Although we are grateful for your assistance in defeating our violent rulers, we will not accept your dominion either. We have heard of your civil war. Elenchus is an independent nation, and we intend to stay so unless you intend to force otherwise. I can, however, promise that unlike our overlords, we have no interest in anything other than peace. We will send no military ships through the wormhole.`
+			`	The Hai speaks. "We are the leaders of the civilian government of Elenchus. Although we are grateful for your assistance in defeating our violent rulers, we will not accept your dominion either. We have heard of your civil war. Elenchus is an independent nation, and we intend to stay so unless you intend to force otherwise. I can, however, promise that unlike our overlords, we have no interest in anything other than peace. We will send no military ships through the wormhole."`
 			`	After several hours of discussion, Agent Kopkow prepares the documents for the provisional recognition of the new "Elenctic Commune" with Admiral Danforth and Captain Wallace as witnesses. The wounded are finally attended to in the Elenctic hospital facilities, and most of the human operatives pack up their gear and return to the Auxiliary. Meanwhile, Teeneep and Choot'k go to lengths to engage with the Hai here and discover what they would best like to do.`
 			choice
 				`	"Thank you. I have a few questions for you before I go."`
@@ -1365,7 +1378,7 @@ mission "Hai Reveal [B13] Freedom"
 			label "translation services"
 			action
 				set "Hai Reveal [B13] Freedom: label translation services"
-			`	The Korath leader hisses. "No, we cannot. We here do not even speak a full form of our own language anymore. Even if we did, we must remain here in secret. Perhaps in time there there will be a reconnection, but not yet."`
+			`	The Korath leader hisses. "No, we cannot. We here do not even speak a full form of our own language anymore. Even if we did, we must remain here in secret. Perhaps in time there will be a reconnection, but not yet."`
 				goto questions
 			label "cadmium"
 			action
@@ -1460,7 +1473,7 @@ mission "Hai Reveal [B13] Freedom"
 	npc save accompany
 		government "Hai (Friendly Unfettered)"
 		personality escort heroic opportunistic vindictive
-		ship "Shield Beetle (Sunbeam Korath Jump)" "Choot'k's Ship"
+		ship "Emperor Beetle" "Kratos"
 	npc save accompany
 		government "Navy (Oathkeeper)"
 		personality escort heroic opportunistic
@@ -1516,4 +1529,4 @@ mission "Hai Reveal [B14] Journey to Peace"
 	npc save accompany
 		government "Hai (Friendly Unfettered)"
 		personality escort heroic opportunistic vindictive
-		ship "Shield Beetle (Sunbeam Korath Jump)" "Choot'k's Ship"
+		ship "Emperor Beetle" "Kratos"

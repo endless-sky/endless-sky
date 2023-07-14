@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "PlayerInfo.h"
 
+#include "AI.h"
 #include "Audio.h"
 #include "ConversationPanel.h"
 #include "DataFile.h"
@@ -249,7 +250,12 @@ void PlayerInfo::Load(const string &path)
 					reputationChanges.emplace_back(
 						GameData::Governments().Get(grand.Token(0)), grand.Value(1));
 		}
-
+		else if(child.Token(0) == "tribute received")
+		{
+			for(const DataNode &grand : child)
+				if(grand.Size() >= 2)
+					tributeReceived[GameData::Planets().Get(grand.Token(0))] = grand.Value(1);
+		}
 		// Records of things you own:
 		else if(child.Token(0) == "ship")
 		{
@@ -271,6 +277,11 @@ void PlayerInfo::Load(const string &path)
 							CargoHold &storage = planetaryStorage[GameData::Planets().Get(grand.Token(1))];
 							storage.Load(grandGrand);
 						}
+		}
+		else if(child.Token(0) == "licenses")
+		{
+			for(const DataNode &grand : child)
+				AddLicense(grand.Token(0));
 		}
 		else if(child.Token(0) == "account")
 			accounts.Load(child, true);
@@ -326,6 +337,11 @@ void PlayerInfo::Load(const string &path)
 			availableMissions.emplace_back(child);
 		else if(child.Token(0) == "conditions")
 			conditions.Load(child);
+		else if(child.Token(0) == "gifted ships" && child.HasChildren())
+		{
+			for(const DataNode &grand : child)
+				giftedShips[grand.Token(0)] = EsUuid::FromString(grand.Token(1));
+		}
 		else if(child.Token(0) == "event")
 			gameEvents.emplace_back(child);
 		else if(child.Token(0) == "changes")
@@ -704,16 +720,8 @@ void PlayerInfo::IncrementDate()
 	}
 
 	// Check what salaries and tribute the player receives.
-	auto GetIncome = [&](string prefix)
-	{
-		int64_t total = 0;
-		auto it = conditions.PrimariesLowerBound(prefix);
-		for( ; it != conditions.PrimariesEnd() && !it->first.compare(0, prefix.length(), prefix); ++it)
-			total += it->second;
-		return total;
-	};
-	int64_t salariesIncome = GetIncome("salary: ");
-	int64_t tributeIncome = GetIncome("tribute: ");
+	int64_t salariesIncome = accounts.SalariesIncomeTotal();
+	int64_t tributeIncome = GetTributeTotal();
 	FleetBalance b = MaintenanceAndReturns();
 	if(salariesIncome || tributeIncome || b.assetsReturns)
 	{
@@ -930,7 +938,36 @@ PlayerInfo::FleetBalance PlayerInfo::MaintenanceAndReturns() const
 
 
 
-// Get a pointer to the ship that the player controls. This is always the first
+void PlayerInfo::AddLicense(const string &name)
+{
+	licenses.insert(name);
+}
+
+
+
+void PlayerInfo::RemoveLicense(const string &name)
+{
+	licenses.erase(name);
+}
+
+
+
+bool PlayerInfo::HasLicense(const string &name) const
+{
+	// TODO: This should be changed to use std::set<>::contains when we move to C++20.
+	return licenses.count(name);
+}
+
+
+
+const set<string> &PlayerInfo::Licenses() const
+{
+	return licenses;
+}
+
+
+
+// Get a pointer to the ship that the player controls. This is usually the first
 // ship in the list.
 const Ship *PlayerInfo::Flagship() const
 {
@@ -939,7 +976,7 @@ const Ship *PlayerInfo::Flagship() const
 
 
 
-// Get a pointer to the ship that the player controls. This is always the first
+// Get a pointer to the ship that the player controls. This is usually the first
 // ship in the list.
 Ship *PlayerInfo::Flagship()
 {
@@ -952,14 +989,13 @@ Ship *PlayerInfo::Flagship()
 const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 {
 	if(!flagship)
-	{
 		for(const shared_ptr<Ship> &it : ships)
-			if(!it->IsParked() && it->GetSystem() == system && it->CanBeFlagship())
+			if(!it->IsParked() && it->GetSystem() == system && it->CanBeFlagship()
+					&& (!planet || planet->CanLand(*it)))
 			{
 				flagship = it;
 				break;
 			}
-	}
 
 	static const shared_ptr<Ship> empty;
 	return (flagship && flagship->IsYours()) ? flagship : empty;
@@ -1046,7 +1082,7 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 				// The bays should always be empty. But if not, count that ship too.
 				if(bay.ship)
 				{
-					Logger::LogError("Expected bay to be empty for " + ship->ModelName() + ": " + ship->Name());
+					Logger::LogError("Expected bay to be empty for " + ship->TrueModelName() + ": " + ship->Name());
 					categoryCount[bay.ship->Attributes().Category()].emplace_back(bay.ship);
 				}
 			}
@@ -1091,41 +1127,53 @@ void PlayerInfo::AddShip(const shared_ptr<Ship> &ship)
 	ships.push_back(ship);
 	ship->SetIsSpecial();
 	ship->SetIsYours();
+	if(ship->HasBays())
+		displayCarrierHelp = true;
 }
 
 
 
 // Adds a ship of the given model with the given name to the player's fleet.
-// If this ship is being gifted, it costs nothing and starts fully depreciated.
-void PlayerInfo::BuyShip(const Ship *model, const string &name, bool isGift)
+void PlayerInfo::BuyShip(const Ship *model, const string &name)
 {
 	if(!model)
 		return;
 
 	int day = date.DaysSinceEpoch();
-	int64_t cost = isGift ? 0 : stockDepreciation.Value(*model, day);
+	int64_t cost = stockDepreciation.Value(*model, day);
 	if(accounts.Credits() >= cost)
 	{
-		// Copy the model instance into a new instance.
-		ships.push_back(make_shared<Ship>(*model));
-		ships.back()->SetName(name);
-		ships.back()->SetSystem(system);
-		ships.back()->SetPlanet(planet);
-		ships.back()->SetIsSpecial();
-		ships.back()->SetIsYours();
-		ships.back()->SetGovernment(GameData::PlayerGovernment());
+		AddStockShip(model, name);
 
 		accounts.AddCredits(-cost);
 		flagship.reset();
 
-		// Record the transfer of this ship in the depreciation and stock info.
-		if(!isGift)
-		{
-			depreciation.Buy(*model, day, &stockDepreciation);
-			for(const auto &it : model->Outfits())
-				stock[it.first] -= it.second;
-		}
+		depreciation.Buy(*model, day, &stockDepreciation);
+		for(const auto &it : model->Outfits())
+			stock[it.first] -= it.second;
+
+		if(ships.back()->HasBays())
+			displayCarrierHelp = true;
 	}
+}
+
+
+
+// Because this ship is being gifted, it costs nothing and starts fully depreciated.
+const Ship *PlayerInfo::GiftShip(const Ship *model, const string &name, const string &id)
+{
+	if(!model)
+		return nullptr;
+
+	AddStockShip(model, name);
+
+	flagship.reset();
+
+	// If an id was given, associate and store it with the UUID of the gifted ship.
+	if(!id.empty())
+		giftedShips[id].clone(ships.back()->UUID());
+
+	return ships.back().get();
 }
 
 
@@ -1145,9 +1193,42 @@ void PlayerInfo::SellShip(const Ship *selected)
 				stock[it.first] += it.second;
 
 			accounts.AddCredits(cost);
+			ForgetGiftedShip(*it->get());
 			ships.erase(it);
 			flagship.reset();
-			return;
+			break;
+		}
+}
+
+
+
+// Take the ship from the player, if a model is specified this will permanently remove outfits in said model,
+// instead of allowing the player to buy them back by putting them in the stock.
+void PlayerInfo::TakeShip(const Ship *shipToTake, const Ship *model, bool takeOutfits)
+{
+	for(auto it = ships.begin(); it != ships.end(); ++it)
+		if(it->get() == shipToTake)
+		{
+			// Record the transfer of this ship in the depreciation and stock info.
+			stockDepreciation.Buy(*shipToTake, date.DaysSinceEpoch(), &depreciation);
+			if(takeOutfits)
+				for(const auto &it : shipToTake->Outfits())
+				{
+					// We only take all of the outfits specified in the model without putting them in the stock.
+					// The extra outfits of this ship are transfered into the stock.
+					int amountToTake = 0;
+					if(model)
+					{
+						auto outfit = model->Outfits().find(it.first);
+						if(outfit != model->Outfits().end())
+							amountToTake = max(it.second, outfit->second);
+					}
+					stock[it.first] += it.second - amountToTake;
+				}
+			ForgetGiftedShip(*it->get(), false);
+			ships.erase(it);
+			flagship.reset();
+			break;
 		}
 }
 
@@ -1159,6 +1240,7 @@ vector<shared_ptr<Ship>>::iterator PlayerInfo::DisownShip(const Ship *selected)
 		if(it->get() == selected)
 		{
 			flagship.reset();
+			ForgetGiftedShip(*it->get());
 			it = ships.erase(it);
 			return (it == ships.begin()) ? it : --it;
 		}
@@ -1389,6 +1471,7 @@ void PlayerInfo::Land(UI *ui)
 			// depreciation records. Transfer it to a throw-away record:
 			Depreciation().Buy(**it, date.DaysSinceEpoch(), &depreciation);
 
+			ForgetGiftedShip(*it->get());
 			it = ships.erase(it);
 		}
 		else
@@ -1399,24 +1482,43 @@ void PlayerInfo::Land(UI *ui)
 	for(const shared_ptr<Ship> &ship : ships)
 		ship->UnloadBays();
 
-	// Ships that are landed with you on the planet should fully recharge
-	// and pool all their cargo together. Those in remote systems restore
-	// what they can without landing.
+	// Ships that are landed with you on the planet should fully recharge.
+	// Those in remote systems restore what they can without landing.
 	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();
-	UpdateCargoCapacities();
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsParked() && !ship->IsDisabled())
 		{
 			if(ship->GetSystem() == system)
 			{
-				ship->Recharge(hasSpaceport);
-				ship->Cargo().TransferAll(cargo);
-				if(!ship->GetPlanet())
-					ship->SetPlanet(planet);
+				if(planet->CanLand(*ship))
+				{
+					ship->Recharge(hasSpaceport);
+					if(!ship->GetPlanet())
+						ship->SetPlanet(planet);
+				}
+				// Ships that cannot land with the flagship choose the most suitable planet
+				// in the system.
+				else
+				{
+					const StellarObject *landingObject = AI::FindLandingLocation(*ship);
+					const bool foundSpaceport = landingObject;
+					if(!landingObject)
+						landingObject = AI::FindLandingLocation(*ship, false);
+					if(landingObject)
+						ship->SetPlanet(landingObject->GetPlanet());
+					ship->Recharge(foundSpaceport);
+				}
 			}
 			else
 				ship->Recharge(false);
 		}
+
+	// Cargo management needs to be done after updating ship locations (above).
+	UpdateCargoCapacities();
+	// Ships that are landed with you on the planet should pool all their cargo together.
+	for(const shared_ptr<Ship> &ship : ships)
+		if(ship->GetPlanet() == planet && !ship->IsParked())
+			ship->Cargo().TransferAll(cargo);
 	// Adjust cargo cost basis for any cargo lost due to a ship being destroyed.
 	for(const auto &it : lostCargo)
 		AdjustBasis(it.first, -(costBasis[it.first] * it.second) / (cargo.Get(it.first) + it.second));
@@ -1547,8 +1649,11 @@ bool PlayerInfo::TakeOff(UI *ui)
 		if(extra)
 		{
 			flagship->AddCrew(-extra);
-			Messages::Add("You fired " + to_string(extra) + " crew members to free up bunks for passengers."
-				, Messages::Importance::High);
+			if(extra == 1)
+				Messages::Add("You fired a crew member to free up a bunk for a passenger.", Messages::Importance::High);
+			else
+				Messages::Add("You fired " + to_string(extra) + " crew members to free up bunks for passengers.",
+						Messages::Importance::High);
 			flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - flagship->Crew());
 			cargo.TransferAll(flagship->Cargo());
 		}
@@ -1558,8 +1663,11 @@ bool PlayerInfo::TakeOff(UI *ui)
 	if(extra > 0)
 	{
 		flagship->AddCrew(-extra);
-		Messages::Add("You fired " + to_string(extra) + " crew members because you have no bunks for them."
-			, Messages::Importance::High);
+		if(extra == 1)
+			Messages::Add("You fired a crew member because you have no bunk for them.", Messages::Importance::High);
+		else
+			Messages::Add("You fired " + to_string(extra) + " crew members because you have no bunks for them.",
+					Messages::Importance::High);
 		flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - flagship->Crew());
 	}
 
@@ -1760,7 +1868,7 @@ void PlayerInfo::UpdateCargoCapacities()
 	int bunks = 0;
 	flagship = FlagshipPtr();
 	for(const shared_ptr<Ship> &ship : ships)
-		if(ship->GetSystem() == system && !ship->IsParked() && !ship->IsDisabled())
+		if(ship->GetPlanet() == planet && !ship->IsParked())
 		{
 			size += ship->Attributes().Get("cargo space");
 			int crew = (ship == flagship ? ship->Crew() : ship->RequiredCrew());
@@ -2124,6 +2232,14 @@ const ConditionsStore &PlayerInfo::Conditions() const
 
 
 
+// Uuid for the gifted ships, with the ship class follow by the names they had when they were gifted to the player.
+const map<string, EsUuid> &PlayerInfo::GiftedShips() const
+{
+	return giftedShips;
+}
+
+
+
 map<string, string> PlayerInfo::GetSubstitutions() const
 {
 	map<string, string> subs;
@@ -2138,6 +2254,61 @@ map<string, string> PlayerInfo::GetSubstitutions() const
 	subs["<date>"] = GetDate().ToString();
 	subs["<day>"] = GetDate().LongString();
 	return subs;
+}
+
+
+
+bool PlayerInfo::SetTribute(const Planet *planet, int64_t payment)
+{
+	if(payment > 0)
+	{
+		tributeReceived[planet] = payment;
+		// Properly connect this function to the dominated property of planets.
+		GameData::GetPolitics().DominatePlanet(planet);
+	}
+	else
+	{
+		tributeReceived.erase(planet);
+		// Properly connect this function to the (no longer) dominated property of planets.
+		GameData::GetPolitics().DominatePlanet(planet, false);
+	}
+
+	return true;
+}
+
+
+
+bool PlayerInfo::SetTribute(const string &planetTrueName, int64_t payment)
+{
+	const Planet *planet = GameData::Planets().Find(planetTrueName);
+	if(!planet)
+		return false;
+
+	return SetTribute(planet, payment);
+}
+
+
+
+// Get a list of all tribute that the player receives.
+const map<const Planet *, int64_t> &PlayerInfo::GetTribute() const
+{
+	return tributeReceived;
+}
+
+
+
+// Get the total sum of the tribute the player receives.
+int64_t PlayerInfo::GetTributeTotal() const
+{
+	return accumulate(
+		tributeReceived.begin(),
+		tributeReceived.end(),
+		0,
+		[](int64_t value, const std::map<const Planet *, int64_t>::value_type &tribute)
+		{
+			return value + tribute.second;
+		}
+	);
 }
 
 
@@ -2724,16 +2895,8 @@ void PlayerInfo::ApplyChanges()
 	destroyedPersons.clear();
 
 	// Check which planets you have dominated.
-	static const string prefix = "tribute: ";
-	for(auto it = Conditions().PrimariesLowerBound(prefix); it != Conditions().PrimariesEnd(); ++it)
-	{
-		if(it->first.compare(0, prefix.length(), prefix))
-			break;
-
-		const Planet *planet = GameData::Planets().Find(it->first.substr(prefix.length()));
-		if(planet)
-			GameData::GetPolitics().DominatePlanet(planet);
-	}
+	for(auto it = tributeReceived.begin(); it != tributeReceived.end(); ++it)
+		GameData::GetPolitics().DominatePlanet(it->first);
 
 	// Issue warnings for any data which has been mentioned but not actually defined, and
 	// ensure that all "undefined" data is appropriately named.
@@ -2908,7 +3071,7 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	auto &&unpaidSalariesProvider = conditions.GetProviderNamed("unpaid salaries");
 	unpaidSalariesProvider.SetGetFunction([this](const string &name) {
-		return min(limit, accounts.SalariesOwed()); });
+		return min(limit, accounts.CrewSalariesOwed()); });
 
 	auto &&unpaidMaintenanceProvider = conditions.GetProviderNamed("unpaid maintenance");
 	unpaidMaintenanceProvider.SetGetFunction([this](const string &name) {
@@ -2917,6 +3080,74 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto &&creditScoreProvider = conditions.GetProviderNamed("credit score");
 	creditScoreProvider.SetGetFunction([this](const string &name) {
 		return accounts.CreditScore(); });
+
+	// Read/write assets and debts.
+	auto &&salaryIncomeProvider = conditions.GetProviderPrefixed("salary: ");
+	auto salaryIncomeHasGetFun = [this](const string &name) -> int64_t
+	{
+		const map<string, int64_t> &si = accounts.SalariesIncome();
+		auto it = si.find(name.substr(strlen("salary: ")));
+		if(it == si.end())
+			return 0;
+		return it->second;
+	};
+	salaryIncomeProvider.SetHasFunction(salaryIncomeHasGetFun);
+	salaryIncomeProvider.SetGetFunction(salaryIncomeHasGetFun);
+	salaryIncomeProvider.SetSetFunction([this](const string &name, int64_t value) -> bool
+	{
+		accounts.SetSalaryIncome(name.substr(strlen("salary: ")), value);
+		return true;
+	});
+	salaryIncomeProvider.SetEraseFunction([this](const string &name) -> bool
+	{
+		accounts.SetSalaryIncome(name.substr(strlen("salary: ")), 0);
+		return true;
+	});
+
+	auto &&tributeProvider = conditions.GetProviderPrefixed("tribute: ");
+	auto tributeHasGetFun = [this](const string &name) -> int64_t
+	{
+		const Planet *planet = GameData::Planets().Find(name);
+		if(!planet)
+			return 0;
+
+		auto it = tributeReceived.find(planet);
+		if(it == tributeReceived.end())
+			return 0;
+
+		return it->second;
+	};
+	tributeProvider.SetHasFunction(tributeHasGetFun);
+	tributeProvider.SetGetFunction(tributeHasGetFun);
+	tributeProvider.SetSetFunction([this](const string &name, int64_t value) -> bool {
+		return SetTribute(name.substr(strlen("tribute: ")), value);
+	});
+	tributeProvider.SetEraseFunction([this](const string &name) -> bool {
+		return SetTribute(name.substr(strlen("tribute: ")), 0);
+	});
+
+	auto &&licenseProvider = conditions.GetProviderPrefixed("license: ");
+	licenseProvider.SetHasFunction([this](const string &name) -> bool {
+		return HasLicense(name.substr(strlen("license: ")));
+	});
+	licenseProvider.SetGetFunction([this](const string &name) -> int64_t {
+		return HasLicense(name.substr(strlen("license: ")));
+	});
+
+	licenseProvider.SetSetFunction([this](const string &name, int64_t value) -> bool
+	{
+		if(!value)
+			RemoveLicense(name.substr(strlen("license: ")));
+		else
+			AddLicense(name.substr(strlen("license: ")));
+		return true;
+	});
+
+	licenseProvider.SetEraseFunction([this](const string &name) -> bool
+	{
+		RemoveLicense(name.substr(strlen("license: ")));
+		return true;
+	});
 
 	// Read-only flagship conditions.
 	auto &&flagshipCrewProvider = conditions.GetProviderNamed("flagship crew");
@@ -2936,10 +3167,18 @@ void PlayerInfo::RegisterDerivedConditions()
 	{
 		if(!flagship)
 			return false;
-		return name == "flagship model: " + flagship->ModelName();
+		return name == "flagship model: " + flagship->TrueModelName();
 	};
 	flagshipModelProvider.SetHasFunction(flagshipModelFun);
 	flagshipModelProvider.SetGetFunction(flagshipModelFun);
+
+	auto &&flagshipDisabledProvider = conditions.GetProviderNamed("flagship disabled");
+	auto flagshipDisabledFun = [this](const string &name) -> bool
+	{
+		return flagship && flagship->IsDisabled();
+	};
+	flagshipDisabledProvider.SetHasFunction(flagshipDisabledFun);
+	flagshipDisabledProvider.SetGetFunction(flagshipDisabledFun);
 
 	auto flagshipAttributeHelper = [](const Ship *flagship, const string &attribute, bool base) -> int64_t
 	{
@@ -3095,7 +3334,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
 			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetActualSystem() == system
-					&& name == "ship model: " + ship->ModelName())
+					&& name == "ship model: " + ship->TrueModelName())
 				++retVal;
 		return retVal;
 	});
@@ -3106,7 +3345,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	{
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
-			if(!ship->IsDestroyed() && name == "ship model (all): " + ship->ModelName())
+			if(!ship->IsDestroyed() && name == "ship model (all): " + ship->TrueModelName())
 				++retVal;
 		return retVal;
 	});
@@ -3896,6 +4135,14 @@ void PlayerInfo::Save(DataWriter &out) const
 	}
 	out.EndChild();
 
+	out.Write("tribute received");
+	out.BeginChild();
+	{
+		for(const auto &it : tributeReceived)
+			if(it.second > 0)
+				out.Write((it.first)->TrueName(), it.second);
+	}
+	out.EndChild();
 
 	// Records of things you own:
 	out.Write();
@@ -3924,6 +4171,16 @@ void PlayerInfo::Save(DataWriter &out) const
 					}
 					out.EndChild();
 				}
+		}
+		out.EndChild();
+	}
+	if(!licenses.empty())
+	{
+		out.Write("licenses");
+		out.BeginChild();
+		{
+			for(const string &license : licenses)
+				out.Write(license);
 		}
 		out.EndChild();
 	}
@@ -4024,6 +4281,18 @@ void PlayerInfo::Save(DataWriter &out) const
 
 	// Save any "primary condition" flags that are set.
 	conditions.Save(out);
+
+	// Save the UUID of any ships given to the player with a specified name, and ship class.
+	if(!giftedShips.empty())
+	{
+		out.Write("gifted ships");
+		out.BeginChild();
+		{
+			for(const auto &it : giftedShips)
+				out.Write(it.first, it.second.ToString());
+		}
+		out.EndChild();
+	}
 
 	// Save pending events, and changes that have happened due to past events.
 	for(const GameEvent &event : gameEvents)
@@ -4209,6 +4478,43 @@ void PlayerInfo::SelectShip(const shared_ptr<Ship> &ship, bool *first)
 			flagship->SetTargetShip(ship);
 			*first = false;
 		}
+	}
+}
+
+bool PlayerInfo::DisplayCarrierHelp() const
+{
+	return displayCarrierHelp;
+}
+
+
+
+// Instantiate the given model and add it to the player's fleet.
+void PlayerInfo::AddStockShip(const Ship *model, const string &name)
+{
+	ships.push_back(make_shared<Ship>(*model));
+	ships.back()->SetName(!name.empty() ? name : GameData::Phrases().Get("civilian")->Get());
+	ships.back()->SetSystem(system);
+	ships.back()->SetPlanet(planet);
+	ships.back()->SetIsSpecial();
+	ships.back()->SetIsYours();
+	ships.back()->SetGovernment(GameData::PlayerGovernment());
+}
+
+
+
+// When we remove a ship, forget its stored ID.
+void PlayerInfo::ForgetGiftedShip(const Ship &oldShip, bool failsMissions)
+{
+	const EsUuid &id = oldShip.UUID();
+	auto shipToForget = find_if(giftedShips.begin(), giftedShips.end(),
+		[&id](const pair<const string, EsUuid> &shipId) { return shipId.second == id; });
+	if(shipToForget != giftedShips.end())
+	{
+		if(failsMissions)
+			for(auto &mission : missions)
+				if(mission.RequiresGiftedShip(shipToForget->first))
+					mission.Fail();
+		giftedShips.erase(shipToForget);
 	}
 }
 

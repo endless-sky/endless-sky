@@ -100,6 +100,8 @@ void MainPanel::Step()
 	if(flagship)
 	{
 		// Check if any help messages should be shown.
+		if(isActive && Preferences::Has("Control ship with mouse"))
+			isActive = !DoHelp("control ship with mouse");
 		if(isActive && flagship->IsTargetable())
 			isActive = !DoHelp("navigation");
 		if(isActive && flagship->IsDestroyed())
@@ -114,6 +116,16 @@ void MainPanel::Step()
 			isActive = !DoHelp("friendly disabled");
 		if(isActive && player.Ships().size() > 1)
 			isActive = !DoHelp("multiple ship controls");
+		if(isActive && flagship->IsTargetable() && player.Ships().size() > 1)
+			isActive = !DoHelp("fleet harvest tutorial");
+		if(isActive && flagship->IsTargetable() &&
+				flagship->Attributes().Get("asteroid scan power") &&
+				player.Ships().size() > 1)
+			isActive = !DoHelp("fleet asteroid mining") && !DoHelp("fleet asteroid mining shortcuts");
+		if(isActive && player.DisplayCarrierHelp())
+			isActive = !DoHelp("try out fighters transfer cargo");
+		if(isActive && Preferences::Has("Fighters transfer cargo"))
+			isActive = !DoHelp("fighters transfer cargo");
 		if(isActive && !flagship->IsHyperspacing() && flagship->Position().Length() > 10000.
 				&& player.GetDate() <= player.StartData().GetDate() + 4)
 		{
@@ -395,7 +407,7 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 		for(const Ship::Bay &bay : target->Bays())
 			if(bay.ship)
 			{
-				int &value = count[bay.ship->ModelName()];
+				int &value = count[bay.ship->DisplayModelName()];
 				if(value)
 				{
 					// If the name and the plural name are the same string, just
