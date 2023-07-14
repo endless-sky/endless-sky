@@ -3474,8 +3474,12 @@ mission "Coalition: Struggling Author 4"
 			`Landing on <planet>, Anna is excitedly holding a copy of 'Beyond the Hyperdrive.' She hastily opens the hatch as soon as it unlocks.`
 			choice
 				`	"Wait for me!"`
-			`	Anna waits for you to catch up. "In the message they sent me, they included precise instructions on how to reach their offices," she explains. "Let's go!"`
-			`	You begin following Anna to the publisher's offices. You walk through endless rows of shops and streets, take a train to a large white building, and eventually find what looks like the Kimek equivalent of an elevator.`
+			`	Anna waits for you to catch up. "In the message they sent me, they included instructions on how to reach their offices," she explains. "Let's go!"`
+			`	You begin following Anna to the publisher's offices. You walk through endless rows of shops and streets, take a train to a large white building, before entering and approaching what looks like a receptionist.`
+			choice
+				`	"Hello, do you happen to know where Kimek Reader Publishing is?"`
+			`	"On the 16th floor, Kimek Reader Publishing is. Over there, the elevators are.", says the receptionist.`
+			`	You turn and eventually find what looks like the Kimek equivalent of an elevator.`
 			`	You and Anna enter the elevator, as Anna presses a button that closes the door and takes you up. When the door opens, you see a Kimek in front of you, a necklace around it with ornate jewelry and a translation device.`
 			`	"Greetings, humans. Follow me, you must, so discuss your book, we can," says the Kimek through its translation box.`
 			`	At the direction of the Kimek, you and Anna begin walking until directed to a room with glass walls. Anna puts down the copy of her book on the table, and the three of you take a seat.`
