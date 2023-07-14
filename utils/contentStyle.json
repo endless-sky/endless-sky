@@ -136,7 +136,7 @@
 					},
 					{
 						"description": "whitespace before beginning of text",
-						"regex": "^([^`\"]+[\"`]+)(?<!^tip .*) +(?! *[\"`]$)",
+						"regex": "^([^`\"]+(?:\"`*|`\"*))(?<!^tip .*) +(?! *[\"`]$)",
 						"correction": {
 							"replaceWith": "\\1"
 						}
