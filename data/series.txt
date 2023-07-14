@@ -11,70 +11,9 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-# Engines
 category "series"
-	# Misc
-	"Afterburners: Human" 1000
-	"Afterburners: Remnant" 1010
-	"Combo engines: Human" 10
-	"Combo engines: Hai" 20
-	"Combo engines: Remnant" 30
-
-	# Thrusters
-	"Thrusters: Human: Ion" 110
-	"Thrusters: Human: Plasma" 120
-	"Thrusters: Human: Atomic" 130
-	"Thrusters: Pug" 140
-	"Thrusters: Hai" 150
-	"Thrusters: Remnant" 160
-	"Thrusters: Coalition" 170
-	"Thrusters: Wanderer" 180
-	"Thrusters: Korath" 190
-	"Thrusters: Quarg" 200
-
-	# Steering
-	"Steering: Human: Ion" 310
-	"Steering: Human: Plasma" 320
-	"Steering: Human: Atomic" 330
-	"Steering: Hai" 340
-	"Steering: Pug" 350
-	"Steering: Remnant" 360
-	"Steering: Coalition" 370
-	"Steering: Wanderer" 380
-	"Steering: Korath" 390
-	"Steering: Quarg" 400
-
-	# Reverse
-	"Reverse: Human" 710
-
-	
-# Weapons and systems
-category "series"
-	"Human" 100
-	"Hai" 110
-	"Pug" 120
-	"Remnant" 130
-	"Korath" 140
-	"Wanderer" 150
-	"Heliarch" 160
-	"Quarg" 170
-	"Drak" 180
-
-
-# Power
-category "series"
-	# Batteries
-	"Batteries: Human" 10
-	"Batteries: Hai" 20
-	"Batteries: Remnant" 30
-	"Batteries: Coalition" 40
-
-	# Generators
-	"Gen: Human" 110
-	"Gen: Hai" 120
-	"Gen: Remnant" 130
-	"Gen: Coalition" 140
-	"Gen: Heliarch" 150
-	"Gen: Wanderer" 160
-	"Gen: Korath" 170
-
+	# Engines
+	"Human: Ion" 110
+	"Human: Plasma" 120
+	"Human: Atomic" 130
+	"Human: Afterburners" 140
