@@ -224,30 +224,6 @@ namespace {
 		return fuel < route.RequiredFuel(from, (to ? to : route.End()));
 	}
 
-	const StellarObject *GetRefuelLocation(const Ship &ship)
-	{
-		const StellarObject *target = nullptr;
-		const System *system = ship.GetSystem();
-		if(system)
-		{
-			// Determine which, if any, planet with fuel is closest.
-			double closest = numeric_limits<double>::infinity();
-			const Point &p = ship.Position();
-			for(const StellarObject &object : system->Objects())
-				if(object.HasSprite() && object.HasValidPlanet() && !object.GetPlanet()->IsWormhole()
-						&& object.GetPlanet()->HasFuelFor(ship))
-				{
-					double distance = p.Distance(object.Position());
-					if(distance < closest)
-					{
-						target = &object;
-						closest = distance;
-					}
-				}
-		}
-		return target;
-	}
-
 	// Set the ship's TargetStellar or TargetSystem in order to reach the
 	// next desired system. Will target a landable planet to refuel.
 	void SelectRoute(Ship &ship, const System *targetSystem)
@@ -279,13 +255,37 @@ namespace {
 		else if(needsRefuel)
 		{
 			// There is at least one planet that can refuel the ship.
-			ship.SetTargetStellar(GetRefuelLocation(ship));
+			ship.SetTargetStellar(AI::FindLandingLocation(ship));
 			return;
 		}
 		// Either there is no viable wormhole route to this system, or
 		// the target system cannot be reached.
 		ship.SetTargetSystem(to);
 		ship.SetTargetStellar(nullptr);
+	}
+
+	// The health remaining before becoming disabled, at which fighters and
+	// other ships consider retreating from battle.
+	const double RETREAT_HEALTH = .25;
+
+	bool ShouldFlee(Ship &ship)
+	{
+		const Personality &personality = ship.GetPersonality();
+
+		if(personality.IsFleeing())
+			return true;
+
+		if(personality.IsStaying())
+			return false;
+
+		const bool lowHealth = ship.Health() < RETREAT_HEALTH + .25 * personality.IsCoward();
+		if(!personality.IsDaring() && lowHealth)
+			return true;
+
+		if(ship.GetAICache().NeedsAmmo())
+			return true;
+
+		return false;
 	}
 
 	bool StayOrLinger(Ship &ship)
@@ -327,9 +327,6 @@ namespace {
 	// Constants for the invisible fence timer.
 	const int FENCE_DECAY = 4;
 	const int FENCE_MAX = 600;
-	// The health remaining before becoming disabled, at which fighters and
-	// other ships consider retreating from battle.
-	const double RETREAT_HEALTH = .25;
 
 	// An offset to prevent the ship from being not quite over the point to departure.
 	const double SAFETY_OFFSET = 1.;
@@ -659,13 +656,15 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			if(isCloaking)
 				command |= Command::CLOAK;
 		}
+
 		// Cloak if the AI considers it appropriate.
-		else if(DoCloak(*it, command))
-		{
-			// The ship chose to retreat from its target, e.g. to repair.
-			it->SetCommands(command);
-			continue;
-		}
+		if(!it->IsYours() || !isCloaking)
+			if(DoCloak(*it, command))
+			{
+				// The ship chose to retreat from its target, e.g. to repair.
+				it->SetCommands(command);
+				continue;
+			}
 
 		shared_ptr<Ship> parent = it->GetParent();
 		if(parent && parent->IsDestroyed())
@@ -684,7 +683,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 		shared_ptr<Flotsam> targetFlotsam = it->GetTargetFlotsam();
 		if(isPresent && it->IsYours() && targetFlotsam && FollowOrders(*it, command))
 			continue;
-		if(isPresent && !personality.IsSwarming() && !targetAsteroid)
+		if(isPresent && !personality.IsSwarming())
 		{
 			// Each ship only switches targets twice a second, so that it can
 			// focus on damaging one particular ship.
@@ -714,12 +713,11 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 			continue;
 		}
 
-		// Run away if your hostile target is not disabled and you are badly damaged.
+		// Run away if your hostile target is not disabled
+		// and you are either badly damaged or have run out of ammo.
 		// Player ships never stop targeting hostiles, while hostile mission NPCs will
 		// do so only if they are allowed to leave.
-		const bool shouldFlee = (personality.IsFleeing() ||
-			(!personality.IsDaring() && !personality.IsStaying()
-			&& healthRemaining < RETREAT_HEALTH + .25 * personality.IsCoward()));
+		const bool shouldFlee = ShouldFlee(*it);
 		if(!it->IsYours() && shouldFlee && target && target->GetGovernment()->IsEnemy(gov) && !target->IsDisabled()
 			&& (!it->GetParent() || !it->GetParent()->GetGovernment()->IsEnemy(gov)))
 		{
@@ -1101,6 +1099,36 @@ int64_t AI::EnemyStrength(const Government *government)
 {
 	auto it = enemyStrength.find(government);
 	return (it == enemyStrength.end() ? 0 : it->second);
+}
+
+
+
+// Find nearest landing location.
+const StellarObject *AI::FindLandingLocation(const Ship &ship, const bool refuel)
+{
+	const StellarObject *target = nullptr;
+	const System *system = ship.GetSystem();
+	if(system)
+	{
+		// Determine which, if any, planet with fuel or without fuel is closest.
+		double closest = numeric_limits<double>::infinity();
+		const Point &p = ship.Position();
+		for(const StellarObject &object : system->Objects())
+		{
+			const Planet *planet = object.GetPlanet();
+			if(object.HasSprite() && object.HasValidPlanet() && !planet->IsWormhole()
+					&& planet->CanLand(ship) && planet->HasFuelFor(ship) == refuel)
+			{
+				double distance = p.Distance(object.Position());
+				if(distance < closest)
+				{
+					target = &object;
+					closest = distance;
+				}
+			}
+		}
+	}
+	return target;
 }
 
 
@@ -1921,7 +1949,7 @@ void AI::Refuel(Ship &ship, Command &command)
 	if(CanRefuel(ship, parentTarget))
 		ship.SetTargetStellar(parentTarget);
 	else if(!CanRefuel(ship, ship.GetTargetStellar()))
-		ship.SetTargetStellar(GetRefuelLocation(ship));
+		ship.SetTargetStellar(FindLandingLocation(ship));
 
 	if(ship.GetTargetStellar())
 	{
@@ -2942,7 +2970,8 @@ bool AI::DoCloak(Ship &ship, Command &command)
 	// or 40% farther away before it begins decloaking again.
 	double hysteresis = ship.Commands().Has(Command::CLOAK) ? .4 : 0.;
 	// If cloaking costs nothing, and no one has asked you for help, cloak at will.
-	bool cloakFreely = (fuelCost <= 0.) && !ship.GetShipToAssist();
+	// Player ships should never cloak automatically if they are not in danger.
+	bool cloakFreely = (fuelCost <= 0.) && !ship.GetShipToAssist() && !ship.IsYours();
 	// If this ship is injured / repairing, it should cloak while under threat.
 	bool cloakToRepair = (ship.Health() < RETREAT_HEALTH + hysteresis)
 			&& (attributes.Get("shield generation") || attributes.Get("hull repair rate"));
@@ -3629,7 +3658,12 @@ bool AI::TargetMinable(Ship &ship) const
 	};
 	auto UpdateBestMinable = MinableStrategy();
 	for(auto &&minable : minables)
-		UpdateBestMinable(minable);
+	{
+		if(bestMinable)
+			UpdateBestMinable(minable);
+		else
+			bestMinable = minable;
+	}
 	if(bestMinable)
 		ship.SetTargetAsteroid(bestMinable);
 	return static_cast<bool>(ship.GetTargetAsteroid());
@@ -4190,7 +4224,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		if(Stop(ship, command))
 			autoPilot.Clear(Command::STOP);
 	}
-	else if(autoPilot.Has(Command::JUMP | Command::FLEET_JUMP))
+	else if(autoPilot.Has(Command::JUMP | Command::FLEET_JUMP) && !ship.IsEnteringHyperspace())
 	{
 		if(!ship.JumpNavigation().HasHyperdrive() && !ship.JumpNavigation().HasJumpDrive())
 		{
