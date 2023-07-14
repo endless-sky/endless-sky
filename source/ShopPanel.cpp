@@ -289,7 +289,7 @@ void ShopPanel::DrawShipsSidebar()
 		point.Y() += sideDetailHeight + SHIP_SIZE / 2;
 	}
 	// Don't show cargo capacity if none is available or in design mode.
-	else if(player.Cargo().Size() && !player.IsDesignPlayer())
+	else if(player.Cargo().Size() && !designMode)
 	{
 		point.X() = Screen::Right() - SIDEBAR_WIDTH + 10;
 		font.Draw("cargo space:", point, medium);
@@ -349,22 +349,33 @@ void ShopPanel::DrawDesignButtons()
 		Point(Screen::Right() - INFOBAR_WIDTH / 2, Screen::Bottom() - BUTTON_HEIGHT),
 		Point(INFOBAR_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
 
-	// The normal Outfitter doesn't have a button here.
+	// The normal Outfitter doesn't have any buttons here.
 	if(!isShipyard && !player.IsDesignPlayer())
 		return;
 
 	const Font &bigFont = FontSet::Get(18);
+	const Color &hover = *GameData::Colors().Get("hover");
 	const Color &active = *GameData::Colors().Get("active");
+	const Color &inactive = *GameData::Colors().Get("inactive");
 	const Color &back = *GameData::Colors().Get("design panel background");
-	const Point buttonCenter = Screen::BottomRight() - Point(210 + SIDEBAR_WIDTH, 25);
-	FillShader::Fill(buttonCenter, Point(140, 30), back);
 
-	// Use the widest text to left-justify the text.
-	const int width = max(bigFont.Width("_Design Center"), max(bigFont.Width("_Design Shipyard"),
-		bigFont.Width("_Design Outfitter")));
-	bigFont.Draw(isShipyard ? (player.IsDesignPlayer() ? "_Design Outfitter" : "_Design Center") : "_Design Shipyard",
-		buttonCenter - .5 * Point(width, bigFont.Height()),
-		active);
+	const Point shipyardCenter = Screen::BottomRight() - Point(225 + SIDEBAR_WIDTH, 25);
+	FillShader::Fill(shipyardCenter, Point(140, 30), back);
+	static const string DESIGN_CENTER = "_Design Center";
+	static const string DESIGN_SHIPYARD = "_Design Shipyard";
+	bigFont.Draw(player.IsDesignPlayer() ? DESIGN_SHIPYARD : DESIGN_CENTER,
+		shipyardCenter - .5 * Point(bigFont.Width(DESIGN_SHIPYARD), bigFont.Height()),
+		isShipyard && player.IsDesignPlayer() ? inactive : (hoverButton == 'd' ? hover : active));
+	
+	if(player.IsDesignPlayer())
+	{
+		const Point outfitterCenter = Screen::BottomRight() - Point(75 + SIDEBAR_WIDTH, 25);
+		FillShader::Fill(outfitterCenter, Point(140, 30), back);
+		static const string DESIGN_OUTFITTER = "_Design Outfitter";
+		bigFont.Draw(DESIGN_OUTFITTER,
+			outfitterCenter - .5 * Point(bigFont.Width(DESIGN_OUTFITTER), bigFont.Height()),
+			isShipyard ? (hoverButton == 'o' ? hover : active) : inactive);
+	}
 }
 
 
@@ -1373,7 +1384,9 @@ char ShopPanel::CheckButton(int x, int y)
 		return 's';
 	else if(x > 169 && x < 240)
 		return 'l';
-	else if(x > -280 && x < -140)
+	else if(x > -146 && x < -5)
+		return 'o';
+	else if(x > -296 && x < -155)
 		return 'd';
 
 	return ' ';

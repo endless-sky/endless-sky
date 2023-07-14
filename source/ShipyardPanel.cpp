@@ -382,22 +382,19 @@ bool ShipyardPanel::CanSellMultiple() const
 // Only override the ones you need; the default action is to return false.
 bool ShipyardPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(key == 'd')
+	if(key == 'd' && !player.IsDesignPlayer())
 	{
-		if(player.IsDesignPlayer())
-		{
-			GetUI()->Pop(this);
-			GetUI()->Push(new OutfitterPanel(player));
-		}
-		else
-		{
-			// Only initialize the design player once per shipyard.
-			if(!designPlayer.IsDesignPlayer())
-				designPlayer.NewDesignPlayer(player);
-			// The design screens are effectively subpanels of
-			// the ShipyardPanel so don't pop the shipyard ui.
-			GetUI()->Push(new ShipyardPanel(designPlayer));
-		}
+		// Only initialize the design player once per shipyard.
+		if(!designPlayer.IsDesignPlayer())
+			designPlayer.NewDesignPlayer(player);
+		// The design screens are effectively subpanels of
+		// the ShipyardPanel so don't pop the shipyard ui.
+		GetUI()->Push(new ShipyardPanel(designPlayer));
+	}
+	else if(key == 'o' && player.IsDesignPlayer())
+	{
+		GetUI()->Pop(this);
+		GetUI()->Push(new OutfitterPanel(player));
 	}
 	else
 		return ShopPanel::KeyDown(key, mod, command, isNewPress);
