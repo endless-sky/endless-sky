@@ -274,7 +274,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 			if(key == SDLK_DOWN)
 			{
-				const int lastVisibleIndex = (sideScroll / 20.) + 14.;
+				const int lastVisibleIndex = (sideScroll / 20.) + 13.;
 				if(index >= lastVisibleIndex)
 					sideScroll += 20.;
 				++it;
@@ -311,7 +311,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			if(key == SDLK_DOWN)
 			{
 				++it;
-				const int lastVisibleIndex = (centerScroll / 20.) + 14.;
+				const int lastVisibleIndex = (centerScroll / 20.) + 13.;
 				if(index >= lastVisibleIndex)
 					centerScroll += 20.;
 				if(it == pit->second.end())
