@@ -95,9 +95,6 @@ private:
 	const std::string &planetName;
 	// The currently select category (outfitter, shipyard, ...)
 	unsigned selectedCategory = 0;
-
-	static std::string systemGovernmentName;
-	static bool hasGovernments;
 };
 
 

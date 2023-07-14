@@ -35,8 +35,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
-std::string MapPlanetCard::systemGovernmentName;
-bool MapPlanetCard::hasGovernments = false;
+namespace {
+	bool hasGovernments = false;
+}
 
 
 
@@ -48,8 +49,7 @@ MapPlanetCard::MapPlanetCard(const StellarObject &object, unsigned number, bool 
 	hasShipyard = planet->HasShipyard();
 	hasOutfitter = planet->HasOutfitter();
 	governmentName = planet->GetGovernment()->GetName();
-	if(systemGovernmentName.empty())
-		systemGovernmentName = planet->GetSystem()->GetGovernment()->GetName();
+	string systemGovernmentName = planet->GetSystem()->GetGovernment()->GetName();
 	if(governmentName != "Uninhabited" && governmentName != systemGovernmentName)
 		hasGovernments = true;
 
@@ -277,7 +277,6 @@ double MapPlanetCard::Height()
 
 void MapPlanetCard::ResetSize()
 {
-	systemGovernmentName.clear();
 	hasGovernments = false;
 }
 
