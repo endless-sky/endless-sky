@@ -800,6 +800,17 @@ interface "planet"
 		align right
 		pad 10 0
 
+	visible if "!has ship"
+	sprite "ui/planet dialog button"
+		center 280 270
+	button "" "Depart"
+		center 280 270
+		dimensions 140 40
+		size 18
+		align right
+		pad 10 0
+
+
 
 
 interface "spaceport"
