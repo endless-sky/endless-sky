@@ -3397,7 +3397,7 @@ mission "Coalition: Struggling Author 3"
 		has "Fangvin: Struggling Author 2: done"
 	on offer
 		conversation
-			`Going through the spaceport looking for Anna, you finally find her at a restaurant serving food made for Saryds. She's typing away furiously at her laptop, and a plate of vegetables next to her. She sees you and motions for you to take a seat.`
+			`Going through the spaceport looking for Anna, you finally find her at a restaurant serving food made for Saryds. She's typing away furiously at her laptop, with a plate of vegetables next to her. She sees you and motions for you to take a seat.`
 			`	You sit down next to Anna. "These vegetables are so delicious! After months of instant noodles and takeout back home, it finally feels good to eat something that's actually much healthier."`
 			choice
 				`	"How good is it?"`
