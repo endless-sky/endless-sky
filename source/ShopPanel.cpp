@@ -366,7 +366,7 @@ void ShopPanel::DrawDesignButtons()
 	bigFont.Draw(player.IsDesignPlayer() ? DESIGN_SHIPYARD : DESIGN_CENTER,
 		shipyardCenter - .5 * Point(bigFont.Width(DESIGN_SHIPYARD), bigFont.Height()),
 		isShipyard && player.IsDesignPlayer() ? inactive : (hoverButton == 'd' ? hover : active));
-	
+
 	if(player.IsDesignPlayer())
 	{
 		const Point outfitterCenter = Screen::BottomRight() - Point(75 + SIDEBAR_WIDTH, 25);
