@@ -16,11 +16,13 @@ target_sources(EndlessSkyTests PRIVATE
 	unit/src/test_account.cpp
 	unit/src/test_angle.cpp
 	unit/src/test_bitset.cpp
+	unit/src/test_categoryList.cpp
 	unit/src/test_conditionSet.cpp
 	unit/src/test_conditionsStore.cpp
 	unit/src/test_datafile.cpp
 	unit/src/test_datanode.cpp
 	unit/src/test_dictionary.cpp
+	unit/src/test_distance_calculation_settings.cpp
 	unit/src/test_esuuid.cpp
 	unit/src/test_exclusiveItem.cpp
 	unit/src/test_firecommand.cpp
@@ -51,6 +53,7 @@ list(APPEND INTEGRATION_TESTS
 	integration/config/plugins/integration-tests/data/tests/tests_framework.txt
 	integration/config/plugins/integration-tests/data/tests/tests_hyperjumps_to_autocondition.txt
 	integration/config/plugins/integration-tests/data/tests/tests_illegal_atrocity.txt
+	integration/config/plugins/integration-tests/data/tests/tests_take_ships.txt
 	integration/config/plugins/integration-tests/data/tests/tests_save_load.txt
 	integration/config/plugins/integration-tests/data/tests/tests_ship_sale.txt
 	integration/config/plugins/integration-tests/data/tests/tests_shipyard_outfitter_missions.txt
@@ -60,7 +63,7 @@ list(APPEND INTEGRATION_TESTS
 )
 
 target_include_directories(EndlessSkyTests PRIVATE unit/include)
-target_link_libraries(EndlessSkyTests PRIVATE EndlessSkyLib)
+target_link_libraries(EndlessSkyTests PRIVATE ExternalLibraries $<TARGET_OBJECTS:EndlessSkyLib>)
 
 # CTest support for our unit tests.
 add_test(NAME unit COMMAND EndlessSkyTests)

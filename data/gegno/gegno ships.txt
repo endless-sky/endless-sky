@@ -131,8 +131,8 @@ ship "Conglomerate"
 		"Hyperdrive"
 	engine -34.5 220
 	engine 34.5 220
-	engine 13 206 0.75
-	engine -13 206 0.75
+	engine 15 210 0.75
+	engine -15 210 0.75
 	leak "leak" 30 40
 	leak "flame" 80 20
 	explode "huge explosion" 10
@@ -142,6 +142,53 @@ ship "Conglomerate"
 	"final explode" "final explosion large"
 	description `Over time, the Gegno needed larger vessels to carry materials to and from new worlds - ones that would be easier to build and operate than their older, outdated generation ships, but larger than their shuttlecraft. The Conglomerate was designed to fill that exact role.`
 
+ship "Granofel"
+	sprite "ship/gegno granofel"
+	thumbnail "thumbnail/gegno granofel"
+	attributes
+		category "Heavy Freighter"
+		licenses
+			"Gegno Civilian"
+		"cost" 5150000
+		"shields" 0
+		"hull" 8800
+		"required crew" 10
+		"bunks" 15
+		"mass" 800
+		"drag" 10.5
+		"heat dissipation" 0.6
+		"fuel capacity" 500
+		"cargo space" 560
+		"outfit space" 230
+		"weapon capacity" 0
+		"engine capacity" 151
+		weapon
+			"blast radius" 96
+			"shield damage" 480
+			"hull damage" 860
+			"hit force" 970
+	outfits
+		"C7 Brawl Cell"
+		"R02 Battlezone Battery"
+		
+		"RG18 Torch Thruster" 2
+		"RG18 Torch Steering"
+		"Hyperdrive"
+	engine -36 114
+	engine 36 114
+	"steering engine" 94 -6 0.75
+		left
+	"steering engine" -94 -6 0.75
+		right
+	leak "leak" 20 30
+	leak "flame" 60 10
+	explode "huge explosion" 6
+	explode "large explosion" 22
+	explode "medium explosion" 30
+	explode "small explosion" 24
+	"final explode" "final explosion large"
+	description `Unlike many Gegno ships that are capable in a variety of roles, Granofels were designed for the sole purpose of hauling huge loads of cargo; they lack bunks for anything beyond a proper crew, and are most often found freighting massive shipments of both raw and refined ore to and from mining industries. They can also be seen paired with a mining vessel to extend the duration of a mining run due to the higher cargo capacity. Apart from mining, Granofels are also used in transporting heavy materials needed to construct other large ships.`
+
 ship "Gypsum"
 	sprite "ship/gegno gypsum"
 	thumbnail "thumbnail/gegno gypsum"
@@ -149,6 +196,7 @@ ship "Gypsum"
 		category "Light Freighter"
 		licenses
 			"Gegno Civilian"
+			"Gegno Driller"
 		"cost" 1692000
 		"shields" 0
 		"hull" 5500
@@ -171,7 +219,6 @@ ship "Gypsum"
 			"hit force" 720
 	outfits
 		"Excavator"
-		
 		"C7 Brawl Cell"
 		"R01 Skirmish Battery"
 		
@@ -190,6 +237,141 @@ ship "Gypsum"
 	"final explode" "final explosion medium"
 	description `To fuel their increasing need for materials, the Gegno designed a new ship class for the sole purpose of mining. The resulting platform, the Gypsum, is not much more than a flying drill with cargo containers, engines, and a bridge attached behind it, making it cost-efficient and easy to manufacture.`
 	description `	Because Gegno engines are not very powerful, the Gypsum has difficulty chasing faster-moving asteroids. In order to alleviate this problem without needing to massively increase the engine space on the ship, the Gegno have instead developed the powerful Excavator Drill, which can shred asteroids in a matter of seconds, meaning the Gypsum only needs to be near an asteroid for a mere moment in order to mine it.`
+
+ship "Corundum"
+	sprite "ship/gegno corundum"
+	thumbnail "thumbnail/gegno corundum"
+	attributes
+		category "Light Freighter"
+		licenses
+			"Gegno Civilian"
+			"Gegno Driller"
+		"cost" 2465000
+		"shields" 0
+		"hull" 5400
+		"required crew" 6
+		"bunks" 9
+		"mass" 440
+		"drag" 3.6
+		"heat dissipation" 0.8
+		"fuel capacity" 600
+		"cargo space" 140
+		"outfit space" 316
+		"weapon capacity" 64
+		"engine capacity" 162
+		"drill spar" 2
+		weapon
+			"blast radius" 84
+			"shield damage" 410
+			"hull damage" 710
+			"hit force" 800
+	outfits
+		"Burrower" 2
+		"C3 Scrap Cell"
+		"C7 Brawl Cell"
+		"R01 Skirmish Battery"
+		
+		"RG18 Torch Thruster"
+		"RG18 Torch Steering" 2
+		"Hyperdrive"
+	engine 58 -58
+	engine -58 -58
+	"steering engine" 58 -58
+		left
+	"steering engine" -58 -58
+		right
+	gun 9 -132
+		over
+	gun -9 -132
+		over
+	leak "leak" 50 60
+	leak "flame" 70 70
+	explode "large explosion" 16
+	explode "medium explosion" 22
+	explode "small explosion" 28
+	explode "tiny explosion" 12
+	"final explode" "final explosion medium"
+	description `While the Gypsum has remained the most reliable mining platform for generations, the Corundum was designed for the purpose of modularity on account of the ever-growing technological potential of the Gegno. Using a similar principle to the Gypusm's design, the Corundum's structure is mostly built around not one but two adjustable drill systems that are capable of mounting more advanced mining tools.`
+	description `	Although not able to mount the powerful Excavator Drill, the Corundum's engine capacity is twice that of the Gypsum, and the modularity of the two new mounting systems grants it the ability to adapt to future technologies that the Gegno may develop.`
+
+ship "Corundum" "Corundum (Torch)"
+	outfits
+		"Ion Torch" 2
+		"C3 Scrap Cell"
+		"C7 Brawl Cell"
+		"R01 Skirmish Battery"
+		
+		"RG18 Torch Thruster"
+		"RG18 Torch Steering" 2
+		"Hyperdrive"
+
+ship "Corundum" "Corundum (Multi)"
+	outfits
+		"Ion Torch"
+		"Burrower"
+		"C3 Scrap Cell"
+		"C7 Brawl Cell"
+		"R01 Skirmish Battery"
+		
+		"RG18 Torch Thruster"
+		"RG18 Torch Steering" 2
+		"Hyperdrive"
+
+ship "Protolith"
+	sprite "ship/gegno protolith"
+	thumbnail "thumbnail/gegno protolith"
+	attributes
+		category "Heavy Freighter"
+		"cost" 115700000
+		"shields" 0
+		"hull" 48600
+		"required crew" 402
+		"bunks" 4040
+		"mass" 4690
+		"drag" 62.4
+		"heat dissipation" 0.36
+		"fuel capacity" 2100
+		"cargo space" 1160
+		"outfit space" 942
+		"weapon capacity" 0
+		"engine capacity" 480
+		weapon
+			"blast radius" 360
+			"shield damage" 1860
+			"hull damage" 2400
+			"hit force" 2720
+	outfits
+		"C7 Brawl Cell" 2
+		"C3 Scrap Cell" 2
+		"R03 Warforge Battery" 2
+
+		"RG3 Torch Thruster" 4
+		"RG3 Torch Steering" 2
+	"steering engine" 87 -289 0.5
+		angle -90
+		left
+	"steering engine" -87 -289 0.5
+		angle 90
+		right
+	"steering engine" 97 214 0.5
+		angle -90
+		right
+	"steering engine" -97 214 0.5
+		angle 90
+		left
+	engine 76 365
+	engine -76 365
+	engine 46 366
+	engine -46 366
+	leak "leak" 40 50
+	leak "flame" 40 70
+	leak "big leak" 60 40
+	explode "huge explosion" 34
+	explode "large explosion" 38
+	explode "medium explosion" 46
+	explode "small explosion" 42
+	"final explode" "final explosion large"
+	description `A relic from another age, Protoliths are the last of the Generation ships constructed by the Gegno to colonize the stars. Now that other more easily constructed and hyperdrive-capable transport ships are commonplace, Protoliths are no longer found in service, and the very few that are still functioning are either preserved as artifacts or seldom used as hauling vessels between planets of the Gegno home system of Heutesl.`
 
 # Gegno Vi:
 
@@ -224,6 +406,7 @@ ship "Dunite"
 		
 		"C3 Scrap Cell"
 		"R01 Skirmish Battery"
+		"Savagery Pike"
 
 		"RG15 Torch Thruster"
 		"RG15 Torch Steering"
@@ -272,6 +455,8 @@ ship "Augen"
 		"C17 Warzone Core"
 		"C27 Campaign Core"
 		"R04 Crusade Battery"
+		"Savagery Pike" 280
+		"Irate Carronade" 4
 		
 		"RG3 Torch Thruster" 4
 		"RG3 Torch Steering" 2
@@ -353,7 +538,7 @@ ship "Augen"
 	explode "small explosion" 20
 	explode "tiny explosion" 60
 	"final explode" "final explosion large"
-	description `The Augen-class is an ancient battleship proposed by the Vi as a large weapons platform for their Ballistic Cannons. It was built in secret over many years in Enbi's canyon shipyard, and for many periods of time its construction was put on hold. The recent civil war with the Scin gave reason to complete the warship, although it is still somewhat of a relic compared to current vessels in the service of the Vi fleet.`
+	description `The Augen-Class is an ancient battleship proposed by the Vi as a large weapons platform for their Ballistic Cannons. It was built in secret over many years in Enbi's canyon shipyard, and for many periods of time its construction was put on hold. The recent civil war with the Scin gave reason to complete the warship, although it is still somewhat of a relic compared to current vessels in the service of the Vi fleet.`
 	description `	This project was meant to result in two sister-ship behemoths, but the blueprints for the other design went missing early in the process, and are currently nowhere to be found.`
 
 ship "Slate"
@@ -384,6 +569,7 @@ ship "Slate"
 	outfits
 		"C3 Scrap Cell"
 		"R01 Skirmish Battery"
+		"Savagery Pike" 1
 		
 		"RG15 Torch Thruster"
 		"RG15 Torch Steering"
@@ -425,6 +611,8 @@ ship "Schist"
 		
 		"C7 Brawl Cell"
 		"R02 Battlezone Battery"
+		"Savagery Pike" 23
+		"Irate Carronade"
 		
 		"RG18 Torch Thruster"
 		"RG18 Torch Steering"
@@ -499,6 +687,7 @@ ship "Eclogite"
 		
 		"C7 Brawl Cell"
 		"R03 Warforge Battery"
+		"Savagery Pike" 9
 		
 		"RG18 Torch Thruster"
 		"RG18 Torch Steering"
@@ -548,6 +737,8 @@ ship "Diorite"
 		
 		"C17 Warzone Core"
 		"R02 Battlezone Battery"
+		"Savagery Pike" 14
+		"Irate Carronade"
 		
 		"RG18 Torch Thruster"
 		"RG3 Torch Steering"
@@ -613,6 +804,8 @@ ship "Hornfel"
 		
 		"C17 Warzone Core"
 		"R03 Warforge Battery"
+		"Savagery Pike" 32
+		"Irate Carronade" 2
 		
 		"RG18 Torch Thruster"
 		"RG18 Torch Steering"
@@ -735,6 +928,8 @@ ship "Gneiss"
 		
 		"C17 Warzone Core"
 		"R04 Crusade Battery"
+		"Savagery Pike" 112
+		"Irate Carronade" 3
 		
 		"RG3 Torch Thruster"
 		"RG3 Torch Steering"
@@ -807,6 +1002,7 @@ ship "Granulite"
 		"C7 Brawl Cell" 2
 		"C3 Scrap Cell"
 		"R03 Warforge Battery" 3
+		"Savagery Pike" 53
 		
 		"RG3 Torch Thruster"
 		"RG15 Torch Thruster"
@@ -880,6 +1076,7 @@ ship "Halite"
 		"Guile Pulse Laser" 2
 		
 		"I70 Ameliorate Cell"
+		"Plasmasickle"
 		
 		"SC-1 Plasma Engines"
 	engine -11 42
@@ -921,6 +1118,7 @@ ship "Mica"
 	outfits
 		"C3 Scrap Cell"
 		"R01 Skirmish Battery"
+		"Plasma Grenades"
 		
 		"SC-12 Plasma Thruster"
 		"SC-12 Plasma Steering"
@@ -963,6 +1161,8 @@ ship "Coesite"
 		"C3 Scrap Cell"
 		"R01 Skirmish Battery"
 		"R02 Battlezone Battery"
+		"Plasmasickle" 6
+		"Plasma Grenades" 2
 		
 		"SC-12 Plasma Thruster"
 		"SC-14 Plasma Steering"
@@ -1003,7 +1203,7 @@ ship "Tridymite"
 		"outfit space" 200
 		"weapon capacity" 0
 		"engine capacity" 86
-		
+
 		"outfit scan power" 18
 		"outfit scan efficiency" 8
 		"cargo scan power" 6
@@ -1016,6 +1216,8 @@ ship "Tridymite"
 	outfits
 		"C7 Brawl Cell"
 		"R02 Battlezone Battery"
+		"Plasmasickle" 3
+		"Plasma Grenades" 4
 		
 		"SC-14 Plasma Thruster"
 		"SC-14 Plasma Steering"
@@ -1064,6 +1266,8 @@ ship "Felsic"
 		
 		"C17 Warzone Core"
 		"R02 Battlezone Battery"
+		"Plasmasickle" 9
+		"Plasma Grenades" 9
 		
 		"SC-14 Plasma Thruster"
 		"SC-14 Plasma Steering"
@@ -1114,6 +1318,8 @@ ship "Feldspar"
 		
 		"C27 Campaign Core"
 		"R03 Warforge Battery"
+		"Plasmasickle" 66
+		"Plasma Grenades" 66
 		
 		"SC-15 Plasma Thrusters"
 		"SC-12 Plasma Steering"
@@ -1136,17 +1342,24 @@ ship "Feldspar"
 	turret -74.5 13 "Acuit Artillery"
 	turret 74.5 13 "Acuit Artillery"
 	bay "Fighter" -73 -173.5
+		"launch effect" "scin launch"
 		over
 	bay "Fighter" 73 -173.5
+		"launch effect" "scin launch"
 		over
 	bay "Fighter" -70 -98
+		"launch effect" "scin launch"
 		over
 	bay "Fighter" 70 -98
+		"launch effect" "scin launch"
 		over
 	bay "Fighter" -65.5 120
+		"launch effect" "scin launch"
 		angle -180
 		over
+		"launch effect" "scin launch"
 	bay "Fighter" 65.5 120
+		"launch effect" "scin launch"
 		angle -180
 		over
 	leak "leak" 50 50
@@ -1194,6 +1407,8 @@ ship "Epidote"
 		"C17 Warzone Core"
 		"R02 Battlezone Battery"
 		"R03 Warforge Battery"
+		"Plasmasickle" 51
+		"Plasma Grenades" 51
 		
 		"SC-15 Plasma Thrusters"
 		"SC-14 Plasma Steering" 2
@@ -1206,9 +1421,11 @@ ship "Epidote"
 	turret 0 -27 "Astuit Battery"
 	turret 0 65 "Acuit Artillery"
 	bay "Fighter" 0 122
+		"launch effect" "scin launch"
 		angle -180
 		under
 	bay "Fighter" 0 180
+		"launch effect" "scin launch"
 		angle -180
 		under
 	leak "leak" 10 40
@@ -1221,3 +1438,106 @@ ship "Epidote"
 	"final explode" "final explosion large"
 	description `Epidotes are large independent research platforms with adequately-sized cargo holds, allowing them to perform as a reliable heavy freighter for the Gegno Scin. A large number of bunks either help transport groups of Scin scientists to their project destinations, or allow for mobile on-board demonstrations and observations. Each Epidote is equipped with a rear fighter docking bay capable of carrying two Halites, typically used to ship Halite fighters around Scin space to resupply carriers. Thanks to these fighters and the Epidotes' three dorsal turrets, they can also be used as a secondary warship when needed.`
 	description `	Like other Gegno Scin ships, Epidotes themselves are an experimental test bed; they are built around the same large engine system tested on Feldspars, making them notably fast for their size.`
+
+ship "Kyanite"
+	sprite "ship/gegno kyanite"
+	thumbnail "thumbnail/gegno kyanite"
+	attributes
+		category "Utility"
+		"cost" 28870000
+		"shields" 0
+		"hull" 13650
+		"required crew" 66
+		"bunks" 93
+		"mass" 985
+		"drag" 14.6
+		"heat dissipation" 0.5
+		"fuel capacity" 400
+		"cargo space" 76
+		"outfit space" 380
+		"weapon capacity" 202
+		"engine capacity" 160
+		"energy capacity" 21300
+		"energy generation" 11.3
+		"heat generation" 27.2
+		"outfit scan power" 18
+		"outfit scan efficiency" 8
+		"cargo scan power" 6
+		"cargo scan efficiency" 2
+		weapon
+			"blast radius" 197
+			"shield damage" 2030
+			"hull damage" 1440
+			"hit force" 2800
+	outfits
+		"Astuit Battery" 2
+		"Acuit Artillery"
+
+		"Plasmasickle" 33
+		"Plasma Grenades" 33
+
+		"SC-14 Plasma Thruster" 2
+		"SC-14 Plasma Steering" 2
+		"Hyperdrive"
+	"steering engine" -84 -100 0.5
+		angle 58.5
+		right
+	"steering engine" 84 -100 0.5
+		angle -58.5
+		left
+	engine -15 140
+	engine 15 140
+	engine -28.5 169
+	engine 28.5 169
+	gun -40 -350
+	gun 40 -350
+	gun 0 -62.5
+	turret -46 -102 "Astuit Battery"
+	turret 46 -102 "Astuit Battery"
+	turret 0 69 "Acuit Artillery"
+	leak "leak" 20 50
+	leak "flame" 90 160
+	leak "big leak" 30 50
+	explode "huge explosion" 12
+	explode "large explosion" 46
+	explode "medium explosion" 44
+	explode "small explosion" 30
+	"final explode" "final explosion large"
+	description `Kyanites are intricately-built test platforms for Gegno Scin technology, equipped with an extensive built-in power system and energy reserve able to support many types of outfits. Weapon experimentation, the most common practice of Kyanites, is recorded by various scanner instruments littering the two long structures on the front of the hull. Despite being weapon research vessels, Kyanites are not combat-capable due to how exposed their systems are and how little hull covers them. These systems are also very expensive and difficult to produce, so only a small amount of Kyanites are found in service.`
+	description `	The scanner system found on the Tridymite was originally developed and tested on Kyanite platforms, eventually becoming integrated into the hull as well.`
+
+ship "Kyanite" "Kyanite (Guile)"
+	outfits
+		"Guile Pulse Laser" 2
+
+		"Plasmasickle" 33
+		"Plasma Grenades" 33
+
+		"SC-14 Plasma Thruster" 2
+		"SC-14 Plasma Steering" 2
+		"Hyperdrive"
+
+	gun "Guile Pulse Laser"
+	gun "Guile Pulse Laser"
+	gun
+	turret
+	turret
+	turret
+
+ship "Kyanite" "Kyanite (Acumen)"
+	outfits
+		"Acumen Bolt Cannon"
+
+		"Plasmasickle" 33
+		"Plasma Grenades" 33
+
+		"SC-14 Plasma Thruster" 2
+		"SC-14 Plasma Steering" 2
+		"Hyperdrive"
+
+	gun
+	gun
+	gun "Acumen Bolt Cannon"
+	turret
+	turret
+	turret

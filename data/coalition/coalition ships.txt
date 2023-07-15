@@ -908,11 +908,17 @@ ship "Heliarch Judicator"
 	gun 13 -124.5 "Finisher Pod"
 	turret 0 45 "Ion Hail Turret"
 	bay "Fighter" -34.5 -82
+		"launch effect" "coalition launch"
 	bay "Fighter" 34.5 -82
+		"launch effect" "coalition launch"
 	bay "Fighter" -67.5 35
+		"launch effect" "coalition launch"
 	bay "Fighter" -67.5 35
+		"launch effect" "coalition launch"
 	bay "Fighter" 67.5 35
+		"launch effect" "coalition launch"
 	bay "Fighter" 67.5 35
+		"launch effect" "coalition launch"
 	explode "small explosion" 20
 	explode "medium explosion" 50
 	explode "large explosion" 20

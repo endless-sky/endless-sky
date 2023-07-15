@@ -57,7 +57,7 @@ outfit "Pulse Turret"
 		"firing heat" 70
 		"shield damage" 45
 		"hull damage" 34
-	description "Pulse Cannons are the primary offensive weapon used by Hai ships. This turret mounts two pulse cannons side by side and allows them to track even the fastest-moving of targets."
+	description "Pulse Cannons are the primary offensive weapon used by Hai ships. This turret mounts two Pulse Cannons side by side and allows them to track even the fastest-moving of targets."
 
 outfit "Tripulse Shredder"
 	category "Guns"
@@ -157,9 +157,9 @@ outfit "Ionic Blaster Prototype"
 		"hit force" 72
 		"shield damage" 70
 		"hull damage" 30
-		"ion damage" 1
-		"scrambling damage" 1
-	description "The Unfettered conflict with the rest of the Hai has put pressure on them to gain a technological edge, despite their limited resources. The Ionic Blaster is a result of that pressure. It is much smaller than the venerable Ion Cannon, but is still able to apply the same weapon jamming and energy draining effects, while also doing more raw damage for its size."
+		"ion damage" .5
+		"scrambling damage" 1.45
+	description "The Unfettered conflict with the rest of the Hai has put pressure on them to gain a technological edge, despite their limited resources. The Ionic Blaster is a result of that pressure. It is much smaller than the venerable Ion Cannon, while also doing more raw damage for its size. It also is still able to apply some of the same energy draining effects, but Unfettered scientists have pushed it towards a higher relative focus on jamming enemy weapons."
 
 outfit "Ionic Turret Prototype"
 	category "Turrets"
@@ -188,10 +188,10 @@ outfit "Ionic Turret Prototype"
 		"hit force" 60
 		"shield damage" 100
 		"hull damage" 50
-		"ion damage" 14
-		"scrambling damage" 14
-	description "This weapon improves upon the ionization capabilities of the Ion Cannon, while also being turret-mounted, enabling it to fire at enemies in any direction, not just those directly ahead."
-	description "	This design cannot yet be mass produced, but those that have been produced are prized by the few lucky enough to possess them."
+		"ion damage" 17.5
+		"scrambling damage" 10
+	description "This weapon vastly improves upon the ionization capabilities of the Ion Cannon, while doing less raw damage and not having nearly the weapon jamming affects. It is, however, also turret-mounted, enabling it to fire at enemies in any direction instead of just those directly ahead."
+	description "	This design cannot yet be mass-produced, but those that have been produced are prized by the few lucky enough to possess them."
 
 
 outfit "Railgun Slug"
@@ -200,7 +200,7 @@ outfit "Railgun Slug"
 	thumbnail "outfit/railslug"
 	"mass" 0.003
 	"railgun slug capacity" -1
-	description "These railgun slugs incorporate energy-discharging capacitors that deal a small amount of ion damage to their target. Although not terribly damaging, this ion damage combined with the significant recoil that each shot has turns Flea drones into effective long-range support ships."
+	description "These Railgun Slugs incorporate energy-discharging capacitors that deal a small amount of ion damage to their target. Although not terribly damaging, this ion damage combined with the significant recoil that each shot has turns Flea drones into effective long-range support ships."
 
 outfit "Railgun Slug Rack"
 	category "Ammunition"
@@ -239,7 +239,7 @@ outfit "Railgun"
 		"firing force" 70
 		"stream"
 		"submunition" "rslug" 1
-	description "The Hai designed this weapon to best complement their Flea drones. Each railgun provides a significant amount of force upon firing, pushing the Flea drone backwards and therefore forcing it to keep its distance from its target."
+	description "The Hai designed this weapon to best complement their Flea drones. Each Railgun provides a significant amount of force upon firing, pushing the Flea drone backwards and therefore forcing it to keep its distance from its target."
 	description "	Flea drone pilots joke that they provide more thrust than engines of similar size, so Unfettered should be using them at the back of their ships. There's probably a cultural component to the joke that many miss, because it's told quite often and the Hai laugh hysterically about it - every time."
 
 outfit "rslug"
@@ -399,7 +399,7 @@ outfit "Chameleon Anti-Missile"
 		"firing energy" 23
 		"firing heat" 6
 		"stream"
-	description "The Chameleon Anti-Missile turret has a longer range, higher power, and shorter reload time than the Bullfrog."
+	description "The Chameleon Anti-Missile Turret has a longer range, higher power, and shorter reload time than the Bullfrog."
 
 
 
@@ -471,11 +471,12 @@ outfit "Value Detector"
 	category "Systems"
 	cost 260000
 	thumbnail "outfit/value detector"
-	"mass" 3
-	"outfit space" -3
-	"cargo scan power" 88
-	"cargo scan efficiency" 16
-	"tactical scan power" 92
+	"mass" 5
+	"outfit space" -5
+	"cargo scan power" 75
+	"cargo scan efficiency" 10
+	"tactical scan power" 35
+	"heat generation" 2
 	description "The Unfettered developed this scanner in order to determine which ships are worth plundering, or which lack the capacity to stand up to their ion weapons. Some Hai consider it rather rudimentary, but it is sufficient to identify the cargo on a ship from afar and provide more detailed information about the tactical condition of enemy vessels. This dual function is useful when fielding experimental weaponry."
 
 outfit "Hai Chasm Batteries"
@@ -680,7 +681,7 @@ outfit `"Basrem" Reverse Thruster`
 	"reverse flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"reverse flare sound" "atomic tiny"
-	description "These tiny reverse thrusters allow even the smallest of Hai ships additional maneuverability beyond normal steering. Many young Hai find these an invaluable investment when first setting out on their own."
+	description `The tiny "Basrem" Reverse Thrusters allow even the smallest of Hai ships additional maneuverability beyond normal steering. Many young Hai find these an invaluable investment when first setting out on their own.`
 
 outfit `"Benga" Reverse Thruster`
 	category "Engines"
