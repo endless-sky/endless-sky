@@ -535,7 +535,7 @@ mission "House Bebliss 2-FW"
 			`You follow the coordinates given to you and land on top of a mountain at a set of private hangars. Nearby is an estate, covered by a dome similar to the one over the spaceport city. You are received by who you assume are Arachi butlers and maids, given their tidy, well-kept uniforms, and follow one of them into the mansion.`
 			`	They bring you to a large, wide room where three preoccupied Arachi are pouring over schematics and blueprints scattered across a table.`
 			`	"Captain <first> <last>!" One of them comes to greet you, after the servant announces your arrival. "A rare opportunity, it is, to such an exquisite guest entertain. For a drink, would you care?" Without waiting for a response, one of the maids brings over a platter with several cups, and you're pleasantly surprised to discover familiar smells like coffee and tea coming from the silver dish. You notice that there are also some alcoholic beverages as well as just plain water in the middle of the platter.`
-			`	"Difficult to replicate, some of these human drinks were, but for a special guest, the least we could do, it is," another one approaches, gesturing for you to pick one of the drinks, while signalling for another maid to bring him and the other two some drinks of their own.`
+			`	"Difficult to replicate, some of these human drinks were, but for a special guest, the least we could do, it is," another one approaches, gesturing for you to pick one of the drinks, while signaling for another maid to bring him and the other two some drinks of their own.`
 			choice
 				`	"Thank you, but why exactly did you want to talk to me so badly?"`
 				`	"You asked me to come here for a job. What is the job?"`
