@@ -395,7 +395,7 @@ ship "Barb"
 		"drag" .8
 		"heat dissipation" .78
 		"outfit space" 85
-		"weapon capacity" 24
+		"weapon capacity" 28
 		"engine capacity" 22
 		weapon
 			"blast radius" 12
@@ -420,28 +420,6 @@ ship "Barb"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description `Though the Syndicate doesn't build fighter carriers, it is testing the waters with the Barb, a cheap and flexible carrier-launched craft featuring newly-developed miniaturized ion engines. The design philosophy of the Barb seems to have been "uglier than the Protector," and as you look at the cockpit nestled between the massive gun port and turret mount, you wonder where the power systems are supposed to go. Though an awkward-looking ship, it seems flexible enough to become a dangerous addition to any fleet with carriers.`
-	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
-
-
-
-ship "Barb" "Barb (Proton)"
-	sprite "ship/barbp"
-	thumbnail "thumbnail/barbp"
-	add attributes
-		"bunks" -1
-		"weapon capacity" 4
-	outfits
-		"Proton Gun"
-		
-		"nGVF-AA Fuel Cell"
-		"Supercapacitor"
-		"D14-RN Shield Generator"
-
-		"X1050 Ion Engines"
-		
-	gun -7.5 -24.5 "Proton Gun"
-	leak "leak" 60 50
-	description `The Barb's commercial success spurred demand for a variant equipped with a Proton Gun. Syndicated Systems had to remove the turret mounting hardware to fit the powerful cannon, but the result is a level of short-range firepower that is unheard-of for a craft its size.`
 	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 
