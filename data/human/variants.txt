@@ -329,6 +329,18 @@ ship "Bactrian" "Bactrian (Plasma Blaster Anti-Missile)"
 
 
 
+ship "Barb" "Barb (Proton)"
+	outfits
+		"Proton Gun"
+		
+		"nGVF-AA Fuel Cell"
+		"Supercapacitor"
+		"D14-RN Shield Generator"
+
+		"X1050 Ion Engines"
+
+
+
 ship "Barb" "Barb (Gatling)"
 	outfits
 		"Gatling Gun"
