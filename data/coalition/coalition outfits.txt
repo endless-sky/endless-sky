@@ -199,7 +199,7 @@ outfit "Cooling Module"
 	"outfit space" -5
 	"active cooling" 21
 	"cooling energy" 1.4
-	description "This cooling module consumes energy. To conserve power, it does not ramp up to full strength unless a ship is very close to overheating."
+	description "This Cooling Module consumes energy. To conserve power, it does not ramp up to full strength unless a ship is very close to overheating."
 
 outfit "Fuel Module"
 	category "Systems"
@@ -211,7 +211,7 @@ outfit "Fuel Module"
 	"outfit space" -19
 	"fuel capacity" 400
 	"fuel protection" .25
-	description "In their early days of space exploration, the Saryds developed the fuel module to travel far from Saros without worrying about becoming stranded without fuel, or sudden fuel leaks."
+	description "In their early days of space exploration, the Saryds developed the Fuel Module to travel far from Saros without worrying about becoming stranded without fuel, or sudden fuel leaks."
 	description "	Nowadays, nearly every system in the Coalition has refueling facilities, but some captains still find use in the extra jumps these modules offer."
 
 outfit "Decoy Plating"
@@ -358,7 +358,7 @@ outfit "Large Reverse Module"
 	"reverse flare sprite" "effect/coalition flare/large"
 		"frame rate" 7
 	"reverse flare sound" "atomic small"
-	description "With their significant weapons capacity left unused in peacetime, captains of larger Coalition freighters and transports can use large thrust modules to rapidly slow their ships, allowing them to save both time and energy."
+	description "With their significant weapons capacity left unused in peacetime, captains of larger Coalition freighters and transports can use Large Reverse Modules to rapidly slow their ships, allowing them to save both time and energy."
 	description "	Because a reverse thruster must be facing forwards, it must be installed in the weapon section of your ship instead of the engine section."
 
 outfit "Small Steering Module"

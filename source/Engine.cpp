@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "AlertLabel.h"
 #include "Audio.h"
+#include "CategoryList.h"
 #include "CategoryTypes.h"
 #include "CoreStartData.h"
 #include "DamageDealt.h"
@@ -30,6 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "FrameTimer.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "Government.h"
 #include "Hazard.h"
 #include "Interface.h"
@@ -149,7 +151,7 @@ namespace {
 		if(!ship->Name().empty())
 			tag = gov + " " + ship->Noun() + " \"" + ship->Name() + "\": ";
 		else
-			tag = ship->ModelName() + " (" + gov + "): ";
+			tag = ship->DisplayModelName() + " (" + gov + "): ";
 
 		Messages::Add(tag + message, Messages::Importance::High);
 	}
@@ -348,7 +350,7 @@ void Engine::Place()
 		{
 			const Personality &person = ship->GetPersonality();
 			bool hasOwnPlanet = ship->GetPlanet();
-			bool launchesWithPlayer = (ship->IsYours() || (planet && planet->CanLand(*ship)))
+			bool launchesWithPlayer = (planet && planet->CanLand(*ship))
 					&& !(person.IsStaying() || person.IsWaiting() || hasOwnPlanet);
 			const StellarObject *object = hasOwnPlanet ?
 					ship->GetSystem()->FindStellar(ship->GetPlanet()) : nullptr;
@@ -413,8 +415,9 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 			if(ship->HasBays())
 			{
 				ship->UnloadBays();
-				for(const string &bayType : GameData::Category(CategoryType::BAY))
+				for(const auto &cat : GameData::GetCategory(CategoryType::BAY))
 				{
+					const string &bayType = cat.Name();
 					int baysTotal = ship->BaysTotal(bayType);
 					if(baysTotal)
 						carriers[bayType][&*ship] = baysTotal;
@@ -636,23 +639,8 @@ void Engine::Step(bool isActive)
 
 	// Create the status overlays.
 	statuses.clear();
-	if(isActive && Preferences::Has("Show status overlays"))
-		for(const auto &it : ships)
-		{
-			if(!it->GetGovernment() || it->GetSystem() != currentSystem || it->Cloaking() == 1.)
-				continue;
-			// Don't show status for dead ships.
-			if(it->IsDestroyed())
-				continue;
-
-			bool isEnemy = it->GetGovernment()->IsEnemy();
-			if(isEnemy || it->IsYours() || it->GetPersonality().IsEscort())
-			{
-				double width = min(it->Width(), it->Height());
-				statuses.emplace_back(it->Position() - center, it->Shields(), it->Hull(),
-					min(it->Hull(), it->DisabledHull()), max(20., width * .5), isEnemy);
-			}
-		}
+	if(isActive)
+		CreateStatusOverlays();
 
 	// Create missile overlays.
 	missileLabels.clear();
@@ -785,6 +773,7 @@ void Engine::Step(bool isActive)
 		if(flagship->Attributes().Get("tactical scan power"))
 		{
 			info.SetCondition("range display");
+			info.SetBar("target hull", targetAsteroid->Hull(), 20.);
 			int targetRange = round(targetAsteroid->Position().Distance(flagship->Position()));
 			info.SetString("target range", to_string(targetRange));
 		}
@@ -795,7 +784,7 @@ void Engine::Step(bool isActive)
 			targetUnit = target->Facing().Unit();
 		info.SetSprite("target sprite", target->GetSprite(), targetUnit, target->GetFrame(step));
 		info.SetString("target name", target->Name());
-		info.SetString("target type", target->ModelName());
+		info.SetString("target type", target->DisplayModelName());
 		if(!target->GetGovernment())
 			info.SetString("target government", "No Government");
 		else
@@ -853,7 +842,7 @@ void Engine::Step(bool isActive)
 		double width = max(target->Width(), target->Height());
 		Point pos = target->Position() - center;
 		statuses.emplace_back(pos, flagship->OutfitScanFraction(), flagship->CargoScanFraction(),
-			0, 10. + max(20., width * .5), 2, Angle(pos).Degrees() + 180.);
+			0., 10. + max(20., width * .5), 4, Angle(pos).Degrees() + 180.);
 	}
 	// Handle any events that change the selected ships.
 	if(groupSelect >= 0)
@@ -910,14 +899,35 @@ void Engine::Step(bool isActive)
 	}
 
 	// Draw crosshairs on any minables in range of the flagship's scanners.
-	if(Preferences::Has("Show asteroid scanner overlay"))
+	bool shouldShowAsteroidOverlay = Preferences::Has("Show asteroid scanner overlay");
+	// Decide before looping whether or not to catalog asteroids. This
+	// results in cataloging in-range asteroids roughly 3 times a second.
+	bool shouldCatalogAsteroids = (!isAsteroidCatalogComplete && !Random::Int(20));
+	if(shouldShowAsteroidOverlay || shouldCatalogAsteroids)
 	{
 		double scanRangeMetric = flagship ? 10000. * flagship->Attributes().Get("asteroid scan power") : 0.;
 		if(flagship && scanRangeMetric && !flagship->IsHyperspacing())
+		{
+			bool scanComplete = true;
 			for(const shared_ptr<Minable> &minable : asteroids.Minables())
 			{
 				Point offset = minable->Position() - center;
-				if(offset.LengthSquared() > scanRangeMetric || flagship->GetTargetAsteroid() == minable)
+				// Use the squared length, as we used the squared scan range.
+				bool inRange = offset.LengthSquared() <= scanRangeMetric;
+
+				// Autocatalog asteroid: Record that the player knows this type of asteroid is available here.
+				if(shouldCatalogAsteroids && !asteroidsScanned.count(minable->DisplayName()))
+				{
+					scanComplete = false;
+					if(!Random::Int(10) && inRange)
+					{
+						asteroidsScanned.insert(minable->DisplayName());
+						for(const auto &it : minable->Payload())
+							player.Harvest(it.first);
+					}
+				}
+
+				if(!shouldShowAsteroidOverlay || !inRange || flagship->GetTargetAsteroid() == minable)
 					continue;
 
 				targets.push_back({
@@ -928,6 +938,9 @@ void Engine::Step(bool isActive)
 					3
 				});
 			}
+			if(shouldCatalogAsteroids && scanComplete)
+				isAsteroidCatalogComplete = true;
+		}
 	}
 	const auto targetAsteroidPtr = flagship ? flagship->GetTargetAsteroid() : nullptr;
 	if(targetAsteroidPtr && !flagship->IsHyperspacing())
@@ -968,8 +981,8 @@ list<ShipEvent> &Engine::Events()
 // Draw a frame.
 void Engine::Draw() const
 {
-	GameData::Background().Draw(center, centerVelocity, zoom, (player.Flagship() ?
-		player.Flagship()->GetSystem() : player.GetSystem()));
+	GameData::Background().Draw(center, Preferences::Has("Render motion blur") ? centerVelocity : Point(),
+		zoom, (player.Flagship() ? player.Flagship()->GetSystem() : player.GetSystem()));
 	static const Set<Color> &colors = GameData::Colors();
 	const Interface *hud = GameData::Interfaces().Get("hud");
 
@@ -982,25 +995,31 @@ void Engine::Draw() const
 
 	for(const auto &it : statuses)
 	{
-		static const Color color[8] = {
+		static const Color color[14] = {
+			*colors.Get("overlay flagship shields"),
 			*colors.Get("overlay friendly shields"),
 			*colors.Get("overlay hostile shields"),
+			*colors.Get("overlay neutral shields"),
 			*colors.Get("overlay outfit scan"),
+			*colors.Get("overlay flagship hull"),
 			*colors.Get("overlay friendly hull"),
 			*colors.Get("overlay hostile hull"),
+			*colors.Get("overlay neutral hull"),
 			*colors.Get("overlay cargo scan"),
+			*colors.Get("overlay flagship disabled"),
 			*colors.Get("overlay friendly disabled"),
-			*colors.Get("overlay hostile disabled")
+			*colors.Get("overlay hostile disabled"),
+			*colors.Get("overlay neutral disabled")
 		};
 		Point pos = it.position * zoom;
 		double radius = it.radius * zoom;
 		if(it.outer > 0.)
 			RingShader::Draw(pos, radius + 3., 1.5f, it.outer, color[it.type], 0.f, it.angle);
-		double dashes = (it.type >= 2) ? 0. : 20. * min(1., zoom);
+		double dashes = (it.type >= 3) ? 0. : 20. * min(1., zoom);
 		if(it.inner > 0.)
-			RingShader::Draw(pos, radius, 1.5f, it.inner, color[3 + it.type], dashes, it.angle);
+			RingShader::Draw(pos, radius, 1.5f, it.inner, color[5 + it.type], dashes, it.angle);
 		if(it.disabled > 0.)
-			RingShader::Draw(pos, radius, 1.5f, it.disabled, color[6 + it.type], dashes, it.angle);
+			RingShader::Draw(pos, radius, 1.5f, it.disabled, color[10 + it.type], dashes, it.angle);
 	}
 
 	// Draw labels on missiles
@@ -1277,6 +1296,8 @@ void Engine::EnterSystem()
 		else
 			asteroids.Add(a.Name(), a.Count(), a.Energy());
 	}
+	asteroidsScanned.clear();
+	isAsteroidCatalogComplete = false;
 
 	// Clear any active weather events
 	activeWeather.clear();
@@ -1386,8 +1407,6 @@ void Engine::CalculateStep()
 		return;
 
 	// Handle the mouse input of the mouse navigation
-	if(Preferences::Has("alt-mouse turning") && !isMouseTurningEnabled)
-		activeCommands.Set(Command::MOUSE_TURNING_TOGGLE);
 	HandleMouseInput(activeCommands);
 	// Now, all the ships must decide what they are doing next.
 	ai.Step(player, activeCommands);
@@ -1752,7 +1771,7 @@ void Engine::SpawnFleets()
 // At random intervals, create new special "persons" who enter the current system.
 void Engine::SpawnPersons()
 {
-	if(Random::Int(36000) || player.GetSystem()->Links().empty())
+	if(Random::Int(GameData::GetGamerules().PersonSpawnPeriod()) || player.GetSystem()->Links().empty())
 		return;
 
 	// Loop through all persons once to see if there are any who can enter
@@ -1764,11 +1783,9 @@ void Engine::SpawnPersons()
 	if(!sum)
 		return;
 
-	// Adjustment factor: special persons will appear once every ten
-	// minutes, but much less frequently if the game only specifies a
-	// few of them. This way, they will become more common as I add
-	// more, without needing to change the 10-minute constant above.
-	sum = Random::Int(sum + 1000);
+	// Although an attempt to spawn a person is made every 10 minutes on average,
+	// that attempt can still fail due to an added weight for no person to spawn.
+	sum = Random::Int(sum + GameData::GetGamerules().NoPersonSpawnWeight());
 	for(const auto &it : GameData::Persons())
 	{
 		const Person &person = it.second;
@@ -1917,6 +1934,10 @@ void Engine::HandleKeyboardInputs()
 		else if(keyHeld.Has(Command::JUMP))
 			activeCommands |= Command::FLEET_JUMP;
 	}
+
+	if(keyHeld.Has(Command::AUTOSTEER) && !activeCommands.Turn()
+			&& !activeCommands.Has(Command::LAND | Command::JUMP | Command::BOARD | Command::STOP))
+		activeCommands |= Command::AUTOSTEER;
 }
 
 
@@ -2013,8 +2034,6 @@ void Engine::HandleMouseClicks()
 			}
 		}
 	}
-	else if(isRightClick && !isMouseTurningEnabled)
-		ai.IssueMoveTarget(player, clickPoint + center, playerSystem);
 	else if(flagship->Attributes().Get("asteroid scan power"))
 	{
 		// If the click was not on any ship, check if it was on a minable.
@@ -2031,9 +2050,13 @@ void Engine::HandleMouseClicks()
 				clickedAsteroid = true;
 				clickRange = range;
 				flagship->SetTargetAsteroid(minable);
+				if(isRightClick)
+					ai.IssueAsteroidTarget(player, minable);
 			}
 		}
 	}
+	if(isRightClick && !clickTarget && !clickedAsteroid && !isMouseTurningEnabled)
+		ai.IssueMoveTarget(player, clickPoint + center, playerSystem);
 
 	// Treat an "empty" click as a request to clear targets.
 	if(!clickTarget && !isRightClick && !clickedAsteroid && !clickedPlanet)
@@ -2046,12 +2069,15 @@ void Engine::HandleMouseClicks()
 void Engine::HandleMouseInput(Command &activeCommands)
 {
 	isMouseHoldEnabled = activeCommands.Has(Command::MOUSE_TURNING_HOLD);
-	if(activeCommands.Has(Command::MOUSE_TURNING_TOGGLE))
-		isMouseToggleEnabled = !isMouseToggleEnabled;
-	isMouseTurningEnabled = (isMouseHoldEnabled || isMouseToggleEnabled);
-	Preferences::Set("alt-mouse turning", isMouseTurningEnabled);
+	bool isMouseToggleEnabled = Preferences::Has("Control ship with mouse");
+
+	// XOR mouse hold and mouse toggle. If mouse toggle is OFF, then mouse hold
+	// will temporarily turn ON mouse control. If mouse toggle is ON, then mouse
+	// hold will temporarily turn OFF mouse control.
+	isMouseTurningEnabled = (isMouseHoldEnabled ^ isMouseToggleEnabled);
 	if(!isMouseTurningEnabled)
 		return;
+	activeCommands.Set(Command::MOUSE_TURNING_HOLD);
 	bool rightMouseButtonHeld = false;
 	int mousePosX;
 	int mousePosY;
@@ -2227,8 +2253,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 	for(Body *body : shipCollisions.Circle(flotsam.Position(), 5.))
 	{
 		Ship *ship = reinterpret_cast<Ship *>(body);
-		if(!ship->CannotAct() && ship != flotsam.Source() && ship->GetGovernment() != flotsam.SourceGovernment()
-			&& ship->Cargo().Free() >= flotsam.UnitSize())
+		if(!ship->CannotAct() && ship->CanPickUp(flotsam))
 		{
 			collector = ship;
 			break;
@@ -2236,6 +2261,21 @@ void Engine::DoCollection(Flotsam &flotsam)
 	}
 	if(!collector)
 		return;
+
+	// Checks for player FlotsamCollection setting
+	if(collector->IsYours())
+	{
+		const auto flotsamSetting = Preferences::GetFlotsamCollection();
+		if(flotsamSetting == Preferences::FlotsamCollection::OFF)
+			return;
+		if(collector == player.Flagship())
+		{
+			if(flotsamSetting == Preferences::FlotsamCollection::ESCORT)
+				return;
+		}
+		else if(flotsamSetting == Preferences::FlotsamCollection::FLAGSHIP)
+			return;
+	}
 
 	// Transfer cargo from the flotsam to the collector ship.
 	int amount = flotsam.TransferTo(collector);
@@ -2269,16 +2309,14 @@ void Engine::DoCollection(Flotsam &flotsam)
 	if(!commodity.empty())
 	{
 		double amountInTons = amount * flotsam.UnitSize();
-		message = name + (amountInTons == 1. ? "a ton" : Format::Number(amountInTons) + " tons")
-			+ " of " + Format::LowerCase(commodity) + ".";
+		message = name + Format::CargoString(amountInTons, Format::LowerCase(commodity)) + ".";
 	}
 
 	// Unless something went wrong while forming the message, display it.
 	if(!message.empty())
 	{
 		int free = collector->Cargo().Free();
-		message += " (" + to_string(free) + (free == 1 ? " ton" : " tons");
-		message += " of free space remaining.)";
+		message += " (" + Format::CargoString(free, "free space") + " remaining.)";
 		Messages::Add(message, Messages::Importance::High);
 	}
 }
@@ -2542,9 +2580,59 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 
 
 
-// Constructor for the ship status display rings.
-Engine::Status::Status(const Point &position, double outer, double inner,
-	double disabled, double radius, int type, double angle)
-	: position(position), outer(outer), inner(inner), disabled(disabled), radius(radius), type(type), angle(angle)
+void Engine::CreateStatusOverlays()
 {
+	const auto overlayAllSetting = Preferences::StatusOverlaysState(Preferences::OverlayType::ALL);
+
+	if(overlayAllSetting == Preferences::OverlayState::OFF)
+		return;
+
+	const System *currentSystem = player.GetSystem();
+	const auto flagship = player.FlagshipPtr();
+
+	static const set<Preferences::OverlayType> overlayTypes = {
+		Preferences::OverlayType::FLAGSHIP,
+		Preferences::OverlayType::ESCORT,
+		Preferences::OverlayType::ENEMY,
+		Preferences::OverlayType::NEUTRAL
+	};
+
+	map<Preferences::OverlayType, Preferences::OverlayState> overlaySettings;
+
+	for(const auto &it : overlayTypes)
+		overlaySettings[it] = Preferences::StatusOverlaysState(it);
+
+	for(const auto &it : ships)
+	{
+		if(!it->GetGovernment() || it->GetSystem() != currentSystem || it->Cloaking() == 1.)
+			continue;
+		// Don't show status for dead ships.
+		if(it->IsDestroyed())
+			continue;
+
+		if(it == flagship)
+			EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::FLAGSHIP], 0);
+		else if(it->GetGovernment()->IsEnemy())
+			EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::ENEMY], 2);
+		else if(it->IsYours() || it->GetPersonality().IsEscort())
+			EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::ESCORT], 1);
+		else
+			EmplaceStatusOverlay(it, overlaySettings[Preferences::OverlayType::NEUTRAL], 3);
+	}
+}
+
+
+
+void Engine::EmplaceStatusOverlay(const shared_ptr<Ship> &it, Preferences::OverlayState overlaySetting, int type)
+{
+	if(overlaySetting == Preferences::OverlayState::OFF)
+		return;
+
+	if(overlaySetting == Preferences::OverlayState::DAMAGED && !it->IsDamaged())
+		return;
+
+	double width = min(it->Width(), it->Height());
+
+	statuses.emplace_back(it->Position() - center, it->Shields(), it->Hull(),
+		min(it->Hull(), it->DisabledHull()), max(20., width * .5), type);
 }

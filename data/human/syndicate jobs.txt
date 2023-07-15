@@ -21,7 +21,7 @@ mission "Transport executive to <planet>"
 	to offer
 		random < 20
 	to accept
-		has "outfit: Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	source
 		government "Syndicate"
 	destination
@@ -35,7 +35,7 @@ mission "Transport executive to <planet>"
 		dialog "The Syndicate executive rushes off your ship without even a goodbye, fancy briefcase in hand. You collect your payment of <payment>."
 
 
-mission "Corporate retreat from <origin>"
+mission "Corporate retreat to <planet stopovers>"
 	job
 	repeat
 	deadline
@@ -44,7 +44,7 @@ mission "Corporate retreat from <origin>"
 	to offer
 		random < 20
 	to accept
-		has "outfit: Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	source
 		government "Syndicate"
 	stopover
@@ -91,7 +91,7 @@ mission "Document delivery to <planet>"
 	job
 	repeat
 	description "Deliver <tons> of ordinary documents to <destination>. Payment is <payment>."
-	cargo "Confidential documents" 6 12
+	cargo "Confidential documents" 1 16 .69
 	to offer
 		random < 10
 	source
@@ -111,7 +111,7 @@ mission "Waste recycling on <planet>"
 	job
 	repeat
 	description "Syndicated Systems is looking for intrepid captains willing to make a difference as part of our new Green Initiative! Deliver <tons> of recyclable <commodity> to our special facility on <destination>. Payment is <payment>."
-	cargo "Garbage" 6 40
+	cargo "Garbage" 5 2 .1
 	to offer
 		random < 20
 	source
@@ -156,7 +156,7 @@ mission "Rush equipment Delivery"
 	repeat
 	deadline
 	description "Syndicate techs on <destination> need a rush shipment of <tons> of specialized <commodity> by <date>. Payment is <payment>."
-	cargo "Equipment" 5 20
+	cargo "Equipment" 5 2 .15
 	to offer
 		random < 20
 	source
@@ -353,7 +353,7 @@ mission "Syndicate Prisoner Transport [0]"
 	to offer
 		random < 5
 	to accept
-		has "outfit: Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
@@ -377,7 +377,7 @@ mission "Syndicate Prisoner Transport [1]"
 	to offer
 		random < 15
 	to accept
-		has "outfit: Brig"
+		has "outfit (installed): Brig"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -401,7 +401,7 @@ mission "Syndicate Prisoner Transport [2]"
 	to offer
 		random < 15
 	to accept
-		has "outfit: Brig"
+		has "outfit (installed): Brig"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -426,7 +426,7 @@ mission "Syndicate Prisoner Transport [3]"
 	to offer
 		random < 15
 	to accept
-		has "outfit: Brig"
+		has "outfit (installed): Brig"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -451,7 +451,7 @@ mission "Syndicate Prisoner Transport [4]"
 	to offer
 		random < 10
 	to accept
-		has "outfit: Brig"
+		has "outfit (installed): Brig"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -477,7 +477,7 @@ mission "Return Syndicate Prisoners [0]"
 	to offer
 		random < 5
 	to accept
-		has "outfit: Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete

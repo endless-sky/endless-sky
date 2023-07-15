@@ -97,6 +97,81 @@ ship "Arrow" "Arrow (Hai)"
 
 
 
+ship "Auxiliary" "Auxiliary (Mark II)"
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 90
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		
+		"Fusion Reactor"
+		"LP288a Battery Pack"
+		"D94-YV Shield Generator"
+		"D67-TM Shield Generator"
+		"Water Coolant System"
+		"Large Radar Jammer"
+		"Catalytic Ramscoop"
+		
+		"X4700 Ion Thruster"
+		"X1700 Ion Thruster"
+		"X5200 Ion Steering"
+		"Scram Drive"
+
+
+ship "Auxiliary" "Auxiliary (Cargo Mark II)"
+	plural "Auxiliaries"
+	sprite "ship/auxiliaryc"
+	thumbnail "thumbnail/auxiliaryc"
+	add attributes
+		"bunks" -112
+		"cargo space" 200
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 90
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		
+		"Fusion Reactor"
+		"LP288a Battery Pack"
+		"D94-YV Shield Generator"
+		"D67-TM Shield Generator"
+		"Water Coolant System"
+		"Large Radar Jammer"
+		"Catalytic Ramscoop"
+		
+		"X4700 Ion Thruster"
+		"X1700 Ion Thruster"
+		"X5200 Ion Steering"
+		"Scram Drive"
+
+
+ship "Auxiliary" "Auxiliary (Transport Mark II)"
+	plural "Auxiliaries"
+	sprite "ship/auxiliaryt"
+	thumbnail "thumbnail/auxiliaryt"
+	add attributes
+		"bunks" 112
+		"cargo space" -200
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 90
+		"Quad Blaster Turret" 2
+		"Heavy Anti-Missile Turret" 2
+		
+		"Fusion Reactor"
+		"LP288a Battery Pack"
+		"D94-YV Shield Generator"
+		"D67-TM Shield Generator"
+		"Water Coolant System"
+		"Large Radar Jammer"
+		"Catalytic Ramscoop"
+		
+		"X4700 Ion Thruster"
+		"X1700 Ion Thruster"
+		"X5200 Ion Steering"
+		"Scram Drive"
+
+
 ship "Auxiliary" "Auxiliary (Jump Transport)"
 	plural "Auxiliaries"
 	sprite "ship/auxiliaryt"
@@ -116,7 +191,6 @@ ship "Auxiliary" "Auxiliary (Jump Transport)"
 		"Cooling Ducts"
 		"Outfits Expansion" 2
 		"S-970 Regenerator" 5
-		"Quantum Keystone"
 		"Armageddon Core"
 		"LP288a Battery Pack"
 		"A520 Atomic Thruster"
@@ -505,6 +579,22 @@ ship "Bounder" "Bounder (Luxury)"
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
+
+
+ship "Bounder" "Bounder (Hai Trafficker)"
+	outfits
+		"A255 Atomic Steering"
+		"A370 Atomic Thruster"
+		"Fuel Pod"
+		"Hai Fissure Batteries"
+		"Hai Corundum Regenerator"
+		"Water Coolant System"
+		"NT-200 Nucleovoltaic"
+		"Ramscoop"
+		"Scram Drive"
+		"Brig"
+		"Outfits Expansion"
+		"Pulse Rifle" 7
 
 
 
@@ -1198,7 +1288,6 @@ ship "Cruiser" "Cruiser (Jump Plasma Anti-Missile)"
 		"Catalytic Ramscoop"
 		"Fuel Pod" 3
 		"Jump Drive"
-		"Quantum Keystone"
 		"S-970 Regenerator" 3
 		"Liquid Helium Cooler"
 		"Outfits Expansion" 2
@@ -1284,7 +1373,7 @@ ship "Dreadnought" "Dreadnought (Plasma Blaster Anti-Missile)"
 
 
 # Same as above but repurposed for Hai Reveal.
-ship "Dreadnought" "Dreadnought (Plasma Jump Keystone)"
+ship "Dreadnought" "Dreadnought (Plasma Jump)"
 	outfits
 		"Heavy Anti-Missile Turret" 2
 		"Plasma Turret" 3
@@ -1298,7 +1387,6 @@ ship "Dreadnought" "Dreadnought (Plasma Jump Keystone)"
 		"A525 Atomic Steering"
 		"Laser Rifle" 25
 		"LP144a Battery Pack"
-		"Quantum Keystone"
 		"Fuel Pod" 2
 		"Catalytic Ramscoop"
 
@@ -2323,6 +2411,24 @@ ship "Mule" "Mule (Hai Engines)"
 		"Hyperdrive"
 
 
+ship "Mule" "Mule (Hai Trafficker)"
+	outfits
+		`"Basrem" Reverse Thruster`
+		`"Bondir" Atomic Thruster`
+		"A375 Atomic Steering"
+		"Boulder Reactor"
+		Brig
+		"Chameleon Anti-Missile" 4
+		"Fuel Pod" 3
+		"Hai Chasm Batteries"
+		"Hai Diamond Regenerator"
+		"Liquid Nitrogen Cooler"
+		"Pulse Rifle" 10
+		Ramscoop
+		"Scram Drive"
+		"Security Station"
+
+
 ship "Mule" "Mule (Hai Weapons)"
 	outfits
 		"Ion Cannon"
@@ -2642,6 +2748,7 @@ ship "Raven" "Raven (Afterburner)"
 		"Heavy Laser" 4
 		"NT-200 Nucleovoltaic"
 		"D41-HY Shield Generator"
+		"Fuel Pod"
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
@@ -2888,6 +2995,25 @@ ship "Star Queen" "Star Queen (Hai)"
 
 
 
+ship "Star Queen" "Star Queen (Hai Trafficker)"
+	outfits
+		`"Biroo" Atomic Steering`
+		`"Biroo" Atomic Thruster`
+		"AR120 Reverse Thruster"
+		"Breeder Reactor"
+		Brig
+		"Fuel Pod" 2
+		"Hai Chasm Batteries"
+		"Hai Diamond Regenerator"
+		"Heavy Anti-Missile Turret" 2
+		"Liquid Nitrogen Cooler"
+		"Outfits Expansion"
+		Ramscoop
+		"Scram Drive"
+		"Security Station" 2
+
+
+
 ship "Vanguard" "Vanguard (Missile)"
 	outfits
 		"Sidewinder Missile Launcher" 4
@@ -2961,6 +3087,8 @@ ship "Wasp" "Wasp (Javelin)"
 	gun
 	gun "Javelin Pod"
 	gun "Javelin Pod"
+	gun
+	gun
 	
 
 ship "Wasp" "Wasp (Meteor)"
