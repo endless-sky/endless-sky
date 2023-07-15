@@ -145,8 +145,9 @@ public:
 	const std::string &Name() const;
 
 	// Set / Get the name of this model of ship.
-	void SetModelName(const std::string &model);
-	const std::string &ModelName() const;
+	void SetTrueModelName(const std::string &model);
+	const std::string &TrueModelName() const;
+	const std::string &DisplayModelName() const;
 	const std::string &PluralModelName() const;
 	// Get the name of this ship as a variant.
 	const std::string &VariantName() const;
@@ -515,7 +516,8 @@ private:
 	// Characteristics of the chassis:
 	bool isDefined = false;
 	const Ship *base = nullptr;
-	std::string modelName;
+	std::string trueModelName;
+	std::string displayModelName;
 	std::string pluralModelName;
 	std::string variantName;
 	std::string noun;
