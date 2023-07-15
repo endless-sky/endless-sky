@@ -1270,7 +1270,7 @@ phrase "friendly coalition"
 
 phrase "friendly coalition"
 	word
-		"In longcow ranch"
+		"In a longcow ranch"
 		"On ringworld construction"
 		"On station maintenance"
 		"In a Kimek farm"

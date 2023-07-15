@@ -37,7 +37,7 @@ mission "Resistance: Smuggling: Charity 1"
 		not "Resistance: Questions: active"
 	on offer
 		conversation
-			branch metchiree
+			branch chiree
 				has "Resistance: Questions: done"
 			`A Kimek in a blue uniform approaches you. "Good day, Captain. Interested in helping with some charity work, would you be?" she asks.`
 			choice
@@ -49,12 +49,12 @@ mission "Resistance: Smuggling: Charity 1"
 				`	"I'd be glad to help you. Have the supplies loaded into my ship."`
 				`	"That's a noble cause, but I don't work as a cargo hauler, sorry."`
 					decline
-			`	Her mouth produces something of a chirping, clicking sound, "Grateful I am, Captain. Pay you as well as some other jobs, we may not, but know that helping many, you will be. Of that you I assure."`
-			`	She signals to some workers with similar uniforms, and in a few minutes they bring the cargo crates to your ship. More colleagues are already on <planet> working with more captains, she explains, and suggests to look for them when you arrive. She thanks you again, and wishes you a good trip to <planet>.`
+			`	Her mouth produces something of a chirping, clicking sound. "Grateful I am, Captain. Pay you as well as some other jobs, we may not, but know that helping many, you will be. Of that you I assure."`
+			`	She signals to some workers with similar uniforms, and in a few minutes they bring the cargo crates to your ship. She explains that more of her colleagues are already on <planet> working with more captains and suggests you look for them when you arrive. She thanks you again, and wishes you a good trip to <planet>.`
 				accept
-			label metchiree
+			label chiree
 			action
-				log "People" "Chiree" "One of the things Chiree does for the Lunarium is maintain and operate a 'charity' in Kimek space, to help the less fortunate of the Coalition there, and also to help obfuscate the Lunarium's activities from the Heliarchs and their agents."
+				log "People" "Chiree" `One of the things Chiree does for the Lunarium is to maintain and operate a "charity" in Kimek space, both to help the less fortunate of the Coalition and also obfuscate the Lunarium's activities from the Heliarchs and their agents.`
 			`A Kimek in a blue uniform approaches you, and you recognize her as Chiree, the Lunarium leader you met when joining them. She asks to speak in private, and you two go inside your ship. "Much better," she says once the hatch is closed. "Easier to explain to you the job, it will be, if speak freely and truly of it, I can.`
 			`	"A 'charity' of sorts in Kimek space, me and other members maintain. True and honest, the donations we receive are, and glad to help those in need within our region, we are. But, also a great cover for certain Lunarium cargo transfers, it is. Wish to enlist your help in that, we do."`
 			choice
@@ -66,7 +66,7 @@ mission "Resistance: Smuggling: Charity 1"
 				`	"Alright, I'll do what I can."`
 				`	"I actually have some more pressing missions I need to get to, sorry."`
 					decline
-			`	Her mouth produces something of a chirping, clicking sound. "Good. Very good. Have the goods brought in shortly, I will." She leaves your ship and signals to some workers with similar uniforms, and in a few minutes they bring the cargo crates into your hold. More members are already on <planet> working with more captains, she explains, and suggests to look for them when you arrive. She thanks you again, and wishes you a good trip to <planet>.`
+			`	Her mouth produces something of a chirping, clicking sound. "Good. Very good. Have the goods brought in shortly, I will." She leaves your ship, signals to some workers with similar uniforms, and in a few minutes they bring the cargo crates to your ship. She explains that more of her colleagues are already on <planet> working with more captains and suggests you look for them when you arrive. She thanks you again, and wishes you a good trip to <planet>.`
 				accept
 	on accept
 		log "Agreed to help a Kimek charity by transporting some supplies to one of their poorer worlds."
@@ -75,14 +75,14 @@ mission "Resistance: Smuggling: Charity 1"
 	on complete
 		payment 44000
 		conversation
-			branch metchiree
+			branch chiree
 				has "Resistance: Questions: done"
 			`You find the local charity workers, and they begin unloading the supplies from your ship. When they're about done, you receive a transmission from the Kimek who gave you the job.`
-			`	"Grateful for your services I am, Captain. As simple as the job may seem to you, a great help for those in need, these deliveries are. Contact you again, we shall, if interested in helping more, you are," she says. Once the workers are done, they hand you <payment> and move the crates to some building where Kimek are lining up to receive the supplies, while other workers continue getting the cargo from arriving ships.`
+			`	"Grateful for your services I am, Captain. As simple as the job may seem to you, a great help for those in need, these deliveries are. Contact you again, we shall, if interested in helping more, you are," she says. Once the workers are done, they hand you <payment> and move the crates to a building where Kimek are lining up to receive the supplies. Other workers continue to unload more cargo from arriving ships.`
 				decline
-			label metchiree
+			label chiree
 			`You find the local charity workers, and they begin unloading the supplies from your ship. When they're about done, you receive a transmission from Chiree.`
-			`	"A simple job it was, Captain, but important nonetheless. More work for you, we'll have, so ask that you keep watch for more members in Kimek space, I do." Once the workers are done, they hand you <payment>, and move the crates to some building where Kimek are lining up to receive the supplies. Other workers continue to unload more cargo from arriving ships.`
+			`	"A simple job it was, Captain, but important nonetheless. More work for you, we'll have, so ask that you keep watch for more members in Kimek space, I do." Once the workers are done, they hand you <payment>, and move the crates to a building where Kimek are lining up to receive the supplies. Other workers continue to unload more cargo from arriving ships.`
 
 mission "Resistance: Smuggling: Charity 2"
 	name "Charity Delivery"
@@ -100,7 +100,7 @@ mission "Resistance: Smuggling: Charity 2"
 		not "Resistance: Questions: active"
 	on offer
 		conversation
-			branch metchiree
+			branch chiree
 				has "Resistance: Questions: done"
 			`As you make your way through the spaceport on <origin>, a Kimek in a blue uniform sees you and approaches. You recognize her as the charity worker who had you deliver some supplies to the poor Kimek world of Fourth Shadow.`
 			`	"Again we meet, Captain <last>!" She says. "In some more charity work, are you interested?"`
@@ -112,7 +112,7 @@ mission "Resistance: Smuggling: Charity 2"
 			`	She slowly raises up one leg, struggles for footing with her other five, and waves to a group of other Kimek with the same blue uniform. They come to you and she continues. "Unsuited for such cold climates, we Kimek are, so fall to illnesses, many on <planet> also do. Agreed to help them, these fine doctors have," she says, pointing to the <bunks> Kimek doctors, who all greet you briefly with nods and some leg movement. "Received more incentive funds, we have, so paid more than last time, you will be, as thanks for your continued assistance. Help compensate you enough for how much this helps, <payment> hopefully will."`
 			`	Some workers bring <cargo> into your ship, while you show the <bunks> Kimek doctors their bunks. The Kimek who met you here wishes you all a safe trip to <planet>, and moves on to speak with some other captains.`
 				accept
-			label metchiree
+			label chiree
 			`As you make your way through the spaceport on <origin>, a Kimek in a blue uniform sees you and approaches. You quickly recognize Chiree, and gesture for her to follow you into your ship. "Thank you, Captain," she says once you're both inside. "Another 'charity' job for you, I have. With some passengers, this time."`
 			choice
 				`	"Just a normal delivery again?"`
@@ -131,12 +131,12 @@ mission "Resistance: Smuggling: Charity 2"
 	on complete
 		payment 132000
 		conversation
-			branch metchiree
+			branch chiree
 				has "Resistance: Questions: done"
 			`More blue-uniformed workers are waiting when you land, though these uniforms consist of incredibly thick, bulky coats. They take the crates out of your ships while the doctors are directed to a hospital building, and <payment> are transferred to you when the workers are done. They thank you for your help and ask that you look for them in Kimek worlds if you wish to continue helping.`
 				decline
-			label metchiree
-			`More blue-uniformed workers are waiting when you land, though these uniforms consist of incredibly thick, bulky coats. They take the crates out of your ships while the "doctors" are directed to a hospital building, and <payment> are transferred to you when the workers are done. They thank you for your help, and come in close as they're about to leave, quietly asking that you look for more members on worlds on northern Kimek space.`
+			label chiree
+			`More blue-uniformed workers are waiting when you land, though these uniforms consist of incredibly thick, bulky coats. They take the crates out of your ships while the "doctors" are directed to a hospital building, and <payment> are transferred to you when the workers are done. They thank you for your help, and come in close as they're about to leave, quietly asking that you look for more members on worlds in northern Kimek space.`
 
 mission "Resistance: Smuggling: Charity 3"
 	name "Charity Delivery"
@@ -153,7 +153,7 @@ mission "Resistance: Smuggling: Charity 3"
 		not "Resistance: Questions: active"
 	on offer
 		conversation
-			branch metchiree
+			branch chiree
 				has "Resistance: Questions: done"
 			`A group of Kimek approach you in the spaceport. They are all in the blue uniforms of the charity you have been helping by transporting supplies and people. "Greetings, Captain <last>," one of them says. "Helped our charity before, you have. Interested in more work, are you?"`
 			choice
@@ -163,8 +163,8 @@ mission "Resistance: Smuggling: Charity 3"
 			`	"Lack many of their preferred diet options, the Arachi and Saryds on <planet> do," they explain. "Enough to order it from off-world, the poorer of them do not have, so sending them a care package, our group is."`
 			`	They show you to a pile of containers and crates near the hangars, and you have them load them into your ship. "Once on <planet>, you are, pay you <payment>, we will. Thank you for the help, Captain." They wish you a safe trip, and vanish into the spaceport halls.`
 				accept
-			label metchiree
-			`A group of Kimek approach you in the spaceport. They are all in the blue uniforms of Chiree's "charity" group, and one of them signals to your ship once they're close. You get the hint, and bring them aboard. "More work for you, Chiree has. To <planet>." They begin the moment you close the hatch. "Prepared an important job, she has. One only you can do. Paid <payment> to deliver <cargo> to <planet>, you will be, and once there, tell you the details about the main mission, she can."`
+			label chiree
+			`A group of Kimek approach you in the spaceport. They are all in the blue uniforms of Chiree's "charity" group, and one of them signals to your ship once they're close. You get the hint, and bring them aboard. "More work for you, Chiree has. To <planet>," one of them begins the moment you close the hatch. "Prepared an important job, she has. One only you can do. Paid <payment> to deliver <cargo> to <planet>, you will be, and once there, tell you the details about the main mission, she can."`
 			choice
 				`	"Understood. I'll go there right away."`
 				`	"I'm sorry, but I don't think this line of work is for me."`
@@ -188,7 +188,7 @@ mission "Resistance: Smuggling: Grenades"
 		set "Lunarium introduced"
 		conversation
 			`You drop off the crates full of charity goods, and the spaceport workers start getting them up on vehicles to transport them to the poor. One of the workers transfers 261,000 credits to your account, thanking you for the help.`
-			branch metchiree
+			branch chiree
 				has "Resistance: Questions: done"
 			`	As they move the last few crates, you hear a rapid tapping approaching from behind, and when you turn to investigate a Kimek tackles you. Some more join in, covering your head with some dark sack, and start shoving you around once they restrain you. You call out for help, but nobody comes. The Kimek keep pushing and tugging at you as they bring you around the city. After many minutes, you hear some doors close behind you, and your captors force you into some cramped room or compartment. You try to stand up straight, but hit your head against the ceiling. It soon becomes clear you're in a descending elevator, and when it stops, you're walked around for a while longer. Finally, the Kimek seat you and remove the sack from your head.`
 			`	Though you're underground, the insides remind you of an office building or call center; several Kimek are working in cubicles, most examining computer screens while others speak into communicators. You look back to where you reckon you came from, seeing the entrance to a short elevator by the end of a hallway. Coming around the corner, a Kimek you recognize approaches to sit opposite to you - the Kimek who first contacted you about the charity missions. A group of the blue uniformed Kimek follow after her as they bring a crate: one of the crates you transported here. "Forgive us for the discomfort you must, Captain," she says, as the workers open up the crate, revealing several Heliarch guns stuffed inside. "Wished to speak away from prying eyes, I did. Rest easy, you may, harm you, we will not."`
@@ -221,22 +221,22 @@ mission "Resistance: Smuggling: Grenades"
 				`	"No. Get me back to my ship."`
 					goto decline
 			label accept
-			`	Her mandibles click together for a few seconds. "100 boxes. Brought to <planet>, they must be. The exact coordinates, you will receive, once landing there, you are." She pauses as the other Kimek put her prosthetics back on. "Chiree, my name is. Hoping, I am, that help us a great deal you will, Captain <last>."`
+			`	Her mandibles click together for a few seconds. "100 boxes. Brought to <planet>, they must be. The exact coordinates, you will receive, upon arrival." She pauses as the other Kimek put her prosthetics back on. "Chiree, my name is. Hoping, I am, that help us a great deal you will, Captain <last>."`
 			`	She heads back into the strange grouping of cubicles, and the Kimek behind you have you get up, putting the sack back on your head. After another ride in the unpleasantly tight elevator, and some more pushing and tugging at your body, they have you back at your ship. The sack is removed from your head and the Kimek walk off as if nothing happened. Nobody around the hangar seems to have noticed anything unusual.`
 				accept
 			label decline
 			`	She breathes deeply for a moment, then asks the other Kimek to put her prosthetics back on. "Very well," she says, before walking back into the strange grouping of cubicles. The Kimek behind you have you get up, putting the sack back on your head. After another ride in the unpleasantly tight elevator, and some more pushing and tugging at your body, they have you back at your ship. The sack is removed from your head and the Kimek walk off as if nothing happened. Nobody around the hangar seems to have noticed anything unusual.`
 				decline
-			label metchiree
+			label chiree
 			`	While they're removing the crates from your hold, a familiar Kimek approaches you: it's Chiree, the local Lunarium leader. "Speak in your ship, may we, Captain?" You bring her inside <ship>, and she continues. "Since one of us, you now are, to help with acquiring some equipment, you I'd like to ask."`
 			choice
 				`	"What sort of equipment?"`
 					goto equipment2
 				`	"Was this 'charity' job just to get me here for this?"`
-			`	"This last one? Yes, wished to speak about this away from prying eyes, I did," she says. "Really in need of help, the people of Fourth Shadow were. Actual charity work, we still need to perform, if to keep up the disguise, we want. The second one... well, doctors, three of the Kimek were not."`
+			`	"This last one? Yes, wished to speak about this away from prying eyes, I did," she says. "Really in need of help, the people of Fourth Shadow were. Actual charity work, we still need to perform, if to keep up the disguise, we want. The second one... well, as you know, doctors, three of the Kimek were not."`
 			label equipment2
 			`	She explains that the crates you brought in were filled with Heliarch assault guns, meant to supply the members here with better weaponry. "Used the charity as a means of smuggling, for decades we have," she explains. "But difficult to acquire, larger Heliarch outfits are. Difficult to transport in secret. Capable of leaving, you are, so bring in outfits from the outside, you could." She tells you the Lunarium needs some explosives they could reproduce with relative ease, and use against the Heliarchs in boarding operations. They've been informed that not far from the Coalition, there are human worlds selling Fragmentation Grenades, which would do the job. "100 boxes of them, to <planet>, you must bring," she says. "Paid twice their value, you will be, <payment>."`
-			`	A communicator on her beeps, and she gets word that the workers have finished unloading the smuggled guns. She tells you you'll receive coordinates for delivering the grenades once you're landing on <planet>, and wishes you good luck.`
+			`	A communicator on her beeps, and she gets word that the workers have finished unloading the smuggled guns. She tells you you'll receive coordinates for delivering the grenades once you arrive at <planet>, and wishes you good luck.`
 				accept
 	on accept
 		log "Agreed to acquire some grenades for the Lunarium from human space. They've offered to pay quite well."
@@ -246,7 +246,7 @@ mission "Resistance: Smuggling: Grenades"
 		outfit "Fragmentation Grenades" -100
 		payment 3400000
 		conversation
-			`As you approach the standard docking bay, a message pops up on your monitor telling you to go to the edge of the city. You follow the instructions and find yourself in the middle of several dozen warehouses. Another message arrives and asks that you unload the grenades and bring them to a specified warehouse. As this information comes in, you notice that a few Arachi have arrived just outside your ship with some cargo loaders, seemingly waiting for you to begin moving the smuggled weapons. You open up your hatch, and help them get the grenade crates out of your ship and into the designated warehouse as fast as you can, worried that someone might see you. The door is open, with a few more Arachi waiting inside by a staircase. They say nothing to you and simply take the grenade crates, taking them off of the cargo loader and bringing them down the stairs, crate by crate.`
+			`As you approach the standard docking bay, a message pops up on your monitor telling you to go to the edge of the city. You follow the instructions and find yourself in the middle of several dozen warehouses. Another message arrives and asks that you unload the grenades and bring them to a specified warehouse. As this information comes in, you notice that a few Arachi have arrived just outside your ship with some cargo loaders, seemingly waiting for you to begin moving the smuggled weapons. You open up your hatch, and help them get the grenade crates out of your ship and into the designated warehouse as fast as you can, worried that someone might see you. The door is open, with a few more Arachi waiting inside by a staircase. They say nothing to you and simply take the grenade crates, lifting them off of the cargo loader and bringing them down the stairs, crate by crate.`
 			`	When you're done with the last one, one of the Arachi hands you several credit chips, worth <payment> in total. "Contact you for more deliveries of this kind, we will," they say as they head down with the final grenade box. You head back to your ship, and leave for the usual hangars.`
 
 mission "Resistance: Smuggling: AM"
@@ -276,7 +276,7 @@ mission "Resistance: Smuggling: AM"
 			label effective
 			`	"The simpler their mechanisms, the faster that replicate them, we can," she says. "Strong enough to stop the finishers, I hope they are... Bring the turrets to <destination>, you must."`
 			label accept
-			`	She asks for your monitor, and, after tinkering with the controls for a minute, plugs a small, round device into it. "Allow us to more easily contact you, this will. Accessed by a separate network entirely, the device is. Simply a means to receive our messages, it is. Leave traces on its hardware, communications will not, and gain access to the network on its own, it cannot, so traced back to us, you won't be, unless caught by the Heliarchs during our communications, you are," she explains. "After delivered the goods to <planet>, you have, message you for more missions, we shall. Good luck, and thanks, Captain." Once the 'inspection' is done, she leaves your ship and scurries off.`
+			`	She asks for your monitor, and, after tinkering with the controls for a minute, plugs a small, round device into it. "Allow us to more easily contact you, this will. Accessed by a separate network entirely, the device is. Simply a means to receive our messages, it is. Leave traces on its hardware, communications will not, and gain access to the network on its own, it cannot. Traced back to us, you won't be, unless caught by the Heliarchs during our communications, you are," she explains. "After delivered the goods to <planet>, you have, message you for more missions, we shall. Good luck, and thanks, Captain." Once the "inspection" is done, she leaves your ship and scurries off.`
 				accept
 	on accept
 		log "Agreed to smuggle three of the largest human anti-missile turrets to the Lunarium. They hope to reverse-engineer them to defend against Heliarch weaponry, though the effectiveness of human designs here is dubious."
@@ -288,12 +288,12 @@ mission "Resistance: Smuggling: AM"
 		payment 900000
 		conversation
 			`Your monitor beeps loudly as you prepare for your descent onto <planet>, indicating that you have a message. The message details instructions on how to complete your delivery. Under the guise that you're transporting heavy factory equipment, you stop on a landing pad adjacent to a massive automated compound. A gantry crane moves the turrets down to ground levels, setting them on cargo platforms, which are then pulled into a large warehouse. Once all is done, you see that <payment> have been added to your account.`
-			`	You look to your monitor again, and see a message explaining the Lunarium would happily take more copies of smuggled equipment, if you wish to help further. The message details they've prepared an interface similar to the job board's for you, which the device installed in your ship will display whenever they have such jobs available.`
+			`	You look to your monitor again, and see a message explaining the Lunarium would happily take more copies of smuggled equipment, if you wish to help further. The message details that they've prepared a method of integrating their missions into your job board. The device installed in your ship will include them in your list of regular jobs whenever they're available.`
 
 mission "Resistance: Smuggling: Torpedoes"
 	landing
 	name "Torpedo Smuggling"
-	description "Bring two Torpedo and two Typhoon Launchers to <destination>, along with the maximum ammunition for each."
+	description "Bring two Torpedo and two Typhoon Launchers to <destination>, along with the maximum ammunition each can carry."
 	source
 		attributes kimek
 		not planet "Fourth Shadow"
@@ -315,7 +315,7 @@ mission "Resistance: Smuggling: Torpedoes"
 				`	"What weapons do you need?"`
 				`	"Where am I delivering the weapons?"`
 			`	You input the message, and get a response almost immediately; it seems Chiree's prosthetics don't negate the advantage of having so many legs typing in unison. "Two 'Torpedo Launchers' and two 'Typhoon Launchers' are what we need, along with the ammo to fill all of them. Brought to <planet>, they must be. There, our most adequate facilities for torpedoes are. Receive <payment> once you've delivered them there, you will."`
-			`	The interface pops out, and the round drive stops beeping as your monitor returns to normal.`
+			`	The interface blinks off, and the round drive stops beeping as your monitor returns to normal.`
 				accept
 	on accept
 		log "Agreed to provide the Lunarium with some Torpedo and Typhoon Launchers. The lack of anti-missile systems on Heliarch ships means missile technology will be highly beneficial for the Lunarium."
@@ -450,8 +450,8 @@ mission "Resistance: Smuggling: Reactors"
 
 
 mission "House Bebliss 1-A"
-	name "Eight Legged Hosts"
-	description "Head to <destination> where members of House Bebliss wish to discuss a job offer."
+	name "Eight-Legged Hosts"
+	description "Head to <destination>, where members of House Bebliss wish to discuss a job offer."
 	minor
 	to offer
 		random < 10
@@ -481,8 +481,8 @@ mission "House Bebliss 1-A"
 				accept
 
 mission "House Bebliss 1-B"
-	name "Eight Legged Hosts"
-	description "Head to <destination> where representatives from an Arach House that supports the Lunarium wish to discuss a job offer."
+	name "Eight-Legged Hosts"
+	description "Head to <destination>, where representatives from an Arach House that supports the Lunarium wish to discuss a job offer."
 	to offer
 		random < 40
 		has "House Bebliss 1-A: declined"
@@ -500,9 +500,9 @@ mission "House Bebliss 1-B"
 				`	"You've got the wrong person. I don't know either of you."`
 				`	"House Bebliss, right? Thank you for finally finding the time."`
 					goto remember
-			`	"To our employee, what you said, it is," they answer. "To 'come in person next time' you requested."`
+			`	"To our employee, what you said, it is," they answer. "To 'come in person next time,' you requested."`
 			label remember
-			`	They 'invite' you to follow you into what looks like an expensive restaurant, serving typical Arach cuisine. The bulky Arachi don't give you much of a choice, barring you from going elsewhere, only letting up when you are seated. The two Arachi businessmen say they will pay for your meal, though you can't quite find much in the menu appealing to the human palate.`
+			`	They "invite" you to follow you into what looks like an expensive restaurant, serving typical Arach cuisine. The bulky Arachi don't give you much of a choice, barring you from going elsewhere and only letting up when you are seated. The two Arachi businessmen say they will pay for your meal, though you can't quite find much in the menu appealing to the human palate.`
 			`	"Usually more... respectful about such requests from our House, people are, but hasty of us to approach a human Captain like we would an Arach one, it may have been," one of them says, going through the menu. "Still interested, the House is, so to entertain your request, we came."`
 			`	"Interested in your assistance, that is," the other continues, as he signals for one of the bodyguards to get a waiter. "An important job for you, we have."`
 			choice
@@ -514,7 +514,7 @@ mission "House Bebliss 1-B"
 					decline
 			label accept
 			`	"Say much, here we cannot," he answers. "If interested, you are, to <destination>, you must go. There, our House's private estate is."`
-			`	"That it concerns recent human events, what we can say is. Events that involved in, you were," the other says, handing you some coordinates to their estate on <planet>.`
+			`	"That it concerns recent human events, we can say. Events that involved in, you were," the other says, handing you some coordinates to their estate on <planet>.`
 			`	The waiter arrives, and they suggest some dishes, seeing as you didn't pick anything from the menu. The smell coming from the other tables, however, tells you to decline, so you politely leave the establishment. It seems the only way to find out what these Arachi want is to head to <destination>.`
 				accept
 
@@ -532,7 +532,7 @@ mission "House Bebliss 2-FW"
 	destination "Pugglemug"
 	on offer
 		conversation
-			`You follow the coordinates given to you and land on top of a mountain, on a set of private hangars close to an estate covered by a dome similar to the one over the spaceport city. You are received by who you assume are Arachi butlers and maids, given their tidy, well-kept uniforms, and follow one of them into the mansion.`
+			`You follow the coordinates given to you and land on top of a mountain at a set of private hangars. Nearby is an estate, covered by a dome similar to the one over the spaceport city. You are received by who you assume are Arachi butlers and maids, given their tidy, well-kept uniforms, and follow one of them into the mansion.`
 			`	They bring you to a large, wide room where three preoccupied Arachi are pouring over schematics and blueprints scattered across a table.`
 			`	"Captain <first> <last>!" One of them comes to greet you, after the servant announces your arrival. "A rare opportunity, it is, to such an exquisite guest entertain. For a drink, would you care?" Without waiting for a response, one of the maids brings over a platter with several cups, and you're pleasantly surprised to discover familiar smells like coffee and tea coming from the silver dish. You notice that there are also some alcoholic beverages as well as just plain water in the middle of the platter.`
 			`	"Difficult to replicate, some of these human drinks were, but for a special guest, the least we could do, it is," another one approaches, gesturing for you to pick one of the drinks, while signalling for another maid to bring him and the other two some drinks of their own.`
@@ -542,7 +542,7 @@ mission "House Bebliss 2-FW"
 			branch resistance
 				has "Resistance: Questions: done"
 			`	"The great House Bebliss, we represent. Maintain the local hyperspace communication network, our House does," he says as he swirls the drink in his cup before taking a sip.`
-			`	The other one jumps in as he gulps down his drink, "Studied hyperspace links, for millennia we have. More recently, an application of such phenomena that would help the Coalition, we have searched for."`
+			`	The other one jumps in. "Studied hyperspace links, for millennia we have. More recently, an application of such phenomena that would help the Coalition, we have searched for."`
 				goto choice
 			label resistance
 			`	"To be trusted, you are. Assured us of that, Chiree has," the one Arach still by the blueprints chimes in. "The Lunarium's guardian angels, we are," she boasts. "Safeguard them against the Heliarchs, our meddling in the communication network does. To better serve that purpose, look further into this field, we must."`
@@ -563,22 +563,22 @@ mission "House Bebliss 2-FW"
 			`	"In 'their' space, are you not? Scanned by their ships, you were. Subtly amassed, your flight records, your charted map of the galaxy, were," she finishes, and her and the other two look to you, waiting for your answer.`
 				goto "pug reveal"
 			label "resistance 2"
-			`	"In 'their' space, are you not? Scanned by their ships, you were. Subtly amassed, your flight records, your charted map of the galaxy, were," she finishes. "Of course, register any such logs, your ship does not, when running tasks or simply coming to meet us like this, you are. Permit them find our bases that easily, we must not. But, digress I must. Please Captain, intrigued about these aliens, we very much are," she gestures toward you with one leg, as the other Bebliss members eye you eagerly.`
+			`	"In 'their' space, are you not? Scanned by their ships, you were. Subtly amassed, your flight records, your charted map of the galaxy, were," she finishes. "Of course, register any such logs, your ship does not, when running tasks or simply coming to meet us like this, you are. Permit them find our bases that easily, we must not. But, digress I do. Please Captain, intrigued about these aliens, we very much are." She gestures toward you with one leg, as the other Bebliss members eye you eagerly.`
 			label "pug reveal"
 			choice
 				`	"Human space was invaded by a species known as the Pug."`
 			label pug
 			`	Thankfully, the ones that were downing drinks weren't that close when you said the word "Pug," or else you'd need a new set of clothes. One of them signals for a maid to clean up their simultaneous spit takes, and the Arach by the blueprints finally comes closer.`
-			`	"'Pug', were they called?" she asks as the maid behind her quickly scrubs the floor. You affirm her question, and she calls for a servant, asking them to ready a ship. She whispers something to the other two members of House Bebliss, which the translation devices don't pick up, and starts gathering her belongings. "Forgive me, Captain, but leave at once, I must."`
+			`	"'Pug,' were they called?" she asks as the maid behind her quickly scrubs the floor. You affirm her question, and she calls for a servant, asking them to ready a ship. She whispers something to the other two members of House Bebliss, which the translation devices don't pick up, and starts gathering her belongings. "Forgive me, Captain, but leave at once, I must."`
 			`	Once she's left, one of the other two asks for more details, so you give them a brief rundown of the Pug invasion and how humanity managed to fight them off. They ask you to further detail the moments where you had to fight off waves of Pug as Freya worked the graviton transmitters and reflectors to link back to other human systems.`
 			`	"Promising, this Freya woman sounds. Know her location, do you, Captain?"`
 			`	You say that she is probably still on <destination>, and that when you saw her last, she was studying what artifacts the Pug left on the planet.`
 			`	"Speak with this woman, would you, Captain? If willing to work with us, she is, greatly rewarded, you would be."`
 			choice
 				`	"I'll go talk with her and see what I can do."`
-				`	"Sorry, but I don't want to bother her by pulling her into some of the Coalition's business."`
+				`	"Sorry, but I don't want to bother her by pulling her into the Coalition's business."`
 					goto decline
-			`	They thank you, and head to another room, asking you to wait. One of the maids offers you a choice of another one of the human drinks, while the one holding the platter with drinks that the House Bebliss members were savoring stands like a statue near a corner.`
+			`	They thank you, and head to another room asking you to wait. One of the maids offers you a choice of another one of the human drinks, while the one holding the platter with drinks that the House Bebliss members were savoring stands like a statue near a corner.`
 			choice
 				`	(Taste some of the human drinks.)`
 					goto human
@@ -593,7 +593,7 @@ mission "House Bebliss 2-FW"
 			label arach
 			`	You wave for the maid with the Arach drinks, and she looks to the other maid in surprise. She tries explaining to you that she isn't sure if these drinks are meant for human consumption. Regardless you insist, so she reluctantly walks over, handing you one of the cups. You bring it to your nose, and an overwhelming aroma hits your nostrils. The drink somehow smells oddly similar to the feeling you have in your mouth after waking up extremely parched after a long night of sleep. You carefully sip some of it, bringing the cup away from your mouth once the liquid hits your tongue. The sweetness has a sting to it, as if it's lightly biting your tongue as it travels through your mouth. Swallowing it, your throat feels a worrying numbing sensation for several seconds. You put the cup back on the platter, and the maids move away. After about a minute, you start struggling to keep your eyes open. Your surroundings suddenly appear much brighter than before, as if the lights in the ceiling have somehow intensified their output and the colors on everything around you have sharpened their image. You close your eyes for a few minutes to gain your bearings, and everything seems to go back to normal.`
 			label accept
-			`	When your hosts return, they hand you a small suitcase of sorts, "Translated our proposal into your language, we have," one of them says. "Bring that to Miss Freya, you must. Hopeful, we are, that willing to share the research material with us, she is."`
+			`	When your hosts return, they hand you a small suitcase of sorts. "Translated our proposal into your language, we have," one of them says. "Bring that to Miss Freya, you must. Hopeful, we are, that willing to share the research material with us, she is."`
 			branch "resistance 3"
 				has "Resistance: Questions: done"
 			`	"Also inside, certain... research papers are. A gift, she may consider it," the other adds.`
@@ -608,7 +608,7 @@ mission "House Bebliss 2-FW"
 				decline
 
 mission "House Bebliss 3-FW"
-	name "Warn the Free Worlds"
+	name "Tell the Free Worlds about the Coalition"
 	description "Go to <destination> and tell Alondo and the others all you've learned about the Coalition."
 	landing
 	to offer
@@ -635,7 +635,7 @@ mission "House Bebliss 3-FW"
 			choice
 				`	"Oh, that. You get used to it."`
 				`	"It's not so bad when you're talking with them in person."`
-			`	She gives the message an odd look, lets out an "If you say so," and continues to read it. "If this 'House Bebliss' is as advanced as they claim in this, I don't see how I could help them with anything, but they're offering to share their knowledge with me in return, so I won't complain. If nothing else it'll be an experience, working with giant spiders."`
+			`	She gives the message an odd look, lets out an "if you say so," and continues to read it. "If this 'House Bebliss' is as advanced as they claim in this, I don't see how I could help them with anything, but they're offering to share their knowledge with me in return, so I won't complain. If nothing else it'll be an experience, working with giant spiders."`
 			choice
 				`	"So you're fine with letting them study the Pug artifacts with you?"`
 				`	"I can go back and tell them you've agreed then?"`
@@ -658,13 +658,13 @@ mission "House Bebliss 4-FW"
 				`	"Sorry about that. It's nice to see you too, JJ. Are the others here yet?"`
 					goto others
 				`	"Well, you won't need to worry about anything being 'critical' too much when it comes to these aliens. Hopefully."`
-			`	"Hopefully?" He gives you a mix between a worried look and a stern face. "Let's just go meet up with the others, that way you don't need to repeat what I'm guessing is a long story."`
+			`	"Hopefully? Wait, aliens?!" He gives you a mix between a worried look and a stern face. "Let's just go meet up with the others. That way you don't need to repeat what I'm guessing is a long story."`
 			label others
 			`	He beckons you to follow him to a traffic shuttle. "I brought Katya and Ijs here once we got Freya's message. They were visiting Zug for a presentation about the Conservatory, and that's where I happened to be during my break. Alondo's made some time for us, so I'll bring you to his office. You can tell us the details there."`
 			`	You get in the shuttle, which eventually brings you to a towering government building. As you get closer, you notice the main courtyard is home to a multitude of different colored flags, all of them situated around the Free Worlds' own. "Planetary flags," JJ says as you both get out of the shuttle. "Some of our planets created their own recently, and some of the more diplomatic folks decided to set them up around the major government buildings." Leaving the flags waving in the breeze, the two of you head inside the building and go up an elevator, arriving on a floor with a couple rooms to the side and a larger one opposite the elevator. You enter the larger room and see Alondo seated behind a nice wooden desk, Ijs walking around, and Katya sitting on a sofa.`
 			`	"How are you, <first>?" Katya gets up to greet you. "We came as soon as we got Freya's message, but I was still a bit surprised to get here before you, given the new toys you must have by now. You and Freya have gotten Ijs all worried and theorizing there," she says as she points to him.`
-			`	"Well, one minute I'm speaking on a panel, the other I get word we need to come to <origin> because <first> has something 'critical' to tell all of us. Of course I'll be worried," he stops, and comes to greet you. "Sorry. It's good to see you again <first>, I just... got a bit carried away thinking about Freya's message."`
-			`	Alondo also stands up and comes to greet you. "Maybe you worry too much, maybe we don't worry enough, let's decide after <first> tells us all about... what was it again?"`
+			`	"Well, one minute I'm speaking on a panel, the other I get word we need to come to <origin> because <first> has something 'critical' to tell all of us. Of course I'll be worried." He stops, and comes to greet you. "Sorry. It's good to see you again <first>, I just... got a bit carried away thinking about Freya's message."`
+			`	Alondo also stands up and comes to greet you. "Maybe you worry too much, maybe we don't worry enough. Let's decide after <first> tells us all about... well, whatever it is you're telling us."`
 			branch resistance
 				has "Resistance: Questions: done"
 			choice
@@ -676,26 +676,26 @@ mission "House Bebliss 4-FW"
 					goto tell
 				`	(Don't mention the Lunarium.)`
 			`	Everyone quietly listens as you explain to them all you've learned about the Coalition. You bring up a map of the Free Worlds and show them the rough area of Coalition space and where it borders Free Worlds territory. As you gesture towards the map, you tell them of the three species, about the Heliarchs and how they've taken the three Quarg rings. Eventually you get to the Arach Houses, explaining that House Bebliss are the ones who wish to go study the Pug artifacts with Freya.`
-			`	When you're done, Alondo is the first to speak up, "So far, we seem to be getting along better with these aliens than we did with the Pug. It's good that they're trying to be diplomatic, though I'm not sure it'd be a good idea for the general public to know of them, given past experiences. At least for right now."`
+			`	When you're done, Alondo is the first to speak up. "So far, we seem to be getting along better with these aliens than we did with the Pug. It's good that they're trying to be diplomatic, though I'm not sure it'd be a good idea for the general public to know of them, given past experiences. At least for right now."`
 			`	"Do they have jump drives?" Katya asks. You nod, but say that they can't make their own. "Well, as long as what stockpile they have isn't too large, we shouldn't be in too much trouble."`
 			`	"Except they took three Quarg rings," JJ chimes in. "They've beaten the Quarg? So they're stronger than the Quarg? More advanced?" He asks.`
 			choice
 				`	"No, but their ships are still a lot tougher than human ones."`
 				`	"No, but they do outnumber humans - all humans."`
 			`	"The Quarg would never just abandon their rings, and do you know how many Quarg are in one ring alone? There's no way they would have lost three of them like that," Ijs says. "They'll want those rings back, that's certain."`
-			`	"And we're right between this 'Coalition' and the Quarg near Tarazed," JJ points at the map. "If they decide to go get their rings back, and our neighbors decide to use their jump drives to create a buffer before the Quarg hit them on their home turf..."`
+			`	"And we're right between this 'Coalition' and the Quarg near Tarazed." JJ points at the map. "If they decide to go get their rings back, and our neighbors decide to use their jump drives to create a buffer before the Quarg hit them on their home turf..."`
 			`	They stay silent for a while, then Alondo picks up the talk again. "If the Quarg have waited six thousand years, then they might wait a few thousand more. What matters now is that we know of these aliens, meaning we must start thinking about possible outcomes to all of this and what they mean for the Free Worlds. If we start preparations now, perhaps we'll get lucky and we won't get caught up in any other wars; especially wars involving the Quarg."`
 				goto accept
 			label tell
 			`	Everyone quietly listens as you explain to them all you've learned about the Coalition. You bring up a map of the Free Worlds and show them the rough area of Coalition space and where it borders Free Worlds territory. As you gesture towards the map, you tell them of the three species, about the Heliarchs and how they've taken the three Quarg rings. Eventually you get to the Arach Houses, explaining that House Bebliss are the ones who wish to go study the Pug artifacts with Freya. You also tell them about the Lunarium, explaining the group's actions and their wish to take down the Heliarch government, and what role House Bebliss has in helping them.`
-			`	When you're done, Alondo is the first to speak up, "So far, we seem to be getting along better with these aliens than we did with the Pug. It's good that they're trying to be diplomatic, though I'm not sure it'd be a good idea for the general public to know of them, given past experiences. At least for right now." He pauses, then addresses you directly. "It's... bold of you to want to help this resistance group of theirs. There's some sympathy given the Free Worlds' own history, but they sound like they have an even worse shot than what we had."`
+			`	When you're done, Alondo is the first to speak up. "So far, we seem to be getting along better with these aliens than we did with the Pug. It's good that they're trying to be diplomatic, though I'm not sure it'd be a good idea for the general public to know of them, given past experiences. At least for right now." He pauses, then addresses you directly. "It's... bold of you to want to help this resistance group of theirs. There's some sympathy given the Free Worlds' own history, but they sound like they have an even worse shot than what we had."`
 			`	"Whatever their government is, or whether it's overthrown or not, it doesn't change that they're right at our doorstep," Katya says. "Do they have jump drives?" she asks. You nod, but say that they can't make their own. "Well, as long as what stockpile they have isn't too large, we shouldn't be in too much trouble."`
 			`	"Except they took three Quarg rings," JJ chimes in. "They've beaten the Quarg? So they're stronger than the Quarg? More advanced?" He asks.`
 			choice
 				`	"No, but their ships are still a lot tougher than human ones."`
 				`	"No, but they do outnumber humans - all humans."`
 			`	"The Quarg would never just abandon their rings, and do you know how many Quarg are in one ring alone? There's no way they would have lost three of them like that," Ijs says. "They'll want those rings back, no matter what faction is holding them."`
-			`	"And we're right between this 'Coalition' and the Quarg near Tarazed," JJ points at the map. "If they decide to go get their rings back, and our neighbors decide to use their jump drives to create a buffer before the Quarg hit them on their home turf..."`
+			`	"And we're right between this 'Coalition' and the Quarg near Tarazed." JJ points at the map. "If they decide to go get their rings back, and our neighbors decide to use their jump drives to create a buffer before the Quarg hit them on their home turf..."`
 			`	"Well, if <first> and this 'Lunarium Redoubt' succeed, it probably won't come to that, from what I've gathered," Alondo says.`
 			`	"And if they don't? Then a human tried to help the rebels in their space overthrow them. A human that worked for the Free Worlds," JJ responds. "I'm not blaming you, <first>, but we don't know what these 'Heliarchs' will do if you fail. If they figure out how to make their own jump drives, or worse, learn how to cut off our systems like the Pug did..."`
 			`	They stay silent for a while, then Alondo picks up the talk again. "If this rebel group never came to be, we could eventually be caught up in a war between the Heliarchs and the Quarg. If they succeed, we won't need to worry about that, at least. If they fail, and the Heliarchs retaliate against humanity, we ask the Quarg for help. At least, with <first> helping these rebels, there's a chance we won't get caught up in a war between the Heliarchs and the Quarg."`
@@ -751,10 +751,10 @@ mission "House Bebliss 6-FW"
 	destination "Pugglemug"
 	on offer
 		conversation
-			`One of the employees of House Bebliss spots you immediately as you enter the spaceport and guides you to what they claim is one of the top restaurants here. The members of the House are waiting inside,  the only patrons within the establishment. Having already ordered their meals when you arrive, they offer to buy you anything you want from the menu. Seeing the selection of "exotic dishes" on the other tables, though, you decide to decline their offer.`
+			`One of the employees of House Bebliss spots you immediately as you enter the spaceport and guides you to what they claim is one of the top restaurants here. The members of the House are waiting inside, the only patrons within the establishment. Having already ordered their meals when you arrive, they offer to buy you anything you want from the menu. Seeing the selection of "exotic dishes" on the other tables, though, you decide to decline their offer.`
 			`	"Ready for takeoff, our ship is," one of them says, preparing some napkins as the waiters bring their orders to the table. "To the world where your friend is, bring us, you must."`
 			`	Another one bites into something that looks like a goat's leg, albeit much bonier, before saying, "Prepared for concealing our presence, we and the crew are. Worry about that, you need not."`
-			`	"Extra fuel, the ship has. Enough to reach the planet, it is," the last of them tells you. You stay at the restaurant for a surprisingly short while, as the Arachi devour the full-course meals in only a few minutes. You leave together, accompanying them to the hangars, where you see their Spindle landing next to the <ship>. They board it, saying they will follow your ship once you depart, and that you may take off at your earliest convenience.`
+			`	"Extra fuel, the ship has. Enough to reach the planet, it should be," the last of them tells you. You stay at the restaurant for a surprisingly short while, as the Arachi devour the full-course meals in only a few minutes. You leave together, accompanying them to the hangars, where you see their Spindle landing next to the <ship>. They board it, saying they will follow your ship once you depart, and that you may take off at your earliest convenience.`
 				accept
 	npc accompany save
 		personality escort timid
@@ -784,7 +784,7 @@ mission "House Bebliss 6-FW"
 			`	"Well, <planet> has surged in population, for sure, but it's far from a tourist hotspot for now," she answers. "As long as they stick to that ship, no one should know they're here."`
 				goto end
 			label safe
-			`	"Deneb is close enough to Sol that we get Navy fleets flying by here pretty often, and it's far away enough from the pirate strongholds that we rarely get any of them raiding here. They'll be fine."`
+			`	"<planet> is close enough to Sol that we get Navy fleets flying by here pretty often, and it's far away enough from the pirate strongholds that we rarely get any of them raiding here. They'll be fine."`
 			label end
 			`	She moves away from the ship, and you both leisurely walk back to the Free Worlds' warehouse, chatting as you go. "I need to go tell my team that we're moving some of the load to Southbound's new experimental freighter. I'd prefer to tell them what's going on myself - it makes things so much easier - but I think I'll wait a little longer before doing that. I want to see if I can get a good reading on these aliens first. Perhaps another scientific conversation would help. I'll be in contact if something happens. Safe travels, <first>."`
 			`	You say goodbye, and head to your ship. From the looks of it, it might take some months, if not years, before House Bebliss gets what information they wanted out of this trip.`
@@ -803,8 +803,8 @@ mission "House Bebliss 7-FW"
 	destination "Ablub's Invention"
 	on offer
 		conversation
-			`You receive a message from Freya as you land on <origin>. "Hello <first>! I hope this finds you well. The past few months here have been... interesting, to say the least. Working with the Arachi has helped us find answers to the questions we had about the Pug artifacts, which invariably has led to more questions. The Arachi are a bit odd, but it's been fun working with them. I figured they would stay here for at least a year, given how many containers and large crates of supplies they brought in that freighter of theirs, but it looks like they've grown homesick, so we said our goodbyes today. They asked me to contact you and say they'll be waiting in a system called '<system>' to pay you, and hand you back the jump drive they borrowed. Have a safe trip there, Captain."`
-			`	When you finish reading the message you plot a course to <destination>.`
+			`You receive a message from Freya as you land on <origin>. "Hello <first>! I hope this finds you well. The past few months here have been... interesting, to say the least. Working with the Arachi has helped us find answers to the questions we had about the Pug artifacts, which invariably has led to more questions. The Arachi are a bit odd, but it's been fun working with them. I figured they would stay here for at least a year, given how many containers and large crates of supplies they brought in that freighter of theirs, but it looks like they've grown homesick, so we said our goodbyes today. They asked me to contact you and say they'll be waiting in a system called '<system>' to pay you and return the jump drive they borrowed. Have a safe trip there, Captain."`
+			`	When you finish reading the message, you plot a course to <destination>.`
 				accept
 	on complete
 		"assisted resistance" ++
@@ -847,11 +847,12 @@ mission "Resistance: Evacuation 1"
 			choice
 				`	"Alright, I'll see if I can help."`
 				`	"Sorry, I'm not available at the moment."`
+					decline
 			label alright
-			`	One of them brings you to the Spire, sending a message as you two head there, and the hatch is opened right as you arrive. They thank you for helping, and rush to the others of the group, as they board their own ship and depart. You go up the Spire's ramp and meet some more Kimek from the company, who greet you and guide you through the ship. Halfway through a corridor, they stop and ask that you wait there. One more Kimek comes, bringing nearly a dozen different devices, with which they start patting and circling your body with. You ask them what they're doing, but they don't respond. After every single one of the machines has finished its beeps and chirps around you, and the Kimek seem satisfied, they continue on. Surprisingly, they bring you not to the cockpit, but to one of the bunks, where a Kimek is talking with a Saryd man. Once she sees you're there, the Kimek gives a glance to the Saryd, and leaves with the others, leaving you two alone.`
+			`	One of them brings you to the Spire, sending a message as you two head there, and the hatch is opened right as you arrive. They thank you for helping, and rush to board their own ship and depart. You go up the Spire's ramp and meet some more Kimek from the company, who greet you and guide you through the ship. Halfway through a corridor, they stop and ask that you wait there. A different Kimek carring nearly a dozen different devices emerges from a side corridor, and the group begins patting and circling your body with the devices. You ask them what they're doing, but they don't respond. After every single one of the machines has finished its beeps and chirps around you, and the Kimek seem satisfied, they continue on. Surprisingly, they bring you not to the cockpit, but to one of the bunks, where a Kimek is talking with a Saryd man. Once she sees you're there, the Kimek gives a glance to the Saryd, and leaves with the others, leaving you two alone.`
 			branch resistance
 				has "Resistance: Questions: done"
-			`	Middle-aged, the Saryd has little hair on his head and a dense beard. "Greetings, human friend. <first> <last> your name is, correct?" You nod. "Apologize for the safety measures you must have experienced. You see, rather sickly lately, I have been, and while usually fine around Kimek or Arach employees and passengers, wish to try my health against a Saryd or human disease, I did not. But, come to listen of my woes, you have not. Called Elirom, I am. The owner of this company. For those wishing to travel in leisure or for work, provide comfortable ships we do," he explains. "Run into some trouble, one of our ships has. Supposed to transport <bunks> students and teachers back to Second Viridian after their school trip was done, but now waiting for repairs for the ship's malfunctioning outfits, they are. Picked up by <date>, the students must be, so as to not miss their tests, but elsewhere busy, our other ships are. Pick them up in our stead, would you? 386,730 credits from our company, you will receive."`
+			`	Middle-aged, the Saryd has little hair on his head and a dense beard. "Greetings, human friend. <first> <last> your name is, correct?" You nod. "Apologize for the safety measures you must have experienced. You see, rather sickly lately, I have been, and while usually fine around Kimek or Arach employees and passengers, wish to try my health against a Saryd or human disease, I did not. But, come to listen of my woes, you have not. Called Elirom, I am. The owner of this company. For those wishing to travel in leisure or for work, provide comfortable ships we do," he explains. "Run into some trouble, one of our ships has. Supposed to transport <bunks> students and teachers back to Second Viridian after their school trip was done, but now waiting for repairs for the ship's malfunctioning outfits, they are. Picked up by <date>, the students must be, so as to not miss their tests, but elsewhere busy, our other ships are. Pick them up in our stead, would you? <payment> from our company, you will receive."`
 			choice
 				`	"Sure, where am I picking them up from?"`
 				`	"I'm sorry, but I'm not interested anymore."`
@@ -859,7 +860,7 @@ mission "Resistance: Evacuation 1"
 			`	"Waiting on <planet> they are. Inform them to expect your ship, I will. Remember, picked up before <date> they must be." He bends his front legs lightly in a bow, thanking you for agreeing to help, and asks for one of the Kimek to come back and escort you out. They repeat the same tedious search process with the devices on your way out, and wish you good luck when they're finally done.`
 				accept
 			label resistance
-			`	Middle-aged, with little hair on his head and a dense beard, you switftly recognize the Saryd as Elirom, one of the Lunarium leaders you met on Remote Blue. "Hello Captain <last>, good to see you it is. Forgive me for the convoluted security measures, you must, always listening they are..." He rubs one hand over the other while glancing down. "Looking for our members all over <planet>, Heliarch ships are. Received word, I have, that arrive there by <date>, many more Punishers will. If get there they do before evacuated our members, we have, afraid I am that unfeasible to save them, it will become. Still waiting for a ship, <bunks> of them are, and get back there before the Punishers arrive on <date>, our other ships will not. Captain, help us, you must. Compensate you with 386,730 credits, I will."`
+			`	Middle-aged, with little hair on his head and a dense beard, you switftly recognize the Saryd as Elirom, one of the Lunarium leaders you met on Remote Blue. "Hello Captain <last>, good to see you it is. Forgive me for the convoluted security measures, you must, always listening they are..." He rubs one hand over the other while glancing down. "Looking for our members all over <planet>, Heliarch ships are. Received word, I have, that arrive there by <date>, many more Punishers will. If get there they do before evacuated our members, we have, afraid I am that unfeasible to save them, it will become. Still waiting for a ship, <bunks> of them are, and get back there before the Punishers arrive on <date>, our other ships will not. Captain, help us, you must. Compensate you with <payment>, I will."`
 			choice
 				`	"Of course, I'll head there right away."`
 					goto accept
@@ -916,7 +917,7 @@ mission "Resistance: Evacuation 2"
 			choice
 				`	"Sure thing, it's no problem helping with this."`
 					goto end
-				`	"There were only 33, actually."`
+				`	"There were only <bunks>, actually."`
 			`	"Only... oh, I..." he pauses for a few seconds just as his voice cracks a little. "Forgive me, Captain, mistaken, it appears I was. Mixed up the number of passengers with that of another client, I did. Pay more attention next time, I shall." He thanks you again, and ends the call.`
 				accept
 			label resistance
@@ -924,7 +925,7 @@ mission "Resistance: Evacuation 2"
 			choice
 				`	"Of course, I'd be glad to help again."`
 					goto end
-				`	"There were only 33 waiting for me."`
+				`	"There were only <bunks> waiting for me."`
 			`	Half a minute passes in silence. "I see. At any rate, thankful for your rescuing the others, I am," he says as he ends the call.`
 				accept
 			label end
@@ -955,7 +956,7 @@ mission "Resistance: Evacuation 3"
 				`	"Sure, lead the way."`
 					goto talk
 				`	"I'm not interested in that kind of job at the moment, sorry."`
-			`	"Certain of that, are you? Willing to pay very well for your continued service, the captain is. Change your mind, would 748,300 credits?"`
+			`	"Certain of that, are you? Willing to pay very well for your continued service, the captain is. Change your mind, would <payment>?"`
 			choice
 				`	"On second thought, I'd love a transport job right now."`
 				`	"I'm just not interested in working with you anymore, no."`
@@ -963,16 +964,16 @@ mission "Resistance: Evacuation 3"
 			label talk
 			`	Once again you're brought to the Spire, but only the Saryds come in with you, unlike the Kimek from last time. You're all escorted through the corridors, and are all searched by the devices, before you're finally brought to Elirom. He greets you, thanking you for coming, "Some more problems, we've had, so in need of a contractor's help once more, the company is.`
 			`	"Contracted us for transport to <planet>, some Arach ranchers did. Attempting to start a longcow business on the deserts of Shifting Sand, they are, and hoping for a loan from a prestigious bank on <planet>, to start off a new expansion to the ranch they were. <bunks> they are, in total, both ranchers and their employees. Only..." He pauses for a moment, as if considering something. "Difficult, the Arachi can be at times. Once discovered they had, that originally from a rival Arach House, the captain of their original transport was, refuse to return with him, they did. Given us until <date> to find a new transport, before they cancel out on us, they have."`
-			`	He says you'll receive 748,300 credits once the ranchers are back on Shifting Sand, and urges you to hurry to <destination> before <date>, so that the Arachi don't cancel the transport. He wishes you good luck, and you're brought back out of the ship. The Saryds that went in with you stay inside, and the Spire departs not long after you've left.`
+			`	He says you'll receive <payment> once the ranchers are back on Shifting Sand, and urges you to hurry to <destination> before <date>, so that the Arachi don't cancel the transport. He wishes you good luck, and you're brought back out of the ship. The Saryds that went in with you stay inside, and the Spire departs not long after you've left.`
 				accept
 			label resistance
 			`Walking around the spaceport for a few minutes, you're met by a pair of Saryds. "Captain <last>? Worked with our company before, you have. Helped with transporting a group of students, you had." You nod. "Another troubling situation, we have. Help us again, would you?" They point to a Kimek Spire, presumably the very same you boarded last time, parked at the edge of the local docks.`
-			`	You follow them to the Spire, and they come in with you, unlike the Kimek from last time. You're all escorted through the corridors, and searched by the security devices, before you're finally brought to Elirom. "Hello Captain, good to see you it is," he greets you. "Word of more Heliarch fleet activity, I have received. Headed to <destination>, to aid on an ongoing search for our members, they are. Arrive there by <date>, they should, so in urgent need of a ship to rescue some <bunks> still on the planet, I am. Pay you 748,300 credits, I will."`
+			`	You follow them to the Spire, and they come in with you, unlike the Kimek from last time. You're all escorted through the corridors, and searched by the security devices, before you're finally brought to Elirom. "Hello Captain, good to see you it is," he greets you. "Word of more Heliarch fleet activity, I have received. Headed to <destination>, to aid on an ongoing search for our members, they are. Arrive there by <date>, they should, so in urgent need of a ship to rescue some <bunks> still on the planet, I am. Pay you <payment>, I will."`
 			choice
 				`	"I'll go there right away."`
 					goto end
 				`	"How do you keep getting information about these fleets?"`
-			`	He collects his thoughts for a while, before answering, "Work together to provide us secretive, quick data, Houses Bebliss and Idriss do. From them, the messages come. But, not by them, the information is found. Someone... something maybe, spying on the Heliarchs is. Not one of ours." He pauses again. "Doubted them myself, at first I had. But, never wrong, the information is, almost as if..." He trails off.`
+			`	He collects his thoughts for a while before answering, "Work together to provide us secretive, quick data, Houses Bebliss and Idriss do. From them, the messages come. But, not by them, the information is found. Someone... something maybe, spying on the Heliarchs is. Not one of ours." He pauses again. "Doubted them myself, at first I had. But, never wrong, the information is, almost as if..." He trails off.`
 			label end
 			`	"Attempting to pass as ranchers, the members are. On a trip to <planet>, but an argument with their original transport, they had. If stopped, you are, tell them that, you should. Remember, <date>. Hopefully still there when you arrive, all <bunks> of them are." He wishes you good luck, and you're brought out of the ship, with the Saryds that found you staying inside. Not long after you've left it, you see the Spire take off and leave the planet.`
 				accept
@@ -1070,7 +1071,7 @@ mission "Resistance: Evacuation 5"
 		conversation
 			branch resistance
 				has "Resistance: Questions: done"
-			`You receive a call instants after you've touched down on <origin>. It's from Elirom, the Saryd who had you help transport some of his company's clients, racing towards you. "Captain <last>! Your help again, we need," he begins. "Hired us to bring them to their new home on Ablub's Invention, some immigrants from <destination> did. <bunks> in total. Only..." he looks down, his mouth struggling for words. "Fallen ill, the captain of the ship we had arranged for them has. Supposed to leave by <date>, they were, but get to <planet> in time, we cannot. You, however, a jump drive possess. Help us now, only you can, Captain."`
+			`You receive a call seconds after you've touched down on <origin>. It's from Elirom, the Saryd who had you help transport some of his company's clients. "Captain <last>! Your help again, we need," he begins. "Hired us to bring them to their new home on Ablub's Invention, some immigrants from <destination> did. <bunks> in total. Only..." he looks down, his mouth struggling for words. "Fallen ill, the captain of the ship we had arranged for them has. Supposed to leave by <date>, they were, but get to <planet> in time, we cannot. You, however, a jump drive possess. Help us now, only you can, Captain."`
 			choice
 				`	"I'd be glad to help. I'll head there as quick as I can."`
 					goto glad
@@ -1082,7 +1083,7 @@ mission "Resistance: Evacuation 5"
 			`	He sighs in relief, then quickly types away at something close to the camera on his end, and you're notified of <payment> in total just having been transferred to your account. "Paid much more you will be, once safe, the immigrants are. Bring them back to Ablub's Invention, you must. Send word for them to expect you, I shall." He bows lightly, then logs off.`
 				accept
 			label resistance
-			`You receive a call instants after you've touched down on <origin>. It's from Elirom, and he wastes no time giving you your next mission. "A particularly urgent matter, this is. Looking for our members on <planet>, the Heliarchs are. Found, dozens have already been, and even more Heliarchs by <date> will there arrive. Make it in time, none of our ships can, too far away it is. You, however, a jump drive possess. Rescue the <bunks> remaining, you must." He types away at something on his end for a bit, and you see <payment> have been transferred to your account. "Much more I will give you, once safely back on Ablub's Invention you are. If stopped by the Heliarchs you are..." He trails off for a while, and you can hear the increasingly hurried, repeated tapping of hooves on the floor. "If stopped you are, tell them that transporting immigrants to their new homes on Ablub's Invention, you will. Hired by House Idriss, they have been." He urges you to go to <destination> immediately, wishing you good luck, and logging off.`
+			`You receive a call seconds after you've touched down on <origin>. It's from Elirom, and he wastes no time giving you your next mission. "A particularly urgent matter, this is. Looking for our members on <planet>, the Heliarchs are. Found, dozens have already been, and even more Heliarchs by <date> will there arrive. Make it in time, none of our ships can, too far away it is. You, however, a jump drive possess. Rescue the <bunks> remaining, you must." He types away at something on his end for a bit, and you see <payment> have been transferred to your account. "Much more I will give you, once safely back on Ablub's Invention you are. If stopped by the Heliarchs you are..." He trails off for a while, and you can hear the increasingly hurried, repeated tapping of hooves on the floor. "If stopped you are, tell them that transporting immigrants to their new homes on Ablub's Invention, you will. Hired by House Idriss, they have been." He urges you to go to <destination> immediately, wishing you good luck, and logging off.`
 				accept
 	on visit
 		dialog `You land on <planet>, but realize that your escort with the <bunks> bunks for the immigrants hasn't arrived in the system yet. Better depart and wait for it.`
@@ -1106,10 +1107,10 @@ mission "Resistance: Evacuation 6"
 			branch resistance
 				has "Resistance: Questions: done"
 			choice
-				`	"I was told there were 116 of you for me to pick up. We only have 91."`
+				`	"I was told there were 116 of you for me to pick up. We only have <bunks>."`
 				`	"Alright, we'll leave in a few minutes."`
 					goto launch
-			`	He squints, clenching his hands into fists and then relaxing them again. "Only 91 you are getting. Take us away from here, now, or fly your ship myself, I will."`
+			`	He squints, clenching his hands into fists and then relaxing them again. "Only <bunks> you are getting. Take us away from here, now, or fly your ship myself, I will."`
 				goto launch
 			label resistance
 			choice
@@ -1133,7 +1134,7 @@ mission "Resistance: Evacuation 6"
 			choice
 				`	"What were all of them so worked up about?"`
 				`	"What's really going on with you and your company?"`
-			`	He looks into your eyes for a few seconds, before taking a long gaze at the skies. "Come. Talk inside the ship, we should." You two head inside, and one of the Kimek crewmembers closes the hatch. You come to his bunk, where he sits down, and begins, "A transport company, I do not own. No company at all, I own. Transporting students, ranchers, immigrants, you were not." He looks at you intensely. "Saving lives, what you have been doing is. Saving them," he points out to the corridor, in the direction of the hatch.`
+			`	He looks into your eyes for a few seconds, before taking a long gaze at the skies. "Come. Talk inside the ship, we should." You two head inside, and one of the Kimek crew members closes the hatch. You come to his bunk, where he sits down and begins, "A transport company, I do not own. No company at all, I own. Transporting students, ranchers, immigrants, you were not." He looks at you intensely. "Saving lives, what you have been doing is. Saving them," he points out to the corridor, in the direction of the hatch.`
 			choice
 				`	"Saving them? From what?"`
 					goto what
@@ -1151,7 +1152,7 @@ mission "Resistance: Evacuation 6"
 				`	"You want me to join your group in fighting the Heliarchs, is that it?"`
 					goto join
 				`	"Dead? What do you mean?"`
-			`	He thinks for a few minutes, often times opening up his mouth as if deciding to speak, but ultimately going back to reflecting on what to say. "When decided to... desert, I had, work I did on covering up my fleeing of the facility I was stationed at. After forcing an... an incident, meant to erase all traces of mine, fled and hid in civilian ships for a while, I had, until found by the Lunarium I was." He smirks lightly, as if in bitterness. "Thought I did that aware enough of their patterns and method, I was, enough to locate them. Found me first, they did though. Taken in, I was, and helping them since, I have."`
+			`	He thinks for a few minutes, often times opening up his mouth as if deciding to speak, but ultimately going back to reflecting on what to say. "When decided to... desert, I had, work I did on covering up my fleeing of the facility I was stationed at. After forcing an... an incident, meant to erase all traces of mine, fled and hid in civilian ships for a while, I had, until found by the Lunarium I was." He smirks lightly, as if in bitterness. "Thought I did that aware enough of their patterns and method, I was, enough to locate them. Found me first, they did though. Taken in, I was, and helping them since, I have been."`
 			choice
 				`	"What facility did you work at?"`
 				`	"An incident? What did you do?"`
@@ -1163,13 +1164,13 @@ mission "Resistance: Evacuation 6"
 			choice
 				`	"He seemed angry at you."`
 					goto angry
-				`	"I could only get 91."`
-			`	"I know," he sighs. "Made sure I understood that, that old man has."`
+				`	"I could only get <bunks>."`
+			`	"I know." He sighs. "Made sure I understood that, that old man has."`
 				goto end
 			label angry
 			`	"That he is. A difficult thing to go through, it is. Used to such rough talk, I've grown."`
 			label end
-			`	He comes closer to you, slouching down and speaking quietly, "Come ask for your help directly again, for a long time I may not, but still in need of help saving our members, we always are. Very grateful, we would be, if help us again when we need it, you would." He pulls back, and extends his arm to shake your hand. He looks at the sky just before he leaves, "Steer clear from the sun you should, <last>." He thanks you again, and leaves to accompany the rescued members into the central building.`
+			`	He comes closer to you, slouching down and speaking quietly. "Come ask for your help directly again, for a long time I may not, but still in need of help saving our members, we always are. Very grateful, we would be, if help us again when we need it, you would." He pulls back, and extends his arm to shake your hand. He looks at the sky just before he leaves. "Steer clear from the sun you should, <last>." He thanks you again, and leaves to accompany the rescued members into the central building.`
 
 
 
@@ -1708,7 +1709,7 @@ mission "Resistance: Quarg Interview"
 			choice
 				`	"I'll do what I can to help."`
 					goto leaders
-				`	"It sounds like you've contributed much to the Lunarium cause. How have you helped the Resistance?."`
+				`	"It sounds like you've contributed much to the Lunarium cause. How have you helped the Resistance?"`
 			`	"Yes, well observed. Kept the Lunarium Redoubt safe from prying Heliarch eyes and ears, my house has. Under me, assured that found by them, no dealings of ours - no dealings involving you - are," she says in a smug tone.`
 			label leaders
 			`	The Kimek who accompanied you here ask that you continue on. Lobmab and her bodyguards lead the way through busy cubicles and hallways, where dozens of Kimek work at computers and screens, as if monitoring the whole city. At the end of what seems to be the main passage of the complex, you pass through a doorway to find the Lunarium leaders seated around a table. You're shown to a seat, and as Lobmab comes in at the end, one of the bodyguards announces, "Lady Lobmab Bebliss, head of our great House."`
@@ -1730,7 +1731,7 @@ mission "Resistance: Quarg Interview"
 			`	Once the head of House Bebliss is done, Chiree continues. "Pointless, our fight will have been, if corrupted in those rings again, our successors thousands of years from now become. Set up transparency measures, and means to ensure that absolute power, the consuls do not have, we will."`
 				goto questions
 			label fight
-			`	"Try and fool you, I will not. At a tremendous disadvantage, to say the least, we are." Pyakri answers. "Weaker, our ships are, and far less powerful weapons, we boast. Mostly human designs. Due to being simpler, easier to produce them in what factories we have, they are. Also lack experience, the troops do..."`
+			`	"Try and fool you, I will not. At a tremendous disadvantage, to say the least, we are," Pyakri answers. "Weaker, our ships are, and far less powerful weapons, we boast. Mostly human designs. Due to being simpler, easier to produce them in what factories we have, they are. Also lack experience, the troops do..."`
 			`	The mood around the table quickly dims as she goes on listing the ways the Lunarium is lacking in comparison to your opponents. Elirom stands up, putting both hands on the table to draw attention. "Smarter than us, they are not. Assure you of that, I can. Wanting in many areas we are, yes, but only because hoard our best materials, they do. Already preparing some deadlier weapons, we are. Finished, the blueprints have been. Only lacking the right materials, we are. When secured those, we have, move on to reforming our arsenal we can, and maybe get some better ships produced, too."`
 			`	"And suppose I do that, intend to tell me where to attack for such materials, you do?" Pyakri asks as she stands up herself. "Caught by 'the unforeseen' will my men again be? By an Arach batallion you forgot to mention, again?"`
 			`	Caught apparently off-guard by the question, Elirom looks at her for a few seconds, then resigns himself to sit back down.`
@@ -1764,7 +1765,7 @@ mission "Resistance: Quarg Interview"
 			`	The table puts the documents away in unison, looking at you after your answer. "I see... well, at least cooperate for the interview, we can hope they will."`
 			label accept
 			`	The Lunarium leaders spend an hour or so going over the questions proposed for the interview, deciding to ditch some, and add a few new ones. All the while, Elirom asks in a worried manner if Oobat is sure of this idea. "Forgive me if sounding like a Heliarch, I am, but dangerous to leave, it is. How the Quarg would react to seeing someone from the Coalition in their territory, we do not know."`
-			`	"Understand that, I do, but fine I will be. Unlike the Quarg it is, to attack unprovoked," she answers. "And, if worse comes to worse, trust I do in Captain <last>'s abilities to ensure we escape." The leaders go over the interview questions a while longer, until they've reached a consensus as to its completeness. They wish you and Oobat good luck, and you two are escorted back out of the complex to your ship. There, Oobat asks you for the best place for such an interview in human space, and you point to <destination>, where they are constructing their ringworld. "Then head there, we must. In your care I will be, Captain." You show her to her bunk, and plot a course to <planet>.`
+			`	"Understand that, I do, but fine I will be. Unlike the Quarg it is, to attack unprovoked," she answers. "And, if worse comes to worse, trust I do in Captain <last>'s abilities to ensure we escape." The leaders go over the interview questions a while longer, until they've reached a consensus as to its completeness. They wish you and Oobat good luck, and you two are escorted back out of the complex to your ship. There, Oobat asks you for the best place for such an interview in human space, and you point to <destination>, where the Quarg are constructing their ringworld. "Then head there, we must. In your care I will be, Captain." You show her to her bunk, and plot a course to <planet>.`
 				accept
 	to fail
 		"reputation: Quarg" < 0
@@ -1788,7 +1789,7 @@ mission "Resistance: Join"
 				`	"I'm with a group from the Coalition, the Lunarium, who are fighting the Heliarchs. They want to talk to you, and have sent a diplomat with me."`
 			`	It stays silent, glancing over at your ship. "I see," it says. "Wait here. I will bring one who can speak on the matter." It moves away in a quick step, briefly talking to some other Quarg along the way, who come to your ship and wait. Oobat comes out of your ship as you wait, leading to something of a scene as some the humans visiting the station panic at the sight of a giant spider. Others come closer, intrigued by the unknown alien, or perhaps thinking her to be some form of prop. Oobat doesn't pay them much mind though, instead focusing on the Quarg near the two of you, and watching the others in the distance.`
 			`	The Quarg around you dissuade the gawking humans from getting closer, and after a few more minutes a Quarg in faded, light gray robes comes to meet you. "Hello, human. And..."`
-			`	"Oobat, my name is," she says. "A member of the Lunarium Redoubt, a group in the Coalition that fighting the Heliarchs is. Assisted us much, Captain <last> has, and brought me here now they did, for wish to ask you some questions about your views on the Coalition, my group does."`
+			`	"Oobat, my name is," she says. "A member of the Lunarium Redoubt, a group in the Coalition that fights the Heliarchs, I am. Assisted us much, Captain <last> has, and brought me here now they did, for wish to ask you some questions about your views on the Coalition, my group does."`
 			`	The Quarg gazes at you two for a few seconds, before squatting down to your level. "Very well. What questions do you have?"`
 			`	She hands you the camera, turning it on and asking that you keep it as still as you can once you're positioned to get a good angle. She then connects her translator to it remotely, so that the audio picks up the Quarg's translated responses. "Well, begin then we shall. On the Coalition, intending to fight us again, are you?"`
 			`	It thinks for a moment, then answers, "No. We never intended to fight. It was the Saryds, Kimek and Arachi of old who fought us. We are not a warring people."`

@@ -1399,7 +1399,7 @@ mission "Evacuate Resistance True"
 	job
 	repeat
 	name "Rescue Lunarium Members"
-	description "Pick up the <bunks> Lunarium members on <stopovers>, then bring them to <destination> by <date>."
+	description "Pick up <bunks> Lunarium members on <stopovers>, then bring them to <destination> by <date>."
 	deadline
 	to offer
 		random < 10
@@ -1459,7 +1459,7 @@ mission "Resistance: Armageddon Core Delivery"
 	job
 	repeat
 	name "Armageddon Core Delivery"
-	description "The Lunarium is offering <payment> for you to deliver an armageddon core to <destination>."
+	description "The Lunarium is offering <payment> for you to deliver an Armageddon Core to <destination>."
 	to offer
 		random < 4
 		has "Resistance: Reactors: done"
@@ -1480,13 +1480,13 @@ mission "Resistance: Armageddon Core Delivery"
 	on complete
 		outfit "Armageddon Core" -1
 		payment 13500000
-		dialog `Some Lunarium members unload the armageddon core after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the reactor away.`
+		dialog `Some Lunarium members unload the Armageddon Core after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the reactor away.`
 
 mission "Resistance: Fusion Reactor Delivery"
 	job
 	repeat
 	name "Fusion Reactor Delivery"
-	description "The Lunarium is offering <payment> for you to deliver a fusion reactor to <destination>."
+	description "The Lunarium is offering <payment> for you to deliver a Fusion Reactor to <destination>."
 	to offer
 		random < 7
 		has "Resistance: Reactors: done"
@@ -1507,13 +1507,13 @@ mission "Resistance: Fusion Reactor Delivery"
 	on complete
 		outfit "Fusion Reactor" -1
 		payment 7500000
-		dialog `Some Lunarium members unload the fusion reactor after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the reactor away.`
+		dialog `Some Lunarium members unload the Fusion Reactor after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the reactor away.`
 
 mission "Resistance: Breeder Reactor Delivery"
 	job
 	repeat
 	name "Breeder Reactor Delivery"
-	description "The Lunarium is offering <payment> for you to deliver a breeder reactor to <destination>."
+	description "The Lunarium is offering <payment> for you to deliver a Breeder Reactor to <destination>."
 	to offer
 		random < 10
 		has "Resistance: Reactors: done"
@@ -1534,13 +1534,13 @@ mission "Resistance: Breeder Reactor Delivery"
 	on complete
 		outfit "Breeder Reactor" -1
 		payment 3250000
-		dialog `Some Lunarium members unload the breeder reactor after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the reactor away.`
+		dialog `Some Lunarium members unload the Breeder Reactor after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the reactor away.`
 
 mission "Resistance: Torpedo Delivery"
 	job
 	repeat
 	name "Torpedo Delivery"
-	description "The Lunarium is offering <payment> for you to deliver a torpedo launcher, complete with 30 torpedoes, to <destination>."
+	description "The Lunarium is offering <payment> for you to deliver a Torpedo Launcher, complete with 30 torpedoes, to <destination>."
 	to offer
 		random < 12
 		has "Resistance: Torpedoes: done"
@@ -1561,13 +1561,13 @@ mission "Resistance: Torpedo Delivery"
 		outfit "Torpedo Launcher" -1
 		outfit "Torpedo" -30
 		payment 183000
-		dialog `Some Lunarium members unload the torpedo launcher and its ammunition after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the cargo away.`
+		dialog `Some Lunarium members unload the Torpedo Launcher and its ammunition after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the cargo away.`
 
 mission "Resistance: Typhoon Delivery"
 	job
 	repeat
 	name "Typhoon Delivery"
-	description "The Lunarium is offering <payment> for you to deliver a typhoon launcher, complete with 30 typhoon torpedoes, to <destination>."
+	description "The Lunarium is offering <payment> for you to deliver a Typhoon Launcher, complete with 30 Typhoon Torpedoes, to <destination>."
 	to offer
 		random < 7
 		has "Resistance: Torpedoes: done"
@@ -1586,13 +1586,13 @@ mission "Resistance: Typhoon Delivery"
 		outfit "Typhoon Launcher" -1
 		outfit "Typhoon Torpedo" -30
 		payment 511500
-		dialog `Some Lunarium members unload the typhoon launcher and its ammunition after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the cargo away.`
+		dialog `Some Lunarium members unload the Typhoon Launcher and its ammunition after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the cargo away.`
 
 mission "Resistance: Plasma Delivery"
 	job
 	repeat
 	name "Plasma Turret Delivery"
-	description "The Lunarium is offering <payment> for you to deliver a plasma turret to <destination>."
+	description "The Lunarium is offering <payment> for you to deliver a Plasma Turret to <destination>."
 	to offer
 		random < 6
 		has "Resistance: Heat: done"
@@ -1610,13 +1610,13 @@ mission "Resistance: Plasma Delivery"
 	on complete
 		outfit "Plasma Turret" -1
 		payment 780000
-		dialog `Some Lunarium members unload the plasma turret after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the turret away.`
+		dialog `Some Lunarium members unload the Plasma Turret after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the turret away.`
 
 mission "Resistance: Flamethrower Delivery"
 	job
 	repeat
 	name "Flamethrower Delivery"
-	description "The Lunarium is offering <payment> for you to deliver a pair of flamethrowers to <destination>."
+	description "The Lunarium is offering <payment> for you to deliver a pair of Flamethrowers to <destination>."
 	to offer
 		random < 8
 		has "Resistance: Heat: done"
@@ -1634,13 +1634,13 @@ mission "Resistance: Flamethrower Delivery"
 	on complete
 		outfit "Flamethrower" -2
 		payment 570000
-		dialog `Some Lunarium members unload the flamethrowers after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the flamethrowers away.`
+		dialog `Some Lunarium members unload the Flamethrowers after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the Flamethrowers away.`
 
 mission "Resistance: Grenade Delivery"
 	job
 	repeat
 	name "Grenade Delivery"
-	description "The Lunarium is offering <payment> for you to deliver a dozen fragmentation grenades to <destination>."
+	description "The Lunarium is offering <payment> for you to deliver a dozen Fragmentation Grenades to <destination>."
 	to offer
 		random < 11
 		has "Resistance: Grenades: done"
@@ -1658,13 +1658,13 @@ mission "Resistance: Grenade Delivery"
 	on complete
 		outfit "Fragmentation Grenades" -12
 		payment 306000
-		dialog `Some Lunarium members unload the fragmentation grenades after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the grenades away.`
+		dialog `Some Lunarium members unload the Fragmentation Grenades after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the grenades away.`
 
 mission "Resistance: Anti-Missile Delivery"
 	job
 	repeat
 	name "Anti-Missile Delivery"
-	description "The Lunarium is are offering <payment> for you to deliver a heavy anti-missile turret to <destination>."
+	description "The Lunarium is are offering <payment> for you to deliver a Heavy Anti-Missile Turret to <destination>."
 	to offer
 		random < 10
 		has "Resistance: AM: done"
@@ -1682,4 +1682,4 @@ mission "Resistance: Anti-Missile Delivery"
 	on complete
 		outfit "Heavy Anti-Missile Turret" -1
 		payment 225000
-		dialog `Some Lunarium members unload the heavy anti-missile turret after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the turret away.`
+		dialog `Some Lunarium members unload the Heavy Anti-Missile Turret after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the turret away.`
