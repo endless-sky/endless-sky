@@ -46,14 +46,22 @@ void HiringPanel::Step()
 void HiringPanel::Draw()
 {
 	const Ship *flagship = player.Flagship();
-
 	const Interface *hiring = GameData::Interfaces().Get("hiring");
 	Information info;
 
-	int flagshipBunks = flagship ? flagship->Attributes().Get("bunks") : 0;
-	int flagshipRequired = flagship ? flagship->RequiredCrew() : 0;
-	int flagshipExtra = flagship ? flagship->Crew() - flagshipRequired : 0;
-	int flagshipUnused = flagship ? flagshipBunks - flagship->Crew() : 0;
+	int flagshipBunks = 0;
+	int flagshipRequired = 0;
+	int flagshipExtra = 0;
+	int flagshipUnused = 0;
+
+	if(flagship)
+	{
+		flagshipBunks = flagship->Attributes().Get("bunks");
+		flagshipRequired = flagship->RequiredCrew();
+		flagshipExtra = flagship->Crew() - flagshipRequired;
+		flagshipUnused = flagshipBunks - flagship->Crew();
+	}
+
 	info.SetString("flagship bunks", to_string(flagshipBunks));
 	info.SetString("flagship required", to_string(flagshipRequired));
 	info.SetString("flagship extra", to_string(flagshipExtra));
