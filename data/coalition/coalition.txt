@@ -1574,7 +1574,7 @@ phrase "hostile disabled lunarium"
 		", "
 	word
 		"our"
-	word 
+	word
 		" "
 	word
 		"fight"
