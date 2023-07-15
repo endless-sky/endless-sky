@@ -823,6 +823,7 @@ mission "Resistance: Evacuation 1"
 	minor
 	deadline 10
 	passengers 35
+	"apparent payment" 386730
 	source
 		near "3 Spring Rising" 1 4
 	destination "Fourth Shadow"
@@ -936,6 +937,7 @@ mission "Resistance: Evacuation 3"
 	description "Head to <destination> to pick up the <bunks> ranchers by <date> and bring them back to their world, Shifting Sand."
 	deadline 8
 	passengers 47
+	"apparent payment" 748300
 	source
 		not government "Heliarch"
 		near "Silver Bell" 2 3
