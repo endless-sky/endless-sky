@@ -641,11 +641,11 @@ system Tumble
 	habitable 980
 	belt 2632 10
 	haze _menu/haze-twilight
-	link Fragment
+	link Peak
 	link Frenzy
 	link Mellow
 	link Tailwind
-	link Trickle
+	link Pinnacle
 	asteroids "small rock" 7 1.404
 	asteroids "medium rock" 3 1.513
 	asteroids "large rock" 4 0.967
@@ -836,7 +836,7 @@ system Decet
 		sprite star/magnetar
 		period 1
 
-system Primeval
+system Certitude
 	pos -466.216 864.754
 	government Uninhabited
 	habitable 10
@@ -3118,7 +3118,7 @@ system Katoptrizo
 		distance 16000
 		period 10386.443
 
-system Trickle
+system Pinnacle
 	pos -250.748 693.704
 	government Uninhabited
 	habitable 3650
@@ -3205,7 +3205,7 @@ system Tap
 	belt 1482 4
 	belt 1983
 	haze _menu/haze-twilight
-	link Fragment
+	link Peak
 	asteroids "small metal" 9 1.86
 	asteroids "medium metal" 2 1.36
 	asteroids "large metal" 6 1.22
@@ -3815,7 +3815,7 @@ system Mote
 			distance 260
 			period 109.718
 
-system Fragment
+system Peak
 	pos -294.044 628.462
 	government Uninhabited
 	habitable 490
@@ -4187,7 +4187,7 @@ system Apeiron
 	belt 1990 7
 	belt 2362 9
 	link Arche
-	link Primeval
+	link Certitude
 	link Stream
 	asteroids "small rock" 46 3.848
 	asteroids "medium rock" 2 6.413
@@ -4243,39 +4243,6 @@ system Apeiron
 		sprite planet/desert4
 		distance 3511
 		period 1747.482
-
-system Atria
-	object
-		sprite star/m3
-		period 10
-	object Lichen
-		sprite planet/cloud1
-		distance 176.11
-		period 61.641
-	object
-		sprite planet/gas16-b
-		distance 774.32
-		period 568.298
-		object
-			sprite planet/dust5-b
-			distance 203
-			period 14.256
-		object
-			sprite planet/desert4-b
-			distance 304
-			period 26.126
-	object
-		sprite planet/ice6-b
-		distance 1516.96
-		period 1558.32
-		object
-			sprite planet/rock7
-			distance 140
-			period 18.902
-	object
-		sprite planet/europa
-		distance 2505.05
-		period 3306.89
 
 system Evanescence
 	pos -386.728 865.903
