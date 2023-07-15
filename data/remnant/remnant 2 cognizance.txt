@@ -728,7 +728,7 @@ mission "Remnant: Cognizance 20"
 				`	"Not right now."`
 					goto maybelater
 				`	"You aren't a prefect. How can you make a decision like that?"`
-			`	Before he can respond, another Remnant answers. "The Prefects are not the sole source of decisions. One could say that they are the 'executive' authority that can make on-the-spot decisions, whereas the Remnant as a whole makes what one might term "legislative" decision making. The scope of our decisions as a group are limited based on the size of the group making the decision."`
+			`	Before he can respond, another Remnant answers. "The Prefects are not the sole source of decisions. One could say that they are the 'executive' authority that can make on-the-spot decisions, whereas the Remnant as a whole makes what one might term 'legislative' decision making. The scope of our decisions as a group are limited based on the size of the group making the decision."`
 			choice
 				`	"That makes sense."`
 					goto missionchoice

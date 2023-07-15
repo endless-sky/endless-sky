@@ -2531,7 +2531,7 @@ mission "Stone of our Fathers 3"
 	on offer
 		conversation
 			`As always, Helheim is packed to the brim with transient workers coming and going, with dreams of either getting rich or getting out. A youngish looking man in a dirty roustabout jacket waves at you and approaches.`
-			`	"Yer that Cap'n that Skaldgar always went on about, aren'tcha?" The young man attempts to imitate Skaldgar with a deep and ponderous voice, "Him that knows the currents of space like we know our stone, and the like." The man grins sheepishly, " Ol' Skaldgar always had a way with words, he did."`
+			`	"Yer that Cap'n that Skaldgar always went on about, aren'tcha?" The young man attempts to imitate Skaldgar with a deep and ponderous voice, "Him that knows the currents of space like we know our stone, and the like." The man grins sheepishly, "Ol' Skaldgar always had a way with words, he did."`
 			`	The young man then looks down, somberly, and pulls from his pocket a small, well-worn stone with some strange markings on it and holds it out to you.`
 			`	"He wanted," he begins haltingly, "he wanted you, only you, to take this back to his folk on Norn." He swallows. "It's the old ways, it is. This, it needs to be returned, and not by a stranger." The young man then shrugs. "Best to let'cha know, I ain't have no money to pay you. This would be a favor for the ol' man."`
 			choice

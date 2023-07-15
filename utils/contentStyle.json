@@ -136,7 +136,14 @@
 					},
 					{
 						"description": "whitespace before beginning of text",
-						"regex": "^([^`\"]+(?:\"`*|`\"*))(?<!^tip .*) +(?! *[\"`]$)",
+						"regex": "^([^\"]*(?:(?:\"[^\"]*){2})*\")(?<!^tip .*) ",
+						"correction": {
+							"replaceWith": "\\1"
+						}
+					},
+					{
+						"description": "whitespace before beginning of text",
+						"regex": "^([^`]*(?:(?:`[^`]){2})*`)(?<!^tip .*) ",
 						"correction": {
 							"replaceWith": "\\1"
 						}
