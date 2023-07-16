@@ -3279,6 +3279,8 @@ mission "Coalition: Struggling Author 1"
 			label "genre"
 			`	"I write science fiction novels. I just released 'Beyond the Hyperdrive', the story of a group of humans who steal the Quarg's jumping technology and see what's truly beyond the hyperlanes we've known for so long. Here, have a copy!"`
 			`	Anna retrieves a hardcover book from her bag. The cover shows a human next to a Quarg ship, and skimming front and back flaps, confirms most of what Anna told you about it. Her signature is on the title page.`
+			action
+				set "beyond the hyperdrive"
 			`	"You'll like it, I promise. It's a signed copy too, just for you."`
 			choice
 				`	"How long is the book?`
