@@ -377,6 +377,22 @@ SCENARIO( "Mapping identifiable collections", "[uuid][comparison][collections]" 
 			CHECK( collection.at(second) == -2 );
 		}
 	}
+	GIVEN( "a collection of strings as ID comparator, with UUIDs, identifying items" ) {
+		auto collection = std::map<std::string, EsUuid>{};
+		Identifiable first;
+		Identifiable second;
+		std::string firstName = "one";
+		std::string secondName = "two";
+		collection.insert({ {firstName, EsUuid()}, {secondName, EsUuid()} });
+		WHEN( "we use strings to find the corresponding UUID in the collection" ) {
+			collection.at(firstName).clone(first.id);
+			collection.at(secondName).clone(second.id);
+			THEN( "we can use them to identify the items in a unique way" ) {
+				CHECK( collection.at(firstName) == first.id );
+				CHECK( collection.at(secondName) == second.id );
+			}
+		}
+	}
 }
 
 // Test code goes here. Preferably, use scenario-driven language making use of the SCENARIO, GIVEN,

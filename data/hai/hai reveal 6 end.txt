@@ -572,36 +572,21 @@ event "hai-human resolution announced"
 		remove fleet "Hai Wormhole Guards"
 	system "Ultima Thule"
 		remove fleet "Human Wormhole Guards"
-		remove fleet "Smuggler (Hai Traffickers)"
 		add fleet "Navy Friendly Wormhole Guards" 2000
 		add fleet "Free Worlds Friendly Wormhole Guards" 5000
 		add fleet "Navy Surveillance that won't enter the wormhole" 2000
 	system "Rajak"
 		remove fleet "Human Wormhole Guards"
-		remove fleet "Smuggler (Hai Traffickers)"
 		add fleet "Navy Friendly Wormhole Guards" 4000
 		add fleet "Free Worlds Friendly Wormhole Guards" 9000
 		add fleet "Navy Surveillance that won't enter the wormhole" 2000
 	# Release the suppression of Stormhold.
 	system "Alcyone"
+		remove fleet "Smuggler (Hai Traffickers)"
 		add fleet "Small Core Pirates" 400
 		add fleet "Large Core Pirates" 600
 		add fleet "Korath Large Raid" 50000
 		remove fleet "Human Wormhole Guards"
-	system "Hassaleh"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Sumar"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Danoa"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Cardax"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Hassaleh"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Volax"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Moktar"
-		remove fleet "Smuggler (Hai Traffickers)"
 	system "Rigel"
 		remove fleet "Smuggler (Hai Traffickers)"
 	system "Alnitak"
@@ -635,8 +620,6 @@ event "hai-human resolution announced"
 	system "Mirach"
 		remove fleet "Smuggler (Hai Traffickers)"
 	system "Schedar"
-		remove fleet "Smuggler (Hai Traffickers)"
-	system "Alcyone"
 		remove fleet "Smuggler (Hai Traffickers)"
 	system "Almaaz"
 		remove fleet "Smuggler (Hai Traffickers)"

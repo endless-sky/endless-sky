@@ -1089,6 +1089,26 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 
 
 
+bool Mission::RequiresGiftedShip(const string &shipId) const
+{
+	// Check if any uncompleted actions required for the mission needs this ship.
+	set<Trigger> requiredActions;
+	{
+		requiredActions.insert(Trigger::COMPLETE);
+		if(!stopovers.empty())
+			requiredActions.insert(Trigger::STOPOVER);
+		if(!waypoints.empty())
+			requiredActions.insert(Trigger::WAYPOINT);
+	}
+	for(const auto &it : actions)
+		if(requiredActions.count(it.first) && it.second.RequiresGiftedShip(shipId))
+			return true;
+
+	return false;
+}
+
+
+
 // Get a list of NPCs associated with this mission. Every time the player
 // takes off from a planet, they should be added to the active ships.
 const list<NPC> &Mission::NPCs() const
