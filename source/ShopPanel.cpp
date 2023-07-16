@@ -371,7 +371,7 @@ void ShopPanel::DrawDesignButtons()
 	{
 		const Point outfitterCenter = Screen::BottomRight() - Point(75 + SIDEBAR_WIDTH, 25);
 		FillShader::Fill(outfitterCenter, Point(140, 30), back);
-		static const string DESIGN_OUTFITTER = "_Design Outfitter";
+		static const string DESIGN_OUTFITTER = "Design _Outfitter";
 		bigFont.Draw(DESIGN_OUTFITTER,
 			outfitterCenter - .5 * Point(bigFont.Width(DESIGN_OUTFITTER), bigFont.Height()),
 			isShipyard ? (hoverButton == 'o' ? hover : active) : inactive);
