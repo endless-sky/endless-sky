@@ -3220,12 +3220,14 @@ mission "Coalition: Book Discovered"
 			`Upon landing in the spaceport, you get a message from the same group of Coalition citizens. You recall that you had provided them with a datachip containing the a copy of Alexandria's archive.`
 			``
 			`		Dear <first>,`
-			`	Interested in an author from the datachip, we are. 'Anna Fangvin', her name is. The story about your race's actions against the oppressors, captivate us it did. To converse with her, we wish.`
+			`	Interested in an author from the datachip, we are. 'Anna Fangvin', her name is. While the full book, access it we could not, the summary, about your race's actions against the oppressors, captivate us it did. To converse with her, we wish, and a copy of the book, we desire.`
+			`	On Ki Patek Ka we live, so the book, once in your posession, it is, contact us, and meet you at the spaceport, we will.`
 			choice
 				`	(Look for Anna Fangvin.)`
 				`	(Disregard the message.)`
 					decline
 			`A quick look through your encyclopedia reveals Anna Fangvin to be an author from <destination>. You decide to meet her there for an interview and set a course.`
+				accept
 	on complete
 		conversation
 			`As you prepare to land, you write Anna a short message, offering an interview. In less than 10 minutes you receive a reply, explaining that Anna has accepted your offer and will wait for you in the spaceport.`
