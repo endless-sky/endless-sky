@@ -69,6 +69,13 @@ public:
 		MIXED
 	};
 
+	enum class FlotsamCollection : int_fast8_t {
+		OFF = 0,
+		ON,
+		FLAGSHIP,
+		ESCORT
+	};
+
 	enum class BackgroundParallax : int {
 		OFF = 0,
 		FANCY,
@@ -142,6 +149,11 @@ public:
 	static void ToggleBoarding();
 	static BoardingPriority GetBoardingPriority();
 	static const std::string &BoardingSetting();
+
+	// Flotsam setting, either "off", "on", "flagship only", or "escorts only".
+	static void ToggleFlotsam();
+	static FlotsamCollection GetFlotsamCollection();
+	static const std::string &FlotsamSetting();
 
 	// Red alert siren and symbol
 	static void ToggleAlert();

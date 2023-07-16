@@ -62,6 +62,7 @@ namespace {
 	const string STATUS_OVERLAYS_ENEMY = "   Show enemy overlays";
 	const string STATUS_OVERLAYS_NEUTRAL = "   Show neutral overlays";
 	const string EXPEND_AMMO = "Escorts expend ammo";
+	const string FLOTSAM_SETTING = "Flotsam collection";
 	const string TURRET_TRACKING = "Turret tracking";
 	const string FOCUS_PREFERENCE = "Turrets focus fire";
 	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
@@ -244,6 +245,8 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 				Preferences::ToggleAutoFire();
 			else if(zone.Value() == EXPEND_AMMO)
 				Preferences::ToggleAmmoUsage();
+			else if(zone.Value() == FLOTSAM_SETTING)
+				Preferences::ToggleFlotsam();
 			else if(zone.Value() == TURRET_TRACKING)
 				Preferences::Set(FOCUS_PREFERENCE, !Preferences::Has(FOCUS_PREFERENCE));
 			else if(zone.Value() == REACTIVATE_HELP)
@@ -564,8 +567,8 @@ void PreferencesPanel::DrawSettings()
 		TURRET_TRACKING,
 		TARGET_ASTEROIDS_BASED_ON,
 		BOARDING_PRIORITY,
-		"Flagship flotsam collection",
 		EXPEND_AMMO,
+		FLOTSAM_SETTING,
 		FIGHTER_REPAIR,
 		"Fighters transfer cargo",
 		"Rehire extra crew when lost",
@@ -697,6 +700,10 @@ void PreferencesPanel::DrawSettings()
 				text = "dd/mm/yyyy";
 			else if(datefmtShortName == Preferences::DateFormat::mdy)
 				text = "mm/dd/yyyy";
+    }
+		else if(setting == FLOTSAM_SETTING)
+		{
+			text = Preferences::FlotsamSetting();
 		}
 		else if(setting == TURRET_TRACKING)
 		{

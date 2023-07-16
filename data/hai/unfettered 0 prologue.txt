@@ -47,7 +47,7 @@ mission "First Contact: Unfettered"
 				`	(Sure.)`
 				`	(Not now, it's too risky.)`
 					defer
-			`	You catch the eye of one of the Hai dock workers and it walks over. "Ah," it says, "the monkey is curious. The monkey has never been face to face with a true Hai before?"`
+			`	You catch the eye of one of the Hai dock workers and they walk over. "Ah," they say, "the monkey is curious. The monkey has never been face to face with a true Hai before?"`
 			choice
 				`	"No, I've encountered many of your brethren south of here."`
 					goto brethren
@@ -57,7 +57,7 @@ mission "First Contact: Unfettered"
 					goto everyone
 			
 			label brethren
-			`	It hisses. "They are not true Hai. We are Hai. The unaltered. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
+			`	They hiss. "They are not true Hai. We are Hai. The unaltered. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
 				goto masters
 			
 			label true
@@ -69,15 +69,15 @@ mission "First Contact: Unfettered"
 				goto masters
 			
 			label war
-			`	"We fight to defend ourselves from extinction," it says.`
+			`	"We fight to defend ourselves from extinction," they say.`
 			`	"Extinction?" you ask. "Do you mean that there are no other Hai?"`
-			`	"We are all that is left of the original Hai," it says. "Unaltered. The conquerors. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
+			`	"We are all that is left of the original Hai," they say. "Unaltered. The conquerors. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
 				goto masters
 			
 			label everyone
-			`	"We fight to defend ourselves from extinction," it says.`
+			`	"We fight to defend ourselves from extinction," they say.`
 			`	"Extinction?" you ask. "Do you mean that you are not the same species as the other Hai?"`
-			`	"Indeed," it says. "We are all that is left of the original Hai. Unaltered. The conquerors. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
+			`	"Indeed," they say. "We are all that is left of the original Hai. Unaltered. The conquerors. We were masters of a hundred worlds before human monkeys had learned the use of thumbs."`
 				goto masters
 			
 			label masters
@@ -85,20 +85,20 @@ mission "First Contact: Unfettered"
 				`	"Where was your territory? Why have I never heard of you before?"`
 				`	"What do you mean, the Hai were altered?"`
 			
-			`	"This is our story," it says. "Once, many worlds beyond wormhole were ours. Once, hundred thousand years now gone. We needed more worlds. A species that does not expand becomes like brackish water, like stunted tree. But dragonfolk in the south had created hyperdrive, and human monkeys had begun banging rocks together in what the Drak said was very intelligent fashion. So we were forbidden from taking more worlds."`
+			`	"This is our story," they say. "Once, many worlds beyond wormhole were ours. Once, hundred thousand years now gone. We needed more worlds. A species that does not expand becomes like brackish water, like stunted tree. But dragonfolk in the south had created hyperdrive, and human monkeys had begun banging rocks together in what the Drak said was very intelligent fashion. So we were forbidden from taking more worlds."`
 			branch sheragi
 				has "Rim Archaeology 6: offered"
 			`	"'Dragonfolk?'" you ask. "I've never heard of them."`
-			`	"Sheragi," it says, "they are extinct. Only their dumb ancestors survive, just as monkeys will outlast the thinking humans."`
+			`	"Sheragi," they say, "they are extinct. Only their dumb ancestors survive, just as monkeys will outlast the thinking humans."`
 				goto altered
 
 			label sheragi
 			`	"'Dragonfolk?'" you ask. "Do you mean the Sheragi?"`
-			`	"Impressive," it replies, "the monkey knows of Sheragi. We outlived them all. Funny that only their dumb ancestors survive, just as monkeys will outlast the thinking humans."`
+			`	"Impressive," they reply, "the monkey knows of Sheragi. We outlived them all. Funny that only their dumb ancestors survive, just as monkeys will outlast the thinking humans."`
 
 			label altered
 			`	"How were you altered?" you ask.`
-			`	It says, "We Hai fought Sheragi and took worlds that Drak said belonged to them, worlds that Sheragi had not yet even discovered. Drak retaliated. On all Hai worlds, Drak ships appeared in orbit. Sickness swept each planet: quick fever, strange feeling of frailness, like you are brittle bones with mouth full of dirt. Victims left alive, but all ambition gone, no desire but to die of comfortable old age."`
+			`	They say, "We Hai fought Sheragi and took worlds that Drak said belonged to them, worlds that Sheragi had not yet even discovered. Drak retaliated. On all Hai worlds, Drak ships appeared in orbit. Sickness swept each planet: quick fever, strange feeling of frailness, like you are brittle bones with mouth full of dirt. Victims left alive, but all ambition gone, no desire but to die of comfortable old age."`
 			choice
 				`	"Did you try to resist the Drak?"`
 					goto resist
@@ -106,7 +106,7 @@ mission "First Contact: Unfettered"
 					goto know
 			
 			label resist
-			`	"Silly monkey," it says, "none can resist. They are strong. Their will prevails. And their will is for the galaxy to be a zoo, little remnants of each species all in separate cages. For now they let humans run free so humans will grow in knowledge, but soon they will fashion a cage for humans too."`
+			`	"Silly monkey," they say, "none can resist. They are strong. Their will prevails. And their will is for the galaxy to be a zoo, little remnants of each species all in separate cages. For now they let humans run free so humans will grow in knowledge, but soon they will fashion a cage for humans too."`
 				goto help
 			
 			label know
@@ -120,16 +120,16 @@ mission "First Contact: Unfettered"
 				`	"Is there anything I can do to help you?"`
 			action
 				set "unfettered requested jump drives"
-			`	"If you are ever willing to sell us a jump drive," it says, "we will richly reward you. And if you discover the secret of how we can construct our own jump drives and escape from this prison, bring it to us and you will live as a god among us."`
+			`	"If you are ever willing to sell us a jump drive," they say, "we will richly reward you. And if you discover the secret of how we can construct our own jump drives and escape from this prison, bring it to us and you will live as a god among us."`
 			choice
 				`	"I'm sorry, I don't know the secret of the jump drive. No human being does."`
 				`	"If I ever have an extra jump drive to sell, I will bring it to you."`
 					goto sell
-			`	"Then leave us alone," it says, and it walks off.`
+			`	"Then leave us alone," they say, and they walk off.`
 				decline
 			
 			label sell
-			`	"Bring us a jump drive," it says, "and we will count you among our friends. Bring us more, and we may even consider you worthy of a share of the plunder, when we take back what is ours."`
+			`	"Bring us a jump drive," they say, "and we will count you among our friends. Bring us more, and we may even consider you worthy of a share of the plunder, when we take back what is ours."`
 				decline
 	
 	on decline
@@ -167,7 +167,7 @@ mission "Unfettered Jump Drive 1"
 					goto more
 				`	"How will my ship leave here without my jump drive?"`
 			
-			`	"We will give you a hyperdrive in its place," it says, "and you will be counted as our friend, so you will not need to leave here quickly, or under threat of violence." You can't help but wonder if they will try to take your ship by force if you do not agree to the deal.`
+			`	"We will give you a hyperdrive in its place," they say, "and you will be counted as our friend, so you will not need to leave here quickly, or under threat of violence." You can't help but wonder if they will try to take your ship by force if you do not agree to the deal.`
 			choice
 				`	"Okay, I accept your generous offer."`
 					goto end
@@ -175,11 +175,11 @@ mission "Unfettered Jump Drive 1"
 					goto refuse
 			
 			label refuse
-			`	It ponders this for a while, and says, "Very well. Our offer stands, whenever you choose to return." They allow you to return to your ship peacefully.`
+			`	They ponder this for a while, and says, "Very well. Our offer stands, whenever you choose to return." They allow you to return to your ship peacefully.`
 				defer
 			
 			label more
-			`	"Do not underestimate the value of our friendship," it says. "Soon we will become powerful once more, with many fruitful worlds under our control, and when that day comes you will benefit greatly from being our ally."`
+			`	"Do not underestimate the value of our friendship," they say. "Soon we will become powerful once more, with many fruitful worlds under our control, and when that day comes you will benefit greatly from being our ally."`
 			choice
 				`	"Okay, as long as you give me a hyperdrive to take its place, I'll give you my jump drive."`
 					goto end
@@ -187,7 +187,7 @@ mission "Unfettered Jump Drive 1"
 					goto refuse
 			
 			label end
-			`	The Unfettered engineers quickly and carefully remove your jump drive and replace it with an ordinary hyperdrive. You sincerely hope that you are not making a mistake by giving them this new technology. "Remember," one of them says as it hands you your payment, "when you acquire more jump drives, return here with them and we will give you further rewards. Until then, may fortune favor you, human friend."`
+			`	The Unfettered engineers quickly and carefully remove your jump drive and replace it with an ordinary hyperdrive. You sincerely hope that you are not making a mistake by giving them this new technology. "Remember," one of them says as they hand you your payment, "when you acquire more jump drives, return here with them and we will give you further rewards. Until then, may fortune favor you, human friend."`
 				accept
 	
 	on accept
