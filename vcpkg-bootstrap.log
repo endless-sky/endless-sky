@@ -1,0 +1,14 @@
+Could not find zip. Please install it (and other dependencies) with:
+On Debian and Ubuntu derivatives:
+  sudo apt-get install curl zip unzip tar
+On recent Red Hat and Fedora derivatives:
+  sudo dnf install curl zip unzip tar
+On older Red Hat and Fedora derivatives:
+  sudo yum install curl zip unzip tar
+On SUSE Linux and derivatives:
+  sudo zypper install curl zip unzip tar
+On Arch Linux and derivatives:
+  sudo pacman -S curl zip unzip tar cmake ninja
+On Alpine:
+  apk add build-base cmake ninja zip unzip curl git
+  (and export VCPKG_FORCE_SYSTEM_BINARIES=1)

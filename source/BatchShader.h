@@ -30,7 +30,7 @@ public:
 	static void Init();
 
 	static void Bind();
-	static void Add(const Sprite *sprite, bool isHighDPI, const std::vector<float> &data, double alpha = 1.);
+	static void Add(const Sprite *sprite, bool isHighDPI, const std::vector<float> &data);
 	static void Unbind();
 };
 
