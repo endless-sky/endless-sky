@@ -85,10 +85,13 @@ phrase "generic waypoint on visit"
 		`You have reached <planet>, but you haven't visited all the systems yet! Better depart and make sure you visit <waypoints>.`
 
 
-phrase "generic hunted bounty eliminated dialog"
+phrase "generic hunted bounty eliminated and payment dialog"
 	word
 		`The <npc> has been eliminated. Shortly afterwards, the government of <planet> sends you <payment> along with a message of gratitude.`
 
+phrase "generic hunted bounty eliminated dialog"
+	word
+		`The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>.`
 phrase "generic bounty hunting payment dialog"
 	word
 		`The government of <planet> gratefully pays you <payment> for eliminating the <npc>.`
@@ -99,10 +102,13 @@ phrase "generic bounty hunting boarding on visit"
 	word
 		`You've landed on <planet>, but you have not boarded the <npc> yet. Hunt it down and board it before returning.`
 
-phrase "generic hunted bounty fleet eliminated dialog"
+phrase "generic hunted bounty fleet eliminated and payment dialog"
 	word
 		`The <npc> and their fleet have been eliminated. Shortly afterwards, the government of <planet> sends you <payment> along with a message of gratitude.`
 
+phrase "generic hunted bounty fleet eliminated dialog"
+	word
+		`The <npc> and their fleet have been eliminated. You can claim the bounty payment by returning to <destination>.`
 phrase "generic fleet bounty hunting payment dialog"
 	word
 		`The government of <planet> gratefully pays you <payment> for eliminating the <npc> and their fleet.`
