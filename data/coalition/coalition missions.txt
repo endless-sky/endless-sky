@@ -3299,19 +3299,19 @@ mission "Coalition: Struggling Author 1"
 				`	"Yes, I am. So, what do you want to ask?"`
 			choice
 				`	"What do you write?"`
-					goto "what do you write"
-			label "what do you write"
+					goto "genre"
+			label "genre"
 			`	"I write science fiction novels. I just released 'Beyond the Hyperdrive', the story of a group of humans who steal the Quarg's jumping technology and see what's truly beyond the hyperlanes we've known for so long. Here, have a copy!"`
 			`	Anna retrieves a hardcover book from her bag. The cover shows a human next to a Quarg ship, and skimming front and back flaps, confirms most of what Anna told you about it. Her signature is on the title page.`
 			`	"You'll like it, I promise. It's a signed copy too, just for you."`
 			choice
 				`	"How long is the book?`
-					goto "how long is the book"
+					goto "book length"
 				`	"Why is it a story about humanity stealing from the Quarg?"`
-					goto "anna hates quarg"
-			label "how long is the book"
+					goto "quarg"
+			label "book length"
 			`	"About three hundred pages. Not too long."`
-			label "anna hates quarg"
+			label "quarg"
 			`	"I have a lot of problems with them. I just don't trust them. I remember when my parents took me to Humanika. Naturally, I wanted to explore, so I wandered off. I was lost. This creepy-looking Quarg found me, and when it tried to approach, I cried."`
 			`	"And then when I grew up, when I was a teenager, I decided to do a project on them for college. They responded with silence to my questions, as if they had something to hide. I worked as an assistant for a journalist for a few months. He kept asking me for help with the Quarg. They just would not budge."`
 			choice
@@ -3401,18 +3401,18 @@ mission "Coalition: Struggling Author 3"
 			`	You sit down next to Anna. "These vegetables are so delicious! After months of instant noodles and takeout back home, it finally feels good to eat something that's actually much healthier."`
 			choice
 				`	"How good is it?"`
-					goto "it's very good"
+					goto good
 				`	"What did you usually eat back in human space?"`
 			`	"My diet wasn't exactly the best. All I could eat were instant noodles and takeout food; I never could find time in my schedule to cook at home. I was working hard on 'Beyond the Hyperdrive' at the time. This food is better than any instant noodle brand I could ever find on Zug."`
 			choice
 				`	"What's our plan now?"`
 				`	"What are we going to do next?"`
-					goto "i want to get my book published here"
-			label "it's very good"
+					goto published
+			label good
 			`	"It's very good. Probably better than anything I've had back on Zug."`
 			choice
 				`	"So, what do you want to do now?"`
-			label "i want to get my book published here"
+			label published
 			`	"I want to get my book published here."`
 			choice
 				`	"Have you found a publishing company yet?"`
@@ -3490,14 +3490,14 @@ mission "Coalition: Struggling Author 4"
 			`	Two Heliarch agents enter the room. "Supervise the interview, we are obligated to."`
 			choice
 				`	"How long will I have to wait?"`
-					goto "how long"
+					goto "wait time"
 				`	"Should I stay here to accompany Anna?`
-					goto "should I accompany anna"
-			label "how long"
+					goto "accompany"
+			label "wait time"
 			`	"Wait a few hours, you must," explains the Kimek.`
 			choice
 				`	"Should I stay here to accompany Anna?"`
-			label "should I accompany anna"
+			label "accompany"
 			`	"To accompany her in this room, we allow you to, but a lounge for you, we have. If too boring, the interview is, then leave you may."`
 			choice
 				`	(Wait in the lounge.)`
@@ -3520,20 +3520,20 @@ mission "Coalition: Struggling Author 4"
 			`	"They told me that due to the censorship and review process, I'll have to wait for roughly half a year. Thankfully, they have arranged a small apartment for me to live in. You can go on your own now, but please make sure you come back. If you want to return to human space, please add a reminder to come back and meet me."`
 			choice
 				`	"Why don't you just go back to human space?"`
-					goto "why not go to human space"
+					goto stay
 				`	"I'll make sure to do that."`
-			label "anna thanks you"
+			label thanks
 			`	"Thanks again, <first> <last>." I'll forever be grateful to you for helping me. I never thought I'd be successful as an author, but when I met you, you helped me turn my career into something I thought I'd never see.`
 			choice
 				`	"Just helping out."`
 				`	"I'm happy to have helped you."`
 			`	With that, you leave the room, and eventually the building. You board the train and walk past the same series of endless shops and streets in the spaceport city before returning to your ship. As soon as you're in your ship, you add a reminder to visit Anna later.`
 				decline
-			label "why not go to human space"
+			label stay
 			`	"I need to stay here I can answer their questions during the review process. Don't worry about me."`
 			choice
 				`	"Got it. Good luck publishing your book."`
-					goto "anna thanks you"
+					goto thanks
 
 event "beyond the hyperdrive is published"
 
@@ -3581,7 +3581,7 @@ conversation "anna invites you to book signing"
 	`	"I know, right? So do you want to join me during the book signing?"`
 	choice
 		`	"No, I don't have the time."`
-			goto "player didn't go with anna to book signing"
+			goto skip
 		`	"I've been with you through the whole process. Count me in!"`
 	`	"Great! Let's walk to the bookstore and prepare everything! The staff have already prepared seats for the both of us."`
 	`	You and Anna walk into the massive bookstore at the spaceport. There are already several Heliarchs present, their Enforcer Riot Staffs in place for crowd control.`
@@ -3589,17 +3589,17 @@ conversation "anna invites you to book signing"
 	`	Occasionally, Anna alternates between her left and right hand to sign books whenever the other is tired. For hours, this continues. You tried to keep count of how many copies she signed, but gave up when it reached six hundred.`
 	choice
 		`	(Say nothing.)`
-			goto "signing continues"
+			goto continue
 		`	"Are you left or right handed?"`
 	`	"I was originally born left-handed, but as a child I chose to learn how to use my right hand, because I thought being able to use both hands would be cool."`
-	label "signing continues"
+	label continue
 	`	The signing continues for several hours. Eventually, the same Kimek in the bookstore uniform announces that the store is closing soon.`
 	`	As the store closes and the queue shortens, Anna signs the last Kimek's copy. With that, the event is over. Anna walks with you back to your ship to say goodbye.`
-		goto "ending dialog"
-	label "player didn't go with anna to book signing"
+		goto ending
+	label skip
 	`	"Not a problem!", says Anna. "I'll go to your ship later." She then walks away.`
 	`	As you sit in your ship, you watch a long line form at the spaceport over the next few hours, presumably to that bookstore where Anna is happily signing books. As the night begins to take over, the queue becomes shorter and eventually disappears, at which point you see Anna walk out of the bookstore. She enters your ship.`
-	label "ending dialog"
+	label ending
 	`	"Today was a resounding success. My book succeeded beyond my wildest dreams, and it was all because of you <first>!" she says, almost in a teary voice. She pulls out a credit chip. "Here, <payment>. You've done so much for me and my career, and you deserve it. Additionally, you will be receiving a salary of 5,000 credits daily, a small but significant portion of my royalties."`
 	`	Anna then takes out another copy of "Beyond the Hyperdrive", which she signs in front of you. It is the Coalition edition of the book, but translated to your language. Quickly reading through it, you realize that the book has been significantly altered from the version sold in human space. "Here, take it. A special copy just for you, as a thank you for all you've done."`
 	choice
