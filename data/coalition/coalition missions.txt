@@ -3169,52 +3169,6 @@ mission "Heliarchs Buy Jump Drive Mission"
 		fail
 
 
-conversation "cultural data for coalition group"
-	branch "return"
-		has "Fangvin: Struggling Author - Data: done"
-	`As you walk through the spaceport, you see a group of Coalition citizens are on a table speaking to each other. One of them glances you. As if something suddenly clicked, the group quickly rise from their seats and begin approaching you.`
-	choice
-		`	"Excuse me, what do you all want?"`
-	`	"Greetings, human friend. Collectors of literature, we are. Curious about your race, and the books they have written, we are, so for you, a mission we have," says a Kimek. "Literature of many kinds, we read, from science fiction to tales of alien worlds outside of our homeland.`
-	`	"A small mission, it is. Knowledge from your race, we seek. Pay you 180,000 credits and be very grateful, we would, if accept this mission, you will", explains the citizen.`
-	branch "you already have everything"
-		has "human cultural data"
-	choice
-		`	"Sorry, I can't help you."`
-			decline
-		`	"What should I be worried about?"`
-		`	"Is this going to get me in trouble?"`
-	`	"The Heliarchs, review everything they must. Heavy-handed, the censorship is. To break free from Heliarch censorship, media from your space, we would like to learn from. And if forbidden knowledge, on your ship they find, heavy-handed the punishment will be, so avoid scans, you must."`
-	choice
-		`	"I'm not willing to risk it. Sorry."`
-			decline
-		`	"I'm in. What do you want me to collect?"`
-	label "what do they want"
-	`	"Anything. A translation device we have, so translate the human language into our own, we are able to. As for the topic, a great story about oppressing dictatorships or tyranny, we want. Histories of humanity's resistance movements, we seek."`
-	choice
-		`	"I'm not interested. Sorry."`
-			decline
-		`	"I see. I will bring you all the knowledge you want."`
-	label "accept mission"
-	`	"Thank you. Enlighten us and the rest of the Coalition, your actions will. A safe trip, we hope you have." They give you instructions on where they can be found.`
-	`	You wonder how you would be able to bring some of humanity's knowledge with you. Alexandria, humanity's largest library and museum, comes to mind. Head to Alexandria and see if you can find a way to acquire this information.`
-		accept
-	label "return"
-	`	You return to the group of Coalition citizens and hand them the datachip. "For this chip, thankful to you we are."`
-	choice
-		`	"You're welcome. I hope you enjoy whatever my race has to offer for you."`
-			accept
-	label "you already have everything"
-	action
-		set "gave group of coalition human cultural data"
-	`	You recall that on Alexandria, the gift shop sold a copy of the entire archives for forty credits. You still have the datachip on your ship.`
-	choice
-		`	"I have a copy of my race's entire cultural archives. I'll go get it."`
-	`	You run to your ship, look through the storage room, and find the datachip. You quickly make a copy of it, run back to the group, and hand it to them.`
-	action
-		event "coalition citizens discover fangvin" 14 27
-	`	"Thank you. Enlighten us and the rest of the Coalition, this datachip will. And as promised, a chip of 180,000 credits, we have." One member of the group places it within your hand.`
-		accept
 
 mission "Coalition: Struggling Author - Human Media 1"
 	name "Collect Human Media"
@@ -3224,13 +3178,33 @@ mission "Coalition: Struggling Author - Human Media 1"
 	to offer
 		"reputation: Republic" > 100 # You need to be able to land on Alexandria.
 		has "Wanderers: Translation Machine: done"
-		not "human cultural data"
-	on visit
-		dialog
-			`The station has a small museum gift shop that sells a copy of the entire archive on a data card. It only costs 40 credits, but because you have done a horrible job at managing your finances, you can't afford it.`
-			`	Go earn some money, then return here.`
+		has "human cultural data"
 	on offer
-		conversation "cultural data for coalition group"
+		conversation
+			`As you walk through the spaceport, you see a group of Coalition citizens are on a table speaking to each other. One of them glances you. As if something suddenly clicked, the group quickly rise from their seats and begin approaching you.`
+			choice
+				`	"Excuse me, what do you all want?"`
+			`	"Greetings, human friend. Collectors of literature, we are. Curious about your race, and the books they have written, we are, so for you, a mission we have," says a Kimek, who then introduces themselves as Kachachee. "Literature of many kinds, we read, from science fiction to tales of alien worlds outside of our homeland.`
+			`	"A small mission, it is. Knowledge from your race, we seek. Pay you <payment> and be very grateful, we would, if accept this mission, you will", explains the citizen.`
+			choice
+				`	"Sorry, I'm not interested."`
+					decline
+				`	"I'm in. What do you want me to collect?"`
+			`	"Anything. A translation device we have, so translate the human language into our own, we are able to. As for the topic, a great story about oppressing dictatorships or tyranny, we want. Histories of humanity's resistance movements, we seek."`
+			choice
+				`	"I'm not interested. Sorry."`
+					decline
+				`	"I see. I will bring you all the knowledge you want."`
+			`	"Thank you. Enlighten us and the rest of the Coalition, your actions will. A safe trip, we hope you have." They give you instructions on where they can be found.`
+			`	You suddenly recall that on your ship is a datachip containing a copy of Alexandria's archives, which may be what the group wants. You walk to your ship, make a copy of the datachip, and return to the group.`
+			`	Kachachee then approaches you, as you hand them the datachip. "Very speedy, your return was.`
+			choice
+				`	"You're welcome. I hope you enjoy whatever my race has to offer for you."`
+			action
+				event "coalition citizens discover fangvin" 14 27
+				payment 180000
+			`	"Thank you. Enlighten me and my friends, this datachip will. And as promised, a chip of 180,000 credits, we have." Kachachee places it within your hand.`
+				accept
 	on complete
 		set "human cultural data"
 		payment -40
