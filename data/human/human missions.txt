@@ -6301,3 +6301,42 @@ mission "Blind Man from Martini"
 				clear "Blind Man from Martini: label looking"
 			`	With that, he grabs his cane and his luggage, and follows a hospital attendant toward his daughter's room, leaving you in the reception.`
 
+
+mission "Derelict Informer"
+	landing
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not attributes "uninhabited"
+		not system "Rutilicus"
+	to offer
+		random < 4
+	on offer
+		conversation
+			`As you touch down on <origin>, you see that the landing pad next to yours holds a freighter that is practically falling apart, standing next to it is a man with the grizzled look of an experienced captain.`
+			`	Given the sorry state of the ship he might be in need of assistance.`
+			choice
+				`	(Offer your help.)`
+				`	(Don't help him.)`
+					decline
+			`	The captain notices you approaching, and clearly guessing your intentions, speaks. "Oh don't worry, this ain't my ship."`
+			choice
+				`	"What are you doing with it then?"`
+				goto what
+				`	"Whose is it then?"`
+			`	Hehehe.`
+			label what
+			`	An easy, broad smile upon his face tells you he's heard such a question before. "Glad you asked. It's always a pleasure to teach another captain about the niche trade of derelict hunting.`
+			choice
+				`	"Derelict hunting?"`
+					goto confused
+				`	"So you search for abandoned ships?"`
+				goto precisely
+			label confused
+			`	"Derelict hunting involves searching abandoned ship hulls. They usually have a few parts left on them that you can sell for a few credits, and if you're lucky you might even score some rare outfits or the whole hull if it's stable enough. Wouldn't recommend actually using that hull though, they're usually very fragile like this freighter here."`
+			choice
+				`	"So you search for abandoned ships and loot them?"`
+				`	`I get it, you're recycling old ships for profit."`
+			label precisely
+			`	"Precisely. If you want to go hunting for derelicts yourself, they can be rarely found in out of the way uninhabited systems. Good hunting out there." He turns back to his score.`
+				decline
+
