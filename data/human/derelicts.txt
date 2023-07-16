@@ -1,3 +1,16 @@
+# Copyright (c) 2023 by Petersupes
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
 mission "Derelict (Republic) 1"
 	invisible
 	deadline 60 1
@@ -188,7 +201,7 @@ mission "Derelict (Republic) 1"
 			label dead
 			`	The object strikes you, sending you sprawling as the ship explodes around you, resulting in your doom.`
 				die
-			label ninja
+			label block
 			branch dead
 				random < 90
 			`	You just manage to block the object, allowing you just enough time to make it to the airlock. Having narrowly escaped death and not wishing to chance it, you quickly depart.`
@@ -445,7 +458,7 @@ mission "Derelict (Republic) 2"
 			label dead
 			`	The object strikes you, sending you sprawling as the ship explodes around you, resulting in your doom.`
 				die
-			label ninja
+			label block
 			branch dead
 				random < 90
 			`	You just manage to block the object, allowing you just enough time to make it to the airlock. Having narrowly escaped death and not wishing to chance it, you quickly depart.`
@@ -699,7 +712,7 @@ mission "Derelict (Southern)"
 			label dead
 			`	The object strikes you, sending you sprawling as the ship explodes around you, resulting in your doom.`
 				die
-			label ninja
+			label block
 			branch dead
 				random < 90
 			`	You just manage to block the object, allowing you just enough time to make it to the airlock. Having narrowly escaped death and not wishing to chance it, you quickly depart.`
@@ -954,7 +967,7 @@ mission "Derelict (Pirate)"
 			label dead
 			`	The object strikes you, sending you sprawling as the ship explodes around you, resulting in your doom.`
 				die
-			label ninja
+			label block
 			branch dead
 				random < 90
 			`	You just manage to block the object, allowing you just enough time to make it to the airlock. Having narrowly escaped death and not wishing to chance it, you quickly depart.`
@@ -1194,7 +1207,7 @@ mission "Derelict (Syndicate)"
 			label dead
 			`	The object strikes you, sending you sprawling as the ship explodes around you, resulting in your doom.`
 				die
-			label ninja
+			label block
 			branch dead
 				random < 90
 			`	You just manage to block the object, allowing you just enough time to make it to the airlock. Having narrowly escaped death and not wishing to chance it, you quickly depart.`
@@ -1268,7 +1281,7 @@ outfitter "Derelict Pirate"
 	"Large Radar Jammer"
 	"AR120 Reverse Thruster"
 	"Capybara Reverse Thruster"
-	"X1100 Ion Thruster"
+	"X1100 Ion Reverse Thruster"
 
 outfitter "Derelict Republic"
 	"Particle Cannon"
@@ -1338,7 +1351,7 @@ ship "Argosy" "Argosy (Derelict)"
 		"RT-I Radiothermal"		
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
-		"Hyperdrive
+		"Hyperdrive"
 	description "The Argosy from Southbound Shipyards is very popular with merchants not because of its capacity, which is actually slightly smaller than the Syndicate Freighter, but because it can hold its own in combat even against a small pirate fleet."
 	description "	The Argosy is also a very easy ship to upgrade with faster engines or more powerful weapons as needed, so many privately owned Argosies have very different capabilities than the stock model."
 	description "	This Ship was a derelict and as such does not perform as well as the standard model."
