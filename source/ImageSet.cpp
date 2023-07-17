@@ -119,8 +119,8 @@ namespace {
 		if(frameData.begin()->first != 0)
 		{
 			Logger::LogError(prefix + "ignored " + (isMask ? "mask " : "") + (is2x ? "@2x " : "")
-				 + "frame " + to_string(frameData.begin()->first) + " (" + to_string(frameData.size())
-				 + " ignored in total). Animations must start at frame 0.");
+				+ "frame " + to_string(frameData.begin()->first) + " (" + to_string(frameData.size())
+				+ " ignored in total). Animations must start at frame 0.");
 			return;
 		}
 
