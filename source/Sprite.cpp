@@ -55,7 +55,7 @@ namespace {
 		// Free the ImageBuffer memory.
 		buffer.Clear();
 	}
-};
+}
 
 
 
