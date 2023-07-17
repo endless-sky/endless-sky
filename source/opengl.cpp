@@ -49,7 +49,6 @@ namespace {
 
 
 
-
 bool OpenGL::HasAdaptiveVSyncSupport()
 {
 #ifdef __APPLE__
