@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "Date.h"
 #include "Depreciation.h"
+#include "EsUuid.h"
 #include "GameEvent.h"
 #include "Government.h"
 #include "Mission.h"
@@ -161,9 +162,14 @@ public:
 	std::map<const std::shared_ptr<Ship>, std::vector<std::string>> FlightCheck() const;
 	// Add a captured ship to your fleet.
 	void AddShip(const std::shared_ptr<Ship> &ship);
-	// Buy or sell a ship.
-	void BuyShip(const Ship *model, const std::string &name, bool isGift = false);
+	// Buy, receive or sell a ship.
+	// In the case of a gift, return a pointer to the newly instantiated ship.
+	void BuyShip(const Ship *model, const std::string &name);
+	const Ship *GiftShip(const Ship *model, const std::string &name, const std::string &id);
 	void SellShip(const Ship *selected);
+	// Take the ship from the player, if a model is specified this will permanently remove outfits in said model,
+	// instead of allowing the player to buy them back by putting them in the stock.
+	void TakeShip(const Ship *shipToTake, const Ship *model = nullptr, bool takeOutfits = false);
 	std::vector<std::shared_ptr<Ship>>::iterator DisownShip(const Ship *selected);
 	void ParkShip(const Ship *selected, bool isParked);
 	void RenameShip(const Ship *selected, const std::string &name);
@@ -245,6 +251,8 @@ public:
 	// Access the "condition" flags for this player.
 	ConditionsStore &Conditions();
 	const ConditionsStore &Conditions() const;
+	// Maps defined names for gifted ships to UUIDs for the ship instances.
+	const std::map<std::string, EsUuid> &GiftedShips() const;
 	std::map<std::string, std::string> GetSubstitutions() const;
 
 	// Get and set the "tribute" that the player receives from dominated planets.
@@ -350,6 +358,11 @@ private:
 	// Helper function to update the ship selection.
 	void SelectShip(const std::shared_ptr<Ship> &ship, bool *first);
 
+	// Instantiate the given model and add it to the player's fleet.
+	void AddStockShip(const Ship *model, const std::string &name);
+	// When we remove a ship, forget it's stored Uuid.
+	void ForgetGiftedShip(const Ship &oldShip, bool failsMissions = true);
+
 	// Check that this player's current state can be saved.
 	bool CanBeSaved() const;
 
@@ -409,6 +422,7 @@ private:
 	bool sortSeparatePossible = false;
 
 	ConditionsStore conditions;
+	std::map<std::string, EsUuid> giftedShips;
 
 	std::set<const System *> seen;
 	std::set<const System *> visitedSystems;
