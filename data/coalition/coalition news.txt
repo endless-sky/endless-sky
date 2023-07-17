@@ -442,7 +442,7 @@ news "lunarium charity"
 		not planet "Fourth Shadow"
 	name
 		word
-			"Charity"
+			"Charitable Organization"
 	message
 		word
 			"Several workers in blue uniforms are loading up cargo crates and containers full of charity goods into Coalition merchant ships."
@@ -464,5 +464,5 @@ news "lunarium charity worker"
 			`"Help bring amenity goods and services to those who can't afford them, we do. Operate mostly in Kimek space we do, if interested in helping you are."`
 			`"Interested in contributing to the charity, are you? Take every sort of donation, we do. Credits, winter supplies, trinkets, old tech devices. Whatever it is, if willing to donate you are, drop them here you can."`
 			`"Just finished filling up an entire Arach fleet's cargo holds with school supplies, we have. Very tiring, the job is, but glad I am that making a difference, our charity efforts are."`
-			`"Get most of our funding from some of the Arach Houses and rich Saryd families, we do. Meant only to acquire part of the charity goods and the means to transport them, the credits are, for voluntary work this is."`
-			`Standing by the spaceport entrance, the worker is distributing flyers to those who come in and out. "Hello human visitor. Part of a charity group, I am, raising awareness to our cause. Aware were you, that lack the electronics for many educational activities, children on poor Kimek worlds do? Together, make a difference we can!"`
+			`"Get most of our funding from some of the Arach Houses and rich Saryd families, we do. Meant only to acquire part of the charity goods and the means to transport them, the credits are, for voluntary work, this is."`
+			`Standing by the spaceport entrance, a worker is distributing flyers to those who come in and out. "Hello human visitor. Part of a charity group, I am, raising awareness to our cause. Aware were you, that lack the electronics for many educational activities, children on poor Kimek worlds do? Together, make a difference we can!"`

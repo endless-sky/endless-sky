@@ -223,7 +223,7 @@ outfit "Decoy Plating"
 	"scan interference" 2
 	"radar jamming" 5
 	description "This plating takes advantage of a ship's scan logs and reproduces the data of other ships nearby, effectively deflecting attempts to scan a ship's true cargo and equipment."
-	description "	Out of a need to protect themselves against the destructive Heliarch torpedoes, the Lunarium incorporated small, independent radar jamming systems in each section of the plating, if only to act as a last line of defense."
+	description "	Out of a need to protect themselves against destructive Heliarch torpedoes, the Lunarium incorporated small, independent radar jamming systems in each section of the plating, if only to act as a last line of defense."
 
 outfit "Refuelling Module"
 	category "Systems"
