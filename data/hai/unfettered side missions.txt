@@ -192,12 +192,13 @@ mission "Hai Legacy 1"
 			`	Turning back towards the sea where the noise is coming from you see the waves getting more agitated and the wind rise as a shape emerges out of the water surrounded by fumes, as if an ancient sea monster was arising from the depths.`
 			`	But it is no monster. Indeed it is so, so much worse.`
 			`	It is a ship, and its guns are pointed straight at you!`
+			label tryagain
 			scene "scene/emerging ladybug"
 			choice
-				`	(Run.)`
+				`	(Run!)`
 				`	(Wait.)`
 					goto wait
-				`	(Try to contact my fleet for help.)`
+				`	(Try to contact my fleet for help!)`
 				`	(Shoot it!)`
 					goto dumb
 			`	As you try to react to this sudden threat, the Hai closest to you firmly grabs your arm and shouts to get trough the noise. "Wait! If this ship wanted to kill you, <last>, you would already be dead."`
@@ -229,11 +230,14 @@ mission "Hai Legacy 1"
 				accept
 			label dumb
 			`	You get your weapon out and proceed to shoot on the ship.`
+			branch miss
+				random < 30
 			branch lucky?
 				random < 2
 			branch lucky??
 				random < 40
-			`	You shoot the ship, but the small weapon has no chance of doing anything to the heavy armor, even in its current state. The ship's speakers then activate, almost deafening you. "MY TURN!"`
+			scene "scene/emerging ladybug"
+			`	The shot reaches the ship, but the small weapon has no chance of doing anything to the heavy armor, even in its current state. The ship's speakers then activate, almost deafening you. "MY TURN!"`
 			`	The ship then cuts you down with surgical accuracy using its Bullfrog Anti-Missiles. You can still hear the two Hai speaking to each other in a surprised tone. "How did this one survive so lon..." And everything goes dark.`
 				die
 			label lucky??
@@ -244,6 +248,9 @@ mission "Hai Legacy 1"
 			`	Probably thanks to the fact the ship's shields are down, and of its depreciated state, you manage to land a very lucky shot, going trough a layer of rust and severely damaging the reactor of the ship.`
 			`	At least, it might have seemed lucky until it blew up, taking you and everyone else on this beach down with it.`
 				die
+			label miss
+			`	You miss your shot. Thankfully they do not react, probably not viewing it as a threat. You still have time to do something else, or try again.`
+				goto tryagain
 	on defer
 		set "Hai Legacy 1: deferred"
 
