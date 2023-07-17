@@ -37,6 +37,7 @@ public:
 
 	// Upload the given frames. The given buffer will be cleared afterwards.
 	void AddFrames(ImageBuffer &buffer, bool is2x);
+	void AddMaskFrames(ImageBuffer &buffer, bool is2x);
 	// Free up all textures loaded for this sprite.
 	void Unload();
 
@@ -61,6 +62,7 @@ private:
 	std::string name;
 
 	uint32_t texture[2] = {0, 0};
+	uint32_t mask[2] = {0, 0};
 
 	float width = 0.f;
 	float height = 0.f;

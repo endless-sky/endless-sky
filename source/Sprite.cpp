@@ -23,8 +23,39 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <SDL2/SDL.h>
 
 #include <algorithm>
+#include <iostream>
 
 using namespace std;
+
+namespace {
+	void AddBuffer(ImageBuffer &buffer, uint32_t *target)
+	{
+		// Check whether this sprite is large enough to require size reduction.
+		if(Preferences::Has("Reduce large graphics") && buffer.Width() * buffer.Height() >= 1000000)
+			buffer.ShrinkToHalfSize();
+
+		// Upload the images as a single array texture.
+		glGenTextures(1, target);
+		glBindTexture(GL_TEXTURE_2D_ARRAY, *target);
+
+		// Use linear interpolation and no wrapping.
+		glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+		// Upload the image data.
+		glTexImage3D(GL_TEXTURE_2D_ARRAY, 0, GL_RGBA8, // target, mipmap level, internal format,
+			buffer.Width(), buffer.Height(), buffer.Frames(), // width, height, depth,
+			0, GL_RGBA, GL_UNSIGNED_BYTE, buffer.Pixels()); // border, input format, data type, data.
+
+		// Unbind the texture.
+		glBindTexture(GL_TEXTURE_2D_ARRAY, 0);
+
+		// Free the ImageBuffer memory.
+		buffer.Clear();
+	}
+};
 
 
 
@@ -57,30 +88,21 @@ void Sprite::AddFrames(ImageBuffer &buffer, bool is2x)
 		frames = buffer.Frames();
 	}
 
-	// Check whether this sprite is large enough to require size reduction.
-	if(Preferences::Has("Reduce large graphics") && buffer.Width() * buffer.Height() >= 1000000)
-		buffer.ShrinkToHalfSize();
+	AddBuffer(buffer, &texture[is2x]);
+}
 
-	// Upload the images as a single array texture.
-	glGenTextures(1, &texture[is2x]);
-	glBindTexture(GL_TEXTURE_2D_ARRAY, texture[is2x]);
 
-	// Use linear interpolation and no wrapping.
-	glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-	// Upload the image data.
-	glTexImage3D(GL_TEXTURE_2D_ARRAY, 0, GL_RGBA8, // target, mipmap level, internal format,
-		buffer.Width(), buffer.Height(), buffer.Frames(), // width, height, depth,
-		0, GL_RGBA, GL_UNSIGNED_BYTE, buffer.Pixels()); // border, input format, data type, data.
+// Upload the given frames. The given buffer will be cleared afterwards.
+void Sprite::AddMaskFrames(ImageBuffer &buffer, bool is2x)
+{
+	// Do nothing if the buffer is empty.
+	if(!buffer.Pixels())
+		return;
 
-	// Unbind the texture.
-	glBindTexture(GL_TEXTURE_2D_ARRAY, 0);
+	std::cout<<"Mask added"<<std::endl;
 
-	// Free the ImageBuffer memory.
-	buffer.Clear();
+	AddBuffer(buffer, &mask[is2x]);
 }
 
 
