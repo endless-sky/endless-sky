@@ -338,7 +338,7 @@ void ImageSet::Upload(Sprite *sprite)
 	// Load the frames (this will clear the buffers).
 	sprite->AddFrames(buffer[0], false);
 	sprite->AddFrames(buffer[1], true);
-	sprite->AddMaskFrames(buffer[2], true);
+	sprite->AddMaskFrames(buffer[2], false);
 	sprite->AddMaskFrames(buffer[3], true);
 	GameData::GetMaskManager().SetMasks(sprite, std::move(masks));
 	masks.clear();
