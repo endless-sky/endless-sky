@@ -382,7 +382,7 @@ bool ShipyardPanel::CanSellMultiple() const
 // Only override the ones you need; the default action is to return false.
 bool ShipyardPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(key == 'd' && !player.IsDesignPlayer())
+	if(key == 'c' && !player.IsDesignPlayer())
 	{
 		// Only initialize the design player once per shipyard.
 		if(!designPlayer.IsDesignPlayer())

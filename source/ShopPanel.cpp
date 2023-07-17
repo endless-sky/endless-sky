@@ -361,8 +361,8 @@ void ShopPanel::DrawDesignButtons()
 
 	const Point shipyardCenter = Screen::BottomRight() - Point(225 + SIDEBAR_WIDTH, 25);
 	FillShader::Fill(shipyardCenter, Point(140, 30), back);
-	static const string DESIGN_CENTER = "_Design Center";
-	static const string DESIGN_SHIPYARD = "_Design Shipyard";
+	static const string DESIGN_CENTER = "Design _Center";
+	static const string DESIGN_SHIPYARD = "Design Ship_yard";
 	bigFont.Draw(player.IsDesignPlayer() ? DESIGN_SHIPYARD : DESIGN_CENTER,
 		shipyardCenter - .5 * Point(bigFont.Width(DESIGN_SHIPYARD), bigFont.Height()),
 		isShipyard && player.IsDesignPlayer() ? inactive : (hoverButton == 'd' ? hover : active));
@@ -680,7 +680,8 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 {
 	scrollDetailsIntoView = false;
 	bool toStorage = selectedOutfit && (key == 'r' || key == 'u');
-	if(key == 'l' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
+	if(key == 'l' || key == 'd' || key == SDLK_ESCAPE
+			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 	{
 		player.UpdateCargoCapacities();
 		GetUI()->Pop(this);

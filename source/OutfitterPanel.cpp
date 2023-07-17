@@ -844,7 +844,7 @@ void OutfitterPanel::ToggleCargo()
 // Only override the ones you need; the default action is to return false.
 bool OutfitterPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(key == 'd' && player.IsDesignPlayer())
+	if(key == 'y' && player.IsDesignPlayer())
 	{
 		GetUI()->Pop(this);
 		GetUI()->Push(new ShipyardPanel(player));
