@@ -103,7 +103,7 @@ void Fleet::Load(const DataNode &node)
 				else if(fighterKey == "personality")
 					fighterPersonality.Load(grand);
 				else
-					grand.PrintTrace("Skipping unrecognized attribute under fighters:");
+					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
 		}
 		else if(key == "cargo settings" && child.HasChildren())
