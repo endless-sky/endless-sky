@@ -79,10 +79,12 @@ void PlanetPanel::Step()
 		return;
 	}
 
-	// If the player starts a new game, exits the shipyard without buying
-	// anything, clicks to another location, then returns to the shipyard
-	// and buys a ship, make sure they are shown an intro mission.
-	if(GetUI()->IsTop(selectedPanel && selectedPanel != spaceport.get() ? selectedPanel : this))
+	// Handle missions for locations that aren't handled separately,
+	// treating them all as the landing location. This is mainly to
+	// handle the intro mission in the event the player moves away
+	// from the landing before buying a ship.
+	const Panel *activePanel = selectedPanel ? selectedPanel : this;
+	if(activePanel != spaceport.get() && GetUI()->IsTop(activePanel))
 	{
 		Mission *mission = player.MissionToOffer(Mission::LANDING);
 		if(mission)
