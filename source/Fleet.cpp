@@ -486,12 +486,12 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const vector<const Ship *> &ships) c
 		// Copy the model instance into a new instance.
 		auto ship = make_shared<Ship>(*model);
 
-		bool isCarried = ship->CanBeCarried();
-		const Phrase *phrase = ((isCarried && fighterNames) ? fighterNames : names);
+		bool canBeCarried = ship->CanBeCarried();
+		const Phrase *phrase = ((canBeCarried && fighterNames) ? fighterNames : names);
 		if(phrase)
 			ship->SetName(phrase->Get());
 		ship->SetGovernment(government);
-		if(isCarried && fighterPersonality.IsDefined())
+		if(canBeCarried && fighterPersonality.IsDefined())
 			ship->SetPersonality(fighterPersonality);
 		else
 			ship->SetPersonality(personality);
