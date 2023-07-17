@@ -16,9 +16,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef SHIP_MANAGER_H_
 #define SHIP_MANAGER_H_
 
-#include <string>
 #include <map>
 #include <memory>
+#include <string>
 #include <vector>
 
 class DataNode;

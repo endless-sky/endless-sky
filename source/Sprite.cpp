@@ -23,7 +23,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <SDL2/SDL.h>
 
 #include <algorithm>
-#include <iostream>
 
 using namespace std;
 
@@ -99,8 +98,6 @@ void Sprite::AddMaskFrames(ImageBuffer &buffer, bool is2x)
 	// Do nothing if the buffer is empty.
 	if(!buffer.Pixels())
 		return;
-
-	std::cout<<"Mask added"<<std::endl;
 
 	AddBuffer(buffer, &mask[is2x]);
 }

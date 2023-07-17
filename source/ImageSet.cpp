@@ -110,16 +110,17 @@ namespace {
 	}
 
 	// Add consecutive frames from the given map to the given vector. Issue warnings for missing or mislabeled frames.
-	void AddValid(const map<size_t, string> &frameData, vector<string> &sequence, const string &prefix, bool is2x, bool isMask)
-		noexcept(false)
+	void AddValid(const map<size_t, string> &frameData, vector<string> &sequence,
+		const string &prefix, bool is2x, bool isMask) noexcept(false)
 	{
 		if(frameData.empty())
 			return;
 		// Valid animations (or stills) begin with frame 0.
 		if(frameData.begin()->first != 0)
 		{
-			Logger::LogError(prefix + "ignored " + (isMask ? "mask " : "") + (is2x ? "@2x " : "") + "frame " + to_string(frameData.begin()->first)
-					+ " (" + to_string(frameData.size()) + " ignored in total). Animations must start at frame 0.");
+			Logger::LogError(prefix + "ignored " + (isMask ? "mask " : "") + (is2x ? "@2x " : "")
+				 + "frame " + to_string(frameData.begin()->first) + " (" + to_string(frameData.size())
+				 + " ignored in total). Animations must start at frame 0.");
 			return;
 		}
 
