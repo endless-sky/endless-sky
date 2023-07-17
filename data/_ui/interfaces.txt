@@ -789,6 +789,7 @@ interface "planet"
 		size 18
 		align left
 		pad 10 0
+	visible
 	
 	active if "has ship"
 	sprite "ui/planet dialog button"
