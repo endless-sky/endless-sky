@@ -57,6 +57,8 @@ public:
 	uint32_t Texture() const;
 	uint32_t Texture(bool isHighDPI) const;
 
+	uint32_t Mask() const;
+	uint32_t Mask(bool isHighDPI) const;
 
 private:
 	std::string name;

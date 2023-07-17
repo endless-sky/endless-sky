@@ -60,10 +60,3 @@ bool OpenGL::HasAdaptiveVSyncSupport()
 	return GLX_EXT_swap_control_tear;
 #endif
 }
-
-
-
-bool OpenGL::HasSwizzleSupport()
-{
-	return HasOpenGLExtension("_texture_swizzle");
-}

@@ -113,6 +113,9 @@ void Sprite::Unload()
 	glDeleteTextures(2, texture);
 	texture[0] = texture[1] = 0;
 
+	glDeleteTextures(2, mask);
+	mask[0] = mask[1] = 0;
+
 	width = 0.f;
 	height = 0.f;
 	frames = 0;
@@ -165,4 +168,20 @@ uint32_t Sprite::Texture() const
 uint32_t Sprite::Texture(bool isHighDPI) const
 {
 	return (isHighDPI && texture[1]) ? texture[1] : texture[0];
+}
+
+
+
+// Get the texture index, based on whether the screen is high DPI or not.
+uint32_t Sprite::Mask() const
+{
+	return Mask(Screen::IsHighResolution());
+}
+
+
+
+// Get the index of the texture for the given high DPI mode.
+uint32_t Sprite::Mask(bool isHighDPI) const
+{
+	return (isHighDPI && mask[1]) ? mask[1] : mask[0];
 }

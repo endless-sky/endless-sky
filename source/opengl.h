@@ -32,7 +32,6 @@ class OpenGL
 {
 public:
 	static bool HasAdaptiveVSyncSupport();
-	static bool HasSwizzleSupport();
 };
 
 
