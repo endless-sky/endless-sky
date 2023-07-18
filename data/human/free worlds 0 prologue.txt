@@ -333,7 +333,8 @@ mission "FW Recon 1"
 		personality staying uninterested target
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Heavy)"
 		conversation
@@ -388,7 +389,8 @@ mission "FW Recon 2"
 		system "Menkent"
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Heavy)" 4
 		dialog `You've scanned all the ships you can find here that seem to be upgraded for combat. Time to return to <planet> to collect your payment.`
@@ -2247,7 +2249,8 @@ mission "Defend Sabik"
 		personality waiting heroic
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier"
 				"Lance" 4
@@ -2261,7 +2264,8 @@ mission "Defend Sabik"
 		system "Kornephoros"
 		fleet 2
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier"
 				"Lance" 4
