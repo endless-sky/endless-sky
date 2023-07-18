@@ -326,9 +326,9 @@ ConditionsStore::ConditionEntry &ConditionsStore::operator[](const string &name)
 // Build a provider for a given prefix.
 ConditionsStore::DerivedProvider &ConditionsStore::GetProviderPrefixed(const string &prefix)
 {
-	auto it = providers.emplace(std::piecewise_construct,
-		std::forward_as_tuple(prefix),
-		std::forward_as_tuple(prefix, true));
+	auto it = providers.emplace(piecewise_construct,
+		forward_as_tuple(prefix),
+		forward_as_tuple(prefix, true));
 	DerivedProvider *provider = &(it.first->second);
 	if(!provider->isPrefixProvider)
 	{
@@ -361,9 +361,9 @@ ConditionsStore::DerivedProvider &ConditionsStore::GetProviderPrefixed(const str
 // Build a provider for the condition identified by the given name.
 ConditionsStore::DerivedProvider &ConditionsStore::GetProviderNamed(const string &name)
 {
-	auto it = providers.emplace(std::piecewise_construct,
-		std::forward_as_tuple(name),
-		std::forward_as_tuple(name, false));
+	auto it = providers.emplace(piecewise_construct,
+		forward_as_tuple(name),
+		forward_as_tuple(name, false));
 	DerivedProvider *provider = &(it.first->second);
 	if(provider->isPrefixProvider)
 		Logger::LogError("Error: Retrieving prefixed provider \"" + name + "\" as named provider.");

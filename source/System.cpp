@@ -559,7 +559,7 @@ const string &System::Name() const
 
 
 
-void System::SetName(const std::string &name)
+void System::SetName(const string &name)
 {
 	this->name = name;
 }

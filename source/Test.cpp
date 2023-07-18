@@ -202,7 +202,7 @@ void Test::LoadSequence(const DataNode &node)
 	{
 		const string &typeName = child.Token(0);
 		auto it = find_if(STEPTYPE_TO_TEXT.begin(), STEPTYPE_TO_TEXT.end(),
-			[&typeName](const std::pair<TestStep::Type, const string> &e) {
+			[&typeName](const pair<TestStep::Type, const string> &e) {
 				return e.second == typeName;
 			});
 		if(it == STEPTYPE_TO_TEXT.end())
@@ -333,7 +333,7 @@ void Test::Load(const DataNode &node)
 	}
 	// Validate if the testname contains valid characters.
 	if(node.Token(1).find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 _-")
-		!= std::string::npos)
+		!= string::npos)
 	{
 		node.PrintTrace("Error: Unsupported character(s) in test name:");
 		return;
@@ -346,7 +346,7 @@ void Test::Load(const DataNode &node)
 		{
 			const string &statusText = child.Token(1);
 			auto it = find_if(STATUS_TO_TEXT.begin(), STATUS_TO_TEXT.end(),
-				[&statusText](const std::pair<Status, const string> &e) {
+				[&statusText](const pair<Status, const string> &e) {
 					return e.second == statusText;
 				});
 			if(it != STATUS_TO_TEXT.end())
@@ -534,7 +534,7 @@ const string &Test::StatusText() const
 
 
 // Get the names of the conditions relevant for this test.
-std::set<std::string> Test::RelevantConditions() const
+set<string> Test::RelevantConditions() const
 {
 	set<string> conditionNames;
 	for(const auto &step : steps)

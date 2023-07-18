@@ -31,6 +31,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <uuid/uuid.h>
 #endif
 
+using namespace std;
+
 namespace es_uuid {
 namespace detail {
 #if defined(_WIN32)
@@ -42,20 +44,20 @@ EsUuid::UuidType MakeUuid()
 	if(status == RPC_S_UUID_LOCAL_ONLY)
 		Logger::LogError("Created locally unique UUID only");
 	else if(status == RPC_S_UUID_NO_ADDRESS)
-		throw std::runtime_error("Failed to create UUID");
+		throw runtime_error("Failed to create UUID");
 
 	return value;
 }
 
-EsUuid::UuidType ParseUuid(const std::string &str)
+EsUuid::UuidType ParseUuid(const string &str)
 {
 	EsUuid::UuidType value;
 	auto data = Utf8::ToUTF16(str, false);
 	RPC_STATUS status = UuidFromStringW(reinterpret_cast<RPC_WSTR>(&data[0]), &value.id);
 	if(status == RPC_S_INVALID_STRING_UUID)
-		throw std::invalid_argument("Cannot convert \"" + str + "\" into a UUID");
+		throw invalid_argument("Cannot convert \"" + str + "\" into a UUID");
 	else if(status != RPC_S_OK)
-		throw std::runtime_error("Fatal error parsing \"" + str + "\" as a UUID");
+		throw runtime_error("Fatal error parsing \"" + str + "\" as a UUID");
 
 	return value;
 }
@@ -66,12 +68,12 @@ bool IsNil(const UUID &id) noexcept
 	return UuidIsNil(const_cast<UUID *>(&id), &status);
 }
 
-std::string Serialize(const UUID &id)
+string Serialize(const UUID &id)
 {
 	wchar_t *buf = nullptr;
 	RPC_STATUS status = UuidToStringW(const_cast<UUID *>(&id), reinterpret_cast<RPC_WSTR *>(&buf));
 
-	std::string result = (status == RPC_S_OK) ? Utf8::ToUTF8(buf) : "";
+	string result = (status == RPC_S_OK) ? Utf8::ToUTF8(buf) : "";
 	if(result.empty())
 		Logger::LogError("Failed to serialize UUID!");
 	else
@@ -85,11 +87,11 @@ signed int Compare(const EsUuid::UuidType &a, const EsUuid::UuidType &b)
 	RPC_STATUS status;
 	auto result = UuidCompare(const_cast<UUID *>(&a.id), const_cast<UUID *>(&b.id), &status);
 	if(status != RPC_S_OK)
-		throw std::runtime_error("Fatal error comparing UUIDs \"" + Serialize(a.id) + "\" and \"" + Serialize(b.id) + "\"");
+		throw runtime_error("Fatal error comparing UUIDs \"" + Serialize(a.id) + "\" and \"" + Serialize(b.id) + "\"");
 	return result;
 }
 #else
-constexpr std::size_t UUID_BUFFER_LENGTH = 37;
+constexpr size_t UUID_BUFFER_LENGTH = 37;
 
 // Get a version 4 (random) Universally Unique Identifier (see IETF RFC 4122).
 EsUuid::UuidType MakeUuid()
@@ -99,14 +101,14 @@ EsUuid::UuidType MakeUuid()
 	return value;
 }
 
-EsUuid::UuidType ParseUuid(const std::string &str)
+EsUuid::UuidType ParseUuid(const string &str)
 {
 	EsUuid::UuidType value;
 	auto result = uuid_parse(str.data(), value.id);
 	if(result == -1)
-		throw std::invalid_argument("Cannot convert \"" + str + "\" into a UUID");
+		throw invalid_argument("Cannot convert \"" + str + "\" into a UUID");
 	else if(result != 0)
-		throw std::runtime_error("Fatal error parsing \"" + str + "\" as a UUID");
+		throw runtime_error("Fatal error parsing \"" + str + "\" as a UUID");
 
 	return value;
 }
@@ -116,11 +118,11 @@ bool IsNil(const uuid_t &id) noexcept
 	return uuid_is_null(id) == 1;
 }
 
-std::string Serialize(const uuid_t &id)
+string Serialize(const uuid_t &id)
 {
 	char buf[UUID_BUFFER_LENGTH];
 	uuid_unparse_lower(id, buf);
-	return std::string(buf);
+	return string(buf);
 }
 
 signed int Compare(const EsUuid::UuidType &a, const EsUuid::UuidType &b) noexcept
@@ -134,7 +136,7 @@ using namespace es_uuid::detail;
 
 
 
-EsUuid EsUuid::FromString(const std::string &input)
+EsUuid EsUuid::FromString(const string &input)
 {
 	return EsUuid(input);
 }
@@ -170,7 +172,7 @@ bool EsUuid::operator<(const EsUuid &other) const noexcept(false)
 
 
 
-std::string EsUuid::ToString() const noexcept(false)
+string EsUuid::ToString() const noexcept(false)
 {
 	return Serialize(Value().id);
 }
@@ -179,12 +181,12 @@ std::string EsUuid::ToString() const noexcept(false)
 
 // Internal constructor. Note that the provided value may not be a valid v4 UUID,
 // in which case an error is logged and we return a new UUID.
-EsUuid::EsUuid(const std::string &input)
+EsUuid::EsUuid(const string &input)
 {
 	try {
 		value = ParseUuid(input);
 	}
-	catch(const std::invalid_argument &err)
+	catch(const invalid_argument &err)
 	{
 		Logger::LogError(err.what());
 	}
