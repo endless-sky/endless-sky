@@ -99,7 +99,7 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 Projectile::Projectile(Point position, const Weapon *weapon)
 	: weapon(weapon)
 {
-	this->position = std::move(position);
+	this->position = move(position);
 }
 
 

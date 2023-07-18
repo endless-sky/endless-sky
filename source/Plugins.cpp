@@ -66,7 +66,7 @@ const Plugin *Plugins::Load(const string &path)
 	string name = path.substr(pos, path.length() - 1 - pos);
 
 	auto *plugin = plugins.Get(name);
-	plugin->name = std::move(name);
+	plugin->name = move(name);
 	plugin->path = path;
 	plugin->aboutText = Files::Read(path + "about.txt");
 

@@ -59,7 +59,7 @@ DataNode &DataNode::operator=(const DataNode &other)
 
 
 DataNode::DataNode(DataNode &&other) noexcept
-	: children(std::move(other.children)), tokens(std::move(other.tokens)), lineNumber(std::move(other.lineNumber))
+	: children(move(other.children)), tokens(move(other.tokens)), lineNumber(move(other.lineNumber))
 {
 	Reparent();
 }
@@ -70,7 +70,7 @@ DataNode &DataNode::operator=(DataNode &&other) noexcept
 {
 	children.swap(other.children);
 	tokens.swap(other.tokens);
-	lineNumber = std::move(other.lineNumber);
+	lineNumber = move(other.lineNumber);
 	Reparent();
 	return *this;
 }

@@ -69,7 +69,7 @@ private:
 	bool hasNewFile = false;
 	bool done = false;
 
-	std::thread thread;
+	std::thread musicThread;
 	std::mutex decodeMutex;
 	std::condition_variable condition;
 };

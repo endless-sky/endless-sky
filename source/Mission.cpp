@@ -1428,7 +1428,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	if(!reason.empty())
 	{
 		Logger::LogError("Instantiation Error: NPC template in mission \""
-			+ Identifier() + "\" uses invalid " + std::move(reason));
+			+ Identifier() + "\" uses invalid " + move(reason));
 		return result;
 	}
 	for(const NPC &npc : npcs)
@@ -1446,7 +1446,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	if(ait != actions.end())
 	{
 		Logger::LogError("Instantiation Error: Action \"" + TriggerToText(ait->first) + "\" in mission \""
-			+ Identifier() + "\" uses invalid " + std::move(reason));
+			+ Identifier() + "\" uses invalid " + move(reason));
 		return result;
 	}
 	for(const auto &it : actions)
@@ -1462,7 +1462,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	if(oit != onEnter.end())
 	{
 		Logger::LogError("Instantiation Error: Action \"on enter '" + oit->first->Name() + "'\" in mission \""
-			+ Identifier() + "\" uses invalid " + std::move(reason));
+			+ Identifier() + "\" uses invalid " + move(reason));
 		return result;
 	}
 	for(const auto &it : onEnter)
@@ -1478,7 +1478,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	if(eit != genericOnEnter.end())
 	{
 		Logger::LogError("Instantiation Error: Generic \"on enter\" action in mission \""
-			+ Identifier() + "\" uses invalid " + std::move(reason));
+			+ Identifier() + "\" uses invalid " + move(reason));
 		return result;
 	}
 	for(const MissionAction &action : genericOnEnter)

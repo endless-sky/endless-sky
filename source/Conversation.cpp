@@ -346,7 +346,7 @@ string Conversation::Validate() const
 		{
 			string reason = node.actions.Validate();
 			if(!reason.empty())
-				return "conversation action " + std::move(reason);
+				return "conversation action " + move(reason);
 		}
 	}
 	return "";

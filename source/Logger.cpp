@@ -29,7 +29,7 @@ namespace {
 
 void Logger::SetLogErrorCallback(function<void(const string &message)> callback)
 {
-	logErrorCallback = std::move(callback);
+	logErrorCallback = move(callback);
 }
 
 

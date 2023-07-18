@@ -1302,7 +1302,7 @@ void PlayerInfo::ReorderShip(int fromIndex, int toIndex)
 void PlayerInfo::SetShipOrder(const vector<shared_ptr<Ship>> &newOrder)
 {
 	// Check if the incoming vector contains the same elements
-	if(std::is_permutation(ships.begin(), ships.end(), newOrder.begin()))
+	if(is_permutation(ships.begin(), ships.end(), newOrder.begin()))
 	{
 		ships = newOrder;
 		flagship.reset();
@@ -1403,7 +1403,7 @@ CargoHold *PlayerInfo::Storage(bool forceCreate)
 
 
 // Get planetary storage information for all planets (for map and overviews).
-const std::map<const Planet *, CargoHold> &PlayerInfo::PlanetaryStorage() const
+const map<const Planet *, CargoHold> &PlayerInfo::PlanetaryStorage() const
 {
 	return planetaryStorage;
 }
@@ -2304,7 +2304,7 @@ int64_t PlayerInfo::GetTributeTotal() const
 		tributeReceived.begin(),
 		tributeReceived.end(),
 		0,
-		[](int64_t value, const std::map<const Planet *, int64_t>::value_type &tribute)
+		[](int64_t value, const map<const Planet *, int64_t>::value_type &tribute)
 		{
 			return value + tribute.second;
 		}

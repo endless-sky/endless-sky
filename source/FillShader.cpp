@@ -22,6 +22,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <stdexcept>
 
+using namespace std;
+
 namespace {
 	Shader shader;
 	GLint scaleI;
@@ -94,7 +96,7 @@ void FillShader::Init()
 void FillShader::Fill(const Point &center, const Point &size, const Color &color)
 {
 	if(!shader.Object())
-		throw std::runtime_error("FillShader: Draw() called before Init().");
+		throw runtime_error("FillShader: Draw() called before Init().");
 
 	glUseProgram(shader.Object());
 	glBindVertexArray(vao);

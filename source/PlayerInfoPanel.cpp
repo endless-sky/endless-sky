@@ -288,7 +288,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 		if(!panelState.Ships().empty())
 		{
 			GetUI()->Pop(this);
-			GetUI()->Push(new ShipInfoPanel(player, std::move(panelState)));
+			GetUI()->Push(new ShipInfoPanel(player, move(panelState)));
 		}
 	}
 	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
@@ -546,7 +546,7 @@ bool PlayerInfoPanel::Click(int x, int y, int clicks)
 		panelState.SetSelectedIndex(hoverIndex);
 
 		GetUI()->Pop(this);
-		GetUI()->Push(new ShipInfoPanel(player, std::move(panelState)));
+		GetUI()->Push(new ShipInfoPanel(player, move(panelState)));
 	}
 
 	return true;

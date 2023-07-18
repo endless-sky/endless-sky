@@ -116,7 +116,7 @@ void Weather::Step(vector<Visual> &visuals, const Point &center)
 				double magnitude = (maxRange - minRange) * sqrt(Random::Real());
 				Point pos = (hazard->SystemWide() ? center : origin)
 					+ (minRange + magnitude) * angle;
-				visuals.emplace_back(*effect.first, std::move(pos), Point(), Angle::Random());
+				visuals.emplace_back(*effect.first, move(pos), Point(), Angle::Random());
 			}
 	}
 
