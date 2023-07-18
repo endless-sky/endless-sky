@@ -6018,6 +6018,7 @@ system Atik
 	fleet "Large Core Pirates" 18000
 	fleet "Human Miners" 5000
 	fleet "Korath Miners" 15000
+	fleet "Derelict Pirate" 30000
 	object
 		sprite star/b-giant
 		distance 150
@@ -7076,6 +7077,7 @@ system Boral
 	fleet "Small Southern Pirates" 1500
 	fleet "Small Militia" 10000
 	fleet "Human Miners" 2000
+	fleet "Derelict Southern" 30000
 	object
 		sprite star/m3
 		period 10
@@ -9137,6 +9139,7 @@ system Danoa
 	fleet "Large Northern Pirates" 16000
 	fleet "Large Republic" 30000
 	fleet "Human Miners" 1600
+	fleet "Derelict Pirate" 30000
 	object
 		sprite star/m8
 		period 10
@@ -11095,6 +11098,7 @@ system Eber
 	fleet "Small Militia" 4000
 	fleet "Large Militia" 5000
 	fleet "Small Southern Pirates" 2000
+	fleet "Derelict Southern" 30000
 	object
 		sprite star/k5-old
 		period 10
@@ -13974,6 +13978,7 @@ system Fingol
 	fleet "Large Republic" 3000
 	fleet "Small Northern Pirates" 2000
 	fleet "Human Miners" 3000
+	fleet "Derelict Republic" 30000
 	object
 		sprite star/m8
 		period 10
@@ -14649,6 +14654,7 @@ system "Gamma Cassiopeiae"
 	fleet "Large Core Pirates" 2000
 	fleet "Large Syndicate" 5000
 	fleet "Human Miners" 2000
+	fleet "Derelict Syndicate" 30000
 	object
 		sprite star/b0
 		period 10
@@ -15490,6 +15496,7 @@ system Gorvi
 	fleet "Large Northern Pirates" 1000
 	fleet "Large Republic" 4000
 	fleet "Small Northern Merchants" 8000
+	fleet "Derelict Pirate" 30000
 	object
 		sprite star/wr
 		period 10
@@ -16497,6 +16504,7 @@ system Hintar
 	fleet "Small Southern Merchants" 1000
 	fleet "Small Militia" 5000
 	fleet "Small Southern Pirates" 2000
+	fleet "Derelict Southern" 30000
 	object
 		sprite star/g5
 		period 10
@@ -17466,6 +17474,7 @@ system Ipsing
 	trade Plastic 416
 	fleet "Small Southern Merchants" 2000
 	fleet "Small Southern Pirates" 3000
+	fleet "Derelict Republic" 30000
 	object
 		sprite star/g0-old
 		distance 20.2927
@@ -20336,6 +20345,7 @@ system Kugel
 	fleet "Small Syndicate" 8000
 	fleet "Large Core Pirates" 4000
 	fleet "Small Core Pirates" 4000
+	fleet "Derelict Syndicate" 30000
 	object
 		sprite star/g5
 		period 10
@@ -20682,7 +20692,7 @@ system Levana
 		distance 153.26
 		period 7.17345
 	object
-		sprite planet/dust1-b
+		sprite planet/dust1-blimenlolam
 		distance 215.093
 		period 13.8295
 	object
@@ -20740,6 +20750,7 @@ system Limen
 	fleet "Small Southern Pirates" 1000
 	fleet "Large Southern Pirates" 2000
 	fleet "Human Miners" 1000
+	fleet "Derelict Republic" 30000
 	object
 		sprite star/f5
 		period 10
@@ -20910,6 +20921,7 @@ system Lolami
 	fleet "Small Northern Pirates" 2000
 	fleet "Large Northern Pirates" 4000
 	fleet "Human Miners" 3000
+	fleet "Derelict Republic" 30000
 	object
 		sprite star/g0
 		distance 11.5199
@@ -23778,6 +23790,7 @@ system Naper
 	fleet "Small Militia" 5000
 	fleet "Small Southern Pirates" 1000
 	fleet "Human Miners" 3000
+	fleet "Derelict Southern" 30000
 	object
 		sprite star/f5
 		period 10
@@ -24097,6 +24110,7 @@ system Nocte
 	fleet "Large Republic" 7000
 	fleet "Small Northern Pirates" 2500
 	fleet "Human Miners" 1600
+	fleet "Derelict Republic" 30000
 	object
 		sprite star/m8
 		period 10
@@ -24626,6 +24640,7 @@ system Orbona
 	fleet "Small Southern Pirates" 1200
 	fleet "Large Southern Pirates" 3200
 	fleet "Human Miners" 1500
+	fleet "Derelict Republic" 30000
 	object
 		sprite star/b-giant
 		distance 3.8401
@@ -24696,6 +24711,7 @@ system Orvala
 	fleet "Small Southern Merchants" 3000
 	fleet "Small Southern Pirates" 1000
 	fleet "Large Southern Pirates" 3000
+	fleet "Derelict Southern" 30000
 	object
 		sprite star/k0
 		distance 8.71066
@@ -27627,6 +27643,7 @@ system Regulus
 	fleet "Large Southern Pirates" 8000
 	fleet "Small Republic" 10000
 	fleet "Human Miners" 3000
+	fleet "Derelict Republic" 30000
 	object
 		sprite star/b0
 		period 10
@@ -28406,6 +28423,7 @@ system Sadr
 	fleet "Small Southern Pirates" 5000
 	fleet "Large Southern Pirates" 9000
 	fleet "Human Miners" 2000
+	fleet "Derelict Southern" 30000
 	object
 		sprite star/a5
 		distance 6.26811
@@ -30677,6 +30695,7 @@ system Sospi
 	fleet "Small Republic" 5000
 	fleet "Large Republic" 9000
 	fleet "Human Miners" 5000
+	fleet "Derelict Republic" 30000
 	object
 		sprite star/wr
 		period 10
@@ -31674,6 +31693,7 @@ system Terminus
 	trade Plastic 402
 	fleet "Small Southern Pirates" 2000
 	fleet "Large Southern Pirates" 5000
+	fleet "Derelict Republic" 30000
 	object
 		sprite star/k5-old
 		period 10
@@ -31916,6 +31936,7 @@ system Tortor
 	fleet "Large Northern Pirates" 1000
 	fleet "Large Republic" 6000
 	fleet "Small Northern Merchants" 6000
+	fleet "Derelict Pirate" 30000
 	object
 		sprite star/k3
 		period 10
@@ -32450,6 +32471,7 @@ system Unagi
 	trade Plastic 364
 	fleet "Small Northern Pirates" 1500
 	fleet "Large Northern Pirates" 3000
+	fleet "Derelict Pirate" 30000
 	object
 		sprite star/m0
 		period 10

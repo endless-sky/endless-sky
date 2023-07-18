@@ -6303,6 +6303,7 @@ mission "Blind Man from Martini"
 
 
 mission "Derelict Informer"
+	minor
 	landing
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -6342,3 +6343,83 @@ mission "Derelict Informer"
 			`	"Precisely. If you want to go hunting for derelicts yourself, they can be rarely found in out of the way uninhabited systems. Good hunting out there." He turns back to his score.`
 				decline
 
+mission "Derelict Treasure Map"
+	description "Follow the treasure map you found in a derelict ship."
+	landing
+	to offer
+		has "derelict treasure map"
+	destination "New Argentina"
+	on offer
+		conversation
+			`Upon landing on <origin> you take out the treasure map you recovered from the derelict ship. The map gives detailed instructions about where the treasure was buried on the sparsely populated world of <destination>. However, the map's creator claims to have obtained some kind of alien weapons that disrupts a ship's electrical systems. The outlandish claim seems to bring doubt to the validity of the map.`
+			choice
+				`	(Follow the map.)`
+					accept
+				`	(Throw the map away, it's probably fake.)`
+					decline
+	on complete
+		conversation
+			`Flying low over <planet> you follow the instructions to an isolated valley where you promptly land and get to digging. After hours of shovelling the hard soil you're met with a thunk as you strike metal, this must be the treasure cache!`
+			branch hai
+				has "First Contact: Hai: offered"
+			`	Opening the cache reveals a large store of credits along with the alien weapons the map's owner wrote about, you marvel at their strange design and wonder at their power.`
+			choice
+				`	(Loot the treasure.)`
+					goto end
+			label hai
+			`	Opening the cache reveals a large store of credits along with two hai Ion Cannons, these must be the alien weapons the map's owner wrote about.`
+			choice
+				`	(Loot the treasure.)`
+					goto end
+			label end
+			action
+				payment 386000
+				outfit "Ion Cannon" 2
+			`	You grab the <payment> credits and with the assistance of some machinery you bring the weapons back to your ship.`
+
+mission "Derelict Family Investment 1"
+	description "Return the credits you found in a derelict ship to the family it belongs to."
+	name "Colin Sawyer's Investment"
+	landing
+	to offer
+		has "derelict family investment"
+	destination "Sundive"
+	on offer
+		conversation
+			`Upon landing on <origin> you take out the text log you recovered alongside the case of credits from the derelict ship, the log reveals the credits were the result of a risky investment in an attempt to buy a better life for the captain of the ship, Colin Sawyer, and his family. You assume that the captain never made it home, and looking further into the personal log you find that the family used to reside on <destination>.`
+			`	Perhaps the family still live there?`
+			choice
+				`	(Attempt to return the credits.)`
+					accept
+				`	(Keep the credits to yourself.)`
+			action
+				payment 325000
+			`	You decide to keep the credits to yourself. After all, it's not everyday that you find a score worth <payment> credits.`
+					decline
+	on complete
+		conversation
+			`	Upon landing on <planet> you take a transport out to the small farm indicated in the log as the home of Captain Sawyer's family. After knocking on the door of the farmhouse a man opens the door and asks, "Can I help you?"`
+			choice
+				`	"Do you know a Colin Sawyer?"`
+				`	"Do the Sawyers live here?"`
+			`	"Sawyer? Yeah that's the family that sold me this here farm, if you're looking for them I believe they moved to a more populated planet, own some big corporation now." The man gives you the Sawyers new place of residence and bids you farewell.`
+
+mission "Derelict Family Investment 2"
+	description "Return the credits you found in a derelict ship to the family it belongs to."
+	name "Colin Sawyer's Investment"
+	landing
+	to offer
+		has "Derelict Family Investment 1: done"
+	destination "Foundry"
+	on complete
+		payment 500000
+		conversation
+			`	It doesn't take long to find the Sawyers' home on <planet>, the building is luxurious, making it clear that the family has done well for themselves. After a quick explanation with the desk clerk that you have a delivery, and an elevator ride to the penthouse you ring the buzzer and are greeted by a woman in her late fifties, who asks, "A delivery?"`
+			choice
+				`	"Do you know a Colin Sawyer?"`
+			`	A scowl appears on her face, as she spits out, "What do you know of my Da? That deadbeat left me and my family with next to nothing."`
+			choice
+				`	"I don't know what happened to him personally, but I found this case of credits and a log explaining how he was trying to invest in a better life for his family."`
+				`	"I believe he died before he was able to bring back his business investment to your family. Here's his personal log, it explains everything."`
+			`	She takes the log from you and quickly scrolls through it, emotion washing over her features as she reads. Eventually she looks up, and all the anger towards her father gone speaks, "Thank you for this, all these years I had believed he had just taken our money and run off. But knowing he had been trying to help is worth more than all the credits in the galaxy, take them and then some as a reward for bringing me this last piece of him."`
+			`	You leave the building with a total of <payment> credits from both the case and Ms Sawyer as well as a sense of pride for returning the log.`

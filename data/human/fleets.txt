@@ -3214,3 +3214,94 @@ fleet "Human Wormhole Guards"
 		"Frigate (Mark II)"
 	variant 5
 		"Rainmaker (Mark II Old Weapons)"
+
+fleet "Derelict Republic"
+	government "Derelict (Boardable)"
+	names "civilian"
+	"cargo settings"
+		cargo 1
+		outfitters "Derelict Republic"
+	personality derelict mute
+	variant 18
+		"Scout (Derelict)"
+	variant 12
+		"Hauler (Derelict)"
+	variant 5
+		"Hauler II (Derelict)"
+	variant 18
+		"Berserker (Derelict)"
+	variant 15
+		"Freighter (Derelict)"
+	variant 2
+		"Star Queen (Derelict)"
+	variant 14
+		"Firebird (Derelict)"
+	variant 12
+		"Aerie (Derelict)"
+	variant 1
+		"Leviathan (Derelict)"
+
+fleet "Derelict Southern"
+	government "Derelict (Boardable)"
+	names "civilian"
+	"cargo settings"
+		cargo 1
+		outfitters "Derelict Southern"
+	variant 24
+		"Argosy (Derelict)"
+	variant 12
+		"Hauler (Derelict)"
+	variant 24
+		"Clipper (Derelict)"
+	variant 30
+		"Hawk (Derelict)"
+	variant 30
+		"Fury (Derelict)"
+	variant 16
+		"Bastion (Derelict)"
+	variant 12
+		"Osprey (Derelict)"
+	variant 3
+		"Firebird (Derelict)"
+	variant 15
+		"Freighter (Derelict)"
+	variant 1
+		"Falcon (Derelict)"
+
+fleet "Derelict Syndicate"
+	government "Derelict (Boardable)"
+	names "civilian"
+	"cargo settings"
+		cargo 1
+		outfitters "Derelict Syndicate"
+	variant 12
+		"Bounder (Derelict)"
+	variant 8
+		"Hauler (Derelict)"
+	variant 25
+		"Freighter (Derelict)"
+	variant 1
+		"Bulk Freighter (Derelict)"
+	variant 10
+		"Quicksilver (Derelict)"
+	variant 2
+		"Firebird (Derelict)"
+	variant 8
+		"Splinter (Derelict)"
+	variant 2
+		"Protector (Derelict)"
+
+fleet "Derelict Pirate"
+	government "Derelict (Boardable)"
+	names "civilian"
+	"cargo settings"
+		cargo 1
+		outfitters "Derelict Pirate"
+	variant 60
+		"Scrapper (Derelict)"
+	variant 3
+		"Firebird (Derelict)"
+	variant 9
+		"Hauler (Derelict)"
+	variant 25
+		"Freighter (Derelict)"
