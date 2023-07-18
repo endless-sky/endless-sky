@@ -282,7 +282,7 @@ mission "Paradise Job: Charity"
 
 
 mission "Paradise Job: Party Goods"
-	name "Party goods to <planet>"
+	name "Party goods from <planet stopovers>"
 	job
 	repeat
 	deadline
@@ -329,7 +329,7 @@ mission "Paradise Job: Estate Assets"
 
 
 mission "Paradise Jobs: Contract Laborers"
-	name "Contract laborers to <planet>"
+	name "Contract laborers from <planet stopovers>"
 	job
 	repeat
 	description "Return to <destination> after picking up <bunks> contract laborers located on <stopovers> who are eager to experience the luxury of the Paradise Worlds. Payment is <payment>."
