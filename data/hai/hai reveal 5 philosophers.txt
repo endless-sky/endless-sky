@@ -44,7 +44,8 @@ mission "Hai Reveal [B01-A] The Blockade Goes Up"
 		personality heroic opportunistic staying
 		fleet
 			names "republic capital"
-			fighters "syndicate fighter"
+			fighters
+				names "syndicate fighter"
 			variant
 				"Carrier (Mark II)" 2
 				"Cruiser (Mark II)" 6
@@ -59,7 +60,8 @@ mission "Hai Reveal [B01-A] The Blockade Goes Up"
 		personality heroic opportunistic staying
 		fleet
 			names "republic capital"
-			fighters "syndicate fighter"
+			fighters
+				names "syndicate fighter"
 			variant
 				"Carrier (Mark II)" 2
 				"Cruiser (Mark II)" 6
@@ -1093,7 +1095,8 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 		government "Navy (Oathkeeper)"
 		personality escort opportunistic
 		fleet
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Combat Drone (Sidewinder Missiles)" 4
 	npc save accompany
@@ -1104,7 +1107,8 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 		government "Republic"
 		personality escort opportunistic
 		fleet
-			fighters "syndicate fighter"
+			fighters
+				names "syndicate fighter"
 			variant
 				"Barb (Proton)" 4
 	npc accompany
