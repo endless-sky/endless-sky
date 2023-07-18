@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Dialog.h"
+#include "EsUuid.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "GameEvent.h"
@@ -113,7 +114,7 @@ void MissionAction::LoadSingle(const DataNode &child, const string &missionName)
 		if(count >= 0)
 			requiredOutfits[GameData::Outfits().Get(child.Token(1))] = count;
 		else
-			child.PrintTrace("Error: Skipping invalid \"require\" amount:");
+			child.PrintTrace("Error: Skipping invalid \"require\" count:");
 	}
 	// The legacy syntax "outfit <outfit> 0" means "the player must have this outfit installed."
 	else if(key == "outfit" && child.Size() >= 3 && child.Token(2) == "0")
@@ -244,6 +245,10 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 			return false;
 	}
 
+	for(auto &&it : action.Ships())
+		if(!it.CanBeDone(player))
+			return false;
+
 	for(auto &&it : requiredOutfits)
 	{
 		// Maps are not normal outfits; they represent the player's spatial awareness.
@@ -289,6 +294,16 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 	if(!systemFilter.IsEmpty() && !systemFilter.Matches(player.GetSystem()))
 		return false;
 	return true;
+}
+
+
+
+bool MissionAction::RequiresGiftedShip(const string &shipId) const
+{
+	for(auto &&it : action.Ships())
+		if(it.Id() == shipId)
+			return true;
+	return false;
 }
 
 
