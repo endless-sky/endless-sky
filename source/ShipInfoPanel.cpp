@@ -57,7 +57,7 @@ ShipInfoPanel::ShipInfoPanel(PlayerInfo &player)
 }
 
 ShipInfoPanel::ShipInfoPanel(PlayerInfo &player, InfoPanelState state)
-	: player(player), panelState(move(state))
+	: player(player), panelState(std::move(state))
 {
 	shipIt = this->panelState.Ships().begin();
 	SetInterruptible(false);
@@ -157,7 +157,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 	else if(key == 'i' || command.Has(Command::INFO) || (control && key == SDLK_TAB))
 	{
 		GetUI()->Pop(this);
-		GetUI()->Push(new PlayerInfoPanel(player, move(panelState)));
+		GetUI()->Push(new PlayerInfoPanel(player, std::move(panelState)));
 	}
 	else if(key == 'R' || (key == 'r' && shift))
 		GetUI()->Push(new Dialog(this, &ShipInfoPanel::Rename, "Change this ship's name?", (*shipIt)->Name()));

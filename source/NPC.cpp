@@ -655,7 +655,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 	if(ait != npcActions.end())
 	{
 		Logger::LogError("Instantiation Error: Action \"" + TriggerToText(ait->first) +
-				"\" in NPC uses invalid " + move(reason));
+				"\" in NPC uses invalid " + std::move(reason));
 		return result;
 	}
 	for(const auto &it : npcActions)

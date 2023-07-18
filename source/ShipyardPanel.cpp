@@ -200,15 +200,15 @@ int ShipyardPanel::DrawDetails(const Point &center)
 		}
 		else
 		{
-			string label = "description";
+			std::string label = "description";
 			font.Draw(label, startPoint + Point(35., 12.), dim);
 			SpriteShader::Draw(collapsedArrow, startPoint + Point(20., 20.));
 		}
 
 		// Calculate the new ClickZone for the description.
 		Point descDimensions(INFOBAR_WIDTH, descriptionOffset + 10.);
-		ClickZone<string> collapseDescription = ClickZone<string>(
-			descCenter, descDimensions, string("description"));
+		ClickZone<std::string> collapseDescription = ClickZone<std::string>(
+			descCenter, descDimensions, std::string("description"));
 
 		// Find the old zone, and replace it with the new zone.
 		for(auto it = categoryZones.begin(); it != categoryZones.end(); ++it)

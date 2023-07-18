@@ -886,7 +886,7 @@ map<string, shared_ptr<ImageSet>> GameData::FindImages()
 				shared_ptr<ImageSet> &imageSet = images[name];
 				if(!imageSet)
 					imageSet.reset(new ImageSet(name));
-				imageSet->Add(move(path));
+				imageSet->Add(std::move(path));
 			}
 	}
 	return images;

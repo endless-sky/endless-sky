@@ -62,7 +62,7 @@ bool DrawList::Add(const Body &body, Point position, double cloak)
 	if(Cull(body, position, blur))
 		return false;
 
-	Push(body, move(position), move(blur), cloak, body.GetSwizzle());
+	Push(body, std::move(position), std::move(blur), cloak, body.GetSwizzle());
 	return true;
 }
 

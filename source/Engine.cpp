@@ -112,7 +112,7 @@ namespace {
 		while(in != objects.end())
 		{
 			if(!in->ShouldBeRemoved())
-				*out++ = move(*in);
+				*out++ = std::move(*in);
 			++in;
 		}
 		if(out != objects.end())

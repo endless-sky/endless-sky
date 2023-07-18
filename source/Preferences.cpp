@@ -58,7 +58,7 @@ namespace {
 
 		const bool IsActive() const { return state != Preferences::OverlayState::DISABLED; }
 
-		const string &ToString() const
+		const std::string &ToString() const
 		{
 			return OVERLAY_SETTINGS[max<int>(0, min<int>(OVERLAY_SETTINGS.size() - 1, static_cast<int>(state)))];
 		}
@@ -578,7 +578,7 @@ Preferences::AlertIndicator Preferences::GetAlertIndicator()
 
 
 
-const string &Preferences::AlertSetting()
+const std::string &Preferences::AlertSetting()
 {
 	return ALERT_INDICATOR_SETTING[alertIndicatorIndex];
 }

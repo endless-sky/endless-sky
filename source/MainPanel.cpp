@@ -389,7 +389,7 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 		for(const auto &it : target->Outfits())
 		{
 			string outfitNameForDisplay = (it.second == 1 ? it.first->DisplayName() : it.first->PluralName());
-			outfitsByCategory[it.first->Category()].emplace(move(outfitNameForDisplay), it.second);
+			outfitsByCategory[it.first->Category()].emplace(std::move(outfitNameForDisplay), it.second);
 		}
 		for(const auto &it : outfitsByCategory)
 		{

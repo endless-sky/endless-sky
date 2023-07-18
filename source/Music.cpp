@@ -68,7 +68,7 @@ Music::Music()
 	: silence(OUTPUT_CHUNK, 0)
 {
 	// Don't start the thread until this object is fully constructed.
-	musicThread = thread(&Music::Decode, this);
+	thread = std::thread(&Music::Decode, this);
 }
 
 
@@ -82,7 +82,7 @@ Music::~Music()
 		done = true;
 	}
 	condition.notify_all();
-	musicThread.join();
+	thread.join();
 
 	// If the decode thread has not yet taken possession of the next file, it is
 	// our job to close it.

@@ -45,7 +45,7 @@ void InfoPanelState::SetSelectedIndex(int newSelectedIndex)
 
 void InfoPanelState::SetSelected(set<int> selected)
 {
-	allSelected = move(selected);
+	allSelected = std::move(selected);
 	if(!allSelected.empty())
 		selectedIndex = *allSelected.begin();
 }

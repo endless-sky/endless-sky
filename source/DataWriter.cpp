@@ -56,7 +56,7 @@ DataWriter::~DataWriter()
 
 
 // Save the contents to a file.
-void DataWriter::SaveToPath(const string &filepath)
+void DataWriter::SaveToPath(const std::string &filepath)
 {
 	Files::Write(filepath, out.str());
 }

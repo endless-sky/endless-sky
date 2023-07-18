@@ -171,7 +171,7 @@ bool ImageSet::IsDeferred(const string &path)
 
 
 ImageSet::ImageSet(string name)
-	: name(move(name))
+	: name(std::move(name))
 {
 }
 
@@ -288,6 +288,6 @@ void ImageSet::Upload(Sprite *sprite)
 	// Load the frames (this will clear the buffers).
 	sprite->AddFrames(buffer[0], false);
 	sprite->AddFrames(buffer[1], true);
-	GameData::GetMaskManager().SetMasks(sprite, move(masks));
+	GameData::GetMaskManager().SetMasks(sprite, std::move(masks));
 	masks.clear();
 }

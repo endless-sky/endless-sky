@@ -24,7 +24,7 @@ using namespace std;
 
 
 // Replace all occurrences ${phrase name} with the expanded phrase from GameData::Phrases()
-string Phrase::ExpandPhrases(const string &source)
+std::string Phrase::ExpandPhrases(const std::string &source)
 {
 	string result;
 	size_t next = 0;

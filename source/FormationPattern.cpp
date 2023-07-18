@@ -86,7 +86,7 @@ const string &FormationPattern::Name() const
 
 
 
-void FormationPattern::SetName(const string &name)
+void FormationPattern::SetName(const std::string &name)
 {
 	this->name = name;
 }

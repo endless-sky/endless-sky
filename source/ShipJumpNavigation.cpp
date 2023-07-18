@@ -236,7 +236,7 @@ void ShipJumpNavigation::UpdateJumpDriveCosts(double distance, double cost)
 		// cheaper jump cost already covers this range. We don't need to check
 		// any other distances in this case because the rest of the map will
 		// already be properly sorted.
-		auto nit = next(it);
+		auto nit = std::next(it);
 		if(nit != jumpDriveCosts.end() && it->second > nit->second)
 			it->second = nit->second;
 		else

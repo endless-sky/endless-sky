@@ -153,7 +153,7 @@ namespace {
 	void LogWarning(const string &trueModelName, const string &name, string &&warning)
 	{
 		string shipID = trueModelName + (name.empty() ? ": " : " \"" + name + "\": ");
-		Logger::LogError(shipID + move(warning));
+		Logger::LogError(shipID + std::move(warning));
 	}
 
 	// Transfer as many of the given outfits from the source ship to the target
@@ -3431,7 +3431,7 @@ int Ship::StepDestroyed(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flot
 				Point effectVelocity = velocity + angle.Unit() * (scale * Random::Real());
 				Point effectPosition = position + radius * angle.Unit();
 
-				visuals.emplace_back(*effect, move(effectPosition), move(effectVelocity), move(angle));
+				visuals.emplace_back(*effect, std::move(effectPosition), std::move(effectVelocity), std::move(angle));
 			}
 
 			for(unsigned i = 0; i < explosionTotal / 2; ++i)
@@ -4490,7 +4490,7 @@ void Ship::CreateExplosion(vector<Visual> &visuals, bool spread)
 				double scale = .04 * (Width() + Height());
 				effectVelocity += Angle::Random().Unit() * (scale * Random::Real());
 			}
-			visuals.emplace_back(*it->first, angle.Rotate(point) + position, move(effectVelocity), angle);
+			visuals.emplace_back(*it->first, angle.Rotate(point) + position, std::move(effectVelocity), angle);
 			++explosionCount;
 			return;
 		}

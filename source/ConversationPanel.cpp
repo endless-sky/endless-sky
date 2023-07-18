@@ -90,7 +90,7 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 
 void ConversationPanel::SetCallback(function<void(int)> fun)
 {
-	callback = move(fun);
+	callback = std::move(fun);
 }
 
 
@@ -352,7 +352,7 @@ bool ConversationPanel::Hover(int x, int y)
 void ConversationPanel::Goto(int index, int selectedChoice)
 {
 	const ConditionsStore &conditions = player.Conditions();
-	Format::ConditionGetter getter = [&conditions](const string &str, size_t start, size_t length) -> int64_t
+	Format::ConditionGetter getter = [&conditions](const std::string &str, size_t start, size_t length) -> int64_t
 	{
 		return conditions.Get(str.substr(start, length));
 	};

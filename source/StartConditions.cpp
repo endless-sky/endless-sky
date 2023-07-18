@@ -199,7 +199,7 @@ void StartConditions::FinishLoading()
 	if(!GetConversation().IsValidIntro() || !reason.empty())
 		Logger::LogError("Warning: The start scenario \"" + Identifier() + "\" (named \""
 			+ unlocked.name + "\") has an invalid starting conversation."
-			+ (reason.empty() ? "" : "\n\t" + move(reason)));
+			+ (reason.empty() ? "" : "\n\t" + std::move(reason)));
 }
 
 

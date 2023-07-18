@@ -364,7 +364,7 @@ void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite, int sw
 
 void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, int swizzle, bool isForSale,
 		bool isSelected, const string &name, const string &price, const string &info,
-		const string &storage)
+		const std::string &storage)
 {
 	const Font &font = FontSet::Get(14);
 	const Color &selectionColor = *GameData::Colors().Get("item selected");

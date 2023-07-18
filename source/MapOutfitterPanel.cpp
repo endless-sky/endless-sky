@@ -246,7 +246,7 @@ void MapOutfitterPanel::DrawItems()
 			if(!isForSale && !storedInSystem && onlyShowSoldHere)
 				continue;
 
-			const string storage_details =
+			const std::string storage_details =
 				storedInSystem == 0
 				? ""
 				: storedInSystem == 1
