@@ -1322,7 +1322,8 @@ fleet "Small Republic"
 fleet "Large Republic"
 	government "Republic"
 	names "republic capital"
-	fighters "republic fighter"
+	fighters
+		names "republic fighter"
 	cargo 0
 	personality
 		heroic opportunistic
@@ -1363,7 +1364,8 @@ fleet "Large Republic"
 fleet "Republic Logistics"
 	government "Republic"
 	names "republic capital"
-	fighters "republic fighter"
+	fighters
+		names "republic fighter"
 	cargo 3
 	personality
 		heroic opportunistic
@@ -1415,7 +1417,8 @@ fleet "Republic Logistics"
 fleet "Navy Surveillance"
 	government "Republic"
 	names "republic capital"
-	fighters "republic fighter"
+	fighters
+		names "republic fighter"
 	cargo 0
 	personality
 		surveillance opportunistic
@@ -1523,7 +1526,8 @@ fleet "Large Deep Merchants"
 fleet "Small Deep Security"
 	government "Deep Security"
 	names "deep"
-	fighters "deep fighter"
+	fighters
+		names "deep fighter"
 	cargo 0
 	personality
 		heroic
@@ -1552,7 +1556,8 @@ fleet "Small Deep Security"
 fleet "Large Deep Security"
 	government "Deep Security"
 	names "deep"
-	fighters "deep fighter"
+	fighters
+		names "deep fighter"
 	cargo 0
 	personality
 		heroic
@@ -1632,7 +1637,8 @@ fleet "Small Oathkeeper"
 fleet "Large Oathkeeper"
 	government "Navy (Oathkeeper)"
 	names "republic capital"
-	fighters "republic fighter"
+	fighters
+		names "republic fighter"
 	cargo 0
 	personality
 		heroic opportunistic
@@ -1696,7 +1702,8 @@ fleet "Small Syndicate"
 fleet "Large Syndicate"
 	government "Syndicate"
 	names "syndicate capital"
-	fighters "syndicate fighter"
+	fighters
+		names "syndicate fighter"
 	cargo 2
 	personality
 		heroic
@@ -2528,7 +2535,8 @@ fleet "pirate raid"
 fleet "Syndicate Extremists"
 	government "Syndicate (Extremist)"
 	names "syndicate capital"
-	fighters "syndicate fighter"
+	fighters
+		names "syndicate fighter"
 	cargo 0
 	personality
 		heroic
@@ -3194,7 +3202,8 @@ fleet "Hired Guns"
 fleet "Human Wormhole Guards"
 	government "Republic that won't enter wormhole"
 	names "republic capital"
-	fighters "republic fighter"
+	fighters
+		names "republic fighter"
 	cargo 0
 	personality
 		heroic opportunistic
