@@ -20692,7 +20692,7 @@ system Levana
 		distance 153.26
 		period 7.17345
 	object
-		sprite planet/dust1-blimenlolam
+		sprite planet/dust1-b
 		distance 215.093
 		period 13.8295
 	object
