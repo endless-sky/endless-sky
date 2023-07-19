@@ -6367,7 +6367,7 @@ mission "Derelict Treasure Map"
 				`	(Loot the treasure.)`
 					goto end
 			label hai
-			`	Opening the cache reveals a large store of credits along with two hai Ion Cannons, these must be the alien weapons the map's owner wrote about.`
+			`	Opening the cache reveals a large store of credits along with two Hai Ion Cannons, these must be the alien weapons the map's owner wrote about.`
 			choice
 				`	(Loot the treasure.)`
 					goto end
