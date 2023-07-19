@@ -35,8 +35,8 @@ namespace {
 	Shader shader;
 	GLint scaleI;
 	GLint texI;
-	GLint maskI;
-	GLint useMaskI;
+	GLint swizzleMaskI;
+	GLint useSwizzleMaskI;
 	GLint frameI;
 	GLint frameCountI;
 	GLint positionI;
@@ -105,16 +105,15 @@ void SpriteShader::Init()
 		"  fragTexCoord = vec2(texCoord.x, min(clip, texCoord.y)) + blurOff;\n"
 		"}\n";
 
-	ostringstream fragmentCodeStream;
-	fragmentCodeStream <<
+	static const char *fragmentCode =
 		"// fragment sprite shader\n"
 		"precision mediump float;\n"
 #ifdef ES_GLES
 		"precision mediump sampler2DArray;\n"
 #endif
 		"uniform sampler2DArray tex;\n"
-		"uniform sampler2DArray mask;\n"
-		"uniform int useMask;\n"
+		"uniform sampler2DArray swizzleMask;\n"
+		"uniform int useSwizzleMask;\n"
 		"uniform float frame;\n"
 		"uniform float frameCount;\n"
 		"uniform vec2 blur;\n"
@@ -246,18 +245,15 @@ void SpriteShader::Init()
 		"      swizzleColor = vec4(0.f, 0.f, 0.f, color.a);\n"
 		"      break;\n"
 		"  }\n"
-		"  if(useMask > 0)\n"
+		"  if(useSwizzleMask > 0)\n"
 		"  {\n"
-		"    float factor = texture(mask, vec3(fragTexCoord, first)).r;\n"
+		"    float factor = texture(swizzleMask, vec3(fragTexCoord, first)).r;\n"
 		"    color = color * factor + swizzleColor * (1.0 - factor);\n"
 		"  }\n"
 		"  else\n"
 		"    color = swizzleColor;\n"
 		"  finalColor = color * alpha;\n"
 		"}\n";
-
-	static const string fragmentCodeString = fragmentCodeStream.str();
-	static const char *fragmentCode = fragmentCodeString.c_str();
 
 	shader = Shader(vertexCode, fragmentCode);
 	scaleI = shader.Uniform("scale");
@@ -270,8 +266,8 @@ void SpriteShader::Init()
 	clipI = shader.Uniform("clip");
 	alphaI = shader.Uniform("alpha");
 	swizzlerI = shader.Uniform("swizzler");
-	maskI = shader.Uniform("mask");
-	useMaskI = shader.Uniform("useMask");
+	swizzleMaskI = shader.Uniform("swizzleMask");
+	useSwizzleMaskI = shader.Uniform("useSwizzleMask");
 
 	// Generate the vertex data for drawing sprites.
 	glGenVertexArrays(1, &vao);
@@ -318,7 +314,7 @@ SpriteShader::Item SpriteShader::Prepare(const Sprite *sprite, const Point &posi
 
 	Item item;
 	item.texture = sprite->Texture();
-	item.mask = useMask ? sprite->Mask() : 0;
+	item.swizzleMask = useMask ? sprite->SwizzleMask() : 0;
 	item.frame = frame;
 	item.frameCount = sprite->Frames();
 	// Position.
@@ -350,10 +346,10 @@ void SpriteShader::Add(const Item &item, bool withBlur)
 {
 	glUniform1i(texI, 0);
 	glBindTexture(GL_TEXTURE_2D_ARRAY, item.texture);
-	glUniform1i(maskI, 1);
-	glUniform1i(useMaskI, item.mask);
+	glUniform1i(swizzleMaskI, 1);
+	glUniform1i(useSwizzleMaskI, item.swizzleMask);
 	glActiveTexture(GL_TEXTURE1);
-	glBindTexture(GL_TEXTURE_2D_ARRAY, item.mask);
+	glBindTexture(GL_TEXTURE_2D_ARRAY, item.swizzleMask);
 	glActiveTexture(GL_TEXTURE0);
 
 	glUniform1f(frameI, item.frame);

@@ -33,7 +33,7 @@ public:
 	class Item {
 	public:
 		uint32_t texture = 0;
-		uint32_t mask = 0;
+		uint32_t swizzleMask = 0;
 		uint32_t swizzle = 0;
 		float frame = 0.f;
 		float frameCount = 1.f;

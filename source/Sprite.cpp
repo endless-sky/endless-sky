@@ -93,13 +93,13 @@ void Sprite::AddFrames(ImageBuffer &buffer, bool is2x)
 
 
 // Upload the given frames. The given buffer will be cleared afterwards.
-void Sprite::AddMaskFrames(ImageBuffer &buffer, bool is2x)
+void Sprite::AddSwizzleMaskFrames(ImageBuffer &buffer, bool is2x)
 {
 	// Do nothing if the buffer is empty.
 	if(!buffer.Pixels())
 		return;
 
-	AddBuffer(buffer, &mask[is2x]);
+	AddBuffer(buffer, &swizzleMask[is2x]);
 }
 
 
@@ -110,8 +110,8 @@ void Sprite::Unload()
 	glDeleteTextures(2, texture);
 	texture[0] = texture[1] = 0;
 
-	glDeleteTextures(2, mask);
-	mask[0] = mask[1] = 0;
+	glDeleteTextures(2, swizzleMask);
+	swizzleMask[0] = swizzleMask[1] = 0;
 
 	width = 0.f;
 	height = 0.f;
@@ -170,15 +170,15 @@ uint32_t Sprite::Texture(bool isHighDPI) const
 
 
 // Get the texture index, based on whether the screen is high DPI or not.
-uint32_t Sprite::Mask() const
+uint32_t Sprite::SwizzleMask() const
 {
-	return Mask(Screen::IsHighResolution());
+	return SwizzleMask(Screen::IsHighResolution());
 }
 
 
 
 // Get the index of the texture for the given high DPI mode.
-uint32_t Sprite::Mask(bool isHighDPI) const
+uint32_t Sprite::SwizzleMask(bool isHighDPI) const
 {
-	return (isHighDPI && mask[1]) ? mask[1] : mask[0];
+	return (isHighDPI && swizzleMask[1]) ? swizzleMask[1] : swizzleMask[0];
 }

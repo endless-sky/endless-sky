@@ -37,7 +37,7 @@ public:
 
 	// Upload the given frames. The given buffer will be cleared afterwards.
 	void AddFrames(ImageBuffer &buffer, bool is2x);
-	void AddMaskFrames(ImageBuffer &buffer, bool is2x);
+	void AddSwizzleMaskFrames(ImageBuffer &buffer, bool is2x);
 	// Free up all textures loaded for this sprite.
 	void Unload();
 
@@ -57,14 +57,14 @@ public:
 	uint32_t Texture() const;
 	uint32_t Texture(bool isHighDPI) const;
 
-	uint32_t Mask() const;
-	uint32_t Mask(bool isHighDPI) const;
+	uint32_t SwizzleMask() const;
+	uint32_t SwizzleMask(bool isHighDPI) const;
 
 private:
 	std::string name;
 
 	uint32_t texture[2] = {0, 0};
-	uint32_t mask[2] = {0, 0};
+	uint32_t swizzleMask[2] = {0, 0};
 
 	float width = 0.f;
 	float height = 0.f;

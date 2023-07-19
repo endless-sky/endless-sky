@@ -39,7 +39,7 @@ namespace {
 	}
 
 	// Determine whether the given path is to a swizzle mask.
-	bool IsMask(const string &path, bool is2x)
+	bool IsSwizzleMask(const string &path, bool is2x)
 	{
 		if(path.length() < 7 || (is2x && path.length() < 10))
 			return false;
@@ -72,7 +72,7 @@ namespace {
 		// The path always ends in a three-letter extension, ".png" or ".jpg".
 		// In addition, 3 more characters may be taken up by an @2x label or a mask label.
 		bool is2x = Is2x(path);
-		size_t end = path.length() - (is2x ? 7 : 4) - (IsMask(path, is2x) ? 3 : 0);
+		size_t end = path.length() - (is2x ? 7 : 4) - (IsSwizzleMask(path, is2x) ? 3 : 0);
 		// This should never happen, but just in case:
 		if(!end)
 			return 0;
@@ -111,14 +111,14 @@ namespace {
 
 	// Add consecutive frames from the given map to the given vector. Issue warnings for missing or mislabeled frames.
 	void AddValid(const map<size_t, string> &frameData, vector<string> &sequence,
-		const string &prefix, bool is2x, bool isMask) noexcept(false)
+		const string &prefix, bool is2x, bool isSwizzleMask) noexcept(false)
 	{
 		if(frameData.empty())
 			return;
 		// Valid animations (or stills) begin with frame 0.
 		if(frameData.begin()->first != 0)
 		{
-			Logger::LogError(prefix + "ignored " + (isMask ? "mask " : "") + (is2x ? "@2x " : "")
+			Logger::LogError(prefix + "ignored " + (isSwizzleMask ? "mask " : "") + (is2x ? "@2x " : "")
 				+ "frame " + to_string(frameData.begin()->first) + " (" + to_string(frameData.size())
 				+ " ignored in total). Animations must start at frame 0.");
 			return;
@@ -140,7 +140,7 @@ namespace {
 		if(next != frameData.end())
 		{
 			size_t ignored = distance(next, frameData.end());
-			Logger::LogError(prefix + "missing " + (isMask ? "mask " : "") + (is2x ? "@2x " : "") + "frame "
+			Logger::LogError(prefix + "missing " + (isSwizzleMask ? "mask " : "") + (is2x ? "@2x " : "") + "frame "
 				+ to_string(it->first + 1) + " (" + to_string(ignored)
 				+ (ignored > 1 ? " frames" : " frame") + " ignored in total).");
 		}
@@ -211,10 +211,9 @@ void ImageSet::Add(string path)
 {
 	// Determine which frame of the sprite this image will be.
 	bool is2x = Is2x(path);
-	bool isMask = IsMask(path, is2x);
 	size_t frame = FrameIndex(path);
 	// Store the requested path.
-	framePaths[is2x + (2 * isMask)][frame].swap(path);
+	framePaths[is2x + (2 * IsSwizzleMask(path, is2x))][frame].swap(path);
 }
 
 
@@ -339,8 +338,8 @@ void ImageSet::Upload(Sprite *sprite)
 	// Load the frames (this will clear the buffers).
 	sprite->AddFrames(buffer[0], false);
 	sprite->AddFrames(buffer[1], true);
-	sprite->AddMaskFrames(buffer[2], false);
-	sprite->AddMaskFrames(buffer[3], true);
+	sprite->AddSwizzleMaskFrames(buffer[2], false);
+	sprite->AddSwizzleMaskFrames(buffer[3], true);
 	GameData::GetMaskManager().SetMasks(sprite, std::move(masks));
 	masks.clear();
 }
