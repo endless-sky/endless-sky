@@ -113,6 +113,36 @@ void ShipInfoPanel::Draw()
 		interfaceInfo.SetCondition("three buttons");
 	if(player.HasLogs())
 		interfaceInfo.SetCondition("enable logbook");
+	/*
+	double maxX = 0.;
+	int count[2][2] = {{0, 0}, {0, 0}};
+	for(const Hardpoint &hardpoint : (**shipIt).Weapons())
+	{
+		// Multiply hardpoint X by 2 to convert to sprite pixels.
+		maxX = max(maxX, fabs(2. * hardpoint.GetPoint().X()));
+		++count[hardpoint.GetPoint().X() >= 0.][hardpoint.IsTurret()];
+	}
+	// If necessary, shrink the sprite to keep the hardpoints inside the labels.
+	// The width of this UI block will be 2 * (LABEL_WIDTH + HARDPOINT_DX).
+	static const double LABEL_WIDTH = 150.;
+	static const double LABEL_DX = 95.;
+	static const double LABEL_PAD = 5.;
+	// Figure out how much to scale the sprite by.
+	const Sprite *sprite = (**shipIt).GetSprite();
+	double scale = 0.;
+	if(sprite)
+		scale = min(1., min((WIDTH - 10) / sprite->Width(), (WIDTH - 10) / sprite->Height()));
+	if(maxX > (LABEL_DX - LABEL_PAD))
+		scale = min(scale, (LABEL_DX - LABEL_PAD) / (2. * maxX));
+	// Figure out how tall each part of the weapon listing will be.
+	int gunRows = max(count[0][0], count[1][0]);
+	int turretRows = max(count[0][1], count[1][1]);
+	// If there are both guns and turrets, add a gap of ten pixels.
+	double height = 20. * (gunRows + turretRows) + 10. * (gunRows && turretRows);
+	bool pageNeeded = height > (250 * scale);
+	if(pageNeeded)
+		interfaceInfo.SetCondition("paged hardpoints");
+	*/
 
 	// Draw the interface.
 	const Interface *infoPanelUi = GameData::Interfaces().Get("info panel");
@@ -215,7 +245,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 	else if(command.Has(Command::MAP) || key == 'm')
 		GetUI()->Push(new MissionPanel(player));
 	else if(key == 'e')
-		pageIndex = pageIndex >= pages - 1 ? pageIndex : pageIndex + 1;
+		pageIndex = pageIndex >= pages ? pageIndex : pageIndex + 1;
 	else if(key == 'r')
 		pageIndex = pageIndex <= 1 ? pageIndex : pageIndex - 1;
 	else if(key == 'l' && player.HasLogs())
@@ -242,14 +272,6 @@ bool ShipInfoPanel::Click(int x, int y, int /* clicks */)
 
 	selectedCommodity.clear();
 	selectedPlunder = nullptr;
-	double yDimension = GameData::Interfaces().Get("hardpoint buttons")->GetValue("y dimensions");
-	if(x <= nextHardpoint.X() + 145. && x >= nextHardpoint.X() + 105.
-		&& y <= nextHardpoint.Y() + yDimension && y >= nextHardpoint.Y() - yDimension)
-		return DoKey('e');
-	if(x <= previousHardpoint.X() + 60. && x >= previousHardpoint.X()
-		&& y <= previousHardpoint.Y() + yDimension && y >= previousHardpoint.Y() - yDimension)
-		return DoKey('r');
-
 	Point point(x, y);
 	for(const auto &zone : commodityZones)
 		if(zone.Contains(point))
@@ -466,8 +488,8 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	int turretRows = max(count[0][1], count[1][1]);
 	// If there are both guns and turrets, add a gap of ten pixels.
 	double height = 20. * (gunRows + turretRows) + 10. * (gunRows && turretRows);
-	bool pageNeeded = height > (sprite->Height() * scale);
-	height = pageNeeded ? sprite->Height() * scale : height;
+	bool pageNeeded = height > (bounds.Height() * scale);
+	height = pageNeeded ? bounds.Height() * scale : height;
 
 	const double centerX = bounds.Center().X();
 	const double labelCenter[2] = {-.5 * LABEL_WIDTH - LABEL_DX, LABEL_DX + .5 * LABEL_WIDTH};
@@ -482,10 +504,10 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	auto layout = Layout(static_cast<int>(LABEL_WIDTH), Truncate::BACK);
 
 	// First calculate how many pages are needed. One is always there.
-	pages = 1;
+	pages = pageNeeded ? 0 : 1;
 	int gunIndex = 0;
 	int turretIndex = 0;
-	int rowsPerPage = static_cast<int>((sprite->Height() * scale) / 10.) - 1;
+	int rowsPerPage = static_cast<int>((bounds.Height() * scale) / 10.) - 1;
 	int offset = 0;
 	while(pageNeeded)
 	{
@@ -591,17 +613,6 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 			DrawElements(weaponsRight, weaponIndex, true);
 		if(weaponsLeft.size() > static_cast<unsigned int>(weaponIndex))
 			DrawElements(weaponsLeft, weaponIndex, false);
-	}
-
-	if(pages > 1)
-	{
-		const Interface *hardpointButtonValues = GameData::Interfaces().Get("hardpoint buttons");
-		layout.align = Alignment::RIGHT;
-		nextHardpoint = Point(centerX + LABEL_DX, hardpointButtonValues->GetValue("y position"));
-		font.Draw({"n_ext>", layout}, nextHardpoint , Color(.5, .0));
-		layout.align = Alignment::LEFT;
-		previousHardpoint = Point(centerX - LABEL_DX - LABEL_WIDTH, 260.);
-		font.Draw({"<p_revious", layout}, previousHardpoint, Color(.5, .0));
 	}
 
 	// Make sure the line for whatever hardpoint we're hovering is always on top.

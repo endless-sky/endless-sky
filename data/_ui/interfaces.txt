@@ -1288,6 +1288,14 @@ interface "info panel"
 		center 45 305
 		dimensions 90 30
 	
+	visible if "paged hardpoints"
+	button e "n_ext>"
+		center 95 260.
+		dimensions 40 25
+	button r "<p_revious"
+		center -95 260.
+		dimensions 60 25
+	
 	visible if "show park"
 	active if "can park"
 	sprite "ui/dialog cancel"
@@ -1350,12 +1358,6 @@ interface "info panel"
 	button v "Sa_ve Order"
 		center -195 305
 		dimensions 90 30
-
-
-
-interface "hardpoint buttons"
-	value "y position" 260.
-	value "y dimensions" 12.5
 
 
 

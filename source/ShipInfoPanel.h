@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef SHIP_INFO_PANEL_H_
 #define SHIP_INFO_PANEL_H_
 
+#include "Information.h"
 #include "Panel.h"
 
 #include "ClickZone.h"
@@ -98,8 +99,6 @@ private:
 	std::vector<int> indicesLeft;
 	bool hoverRight = false;
 	bool dragRight = false;
-	Point nextHardpoint = Point(0.0, 0.0);
-	Point previousHardpoint = Point(0.0, 0.0);
 
 	std::vector<ClickZone<std::string>> commodityZones;
 	std::vector<ClickZone<const Outfit *>> plunderZones;
