@@ -426,8 +426,20 @@ mission "Hai Legacy 3"
 			label next
 			`	"I must congratulate you, I never expected you had it in you. I only have one word and will give you authorization to land, on the condition that you keep this relic from our past in good condition!`
 			`	"Make sure you do not lose it until you earn the right to call us friends, or we will take it very seriously. Oh, and there are taxes on the daily fee. I hope you don't mind."`
-		outfit "Unfettered Landing Permit"
-		log "Managed to use an old ladybug to beat a few Lightning Bugs, earning myself a place in Unfettered territory for a daily cost, as long as the Ancient Ladybug is kept intact."
+			choice
+				`	"Thank you for your trust."`
+					goto trust
+				`	"I refuse to pay much that for simple access."`
+			action
+				"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
+				log "Won a fight against a few Lightning Bugs in an Ancient Ladybug, but decided against paying the fee of 681 to land."
+			`	"What? Oh well the winner of the challenge can always refuse the spoils, I suppose. In that case our conflict will resume."`
+				decline
+			label trust
+			action
+				outfit "Unfettered Landing Permit"
+				log "Managed to use an old ladybug to beat a few Lightning Bugs, earning myself a place in Unfettered territory for a daily cost, as long as the Ancient Ladybug is kept intact."
+		
 
 mission "Undeserved Ladybug"
 	landing
