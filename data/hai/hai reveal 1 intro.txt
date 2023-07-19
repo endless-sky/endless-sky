@@ -41,7 +41,7 @@ mission "Hai Reveal Exploration Period: Concerned Hai"
 			`	He takes a deep breath to steady himself before responding. "Unfortunately, yes. Fortunately for me, he was one of those captains who forget that walking up and down the length of your ship doesn't really qualify as regular exercise.`
 			label "shop sign"
 			`	"It's all a very unfortunate situation at the moment. With the increased appearance of humans in our space, and the uncertainty over what's going on, some merchants aren't plying the trade they usually do back and forth. The supplies of a few select things that are imported from the Republic have not been appearing quite as often, and so some Hai have taken to stockpiling certain commodities in case the supply shuts off entirely." He looks pointedly at the snus packs. "Tobacco is one of those commodities. Regulations prevent it from being grown on any Hai worlds. So, unless someone goes to the effort of setting up a greenhouse in space, that's entirely imported."`
-			`	He shrugs. "Personally, I think it's a gross habit, but it's far from being the only addictive substance around. It gives Hai a slightly improved intuition for maths btw, not quite the same effect as on humans. Which is why it's popular with merchants, but that captain has had some bad luck, and they'd been sold out at his last three stops."`
+			`	He shrugs. "Personally, I think it's a gross habit, but it's far from being the only addictive substance around. It gives Hai a slightly improved intuition for maths by the way, not quite the same effect as on humans. Which is why it's popular with merchants, but that captain has had some bad luck, and they'd been sold out at his last three stops."`
 			choice
 				`	"Sounds like the supply is short."`
 				`	"Sounds like a recipe for danger. Are you ok?"`
@@ -318,8 +318,8 @@ mission "Hai Reveal Concern Period: Raid on Allhome (away)"
 					goto walking
 			
 			`	As you approach the human, a relatively young-looking man, glances up at you. "Oh hello, just arrived did you? You didn't happen to see an Argosy out there on your way in?"`
-			`	"Oh shush," says the Hai, "Your uncle will be here when said he will, no need to bother random folks just going about their business."`
-			`	She looks at you with a wary eye, but then seems to relent. "Though I suppose you did come over here of your own volition didn't you. Can we help you at all Captain?"`
+			`	"Oh shush," says the Hai, "Your uncle will be here when he said he will, no need to bother random folks just going about their business."`
+			`	She looks at you with a wary eye, but then seems to relent. "Though I suppose you did come over here of your own volition didn't you. Can we help you at all, Captain?"`
 			choice
 				`	"Is this a common problem for Allhome?"`
 				`	"I heard you say this happened on Solace?"`
@@ -327,15 +327,15 @@ mission "Hai Reveal Concern Period: Raid on Allhome (away)"
 					
 			`	"Oh imperishables, no, not at all. It's completely unprecedented for something like that to happen, and in broad daylight too from the looks of the footage," she says.`
 			`	"It's like I was saying before, Auntie, ever since the retraction and that advisory, I swear no one except pirates is trying to get through the wormhole anymore."`
-			`	He looks at you seriously, "It's getting so bad that it's starting to feel like it did during the war, when all the militia were away and before the Free Worlds got a handle on the pirates. It seemed like every new ship that arrived was there to try and rob us, and it's the same now. We came here to be safe, but now it feels like all the government has managed to do is make sure that no one friendly is willing to risk the journey..."`
+			`	He looks at you seriously. "It's getting so bad that it's starting to feel like it did during the war, when all the militia were away and before the Free Worlds got a handle on the pirates. It seemed like every new ship that arrived was there to try and rob us, and it's the same now. We came here to be safe, but now it feels like all the government has managed to do is make sure that no one friendly is willing to risk the journey..."`
 				goto resolve
 			
 			label solace
-			`	The guy sits up a little straighter. "When the war started and most of the militia went away to the front, before the Free Worlds got a handle on the pirates, Solace essentially came under siege. Other than the regular merchants that we were familiar with, it seemed like every new ship that arrived was there to try and rob us. Either raiding the regulars, or raiding the planet.`
+			`	The young man sits up a little straighter. "When the war started and most of the militia went away to the front, before the Free Worlds got a handle on the pirates, Solace essentially came under siege. Other than the regular merchants that we were familiar with, it seemed like every new ship that arrived was there to try and rob us. Either raiding the regulars, or raiding the planet.`
 			`	"And now with all this," he says, gesturing to the screen. "It feels much the same now, and the Hai seem no better prepared for it than we were. Ever since the retraction and that advisory, it feels like pirates are the only ones showing up through the wormhole anymore. We came here to be safe, but now it feels like all the government has managed to do is make sure that no one friendly is willing to risk the journey..."`
 			
 			label resolve
-			`	His lip quivers and she takes his hand firmly in her own. "You are safe with your Uncle and I," she says, forcefully emphasizing the word 'are', "it will take far more than some pressure from a few pirates to threaten the peace here."`
+			`	His lip quivers and she takes his hand firmly in her own. "You are safe with your uncle and I," she says, forcefully emphasizing the word 'are', "it will take far more than some pressure from a few pirates to threaten the peace here."`
 			`	He nods and stands up, heading towards the restroom. "Excuse me Auntie, I need a minute."`
 			
 			choice
@@ -345,7 +345,7 @@ mission "Hai Reveal Concern Period: Raid on Allhome (away)"
 					goto "him ok"
 				`	"Are you ok?"`
 					goto "she ok"
-				`	"You're his Aunt?"`
+				`	"You're his aunt?"`
 			`	She gives you a strange look, as if unsure whether to dignify that with a response, and then answers. "His mother was in the militia during the war. She died. His father did not survive that loss. He came to be looked after by his uncle who had heard rumors of the Hai, and couldn't afford to both look after him and pay his debts in the Free Worlds. So they came here and found me."`
 				goto uncle
 			label "him ok"
@@ -360,7 +360,7 @@ mission "Hai Reveal Concern Period: Raid on Allhome (away)"
 				goto leave
 				
 			label peace
-			`	"Thank you, but it is okay Captain.`
+			`	"Thank you, but it is okay, Captain.`
 			label leave
 			`	"Do not trouble yourself over having questioned us. There is no shortcut for processing trauma, and it does the boy no good to hide from the world."`
 			`	She gestures at the screen. "No doubt many people will have many ideas for how to help things soon enough. If it troubles you, lend them a hand. Now, be about your business and farewell."`

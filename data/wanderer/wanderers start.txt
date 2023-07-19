@@ -1991,7 +1991,7 @@ mission "Wanderers Hai Assistance 2"
 			`	Another elder responds, "But, we promised in the Frostmark Accords that we would not interfere in Unfettered space."`
 			`	"They have never kept their side of the treaty," says yet another of the elders, "and surely the prevention of genocide is enough reason to break ours."`
 			`	Teeneep responds, "You can hardly fault them for that; a treaty under duress is no treaty at all. No amount of begging or negotiating will convince them to stop their war. They recognize only strength, not the pleas of a coward. We must show strength, and so must the Wanderers. We should increase our fleets at Wah Ki, making ourselves more of a threat."`
-			`	Some of the other Elders nod in agreement, but a smattering of dissent is voiced loudly enough that the older Elder from before interjects, "Perhaps there are other suggestions we may consider?".`
+			`	Some of the other Elders nod in agreement, but a smattering of dissent is voiced loudly enough that the older Elder from before interjects, "Perhaps there are other suggestions we may consider?"`
 			choice
 				`	"Could you threaten to cut off aid to the Unfettered if they continue their aggression?"`
 				`	"Could you launch an attack on the Unfettered, force them to fight a war on two fronts?"`
