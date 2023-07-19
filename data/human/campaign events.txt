@@ -541,7 +541,8 @@ event "southern carriers 1"
 	outfitter "Syndicate Advanced"
 		"X1050 Ion Engines"
 	fleet "Small Free Worlds"
-		fighters "free worlds fighters"
+		fighters
+			names "free worlds fighters"
 		add variant 1
 			"Nest"
 			"Finch" 2
@@ -557,7 +558,8 @@ event "southern carriers 2"
 	outfitter "Syndicate Basics"
 		"X1050 Ion Engines"
 	fleet "Large Southern Merchants"
-		fighters "free worlds fighter"
+		fighters
+			names "free worlds fighter"
 		add variant 15
 			"Hauler III"
 			"Nest"
@@ -577,7 +579,8 @@ event "southern carriers 2"
 			"Boxwing" 6
 
 	fleet "Small Independent"
-		fighters "free worlds fighter"
+		fighters
+			names "free worlds fighter"
 		add variant 1
 			"Nest"
 			"Barb" 2
@@ -595,7 +598,8 @@ event "southern carriers 3"
 		"Roost"
 		"Skein"
 	fleet "Large Free Worlds"
-		fighters "free worlds fighters"
+		fighters
+			names "free worlds fighters"
 		add variant 2
 			"Roost"
 			"Finch" 4
@@ -621,7 +625,8 @@ event "southern carriers 3"
 
 event "southern carriers 4"
 	fleet "Large Northern Merchants"
-		fighters "free worlds fighter"
+		fighters
+			names "free worlds fighter"
 		add variant 2
 			"Hauler III"
 			"Hauler II"
@@ -654,7 +659,8 @@ event "southern carriers 4"
 			"Barb (Gatling)" 4
 
 	fleet "Large Independent"
-		fighters "free worlds fighter"
+		fighters
+			names "free worlds fighter"
 		add variant 2
 			"Roost"
 			"Barb" 4
