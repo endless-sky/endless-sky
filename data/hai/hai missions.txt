@@ -1457,7 +1457,7 @@ mission "Strider: Coalition 2"
 			`	"Developed such technology, indeed we have," an Arach agent responds. "Composed of several dozens of small repair bots, and their center of command, such outfits are."`
 			choice
 				`	"So are you willing to give or sell one of those outfits to the Hai?"`
-				`	"Would you share the way of mass producing those outfits with the Hai?"`
+				`	"Would you share the way of mass-producing those outfits with the Hai?"`
 			`	"Much involved in projecting our repair modules, House Chamgar is," the same Arach says. "Contact their representatives in this ring, we will."`
 			`	"Do you desire anything in return?" Yashili asks the agent.`
 			`	"In return, we ask nothing. Helping you extend beyond the limits placed upon you by the Quarg, enough of a reward is," the Arach responds. Yashili looks somewhat puzzled, but does not press the issue any further.`

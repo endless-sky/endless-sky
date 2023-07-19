@@ -3995,6 +3995,50 @@ system Alhena
 			distance 275
 			period 12.2356
 
+system "Al Hurr"
+	hidden
+	pos -432 -491
+	government "Uninhabited"
+	belt 1312
+	haze _menu/haze-brown
+	trade "Clothing" 201
+	trade "Electronics" 658
+	trade "Equipment" 484
+	trade "Food" 280
+	trade "Heavy Metals" 850
+	trade "Industrial" 621
+	trade "Luxury Goods" 1134
+	trade "Medical" 582
+	trade "Metal" 339
+	trade "Plastic" 353
+	object
+		sprite star/f5
+		period 10
+	object
+		sprite planet/rock15
+		distance 382
+		period 52.6472
+	object
+		sprite planet/rock6
+		distance 686
+		period 77.7827
+	object Aspiration
+		sprite planet/ice8-b
+		distance 980
+		period 98.6622
+	object
+		sprite planet/dust6
+		distance 1299
+		period 119.0528
+	object
+		sprite planet/gas1
+		distance 1706.99
+		period 557.553
+		object
+			sprite planet/dust1
+			distance 216
+			period 11.1964
+
 system Alioth
 	pos -620 315
 	government Republic
@@ -9274,7 +9318,7 @@ system Debrugt
 system "Deep Space 19K12"
 	pos -1113 -747
 	government Uninhabited
-	attributes "proto-system" "notable star"
+	attributes "proto-system" "notable star" "inaccessible"
 	arrival 500
 	habitable 135
 	belt 1977
@@ -9305,7 +9349,7 @@ system "Deep Space 19K12"
 system "Deep Space 19M1"
 	pos -895 -745
 	government Uninhabited
-	attributes "giant star" "notable star"
+	attributes "giant star" "notable star" "inaccessible"
 	arrival 4050
 	habitable 4050
 	belt 2115
@@ -9379,6 +9423,7 @@ system "Deep Space 19M1"
 system "Deep Space 19M2"
 	pos -960 -777
 	government Uninhabited
+	attributes "inaccessible"
 	arrival 3430
 	habitable 3430
 	belt 1977
@@ -9434,7 +9479,7 @@ system "Deep Space 19M2"
 system "Deep Space 19M5"
 	pos -1133 -828
 	government Uninhabited
-	attributes "proto-system" "notable star"
+	attributes "proto-system" "notable star" "inaccessible"
 	arrival 500
 	habitable 370
 	belt 1977
@@ -9491,7 +9536,7 @@ system "Deep Space 19M5"
 system "Deep Space 1Q"
 	pos -920 -668
 	government Uninhabited
-	attributes "bright star" "notable star"
+	attributes "bright star" "notable star" "inaccessible"
 	arrival 3650
 	habitable 3650
 	belt 2577
@@ -9562,7 +9607,7 @@ system "Deep Space 1Q"
 system "Deep Space 1X"
 	pos -935 -695
 	government Uninhabited
-	attributes "notable star" "nova"
+	attributes "notable star" "nova" "inaccessible"
 	arrival 500
 	habitable 100
 	belt 1751
@@ -9588,6 +9633,7 @@ system "Deep Space 1X"
 system "Deep Space 5J"
 	pos -890 -532
 	government Uninhabited
+	attributes "inaccessible"
 	arrival 1715
 	habitable 1715
 	belt 1869
@@ -9651,6 +9697,7 @@ system "Deep Space 5J"
 system "Deep Space 5N"
 	pos -895 -584
 	government Uninhabited
+	attributes "inaccessible"
 	arrival 980
 	habitable 980
 	belt 1236
@@ -9701,6 +9748,7 @@ system "Deep Space 5N"
 system "Deep Space 5T"
 	pos -863 -615
 	government Uninhabited
+	attributes "inaccessible"
 	arrival 500
 	habitable 320
 	belt 1302
@@ -9753,6 +9801,7 @@ system "Deep Space 5T"
 system "Deep Space 7C"
 	pos -774 -450
 	government Uninhabited
+	attributes "inaccessible"
 	arrival 500
 	habitable 425
 	belt 2309
@@ -9802,13 +9851,14 @@ system "Deep Space 7C"
 		distance 2557.67
 		period 2509.76
 	object "Devil-Run Wormhole"
-		sprite planet/wormhole-red
+		sprite planet/wormhole
 		distance 4106.27
 		period 5105.48
 
 system "Deep Space 7F"
 	pos -814 -472
 	government Uninhabited
+	attributes "inaccessible"
 	arrival 1080
 	habitable 1080
 	belt 1319
@@ -10262,8 +10312,10 @@ system Denebola
 		period 2677.01
 
 system Devil-Hide
+	hidden
 	pos -1047 -775
 	government "Pirate (Devil-Run Gang)"
+	attributes "inaccessible"
 	arrival 500
 	habitable 10
 	belt 5000
@@ -10299,19 +10351,12 @@ system Devil-Hide
 
 system Devil-Run
 	hidden
-	pos -19 179
+	pos -148 162
 	government Uninhabited
+	attributes "inaccessible"
 	arrival 1080
 	habitable 1080
-	asteroids "small rock" 121 1.9558
-	asteroids "medium rock" 14 1.9096
-	asteroids "large rock" 28 1.4784
-	asteroids "small metal" 8 1.8326
-	asteroids "medium metal" 77 2.2946
-	asteroids "large metal" 19 1.7094
-	minables uranium 46 2.98163
-	minables tungsten 18 3.78094
-	minables titanium 4 2.67322
+	haze _menu/haze-brown
 	trade Clothing 271
 	trade Electronics 722
 	trade Equipment 623
@@ -10322,7 +10367,6 @@ system Devil-Run
 	trade Medical 801
 	trade Metal 273
 	trade Plastic 394
-	fleet "Korath Raid" 30000
 	object
 		sprite star/g0
 		period 10
@@ -10331,7 +10375,7 @@ system Devil-Run
 		distance 351.97
 		period 80.3723
 	object "Devil-Run Wormhole"
-		sprite planet/wormhole-red
+		sprite planet/wormhole
 		distance 1805.33
 		period 933.647
 
