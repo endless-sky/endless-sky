@@ -610,11 +610,15 @@ void Engine::Step(bool isActive)
 
 	const System *currentSystem = player.GetSystem();
 	
-	if(flagship && currentSystem)
+	// Check through the list of NPC ships from active missions
+	// to hit their "on encounter" triggers
+	// You can only encounter an NPC if you're not cloaked
+	if(flagship && currentSystem && flagship->Cloaking() == 0)
 		for(const Mission &mission : player.Missions())
 			for(const NPC &npc : mission.NPCs())
 				for(const shared_ptr<Ship> &npcShip : npc.Ships())
-					if(npcShip->GetSystem() == currentSystem)
+					// You can only encounter an NPC if *they're* not cloaked
+					if(npcShip->GetSystem() == currentSystem && npcShip->Cloaking() == 0)
 						eventQueue.emplace_back(flagship, npcShip, ShipEvent::ENCOUNTER);
 
 	// Update this here, for thread safety.
