@@ -98,7 +98,8 @@ mission "Liberate Kornephoros"
 		system "Kornephoros"
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Heavy)" 2
 				"Combat Drone" 8
@@ -106,7 +107,8 @@ mission "Liberate Kornephoros"
 				"Rainmaker" 2
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Heavy)"
 				"Combat Drone" 4
@@ -114,7 +116,8 @@ mission "Liberate Kornephoros"
 				"Gunboat" 2
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Heavy)"
 				"Combat Drone" 4
@@ -1332,7 +1335,8 @@ mission "FW Pirates: Attack 2"
 				"Osprey (Missile)" 2
 		fleet
 			names "free worlds capital"
-			fighters "free worlds fighters"
+			fighters
+				names "free worlds fighters"
 			variant
 				"Skein"
 				"Roost"
@@ -2021,7 +2025,8 @@ mission "FW Early Warning 4"
 		system "Wei"
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Heavy)" 2
 				"Combat Drone" 8

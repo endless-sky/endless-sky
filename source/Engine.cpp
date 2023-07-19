@@ -2261,8 +2261,21 @@ void Engine::DoCollection(Flotsam &flotsam)
 	}
 	if(!collector)
 		return;
-	if(collector == player.Flagship() && !Preferences::Has("Flagship flotsam collection"))
-		return;
+
+	// Checks for player FlotsamCollection setting
+	if(collector->IsYours())
+	{
+		const auto flotsamSetting = Preferences::GetFlotsamCollection();
+		if(flotsamSetting == Preferences::FlotsamCollection::OFF)
+			return;
+		if(collector == player.Flagship())
+		{
+			if(flotsamSetting == Preferences::FlotsamCollection::ESCORT)
+				return;
+		}
+		else if(flotsamSetting == Preferences::FlotsamCollection::FLAGSHIP)
+			return;
+	}
 
 	// Transfer cargo from the flotsam to the collector ship.
 	int amount = flotsam.TransferTo(collector);
