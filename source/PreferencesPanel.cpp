@@ -74,6 +74,7 @@ namespace {
 	const string TARGET_ASTEROIDS_BASED_ON = "Target asteroid based on";
 	const string BACKGROUND_PARALLAX = "Parallax background";
 	const string ALERT_INDICATOR = "Alert indicator";
+	const string FLAGSHIP_VELOCITY_INDICATOR = "Flagship Velocity Indicator";
 
 	// How many pages of settings there are.
 	const int SETTINGS_PAGE_COUNT = 2;
@@ -263,6 +264,8 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 			}
 			else if(zone.Value() == ALERT_INDICATOR)
 				Preferences::ToggleAlert();
+			else if(zone.Value() == FLAGSHIP_VELOCITY_INDICATOR)
+				Preferences::ToggleFlagshipVelocityIndicator();
 			// All other options are handled by just toggling the boolean state.
 			else
 				Preferences::Set(zone.Value(), !Preferences::Has(zone.Value()));
@@ -384,8 +387,7 @@ void PreferencesPanel::DrawControls()
 	table.DrawAt(Point(-130, firstY));
 
 	static const string CATEGORIES[] = {
-		"Keyboard Navigation",
-		"Interface",
+		"Navigation",
 		"Targeting",
 		"Weapons",
 		"Interface",
@@ -398,13 +400,13 @@ void PreferencesPanel::DrawControls()
 		Command::LEFT,
 		Command::RIGHT,
 		Command::BACK,
+		Command::MOUSE_TURNING_HOLD,
+		Command::LATERALLEFT,
+		Command::LATERALRIGHT,
 		Command::AFTERBURNER,
 		Command::AUTOSTEER,
 		Command::LAND,
 		Command::JUMP,
-		Command::NONE,
-		Command::MAP,
-		Command::INFO,
 		Command::NONE,
 		Command::NEAREST,
 		Command::TARGET,
@@ -417,9 +419,10 @@ void PreferencesPanel::DrawControls()
 		Command::SELECT,
 		Command::SECONDARY,
 		Command::CLOAK,
-		Command::MOUSE_TURNING_HOLD,
 		Command::NONE,
 		Command::MENU,
+		Command::MAP,
+		Command::INFO,
 		Command::FULLSCREEN,
 		Command::FASTFORWARD,
 		Command::NONE,
@@ -480,11 +483,11 @@ void PreferencesPanel::DrawControls()
 			table.Draw(command.KeyName(), isEditing ? bright : medium);
 		}
 	}
-
+	// todo: adjust position of this table and verify preference positions didn't get messed up.
 	Table shiftTable;
 	shiftTable.AddColumn(125, {150, Alignment::RIGHT});
 	shiftTable.SetUnderline(0, 130);
-	shiftTable.DrawAt(Point(-400, 32));
+	shiftTable.DrawAt(Point(-400, 17));
 
 	shiftTable.DrawUnderline(medium);
 	shiftTable.Draw("With <shift> key", bright);
@@ -551,6 +554,12 @@ void PreferencesPanel::DrawSettings()
 		"Show asteroid scanner overlay",
 		"Highlight player's flagship",
 		"Rotate flagship in HUD",
+		FLAGSHIP_VELOCITY_INDICATOR,
+		"Show flagship data in HUD",
+		"Show planet labels",
+		"Show mini-map",
+		"Show asteroid scanner overlay",
+		"Always underline shortcuts",
 		"Show planet labels",
 		"Show mini-map",
 		"Clickable radar display",
@@ -564,6 +573,7 @@ void PreferencesPanel::DrawSettings()
 		TURRET_TRACKING,
 		TARGET_ASTEROIDS_BASED_ON,
 		BOARDING_PRIORITY,
+		"Disable auto-stabilization",
 		EXPEND_AMMO,
 		FLOTSAM_SETTING,
 		FIGHTER_REPAIR,
@@ -761,6 +771,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = Preferences::GetAlertIndicator() != Preferences::AlertIndicator::NONE;
 			text = Preferences::AlertSetting();
+		}
+		else if(setting == FLAGSHIP_VELOCITY_INDICATOR)
+		{
+			isOn = Preferences::GetFlagshipVelocityIndicator() != Preferences::FlagshipVelocityIndicator::OFF;
+			text = Preferences::FlagshipVelocityIndicatorSetting();
 		}
 		else
 			text = isOn ? "on" : "off";

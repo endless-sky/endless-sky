@@ -1,4 +1,23 @@
-# Endless Sky
+# Endless Sky - Delta
+
+This is the Rapid Development and Experimentation fork of the Endless Sky project, and is colloquially known as "Endless Sky Delta" or "Revamp 2.0." The purpose is to be an area where more changes can be worked on, trialed, and experimented with.
+
+If you are looking for a stable version of Endless Sky to play, you should go to https://github.com/endless-sky/endless-sky instead.
+If you are looking to try out the cutting edge (and possible failures) of our attempts to make Endless Sky better, this is the place to be.
+
+# Development
+
+Look here to find a list of implemented features and to talk about them: https://github.com/endless-sky/Endless-Sky-Delta/discussions/15
+
+This fork has a number of branches, two of which are our primary work environment.
+
+Mirror : This is our base branch, and is kept synchronized with the main Endless Sky "master" branch.
+- Main : This is our long-term branch that will collect all the changes we have tried out and feel should be a permanent part of the game. It is based on "Mirror."
+- - Experimental : This is our experimental working area. All our changes start out here where they can be tested in conjunction with many other changes. It is based on "Main."
+
+**All PRs suggesting changes should be made to the "Experimental" branch.**
+
+------
 
 Explore other star systems. Earn money by trading, carrying passengers, or completing missions. Use your earnings to buy a better ship or to upgrade the weapons and engines on your current one. Blow up pirates. Take sides in a civil war. Or leave human space behind and hope to find some friendly aliens whose culture is more civilized than your own...
 

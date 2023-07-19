@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Angle.h"
 #include "Point.h"
 
+#include <utility>
 #include <vector>
 
 class Outfit;
@@ -32,9 +33,25 @@ class Visual;
 // which may or may not have a weapon installed.
 class Hardpoint {
 public:
+	// The base attributes of a hardpoint, without considering additional limitations of the installed outfit.
+	struct BaseAttributes {
+		// The angle that this weapon is aimed at (without harmonization/convergence), relative to the ship.
+		// The turret should point to this angle when idling.
+		Angle baseAngle;
+		// Indicates if this hardpoint disallows converging (guns and the idle position of turrets).
+		bool isParallel;
+		// An omnidirectional turret can rotate infinitely.
+		bool isOmnidirectional;
+		// Range over which the turret can turn, from leftmost position to rightmost position.
+		// (directional turret only)
+		Angle minArc;
+		Angle maxArc;
+	};
+
+public:
 	// Constructor. Hardpoints may or may not specify what weapon is in them.
-	Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret,
-		bool isParallel, bool isUnder, const Outfit *outfit = nullptr);
+	Hardpoint(const Point &point, const BaseAttributes &attributes,
+		bool isTurret, bool isUnder, const Outfit *outfit = nullptr);
 
 	// Get the weapon installed in this hardpoint (or null if there is none).
 	const Outfit *GetOutfit() const;
@@ -44,13 +61,19 @@ public:
 	const Point &GetPoint() const;
 	// Get the angle that this weapon is aimed at, relative to the ship.
 	const Angle &GetAngle() const;
-	// Get the base angle that this weapon is aimed at (without harmonization/convergence), relative to the ship.
-	const Angle &GetBaseAngle() const;
+	// Get the angle of a turret when idling, relative to the ship.
+	// For guns, this function is equal to GetAngle().
+	const Angle &GetIdleAngle() const;
+	// Get the arc of fire if this is a directional turret,
+	// otherwise a pair of 180 degrees + baseAngle.
+	const Angle &GetMinArc() const;
+	const Angle &GetMaxArc() const;
 	// Get the angle this weapon ought to point at for ideal gun harmonization.
 	Angle HarmonizedAngle() const;
 	// Shortcuts for querying weapon characteristics.
 	bool IsTurret() const;
 	bool IsParallel() const;
+	bool IsOmnidirectional() const;
 	bool IsUnder() const;
 	bool IsHoming() const;
 	bool IsAntiMissile() const;
@@ -85,10 +108,16 @@ public:
 	// Uninstall the outfit from this port (if it has one).
 	void Uninstall();
 
+	// Get the attributes that can be used as a parameter of the constructor when cloning this.
+	const BaseAttributes &GetBaseAttributes() const;
+
 
 private:
 	// Reset the reload counters and expend ammunition, if any.
 	void Fire(Ship &ship, const Point &start, const Angle &aim);
+
+	// The arc depends on both the base hardpoint and the installed outfit.
+	void UpdateArc();
 
 
 private:
@@ -96,12 +125,20 @@ private:
 	const Outfit *outfit = nullptr;
 	// Hardpoint location, in world coordinates relative to the ship's center.
 	Point point;
-	// Angle of firing direction (guns only).
+	// Angle of firing direction (guns) or idle position (turret).
 	Angle baseAngle;
+	// Range over which the turret can turn, from leftmost position to rightmost position if this is a directional turret,
+	// otherwise a pair of 180 degrees + baseAngle.
+	Angle minArc;
+	Angle maxArc;
+	// The base attributes of a hardpoint, without considering additional limitations of the installed outfit.
+	BaseAttributes baseAttributes;
 	// This hardpoint is for a turret or a gun.
 	bool isTurret = false;
 	// Indicates if this hardpoint disallows converging (guns only).
 	bool isParallel = false;
+	// Indicates if this hardpoint is omnidirectional (turret only).
+	bool isOmnidirectional = true;
 	// Indicates whether the hardpoint sprite is drawn under the ship.
 	bool isUnder = false;
 
