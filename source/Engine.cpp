@@ -609,6 +609,14 @@ void Engine::Step(bool isActive)
 		player.SetPlanet(flagship->GetPlanet());
 
 	const System *currentSystem = player.GetSystem();
+	
+	if(flagship && currentSystem)
+		for(const Mission &mission : player.Missions())
+			for(const NPC &npc : mission.NPCs())
+				for(const shared_ptr<Ship> &npcShip : npc.Ships())
+					if(npcShip->GetSystem() == currentSystem)
+						eventQueue.emplace_back(flagship, npcShip, ShipEvent::ENCOUNTER);
+
 	// Update this here, for thread safety.
 	if(player.HasTravelPlan() && currentSystem == player.TravelPlan().back())
 		player.PopTravel();

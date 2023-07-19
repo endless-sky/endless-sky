@@ -61,7 +61,8 @@ public:
 		CAPTURE,
 		DESTROY,
 		// Can be triggered by either the CAPTURE or DESTROY events.
-		KILL
+		KILL,
+		ENCOUNTER
 	};
 
 
