@@ -61,7 +61,7 @@ tip "afterburner thrust:"
 	`Thrust produced by this afterburner.`
 
 tip "asteroid scan power:"
-	`Allows the scanning of asteroids. The range of this asteroid scanner is proportional to the square root of this value.`
+	`Allows scanning of asteroids. The range of this asteroid scanner is proportional to the square root of this value.`
 
 tip "atmosphere scan:"
 	`This type of scanning cannot be performed by your ship, but this outfit might be useful for certain missions.`
@@ -94,10 +94,10 @@ tip "cargo:"
 	`Tons of cargo this ship is carrying right now, out of its maximum.`
 
 tip "cargo scan:"
-	`Allows scanning your target ship's cargo from up to this distance away.`
+	`Allows scanning of your target ship's cargo from up to this distance away.`
 
 tip "cargo scan power:"
-	`Allows scanning your target ship's cargo. The range of this cargo scanner is proportional to the square root of this value.`
+	`Allows scanning of your target ship's cargo. The range of this cargo scanner is proportional to the square root of this value.`
 
 tip "cargo scan speed:"
 	`Determines how long it takes to perform a cargo scan. A higher value will correspond to a quicker scan.`
@@ -403,10 +403,10 @@ tip "operating income:"
 	`Credits received per day when this outfit is in active use.`
 
 tip "outfit scan:"
-	`Allows scanning your target ship's outfits from up to this distance away.`
+	`Allows scanning of your target ship's outfits from up to this distance away.`
 
 tip "outfit scan power:"
-	`Allows scanning your target ship's outfits. The range of this outfit scanner is proportional to the square root of this value.`
+	`Allows scanning of your target ship's outfits. The range of this outfit scanner is proportional to the square root of this value.`
 
 tip "outfit scan speed:"
 	`Determines how long it takes to perform an outfit scan. A higher value will correspond to a quicker scan.`
