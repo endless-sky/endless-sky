@@ -58,7 +58,7 @@ ship "Argosy" "Argosy (Derelict)"
 		"automaton" 1
 	outfits
 		"Energy Blaster"
-		"RT-I Radiothermal"		
+		"RT-I Radiothermal"
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"

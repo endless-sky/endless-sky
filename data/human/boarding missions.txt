@@ -777,11 +777,11 @@ mission "Boarding Derelict"
 			action
 				payment 65000
 			`	Despite your best efforts to make the ship actually fly it just won't, but now you have all the time to loot as you please and even pilfer some outfits from the ship. However, before leaving the cockpit you find a credit chip sitting in the cockpit worth <payment>.`
-				decline	
+				decline
 			label beacon
 			action
 				set "derelict pirate beacon"
-			`	However, you soon notice a blinking light on the controls of the ship, it appears to be some kind of beacon. But what could it be signalling? The arrival of pirate ships entering the system gives you a pretty good guess as you race back to your ship.`
+			`	However, you soon notice a blinking light on the controls of the ship, it appears to be some kind of beacon. But what could it be signaling? The arrival of pirate ships entering the system gives you a pretty good guess as you race back to your ship.`
 				launch
 			label virus
 			action
@@ -804,8 +804,8 @@ mission "Boarding Derelict"
 						random < 25
 						or
 							not "derelict treasure map"
-							not "derelict family investment"	
-					random <	
+							not "derelict family investment"
+					random < 5
 			action
 				payment 63000
 			`	Searching through the ship you find that it is quite valuable and you manage to salvage a substantital amount from the <origin>, worth <payment> credits. Before you depart you detonate the ship to prevent any other derelict hunters from scouring the now empty ship.`
