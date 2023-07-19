@@ -609,7 +609,7 @@ void Engine::Step(bool isActive)
 		player.SetPlanet(flagship->GetPlanet());
 
 	const System *currentSystem = player.GetSystem();
-	
+
 	// Check through the list of NPC ships from active missions
 	// to hit their "on encounter" triggers
 	// You can only encounter an NPC if you're not cloaked
