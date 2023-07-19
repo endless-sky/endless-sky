@@ -1388,7 +1388,7 @@ char ShopPanel::CheckButton(int x, int y)
 	else if(x > -146 && x < -5)
 		return 'o';
 	else if(x > -296 && x < -155)
-		return 'd';
+		return player.IsDesignPlayer() ? 'y' : 'c';
 
 	return ' ';
 }
