@@ -3221,7 +3221,7 @@ mission "Coalition: Book Discovered"
 			``
 			`		Dear <first>,`
 			`	Interested in an author from the datachip, we are. 'Anna Fangvin', her name is. While the full book, access it we could not, the summary, about your race's actions against the oppressors, captivate us it did. To converse with her, we wish, and a copy of the book, we desire.`
-			`	On Ki Patek Ka we live, so the book, once in your posession, it is, contact us, and meet you at the spaceport, we will.`
+			`	On Ki Patek Ka we live, so the book, once in your possession, it is, contact us, and meet you at the spaceport, we will.`
 			choice
 				`	(Look for Anna Fangvin.)`
 				`	(Disregard the message.)`
