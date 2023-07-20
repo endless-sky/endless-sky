@@ -143,7 +143,7 @@ double MapShipyardPanel::SystemValue(const System *system) const
 
 	// See if the player has parked a ship of this type at the system.
 	const auto &systemShips = parkedShips.find(system);
-	if(systemShips != parkedShips.end() && systemShips->second.count(selected))
+	if(systemShips != parkedShips.end() && systemShips->second.find(selected) != systemShips->second.end())
 		return .5;
 
 	// Visiting a system is sufficient to know what ports are available on its planets.
@@ -207,6 +207,7 @@ void MapShipyardPanel::DrawItems()
 			info += Format::Number(ship->Attributes().Get("hull")) + " hull";
 
 			bool isForSale = true;
+			unsigned parkedInSystem = 0;
 			if(player.HasVisited(*selectedSystem))
 			{
 				isForSale = false;
@@ -216,15 +217,32 @@ void MapShipyardPanel::DrawItems()
 						isForSale = true;
 						break;
 					}
+
+				const auto parked = parkedShips.find(selectedSystem);
+				if(parked != parkedShips.end())
+				{
+					const auto shipCount = parked->second.find(ship);
+					if(shipCount != parked->second.end())
+						parkedInSystem = shipCount->second;
+				}
 			}
 			if(!isForSale && onlyShowSoldHere)
+				continue;
+			if(!parkedInSystem && onlyShowStorageHere)
 				continue;
 
 			const Sprite *sprite = ship->Thumbnail();
 			if(!sprite)
 				sprite = ship->GetSprite();
+
+			const std::string parking_details =
+				onlyShowSoldHere || parkedInSystem == 0
+				? ""
+				: parkedInSystem == 1
+				? "1 ship parked"
+				: Format::Number(parkedInSystem) + " ships parked";
 			Draw(corner, sprite, ship->CustomSwizzle(), isForSale, ship == selected,
-					ship->DisplayModelName(), price, info);
+					ship->DisplayModelName(), price, info, parking_details);
 			list.push_back(ship);
 		}
 	}
@@ -246,15 +264,20 @@ void MapShipyardPanel::Init()
 					seen.insert(ship);
 				}
 
-	for(auto &it : catalog)
-		sort(it.second.begin(), it.second.end(),
-			[](const Ship *a, const Ship *b) { return a->DisplayModelName() < b->DisplayModelName(); });
-
 	parkedShips.clear();
 	for(const auto &it : player.Ships())
 		if(it->IsParked())
 		{
 			const Ship *model = GameData::Ships().Get(it->TrueModelName());
-			parkedShips[it->GetSystem()].insert(model);
+			++parkedShips[it->GetSystem()][model];
+			if(!seen.count(model))
+			{
+				catalog[model->Attributes().Category()].push_back(model);
+				seen.insert(model);
+			}
 		}
+
+	for(auto &it : catalog)
+		sort(it.second.begin(), it.second.end(),
+			[](const Ship *a, const Ship *b) { return a->DisplayModelName() < b->DisplayModelName(); });
 }
