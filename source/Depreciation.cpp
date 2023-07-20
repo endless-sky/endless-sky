@@ -28,6 +28,27 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	// Methods to retrieve depreciation constants from gamerules.
+	double Min()
+	{
+		return GameData::GetGamerules().DepreciationMin();
+	}
+
+	int GracePeriod()
+	{
+		return GameData::GetGamerules().DepreciationGracePeriod();
+	}
+
+	double Daily()
+	{
+		return GameData::GetGamerules().DepreciationDaily();
+	}
+
+	int MaxAge()
+	{
+		return GameData::GetGamerules().DepreciationMaxAge();
+	}
+
 	// Names for the two kinds of depreciation records.
 	string NAME[2] = {"fleet depreciation", "stock depreciation"};
 }
@@ -37,7 +58,7 @@ namespace {
 // What fraction of its cost a fully depreciated item has left:
 double Depreciation::Full()
 {
-	return GameData::GetGamerules().DepreciationMin();
+	return Min();
 }
 
 
@@ -90,7 +111,7 @@ void Depreciation::Save(DataWriter &out, int day) const
 					// anything not recorded is considered fully depreciated, so
 					// there is no reason to save records for those items.
 					for(const auto &it : sit.second)
-						if(isStock || (it.second && it.first > day - GameData::GetGamerules().DepreciationMaxAge()))
+						if(isStock || (it.second && it.first > day - MaxAge()))
 							out.Write(it.first, it.second);
 				}
 				out.EndChild();
@@ -105,7 +126,7 @@ void Depreciation::Save(DataWriter &out, int day) const
 				out.BeginChild();
 				{
 					for(const auto &it : oit.second)
-						if(isStock || (it.second && it.first > day - GameData::GetGamerules().DepreciationMaxAge()))
+						if(isStock || (it.second && it.first > day - MaxAge()))
 							out.Write(it.first, it.second);
 				}
 				out.EndChild();
@@ -166,7 +187,7 @@ void Depreciation::Buy(const Ship &ship, int day, Depreciation *source)
 		{
 			// If we're a planet buying from the player, and the player has no
 			// record of how old this ship is, it's fully depreciated.
-			day -= GameData::GetGamerules().DepreciationMaxAge();
+			day -= MaxAge();
 		}
 	}
 
@@ -196,7 +217,7 @@ void Depreciation::Buy(const Outfit *outfit, int day, Depreciation *source)
 		{
 			// If we're a planet buying from the player, and the player has no
 			// record of how old this outfit is, it's fully depreciated.
-			day -= GameData::GetGamerules().DepreciationMaxAge();
+			day -= MaxAge();
 		}
 	}
 
@@ -339,21 +360,15 @@ double Depreciation::Depreciate(const map<int, int> &record, int day, int count)
 // Calculate the value fraction for an item of the given age.
 double Depreciation::Depreciate(int age) const
 {
-
-	const double depreciationGrace = GameData::GetGamerules().DepreciationGracePeriod();
-
-	if(age <= depreciationGrace)
+	if(age <= GracePeriod())
 		return 1.;
 
-	const double depreciationMin = GameData::GetGamerules().DepreciationMin();
-	const double depreciationMaxAge = GameData::GetGamerules().DepreciationMaxAge();
+	if(age >= MaxAge())
+		return Min();
 
-	if(age >= depreciationMaxAge)
-		return depreciationMin;
-
-	double daily = pow(GameData::GetGamerules().DepreciationDaily(), age - depreciationGrace);
-	double linear = static_cast<double>(depreciationMaxAge - age) / (depreciationMaxAge - depreciationGrace);
-	return depreciationMin + (1. - depreciationMin) * daily * linear;
+	double daily = pow(Daily(), age - GracePeriod());
+	double linear = static_cast<double>(MaxAge() - age) / (MaxAge() - GracePeriod());
+	return Min() + (1. - Min()) * daily * linear;
 }
 
 
@@ -362,5 +377,5 @@ double Depreciation::Depreciate(int age) const
 // default to no depreciation. When selling, they default to full.
 double Depreciation::DefaultDepreciation() const
 {
-	return (isStock ? 1. : GameData::GetGamerules().DepreciationMin());
+	return (isStock ? 1. : Min());
 }
