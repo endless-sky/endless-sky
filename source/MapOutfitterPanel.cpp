@@ -248,11 +248,13 @@ void MapOutfitterPanel::DrawItems()
 					}
 				}
 			}
-			if(!isForSale && !storedInSystem && onlyShowSoldHere)
+			if(!isForSale && onlyShowSoldHere)
+				continue;
+			if(!storedInSystem && onlyShowStorageHere)
 				continue;
 
 			const std::string storage_details =
-				storedInSystem == 0
+				onlyShowSoldHere || storedInSystem == 0
 				? ""
 				: storedInSystem == 1
 				? "1 unit in storage"
