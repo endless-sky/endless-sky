@@ -44,28 +44,44 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "opengl.h"
 
 #include <algorithm>
+#include <cstdlib>
 #include <stdexcept>
+#include <utility>
 
 using namespace std;
 
 namespace {
+	// Return a pair containing settings to use for time formatting.
+	pair<pair<string, string>, size_t> TimestampFormatString(Preferences::DateFormat fmt)
+	{
+		// pair<string, string>: Linux (1st) and Windows (2nd) format strings
+		// size_t: BUF_SIZE
+		if(fmt == Preferences::DateFormat::ymd)
+			return make_pair(make_pair("%F %T","%F %T"), 26);
+		if(fmt == Preferences::DateFormat::mdy)
+			return make_pair(make_pair("%-I:%M %p on %b %-d, %Y", "%#I:%M %p on %b %#d, %Y"), 25);
+		if(fmt == Preferences::DateFormat::dmy)
+			return make_pair(make_pair("%-I:%M %p on %-d %b %Y","%#I:%M %p on %#d %b %Y"), 24);
+	}
+
 	// Convert a time_t to a human-readable time and date.
 	string TimestampString(time_t timestamp)
 	{
-		static const size_t BUF_SIZE = 24;
-		char buf[BUF_SIZE];
+		pair<pair<string, string>, size_t> fmt = TimestampFormatString(Preferences::GetDateFormat());
+		char* buf = static_char<char*>(std::malloc(fmt.second));
 
 #ifdef _WIN32
 		tm date;
 		localtime_s(&date, &timestamp);
-		static const char *FORMAT = "%#I:%M %p on %#d %b %Y";
-		return string(buf, strftime(buf, BUF_SIZE, FORMAT, &date));
+		auto str = string(buf, strftime(buf, fmt.second, fmt.first.first.c_str(), &date));
 #else
 		const tm *date = localtime(&timestamp);
-		static const char *FORMAT = "%-I:%M %p on %-d %b %Y";
-		return string(buf, strftime(buf, BUF_SIZE, FORMAT, date));
+		auto str = string(buf, strftime(buf, fmt.second, fmt.first.first.c_str(), date));
 #endif
+		std::free(buf);
+		return str;
 	}
+
 
 	// Extract the date from this pilot's most recent save.
 	string FileDate(const string &filename)
