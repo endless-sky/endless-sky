@@ -253,7 +253,7 @@ void MapOutfitterPanel::DrawItems()
 			if(!storedInSystem && onlyShowStorageHere)
 				continue;
 
-			const std::string storage_details =
+			const string storage_details =
 				onlyShowSoldHere || storedInSystem == 0
 				? ""
 				: storedInSystem == 1

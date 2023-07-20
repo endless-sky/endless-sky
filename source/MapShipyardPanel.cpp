@@ -235,7 +235,7 @@ void MapShipyardPanel::DrawItems()
 			if(!sprite)
 				sprite = ship->GetSprite();
 
-			const std::string parking_details =
+			const string parking_details =
 				onlyShowSoldHere || parkedInSystem == 0
 				? ""
 				: parkedInSystem == 1
