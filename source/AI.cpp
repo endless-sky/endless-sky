@@ -2767,7 +2767,10 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		// If there is nothing for this ship to scan, have it patrol the entire system
 		// instead of drifting or stopping.
 		if(!total)
+		{
 			DoPatrol(ship, command);
+			return;
+		}
 		else
 		{
 			unsigned index = Random::Int(total);
