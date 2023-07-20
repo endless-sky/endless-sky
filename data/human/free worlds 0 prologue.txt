@@ -333,7 +333,8 @@ mission "FW Recon 1"
 		personality staying uninterested target
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Heavy)"
 		conversation
@@ -388,7 +389,8 @@ mission "FW Recon 2"
 		system "Menkent"
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Heavy)" 4
 		dialog `You've scanned all the ships you can find here that seem to be upgraded for combat. Time to return to <planet> to collect your payment.`
@@ -2235,7 +2237,7 @@ mission "Defend Sabik"
 			`	"Now, I really do need to go get everyone else ready."`
 			label end
 			`	You find that the militia are collecting at the spaceport bar. Some congratulate you on joining the Free Worlds, but most are standing around quietly, waiting for something to happen. More gather as time goes by, to the point that the bar becomes overcrowded and militia are waiting in the streets outside the building.`
-			`	An hour later, while standing outside the bar, you look up and notice the flashing lights of ship weapon fire off in the distance above the planet. Some militia begin running to their ships, but most stand there like a deer in headlights. Just then, Tomek returns with a megaphone and begins shouting orders. "The Navy has entered the system! We can't let them take it, or they'll have us completely bottled up. This is where it begins. We need to fight! Get to your ships, quickly! We have more reinforcements on their way from deeper in the Rim!`
+			`	An hour later, while standing outside the bar, you look up and notice the flashing lights of ship weapons fire off in the distance above the planet. Some militia begin running to their ships, but most stand there like a deer in headlights. Just then, Tomek returns with a megaphone and begins shouting orders. "The Navy has entered the system! We can't let them take it, or they'll have us completely bottled up. This is where it begins. We need to fight! Get to your ships, quickly! We have more reinforcements on their way from deeper in the Rim!`
 			`	"And if you can, disable their ships instead of destroying them. These are Navy ships, after all, and most of them don't want war any more than we do. Now go! Your worlds need you!" You hurry to join all the other ships taking off to defend the system.`
 				launch
 	
@@ -2247,7 +2249,8 @@ mission "Defend Sabik"
 		personality waiting heroic
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier"
 				"Lance" 4
@@ -2261,7 +2264,8 @@ mission "Defend Sabik"
 		system "Kornephoros"
 		fleet 2
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier"
 				"Lance" 4
