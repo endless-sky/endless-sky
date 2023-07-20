@@ -285,8 +285,11 @@ bool ShipInfoPanel::Drag(double dx, double dy)
 bool ShipInfoPanel::Release(int /* x */, int /* y */)
 {
 	if(draggingIndex >= 0 && hoverIndex >= 0 && hoverIndex != draggingIndex)
-			(**shipIt).GetArmament().Swap(hoverRight ? indicesRight[hoverIndex] : indicesLeft[hoverIndex],
-										dragRight ? indicesRight[draggingIndex] : indicesLeft[draggingIndex]);
+	{
+		int hoverIndex = hoverRight ? indicesRight[hoverIndex] : indicesLeft[hoverIndex];
+		int dragIndex = dragRight ? indicesRight[draggingIndex] : indicesLeft[draggingIndex];
+		(**shipIt).GetArmament().Swap(hoverIndex, dragIndex);
+	}
 
 	draggingIndex = -1;
 	return true;
