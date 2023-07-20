@@ -520,7 +520,8 @@ ship "Timbre"
 
 
 ship "Rhythm"
-	sprite "ship/rhythm"
+	sprite "ship/LWrescale"
+	swizzle 0
 	thumbnail "thumbnail/rhythm"
 	attributes
 		category "Light Warship"

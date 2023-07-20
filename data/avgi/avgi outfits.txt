@@ -924,15 +924,27 @@ outfit "Protium Fusion Ramscoop"
 
 outfit "Deuterium Slush Tank"
 	category "Systems"
-	cost 60000
+	cost 90000
 	thumbnail "outfit/cryo fuel tank"
-	"mass" 12
+	"mass" 3
 	"outfit space" -12
 	"fuel capacity" 300
-	"energy consumption" 0.6
+	"energy consumption" 0.15
+	"heat generation" 0.15
+	description `This lightweight fuel pod stores an appreciable amount of hyperspace fuel as deuterium slush, allowing it to be stored at higher densities than would otherwise be possible. The cryocooler required to run the zero boiloff system does require a small amount of energy, however.`
+
+outfit "Pressurized Deuterium Tank"
+	category "Systems"
+	cost 30000
+	thumbnail "outfit/cryo fuel tank"
+	"mass" 12
+	"outfit space" -6
+	"cargo space" -30
+	"fuel capacity" 600
+	description `This high-stress pressure vessel is designed to store hyperspace fuel under for bulk transport. While not as efficient as a cryogenic storage vessel, this outfit is designed to be installed in a ship's available cargo space with minimal overhead, allowing many to be installed simultaneously without the need for support equipment.`
 
 
-outfit "Partition Thermal Sink"
+outfit "Thermal Vessel Partition"
 	category "Systems"
 	cost 30000
 	thumbnail "outfit/densified fuel tank"
