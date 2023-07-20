@@ -133,7 +133,7 @@ ship "Ancient Ladybug"
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
 	description "This sensor-laden exploration vessel hails back to a more peaceful era of the Hai. Though they have no true ramscoop, a technology the Hai never developed, their built-in collection gills magnify the natural ramscoop present in all ships. These expensive features are the reason the ship has been replaced with the Lightning Bug."
-	description "This ship can be used as an agile, long distance cargo hauler and blockade runner. It is able to defend itself in small skirmishes, even though it does not operate at its full potential, having stayed underwater for some time... The simple fact that it is still running at all is proof of the durability of Hai technology."
+	description "This ship can be used as an agile, long distance cargo hauler and blockade runner. It is also able to defend itself in small skirmishes, even though it can no longer operate at its original full potential. Having stayed underwater for such a long time, the simple fact that it is still running at all is proof of the durability of Hai technology."
 
 mission "Hai Legacy 1"
 	invisible
@@ -160,15 +160,15 @@ mission "Hai Legacy 1"
 				`	(Never.)`
 					decline
 			label first
-			`As you enter the shipyard you quickly get approached by a hooded figure. They come to address you discreetly, and, seeing you stop to listen, they take your arm and make you follow them. "Keep walking," they say, taking a look around the way someone looking for a new ship would, pointing at one with little conviction before addressing you again. "My associates and I have a lucrative business proposition for you. If you are interested go to these coordinates." They give you a piece of paper with the location, a beach on the other side of the planet, before quickly fading into the crowd. Will you go there?`
+			`As you enter the shipyard, you are soon discreetly approached by a hooded figure. They move as if to speak with you there, but when you stop to listen, they grab and pull your arm to follow them. "Keep walking," the stranger hisses, while looking around in imitation of the curious way someone shopping for a new ship may. After pointing at and commenting on a, likely, random ship with little conviction, they address you again. "My associates and I have a lucrative business proposition for you. If you are interested go to these coordinates." Without waiting for a response, they fold a piece of paper into your hand before quickly fading into the crowd. It lists only a location, a beach on the other side of the planet. Will you go there?`
 			choice
 				`	(Sure.)`
 				`	(Maybe another time.)`
 					defer
 			label go
 			`	As you ponder how to make your way to the rendezvous point, you notice a convenient train ticket in your pocket, with instructions on how to find your way to the destination. You proceed to take the train, and then have to walk for hours to get the rest of the way there.`
-			`	You look around you, double checking you are indeed at the right coordinates, for except a cave, vegetation, and, of course, the beach, you cannot see much of interest in the vicinity. You can't help but keep your hand close to your gun, feeling safer with its presence.`
-			`	After waiting for what seems like an eternity you spot two hooded figures approaching you, whispering amongst themselves. You start to doubt whether or not this was a good idea, but it is probably too late to back down now. They come to address you, their face somehow impossible to glimpse at, even below the hoodie. "Hello, <last>," they say at the same time, almost in a comical way, removing some of the tension you felt until now. Then they look at each other, nod, and one of them addresses you in a more serious tone. "We are sorry for all of these complications, but the truth is, we cannot afford to take risks. You see, we simply do not know how you might react. Furthermore, it is best for all if you do not come to know us."`
+			`	You look around when you arrive and even double check you are indeed at the right coordinates, because, except for a cave, some sparse vegetation, and, of course, the beach itself, you cannot see much of interest in the vicinity. You can't help but keep your hand close to your gun, feeling safer with its presence.`
+			`	After waiting for what seems like an eternity you spot two hooded figures approaching you, whispering amongst themselves. You start to doubt whether or not this was a good idea, but it is probably too late to back down now. As they approach close enough to address you, their faces somehow remain impossible to even glimpse beneath their hoods. "Hello, <last>," they say at the same time, almost in a comical way, removing some of the tension you felt until now. Then they look at each other, nod, and one of them addresses you in a more serious tone. "We are sorry for all of these complications, but the truth is, we cannot afford to take risks. You see, we simply do not know how you might react. Furthermore, it is best for all if you do not come to know us."`
 			choice
 				`	"Tell me more."`
 					goto tellme
@@ -188,8 +188,8 @@ mission "Hai Legacy 1"
 				to display
 					"reputation: Hai (Unfettered)" < -1250
 			label tellme
-			`	Suddenly, you hear a loud roar behind you as the ground begins to shake.`
-			`	Turning back towards the sea where the noise is coming from you see the waves getting more agitated and the wind rise as a shape emerges out of the water surrounded by fumes, as if an ancient sea monster was arising from the depths.`
+			`	Suddenly, you hear a loud roar coming from the sea behind you, and the ground begins to shake.`
+			`	Turning around, you see the waves getting more agitated and the wind rise as a shape surrounded by fumes emerges out of the water, as if an ancient sea monster was arising from the depths.`
 			`	But it is no monster. Indeed it is so, so much worse.`
 			`	It is a ship, and its guns are pointed straight at you!`
 			label tryagain
@@ -200,10 +200,10 @@ mission "Hai Legacy 1"
 					goto wait
 				`	(Try to contact my fleet for help!)`
 				`	(Shoot it!)`
-					goto dumb
+					goto foolish
 			`	As you try to react to this sudden threat, the Hai closest to you firmly grabs your arm and shouts to get trough the noise. "Wait! If this ship wanted to kill you, <last>, you would already be dead."`
 			label wait
-			`	You are having a hard time hearing anything with the sound of the engines as the ship proceeds to land on the beach. Suddenly, all is calm.`
+			`	You are having a hard time hearing anything over the sound of the engines as the ship proceeds to land on the beach. Suddenly, all is calm.`
 			`	They turn to you, surprisingly calm in this situation. "Lucky for you, this is our ship. But not any ship! This is a mighty relic of the past, from the times our Empire used to control the stars: a Ladybug!`
 			choice
 				`	(Say nothing.)`
@@ -224,11 +224,11 @@ mission "Hai Legacy 1"
 				give ship "Ancient Ladybug" "Good Omen"
 				fine 6500000
 				log "Accepted a somewhat shady deal for an old Hai ship, a Ladybug, that seems to still be in good functioning state."
-			`	They give you access to the ship and proceed to explain the details. "It is of no real significance, but surely you understand we cannot go trough official means for this, we will have to present it as a fine. Worry not, we will make it something of no consequence, like an old Korath forbidden tech you would not have known about, that we had to confiscate."`
-			`	You quickly realize they are not asking you for your opinion at all. In fact, you notice the fine has already been issued before you could say anything. "We will need to make some modifications to the anti-missile system of the ship before you can use it. Once you get the ship into a shipyard I would advise against repainting it, you will understand why later. And I would not bother removing the rust if I were you, it is not worth the risk."`
-			`	"Oh, and I almost forgot: make sure you visit the spaceport to get the cargo loaded onto your ship!"`
+			`	They give you access to the ship and proceed to explain the details. "It is of no real significance, but surely you understand we cannot go through standard means for this sale. We will instead present it as a fine. Worry not, we will make it something of no consequence, like an old Korath forbidden tech you would not have known about, that we had to confiscate."`
+			`	You quickly realize they are not asking you for your opinion at all. In fact, you have received notice of the fine being issued before they have even finished speaking. "We will need to make some modifications to the anti-missile system of the ship before you can use it. I also strongly would advise against repainting it, you will understand why later. I would not bother removing the rust, either, if I were you, it is not worth the risk."`
+			`	"Oh, and I almost forgot: make sure you return to the spaceport to get the cargo loaded onto your ship!"`
 				accept
-			label dumb
+			label foolish
 			`	You get your weapon out and proceed to shoot on the ship.`
 			branch miss
 				random < 30
