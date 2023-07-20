@@ -253,5 +253,8 @@ void MapShipyardPanel::Init()
 	parkedShips.clear();
 	for(const auto &it : player.Ships())
 		if(it->IsParked())
-			parkedShips[it->GetSystem()].insert(it->BaseModel());
+		{
+			const Ship *model = GameData::Ships().Get(it->TrueModelName());
+			parkedShips[it->GetSystem()].insert(model);
+		}
 }

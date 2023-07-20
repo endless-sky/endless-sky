@@ -1119,13 +1119,6 @@ const string &Ship::PluralModelName() const
 
 
 
-const Ship *Ship::BaseModel() const
-{
-	return base;
-}
-
-
-
 // Get the name of this ship as a variant.
 const string &Ship::VariantName() const
 {
