@@ -151,10 +151,24 @@ bool MapSalesPanel::Click(int x, int y, int clicks)
 				break;
 			}
 	}
-	else if(x >= Screen::Left() + WIDTH + 30 && x < Screen::Left() + WIDTH + 190 && y < Screen::Top() + 70)
+	else if(x >= Screen::Left() + WIDTH + 30 && x < Screen::Left() + WIDTH + 190 && y < Screen::Top() + 90)
 	{
 		// This click was in the map key.
-		onlyShowSoldHere = (!onlyShowSoldHere && y >= Screen::Top() + 42 && y < Screen::Top() + 62);
+		if(y < Screen::Top() + 42 || y >= Screen::Top() + 82)
+		{
+			onlyShowSoldHere = false;
+			onlyShowStorageHere = false;
+		}
+		else if(y < Screen::Top() + 62)
+		{
+			onlyShowSoldHere = !onlyShowSoldHere;
+			onlyShowStorageHere = false;
+		}
+		else
+		{
+			onlyShowSoldHere = false;
+			onlyShowStorageHere = !onlyShowStorageHere;
+		}
 	}
 	else
 		return MapPanel::Click(x, y, clicks);
@@ -214,7 +228,7 @@ int MapSalesPanel::CompareSpriteSwizzle() const
 
 void MapSalesPanel::DrawKey() const
 {
-	const Sprite *back = SpriteSet::Get("ui/sales key");
+	const Sprite *back = SpriteSet::Get("ui/sales key extended");
 	SpriteShader::Draw(back, Screen::TopLeft() + Point(WIDTH + 10, 0) + .5 * Point(back->Width(), back->Height()));
 
 	Color bright(.6f, .6f);
@@ -227,20 +241,21 @@ void MapSalesPanel::DrawKey() const
 	static const double VALUE[] = {
 		-.5,
 		0.,
-		1.
+		1.,
+		.5
 	};
 
 	double selectedValue = SystemValue(selectedSystem);
-	for(int i = 0; i < 3; ++i)
+	for(int i = 0; i < 4; ++i)
 	{
 		bool isSelected = (VALUE[i] == selectedValue);
 		RingShader::Draw(pos, OUTER, INNER, MapColor(VALUE[i]));
 		font.Draw(KeyLabel(i), pos + textOff, isSelected ? bright : dim);
+		// If we're filtering out items not sold/stored here, draw a pointer.
 		if(onlyShowSoldHere && i == 2)
-		{
-			// If we're filtering out items not sold here, draw a pointer.
 			PointerShader::Draw(pos + Point(-7., 0.), Point(1., 0.), 10.f, 10.f, 0.f, bright);
-		}
+		else if(onlyShowStorageHere && i == 3)
+			PointerShader::Draw(pos + Point(-7., 0.), Point(1., 0.), 10.f, 10.f, 0.f, bright);
 		pos.Y() += 20.;
 	}
 }

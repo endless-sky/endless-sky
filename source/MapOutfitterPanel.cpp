@@ -90,10 +90,11 @@ const string &MapOutfitterPanel::KeyLabel(int index) const
 	if(index == 2 && selected && selected->Get("minable") > 0.)
 		return MINE;
 
-	static const string LABEL[3] = {
+	static const string LABEL[4] = {
 		"Has no outfitter",
 		"Has outfitter",
-		"Sells this outfit"
+		"Sells this outfit",
+		"Outfit in storage"
 	};
 	return LABEL[index];
 }
@@ -142,9 +143,13 @@ double MapOutfitterPanel::SystemValue(const System *system) const
 
 	// Visiting a system is sufficient to know what ports are available on its planets.
 	double value = -.5;
+	const auto &planetStorage = player.PlanetaryStorage();
 	for(const StellarObject &object : system->Objects())
 		if(object.HasSprite() && object.HasValidPlanet())
 		{
+			const auto storage = planetStorage.find(object.GetPlanet());
+			if(storage != planetStorage.end() && storage->second.Get(selected))
+				return .5;
 			const auto &outfitter = object.GetPlanet()->Outfitter();
 			if(outfitter.Has(selected))
 				return 1.;

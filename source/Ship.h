@@ -149,6 +149,7 @@ public:
 	const std::string &TrueModelName() const;
 	const std::string &DisplayModelName() const;
 	const std::string &PluralModelName() const;
+	const Ship *BaseModel() const;
 	// Get the name of this ship as a variant.
 	const std::string &VariantName() const;
 	// Get the generic noun (e.g. "ship") to be used when describing this ship.

@@ -61,6 +61,7 @@ private:
 private:
 	std::map<std::string, std::vector<const Ship *>> catalog;
 	std::vector<const Ship *> list;
+	std::map<const System *, std::set<const Ship *>> parkedShips;
 
 	const Ship *selected = nullptr;
 	const Ship *compare = nullptr;

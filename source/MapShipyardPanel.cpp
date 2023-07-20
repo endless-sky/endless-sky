@@ -98,10 +98,11 @@ const ItemInfoDisplay &MapShipyardPanel::CompareInfo() const
 
 const string &MapShipyardPanel::KeyLabel(int index) const
 {
-	static const string LABEL[3] = {
+	static const string LABEL[4] = {
 		"Has no shipyard",
 		"Has shipyard",
-		"Sells this ship"
+		"Sells this ship",
+		"Ship parked here"
 	};
 	return LABEL[index];
 }
@@ -139,6 +140,11 @@ double MapShipyardPanel::SystemValue(const System *system) const
 {
 	if(!system || !player.HasVisited(*system) || !system->IsInhabited(player.Flagship()))
 		return numeric_limits<double>::quiet_NaN();
+
+	// See if the player has parked a ship of this type at the system.
+	const auto &systemShips = parkedShips.find(system);
+	if(systemShips != parkedShips.end() && systemShips->second.count(selected))
+		return .5;
 
 	// Visiting a system is sufficient to know what ports are available on its planets.
 	double value = -.5;
@@ -243,4 +249,9 @@ void MapShipyardPanel::Init()
 	for(auto &it : catalog)
 		sort(it.second.begin(), it.second.end(),
 			[](const Ship *a, const Ship *b) { return a->DisplayModelName() < b->DisplayModelName(); });
+
+	parkedShips.clear();
+	for(const auto &it : player.Ships())
+		if(it->IsParked())
+			parkedShips[it->GetSystem()].insert(it->BaseModel());
 }
