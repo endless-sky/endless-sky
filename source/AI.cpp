@@ -3038,9 +3038,11 @@ void AI::DoPatrol(Ship &ship, Command &command) const
 	}
 	// Otherwise, keep going forward.
 	else
-		MoveTo(ship, command, ship.Position() + ship.Facing().Unit() * (ship.MaxVelocity() + 1),
-				ship.Facing().Unit() * (ship.MaxVelocity() + 1), 10., 1.);
-	return;
+	{
+		const Point targetVelocity = ship.Facing().Unit() * (ship.MaxVelocity() + 1);
+		const Point targetPosition = ship.Position() + targetVelocity;
+		MoveTo(ship, command, targetPosition, targetVelocity, 10., 1.);
+	}
 }
 
 
