@@ -63,6 +63,7 @@ private:
 	// Handle a change to what ship is shown.
 	void UpdateInfo();
 	void ClearZones();
+	void SetUpHardpointCalcs(const Rectangle &bounds);
 
 	// Draw the ship tab (and its subsections).
 	void DrawShipStats(const Rectangle &bounds);
@@ -108,6 +109,8 @@ private:
 	int draggingIndex = -1;
 	int pages = 1;
 	int pageIndex = 1;
+	int rowsPerPage = 1;
+	double maxX = 0.;
 	InfoPanelState panelState;
 
 	// Track the current mouse location.
