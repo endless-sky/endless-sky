@@ -565,6 +565,10 @@ government "Hai (Unfettered)"
 		"Merchant" -.01
 		"Kor Efret" -.01
 		"Elenctic Commune" .1
+	"foreign penalties for"
+		"Hai (Friendly Unfettered)"
+		"Hai (Unfettered Wanderer Tribute)"
+		"Hai (Unfettered Civilians)"
 	"penalty for"
 		disable 0
 	"bribe" .02
@@ -600,6 +604,8 @@ government "Hai (Friendly Unfettered)"
 		"Hai (Wormhole Access)" .01
 		"Hai (Unfettered)" 1
 		"Elenctic Commune" .01
+	"foreign penalties for"
+		"Hai (Unfettered)"
 	"bribe" .02
 	"fine" 0
 	"friendly hail" "friendly unfettered"
