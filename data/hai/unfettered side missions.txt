@@ -362,7 +362,6 @@ mission "Hai Legacy 3"
 	on disabled
 		fail "Hai Legacy 3"
 		dialog `The enemy ships hail you, "You have failed the challenge. We will take the ship from you when we see fit, I heavily suggest you land on Darkcloak so that we take it from you without trouble - we can even leave you with the outfits. Do not try to keep it from us!"`
-		set "unfettered: undeserved ladybug"
 	on fail
 		"reputation: Hai (Unfettered)" >?= -1000
 		dialog `The Unfettered hail you, "You failed to complete the duel properly, and as such, are no longer authorized to land on our worlds. You will not enjoy unwarranted respect any longer!"`
