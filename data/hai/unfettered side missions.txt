@@ -439,17 +439,22 @@ mission "Hai Legacy 3"
 			action
 				outfit "Unfettered Landing Permit"
 				log "Managed to use an old ladybug to beat a few Lightning Bugs, earning myself a place in Unfettered territory for a daily cost, as long as the Ancient Ladybug is kept intact."
-		
+
 
 mission "Undeserved Ladybug"
+	minor
 	landing
 	invisible
 	to offer
 		has "ship model: Ancient Ladybug"
-		has "unfettered: undeserved ladybug"
-		# to make sure you can buy another one
+		"reputation: Hai (Unfettered)" < -1000
+		# no you can't keep the ship forever for free, nice try
+		not "Hai Legacy 2: active"
+		# to make sure you are not stranded
 		or
-			has "flagship planet attribute: shipyard"
+			and
+				has "flagship planet attribute: shipyard"
+				"credits" >= 1500000
 			"total ships" > 1
 	on offer
 		conversation
@@ -463,17 +468,22 @@ mission "Undeserved Ladybug"
 				decline
 			label "unfet space"
 			`You land on this Unfettered world in possession of the Ancient Ladybug, and as you do countless Unfettered head to your ship, armed as they always are.`
-			`	Except that they seem much more intimidating than usual...`
+			`	Except that they seem much more intimidating than usual... They must want the ship.`
+			`	One of them hails you in a private channel, "You do not deserve to fly this relic of old, and you missed your opportunity for a glorious battle to earn the right to!"`
+				to display
+					not "Hai Legacy 3: offered"
 			choice
 				`	(Let them have it.)`
 				`	(Take off, now!)`
 					depart
-			`	You exit your ship with your crew and inform the Unfettered it is theirs now. They happily claim it and inform you the outfits are still available in the outfitter, if you wish to buy them back at a reduced price. Here are <payment> for them, we only had claim on the ship itself, after all.`
+			`	You exit your ship with your crew and inform the local Unfettered militia that it is theirs now. The Unfettered that were assembling around your ship happily disperse, except for one, probably the leader judging by their special weaponry of dual pulse pistols. They come to talk to you, weapons lowered, "We are happy you could see reason, and decided to hand over the ship with no resistance. As we only wanted the ship itself, and you nicely came to deliver it to us, we have decided to allocate <payment> to you for them.`
+			`	"You may even buy the outfits back at a reduced price, if you so wish.`
+				to display
+					has "flagship planet attribute: shipyard"
+			`	"This ship was not meant for you, but remember that there are other ways for you to prove yourself, such as a bringing us a Jump Drive."`
 			action
 				take ship "Ancient Ladybug"
 				payment 2000000
-	on decline
-		clear "unfettered: undeserved ladybug"
 
 mission "Unfettered Landing Permit Lost"
 	landing
@@ -484,6 +494,7 @@ mission "Unfettered Landing Permit Lost"
 		has "Hai Legacy 3: done"
 		not "outfit (all): Unfettered Landing Permit"
 		not "Unfettered Jump Drive 1: offered"
+		"reputation: Hai (Unfettered)" >= 0
 	on offer
 		dialog "As you land the Unfettered tell you they have learned of the loss of the Ladybug, thereby ending your landing access and friendly relations with them until you give them a Jump Drive."
 		# since you had to have that ship as a flagship when you received the license that means that if you lose the license you lost the ship
