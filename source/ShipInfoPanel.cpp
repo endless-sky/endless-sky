@@ -43,6 +43,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include <algorithm>
+#include <iostream>
 
 using namespace std;
 
@@ -113,7 +114,7 @@ void ShipInfoPanel::Draw()
 		interfaceInfo.SetCondition("three buttons");
 	if(player.HasLogs())
 		interfaceInfo.SetCondition("enable logbook");
-	/*
+
 	double maxX = 0.;
 	int count[2][2] = {{0, 0}, {0, 0}};
 	for(const Hardpoint &hardpoint : (**shipIt).Weapons())
@@ -142,7 +143,7 @@ void ShipInfoPanel::Draw()
 	bool pageNeeded = height > (250 * scale);
 	if(pageNeeded)
 		interfaceInfo.SetCondition("paged hardpoints");
-	*/
+
 
 	// Draw the interface.
 	const Interface *infoPanelUi = GameData::Interfaces().Get("info panel");
@@ -488,8 +489,8 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	int turretRows = max(count[0][1], count[1][1]);
 	// If there are both guns and turrets, add a gap of ten pixels.
 	double height = 20. * (gunRows + turretRows) + 10. * (gunRows && turretRows);
-	bool pageNeeded = height > (bounds.Height() * scale);
-	height = pageNeeded ? bounds.Height() * scale : height;
+	bool pageNeeded = height > bounds.Height();
+	height = pageNeeded ? bounds.Height() - 30. : height;
 
 	const double centerX = bounds.Center().X();
 	const double labelCenter[2] = {-.5 * LABEL_WIDTH - LABEL_DX, LABEL_DX + .5 * LABEL_WIDTH};
@@ -507,7 +508,7 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	pages = pageNeeded ? 0 : 1;
 	int gunIndex = 0;
 	int turretIndex = 0;
-	int rowsPerPage = static_cast<int>((bounds.Height() * scale) / 10.) - 1;
+	int rowsPerPage = static_cast<int>(height) / 10. - 1;
 	int offset = 0;
 	while(pageNeeded)
 	{
