@@ -307,8 +307,8 @@ mission "Deep Archaeology 5"
 ship "Timer Ship"
 	attributes
 		"heat dissipation" 1
-		"hull" 3
-		"hull repair rate" .001
+		"hull" 6
+		"hull repair rate" -.001
 		"mass" 100
 		"drag" 5
 		"automaton" 1
