@@ -62,6 +62,7 @@ namespace {
 	const string STATUS_OVERLAYS_ENEMY = "   Show enemy overlays";
 	const string STATUS_OVERLAYS_NEUTRAL = "   Show neutral overlays";
 	const string EXPEND_AMMO = "Escorts expend ammo";
+	const string FLOTSAM_SETTING = "Flotsam collection";
 	const string TURRET_TRACKING = "Turret tracking";
 	const string FOCUS_PREFERENCE = "Turrets focus fire";
 	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
@@ -243,6 +244,8 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 				Preferences::ToggleAutoFire();
 			else if(zone.Value() == EXPEND_AMMO)
 				Preferences::ToggleAmmoUsage();
+			else if(zone.Value() == FLOTSAM_SETTING)
+				Preferences::ToggleFlotsam();
 			else if(zone.Value() == TURRET_TRACKING)
 				Preferences::Set(FOCUS_PREFERENCE, !Preferences::Has(FOCUS_PREFERENCE));
 			else if(zone.Value() == REACTIVATE_HELP)
@@ -527,19 +530,7 @@ void PreferencesPanel::DrawSettings()
 		VIEW_ZOOM_FACTOR,
 		SCREEN_MODE_SETTING,
 		VSYNC_SETTING,
-		STATUS_OVERLAYS_ALL,
-		STATUS_OVERLAYS_FLAGSHIP,
-		STATUS_OVERLAYS_ESCORT,
-		STATUS_OVERLAYS_ENEMY,
-		STATUS_OVERLAYS_NEUTRAL,
-		"Show missile overlays",
-		"Highlight player's flagship",
-		"Rotate flagship in HUD",
-		"Show planet labels",
-		"Show mini-map",
-		"Show asteroid scanner overlay",
-		"Always underline shortcuts",
-		"\t",
+		"",
 		"Performance",
 		"Show CPU / GPU load",
 		"Render motion blur",
@@ -549,32 +540,49 @@ void PreferencesPanel::DrawSettings()
 		BACKGROUND_PARALLAX,
 		"Show hyperspace flash",
 		SHIP_OUTLINES,
+		"\t",
+		"HUD",
+		STATUS_OVERLAYS_ALL,
+		STATUS_OVERLAYS_FLAGSHIP,
+		STATUS_OVERLAYS_ESCORT,
+		STATUS_OVERLAYS_ENEMY,
+		STATUS_OVERLAYS_NEUTRAL,
+		"Show missile overlays",
+		"Show asteroid scanner overlay",
+		"Highlight player's flagship",
+		"Rotate flagship in HUD",
+		"Show planet labels",
+		"Show mini-map",
+		"Clickable radar display",
+		ALERT_INDICATOR,
+		"Extra fleet status messages",
 		"\n",
 		"Gameplay",
+		"Control ship with mouse",
 		AUTO_AIM_SETTING,
 		AUTO_FIRE_SETTING,
+		TURRET_TRACKING,
+		TARGET_ASTEROIDS_BASED_ON,
 		BOARDING_PRIORITY,
-		"Control ship with mouse",
-		"Flagship flotsam collection",
 		EXPEND_AMMO,
-		"Extra fleet status messages",
+		FLOTSAM_SETTING,
+		FIGHTER_REPAIR,
 		"Fighters transfer cargo",
 		"Rehire extra crew when lost",
-		FIGHTER_REPAIR,
-		TARGET_ASTEROIDS_BASED_ON,
-		TURRET_TRACKING,
-		"\t",
-		"Other",
-		"Clickable radar display",
+		"",
+		"Map",
 		"Hide unexplored map regions",
-		REACTIVATE_HELP,
-		"Interrupt fast-forward",
-		SCROLL_SPEED,
 		"Show escort systems on map",
 		"Show stored outfits on map",
 		"System map sends move orders",
-		ALERT_INDICATOR
+		"\t",
+		"Other",
+		"Always underline shortcuts",
+		REACTIVATE_HELP,
+		"Interrupt fast-forward",
+		SCROLL_SPEED
 	};
+
 	bool isCategory = true;
 	int page = 0;
 	for(const string &setting : SETTINGS)
@@ -678,6 +686,11 @@ void PreferencesPanel::DrawSettings()
 		}
 		else if(setting == EXPEND_AMMO)
 			text = Preferences::AmmoUsage();
+		else if(setting == FLOTSAM_SETTING)
+		{
+			text = Preferences::FlotsamSetting();
+			isOn = text != "off";
+		}
 		else if(setting == TURRET_TRACKING)
 		{
 			isOn = true;

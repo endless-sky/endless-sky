@@ -142,7 +142,7 @@ bool descriptionCollapsed, bool scrollingPanel = false)
 	attributeHeaderValues.clear();
 
 	attributeHeaderLabels.push_back("model:");
-	attributeHeaderValues.push_back(ship.ModelName());
+	attributeHeaderValues.push_back(ship.DisplayModelName());
 	attributesHeight = 20;
 
 	attributeLabels.clear();
@@ -443,7 +443,7 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const PlayerInfo &player, 
 
 	int64_t totalCost = depreciation.Value(ship, player.GetDate().DaysSinceEpoch());
 	int64_t chassisCost = depreciation.Value(
-		GameData::Ships().Get(ship.ModelName()),
+		GameData::Ships().Get(ship.TrueModelName()),
 		player.GetDate().DaysSinceEpoch());
 	saleLabels.clear();
 	saleValues.clear();

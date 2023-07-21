@@ -95,6 +95,7 @@ mission "Remnant: Broken Jump Drive job"
 	destination
 		government "Remnant"
 		attributes outfitter
+		not attributes "remnant station"
 		not distance 0
 	on visit
 		dialog phrase "broken jump drive on visit"
@@ -691,7 +692,7 @@ mission "Remnant: Disable 1"
 		dialog `The Remnant are puzzled at your aborting of this mission, but they tell you they will send someone else to do this work. They advise you they will prioritize other teams for these missions in the future.`
 	on fail
 		"reputation: Remnant" -= 250
-		dialog `You where unable to disable the Kas'lor Ik 582 without destroying it... The Remnant will not be pleased...`
+		dialog `You were unable to disable the Kas'lor Ik 582 without destroying it... The Remnant will not be pleased...`
 	on complete
 		"remnant: disable and save count" ++
 		payment 2000000

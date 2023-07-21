@@ -46,9 +46,11 @@ public:
 	MissionAction(const DataNode &node, const std::string &missionName);
 
 	void Load(const DataNode &node, const std::string &missionName);
+	void LoadSingle(const DataNode &node, const std::string &missionName);
 	// Note: the Save() function can assume this is an instantiated mission, not
 	// a template, so it only has to save a subset of the data.
 	void Save(DataWriter &out) const;
+	void SaveBody(DataWriter &out) const;
 	// Determine if this MissionAction references content that is not fully defined.
 	std::string Validate() const;
 
@@ -58,6 +60,8 @@ public:
 	// if it takes away money or outfits that the player does not have, or should
 	// take place in a system that does not match the specified LocationFilter.
 	bool CanBeDone(const PlayerInfo &player, const std::shared_ptr<Ship> &boardingShip = nullptr) const;
+	// Check if this action requires this ship to exist in order to ever be completed.
+	bool RequiresGiftedShip(const std::string &shipId) const;
 	// Perform this action. If a conversation is shown, the given destination
 	// will be highlighted in the map if you bring it up.
 	void Do(PlayerInfo &player, UI *ui = nullptr, const System *destination = nullptr,

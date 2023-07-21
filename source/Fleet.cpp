@@ -88,7 +88,24 @@ void Fleet::Load(const DataNode &node)
 		else if(key == "names" && hasValue)
 			names = GameData::Phrases().Get(child.Token(1));
 		else if(key == "fighters" && hasValue)
+		{
 			fighterNames = GameData::Phrases().Get(child.Token(1));
+			child.PrintTrace("Warning: Deprecated use of \"fighters\" <names>."
+				" Use \"names\" <names> node under \"fighters\" instead.");
+		}
+		else if(key == "fighters" && child.HasChildren())
+		{
+			for(const DataNode &grand : child)
+			{
+				const string &fighterKey = grand.Token(0);
+				if(fighterKey == "names" && grand.Size() >= 2)
+					fighterNames = GameData::Phrases().Get(grand.Token(1));
+				else if(fighterKey == "personality")
+					fighterPersonality.Load(grand);
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
+			}
+		}
 		else if(key == "cargo settings" && child.HasChildren())
 			cargo.Load(child);
 		// Allow certain individual cargo settings to be direct children
@@ -461,7 +478,7 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const vector<const Ship *> &ships) c
 		// At least one of this variant's ships is valid, but we should avoid spawning any that are not defined.
 		if(!model->IsValid())
 		{
-			Logger::LogError("Warning: Skipping invalid ship model \"" + model->ModelName()
+			Logger::LogError("Warning: Skipping invalid ship model \"" + model->TrueModelName()
 				+ "\" in fleet \"" + fleetName + "\".");
 			continue;
 		}
@@ -469,11 +486,15 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const vector<const Ship *> &ships) c
 		// Copy the model instance into a new instance.
 		auto ship = make_shared<Ship>(*model);
 
-		const Phrase *phrase = ((ship->CanBeCarried() && fighterNames) ? fighterNames : names);
+		bool canBeCarried = ship->CanBeCarried();
+		const Phrase *phrase = ((canBeCarried && fighterNames) ? fighterNames : names);
 		if(phrase)
 			ship->SetName(phrase->Get());
 		ship->SetGovernment(government);
-		ship->SetPersonality(personality);
+		if(canBeCarried && fighterPersonality.IsDefined())
+			ship->SetPersonality(fighterPersonality);
+		else
+			ship->SetPersonality(personality);
 
 		placed.push_back(ship);
 	}
