@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cassert>
 #include <map>
+#include <iostream>
 
 using namespace std;
 
@@ -137,4 +138,11 @@ void Plugins::TogglePlugin(const string &name)
 {
 	auto *plugin = plugins.Get(name);
 	plugin->currentState = !plugin->currentState;
+}
+
+
+
+void Plugins::Install()
+{
+	std::cout<<"You tried to install a plugin, but it failed!"<<std::endl;
 }

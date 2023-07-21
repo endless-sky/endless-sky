@@ -498,6 +498,9 @@ interface "plugins"
 	button o "_Open Plugins"
 		center -195 210
 		dimensions 120 30
+	button i "_Install Plugins"
+		center -65 210
+		dimensions 120 30
 	visible if "show plugins changed"
 	label "Restart to apply changes"
 		from -225 -236

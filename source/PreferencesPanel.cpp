@@ -161,6 +161,8 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		if(zones[latest].Value().KeyName() != Command::MENU.KeyName())
 			Command::SetKey(zones[latest].Value(), 0);
 	}
+	else if(key == 'i' && page == 'p')
+		Plugins::Install();
 	else
 		return false;
 
