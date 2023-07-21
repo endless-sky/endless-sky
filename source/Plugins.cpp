@@ -19,11 +19,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Files.h"
+#include "Git.h"
 
 #include <algorithm>
 #include <cassert>
 #include <map>
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -142,7 +144,12 @@ void Plugins::TogglePlugin(const string &name)
 
 
 
-void Plugins::Install()
+void Plugins::Install(string url)
 {
-	std::cout<<"You tried to install a plugin, but it failed!"<<std::endl;
+	int error = Git::Clone(url.c_str(), Files::Plugins().c_str());
+	std::cout<<"You tried to install a plugin, ";
+	if(error == 0)
+		std::cout<<"and it succeeded!"<<std::endl;
+	else
+		std::cout<<"but it failed!"<<std::endl;
 }

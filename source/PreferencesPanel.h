@@ -53,6 +53,8 @@ private:
 
 	void Exit();
 
+	void InstallPlugin(const std::string &);
+
 
 private:
 	int editing;

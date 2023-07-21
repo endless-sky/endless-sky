@@ -231,6 +231,13 @@ const string &Files::Tests()
 
 
 
+const string Files::Plugins()
+{
+	return Config() + "plugins/" + "nomads";
+}
+
+
+
 vector<string> Files::List(string directory)
 {
 	if(directory.empty() || directory.back() != '/')
