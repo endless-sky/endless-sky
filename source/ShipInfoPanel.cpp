@@ -359,6 +359,7 @@ void ShipInfoPanel::SetUpHardpointCalcs(const Rectangle &bounds)
 	int offset = 0;
 	while(pageNeeded)
 	{
+		// First go through the guns.
 		if(gunIndex < gunRows)
 		{
 			if((gunRows - gunIndex) * 20. >= height)
@@ -369,6 +370,7 @@ void ShipInfoPanel::SetUpHardpointCalcs(const Rectangle &bounds)
 				gunIndex = gunRows;
 			}
 		}
+		// Then go through the turrets.
 		if(gunIndex >= gunRows && turretIndex < turretRows)
 		{
 			if(offset)
@@ -507,9 +509,9 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 
 	// If necessary, shrink the sprite to keep the hardpoints inside the labels.
 	// The width of this UI block will be 2 * (LABEL_WIDTH + HARDPOINT_DX).
-	static const double LABEL_WIDTH = 150.;
-	static const double LABEL_DX = 95.;
-	static const double LABEL_PAD = 5.;
+	static constexpr double LABEL_WIDTH = 150.;
+	static constexpr double LABEL_DX = 95.;
+	static constexpr double LABEL_PAD = 5.;
 	if(maxX > (LABEL_DX - LABEL_PAD))
 		scale = min(scale, (LABEL_DX - LABEL_PAD) / (2. * maxX));
 
@@ -521,8 +523,8 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	}
 
 	const double centerX = bounds.Center().X();
-	const double labelCenter[2] = {-.5 * LABEL_WIDTH - LABEL_DX, LABEL_DX + .5 * LABEL_WIDTH};
-	const double fromX[2] = {-LABEL_DX + LABEL_PAD, LABEL_DX - LABEL_PAD};
+	constexpr double labelCenter[2] = {-.5 * LABEL_WIDTH - LABEL_DX, LABEL_DX + .5 * LABEL_WIDTH};
+	constexpr double fromX[2] = {-LABEL_DX + LABEL_PAD, LABEL_DX - LABEL_PAD};
 	static const double LINE_HEIGHT = 20.;
 	static const double TEXT_OFF = .5 * (LINE_HEIGHT - font.Height());
 	static const Point LINE_SIZE(LABEL_WIDTH, LINE_HEIGHT);
@@ -537,6 +539,8 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	indicesRight.clear();
 	indicesLeft.clear();
 	int index = 0;
+
+	// Sort weapons by category (turret or gun).
 	std::vector<const Hardpoint *> gunHardpoints;
 	std::vector<const Hardpoint *> turretHardpoints;
 	for(const Hardpoint &hardpoint : ship.Weapons())
@@ -546,34 +550,28 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 		else
 			gunHardpoints.emplace_back(&hardpoint);
 	}
-	for(const Hardpoint *hardpoint : gunHardpoints)
+
+	// Sort wepaons into left and right.
+	auto SortIntoIndices = [&] (std::vector<const Hardpoint *> &toSort)
 	{
-		if(hardpoint->GetPoint().X() >= 0.)
+		for(const Hardpoint *hardpoint : toSort)
 		{
-			indicesRight.emplace_back(index);
-			weaponsRight.emplace_back(hardpoint);
+			if(hardpoint->GetPoint().X() >= 0.)
+			{
+				indicesRight.emplace_back(index);
+				weaponsRight.emplace_back(hardpoint);
+			}
+			else
+			{
+				indicesLeft.emplace_back(index);
+				weaponsLeft.emplace_back(hardpoint);
+			}
+			index++;
 		}
-		else
-		{
-			indicesLeft.emplace_back(index);
-			weaponsLeft.emplace_back(hardpoint);
-		}
-		index++;
-	}
-	for(const Hardpoint *hardpoint : turretHardpoints)
-	{
-		if(hardpoint->GetPoint().X() >= 0.)
-		{
-			indicesRight.emplace_back(index);
-			weaponsRight.emplace_back(hardpoint);
-		}
-		else
-		{
-			indicesLeft.emplace_back(index);
-			weaponsLeft.emplace_back(hardpoint);
-		}
-		index++;
-	}
+	};
+	SortIntoIndices(gunHardpoints);
+	SortIntoIndices(turretHardpoints);
+
 
 	auto DrawElements = [&] (std::vector<const Hardpoint *> &weaponList, int weaponIndex, bool right)
 	{
@@ -585,7 +583,7 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 
 		bool isTurret = hardpoint->IsTurret();
 
-		double y = (weaponIndex - (pageIndex - 1) * (rowsPerPage / 2)) * 20. + 40.;
+		double y = (weaponIndex - (pageIndex - 1) * (static_cast<float>(rowsPerPage) / 2)) * 20. + 40.;
 		double x = right ? centerX + LABEL_DX : centerX - LABEL_DX - LABEL_WIDTH;
 		bool isHover = (weaponIndex == hoverIndex && (right ? hoverRight : !hoverRight));
 		layout.align = right ? Alignment::LEFT : Alignment::RIGHT;

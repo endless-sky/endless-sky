@@ -109,9 +109,11 @@ private:
 	int draggingIndex = -1;
 	int pages = 1;
 	int pageIndex = 1;
+	InfoPanelState panelState;
+
+	// Store values between calculating weapon display and drawing it.
 	int rowsPerPage = 1;
 	double maxX = 0.;
-	InfoPanelState panelState;
 
 	// Track the current mouse location.
 	Point hoverPoint;
