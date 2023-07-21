@@ -42,6 +42,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <SDL2/SDL.h>
 
 #include <algorithm>
+#include <fstream>
+#include <utility>
 
 using namespace std;
 
@@ -114,19 +116,22 @@ void PreferencesPanel::Draw()
 	if(currentSettingsPage + 1 < SETTINGS_PAGE_COUNT)
 		info.SetCondition("show next");
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
-	string pageName = (page == 'c' ? "controls" : page == 's' ? "settings" : "plugins");
+	string pageName = (page == 'c' ? "controls" : page == 's' ? "settings" : page == 'p' ? "plugins" : "install plugins");
 	GameData::Interfaces().Get(pageName)->Draw(info, this);
 	GameData::Interfaces().Get("preferences")->Draw(info, this);
 
 	zones.clear();
 	prefZones.clear();
 	pluginZones.clear();
+	installAbleZones.clear();
 	if(page == 'c')
 		DrawControls();
 	else if(page == 's')
 		DrawSettings();
 	else if(page == 'p')
 		DrawPlugins();
+	else if(page == 'i')
+		DrawInstallAbles();
 }
 
 
@@ -162,7 +167,11 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 			Command::SetKey(zones[latest].Value(), 0);
 	}
 	else if(key == 'i' && page == 'p')
-		GetUI()->Push(new Dialog(this, &PreferencesPanel::InstallPlugin, "Please insert the url;"));
+		page = 'i';
+	else if(key == 'b' && page == 'i')
+		page = 'p';
+	else if(key == 'i' && page == 'i' && selectedInstallAble.second.size())
+		Plugins::Install(selectedInstallAble.second, selectedInstallAble.first);
 	else
 		return false;
 
@@ -275,6 +284,13 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 		if(zone.Contains(point))
 		{
 			selectedPlugin = zone.Value();
+			break;
+		}
+
+	for(const auto &zone : installAbleZones)
+		if(zone.Contains(point))
+		{
+			selectedInstallAble = zone.Value();
 			break;
 		}
 
@@ -847,16 +863,74 @@ void PreferencesPanel::DrawPlugins()
 
 
 
+void PreferencesPanel::DrawInstallAbles()
+{
+	const Color &back = *GameData::Colors().Get("faint");
+	const Color &medium = *GameData::Colors().Get("medium");
+	const Color &bright = *GameData::Colors().Get("bright");
+
+	const int MAX_TEXT_WIDTH = 230;
+	Table table;
+	table.AddColumn(-115, {MAX_TEXT_WIDTH, Truncate::MIDDLE});
+	table.SetUnderline(-120, 100);
+
+	int firstY = -238;
+	// Table is at -110 while checkbox is at -130
+	table.DrawAt(Point(-110, firstY));
+	table.DrawUnderline(medium);
+	table.DrawGap(25);
+
+	const Font &font = FontSet::Get(14);
+
+	ifstream pluginList(Files::Resources() + "pluginlist.txt");
+  	if(pluginList.is_open())
+  	{
+		string line;
+		while(getline(pluginList, line))
+		{
+			string name = line.substr(0, line.find(" "));
+			string url = line.substr(line.find(" ") + 1, line.length());
+			if(!name.size())
+				continue;
+
+			installAbleZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), std::make_pair(name, url));
+
+			// Use url as that is more unique, just in case.
+			bool isSelected = (url == selectedInstallAble.second);
+			if(isSelected)
+				table.DrawHighlight(back);
+
+			if(isSelected)
+				table.Draw(name, bright);
+			else
+				table.Draw(name, medium);
+
+			if(isSelected)
+			{
+				const Sprite *sprite = SpriteSet::Get(name);
+				Point top(15., firstY);
+				if(sprite)
+				{
+					Point center(130., top.Y() + .5 * sprite->Height());
+					SpriteShader::Draw(sprite, center);
+					top.Y() += sprite->Height() + 10.;
+				}
+
+				WrappedText wrap(font);
+				wrap.SetWrapWidth(MAX_TEXT_WIDTH);
+				wrap.Wrap(url);
+				wrap.Draw(top, medium);
+			}
+		}
+		pluginList.close();
+  	}
+}
+
+
+
 void PreferencesPanel::Exit()
 {
 	Command::SaveSettings(Files::Config() + "keys.txt");
 
 	GetUI()->Pop(this);
-}
-
-
-
-void PreferencesPanel::InstallPlugin(const string &url)
-{
-	Plugins::Install(url);
 }

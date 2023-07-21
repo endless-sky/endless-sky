@@ -50,6 +50,7 @@ private:
 	void DrawControls();
 	void DrawSettings();
 	void DrawPlugins();
+	void DrawInstallAbles();
 
 	void Exit();
 
@@ -73,9 +74,12 @@ private:
 	std::string selectedPlugin;
 	std::string hoverPlugin;
 
+	std::pair<std::string, std::string> selectedInstallAble;
+
 	std::vector<ClickZone<Command>> zones;
 	std::vector<ClickZone<std::string>> prefZones;
 	std::vector<ClickZone<std::string>> pluginZones;
+	std::vector<ClickZone<std::pair<std::string, std::string>>> installAbleZones;
 };
 
 

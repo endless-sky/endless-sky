@@ -233,7 +233,7 @@ const string &Files::Tests()
 
 const string Files::Plugins()
 {
-	return Config() + "plugins/" + "nomads";
+	return Config() + "plugins/";
 }
 
 

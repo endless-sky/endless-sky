@@ -65,7 +65,7 @@ public:
 	static void TogglePlugin(const std::string &name);
 
 	// Install a Plugin with git.
-	static void Install(std::string url);
+	static void Install(std::string url, std::string name);
 };
 
 

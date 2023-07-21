@@ -1,0 +1,2 @@
+nomads https://github.com/RisingLeaf/nomads.git
+megafreight https://github.com/1010todd/Mega-Freight.git

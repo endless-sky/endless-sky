@@ -474,7 +474,6 @@ interface "settings"
 	button r "P_revious"
 		center -210 210
 		dimensions 90 30
-	
 
 
 
@@ -508,6 +507,42 @@ interface "plugins"
 		color "plugin reload required"
 	visible if "!show plugins changed"
 	label "Installed Plugins:"
+		from -225 -236
+		align top left
+		color bright
+
+
+
+interface "install plugins"
+	sprite "ui/plugins panel"
+		center -20 -20
+	button c "_Controls"
+		center -300 -230
+		dimensions 90 30
+		color medium
+		hover bright
+	button s "_Settings"
+		center -300 -190
+		dimensions 90 30
+		color medium
+		hover bright
+	button p "_Plugins"
+		center -300 -150
+		dimensions 90 30
+		color bright
+	button b "_Back"
+		center -195 210
+		dimensions 120 30
+	button i "_Install"
+		center -65 210
+		dimensions 120 30
+	visible if "show plugins changed"
+	label "Restart to apply changes"
+		from -225 -236
+		align top left
+		color "plugin reload required"
+	visible if "!show plugins changed"
+	label "Installable Plugins:"
 		from -225 -236
 		align top left
 		color bright

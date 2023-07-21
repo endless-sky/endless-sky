@@ -144,10 +144,10 @@ void Plugins::TogglePlugin(const string &name)
 
 
 
-void Plugins::Install(string url)
+void Plugins::Install(string url, string name)
 {
-	int error = Git::Clone(url.c_str(), Files::Plugins().c_str());
-	std::cout<<"You tried to install a plugin, ";
+	int error = Git::Clone(url.c_str(), (Files::Plugins() + name).c_str());
+	std::cout<<"You tried to install the plugin: "<<url<<" , ";
 	if(error == 0)
 		std::cout<<"and it succeeded!"<<std::endl;
 	else
