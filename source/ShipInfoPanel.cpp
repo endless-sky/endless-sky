@@ -572,7 +572,6 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	SortIntoIndices(gunHardpoints);
 	SortIntoIndices(turretHardpoints);
 
-
 	auto DrawElements = [&] (std::vector<const Hardpoint *> &weaponList, int weaponIndex, bool right)
 	{
 		const Hardpoint *hardpoint = weaponList[weaponIndex];
@@ -583,7 +582,7 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 
 		bool isTurret = hardpoint->IsTurret();
 
-		double y = (weaponIndex - (pageIndex - 1) * (rowsPerPage / 2)) * 20. + 40.;
+		double y = (weaponIndex - (pageIndex - 1) * (rowsPerPage / 2)) * 20. + 40. + (isTurret) * 10.;
 		double x = right ? centerX + LABEL_DX : centerX - LABEL_DX - LABEL_WIDTH;
 		bool isHover = (weaponIndex == hoverIndex && (right ? hoverRight : !hoverRight));
 		layout.align = right ? Alignment::LEFT : Alignment::RIGHT;
@@ -614,8 +613,6 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 			topColor = color;
 			hasTop = true;
 		}
-
-		y += LINE_HEIGHT;
 	};
 
 
