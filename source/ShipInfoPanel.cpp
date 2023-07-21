@@ -583,7 +583,7 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 
 		bool isTurret = hardpoint->IsTurret();
 
-		double y = (weaponIndex - (pageIndex - 1) * (static_cast<float>(rowsPerPage) / 2)) * 20. + 40.;
+		double y = (weaponIndex - (pageIndex - 1) * (rowsPerPage / 2)) * 20. + 40.;
 		double x = right ? centerX + LABEL_DX : centerX - LABEL_DX - LABEL_WIDTH;
 		bool isHover = (weaponIndex == hoverIndex && (right ? hoverRight : !hoverRight));
 		layout.align = right ? Alignment::LEFT : Alignment::RIGHT;
