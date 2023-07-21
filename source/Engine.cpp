@@ -151,7 +151,7 @@ namespace {
 		if(!ship->Name().empty())
 			tag = gov + " " + ship->Noun() + " \"" + ship->Name() + "\": ";
 		else
-			tag = ship->ModelName() + " (" + gov + "): ";
+			tag = ship->DisplayModelName() + " (" + gov + "): ";
 
 		Messages::Add(tag + message, Messages::Importance::High);
 	}
@@ -784,7 +784,7 @@ void Engine::Step(bool isActive)
 			targetUnit = target->Facing().Unit();
 		info.SetSprite("target sprite", target->GetSprite(), targetUnit, target->GetFrame(step));
 		info.SetString("target name", target->Name());
-		info.SetString("target type", target->ModelName());
+		info.SetString("target type", target->DisplayModelName());
 		if(!target->GetGovernment())
 			info.SetString("target government", "No Government");
 		else
@@ -981,8 +981,8 @@ list<ShipEvent> &Engine::Events()
 // Draw a frame.
 void Engine::Draw() const
 {
-	GameData::Background().Draw(center, centerVelocity, zoom, (player.Flagship() ?
-		player.Flagship()->GetSystem() : player.GetSystem()));
+	GameData::Background().Draw(center, Preferences::Has("Render motion blur") ? centerVelocity : Point(),
+		zoom, (player.Flagship() ? player.Flagship()->GetSystem() : player.GetSystem()));
 	static const Set<Color> &colors = GameData::Colors();
 	const Interface *hud = GameData::Interfaces().Get("hud");
 
@@ -2264,8 +2264,21 @@ void Engine::DoCollection(Flotsam &flotsam)
 	}
 	if(!collector)
 		return;
-	if(collector == player.Flagship() && !Preferences::Has("Flagship flotsam collection"))
-		return;
+
+	// Checks for player FlotsamCollection setting
+	if(collector->IsYours())
+	{
+		const auto flotsamSetting = Preferences::GetFlotsamCollection();
+		if(flotsamSetting == Preferences::FlotsamCollection::OFF)
+			return;
+		if(collector == player.Flagship())
+		{
+			if(flotsamSetting == Preferences::FlotsamCollection::ESCORT)
+				return;
+		}
+		else if(flotsamSetting == Preferences::FlotsamCollection::FLAGSHIP)
+			return;
+	}
 
 	// Transfer cargo from the flotsam to the collector ship.
 	int amount = flotsam.TransferTo(collector);

@@ -464,7 +464,8 @@ mission "FW Southern Battle 2"
 				"Bastion" 2
 		fleet
 			names "free worlds capital"
-			fighters "free worlds fighters"
+			fighters
+				names "free worlds fighters"
 			variant
 				"Skein" 2
 				"Finch" 12
@@ -479,14 +480,16 @@ mission "FW Southern Battle 2"
 		government "Republic"
 		fleet 2
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Lance" 4
 				"Combat Drone" 6
 		fleet 3
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -1929,7 +1932,8 @@ mission "FW Rand 1"
 		personality staying heroic
 		fleet 2
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Lance" 4
@@ -2282,7 +2286,8 @@ mission "FW Liberate Delta Sagittarii"
 				"Falcon (Heavy)"
 		fleet
 			names "free worlds capital"
-			fighters "free worlds fighters"
+			fighters
+				names "free worlds fighters"
 			variant
 				"Skein" 2
 				"Finch" 12
@@ -2297,7 +2302,8 @@ mission "FW Liberate Delta Sagittarii"
 		government "Republic"
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Lance" 4
@@ -2305,7 +2311,8 @@ mission "FW Liberate Delta Sagittarii"
 				"Gunboat (Mark II)" 4
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -2317,13 +2324,15 @@ mission "FW Liberate Delta Sagittarii"
 		government "Republic"
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Frigate" 2
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Frigate" 4

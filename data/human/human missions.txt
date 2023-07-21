@@ -11,6 +11,185 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+mission "Raid Warning"
+	invisible
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	to offer
+		"pirate attraction" >= 5
+	on offer
+		conversation
+			`When you enter the <origin> spaceport, you're almost immediately stopped by a grizzled old man. "You some kinda rookie, or you asking for a death wish?" he asks.`
+			choice
+				`	"Excuse me?"`
+					goto advice
+				`	"Yeah, I'm pretty fresh. Is there something I'm doing wrong by walking in here?"`
+				`	"I've been piloting for a while. I think I know what I'm doing."`
+					goto think
+			`	The old man chuckles. "Ain't nothing wrong with walking in here. It's what you're flying in with that's the issue.`
+				goto advice
+			
+			label think
+			`	The old man chuckles. "Well I don't think so after what I've seen.`
+			
+			label advice
+			`	"I seen those ships of yours. That fleet is juicy pickings for pirates if I've ever seen it." You look confusedly at the man. "Oh, do I need to spell it out for you? Pirates love to take out soft targets with lots of potential cargo, and your fleet is looking pretty heavy on cargo space with hardly any defenses."`
+			choice
+				`	"Oh, so that's why I've been seeing pirates everywhere I go."`
+				`	"So what should I do about that?"`
+					goto solution
+				`	"Don't you think I know that already?"`
+					goto rebuff
+			`	"What, you think they just had it out for you because you look funny? No, pirates have their reasons.`
+			label solution
+			`	"Either get yourself more guns in that fleet or get rid of some cargo space. Park your ships, sell them, doesn't matter, so long as the pirates don't see them, or you make it not worth it to try and steal whatever you might have. Pirates see a bunch of freighters flying around unprotected and they're going to take their chances. Doesn't matter if you actually have anything or not."`
+			choice
+				`	"Thanks for the advice."`
+				`	"I'll make sure to go do that. Thanks."`
+			`	"No problem. Just looking out for a fellow captain. No use in getting got because you didn't know any better. But now you do." The man gives you a firm pat on the back before walking off.`
+				decline
+			
+			label rebuff
+			`	"Sure doesn't look like it." The man gives an exaggerated shrug and starts to walk off. "Alright then, get yourself killed. Not like I used to haul cargo from one end of the galaxy to the other for fifty years or anything." The man gets further and further away, continuing to grumble about "kids these days" and other such things until you can no longer hear him.`
+				decline
+
+
+
+mission "Hunted Warning"
+	invisible
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	to offer
+		"combat rating" > 8103
+		or
+			not "chosen sides"
+			has "main plot completed"
+	on offer
+		log `Got noticed at a spaceport bar as a "famous warrior." Was warned to look out for bounty hunters or pirates hoping to make a name for themselves.`
+		conversation
+			`You walk into a bar in the spaceport looking for something to eat when a man sitting at a table in the corner looks up and takes notice of you. "It's Captain <last>, the famous warrior! Barkeep, give <first> a drink on my tab."`
+			choice
+				`	"Glad to get some recognition. I work hard out here."`
+					goto recognition
+				`	"Famous warrior?"`
+			`	"Of course! Word travels fast in the galaxy, and word on the hyperspace lanes is that you're quite the fighter."`
+			
+			branch recognition
+				"reputation: Republic" >= 0
+				"reputation: Free Worlds" >= 0
+				"reputation: Syndicate" >= 0
+			
+			`	"It doesn't help that you've pissed off the law, either," someone behind you says, not sounding too happy.`
+			label recognition
+			`	More patrons take notice of the conversation and begin chattering amongst themselves. "Quite the force to be reckoned with, I've heard," you overhear one of them mumble.`
+			`	"You might want to watch your back," another says to you. "Plenty of pirates with more brains than sense might be looking to make a name for themselves by taking out such a famous captain. A person like you has to have some enemies, and you never know who might have put a price on your head. A bounty hunter could retire early on the fat purse they'd get from spacing you."`
+			choice
+				`	"I'll be fine. My ship is strong enough to stand against anything."`
+				`	"Maybe I should go into hiding for a while."`
+					goto hide
+			`	"Oh, I'm sure it is. You wouldn't have gotten this notorious without being able to hold your own."`
+				goto end
+			label hide
+			`	"You'd need to hide for more than just a while, but laying low in a small ship might help to stay off the radar of pirates and bounty hunters."`
+			label end
+			`	After a few more minutes of mumbling, the bar returns to like it was before you entered. The food you ordered arrives and you dig in.`
+				decline
+
+mission "Hunted"
+	invisible
+	landing
+	repeat
+	deadline 30
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	to offer
+		"combat rating" > 8103
+		"armament deterrence" >= 2
+		"ship scale" = "ship: Light Warship" + "ship: Medium Warship" * 2 + "ship: Heavy Warship" * 4
+		or
+			and
+				not "Hunted: active"
+				"ship scale" < 32
+				random < 2 + "ship scale" / 4
+			and
+				"ship scale" >= 32 + "Hunted: active" * 4
+				random < 10
+		or
+			not "chosen sides"
+			has "main plot completed"
+	# For weaker players, killing a single one of the attacking NPCs and then landing is sufficient to "complete" the mission.
+	npc save
+		to despawn
+			or
+				"armament deterrence" < 2
+				"armament deterrence" >= 3
+		government "Bounty Hunter"
+		personality heroic unconstrained waiting nemesis plunders harvests
+		system
+			distance 5 5
+		fleet "Bounty Hunters"
+	npc save
+		to despawn
+			or
+				"armament deterrence" < 3
+				"armament deterrence" >= 4
+		government "Bounty Hunter"
+		personality heroic unconstrained waiting nemesis plunders harvests
+		system
+			distance 5 5
+		fleet "Marauder fleet I"
+	npc save
+		to despawn
+			or
+				"armament deterrence" < 4
+				"armament deterrence" >= 8
+		government "Bounty Hunter"
+		personality heroic unconstrained waiting nemesis plunders harvests
+		system
+			distance 5 5
+		fleet "Marauder fleet IV"
+	npc save
+		to despawn
+			or
+				"armament deterrence" < 8
+				"armament deterrence" >= 16
+		government "Bounty Hunter"
+		personality heroic unconstrained waiting nemesis plunders harvests
+		system
+			distance 5 5
+		fleet "Marauder fleet VII"
+	npc save
+		to despawn
+			or
+				"armament deterrence" < 16
+				"armament deterrence" >= 32
+		government "Bounty Hunter"
+		personality heroic unconstrained waiting nemesis plunders harvests
+		system
+			distance 5 5
+		fleet "Marauder fleet X"
+	# For stronger players, all attacking NPCs must be killed before the mission will be completed.
+	npc kill
+		to despawn
+			"armament deterrence" < 32
+		government "Bounty Hunter"
+		personality heroic unconstrained waiting nemesis plunders harvests
+		system
+			distance 5 5
+		fleet "Marauder fleet X" 2
+	npc kill
+		to despawn
+			"armament deterrence" < 64
+		government "Bounty Hunter"
+		personality heroic unconstrained waiting nemesis plunders harvests
+		system
+			distance 5 5
+		fleet "Marauder fleet X"
+
+
+
 mission "Immigrant Workers"
 	description "A young couple wants to start a new life on <destination>, and can pay you <payment> to bring them there. They are also bringing along <cargo>."
 	minor
@@ -571,6 +750,7 @@ mission "Expedition to Hope 2"
 	destination
 		distance 2 5
 		government Republic "Free Worlds" Neutral
+	clearance
 	to offer
 		has "Expedition to Hope 1: done"
 	passengers 4
@@ -3744,7 +3924,7 @@ mission "Mafia Extortion"
 			`A man in a tailored suit, sunglasses, shiny shoes, and green hair approaches you. "Hey, that's a very nice ship you have there. Would be a shame if anything happened to it."`
 			`	You notice that he is missing a finger on each hand.`
 			choice
-				`	"Thank you. My name is <first> <last>. To whom do I have the pleasure of speaking?`
+				`	"Thank you. My name is <first> <last>. To whom do I have the pleasure of speaking?"`
 					goto nameless
 				`	"Yes, I'm very happy with my ship."`
 					goto specifics
@@ -4260,7 +4440,7 @@ mission "Fumbling Mugger"
 			label why2
 			`	The woman looks at you with a confused expression. "Huh? Why would you want to know that?"`
 			`	"Just humor me for a moment," you reply.`
-			`	She sighs. "A while ago, I was in a bad situation. My boyfriend had just moved to <planet> for employment, and I was to join him in a year. My father had other plans. He used my boyfriend's absence to justify marrying me into another, richer family. Wanted a chunk of their fortune, I suppose. I tried everying I could to convince him otherwise, but..." She looks down. "So I snuck off to the spaceport and got a merchant to transport me. She forced me to pay upfront, however, and as soon as we landed on <origin>, she kicked me out to make space for another set of passengers."`
+			`	She sighs. "A while ago, I was in a bad situation. My boyfriend had just moved to <planet> for employment, and I was to join him in a year. My father had other plans. He used my boyfriend's absence to justify marrying me into another, richer family. Wanted a chunk of their fortune, I suppose. I tried everything I could to convince him otherwise, but..." She looks down. "So I snuck off to the spaceport and got a merchant to transport me. She forced me to pay upfront, however, and as soon as we landed on <origin>, she kicked me out to make space for another set of passengers."`
 			`	Her eyebrows furrow. "Wait, you're not planning to bring me to <planet> after what I've just done, are you?"`
 			choice
 				`	"I can take you there."`
@@ -4582,7 +4762,7 @@ mission "Saving Artifacts 2"
 			choice
 				`	"Never mind, I'll pay."`
 					goto pay
-				`	"All right, I'll fight him.`
+				`	"All right, I'll fight him."`
 			`	"Heh, good choice. If you're worried about his crew, don't be. I'm sure if Alexandria thinks you're good enough to hire, you can handle it. I'll call him up so you don't have to go chasing him down." He pulls up a hologram communicator and noticeably stiffens up. "Hello Lokust. Hope you're not too busy right now, because someone wants to see you." He turns the communicator towards you, and you see a man in clothes more befitting of a prince than a pirate.`
 			choice
 				`	"Fight me."`
@@ -4783,7 +4963,7 @@ mission "Dangerous Games 2"
 			`	A crude sign behind him reads, 'Dangerous Games - Karengo's Galactic Adventures'.`
 			`	"Like it?" Karengo follows your gaze. "Decided to make this an official thing. Well... an unofficial official thing. Feds wouldn't understand. Doesn't matter; I need a pilot again, and a good one. Your ship's waterproof, right?"`
 			choice
-				`	"Uh, yeah. I think so.`
+				`	"Uh, yeah. I think so."`
 				`	"Of course."`
 				`	"Sorry, mate. You'll have to find another pilot."`
 					decline
@@ -5793,7 +5973,7 @@ mission "Argosy Hijacking"
 				`	(Find the captain.)`
 				`	(Don't worry about it.)`
 					decline
-			`	You find him in the spaceport lounge. As you walk in, he recognizes you and calls you over. "How are you doing? Did you recover the <npc>?`
+			`	You find him in the spaceport lounge. As you walk in, he recognizes you and calls you over. "How are you doing? Did you recover the <npc>?"`
 			choice
 				`	"No, I wasn't able to."`
 				`	"It fled before I could disable it."`
@@ -6096,7 +6276,7 @@ mission "Blind Man from Martini"
 			`	After a short queue, you reach the reception with Douglas. The receptionist, placed behind a sterile-looking screen that looks far out of place with the colorful hallways, asks with a well-practiced smile, "How may I help you?"`
 			choice
 				`	"We're looking for Anita Pears. Where can we find her?"`
-			`	For a moment, the receptionist shuffles information around on her terminal. "Are one of you a parent?"`
+			`	For a moment, the receptionist shuffles information around on her terminal. "Is one of you a parent?"`
 			`	"I'm the father, Douglas Pears," he replies.`
 			`	She takes a few more seconds before looking at you and saying, "Ah, but we cannot let you in. Only Mr. Pears is booked in for his daughter's procedure; we have a family-only policy, to keep the privacy of our patients."`
 			choice
@@ -6120,3 +6300,4 @@ mission "Blind Man from Martini"
 				clear "Blind Man from Martini: label far"
 				clear "Blind Man from Martini: label looking"
 			`	With that, he grabs his cane and his luggage, and follows a hospital attendant toward his daughter's room, leaving you in the reception.`
+
