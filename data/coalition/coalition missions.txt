@@ -3550,7 +3550,7 @@ conversation "anna invites you to book signing"
 	action
 		log "People" "Anna Fangvin" "Anna is a science fiction writer. She was a struggling author in human space, but found success upon publishing her novel 'Beyond the Hyperdrive' in Coalition space. Her book is a bestseller in Kimek space."
 		log "Helped somebody named Anna Fangvin get her book published in Coalition space. Apparently, it's a bestseller now. The book was 'Beyond the Hyperdrive,' something about humans stealing jump drives from the Quarg. Also found out she was ambidextrous."
-		payment 2000000
+		event "beyond the hyperdrive payment" 40
 		set "beyond the hyperdrive news can show now"
 	`The moment you land, Anna is all too happy to see you. She grabs your shoulders with both arms and in an excited tone explains that her book has been approved for publication.`
 	`	"They're publishing 'Beyond the Hyperdrive' today, and there's a full release event where I'll be signing copies! Thanks for everything you've done, <first>!"`
@@ -3587,3 +3587,17 @@ conversation "anna invites you to book signing"
 	`	"I've got to go now. I want to see how well my book is selling. Goodbye!"`
 	`	Anna then leaves your ship. You ponder what to do next, but you do feel rewarded having helped a struggling author make it big.`
 
+
+event "beyond the hyperdrive payment"
+
+mission "Beyond the Hyperdrive Gratitude Payment"
+	landing
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
+	to offer
+		has "event: beyond the hyperdrive payment"
+	on offer
+		payment 2000000
+		conversation
+			`You are shocked to see an extra <payment> in your account. Checking your messages you open a message from Anna, the author whose book 'Beyond the Hyperdrive' was published in Coalition space a few months ago. She explains that the book has been selling very well in Coalition space; alongside an expression of gratitude. Given the 2 million credits you received; this is likely an understatement.`
+				decline
