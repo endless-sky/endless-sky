@@ -68,10 +68,6 @@ outfitter omnis
 
 
 
-
-outfit "Local Map"
-	map 1000
-
 # Weapons:
 
 
@@ -84,8 +80,6 @@ outfit "Speck Round"
 	"flotsam chance" 1
 	description "These dense metallic glass sabots are capable of inflicting kinetic damage via hypervelocity impacts, but are easily stopped by momentum-repulsion shield systems."
 	description "Due to their simple makeup, they can be easily manufactured out of most commonly found metals."
-
-
 
 
 outfit "Speckle Railgun"
@@ -107,14 +101,14 @@ outfit "Speckle Railgun"
 		"velocity" 60
 		"range override" 1800
 		"lifetime" 1
-		"reload" 6
+		"reload" 1
 		"burst reload" 3
-		"burst count" 6
+		"burst count" 60
 		"firing energy" 18
 		"firing heat" 42
 		"firing force" 36
 		"submunition" "speckle slug"
-	description "This compact railgun fires a stream of hypervelocity metallic sabots, trading accuracy for firing rate. The Speckle Railgun files in short bursts in order to minimize rail ablation, giving the gun a chance to cool down."
+	description "This compact railgun fires a stream of hypervelocity metallic sabots, trading accuracy for rate of fire."
 	description "A small internal capacitor allows the Speckle Railgun to be trickle charged, even if a ship's power supply would otherwise be insufficient to fire a single shot."
 	
 
@@ -142,7 +136,7 @@ outfit "Speckle Turret"
 		"firing heat" 42
 		"firing force" 36
 		"submunition" "speckle slug"
-	description "The turreted version of the Speckle Railgun mounts a pair of railguns onto a nimble swiveling base. Its light weight and minimal size allows even the smallest ships to fit one, enabling them to engage much larger targets at extreme ranges."
+	description "The turreted version of the Speckle Railgun mounts a pair of railguns onto a nimble swiveling base. Its light weight and minimal size allows even small ships to fit one, enabling them to engage much larger targets at extreme ranges."
 
 
 outfit "speckle slug"
@@ -239,77 +233,13 @@ outfit "fleck slug"
 		"hit force" 180
 
 
-
-outfit "Iota Shell"
-	category "Ammunition"
-	cost 6
-	thumbnail "outfit/thunderhead"
-	"mass" 0.06
-	"iota capacity" -1
-	"flotsam chance" 1
-	description "Nuclear shells designed to be fired from a coilgun assembly"
-
-
-outfit "Iota Turret"
-	category "Turrets"
-	cost 40000
-	thumbnail "outfit/bombardment turret"
-	"mass" 66
-	"outfit space" -66
-	"weapon capacity" -66
-	"turret mounts" -1
-	"iota capacity" 36
-	weapon
-		sound "repeater"
-		ammo "Iota Shell"
-		icon "icon/rail gun"
-		"fire effect" "finisher sparks"
-		"hit effect" "bombardment impact"
-		"inaccuracy" 0.6
-		"velocity" 36
-		"range override" 3600
-		"lifetime" 1
-		"reload" 90
-		"turret turn" 1.8
-		"firing energy" 492
-		"firing heat" 304
-		"firing force" 360
-		"submunition" "iota slug"
-	description "A coilgun that shoots nukes (campaign unlock, not needed for initial PR)"
-
-
-outfit "iota slug"
-	weapon
-		sprite "projectile/coilgun"
-			"frame rate" 6
-		"hit effect" "thermonuclear flash"
-		"hit effect" "prompt radiation" 12
-		"hit effect" "fission fragments" 60
-		"die effect" "missile death"
-		"lifetime" 180
-		"blast radius" 120
-		"shield damage" 4800
-		"hull damage" 3600
-		"hit force" 1800
-		"missile strength" 60
-
-
-
-
-
-
-
-
-
-
-
-outfit "Phased Array Laser (450 nm)"
+outfit "Phased Array Laser (Blue)"
 	category "Turrets"
 	cost 12000000
 	thumbnail "outfit/t3 anti missile"
-	"mass" 42
-	"outfit space" -42
-	"weapon capacity" -30
+	"mass" 30
+	"outfit space" -30
+	"weapon capacity" -24
 	"turret mounts" -1
 	"optical jamming" 18
 	"energy consumption" 1.2
@@ -330,7 +260,7 @@ outfit "Phased Array Laser (450 nm)"
 	
 
 
-outfit "Phased Array Laser (540 nm)"
+outfit "Phased Array Laser (Green)"
 	category "Turrets"
 	cost 12000000
 	thumbnail "outfit/t3 anti missile"
@@ -345,7 +275,7 @@ outfit "Phased Array Laser (540 nm)"
 		"die effect" "blue phaser die"
 		"die effect" "blue phaser die 1"
 		"fire effect" "blue phaser fire"
-		"anti-missile" 2
+		"anti-missile" 1
 		"velocity" 600
 		"lifetime" 1
 		"reload" 1
@@ -365,7 +295,6 @@ effect "blue phaser die"
 	"random angle" 20
 	"random spin" 20
 	"random velocity" -12
-
 
 effect "blue phaser die 1"
 	sprite "effect/skylance impact"
@@ -679,7 +608,7 @@ outfit "Azimuth Missile"
 	description "Casaba Howitzer (campaign unlock, not needed for initial PR)"
 
 
-outfit `Azimuth Rotary Launcher`
+outfit "Azimuth Rotary Launcher"
 	category "Secondary Weapons"
 	licenses
 		Heliarch
@@ -818,7 +747,7 @@ outfit "Radiative Scales"
 	description "Radiant Scales take advantage of special external hardpoints cleverly built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
 
 
-outfit "Obscurity Scales"
+outfit "Dazzling Scales"
 	category "Systems"
 	cost 200000
 	thumbnail "outfit/interference plating"
@@ -851,7 +780,7 @@ outfit "Adamant Scales"
 	thumbnail "outfit/interference plating"
 	"mass" 36
 	"surface space" -36
-	"hull multiplier" 1.8
+	"hull multiplier" 2
 	"solar heat" 9
 	description "Thanks to recent breakthroughts in materials science, the Avgi have devised this retrofitting kit to allow older ships to take advantage of the increased hull strength offered by exotic materials. These armor plates and structural members reinforce both the skin and core strength of a ship, strengthening it without compromising its internal structure."
 	description "Adamant Scales take advantage of special external hardpoints cleverly built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
@@ -897,19 +826,6 @@ outfit "Electrostatic Ramscoop"
 
 outfit "Dipole Ramscoop"
 	category "Systems"
-	cost 60000
-	thumbnail "outfit/ramscoop"
-	"mass" 36
-	"outfit space" -36
-	"ramscoop" 9
-	"fuel generation" 0.03
-	"energy consumption" 0.9
-	description "By producing extremely powerful magnetic fields, this ramscoop is able to grab ambient hydrogen atoms by their magnetic dipoles, channeling them towards the ship without needing to first ionize them. This results in a ramscoop that is more efficient in energy-per-fuel collected than the Electrostatic Ramscoop, but is not quite as compact."
-	description "Ramscoops like these were used in Avgi ram-augmented torchships, allowing them to sustain constant burns during their sublight interstellar journeys."
-
-
-outfit "Protium Fusion Ramscoop"
-	category "Systems"
 	cost 60000000
 	thumbnail "outfit/ramscoop"
 	"mass" 108
@@ -919,7 +835,8 @@ outfit "Protium Fusion Ramscoop"
 	"fuel generation" 1.2
 	"fuel capacity" 600
 	"energy consumption" 12
-	description "The largest of the Avgi's sublight starships once used direct cycle ramjet engines to collect hydrogen from the interstellar medium, fusing it while it sped by at a small fraction of the speed of light to produce thrust. This ramscoop takes that original ramjet design and strips out the thruster, modifying the fusion reactor to fuse raw hydrogen into deuterium while preventing the deuterium from further fusing. While the polarization process needed to inhibit deuterium fusion, a direct conjugate to the spin polarization that enables Avgi fusion torches, does make the reaction net energy negative, this ramscoop's ability to produce hyperspace fuel is unparalleled. However, it usually needs a dedicated reactor to run it, and is usually installed only on the largest Avgi tankers."
+	description "With massive banks of superconducting magnets, extremely powerful magnetic fields grab ambient hydrogen atoms by their magnetic dipoles, channeling them towards a collection point without needing to first ionize them. This results in a ramscoop that is far more efficient in both fuel collection and energy use than the Electrostatic Ramscoop, but which is utterly massive in size. The magnetic stresses involved are so huge that a dedicated spinal mount is needed to use this ramscoop without tearing the ship apart."
+	description "Ramscoops like these were used in Avgi ram-augmented torchships, allowing them to sustain constant burns during their sublight interstellar journeys."
 
 
 outfit "Deuterium Slush Tank"
@@ -931,7 +848,7 @@ outfit "Deuterium Slush Tank"
 	"fuel capacity" 300
 	"energy consumption" 0.15
 	"heat generation" 0.15
-	description `This lightweight fuel pod stores an appreciable amount of hyperspace fuel as deuterium slush, allowing it to be stored at higher densities than would otherwise be possible. The cryocooler required to run the zero boiloff system does require a small amount of energy, however.`
+	description `This lightweight fuel pod stores an appreciable amount of hyperspace fuel as deuterium slush, a mix of liquid and solid deuterium. This allows fuel to be stored at higher densities than would otherwise be possible. The cryocooler required to run the zero boiloff system does require a small amount of energy, however.`
 
 outfit "Pressurized Deuterium Tank"
 	category "Systems"
@@ -941,10 +858,10 @@ outfit "Pressurized Deuterium Tank"
 	"outfit space" -6
 	"cargo space" -30
 	"fuel capacity" 600
-	description `This high-stress pressure vessel is designed to store hyperspace fuel under for bulk transport. While not as efficient as a cryogenic storage vessel, this outfit is designed to be installed in a ship's available cargo space with minimal overhead, allowing many to be installed simultaneously without the need for support equipment.`
+	description `This high-stress pressure vessel is designed to store hyperspace fuel under for bulk transport. While not as efficient as a deuterium slush tank, this outfit is designed to work with a ship's available cargo space with minimal overhead, allowing many to be installed simultaneously without the need for support equipment.`
 
 
-outfit "Thermal Vessel Partition"
+outfit "Partitioned Heatsink"
 	category "Systems"
 	cost 30000
 	thumbnail "outfit/densified fuel tank"
@@ -952,7 +869,7 @@ outfit "Thermal Vessel Partition"
 	"outfit space" -3
 	"fuel capacity" -100
 	"heat capacity" 180
-	description `This lightweight modification partitions off a section of a ship's fuel tanks with an insulating membrane, allowing them to be partially filled with a nanofluid with a high specific heat capacity. As a heatsink, it does not assist with cooling a ship, but allows it to take greater thermal loads while remaining at the same temperature.`
+	description `This lightweight modification partitions off a section of a ship's fuel tanks with an insulating membrane, allowing them to be partially filled with a nanofluid with a high specific heat capacity. As a heatsink, it does not assist with cooling a ship, but allows it to take greater thermal loads while remaining at a safe temperature.`
 
 
 outfit "Multispectral Scanner"
@@ -986,40 +903,7 @@ outfit "Spectrometer Array"
 	description "Unfortunately, while Avgi sensors excel in determining information such as the chemical composition of an object, the amount of information required to predict a component's functionality means this sensor can be quite slow when scanning a ship's complex systems or its internal bay contents."
 
 
-outfit "Small Auxiliary Radiator"
-	category "Systems"
-	cost 200000
-	thumbnail "outfit/small heat shunt"
-	"mass" 6
-	"outfit space" -12
-	"cooling" 12
-	description "Smaller Avgi ships usually lack the distinctive triangular radiators found on their warships. Instead, they tend to use simple flat panel radiators such as these. This closed-loop radiator circulates hot coolant through millions of channels embedded in a thin graphene sheet, radiating away waste heat in a lightweight package."
-
-
-outfit "Large Auxiliary Radiator"
-	category "Systems"
-	cost 200000
-	thumbnail "outfit/small heat shunt"
-	"mass" 18
-	"outfit space" -42
-	"cooling" 72
-	description "While most large Avgi ships are built with a comprehensive set of radiators, trimmed to fall within the radiation shadow produced by their engines and reactors, they occasionally require additional heat rejection systems. This large radiator saves on space compared to its smaller cousin by taking advantage of the scaling efficiencies of its larger coolant pump, but is otherwise very similar."
-
-
 outfit "Diffuse Deflector"
-	category "Systems"
-	cost 35000
-	thumbnail "outfit/small shield"
-	"mass" 24
-	"outfit space" -24
-	"shield generation" 0.12
-	"shield energy" .9
-	"shield heat" 2.4
-	"shield delay" 3
-	description "Avgi shield generators are primitive at best, which is especially evident in their attempt to scale them down to a manageable size for their drones and interceptors. This shield generator requires a prodigious amount of cooling after Avgi engineers miniturized it to the limits of their knowledge of shielding principles."
-
-
-outfit "Specular Deflector"
 	category "Systems"
 	cost 120000
 	thumbnail "outfit/large shield"
@@ -1029,9 +913,9 @@ outfit "Specular Deflector"
 	"shield energy" 1.8
 	"shield heat" 4.8
 	"shield delay" 3
-	description "For its size, you would expect this shield generator to be far more powerful than it actually is. While it is nearly as large as the heaviest human shield generators, it is only about three quarters as strong, while also consuming much more power."
+	description "For its size, you would expect this shield generator to be far more powerful than it actually is. While it is nearly as large as the heaviest human shield generators, it is only about three quarters as strong, while also consuming much more power. Much of this power ends up being shed as waste heat instead of being used to efficiently regenerate a shield."
 
-outfit "Mirror Deflector"
+outfit "Specular Deflector"
 	category "Systems"
 	cost 200000
 	thumbnail "outfit/huge shield"
@@ -1046,22 +930,6 @@ outfit "Mirror Deflector"
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Power:
 
 
@@ -1070,10 +938,10 @@ outfit "Concentrating Solar Cell"
 	cost 200000
 	thumbnail "outfit/tiny photovoltaic"
 	"mass" 1
-	"outfit space" -6
-	"solar collection" 0.45
-	"solar heat" 0.3
-	description "This small set of concentrating solar cells efficiently collects sunlight, turning it into usable energy. Fresnel lenses concentrate sunlight onto a smaller number of highly efficient solar cells, reducing weight."
+	"outfit space" -3
+	"solar collection" 0.3
+	"solar heat" 0.15
+	description "This tiny set of concentrating solar cells efficiently collects sunlight, turning it into usable energy. Fresnel lenses concentrate sunlight onto a smaller number of highly efficient solar cells, reducing weight."
 
 
 outfit "Concentrating Solar Array"
@@ -1082,12 +950,12 @@ outfit "Concentrating Solar Array"
 	thumbnail "outfit/small photovoltaic"
 	"mass" 3
 	"outfit space" -18
-	"solar collection" 1.8
-	"solar heat" 1.2
+	"solar collection" 2.1
+	"solar heat" 1.5
 	description "This large set of concentrating solar cells efficiently collects sunlight, turning it into usable energy. Fresnel lenses concentrate sunlight onto a smaller number of highly efficient solar cells, reducing weight."
 
 
-outfit "Photovoltaic Scales"
+outfit "Photoelectric Scales"
 	category "Power"
 	cost 200000
 	thumbnail "outfit/interference plating"
@@ -1110,10 +978,6 @@ outfit "Pebble Bed Cell"
 	description `The Pebble Bed reactor is an extremely compact fission reactor designed to fit even on large fighters or interceptors. By passing a gas through a tightly-packed pile of uranium-cored graphite "pebbles", the reactor can achieve core temperatures high enough to make it efficient for its size.`
 
 
-`"Subdwarf" Fusion Core`
-`"Main Sequence" Fusion Core`
-`"Supergiant" Fusion Core`
-`"Nova" Fusion Core`
 
 
 outfit "Luminous Fusion Core"
@@ -1160,108 +1024,69 @@ outfit "Stellar Fusion Core"
 	"fuel consumption" 0.009
 
 
-outfit "Fractal Capacitor Cell"
+outfit "Ultracapacitor Cell"
 	category "Power"
 	cost 200000
 	thumbnail "outfit/supercapacitor"
-	"mass" 0.5
+	"mass" 1
 	"outfit space" -3
-	"energy capacity" 1800
-	"ion protection" -0.003
+	"energy capacity" 1500
+	"ion protection" -0.01
 	"description" "The internal structure of this deceptively light capacitor cell resembles a fractal of molecule-thin graphene sheets interlocked together. While not the most efficient in their use of volume, and thus outfit space, this capacitor cell is extraordinarily energy dense for its mass, a deliberate design choice from the days of sublight interstellar travel, when every gram counted."
 	"description" "Unfortunately, the internal structure is also quite delicate, and is prone to potential discharge when exposed to ionizing radiation. Thankfully, resilient grounding leads prevents this discharge from becoming catastrophic."
 	
 	
-outfit "Fractal Capacitor Bank"
+outfit "Ultracapacitor Bank"
 	category "Power"
 	cost 200000
 	thumbnail "outfit/supercapacitor"
-	"mass" 3
+	"mass" 6
 	"outfit space" -15
-	"energy capacity" 10800
-	"ion protection" -0.009
-	"description" "Fractal capacitors are capable of storing a large amount of energy within superconducting graphene sheets. This capacitor bank chains together six individual cells, but saves both space and mass by discarding redundant components and unnecessary structural mass."
+	"energy capacity" 9000
+	"ion protection" -0.03
+	"description" "These fractal capacitors are capable of storing a large amount of energy within superconducting graphene sheets. This capacitor bank chains together six individual cells, but saves space by discarding redundant components and unnecessary structural mass."
 	"description" "Like its component cells, the capacitor bank is vulnerable to ionizing weapons, but is relatively better shielded for its size by virtue of its reduced surface area to volume ratio."
 
 
-
-
-
+outfit "EMF Ultracapacitor Shield"
+	category "Systems"
+	cost 20000
+	thumbnail "outfit/emfshield"
+	"mass" 0.5
+	"outfit space" -1
+	"ion protection" 0.01
+	"EMF cover" -1
 
 
 
 # Engines:
 
 
-outfit "M018 Magnetoplasma Drive"
+outfit "Magnetoplasma Drive"
 	category "Engines"
-	"cost" 100000
+	"cost" 30000
 	thumbnail "outfit/ionic afterburner"
 	"mass" 12
 	"outfit space" -18
 	"engine capacity" -18
 	"thrust" 6
 	"thrusting energy" 1.2
-	"thrusting heat" 0.6
+	"thrusting heat" 0.9
 	"reverse thrust" 3
 	"reverse thrusting energy" 0.6
-	"reverse thrusting heat" 0.3
-	"turn" 270
+	"reverse thrusting heat" 0.45
+	"turn" 150
 	"turning energy" 0.6
 	"turning heat" 0.3
 	"drag reduction" 0.12
-	"flare sprite" "effect/pug flare"
+	"flare sprite" "effect/ion flare"
 		"frame rate" 5
 	"flare sound" "plasma tiny"
-	description "This compact cluster of omnidirectional magnetoplasmadynamic thrusters can propel small ships to impressive speeds over time, but is also quite energy hungry." 
+	description "This compact set of magnetoplasmadynamic thrusters can propel small ships to impressive speeds over time, but is also quite energy hungry."
+	description "Designed to be clustered, this design includes the gimbal range and variable thrust required to act as a set of attitude thrusters as well." 
 
 
-outfit "M042 Magnetoplasma Drive"
-	category "Engines"
-	"cost" 100000
-	thumbnail "outfit/ionic afterburner"
-	"mass" 33
-	"outfit space" -42
-	"engine capacity" -42
-	"thrust" 14.4
-	"thrusting energy" 2.4
-	"thrusting heat" 1.5
-	"reverse thrust" 9
-	"reverse thrusting energy" 1.2
-	"reverse thrusting heat" 0.75
-	"turn" 630
-	"turning energy" 1.2
-	"turning heat" 0.6
-	"drag reduction" 0.18
-	"flare sprite" "effect/pug flare"
-		"frame rate" 5
-	"flare sound" "plasma tiny"
-	description "This compact cluster of omnidirectional magnetoplasmadynamic thrusters can propel small ships to impressive speeds over time, but is also quite energy hungry." 
-
-
-outfit "S024 Coaxial Fusion Drive"
-	category "Engines"
-	"cost" 100000
-	thumbnail "outfit/ionic afterburner"
-	"mass" 24
-	"outfit space" -24
-	"engine capacity" -24
-	"thrust" 21
-	"thrusting energy" 1.2
-	"thrusting heat" 2.4
-	"thrusting fuel" 0.012
-	"turn" 420
-	"turning energy" 0.42
-	"turning heat" 0.9
-	"turning fuel" 0.006
-	"drag reduction" 0.6
-	"ramscoop" 0.6
-	"flare sprite" "effect/fusionflare"
-		"frame rate" 5
-	"flare sound" "plasma tiny"
-
-
-outfit "S036 Axial Fusion Torch"
+outfit `Z-360 Alpha Fusion Torch`
 	category "Engines"
 	"cost" 100000
 	thumbnail "outfit/ionic afterburner"
@@ -1278,7 +1103,7 @@ outfit "S036 Axial Fusion Torch"
 	"flare sound" "plasma tiny"
 
 
-outfit "S060 Axial Fusion Torch"
+outfit `Z-600 Beta Fusion Torch`
 	category "Engines"
 	"cost" 100000
 	thumbnail "outfit/ionic afterburner"
@@ -1295,7 +1120,7 @@ outfit "S060 Axial Fusion Torch"
 	"flare sound" "plasma tiny"
 
 
-outfit "S102 Axial Fusion Torch"
+outfit `Z-1020 Gamma Fusion Torch`
 	category "Engines"
 	"cost" 100000
 	thumbnail "outfit/ionic afterburner"
@@ -1320,7 +1145,7 @@ effect "fusion afterburner"
 
 
 
-outfit "M018 Transverse Thrusters"
+outfit "X/Y-180 Transverse Thrusters"
 	plural "Steerings (Comet Class)"
 	category "Engines"
 	"cost" 221000
@@ -1331,13 +1156,13 @@ outfit "M018 Transverse Thrusters"
 	"turn" 568.8
 	"turning energy" 1.4
 	"turning heat" 4.1
-	"steering flare sprite" "effect/korath flare/small"
+	"steering flare sprite" "effect/fusionflare"
 		"frame rate" 7.5
 	"steering flare sound" "plasma small"
 	description "This compact steering system is a classic example of Korath technology: small, powerful, and woefully inefficient."
 
 
-outfit "M030 Transverse Thrusters"
+outfit "X/Y-300 Transverse Thrusters"
 	plural "Steerings (Lunar Class)"
 	category "Engines"
 	"cost" 473000
@@ -1348,44 +1173,44 @@ outfit "M030 Transverse Thrusters"
 	"turn" 1056.0
 	"turning energy" 2.5
 	"turning heat" 7.4
-	"steering flare sprite" "effect/korath flare/medium"
+	"steering flare sprite" "effect/fusionflare"
 		"frame rate" 7
 	"steering flare sound" "plasma medium"
-	description "Korath engines can be fitted into just about any ship, but unless accompanied by some Korath cooling systems as well, their heat output will often be more than the ship can handle."
 
 
-outfit "M052 Transverse Thrusters"
+
+outfit "X/Y-540 Transverse Thrusters"
 	plural "Steerings (Planetary Class)"
 	category "Engines"
 	"cost" 1077000
 	thumbnail "outfit/large korath steering"
-	"mass" 52
-	"outfit space" -52
-	"engine capacity" -52
+	"mass" 54
+	"outfit space" -54
+	"engine capacity" -54
 	"turn" 2069.6
 	"turning energy" 4.6
 	"turning heat" 14.2
-	"steering flare sprite" "effect/korath flare/large"
+	"steering flare sprite" "effect/fusionflare"
 		"frame rate" 6.5
 	"steering flare sound" "plasma large"
-	description "Where other species might focus on converting energy into thrust as efficiently as possible, the Korath instead strive to pack as much power as possible into the smallest area. This steering system is a classic example of their work."
 
 
-outfit "M089 Transverse Thrusters"
+
+outfit "X/Y-900 Transverse Thrusters"
 	plural "Steerings (Stellar Class)"
 	category "Engines"
 	"cost" 2435000
 	thumbnail "outfit/huge korath steering"
-	"mass" 89
-	"outfit space" -89
-	"engine capacity" -89
+	"mass" 90
+	"outfit space" -90
+	"engine capacity" -90
 	"turn" 4005.0
 	"turning energy" 8.2
 	"turning heat" 26.7
-	"steering flare sprite" "effect/korath flare/huge"
+	"steering flare sprite" "effect/fusionflare"
 		"frame rate" 6
 	"steering flare sound" "plasma huge"
-	description "After millennia of war, the Korath have developed some truly enormous warships. These steering systems give even their largest warships a reasonable amount of agility in combat."
+
 
 
 
@@ -1409,12 +1234,12 @@ outfit "Electromotive Rifle"
 
 outfit "Lancet Adamant"
 	category "Unique"
-	cost 53000
+	cost 3000000
 	thumbnail "outfit/korath rifle"
 	"capture attack" 3
 	"capture defense" 6
 	"unplunderable" 1
-	description "Mostly used as a ceremonial weapon, this sleek silver spear is tipped with diamond. While not particularly useful in the realities of modern combat, it certainly looks impressive."
+	description "A purely ceremonial weapon, this sleek shortspear is made from a continuous piece of adamantine, or nanodiamond. While not particularly useful in the realities of modern ranged combat, it certainly looks impressive."
 
 
 

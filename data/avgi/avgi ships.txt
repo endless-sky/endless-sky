@@ -1,25 +1,211 @@
-shipyard Avgi
-	"Flutter (Transport)"
-	"Flutter (Cargo)"
-	"Echo"
-	"Vibe"
-	"Timbre"
-	"Rhythm"
-	"Coherence"
-	"Resonance"
-	"Reverberance"
-	"Crest"
-	"Cascade"
-	"Quake"
-	"Lumen"
-	"Lens"
-	"Wavelet"
-	"Phonon"
+shipyard "Avgi Civilian Basics"
+	"Koryfi"
+	"Avlaki"
+	"Frequencia"
+	"Akoustiki"
+	"Sonikis"
+	"Optikon"
 
+shipyard "Avgi Civilian Advanced"
+	"Melodikos"
+	"Harmonikos"
+	"Undsyni"
+	"Interferos"
+	"Polari"
 
+shipyard "Avgi Dissonance Basics"
+	"Entasi"
+	"Akoustiki"
+	"Sonikis"
+
+shipyard "Avgi Navy Light"
+	"Tremoros"
+	"Prismaios"
+	"Interferos"
+	"Photikon"
+	"Vibratia"
+	"Undulon"
+
+shipyard "Avgi Navy Heavy"
+	"Diaspersi"
+	"Refraktos"
+	"Difraktos"
+	"Atenuatia"
 
 
 # Transports
+
+ship "Koryfi"
+	sprite "ship/avgi koryfi"
+	swizzle 0
+	thumbnail "thumbnail/avgi koryfi"
+	attributes
+		category "Transport"
+		"shields" 600
+		"hull" 1200
+		"required crew" 2
+		"bunks" 12
+		"mass" 60
+		"drag" 1.8
+		"heat dissipation" 0.9
+		"fuel capacity" 600
+		"cargo space" 30
+		"outfit space" 120
+		"weapon capacity" 36
+		"engine capacity" 60
+		"solar collection" 6
+		"surface points" 1
+		weapon
+			"blast radius" 120
+			"shield damage" 520
+			"hull damage" 260
+			"hit force" 780
+	outfits
+			"Fractal Capacitor Bank"
+			"Diffuse Deflector"
+
+			"Magnetoplasma Drive" 2
+			"Hyperdrive"
+
+	gun -19.5 -26.5
+	gun 19.5 -26.5
+	turret 0 -11
+	engine -101.5 -11
+	engine 101.5 -11
+	engine -94.5 -11
+	engine 94.5 -11
+	engine -88.5 -11
+	engine 88.5 -11
+	engine -83 -11
+	engine 83 -11
+	"reverse engine" -101.5 -23
+	"reverse engine" 101.5 -23
+	"reverse engine" -94.5 -23
+	"reverse engine" 94.5 -23
+	"reverse engine" -88.5 -23
+	"reverse engine" 88.5 -23
+	"reverse engine" -83 -23
+	"reverse engine" 83 -23
+	"steering engine" -101.5 -23
+		angle 180
+		left
+	"steering engine" 101.5 -23
+		angle 180
+		left
+	"steering engine" -94.5 -23
+		angle 180
+		left
+	"steering engine" 94.5 -23
+		angle 180
+		left
+	"steering engine" -88.5 -23
+		angle 180
+		right
+	"steering engine" 88.5 -23
+		angle 180
+		right
+	"steering engine" -83 -23
+		angle 180
+		right
+	"steering engine" 83 -23
+		angle 180
+		right
+	"steering engine" -101.5 -11
+		angle 180
+		right
+	"steering engine" 101.5 -11
+		angle 180
+		right
+	"steering engine" -94.5 -11
+		angle 180
+		right
+	"steering engine" 94.5 -11
+		angle 180
+		right
+	"steering engine" -88.5 -11
+		angle 180
+		left
+	"steering engine" 88.5 -11
+		angle 180
+		left
+	"steering engine" -83 -11
+		angle 180
+		left
+	"steering engine" 83 -11
+		angle 180
+		left
+
+	leak "leak" 50 50
+	leak "flame" 50 80
+	explode "tiny explosion" 15
+	explode "small explosion" 12
+	explode "medium explosion" 9
+	"final explode" "final explosion medium"
+	description "The Koryfi is a light passenger transport whose basic design predates the invention of the hyperdrive. Originally restricted to intrasystem travel, its spin gravity system ensured a comfortable voyage for passengers long before the development of gravity plating."
+
+
+ship "Melodikos"
+	sprite "ship/swell crew"
+	thumbnail "thumbnail/swell crew"
+	attributes
+		category "Space Liner"
+		"shields" 900
+		"hull" 900
+		"required crew" 6
+		"bunks" 72
+		"mass" 120
+		"drag" 3.6
+		"heat dissipation" 1.2
+		"fuel capacity" 600
+		"outfit space" 180
+		"weapon capacity" 42
+		"engine capacity" 90
+		"solar collection" 13.5
+		"surface points" 2
+		weapon
+			"blast radius" 36
+			"shield damage" 180
+			"hull damage" 90
+			"hit force" 270
+		outfits
+			"Fractal Capacitor Bank" 2
+			"Diffuse Deflector"
+
+			"Magnetoplasma Drive" 2
+			"Hyperdrive"
+
+	turret -10.5 -3.5
+	turret 10.5 -3.5
+	engine -92 1.5
+	engine 92 1.5
+	engine -88 1.5
+	engine 88 1.5
+	engine -84 1.5
+	engine 84 1.5
+	engine -80 1.5
+	engine 80 1.5
+	engine -76 1.5
+	engine 76 1.5
+	engine -72 1.5
+	engine 72 1.5
+	"reverse engine" -92 -7
+	"reverse engine" 92 -7
+	"reverse engine" -88 -7
+	"reverse engine" 88 -7
+	"reverse engine" -84 -7
+	"reverse engine" 84 -7
+	"reverse engine" -80 -7
+	"reverse engine" 80 -7
+	"reverse engine" -76 -7
+	"reverse engine" 76 -7
+	"reverse engine" -72 -7
+	"reverse engine" 72 -7
+
+
+
+
+
+
 
 
 
@@ -27,7 +213,20 @@ shipyard Avgi
 
 
 
+
+
+
+
+
+
+
+
+
+
 # Utility
+
+
+
 
 
 
@@ -70,6 +269,97 @@ shipyard Avgi
 
 
 
+ship "Atenuatia"
+	sprite "ship/avgi atenuatia"
+	thumbnail "thumbnail/avgi atenuatia"
+	attributes
+		category "Heavy Warship"
+		"shields" 4200
+		"hull" 24000
+		"required crew" 60
+		"bunks" 72
+		"mass" 450
+		"drag" 4.2
+		"heat dissipation" 1.5
+		"fuel capacity" 2400
+		"cargo space" 60
+		"outfit space" 696
+		"weapon capacity" 198
+		"engine capacity" 174
+		"surface space" 73
+		weapon
+			"blast radius" 540
+			"shield damage" 6400
+			"hull damage" 4800
+			"hit force" 4200
+	outfits
+		"Fleck Turret" 1
+		"Fleck Round" 6000
+		"Phased Array Laser (450 nm)" 2
+		"Equinox Torpedo Stockpile" 3
+		"Equinox Torpedo" 36
+		
+		"Radiant Fusion Core" 1
+		"Concentrating Solar Array" 1
+		"Fractal Capacitor Bank" 2
+		
+		"Hyperdrive" 1
+		"Specular Deflector" 1
+		"Multispectral Scanner" 9
+		"Electrostatic Ramscoop" 2
+		
+		"S036 Axial Fusion Torch" 1
+		"M052 Transverse Thrusters" 1
+
+	engine 0 250 
+	"reverse engine" -9 231.5 
+	"reverse engine" 9 231.5 
+	"steering engine" -12 -255 
+		angle 90
+		left
+	"steering engine" -12 -255 
+		angle 270
+		right
+	"steering engine" -9 231.5 
+		angle 90
+		left
+	"steering engine" -9 231.5 
+		angle 270
+		right
+	bay "Drone" -24 -234
+	bay "Drone" 24 -234
+	bay "Drone" -42 -225
+	bay "Drone" 42 -225
+	bay "Drone" -63 -219
+	bay "Drone" 63 -219
+	bay "Drone" -18 -216
+	bay "Drone" 18 -216
+	bay "Drone" -24 -175
+	bay "Drone" 24 -175
+	bay "Drone" -24 -175
+	bay "Drone" 24 -175
+	bay "Drone" -46 -165
+	bay "Drone" 46 -165
+	bay "Drone" -46 -165
+	bay "Drone" 46 -165
+	bay "Drone" -18 -150
+	bay "Drone" 18 -150
+	bay "Fighter" 0 -216
+	bay "Fighter" 0 -216
+	bay "Fighter" 0 -150
+	bay "Fighter" 0 -150
+	bay "Fighter" 0 -117
+	bay "Fighter" 0 -117
+	leak "leak" 30 60
+	leak "flame" 30 90
+	leak "big leak" 9 24
+	explode "tiny explosion" 36
+	explode "small explosion" 42
+	explode "medium explosion" 45
+	explode "large explosion" 36
+	explode "huge explosion" 12
+	"final explode" "final explosion large"
+	description "The Atenuatia is"
 
 
 
@@ -85,6 +375,98 @@ shipyard Avgi
 
 # Fighters
 
+ship "Akoustiki"
+	sprite "ship/akoustiki"
+	thumbnail "thumbnail/akoustiki"
+	attributes
+		category "Fighter"
+		"shields" 120
+		"hull" 900
+		"required crew" 1
+		"bunks" 2
+		"mass" 36
+		"drag" 1.2
+		"heat dissipation" 1.02
+		"fuel capacity" 100
+		"cargo space" 19
+		"outfit space" 96
+		"weapon capacity" 24
+		"engine capacity" 28
+		"surface space" 20
+		weapon
+			"blast radius" 18
+			"shield damage" 80
+			"hull damage" 40
+			"hit force" 120
+	outfits
+		"Concentrating Solar Array" 1
+		"Fractal Capacitor Bank" 1
+		
+		"Multispectral Scanner" 1
+		
+		"Magnetoplasma Drive" 1
+
+	explode "tiny explosion" 9
+	"reverse engine" -12 -12
+	"reverse engine" 12 -12
+	engine -12 15
+	engine 12 15
+	gun -18 -15
+	gun 18 -15
+	leak "leak" 50 50
+	description "Quake-class Excursion Vehicle"
+
+
+
+
+
+ship "Photikon"
+	sprite "ship/avgi photikon"
+	thumbnail "thumbnail/avgi photikon"
+	attributes
+		category "Fighter"
+		"shields" 240
+		"hull" 1500
+		"automaton" 1
+		"mass" 36
+		"drag" .36
+		"heat dissipation" .9
+		"fuel capacity" 100
+		"outfit space" 114
+		"weapon capacity" 27
+		"engine capacity" 24
+		"surface space" 15
+		weapon
+			"blast radius" 12
+			"shield damage" 72
+			"hull damage" 30
+			"hit force" 102
+	outfits
+		"Equinox Torpedo Pylon" 2
+		"Equinox Torpedo" 2
+		
+		"Concentrating Solar Array" 1
+		"Fractal Capacitor Cell" 3
+		
+		"Multispectral Scanner" 1
+		
+		"Magnetoplasma Drive" 1
+
+	engine -8.5 28.5 0.9
+	engine 8.5 28.5 0.9
+	gun 0 -30 "Equinox Torpedo Pylon"
+	gun 0 -30 "Equinox Torpedo Pylon"
+	turret 0 -33
+
+	explode "tiny explosion" 12
+
+	description "The Phonon-class Torpedo Bomber is the cornerstone of Avgi carrier doctrine. While it is possible for a swarm of Wavelets and similar interdiction drones to engage capital ships, it is the Phonon that is capable of delivering the nuclear anti-ship munitions necessary to bring down the largest warships. By bringing a nuclear torpedo within close range, the payload has a higher chance of surviving enemy point defense weapons compared with standard missiles."
+	description "Phonons are occasionally used as gun platforms, mounting a Speckle Turret instead of their standard armament of a pair of Equinox Torpedoes."
+	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
+
+
+
+
 
 
 
@@ -92,6 +474,65 @@ shipyard Avgi
 
 
 # Drones
+
+
+
+
+
+
+ship "Wavelet"
+	sprite "ship/wavelet"
+	thumbnail "thumbnail/wavelet"
+	attributes
+		category "Drone"
+		"cost" 36000
+		"hull" 900
+		"automaton" 1
+		"threshold percentage" 0.09
+		"mass" 18
+		"drag" .18
+		"heat dissipation" .96
+		"fuel capacity" 90
+		"outfit space" 90
+		"weapon capacity" 24
+		"engine capacity" 24
+		weapon
+			"blast radius" 12
+			"shield damage" 60
+			"hull damage" 18
+			"hit force" 72
+	outfits
+		"Speckle Railgun" 2
+		"Speck Round" 1800
+		"Sidereal Pod"
+		"Sidereal Missile" 6
+		
+		"Pebble Bed Cell"
+		"Fractal Capacitor Cell"
+		
+		"Multispectral Scanner"
+		"Small Auxiliary Radiator"
+		
+		"M018 Magnetoplasma Drive"
+
+	engine -8.5 28.5 0.9
+	engine 8.5 28.5 0.9
+	gun -3 -30 "Speckle Railgun"
+	gun 3 -30 "Speckle Railgun"
+	gun 0 -30 "Sidereal Pod"
+
+	explode "tiny explosion" 9
+
+	description "The Wavelet-class Interdictor is the primary Avgi strike fighter. While individually quite fragile, Wavelets are usually deployed in large swarms, and are agile enough to be surprisingly survivable."
+	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
+
+
+
+
+
+
+
+
 
 
 
@@ -133,59 +574,6 @@ shipyard Avgi
 
 
 # Transports:
-
-
-ship "Swell (Transport)"
-	sprite "ship/swell crew"
-	thumbnail "thumbnail/swell crew"
-	attributes
-		category "Transport"
-		"shields" 700
-		"hull" 1100
-		"required crew" 2
-		"bunks" 36
-		"mass" 114
-		"drag" 1.4
-		"heat dissipation" 1.3
-		"fuel capacity" 600
-		"outfit space" 186
-		"weapon capacity" 36
-		"engine capacity" 72
-		"solar collection" 2.1
-		"hull scales" 27
-		weapon
-			"blast radius" 36
-			"shield damage" 180
-			"hull damage" 90
-			"hit force" 270
-		outfits
-
-
-ship "Wake (Transport)"
-	sprite "ship/wake crew"
-	thumbnail "thumbnail/wake crew"
-	attributes
-		category "Transport"
-		"shields" 700
-		"hull" 1100
-		"required crew" 2
-		"bunks" 36
-		"mass" 114
-		"drag" 1.4
-		"heat dissipation" 1.3
-		"fuel capacity" 600
-		"outfit space" 186
-		"weapon capacity" 36
-		"engine capacity" 72
-		"solar collection" 2.1
-		"hull scales" 27
-		weapon
-			"blast radius" 36
-			"shield damage" 180
-			"hull damage" 90
-			"hit force" 270
-		outfits
-
 
 
 ship "Flutter (Transport)"

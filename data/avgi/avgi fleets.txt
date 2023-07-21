@@ -1,135 +1,238 @@
 fleet "Avgi Core Defense"
 	government "Avgi (Spaceguard)"
-	names "avgi fighter"
+	names "avgi military"
+	fighters
+		names "avgi fighter"
+		personality
+			heroic surveillance swarming
 	personality
-		confusion 10
-		lingering surveillance heroic 
+		lingering surveillance heroic merciful
+	variant 8
+		"Atenuatia"
+		"Vibratia" 18
+		"Photikon" 6
+	variant 2
+		"Atenuatia"
+		"Vibratia" 12
+		"Undulon" 6
+		"Photikon" 6
+	variant 5
+		"Atenuatia"
+		"Vibratia" 12
+		"Optikon" 6
+		"Photikon" 6
 	variant 10
-		"Cascade"
-		"Wavelet" 12
-		"Phonon" 6
+		"Dispersi"
+		"Vibratia" 6
+		"Photikon" 2
+	variant 5
+		"Dispersi"
+		"Vibratia" 3
+		"Undulon" 3
+		"Photikon" 2
+	variant 10
+		"Difraktos"
+	variant 10
+		"Refractos"
+	variant 10
+		"Prismaios" 2
+	variant 10
+		"Tremoros" 3
+	variant 1
+		"Atenuatia"
+		"Dispersi"
+		"Vibratia" 22
+		"Photikon" 8
+		"Optikon" 2
+		"Difraktos"
+		"Refractos"
+		"Prismaios" 2
+		"Tremoros" 3
 
 
 fleet "Avgi Orbital Defense"
 	government "Avgi (Spaceguard)"
 	names "avgi fighter"
 	personality
-		confusion 10
-		lingering heroic swarming
+		lingering heroic surveillance swarming
 	variant 10
-		"Lumen" 3
+		"Undulon" 3
+	variant 20
+		"Vibratia" 6
 	variant 10
-		"Wavelet" 6
-	variant 10
-		"Phonon" 3
+		"Photikon" 3
+	variant 5
+		"Optikon" 3
 
 
 fleet "Avgi Patrol"
 	government "Avgi (Spaceguard)"
 	names "avgi military"
-	fighters "avgi fighter"
+	cargo 4
+	commodities "Food" "Metal" "Equipment" "Medical" "Heavy Metals"
+	fighters
+		names "avgi fighter"
+		personality
+			disables surveillance
 	personality
-		confusion 10
 		surveillance merciful disables
 	variant 10
-		"Vibe"
-	variant 10
-		"Vibe" 3
-	variant 10
-		"Timbre"
-	variant 10
-		"Rhythm"
+		"Tremoros"
+	variant 8
+		"Tremoros" 3
+	variant 5
+		"Prismaios"
+	variant 2
+		"Diaspersi"
+		"Vibratia" 3
+		"Optikon" 3
+		"Photikon" 2
+	variant 1
+		"Difraktos"
+	variant 1
+		"Refraktos"
+
 
 fleet "Avgi Scouts"
 	government "Avgi (Consonance)"
-	names "avgi military"
-	fighters "avgi fighter"
+	names "avgi civilian"
+	commodities "Food" "Equipment" "Medical"
+	fighters
+		names "avgi fighter"
 	personality
-		confusion 20
 		surveillance coward merciful disables
+		confusion 20
 	variant 10
-		"Crest"
-		"Lens"
-	variant 10
-		"Crest"
-		"Lens"
-		"Vibe"
+		"Polari"
+		"Optikon" 2
 	variant 5
-		"Crest" 2
-		"Lens" 4
-		"Damper"
-		"Vibe" 2
-
-fleet "Avgi Escort Group"
-	government "Avgi (Spaceguard)"
-	names "avgi military"
-	fighters "avgi fighter"
-	personality
-		confusion 10
-		heroic merciful disables
-	variant 10
-		"Rhythm" 2
-	variant 10
-		"Coherence"
-		"Wavelet" 6
-	variant 10
-		"Coherence"
-		"Wavelet" 4
-		"Phonon" 2
+		"Polari"
+		"Optikon" 2
+		"Tremoros"
+	variant 2
+		"Polari" 2
+		"Optikon" 4
+		"Tremoros" 3
+	variant 1
+		"Polari"
+		"Optikon" 2
+		"Prismaios"
 
 
 fleet "Avgi Strike Group"
 	government "Avgi (Spaceguard)"
 	names "avgi military"
-	fighters "avgi fighter"
+	cargo 4
+	commodities "Food" "Metal" "Equipment" "Medical" "Heavy Metals"
+	fighters
+		names "avgi fighter"
+		personality
+			hunting disables swarming
 	personality
 		confusion 10
-		heroic merciful disables
+		heroic disables
 	variant 10
 		"Coherence"
 		"Wavelet" 6
 
 
-fleet "Avgi Battlegroup"
+fleet "Avgi Fleetgroup"
 	government "Avgi (Spaceguard)"
 	names "avgi military"
-	fighters "avgi fighter"
+	cargo 4
+	commodities "Food" "Metal" "Equipment" "Medical" "Heavy Metals"
+	fighters
+		names "avgi fighter"
 	personality
 		confusion 10
 		heroic
-	variant 10
-		"Cascade"
-		"Wavelet" 12
-		"Phonon" 6
+	variant 5
+		"Atenuatia"
+		"Vibratia" 18
+		"Photikon" 6
+		"Difraktos"
+		"Prismaios"
+		"Tremoros" 3
+	variant 5
+		"Atenuatia"
+		"Vibratia" 18
+		"Photikon" 6
+		"Difraktos (Missile)"
+		"Prismaios"
+		"Tremoros" 3
+	variant 5
+		"Atenuatia"
+		"Vibratia" 18
+		"Photikon" 6
+		"Difraktos (Kinetic)"
+		"Prismaios"
+		"Tremoros" 3
+	variant 5
+		"Atenuatia"
+		"Vibratia" 18
+		"Photikon" 6
+		"Refractos"
+		"Prismaios"
+		"Tremoros" 3
+	variant 3
+		"Atenuatia"
+		"Vibratia" 18
+		"Photikon" 6
+		"Difraktos (Missile)"
+		"Difraktos (Kinetic)"
+		"Refractos"
+		"Prismaios" 2
+		"Tremoros" 3
+	variant 2
+		"Atenuatia"
+		"Dispersi"
+		"Vibratia" 22
+		"Photikon" 8
+		"Optikon" 2
+		"Difraktos"
+		"Refractos"
+		"Prismaios" 2
+		"Tremoros" 3
 
 
 
 fleet "Avgi Small Merchant"
 	government "Avgi"
 	names "avgi civilian"
-	fighters "avgi fighter"
 	personality
 		confusion 30
 		timid coward appeasing disables opportunistic
 	variant 10
-		"Swell (Crew)"
+		"Koryfi"
+	variant 10
+		"Avlaki"
 
 
 fleet "Avgi Large Merchant"
 	government "Avgi"
 	names "avgi civilian"
-	fighters "avgi fighter"
 	personality
 		confusion 30
 		timid coward appeasing disables opportunistic
 	variant 10
-		"Flutter (Crew)"
+		"Melodikos"
+		"Tremoros" 2
 	variant 10
-		"Wake (Crew)" 2
+		"Harmonikos"
+		"Tremoros 2"
 	variant 10
-		"Flutter (Cargo)"
+		"Undsyni (Freighter)"
 	variant 10
-		"Wake (Cargo)" 2
+		"Undsyni (Tanker)"
+	variant 10
+		"Koryfi" 2
+	variant 10
+		"Avlaki" 2
+	variant 10
+		"Harmonikos"
+		"Melodikos"
+		"Interferos"
+		"Tremoros"
 
 
 fleet "Avgi Miners"
