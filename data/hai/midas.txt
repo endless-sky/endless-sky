@@ -467,7 +467,7 @@ mission "Midas: Nemo Me Impune Lacessit 2"
 
 
 
-# SPOILER: Midas sometimes save pirates from slavery, in exchange for a life debt.
+# SPOILER: Midas sometimes saves pirates from slavery, in exchange for a life debt.
 # Some of your crew may be part of that, or maybe it is just any pirate from this world that tries to get them, attracted by the huge reward.
 mission "Midas: Betrayal For The Bars"
 	landing
@@ -486,23 +486,23 @@ mission "Midas: Betrayal For The Bars"
 		conversation
 			`As you land on the pirate world, you head for the hatch, preparing to enter the spaceport, but passing by the cargo bay you think you hear a sound. Odd... There shouldn't be anyone there right now, knowing your crew's habits, as most of them have already disembarked.`
 			choice
-				`(It's nothing. Probably just a rat.)`
-				`(Go investigate.)`
+				`	(It's nothing. Probably just a rat.)`
+				`	(Go investigate.)`
 					goto investigate
 			action
 				outfit "Gold Bars" -5
 			`	You decide not to check it out now. A few moments later, you hear a big metallic sound, followed by deep silence. You may want to check your cargo bay later on.`
 				defer
 			label investigate
-			`You pull out your sidearm and approach the bay as discreetly as you can. Worst case scenario is you find one of your own crew, in which case you better not overreact, or someone could get hurt.`
+			`	You pull out your sidearm and approach the bay as discreetly as you can. Worst case scenario is you find one of your own crew, in which case you better not overreact, or someone could get hurt.`
 			choice
-				`(Ask if someone is there.)`
+				`	(Ask if someone is there.)`
 					goto hello
-				`(Never too careful.)`
-			`You go into the cargo bay, on guard. As you enter, you think you see something move, on your left. There is not much time to think.`
+				`	(Never too careful.)`
+			`	You go into the cargo bay, on guard. As you enter, you think you see something move, on your left. There is not much time to think.`
 			choice
-				`(Call my crew to help.)`
-				`(Run in that direction.)`
+				`	(Call my crew to help.)`
+				`	(Run in that direction.)`
 					goto run
 			label help
 			`You call your crew to help and try to barricade the ship to prevent escape, but they cannot find anyone. You wonder how they could get away. Just to be sure, you check around the cargo bay. It seems like nothing is missing, but a few bars of gold are out of place. Maybe it was just a malfunction with the ship's gravitational systems.`
@@ -642,7 +642,7 @@ mission "<uhai> 6 B: To The Wolves"
 		payment 1000000
 	# as of yet, we cannot make the main mission fail as your escorts are boarded, meaning these will not be disables
 	npc
-		# the Alphas and their minions left Midas alone so that this would happen. They probably even gave them a tip about it, but not in person.
+		# The Alphas and their minions left Midas alone so that this would happen. They probably even gave them a tip about it, but not in person.
 		government "Midas"
 		system "Heia Due"
 		personality plunders staying harvests
@@ -715,7 +715,7 @@ mission "<uhai> 7: Duel"
 	on enter
 		set "despawn the duel ships"
 	on abort
-		dialog `You decide to abort the duel. They hail you, "We have no idea why you decided to cancel the duel, but our prize of 10 million credits is still due."`
+		dialog `As soon as your abort message reaches the duelists, they hail you: "We have no idea why you decided to cancel the duel, but our prize of 10 million credits is still due."`
 		log `Lost a duel against two mysterious ships that serve the 'Shadow of Mintaka', whatever that means. Had to pay up 10 million credits.`
 	on complete
 		conversation
@@ -912,16 +912,16 @@ phrase "enemy midas"
 		"of ours"
 		"that we want"
 	word
-		"."
-		"!"
+		". "
+		"! "
 	word
-		" Surrender it"
-		" Drop it in the next spaceport"
-		" Give it to me and your death will be quick."
-		" Nemo Me Impune Lacessit"
-		" Sell it on a lawless world"
-		" Give it to us, scum"
-		" Hand it over, scum"
+		"Surrender it"
+		"Drop it in the next spaceport"
+		"Give it to me and your death will be quick."
+		"Nemo Me Impune Lacessit"
+		"Sell it on a lawless world"
+		"Give it to us, scum"
+		"Hand it over, scum"
 	word
 		"."
 		"!"
