@@ -3256,7 +3256,7 @@ mission "Coalition: Book Discovered 2"
 		conversation
 			`	You get in contact with Kachachee again, informing them you have a copy of Beyond the Hyperdrive. They respond, telling you to meet them at a public square within the spaceport.`
 			`	Walking over to the aforementioned public square you recognize Kachachee among the crowd. You hold up your copy of Beyond the Hyperdrive and hand it over to them. Kachachee eagerly takes the copy. 'Very thankful we are, for this book. Read it with my group, I must. But for your troubles, worthy of <payment>, you are.' They then give you a chip.`
-			payment 7000
+		payment 7000
 
 mission "Coalition: Struggling Author 1"
 	name "Take Anna to Coalition Space"
