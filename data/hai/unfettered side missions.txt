@@ -211,7 +211,7 @@ mission "Hai Legacy 1"
 				`	"You could have told me before."`
 			`	"Yes, but where is the fun in that? We also wanted to see how you would react.`
 			label explain
-			`	"We have a very interesting proposition for you: should you agree to bring supplies to our brethren, the Unfettered Hai, we will sell this ship to you for the modest price of 6.5 million credits. This is a very useful ship, and you should be able to repay this quite easily by running more of the same kind of jobs. These supplies are needed on short notice, on <destination>, and we lack the time and personnel to bring them."`
+			`	"We have a very interesting proposition for you: should you agree to bring supplies to our brethren, the Unfettered Hai, we will sell this ship to you for the modest price of 6.5 million credits. This is a very useful ship, and you should be able to repay us for this favor with ease by running more of the same kind of jobs. These supplies are needed on short notice, on <destination>, and we lack the time and personnel to bring them."`
 			`	"Of course, the ship has some... drawbacks, compared to its golden time, and you should not expect the best price in a shipyard either. Nevertheless it is a fine vessel, capable of safely taking a respectable amount of cargo across large distances! So, what do you say, <last>? This is the opportunity of a lifetime; they simply don't make ships like these anymore!"`
 			choice
 				`	"I will take this deal."`
