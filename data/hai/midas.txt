@@ -505,73 +505,73 @@ mission "Midas: Betrayal For The Bars"
 				`	(Run in that direction.)`
 					goto run
 			label help
-			`You call your crew to help and try to barricade the ship to prevent escape, but they cannot find anyone. You wonder how they could get away. Just to be sure, you check around the cargo bay. It seems like nothing is missing, but a few bars of gold are out of place. Maybe it was just a malfunction with the ship's gravitational systems.`
+			`	You call your crew to help and try to barricade the ship to prevent escape, but they cannot find anyone. You wonder how they could get away. Just to be sure, you check around the cargo bay. It seems like nothing is missing, but a few bars of gold are out of place. Maybe it was just a malfunction with the ship's gravitational systems.`
 				defer
 			label run
-			`As you run, you see a silhouette of someone running. They are armed, and you think you recognize the uniform of a member of your crew. Could they be running after the intruder too? Is this just a big misunderstanding?`
+			`	As you run, you see a silhouette of someone running. They are armed, and you think you recognize the uniform of a member of your crew. Could they be running after the intruder too? Is this just a big misunderstanding?`
 			choice
-				`(Order them to stand down.)`
-				`(Follow them to see where they are going.)`
+				`	(Order them to stand down.)`
+				`	(Follow them to see where they are going.)`
 					goto follow
-				`(Shoot.)`
+				`	(Shoot.)`
 					goto shoot
-			`There is no doubt that you were heard, but the only reaction from the silouette is to run faster, and by another, more direct path. You cannot catch them, and you assume they escaped your ship, as later on you cannot find any intruders when doing a full search of your ship. Thankfully, they didn't manage to steal anything, surprisingly they only moved a few gold bars.`
+			`	There is no doubt that you were heard, but the only reaction from the silouette is to run faster, and by another, more direct path. You cannot catch them, and you assume they escaped your ship, as later on you cannot find any intruders when doing a full search of your ship. Thankfully, they didn't manage to steal anything, surprisingly they only moved a few gold bars.`
 				defer
 			label follow
-			`You can now clearly see it is indeed a member of your crew, not just a disguised mercenary or a stowaway, and you know them. The traitor is clearly heading to the exit, by another path than the one you came in by. You know your ship like your pocket, and you're aware it will take them a while. They haven't noticed you're following them yet.`
+			`	You can now clearly see it is indeed a member of your crew, not just a disguised mercenary or a stowaway, and you know them. The traitor is clearly heading to the exit, by another path than the one you came in by. You know your ship like your pocket, and you're aware it will take them a while. They haven't noticed you're following them yet.`
 			choice
-				`(Wait for the traitor near the exit to stun them.)`
+				`	(Wait for the traitor near the exit to stun them.)`
 					goto wait
-				`(Order the crew member to stand down.)`
-				`(Shoot.)`
+				`	(Order the crew member to stand down.)`
+				`	(Shoot.)`
 					goto shoot
-			`There is no doubt that you were heard, but the only reaction from the silouette is to run faster, and by another, more direct path. You cannot catch them, and you assume they escaped your ship, as later on you cannot find any intruders when doing a full search of your ship. Thankfully, they didn't manage to steal anything, surprisingly they only moved a few gold bars.`
+			`	There is no doubt that you were heard, but the only reaction from the silouette is to run faster, and by another, more direct path. You cannot catch them, and you assume they escaped your ship, as later on you cannot find any intruders when doing a full search of your ship. Thankfully, they didn't manage to steal anything, surprisingly they only moved a few gold bars.`
 				accept
 			label shoot
-			`You hit the crew member in the shoulder and they fall. You remove their weapon to be safe and ask for an explanation, but the only answer you get is "nemo me impune lacessit" before they lose consciousness. Looking into their eyes, you could see terror. You put them at a nearby hospital, but when you come back later, the crew member is gone, and no one has seen or heard anything.`
+			`	You hit the crew member in the shoulder and they fall. You remove their weapon to be safe and ask for an explanation, but the only answer you get is "nemo me impune lacessit" before they lose consciousness. Looking into their eyes, you could see terror. You put them at a nearby hospital, but when you come back later, the crew member is gone, and no one has seen or heard anything.`
 				decline
 			label hello
-			`In order to be sure to avoid any misunderstanding, you shout "Hello?" to see if someone answers. Nobody does. You still head into the cargo bay, a bit more alert than before. As you enter, you see that a few gold bars have fallen off the pile. That was probably the sound you heard.`
+			`	In order to be sure to avoid any misunderstanding, you shout "Hello?" to see if someone answers. Nobody does. You still head into the cargo bay, a bit more alert than before. As you enter, you see that a few gold bars have fallen off the pile. That was probably the sound you heard.`
 			choice
-				`(Head in that direction.)`
-				`(Call for help.)`
+				`	(Head in that direction.)`
+				`	(Call for help.)`
 					goto help
-			`You move that way, but soon you feel a pressure on the back of your neck. "Sweet dreams, Captain." You recognize the voice of one of your crew before you are incapacitated by a quick hit to your head. When you wake up, some of the bars are missing, and so are two members of your crew.`
+			`	You move that way, but soon you feel a pressure on the back of your neck. "Sweet dreams, Captain." You recognize the voice of one of your crew before you are incapacitated by a quick hit to your head. When you wake up, some of the bars are missing, and so are two members of your crew.`
 				goto lostbars
 			label wait
-			`You patiently wait for the intruder to arrive and hit them in the back with your pistol. Given it is a member of your crew that betrayed you, you decide not to involve anyone else, as they could be complicit. You first remove the weapon they are carrying. After doing a thorough search, you notice a distinct marking on the crew member's leg, which is only visible by a special ultraviolet light. This seems bad, very bad. Then you pause for a second to wonder if you really want to know about this.`
+			`	You patiently wait for the intruder to arrive and hit them in the back with your pistol. Given it is a member of your crew that betrayed you, you decide not to involve anyone else, as they could be complicit. You first remove the weapon they are carrying. After doing a thorough search, you notice a distinct marking on the crew member's leg, which is only visible by a special ultraviolet light. This seems bad, very bad. Then you pause for a second to wonder if you really want to know about this.`
 			choice
-				`(Ignorance is bliss.)`
-				`(I prefer not to stay in the dark. Wake them.)`
+				`	(Ignorance is bliss.)`
+				`	(I prefer not to stay in the dark. Wake them.)`
 					goto light
 			label bliss
-			`You leave the traitor here on this world, and they seem thankful but deeply troubled by what happened. You wonder what could have attracted such attention to you. Whatever it was should probably be safely stashed away, or gotten rid off.`
+			`	You leave the traitor here on this world, and they seem thankful but deeply troubled by what happened. You wonder what could have attracted such attention to you. Whatever it was should probably be safely stashed away, or gotten rid off.`
 				accept
 			label light
-			`You throw a bucket of water on the crew member. They wake up, but at first refuse to tell you anything. Once you reveal you're aware of their marking, they concede to reveal something to you. They seem to recognize the hopelessness of their situation, and may be willing to bargain. "This sign means that I hold my life to someone, and have to do one task, any task, to repay them. There is something here, on this ship, of the highest importance to some... I may not, and will not say anything else, no matter what you try to make me do it. I am dead already, and they own me."`
-			`You nod, and they then proceed, "I will tell you the truth, but then you will let me go and we will never see each other again. But let me be clear, I will not speak, under any circumstances other than those."`
+			`	You throw a bucket of water on the crew member. They wake up, but at first refuse to tell you anything. Once you reveal you're aware of their marking, they concede to reveal something to you. They seem to recognize the hopelessness of their situation, and may be willing to bargain. "This sign means that I hold my life to someone, and have to do one task, any task, to repay them. There is something here, on this ship, of the highest importance to some... I may not, and will not say anything else, no matter what you try to make me do it. I am dead already, and they own me."`
+			`	You nod, and they then proceed, "I will tell you the truth, but then you will let me go and we will never see each other again. But let me be clear, I will not speak, under any circumstances other than those."`
 			choice
-				`(This is it. I want to know all.)`
-				`(Ignorance is bliss.)`
+				`	(This is it. I want to know all.)`
+				`	(Ignorance is bliss.)`
 					goto bliss
-			`They take a deep breath. "An important organization wants these gold bars you have on board. They're not just normal gold. If you were to sell them to me, I could give you a very generous price of 1000000 credits per bar, and you wouldn't be bothered by this again. 1 million per bar. You see, something is within these bars, something of the highest importance, and they want all of them. They will not stop until they have every single one. I may have told you too much for them to allow me to live already."`
+			`	They take a deep breath. "An important organization wants these gold bars you have on board. They're not just normal gold. If you were to sell them to me, I could give you a very generous price of 1000000 credits per bar, and you wouldn't be bothered by this again. 1 million per bar. You see, something is within these bars, something of the highest importance, and they want all of them. They will not stop until they have every single one. I may have told you too much for them to allow me to live already."`
 			choice
-				`(Sell the bars.)`
-				`(Keep the bars, and drop that traitor on the planet.)`
+				`	(Sell the bars.)`
+				`	(Keep the bars, and drop that traitor on the planet.)`
 					goto bliss2
-				`(Keep the crew member for further interrogation.)`
+				`	(Keep the crew member for further interrogation.)`
 					goto escape
 			action
 				outfit "Gold Bars" -5
 				payment 5000000
 				set "midas: sold bars"
-			`The soon-to-be gone traitor nods. "It is the right choice you are making, Captain <last>. You will never be bothered by any of this again, that I promise. I will take these 5 piles, and any more will be sold little by little as you go on most worlds. If you sell them to any normal outfitters, we will easily get our hands on it, so it is no problem to us, but you would only be paid the price of brute gold for it."`
+			`	The soon-to-be gone traitor nods. "It is the right choice you are making, Captain <last>. You will never be bothered by any of this again, that I promise. I will take these 5 piles, and any more will be sold little by little as you go on most worlds. If you sell them to any normal outfitters, we will easily get our hands on it, so it is no problem to us, but you would only be paid the price of brute gold for it."`
 				decline
 			label bliss2
-			`You leave the traitor here on this world after awakening them, and they seem thankful but deeply troubled by what happened. You wonder what you should do with the gold bars that seem to cause so much trouble. They should probably be stashed away safely, or maybe you should get rid of them.`
+			`	You leave the traitor here on this world after awakening them, and they seem thankful but deeply troubled by what happened. You wonder what you should do with the gold bars that seem to cause so much trouble. They should probably be stashed away safely, or maybe you should get rid of them.`
 				decline
 			label escape
-			`You tighten your hold on the traitor, but as you do something hits the back of your head, and you lose consciousness. When you wake, there is a small note on the spot where some gold bars were, written by yet another member of your crew. "<first>, I am very sorry to break your trust like they did, but believe me, this is for your own good. The ex-crew member would have been killed if they had returned without the gold bars, so we took a few. You should quit this while you still can."`
+			`	You tighten your hold on the traitor, but as you do something hits the back of your head, and you lose consciousness. When you wake, there is a small note on the spot where some gold bars were, written by yet another member of your crew. "<first>, I am very sorry to break your trust like they did, but believe me, this is for your own good. The ex-crew member would have been killed if they had returned without the gold bars, so we took a few. You should quit this while you still can."`
 			label lostbars
 			action
 				outfit "Gold Bars" -5
