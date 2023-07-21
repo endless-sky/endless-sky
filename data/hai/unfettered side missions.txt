@@ -350,7 +350,7 @@ mission "Hai Legacy 3"
 			`	"I guess we'll find out." Says a third.`
 			label scare
 			`	The leader gets closer and addresses you in a more serious tone, "You should be aware, <last>, that this is not a friendly competition between allies. You should see it more as a fight for you to truly earn your place with this ship, but as far as I am concerned, you are an enemy. Make no mistakes about that, this fight has only two rules: nobody other than us here may interfere, and being disabled results in losing the fight. Do not even think about tricking us by switching to something other than this Ladybug, or we will not bother showing up! You must prove your worth for this prize ship in this ship and with only this ship."`
-			# this is a "warning" for the incoming extra ship that happens because you killed/captured 10 Shield Beetles
+			# This is a "warning" for the incoming extra ship that happens because you killed/captured 10 Shield Beetles
 			# (But in reality with disabling a lot of ships it goes faster than that)
 			`	They suddenly look at you intensively, straight in the eyes, "We sometimes bend the rules for our friends, but that is not your case," they say with a sudden change of tone, before leaving.`
 				to display
