@@ -443,7 +443,6 @@ mission "Hai Leaks Response 6"
 		event "slightly lost" 10
 		# Hai like you a lot now, and as a result, you have permanent access to Hai-home:
 		"reputation: Hai" >?= 100
-		"reputation: Hai (Raided)" >?= 100
 		fail "Hai Leaks Response 5B"
 		log `The working solution to the secrecy crisis for now is to have the Hai post a number of ships on the other side of the wormhole to play-act for the cover story that they're making a big budget movie to target fans of the popular franchise 'Our Fuzzy Paradise'. The presence of Hai who won't take off their costumes has been attributed to a 'fan community' that have been hired on as a focus group to be there as part of the production. Despite all this, it is only a short-term solution. Asked by Sayari to look into a rumor about more kidnapped Hai. She does not consider it to be a particularly likely scenario, but her contacts insist.`
 		conversation
