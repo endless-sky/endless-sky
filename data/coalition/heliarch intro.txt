@@ -1480,7 +1480,8 @@ mission "Heliarch Drills 1"
 		government "Heliarch"
 		fleet
 			names "heliarch"
-			fighters "heliarch fighter"
+			fighters
+				names "heliarch fighter"
 			variant
 				"Heliarch Judicator" 2
 				"Heliarch Pursuer" 4
