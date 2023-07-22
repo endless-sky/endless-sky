@@ -44,7 +44,7 @@ mission "Resistance: Smuggling: Charity 1"
 				`	"What sort of charity work?"`
 				`	"Sorry, I'm busy right now."`
 					decline
-			`	"Very prosperous, many Kimek worlds have become, but still lagging behind, a few of our planets are," she explains. "Very poor, the people of <planet> are, and many amenities such as computers and communicators, they lack. To help them, our more fortunate want, and offered up many supplies, they have. In need of captains to transport them to <planet>, we are," she finishes, looking at your ship.`
+			`	"Very prosperous, many Kimek worlds have become, but still lagging behind, a few of our planets are," she explains. "Very poor, the people of <planet> are, and many amenities such as computers and communicators, they lack. To help them, our more fortunate want, and offered up many supplies, they have. In need of captains to transport them to <planet>, we are. Offer <payment> for your assistance, we can," she finishes, looking at your ship.`
 			choice
 				`	"I'd be glad to help you. Have the supplies loaded into my ship."`
 				`	"That's a noble cause, but I don't work as a cargo hauler, sorry."`
@@ -274,7 +274,7 @@ mission "Resistance: Smuggling: AM"
 			`	"Brought to <destination>, they must be. The factories there, numerous and alike, they are. Hopes to produce our own, in secret, we have."`
 				goto accept
 			label effective
-			`	"The simpler their mechanisms, the faster that replicate them, we can," she says. "Strong enough to stop the finishers, I hope they are... Bring the turrets to <destination>, you must."`
+			`	"The simpler their mechanisms, the faster that replicate them, we can," she says. "Strong enough to stop the Finishers, I hope they are... Bring the turrets to <destination>, you must."`
 			label accept
 			`	She asks for your monitor, and, after tinkering with the controls for a minute, plugs a small, round device into it. "Allow us to more easily contact you, this will. Accessed by a separate network entirely, the device is. Simply a means to receive our messages, it is. Leave traces on its hardware, communications will not, and gain access to the network on its own, it cannot. Traced back to us, you won't be, unless caught by the Heliarchs during our communications, you are," she explains. "After delivered the goods to <planet>, you have, message you for more missions, we shall. Good luck, and thanks, Captain." Once the "inspection" is done, she leaves your ship and scurries off.`
 				accept
@@ -468,7 +468,23 @@ mission "House Bebliss 1-A"
 	destination "Factory of Eblumab"
 	on offer
 		conversation
-			`An Arach stops you by the spaceport and invites you to a free meal at a local bar. You follow him into the establishment and order something. "To business, then," he says. "A messenger from the great House Bebliss, I am. Wish to see you, my employers do, for a great aid to one of their projects, you would be."`
+			`An Arach stops you by the spaceport and invites you to a free meal at a local bar. "A business proposal, my employers for you have."`
+			choice
+				`	"Very well, lead the way."`
+					goto bar
+				`	"Can't you just give me the details here? I'm not hungry."`
+			`	He seems somewhat disappointed, but agrees. "A messenger from the great House Bebliss, I am. Wish to see you, my employers do, for a great aid to one of their projects, you would be."`
+			choice
+				`	"What do they want?"`
+				`	"Did they mention how much I would get paid?"`
+			`	"Know such exact details, I do not, but certain, I am, that answer any of your questions, they will. Much interest in your resourcefulness, my superiors have," he says. "On <destination>, they wait. Now, told to tell you, I was, that only to speak with you, they want. To make an offer. If uninterested, you are, pressure you any further, they will not."`
+			choice
+				`	"Fair enough. Tell them I'll be heading there to hear them out."`
+				`	"I won't go out of my way just to hear about a job offer. Tell them to come in person next time."`
+					decline
+			`	He nods in some quick gesture, and gives you some coordinates. "To an estate, these will bring you. Thankful for your understanding, House Bebliss is." He runs off, and heads into an office building to inform his superiors that you'll be on your way to <planet>.`
+			label bar
+			`	You follow him into the establishment and order something. "To business, then," he says. "A messenger from the great House Bebliss, I am. Wish to see you, my employers do, for a great aid to one of their projects, you would be."`
 			choice
 				`	"What do they want?"`
 				`	"Did they mention how much I would get paid?"`
@@ -509,14 +525,16 @@ mission "House Bebliss 1-B"
 				`	"Alright, you have my interest. What's this job about?"`
 				`	"Well, if you want me to work with you so much, why don't you just tell me what the job is?"`
 				`	"I'm sorry, I understand you've taken the effort to come meet me in person, but I've got pressing business outside of Coalition space."`
-					decline
+					goto decline
 				`	"Second chance, tenth chance, I really don't care how many you give me. I'm not interested."`
-					decline
-			label accept
+					goto decline
 			`	"Say much, here we cannot," he answers. "If interested, you are, to <destination>, you must go. There, our House's private estate is."`
 			`	"That it concerns recent human events, we can say. Events that involved in, you were," the other says, handing you some coordinates to their estate on <planet>.`
 			`	The waiter arrives, and they suggest some dishes, seeing as you didn't pick anything from the menu. The smell coming from the other tables, however, tells you to decline, so you politely leave the establishment. It seems the only way to find out what these Arachi want is to head to <destination>.`
 				accept
+			label decline
+			`	The two of them eye you up for a very uncomfortable minute, but never provide some response or acknoweldgement. You try and move away and leave the restaurant, but their bodyguards block you. One of the two Arachi from the table appears to grunt, then signals for the guards to let you pass through. You leave the restaurant, and return to your ship.`
+				decline
 
 mission "House Bebliss 2-FW"
 	name "Old Friends"
@@ -669,12 +687,15 @@ mission "House Bebliss 4-FW"
 				has "Resistance: Questions: done"
 			choice
 				`	"Some more aliens."`
+					goto standard
 				`	"I hope none of you are afraid of spiders."`
+					goto standard
 			label resistance
 			choice
 				`	(Explain everything, including the Lunarium.)`
 					goto tell
 				`	(Don't mention the Lunarium.)`
+			label standard
 			`	Everyone quietly listens as you explain to them all you've learned about the Coalition. You bring up a map of the Free Worlds and show them the rough area of Coalition space and where it borders Free Worlds territory. As you gesture towards the map, you tell them of the three species, about the Heliarchs and how they've taken the three Quarg rings. Eventually you get to the Arach Houses, explaining that House Bebliss are the ones who wish to go study the Pug artifacts with Freya.`
 			`	When you're done, Alondo is the first to speak up. "So far, we seem to be getting along better with these aliens than we did with the Pug. It's good that they're trying to be diplomatic, though I'm not sure it'd be a good idea for the general public to know of them, given past experiences. At least for right now."`
 			`	"Do they have jump drives?" Katya asks. You nod, but say that they can't make their own. "Well, as long as what stockpile they have isn't too large, we shouldn't be in too much trouble."`
@@ -1363,6 +1384,7 @@ mission "Resistance: Propaganda 3"
 			label end
 			`	Almost half an hour goes by with you watching the skies of <planet> before the first signs of the drones show: they're too small for you to see from where you are, but you make out the piles of red smoke swiftly growing into Kimek letters in the sky, appearing in spiraling columns and arcs, with small, spread out dots separating the letters. Crowds clog the streets, Kimek look out the windows and some even gather atop apartment buildings to gaze at the messages. When the drones are done, the messages Tummug had shown you on the flyer are fully formed, and the drones take a short break. When they return, they get to work on another set of messages as the first one begins dissipating. After a few repetitions, and another pause, flyers begin raining down the city streets, the local Kimek picking them up in curiosity and discussing among themselves. The "rain" goes on for several minutes, before the drones start heading to other portions of the city and you lose sight of them.`
 			`	Focusing now on the crowds and their reception, you see the Kimek are split: nearly everywhere they are in heated discussion, with many on one side seemingly approving of the display, while others yell and gesture for the messages to be put out, throwing the flyers to the ground and stomping on them. The Heliarch agents present on the ground do their best to separate the crowds and keep the order, but struggle against the sheer number of Kimek. Not long after the drones disappeared, however, Heliarch warships fly through the atmosphere in a fury, speedily undoing the skywriting as they head in the direction of the factory. Some ships leave more agents on the ground, and with increased personnel the Heliarchs now manage to stop the crowd infighting, and start clearing out the streets.`
+				decline
 
 mission "Resistance: Propaganda 4"
 	name "Promoting Culture"
@@ -1383,9 +1405,11 @@ mission "Resistance: Propaganda 4"
 			`Tummug is quick to find you in the spaceport. He approaches you with the Arachi who helped him with the drones, as well as some Saryds and Kimek, all following behind him in a dash. "Delay you long this time I will not, Captain <last>," he says. "Headed to <destination> we are. Already arranged for what we'll need to be brought to your ship, I have."`
 			branch resistance
 				has "Resistance: Questions: done"
+			`	He then tugs on your clothing as if asking you to bow down a bit, as he himself stretches up. "Leave at once, we must!" He whispers.`
 			`	You do your best to keep up as you run with them back to your ship, where they help some others load boxes and crates of promotional posters into your cargo hold. Strangely enough, you don't see any of the flyers that the drones rained from above earlier, or any sort of video displaying the skywriting on screens around the spaceport. Once the cargo is all in your ship, Tummug comes to say you'll receive <payment> for the job, and rushes inside your ship with the others.`
 				accept
 			label resistance
+			`	He briefly glances around, then says, "A busy day it is, so hurry back to your ship we should. Otherwise, difficult to find, available cargo loaders will be."`
 			`	Running back to your ship, you notice a total lack of the flyers that rained down the city earlier, or any replay of the skywriting on any of the screens around the spaceport. Tummug and the Arachi who worked on the drones are all with the group, but their rush to get to your ship leaves you uneasy. You all help some more members get boxes and crates of posters into your ship, and head inside with Tummug and the others once you're done. "Leave now, we must. Too much attention, the drone show seems to have gained us," he tells you. "Pay you <payment> once on <planet> we are, I will. Go." They all head to their bunks, and you move to the cockpit, firing up your engines.`
 				launch
 	on visit
@@ -1676,12 +1700,24 @@ mission "Resistance: Questions"
 				"coalition jobs" >= 110
 				"assisted resistance" == 3
 		"reputation: Quarg" >= 0
-		has "First Contact: Quarg: offered"
 		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
 		not "Resistance: Smuggling: Charity 1: active"
 		not "Resistance: Smuggling: Charity 2: active"
 		not "Resistance: Smuggling: Charity 3: active"
+		not "Resistance: Evacuation 1: active"
+		not "Resistance: Evacuation 2: active"
+		not "Resistance: Evacuation 3: active"
+		not "Resistance: Evacuation 4: active"
+		not "Resistance: Evacuation 5: active"
+		not "Resistance: Evacuation 6: active"
+		not "Resistance: Propaganda 1: active"
+		not "Resistance: Propaganda 2: active"
+		not "Resistance: Propaganda 3: active"
+		not "Resistance: Propaganda 4: active"
+		or
+			not "Resistance: Combat Training 1: done"
+			has "Resistance: Combat Training 4: done"			
 	to fail
 		or
 			has "Heliarch Investigation 2: active"
@@ -1836,7 +1872,8 @@ mission "Resistance: Join"
 			label heliarch
 			`	You look to Chiree, and see her brushing her frontmost left leg with the tip of her right one, as if cleaning away something. Once she's done, you see various bolts and a metal texture revealed. "Lost two of my legs to a Heliarch attack, I did. Used to the prosthetics, I've grown, but faded away from my memory, that day has not." She stares at you. "Aware, we are, that helped the Heliarchs before, you have. Ask about specifics, I did not, for wish to know, I do not. Harmless work, it may have been. Or, helped them mutilate others like they did with me, you may have." She approaches you, handing you a small box: one of the Coalition's translation devices. "One of us, you now are. Hear of any more aid to the Heliarchs from your part, I will not."`
 			label end
-			`	You say your goodbyes, and you're escorted out of the complex and back to your ship. The Kimek who brought you there enter the ship with you briefly, and inform you that they've sent word across their major bases in the Coalition about your joining up. You're told that you'll find some new outfits available in their secretive outfitters. When they leave, you start tinkering with the translation device, figuring how to configure it to translate from each of the languages, and testing it with local transmissions and broadcasts. After half an hour or so, you're decently fast with it, to the point where you can change what language it translates to or from a few times in a second.`
+			`	You say your goodbyes, and you're escorted out of the complex and back to your ship. The Kimek who brought you there enter the ship with you briefly, and inform you that they've sent word across their major bases in the Coalition about your joining up. You're told that you'll find some new outfits available in their secretive outfitters. "In separate portions of the cities, sometimes in other cities entirely, our shops are, but safe from Heliarch patrols, they so far have proven." They give you a short list with the planets where you'll find their outfitters, and coordinates and instructions as to how to get to and access each of them.` 
+			`	When they leave, you start tinkering with the translation device, figuring how to configure it to translate from each of the languages, and testing it with local transmissions and broadcasts. After half an hour or so, you're decently fast with it, to the point where you can change what language it translates to or from a few times in a second.`
 			`	It may be a long time still before the Lunarium is ready to take up arms against the Heliarchs, so for now you figure you could help by looking into what minor jobs they may have for you.`
 
 event "first resistance unlock"
