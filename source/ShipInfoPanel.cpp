@@ -360,8 +360,10 @@ void ShipInfoPanel::SetUpHardpointCalcs(const Rectangle &bounds)
 		// First go through the guns.
 		if(gunIndex < gunRows)
 		{
+			// The guns still overflow this page.
 			if((gunRows - gunIndex) * 20. >= height)
 				gunIndex += (rowsPerPage / 2);
+			// There is space left after all guns were placed.
 			else
 			{
 				offset = gunRows - gunIndex;
@@ -371,19 +373,25 @@ void ShipInfoPanel::SetUpHardpointCalcs(const Rectangle &bounds)
 		// Then go through the turrets.
 		if(gunIndex >= gunRows && turretIndex < turretRows)
 		{
+			// If guns were already placed on this page.
 			if(offset)
+				// The turrets still exceed this pages space.
 				if((turretRows - turretIndex + offset) * 20. + 10. >= height)
 					turretIndex += (rowsPerPage / 2) - (offset + 1);
+				// The turrets fit this page.
 				else
 					turretIndex = turretRows;
 			else
 			{
+				// The turrets still exceed this pages space.
 				if((turretRows - turretIndex) * 20. >= height)
 					turretIndex += (rowsPerPage / 2);
+				// The turrets fit this page.
 				else
 					overflowsPage = false;
 			}
 		}
+		// Check if we went through all hardpoints.
 		if(turretIndex >= turretRows && gunIndex >= gunRows)
 			overflowsPage = false;
 		pages++;
