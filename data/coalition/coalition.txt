@@ -1225,7 +1225,6 @@ phrase "friendly coalition"
 		"last year I did"
 		"I'd like to"
 		"one day I will"
-		"I enjoyed to"
 	word
 		" "
 	word
