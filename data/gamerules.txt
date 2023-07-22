@@ -51,19 +51,19 @@ gamerules
 	# ALLOWABLE VALUES: any value between 0. and 1.
 	"universal frugal threshold" 0.75
 
-	# Minimum percentage of a ship or outfit value at maximum depreciation. A value of .25 (25 percent) means
-	# a fully depreciated outfit that normally sold at 1000 credits will be sold for 250 credits.
-	# DEFAULT: .25 (25 percent)
+	# The lowest proportion of it's full price the value of a ship or outfit can depreciate to.
+	# By default, a fully depreciated outfit normally worth 1000 credits will sell for 250 credits.
+	# DEFAULT: 0.25
 	# ALLOWABLE VALUES: any value between 0. and 1.
 	"depreciation min" 0.25
 
-	# Amount of days before a new outfit and ship begin to depreciate.
+	# Number of days before a new outfit and ship begin to depreciate.
 	# DEFAULT: 7 (7 days)
 	# ALLOWABLE VALUES: any integer >= 0.
 	"depreciation grace period" 7
 
 	# First factor of depreciation calculation. The second factor is "depreciation max age" below
-	# This is the Percentage of a ship or outfit value remains per day after the grace period.
+	# This is the proportion of a ship or outfit's value that remains per day after the grace period.
 	# The value is then multiplied by previous value on the next day, and repeat.
 	# So this can be calculated by "remaining daily percent" = "daily percent" ^ (age - "grace period")
 	# where age is in days. "remaining daily percent" is then multiplied by result from next factor.
