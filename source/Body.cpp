@@ -204,7 +204,6 @@ void Body::LoadSprite(const DataNode &node)
 	if(node.Size() < 2)
 		return;
 	sprite = SpriteSet::Get(node.Token(1));
-	scale = Point(1, 1);
 
 	// The only time the animation does not start on a specific frame is if no
 	// start frame is specified and it repeats. Since a frame that does not
@@ -259,7 +258,7 @@ void Body::SaveSprite(DataWriter &out, const string &tag) const
 			out.Write("frame rate", frameRate * 60.);
 		if(delay)
 			out.Write("delay", delay);
-		if(scale != Point(1., 1.))
+		if(scale != Point(1, 1))
 			out.Write("scale", scale.X(), scale.Y());
 		if(randomize)
 			out.Write("random start frame");

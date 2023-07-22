@@ -96,7 +96,7 @@ protected:
 	Point position;
 	Point velocity;
 	Angle angle;
-	Point scale;
+	Point scale = Point(1, 1);
 	// A zoom of 1 means the sprite should be drawn at half size. For objects
 	// whose sprites should be full size, use zoom = 2.
 	float zoom = 1.f;

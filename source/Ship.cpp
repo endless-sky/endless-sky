@@ -4161,13 +4161,13 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 	double mass = InertialMass();
 	double slowMultiplier = 1. / (1. + slowness * .05);
 
-	if(thrusterHeldFrames != 0)
+	if(thrusterHeldFrames > 0)
 		thrusterHeldFrames--;
-	if(reverseHeldFrames != 0)
+	if(reverseHeldFrames > 0)
 		reverseHeldFrames--;
-	if(turnRightHeldFrames != 0)
+	if(turnRightHeldFrames > 0)
 		turnRightHeldFrames--;
-	if(turnLeftHeldFrames != 0)
+	if(turnLeftHeldFrames > 0)
 		turnLeftHeldFrames--;
 
 	if(isDisabled)

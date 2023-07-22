@@ -16,9 +16,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 
 #ifndef __SSE3__
-	#include <algorithm>
-	#include <cmath>
-	using namespace std;
+#include <algorithm>
+#include <cmath>
+using namespace std;
 #endif
 
 

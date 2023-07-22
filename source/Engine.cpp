@@ -156,9 +156,16 @@ namespace {
 		Messages::Add(tag + message, Messages::Importance::High);
 	}
 
+	double FlareCurve(double x)
+	{
+		return pow(x, 3.);
+	}
+
 	void DrawFlareSprites(const Ship &ship, DrawList &draw, const vector<Ship::EnginePoint> &enginePoints,
 		const vector<pair<Body, int>> &flareSprites, uint8_t side, Point scale)
 	{
+		Point leftTurnScale = scale * Point(ship.TurnLeftHeldFrames() / 10., FlareCurve(ship.TurnLeftHeldFrames() / 10.));
+		Point rightTurnScale = scale * Point(ship.TurnRightHeldFrames() / 10., FlareCurve(ship.TurnRightHeldFrames() / 10.));
 		for(const Ship::EnginePoint &point : enginePoints)
 		{
 			Point pos = ship.Facing().Rotate(point) * ship.Zoom() + ship.Position();
@@ -176,15 +183,13 @@ namespace {
 					else if(point.steering == Ship::EnginePoint::LEFT && ship.TurnLeftHeldFrames())
 						for(int i = 0; i < it.second && i < 3; ++i)
 						{
-							Body sprite(it.first, pos, ship.Velocity(), ship.Facing() + point.facing, point.zoom,
-								scale * Point(ship.TurnLeftHeldFrames() / 10., pow(ship.TurnLeftHeldFrames() / 10., 3)));
+							Body sprite(it.first, pos, ship.Velocity(), ship.Facing() + point.facing, point.zoom, leftTurnScale);
 							draw.Add(sprite, ship.Cloaking());
 						}
 					else if(point.steering == Ship::EnginePoint::RIGHT && ship.TurnRightHeldFrames())
 						for(int i = 0; i < it.second && i < 3; ++i)
 						{
-							Body sprite(it.first, pos, ship.Velocity(), ship.Facing() + point.facing, point.zoom,
-								scale * Point(ship.TurnRightHeldFrames() / 10., pow(ship.TurnRightHeldFrames() / 10., 3)));
+							Body sprite(it.first, pos, ship.Velocity(), ship.Facing() + point.facing, point.zoom, rightTurnScale);
 							draw.Add(sprite, ship.Cloaking());
 						}
 				}
@@ -2463,8 +2468,8 @@ void Engine::AddSprites(const Ship &ship)
 			if(bay.side == Ship::Bay::UNDER && bay.ship)
 				drawObject(*bay.ship);
 
-	double thrustMul = pow(ship.Zoom() * ship.ThrustHeldFrames() / 10., 3);
-	double reverseMul = pow(ship.Zoom() * ship.ReverseHeldFrames() / 10., 3);
+	double thrustMul = FlareCurve(ship.Zoom() * ship.ThrustHeldFrames() / 10.);
+	double reverseMul = FlareCurve(ship.Zoom() * ship.ReverseHeldFrames() / 10.);
 
 	if(thrustMul && !ship.EnginePoints().empty())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.EnginePoints(),

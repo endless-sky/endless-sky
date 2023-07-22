@@ -31,19 +31,19 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Point {
 public:
 	Point() noexcept;
-
 	Point(double x, double y) noexcept;
 
 	// Check if the point is anything but (0, 0).
 	explicit operator bool() const noexcept;
 	bool operator!() const noexcept;
+
+	// Try not to use any of these, because comparisons with doubles are inherently
+	// unsafe due to the possibility of rounding errors and imprecision.
 	bool operator==(const Point &other) const noexcept;
 	bool operator!=(const Point &other) const noexcept;
+	// Purely because std::map needs a less-than operator.
+	// Checks if the length of the point is less than the other point's.
 	bool operator<(const Point &other) const noexcept;
-
-	// No comparison operators are provided because I never expect to use them
-	// and because comparisons with doubles are inherently unsafe due to the
-	// possibility of rounding errors and imprecision.
 
 	Point operator+(const Point &point) const;
 	Point &operator+=(const Point &point);
