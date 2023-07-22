@@ -216,7 +216,7 @@ mission "Heliarch Investigation 2 - Mebla's Portion"
 			`	On your way down, Kirrie yells for you to take cover, and you barely escape a barrage of shots as you head back up. Kirrie isn't as lucky, as one of the shots hit one of his back legs just before he is back at the stairs. You go to help him up before any more shots come, but he seems to make do with just five good legs well enough.`
 			`	You two rush back up. Kirrie tells you to be alert and watch the staircase, as he reaches for a small radio-like device to call for support. A few minutes later, a pair of Heliarch Punishers land nearby. Dozens of armed agents enter the warehouse, while you head to one of the ships with Kirrie and wait as his wound is treated.`
 			`	The agents return hours later, reporting they shot down the turrets and found the place deserted. "Many automated production lines, we found," one of them tells Kirrie. "Powering them, one of our Reactor Modules is."`
-			`	With the local Heliarchs taking care of the place, they have another, smaller ship come in to pick you two up, and drop you and Kirrie closer to the <ship>, where you find Iplora and Tugroob already waiting. You all head inside, and Kirrie suggests you depart now, as his colleagues follow him to his bunk to hear what happened.`
+			`	With the local Heliarchs taking care of the place, they have a Heliarch Breacher come in to pick you two up, and drop you and Kirrie closer to the <ship>, where you find Iplora and Tugroob already waiting. You all head inside, and Kirrie suggests you depart now, as his colleagues follow him to his bunk to hear what happened.`
 				accept
 			label trees
 			`	You suggest looking for something unusual near the plant life you spotted while the rain is still fairly tame, and he follows you. You spend a few minutes looking around the trees but find nothing suspicious.`
@@ -294,7 +294,7 @@ mission "Heliarch Investigation 2 - Shifting Sand"
 				`	"Of course. Where are we headed?"`
 				`	"Sorry, I'll have to refuse this time."`
 					goto decline
-			`	"An abandoned mining operation our target is. Received we have reports of suspicious activity near the complex - ships that recently there headed were, in spite of shutting down years ago, the mine did," he explains, and you input the coordinates he gives you into your navigator.`
+			`	"An abandoned mining operation our target is. Received we have reports of suspicious activity near the complex - recently headed there some ships were, in spite of shut down for years the mine being," he explains, and you input the coordinates he gives you into your navigator.`
 			`	You fly to the coordinates and come to the remains of a gargantuan mining operation, an enormous hole torn into the planet's crust, spiralling down to what must be nearly a kilometer below the otherwise relatively untouched surface. Near the edge, you spot a medium-sized building, made up of a few interconnected blocks and dirtied up by the planet's sand. Tugroob tells you it must have been the base for the mining workers and managing team when the mine was active.`
 			`	Close to the building, farther out from the digging hole, you see a few landing pads of large enough size for even the bulkiest of freighters, likely there for the raw ore to be shipped off via spacecraft to smelting facilities. You land on one of them, and you and Tugroob leave your ship. As you step off the landing pad, Tugroob calls your attention to a desert storm brewing in the distance, and says you two should get started before it reaches here.`
 			choice
@@ -417,7 +417,7 @@ mission "Heliarch Investigation 2 - Into White"
 			`	You open the hatch, and she begins her trek. You slouch around your ship for a few hours, waiting for any signal from the Heliarch agents, but nothing comes up on your commlink. Iplora comes back, saying she couldn't find anything, so you leave and pick up Kirrie and Tugroob. They also return empty-handed.`
 				accept
 			label snow
-			`	She remains silent, moving away from the hatch and taking a seat to wait. You head to your room and prepare yourself for what's to come with the warmest, best clothing you could find for the snowy grounds. When you're done, you head back to your controls to open the hatch, and the both of you head out into the white fields. Not long after leaving your ship, you can make out small, dark lines nearby, probably pine trees. It seems you landed close to a forest. Unfortunately, they don't do much to protect you from the increasingly dense snowfall.`
+			`	She remains silent, moving away from the hatch and taking a seat to wait. You head to your room and prepare yourself for what's to come with the warmest, best clothing you could find for the snowy grounds. When you're done, you head back to your controls to open the hatch, and the both of you head out into the white fields. Not long after leaving your ship, you can make out small, dark lines nearby. It seems you landed close to a forest. Unfortunately, the trees don't do much to protect you from the increasingly dense snowfall.`
 			`	You continue deeper into the lifeless forest for what feels like hours, so long that your feet start feeling slightly numb from the cold. After yet another turn amidst identical trees, Iplora guides you out of the forest to a snowy plain, dotted with a few dozen small, sturdy houses. Iplora explains it was something of a resort, popular with Kimek families when the planet wasn't as cold as nowadays. The storm is not so terrible here, so you can also faintly see cave entrances in a few small mounds at the edges of the resort grounds. Snow-covered boulders litter the entire plain, and Iplora warns you to take care not to trip on them.`
 			`	"Check the caverns, we must. More relentless, the storm will soon become," she says.`
 			choice
@@ -525,13 +525,6 @@ mission "Heliarch Investigation 2 - Remote Blue"
 
 
 
-mission "visited alta hai"
-	landing
-	invisible
-	source "Alta Hai"
-	on offer
-		fail
-
 mission "Heliarch Recon 1"
 	name "Heliarch Reconnaissance"
 	description "Fly to all the Quarg planets and stations the Heliarch asked, land on them, let your modified ship sensors scan their surroundings, then head back to the <destination>."
@@ -547,9 +540,10 @@ mission "Heliarch Recon 1"
 	to offer
 		"reputation: Quarg" >= 0
 		"coalition jobs" >= 55
-		has "visited alta hai: offered"
+		has "visited planet: Lagrange"
+		has "visited planet: Alta Hai"
+		has "visited planet: Kuwaru Efreti"
 		has "First Contact: Hai: offered"
-		has "First Contact: Kuwaru Efreti: offered"
 		has "Coalition: Contributor: done"
 		not "Resistance: Questions: done"
 	on offer
@@ -559,6 +553,7 @@ mission "Heliarch Recon 1"
 			`	"Sent by Consul Aulori, we were," the Kimek says proudly, as if you were supposed to know who that is. "An important task for you, he has in mind."`
 			`	"How far would the visitor go, if to further help our Coalition, it meant?" the Arach asks.`
 			choice
+				`	"I'd be glad to help. What do you need?"`
 				`	"I'm not sure I understand what you're getting at."`
 				`	"Obviously I have my limits as for what I would do."`
 			`	"A jump drive, you possess. Far away, you can travel. Bother you, the harsh cages of the Quarg do not," the Saryd explains as all three walk toward your ship.`
@@ -725,7 +720,7 @@ mission "Quarg Interrogation"
 		has "Heliarch Recon 2-B: done"
 	on offer
 		conversation
-			`As you land on <origin>, a Quarg is patiently waiting right outside. Seeing that it won't go away, you head outside to speak with it.`
+			`As you land on <origin>, a Quarg is patiently waiting right outside your ship, as if expecting you to open the hatch. You think nothing of it at first, but when you try and access the local news feed, you notice your monitors' interfaces aren't showing any of the local services and facilities. A few more minutes go by, and you realize your ship hasn't been refueled either, and you look out to see some more Quarg standing by the refuelling machines of the landing pad you landed on, simply looking at your ship. Seeing that the other Quarg is still waiting by your hatch, you head outside to speak with it.`
 			`	"Hello, <first> <last>," it says.`
 			choice
 				`	"Hi, can I help you?"`
@@ -1149,7 +1144,7 @@ mission "Heliarch Expedition 5"
 			choice
 				`	"What?"`
 				`	"Is this that expensive?"`
-			`	"Over the course of the War of Independence, the amount of fissile material used in projectiles that bombarded this ring. One billion. For this ring alone. They left not one dent. Not one." He picks up the piece. "One of the smaller shards of the shattered ring that recover, the expedition could." He gazes at it for a few seconds, before putting it back in the box, and returning that to the table. "In my position, learn of the Quarg, learn as a Quarg, I have had to. To think like them, I must, if to attempt to breach the many blockades that placed they have to impede others from learning from their technology, I am. Outnumbered by them, we are. Inferior we remain in our technology. If a means to close the gap, I do not find, then perhaps learning what monstrous weapon could break their rings, learning how to create such a weapon, the only hope for deterring a Quarg offensive is."`
+			`	"Over the course of the War of Independence, the amount of kilotons of fissile material used in projectiles that bombarded this ring. One billion. For this ring alone. They left not one dent. Not one." He picks up the piece. "One of the smaller shards of the shattered ring that recover, the expedition could." He gazes at it for a few seconds, before putting it back in the box, and returning that to the table. "In my position, learn of the Quarg, learn as a Quarg, I have had to. To think like them, I must, if to attempt to breach the many blockades that placed they have to impede others from learning from their technology, I am. Outnumbered by them, we are. Inferior we remain in our technology. If a means to close the gap, I do not find, then perhaps learning what monstrous weapon could break their rings, learning how to create such a weapon, the only hope for deterring a Quarg offensive is."`
 			`	Aulori pauses for nearly a minute, looking at the monitors. "It matters not what nonsense other consuls may tell you, Captain. Know this: give up on their rings the Quarg never will. With your help, and the efforts of the expedition, prepared yet for them, we may become."`
 			`	He thanks you again, and gestures for the door. Many guards arrive soon after you two leave, and you're accompanied back to your ship. As you leave, Aulori heads deeper into the ring's hallways to further study the report about the destroyed ringworld.`
 				accept
