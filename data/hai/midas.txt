@@ -700,7 +700,7 @@ mission "<uhai> 7: Duel"
 		ship "Sea Dragon" "Thorn"
 		ship "Sea Dragon" "Talon"
 		on kill
-			dialog "You killed one of the ships. You will need to restart the mission in order to progress further with the Shadow of Mintaka. They may want to have their vengeance on you... The Unfettered may not offer you any missions anymore, for disrespecting the sacred rules of the duel."
+			dialog "Killing at least one of the twins will have consequences with the Shadow of Mintaka. As they said, "nemo me impune lacessit!" The Unfettered may refrain from offering you missions, for disrespecting the sacred rules of the duel."
 			set "midas: thorn talon death"
 			set "midas: thorn talon murdered"
 			"midas: wronged" ++
