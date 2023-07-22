@@ -1717,7 +1717,7 @@ mission "Resistance: Questions"
 		not "Resistance: Propaganda 4: active"
 		or
 			not "Resistance: Combat Training 1: done"
-			has "Resistance: Combat Training 4: done"			
+			has "Resistance: Combat Training 4: done"
 	to fail
 		or
 			has "Heliarch Investigation 2: active"
@@ -1872,7 +1872,7 @@ mission "Resistance: Join"
 			label heliarch
 			`	You look to Chiree, and see her brushing her frontmost left leg with the tip of her right one, as if cleaning away something. Once she's done, you see various bolts and a metal texture revealed. "Lost two of my legs to a Heliarch attack, I did. Used to the prosthetics, I've grown, but faded away from my memory, that day has not." She stares at you. "Aware, we are, that helped the Heliarchs before, you have. Ask about specifics, I did not, for wish to know, I do not. Harmless work, it may have been. Or, helped them mutilate others like they did with me, you may have." She approaches you, handing you a small box: one of the Coalition's translation devices. "One of us, you now are. Hear of any more aid to the Heliarchs from your part, I will not."`
 			label end
-			`	You say your goodbyes, and you're escorted out of the complex and back to your ship. The Kimek who brought you there enter the ship with you briefly, and inform you that they've sent word across their major bases in the Coalition about your joining up. You're told that you'll find some new outfits available in their secretive outfitters. "In separate portions of the cities, sometimes in other cities entirely, our shops are, but safe from Heliarch patrols, they so far have proven." They give you a short list with the planets where you'll find their outfitters, and coordinates and instructions as to how to get to and access each of them.` 
+			`	You say your goodbyes, and you're escorted out of the complex and back to your ship. The Kimek who brought you there enter the ship with you briefly, and inform you that they've sent word across their major bases in the Coalition about your joining up. You're told that you'll find some new outfits available in their secretive outfitters. "In separate portions of the cities, sometimes in other cities entirely, our shops are, but safe from Heliarch patrols, they so far have proven." They give you a short list with the planets where you'll find their outfitters, and coordinates and instructions as to how to get to and access each of them.`
 			`	When they leave, you start tinkering with the translation device, figuring how to configure it to translate from each of the languages, and testing it with local transmissions and broadcasts. After half an hour or so, you're decently fast with it, to the point where you can change what language it translates to or from a few times in a second.`
 			`	It may be a long time still before the Lunarium is ready to take up arms against the Heliarchs, so for now you figure you could help by looking into what minor jobs they may have for you.`
 
