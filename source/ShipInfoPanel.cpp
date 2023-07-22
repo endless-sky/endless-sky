@@ -346,16 +346,16 @@ void ShipInfoPanel::SetUpHardpointCalcs(const Rectangle &bounds)
 	int turretRows = max(count[0][1], count[1][1]);
 	// If there are both guns and turrets, add a gap of ten pixels.
 	double height = 20. * (gunRows + turretRows) + 10. * (gunRows && turretRows);
-	bool pageNeeded = height > bounds.Height();
-	height = pageNeeded ? bounds.Height() - 30. : height;
+	bool overflowsPage = height > bounds.Height();
+	height = overflowsPage ? bounds.Height() - 30. : height;
 
 	// First calculate how many pages are needed. If pages are not needed set to 1.
-	pages = pageNeeded ? 0 : 1;
+	pages = overflowsPage ? 0 : 1;
 	int gunIndex = 0;
 	int turretIndex = 0;
 	rowsPerPage = static_cast<int>(height) / 10. - 1;
 	int offset = 0;
-	while(pageNeeded)
+	while(overflowsPage)
 	{
 		// First go through the guns.
 		if(gunIndex < gunRows)
@@ -381,11 +381,11 @@ void ShipInfoPanel::SetUpHardpointCalcs(const Rectangle &bounds)
 				if((turretRows - turretIndex) * 20. >= height)
 					turretIndex += (rowsPerPage / 2);
 				else
-					pageNeeded = false;
+					overflowsPage = false;
 			}
 		}
 		if(turretIndex >= turretRows && gunIndex >= gunRows)
-			pageNeeded = false;
+			overflowsPage = false;
 		pages++;
 		offset = 0;
 	}
