@@ -1289,9 +1289,11 @@ interface "info panel"
 		dimensions 90 30
 	
 	visible if "paged hardpoints"
+	active if "hardpoints next"
 	button e "n_ext>"
 		center 95 260.
 		dimensions 40 25
+	active if "hardpoints previous"
 	button r "<p_revious"
 		center -95 260.
 		dimensions 60 25

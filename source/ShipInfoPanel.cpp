@@ -15,7 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ShipInfoPanel.h"
 
-#include "Hardpoint.h"
 #include "text/alignment.hpp"
 #include "CategoryList.h"
 #include "CategoryTypes.h"
@@ -26,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Hardpoint.h"
 #include "Information.h"
 #include "Interface.h"
 #include "LineShader.h"
@@ -122,6 +122,10 @@ void ShipInfoPanel::Draw()
 	SetUpHardpointCalcs(infoPanelUi->GetBox("weapons"));
 	if(pages > 1)
 		interfaceInfo.SetCondition("paged hardpoints");
+	if(pageIndex < pages)
+		interfaceInfo.SetCondition("hardpoints next");
+	if(pageIndex > 1)
+		interfaceInfo.SetCondition("hardpoints previous");
 
 	// Draw the interface.
 	infoPanelUi->Draw(interfaceInfo, this);
