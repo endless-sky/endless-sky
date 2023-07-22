@@ -875,11 +875,11 @@ fleet "Large Plundering Unfettered"
 		"Shield Beetle (Pulse)"
 
 fleet "Unfettered Hai Space Raid"
-	government "Hai (Unfettered)"
+	government "Hai (Unfettered Raiders)"
 	names "hai"
 	cargo 1
 	personality
-		disables plunders coward
+		disables plunders coward harvests
 	variant
 		"Lightning Bug (Pulse)" 7
 	variant 2
