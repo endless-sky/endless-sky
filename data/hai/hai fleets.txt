@@ -885,13 +885,9 @@ fleet "Unfettered Hai Space Raid"
 	variant 2
 		"Shield Beetle" 2
 	variant 2
-		"Shield Beetle (Tracker)"
-	variant 2
 		"Shield Beetle (Pulse)" 2
 	variant 3
 		"Sea Scorpion (Pulse)" 5
-	variant 3
-		"Sea Scorpion (Tracker)" 4
 	variant 2
 		"Sea Scorpion (Ion)" 5
 	# run, you fool! (bigger less likely ones to prevent easy farming)
