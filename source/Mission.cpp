@@ -369,13 +369,13 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("autosave");
 		if(location == LANDING)
 			out.Write("landing");
-		else if(location == SHIPYARD)
+		if(location == SHIPYARD)
 			out.Write("shipyard");
-		else if(location == OUTFITTER)
+		if(location == OUTFITTER)
 			out.Write("outfitter");
-		else if(location == ASSISTING)
+		if(location == ASSISTING)
 			out.Write("assisting");
-		else if(location == BOARDING)
+		if(location == BOARDING)
 		{
 			out.Write("boarding");
 			if(overridesCapture)
@@ -387,7 +387,7 @@ void Mission::Save(DataWriter &out, const string &tag) const
 				out.EndChild();
 			}
 		}
-		else if(location == JOB)
+		if(location == JOB)
 			out.Write("job");
 		if(!clearance.empty())
 		{
