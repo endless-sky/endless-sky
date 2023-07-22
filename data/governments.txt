@@ -421,6 +421,7 @@ government "Hai"
 		"Hai Merchant (Sympathizers)" 1
 		"Hai Merchant (Human)" 1
 		"Hai (Unfettered)" -.1
+		"Hai (Unfettered Raiders)" -.1
 		"Hai (Friendly Unfettered)" .1
 		"Hai (Unfettered Civilians)" .1
 		"Merchant" .01
@@ -548,6 +549,27 @@ government "Hai (Unfettered)"
 	"hostile disabled hail" "hostile disabled unfettered"
 	raid "Large Plundering Unfettered" 8
 
+government "Hai (Unfettered Raiders)"
+	swizzle 4
+	color "governments: Hai (Unfettered)"
+	"crew attack" 1.4
+	"crew defense" 2.2
+	
+	"player reputation" -1000
+	"attitude toward"
+		"Hai" -.01
+		"Hai (Wormhole Access)" -.01
+		"Hai Merchant" -.01
+		"Hai Merchant (Sympathizers)" .1
+		"Hai (Unfettered)" 1
+		"Hai Merchant (Human)" -.01
+	"bribe" .2
+	"fine" 0
+	"friendly hail" "friendly unfettered"
+	"friendly disabled hail" "friendly disabled unfettered"
+	"hostile hail" "hostile unfettered"
+	"hostile disabled hail" "hostile disabled unfettered"
+	
 government "Hai (Unfettered Wanderer Tribute)"
 	swizzle 4
 	"display name" "Hai (Unfettered)"
