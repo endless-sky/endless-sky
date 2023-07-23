@@ -847,7 +847,7 @@ bool OutfitterPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 	if(key == 'y' && player.IsDesignPlayer())
 	{
 		GetUI()->Pop(this);
-		GetUI()->Push(new ShipyardPanel(player));
+		GetUI()->Push(otherDesignPanel);
 	}
 	else
 		return ShopPanel::KeyDown(key, mod, command, isNewPress);

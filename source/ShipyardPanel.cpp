@@ -387,14 +387,21 @@ bool ShipyardPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		// Only initialize the design player once per shipyard.
 		if(!designPlayer.IsDesignPlayer())
 			designPlayer.NewDesignPlayer(player);
+		shipyardDesignPanel.reset(new ShipyardPanel(designPlayer);
+		outfitterDesignPanel.reset(new OutfitterPanel(designPlayer);
+		selectedPanel = shipyardDesignPanel.get();
 		// The design screens are effectively subpanels of
 		// the ShipyardPanel so don't pop the shipyard ui.
-		GetUI()->Push(new ShipyardPanel(designPlayer));
+		GetUI()->Push(shipyardDesignPanel);
 	}
+	// The design panels fall through to allow shipyard to switch between them.
 	else if(key == 'o' && player.IsDesignPlayer())
+		return false;
+	else if(key == 'o' && designPlayer.IsDesignPlayer() && selectedPanel == shipyardDesignPanel.get())
 	{
-		GetUI()->Pop(this);
-		GetUI()->Push(new OutfitterPanel(player));
+		selectedPanel = outfitterDesignPanel.get();
+		GetUI()->Pop(shipyardDesignPanel);
+		GetUI()->Push(outfitterDesignPanel);
 	}
 	else
 		return ShopPanel::KeyDown(key, mod, command, isNewPress);
