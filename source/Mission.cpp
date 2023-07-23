@@ -153,20 +153,6 @@ void Mission::Load(const DataNode &node)
 			blocked = child.Token(1);
 		else if(child.Token(0) == "deadline" && child.Size() >= 4)
 			deadline = Date(child.Value(1), child.Value(2), child.Value(3));
-		else if(child.Size() == 2 && child.Token(0) == "complete" && child.Token(1) == "anywhere")
-			completeAnywhere = true;
-		else if(child.Size() == 2 && child.Token(0) == "complete" && child.Token(1) == "at")
-		{
-			LocationFilter loaded(child);
-			if(!loaded.IsValid())
-				continue;
-			if(loaded.IsEmpty())
-				child.PrintTrace("Error: The \"complete at\" filter must not be empty. Ignoring this line.");
-			else
-				completionFilter = loaded;
-		}
-		else if(child.Token(0) == "complete")
-			child.PrintTrace("Invalid \"complete\" option.");
 		else if(child.Token(0) == "deadline")
 		{
 			if(child.Size() == 1)
@@ -280,6 +266,23 @@ void Mission::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "destination")
 			destinationFilter.Load(child);
+		else if(child.Token(0) == "complete")
+		{
+			if(child.Size() == 1)
+				child.PrintTrace("Incomplete \"complete\" option. Follow \"complete\" with \"at\" or \"anywhere\".");
+			else if(child.Token(1) == "anywhere")
+				completeAnywhere = true;
+			else if(child.Token(1) == "at")
+			{
+				LocationFilter loaded(child);
+				if(loaded.IsEmpty())
+					child.PrintTrace("Error: The \"complete at\" filter must not be empty. Ignoring this line.");
+				else
+					completionFilter = loaded;
+			}
+			else
+				child.PrintTrace("Unknown \"complete\" option \"" + child.Token(1) + '"');
+		}
 		else if(child.Token(0) == "waypoint" && child.Size() >= 2)
 		{
 			bool visited = child.Size() >= 3 && child.Token(2) == "visited";
@@ -363,13 +366,6 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("blocked", blocked);
 		if(deadline)
 			out.Write("deadline", deadline.Day(), deadline.Month(), deadline.Year());
-		if(completeAnywhere)
-			out.Write("complete", "anywhere");
-		else if(!completionFilter.IsEmpty() && completionFilter.IsValid())
-		{
-			out.Write("complete", "at");
-			completionFilter.Save(out);
-		}
 		if(cargoSize)
 			out.Write("cargo", cargo, cargoSize);
 		if(passengers)
@@ -458,6 +454,13 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		}
 		if(destination)
 			out.Write("destination", destination->Name());
+		if(completeAnywhere)
+			out.Write("complete", "anywhere");
+		else if(!completionFilter.IsEmpty() && completionFilter.IsValid())
+		{
+			out.Write("complete", "at");
+			completionFilter.Save(out);
+		}
 		for(const System *system : waypoints)
 			out.Write("waypoint", system->Name());
 		for(const System *system : visitedWaypoints)
@@ -537,6 +540,11 @@ bool Mission::IsValid() const
 	// Every mission is required to have a destination.
 	if(!destination || !destination->IsValid())
 		return false;
+
+	// Missions with completion filters must have valid filters.
+	if(!completeAnywhere && !completionFilter.IsEmpty() && !completionFilter.IsValid())
+		return false;
+
 	// All stopovers must be valid.
 	for(auto &&planet : Stopovers())
 		if(!planet->IsValid())
