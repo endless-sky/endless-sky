@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Interface.h"
 
+#include "Angle.h"
 #include "DataNode.h"
 #include "text/DisplayText.h"
 #include "FillShader.h"
@@ -26,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "LineShader.h"
 #include "OutlineShader.h"
 #include "Panel.h"
+#include "PointerShader.h"
 #include "Rectangle.h"
 #include "RingShader.h"
 #include "Screen.h"
@@ -119,6 +121,8 @@ void Interface::Load(const DataNode &node)
 				elements.push_back(new TextElement(child, anchor));
 			else if(child.Token(0) == "bar" || child.Token(0) == "ring")
 				elements.push_back(new BarElement(child, anchor));
+			else if(child.Token(0) == "pointer")
+				elements.push_back(new PointerElement(child, anchor));
 			else if(child.Token(0) == "line")
 				elements.push_back(new LineElement(child, anchor));
 			else
@@ -686,6 +690,59 @@ void Interface::BarElement::Draw(const Rectangle &rect, const Information &info,
 			LineShader::Draw(from, to, width, *color);
 		}
 	}
+}
+
+
+
+
+// Members of the PointerElement class:
+
+// Constructor.
+Interface::PointerElement::PointerElement(const DataNode &node, const Point &globalAnchor)
+{
+	Load(node, globalAnchor);
+
+	// Fill in a default color if none is specified.
+	if(!color)
+		color = GameData::Colors().Get("medium");
+
+	// Set a default orientation if none is specified.
+	if(!orientation)
+		orientation = Point(0., -1.);
+}
+
+
+
+// Parse the given data line: one that is not recognized by Element
+// itself. This returns false if it does not recognize the line, either.
+bool Interface::PointerElement::ParseLine(const DataNode &node)
+{
+	if(node.Token(0) == "color" && node.Size() >= 2)
+		color = GameData::Colors().Get(node.Token(1));
+	else if(node.Token(0) == "orientation angle" && node.Size() >= 2)
+	{
+		const Angle direction(node.Value(1));
+		orientation = direction.Unit();
+	}
+	else if(node.Token(0) == "orientation vector" && node.Size() >= 3)
+	{
+		orientation.X() = node.Value(1);
+		orientation.Y() = node.Value(2);
+	}
+	else
+		return false;
+
+	return true;
+}
+
+
+
+void Interface::PointerElement::Draw(const Rectangle &rect, const Information &info, int state) const
+{
+	const Point center = rect.Center();
+	const float width = rect.Width();
+	const float height = rect.Height();
+	PointerShader::Draw(center, orientation, width, height, 0.f, *color);
 }
 
 

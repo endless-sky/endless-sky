@@ -103,6 +103,8 @@ namespace {
 				return "on waypoint";
 			case Mission::Trigger::DAILY:
 				return "on daily";
+			case Mission::Trigger::DISABLED:
+				return "on disabled";
 			default:
 				return "unknown trigger";
 		}
@@ -312,6 +314,7 @@ void Mission::Load(const DataNode &node)
 				{"stopover", STOPOVER},
 				{"waypoint", WAYPOINT},
 				{"daily", DAILY},
+				{"disabled", DISABLED},
 			};
 			auto it = trigger.find(child.Token(1));
 			if(it != trigger.end())
@@ -1086,6 +1089,26 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 
 
 
+bool Mission::RequiresGiftedShip(const string &shipId) const
+{
+	// Check if any uncompleted actions required for the mission needs this ship.
+	set<Trigger> requiredActions;
+	{
+		requiredActions.insert(Trigger::COMPLETE);
+		if(!stopovers.empty())
+			requiredActions.insert(Trigger::STOPOVER);
+		if(!waypoints.empty())
+			requiredActions.insert(Trigger::WAYPOINT);
+	}
+	for(const auto &it : actions)
+		if(requiredActions.count(it.first) && it.second.RequiresGiftedShip(shipId))
+			return true;
+
+	return false;
+}
+
+
+
 // Get a list of NPCs associated with this mission. Every time the player
 // takes off from a planet, they should be added to the active ships.
 const list<NPC> &Mission::NPCs() const
@@ -1152,6 +1175,9 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 				Messages::Add(message + "Mission failed: \"" + displayName + "\".", Messages::Importance::Highest);
 		}
 	}
+
+	if((event.Type() & ShipEvent::DISABLE) && event.Target().get() == player.Flagship())
+		Do(DISABLED, player, ui);
 
 	// Jump events are only created for the player's flagship.
 	if((event.Type() & ShipEvent::JUMP) && event.Actor())
