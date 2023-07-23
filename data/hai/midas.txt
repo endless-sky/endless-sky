@@ -561,14 +561,23 @@ mission "Midas: Betrayal For The Bars"
 					goto bliss2
 				`	(Keep the crew member for further interrogation.)`
 					goto escape
+				`	(Put the traitor in the aquarium.)`
+					to display
+						has "outfit (flagship installed): Heshi"
+					goto heshi
 			action
 				outfit "Gold Bars" -5
 				payment 5000000
 				set "midas: sold bars"
-			`	The soon-to-be gone traitor nods. "It is the right choice you are making, Captain <last>. You will never be bothered by any of this again, that I promise. I will take these 5 piles, and any more will be sold little by little as you go on most worlds. If you sell them to any normal outfitters, we will easily get our hands on it, so it is no problem to us, but you would only be paid the price of brute gold for it."`
+			`	The soon-to-be gone traitor nods. "It is the right choice you are making, Captain <last>. You will never be bothered by any of this again, that I promise. I will take these 5 piles, and any more will be sold little by little as you go on most worlds. If you sell them to any normal outfitters, we will easily get our hands on it, so it is no problem to us, but you would only be paid the raw value of gold for it."`
 				decline
 			label bliss2
 			`	You leave the traitor here on this world after awakening them, and they seem thankful but deeply troubled by what happened. You wonder what you should do with the gold bars that seem to cause so much trouble. They should probably be stashed away safely, or maybe you should get rid of them.`
+				decline
+			label heshi
+			action
+				"midas: proven worthy" ++
+			`	You put the traitor in the aquarium and the Heshi takes care of them. This should send a strong message to Midas you are not one to be trifled with.`
 				decline
 			label escape
 			`	You tighten your hold on the traitor, but as you do something hits the back of your head, and you lose consciousness. When you wake, there is a small note on the spot where some gold bars were, written by yet another member of your crew. "<first>, I am very sorry to break your trust like they did, but believe me, this is for your own good. The ex-crew member would have been killed if they had returned without the gold bars, so we took a few. You should quit this while you still can."`
