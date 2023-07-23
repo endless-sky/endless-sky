@@ -243,7 +243,7 @@ mission "<uhai> 5: Scan Auxiliary"
 			`You go get a drink in the spaceport, taking a beverage that appears to be water, wanting to take no risks on this alien world. After tasting it, you are sure it is indeed water. The Unfettered here do not have the habit of consuming many special drinks - at least not on a regular basis.`
 			`	You ask around for Mera, the Unfettered engineer you met before. She said she would tell you more once she gets the Geocoris logs, but you have yet to see her since you brought those logs to the local authorities. Hopefully she can be trusted. After you spend an hour talking with the local Unfettered and drinking, she finally arrives. She seems to be in quite a hurry.`
 			`	"Sorry I could not see you earlier; I was busy. I know I have promised you information, but there is a more pressing matter we should focus on. A human ship will enter <system> in a few days. I need you to scan it for me with the same scanner we gave you, and then I will meet you back here with the others and answer any questions you may have," she promises.`
-			`	"Oh, and before I forget, you should not attack them, even if they strike first. I am not sure how they will even react to your presence," she adds.`
+			`	"Oh, and before I forget, you should not attack them, even if they strike first. I am not sure how they will even react to your presence, so bring as little ships as possible so you do not scare them," she adds.`
 			choice
 				`	"Okay, I better get going right now then."`
 					goto beforeugo
@@ -253,7 +253,7 @@ mission "<uhai> 5: Scan Auxiliary"
 				`	"Seems good to me. I'll do it."`
 					goto beforeugo
 				`	"What kind of ship are we talking about?"`
-			`	She seems anxious to tell you. "It's a human ship, and quite a big one. We do not know its designation in human space, but it carries a few small ships and uses alien technologies. You do not need to be able to destroy it; just scan it and then come back here." She did not seem to want to answer the last question, and maybe only answered this one so you would go away. Now she is waiting for an answer. Maybe you should reassure her in your abilities before she starts doubting you and hiring someone else.`
+			`	She seems reluctant to tell you. "It's a human ship, and quite a big one. We do not know its designation in human space, but it carries a few small ships and uses alien technologies. You do not need to be able to destroy it; just scan it and then come back here." She did not seem to want to answer the last question, and maybe only answered this one so you would go away. Now she is waiting for an answer. Maybe you should reassure her in your abilities before she starts doubting you and hiring someone else.`
 			choice
 				`	"I'm not worried about any one ship. I'll do it."`
 					goto beforeugo
@@ -409,16 +409,13 @@ mission "<uhai> 6 A: Loyal Escort"
 			`As you leave your ship, an Unfettered Chief approaches you. After some time you finally recognize Sookootow, the one you helped earlier with moving people and medical supplies. You have not yet seen him so worried before, nor moving at such speed.`
 			`	"<first>! I asked to be notified of your arrival as soon as possible, as we need your services. A fleet of True Hai needs your immediate assistance escorting them through Hai space, from <stopovers>. They are not Unfettered, but their hearts beat true still. I would blame myself if anything was to happen to them, and I could have done anything more to prevent it."`
 			choice
-				`	"What are you even doing here?"`
 				`	"Why do you need my help specifically?"`
-					goto help
+				`	"What are you even doing here?"`
+					goto purposehere
 				`	"I'm busy right now, sorry."`
 					goto busy
-			`	"As a Chief I need to be seen by my people, else they would never come to respect me, or follow my instructions. In this specific case, I am here to talk with warlords and soldiers alike, to make sure nobody tries something stupid, else innocent Hai may get hurt."`
-			`	Usually the Hai do not get this deep into our territory, even the ones who sympathize with us, and these are not part of that group. On top of that, some may have strong reactions when they realize who is on board one of these ships..."`
-				goto choose
-			label help
-			`	"It is not that I do not trust the Hai not to fire on their own people, but a misunderstanding happens quickly. Someone of your expertise would be helpful, and I cannot simply trust any Unfettered Hai captain with this, as he could easily be provoked into making a fatal mistake. I hope, though, that you will be able to make a rational decision. I also need your presence because I want someone that is quick to respond to danger, and with the right tools. Hearing of your duel with a fellow Unfettered captain, you strike me as such a person."`
+			`	"It is not that I do not trust the Hai not to fire on their own people, but a misunderstanding happens quickly. Someone of your expertise would be helpful, and I cannot simply trust any Unfettered Hai captain with this, as he could easily be provoked into making a fatal mistake. I hope, though, that you will be able to make a rational decision.`
+			`	He gets closer to you, and looks around to make sure nobody listens, except for one Unfettered, that you assume to be his bodygard, moving as his shadow. "I also need your presence because I want someone that is quick to respond to danger, and with the right tools. Hearing of your duel with a fellow Unfettered captain, you strike me as such a person. We are worried that another party may interfere with our plans."`
 			choice
 				`	"Nothing would scare me, not even an Unfettered captain."`
 				`	"Those stories may have been slightly exaggerated..."`
@@ -427,6 +424,10 @@ mission "<uhai> 6 A: Loyal Escort"
 				goto choose
 			label exaggerated
 			`	"What do you mean? Your ship is not as fast as a Mem'he and as enduring as a Toor? I will not accept excuses or cowardice, if that is the case, the time to prove yourself is now!"`
+				goto choose
+			label purposehere
+			`	"As a Chief I need to be seen by my people, else they would never come to respect me, or follow my instructions. In this specific case, I am here to talk with warlords and soldiers alike, to make sure nobody tries something stupid, else innocent Hai may get hurt."`
+			`	Usually the Hai do not get this deep into our territory, even the ones who sympathize with us, and these are not part of that group. On top of that, some may have strong reactions when they realize who is on board one of these ships..."`
 				goto choose
 			label busy
 			`	"Whatever it is you may be busy with, I'm sure it can wait. This fleet needs to arrive here before it is too late, in 3 weeks, and it is of the highest importance that it does not without any trouble."`

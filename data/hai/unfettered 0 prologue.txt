@@ -819,7 +819,7 @@ mission "<uhai> 2: Prove Your Strength"
 	repeat
 	deadline 2
 	name `Defeat the captain`
-	description `A young Unfettered captain has provoked you into a duel. Disable his ship in one day and then land back on <destination>.`
+	description `A young Unfettered captain has provoked you into a duel. Disable his ship and then land back on <destination>. You only have one day, but this duel can happen multiple times.`
 	source "Darkcloak"
 	to offer
 		or
@@ -832,7 +832,9 @@ mission "<uhai> 2: Prove Your Strength"
 	on offer
 		conversation
 			branch waiting
-				has "<uhai> 2: Prove Your Strength: deferred"
+				or
+					has "<uhai> 2: Prove Your Strength: deferred"
+					has "<uhai> 2: Prove Your Strength: oferred"
 			`You start wandering in the spaceport, and notice that everything around you here is incredibly simple, efficient, and ordered. The Unfettered here are proudly showing their weapons, more so than on other planets, and some of them are even armored. It seems they are ready for action at any time. It is good they no longer consider you an enemy, at least for the moment.`
 			`	Eventually you find a gathering, someone speaking to a small crowd of people. They all seem very familiar with each other, and as you watch, they have noticed you too. The one who was addressing the others saunters through the group and over to you. This could mean trouble.`
 			`	"Arrr, be this the bilge-sucking space-monkey ye all speak so highly of? The one who fears not to come into our ports, to fight our ships?" He asks the others, apparently mocking you. You're a little surprised at his creative grasp of your language.`
@@ -950,7 +952,7 @@ mission "<uhai> 2: Prove Your Strength"
 			label end
 			action
 				payment 250000
-			`	"Hopefully we see each other again, sometime." He and his crew seem quite busy with the repairs. "I transferred yer booty of <payment> to pay to repair any damage I may have done to yer ship. I be landing on the surface soon, to drown the sorrow of this humiliating defeat I have just suffered. I do not need nor want yer assistance in repairing, for that is a task best suited for the vanquished."`
+			`	"Hopefully we see each other again, sometime." He and his crew seem quite busy with the repairs. "I transferred yer booty of <payment> to pay to repair any damage I may have done to yer ship. I be landing on the surface soon, to drown the sorrow of this humiliating defeat I have just suffered. I do not need nor want yer assistance in repairing, for that is a task best suited for the vanquished. I suppose ye may board me old ship to claim yer right o' salvage on me but who would do that to a friend, eh?"`
 			`	"If ye be feeling up to the challenge, there be other captains that would be willing to duel ye, if ye keep fighting fair, of course. None accept to fight more than a pair o' heavy men-o-war, some others, like me, still prefer fighting with a single vessel. Like me, they will wish to fight to test the strength of yer exotic technologies or strategies, savvy?"`
 			``
 			`	"Now land at once, we must officially conclude this duel, matey, else it will be worth no more than an empty chest!"`
@@ -971,7 +973,10 @@ mission "<uhai> 2: Prove Your Strength"
 				`	(Leap back to be at a respectable distance!)`
 				`	(Stay there.)`
 					goto stay
+				`	(Shoot it.)`
+					goto shoot
 			`	Surprisingly, no Unfettered look amused by the apparent cowardiness. "Fear is good, so long as it does not control you," one of them says.`
+			label reward
 			action
 				outfit "Heshi"
 				event "unfettered: JD raid plan ready" 5 15
@@ -991,6 +996,9 @@ mission "<uhai> 2: Prove Your Strength"
 				log "Defeated a young Unfettered Captain in a duel, but it seems that was not the whole test. The second part involved a monstruous scorpion from which it felt like a good idea to run at the time. The Unfettered did not see it that way, however."
 			`	You start running away and hear Si-Ra speak to his crew, loud enough for you to hear, "The monkey is running away from danger. It would not be fit to join us indeed. It will not fight for us."`
 				decline
+			label shoot
+			`	You get your weapon out and shoot the monster as it attempts to rush out of its aquarium. You are not sure if you hit it with the erupting water that came out your way as the beast emerged, but at least you are still alive!`
+				goto reward
 
 event "unfettered: JD raid plan ready"
 

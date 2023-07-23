@@ -101,6 +101,7 @@ mission "Midas: Nemo Me Impune Lacessit 2"
 			dialog `You hear a voice once alone in your quarters, "You have chosen your side. Nemo Me Impune Lacessit, <first>." You feel a strong pain in your neck.`
 		"Nemo Me Impune Lacessit"
 		"Nemo Me Impune Lacessit" 3
+			dialog `Killing at least one of the twins will have consequences with the Shadow of Mintaka. As they said, "nemo me impune lacessit!" The Unfettered may refrain from offering you missions, for disrespecting the sacred rules of the duel, if they get wind of this.`
 			`Once you are alone in your quarters you hear a voice, darker and more serious than ever before. "You have betrayed us. Nemo Me Impune Laccessit, <first>. We have a message to transmit to you on behalf of the council of Chiefs.`
 			`	She gives you a little smile and nods. "If you come across someone and have difficulty getting them to trust you, try telling them 'Luf e ow, vai, luf e eh'."`
 			`	She gives you a very serious look and nods. "If you come across any others and have difficulty getting them to trust you, try telling them 'Luf e ow, vai, luf e eh'."`
