@@ -137,7 +137,6 @@ ship "Ancient Ladybug"
 
 mission "Hai Legacy 1"
 	invisible
-	landing
 	shipyard
 	source "Hai-home"
 	destination "Firelode"
