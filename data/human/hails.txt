@@ -2409,7 +2409,7 @@ phrase "friendly navy"
 		"the Republic for"
 		"the Navy for"
 	word
-		"" 6
+		" " 6
 		" providing "
 		" ensuring "
 		" giving you "
