@@ -3006,6 +3006,8 @@ bool AI::DoCloak(Ship &ship, Command &command)
 void AI::DoPatrol(Ship &ship, Command &command) const
 {
 	double radius = ship.GetSystem()->ExtraHyperArrivalDistance();
+	if(radius == 0.)
+		radius = 500.;
 
 	// The ship is outside of the effective range of the system,
 	// so we turn it around.
