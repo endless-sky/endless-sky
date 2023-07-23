@@ -103,11 +103,36 @@ mission "Hai Reveal Exploration Period: Human Population Feeling Pressured"
 		attributes "hai: human presence"
 	to offer
 		has "Hai Reveal Exploration Period: Concerned Hai: declined"
+		"reputation: Hai" > 0
 		not "event: hr: exploration period"
 		random < 30
 	on offer
 		conversation
-			`More and more Hai are asking their human friends to vet other humans before they deal with them.`
+			`You have been landed for barely five minutes when the surprisingly portly Portmaster appears in front of you as you enter the spaceport.`
+			choice
+				`	"Can I help you?"`
+					goto polite
+				`	"What's this about?"`
+			`	The Hai just snorts in response.`
+			label polite
+			`	Glancing back over his shoulder he calls out. "Hurry up Sebastian, what do you make of this one then?"`
+			`	An older gentleman, who looks quite harried, hurriedly limps over to the both of you. In his hand is a pad which he briefly consults before holding it up, apparently comparing your face to an image. With a long-suffering sigh he says, "I told you this one is fine. It was the ship coming in through 5B that was new."`
+			`	The Portmaster squints at the tablet himself for a moment before giving out a huff. "Well, this one was on the way. You two, go make sure no one comes through 5B until they've been examined."`
+			`	Two Hai in security uniforms immediately dash off in the direction of the offending berth and the Portmaster gives you a brief nod and a, "Captain," before toddling off in pursuit with remarkable speed.`
+			`	The human gentleman seems to be taking a second to catch his breath.`
+			choice
+				`	"Well, uh, good luck?"`
+					goto luck
+				`	"What's going on here?"`
+			`	The gentleman rolls his eyes and draws in a long, exasperated, breath. "Madness is what;s going on here. Collective madness. Some Hai got burned by some shady sorts that were new through the wormhole. Suddenly everyone's got to be vetted by a human before the Hai here will deal with them, but then there were a hundred extra people trying to cram in so every place of business could have one, and there weren't enough chairs, so some bright spark decided someone would have to follow the Portmaster around and check everyone when they came in."`
+			`	He huffs a slight wheeze. "I tell you, this is my first day and my last doing this. Goodness knows how that lump is still faster than me."`
+				goto "firmly departs"
+			label luck
+			`	He breathes deeply before responding. "Thanks, I'll need it. It's horribly unfair that that lump is still faster than me, and I've been pressed into helping him vet every human arrival today.`
+			`	"Honestly, if you see anyone concerning, it'd do me a great help if you could report them before I have to get dragged across the spaceport again."`
+			label "firmly departs"
+			`	He draws himself up straighter and firmly grips the tablet. "Anyway, best get on with it."`
+			`	Limping away with determination, he quickly disappears from your line of sight.`
 				decline
 
 
@@ -435,12 +460,12 @@ mission "Hai Reveal Concern Period: Securing Sandsnap"
 		"reputation: Hai Merchant" += 200
 		"reputation: Hai Merchant (Human)" += 200
 		"reputation: Hai Merchant (Sympathizers)" += 200
-		event "hr: sansnap awoken"
+		event "hr: sandsnap awoken"
 		conversation
 			`Peeps are all set up, Sandsnap will help out a little.`
 
 
-event "hr: sansnap awoken"
+event "hr: sandsnap awoken"
 
 
 
