@@ -51,8 +51,7 @@ namespace {
 	constexpr double WIDTH = 250.;
 	constexpr int COLUMN_WIDTH = static_cast<int>(WIDTH) - 20;
 
-	// The space needed for the page buttons on the bottom of the 
-	// hardpoint display.
+	// The space needed for the page buttons on the bottom of the hardpoint display.
 	const double HARDPOINT_PAGE_BUTTON_SPACE = 30.;
 }
 
