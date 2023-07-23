@@ -50,6 +50,10 @@ using namespace std;
 namespace {
 	constexpr double WIDTH = 250.;
 	constexpr int COLUMN_WIDTH = static_cast<int>(WIDTH) - 20;
+
+	// The space needed for the page buttons on the bottom of the 
+	// hardpoint display.
+	const double HARDPOINT_PAGE_BUTTON_SPACE = 30.;
 }
 
 ShipInfoPanel::ShipInfoPanel(PlayerInfo &player)
@@ -351,7 +355,7 @@ void ShipInfoPanel::SetUpHardpointCalcs(const Rectangle &bounds)
 	// If there are both guns and turrets, add a gap of ten pixels.
 	double height = 20. * (gunRows + turretRows) + 10. * (gunRows && turretRows);
 	bool overflowsPage = height > bounds.Height();
-	height = overflowsPage ? bounds.Height() - 30. : height;
+	height = overflowsPage ? bounds.Height() - HARDPOINT_PAGE_BUTTON_SPACE : height;
 
 	// First calculate how many pages are needed. If pages are not needed set to 1.
 	pages = overflowsPage ? 0 : 1;
