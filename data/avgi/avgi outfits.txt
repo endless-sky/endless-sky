@@ -4,7 +4,7 @@
 outfit "Speck Round"
 	category "Ammunition"
 	cost 6
-	thumbnail "outfit/thunderhead"
+	thumbnail
 	"mass" 0.003
 	"speck capacity" -1
 	"flotsam chance" 1
@@ -16,10 +16,10 @@ outfit "Speckle Railgun"
 	category "Guns"
 	cost 40000
 	thumbnail "outfit/speckle gun"
-	"mass" 6
+	"mass" 3
 	"outfit space" -9
 	"weapon capacity" -9
-	"energy capacity" 36
+	"energy capacity" 90
 	"gun ports" -1
 	"speck capacity" 1800
 	weapon
@@ -31,12 +31,12 @@ outfit "Speckle Railgun"
 		"velocity" 60
 		"range override" 1800
 		"lifetime" 1
-		"reload" 1
-		"burst reload" 3
-		"burst count" 60
-		"firing energy" 18
-		"firing heat" 42
-		"firing force" 36
+		"reload" 3
+		"burst reload" 2
+		"burst count" 15
+		"firing energy" 6
+		"firing heat" 18
+		"firing force" 12
 		"submunition" "speckle slug"
 	description "This compact railgun fires a stream of hypervelocity metallic sabots, trading accuracy for rate of fire."
 	description "A small internal capacitor allows the Speckle Railgun to be trickle charged, even if a ship's power supply would otherwise be insufficient to fire a single shot."
@@ -46,10 +46,10 @@ outfit "Speckle Turret"
 	category "Turrets"
 	cost 40000
 	thumbnail "outfit/speckle turret"
-	"mass" 15
-	"outfit space" -21
-	"weapon capacity" -21
-	"energy capacity" 72
+	"mass" 12
+	"outfit space" -24
+	"weapon capacity" -24
+	"energy capacity" 180
 	"turret mounts" -1
 	"speck capacity" 3600
 	weapon
@@ -62,9 +62,9 @@ outfit "Speckle Turret"
 		"lifetime" 1
 		"turret turn" 9
 		"reload" 3
-		"firing energy" 18
-		"firing heat" 42
-		"firing force" 36
+		"firing energy" 6
+		"firing heat" 18
+		"firing force" 12
 		"submunition" "speckle slug"
 	description "The turreted version of the Speckle Railgun mounts a pair of railguns onto a nimble swiveling base. Its light weight and minimal size allows even small ships to fit one, enabling them to engage much larger targets at extreme ranges."
 
@@ -75,17 +75,17 @@ outfit "speckle slug"
 			"zoom" 0.25
 			"frame rate" 30
 		"hit effect" "bombardment impact"
-		"lifetime" 36
+		"lifetime" 42
 		"random lifetime" 15
 		"shield damage" 9
-		"hull damage" 21
-		"hit force" 36
+		"hull damage" 18
+		"hit force" 12
 
 
 outfit "Fleck Round"
 	category "Ammunition"
 	cost 6
-	thumbnail "outfit/thunderhead"
+	thumbnail
 	"mass" 0.03
 	"sabot capacity" -1
 	"flotsam chance" 1
@@ -96,7 +96,7 @@ outfit "Fleck Round"
 outfit "Fleck Coilgun"
 	category "Guns"
 	cost 40000
-	thumbnail "outfit/particle cannon"
+	thumbnail
 	"mass" 12
 	"outfit space" -18
 	"weapon capacity" -18
@@ -125,7 +125,7 @@ outfit "Fleck Coilgun"
 outfit "Fleck Turret"
 	category "Turrets"
 	cost 40000
-	thumbnail "outfit/particle cannon"
+	thumbnail
 	"mass" 24
 	"outfit space" -36
 	"weapon capacity" -36
@@ -166,7 +166,7 @@ outfit "fleck slug"
 outfit "Phased Array Laser (Blue)"
 	category "Turrets"
 	cost 12000000
-	thumbnail "outfit/t3 anti missile"
+	thumbnail
 	"mass" 30
 	"outfit space" -30
 	"weapon capacity" -24
@@ -193,7 +193,7 @@ outfit "Phased Array Laser (Blue)"
 outfit "Phased Array Laser (Green)"
 	category "Turrets"
 	cost 12000000
-	thumbnail "outfit/t3 anti missile"
+	thumbnail
 	"mass" 24
 	"outfit space" -24
 	"weapon capacity" -18
@@ -242,7 +242,7 @@ effect "blue phaser fire"
 outfit "Sidereal Missile"
 	category "Ammunition"
 	cost 660000
-	thumbnail "outfit/nuke"
+	thumbnail
 	"mass" 0.3
 	"sidereal capacity" -1
 	description "The Sidereal missile knows where it is at all times. It knows this because it knows where it isn't. By subtracting where it is from where it isn't, or where it isn't from where it is (whichever is greater), it obtains a difference, or deviation. The guidance subsystem uses deviations to generate corrective commands to drive the missile from a position where it is to a position where it isn't, and arriving at a position where it wasn't, it now is. Consequently, the position where it is, is now the position that it wasn't, and it follows that the position that it was, is now the position that it isn't"
@@ -250,10 +250,10 @@ outfit "Sidereal Missile"
 	description "The missile guidance computer scenario works as follows. Because a variation has modified some of the information the missile has obtained, it is not sure just where it is. However, it is sure where it isn't, within reason, and it knows where it was. It now subtracts where it should be from where it wasn't, or vice-versa, and by differentiating this from the algebraic sum of where it shouldn't be, and where it was, it is able to obtain the deviation and its variation, which is called error."
 
 
-outfit "Sidereal Rotary Launcher"
+outfit "Sidereal Launcher"
 	category "Secondary Weapons"
 	cost 1370000
-	thumbnail "outfit/finisher pod"
+	thumbnail
 	"mass" 5.4
 	"outfit space" -18
 	"weapon capacity" -18
@@ -288,7 +288,7 @@ outfit "Sidereal Rotary Launcher"
 outfit "Sidereal Pod"
 	category "Secondary Weapons"
 	cost 1370000
-	thumbnail "outfit/finisher pod"
+	thumbnail
 	"mass" 4.8
 	"outfit space" -6
 	"weapon capacity" -6
@@ -322,7 +322,7 @@ outfit "Sidereal Pod"
 outfit "Sidereal VLS Array"
 	category "Secondary Weapons"
 	cost 1370000
-	thumbnail "outfit/meteor pod"
+	thumbnail
 	"mass" 5.4
 	"outfit space" -42
 	"weapon capacity" -42
@@ -395,10 +395,10 @@ outfit "Sidereal Flack"
 		"missile strength" 3
 
 
-outfit "Sidereal Missile Stockpile"
+outfit "Sidereal Magazine"
 	category "Ammunition"
 	cost 1440000
-	thumbnail "outfit/outfit expansion"
+	thumbnail
 	"mass" 4.8
 	"outfit space" -12
 	"sidereal capacity" 24
@@ -409,7 +409,7 @@ outfit "Sidereal Missile Stockpile"
 outfit "Equinox Torpedo"
 	category "Ammunition"
 	cost 660000
-	thumbnail "outfit/nuke"
+	thumbnail
 	"mass" 3
 	"equinox capacity" -1
 	description "The Equinox makes no compromises with its design goal of fitting the largest thermonuclear warhead feasible. After minimalizing its propulsion system to little more than a few reaction control thrusters, the Equinox lacks the delta-v to make large changes to its trajectory. A carrying ship must instead both accelerate and aim the torpedo properly to ensure a hit."
@@ -419,7 +419,7 @@ outfit "Equinox Torpedo"
 outfit "Equinox Torpedo Pylon"
 	category "Secondary Weapons"
 	cost 80000
-	thumbnail "outfit/teciimach pod"
+	thumbnail
 	"mass" 6
 	"outfit space" -6
 	"weapon capacity" -9
@@ -477,10 +477,10 @@ outfit "Equinox Active"
 		"missile strength" 24
 		
 
-outfit "Equinox Torpedo Stockpile"
+outfit "Equinox Torpedo Magazine"
 	category "Ammunition"
 	cost 1440000
-	thumbnail "outfit/outfit expansion"
+	thumbnail
 	"mass" 6
 	"outfit space" -24
 	"cargo space" -18
@@ -493,16 +493,16 @@ outfit "Equinox Torpedo Stockpile"
 outfit "Nadir Missile"
 	category "Ammunition"
 	cost 660000
-	thumbnail "outfit/nuke"
+	thumbnail
 	"mass" 1
 	"nadir capacity" -1
 	description "Standard thermonuclear missile"
 
 
-outfit "Nadir Rotary Launcher"
+outfit "Nadir Launcher"
 	category "Secondary Weapons"
 	cost 1370000
-	thumbnail "outfit/finisher pod"
+	thumbnail
 	"mass" 18
 	"outfit space" -24
 	"weapon capacity" -24
@@ -559,7 +559,7 @@ outfit "Nadir Active"
 outfit "Nadir Magazine"
 	category "Ammunition"
 	cost 1440000
-	thumbnail "outfit/outfit expansion"
+	thumbnail
 	"mass" 3
 	"outfit space" -18
 	"nadir capacity" 12
@@ -569,18 +569,18 @@ outfit "Nadir Magazine"
 outfit "Azimuth Missile"
 	category "Ammunition"
 	cost 660000
-	thumbnail "outfit/nuke"
+	thumbnail
 	"mass" 1
 	"azimuth capacity" -1
 	description "Casaba Howitzer (campaign unlock, not needed for initial PR)"
 
 
-outfit "Azimuth Rotary Launcher"
+outfit "Azimuth Launcher"
 	category "Secondary Weapons"
 	licenses
 		Heliarch
 	cost 1370000
-	thumbnail "outfit/finisher pod"
+	thumbnail
 	"mass" 24
 	"outfit space" -24
 	"weapon capacity" -24
@@ -679,84 +679,70 @@ effect "fission fragments"
 outfit "Radiative Scales"
 	category "Systems"
 	cost 200000
-	thumbnail "outfit/interference plating"
+	thumbnail
 	"mass" 12
-	"surface space" 0
-	"cooling" 69
+	"anchor points" -1
 	"heat dissipation" 0.3
 	"solar heat" 0.6
 	description "This modular set of graphene microchannel radiators can be mounted conformally to a ship's hull, allowing it to radiate away waste heat."
-	description "Radiant Scales take advantage of special external hardpoints cleverly built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
+	description "Radiant Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
 
 
-outfit "Dazzling Scales"
+outfit "Concealment Scales"
 	category "Systems"
 	cost 200000
-	thumbnail "outfit/interference plating"
+	thumbnail
 	"mass" 6
-	"surface space" 6
+	"anchor points" -1
 	"scan interference" 1.2
 	"radar jamming" 6
 	"optical jamming" 6
 	"solar heat" 0.3
 	"radar cloak" 1
-	description "A specialized coating of carbon nanotubes and diamondoid nanocrystals, grown molecule by molecule, produces this conformal film capable of interfering with any attempts to scan or detect a ship covered with these."
-	description "Obscurity Scales take advantage of special external hardpoints cleverly built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
+	description "A specialized coating of quantum dot phased array antennas, grown molecule by molecule, forms a conformal film capable of interfering with any attempts to scan or detect a ship."
+	description "Concealment Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
 
 
-outfit "Aetherdynamic Scales"
+outfit "Nanoceramic Scales"
 	category "Systems"
 	cost 200000
-	thumbnail "outfit/interference plating"
-	"mass" 12
-	"surface space" -12
-	"drag reduction" 0.33
-	"solar heat" 0.3
-	description "These special plates conform to a ship's hull, streamlining it allowing it to reach higher maximum speeds, even without an increase in thrust."
-	description "Aetherdynamic Scales take advantage of special external hardpoints cleverly built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
+	thumbnail
+	"mass" 36
+	"anchor points" -1
+	"hull multiplier" 0.33
+	"solar heat" 9
+	description "Thanks to recent breakthroughts in materials science, the Avgi have devised this retrofitting kit to allow older ships to take advantage of the increased hull strength offered by exotic materials. These armor plates and structural members reinforce both the skin and core strength of a ship, strengthening it without compromising its internal structure."
+	description "Adamant Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
 
 
 outfit "Adamant Scales"
 	category "Systems"
 	cost 200000
-	thumbnail "outfit/interference plating"
+	thumbnail
 	"mass" 36
-	"surface space" -36
-	"hull multiplier" 2
+	"anchor points" -1
+	"hull multiplier" 1
 	"solar heat" 9
 	description "Thanks to recent breakthroughts in materials science, the Avgi have devised this retrofitting kit to allow older ships to take advantage of the increased hull strength offered by exotic materials. These armor plates and structural members reinforce both the skin and core strength of a ship, strengthening it without compromising its internal structure."
-	description "Adamant Scales take advantage of special external hardpoints cleverly built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
+	description "Adamant Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
 
 
 outfit "Warding Scales"
 	category "Systems"
 	cost 200000
-	thumbnail "outfit/warding scales"
+	thumbnail
 	"mass" 42
-	"surface space" -42
-	"shield multiplier" 0.6
+	"anchor points" -1
+	"shield multiplier" 2
 	"solar heat" 3
 	description "Breakthrough physics research has allowed the Avgi to create advanced shield emitters well in advance of their previous ones. While baked into the ships of most species, Avgi starship construction is sophisticated enough to allow their shield matrices to be retrofitted with relative ease."
-	description "Warding Scales take advantage of special external hardpoints cleverly built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
-
-
-outfit "Polarizing Scales"
-	category "Systems"
-	cost 200000
-	thumbnail "outfit/interference plating"
-	"mass" 24
-	"surface space" -24
-	"ion protection" 0.3
-	"ion resistance" 0.16
-	"solar heat" 6
-	description "A careful arrangement of both conductive and dielectric materials, arranged in conformal conduits, provides a degree of protection against external electromagnetic or ionizing damage."
-	description "Polarizing Scales take advantage of special external hardpoints cleverly built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
+	description "Warding Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
 
 
 outfit "Electrostatic Ramscoop"
 	category "Systems"
 	cost 60000
-	thumbnail "outfit/ramscoop"
+	thumbnail
 	"mass" 12
 	"outfit space" -12
 	"ramscoop" 3.6
@@ -769,9 +755,9 @@ outfit "Electrostatic Ramscoop"
 outfit "Dipole Ramscoop"
 	category "Systems"
 	cost 60000000
-	thumbnail "outfit/ramscoop"
-	"mass" 108
-	"outfit space" -108
+	thumbnail
+	"mass" 60
+	"outfit space" -120
 	"spinal mount" -1
 	"ramscoop" 90
 	"fuel generation" 1.2
@@ -803,7 +789,7 @@ outfit "Pressurized Deuterium Tank"
 	description `This high-stress pressure vessel is designed to store hyperspace fuel under for bulk transport. While not as efficient as a deuterium slush tank, this outfit is designed to work with a ship's available cargo space with minimal overhead, allowing many to be installed simultaneously without the need for support equipment.`
 
 
-outfit "Partitioned Heatsink"
+outfit "Partitioned Thermal Sink"
 	category "Systems"
 	cost 30000
 	thumbnail "outfit/densified fuel tank"
@@ -817,7 +803,7 @@ outfit "Partitioned Heatsink"
 outfit "Multispectral Scanner"
 	category "Systems"
 	cost 24000
-	thumbnail "outfit/outfit scanner"
+	thumbnail
 	"mass" 3
 	"outfit space" -6
 	"tactical scan power" 72
@@ -832,7 +818,7 @@ outfit "Multispectral Scanner"
 outfit "Spectrometer Array"
 	category "Systems"
 	cost 24000
-	thumbnail "outfit/outfit scanner"
+	thumbnail
 	"mass" 6
 	"outfit space" -12
 	"outfit scan power" 30
@@ -848,7 +834,7 @@ outfit "Spectrometer Array"
 outfit "Diffuse Deflector"
 	category "Systems"
 	cost 120000
-	thumbnail "outfit/large shield"
+	thumbnail
 	"mass" 54
 	"outfit space" -54
 	"shield generation" 0.6
@@ -860,7 +846,7 @@ outfit "Diffuse Deflector"
 outfit "Specular Deflector"
 	category "Systems"
 	cost 200000
-	thumbnail "outfit/huge shield"
+	thumbnail
 	"mass" 72
 	"outfit space" -72
 	"shield generation" 0.84
@@ -878,7 +864,7 @@ outfit "Specular Deflector"
 outfit "Concentrating Solar Cell"
 	category "Power"
 	cost 200000
-	thumbnail "outfit/tiny photovoltaic"
+	thumbnail
 	"mass" 1
 	"outfit space" -3
 	"solar collection" 0.3
@@ -889,7 +875,7 @@ outfit "Concentrating Solar Cell"
 outfit "Concentrating Solar Array"
 	category "Power"
 	cost 200000
-	thumbnail "outfit/small photovoltaic"
+	thumbnail
 	"mass" 3
 	"outfit space" -18
 	"solar collection" 2.1
@@ -900,19 +886,19 @@ outfit "Concentrating Solar Array"
 outfit "Photoelectric Scales"
 	category "Power"
 	cost 200000
-	thumbnail "outfit/interference plating"
+	thumbnail
 	"mass" 24
 	"surface space" -24
 	"solar collection" 3.6
 	"solar heat" 1.8
 	description "These concentrating solar panels can be mounted conformally to a ship's hull, efficiently collecting sunlight and turning it into usable energy."
-	description "Photovoltaic Scales take advantage of special external hardpoints cleverly built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star. However, they also tend to increase the amount of heat absorbed from the local star."
+	description "Photovoltaic Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star. However, they also tend to increase the amount of heat absorbed from the local star."
 
 
 outfit "Pebble Bed Cell"
 	category "Power"
 	cost 1200000
-	thumbnail "outfit/pebble core"
+	thumbnail
 	"mass" 15
 	"outfit space" -24
 	"energy generation" 3.6
@@ -925,9 +911,9 @@ outfit "Pebble Bed Cell"
 outfit "Luminous Fusion Core"
 	category "Power"
 	cost 20460000
-	thumbnail "outfit/triple plasma core"
-	"mass" 42
-	"outfit space" -42
+	thumbnail
+	"mass" 36
+	"outfit space" -36
 	"energy generation" 12
 	"heat generation" 30
 	"fuel consumption" 0.0033
@@ -936,7 +922,7 @@ outfit "Luminous Fusion Core"
 outfit "Brilliant Fusion Core"
 	category "Power"
 	cost 20460000
-	thumbnail "outfit/triple plasma core"
+	thumbnail
 	"mass" 72
 	"outfit space" -72
 	"energy generation" 21
@@ -947,9 +933,9 @@ outfit "Brilliant Fusion Core"
 outfit "Radiant Fusion Core"
 	category "Power"
 	cost 20460000
-	thumbnail "outfit/triple plasma core"
-	"mass" 114
-	"outfit space" -114
+	thumbnail
+	"mass" 120
+	"outfit space" -120
 	"energy generation" 36
 	"heat generation" 96
 	"fuel consumption" 0.0066
@@ -958,9 +944,9 @@ outfit "Radiant Fusion Core"
 outfit "Stellar Fusion Core"
 	category "Power"
 	cost 20460000
-	thumbnail "outfit/triple plasma core"
-	"mass" 162
-	"outfit space" -162
+	thumbnail
+	"mass" 144
+	"outfit space" -144
 	"energy generation" 54
 	"heat generation" 156
 	"fuel consumption" 0.009
@@ -969,7 +955,7 @@ outfit "Stellar Fusion Core"
 outfit "Ultracapacitor Cell"
 	category "Power"
 	cost 200000
-	thumbnail "outfit/supercapacitor"
+	thumbnail
 	"mass" 1
 	"outfit space" -3
 	"energy capacity" 1500
@@ -981,7 +967,7 @@ outfit "Ultracapacitor Cell"
 outfit "Ultracapacitor Bank"
 	category "Power"
 	cost 200000
-	thumbnail "outfit/supercapacitor"
+	thumbnail
 	"mass" 6
 	"outfit space" -15
 	"energy capacity" 9000
@@ -1007,7 +993,7 @@ outfit "EMF Ultracapacitor Shield"
 outfit "Magnetoplasma Drive"
 	category "Engines"
 	"cost" 30000
-	thumbnail "outfit/ionic afterburner"
+	thumbnail
 	"mass" 12
 	"outfit space" -18
 	"engine capacity" -18
@@ -1017,10 +1003,10 @@ outfit "Magnetoplasma Drive"
 	"reverse thrust" 3
 	"reverse thrusting energy" 0.6
 	"reverse thrusting heat" 0.45
-	"turn" 180
+	"turn" 210
 	"turning energy" 0.6
 	"turning heat" 0.3
-	"drag reduction" 0.3
+	"drag reduction" 0.6
 	"flare sprite" "effect/ion flare/tiny"
 		"frame rate" 5
 	"flare sound" "plasma tiny"
@@ -1034,10 +1020,10 @@ outfit "Magnetoplasma Drive"
 	description "Designed to be clustered, this design includes the gimbal range and variable thrust required to act as a set of attitude thrusters as well." 
 
 
-outfit "Z-360 Alpha Fusion Torch"
+outfit "Z-360 Fusion Torch"
 	category "Engines"
 	"cost" 100000
-	thumbnail "outfit/ionic afterburner"
+	thumbnail
 	"mass" 36
 	"outfit space" -36
 	"engine capacity" -36
@@ -1046,15 +1032,15 @@ outfit "Z-360 Alpha Fusion Torch"
 	"thrusting heat" 15
 	"thrusting fuel" 0.06
 	"drag reduction" 1
-	"flare sprite" "effect/fusionflare"
-		"frame rate" 5
+	"flare sprite" "effect/avgi fusion flare/large"
+		"frame rate" 30
 	"flare sound" "plasma tiny"
 
 
-outfit "Z-600 Beta Fusion Torch"
+outfit "Z-600 Fusion Torch"
 	category "Engines"
 	"cost" 100000
-	thumbnail "outfit/ionic afterburner"
+	thumbnail
 	"mass" 60
 	"outfit space" -60
 	"engine capacity" -60
@@ -1063,15 +1049,15 @@ outfit "Z-600 Beta Fusion Torch"
 	"thrusting heat" 27
 	"thrusting fuel" 0.06
 	"drag reduction" 1.2
-	"flare sprite" "effect/fusionflare"
+	"flare sprite" "effect/avgi fusion flare/large"
 		"frame rate" 5
 	"flare sound" "plasma tiny"
 
 
-outfit "Z-960 Gamma Fusion Torch"
+outfit "Z-960 Fusion Torch"
 	category "Engines"
 	"cost" 100000
-	thumbnail "outfit/ionic afterburner"
+	thumbnail
 	"mass" 96
 	"outfit space" -96
 	"engine capacity" -96
@@ -1080,7 +1066,7 @@ outfit "Z-960 Gamma Fusion Torch"
 	"thrusting heat" 54
 	"thrusting fuel" 0.1
 	"drag reduction" 1.8
-	"flare sprite" "effect/fusionflare"
+	"flare sprite" "effect/avgi fusion flare/large"
 		"frame rate" 5
 	"flare sound" "plasma tiny"
 
@@ -1092,11 +1078,11 @@ effect "fusion afterburner"
 	sound "remnant afterburner"
 
 
-outfit "XY-240 Transverse Thrusters"
-	plural "Steerings (Comet Class)"
+outfit "XY-180 Radial Thrusters"
+	plural "XY-180 Radial Thrusters"
 	category "Engines"
 	"cost" 221000
-	thumbnail "outfit/small korath steering"
+	thumbnail
 	"mass" 18
 	"outfit space" -18
 	"engine capacity" -18
@@ -1108,14 +1094,14 @@ outfit "XY-240 Transverse Thrusters"
 	"steering flare sound" "plasma small"
 
 
-outfit "XY-300 Transverse Thrusters"
-	plural "Steerings (Lunar Class)"
+outfit "XY-360 Radial Thrusters"
+	plural "XY-360 Radial Thrusters"
 	category "Engines"
 	"cost" 473000
-	thumbnail "outfit/medium korath steering"
-	"mass" 30
-	"outfit space" -30
-	"engine capacity" -30
+	thumbnail
+	"mass" 36
+	"outfit space" -36
+	"engine capacity" -36
 	"turn" 1056.0
 	"turning energy" 2.5
 	"turning heat" 7.4
@@ -1125,14 +1111,14 @@ outfit "XY-300 Transverse Thrusters"
 
 
 
-outfit "XY-540 Transverse Thrusters"
-	plural "Steerings (Planetary Class)"
+outfit "XY-720 Radial Thrusters"
+	plural "XY-720 Radial Thrusters"
 	category "Engines"
 	"cost" 1077000
-	thumbnail "outfit/large korath steering"
-	"mass" 54
-	"outfit space" -54
-	"engine capacity" -54
+	thumbnail
+	"mass" 72
+	"outfit space" -72
+	"engine capacity" -72
 	"turn" 2069.6
 	"turning energy" 4.6
 	"turning heat" 14.2
@@ -1142,36 +1128,14 @@ outfit "XY-540 Transverse Thrusters"
 
 
 
-outfit "XY-900 Transverse Thrusters"
-	plural "Steerings (Stellar Class)"
-	category "Engines"
-	"cost" 2435000
-	thumbnail "outfit/huge korath steering"
-	"mass" 90
-	"outfit space" -90
-	"engine capacity" -90
-	"turn" 4005.0
-	"turning energy" 8.2
-	"turning heat" 26.7
-	"steering flare sprite" "effect/fusionflare"
-		"frame rate" 6
-	"steering flare sound" "plasma huge"
-
-
-
-
-
-
 
 # Special:
-
-
 
 
 outfit "Electromotive Rifle"
 	category "Hand to Hand"
 	cost 53000
-	thumbnail "outfit/avgi rifle"
+	thumbnail
 	"capture attack" 0.6
 	"capture defense" 1.2
 	"unplunderable" 1
@@ -1181,7 +1145,7 @@ outfit "Electromotive Rifle"
 outfit "Lancet Adamant"
 	category "Unique"
 	cost 3000000
-	thumbnail "outfit/korath rifle"
+	thumbnail
 	"capture attack" 3
 	"capture defense" 6
 	"unplunderable" 1

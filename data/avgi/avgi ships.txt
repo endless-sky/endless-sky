@@ -11,30 +11,29 @@ ship "Koryfi"
 		"hull" 1200
 		"required crew" 2
 		"bunks" 12
-		"mass" 60
-		"drag" 1.8
+		"mass" 120
+		"drag" 0.9
 		"heat dissipation" 0.9
 		"fuel capacity" 600
 		"cargo space" 30
 		"outfit space" 120
 		"weapon capacity" 36
-		"engine capacity" 60
+		"engine capacity" 42
 		"solar collection" 6
-		"surface points" 1
+		"anchor points" 1
 		weapon
 			"blast radius" 120
 			"shield damage" 520
 			"hull damage" 260
 			"hit force" 780
 	outfits
-			"Fractal Capacitor Bank"
+			"Ultracapacitor Bank"
 			"Diffuse Deflector"
 
-			"Magnetoplasma Drive" 2
+			"Magnetoplasma Drive"
 			"Hyperdrive"
 
-	gun -19.5 -26.5
-	gun 19.5 -26.5
+	gun 0 -26.5
 	turret 0 -11
 
 	engine -101.5 -11
@@ -102,7 +101,9 @@ ship "Koryfi"
 	explode "medium explosion" 9
 	"final explode" "final explosion medium"
 
-	description "The Koryfi is a light passenger transport whose basic design predates the invention of the hyperdrive. Originally restricted to intrasystem travel, its spin gravity system ensured a comfortable voyage for passengers long before the development of gravity plating."
+	description "The Koryfi is a light passenger transport whose basic design predates the invention of the hyperdrive. Originally restricted to intrasystem travel, its spin gravity system ensured a comfortable voyage for passengers long before the development of gravity plating. Today, it is a popular choice among independent captains for its high maintainability and ample living space, with many using them as permanent homes."
+	description "Enterprising captains often exploit the commonality of the Koryfi and Avlaki designs, swapping out the modular centrifuge for a set of standard cargo containers."
+	description "While its standard set of magnetoplasmadynamic thrusters give it an acceleration best described as sluggish, the Koryfi's constant thrust flight profile allows it to reach an impressive cruising velocity given enough time."
 
 
 ship "Melodikos"
@@ -115,27 +116,33 @@ ship "Melodikos"
 		"hull" 900
 		"required crew" 6
 		"bunks" 72
-		"mass" 120
-		"drag" 3.6
+		"mass" 180
+		"drag" 1.2
 		"heat dissipation" 1.2
 		"fuel capacity" 600
+		"cargo space" 60
 		"outfit space" 180
 		"weapon capacity" 42
 		"engine capacity" 90
 		"solar collection" 13.5
-		"surface points" 2
+		"anchor points" 1
 		weapon
 			"blast radius" 36
 			"shield damage" 180
 			"hull damage" 90
 			"hit force" 270
 	outfits
-		"Fractal Capacitor Bank" 2
+		"Ultracapacitor Bank" 2
 		"Diffuse Deflector"
 
-		"Magnetoplasma Drive" 2
+		"Magnetoplasma Drive"
 		"Hyperdrive"
 
+
+	gun -94.5 -3.5 
+		angle 270
+	gun 94.5 -3.5
+		angle 90
 	turret -10.5 -3.5
 	turret 10.5 -3.5
 
@@ -225,6 +232,12 @@ ship "Melodikos"
 	"steering engine" 72 1.5
 		left
 
+	leak "leak" 50 50
+	leak "flame" 50 80
+	explode "tiny explosion" 18
+	explode "small explosion" 18
+	explode "medium explosion" 15
+	"final explode" "final explosion large"
 
 
 
@@ -234,6 +247,246 @@ ship "Melodikos"
 
 
 # Freighters
+
+
+ship "Avlaki"
+	sprite "ship/avgi avlaki"
+		"frame rate" 30
+	swizzle 0
+	thumbnail "thumbnail/avgi avlaki"
+	attributes
+		category "Transport"
+		"shields" 600
+		"hull" 1200
+		"required crew" 2
+		"bunks" 6
+		"mass" 120
+		"drag" 0.9
+		"heat dissipation" 0.9
+		"fuel capacity" 600
+		"cargo space" 240
+		"outfit space" 120
+		"weapon capacity" 36
+		"engine capacity" 42
+		"solar collection" 6
+		"anchor points" 1
+		weapon
+			"blast radius" 120
+			"shield damage" 520
+			"hull damage" 260
+			"hit force" 780
+	outfits
+			"Ultracapacitor Bank"
+			"Diffuse Deflector"
+
+			"Magnetoplasma Drive"
+			"Hyperdrive"
+
+	gun 0 -26.5
+	turret 0 -11
+
+	engine -101.5 -11
+	engine 101.5 -11
+	engine -94.5 -11
+	engine 94.5 -11
+	engine -88.5 -11
+	engine 88.5 -11
+	engine -83 -11
+	engine 83 -11
+	"reverse engine" -101.5 -23
+	"reverse engine" 101.5 -23
+	"reverse engine" -94.5 -23
+	"reverse engine" 94.5 -23
+	"reverse engine" -88.5 -23
+	"reverse engine" 88.5 -23
+	"reverse engine" -83 -23
+	"reverse engine" 83 -23
+
+	"steering engine" -101.5 -23
+		angle 180
+		left
+	"steering engine" 101.5 -23
+		angle 180
+		right
+	"steering engine" -94.5 -23
+		angle 180
+		left
+	"steering engine" 94.5 -23
+		angle 180
+		right
+	"steering engine" -88.5 -23
+		angle 180
+		left
+	"steering engine" 88.5 -23
+		angle 180
+		right
+	"steering engine" -83 -23
+		angle 180
+		left
+	"steering engine" 83 -23
+		angle 180
+		right
+	"steering engine" -101.5 -11
+		right
+	"steering engine" 101.5 -11
+		left
+	"steering engine" -94.5 -11
+		right
+	"steering engine" 94.5 -11
+		left
+	"steering engine" -88.5 -11
+		right
+	"steering engine" 88.5 -11
+		left
+	"steering engine" -83 -11
+		right
+	"steering engine" 83 -11
+		left
+
+	leak "leak" 50 50
+	leak "flame" 50 80
+	explode "tiny explosion" 15
+	explode "small explosion" 12
+	explode "medium explosion" 9
+	"final explode" "final explosion medium"
+
+	description "The Avlaki is a mid-sized freighter loosely descended from a pre-hyperdrive solar-electric tug design. Its low cost and reknowned maintainability has enabled it to remain in service to this day, a popular choice among independent captains."
+	description "Enterprising captains often exploit the commonality of the Koryfi and Avlaki designs, swapping out the standard cargo containers for a centrifuge habitat."
+	description "While its standard set of magnetoplasmadynamic thrusters give it an acceleration best described as sluggish, the Avlaki's constant thrust flight profile allows it to reach an impressive cruising velocity given enough time."
+
+
+ship "Harmonikos"
+	sprite "ship/avgi harmonikos"
+		"frame rate" 30
+	thumbnail "thumbnail/avgi harmonikos"
+	attributes
+		category "Heavy Freighter"
+		"shields" 900
+		"hull" 900
+		"required crew" 6
+		"bunks" 12
+		"mass" 180
+		"drag" 1.2
+		"heat dissipation" 1.2
+		"fuel capacity" 600
+		"cargo space" 600
+		"outfit space" 180
+		"weapon capacity" 42
+		"engine capacity" 90
+		"solar collection" 13.5
+		"anchor points" 1
+		weapon
+			"blast radius" 36
+			"shield damage" 180
+			"hull damage" 90
+			"hit force" 270
+	outfits
+		"Ultracapacitor Bank" 2
+		"Diffuse Deflector"
+
+		"Magnetoplasma Drive"
+		"Hyperdrive"
+
+
+	gun -94.5 -3.5 
+		angle 270
+	gun 94.5 -3.5
+		angle 90
+	turret -10.5 -3.5
+	turret 10.5 -3.5
+
+	engine -92 1.5
+	engine 92 1.5
+	engine -88 1.5
+	engine 88 1.5
+	engine -84 1.5
+	engine 84 1.5
+	engine -80 1.5
+	engine 80 1.5
+	engine -76 1.5
+	engine 76 1.5
+	engine -72 1.5
+	engine 72 1.5
+	"reverse engine" -92 -7
+	"reverse engine" 92 -7
+	"reverse engine" -88 -7
+	"reverse engine" 88 -7
+	"reverse engine" -84 -7
+	"reverse engine" 84 -7
+	"reverse engine" -80 -7
+	"reverse engine" 80 -7
+	"reverse engine" -76 -7
+	"reverse engine" 76 -7
+	"reverse engine" -72 -7
+	"reverse engine" 72 -7
+
+	"steering engine" -92 -7
+		angle 180
+		left
+	"steering engine" 92 -7
+		angle 180
+		right
+	"steering engine" -88 -7
+		angle 180
+		left
+	"steering engine" 88 -7
+		angle 180
+		right
+	"steering engine" -84 -7
+		angle 180
+		left
+	"steering engine" 84 -7
+		angle 180
+		right
+	"steering engine" -80 -7
+		angle 180
+		left
+	"steering engine" 80 -7
+		angle 180
+		right
+	"steering engine" -76 -7
+		angle 180
+		left
+	"steering engine" 76 -7
+		angle 180
+		right
+	"steering engine" -72 -7
+		angle 180
+		left
+	"steering engine" 72 -7
+		angle 180
+		right
+	"steering engine" -92 1.5
+		right
+	"steering engine" 92 1.5
+		left
+	"steering engine" -88 1.5
+		right
+	"steering engine" 88 1.5
+		left
+	"steering engine" -84 1.5
+		right
+	"steering engine" 84 1.5
+		left
+	"steering engine" -80 1.5
+		right
+	"steering engine" 80 1.5
+		left
+	"steering engine" -76 1.5
+		right
+	"steering engine" 76 1.5
+		left
+	"steering engine" -72 1.5
+		right
+	"steering engine" 72 1.5
+		left
+
+	leak "leak" 50 50
+	leak "flame" 50 80
+	explode "tiny explosion" 18
+	explode "small explosion" 18
+	explode "medium explosion" 15
+	"final explode" "final explosion large"
 
 
 
@@ -268,7 +521,65 @@ ship "Melodikos"
 
 # Light Warships
 
+ship "Prismaios"
+	sprite "ship/avgi prismaios"
+	swizzle 0
+	thumbnail "thumbnail/Prismaios"
+	attributes
+		category "Light Warship"
+		"shields" 1440
+		"hull" 6000
+		"required crew" 2
+		"bunks" 6
+		"mass" 63
+		"drag" 1.8
+		"heat dissipation" 1.24
+		"fuel capacity" 1000
+		"cargo space" 12
+		"outfit space" 324
+		"weapon capacity" 72
+		"engine capacity" 96
+		"surface space" 46
+		weapon
+			"blast radius" 120
+			"shield damage" 520
+			"hull damage" 260
+			"hit force" 780
+	outfits
 
+		"Speckle Turret" 2
+		"Speck Round" 6000
+		"Sidereal Launcher" 2
+		"Sidereal Missile" 72
+
+		"Luminous Fusion Core" 1
+		"Ultracapacitor Bank" 1
+		
+		"Hyperdrive" 1
+		"Diffuse Deflector" 1
+		"Multispectral Scanner" 1
+		"Electrostatic Ramscoop" 1
+		
+		"Z-360 Fusion Torch" 1
+		"XY-180 Radial Thrusters" 1
+
+	engine 0 108
+
+	gun -0 33 "Sidereal Launcher"
+		angle -90
+	gun 0 33 "Sidereal Launcher"
+		angle 90
+	turret -9 18 "Speckle Turret"
+	turret 9 18 "Speckle Turret"
+
+	leak "leak" 50 50
+	leak "flame" 50 80
+	explode "tiny explosion" 12
+	explode "small explosion" 15
+	explode "medium explosion" 15
+	"final explode" "final explosion medium"
+
+	description "Prismaios-class Frigate WIP"
 
 
 
@@ -310,7 +621,7 @@ ship "Atenuatia"
 		"outfit space" 696
 		"weapon capacity" 198
 		"engine capacity" 174
-		"surface space" 73
+		"anchor points" 2
 		weapon
 			"blast radius" 540
 			"shield damage" 6400
@@ -325,7 +636,7 @@ ship "Atenuatia"
 		
 		"Radiant Fusion Core" 1
 		"Concentrating Solar Array" 1
-		"Fractal Capacitor Bank" 2
+		"Ultracapacitor Bank" 2
 		
 		"Hyperdrive" 1
 		"Specular Deflector" 1
@@ -399,49 +710,6 @@ ship "Atenuatia"
 
 # Fighters
 
-ship "Akoustiki"
-	sprite "ship/akoustiki"
-	thumbnail "thumbnail/akoustiki"
-	attributes
-		category "Fighter"
-		"shields" 120
-		"hull" 900
-		"required crew" 1
-		"bunks" 2
-		"mass" 36
-		"drag" 1.2
-		"heat dissipation" 1.02
-		"fuel capacity" 100
-		"cargo space" 19
-		"outfit space" 96
-		"weapon capacity" 24
-		"engine capacity" 28
-		"surface space" 20
-		weapon
-			"blast radius" 18
-			"shield damage" 80
-			"hull damage" 40
-			"hit force" 120
-	outfits
-		"Concentrating Solar Array" 1
-		"Fractal Capacitor Bank" 1
-		
-		"Multispectral Scanner" 1
-		
-		"Magnetoplasma Drive" 1
-
-	explode "tiny explosion" 9
-	"reverse engine" -12 -12
-	"reverse engine" 12 -12
-	engine -12 15
-	engine 12 15
-	gun -18 -15
-	gun 18 -15
-	leak "leak" 50 50
-	description "Quake-class Excursion Vehicle"
-
-
-
 
 
 ship "Photikon"
@@ -454,7 +722,7 @@ ship "Photikon"
 		"automaton" 1
 		"mass" 36
 		"drag" .36
-		"heat dissipation" .9
+		"heat dissipation" 0.9
 		"fuel capacity" 100
 		"outfit space" 114
 		"weapon capacity" 27
@@ -470,7 +738,7 @@ ship "Photikon"
 		"Equinox Torpedo" 2
 		
 		"Concentrating Solar Array" 1
-		"Fractal Capacitor Cell" 3
+		"Ultracapacitor Cell" 3
 		
 		"Multispectral Scanner" 1
 		
@@ -484,7 +752,7 @@ ship "Photikon"
 
 	explode "tiny explosion" 12
 
-	description "The Phonon-class Torpedo Bomber is the cornerstone of Avgi carrier doctrine. While it is possible for a swarm of Wavelets and similar interdiction drones to engage capital ships, it is the Phonon that is capable of delivering the nuclear anti-ship munitions necessary to bring down the largest warships. By bringing a nuclear torpedo within close range, the payload has a higher chance of surviving enemy point defense weapons compared with standard missiles."
+	description "The Photikon Torpedo Bomber-type is the cornerstone of Avgi antiship carrier doctrine. While it is possible for a swarm of Vibratia and similar interdiction drones to engage capital ships, it is the Phonon that is capable of delivering the nuclear anti-ship munitions necessary to bring down the largest warships. By bringing a nuclear torpedo within close range, the payload has a higher chance of surviving enemy point defense weapons compared with standard missiles."
 	description "Phonons are occasionally used as gun platforms, mounting a Speckle Turret instead of their standard armament of a pair of Equinox Torpedoes."
 	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
@@ -504,50 +772,48 @@ ship "Photikon"
 
 
 
-ship "Wavelet"
-	sprite "ship/wavelet"
-	thumbnail "thumbnail/wavelet"
+ship "Vibratia"
+	sprite "ship/avgi vibratia"
+	thumbnail "thumbnail/vibratia"
 	attributes
 		category "Drone"
 		"cost" 36000
-		"hull" 900
+		"hull" 1800
 		"automaton" 1
-		"threshold percentage" 0.09
-		"mass" 18
-		"drag" .18
-		"heat dissipation" .96
-		"fuel capacity" 90
-		"outfit space" 90
-		"weapon capacity" 24
+		"threshold percentage" 0.12
+		"mass" 24
+		"drag" 0.18
+		"heat dissipation" 0.99
+		"fuel capacity" 100
+		"outfit space" 84
+		"weapon capacity" 18
 		"engine capacity" 24
+		"cooling" 3
 		weapon
 			"blast radius" 12
 			"shield damage" 60
 			"hull damage" 18
 			"hit force" 72
 	outfits
-		"Speckle Railgun" 2
+		"Speckle Railgun" 1
 		"Speck Round" 1800
 		"Sidereal Pod"
 		"Sidereal Missile" 6
-		
-		"Pebble Bed Cell"
-		"Fractal Capacitor Cell"
-		
+	
+		"Concentrating Solar Array"
+		"Ultracapacitor Cell"
 		"Multispectral Scanner"
-		"Small Auxiliary Radiator"
-		
-		"M018 Magnetoplasma Drive"
+	
+		"Magnetoplasma Drive"
 
 	engine -8.5 28.5 0.9
 	engine 8.5 28.5 0.9
-	gun -3 -30 "Speckle Railgun"
-	gun 3 -30 "Speckle Railgun"
+	gun 0 -30 "Speckle Railgun"
 	gun 0 -30 "Sidereal Pod"
 
 	explode "tiny explosion" 9
 
-	description "The Wavelet-class Interdictor is the primary Avgi strike fighter. While individually quite fragile, Wavelets are usually deployed in large swarms, and are agile enough to be surprisingly survivable."
+	description "The Vibratia Interdictor-type is the primary Avgi strike fighter. While individually fragile, Vibratia are usually deployed in large swarms, and are agile enough to be surprisingly survivable even under heavy fire."
 	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
 
@@ -600,119 +866,8 @@ ship "Wavelet"
 # Transports:
 
 
-ship "Flutter (Transport)"
-	sprite "ship/swell crew"
-	thumbnail "thumbnail/swell crew"
-	attributes
-		category "Space Liner"
-		"shields" 700
-		"hull" 1100
-		"required crew" 2
-		"bunks" 36
-		"mass" 114
-		"drag" 1.4
-		"heat dissipation" 1.3
-		"fuel capacity" 600
-		"outfit space" 186
-		"weapon capacity" 36
-		"engine capacity" 72
-		"solar collection" 2.1
-		"surface space" 27
-		weapon
-			"blast radius" 36
-			"shield damage" 180
-			"hull damage" 90
-			"hit force" 270
-		outfits
-
-
-
-
-
-
 
 # Freighters:
-
-
-ship "Swell (Cargo)"
-	sprite "ship/flutter cargo"
-	thumbnail "thumbnail/flutter cargo"
-	attributes
-		category "Light Freighter"
-		"shields" 700
-		"hull" 1400
-		"automaton" 1
-		"cargo space" 240
-		"mass" 114
-		"drag" 1.4
-		"heat dissipation" 1.3
-		"fuel capacity" 600
-		"outfit space" 186
-		"weapon capacity" 36
-		"engine capacity" 72
-		"solar collection" 2.1
-		"surface space" 27
-		weapon
-			"blast radius" 36
-			"shield damage" 210
-			"hull damage" 105
-			"hit force" 315 
-		outfits
-
-
-ship "Wake (Cargo)"
-	sprite "ship/wake cargo"
-	thumbnail "thumbnail/wake cargo"
-	attributes
-		category "Heavy Freighter"
-		"shields" 700
-		"hull" 1400
-		"automaton" 1
-		"cargo space" 480
-		"mass" 114
-		"drag" 1.4
-		"heat dissipation" 1.3
-		"fuel capacity" 600
-		"outfit space" 186
-		"weapon capacity" 36
-		"engine capacity" 72
-		"solar collection" 2.1
-		"surface space" 27
-		weapon
-			"blast radius" 36
-			"shield damage" 210
-			"hull damage" 105
-			"hit force" 315 
-		outfits
-
-
-
-ship "Flutter (Cargo)"
-	sprite "ship/flutter cargo"
-	thumbnail "thumbnail/flutter cargo"
-	attributes
-		category "Heavy Freighter"
-		"shields" 700
-		"hull" 1400
-		"automaton" 1
-		"cargo space" 600
-		"mass" 114
-		"drag" 1.4
-		"heat dissipation" 1.3
-		"fuel capacity" 600
-		"outfit space" 186
-		"weapon capacity" 36
-		"engine capacity" 72
-		"solar collection" 2.1
-		"surface space" 27
-		weapon
-			"blast radius" 36
-			"shield damage" 210
-			"hull damage" 105
-			"hit force" 315 
-		outfits
-
-
 
 
 
@@ -847,7 +1002,7 @@ ship "Vibe"
 		"Speck Round" 3000
 		
 		"Pebble Bed Cell" 1
-		"Fractal Capacitor Cell" 3
+		"Ultracapacitor Cell" 3
 		
 		"Hyperdrive" 1
 		"Small Auxiliary Radiator" 1
@@ -901,7 +1056,7 @@ ship "Timbre"
 		"Phased Array Laser (540 nm)"
 
 		"Luminous Fusion Core" 1
-		"Fractal Capacitor Bank" 2
+		"Ultracapacitor Bank" 2
 		
 		"Hyperdrive" 1
 		"Small Auxiliary Radiator" 2
@@ -927,68 +1082,6 @@ ship "Timbre"
 	"final explode" "final explosion medium"
 
 	description "Timbre-class Frigate"
-
-
-
-
-ship "Rhythm"
-	sprite "ship/LWrescale"
-	swizzle 0
-	thumbnail "thumbnail/rhythm"
-	attributes
-		category "Light Warship"
-		"shields" 1440
-		"hull" 6000
-		"required crew" 2
-		"bunks" 6
-		"mass" 63
-		"drag" 1.8
-		"heat dissipation" 1.24
-		"fuel capacity" 1000
-		"cargo space" 12
-		"outfit space" 324
-		"weapon capacity" 72
-		"engine capacity" 96
-		"surface space" 46
-		weapon
-			"blast radius" 120
-			"shield damage" 520
-			"hull damage" 260
-			"hit force" 780
-	outfits
-
-		"Speckle Turret" 2
-		"Speck Round" 6000
-
-		"Luminous Fusion Core" 1
-		"Fractal Capacitor Bank" 1
-		
-		"Hyperdrive" 1
-		"Small Auxiliary Radiator" 3
-		"Specular Deflector" 1
-		"Multispectral Scanner" 1
-		"Electrostatic Ramscoop" 1
-		
-		"S060 Axial Fusion Torch" 1
-		"M030 Transverse Thrusters" 1
-
-	engine 0 108
-
-	gun -0 33
-		angle -90
-	gun 0 33
-		angle 90
-	turret -9 18 "Speckle Turret"
-	turret 9 18 "Speckle Turret"
-
-	leak "leak" 50 50
-	leak "flame" 50 80
-	explode "tiny explosion" 12
-	explode "small explosion" 15
-	explode "medium explosion" 15
-	"final explode" "final explosion medium"
-
-	description "Rhythm-class Frigate"
 
 
 
@@ -1028,7 +1121,7 @@ ship "Coherence"
 		"Phased Array Laser (450 nm)" 1
 
 		"Brilliant Fusion Core" 1
-		"Fractal Capacitor Bank" 1
+		"Ultracapacitor Bank" 1
 		
 		"Hyperdrive" 1
 		"Small Auxiliary Radiator" 2
@@ -1097,7 +1190,7 @@ ship "Resonance"
 		"Fleck Round" 10800
 
 		"Radiant Fusion Core" 1
-		"Fractal Capacitor Bank" 2
+		"Ultracapacitor Bank" 2
 		
 		"Hyperdrive" 1
 		"Small Auxiliary Radiator" 2
@@ -1163,7 +1256,7 @@ ship "Reverberance"
 		"Nadir Missile" 84
 
 		"Brilliant Fusion Core" 1
-		"Fractal Capacitor Bank" 1
+		"Ultracapacitor Bank" 1
 		
 		"Hyperdrive" 1
 		"Specular Deflector" 1
@@ -1238,7 +1331,7 @@ ship "Cascade"
 		
 		"Radiant Fusion Core" 1
 		"Concentrating Solar Array" 1
-		"Fractal Capacitor Bank" 2
+		"Ultracapacitor Bank" 2
 		
 		"Hyperdrive" 1
 		"Large Auxiliary Radiator" 1
@@ -1325,7 +1418,7 @@ ship "Quake"
 			"hit force" 120
 	outfits
 		"Concentrating Solar Array" 1
-		"Fractal Capacitor Cell" 3
+		"Ultracapacitor Cell" 3
 
 		"Diffuse Deflector"
 		
@@ -1364,7 +1457,7 @@ ship "Lens"
 			"hit force" 45
 	outfits
 		"Concentrating Solar Array" 1
-		"Fractal Capacitor Cell" 1
+		"Ultracapacitor Cell" 1
 		
 		"Multispectral Scanner" 1
 		"Spectrometer Array" 1
@@ -1401,7 +1494,7 @@ ship "Lumen"
 		"Nadir Missile" 6
 		
 		"Concentrating Solar Cell" 2
-		"Fractal Capacitor Cell" 1
+		"Ultracapacitor Cell" 1
 		
 		"Multispectral Scanner" 1
 
@@ -1447,7 +1540,7 @@ ship "Wavelet"
 		"Sidereal Missile" 6
 		
 		"Pebble Bed Cell"
-		"Fractal Capacitor Cell"
+		"Ultracapacitor Cell"
 		
 		"Multispectral Scanner"
 		"Small Auxiliary Radiator"
@@ -1492,7 +1585,7 @@ ship "Phonon"
 		"Equinox Torpedo" 2
 		
 		"Concentrating Solar Array" 1
-		"Fractal Capacitor Cell" 3
+		"Ultracapacitor Cell" 3
 		
 		"Multispectral Scanner" 1
 		
@@ -1526,7 +1619,7 @@ ship "Wavelet" "Wavelet (Fusion)"
 		"Sidereal Missile" 6
 		
 		"Pebble Bed Cell" 1
-		"Fractal Capacitor Cell" 1
+		"Ultracapacitor Cell" 1
 		
 		"Multispectral Scanner" 1
 		"Small Auxiliary Radiator" 1
