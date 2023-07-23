@@ -1741,7 +1741,7 @@ ship "Violin Spider"
 		"drag" 0.9
 		"heat dissipation" .7
 		"outfit space" 92
-		"weapon capacity" 19
+		"weapon capacity" 23
 		"engine capacity" 30
 		weapon
 			"blast radius" 12
