@@ -1440,7 +1440,7 @@ ship "Dagger"
 		"heat dissipation" .9
 		"outfit space" 90
 		"weapon capacity" 20
-		"engine capacity" 30
+		"engine capacity" 35
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -1453,10 +1453,10 @@ ship "Dagger"
 		
 		"nGVF-AA Fuel Cell"
 		"Supercapacitor"
-		"D23-QP Shield Generator"
+		"D14-RN Shield Generator"
 		"Small Radar Jammer"
 		
-		"X1700 Ion Thruster"
+		"A120 Atomic Thruster"
 		"X1200 Ion Steering"
 		
 	engine -8 34
