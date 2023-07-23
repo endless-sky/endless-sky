@@ -1,73 +1,3 @@
-outfitter omnis
-	"Speck Round"
-	"Speckle Railgun"
-	"Speckle Turret"
-	"Fleck Round"
-	"Fleck Coilgun"
-	"Fleck Turret"
-	"Iota Shell"
-	"Iota Turret"
-	"Quenchgun Artillery"
-	"Phased Array Laser (450 nm)"
-	"Phased Array Laser (540 nm)"
-	"Sidereal Missile"
-	"Sidereal Rotary Launcher"
-	"Sidereal Pod"
-	"Sidereal Missile Stockpile"
-	"Equinox Torpedo"
-	"Equinox Torpedo Pylon"
-	"Equinox Torpedo Stockpile"
-	"Nadir Missile"
-	"Nadir Rotary Launcher"
-	"Nadir Magazine"
-	"Azimuth Missile"
-	"Azimuth Rotary Launcher"
-	"Azimuth Magazine"
-	"Solstice Torpedo"
-	"Solstice Torpedo Pylon"
-	"Solstice Torpedo Stockpile"
-	"Zenith Missile"
-	"Zenith Rotary Launcher"
-	"Radiative Scales"
-	"Obscurity Scales"
-	"Aetherdynamic Scales"
-	"Adamant Scales"
-	"Warding Scales"
-	"Polarizing Scales"
-	"Electrostatic Ramscoop"
-	"Dipole Ramscoop"
-	"Protium Fusion Ramscoop"
-	"Deuterium Slush Tank"
-	"Partition Thermal Sink"
-	"Multispectral Scanner"
-	"Spectrometer Array"
-	"Small Auxiliary Radiator"
-	"Large Auxiliary Radiator"
-	"Diffuse Deflector"
-	"Specular Deflector"
-	"Mirror Deflector"
-	"Fractal Capacitor Cell"
-	"Fractal Capacitor Bank"
-	"Concentrating Solar Cell"
-	"Concentrating Solar Array"
-	"Photovoltaic Scales"
-	"Pebble Bed Cell"
-	"Luminous Fusion Core"
-	"Brilliant Fusion Core"
-	"Radiant Fusion Core"
-	"Stellar Fusion Core"
-	"M018 Magnetoplasma Drive"
-	"M042 Magnetoplasma Drive"
-	"S024 Coaxial Fusion Drive"
-	"S036 Axial Fusion Torch"
-	"S060 Axial Fusion Torch"
-	"S102 Axial Fusion Torch"
-	"M030 Transverse Thrusters"
-	"M052 Transverse Thrusters"
-	"M089 Transverse Thrusters"
-
-
-
 # Weapons:
 
 
@@ -389,6 +319,43 @@ outfit "Sidereal Pod"
 	description `Mini flak missile launcher`
 
 
+outfit "Sidereal VLS Array"
+	category "Secondary Weapons"
+	cost 1370000
+	thumbnail "outfit/meteor pod"
+	"mass" 5.4
+	"outfit space" -42
+	"weapon capacity" -42
+	"turret mounts" -1
+	"sidereal capacity" 120
+	weapon
+		sprite "projectile/sidewinder"
+			"no repeat"
+			"frame rate" .25
+		sound "finisher"
+		ammo "Sidereal Missile"
+		icon "icon/finisher"
+		"fire effect" "sidewinder fire"
+		"die effect" "finisher fragment" 6
+		"inaccuracy" 2.4
+		"velocity" 6
+		"lifetime" 30
+		"reload" 15
+		"burst count" 6
+		"burst reload" 15
+		"firing energy" 12
+		"firing heat" 6
+		"acceleration" .9
+		"drag" .06
+		"turn" 0.1
+		"homing" 2
+		"radar tracking" .9
+		"optical tracking" .6
+		"missile strength" 9
+		"submunition" "Sidereal Active"
+	description `Flak Missile`
+
+
 outfit "Sidereal Active"
 	weapon
 		sprite "projectile/sidewinder"
@@ -705,31 +672,6 @@ effect "fission fragments"
 	"random spin" 5
 	"random velocity" 5
 	"velocity scale" 0.1
-
-
-
-
-Fission
-
-Equinox Torpedo
-Azimuth Missile
-Nadir Missile
-
-Fusion
-
-Horizon Missile
-Solstice Torpedo
-
-
-
-
-
-
-
-
-
-
-
 
 
 # Systems:
@@ -1075,18 +1017,24 @@ outfit "Magnetoplasma Drive"
 	"reverse thrust" 3
 	"reverse thrusting energy" 0.6
 	"reverse thrusting heat" 0.45
-	"turn" 150
+	"turn" 180
 	"turning energy" 0.6
 	"turning heat" 0.3
-	"drag reduction" 0.12
-	"flare sprite" "effect/ion flare"
+	"drag reduction" 0.3
+	"flare sprite" "effect/ion flare/tiny"
 		"frame rate" 5
 	"flare sound" "plasma tiny"
+	"steering flare sprite" "effect/ion flare/tiny"
+		"frame rate" 5
+	"steering flare sound" "plasma tiny"
+	"reverse flare sprite" "effect/ion flare/tiny"
+		"frame rate" 5
+	"reverse flare sound" "plasma tiny"
 	description "This compact set of magnetoplasmadynamic thrusters can propel small ships to impressive speeds over time, but is also quite energy hungry."
 	description "Designed to be clustered, this design includes the gimbal range and variable thrust required to act as a set of attitude thrusters as well." 
 
 
-outfit `Z-360 Alpha Fusion Torch`
+outfit "Z-360 Alpha Fusion Torch"
 	category "Engines"
 	"cost" 100000
 	thumbnail "outfit/ionic afterburner"
@@ -1103,7 +1051,7 @@ outfit `Z-360 Alpha Fusion Torch`
 	"flare sound" "plasma tiny"
 
 
-outfit `Z-600 Beta Fusion Torch`
+outfit "Z-600 Beta Fusion Torch"
 	category "Engines"
 	"cost" 100000
 	thumbnail "outfit/ionic afterburner"
@@ -1120,13 +1068,13 @@ outfit `Z-600 Beta Fusion Torch`
 	"flare sound" "plasma tiny"
 
 
-outfit `Z-1020 Gamma Fusion Torch`
+outfit "Z-960 Gamma Fusion Torch"
 	category "Engines"
 	"cost" 100000
 	thumbnail "outfit/ionic afterburner"
-	"mass" 102
-	"outfit space" -102
-	"engine capacity" -102
+	"mass" 96
+	"outfit space" -96
+	"engine capacity" -96
 	"thrust" 180
 	"thrusting energy" 6
 	"thrusting heat" 54
@@ -1144,8 +1092,7 @@ effect "fusion afterburner"
 	sound "remnant afterburner"
 
 
-
-outfit "X/Y-180 Transverse Thrusters"
+outfit "XY-240 Transverse Thrusters"
 	plural "Steerings (Comet Class)"
 	category "Engines"
 	"cost" 221000
@@ -1159,10 +1106,9 @@ outfit "X/Y-180 Transverse Thrusters"
 	"steering flare sprite" "effect/fusionflare"
 		"frame rate" 7.5
 	"steering flare sound" "plasma small"
-	description "This compact steering system is a classic example of Korath technology: small, powerful, and woefully inefficient."
 
 
-outfit "X/Y-300 Transverse Thrusters"
+outfit "XY-300 Transverse Thrusters"
 	plural "Steerings (Lunar Class)"
 	category "Engines"
 	"cost" 473000
@@ -1179,7 +1125,7 @@ outfit "X/Y-300 Transverse Thrusters"
 
 
 
-outfit "X/Y-540 Transverse Thrusters"
+outfit "XY-540 Transverse Thrusters"
 	plural "Steerings (Planetary Class)"
 	category "Engines"
 	"cost" 1077000
@@ -1196,7 +1142,7 @@ outfit "X/Y-540 Transverse Thrusters"
 
 
 
-outfit "X/Y-900 Transverse Thrusters"
+outfit "XY-900 Transverse Thrusters"
 	plural "Steerings (Stellar Class)"
 	category "Engines"
 	"cost" 2435000

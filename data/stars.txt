@@ -193,9 +193,15 @@ star "planet/rogue-radiating"
 	power .2
 	wind .6
 
+
+# Compact stellar objects.
 star "star/neutron"
 	power 4
 	wind 0.4
+star star/magnetar
+	power 4
+	wind 0.8
+	icon map/magnetar
 
 # Dwarves scaled like stars.
 star "star/o-dwarf"

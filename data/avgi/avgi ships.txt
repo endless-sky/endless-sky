@@ -1,42 +1,8 @@
-shipyard "Avgi Civilian Basics"
-	"Koryfi"
-	"Avlaki"
-	"Frequencia"
-	"Akoustiki"
-	"Sonikis"
-	"Optikon"
-
-shipyard "Avgi Civilian Advanced"
-	"Melodikos"
-	"Harmonikos"
-	"Undsyni"
-	"Interferos"
-	"Polari"
-
-shipyard "Avgi Dissonance Basics"
-	"Entasi"
-	"Akoustiki"
-	"Sonikis"
-
-shipyard "Avgi Navy Light"
-	"Tremoros"
-	"Prismaios"
-	"Interferos"
-	"Photikon"
-	"Vibratia"
-	"Undulon"
-
-shipyard "Avgi Navy Heavy"
-	"Diaspersi"
-	"Refraktos"
-	"Difraktos"
-	"Atenuatia"
-
-
 # Transports
 
 ship "Koryfi"
-	sprite "ship/avgi koryfi"
+	sprite "ship/avgi koryfi/koryfi"
+		"frame rate" 30
 	swizzle 0
 	thumbnail "thumbnail/avgi koryfi"
 	attributes
@@ -70,6 +36,7 @@ ship "Koryfi"
 	gun -19.5 -26.5
 	gun 19.5 -26.5
 	turret 0 -11
+
 	engine -101.5 -11
 	engine 101.5 -11
 	engine -94.5 -11
@@ -86,53 +53,46 @@ ship "Koryfi"
 	"reverse engine" 88.5 -23
 	"reverse engine" -83 -23
 	"reverse engine" 83 -23
+
 	"steering engine" -101.5 -23
 		angle 180
 		left
 	"steering engine" 101.5 -23
 		angle 180
-		left
+		right
 	"steering engine" -94.5 -23
 		angle 180
 		left
 	"steering engine" 94.5 -23
 		angle 180
-		left
+		right
 	"steering engine" -88.5 -23
 		angle 180
-		right
+		left
 	"steering engine" 88.5 -23
 		angle 180
 		right
 	"steering engine" -83 -23
 		angle 180
-		right
+		left
 	"steering engine" 83 -23
 		angle 180
 		right
 	"steering engine" -101.5 -11
-		angle 180
 		right
 	"steering engine" 101.5 -11
-		angle 180
-		right
+		left
 	"steering engine" -94.5 -11
-		angle 180
 		right
 	"steering engine" 94.5 -11
-		angle 180
-		right
-	"steering engine" -88.5 -11
-		angle 180
 		left
+	"steering engine" -88.5 -11
+		right
 	"steering engine" 88.5 -11
-		angle 180
 		left
 	"steering engine" -83 -11
-		angle 180
-		left
+		right
 	"steering engine" 83 -11
-		angle 180
 		left
 
 	leak "leak" 50 50
@@ -141,12 +101,14 @@ ship "Koryfi"
 	explode "small explosion" 12
 	explode "medium explosion" 9
 	"final explode" "final explosion medium"
+
 	description "The Koryfi is a light passenger transport whose basic design predates the invention of the hyperdrive. Originally restricted to intrasystem travel, its spin gravity system ensured a comfortable voyage for passengers long before the development of gravity plating."
 
 
 ship "Melodikos"
-	sprite "ship/swell crew"
-	thumbnail "thumbnail/swell crew"
+	sprite "ship/avgi melodikos/melodikos"
+		"frame rate" 30
+	thumbnail "thumbnail/avgi melodikos"
 	attributes
 		category "Space Liner"
 		"shields" 900
@@ -167,15 +129,16 @@ ship "Melodikos"
 			"shield damage" 180
 			"hull damage" 90
 			"hit force" 270
-		outfits
-			"Fractal Capacitor Bank" 2
-			"Diffuse Deflector"
+	outfits
+		"Fractal Capacitor Bank" 2
+		"Diffuse Deflector"
 
-			"Magnetoplasma Drive" 2
-			"Hyperdrive"
+		"Magnetoplasma Drive" 2
+		"Hyperdrive"
 
 	turret -10.5 -3.5
 	turret 10.5 -3.5
+
 	engine -92 1.5
 	engine 92 1.5
 	engine -88 1.5
@@ -200,6 +163,67 @@ ship "Melodikos"
 	"reverse engine" 76 -7
 	"reverse engine" -72 -7
 	"reverse engine" 72 -7
+
+	"steering engine" -92 -7
+		angle 180
+		left
+	"steering engine" 92 -7
+		angle 180
+		right
+	"steering engine" -88 -7
+		angle 180
+		left
+	"steering engine" 88 -7
+		angle 180
+		right
+	"steering engine" -84 -7
+		angle 180
+		left
+	"steering engine" 84 -7
+		angle 180
+		right
+	"steering engine" -80 -7
+		angle 180
+		left
+	"steering engine" 80 -7
+		angle 180
+		right
+	"steering engine" -76 -7
+		angle 180
+		left
+	"steering engine" 76 -7
+		angle 180
+		right
+	"steering engine" -72 -7
+		angle 180
+		left
+	"steering engine" 72 -7
+		angle 180
+		right
+	"steering engine" -92 1.5
+		right
+	"steering engine" 92 1.5
+		left
+	"steering engine" -88 1.5
+		right
+	"steering engine" 88 1.5
+		left
+	"steering engine" -84 1.5
+		right
+	"steering engine" 84 1.5
+		left
+	"steering engine" -80 1.5
+		right
+	"steering engine" 80 1.5
+		left
+	"steering engine" -76 1.5
+		right
+	"steering engine" 76 1.5
+		left
+	"steering engine" -72 1.5
+		right
+	"steering engine" 72 1.5
+		left
 
 
 

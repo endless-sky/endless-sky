@@ -1,255 +1,3 @@
-government Avgi
-	swizzle 3
-	color 0 0.78 0.84
-	"attitude toward"
-		"" -0.1
-		Merchant 0.01
-	bribe 0.2
-	"friendly hail" "friendly avgi"
-	"friendly disabled hail" "friendly disabled avgi"
-	"hostile hail" "hostile avgi"
-	"hostile disabled hail" "hostile disabled avgi"
-
-government "Avgi (Consonance)"
-	"display name" "Avgi Consonance"
-	swizzle 3
-	color 0.047 0.273 0.686
-	"attitude toward"
-		"Dissonance (Aggressive)" -0.01
-		"Ka'sei (Twilight)" -0.01
-
-government "Avgi (Dissonance)"
-	"display name" "Avgi Dissonance"
-	color 1 0 0.588
-	"attitude toward"
-		"Avgi (Consonance)" -0.01
-		"Ka'sei (Twilight)" -0.01
-
-government "Avgi (Dissonance Aggressive)"
-	"display name" "Avgi Dissonance"
-	color 1 0 0.588
-
-government "Avgi (Siege)"
-	"display name" "Avgi"
-	color 0.047 0.273 0.686
-	"attitude toward"
-		"Ka'sei (Twilight)" -0.01
-
-government Shroud
-	color 0.235 0.235 0.235
-
-government Ka'twil
-	color 0.4 0.1 0.7
-	"player reputation" -0.1
-	"attitude toward"
-		"" -0.1
-		Avgi -0.1
-
-
-
-
-
-
-
-
-
-reali'sei
-
-fetri'sei
-
-ka'rchon
-
-ka'chthon
-
-ka'thon
-
-
-
-
-
-Kyanos
-Prasinos
-Erythros
-Kitrinos
-Portokali
-
-
-Perturbed Limits
-
-Perturbed Fringe
-
-Perturbed Periphery
-
-Pertiphery
-
-Shattered Periphery
-
-Perturbance
-
-https://www.lexilogos.com/keyboard/greek_modern_conversion.htm
-
-
-The Tangles
-
-
-
-Synchisi Perturbance
-
-
-
-
-
-Peripheria Station
-Kiklos Station / Kyklos Station
-Aktina Station
-Diametros Station
-Gonia Station
-Yirizo Station / Gyrizo Station
-Periochi Station
-Simeio Station
-
-
-Napigeo Station
-
-
-
-
-an early, pre FW news report in human space
-
-
-the x, a Mule that was sent off to scout away from the main fleet
-
-
-
-
-
-
-
-star star/magnetar
-	power 4
-	wind 0.8
-	icon map/magnetar
-
-hazard "Magnetar Induction"
-	"constant strength"
-	range 900
-	weapon
-		"heat damage" 30
-		"slowing damage" 0.5
-		"hit force" 12
-		"warp damage" 1.5
-		"fog damage" 1
-		gravitational
-		"damage dropoff" 20 1500
-
-hazard "Magnetar Magnetic Field"
-	"constant strength"
-	range 1800
-	weapon
-		"disruption damage" 0.5
-		"discharge damage" 1
-		"damage dropoff" 120 1800
-		
-
-hazard "Tangles Fog"
-	"constant strength"
-	"system-wide"
-	weapon
-		"fog damage" 10
-
-
-effect "power beaming"
-	sprite "effect/mhd spark"
-		scale 0.25
-		"frame rate" 5
-		"random start frame"
-		rewind
-	lifetime 60
-	"random lifetime" 30
-	"random angle" 180
-	"random velocity" 0.5
-	"random spin" 10
-	"random frame rate" 5
-
-hazard "Microwave Power Transmission"
-	range 600
-	"environmental effect" "power beaming" 16
-	weapon
-		"energy damage" -6
-		"relative energy damage" -0.03
-		"damage dropoff" 100 0
-		"dropoff modifier" 0.9
-		"target effect" "power beaming" 16
-
-hazard "Smoke Ring Drag"
-	range 2000 2600
-	weapon
-		"shield damage" 6
-		"heat damage" 6
-		"relative heat damage" 0.006
-
-hazard "System Fog"
-	"constant strength"
-
-minable "small droplet"
-	"display name" Small
-	noun "Water Droplet"
-	sprite "asteroid/small droplet/small droplet"
-	hull 60
-	"random hull" 30
-	payload "Boiled Fish" 1
-	explode puff
-
-minable "medium droplet"
-	"display name" Medium
-	noun "Water Droplet"
-	sprite "asteroid/medium droplet/medium droplet"
-	hull 120
-	"random hull" 60
-	payload "Boiled Fish" 6
-	explode puff
-
-minable "large droplet"
-	"display name" Large
-	noun "Water Droplet"
-	sprite "asteroid/large droplet/large droplet"
-	hull 300
-	"random hull" 120
-	payload "Boiled Fish" 15
-	explode puff
-
-minable "integral tree"
-	"display name" Integral
-	noun Tree
-	sprite "asteroid/integral tree/tree"
-	hull 120
-	"random hull" 120
-	payload "Integral Wood" 6
-	explode puff
-
-outfit "Boiled Fish"
-	category Minerals
-	plural "Boiled Fish"
-	cost 2400
-	thumbnail "outfit/cooked fish"
-	"flotsam sprite" "outfit/cooked fish"
-	"mass" 1
-	"installable" -1
-	"minable" 1
-	description "Alien fish harvested in a perhaps unconventional manner. Despite being both flash-boiled and freeze dried, they are surprisingly appetizing."
-
-
-outfit "Integral Wood"
-	category Minerals
-	plural "Integral Wood"
-	cost 9000
-	thumbnail "outfit/integral wood"
-	"flotsam sprite" "outfit/integral wood"
-	"mass" 0.3
-	"installable" -1
-	"minable" 1
-	description "Wood harvested from an integral tree. Exquisitely lightweight and radiation resistant, it fetches extraordinary prices on the market for exotic goods."
-
 
 
 phrase "avgi civilian"
@@ -348,27 +96,17 @@ phrase "avgi hex colors"
 
 phrase "avgi colors"
 	word
-		Red
-		Orange
-		Yellow
-		Green
-		Blue
-		Purple
-		Pink
-		Brown
-		Black
-		White
-		Gray
-		Silver
-		Gold
-		Azure
 		Alabaster
 		Alizarin
 		Aqua
 		Arylide
 		Aureolin
+		Azure
 		Bistre
+		Black
+		Blue
 		Bole
+		Brown
 		Carmine
 		Carnelian
 		Catawba
@@ -390,6 +128,9 @@ phrase "avgi colors"
 		Gamboge
 		Glaucous
 		Gloss
+		Gold
+		Gray
+		Green
 		Grullo
 		Hansa
 		Heliotrope
@@ -428,6 +169,7 @@ phrase "avgi colors"
 		Olive
 		Onyx
 		Opera
+		Orange
 		Orchid
 		Palatinate
 		Paolo
@@ -439,13 +181,16 @@ phrase "avgi colors"
 		Phthalo
 		Picotee
 		Pine
+		Pink
 		Prune
 		Puce
+		Purple
 		Purpureus
 		Quinacridone
 		Rajah
 		Razzmatazz
 		Razzmic
+		Red
 		Roje
 		Rosso
 		Ruber
@@ -457,6 +202,7 @@ phrase "avgi colors"
 		Schauss
 		Sepia
 		Sienna
+		Silver
 		Sinopia
 		Skobeloff
 		Slate
@@ -469,17 +215,19 @@ phrase "avgi colors"
 		Tyrian
 		Umber
 		Vale
+		Verdant
 		Verdigris
 		Vermilion
-		Verdant
 		Vermillion
 		Veron
 		Violet
 		Viridian
+		White
 		Wisteria
 		Xanadu
 		Xanthic
 		Xanthous
+		Yellow
 		Yinmn
 		Zaffre
 
@@ -582,6 +330,9 @@ phrase "avgi elements"
 		Adamantium
 		Adamantine
 		Unobtanium
+		Handwavium
+		Phlebotinum
+		MacGuffinite
 
 phrase "avgi celestial"
 	word

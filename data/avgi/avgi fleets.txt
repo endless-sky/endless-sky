@@ -127,7 +127,7 @@ fleet "Avgi Strike Group"
 	fighters
 		names "avgi fighter"
 		personality
-			hunting disables swarming
+			hunting disables
 	personality
 		confusion 10
 		heroic disables
@@ -143,6 +143,8 @@ fleet "Avgi Fleetgroup"
 	commodities "Food" "Metal" "Equipment" "Medical" "Heavy Metals"
 	fighters
 		names "avgi fighter"
+		personality
+			hunting disables swarming
 	personality
 		confusion 10
 		heroic
@@ -199,6 +201,10 @@ fleet "Avgi Fleetgroup"
 fleet "Avgi Small Merchant"
 	government "Avgi"
 	names "avgi civilian"
+	fighters
+		names "avgi fighter"
+		personality
+			swarming
 	personality
 		confusion 30
 		timid coward appeasing disables opportunistic
@@ -211,6 +217,10 @@ fleet "Avgi Small Merchant"
 fleet "Avgi Large Merchant"
 	government "Avgi"
 	names "avgi civilian"
+	fighters
+		names "avgi fighter"
+		personality
+			swarming
 	personality
 		confusion 30
 		timid coward appeasing disables opportunistic
@@ -238,7 +248,10 @@ fleet "Avgi Large Merchant"
 fleet "Avgi Miners"
 	government "Avgi"
 	names "avgi civilian"
-	fighters "avgi fighter"
+	fighters
+		names "avgi fighter"
+		personality
+			mining harvests swarming
 	personality
 		confusion 30
 		mining harvests timid coward appeasing disables
@@ -247,9 +260,12 @@ fleet "Avgi Miners"
 
 
 fleet "Avgi Small Dissonance"
-	government "Avgi"
+	government "Avgi (Dissonance)"
 	names "avgi civilian"
-	fighters "avgi fighter"
+	fighters
+		names "avgi fighter"
+		personality
+			mining harvests swarming
 	personality
 		confusion 15
 		coward timid disables plunders secretive
@@ -258,9 +274,12 @@ fleet "Avgi Small Dissonance"
 
 
 fleet "Avgi Large Dissonance"
-	government "Avgi"
+	government "Avgi (Dissonance)"
 	names "avgi civilian"
-	fighters "avgi fighter"
+	fighters
+		names "avgi fighter"
+		personality
+			mining harvests swarming
 	personality
 		confusion 15
 		coward timid disables plunders secretive
@@ -270,11 +289,44 @@ fleet "Avgi Large Dissonance"
 
 
 fleet "Avgi Dissonance Miners"
-	government "Avgi"
+	government "Avgi (Dissonance)"
 	names "avgi civilian"
-	fighters "avgi fighter"
+	fighters
+		names "avgi fighter"
+		personality
+			mining harvests swarming
 	personality
 		confusion 20
 		mining harvests timid coward hunting disables plunders secretive
 	variant 10
 		"Swell (Crew)"
+
+
+
+fleet "Avgi Small Angry Dissonance"
+	government "Avgi (Dissonance Aggressive)""
+	names "avgi civilian"
+	fighters
+		names "avgi fighter"
+		personality
+			daring harvests swarming
+	personality
+		confusion 15
+		coward timid disables plunders secretive
+	variant 10
+		"Swell (Crew)"
+
+
+fleet "Avgi Large Angry Dissonance"
+	government "Avgi (Dissonance Aggressive)"
+	names "avgi civilian"
+	fighters
+		names "avgi fighter"
+		personality
+			daring harvests swarming
+	personality
+		confusion 15
+		coward timid disables plunders secretive
+	variant 10
+		"Swell (Crew)"
+
