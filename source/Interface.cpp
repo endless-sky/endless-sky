@@ -34,6 +34,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "UI.h"
+#include "UiRectShader.h"
+
 
 #include <algorithm>
 #include <cmath>
@@ -122,6 +124,8 @@ void Interface::Load(const DataNode &node)
 				elements.push_back(new BarElement(child, anchor));
 			else if(child.Token(0) == "line")
 				elements.push_back(new LineElement(child, anchor));
+			else if(child.Token(0) == "uirect")
+				elements.push_back(new UiRectElement(child, anchor));
 			else
 			{
 				child.PrintTrace("Skipping unrecognized element:");
@@ -751,4 +755,44 @@ void Interface::LineElement::Draw(const Rectangle &rect, const Information &info
 	if(!from.Get() && !to.Get())
 		return;
 	FillShader::Fill(rect.Center(), rect.Dimensions(), *color);
+}
+
+
+
+// Members of the UiRect class:
+
+// Constructor.
+Interface::UiRectElement::UiRectElement(const DataNode &node, const Point &globalAnchor)
+{
+	// This function will call ParseLine() for any line it does not recognize.
+	Load(node, globalAnchor);
+
+	// Fill in a default color if none is specified.
+	if(!color)
+		color = GameData::Colors().Get("conversation background");
+}
+
+
+
+// Parse the given data line: one that is not recognized by Element
+// itself. This returns false if it does not recognize the line, either.
+bool Interface::UiRectElement::ParseLine(const DataNode &node)
+{
+	if(node.Token(0) == "color" && node.Size() >= 2)
+		color = GameData::Colors().Get(node.Token(1));
+	else
+		return false;
+
+	return true;
+}
+
+
+
+// Draw this element in the given rectangle.
+void Interface::UiRectElement::Draw(const Rectangle &rect, const Information &info, int state) const
+{
+	// Avoid crashes for malformed interface elements that are not fully loaded.
+	if(!from.Get() && !to.Get())
+		return;
+	UiRectShader::Fill(rect.Center(), rect.Dimensions(), *color);
 }

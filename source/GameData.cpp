@@ -66,6 +66,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Test.h"
 #include "TestData.h"
 #include "UniverseObjects.h"
+#include "UiRectShader.h"
 
 #include <algorithm>
 #include <iostream>
@@ -217,6 +218,12 @@ void GameData::LoadShaders(bool useShaderSwizzle)
 	RingShader::Init();
 	SpriteShader::Init(useShaderSwizzle);
 	BatchShader::Init();
+	
+	UiRectShader::Init(
+		*GameData::Colors().Get("medium"),
+		*GameData::Colors().Get("dim"),
+		*GameData::Colors().Get("bright")
+	);
 
 	background.Init(16384, 4096);
 }

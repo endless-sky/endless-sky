@@ -568,12 +568,14 @@ void PreferencesPanel::DrawControls()
 	const string gestureLabel = "Supported Gestures";
 	const int lineWidth = FontSet::Get(14).Width(gestureLabel);
 	Table gestureTable;
-	gestureTable.AddColumn(gestureRect.Width(), {static_cast<int>(gestureRect.Width()), Alignment::RIGHT});
+	gestureTable.AddColumn(gestureRect.Width(),   {static_cast<int>(gestureRect.Width()/2), Alignment::RIGHT});
+	gestureTable.AddColumn(gestureRect.Width() / 2 - 10, {static_cast<int>(gestureRect.Width()/2), Alignment::RIGHT});
 	gestureTable.SetUnderline(gestureRect.Width() - lineWidth, gestureRect.Width());
 	gestureTable.DrawAt(gestureRect.TopLeft());
 
 	gestureTable.DrawUnderline(medium);
 	gestureTable.Draw(gestureLabel, bright);
+	gestureTable.Draw("");
 	gestureTable.DrawGap(5);
 	for(int i = 1; ; ++i)
 	{

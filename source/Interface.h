@@ -216,6 +216,22 @@ private:
 		const Color *color = nullptr;
 	};
 
+	// This class handles "uirect" elements.
+	class UiRectElement : public Element {
+	public:
+		UiRectElement(const DataNode &node, const Point &globalAnchor);
+
+	protected:
+		// Parse the given data line: one that is not recognized by Element
+		// itself. This returns false if it does not recognize the line, either.
+		virtual bool ParseLine(const DataNode &node) override;
+		// Draw this element in the given rectangle.
+		virtual void Draw(const Rectangle &rect, const Information &info, int state) const override;
+
+	private:
+		const Color *color = nullptr;
+	};
+
 
 private:
 	std::vector<Element *> elements;

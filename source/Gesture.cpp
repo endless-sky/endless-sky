@@ -308,8 +308,8 @@ namespace
    };
 
    const std::map<Gesture::GestureEnum, std::string> DESCRIPTIONS = {
-      {Gesture::X, "Draw an X"}, 
-      {Gesture::CIRCLE, "Draw a circle"},
+      {Gesture::X, "Draw an X"},
+      {Gesture::CIRCLE, "Draw a O"},
       {Gesture::CARET_UP, "Draw a ^"},
       {Gesture::CARET_LEFT, "Draw a <"},
       {Gesture::CARET_RIGHT, "Draw a >"},

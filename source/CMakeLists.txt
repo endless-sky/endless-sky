@@ -327,6 +327,8 @@ target_sources(EndlessSkyLib PRIVATE
 	TradingPanel.h
 	UI.cpp
 	UI.h
+	UiRectShader.cpp
+	UiRectShader.h
 	UniverseObjects.cpp
 	UniverseObjects.h
 	Variant.cpp

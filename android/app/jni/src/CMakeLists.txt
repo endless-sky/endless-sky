@@ -212,6 +212,7 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/Trade.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/TradingPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/UI.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/UiRectShader.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/UniverseObjects.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Variant.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Visual.cpp
