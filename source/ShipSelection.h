@@ -23,7 +23,7 @@ class Ship;
 
 
 
-// Handle ship selection.
+// Keep track of a selection of ships. Only ships on the player's current planet can be included.
 class ShipSelection {
 public:
 	explicit ShipSelection(PlayerInfo &player);
@@ -36,7 +36,7 @@ public:
 	// Select based on ship and key modifiers.
 	void Select(Ship *ship);
 	void Set(Ship *ship);
-	// Clear selection and select first ship available.
+	// Clear selection and select first available ship.
 	void Reset();
 
 	void SetGroup(int group) const;

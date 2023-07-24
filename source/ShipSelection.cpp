@@ -1,5 +1,5 @@
 /* ShipSelection.cpp
-Copyright (c) 2014 by Michael Zahniser
+Copyright (c) 2023 by Dave Flowers
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -137,6 +137,7 @@ void ShipSelection::Select(Ship *ship)
 	}
 	else if(!control)
 		allSelected.clear();
+	// If control is down, try and deselect the ship (otherwise we're selecting it).
 	else if(allSelected.erase(ship))
 	{
 		if(selectedShip == ship)
@@ -162,14 +163,15 @@ void ShipSelection::Set(Ship *ship)
 
 void ShipSelection::Reset()
 {
-	Set(nullptr);
+	Ship *newShip = nullptr;
 	const Planet *here = player.GetPlanet();
 	for(const shared_ptr<Ship> &ship : player.Ships())
 		if(CanShowInSidebar(*ship, here))
 		{
-			Set(&*ship);
+			newShip = &*ship;
 			break;
 		}
+	allSelected.insert(newShip);
 }
 
 
@@ -192,7 +194,7 @@ void ShipSelection::SelectGroup(const int group, bool modifySelection)
 	else
 		allSelected.clear();
 
-	// If modifying, and every displayable ship in this group was removed, don't reselect them.
+	// If modifying and every displayable ship in this group was removed, don't reselect them.
 	if(!modifySelection)
 		for(Ship *ship : groupShips)
 			if(CanShowInSidebar(*ship, here))
