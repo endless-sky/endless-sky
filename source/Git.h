@@ -21,6 +21,7 @@ class Git
 {
 public:
 	static int Clone(const char *url, const char *path);
+	static int Pull(const char *path);
 
 private:
 	static int fetch_progress(const git_indexer_progress *stats, void *payload);
