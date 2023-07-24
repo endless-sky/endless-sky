@@ -60,13 +60,13 @@ outfitter "Avgi Advanced Systems"
 
 outfitter "Avgi Basic Drives"
 	"Magnetoplasma Drive"
-	"Z-360 Alpha Fusion Torch"
-	"Z-600 Beta Fusion Torch"
+	"Z-360 Fusion Torch"
+	"Z-600 Fusion Torch"
 	"XY-180 Transverse Thrusters"
 	"XY-360 Transverse Thrusters"
 
 outfitter "Avgi Advanced Drives"
-	"Z-960 Gamma Fusion Torch"
+	"Z-960 Fusion Torch"
 	"XY-720 Transverse Thrusters"
 
 outfitter "Avgi Basic Combat"

@@ -46,9 +46,9 @@ outfit "Speckle Turret"
 	category "Turrets"
 	cost 40000
 	thumbnail "outfit/speckle turret"
-	"mass" 12
-	"outfit space" -24
-	"weapon capacity" -24
+	"mass" 9
+	"outfit space" -21
+	"weapon capacity" -21
 	"energy capacity" 180
 	"turret mounts" -1
 	"speck capacity" 3600
@@ -77,8 +77,8 @@ outfit "speckle slug"
 		"hit effect" "bombardment impact"
 		"lifetime" 42
 		"random lifetime" 15
-		"shield damage" 9
-		"hull damage" 18
+		"shield damage" 6
+		"hull damage" 15
 		"hit force" 12
 
 

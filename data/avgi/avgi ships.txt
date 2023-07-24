@@ -255,7 +255,7 @@ ship "Avlaki"
 	swizzle 0
 	thumbnail "thumbnail/avgi avlaki"
 	attributes
-		category "Transport"
+		category "Light Freighter"
 		"shields" 600
 		"hull" 1200
 		"required crew" 2
@@ -531,15 +531,15 @@ ship "Prismaios"
 		"hull" 6000
 		"required crew" 2
 		"bunks" 6
-		"mass" 63
-		"drag" 1.8
-		"heat dissipation" 1.24
-		"fuel capacity" 1000
-		"cargo space" 12
+		"mass" 90
+		"drag" 1.2
+		"heat dissipation" 1.8
+		"fuel capacity" 1200
+		"cargo space" 36
 		"outfit space" 324
 		"weapon capacity" 72
 		"engine capacity" 96
-		"surface space" 46
+		"anchor points" 1
 		weapon
 			"blast radius" 120
 			"shield damage" 520
