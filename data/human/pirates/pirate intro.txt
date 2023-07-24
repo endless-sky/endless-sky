@@ -27,7 +27,7 @@ mission "You Are A Pirate"
 		government "Pirate"
 	to offer
 		not "chosen sides"
-		or	
+		or
 			and
 				or
 					"reputation: Republic" < -10
@@ -157,12 +157,12 @@ conversation "I Want To Be A Pirate Conclusion"
 		and
 			not "hero of Darkstone"
 			not "slaver of Darkstone"
-	#the player claimed Darkstone as a tributary and defended the colonists against a slaver raid.
+	# The player claimed Darkstone as a tributary and defended the colonists against a slaver raid.
 	branch defender
 		or
 			has "hero of Darkstone"
 			has "defender of Darkstone"
-	#the player sold the colonists of Darkstone to slavers
+	# The player sold the colonists of Darkstone to slavers
 	branch slaver
 		has "slaver of Darkstone"
 	label conqueror
@@ -185,8 +185,8 @@ conversation "I Want To Be A Pirate Conclusion"
 	action
 		set terribleperson
 	`	"I'm glad we see eye to eye. Protection racket, landlord, slavemaster; whatever people want to call it, it's simply the natural order of things that some are strong, and some are weak. The strong thrive because they put to better use that which the weak produce. And you? I know which of the two you are now. I'll put your name into the ears of others like us."`
-	#the ring token is for integration into the pirate campaign
-		#goto ring
+	# The ring token is for integration into the pirate campaign
+		# goto ring
 		goto outlawapproval
 	label slaveryspeech
 	`	"Don't be stupid. We're in the same business, you and I - the only reason we're having this conversation at all is because you saw fit to force others to pay you, render unto you the fruit of their sweat and tears, without anything in return. You're a slaver as much as I; I'm simply more honest about it. You'll grow to accept that. Pirates who think they can survive - or more amusingly, thrive - and still hold onto their precious morals; they're not long for this galaxy."`
@@ -226,13 +226,13 @@ conversation "I Want To Be A Pirate Conclusion"
 	label outlawapproval
 	`	"Now, I'll do as I said and help make your name known to those who matter, and the lowlifes that don't. Pirates will respect you for the deeds you've done."`
 		goto tributeskip
-	#label ring
-	#`	The Capo extends his palm, a shining silver ring glistening in the center. Unadorned by any manner of stone, it's a simple, subdued piece of jewelry. Upon the front a crest has been stamped. "A token of my approval. Consider it sponsorship, and my trust that you'll do what need be done. Take it to Gienah. People will know what it means, and you'll find lucrative work that lines up nicely with the skillset you've demonstrated."`
-	#`	The cyborg offers a genial smile - or at least as much as one can without lips. It's uncanny how expressive articulated artificial jaws can be these days.`
+	# label ring
+	# `	The Capo extends his palm, a shining silver ring glistening in the center. Unadorned by any manner of stone, it's a simple, subdued piece of jewelry. Upon the front a crest has been stamped. "A token of my approval. Consider it sponsorship, and my trust that you'll do what need be done. Take it to Gienah. People will know what it means, and you'll find lucrative work that lines up nicely with the skillset you've demonstrated."`
+	# `	The cyborg offers a genial smile - or at least as much as one can without lips. It's uncanny how expressive articulated artificial jaws can be these days.`
 	label tributeskip
 	branch boardingskip
 		not "Pirate Intro: Boarding: done"
-	choice	
+	choice
 		`	(Slap the top of the Corsair's trunk.) "I've brought the antique lockbox and defeated the other pirates who came for it."`
 	`	The Corsair, clearly drunk, does his best to straighten up and smile at you. "Well, let's see what we've got then!"`
 	`	The lockbox is hefted up onto the table and the lock unceremoniously blasted with a discharge from the Corsair's sidearm, sending his drinking partners scrambling back in shock. Their chorus of damnations and complaints are soundly ignored as the lid's popped open and the contents laid out. Old clothes, an old journal. The clothes are ignored, left to ignite in the now-smouldering box while the journal is hastily extracted.`
@@ -252,7 +252,7 @@ conversation "I Want To Be A Pirate Conclusion"
 		`	"No, not really."`
 	`	"Oh." There's an uncomfortably long pause while the Corsair gathers his thoughts. "Argh, where were we..."`
 	label negative
-	#in the campaign-integrated branch he'll ask you to keep the journal and deliver it to Amity Goodearth.
+	# In the campaign-integrated branch he'll ask you to keep the journal and deliver it to Amity Goodearth.
 	`	"Anyhow. This is a mighty important find, but unfortunately incomplete. I'll be hanging onto it, and ye've my thanks for yer work in securing this. Family heirloom, and such. Now, yer payment... I've some contacts that'll be pleased to know of yer skills, and folk who'll make sure your name is known where it matters. Congratulations, the life of a pirate ye may call yer own."`
 	label boardingskip
 	branch pirate
@@ -450,11 +450,9 @@ conversation "Den Handoff"
 		`	(Take a moment to listen.)`
 		`	(Enter and announce yourself.)`
 			goto CCOR
-	# Commented lines to be uncommented when Unicode support is added
-	#`	"Eu sei, mas é que eu realmente não acho que isso vai só acontecer. O vô do meu vô também passou a vida esperando a mesma coisa, e hoje eu e tu tamos aqui, negociando com capitalistas."`
+	# TODO: When unicode support is added, put the Portuguese characters back in.
 	`	"Eu sei, mas e que eu realmente nao acho que isso vai so acontecer. O vo do meu vo tambem passou a vida esperando a mesma coisa, e hoje eu e tu tamos aqui, negociando com capitalistas."`
-	#`	"Eu preferiria se tu não fosse tão negativo, camarada. Tu sabe tão bem quanto eu que é só uma questão de esperar as coisas entrarem em colapso. Porra, tem uma guerra civil arriscando começar a qualquer momento, se segura por só mais um pouquinho! Inclusive, eu escutei a pouco que – "`
-	`	"Eu preferiria se tu nao fosse tao negativo, camarada. Tu sabe tao bem quanto eu que e so uma questao de esperar as coisas entrarem em colapso. Porra, tem uma guerra civil arriscando começar a qualquer momento, se segura por so mais um pouquinho! Inclusive, eu escutei a pouco que-"`
+	`	"Eu preferiria se tu nao fosse tao negativo, camarada. Tu sabe tao bem quanto eu que e so uma questao de esperar as coisas entrarem em colapso. Porra, tem uma guerra civil arriscando comecar a qualquer momento, se segura por so mais um pouquinho! Inclusive, eu escutei a pouco que-"`
 	`	Without warning a figure steps in front of the doorway, silhouetted by strong lights pointed at the doorframe from within. "In or out, you're letting through a draft. We can conduct business inside."`
 	choice
 		`	(In.)`
@@ -462,7 +460,7 @@ conversation "Den Handoff"
 			goto retreat
 	`	With a smile and a nod, the figure gestures you inside. "Good, good. In you go."`
 	label CCOR
-	#`	The hangar is dominated by an orange-painted Hauler of older make looming behind everything else. Once you step beyond the glare of the floodlight pointed at the door you can make out some details. Those aren't crates stacked in a rough perimeter around the door, but sandbags. Behind one row a tripod with an old-style machine gun rests, "Mãe Dois" painted in white upon the housing. The gunner, a tanned young woman with a cigarette hanging jauntily from her lips, notices your look and offers a friendly enough wave. Like the other five people in the room, she's wearing a burgundy military uniform, with gleaming strips of brass where one might usually find decorating ribbons.`
+	# TODO: When unicode support is added, put the Portuguese characters back in.
 	`	The hangar is dominated by an orange-painted Hauler of older make looming behind everything else. Once you step beyond the glare of the floodlight pointed at the door, you can make out some details. Those aren't crates stacked in a rough perimeter around the door, but sandbags. Behind one row a tripod with an old-style machine gun rests, "Mae Dois" painted in white upon the housing. The gunner, a tanned young woman with a cigarette hanging jauntily from her lips, notices your look and offers a friendly enough wave. Like the other five people in the room, she's wearing a burgundy military uniform, with gleaming strips of brass where one might usually find decorating ribbons.`
 	`	"Since you had the key I'll assume you're here to do business," says the oldest of the six soldiers - a dark-haired man in his apparent fifties whose uniform practically gleams with medals - as he ushers you into a seat. He's the only one wearing a hat, which you can only assume means he's in charge.. "Coffee?" The brew appears dark, the scent rich and glorious as it cuts through the nicotine haze of the hangar.`
 	choice
@@ -646,7 +644,7 @@ mission "Pirate Intro: Darkstone Slavers (Free)"
 				`	(Return to your ship. This is none of your business.)`
 					goto retreat
 				`	(Return to your ship... and start strafing the slavers.)`
-					goto attack	
+					goto attack
 			label duel
 			`	The leader of the slavers turns to face you, attention finally pulled from his task. "You've got some nerve picking a fight with us, kid. You really think these poor bastards are worth dying for?"`
 			`	Noon's sun beats down on you. Even with the chill that usually haunts this region of the planet at this time of year, it's enough to bring sweat to your brow. Silence fills the town square, and slavers shy back to leave only four things that matter in the area: You, the slaver boss, and your respective pistols.`
