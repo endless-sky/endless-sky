@@ -724,5 +724,21 @@
       "url": "https://github.com/ZBok/BetterVanillaPirates/archive/$version.zip",
       "iconUrl": "https://raw.githubusercontent.com/ZBok/BetterVanillaPirates/$version/icon.png"
     }
+  },
+  {
+    "name": "Nomads",
+    "authors": "Rising",
+    "homepage": "https://github.com/RisingLeaf/nomads",
+    "license": "GPL-3.0-or-later",
+    "version": "v1.4",
+    "shortDescription": "Makes pirates more interesting, varied, with many more pirate fighting missions.",
+    "description": "Adds 30+ high end variants for human heavy warships and marauders using a wide variety of outfit combinations. These will be seen in pirate fleets, merchant fleets, and adds 30+ new pirate hunting/defence/blockade missions. Adds new \"Bounty Hunted\" fleets that will hunt you down without warning. Adds new \"Korath Raid\" missions in certain Syndicate systems where the Korath will attack with their Sestor/Mereti drones, allowing you to capture these ships post-Wanderer campaign.",
+    "url": "https://github.com/ZBok/BetterVanillaPirates/archive/v1.4.zip",
+    "iconUrl": "https://raw.githubusercontent.com/ZBok/BetterVanillaPirates/v1.4/icon.png",
+    "autoupdate": {
+      "type": "tag",
+      "url": "https://github.com/ZBok/BetterVanillaPirates/archive/$version.zip",
+      "iconUrl": "https://raw.githubusercontent.com/ZBok/BetterVanillaPirates/$version/icon.png"
+    }
   }
 ]

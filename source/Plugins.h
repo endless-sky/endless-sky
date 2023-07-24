@@ -64,8 +64,9 @@ public:
 	// Toggles enabling or disabling a plugin for the next game restart.
 	static void TogglePlugin(const std::string &name);
 
-	// Install a Plugin with git.
+	// Manage a Plugin with git.
 	static void Install(std::string url, std::string name);
+	static void Update(std::string name);
 };
 
 

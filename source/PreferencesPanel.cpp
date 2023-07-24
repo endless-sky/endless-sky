@@ -181,6 +181,8 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		page = 'i';
 	else if(key == 'i' && page == 'i' && selectedInstallAble.second.size())
 		Plugins::Install(selectedInstallAble.second, selectedInstallAble.first);
+	else if(key == 'u' && page == 'i' && selectedInstallAble.second.size())
+		Plugins::Update(selectedInstallAble.first);
 	else if(key == 'r' && page == 'i')
 		currentInstallAblePage = currentInstallAblePage > 0 ? currentInstallAblePage - 1 : 0;
 	else if(key == 'e' && page == 'i')

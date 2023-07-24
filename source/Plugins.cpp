@@ -153,3 +153,15 @@ void Plugins::Install(string url, string name)
 	else
 		std::cout<<"but it failed!"<<std::endl;
 }
+
+
+
+void Plugins::Update(string name)
+{
+	int error = Git::Pull((Files::Plugins() + name).c_str());
+	std::cout<<"You tried to update the plugin: "<<name<<" , ";
+	if(error == 0)
+		std::cout<<"and it succeeded!"<<std::endl;
+	else
+		std::cout<<"but it failed!"<<std::endl;
+}
