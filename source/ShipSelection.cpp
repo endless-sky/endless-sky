@@ -15,8 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ShipSelection.h"
 
-#include "Planet.h"
 #include "PlayerInfo.h"
+#include "Planet.h"
 #include "Ship.h"
 
 #include <SDL2/SDL.h>
@@ -135,7 +135,7 @@ void ShipSelection::Select(Ship *ship)
 	else if(allSelected.erase(ship))
 	{
 		if(selectedShip == ship)
-			selectedShip  = allSelected.empty() ? nullptr : *allSelected.begin();
+			selectedShip = allSelected.empty() ? nullptr : *allSelected.begin();
 		return;
 	}
 
