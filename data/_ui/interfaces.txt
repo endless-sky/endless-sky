@@ -530,7 +530,7 @@ interface "install plugins"
 		center -300 -150
 		dimensions 90 30
 		color bright
-	button b "_Back"
+	button u "_Update"
 		center -195 210
 		dimensions 120 30
 	button i "_Install"

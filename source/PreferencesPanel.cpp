@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "external/json.hpp"
 #include "text/layout.hpp"
 #include "Plugins.h"
 #include "Preferences.h"
@@ -881,15 +882,15 @@ void PreferencesPanel::DrawInstallAbles()
 	table.DrawGap(25);
 
 	const Font &font = FontSet::Get(14);
-
-	ifstream pluginList(Files::Resources() + "pluginlist.txt");
-  	if(pluginList.is_open())
+	// HERE
+	ifstream pluginlistFile(Files::Resources() + "plugins.json");
+  	if(pluginlistFile.is_open())
   	{
-		string line;
-		while(getline(pluginList, line))
+		nlohmann::json pluginData = nlohmann::json::parse(pluginlistFile);
+		for(const auto &plugin : pluginData)
 		{
-			string name = line.substr(0, line.find(" "));
-			string url = line.substr(line.find(" ") + 1, line.length());
+			string name = plugin["name"];
+			string url = plugin["homepage"];
 			if(!name.size())
 				continue;
 
@@ -922,7 +923,7 @@ void PreferencesPanel::DrawInstallAbles()
 				wrap.Draw(top, medium);
 			}
 		}
-		pluginList.close();
+		pluginlistFile.close();
   	}
 }
 
