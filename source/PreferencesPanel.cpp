@@ -100,9 +100,8 @@ PreferencesPanel::PreferencesPanel()
 	ifstream pluginlistFile(Files::Resources() + "plugins.json");
 	installAbles = nlohmann::json::parse(pluginlistFile);
 	pluginlistFile.close();
-	installAblePages = (installAbles.size() - (installAbles.size() % MAX_INSTALL_ABLES_PER_PAGE))
+	installAblePages = ((installAbles.size() - (installAbles.size() % MAX_INSTALL_ABLES_PER_PAGE)) / MAX_INSTALL_ABLES_PER_PAGE)
 		+ (installAbles.size() % MAX_INSTALL_ABLES_PER_PAGE > 0);
-	installAblePages--;
 
 	SetIsFullScreen(true);
 }
@@ -125,6 +124,8 @@ void PreferencesPanel::Draw()
 		info.SetCondition("show previous");
 	if(currentSettingsPage + 1 < SETTINGS_PAGE_COUNT)
 		info.SetCondition("show next");
+	if(Plugins::Get().Find(selectedInstallAble.first))
+		info.SetCondition("installed plugin");
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	string pageName = (page == 'c' ? "controls" : page == 's' ? "settings" : page == 'p' ? "plugins" : "install plugins");
 	GameData::Interfaces().Get(pageName)->Draw(info, this);

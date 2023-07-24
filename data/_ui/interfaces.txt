@@ -530,18 +530,16 @@ interface "install plugins"
 		center -300 -150
 		dimensions 90 30
 		color bright
+
+	active if "installed plugin"
 	button u "_Update"
 		center -195 210
 		dimensions 120 30
+	active if "!installed plugin"
 	button i "_Install"
 		center -65 210
 		dimensions 120 30
-	visible if "show plugins changed"
-	label "Restart to apply changes"
-		from -225 -236
-		align top left
-		color "plugin reload required"
-	visible if "!show plugins changed"
+
 	label "Installable Plugins:"
 		from -225 -236
 		align top left
