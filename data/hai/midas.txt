@@ -561,7 +561,7 @@ mission "Midas: Betrayal For The Bars"
 					goto bliss2
 				`	(Keep the crew member for further interrogation.)`
 					goto escape
-				`	(Put the traitor in the aquarium.)`
+				`	(Make them walk the plank.)`
 					to display
 						has "outfit (flagship installed): Heshi"
 					goto heshi
@@ -686,6 +686,18 @@ mission "<uhai> 6 B: To The Wolves"
 
 
 
+# The miners will keep on doing their thing, but this is sign of the amount of influence Midas has with the Korath
+# (also they just bashed some Alphas so the Korath are happy right now)
+event "misam: korath raids stop"
+	system Midas
+		remove fleet "Korath Raid"
+		remove fleet "Korath Large Raid"
+
+event "misam: korath raids resume"
+	system Midas
+		add fleet "Korath Raid" 5000
+		add fleet "Korath Large Raid" 11000
+
 # secret mission
 # happens if you accept a duel in "<uhai> 7: Stolen Cargo" (offered if your fleet is smaller than 2 heavy warships)
 mission "<uhai> 7: Duel"
@@ -699,7 +711,10 @@ mission "<uhai> 7: Duel"
 		has "<uhai> 7: Cavalry Arrives: done"
 		"unfettered: cleaned up cerberus" > 1
 	on offer
-		dialog `The two mysterious ships hail you, "We are ready for a fight in orbit whenever you are. If you want, you can still call this off... for a quarter of the agreed price."`
+		dialog `The two mysterious ships hail you, "We are ready for a fight in orbit whenever you are. If you want, you can still call this off... for a quarter of the agreed price. You see, we have already made some arrangements with the Korath so they do not intervene in the fight."`
+	on accept
+		event "misam: korath raids stop"
+		event "misam: korath raids resume" 2
 	on decline
 		fine 2500000
 	npc disable save
