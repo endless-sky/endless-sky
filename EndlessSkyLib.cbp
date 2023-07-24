@@ -328,6 +328,8 @@
 		<Unit filename="source/ShipManager.h" />
 		<Unit filename="source/ShipJumpNavigation.cpp" />
 		<Unit filename="source/ShipJumpNavigation.h" />
+		<Unit filename="source/ShipSelection.cpp" />
+		<Unit filename="source/ShipSelection.h" />
 		<Unit filename="source/ShipyardPanel.cpp" />
 		<Unit filename="source/ShipyardPanel.h" />
 		<Unit filename="source/ShopPanel.cpp" />

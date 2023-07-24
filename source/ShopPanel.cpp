@@ -35,6 +35,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Sale.h"
 #include "Screen.h"
 #include "Ship.h"
+#include "ShipSelection.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "SpriteShader.h"
@@ -66,12 +67,10 @@ namespace {
 
 ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	: player(player), day(player.GetDate().DaysSinceEpoch()),
-	planet(player.GetPlanet()), playerShip(player.Flagship()),
+	planet(player.GetPlanet()), shipSelection(player),
 	categories(GameData::GetCategory(isOutfitter ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	collapsed(player.Collapsed(isOutfitter ? "outfitter" : "shipyard"))
 {
-	if(playerShip)
-		playerShips.insert(playerShip);
 	SetIsFullScreen(true);
 	SetInterruptible(false);
 }
@@ -229,7 +228,7 @@ void ShopPanel::DrawShipsSidebar()
 			point.Y() += ICON_TILE;
 		}
 
-		bool isSelected = playerShips.count(ship.get());
+		bool isSelected = shipSelection.Has(ship.get());
 		const Sprite *background = SpriteSet::Get(isSelected ? "ui/icon selected" : "ui/icon unselected");
 		SpriteShader::Draw(background, point);
 		// If this is one of the selected ships, check if the currently hovered
@@ -268,7 +267,7 @@ void ShopPanel::DrawShipsSidebar()
 			}
 		}
 
-		if(isSelected && playerShips.size() > 1 && ship->OutfitCount(selectedOutfit))
+		if(isSelected && shipSelection.HasMany() && ship->OutfitCount(selectedOutfit))
 			PointerShader::Draw(Point(point.X() - static_cast<int>(ICON_TILE / 3), point.Y()),
 				Point(1., 0.), 14.f, 12.f, 0., Color(.9f, .9f, .9f, .2f));
 
@@ -276,11 +275,11 @@ void ShopPanel::DrawShipsSidebar()
 	}
 	point.Y() += ICON_TILE;
 
-	if(playerShip)
+	if(shipSelection.Selected())
 	{
 		point.Y() += SHIP_SIZE / 2;
 		point.X() = Screen::Right() - SIDEBAR_WIDTH / 2;
-		DrawShip(*playerShip, point, true);
+		DrawShip(*shipSelection.Selected(), point, true);
 
 		Point offset(SIDEBAR_WIDTH / -2, SHIP_SIZE / 2);
 		sideDetailHeight = DrawPlayerShipInfo(point + offset);
@@ -373,7 +372,7 @@ void ShopPanel::DrawButtons()
 		buyTextColor = &hover;
 	else
 		buyTextColor = &active;
-	string BUY = isOwned ? (playerShip ? "_Install" : "_Cargo") : "_Buy";
+	string BUY = isOwned ? (shipSelection.Selected() ? "_Install" : "_Cargo") : "_Buy";
 	bigFont.Draw(BUY,
 		buyCenter - .5 * Point(bigFont.Width(BUY), bigFont.Height()),
 		*buyTextColor);
@@ -578,7 +577,7 @@ bool ShopPanel::CanSellMultiple() const
 // owned, but they count as "already installed" in cargo.
 bool ShopPanel::IsAlreadyOwned() const
 {
-	return (playerShip && selectedOutfit && player.Cargo().Get(selectedOutfit))
+	return (shipSelection.Selected() && selectedOutfit && player.Cargo().Get(selectedOutfit))
 		|| (player.Storage() && player.Storage()->Get(selectedOutfit));
 }
 
@@ -706,41 +705,11 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	{
 		int group = key - '0';
 		if(mod & (KMOD_CTRL | KMOD_GUI))
-			player.SetGroup(group, &playerShips);
+			shipSelection.SetGroup(group);
 		else if(mod & KMOD_SHIFT)
-		{
-			// If every single ship in this group is already selected, shift
-			// plus the group number means to deselect all those ships.
-			set<Ship *> added = player.GetGroup(group);
-			bool allWereSelected = true;
-			for(Ship *ship : added)
-				allWereSelected &= playerShips.erase(ship);
-
-			if(allWereSelected)
-				added.clear();
-
-			const Planet *here = player.GetPlanet();
-			for(Ship *ship : added)
-				if(CanShowInSidebar(*ship, here))
-					playerShips.insert(ship);
-
-			if(!playerShips.count(playerShip))
-				playerShip = playerShips.empty() ? nullptr : *playerShips.begin();
-		}
+			shipSelection.SelectGroup(group, true);
 		else
-		{
-			// Change the selection to the desired ships, if they are landed here.
-			playerShips.clear();
-			set<Ship *> wanted = player.GetGroup(group);
-
-			const Planet *here = player.GetPlanet();
-			for(Ship *ship : wanted)
-				if(CanShowInSidebar(*ship, here))
-					playerShips.insert(ship);
-
-			if(!playerShips.count(playerShip))
-				playerShip = playerShips.empty() ? nullptr : *playerShips.begin();
-		}
+			shipSelection.SelectGroup(group, false);
 	}
 	else if(key == SDLK_TAB)
 		activePane = (activePane == ShopPane::Main ? ShopPane::Sidebar : ShopPane::Main);
@@ -938,7 +907,7 @@ int64_t ShopPanel::LicenseCost(const Outfit *outfit, bool onlyOwned) const
 	// If the player is attempting to install an outfit from cargo, storage, or that they just
 	// sold to the shop, then ignore its license requirement, if any. (Otherwise there
 	// would be no way to use or transfer license-restricted outfits between ships.)
-	bool owned = (player.Cargo().Get(outfit) && playerShip) || (player.Storage() && player.Storage()->Get(outfit));
+	bool owned = (player.Cargo().Get(outfit) && shipSelection.Selected()) || (player.Storage() && player.Storage()->Get(outfit));
 	if((owned && onlyOwned) || player.Stock(outfit) > 0)
 		return 0;
 
@@ -1045,87 +1014,16 @@ bool ShopPanel::SetScrollToBottom()
 
 void ShopPanel::SideSelect(int count)
 {
-	// Find the currently selected ship in the list.
-	vector<shared_ptr<Ship>>::const_iterator it = player.Ships().begin();
-	for( ; it != player.Ships().end(); ++it)
-		if((*it).get() == playerShip)
-			break;
-
-	// Bail out if there are no ships to choose from.
-	if(it == player.Ships().end())
-	{
-		playerShips.clear();
-		playerShip = player.Flagship();
-		if(playerShip)
-			playerShips.insert(playerShip);
-
-		return;
-	}
-
-
-	const Planet *here = player.GetPlanet();
-	if(count < 0)
-	{
-		while(count)
-		{
-			if(it == player.Ships().begin())
-				it = player.Ships().end();
-			--it;
-
-			if(CanShowInSidebar(**it, here))
-				++count;
-		}
-	}
-	else
-	{
-		while(count)
-		{
-			++it;
-			if(it == player.Ships().end())
-				it = player.Ships().begin();
-
-			if(CanShowInSidebar(**it, here))
-				--count;
-		}
-	}
-	SideSelect(&**it);
+	Ship *ship = shipSelection.Find(count);
+	if(ship)
+		SideSelect(ship);
 }
 
 
 
 void ShopPanel::SideSelect(Ship *ship)
 {
-	bool shift = (SDL_GetModState() & KMOD_SHIFT);
-	bool control = (SDL_GetModState() & (KMOD_CTRL | KMOD_GUI));
-
-	if(shift)
-	{
-		bool on = false;
-		const Planet *here = player.GetPlanet();
-		for(const shared_ptr<Ship> &other : player.Ships())
-		{
-			// Skip any ships that are "absent" for whatever reason.
-			if(!CanShowInSidebar(*other, here))
-				continue;
-
-			if(other.get() == ship || other.get() == playerShip)
-				on = !on;
-			else if(on)
-				playerShips.insert(other.get());
-		}
-	}
-	else if(!control)
-		playerShips.clear();
-	else if(playerShips.count(ship))
-	{
-		playerShips.erase(ship);
-		if(playerShip == ship)
-			playerShip = playerShips.empty() ? nullptr : *playerShips.begin();
-		return;
-	}
-
-	playerShip = ship;
-	playerShips.insert(playerShip);
+	shipSelection.Select(ship);
 	sameSelectedTopY = true;
 }
 

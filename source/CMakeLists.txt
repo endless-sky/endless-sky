@@ -280,6 +280,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ShipJumpNavigation.h
 	ShipManager.cpp
 	ShipManager.h
+	ShipSelection.cpp
+	ShipSelection.h
 	ShipyardPanel.cpp
 	ShipyardPanel.h
 	ShopPanel.cpp

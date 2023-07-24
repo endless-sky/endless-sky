@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "OutfitInfoDisplay.h"
 #include "Point.h"
 #include "ShipInfoDisplay.h"
+#include "ShipSelection.h"
 
 #include <map>
 #include <set>
@@ -45,7 +46,6 @@ public:
 
 	virtual void Step() override;
 	virtual void Draw() override;
-
 
 protected:
 	// BuyResult holds the result of an attempt to buy. It is implicitly
@@ -150,15 +150,12 @@ protected:
 	// Remember the current day, for calculating depreciation.
 	int day;
 	const Planet *planet = nullptr;
+	ShipSelection shipSelection;
 
-	// The player-owned ship that was first selected in the sidebar (or most recently purchased).
-	Ship *playerShip = nullptr;
 	// The player-owned ship being reordered.
 	Ship *dragShip = nullptr;
 	bool isDraggingShip = false;
 	Point dragPoint;
-	// The group of all selected, player-owned ships.
-	std::set<Ship *> playerShips;
 
 	// The currently selected Ship, for the ShipyardPanel.
 	const Ship *selectedShip = nullptr;
