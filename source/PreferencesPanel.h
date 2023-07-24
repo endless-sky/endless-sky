@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ClickZone.h"
 #include "Command.h"
+#include "external/json.hpp"
 #include "Point.h"
 
 #include <string>
@@ -74,7 +75,10 @@ private:
 	std::string selectedPlugin;
 	std::string hoverPlugin;
 
+	nlohmann::json installAbles;
 	std::pair<std::string, std::string> selectedInstallAble;
+	int installAblePages = 1;
+	int currentInstallAblePage = 0;
 
 	std::vector<ClickZone<Command>> zones;
 	std::vector<ClickZone<std::string>> prefZones;

@@ -25,7 +25,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
-#include "external/json.hpp"
 #include "text/layout.hpp"
 #include "Plugins.h"
 #include "Preferences.h"
@@ -44,6 +43,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <fstream>
+#include <iostream>
 #include <utility>
 
 using namespace std;
@@ -80,6 +80,8 @@ namespace {
 
 	// How many pages of settings there are.
 	const int SETTINGS_PAGE_COUNT = 2;
+
+	const int MAX_INSTALL_ABLES_PER_PAGE = 7;
 }
 
 
@@ -94,6 +96,13 @@ PreferencesPanel::PreferencesPanel()
 			selectedPlugin = plugin.first;
 			break;
 		}
+
+	ifstream pluginlistFile(Files::Resources() + "plugins.json");
+	installAbles = nlohmann::json::parse(pluginlistFile);
+	pluginlistFile.close();
+	installAblePages = (installAbles.size() - (installAbles.size() % MAX_INSTALL_ABLES_PER_PAGE))
+		+ (installAbles.size() % MAX_INSTALL_ABLES_PER_PAGE > 0);
+	installAblePages--;
 
 	SetIsFullScreen(true);
 }
@@ -169,10 +178,13 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	}
 	else if(key == 'i' && page == 'p')
 		page = 'i';
-	else if(key == 'b' && page == 'i')
-		page = 'p';
 	else if(key == 'i' && page == 'i' && selectedInstallAble.second.size())
 		Plugins::Install(selectedInstallAble.second, selectedInstallAble.first);
+	else if(key == 'r' && page == 'i')
+		currentInstallAblePage = currentInstallAblePage > 0 ? currentInstallAblePage - 1 : 0;
+	else if(key == 'e' && page == 'i')
+		currentInstallAblePage = currentInstallAblePage < installAblePages - 1 ?
+			currentInstallAblePage + 1 : installAblePages - 1;
 	else
 		return false;
 
@@ -876,56 +888,49 @@ void PreferencesPanel::DrawInstallAbles()
 	table.SetUnderline(-120, 100);
 
 	int firstY = -238;
-	// Table is at -110 while checkbox is at -130
 	table.DrawAt(Point(-110, firstY));
 	table.DrawUnderline(medium);
 	table.DrawGap(25);
 
 	const Font &font = FontSet::Get(14);
-	// HERE
-	ifstream pluginlistFile(Files::Resources() + "plugins.json");
-  	if(pluginlistFile.is_open())
-  	{
-		nlohmann::json pluginData = nlohmann::json::parse(pluginlistFile);
-		for(const auto &plugin : pluginData)
+
+	const int currentPageIndex = MAX_INSTALL_ABLES_PER_PAGE * currentInstallAblePage;
+	const int maxIndex = currentPageIndex + MAX_INSTALL_ABLES_PER_PAGE > installAbles.size() ?
+		installAbles.size() : currentPageIndex + MAX_INSTALL_ABLES_PER_PAGE;
+	for(int x = currentPageIndex; x < maxIndex; x++)
+	{
+		const auto &plugin = installAbles.at(x);
+		string name = plugin["name"];
+		string url = plugin["homepage"];
+		if(!name.size())
+			continue;
+		installAbleZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), std::make_pair(name, url));
+		// Use url as that is more unique, just in case.
+		bool isSelected = (url == selectedInstallAble.second);
+		if(isSelected)
+			table.DrawHighlight(back);
+		if(isSelected)
+			table.Draw(name, bright);
+		else
+			table.Draw(name, medium);
+		if(isSelected)
 		{
-			string name = plugin["name"];
-			string url = plugin["homepage"];
-			if(!name.size())
-				continue;
-
-			installAbleZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), std::make_pair(name, url));
-
-			// Use url as that is more unique, just in case.
-			bool isSelected = (url == selectedInstallAble.second);
-			if(isSelected)
-				table.DrawHighlight(back);
-
-			if(isSelected)
-				table.Draw(name, bright);
-			else
-				table.Draw(name, medium);
-
-			if(isSelected)
+			const Sprite *sprite = SpriteSet::Get(name);
+			Point top(15., firstY);
+			if(sprite)
 			{
-				const Sprite *sprite = SpriteSet::Get(name);
-				Point top(15., firstY);
-				if(sprite)
-				{
-					Point center(130., top.Y() + .5 * sprite->Height());
-					SpriteShader::Draw(sprite, center);
-					top.Y() += sprite->Height() + 10.;
-				}
-
-				WrappedText wrap(font);
-				wrap.SetWrapWidth(MAX_TEXT_WIDTH);
-				wrap.Wrap(plugin["description"]);
-				wrap.Draw(top, medium);
+				Point center(130., top.Y() + .5 * sprite->Height());
+				SpriteShader::Draw(sprite, center);
+				top.Y() += sprite->Height() + 10.;
 			}
+			WrappedText wrap(font);
+			wrap.SetWrapWidth(MAX_TEXT_WIDTH);
+			wrap.Wrap(plugin["description"]);
+			wrap.Draw(top, medium);
 		}
-		pluginlistFile.close();
-  	}
+	}
 }
+
 
 
 
