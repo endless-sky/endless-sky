@@ -366,7 +366,7 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 					out << Format::CargoString(tons, Format::LowerCase(it.first->PluralName())) << "\n";
 				}
 				else
-					out << it.second << " " << (it.second == 1 ? it.first->DisplayName(): it.first->PluralName()) << "\n";
+					out << it.second << " " << (it.second == 1 ? it.first->DisplayName() : it.first->PluralName()) << "\n";
 			}
 		if(first)
 			out << "This " + target->Noun() + " is not carrying any cargo.\n";
