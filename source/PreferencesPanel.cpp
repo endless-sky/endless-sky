@@ -919,7 +919,7 @@ void PreferencesPanel::DrawInstallAbles()
 
 				WrappedText wrap(font);
 				wrap.SetWrapWidth(MAX_TEXT_WIDTH);
-				wrap.Wrap(url);
+				wrap.Wrap(plugin["description"]);
 				wrap.Draw(top, medium);
 			}
 		}
