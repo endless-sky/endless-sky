@@ -95,6 +95,8 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 		for(auto &it : GameData::Planets())
 			if(it.second.IsValid() && player.HasVisited(*it.second.GetSystem()))
 				outfitter.Add(it.second.Outfitter());
+		// Allow switching key events to fall through to parent. 
+		SetTrapAllEvents(false);
 	}
 }
 
@@ -844,15 +846,15 @@ void OutfitterPanel::ToggleCargo()
 // Only override the ones you need; the default action is to return false.
 bool OutfitterPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(key == 'y' && player.IsDesignPlayer())
-	{
-		GetUI()->Pop(this);
-		GetUI()->Push(otherDesignPanel);
-	}
+	const bool inDesignCenter = player.IsDesignPlayer();
+	// The design panels fall through to allow their parent to switch between them.
+	if(key == 'y' && inDesignCenter)
+		return false;
+	else if((key == 'l' || key == 'd' || key == SDLK_ESCAPE
+			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)))) && inDesignCenter)
+		return false;
 	else
 		return ShopPanel::KeyDown(key, mod, command, isNewPress);
-
-	return true;
 }
 
 

@@ -99,10 +99,14 @@ ShipyardPanel::ShipyardPanel(PlayerInfo &player)
 	if(player.GetPlanet())
 		shipyard = player.GetPlanet()->Shipyard();
 	if(player.IsDesignPlayer())
+	{
 		// Add all ships sold by shipyards of visited planets.
 		for(const auto &it : GameData::Planets())
 			if(it.second.IsValid() && player.HasVisited(*it.second.GetSystem()))
 				shipyard.Add(it.second.Shipyard());
+		// Allow switching key events to fall through to parent.
+		SetTrapAllEvents(false);
+	}
 }
 
 
@@ -382,29 +386,49 @@ bool ShipyardPanel::CanSellMultiple() const
 // Only override the ones you need; the default action is to return false.
 bool ShipyardPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(key == 'c' && !player.IsDesignPlayer())
+	const Panel *oldPanel = selectedPanel;
+	const bool inDesignCenter = player.IsDesignPlayer();
+	const bool hasDesignCenter = designPlayer.IsDesignPlayer();
+
+	if(key == 'c' && !inDesignCenter)
 	{
-		// Only initialize the design player once per shipyard.
-		if(!designPlayer.IsDesignPlayer())
+		// Initialize the design center, once per shipyard.
+		if(!hasDesignCenter)
+		{
 			designPlayer.NewDesignPlayer(player);
-		shipyardDesignPanel.reset(new ShipyardPanel(designPlayer);
-		outfitterDesignPanel.reset(new OutfitterPanel(designPlayer);
-		selectedPanel = shipyardDesignPanel.get();
-		// The design screens are effectively subpanels of
-		// the ShipyardPanel so don't pop the shipyard ui.
-		GetUI()->Push(shipyardDesignPanel);
+			designShipyardPanel.reset(new ShipyardPanel(designPlayer));
+			designOutfitterPanel.reset(new OutfitterPanel(designPlayer));
+		}
+		// Leave the shipyard ui on the stack to handle design center panel switching.
+		selectedPanel = designShipyardPanel.get();
+		GetUI()->Push(designShipyardPanel);
 	}
-	// The design panels fall through to allow shipyard to switch between them.
-	else if(key == 'o' && player.IsDesignPlayer())
+	// The design panels fall through to allow their parent to switch between them.
+	else if(key == 'o' && inDesignCenter)
 		return false;
-	else if(key == 'o' && designPlayer.IsDesignPlayer() && selectedPanel == shipyardDesignPanel.get())
+	else if(key == 'o' && hasDesignCenter && selectedPanel)
 	{
-		selectedPanel = outfitterDesignPanel.get();
-		GetUI()->Pop(shipyardDesignPanel);
-		GetUI()->Push(outfitterDesignPanel);
+		selectedPanel = designOutfitterPanel.get();
+		GetUI()->Push(designOutfitterPanel);
 	}
+	else if(key == 'y' && hasDesignCenter && selectedPanel)
+	{
+		selectedPanel = designShipyardPanel.get();
+		GetUI()->Push(designShipyardPanel);
+	}
+	else if((key == 'l' || key == 'd' || key == SDLK_ESCAPE
+			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)))) && inDesignCenter)
+		return false;
+	else if((key == 'l' || key == 'd' || key == SDLK_ESCAPE
+			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)))) && selectedPanel)
+		selectedPanel = nullptr;
 	else
 		return ShopPanel::KeyDown(key, mod, command, isNewPress);
+
+	// If we are here, it is because we switched design center panels,
+	// so, we need to pop the old selected panel:
+	if(oldPanel)
+		GetUI()->Pop(oldPanel);
 
 	return true;
 }
