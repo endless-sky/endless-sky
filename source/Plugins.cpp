@@ -24,7 +24,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cassert>
 #include <map>
-#include <iostream>
 #include <string>
 
 using namespace std;
@@ -146,22 +145,12 @@ void Plugins::TogglePlugin(const string &name)
 
 void Plugins::Install(string url, string name)
 {
-	int error = Git::Clone(url.c_str(), (Files::Plugins() + name).c_str());
-	std::cout<<"You tried to install the plugin: "<<url<<" , ";
-	if(error == 0)
-		std::cout<<"and it succeeded!"<<std::endl;
-	else
-		std::cout<<"but it failed!"<<std::endl;
+	Git::Clone(url.c_str(), (Files::Plugins() + name).c_str());
 }
 
 
-
-void Plugins::Update(string name)
+void Plugins::Update(string url, string name)
 {
-	int error = Git::Pull((Files::Plugins() + name).c_str());
-	std::cout<<"You tried to update the plugin: "<<name<<" , ";
-	if(error == 0)
-		std::cout<<"and it succeeded!"<<std::endl;
-	else
-		std::cout<<"but it failed!"<<std::endl;
+	Files::DeleteDir((Files::Plugins() + name).c_str());
+	Git::Clone(url.c_str(), (Files::Plugins() + name).c_str());
 }

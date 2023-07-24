@@ -493,6 +493,56 @@ void Files::Delete(const string &filePath)
 
 
 
+bool Files::DeleteDir(const string path)
+{
+	DIR* dir = opendir(path.c_str());
+    if (!dir) {
+        std::cerr << "Error opening directory.\n";
+        return false;
+    }
+
+    struct dirent* entry;
+    while ((entry = readdir(dir)) != nullptr) {
+        if (strcmp(entry->d_name, ".") != 0 && strcmp(entry->d_name, "..") != 0) {
+            std::string filePath = path + "/" + entry->d_name;
+
+            struct stat fileStat;
+            if (lstat(filePath.c_str(), &fileStat) != 0) {
+                std::cerr << "Error getting file/directory stat.\n";
+                closedir(dir);
+                return false;
+            }
+
+            if (S_ISDIR(fileStat.st_mode)) {
+                // Recursively delete subdirectories.
+                if (!DeleteDir(filePath)) {
+                    closedir(dir);
+                    return false;
+                }
+            } else {
+                // Delete files within the directory.
+                if (unlink(filePath.c_str()) != 0) {
+                    std::cerr << "Error deleting file: " << filePath << "\n";
+                    closedir(dir);
+                    return false;
+                }
+            }
+        }
+    }
+
+    closedir(dir);
+
+    // Retry removing the directory after emptying it.
+    if (rmdir(path.c_str()) != 0) {
+        std::cerr << "Error removing directory: " << path << "\n";
+        return false;
+    }
+
+    return true;
+}
+
+
+
 // Get the filename from a path.
 string Files::Name(const string &path)
 {
