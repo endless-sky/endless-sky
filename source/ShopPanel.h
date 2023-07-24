@@ -41,29 +41,48 @@ class Ship;
 // outfitter panel (e.g. the sidebar with the ships you own).
 class ShopPanel : public Panel {
 public:
-	explicit ShopPanel(PlayerInfo &player, bool isOutfitter);
+	ShopPanel(PlayerInfo &player, bool isOutfitter);
 
 	virtual void Step() override;
 	virtual void Draw() override;
 
-	class ShipSelectionState {
+	class ShipSelection {
 	public:
-		explicit ShipSelectionState(Ship *);
+		explicit ShipSelection(PlayerInfo &player);
 
-	public:
+		void DrawDragged() const;
+
+		bool Has(Ship *ship) const;
+		bool HasMultiple() const;
+		const Ship *PlayerShip() const;
+		const std::set<Ship *> &PlayerShips() const;
+
+		void Set(Ship *ship);
+		void SelectBetween(PlayerInfo &player, Ship *ship);
+		void Remove(Ship *ship);
+		// If modifying group and entire group is already selected, deselect them instead.
+		void SelectGroup(PlayerInfo &player, int group, bool modifyGroup);
+
+		const Ship *DragShip() const;
+		void DragClear();
+		void DragStart(Ship *ship, double x, double y);
+		const Point &DragUpdate(double dx, double dy);
+
+
+	private:
 		// The player-owned ship that was first selected in the sidebar (or most recently purchased).
 		Ship *playerShip = nullptr;
+		// The group of all selected, player-owned ships.
+		std::set<Ship *> playerShips;
 		// The player-owned ship being reordered.
 		Ship *dragShip = nullptr;
 		bool isDraggingShip = false;
 		Point dragPoint;
-		// The group of all selected, player-owned ships.
-		std::set<Ship *> playerShips;
 	};
 
 	// Allow coordination between design center panels.
-	const ShipSelectionState &GetShipSelection() const;
-	void SetShipSelection(const ShipSelectionState &selectedShips);
+	const ShipSelection &GetShipSelection() const;
+	void SetShipSelection(const ShipSelection &selectedShips);
 
 
 protected:
@@ -172,7 +191,7 @@ protected:
 	int day;
 	const Planet *planet = nullptr;
 
-	ShipSelectionState shipSelection;
+	ShipSelection shipSelection;
 
 	// The currently selected Ship, for the ShipyardPanel.
 	const Ship *selectedShip = nullptr;
