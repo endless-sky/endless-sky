@@ -57,23 +57,17 @@ bool ShipSelection::HasMany() const
 
 Ship *ShipSelection::Find(int count)
 {
+	if(!selectedShip)
+	{
+		Set(player.Flagship());
+		return nullptr;
+	}
+
 	// Find the currently selected ship in the list.
 	vector<shared_ptr<Ship>>::const_iterator it = player.Ships().begin();
 	for( ; it != player.Ships().end(); ++it)
 		if(it->get() == selectedShip)
 			break;
-
-	// Bail out if the selected ship has somehow gone missing.
-	if(it == player.Ships().end())
-	{
-		allSelected.clear();
-		selectedShip = player.Flagship();
-		if(selectedShip)
-			allSelected.insert(selectedShip);
-
-		return nullptr;
-	}
-
 
 	const Planet *here = player.GetPlanet();
 	// When counting, wrap the ship list so you can go around the ends.
@@ -186,7 +180,7 @@ void ShipSelection::SetGroup(const int group) const
 void ShipSelection::SelectGroup(const int group, bool modifySelection)
 {
 	const Planet *here = player.GetPlanet();
-	set<Ship *> groupShips = player.GetGroup(group);
+	const set<Ship *> groupShips = player.GetGroup(group);
 
 	if(modifySelection)
 		for(Ship *ship : groupShips)
