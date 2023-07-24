@@ -735,7 +735,7 @@ mission "Unfettered Cargo Interception West"
 	job
 	repeat
 	name `Find and bring the materials back`
-	description `Find the <npc> that has stolen the materials needed for the development of the urban areas on the western side of pirate space, and bring those materials back to <destination> for <payment>. You will need to scan the cargo of ships to figure out which one has the materials.`
+	description `Find the <npc> that has stolen urban materials, in western pirate space, and bring them back to <destination> for <payment>. You may need to scan the cargo of ships to figure out which one has the materials.`
 	source
 		attributes "unfettered"
 	destination
@@ -765,7 +765,7 @@ mission "Unfettered Cargo Interception East"
 	job
 	repeat
 	name `Find and bring the materials back`
-	description `Find the <npc> that has stolen the materials needed for the development of the urban areas on the eastern side of pirate space, and bring those materials back to <destination> for <payment>. You will need to scan the cargo of ships to figure out which one has the materials.`
+	description `Find the <npc> that has stolen urban materials, in eastern pirate space, and bring them back to <destination> for <payment>. You may need to scan the cargo of ships to figure out which one has the materials.`
 	source
 		attributes "unfettered"
 	destination
