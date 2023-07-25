@@ -142,22 +142,22 @@ void ShopPanel::Draw()
 		wrap.Draw(anchor - size + Point(PAD, PAD), textColor);
 	}
 
-	if(dragShip && isDraggingShip && dragShip->GetSprite())
+	if(isDraggingShip)
 	{
-		const Sprite *sprite = dragShip->GetSprite();
-		float scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
-		if(Preferences::Has(SHIP_OUTLINES))
-		{
-			static const Color selected(.8f, 1.f);
-			Point size(sprite->Width() * scale, sprite->Height() * scale);
-			OutlineShader::Draw(sprite, dragPoint, size, selected);
-		}
-		else
-		{
-			int swizzle = dragShip->CustomSwizzle() >= 0
-				? dragShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
-			SpriteShader::Draw(sprite, dragPoint, scale, swizzle);
-		}
+		Point point = dragPoint;
+		const double rightSide = point.X() + ICON_TILE * ICON_COLS;
+
+		for(const shared_ptr<Ship> &ship : player.Ships())
+			if(shipSelection.Has(&*ship))
+			{
+				if(point.X() > rightSide)
+				{
+					point.X() -= ICON_TILE * ICON_COLS;
+					point.Y() += ICON_TILE;
+				}
+				DrawPlayerShip(*ship, point, true);
+				point.X() += ICON_TILE;
+			}
 	}
 
 	if(sameSelectedTopY)
@@ -214,8 +214,6 @@ void ShopPanel::DrawShipsSidebar()
 	Point mouse = GetUI()->GetMouse();
 	warningType.clear();
 
-	static const Color selected(.8f, 1.f);
-	static const Color unselected(.4f, 1.f);
 	for(const shared_ptr<Ship> &ship : player.Ships())
 	{
 		// Skip any ships that are "absent" for whatever reason.
@@ -236,21 +234,7 @@ void ShopPanel::DrawShipsSidebar()
 		if(isSelected && ShouldHighlight(ship.get()))
 			SpriteShader::Draw(background, point);
 
-		const Sprite *sprite = ship->GetSprite();
-		if(sprite)
-		{
-			float scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
-			if(Preferences::Has(SHIP_OUTLINES))
-			{
-				Point size(sprite->Width() * scale, sprite->Height() * scale);
-				OutlineShader::Draw(sprite, point, size, isSelected ? selected : unselected);
-			}
-			else
-			{
-				int swizzle = ship->CustomSwizzle() >= 0 ? ship->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
-				SpriteShader::Draw(sprite, point, scale, swizzle);
-			}
-		}
+		DrawPlayerShip(*ship, point, isSelected);
 
 		zones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
 
@@ -542,6 +526,29 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 
 
 
+void ShopPanel::DrawPlayerShip(const Ship &ship, const Point &point, const bool isSelected)
+{
+	static const Color selected(.8f, 1.f);
+	static const Color unselected(.4f, 1.f);
+	const Sprite *sprite = ship.GetSprite();
+	if(sprite)
+	{
+		const float scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
+		if(Preferences::Has(SHIP_OUTLINES))
+		{
+			const Point size(sprite->Width() * scale, sprite->Height() * scale);
+			OutlineShader::Draw(sprite, point, size, isSelected ? selected : unselected);
+		}
+		else
+		{
+			const int swizzle = ship.CustomSwizzle() >= 0 ? ship.CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
+			SpriteShader::Draw(sprite, point, scale, swizzle);
+		}
+	}
+}
+
+
+
 void ShopPanel::CheckForMissions(Mission::Location location)
 {
 	if(!GetUI()->IsTop(this))
@@ -800,7 +807,8 @@ bool ShopPanel::Click(int x, int y, int /* clicks */)
 					if(ship.get() == zone.GetShip())
 					{
 						dragShip = ship.get();
-						dragPoint.Set(x, y);
+						dragPoint = zone.Center();
+						dragSelectOffset = clickPoint - zone.Center();
 						SideSelect(dragShip);
 						return true;
 					}
@@ -854,6 +862,23 @@ bool ShopPanel::Drag(double dx, double dy)
 	{
 		isDraggingShip = true;
 		dragPoint += Point(dx, dy);
+	}
+	else
+	{
+		scrollDetailsIntoView = false;
+		DoScroll(dy);
+	}
+
+	return true;
+}
+
+
+
+bool ShopPanel::Release(int x, int y)
+{
+	if(isDraggingShip)
+	{
+		dragPoint += dragSelectOffset;
 		for(const Zone &zone : zones)
 			if(zone.Contains(dragPoint))
 				if(zone.GetShip() && zone.GetShip()->IsYours() && zone.GetShip() != dragShip)
@@ -872,19 +897,7 @@ bool ShopPanel::Drag(double dx, double dy)
 						player.ReorderShip(dragIndex, dropIndex);
 				}
 	}
-	else
-	{
-		scrollDetailsIntoView = false;
-		DoScroll(dy);
-	}
 
-	return true;
-}
-
-
-
-bool ShopPanel::Release(int x, int y)
-{
 	dragShip = nullptr;
 	isDraggingShip = false;
 	return true;
