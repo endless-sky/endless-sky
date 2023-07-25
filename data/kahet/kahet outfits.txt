@@ -44,7 +44,7 @@ outfit "Ka'het Nullifier"
 		"turn" 73
 		"shield damage" 120
 		"hull damage" 40
-		"energy damage" 80
+		"energy damage" 3200
 		"ion damage" 220
 		"scrambling damage" 10
 		"hit force" 50
