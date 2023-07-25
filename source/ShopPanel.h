@@ -73,13 +73,14 @@ protected:
 protected:
 	void DrawShipsSidebar();
 	void DrawDetailsSidebar();
-	void DrawButtons();
+	void DrawButtons() const;
 	void DrawMain();
 
-	void DrawShip(const Ship &ship, const Point &center, bool isSelected);
-	void DrawPlayerShip(const Ship &ship, const Point &center, bool isSelected);
+	void DrawShip(const Ship &ship, const Point &center, bool isSelected) const;
+	void DrawPlayerShip(const Ship &ship, const Point &center, bool isSelected) const;
+	void DrawDragShips() const;
 
-	void CheckForMissions(Mission::Location location);
+	void CheckForMissions(Mission::Location location) const;
 
 	// These are for the individual shop panels to override.
 	virtual int TileSize() const = 0;
@@ -153,11 +154,9 @@ protected:
 	const Planet *planet = nullptr;
 	ShipSelection shipSelection;
 
-	// The player-owned ship being reordered.
-	Ship *dragShip = nullptr;
-	bool isDraggingShip = false;
+	bool isDraggingShips = false;
+	Point dragStart;
 	Point dragPoint;
-	Point dragSelectOffset;
 
 	// The currently selected Ship, for the ShipyardPanel.
 	const Ship *selectedShip = nullptr;
@@ -198,7 +197,7 @@ private:
 	bool SetScrollToTop();
 	bool SetScrollToBottom();
 	void SideSelect(int count);
-	void SideSelect(Ship *ship);
+	bool SideSelect(Ship *ship);
 	void MainLeft();
 	void MainRight();
 	void MainUp();

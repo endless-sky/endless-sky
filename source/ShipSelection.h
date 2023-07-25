@@ -33,8 +33,8 @@ public:
 
 	// Return ship count away from current selection.
 	Ship *Find(int count);
-	// Select based on ship and key modifiers.
-	void Select(Ship *ship);
+	// Select based on ship and key modifiers, returns true if drag starting.
+	bool Select(Ship *ship);
 	void Set(Ship *ship);
 	// Clear selection and select first available ship.
 	void Reset();

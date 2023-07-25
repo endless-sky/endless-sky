@@ -398,6 +398,7 @@ void ShipyardPanel::BuyShip(const string &name)
 	}
 
 	shipSelection.Set(&*player.Ships().back());
+	isDraggingShips = false;
 }
 
 
@@ -406,6 +407,7 @@ void ShipyardPanel::SellShip()
 {
 	for(Ship *ship : shipSelection.AllSelected())
 		player.SellShip(ship);
-	shipSelection.Reset();
 	player.UpdateCargoCapacities();
+	shipSelection.Reset();
+	isDraggingShips = false;
 }

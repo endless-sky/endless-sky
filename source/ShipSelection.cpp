@@ -101,7 +101,7 @@ Ship *ShipSelection::Find(int count)
 
 
 
-void ShipSelection::Select(Ship *ship)
+bool ShipSelection::Select(Ship *ship)
 {
 	const Uint16 mod = SDL_GetModState();
 	const bool shift = mod & KMOD_SHIFT;
@@ -142,18 +142,23 @@ void ShipSelection::Select(Ship *ship)
 				allSelected.insert(other.get());
 		}
 	}
-	else if(!control)
-		allSelected.clear();
 	// If control is down, try and deselect the ship (otherwise we're selecting it).
-	else if(allSelected.erase(ship))
+	else if(control)
 	{
-		if(selectedShip == ship)
-			selectedShip = allSelected.empty() ? nullptr : *allSelected.begin();
-		return;
+		if(allSelected.erase(ship))
+		{
+			if(selectedShip == ship)
+				selectedShip = allSelected.empty() ? nullptr : *allSelected.begin();
+			return false;
+		}
 	}
+	// Don't clear selection if we click on it.
+	else if(!Has(ship))
+		allSelected.clear();
 
 	selectedShip = ship;
 	allSelected.insert(ship);
+	return !shift && !control;
 }
 
 

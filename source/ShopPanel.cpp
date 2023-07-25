@@ -142,23 +142,8 @@ void ShopPanel::Draw()
 		wrap.Draw(anchor - size + Point(PAD, PAD), textColor);
 	}
 
-	if(isDraggingShip)
-	{
-		Point point = dragPoint;
-		const double rightSide = point.X() + ICON_TILE * ICON_COLS - ICON_TILE / 2;
-
-		for(const shared_ptr<Ship> &ship : player.Ships())
-			if(shipSelection.Has(&*ship))
-			{
-				if(point.X() > rightSide)
-				{
-					point.X() -= ICON_TILE * ICON_COLS;
-					point.Y() += ICON_TILE;
-				}
-				DrawPlayerShip(*ship, point, true);
-				point.X() += ICON_TILE;
-			}
-	}
+	if(isDraggingShips)
+		DrawDragShips();
 
 	if(sameSelectedTopY)
 	{
@@ -226,8 +211,25 @@ void ShopPanel::DrawShipsSidebar()
 			point.Y() += ICON_TILE;
 		}
 
-		bool isSelected = shipSelection.Has(ship.get());
-		const Sprite *background = SpriteSet::Get(isSelected ? "ui/icon selected" : "ui/icon unselected");
+		zones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
+
+		const bool isHovered = zones.back().Contains(mouse);
+		const bool isSelected = shipSelection.Has(ship.get());
+		const Sprite *background;
+		if(isHovered)
+		{
+			if(isSelected)
+				background = SpriteSet::Get("ui/icon selected highlighted");
+			else
+				background = SpriteSet::Get("ui/icon unselected highlighted");
+		}
+		else
+		{
+			if(isSelected)
+				background = SpriteSet::Get("ui/icon selected");
+			else
+				background = SpriteSet::Get("ui/icon unselected");
+		}
 		SpriteShader::Draw(background, point);
 		// If this is one of the selected ships, check if the currently hovered
 		// button (if any) applies to it. If so, brighten the background.
@@ -236,15 +238,13 @@ void ShopPanel::DrawShipsSidebar()
 
 		DrawPlayerShip(*ship, point, isSelected);
 
-		zones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
-
 		const auto checkIt = flightChecks.find(ship);
 		if(checkIt != flightChecks.end())
 		{
 			const string &check = (*checkIt).second.front();
 			const Sprite *icon = SpriteSet::Get(check.back() == '!' ? "ui/error" : "ui/warning");
 			SpriteShader::Draw(icon, point + .5 * Point(ICON_TILE - icon->Width(), ICON_TILE - icon->Height()));
-			if(zones.back().Contains(mouse))
+			if(isHovered)
 			{
 				warningType = check;
 				warningPoint = zones.back().TopLeft();
@@ -318,7 +318,7 @@ void ShopPanel::DrawDetailsSidebar()
 
 
 
-void ShopPanel::DrawButtons()
+void ShopPanel::DrawButtons() const
 {
 	// The last 70 pixels on the end of the side panel are for the buttons:
 	Point buttonSize(SIDEBAR_WIDTH, BUTTON_HEIGHT);
@@ -497,7 +497,7 @@ void ShopPanel::DrawMain()
 
 
 
-void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
+void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected) const
 {
 	const Sprite *back = SpriteSet::Get(
 		isSelected ? "ui/shipyard selected" : "ui/shipyard unselected");
@@ -526,7 +526,7 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 
 
 
-void ShopPanel::DrawPlayerShip(const Ship &ship, const Point &point, const bool isSelected)
+void ShopPanel::DrawPlayerShip(const Ship &ship, const Point &point, const bool isSelected) const
 {
 	static const Color selected(.8f, 1.f);
 	static const Color unselected(.4f, 1.f);
@@ -549,7 +549,45 @@ void ShopPanel::DrawPlayerShip(const Ship &ship, const Point &point, const bool 
 
 
 
-void ShopPanel::CheckForMissions(Mission::Location location)
+// Draw only dragged ships, but in same formation as displayed in side pane and offset by drag.
+void ShopPanel::DrawDragShips() const
+{
+	Point point(
+		Screen::Right() - SIDEBAR_WIDTH / 2 - 93,
+		Screen::Top() + SIDEBAR_WIDTH / 2 - sidebarScroll + 40 - 93);
+
+	const Planet *here = player.GetPlanet();
+	int shipsHere = 0;
+	for(const shared_ptr<Ship> &ship : player.Ships())
+		shipsHere += CanShowInSidebar(*ship, here);
+	if(shipsHere < 4)
+		point.X() += .5 * ICON_TILE * (4 - shipsHere);
+
+	point += dragPoint - dragStart;
+	const double rightSide = Screen::Right() + dragPoint.X() - dragStart.X();
+
+	for(const shared_ptr<Ship> &ship : player.Ships())
+	{
+		// Skip any ships that are "absent" for whatever reason.
+		if(!CanShowInSidebar(*ship, here))
+			continue;
+
+		if(point.X() > rightSide)
+		{
+			point.X() -= ICON_TILE * ICON_COLS;
+			point.Y() += ICON_TILE;
+		}
+
+		if (shipSelection.Has(ship.get()))
+			DrawPlayerShip(*ship, point, true);
+
+		point.X() += ICON_TILE;
+	}
+}
+
+
+
+void ShopPanel::CheckForMissions(Mission::Location location) const
 {
 	if(!GetUI()->IsTop(this))
 		return;
@@ -728,7 +766,8 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 bool ShopPanel::Click(int x, int y, int /* clicks */)
 {
-	dragShip = nullptr;
+	isDraggingShips = false;
+
 	// Handle clicks on the buttons.
 	char button = CheckButton(x, y);
 	if(button)
@@ -806,10 +845,12 @@ bool ShopPanel::Click(int x, int y, int /* clicks */)
 				for(const shared_ptr<Ship> &ship : player.Ships())
 					if(ship.get() == zone.GetShip())
 					{
-						dragShip = ship.get();
-						dragPoint = zone.Center();
-						dragSelectOffset = clickPoint - zone.Center();
-						SideSelect(dragShip);
+						if (SideSelect(ship.get()))
+						{
+							dragStart = clickPoint;
+							dragPoint = clickPoint;
+							isDraggingShips = true;
+						}
 						return true;
 					}
 
@@ -858,11 +899,8 @@ bool ShopPanel::Hover(int x, int y)
 
 bool ShopPanel::Drag(double dx, double dy)
 {
-	if(dragShip)
-	{
-		isDraggingShip = true;
+	if(isDraggingShips)
 		dragPoint += Point(dx, dy);
-	}
 	else
 	{
 		scrollDetailsIntoView = false;
@@ -876,30 +914,45 @@ bool ShopPanel::Drag(double dx, double dy)
 
 bool ShopPanel::Release(int x, int y)
 {
-	if(isDraggingShip)
+	if(!isDraggingShips)
+		return true;
+
+	isDraggingShips = false;
+
+	for(const Zone &zone : zones)
 	{
-		dragPoint += dragSelectOffset;
-		for(const Zone &zone : zones)
-			if(zone.Contains(dragPoint))
-				if(zone.GetShip() && zone.GetShip()->IsYours() && zone.GetShip() != dragShip)
-				{
-					int dragIndex = -1;
-					int dropIndex = -1;
-					for(unsigned i = 0; i < player.Ships().size(); ++i)
-					{
-						const Ship *ship = &*player.Ships()[i];
-						if(ship == dragShip)
-							dragIndex = i;
-						if(ship == zone.GetShip())
-							dropIndex = i;
-					}
-					if(dragIndex >= 0 && dropIndex >= 0)
-						player.ReorderShip(dragIndex, dropIndex);
-				}
+		if(!zone.Contains(dragPoint))
+			continue;
+
+		// Move selected ships to left of ship that was dropped on.
+		if(!zone.Contains(dragStart) && zone.GetShip() && zone.GetShip()->IsYours())
+		{
+			vector<shared_ptr<Ship>> newOrder;
+			vector<shared_ptr<Ship>>::const_iterator ship = player.Ships().begin();
+
+			// Add non-selected ships up to drop point.
+			for( ; &**ship != zone.GetShip() && ship != player.Ships().end(); ++ship)
+				if(!shipSelection.Has(&**ship))
+					newOrder.push_back(*ship);
+
+			if(ship == player.Ships().end())
+				return true;
+
+			// Add selected ships in same order as in player list.
+			for(auto &it : player.Ships())
+				if(shipSelection.Has(&*it))
+					newOrder.push_back(it);
+
+			// Add non-selected ships past drop point.
+			for( ; ship != player.Ships().end(); ++ship)
+				if(!shipSelection.Has(&**ship))
+					newOrder.push_back(*ship);
+
+			player.SetShipOrder(newOrder);
+		}
+		break;
 	}
 
-	dragShip = nullptr;
-	isDraggingShip = false;
 	return true;
 }
 
@@ -1034,10 +1087,10 @@ void ShopPanel::SideSelect(int count)
 
 
 
-void ShopPanel::SideSelect(Ship *ship)
+bool ShopPanel::SideSelect(Ship *ship)
 {
-	shipSelection.Select(ship);
 	sameSelectedTopY = true;
+	return shipSelection.Select(ship);
 }
 
 
