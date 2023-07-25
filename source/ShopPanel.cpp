@@ -107,26 +107,28 @@ void ShopPanel::Step()
 
 void ShopPanel::Draw()
 {
-	const double oldSelectedTopY = selectedTopY;
-
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	// Clear the list of clickable zones.
 	zones.clear();
 	categoryZones.clear();
 
+	const double oldSelectedTopY = selectedTopY;
 	DrawMain();
-
-	// If the selected item on the main pane was drawn in a different location, scroll
-	// such that it's now in the same location and redraw.
+	// If the selected item on the main pane was drawn on a different line,
+	// scroll such that it's now on the same line and redraw.
 	if(sameSelectedTopY)
 	{
 		sameSelectedTopY = false;
 		if(selectedTopY != oldSelectedTopY)
 		{
-			mainScroll = max(0., min(maxMainScroll, mainScroll + selectedTopY - oldSelectedTopY));
-			Draw();
-			return;
+			const double newScroll = max(0., min(maxMainScroll, mainScroll + selectedTopY - oldSelectedTopY));
+			if(mainScroll != newScroll)
+			{
+				mainScroll = newScroll;
+				Draw();
+				return;
+			}
 		}
 	}
 
