@@ -165,7 +165,7 @@ void ShipSelection::Reset()
 			newShip = &*ship;
 			break;
 		}
-	allSelected.insert(newShip);
+	Set(newShip);
 }
 
 
