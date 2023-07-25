@@ -76,7 +76,7 @@ ship "Marauder Firebird" "Marauder Firebird (Bars)"
 		outfits
 			"Gold Bars" 15
 
-# Ship of She of the Void, Shadow of Mintaka, leader of the Marauders.
+# Ship of She of the Void, Shadow of Mintaka, leader of Midas.
 ship "Antlion"
 	sprite "ship/hai antlion"
 	thumbnail "thumbnail/hai antlion"

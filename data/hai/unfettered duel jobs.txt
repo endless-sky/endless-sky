@@ -564,8 +564,8 @@ mission "Unfettered: Bring Legendary Combo"
 	on offer
 		clear "unfettered challenger defeated"
 		conversation
-			`As you land, the captain you just defeated comes to find you, and quietly speaks, "How did you acquire such weapons? We heard rumors of it, but were not sure what to believe. It seems that the stories are true, then; there are indeed weapons capable of disrupting any shields... And what a brilliant idea to combine those with weapons capable of quickly cutting trough hull."`
-			`	He looks around, maybe searching for a competitor that could hear about this. "I want them. Name your price, whatever it may be, and I shall meet it! Such a weapon combination would do wonders in the raids, and would allow me to not hurt my brethren. Truly, this is for a good cause!"`
+			`As you land, a captain you defeated recently comes to find you close to your ship, and quietly speaks, pointing at your weapons. "How did you acquire these? We heard rumors of it, but were not sure what to believe. It seems that the stories are true, then; there are indeed weapons capable of disrupting any shields... And what a brilliant idea to combine those with weapons capable of quickly cutting trough hull."`
+			`	He looks around, probably making sure there are no competitors that could hear this. "I want them. Name your price, whatever it may be, and I shall meet it! Such a weapon combination would do wonders in the raids, and would allow me to not hurt my brethren. Truly, this is for a good cause!"`
 			choice
 				`	"I want a Lightning Bug in exchange."`
 				`	"3 million credits should do."`
