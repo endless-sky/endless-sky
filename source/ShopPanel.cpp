@@ -115,10 +115,24 @@ void ShopPanel::Draw()
 	zones.clear();
 	categoryZones.clear();
 
+	DrawMain();
+
+	// If the selected item on the main pane was drawn in a different location, scroll
+	// such that it's now in the same location and redraw.
+	if(sameSelectedTopY)
+	{
+		sameSelectedTopY = false;
+		if(selectedTopY != oldSelectedTopY)
+		{
+			mainScroll = max(0., min(maxMainScroll, mainScroll + selectedTopY - oldSelectedTopY));
+			Draw();
+			return;
+		}
+	}
+
 	DrawShipsSidebar();
 	DrawDetailsSidebar();
 	DrawButtons();
-	DrawMain();
 	DrawKey();
 
 	shipInfo.DrawTooltips();
@@ -161,16 +175,6 @@ void ShopPanel::Draw()
 		}
 	}
 
-	if(sameSelectedTopY)
-	{
-		sameSelectedTopY = false;
-		if(selectedTopY != oldSelectedTopY)
-		{
-			// Redraw with the same selected top (item in the same place).
-			mainScroll = max(0., min(maxMainScroll, mainScroll + selectedTopY - oldSelectedTopY));
-			Draw();
-		}
-	}
 	mainScroll = min(mainScroll, maxMainScroll);
 }
 
