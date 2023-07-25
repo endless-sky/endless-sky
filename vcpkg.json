@@ -31,7 +31,8 @@
             "wayland"
           ],
           "platform": "linux"
-        }
+        },
+        "libgit2"
       ]
     },
     "flatpak-libs": {
