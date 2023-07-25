@@ -107,8 +107,21 @@ void ShipSelection::Select(Ship *ship)
 	const bool shift = mod & KMOD_SHIFT;
 	const bool control = mod & (KMOD_CTRL | KMOD_GUI);
 
-	// Only select a range if we have both endpoints.
-	if(shift && selectedShip)
+	// Shift click on selection selects everything, unless
+	// eveything was already selected, in which case deselect it.
+	if(shift && Has(ship))
+	{
+		bool changedSelection = false;
+		const Planet *here = player.GetPlanet();
+		for(const shared_ptr<Ship> &other : player.Ships())
+			if(CanShowInSidebar(*other, here))
+				changedSelection |= allSelected.insert(other.get()).second;
+
+		if(!changedSelection)
+			allSelected.clear();
+	}
+	// Only select a range if we have two endpoints.
+	else if(shift && selectedShip)
 	{
 		bool started = false;
 		const Planet *here = player.GetPlanet();
