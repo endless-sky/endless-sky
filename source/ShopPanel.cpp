@@ -706,10 +706,8 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		int group = key - '0';
 		if(mod & (KMOD_CTRL | KMOD_GUI))
 			shipSelection.SetGroup(group);
-		else if(mod & KMOD_SHIFT)
-			shipSelection.SelectGroup(group, true);
 		else
-			shipSelection.SelectGroup(group, false);
+			shipSelection.SelectGroup(group, mod & KMOD_SHIFT);
 	}
 	else if(key == SDLK_TAB)
 		activePane = (activePane == ShopPane::Main ? ShopPane::Sidebar : ShopPane::Main);
