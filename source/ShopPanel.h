@@ -77,7 +77,6 @@ protected:
 	void DrawMain();
 
 	void DrawShip(const Ship &ship, const Point &center, bool isSelected);
-	void DrawPlayerShip(const Ship &ship, const Point &center, bool isSelected);
 
 	void CheckForMissions(Mission::Location location);
 
@@ -157,7 +156,6 @@ protected:
 	Ship *dragShip = nullptr;
 	bool isDraggingShip = false;
 	Point dragPoint;
-	Point dragSelectOffset;
 
 	// The currently selected Ship, for the ShipyardPanel.
 	const Ship *selectedShip = nullptr;
