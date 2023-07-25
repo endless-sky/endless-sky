@@ -24,9 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 namespace {
 	bool initialized = false;
-	const char *fetch_url;
-	const char *fetch_ref;
-};
+}
 
 
 
