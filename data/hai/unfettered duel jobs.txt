@@ -163,18 +163,17 @@ mission "Unfettered: Remove The Challengers"
 
 phrase "unfettered challenger defeated"
 	word
-		`You receive a message from the <npc>`
-		`The captain of the <npc> hails you`
-		`Now that they are disabled, the <npc> sends you a hail`
-		# note: if this is used in boarding missions, tweak it a bit to say now that they are boarded
+		`You receive a message from the disabled challenger ship`
+		`The captain of the ship you just disabled hails you`
+		`Now that they are disabled, the challenging ship sends you a hail`
 	word
 		`: ${unfettered challenger defeat message}`
 
 phrase "unfettered challenger boarded"
 	word
-		`You receive a message from the <npc>`
-		`The captain of the <npc> hails you`
-		`Now that you board them, the <npc> sends you a hail`
+		`You receive a message from the ship that challenged you in space`
+		`The captain of the challenger ship hails you once boarded`
+		`Now that you board them, the challenged ship sends you a hail`
 	word
 		`: ${unfettered challenger defeat message}`
 
@@ -214,7 +213,6 @@ mission "Unfettered Challenge [0]"
 	repeat
 	substitutions
 		<payment> "200 thousand credits"
-		<npc> "<npc>"
 	name `Defeat a young Unfettered captain`
 	description `A young Unfettered captain wants to challenge you into a duel, provided you are not overwhelmingly strong. Disable his ship for <payment>.`
 	source
@@ -243,7 +241,6 @@ mission "Unfettered Challenge [1A]"
 	repeat
 	substitutions
 		<payment> "500 thousand credits"
-		<npc> "<npc>"
 	name `Defeat an escorted Unfettered captain`
 	description `An Unfettered captain wants to challenge you into a duel with his escort, provided you are not overwhelmingly strong. Disable his ships for <payment>.`
 	source
@@ -272,7 +269,6 @@ mission "Unfettered Challenge [1B]"
 	repeat
 	substitutions
 		<payment> "500 thousand credits"
-		<npc> "<npc>"
 	name `Defeat an Unfettered captain`
 	description `An Unfettered captain wants to challenge you into a duel, provided you are not overwhelmingly strong. Disable his ship for <payment>.`
 	source
@@ -301,7 +297,6 @@ mission "Unfettered Challenge [2]"
 	repeat
 	substitutions
 		<payment> "1 million credits"
-		<npc> "<npc>"
 	name `Defeat an old Unfettered captain`
 	description `An experienced Unfettered captain wants to challenge you into a duel with his escort, provided you are not overwhelmingly strong. Disable his ships for <payment>.`
 	source
@@ -337,7 +332,6 @@ mission "Unfettered Space Challenge Small"
 	description `An Unfettered captain has offered you a payment of <payment> for beating them in battle, land on <destination> to collect it.`
 	substitutions
 		<payment> "200 thousand credits"
-		<npc> "<npc>"
 		"<boarding message>" " Do you want to accept the payment offer or plunder the ship? Keep in mind that you are in no way allowed to capture or destroy the ship."
 	source
 		government "Hai (Unfettered Challenger)"
@@ -356,7 +350,6 @@ mission "Unfettered Space Challenge Big"
 	description "An Unfettered captain has offered you a payment of <payment> for beating them in battle, land on <destination> to collect it."
 	substitutions
 		<payment> "500 thousand credits"
-		<npc> "<npc>"
 		"<boarding message>" " Do you want to accept the payment offer or plunder the ship? Keep in mind that you are in no way allowed to capture or destroy the ship."
 	source
 		government "Hai (Unfettered Challenger)"
