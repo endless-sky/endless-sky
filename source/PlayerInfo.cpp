@@ -3664,12 +3664,9 @@ void PlayerInfo::RegisterDerivedConditions()
 	visitedSystemProvider.SetHasFunction(visitedSystemFun);
 
 	auto &&pluginProvider = conditions.GetProviderPrefixed("installed plugin: ");
-	auto pluginFun = [this](const string &name) -> bool
+	auto pluginFun = [](const string &name) -> bool
 	{
-		const auto &it = Plugins::Get().Find(name.substr(strlen("installed plugin: ")));
-		if(!it)
-			return 0;
-		return 1;
+		return Plugins::Get().Find(name.substr(strlen("installed plugin: ")));
 	};
 	pluginProvider.SetHasFunction(pluginFun);
 	pluginProvider.SetGetFunction(pluginFun);
