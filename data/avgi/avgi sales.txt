@@ -1,7 +1,7 @@
 shipyard "Avgi Civilian Basics"
 	"Koryfi"
 	"Avlaki"
-	"Frequencia"
+	"Frequentia"
 	"Akoustiki"
 	"Sonikis"
 	"Optikon"

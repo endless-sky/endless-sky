@@ -551,16 +551,71 @@ ship "Phononos"
 	description "Using the same standard cargo containers as the Avlaki and Harmonikos allows it to carry an impressive amount of cargo, which can be quickly swapped out at the destination for an empty set of shipping containers."
 
 
+ship "Frequentia"
+	sprite "ship/avgi frequentia"
+	thumbnail "thumbnail/avgi frequentia"
+	attributes
+		category "Utility"
+		"shields" 600
+		"hull"	1800
+		"required crew" 2
+		"bunks" 6
+		"mass" 90
+		"drag" 1.8
+		"heat dissipation" 1.5
+		"fuel capacity" 2400
+		"cargo space" 240
+		"outfit space" 186
+		"engine capacity" 60
+		"anchor points" 1
+		weapon
+			"blast radius" 660
+			"shield damage" 12600
+			"hull damage" 18000
+			"hit force" 8000
+	outfits
+		"Pebble Bed Cell"
+		"Concentrating Solar Cell" 3
+		"Ultracapacitor Cell" 3
+		"Multispectral Scanner"
+		"Pressurized Deuterium Tank" 6
+		"Electrostatic Ramscoop"
 
+		"Z-360 Fusion Torch"
+		"XY-180 Radial Thrusters"
+		"Hyperdrive"
 
+	engine 0 75
+	"reverse engine" -3 75
+		angle -30
+	"reverse engine" 3 75
+		angle 30
+	"steering engine" -36 -52
+		angle 90
+		right
+	"steering engine" 36 -52
+		angle -90
+		left
+	"steering engine" -3 75
+		angle 90
+		left
+	"steering engine" 3 75
+		angle -90
+		right
 
+	leak "leak" 30 60
+	leak "flame" 30 60
+	leak "big leak" 15 30
+	explode "tiny explosion" 18
+	explode "small explosion" 30
+	explode "medium explosion" 45
+	explode "large explosion" 12
+	"final explode" "final explosion medium"
 
-
+	description "Frequentia-class Freighter"
 
 
 # Utility
-
-
 
 ship "Undsyni"
 	sprite "ship/avgi undsyni"
@@ -574,18 +629,18 @@ ship "Undsyni"
 		"cargo space" 720
 		"mass" 600
 		"drag" 4.2
-		"heat dissipation" 1.5
-		"fuel capacity" 2400
+		"heat dissipation" 1.8
+		"fuel capacity" 4800
 		"outfit space" 600
 		"weapon capacity" 180
 		"engine capacity" 168
 		"spinal mount" 1
 		"anchor points" 2
 		weapon
-			"blast radius" 480
-			"shield damage" 4800
-			"hull damage" 4200
-			"hit force" 3600
+			"blast radius" 120
+			"shield damage" 600
+			"hull damage" 240
+			"hit force" 420
 	outfits
 		"Speckle Turret" 2
 		"Speck Round" 7200
@@ -638,6 +693,16 @@ ship "Undsyni"
 		angle -90
 		right
 
+	leak "leak" 30 60
+	leak "flame" 30 90
+	leak "big leak" 30 45
+	explode "tiny explosion" 18
+	explode "small explosion" 30
+	explode "medium explosion" 60
+	explode "large explosion" 30
+	explode "huge explosion" 9
+	"final explode" "final explosion huge"
+
 	description "Undsyni-class Armed Freighter"
 
 
@@ -651,13 +716,13 @@ ship "Polari"
 		"required crew" 3
 		"bunks" 12
 		"mass" 120
-		"drag" 1.8
+		"drag" 1.5
 		"heat dissipation" 0.9
 		"fuel capacity" 1800
 		"cargo space" 36
-		"outfit space" 288
+		"outfit space" 294
 		"weapon capacity" 36
-		"engine capacity" 54
+		"engine capacity" 60
 		"anchor points" 1
 		weapon
 			"blast radius" 90
@@ -695,7 +760,6 @@ ship "Polari"
 		angle -30
 	"reverse engine" 6 66
 		angle 30
-
 	"steering engine" -3 -87
 		angle 90
 		right
@@ -1022,7 +1086,7 @@ ship "Atenuatia"
 	explode "small explosion" 42
 	explode "medium explosion" 45
 	explode "large explosion" 36
-	explode "huge explosion" 12
+	explode "huge explosion" 6
 	"final explode" "final explosion large"
 
 	description "The Atenuatia is"
@@ -1437,52 +1501,6 @@ ship "Sonikis"
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Utility:
-
-
-
-ship "Damper"
-	sprite "ship/damper"
-	thumbnail "thumbnail/damper"
-	attributes
-		category "Utility"
-		"shields" 700
-		"hull"	1900
-		"required crew" 3
-		"bunks" 9
-		"mass" 54
-		"drag" 1.8
-		"heat dissipation" 0.98
-		"fuel capacity" 2300
-		"cargo space" 18
-		"outfit space" 252
-		"weapon capacity" 63
-		"engine capacity" 84
-		"surface space" 40
-		weapon
-			"blast radius" 660
-			"shield damage" 12600
-			"hull damage" 18000
-			"hit force" 8000
-		outfits
-	description "Damper-class Tanker"
 
 
 
