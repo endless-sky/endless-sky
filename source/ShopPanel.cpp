@@ -578,7 +578,7 @@ void ShopPanel::DrawDragShips() const
 			point.Y() += ICON_TILE;
 		}
 
-		if (shipSelection.Has(ship.get()))
+		if(shipSelection.Has(ship.get()))
 			DrawPlayerShip(*ship, point, true);
 
 		point.X() += ICON_TILE;
@@ -845,7 +845,7 @@ bool ShopPanel::Click(int x, int y, int /* clicks */)
 				for(const shared_ptr<Ship> &ship : player.Ships())
 					if(ship.get() == zone.GetShip())
 					{
-						if (SideSelect(ship.get()))
+						if(SideSelect(ship.get()))
 						{
 							dragStart = clickPoint;
 							dragPoint = clickPoint;

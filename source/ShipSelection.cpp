@@ -15,8 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ShipSelection.h"
 
-#include "PlayerInfo.h"
 #include "Planet.h"
+#include "PlayerInfo.h"
 #include "Ship.h"
 
 #include <SDL2/SDL.h>
