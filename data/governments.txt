@@ -26,7 +26,7 @@ government "Author"
 color "governments: Avgi" 0 0.78 0.84
 
 government "Avgi"
-	swizzle 3
+	swizzle 5
 	language Avgi
 	color "governments: Avgi"
 
@@ -85,10 +85,10 @@ government "Avgi (Dissonance)"
 		"Avgi (Dissonance Aggressive)"
 			disable 0
 	bribe 0.3
-	"friendly hail" "friendly avgi"
-	"friendly disabled hail" "friendly disabled avgi"
-	"hostile hail" "hostile avgi"
-	"hostile disabled hail" "hostile disabled avgi"
+	"friendly hail" "friendly dissonance"
+	"friendly disabled hail" "friendly disabled dissonance"
+	"hostile hail" "hostile dissonance"
+	"hostile disabled hail" "hostile disabled dissonance"
 
 government "Avgi (Dissonance Aggressive)"
 	"display name" "Dissonance"
@@ -104,10 +104,10 @@ government "Avgi (Dissonance Aggressive)"
 	"penalty for"
 		scan 0.1
 	bribe 0.3
-	"friendly hail" "friendly avgi"
-	"friendly disabled hail" "friendly disabled avgi"
-	"hostile hail" "hostile avgi"
-	"hostile disabled hail" "hostile disabled avgi"
+	"friendly hail" "friendly dissonance"
+	"friendly disabled hail" "friendly disabled dissonance"
+	"hostile hail" "hostile dissonance"
+	"hostile disabled hail" "hostile disabled dissonance"
 	raid "Dissonance Large"
 
 government "Bad Trip"

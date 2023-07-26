@@ -704,11 +704,10 @@ outfit "Concealment Scales"
 	thumbnail
 	"mass" 6
 	"anchor points" -1
-	"scan interference" 1.2
+	"scan interference" 6
 	"radar jamming" 6
 	"optical jamming" 6
 	"solar heat" 0.3
-	"radar cloak" 1
 	description "A specialized coating of quantum dot phased array antennas, grown molecule by molecule, forms a conformal film capable of interfering with any attempts to scan or detect a ship."
 	description "Concealment Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
 
@@ -784,8 +783,8 @@ outfit "Deuterium Slush Tank"
 	"mass" 3
 	"outfit space" -12
 	"fuel capacity" 300
-	"energy consumption" 0.15
-	"heat generation" 0.15
+	"energy consumption" 0.6
+	"heat generation" 0.6
 	description `This lightweight fuel pod stores an appreciable amount of hyperspace fuel as deuterium slush, a mix of liquid and solid deuterium. This allows fuel to be stored at higher densities than would otherwise be possible. The cryocooler required to run the zero boiloff system does require a small amount of energy, however.`
 
 outfit "Pressurized Deuterium Tank"
@@ -871,8 +870,6 @@ outfit "Optical Lasing Generator"
 	thumbnail
 	"mass" 30
 	"outfit space" -30
-	"energy consumption" 1.2
-	"heat generation" 1.2
 	"lasing power" 6
 	description "This coil of optical fiber is dozens of kilometers long, tightly wrapped around the generator that pumps the lasing medium with the power needed to produce an intense laser beam. The produced laser light, which starts in the infrared range, can be easily tapped and routed via optical fiber to a number of turrets on a ship, eliminating the need for the heavy lasing generator to be anywhere near the turret itself."
 	description "The infrared light produced in the coil can either be sent through a frequency doubling crystal to support up to three green Phased Array Lasers, or frequency tripled to support up to two blue Phasers."
@@ -989,8 +986,8 @@ outfit "Ultracapacitor Bank"
 	cost 200000
 	thumbnail
 	"mass" 6
-	"outfit space" -15
-	"energy capacity" 9000
+	"outfit space" -18
+	"energy capacity" 10800
 	"ion protection" -0.03
 	"description" "These fractal capacitors are capable of storing a large amount of energy within superconducting graphene sheets. This capacitor bank chains together six individual cells, but saves space by discarding redundant components and unnecessary structural mass."
 	"description" "Like its component cells, the capacitor bank is vulnerable to ionizing weapons, but is relatively better shielded for its size by virtue of its reduced surface area to volume ratio."
