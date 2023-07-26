@@ -1,4 +1,4 @@
-test-data "Owned Drone"
+test-data "Owned Drone Save"
 	category "savegame"
 	contents
 		pilot Bobby Bughunter
@@ -22,9 +22,9 @@ test-data "Owned Drone"
 				"mass" 15
 				"drag" .53
 				"heat dissipation" .9
-				"outfit space" 53
-				"weapon capacity" 0
-				"engine capacity" 28
+				"outfit space" 530
+				"weapon capacity" 100
+				"engine capacity" 280
 				weapon
 					"blast radius" 3
 					"shield damage" 30
@@ -47,7 +47,7 @@ test-data "Owned Drone"
 
 
 
-test-data "Owned Remote"
+test-data "Owned Remote Save"
 	category "savegame"
 	contents
 		pilot Bobby Bughunter
@@ -70,15 +70,15 @@ test-data "Owned Remote"
 				bunks 2
 				"cargo space" 15
 				drag 0.9
-				"engine capacity" 40
+				"engine capacity" 400
 				"fuel capacity" 300
 				"gun ports" 2
 				"heat dissipation" 0.8
 				hull 300
-				"outfit space" 130
+				"outfit space" 1300
 				"required crew" 1
 				shields 1200
-				"weapon capacity" 20
+				"weapon capacity" 200
 			outfits
 				"Beam Laser" 2
 				"Chipmunk Plasma Steering"
@@ -121,7 +121,7 @@ test "Test-Disowning - Single drone locally"
 	description "Tests if we can disown a ship that cannot be a flagship."
 	sequence
 		# Create/inject the savegame and load it.
-		inject "Owned Drone"
+		inject "Owned Drone Save"
 		call "Load First Savegame"
 		# Go to playerinfo / ships overview
 		input
@@ -150,7 +150,7 @@ test "Test-Disowning - Single ship non-local"
 	description "Tests if we can disown a single ship that is in another system."
 	sequence
 		# Create/inject the savegame and load it.
-		inject "Owned Remote"
+		inject "Owned Remote Save"
 		call "Load First Savegame"
 		# Go to playerinfo / ships overview
 		input

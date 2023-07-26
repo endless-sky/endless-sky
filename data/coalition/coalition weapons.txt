@@ -154,7 +154,7 @@ outfit "Finisher Maegrolain"
 		"radar tracking" .8
 		"missile strength" 50
 		"submunition" "Active Finisher" 1
-	description `Baptized with the Saryd word for "furious thunderstorm," this enormous launcher is not meant for prolonged fights nor for use by lighter craft, but for delivering a few quick, devastating bursts of Finisher torpedoes. It has much greater damage potential than its smaller counterpart.`
+	description `Baptized with the Saryd word for "furious thunderstorm," this enormous launcher is not meant for prolonged fights nor for use by lighter craft, but for delivering a few quick, devastating bursts of Finisher Torpedoes. It has much greater damage potential than its smaller counterpart.`
 
 outfit "Active Finisher"
 	weapon
@@ -185,7 +185,7 @@ outfit "Finisher Storage Tube"
 	"energy capacity" 120
 	"finisher capacity" 20
 	ammo "Finisher Torpedo"
-	description "In order to allow Heliarch ships to install more Finisher storage tubes, Heliarch engineers have incorporated a tiny battery pack into each module. This allows for Heliarch ships to have a respectable energy capacity while also carrying a fearsome number of Finishers."
+	description "In order to allow Heliarch ships to install more Finisher Storage Tubes, Heliarch engineers have incorporated a tiny battery pack into each module. This allows for Heliarch ships to have a respectable energy capacity while also carrying a fearsome number of Finishers."
 
 outfit "Finisher Torpedo"
 	plural "Finisher Torpedoes"
@@ -362,6 +362,7 @@ outfit "ion hail"
 		"shield damage" 12
 		"hull damage" 5
 		"ion damage" .32
+		"scrambling damage" .32
 
 
 outfit "Ion Rain Gun"
@@ -391,6 +392,7 @@ outfit "Ion Rain Gun"
 		"shield damage" 12
 		"hull damage" 5
 		"ion damage" .32
+		"scrambling damage" .32
 	description "Heliarch ships primarily serve as a police force. This weapon is designed to neutralize a target's offensive capabilities until more Heliarch ships can join the fray."
 
 effect "ion rain impact"

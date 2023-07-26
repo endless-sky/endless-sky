@@ -22,9 +22,8 @@ outfit "Sunbeam"
 	"weapon capacity" -34
 	"gun ports" -1
 	weapon
-		sprite "projectile/sunbeam"
-			"frame rate" 1.3
-			"random start frame"
+		sprite "projectile/sunbeam/sunbeam"
+			"frame rate" 30
 		sound "sunbeam"
 		"hit effect" "sunbeam impact"
 		"inaccuracy" .2
@@ -60,9 +59,8 @@ outfit "Sunbeam Turret"
 	"turret mounts" -1
 	"required crew" 1
 	weapon
-		sprite "projectile/sunbeam"
-			"frame rate" 1.3
-			"random start frame"
+		sprite "projectile/sunbeam/sunbeam"
+			"frame rate" 30
 		"hardpoint sprite" "hardpoint/sunbeam turret"
 		"hardpoint offset" -2.0 12.0
 		sound "sunbeam"
@@ -91,13 +89,12 @@ outfit "Dual Sunbeam Turret"
 	"turret mounts" -1
 	"required crew" 2
 	weapon
-		sprite "projectile/2x sunbeam"
-			"frame rate" 1.3
-			"random start frame"
+		sprite "projectile/sunbeam/2x sunbeam"
+			"frame rate" 30
 		"hardpoint sprite" "hardpoint/dual sunbeam turret"
 		"hardpoint offset" 12.
 		sound "sunbeam"
-		"hit effect" "sunbeam impact"
+		"hit effect" "sunbeam impact" 2
 		"inaccuracy" .2
 		"turret turn" 1.0
 		"velocity" 540
@@ -123,7 +120,7 @@ outfit "Moonbeam"
 	weapon
 		sprite "projectile/moonbeam"
 			"random start frame"
-		sound "sunbeam"
+		sound "moonbeam"
 		"fire effect" "moonbeam fleck"
 		"hit effect" "moonbeam impact"
 		"inaccuracy" 2.0
@@ -170,7 +167,7 @@ outfit "Moonbeam Turret"
 			"random start frame"
 		"hardpoint sprite" "hardpoint/moonbeam turret"
 		"hardpoint offset" 9.
-		sound "sunbeam"
+		sound "moonbeam"
 		"fire effect" "moonbeam fleck"
 		"hit effect" "moonbeam impact"
 		"inaccuracy" 2.0
@@ -253,7 +250,7 @@ outfit "Thunderhead Launcher"
 		"infrared tracking" .9
 		"radar tracking" .6
 		"missile strength" 12
-	description "A prime example of Wanderer ingenuity, Thunderhead missiles each carry five submunitions that are capable of independent tracking. Even if the target is able to shoot down or evade a few of them, the remaining missile fragments will still find their mark."
+	description "A prime example of Wanderer ingenuity, Thunderhead Missiles each carry five submunitions that are capable of independent tracking. Even if the target is able to shoot down or evade a few of them, the remaining missile fragments will still find their mark."
 
 outfit "Thunderhead Missile"
 	category "Ammunition"

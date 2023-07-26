@@ -61,7 +61,8 @@ public:
 
 	// Check if this GameEvent has been loaded (vs. simply referred to) and
 	// if it references any items that have not been defined.
-	bool IsValid() const;
+	// Returns an empty string if it is valid. If not, a reason will be given in the string.
+	std::string IsValid() const;
 
 	const Date &GetDate() const;
 	void SetDate(const Date &date);

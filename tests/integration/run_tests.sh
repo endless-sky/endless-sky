@@ -65,9 +65,14 @@ function run_single_testrun () {
   local TEST_NAME=$(echo ${TEST} | sed "s/\"//g")
   local RETURN=0
   echo "# Running test \"${TEST_NAME}\":"
-  # Use sed to remove ALSA messages that appear due to missing soundcards in the CI environment
+  # Use sed to remove:
+  #   - ALSA messages that appear due to missing soundcards in the CI environment
+  #   - SDL messages that appear due to limitations of the software renderer
+  #   - A VSync message that appears due to no support for native vsync in the software renderer
+  #   - A warning that no audio was loaded
   if ! "$ES_EXEC_PATH" --resources "${RESOURCES}" --test "${TEST_NAME}" --config "${ES_CONFIG_PATH}" 2>&1 |\
-    sed -e "/^ALSA lib.*$/d" -e "/^AL lib.*$/d" | sed "s/^/#     /"
+    sed -e "/^ALSA lib.*$/d" -e "/^AL lib.*$/d" -e "/^(SDL message.*$/d" -e "/^Unable to change VSync.*/d" \
+      -e "/^Warning: audio could not.*$/d" | sed "s/^/#     /"
   then
     echo "# Test \"${TEST_NAME}\" failed!"
     echo "#   temporary directory: ${ES_CONFIG_PATH}"
@@ -151,11 +156,9 @@ fi
 IFS=$'\n'
 
 TESTS=$("${ES_EXEC_PATH}" --tests --resources "${RESOURCES}" --config "${ES_CONFIG_TEMPLATE_PATH}")
-TESTS_OK=($(echo "${TESTS}" | grep -e "^active" | cut -f2)) || true
-TESTS_NOK=($(echo "${TESTS}" | grep -e "^known failure" -e "^missing feature" | cut -f2)) || true
+TESTS_OK=($(echo "${TESTS}")) || true
 NUM_TOTAL=${#TESTS_OK[@]}
 
-#TODO: Allow running known-failures by default as well (to check if they accidentally got solved)
 if [ ${NUM_TOTAL} -eq 0 ]
 then
   echo "1..1"

@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DisplayText.h"
 #include "../ImageBuffer.h"
 #include "../Point.h"
+#include "../Preferences.h"
 #include "../Screen.h"
 #include "truncate.hpp"
 
@@ -236,7 +237,7 @@ int Font::Space() const noexcept
 
 void Font::ShowUnderlines(bool show) noexcept
 {
-	showUnderlines = show;
+	showUnderlines = show || Preferences::Has("Always underline shortcuts");
 }
 
 
@@ -458,7 +459,7 @@ string Font::TruncateBack(const string &str, int &width) const
 		// Loop until the previous width we tried was too long and this one is
 		// too short, or vice versa. Each time, the next string length we try is
 		// interpolated from the previous width.
-		int nextChars = (prevChars * width) / prevWidth;
+		int nextChars = round(static_cast<double>(prevChars * width) / prevWidth);
 		bool isSame = (nextChars == prevChars);
 		bool prevWorks = (prevWidth <= width);
 		nextChars += (prevWorks ? isSame : -isSame);
@@ -509,7 +510,7 @@ string Font::TruncateFront(const string &str, int &width) const
 		// Loop until the previous width we tried was too long and this one is
 		// too short, or vice versa. Each time, the next string length we try is
 		// interpolated from the previous width.
-		int nextChars = (prevChars * width) / prevWidth;
+		int nextChars = round(static_cast<double>(prevChars * width) / prevWidth);
 		bool isSame = (nextChars == prevChars);
 		bool prevWorks = (prevWidth <= width);
 		nextChars += (prevWorks ? isSame : -isSame);
@@ -560,7 +561,7 @@ string Font::TruncateMiddle(const string &str, int &width) const
 		// Loop until the previous width we tried was too long and this one is
 		// too short, or vice versa. Each time, the next string length we try is
 		// interpolated from the previous width.
-		int nextChars = (prevChars * width) / prevWidth;
+		int nextChars = round(static_cast<double>(prevChars * width) / prevWidth);
 		bool isSame = (nextChars == prevChars);
 		bool prevWorks = (prevWidth <= width);
 		nextChars += (prevWorks ? isSame : -isSame);

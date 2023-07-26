@@ -1,9 +1,138 @@
+test-data "Save During Conversation Save"
+	category "savegame"
+	contents
+		pilot Bobbi Bughunter
+		date 16 11 3013
+		system "Terra Incognita"
+		planet Ruin
+		clearance
+		ship "Star Barge"
+			name "Buggy Barge"
+			sprite "ship/star barge"
+			attributes
+				category "Light Freighter"
+				cost 190000
+				mass 10
+				bunks 3
+				"cargo space" 50
+				drag 1
+				"engine capacity" 400
+				"fuel capacity" 300
+				"heat dissipation" 0.8
+				hull 1000
+				"outfit space" 1300
+				"required crew" 1
+				shields 600
+				"turret mounts" 1
+				"weapon capacity" 200
+				"thrust" 50
+				"turn" 1000
+			outfits
+				Hyperdrive
+				"nGVF-BB Fuel Cell"
+				"LP036a Battery Pack"
+			crew 1
+			fuel 300
+			shields 600
+			hull 1000
+			position 0 0
+			engine -9 38 1
+			engine 9 38 1
+			turret 0 -8
+			leak leak 60 50
+			explode "tiny explosion" 10
+			explode "small explosion" 10
+			system "Terra Incognita"
+			planet Ruin
+		account
+			credits 100000000
+			score 400
+			history
+		visited "Terra Incognita"
+		"visited planet" Ruin
+		conditions
+			# to skip the landing on ruin conversation
+			"Ruin: Landing: offered"
+
+
+test-data "Save During Conversation Mission"
+	category "mission"
+	contents
+		mission "SAVE LOAD MID-CONVERSATION"
+			priority
+			source "Ruin"
+			on offer
+				conversation
+					`Test test`
+					action
+						"transient" ++
+					choice
+						`	"Yes."`
+							accept
+
+test "Saving during conversation"
+	status active
+	description "Test that (automatically) saving during a conversation doesn't store state"
+	sequence
+		# Inject the mission.
+		inject "Save During Conversation Mission"
+		# Create/inject the savegame and load it.
+		inject "Save During Conversation Save"
+		call "Load First Savegame"
+		call "Depart"
+		assert
+			"transient" == 0
+		call "Land"
+		# This condition is set to ensure that the transaction snapshot includes everything before this mission.
+		apply
+			"condition set before mission offered" = 1
+		input
+			key p
+		assert
+			"transient" == 1
+			"condition set before mission offered" == 1
+			"SAVE LOAD MID-CONVERSATION: offered" == 0
+		# Re-load savegame mid-conversation.
+		input
+			key escape
+		call "Load First Savegame"
+		assert
+			"transient" == 0
+			"condition set before mission offered" == 1
+			"SAVE LOAD MID-CONVERSATION: offered" == 0
+		input
+			key p
+		# Test mission was available again
+		assert
+			"transient" == 1
+			"SAVE LOAD MID-CONVERSATION: offered" == 0
+		input
+			key return
+		input
+			key return
+		call "Depart"
+		assert
+			"transient" == 1
+			"SAVE LOAD MID-CONVERSATION: offered" == 1
+			"SAVE LOAD MID-CONVERSATION: active" == 1
+		# Now save after the conversation is finished
+		input
+			key escape
+		call "Load First Savegame"
+		assert
+			"transient" == 1
+			"SAVE LOAD MID-CONVERSATION: offered" == 1
+			"SAVE LOAD MID-CONVERSATION: active" == 0
+			# Mission will complete upon load since Ruin is the destination.
+			"SAVE LOAD MID-CONVERSATION: done" == 1
+
+
 test "Loading and Reloading"
 	status active
 	description "Load a save-game, perform some actions and load the game again."
 	sequence
 		# Create/inject the savegame and load it.
-		inject "Three Earthly Barges"
+		inject "Three Earthly Barges Save"
 		call "Load First Savegame"
 		call "Depart"
 		assert
@@ -40,7 +169,7 @@ test "Loading and Saving"
 	description "Test saving of snapshots and re-loading of saved snapshots."
 	sequence
 		# Create/inject the savegame and load it.
-		inject "Three Earthly Barges"
+		inject "Three Earthly Barges Save"
 		call "Load First Savegame"
 		call "Depart"
 		assert
@@ -73,7 +202,6 @@ test "Loading and Saving"
 			year == 3013
 			month == 11
 			day == 19
-		call "Open Menu"
 		call "Save To Default Snapshot"
 		call "Depart"
 		assert
@@ -99,6 +227,8 @@ test "Loading and Saving"
 		call "Open Menu"
 		call "Load First Savegame"
 		call "Depart"
+		apply
+			"test: 6 departed one more time" = 1
 		assert
 			year == 3013
 			month == 11

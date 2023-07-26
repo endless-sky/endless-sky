@@ -18,8 +18,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
+#include "ShipJumpNavigation.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "Wormhole.h"
 
 using namespace std;
 
@@ -29,7 +31,18 @@ using namespace std;
 // it is a limit on how many systems should be returned. If it is below zero
 // it specifies the maximum distance away that paths should be found.
 DistanceMap::DistanceMap(const System *center, int maxCount, int maxDistance)
-	: center(center), maxCount(maxCount), maxDistance(maxDistance), useWormholes(false)
+	: DistanceMap(center, WormholeStrategy::NONE, false, maxCount, maxDistance)
+{
+}
+
+
+
+// Constructor that allows configuring the use of wormholes and jump drive travel.
+// Since no ship instance is available, we use the base game's default fuel for jump travel.
+DistanceMap::DistanceMap(const System *center, WormholeStrategy wormholeStrategy,
+		bool useJumpDrive, int maxCount, int maxDistance)
+	: center(center), wormholeStrategy(wormholeStrategy), maxCount(maxCount),
+			maxDistance(maxDistance), jumpFuel(useJumpDrive ? 200 : 0), jumpRange(useJumpDrive ? 100. : 0.)
 {
 	Init();
 }
@@ -171,12 +184,12 @@ void DistanceMap::Init(const Ship *ship)
 	// hyperdrive capability and no jump drive.
 	if(ship)
 	{
-		hyperspaceFuel = ship->HyperdriveFuel();
-		jumpFuel = ship->JumpDriveFuel();
-		jumpRange = ship->JumpRange();
-		// If hyperjumps and non-hyper jumps cost the same amount, there is no
-		// need to check hyperjump paths at all.
-		if(hyperspaceFuel == jumpFuel)
+		hyperspaceFuel = ship->JumpNavigation().HyperdriveFuel();
+		jumpFuel = ship->JumpNavigation().JumpDriveFuel();
+		jumpRange = ship->JumpNavigation().JumpRange();
+		// If hyperjumps and non-hyper jumps cost the same amount, or non-hyper jumps are always cheaper,
+		// there is no need to check hyperjump paths at all.
+		if(jumpFuel && hyperspaceFuel >= jumpFuel)
 			hyperspaceFuel = 0.;
 
 		// If this ship has no mode of hyperspace travel, and no local
@@ -218,15 +231,16 @@ void DistanceMap::Init(const Ship *ship)
 
 		// Check for wormholes (which cost zero fuel). Wormhole travel should
 		// not be included in Local Maps or mission itineraries.
-		if(useWormholes)
+		if(wormholeStrategy != WormholeStrategy::NONE)
 			for(const StellarObject &object : top.next->Objects())
-				if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsWormhole())
+				if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsWormhole()
+					&& (object.GetPlanet()->IsUnrestricted() || wormholeStrategy == WormholeStrategy::ALL))
 				{
 					// If we're seeking a path toward a "source," travel through
 					// wormholes in the reverse of the normal direction.
 					const System &link = source ?
-						*object.GetPlanet()->WormholeSource(top.next) :
-						*object.GetPlanet()->WormholeDestination(top.next);
+						object.GetPlanet()->GetWormhole()->WormholeSource(*top.next) :
+						object.GetPlanet()->GetWormhole()->WormholeDestination(*top.next);
 					if(HasBetter(link, top))
 						continue;
 

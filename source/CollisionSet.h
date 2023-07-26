@@ -64,9 +64,10 @@ private:
 	class Entry {
 	public:
 		Entry() = default;
-		Entry(Body *body, int x, int y) : body(body), x(x), y(y) {}
+		Entry(Body *body, unsigned seenIndex, int x, int y) : body(body), seenIndex(seenIndex), x(x), y(y) {}
 
 		Body *body;
+		unsigned seenIndex;
 		int x;
 		int y;
 	};
@@ -94,6 +95,10 @@ private:
 
 	// Vector for returning the result of a circle query.
 	mutable std::vector<Body *> result;
+
+	// Keep track of which objects we've already considered
+	mutable std::vector<unsigned> seen;
+	mutable unsigned seenEpoch = 0;
 };
 
 

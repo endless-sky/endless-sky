@@ -43,6 +43,42 @@ namespace {
 
 		reverse(result.begin(), result.end());
 	}
+
+	// Helper function for ExpandConditions.
+	//
+	// source.substr(formatStart, formatSize) contains the format (credits, mass, etc)
+	// source.substr(conditionStart, conditionSize) contains the condition name
+	//
+	// If formatStart or formatSize are string::npos, then there is no formatting.
+	//
+	// The getter() acts like ConditionsStore.Get(), providing condition values.
+	// These are passed through Format::Whatever(), and appended to the result.
+	void AppendCondition(string &result, const string &source, Format::ConditionGetter getter,
+		size_t formatStart, size_t formatSize, size_t conditionStart, size_t conditionSize)
+	{
+		int64_t value = getter(source, conditionStart, conditionSize);
+
+		auto IsFormat = [&source, formatStart, formatSize](const char *format)
+		{
+			return !source.compare(formatStart, formatSize, format);
+		};
+
+		if(formatStart == string::npos || formatSize == string::npos)
+			result.append(Format::Number(value));
+		else if(IsFormat("raw"))
+			result.append(to_string(value));
+		else if(IsFormat("credits"))
+			result.append(Format::CreditString(value)); // 1 credit, 2 credits, etc.
+		else if(IsFormat("scaled"))
+			result.append(Format::Credits(value)); // 35, 35k, 35M, etc.
+		else if(IsFormat("tons"))
+			result.append(Format::MassString(value)); // X tons or X ton
+		else if(IsFormat("playtime"))
+			result.append(Format::PlayTime(value)); // 3d 19h 24m 8s
+		else
+			// "number" or unsupported format
+			result.append(Format::Number(value));
+	}
 }
 
 
@@ -93,8 +129,39 @@ string Format::Credits(int64_t value)
 
 
 
+// Convert the given number into abbreviated format as described in Format::Credits,
+// then attach the ' credit' or ' credits' suffix to it.
+string Format::CreditString(int64_t value)
+{
+	if(value == 1)
+		return "1 credit";
+	else
+		return Credits(value) + " credits";
+}
+
+
+
+// Writes the given number into a string,
+// then attach the ' ton' or ' tons' suffix to it.
+string Format::MassString(double amount)
+{
+	if(amount == 1)
+		return "1 ton";
+	return Format::Number(amount) + " tons";
+}
+
+
+
+// Creates a string similar to '<amount> tons of <cargo>'.
+string Format::CargoString(double amount, const string &cargo)
+{
+	return MassString(amount) + " of " + cargo;
+}
+
+
+
 // Convert a time in seconds to years/days/hours/minutes/seconds
-std::string Format::PlayTime(double timeVal)
+string Format::PlayTime(double timeVal)
 {
 	string result;
 	int timeValFormat = 0;
@@ -356,5 +423,118 @@ vector<string> Format::Split(const string &str, const string &separator)
 		if(begin >= str.length())
 			break;
 	}
+	return result;
+}
+
+
+
+string Format::ExpandConditions(const string &source, ConditionGetter getter)
+{
+	// Optimization for most common case: no conditions
+	if(source.find('&') == string::npos)
+		return source;
+
+	string result;
+	result.reserve(source.size());
+
+	size_t formatStart = string::npos;
+	size_t formatSize = string::npos;
+	size_t conditionStart = string::npos;
+	size_t conditionSize = string::npos;
+
+	// Hand-coded regular grammar parser for:
+	//	&[format@condition]
+	//	&[condition]
+	// Using these states:
+	//	state = _ ----- outside of all &[] regions
+	//	state = & ----- just read & and hoping to see a [
+	//	state = [ ----- read &[ but haven't seen @ or ] yet
+	//	state = N ----- inside a nested [] of depth `depth`
+	//	state = @ ----- read &[...@ but haven't seen ] yet. Have format start & size.
+
+	// Anything inside a &[...] is sent to AppendCondition
+
+	static const char OUTER = '_';
+	static const char PREFIX = '&';
+	static const char LPAREN = '[';
+	static const char RPAREN = ']';
+	static const char DIVIDER = '@';
+	static const char NESTED = 'N';
+
+	char state = OUTER;
+	// Depth of nested [] within the &[...]
+	int depth = 0;
+	// State before entering the nested []
+	char oldState = LPAREN;
+	// "start" is the beginning of the text that has not yet been sent to result.
+	size_t start = 0;
+	for(size_t look = 0; look < source.size(); ++look)
+	{
+		char next = source[look];
+		// This would be faster with a nested select, but that would be
+		// harder to read, and I don't expect this to be performance-critical.
+		if(state == OUTER && next == PREFIX)
+		{
+			if(look > start)
+			{
+				result.append(source, start, look - start);
+				start = look;
+			}
+			state = PREFIX;
+		}
+		else if(state == OUTER || (state == PREFIX && next != LPAREN))
+			// Accumulate one character to print outside of any &[@]
+			state = OUTER;
+		else if(state == PREFIX && next == LPAREN)
+		{
+			formatStart = formatSize = conditionStart = conditionSize = string::npos;
+			state = LPAREN;
+		}
+		else if(state == LPAREN && next == DIVIDER)
+		{
+			formatStart = start + 2;
+			formatSize = look - formatStart;
+			state = DIVIDER;
+		}
+		else if(state == DIVIDER && next == RPAREN)
+		{
+			conditionStart = formatStart + formatSize + 1;
+			conditionSize = look - conditionStart;
+			AppendCondition(result, source, getter, formatStart, formatSize,
+				conditionStart, conditionSize);
+			start = look + 1;
+			state = OUTER;
+		}
+		else if((state == LPAREN || state == DIVIDER) && next == LPAREN)
+		{
+			oldState = state;
+			state = NESTED;
+			depth = 1;
+		}
+		else if(state == NESTED && next == LPAREN)
+			depth++;
+		else if(state == NESTED && next == RPAREN && depth > 1)
+			depth--;
+		else if(state == NESTED && next == RPAREN && depth == 1)
+			state = oldState;
+		else if(state == LPAREN && next == RPAREN)
+		{
+			conditionStart = start + 2;
+			conditionSize = look - conditionStart;
+			AppendCondition(result, source, getter, formatStart, formatSize,
+				conditionStart, conditionSize);
+			start = look + 1;
+			state = OUTER;
+		}
+		else if(!(state == LPAREN || state == DIVIDER || state == NESTED))
+		{
+			// Error in format string.
+			result.append(source, start, look - start + 1);
+			start = look + 1;
+			state = OUTER;
+		}
+	}
+	if(start < source.size())
+		result.append(source, start, string::npos);
 	return result;
 }

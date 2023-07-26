@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ConversationPanel.h"
 #include "Dialog.h"
 #include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "HiringPanel.h"
 #include "Interface.h"
@@ -136,7 +137,15 @@ void PlanetPanel::Draw()
 	ui.Draw(info, this);
 
 	if(!selectedPanel)
-		text.Draw(Point(-300., 80.), *GameData::Colors().Get("bright"));
+	{
+		Rectangle box = ui.GetBox("content");
+		if(box.Width() != text.WrapWidth())
+		{
+			text.SetWrapWidth(box.Width());
+			text.Wrap(planet.Description());
+		}
+		text.Draw(box.TopLeft(), *GameData::Colors().Get("bright"));
+	}
 }
 
 
@@ -230,6 +239,8 @@ void PlanetPanel::TakeOffIfReady()
 	// to take off until the button is clicked again.
 	requestedLaunch = false;
 
+	absentCannotFly.clear();
+
 	// Check for any landing missions that have not been offered.
 	Mission *mission = player.MissionToOffer(Mission::LANDING);
 	if(mission)
@@ -246,20 +257,58 @@ void PlanetPanel::TakeOffIfReady()
 	}
 
 	// Check if any of the player's ships are configured in such a way that they
-	// will be impossible to fly.
-	const auto flightChecks = player.FlightCheck();
+	// will be impossible to fly. If so, let the player choose whether to park them.
+	ostringstream out;
+	flightChecks = player.FlightCheck();
 	if(!flightChecks.empty())
+	{
 		for(const auto &result : flightChecks)
 		{
-			// If there is a flightcheck error, it will be the first (and only) entry.
+			// If there is a flight check error, it will be the first (and only) entry.
 			auto &check = result.second.front();
 			if(check.back() == '!')
 			{
-				GetUI()->Push(new ConversationPanel(player,
-					*GameData::Conversations().Get("flight check: " + check), nullptr, result.first));
-				return;
+				// If the ship with a flight check error is in another system, then the only thing the player
+				// can do is park it. But if the ship is with the player, then they may be able to make changes
+				// to rectify the error. As such, provide a conversation for any single present ship, but
+				// record and report all absent ships later.
+				if(result.first->GetSystem() != &system)
+				{
+					out << result.first->Name() << ", ";
+					absentCannotFly.push_back(result.first);
+				}
+				else
+				{
+					GetUI()->Push(new ConversationPanel(player,
+						*GameData::Conversations().Get("flight check: " + check), nullptr, result.first));
+					return;
+				}
 			}
 		}
+		if(!absentCannotFly.empty())
+		{
+			string shipNames = out.str();
+			// Pop back the last ", " in the string.
+			shipNames.pop_back();
+			shipNames.pop_back();
+			GetUI()->Push(new Dialog(this, &PlanetPanel::CheckWarningsAndTakeOff,
+				"Some of your ships in other systems are not be able to fly:\n" + shipNames +
+				"\nDo you want to park those ships and depart?", Truncate::MIDDLE));
+			return;
+		}
+	}
+
+	CheckWarningsAndTakeOff();
+}
+
+
+
+void PlanetPanel::CheckWarningsAndTakeOff()
+{
+	// Park out of system ships that cannot fly.
+	for(const auto &ship : absentCannotFly)
+		ship->SetIsParked(true);
+	absentCannotFly.clear();
 
 	// Check for items that would be sold, or mission passengers that would be abandoned on-planet.
 	const Ship *flagship = player.Flagship();
@@ -305,11 +354,7 @@ void PlanetPanel::TakeOffIfReady()
 			}
 
 			if(missionCargoToSell > 0)
-			{
-				out << "cargo space to hold " << missionCargoToSell;
-				out << (missionCargoToSell > 1 ? " tons" : " ton");
-				out << " of your mission cargo.";
-			}
+				out << "cargo space to hold " << Format::CargoString(missionCargoToSell, "your mission cargo") << ".";
 		}
 		// Warn about ships that won't travel with you.
 		else if(nonJumpCount > 0)
@@ -325,11 +370,7 @@ void PlanetPanel::TakeOffIfReady()
 		else
 		{
 			out << "If you take off now you will have to sell ";
-
-			if(cargoToSell == 1)
-				out << "a ton of cargo";
-			else if(cargoToSell > 0)
-				out << cargoToSell << " tons of cargo";
+			out << Format::CargoString(cargoToSell, "cargo");
 			out << " that you do not have space for.";
 		}
 		out << " Are you sure you want to continue?";
@@ -346,6 +387,7 @@ void PlanetPanel::TakeOffIfReady()
 
 void PlanetPanel::TakeOff()
 {
+	flightChecks.clear();
 	player.Save();
 	if(player.TakeOff(GetUI()))
 	{

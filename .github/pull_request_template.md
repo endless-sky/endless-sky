@@ -13,7 +13,7 @@ This save file can be used to play through the new mission content:
 
 ## Artwork Checklist
  - [ ] I updated the copyright attributions, or decline to claim copyright of any assets produced or modified
- - [ ] I created a PR to the [endless-sky-assets repo](https://github.com/EndlessSkyCommunity/endless-sky-assets) with the necessary image, blend, and texture assets: {{insert PR link}}
+ - [ ] I created a PR to the [endless-sky-assets repo](https://github.com/endless-sky/endless-sky-assets) with the necessary image, blend, and texture assets: {{insert PR link}}
  - [ ] I created a PR to the [endless-sky-high-dpi repo](https://github.com/endless-sky/endless-sky-high-dpi) with the `@2x` versions of these art assets: {{insert PR link}}
 
 
@@ -32,6 +32,20 @@ This save file can be used to verify the bugfix. The bug will occur when using {
 
 
 -----------------------
+**Balance:**
+
+## Summary
+{{summarize all the changes you made}}
+
+## Reasoning
+{{explain why you think your balance changes are an improvement, including links to any issues you think your balance changes are addressing}}
+
+## Save File
+This save file can be used to test the balance changes.
+{{attach a save file that allows people to easily test the results of your balance changes, if one is useful}}
+
+
+-----------------------
 **Feature:** This PR implements the feature request detailed and discussed in issue #{{insert number}}
 
 ## Feature Details
@@ -45,6 +59,9 @@ This save file can be used to verify the bugfix. The bug will occur when using {
 
 ## Testing Done
 {{describe how you tested the new feature}}
+
+### Automated Tests Added
+{{describe the automated tests you added (using the unit-test framework, integration-test framework or otherwise) to reduce the risk of regressions in the future. "N/A" if this PR is not for an in-game feature that needs to remain functional in the future. }}
 
 ## Performance Impact
 {{describe any performance impact (positive or negative). "N/A" if no performance-critical code is changed. }}

@@ -63,6 +63,8 @@ public:
 	// Check if the given rectangle is inside this one. If one of its edges is
 	// touching the edge of this one, that still counts.
 	bool Contains(const Rectangle &other) const;
+	// Check if the given rectangle overlaps with this one.
+	bool Overlaps(const Rectangle &other) const;
 
 
 private:

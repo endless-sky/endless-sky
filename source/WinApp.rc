@@ -1,3 +1,1 @@
-#include "winuser.h"
 AppIcon ICON "../icons/WinApp.ico"
-CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST endless-sky.exe.manifest

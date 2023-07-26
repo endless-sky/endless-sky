@@ -51,6 +51,9 @@ protected:
 
 
 private:
+	// Use availableIt/acceptedIt to set MapPanel::selectedSystem, call DoScroll/CenterOnSystem.
+	// CenterOnSystem will either pan to the system or immediately jump to it.
+	void SetSelectedScrollAndCenter(bool immediate = false);
 	// Display and explain the various pointers that may appear on the map.
 	void DrawKey() const;
 	// Display the name of and distance to the selected system.
@@ -58,11 +61,12 @@ private:
 	// Draw rings around systems that need to be visited for the given mission.
 	void DrawMissionSystem(const Mission &mission, const Color &color) const;
 	// Draw the backgrounds for the "available jobs" and accepted missions/jobs lists.
-	Point DrawPanel(Point pos, const std::string &label, int entries) const;
+	Point DrawPanel(Point pos, const std::string &label, int entries, bool sorter = false) const;
 	// Draw the display names of the given missions, using the reference point.
-	Point DrawList(const std::list<Mission> &list, Point pos,
-		const std::list<Mission>::const_iterator &selectIt) const;
+	Point DrawList(const std::list<Mission> &list, Point pos, const std::list<Mission>::const_iterator &selectIt,
+		bool separateDeadlineOrPossible = false) const;
 	void DrawMissionInfo();
+	void DrawTooltips();
 
 	bool CanAccept() const;
 	void Accept(bool force = false);
@@ -77,16 +81,21 @@ private:
 	// Selects the first available or accepted mission if no mission is already
 	// selected. Returns true if the selection was changed.
 	bool SelectAnyMission();
+	// Centers on the next involved system for the clicked mission from the mission list
+	void CycleInvolvedSystems(const Mission &mission);
 
 private:
 	const std::list<Mission> &available;
 	const std::list<Mission> &accepted;
+	int cycleInvolvedIndex = 0;
 	std::list<Mission>::const_iterator availableIt;
 	std::list<Mission>::const_iterator acceptedIt;
 	double availableScroll = 0.;
 	double acceptedScroll = 0.;
 
 	int dragSide = 0;
+	int hoverSortCount = 0;
+	int hoverSort = -1; // 0 to 3 for each UI element
 	WrappedText wrap;
 };
 

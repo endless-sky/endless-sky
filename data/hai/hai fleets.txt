@@ -16,7 +16,7 @@ fleet "Small Hai"
 	names "hai"
 	cargo 3
 	personality
-		disables opportunistic
+		disables opportunistic merciful
 	variant 1
 		"Lightning Bug" 3
 	variant 1
@@ -47,7 +47,7 @@ fleet "Large Hai"
 	names "hai"
 	cargo 3
 	personality
-		disables opportunistic
+		disables opportunistic merciful
 	variant 2
 		"Shield Beetle"
 		"Lightning Bug (Pulse)" 2
@@ -115,7 +115,6 @@ fleet "Large Hai"
 		"Grasshopper"
 		"Grasshopper (Tracker)"
 
-
 fleet "Hai Surveillance"
 	government "Hai"
 	names "hai"
@@ -137,6 +136,67 @@ fleet "Hai Surveillance"
 	variant 3
 		"Grasshopper (Surveillance)" 5
 
+# Hai that hunt pirates near the wormhole. They have custom builds suitable for smashing pirates but useless against other Hai. Two versions: travel through wormhole or not.
+
+fleet "Anti-Pirate Hai (Wormhole Travel)"
+	government "Hai (Wormhole Access)"
+	names "hai"
+	cargo 0
+	personality
+		heroic opportunistic
+	variant
+		"Shield Beetle (Six Ion)"
+		"Ladybug (Pulse)" 2
+	variant
+		"Shield Beetle (Pulse Tracker)"
+		"Ladybug (Tracker)" 2
+	variant
+		"Shield Beetle (Durable Pulse)"
+		"Ladybug (Three Ion)" 2
+	variant
+		"Shield Beetle (Durable Pulse)" 2
+		
+fleet "Anti-Pirate Hai (No Wormhole Travel)"
+	government "Hai"
+	names "hai"
+	cargo 0
+	personality
+		heroic opportunistic
+	variant
+		"Shield Beetle (Six Ion)"
+		"Ladybug (Pulse)" 2
+	variant
+		"Shield Beetle (Six Ion)"
+		"Ladybug (Three Ion)" 2
+	variant
+		"Shield Beetle (Pulse Tracker)"
+		"Ladybug (Tracker)" 2
+	variant
+		"Shield Beetle (Durable Pulse)"
+		"Ladybug (Three Ion)" 2
+	variant
+		"Shield Beetle (Durable Pulse)"
+		"Ladybug (Tracker)" 2
+	variant
+		"Shield Beetle (Durable Pulse)" 2
+
+fleet "Hai Wormhole Guards"
+	government "Hai"
+	names hai
+	cargo 0
+	personality heroic
+	variant 7
+		"Shield Beetle (Police)"
+	variant 7
+		"Shield Beetle (Tracker)"
+	variant 7
+		"Shield Beetle (Pulse)"
+	variant 7
+		"Shield Beetle"
+	variant 10
+		"Lightning Bug" 2
+	variant 10
+		"Lightning Bug (Pulse)" 2
 
 fleet "Small Hai Merchant"
 	government "Hai"
@@ -161,6 +221,9 @@ fleet "Small Hai Merchant"
 	variant 3
 		"Lightning Bug" 2
 		"Aphid (Armed)" 3
+	variant 3
+		"Lightning Bug" 2
+		"Scarab" 3
 	variant 1
 		"Lightning Bug"
 		"Aphid (Armed)" 5
@@ -175,6 +238,9 @@ fleet "Small Hai Merchant"
 	variant 3
 		"Aphid (Armed)" 3
 		"Centipede"
+	variant 3
+		"Scarab" 2
+		"Geocoris"
 	variant 1
 		"Centipede" 2
 		"Centipede (Pulse)" 3
@@ -199,6 +265,21 @@ fleet "Small Hai Merchant"
 	variant 1
 		"Grasshopper"
 		"Centipede" 2
+	variant 1
+		"Grasshopper"
+		"Scarab" 2
+	variant 1
+		"Scarab" 3
+	variant 1
+		"Scarab" 2
+		"Aphid (Armed)"
+	variant 1
+		"Scarab"
+		"Aphid (Armed)" 2
+	variant 1
+		"Scarab"
+	variant 1
+		"Cicada"
 
 fleet "Large Hai Merchant"
 	government "Hai"
@@ -213,9 +294,20 @@ fleet "Large Hai Merchant"
 	variant 1
 		"Shield Beetle (Tracker)"
 		"Centipede" 3
+	variant 1
+		"Shield Beetle (Tracker)"
+		"Cicada" 2
+		"Centipede" 1
 	variant 2
 		"Water Bug" 3
 		"Centipede" 2
+	variant 2
+		"Water Bug" 3
+		"Cicada" 2
+	variant 2
+		"Water Bug" 3
+		"Cicada"
+		"Centipede" 1
 	variant 1
 		"Centipede" 3
 		"Centipede (Pulse)" 2
@@ -227,6 +319,10 @@ fleet "Large Hai Merchant"
 		"Aphid (Armed)" 2
 		"Lightning Bug"
 		"Centipede"
+	variant 2
+		"Aphid (Armed)" 2
+		"Lightning Bug"
+		"Cicada"
 	variant 1
 		"Geocoris (Tracker)"
 		"Shield Beetle"
@@ -236,6 +332,11 @@ fleet "Large Hai Merchant"
 		"Centipede"
 		"Geocoris (Tracker)"
 		"Lightning Bug"
+		"Water Bug"
+		"Grasshopper (Tracker)"
+	variant 1
+		"Cicada" 2
+		"Geocoris (Tracker)"
 		"Water Bug"
 		"Grasshopper (Tracker)"
 
@@ -263,6 +364,9 @@ fleet "Small Hai Merchant (Sympathizers)"
 	variant 3
 		"Lightning Bug" 2
 		"Aphid (Armed)" 3
+	variant 3
+		"Lightning Bug" 2
+		"Scarab" 3
 	variant 1
 		"Lightning Bug"
 		"Aphid (Armed)" 5
@@ -315,9 +419,20 @@ fleet "Large Hai Merchant (Sympathizers)"
 	variant 1
 		"Shield Beetle (Tracker)"
 		"Centipede" 3
+	variant 1
+		"Shield Beetle (Tracker)"
+		"Cicada" 2
+		"Centipede" 1
 	variant 2
 		"Water Bug" 3
 		"Centipede" 2
+	variant 2
+		"Water Bug" 3
+		"Cicada" 2
+	variant 2
+		"Water Bug" 3
+		"Cicada"
+		"Centipede" 1
 	variant 1
 		"Centipede" 3
 		"Centipede (Pulse)" 2
@@ -329,6 +444,10 @@ fleet "Large Hai Merchant (Sympathizers)"
 		"Aphid (Armed)" 2
 		"Lightning Bug"
 		"Centipede"
+	variant 2
+		"Aphid (Armed)" 2
+		"Lightning Bug"
+		"Cicada"
 	variant 1
 		"Geocoris (Tracker)"
 		"Shield Beetle"
@@ -338,6 +457,11 @@ fleet "Large Hai Merchant (Sympathizers)"
 		"Centipede"
 		"Geocoris (Tracker)"
 		"Lightning Bug"
+		"Water Bug"
+		"Grasshopper (Tracker)"
+	variant 1
+		"Cicada" 2
+		"Geocoris (Tracker)"
 		"Water Bug"
 		"Grasshopper (Tracker)"
 
@@ -351,18 +475,31 @@ fleet "Small Hai Merchant (Human)"
 		timid frugal appeasing
 	variant 10
 		"Freighter (Hai)"
+	variant 10
+		"Freighter (Hai)"
+		"Scarab"
 	variant 6
 		"Freighter (Hai)"
 		"Grasshopper"
 	variant 5
 		"Freighter (Hai)"
 		"Aphid" 4
+	variant 5
+		"Freighter (Hai)"
+		"Aphid" 2
+		"Scarab" 2
 	variant 3
 		"Mule (Hai Engines)"
 		"Grasshopper"
 	variant 3
 		"Mule (Hai Weapons)"
 		"Grasshopper"
+	variant 3
+		"Mule (Hai Engines)"
+		"Scarab"
+	variant 3
+		"Mule (Hai Weapons)"
+		"Scarab"
 	variant 2
 		"Bounder (Hai)"
 	variant 2
@@ -378,6 +515,9 @@ fleet "Small Hai Merchant (Human)"
 	variant 1
 		"Star Barge"
 		"Aphid"
+	variant 1
+		"Scarab"
+		"Star Barge"
 
 fleet "Large Hai Merchant (Human)"
 	government "Hai Merchant (Human)"
@@ -391,7 +531,8 @@ fleet "Large Hai Merchant (Human)"
 		"Firebird (Hai Shields)"
 	variant 6
 		"Freighter (Hai)" 2
-		"Grasshopper" 2
+		"Grasshopper"
+		"Grasshopper (Ion)"
 	variant 3
 		"Freighter (Hai)" 2
 		"Grasshopper (Tracker)" 2
@@ -444,7 +585,8 @@ fleet "Large Hai Merchant (Human)"
 		"Headhunter (Hai)" 2
 	variant 1
 		"Bulk Freighter (Hai)"
-		"Grasshopper" 2
+		"Grasshopper"
+		"Grasshopper (Ion)"
 	variant 1
 		"Bulk Freighter (Hai)"
 		"Grasshopper (Tracker)" 2
@@ -457,10 +599,12 @@ fleet "Large Hai Merchant (Human)"
 		"Lightning Bug" 1
 	variant 2
 		"Bactrian (Hai Weapons)"
-		"Grasshopper" 3
+		"Grasshopper" 2
+		"Grasshopper (Ion)"
 	variant 2
 		"Bactrian (Hai Engines)"
-		"Grasshopper" 3
+		"Grasshopper"
+		"Grasshopper (Ion)" 2
 	variant 2
 		"Arrow (Hai)"
 	variant 1
@@ -496,13 +640,60 @@ fleet "Large Hai Merchant (Human)"
 		"Headhunter (Hai)" 2
 
 
+fleet "Unfettered Logistics"
+	government "Hai (Unfettered Civilians)"
+	names "hai"
+	cargo 1
+	commodities "Food" "Heavy Metals" "Medical"
+	personality
+		confusion 25
+		timid frugal appeasing
+	variant 3
+		"Aphid (Unfettered)" 2
+		"Lightning Bug (Pulse)"
+	variant 3
+		"Aphid (Unfettered)" 3
+		"Lightning Bug (Pulse)"
+	variant 3
+		"Aphid (Unfettered)" 2
+		"Lightning Bug"
+	variant
+		"Aphid (Unfettered)" 3
+		"Lightning Bug"
+	variant 2
+		"Aphid (Unfettered)" 3
+		"Sea Scorpion (Tracker)"
+	variant 2
+		"Aphid (Unfettered)" 3
+		"Sea Scorpion (Ion)"
+	variant
+		"Aphid (Unfettered)" 3
+		"Sea Scorpion (Pulse)"
+	variant 2
+		"Aphid (Unfettered)" 4
+		"Sea Scorpion (Tracker)"
+	variant 2
+		"Aphid (Unfettered)" 4
+		"Sea Scorpion (Ion)"
+	variant
+		"Aphid (Unfettered)" 4
+		"Sea Scorpion (Pulse)"
+	variant 2
+		"Aphid (Unfettered)" 5
+		"Sea Scorpion (Tracker)"
+	variant 2
+		"Aphid (Unfettered)" 5
+		"Sea Scorpion (Ion)"
+	variant
+		"Aphid (Unfettered)" 5
+		"Sea Scorpion (Pulse)"
+
 fleet "Small Unfettered"
 	government "Hai (Unfettered)"
 	names "hai"
 	cargo 1
 	personality
-		disables
-		plunders
+		disables plunders
 	variant 3
 		"Lightning Bug (Pulse)" 2
 	variant 3
@@ -511,14 +702,102 @@ fleet "Small Unfettered"
 		"Lightning Bug"
 	variant
 		"Lightning Bug (Pulse)"
+	variant 2
+		"Sea Scorpion (Tracker)"
+	variant 2
+		"Sea Scorpion (Ion)"
+	variant
+		"Sea Scorpion (Pulse)"
+		"Lightning Bug"
 
 fleet "Large Unfettered"
 	government "Hai (Unfettered)"
 	names "hai"
 	cargo 1
 	personality
-		disables
-		plunders
+		disables plunders
+	variant 2
+		"Shield Beetle (Unfettered)"
+		"Lightning Bug (Pulse)" 2
+	variant 2
+		"Shield Beetle (Tracker)"
+		"Lightning Bug" 2
+	variant 1
+		"Shield Beetle (Unfettered)"
+		"Lightning Bug (Pulse)"
+	variant 1
+		"Shield Beetle (Tracker)"
+		"Lightning Bug"
+	variant 3
+		"Shield Beetle (Tracker)"
+		"Shield Beetle"
+	variant 1
+		"Shield Beetle (Tracker)" 2
+	variant 1
+		"Shield Beetle" 2
+	variant 1
+		"Lightning Bug" 5
+	variant 3
+		"Shield Beetle (Pulse)"
+		"Lightning Bug (Pulse)" 2
+	variant 2
+		"Shield Beetle (Pulse)"
+		"Shield Beetle (Unfettered)"
+	variant 2
+		"Shield Beetle (Pulse)"
+		"Shield Beetle (Tracker)"
+	variant
+		"Shield Beetle (Pulse)"
+		"Shield Beetle (Unfettered)"
+		"Lightning Bug (Pulse)" 2
+	variant
+		"Shield Beetle (Pulse)"
+		"Shield Beetle (Tracker)"
+		"Lightning Bug" 2
+	variant 4
+		"Sea Scorpion (Pulse)" 3
+	variant 3
+		"Sea Scorpion (Pulse)" 2
+		"Sea Scorpion (Tracker)" 2
+	variant 2
+		"Sea Scorpion (Pulse)" 2
+		"Shield Beetle (Unfettered)"
+	variant 2
+		"Sea Scorpion (Ion)"
+		"Sea Scorpion (Pulse)"
+		"Shield Beetle (Unfettered)"
+	variant 2
+		"Sea Scorpion (Pulse)" 2
+		"Shield Beetle (Pulse)"
+	variant 4
+		"Sea Scorpion (Tracker)" 3
+	variant 3
+		"Sea Scorpion (Tracker)" 4
+	variant 2
+		"Sea Scorpion (Tracker)" 2
+		"Shield Beetle (Unfettered)"
+	variant 2
+		"Sea Scorpion (Tracker)" 2
+		"Shield Beetle (Pulse)"
+	variant 2
+		"Lightning Bug"
+		"Sea Scorpion (Tracker)"
+		"Shield Beetle (Pulse)"
+	variant 2
+		"Lightning Bug"
+		"Sea Scorpion (Ion)"
+		"Shield Beetle (Pulse)"
+	variant 2
+		"Lightning Bug (Pulse)"
+		"Sea Scorpion (Pulse)"
+		"Shield Beetle (Pulse)"
+
+fleet "Large Plundering Unfettered"
+	government "Hai (Unfettered)"
+	names "hai"
+	cargo 1
+	personality
+		disables plunders coward
 	variant 2
 		"Shield Beetle"
 		"Lightning Bug (Pulse)" 2
@@ -557,14 +836,50 @@ fleet "Large Unfettered"
 		"Shield Beetle (Pulse)"
 		"Shield Beetle (Tracker)"
 		"Lightning Bug" 2
+	variant 4
+		"Sea Scorpion (Pulse)" 3
+	variant 3
+		"Sea Scorpion (Pulse)" 2
+		"Sea Scorpion (Tracker)" 2
+	variant 2
+		"Sea Scorpion (Pulse)" 2
+		"Shield Beetle"
+	variant 2
+		"Sea Scorpion (Ion)"
+		"Sea Scorpion (Pulse)"
+		"Shield Beetle"
+	variant 2
+		"Sea Scorpion (Pulse)" 2
+		"Shield Beetle (Pulse)"
+	variant 4
+		"Sea Scorpion (Tracker)" 3
+	variant 3
+		"Sea Scorpion (Tracker)" 4
+	variant 2
+		"Sea Scorpion (Tracker)" 2
+		"Shield Beetle"
+	variant 2
+		"Sea Scorpion (Tracker)" 2
+		"Shield Beetle (Pulse)"
+	variant 2
+		"Lightning Bug"
+		"Sea Scorpion (Tracker)"
+		"Shield Beetle (Pulse)"
+	variant 2
+		"Lightning Bug"
+		"Sea Scorpion (Ion)"
+		"Shield Beetle (Pulse)"
+	variant 2
+		"Lightning Bug (Pulse)"
+		"Sea Scorpion (Pulse)"
+		"Shield Beetle (Pulse)"
 
 fleet "Unfettered Raid"
 	government "Hai (Unfettered)"
 	names "hai"
 	cargo 1
 	personality
-		disables
-		plunders
+		disables plunders
 	variant
 		"Shield Beetle (Jump)" 3
 	variant

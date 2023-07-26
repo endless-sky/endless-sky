@@ -43,7 +43,8 @@ class System;
 class ConversationPanel : public Panel {
 public:
 	ConversationPanel(PlayerInfo &player, const Conversation &conversation,
-		const System *system = nullptr, const std::shared_ptr<Ship> &ship = nullptr);
+		const System *system = nullptr, const std::shared_ptr<Ship> &ship = nullptr,
+		bool useTransactions = false);
 
 template <class T>
 	void SetCallback(T *t, void (T::*fun)(int));
@@ -72,6 +73,10 @@ private:
 	// Handle mouse click on the "ok," "done," or a conversation choice.
 	void ClickName(int side);
 	void ClickChoice(int index);
+	// Given an index into the list of displayed choices (i.e. not including
+	// conditionally-skipped choices), return its "raw index" in the
+	// conversation (i.e. including conditionally-skipped choices)
+	int MapChoice(int n) const;
 
 
 private:
@@ -103,21 +108,26 @@ private:
 	// Reference to the player, to apply any changes to them.
 	PlayerInfo &player;
 
+	// Should we use a PlayerInfo transaction to prevent save-load glitches?
+	bool useTransactions = false;
+
 	// The conversation we are displaying.
 	const Conversation &conversation;
 	// All conversations start with node 0.
-	int node;
+	int node = 0;
 	// This function should be called with the conversation outcome.
 	std::function<void(int)> callback = nullptr;
 
 	// Current scroll position.
-	double scroll;
+	double scroll = 0.;
 
 	// The "history" of the conversation up to this point:
 	std::list<Paragraph> text;
-	// The current choices being presented to you:
-	std::list<Paragraph> choices;
-	int choice;
+	// The current choices being presented to you, and their indices:
+	std::list<std::pair<Paragraph, int>> choices;
+	int choice = 0;
+	// Flicker time, set if the player enters invalid input for a pilot's name.
+	int flickerTime = 0;
 
 	// Text entry fields for changing the player's name.
 	std::string firstName;

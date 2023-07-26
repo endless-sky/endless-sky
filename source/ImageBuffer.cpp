@@ -250,16 +250,27 @@ namespace {
 		int colorType = png_get_color_type(png, info);
 		int bitDepth = png_get_bit_depth(png, info);
 
-		png_set_strip_16(png);
-		png_set_packing(png);
 		if(colorType == PNG_COLOR_TYPE_PALETTE)
 			png_set_palette_to_rgb(png);
+		if(png_get_valid(png, info, PNG_INFO_tRNS))
+			png_set_tRNS_to_alpha(png);
 		if(colorType == PNG_COLOR_TYPE_GRAY && bitDepth < 8)
 			png_set_expand_gray_1_2_4_to_8(png);
+		if(bitDepth == 16)
+		{
+#if PNG_LIBPNG_VER >= 10504
+			png_set_scale_16(png);
+#else
+			png_set_strip_16(png);
+#endif
+		}
+		if(bitDepth < 8)
+			png_set_packing(png);
+		if(colorType == PNG_COLOR_TYPE_PALETTE || colorType == PNG_COLOR_TYPE_RGB
+				|| colorType == PNG_COLOR_TYPE_GRAY)
+			png_set_add_alpha(png, 0xFFFF, PNG_FILLER_AFTER);
 		if(colorType == PNG_COLOR_TYPE_GRAY || colorType == PNG_COLOR_TYPE_GRAY_ALPHA)
 			png_set_gray_to_rgb(png);
-		if(colorType == PNG_COLOR_TYPE_RGB)
-			png_set_filler(png, 0xFFFF, PNG_FILLER_AFTER);
 		// Let libpng handle any interlaced image decoding.
 		png_set_interlace_handling(png);
 		png_read_update_info(png, info);

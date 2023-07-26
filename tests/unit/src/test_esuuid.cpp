@@ -55,7 +55,13 @@ struct Identifiable {
 };
 struct InstantiableContainer : public Identifiable {
 	std::vector<InstantiableContainer> items;
-	std::vector<InstantiableContainer> others;
+	std::list<InstantiableContainer> others;
+
+	InstantiableContainer() noexcept = default;
+	InstantiableContainer(const InstantiableContainer &) noexcept = default;
+	InstantiableContainer &operator=(const InstantiableContainer &) noexcept = default;
+	InstantiableContainer(InstantiableContainer &&) noexcept = default;
+	InstantiableContainer &operator=(InstantiableContainer &&) noexcept = default;
 
 	std::vector<std::string> GetIds() const {
 		auto result = std::vector<std::string>{
@@ -369,6 +375,22 @@ SCENARIO( "Mapping identifiable collections", "[uuid][comparison][collections]" 
 		THEN( "item retrieval works correctly" ) {
 			CHECK( collection.at(first) == -1 );
 			CHECK( collection.at(second) == -2 );
+		}
+	}
+	GIVEN( "a collection of strings as ID comparator, with UUIDs, identifying items" ) {
+		auto collection = std::map<std::string, EsUuid>{};
+		Identifiable first;
+		Identifiable second;
+		std::string firstName = "one";
+		std::string secondName = "two";
+		collection.insert({ {firstName, EsUuid()}, {secondName, EsUuid()} });
+		WHEN( "we use strings to find the corresponding UUID in the collection" ) {
+			collection.at(firstName).clone(first.id);
+			collection.at(secondName).clone(second.id);
+			THEN( "we can use them to identify the items in a unique way" ) {
+				CHECK( collection.at(firstName) == first.id );
+				CHECK( collection.at(secondName) == second.id );
+			}
 		}
 	}
 }

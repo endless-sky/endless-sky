@@ -1,0 +1,304 @@
+# Copyright (c) 2022 by Saugia
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+# Creatures:
+
+ship "Jje"
+	plural "Jje"
+	noun "creature"
+	"sprite" ship/jje/jje
+		"frame rate" 4
+	swizzle 0
+	"never disabled"
+	attributes
+		category "Fighter"
+		"cost" 0
+		"hull" 4000
+		"required crew" 2
+		"bunks" 2
+		"mass" 100
+		"drag" 10
+		"heat dissipation" 20
+		"engine capacity" 200
+		"cargo space" 10
+		"outfit space" 10
+		"weapon capacity" 10
+		"engine capacity" 10
+		
+		"hull repair rate" 1
+		"atmosphere scan" 10
+		"inscrutable" 1
+		"energy capacity" 400
+		"energy generation" 4
+		
+		"thrust" 8
+		"flare sound" "jje"
+		"turn" 60
+		"steering flare sound" "jje"
+		
+		"burn protection" 2
+		"discharge protection" 2
+		"energy protection" 2
+		"hull protection" 2
+		"ion protection" 2
+		"scramble protection" 2
+		"ion resistance" 2
+		"scramble resistance" 2
+		"slowing protection" 2
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	engine 0 0
+	"steering engine" 0 0
+	"final explode" "jje boom"
+	description "This is an adolescent form of the Iije, having recently consumed quantities of stellar dust, matter, and energy. They are attracted to light in the dim space of the Umbral Reach, and are occasionally seen flying in groups."
+
+ship "Ayym"
+	plural "Ayym"
+	noun "creature"
+	"sprite" ship/ayym/ayym
+		"frame rate" 8
+	swizzle 0
+	"never disabled"
+	attributes
+		category "Utility"
+		"cost" 0
+		"hull" 6000
+		"required crew" 4
+		"bunks" 4
+		"mass" 200
+		"drag" 20
+		"heat dissipation" 20
+		"engine capacity" 200
+		"fuel capacity" 100
+		"cargo space" 10
+		"outfit space" 10
+		"weapon capacity" 10
+		"engine capacity" 10
+		
+		"hull repair rate" 2
+		"ramscoop" 10
+		"energy capacity" 400
+		"energy generation" 4
+		"atmosphere scan" 10
+		"inscrutable" 1
+		
+		"thrust" 14
+		"flare sound" "ayym"
+		"turn" 80
+		"steering flare sound" "ayym"
+		
+		"jump fuel" 100
+		"jump speed" .2
+		"hyperdrive" 1
+		"hyperdrive sound" "organ drive"
+		"hyperdrive out sound" "organ drive out"
+		"hyperdrive in sound" "organ drive in"
+		
+		"burn protection" 3
+		"discharge protection" 3
+		"energy protection" 3
+		"hull protection" 3
+		"ion protection" 3
+		"scramble protection" 3
+		"ion resistance" 3
+		"scramble resistance" 3
+		"slowing protection" 3
+		weapon
+			"blast radius" 300
+			"shield damage" 3000
+			"hull damage" 1500
+			"hit force" 4500
+	engine 0 0
+	"steering engine" 0 0
+	bay "Fighter" -36 40
+		over
+		angle 60
+	bay "Fighter" 36 20
+		over
+		angle -70
+	bay "Fighter" -16 104
+		over
+		angle 162
+	bay "Fighter" -28 66
+		over
+		angle 68
+	bay "Fighter" -18 14
+		over
+		angle 127
+	bay "Fighter" 35 25
+		over
+		angle 25
+	bay "Fighter" 25 70
+		over
+		angle -120
+	bay "Fighter" 11 110
+		over
+		angle 38
+	bay "Fighter" -36 40
+		over
+		angle -53
+	"final explode" "ayym boom"
+	description "This is an adult form of the Iije, having grown enormous from consuming stellar matter over hundreds of thousands of years. They can be seen carrying the smaller Jje around the Umbral Reach, but the exact purpose of this activity is unknown."
+
+# Effects:
+
+effect "jje boom"
+	sprite "effect/explosion/large"
+		"no repeat"
+		"frame rate" 15
+	sound "explosion jje"
+	"lifetime" 32
+	"random angle" 360
+	"random frame rate" 5
+	"random spin" 4
+	"random velocity" .8
+	"velocity scale" .4
+
+effect "ayym boom"
+	sprite "effect/explosion/nuke"
+		"no repeat"
+		"frame rate" 30
+	sound "explosion ayym"
+	"lifetime" 15
+	"random angle" 360
+	"random spin" 5
+	"random velocity" 1
+	"velocity scale" .4
+
+# Fleets:
+
+fleet "Iije (Uninterested)"
+	government "Indigenous Lifeform"
+	cargo 0
+	personality
+		timid unconstrained uninterested mute
+	variant 6000
+		"Jje"
+	variant 200
+		"Jje" 2
+	variant 20
+		"Jje" 3
+	variant 1
+		"Ayym"
+	variant 1
+		"Ayym"
+		"Jje" 1
+	variant 1
+		"Ayym"
+		"Jje" 2
+	variant 1
+		"Ayym"
+		"Jje" 3
+	variant 1
+		"Ayym"
+		"Jje" 4
+	variant 1
+		"Ayym"
+		"Jje" 5
+	variant 1
+		"Ayym"
+		"Jje" 6
+	variant 1
+		"Ayym"
+		"Jje" 7
+	variant 1
+		"Ayym"
+		"Jje" 8
+	variant 1
+		"Ayym"
+		"Jje" 9
+		
+fleet "Iije (Swarming)"
+	government "Indigenous Lifeform"
+	cargo 0
+	personality
+		timid unconstrained swarming mute
+	variant 6000
+		"Jje"
+	variant 200
+		"Jje" 2
+	variant 20
+		"Jje" 3
+	variant 1
+		"Ayym"
+	variant 1
+		"Ayym"
+		"Jje" 1
+	variant 1
+		"Ayym"
+		"Jje" 2
+	variant 1
+		"Ayym"
+		"Jje" 3
+	variant 1
+		"Ayym"
+		"Jje" 4
+	variant 1
+		"Ayym"
+		"Jje" 5
+	variant 1
+		"Ayym"
+		"Jje" 6
+	variant 1
+		"Ayym"
+		"Jje" 7
+	variant 1
+		"Ayym"
+		"Jje" 8
+	variant 1
+		"Ayym"
+		"Jje" 9
+		
+fleet "Iije (Surveillance)"
+	government "Indigenous Lifeform"
+	cargo 0
+	personality
+		timid unconstrained surveillance mute
+	variant 6000
+		"Jje"
+	variant 200
+		"Jje" 2
+	variant 20
+		"Jje" 3
+	variant 1
+		"Ayym"
+	variant 1
+		"Ayym"
+		"Jje" 1
+	variant 1
+		"Ayym"
+		"Jje" 2
+	variant 1
+		"Ayym"
+		"Jje" 3
+	variant 1
+		"Ayym"
+		"Jje" 4
+	variant 1
+		"Ayym"
+		"Jje" 5
+	variant 1
+		"Ayym"
+		"Jje" 6
+	variant 1
+		"Ayym"
+		"Jje" 7
+	variant 1
+		"Ayym"
+		"Jje" 8
+	variant 1
+		"Ayym"
+		"Jje" 9

@@ -637,14 +637,14 @@ mission "Coalition: Tourists Out 1"
 	job
 	repeat
 	name "Vacationers to <planet>"
-	description "These <bunks> tourists will pay you <payment> to bring them to <destination>. Payment is void if they do not arrive by <date>."
+	description "These <bunks> tourists will pay you <payment> to bring them to <destination> and desire to travel in a very comfortable ship. Payment is void if they do not arrive by <date>."
 	deadline
 	passengers 2 5 .5
 	to offer
 		has "known to the heliarchs"
 		random < 40
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		has "outfit (installed): Luxury Accommodations"
 	source
 		government "Coalition"
 	destination
@@ -662,14 +662,14 @@ mission "Coalition: Tourists Out 2"
 	job
 	repeat
 	name "Vacationers to <planet>"
-	description "These <bunks> tourists will pay you <payment> to bring them to <destination>. Payment is void if they do not arrive by <date>."
+	description "These <bunks> tourists will pay you <payment> to bring them to <destination> and desire to travel in a very comfortable ship. Payment is void if they do not arrive by <date>."
 	deadline
 	passengers 2 5 .4
 	to offer
 		has "known to the heliarchs"
 		random < 30
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		has "outfit (installed): Luxury Accommodations"
 	source
 		government "Coalition"
 	destination
@@ -687,14 +687,14 @@ mission "Coalition: Tourists Out 3"
 	job
 	repeat
 	name "Vacationers to <planet>"
-	description "These <bunks> tourists will pay you <payment> to bring them to <destination>. Payment is void if they do not arrive by <date>."
+	description "These <bunks> tourists will pay you <payment> to bring them to <destination> and desire to travel in a very comfortable ship. Payment is void if they do not arrive by <date>."
 	deadline
 	passengers 2 5 .3
 	to offer
 		has "known to the heliarchs"
 		random < 20
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		has "outfit (installed): Luxury Accommodations"
 	source
 		government "Coalition"
 	destination
@@ -717,14 +717,14 @@ mission "Coalition: Tourists Home 1"
 	job
 	repeat
 	name "Vacationers to <planet>"
-	description "These <bunks> tourists will pay you <payment> to bring them home to <destination>. Payment is void if they do not arrive by <date>."
+	description "These <bunks> tourists will pay you <payment> to bring them home to <destination> and desire to travel in a very comfortable ship. Payment is void if they do not arrive by <date>."
 	deadline
 	passengers 2 5 .5
 	to offer
 		has "known to the heliarchs"
 		random < 40
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		has "outfit (installed): Luxury Accommodations"
 	source
 		government "Coalition"
 		attributes "tourism"
@@ -742,14 +742,14 @@ mission "Coalition: Tourists Home 2"
 	job
 	repeat
 	name "Vacationers to <planet>"
-	description "These <bunks> tourists will pay you <payment> to bring them home to <destination>. Payment is void if they do not arrive by <date>."
+	description "These <bunks> tourists will pay you <payment> to bring them home to <destination> and desire to travel in a very comfortable ship. Payment is void if they do not arrive by <date>."
 	deadline
 	passengers 2 5 .4
 	to offer
 		has "known to the heliarchs"
 		random < 30
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		has "outfit (installed): Luxury Accommodations"
 	source
 		government "Coalition"
 		attributes "tourism"
@@ -767,14 +767,14 @@ mission "Coalition: Tourists Home 3"
 	job
 	repeat
 	name "Vacationers to <planet>"
-	description "These <bunks> tourists will pay you <payment> to bring them home to <destination>. Payment is void if they do not arrive by <date>."
+	description "These <bunks> tourists will pay you <payment> to bring them home to <destination> and desire to travel in a very comfortable ship. Payment is void if they do not arrive by <date>."
 	deadline
 	passengers 2 5 .3
 	to offer
 		has "known to the heliarchs"
 		random < 20
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		has "outfit (installed): Luxury Accommodations"
 	source
 		government "Coalition"
 		attributes "tourism"
@@ -1195,12 +1195,13 @@ mission "Coalition: To Games 1"
 	repeat
 	name "Spectators to <planet>"
 	description "These <bunks> passengers will pay <payment> for transportation to <planet> in time for the Coalition Games (by <date>)."
-	deadline
+	deadline 0 2
 	passengers 4 4 .2
 	to offer
 		has "known to the heliarchs"
 		random < 90
 		month == 7
+		"days until year end" - 2 * "hyperjumps to system: Homeward" > 153
 	source
 		near "Homeward" 2 20
 		government "Coalition"
@@ -1217,12 +1218,13 @@ mission "Coalition: To Games 2"
 	repeat
 	name "Spectators to <planet>"
 	description "These <bunks> passengers will pay <payment> for transportation to <planet> in time for the Coalition Games (by <date>)."
-	deadline
+	deadline 0 2
 	passengers 4 4 .1
 	to offer
 		has "known to the heliarchs"
 		random < 70
 		month == 7
+		"days until year end" - 2 * "hyperjumps to system: Homeward" > 153
 	source
 		near "Homeward" 2 20
 		government "Coalition"
@@ -1239,12 +1241,13 @@ mission "Coalition: To Games 3"
 	repeat
 	name "Spectators to <planet>"
 	description "These <bunks> passengers will pay <payment> for transportation to <planet> in time for the Coalition Games (by <date>)."
-	deadline
+	deadline 0 2
 	passengers 4 4 .05
 	to offer
 		has "known to the heliarchs"
 		random < 50
 		month == 7
+		"days until year end" - 2 * "hyperjumps to system: Homeward" > 153
 	source
 		near "Homeward" 2 20
 		government "Coalition"
@@ -1325,3 +1328,68 @@ mission "Coalition: From Games 3"
 		payment
 		payment 25000
 		dialog phrase "coalition games dialog"
+
+
+mission "Heliarchs Buy Jump Drive Job 1"
+	job
+	name "Sell Jump Drive"
+	description "Sell a jump drive to the Heliarchs for five million credits."
+	source
+		government "Heliarch"
+	to offer
+		not "Coalition: Lost: Offer: active"
+		has "Heliarchs Buy Jump Drive Mission: declined"
+		has "outfit (cargo): Jump Drive"
+	on accept
+		conversation
+			`The Heliarchs thank you profusely when they see you've taken them up on their offer, and soon enough several of their ships have landed near your own, apparently having learned of your change of mind and excited to see the exchange, leaving their ships and surrounding yours. Soon enough, they make space for an army of engineers to come and remove the spare jump drive from your ship. Still watching the scene, only now in formations, the Heliarch agents whisper among themselves, rarely shifting their eyes, as if looking at a spectacle.`
+			`	Once the drive is out of your ship, it is secured in an excessively reinforced container and transported to a restricted section of the ring, under the guard of hundreds of armed soldiers. One of the Heliarchs who seem to be in charge of the procedure, an Arach, personally comes to you, thanking you again and handing you <payment>. "Honor us you do with such generosity, Captain. Though made great progress in studying jump drives and their mechanisms, we have, still incapable of creating our own, we are, and means of acquiring new copies we have not. Tremendously valuable, each and every drive you could bring us is. If interested in selling any more jump drives, you are, continue to offer you such jobs, we will."`
+			branch license
+				"coalition jobs" < 30
+			`	She thanks you yet again, salutes, and leaves to follow the entourage guarding the newly purchased jump drive.`
+				accept
+			label license
+			action
+				"reputation: Coalition" += 10
+				"reputation: Heliarch" += 10
+				set "license: Coalition"
+				log "Sold a jump drive to the Heliarchs and received permission to purchase Coalition civilian technology and ships."
+				log "Factions" "Saryds" `Saryds are an alien species who look suspiciously similar to the centaurs found in early human mythology. They prefer to live on worlds with as much green space as possible, and even their major cities are full of parks and gardens. Most Saryds live in small communes with up to a few dozen of them per house.`
+				log "Factions" "Kimek" `The Kimek are large insectoid aliens, and are members of the Coalition. They discovered spaceflight after the Saryds, but before the Arachi. They are intensely social creatures, preferring to live together in massive buildings with thousands of inhabitants, and many of their worlds have populations in the tens of billions, far more than any human world.`
+				log "Factions" "Arachi" `The spider-like Arachi were the last of the three Coalition species to discover interstellar travel. Most members of their society owe allegiance to one of the great Arach "Houses," organizations that are somewhat similar to guilds and that each specialize in one particular form of industry or technology.`
+			`	She thanks you yet again, salutes, and leaves to follow the entourage guarding the newly purchased jump drive. Not a minute after she has left, three more Heliarchs arrive at your ship, a delegation consisting of a member of each of the three Coalition species, all wearing golden circlets denoting their rank and authority. "A most unexpected, but greatly value contribution this is," the Saryd says, "to think that so eager would our visitor be to prove their diligence and commitment."`
+			`	The Kimek says, "As aided you have our society in breaking free of the Quarg's cages, with our society's technology may you be trusted."`
+			`	"But," says the Arach, "like all civilians, even citizens, to you our weapons and warships we still cannot sell."`
+			choice
+				`	"Thank you."`
+					goto end
+				`	"Why don't you allow civilians to purchase weapons or warships?"`
+			`	"For the sake of peace it is," says the Saryd. "The Heliarch military, well trained to use weapons only for defense and only for justice, they are. And to place the needs of the Coalition over the ambitions of their own native species, each one committed is. No such discipline do civilians have, even you. But as a respectful guest you are, to maintain your weapons we shall allow."`
+			label end
+			`	Apparently nothing is for sale here, but they assure you that many Coalition worlds will now grant you access to their shipyards and outfitters. The three Heliarchs all express their deep gratitude for your generosity with providing them a fresh jump drive, and wish you well.`
+				accept
+		"coalition jobs" >?= 30
+		outfit "Jump Drive" -1
+		payment 5000000
+		fail
+
+mission "Heliarchs Buy Jump Drive Job 2"
+	job
+	repeat
+	name "Sell Jump Drive"
+	description "Sell a jump drive to the Heliarchs for five million credits."
+	source
+		government "Heliarch"
+	to offer
+		not "Coalition: Lost: Offer: active"
+		has "outfit (cargo): Jump Drive"
+		has "Heliarchs Buy Jump Drive Mission: offered"
+		or
+			not "Heliarchs Buy Jump Drive Mission: declined"
+			has "Heliarchs Buy Jump Drive Job 1: offered"
+	on accept
+		dialog "A team of Heliarch engineers carefully removes the spare jump drive from your ship and brings it to a restricted section of the ring. You're approached by the Heliarch who supervised the procedure, who thanks you for bringing in another drive, and hands you the pay of five million credits."
+		"coalition jobs" += 2
+		outfit "Jump Drive" -1
+		payment 5000000
+		fail

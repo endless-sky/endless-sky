@@ -50,10 +50,13 @@ public:
 	void Load(const DataNode &node);
 	bool IsDefined() const;
 
-	const std::string &Name() const;
+	const std::string &TrueName() const;
+	const std::string &DisplayName() const;
 	void SetName(const std::string &name);
 	const std::string &PluralName() const;
 	const std::string &Category() const;
+	const std::string &Series() const;
+	const int Index() const;
 	const std::string &Description() const;
 	int64_t Cost() const;
 	double Mass() const;
@@ -100,9 +103,14 @@ public:
 
 private:
 	bool isDefined = false;
-	std::string name;
+	std::string trueName;
+	std::string displayName;
 	std::string pluralName;
 	std::string category;
+	// The series that this outfit is a part of and its index within that series.
+	// Used for sorting within shops.
+	std::string series;
+	int index;
 	std::string description;
 	const Sprite *thumbnail = nullptr;
 	int64_t cost = 0;

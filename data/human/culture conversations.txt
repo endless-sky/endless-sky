@@ -344,11 +344,20 @@ mission "Forest Fire"
 mission "Local Politics"
 	minor
 	source
-		government "Free Worlds"
 		attributes "frontier"
-		not attributes "station"
+		attributes "south"
+		not attributes "station" "urban" "ex-pirate"
 	to offer
-		random < 1
+		or
+			and
+				random < 5
+				or
+					has "flagship planet attribute: south pirate"
+					not "event: war begins"
+			and
+				random < 1
+				has "event: war begins"
+				not "event: fw suppressed Greenrock"
 	on offer
 		conversation
 			`As you land on the pad, you note a general lack of presence around the spaceport. No one has scrambled to hook up your ship, nor has anybody else acknowledged your arrival. Instead, when you leave your ship, all you find is a note within the spaceport detailing where their "overlords" can find their yearly tribute.`

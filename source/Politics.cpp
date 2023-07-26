@@ -31,6 +31,32 @@ using namespace std;
 
 
 
+namespace {
+	// Check if the ship evades being cargo scanned.
+	bool EvadesCargoScan(const Ship &ship)
+	{
+		// Illegal goods can be hidden inside legal goods to avoid detection.
+		const int contraband = ship.Cargo().IllegalCargoAmount();
+		const int netIllegalCargo = contraband - ship.Attributes().Get("scan concealment");
+		if(netIllegalCargo <= 0)
+			return true;
+
+		const int legalGoods = ship.Cargo().Used() - contraband;
+		const double illegalRatio = legalGoods ? max(1., 2. * netIllegalCargo / legalGoods) : 1.;
+		const double scanChance = illegalRatio / (1. + ship.Attributes().Get("scan interference"));
+		return Random::Real() > scanChance;
+	}
+
+	// Check if the ship evades being outfit scanned.
+	bool EvadesOutfitScan(const Ship &ship)
+	{
+		return ship.Attributes().Get("inscrutable") > 0. ||
+				Random::Real() > 1. / (1. + ship.Attributes().Get("scan interference"));
+	}
+}
+
+
+
 // Reset to the initial political state defined in the game data.
 void Politics::Reset()
 {
@@ -108,11 +134,11 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 			// changes. This is to allow two governments to be hostile or
 			// friendly without the player's behavior toward one of them
 			// influencing their reputation with the other.
-			double penalty = (count * weight) * other->PenaltyFor(eventType);
+			double penalty = (count * weight) * other->PenaltyFor(eventType, gov);
 			if(eventType & ShipEvent::ATROCITY && weight > 0)
-				reputationWith[other] = min(0., reputationWith[other]);
+				Politics::SetReputation(other, min(0., reputationWith[other]));
 
-			reputationWith[other] -= penalty;
+			Politics::AddReputation(other, -penalty);
 		}
 	}
 }
@@ -217,9 +243,6 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 	int64_t maxFine = 0;
 	for(const shared_ptr<Ship> &ship : player.Ships())
 	{
-		// Check if the ship evades being scanned due to interference plating.
-		if(Random::Real() > 1. / (1. + ship->Attributes().Get("scan interference")))
-			continue;
 		if(target && target != &*ship)
 			continue;
 		if(ship->GetSystem() != player.GetSystem())
@@ -227,9 +250,9 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 
 		int failedMissions = 0;
 
-		if(!scan || (scan & ShipEvent::SCAN_CARGO))
+		if((!scan || (scan & ShipEvent::SCAN_CARGO)) && !EvadesCargoScan(*ship))
 		{
-			int64_t fine = ship->Cargo().IllegalCargoFine();
+			int64_t fine = ship->Cargo().IllegalCargoFine(gov);
 			if((fine > maxFine && maxFine >= 0) || fine < 0)
 			{
 				maxFine = fine;
@@ -256,13 +279,12 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 				}
 			}
 		}
-		if(!scan || (scan & ShipEvent::SCAN_OUTFITS))
-		{
+		if((!scan || (scan & ShipEvent::SCAN_OUTFITS)) && !EvadesOutfitScan(*ship))
 			for(const auto &it : ship->Outfits())
 				if(it.second)
 				{
-					int64_t fine = it.first->Get("illegal");
-					if(it.first->Get("atrocity") > 0.)
+					int fine = gov->Fines(it.first);
+					if(gov->Condemns(it.first))
 						fine = -1;
 					if((fine > maxFine && maxFine >= 0) || fine < 0)
 					{
@@ -270,7 +292,6 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 						reason = " for having illegal outfits installed on your ship.";
 					}
 				}
-		}
 		if(failedMissions && maxFine > 0)
 		{
 			reason += "\n\tYou failed " + Format::Number(failedMissions) + ((failedMissions > 1) ? " missions" : " mission")
@@ -293,7 +314,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 		// Scale the fine based on how lenient this government is.
 		maxFine = lround(maxFine * gov->GetFineFraction());
 		reason = "The " + gov->GetName() + " authorities fine you "
-			+ Format::Credits(maxFine) + " credits" + reason;
+			+ Format::CreditString(maxFine) + reason;
 		player.Accounts().AddFine(maxFine);
 		fined.insert(gov);
 	}
@@ -313,13 +334,15 @@ double Politics::Reputation(const Government *gov) const
 
 void Politics::AddReputation(const Government *gov, double value)
 {
-	reputationWith[gov] += value;
+	SetReputation(gov, reputationWith[gov] + value);
 }
 
 
 
 void Politics::SetReputation(const Government *gov, double value)
 {
+	value = min(value, gov->ReputationMax());
+	value = max(value, gov->ReputationMin());
 	reputationWith[gov] = value;
 }
 

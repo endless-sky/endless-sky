@@ -22,7 +22,6 @@ outfit "Small Collector Module"
 	"solar collection" .8
 	"solar heat" .4
 	description "Solar power is the mainstay of the Coalition's merchant marine. The design of these panels has been refined over the millennia, growing ever more efficient."
-	description "	Solar panels are more resilient to being overheated than normal energy generation. While a normal reactor will shut down when overheated, solar panels continue to work at a reduced efficiency."
 
 outfit "Large Collector Module"
 	category "Power"
@@ -35,7 +34,6 @@ outfit "Large Collector Module"
 	"solar collection" 3.3
 	"solar heat" 1.5
 	description "One of these solar panels is enough to meet the energy needs of a medium-sized Coalition civilian ship, especially given the energy efficiency of their engines and the fact that under their laws only Heliarch ships are allowed to have weapons."
-	description "	Solar panels are more resilient to being overheated than normal energy generation. While a normal reactor will shut down when overheated, solar panels continue to work at a reduced efficiency."
 
 outfit "Small Reactor Module"
 	category "Power"
@@ -47,7 +45,8 @@ outfit "Small Reactor Module"
 	"outfit space" -42
 	"energy generation" 9.8
 	"heat generation" 19
-	description "Solar power is sufficient for commerce, but excessive thriftiness is seldom a winning strategy in warfare. So for ships that must have a reliable energy source to power weapons, the Heliarchs use nuclear reactors."
+	description "Solar power is sufficient for commerce, but excessive thriftiness is seldom a winning strategy in warfare. For ships that must have a reliable energy source to power weapons, the Heliarchs use compact nuclear reactors."
+	description "	A beam of antiprotons triggers fusion in tiny injected fuel pellets, allowing for a complete burnup far more efficient than would otherwise be possible."
 
 outfit "Large Reactor Module"
 	category "Power"
@@ -59,7 +58,8 @@ outfit "Large Reactor Module"
 	"outfit space" -98
 	"energy generation" 24.2
 	"heat generation" 45
-	description "This reactor was designed for the most powerful Heliarch warships. Its design has not changed significantly in the millennia since the first battle with the Quarg, but each generation of reactors is made slightly more efficient than the previous ones."
+	description "Though still unable to replicate Quarg power generation technology, Heliarch science teams are constantly looking to realize their most recent guess on how they work. For this larger module, a steady stream of injected antiprotons catalyzes reactions in carefully confined fusion plasma, extracting as much power as physically possible."
+	description "	This advanced fusion reactor was designed for the most powerful Heliarch warships. Its structure has not changed significantly in the millennia since the first battle with the Quarg, but each generation of reactors is made slightly more efficient than the previous ones."
 
 outfit "Small Cogeneration Module"
 	category "Power"
@@ -199,7 +199,7 @@ outfit "Cooling Module"
 	"outfit space" -5
 	"active cooling" 21
 	"cooling energy" 1.4
-	description "This cooling module consumes energy. To conserve power, it does not ramp up to full strength unless a ship is overheated."
+	description "This Cooling Module consumes energy. To conserve power, it does not ramp up to full strength unless a ship is very close to overheating."
 
 outfit "Fuel Module"
 	category "Systems"
@@ -211,8 +211,8 @@ outfit "Fuel Module"
 	"outfit space" -19
 	"fuel capacity" 400
 	"fuel protection" .25
-	description "In their early days of space exploration, the Saryds developed the fuel module to travel far from Saros without worrying about becoming stranded without fuel, or sudden fuel leaks."
-	description "	Nowadays, nearly every system in the Coalition has refuelling facilities, but some captains still find use in the extra jumps these modules offer."
+	description "In their early days of space exploration, the Saryds developed the Fuel Module to travel far from Saros without worrying about becoming stranded without fuel, or sudden fuel leaks."
+	description "	Nowadays, nearly every system in the Coalition has refueling facilities, but some captains still find use in the extra jumps these modules offer."
 
 outfit "Scanning Module"
 	category "Systems"
@@ -223,9 +223,9 @@ outfit "Scanning Module"
 	"mass" 3
 	"outfit space" -3
 	"outfit scan power" 25
-	"outfit scan speed" 1
+	"outfit scan efficiency" 18
 	"cargo scan power" 25
-	"cargo scan speed" 1
+	"cargo scan efficiency" 18
 	"tactical scan power" 25
 	description "This system allows the Heliarchs to scan nearby ships, enabling them to detect weapons or illegal goods."
 
@@ -307,7 +307,7 @@ outfit "Large Reverse Module"
 	"reverse flare sprite" "effect/coalition flare/large"
 		"frame rate" 7
 	"reverse flare sound" "atomic small"
-	description "With their significant weapons capacity left unused in peacetime, captains of larger Coalition freighters and transports can use large thrust modules to rapidly slow their ships, allowing them to save both time and energy."
+	description "With their significant weapons capacity left unused in peacetime, captains of larger Coalition freighters and transports can use Large Reverse Modules to rapidly slow their ships, allowing them to save both time and energy."
 	description "	Because a reverse thruster must be facing forwards, it must be installed in the weapon section of your ship instead of the engine section."
 
 outfit "Small Steering Module"

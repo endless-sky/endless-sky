@@ -6,204 +6,72 @@ on:
       - master
       - releases/v[0-9]+.[0-9]+.[0-9]+
 
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}-${{ github.event_name }}
+  cancel-in-progress: true
+
 jobs:
   changed:
-    uses: endless-sky/endless-sky/.github/workflows/compute-changes.yml@master
+    uses: ./.github/workflows/compute-changes.yml
 
   build_linux:
+    name: Linux
     needs: changed
-    if: needs.changed.outputs.linux == 'true'
-    runs-on: ubuntu-latest
+    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.integration_tests == 'true' || needs.changed.outputs.cmake_files == 'true' }}
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
-        include:
-          - platform: amd64,i386
-            arch: x86_64
-          - platform: i386
-            arch: i686
-    outputs:
-      RT_VERSION: ${{ steps.steamrt-version.outputs.RT_VERSION }}
+        arch: [x64, x86]
     env:
-      snapshot: latest-steam-client-general-availability
-      sdk: com.valvesoftware.SteamRuntime.Sdk-${{ matrix.platform }}-scout-sysroot
-      ARTIFACT: endless-sky
+      snapshot: latest-container-runtime-depot
+      runtime: steam-container-runtime.tar.gz
+      platform: com.valvesoftware.SteamRuntime.Platform-amd64,i386-sniper-runtime.tar.gz
     steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 1
-    - name: Check steamrt version
+    - uses: actions/checkout@v3
+
+    # Build the binary
+    - name: Save Steam runtime version
       id: steamrt-version
       run: |
-        STEAM_VERSION=$(curl -sSf https://repo.steampowered.com/steamrt-images-scout/snapshots/${{ env.snapshot }}/VERSION.txt --output -)
+        STEAM_VERSION=$(curl -sSf https://repo.steampowered.com/steamrt-images-sniper/snapshots/latest-container-runtime-depot/VERSION.txt --output -)
         echo "RT_VERSION=$STEAM_VERSION" >> $GITHUB_ENV
-        echo "::set-output name=RT_VERSION::$STEAM_VERSION"
-    - name: Restore cached steamrt archive
-      id: cache-tarball
-      uses: actions/cache@v2
-      with:
-        path: build/docker/${{ env.sdk }}.tar.gz
-        key: ${{ env.RT_VERSION }}-${{ matrix.arch }}-steamrt-sdk
-    - name: Download steamrt archive
-      if: steps.cache-tarball.outputs.cache-hit != 'true'
-      env:
-        tarball: ${{ env.sdk }}.tar.gz
+    - name: Build Endless Sky
       run: |
-        mkdir -p build/docker
-        curl -sSf https://repo.steampowered.com/steamrt-images-scout/snapshots/${{ env.snapshot }}/${{ env.tarball }} > build/docker/${{ env.tarball }}
-    - name: Download steamrt dockerfile
-      run: curl -sSf https://repo.steampowered.com/steamrt-images-scout/snapshots/${{ env.snapshot }}/${{ env.sdk }}.Dockerfile > build/docker/Dockerfile
-    - name: Download pip installer
-      run: curl -sSf https://bootstrap.pypa.io/pip/3.5/get-pip.py > ./get-pip.py
-    - name: Build inside container
-      run: |
-        mkdir -p tests/build
-        cd build/docker
-        docker build -f Dockerfile -t s_rt .
-        cd ${{ github.workspace }}
-        docker run --rm \
-          --mount type=bind,ro,src=$(pwd)/source,dst=/endless-sky/source \
-          --mount type=bind,src=$(pwd)/tests,dst=/endless-sky/tests \
-          --mount type=bind,src=$(pwd)/build,dst=/endless-sky/build \
-          --mount type=bind,ro,src=$(pwd)/SConstruct,dst=/endless-sky/SConstruct \
-          --mount type=bind,ro,src=$(pwd)/get-pip.py,dst=/endless-sky/get-pip.py \
-          -e SCHROOT_CHROOT_NAME=steamrt_scout_${{ matrix.platform }} \
-          -e LTO_PLUGIN_PATH=/usr/lib/gcc/${{ matrix.arch }}-linux-gnu/5/liblto_plugin.so \
-          -w /endless-sky s_rt /bin/bash -c \
-          'sudo dpkg --clear-avail \
-            && echo "deb http://old-releases.ubuntu.com/ubuntu/ precise main restricted universe multiverse" > /etc/apt/sources.list \
-            && echo "deb http://old-releases.ubuntu.com/ubuntu/ precise-updates main restricted universe multiverse" >> /etc/apt/sources.list \
-            && echo "deb http://old-releases.ubuntu.com/ubuntu/ precise-security main restricted universe multiverse" >> /etc/apt/sources.list \
-            && sudo apt-get update -q \
-            && sudo apt-get install -yq --no-install-recommends libmad0-dev \
-            && update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 101 \
-            && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 101 \
-            && update-alternatives --install /usr/bin/cpp cpp-bin /usr/bin/cpp-5 101 \
-            && update-alternatives --auto gcc \
-            && update-alternatives --auto g++ \
-            && update-alternatives --auto cpp-bin \
-            && python3.5 get-pip.py \
-            && python3.5 -m pip install SCons==4.2.0 \
-            && python3.5 $(which scons) -Qj $(nproc) endless-sky test \
-            && mv ./endless-sky build/ \
-            && ./build/endless-sky -v \
-          '
-    - name: Prepare binary
-      run: mv build/endless-sky .
-    - name: Upload GH artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: binary-${{ runner.os }}-${{ matrix.arch }}
-        path: ${{ env.ARTIFACT }}
+        cd steam
+        docker-compose run steam-${{ matrix.arch }}
 
-  test_linux:
-    needs: build_linux
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-18.04, ubuntu-latest]
-    env:
-      snapshot: latest-steam-client-general-availability
-      tarball: steam-runtime.tar.xz
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 1
+    # Test the binary
+    - name: Install runtime dependencies
+      run: sudo apt-get install -y --no-install-recommends libosmesa6 mesa-utils
     - name: Restore cached Steam Runtime environment
-      id: cache-tarball
-      uses: actions/cache@v2
+      id: cache-runtime
+      uses: actions/cache@v3
       with:
-        path: ${{ env.tarball }}
-        key: ${{ matrix.os }}-${{ needs.build_linux.outputs.RT_VERSION }}-steamrt-env
+        path: |
+          ${{ env.runtime }}
+          ${{ env.platform }}
+        key: steamrt-${{ env.RT_VERSION }}
     - name: Download Steam Runtime environment
-      if: steps.cache-tarball.outputs.cache-hit != 'true'
-      run: curl -sSf https://repo.steampowered.com/steamrt-images-scout/snapshots/${{ env.snapshot }}/${{ env.tarball }} > ${{ env.tarball }}
+      if: steps.cache-runtime.outputs.cache-hit != 'true'
+      run: |
+        curl -sSf https://repo.steampowered.com/steamrt-images-sniper/snapshots/${{ env.snapshot }}/${{ env.runtime }} > ${{ env.runtime }}
+        curl -sSf https://repo.steampowered.com/steamrt-images-sniper/snapshots/${{ env.snapshot }}/${{ env.platform }} > ${{ env.platform }}
     - name: Extract Steam Runtime
-      run: tar -xf ${{ env.tarball }}
-    - name: Download Endless Sky binary
-      uses: actions/download-artifact@v2
-      with:
-        name: binary-${{ runner.os }}-x86_64
-        path: .
-    - name: Install xvfb runtime dependencies
       run: |
-        sudo apt-get update -q
-        sudo apt-get install -y --no-install-recommends libosmesa6 mesa-utils
-    - name: Pin Steam libraries
-      run: steam-runtime/setup.sh
-    - run: chmod +x endless-sky
-    - run: steam-runtime/run.sh ./endless-sky -v
+        tar -xf ${{ env.runtime }}
+        tar -xf ${{ env.platform }} -C steam-container-runtime/depot/sniper_platform_*/
+    - name: Verify executable
+      run: ./steam-container-runtime/depot/run-in-sniper ./build/steam-${{ matrix.arch }}/endless-sky -- -v
     - name: Execute data parsing test
-      run: steam-runtime/run.sh ./utils/test_parse.sh ./endless-sky
-    # NOTE: As with the non-Steam integration tests, on Ubuntu 18.04 the call to SDL_GL_CreateContext fails
-    # with SDL error "Could not create GL Context: BadValue (integer parameter out of range for operation)"
-    - name: Execute integration tests
-      if: matrix.os != 'ubuntu-18.04'
-      env:
-          PRINT_GLXINFO: true
-      run: steam-runtime/run.sh tests/integration/run_tests_headless.sh
-
-  deploy_linux:
-    needs: test_linux
-    runs-on: ubuntu-latest
-    # environment: steam
-    env:
-      dir32: binary-Linux-i686
-      dir64: binary-Linux-x86_64
-      ARTIFACT: endless-sky
-    steps:
-    - name: Download Artifacts
-      uses: actions/download-artifact@v2
-      with:
-        path: ${{ github.workspace }}
-    - name: Prepare binary upload
+      run: ./steam-container-runtime/depot/run-in-sniper ./utils/test_parse.sh -- ./build/steam-${{ matrix.arch }}/endless-sky
+    - name: Execute integration data parsing test
+      run: ./steam-container-runtime/depot/run-in-sniper ./utils/test_parse.sh -- ./build/steam-${{ matrix.arch }}/endless-sky tests/integration/config
+    - name: Execute tests
       run: |
-        chmod +x ${{ env.dir32 }}/${{ env.ARTIFACT }}
-        chmod +x ${{ env.dir64 }}/${{ env.ARTIFACT }}
-    # - uses: game-ci/steam-deploy@v0.1
-    #   with:
-    #     appId: 404410
-    #     buildDescription: canary-${{ github.sha }}
-    #     username: ${{ secrets.STEAM_DEPLOY_UN }}
-    #     password: ${{ secrets.STEAM_DEPLOY_PW }}
-    #     mfaCode: ${{ secrets.STEAM_DEPLOY_MFA }}
-    #     rootPath: ''
-    #     depot6Path: ${{ env.dir32 }}
-    #     depot7Path: ${{ env.dir64 }}
-    #     releaseBranch: canary
-
-  deploy_data_depot:
-    needs: changed
-    if: needs.changed.outputs.data == 'true'
-    runs-on: ubuntu-latest
-    # environment: steam
-    env:
-      dir: data-depot
-    steps:
-    - uses: actions/checkout@v2
+        cd steam
+        docker-compose run test-steam-${{ matrix.arch }}
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
       with:
-        fetch-depth: 1
-    - name: 'Prepare data upload'
-      run: |
-        mkdir ${{ env.dir }}
-        mv -t ${{ env.dir }} \
-          changelog \
-          copyright \
-          credits.txt \
-          icon.png \
-          keys.txt \
-          license.txt \
-          data/ \
-          images/ \
-          sounds/
-    - name: Verify move
-      run: head -n 13 ${{ env.dir }}/credits.txt
-    # - uses: game-ci/steam-deploy@v0.1
-    #   with:
-    #     appId: 404410
-    #     buildDescription: canary-${{ github.sha }}
-    #     username: ${{ secrets.STEAM_DEPLOY_UN }}
-    #     password: ${{ secrets.STEAM_DEPLOY_PW }}
-    #     mfaCode: ${{ secrets.STEAM_DEPLOY_MFA }}
-    #     rootPath: ''
-    #     depot1Path: ${{ env.dir }}
-    #     releaseBranch: canary
+        name: binary-steam-${{ matrix.arch }}
+        path: build/steam-${{ matrix.arch }}/endless-sky

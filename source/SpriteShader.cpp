@@ -311,7 +311,8 @@ void SpriteShader::Draw(const Sprite *sprite, const Point &position, float zoom,
 
 
 
-SpriteShader::Item SpriteShader::Prepare(const Sprite *sprite, const Point &position, float zoom, int swizzle, float frame)
+SpriteShader::Item SpriteShader::Prepare(const Sprite *sprite, const Point &position,
+	float zoom, int swizzle, float frame)
 {
 	if(!sprite)
 		return {};

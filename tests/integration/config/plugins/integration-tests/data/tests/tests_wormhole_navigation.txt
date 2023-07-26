@@ -1,4 +1,4 @@
-test-data "Wormhole Navigation"
+test-data "Wormhole Navigation Save"
 	category "savegame"
 	contents
 		pilot Bobbi Bughunter
@@ -31,9 +31,9 @@ test-data "Wormhole Navigation"
 				"fuel capacity" 2500
 				"ramscoop" 10
 				"cargo space" 1110
-				"outfit space" 2150
-				"weapon capacity" 470
-				"engine capacity" 800
+				"outfit space" 21500
+				"weapon capacity" 4700
+				"engine capacity" 8000
 				"shield generation" 15
 				"shield energy" 1.8
 				"hull repair rate" 15
@@ -44,11 +44,12 @@ test-data "Wormhole Navigation"
 				"gaslining" 1
 				"atmosphere scan" 100
 				"outfit scan power" 175
-				"outfit scan speed" 1
+				"outfit scan efficiency" 1
 				"tactical scan power" 350
 				"force protection" 1
 				"heat protection" 1.5
 				"ion resistance" 0.3
+				"scrambling resistance" 0.3
 				"slowing resistance" 3
 				"remnant node" 11
 				weapon
@@ -114,7 +115,7 @@ test-data "Wormhole Navigation"
 		visited "Heia Due"
 		"visited planet" "Wormhole Alpha"
 
-test-data "Ember Wastes Navigation"
+test-data "Ember Wastes Navigation Save"
 	category "savegame"
 	contents
 		pilot Bobbi Bughunter
@@ -160,11 +161,12 @@ test-data "Ember Wastes Navigation"
 				"gaslining" 1
 				"atmosphere scan" 100
 				"outfit scan power" 175
-				"outfit scan speed" 1
+				"outfit scan efficiency" 1
 				"tactical scan power" 350
 				"force protection" 1
 				"heat protection" 1.5
 				"ion resistance" 0.3
+				"scrambling resistance" 0.3
 				"slowing resistance" 3
 				"remnant node" 11
 				weapon
@@ -236,12 +238,12 @@ test-data "Ember Wastes Navigation"
 		"visited planet" "Ember Wormhole"
 		"visited planet" "Remnant Wormhole"
 
-test "Tests - Wormhole Navigation"
+test "Wormhole Navigation"
 	status active
 	description "Tests - Navigation to and from Hai space, to test wormhole functionality."
 	sequence
 		# Create/inject the savegame and load it.
-		inject "Wormhole Navigation"
+		inject "Wormhole Navigation Save"
 		call "Load First Savegame"
 		# Set desired travel plan.
 		navigate
@@ -312,12 +314,12 @@ test "Tests - Wormhole Navigation"
 		branch notBetelgeuse
 			not "flagship system: Betelgeuse"
 
-test "Tests - Ember Wastes Navigation"
+test "Ember Wastes Navigation"
 	status active
 	description "Tests - Navigation to and from the Ember Wastes, testing wormholes that require outfits to land."
 	sequence
 		# Create/inject the savegame and load it.
-		inject "Ember Wastes Navigation"
+		inject "Ember Wastes Navigation Save"
 		call "Load First Savegame"
 		# Set desired travel plan.
 		navigate

@@ -63,6 +63,9 @@ mission "FW Epilogue: Alondo"
 		or
 			not "Paradise Fortune 3: done"
 			has "Paradise Fortune 4: offered"
+		or
+			not "hr: secret leaks"
+			has "event: hai-human resolution announced"
 	
 	on offer
 		conversation
@@ -219,7 +222,7 @@ mission "FW Epilogue: Edward"
 		event "plasma repeater advanced" 95
 		event "plasma repeater basics" 155
 	on complete
-		log `Assisted Barmy Edward with another weapon test: this time, an impressive upgrade to the plasma cannon. Increased fire rate, even at lower damage per hit, comes out with better overall results.`
+		log `Assisted Barmy Edward with another weapon test: this time, an impressive upgrade to the Plasma Cannon. Increased fire rate, even at lower damage per hit, comes out with better overall results.`
 		event "plasma repeater advanced" 45
 		event "plasma repeater basics" 105
 		conversation "edward epilogue"
@@ -235,7 +238,7 @@ conversation "edward epilogue"
 		`	(No.)`
 			defer
 	scene "scene/loc0"
-	`	You give your name to the receptionist, and she directs you to a hangar where you find Barmy Edward, who is working on a weapon that looks like a modified plasma cannon. When he notices you, he gets up from his work and shakes your hand warmly. "Ah, <last>. It's been too long! How fortunate for me! I'm actually just putting the finishing touches on a new prototype. You wouldn't be too busy to assist me in some practical testing, would you?`
+	`	You give your name to the receptionist, and she directs you to a hangar where you find Barmy Edward, who is working on a weapon that looks like a modified Plasma Cannon. When he notices you, he gets up from his work and shakes your hand warmly. "Ah, <last>. It's been too long! How fortunate for me! I'm actually just putting the finishing touches on a new prototype. You wouldn't be too busy to assist me in some practical testing, would you?"`
 	choice
 		`	"I'm not sure about this. What would you have me do?"`
 		`	"Being a target for experimental weapons? Just tell me what you need!"`
@@ -250,7 +253,7 @@ conversation "edward epilogue"
 	`	"Great," he says, rubbing his hands together with a gleeful expression on his face. He's clearly looking forward to hearing what you think of his latest invention.`
 		accept
 	label catchup
-	`	"I see. Well, I'm sure we can find someone else up to the task. Regardless, Captain <last>, I assure you this new weapon vastly improves on the outdated plasma cannon. This'll put Kraz Cybernetics in the big leagues!"`
+	`	"I see. Well, I'm sure we can find someone else up to the task. Regardless, Captain <last>, I assure you this new weapon vastly improves on the outdated Plasma Cannon. This'll put Kraz Cybernetics in the big leagues!"`
 	`	"How about we get out of here, <first>? My work is done for today, and I know a homely little bar that's only a short walk."`
 	choice
 		`	"Of course. It's not like there's a war to worry about anymore."`
@@ -259,14 +262,14 @@ conversation "edward epilogue"
 	
 	label completed
 	scene "scene/plasma scene"
-	`You head to the hangar to meet up with Barmy Edward, and find him tinkering with the modified plasma cannon you saw when you first entered. "It runs much hotter, you see," he explains. "But the results are impressive."`
+	`You head to the hangar to meet up with Barmy Edward, and find him tinkering with the modified Plasma Cannon you saw when you first entered. "It runs much hotter, you see," he explains. "But the results are impressive."`
 	choice
 		`	"Was that a plasma cannon? Or something else?"`
 			goto what
 		`	"It's not winning any damage records, that's for sure."`
 			goto damage
 	label what
-	`	"Heh, it's been a while since we've seen a good upgrade to the cannon," he says. "That was the plasma repeater. Of course, it wasn't easy to make a better iteration of something that countless fools have failed to improve on."`
+	`	"Heh, it's been a while since we've seen a good upgrade to the cannon," he says. "That was the Plasma Repeater. Of course, it wasn't easy to make a better iteration of something that countless fools have failed to improve on."`
 	`	"When will it be available for sale?" you ask.`
 		goto available
 	label damage
