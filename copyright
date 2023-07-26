@@ -2130,6 +2130,13 @@ Files:
 Copyright: CyberJudas (cyberjudas@dnmx.org)
 License: CC-BY-SA-4.0
 
+Files:
+ images/ui/icon?selected?highlighted*
+ images/ui/icon?unselected?highlighted*
+Copyright: Dave Flowers
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
