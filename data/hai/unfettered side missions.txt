@@ -438,7 +438,7 @@ mission "Hai Legacy 3"
 			`	"Don't become overconfident now, Captain. I am sure you know what happens to such people.`
 			label next
 			`	"I must congratulate you, I never expected you had it in you. I only have one word and will give you authorization to land, on the condition that you keep this relic from our past in good condition!`
-			`	"Make sure you do not lose it until you truly earn the right to call us friends, or we will take it very seriously. Oh, and there are taxes on the daily fee, totalling 681 credits per day. I hope you don't mind."`
+			`	"Make sure you do not lose it until you truly earn the right to call us friends, or we will take it very seriously. Oh, and there are taxes on the daily fee, totaling 681 credits per day. I hope you don't mind."`
 			choice
 				`	"Thank you for your trust."`
 					goto trust
