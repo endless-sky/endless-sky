@@ -212,7 +212,7 @@ mission "Hai Legacy 1"
 			`	"Yes, but where is the fun in that? We also wanted to see how you would react.`
 			label explain
 			`	"We have a very interesting proposition for you: should you agree to bring supplies to our brethren, the Unfettered Hai, we will sell this ship to you for the modest price of 6.5 million credits. This is a very useful ship, and you should be able to repay us for this favor with ease by running more of the same kind of jobs. These supplies are needed on short notice, on <destination>, and we lack the time and personnel to bring them."`
-			`	"Of course, the ship has some... drawbacks, compared to its golden time, and you should not expect the best price in a shipyard either. Nevertheless it is a fine vessel, capable of safely taking a respectable amount of cargo across large distances! So, what do you say, <last>? This is the opportunity of a lifetime; they simply don't make ships like these anymore!"`
+			`	"Of course, the ship has some... drawbacks, compared to its golden time, and you should not expect the best price in a shipyard either. Nevertheless it is a fine vessel, capable of safely taking a respectable amount of cargo across large distances! It can also be of great use for mining, with all of the inbuilt equipement for it and its large cargo capacity. So, what do you say, <last>? This is the opportunity of a lifetime; they simply don't make ships like these anymore!"`
 			choice
 				`	"I will take this deal."`
 					goto take
@@ -361,6 +361,7 @@ mission "Hai Legacy 3"
 			`	"I guess we'll find out." Says a third.`
 			label scare
 			`	The leader gets closer and addresses you in a more serious tone, "You should be aware, <last>, that this is not a friendly competition between allies. You should see it more as a fight for you to truly earn your place with this ship, but as far as I am concerned, you are an enemy. Make no mistakes about that, this fight has only two rules: nobody other than us here may interfere, and being disabled results in losing the fight. Do not even think about tricking us by switching to something other than this Ladybug, or we will not bother showing up! You must prove your worth for this prize ship in this ship and with only this ship."`
+			`	"And do not even think about capturing our ships. Errors happen, so we can understand some may die in glorious battle, but otherwise looting us is as far as we will allow!"`
 			# This is a "warning" for the incoming extra ship that happens because you killed/captured 10 Shield Beetles
 			# (But in reality with disabling a lot of ships it goes faster than that)
 			`	They suddenly look at you intensively, straight in the eyes, "We sometimes bend the rules for our friends, but that is not your case," they say with a sudden change of tone, before leaving.`
@@ -390,7 +391,7 @@ mission "Hai Legacy 3"
 		ship "Lightning Bug (Unfettered Shipyards)" "Lighting"
 		ship "Lightning Bug (Pulse)" "Struck"
 		conversation
-			`You receive a message from the remaining Unfettered ships: "We surrender. If you land now, you will receive your reward."`
+			`You receive a message from the remaining Unfettered ships: "We surrender. If you land now, you will receive your reward, so long as you do not capture our ships."`
 			branch "good boy or bad boy enough"
 				has "unfettered: beaten extra bugs"
 				"old reputation: Hai (Unfettered)" < -2000
@@ -425,6 +426,8 @@ mission "Hai Legacy 3"
 	to complete
 		has "unfettered: beaten the bugs"
 		has "flagship model: Ancient Ladybug"
+		# If they bended the rules you can get away with capping one ship.
+		"total ships" <= 1 + "unfettered: beaten extra bugs"
 		or
 			"old reputation: Hai (Unfettered)" > -2000
 			has "unfettered: beaten extra bugs"
