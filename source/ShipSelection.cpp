@@ -21,6 +21,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <SDL2/SDL.h>
 
+#include <algorithm>
+
 using namespace std;
 
 namespace {
@@ -63,11 +65,11 @@ Ship *ShipSelection::Find(int count)
 		return nullptr;
 	}
 
+	const vector<shared_ptr<Ship>> &playerShips = player.Ships();
+
 	// Find the currently selected ship in the list.
-	vector<shared_ptr<Ship>>::const_iterator it = player.Ships().begin();
-	for( ; it != player.Ships().end(); ++it)
-		if(it->get() == selectedShip)
-			break;
+	vector<shared_ptr<Ship>>::const_iterator it = find_if(playerShips.begin(), playerShips.end(),
+		[&](const shared_ptr<Ship> &ship) { return ship.get() == this->selectedShip; });
 
 	const Planet *here = player.GetPlanet();
 	// When counting, wrap the ship list so you can go around the ends.
@@ -75,8 +77,8 @@ Ship *ShipSelection::Find(int count)
 	{
 		while(count)
 		{
-			if(it == player.Ships().begin())
-				it = player.Ships().end();
+			if(it == playerShips.begin())
+				it = playerShips.end();
 			--it;
 
 			if(CanShowInSidebar(**it, here))
@@ -88,8 +90,8 @@ Ship *ShipSelection::Find(int count)
 		while(count)
 		{
 			++it;
-			if(it == player.Ships().end())
-				it = player.Ships().begin();
+			if(it == playerShips.end())
+				it = playerShips.begin();
 
 			if(CanShowInSidebar(**it, here))
 				--count;
@@ -152,7 +154,7 @@ bool ShipSelection::Select(Ship *ship)
 			return false;
 		}
 	}
-	// Don't clear selection if we click on it.
+	// Don't clear selection if we click on it, as that's actually the start of a drag.
 	else if(!Has(ship))
 		allSelected.clear();
 

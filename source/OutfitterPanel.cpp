@@ -353,15 +353,17 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 		return "You cannot buy this outfit, because it requires a license that you don't have.";
 
 	// Check if the outfit is available to get at all.
-	bool isInCargo = player.Cargo().Get(selectedOutfit);
-	bool isInStorage = player.Storage() && player.Storage()->Get(selectedOutfit);
-	bool isInStore = outfitter.Has(selectedOutfit) || player.Stock(selectedOutfit) > 0;
-	if(isInStorage && (onlyOwned || isInStore || shipSelection.Selected()))
+	const bool isInCargo = player.Cargo().Get(selectedOutfit);
+	const bool isInStorage = player.Storage() && player.Storage()->Get(selectedOutfit);
+	const bool isInStore = outfitter.Has(selectedOutfit) || player.Stock(selectedOutfit) > 0;
+	const bool isShipSelected = shipSelection.Selected();
+
+	if(isInStorage && (onlyOwned || isInStore || isShipSelected))
 	{
 		// In storage, the outfit is certainly available to get,
 		// except for this one case: 'b' does not move storage to cargo.
 	}
-	else if(isInCargo && shipSelection.Selected())
+	else if(isInCargo && isShipSelected)
 	{
 		// Installing to a ship will work from cargo.
 	}
@@ -371,7 +373,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 		if(isInStore)
 		{
 			// Player hit 'i' or 'c' when they should've hit 'b'.
-			if(shipSelection.Selected())
+			if(isShipSelected)
 				return "You'll need to buy this outfit to install it (using \"b\").";
 			else
 				return "You'll need to buy this outfit to put it in your cargo hold (using \"b\").";
@@ -379,7 +381,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 		else
 		{
 			// Player hit 'i' or 'c' to install, with no outfit to use.
-			if(shipSelection.Selected())
+			if(isShipSelected)
 				return "You do not have any of these outfits available to install.";
 			else
 				return "You do not have any of these outfits in storage to move to your cargo hold.";
@@ -431,17 +433,19 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 			if(ShipCanBuy(ship, selectedOutfit))
 				return true;
 
+		const Ship &selectedShip = *shipSelection.Selected();
+
 		// If no selected ship can install the outfit,
 		// report error based on playerShip.
 		double outfitNeeded = -selectedOutfit->Get("outfit space");
-		double outfitSpace = shipSelection.Selected()->Attributes().Get("outfit space");
+		double outfitSpace = selectedShip.Attributes().Get("outfit space");
 		if(outfitNeeded > outfitSpace)
 			return "You cannot install this outfit, because it takes up "
 				+ Format::CargoString(outfitNeeded, "outfit space") + ", and this ship has "
 				+ Format::MassString(outfitSpace) + " free.";
 
 		double weaponNeeded = -selectedOutfit->Get("weapon capacity");
-		double weaponSpace = shipSelection.Selected()->Attributes().Get("weapon capacity");
+		double weaponSpace = selectedShip.Attributes().Get("weapon capacity");
 		if(weaponNeeded > weaponSpace)
 			return "Only part of your ship's outfit capacity is usable for weapons. "
 				"You cannot install this outfit, because it takes up "
@@ -449,7 +453,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 				+ Format::MassString(weaponSpace) + " free.";
 
 		double engineNeeded = -selectedOutfit->Get("engine capacity");
-		double engineSpace = shipSelection.Selected()->Attributes().Get("engine capacity");
+		double engineSpace = selectedShip.Attributes().Get("engine capacity");
 		if(engineNeeded > engineSpace)
 			return "Only part of your ship's outfit capacity is usable for engines. "
 				"You cannot install this outfit, because it takes up "
@@ -457,20 +461,20 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 				+ Format::MassString(engineSpace) + " free.";
 
 		if(selectedOutfit->Category() == "Ammunition")
-			return !shipSelection.Selected()->OutfitCount(selectedOutfit) ?
+			return !selectedShip.OutfitCount(selectedOutfit) ?
 				"This outfit is ammunition for a weapon. "
 				"You cannot install it without first installing the appropriate weapon."
 				: "You already have the maximum amount of ammunition for this weapon. "
 				"If you want to install more ammunition, you must first install another of these weapons.";
 
 		int mountsNeeded = -selectedOutfit->Get("turret mounts");
-		int mountsFree = shipSelection.Selected()->Attributes().Get("turret mounts");
+		int mountsFree = selectedShip.Attributes().Get("turret mounts");
 		if(mountsNeeded && !mountsFree)
 			return "This weapon is designed to be installed on a turret mount, "
 				"but your ship does not have any unused turret mounts available.";
 
 		int gunsNeeded = -selectedOutfit->Get("gun ports");
-		int gunsFree = shipSelection.Selected()->Attributes().Get("gun ports");
+		int gunsFree = selectedShip.Attributes().Get("gun ports");
 		if(gunsNeeded && !gunsFree)
 			return "This weapon is designed to be installed in a gun port, "
 				"but your ship does not have any unused gun ports available.";
