@@ -146,7 +146,7 @@ mission "Hai Legacy 1"
 		"reputation: Hai (Unfettered)" < 0
 		not "Unfettered Jump Drive 1: offered"
 		not "event: hai ladybug available"
-		"credits" > 45000000
+		"credits" + "net worth" > 65000000
 	on offer
 		conversation
 			branch first
@@ -237,7 +237,7 @@ mission "Hai Legacy 1"
 			branch lucky??
 				random < 40
 			`	The shot reaches the ship, but the small weapon has no chance of doing anything to the heavy armor, even in its current state. The ship's speakers then activate, almost deafening you. "MY TURN!"`
-			`	The ship then hits your weapon, disarming you with surgical accuracy using its Bullfrog Anti-Missiles. One of the two Hai comes, seemingly disapointed. "It looks like you angered the piloting AI. You're lucky it did not kill you, but even so you are of no use to us if you think it wise to use your firearm on a spaceship."`
+			`	The ship then hits your weapon, disarming you with surgical accuracy using its Bullfrog Anti-Missiles. One of the two Hai comes, seemingly disappointed. "It looks like you angered the piloting AI. You're lucky it did not kill you, but even so you are of no use to us if you think it wise to use your firearm on a spaceship."`
 				decline
 			label lucky??
 			`	You manage to land a lucky hit on what you assume to be the ship's navigation system, because it comes down, seemingly crashing.`
