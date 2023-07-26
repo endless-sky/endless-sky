@@ -913,7 +913,6 @@ system Octet
 		distance 8480
 		period 5702.866
 
-
 system Frenzy
 	pos -395.523 679.966
 	government Uninhabited
@@ -968,7 +967,6 @@ system Frenzy
 		sprite planet/uranus
 		distance 5802.514
 		period 6706.091
-
 
 system Trio
 	pos -222.867 740.912
@@ -2062,8 +2060,6 @@ system Vorpal
 			distance 376
 			period 449.031
 
-
-
 system Concerto
 	pos -169.986 1022.241
 	government Avgi
@@ -2678,9 +2674,6 @@ system Antiphon
 		distance 9744.307
 		period 8278.65
 
-
-
-
 system Allegrissimo
 	pos -1330.328 2107.426
 	government Uninhabited
@@ -3107,8 +3100,9 @@ system "#11e79d"
 	link "#a9d9ec"
 
 system "#31a999"
-	pos -1116.049 2285.148
+	pos -22.392 1000.069
 	government Uninhabited
+	link "#d2e5ec"
 
 system "#01a9a9"
 	pos -195.915 846.223
@@ -3241,8 +3235,9 @@ system "#0313f4"
 	link "#d9534f"
 
 system "#384e08"
-	pos -1065.175 2325.169
+	pos -126.08 939.357
 	government Uninhabited
+	link "#46d125"
 
 system "#b6457f"
 	pos -156.105 973.562
@@ -3252,13 +3247,14 @@ system "#b6457f"
 	link Symphony
 
 system "#46d125"
-	pos -103.818 918.812
+	pos -112.707 910.219
 	government Uninhabited
 	habitable 500.1
 	belt 1606 5
 	belt 2416
 	link "#007477"
 	link "#100b14"
+	link "#384e08"
 	asteroids "small rock" 6 1.054
 	asteroids "small metal" 4 1.496
 	object
@@ -3297,7 +3293,7 @@ system "#acf472"
 	link "#a6d944"
 
 system "#100b14"
-	pos -83.772 886.612
+	pos -84.513 885.871
 	government Uninhabited
 	link "#007477"
 	link "#46d125"
@@ -3314,6 +3310,7 @@ system "#baa7f9"
 system "#d2e5ec"
 	pos -64.786 973.671
 	government Uninhabited
+	link "#31a999"
 	link "#8b808b"
 	link Interlude
 
@@ -3610,8 +3607,6 @@ system Tailwind
 		distance 2014
 		period 1494.459
 
-
-
 system Wave
 	pos -567.841 828.814
 	government Uninhabited
@@ -3766,7 +3761,6 @@ system Lift
 			sprite planet/rock14
 			distance 401
 			period 210.152
-
 
 system Apeiron
 	pos -440.773 878.291
@@ -4208,7 +4202,6 @@ system Circulate
 		distance 2277.278
 		period 1229.502
 
-
 system Wake
 	pos -519.902 764.569
 	government Avgi
@@ -4242,7 +4235,6 @@ system Wake
 		distance 2659.018
 		period 2477.672
 
-
 system "#5cb85c"
 	pos 81.376 868.695
 	government Uninhabited
@@ -4271,7 +4263,6 @@ system "#a6d944"
 	link "#8b808b"
 	link "#acf472"
 	link "#f9f9f9"
-	link Symphony
 
 system Feraticus
 	object
@@ -4290,4 +4281,13 @@ system Feraticus
 			scale 0.5
 		distance 10000
 		period 126491.106
+
+system "#a6d944"
+	pos -9.278 907.623
+	government Uninhabited
+	link "#2b5d50"
+	link "#8b808b"
+	link "#acf472"
+	link "#f9f9f9"
+	link Symphony
 

@@ -1229,7 +1229,7 @@ ship "Optikon"
 
 	explode "tiny explosion" 6
 
-	description "The Optikon Sensor Platform is the latest iteration of a long line of exploration probes developed shortly after the discovery of the hyperdrive. Previously, surveying star systems involved launching thousands of starwisp probes pushed via laser, the largest being in the range of hundreds of grams. The hyperdrive changed everything, allowing the Avgi to build robust probes designed to quickly map out newly accessible star systems. Over the decades, these eventually shrank, and the duty of carrying them between star systems was offloaded onto dedicated exploration vessels such as the Polari-class Scout. This left behind the modern Optikon as a highly capable deployable sensor platform, used in both scientific and combat information roles."
+	description "The Optikon Sensor Platform is the latest iteration of a long line of exploration probes developed shortly after the discovery of the hyperdrive. Previously, surveying star systems involved launching thousands of starwisp probes pushed via laser, the largest being in the range of hundreds of grams. The hyperdrive changed everything, allowing the Avgi to build robust probes designed to quickly map out newly accessible star systems. Over the decades, these eventually shrank, and the duty of carrying them between star systems was offloaded onto dedicated exploration vessels such as the Polari-class Scout. This left the modern Optikon as a highly capable deployable sensor platform, used in both scientific and combat information roles."
 
 
 
