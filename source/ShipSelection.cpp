@@ -227,7 +227,7 @@ Ship *ShipSelection::Selected() const
 
 
 
-const std::set<Ship *> &ShipSelection::AllSelected() const
+const set<Ship *> &ShipSelection::AllSelected() const
 {
 	return allSelected;
 }
