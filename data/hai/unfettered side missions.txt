@@ -422,7 +422,7 @@ mission "Hai Legacy 3"
 		on kill
 			fail "Hai Legacy 3"
 	on visit
-		dialog "You have not beaten all challenging ships yet. If they have not shown up it is probably because you have cheated and brought more ships into the fight. Load an earlier save and try again if you want to finish this mission."
+		dialog "You have not beaten all challenging ships yet. If they have not shown up it is probably because you have cheated and brought more ships into the fight. Load an earlier save and try again if you want to finish this mission. You may also have capped too many of their ships, in which case you should disown them."
 	to complete
 		has "unfettered: beaten the bugs"
 		has "flagship model: Ancient Ladybug"
