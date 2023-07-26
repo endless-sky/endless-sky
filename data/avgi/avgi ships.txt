@@ -8,18 +8,19 @@ ship "Koryfi"
 	attributes
 		category "Transport"
 		"shields" 600
-		"hull" 1200
+		"hull" 1800
 		"required crew" 2
-		"bunks" 12
+		"bunks" 24
 		"mass" 120
 		"drag" 0.9
 		"heat dissipation" 0.9
-		"fuel capacity" 600
-		"cargo space" 30
-		"outfit space" 120
+		"fuel capacity" 900
+		"cargo space" 60
+		"outfit space" 144
 		"weapon capacity" 36
 		"engine capacity" 42
 		"solar collection" 6
+		"solar heat" 2.4
 		"anchor points" 1
 		weapon
 			"blast radius" 120
@@ -27,10 +28,11 @@ ship "Koryfi"
 			"hull damage" 260
 			"hit force" 780
 	outfits
-			"Ultracapacitor Bank"
+			"Ultracapacitor Cell" 3
 			"Diffuse Deflector"
+			"Luxury Accommodations"
 
-			"Magnetoplasma Drive"
+			"Magnetoplasma Drive" 2
 			"Hyperdrive"
 
 	gun 0 -26.5
@@ -52,7 +54,6 @@ ship "Koryfi"
 	"reverse engine" 88.5 -23
 	"reverse engine" -83 -23
 	"reverse engine" 83 -23
-
 	"steering engine" -101.5 -23
 		angle 180
 		left
@@ -112,19 +113,20 @@ ship "Melodikos"
 	thumbnail "thumbnail/avgi melodikos"
 	attributes
 		category "Space Liner"
-		"shields" 900
-		"hull" 900
+		"shields" 1200
+		"hull" 2100
 		"required crew" 6
-		"bunks" 72
+		"bunks" 144
 		"mass" 180
 		"drag" 1.2
 		"heat dissipation" 1.2
-		"fuel capacity" 600
-		"cargo space" 60
+		"fuel capacity" 1200
+		"cargo space" 120
 		"outfit space" 180
 		"weapon capacity" 42
 		"engine capacity" 90
-		"solar collection" 13.5
+		"solar collection" 15
+		"solar heat" 6.9
 		"anchor points" 1
 		weapon
 			"blast radius" 36
@@ -132,14 +134,18 @@ ship "Melodikos"
 			"hull damage" 90
 			"hit force" 270
 	outfits
+		"Phased Array Laser (Blue)"
+		"Phased Array Laser (Green)"
+
 		"Ultracapacitor Bank" 2
 		"Diffuse Deflector"
+		"Optical Lasing Generator"
+		"Luxury Accommodations"
 
-		"Magnetoplasma Drive"
+		"Magnetoplasma Drive" 2
 		"Hyperdrive"
 
-
-	gun -94.5 -3.5 
+	gun -94.5 -3.5
 		angle 270
 	gun 94.5 -3.5
 		angle 90
@@ -170,7 +176,6 @@ ship "Melodikos"
 	"reverse engine" 76 -7
 	"reverse engine" -72 -7
 	"reverse engine" 72 -7
-
 	"steering engine" -92 -7
 		angle 180
 		left
@@ -240,14 +245,7 @@ ship "Melodikos"
 	"final explode" "final explosion large"
 
 
-
-
-
-
-
-
 # Freighters
-
 
 ship "Avlaki"
 	sprite "ship/avgi avlaki"
@@ -257,18 +255,19 @@ ship "Avlaki"
 	attributes
 		category "Light Freighter"
 		"shields" 600
-		"hull" 1200
+		"hull" 1800
 		"required crew" 2
 		"bunks" 6
 		"mass" 120
 		"drag" 0.9
 		"heat dissipation" 0.9
-		"fuel capacity" 600
+		"fuel capacity" 900
 		"cargo space" 240
-		"outfit space" 120
+		"outfit space" 144
 		"weapon capacity" 36
 		"engine capacity" 42
 		"solar collection" 6
+		"solar heat" 2.4
 		"anchor points" 1
 		weapon
 			"blast radius" 120
@@ -301,7 +300,6 @@ ship "Avlaki"
 	"reverse engine" 88.5 -23
 	"reverse engine" -83 -23
 	"reverse engine" 83 -23
-
 	"steering engine" -101.5 -23
 		angle 180
 		left
@@ -361,19 +359,20 @@ ship "Harmonikos"
 	thumbnail "thumbnail/avgi harmonikos"
 	attributes
 		category "Heavy Freighter"
-		"shields" 900
-		"hull" 900
+		"shields" 1200
+		"hull" 2100
 		"required crew" 6
 		"bunks" 12
 		"mass" 180
 		"drag" 1.2
 		"heat dissipation" 1.2
-		"fuel capacity" 600
+		"fuel capacity" 1200
 		"cargo space" 600
 		"outfit space" 180
 		"weapon capacity" 42
 		"engine capacity" 90
-		"solar collection" 13.5
+		"solar collection" 15
+		"solar heat" 6.9
 		"anchor points" 1
 		weapon
 			"blast radius" 36
@@ -381,14 +380,16 @@ ship "Harmonikos"
 			"hull damage" 90
 			"hit force" 270
 	outfits
+		"Phased Array Laser (Green)" 2
+
 		"Ultracapacitor Bank" 2
 		"Diffuse Deflector"
+		"Optical Lasing Generator"
 
 		"Magnetoplasma Drive"
 		"Hyperdrive"
 
-
-	gun -94.5 -3.5 
+	gun -94.5 -3.5
 		angle 270
 	gun 94.5 -3.5
 		angle 90
@@ -419,7 +420,6 @@ ship "Harmonikos"
 	"reverse engine" 76 -7
 	"reverse engine" -72 -7
 	"reverse engine" 72 -7
-
 	"steering engine" -92 -7
 		angle 180
 		left
@@ -490,7 +490,67 @@ ship "Harmonikos"
 
 
 
+ship "Phononos"
+	sprite "ship/avgi phononos"
+	thumbnail "thumbnail/avgi phononos"
+	attributes
+		category "Light Freighter"
+		"shields" 240
+		"hull" 1500
+		"automaton" 1
+		"mass" 36
+		"drag" .24
+		"heat dissipation" 0.9
+		"fuel capacity" 300
+		"cargo space" 240
+		"outfit space" 72
+		"engine capacity" 24
+		"radar jamming" 6
+		"surface space" 15
+		weapon
+			"blast radius" 12
+			"shield damage" 72
+			"hull damage" 30
+			"hit force" 102
+	outfits	
+		"Concentrating Solar Array"
+		"Ultracapacitor Cell"
 
+		"Hyperdrive"
+		
+		"Magnetoplasma Drive"
+
+	engine -9 -19
+		angle 15
+	engine 9 -19
+		angle -19
+	"reverse engine" -9 -19
+		angle -15
+		zoom 0.5
+	"reverse engine" 9 -19
+		angle 15
+		zoom 0.5
+	"steering engine" -9 -19
+		angle 15
+		zoom 0.5
+		right
+	"steering engine" 9 -19
+		angle -15
+		zoom 0.5
+		left
+	"steering engine" -9 -19
+		angle 165
+		zoom 0.5
+		left
+	"steering engine" 9 -19
+		angle 195
+		zoom 0.5
+		right
+
+	explode "tiny explosion" 12
+
+	description "This retrofit of the Photikon is little more than a set of cargo pods joined to the front of the torpedo bomber, with struts taking the place of the hardpoints and pylons usually used to mount weapons. An expanded internal tank to fuel a hyperdrive has been barely crammed into the ship, at the cost of reduced space for other internal systems and a slightly weaker hull. Because of this, the Phononon is quite vulnerable to Dissonance piracy or even Abberant incursions, and is thus always part of a larger fleet convoy. Even still, as an automated freighter it experiences much higher rates of accidents and ship loss, a fact that has kept crewed vessels like the Avlaki competitive."
+	description "Using the same standard cargo containers as the Avlaki and Harmonikos allows it to carry an impressive amount of cargo, which can be quickly swapped out at the destination for an empty set of shipping containers."
 
 
 
@@ -503,6 +563,85 @@ ship "Harmonikos"
 # Utility
 
 
+
+ship "Undsyni"
+	sprite "ship/avgi undsyni"
+	thumbnail "thumbnail/avgi undsyni"
+	attributes
+		category "Utility"
+		"shields" 2400
+		"hull" 15000
+		"required crew" 12
+		"bunks" 30
+		"cargo space" 720
+		"mass" 600
+		"drag" 4.2
+		"heat dissipation" 1.5
+		"fuel capacity" 2400
+		"outfit space" 600
+		"weapon capacity" 180
+		"engine capacity" 168
+		"spinal mount" 1
+		"anchor points" 2
+		weapon
+			"blast radius" 480
+			"shield damage" 4800
+			"hull damage" 4200
+			"hit force" 3600
+	outfits
+		"Speckle Turret" 2
+		"Speck Round" 7200
+		"Sidereal Launcher" 2
+		"Sidereal Missile" 84
+		"Phased Array Laser (Green)" 3
+
+		"Luminous Fusion Core"
+		"Ultracapacitor Bank" 3
+
+		"Diffuse Deflector"
+		"Optical Lasing Generator"
+		"Multispectral Scanner"
+		"Spectrometer Array"
+		"Electrostatic Ramscoop"
+
+		"Z-360 Fusion Torch"
+		"XY-420 Radial Thrusters"
+		"Hyperdrive"
+
+	gun 0 -144
+	gun 42 -139 "Sidereal Launcher"
+		angle -90
+	gun -42 -139 "Sidereal Launcher"
+		angle 90
+	turret -33 -138 "Speckle Turret"
+	turret 33 -138 "Speckle Turret"
+	turret 0 -30 "Phased Array Laser (Green)"
+	turret 0 42 "Phased Array Laser (Green)"
+	turret 0 186 "Phased Array Laser (Green)"
+	bay "Drone" -65.5 3
+	bay "Drone" 65.5 3
+	bay "Drone" 65.5 29
+	bay "Drone" -65.5 29
+
+	engine 0 239
+	"reverse engine" -6 240
+		angle -30
+	"reverse engine" 6 240
+		angle 30
+	"steering engine" -42 -138
+		angle 90
+		right
+	"steering engine" 42 -138
+		angle -90
+		left
+	"steering engine" -6 240
+		angle 90
+		left
+	"steering engine" 6 240
+		angle -90
+		right
+
+	description "Undsyni-class Armed Freighter"
 
 
 
@@ -536,9 +675,10 @@ ship "Prismaios"
 		"heat dissipation" 1.8
 		"fuel capacity" 1200
 		"cargo space" 36
-		"outfit space" 324
-		"weapon capacity" 72
+		"outfit space" 330
+		"weapon capacity" 96
 		"engine capacity" 96
+		"heat capacity" 30
 		"anchor points" 1
 		weapon
 			"blast radius" 120
@@ -546,31 +686,52 @@ ship "Prismaios"
 			"hull damage" 260
 			"hit force" 780
 	outfits
-
 		"Speckle Turret" 2
-		"Speck Round" 6000
+		"Speck Round" 7200
 		"Sidereal Launcher" 2
-		"Sidereal Missile" 72
+		"Sidereal Missile" 84
+		"Phased Array Laser (Green)"
 
-		"Luminous Fusion Core" 1
-		"Ultracapacitor Bank" 1
+		"Luminous Fusion Core"
+		"Ultracapacitor Bank" 2
 		
-		"Hyperdrive" 1
-		"Diffuse Deflector" 1
-		"Multispectral Scanner" 1
-		"Electrostatic Ramscoop" 1
+		"Diffuse Deflector"
+		"Optical Lasing Generator"
+		"Multispectral Scanner"
+		"Electrostatic Ramscoop"
 		
-		"Z-360 Fusion Torch" 1
-		"XY-180 Radial Thrusters" 1
+		"Z-360 Fusion Torch"
+		"XY-180 Radial Thrusters"
+		"Hyperdrive"
 
 	engine 0 108
-
-	gun -0 33 "Sidereal Launcher"
+	"reverse engine" -6 -66
+		angle -30
+	"reverse engine" 6 -66
+		angle 30
+	"reverse engine" -6 99
+		angle -45
+	"reverse engine" 6 99
+		angle 45
+	"steering engine" -6 -66
+		angle 90
+		right
+	"steering engine" 6 -66
 		angle -90
-	gun 0 33 "Sidereal Launcher"
+		left
+	"steering engine" -3 99
+		angle 90
+		left
+	"steering engine" 3 99
+		angle -90
+		right
+	gun -9 33 "Sidereal Launcher"
+		angle -90
+	gun 9 33 "Sidereal Launcher"
 		angle 90
 	turret -9 18 "Speckle Turret"
 	turret 9 18 "Speckle Turret"
+	turret 0 90 "Phased Array Laser (Green)"
 
 	leak "leak" 50 50
 	leak "flame" 50 80
@@ -580,8 +741,6 @@ ship "Prismaios"
 	"final explode" "final explosion medium"
 
 	description "Prismaios-class Frigate WIP"
-
-
 
 
 
@@ -612,15 +771,15 @@ ship "Atenuatia"
 		"shields" 4200
 		"hull" 24000
 		"required crew" 60
-		"bunks" 72
+		"bunks" 84
 		"mass" 450
-		"drag" 4.2
-		"heat dissipation" 1.5
+		"drag" 3.6
+		"heat dissipation" 1.8
 		"fuel capacity" 2400
-		"cargo space" 60
-		"outfit space" 696
-		"weapon capacity" 198
-		"engine capacity" 174
+		"cargo space" 90
+		"outfit space" 690
+		"weapon capacity" 180
+		"engine capacity" 162
 		"anchor points" 2
 		weapon
 			"blast radius" 540
@@ -628,39 +787,63 @@ ship "Atenuatia"
 			"hull damage" 4800
 			"hit force" 4200
 	outfits
-		"Fleck Turret" 1
+		"Fleck Turret"
 		"Fleck Round" 6000
-		"Phased Array Laser (450 nm)" 2
+		"Phased Array Laser (Blue)" 2
+		"Phased Array Laser (Green)" 3
+		"Sidereal VLS Array"
 		"Equinox Torpedo Stockpile" 3
 		"Equinox Torpedo" 36
+		"Sidereal Missile" 120
 		
-		"Radiant Fusion Core" 1
-		"Concentrating Solar Array" 1
+		"Radiant Fusion Core"
 		"Ultracapacitor Bank" 2
 		
-		"Hyperdrive" 1
-		"Specular Deflector" 1
-		"Multispectral Scanner" 9
+		"Specular Deflector"
+		"Optical Lasing Generator" 2
+		"Multispectral Scanner" 6
+		"Spectrometer Array" 3
 		"Electrostatic Ramscoop" 2
 		
-		"S036 Axial Fusion Torch" 1
-		"M052 Transverse Thrusters" 1
+		"Z-600 Fusion Torch"
+		"XY-420 Radial Thrusters"
+		"Hyperdrive"
 
-	engine 0 250 
-	"reverse engine" -9 231.5 
-	"reverse engine" 9 231.5 
-	"steering engine" -12 -255 
+	engine 0 250
+	"reverse engine" -9 234
+		angle -30
+	"reverse engine" 9 234
+		angle 30
+	"steering engine" -12 -258
+		angle 90
+		right
+	"steering engine" 12 -258
+		angle -90
+		left
+	"steering engine" -9 234
 		angle 90
 		left
-	"steering engine" -12 -255 
-		angle 270
+	"steering engine" 9 234
+		angle -90
 		right
-	"steering engine" -9 231.5 
+
+	gun -18 -126
+		angle -90
+	gun 18 -126
 		angle 90
-		left
-	"steering engine" -9 231.5 
-		angle 270
-		right
+	gun -15 -108
+		angle -90
+	gun 15 -108
+		angle 90
+	turret 0 -252 "Phased Array Laser (Green)"
+	turret 60 -174 "Phased Array Laser (Blue)"
+	turret -60 -174 "Phased Array Laser (Blue)"
+	turret 0 -96
+	turret 0 -36 "Sidereal VLS Array"
+	turret 0 30 "Phased Array Laser (Green)"
+	turret 0 96 "Phased Array Laser (Green)"
+	turret 0 160
+
 	bay "Drone" -24 -234
 	bay "Drone" 24 -234
 	bay "Drone" -42 -225
@@ -680,11 +863,18 @@ ship "Atenuatia"
 	bay "Drone" -18 -150
 	bay "Drone" 18 -150
 	bay "Fighter" 0 -216
+		over
 	bay "Fighter" 0 -216
+		under
 	bay "Fighter" 0 -150
+		over
 	bay "Fighter" 0 -150
+		under
 	bay "Fighter" 0 -117
+		over
 	bay "Fighter" 0 -117
+		under
+
 	leak "leak" 30 60
 	leak "flame" 30 90
 	leak "big leak" 9 24
@@ -694,6 +884,7 @@ ship "Atenuatia"
 	explode "large explosion" 36
 	explode "huge explosion" 12
 	"final explode" "final explosion large"
+
 	description "The Atenuatia is"
 
 
@@ -711,6 +902,73 @@ ship "Atenuatia"
 # Fighters
 
 
+ship "Akoustiki"
+	sprite "ship/avgi akoustiki"
+	thumbnail "thumbnail/avgi akoustiki"
+	attributes
+		category "Fighter"
+		"shields" 180
+		"hull" 1200
+		"required crew" 1
+		"bunks" 3
+		"mass" 39
+		"drag" 0.9
+		"heat dissipation" 0.9
+		"fuel capacity" 100
+		"cargo space" 24
+		"outfit space" 96
+		"weapon capacity" 24
+		"engine capacity" 24
+		weapon
+			"blast radius" 18
+			"shield damage" 80
+			"hull damage" 40
+			"hit force" 120
+	outfits
+		"Speckle Railgun"
+		"Speck Round" 1800
+		"Concentrating Solar Array"
+		"Ultracapacitor Cell" 3
+		
+		"Multispectral Scanner"
+		"Spectrometer Array"
+		
+		"Magnetoplasma Drive"
+
+	gun -18 -15 "Speckle Railgun"
+	gun 18 -15
+
+	engine -12 18
+	engine 12 18
+	"reverse engine" -9 -15
+		angle -30
+		zoom 0.5
+	"reverse engine" 9 -15
+		angle 30
+		zoom 0.5
+	"steering engine" -9 -15
+		angle 120
+		zoom 0.5
+		right
+	"steering engine" 9 -15
+		angle -120
+		zoom 0.5
+		left
+	"steering engine" -15 12
+		angle 60
+		zoom 0.5
+		left
+	"steering engine" 15 12
+		angle -60
+		zoom 0.5
+		right
+
+
+
+	explode "tiny explosion" 9
+
+	description "Akoustiki Excursion Vehicle-type"
+
 
 ship "Photikon"
 	sprite "ship/avgi photikon"
@@ -718,15 +976,16 @@ ship "Photikon"
 	attributes
 		category "Fighter"
 		"shields" 240
-		"hull" 1500
+		"hull" 1800
 		"automaton" 1
-		"mass" 36
-		"drag" .36
-		"heat dissipation" 0.9
+		"mass" 30
+		"drag" .18
+		"heat dissipation" 0.96
 		"fuel capacity" 100
-		"outfit space" 114
+		"outfit space" 90
 		"weapon capacity" 27
 		"engine capacity" 24
+		"radar jamming" 6
 		"surface space" 15
 		weapon
 			"blast radius" 12
@@ -737,22 +996,47 @@ ship "Photikon"
 		"Equinox Torpedo Pylon" 2
 		"Equinox Torpedo" 2
 		
-		"Concentrating Solar Array" 1
+		"Concentrating Solar Array"
 		"Ultracapacitor Cell" 3
 		
-		"Multispectral Scanner" 1
+		"Multispectral Scanner"
 		
-		"Magnetoplasma Drive" 1
+		"Magnetoplasma Drive"
 
-	engine -8.5 28.5 0.9
-	engine 8.5 28.5 0.9
-	gun 0 -30 "Equinox Torpedo Pylon"
-	gun 0 -30 "Equinox Torpedo Pylon"
+	engine -9 -15
+		angle 15
+	engine 9 -15
+		angle -15
+	"reverse engine" -9 -15
+		angle -15
+		zoom 0.5
+	"reverse engine" 9 -15
+		angle 15
+		zoom 0.5
+	"steering engine" -9 -15
+		angle 15
+		zoom 0.5
+		right
+	"steering engine" 9 -15
+		angle -15
+		zoom 0.5
+		left
+	"steering engine" -9 -15
+		angle 165
+		zoom 0.5
+		left
+	"steering engine" 9 -15
+		angle 195
+		zoom 0.5
+		right
+
+	gun -6 -30 "Equinox Torpedo Pylon"
+	gun 6 -30 "Equinox Torpedo Pylon"
 	turret 0 -33
 
 	explode "tiny explosion" 12
 
-	description "The Photikon Torpedo Bomber-type is the cornerstone of Avgi antiship carrier doctrine. While it is possible for a swarm of Vibratia and similar interdiction drones to engage capital ships, it is the Phonon that is capable of delivering the nuclear anti-ship munitions necessary to bring down the largest warships. By bringing a nuclear torpedo within close range, the payload has a higher chance of surviving enemy point defense weapons compared with standard missiles."
+	description "The Photikon Torpedo Bomber is the cornerstone of Avgi antiship carrier doctrine. While it is possible for a swarm of Vibratia and similar interdiction drones to engage capital ships, it is the Phonon that is capable of delivering the nuclear anti-ship munitions necessary to bring down the largest warships. By bringing a nuclear torpedo within close range, the payload has a higher chance of surviving enemy point defense weapons compared with standard missiles."
 	description "Phonons are occasionally used as gun platforms, mounting a Speckle Turret instead of their standard armament of a pair of Equinox Torpedoes."
 	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
@@ -778,17 +1062,17 @@ ship "Vibratia"
 	attributes
 		category "Drone"
 		"cost" 36000
-		"hull" 1800
+		"hull" 1500
 		"automaton" 1
 		"threshold percentage" 0.12
-		"mass" 24
-		"drag" 0.18
+		"mass" 21
+		"drag" 0.15
 		"heat dissipation" 0.99
 		"fuel capacity" 100
 		"outfit space" 84
 		"weapon capacity" 18
 		"engine capacity" 24
-		"cooling" 3
+		"radar jamming" 3
 		weapon
 			"blast radius" 12
 			"shield damage" 60
@@ -806,18 +1090,146 @@ ship "Vibratia"
 	
 		"Magnetoplasma Drive"
 
-	engine -8.5 28.5 0.9
-	engine 8.5 28.5 0.9
-	gun 0 -30 "Speckle Railgun"
-	gun 0 -30 "Sidereal Pod"
+	engine 0 27
+	"reverse engine" -5 -12
+		zoom 0.5
+	"reverse engine" 5 -12
+		zoom 0.5
+	"steering engine" -5 -12
+		angle 90
+		zoom 0.5
+		right
+	"steering engine" 5 -12
+		angle -90
+		zoom 0.5
+		left
+	"steering engine" -3 24
+		angle 90
+		zoom 0.5
+		left
+	"steering engine" 3 24
+		angle -90
+		zoom 0.5
+		right
+	gun 0 -27 "Speckle Railgun"
+	gun 0 -27 "Sidereal Pod"
+
 
 	explode "tiny explosion" 9
 
-	description "The Vibratia Interdictor-type is the primary Avgi strike fighter. While individually fragile, Vibratia are usually deployed in large swarms, and are agile enough to be surprisingly survivable even under heavy fire."
+	description "The Vibratia Interdictor is the primary Avgi strike fighter. While individually fragile, Vibratia are usually deployed in large swarms, and are agile enough to be surprisingly survivable even under heavy fire."
 	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
 
 
+ship "Undulon"
+	sprite "ship/avgi undulon"
+	thumbnail "thumbnail/avgi undulon"
+	attributes
+		category "Fighter"
+		"cost" 36000
+		"hull" 360
+		"bunks" 1
+		"mass" 12
+		"drag" 3.6
+		"heat dissipation" .6
+		"fuel capacity" 60
+		"outfit space" 84
+		"weapon capacity" 42
+		"engine capacity" 18
+		weapon
+			"blast radius" 9
+			"shield damage" 36
+			"hull damage" 18
+			"hit force" 72
+	outfits
+		"Nadir Launcher"
+		"Nadir Missile" 6
+		
+		"Concentrating Solar Cell"
+		"Ultracapacitor Cell"
+		
+		"Multispectral Scanner"
+
+		"Magnetoplasma Drive"
+			
+	engine -15 3
+		angle 15
+		zoom 0.5
+	engine 15 3
+		angle -15
+		zoom 0.5
+	"reverse engine" -15 -18
+		angle -15
+		zoom 0.5
+	"reverse engine" 15 -18
+		angle 15
+		zoom 0.5
+	"steering engine" -15 -18
+		angle 165
+		zoom 0.5
+		left
+	"steering engine" 15 -18
+		angle 195
+		zoom 0.5
+		right
+	"steering engine" -15 3
+		angle 15
+		zoom 0.5
+		right
+	"steering engine" 15 3
+		angle -15
+		zoom 0.5
+		left
+
+	gun 0 -29 "Nadir Rotary Launcher"
+
+	explode "tiny explosion" 6
+
+	description "The Undulon Orbital Silo was first envisioned as a cheap static defense satellite, little more than a tube capable of storing and launching nuclear missiles. Over time, this specialization was broadened, and the modern line of Undulons is alternatively capable of mounting a large fixed gun, and carrying the energy supply to support it, in order to serve as in the ranged artillery role. Their mostly hollow construction provides a great deal of internal space for their size, but also makes the drone quite fragile."
+	description "Undulons are usually seen defending critical planets and stations, ready to unload their atomic payloads on any hostile ships that jump into the system."
+	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
+
+
+ship "Optikon"
+	sprite "ship/avgi optikon"
+	thumbnail "thumbnail/avgi optikon"
+	attributes
+		category "Drone"
+		"hull" 360
+		"automaton" 1
+		"mass" 12
+		"drag" .6
+		"heat dissipation" .84
+		"fuel capacity" 300
+		"outfit space" 60
+		"engine capacity" 24
+		"surface space" 6
+		weapon
+			"blast radius" 6
+			"shield damage" 30
+			"hull damage" 15
+			"hit force" 45
+	outfits
+		"Concentrating Solar Array" 1
+		"Ultracapacitor Cell" 1
+		
+		"Multispectral Scanner" 1
+		"Spectrometer Array" 1
+
+		"M018 Magnetoplasma Drive" 1
+
+	engine 0 21 
+	"steering engine" -6 12 
+		angle 90
+		left
+	"steering engine" 6 12 
+		angle -90
+		right
+
+	explode "tiny explosion" 6
+
+	description "The Optikon Sensor Platform is the latest iteration of a long line of exploration probes developed shortly after the discovery of the hyperdrive. Previously, surveying star systems involved launching thousands of starwisp probes pushed via laser, the largest being in the range of hundreds of grams. The hyperdrive changed everything, allowing the Avgi to build robust probes designed to quickly map out newly accessible star systems. Over the decades, these eventually shrank, and the duty of carrying them between star systems was offloaded onto dedicated exploration vessels such as the Polari-class Scout. This left behind the modern Optikon as a highly capable deployable sensor platform, used in both scientific and combat information roles."
 
 
 
@@ -856,18 +1268,6 @@ ship "Vibratia"
 
 
 
-
-
-
-
-
-
-
-# Transports:
-
-
-
-# Freighters:
 
 
 
@@ -875,46 +1275,6 @@ ship "Vibratia"
 
 # Utility:
 
-
-ship "Echo"
-	sprite "ship/echo"
-	thumbnail "thumbnail/echo"
-	attributes
-		category "Utility"
-		"shields" 2400
-		"hull" 7200
-		"required crew" 12
-		"bunks" 15
-		"cargo space" 54
-		"mass" 414
-		"drag" 6.0
-		"heat dissipation" .89
-		"fuel capacity" 8400
-		"outfit space" 504
-		"weapon capacity" 93
-		"engine capacity" 162
-		"surface space" 63
-		"ramscoop" 18
-		"fuel generation" 0.05
-		"energy consumption" 1.3
-		weapon
-			"blast radius" 192
-			"shield damage" 1920
-			"hull damage" 960
-			"hit force" 2880
-		outfits
-
-		engine 0 252
-
-		turret 0 42
-		turret -36 -138
-		turret 36 -138
-
-		bay "Drone" -69 -3
-		bay "Drone" 69 -3
-		bay "Drone" -69 27
-		bay "Drone" 69 27
-	description "Echo-class Tanker"
 
 
 ship "Damper"
@@ -1001,7 +1361,7 @@ ship "Vibe"
 		"Speckle Railgun" 2
 		"Speck Round" 3000
 		
-		"Pebble Bed Cell" 1
+		"Pebble Bed Cell"
 		"Ultracapacitor Cell" 3
 		
 		"Hyperdrive" 1
@@ -1292,344 +1652,5 @@ ship "Reverberance"
 
 	description "The Reverberance-class Missile Cruiser is a relatively recent, post-Evacuation design with a single focus: missiles. While its armor and shielding systems are fairly minimal, it can carry a staggering arsenal of nuclear tipped missiles, allowing even a single ship to dominate the battlefield - at least until it runs out of ammunition."
 	description "A long truss running the length of the ship normally fits an impressively large mirror-cell fusion torch, giving the Reverbernace the mobility needed to evade opponents until they are reduced to hot vapor."
-
-
-
-
-# Heavy Warships:
-
-
-ship "Cascade"
-	sprite "ship/cascade"
-	thumbnail "thumbnail/cascade"
-	attributes
-		category "Heavy Warship"
-		"shields" 4200
-		"hull" 24000
-		"required crew" 42
-		"bunks" 72
-		"mass" 204
-		"drag" 5.4
-		"heat dissipation" 1.36
-		"fuel capacity" 2400
-		"cargo space" 54
-		"outfit space" 696
-		"weapon capacity" 198
-		"engine capacity" 174
-		"surface space" 73
-		weapon
-			"blast radius" 540
-			"shield damage" 6400
-			"hull damage" 4800
-			"hit force" 4200
-	outfits
-		"Fleck Turret" 1
-		"Fleck Round" 6000
-		"Phased Array Laser (450 nm)" 2
-		"Equinox Torpedo Stockpile" 3
-		"Equinox Torpedo" 36
-		
-		"Radiant Fusion Core" 1
-		"Concentrating Solar Array" 1
-		"Ultracapacitor Bank" 2
-		
-		"Hyperdrive" 1
-		"Large Auxiliary Radiator" 1
-		"Mirror Deflector" 1
-		"Multispectral Scanner" 9
-		"Dipole Ramscoop" 1
-		
-		"S036 Axial Fusion Torch" 1
-		"M052 Transverse Thrusters" 1
-
-	engine 0 243
-
-	gun -15 -135
-		angle -90
-	gun 15 -135
-		angle 90
-	gun -15 -120
-		angle -90
-	gun 15 -120
-		angle 90
-	turret 0 -102 "Phased Array Laser (450 nm)"
-	turret 0 -42 "Fleck Turret"
-	turret 0 18 "Phased Array Laser (450 nm)"
-	turret -15 -42
-	turret 15 -42
-
-	bay "Drone" -63 -204
-	bay "Drone" 63 -204
-	bay "Drone" -42 -213
-	bay "Drone" 42 -213
-	bay "Drone" -21 -219
-	bay "Drone" 21 -219
-	bay "Drone" -15 -207
-	bay "Drone" 15 -207
-	bay "Drone" -18 -180
-	bay "Drone" 18 -180
-	bay "Drone" -18 -160
-	bay "Drone" 18 -160
-
-	leak "leak" 30 60
-	leak "flame" 30 90
-	leak "big leak" 30 30
-	explode "tiny explosion" 20
-	explode "small explosion" 45
-	explode "medium explosion" 50
-	explode "large explosion" 40
-	explode "huge explosion" 10
-	"final explode" "final explosion large"
-
-	description "Cascade-class Carrier"
-
-
-
-
-
-
-
-
-
-# Fighters:
-
-ship "Quake"
-	sprite "ship/quake"
-	thumbnail "thumbnail/quake"
-	attributes
-		category "Fighter"
-		"shields" 120
-		"hull" 900
-		"required crew" 1
-		"bunks" 2
-		"mass" 36
-		"drag" 1.2
-		"heat dissipation" 1.02
-		"fuel capacity" 120
-		"cargo space" 19
-		"outfit space" 96
-		"weapon capacity" 24
-		"engine capacity" 28
-		"surface space" 20
-		weapon
-			"blast radius" 18
-			"shield damage" 80
-			"hull damage" 40
-			"hit force" 120
-	outfits
-		"Concentrating Solar Array" 1
-		"Ultracapacitor Cell" 3
-
-		"Diffuse Deflector"
-		
-		"Multispectral Scanner" 1
-		
-		"M018 Magnetoplasma Drive" 1
-
-	explode "tiny explosion" 9
-
-	description "Quake-class Excursion Vehicle"
-
-
-
-
-
-# Drones:
-
-ship "Lens"
-	sprite "ship/lens"
-	thumbnail "thumbnail/lens"
-	attributes
-		category "Drone"
-		"hull" 360
-		"automaton" 1
-		"mass" 12
-		"drag" .72
-		"heat dissipation" .84
-		"fuel capacity" 60
-		"outfit space" 60
-		"engine capacity" 24
-		"surface space" 6
-		weapon
-			"blast radius" 6
-			"shield damage" 30
-			"hull damage" 15
-			"hit force" 45
-	outfits
-		"Concentrating Solar Array" 1
-		"Ultracapacitor Cell" 1
-		
-		"Multispectral Scanner" 1
-		"Spectrometer Array" 1
-
-		"M018 Magnetoplasma Drive" 1
-
-	explode "tiny explosion" 6
-
-	description "The Lens-class Sensor Platform is the latest iteration of a long line of exploration probes developed shortly after the discovery of the hyperdrive. No longer limited to launching swarms of laser-propelled probes weighing a mere handful of kilograms, the Avgi built robust probes designed to quickly map out newly accessible star systems. Over the decades, these eventually shrank, and the duty of carrying them between star systems was offloaded onto the Crest-class scout ship. This left behind the modern Lens as a highly capable deployable sensor platform, used in both scientific and combat information roles."
-
-
-ship "Lumen"
-	sprite "ship/lumen"
-	thumbnail "thumbnail/lumen"
-	attributes
-		category "Drone"
-		"cost" 36000
-		"hull" 360
-		"automaton" 1
-		"mass" 12
-		"drag" 2.4
-		"heat dissipation" .78
-		"fuel capacity" 60
-		"outfit space" 84
-		"weapon capacity" 42
-		"engine capacity" 18
-		weapon
-			"blast radius" 9
-			"shield damage" 36
-			"hull damage" 18
-			"hit force" 72
-	outfits
-		"Nadir Rotary Launcher" 1
-		"Nadir Missile" 6
-		
-		"Concentrating Solar Cell" 2
-		"Ultracapacitor Cell" 1
-		
-		"Multispectral Scanner" 1
-
-		"M018 Magnetoplasma Drive" 1
-		
-		
-	engine -8.5 28.5 0.9
-	engine 8.5 28.5 0.9
-	gun 0 -29 "Nadir Rotary Launcher"
-
-	explode "tiny explosion" 6
-
-	description "The Lumen-class Orbital Silo was first envisioned as a cheap static defense satellite, little more than a tube capable of storing and launching nuclear missiles. Over time, this specialization was broadened, and the modern line of Lumens is alternatively capable of mounting a large fixed gun, and carrying the energy supply to support it, in order to serve as in the ranged artillery role. Their mostly hollow construction provides a great deal of internal space for their size, but also makes the drone quite fragile."
-	description "Lumens are usually seen defending important Avgi systems, ready to fire their payloads on any hostile ships that jump into the system."
-	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
-
-
-ship "Wavelet"
-	sprite "ship/wavelet"
-	thumbnail "thumbnail/wavelet"
-	attributes
-		category "Drone"
-		"cost" 36000
-		"hull" 900
-		"automaton" 1
-		"threshold percentage" 0.09
-		"mass" 18
-		"drag" .18
-		"heat dissipation" .96
-		"fuel capacity" 90
-		"outfit space" 90
-		"weapon capacity" 24
-		"engine capacity" 24
-		weapon
-			"blast radius" 12
-			"shield damage" 60
-			"hull damage" 18
-			"hit force" 72
-	outfits
-		"Speckle Railgun" 2
-		"Speck Round" 1800
-		"Sidereal Pod"
-		"Sidereal Missile" 6
-		
-		"Pebble Bed Cell"
-		"Ultracapacitor Cell"
-		
-		"Multispectral Scanner"
-		"Small Auxiliary Radiator"
-		
-		"M018 Magnetoplasma Drive"
-
-	engine -8.5 28.5 0.9
-	engine 8.5 28.5 0.9
-	gun -3 -30 "Speckle Railgun"
-	gun 3 -30 "Speckle Railgun"
-	gun 0 -30 "Sidereal Pod"
-
-	explode "tiny explosion" 9
-
-	description "The Wavelet-class Interdictor is the primary Avgi strike fighter. While individually quite fragile, Wavelets are usually deployed in large swarms, and are agile enough to be surprisingly survivable."
-	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
-
-
-ship "Phonon"
-	sprite "ship/phonon"
-	thumbnail "thumbnail/phonon"
-	attributes
-		category "Drone"
-		"shields" 240
-		"hull" 1500
-		"automaton" 1
-		"mass" 36
-		"drag" .36
-		"heat dissipation" .9
-		"fuel capacity" 60
-		"outfit space" 114
-		"weapon capacity" 27
-		"engine capacity" 24
-		"surface space" 15
-		weapon
-			"blast radius" 12
-			"shield damage" 72
-			"hull damage" 30
-			"hit force" 102
-	outfits
-		"Equinox Torpedo Pylon" 2
-		"Equinox Torpedo" 2
-		
-		"Concentrating Solar Array" 1
-		"Ultracapacitor Cell" 3
-		
-		"Multispectral Scanner" 1
-		
-		"M018 Magnetoplasma Drive" 1
-
-	engine -8.5 28.5 0.9
-	engine 8.5 28.5 0.9
-	gun 0 -30 "Equinox Torpedo Pylon"
-	gun 0 -30 "Equinox Torpedo Pylon"
-	turret 0 -33
-
-	explode "tiny explosion" 12
-
-	description "The Phonon-class Torpedo Bomber is the cornerstone of Avgi carrier doctrine. While it is possible for a swarm of Wavelets and similar interdiction drones to engage capital ships, it is the Phonon that is capable of delivering the nuclear anti-ship munitions necessary to bring down the largest warships. By bringing a nuclear torpedo within close range, the payload has a higher chance of surviving enemy point defense weapons compared with standard missiles."
-	description "Phonons are occasionally used as gun platforms, mounting a Speckle Turret instead of their standard armament of a pair of Equinox Torpedoes."
-	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
-
-
-
-
-
-
-# Variants
-
-
-ship "Wavelet" "Wavelet (Fusion)"
-	outfits
-		"Speckle Railgun" 2
-		"Speck Round" 1800
-		"Sidereal Pod" 1
-		"Sidereal Missile" 6
-		
-		"Pebble Bed Cell" 1
-		"Ultracapacitor Cell" 1
-		
-		"Multispectral Scanner" 1
-		"Small Auxiliary Radiator" 1
-		
-		"S024 Coaxial Fusion Drive" 1
-
-
-
-
-
-
 
 

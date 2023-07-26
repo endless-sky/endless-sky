@@ -41,6 +41,8 @@ planet Aviskir
 	outfitter "Avgi Advanced Drives"
 	outfitter "Avgi Basic Combat"
 	outfitter "Avgi Advanced Combat"
+	outfitter "Avgi Atomics"
+
 
 
 planet Sela

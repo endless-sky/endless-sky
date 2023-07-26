@@ -259,6 +259,32 @@ fleet "Avgi Miners"
 		"Quake"
 
 
+fleet "Avgi Small Convoy"
+	government "Avgi"
+	names "avgi civilian"
+	fighters
+		names "avgi fighter"
+		personality
+			swarming
+	personality
+		confusion 30
+		timid coward appeasing merciful opportunistic
+	variant 10
+
+
+fleet "Avgi Large Convoy"
+	government "Avgi"
+	names "avgi civilian"
+	fighters
+		names "avgi fighter"
+		personality
+			swarming
+	personality
+		confusion 30
+		timid coward appeasing merciful opportunistic
+	variant 10
+
+
 fleet "Avgi Small Dissonance"
 	government "Avgi (Dissonance)"
 	names "avgi civilian"

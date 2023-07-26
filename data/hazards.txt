@@ -112,21 +112,23 @@ hazard "Neutron Star Magnetic Field"
 
 hazard "Magnetar Magnetic Field"
 	"constant strength"
-	range 1800
+	"range" 1800
 	weapon
 		"damage dropoff" 0 1800
+		"dropoff modifier" 0
 		"disruption damage" 0.5
 		"discharge damage" 1
 
 hazard "Magnetar Induction"
 	"constant strength"
-	range 900
+	"range" 900
 	weapon
-		"damage dropoff" 0 1500
-		"heat damage" 30
-		"slowing damage" 0.5
+		"gravitational"
+		"damage dropoff" 0 900
+		"dropoff modifier" 0
+		"heat damage" 24
+		"slowing damage" 0.3
 		"hit force" 12
-		gravitational
 
 
 
@@ -146,7 +148,8 @@ effect "gravity well"
 
 
 hazard "Microwave Power Transmission"
-	range 600
+	"constant strength"
+	"range" 600
 	"environmental effect" "power beaming" 12
 	weapon
 		"damage dropoff" 0 600
@@ -155,11 +158,11 @@ hazard "Microwave Power Transmission"
 
 effect "power beaming"
 	sprite "effect/spark"
-		scale 0.25
+		"scale" 0.25
 		"frame rate" 5
 		"random start frame"
-		rewind
-	lifetime 30
+		"rewind"
+	"lifetime" 30
 	"random lifetime" 30
 	"random angle" 180
 	"random velocity" 1
