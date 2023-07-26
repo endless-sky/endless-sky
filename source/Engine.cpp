@@ -2151,7 +2151,7 @@ void Engine::DoCollisions(Projectile &projectile)
 		// "Phasing" projectiles can pass through asteroids. For all other
 		// projectiles, check if they've hit an asteroid that is closer than any
 		// ship that they have hit.
-		if(!projectile.GetWeapon().IsPhasing())
+		if(!projectile.GetWeapon().IsPhasing() && !projectile.GetWeapon().IsUntouchAble())
 		{
 			Body *asteroid = asteroids.Collide(projectile, &closestHit);
 			if(asteroid)
