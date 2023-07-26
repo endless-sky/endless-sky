@@ -919,39 +919,39 @@ bool ShopPanel::Release(int x, int y)
 
 	isDraggingShips = false;
 
-	for(const Zone &zone : zones)
-	{
-		if(!zone.Contains(dragPoint))
-			continue;
+	const auto &zone = find_if(zones.begin(), zones.end(),
+		[&](const Zone &zone){ return zone.Contains(this->dragPoint); });
 
-		// Move selected ships to left of ship that was dropped on.
-		if(!zone.Contains(dragStart) && zone.GetShip() && zone.GetShip()->IsYours())
-		{
-			vector<shared_ptr<Ship>> newOrder;
-			vector<shared_ptr<Ship>>::const_iterator ship = player.Ships().begin();
+	if(zone == zones.end())
+		return true;
 
-			// Add non-selected ships up to drop point.
-			for( ; &**ship != zone.GetShip() && ship != player.Ships().end(); ++ship)
-				if(!shipSelection.Has(&**ship))
-					newOrder.push_back(*ship);
+	const Ship *dropShip = zone->GetShip();
+	if(!dropShip || !dropShip->IsYours() || zone->Contains(dragStart))
+		return true;
 
-			if(ship == player.Ships().end())
-				return true;
+	// Move selected ships to left of ship that was dropped on.
+	vector<shared_ptr<Ship>> newOrder;
+	vector<shared_ptr<Ship>>::const_iterator ship = player.Ships().begin();
 
-			// Add selected ships in same order as in player list.
-			for(auto &it : player.Ships())
-				if(shipSelection.Has(&*it))
-					newOrder.push_back(it);
+	// Add non-selected ships up to drop point.
+	for( ; &**ship != dropShip && ship != player.Ships().end(); ++ship)
+		if(!shipSelection.Has(&**ship))
+			newOrder.push_back(*ship);
 
-			// Add non-selected ships past drop point.
-			for( ; ship != player.Ships().end(); ++ship)
-				if(!shipSelection.Has(&**ship))
-					newOrder.push_back(*ship);
+	if(ship == player.Ships().end())
+		return true;
 
-			player.SetShipOrder(newOrder);
-		}
-		break;
-	}
+	// Add selected ships in same order as in player list.
+	for(auto &it : player.Ships())
+		if(shipSelection.Has(&*it))
+			newOrder.push_back(it);
+
+	// Add non-selected ships past drop point.
+	for( ; ship != player.Ships().end(); ++ship)
+		if(!shipSelection.Has(&**ship))
+			newOrder.push_back(*ship);
+
+	player.SetShipOrder(newOrder);
 
 	return true;
 }
