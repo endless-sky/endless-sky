@@ -266,6 +266,11 @@ mission "Hai Legacy 2"
 	destination "Firelode"
 	to offer
 		not "Hai Legacy 1: declined"
+		has "First Contact: Unfettered: offered"
+		"reputation: Hai (Unfettered)" < 0
+		not "Unfettered Jump Drive 1: offered"
+		not "event: hai ladybug available"
+		"credits" + "net worth" > 65000000
 	to accept
 		has "ship model: Ancient Ladybug"
 	on offer
@@ -299,7 +304,7 @@ mission "Hai Legacy 2"
 			`	It becomes clear you should have come with only the Ancient Ladybug, as the associates suggested.`
 				decline
 			label "not moded bug"
-			`You enter the system and the Unfettered shoot you as usual. Perhaps they would have acted differently if you had used the Ancient Ladybug as a flagship, but it is too late to find out now.`
+			`You enter the system and the Unfettered shoot you? as usual. Perhaps they would have acted differently if you had used the Ancient Ladybug as a flagship, but it is too late to find out now.`
 				decline
 	on fail
 		"reputation: Hai (Unfettered)" <?= -1000
@@ -325,7 +330,7 @@ mission "Hai Legacy 3"
 	description "Beat the Lightning Bugs in a merciless fight. You only have one day, and becoming disabled will result in losing the fight."
 	landing
 	source "Firelode"
-	deadline
+	deadline 2
 	to offer
 		has "flagship model: Ancient Ladybug"
 		has "Hai Legacy 2: done"
@@ -411,6 +416,8 @@ mission "Hai Legacy 3"
 		government "Hai (Unfettered)"
 		ship "Lightning Bug (Unfettered Shipyards)"
 		personality launching staying surveillance
+		on disable
+			dialog `The engineer hails you, "What do you think you are doing? The duel will not be valid if you destroy my ship."`
 		on kill
 			fail "Hai Legacy 3"
 	on visit
@@ -431,7 +438,7 @@ mission "Hai Legacy 3"
 			`	"Don't become overconfident now, Captain. I am sure you know what happens to such people.`
 			label next
 			`	"I must congratulate you, I never expected you had it in you. I only have one word and will give you authorization to land, on the condition that you keep this relic from our past in good condition!`
-			`	"Make sure you do not lose it until you truly earn the right to call us friends, or we will take it very seriously. Oh, and there are taxes on the daily fee. I hope you don't mind."`
+			`	"Make sure you do not lose it until you truly earn the right to call us friends, or we will take it very seriously. Oh, and there are taxes on the daily fee, totalling 681 credits per day. I hope you don't mind."`
 			choice
 				`	"Thank you for your trust."`
 					goto trust
@@ -442,6 +449,7 @@ mission "Hai Legacy 3"
 			`	"What? Oh, well the winner of the challenge can always refuse the spoils, I suppose. In that case our conflict will resume."`
 				decline
 			label trust
+			`	"No need to thank me, trust is earned, like respect."`
 			action
 				outfit "Unfettered Landing Permit"
 				log "Managed to use an old Ladybug to beat a few Lightning Bugs, earning myself a place in Unfettered territory for a daily cost, as long as the Ancient Ladybug is kept intact."
