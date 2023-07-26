@@ -150,6 +150,8 @@ public:
 	// Gravitational weapons deal the same amount of hit force to a ship regardless
 	// of its mass.
 	bool IsGravitational() const;
+	// Untouchable weapons pass through ships dealing damage every frame.
+	bool IsUntouchAble() const;
 
 	// These values include all submunitions:
 	// Normal damage types:
@@ -229,6 +231,7 @@ private:
 	bool isPhasing = false;
 	bool isDamageScaled = true;
 	bool isGravitational = false;
+	bool isUntouchAble = false;
 	// Guns and missiles are by default aimed a converged point at the
 	// maximum weapons range in front of the ship. When either the installed
 	// weapon or the gun-port (or both) have the isParallel attribute set
@@ -397,6 +400,7 @@ inline bool Weapon::IsSafe() const { return isSafe; }
 inline bool Weapon::IsPhasing() const { return isPhasing; }
 inline bool Weapon::IsDamageScaled() const { return isDamageScaled; }
 inline bool Weapon::IsGravitational() const { return isGravitational; }
+inline bool Weapon::IsUntouchAble() const { return isUntouchAble; }
 
 inline double Weapon::ShieldDamage() const { return TotalDamage(SHIELD_DAMAGE); }
 inline double Weapon::HullDamage() const { return TotalDamage(HULL_DAMAGE); }
