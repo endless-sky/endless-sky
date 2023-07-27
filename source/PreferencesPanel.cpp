@@ -82,7 +82,7 @@ namespace {
 	// How many pages of settings there are.
 	const int SETTINGS_PAGE_COUNT = 2;
 
-	const int MAX_INSTALL_ABLES_PER_PAGE = 7;
+	const int MAX_INSTALL_ABLES_PER_PAGE = 14;
 }
 
 
