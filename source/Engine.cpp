@@ -75,7 +75,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cmath>
 #include <string>
-#include <iostream>
 
 using namespace std;
 
@@ -2146,7 +2145,6 @@ void Engine::DoCollisions(Projectile &projectile)
 			if(projectile.GetWeapon().IsMultiHit())
 			{
 				vector<pair<Body *, double>> shipHits = shipCollisions.LineAll(projectile, &closestHit);
-				std::cout<<shipHits.size()<<std::endl;
 				for(const auto &shipHit : shipHits)
 				{
 					Ship *ship = reinterpret_cast<Ship *>(shipHit.first);
