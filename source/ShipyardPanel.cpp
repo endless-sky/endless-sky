@@ -264,7 +264,20 @@ ShopPanel::BuyResult ShipyardPanel::CanBuy(bool onlyOwned) const
 	if(!selectedShip)
 		return false;
 
-	int64_t cost = player.StockDepreciation().Value(*selectedShip, day);
+	const bool isInStore = shipyard.Has(selectedShip);
+
+	// Make sure the ship is available for sale.
+	if(!isInStore && player.Stock(selectedShip) <= 0)
+		return "You cannot buy this ship here.";
+
+	int64_t cost;
+	if(isInStore)
+		cost = player.StockDepreciation().Value(*selectedShip, day);
+	else
+	{
+		// Just the chassis cost.
+		cost = player.StockDepreciation().Value(selectedShip, day);
+	}
 
 	// Check that the player has any necessary licenses.
 	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());

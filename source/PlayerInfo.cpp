@@ -303,7 +303,7 @@ void PlayerInfo::Load(const string &path)
 		{
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
-					shipStock[GameData::Ships().Get(grand.Token(0))] += grand.Value(1);
+					AddStock(GameData::Ships().Get(grand.Token(0)), grand.Value(1));
 		}
 		else if(child.Token(0) == "fleet depreciation")
 			depreciation.Load(child);
@@ -446,10 +446,6 @@ void PlayerInfo::Load(const string &path)
 
 	DistributeMissionCargo(missionCargoToDistribute, missions, ships, cargo, false);
 	DistributeMissionCargo(missionPassengersToDistribute, missions, ships, cargo, true);
-
-	// Make stock version of any ships we've sold to the store.
-	for(const auto &it : shipStock)
-		AddStockShip(it.first);
 
 	// If no depreciation record was loaded, every item in the player's fleet
 	// will count as non-depreciated.
@@ -1170,7 +1166,7 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name, const bool fromS
 		accounts.AddCredits(-price);
 
 		depreciation.Buy(newShip, day, &stockDepreciation);
-		--shipStock[model];
+		AddStock(model, -1);
 		for(const auto &it : newShip.Outfits())
 			stock[it.first] -= it.second;
 
@@ -1214,8 +1210,7 @@ void PlayerInfo::SellShip(const Ship *selected)
 			// Record the transfer of this ship in the depreciation and stock info.
 			stockDepreciation.Buy(*selected, day, &depreciation);
 			const Ship *model = GameData::Ships().Find(selected->TrueModelName());
-			++shipStock[model];
-			AddStockShip(model);
+			AddStock(model, 1);
 			for(const auto &it : selected->Outfits())
 				stock[it.first] += it.second;
 
@@ -2809,6 +2804,26 @@ void PlayerInfo::AddStock(const Outfit *outfit, const int count)
 		for(int i = 0; i < -count; ++i)
 			depreciation.Buy(outfit, day, &stockDepreciation);
 	}
+}
+
+
+
+// Transfer ships from the player to the planet or vice versa.
+// If needed, create a no-outfit version of this ship if we don't already have one.
+void PlayerInfo::AddStock(const Ship *model, int count)
+{
+	shipStock[model] += count;
+
+	if(shipStock[model] <= 0 || stockShips.find(model) != stockShips.end())
+		return;
+
+	stockShips[model] = make_shared<Ship>(*model);
+	Ship &ship = *stockShips[model];
+
+	// Make a copy so we can remove all the outfits safely.
+	map<const Outfit *, int> outfits = ship.Outfits();
+	for(const auto &it : outfits)
+		ship.AddOutfit(it.first, -it.second);
 }
 
 
@@ -4550,23 +4565,6 @@ void PlayerInfo::SelectShip(const shared_ptr<Ship> &ship, bool *first)
 bool PlayerInfo::DisplayCarrierHelp() const
 {
 	return displayCarrierHelp;
-}
-
-
-
-// Create a no-outfit version of this ship if we don't already have one.
-void PlayerInfo::AddStockShip(const Ship *model)
-{
-	if(stockShips.find(model) != stockShips.end())
-		return;
-
-	stockShips[model] = make_shared<Ship>(*model);
-	Ship &ship = *stockShips[model];
-
-	// Make a copy so we can remove all the outfits safely.
-	map<const Outfit *, int> outfits = ship.Outfits();
-	for(const auto &it : outfits)
-		ship.AddOutfit(it.first, -it.second);
 }
 
 
