@@ -2816,8 +2816,9 @@ void PlayerInfo::AddStock(const Outfit *outfit, const int count)
 // Convert a ship pointer to a model ship into one to a stock ship.
 const Ship *PlayerInfo::StockShip(const Ship *model) const
 {
-	auto it = stockShips.find(model);
-	return (it == stockShips.end() ? nullptr : it->second.get());
+	const auto it = stockShips.find(model);
+	// This should always find an entry, but if not, return model.
+	return (it == stockShips.end() ? model : it->second.get());
 }
 
 
