@@ -13,10 +13,12 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
+#include <string>
+
 
 
 namespace DownloadHelper
 {
 	bool Download(const char *url, const char *location);
-	bool ExtractZIP(const char *filename, const char *destination);
+	bool ExtractZIP(const char *filename, std::string destination, std::string expectedName);
 }

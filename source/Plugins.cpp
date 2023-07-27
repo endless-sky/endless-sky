@@ -152,7 +152,7 @@ bool Plugins::Install(string url, string name, std::string version)
 	{
 		success = DownloadHelper::ExtractZIP(
 			(Files::Plugins() + name + ".zip").c_str(),
-			Files::Plugins().c_str());
+			Files::Plugins().c_str(), name + "/");
 	}
 	Files::Write(Files::Plugins() + name + "/version.txt", version);
 	Files::Delete(Files::Plugins() + name + ".zip");
@@ -164,6 +164,8 @@ bool Plugins::Install(string url, string name, std::string version)
 
 bool Plugins::Update(string url, string name, std::string version)
 {
+	plugins.Get(name)->version = version;
+
 	Files::DeleteDir((Files::Plugins() + name).c_str());
 	return Install(url, name, version);
 }

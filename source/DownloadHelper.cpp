@@ -16,10 +16,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DownloadHelper.h"
 
 #include <archive.h>
+#include <archive_entry.h>
 #include <cstring>
 #include <curl/curl.h>
 #include <stdio.h>
-#include <string>
+#include <sys/stat.h>
 #include <unistd.h>
 
 using namespace std;
@@ -95,11 +96,8 @@ namespace DownloadHelper {
 
 
 
-	bool ExtractZIP(const char *filename, const char *destination)
+	bool ExtractZIP(const char *filename, string destination, string expectedName)
 	{
-		char originalDir[1000];
-		getcwd(originalDir, 1000);
-		chdir(destination);
 		struct archive *a;
 		struct archive *ext;
 		struct archive_entry *entry;
@@ -120,9 +118,30 @@ namespace DownloadHelper {
 		if((retVal = archive_read_open_filename(a, filename, 10240)))
 		{
 			printf("archive_read_open_filename(), %s, %i", archive_error_string(a), retVal);
-			chdir(originalDir);
 			return false;
 		}
+
+		// Do some inital checks.
+		bool fitsExpected = true;
+		bool hasHeadFolder = true;
+		retVal = archive_read_next_header(a, &entry);
+		string firstEntry = archive_entry_pathname(entry);
+		fitsExpected = firstEntry == (expectedName);
+		archive_read_data_skip(a);
+		retVal = archive_read_next_header(a, &entry);
+		string secondEntry = archive_entry_pathname(entry);
+		hasHeadFolder = secondEntry.find(firstEntry) != std::string::npos;
+		if(!hasHeadFolder)
+			mkdir((destination + expectedName).c_str(), 0777);
+		archive_read_close(a);
+		archive_read_free(a);
+
+		// Read another time, this time for writing.
+		a = archive_read_new();
+		archive_read_support_format_all(a);
+		archive_read_open_filename(a, filename, 10240);
+
+		char* dest_file;
 		for(;;)
 		{
 			retVal = archive_read_next_header(a, &entry);
@@ -131,9 +150,24 @@ namespace DownloadHelper {
 			if(retVal != ARCHIVE_OK)
 			{
 				printf("archive_read_next_header(), %s, %i", archive_error_string(a), retVal);
-				chdir(originalDir);
 				return false;
 			}
+			// Adjust root folder name if neccessary.
+			if(!fitsExpected && hasHeadFolder)
+			{
+				string thisEntryName = archive_entry_pathname(entry);
+    			size_t start_pos = thisEntryName.find(firstEntry);
+    			if(start_pos != std::string::npos)
+				{
+        			thisEntryName.replace(start_pos, firstEntry.length(), expectedName);
+				}
+				archive_entry_set_pathname(entry, thisEntryName.c_str());
+			}
+			// Add root folder to path if neccessary.
+			asprintf(&dest_file, "%s/%s", (destination
+				+ (hasHeadFolder ? "" : expectedName)).c_str(), archive_entry_pathname(entry));
+    		archive_entry_set_pathname(entry, dest_file);
+			// Write files.
 			retVal = archive_write_header(ext, entry);
 			if(retVal != ARCHIVE_OK)
 				printf("archive_write_header(), %s", archive_error_string(ext));
@@ -144,17 +178,16 @@ namespace DownloadHelper {
 				if(retVal != ARCHIVE_OK)
 				{
 					printf("archive_write_finish_entry(), %s, %i", archive_error_string(ext), 1);
-					chdir(originalDir);
 					return false;
 				}
 			}
 		}
+
+		// Free all data.
 		archive_read_close(a);
 		archive_read_free(a);
-
 		archive_write_close(ext);
 		archive_write_free(ext);
-		chdir(originalDir);
 		return true;
 	}
 }
