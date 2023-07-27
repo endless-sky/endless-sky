@@ -187,7 +187,9 @@ int ShipyardPanel::DrawDetails(const Point &center)
 
 	if(selectedShip)
 	{
-		shipInfo.Update(*selectedShip, player, collapsed.count("description"));
+		// Ships in stock have no outfits, so get an appropriate version.
+		const Ship *infoShip = shipyard.Has(selectedShip) ? selectedShip : player.StockShip(selectedShip);
+		shipInfo.Update(*infoShip, player, collapsed.count("description"));
 		selectedItem = selectedShip->DisplayModelName();
 
 		const Sprite *background = SpriteSet::Get("ui/shipyard selected");

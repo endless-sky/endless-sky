@@ -310,7 +310,8 @@ public:
 	int Stock(const Outfit *outfit) const;
 	int Stock(const Ship *ship) const;
 	void AddStock(const Outfit *outfit, int count);
-	void AddStock(const Ship *ship, int count);
+	// Get the version of the ship in stock.
+	const Ship *StockShip(const Ship *model) const;
 	// Get depreciation information.
 	const Depreciation &FleetDepreciation() const;
 	const Depreciation &StockDepreciation() const;
@@ -360,6 +361,8 @@ private:
 	// Helper function to update the ship selection.
 	void SelectShip(const std::shared_ptr<Ship> &ship, bool *first);
 
+	// Create a shop stocked version of sold ship when selling.
+	void AddStockShip(const Ship *model);
 	// Instantiate the given model and add it to the player's fleet.
 	void AddStockShip(const Ship *model, const std::string &name);
 	// When we remove a ship, forget it's stored Uuid.
@@ -436,6 +439,7 @@ private:
 
 	std::map<const Outfit *, int> stock;
 	std::map<const Ship *, int> shipStock;
+	std::map<const Ship *, std::shared_ptr<Ship>> stockShips;
 	Depreciation depreciation;
 	Depreciation stockDepreciation;
 	std::set<std::pair<const System *, const Outfit *>> harvested;

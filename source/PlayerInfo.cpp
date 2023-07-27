@@ -447,6 +447,10 @@ void PlayerInfo::Load(const string &path)
 	DistributeMissionCargo(missionCargoToDistribute, missions, ships, cargo, false);
 	DistributeMissionCargo(missionPassengersToDistribute, missions, ships, cargo, true);
 
+	// Make stock version of any ships we've sold to the store.
+	for(const auto &it : shipStock)
+		AddStockShip(it.first);
+
 	// If no depreciation record was loaded, every item in the player's fleet
 	// will count as non-depreciated.
 	if(!depreciation.IsLoaded())
@@ -1151,7 +1155,7 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name, const bool fromS
 	// Ships sold to the shop have been stripped down, so remove all outfits.
 	if(!fromShop)
 	{
-		// Make a copy so we can remove safely.
+		// Make a copy so we can remove all the outfits safely.
 		map<const Outfit *, int> outfits = newShip.Outfits();
 		for(const auto &it : outfits)
 			newShip.AddOutfit(it.first, -it.second);
@@ -1164,9 +1168,9 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name, const bool fromS
 		flagship.reset();
 
 		accounts.AddCredits(-price);
-		AddStock(model, -1);
 
 		depreciation.Buy(newShip, day, &stockDepreciation);
+		--shipStock[model];
 		for(const auto &it : newShip.Outfits())
 			stock[it.first] -= it.second;
 
@@ -1209,11 +1213,13 @@ void PlayerInfo::SellShip(const Ship *selected)
 
 			// Record the transfer of this ship in the depreciation and stock info.
 			stockDepreciation.Buy(*selected, day, &depreciation);
+			const Ship *model = GameData::Ships().Find(selected->TrueModelName());
+			++shipStock[model];
+			AddStockShip(model);
 			for(const auto &it : selected->Outfits())
 				stock[it.first] += it.second;
 
 			accounts.AddCredits(cost);
-			AddStock(GameData::Ships().Find(selected->TrueModelName()), 1);
 			ForgetGiftedShip(*it->get());
 			ships.erase(it);
 			flagship.reset();
@@ -1620,6 +1626,8 @@ bool PlayerInfo::TakeOff(UI *ui)
 	availableMissions.clear();
 	doneMissions.clear();
 	stock.clear();
+	shipStock.clear();
+	stockShips.clear();
 
 	// Special persons who appeared last time you left the planet, can appear again.
 	GameData::ResetPersons();
@@ -2805,25 +2813,11 @@ void PlayerInfo::AddStock(const Outfit *outfit, const int count)
 
 
 
-// Transfer ships from the player to the planet or vice versa.
-void PlayerInfo::AddStock(const Ship *ship, const int count)
+// Convert a ship pointer to a model ship into one to a stock ship.
+const Ship *PlayerInfo::StockShip(const Ship *model) const
 {
-	shipStock[ship] += count;
-
-	const int day = date.DaysSinceEpoch();
-	if(count > 0)
-	{
-		// Remember how depreciated these items are.
-		for(int i = 0; i < count; ++i)
-			stockDepreciation.Buy(*ship, day, &depreciation);
-	}
-	else
-	{
-		// If the count is negative, ships are being transferred from stock
-		// into the player's possession.
-		for(int i = 0; i < -count; ++i)
-			depreciation.Buy(*ship, day, &stockDepreciation);
-	}
+	auto it = stockShips.find(model);
+	return (it == stockShips.end() ? nullptr : it->second.get());
 }
 
 
@@ -4555,6 +4549,23 @@ void PlayerInfo::SelectShip(const shared_ptr<Ship> &ship, bool *first)
 bool PlayerInfo::DisplayCarrierHelp() const
 {
 	return displayCarrierHelp;
+}
+
+
+
+// Create a no-outfit version of this ship if we don't already have one.
+void PlayerInfo::AddStockShip(const Ship *model)
+{
+	if(stockShips.find(model) != stockShips.end())
+		return;
+
+	stockShips[model] = make_shared<Ship>(*model);
+	Ship &ship = *stockShips[model];
+
+	// Make a copy so we can remove all the outfits safely.
+	map<const Outfit *, int> outfits = ship.Outfits();
+	for(const auto &it : outfits)
+		ship.AddOutfit(it.first, -it.second);
 }
 
 
