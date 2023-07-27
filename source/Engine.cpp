@@ -2188,7 +2188,7 @@ void Engine::DoCollisions(Projectile &projectile)
 
 			const DamageProfile damage(projectile.GetInfo());
 			// If this projectile has a blast radius, find all ships within its
-			// radius. Otherwise, only one is damaged. 
+			// radius. Otherwise, only one is damaged.
 			double blastRadius = projectile.GetWeapon().BlastRadius();
 			bool isSafe = projectile.GetWeapon().IsSafe();
 			if(blastRadius)
@@ -2220,7 +2220,7 @@ void Engine::DoCollisions(Projectile &projectile)
 			if(hits[i].ship)
 				DoGrudge(hits[i].ship, gov);
 		}
-		
+
 	}
 	else if(projectile.MissileStrength())
 	{
