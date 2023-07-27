@@ -65,6 +65,7 @@ conversation "quarg imprisonment"
 	`	You spend the rest of your days in the same cell, which although large and comfortable, quickly proves plain and dull. You're kept in very good health and are well fed, but the Quarg do not allow you to leave the cell and seldom entertain your attempts at striking conversation. You get few visitors and can only wonder what life would've been like had you the chance to live out all these years in freedom, the captain of a starship.`
 		die
 
+# Human Quarg
 fleet "Quarg"
 	government "Quarg"
 	names "quarg"
@@ -78,6 +79,108 @@ fleet "Quarg"
 
 fleet "Large Quarg"
 	government "Quarg"
+	names "quarg"
+	cargo 1
+	personality
+		forbearing opportunistic
+	variant 2
+		"Quarg Skylark" 2
+		"Quarg Wardragon"
+	variant 2
+		"Quarg Wardragon" 2
+		"Quarg Skylark"
+	variant
+		"Quarg Skylark" 2
+		"Quarg Wardragon" 2
+	variant
+		"Quarg Wardragon" 3
+		"Quarg Skylark"
+	variant
+		"Quarg Skylark" 3
+		"Quarg Wardragon"
+
+# Hai Quarg
+fleet "Quarg (Hai)"
+	government "Quarg (Hai)"
+	names "quarg"
+	cargo 3
+	personality
+		forbearing opportunistic
+	variant
+		"Quarg Skylark"
+	variant
+		"Quarg Wardragon"
+
+fleet "Large Quarg (Hai)"
+	government "Quarg (Hai)"
+	names "quarg"
+	cargo 1
+	personality
+		forbearing opportunistic
+	variant 2
+		"Quarg Skylark" 2
+		"Quarg Wardragon"
+	variant 2
+		"Quarg Wardragon" 2
+		"Quarg Skylark"
+	variant
+		"Quarg Skylark" 2
+		"Quarg Wardragon" 2
+	variant
+		"Quarg Wardragon" 3
+		"Quarg Skylark"
+	variant
+		"Quarg Skylark" 3
+		"Quarg Wardragon"
+
+# Kor Efret Quarg
+fleet "Quarg (Kor Efret)"
+	government "Quarg (Kor Efret)"
+	names "quarg"
+	cargo 3
+	personality
+		forbearing opportunistic
+	variant
+		"Quarg Skylark"
+	variant
+		"Quarg Wardragon"
+
+fleet "Large Quarg (Kor Efret)"
+	government "Quarg (Kor Efret)"
+	names "quarg"
+	cargo 1
+	personality
+		forbearing opportunistic
+	variant 2
+		"Quarg Skylark" 2
+		"Quarg Wardragon"
+	variant 2
+		"Quarg Wardragon" 2
+		"Quarg Skylark"
+	variant
+		"Quarg Skylark" 2
+		"Quarg Wardragon" 2
+	variant
+		"Quarg Wardragon" 3
+		"Quarg Skylark"
+	variant
+		"Quarg Skylark" 3
+		"Quarg Wardragon"
+
+# Gegno Quarg
+fleet "Quarg (Gegno)"
+	government "Quarg (Gegno)"
+	names "quarg"
+	cargo 3
+	personality
+		forbearing opportunistic
+	variant
+		"Quarg Skylark"
+	variant
+		"Quarg Wardragon"
+
+fleet "Large Quarg (Gegno)"
+	government "Quarg (Gegno)"
 	names "quarg"
 	cargo 1
 	personality

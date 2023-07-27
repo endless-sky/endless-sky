@@ -160,10 +160,10 @@ star "star/g-supergiant"
 	wind 2.9
 star "star/k-supergiant"
 	power 1.8
-	wind 2
+	wind 3
 star "star/m-supergiant"
 	power 1.6
-	wind 2
+	wind 3.1
 
 # Special stars.
 star "star/carbon"
@@ -179,7 +179,7 @@ star "star/nova-small"
 	power 0.2
 	wind 4
 star "star/wr"
-	power 0.4
+	power 5
 	wind 4
 star "star/protostar-orange"
 	power 0.5

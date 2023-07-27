@@ -136,9 +136,9 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 			// influencing their reputation with the other.
 			double penalty = (count * weight) * other->PenaltyFor(eventType, gov);
 			if(eventType & ShipEvent::ATROCITY && weight > 0)
-				reputationWith[other] = min(0., reputationWith[other]);
+				Politics::SetReputation(other, min(0., reputationWith[other]));
 
-			reputationWith[other] -= penalty;
+			Politics::AddReputation(other, -penalty);
 		}
 	}
 }
@@ -334,13 +334,15 @@ double Politics::Reputation(const Government *gov) const
 
 void Politics::AddReputation(const Government *gov, double value)
 {
-	reputationWith[gov] += value;
+	SetReputation(gov, reputationWith[gov] + value);
 }
 
 
 
 void Politics::SetReputation(const Government *gov, double value)
 {
+	value = min(value, gov->ReputationMax());
+	value = max(value, gov->ReputationMin());
 	reputationWith[gov] = value;
 }
 

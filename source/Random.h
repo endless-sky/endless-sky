@@ -42,8 +42,8 @@ public:
 	static uint32_t Polya(uint32_t k, double p = .5);
 	// Get a number from a binomial distribution (i.e. integer bell curve).
 	static uint32_t Binomial(uint32_t t, double p = .5);
-	// Get a normally distributed number (mean = 0, sigma= 1).
-	static double Normal();
+	// Get a number from a normal distribution with standard or specified mean and stddev.
+	static double Normal(double mean = 0, double sigma = 1);
 };
 
 

@@ -115,7 +115,7 @@ void MapShipyardPanel::Select(int index)
 	else
 	{
 		selected = list[index];
-		selectedInfo.Update(*selected, player.StockDepreciation(), player.GetDate().DaysSinceEpoch());
+		selectedInfo.Update(*selected, player);
 	}
 	UpdateCache();
 }
@@ -129,7 +129,7 @@ void MapShipyardPanel::Compare(int index)
 	else
 	{
 		compare = list[index];
-		compareInfo.Update(*compare, player.StockDepreciation(), player.GetDate().DaysSinceEpoch());
+		compareInfo.Update(*compare, player);
 	}
 }
 
@@ -162,7 +162,7 @@ int MapShipyardPanel::FindItem(const string &text) const
 	int bestItem = -1;
 	for(unsigned i = 0; i < list.size(); ++i)
 	{
-		int index = Search(list[i]->ModelName(), text);
+		int index = Search(list[i]->DisplayModelName(), text);
 		if(index >= 0 && index < bestIndex)
 		{
 			bestIndex = index;
@@ -182,8 +182,9 @@ void MapShipyardPanel::DrawItems()
 		DoHelp("map advanced shops");
 	list.clear();
 	Point corner = Screen::TopLeft() + Point(0, scroll);
-	for(const string &category : categories)
+	for(const auto &cat : categories)
 	{
+		const string &category = cat.Name();
 		auto it = catalog.find(category);
 		if(it == catalog.end())
 			continue;
@@ -217,7 +218,7 @@ void MapShipyardPanel::DrawItems()
 			if(!sprite)
 				sprite = ship->GetSprite();
 			Draw(corner, sprite, ship->CustomSwizzle(), isForSale, ship == selected,
-					ship->ModelName(), price, info);
+					ship->DisplayModelName(), price, info);
 			list.push_back(ship);
 		}
 	}
@@ -241,5 +242,5 @@ void MapShipyardPanel::Init()
 
 	for(auto &it : catalog)
 		sort(it.second.begin(), it.second.end(),
-			[](const Ship *a, const Ship *b) { return a->ModelName() < b->ModelName(); });
+			[](const Ship *a, const Ship *b) { return a->DisplayModelName() < b->DisplayModelName(); });
 }

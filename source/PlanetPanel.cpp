@@ -137,7 +137,15 @@ void PlanetPanel::Draw()
 	ui.Draw(info, this);
 
 	if(!selectedPanel)
-		text.Draw(Point(-300., 80.), *GameData::Colors().Get("bright"));
+	{
+		Rectangle box = ui.GetBox("content");
+		if(box.Width() != text.WrapWidth())
+		{
+			text.SetWrapWidth(box.Width());
+			text.Wrap(planet.Description());
+		}
+		text.Draw(box.TopLeft(), *GameData::Colors().Get("bright"));
+	}
 }
 
 

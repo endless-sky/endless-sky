@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/alignment.hpp"
 #include "CategoryTypes.h"
 #include "Color.h"
+#include "Dialog.h"
 #include "text/DisplayText.h"
 #include "FillShader.h"
 #include "text/Font.h"
@@ -55,9 +56,9 @@ namespace {
 	constexpr int ICON_COLS = 4;
 	constexpr float ICON_SIZE = ICON_TILE - 8;
 
-	bool CanShowInSidebar(const Ship &ship, const System *here)
+	bool CanShowInSidebar(const Ship &ship, const Planet *here)
 	{
-		return ship.GetSystem() == here && !ship.IsDisabled();
+		return ship.GetPlanet() == here;
 	}
 }
 
@@ -66,7 +67,7 @@ namespace {
 ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	: player(player), day(player.GetDate().DaysSinceEpoch()),
 	planet(player.GetPlanet()), playerShip(player.Flagship()),
-	categories(GameData::Category(isOutfitter ? CategoryType::OUTFIT : CategoryType::SHIP)),
+	categories(GameData::GetCategory(isOutfitter ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	collapsed(player.Collapsed(isOutfitter ? "outfitter" : "shipyard"))
 {
 	if(playerShip)
@@ -202,7 +203,7 @@ void ShopPanel::DrawShipsSidebar()
 		Screen::Right() - SIDEBAR_WIDTH / 2 - 93,
 		Screen::Top() + SIDEBAR_WIDTH / 2 - sidebarScroll + 40 - 93);
 
-	const System *here = player.GetSystem();
+	const Planet *here = player.GetPlanet();
 	int shipsHere = 0;
 	for(const shared_ptr<Ship> &ship : player.Ships())
 		shipsHere += CanShowInSidebar(*ship, here);
@@ -266,6 +267,10 @@ void ShopPanel::DrawShipsSidebar()
 				warningPoint = zones.back().TopLeft();
 			}
 		}
+
+		if(isSelected && playerShips.size() > 1 && ship->OutfitCount(selectedOutfit))
+			PointerShader::Draw(Point(point.X() - static_cast<int>(ICON_TILE / 3), point.Y()),
+				Point(1., 0.), 14.f, 12.f, 0., Color(.9f, .9f, .9f, .2f));
 
 		point.X() += ICON_TILE;
 	}
@@ -360,10 +365,18 @@ void ShopPanel::DrawButtons()
 
 	const Point buyCenter = Screen::BottomRight() - Point(210, 25);
 	FillShader::Fill(buyCenter, Point(60, 30), back);
-	string BUY = IsAlreadyOwned() ? (playerShip ? "_Install" : "_Cargo") : "_Buy";
+	bool isOwned = IsAlreadyOwned();
+	const Color *buyTextColor;
+	if(!CanBuy(isOwned))
+		buyTextColor = &inactive;
+	else if(hoverButton == (isOwned ? 'i' : 'b'))
+		buyTextColor = &hover;
+	else
+		buyTextColor = &active;
+	string BUY = isOwned ? (playerShip ? "_Install" : "_Cargo") : "_Buy";
 	bigFont.Draw(BUY,
 		buyCenter - .5 * Point(bigFont.Width(BUY), bigFont.Height()),
-		CanBuy() ? hoverButton == 'b' ? hover : active : inactive);
+		*buyTextColor);
 
 	const Point sellCenter = Screen::BottomRight() - Point(130, 25);
 	FillShader::Fill(sellCenter, Point(60, 30), back);
@@ -419,9 +432,10 @@ void ShopPanel::DrawMain()
 	const float endX = Screen::Right() - (SIDE_WIDTH + 1);
 	double nextY = begin.Y() + TILE_SIZE;
 	int scrollY = 0;
-	for(const string &category : categories)
+	for(const auto &cat : categories)
 	{
-		map<string, set<string>>::const_iterator it = catalog.find(category);
+		const string &category = cat.Name();
+		map<string, vector<string>>::const_iterator it = catalog.find(category);
 		if(it == catalog.end())
 			continue;
 
@@ -521,7 +535,7 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 
 	// Draw the ship name.
 	const Font &font = FontSet::Get(14);
-	const string &name = ship.Name().empty() ? ship.ModelName() : ship.Name();
+	const string &name = ship.Name().empty() ? ship.DisplayModelName() : ship.Name();
 	Point offset(-SIDEBAR_WIDTH / 2, -.5f * SHIP_SIZE + 10.f);
 	font.Draw({name, {SIDEBAR_WIDTH, Alignment::CENTER, Truncate::MIDDLE}},
 		center + offset, *GameData::Colors().Get("bright"));
@@ -622,11 +636,14 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		player.UpdateCargoCapacities();
 		GetUI()->Pop(this);
 	}
-	else if(key == 'b' || ((key == 'i' || key == 'c') && selectedOutfit && (player.Cargo().Get(selectedOutfit)
-			|| (player.Storage() && player.Storage()->Get(selectedOutfit)))))
+	else if(key == 'b' || key == 'i' || key == 'c')
 	{
-		if(!CanBuy(key == 'i' || key == 'c'))
-			FailBuy();
+		const auto result = CanBuy(key == 'i' || key == 'c');
+		if(!result)
+		{
+			if(result.HasMessage())
+				GetUI()->Push(new Dialog(result.Message()));
+		}
 		else
 		{
 			Buy(key == 'i' || key == 'c');
@@ -702,7 +719,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			if(allWereSelected)
 				added.clear();
 
-			const System *here = player.GetSystem();
+			const Planet *here = player.GetPlanet();
 			for(Ship *ship : added)
 				if(CanShowInSidebar(*ship, here))
 					playerShips.insert(ship);
@@ -716,7 +733,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			playerShips.clear();
 			set<Ship *> wanted = player.GetGroup(group);
 
-			const System *here = player.GetSystem();
+			const Planet *here = player.GetPlanet();
 			for(Ship *ship : wanted)
 				if(CanShowInSidebar(*ship, here))
 					playerShips.insert(ship);
@@ -743,7 +760,7 @@ bool ShopPanel::Click(int x, int y, int /* clicks */)
 	if(button)
 		return DoKey(button);
 
-	// Check for clicks in the scroll arrows.
+	// Check for clicks on the ShipsSidebar pane arrows.
 	if(x >= Screen::Right() - 20)
 	{
 		if(y < Screen::Top() + 20)
@@ -751,6 +768,15 @@ bool ShopPanel::Click(int x, int y, int /* clicks */)
 		if(y < Screen::Bottom() - BUTTON_HEIGHT && y >= Screen::Bottom() - BUTTON_HEIGHT - 20)
 			return Scroll(0, -4);
 	}
+	// Check for clicks on the DetailsSidebar pane arrows.
+	else if(x >= Screen::Right() - SIDEBAR_WIDTH - 20 && x < Screen::Right() - SIDEBAR_WIDTH)
+	{
+		if(y < Screen::Top() + 20)
+			return Scroll(0, 4);
+		if(y >= Screen::Bottom() - 20)
+			return Scroll(0, -4);
+	}
+	// Check for clicks on the Main pane arrows.
 	else if(x >= Screen::Right() - SIDE_WIDTH - 20 && x < Screen::Right() - SIDE_WIDTH)
 	{
 		if(y < Screen::Top() + 20)
@@ -773,8 +799,8 @@ bool ShopPanel::Click(int x, int y, int /* clicks */)
 				{
 					selectedShip = nullptr;
 					selectedOutfit = nullptr;
-					for(const string &category : categories)
-						collapsed.insert(category);
+					for(const auto &category : categories)
+						collapsed.insert(category.Name());
 				}
 				else
 				{
@@ -907,20 +933,20 @@ bool ShopPanel::Scroll(double dx, double dy)
 
 
 
-int64_t ShopPanel::LicenseCost(const Outfit *outfit) const
+int64_t ShopPanel::LicenseCost(const Outfit *outfit, bool onlyOwned) const
 {
 	// If the player is attempting to install an outfit from cargo, storage, or that they just
 	// sold to the shop, then ignore its license requirement, if any. (Otherwise there
 	// would be no way to use or transfer license-restricted outfits between ships.)
-	if((player.Cargo().Get(outfit) && playerShip) || player.Stock(outfit) > 0 ||
-			(player.Storage() && player.Storage()->Get(outfit)))
+	bool owned = (player.Cargo().Get(outfit) && playerShip) || (player.Storage() && player.Storage()->Get(outfit));
+	if((owned && onlyOwned) || player.Stock(outfit) > 0)
 		return 0;
 
 	const Sale<Outfit> &available = player.GetPlanet()->Outfitter();
 
 	int64_t cost = 0;
 	for(const string &name : outfit->Licenses())
-		if(!player.Conditions().Get("license: " + name))
+		if(!player.HasLicense(name))
 		{
 			const Outfit *license = GameData::Outfits().Find(name + " License");
 			if(!license || !license->Cost() || !available.Has(license))
@@ -1037,7 +1063,7 @@ void ShopPanel::SideSelect(int count)
 	}
 
 
-	const System *here = player.GetSystem();
+	const Planet *here = player.GetPlanet();
 	if(count < 0)
 	{
 		while(count)
@@ -1075,7 +1101,7 @@ void ShopPanel::SideSelect(Ship *ship)
 	if(shift)
 	{
 		bool on = false;
-		const System *here = player.GetSystem();
+		const Planet *here = player.GetPlanet();
 		for(const shared_ptr<Ship> &other : player.Ships())
 		{
 			// Skip any ships that are "absent" for whatever reason.

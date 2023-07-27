@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class CategoryList;
 class Color;
 class ConditionsStore;
 class Conversation;
@@ -159,8 +160,8 @@ public:
 
 	// Strings for combat rating levels, etc.
 	static const std::string &Rating(const std::string &type, int level);
-	// Strings for ship, bay type, and outfit categories.
-	static const std::vector<std::string> &Category(const CategoryType type);
+	// Collections for ship, bay type, outfit, and other categories.
+	static const CategoryList &GetCategory(const CategoryType type);
 
 	static const StarField &Background();
 	static void SetHaze(const Sprite *sprite, bool allowAnimation);
