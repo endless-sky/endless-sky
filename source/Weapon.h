@@ -327,7 +327,7 @@ private:
 
 	bool hasDamageDropoff = false;
 	std::pair<double, double> damageDropoffRange;
-	double damageDropoffModifier;
+	double damageDropoffModifier = 1.;
 
 	// Cache the calculation of these values, for faster access.
 	mutable bool calculatedDamage = true;
