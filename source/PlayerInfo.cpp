@@ -2763,7 +2763,7 @@ set<Ship *> PlayerInfo::GetGroup(int group)
 // available to buy back until you take off.
 int PlayerInfo::Stock(const Outfit *outfit) const
 {
-	const auto it = stock.find(outfit);
+	auto it = stock.find(outfit);
 	return (it == stock.end() ? 0 : it->second);
 }
 
@@ -2780,7 +2780,7 @@ int PlayerInfo::Stock(const Ship *ship) const
 
 
 // Transfer outfits from the player to the planet or vice versa.
-void PlayerInfo::AddStock(const Outfit *outfit, const int count)
+void PlayerInfo::AddStock(const Outfit *outfit, int count)
 {
 	// If you sell an individual outfit that is not sold here and that you
 	// acquired by buying a ship here, have it appear as "in stock" in case you
@@ -2790,7 +2790,7 @@ void PlayerInfo::AddStock(const Outfit *outfit, const int count)
 		stock[outfit] = 0;
 	stock[outfit] += count;
 
-	const int day = date.DaysSinceEpoch();
+	int day = date.DaysSinceEpoch();
 	if(count > 0)
 	{
 		// Remember how depreciated these items are.

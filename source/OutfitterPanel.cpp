@@ -266,8 +266,8 @@ int OutfitterPanel::DrawDetails(const Point &center)
 		outfitInfo.Update(*selectedOutfit, player, CanSell(), collapsed.count("description"));
 		selectedItem = selectedOutfit->DisplayName();
 
-		const Sprite *background = SpriteSet::Get("ui/outfitter selected");
 		const Sprite *thumbnail = selectedOutfit->Thumbnail();
+		const Sprite *background = SpriteSet::Get("ui/outfitter selected");
 
 		float tileSize = thumbnail
 			? max(thumbnail->Height(), static_cast<float>(TileSize()))
@@ -295,8 +295,8 @@ int OutfitterPanel::DrawDetails(const Point &center)
 
 		// Calculate the new ClickZone for the description.
 		Point descDimensions(INFOBAR_WIDTH, descriptionOffset + 10.);
-		ClickZone<string> collapseDescription = ClickZone<string>(
-			descCenter, descDimensions, string("description"));
+		ClickZone<std::string> collapseDescription = ClickZone<std::string>(descCenter,
+			descDimensions, std::string("description"));
 
 		// Find the old zone, and replace it with the new zone.
 		for(auto it = categoryZones.begin(); it != categoryZones.end(); ++it)
@@ -864,16 +864,15 @@ bool OutfitterPanel::ShipCanSell(const Ship *ship, const Outfit *outfit)
 
 void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool isSelected, bool isOwned)
 {
+	const Sprite *thumbnail = outfit.Thumbnail();
 	const Sprite *back = SpriteSet::Get(
 		isSelected ? "ui/outfitter selected" : "ui/outfitter unselected");
 	SpriteShader::Draw(back, center);
-
-	const Sprite *thumbnail = outfit.Thumbnail();
 	SpriteShader::Draw(thumbnail, center);
 
 	// Draw the outfit name.
-	const Font &font = FontSet::Get(14);
 	const string &name = outfit.DisplayName();
+	const Font &font = FontSet::Get(14);
 	Point offset(-.5 * OUTFIT_SIZE, -.5 * OUTFIT_SIZE + 10.);
 	font.Draw({name, {OUTFIT_SIZE, Alignment::CENTER, Truncate::MIDDLE}},
 		center + offset, Color((isSelected | isOwned) ? .8 : .5, 0.));
