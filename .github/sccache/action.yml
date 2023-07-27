@@ -8,7 +8,7 @@ runs:
   using: 'composite'
   steps:
     - name: Set environment variables
-      run: echo "SCCACHE_VERSION=v0.3.3" >> $GITHUB_ENV
+      run: echo "SCCACHE_VERSION=v0.4.1" >> $GITHUB_ENV
       shell: bash
     - name: Download sccache
       run: |
@@ -26,8 +26,13 @@ runs:
       run: tar xf sccache-*.tar.gz --strip-components=1
       shell: bash
     - name: Add to PATH
+      if: ${{ runner.os != 'Windows' }}
       run: echo "$PWD" >> $GITHUB_PATH
       shell: bash
+    - name: Add to PATH (Windows)
+      if: ${{ runner.os == 'Windows' }}
+      run: (Get-Item .).FullName >> $env:GITHUB_PATH
+      shell: pwsh
     - name: Write to the cache
       if: ${{ inputs.read-only == 'false' && github.event_name == 'push' }}
       run: echo "SCCACHE_GHA_CACHE_TO=sccache-${{ github.sha }}" >> $GITHUB_ENV

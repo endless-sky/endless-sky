@@ -30,15 +30,15 @@ void CoreStartData::Load(const DataNode &node)
 	identifier = node.Size() >= 2 ? node.Token(1) : "Unidentified Start";
 	for(const DataNode &child : node)
 	{
-		// Check for the "add" or "remove" keyword.
+		// Check for the "add" keyword. CoreStateData currently doesn't support the "remove" keyword.
 		bool add = (child.Token(0) == "add");
-		bool remove = (child.Token(0) == "remove");
-		if((add || remove) && child.Size() < 2)
+		if(add && child.Size() < 2)
 		{
 			child.PrintTrace("Skipping " + child.Token(0) + " with no key given:");
 			continue;
 		}
-		LoadChild(child, add, remove);
+		if(!LoadChild(child, add))
+			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 }
 
@@ -99,15 +99,15 @@ const string &CoreStartData::Identifier() const noexcept
 
 
 
-bool CoreStartData::LoadChild(const DataNode &child, bool isAdd, bool isRemove)
+bool CoreStartData::LoadChild(const DataNode &child, bool isAdd)
 {
-	const string &key = child.Token((isAdd || isRemove) ? 1 : 0);
-	int valueIndex = (isAdd || isRemove) ? 2 : 1;
+	const string &key = child.Token(isAdd ? 1 : 0);
+	int valueIndex = isAdd ? 2 : 1;
 	bool hasValue = (child.Size() > valueIndex);
 	const string &value = child.Token(hasValue ? valueIndex : 0);
 
-	if(child.Token(0) == "date" && child.Size() >= 4)
-		date = Date(child.Value(1), child.Value(2), child.Value(3));
+	if(key == "date" && child.Size() >= valueIndex + 3)
+		date = Date(child.Value(valueIndex), child.Value(valueIndex + 1), child.Value(valueIndex + 2));
 	else if(key == "system" && hasValue)
 		system = GameData::Systems().Get(value);
 	else if(key == "planet" && hasValue)

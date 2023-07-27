@@ -53,6 +53,9 @@ public:
 	// Compute a linear combination
 	static Color Combine(float a1, Color c1, float a2, Color c2);
 
+	// Multiply the RGBA values of the given Color by the given scalar and return a new Color.
+	static Color Multiply(float scalar, const Color &base);
+
 
 private:
 	// Store the color as a float vector for easy interfacing with OpenGL.

@@ -19,11 +19,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "Dialog.h"
 #include "FillShader.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Point.h"
 #include "Preferences.h"
 #include "Screen.h"
-#include "text/Format.h"
 #include "UI.h"
 
 using namespace std;

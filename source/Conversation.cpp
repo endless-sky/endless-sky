@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "text/Format.h"
+#include "Phrase.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 
@@ -361,7 +362,7 @@ Conversation Conversation::Instantiate(map<string, string> &subs, int jumps, int
 	for(Node &node : result.nodes)
 	{
 		for(Element &element : node.elements)
-			element.text = Format::Replace(element.text, subs);
+			element.text = Format::Replace(Phrase::ExpandPhrases(element.text), subs);
 		if(!node.actions.IsEmpty())
 			node.actions = node.actions.Instantiate(subs, jumps, payload);
 	}

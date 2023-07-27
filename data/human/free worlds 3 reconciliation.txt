@@ -434,7 +434,8 @@ mission "FW Defend Farpoint"
 		personality heroic
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier"
 				"Lance" 4
@@ -444,7 +445,8 @@ mission "FW Defend Farpoint"
 				"Rainmaker" 2
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -1241,6 +1243,7 @@ mission "FW Pug 2C: Hyperdrive"
 	to offer
 		has "FW Pug 2B: done"
 		not "fw given jump drive"
+		not "outfit (flagship installed): Jump Drive"
 	passengers 1
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
@@ -1271,6 +1274,7 @@ mission "FW Pug 2C: Scram Drive"
 	to offer
 		has "FW Pug 2B: done"
 		not "fw given jump drive"
+		not "outfit (flagship installed): Jump Drive"
 	passengers 1
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
@@ -1291,7 +1295,7 @@ mission "FW Pug 2C: Scram Drive"
 
 
 
-mission "FW Pug 2C: A Jump Drive"
+mission "FW Pug 2C: Jump Drive"
 	landing
 	name "Investigate the Pug"
 	description "Travel to the Deneb system to investigate the Pug; if possible, make contact with them and determine what their goals and desires are."
@@ -1301,18 +1305,17 @@ mission "FW Pug 2C: A Jump Drive"
 	to offer
 		has "FW Pug 2B: done"
 		not "fw given jump drive"
+		has "outfit (flagship installed): Jump Drive"
 	passengers 1
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
-		outfit "Jump Drive" -1
 		conversation
 			`You are directed to land in a hangar some distance away from the spaceport, in a cluster of buildings owned by Syndicated Systems. A team of engineers meets you and asks if they can look over your ship; a few minutes later, one of them says in surprise, "You've already got a jump drive! How did you manage that?" Since you don't need their equipment, they urge you to head directly for Pug space and continue your mission.`
 				accept
 	
 	on accept
-		outfit "Jump Drive" 1
 		set "fw given jump drive"
 		set "already had jump drive"
 	on visit
@@ -2133,14 +2136,16 @@ mission "FW Pug 5A"
 		system Sol
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
 				"Frigate (Mark II)" 2
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Lance" 4
@@ -2176,14 +2181,16 @@ mission "FW Pug 5B"
 		personality escort disables waiting
 		fleet 2
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
 				"Frigate (Mark II)" 2
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Lance" 4
@@ -2240,14 +2247,16 @@ mission "FW Pug 6"
 		personality disables waiting
 		fleet 2
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
 				"Frigate (Mark II)" 2
 		fleet 2
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Lance" 4
@@ -2258,14 +2267,16 @@ mission "FW Pug 6"
 		personality disables
 		fleet 2
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser"
 				"Combat Drone" 4
 				"Frigate" 2
 		fleet 2
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier"
 				"Lance" 4
@@ -2524,7 +2535,8 @@ mission "FW Syndicate Extremists 1B"
 		personality heroic escort
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)" 3
 				"Lance" 12

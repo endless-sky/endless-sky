@@ -62,6 +62,7 @@ outfit "Drak Draining Field"
 		"hit force" 100
 		"shield damage" 50
 		"ion damage" .5
+		"scrambling damage" .5
 		"disruption damage" 1
 		"safe"
 	description "This device is the Archon's primary defensive tool: Not only does it disrupt the shields and energy supplies of all hostile ships within it, it also exerts a powerful repelling force that keeps ships from closing in with the Archon."
@@ -92,6 +93,7 @@ outfit "Drak Draining Field (Augmented)"
 		"hit force" 1000
 		"shield damage" 500
 		"ion damage" 1
+		"scrambling damage" 1
 		"disruption damage" 2
 		"safe"
 	description "This device is the Archon's primary defensive tool: Not only does it disrupt the shields and energy supplies of all hostile ships within it, it also exerts a powerful repelling force that keeps ships from closing in with the Archon."

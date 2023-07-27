@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef IMAGE_BUFFER_H_
 #define IMAGE_BUFFER_H_
 
+#include <cstdint>
 #include <string>
 
 

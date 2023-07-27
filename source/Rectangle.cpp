@@ -180,3 +180,10 @@ bool Rectangle::Contains(const Rectangle &other) const
 {
 	return Contains(other.TopLeft()) && Contains(other.BottomRight());
 }
+
+
+
+bool Rectangle::Overlaps(const Rectangle &other) const
+{
+	return !(other.Left() > Right() || other.Right() < Left() || other.Top() > Bottom() || other.Bottom() < Top());
+}

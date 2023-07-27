@@ -3,7 +3,7 @@ test "Clear flagship model condition"
 	description "Test that the flagship model condition is correctly cleared."
 	sequence
 		# Create/inject the savegame and load it.
-		inject "Fighters and Carriers and Escorts"
+		inject "Fighters and Carriers and Escorts Save"
 		call "Load First Savegame"
 		call "Depart"
 		# We can only check the conditions after departing, since the conditions are not updated directly after loading or selling.
