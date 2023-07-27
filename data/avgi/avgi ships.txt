@@ -23,10 +23,10 @@ ship "Koryfi"
 		"solar heat" 2.4
 		"anchor points" 1
 		weapon
-			"blast radius" 120
-			"shield damage" 520
-			"hull damage" 260
-			"hit force" 780
+			"blast radius" 240
+			"shield damage" 360
+			"hull damage" 240
+			"hit force" 240
 	outfits
 			"Ultracapacitor Cell" 3
 			"Diffuse Deflector"
@@ -95,8 +95,8 @@ ship "Koryfi"
 	"steering engine" 83 -11
 		left
 
-	leak "leak" 50 50
-	leak "flame" 50 80
+	leak "leak" 60 60
+	leak "flame" 60 60
 	explode "tiny explosion" 15
 	explode "small explosion" 12
 	explode "medium explosion" 9
@@ -129,9 +129,9 @@ ship "Melodikos"
 		"solar heat" 6.9
 		"anchor points" 1
 		weapon
-			"blast radius" 36
-			"shield damage" 180
-			"hull damage" 90
+			"blast radius" 360
+			"shield damage" 600
+			"hull damage" 360
 			"hit force" 270
 	outfits
 		"Phased Array Laser (Green)" 2
@@ -236,12 +236,14 @@ ship "Melodikos"
 	"steering engine" 72 1.5
 		left
 
-	leak "leak" 50 50
-	leak "flame" 50 80
+	leak "leak" 30 60
+	leak "flame" 30 60
 	explode "tiny explosion" 18
 	explode "small explosion" 18
 	explode "medium explosion" 15
 	"final explode" "final explosion large"
+
+	description "Melodikos"
 
 
 # Freighters
@@ -269,10 +271,10 @@ ship "Avlaki"
 		"solar heat" 2.4
 		"anchor points" 1
 		weapon
-			"blast radius" 120
-			"shield damage" 520
-			"hull damage" 260
-			"hit force" 780
+			"blast radius" 240
+			"shield damage" 360
+			"hull damage" 240
+			"hit force" 240
 	outfits
 			"Ultracapacitor Bank"
 			"Diffuse Deflector"
@@ -340,8 +342,8 @@ ship "Avlaki"
 	"steering engine" 83 -11
 		left
 
-	leak "leak" 50 50
-	leak "flame" 50 80
+	leak "leak" 60 60
+	leak "flame" 60 60
 	explode "tiny explosion" 15
 	explode "small explosion" 12
 	explode "medium explosion" 9
@@ -374,9 +376,9 @@ ship "Harmonikos"
 		"solar heat" 6.9
 		"anchor points" 1
 		weapon
-			"blast radius" 36
-			"shield damage" 180
-			"hull damage" 90
+			"blast radius" 360
+			"shield damage" 600
+			"hull damage" 360
 			"hit force" 270
 	outfits
 		"Phased Array Laser (Green)" 2
@@ -480,13 +482,14 @@ ship "Harmonikos"
 	"steering engine" 72 1.5
 		left
 
-	leak "leak" 50 50
-	leak "flame" 50 80
+	leak "leak" 30 60
+	leak "flame" 30 60
 	explode "tiny explosion" 18
 	explode "small explosion" 18
 	explode "medium explosion" 15
 	"final explode" "final explosion large"
 
+	description "Harmonikos"
 
 
 ship "Phononos"
@@ -507,10 +510,10 @@ ship "Phononos"
 		"radar jamming" 6
 		"surface space" 15
 		weapon
-			"blast radius" 12
-			"shield damage" 72
-			"hull damage" 30
-			"hit force" 102
+			"blast radius" 24
+			"shield damage" 420
+			"hull damage" 360
+			"hit force" 180
 	outfits	
 		"Concentrating Solar Array"
 		"Ultracapacitor Cell"
@@ -545,6 +548,7 @@ ship "Phononos"
 		zoom 0.5
 		right
 
+	leak "leak" 30 60
 	explode "tiny explosion" 12
 
 	description "This retrofit of the Photikon is little more than a set of cargo pods joined to the front of the torpedo bomber, with struts taking the place of the hardpoints and pylons usually used to mount weapons. An expanded internal tank to fuel a hyperdrive has been barely crammed into the ship, at the cost of reduced space for other internal systems and a slightly weaker hull. Because of this, the Phononon is quite vulnerable to Dissonance piracy or even Abberant incursions, and is thus always part of a larger fleet convoy. Even still, as an automated freighter it experiences much higher rates of accidents and ship loss, a fact that has kept crewed vessels like the Avlaki competitive."
@@ -569,10 +573,10 @@ ship "Frequentia"
 		"engine capacity" 60
 		"anchor points" 1
 		weapon
-			"blast radius" 660
-			"shield damage" 12600
-			"hull damage" 18000
-			"hit force" 8000
+			"blast radius" 360
+			"shield damage" 1800
+			"hull damage" 1200
+			"hit force" 2400
 	outfits
 		"Pebble Bed Cell"
 		"Concentrating Solar Cell" 3
@@ -603,9 +607,9 @@ ship "Frequentia"
 		angle -90
 		right
 
-	leak "leak" 30 60
-	leak "flame" 30 60
-	leak "big leak" 15 30
+	leak "leak" 30 90
+	leak "flame" 30 90
+	leak "big leak" 15 90
 	explode "tiny explosion" 18
 	explode "small explosion" 30
 	explode "medium explosion" 45
@@ -636,17 +640,16 @@ ship "Undsyni"
 		"engine capacity" 168
 		"spinal mount" 1
 		"anchor points" 2
-		weapon
-			"blast radius" 120
-			"shield damage" 600
-			"hull damage" 240
-			"hit force" 420
+			"blast radius" 540
+			"shield damage" 3600
+			"hull damage" 2400
+			"hit force" 4800
 	outfits
+		"Phased Array Laser (Green)" 3
 		"Speckle Turret" 2
 		"Speck Round" 7200
 		"Sidereal Launcher" 2
 		"Sidereal Missile" 84
-		"Phased Array Laser (Green)" 3
 
 		"Luminous Fusion Core"
 		"Ultracapacitor Bank" 3
@@ -670,6 +673,7 @@ ship "Undsyni"
 	turret 0 -30 "Phased Array Laser (Green)"
 	turret 0 42 "Phased Array Laser (Green)"
 	turret 0 186 "Phased Array Laser (Green)"
+
 	bay "Drone" -65.5 3
 	bay "Drone" 65.5 3
 	bay "Drone" 65.5 29
@@ -693,9 +697,9 @@ ship "Undsyni"
 		angle -90
 		right
 
-	leak "leak" 30 60
+	leak "leak" 30 90
 	leak "flame" 30 90
-	leak "big leak" 30 45
+	leak "big leak" 30 90
 	explode "tiny explosion" 18
 	explode "small explosion" 30
 	explode "medium explosion" 60
@@ -726,12 +730,12 @@ ship "Polari"
 		"anchor points" 1
 		weapon
 			"blast radius" 90
-			"shield damage" 420
-			"hull damage" 180
-			"hit force" 360
+			"shield damage" 600
+			"hull damage" 360
+			"hit force" 480
 	outfits
-		"Phased Array Laser (Green)"
 		"Phased Array Laser (Blue)"
+		"Phased Array Laser (Green)"
 
 		"Pebble Bed Cell"
 		"Photoelectric Scales"
@@ -773,19 +777,13 @@ ship "Polari"
 		angle -90
 		right
 
-	leak "leak" 60 60
-	leak "flame" 60 90
+	leak "leak" 30 30
+	leak "flame" 30 60
 	explode "tiny explosion" 12
 	explode "small explosion" 9
 	"final explode" "final explosion small"
 
 	description "Polari-class Scout"
-
-
-
-
-
-
 
 
 # Interceptors
@@ -811,9 +809,9 @@ ship "Tremoros"
 		"anchor points" 1
 		weapon
 			"blast radius" 90
-			"shield damage" 420
-			"hull damage" 180
-			"hit force" 360
+			"shield damage" 720
+			"hull damage" 360
+			"hit force" 720
 	outfits
 		"Speckle Railgun" 4
 		"Speck Round" 14400
@@ -851,17 +849,12 @@ ship "Tremoros"
 		angle 30
 		left
 
-	leak "flame" 60 90
+	leak "flame" 30 90
 	explode "tiny explosion" 12
 	explode "small explosion" 9
 	"final explode" "final explosion small"
 
 	description "Tremoros-class Interceptor"
-
-
-
-
-
 
 
 # Light Warships
@@ -886,16 +879,16 @@ ship "Prismaios"
 		"engine capacity" 96
 		"anchor points" 1
 		weapon
-			"blast radius" 120
-			"shield damage" 540
-			"hull damage" 270
-			"hit force" 780
+			"blast radius" 240
+			"shield damage" 1500
+			"hull damage" 900
+			"hit force" 1200
 	outfits
+		"Phased Array Laser (Green)"
 		"Speckle Turret" 2
 		"Speck Round" 7200
 		"Sidereal Launcher" 2
 		"Sidereal Missile" 84
-		"Phased Array Laser (Green)"
 
 		"Luminous Fusion Core"
 		"Ultracapacitor Bank" 2
@@ -937,18 +930,14 @@ ship "Prismaios"
 	turret 9 18 "Speckle Turret"
 	turret 0 90 "Phased Array Laser (Green)"
 
-	leak "leak" 45 60
-	leak "flame" 60 90
+	leak "leak" 30 60
+	leak "flame" 30 90
 	explode "tiny explosion" 12
 	explode "small explosion" 15
 	explode "medium explosion" 15
 	"final explode" "final explosion medium"
 
-	description "Prismaios-class Frigate WIP"
-
-
-
-
+	description "The Prismaios-class Frigate is a recent design, hailed by the Spaceguard as a highly successful addition to Avgi strike fleets. New construction techniques allowed for unprecedented gains in structural integrity in a lightweight frame, allowing the frigate to serve on the front lines against the Aberrant as a fast, versatile, multipurpose warship."
 
 
 ship "Interferos"
@@ -966,25 +955,24 @@ ship "Interferos"
 		"heat dissipation" 1.5
 		"fuel capacity" 600
 		"cargo space" 12
-		"outfit space" 270
-		"weapon capacity" 72
+		"outfit space" 282
+		"weapon capacity" 84
 		"engine capacity" 60
 		"anchor points" 1
 		weapon
-			"blast radius" 72
-			"shield damage" 360
-			"hull damage" 180
-			"hit force" 480
+			"blast radius" 210
+			"shield damage" 900
+			"hull damage" 450
+			"hit force" 900
 	outfits
-		"Speckle Turret" 2
-		"Speck Round" 7200
+		"Phased Array Laser (Green)" 2
 		"Sidereal Launcher" 4
 		"Sidereal Missile" 168
 
 		"Luminous Fusion Core"
-		"Ultracapacitor Cell" 2
+		"Ultracapacitor Cell" 3
 		"Diffuse Deflector"
-		"Multispectral Scanner"
+		"Optical Lasing Generator"
 		"Electrostatic Ramscoop"
 		
 		"Z-360 Fusion Torch"
@@ -995,8 +983,8 @@ ship "Interferos"
 	gun 33 -57 "Sidereal Launcher"
 	gun -33 -42 "Sidereal Launcher"
 	gun 33 -42 "Sidereal Launcher"
-	turret -21.5 -81 "Speckle Turret"
-	turret 21.5 -81 "Speckle Turret"
+	turret -21.5 -81 "Phased Array Laser (Green)"
+	turret 21.5 -81 "Phased Array Laser (Green)"
 	turret 0 -48
 
 	engine 0 99
@@ -1023,45 +1011,107 @@ ship "Interferos"
 	explode "medium explosion" 6
 	"final explode" "final explosion medium"
 
-	description "Interferos-class Frigate WIP"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	description "Interferos-class Frigate"
 
 
 # Medium Warships
 
+ship "Diaspersi"
+	sprite "ship/avgi diaspersi"
+	thumbnail "thumbnail/avgi diaspersi"
+	attributes
+		category "Medium Warship"
+		"cost" 2400000
+		"shields" 2400
+		"hull" 12000
+		"required crew" 12
+		"bunks" 30
+		"mass" 270
+		"drag" 1.8
+		"heat dissipation" 1.8
+		"fuel capacity" 2400
+		"cargo space" 120
+		"outfit space" 420
+		"weapon capacity" 120
+		"engine capacity" 132
+		weapon
+			"blast radius" 360
+			"shield damage" 2400
+			"hull damage" 1800
+			"hit force" 2400
+	outfits
+		"Phased Array Laser (Green)" 2
+		"Fleck Turret"
+		"Fleck Round" 600
+		"Sidereal Launcher" 2
+		"Sidereal Missile" 84
+		
+		"Luminous Fusion Core"
+		"Ultracapacitor Cell" 3
+		"Diffuse Deflector"
+		"Optical Lasing Generator"
+		"Multispectral Scanner"
+		"Electrostatic Ramscoop"
+		
+		"Z-360 Fusion Torch"
+		"XY-180 Radial Thrusters"
+		"Hyperdrive"
 
+	gun 18 -9 "Sidereal Launcher"
+	gun -18 -9 "Sidereal Launcher"
+	turret -9 12 "Phased Array Laser (Green)"
+	turret 9 12 "Phased Array Laser (Green)"
+	turret 0 51 "Speckle Turret"
 
+	bay "Fighter" 0 -93
+		over
+	bay "Fighter" 0 -93
+		under
+	bay "Fighter" 0 -54
+		over
+	bay "Fighter" 0 -54
+		under
+	bay "Drone" -21 -75
+	bay "Drone" 21 -75
+	bay "Drone" -21 -54
+	bay "Drone" 21 -54
+	bay "Drone" -24 -30
+	bay "Drone" 24 -30
 
+	engine 0 144
+	"reverse engine" -6 141
+		angle -30
+	"reverse engine" 6 141
+		angle 30
+	"steering engine" -9 -135
+		angle 90
+		right
+	"steering engine" 9 -135
+		angle -90
+		left
+	"steering engine" -6 141
+		angle 90
+		left
+	"steering engine" 6 141
+		angle -90
+		right
+	
+	leak "leak" 60 60
+	leak "flame" 60 90
+	leak "big leak" 90 30
+	explode "tiny explosion" 9
+	explode "small explosion" 21
+	explode "medium explosion" 21
+	explode "large explosion" 9
+	"final explode" "final explosion medium"
 
+	description "The Diaspersi-class Escort Carrier"
 
 
 
 
 
 # Heavy Warships
-
-
 
 ship "Atenuatia"
 	sprite "ship/avgi atenuatia"
@@ -1176,7 +1226,7 @@ ship "Atenuatia"
 
 	leak "leak" 30 60
 	leak "flame" 30 90
-	leak "big leak" 9 24
+	leak "big leak" 30 30
 	explode "tiny explosion" 36
 	explode "small explosion" 42
 	explode "medium explosion" 45
@@ -1188,18 +1238,7 @@ ship "Atenuatia"
 
 
 
-
-
-
-
-
-
-
-
-
-
 # Fighters
-
 
 ship "Akoustiki"
 	sprite "ship/avgi akoustiki"
@@ -1219,9 +1258,9 @@ ship "Akoustiki"
 		"weapon capacity" 24
 		"engine capacity" 24
 		weapon
-			"blast radius" 18
-			"shield damage" 80
-			"hull damage" 40
+			"blast radius" 12
+			"shield damage" 240
+			"hull damage" 180
 			"hit force" 120
 	outfits
 		"Speckle Railgun"
@@ -1262,6 +1301,7 @@ ship "Akoustiki"
 		zoom 0.5
 		right
 
+	leak "leak" 30 60
 	explode "tiny explosion" 9
 
 	description "The Akoustiki Excursion Vehicle is a modern take on the utility pod, a small personal craft designed to aid in the maintenance and repair of a station, or a carrier vessel and its escorts. It is just as commonly seen flitting about the orbitals, servicing satellites acting as a personal transport shuttle between stations and low gravity bodies. Recent advances in magnetoplasmadynamic engines have made it a capable mining craft as well, albeit one with little room for ores."
@@ -1285,10 +1325,10 @@ ship "Photikon"
 		"radar jamming" 6
 		"surface space" 15
 		weapon
-			"blast radius" 12
-			"shield damage" 72
-			"hull damage" 30
-			"hit force" 102
+			"blast radius" 24
+			"shield damage" 420
+			"hull damage" 360
+			"hit force" 180
 	outfits
 		"Equinox Torpedo Pylon" 2
 		"Equinox Torpedo" 2
@@ -1330,6 +1370,7 @@ ship "Photikon"
 	gun 6 -30 "Equinox Torpedo Pylon"
 	turret 0 -33
 
+	leak "flame" 30 60
 	explode "tiny explosion" 15
 	"final explode" "final explosion small"
 
@@ -1338,20 +1379,7 @@ ship "Photikon"
 	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
 
-
-
-
-
-
-
-
-
 # Drones
-
-
-
-
-
 
 ship "Vibratia"
 	sprite "ship/avgi vibratia"
@@ -1373,9 +1401,9 @@ ship "Vibratia"
 		"radar jamming" 3
 		weapon
 			"blast radius" 12
-			"shield damage" 60
-			"hull damage" 18
-			"hit force" 72
+			"shield damage" 240
+			"hull damage" 150
+			"hit force" 120
 	outfits
 		"Speckle Railgun" 1
 		"Speck Round" 1800
@@ -1412,7 +1440,6 @@ ship "Vibratia"
 	gun 0 -27 "Speckle Railgun"
 	gun 0 -27 "Sidereal Pod"
 
-
 	explode "tiny explosion" 9
 
 	description "The Vibratia Interdictor is the primary Avgi strike fighter. While individually fragile, Vibratia are usually deployed in large swarms, and are agile enough to be surprisingly survivable even under heavy fire."
@@ -1438,10 +1465,10 @@ ship "Undulon"
 		"weapon capacity" 42
 		"engine capacity" 18
 		weapon
-			"blast radius" 9
-			"shield damage" 36
-			"hull damage" 18
-			"hit force" 72
+			"blast radius" 12
+			"shield damage" 180
+			"hull damage" 120
+			"hit force" 90
 	outfits
 		"Nadir Launcher"
 		"Nadir Missile" 6
@@ -1505,10 +1532,10 @@ ship "Optikon"
 		"outfit space" 60
 		"engine capacity" 24
 		weapon
-			"blast radius" 6
-			"shield damage" 30
-			"hull damage" 15
-			"hit force" 45
+			"blast radius" 9
+			"shield damage" 150
+			"hull damage" 90
+			"hit force" 60
 	outfits
 		"Concentrating Solar Array"
 		"Ultracapacitor Cell" 2
@@ -1548,9 +1575,9 @@ ship "Sonikis"
 		"engine capacity" 24
 		weapon
 			"blast radius" 9
-			"shield damage" 42
-			"hull damage" 24
-			"hit force" 45
+			"shield damage" 180
+			"hull damage" 120
+			"hit force" 90
 	outfits
 		"Concentrating Solar Array"
 		"Ultracapacitor Cell" 2
@@ -1572,7 +1599,7 @@ ship "Sonikis"
 	"steering engine" 39 -6 
 		left
 
-
+	leak "leak" 30 60
 	explode "tiny explosion" 9
 
 	description "The Sonikis Utility Drone"
@@ -1603,65 +1630,57 @@ ship "Sonikis"
 
 
 
-# Light Warships:
 
 
 
-ship "Timbre"
-	sprite "ship/timbre"
-	thumbnail "thumbnail/timbre"
-	attributes
-		category "Light Warship"
-		"shields" 1600
-		"hull" 4800
-		"automaton" 1
-		"crew equivalent" 3
-		"mass" 78
-		"drag" 3.3
-		"heat dissipation" 1.36
-		"fuel capacity" 1800
-		"cargo space" 24
-		"outfit space" 342
-		"weapon capacity" 114
-		"engine capacity" 96
-		"surface space" 49
-		weapon
-			"blast radius" 180
-			"shield damage" 1284
-			"hull damage" 852
-			"hit force" 960
-	outfits
-		"Speckle Turret" 2
-		"Speck Round" 6000
-		"Phased Array Laser (540 nm)"
 
-		"Luminous Fusion Core" 1
-		"Ultracapacitor Bank" 2
-		
-		"Hyperdrive" 1
-		"Small Auxiliary Radiator" 2
-		"Specular Deflector" 1
-		"Multispectral Scanner" 1
-		"Dipole Ramscoop" 1
-		
-		"S036 Axial Fusion Torch" 1
-		"M018 Transverse Thrusters" 1		
-		
-		
-	engine 0 114
 
-	turret -21 -81 "Speckle Turret"
-	turret -21 -81 "Speckle Turret"
-	turret 0 -48 "Phased Array Laser (540 nm)"
 
-	leak "leak" 50 50
-	leak "flame" 50 80
-	explode "tiny explosion" 12
-	explode "small explosion" 15
-	explode "medium explosion" 15
-	"final explode" "final explosion medium"
 
-	description "Timbre-class Frigate"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1672,73 +1691,7 @@ ship "Timbre"
 
 # Medium Warships:
 
-ship "Coherence"
-	sprite "ship/coherence"
-	thumbnail "thumbnail/coherence"
-	attributes
-		category "Medium Warship"
-		"cost" 2400000
-		"shields" 2400
-		"hull" 9600
-		"required crew" 12
-		"bunks" 30
-		"mass" 240
-		"drag" 2.4
-		"heat dissipation" 1.36
-		"fuel capacity" 2400
-		"cargo space" 60
-		"outfit space" 420
-		"weapon capacity" 144
-		"engine capacity" 114
-		weapon
-			"blast radius" 360
-			"shield damage" 4800
-			"hull damage" 3600
-			"hit force" 3600
-	outfits
-		"Speckle Turret" 2
-		"Speck Round" 7200
-		"Phased Array Laser (450 nm)" 1
 
-		"Brilliant Fusion Core" 1
-		"Ultracapacitor Bank" 1
-		
-		"Hyperdrive" 1
-		"Small Auxiliary Radiator" 2
-		"Specular Deflector" 1
-		"Multispectral Scanner" 3
-		"Dipole Ramscoop" 1
-		
-		"S036 Axial Fusion Torch" 1
-		"M052 Transverse Thrusters" 1
-		
-	engine 0 156
-
-	gun -18 9
-	gun 18 9
-	turret 0 48 "Phased Array Laser (540 nm)"
-	turret -9 12 "Speckle Turret"  
-	turret 9 12 "Speckle Turret"
-	
-	bay "Drone" 21 -75
-	bay "Drone" -21 -75
-	bay "Drone" -24 -51
-	bay "Drone" 24 -51
-	bay "Drone" -24 -30
-	bay "Drone" 24 -30
-	bay "Fighter" 0 -84 under
-	bay "Fighter" 0 -84 under
-	
-	leak "leak" 50 50
-	leak "flame" 50 80
-	leak "big leak" 90 30
-	explode "tiny explosion" 9
-	explode "small explosion" 21
-	explode "medium explosion" 21
-	explode "large explosion" 9
-	"final explode" "final explosion medium"
-
-	description "The Coherence-class Escort Carrier"
 
 
 

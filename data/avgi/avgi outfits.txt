@@ -87,7 +87,7 @@ outfit "Fleck Round"
 	cost 6
 	thumbnail
 	"mass" 0.03
-	"sabot capacity" -1
+	"fleck capacity" -1
 	"flotsam chance" 1
 	description "These copper slugs are capable of inflicting kinetic damage via hypervelocity impacts, but are easily stopped by momentum-repulsion shield systems."
 	description "Due to their homogenous design, they can be easily manufactured out of common copper ore."
@@ -97,14 +97,15 @@ outfit "Fleck Coilgun"
 	category "Guns"
 	cost 40000
 	thumbnail
-	"mass" 12
+	"mass" 9
 	"outfit space" -18
 	"weapon capacity" -18
 	"gun ports" -1
-	"sabot capacity" 1000
+	"fleck capacity" 300
 	weapon
 		sound "repeater"
-		ammo "Fleck Round" 1
+		ammo "Fleck Round"
+		icon "icon/rail gun"
 		"fire effect" "finisher sparks"
 		"hit effect" "bombardment impact"
 		"inaccuracy" 0.3
@@ -126,14 +127,15 @@ outfit "Fleck Turret"
 	category "Turrets"
 	cost 40000
 	thumbnail
-	"mass" 24
+	"mass" 18
 	"outfit space" -36
 	"weapon capacity" -36
 	"turret mounts" -1
-	"sabot capacity" 3600
+	"fleck capacity" 600
 	weapon
 		sound "repeater"
-		ammo "Fleck Round" 2
+		ammo "Fleck Round"
+		icon "icon/rail gun"
 		"fire effect" "finisher sparks"
 		"hit effect" "bombardment impact"
 		"inaccuracy" 0.6
@@ -274,9 +276,9 @@ outfit "Sidereal Launcher"
 	category "Secondary Weapons"
 	cost 1370000
 	thumbnail
-	"mass" 5.4
-	"outfit space" -18
-	"weapon capacity" -18
+	"mass" 2.4
+	"outfit space" -15
+	"weapon capacity" -15
 	"gun ports" -1
 	"sidereal capacity" 42
 	weapon
@@ -307,9 +309,9 @@ outfit "Sidereal Pod"
 	category "Secondary Weapons"
 	cost 1370000
 	thumbnail
-	"mass" 4.8
-	"outfit space" -6
-	"weapon capacity" -6
+	"mass" 1.8
+	"outfit space" -3
+	"weapon capacity" -3
 	"gun ports" -1
 	"sidereal capacity" 6
 	weapon
@@ -842,8 +844,8 @@ outfit "Diffuse Deflector"
 	category "Systems"
 	cost 120000
 	thumbnail
-	"mass" 54
-	"outfit space" -54
+	"mass" 48
+	"outfit space" -48
 	"shield generation" 0.6
 	"shield energy" 1.8
 	"shield heat" 4.8
@@ -857,7 +859,7 @@ outfit "Specular Deflector"
 	thumbnail
 	"mass" 72
 	"outfit space" -72
-	"shield generation" 0.84
+	"shield generation" 1.2
 	"shield energy" 3.6
 	"shield heat" 9.6
 	"shield delay" 3

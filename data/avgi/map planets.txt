@@ -26,7 +26,7 @@ planet Melatos
 
 planet Aviskir
 	attributes twilight avgi "avgi core" rich urban
-	landscape land/mountain27
+	landscape land/mountain39
 	description "Aviskir is a world of sweeping mountains and sparkling oceans. It also happens to be the Avgi homeworld, bustling with nine billion members of the species. Civilization has concentrated largely around bountiful mountain valleys and fjords, many warmed by hot springs and geothermal heat. The largest cities are built around the smaller peaks, laced with slender bridges and bright skyscrapers. They stand in contrast to the rural valley settlements below, which are said to offer simpler, more traditional lives."
 	description "The Incursion has forced the remaining Avgi on the surface to dedicate a large part of their industry towards building defensive missile systems and banks of lasers, all in the hope of turning away the attack runs the Ka'sei sometimes make on the surface."
 	spaceport "The largest spaceports once hosted 'beanstalks,' space elevators capable of lifting cargo en masse to geostationary orbit. After the invention of the gravity repulsor, they were largely relegated to historical curiosities, but the Ka'sei still severed them during their attack on Avgiskir's orbital infrastructure."
@@ -276,8 +276,8 @@ planet Kapnos
 
 planet Vanikos
 	attributes twilight uninhabited
-	landscape land/beach7-sfiera
-	description `Vanikos is an uninhabited watery moon. That is all.` 
+	landscape land/beach18
+	description `Vanikos is an uninhabited cold watery moon. That is all.` 
 
 
 planet Kalakil
@@ -288,14 +288,12 @@ planet Kalakil
 planet Janalos
 	attributes twilight uninhabited
 	landscape land/forest14
-	description `Janalos is an uninhabited lush forest planet. That is all.` 
-
-
+	description `Janalos is an uninhabited lush forest planet. That is all.`
 
 
 planet Yiddoi
 	attributes twilight uninhabited
-	landscape land/mountain28
+	landscape land/mountain41
 	description `Yiddoi appears to be the product of a failed attempt at terraforming predating the Avgi, or one that was abandoned before it was complete. A blend of clearly synthetic reflective compounds was at one point injected into the moon's atmosphere, ostensibly to reduce incoming sunlight and cool its boiled surface.`
 	description `	However, the process was apparently interrupted. WIP` 
 
