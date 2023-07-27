@@ -48,6 +48,8 @@ namespace {
 				}
 		}
 	}
+
+	bool networkActivity = false;
 }
 
 
@@ -122,7 +124,7 @@ bool Plugins::HasChanged()
 	for(const auto &it : plugins)
 		if(it.second.enabled != it.second.currentState)
 			return true;
-	return false;
+	return false || networkActivity;
 }
 
 
@@ -146,6 +148,8 @@ void Plugins::TogglePlugin(const string &name)
 
 bool Plugins::Install(string url, string name, std::string version)
 {
+	networkActivity = true;
+
 	bool success = DownloadHelper::Download(url.c_str(),
 		(Files::Plugins() + name + ".zip").c_str());
 	if(success)

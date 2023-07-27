@@ -82,7 +82,7 @@ namespace {
 	// How many pages of settings there are.
 	const int SETTINGS_PAGE_COUNT = 2;
 
-	const int MAX_INSTALL_ABLES_PER_PAGE = 14;
+	const int MAX_INSTALL_ABLES_PER_PAGE = 18;
 }
 
 
@@ -129,6 +129,10 @@ void PreferencesPanel::Draw()
 		info.SetCondition("show next");
 	if(Plugins::Get().Find(selectedInstallAble.name))
 		info.SetCondition("installed plugin");
+	if(currentInstallAblePage > 0)
+		info.SetCondition("previous install plugin");
+	if(currentInstallAblePage < installAblePages - 1)
+		info.SetCondition("next install plugin");
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	string pageName = (page == 'c' ? "controls" : page == 's' ? "settings" : page == 'p' ? "plugins" : "install plugins");
 	GameData::Interfaces().Get(pageName)->Draw(info, this);
@@ -885,6 +889,7 @@ void PreferencesPanel::DrawPlugins()
 void PreferencesPanel::DrawInstallAbles()
 {
 	const Color &back = *GameData::Colors().Get("faint");
+	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
 	const Color &yellow = *GameData::Colors().Get("yellow");
@@ -922,6 +927,8 @@ void PreferencesPanel::DrawInstallAbles()
 			table.Draw(name, yellow);
 		else if(isSelected)
 			table.Draw(name, bright);
+		else if (installedVersion)
+			table.Draw(name, dim);
 		else
 			table.Draw(name, medium);
 		if(isSelected)

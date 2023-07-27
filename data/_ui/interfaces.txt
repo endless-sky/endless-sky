@@ -541,6 +541,21 @@ interface "install plugins"
 		center -65 210
 		dimensions 120 30
 
+	active if "next install plugin"
+	button e "n_ext>"
+		center -30 170
+		dimensions 120 30
+	active if "previous install plugin"
+	button r "<p_revious"
+		center -215 170
+		dimensions 120 30
+
+	visible if "show plugins changed"
+	label "Restart to apply changes"
+		from -225 -236
+		align top left
+		color "plugin reload required"
+	visible if "!show plugins changed"
 	label "Installable Plugins:"
 		from -225 -236
 		align top left
