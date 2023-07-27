@@ -280,7 +280,7 @@ ShopPanel::BuyResult ShipyardPanel::CanBuy(bool onlyOwned) const
 	}
 
 	// Check that the player has any necessary licenses.
-	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
+	const int64_t licenseCost = LicenseCost(&selectedShip->Attributes(), onlyOwned, selectedShip);
 	if(licenseCost < 0)
 		return "Buying this ship requires a special license. "
 			"You will probably need to complete some sort of mission to get one.";
@@ -317,7 +317,7 @@ ShopPanel::BuyResult ShipyardPanel::CanBuy(bool onlyOwned) const
 
 void ShipyardPanel::Buy(bool onlyOwned)
 {
-	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
+	const int64_t licenseCost = LicenseCost(&selectedShip->Attributes(), onlyOwned, selectedShip);
 	if(licenseCost < 0)
 		return;
 
@@ -403,7 +403,7 @@ bool ShipyardPanel::CanSellMultiple() const
 
 void ShipyardPanel::BuyShip(const string &name)
 {
-	const int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
+	const int64_t licenseCost = LicenseCost(&selectedShip->Attributes(), false, selectedShip);
 	if(licenseCost)
 	{
 		player.Accounts().AddCredits(-licenseCost);
