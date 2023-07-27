@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "text/alignment.hpp"
 #include "Audio.h"
+#include "DownloadHelper.h"
 #include "Color.h"
 #include "Dialog.h"
 #include "Files.h"
@@ -96,8 +97,10 @@ PreferencesPanel::PreferencesPanel()
 			selectedPlugin = plugin.first;
 			break;
 		}
-
-	ifstream pluginlistFile(Files::Resources() + "plugins.json");
+	DownloadHelper::Download(
+		"https://raw.githubusercontent.com/endless-sky/endless-sky-plugins/master/generated/plugins.json",
+		(Files::Config() + "plugins.json").c_str());
+	ifstream pluginlistFile(Files::Config() + "plugins.json");
 	installAbles = nlohmann::json::parse(pluginlistFile);
 	pluginlistFile.close();
 	installAblePages = ((installAbles.size() - (installAbles.size() % MAX_INSTALL_ABLES_PER_PAGE))
