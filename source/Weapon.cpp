@@ -351,7 +351,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 	}
 
 	if(isMultiHit && !isUntouchAble)
-		node.PrintTrace("Warning: Useless use of \"multi hit\" without use of \"untouchable\", projectile will die after first hit.");
+		node.PrintTrace("Warning: Useless use of \"multi hit\" without use of \"untouchable\","
+			"projectile will die after first hit.");
 
 	// Convert the "live effect" counts from occurrences per projectile lifetime
 	// into chance of occurring per frame.
