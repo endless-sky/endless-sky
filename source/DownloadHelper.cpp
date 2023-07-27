@@ -156,17 +156,17 @@ namespace DownloadHelper {
 			if(!fitsExpected && hasHeadFolder)
 			{
 				string thisEntryName = archive_entry_pathname(entry);
-    			size_t start_pos = thisEntryName.find(firstEntry);
-    			if(start_pos != std::string::npos)
+				size_t start_pos = thisEntryName.find(firstEntry);
+				if(start_pos != std::string::npos)
 				{
-        			thisEntryName.replace(start_pos, firstEntry.length(), expectedName);
+					thisEntryName.replace(start_pos, firstEntry.length(), expectedName);
 				}
 				archive_entry_set_pathname(entry, thisEntryName.c_str());
 			}
 			// Add root folder to path if neccessary.
 			asprintf(&dest_file, "%s/%s", (destination
 				+ (hasHeadFolder ? "" : expectedName)).c_str(), archive_entry_pathname(entry));
-    		archive_entry_set_pathname(entry, dest_file);
+			archive_entry_set_pathname(entry, dest_file);
 			// Write files.
 			retVal = archive_write_header(ext, entry);
 			if(retVal != ARCHIVE_OK)
