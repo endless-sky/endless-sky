@@ -188,7 +188,10 @@ int ShipyardPanel::DrawDetails(const Point &center)
 	if(selectedShip)
 	{
 		// Ships in stock have no outfits, so get an appropriate version.
-		const Ship *infoShip = shipyard.Has(selectedShip) && LicenseCost(&selectedShip->Attributes()) >= 0 ? selectedShip : player.StockShip(selectedShip);
+		const Ship *infoShip = selectedShip;
+		if (!shipyard.Has(selectedShip) || LicenseCost(&selectedShip->Attributes()) < 0)
+			infoShip = player.StockShip(selectedShip);
+
 		shipInfo.Update(*infoShip, player, collapsed.count("description"));
 		selectedItem = selectedShip->DisplayModelName();
 
