@@ -561,7 +561,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			{
 				attributeLabels.emplace_back(VALUE_NAMES[i].first + PER_SECOND);
 				double fullDropoff = outfit.DamageDropoff(outfit.Range());
-				if(fullDropoff != 1)
+				if(fullDropoff != 1 && VALUE_NAMES[i].first.find("damage") != string::npos)
 				{
 					attributeValues.emplace_back(Format::Number(60. * values[i] / reload) + VALUE_NAMES[i].second
 						+ " - " + Format::Number(60. * fullDropoff * values[i] / reload) + VALUE_NAMES[i].second);
