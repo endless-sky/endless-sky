@@ -60,7 +60,7 @@ namespace DownloadHelper {
 		}
 
 		curl_global_cleanup();
-	
+
 		return res == CURLE_OK;
 	}
 
@@ -151,7 +151,7 @@ namespace DownloadHelper {
 		}
 		archive_read_close(a);
 		archive_read_free(a);
-		
+
 		archive_write_close(ext);
 		archive_write_free(ext);
 		chdir(originalDir);
