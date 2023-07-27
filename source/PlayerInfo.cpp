@@ -1151,12 +1151,10 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name, const bool isFro
 	// Ships sold to the shop have been stripped down, so remove all outfits.
 	if(!isFromShop)
 	{
-		const map<const Outfit *, int> &outfits = newShip.Outfits();
-		for(auto it = outfits.begin(); it != outfits.end(); )
-		{
-			const auto oit = it++;
-			newShip.AddOutfit(oit->first, -oit->second);
-		}
+		// Make a copy so we can remove all the outfits safely.
+		map<const Outfit *, int> outfits = newShip.Outfits();
+		for(const auto &it : outfits)
+			newShip.AddOutfit(it.first, -it.second);
 	}
 
 	const int day = date.DaysSinceEpoch();
@@ -2822,12 +2820,10 @@ void PlayerInfo::AddStock(const Ship *model, const int count)
 	stockShips[model] = make_shared<Ship>(*model);
 	Ship &ship = *stockShips[model];
 
-	const map<const Outfit *, int> &outfits = ship.Outfits();
-	for(auto it = outfits.begin(); it != outfits.end(); )
-	{
-		const auto oit = it++;
-		ship.AddOutfit(oit->first, -oit->second);
-	}
+	// Make a copy so we can remove all the outfits safely.
+	map<const Outfit *, int> outfits = ship.Outfits();
+	for(const auto &it : outfits)
+		ship.AddOutfit(it.first, -it.second);
 }
 
 
