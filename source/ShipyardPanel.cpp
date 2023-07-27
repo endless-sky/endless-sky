@@ -412,7 +412,7 @@ void ShipyardPanel::BuyShip(const string &name)
 				player.AddLicense(licenseName);
 	}
 
-	for(int i = 1; i <= modifier; ++i)
+	for(int i = 1; i <= modifier && CanBuy(true); ++i)
 	{
 		// If no name is given, choose a random name. Otherwise, if buying
 		// multiple ships, append a number to the given ship name.
