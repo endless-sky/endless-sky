@@ -646,7 +646,13 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			if(values[i])
 			{
 				attributeLabels.emplace_back(VALUE_NAMES[i].first + PER_SHOT);
-				attributeValues.emplace_back(Format::Number(values[i]) + VALUE_NAMES[i].second);
+				if(fullDropoff != 1 && VALUE_NAMES[i].first.find("damage") != string::npos)
+				{
+					attributeValues.emplace_back(Format::Number(60. * values[i]) + VALUE_NAMES[i].second
+						+ " - " + Format::Number(60. * fullDropoff * values[i]) + VALUE_NAMES[i].second);
+				}
+				else
+					attributeValues.emplace_back(Format::Number(values[i]) + VALUE_NAMES[i].second);
 				attributesHeight += 20;
 			}
 	}
