@@ -89,6 +89,8 @@ target_sources(EndlessSkyLib PRIVATE
 	DistanceMap.h
 	Distribution.cpp
 	Distribution.h
+	DownloadHelper.cpp
+	DownloadHelper.h
 	DrawList.cpp
 	DrawList.h
 	Effect.cpp
@@ -134,8 +136,6 @@ target_sources(EndlessSkyLib PRIVATE
 	Gamerules.h
 	GameWindow.cpp
 	GameWindow.h
-	Git.cpp
-	Git.h
 	Government.cpp
 	Government.h
 	HailPanel.cpp

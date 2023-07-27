@@ -904,7 +904,7 @@ void PreferencesPanel::DrawInstallAbles()
 	{
 		const auto &plugin = installAbles.at(x);
 		string name = plugin["name"];
-		string url = plugin["homepage"];
+		string url = plugin["url"];
 		if(!name.size())
 			continue;
 		installAbleZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), std::make_pair(name, url));

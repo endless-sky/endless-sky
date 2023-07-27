@@ -1,4 +1,4 @@
-/* Git.h
+/* DownloadHelper.h
 Copyright (c) 2023 by RisingLeaf(https://github.com/RisingLeaf)
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -13,15 +13,10 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include <git2.h>
 
 
-
-class Git
+namespace DownloadHelper
 {
-public:
-	static int Clone(const char *url, const char *path);
-
-private:
-	static int fetch_progress(const git_indexer_progress *stats, void *payload);
-};
+	bool Download(const char *url, const char *location);
+	bool ExtractZIP(const char *filename, const char *destination);
+}

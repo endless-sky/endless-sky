@@ -32,7 +32,8 @@
           ],
           "platform": "linux"
         },
-        "libgit2"
+        "libcurl-simple-https",
+        "libarchive"
       ]
     },
     "flatpak-libs": {

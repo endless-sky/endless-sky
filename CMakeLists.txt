@@ -67,7 +67,8 @@ project("Endless Sky" VERSION 0.10.3
 find_package(SDL2 CONFIG REQUIRED)
 find_package(PNG REQUIRED)
 find_package(JPEG REQUIRED)
-find_package(libgit2 REQUIRED)
+find_package(CURL REQUIRED)
+find_package(LibArchive REQUIRED)
 if(NOT APPLE)
 	find_package(GLEW REQUIRED)
 endif()
@@ -119,7 +120,7 @@ if(MINGW)
 endif()
 
 # Link with the general libraries.
-target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG OpenAL::OpenAL ${LIBGIT2_LIBRARIES}
+target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG OpenAL::OpenAL ${CURL_LIBRARY} ${LibArchive_LIBRARY}
 	"$<IF:$<CONFIG:Debug>,${LIBMAD_LIB_DEBUG},${LIBMAD_LIB_RELEASE}>")
 
 # Link the needed OS-specific dependencies, if any.

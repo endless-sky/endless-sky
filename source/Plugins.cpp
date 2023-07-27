@@ -18,11 +18,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "DownloadHelper.h"
 #include "Files.h"
-#include "Git.h"
-
 #include <algorithm>
 #include <cassert>
+#include <iostream>
 #include <map>
 #include <string>
 
@@ -145,12 +145,22 @@ void Plugins::TogglePlugin(const string &name)
 
 void Plugins::Install(string url, string name)
 {
-	Git::Clone(url.c_str(), (Files::Plugins() + name).c_str());
+	bool success = DownloadHelper::Download(url.c_str(),
+		(Files::Plugins() + name + ".zip").c_str());
+	if(success)
+		cout<<"File download "<<url<<" succeeded!"<<endl;
+	else
+		cout<<"File download failed!"<<endl;
+	success = DownloadHelper::ExtractZIP(
+		(Files::Plugins() + name + ".zip").c_str(),
+		Files::Plugins().c_str());
+	Files::Delete(Files::Plugins() + name + ".zip");
 }
+
 
 
 void Plugins::Update(string url, string name)
 {
 	Files::DeleteDir((Files::Plugins() + name).c_str());
-	Git::Clone(url.c_str(), (Files::Plugins() + name).c_str());
+	Install(url, name);
 }
