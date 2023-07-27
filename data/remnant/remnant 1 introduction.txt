@@ -1007,7 +1007,7 @@ mission "Remnant: Deep Surveillance"
 			
 			action
 				set "remnant: admitted to helping deep"
-			`	Torza's eyes go wide. "Why would you do this?" he asks. "Do you not understand that our secrecy is of upmost importance?"`
+			`	Torza's eyes go wide. "Why would you do this?" he asks. "Do you not understand that our secrecy is of utmost importance?"`
 			choice
 				`	"I don't believe that they will be a threat to you."`
 					goto threat
@@ -1053,7 +1053,7 @@ mission "Remnant: Deep Surveillance"
 			
 			action
 				set "remnant: admitted to helping deep"
-			`	Torza's eyes go wide. "Why would you do this?" he asks. "Do you not understand that our secrecy is of upmost importance?"`
+			`	Torza's eyes go wide. "Why would you do this?" he asks. "Do you not understand that our secrecy is of utmost importance?"`
 			choice
 				`	"I don't believe that they will be a threat to you."`
 					goto threat
