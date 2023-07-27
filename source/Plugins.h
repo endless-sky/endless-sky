@@ -34,6 +34,8 @@ struct Plugin {
 	// The about text, if any, of this plugin.
 	std::string aboutText;
 
+	std::string version;
+
 	// Whether this plugin was enabled, i.e. if it was loaded by the game.
 	bool enabled = true;
 	// The current state state of the plugin.
@@ -65,8 +67,8 @@ public:
 	static void TogglePlugin(const std::string &name);
 
 	// Manage a Plugin with git.
-	static bool Install(std::string url, std::string name);
-	static bool Update(std::string url, std::string name);
+	static bool Install(std::string url, std::string name, std::string version);
+	static bool Update(std::string url, std::string name, std::string version);
 };
 
 

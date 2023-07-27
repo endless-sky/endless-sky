@@ -57,6 +57,16 @@ private:
 
 	void InstallPlugin(const std::string &);
 
+private:
+	struct InstallAble
+	{
+		std::string name = "";
+		std::string url = "";
+		std::string version = "";
+		InstallAble(std::string name, std::string url, std::string version)
+		: name(name), url(url), version(version) {}
+		InstallAble() {}
+	};
 
 private:
 	int editing;
@@ -76,14 +86,14 @@ private:
 	std::string hoverPlugin;
 
 	nlohmann::json installAbles;
-	std::pair<std::string, std::string> selectedInstallAble;
+	InstallAble selectedInstallAble;
 	int installAblePages = 1;
 	int currentInstallAblePage = 0;
 
 	std::vector<ClickZone<Command>> zones;
 	std::vector<ClickZone<std::string>> prefZones;
 	std::vector<ClickZone<std::string>> pluginZones;
-	std::vector<ClickZone<std::pair<std::string, std::string>>> installAbleZones;
+	std::vector<ClickZone<InstallAble>> installAbleZones;
 };
 
 

@@ -124,7 +124,7 @@ void PreferencesPanel::Draw()
 		info.SetCondition("show previous");
 	if(currentSettingsPage + 1 < SETTINGS_PAGE_COUNT)
 		info.SetCondition("show next");
-	if(Plugins::Get().Find(selectedInstallAble.first))
+	if(Plugins::Get().Find(selectedInstallAble.name))
 		info.SetCondition("installed plugin");
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	string pageName = (page == 'c' ? "controls" : page == 's' ? "settings" : page == 'p' ? "plugins" : "install plugins");
@@ -179,10 +179,10 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	}
 	else if(key == 'i' && page == 'p')
 		page = 'i';
-	else if(key == 'i' && page == 'i' && selectedInstallAble.second.size())
-		Plugins::Install(selectedInstallAble.second, selectedInstallAble.first);
-	else if(key == 'u' && page == 'i' && selectedInstallAble.second.size())
-		Plugins::Update(selectedInstallAble.second, selectedInstallAble.first);
+	else if(key == 'i' && page == 'i' && selectedInstallAble.url.size())
+		Plugins::Install(selectedInstallAble.url, selectedInstallAble.name, selectedInstallAble.version);
+	else if(key == 'u' && page == 'i' && selectedInstallAble.url.size())
+		Plugins::Update(selectedInstallAble.url, selectedInstallAble.name, selectedInstallAble.version);
 	else if(key == 'r' && page == 'i')
 		currentInstallAblePage = currentInstallAblePage > 0 ? currentInstallAblePage - 1 : 0;
 	else if(key == 'e' && page == 'i')
@@ -884,6 +884,7 @@ void PreferencesPanel::DrawInstallAbles()
 	const Color &back = *GameData::Colors().Get("faint");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
+	const Color &yellow = *GameData::Colors().Get("yellow");
 
 	const int MAX_TEXT_WIDTH = 230;
 	Table table;
@@ -905,14 +906,18 @@ void PreferencesPanel::DrawInstallAbles()
 		const auto &plugin = installAbles.at(x);
 		string name = plugin["name"];
 		string url = plugin["url"];
+		string version = plugin["version"];
 		if(!name.size())
 			continue;
-		installAbleZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), std::make_pair(name, url));
+		installAbleZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), InstallAble(name, url, version));
 		// Use url as that is more unique, just in case.
-		bool isSelected = (url == selectedInstallAble.second);
+		bool isSelected = (url == selectedInstallAble.url);
+		const Plugin *installedVersion = Plugins::Get().Find(name);
 		if(isSelected)
 			table.DrawHighlight(back);
-		if(isSelected)
+		if(installedVersion && installedVersion->version != version)
+			table.Draw(name, yellow);
+		else if(isSelected)
 			table.Draw(name, bright);
 		else
 			table.Draw(name, medium);

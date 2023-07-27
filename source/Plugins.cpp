@@ -71,6 +71,7 @@ const Plugin *Plugins::Load(const string &path)
 	plugin->name = std::move(name);
 	plugin->path = path;
 	plugin->aboutText = Files::Read(path + "about.txt");
+	plugin->version = Files::Read(path + "version.txt");
 
 	return plugin;
 }
@@ -143,7 +144,7 @@ void Plugins::TogglePlugin(const string &name)
 
 
 
-bool Plugins::Install(string url, string name)
+bool Plugins::Install(string url, string name, std::string version)
 {
 	bool success = DownloadHelper::Download(url.c_str(),
 		(Files::Plugins() + name + ".zip").c_str());
@@ -153,13 +154,16 @@ bool Plugins::Install(string url, string name)
 			(Files::Plugins() + name + ".zip").c_str(),
 			Files::Plugins().c_str());
 	}
+	Files::Write(Files::Plugins() + name + "/version.txt", version);
 	Files::Delete(Files::Plugins() + name + ".zip");
+
+	return success;
 }
 
 
 
-bool Plugins::Update(string url, string name)
+bool Plugins::Update(string url, string name, std::string version)
 {
 	Files::DeleteDir((Files::Plugins() + name).c_str());
-	return Install(url, name);
+	return Install(url, name, version);
 }
