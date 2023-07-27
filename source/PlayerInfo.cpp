@@ -1145,36 +1145,27 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name, const bool isFro
 	if(!model)
 		return;
 
-	AddStockShip(model, name);
-	Ship &newShip = *ships.back();
-
-	// Ships sold to the shop have been stripped down, so remove all outfits.
-	if(!isFromShop)
-	{
-		// Make a copy so we can remove all the outfits safely.
-		map<const Outfit *, int> outfits = newShip.Outfits();
-		for(const auto &it : outfits)
-			newShip.AddOutfit(it.first, -it.second);
-	}
+	const Ship *newShip = isFromShop ? model : StockShip(model);
 
 	const int day = date.DaysSinceEpoch();
-	const int64_t price = stockDepreciation.Value(newShip, day);
+	const int64_t price = stockDepreciation.Value(*newShip, day);
 	if(accounts.Credits() >= price)
 	{
+		AddStockShip(newShip, name);
+
 		flagship.reset();
 
 		accounts.AddCredits(-price);
 
-		depreciation.Buy(newShip, day, &stockDepreciation);
-		AddStock(model, -1);
-		for(const auto &it : newShip.Outfits())
+		depreciation.Buy(*newShip, day, &stockDepreciation);
+		for(const auto &it : newShip->Outfits())
 			stock[it.first] -= it.second;
 
-		if(newShip.HasBays())
+		if(newShip->HasBays())
 			displayCarrierHelp = true;
+
+		AddStock(model, -1);
 	}
-	else
-		ships.pop_back();
 }
 
 

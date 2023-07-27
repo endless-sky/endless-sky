@@ -188,7 +188,7 @@ int ShipyardPanel::DrawDetails(const Point &center)
 	if(selectedShip)
 	{
 		// Ships in stock have no outfits, so get an appropriate version.
-		const Ship *infoShip = shipyard.Has(selectedShip) ? selectedShip : player.StockShip(selectedShip);
+		const Ship *infoShip = shipyard.Has(selectedShip) && LicenseCost(&selectedShip->Attributes()) >= 0 ? selectedShip : player.StockShip(selectedShip);
 		shipInfo.Update(*infoShip, player, collapsed.count("description"));
 		selectedItem = selectedShip->DisplayModelName();
 
@@ -412,7 +412,7 @@ void ShipyardPanel::BuyShip(const string &name)
 				player.AddLicense(licenseName);
 	}
 
-	const bool isFromShop = shipyard.Has(selectedShip);
+	const bool isFromShop = shipyard.Has(selectedShip) && LicenseCost(&selectedShip->Attributes()) >= 0;
 	for(int i = 1; i <= modifier && CanBuy(true); ++i)
 	{
 		// If no name is given, choose a random name. Otherwise, if buying
