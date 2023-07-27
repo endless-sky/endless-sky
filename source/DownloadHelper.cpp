@@ -37,7 +37,7 @@ namespace DownloadHelper {
 	bool Download(const char *url, const char *location)
 	{
 		CURL *curl;
-		CURLcode res;
+		CURLcode res = CURLE_OK;
 
 		curl_global_init(CURL_GLOBAL_DEFAULT);
 
