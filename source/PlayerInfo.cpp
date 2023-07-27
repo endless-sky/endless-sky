@@ -2763,7 +2763,7 @@ set<Ship *> PlayerInfo::GetGroup(int group)
 // available to buy back until you take off.
 int PlayerInfo::Stock(const Outfit *outfit) const
 {
-	auto it = stock.find(outfit);
+	const auto it = stock.find(outfit);
 	return (it == stock.end() ? 0 : it->second);
 }
 
@@ -2773,7 +2773,7 @@ int PlayerInfo::Stock(const Outfit *outfit) const
 // available to buy back until you take off.
 int PlayerInfo::Stock(const Ship *ship) const
 {
-	auto it = shipStock.find(ship);
+	const auto it = shipStock.find(ship);
 	return (it == shipStock.end() ? 0 : it->second);
 }
 
