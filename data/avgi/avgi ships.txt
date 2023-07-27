@@ -869,11 +869,11 @@ ship "Tremoros"
 ship "Prismaios"
 	sprite "ship/avgi prismaios"
 	swizzle 0
-	thumbnail "thumbnail/Prismaios"
+	thumbnail "thumbnail/avgi prismaios"
 	attributes
 		category "Light Warship"
 		"shields" 1440
-		"hull" 6000
+		"hull" 7200
 		"required crew" 2
 		"bunks" 6
 		"mass" 120
@@ -884,7 +884,6 @@ ship "Prismaios"
 		"outfit space" 330
 		"weapon capacity" 96
 		"engine capacity" 96
-		"heat capacity" 30
 		"anchor points" 1
 		weapon
 			"blast radius" 120
@@ -952,6 +951,102 @@ ship "Prismaios"
 
 
 
+ship "Interferos"
+	sprite "ship/avgi interferos"
+	swizzle 0
+	thumbnail "thumbnail/avgi interferos"
+	attributes
+		category "Light Warship"
+		"shields" 900
+		"hull" 3600
+		"automaton" 1
+		"crew equivalent" 6
+		"mass" 90
+		"drag" 1.5
+		"heat dissipation" 1.5
+		"fuel capacity" 600
+		"cargo space" 12
+		"outfit space" 270
+		"weapon capacity" 72
+		"engine capacity" 60
+		"anchor points" 1
+		weapon
+			"blast radius" 72
+			"shield damage" 360
+			"hull damage" 180
+			"hit force" 480
+	outfits
+		"Speckle Turret" 2
+		"Speck Round" 7200
+		"Sidereal Launcher" 4
+		"Sidereal Missile" 168
+
+		"Luminous Fusion Core"
+		"Ultracapacitor Cell" 2
+		"Diffuse Deflector"
+		"Multispectral Scanner"
+		"Electrostatic Ramscoop"
+		
+		"Z-360 Fusion Torch"
+		"XY-180 Radial Thrusters"
+		"Hyperdrive"
+
+	gun -33 -57 "Sidereal Launcher"
+	gun 33 -57 "Sidereal Launcher"
+	gun -33 -42 "Sidereal Launcher"
+	gun 33 -42 "Sidereal Launcher"
+	turret -21.5 -81 "Speckle Turret"
+	turret 21.5 -81 "Speckle Turret"
+	turret 0 -48
+
+	engine 0 99
+	"reverse engine" -6 99
+		angle -30
+	"reverse engine" 6 99
+		angle 30
+	"steering engine" -9 -108
+		angle 90
+		right
+	"steering engine" 9 -108
+		angle -90
+		left
+	"steering engine" -6 99
+		angle 90
+		left
+	"steering engine" 6 99
+		angle -90
+		right
+
+	leak "flame" 60 90
+	explode "tiny explosion" 15
+	explode "small explosion" 9
+	explode "medium explosion" 6
+	"final explode" "final explosion medium"
+
+	description "Interferos-class Frigate WIP"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Medium Warships
 
@@ -974,7 +1069,7 @@ ship "Atenuatia"
 	attributes
 		category "Heavy Warship"
 		"shields" 4200
-		"hull" 24000
+		"hull" 27600
 		"required crew" 60
 		"bunks" 84
 		"mass" 450
