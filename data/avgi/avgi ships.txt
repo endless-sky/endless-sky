@@ -35,8 +35,8 @@ ship "Koryfi"
 			"Magnetoplasma Drive" 2
 			"Hyperdrive"
 
-	gun 0 -26.5
-	turret 0 -11
+	gun 0 -27
+	turret 0 -12
 
 	engine -101.5 -11
 	engine 101.5 -11
@@ -144,12 +144,12 @@ ship "Melodikos"
 		"Magnetoplasma Drive"
 		"Hyperdrive"
 
-	gun -94.5 -3.5
-		angle 270
-	gun 94.5 -3.5
+	gun -96 -3
+		angle -90
+	gun 96 -3
 		angle 90
-	turret -10.5 -3.5
-	turret 10.5 -3.5
+	turret -9 -3
+	turret 9 -3
 
 	engine -92 1.5
 	engine 92 1.5
@@ -282,8 +282,8 @@ ship "Avlaki"
 			"Magnetoplasma Drive"
 			"Hyperdrive"
 
-	gun 0 -26.5
-	turret 0 -11
+	gun 0 -27
+	turret 0 -12
 
 	engine -101.5 -11
 	engine 101.5 -11
@@ -390,12 +390,12 @@ ship "Harmonikos"
 		"Magnetoplasma Drive"
 		"Hyperdrive"
 
-	gun -94.5 -3.5
-		angle 270
-	gun 94.5 -3.5
+	gun -96 -3
+		angle -90
+	gun 96 -3
 		angle 90
-	turret -10.5 -3.5
-	turret 10.5 -3.5
+	turret -9 -3
+	turret 9 -3
 
 	engine -92 1.5
 	engine 92 1.5
@@ -508,7 +508,6 @@ ship "Phononos"
 		"outfit space" 72
 		"engine capacity" 24
 		"radar jamming" 6
-		"surface space" 15
 		weapon
 			"blast radius" 24
 			"shield damage" 420
@@ -639,7 +638,7 @@ ship "Undsyni"
 		"weapon capacity" 180
 		"engine capacity" 168
 		"spinal mount" 1
-		"anchor points" 2
+		"anchor points" 3
 			"blast radius" 540
 			"shield damage" 3600
 			"hull damage" 2400
@@ -664,10 +663,10 @@ ship "Undsyni"
 		"Hyperdrive"
 
 	gun 0 -144
+	gun -42 -139 "Sidereal Launcher"
+		angle -90
 	gun 42 -139 "Sidereal Launcher"
 		angle -90
-	gun -42 -139 "Sidereal Launcher"
-		angle 90
 	turret -33 -138 "Speckle Turret"
 	turret 33 -138 "Speckle Turret"
 	turret 0 -30 "Phased Array Laser (Green)"
@@ -865,6 +864,7 @@ ship "Prismaios"
 	thumbnail "thumbnail/avgi prismaios"
 	attributes
 		category "Light Warship"
+		"cost" 240000
 		"shields" 1440
 		"hull" 7200
 		"required crew" 2
@@ -877,7 +877,7 @@ ship "Prismaios"
 		"outfit space" 330
 		"weapon capacity" 96
 		"engine capacity" 96
-		"anchor points" 1
+		"anchor points" 2
 		weapon
 			"blast radius" 240
 			"shield damage" 1500
@@ -946,9 +946,10 @@ ship "Interferos"
 	thumbnail "thumbnail/avgi interferos"
 	attributes
 		category "Light Warship"
+		"cost" 240000
 		"shields" 900
 		"hull" 3600
-		"automaton" 1
+		"automaton"
 		"crew equivalent" 6
 		"mass" 90
 		"drag" 1.5
@@ -980,9 +981,13 @@ ship "Interferos"
 		"Hyperdrive"
 
 	gun -33 -57 "Sidereal Launcher"
+		angle -60
 	gun 33 -57 "Sidereal Launcher"
+		angle 60
 	gun -33 -42 "Sidereal Launcher"
+		angle -60
 	gun 33 -42 "Sidereal Launcher"
+		angle 60
 	turret -21.5 -81 "Phased Array Laser (Green)"
 	turret 21.5 -81 "Phased Array Laser (Green)"
 	turret 0 -48
@@ -1032,8 +1037,9 @@ ship "Diaspersi"
 		"fuel capacity" 2400
 		"cargo space" 120
 		"outfit space" 420
-		"weapon capacity" 120
+		"weapon capacity" 96
 		"engine capacity" 132
+		"anchor points" 2
 		weapon
 			"blast radius" 360
 			"shield damage" 2400
@@ -1042,34 +1048,38 @@ ship "Diaspersi"
 	outfits
 		"Phased Array Laser (Green)" 2
 		"Fleck Turret"
-		"Fleck Round" 600
+		"Fleck Round" 1800
 		"Sidereal Launcher" 2
 		"Sidereal Missile" 84
+		"Equinox Torpedo Stockpile" 2
+		"Equinox Torpedo" 24
 		
 		"Luminous Fusion Core"
-		"Ultracapacitor Cell" 3
+		"Ultracapacitor Bank"
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
-		"Multispectral Scanner"
+		"Multispectral Scanner" 2
+		"Concealment Scales"
+		"Deuterium Slush Tank"
 		"Electrostatic Ramscoop"
 		
-		"Z-360 Fusion Torch"
-		"XY-180 Radial Thrusters"
+		"Z-600 Fusion Torch"
+		"XY-420 Radial Thrusters"
 		"Hyperdrive"
 
-	gun 18 -9 "Sidereal Launcher"
 	gun -18 -9 "Sidereal Launcher"
+		angle -90
+	gun 18 -9 "Sidereal Launcher"
+		angle 90
 	turret -9 12 "Phased Array Laser (Green)"
 	turret 9 12 "Phased Array Laser (Green)"
 	turret 0 51 "Speckle Turret"
 
-	bay "Fighter" 0 -93
+	bay "Fighter" 0 -63
 		over
-	bay "Fighter" 0 -93
+	bay "Fighter" -36 18
 		under
-	bay "Fighter" 0 -54
-		over
-	bay "Fighter" 0 -54
+	bay "Fighter" 36 18
 		under
 	bay "Drone" -21 -75
 	bay "Drone" 21 -75
@@ -1080,9 +1090,9 @@ ship "Diaspersi"
 
 	engine 0 144
 	"reverse engine" -6 141
-		angle -30
+		angle -35
 	"reverse engine" 6 141
-		angle 30
+		angle 35
 	"steering engine" -9 -135
 		angle 90
 		right
@@ -1108,6 +1118,84 @@ ship "Diaspersi"
 	description "The Diaspersi-class Escort Carrier"
 
 
+ship "Difraktos"
+	sprite "ship/avgi difraktos"
+	thumbnail "thumbnail/avgi difraktos"
+	attributes
+		category "Medium Warship"
+		"cost" 3600000
+		"shields" 4200
+		"hull" 18000
+		"required crew" 15
+		"bunks" 42
+		"mass" 240
+		"drag" 4.2
+		"heat dissipation" 1.6
+		"fuel capacity" 2100
+		"cargo space" 48
+		"outfit space" 498
+		"weapon capacity" 202
+		"engine capacity" 96
+		weapon
+			"blast radius" 420
+			"shield damage" 4800
+			"hull damage" 3600
+			"hit force" 3600
+	outfits
+		"Fleck Turret" 4
+		"Fleck Round" 7200
+
+		"Radiant Fusion Core" 1
+		"Ultracapacitor Bank" 2
+		
+		"Hyperdrive" 1
+		"Small Auxiliary Radiator" 2
+		"Mirror Deflector" 1
+		
+		"S036 Axial Fusion Torch" 1
+		"M030 Transverse Thrusters" 1
+		
+
+	gun -21 -63 
+	gun 21 -63 
+	turret -9 -111 
+	turret 9 -111 
+	turret -9 -87 
+	turret 9 -87 
+	turret -9 -66 
+	turret 9 -66 
+	turret 0 36 
+	turret 0 90 
+	bay "Drone" -21 -21 
+	bay "Drone" 21 -21 
+	"steering engine" -18 -132 
+		angle 90
+		left
+	"steering engine" -18 -132 
+		angle 270
+		right
+	engine -3 135 
+	engine 3 135 
+	"steering engine" -9 138 
+		angle 90
+		left
+	"steering engine" -9 138 
+		angle 270
+		right
+	"reverse engine" -9 138 
+	"reverse engine" 9 138 
+	
+	leak "leak" 50 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 9
+	explode "small explosion" 24
+	explode "medium explosion" 24
+	explode "large explosion" 12
+	"final explode" "final explosion medium"
+
+	description "The Resonance-class Cruiser"
+
 
 
 
@@ -1129,8 +1217,8 @@ ship "Atenuatia"
 		"cargo space" 90
 		"outfit space" 690
 		"weapon capacity" 180
-		"engine capacity" 162
-		"anchor points" 2
+		"engine capacity" 174
+		"anchor points" 3
 		weapon
 			"blast radius" 540
 			"shield damage" 6400
@@ -1138,7 +1226,7 @@ ship "Atenuatia"
 			"hit force" 4200
 	outfits
 		"Fleck Turret"
-		"Fleck Round" 6000
+		"Fleck Round" 1800
 		"Phased Array Laser (Blue)" 2
 		"Phased Array Laser (Green)" 3
 		"Sidereal VLS Array"
@@ -1323,7 +1411,6 @@ ship "Photikon"
 		"weapon capacity" 27
 		"engine capacity" 24
 		"radar jamming" 6
-		"surface space" 15
 		weapon
 			"blast radius" 24
 			"shield damage" 420
@@ -1695,65 +1782,7 @@ ship "Sonikis"
 
 
 
-ship "Resonance"
-	sprite "ship/resonance"
-	thumbnail "thumbnail/resonance"
-	attributes
-		category "Medium Warship"
-		"cost" 3600000
-		"shields" 4200
-		"hull" 18000
-		"required crew" 15
-		"bunks" 42
-		"mass" 240
-		"drag" 4.2
-		"heat dissipation" 1.6
-		"fuel capacity" 2100
-		"cargo space" 48
-		"outfit space" 498
-		"weapon capacity" 202
-		"engine capacity" 96
-		weapon
-			"blast radius" 420
-			"shield damage" 4800
-			"hull damage" 3600
-			"hit force" 3600
-	outfits
-		"Fleck Turret" 4
-		"Fleck Round" 10800
 
-		"Radiant Fusion Core" 1
-		"Ultracapacitor Bank" 2
-		
-		"Hyperdrive" 1
-		"Small Auxiliary Radiator" 2
-		"Mirror Deflector" 1
-		
-		"S036 Axial Fusion Torch" 1
-		"M030 Transverse Thrusters" 1
-		
-	engine -3 144
-	engine 3 144
-
-	turret 0 -126 "Fleck Turret"
-	turret 0 -99 "Fleck Turret"
-	turret 0 -78 "Fleck Turret"
-	turret 0 -9 "Fleck Turret"
-	turret 0 84
-
-	bay "Drone" -24 -24
-	bay "Drone" 24 -24
-	
-	leak "leak" 50 50
-	leak "flame" 50 80
-	leak "big leak" 90 30
-	explode "tiny explosion" 9
-	explode "small explosion" 24
-	explode "medium explosion" 24
-	explode "large explosion" 12
-	"final explode" "final explosion medium"
-
-	description "The Resonance-class Cruiser"
 
 
 
