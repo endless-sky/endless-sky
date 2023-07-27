@@ -19,7 +19,7 @@ planet Omanet
 
 planet Melatos
 	attributes twilight avgi uninhabited
-	landscape land/snow22
+	landscape land/snow36
 	description "Despite being a large rocky world, Melatos lacks all but the thinnest of atmospheres. Avgi astrogeologists have determined that some cataclysmic event only a few million years ago melted and quickly refroze the outermost layers of its crust. This rapid cooling created a world with a smooth, marble-like texture, almost like ceramic, which is crazed by deep cracks formed as the crust refroze."
 	description "The remelting of Melatos' crust also means that heavier elements such as metals mostly sank to the core, and are hard to find without subcrustal mining, an unattractive prospect when combined with the planet's relatively deep gravity well. As such, Melatos remains mostly undeveloped, with the settlements on its surface being almost exclusively scientific in purpose."
 	government Uninhabited
@@ -250,7 +250,7 @@ planet Alathil
 
 planet Hespair
 	attributes twilight uninhabited
-	landscape land/beach15
+	landscape land/beach18
 	description `Hespair was once a life bearing world, but no longer. An unknown event several million years ago thoroughly sterilized the planet down to the last bacterium, and life has not since reemerged.`
 	description`	However, during their exploration of the planet, the Avgi accidentally, if inevitably, introduced bacteria from their own ships to Hespair's oceans. These motes of life are still sparse but even if the Avgi refrain from terraforming this world, they will form the seeds of a new biosphere.`
 
@@ -282,10 +282,13 @@ planet Vanikos
 
 planet Kalakil
 	attributes twilight uninhabited
-	landscape land/mountain38
+	landscape land/mountain38 <- REDO PLANET SPRITE
 	description `Kalakil is an uninhabited misty forest moon. That is all.` 
 
-
+planet Janalos
+	attributes twilight uninhabited
+	landscape land/forest14
+	description `Janalos is an uninhabited lush forest planet. That is all.` 
 
 
 
@@ -319,7 +322,7 @@ planet Anatrefo
 
 planet Gamla
 	attributes twilight predecessor uninhabited
-	landscape land/desert15
+	landscape land/desert19
 	description "Unlike as with most fictional portrayals of precursor species, the previous inhabitants of this dry, salty moon did not leave behind any ancient technological ruins or monolithic stone constructs. Instead, the evidence of their past existence is in the form of tapped mineral veins, concentrations of unmistakably artificial radioisotopes, and a wide belt of orbiting debris degraded to little more than lumps of metal and dust."
 	description "Before they were able to penetrate deeper into the Ember Waste, Gamla was the first evidence the Avgi found of the Predecessors, a species thought to have inhabited the eastern part of their space millions of years ago. While the moon contains no surviving examples of Predecessor technology, it engrossed xenoarcheologists for years."
 	
