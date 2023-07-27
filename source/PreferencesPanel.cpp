@@ -100,8 +100,8 @@ PreferencesPanel::PreferencesPanel()
 	ifstream pluginlistFile(Files::Resources() + "plugins.json");
 	installAbles = nlohmann::json::parse(pluginlistFile);
 	pluginlistFile.close();
-	installAblePages = ((installAbles.size() - (installAbles.size() % MAX_INSTALL_ABLES_PER_PAGE)) / MAX_INSTALL_ABLES_PER_PAGE)
-		+ (installAbles.size() % MAX_INSTALL_ABLES_PER_PAGE > 0);
+	installAblePages = ((installAbles.size() - (installAbles.size() % MAX_INSTALL_ABLES_PER_PAGE))
+		/ MAX_INSTALL_ABLES_PER_PAGE) + (installAbles.size() % MAX_INSTALL_ABLES_PER_PAGE > 0);
 
 	SetIsFullScreen(true);
 }

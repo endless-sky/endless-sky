@@ -77,7 +77,7 @@ namespace DownloadHelper {
 		off_t offset;
 #endif
 
-		for (;;)
+		for(;;)
 		{
 			retVal = archive_read_data_block(ar, &buff, &size, &offset);
 			if(retVal == ARCHIVE_EOF)

@@ -143,24 +143,23 @@ void Plugins::TogglePlugin(const string &name)
 
 
 
-void Plugins::Install(string url, string name)
+bool Plugins::Install(string url, string name)
 {
 	bool success = DownloadHelper::Download(url.c_str(),
 		(Files::Plugins() + name + ".zip").c_str());
 	if(success)
-		cout<<"File download "<<url<<" succeeded!"<<endl;
-	else
-		cout<<"File download failed!"<<endl;
-	success = DownloadHelper::ExtractZIP(
-		(Files::Plugins() + name + ".zip").c_str(),
-		Files::Plugins().c_str());
+	{
+		success = DownloadHelper::ExtractZIP(
+			(Files::Plugins() + name + ".zip").c_str(),
+			Files::Plugins().c_str());
+	}
 	Files::Delete(Files::Plugins() + name + ".zip");
 }
 
 
 
-void Plugins::Update(string url, string name)
+bool Plugins::Update(string url, string name)
 {
 	Files::DeleteDir((Files::Plugins() + name).c_str());
-	Install(url, name);
+	return Install(url, name);
 }

@@ -495,17 +495,17 @@ void Files::Delete(const string &filePath)
 
 bool Files::DeleteDir(const string path)
 {
-	DIR* dir = opendir(path.c_str());
+	DIR *dir = opendir(path.c_str());
 	if(!dir)
 	{
 		std::cerr << "Error opening directory.\n";
 		return false;
 	}
 
-	struct dirent* entry;
+	struct dirent *entry;
 	while((entry = readdir(dir)) != nullptr)
 	{
-		if (strcmp(entry->d_name, ".") != 0 && strcmp(entry->d_name, "..") != 0)
+		if(strcmp(entry->d_name, ".") != 0 && strcmp(entry->d_name, "..") != 0)
 		{
 			std::string filePath = path + "/" + entry->d_name;
 
