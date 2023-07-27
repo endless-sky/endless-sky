@@ -1140,7 +1140,7 @@ void PlayerInfo::AddShip(const shared_ptr<Ship> &ship)
 
 
 // Adds a ship of the given model with the given name to the player's fleet.
-void PlayerInfo::BuyShip(const Ship *model, const string &name, const bool fromShop)
+void PlayerInfo::BuyShip(const Ship *model, const string &name, const bool isFromShop)
 {
 	if(!model)
 		return;
@@ -1149,7 +1149,7 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name, const bool fromS
 	Ship &newShip = *ships.back();
 
 	// Ships sold to the shop have been stripped down, so remove all outfits.
-	if(!fromShop)
+	if(!isFromShop)
 	{
 		// Make a copy so we can remove all the outfits safely.
 		map<const Outfit *, int> outfits = newShip.Outfits();
@@ -2810,7 +2810,7 @@ void PlayerInfo::AddStock(const Outfit *outfit, const int count)
 
 // Transfer ships from the player to the planet or vice versa.
 // If needed, create a no-outfit version of this ship if we don't already have one.
-void PlayerInfo::AddStock(const Ship *model, int count)
+void PlayerInfo::AddStock(const Ship *model, const int count)
 {
 	shipStock[model] += count;
 
@@ -2828,7 +2828,7 @@ void PlayerInfo::AddStock(const Ship *model, int count)
 
 
 
-// Convert a ship pointer to a model ship into one to a stock ship.
+// Convert a model ship pointer to a pointer to a stock ship.
 const Ship *PlayerInfo::StockShip(const Ship *model) const
 {
 	const auto it = stockShips.find(model);

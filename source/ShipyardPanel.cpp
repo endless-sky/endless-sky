@@ -403,7 +403,7 @@ bool ShipyardPanel::CanSellMultiple() const
 
 void ShipyardPanel::BuyShip(const string &name)
 {
-	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
+	const int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
 	if(licenseCost)
 	{
 		player.Accounts().AddCredits(-licenseCost);
@@ -412,6 +412,7 @@ void ShipyardPanel::BuyShip(const string &name)
 				player.AddLicense(licenseName);
 	}
 
+	const bool isFromShop = shipyard.Has(selectedShip);
 	for(int i = 1; i <= modifier && CanBuy(true); ++i)
 	{
 		// If no name is given, choose a random name. Otherwise, if buying
@@ -422,7 +423,7 @@ void ShipyardPanel::BuyShip(const string &name)
 		else if(modifier > 1)
 			shipName += " " + to_string(i);
 
-		player.BuyShip(selectedShip, shipName, shipyard.Has(selectedShip));
+		player.BuyShip(selectedShip, shipName, isFromShop);
 	}
 
 	playerShip = &*player.Ships().back();

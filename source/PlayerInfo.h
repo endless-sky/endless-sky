@@ -164,7 +164,7 @@ public:
 	void AddShip(const std::shared_ptr<Ship> &ship);
 	// Buy, receive or sell a ship.
 	// In the case of a gift, return a pointer to the newly instantiated ship.
-	void BuyShip(const Ship *model, const std::string &name, bool fromShop);
+	void BuyShip(const Ship *model, const std::string &name, bool isFromShop);
 	const Ship *GiftShip(const Ship *model, const std::string &name, const std::string &id);
 	void SellShip(const Ship *selected);
 	// Take the ship from the player, if a model is specified this will permanently remove outfits in said model,
