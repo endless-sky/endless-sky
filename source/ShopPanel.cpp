@@ -529,14 +529,14 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 	{
 		// Make sure the ship sprite leaves 10 pixels padding all around.
 		const float zoomSize = SHIP_SIZE - 60.f;
-		float zoom = min(1.f, zoomSize / max(sprite->Width(), sprite->Height()));
+		const float zoom = min(1.f, zoomSize / max(sprite->Width(), sprite->Height()));
 		SpriteShader::Draw(sprite, center, zoom, swizzle);
 	}
 
 	// Draw the ship name.
 	const Font &font = FontSet::Get(14);
 	const string &name = ship.Name().empty() ? ship.DisplayModelName() : ship.Name();
-	Point offset(-SIDEBAR_WIDTH / 2, -.5f * SHIP_SIZE + 10.f);
+	Point offset(-.5 * SIDEBAR_WIDTH, -.5 * SHIP_SIZE + 10.);
 	font.Draw({name, {SIDEBAR_WIDTH, Alignment::CENTER, Truncate::MIDDLE}},
 		center + offset, *GameData::Colors().Get("bright"));
 }

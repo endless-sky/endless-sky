@@ -164,7 +164,7 @@ public:
 	void AddShip(const std::shared_ptr<Ship> &ship);
 	// Buy, receive or sell a ship.
 	// In the case of a gift, return a pointer to the newly instantiated ship.
-	void BuyShip(const Ship *model, const std::string &name);
+	void BuyShip(const Ship *model, const std::string &name, bool fromShop);
 	const Ship *GiftShip(const Ship *model, const std::string &name, const std::string &id);
 	void SellShip(const Ship *selected);
 	// Take the ship from the player, if a model is specified this will permanently remove outfits in said model,
@@ -305,10 +305,12 @@ public:
 	void SetGroup(int group, const std::set<Ship *> *newShips = nullptr);
 	std::set<Ship *> GetGroup(int group);
 
-	// Keep track of any outfits that you have sold since landing. These will be
-	// available to buy back until you take off.
+	// Keep track of any ships/outfits that you have sold since landing.
+	// These will be available to buy back until you take off.
 	int Stock(const Outfit *outfit) const;
+	int Stock(const Ship *ship) const;
 	void AddStock(const Outfit *outfit, int count);
+	void AddStock(const Ship *ship, int count);
 	// Get depreciation information.
 	const Depreciation &FleetDepreciation() const;
 	const Depreciation &StockDepreciation() const;
@@ -433,6 +435,7 @@ private:
 	std::set<const Outfit *> selectedWeapons;
 
 	std::map<const Outfit *, int> stock;
+	std::map<const Ship *, int> shipStock;
 	Depreciation depreciation;
 	Depreciation stockDepreciation;
 	std::set<std::pair<const System *, const Outfit *>> harvested;

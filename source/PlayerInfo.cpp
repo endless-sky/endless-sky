@@ -299,6 +299,12 @@ void PlayerInfo::Load(const string &path)
 				if(grand.Size() >= 2)
 					stock[GameData::Outfits().Get(grand.Token(0))] += grand.Value(1);
 		}
+		else if(child.Token(0) == "ship stock")
+		{
+			for(const DataNode &grand : child)
+				if(grand.Size() >= 2)
+					shipStock[GameData::Ships().Get(grand.Token(0))] += grand.Value(1);
+		}
 		else if(child.Token(0) == "fleet depreciation")
 			depreciation.Load(child);
 		else if(child.Token(0) == "stock depreciation")
@@ -1134,27 +1140,41 @@ void PlayerInfo::AddShip(const shared_ptr<Ship> &ship)
 
 
 // Adds a ship of the given model with the given name to the player's fleet.
-void PlayerInfo::BuyShip(const Ship *model, const string &name)
+void PlayerInfo::BuyShip(const Ship *model, const string &name, const bool fromShop)
 {
 	if(!model)
 		return;
 
-	int day = date.DaysSinceEpoch();
-	int64_t cost = stockDepreciation.Value(*model, day);
-	if(accounts.Credits() >= cost)
-	{
-		AddStockShip(model, name);
+	AddStockShip(model, name);
+	Ship &newShip = *ships.back();
 
-		accounts.AddCredits(-cost);
+	// Ships sold to the shop have been stripped down, so remove all outfits.
+	if(!fromShop)
+	{
+		// Make a copy so we can remove safely.
+		map<const Outfit *, int> outfits = newShip.Outfits();
+		for(const auto &it : outfits)
+			newShip.AddOutfit(it.first, -it.second);
+	}
+
+	const int day = date.DaysSinceEpoch();
+	const int64_t price = stockDepreciation.Value(newShip, day);
+	if(accounts.Credits() >= price)
+	{
 		flagship.reset();
 
-		depreciation.Buy(*model, day, &stockDepreciation);
-		for(const auto &it : model->Outfits())
+		accounts.AddCredits(-price);
+		AddStock(model, -1);
+
+		depreciation.Buy(newShip, day, &stockDepreciation);
+		for(const auto &it : newShip.Outfits())
 			stock[it.first] -= it.second;
 
-		if(ships.back()->HasBays())
+		if(newShip.HasBays())
 			displayCarrierHelp = true;
 	}
+	else
+		ships.pop_back();
 }
 
 
@@ -1184,8 +1204,8 @@ void PlayerInfo::SellShip(const Ship *selected)
 	for(auto it = ships.begin(); it != ships.end(); ++it)
 		if(it->get() == selected)
 		{
-			int day = date.DaysSinceEpoch();
-			int64_t cost = depreciation.Value(*selected, day);
+			const int day = date.DaysSinceEpoch();
+			const int64_t cost = depreciation.Value(*selected, day);
 
 			// Record the transfer of this ship in the depreciation and stock info.
 			stockDepreciation.Buy(*selected, day, &depreciation);
@@ -1193,6 +1213,7 @@ void PlayerInfo::SellShip(const Ship *selected)
 				stock[it.first] += it.second;
 
 			accounts.AddCredits(cost);
+			AddStock(GameData::Ships().Find(selected->TrueModelName()), 1);
 			ForgetGiftedShip(*it->get());
 			ships.erase(it);
 			flagship.reset();
@@ -2745,8 +2766,18 @@ int PlayerInfo::Stock(const Outfit *outfit) const
 
 
 
+// Keep track of any ships that you have sold since landing. These will be
+// available to buy back until you take off.
+int PlayerInfo::Stock(const Ship *ship) const
+{
+	auto it = shipStock.find(ship);
+	return (it == shipStock.end() ? 0 : it->second);
+}
+
+
+
 // Transfer outfits from the player to the planet or vice versa.
-void PlayerInfo::AddStock(const Outfit *outfit, int count)
+void PlayerInfo::AddStock(const Outfit *outfit, const int count)
 {
 	// If you sell an individual outfit that is not sold here and that you
 	// acquired by buying a ship here, have it appear as "in stock" in case you
@@ -2756,7 +2787,7 @@ void PlayerInfo::AddStock(const Outfit *outfit, int count)
 		stock[outfit] = 0;
 	stock[outfit] += count;
 
-	int day = date.DaysSinceEpoch();
+	const int day = date.DaysSinceEpoch();
 	if(count > 0)
 	{
 		// Remember how depreciated these items are.
@@ -2769,6 +2800,29 @@ void PlayerInfo::AddStock(const Outfit *outfit, int count)
 		// into the player's possession.
 		for(int i = 0; i < -count; ++i)
 			depreciation.Buy(outfit, day, &stockDepreciation);
+	}
+}
+
+
+
+// Transfer ships from the player to the planet or vice versa.
+void PlayerInfo::AddStock(const Ship *ship, const int count)
+{
+	shipStock[ship] += count;
+
+	const int day = date.DaysSinceEpoch();
+	if(count > 0)
+	{
+		// Remember how depreciated these items are.
+		for(int i = 0; i < count; ++i)
+			stockDepreciation.Buy(*ship, day, &depreciation);
+	}
+	else
+	{
+		// If the count is negative, ships are being transferred from stock
+		// into the player's possession.
+		for(int i = 0; i < -count; ++i)
+			depreciation.Buy(*ship, day, &stockDepreciation);
 	}
 }
 
@@ -4213,6 +4267,23 @@ void PlayerInfo::Save(DataWriter &out) const
 				{
 					if(it.second)
 						out.Write(it.first->TrueName(), it.second);
+				});
+		}
+		out.EndChild();
+	}
+	if(!shipStock.empty())
+	{
+		out.Write("ship stock");
+		out.BeginChild();
+		{
+			using StockElement = pair<const Ship *const, int>;
+			WriteSorted(shipStock,
+				[](const StockElement *lhs, const StockElement *rhs)
+					{ return lhs->first->TrueModelName() < rhs->first->TrueModelName(); },
+				[&out](const StockElement &it)
+				{
+					if(it.second)
+						out.Write(it.first->TrueModelName(), it.second);
 				});
 		}
 		out.EndChild();

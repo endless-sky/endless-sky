@@ -131,7 +131,7 @@ int ShipyardPanel::DrawPlayerShipInfo(const Point &point)
 bool ShipyardPanel::HasItem(const string &name) const
 {
 	const Ship *ship = GameData::Ships().Get(name);
-	return shipyard.Has(ship);
+	return shipyard.Has(ship) || player.Stock(ship) > 0;
 }
 
 
@@ -144,6 +144,19 @@ void ShipyardPanel::DrawItem(const string &name, const Point &point, int scrollY
 		return;
 
 	DrawShip(*ship, point, ship == selectedShip);
+
+	const int stock = max(0, player.Stock(ship));
+	if(!shipyard.Has(ship) && stock)
+	{
+		const Font &font = FontSet::Get(14);
+		const Color &bright = *GameData::Colors().Get("bright");
+
+		const string message = "in stock: " + to_string(stock);
+		const Point pos = point + Point(
+			SHIP_SIZE / 2 - 20 - font.Width(message),
+			SHIP_SIZE / 2 - 24);
+		font.Draw(message, pos, bright);
+	}
 }
 
 
@@ -235,7 +248,7 @@ int ShipyardPanel::DrawDetails(const Point &center)
 	}
 
 	// Draw this string representing the selected ship (if any), centered in the details side panel
-	Point selectedPoint(center.X() - INFOBAR_WIDTH / 2, center.Y());
+	Point selectedPoint(center.X() - .5 * INFOBAR_WIDTH, center.Y());
 	font.Draw({selectedItem, {INFOBAR_WIDTH - 20, Alignment::CENTER, Truncate::MIDDLE}},
 		selectedPoint, bright);
 
@@ -394,7 +407,7 @@ void ShipyardPanel::BuyShip(const string &name)
 		else if(modifier > 1)
 			shipName += " " + to_string(i);
 
-		player.BuyShip(selectedShip, shipName);
+		player.BuyShip(selectedShip, shipName, shipyard.Has(selectedShip));
 	}
 
 	playerShip = &*player.Ships().back();
