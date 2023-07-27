@@ -111,12 +111,11 @@ outfit "Fleck Coilgun"
 		"inaccuracy" 0.6
 		"velocity" 60
 		"range override" 3600
-		"cluster"
 		"lifetime" 1
 		"reload" 12
 		"firing energy" 60
 		"firing heat" 15
-		"firing force" 180
+		"firing force" 120
 		"submunition" "fleck slug"
 	description "redo this"
 
@@ -140,11 +139,10 @@ outfit "Fleck Turret"
 		"range override" 3600
 		"lifetime" 1
 		"reload" 6
-		"cluster"
 		"turret turn" 3.6
 		"firing energy" 60
 		"firing heat" 15
-		"firing force" 180
+		"firing force" 120
 		"submunition" "fleck slug"
 	description "A pair of Fleck Coilguns on a sturdy turret mount produces a powerful kinetic artillery piece capable of lobbing projectiles across an entire battlefield. An inductive energy recovery system allows the firing of one coilgun to prime the other instead of simply dissipating the charge as heat, making the turret more thermally efficient compared to its single gun variant. The sheer momentum behind each slug can inflict serious damage on any conventional material, though it is less effective against momentum-repulsion shielding technologies.""
 
@@ -158,8 +156,8 @@ outfit "fleck slug"
 		"random lifetime" 30
 		"inaccuracy" 0.3
 		"shield damage" 60
-		"hull damage" 84
-		"hit force" 180
+		"hull damage" 90
+		"hit force" 120
 
 
 outfit "Phased Array Laser (Green)"
@@ -181,7 +179,6 @@ outfit "Phased Array Laser (Green)"
 		"velocity" 900
 		"lifetime" 1
 		"reload" 1
-		"turret turn" 9
 		"firing energy" 12
 		"firing heat" 9
 	description "This compact phased array laser turret uses a set of individually targetable fiber lasers to create a single collimated beam precise enough to target projectiles in flight. A verdant glow strong enough to blind the naked eye is the only indication of this weapon firing."
@@ -203,18 +200,17 @@ outfit "Phased Array Laser (Blue)"
 		"hit effect" "laser ejecta" 3
 		"hit effect" "blue phaser scattering"
 		"fire effect" "blue phaser fire"
-		"velocity" 1800
+		"velocity" 2400
 		"lifetime" 1
 		"reload" 1
-		"turret turn" 9
-		"firing energy" 18
+		"turret turn" 6
+		"firing energy" 15
 		"firing heat" 12
 		"shield damage" 2.4
 		"hull damage" 3.6
 		"heat damage" 6
-		"damage dropoff" 0
-		"dropoff modifier" 0.3
-		"range override" 1200
+		"damage dropoff" 0 2400
+		"dropoff modifier" 0.15
 	description "This compact phased array laser is actually a set of microscopicturret uses a set of individually targetable fiber lasers to create a single collimated beam. An azure glow strong enough to blind the naked eye is the only indication of this weapon firing."
 	description "Unlike the beam weapons used by many species, which incorporate exotic fields to mitigate beam diffraction, this weapon's effectiveness quickly drops off with range. However, the Avgi have managed to pump enough power into this laser to render it a potent missile defense system, even if its damage against other ships is lacking."
 	description "The lasing medium itself is a tightly wrapped coil of optical fiber, which would be more than a kilometer long if unraveled. This allows much of the laser to be stored internally inside the ship, with the turret itself merely containing the optics needed to aim it."
@@ -339,7 +335,7 @@ outfit "Sidereal VLS Array"
 	category "Secondary Weapons"
 	cost 1370000
 	thumbnail
-	"mass" 5.4
+	"mass" 6
 	"outfit space" -42
 	"weapon capacity" -42
 	"turret mounts" -1
@@ -357,6 +353,7 @@ outfit "Sidereal VLS Array"
 		"velocity" 9
 		"lifetime" 15
 		"reload" 30
+		"turret turn" 9
 		"burst reload" 12
 		"burst count" 6
 		"firing energy" 12
@@ -377,10 +374,10 @@ outfit "Sidereal Active"
 			"frame rate" .25
 		"die effect" "tiny explosion"
 		"hit effect" "missile hit"
-		"lifetime" 420
-		"split range" 600
+		"lifetime" 450
+		"split range" 450
 		"acceleration" 0.9
-		"drag" .03
+		"drag" .015
 		"turn" 6
 		"homing" 4
 		"radar tracking" 0.6

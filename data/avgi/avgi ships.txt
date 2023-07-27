@@ -1029,8 +1029,8 @@ ship "Diaspersi"
 		"cost" 2400000
 		"shields" 2400
 		"hull" 12000
-		"required crew" 12
-		"bunks" 30
+		"required crew" 15
+		"bunks" 36
 		"mass" 270
 		"drag" 1.8
 		"heat dissipation" 1.8
@@ -1038,7 +1038,7 @@ ship "Diaspersi"
 		"cargo space" 120
 		"outfit space" 420
 		"weapon capacity" 96
-		"engine capacity" 132
+		"engine capacity" 114
 		"anchor points" 2
 		weapon
 			"blast radius" 360
@@ -1129,74 +1129,173 @@ ship "Difraktos"
 		"required crew" 15
 		"bunks" 42
 		"mass" 240
-		"drag" 4.2
-		"heat dissipation" 1.6
-		"fuel capacity" 2100
-		"cargo space" 48
-		"outfit space" 498
-		"weapon capacity" 202
-		"engine capacity" 96
+		"drag" 1.8
+		"heat dissipation" 2.1
+		"fuel capacity" 1800
+		"cargo space" 60
+		"outfit space" 540
+		"weapon capacity" 240
+		"engine capacity" 132
+		"anchor points" 2
 		weapon
 			"blast radius" 420
 			"shield damage" 4800
 			"hull damage" 3600
 			"hit force" 3600
 	outfits
-		"Fleck Turret" 4
-		"Fleck Round" 7200
+		"Phased Array Laser (Green)"
+		"Fleck Turret" 2
+		"Fleck Round" 3600
+		"Sidereal VLS Array" 2
+		"Sidereal Magazine" 2
+		"Sidereal Missile" 288
 
-		"Radiant Fusion Core" 1
-		"Ultracapacitor Bank" 2
+		"Radiant Fusion Core"
+		"Ultracapacitor Bank"
+		"Diffuse Deflector"
+		"Optical Lasing Generator"
+		"Multispectral Scanner" 2
+		"Concealment Scales"
+		"Electrostatic Ramscoop"
 		
-		"Hyperdrive" 1
-		"Small Auxiliary Radiator" 2
-		"Mirror Deflector" 1
-		
-		"S036 Axial Fusion Torch" 1
-		"M030 Transverse Thrusters" 1
-		
+		"Z-360 Fusion Torch"
+		"XY-420 Radial Thrusters"
+		"Hyperdrive"
 
-	gun -21 -63 
-	gun 21 -63 
-	turret -9 -111 
-	turret 9 -111 
-	turret -9 -87 
-	turret 9 -87 
-	turret -9 -66 
-	turret 9 -66 
-	turret 0 36 
-	turret 0 90 
-	bay "Drone" -21 -21 
-	bay "Drone" 21 -21 
-	"steering engine" -18 -132 
+	gun -21 -63
+		angle -90
+	gun 21 -63
+		angle 90
+	turret -9 -111
+	turret 9 -111
+	turret -9 -87
+	turret 9 -87
+	turret -9 -66
+	turret 9 -66
+	turret 0 36
+	turret 0 90
+
+	bay "Drone" -21 -21
+	bay "Drone" 21 -21
+
+	engine -3 135
+	engine 3 135
+	"reverse engine" -9 138
+		angle -30
+	"reverse engine" 9 138
+		angle 30
+	"steering engine" -18 -132
+		angle 90
+		right
+	"steering engine" 18 -132
+		angle -90
+		left
+	"steering engine" -9 138
 		angle 90
 		left
-	"steering engine" -18 -132 
-		angle 270
+	"steering engine" 9 138
+		angle -90
 		right
-	engine -3 135 
-	engine 3 135 
-	"steering engine" -9 138 
-		angle 90
-		left
-	"steering engine" -9 138 
-		angle 270
-		right
-	"reverse engine" -9 138 
-	"reverse engine" 9 138 
 	
-	leak "leak" 50 50
-	leak "flame" 50 80
-	leak "big leak" 90 30
+	leak "leak" 60 60
+	leak "flame" 30 90
+	leak "big leak" 60 30
 	explode "tiny explosion" 9
 	explode "small explosion" 24
 	explode "medium explosion" 24
 	explode "large explosion" 12
+	"final explode" "final explosion large"
+
+	description "The Diaspersi-class Cruiser is a versatile platform capable of serving in configurations from a high-performance kinetic weapon battlecruiser to a guided missile cruiser, or anything in between."
+
+
+
+
+ship "Refraktos"
+	sprite "ship/avgi refraktos"
+	thumbnail "thumbnail/avgi refraktos"
+	attributes
+		category "Medium Warship"
+		"shields" 3600
+		"hull" 8400
+		"required crew" 12
+		"bunks" 24
+		"mass" 180
+		"drag" 3.6
+		"heat dissipation" 2.4
+		"fuel capacity" 1800
+		"cargo space" 60
+		"outfit space" 510
+		"weapon capacity" 150
+		"engine capacity" 144
+		"surface space" 58
+		weapon
+			"blast radius" 420
+			"shield damage" 880
+			"hull damage" 440
+			"hit force" 1320
+	outfits
+		"Phased Array Laser (Blue)" 4
+		"Phased Array Laser (Green)" 3
+
+		"Stellar Fusion Core"
+		"Ultracapacitor Bank" 2
+		"Diffuse Deflector"
+		"Optical Lasing Generator" 3
+		"Multispectral Scanner" 3
+		"Concealment Scales"
+		"Electrostatic Ramscoop"
+		"Partitioned Thermal Sink" 3
+		
+		"Z-360 Fusion Torch"
+		"XY-420 Radial Thrusters"
+		"Hyperdrive"
+
+	gun -24 -33
+		angle -90
+	gun 24 -33
+		angle 90
+	gun -24 -9
+		angle -90
+	gun 24 -9
+		angle 90
+	turret -18 -81 "Phased Array Laser (Blue)"
+	turret 18 -81 "Phased Array Laser (Blue)"
+	turret -18 -72 "Phased Array Laser (Blue)"
+	turret 18 -72 "Phased Array Laser (Blue)"
+	turret -21 -57 "Phased Array Laser (Green)"
+	turret 21 -57 "Phased Array Laser (Green)"
+	turret 0 54 "Phased Array Laser (Green)"
+
+	engine 0 150
+	"reverse engine" -9 162
+		angle -30
+	"reverse engine" 9 162
+		angle 30
+	"steering engine" -12 -108
+		angle 90
+		right
+	"steering engine" 12 -108
+		angle -90
+		left
+	"steering engine" -9 162
+		angle 90
+		left
+	"steering engine" 9 162
+		angle -90
+		right
+
+	leak "leak" 60 60
+	leak "flame" 60 90
+	leak "big leak" 30 60
+	explode "tiny explosion" 12
+	explode "small explosion" 18
+	explode "medium explosion" 18
+	explode "large explosion" 6
 	"final explode" "final explosion medium"
 
-	description "The Resonance-class Cruiser"
-
-
+	description "The Refraktos-class Laserstar is a relatively recent, post-Diaspora design with a single focus: directed energy weapons. While its armor and shielding systems are light for its size, its expansive radiators can support the thermal loads of a staggering array of laser weapons, both offensive and defensive, allowing it to control the battlefield from a distance."
+	description "A long truss running the length of the ship is built to fit an impressively large mirror-cell fusion torch, giving the Refraktos the mobility needed to evade opponents until they are reduced to hot vapor."
 
 
 # Heavy Warships
@@ -1691,168 +1790,4 @@ ship "Sonikis"
 
 	description "The Sonikis Utility Drone"
 	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Medium Warships:
-
-
-
-
-
-
-
-
-
-ship "Reverberance"
-	sprite "ship/reverberance"
-	thumbnail "thumbnail/reverberance"
-	attributes
-		category "Medium Warship"
-		"shields" 2700
-		"hull" 6000
-		"required crew" 9
-		"bunks" 18
-		"mass" 132
-		"drag" 3.6
-		"heat dissipation" 1.6
-		"fuel capacity" 1200
-		"cargo space" 12
-		"outfit space" 462
-		"weapon capacity" 180
-		"engine capacity" 132
-		"surface space" 58
-		weapon
-			"blast radius" 420
-			"shield damage" 880
-			"hull damage" 440
-			"hit force" 1320
-	outfits
-		"Speckle Turret" 1
-		"Speck Round" 7200
-		"Phased Array Laser (540 nm)" 1
-		"Nadir Rotary Launcher" 2
-		"Nadir Magazine" 6
-		"Nadir Missile" 84
-
-		"Brilliant Fusion Core" 1
-		"Ultracapacitor Bank" 1
-		
-		"Hyperdrive" 1
-		"Specular Deflector" 1
-		"Multispectral Scanner" 3
-		"Electrostatic Ramscoop" 1
-		
-		"S036 Axial Fusion Torch" 1
-		"M030 Transverse Thrusters" 1
-
-	engine 0 168
-
-	gun -24 -33 "Nadir Rotary Launcher"
-		angle -90
-	gun 24 -33 "Nadir Rotary Launcher"
-		angle 90
-	gun -24 -9 
-		angle -90
-	gun 24 -9
-		angle 90
-	turret -18 -78
-	turret 18 -78
-	turret 0 54 "Phased Array Laser (540 nm)"
-	turret 0 -39 "Speckle Turret"
-
-	leak "leak" 60 60
-	leak "flame" 60 90
-	leak "big leak" 90 30
-	explode "tiny explosion" 12
-	explode "small explosion" 24
-	explode "medium explosion" 24
-	explode "large explosion" 9
-	"final explode" "final explosion medium"
-
-	description "The Reverberance-class Missile Cruiser is a relatively recent, post-Evacuation design with a single focus: missiles. While its armor and shielding systems are fairly minimal, it can carry a staggering arsenal of nuclear tipped missiles, allowing even a single ship to dominate the battlefield - at least until it runs out of ammunition."
-	description "A long truss running the length of the ship normally fits an impressively large mirror-cell fusion torch, giving the Reverbernace the mobility needed to evade opponents until they are reduced to hot vapor."
-
 
