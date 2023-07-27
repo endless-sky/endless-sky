@@ -25,12 +25,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cstdlib>
-#include <iostream>
 #include <numeric>
 #include <set>
 #include <string>
 #include <utility>
-#include <vector>
 
 using namespace std;
 
