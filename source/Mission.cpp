@@ -369,9 +369,13 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("autosave");
 		if(location == LANDING)
 			out.Write("landing");
-		if(location == ASSISTING)
+		else if(location == SHIPYARD)
+			out.Write("shipyard");
+		else if(location == OUTFITTER)
+			out.Write("outfitter");
+		else if(location == ASSISTING)
 			out.Write("assisting");
-		if(location == BOARDING)
+		else if(location == BOARDING)
 		{
 			out.Write("boarding");
 			if(overridesCapture)
@@ -383,7 +387,7 @@ void Mission::Save(DataWriter &out, const string &tag) const
 				out.EndChild();
 			}
 		}
-		if(location == JOB)
+		else if(location == JOB)
 			out.Write("job");
 		if(!clearance.empty())
 		{
@@ -1085,6 +1089,26 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 		player.MissionCallback(Conversation::ACCEPT);
 
 	return true;
+}
+
+
+
+bool Mission::RequiresGiftedShip(const string &shipId) const
+{
+	// Check if any uncompleted actions required for the mission needs this ship.
+	set<Trigger> requiredActions;
+	{
+		requiredActions.insert(Trigger::COMPLETE);
+		if(!stopovers.empty())
+			requiredActions.insert(Trigger::STOPOVER);
+		if(!waypoints.empty())
+			requiredActions.insert(Trigger::WAYPOINT);
+	}
+	for(const auto &it : actions)
+		if(requiredActions.count(it.first) && it.second.RequiresGiftedShip(shipId))
+			return true;
+
+	return false;
 }
 
 

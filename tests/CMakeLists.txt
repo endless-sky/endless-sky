@@ -53,6 +53,7 @@ list(APPEND INTEGRATION_TESTS
 	integration/config/plugins/integration-tests/data/tests/tests_framework.txt
 	integration/config/plugins/integration-tests/data/tests/tests_hyperjumps_to_autocondition.txt
 	integration/config/plugins/integration-tests/data/tests/tests_illegal_atrocity.txt
+	integration/config/plugins/integration-tests/data/tests/tests_take_ships.txt
 	integration/config/plugins/integration-tests/data/tests/tests_save_load.txt
 	integration/config/plugins/integration-tests/data/tests/tests_ship_sale.txt
 	integration/config/plugins/integration-tests/data/tests/tests_shipyard_outfitter_missions.txt
