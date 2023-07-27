@@ -560,7 +560,14 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			if(values[i])
 			{
 				attributeLabels.emplace_back(VALUE_NAMES[i].first + PER_SECOND);
-				attributeValues.emplace_back(Format::Number(60. * values[i] / reload) + VALUE_NAMES[i].second);
+				double fullDropoff = outfit.DamageDropoff(outfit.Range());
+				if(fullDropoff != 1)
+				{
+					attributeValues.emplace_back(Format::Number(60. * values[i] / reload) + VALUE_NAMES[i].second
+						+ " - " + Format::Number(60. * fullDropoff * values[i] / reload) + VALUE_NAMES[i].second);
+				}
+				else
+					attributeValues.emplace_back(Format::Number(60. * values[i] / reload) + VALUE_NAMES[i].second);
 				attributesHeight += 20;
 			}
 	}
