@@ -1851,8 +1851,117 @@ news "tourist pa system"
 			"Dear travelers: please take the time to adjust to normal gravity."
 		word
 			`"`
+phrase "pirate worlds"
+	word
+		"Albatross"
+		"Bloodsea"
+		"Buccaneer Bay"
+		"Covert"
+		"Deadman's Cove"
+		"Freedom"
+		"Greenrock"
+		"Haven"
+		"New Tortuga"
+		"Smuggler's Den"
+		"Stormhold"
+		"Thule"
+		"Zenith"
 
+phrase "rnas travel advisory [1]"
+	word
+		"Please be advised: a travel advisory remains in effect for"
+		"The Republic Navy strongly discourages travel to"
+	word
+		" "
+	phrase
+		"pirate worlds"
+	word
+		"."
 
+phrase "rnas travel advisory [2]"
+	word
+		"The Republic Navy Civilian Safety Board considers travel to"
+	word
+		" "
+	phrase
+		"pirate worlds"
+	word
+		" "
+	word
+		"to represent an unacceptable risk."
+		"to be extremely dangerous."
+		"to place Navy rescue personnel in unnecessary danger."
+
+phrase "rnas travel advisory [3]"
+	word
+		"Navigational hazard:"
+	word
+		" "
+	phrase
+		"pirate worlds"
+	word
+		" - "
+	word
+		"dangerous conditions"
+		"threat to life and property"
+		"violent non-state actors"
+	word
+		"."
+
+phrase "rnas travel advisory"
+	phrase
+		"rnas travel advisory [1]"
+		"rnas travel advisory [2]"
+		"rnas travel advisory [3]"
+
+phrase "rnas port emergency alert test"
+	word
+		"The following message is a test. The following message is a test. The following message is a test:"
+	word
+		" "
+	word
+		"Radiation hazard. Evacuate immediately. Radiation hazard. Evacuate immediately. Radiation hazard. Evacuate immediately."
+		"Hyperspace fuel leak. Evacuate immediately. Hyperspace fuel leak. Evacuate immediately. Hyperspace fuel leak. Evacuate immediately."
+		"Incoming meteor. Evacuate immediately. Incoming meteor. Evacuate immediately. Incoming meteor. Evacuate immediately."
+		"Uncontrolled spacecraft landing. Evacuate immediately. Uncontrolled spacecraft landing. Evacuate immediately. Uncontrolled spacecraft landing. Evacuate immediately."
+		"Fire. Evacuate immediately. Fire. Evacuate immediately. Fire. Evacuate immediately."
+		"Cryogenic fluid release. Evacuate immediately. Cryogenic fluid release. Evacuate immediately. Cryogenic fluid release. Evacuate immediately."
+		"Orbital bombardment. Evacuate immediately. Orbital bombardment. Evacuate immediately. Orbital bombardment. Evacuate immediately."
+
+news "republic navy advisory system"
+	location
+		government "Republic"
+	name
+		word
+			"Republic Navy Advisory System"
+	message
+		word
+			`"`
+		word
+			"${rnas travel advisory}"
+			"Please notify Republic officials immediately if you have been detained by any ship not granted legal authority to do so by the Republic Navy."
+			"Report all sightings of pirate vessels immediately."
+			"${rnas port emergency alert test}"
+		word
+			`"`
+
+news "republic navy advisory system [wartime]"
+	location
+		government "Republic"
+	name
+		word
+			"Republic Navy Advisory System"
+	to show
+		not "event: fw armistice"
+		has "chosen sides"
+	message
+		word
+			`"`
+		word
+			"Attention: Travel by civilians to rebel-held systems is to be undertaken at your own risk."
+			"Attention: Dangerous combat conditions persist in the galactic South. Avoid all travel to affected systems unless strictly necessary."
+		word
+			`"`
 
 phrase "republic motto graffiti"
 	word
@@ -1870,6 +1979,22 @@ phrase "deep motto graffiti"
 		`Underneath are the words "Power, Poverty, Pride."`
 		`Underneath are the words "Peace, Prosperity, Progress, for those who are born lucky."`
 
+news "republic navy advisory system [alphas]"
+	location
+		government "Republic"
+	name
+		word
+			"Republic Navy Advisory System"
+	to show
+		has "alphas capture Poisonwood"
+	message
+		word
+			`"`
+		word
+			"Attention: Report suspected Alpha activity to Republic authorities."
+			"For your safety, do not attempt to apprehend an Alpha. Instead, contact Republic Navy personnel at once."
+		word
+			`"`
 news "safety posters"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"

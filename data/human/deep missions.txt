@@ -52,7 +52,8 @@ mission "Deep: Syndicate Convoy"
 		government "Merchant"
 		personality timid
 		fleet
-			fighters "civilian"
+			fighters
+				names "civilian"
 			variant
 				"Dagger"
 			variant
@@ -141,7 +142,8 @@ mission "Deep: Tarazed Convoy"
 		government "Merchant"
 		personality timid
 		fleet
-			fighters "civilian"
+			fighters
+				names "civilian"
 			variant
 				"Dagger" 2
 			variant
@@ -473,7 +475,8 @@ mission "Deep: Mystery Cubes 3: Escorts"
 		personality heroic escort vindictive
 		fleet
 			names "deep"
-			fighters "deep fighter"
+			fighters
+				names "deep fighter"
 			variant
 				"Mule"
 				"Raven" 2
@@ -490,7 +493,8 @@ mission "Deep: Mystery Cubes 3: Escorts"
 		government "Republic"
 		personality timid
 		fleet
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Combat Drone" 4
 
@@ -561,7 +565,8 @@ mission "Deep: Mystery Cubes 4"
 		personality heroic opportunistic escort entering
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier"
 				"Combat Drone" 6
@@ -581,7 +586,8 @@ mission "Deep: Mystery Cubes 4"
 		system destination
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser"
 				"Combat Drone" 4
@@ -592,7 +598,8 @@ mission "Deep: Mystery Cubes 4"
 		system destination
 		fleet
 			names "deep"
-			fighters "deep fighter"
+			fighters
+				names "deep fighter"
 			variant
 				"Aerie" 2
 				"Dagger" 4
@@ -603,7 +610,8 @@ mission "Deep: Mystery Cubes 4"
 		system Sol
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier"
 				"Cruiser" 2
@@ -2182,7 +2190,8 @@ mission "Deep: Scientist Rescue 1: Escorts"
 		personality heroic escort
 		fleet 3
 			names "deep"
-			fighters "deep fighter"
+			fighters
+				names "deep fighter"
 			variant
 				"Aerie"
 				"Dagger" 2
@@ -2222,7 +2231,8 @@ mission "Deep: Scientist Rescue 1: Reinforcements"
 		personality heroic escort
 		fleet 2
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser"
 				"Combat Drone" 4
