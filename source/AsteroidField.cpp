@@ -147,7 +147,7 @@ Body *AsteroidField::Collide(const Projectile &projectile, double *closestHit)
 		for(int x = 0; x < tileX; ++x)
 		{
 			Point offset = Point(x, y) * WRAP;
-			Body *body = asteroidCollisions.Line(from + offset, to + offset, closestHit);
+			Body *body = asteroidCollisions.Line(from + offset, to + offset, closestHit)[0].first;
 			if(body)
 				hit = body;
 		}

@@ -75,6 +75,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cmath>
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -2104,7 +2105,8 @@ void Engine::DoCollisions(Projectile &projectile)
 	// shields the ship (unless the projectile has a blast radius).
 	Point hitVelocity;
 	double closestHit = 1.;
-	shared_ptr<Ship> hit;
+	vector<HitData> hits;
+
 	const Government *gov = projectile.GetGovernment();
 
 	// If this "projectile" is a ship explosion, it always explodes.
@@ -2121,7 +2123,7 @@ void Engine::DoCollisions(Projectile &projectile)
 			if(range < 1.)
 			{
 				closestHit = range;
-				hit = target;
+				hits.emplace_back(target, Point(0., 0.), closestHit);
 			}
 		}
 	}
@@ -2139,15 +2141,31 @@ void Engine::DoCollisions(Projectile &projectile)
 				}
 
 		// If nothing triggered the projectile, check for collisions with ships.
-		if(closestHit > 0.)
+		if(closestHit > 0. || projectile.GetWeapon().IsMultiHit())
 		{
-			Ship *ship = reinterpret_cast<Ship *>(shipCollisions.Line(projectile, &closestHit));
-			if(ship)
+			if(projectile.GetWeapon().IsMultiHit())
 			{
-				hit = ship->shared_from_this();
-				hitVelocity = ship->Velocity();
+				vector<pair<Body *, double>> shipHits = shipCollisions.LineAll(projectile, &closestHit);
+				std::cout<<shipHits.size()<<std::endl;
+				for(const auto &shipHit : shipHits)
+				{
+					Ship *ship = reinterpret_cast<Ship *>(shipHit.first);
+					if(ship)
+					{
+						hits.emplace_back(ship->shared_from_this(), ship->Velocity(), shipHit.second);
+					}
+				}
+			}
+			else
+			{
+				Ship *ship = reinterpret_cast<Ship *>(shipCollisions.Line(projectile, &closestHit));
+				if(ship)
+				{
+					hits.emplace_back(ship->shared_from_this(), ship->Velocity(), closestHit);
+				}
 			}
 		}
+
 		// "Phasing" projectiles can pass through asteroids. For all other
 		// projectiles, check if they've hit an asteroid that is closer than any
 		// ship that they have hit.
@@ -2156,53 +2174,55 @@ void Engine::DoCollisions(Projectile &projectile)
 			Body *asteroid = asteroids.Collide(projectile, &closestHit);
 			if(asteroid)
 			{
-				hitVelocity = asteroid->Velocity();
-				hit.reset();
+				hits.emplace_back(nullptr, asteroid->Velocity(), closestHit);
 			}
 		}
 	}
-
 	// Check if the projectile hit something.
-	if(closestHit < 1.)
+	if(closestHit < 1. && hits.size() > 0)
 	{
-		// Create the explosion the given distance along the projectile's
-		// motion path for this step.
-		projectile.Explode(visuals, closestHit, hitVelocity);
-
-		const DamageProfile damage(projectile.GetInfo());
-
-		// If this projectile has a blast radius, find all ships within its
-		// radius. Otherwise, only one is damaged.
-		double blastRadius = projectile.GetWeapon().BlastRadius();
-		bool isSafe = projectile.GetWeapon().IsSafe();
-		if(blastRadius)
+		int lastIndex = projectile.GetWeapon().IsMultiHit() ? hits.size() : 1;
+		for(int i = 0; i < lastIndex; i++)
 		{
-			// Even friendly ships can be hit by the blast, unless it is a
-			// "safe" weapon.
-			Point hitPos = projectile.Position() + closestHit * projectile.Velocity();
-			for(Body *body : shipCollisions.Circle(hitPos, blastRadius))
+			// Create the explosion the given distance along the projectile's
+			// motion path for this step.
+			projectile.Explode(visuals, hits[i].distance, hits[i].velocity);
+
+			const DamageProfile damage(projectile.GetInfo());
+			// If this projectile has a blast radius, find all ships within its
+			// radius. Otherwise, only one is damaged. 
+			double blastRadius = projectile.GetWeapon().BlastRadius();
+			bool isSafe = projectile.GetWeapon().IsSafe();
+			if(blastRadius)
 			{
-				Ship *ship = reinterpret_cast<Ship *>(body);
-				bool targeted = (projectile.Target() == ship);
-				if(isSafe && !targeted && !gov->IsEnemy(ship->GetGovernment()))
-					continue;
+				// Even friendly ships can be hit by the blast, unless it is a
+				// "safe" weapon.
+				Point hitPos = projectile.Position() + hits[i].distance * projectile.Velocity();
+				for(Body *body : shipCollisions.Circle(hitPos, blastRadius))
+				{
+					Ship *ship = reinterpret_cast<Ship *>(body);
+					bool targeted = (projectile.Target() == ship);
+					if(isSafe && !targeted && !gov->IsEnemy(ship->GetGovernment()))
+						continue;
 
-				// Only directly targeted ships get provoked by blast weapons.
-				int eventType = ship->TakeDamage(visuals, damage.CalculateDamage(*ship, ship == hit.get()),
-					targeted ? gov : nullptr);
-				if(eventType)
-					eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);
+					// Only directly targeted ships get provoked by blast weapons.
+					int eventType = ship->TakeDamage(visuals, damage.CalculateDamage(*ship, ship == hits[i].ship.get()),
+						targeted ? gov : nullptr);
+					if(eventType)
+						eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);
+				}
 			}
-		}
-		else if(hit)
-		{
-			int eventType = hit->TakeDamage(visuals, damage.CalculateDamage(*hit), gov);
-			if(eventType)
-				eventQueue.emplace_back(gov, hit, eventType);
-		}
+			else if(hits[i].ship)
+			{
+				int eventType = hits[i].ship->TakeDamage(visuals, damage.CalculateDamage(*hits[i].ship), gov);
+				if(eventType)
+					eventQueue.emplace_back(gov, hits[i].ship, eventType);
+			}
 
-		if(hit)
-			DoGrudge(hit, gov);
+			if(hits[i].ship)
+				DoGrudge(hits[i].ship, gov);
+		}
+		
 	}
 	else if(projectile.MissileStrength())
 	{

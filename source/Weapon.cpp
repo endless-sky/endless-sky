@@ -60,6 +60,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 			isGravitational = true;
 		else if(key == "untouchable")
 			isUntouchAble = true;
+		else if(key == "multi hit")
+			isMultiHit = true;
 		else if(child.Size() < 2)
 			child.PrintTrace("Skipping weapon attribute with no value specified:");
 		else if(key == "sprite")
@@ -347,6 +349,9 @@ void Weapon::LoadWeapon(const DataNode &node)
 		tracking = 1.;
 		node.PrintTrace("Warning: Deprecated use of \"homing\" without use of \"[optical|infrared|radar] tracking.\"");
 	}
+
+	if(isMultiHit && !isUntouchAble)
+		node.PrintTrace("Warning: Useless use of \"multi hit\" without use of \"untouchable\", projectile will die after first hit.");
 
 	// Convert the "live effect" counts from occurrences per projectile lifetime
 	// into chance of occurring per frame.

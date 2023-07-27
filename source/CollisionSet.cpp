@@ -25,9 +25,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cstdlib>
+#include <iostream>
 #include <numeric>
 #include <set>
 #include <string>
+#include <utility>
+#include <vector>
 
 using namespace std;
 
@@ -174,15 +177,15 @@ Body *CollisionSet::Line(const Projectile &projectile, double *closestHit) const
 	// Convert the start and end coordinates to integers.
 	Point from = projectile.Position();
 	Point to = from + projectile.Velocity();
-	return Line(from, to, closestHit, pGov, projectile.Target());
+	return Line(from, to, closestHit, pGov, projectile.Target())[0].first;
 }
 
 
 
 // Check for collisions with a line, which may be a projectile's current
 // position or its entire expected trajectory (for the auto-firing AI).
-Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
-		const Government *pGov, const Body *target) const
+std::vector<std::pair<Body *, double>> CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
+		const Government *pGov, const Body *target, bool all) const
 {
 	const int x = from.X();
 	const int y = from.Y();
@@ -196,6 +199,7 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 	const int endGY = endY >> SHIFT;
 
 	Closest closer_result(closestHit ? *closestHit : 1.);
+	vector<pair<Body *, double>> hits;
 
 	// Special case, very common: the projectile is contained in one grid cell.
 	// In this case, all the complicated code below can be skipped.
@@ -223,11 +227,15 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 			const double range = mask.Collide(offset, to - from, it->body->Facing());
 
 			closer_result.TryNearer(range, it->body);
+			hits.emplace_back(it->body, range);
 		}
 		if(closer_result.GetClosestDistance() < 1. && closestHit)
 			*closestHit = closer_result.GetClosestDistance();
 
-		return closer_result.GetClosestBody();
+		if(all)
+			return hits;
+		else
+			return {make_pair(closer_result.GetClosestBody(), 0.)};
 	}
 
 	const Point pVelocity = (to - from);
@@ -295,10 +303,11 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 			const double range = mask.Collide(offset, to - from, it->body->Facing());
 
 			closer_result.TryNearer(range, it->body);
+			hits.emplace_back(it->body, range);
 		}
 
 		// Check if we've found a collision or reached the final grid cell.
-		if(closer_result.GetClosestBody() || (gx == endGX && gy == endGY))
+		if((closer_result.GetClosestBody() && !all) || (gx == endGX && gy == endGY))
 			break;
 		// If not, move to the next one. Check whether rx / mx < ry / my.
 		const int64_t diff = rx * my - ry * mx;
@@ -337,7 +346,27 @@ Body *CollisionSet::Line(const Point &from, const Point &to, double *closestHit,
 	if(closer_result.GetClosestDistance() < 1. && closestHit)
 		*closestHit = closer_result.GetClosestDistance();
 
-	return closer_result.GetClosestBody();
+	if(all)
+	{
+		return hits;
+	}
+	else
+		return {make_pair(closer_result.GetClosestBody(), 0.)};
+}
+
+
+
+// Get all object that collides with the given projectile. If a
+// "closest hit" value is given, update that value.
+std::vector<std::pair<Body *, double>> CollisionSet::LineAll(const Projectile &projectile, double *closestHit) const
+{
+	// What objects the projectile hits depends on its government.
+	const Government *pGov = projectile.GetGovernment();
+
+	// Convert the start and end coordinates to integers.
+	Point from = projectile.Position();
+	Point to = from + projectile.Velocity();
+	return Line(from, to, closestHit, pGov, projectile.Target(), true);
 }
 
 

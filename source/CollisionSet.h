@@ -45,10 +45,13 @@ public:
 	// Get the first object that collides with the given projectile. If a
 	// "closest hit" value is given, update that value.
 	Body *Line(const Projectile &projectile, double *closestHit = nullptr) const;
+	// Get all objects that collide with the given projectile. If a
+	// "closest hit" value is given, update that value.
+	std::vector<std::pair<Body *, double>> LineAll(const Projectile &projectile, double *closestHit) const;
 	// Check for collisions with a line, which may be a projectile's current
 	// position or its entire expected trajectory (for the auto-firing AI).
-	Body *Line(const Point &from, const Point &to, double *closestHit = nullptr,
-		const Government *pGov = nullptr, const Body *target = nullptr) const;
+	std::vector<std::pair<Body *, double>> Line(const Point &from, const Point &to, double *closestHit = nullptr,
+		const Government *pGov = nullptr, const Body *target = nullptr, bool all = false) const;
 
 	// Get all objects within the given range of the given point.
 	const std::vector<Body *> &Circle(const Point &center, double radius) const;

@@ -128,6 +128,18 @@ private:
 	};
 
 
+	struct HitData
+	{
+		std::shared_ptr<Ship> ship;
+		Point velocity;
+		double distance;
+		HitData(std::shared_ptr<Ship> ship, Point velocity, double distance)
+		: ship(ship), velocity(velocity), distance(distance) {}
+		HitData()
+		: ship(nullptr), velocity(Point(0., 0.)), distance(1.) {}
+	};
+
+
 private:
 	void EnterSystem();
 
