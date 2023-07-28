@@ -20,7 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ClickZone.h"
 #include "Command.h"
-#include "external/json.hpp"
+#include <nlohmann/json.hpp>
 #include "Point.h"
 
 #include <string>

@@ -33,7 +33,8 @@
           "platform": "linux"
         },
         "libcurl-simple-https",
-        "libarchive"
+        "libarchive",
+        "nlohmann-json"
       ]
     },
     "flatpak-libs": {
