@@ -50,6 +50,7 @@ namespace {
 	string soundPath;
 	string savePath;
 	string testPath;
+	string pluginsPath;
 
 	File errorLog;
 
@@ -173,6 +174,8 @@ void Files::Init(const char * const *argv)
 			SDL_free(str);
 	}
 
+	pluginsPath = config + "plugins/";
+
 	// Check that all the directories exist.
 	if(!Exists(dataPath) || !Exists(imagePath) || !Exists(soundPath))
 		throw runtime_error("Unable to find the resource directories!");
@@ -233,7 +236,7 @@ const string &Files::Tests()
 
 const string &Files::Plugins()
 {
-	return Config() + "plugins/";
+	return pluginsPath;
 }
 
 
