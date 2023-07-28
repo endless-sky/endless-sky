@@ -47,6 +47,20 @@ class System;
 // bribe than others.
 class Government {
 public:
+	enum class SpecialPenalty : int {
+		NONE = 0,
+		PROVOKE,
+		ATROCITY
+	};
+
+	struct PenaltyEffect {
+		double reputationChange;
+		SpecialPenalty specialPenalty;
+		PenaltyEffect(double reputationChange = 0., SpecialPenalty specialPenalty = SpecialPenalty::NONE) :
+			reputationChange(reputationChange), specialPenalty(specialPenalty) 
+		{}
+	};
+
 	class RaidFleet {
 		public:
 			RaidFleet(const Fleet *fleet, double minAttraction, double maxAttraction);
@@ -85,7 +99,7 @@ public:
 	// Get the amount that your reputation changes for the given offense against the given government.
 	// The given value should be a combination of one or more ShipEvent values.
 	// Returns 0 if the Government is null.
-	double PenaltyFor(int eventType, const Government *other) const;
+	PenaltyEffect PenaltyFor(int eventType, const Government *other) const;
 	// In order to successfully bribe this government you must pay them this
 	// fraction of your fleet's value. (Zero means they cannot be bribed.)
 	double GetBribeFraction() const;
@@ -164,11 +178,11 @@ private:
 
 	std::vector<double> attitudeToward;
 	std::set<const Government *> trusted;
-	std::map<unsigned, std::map<int, double>> customPenalties;
+	std::map<unsigned, std::map<int, PenaltyEffect>> customPenalties;
 	double initialPlayerReputation = 0.;
 	double reputationMax = std::numeric_limits<double>::max();
 	double reputationMin = std::numeric_limits<double>::lowest();
-	std::map<int, double> penaltyFor;
+	std::map<int, PenaltyEffect> penaltyFor;
 	std::map<const Outfit*, int> illegals;
 	std::map<const Outfit*, bool> atrocities;
 	double bribe = 0.;
