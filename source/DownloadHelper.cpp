@@ -19,8 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <archive_entry.h>
 #include <cstring>
 #include <curl/curl.h>
-#include <stdio.h>
 #include <sys/stat.h>
+#include <stdio.h>
 #include <unistd.h>
 
 using namespace std;

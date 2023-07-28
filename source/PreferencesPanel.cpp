@@ -17,9 +17,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "text/alignment.hpp"
 #include "Audio.h"
-#include "DownloadHelper.h"
 #include "Color.h"
 #include "Dialog.h"
+#include "DownloadHelper.h"
 #include "Files.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -927,7 +927,7 @@ void PreferencesPanel::DrawInstallAbles()
 			table.Draw(name, yellow);
 		else if(isSelected)
 			table.Draw(name, bright);
-		else if (installedVersion)
+		else if(installedVersion)
 			table.Draw(name, dim);
 		else
 			table.Draw(name, medium);
