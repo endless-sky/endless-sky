@@ -205,10 +205,15 @@ private:
 	void MainUp();
 	void MainDown();
 	std::vector<Zone>::const_iterator Selected() const;
-	std::vector<Zone>::const_iterator MainStart() const;
 	// Check if the given point is within the button zone, and if so return the
 	// letter of the button (or ' ' if it's not on a button).
 	char CheckButton(int x, int y);
+
+
+private:
+	// Start and end of main pane zones
+	std::vector<Zone>::const_iterator mainStart;
+	std::vector<Zone>::const_iterator mainEnd;
 };
 
 

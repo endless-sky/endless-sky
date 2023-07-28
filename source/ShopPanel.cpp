@@ -432,6 +432,7 @@ void ShopPanel::DrawMain()
 	const float endX = Screen::Right() - (SIDE_WIDTH + 1);
 	double nextY = begin.Y() + TILE_SIZE;
 	int scrollY = 0;
+	mainStart = zones.end();
 	for(const auto &cat : categories)
 	{
 		const string &category = cat.Name();
@@ -499,6 +500,7 @@ void ShopPanel::DrawMain()
 			nextY -= bigFont.Height() + 20;
 		}
 	}
+	mainEnd = zones.end();
 	// This is how much Y space was actually used.
 	nextY -= 40 + TILE_SIZE;
 
@@ -648,6 +650,9 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		{
 			Buy(key == 'i' || key == 'c');
 			player.UpdateCargoCapacities();
+			if((!selectedOutfit || !HasItem(selectedOutfit->TrueName())) &&
+					(!selectedShip || !HasItem(selectedShip->TrueModelName())))
+				MainRight();
 		}
 	}
 	else if(key == 's' || toStorage)
@@ -660,6 +665,9 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			for(int i = 0; i < modifier && CanSell(toStorage); ++i)
 				Sell(toStorage);
 			player.UpdateCargoCapacities();
+			if((!selectedOutfit || !HasItem(selectedOutfit->TrueName())) &&
+					(!selectedShip || !HasItem(selectedShip->TrueModelName())))
+				MainRight();
 		}
 	}
 	else if(key == SDLK_LEFT)
@@ -1133,64 +1141,44 @@ void ShopPanel::SideSelect(Ship *ship)
 
 void ShopPanel::MainLeft()
 {
-	vector<Zone>::const_iterator start = MainStart();
-	if(start == zones.end())
+	if(mainStart == mainEnd)
 		return;
 
 	vector<Zone>::const_iterator it = Selected();
-	// Special case: nothing is selected. Go to the last item.
-	if(it == zones.end())
+
+	if(it == mainEnd || it == mainStart)
 	{
+		it = mainEnd;
 		--it;
 		mainScroll = maxMainScroll;
-		selectedShip = it->GetShip();
-		selectedOutfit = it->GetOutfit();
-		return;
-	}
-
-	if(it == start)
-	{
-		mainScroll = 0;
-		selectedShip = nullptr;
-		selectedOutfit = nullptr;
 	}
 	else
 	{
-		int previousY = it->Center().Y();
+		const int previousY = it->Center().Y();
 		--it;
 		mainScroll += it->Center().Y() - previousY;
 		if(mainScroll < 0)
 			mainScroll = 0;
-		selectedShip = it->GetShip();
-		selectedOutfit = it->GetOutfit();
 	}
+
+	selectedShip = it->GetShip();
+	selectedOutfit = it->GetOutfit();
 }
 
 
 
 void ShopPanel::MainRight()
 {
-	vector<Zone>::const_iterator start = MainStart();
-	if(start == zones.end())
+	if(mainStart == mainEnd)
 		return;
 
 	vector<Zone>::const_iterator it = Selected();
-	// Special case: nothing is selected. Select the first item.
-	if(it == zones.end())
-	{
-		// Already at mainScroll = 0, no scrolling needed.
-		selectedShip = start->GetShip();
-		selectedOutfit = start->GetOutfit();
-		return;
-	}
+	const int previousY = it->Center().Y();
 
-	int previousY = it->Center().Y();
-	++it;
-	if(it == zones.end())
+	if(it == mainEnd || ++it == mainEnd)
 	{
+		it = mainStart;
 		mainScroll = 0;
-		selectedShip = nullptr;
-		selectedOutfit = nullptr;
 	}
 	else
 	{
@@ -1198,89 +1186,83 @@ void ShopPanel::MainRight()
 			mainScroll += it->Center().Y() - previousY - mainDetailHeight;
 		if(mainScroll > maxMainScroll)
 			mainScroll = maxMainScroll;
-		selectedShip = it->GetShip();
-		selectedOutfit = it->GetOutfit();
 	}
+	selectedShip = it->GetShip();
+	selectedOutfit = it->GetOutfit();
 }
 
 
 
 void ShopPanel::MainUp()
 {
-	vector<Zone>::const_iterator start = MainStart();
-	if(start == zones.end())
+	if(mainStart == mainEnd)
 		return;
 
 	vector<Zone>::const_iterator it = Selected();
-	// Special case: nothing is selected. Go to the last item.
-	if(it == zones.end())
+	// Special case: nothing is selected.
+	if(it == mainEnd)
+		it = mainStart;
+
+	const double previousX = it->Center().X();
+	const double previousY = it->Center().Y();
+	while(it != mainStart && it->Center().Y() == previousY)
+		--it;
+	if(it == mainStart && it->Center().Y() == previousY)
 	{
+		it = mainEnd;
 		--it;
 		mainScroll = maxMainScroll;
-		selectedShip = it->GetShip();
-		selectedOutfit = it->GetOutfit();
-		return;
-	}
-
-	int previousX = it->Center().X();
-	int previousY = it->Center().Y();
-	while(it != start && it->Center().Y() == previousY)
-		--it;
-	while(it != start && it->Center().X() > previousX)
-		--it;
-
-	if(it == start && it->Center().Y() == previousY)
-	{
-		mainScroll = 0;
-		selectedShip = nullptr;
-		selectedOutfit = nullptr;
 	}
 	else
 	{
 		mainScroll += it->Center().Y() - previousY;
 		if(mainScroll < 0)
 			mainScroll = 0;
-		selectedShip = it->GetShip();
-		selectedOutfit = it->GetOutfit();
 	}
+	while(it->Center().X() > previousX)
+		--it;
+
+	selectedShip = it->GetShip();
+	selectedOutfit = it->GetOutfit();
 }
 
 
 
 void ShopPanel::MainDown()
 {
-	vector<Zone>::const_iterator start = MainStart();
-	if(start == zones.end())
+	if(mainStart == mainEnd)
 		return;
 
 	vector<Zone>::const_iterator it = Selected();
 	// Special case: nothing is selected. Select the first item.
-	if(it == zones.end())
-	{
-		// Already at mainScroll = 0, no scrolling needed.
-		selectedShip = start->GetShip();
-		selectedOutfit = start->GetOutfit();
-		return;
-	}
-
-	int previousX = it->Center().X();
-	int previousY = it->Center().Y();
-	while(it != zones.end() && it->Center().Y() == previousY)
-		++it;
-	if(it == zones.end())
+	if(it == mainEnd)
 	{
 		mainScroll = 0;
-		selectedShip = nullptr;
-		selectedOutfit = nullptr;
+		selectedShip = mainStart->GetShip();
+		selectedOutfit = mainStart->GetOutfit();
 		return;
 	}
 
-	int newY = it->Center().Y();
-	while(it != zones.end() && it->Center().X() <= previousX && it->Center().Y() == newY)
+	const double previousX = it->Center().X();
+	const double previousY = it->Center().Y();
+	++it;
+	while(it != mainEnd && it->Center().Y() == previousY)
+		++it;
+	if(it == mainEnd)
+	{
+		it = mainStart;
+		mainScroll = 0;
+	}
+	else
+		mainScroll = min(mainScroll + it->Center().Y() - previousY - mainDetailHeight, maxMainScroll);
+
+	// Overshoot by one in case this line is shorter than the previous one.
+	const double newY = it->Center().Y();
+	++it;
+	while(it != mainEnd && it->Center().X() <= previousX && it->Center().Y() == newY)
 		++it;
 	--it;
 
-	mainScroll = min(mainScroll + it->Center().Y() - previousY - mainDetailHeight, maxMainScroll);
 	selectedShip = it->GetShip();
 	selectedOutfit = it->GetOutfit();
 }
@@ -1290,25 +1272,12 @@ void ShopPanel::MainDown()
 vector<ShopPanel::Zone>::const_iterator ShopPanel::Selected() const
 {
 	// Find the object that was clicked on.
-	vector<Zone>::const_iterator it = MainStart();
-	for( ; it != zones.end(); ++it)
+	vector<Zone>::const_iterator it = mainStart;
+	for( ; it != mainEnd; ++it)
 		if(it->GetShip() == selectedShip && it->GetOutfit() == selectedOutfit)
 			break;
 
 	return it;
-}
-
-
-
-vector<ShopPanel::Zone>::const_iterator ShopPanel::MainStart() const
-{
-	// Find the first non-player-ship click zone.
-	int margin = Screen::Right() - SHIP_SIZE;
-	vector<Zone>::const_iterator start = zones.begin();
-	while(start != zones.end() && start->Center().X() > margin)
-		++start;
-
-	return start;
 }
 
 
