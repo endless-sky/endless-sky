@@ -783,12 +783,6 @@ void OutfitterPanel::DrawKey()
 void OutfitterPanel::ToggleForSale()
 {
 	showForSale = !showForSale;
-
-	if(selectedOutfit && !HasItem(selectedOutfit->TrueName()))
-	{
-		selectedOutfit = nullptr;
-	}
-
 	ShopPanel::ToggleForSale();
 }
 
@@ -797,12 +791,6 @@ void OutfitterPanel::ToggleForSale()
 void OutfitterPanel::ToggleStorage()
 {
 	showStorage = !showStorage;
-
-	if(selectedOutfit && !HasItem(selectedOutfit->TrueName()))
-	{
-		selectedOutfit = nullptr;
-	}
-
 	ShopPanel::ToggleStorage();
 }
 
@@ -811,11 +799,6 @@ void OutfitterPanel::ToggleStorage()
 void OutfitterPanel::ToggleCargo()
 {
 	showCargo = !showCargo;
-
-	if(selectedOutfit && !HasItem(selectedOutfit->TrueName()))
-	{
-		selectedOutfit = nullptr;
-	}
 
 	if(playerShip)
 	{

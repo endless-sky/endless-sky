@@ -584,6 +584,7 @@ int ShopPanel::VisibilityCheckboxesSize() const
 
 void ShopPanel::ToggleForSale()
 {
+	CheckSelection();
 	delayedAutoScroll  = true;
 }
 
@@ -591,6 +592,7 @@ void ShopPanel::ToggleForSale()
 
 void ShopPanel::ToggleStorage()
 {
+	CheckSelection();
 	delayedAutoScroll = true;
 }
 
@@ -598,6 +600,7 @@ void ShopPanel::ToggleStorage()
 
 void ShopPanel::ToggleCargo()
 {
+	CheckSelection();
 	delayedAutoScroll = true;
 }
 
@@ -1077,11 +1080,13 @@ void ShopPanel::SideSelect(Ship *ship)
 		playerShips.erase(ship);
 		if(playerShip == ship)
 			playerShip = playerShips.empty() ? nullptr : *playerShips.begin();
+		CheckSelection();
 		return;
 	}
 
 	playerShip = ship;
 	playerShips.insert(playerShip);
+	CheckSelection();
 }
 
 
@@ -1223,29 +1228,53 @@ void ShopPanel::MainDown()
 
 
 
-// If the selected item is no longer present, move the selection off of it.
+// If the selected item is no longer displayed, advance selection until we find something that is.
 void ShopPanel::CheckSelection()
 {
-	if((selectedOutfit && HasItem(selectedOutfit->TrueName())) ||
-			(selectedShip && HasItem(selectedShip->TrueModelName())))
+	if((!selectedOutfit && !selectedShip) ||
+			(selectedShip && HasItem(selectedShip->TrueModelName())) ||
+			(selectedOutfit && HasItem(selectedOutfit->TrueName())))
 		return;
 
-	MainRight();
-
-	if((selectedOutfit && HasItem(selectedOutfit->TrueName())) ||
-			(selectedShip && HasItem(selectedShip->TrueModelName())))
+	vector<Zone>::const_iterator it = Selected();
+	if(it == mainEnd)
 		return;
+	const vector<Zone>::const_iterator origIt = it;
 
-	// If it's still not present, the shop is empty.
-	selectedShip = nullptr;
-	selectedOutfit = nullptr;
+	if(++it == mainEnd)
+		it = mainStart;
+	while(it != origIt)
+	{
+		const Outfit *outfit = it->GetOutfit();
+		if(outfit && HasItem(outfit->TrueName()))
+			break;
+		const Ship *ship = it->GetShip();
+		if(ship && HasItem(ship->TrueModelName()))
+			break;
+
+		if(++it == mainEnd)
+			it = mainStart;
+	}
+
+	if(it == origIt)
+	{
+		// No displayed objects, apparently.
+		selectedShip = nullptr;
+		selectedOutfit = nullptr;
+	}
+	else
+	{
+		selectedShip = it->GetShip();
+		selectedOutfit = it->GetOutfit();
+		MainAutoScroll(it);
+	}
 }
 
 
 
+// Find the currently selected item.
 vector<ShopPanel::Zone>::const_iterator ShopPanel::Selected() const
 {
-	// Find the object that was clicked on.
 	vector<Zone>::const_iterator it = mainStart;
 	for( ; it != mainEnd; ++it)
 		if(it->GetShip() == selectedShip && it->GetOutfit() == selectedOutfit)
