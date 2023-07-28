@@ -141,7 +141,7 @@ namespace DownloadHelper {
 		archive_read_support_format_all(a);
 		archive_read_open_filename(a, filename, 10240);
 
-		char* dest_file;
+		string dest_file;
 		for(;;)
 		{
 			retVal = archive_read_next_header(a, &entry);
@@ -164,9 +164,8 @@ namespace DownloadHelper {
 				archive_entry_set_pathname(entry, thisEntryName.c_str());
 			}
 			// Add root folder to path if neccessary.
-			asprintf(&dest_file, "%s/%s", (destination
-				+ (hasHeadFolder ? "" : expectedName)).c_str(), archive_entry_pathname(entry));
-			archive_entry_set_pathname(entry, dest_file);
+			dest_file = (destination + (hasHeadFolder ? "" : expectedName)) + archive_entry_pathname(entry);
+			archive_entry_set_pathname(entry, dest_file.c_str());
 			// Write files.
 			retVal = archive_write_header(ext, entry);
 			if(retVal != ARCHIVE_OK)
