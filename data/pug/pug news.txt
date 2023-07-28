@@ -355,6 +355,7 @@ news "pug on pug planets during fw"
 		government Pug
 		near Deneb
 		near Vega
+		not attributes "uninhabited"
 	name
 		word
 			"Pug"
