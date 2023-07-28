@@ -40,7 +40,7 @@ namespace {
 			if(child.Size() >= 3)
 			{
 				const string &effect = child.Token(2);
-				if (effect == "none")
+				if(effect == "none")
 					specialPenalty = Government::SpecialPenalty::NONE;
 				else if(effect == "provoke")
 					specialPenalty = Government::SpecialPenalty::PROVOKE;
@@ -54,8 +54,8 @@ namespace {
 		for(const DataNode &child : node)
 			if(child.Size() >= 2)
 			{
-				const string& key = child.Token(0);
-				if (key == "assist")
+				const string &key = child.Token(0);
+				if(key == "assist")
 					loadPenalty(child, ShipEvent::ASSIST);
 				else if(key == "disable")
 					loadPenalty(child, ShipEvent::DISABLE);
