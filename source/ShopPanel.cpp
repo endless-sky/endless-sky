@@ -1018,6 +1018,7 @@ void ShopPanel::SideSelect(int count)
 		if(playerShip)
 			playerShips.insert(playerShip);
 
+		CheckSelection();
 		return;
 	}
 
