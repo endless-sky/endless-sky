@@ -308,10 +308,10 @@ mission "<uhai> 5: Scan Auxiliary"
 		government "Alpha"
 		personality timid staying vindictive
 		system "Hi Yahr"
-		ship "Far Osk 27" "Prancer"
-		ship "Far Osk 27" "Vixen"
-		ship "Far Osk 27" "Anger"
-		ship "Far Osk 27" "Dart"
+		ship "Far Osk 27" "Vanity"
+		ship "Far Osk 27" "Greed"
+		ship "Far Osk 27" "Envy"
+		ship "Far Osk 27" "Pride"
 	on visit
 		dialog "You should have landed on <destination>, but you did not scan the Auxiliary yet. Time is of essence, take off and scan its cargo as soon as possible!"
 	to fail
@@ -1291,12 +1291,12 @@ mission "<uhai> 9: Capture The Alpha Auxiliary"
 		government "Cerberus"
 		system "Host"
 		personality heroic nemesis staying
-		ship "Far Osk 27" "Prancer"
-		ship "Far Osk 27" "Comet"
-		ship "Far Osk 27" "Dagger"
-		ship "Far Osk 27" "Oren"
-		ship "Far Osk 27" "Mert"
-		ship "Far Osk 27" "Dart"
+		ship "Far Osk 27" "Apathy"
+		ship "Far Osk 27" "Vanity"
+		ship "Far Osk 27" "Despair"
+		ship "Far Osk 27" "Envy"
+		ship "Far Osk 27" "Lust"
+		ship "Far Osk 27" "Pride"
 	# additional fighters if the Alphas were uncontested by Midas. one can use these to fill their Auxiliary with fighters
 	npc
 		government "Cerberus"
@@ -1304,10 +1304,10 @@ mission "<uhai> 9: Capture The Alpha Auxiliary"
 		personality heroic nemesis staying
 		to spawn
 			has "midas: wronged"
-		ship "Far Osk 27" "Vengeance"
+		ship "Far Osk 27" "Wrath"
+		ship "Far Osk 27" "Glutony"
 		ship "Far Osk 27" "Greed"
-		ship "Far Osk 27" "Darcy"
-		ship "Far Osk 27" "Karen"
+		ship "Far Osk 27" "Desecration"
 	to fail
 		has "Wanderers: Defend Vara Ke'sok: done"
 	to fail
@@ -1411,7 +1411,8 @@ mission "<uhai> 9: Alpha Base"
 		set "found alpha base"
 		conversation
 			`You do a detailed scan of the Alpha base to see if there are any more Jump Drives or anyone who could have witnessed the fight. You cannot retrieve any information: it seems to either be too deep or at least shielded from scans in some way. You will have to go in blind.`
-			`	The doors of the hangar open to let you in. Maybe it is an automated response to this ship, or whoever is down here assumed the Alphas won the fight. If there is anyone here, it's probably a skeleton crew. You and your crew carefully exit your ship, but you see no signs of life here. They could be hidden, so you proceed cautiously, looking for the jump drive vault. On the way you hear sounds - sounds that definitely did not originate from humans. Heading that way, you find a brig full of Korath slaves, with a lizard head displayed above the cells. They seem to have been prisoners of the Alphas, and you find what appears to be a crudely rigged translation device with them. They do not look to be in a state to talk about anything though, so you should probably take them to Darkcloak and talk to the Chiefs about this. Hopefully the Korath will have recovered by then. You notice one has a very serious injury to his leg, it seems that it has been partially replaced by a crude prosthetic. He may not survive the transport.`
+			`	The doors of the hangar open to let you in. Maybe it is an automated response to this ship, or whoever is down here assumed the Alphas won the fight. That said, if there is anyone here, it's probably a skeleton crew.`
+			`	You and your crew carefully exit your ship, but you see no signs of life here. They could be hidden, so you proceed cautiously, looking for the jump drive vault. On the way you hear sounds - sounds that definitely did not originate from humans. Heading that way, you find a brig full of Korath slaves, with a lizard head displayed above the cells. They seem to have been prisoners of the Alphas, and you find what appears to be a crudely rigged translation device with them. They do not look to be in a state to talk about anything though, so you should probably take them to Darkcloak and talk to the Chiefs about this. Hopefully the Korath will have recovered by then. You notice one has a very serious injury to his leg, it seems that it has been partially replaced by a crude prosthetic. He may not survive the transport.`
 			`	You find the Jump Drives easily enough, close to the hangar. There are ten here, and you load them all onto your ship. It seems the base was abandoned for some reason.`
 			choice
 				`	(Explore the Auxiliary.)`
