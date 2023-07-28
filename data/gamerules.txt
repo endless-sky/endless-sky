@@ -65,7 +65,7 @@ gamerules
 	# First factor of depreciation calculation. The second factor is "depreciation max age" below
 	# This is the proportion of a ship or outfit's value that remains per day after the grace period.
 	# The value is then multiplied by previous value on the next day, and repeat.
-	# So this can be calculated by "remaining daily percent" = "daily percent" ^ (age - "grace period")
+	# So this can be calculated by "remaining daily proportion" = "daily proportion" ^ (age - "grace period")
 	# where age is in days. "remaining daily percent" is then multiplied by result from next factor.
 	# DEFAULT: .997 (99.7 percent)
 	# ALLOWABLE VALUES: any value between 0. and 1.
