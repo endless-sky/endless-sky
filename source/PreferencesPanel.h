@@ -87,8 +87,8 @@ private:
 
 	nlohmann::json installAbles;
 	InstallAble selectedInstallAble;
-	int installAblePages = 1;
-	int currentInstallAblePage = 0;
+	unsigned int installAblePages = 1;
+	unsigned int currentInstallAblePage = 0;
 
 	std::vector<ClickZone<Command>> zones;
 	std::vector<ClickZone<std::string>> prefZones;
