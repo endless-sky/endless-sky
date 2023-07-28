@@ -89,6 +89,7 @@ private:
 	InstallAble selectedInstallAble;
 	unsigned int installAblePages = 1;
 	unsigned int currentInstallAblePage = 0;
+	bool downloadedInfo = false;
 
 	std::vector<ClickZone<Command>> zones;
 	std::vector<ClickZone<std::string>> prefZones;

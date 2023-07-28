@@ -97,14 +97,6 @@ PreferencesPanel::PreferencesPanel()
 			selectedPlugin = plugin.first;
 			break;
 		}
-	DownloadHelper::Download(
-		"https://raw.githubusercontent.com/endless-sky/endless-sky-plugins/master/generated/plugins.json",
-		(Files::Config() + "plugins.json").c_str());
-	ifstream pluginlistFile(Files::Config() + "plugins.json");
-	installAbles = nlohmann::json::parse(pluginlistFile);
-	pluginlistFile.close();
-	installAblePages = ((installAbles.size() - (installAbles.size() % MAX_INSTALL_ABLES_PER_PAGE))
-		/ MAX_INSTALL_ABLES_PER_PAGE) + (installAbles.size() % MAX_INSTALL_ABLES_PER_PAGE > 0);
 
 	SetIsFullScreen(true);
 }
@@ -185,7 +177,21 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 			Command::SetKey(zones[latest].Value(), 0);
 	}
 	else if(key == 'i' && page == 'p')
+	{
 		page = 'i';
+		if(!downloadedInfo)
+		{
+			DownloadHelper::Download(
+				"https://raw.githubusercontent.com/endless-sky/endless-sky-plugins/master/generated/plugins.json",
+				(Files::Config() + "plugins.json").c_str());
+			ifstream pluginlistFile(Files::Config() + "plugins.json");
+			installAbles = nlohmann::json::parse(pluginlistFile);
+			pluginlistFile.close();
+			installAblePages = ((installAbles.size() - (installAbles.size() % MAX_INSTALL_ABLES_PER_PAGE))
+				/ MAX_INSTALL_ABLES_PER_PAGE) + (installAbles.size() % MAX_INSTALL_ABLES_PER_PAGE > 0);
+			downloadedInfo = true;
+		}
+	}
 	else if(key == 'i' && page == 'i' && selectedInstallAble.url.size())
 		Plugins::Install(selectedInstallAble.url, selectedInstallAble.name, selectedInstallAble.version);
 	else if(key == 'u' && page == 'i' && selectedInstallAble.url.size())
