@@ -650,9 +650,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		{
 			Buy(key == 'i' || key == 'c');
 			player.UpdateCargoCapacities();
-			if((!selectedOutfit || !HasItem(selectedOutfit->TrueName())) &&
-					(!selectedShip || !HasItem(selectedShip->TrueModelName())))
-				MainRight();
+			CheckSelection();
 		}
 	}
 	else if(key == 's' || toStorage)
@@ -665,9 +663,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			for(int i = 0; i < modifier && CanSell(toStorage); ++i)
 				Sell(toStorage);
 			player.UpdateCargoCapacities();
-			if((!selectedOutfit || !HasItem(selectedOutfit->TrueName())) &&
-					(!selectedShip || !HasItem(selectedShip->TrueModelName())))
-				MainRight();
+			CheckSelection();
 		}
 	}
 	else if(key == SDLK_LEFT)
@@ -1265,6 +1261,26 @@ void ShopPanel::MainDown()
 
 	selectedShip = it->GetShip();
 	selectedOutfit = it->GetOutfit();
+}
+
+
+
+// If the selected item is no longer present, move the selection off of it.
+void ShopPanel::CheckSelection()
+{
+	if((selectedOutfit && HasItem(selectedOutfit->TrueName())) ||
+			(selectedShip && HasItem(selectedShip->TrueModelName())))
+		return;
+
+	MainRight();
+
+	if((selectedOutfit && HasItem(selectedOutfit->TrueName())) ||
+			(selectedShip && HasItem(selectedShip->TrueModelName())))
+		return;
+
+	// If it's still not present, the shop is empty.
+	selectedShip = nullptr;
+	selectedOutfit = nullptr;
 }
 
 
