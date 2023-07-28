@@ -84,23 +84,6 @@ void ShopPanel::Step()
 	// them how to reorder the ships in their fleet.
 	if(player.Ships().size() > 1)
 		DoHelp("multiple ships");
-	// Perform autoscroll to bring item details into view.
-	if(scrollDetailsIntoView && mainDetailHeight > 0)
-	{
-		int mainTopY = Screen::Top();
-		int mainBottomY = Screen::Bottom() - 40;
-		double selectedBottomY = selectedTopY + TileSize() + mainDetailHeight;
-		// Scroll up until the bottoms match.
-		if(selectedBottomY > mainBottomY)
-			DoScroll(max(-30., mainBottomY - selectedBottomY));
-		// Scroll down until the bottoms or the tops match.
-		else if(selectedBottomY < mainBottomY
-			&& (mainBottomY - mainTopY < selectedBottomY - selectedTopY && selectedTopY < mainTopY))
-			DoScroll(min(30., min(mainTopY - selectedTopY, mainBottomY - selectedBottomY)));
-		// Details are in view.
-		else
-			scrollDetailsIntoView = false;
-	}
 }
 
 
@@ -181,7 +164,6 @@ void ShopPanel::DrawShipsSidebar()
 	const Font &font = FontSet::Get(14);
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
-	sideDetailHeight = 0;
 
 	// Fill in the background.
 	FillShader::Fill(
@@ -283,8 +265,8 @@ void ShopPanel::DrawShipsSidebar()
 		DrawShip(*playerShip, point, true);
 
 		Point offset(SIDEBAR_WIDTH / -2, SHIP_SIZE / 2);
-		sideDetailHeight = DrawPlayerShipInfo(point + offset);
-		point.Y() += sideDetailHeight + SHIP_SIZE / 2;
+		const int detailHeight = DrawPlayerShipInfo(point + offset);
+		point.Y() += detailHeight + SHIP_SIZE / 2;
 	}
 	else if(player.Cargo().Size())
 	{
@@ -410,7 +392,6 @@ void ShopPanel::DrawMain()
 	const Font &bigFont = FontSet::Get(18);
 	const Color &dim = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
-	mainDetailHeight = 0;
 
 	const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
 	const Sprite *expandedArrow = SpriteSet::Get("ui/expanded");
@@ -431,7 +412,6 @@ void ShopPanel::DrawMain()
 	Point point = begin;
 	const float endX = Screen::Right() - (SIDE_WIDTH + 1);
 	double nextY = begin.Y() + TILE_SIZE;
-	int scrollY = 0;
 	mainStart = zones.end();
 	for(const auto &cat : categories)
 	{
@@ -465,7 +445,7 @@ void ShopPanel::DrawMain()
 			if(isCollapsed)
 				break;
 
-			DrawItem(name, point, scrollY);
+			DrawItem(name, point);
 
 			point.X() += columnWidth;
 			if(point.X() >= endX)
@@ -473,7 +453,6 @@ void ShopPanel::DrawMain()
 				point.X() = begin.X();
 				point.Y() = nextY;
 				nextY += TILE_SIZE;
-				scrollY = -mainDetailHeight;
 			}
 		}
 
@@ -489,7 +468,6 @@ void ShopPanel::DrawMain()
 				point.X() = begin.X();
 				point.Y() = nextY;
 				nextY += TILE_SIZE;
-				scrollY = -mainDetailHeight;
 			}
 			point.Y() += 40;
 			nextY += 40;
@@ -630,7 +608,6 @@ void ShopPanel::ToggleCargo()
 // Only override the ones you need; the default action is to return false.
 bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	scrollDetailsIntoView = false;
 	bool toStorage = selectedOutfit && (key == 'r' || key == 'u');
 	if(key == 'l' || key == 'd' || key == SDLK_ESCAPE
 			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
@@ -847,10 +824,6 @@ bool ShopPanel::Click(int x, int y, int /* clicks */)
 			else
 				selectedOutfit = zone.GetOutfit();
 
-			// Scroll details into view in Step() when the height is known.
-			scrollDetailsIntoView = true;
-			mainDetailHeight = 0;
-			mainScroll = max(0., mainScroll + zone.ScrollY());
 			return true;
 		}
 
@@ -910,10 +883,7 @@ bool ShopPanel::Drag(double dx, double dy)
 				}
 	}
 	else
-	{
-		scrollDetailsIntoView = false;
 		DoScroll(dy);
-	}
 
 	return true;
 }
@@ -931,7 +901,6 @@ bool ShopPanel::Release(int x, int y)
 
 bool ShopPanel::Scroll(double dx, double dy)
 {
-	scrollDetailsIntoView = false;
 	return DoScroll(dy * 2.5 * Preferences::ScrollSpeed());
 }
 
@@ -962,15 +931,15 @@ int64_t ShopPanel::LicenseCost(const Outfit *outfit, bool onlyOwned) const
 
 
 
-ShopPanel::Zone::Zone(Point center, Point size, const Ship *ship, double scrollY)
-	: ClickZone(center, size, ship), scrollY(scrollY)
+ShopPanel::Zone::Zone(Point center, Point size, const Ship *ship)
+	: ClickZone(center, size, ship)
 {
 }
 
 
 
-ShopPanel::Zone::Zone(Point center, Point size, const Outfit *outfit, double scrollY)
-	: ClickZone(center, size, nullptr), scrollY(scrollY), outfit(outfit)
+ShopPanel::Zone::Zone(Point center, Point size, const Outfit *outfit)
+	: ClickZone(center, size, nullptr), outfit(outfit)
 {
 }
 
@@ -986,13 +955,6 @@ const Ship *ShopPanel::Zone::GetShip() const
 const Outfit *ShopPanel::Zone::GetOutfit() const
 {
 	return outfit;
-}
-
-
-
-double ShopPanel::Zone::ScrollY() const
-{
-	return scrollY;
 }
 
 
@@ -1179,7 +1141,7 @@ void ShopPanel::MainRight()
 	else
 	{
 		if(it->Center().Y() != previousY)
-			mainScroll += it->Center().Y() - previousY - mainDetailHeight;
+			mainScroll += it->Center().Y() - previousY;
 		if(mainScroll > maxMainScroll)
 			mainScroll = maxMainScroll;
 	}
@@ -1250,7 +1212,7 @@ void ShopPanel::MainDown()
 		mainScroll = 0;
 	}
 	else
-		mainScroll = min(mainScroll + it->Center().Y() - previousY - mainDetailHeight, maxMainScroll);
+		mainScroll = min(mainScroll + it->Center().Y() - previousY, maxMainScroll);
 
 	// Overshoot by one in case this line is shorter than the previous one.
 	const double newY = it->Center().Y();

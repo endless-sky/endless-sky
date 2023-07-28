@@ -85,7 +85,7 @@ protected:
 	virtual int VisibilityCheckboxesSize() const;
 	virtual int DrawPlayerShipInfo(const Point &point) = 0;
 	virtual bool HasItem(const std::string &name) const = 0;
-	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) = 0;
+	virtual void DrawItem(const std::string &name, const Point &point) = 0;
 	virtual int DividerOffset() const = 0;
 	virtual int DetailWidth() const = 0;
 	virtual int DrawDetails(const Point &center) = 0;
@@ -116,16 +116,13 @@ protected:
 protected:
 	class Zone : public ClickZone<const Ship *> {
 	public:
-		explicit Zone(Point center, Point size, const Ship *ship, double scrollY = 0.);
-		explicit Zone(Point center, Point size, const Outfit *outfit, double scrollY = 0.);
+		explicit Zone(Point center, Point size, const Ship *ship);
+		explicit Zone(Point center, Point size, const Outfit *outfit);
 
 		const Ship *GetShip() const;
 		const Outfit *GetOutfit() const;
 
-		double ScrollY() const;
-
 	private:
-		double scrollY = 0.;
 		const Outfit *outfit = nullptr;
 	};
 
@@ -173,9 +170,6 @@ protected:
 	double maxSidebarScroll = 0.;
 	double maxInfobarScroll = 0.;
 	ShopPane activePane = ShopPane::Main;
-	int mainDetailHeight = 0;
-	int sideDetailHeight = 0;
-	bool scrollDetailsIntoView = false;
 	double selectedTopY = 0.;
 	bool sameSelectedTopY = false;
 	char hoverButton = '\0';
