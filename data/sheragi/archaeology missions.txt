@@ -332,6 +332,30 @@ outfit "Timer Submunition"
 		"hull damage" .15
 		"no damage scaling"
 
+# mission "Sad Archie"
+# 	landing
+# 	invisible
+# 	to offer
+# 		has "There Might Be Riots part 3B: done"
+# 	destination "Zug"
+# 	
+# 	npc disable
+# 		government "Test Dummy"
+# 		system "Ildaria"
+# 		personality unconstrained heroic nemesis
+# 		ship "Timer Ship" "Timer"
+# 		conversation
+# 			`As your ship drifts through the cloud of dust that surrounds Ildaria, it occurs to you that this must be the "cloudy star out along the Rim" that Ulrich from There Might Be Riots told you about. Remembering his story, you shut your eyes and attempt to meditate. But instead, you just fall asleep.`
+# 			scene "scene/eso0"
+# 			`You dream that you leave this star system and return to Zug, but when you land there everything is different: the cities you remember are gone, and in their place are other cities with strange architecture, populated by gargantuan dragon-like creatures.`
+# 			`	Time speeds up, and you watch as the dragon cities grow and spread out. You see one city buried under a massive lava flow, starships buzzing around it like a cloud of flies to carry people and goods to safety. Other cities are destroyed by war, and then abruptly the dragon-people are all gone and their cities lie vacant. Buildings crumble, and the forests reclaim the land.`
+# 			`	Then you wake up and find yourself back in your ship, in the Ildaria system. Weird.`
+# 	
+# 	on complete
+# 		log `Experienced a strange vision while drifting in the Ildaria system that looked like the fall of a civilization of dragon-people. The terrain on the planet of Zug looks strikingly similar to this vision.`
+# 		conversation
+# 			`On a whim, as you're landing on Zug you pull up a geological map of the planet and find that the geography you dreamt of while drifting in the Ildaria system was surprisingly close to the real thing. There's even a massive basalt outcropping right where you saw a lava flow burying a city. There's no way your ship's sensors can tell what's underneath it, though.`
+
 mission "Sad Archie"
 	landing
 	invisible
@@ -339,17 +363,19 @@ mission "Sad Archie"
 		has "There Might Be Riots part 3B: done"
 	destination "Zug"
 	
-	npc disable
-		government "Test Dummy"
-		system "Ildaria"
-		personality unconstrained heroic nemesis ramming
-		ship "Timer Ship" "Timer"
-		conversation
-			`As your ship drifts through the cloud of dust that surrounds Ildaria, it occurs to you that this must be the "cloudy star out along the Rim" that Ulrich from There Might Be Riots told you about. Remembering his story, you shut your eyes and attempt to meditate. But instead, you just fall asleep.`
-			scene "scene/eso0"
-			`You dream that you leave this star system and return to Zug, but when you land there everything is different: the cities you remember are gone, and in their place are other cities with strange architecture, populated by gargantuan dragon-like creatures.`
-			`	Time speeds up, and you watch as the dragon cities grow and spread out. You see one city buried under a massive lava flow, starships buzzing around it like a cloud of flies to carry people and goods to safety. Other cities are destroyed by war, and then abruptly the dragon-people are all gone and their cities lie vacant. Buildings crumble, and the forests reclaim the land.`
-			`	Then you wake up and find yourself back in your ship, in the Ildaria system. Weird.`
+	timer "Sad Archie Timer" 120 60
+		system Ildaria
+		idle
+		uncloaked
+		reset "leave system"
+		proximity 1200 close
+		on timeup
+			conversation 
+				`As your ship drifts through the cloud of dust that surrounds Ildaria, it occurs to you that this must be the "cloudy star out along the Rim" that Ulrich from There Might Be Riots told you about. Remembering his story, you shut your eyes and attempt to meditate. But instead, you just fall asleep.`
+				scene "scene/eso0"
+				`You dream that you leave this star system and return to Zug, but when you land there everything is different: the cities you remember are gone, and in their place are other cities with strange architecture, populated by gargantuan dragon-like creatures.`
+				`	Time speeds up, and you watch as the dragon cities grow and spread out. You see one city buried under a massive lava flow, starships buzzing around it like a cloud of flies to carry people and goods to safety. Other cities are destroyed by war, and then abruptly the dragon-people are all gone and their cities lie vacant. Buildings crumble, and the forests reclaim the land.`
+				`	Then you wake up and find yourself back in your ship, in the Ildaria system. Weird.`
 	
 	on complete
 		log `Experienced a strange vision while drifting in the Ildaria system that looked like the fall of a civilization of dragon-people. The terrain on the planet of Zug looks strikingly similar to this vision.`

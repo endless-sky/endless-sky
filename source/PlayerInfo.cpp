@@ -44,6 +44,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "StartConditions.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "Timer.h"
 #include "UI.h"
 
 #include <algorithm>
@@ -4268,6 +4269,15 @@ void PlayerInfo::StepMissions(UI *ui)
 			missionsToRemove.push_back(it.first);
 	for(const Mission *mission : missionsToRemove)
 		cargo.RemoveMissionCargo(mission);
+}
+
+
+void PlayerInfo::StepMissionTimers(UI *ui)
+{
+	for(Mission &mission : missions)
+		for(Timer &timer : mission.Timers())
+			if(!timer.IsComplete())
+				timer.Step(*this, ui);
 }
 
 
