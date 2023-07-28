@@ -343,7 +343,9 @@ public:
 	std::set<std::string> &Collapsed(const std::string &name);
 	// Should help dialogs relating to carriers be displayed?
 	bool DisplayCarrierHelp() const;
-
+	
+	// Advance any active mission timers that meet the right criteria
+	void StepMissionTimers(UI *ui);
 
 private:
 	// Apply any "changes" saved in this player info to the global game state.

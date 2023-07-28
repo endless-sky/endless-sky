@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MissionAction.h"
 #include "NPC.h"
 #include "TextReplacements.h"
+#include "Timer.h"
 
 #include <list>
 #include <map>
@@ -165,6 +166,8 @@ public:
 	// Get a list of NPCs associated with this mission. Every time the player
 	// takes off from a planet, they should be added to the active ships.
 	const std::list<NPC> &NPCs() const;
+	// Get a list of timers associated with this mission.
+	std::list<Timer> &Timers();
 	// Update which NPCs are active based on their spawn and despawn conditions.
 	void UpdateNPCs(const PlayerInfo &player);
 	// Checks if the given ship belongs to one of the mission's NPCs.
@@ -264,6 +267,8 @@ private:
 
 	// NPCs:
 	std::list<NPC> npcs;
+	// Timers:
+	std::list<Timer> timers;
 
 	// Actions to perform:
 	std::map<Trigger, MissionAction> actions;
