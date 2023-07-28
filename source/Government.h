@@ -57,7 +57,7 @@ public:
 		double reputationChange;
 		SpecialPenalty specialPenalty;
 		PenaltyEffect(double reputationChange = 0., SpecialPenalty specialPenalty = SpecialPenalty::NONE) :
-			reputationChange(reputationChange), specialPenalty(specialPenalty) 
+			reputationChange(reputationChange), specialPenalty(specialPenalty)
 		{}
 	};
 

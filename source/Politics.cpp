@@ -135,7 +135,7 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 			// changes. This is to allow two governments to be hostile or
 			// friendly without the player's behavior toward one of them
 			// influencing their reputation with the other.
-			double reputationChange =  (count * weight) * penalty.reputationChange;
+			double reputationChange = (count * weight) * penalty.reputationChange;
 			if(penalty.specialPenalty == Government::SpecialPenalty::ATROCITY && weight > 0)
 				Politics::SetReputation(other, min(0., reputationWith[other]));
 

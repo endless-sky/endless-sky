@@ -33,13 +33,13 @@ namespace {
 	// Load ShipEvent strings and corresponding numerical values into a map.
 	void PenaltyHelper(const DataNode &node, map<int, Government::PenaltyEffect> &penalties)
 	{
-		auto loadPenalty = [&penalties](const DataNode& child, int eventType) -> void
+		auto loadPenalty = [&penalties](const DataNode &child, int eventType) -> void
 		{
 			double amount = child.Value(1);
 			Government::SpecialPenalty specialPenalty = Government::SpecialPenalty::NONE;
-			if (child.Size() >= 3)
+			if(child.Size() >= 3)
 			{
-				const string& effect = child.Token(2);
+				const string &effect = child.Token(2);
 				if (effect == "none")
 					specialPenalty = Government::SpecialPenalty::NONE;
 				else if(effect == "provoke")
@@ -51,8 +51,8 @@ namespace {
 			}
 			penalties[eventType] = Government::PenaltyEffect(amount, specialPenalty);
 		};
-		for (const DataNode& child : node)
-			if (child.Size() >= 2)
+		for(const DataNode &child : node)
+			if(child.Size() >= 2)
 			{
 				const string& key = child.Token(0);
 				if (key == "assist")
