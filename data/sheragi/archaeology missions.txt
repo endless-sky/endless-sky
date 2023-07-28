@@ -345,7 +345,7 @@ mission "Sad Archie"
 		uncloaked
 		reset "leave system"
 		on timeup
-			conversation 
+			conversation
 				`As your ship drifts through the cloud of dust that surrounds Ildaria, it occurs to you that this must be the "cloudy star out along the Rim" that Ulrich from There Might Be Riots told you about. Remembering his story, you shut your eyes and attempt to meditate. But instead, you just fall asleep.`
 				scene "scene/eso0"
 				`You dream that you leave this star system and return to Zug, but when you land there everything is different: the cities you remember are gone, and in their place are other cities with strange architecture, populated by gargantuan dragon-like creatures.`
