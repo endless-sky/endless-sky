@@ -45,7 +45,14 @@ namespace {
 				else if(effect == "provoke")
 					specialPenalty = Government::SpecialPenalty::PROVOKE;
 				else if(effect == "atrocity")
+				{
 					specialPenalty = Government::SpecialPenalty::ATROCITY;
+					if(amount <= 0.)
+					{
+						child.PrintTrace("Warning: the \"atrocity\" effect will not work with no reputation effect (\'0\') associated, defaulting to 0.1:");
+						amount = .1;
+					}
+				}
 				else
 					child.PrintTrace("Skipping unrecognized reputation effect:");
 			}
