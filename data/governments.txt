@@ -490,10 +490,6 @@ government "Hai Merchant (Sympathizers)"
 		"Hai (Friendly Unfettered)" .5
 		"Hai (Unfettered Civilians)" .5
 		"Merchant" .01
-	"custom penalties for"
-		"Hai (Unfettered)"
-			provoke 0 none
-			board 0 provoke
 	"bribe" .02
 	"friendly hail" "friendly hai"
 	"friendly disabled hail" "friendly disabled hai"
