@@ -231,7 +231,7 @@ const string &Files::Tests()
 
 
 
-const string Files::Plugins()
+const string &Files::Plugins()
 {
 	return Config() + "plugins/";
 }
