@@ -111,7 +111,7 @@ void MainPanel::Step()
 		isActive = !ShowHelp(false);
 
 	engine.Step(isActive);
-	
+
 	if(isActive)
 		player.StepMissionTimers(GetUI());
 

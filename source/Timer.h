@@ -20,8 +20,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "System.h"
 
 #include <cstdint>
-#include <string>
 #include <map>
+#include <string>
 
 class DataNode;
 class DataWriter;
@@ -44,7 +44,7 @@ public:
 	// Note: the Save() function can assume this is an instantiated Timer, not a template,
 	// so the time to wait will be saved fully calculated, and with any elapsed time subtracted
 	void Save(DataWriter &out) const;
-	
+
 	// Get the total time to wait, including the random value
 	uint64_t TimeToWait() const;
 	// Get whether the timer requires the player to be idle
@@ -60,10 +60,10 @@ public:
 	const Planet *ProximityCenter() const;
 	// Get whether the timer is currently active
 	bool IsComplete() const;
-	
+
 	// Calculate the total time to wait, including any random value
 	Timer Instantiate(std::map<std::string, std::string> &subs,
-					 const System *origin, int jumps, int64_t payload) const;
+					const System *origin, int jumps, int64_t payload) const;
 	// Progress the timer within the main loop
 	void Step(PlayerInfo &player, UI *ui);
 
@@ -77,7 +77,7 @@ private:
 	// The basic amount of time to wait, with the optional random values
 	uint64_t base = 0;
 	uint32_t rand = 0;
-	
+
 	// The system the timer is for
 	const System *system = nullptr;
 
@@ -96,10 +96,10 @@ private:
 	// This specifies the system object to be the center; if this is nullptr, but proximity
 	// is positive, then the system center is used instead
 	const Planet *proximityCenter = nullptr;
-	
+
 	// The action to be performed when the timer elapses
 	MissionAction action;
-	
+
 	// Used for holding the calculated time to wait and current timer value when it's actually active
 	int64_t timeToWait = 0;
 	double timeElapsed = 0.;
