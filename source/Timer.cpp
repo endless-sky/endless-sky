@@ -41,9 +41,9 @@ void Timer::Load(const DataNode &node, const string &missionName)
 		base = static_cast<int64_t>(node.Value(2));
 	if(node.Size() > 3)
 		rand = static_cast<uint32_t>(node.Value(3));
-	
+
 	timeToWait = base + Random::Int(rand);
-	
+
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "idle")
@@ -81,7 +81,7 @@ void Timer::Load(const DataNode &node, const string &missionName)
 		// We keep "on timeup" as separate tokens so that it's compatible with MissionAction syntax
 		else if(child.Token(0) == "on" && child.Size() > 1 && child.Token(1) == "timeup")
 			action.Load(child, missionName);
-			
+
 	}
 }
 
@@ -127,7 +127,7 @@ void Timer::Save(DataWriter &out) const
 				}
 			}
 		}
-		
+
 		action.Save(out);
 	}
 	out.EndChild();
@@ -149,14 +149,14 @@ Timer Timer::Instantiate(map<string, string> &subs,
 	result.proximityCenter = proximityCenter;
 	result.closeTo = closeTo;
 	result.resetCondition = resetCondition;
-	
+
 	result.timeToWait = timeToWait;
 	result.timeElapsed = timeElapsed;
 	result.isComplete = isComplete;
 	result.isActive = isActive;
-	
+
 	result.action = action.Instantiate(subs, origin, jumps, payload);
-	
+
 	return result;
 }
 
@@ -219,7 +219,8 @@ void Timer::Step(PlayerInfo &player, UI *ui)
 	}
 	if(requireIdle)
 	{
-		bool shipIdle = (!player.Flagship()->IsThrusting() && !player.Flagship()->IsSteering() && !player.Flagship()->IsReversing());
+		bool shipIdle = (!player.Flagship()->IsThrusting() && !player.Flagship()->IsSteering()
+						&& !player.Flagship()->IsReversing());
 		for(const Hardpoint &weapon : player.Flagship()->Weapons())
 			shipIdle &= !weapon.WasFiring();
 		if(!shipIdle)
@@ -256,7 +257,7 @@ void Timer::Step(PlayerInfo &player, UI *ui)
 		}
 	}
 	isActive = true;
-	timeElapsed += (1./60.);
+	timeElapsed += (1. / 60.);
 	if(timeElapsed >= timeToWait)
 	{
 		action.Do(player, ui);
