@@ -170,8 +170,6 @@ protected:
 	double maxSidebarScroll = 0.;
 	double maxInfobarScroll = 0.;
 	ShopPane activePane = ShopPane::Main;
-	double selectedTopY = 0.;
-	bool sameSelectedTopY = false;
 	char hoverButton = '\0';
 
 	std::vector<Zone> zones;
@@ -194,6 +192,7 @@ private:
 	bool SetScrollToBottom();
 	void SideSelect(int count);
 	void SideSelect(Ship *ship);
+	void MainAutoScroll(const std::vector<Zone>::const_iterator &selected);
 	void MainLeft();
 	void MainRight();
 	void MainUp();
@@ -209,6 +208,7 @@ private:
 	// Start and end of main pane zones
 	std::vector<Zone>::const_iterator mainStart;
 	std::vector<Zone>::const_iterator mainEnd;
+	bool delayedAutoScroll = false;
 };
 
 

@@ -90,18 +90,34 @@ void ShopPanel::Step()
 
 void ShopPanel::Draw()
 {
-	const double oldSelectedTopY = selectedTopY;
-
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	// Clear the list of clickable zones.
 	zones.clear();
 	categoryZones.clear();
 
+	DrawMain();
+
+	if(delayedAutoScroll)
+	{
+		delayedAutoScroll = false;
+		const int oldMainScroll = mainScroll;
+		const auto selected = Selected();
+		if(selected != mainEnd)
+		{
+			MainAutoScroll(selected);
+			if(oldMainScroll != mainScroll)
+			{
+				zones.clear();
+				categoryZones.clear();
+				DrawMain();
+			}
+		}
+	}
+
 	DrawShipsSidebar();
 	DrawDetailsSidebar();
 	DrawButtons();
-	DrawMain();
 	DrawKey();
 
 	shipInfo.DrawTooltips();
@@ -143,18 +159,6 @@ void ShopPanel::Draw()
 			SpriteShader::Draw(sprite, dragPoint, scale, swizzle);
 		}
 	}
-
-	if(sameSelectedTopY)
-	{
-		sameSelectedTopY = false;
-		if(selectedTopY != oldSelectedTopY)
-		{
-			// Redraw with the same selected top (item in the same place).
-			mainScroll = max(0., min(maxMainScroll, mainScroll + selectedTopY - oldSelectedTopY));
-			Draw();
-		}
-	}
-	mainScroll = min(mainScroll, maxMainScroll);
 }
 
 
@@ -433,12 +437,6 @@ void ShopPanel::DrawMain()
 		bool isEmpty = true;
 		for(const string &name : it->second)
 		{
-			bool isSelected = (selectedShip && GameData::Ships().Get(name) == selectedShip)
-				|| (selectedOutfit && GameData::Outfits().Get(name) == selectedOutfit);
-
-			if(isSelected)
-				selectedTopY = point.Y() - TILE_SIZE / 2;
-
 			if(!HasItem(name))
 				continue;
 			isEmpty = false;
@@ -586,21 +584,21 @@ int ShopPanel::VisibilityCheckboxesSize() const
 
 void ShopPanel::ToggleForSale()
 {
-	sameSelectedTopY = true;
+	delayedAutoScroll  = true;
 }
 
 
 
 void ShopPanel::ToggleStorage()
 {
-	sameSelectedTopY = true;
+	delayedAutoScroll = true;
 }
 
 
 
 void ShopPanel::ToggleCargo()
 {
-	sameSelectedTopY = true;
+	delayedAutoScroll = true;
 }
 
 
@@ -959,22 +957,14 @@ const Outfit *ShopPanel::Zone::GetOutfit() const
 
 
 
-bool ShopPanel::DoScroll(double dy)
+bool ShopPanel::DoScroll(const double dy)
 {
-	double *scroll = &mainScroll;
-	double maximum = maxMainScroll;
 	if(activePane == ShopPane::Info)
-	{
-		scroll = &infobarScroll;
-		maximum = maxInfobarScroll;
-	}
+		infobarScroll = max(0., min(maxInfobarScroll, infobarScroll - dy));
 	else if(activePane == ShopPane::Sidebar)
-	{
-		scroll = &sidebarScroll;
-		maximum = maxSidebarScroll;
-	}
-
-	*scroll = max(0., min(maximum, *scroll - dy));
+		sidebarScroll = max(0., min(maxSidebarScroll, sidebarScroll - dy));
+	else
+		mainScroll = max(0., min(maxMainScroll, mainScroll - dy));
 
 	return true;
 }
@@ -1092,7 +1082,24 @@ void ShopPanel::SideSelect(Ship *ship)
 
 	playerShip = ship;
 	playerShips.insert(playerShip);
-	sameSelectedTopY = true;
+}
+
+
+
+// If selected item is offscreen, scroll just enough to put it on.
+void ShopPanel::MainAutoScroll(const vector<Zone>::const_iterator &selected)
+{
+	const int TILE_SIZE = TileSize();
+	const int topY = selected->Center().Y() - TILE_SIZE / 2;
+	const int offTop = topY + Screen::Bottom();
+	if(offTop < 0)
+		mainScroll += offTop;
+	else
+	{
+		const int offBottom = topY + TILE_SIZE - Screen::Bottom();
+		if(offBottom > 0)
+			mainScroll += offBottom;
+	}
 }
 
 
@@ -1112,11 +1119,8 @@ void ShopPanel::MainLeft()
 	}
 	else
 	{
-		const int previousY = it->Center().Y();
 		--it;
-		mainScroll += it->Center().Y() - previousY;
-		if(mainScroll < 0)
-			mainScroll = 0;
+		MainAutoScroll(it);
 	}
 
 	selectedShip = it->GetShip();
@@ -1131,7 +1135,6 @@ void ShopPanel::MainRight()
 		return;
 
 	vector<Zone>::const_iterator it = Selected();
-	const int previousY = it->Center().Y();
 
 	if(it == mainEnd || ++it == mainEnd)
 	{
@@ -1139,12 +1142,8 @@ void ShopPanel::MainRight()
 		mainScroll = 0;
 	}
 	else
-	{
-		if(it->Center().Y() != previousY)
-			mainScroll += it->Center().Y() - previousY;
-		if(mainScroll > maxMainScroll)
-			mainScroll = maxMainScroll;
-	}
+		MainAutoScroll(it);
+
 	selectedShip = it->GetShip();
 	selectedOutfit = it->GetOutfit();
 }
@@ -1157,7 +1156,7 @@ void ShopPanel::MainUp()
 		return;
 
 	vector<Zone>::const_iterator it = Selected();
-	// Special case: nothing is selected.
+	// Special case: nothing is selected.  Start from the first item.
 	if(it == mainEnd)
 		it = mainStart;
 
@@ -1172,11 +1171,8 @@ void ShopPanel::MainUp()
 		mainScroll = maxMainScroll;
 	}
 	else
-	{
-		mainScroll += it->Center().Y() - previousY;
-		if(mainScroll < 0)
-			mainScroll = 0;
-	}
+		MainAutoScroll(it);
+
 	while(it->Center().X() > previousX)
 		--it;
 
@@ -1212,7 +1208,7 @@ void ShopPanel::MainDown()
 		mainScroll = 0;
 	}
 	else
-		mainScroll = min(mainScroll + it->Center().Y() - previousY, maxMainScroll);
+		MainAutoScroll(it);
 
 	// Overshoot by one in case this line is shorter than the previous one.
 	const double newY = it->Center().Y();
