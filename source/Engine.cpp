@@ -1548,7 +1548,6 @@ void Engine::CalculateStep()
 	batchDraw[calcTickTock].SetCenter(newCenter);
 	radar[calcTickTock].SetCenter(newCenter);
 	ShipEffectsShader::SetCenter(newCenter, static_cast<float>(zoom));
-	shipEffects[calcTickTock].clear();
 
 	// Populate the radar.
 	FillRadar();
@@ -1599,11 +1598,6 @@ void Engine::CalculateStep()
 	if(flagship && showFlagship)
 	{
 		AddSprites(*flagship);
-		if (static_cast<int>(Preferences::GetHitEffects()) > 0)
-		{
-			shipEffects[calcTickTock].push_back(ShipEffectsShader::Prepare(flagship, (flagship->Position() - newCenter),
-				player.Flagship()->RecentHits(), zoom, flagship->GetFrame(), flagship->ShieldColors()));
-		}
 		if(flagship->IsThrusting() && !flagship->EnginePoints().empty())
 		{
 			for(const auto &it : flagship->Attributes().FlareSounds())
