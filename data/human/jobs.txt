@@ -2686,7 +2686,7 @@ mission "FW Wildfire Aid [1]"
 			"random" < 60
 		"<problem>" "wildfire"
 			"random" < 30
-	description "A major <problem> has occurred on <destination> and various settlements on the planet have been affected. Bring <cargo> to <planet> by <date> to assist in the firefighting efforts. Payment is <payment>."
+	description "The People's Disaster Assistance Committee needs volunteers like you! A major <problem> has occurred on <destination> and numerous settlements on the planet have been affected. Bring <cargo> to <planet> by <date> to assist in the firefighting efforts. Payment is <payment>."
 	cargo "flames aid" 25 2 .05
 	deadline
 	to offer
@@ -2713,7 +2713,7 @@ mission "FW Wildfire Aid [2]"
 			"random" < 60
 		"<problem>" "wildfire"
 			"random" < 30
-	description "A major <problem> has occurred on <destination> and various settlements on the planet have been affected. Transport a team of <bunks> firefighters to <planet> by <date> to assist in the firefighting efforts. Payment is <payment>."
+	description "The People's Disaster Assistance Committee needs volunteers like you! A major <problem> has occurred on <destination> and many settlements on the planet have been affected. Transport a team of <bunks> firefighters to <planet> by <date> to assist in the firefighting efforts. Payment is <payment>."
 	passengers 5 10
 	deadline
 	to offer
