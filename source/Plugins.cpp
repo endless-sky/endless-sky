@@ -22,8 +22,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Files.h"
 
 #include <algorithm>
+#include <atomic>
 #include <cassert>
-#include <iostream>
 #include <map>
 #include <string>
 
@@ -50,7 +50,8 @@ namespace {
 		}
 	}
 
-	bool networkActivity = false;
+	bool oldNetworkActivity = false;
+	atomic<int> currentNetworkActivity{0};
 }
 
 
@@ -125,7 +126,7 @@ bool Plugins::HasChanged()
 	for(const auto &it : plugins)
 		if(it.second.enabled != it.second.currentState)
 			return true;
-	return false || networkActivity;
+	return false || oldNetworkActivity;
 }
 
 
@@ -147,30 +148,33 @@ void Plugins::TogglePlugin(const string &name)
 
 
 
-bool Plugins::Install(string url, string name, std::string version)
+future<void> Plugins::Install(string url, string name, std::string version)
 {
-	networkActivity = true;
+	oldNetworkActivity = true;
+	return async(launch::async, [url, name, version]() noexcept -> void
+		{
+			currentNetworkActivity.store(currentNetworkActivity + 1);
 
-	bool success = DownloadHelper::Download(url.c_str(),
-		(Files::Plugins() + name + ".zip").c_str());
-	if(success)
-	{
-		success = DownloadHelper::ExtractZIP(
-			(Files::Plugins() + name + ".zip").c_str(),
-			Files::Plugins().c_str(), name + "/");
-	}
-	Files::Write(Files::Plugins() + name + "/version.txt", version);
-	Files::Delete(Files::Plugins() + name + ".zip");
-
-	return success;
+			bool success = DownloadHelper::Download(url.c_str(),
+				(Files::Plugins() + name + ".zip").c_str());
+			if(success)
+			{
+				success = DownloadHelper::ExtractZIP(
+					(Files::Plugins() + name + ".zip").c_str(),
+					Files::Plugins().c_str(), name + "/");
+			}
+			Files::Write(Files::Plugins() + name + "/version.txt", version);
+			Files::Delete(Files::Plugins() + name + ".zip");
+			currentNetworkActivity.store(currentNetworkActivity - 1);
+		});
 }
 
 
 
-bool Plugins::Update(string url, string name, std::string version)
+void Plugins::Update(string url, string name, std::string version)
 {
 	plugins.Get(name)->version = version;
 
 	Files::DeleteDir((Files::Plugins() + name).c_str());
-	return Install(url, name, version);
+	Install(url, name, version);
 }

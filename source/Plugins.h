@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Set.h"
 
+#include <future>
 #include <string>
 
 
@@ -67,8 +68,8 @@ public:
 	static void TogglePlugin(const std::string &name);
 
 	// Manage a Plugin with git.
-	static bool Install(std::string url, std::string name, std::string version);
-	static bool Update(std::string url, std::string name, std::string version);
+	static std::future<void> Install(std::string url, std::string name, std::string version);
+	static void Update(std::string url, std::string name, std::string version);
 };
 
 
