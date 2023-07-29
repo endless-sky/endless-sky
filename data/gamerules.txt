@@ -44,3 +44,8 @@ gamerules
 	# DEFAULT: 3600 frames (one minute)
 	# ALLOWABLE VALUES: any integer >= 0
 	"npc max mining time" 3600
+	
+	# Ships with the "frugal" personality will only use weapons that consume ammo or fuel while their health is at or below this fraction.
+	# DEFAULT: .75 (75 percent)
+	# ALLOWABLE VALUES: any value between 0. and 1.
+	"universal frugal threshold" .75

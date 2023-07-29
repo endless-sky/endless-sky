@@ -247,6 +247,7 @@ mission "Ringworld Debris: Quarg"
 	invisible
 	source
 		attributes "quarg"
+		not attributes "gegno quarg"
 	to offer
 		has "ringworld debris"
 		has "First Contact: Quarg: offered"
@@ -380,7 +381,7 @@ mission "Ka'het: Patir Mystery 1"
 			`	"That is the oddest part; it was not. We knew about the existence of the stars beyond Postverta as they could be observed from our own systems; they just were not reachable with a jump drive. But, from what I can tell from these readings, Patir did not exist until a short time ago.`
 			`	"Do you have anything on why this system appeared?" you ask.`
 			label how
-			`	"I only have theories for now, none of which can be confirmed. People more knowledgeable than me in the subject are examining the phenomena right now. But look at this," she says, opening a star map on a holographic projector. "This white dot is Postverta, and we are here. When Ssil Vida first appeared, it released a strong burst of ionizing radiation, and when we were able to calculate its velocity, we found it was going much faster than the speed of light. It is gradually slowing down, so it will not go much further, but exactly the same day that the energy burst was supposed to arrive here, Patir appeared! It would be an incredible coincidence if the two events were not connected.`
+			`	"I only have theories for now, none of which can be confirmed. People more knowledgeable than me in the subject are examining the phenomenon right now. But look at this," she says, opening a star map on a holographic projector. "This white dot is Postverta, and we are here. When Ssil Vida first appeared, it released a strong burst of ionizing radiation, and when we were able to calculate its velocity, we found it was going much faster than the speed of light. It is gradually slowing down, so it will not go much further, but exactly the same day that the energy burst was supposed to arrive here, Patir appeared! It would be an incredible coincidence if the two events were not connected.`
 			`	"We have even less information about how this system disappeared. If I may venture a guess, I would say that the black hole is involved. The Builders never seemed to possess the ability to make a system disappear, and we have seen in the past that some black holes can render any hyperlane they are connected to inaccessible given enough time. Perhaps a young, non-rotating black hole like this one can do even more. There is a part of me that thinks this system could disappear again any moment, but if anything that motivates me to find as much as we can about it in the time we have," she says with a wink.`
 			choice
 				`	"Wait, are we in danger?"`
@@ -424,7 +425,7 @@ mission "Ka'het: Patir Mystery 1"
 			`	"There is also the tactical problem: forcing a Ka'het to spend such a long time building copies of itself makes them vulnerable to enemy attacks and unable to effectively fight back, making them ill-suited for the job."`
 				goto questions
 			label jumpdrive
-			`	"They do not have any drives on board, not even a hyperdrive. Limited to sub-light velocity, they would need hundreds of years to pass from one system to another, which is a testament to the Builders' patience. Most species we have encountered abandon any form of sub-light transportation between star systems immediately after developing hyperdrive technology. For all we know, the Ember Waste could have been visited by these Fetri'sei or some other Ka'sei, but they had to leave for some reason we are not aware of. The last Builder died almost 100,000 years ago - so long that having a clear idea of what happened is impossible.`
+			`	"They do not have any drives on board, not even a hyperdrive. Limited to sub-light velocity, they would need hundreds of years to pass from one system to another, which is a testament to the Builders' patience. Most species we have encountered abandon any form of sub-light transportation between star systems immediately after developing hyperdrive technology. For all we know, the Ember Waste could have been visited by these Fetri'sei or some other Ka'sei, but they had to leave for some reason we are not aware of. The last Builder died almost 100,000 years ago - so long that having a clear idea of what happened is impossible."`
 			choice
 				`	"What's the difference between Ka'sei and Fetri'sei?"`
 			`	"Well, there is no difference," Taely responds, "not in this case at least. The naming scheme the Builders used is a bit odd: we know that 'Ka,' in their language, has a meaning close to the one of 'group,' 'team,' and sometimes even 'ring,' although it can never be used without a name next to it. So we have 'group mar,' 'group het,' and so on. These are not limited to spaceships: the Ka'het, for example, includes both the biological spacecrafts around the Graveyard and the stations that constructs them, while until now we thought that the Ka'sei included only a handful of large scale construction projects. We know 'Fetri' to be a sort of spaceship sub-classification, but we are not aware of its exact meaning. So the Fetri'sei, or 'ship sei' are a part of the Ka'sei, or 'group sei.' To put it simply, it is similar to how all squares are rectangles, but not all rectangles are squares. It just so happens that everything in this system is classified as a Fetri'sei, so we can use either interchangeably.`
@@ -596,12 +597,12 @@ mission "Ka'het: Patir Mystery 5"
 	on offer
 		"reputation: Ka'sei" = -10
 		conversation
-			`As you approach the structure, Dusk stops preparing the equipment to observe it from the window. "It is a fascinating structure. I've only seen a small number of Builder buildings, but this looks different from anything I have seen. Perhaps it is more structurally similar to their stations than their outposts given the almost negligible gravity, or they had other asteroid colonies that have been gradually lost over time. It would be worth doing a serious exploration of the asteroid belts in the Graveyard at some point.`
+			`As you approach the structure, Dusk stops preparing the equipment to observe it from the window. "It is a fascinating structure. I've only seen a small number of Builder buildings, but this looks different from anything I have seen. Perhaps it is more structurally similar to their stations than their outposts given the almost negligible gravity, or they had other asteroid colonies that have been gradually lost over time. It would be worth doing a serious exploration of the asteroid belts in the Graveyard at some point."`
 			choice
 				`	"You have been on Builder planets?"`
 					goto planets
 				`	"How far have the Remnant explored the Graveyard?"`
-				`	"Do you have have all the equipment ready?"`
+				`	"Do you have all the equipment ready?"`
 					goto skip
 			
 			`	"I presume Taely already told you about the troubled beginnings we had in exploring the area; as a consequence of that, we had to reevaluate the procedures for exploring the nearby systems and species, especially beyond the Ossipago wormhole. Every scout ship entering the area has to always remain cloaked to prevent attacks from the countless Ka'het patrolling the area; this means that the further we need to travel to reach the destination, the more fuel we have to spend to return home, which considerably impacts the time we can spend cloaked in the destination. Some of the systems at the other end of the Graveyard have seen very few Starlings, most of them staying for less than a day.`
@@ -656,7 +657,7 @@ mission "Ka'het: Patir Mystery 5"
 				die
 			
 			label still
-			`	After another short silence, the Ka'sei starts emitting a loud siren. You hear the screech of Ravager fire as an angry energy beam sears through the air to your left, just barely missing you. Both you and Dusk jump back to the airlock, slamming the door closed. You can still feel the crackle of the Ravager cannons from the other side the the door, and after a second, the door begins to glow.`
+			`	After another short silence, the Ka'sei starts emitting a loud siren. You hear the screech of Ravager fire as an angry energy beam sears through the air to your left, just barely missing you. Both you and Dusk jump back to the airlock, slamming the door closed. You can still feel the crackle of the Ravager cannons from the other side the door, and after a second, the door begins to glow.`
 			choice
 				`	(Open the exit door, even with the airlock full of air.)`
 					goto blast

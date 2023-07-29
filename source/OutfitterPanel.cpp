@@ -124,8 +124,10 @@ int OutfitterPanel::DrawPlayerShipInfo(const Point &point)
 {
 	shipInfo.Update(*playerShip, player, collapsed.count("description"));
 	shipInfo.DrawAttributes(point);
+	const int attributesHeight = shipInfo.AttributesHeight();
+	shipInfo.DrawOutfits(Point(point.X(), point.Y() + attributesHeight));
 
-	return shipInfo.AttributesHeight();
+	return attributesHeight + shipInfo.OutfitsHeight();
 }
 
 
@@ -346,7 +348,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 			"so there is no reason to buy another.";
 
 	// Check that the player has any necessary licenses.
-	int64_t licenseCost = LicenseCost(selectedOutfit);
+	int64_t licenseCost = LicenseCost(selectedOutfit, onlyOwned);
 	if(licenseCost < 0)
 		return "You cannot buy this outfit, because it requires a license that you don't have.";
 
@@ -487,7 +489,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 
 void OutfitterPanel::Buy(bool onlyOwned)
 {
-	int64_t licenseCost = LicenseCost(selectedOutfit);
+	int64_t licenseCost = LicenseCost(selectedOutfit, onlyOwned);
 	if(licenseCost)
 	{
 		player.Accounts().AddCredits(-licenseCost);

@@ -99,6 +99,9 @@ tip "cargo scan speed:"
 tip "cargo scan efficiency:"
 	`The maximum speed of this cargo scanner is proportional to the square root of this value. The observed scan speed will be impacted by multiple factors. Targets which are farther away or have a larger cargo hold will take longer to scan.`
 
+tip "cargo scan opacity:"
+	`Increases the time required for other ships to perform a cargo scan of this ship. A value of one has the same influence on the time taken as adding one more ton of cargo space to scan.`
+
 tip "cargo:"
 	`Cargo this ship is carrying right now, out of its maximum.`
 
@@ -398,6 +401,9 @@ tip "outfit scan speed:"
 
 tip "outfit scan efficiency:"
 	`The maximum speed of this outfit scanner is proportional to the square root of this value. The observed scan speed will be impacted by multiple factors. Targets which are farther away or have a larger outfit capacity will take longer to scan.`
+
+tip "outfit scan opacity:"
+	`Increases the time required for other ships to perform an outfit scan of this ship. A value of one has the same influence on the time taken as adding one more ton of outfit space to scan.`
 
 tip "outfit space added:"
 	`How much general-purpose space this outfit provides.`
@@ -1032,8 +1038,8 @@ tip "no thruster!"
 tip "no steering!"
 	`This ship does not have any steering systems installed. If it took off, it would be unable to turn.`
 
-tip "insufficient bunks!"
-	`This ship does not have enough bunks for its crew. It cannot take off.`
+tip "insufficient bunks?"
+	`This ship does not have enough bunks for its crew. It can become unresponsive at random times.`
 
 tip "afterburner only?"
 	`This ship's only thruster is an afterburner. It may be unable to move if the afterburner runs out of fuel.`
