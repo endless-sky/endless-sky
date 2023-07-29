@@ -2071,7 +2071,14 @@ bool Ship::IsEnteringHyperspace() const
 
 
 
-int Ship::GetHyperpacePercentage() const
+bool Ship::IsHyperspacing() const
+{
+	return GetHyperspacePercentage() != 0;
+}
+
+
+
+int Ship::GetHyperspacePercentage() const
 {
 	return hyperspaceCount;
 }
@@ -4347,7 +4354,7 @@ void Ship::StepTargeting()
 		{
 			if(!target->IsDisabled() && government->IsEnemy(target->government))
 				isBoarding = false;
-			else if(target->IsDestroyed() || target->IsLanding() || target->GetHyperpacePercentage()
+			else if(target->IsDestroyed() || target->IsLanding() || target->IsHyperspacing()
 					|| target->GetSystem() != GetSystem())
 				isBoarding = false;
 		}
