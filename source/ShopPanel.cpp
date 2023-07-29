@@ -784,10 +784,7 @@ bool ShopPanel::Click(int x, int y, int /* clicks */)
 				else
 				{
 					collapsed.insert(zone.Value());
-					if(selectedShip && selectedShip->Attributes().Category() == zone.Value())
-						selectedShip = nullptr;
-					if(selectedOutfit && selectedOutfit->Category() == zone.Value())
-						selectedOutfit = nullptr;
+					CategoryAdvance(zone.Value());
 				}
 			}
 			else
@@ -1252,11 +1249,9 @@ void ShopPanel::CheckSelection()
 	// Advance to find next valid selection.
 	for( ; it != zones.end(); ++it)
 	{
-		const Outfit *outfit = it->GetOutfit();
-		if(outfit && HasItem(outfit->TrueName()))
-			break;
 		const Ship *ship = it->GetShip();
-		if(ship && HasItem(ship->TrueModelName()))
+		const Outfit *outfit = it->GetOutfit();
+		if((ship && HasItem(ship->TrueModelName())) || (outfit && HasItem(outfit->TrueName())))
 			break;
 	}
 
@@ -1289,6 +1284,55 @@ void ShopPanel::CheckSelection()
 	selectedShip = it->GetShip();
 	selectedOutfit = it->GetOutfit();
 	MainAutoScroll(it);
+}
+
+
+
+// The selected item's category has collapsed, to advance to next displayed item.
+void ShopPanel::CategoryAdvance(const string &category)
+{
+	vector<Zone>::const_iterator it = Selected();
+	if(it == zones.end())
+		return;
+	const vector<Zone>::const_iterator oldIt = it;
+
+	// Advance to find next valid selection.
+	for( ; it != zones.end(); ++it)
+	{
+		const Ship *ship = it->GetShip();
+		const Outfit *outfit = it->GetOutfit();
+		if((ship && ship->Attributes().Category() != category) || (outfit && outfit->Category() != category))
+			break;
+	}
+
+	// If that didn't work, try the other direction.
+	if(it == zones.end())
+	{
+		it = oldIt;
+		while(it != zones.begin())
+		{
+			--it;
+			const Ship *ship = it->GetShip();
+			const Outfit *outfit = it->GetOutfit();
+			if((ship && ship->Attributes().Category() != category) || (outfit && outfit->Category() != category))
+			{
+				++it;
+				break;
+			}
+		}
+
+		if(it == zones.begin())
+		{
+			// No displayed objects, apparently.
+			selectedShip = nullptr;
+			selectedOutfit = nullptr;
+			return;
+		}
+		--it;
+	}
+
+	selectedShip = it->GetShip();
+	selectedOutfit = it->GetOutfit();
 }
 
 
