@@ -146,8 +146,7 @@ void ShopPanel::Draw()
 		if(selected != zones.end())
 			MainAutoScroll(selected);
 	}
-	else if(mainScroll > maxMainScroll)
-		mainScroll = maxMainScroll;
+	mainScroll = max(0., min(maxMainScroll, mainScroll));
 }
 
 
