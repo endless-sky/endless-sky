@@ -1481,7 +1481,7 @@ news "tourist"
 
 news "tourist [frozen]"
 	location
-		government "Republic" "Free Words" "Syndicate" "Independent" "Neutral"
+		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
 		attributes "frozen"
 	name
 		"Tourist"
