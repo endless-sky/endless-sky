@@ -2677,26 +2677,27 @@ mission "Recycle garbage"
 		payment 20000
 
 mission "FW Wildfire Aid [1]"
-	job
-	repeat
 	name "Wildfire aid to <planet>"
-	substitutions
-		"<problem>" "forest fire"
-		"<problem>" "brush fire"
-			"random" < 60
-		"<problem>" "wildfire"
-			"random" < 30
-	description "The People's Disaster Assistance Committee needs volunteers like you! A major <problem> has occurred on <destination> and numerous settlements on the planet have been affected. Bring <cargo> to <planet> by <date> to assist in the firefighting efforts. Payment is <payment>."
-	cargo "flames aid" 25 2 .05
+	minor
+	repeat
 	deadline
-	to offer
-		random < 5
 	source
 		government "Free Worlds"
 	destination
 		government "Free Worlds"
 		distance 2 8
 		attributes "forest"
+	substitutions
+		"<problem>" "forest fire"
+		"<problem>" "brush fire"
+			"random" < 60
+		"<problem>" "wildfire"
+			"random" < 30
+	cargo "flames aid" 25 2 .05
+	to offer
+		random < 1
+	on offer
+		dialog `The People's Disaster Assistance Committee needs volunteers like you! A major <problem> has occurred on <destination> and numerous settlements on the planet have been affected. Bring <cargo> to <planet> by <date> to assist in the firefighting efforts. A bonus of <payment> is offered to those willing to sacrifice their time for the galactic community.`
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -2704,26 +2705,27 @@ mission "FW Wildfire Aid [1]"
 		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>. A group of <planet> citizens thank you for your assistance and bid you farewell."
 
 mission "FW Wildfire Aid [2]"
-	job
-	repeat
 	name "Firefighters to <planet>"
-	substitutions
-		"<problem>" "forest fire"
-		"<problem>" "brush fire"
-			"random" < 60
-		"<problem>" "wildfire"
-			"random" < 30
-	description "The People's Disaster Assistance Committee needs volunteers like you! A major <problem> has occurred on <destination> and many settlements on the planet have been affected. Transport a team of <bunks> firefighters to <planet> by <date> to assist in the firefighting efforts. Payment is <payment>."
-	passengers 5 10
+	minor
+	repeat
 	deadline
-	to offer
-		random < 5
 	source
 		government "Free Worlds"
 	destination
 		government "Free Worlds"
 		distance 2 8
 		attributes "forest"
+	substitutions
+		"<problem>" "forest fire"
+		"<problem>" "brush fire"
+			"random" < 60
+		"<problem>" "wildfire"
+			"random" < 30
+	passengers 5 10
+	to offer
+		random < 1
+	on offer
+		dialog `The People's Disaster Assistance Committee needs volunteers like you! A major <problem> has occurred on <destination> and many settlements on the planet have been affected. Transport a team of <bunks> firefighters to <planet> by <date> to assist in the firefighting efforts. Those brave enough to serve their fellow citizens will receive a bonus of <payment>.`
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
