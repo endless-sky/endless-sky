@@ -890,6 +890,22 @@ news "mechanic"
 		word
 			`"`
 
+news "mechanic [frozen]"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	attributes "frozen"
+	name
+		word
+			"Mechanic"
+	message
+		word
+			`"`
+		word
+			"If the generators or heaters fail, you could have a lot of very cold folks right quick."
+			"People don't appreciate the toll this climate takes on infrastructure and machinery. Expanding ice cracks concrete. Shrinking metal cracks ships."
+			"If your ship is deploying any surface vehicles, be sure to have them properly winterized with low-temperature oils and lubricants."
+		word
+			`"`
 
 
 news "ship salesperson"
