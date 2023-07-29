@@ -196,9 +196,11 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		}
 	}
 	else if(key == 'i' && page == 'i' && selectedInstallAble.url.size())
-		installFeedbacks.emplace_back(Plugins::Install(selectedInstallAble.url, selectedInstallAble.name, selectedInstallAble.version));
+		installFeedbacks.emplace_back(Plugins::Install(selectedInstallAble.url,
+			selectedInstallAble.name, selectedInstallAble.version));
 	else if(key == 'u' && page == 'i' && selectedInstallAble.url.size())
-		installFeedbacks.emplace_back(Plugins::Update(selectedInstallAble.url, selectedInstallAble.name, selectedInstallAble.version));
+		installFeedbacks.emplace_back(Plugins::Update(selectedInstallAble.url,
+			selectedInstallAble.name, selectedInstallAble.version));
 	else if(key == 'r' && page == 'i')
 		currentInstallAblePage = currentInstallAblePage > 0 ? currentInstallAblePage - 1 : 0;
 	else if(key == 'e' && page == 'i')
