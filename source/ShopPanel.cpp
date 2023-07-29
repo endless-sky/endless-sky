@@ -189,6 +189,7 @@ void ShopPanel::DrawShipsSidebar()
 	const auto flightChecks = player.FlightCheck();
 	Point mouse = GetUI()->GetMouse();
 	warningType.clear();
+	shipZones.clear();
 
 	static const Color selected(.8f, 1.f);
 	static const Color unselected(.4f, 1.f);
