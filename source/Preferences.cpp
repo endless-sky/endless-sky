@@ -119,6 +119,9 @@ namespace {
 	const vector<string> BOARDING_SETTINGS = {"proximity", "value", "mixed"};
 	int boardingIndex = 0;
 
+	const vector<string> FLOTSAM_SETTINGS = {"off", "on", "flagship only", "escorts only"};
+	int flotsamIndex = 1;
+
 	// Enable "fast" parallax by default. "fancy" is too GPU heavy, especially for low-end hardware.
 	const vector<string> PARALLAX_SETTINGS = {"off", "fancy", "fast"};
 	int parallaxIndex = 2;
@@ -137,7 +140,6 @@ void Preferences::Load()
 	// values for settings that are off by default.
 	settings["Landing zoom"] = true;
 	settings["Render motion blur"] = true;
-	settings["Flagship flotsam collection"] = true;
 	settings[FRUGAL_ESCORTS] = true;
 	settings[EXPEND_AMMO] = true;
 	settings["Damaged fighters retreat"] = true;
@@ -168,6 +170,8 @@ void Preferences::Load()
 			scrollSpeed = node.Value(1);
 		else if(node.Token(0) == "boarding target")
 			boardingIndex = max<int>(0, min<int>(node.Value(1), BOARDING_SETTINGS.size() - 1));
+		else if(node.Token(0) == "Flotsam collection")
+			flotsamIndex = max<int>(0, min<int>(node.Value(1), FLOTSAM_SETTINGS.size() - 1));
 		else if(node.Token(0) == "view zoom")
 			zoomIndex = max<int>(0, min<int>(node.Value(1), ZOOMS.size() - 1));
 		else if(node.Token(0) == "vsync")
@@ -219,6 +223,16 @@ void Preferences::Load()
 			statusOverlaySettings[OverlayType::ALL] = OverlayState::DISABLED;
 		settings.erase(it);
 	}
+
+	// For people updating from a version after 0.10.1 (where "Flagship flotsam collection" was added),
+	// but before 0.10.3 (when it was replaaced with "Flotsam Collection").
+	it = settings.find("Flagship flotsam collection");
+	if(it != settings.end())
+	{
+		if(!it->second)
+			flotsamIndex = static_cast<int>(FlotsamCollection::ESCORT);
+		settings.erase(it);
+	}
 }
 
 
@@ -232,6 +246,7 @@ void Preferences::Save()
 	out.Write("zoom", Screen::UserZoom());
 	out.Write("scroll speed", scrollSpeed);
 	out.Write("boarding target", boardingIndex);
+	out.Write("Flotsam collection", flotsamIndex);
 	out.Write("view zoom", zoomIndex);
 	out.Write("vsync", vsyncIndex);
 	out.Write("Show all status overlays", statusOverlaySettings[OverlayType::ALL].ToInt());
@@ -524,6 +539,27 @@ Preferences::BoardingPriority Preferences::GetBoardingPriority()
 const string &Preferences::BoardingSetting()
 {
 	return BOARDING_SETTINGS[boardingIndex];
+}
+
+
+
+void Preferences::ToggleFlotsam()
+{
+	flotsamIndex = (flotsamIndex + 1) % FLOTSAM_SETTINGS.size();
+}
+
+
+
+Preferences::FlotsamCollection Preferences::GetFlotsamCollection()
+{
+	return static_cast<FlotsamCollection>(flotsamIndex);
+}
+
+
+
+const string &Preferences::FlotsamSetting()
+{
+	return FLOTSAM_SETTINGS[flotsamIndex];
 }
 
 
