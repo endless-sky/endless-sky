@@ -191,7 +191,7 @@ outfit "Ionic Turret Prototype"
 		"ion damage" 17.5
 		"scrambling damage" 10
 	description "This weapon vastly improves upon the ionization capabilities of the Ion Cannon, while doing less raw damage and not having nearly the weapon jamming affects. It is, however, also turret-mounted, enabling it to fire at enemies in any direction instead of just those directly ahead."
-	description "	This design cannot yet be mass produced, but those that have been produced are prized by the few lucky enough to possess them."
+	description "	This design cannot yet be mass-produced, but those that have been produced are prized by the few lucky enough to possess them."
 
 
 outfit "Railgun Slug"
