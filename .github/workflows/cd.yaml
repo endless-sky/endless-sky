@@ -37,7 +37,7 @@ jobs:
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
+          vcpkgGitCommitId: '0d8b396a5a8420b9691b3e0fd8cd01de0bf4636d'
           doNotCache: true
       - uses: lukka/run-cmake@v10
         with:
@@ -69,7 +69,7 @@ jobs:
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
+          vcpkgGitCommitId: '0d8b396a5a8420b9691b3e0fd8cd01de0bf4636d'
           doNotCache: true
       - uses: lukka/run-cmake@v10
         with:
@@ -102,7 +102,7 @@ jobs:
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
+          vcpkgGitCommitId: '0d8b396a5a8420b9691b3e0fd8cd01de0bf4636d'
           doNotCache: true
       - uses: lukka/run-cmake@v10
         with:
