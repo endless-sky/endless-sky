@@ -21,7 +21,7 @@ ship "Koryfi"
 		"engine capacity" 42
 		"solar collection" 6
 		"solar heat" 2.4
-		"anchor points" 1
+		"anchor point" 1
 		weapon
 			"blast radius" 240
 			"shield damage" 360
@@ -104,7 +104,7 @@ ship "Koryfi"
 
 	description "The Koryfi is a light passenger transport whose basic design predates the invention of the hyperdrive. Originally restricted to intrasystem travel, its spin gravity system ensured a comfortable voyage for passengers long before the development of gravity plating. Today, it is a popular choice among independent captains for its high maintainability and ample living space, with many using them as permanent homes."
 	description "Enterprising captains often exploit the commonality of the Koryfi and Avlaki designs, swapping out the modular centrifuge for a set of standard cargo containers."
-	description "While its standard set of magnetoplasmadynamic thrusters give it an acceleration best described as sluggish, the Koryfi's constant thrust flight profile allows it to reach an impressive cruising velocity given enough time."
+	description "While its standard set of magnetoplasmadynamic thrusters give it an acceleration generously described as sluggish, the Koryfi's constant thrust flight profile allows it to reach an impressive cruising velocity given enough time."
 
 
 ship "Melodikos"
@@ -127,7 +127,7 @@ ship "Melodikos"
 		"engine capacity" 90
 		"solar collection" 15
 		"solar heat" 6.9
-		"anchor points" 1
+		"anchor point" 1
 		weapon
 			"blast radius" 360
 			"shield damage" 600
@@ -269,7 +269,7 @@ ship "Avlaki"
 		"engine capacity" 42
 		"solar collection" 6
 		"solar heat" 2.4
-		"anchor points" 1
+		"anchor point" 1
 		weapon
 			"blast radius" 240
 			"shield damage" 360
@@ -351,7 +351,7 @@ ship "Avlaki"
 
 	description "The Avlaki is a mid-sized freighter loosely descended from a pre-hyperdrive solar-electric tug design. Its low cost and reknowned maintainability has enabled it to remain in service to this day, a popular choice among independent captains."
 	description "Enterprising captains often exploit the commonality of the Koryfi and Avlaki designs, swapping out the standard cargo containers for a centrifuge habitat."
-	description "While its standard set of magnetoplasmadynamic thrusters give it an acceleration best described as sluggish, the Avlaki's constant thrust flight profile allows it to reach an impressive cruising velocity given enough time."
+	description "While its standard set of magnetoplasmadynamic thrusters give it an acceleration generously described as sluggish, the Avlaki's constant thrust flight profile allows it to reach an impressive cruising velocity given enough time."
 
 
 ship "Harmonikos"
@@ -374,7 +374,7 @@ ship "Harmonikos"
 		"engine capacity" 90
 		"solar collection" 15
 		"solar heat" 6.9
-		"anchor points" 1
+		"anchor point" 1
 		weapon
 			"blast radius" 360
 			"shield damage" 600
@@ -570,7 +570,7 @@ ship "Frequentia"
 		"cargo space" 240
 		"outfit space" 186
 		"engine capacity" 60
-		"anchor points" 1
+		"anchor point" 1
 		weapon
 			"blast radius" 360
 			"shield damage" 1800
@@ -581,7 +581,7 @@ ship "Frequentia"
 		"Concentrating Solar Cell" 3
 		"Ultracapacitor Cell" 3
 		"Multispectral Scanner"
-		"Pressurized Deuterium Tank" 6
+		"Cryogenic Deuterium Tank" 6
 		"Electrostatic Ramscoop"
 
 		"Z-360 Fusion Torch"
@@ -638,7 +638,7 @@ ship "Undsyni"
 		"weapon capacity" 180
 		"engine capacity" 168
 		"spinal mount" 1
-		"anchor points" 3
+		"anchor point" 3
 			"blast radius" 540
 			"shield damage" 3600
 			"hull damage" 2400
@@ -646,7 +646,7 @@ ship "Undsyni"
 	outfits
 		"Phased Array Laser (Green)" 3
 		"Speckle Turret" 2
-		"Speck Round" 7200
+		"Speck Round" 14400
 		"Sidereal Launcher" 2
 		"Sidereal Missile" 84
 
@@ -722,11 +722,11 @@ ship "Polari"
 		"drag" 1.5
 		"heat dissipation" 0.9
 		"fuel capacity" 1800
-		"cargo space" 36
+		"cargo space" 42
 		"outfit space" 294
 		"weapon capacity" 36
 		"engine capacity" 60
-		"anchor points" 1
+		"anchor point" 1
 		weapon
 			"blast radius" 90
 			"shield damage" 600
@@ -743,7 +743,7 @@ ship "Polari"
 		"Optical Lasing Generator"
 		"Multispectral Scanner" 3
 		"Spectrometer Array" 3
-		"Partitioned Thermal Sink"
+		"Thermal Sink Partition"
 		"Deuterium Slush Tank"
 		"Electrostatic Ramscoop"
 
@@ -785,6 +785,129 @@ ship "Polari"
 	description "Polari-class Scout"
 
 
+ship "Entasi"
+	sprite "ship/avgi entasi"
+	swizzle 0
+	thumbnail "thumbnail/avgi entasi"
+	attributes
+		category "Utility"
+		"shields" 1500
+		"hull" 3600
+		"required crew" 6
+		"bunks" 12
+		"mass" 210
+		"drag" 0.6
+		"heat dissipation" 1.2
+		"fuel capacity" 1200
+		"cargo space" 240
+		"outfit space" 420
+		"weapon capacity" 120
+		"engine capacity" 42
+		"solar collection" 12
+		"solar heat" 3.6
+		"anchor point" 2
+		weapon
+			"blast radius" 360
+			"shield damage" 1800
+			"hull damage" 1200
+			"hit force" 1200
+	outfits
+			"Phased Array Laser (Blue)" 2
+			"Sidereal Launcher" 2
+			"Sidereal Missile" 84
+
+			"Photovoltaic Scales" 2
+			"Ultracapacitor Bank" 3
+			"Diffuse Deflector"
+			"Optical Lasing Generator"
+			"Multispectral Scanner" 3
+			"Spectrometer Array" 6
+
+			"Magnetoplasma Drive" 2
+			"Hyperdrive"
+
+	gun -36 9 "Sidereal Launcher"
+	gun 36 9 "Sidereal Launcher"
+	gun -36 9
+	gun 36 9
+	turret 0 -42 "Phased Array Laser (Blue)"
+	turret 0 -18 "Phased Array Laser (Blue)"
+	turret 0 72
+	bay "Drone" -18 -45
+	bay "Drone" 18 -45
+	bay "Drone" -18 -18
+	bay "Drone" 18 -18
+	bay "Drone" -18 72
+	bay "Drone" 18 72
+
+	engine -45 45
+	engine 45 45
+	engine -39 45
+	engine 39 45
+	engine -33 45
+	engine 33 45
+	engine -27 45
+	engine 27 45
+	"reverse engine" -45 9
+	"reverse engine" 45 9
+	"reverse engine" -39 9
+	"reverse engine" 39 9
+	"reverse engine" -33 9
+	"reverse engine" 33 9
+	"reverse engine" -27 9
+	"reverse engine" 27 9
+	"steering engine" -45 9
+		angle 180
+		left
+	"steering engine" 45 9
+		angle 180
+		right
+	"steering engine" -39 9
+		angle 180
+		left
+	"steering engine" 39 9
+		angle 180
+		right
+	"steering engine" -33 9
+		angle 180
+		left
+	"steering engine" 33 9
+		angle 180
+		right
+	"steering engine" -27 9
+		angle 180
+		left
+	"steering engine" 27 9
+		angle 180
+		right
+	"steering engine" -45 45
+		right
+	"steering engine" 45 45
+		left
+	"steering engine" -39 45
+		right
+	"steering engine" 39 45
+		left
+	"steering engine" -33 45
+		right
+	"steering engine" 33 45
+		left
+	"steering engine" -27 45
+		right
+	"steering engine" 27 45
+		left
+
+	leak "leak" 60 60
+	leak "flame" 60 60
+	explode "tiny explosion" 15
+	explode "small explosion" 12
+	explode "medium explosion" 9
+	"final explode" "final explosion medium"
+
+	description "The Entasi is a mid-sized "
+
+
+
 # Interceptors
 
 ship "Tremoros"
@@ -805,7 +928,7 @@ ship "Tremoros"
 		"outfit space" 210
 		"weapon capacity" 60
 		"engine capacity" 54
-		"anchor points" 1
+		"anchor point" 1
 		weapon
 			"blast radius" 90
 			"shield damage" 720
@@ -877,7 +1000,7 @@ ship "Prismaios"
 		"outfit space" 330
 		"weapon capacity" 96
 		"engine capacity" 96
-		"anchor points" 2
+		"anchor point" 2
 		weapon
 			"blast radius" 240
 			"shield damage" 1500
@@ -902,10 +1025,6 @@ ship "Prismaios"
 		"Hyperdrive"
 
 	engine 0 108
-	"reverse engine" -6 -66
-		angle -30
-	"reverse engine" 6 -66
-		angle 30
 	"reverse engine" -6 99
 		angle -45
 	"reverse engine" 6 99
@@ -959,7 +1078,7 @@ ship "Interferos"
 		"outfit space" 282
 		"weapon capacity" 84
 		"engine capacity" 60
-		"anchor points" 1
+		"anchor point" 1
 		weapon
 			"blast radius" 210
 			"shield damage" 900
@@ -1039,7 +1158,7 @@ ship "Diaspersi"
 		"outfit space" 420
 		"weapon capacity" 96
 		"engine capacity" 114
-		"anchor points" 2
+		"anchor point" 2
 		weapon
 			"blast radius" 360
 			"shield damage" 2400
@@ -1048,7 +1167,7 @@ ship "Diaspersi"
 	outfits
 		"Phased Array Laser (Green)" 2
 		"Fleck Turret"
-		"Fleck Round" 1800
+		"Fleck Round" 2400
 		"Sidereal Launcher" 2
 		"Sidereal Missile" 84
 		"Equinox Torpedo Stockpile" 2
@@ -1134,9 +1253,9 @@ ship "Difraktos"
 		"fuel capacity" 1800
 		"cargo space" 60
 		"outfit space" 540
-		"weapon capacity" 240
+		"weapon capacity" 252
 		"engine capacity" 132
-		"anchor points" 2
+		"anchor point" 2
 		weapon
 			"blast radius" 420
 			"shield damage" 4800
@@ -1145,10 +1264,10 @@ ship "Difraktos"
 	outfits
 		"Phased Array Laser (Green)"
 		"Fleck Turret" 2
-		"Fleck Round" 3600
+		"Fleck Round" 4800
 		"Sidereal VLS Array" 2
 		"Sidereal Magazine" 2
-		"Sidereal Missile" 288
+		"Sidereal Missile" 312
 
 		"Radiant Fusion Core"
 		"Ultracapacitor Bank"
@@ -1166,14 +1285,14 @@ ship "Difraktos"
 		angle -90
 	gun 21 -63
 		angle 90
-	turret -9 -111
-	turret 9 -111
-	turret -9 -87
-	turret 9 -87
+	turret -9 -111 "Fleck Turret"
+	turret 9 -111 "Fleck Turret"
+	turret -9 -87 "Sidereal VLS Array"
+	turret 9 -87 "Sidereal VLS Array"
 	turret -9 -66
 	turret 9 -66
 	turret 0 36
-	turret 0 90
+	turret 0 90 "Phased Array Laser
 
 	bay "Drone" -21 -21
 	bay "Drone" 21 -21
@@ -1228,7 +1347,7 @@ ship "Refraktos"
 		"outfit space" 510
 		"weapon capacity" 150
 		"engine capacity" 144
-		"surface space" 58
+		"anchor point" 1
 		weapon
 			"blast radius" 420
 			"shield damage" 880
@@ -1239,13 +1358,13 @@ ship "Refraktos"
 		"Phased Array Laser (Green)" 3
 
 		"Stellar Fusion Core"
+		"Photoelectric Scales"
 		"Ultracapacitor Bank" 2
 		"Diffuse Deflector"
 		"Optical Lasing Generator" 3
 		"Multispectral Scanner" 3
-		"Concealment Scales"
 		"Electrostatic Ramscoop"
-		"Partitioned Thermal Sink" 3
+		"Thermal Sink Partition" 3
 		
 		"Z-360 Fusion Torch"
 		"XY-420 Radial Thrusters"
@@ -1294,7 +1413,7 @@ ship "Refraktos"
 	explode "large explosion" 6
 	"final explode" "final explosion medium"
 
-	description "The Refraktos-class Laserstar is a relatively recent, post-Diaspora design with a single focus: directed energy weapons. While its armor and shielding systems are light for its size, its expansive radiators can support the thermal loads of a staggering array of laser weapons, both offensive and defensive, allowing it to control the battlefield from a distance."
+	description "The Refraktos-class Laserstar is a relatively recent, post-Diaspora design with a single focus: directed energy weapons. While its armor and shielding systems are light for its size, its expansive radiators can support the thermal loads of a staggering array of laser weapons, both offensive and defensive, allowing it to destroy both missiles and small ships from a vast distance."
 	description "A long truss running the length of the ship is built to fit an impressively large mirror-cell fusion torch, giving the Refraktos the mobility needed to evade opponents until they are reduced to hot vapor."
 
 
@@ -1317,7 +1436,7 @@ ship "Atenuatia"
 		"outfit space" 690
 		"weapon capacity" 180
 		"engine capacity" 174
-		"anchor points" 3
+		"anchor point" 3
 		weapon
 			"blast radius" 540
 			"shield damage" 6400
@@ -1325,7 +1444,7 @@ ship "Atenuatia"
 			"hit force" 4200
 	outfits
 		"Fleck Turret"
-		"Fleck Round" 1800
+		"Fleck Round" 2400
 		"Phased Array Laser (Blue)" 2
 		"Phased Array Laser (Green)" 3
 		"Sidereal VLS Array"
@@ -1757,7 +1876,8 @@ ship "Sonikis"
 		"heat dissipation" .72
 		"fuel capacity" 100
 		"cargo space" 90
-		"outfit space" 42
+		"outfit space" 69
+		"weapon capacity" 18
 		"engine capacity" 24
 		weapon
 			"blast radius" 9
@@ -1770,6 +1890,7 @@ ship "Sonikis"
 
 		"Magnetoplasma Drive"
 
+	gun 0 -6
 	engine -39 -6 
 	engine 39 -6 
 	"reverse engine" -39 -6 

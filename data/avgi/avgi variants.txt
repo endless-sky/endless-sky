@@ -1,0 +1,88 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Medium Warships
+
+
+ship "Difraktos" "Difraktos (Missile Cruiser)"
+	outfits
+		"Sidereal VLS Array" 6
+		"Sidereal Magazine" 6
+		"Sidereal Missile" 936
+
+		"Luminous Fusion Core"
+		"Ultracapacitor Cell" 3
+		"Diffuse Deflector"
+		"Multispectral Scanner" 2
+		"Concealment Scales"
+		"Electrostatic Ramscoop"
+		
+		"Z-360 Fusion Torch"
+		"XY-420 Radial Thrusters"
+		"Hyperdrive"
+
+
+ship "Difraktos" "Difraktos (Battlecruiser)"
+	outfits
+		"Phased Array Laser (Green)" 2
+		"Fleck Turret" 4
+		"Fleck Magazine"
+		"Fleck Round" 10800
+
+		"Radiant Fusion Core"
+		"Ultracapacitor Bank" 2
+		"Diffuse Deflector"
+		"Optical Lasing Generator"
+		"Multispectral Scanner" 2
+		"Concealment Scales"
+		"Electrostatic Ramscoop"
+		
+		"Z-360 Fusion Torch"
+		"XY-420 Radial Thrusters"
+		"Hyperdrive"
+
+
+
+
+
+# Fighters
+
+ship "Photikon" "Photikon (Gunboat)"
+		"Speckle Turret"
+		"Speck Rounds" 7200
+		
+		"Concentrating Solar Array"
+		"Ultracapacitor Cell" 3
+		"Multispectral Scanner"
+		
+		"Magnetoplasma Drive"
+
+
+
+
+
+# Drones
+
+ship "Sonikis" "Sonikis (Armed)"
+	outfits
+		"Speckle Railgun"
+		"Speck Rounds" 3600
+
+		"Concentrating Solar Array"
+		"Ultracapacitor Cell" 2
+
+		"Magnetoplasma Drive"

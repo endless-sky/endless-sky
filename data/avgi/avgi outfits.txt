@@ -5,23 +5,32 @@ outfit "Speck Round"
 	category "Ammunition"
 	cost 6
 	thumbnail
-	"mass" 0.003
+	"mass" 0.0015
 	"speck capacity" -1
 	"flotsam chance" 1
-	description "These dense metallic glass sabots are capable of inflicting kinetic damage via hypervelocity impacts, but are easily stopped by momentum-repulsion shield systems."
+	description "These dense metallic glass slugs are capable of inflicting a good amount of kinetic damage via hypervelocity impacts, but are easily stopped by momentum-repulsion shield systems."
 	description "Due to their simple makeup, they can be easily manufactured out of most commonly found metals."
+
+
+outfit "Speck Magazine"
+	category "Ammunition"
+	cost 60000
+	thumbnail
+	"mass" 1.2
+	"outfit space" -12
+	"speck capacity" 7200
 
 
 outfit "Speckle Railgun"
 	category "Guns"
 	cost 40000
 	thumbnail "outfit/speckle gun"
-	"mass" 3
+	"mass" 3.6
 	"outfit space" -9
 	"weapon capacity" -9
 	"energy capacity" 90
 	"gun ports" -1
-	"speck capacity" 1800
+	"speck capacity" 3600
 	weapon
 		sound "repeater"
 		ammo "Speck Round"
@@ -46,12 +55,12 @@ outfit "Speckle Turret"
 	category "Turrets"
 	cost 40000
 	thumbnail "outfit/speckle turret"
-	"mass" 9
+	"mass" 10.2
 	"outfit space" -21
 	"weapon capacity" -21
 	"energy capacity" 180
 	"turret mounts" -1
-	"speck capacity" 3600
+	"speck capacity" 7200
 	weapon
 		sound "repeater"
 		ammo "Speck Round"
@@ -76,7 +85,7 @@ outfit "speckle slug"
 			"zoom" 0.25
 			"frame rate" 30
 		"hit effect" "bombardment impact"
-		"lifetime" 42
+		"lifetime" 24
 		"random lifetime" 15
 		"shield damage" 6
 		"hull damage" 15
@@ -87,22 +96,30 @@ outfit "Fleck Round"
 	category "Ammunition"
 	cost 6
 	thumbnail
-	"mass" 0.015
+	"mass" 0.009
 	"fleck capacity" -1
-	"flotsam chance" 1
-	description "These copper slugs are capable of inflicting kinetic damage via hypervelocity impacts, but are easily stopped by momentum-repulsion shield systems."
-	description "Due to their homogenous design, they can be easily manufactured out of common copper ore."
+	description "These copper slugs are capable of inflicting a large amount of kinetic damage via hypervelocity impacts, but are easily stopped by momentum-repulsion shield systems."
+	description "Due to their homogenous composition, they can be easily manufactured out of common copper ore."
+
+
+outfit "Fleck Magazine"
+	category "Ammunition"
+	cost 60000
+	thumbnail
+	"mass" 4.2
+	"outfit space" -15
+	"fleck capacity" 1200
 
 
 outfit "Fleck Coilgun"
 	category "Guns"
 	cost 40000
 	thumbnail
-	"mass" 4.5
+	"mass" 7.2
 	"outfit space" -18
 	"weapon capacity" -18
 	"gun ports" -1
-	"fleck capacity" 900
+	"fleck capacity" 1200
 	weapon
 		sound "repeater"
 		ammo "Fleck Round"
@@ -115,7 +132,7 @@ outfit "Fleck Coilgun"
 		"reload" 12
 		"firing energy" 60
 		"firing heat" 15
-		"firing force" 120
+		"firing force" 60
 		"submunition" "fleck slug"
 	description "redo this"
 
@@ -124,11 +141,11 @@ outfit "Fleck Turret"
 	category "Turrets"
 	cost 40000
 	thumbnail
-	"mass" 12
+	"mass" 17.4
 	"outfit space" -39
 	"weapon capacity" -39
 	"turret mounts" -1
-	"fleck capacity" 1800
+	"fleck capacity" 2400
 	weapon
 		sound "repeater"
 		ammo "Fleck Round"
@@ -142,7 +159,7 @@ outfit "Fleck Turret"
 		"turret turn" 3.6
 		"firing energy" 60
 		"firing heat" 15
-		"firing force" 120
+		"firing force" 60
 		"submunition" "fleck slug"
 	description "A pair of Fleck Coilguns on a sturdy turret mount produces a powerful kinetic artillery piece capable of lobbing projectiles across an entire battlefield. An inductive energy recovery system allows the firing of one coilgun to prime the other instead of simply dissipating the charge as heat, making the turret more thermally efficient compared to its single gun variant. The sheer momentum behind each slug can inflict serious damage on any conventional material, though it is less effective against momentum-repulsion shielding technologies.""
 
@@ -157,7 +174,7 @@ outfit "fleck slug"
 		"inaccuracy" 0.3
 		"shield damage" 60
 		"hull damage" 90
-		"hit force" 120
+		"hit force" 60
 
 
 outfit "Phased Array Laser (Green)"
@@ -172,11 +189,11 @@ outfit "Phased Array Laser (Green)"
 	"lasing power" -2
 	weapon
 		"hardpoint sprite" "hardpoint/green phaser"
-		"hit effect" "laser ejecta" 2
-		"hit effect" "green phaser scattering"
+		"die effect" "laser ejecta" 2
+		"die effect" "green phaser scattering"
 		"fire effect" "green phaser fire"
 		"anti-missile" 3
-		"velocity" 900
+		"velocity" 1200
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 12
@@ -200,7 +217,7 @@ outfit "Phased Array Laser (Blue)"
 		"hit effect" "laser ejecta" 3
 		"hit effect" "blue phaser scattering"
 		"fire effect" "blue phaser fire"
-		"velocity" 2400
+		"velocity" 3600
 		"lifetime" 1
 		"reload" 1
 		"turret turn" 6
@@ -242,14 +259,14 @@ effect "blue phaser fire"
 	"lifetime" 1
 
 effect "green phaser scattering"
-	sprite "effect/slicer impact"
-		"frame rate" 3
-		"scale" 0.5
-	"lifetime" 3
-	"velocity scale" 0
+	sprite "effect/heavy laser impact"
+		"frame rate" 30
+		"random start frame"
+	"lifetime" 1
+	"velocity scale" 1
 	
 effect "green phaser fire"
-	sprite "effect/acuit hit"
+	sprite "effect/heavy laser impact"
 		"frame rate" 5
 	"lifetime" 1
 
@@ -353,9 +370,9 @@ outfit "Sidereal VLS Array"
 		"velocity" 9
 		"lifetime" 15
 		"reload" 30
-		"turret turn" 9
 		"burst reload" 12
 		"burst count" 6
+		"turret turn" 9
 		"firing energy" 12
 		"firing heat" 6
 		"turn" 180
@@ -364,6 +381,7 @@ outfit "Sidereal VLS Array"
 		"infrared tracking" 0.9
 		"missile strength" 9
 		"submunition" "Sidereal Active"
+		"stream"
 	description `Flak Missile`
 
 
@@ -375,10 +393,10 @@ outfit "Sidereal Active"
 		"die effect" "tiny explosion"
 		"hit effect" "missile hit"
 		"lifetime" 450
-		"split range" 450
-		"acceleration" 0.9
+		"split range" 420
+		"acceleration" 0.6
 		"drag" .015
-		"turn" 6
+		"turn" 18
 		"homing" 4
 		"radar tracking" 0.6
 		"infrared tracking" 0.9
@@ -386,7 +404,7 @@ outfit "Sidereal Active"
 		"hull damage" 480
 		"hit force" 210
 		"missile strength" 12
-		"submunition" "Sidereal Flack" 12
+		"submunition" "Sidereal Flack" 18
 
 
 outfit "Sidereal Flack"
@@ -396,12 +414,12 @@ outfit "Sidereal Flack"
 			"frame rate" .1
 		"die effect" "missile death"
 		"hit effect" "bombardment impact"
-		"inaccuracy" 6
+		"inaccuracy" 9
 		"random velocity" 6
 		"lifetime" 60
 		"random lifetime" 180
 		"shield damage" 18
-		"hull damage" 24
+		"hull damage" 30
 		"hit force" 36
 		"missile strength" 3
 
@@ -410,9 +428,9 @@ outfit "Sidereal Magazine"
 	category "Ammunition"
 	cost 1440000
 	thumbnail
-	"mass" 4.8
+	"mass" 1.2
 	"outfit space" -12
-	"sidereal capacity" 24
+	"sidereal capacity" 36
 	ammo "Sidereal Missile"
 	description "Sidereal storage"
 
@@ -687,9 +705,9 @@ outfit "Radiative Scales"
 	cost 200000
 	thumbnail
 	"mass" 12
-	"anchor points" -1
+	"anchor point" -1
 	"heat dissipation" 0.3
-	"solar heat" 0.6
+	"solar heat" 3
 	description "This modular set of graphene microchannel radiators can be mounted conformally to a ship's hull, allowing it to radiate away waste heat."
 	description "Radiant Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
 
@@ -699,11 +717,11 @@ outfit "Concealment Scales"
 	cost 200000
 	thumbnail
 	"mass" 6
-	"anchor points" -1
+	"anchor point" -1
 	"scan interference" 6
-	"radar jamming" 6
-	"optical jamming" 6
-	"solar heat" 0.3
+	"radar jamming" 12
+	"optical jamming" 12
+	"solar heat" 6
 	description "A specialized coating of quantum dot phased array antennas, grown molecule by molecule, forms a conformal film capable of interfering with any attempts to scan or detect a ship."
 	description "Concealment Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
 
@@ -713,9 +731,9 @@ outfit "Nanoceramic Scales"
 	cost 200000
 	thumbnail
 	"mass" 36
-	"anchor points" -1
+	"anchor point" -1
 	"hull multiplier" 0.33
-	"solar heat" 9
+	"solar heat" 3
 	description "Thanks to recent breakthroughts in materials science, the Avgi have devised this retrofitting kit to allow older ships to take advantage of the increased hull strength offered by exotic materials. These armor plates and structural members reinforce both the skin and core strength of a ship, strengthening it without compromising its internal structure."
 	description "Adamant Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
 
@@ -725,9 +743,9 @@ outfit "Adamant Scales"
 	cost 200000
 	thumbnail
 	"mass" 36
-	"anchor points" -1
+	"anchor point" -1
 	"hull multiplier" 1
-	"solar heat" 9
+	"solar heat" 3
 	description "Thanks to recent breakthroughts in materials science, the Avgi have devised this retrofitting kit to allow older ships to take advantage of the increased hull strength offered by exotic materials. These armor plates and structural members reinforce both the skin and core strength of a ship, strengthening it without compromising its internal structure."
 	description "Adamant Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
 
@@ -737,7 +755,7 @@ outfit "Warding Scales"
 	cost 200000
 	thumbnail
 	"mass" 42
-	"anchor points" -1
+	"anchor point" -1
 	"shield multiplier" 2
 	"solar heat" 3
 	description "Breakthrough physics research has allowed the Avgi to create advanced shield emitters well in advance of their previous ones. While baked into the ships of most species, Avgi starship construction is sophisticated enough to allow their shield matrices to be retrofitted with relative ease."
@@ -783,7 +801,7 @@ outfit "Deuterium Slush Tank"
 	"heat generation" 0.6
 	description `This lightweight fuel pod stores an appreciable amount of hyperspace fuel as deuterium slush, a mix of liquid and solid deuterium. This allows fuel to be stored at higher densities than would otherwise be possible. The cryocooler required to run the zero boiloff system does require a small amount of energy, however.`
 
-outfit "Pressurized Deuterium Tank"
+outfit "Cryogenic Deuterium Tank"
 	category "Systems"
 	cost 30000
 	thumbnail "outfit/cryo fuel tank"
@@ -791,10 +809,10 @@ outfit "Pressurized Deuterium Tank"
 	"outfit space" -6
 	"cargo space" -30
 	"fuel capacity" 600
-	description `This high-stress pressure vessel is designed to store hyperspace fuel under for bulk transport. While not as efficient as a deuterium slush tank, this outfit is designed to work with a ship's available cargo space with minimal overhead, allowing many to be installed simultaneously without the need for support equipment.`
+	description `This insulated pressure vessel is designed to store hyperspace fuel under cryogenic temperatures for bulk transport. While not quite as efficient as a deuterium slush tank, this outfit is designed to work with a ship's available cargo space with minimal overhead, allowing many to be installed simultaneously without the need for deep cryocoolers.`
 
 
-outfit "Partitioned Thermal Sink"
+outfit "Thermal Sink Partition"
 	category "Systems"
 	cost 30000
 	thumbnail "outfit/densified fuel tank"
@@ -812,9 +830,10 @@ outfit "Multispectral Scanner"
 	"mass" 3
 	"outfit space" -6
 	"tactical scan power" 72
+	"asteroid scan power" 36
 	"energy consumption" 0.15
 	"heat generation" 0.3
-	description "A scanner with excellent sensitivity by human standards, this array of sensors covers nearly the entire electromagnetic spectrum, from hard x-rays to the softest radio waves. It is able to discern a surprising amount of information about a ship from a significant distance, providing a ship fitted with one with a plethora of targeting data."
+	description "A scanner with excellent sensitivity by human standards, this array of sensors covers nearly the entire electromagnetic spectrum, from hard x-rays to the softest radio waves. It is able to discern a surprising amount of information about a ship from a significant distance, providing a ship fitted with one with a plethora of targeting data. Additionally, analyzing the albedo of passive objects such as asteroids can reveal the composition of surface deposits at a low accuracy."
 	description "To increase the sensitivity of the instrument, certain component sensors require constant cooling to microkelvin scale temperatures. The heat pump system responsible for maintaining this requires a surprising amount of energy, while also producing a small amount of waste heat."
 
 
@@ -828,7 +847,7 @@ outfit "Spectrometer Array"
 	"outfit scan speed" 9
 	"cargo scan power" 12
 	"cargo scan speed" 9
-	"asteroid scan power" 72
+	"asteroid scan power" 144
 	"energy consumption" 0.03
 	description "This sensor array features a set of sensitive spectrometers capable of analyzing the spectral signatures of materials in order to determine their composition. A small ultraviolet laser can speed this process up for asteroids by vaporizing a small surface sample, making the spectral lines much more visibile, but is sadly useless against shielded ships and their internal systems."
 	description "Unfortunately, while Avgi sensors excel in reading basic physical and chemical information, such as the composition of an object, the amount of sensor data required to predict an outfit's functionality means this sensor can be quite slow when scanning a ship's complex systems or cargo."
@@ -903,8 +922,8 @@ outfit "Photoelectric Scales"
 	cost 200000
 	thumbnail
 	"mass" 24
-	"surface space" -24
-	"solar collection" 3.6
+	"anchor point" -1
+	"solar collection" 6
 	"solar heat" 1.8
 	description "These concentrating solar panels can be mounted conformally to a ship's hull, efficiently collecting sunlight and turning it into usable energy."
 	description "Photovoltaic Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star. However, they also tend to increase the amount of heat absorbed from the local star."
