@@ -1484,7 +1484,10 @@ news "tourist [frozen]"
 		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
 		attributes "frozen"
 	name
-		"Tourist"
+		word
+			"Adventure tourist"
+			"Arctic tourist"
+			"Tourist"
 	message
 		word
 			`"`
