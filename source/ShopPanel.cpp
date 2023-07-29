@@ -1123,6 +1123,7 @@ void ShopPanel::MainLeft()
 		it = zones.end();
 		--it;
 		mainScroll = maxMainScroll;
+		mainSmoothScroll = maxMainScroll;
 	}
 	else
 	{
@@ -1147,6 +1148,7 @@ void ShopPanel::MainRight()
 	{
 		it = zones.begin();
 		mainScroll = 0;
+		mainSmoothScroll = 0;
 	}
 	else
 		MainAutoScroll(it);
@@ -1176,6 +1178,7 @@ void ShopPanel::MainUp()
 		it = zones.end();
 		--it;
 		mainScroll = maxMainScroll;
+		mainSmoothScroll = maxMainScroll;
 	}
 	else
 		MainAutoScroll(it);
@@ -1199,6 +1202,7 @@ void ShopPanel::MainDown()
 	if(it == zones.end())
 	{
 		mainScroll = 0;
+		mainSmoothScroll = 0;
 		selectedShip = zones.begin()->GetShip();
 		selectedOutfit = zones.begin()->GetOutfit();
 		return;
@@ -1213,6 +1217,7 @@ void ShopPanel::MainDown()
 	{
 		it = zones.begin();
 		mainScroll = 0;
+		mainSmoothScroll = 0;
 	}
 	else
 		MainAutoScroll(it);
