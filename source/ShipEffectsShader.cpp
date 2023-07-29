@@ -70,6 +70,7 @@ namespace {
 }
 
 Point ShipEffectsShader::center = Point();
+float ShipEffectsShader::czoom = 1.f;
 
 // Initialize the shaders.
 void ShipEffectsShader::Init()
@@ -401,8 +402,17 @@ void ShipEffectsShader::Unbind()
 
 
 
-void ShipEffectsShader::EffectItem::Draw() {
+ShipEffectsShader::EffectItem::~EffectItem()
+{
+	
+}
+
+
+#include "Messages.h"
+void ShipEffectsShader::EffectItem::Draw()
+{
+	Messages::Add("Drawing ship thing");
 	Bind();
 	Add(*this);
-	SpriteShader::Bind();
+	Unbind();
 }

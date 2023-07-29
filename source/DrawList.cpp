@@ -26,7 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
-
+#include "Messages.h"
 
 // Clear the list.
 void DrawList::Clear(int step, double zoom)
@@ -48,47 +48,48 @@ void DrawList::SetCenter(const Point &center, const Point &centerVelocity)
 
 
 // Add an object based on the Body class.
-bool DrawList::Add(const Body &body, double cloak, unique_ptr<SpriteItemExtension> extension)
+bool DrawList::Add(const Body &body, double cloak, SpriteItemExtension* extension)
 {
-	return Add(body, body.Position(), cloak);
+
+	return Add(body, body.Position(), cloak, extension);
 }
 
 
 
-bool DrawList::Add(const Body &body, Point position, double cloak, unique_ptr<SpriteItemExtension> extension)
+bool DrawList::Add(const Body &body, Point position, double cloak, SpriteItemExtension* extension)
 {
 	position -= center;
 	Point blur = body.Velocity() - centerVelocity;
 	if(Cull(body, position, blur))
 		return false;
 
-	Push(body, std::move(position), std::move(blur), cloak, body.GetSwizzle(), move(extension));
+	Push(body, std::move(position), std::move(blur), cloak, body.GetSwizzle(), extension);
 	return true;
 }
 
 
 
-bool DrawList::AddUnblurred(const Body &body, unique_ptr<SpriteItemExtension> extension)
+bool DrawList::AddUnblurred(const Body &body, SpriteItemExtension* extension)
 {
 	Point position = body.Position() - center;
 	Point blur;
 	if(Cull(body, position, blur))
 		return false;
 
-	Push(body, position, blur, 0., body.GetSwizzle(), move(extension));
+	Push(body, position, blur, 0., body.GetSwizzle(), extension);
 	return true;
 }
 
 
 
-bool DrawList::AddSwizzled(const Body &body, int swizzle, unique_ptr<SpriteItemExtension> extension)
+bool DrawList::AddSwizzled(const Body &body, int swizzle, SpriteItemExtension* extension)
 {
 	Point position = body.Position() - center;
 	Point blur = body.Velocity() - centerVelocity;
 	if(Cull(body, position, blur))
 		return false;
 
-	Push(body, position, blur, 0., swizzle, move(extension));
+	Push(body, position, blur, 0., swizzle, extension);
 	return true;
 }
 
@@ -103,7 +104,12 @@ void DrawList::Draw() const
 	for(const auto &item : items)
 	{
 		SpriteShader::Add(item.first, withBlur);
-		item.second->Draw();
+		if(item.second)
+		{
+			item.second->Draw();
+			delete item.second;
+			SpriteShader::Bind();
+		}
 	}
 
 	SpriteShader::Unbind();
@@ -134,7 +140,8 @@ bool DrawList::Cull(const Body &body, const Point &position, const Point &blur) 
 
 
 
-void DrawList::Push(const Body &body, Point pos, Point blur, double cloak, int swizzle, unique_ptr<SpriteItemExtension> extension)
+
+void DrawList::Push(const Body &body, Point pos, Point blur, double cloak, int swizzle, SpriteItemExtension* extension)
 {
 	SpriteShader::Item item;
 
@@ -169,5 +176,20 @@ void DrawList::Push(const Body &body, Point pos, Point blur, double cloak, int s
 	item.swizzle = swizzle;
 	item.clip = 1.;
 
-	items.push_back(make_pair(item, move(extension)));
+	Messages::Add(to_string(reinterpret_cast<size_t>(extension)));
+	items.push_back(make_pair(item, extension));
+}
+
+
+
+void DrawList::SpriteItemExtension::Draw()
+{
+	Messages::Add("Should ");
+}
+
+
+
+DrawList::SpriteItemExtension::~SpriteItemExtension()
+{
+	Messages::Add("SAFASFSAf");
 }

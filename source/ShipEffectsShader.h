@@ -39,6 +39,7 @@ public:
 	class EffectItem : public DrawList::SpriteItemExtension {
 	public:
 		void Draw() override;
+		~EffectItem() override;
 
 	public:
 		uint32_t texture = 0;
