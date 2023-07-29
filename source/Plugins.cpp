@@ -51,7 +51,7 @@ namespace {
 	}
 
 	bool oldNetworkActivity = false;
-	atomic<int> currentNetworkActivity{0};
+	atomic<int> currentBackgroundActivity{0};
 }
 
 
@@ -131,6 +131,13 @@ bool Plugins::HasChanged()
 
 
 
+bool Plugins::IsInBackground()
+{
+	return currentBackgroundActivity;
+}
+
+
+
 // Returns the list of plugins that have been identified by the game.
 const Set<Plugin> &Plugins::Get()
 {
@@ -153,7 +160,7 @@ future<void> Plugins::Install(string url, string name, std::string version)
 	oldNetworkActivity = true;
 	return async(launch::async, [url, name, version]() noexcept -> void
 		{
-			currentNetworkActivity.store(currentNetworkActivity + 1);
+			currentBackgroundActivity.store(currentBackgroundActivity + 1);
 
 			bool success = DownloadHelper::Download(url.c_str(),
 				(Files::Plugins() + name + ".zip").c_str());
@@ -165,7 +172,7 @@ future<void> Plugins::Install(string url, string name, std::string version)
 			}
 			Files::Write(Files::Plugins() + name + "/version.txt", version);
 			Files::Delete(Files::Plugins() + name + ".zip");
-			currentNetworkActivity.store(currentNetworkActivity - 1);
+			currentBackgroundActivity.store(currentBackgroundActivity - 1);
 		});
 }
 

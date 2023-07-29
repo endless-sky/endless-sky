@@ -130,6 +130,9 @@ void PreferencesPanel::Draw()
 	GameData::Interfaces().Get(pageName)->Draw(info, this);
 	GameData::Interfaces().Get("preferences")->Draw(info, this);
 
+	if(Plugins::IsInBackground())
+		SpriteShader::Draw(SpriteSet::Get("ui/downloading"), Screen::TopLeft() + Point(30., 30.));
+
 	zones.clear();
 	prefZones.clear();
 	pluginZones.clear();

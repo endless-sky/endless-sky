@@ -60,6 +60,8 @@ public:
 	// Returns true if any plugin enabled or disabled setting has changed since
 	// launched via user preferences.
 	static bool HasChanged();
+	// Returns true if there is active install/update activity;
+	static bool IsInBackground();
 
 	// Returns the list of plugins that have been identified by the game.
 	static const Set<Plugin> &Get();
