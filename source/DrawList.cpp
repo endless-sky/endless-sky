@@ -26,8 +26,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
-#include "Messages.h"
-
 // Clear the list.
 void DrawList::Clear(int step, double zoom)
 {
@@ -176,7 +174,6 @@ void DrawList::Push(const Body &body, Point pos, Point blur, double cloak, int s
 	item.swizzle = swizzle;
 	item.clip = 1.;
 
-	Messages::Add(to_string(reinterpret_cast<size_t>(extension)));
 	items.push_back(make_pair(item, extension));
 }
 
