@@ -345,7 +345,6 @@ ShipEffectsShader::EffectItem ShipEffectsShader::Prepare(const Ship* ship, const
 
 	copy(finalColour, finalColour + 4, item.shieldColor);
 
-
 	return item;
 }
 
@@ -411,7 +410,6 @@ ShipEffectsShader::EffectItem::~EffectItem()
 #include "Messages.h"
 void ShipEffectsShader::EffectItem::Draw()
 {
-	Messages::Add("Drawing ship thing");
 	Bind();
 	Add(*this);
 	Unbind();

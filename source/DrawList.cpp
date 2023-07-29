@@ -184,12 +184,10 @@ void DrawList::Push(const Body &body, Point pos, Point blur, double cloak, int s
 
 void DrawList::SpriteItemExtension::Draw()
 {
-	Messages::Add("Should ");
 }
 
 
 
 DrawList::SpriteItemExtension::~SpriteItemExtension()
 {
-	Messages::Add("SAFASFSAf");
 }
