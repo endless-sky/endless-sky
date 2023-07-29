@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
+#include "SpriteShader.h"
 
 #include <algorithm>
 #include <bit>
@@ -248,9 +249,19 @@ void ShipEffectsShader::Draw(const Ship* ship, const Point& position, const vect
 
 
 
-void ShipEffectsShader::SetCenter(Point newCenter)
+void ShipEffectsShader::SetCenter(Point newCenter, float newZoom)
 {
 	center = newCenter;
+	czoom = newZoom;
+}
+
+
+
+ShipEffectsShader::EffectItem ShipEffectsShader::Batch(const Ship* ship, const Point& position,
+	const vector<pair<Point, double>>* recentHits, const float frame,
+	const vector<pair<string, double>> &shieldColor)
+{
+	return Prepare(ship, position - center, recentHits, czoom, frame, shieldColor);
 }
 
 
@@ -386,4 +397,12 @@ void ShipEffectsShader::Unbind()
 	glActiveTexture(GL_TEXTURE0);
 	glBindVertexArray(0);
 	glUseProgram(0);
+}
+
+
+
+void ShipEffectsShader::EffectItem::Draw() {
+	Bind();
+	Add(*this);
+	SpriteShader::Bind();
 }

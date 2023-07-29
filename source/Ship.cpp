@@ -2182,7 +2182,7 @@ int Ship::CustomSwizzle() const
 	return customSwizzle;
 }
 
-vector<pair<Point, double>> *Ship::RecentHits()
+const vector<pair<Point, double>> *Ship::RecentHits() const
 {
 	return &recentHits;
 }

@@ -993,21 +993,6 @@ void Engine::Draw() const
 
 	draw[drawTickTock].Draw();
 
-	if(static_cast<int>(Preferences::GetHitEffects()) > 0)
-	{
-		ShipEffectsShader::Bind();
-		for(unsigned int i = 0; i < shipEffects[drawTickTock].size(); i++)
-		{
-			ShipEffectsShader::Add(shipEffects[drawTickTock][i]);
-		}
-		// Not sure why this doesn't work
-		// for (const auto& it : shipEffects)
-		// {
-		// 	ShipEffectsShader::Add(it);
-		// }
-		ShipEffectsShader::Unbind();
-	}
-
 	batchDraw[drawTickTock].Draw();
 
 	for(const auto &it : statuses)
@@ -1562,7 +1547,7 @@ void Engine::CalculateStep()
 	draw[calcTickTock].SetCenter(newCenter, newCenterVelocity);
 	batchDraw[calcTickTock].SetCenter(newCenter);
 	radar[calcTickTock].SetCenter(newCenter);
-	ShipEffectsShader::SetCenter(newCenter);
+	ShipEffectsShader::SetCenter(newCenter, static_cast<float>(zoom));
 	shipEffects[calcTickTock].clear();
 
 	// Populate the radar.
@@ -1591,11 +1576,6 @@ void Engine::CalculateStep()
 			if(ship.get() != flagship)
 			{
 				AddSprites(*ship);
-				if(static_cast<int>(Preferences::GetHitEffects()) > 0)
-				{
-					shipEffects[calcTickTock].push_back(ShipEffectsShader::Prepare(ship.get(), (ship->Position() - newCenter),
-						ship->RecentHits(), zoom, ship->GetFrame(), ship->ShieldColors()));
-				}
 				if(ship->IsThrusting() && !ship->EnginePoints().empty())
 				{
 					for(const auto &it : ship->Attributes().FlareSounds())
@@ -2464,7 +2444,7 @@ void Engine::AddSprites(const Ship &ship)
 	double cloak = ship.Cloaking();
 	bool drawCloaked = (cloak && ship.IsYours());
 	auto &itemsToDraw = draw[calcTickTock];
-	auto drawObject = [&itemsToDraw, cloak, drawCloaked](const Body &body) -> void
+	auto drawObject = [&itemsToDraw, cloak, drawCloaked](const Body &body, unique_ptr<DrawList::SpriteItemExtension> extension) -> void
 	{
 		// Draw cloaked/cloaking sprites swizzled red, and overlay this solid
 		// sprite with an increasingly transparent "regular" sprite.
@@ -2476,7 +2456,7 @@ void Engine::AddSprites(const Ship &ship)
 	if(hasFighters)
 		for(const Ship::Bay &bay : ship.Bays())
 			if(bay.side == Ship::Bay::UNDER && bay.ship)
-				drawObject(*bay.ship);
+				drawObject(*bay.ship, nullptr);
 
 	if(ship.IsThrusting() && !ship.EnginePoints().empty())
 		DrawFlareSprites(ship, draw[calcTickTock], ship.EnginePoints(),
@@ -2498,14 +2478,23 @@ void Engine::AddSprites(const Ship &ship)
 				ship.Velocity(),
 				ship.Facing() + hardpoint.GetAngle(),
 				ship.Zoom());
-			drawObject(body);
+			drawObject(body, nullptr);
 		}
 	};
 
 	for(const Hardpoint &hardpoint : ship.Weapons())
 		if(hardpoint.IsUnder())
 			drawHardpoint(hardpoint);
-	drawObject(ship);
+	
+	if(static_cast<int>(Preferences::GetHitEffects()) > 0)
+	{
+		auto it = ShipEffectsShader::Batch( &ship, ship.Position(), ship.RecentHits(), 
+			ship.GetFrame(), ship.ShieldColors());
+		drawObject(ship, unique_ptr<DrawList::SpriteItemExtension>(&it));
+	}
+	else
+		drawObject(ship, nullptr);
+
 	for(const Hardpoint &hardpoint : ship.Weapons())
 		if(!hardpoint.IsUnder())
 			drawHardpoint(hardpoint);
@@ -2523,7 +2512,7 @@ void Engine::AddSprites(const Ship &ship)
 	if(hasFighters)
 		for(const Ship::Bay &bay : ship.Bays())
 			if(bay.side == Ship::Bay::OVER && bay.ship)
-				drawObject(*bay.ship);
+				drawObject(*bay.ship, nullptr);
 }
 
 

@@ -22,6 +22,7 @@ class Ship;
 class Government;
 
 #include "Body.h"
+#include "DrawList.h"
 
 #include <cstdint>
 #include <memory>
@@ -35,7 +36,10 @@ class Government;
 // It's a clone of the SpriteShader, with a few extra doohickeys.
 class ShipEffectsShader {
 public:
-	class EffectItem {
+	class EffectItem : public DrawList::SpriteItemExtension {
+	public:
+		void Draw() override;
+
 	public:
 		uint32_t texture = 0;
 		uint32_t shieldTex = 0;
@@ -59,7 +63,7 @@ public:
 public:
 	// Initialize the shaders.
 	static void Init();
-	static void SetCenter(Point newCenter);
+	static void SetCenter(Point newCenter, float newZoom);
 
 	// Draw a sprite.
 	static void Draw(const Ship* body, const Point& position, const std::vector<std::pair<Point, double>>* recentHits,
@@ -67,12 +71,16 @@ public:
 	static EffectItem Prepare(const Ship *body, const Point &position,
 		const std::vector<std::pair<Point, double>>* recentHits, const float zoom = 1.f, const float frame = 0.f,
 		const std::vector<std::pair<std::string, double>>& shieldColor = {});
+	static EffectItem Batch(const Ship *body, const Point &position,
+		const std::vector<std::pair<Point, double>>* recentHits, const float frame = 0.f,
+		const std::vector<std::pair<std::string, double>>& shieldColor = {});
 
 	static void Bind();
 	static void Add(const EffectItem &item, bool withBlur = false);
 	static void Unbind();
 
 	static Point center;
+	static float czoom;
 
 };
 

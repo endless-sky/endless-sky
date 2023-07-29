@@ -48,47 +48,47 @@ void DrawList::SetCenter(const Point &center, const Point &centerVelocity)
 
 
 // Add an object based on the Body class.
-bool DrawList::Add(const Body &body, double cloak)
+bool DrawList::Add(const Body &body, double cloak, unique_ptr<SpriteItemExtension> extension)
 {
 	return Add(body, body.Position(), cloak);
 }
 
 
 
-bool DrawList::Add(const Body &body, Point position, double cloak)
+bool DrawList::Add(const Body &body, Point position, double cloak, unique_ptr<SpriteItemExtension> extension)
 {
 	position -= center;
 	Point blur = body.Velocity() - centerVelocity;
 	if(Cull(body, position, blur))
 		return false;
 
-	Push(body, std::move(position), std::move(blur), cloak, body.GetSwizzle());
+	Push(body, std::move(position), std::move(blur), cloak, body.GetSwizzle(), move(extension));
 	return true;
 }
 
 
 
-bool DrawList::AddUnblurred(const Body &body)
+bool DrawList::AddUnblurred(const Body &body, unique_ptr<SpriteItemExtension> extension)
 {
 	Point position = body.Position() - center;
 	Point blur;
 	if(Cull(body, position, blur))
 		return false;
 
-	Push(body, position, blur, 0., body.GetSwizzle());
+	Push(body, position, blur, 0., body.GetSwizzle(), move(extension));
 	return true;
 }
 
 
 
-bool DrawList::AddSwizzled(const Body &body, int swizzle)
+bool DrawList::AddSwizzled(const Body &body, int swizzle, unique_ptr<SpriteItemExtension> extension)
 {
 	Point position = body.Position() - center;
 	Point blur = body.Velocity() - centerVelocity;
 	if(Cull(body, position, blur))
 		return false;
 
-	Push(body, position, blur, 0., swizzle);
+	Push(body, position, blur, 0., swizzle, move(extension));
 	return true;
 }
 
@@ -100,8 +100,11 @@ void DrawList::Draw() const
 	SpriteShader::Bind();
 
 	bool withBlur = Preferences::Has("Render motion blur");
-	for(const SpriteShader::Item &item : items)
-		SpriteShader::Add(item, withBlur);
+	for(const auto &item : items)
+	{
+		SpriteShader::Add(item.first, withBlur);
+		item.second->Draw();
+	}
 
 	SpriteShader::Unbind();
 }
@@ -131,7 +134,7 @@ bool DrawList::Cull(const Body &body, const Point &position, const Point &blur) 
 
 
 
-void DrawList::Push(const Body &body, Point pos, Point blur, double cloak, int swizzle)
+void DrawList::Push(const Body &body, Point pos, Point blur, double cloak, int swizzle, unique_ptr<SpriteItemExtension> extension)
 {
 	SpriteShader::Item item;
 
@@ -166,5 +169,5 @@ void DrawList::Push(const Body &body, Point pos, Point blur, double cloak, int s
 	item.swizzle = swizzle;
 	item.clip = 1.;
 
-	items.push_back(item);
+	items.push_back(make_pair(item, move(extension)));
 }

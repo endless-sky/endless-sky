@@ -20,6 +20,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SpriteShader.h"
 
 #include <cstdint>
+#include <memory>
+#include <utility>
 #include <vector>
 
 class Body;
@@ -34,19 +36,25 @@ class Sprite;
 // a DrawList first does not make sense.
 class DrawList {
 public:
+	class SpriteItemExtension {
+	public:
+		virtual void Draw();
+	};
+
+public:
 	// Clear the list, also setting the global time step for animation.
 	void Clear(int step = 0, double zoom = 1.);
 	void SetCenter(const Point &center, const Point &centerVelocity = Point());
 
 	// Add an object based on the Body class.
-	bool Add(const Body &body, double cloak = 0.);
+	bool Add(const Body &body, double cloak = 0., std::unique_ptr<SpriteItemExtension> extension = nullptr);
 	// Add an object at the given position (rather than its own).
-	bool Add(const Body &body, Point position, double cloak = 0.);
+	bool Add(const Body &body, Point position, double cloak = 0., std::unique_ptr<SpriteItemExtension> extension = nullptr);
 
 	// Add an object that should not be drawn with motion blur.
-	bool AddUnblurred(const Body &body);
+	bool AddUnblurred(const Body &body, std::unique_ptr<SpriteItemExtension> extension = nullptr);
 	// Add an object using a specific swizzle (rather than its own).
-	bool AddSwizzled(const Body &body, int swizzle);
+	bool AddSwizzled(const Body &body, int swizzle, std::unique_ptr<SpriteItemExtension> extension = nullptr);
 
 	// Draw all the items in this list.
 	void Draw() const;
@@ -56,14 +64,14 @@ private:
 	// Determine if the given object should be drawn at all.
 	bool Cull(const Body &body, const Point &position, const Point &blur) const;
 
-	void Push(const Body &body, Point pos, Point blur, double cloak, int swizzle);
+	void Push(const Body &body, Point pos, Point blur, double cloak, int swizzle, std::unique_ptr<SpriteItemExtension> extension);
 
 
 private:
 	int step = 0;
 	double zoom = 1.;
 	bool isHighDPI = false;
-	std::vector<SpriteShader::Item> items;
+	std::vector<std::pair<SpriteShader::Item, std::unique_ptr<SpriteItemExtension>>> items;
 
 	Point center;
 	Point centerVelocity;
