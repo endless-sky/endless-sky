@@ -261,8 +261,34 @@ void PlayerInfo::Load(const string &path)
 		{
 			// Ships owned by the player have various special characteristics:
 			ships.push_back(make_shared<Ship>(child));
-			ships.back()->SetIsSpecial();
-			ships.back()->SetIsYours();
+			auto &it = ships.back();
+			it->SetIsSpecial();
+			it->SetIsYours();
+			// If the ship does not have any shield colors...
+			if(it->BaseAttributes().ShieldColor().empty())
+			{
+				auto baseShip = GameData::Ships().Get(it->TrueModelName());
+				if(baseShip)
+				{
+					auto &colors = baseShip->BaseAttributes().ShieldColor();
+					// ...but the base model does...
+					if(!colors.empty())
+					{
+						string colorList = "";
+						for(const auto &color : colors)
+						{
+							colorList.append("Color: " + color.first + " + Influence: " + to_string(color.second) + ", ");
+						}
+						Logger::LogError("Defaulting missing \"shield color\" attributes to: " + colorList);
+						auto thing = &it->BaseAttributes().ShieldColor();
+						auto current = const_cast<vector<pair<string, double>> *>(thing);
+						// ...append the base model's colors to the ship.
+						// This is intended for backwards compatability.
+						for(const auto &it : colors)
+							current->emplace_back(it);
+					}
+				}
+			}
 			// Defer finalizing this ship until we have processed all changes to game state.
 		}
 		else if(child.Token(0) == "groups" && child.Size() >= 2 && !ships.empty())

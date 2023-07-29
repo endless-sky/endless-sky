@@ -2488,7 +2488,7 @@ void Engine::AddSprites(const Ship &ship)
 			drawHardpoint(hardpoint);
 
 	if(static_cast<int>(Preferences::GetHitEffects()) > 0 && !ship.RecentHits()->empty())
-		drawObject(ship, new ShipEffectsShader::EffectItem(move(ShipEffectsShader::Batch(
+		drawObject(ship, new ShipEffectsShader::EffectItem(std::move(ShipEffectsShader::Batch(
 			&ship, ship.Position(), ship.RecentHits(), ship.GetFrame(), ship.ShieldColors()))));
 	else
 		drawObject(ship, nullptr);
