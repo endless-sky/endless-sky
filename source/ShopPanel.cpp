@@ -1240,11 +1240,10 @@ void ShopPanel::CheckSelection()
 	vector<Zone>::const_iterator it = Selected();
 	if(it == mainEnd)
 		return;
-	const vector<Zone>::const_iterator origIt = it;
+	const vector<Zone>::const_iterator oldIt = it;
 
-	if(++it == mainEnd)
-		it = mainStart;
-	while(it != origIt)
+	// Advance to find next valid selection.
+	for( ; it != mainEnd; ++it)
 	{
 		const Outfit *outfit = it->GetOutfit();
 		if(outfit && HasItem(outfit->TrueName()))
@@ -1252,23 +1251,37 @@ void ShopPanel::CheckSelection()
 		const Ship *ship = it->GetShip();
 		if(ship && HasItem(ship->TrueModelName()))
 			break;
-
-		if(++it == mainEnd)
-			it = mainStart;
 	}
 
-	if(it == origIt)
+	// If that didn't work, try the other direction.
+	if(it == mainEnd)
 	{
-		// No displayed objects, apparently.
-		selectedShip = nullptr;
-		selectedOutfit = nullptr;
+		it = oldIt;
+		while(it != mainStart)
+		{
+			--it;
+			const Ship *ship = it->GetShip();
+			const Outfit *outfit = it->GetOutfit();
+			if((ship && HasItem(ship->TrueModelName())) || (outfit && HasItem(outfit->TrueName())))
+			{
+				++it;
+				break;
+			}
+		}
+
+		if(it == mainStart)
+		{
+			// No displayed objects, apparently.
+			selectedShip = nullptr;
+			selectedOutfit = nullptr;
+			return;
+		}
+		--it;
 	}
-	else
-	{
-		selectedShip = it->GetShip();
-		selectedOutfit = it->GetOutfit();
-		MainAutoScroll(it);
-	}
+
+	selectedShip = it->GetShip();
+	selectedOutfit = it->GetOutfit();
+	MainAutoScroll(it);
 }
 
 
