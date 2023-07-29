@@ -164,9 +164,11 @@ protected:
 	// (It may be worth moving the above pointers into the derived classes in the future.)
 
 	double mainScroll = 0.;
-	double visualScroll = 0;
+	double mainSmoothScroll = 0;
 	double sidebarScroll = 0.;
+	double sidebarSmoothScroll = 0.;
 	double infobarScroll = 0.;
+	double infobarSmoothScroll = 0.;
 	double maxMainScroll = 0.;
 	double maxSidebarScroll = 0.;
 	double maxInfobarScroll = 0.;
