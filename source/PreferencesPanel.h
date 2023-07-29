@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ClickZone.h"
 #include "Command.h"
+#include <future>
 #include <nlohmann/json.hpp>
 #include "Point.h"
 
@@ -90,6 +91,7 @@ private:
 	unsigned int installAblePages = 1;
 	unsigned int currentInstallAblePage = 0;
 	bool downloadedInfo = false;
+	std::vector<std::future<void>> installFeedbacks;
 
 	std::vector<ClickZone<Command>> zones;
 	std::vector<ClickZone<std::string>> prefZones;

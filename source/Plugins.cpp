@@ -171,10 +171,10 @@ future<void> Plugins::Install(string url, string name, std::string version)
 
 
 
-void Plugins::Update(string url, string name, std::string version)
+future<void> Plugins::Update(string url, string name, std::string version)
 {
 	plugins.Get(name)->version = version;
 
 	Files::DeleteDir((Files::Plugins() + name).c_str());
-	Install(url, name, version);
+	return Install(url, name, version);
 }

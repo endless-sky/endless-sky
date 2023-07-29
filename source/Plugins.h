@@ -69,7 +69,7 @@ public:
 
 	// Manage a Plugin with git.
 	static std::future<void> Install(std::string url, std::string name, std::string version);
-	static void Update(std::string url, std::string name, std::string version);
+	static std::future<void> Update(std::string url, std::string name, std::string version);
 };
 
 
