@@ -15,10 +15,18 @@ on:
         value: ${{ jobs.changed.outputs.codespell }}
       codeblocks_files:
         value: ${{ jobs.changed.outputs.codeblocks_files }}
+      editorconfig_files:
+        value: ${{ jobs.changed.outputs.editorconfig_files }}
+      content_style_check:
+        value: ${{ jobs.changed.outputs.content_style_check }}
+      code_style_check:
+        value: ${{ jobs.changed.outputs.code_style_check }}
       cmake_files:
         value: ${{ jobs.changed.outputs.cmake_files }}
       copyright:
         value: ${{ jobs.changed.outputs.copyright }}
+      changelog:
+        value: ${{ jobs.changed.outputs.changelog }}
       parse_script:
         value: ${{ jobs.changed.outputs.parse_script }}
 
@@ -32,8 +40,12 @@ jobs:
       integration_tests: ${{ steps.filter.outputs.integration_tests }}
       codespell: ${{ steps.filter.outputs.codespell }}
       codeblocks_files: ${{ steps.filter.outputs.codeblocks_files }}
+      editorconfig_files: ${{ steps.filter.outputs.editorconfig_files }}
+      content_style_check: ${{ steps.filter.outputs.content_style_check }}
+      code_style_check: ${{ steps.filter.outputs.code_style_check }}
       cmake_files: ${{ steps.filter.outputs.cmake_files }}
       copyright: ${{ steps.filter.outputs.copyright }}
+      changelog: ${{ steps.filter.outputs.changelog }}
       parse_script: ${{ steps.filter.outputs.parse_script }}
     steps:
     - uses: actions/checkout@v3

@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "LocationFilter.h"
 
+#include "CategoryList.h"
 #include "CategoryTypes.h"
 #include "DataNode.h"
 #include "DataWriter.h"
@@ -70,7 +71,7 @@ namespace {
 	}
 
 	// Check if the given system is within the given distance of the center.
-	int Distance(const System *center, const System *system, int maximum)
+	int Distance(const System *center, const System *system, int maximum, DistanceCalculationSettings distanceSettings)
 	{
 		// This function should only ever be called from the main thread, but
 		// just to be sure, use mutex protection on the static locals.
@@ -78,14 +79,28 @@ namespace {
 		lock_guard<mutex> lock(distanceMutex);
 
 		static const System *previousCenter = center;
-		static DistanceMap distance(center, -1, maximum);
+		static DistanceMap distance(
+			center,
+			distanceSettings.WormholeStrat(),
+			distanceSettings.AssumesJumpDrive(),
+			-1,
+			maximum
+		);
 		static int previousMaximum = maximum;
+		static DistanceCalculationSettings previousDistanceSettings = distanceSettings;
 
-		if(center != previousCenter || maximum > previousMaximum)
+		if(center != previousCenter || maximum > previousMaximum || distanceSettings != previousDistanceSettings)
 		{
 			previousCenter = center;
 			previousMaximum = maximum;
-			distance = DistanceMap(center, -1, maximum);
+			previousDistanceSettings = distanceSettings;
+			distance = DistanceMap(
+				center,
+				distanceSettings.WormholeStrat(),
+				distanceSettings.AssumesJumpDrive(),
+				-1,
+				maximum
+			);
 		}
 		// If the distance is greater than the maximum, this is not a match.
 		int d = distance.Days(system);
@@ -299,8 +314,9 @@ bool LocationFilter::IsValid() const
 	if(!shipCategory.empty())
 	{
 		// At least one desired category must be valid.
-		const auto &shipCategories = GameData::Category(CategoryType::SHIP);
-		auto categoriesSet = set<string>(shipCategories.begin(), shipCategories.end());
+		set<string> categoriesSet;
+		for(const auto &category : GameData::GetCategory(CategoryType::SHIP))
+			categoriesSet.insert(category.Name());
 		if(!SetsIntersect(shipCategory, categoriesSet))
 			return false;
 	}
@@ -409,7 +425,7 @@ bool LocationFilter::Matches(const Ship &ship) const
 
 	// Check if this ship's current system meets a "near <system>" criterion.
 	// (Ships only offer missions, so no "distance" criteria need to be checked.)
-	if(center && Distance(center, origin, centerMaxDistance) < centerMinDistance)
+	if(center && Distance(center, origin, centerMaxDistance, centerDistanceOptions) < centerMinDistance)
 		return false;
 
 	return true;
@@ -435,9 +451,11 @@ LocationFilter LocationFilter::SetOrigin(const System *origin) const
 	result.center = origin;
 	result.centerMinDistance = originMinDistance;
 	result.centerMaxDistance = originMaxDistance;
+	result.centerDistanceOptions = originDistanceOptions;
 	// Revert "distance" parameters to their default.
 	result.originMinDistance = 0;
 	result.originMaxDistance = -1;
+	result.originDistanceOptions = DistanceCalculationSettings{};
 
 	return result;
 }
@@ -541,6 +559,9 @@ void LocationFilter::LoadChild(const DataNode &child)
 			centerMinDistance = child.Value(1 + valueIndex);
 			centerMaxDistance = child.Value(2 + valueIndex);
 		}
+
+		if(child.HasChildren())
+			centerDistanceOptions.Load(child);
 	}
 	else if(key == "distance" && child.Size() >= 1 + valueIndex)
 	{
@@ -551,6 +572,9 @@ void LocationFilter::LoadChild(const DataNode &child)
 			originMinDistance = child.Value(valueIndex);
 			originMaxDistance = child.Value(1 + valueIndex);
 		}
+
+		if(child.HasChildren())
+			originDistanceOptions.Load(child);
 	}
 	else if(key == "category" && child.Size() >= 2 + isNot)
 	{
@@ -618,10 +642,10 @@ bool LocationFilter::Matches(const System *system, const System *origin, bool di
 		return false;
 
 	// Check this system's distance from the desired reference system.
-	if(center && Distance(center, system, centerMaxDistance) < centerMinDistance)
+	if(center && Distance(center, system, centerMaxDistance, centerDistanceOptions) < centerMinDistance)
 		return false;
 	if(origin && originMaxDistance >= 0
-			&& Distance(origin, system, originMaxDistance) < originMinDistance)
+			&& Distance(origin, system, originMaxDistance, originDistanceOptions) < originMinDistance)
 		return false;
 
 	return true;

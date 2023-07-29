@@ -74,7 +74,9 @@ public:
 	virtual void Step() override;
 	virtual void Draw() override;
 
-	void DrawButtons(const std::string &condition);
+	// Draw map mode buttons, escort/storage tooltips, and the non-routable system warning.
+	void FinishDrawing(const std::string &buttonCondition);
+
 	static void DrawMiniMap(const PlayerInfo &player, float alpha, const System *const jump[2], int step);
 
 	// Map panels allow fast-forward to stay active.
@@ -165,7 +167,6 @@ private:
 	void DrawSystems();
 	void DrawNames();
 	void DrawMissions();
-	void DrawTooltips();
 	void DrawPointer(const System *system, unsigned &systemCount, const Color &color, bool bigger = false);
 	static void DrawPointer(Point position, unsigned &systemCount, const Color &color,
 		bool drawBack = true, bool bigger = false);

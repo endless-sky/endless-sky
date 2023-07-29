@@ -1147,6 +1147,7 @@ mission "Hai Reveal [A09] History of Appeasement"
 		dialog `Teeneep is on another ship not yet in the system, take off and wait for the ship to arrive in order to continue.`
 	on offer
 		log `A group of Hai Elders agreed to change their approach to the problem of pirates if the situation deteriorates further. Unfortunately, they refused to even discuss the disappearances.`
+		"hr: Uhai Reputation Record" = "reputation: Hai (Unfettered)"
 		"reputation: Hai (Unfettered)" >?= 10
 		conversation
 			`As you return, you give Batu directions to find Xilin and then arrange evening meetings with the other diplomats. To pass the time, you search for Teeneep and Sayari, hoping to swap information with the two. You find yourself at Sayari's office, only to be met by the sight of Teeneep and Sayari arguing. Teeneep is shouting angrily at Sayari, who is trying to calm her. Their argument is so intense that they don't hear you approaching.`
@@ -1418,6 +1419,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 		has "Hai Reveal [A10] Demanding Satisfaction: done"
 	on offer
 		event "hai and human ships at wormhole"
+		"reputation: Hai (Unfettered)" = "hr: Uhai Reputation Record"
 		log `Teeneep has been rejected by the Elders again, but has set in a motion a plan which has triggered an election instead. This snap election has closed the border and risked creating a diplomatic incident.`
 		log "People" "Aimet Taepip" `An Elder of advanced age and poor eyesight. He is the "master navigator" of the Hai political system, being the first to improve on a system in several generations. He commands widespread respect and possesses enormous clout in the Council of Elders.`
 		conversation
@@ -1738,7 +1740,8 @@ mission "Hai Reveal [A12] Into the Lion's Den"
 mission "Hai Reveal [A13] A New Elder"
 	landing
 	name "A New Elder"
-	description "Travel with Teeneep and the diplomatic corps to <stopovers> and escort the Unfettered to <planet>."
+	description "Travel with Teeneep and the diplomatic corps directly to <stopovers> and escort the Unfettered directly to <planet>."
+	deadline 10
 	source "Hai-home"
 	stopover "Everhope"
 	destination "Mountaintop"
@@ -1746,6 +1749,7 @@ mission "Hai Reveal [A13] A New Elder"
 	to offer
 		has "Hai Reveal [A12] Into the Lion's Den: done"
 	on offer
+		"reputation: Hai (Friendly Unfettered)" >?= 10
 		conversation
 			`You are granted access to the secure spaceport, potentially because nobody has filed any paperwork to stop you, and you can't help but notice that the strangely-outfitted Centipede from Teeneep's operations on Darkwaste has made its way here as well. It is late in the day when you enter the diplomatic wing of the government complex. The developing gloom as Ya Hai sinks behind the buildings of the capital underscores the mood; the place appears nearly deserted.`
 			`	Fortunately though, you swiftly discover Alondo and Remington who are sitting in the empty cafeteria with paired glasses of what appears to be scotch whiskey. When he sees you Alondo raises a hand and gestures for you to sit with them. "<first>! Bloody hell, come join us."`
@@ -1811,7 +1815,7 @@ mission "Hai Reveal [A13] A New Elder"
 			`	She puts her paw over her face and breathes a long sigh. "Yes, Captain <last>, I do need another ride." She smiles sadly and looks away for a moment.`
 			label hasdone
 			`	Her tone is very serious as she explains, "Things might be tense now, but I promise, things aren't as bad as they look. I know Teeneep, and she has the influential backing of another long-time advocate for sensible change, who was also just elected. They are remaining here to reinforce her position. Teeneep displaced that Elder who threatened her in the chambers. It's upset all the long-term power dynamics in the Council, but it's a much better Council overall now.`
-			`	"Events are in motion though, we're to go to <stopovers> and then to <planet> - and you're to come with us too. I don't think it's something they view as optional, and I'm told I'm required to travel with you... as insurance."`
+			`	"Events are in motion though, we're to go directly to <stopovers> and then to <planet> - and you're to come with us too. I don't think it's something they view as optional, and I'm told I'm required to travel with you... as insurance."`
 			`She hesitates, seeming oddly nervous for the one who theoretically has all the power in the room. "<last>, this will sound silly, but I'm a bit of a traditionalist sometimes. There's a superstition about space travel, and under the circumstances... I'm too old for this stress. Could you please do me a favor and make sure you have a Quantum Keystone on your ship? It's meant to be good luck, and well, I think we need it."`
 			choice
 				`	"Of course."`
@@ -1837,13 +1841,6 @@ mission "Hai Reveal [A13] A New Elder"
 		# Apparently I can't make this either Keystones *or* Key Stones, so it'll have to be a Hai one.
 	on visit
 		dialog `You have either not stopped on Everhope as instructed, or you have left Sayari behind. Remember, her superstition has gotten the better of her under these pressing circumstances, so you must have a Quantum Keystone installed for her to travel with you.`
-	on fail
-		dialog `You have failed an essential narrative mission. You've also made the Hai hostile. If you want to complete this story line, revert to the autosave or another earlier snapshot of the game.`
-		"reputation: Hai" -= 10000
-		"reputation: Hai (Wormhole Access)" -= 10000
-		"reputation: Hai Merchant" -= 10000
-		"reputation: Hai Merchant (Human)" -= 10000
-		"reputation: Hai Merchant (Sympathizers)" -= 10000
 	on fail
 		dialog `You have failed an essential narrative mission. You've also made the Hai hostile. If you want to complete this story line, revert to the autosave or another earlier snapshot of the game.`
 		"reputation: Hai" -= 10000
@@ -2002,13 +1999,20 @@ mission "Hai Reveal [A14] A Time of Trouble"
 			`	Turner smiles, "And I think it would be appropriate if you, as the famous war hero, were the one to escort them to safety and keep everyone's eyes away from what's happening here."`
 			`	The two of them look at each other for a second before Terry says, "We also need to get out of here ourselves. With the movie cover shutting down, we both have other things we really should be doing, and so we'd like to come with you. It would be much safer on your ship than with any of the merchant ships that need escorting."`
 				accept
-	npc accompany
+	on enter Mirfak
+		log `Teeneep has recommended that nobody visits Unfettered space while their leader is here with the fleet.`
+		conversation
+			`A message comes through just as you arrive at Mirfak, and it's from Teeneep.`
+			`	It reads: "While this situation is ongoing with Choot'k here away from his people, you should not go near the Unfettered. It will likely be seen as duplicitous, which would be a disaster."`
+	npc accompany save
 		government "Merchant"
 		system "Ultima Thule"
 		personality timid escort coward
 		fleet "Large Northern Merchants" 2
-	npc accompany
+	npc accompany save
 		government "Merchant"
 		system "Ultima Thule"
 		personality timid escort coward
 		fleet "Paradise Merchants" 3
+	on fail
+		dialog `You have failed an essential narrative mission. You've also made the Hai hostile. If you want to complete this story line, revert to the autosave or another earlier snapshot of the game.`

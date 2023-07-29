@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipInfoDisplay.h"
 
 #include "text/alignment.hpp"
+#include "CategoryList.h"
 #include "CategoryTypes.h"
 #include "Color.h"
 #include "Depreciation.h"
@@ -139,7 +140,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	attributeHeaderValues.clear();
 
 	attributeHeaderLabels.push_back("model:");
-	attributeHeaderValues.push_back(ship.ModelName());
+	attributeHeaderValues.push_back(ship.DisplayModelName());
 	attributesHeight = 20;
 
 	attributeLabels.clear();
@@ -151,7 +152,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	if(!ship.IsYours())
 		for(const string &license : attributes.Licenses())
 		{
-			if(player.Conditions().Has("license: " + license))
+			if(player.HasLicense(license))
 				continue;
 
 			const auto &licenseOutfit = GameData::Outfits().Find(license + " License");
@@ -296,8 +297,9 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	}
 
 	// Print the number of bays for each bay-type we have
-	for(auto &&bayType : GameData::Category(CategoryType::BAY))
+	for(const auto &category : GameData::GetCategory(CategoryType::BAY))
 	{
+		const string &bayType = category.Name();
 		int totalBays = ship.BaysTotal(bayType);
 		if(totalBays)
 		{
@@ -416,7 +418,7 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const PlayerInfo &player, 
 
 	int64_t totalCost = depreciation.Value(ship, player.GetDate().DaysSinceEpoch());
 	int64_t chassisCost = depreciation.Value(
-		GameData::Ships().Get(ship.ModelName()),
+		GameData::Ships().Get(ship.TrueModelName()),
 		player.GetDate().DaysSinceEpoch());
 	saleLabels.clear();
 	saleValues.clear();
