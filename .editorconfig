@@ -12,12 +12,8 @@ trim_trailing_whitespace = false
 indent_style = tab
 
 # Code files
-[{*.{cpp,h,rc}, SConstruct, SConscript}]
+[{*.{cpp,h,rc,hpp}, SConstruct, SConscript}]
 indent_style = tab
-# External Headers
-[{*.{hpp}, SConstruct, SConscript}]
-indent_style = space
-indent_size = 4
 # Except any third-party libraries
 [catch.hpp]
 indent_style = unset
