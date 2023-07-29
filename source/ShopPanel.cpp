@@ -183,6 +183,8 @@ void ShopPanel::DrawShipsSidebar()
 	const Color &bright = *GameData::Colors().Get("bright");
 	sideDetailHeight = 0;
 
+	sidebarSmoothScroll = sidebarSmoothScroll + (sidebarScroll - sidebarSmoothScroll) * 0.2;
+
 	// Fill in the background.
 	FillShader::Fill(
 		Point(Screen::Right() - SIDEBAR_WIDTH / 2, 0.),
@@ -201,7 +203,7 @@ void ShopPanel::DrawShipsSidebar()
 	// Start below the "Your Ships" label, and draw them.
 	Point point(
 		Screen::Right() - SIDEBAR_WIDTH / 2 - 93,
-		Screen::Top() + SIDEBAR_WIDTH / 2 - sidebarScroll + 40 - 93);
+		Screen::Top() + SIDEBAR_WIDTH / 2 - sidebarSmoothScroll + 40 - 93);
 
 	const Planet *here = player.GetPlanet();
 	int shipsHere = 0;
@@ -295,7 +297,7 @@ void ShopPanel::DrawShipsSidebar()
 		font.Draw({space, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, point, bright);
 		point.Y() += 20.;
 	}
-	maxSidebarScroll = max(0., point.Y() + sidebarScroll - Screen::Bottom() + BUTTON_HEIGHT);
+	maxSidebarScroll = max(0., point.Y() + sidebarSmoothScroll - Screen::Bottom() + BUTTON_HEIGHT);
 
 	PointerShader::Draw(Point(Screen::Right() - 10, Screen::Top() + 10),
 		Point(0., -1.), 10.f, 10.f, 5.f, Color(sidebarScroll > 0 ? .8f : .2f, 0.f));
@@ -310,6 +312,9 @@ void ShopPanel::DrawDetailsSidebar()
 	// Fill in the background.
 	const Color &line = *GameData::Colors().Get("dim");
 	const Color &back = *GameData::Colors().Get("shop info panel background");
+
+	infobarSmoothScroll = infobarSmoothScroll + (infobarScroll - infobarSmoothScroll) * 0.2;
+
 	FillShader::Fill(
 		Point(Screen::Right() - SIDEBAR_WIDTH - INFOBAR_WIDTH, 0.),
 		Point(1., Screen::Height()),
@@ -321,11 +326,11 @@ void ShopPanel::DrawDetailsSidebar()
 
 	Point point(
 		Screen::Right() - SIDE_WIDTH + INFOBAR_WIDTH / 2,
-		Screen::Top() + 10 - infobarScroll);
+		Screen::Top() + 10 - infobarSmoothScroll);
 
 	int heightOffset = DrawDetails(point);
 
-	maxInfobarScroll = max(0., heightOffset + infobarScroll - Screen::Bottom());
+	maxInfobarScroll = max(0., heightOffset + infobarSmoothScroll - Screen::Bottom());
 
 	PointerShader::Draw(Point(Screen::Right() - SIDEBAR_WIDTH - 10, Screen::Top() + 10),
 		Point(0., -1.), 10.f, 10.f, 5.f, Color(infobarScroll > 0 ? .8f : .2f, 0.f));
@@ -414,6 +419,8 @@ void ShopPanel::DrawMain()
 
 	const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
 	const Sprite *expandedArrow = SpriteSet::Get("ui/expanded");
+
+	mainSmoothScroll = mainSmoothScroll + (mainScroll - mainSmoothScroll) * 0.2;
 
 	// Draw all the available items.
 	// First, figure out how many columns we can draw.
@@ -504,7 +511,7 @@ void ShopPanel::DrawMain()
 
 	// What amount would mainScroll have to equal to make nextY equal the
 	// bottom of the screen? (Also leave space for the "key" at the bottom.)
-	maxMainScroll = max(0., nextY + mainScroll - Screen::Height() / 2 - TILE_SIZE / 2 + VisibilityCheckboxesSize() + 40.);
+	maxMainScroll = max(0., nextY + mainSmoothScroll - Screen::Height() / 2 - TILE_SIZE / 2 + VisibilityCheckboxesSize() + 40.);
 
 	PointerShader::Draw(Point(Screen::Right() - 10 - SIDE_WIDTH, Screen::Top() + 10),
 		Point(0., -1.), 10.f, 10.f, 5.f, Color(mainScroll > 0 ? .8f : .2f, 0.f));
@@ -1143,6 +1150,7 @@ void ShopPanel::MainLeft()
 	{
 		--it;
 		mainScroll = maxMainScroll;
+		mainSmoothScroll = maxMainScroll;
 		selectedShip = it->GetShip();
 		selectedOutfit = it->GetOutfit();
 		return;
@@ -1270,6 +1278,7 @@ void ShopPanel::MainDown()
 	if(it == zones.end())
 	{
 		mainScroll = 0;
+		mainSmoothScroll = 0;
 		selectedShip = nullptr;
 		selectedOutfit = nullptr;
 		return;
