@@ -2760,7 +2760,7 @@ mission "FW Cold Aid"
 		dialog `We are the People's Disaster Assistance Committee and we need captains like you! <destination> has suffered an unusually severe <problem> and urgently needs <cargo> by <date>. Any such community-minded captains will receive a bonus of <payment>.`
 	on complete
 		payment 8500 80
-		dialog `You turn your cargo of <cargo> over to the local community relief coordinator. After transfering the shipment, you move your ship away from the disaster area back to the public port complex.`
+		dialog `You turn your cargo of <cargo> over to the local community relief coordinator. After transferring the shipment, you move your ship away from the disaster area back to the public port complex.`
 
 mission "Bounty Hunting (Very Tiny)"
 	name "Wanted corsair near <system>"
