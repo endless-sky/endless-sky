@@ -173,6 +173,7 @@ protected:
 	char hoverButton = '\0';
 
 	std::vector<Zone> zones;
+	std::vector<ClickZone<const Ship *>> shipZones;
 	std::vector<ClickZone<std::string>> categoryZones;
 
 	std::map<std::string, std::vector<std::string>> catalog;
@@ -205,9 +206,6 @@ private:
 
 
 private:
-	// Start and end of main pane zones
-	std::vector<Zone>::const_iterator mainStart;
-	std::vector<Zone>::const_iterator mainEnd;
 	bool delayedAutoScroll = false;
 };
 
