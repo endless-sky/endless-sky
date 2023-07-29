@@ -585,7 +585,7 @@ int ShopPanel::VisibilityCheckboxesSize() const
 void ShopPanel::ToggleForSale()
 {
 	CheckSelection();
-	delayedAutoScroll  = true;
+	delayedAutoScroll = true;
 }
 
 
