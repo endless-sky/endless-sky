@@ -44,7 +44,7 @@ color "shields builder" .2 0. .2 .75
 color "shields coalition" .78 .55 .72 .75
 color "shields heliarch" 1. .84 0. .7
 
-#No / Permeable shields
+# No/Permeable shields
 color "shields gegno" .3 .2 .1 0.
 color "shields drak" .1 .1 .1 .3
 color "shields none" 0. 0. 0. 0.

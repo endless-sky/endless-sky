@@ -460,7 +460,7 @@ public:
 	const std::vector<std::weak_ptr<Ship>> &GetEscorts() const;
 
 	const Sprite *GetShieldSprite() const;
-	
+
 	// How many AI steps has this ship been lingering?
 	int GetLingerSteps() const;
 	// The AI wants the ship to linger for one AI step.

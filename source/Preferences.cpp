@@ -127,7 +127,7 @@ namespace {
 	int parallaxIndex = 2;
 
 	const vector<string> ON_HIT_EFFECTS = { "off", "fancy", "fast" };
-	int hitEffectIndex = 2;
+	int hitEffectIndex = 1;
 
 	const vector<string> ALERT_INDICATOR_SETTING = {"off", "audio", "visual", "both"};
 	int alertIndicatorIndex = 3;
