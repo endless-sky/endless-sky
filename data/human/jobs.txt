@@ -2678,6 +2678,7 @@ mission "Recycle garbage"
 
 mission "FW Wildfire Aid [1]"
 	name "Wildfire aid to <planet>"
+	description "Deliver wildfire relief aid of <cargo> to <destination> by <date>. Payment is <payment>."
 	minor
 	repeat
 	deadline
@@ -2706,6 +2707,7 @@ mission "FW Wildfire Aid [1]"
 
 mission "FW Wildfire Aid [2]"
 	name "Firefighters to <planet>"
+	description "Transport <bunks> firefighters to <destination> by <date>. Payment is <payment>."
 	minor
 	repeat
 	deadline
