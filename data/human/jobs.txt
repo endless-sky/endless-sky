@@ -2734,7 +2734,33 @@ mission "FW Wildfire Aid [2]"
 		payment 10500 80
 		dialog "You wish the firefighting team well in their efforts and collect your payment of <payment>. A group of <planet> citizens comes to guide the team away to a nearby tent, and thank you for your assistance."
 
-
+mission "FW Cold Aid"
+	name "Cold relief to <planet>"
+	minor
+	repeat
+	deadline
+	source
+		government "Free Worlds"
+	destination
+		government "Free Worlds"
+		distance 2 8
+		attributes "frozen"
+	substitutions
+		"<problem>" "cold snap"
+		"<problem>" "freeze"
+			"random" < 60
+		"<problem>" "snowstorm"
+			"random" < 30
+		"<problem>" "blizzard"
+			"random" < 10
+	cargo "cold aid" 10 15 0.5
+	to offer
+		random < 1
+	on offer
+		dialog `We are the People's Disaster Assistance Committee and we need captains like you! <destination> has suffered an unusually severe <problem> and urgently needs <cargo> by <date>. Any such community-minded captains will receive a bonus of <payment>.`
+	on complete
+		payment 8500 80
+		dialog `You turn your cargo of <cargo> over to the local community relief coordinator. After transfering the shipment, you move your ship away from the disaster area back to the public port complex.`
 
 mission "Bounty Hunting (Very Tiny)"
 	name "Wanted corsair near <system>"
