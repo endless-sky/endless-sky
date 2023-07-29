@@ -389,6 +389,8 @@ void ShopPanel::DrawMain()
 	const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
 	const Sprite *expandedArrow = SpriteSet::Get("ui/expanded");
 
+	visualScroll = visualScroll + (mainScroll - visualScroll) * 0.2;
+
 	// Draw all the available items.
 	// First, figure out how many columns we can draw.
 	const int TILE_SIZE = TileSize();
@@ -401,7 +403,7 @@ void ShopPanel::DrawMain()
 
 	const Point begin(
 		(Screen::Width() - columnWidth) / -2,
-		(Screen::Height() - TILE_SIZE) / -2 - mainScroll);
+		(Screen::Height() - TILE_SIZE) / -2 - visualScroll);
 	Point point = begin;
 	const float endX = Screen::Right() - (SIDE_WIDTH + 1);
 	double nextY = begin.Y() + TILE_SIZE;
