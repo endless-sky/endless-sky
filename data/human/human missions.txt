@@ -6305,9 +6305,7 @@ mission "Take Me To the South A"
 	minor
 	name "Care Package for a Southern Friend"
 	source
-		or
-			government "Republic"
-			government "Syndicate"
+		government "Republic" "Syndicate"
 		not attributes "rim" "south"
 	destination
 		attributes "rim" "south"
@@ -6347,17 +6345,16 @@ mission "Take Me To the South A"
 			`	She picks up the package and hands it to you - it's surprisingly heavy, but doesn't seem to shift or rattle at all as you settle it in your arms to carry to your ship.`
 				accept
 	on complete
-		payment 5000 1000
+		payment 15000 1500
 		conversation
 			`You arrive at the militia base on <destination>, and ask at the gate for GySgt Irene Brower. After a few minutes, a compact young woman with close-cropped blonde hair appears and walks over. When she sees the package at your feet, her face splits into a lopsided grin and her steps quicken. "I see you've brought me a package; this must be from Torrey!"`
-			`	You nod, introduce yourself, and briefly recount your meeting with her friend on <source>. Irene laughs. "Yep, that's her. Well, thank you so much for bringing this." She hefts the heavy box with no apparent effort, gives you a firm nod, and turns to head back into the base.`
+			`	You nod, introduce yourself, and briefly recount your meeting with her friend on <origin>. Irene laughs. "Yep, that's her. Well, thank you so much for bringing this." She hefts the heavy box with no apparent effort, gives you a firm nod, and turns to head back into the base.`
 			`	Before going more than three steps, she stops and turns back to you. "Oh, sorry - I'll authorize your payment as soon as I get back to my room. I don't have it with me."`
 			`	Sure enough, less than five minutes after she disappears into a building in the distance, your communicator bleeps and reports that <payment> has been credited to your account.`
 			action
 				set "delivered torrey's package to irene"
 
 mission "Take Me To The South A: Followup A"
-	minor
 	landing
 	invisible
 	source "Greenrock"
@@ -6372,11 +6369,10 @@ mission "Take Me To The South A: Followup A"
 				decline
 
 mission "Take Me To The South A: Followup A1"
-	minor
 	landing
 	invisible
 	to offer
-		has "Take Me To The South 1: Followup A: declined"
+		has "Take Me To The South A: Followup A: declined"
 		has "FW Pirates: Attack 3: done"
 	on offer
 		conversation
@@ -6396,7 +6392,6 @@ mission "Take Me To The South A: Followup B"
 	to offer
 		has "delivered torrey's package to irene"
 		has "FW Pirates: Diplomacy 4: done"
-		has "FW Early Warning 1: active"
 	on offer
 		conversation
 			`As you leave the quartermaster's building, you spot a familiar face coming in the other direction: Irene Brower, the gunnery sergeant you delivered a care package to before the war, though she seems to have master sergeant insignia now. She's on crutches, with what looks like a brand-new prosthetic leg. She spots you at about the same time, and her face, though lined with pain, brightens. She limps over. "Hey, I know you! You brought me that package from Tor, before - thanks!" She shifts her weight, and something evidently twinges, for she winces and shifts it back.`
@@ -6409,9 +6404,7 @@ mission "Take Me To The South B"
 	minor
 	name "Moving House"
 	source
-		or
-			government "Republic"
-			government "Syndicate"
+		government "Republic" "Syndicate"
 		not attributes "rim" "south"
 	destination "Lichen"
 	stopover
@@ -6420,7 +6413,7 @@ mission "Take Me To The South B"
 		not "event: war begins"
 		random < 30
 	cargo "personal belongings" 5
-	passenger 1
+	passengers 1
 	on offer
 		conversation
 			`As you walk through the spaceport, you see a figure ahead making very obvious disruptions in the flow of the crowds. As you get closer, you can tell that they are going up to various people and talking to them, usually very briefly, before moving on to someone else. Before you know it, "someone else" is you.`
@@ -6431,27 +6424,30 @@ mission "Take Me To The South B"
 				`	"No, I've got better things to do."`
 			`	Just like with the others, as soon as you decline, they move on to someone else.`
 				decline
+				
 			label sure
 			`	They stop in surprise, then nod briefly.`
 			`	"Meet me at the <ship> in an hour, and I'll have a berth ready for you," you say.`
 			``
 			`	An hour later, you see a figure approach the <ship> carrying a small suitcase, and it takes you a moment to realize it's the one you offered a berth to. When you met them, they were dressed in a sharp suit with slicked-back hair; the person who approaches you now is wearing a button-down shirt and skirt with their hair loose, hanging down to their shoulders. They walk right up to you and stick out a hand. "Kris Brecht."`
 			`	You shake their hand. "<first> <last>. That's all you've got with you?"`
-			`	Kris nods. "All the rest of my stuff is on <stopover planets>."`
+			`	Kris nods. "All the rest of my stuff is on <planet stopovers>."`
 			`	You hesitate, then ask, "Why do you need me to do this? Wouldn't contracting with one of the regular moving services be more, well...usual?"`
 			`	"Well, I don't like dealing with them too much. They're too close to the establishment for my tastes."`
 			`	You blink. "The...establishment?"`
 			`	Kris nods again. "Yeah, y'know; The Man. I don't support government or any of its tools, and I've heard that the South is more open to this kind of philosophy and lifestyle."`
 			`	Before you can say more, they walk past you into the <ship>. "Which did you say my berth was again...?"`
+				accept
+			
 	on stopover
 		conversation
-			`As you travel to <stopover planets>, you find yourself frequently listening to Kris' opinions on the subject of governments. While they have some very good points, other times they spend hours ranting about things that seem completely impractical and utterly without a solid foundation. If it weren't for the fact that they are unfailingly polite otherwise, and not merely willing but eager to help out with the regular chores around the ship, you would have seriously considering declaring the cockpit off-limits.` 
+			`As you travel to <planet stopovers>, you find yourself frequently listening to Kris' opinions on the subject of governments. While they have some very good points, other times they spend hours ranting about things that seem completely impractical and utterly without a solid foundation. If it weren't for the fact that they are unfailingly polite otherwise, and not merely willing but eager to help out with the regular chores around the ship, you would have seriously considering declaring the cockpit off-limits.` 
 			`	Still, you are somewhat relieved that when you arrive, both of you are too out of breath from moving their furniture to talk more.`
 			`	You soon have it loaded up, though, and start the trip south to <destination>.`
 	on complete
-		payment 10000 1000
+		payment 5000 500
 		conversation
-			`At last you reach <destination>, and Kris enthusiastically unloads their possessions into a waiting transport van. Before they disappear, they press a credit chip into your hands and assure you that you are a valuable ally to the "anti-statist movement"".`
+			`At last you reach <destination>, and Kris enthusiastically unloads their possessions into a waiting transport van. Before they disappear, they press a credit chip for <payment> into your hands and assure you that you are a valuable ally to the "anti-statist movement"".`
 			action
 				set "helped kris move house"
 
@@ -6502,15 +6498,16 @@ mission "Take Me To The South B: Followup 2"
 		has "Take Me To The South B: Followup 1: done"
 	on offer
 		conversation
-			`Kris' possessions fit more easily into your hold this time - it seems like they really do have less than before. Once they're loaded in and Kris climbs aboard, hoping to head off (or at least delay) their interminable tirades on the power of the state by getting some frustrations about <source>'s ever-damp weather instead, you ask, "So what is it about <source> that you can't stand?"`
+			`Kris' possessions fit more easily into your hold this time - it seems like they really do have less than before. Once they're loaded in and Kris climbs aboard, hoping to head off (or at least delay) their interminable tirades on the power of the state by getting some frustrations about <origin>'s ever-damp weather instead, you ask, "So what is it about <origin> that you can't stand?"`
 			`	A fire kindles in Kris' eyes, and a righteous fury seems to possess them. "I thought when I came here that I'd be among like-minded souls. There's barely any government to speak of here! But then when the war started, they were aaaaall sooooo delighted with the so-called Free Worlds! "Free"! They're just another state!"`
-			`	Kris continues in this vein for approximately an hour, apparently without taking a single breath, but you tune them out while starting your pre-takeoff checks. You've known several anarchists by this time, and Kris remains the most vocal of them, with the least coherent ideology. Fortunately, they do at least mention your destination during their rant.`
+			`	Kris continues in this vein for approximately an hour, apparently without taking a single breath, but you tune them out while starting your pre-takeoff checks. You've known several anarchists by this time, and Kris remains the most vocal of them, with the least coherent ideology. Fortunately, they do at least mention your destination is <destination> during their rant.`
+				accept
 	on complete
-		payment 10000 1000
+		payment 5000 500
 		conversation
 			`You arrive at Thule, and Kris once more eagerly unloads their belongings into a local transport. As with the previous journey, they were a strange combination of genuinely polite and helpful and deeply aggravating.`
 			`	Now, though, they stand on the tarmac and take in great lungfuls of air, proclaiming it "the air of true freedom." You're somewhat more skeptical of how the locals will treat them, being an outsider, but...well, maybe they'll actually get along.`
-			`	Kris practically skips back up the ramp to hand you a credit chip for <payment> before taking their transport and heading off to whatever is awaiting them out there on <destination>.`
+			`	Kris practically skips back up the ramp to hand you a credit chip for <payment> before taking their transport and heading off to whatever is awaiting them out there on <planet>.`
 
 mission "Take Me To The South C"
 	name "Stranded In Paradise"
@@ -6528,30 +6525,30 @@ mission "Take Me To The South C"
 		not "chosen sides"
 		random < 30
 	on offer
-		`No sooner have you entered the spaceport than you are bowled over by a trio of adults, two women and a man, with a child trailing close behind them.`
-		`	"Oh - sorry!" the older of the two women exclaims. She puts out a hand to help you up, then gets a better look at you as you take it, stand, and dust yourself off. "Wait; are you an independent captain?" she says after a moment.`
-		`	"<first> <last>, captain of the <ship>," you reply. "Why?"`
-		`	"Oh! You may be the answer to our prayers, dearie!" She and the others have now gotten themselves a bit more organized, and you can tell that they must be a family; the other woman looks to be their young adult daughter, and the child is actually their slightly-built teenage son. Confirming this, the woman says, "We're the Burnbecks; I'm Shirley, this is my husband Darren, and these are our dau - our kids, Leigh and Erin." She indicates them each in turn, with the daughter last. "We were on vacation here on <source> when news of the war and those awful bombings came out. Well, I don't need to tell you, it's caused us some trouble! Or, well, maybe I do, since I didn't say where we're from: <destination>, down in what they're now calling the Free Worlds!"`
-		`	Her husband cuts in, "Anyway, the short of it is that we really need to get home, and right now, none of the regular services are running from here to <destination> because of the war. Could you possibly take the four of us back home? We...can't pay a lot, right now, but we can pay."`
-		choice
-			`	"Of course; I wouldn't leave people stranded like this."`
-				goto help
-			`	"Sorry; I'm not headed that way. Best of luck."`
-		`	Four faces fall in front of you, and after a moment, they gather up their luggage again and start heading out the doors they crashed into you in. Shirley nods sadly as she goes, and says, "Well, I guess we understand. We'll find a way home somehow..."`
-		`	You can't help but feel a bit bad for them as you walk away.`
-			decline
+		conversation
+			`No sooner have you entered the spaceport than you are bowled over by a trio of adults, two women and a man, with a child trailing close behind them.`
+			`	"Oh - sorry!" the older of the two women exclaims. She puts out a hand to help you up, then gets a better look at you as you take it, stand, and dust yourself off. "Wait; are you an independent captain?" she says after a moment.`
+			`	"<first> <last>, captain of the <ship>," you reply. "Why?"`
+			`	"Oh! You may be the answer to our prayers, dearie!" She and the others have now gotten themselves a bit more organized, and you can tell that they must be a family; the other woman looks to be their young adult daughter, and the child is actually their slightly-built teenage son. Confirming this, the woman says, "We're the Burnbecks; I'm Shirley, this is my husband Darren, and these are our dau - our kids, Leigh and Erin." She indicates them each in turn, with the daughter last. "We were on vacation here on <origin> when news of the war and those awful bombings came out. Well, I don't need to tell you, it's caused us some trouble! Or, well, maybe I do, since I didn't say where we're from: <destination>, down in what they're now calling the Free Worlds!"`
+			`	Her husband cuts in, "Anyway, the short of it is that we really need to get home, and right now, none of the regular services are running from here to <destination> because of the war. Could you possibly take the four of us back home? We...can't pay a lot, right now, but we can pay."`
+			choice
+				`	"Of course; I wouldn't leave people stranded like this."`
+					goto help
+				`	"Sorry; I'm not headed that way. Best of luck."`
+			`	Four faces fall in front of you, and after a moment, they gather up their luggage again and start heading out the doors they crashed into you in. Shirley nods sadly as she goes, and says, "Well, I guess we understand. We'll find a way home somehow..."`
+			`	You can't help but feel a bit bad for them as you walk away.`
+				decline
 		
-		label help
-		`	Four faces light up in front of you, and after a moment, they gather up their luggage again, and stand expectantly. "Well, where should we go?"`
-		`	You direct them to the berth where the <ship> is currently being refueled, and they all bustle off, seeming much more hopeful and relieved.`
-			accept
+			label help
+			`	Four faces light up in front of you, and after a moment, they gather up their luggage again, and stand expectantly. "Well, where should we go?"`
+			`	You direct them to the berth where the <ship> is currently being refueled, and they all bustle off, seeming much more hopeful and relieved.`
+				accept
 	on complete
-		payment 5000 600
+		payment 5000 150
+		set "took burnbecks home"
 		conversation
 			`The trip south with the Burnbecks is mostly quite pleasant, but it rapidly becomes clear that while they stop short of openly blaming them for the bombings on Geminus and Martini, they are very angry at the Free Worlds for seceding from the Republic. "We were perfectly happy belonging to the Republic," Darren says one evening in the mess. "I mean, seriously, did those people way down in, where is it, Zug? Bourne? Did they even think about the regular people and how this would affect them? Affect us?" He trails off muttering as he finishes his dinner.`
 			`	While some of their complaints seem a bit selfish, it's hard to argue with the fact that this has disrupted a lot of lives. You are still considering this when you touch down on <destination> and see Darren, Leigh, and Erin joyfully run into the arms of their friends and family here. Shirley hangs back to hand you a credit chip for <payment> and thank you warmly (and at some length) for your help in getting home, before heading out to join her family in their reunion.`
-				action
-					set "took burnbecks home"
 
 mission "Take Me To The South C: Followup"
 	minor
@@ -6598,16 +6595,15 @@ mission "Take Me To The South D"
 			`	You direct him to his berth and prepare to take off.`
 				accept
 	on complete
-		payment 10000 1200
+		payment 10000 500
+		set "reunited tom and carl"
+		event "tom and carl's wedding" 60
+		event "carl elected governor" 150
+		event "tom and carl's child" 1500
 		conversation
 			`During the trip to <destination>, you have several conversations with Tom, on a wide range of topics. The most common topic is his fiance, whose name is Carl Chamberlain. He shows you dozens of pictures of the two of them together. He also shows you some of his own work, as a marketer and designer for a division of Syndicated Systems - or at least he was; he quit his job for this. You can tell from the designs, and the campaigns he tells you about that went with them, that he was very good at that job. "I'm not worried, though," he remarks. "Money's fun, of course, but it's nothing compared to what we can do down there on Cornucopia."`
 			`	The trip south seems to fly by, and soon you are standing at the foot of the ramp shaking Tom's hand and bidding him farewell as Carl runs across the tarmac toward you. You step back as they practically leap into each other's arms, and can't help but feel a little emotional watching their reunion.`
 			`	You don't even think about the pay until you're back on board, when you see an incoming message that informs you <payment> has been transferred to your account, along with a heartfelt thank-you note from both men.`
-				action
-					set "reunited tom and carl"
-					event "tom and carl's wedding" 60
-					event "carl elected governor" 150
-					event "tom and carl's child" 1500
 
 event "tom and carl's wedding"
 
@@ -6616,15 +6612,14 @@ event "carl elected governor"
 event "tom and carl's child"
 
 mission "Take Me To The South D: Followup 1"
-	minor
 	landing
 	source
 		near "Kappa Centauri" 1 100
 	to offer
-		has "tom and carl's wedding"
+		has "event: tom and carl's wedding"
 	on offer
 		conversation
-			`You receive a message, and when you open it, you see a beautifully produced set of photos of Tom and Carl Ardwright-Chamberlain's wedding on Cornucopia. It includes a letter from the two of them:`
+			`You receive a message, and when you open it, you see a beautifully produced set of photos of Tom Ardwright's wedding to Carl Chamberlain on Cornucopia. It includes a letter from the two of them:`
 			`	"Dear <first> <last>,`
 			`	"We are delighted to announce that despite the many hardships around us in these times, Tom Ardwright and Carl Chamberlain were married three days ago at the Hart's Hill Vineyard on Cornucopia. This would not have been possible without your willingness to help a man in need, so we thank you from the bottom of our hearts, and if you are ever on Cornucopia, we would be happy to host you. Please enjoy these photos from the wedding.`
 			`	"Tom & Carl Ardwright-Chamberlain"`
@@ -6632,47 +6627,44 @@ mission "Take Me To The South D: Followup 1"
 				decline
 
 mission "Take Me To The South D: Followup 1A"
-	minor
 	landing
 	source "Cornucopia"
 	to offer
-		has "Take Me To The South D: Followup 1: done"
-		not has "carl elected governor"
+		has "Take Me To The South D: Followup 1: declined"
+		not "event: carl elected governor"
 	on offer
+		"visited tom and carl" ++
 		conversation
 			`When you're making your approach for landing, doing your normal back and forth with the controller at the spaceport, you're surprised to hear them ask you to divert to a special pad. You do so, and when you land, you find Tom, the man you brought south from the Core, and his husband Carl, the Agricultural Minister of Cornucopia, waiting for you.`
 			`	They greet you like an old friend (though you didn't speak two words to Carl when you were here), and insist on serving you dinner at their house. For a prominent government minister's house, it's remarkably modest. The meal, on the other hand, is anything but: it's probably the best food you've had, which shouldn't be a surprise from a planet that's almost entirely covered in farms. You swap stories for a while - you telling about your "thrilling adventures in space", as Tom describes them, and them telling about some of their much more ordinary, but no less interesting, times here on Cornucopia. They also hint about some big things coming, sharing a knowing look but saying no more.`
 			`	After a while, you bid them farewell, and they promise once again that if you ever visit you'll be welcome.`
-				action
-					"visited tom and carl" ++
 				decline
 
 mission "Take Me To The South D: Followup 2"
-	minor
 	landing
 	source
 		near "Kappa Centauri" 1 100
 	to offer
-		has "carl elected governor"
+		has "event: carl elected governor"
 	on offer
 		conversation
 			`You notice a news bulletin come across the feeds announcing a new governor's election on Cornucopia, one of the breadbasket planets of the Free Worlds. To your surprise, you recognize the man in the picture: it's Carl Ardwright-Chamberlain, the husband of the man you brought south to join him after the war started.`
 			`	Knowing that, you are unsurprised when you read that while he did increase crop yields by 17% during his tenure as Agricultural Minister, the new governor's election owes much to the brilliant work of his campaign manager: his husband Tom. There's a bunch more about the bold plans for new initiatives on Cornucopia and the good the new governor is doing for the people there.`
 
 mission "Take Me To The South D: Followup 2A"
-	minor
 	landing
 	source "Cornucopia"
 	to offer
-		has "carl elected governor"
-		not has "tom and carl's child"
+		has "event: carl elected governor"
+		not "event: tom and carl's child"
 	on offer
+		"visited tom and carl" ++
 		conversation
 			branch already
 				has "visited tom and carl"
 			`When you're making your approach for landing, doing your normal back and forth with the controller at the spaceport, you're surprised to hear them ask you to divert to a special pad. You do so, and when you land, you find Tom, the man you brought south from the Core, and his husband Carl, the new Governor of Cornucopia, waiting for you.`
 			`	They greet you like an old friend (though you didn't speak two words to Carl when you were here), and insist on serving you dinner at their house. The Cornucopia governor's mansion is an impressive sight, and Tom takes you on a tour while Carl fields some important phone calls. When you sit down to dinner, you're blown away: it's probably the best food you've had, which shouldn't be a surprise from a planet that's almost entirely covered in farms. You swap stories for a while - you telling about your "thrilling adventures in space", as Tom describes them, and them telling both about some of their ordinary times here on Cornucopia, and about some of the challenges and highlights of the campaign for Governor. They also hint about something big still to come, sharing a knowing look but saying no more.`
-			goto end
+				goto end
 			
 			label already
 			`During your approach, you're not surprised, this time, to see that you've been diverted to the Governor's own landing pad. Tom and Carl are waiting for you once more, and they greet you warmly. They take you in an official government vehicle to the governor's mansion, with a trying-to-be-subtle security detail always following just on the periphery.`
@@ -6681,16 +6673,13 @@ mission "Take Me To The South D: Followup 2A"
 			
 			label end
 			`	After a while, you bid them farewell, and they promise once again that if you ever visit you'll be welcome.`
-				action
-					"visited tom and carl" ++
 				decline
 				
 mission "Take Me To The South D: Followup 3"
-	minor
 	landing
 	source "Cornucopia"
 	to offer
-		has "tom and carl's child"
+		has "event: tom and carl's child"
 	on offer
 		conversation
 			branch already
@@ -6698,24 +6687,24 @@ mission "Take Me To The South D: Followup 3"
 			`When you're making your approach for landing, doing your normal back and forth with the controller at the spaceport, you're surprised to hear them ask you to divert to a special pad. You do so, and when you land, you find Tom, the man you brought south from the Core, and his husband Carl, the  Governor of Cornucopia, waiting for you.`
 			`	They greet you like an old friend (though you didn't speak two words to Carl when you were here), and insist on serving you dinner at their house. The Cornucopia governor's mansion is an impressive sight, and Tom takes you on a tour while Carl fields some important phone calls. Partway through the tour, Tom gets a mischievous grin, and when he opens the next door, a very small child races out and cannons into his legs, gripping them tightly with a glad cry of "Daddy!" Tom proudly introduces Nita, his and Carl's three-year-old daughter, who giggles and tries to run off with your communicator.`
 			`	When you sit down to dinner with the three of them, you're blown away: it's probably the best food you've had, which shouldn't be a surprise from a planet that's almost entirely covered in farms. Afterward, you swap stories for a while - you telling about your "thrilling adventures in space", as Tom describes them, and them telling, in between bouts of corralling their exuberant daughter, both about the challenges and highlights of the campaign for Governor, and about the joys and fears of fatherhood.`
-			goto end
+				goto end
 			
 			label already
 			`During your approach, it's no surprise to see that you've been diverted to the Governor's own landing pad. Tom and Carl are waiting for you once more, and they greet you warmly. They take you in an official government vehicle to the governor's mansion, with a trying-to-be-subtle security detail always following just on the periphery.`
 			branch already2
 				has "Take Me To The South D: Followup 2A: declined"
 				
-			`	The official mansion is much more impressive than Carl's house as Agricultural Minister was, and Tom gives you a tour while Carl has to field some official phone calls. Partway through the tour, Tom gets a mischievous grin, and when he opens the next door, a very small child races out and cannons into his legs, gripping them tightly with a glad cry of "Daddy!" Tom proudly introduces Nita, his and Carl's three-year-old daughter, who giggles and tries to run off with your communicator. 
+			`	The official mansion is much more impressive than Carl's house as Agricultural Minister was, and Tom gives you a tour while Carl has to field some official phone calls. Partway through the tour, Tom gets a mischievous grin, and when he opens the next door, a very small child races out and cannons into his legs, gripping them tightly with a glad cry of "Daddy!" Tom proudly introduces Nita, his and Carl's three-year-old daughter, who giggles and tries to run off with your communicator.`
 			`	You're already looking forward to the food well before you sit down to dinner, and you are not disappointed: if anything, it's better than the last time you visited them. Carl confides that it used to be even better, but a year ago his best cook left to become a star teacher at the new culinary institute whose funding he championed.`
 			`	After dinner, as before, you catch each other up on what you've been doing since your last visit. Tom and Carl's side of this, in between bouts of corralling their exuberant daughter, is mostly about the joys and fears of fatherhood, and their hopes for their, and Nita's, future.`
 			
 			label already2
-			`	Even having seen it once before, you're still impressed with the governor's mansion. This time, though Carl still has to take an official call, Tom gets a mischievous grin, and takes you upstairs to one particular room that you recall on the previous tour was a guest bedroom. When he opens the door, though, you have just time to see that it's been expertly redecorated as a nursery, before a very small child races out and cannons into his legs, gripping them tightly with a glad cry of "Daddy!" Tom proudly introduces Nita, his and Carl's three-year-old daughter, who giggles and tries to run off with your communicator. 
+			`	Even having seen it once before, you're still impressed with the governor's mansion. This time, though Carl still has to take an official call, Tom gets a mischievous grin, and takes you upstairs to one particular room that you recall on the previous tour was a guest bedroom. When he opens the door, though, you have just time to see that it's been expertly redecorated as a nursery, before a very small child races out and cannons into his legs, gripping them tightly with a glad cry of "Daddy!" Tom proudly introduces Nita, his and Carl's three-year-old daughter, who giggles and tries to run off with your communicator.`
 			`	You brace yourself for the food as dinner approaches, and while it's still amazing, it does seem to have lost some of the spark it had on your last visit. Carl sighs and says that his worst fears were realized: when he successfully got the government to approve funding for the new culinary institute a year or so ago, his cook went off to become its star teacher.`
 			`	After dinner, as before, you catch each other up on what you've been doing since your last visit. Tom and Carl's side of this, in between bouts of corralling their exuberant daughter, is mostly about the joys and fears of fatherhood, and their hopes for their, and Nita's, future.`
 			
 			label end
+			action
+				"visited tom and carl" ++
 			`	At length, you reluctantly say you have to get going, and you bid each other fond farewells (and reclaim your communicator from Nita), with a promise once again that if you ever visit you'll be welcome.`
-				action
-					"visited tom and carl" ++
 				decline
