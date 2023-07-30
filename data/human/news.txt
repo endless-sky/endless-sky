@@ -890,7 +890,7 @@ news "mechanic"
 		word
 			`"`
 
-news "mechanic [frozen]"
+news "mechanic on frozen world"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frozen"
@@ -1479,7 +1479,7 @@ news "tourist"
 		word
 			`"`
 
-news "tourist [frozen]"
+news "tourist on frozen world"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
 		attributes "frozen"
@@ -1998,7 +1998,7 @@ news "republic navy advisory system [wartime]"
 		word
 			`"`
 
-news "explorer [frozen]"
+news "explorer on frozen world"
 	location
 		government "Republic" "Free Worlds" "Neutral" "Independent" "Syndicate"
 		attributes "frozen"
