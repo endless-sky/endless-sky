@@ -354,15 +354,17 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 	for(const auto &it : events)
 		player.AddEvent(*it.first, player.GetDate() + it.second.first);
 
-	if(!fail.empty() || failCaller)
+	if(!fail.empty())
 	{
 		// If this action causes this or any other mission to fail, mark that
 		// mission as failed. It will not be removed from the player's mission
 		// list until it is safe to do so.
 		for(const Mission &mission : player.Missions())
-			if(fail.count(mission.Identifier()) || (failCaller && &mission == caller))
+			if(fail.count(mission.Identifier()))
 				player.FailMission(mission);
 	}
+	if(failCaller && caller)
+		player.FailMission(*caller);
 
 	// Check if applying the conditions changes the player's reputations.
 	conditions.Apply(player.Conditions());
