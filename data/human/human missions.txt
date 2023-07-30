@@ -6320,9 +6320,9 @@ mission "Take Me To the South A"
 		conversation
 			`Among the bustle of the spaceport, one figure catches your attention. There's a woman standing alone on one side of the passageway with a bubble of space around her that she seems to be maintaining by sheer force of personality. She doesn't seem to be saying anything, at least. As you get closer to her, you notice a large package at her feet. She also notices you, and apparently something about you catches her attention, because she looks you straight in the eye and beckons.`
 			choice
-				`	(Go over to her, find out what this is about)`
+				`	(Go over to her, find out what this is about.)`
 					goto interested
-				`	(Ignore her, you don't have time for this)`
+				`	(Ignore her, you don't have time for this.)`
 			`	This seems too suspicious to you, and you don't have time to be getting involved in whatever is going on here. You turn away and keep walking.`
 				decline
 			label interested
