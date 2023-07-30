@@ -123,23 +123,23 @@ namespace {
 
 
 // Construct and Load() at the same time.
-GameAction::GameAction(const DataNode &node, const string &missionName)
+GameAction::GameAction(const DataNode &node)
 {
-	Load(node, missionName);
+	Load(node);
 }
 
 
 
-void GameAction::Load(const DataNode &node, const string &missionName)
+void GameAction::Load(const DataNode &node)
 {
 	for(const DataNode &child : node)
-		LoadSingle(child, missionName);
+		LoadSingle(child);
 }
 
 
 
 // Load a single child at a time, used for streamlining MissionAction::Load.
-void GameAction::LoadSingle(const DataNode &child, const string &missionName)
+void GameAction::LoadSingle(const DataNode &child)
 {
 	isEmpty = false;
 
@@ -191,14 +191,10 @@ void GameAction::LoadSingle(const DataNode &child, const string &missionName)
 			swap(minDays, maxDays);
 		events[GameData::Events().Get(child.Token(1))] = make_pair(minDays, maxDays);
 	}
+	else if(key == "fail" && child.Size() >= 2)
+		fail.insert(child.Token(1));
 	else if(key == "fail")
-	{
-		string toFail = child.Size() >= 2 ? child.Token(1) : missionName;
-		if(toFail.empty())
-			child.PrintTrace("Error: Skipping invalid \"fail\" with no mission:");
-		else
-			fail.insert(toFail);
-	}
+		failCaller = true;
 	else
 		conditions.Add(child);
 }
@@ -242,6 +238,8 @@ void GameAction::Save(DataWriter &out) const
 		out.Write("event", it.first->Name(), it.second.first, it.second.second);
 	for(const string &name : fail)
 		out.Write("fail", name);
+	if(failCaller)
+		out.Write("fail");
 
 	conditions.Save(out);
 }
@@ -311,7 +309,7 @@ const vector<ShipManager> &GameAction::Ships() const noexcept
 
 
 // Perform the specified tasks.
-void GameAction::Do(PlayerInfo &player, UI *ui) const
+void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 {
 	if(!logText.empty())
 		player.AddLogEntry(logText);
@@ -362,7 +360,7 @@ void GameAction::Do(PlayerInfo &player, UI *ui) const
 		// mission as failed. It will not be removed from the player's mission
 		// list until it is safe to do so.
 		for(const Mission &mission : player.Missions())
-			if(fail.count(mission.Identifier()))
+			if(fail.count(mission.Identifier()) || (failCaller && &mission == caller))
 				player.FailMission(mission);
 	}
 
