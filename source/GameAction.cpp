@@ -402,6 +402,7 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 			result.specialLogText[it.first][eit.first] = Format::Replace(eit.second, subs);
 
 	result.fail = fail;
+	result.failCaller = failCaller;
 
 	result.conditions = conditions;
 
