@@ -2867,6 +2867,7 @@ mission "Remnant: Face to Maw 2"
 	description "The void sprite slime has properties of interest to a team of engineers on <planet>."
 	to offer
 		has "Remnant: Face to Maw 1: done"
+		not "remnant: face to maw: raised shields"
 	source "Aventine"
 	destination "Viminal"
 	cargo "slime sample" 1
