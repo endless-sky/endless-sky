@@ -505,8 +505,7 @@ bool Files::DeleteDir(const string path)
     HANDLE hFind = ::FindFirstFile(search_path.c_str(), &fd);
     if(hFind != INVALID_HANDLE_VALUE)
 	{
-        do
-		{
+        do {
             if(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
 			{
                 if(wcscmp(fd.cFileName, _T(".")) != 0 && wcscmp(fd.cFileName, _T("..")) != 0)
