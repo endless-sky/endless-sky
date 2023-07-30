@@ -20,3 +20,4 @@ test "Plugin Installed Autocondition"
 		call "Load First Savegame"
 		assert
 			"installed plugin: integration-tests" == 1
+			"installed plugin: no plugin with this name is installed" == 0
