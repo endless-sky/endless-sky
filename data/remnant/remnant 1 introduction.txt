@@ -2852,32 +2852,11 @@ mission "Remnant: Face to Maw 1"
 		conversation
 			`When you walk into Plume's lab on Aventine, you find him buried in some kind of holographic projection of your egg returning mission. You can see that he appears to be watching the video in slow-motion as he taps out notes on his data pad. After a few minutes he looks up and sees you standing in the entryway. He quickly pulls himself out of the projection and hits what you assume must be the pause button.`
 			`	"Captain <first>! What a pleasant surprise," he trills. "If you are looking for more work, I don't have anything for you right now."`
+			branch threatening
+				has "remnant: face to maw: raised shields"
 			`	You tell Plume about how you visited Nenia and had an interesting encounter with a void sprite, and offer him the recording and container of slime. He eagerly accepts the data chip and the container from you. Sliding the container into some kind of machine, it immediately starts to whir as he slots the data chip into his console. Moments later his holographic projection shifts to the new footage. He checks the timestamps, then chants, "These will take me a little while to analyze. I will meet you in the spaceport in a few hours to discuss my preliminary findings."`
-
-
-
-mission "Remnant: Face to Maw 1B"
-	name "Talk to Plume about the void sprites"
-	description "Plume would be very interested in a report on what happened with the void sprites."
-	landing
-	to offer
-		has "event: remnant: return the samples timer"
-		or
-			not "Remnant: Cognizance 1: offered"
-			has "Remnant: Cognizance 19: done"
-	to fail
-		or
-			has "Remnant: Face to Maw 1: done"
-			has "Remnant: Face to Maw 1: active"
-	to complete
-		has "Remnant: Face to Maw 1: declined"
-	source
-		system "Nenia"
-	destination "Aventine"
-	on complete
-		conversation
-			`When you walk into Plume's lab on Aventine you find him buried in some kind of holographic projection of your egg returning mission. You can see that he appears to be watching the video in slow-motion as he taps out notes on his data pad. After a few minutes he looks up and sees you standing in the entryway. He quickly pulls himself out of the projection and hits what you assume must be the pause button.`
-			`	"Captain <first>! What a pleasant surprise," he trills. "If you are looking for more work, I don't have anything for you right now."`
+				decline
+			label threatening
 			`	You tell Plume about how you visited Nenia and had a threatening encounter with a void sprite, and offer him the recording and container with the tentacle. Plume recoils from you in disgust. "After all our work rebuilding trust with the Archon and the void sprites, you go and risk it for... what, exactly? Sightseeing? Thrill of the hunt?" His chant settles into an angry tone. "Leave the recording on the console. I want no part of that tentacle, though."`
 			`	As you are leaving Plume's lab a technician pulls you aside. "Our records mention that the tentacles had some interesting properties that were useful in combat. If you are interested, meet me in the spaceport in a few hours."`
 
