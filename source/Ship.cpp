@@ -4402,7 +4402,7 @@ double Ship::CalculateDeterrence() const
 			if(weapon->Ammo() && weapon->AmmoUsage() && !OutfitCount(weapon->Ammo()))
 				continue;
 			// Ignore disabled and asteroid damages because they don't apply here.
-			// Ignore fuel and slowing damage because they don't affect combat ability.
+			// Ignore fuel, leak and slowing damage for now, as their affect on combat abilities varies.
 			// Over time effects are per frame but dont affect instantaneously so only multiply by 30.
 			// Burning and ion do not affect ships as much, but ion does so more than heat.
 			double strength = (weapon->ShieldDamage() + weapon->RelativeShieldDamage() * attributes.Get("shields"))
