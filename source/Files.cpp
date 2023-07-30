@@ -499,28 +499,85 @@ void Files::Delete(const string &filePath)
 bool Files::DeleteDir(const string path)
 {
 #if defined (_WIN32)
-	std::wstring search_path = std::wstring(folder) + _T("/*.*");
-	std::wstring s_p = std::wstring(folder) + _T("/");
-	WIN32_FIND_DATA fd;
-	HANDLE hFind = ::FindFirstFile(search_path.c_str(), &fd);
-	if(hFind != INVALID_HANDLE_VALUE)
+	string str(pathname);
+	if(!str.empty())
 	{
-		do {
-			if(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+		while(*str.rbegin() == '\\' || *str.rbegin() == '/')
+		{
+			str.erase(str.size()-1);
+		}
+	}
+	replace(str.begin(),str.end(),'/','\\');
+
+	struct stat sb;
+	if (stat((char *)str.c_str(),&sb) == 0 && S_ISDIR(sb.st_mode))
+	{
+			HANDLE hFind;
+			WIN32_FIND_DATA FindFileData;
+
+			TCHAR DirPath[MAX_PATH];
+			TCHAR FileName[MAX_PATH];
+
+			_tcscpy(DirPath,(char *)str.c_str());
+			_tcscat(DirPath,"\\*");
+			_tcscpy(FileName,(char *)str.c_str());
+			_tcscat(FileName,"\\");
+
+			hFind = FindFirstFile(DirPath,&FindFileData);
+			if(hFind == INVALID_HANDLE_VALUE)
+				return 0;
+			_tcscpy(DirPath,FileName);
+
+			bool bSearch = true;
+			while(bSearch)
 			{
-				if(wcscmp(fd.cFileName, _T(".")) != 0 && wcscmp(fd.cFileName, _T("..")) != 0)
+				if(FindNextFile(hFind,&FindFileData))
 				{
-					remove_dir((wchar_t*)(s_p + fd.cFileName).c_str());
+					if(!(_tcscmp(FindFileData.cFileName,".") && _tcscmp(FindFileData.cFileName,"..")))
+						continue;
+					_tcscat(FileName,FindFileData.cFileName);
+					if((FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
+					{
+						if(!directory_delete(FileName))
+						{
+							FindClose(hFind);
+							return 0;
+						}
+						RemoveDirectory(FileName);
+						_tcscpy(FileName,DirPath);
+					}
+					else
+					{
+						if(FindFileData.dwFileAttributes &
+							FILE_ATTRIBUTE_READONLY)
+							_chmod(FileName, _S_IWRITE);
+
+						if(!DeleteFile(FileName))
+						{
+							FindClose(hFind);
+							return 0;
+						}
+						_tcscpy(FileName,DirPath);
+					}
+				}
+				else
+				{
+					if(GetLastError() == ERROR_NO_MORE_FILES)
+						bSearch = false;
+					else
+					{
+						FindClose(hFind);
+						return 0;
+					}
 				}
 			}
-			else
-			{
-				DeleteFile((s_p + fd.cFileName).c_str());
-			}
-		}
-		while(::FindNextFile(hFind, &fd));
-		::FindClose(hFind);
-		_wrmdir(folder);
+			FindClose(hFind);
+
+			return (double)(RemoveDirectory((char *)str.c_str()) == true);
+	}
+	else
+	{
+		return 0;
 	}
 #else
 	DIR *dir = opendir(path.c_str());
