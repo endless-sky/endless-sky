@@ -4401,19 +4401,18 @@ double Ship::CalculateDeterrence() const
 			const Outfit *weapon = hardpoint.GetOutfit();
 			if(weapon->Ammo() && weapon->AmmoUsage() && !OutfitCount(weapon->Ammo()))
 				continue;
-			// Ignore disabled and asteroid damages because they don't apply here.
-			// Ignore fuel, leak and slowing damage for now, as their affect on combat abilities varies.
-			// Over time effects are per frame but dont affect instantaneously so only multiply by 30.
-			// Burning and ion do not affect ships as much, but ion does so more than heat.
+			// Ignore disabled and asteroid damages.
+			// Ignore fuel, leak and slowing damage for now, as their effect on combat abilities varies.
+			// Effects over time are considered over 60 frames.
 			double strength = (weapon->ShieldDamage() + weapon->RelativeShieldDamage() * attributes.Get("shields"))
-				+ weapon->DischargeDamage() * 30.
+				+ weapon->DischargeDamage() * 60.
 				+ (weapon->HullDamage() + weapon->RelativeHullDamage() * attributes.Get("hull"))
-				+ weapon->CorrosionDamage() * 30.
-				+ weapon->DisruptionDamage() * 30.
-				+ ((weapon->EnergyDamage() + weapon->RelativeEnergyDamage() * attributes.Get("energy capacity") / 2.)
-					+ weapon->IonDamage() * 30. + weapon->DisruptionDamage() * 30.) / 4.
+				+ weapon->CorrosionDamage() * 60.
+				+ weapon->DisruptionDamage() * 60.
+				+ ((weapon->EnergyDamage() + weapon->RelativeEnergyDamage() * attributes.Get("energy capacity"))
+					+ weapon->IonDamage() * 60.)
 				+ ((weapon->HeatDamage() + weapon->RelativeHeatDamage() * MaximumHeat())
-					+ weapon->BurnDamage() * 30.) / 6.;
+					+ weapon->BurnDamage() * 60.);
 			tempDeterrence += .12 * strength / weapon->Reload();
 		}
 	return tempDeterrence;
