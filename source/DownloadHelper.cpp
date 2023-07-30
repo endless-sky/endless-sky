@@ -135,7 +135,11 @@ namespace DownloadHelper {
 		string secondEntry = archive_entry_pathname(entry);
 		hasHeadFolder = secondEntry.find(firstEntry) != std::string::npos;
 		if(!hasHeadFolder)
+#if defined(_WIN32)
+			mkdir((destination + expectedName).c_str());
+#else
 			mkdir((destination + expectedName).c_str(), 0777);
+#endif
 		archive_read_close(a);
 		archive_read_free(a);
 
