@@ -4408,9 +4408,9 @@ double Ship::CalculateDeterrence() const
 				+ weapon->SlowingDamage() * 60.
 				+ (weapon->FuelDamage() + weapon->LeakDamage() * 60)
 				+ (weapon->ShieldDamage() + weapon->RelativeShieldDamage() * attributes.Get("shields"))
-				+ weapon->DischargeDamage() * 60.
+					+ weapon->DischargeDamage() * 60.
 				+ (weapon->HullDamage() + weapon->RelativeHullDamage() * attributes.Get("hull"))
-				+ weapon->CorrosionDamage() * 60.
+					+ weapon->CorrosionDamage() * 60.
 				+ ((weapon->EnergyDamage() + weapon->RelativeEnergyDamage() * attributes.Get("energy capacity"))
 					+ weapon->IonDamage() * 60. + weapon->ScramblingDamage() * 60) / 2.
 				+ ((weapon->HeatDamage() + weapon->RelativeHeatDamage() * MaximumHeat())
