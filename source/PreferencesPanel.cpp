@@ -885,11 +885,9 @@ void PreferencesPanel::DrawTooltips()
 	if(tooltip.empty())
 	{
 		tooltip = GameData::Tooltip(hoverItem);
+		// No tooltip for this item.
 		if(tooltip.empty())
-		{
-			// No tooltip for this item.
 			return;
-		}
 		hoverText.Wrap(tooltip);
 	}
 
