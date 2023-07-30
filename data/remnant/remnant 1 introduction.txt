@@ -2921,7 +2921,11 @@ mission "Remnant: Face to Maw 2B"
 	name "Bring tentacle to <planet>"
 	description "The tentacle has properties that may be put to use by the engineers on <planet>."
 	to offer
-		has "Remnant: Face to Maw 1B: done"
+		or
+			has "Remnant: Face to Maw 1B: done"
+			and
+				has "Remnant: Face to Maw 1: done"
+				has "remnant: face to maw: raised shields"
 	source "Aventine"
 	destination "Caelian"
 	cargo "tentacle" 1
