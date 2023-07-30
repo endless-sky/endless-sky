@@ -1495,7 +1495,7 @@ news "tourist [frozen]"
 			"Have you ever seen so much white?"
 			"This place has such a stark beauty."
 			"I know this isn't the usual sort of tourist destination, but I like getting off the beaten path."
-			"Enjoying a hot tub while in the bitter cold really is the sort of pleasure that just isn't available in the Paradise Worlds."
+			"Enjoying a hot tub while in the bitter cold really is the sort of pleasure that is frustratingly rare in the Paradise Worlds."
 		word
 			`"`
 
