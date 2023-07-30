@@ -3107,7 +3107,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto &&tributeProvider = conditions.GetProviderPrefixed("tribute: ");
 	auto tributeHasGetFun = [this](const string &name) -> int64_t
 	{
-		const Planet *planet = GameData::Planets().Find(name);
+		const Planet *planet = GameData::Planets().Find(name.substr(strlen("tribute: ")));
 		if(!planet)
 			return 0;
 
