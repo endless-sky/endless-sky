@@ -2007,6 +2007,8 @@ news "explorer on frozen world"
 			"Arctic"
 			"Glacial"
 		word
+			" "
+		word
 			"explorer"
 			"surveyor"
 	message
