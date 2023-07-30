@@ -503,18 +503,23 @@ bool Files::DeleteDir(const string path)
     std::wstring s_p = std::wstring(folder) + _T("/");
     WIN32_FIND_DATA fd;
     HANDLE hFind = ::FindFirstFile(search_path.c_str(), &fd);
-    if (hFind != INVALID_HANDLE_VALUE) {
-        do {
-            if (fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
-                if (wcscmp(fd.cFileName, _T(".")) != 0 && wcscmp(fd.cFileName, _T("..")) != 0)
+    if(hFind != INVALID_HANDLE_VALUE)
+	{
+        do
+		{
+            if(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+			{
+                if(wcscmp(fd.cFileName, _T(".")) != 0 && wcscmp(fd.cFileName, _T("..")) != 0)
                 {
                     remove_dir((wchar_t*)(s_p + fd.cFileName).c_str());
                 }
             }
-            else {
+            else
+			{
                 DeleteFile((s_p + fd.cFileName).c_str());
             }
-        } while (::FindNextFile(hFind, &fd));
+        }
+		while(::FindNextFile(hFind, &fd));
         ::FindClose(hFind);
         _wrmdir(folder);
     }
