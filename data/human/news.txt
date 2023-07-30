@@ -893,7 +893,7 @@ news "mechanic"
 news "mechanic [frozen]"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-	attributes "frozen"
+		attributes "frozen"
 	name
 		word
 			"Mechanic"
