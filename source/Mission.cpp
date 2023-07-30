@@ -1084,7 +1084,8 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	// mission dialog or conversation. Invisible missions don't show this
 	// marker.
 	if(it != actions.end())
-		it->second.Do(player, ui, this, (destination && isVisible) ? destination->GetSystem() : nullptr, boardingShip, IsUnique());
+		it->second.Do(player, ui, this, (destination && isVisible) ? destination->GetSystem() : nullptr,
+			boardingShip, IsUnique());
 	else if(trigger == OFFER && location != JOB)
 		player.MissionCallback(Conversation::ACCEPT);
 

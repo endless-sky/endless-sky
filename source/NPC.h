@@ -81,7 +81,8 @@ public:
 
 	// Handle the given ShipEvent.
 	enum Trigger {KILL, BOARD, ASSIST, DISABLE, SCAN_CARGO, SCAN_OUTFITS, CAPTURE, PROVOKE};
-	void Do(const ShipEvent &event, PlayerInfo &player, UI *ui = nullptr, const Mission *caller = nullptr, bool isVisible = true);
+	void Do(const ShipEvent &event, PlayerInfo &player, UI *ui = nullptr,
+		const Mission *caller = nullptr, bool isVisible = true);
 	// Determine if the NPC is in a successful state, assuming the player is in the given system.
 	// (By default, a despawnable NPC has succeeded and is not actually checked.)
 	bool HasSucceeded(const System *playerSystem, bool ignoreIfDespawnable = true) const;
