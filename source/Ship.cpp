@@ -4402,17 +4402,19 @@ double Ship::CalculateDeterrence() const
 			if(weapon->Ammo() && weapon->AmmoUsage() && !OutfitCount(weapon->Ammo()))
 				continue;
 			// Ignore disabled and asteroid damages.
-			// Ignore fuel, leak and slowing damage for now, as their effect on combat abilities varies.
-			// Effects over time are considered over 60 frames.
-			double strength = (weapon->ShieldDamage() + weapon->RelativeShieldDamage() * attributes.Get("shields"))
+			// Effects over time are considered over 60 frames, and disruption is % based so multiply it by 100 too.
+			// First consider special effects, then hull, shileds, energy and heat.
+			double strength = weapon->DisruptionDamage() * 600.
+				+ weapon->SlowingDamage() * 60.
+				+ (weapon->FuelDamage() + weapon->LeakDamage() * 60)
+				+ (weapon->ShieldDamage() + weapon->RelativeShieldDamage() * attributes.Get("shields"))
 				+ weapon->DischargeDamage() * 60.
 				+ (weapon->HullDamage() + weapon->RelativeHullDamage() * attributes.Get("hull"))
 				+ weapon->CorrosionDamage() * 60.
-				+ weapon->DisruptionDamage() * 60.
 				+ ((weapon->EnergyDamage() + weapon->RelativeEnergyDamage() * attributes.Get("energy capacity"))
-					+ weapon->IonDamage() * 60.)
+					+ weapon->IonDamage() * 60. + weapon->ScramblingDamage() * 60) / 2.
 				+ ((weapon->HeatDamage() + weapon->RelativeHeatDamage() * MaximumHeat())
-					+ weapon->BurnDamage() * 60.);
+					+ weapon->BurnDamage() * 60.) / 10.;
 			tempDeterrence += .12 * strength / weapon->Reload();
 		}
 	return tempDeterrence;
