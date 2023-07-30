@@ -2420,20 +2420,20 @@ fleet "pirate raid"
 	variant 2
 		"Clipper (Speedy)"
 	variant 1
-		"Clipper (Heavy)"
-		"Hawk (Rocket)"
+		"Clipper"
+		"Hawk"
 	variant 1
 		"Clipper (Speedy)"
 		"Hawk (Speedy)"
 	variant 6
 		"Hawk (Speedy)" 3
 	variant 4
-		"Hawk (Bomber)" 2
+		"Hawk" 2
 	variant 4
-		"Fury (Bomber)" 2
+		"Fury" 2
 	variant 1
 		"Argosy (Blaster)"
-		"Hawk (Rocket)"
+		"Hawk"
 	variant 1
 		"Argosy (Laser)"
 		"Hawk (Speedy)"
@@ -2441,8 +2441,8 @@ fleet "pirate raid"
 		"Argosy (Turret)"
 		"Hawk (Speedy)"
 	variant 1
-		"Argosy (Missile)"
-		"Hawk (Rocket)"
+		"Argosy"
+		"Hawk"
 	variant 1
 		"Modified Argosy (Heavy)"
 		"Hawk (Speedy)" 2
@@ -2504,7 +2504,7 @@ fleet "pirate raid"
 		"Fury (Missile)"
 	variant 1
 		"Firebird (Missile)"
-		"Fury (Bomber)"
+		"Fury"
 	variant 8
 		"Raven (Afterburner)" 2
 	variant 2
