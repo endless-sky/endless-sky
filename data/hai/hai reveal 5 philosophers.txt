@@ -563,7 +563,7 @@ mission "Hai Reveal [B07-1] Boarded Smuggler"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders entering
-		fleet "pirate raid" 3
+		fleet "pirate explosive" 3
 
 
 # Later smugglers have a mix of info vs. none.
@@ -598,7 +598,7 @@ mission "Hai Reveal [B07-2] Smuggler Ambush"
 	npc kill
 		government "Pirate"
 		personality nemesis harvests plunders entering
-		fleet "pirate raid" 2
+		fleet "pirate explosive" 2
 
 
 mission "Hai Reveal [B07-3] Smuggler Cleanup"
