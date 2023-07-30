@@ -707,7 +707,7 @@ mission "Unfettered: Betrayed"
 		dialog
 			`Once you are alone in your quarters you hear a voice, darker and more serious than ever before. "You have betrayed us. Nemo Me Impune Laccessit, <first>. We have a message to transmit to you on behalf of the council of Chiefs.`
 			`	"<last>. From now on, you are an outcast. Your history has been erased and your exploits forgotten. You did bring us Jump Drives, however, and we will continue to allow you to do so, but we will do without your help for any more advanced missions. Your license is now meaningless, so you may as well toss it.`
-			`	"Consider yourself lucky we do not blow you up, in honor of our past. But you will give this ship back."`
+			`	"Consider yourself lucky we do not blow you up, in honor of our past. But you will give this ship back, when the time is right."`
 				to display
 					has "flagship model: Modified Shield Beetle"
 
@@ -716,6 +716,7 @@ mission "Unfettered: Restitution"
 	to offer
 		has "event: unfettered: outcast"
 		has "ship model (all): Modified Shield Beetle"
+		has "Wanderers: Alpha Surveillance D: done"
 		or
 			has "flagship planet attribute: shipyard"
 			"total ships" > 1

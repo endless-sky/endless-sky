@@ -1307,8 +1307,15 @@ mission "<uhai> 16: Strength Of A Leader: He-Yi"
 				`	"Screw the consequences, let's paint it purple!"`
 			action
 				event "joined the unfettered"
-			`	"It shall be done."`
+			`	"It shall be done.`
 			label nocolor
+			`	"Since you have managed to defeat Si-Ra in a duel, and you already possess a mighty enough flagship, you will gain his newly acquired warlord position."`
+			choice
+				`	"I will prove myself worthy of it."`
+					goto worthy
+				`	"He came a warlord?"`
+			`	"You did not know? If a warlord is defeated in battle, he will have to give up his position or the item most dear to him, and considering your recent exploits, you are certainly more worthy of it than him. Si-Ra finally managed to overcome the owner of Scarred, using his new beetle, but I suspect that this will not be the last time we hear of either of them..."`
+			label worthy
 			`	He then draws his long sword, which has the same appearance as the keystone pendants popular among his race, and he hands it to you. "You have also deserved the right to have this. It is a proof of our trust toward you and means you will have access to all of our ships. Whenever a warlord is defeated in battle, he has to surrender his sword to the one who vanquished him."`
 			choice
 				`	"I would like to ask a few questions, about your ship."`
