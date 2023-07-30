@@ -354,7 +354,7 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 	for(const auto &it : events)
 		player.AddEvent(*it.first, player.GetDate() + it.second.first);
 
-	if(!fail.empty())
+	if(!fail.empty() || failCaller)
 	{
 		// If this action causes this or any other mission to fail, mark that
 		// mission as failed. It will not be removed from the player's mission
