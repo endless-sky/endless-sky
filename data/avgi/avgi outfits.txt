@@ -19,6 +19,7 @@ outfit "Speck Magazine"
 	"mass" 1.2
 	"outfit space" -12
 	"speck capacity" 7200
+	description "While Speckle Railguns on their own carry a considerable amount of ammunition, for longer expeditions or for carrier based resupply operations the Avgi use these compact ammunition storages to expand their supply of Speck Rounds."
 
 
 outfit "Speckle Railgun"
@@ -47,7 +48,7 @@ outfit "Speckle Railgun"
 		"firing heat" 12
 		"firing force" 12
 		"submunition" "speckle slug"
-	description "This compact railgun fires a stream of hypervelocity metallic sabots, trading accuracy for rate of fire."
+	description "This compact railgun rapidly fires a stream of hypervelocity projectiles, trading accuracy for sheer rate of fire. Friction between the projectiles and the rails, while reduced due to special coatings, produces enough heat that the gun must cool down after a burst of fire to prevent rail ablation."
 	description "A small internal capacitor allows the Speckle Railgun to be trickle charged, even if a ship's power supply would otherwise be insufficient to fire a single shot."
 	
 
@@ -76,7 +77,8 @@ outfit "Speckle Turret"
 		"firing heat" 12
 		"firing force" 12
 		"submunition" "speckle slug"
-	description "The turreted version of the Speckle Railgun mounts a pair of railguns onto a nimble swiveling base. Its light weight and minimal size allows even small ships to fit one, enabling them to engage much larger targets at extreme ranges."
+	description "The turreted version of the Speckle Railgun mounts a pair of railguns onto a nimble swiveling base. Its light weight and minimal size allows even small ships to engage much larger targets at extreme ranges. By alternating the fire of each railgun on the turret, the required cooldown period can be staggered to the point of providing an appearance of constant fire."
+	description "A small internal capacitor allows the Speckle Turret to be trickle charged, even if a ship's power supply would otherwise be insufficient to fire a single shot."
 
 
 outfit "speckle slug"
@@ -109,6 +111,7 @@ outfit "Fleck Magazine"
 	"mass" 4.2
 	"outfit space" -15
 	"fleck capacity" 1200
+	description "Capital ships and artillery platforms can often benefit from expanding their ammunition capacity. This autoloading magazine allows ships to carry considerably more Fleck Rounds than their guns could store alone."
 
 
 outfit "Fleck Coilgun"

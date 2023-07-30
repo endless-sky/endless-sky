@@ -1262,22 +1262,24 @@ ship "Difraktos"
 			"hull damage" 3600
 			"hit force" 3600
 	outfits
-		"Phased Array Laser (Green)"
+		"Phased Array Laser (Green)" 2
 		"Fleck Turret" 2
 		"Fleck Round" 4800
 		"Sidereal VLS Array" 2
 		"Sidereal Magazine" 2
 		"Sidereal Missile" 312
 
-		"Radiant Fusion Core"
+		"Brilliant Fusion Core"
+		"Pebble Bed Cell"
 		"Ultracapacitor Bank"
+		"Ultracapacitor Cell"
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
 		"Multispectral Scanner" 2
 		"Concealment Scales"
 		"Electrostatic Ramscoop"
 		
-		"Z-360 Fusion Torch"
+		"Z-600 Fusion Torch"
 		"XY-420 Radial Thrusters"
 		"Hyperdrive"
 
