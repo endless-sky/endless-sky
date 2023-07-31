@@ -360,11 +360,8 @@ void ShipInfoPanel::SetUpHardpointCalcs(const Rectangle &bounds)
 	if(!overflowsPage)
 		return;
 
-	// First calculate how many pages are needed. If pages are not needed set to 1.
-	//int gunIndex = 0;
-	//int turretIndex = 0;
-	rowsPerPage = static_cast<int>(height) / 10. - 1;
-	//int offset = 0;
+	// One row is 20 pixels in height, minus one for the buffer between turrets and guns.
+	rowsPerPage = static_cast<int>(height) / 20. - 1;
 
 	int gunPages = floor(gunRows / rowsPerPage);
 	int gunLeftOver = gunRows % rowsPerPage;
@@ -372,50 +369,6 @@ void ShipInfoPanel::SetUpHardpointCalcs(const Rectangle &bounds)
 	int turretLeftOver = turretRows % rowsPerPage;
 	int overPages = gunLeftOver + turretLeftOver > rowsPerPage - (gunLeftOver != 0) ? 2 : 1;
 	pages = gunPages + turretPages + overPages;
-	/*
-	while(overflowsPage)
-	{
-		// First go through the guns.
-		if(gunIndex < gunRows)
-		{
-			// The guns still overflow this page.
-			if((gunRows - gunIndex) * 20. >= height)
-				gunIndex += (rowsPerPage / 2);
-			// There is space left after all guns were placed.
-			else
-			{
-				offset = gunRows - gunIndex;
-				gunIndex = gunRows;
-			}
-		}
-		// Then go through the turrets.
-		if(gunIndex >= gunRows && turretIndex < turretRows)
-		{
-			// If guns were already placed on this page.
-			if(offset)
-				// The turrets still exceed this pages space.
-				if((turretRows - turretIndex + offset) * 20. + 10. >= height)
-					turretIndex += (rowsPerPage / 2) - (offset + 1);
-				// The turrets fit this page.
-				else
-					turretIndex = turretRows;
-			else
-			{
-				// The turrets still exceed this pages space.
-				if((turretRows - turretIndex) * 20. >= height)
-					turretIndex += (rowsPerPage / 2);
-				// The turrets fit this page.
-				else
-					overflowsPage = false;
-			}
-		}
-		// Check if we went through all hardpoints.
-		if(turretIndex >= turretRows && gunIndex >= gunRows)
-			overflowsPage = false;
-		pages++;
-		offset = 0;
-	}
-	*/
 }
 
 
@@ -607,7 +560,7 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 
 		bool isTurret = hardpoint->IsTurret();
 
-		double y = (weaponIndex - (pageIndex - 1) * (rowsPerPage / 2)) * 20. + 40. + (isTurret) * 10.;
+		double y = (weaponIndex - (pageIndex - 1) * rowsPerPage) * 20. + 40. + (isTurret) * 10.;
 		double x = right ? centerX + LABEL_DX : centerX - LABEL_DX - LABEL_WIDTH;
 		bool isHover = (weaponIndex == hoverIndex && (right ? hoverRight : !hoverRight));
 		layout.align = right ? Alignment::LEFT : Alignment::RIGHT;
@@ -641,7 +594,7 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	};
 
 
-	for(int weaponIndex = (pageIndex - 1) * (rowsPerPage / 2); weaponIndex < pageIndex * (rowsPerPage / 2); weaponIndex++)
+	for(int weaponIndex = (pageIndex - 1) * rowsPerPage; weaponIndex < pageIndex * rowsPerPage; weaponIndex++)
 	{
 		if(weaponsRight.size() > static_cast<unsigned int>(weaponIndex))
 			DrawElements(weaponsRight, weaponIndex, true);
