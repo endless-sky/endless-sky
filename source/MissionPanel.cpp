@@ -209,6 +209,8 @@ void MissionPanel::Draw()
 	hoverSortCount += hoverSort >= 0 ? (hoverSortCount < HOVER_TIME) : (hoverSortCount ? -1 : 0);
 
 	Color routeColor(.2f, .1f, 0.f, 0.f);
+	const Ship *flagship = player.Flagship();
+	const double jumpRange = flagship ? flagship->JumpNavigation().JumpRange() : 0.;
 	const System *system = selectedSystem;
 	while(distance.Days(system) > 0)
 	{
@@ -216,11 +218,16 @@ void MissionPanel::Draw()
 
 		Point from = Zoom() * (next->Position() + center);
 		Point to = Zoom() * (system->Position() + center);
-		Point unit = (from - to).Unit() * 7.;
-		from -= unit;
-		to += unit;
+		const Point unit = (to - from).Unit();
+		from += LINK_OFFSET * unit;
+		to -= LINK_OFFSET * unit;
 
-		LineShader::Draw(from, to, 5.f, routeColor);
+		const bool isHyper = system->Links().count(next);
+		const bool isJump = !isHyper && system->JumpNeighbors(jumpRange).count(next);
+		if(isJump)
+			LineShader::DrawDashed(from, to, unit, 5.f, routeColor);
+		else
+			LineShader::Draw(from, to, 5.f, routeColor);
 
 		system = next;
 	}
