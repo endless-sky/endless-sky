@@ -744,7 +744,7 @@ const string &GameData::LandingMessage(const Sprite *sprite)
 
 
 
-// Get the solar power and wind output of the given stellar object sprite.
+// Get the solar power, wind, and heat output of the given stellar object sprite.
 double GameData::SolarPower(const Sprite *sprite)
 {
 	auto it = objects.solarPower.find(sprite);
@@ -757,6 +757,14 @@ double GameData::SolarWind(const Sprite *sprite)
 {
 	auto it = objects.solarWind.find(sprite);
 	return (it == objects.solarWind.end() ? 0. : it->second);
+}
+
+
+
+double GameData::SolarHeat(const Sprite *sprite)
+{
+	auto it = objects.solarHeat.find(sprite);
+	return (it == objects.solarHeat.end() ? 0. : it->second);
 }
 
 

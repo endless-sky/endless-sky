@@ -463,7 +463,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 
 
 // Update any information about the system that may have changed due to events,
-// or because the game was started, e.g. neighbors, solar wind and power, or
+// or because the game was started, e.g. neighbors, solar wind, power, and heat, or
 // if the system is inhabited.
 void System::UpdateSystem(const Set<System> &systems, const set<double> &neighborDistances)
 {
@@ -501,10 +501,12 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 	// Calculate the solar power and solar wind.
 	solarPower = 0.;
 	solarWind = 0.;
+	solarHeat = 0.;
 	for(const StellarObject &object : objects)
 	{
 		solarPower += GameData::SolarPower(object.GetSprite());
 		solarWind += GameData::SolarWind(object.GetSprite());
+		solarHeat += GameData::SolarHeat(object.GetSprite());
 	}
 
 	// Systems only have a single auto-attribute, "uninhabited." It is set if
@@ -790,6 +792,13 @@ double System::SolarPower() const
 double System::SolarWind() const
 {
 	return solarWind;
+}
+
+
+
+double System::SolarHeat() const
+{
+	return solarHeat;
 }
 
 

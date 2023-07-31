@@ -3741,9 +3741,10 @@ void Ship::DoGeneration()
 			double scale = .2 + 1.8 / (.001 * position.Length() + 1);
 			fuel += currentSystem->RamscoopFuel(attributes.Get("ramscoop"), scale);
 
-			double solarScaling = currentSystem->SolarPower() * scale;
-			energy += solarScaling * attributes.Get("solar collection");
-			heat += solarScaling * (attributes.Get("solar heat") + .5);
+			double solarPowerScaling = currentSystem->SolarPower() * scale;
+			energy += solarPowerScaling * attributes.Get("solar collection");
+			heat += solarPowerScaling * attributes.Get("solar heat")
+				+ currentSystem->SolarHeat() * scale;
 		}
 
 		double coolingEfficiency = CoolingEfficiency();

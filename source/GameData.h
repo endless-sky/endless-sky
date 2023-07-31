@@ -154,9 +154,10 @@ public:
 	// Custom messages to be shown when trying to land on certain stellar objects.
 	static bool HasLandingMessage(const Sprite *sprite);
 	static const std::string &LandingMessage(const Sprite *sprite);
-	// Get the solar power and wind output of the given stellar object sprite.
+	// Get the solar power, wind, and heat output of the given stellar object sprite.
 	static double SolarPower(const Sprite *sprite);
 	static double SolarWind(const Sprite *sprite);
+	static double SolarHeat(const Sprite *sprite);
 
 	// Strings for combat rating levels, etc.
 	static const std::string &Rating(const std::string &type, int level);

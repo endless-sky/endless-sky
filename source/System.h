@@ -69,7 +69,7 @@ public:
 	// Load a system's description.
 	void Load(const DataNode &node, Set<Planet> &planets);
 	// Update any information about the system that may have changed due to events,
-	// e.g. neighbors, solar wind and power, or if the system is inhabited.
+	// e.g. neighbors, solar wind, power, and heat, or if the system is inhabited.
 	void UpdateSystem(const Set<System> &systems, const std::set<double> &neighborDistances);
 
 	// Modify a system's links.
@@ -137,6 +137,7 @@ public:
 	// Get the rate of solar collection and ramscoop refueling.
 	double SolarPower() const;
 	double SolarWind() const;
+	double SolarHeat() const;
 	// Get the starfield density for this system.
 	double StarfieldDensity() const;
 	// Check if this system is inhabited.
@@ -240,6 +241,7 @@ private:
 	double jumpRange = 0.;
 	double solarPower = 0.;
 	double solarWind = 0.;
+	double solarHeat = 0.;
 	double starfieldDensity = 1.;
 	int minimumFleetPeriod = 0;
 
