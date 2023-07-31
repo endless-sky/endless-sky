@@ -225,7 +225,7 @@ void MissionPanel::Draw()
 		const bool isHyper = system->Links().count(next);
 		const bool isJump = !isHyper && system->JumpNeighbors(jumpRange).count(next);
 		if(isJump)
-			LineShader::DrawDashed(from, to, unit, 5.f, routeColor);
+			LineShader::DrawDashed(from, to, unit, 5.f, routeColor, 15., 4.);
 		else
 			LineShader::Draw(from, to, 5.f, routeColor);
 
