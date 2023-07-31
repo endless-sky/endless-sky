@@ -80,9 +80,6 @@ ShipInfoPanel::ShipInfoPanel(PlayerInfo &player, InfoPanelState state)
 	}
 
 	UpdateInfo();
-
-	// Precalculate Hardpoint pages.
-	SetUpHardpointCalcs(GameData::Interfaces().Get("info panel")->GetBox("weapons"));
 }
 
 
@@ -126,8 +123,6 @@ void ShipInfoPanel::Draw()
 	// Initialize the interface.
 	const Interface *infoPanelUi = GameData::Interfaces().Get("info panel");
 
-	// Precalculate Hardpoint pages.
-	SetUpHardpointCalcs(infoPanelUi->GetBox("weapons"));
 	if(pages > 1)
 		interfaceInfo.SetCondition("paged hardpoints");
 	if(pageIndex < pages)
@@ -325,6 +320,9 @@ void ShipInfoPanel::UpdateInfo()
 		outfits[it.first->Category()].push_back(it.first);
 
 	panelState.SelectOnly(shipIt - panelState.Ships().begin());
+
+	// Precalculate Hardpoint pages.
+	SetUpHardpointCalcs(GameData::Interfaces().Get("info panel")->GetBox("weapons"));
 }
 
 
@@ -341,6 +339,13 @@ void ShipInfoPanel::ClearZones()
 
 void ShipInfoPanel::SetUpHardpointCalcs(const Rectangle &bounds)
 {
+	weaponsRight.clear();
+	weaponsLeft.clear();
+	indicesRight.clear();
+	indicesLeft.clear();
+	maxX = 0.;
+	pageIndex = 1;
+	
 	// Figure out the left- and right-most hardpoints on the ship. If they are
 	// too far apart, the scale may need to be reduced.
 	// Also figure out how many weapons of each type are on each side.
@@ -358,11 +363,6 @@ void ShipInfoPanel::SetUpHardpointCalcs(const Rectangle &bounds)
 	}
 
 	// Sort wepaons into left and right.
-	weaponsRight.clear();
-	weaponsLeft.clear();
-	indicesRight.clear();
-	indicesLeft.clear();
-	maxX = 0.;
 	int count[2][2] = {{0, 0}, {0, 0}};
 	auto SortIntoIndices = [&] (std::vector<pair<const Hardpoint *, int>> &toSort)
 	{
