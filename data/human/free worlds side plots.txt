@@ -14,6 +14,7 @@
 
 
 mission "FW Zug Expansion: Assisted"
+	minor
 	name "Convoy to Zug"
 	description "Escort a convoy of freighters to <destination> for an important project. Expect pirate raids."
 	source
@@ -700,7 +701,8 @@ mission "FW Wolf Pack 4"
 		personality heroic staying
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			cargo 0
 			variant
 				"Carrier"
