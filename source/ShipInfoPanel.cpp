@@ -345,7 +345,7 @@ void ShipInfoPanel::SetUpHardpointCalcs(const Rectangle &bounds)
 	indicesLeft.clear();
 	maxX = 0.;
 	pageIndex = 1;
-	
+
 	// Figure out the left- and right-most hardpoints on the ship. If they are
 	// too far apart, the scale may need to be reduced.
 	// Also figure out how many weapons of each type are on each side.
