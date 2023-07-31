@@ -393,17 +393,19 @@ void ShipInfoPanel::SetUpHardpointCalcs(const Rectangle &bounds)
 	bool overflowsPage = height > bounds.Height();
 	height = overflowsPage ? bounds.Height() - HARDPOINT_PAGE_BUTTON_SPACE : height;
 	pages = overflowsPage ? 0 : 1;
+	// Everything fits on one page, no further calculations needed.
 	if(!overflowsPage)
 		return;
 
 	// One row is 20 pixels in height, minus one for the buffer between turrets and guns.
 	rowsPerPage = static_cast<int>(height) / 20. - 1;
 
+	// Get the total amount of pages
 	int gunPages = floor(gunRows / rowsPerPage);
 	int gunLeftOver = gunRows % rowsPerPage;
 	int turretPages = floor(turretRows / rowsPerPage);
 	int turretLeftOver = turretRows % rowsPerPage;
-	int overPages = gunLeftOver + turretLeftOver > rowsPerPage - (gunLeftOver != 0) ? 2 : 1;
+	int overPages = gunLeftOver + turretLeftOver > rowsPerPage ? 2 : 1;
 	pages = gunPages + turretPages + overPages;
 }
 
