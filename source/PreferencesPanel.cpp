@@ -580,6 +580,7 @@ void PreferencesPanel::DrawSettings()
 		"Always underline shortcuts",
 		REACTIVATE_HELP,
 		"Interrupt fast-forward",
+		"Landing zoom",
 		SCROLL_SPEED
 	};
 

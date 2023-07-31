@@ -764,7 +764,7 @@ mission "Remnant: Will Not Someone Please Think Of The Children"
 		dialog `The Remnant are puzzled at your aborting of this mission, but they tell you they will send someone else to do this work. They warn you they will not propose any more of the sort to you again.`
 	on fail
 		"reputation: Remnant" -= 250
-		dialog `You where unable to disable the Kas'lor Ik 582 without destroying it... The Remnant will not be pleased...`
+		dialog `You were unable to disable the Kas'lor Ik 582 without destroying it... The Remnant will not be pleased...`
 	on complete
 		"remnant: disable and save count" ++
 		payment 2500000

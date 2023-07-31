@@ -2547,9 +2547,9 @@ double Ship::IdleHeat() const
 	double activeCooling = coolingEfficiency * attributes.Get("active cooling");
 
 	// Idle heat is the heat level where:
-	// heat = heat * diss + heatGen - cool - activeCool * heat / (100 * mass)
-	// heat = heat * (diss - activeCool / (100 * mass)) + (heatGen - cool)
-	// heat * (1 - diss + activeCool / (100 * mass)) = (heatGen - cool)
+	// heat = heat - heat * diss + heatGen - cool - activeCool * heat / maxHeat
+	// heat = heat - heat * (diss + activeCool / maxHeat) + (heatGen - cool)
+	// heat * (diss + activeCool / maxHeat) = (heatGen - cool)
 	double production = max(0., attributes.Get("heat generation") - cooling);
 	double dissipation = HeatDissipation() + activeCooling / MaximumHeat();
 	if(!dissipation) return production ? numeric_limits<double>::max() : 0;
