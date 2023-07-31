@@ -3791,7 +3791,7 @@ void Ship::DoGeneration()
 				recentHits[i].second *= 0.5;
 			else
 				recentHits[i].second *= 0.92;
-				
+
 			if(recentHits[i].second < 0.001)
 				recentHits.erase(recentHits.begin() + i);
 			else
