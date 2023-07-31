@@ -45,6 +45,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cmath>
+#include <utility>
 
 using namespace std;
 
@@ -79,6 +80,9 @@ ShipInfoPanel::ShipInfoPanel(PlayerInfo &player, InfoPanelState state)
 	}
 
 	UpdateInfo();
+
+	// Precalculate Hardpoint pages.
+	SetUpHardpointCalcs(GameData::Interfaces().Get("info panel")->GetBox("weapons"));
 }
 
 
@@ -340,14 +344,46 @@ void ShipInfoPanel::SetUpHardpointCalcs(const Rectangle &bounds)
 	// Figure out the left- and right-most hardpoints on the ship. If they are
 	// too far apart, the scale may need to be reduced.
 	// Also figure out how many weapons of each type are on each side.
-	maxX = 0.;
-	int count[2][2] = {{0, 0}, {0, 0}};
+	// Sort weapons by category (turret or gun).
+	int index = 0;
+	std::vector<pair<const Hardpoint *, int>> gunHardpoints;
+	std::vector<pair<const Hardpoint *, int>> turretHardpoints;
 	for(const Hardpoint &hardpoint : (**shipIt).Weapons())
 	{
-		// Multiply hardpoint X by 2 to convert to sprite pixels.
-		maxX = max(maxX, fabs(2. * hardpoint.GetPoint().X()));
-		++count[hardpoint.GetPoint().X() >= 0.][hardpoint.IsTurret()];
+		if(hardpoint.IsTurret())
+			turretHardpoints.emplace_back(make_pair(&hardpoint, index));
+		else
+			gunHardpoints.emplace_back(make_pair(&hardpoint, index));
+		++index;
 	}
+
+	// Sort wepaons into left and right.
+	weaponsRight.clear();
+	weaponsLeft.clear();
+	indicesRight.clear();
+	indicesLeft.clear();
+	maxX = 0.;
+	int count[2][2] = {{0, 0}, {0, 0}};
+	auto SortIntoIndices = [&] (std::vector<pair<const Hardpoint *, int>> &toSort)
+	{
+		for(pair<const Hardpoint *, int> &hardpoint : toSort)
+		{
+			maxX = max(maxX, fabs(2. * hardpoint.first->GetPoint().X()));
+			++count[hardpoint.first->GetPoint().X() >= 0.][hardpoint.first->IsTurret()];
+			if(hardpoint.first->GetPoint().X() >= 0.)
+			{
+				indicesRight.emplace_back(hardpoint.second);
+				weaponsRight.emplace_back(hardpoint.first);
+			}
+			else
+			{
+				indicesLeft.emplace_back(hardpoint.second);
+				weaponsLeft.emplace_back(hardpoint.first);
+			}
+		}
+	};
+	SortIntoIndices(gunHardpoints);
+	SortIntoIndices(turretHardpoints);
 
 	// Figure out how tall each part of the weapon listing will be.
 	int gunRows = max(count[0][0], count[1][0]);
@@ -511,44 +547,6 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	Color topColor;
 	bool hasTop = false;
 	auto layout = Layout(static_cast<int>(LABEL_WIDTH), Truncate::BACK);
-
-	weaponsRight.clear();
-	weaponsLeft.clear();
-	indicesRight.clear();
-	indicesLeft.clear();
-	int index = 0;
-
-	// Sort weapons by category (turret or gun).
-	std::vector<const Hardpoint *> gunHardpoints;
-	std::vector<const Hardpoint *> turretHardpoints;
-	for(const Hardpoint &hardpoint : ship.Weapons())
-	{
-		if(hardpoint.IsTurret())
-			turretHardpoints.emplace_back(&hardpoint);
-		else
-			gunHardpoints.emplace_back(&hardpoint);
-	}
-
-	// Sort wepaons into left and right.
-	auto SortIntoIndices = [&] (std::vector<const Hardpoint *> &toSort)
-	{
-		for(const Hardpoint *hardpoint : toSort)
-		{
-			if(hardpoint->GetPoint().X() >= 0.)
-			{
-				indicesRight.emplace_back(index);
-				weaponsRight.emplace_back(hardpoint);
-			}
-			else
-			{
-				indicesLeft.emplace_back(index);
-				weaponsLeft.emplace_back(hardpoint);
-			}
-			index++;
-		}
-	};
-	SortIntoIndices(gunHardpoints);
-	SortIntoIndices(turretHardpoints);
 
 	auto DrawElements = [&] (std::vector<const Hardpoint *> &weaponList, int weaponIndex, bool right)
 	{
