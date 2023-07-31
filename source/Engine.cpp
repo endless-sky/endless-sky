@@ -501,8 +501,7 @@ void Engine::Step(bool isActive)
 	{
 		center = flagship->Position();
 		centerVelocity = flagship->Velocity();
-		// The starfield always has motion blur, so avoid increasing the blur if the player doesn't want it.
-		if(flagship->IsHyperspacing() && Preferences::Has("Render motion blur"))
+		if(flagship->IsHyperspacing())
 			centerVelocity *= 1. + pow(flagship->GetHyperspacePercentage() / 20., 2);
 		if(doEnter && flagship->Zoom() == 1. && !flagship->IsHyperspacing())
 		{
