@@ -44,6 +44,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include <algorithm>
+#include <cmath>
 
 using namespace std;
 
@@ -355,13 +356,23 @@ void ShipInfoPanel::SetUpHardpointCalcs(const Rectangle &bounds)
 	double height = 20. * (gunRows + turretRows) + 10. * (gunRows && turretRows);
 	bool overflowsPage = height > bounds.Height();
 	height = overflowsPage ? bounds.Height() - HARDPOINT_PAGE_BUTTON_SPACE : height;
+	pages = overflowsPage ? 0 : 1;
+	if(!overflowsPage)
+		return;
 
 	// First calculate how many pages are needed. If pages are not needed set to 1.
-	pages = overflowsPage ? 0 : 1;
-	int gunIndex = 0;
-	int turretIndex = 0;
+	//int gunIndex = 0;
+	//int turretIndex = 0;
 	rowsPerPage = static_cast<int>(height) / 10. - 1;
-	int offset = 0;
+	//int offset = 0;
+
+	int gunPages = floor(gunRows / rowsPerPage);
+	int gunLeftOver = gunRows % rowsPerPage;
+	int turretPages = floor(turretRows / rowsPerPage);
+	int turretLeftOver = turretRows % rowsPerPage;
+	int overPages = gunLeftOver + turretLeftOver > rowsPerPage - (gunLeftOver != 0) ? 2 : 1;
+	pages = gunPages + turretPages + overPages;
+	/*
 	while(overflowsPage)
 	{
 		// First go through the guns.
@@ -404,6 +415,7 @@ void ShipInfoPanel::SetUpHardpointCalcs(const Rectangle &bounds)
 		pages++;
 		offset = 0;
 	}
+	*/
 }
 
 
