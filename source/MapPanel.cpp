@@ -464,15 +464,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 	Color bright(2.f * alpha, 0.f);
 	// Non-hyperspace jumps are drawn with a dashed directional arrow.
 	if(!isLink)
-	{
-		double length = (to - from).Length();
-		int segments = static_cast<int>(length / 15.);
-		for(int i = 0; i < segments; ++i)
-			LineShader::Draw(
-				from + unit * ((i * length) / segments + 2.),
-				from + unit * (((i + 1) * length) / segments - 2.),
-				LINK_WIDTH, bright);
-	}
+		LineShader::DrawDashed(from, to, unit, LINK_WIDTH, bright);
 	LineShader::Draw(to, to + Angle(-30.).Rotate(unit) * -10., LINK_WIDTH, bright);
 	LineShader::Draw(to, to + Angle(30.).Rotate(unit) * -10., LINK_WIDTH, bright);
 }
@@ -1081,15 +1073,7 @@ void MapPanel::DrawTravelPlan()
 		to += LINK_OFFSET * unit;
 		// Non-hyperspace jumps are drawn with a dashed line.
 		if(isJump)
-		{
-			const double length = (from - to).Length();
-			const int segments = static_cast<int>(length / 15.);
-			for(int i = 0; i < segments; ++i)
-				LineShader::Draw(
-					from - unit * ((i * length) / segments + 2.),
-					from - unit * (((i + 1) * length) / segments - 2.),
-					3.f, drawColor);
-		}
+			LineShader::DrawDashed(to, from, unit, 3.f, drawColor);
 		else
 			LineShader::Draw(from, to, 3.f, drawColor);
 

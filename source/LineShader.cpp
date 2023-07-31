@@ -132,3 +132,15 @@ void LineShader::Draw(const Point &from, const Point &to, float width, const Col
 	glBindVertexArray(0);
 	glUseProgram(0);
 }
+
+
+
+void LineShader::DrawDashed(const Point &from, const Point &to, const Point &unit, const float width, const Color &color)
+{
+	const double length = (to - from).Length();
+	const int segments = static_cast<int>(length / 15.);
+	for(int i = 0; i < segments; ++i)
+		Draw(from + unit * ((i * length) / segments + 2.),
+			from + unit * (((i + 1) * length) / segments - 2.),
+			width, color);
+}
