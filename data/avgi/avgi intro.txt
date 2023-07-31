@@ -383,3 +383,8 @@ choice
 
 
 
+
+has explored Decet
+
+"Actually I think I know I have a way to get out"
+

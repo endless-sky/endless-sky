@@ -1,6 +1,6 @@
 
 
-phrase "avgi civilian"
+phrase "avgi civilian names"
 	phrase
 		"avgi colors" 10
 		"avgi qualities" 5
@@ -13,8 +13,7 @@ phrase "avgi civilian"
 		"avgi elements"
 
 
-
-phrase "avgi military"
+phrase "avgi military names"
 	word
 		"ACV "
 	phrase
@@ -26,8 +25,7 @@ phrase "avgi military"
 		"avgi elements"
 
 
-
-phrase "avgi fighter"
+phrase "avgi fighter names"
 	phrase
 		"avgi digits"
 	phrase

@@ -1,8 +1,8 @@
 fleet "Avgi Core Defense"
 	government "Avgi (Spaceguard)"
-	names "avgi military"
+	names "avgi military names"
 	fighters
-		names "avgi fighter"
+		names "avgi fighter names"
 		personality
 			heroic surveillance swarming
 	personality
@@ -52,7 +52,7 @@ fleet "Avgi Core Defense"
 
 fleet "Avgi Orbital Defense"
 	government "Avgi (Spaceguard)"
-	names "avgi fighter"
+	names "avgi fighter names"
 	personality
 		lingering heroic surveillance swarming
 	variant 10
@@ -67,11 +67,11 @@ fleet "Avgi Orbital Defense"
 
 fleet "Avgi Patrol"
 	government "Avgi (Spaceguard)"
-	names "avgi military"
+	names "avgi military names"
 	cargo 4
 	commodities "Food" "Metal" "Equipment" "Medical" "Heavy Metals"
 	fighters
-		names "avgi fighter"
+		names "avgi fighter names"
 		personality
 			disables surveillance
 	personality
@@ -95,10 +95,10 @@ fleet "Avgi Patrol"
 
 fleet "Avgi Scouts"
 	government "Avgi (Consonance)"
-	names "avgi civilian"
+	names "avgi civilian names"
 	commodities "Food" "Equipment" "Medical"
 	fighters
-		names "avgi fighter"
+		names "avgi fighter names"
 	personality
 		surveillance coward merciful disables
 		confusion 20
@@ -121,11 +121,11 @@ fleet "Avgi Scouts"
 
 fleet "Avgi Strike Group"
 	government "Avgi (Spaceguard)"
-	names "avgi military"
+	names "avgi military names"
 	cargo 4
 	commodities "Food" "Metal" "Equipment" "Medical" "Heavy Metals"
 	fighters
-		names "avgi fighter"
+		names "avgi fighter names"
 		personality
 			hunting disables
 	personality
@@ -138,11 +138,11 @@ fleet "Avgi Strike Group"
 
 fleet "Avgi Fleetgroup"
 	government "Avgi (Spaceguard)"
-	names "avgi military"
+	names "avgi military names"
 	cargo 4
 	commodities "Food" "Metal" "Equipment" "Medical" "Heavy Metals"
 	fighters
-		names "avgi fighter"
+		names "avgi fighter names"
 		personality
 			hunting disables swarming
 	personality
@@ -200,9 +200,9 @@ fleet "Avgi Fleetgroup"
 
 fleet "Avgi Small Merchant"
 	government "Avgi"
-	names "avgi civilian"
+	names "avgi civilian names"
 	fighters
-		names "avgi fighter"
+		names "avgi fighter names"
 		personality
 			swarming
 	personality
@@ -216,9 +216,9 @@ fleet "Avgi Small Merchant"
 
 fleet "Avgi Large Merchant"
 	government "Avgi"
-	names "avgi civilian"
+	names "avgi civilian names"
 	fighters
-		names "avgi fighter"
+		names "avgi fighter names"
 		personality
 			swarming
 	personality
@@ -247,9 +247,9 @@ fleet "Avgi Large Merchant"
 
 fleet "Avgi Miners"
 	government "Avgi"
-	names "avgi civilian"
+	names "avgi civilian names"
 	fighters
-		names "avgi fighter"
+		names "avgi fighter names"
 		personality
 			mining harvests swarming
 	personality
@@ -261,9 +261,9 @@ fleet "Avgi Miners"
 
 fleet "Avgi Small Convoy"
 	government "Avgi"
-	names "avgi civilian"
+	names "avgi civilian names"
 	fighters
-		names "avgi fighter"
+		names "avgi fighter names"
 		personality
 			swarming
 	personality
@@ -274,9 +274,9 @@ fleet "Avgi Small Convoy"
 
 fleet "Avgi Large Convoy"
 	government "Avgi"
-	names "avgi civilian"
+	names "avgi civilian names"
 	fighters
-		names "avgi fighter"
+		names "avgi fighter names"
 		personality
 			swarming
 	personality
@@ -287,9 +287,9 @@ fleet "Avgi Large Convoy"
 
 fleet "Avgi Small Dissonance"
 	government "Avgi (Dissonance)"
-	names "avgi civilian"
+	names "avgi civilian names"
 	fighters
-		names "avgi fighter"
+		names "avgi fighter names"
 		personality
 			mining harvests swarming
 	personality
@@ -301,9 +301,9 @@ fleet "Avgi Small Dissonance"
 
 fleet "Avgi Large Dissonance"
 	government "Avgi (Dissonance)"
-	names "avgi civilian"
+	names "avgi civilian names"
 	fighters
-		names "avgi fighter"
+		names "avgi fighter names"
 		personality
 			mining harvests swarming
 	personality
@@ -316,9 +316,9 @@ fleet "Avgi Large Dissonance"
 
 fleet "Avgi Dissonance Miners"
 	government "Avgi (Dissonance)"
-	names "avgi civilian"
+	names "avgi civilian names"
 	fighters
-		names "avgi fighter"
+		names "avgi fighter names"
 		personality
 			mining harvests swarming
 	personality
@@ -331,9 +331,9 @@ fleet "Avgi Dissonance Miners"
 
 fleet "Avgi Small Angry Dissonance"
 	government "Avgi (Dissonance Aggressive)""
-	names "avgi civilian"
+	names "avgi civilian names"
 	fighters
-		names "avgi fighter"
+		names "avgi fighter names"
 		personality
 			daring harvests swarming
 	personality
@@ -345,9 +345,9 @@ fleet "Avgi Small Angry Dissonance"
 
 fleet "Avgi Large Angry Dissonance"
 	government "Avgi (Dissonance Aggressive)"
-	names "avgi civilian"
+	names "avgi civilian names"
 	fighters
-		names "avgi fighter"
+		names "avgi fighter names"
 		personality
 			daring harvests swarming
 	personality
