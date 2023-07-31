@@ -995,7 +995,6 @@ void Engine::Draw() const
 		label.Draw();
 
 	draw[drawTickTock].Draw();
-
 	batchDraw[drawTickTock].Draw();
 
 	for(const auto &it : statuses)
@@ -1618,7 +1617,6 @@ void Engine::CalculateStep()
 				Audio::Play(it.first);
 		}
 	}
-
 	// Draw the projectiles.
 	for(const Projectile &projectile : projectiles)
 		batchDraw[calcTickTock].Add(projectile, projectile.Clip());

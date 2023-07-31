@@ -44,14 +44,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-
 	Shader shader;
 	GLint scaleI;
 	GLint frameI;
 	GLint frameCountI;
 	GLint positionI;
 	GLint transformI;
-	GLint blurI;
 	GLint clipI;
 
 	GLint recentHitsCountI;
@@ -81,7 +79,6 @@ void ShipEffectsShader::Init()
 		"uniform vec2 scale;\n"
 		"uniform vec2 position;\n"
 		"uniform mat2 transform;\n"
-		"uniform vec2 blur;\n"
 		"uniform float clip;\n"
 
 		"in vec2 vert;\n"
@@ -89,11 +86,10 @@ void ShipEffectsShader::Init()
 		"out vec2 shrinkby;\n"
 
 		"void main() {\n"
-		"  vec2 blurOff = 2.f * vec2(vert.x * abs(blur.x), vert.y * abs(blur.y));\n"
-		"  gl_Position = vec4((transform * (vert + blurOff) + position) * scale, 0, 1);\n"
+		"  gl_Position = vec4((transform * vert + position) * scale, 0, 1);\n"
 		"  vec2 texCoord = vert + vec2(.5, .5);\n"
 		"  shrinkby = scale;\n"
-		"  fragTexCoord = vec2(texCoord.x, min(clip, texCoord.y)) + blurOff;\n"
+		"  fragTexCoord = vec2(texCoord.x, min(clip, texCoord.y));\n"
 		"}\n";
 
 	static const char *fragmentCode =
@@ -106,7 +102,6 @@ void ShipEffectsShader::Init()
 		"uniform sampler2DArray shieldTex;\n"
 		"uniform float frame;\n"
 		"uniform float frameCount;\n"
-		"uniform vec2 blur;\n"
 		"const int range = 5;\n"
 
 		"uniform vec2 recentHits[64];\n"
@@ -192,7 +187,6 @@ void ShipEffectsShader::Init()
 	frameCountI = shader.Uniform("frameCount");
 	positionI = shader.Uniform("position");
 	transformI = shader.Uniform("transform");
-	blurI = shader.Uniform("blur");
 	clipI = shader.Uniform("clip");
 
 	recentHitsI = shader.Uniform("recentHits");
@@ -230,7 +224,7 @@ void ShipEffectsShader::Init()
 	glEnableVertexAttribArray(shader.Attrib("vert"));
 	glVertexAttribPointer(shader.Attrib("vert"), 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
 
-	// unbind the VBO and VAO
+	// Unbind the VBO and VAO
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 }
@@ -314,10 +308,6 @@ ShipEffectsShader::EffectItem ShipEffectsShader::Prepare(const Ship* ship, const
 		const auto newP = sub.Rotate(recth->at(i).first * Point(-1, -1));
 		item.recentHitPoints[2 * i] = (newP.X() / ((2 / 1.5) * ship->Radius()));
 		item.recentHitPoints[2 * i + 1] = (newP.Y() / ((2 / 1.2) * ship->Radius()));
-		item.recentHitDamage[i] = (min(1., recth->at(i).second));
-		// For debugging
-		// Messages::Add("Hit at " + to_string(newP.X() / body->Radius()) + ", " + to_string(newP.Y() / body->Radius())
-		//	+ ", intensity of " + to_string(item.recentHitDamage[i]) + " with count of " + to_string(item.recentHits));
 		i++;
 	}
 
@@ -361,7 +351,7 @@ void ShipEffectsShader::Bind()
 
 
 
-void ShipEffectsShader::Add(const EffectItem& item, bool withBlur)
+void ShipEffectsShader::Add(const EffectItem& item)
 {
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D_ARRAY, item.texture);
@@ -372,9 +362,6 @@ void ShipEffectsShader::Add(const EffectItem& item, bool withBlur)
 	glUniform1f(frameCountI, item.frameCount);
 	glUniform2fv(positionI, 1, item.position);
 	glUniformMatrix2fv(transformI, 1, false, item.transform);
-	// Special case: check if the blur should be applied or not.
-	static const float UNBLURRED[2] = { 0.f, 0.f };
-	glUniform2fv(blurI, 1, withBlur ? item.blur : UNBLURRED);
 	glUniform1f(clipI, item.clip);
 
 	glUniform2fv(recentHitsI, 128, item.recentHitPoints);
@@ -385,7 +372,6 @@ void ShipEffectsShader::Add(const EffectItem& item, bool withBlur)
 	glUniform1i(fastI, 2 == static_cast<int>(Preferences::GetHitEffects()));
 	glUniform1f(sizeI, item.size);
 	glUniform1f(shieldTexRatioI, item.shieldRatio);
-	// Logger::LogError(to_string(item.recentHits));
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
@@ -403,11 +389,10 @@ void ShipEffectsShader::Unbind()
 
 ShipEffectsShader::EffectItem::~EffectItem()
 {
-	
 }
 
 
-#include "Messages.h"
+
 void ShipEffectsShader::EffectItem::Draw()
 {
 	Bind();

@@ -1,5 +1,5 @@
 /* ShipEffectsShader.h
-Copyright (c) 2014 by Michael Zahniser
+Copyright (c) 2023 by Daniel Yoon
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -32,8 +32,8 @@ class Government;
 
 
 
-// Class for drawing ship effects, such as shield or heat.
-// It's a clone of the SpriteShader, with a few extra doohickeys.
+// Class used to draw on-hit effects for ships.
+// The EffectItem subclass implements SpriteItemExtension so it can be drawn during a DrawList draw.
 class ShipEffectsShader {
 public:
 	class EffectItem : public DrawList::SpriteItemExtension {
@@ -69,15 +69,17 @@ public:
 	// Draw a sprite.
 	static void Draw(const Ship* body, const Point& position, const std::vector<std::pair<Point, double>>* recentHits,
 		const float zoom = 1.f, const float frame = 0.f, const std::vector<std::pair<std::string, double>>& shieldColor = {});
+	// Prepares an EfectItem with the given parameters.
 	static EffectItem Prepare(const Ship *body, const Point &position,
 		const std::vector<std::pair<Point, double>>* recentHits, const float zoom = 1.f, const float frame = 0.f,
 		const std::vector<std::pair<std::string, double>>& shieldColor = {});
+	// Prepares an EffectItem with the the given parameters, but uses the cached center and czoom statics.
 	static EffectItem Batch(const Ship *body, const Point &position,
 		const std::vector<std::pair<Point, double>>* recentHits, const float frame = 0.f,
 		const std::vector<std::pair<std::string, double>>& shieldColor = {});
 
 	static void Bind();
-	static void Add(const EffectItem &item, bool withBlur = false);
+	static void Add(const EffectItem &item);
 	static void Unbind();
 
 	static Point center;

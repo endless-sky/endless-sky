@@ -253,9 +253,7 @@ void Ship::Load(const DataNode &node)
 		else if(key == "uuid" && child.Size() >= 2)
 			uuid = EsUuid::FromString(child.Token(1));
 		else if(key == "shield" && child.Size() >= 2)
-		{
 			shield = SpriteSet::Get(child.Token(1));
-		}
 		else if(key == "attributes" || add)
 		{
 			if(!add)
@@ -942,9 +940,7 @@ void Ship::Save(DataWriter &out) const
 				for(int i = 0; i < it.second; ++i)
 					out.Write("hyperdrive out sound", it.first->Name());
 			for(const auto &it : baseAttributes.ShieldColor())
-			{
 				out.Write("shield color", it.first, it.second);
-			}
 			for(const auto &it : baseAttributes.Attributes())
 				if(it.second)
 					out.Write(it.first, it.second);
@@ -1207,19 +1203,11 @@ const vector<pair<string, double>> Ship::ShieldColors() const
 {
 	vector<pair<string, double>> colors;
 	for(const auto &it : outfits)
-	{
 		for(int i = 0; i < it.second; i++)
-		{
 			for(const auto &that : it.first->ShieldColor())
-			{
 				colors.push_back(that);
-			}
-		}
-	}
 	for(const auto &it : attributes.ShieldColor())
-	{
 		colors.push_back(it);
-	}
 	return colors;
 }
 
@@ -2768,7 +2756,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	if(damage.HitForce())
 		ApplyForce(damage.HitForce(), damage.GetWeapon().IsGravitational());
 
-	// Add this hit to the list of latest hits.
+	// Add this hit to the vector of recent hits.
 	recentHits.emplace_back(damageSource - position,
 		min(shields, damage.Shield()));
 
@@ -3778,9 +3766,12 @@ void Ship::DoGeneration()
 		{
 			if(recentHits.size() > 64)
 			{
-				sort(recentHits.begin(), recentHits.end(), [](pair<Point, double> &left, pair<Point, double> &right) {
-					return left.second > right.second;
-					});
+				sort(recentHits.begin(), recentHits.end(),
+					[](const pair<Point, double> &left, const pair<Point, double> &right)
+					{
+						return left.second > right.second;
+					}
+				);
 				recentHits.resize(64);
 			}
 		}
@@ -3800,17 +3791,11 @@ void Ship::DoGeneration()
 				recentHits[i].second *= 0.5;
 			else
 				recentHits[i].second *= 0.92;
+				
 			if(recentHits[i].second < 0.001)
-			{
-				// Logger::LogError("DESTROYING ITERATORERED NUMBA " + to_string(i) + " OF SHIP " + name
-				// 	+ " WITH SIZEOF " + to_string(recentHits.size()));
 				recentHits.erase(recentHits.begin() + i);
-				// Logger::LogError("NOW SIZE IS " + to_string(recentHits.size()));
-			}
 			else
-			{
 				i++;
-			}
 		}
 	}
 	else if(!recentHits.empty())

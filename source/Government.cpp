@@ -421,10 +421,13 @@ void Government::Load(const DataNode &node)
 		hostileDisabledHail = GameData::Phrases().Get("hostile disabled");
 
 	// Get default shield colors
-	if(!hasShieldColor && hasColor)
-		shieldColor = *color;
-	else
-		shieldColor = *GameData::Colors().Get("shields default");
+	if(!hasShieldColor)
+	{
+		if(hasColor)
+			shieldColor = *color;
+		else
+			shieldColor = *GameData::Colors().Get("shields default");
+	}
 }
 
 
