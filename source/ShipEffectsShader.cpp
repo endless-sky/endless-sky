@@ -303,12 +303,12 @@ ShipEffectsShader::EffectItem ShipEffectsShader::Prepare(const Ship* ship, const
 	item.recentHits = min(32, static_cast<int>(recth->size()));
 
 	Angle sub = Angle(180.) - ship->Facing();
-	for(int i = 0; i < static_cast<int>(item.recentHits);)
+	for(int i = 0; i < static_cast<int>(item.recentHits); i++)
 	{
 		const auto newP = sub.Rotate(recth->at(i).first * Point(-1, -1));
 		item.recentHitPoints[2 * i] = (newP.X() / ((2 / 1.5) * ship->Radius()));
 		item.recentHitPoints[2 * i + 1] = (newP.Y() / ((2 / 1.2) * ship->Radius()));
-		i++;
+		item.recentHitDamage[i] = (min(1., recth->at(i).second));
 	}
 
 	float total = 2.;
