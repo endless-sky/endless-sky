@@ -43,6 +43,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "System.h"
+#include "Wormhole.h"
 #include "text/truncate.hpp"
 #include "UI.h"
 
@@ -209,8 +210,6 @@ void MissionPanel::Draw()
 	hoverSortCount += hoverSort >= 0 ? (hoverSortCount < HOVER_TIME) : (hoverSortCount ? -1 : 0);
 
 	Color routeColor(.2f, .1f, 0.f, 0.f);
-	const Ship *flagship = player.Flagship();
-	const double jumpRange = flagship ? flagship->JumpNavigation().JumpRange() : 0.;
 	const System *system = selectedSystem;
 	while(distance.Days(system) > 0)
 	{
@@ -223,11 +222,19 @@ void MissionPanel::Draw()
 		to -= LINK_OFFSET * unit;
 
 		const bool isHyper = system->Links().count(next);
-		const bool isJump = !isHyper && system->JumpNeighbors(jumpRange).count(next);
-		if(isJump)
-			LineShader::DrawDashed(from, to, unit, 5.f, routeColor, 11., 4.);
-		else
+		bool isWormhole = false;
+		for(const StellarObject &object : system->Objects())
+			isWormhole |= (object.HasSprite() && object.HasValidPlanet()
+				&& object.GetPlanet()->IsWormhole()
+				&& player.HasVisited(*object.GetPlanet())
+				&& object.GetPlanet()->GetWormhole()->IsMappable()
+				&& player.HasVisited(*system) && player.HasVisited(*next)
+				&& &object.GetPlanet()->GetWormhole()->WormholeDestination(*system) == next);
+
+		if(isHyper || isWormhole)
 			LineShader::Draw(from, to, 5.f, routeColor);
+		else
+			LineShader::DrawDashed(from, to, unit, 5.f, routeColor, 11., 4.);
 
 		system = next;
 	}

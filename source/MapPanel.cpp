@@ -1027,7 +1027,6 @@ void MapPanel::DrawTravelPlan()
 	{
 		const System *next = player.TravelPlan()[i];
 		bool isHyper = previous->Links().count(next);
-		bool isJump = !isHyper && previous->JumpNeighbors(jumpRange).count(next);
 		bool isWormhole = false;
 		for(const StellarObject &object : previous->Objects())
 			isWormhole |= (object.HasSprite() && object.HasValidPlanet()
@@ -1036,6 +1035,7 @@ void MapPanel::DrawTravelPlan()
 				&& object.GetPlanet()->GetWormhole()->IsMappable()
 				&& player.HasVisited(*previous) && player.HasVisited(*next)
 				&& &object.GetPlanet()->GetWormhole()->WormholeDestination(*previous) == next);
+		bool isJump = !isHyper && !isWormhole && previous->JumpNeighbors(jumpRange).count(next);
 
 		if(!isHyper && !isJump && !isWormhole)
 			break;
