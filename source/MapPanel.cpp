@@ -1076,22 +1076,8 @@ void MapPanel::DrawTravelPlan()
 
 		Point from = Zoom() * (next->Position() + center);
 		Point to = Zoom() * (previous->Position() + center);
-		const Point unit = (from - to).Unit();
-		from -= LINK_OFFSET * unit;
-		to += LINK_OFFSET * unit;
-		// Non-hyperspace jumps are drawn with a dashed line.
-		if(isJump)
-		{
-			const double length = (from - to).Length();
-			const int segments = static_cast<int>(length / 15.);
-			for(int i = 0; i < segments; ++i)
-				LineShader::Draw(
-					from - unit * ((i * length) / segments + 2.),
-					from - unit * (((i + 1) * length) / segments - 2.),
-					3.f, drawColor);
-		}
-		else
-			LineShader::Draw(from, to, 3.f, drawColor);
+		Point unit = (from - to).Unit() * LINK_OFFSET;
+		LineShader::Draw(from - unit, to + unit, 3.f, drawColor);
 
 		previous = next;
 	}
