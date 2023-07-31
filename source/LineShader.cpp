@@ -139,7 +139,13 @@ void LineShader::DrawDashed(const Point &from, const Point &to, const Point &uni
 		const Color &color, const double dashLength, double spaceLength)
 {
 	const double length = (to - from).Length();
-	const int segments = static_cast<int>(length / (dashLength + spaceLength));
+	double patternLength = dashLength + spaceLength;
+	if(2. * patternLength > length)
+	{
+		spaceLength *= length / (2. * patternLength);
+		patternLength = length / 2.;
+	}
+	const int segments = static_cast<int>(length / patternLength);
 	spaceLength /= 2.;
 	for(int i = 0; i < segments; ++i)
 		Draw(from + unit * ((i * length) / segments + spaceLength),
