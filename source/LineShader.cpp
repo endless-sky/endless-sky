@@ -135,7 +135,8 @@ void LineShader::Draw(const Point &from, const Point &to, float width, const Col
 
 
 
-void LineShader::DrawDashed(const Point &from, const Point &to, const Point &unit, const float width, const Color &color)
+void LineShader::DrawDashed(const Point &from, const Point &to, const Point &unit, const float width,
+		const Color &color)
 {
 	const double length = (to - from).Length();
 	const int segments = static_cast<int>(length / 15.);
