@@ -175,7 +175,7 @@ trade
 		"breeder reactors"
 		"compact smeltries"
 		"cyclotrons"
-		"fission fragment cutters"
+		"fission fragment etchers"
 		"free electron lasers"
 		"graphene fractal capacitors"
 		"graphene weavers"

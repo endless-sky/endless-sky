@@ -35,7 +35,7 @@ government "Avgi"
 		"Avgi (Consonance)" 0.5
 		"Avgi (Dissonance)" 0.01
 		"Avgi (Dissonance Aggressive)" -0.05
-		"Ka'sei (Twilight)" -0.05
+		"Ka'sei (Twilight)" -0.1
 	bribe 0.3
 	"friendly hail" "friendly avgi"
 	"friendly disabled hail" "friendly disabled avgi"

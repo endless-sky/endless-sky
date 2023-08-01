@@ -428,8 +428,10 @@ fleet "Avgi Small Angry Dissonance"
 	personality
 		confusion 15
 		coward timid disables plunders secretive
-	variant 10
-		"Swell (Crew)"
+	variant 20
+		"Entasi"
+		"Sonikis (Armed)" 6
+		"Akoustiki" 2
 
 
 fleet "Avgi Large Angry Dissonance"
@@ -442,6 +444,13 @@ fleet "Avgi Large Angry Dissonance"
 	personality
 		confusion 15
 		coward timid disables plunders secretive
+	variant 20
+		"Entasi"
+		"Sonikis (Armed)" 6
+		"Akoustiki" 2
+		"Tremoros" 2
 	variant 10
-		"Swell (Crew)"
-
+		"Interferos"
+	variant 10
+		"Undsyni"
+		"Sonikis (Armed)" 4
