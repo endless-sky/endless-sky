@@ -1112,7 +1112,8 @@ int64_t ShopPanel::LicenseCost(const Outfit *outfit, bool onlyOwned) const
 	// If the player is attempting to install an outfit from cargo, storage, or that they just
 	// sold to the shop, then ignore its license requirement, if any. (Otherwise there
 	// would be no way to use or transfer license-restricted outfits between ships.)
-	bool owned = (player.Cargo().Get(outfit) && shipSelection.PlayerShip()) || (player.Storage() && player.Storage()->Get(outfit));
+	bool owned = (player.Cargo().Get(outfit) && shipSelection.PlayerShip())
+		|| (player.Storage() && player.Storage()->Get(outfit));
 	if((owned && onlyOwned) || player.Stock(outfit) > 0)
 		return 0;
 
