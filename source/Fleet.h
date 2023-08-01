@@ -53,6 +53,8 @@ public:
 
 	void Load(const DataNode &node);
 
+	const std::string &GetName() const;
+
 	// Determine if this fleet template uses well-defined data.
 	bool IsValid(bool requireGovernment = true) const;
 	// Ensure any variant selected during gameplay will have at least one ship to spawn.

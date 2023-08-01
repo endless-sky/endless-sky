@@ -337,6 +337,9 @@ void PlayerInfo::Load(const string &path)
 			availableMissions.emplace_back(child);
 		else if(child.Token(0) == "conditions")
 			conditions.Load(child);
+		else if(child.Token(0) == "raid fleets")
+			for(const DataNode &grand : child)
+				raidFleets[GameData::Fleets().Find(grand.Token(0))] = grand.Value(1);
 		else if(child.Token(0) == "gifted ships" && child.HasChildren())
 		{
 			for(const DataNode &grand : child)
@@ -4308,6 +4311,17 @@ void PlayerInfo::Save(DataWriter &out) const
 
 	// Save any "primary condition" flags that are set.
 	conditions.Save(out);
+
+	// Save raid fleets that got stacked up.
+	if(!raidFleets.empty())
+	{
+		out.Write("raid fleets")
+		out.BeginChild();
+		{
+			for(const auto &it : raidFleets)
+				out.Write(it.first->GetName(), it.second);
+		}
+	}
 
 	// Save the UUID of any ships given to the player with a specified name, and ship class.
 	if(!giftedShips.empty())

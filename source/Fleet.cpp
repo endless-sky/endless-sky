@@ -179,6 +179,13 @@ void Fleet::RemoveInvalidVariants()
 
 
 
+const std::string &Fleet::GetName() const
+{
+	return fleetName;
+}
+
+
+
 // Get the government of this fleet.
 const Government *Fleet::GetGovernment() const
 {
