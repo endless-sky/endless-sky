@@ -50,7 +50,8 @@ public:
 	// Add an object based on the Body class.
 	bool Add(const Body &body, double cloak = 0., std::unique_ptr<SpriteItemExtension> extension = nullptr);
 	// Add an object at the given position (rather than its own).
-	bool Add(const Body &body, Point position, double cloak = 0., std::unique_ptr<SpriteItemExtension> extension = nullptr);
+	bool Add(const Body &body, Point position, double cloak = 0.,
+		std::unique_ptr<SpriteItemExtension> extension = nullptr);
 
 	// Add an object that should not be drawn with motion blur.
 	bool AddUnblurred(const Body &body, std::unique_ptr<SpriteItemExtension> extension = nullptr);
@@ -65,7 +66,8 @@ private:
 	// Determine if the given object should be drawn at all.
 	bool Cull(const Body &body, const Point &position, const Point &blur) const;
 
-	void Push(const Body &body, Point pos, Point blur, double cloak, int swizzle, std::unique_ptr<SpriteItemExtension> extension);
+	void Push(const Body &body, Point pos, Point blur, double cloak, int swizzle,
+		std::unique_ptr<SpriteItemExtension> extension);
 
 
 private:
