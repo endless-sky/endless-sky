@@ -996,7 +996,7 @@ void MapPanel::DrawTravelPlan()
 	const Color &defaultColor = *colors.Get("map travel ok flagship");
 	const Color &outOfFlagshipFuelRangeColor = *colors.Get("map travel ok none");
 	const Color &withinFleetFuelRangeColor = *colors.Get("map travel ok fleet");
-	const Color &wormholeColor = *colors.Get("map travel wormhole");
+	Color wormholeColor;
 
 	// At each point in the path, keep track of how many ships in the
 	// fleet are able to make it this far.
@@ -1029,12 +1029,19 @@ void MapPanel::DrawTravelPlan()
 		bool isHyper = previous->Links().count(next);
 		bool isWormhole = false;
 		for(const StellarObject &object : previous->Objects())
-			isWormhole |= (object.HasSprite() && object.HasValidPlanet()
+		{
+			if (object.HasSprite() && object.HasValidPlanet()
 				&& object.GetPlanet()->IsWormhole()
 				&& player.HasVisited(*object.GetPlanet())
 				&& object.GetPlanet()->GetWormhole()->IsMappable()
 				&& player.HasVisited(*previous) && player.HasVisited(*next)
-				&& &object.GetPlanet()->GetWormhole()->WormholeDestination(*previous) == next);
+				&& &object.GetPlanet()->GetWormhole()->WormholeDestination(*previous) == next)
+			{
+				isWormhole = true;
+				wormholeColor = *object.GetPlanet()->GetWormhole()->GetLinkColor();
+				break;
+			}
+		}
 		bool isJump = !isHyper && !isWormhole && previous->JumpNeighbors(jumpRange).count(next);
 
 		if(!isHyper && !isJump && !isWormhole)
