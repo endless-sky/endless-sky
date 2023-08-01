@@ -1334,8 +1334,13 @@ void Engine::EnterSystem()
 	for(const auto &raidFleet : system->GetGovernment()->RaidFleets())
 	{
 		double attraction = player.RaidFleetAttraction(raidFleet, system);
-		if(attraction > 0.)
-			for(int i = 0; i < 10; ++i)
+		double stackedRaids = player.StackedRaids(raidFleet.GetFleet());
+		// If the pirates cannot beat you with the current attack but you have enough cargo, mass them up.
+		if(attraction > (1. + stackedRaids / 10.) &&
+				raidFleet.GetFleet()->Strength() * (10. + stackedRaids) < player.FleetStrength())
+			player.StackRaid(raidFleet.GetFleet(), attraction);
+		else if(attraction > 0.)
+			for(int i = 0; i < 10 + stackedRaids; ++i)
 				if(Random::Real() < attraction)
 				{
 					raidFleet.GetFleet()->Place(*system, newShips);

@@ -313,6 +313,10 @@ public:
 	const Depreciation &FleetDepreciation() const;
 	const Depreciation &StockDepreciation() const;
 
+	int64_t FleetStrength() const;
+	int StackedRaids(const Fleet *fleet) const;
+	void StackRaid(const Fleet *fleet, double attraction);
+
 	// Keep track of what materials you have mined in each system.
 	void Harvest(const Outfit *type);
 	const std::set<std::pair<const System *, const Outfit *>> &Harvested() const;
@@ -395,6 +399,8 @@ private:
 	CargoHold cargo;
 	std::map<const Planet *, CargoHold> planetaryStorage;
 	std::map<std::string, int64_t> costBasis;
+
+	std::map<const Fleet *, int> raidFleets;
 
 	std::multimap<Date, std::string> logbook;
 	std::map<std::string, std::map<std::string, std::string>> specialLogs;

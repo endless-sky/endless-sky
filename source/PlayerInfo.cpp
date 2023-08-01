@@ -1367,7 +1367,7 @@ double PlayerInfo::RaidFleetAttraction(const Government::RaidFleet &raid, const 
 				}
 			}
 	}
-	return max(0., min(1., attraction));
+	return max(0., attraction);
 }
 
 
@@ -2785,6 +2785,33 @@ const Depreciation &PlayerInfo::FleetDepreciation() const
 const Depreciation &PlayerInfo::StockDepreciation() const
 {
 	return stockDepreciation;
+}
+
+
+
+int64_t PlayerInfo::FleetStrength() const
+{
+	int64_t strength = 0;
+	for(auto ship : ships)
+		strength += ship->Strength();
+	return strength;
+}
+
+
+
+int PlayerInfo::StackedRaids(const Fleet *fleet) const
+{
+	auto it = raidFleets.find(fleet);
+	if(it == raidFleets.end())
+		return 0;
+	return it->second;
+}
+
+
+
+void PlayerInfo::StackRaid(const Fleet *fleet, double attraction)
+{
+	raidFleets[fleet] += attraction;
 }
 
 
