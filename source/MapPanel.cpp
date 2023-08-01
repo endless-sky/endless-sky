@@ -1045,7 +1045,7 @@ void MapPanel::DrawTravelPlan()
 				&& object.GetPlanet()->GetWormhole()->IsMappable()
 				&& player.HasVisited(*previous) && player.HasVisited(*next)
 				&& &object.GetPlanet()->GetWormhole()->WormholeDestination(*previous) == next);
-			if(isWormhole)
+			if(isWormhole && object.HasValidPlanet() && object.GetPlanet()->IsWormhole())
 				wormholeColor = *object.GetPlanet()->GetWormhole()->GetLinkColor();
 		}
 
