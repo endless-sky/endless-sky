@@ -363,8 +363,7 @@ void ShipEffectsShader::Add(const EffectItem& item)
 	glUniform2fv(positionI, 1, item.position);
 	glUniformMatrix2fv(transformI, 1, false, item.transform);
 	glUniform1f(clipI, item.clip);
-
-	glUniform2fv(recentHitsI, 64, item.recentHitPoints);
+	glUniform2fv(recentHitsI, 32, item.recentHitPoints);
 	glUniform1fv(recentDamageI, 32, item.recentHitDamage);
 	glUniform4fv(shieldColorI, 1, item.shieldColor);
 	glUniform1i(recentHitsCountI, item.recentHits);
