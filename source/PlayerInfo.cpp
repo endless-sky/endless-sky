@@ -4317,6 +4317,7 @@ void PlayerInfo::Save(DataWriter &out) const
 			for(const auto &it : raidAttraction)
 				out.Write(it.first->GetTrueName(), it.second);
 		}
+		out.EndChild();
 	}
 
 	// Save the UUID of any ships given to the player with a specified name, and ship class.
