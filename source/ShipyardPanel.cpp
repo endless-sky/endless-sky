@@ -130,7 +130,7 @@ int ShipyardPanel::TileSize() const
 
 int ShipyardPanel::DrawPlayerShipInfo(const Point &point)
 {
-	shipInfo.Update(*shipSelection.PlayerShip(), player, collapsed.count("description"));
+	shipInfo.Update(*shipSelection.playerShip, player, collapsed.count("description"));
 	shipInfo.DrawAttributes(point, true);
 
 	return shipInfo.GetAttributesHeight(true);
@@ -324,7 +324,7 @@ void ShipyardPanel::Buy(bool onlyOwned)
 
 bool ShipyardPanel::CanSell(bool toStorage) const
 {
-	return shipSelection.PlayerShip();
+	return shipSelection.playerShip;
 }
 
 
@@ -333,14 +333,14 @@ void ShipyardPanel::Sell(bool toStorage)
 {
 	static const int MAX_LIST = 20;
 
-	int count = shipSelection.PlayerShips().size();
+	int count = shipSelection.playerShips.size();
 	int initialCount = count;
 	string message = "Sell the ";
 	if(count == 1)
-		message += shipSelection.PlayerShip()->Name();
+		message += shipSelection.playerShip->Name();
 	else if(count <= MAX_LIST)
 	{
-		auto it = shipSelection.PlayerShips().begin();
+		auto it = shipSelection.playerShips.begin();
 		message += (*it++)->Name();
 		--count;
 
@@ -356,7 +356,7 @@ void ShipyardPanel::Sell(bool toStorage)
 	}
 	else
 	{
-		auto it = shipSelection.PlayerShips().begin();
+		auto it = shipSelection.playerShips.begin();
 		message += (*it++)->Name() + ",\n";
 		for(int i = 1; i < MAX_LIST - 1; ++i)
 			message += (*it++)->Name() + ",\n";
@@ -366,7 +366,7 @@ void ShipyardPanel::Sell(bool toStorage)
 	// To allow calculating the sale price of all the ships in the list,
 	// temporarily copy into a shared_ptr vector:
 	vector<shared_ptr<Ship>> toSell;
-	for(const auto &it : shipSelection.PlayerShips())
+	for(const auto &it : shipSelection.playerShips)
 		toSell.push_back(it->shared_from_this());
 	int64_t total = player.FleetDepreciation().Value(toSell, day);
 
@@ -463,22 +463,26 @@ void ShipyardPanel::BuyShip(const string &name)
 		player.BuyShip(selectedShip, shipName);
 	}
 
-	shipSelection.Set(&*player.Ships().back());
+	shipSelection.playerShip = &*player.Ships().back();
+	shipSelection.playerShips.clear();
+	shipSelection.playerShips.insert(shipSelection.playerShip);
 }
 
 
 
 void ShipyardPanel::SellShip()
 {
-	for(Ship *ship : shipSelection.PlayerShips())
+	for(Ship *ship : shipSelection.playerShips)
 		player.SellShip(ship);
-	Ship *newShip = nullptr;
+	shipSelection.playerShips.clear();
+	shipSelection.playerShip = nullptr;
 	for(const shared_ptr<Ship> &ship : player.Ships())
 		if(ship->GetSystem() == player.GetSystem() && !ship->IsDisabled())
 		{
-			newShip = ship.get();
+			shipSelection.playerShip = ship.get();
 			break;
 		}
-	shipSelection.Set(newShip);
+	if(shipSelection.playerShip)
+		shipSelection.playerShips.insert(shipSelection.playerShip);
 	player.UpdateCargoCapacities();
 }
