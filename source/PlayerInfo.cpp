@@ -4315,7 +4315,7 @@ void PlayerInfo::Save(DataWriter &out) const
 	// Save raid fleets that got stacked up.
 	if(!raidFleets.empty())
 	{
-		out.Write("raid fleets")
+		out.Write("raid fleets");
 		out.BeginChild();
 		{
 			for(const auto &it : raidFleets)
