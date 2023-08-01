@@ -9,14 +9,29 @@
 
 
 
+# Utility
 
+ship "Undsyni" "Undsyni (Tanker)"
+	outfits
+		"Phased Array Laser (Green)" 3
+		"Speckle Turret" 2
+		"Speck Round" 14400
 
+		"Brilliant Fusion Core"
+		"Ultracapacitor Bank"
+		"Diffuse Deflector"
+		"Optical Lasing Generator"
+		"Multispectral Scanner"
+		"Spectrometer Array"
+		"Cryogenic Deuterium Tank" 21
+		"Dipole Ramscoop"
 
-
+		"Z-360 Fusion Torch"
+		"XY-420 Radial Thrusters"
+		"Hyperdrive"
 
 
 # Medium Warships
-
 
 ship "Difraktos" "Difraktos (Missile Cruiser)"
 	outfits
@@ -56,9 +71,6 @@ ship "Difraktos" "Difraktos (Battlecruiser)"
 		"Hyperdrive"
 
 
-
-
-
 # Fighters
 
 ship "Photikon" "Photikon (Gunboat)"
@@ -72,9 +84,6 @@ ship "Photikon" "Photikon (Gunboat)"
 		"Magnetoplasma Drive"
 
 
-
-
-
 # Drones
 
 ship "Sonikis" "Sonikis (Armed)"
@@ -84,5 +93,18 @@ ship "Sonikis" "Sonikis (Armed)"
 
 		"Concentrating Solar Array"
 		"Ultracapacitor Cell" 2
+		"Spectrometer Array"
+		"Multispectral Scanner"
 
 		"Magnetoplasma Drive"
+
+
+ship "Sonikis" "Sonikis (Fuel)"
+	outfits
+		"Concentrating Solar Array"
+		"Ultracapacitor Cell" 2
+		"Cryogenic Deuterium Tank" 2
+
+		"Magnetoplasma Drive"
+
+

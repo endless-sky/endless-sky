@@ -635,7 +635,7 @@ ship "Undsyni"
 		"heat dissipation" 1.8
 		"fuel capacity" 4800
 		"outfit space" 600
-		"weapon capacity" 180
+		"weapon capacity" 153
 		"engine capacity" 168
 		"spinal mount" 1
 		"anchor point" 3
@@ -833,6 +833,10 @@ ship "Entasi"
 	turret 0 -42 "Phased Array Laser (Blue)"
 	turret 0 -18 "Phased Array Laser (Blue)"
 	turret 0 72
+	bay "Fighter" 0 -30
+		over
+	bay "Fighter" 0 -30
+		under
 	bay "Drone" -18 -45
 	bay "Drone" 18 -45
 	bay "Drone" -18 -18
@@ -1009,7 +1013,7 @@ ship "Prismaios"
 	outfits
 		"Phased Array Laser (Green)"
 		"Speckle Turret" 2
-		"Speck Round" 7200
+		"Speck Round" 14400
 		"Sidereal Launcher" 2
 		"Sidereal Missile" 84
 
@@ -1045,6 +1049,8 @@ ship "Prismaios"
 		angle -90
 	gun 9 33 "Sidereal Launcher"
 		angle 90
+	gun -9 -48
+	gun 9 -48
 	turret -9 18 "Speckle Turret"
 	turret 9 18 "Speckle Turret"
 	turret 0 90 "Phased Array Laser (Green)"
@@ -1877,7 +1883,7 @@ ship "Sonikis"
 		"drag" .36
 		"heat dissipation" .72
 		"fuel capacity" 100
-		"cargo space" 90
+		"cargo space" 60
 		"outfit space" 69
 		"weapon capacity" 18
 		"engine capacity" 24

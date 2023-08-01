@@ -1,0 +1,572 @@
+phrase "friendly avgi"
+	phrase
+		"avgi warm greetings" 3
+		"avgi cold greetings"
+		"avgi warnings" 3
+		"avgi complaints" 2
+		"avgi questions" 3
+		"avgi commerce" 6
+		"avgi boast" 3
+
+phrase "avgi hostile"
+	phrase
+		"avgi cold greetings"
+		"avgi angry"
+
+
+
+
+phrase "friendly disabled avgi"
+
+
+
+phrase "hostile disabled avgi"
+
+
+
+
+phrase "friendly dissonance"
+	phrase
+		"avgi warm greetings" 3
+		"avgi cold greetings"
+		"avgi warnings" 3
+		"avgi complaints" 2
+		"avgi questions" 3
+		"avgi commerce" 6
+		"avgi boast" 3
+
+phrase "hostile dissonance"
+	phrase
+		"avgi cold greetings"
+		"avgi angry"
+
+
+phrase "friendly disabled dissonance"
+
+
+
+phrase "hostile dissonance"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+phrase "avgi warm greetings"
+	word
+		"Acknowledgement"
+		"Amenable"
+		"Amicable"
+		"Awe"
+		"Curiosity"
+		"Excitement"
+		"Happiness"
+		"Hurried"
+		"Inspired"
+		"Interest"
+		"Jovial"
+		"Joy"
+		"Novelty"
+		"Receptive"
+		"Reserved"
+		"Sociable"
+		"Welcoming"
+	word
+		". "
+		"; "
+	word
+		"Acknowledged"
+		"Fair weather"
+		"Good fortune"
+		"Greetings"
+		"Hello"
+		"I recieve you"
+		"Recognized"
+		"Salutations"
+		"Welcome"
+		"Well met"
+		"You are acknowldged"
+	word
+		", "
+		" "
+	word
+		"alien"
+		"familiar"
+		"fellow"
+		"foreign"
+		"kind"
+		"star"
+		"trusted"
+		"" 3
+	word
+		" "
+	word
+		"ally"
+		"ambassador"
+		"envoy"
+		"explorer"
+		"friend"
+		"newcomer"
+		"outsider"
+		"sapient"
+		"sojourner"
+		"sophont"
+		"traveler"
+		"visiter"
+		"voyager"
+	word
+		"."
+		"!
+
+phrase "avgi cold greetings"
+	word
+		"Angry"
+		"Disdain"
+		"Disgust"
+		"Distrust"
+		"Fear"
+		"Fearful"
+		"Hostile"
+		"Hurried"
+		"Inconsolable"
+		"Nervous"
+		"Reserved"
+		"Suspicion"
+		"Uncertain"
+		"Wary"
+	word
+		". "
+		"; "
+	word
+		"Acknowledged"
+		"Begone"
+		"Beware"
+		"Come no closer"
+		"Come no further"
+		"I see you for what you are"
+		"Keep your distance"
+		"Recieved"
+		"Recognized"
+		"Remain in place"
+		"Stay away"
+		"Suffer not the"
+		"You are acknowledged"
+		"You are recieved"
+	word
+		", "
+		" "
+	word
+		"cursed"
+		"dangerous"
+		"disgusting"
+		"distrusted"
+		"hostile"
+		"lying"
+		"malodorous"
+		"ominous"
+		"pitiful"
+		"stinky"
+		"strange"
+		"suspicious"
+		"terrible"
+		"terrifying"
+		"unfamiliar"
+		"unlucky"
+		"unnatural"
+		"untrustworthy"
+		"unworthy"
+		"weird"
+		"" 12
+	word
+		"alien"
+		"impostor"
+		"lifeform"
+		"outsider"
+		"strange one"
+		"stranger"
+		"xeno"
+	word
+		"."
+		"!""
+
+phrase "avgi warnings"
+	word
+		"Advice"
+		"Advisory"
+		"Careful"
+		"Caution"
+		"Danger"
+		"Emphasis"
+		"Guiding"
+		"Important"
+		"Insight"
+		"Serious"
+	word
+		". "
+		"; "
+	word
+		"Be careful of"
+		"Be wary of"
+		"Beware of"
+		"Look out for"
+		"Watch out for"
+	word
+		" "
+	word
+		"becoming lost in the Tangles" 3
+		"becoming lost" 3
+		"becoming stranded" 3
+		"cowardly pirates" 2
+		"creatures of darkness"
+		"creatures of the night"
+		"Dissonance pirates" 2 
+		"enemy aliens" 3
+		"genocidal aliens" 3
+		"government thieves"
+		"hostile creatures" 3
+		"military dictatorships"
+		"pirates and leeches" 2
+		"running out of fuel" 3
+		"shadow monsters" 2
+		"tangling yourself in the hyperlanes" 3
+		"tax collectors" 3
+		"the Abberations" 3
+		"the Aberrant" 3
+		"the invaders" 3
+		"the invading aliens" 3
+		"the logistics board"
+		"the rich and powerful" 2
+		"the Silencers"
+		"those of the Incursion" 3
+		"traitorous Dissonance cowards" 2
+		"ungrateful dissidents" 2
+		"ungrateful parasites" 2
+		"unjust price controls"
+	word
+		", "
+	word
+		"alien"
+		"familiar"
+		"fellow"
+		"foreign"
+		"kind"
+		"star" 3
+		"trusted"
+		"" 3
+	word
+		" "
+	word
+		"ally"
+		"ambassador"
+		"envoy"
+		"explorer"
+		"friend"
+		"newcomer"
+		"outsider"
+		"sapient"
+		"sojourner"
+		"sophont"
+		"traveler"
+		"visiter"
+		"voyager"
+	word
+		"."
+		"!"
+
+phrase "avgi complaints"
+	word
+		"Anger"
+		"Frustration"
+		"Annoyance"
+		"Passion"
+		"Disdain"
+	word
+		". "
+		"; "
+	word
+		"Dissonance" 6
+		"Lazy"
+		"Ungrateful"
+		"Ignorant"
+		"Neglectful"
+		"Incompetent"
+		"Inconsiderate"
+		"Dishonest"
+		"Unreciprocative"
+		"Selfish"
+		"Cowardly"
+	word
+		" "
+	word
+		"leeches"
+		"parasites"
+		"pirates"
+		"worms"
+		"dissidents"
+		"rebels"
+		"dissenters"
+		""
+	word
+		" "
+	word
+		"accept protection"
+		"were saved"
+		"were rescued"
+		"were brought to safety"
+		"took refuge here"
+		"accept help"
+		"ask for help"
+		"ask for protection"
+	word
+		" "
+	word
+		"yet"
+		"but"
+		"and"
+	word
+		" "
+	word
+		"yet"
+		"but"
+		"and"
+	word
+		"still"
+		"still they"
+		""
+	word
+		" "
+	word
+		"refuse to contribute"
+		"refuse to help us"
+		"refuse to work"
+		"ignore the Assembly"
+		"refrain from helping"
+		"neglect our fleets"
+		"neglect our Spaceguard"
+		"disrespect us"
+		"disrespect the Assembly"
+		"disrespect our Spaceguard"
+		"ignore our needs"
+		"refuse to sell their minerals"
+		"hoard their asteroids"
+		"hide in their outposts"
+		"let us do the fighting"
+		"let others protect them"
+		"refuse to fight"
+		"refuse to bolster our defenses"
+	word
+		"."
+		"!"
+		", anger!"
+
+phrase "avgi questions"
+	word
+		"Curious"
+		"Inquiry"
+		"Question"
+		"Questioning"
+	word
+		". "
+		"; "
+	word
+		"Do tell us,"
+		"Educate us"
+		"Enlighten us,"
+		"Inform us"
+		"Please tell us,"
+		"Share with us"
+		"Tell us,"
+		""
+	word
+		"Far"
+		"Interplanetary"
+		"Interstellar"
+		"Space"
+		"Star" 6
+		"Stellar"
+		"" 6
+	word
+		"Traveler"
+		"Wanderer"
+		"Explorer"
+		"Sojourner"
+		"Friend"
+		"Visitor"
+	word
+		", "
+	word
+		"are aliens real"
+		"are atomics banned on human soil"
+		"are many species in contact with each other"
+		"are megastructures possible"
+		"are the galaxy's races friendly"
+		"are there any alien civilizations near ours"
+		"are there any civilizations of intelligent machines"
+		"are there any races stronger than humanity"
+		"are there any star nations of multiple species"
+		"are there other aliens in the galaxy"
+		"are traversable wormholes possible"
+		"are you a great warrior"
+		"are you even a real alien"
+		"are you plotting against us"
+		"are your tax rates lower than ours"
+		"can you assist our researchers"
+		"can you help me with this homework problem"
+		"can you help me with this research project"
+		"did you leave your stove on"
+		"do aliens look like avgithromorphic Aviskir life"
+		"do humans edit their genomes"
+		"do humans have familial ties"
+		"do humans use nuclear weapons"
+		"do protons decay"
+		"do you like our ships"
+		"does anyone enforce peace among the stars"
+		"does anyone live at the galactic core"
+		"does anyone live outside the galaxy"
+		"does humanity have a way to produce antimatter more efficiently"
+		"does humanity have any refractory superconducting materials"
+		"does humanity have any unsolved problems in physics"
+		"does humanity see us as a threat"
+		"does peace reign in the galaxy"
+		"does there exist a Creator"
+		"doth thee liketh mine own poetry"
+		"for how long have you traveled the stars"
+		"has any civilization made war upon its neighbors"
+		"has any species warred with another"
+		"has anyone built a discworld"
+		"has anyone built a ringworld"
+		"has anyone constructed any megastructures"
+		"has anyone enclosed a sun"
+		"has anyone ever been to another galaxy"
+		"has anyone harnessed the power of a star"
+		"has anyone researched xenocompatibility"
+		"has humanity discovered any stable superheavy elements"
+		"has humanity found a source of energy beyond fusion"
+		"have aliens been abducting us"
+		"have aliens been watching us"
+		"have aliens visited us before"
+		"have any intelligent species gone extinct"
+		"have you long known of our existence"
+		"have you met other aliens"
+		"how advanced are the other species of the galaxy"
+		"how advanced is human nanotechnology"
+		"how advanced is humanity"
+		"how do gravity repulsors really work"
+		"how does the hyperdrive really work"
+		"how good are human computers"
+		"how many aliens have you killed"
+		"how many civilizations are there in the galaxy"
+		"how many governments rule humanity"
+		"how many humans are there"
+		"how many humans live in orbital habitats"
+		"how many humans live on your homeworld"
+		"how many humans still bother with planets"
+		"how many nuclear weapons does humanity have"
+		"how many other aliens have you met"
+		"how many other species are there"
+		"how many stars has humanity spread to"
+		"how many worlds are there in the galaxy"
+		"is humanity a peaceful race"
+		"is humanity a peaceful species"
+		"is humanity a warlike race"
+		"is humanity among the strongest civilizations"
+		"is humanity the greatest of races"
+		"is humanity the most advanced species"
+		"is it possible to create new starways"
+		"is it possible to destroy a star"
+		"is our model of physics correct"
+		"is the galaxy a great Dark Forest"
+		"is the universe a simulation"
+		"is there a Great Filter"
+		"is there a great galactic community"
+		"is there a great galactic council"
+		"is there a plane higher than this reality"
+		"is there a way to travel beyond the starways"
+		"is there any great crisis in the galaxy"
+		"is there anyone in the galaxy that can help us"
+		"is there light and hope in the galaxy"
+		"is time travel possible"
+		"something interesting about yourself"
+		"were you born on your homeworld"
+		"what created the wasteland to the east"
+		"what do you think of our civilization"
+		"what do you think of our government"
+		"what do you think of our habitats"
+		"what do you think of our outfits"
+		"what do you think of our ships"
+		"what do you think of our society"
+		"what do you think of our technology"
+		"what do you think of our worlds"
+		"what economic system do humans follow"
+		"what human material can withstand the most heat"
+		"what is humanity's homeworld like"
+		"what is the Allios Cube made from"
+		"what is the Great Filter"
+		"what is the greatest mystery in the galaxy"
+		"what is the highest temperature refractory material"
+		"what is the human government like"
+		"what is the most wonderful thing among the stars"
+		"what is the strongest material humanity has discovered"
+		"what is your favorite color"
+		"what is your life story"
+		"what system of government rules humanity"
+		"which aliens are nearest to us"
+		"which is the greatest among species"
+		"who are our galactic neighbors"
+		"who is the strongest of the galaxy's races"
+		"who was right in our argument, my friend or I"
+		"why has the galaxy not been completely settled"
+		"why have we not been visited by aliens before"
+		"why is faster than light travel possible"
+		"will anyone save us from our plight"
+		"will you be sharing humanity's knowledge"
+		"will you share your technology with us"
+	word
+		"?"
+		", question?"
+
+
+phrase "dissonance warnings"
+	word
+		"Advice"
+		"Advisory"
+		"Careful"
+		"Caution"
+		"Danger"
+		"Emphasis"
+		"Guiding"
+		"Important"
+		"Insight"
+		"Serious"
+	word
+		". "
+		"; "
+	word
+		"Be careful of"
+		"Be wary of"
+		"Beware of"
+		"Look out for"
+		"Watch out for"
+	word
+		" "
+	word
+		"the Consonance"
+		"Consonance tyrants"
+		"agents of the Consonance"
+		"the tyrannical Assembly"
+		"Assembly bureaucrats"
+		"overbearing government"
+		"unaccountable government"
+		"oppressive government"
+		"unlimited government"
+		"tax collectors"
+		"the Silencers"
+		"the logistics board"

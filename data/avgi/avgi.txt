@@ -1,5 +1,3 @@
-
-
 phrase "avgi civilian names"
 	phrase
 		"avgi colors" 10

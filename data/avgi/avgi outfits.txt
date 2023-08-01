@@ -786,9 +786,8 @@ outfit "Dipole Ramscoop"
 	"outfit space" -120
 	"spinal mount" -1
 	"ramscoop" 90
-	"fuel generation" 1.2
-	"fuel capacity" 600
-	"energy consumption" 12
+	"fuel generation" 0.3
+	"energy consumption" 9
 	description "With massive banks of superconducting magnets, extremely powerful magnetic fields grab ambient hydrogen atoms by their magnetic dipoles, channeling them towards a collection point without needing to first ionize them. This results in a ramscoop that is far more efficient in both fuel collection and energy use than the Electrostatic Ramscoop, but which is utterly massive in size. The magnetic stresses involved are so huge that a dedicated spinal mount is needed to use this ramscoop without tearing the ship apart."
 	description "Ramscoops like these were used in Avgi ram-augmented torchships, allowing them to sustain constant burns during their sublight interstellar journeys."
 
@@ -858,7 +857,7 @@ outfit "Spectrometer Array"
 
 outfit "Diffuse Deflector"
 	category "Systems"
-	cost 120000
+	cost 1200000
 	thumbnail
 	"mass" 48
 	"outfit space" -48
@@ -871,7 +870,7 @@ outfit "Diffuse Deflector"
 
 outfit "Specular Deflector"
 	category "Systems"
-	cost 200000
+	cost 2100000
 	thumbnail
 	"mass" 72
 	"outfit space" -72

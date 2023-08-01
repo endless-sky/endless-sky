@@ -35,6 +35,12 @@ fleet "Avgi Core Defense"
 	variant 10
 		"Refractos"
 	variant 10
+		"Difraktos"
+	variant 10
+		"Difraktos (Missile Cruiser)"
+	variant 10
+		"Difraktos (Battlecruiser)"
+	variant 10
 		"Prismaios" 2
 	variant 10
 		"Tremoros" 3
@@ -44,7 +50,8 @@ fleet "Avgi Core Defense"
 		"Vibratia" 22
 		"Photikon" 8
 		"Optikon" 2
-		"Difraktos"
+		"Difraktos (Missile Cruiser)"
+		"Difraktos (Battlecruiser)"
 		"Refractos"
 		"Prismaios" 2
 		"Tremoros" 3
@@ -100,7 +107,7 @@ fleet "Avgi Scouts"
 	fighters
 		names "avgi fighter names"
 	personality
-		surveillance coward merciful disables
+		surveillance timid coward merciful disables
 		confusion 20
 	variant 10
 		"Polari"
@@ -114,7 +121,7 @@ fleet "Avgi Scouts"
 		"Optikon" 4
 		"Tremoros" 3
 	variant 1
-		"Polari"
+		"Polari" 2
 		"Optikon" 2
 		"Prismaios"
 
@@ -196,6 +203,8 @@ fleet "Avgi Fleetgroup"
 		"Prismaios" 2
 		"Tremoros" 3
 
+fleet "Avgi Logistics"
+
 
 
 fleet "Avgi Small Merchant"
@@ -207,11 +216,24 @@ fleet "Avgi Small Merchant"
 			swarming
 	personality
 		confusion 30
-		timid coward appeasing disables opportunistic
+		timid coward appeasing merciful opportunistic
+	variant 20
+		"Koryfi"
+	variant 20
+		"Avlaki"
 	variant 10
 		"Koryfi"
-	variant 10
 		"Avlaki"
+	variant 10
+		"Koryfi" 2
+	variant 10
+		"Avlaki" 2
+	variant 10
+		"Koryfi" 2
+		"Tremoros"
+	variant 10
+		"Avlaki" 2
+		"Tremoros"
 
 
 fleet "Avgi Large Merchant"
@@ -223,17 +245,39 @@ fleet "Avgi Large Merchant"
 			swarming
 	personality
 		confusion 30
-		timid coward appeasing disables opportunistic
+		timid coward appeasing merciful opportunistic
+	variant 10
+		"Koryfi" 3
+		"Frequentia"
+	variant 10
+		"Avlaki" 3
+		"Frequentia"
+	variant 10
+		"Koryfi" 3
+		"Interferos"
+	variant 10
+		"Avlaki" 3
+		"Interferos"
 	variant 10
 		"Melodikos"
 		"Tremoros" 2
+		"Frequentia"
+	variant 10
+		"Melodikos"
+		"Tremoros"
+		"Frequentia"
 	variant 10
 		"Harmonikos"
-		"Tremoros 2"
+		"Tremoros" 2
 	variant 10
-		"Undsyni (Freighter)"
+		"Harmonikos"
+		"Tremoros" 2
+	variant 10
+		"Undsyni"
+		"Sonikis" 4
 	variant 10
 		"Undsyni (Tanker)"
+		"Sonikis (Fuel)" 4
 	variant 10
 		"Koryfi" 2
 	variant 10
@@ -243,6 +287,11 @@ fleet "Avgi Large Merchant"
 		"Melodikos"
 		"Interferos"
 		"Tremoros"
+	variant 10
+		"Harmonikos"
+		"Melodikos"
+		"Undsyni (Tanker)"
+		"Sonikis (Fuel)" 4
 
 
 fleet "Avgi Miners"
@@ -256,33 +305,21 @@ fleet "Avgi Miners"
 		confusion 30
 		mining harvests timid coward appeasing disables
 	variant 10
-		"Quake"
-
-
-fleet "Avgi Small Convoy"
-	government "Avgi"
-	names "avgi civilian names"
-	fighters
-		names "avgi fighter names"
-		personality
-			swarming
-	personality
-		confusion 30
-		timid coward appeasing merciful opportunistic
+		"Entasi"
+		"Sonikis" 6
+		"Akoustiki" 2
+	variant 15
+		"Entasi"
+		"Sonikis (Armed)" 6
+		"Akoustiki" 2
+	variant 20
+		"Sonikis (Armed)"
 	variant 10
-
-
-fleet "Avgi Large Convoy"
-	government "Avgi"
-	names "avgi civilian names"
-	fighters
-		names "avgi fighter names"
-		personality
-			swarming
-	personality
-		confusion 30
-		timid coward appeasing merciful opportunistic
+		"Sonikis (Armed)" 3
+	variant 20
+		"Akoustiki"
 	variant 10
+		"Akoustiki" 3
 
 
 fleet "Avgi Small Dissonance"
@@ -294,9 +331,24 @@ fleet "Avgi Small Dissonance"
 			mining harvests swarming
 	personality
 		confusion 15
-		coward timid disables plunders secretive
+		coward timid disables secretive opportunistic
+	variant 20
+		"Koryfi"
+	variant 20
+		"Avlaki"
 	variant 10
-		"Swell (Crew)"
+		"Koryfi"
+		"Avlaki"
+	variant 10
+		"Koryfi" 2
+	variant 10
+		"Avlaki" 2
+	variant 10
+		"Koryfi" 2
+		"Tremoros"
+	variant 10
+		"Avlaki" 2
+		"Tremoros"
 
 
 fleet "Avgi Large Dissonance"
@@ -308,9 +360,32 @@ fleet "Avgi Large Dissonance"
 			mining harvests swarming
 	personality
 		confusion 15
-		coward timid disables plunders secretive
+		coward timid disables secretive opportunistic
 	variant 10
-		"Swell (Crew)"
+		"Koryfi" 3
+		"Tremoros" 2
+	variant 10
+		"Avlaki" 3
+		"Tremoros" 2
+	variant 10
+		"Koryfi" 3
+		"Interferos"
+	variant 10
+		"Avlaki" 3
+		"Interferos"
+	variant 10
+		"Undsyni"
+		"Sonikis" 4
+	variant 10
+		"Entasi"
+		"Sonikis" 6
+		"Akoustiki" 2
+		"Interferos"
+	variant 15
+		"Entasi"
+		"Sonikis (Armed)" 6
+		"Akoustiki" 2
+
 
 
 
@@ -325,7 +400,21 @@ fleet "Avgi Dissonance Miners"
 		confusion 20
 		mining harvests timid coward hunting disables plunders secretive
 	variant 10
-		"Swell (Crew)"
+		"Entasi"
+		"Sonikis" 6
+		"Akoustiki" 2
+	variant 15
+		"Entasi"
+		"Sonikis (Armed)" 6
+		"Akoustiki" 2
+	variant 20
+		"Sonikis (Armed)"
+	variant 10
+		"Sonikis (Armed)" 3
+	variant 20
+		"Akoustiki"
+	variant 10
+		"Akoustiki" 3
 
 
 
