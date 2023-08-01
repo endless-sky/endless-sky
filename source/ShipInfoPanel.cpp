@@ -169,9 +169,28 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 	else if(panelState.CanEdit() && key == 'D')
 	{
 		if(shipIt->get() != player.Flagship())
-			GetUI()->Push(new Dialog(this, &ShipInfoPanel::Disown, "Are you sure you want to disown \""
+		{
+			map<const Outfit*, int> uniqueOutfits;
+			for(const auto &it : shipIt->get()->Outfits())
+				if(it.first->Category() == "Unique" || it.first->Attributes().Get("unique") > 0)
+					uniqueOutfits[it.first] = it.second;
+			for(const auto &it : shipIt->get()->Cargo().Outfits())
+				if(it.first->Category() == "Unique" || it.first->Attributes().Get("unique") > 0)
+					uniqueOutfits[it.first] += it.second;
+
+			string message = "Are you sure you want to disown \""
 				+ shipIt->get()->Name()
-				+ "\"? Disowning a ship rather than selling it means you will not get any money for it."));
+				+ "\"? Disowning a ship rather than selling it means you will not get any money for it.";
+			if(!uniqueOutfits.empty())
+			{
+				message += "\nAdditionally, this ship is carrying the following unique items:";
+				for(const auto &it : uniqueOutfits)
+					message += "\n" + to_string(it.second) + " "
+						+ (it.second == 1 ? it.first->DisplayName() : it.first->PluralName());
+			}
+
+			GetUI()->Push(new Dialog(this, &ShipInfoPanel::Disown, message));
+		}
 	}
 	else if(key == 'c' && CanDump())
 	{

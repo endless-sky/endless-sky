@@ -353,14 +353,28 @@ void ShipyardPanel::Sell(bool toStorage)
 
 		message += "and " + to_string(count - (MAX_LIST - 1)) + " other ships";
 	}
+	map<const Outfit*, int> uniqueOutfits;
 	// To allow calculating the sale price of all the ships in the list,
 	// temporarily copy into a shared_ptr vector:
 	vector<shared_ptr<Ship>> toSell;
-	for(const auto &it : playerShips)
-		toSell.push_back(it->shared_from_this());
+	for(const auto &ship : playerShips)
+	{
+		for(const auto &it : ship->Outfits())
+			if(it.first->Category() == "Unique" || it.first->Attributes().Get("unique") > 0)
+				uniqueOutfits[it.first] += it.second;
+		toSell.push_back(ship->shared_from_this());
+	}
+	bool hasUniques = !uniqueOutfits.empty();
+	if(hasUniques)
+	{
+		message += string((initialCount > 2) ? "\n" : " ") + "with the following unique outfits installed:";
+		for(const auto &it : uniqueOutfits)
+			message += "\n" + to_string(it.second) + " "
+				+ (it.second == 1 ? it.first->DisplayName() : it.first->PluralName());
+	}
 	int64_t total = player.FleetDepreciation().Value(toSell, day);
+	message += ((initialCount > 2 || hasUniques) ? "\nfor " : " for ") + Format::CreditString(total) + "?";
 
-	message += ((initialCount > 2) ? "\nfor " : " for ") + Format::CreditString(total) + "?";
 	GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShip, message, Truncate::MIDDLE));
 }
 

@@ -319,6 +319,14 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 	int missionCargoToSell = cargo.MissionCargoSize() - cargo.Size();
 	// Will you have to sell something other than regular cargo?
 	int cargoToSell = -(cargo.Free() + cargo.CommoditiesSize());
+	// Have you left any unique items at the outfitter?
+	bool hasUniques = false;
+	for(const auto &it : player.GetStock())
+		if(it.first->Category() == "Unique" || it.first->Attributes().Get("unique") > 0)
+		{
+			hasUniques = true;
+			break;
+		}
 	// Count how many active ships we have that cannot make the jump (e.g. due to lack of fuel,
 	// drive, or carrier). All such ships will have been logged in the player's flightcheck.
 	size_t nonJumpCount = 0;
@@ -337,7 +345,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 				}
 	}
 
-	if(nonJumpCount > 0 || cargoToSell > 0 || overbooked > 0)
+	if(nonJumpCount > 0 || cargoToSell > 0 || overbooked > 0 || hasUniques)
 	{
 		ostringstream out;
 		// Warn about missions that will fail on takeoff.
@@ -355,6 +363,11 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 
 			if(missionCargoToSell > 0)
 				out << "cargo space to hold " << Format::CargoString(missionCargoToSell, "your mission cargo") << ".";
+		}
+		// Warn about unique items you sold.
+		else if(hasUniques)
+		{
+			out << "If you take off now you won't be able to re-purchase unique outfits you sold at the outfitter.";
 		}
 		// Warn about ships that won't travel with you.
 		else if(nonJumpCount > 0)
