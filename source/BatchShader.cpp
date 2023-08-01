@@ -64,6 +64,7 @@ void BatchShader::Init()
 #endif
 		"uniform sampler2DArray tex;\n"
 		"uniform float frameCount;\n"
+
 		"in vec3 fragTexCoord;\n"
 		"in float fragAlpha;\n"
 
