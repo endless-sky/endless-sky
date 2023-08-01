@@ -1030,7 +1030,7 @@ void MapPanel::DrawTravelPlan()
 	stranded |= !hasEscort;
 
 	const System *previous = &playerSystem;
-		const System *next = nullptr;
+	const System *next = nullptr;
 	double jumpRange = flagship->JumpNavigation().JumpRange();
 	for(int i = player.TravelPlan().size() - 1; i >= 0; --i, previous = next)
 	{
