@@ -59,8 +59,7 @@ private:
 	// Each sprite consists of six vertices (four vertices to form a quad and
 	// two dummy vertices to mark the break in between them). Each of those
 	// vertices has six attributes: (x, y) position in pixels, (s, t) texture
-	// coordinates, the index of the sprite frame and the alpha value.
-	// Each Sprite has also an alpha value asigned.
+	// coordinates, the index of the sprite frame, and the alpha value.
 	std::map<const Sprite *, std::vector<float>> data;
 };
 
