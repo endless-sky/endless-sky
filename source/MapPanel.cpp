@@ -1030,7 +1030,7 @@ void MapPanel::DrawTravelPlan()
 		bool isWormhole = false;
 		for(const StellarObject &object : previous->Objects())
 		{
-			if (object.HasSprite() && object.HasValidPlanet()
+			if(object.HasSprite() && object.HasValidPlanet()
 				&& object.GetPlanet()->IsWormhole()
 				&& player.HasVisited(*object.GetPlanet())
 				&& object.GetPlanet()->GetWormhole()->IsMappable()
