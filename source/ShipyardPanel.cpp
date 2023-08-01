@@ -130,7 +130,7 @@ int ShipyardPanel::TileSize() const
 
 int ShipyardPanel::DrawPlayerShipInfo(const Point &point)
 {
-	shipInfo.Update(*shipSelection.playerShip, player, collapsed.count("description"));
+	shipInfo.Update(*playerShip, player, collapsed.count("description"));
 	shipInfo.DrawAttributes(point, true);
 
 	return shipInfo.GetAttributesHeight(true);
@@ -324,7 +324,7 @@ void ShipyardPanel::Buy(bool onlyOwned)
 
 bool ShipyardPanel::CanSell(bool toStorage) const
 {
-	return shipSelection.playerShip;
+	return playerShip;
 }
 
 
@@ -333,14 +333,14 @@ void ShipyardPanel::Sell(bool toStorage)
 {
 	static const int MAX_LIST = 20;
 
-	int count = shipSelection.playerShips.size();
+	int count = playerShips.size();
 	int initialCount = count;
 	string message = "Sell the ";
 	if(count == 1)
-		message += shipSelection.playerShip->Name();
+		message += playerShip->Name();
 	else if(count <= MAX_LIST)
 	{
-		auto it = shipSelection.playerShips.begin();
+		auto it = playerShips.begin();
 		message += (*it++)->Name();
 		--count;
 
@@ -356,7 +356,7 @@ void ShipyardPanel::Sell(bool toStorage)
 	}
 	else
 	{
-		auto it = shipSelection.playerShips.begin();
+		auto it = playerShips.begin();
 		message += (*it++)->Name() + ",\n";
 		for(int i = 1; i < MAX_LIST - 1; ++i)
 			message += (*it++)->Name() + ",\n";
@@ -366,7 +366,7 @@ void ShipyardPanel::Sell(bool toStorage)
 	// To allow calculating the sale price of all the ships in the list,
 	// temporarily copy into a shared_ptr vector:
 	vector<shared_ptr<Ship>> toSell;
-	for(const auto &it : shipSelection.playerShips)
+	for(const auto &it : playerShips)
 		toSell.push_back(it->shared_from_this());
 	int64_t total = player.FleetDepreciation().Value(toSell, day);
 
@@ -386,7 +386,7 @@ bool ShipyardPanel::CanSellMultiple() const
 // Only override the ones you need; the default action is to return false.
 bool ShipyardPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	const ShopPanel *oldPanel = selectedPanel;
+	const Panel *oldPanel = selectedPanel;
 	const bool inDesignCenter = player.IsDesignPlayer();
 	const bool hasDesignCenter = designPlayer.IsDesignPlayer();
 
@@ -409,15 +409,11 @@ bool ShipyardPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 	else if(key == 'o' && hasDesignCenter && selectedPanel)
 	{
 		selectedPanel = designOutfitterPanel.get();
-		if(oldPanel)
-			selectedPanel->SetShipSelection(oldPanel->GetShipSelection());
 		GetUI()->Push(designOutfitterPanel);
 	}
 	else if(key == 'y' && hasDesignCenter && selectedPanel)
 	{
 		selectedPanel = designShipyardPanel.get();
-		if(oldPanel)
-			selectedPanel->SetShipSelection(oldPanel->GetShipSelection());
 		GetUI()->Push(designShipyardPanel);
 	}
 	else if((key == 'l' || key == 'd' || key == SDLK_ESCAPE
@@ -463,26 +459,26 @@ void ShipyardPanel::BuyShip(const string &name)
 		player.BuyShip(selectedShip, shipName);
 	}
 
-	shipSelection.playerShip = &*player.Ships().back();
-	shipSelection.playerShips.clear();
-	shipSelection.playerShips.insert(shipSelection.playerShip);
+	playerShip = &*player.Ships().back();
+	playerShips.clear();
+	playerShips.insert(playerShip);
 }
 
 
 
 void ShipyardPanel::SellShip()
 {
-	for(Ship *ship : shipSelection.playerShips)
+	for(Ship *ship : playerShips)
 		player.SellShip(ship);
-	shipSelection.playerShips.clear();
-	shipSelection.playerShip = nullptr;
+	playerShips.clear();
+	playerShip = nullptr;
 	for(const shared_ptr<Ship> &ship : player.Ships())
 		if(ship->GetSystem() == player.GetSystem() && !ship->IsDisabled())
 		{
-			shipSelection.playerShip = ship.get();
+			playerShip = ship.get();
 			break;
 		}
-	if(shipSelection.playerShip)
-		shipSelection.playerShips.insert(shipSelection.playerShip);
+	if(playerShip)
+		playerShips.insert(playerShip);
 	player.UpdateCargoCapacities();
 }

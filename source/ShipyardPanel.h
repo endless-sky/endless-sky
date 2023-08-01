@@ -67,9 +67,9 @@ private:
 
 	Sale<Ship> shipyard;
 	PlayerInfo designPlayer;
-	std::shared_ptr<ShopPanel> designShipyardPanel;
-	std::shared_ptr<ShopPanel> designOutfitterPanel;
-	ShopPanel *selectedPanel = nullptr;
+	std::shared_ptr<Panel> designShipyardPanel;
+	std::shared_ptr<Panel> designOutfitterPanel;
+	Panel *selectedPanel = nullptr;
 };
 
 

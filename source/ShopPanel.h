@@ -46,25 +46,6 @@ public:
 	virtual void Step() override;
 	virtual void Draw() override;
 
-	class ShipSelectionState {
-	public:
-		explicit ShipSelectionState(Ship *);
-
-	public:
-		// The player-owned ship that was first selected in the sidebar (or most recently purchased).
-		Ship *playerShip = nullptr;
-		// The player-owned ship being reordered.
-		Ship *dragShip = nullptr;
-		bool isDraggingShip = false;
-		Point dragPoint;
-		// The group of all selected, player-owned ships.
-		std::set<Ship *> playerShips;
-	};
-
-	// Allow coordination between design center panels.
-	const ShipSelectionState &GetShipSelection() const;
-	void SetShipSelection(const ShipSelectionState &selectedShips);
-
 
 protected:
 	// BuyResult holds the result of an attempt to buy. It is implicitly
@@ -172,7 +153,14 @@ protected:
 	int day;
 	const Planet *planet = nullptr;
 
-	ShipSelectionState shipSelection;
+	// The player-owned ship that was first selected in the sidebar (or most recently purchased).
+	Ship *playerShip = nullptr;
+	// The player-owned ship being reordered.
+	Ship *dragShip = nullptr;
+	bool isDraggingShip = false;
+	Point dragPoint;
+	// The group of all selected, player-owned ships.
+	std::set<Ship *> playerShips;
 
 	// The currently selected Ship, for the ShipyardPanel.
 	const Ship *selectedShip = nullptr;
