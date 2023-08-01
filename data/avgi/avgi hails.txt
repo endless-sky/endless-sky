@@ -15,16 +15,20 @@ phrase "hostile avgi"
 		"avgi angry" 3
 
 phrase "friendly disabled avgi"
-	phrase "avgi friendly help"
+	phrase
+		"avgi friendly help"
 	word
 		", "
-	phrase "avgi polite playername"
+	phrase
+		"avgi polite playername"
 
 phrase "hostile disabled avgi"
-	phrase "avgi angry help"
+	phrase
+		"avgi angry help"
 	word
 		", "
-	phrase "avgi rude playername"
+	phrase
+		"avgi rude playername"
 
 
 # Spaceguard hails
@@ -46,13 +50,16 @@ phrase "friendly disabled spaceguard"
 		"spaceguard friendly help"
 	word
 		", "
-	phrase "avgi polite playername"
+	phrase
+		"avgi polite playername"
 
 phrase "hostile disabled spaceguard"
-	phrase "avgi angry help"
+	phrase
+		"avgi angry help"
 	word
 		", "
-	phrase "avgi rude playername"
+	phrase
+		"avgi rude playername"
 
 
 
@@ -71,17 +78,20 @@ phrase "hostile dissonance"
 		"avgi angry"
 
 phrase "friendly disabled dissonance"
-	phrase "avgi friendly help"
+	phrase
+		"avgi friendly help"
 	word
 		", "
 	phrase
 		"dissonance polite playername"
 
 phrase "hostile disabled dissonance"
-	phrase "avgi angry help"
+	phrase
+		"avgi angry help"
 	word
 		", "
-	phrase "dissonance rude playername"
+	phrase
+		"dissonance rude playername"
 
 
 

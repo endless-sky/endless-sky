@@ -25,7 +25,7 @@ planet Melatos
 	government Uninhabited
 
 planet Aviskir
-	attributes twilight avgi "avgi core" rich urban
+	attributes twilight avgi "avgi core" "avgi siege" rich urban
 	landscape land/mountain39
 	description "Aviskir is a world of sweeping mountains and sparkling oceans. It also happens to be the Avgi homeworld, bustling with nine billion members of the species. Civilization has concentrated largely around bountiful mountain valleys and fjords, many warmed by hot springs and geothermal heat. The largest cities are built around the smaller peaks, laced with slender bridges and bright skyscrapers. They stand in contrast to the rural valley settlements below, which are said to offer simpler, more traditional lives."
 	description "The Incursion has forced the remaining Avgi on the surface to dedicate a large part of their industry towards building defensive missile systems and banks of lasers, all in the hope of turning away the attack runs the Ka'sei sometimes make on the surface."
@@ -81,7 +81,7 @@ planet Anitlos
 	attributes twilight avgi uninhabited
 	
 
-planet "Nisos Habitat"
+planet "Nisos Cylinder"
 	attributes twilight avgi urban station uninhabited
 	landscape land/station47
 	description "An O'Neil Cylinder"
@@ -401,7 +401,7 @@ planet Trojan
 	description "This refueling depot services asteroid mining ships that target the trojan asteroids at the L4 and L5 points between Concerto and its largest gas giant."
 	"required reputation" 10
 
-planet "Aktina Habitat"
+planet "Aktina Cylinder"
 	attributes avgi station "avgi diaspora" uninhabited
 	landscape land/station52
 	description "Incomplete O'Neil cylinder"

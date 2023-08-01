@@ -1,0 +1,249 @@
+
+
+news "avgi merchant"
+	location
+		government "Avgi" "Avgi (Consonance)" "Avgi (Dissonance)"
+	name
+		word
+			"Avgi"
+		word
+			"Commercial"
+			"Independent"
+			"Merchant"
+			"Spacecraft"
+			"Starship"
+		word
+			" "
+		word
+			"captain"
+			"pilot"
+			"skipper"
+	message
+		word
+			`"`
+		word
+			""
+
+		word
+			`"`
+
+
+
+
+news "avgi politician"
+	location
+		government "Avgi (Consonance)"
+	name
+		word
+			"Politician"
+			"Bureaucrat"
+			"Economist"
+	message
+		word
+			`"`
+		word
+			""
+
+		word
+			`"`
+
+
+
+
+
+
+news "avgi advisory"
+	location
+		government "Avgi (Consonance)"
+	name
+		word
+			"Piracy"
+			"Aberrant"
+			"Safety"
+		word
+			"Advisory"
+			"Warning"
+	message
+		word
+			`"`
+		word
+			""
+
+		word
+			`"`
+
+
+
+
+
+
+news "avgi scientist"
+	location
+		government "Avgi (Consonance)"
+	name
+		word
+			"Avgi"
+		word
+			"Scientist"
+			"Researcher"
+	message
+		word
+			`"`
+		word
+			""
+
+		word
+			`"`
+
+
+
+
+news "avgi engineer"
+	location
+		government "Avgi (Consonance)"
+	name
+		word
+			"Avgi"
+		word
+			"Engineer"
+			"Mechanic"
+	message
+		word
+			`"`
+		word
+			""
+
+		word
+			`"`
+
+
+
+
+
+news "avgi doctor"
+	location
+		government "Avgi (Consonance)"
+	name
+		word
+			"Avgi"
+		word
+			"Doctor"
+			"Healer"
+			"Biomedic"
+			"Surgeon"
+	message
+		word
+			`"`
+		word
+			""
+
+		word
+			`"`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+news "avgi siege defender"
+	location
+		government "Avgi"
+		attributes "avgi siege"
+	name
+		word
+			"Politician"
+	message
+		word
+			`"`
+		word
+			"Remembrance. The Aberrations tried to bombardment our cities early in the war, but our defense systems were able to shoot most of their projectiles down."
+			"Remembrance. Much of my family was lost when the Aberrant destroyed our cylinder habitats. Only the Nisos Cylinder survived."
+			"Pride. If not for our ground to orbit laser batteries, the Aberrant would surely have invaded the surface by now."
+			"Sorrow. You can see the debris from our shattered skyhooks in orbit with the naked eye."
+			"Anger. Why did the Consonance have to abandon our space? The surface of our core planets could have sheltered our ships, but instead they ran to save themselves"
+			"Pride. Every time an Aberration comes too close, we hit it with half a dozen surface to orbit nuclear missiles."
+
+		word
+			`"`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
