@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "Dialog.h"
 #include "Files.h"
+#include "FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
@@ -77,6 +78,8 @@ namespace {
 
 	// How many pages of settings there are.
 	const int SETTINGS_PAGE_COUNT = 2;
+	// Hovering a preference for this many frames activates the tooltip.
+	const int HOVER_TIME = 60;
 }
 
 
@@ -93,6 +96,11 @@ PreferencesPanel::PreferencesPanel()
 		}
 
 	SetIsFullScreen(true);
+
+	// Initialize a centered tooltip.
+	hoverText.SetFont(FontSet::Get(14));
+	hoverText.SetWrapWidth(150);
+	hoverText.SetAlignment(Alignment::LEFT);
 }
 
 
@@ -122,9 +130,15 @@ void PreferencesPanel::Draw()
 	prefZones.clear();
 	pluginZones.clear();
 	if(page == 'c')
+	{
 		DrawControls();
+		DrawTooltips();
+	}
 	else if(page == 's')
+	{
 		DrawSettings();
+		DrawTooltips();
+	}
 	else if(page == 'p')
 		DrawPlugins();
 }
@@ -149,7 +163,10 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	else if(key == 'b' || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		Exit();
 	else if(key == 'c' || key == 's' || key == 'p')
+	{
 		page = key;
+		hoverItem.clear();
+	}
 	else if(key == 'o' && page == 'p')
 		Files::OpenUserPluginFolder();
 	else if((key == 'n' || key == SDLK_PAGEUP) && currentSettingsPage < SETTINGS_PAGE_COUNT - 1)
@@ -285,20 +302,21 @@ bool PreferencesPanel::Hover(int x, int y)
 {
 	hoverPoint = Point(x, y);
 
+	hoverItem.clear();
+	tooltip.clear();
+
 	hover = -1;
 	for(unsigned index = 0; index < zones.size(); ++index)
 		if(zones[index].Contains(hoverPoint))
 			hover = index;
 
-	hoverPreference.clear();
 	for(const auto &zone : prefZones)
 		if(zone.Contains(hoverPoint))
-			hoverPreference = zone.Value();
+			hoverItem = zone.Value();
 
-	hoverPlugin.clear();
 	for(const auto &zone : pluginZones)
 		if(zone.Contains(hoverPoint))
-			hoverPlugin = zone.Value();
+			hoverItem = zone.Value();
 
 	return true;
 }
@@ -308,10 +326,10 @@ bool PreferencesPanel::Hover(int x, int y)
 // Change the value being hovered over in the direction of the scroll.
 bool PreferencesPanel::Scroll(double dx, double dy)
 {
-	if(!dy || hoverPreference.empty())
+	if(!dy || page != 's' || hoverItem.empty())
 		return false;
 
-	if(hoverPreference == ZOOM_FACTOR)
+	if(hoverItem == ZOOM_FACTOR)
 	{
 		int zoom = Screen::UserZoom();
 		if(dy < 0. && zoom > ZOOM_FACTOR_MIN)
@@ -328,14 +346,14 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 		point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
 		SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
 	}
-	else if(hoverPreference == VIEW_ZOOM_FACTOR)
+	else if(hoverItem == VIEW_ZOOM_FACTOR)
 	{
 		if(dy < 0.)
 			Preferences::ZoomViewOut();
 		else
 			Preferences::ZoomViewIn();
 	}
-	else if(hoverPreference == SCROLL_SPEED)
+	else if(hoverItem == SCROLL_SPEED)
 	{
 		int speed = Preferences::ScrollSpeed();
 		if(dy < 0.)
@@ -472,7 +490,10 @@ void PreferencesPanel::DrawControls()
 			// Highlight whichever row the mouse hovers over.
 			table.SetHighlight(-120, 120);
 			if(isHovering)
+			{
 				table.DrawHighlight(back);
+				hoverItem = command.Description();
+			}
 
 			zones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), command);
 
@@ -766,7 +787,7 @@ void PreferencesPanel::DrawSettings()
 		else
 			text = isOn ? "on" : "off";
 
-		if(setting == hoverPreference)
+		if(setting == hoverItem)
 			table.DrawHighlight(back);
 		table.Draw(setting, isOn ? medium : dim);
 		table.Draw(text, isOn ? bright : medium);
@@ -806,7 +827,7 @@ void PreferencesPanel::DrawPlugins()
 		pluginZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), plugin.name);
 
 		bool isSelected = (plugin.name == selectedPlugin);
-		if(isSelected || plugin.name == hoverPlugin)
+		if(isSelected || plugin.name == hoverItem)
 			table.DrawHighlight(back);
 
 		const Sprite *sprite = box[plugin.currentState];
@@ -842,6 +863,46 @@ void PreferencesPanel::DrawPlugins()
 			wrap.Draw(top, medium);
 		}
 	}
+}
+
+
+
+void PreferencesPanel::DrawTooltips()
+{
+	if(hoverItem.empty())
+	{
+		// Step the tooltip timer back.
+		hoverCount -= hoverCount ? 1 : 0;
+		return;
+	}
+
+	// Step the tooltip timer forward [0-60].
+	hoverCount += hoverCount < HOVER_TIME;
+
+	if(hoverCount < HOVER_TIME)
+		return;
+
+	// Create the tooltip text.
+	if(tooltip.empty())
+	{
+		tooltip = GameData::Tooltip(hoverItem);
+		// No tooltip for this item.
+		if(tooltip.empty())
+			return;
+		hoverText.Wrap(tooltip);
+	}
+
+	Point size(hoverText.WrapWidth(), hoverText.Height() - hoverText.ParagraphBreak());
+	size += Point(20., 20.);
+	Point topLeft = hoverPoint;
+	// Do not overflow the screen dimensions.
+	if(topLeft.X() + size.X() > Screen::Right())
+		topLeft.X() -= size.X();
+	if(topLeft.Y() + size.Y() > Screen::Bottom())
+		topLeft.Y() -= size.Y();
+	// Draw the background fill and the tooltip text.
+	FillShader::Fill(topLeft + .5 * size, size, *GameData::Colors().Get("tooltip background"));
+	hoverText.Draw(topLeft + Point(10., 10.), *GameData::Colors().Get("medium"));
 }
 
 
