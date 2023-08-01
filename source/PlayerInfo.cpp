@@ -337,9 +337,9 @@ void PlayerInfo::Load(const string &path)
 			availableMissions.emplace_back(child);
 		else if(child.Token(0) == "conditions")
 			conditions.Load(child);
-		else if(child.Token(0) == "raid fleets")
+		else if(child.Token(0) == "raid attraction")
 			for(const DataNode &grand : child)
-				raidFleets[GameData::Fleets().Find(grand.Token(0))] = grand.Value(1);
+				raidAttraction[GameData::Governments().Find(grand.Token(0))] = grand.Value(1);
 		else if(child.Token(0) == "gifted ships" && child.HasChildren())
 		{
 			for(const DataNode &grand : child)
@@ -1336,13 +1336,14 @@ pair<double, double> PlayerInfo::RaidFleetFactors() const
 
 
 
-double PlayerInfo::RaidFleetAttraction(const Government::RaidFleet &raid, const System *system) const
+double PlayerInfo::RaidFleetAttraction(const Government::RaidFleet &raid, const System *system)
 {
-	double attraction = 0.;
 	const Fleet *raidFleet = raid.GetFleet();
 	const Government *raidGov = raidFleet ? raidFleet->GetGovernment() : nullptr;
 	if(raidGov && raidGov->IsEnemy())
 	{
+		double attraction = 0.;
+		double &govAttraction = raidAttraction[raidGov];
 		// The player's base attraction to a fleet is determined by their fleet attraction minus
 		// their fleet deterrence, minus whatever the minimum attraction of this raid fleet is.
 		pair<double, double> factors = RaidFleetFactors();
@@ -1369,8 +1370,20 @@ double PlayerInfo::RaidFleetAttraction(const Government::RaidFleet &raid, const 
 					attraction -= (gov->IsEnemy(raidGov) - gov->IsEnemy()) * (strength / raidStrength);
 				}
 			}
+		// If the player's fleet is attractive enough but too well guarded for a simple raid, stack them up.
+		if(attraction > 1. + govAttraction && raidStrength * (govAttraction + 10.) < FleetStrength())
+		{
+			govAttraction += (attraction - 1.) * .15;
+			return 0.;
+		}
+		if(attraction < 1. && govAttraction > 0.)
+		{
+			govAttraction -= (1. - attraction);
+			return attraction;
+		}
+		return max(0., attraction + govAttraction);
 	}
-	return max(0., attraction);
+	return 0.;
 }
 
 
@@ -2798,23 +2811,6 @@ int64_t PlayerInfo::FleetStrength() const
 	for(auto ship : ships)
 		strength += ship->Strength();
 	return strength;
-}
-
-
-
-int PlayerInfo::StackedRaids(const Fleet *fleet) const
-{
-	auto it = raidFleets.find(fleet);
-	if(it == raidFleets.end())
-		return 0;
-	return it->second;
-}
-
-
-
-void PlayerInfo::StackRaid(const Fleet *fleet, double attraction)
-{
-	raidFleets[fleet] += attraction;
 }
 
 
@@ -4313,13 +4309,13 @@ void PlayerInfo::Save(DataWriter &out) const
 	conditions.Save(out);
 
 	// Save raid fleets that got stacked up.
-	if(!raidFleets.empty())
+	if(!raidAttraction.empty())
 	{
-		out.Write("raid fleets");
+		out.Write("raid attraction");
 		out.BeginChild();
 		{
-			for(const auto &it : raidFleets)
-				out.Write(it.first->GetName(), it.second);
+			for(const auto &it : raidAttraction)
+				out.Write(it.first->GetTrueName(), it.second);
 		}
 	}
 

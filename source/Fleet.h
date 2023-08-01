@@ -58,9 +58,6 @@ public:
 	// Ensure any variant selected during gameplay will have at least one ship to spawn.
 	void RemoveInvalidVariants();
 
-	// Get the name of this fleet.
-	const std::string &GetName() const;
-
 	// Get the government of this fleet.
 	const Government *GetGovernment() const;
 
