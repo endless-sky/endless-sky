@@ -503,7 +503,7 @@ void Engine::Step(bool isActive)
 	{
 		center = flagship->Position();
 		centerVelocity = flagship->Velocity();
-		if(flagship->IsHyperspacing())
+		if(flagship->IsHyperspacing() && Preferences::Has("Extended jump effects"))
 			centerVelocity *= 1. + pow(flagship->GetHyperspacePercentage() / 20., 2);
 		if(doEnter && flagship->Zoom() == 1. && !flagship->IsHyperspacing())
 		{

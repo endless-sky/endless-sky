@@ -539,6 +539,7 @@ void PreferencesPanel::DrawSettings()
 		"Draw starfield",
 		BACKGROUND_PARALLAX,
 		"Show hyperspace flash",
+		"Extended jump effects",
 		SHIP_OUTLINES,
 		"\t",
 		"HUD",
