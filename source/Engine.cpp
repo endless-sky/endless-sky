@@ -1334,7 +1334,7 @@ void Engine::EnterSystem()
 	for(const auto &raidFleet : system->GetGovernment()->RaidFleets())
 	{
 		double attraction = player.RaidFleetAttraction(raidFleet, system);
-		int maximumFleets = 10 + max(0., attraction - 1.) * 10;
+		int maximumFleets = 10 + max(0., attraction - 1.) * 10.;
 		if(attraction > 0.)
 			for(int i = 0; i < maximumFleets; ++i)
 				if(Random::Real() < attraction)

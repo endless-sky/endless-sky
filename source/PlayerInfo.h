@@ -314,8 +314,6 @@ public:
 	const Depreciation &StockDepreciation() const;
 
 	int64_t FleetStrength() const;
-	int StackedRaids(const Government *government) const;
-	void StackRaid(const Government *government, double attraction);
 
 	// Keep track of what materials you have mined in each system.
 	void Harvest(const Outfit *type);
