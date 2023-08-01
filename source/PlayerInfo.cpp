@@ -1382,7 +1382,7 @@ double PlayerInfo::RaidFleetAttraction(const Government::RaidFleet &raid, const 
 			return attraction;
 		}
 		attraction += govAttraction;
-		govAttraction = 0.;
+		raidAttraction.erase(raidGov);
 		return max(0., attraction);
 	}
 	return 0.;
