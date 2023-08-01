@@ -1,7 +1,7 @@
 phrase "avgi civilian names"
 	phrase
 		"avgi colors" 10
-		"avgi qualities" 5
+		"avgi virtues" 5
 		"avgi phases" 5
 	word
 		" "
@@ -15,38 +15,22 @@ phrase "avgi military names"
 	word
 		"ACV "
 	phrase
-		"avgi qualities"
+		"avgi virtues"
 	word
 		" "
 	phrase
 		"avgi physics"
 		"avgi elements"
 
-
 phrase "avgi fighter names"
 	phrase
-		"avgi digits"
-	phrase
-		"avgi digits"
+		"avgi elements"
 	word
-		-
+		" - "
 	phrase
 		"avgi digits"
 	phrase
 		"avgi digits"
-	word
-		-
-	phrase
-		"avgi digits"
-	phrase
-		"avgi digits"
-
-
-
-
-
-
-
 
 phrase "avgi digits"
 	word
@@ -56,39 +40,6 @@ phrase "avgi digits"
 		3
 		4
 		5
-
-phrase "avgi hexadecimals"
-	word
-		0
-		1
-		2
-		3
-		4
-		5
-		6
-		7
-		8
-		9
-		A
-		B
-		C
-		D
-		E
-		F
-
-phrase "avgi hex colors"
-	phrase
-		"avgi hexadecimals"
-	phrase
-		"avgi hexadecimals"
-	phrase
-		"avgi hexadecimals"
-	phrase
-		"avgi hexadecimals"
-	phrase
-		"avgi hexadecimals"
-	phrase
-		"avgi hexadecimals"
 
 phrase "avgi colors"
 	word
@@ -495,6 +446,7 @@ phrase "avgi physics"
 		Pressure
 		Proton
 		Quark
+		Reflection
 		Refraction
 		Scalar
 		Spin
@@ -507,14 +459,14 @@ phrase "avgi physics"
 		Vector
 		Velocity
 
-phrase "avgi qualities"
+phrase "avgi virtues"
 	word
 		Agreeable
+		Altered
 		Amazing
 		Beautiful
 		Brave
 		Celestial
-		Changed
 		Charitable
 		Clarified
 		Compromising
@@ -522,11 +474,12 @@ phrase "avgi qualities"
 		Creation's
 		Defending
 		Destined
-		Etheral
 		Enlightened
 		Enthusiastic
+		Etheral
 		Fanciful
 		Fated
+		Fearless
 		Forgiving
 		Fortified
 		Fortituous
@@ -537,6 +490,7 @@ phrase "avgi qualities"
 		Heavenly
 		Honest
 		Hopeful
+		Humble
 		Indestructable
 		Insurmountable
 		Languid
@@ -552,6 +506,8 @@ phrase "avgi qualities"
 		Penitent
 		Poetic
 		Powerful
+		Precious
+		Precious
 		Promised
 		Protective
 		Qualified
@@ -562,13 +518,17 @@ phrase "avgi qualities"
 		Sanguine
 		Serene
 		Sorry
+		Storied
 		Tranquiline
 		Trustworthy
 		Unashamed
 		Unavoidable
 		Unbounded
 		Unyielding
+		Valued
 		Virtuous
+		Wonderful
+
 
 phrase "avgi phases"
 	word
@@ -596,20 +556,3 @@ phrase "avgi phases"
 		Vaporized
 		Vitreous
 		Vitrified
-
-phrase "avgi untranslated"
-	word
-		"You are sent a series of short, excited tones reminiscent of a plucked string instrument."
-
-phrase "friendly avgi"
-	word
-		"ya like jazz?"
-
-phrase "friendly disabled avgi"
-
-phrase "hostile avgi"
-
-phrase "hostile disabled avgi"
-	word
-		"ecks dee "
-

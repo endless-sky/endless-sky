@@ -3,64 +3,173 @@ phrase "friendly avgi"
 		"avgi warm greetings" 3
 		"avgi cold greetings"
 		"avgi warnings" 3
-		"avgi complaints" 2
+		"avgi complaints"
 		"avgi questions" 3
 		"avgi commerce" 6
 		"avgi boast" 3
 
-phrase "avgi hostile"
+phrase "hostile avgi"
 	phrase
 		"avgi cold greetings"
-		"avgi angry"
-
-
-
+		"avgi angry" 3
 
 phrase "friendly disabled avgi"
-
-
+	phrase "avgi friendly help"
+	phrase "avgi polite playername"
 
 phrase "hostile disabled avgi"
-
+	phrase
+		"avgi cold greetings"
+		"avgi angry help"
 
 
 
 phrase "friendly dissonance"
 	phrase
-		"avgi warm greetings" 3
-		"avgi cold greetings"
-		"avgi warnings" 3
-		"avgi complaints" 2
-		"avgi questions" 3
-		"avgi commerce" 6
-		"avgi boast" 3
+		"dissonance warm greetings"
+		"dissonance warnings"
+		"dissonance complaints"
+		"dissonance commerce"
+
+phrase "hostile dissonance"
+	phrase
+		"dissonance cold greetings"
+		"dissonance angry" 3
+
+phrase "friendly disabled dissonance"
+	phrase "avgi friendly help"
+	word
+		", "
+	phrase
+		"dissonance polite playername"
 
 phrase "hostile dissonance"
 	phrase
 		"avgi cold greetings"
-		"avgi angry"
+		"avgi angry help"
 
-
-phrase "friendly disabled dissonance"
-
-
-
-phrase "hostile dissonance"
+phrase "hostile disabled dissonance"
+	"avgi cold greetings"
+	"avgi unfriendly help"
 
 
 
 
 
 
+phrase "avgi polite playername"
+	word
+		"alien"
+		"familiar"
+		"far"
+		"fellow"
+		"foreign"
+		"interplanetary"
+		"interstellar"
+		"kind"
+		"space"
+		"star" 12
+		"stellar"
+		"trusted"
+	word
+		" "
+	word
+		"ally"
+		"ambassador"
+		"envoy"
+		"explorer"
+		"friend"
+		"newcomer"
+		"outsider"
+		"sapient"
+		"searcher"
+		"seeker"
+		"sojourner"
+		"sophont"
+		"traveler"
+		"visiter"
+		"voyager"
+		"wanderer"
+
+phrase "avgi rude playername"
+	word
+		"cursed"
+		"dangerous"
+		"disgusting"
+		"distrusted"
+		"hostile"
+		"lying"
+		"malodorous"
+		"ominous"
+		"pitiful"
+		"pitiless"
+		"stinky"
+		"strange"
+		"suspicious"
+		"terrible"
+		"unfamiliar"
+		"unlucky"
+		"unnatural"
+		"untrustworthy"
+		"unworthy"
+		"weird"
+	word
+		" "
+	word
+		"alien"
+		"foreigner"
+		"impostor"
+		"lifeform"
+		"meddler"
+		"outsider"
+		"strange one"
+		"stranger"
+		"xeno"
+
+phrase "dissonance polite playername"
+	word
+		"fellow"
+		"alien"
+		"trusted"
+		"unlikely"
+	word
+		" "
+	word
+		"ally"
+		"assistant"
+		"comrade"
+		"dissenter"
+		"dissident"
+		"friend"
+		"supporter"
+
+phrase "dissonance rude playername"
+	word
+		"alien"
+		"authoritarian"
+		"dangerous"
+		"pitiless"
+		"statist"
+		"thieving"
+		"traitorous"
+	word
+		" "
+	word
+		"enemy"
+		"impostor"
+		"lackey"
+		"meddler"
+		"oppressor"
+		"thief"
+		"traitor"
+		"xeno"
 
 
 
 
 
 
-
-
-phrase "avgi warm greetings"
+phrase "avgi warm acknowledgement"
 	word
 		"Acknowledgement"
 		"Amenable"
@@ -75,8 +184,11 @@ phrase "avgi warm greetings"
 		"Jovial"
 		"Joy"
 		"Novelty"
+		"Polite"
 		"Receptive"
 		"Reserved"
+		"Respect"
+		"Reverent"
 		"Sociable"
 		"Welcoming"
 	word
@@ -85,48 +197,22 @@ phrase "avgi warm greetings"
 	word
 		"Acknowledged"
 		"Fair weather"
+		"Fair winds"
 		"Good fortune"
 		"Greetings"
 		"Hello"
+		"I acknowledge you"
 		"I recieve you"
+		"May you find joy"
 		"Recognized"
 		"Salutations"
+		"Welcome to our space"
 		"Welcome"
 		"Well met"
 		"You are acknowldged"
-	word
-		", "
-		" "
-	word
-		"alien"
-		"familiar"
-		"fellow"
-		"foreign"
-		"kind"
-		"star"
-		"trusted"
-		"" 3
-	word
-		" "
-	word
-		"ally"
-		"ambassador"
-		"envoy"
-		"explorer"
-		"friend"
-		"newcomer"
-		"outsider"
-		"sapient"
-		"sojourner"
-		"sophont"
-		"traveler"
-		"visiter"
-		"voyager"
-	word
-		"."
-		"!
 
-phrase "avgi cold greetings"
+
+phrase "avgi cold acknowledgement"
 	word
 		"Angry"
 		"Disdain"
@@ -151,51 +237,63 @@ phrase "avgi cold greetings"
 		"Beware"
 		"Come no closer"
 		"Come no further"
+		"Curse you"
 		"I see you for what you are"
 		"Keep your distance"
 		"Recieved"
 		"Recognized"
 		"Remain in place"
+		"Stay away from me"
 		"Stay away"
-		"Suffer not the"
 		"You are acknowledged"
 		"You are recieved"
+
+
+phrase "avgi warm greetings"
+	phrase
+		"avgi warm acknowledgement"
 	word
 		", "
-		" "
-	word
-		"cursed"
-		"dangerous"
-		"disgusting"
-		"distrusted"
-		"hostile"
-		"lying"
-		"malodorous"
-		"ominous"
-		"pitiful"
-		"stinky"
-		"strange"
-		"suspicious"
-		"terrible"
-		"terrifying"
-		"unfamiliar"
-		"unlucky"
-		"unnatural"
-		"untrustworthy"
-		"unworthy"
-		"weird"
-		"" 12
-	word
-		"alien"
-		"impostor"
-		"lifeform"
-		"outsider"
-		"strange one"
-		"stranger"
-		"xeno"
+	phrase
+		"avgi polite playername"
 	word
 		"."
-		"!""
+		"!
+
+phrase "avgi cold greetings"
+	phrase
+		"avgi cold acknowledgement"
+	word
+		", "
+	phrase
+		"avgi rude playername"
+	word
+		"."
+		"!"
+
+phrase "dissonance warm greetings"
+	phrase
+		"avgi warm acknowledgement"
+	word
+		", "
+	phrase
+		"dissonance polite playername"
+	word
+		"."
+		"!
+
+phrase "dissonance cold greetings"
+	phrase
+		"avgi cold acknowledgement"
+	word
+		", "
+	phrase
+		"dissonance rude playername"
+	word
+		"."
+		"!"
+
+
 
 phrase "avgi warnings"
 	word
@@ -216,8 +314,7 @@ phrase "avgi warnings"
 		"Be careful of"
 		"Be wary of"
 		"Beware of"
-		"Look out for"
-		"Watch out for"
+		"Watch for"
 	word
 		" "
 	word
@@ -227,7 +324,7 @@ phrase "avgi warnings"
 		"cowardly pirates" 2
 		"creatures of darkness"
 		"creatures of the night"
-		"Dissonance pirates" 2 
+		"Dissonance pirates" 6 
 		"enemy aliens" 3
 		"genocidal aliens" 3
 		"government thieves"
@@ -238,45 +335,22 @@ phrase "avgi warnings"
 		"shadow monsters" 2
 		"tangling yourself in the hyperlanes" 3
 		"tax collectors" 3
-		"the Abberations" 3
-		"the Aberrant" 3
-		"the invaders" 3
-		"the invading aliens" 3
+		"the Abberations" 12
+		"the Aberrant" 6
+		"the invaders" 6
+		"the invading aliens" 6
 		"the logistics board"
 		"the rich and powerful" 2
 		"the Silencers"
 		"those of the Incursion" 3
-		"traitorous Dissonance cowards" 2
+		"traitorous Dissonance cowards" 6
 		"ungrateful dissidents" 2
 		"ungrateful parasites" 2
 		"unjust price controls"
 	word
 		", "
-	word
-		"alien"
-		"familiar"
-		"fellow"
-		"foreign"
-		"kind"
-		"star" 3
-		"trusted"
-		"" 3
-	word
-		" "
-	word
-		"ally"
-		"ambassador"
-		"envoy"
-		"explorer"
-		"friend"
-		"newcomer"
-		"outsider"
-		"sapient"
-		"sojourner"
-		"sophont"
-		"traveler"
-		"visiter"
-		"voyager"
+	phrase
+		"avgi polite playername"
 	word
 		"."
 		"!"
@@ -284,62 +358,62 @@ phrase "avgi warnings"
 phrase "avgi complaints"
 	word
 		"Anger"
-		"Frustration"
 		"Annoyance"
-		"Passion"
 		"Disdain"
+		"Frustration"
+		"Passion"
 	word
 		". "
 		"; "
 	word
+		"Cowardly"
+		"Dishonest"
 		"Dissonance" 6
-		"Lazy"
-		"Ungrateful"
 		"Ignorant"
-		"Neglectful"
 		"Incompetent"
 		"Inconsiderate"
-		"Dishonest"
-		"Unreciprocative"
+		"Lazy"
+		"Neglectful"
 		"Selfish"
-		"Cowardly"
+		"Uncharitable"
+		"Ungrateful"
+		"Unreciprocative"
+		"Worthless"
 	word
 		" "
 	word
-		"leeches"
-		"parasites"
-		"pirates"
-		"worms"
-		"dissidents"
-		"rebels"
 		"dissenters"
+		"dissidents"
+		"leeches" 3
+		"parasites" 3
+		"pirates" 3
+		"rebels" 3
+		"worms" 3
 		""
 	word
 		" "
 	word
-		"accept protection"
-		"were saved"
-		"were rescued"
-		"were brought to safety"
-		"took refuge here"
 		"accept help"
+		"accept protection"
 		"ask for help"
 		"ask for protection"
+		"took refuge here"
+		"were brought to safety"
+		"were rescued"
+		"were saved"
 	word
 		" "
 	word
-		"yet"
-		"but"
 		"and"
+		"but"
+		"yet"
 	word
 		" "
 	word
-		"yet"
-		"but"
-		"and"
-	word
-		"still"
 		"still they"
+		"still"
+		"they still"
+		"they"
 		""
 	word
 		" "
@@ -347,6 +421,16 @@ phrase "avgi complaints"
 		"refuse to contribute"
 		"refuse to help us"
 		"refuse to work"
+		"won't contribute"
+		"won't help with the war"
+		"won't support the war effort"
+		"won't help reclaim our homes"
+		"won't save other Avgi"
+		"only care about their own wings"
+		"care only for themselves"
+		"worry only about themselves"
+		"won't help free our kin"
+		"take without giving"
 		"ignore the Assembly"
 		"refrain from helping"
 		"neglect our fleets"
@@ -369,10 +453,15 @@ phrase "avgi complaints"
 
 phrase "avgi questions"
 	word
+		"Confused"
 		"Curious"
 		"Inquiry"
+		"Investigative"
 		"Question"
 		"Questioning"
+		"Scrutiny"
+		"Searching"
+		"Seeking"
 	word
 		". "
 		"; "
@@ -385,30 +474,19 @@ phrase "avgi questions"
 		"Share with us"
 		"Tell us,"
 		""
-	word
-		"Far"
-		"Interplanetary"
-		"Interstellar"
-		"Space"
-		"Star" 6
-		"Stellar"
-		"" 6
-	word
-		"Traveler"
-		"Wanderer"
-		"Explorer"
-		"Sojourner"
-		"Friend"
-		"Visitor"
+	phrase
+		"avgi polite playername"
 	word
 		", "
 	word
+		"a fun fact"
 		"are aliens real"
-		"are atomics banned on human soil"
+		"are atomics banned on human worlds"
 		"are many species in contact with each other"
 		"are megastructures possible"
 		"are the galaxy's races friendly"
 		"are there any alien civilizations near ours"
+		"are there any birdlike aliens"
 		"are there any civilizations of intelligent machines"
 		"are there any races stronger than humanity"
 		"are there any star nations of multiple species"
@@ -446,7 +524,7 @@ phrase "avgi questions"
 		"has anyone constructed any megastructures"
 		"has anyone enclosed a sun"
 		"has anyone ever been to another galaxy"
-		"has anyone harnessed the power of a star"
+		"has anyone harnessed the power of an entire star"
 		"has anyone researched xenocompatibility"
 		"has humanity discovered any stable superheavy elements"
 		"has humanity found a source of energy beyond fusion"
@@ -497,6 +575,7 @@ phrase "avgi questions"
 		"something interesting about yourself"
 		"were you born on your homeworld"
 		"what created the wasteland to the east"
+		"what do you call the galaxy"
 		"what do you think of our civilization"
 		"what do you think of our government"
 		"what do you think of our habitats"
@@ -551,22 +630,125 @@ phrase "dissonance warnings"
 		"; "
 	word
 		"Be careful of"
+		"Be opposed to"
 		"Be wary of"
 		"Beware of"
+		"Do not trust"
 		"Look out for"
+		"Trust not"
 		"Watch out for"
 	word
 		" "
 	word
-		"the Consonance"
-		"Consonance tyrants"
-		"agents of the Consonance"
-		"the tyrannical Assembly"
-		"Assembly bureaucrats"
-		"overbearing government"
-		"unaccountable government"
-		"oppressive government"
-		"unlimited government"
+		"the"
+	word
+		"bureaucratic"
+		"excessive"
+		"oppressive"
+		"overbearing"
+		"overly influential"
+		"tyrannical"
+		"unaccountable"
+		"unbearable"
+		"unfair"
+		"unlimited"
+		"parasitical"
+		"authoritarian"
+		""
+	word
+		"Assembly"
+		"Consonance"
+		"emergency measures"
+		"government"
+		"logistics board"
+		"price controls"
+		"regulations"
+		"Silencers"
+		"Spaceguard"
+		"state of emergency"
+		"tariffs"
 		"tax collectors"
-		"the Silencers"
-		"the logistics board"
+		"taxes"
+		"war economy"
+
+
+
+
+phrase "avgi commerce"
+
+
+
+
+
+phrase "avgi boast"
+
+
+
+
+
+
+
+
+
+
+
+phrase "avgi angry"
+
+
+
+
+
+phrase "avgi friendly help"
+	word
+		"Urgent"
+		"Imploring"
+		""
+	word
+		". "
+		"; "
+	word
+		"Please"
+		"I ask you"
+		"I beg you"
+		"A favor,"
+		"Favor us,"
+		"Perhaps you could"
+		"We would appreciate it if you would"
+	word
+		" "
+	word
+		"assist"
+		"help"
+		"rescue"
+		"save"
+		"repair"
+		"fix"
+		"patch up"
+		"support"
+		"protect"
+		"defend"
+	word
+		" "
+	word
+		"our"
+		"my"
+		"this"
+	word
+		" "
+	phrase
+		"avgi virtues"
+	word
+		" "
+	word
+		"vessel"
+		"ship"
+		"spacecraft"
+
+
+
+
+
+
+
+
+
