@@ -385,7 +385,7 @@ void ShipEffectsShader::Unbind()
 }
 
 
-
+#include "Messages.h"
 ShipEffectsShader::EffectItem::~EffectItem()
 {
 }

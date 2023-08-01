@@ -2441,13 +2441,13 @@ void Engine::AddSprites(const Ship &ship)
 	bool drawCloaked = (cloak && ship.IsYours());
 	auto &itemsToDraw = draw[calcTickTock];
 	auto drawObject = [&itemsToDraw, cloak, drawCloaked]
-		(const Body &body, DrawList::SpriteItemExtension *extension) -> void
+		(const Body &body, unique_ptr<DrawList::SpriteItemExtension> extension) -> void
 	{
 		// Draw cloaked/cloaking sprites swizzled red, and overlay this solid
 		// sprite with an increasingly transparent "regular" sprite.
 		if(drawCloaked)
 			itemsToDraw.AddSwizzled(body, 27);
-		itemsToDraw.Add(body, cloak, extension);
+		itemsToDraw.Add(body, cloak, std::move(extension));
 	};
 
 	if(hasFighters)
@@ -2484,8 +2484,12 @@ void Engine::AddSprites(const Ship &ship)
 			drawHardpoint(hardpoint);
 
 	if(static_cast<int>(Preferences::GetHitEffects()) > 0 && !ship.RecentHits()->empty())
-		drawObject(ship, new ShipEffectsShader::EffectItem(std::move(ShipEffectsShader::Batch(
+	{
+		unique_ptr<ShipEffectsShader::EffectItem> temporary = unique_ptr<ShipEffectsShader::EffectItem>(
+			new ShipEffectsShader::EffectItem(std::move(ShipEffectsShader::Batch(
 			&ship, ship.Position(), ship.RecentHits(), ship.GetFrame(), ship.ShieldColors()))));
+		drawObject(ship, std::move(temporary));
+	}
 	else
 		drawObject(ship, nullptr);
 
