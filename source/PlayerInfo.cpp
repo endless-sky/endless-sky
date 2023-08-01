@@ -1381,7 +1381,9 @@ double PlayerInfo::RaidFleetAttraction(const Government::RaidFleet &raid, const 
 			govAttraction -= (1. - attraction);
 			return attraction;
 		}
-		return max(0., attraction + govAttraction);
+		attraction += govAttraction;
+		govAttraction = 0.;
+		return max(0., attraction);
 	}
 	return 0.;
 }
