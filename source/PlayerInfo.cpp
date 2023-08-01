@@ -4308,7 +4308,7 @@ void PlayerInfo::Save(DataWriter &out) const
 	// Save any "primary condition" flags that are set.
 	conditions.Save(out);
 
-	// Save raid fleets that got stacked up.
+	// Save raid fleets as they get stacked up.
 	if(!raidAttraction.empty())
 	{
 		out.Write("raid attraction");
