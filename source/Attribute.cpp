@@ -96,7 +96,8 @@ string Attribute::CalculateLegacyName() const
 			return "shields";
 		if(effect == RAMSCOOP)
 			return "ramscoop";
-		return Attribute::GetEffectName(effect) + (secondary == -1 ? "" : " " + Attribute::GetEffectName(secondary)) + " capacity";
+		return Attribute::GetEffectName(effect) + (secondary == -1 ? "" : " " + Attribute::GetEffectName(secondary))
+				+ " capacity";
 	}
 
 	int effectType = effect % ATTRIBUTE_EFFECT_COUNT;
@@ -257,7 +258,8 @@ bool Attribute::IsSupported() const
 			case FIRING:
 				if(effectType <= HULL || (effectType >= ENERGY && effectType <= HEAT))
 					return true;
-			default: return false;
+			default:
+				return false;
 		}
 	}
 	if(IsMultiplier())
@@ -306,7 +308,8 @@ bool Attribute::IsSupported() const
 // Required attributes mark resource consumption when an action is taken.
 bool Attribute::IsRequirement() const
 {
-	if(category == -1 || category == PASSIVE || category == DAMAGE || category == PROTECTION || category == COOL || effect == -1)
+	if(category == -1 || category == PASSIVE || category == DAMAGE || category == PROTECTION
+			|| category == COOL || effect == -1)
 		return false;
 	if(static_cast<int>(category) == static_cast<int>(effect) && category <= CLOAKING)
 		return false;
@@ -320,7 +323,8 @@ bool Attribute::IsRequirement() const
 // Checks whether this attribute is a multiplier.
 bool Attribute::IsMultiplier() const
 {
-	return effect >= ATTRIBUTE_EFFECT_COUNT && (effect < ATTRIBUTE_EFFECT_COUNT * 2 || effect >= ATTRIBUTE_EFFECT_COUNT * 3);
+	return effect >= ATTRIBUTE_EFFECT_COUNT && (effect < ATTRIBUTE_EFFECT_COUNT * 2
+			|| effect >= ATTRIBUTE_EFFECT_COUNT * 3);
 }
 
 

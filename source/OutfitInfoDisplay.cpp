@@ -334,7 +334,8 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 		requirementsHeight += 10;
 	}
 
-	outfit.Attributes().ForEach([&](const auto &attr){
+	outfit.Attributes().ForEach([&](const auto &attr)
+	{
 		if(!count(BEFORE.begin(), BEFORE.end(), get<0>(attr)))
 			AddRequirementAttribute(get<0>(attr), get<2>(attr));
 	});

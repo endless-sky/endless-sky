@@ -252,7 +252,8 @@ bool IsChild(const Attribute &parent, const Attribute &child)
 
 
 // Saves an attribute. Also gets the set of already saved attributes and the last saved attribute.
-void AttributeStore::Save(DataWriter &writer, const Attribute &attribute, set<Attribute> &written, Attribute &previous) const
+void AttributeStore::Save(DataWriter &writer, const Attribute &attribute, set<Attribute> &written,
+		Attribute &previous) const
 {
 	if(attribute.Category() == -1 || written.count(attribute))
 		return;

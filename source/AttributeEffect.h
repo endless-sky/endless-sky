@@ -17,7 +17,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define ATTRIBUTE_EFFECT_H_
 
 // The different effects of an attribute. Each one has multiple variants,
-// each offset by ATTRIBUTE_EFFECT_COUNT. The variants are: base (not offset), multiplier, relative, relative multiplier.
+// each offset by ATTRIBUTE_EFFECT_COUNT. The variants are:
+// base (not offset), multiplier, relative, relative multiplier.
 enum AttributeEffect : int {
 	SHIELDS,
 	HULL,

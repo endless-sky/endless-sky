@@ -369,13 +369,20 @@ inline double Weapon::CorrosionDamage() const { return TotalDamage(CORROSION); }
 inline double Weapon::LeakDamage() const { return TotalDamage(LEAK); }
 inline double Weapon::BurnDamage() const { return TotalDamage(BURN); }
 
-inline double Weapon::RelativeShieldDamage() const { return TotalDamage(Attribute(DAMAGE, SHIELDS).Relative().Effect()); }
-inline double Weapon::RelativeHullDamage() const { return TotalDamage(Attribute(DAMAGE, HULL).Relative().Effect()); }
-inline double Weapon::RelativeDisabledDamage() const { return TotalDamage(Attribute(DAMAGE, DISABLED).Relative().Effect()); }
-inline double Weapon::RelativeMinableDamage() const { return TotalDamage(Attribute(DAMAGE, MINABLE).Relative().Effect()); }
-inline double Weapon::RelativeFuelDamage() const { return TotalDamage(Attribute(DAMAGE, FUEL).Relative().Effect()); }
-inline double Weapon::RelativeHeatDamage() const { return TotalDamage(Attribute(DAMAGE, HEAT).Relative().Effect()); }
-inline double Weapon::RelativeEnergyDamage() const { return TotalDamage(Attribute(DAMAGE, ENERGY).Relative().Effect()); }
+inline double Weapon::RelativeShieldDamage() const {
+		return TotalDamage(Attribute(DAMAGE, SHIELDS).Relative().Effect()); }
+inline double Weapon::RelativeHullDamage() const {
+		return TotalDamage(Attribute(DAMAGE, HULL).Relative().Effect()); }
+inline double Weapon::RelativeDisabledDamage() const {
+		return TotalDamage(Attribute(DAMAGE, DISABLED).Relative().Effect()); }
+inline double Weapon::RelativeMinableDamage() const {
+		return TotalDamage(Attribute(DAMAGE, MINABLE).Relative().Effect()); }
+inline double Weapon::RelativeFuelDamage() const {
+		return TotalDamage(Attribute(DAMAGE, FUEL).Relative().Effect()); }
+inline double Weapon::RelativeHeatDamage() const {
+		return TotalDamage(Attribute(DAMAGE, HEAT).Relative().Effect()); }
+inline double Weapon::RelativeEnergyDamage() const {
+		return TotalDamage(Attribute(DAMAGE, ENERGY).Relative().Effect()); }
 
 inline bool Weapon::DoesDamage() const { if(!calculatedDamage) TotalDamage(SHIELDS); return doesDamage; }
 

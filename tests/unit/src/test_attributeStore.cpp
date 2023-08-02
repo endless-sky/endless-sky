@@ -1,4 +1,4 @@
-/* test_attribute.cpp
+/* test_attributeStore.cpp
 Copyright (c) 2023 by tibetiroka
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
