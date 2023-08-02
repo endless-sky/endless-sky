@@ -339,7 +339,7 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 		requirementsHeight += 10;
 	}
 
-	outfit.Attributes().ForEach([&](const auto &attr)
+	outfit.Attributes().ForEach([&](const tuple<std::string, Attribute *, double> &attr)
 	{
 		if(!count(BEFORE.begin(), BEFORE.end(), get<0>(attr)))
 			AddRequirementAttribute(get<0>(attr), get<2>(attr));
@@ -409,7 +409,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		hasNormalAttributes = true;
 	}
 
-	outfit.Attributes().ForEach([&](const auto &it)
+	outfit.Attributes().ForEach([&](const tuple<std::string, Attribute *, double> &it)
 	{
 		if(count(EXPECTED_NEGATIVE.begin(), EXPECTED_NEGATIVE.end(), get<0>(it)))
 			return;
