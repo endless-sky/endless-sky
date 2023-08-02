@@ -202,7 +202,8 @@ void Outfit::Load(const DataNode &node)
 					+ label + " power\" and \"" + label + " speed\":");
 
 			// A scan value of 300 is equivalent to a scan power of 9.
-			attributes.Add(label + " power", initial * initial * .0001);
+			const double power = initial * initial * .0001;
+			attributes.Add(label + " power", power);
 			// The default scan speed of 1 is unrelated to the magnitude of the scan value.
 			// It may have been already specified, and if so, should not be increased.
 			if(!attributes.Get(label + " efficiency"))
@@ -220,7 +221,8 @@ void Outfit::Load(const DataNode &node)
 			// A reasonable update is 15x the previous value, as the base scan time
 			// is 10x what it was before scan efficiency was introduced, along with
 			// ships which are larger or further away also increasing the scan time.
-			attributes.Add(kind + " scan efficiency", initial * 15.);
+			const double efficiency = initial * 15.;
+			attributes.Add(kind + " scan efficiency", efficiency);
 		}
 	};
 	convertScan("outfit");
