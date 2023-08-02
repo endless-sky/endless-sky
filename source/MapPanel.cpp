@@ -1030,24 +1030,36 @@ void MapPanel::DrawTravelPlan()
 	stranded |= !hasEscort;
 
 	const System *previous = &playerSystem;
+	const System *next = nullptr;
 	double jumpRange = flagship->JumpNavigation().JumpRange();
-	for(int i = player.TravelPlan().size() - 1; i >= 0; --i)
+	for(int i = player.TravelPlan().size() - 1; i >= 0; --i, previous = next)
 	{
-		const System *next = player.TravelPlan()[i];
+		next = player.TravelPlan()[i];
 		bool isHyper = previous->Links().count(next);
 		bool isJump = !isHyper && previous->JumpNeighbors(jumpRange).count(next);
 		bool isWormhole = false;
+		bool skip = true;
 		for(const StellarObject &object : previous->Objects())
 		{
-			isWormhole |= (object.HasSprite() && object.HasValidPlanet()
+			// Determine if this step of the travel plan can be completed by traversing a wormhole.
+			bool wormholeConnection = object.HasSprite()
+				&& object.HasValidPlanet()
 				&& object.GetPlanet()->IsWormhole()
 				&& player.HasVisited(*object.GetPlanet())
-				&& object.GetPlanet()->GetWormhole()->IsMappable()
 				&& player.HasVisited(*previous) && player.HasVisited(*next)
-				&& &object.GetPlanet()->GetWormhole()->WormholeDestination(*previous) == next);
-			if(isWormhole)
-				wormholeColor = *object.GetPlanet()->GetWormhole()->GetLinkColor();
+				&& (&object.GetPlanet()->GetWormhole()->WormholeDestination(*previous) == next);
+			if(wormholeConnection)
+			{
+				isWormhole = true;
+				// If this wormhole is not mappable, don't draw the link for this step of the travel plan.
+				const bool mappable = object.GetPlanet()->GetWormhole()->IsMappable();
+				skip &= !mappable;
+				if(mappable)
+					wormholeColor = *object.GetPlanet()->GetWormhole()->GetLinkColor();
+			}
 		}
+		if(isWormhole && skip)
+			continue;
 
 		if(!isHyper && !isJump && !isWormhole)
 			break;
@@ -1082,8 +1094,6 @@ void MapPanel::DrawTravelPlan()
 		Point to = Zoom() * (previous->Position() + center);
 		Point unit = (from - to).Unit() * LINK_OFFSET;
 		LineShader::Draw(from - unit, to + unit, 3.f, drawColor);
-
-		previous = next;
 	}
 }
 
