@@ -372,6 +372,6 @@ void AttributeStore::ForEach(const std::function<void(std::tuple<string,Attribut
 	for(auto &it : textAttributes)
 	{
 		Attribute *a = (it.second == numeric_limits<double>::infinity() ? Attribute::Parse(it.first) : nullptr);
-		function(tuple(it.first, a, it.second));
+		function(tuple<string, Attribute*, double>(it.first, a, it.second));
 	}
 }
