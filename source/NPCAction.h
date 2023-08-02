@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class DataNode;
 class DataWriter;
+class Mission;
 class PlayerInfo;
 class System;
 class UI;
@@ -35,9 +36,9 @@ class NPCAction {
 public:
 	NPCAction() = default;
 	// Construct and Load() at the same time.
-	NPCAction(const DataNode &node, const std::string &missionName);
+	NPCAction(const DataNode &node);
 
-	void Load(const DataNode &node, const std::string &missionName);
+	void Load(const DataNode &node);
 	// Note: the Save() function can assume this is an instantiated mission, not
 	// a template, so it only has to save a subset of the data.
 	void Save(DataWriter &out) const;
@@ -45,7 +46,7 @@ public:
 	std::string Validate() const;
 
 	// Perform this action.
-	void Do(PlayerInfo &player, UI *ui = nullptr);
+	void Do(PlayerInfo &player, UI *ui = nullptr, const Mission *caller = nullptr);
 
 	// "Instantiate" this action by filling in the wildcard text for the actual
 	// destination, payment, cargo, etc.

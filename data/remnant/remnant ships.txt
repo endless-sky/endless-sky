@@ -709,14 +709,14 @@ ship "Heron"
 	gun 0 -325 "Ember Tear"
 	gun -23.5 -302.5
 	gun 23.5 -302.5
+	turret 0 -240.5 "Point Defense Turret"
 	turret -34.5 -134.5 "Inhibitor Turret"
 	turret 34.5 -134.5 "Inhibitor Turret"
 	turret -53 -17.5 "Inhibitor Turret"
 	turret 53 -17.5 "Inhibitor Turret"
+	turret 0 0 "Point Defense Turret"
 	turret -123.5 125.5 "Inhibitor Turret"
 	turret 123.5 125.5 "Inhibitor Turret"
-	turret 0 -240.5 "Point Defense Turret"
-	turret 0 0 "Point Defense Turret"
 	turret 0 250 "Point Defense Turret"
 	bay "Drone" -124 -122.5
 		"launch effect" "remnant internal"

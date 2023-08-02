@@ -507,7 +507,7 @@ outfit "Proton Gun"
 		"firing energy" 15
 		"firing force" 2
 		"firing heat" 60
-	description "The Proton Gun started out as the Syndicate's attempt to reverse engineer and mass produce a cheap competitor for the Particle Cannon. Unfortunately, they were unable to find a reliable way to keep the beam coherent, but the resulting weapon is still popular with some captains, particularly as an anti-fighter gun."
+	description "The Proton Gun started out as the Syndicate's attempt to reverse engineer and mass-produce a cheap competitor for the Particle Cannon. Unfortunately, they were unable to find a reliable way to keep the beam coherent, but the resulting weapon is still popular with some captains, particularly as an anti-fighter gun."
 
 outfit "Proton Fragment"
 	weapon

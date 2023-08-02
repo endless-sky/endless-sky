@@ -180,7 +180,7 @@ government "Deep Security"
 		"Merchant" .5
 		"Pirate" -.2
 		"Pirate (Devil-Run Gang)" -.2
-		"Smuggler (Hai Trafficker)" -.2
+		"Smuggler (Hai Trafficker)" .05
 	"friendly hail" "friendly deep"
 	"hostile hail" "hostile deep"
 
@@ -263,7 +263,7 @@ government "Free Worlds"
 		"Militia" .3
 		"Pirate" -.4
 		"Pirate (Devil-Run Gang)" -.4
-		"Smuggler (Hai Trafficker)" .3
+		"Smuggler (Hai Trafficker)" .05
 		"Neutral" .1
 	"bribe" .1
 	"friendly hail" "friendly free worlds"
@@ -282,7 +282,7 @@ government "Free Worlds that won't enter wormhole"
 		"Militia" .3
 		"Pirate" -.4
 		"Pirate (Devil-Run Gang)" -.4
-		"Smuggler (Hai Trafficker)" .3
+		"Smuggler (Hai Trafficker)" .05
 		"Neutral" .1
 	"bribe" .1
 	"friendly hail" "friendly free worlds"
@@ -779,7 +779,8 @@ government "Kor Efret"
 	"attitude toward"
 		"Kor Mereti" -.01
 		"Kor Sestor" -.01
-	
+	"penalty for"
+		provoke 0.1
 	"player reputation" 1
 	"send untranslated hails"
 	"friendly hail" "friendly kor efret untranslated"
@@ -870,7 +871,7 @@ government "Militia"
 		"Merchant" .3
 		"Pirate" -.4
 		"Pirate (Devil-Run Gang)" -.4
-		"Smuggler (Hai Trafficker)" .3
+		"Smuggler (Hai Trafficker)" .05
 	"bribe" .1
 	"friendly hail" "friendly militia"
 	"hostile hail" "hostile militia"
@@ -897,7 +898,7 @@ government "Navy (Oathkeeper)"
 		"Militia" .1
 		"Pirate" -.3
 		"Pirate (Devil-Run Gang)" -.3
-		"Smuggler (Hai Trafficker)" .25
+		"Smuggler (Hai Trafficker)" .05
 		"Kor Sestor" -.01
 		"Kor Mereti" -.01
 		"Navy Intelligence" 1
@@ -916,7 +917,7 @@ government "Neutral"
 		"Merchant" .3
 		"Pirate" -.2
 		"Pirate (Devil-Run Gang)" -.2
-		"Smuggler (Hai Trafficker)" -.2
+		"Smuggler (Hai Trafficker)" .05
 	"bribe" .05
 	"friendly hail" "friendly civilian"
 	"hostile hail" "hostile civilian"
@@ -1092,9 +1093,11 @@ government "Quarg (Kor Efret)"
 		"Quarg" 1
 		"Quarg (Hai)" 1
 		"Quarg (Gegno)" 1
-		"Kor Efret" .01
+		"Kor Efret" 1
 		"Kor Mereti" -.01
 		"Kor Sestor" -.01
+	"foreign penalties for"
+		"Kor Efret"
 	"death sentence" "quarg imprisonment"
 	"hostile hail" "hostile quarg"
 	"hostile disabled hail" "hostile quarg"
@@ -1204,7 +1207,7 @@ government "Republic"
 		"Pirate" -.3
 		"Pirate (Devil-Run Gang)" -.3
 		"Republic that won't enter wormhole" 1
-		"Smuggler (Hai Trafficker)" .25
+		"Smuggler (Hai Trafficker)" .05
 		"Navy Intelligence" 1
 		"Republic Intelligence" 1
 		"Navy (Oathkeeper)" 1
@@ -1236,7 +1239,7 @@ government "Republic that won't enter wormhole"
 		"Pirate" -.3
 		"Pirate (Devil-Run Gang)" -.3
 		"Republic" 1
-		"Smuggler (Hai Trafficker)" .25
+		"Smuggler (Hai Trafficker)" .05
 		"Navy Intelligence" 1
 		"Republic Intelligence" 1
 		"Navy (Oathkeeper)" 1

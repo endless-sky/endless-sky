@@ -129,6 +129,7 @@ private:
 	void DoMining(Ship &ship, Command &command);
 	bool DoHarvesting(Ship &ship, Command &command) const;
 	bool DoCloak(Ship &ship, Command &command);
+	void DoPatrol(Ship &ship, Command &command) const;
 	// Prevent ships from stacking on each other when many are moving in sync.
 	void DoScatter(Ship &ship, Command &command);
 	bool DoSecretive(Ship &ship, Command &command);

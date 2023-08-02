@@ -14,7 +14,8 @@
 fleet "Heliarch"
 	government "Heliarch"
 	names "heliarch"
-	fighters "heliarch fighter"
+	fighters
+		names "heliarch fighter"
 	cargo 1
 	personality
 		heroic opportunistic

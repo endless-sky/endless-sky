@@ -26,14 +26,14 @@ using namespace std;
 
 
 // Construct and Load() at the same time.
-NPCAction::NPCAction(const DataNode &node, const string &missionName)
+NPCAction::NPCAction(const DataNode &node)
 {
-	Load(node, missionName);
+	Load(node);
 }
 
 
 
-void NPCAction::Load(const DataNode &node, const string &missionName)
+void NPCAction::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
 		trigger = node.Token(1);
@@ -45,7 +45,7 @@ void NPCAction::Load(const DataNode &node, const string &missionName)
 		if(key == "triggered")
 			triggered = true;
 		else
-			action.LoadSingle(child, missionName);
+			action.LoadSingle(child);
 	}
 }
 
@@ -77,14 +77,14 @@ string NPCAction::Validate() const
 
 
 
-void NPCAction::Do(PlayerInfo &player, UI *ui)
+void NPCAction::Do(PlayerInfo &player, UI *ui, const Mission *caller)
 {
 	// All actions are currently one-time-use. Actions that are used
 	// are marked as triggered, and cannot be used again.
 	if(triggered)
 		return;
 	triggered = true;
-	action.Do(player, ui);
+	action.Do(player, ui, caller);
 }
 
 

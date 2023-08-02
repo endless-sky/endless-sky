@@ -283,7 +283,7 @@ event "remnant: merganser fleet"
 
 event "remnant: ssil vida inhabited"
 	planet "Ssil Vida"
-		attributes emitter sheragi remnant
+		attributes emitter "remnant station" sheragi
 		landscape land/station0
 		description `The silence of this station rings in your ears, and as you explore you are increasingly surprised that it even has an atmosphere. It is obviously ancient, and patches of ambiguous green and purple material resembling fungus grow through the walls. Whoever built this station designed it for beings much larger than you - either that, or they liked spacious environments. Even the shortest doorway you pass through is easily double your height. They are always wider than they are tall.`
 		description `	Exploring beyond the docks reveals that most of this facility is infrastructure for some type of massive emitter. It is not clear exactly what it's supposed to be emitting, but it might have something to do with how this system appeared in the first place.`

@@ -199,7 +199,8 @@ mission "Hai Reveal [D03] Defend Mooncreek Construction Site"
 		personality heroic escort
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)" 3
 				"Lance" 12
@@ -333,7 +334,8 @@ mission "Hai Reveal [D05] Escort Republic Outfitters"
 		government Republic
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier"
 				"Lance" 4

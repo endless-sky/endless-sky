@@ -98,7 +98,8 @@ mission "Liberate Kornephoros"
 		system "Kornephoros"
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Heavy)" 2
 				"Combat Drone" 8
@@ -106,7 +107,8 @@ mission "Liberate Kornephoros"
 				"Rainmaker" 2
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Heavy)"
 				"Combat Drone" 4
@@ -114,7 +116,8 @@ mission "Liberate Kornephoros"
 				"Gunboat" 2
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Heavy)"
 				"Combat Drone" 4
@@ -342,7 +345,7 @@ mission "FW Syndicate Diplomacy 1B"
 		conversation
 			`As you land, Alondo says to you, "Let me do the talking, please." You are met almost immediately by two men in suits, who escort you to a room in the Syndicate headquarters. Six men are sitting on one side of a large mahogany conference table; they gesture for the two of you to be seated on the other side.`
 			`	You introduce yourselves. "Thank you for meeting with us," says Alondo.`
-			`	A man who appears much younger than the others introduces himself as Samuel Remington and responds. "Hearing that representatives of the Free Worlds were on their way was certainly a surprise. I apologize that CEO Korban could not meet with us today. He sent me in his stead to ensure that this meeting was handled with the upmost delicacy. So, what might it be that brings you here?"`
+			`	A man who appears much younger than the others introduces himself as Samuel Remington and responds. "Hearing that representatives of the Free Worlds were on their way was certainly a surprise. I apologize that CEO Korban could not meet with us today. He sent me in his stead to ensure that this meeting was handled with the utmost delicacy. So, what might it be that brings you here?"`
 			`	"We would like to secure the purchase of construction materials for new ships," says Alondo. "As well as ask that the Syndicate refrains from joining the war as mercenaries. Our grievance is with the Republic, not the Syndicate."`
 			`	"We are always open to new business opportunities," says another man, Lopez, "although negotiating with known terrorists is... distasteful." He leafs through a folder of papers, pulls one out, and slides it over to you. It is a picture of Katya, and the caption under it reads, "Terrorist ringleader captured in raid on Kornephoros system." It is dated a few days after the Navy's initial assault, before you retook the system from them.`
 			choice
@@ -1332,7 +1335,8 @@ mission "FW Pirates: Attack 2"
 				"Osprey (Missile)" 2
 		fleet
 			names "free worlds capital"
-			fighters "free worlds fighters"
+			fighters
+				names "free worlds fighters"
 			variant
 				"Skein"
 				"Roost"
@@ -2021,7 +2025,8 @@ mission "FW Early Warning 4"
 		system "Wei"
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Heavy)" 2
 				"Combat Drone" 8

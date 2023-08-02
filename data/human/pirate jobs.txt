@@ -1276,7 +1276,7 @@ mission "Wanted Passenger [0]"
 	description "This wanted individual wishes to reach <destination> without being caught by local law enforcement. They also wish to bring with them <cargo>. Payment is <payment>."
 	passengers 1
 	cargo "battle trophies" 1
-	illegal 50000 `Upon scanning your vessel, law enforcement notice the criminal that you have on board. Entering your ship to detain them, they find the criminal in the corner of one of the rooms of your ship, clutching their battle trophies and screaming "you'll never take them from me!" After a short confrontation, they carry the criminal out and leave you with a small fine. This doesn't help to establish your reputation as reliable, no-questions-asked transporter.`
+	illegal 50000 `Upon scanning your vessel, law enforcement notice the criminal that you have on board. Entering your ship to detain them, they find the criminal in the corner of one of the rooms of your ship, clutching their battle trophies and screaming "you'll never take them from me!" After a short confrontation, they carry the criminal out and leave you with a small fine. This doesn't help to establish your reputation as a reliable, no-questions-asked transporter.`
 	stealth
 	to offer
 		or
@@ -1305,7 +1305,7 @@ mission "Wanted Passengers [1]"
 	description "These <bunks> wanted individuals wish to reach <destination> without being caught by local law enforcement. They also wish to bring with them <cargo>. Payment is <payment>."
 	passengers 2 10 .9
 	cargo "credit chips" 1
-	illegal 75000 `Upon scanning your vessel, law enforcement notices the criminals that you have on board. Entering your ship to detain them, they find the criminals busy scooping their credits into the airlock, hoping that no one can have them. The officers quickly detain the criminals and carry them off along with the rest of the credits, leaving you with a moderately sized fine. This doesn't help to establish your reputation as reliable, no-questions-asked transporter.`
+	illegal 75000 `Upon scanning your vessel, law enforcement notices the criminals that you have on board. Entering your ship to detain them, they find the criminals busy scooping their credits into the airlock, hoping that no one can have them. The officers quickly detain the criminals and carry them off along with the rest of the credits, leaving you with a moderately sized fine. This doesn't help to establish your reputation as a reliable, no-questions-asked transporter.`
 	stealth
 	to offer
 		random < 75
@@ -1334,7 +1334,7 @@ mission "Wanted Passengers [2]"
 	description "These <bunks> wanted individuals wish to reach <destination> without being caught by local law enforcement. They also wish to bring with them <cargo>. Payment is <payment>."
 	passengers 2 10 .9
 	cargo "customized weapons" 1
-	illegal 75000 `Upon scanning your vessel, law enforcement notices the criminals that you have on board. Entering your ship to detain them, the criminals begin firing down the hallways with their customized weapons. Immediately met with tear gas, the criminals did not put up too much of a fight. The officers carry the criminals out and leave you with a moderate fine and a few laser marks in the halls of your ship. This doesn't help to establish your reputation as reliable, no-questions-asked transporter.`
+	illegal 75000 `Upon scanning your vessel, law enforcement notices the criminals that you have on board. Entering your ship to detain them, the criminals begin firing down the hallways with their customized weapons. Immediately met with tear gas, the criminals did not put up too much of a fight. The officers carry the criminals out and leave you with a moderate fine and a few laser marks in the halls of your ship. This doesn't help to establish your reputation as a reliable, no-questions-asked transporter.`
 	stealth
 	to offer
 		random < 50
@@ -1363,7 +1363,7 @@ mission "Wanted Passengers [3]"
 	description "These <bunks> wanted individuals wish to reach <destination> without being caught by local law enforcement. They also wish to bring with them <cargo>. Payment is <payment>."
 	passengers 2 10 .9
 	cargo "aged wine" 1
-	illegal 75000 `Upon scanning your vessel, law enforcement notice the criminals that you have on board. Entering your ship to detain them, they find them all passed out in their bunks rooms, having drank too much of the wine that they had brought with them. After carrying the criminals out, they give you a moderate fine and leave. This doesn't help to establish your reputation as reliable, no-questions-asked transporter.`
+	illegal 75000 `Upon scanning your vessel, law enforcement notice the criminals that you have on board. Entering your ship to detain them, they find them all passed out in their bunks rooms, having drank too much of the wine that they had brought with them. After carrying the criminals out, they give you a moderate fine and leave. This doesn't help to establish your reputation as a reliable, no-questions-asked transporter.`
 	stealth
 	to offer
 		random < 25
@@ -1395,7 +1395,7 @@ mission "Highly Wanted Passenger (North)"
 	description "This criminal is wanted by every law enforcement agency in the galaxy and needs safe transport to <destination> with their <cargo>. The payment is high at an amazing <payment>, but transporting such a person could lead to a lot of trouble."
 	passengers 1
 	cargo "stolen navy secrets" 1
-	illegal 300000 `Law enforcement rush their way onto your ship through the airlocks, suited head to toe in armor and armed to the teeth. Your passenger is quickly made to surrender and is hauled off in cuffs. The officers consider detaining you as well, but eventually decide to minimize their paperwork by only issuing a fine. This doesn't help to establish your reputation as reliable, no-questions-asked transporter.`
+	illegal 300000 `Law enforcement rush their way onto your ship through the airlocks, suited head to toe in armor and armed to the teeth. Your passenger is quickly made to surrender and is hauled off in cuffs. The officers consider detaining you as well, but eventually decide to minimize their paperwork by only issuing a fine. This doesn't help to establish your reputation as a reliable, no-questions-asked transporter.`
 	stealth
 	to offer
 		random < 15
@@ -1484,7 +1484,7 @@ mission "Highly Wanted Passenger (Core)"
 	description "This criminal is wanted by every law enforcement agency in the galaxy and needs safe transport to <destination> with their <cargo>. The payment is high at an amazing <payment>, but transporting such a person could lead to a lot of trouble."
 	passengers 1
 	cargo "stolen banking records" 1
-	illegal 300000 `Law enforcement rush their way onto your ship through the airlocks, suited head to toe in armor and armed to the teeth. Your passenger is quickly made to surrender and is hauled off in cuffs. The officers consider detaining you as well, but eventually decide to minimize their paperwork by only issuing a fine. This doesn't help to establish your reputation as reliable, no-questions-asked transporter.`
+	illegal 300000 `Law enforcement rush their way onto your ship through the airlocks, suited head to toe in armor and armed to the teeth. Your passenger is quickly made to surrender and is hauled off in cuffs. The officers consider detaining you as well, but eventually decide to minimize their paperwork by only issuing a fine. This doesn't help to establish your reputation as a reliable, no-questions-asked transporter.`
 	stealth
 	to offer
 		random < 15
@@ -1575,7 +1575,7 @@ mission "Highly Wanted Passenger (South)"
 	description "This criminal is wanted by every law enforcement agency in the galaxy and needs safe transport to <destination> with their <cargo>. The payment is high at an amazing <payment>, but transporting such a person could lead to a lot of trouble."
 	passengers 1
 	cargo "prototype technology" 1
-	illegal 300000 `Law enforcement rush their way onto your ship through the airlocks, suited head to toe in armor and armed to the teeth. Your passenger is quickly made to surrender and is hauled off in cuffs. The officers consider detaining you as well, but eventually decide to minimize their paperwork by only issuing a fine. This doesn't help to establish your reputation as reliable, no-questions-asked transporter.`
+	illegal 300000 `Law enforcement rush their way onto your ship through the airlocks, suited head to toe in armor and armed to the teeth. Your passenger is quickly made to surrender and is hauled off in cuffs. The officers consider detaining you as well, but eventually decide to minimize their paperwork by only issuing a fine. This doesn't help to establish your reputation as a reliable, no-questions-asked transporter.`
 	stealth
 	to offer
 		random < 15

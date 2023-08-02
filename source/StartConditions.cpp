@@ -88,7 +88,7 @@ void StartConditions::Load(const DataNode &node)
 				ships.clear();
 			else if(key == "ship" && hasValue)
 				ships.erase(remove_if(ships.begin(), ships.end(),
-					[&value](const Ship &s) noexcept -> bool { return s.ModelName() == value; }),
+					[&value](const Ship &s) noexcept -> bool { return s.TrueModelName() == value; }),
 					ships.end());
 			else if(key == "conversation")
 				conversation = ExclusiveItem<Conversation>();
