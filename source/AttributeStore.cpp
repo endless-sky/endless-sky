@@ -208,6 +208,8 @@ void AttributeStore::Add(const AttributeStore &other, const int count)
 {
 	for(auto &it : other.textAttributes)
 		Add(it.first, other, count);
+	for(auto &it : other.categorizedAttributes)
+		Add(it.first, other, count);
 }
 
 
