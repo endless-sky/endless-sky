@@ -110,7 +110,7 @@ string Attribute::CalculateLegacyName() const
 	if(category == PASSIVE)
 		categoryName = "";
 	else if((category == CLOAKING || category == THRUSTING || category == REVERSE_THRUSTING || category == TURNING)
-			 && (effect != -1 && static_cast<int>(category) != static_cast<int>(effect)))
+			&& (effect != -1 && static_cast<int>(category) != static_cast<int>(effect)))
 		categoryName += "ing";
 	else if(category == SHIELD_GENERATION && effectType != SHIELDS)
 		categoryName = "shield";
