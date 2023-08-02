@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class DataNode;
 class DataWriter;
+class Mission;
 class Outfit;
 class PlayerInfo;
 class System;
@@ -43,10 +44,10 @@ class MissionAction {
 public:
 	MissionAction() = default;
 	// Construct and Load() at the same time.
-	MissionAction(const DataNode &node, const std::string &missionName);
+	MissionAction(const DataNode &node);
 
-	void Load(const DataNode &node, const std::string &missionName);
-	void LoadSingle(const DataNode &node, const std::string &missionName);
+	void Load(const DataNode &node);
+	void LoadSingle(const DataNode &node);
 	// Note: the Save() function can assume this is an instantiated mission, not
 	// a template, so it only has to save a subset of the data.
 	void Save(DataWriter &out) const;
@@ -64,8 +65,9 @@ public:
 	bool RequiresGiftedShip(const std::string &shipId) const;
 	// Perform this action. If a conversation is shown, the given destination
 	// will be highlighted in the map if you bring it up.
-	void Do(PlayerInfo &player, UI *ui = nullptr, const System *destination = nullptr,
-		const std::shared_ptr<Ship> &ship = nullptr, const bool isUnique = true) const;
+	void Do(PlayerInfo &player, UI *ui = nullptr, const Mission *caller = nullptr,
+		const System *destination = nullptr, const std::shared_ptr<Ship> &ship = nullptr,
+		const bool isUnique = true) const;
 
 	// "Instantiate" this action by filling in the wildcard text for the actual
 	// destination, payment, cargo, etc.
