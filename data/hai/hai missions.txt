@@ -246,7 +246,7 @@ mission "Hai Sympathizer Warning"
 				`	"How could I be in trouble for defending myself against Sympathizers?"`
 			label defending
 			action
-				set "Hai Sympathizer Warning: Explained Trouble"
+				set "hai symp warn: explained trouble"
 			`	He shrugs. "You should try not to impart human ethical standards onto Hai. The simple fact of the matter is that they are citizens, and you are not.`
 			`	"When a report is made that you have destroyed the vessel of a Hai citizen, it is up to the local security staff to verify the chain of events. If they report it was your fault, then it was your fault, unless you can challenge that in a court. However, you are not a citizen, so the security apparatus can simply brand you as a pirate and prevent you from ever gaining access to a court to challenge it in the first place. Even if you managed to do so, you're a captain; your business is in space. You would be grounded for months to work through the court proceedings to challenge it.`
 			`	"Whether you believe it is right or not, it is simply the reality of the situation. You must manage your guns and your reputation carefully where interactions with the Unfettered are concerned."`
@@ -259,7 +259,7 @@ mission "Hai Sympathizer Warning"
 				"reputation: Hai Merchant (Human)" >= 1
 			# At least one other group besides the Sympathizers are upset.
 			branch "explained trouble"
-				has "Hai Sympathizer Warning: Explained Trouble"
+				has "hai symp warn: explained trouble"
 			`	"You have gotten yourself in trouble, Captain."`
 			label "explained trouble"
 			action
@@ -277,6 +277,8 @@ mission "Hai Sympathizer Warning"
 			`	The waitress arrives with your food, and the merchant stands up. "Good luck, Captain. If you get into trouble, I recommend picking up some jobs to take aid supplies to the Unfettered, if you can manage that without shooting anyone..."`
 			`	With a nod, he leaves you to your meal.`
 				decline
+	on decline
+		clear "hai symp warn: explained trouble"
 
 
 
