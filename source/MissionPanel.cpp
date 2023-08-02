@@ -224,12 +224,16 @@ void MissionPanel::Draw()
 		const bool isHyper = system->Links().count(next);
 		bool isWormhole = false;
 		for(const StellarObject &object : system->Objects())
-			isWormhole |= (object.HasSprite() && object.HasValidPlanet()
+			if(object.HasSprite() && object.HasValidPlanet()
 				&& object.GetPlanet()->IsWormhole()
 				&& player.HasVisited(*object.GetPlanet())
 				&& object.GetPlanet()->GetWormhole()->IsMappable()
 				&& player.HasVisited(*system) && player.HasVisited(*next)
-				&& &object.GetPlanet()->GetWormhole()->WormholeDestination(*system) == next);
+				&& &object.GetPlanet()->GetWormhole()->WormholeDestination(*next) == system)
+			{
+				isWormhole = true;
+				break;
+			}
 
 		if(isHyper || isWormhole)
 			LineShader::Draw(from, to, 5.f, routeColor);
