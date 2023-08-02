@@ -489,7 +489,7 @@ system Anax
 		distance 7258.824
 		period 5274.096
 		offset -10
-	object "Nisos Habitat"
+	object "Nisos Cylinder"
 		sprite planet/station-cylinder
 			scale 0.5
 		distance 7258.824
@@ -2144,7 +2144,7 @@ system Concerto
 			sprite planet/dust7-b
 			distance 412
 			period 316.116
-	object "Aktina Habitat"
+	object "Aktina Cylinder"
 		sprite planet/station-cylinder-incomplete
 			scale 0.5
 		distance 4775.99

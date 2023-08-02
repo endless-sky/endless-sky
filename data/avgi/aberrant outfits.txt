@@ -1,0 +1,46 @@
+# Weapons:
+
+outfit "Nucleolysis Beam"
+	category "Guns"
+	cost 322000
+	thumbnail "outfit/nucleolysis"
+	"mass" 16
+	"outfit space" -23
+	"weapon capacity" -23
+	"gun ports" -1
+	weapon
+		sprite "projectile/nucleolysis beam"
+			"frame rate" 15
+		sound "disruptor"
+		"hit effect" "ravager impact"
+		"inaccuracy" .2
+		"velocity" 380
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 4.2
+		"firing heat" 1.5
+		"shield damage" 0.8
+		"hull damage" 5.6
+		"heat damage" -9.1
+		"fuel damage" 0.09
+		"corrosion damage" 0.1
+	description "This beam weapon somehow creates a field inside which otherwise stable atomic nuclei rapidly decay. This effect seems to be inversely proportional to the mass of the nucleus, causing isotopes like deuterium to break down at a higher rate than heavier elements. As the resultant fission products have a higher energy state than the original nucleus, this effectively cools the target ship, defying conventional thermodynamics."
+	description "In aggregate, this can rapidly deplete a ship's deuterium fuel while also causing the very matter of its hull to decay."
+
+
+# Systems:
+
+
+
+
+
+# Power:
+
+outfit "Anomalous Antimatter Cell"
+	category "Power"
+	cost 27000
+	thumbnail "outfit/ka'het reserve accumulator"
+	"mass" 2
+	"outfit space" -3
+	"energy capacity" 2400
+	description "This strange device seems to be partially organic in nature, slowly leaking antiprotons through a constantly-regrowing mesh to produce anomalous amounts of power."

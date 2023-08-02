@@ -704,7 +704,7 @@ ship "Undsyni"
 	explode "medium explosion" 60
 	explode "large explosion" 30
 	explode "huge explosion" 9
-	"final explode" "final explosion huge"
+	"final explode" "final explosion large"
 
 	description "Undsyni-class Armed Freighter"
 

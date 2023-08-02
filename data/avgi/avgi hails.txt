@@ -30,7 +30,6 @@ phrase "hostile disabled avgi"
 	phrase
 		"avgi rude playername"
 
-
 # Spaceguard hails
 
 phrase "friendly spaceguard"
@@ -61,8 +60,6 @@ phrase "hostile disabled spaceguard"
 	phrase
 		"avgi rude playername"
 
-
-
 # Dissonance hails
 
 phrase "friendly dissonance"
@@ -92,11 +89,6 @@ phrase "hostile disabled dissonance"
 		", "
 	phrase
 		"dissonance rude playername"
-
-
-
-
-
 
 phrase "avgi polite playername"
 	word
@@ -205,11 +197,6 @@ phrase "dissonance rude playername"
 		"thief"
 		"traitor"
 		"xeno"
-
-
-
-
-
 
 phrase "avgi warm acknowledgement"
 	word
@@ -756,7 +743,7 @@ phrase "avgi commerce loss"
 		". "
 		"; "
 	word
-		"I lost a month's pay on a failed gambit. Now I could lose everything."
+		"I lost a month's pay on a failed trade gambit. Now I could lose everything."
 		"I lost all of my profit to the emergency taxes."
 		"It's impossible to make money with these taxes. Why bother with trading?"
 		"Price controls on iron cost me everything."
@@ -766,7 +753,8 @@ phrase "avgi commerce loss"
 	word
 		" "
 	word
-		"I never voted for the Assembly."
+		"I never voted for this."
+		"I never asked the Assembly to tell us what to do."
 		"I wish it was different."
 		"Someone needs to do something."
 		"Something needs to be done."
