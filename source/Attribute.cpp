@@ -25,6 +25,7 @@ const string Attribute::effectNames[] = {"shields", "hull", "thrust", "reverse t
 		"cooling", "active cooling", "cloak", "force", "energy", "fuel", "heat", "discharge", "corrosion", "leak", "burn",
 		"ion", "scramble", "slowing", "disruption", "disabled", "minable", "ramscoop", "piercing", "delay", "depleted delay"};
 
+// Some category names are always the same as the corresponding effect names.
 const string Attribute::categoryNames[] = {"shield generation", "hull repair rate",
 		GetEffectName(THRUST), GetEffectName(REVERSE_THRUST), GetEffectName(TURN), GetEffectName(COOLING),
 		GetEffectName(ACTIVE_COOLING), GetEffectName(CLOAK), "afterburner thrust", "firing", "protection",
