@@ -60,7 +60,7 @@ Attribute::Attribute(AttributeCategory category, AttributeEffect effect, Attribu
 
 
 // Gets the data format name of the category, as used in the new syntax.
-inline string Attribute::GetCategoryName(const AttributeCategory category)
+string Attribute::GetCategoryName(const AttributeCategory category)
 {
 	if(category >= ATTRIBUTE_CATEGORY_COUNT || category < 0)
 		return "";
@@ -72,7 +72,7 @@ inline string Attribute::GetCategoryName(const AttributeCategory category)
 // Gets the data format name of the effect, as used in the new syntax. This also supports
 // multipliers, so for any effect E, passing E + ATTRIBUTE_EFFECT_COUNT will produce the name of the
 // multiplier effect.
-inline string Attribute::GetEffectName(const AttributeEffect effect)
+string Attribute::GetEffectName(const AttributeEffect effect)
 {
 	if(effect >= ATTRIBUTE_EFFECT_COUNT * 2)
 		return "relative " + GetEffectName(static_cast<AttributeEffect>(effect - 2 * ATTRIBUTE_EFFECT_COUNT));
