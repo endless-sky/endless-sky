@@ -1007,7 +1007,7 @@ mission "Remnant: Deep Surveillance"
 			
 			action
 				set "remnant: admitted to helping deep"
-			`	Torza's eyes go wide. "Why would you do this?" he asks. "Do you not understand that our secrecy is of upmost importance?"`
+			`	Torza's eyes go wide. "Why would you do this?" he asks. "Do you not understand that our secrecy is of utmost importance?"`
 			choice
 				`	"I don't believe that they will be a threat to you."`
 					goto threat
@@ -1053,7 +1053,7 @@ mission "Remnant: Deep Surveillance"
 			
 			action
 				set "remnant: admitted to helping deep"
-			`	Torza's eyes go wide. "Why would you do this?" he asks. "Do you not understand that our secrecy is of upmost importance?"`
+			`	Torza's eyes go wide. "Why would you do this?" he asks. "Do you not understand that our secrecy is of utmost importance?"`
 			choice
 				`	"I don't believe that they will be a threat to you."`
 					goto threat
@@ -2818,6 +2818,7 @@ mission "Remnant: Face to Maw 1"
 	description "Plume would be very interested in a report on what happened with the void sprites."
 	to offer
 		has "event: remnant: return the samples timer"
+		has "flagship model: Puffin"
 		or
 			not "Remnant: Cognizance 1: offered"
 			has "Remnant: Cognizance 19: done"
