@@ -29,142 +29,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	const double EPS = 0.0000000001;
-
-	// A mapping of attribute names to specifically-allowed minimum values. Based on the
-	// specific usage of the attribute, the allowed minimum value is chosen to avoid
-	// disallowed or undesirable behaviors (such as dividing by zero).
-	const auto MINIMUM_OVERRIDES = map<string, double>{
-		// Attributes which are present and map to zero may have any value.
-		{"shield energy", 0.},
-		{"shield fuel", 0.},
-		{"shield heat", 0.},
-		{"hull energy", 0.},
-		{"hull fuel", 0.},
-		{"hull heat", 0.},
-		{"hull threshold", 0.},
-		{"energy generation", 0.},
-		{"energy consumption", 0.},
-		{"fuel generation", 0.},
-		{"fuel consumption", 0.},
-		{"fuel energy", 0.},
-		{"fuel heat", 0.},
-		{"heat generation", 0.},
-		{"flotsam chance", 0.},
-
-		{"thrusting shields", 0.},
-		{"thrusting hull", 0.},
-		{"thrusting energy", 0.},
-		{"thrusting fuel", 0.},
-		{"thrusting heat", 0.},
-		{"thrusting discharge", 0.},
-		{"thrusting corrosion", 0.},
-		{"thrusting ion", 0.},
-		{"thrusting leakage", 0.},
-		{"thrusting burn", 0.},
-		{"thrusting disruption", 0.},
-		{"thrusting slowing", 0.},
-
-		{"turning shields", 0.},
-		{"turning hull", 0.},
-		{"turning energy", 0.},
-		{"turning fuel", 0.},
-		{"turning heat", 0.},
-		{"turning discharge", 0.},
-		{"turning corrosion", 0.},
-		{"turning ion", 0.},
-		{"turning leakage", 0.},
-		{"turning burn", 0.},
-		{"turning disruption", 0.},
-		{"turning slowing", 0.},
-
-		{"reverse thrusting shields", 0.},
-		{"reverse thrusting hull", 0.},
-		{"reverse thrusting energy", 0.},
-		{"reverse thrusting fuel", 0.},
-		{"reverse thrusting heat", 0.},
-		{"reverse thrusting discharge", 0.},
-		{"reverse thrusting corrosion", 0.},
-		{"reverse thrusting ion", 0.},
-		{"reverse thrusting leakage", 0.},
-		{"reverse thrusting burn", 0.},
-		{"reverse thrusting disruption", 0.},
-		{"reverse thrusting slowing", 0.},
-
-		{"afterburner shields", 0.},
-		{"afterburner hull", 0.},
-		{"afterburner energy", 0.},
-		{"afterburner fuel", 0.},
-		{"afterburner heat", 0.},
-		{"afterburner discharge", 0.},
-		{"afterburner corrosion", 0.},
-		{"afterburner ion", 0.},
-		{"afterburner leakage", 0.},
-		{"afterburner burn", 0.},
-		{"afterburner disruption", 0.},
-		{"afterburner slowing", 0.},
-
-		{"cooling energy", 0.},
-		{"discharge resistance energy", 0.},
-		{"discharge resistance fuel", 0.},
-		{"discharge resistance heat", 0.},
-		{"corrosion resistance energy", 0.},
-		{"corrosion resistance fuel", 0.},
-		{"corrosion resistance heat", 0.},
-		{"ion resistance energy", 0.},
-		{"ion resistance fuel", 0.},
-		{"ion resistance heat", 0.},
-		{"scramble resistance energy", 0.},
-		{"scramble resistance fuel", 0.},
-		{"scramble resistance heat", 0.},
-		{"leak resistance energy", 0.},
-		{"leak resistance fuel", 0.},
-		{"leak resistance heat", 0.},
-		{"burn resistance energy", 0.},
-		{"burn resistance fuel", 0.},
-		{"burn resistance heat", 0.},
-		{"disruption resistance energy", 0.},
-		{"disruption resistance fuel", 0.},
-		{"disruption resistance heat", 0.},
-		{"slowing resistance energy", 0.},
-		{"slowing resistance fuel", 0.},
-		{"slowing resistance heat", 0.},
-		{"crew equivalent", 0.},
-
-		// "Protection" attributes appear in denominators and are incremented by 1.
-		{"shield protection", -0.99},
-		{"hull protection", -0.99},
-		{"energy protection", -0.99},
-		{"fuel protection", -0.99},
-		{"heat protection", -0.99},
-		{"piercing protection", -0.99},
-		{"force protection", -0.99},
-		{"discharge protection", -0.99},
-		{"drag reduction", -0.99},
-		{"corrosion protection", -0.99},
-		{"inertia reduction", -0.99},
-		{"ion protection", -0.99},
-		{"scramble protection", -0.99},
-		{"leak protection", -0.99},
-		{"burn protection", -0.99},
-		{"disruption protection", -0.99},
-		{"slowing protection", -0.99},
-
-		// "Multiplier" attributes appear in numerators and are incremented by 1.
-		{"hull multiplier", -1. },
-		{"hull repair multiplier", -1.},
-		{"hull energy multiplier", -1.},
-		{"hull fuel multiplier", -1.},
-		{"hull heat multiplier", -1.},
-		{"shield multiplier", -1. },
-		{"shield generation multiplier", -1.},
-		{"shield energy multiplier", -1.},
-		{"shield fuel multiplier", -1.},
-		{"shield heat multiplier", -1.},
-		{"acceleration multiplier", -1.},
-		{"turn multiplier", -1.}
-	};
-
 	void AddFlareSprites(vector<pair<Body, int>> &thisFlares, const pair<Body, int> &it, int count)
 	{
 		auto oit = find_if(thisFlares.begin(), thisFlares.end(),
@@ -292,15 +156,8 @@ void Outfit::Load(const DataNode &node)
 				if(isNewLicense(licenses, grand.Token(0)))
 					licenses.push_back(grand.Token(0));
 		}
-		else if(child.Token(0) == "jump range" && child.Size() >= 2)
-		{
-			// Jump range must be positive.
-			attributes[child.Token(0)] = max(0., child.Value(1));
-		}
-		else if(child.Size() >= 2)
-			attributes[child.Token(0)] = child.Value(1);
 		else
-			child.PrintTrace("Skipping unrecognized attribute:");
+			attributes.Load(child);
 	}
 
 	if(displayName.empty())
@@ -340,16 +197,16 @@ void Outfit::Load(const DataNode &node)
 		double initial = attributes.Get(label);
 		if(initial)
 		{
-			attributes[label] = 0.;
+			attributes.Set(label, 0.);
 			node.PrintTrace("Warning: Deprecated use of \"" + label + "\" instead of \""
 					+ label + " power\" and \"" + label + " speed\":");
 
 			// A scan value of 300 is equivalent to a scan power of 9.
-			attributes[label + " power"] += initial * initial * .0001;
+			attributes.Add(label + " power", initial * initial * .0001);
 			// The default scan speed of 1 is unrelated to the magnitude of the scan value.
 			// It may have been already specified, and if so, should not be increased.
 			if(!attributes.Get(label + " efficiency"))
-				attributes[label + " efficiency"] = 15.;
+				attributes.Set(label + " efficiency", 15.);
 		}
 
 		// Similar check for scan speed which is replaced with scan efficiency.
@@ -357,13 +214,13 @@ void Outfit::Load(const DataNode &node)
 		initial = attributes.Get(label);
 		if(initial)
 		{
-			attributes[label] = 0.;
+			attributes.Set(label, 0.);
 			node.PrintTrace("Warning: Deprecated use of \"" + label + "\" instead of \""
 					+ kind + " scan efficiency\":");
 			// A reasonable update is 15x the previous value, as the base scan time
 			// is 10x what it was before scan efficiency was introduced, along with
 			// ships which are larger or further away also increasing the scan time.
-			attributes[kind + " scan efficiency"] += initial * 15.;
+			attributes.Add(kind + " scan efficiency", initial * 15.);
 		}
 	};
 	convertScan("outfit");
@@ -454,58 +311,12 @@ const Sprite *Outfit::Thumbnail() const
 
 
 
-double Outfit::Get(const char *attribute) const
-{
-	return attributes.Get(attribute);
-}
-
-
-
-double Outfit::Get(const string &attribute) const
-{
-	return Get(attribute.c_str());
-}
-
-
-
-const Dictionary &Outfit::Attributes() const
-{
-	return attributes;
-}
-
-
-
 // Determine whether the given number of instances of the given outfit can
 // be added to a ship with the attributes represented by this instance. If
 // not, return the maximum number that can be added.
 int Outfit::CanAdd(const Outfit &other, int count) const
 {
-	for(const auto &at : other.attributes)
-	{
-		// The minimum allowed value of most attributes is 0. Some attributes
-		// have special functionality when negative, though, and are therefore
-		// allowed to have values less than 0.
-		double minimum = 0.;
-		auto it = MINIMUM_OVERRIDES.find(at.first);
-		if(it != MINIMUM_OVERRIDES.end())
-		{
-			minimum = it->second;
-			// An override of exactly 0 means the attribute may have any value.
-			if(!minimum)
-				continue;
-		}
-
-		// Only automatons may have a "required crew" of 0.
-		if(!strcmp(at.first, "required crew"))
-			minimum = !(attributes.Get("automaton") || other.attributes.Get("automaton"));
-
-		double value = Get(at.first);
-		// Allow for rounding errors:
-		if(value + at.second * count < minimum - EPS)
-			count = (value - minimum) / -at.second + EPS;
-	}
-
-	return count;
+	return attributes.CanAdd(other.attributes, count);
 }
 
 
@@ -516,13 +327,7 @@ void Outfit::Add(const Outfit &other, int count)
 {
 	cost += other.cost * count;
 	mass += other.mass * count;
-	for(const auto &at : other.attributes)
-	{
-		attributes[at.first] += at.second * count;
-		if(fabs(attributes[at.first]) < EPS)
-			attributes[at.first] = 0.;
-	}
-
+	attributes.Add(other.attributes, count);
 	for(const auto &it : other.flareSprites)
 		AddFlareSprites(flareSprites, it, count);
 	for(const auto &it : other.reverseFlareSprites)
@@ -547,7 +352,7 @@ void Outfit::Add(const Outfit &other, int count)
 // Modify this outfit's attributes.
 void Outfit::Set(const char *attribute, double value)
 {
-	attributes[attribute] = value;
+	attributes.Set(attribute, value);
 }
 
 

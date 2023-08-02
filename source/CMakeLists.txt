@@ -28,6 +28,12 @@ target_sources(EndlessSkyLib PRIVATE
 	Armament.h
 	AsteroidField.cpp
 	AsteroidField.h
+	Attribute.cpp
+	Attribute.h
+	AttributeCategory.h
+	AttributeEffect.h
+	AttributeStore.cpp
+	AttributeStore.h
 	Audio.cpp
 	Audio.h
 	BankPanel.cpp

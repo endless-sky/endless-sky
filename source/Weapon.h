@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define WEAPON_H_
 
 #include "Angle.h"
+#include "AttributeStore.h"
 #include "Body.h"
 #include "Distribution.h"
 #include "Point.h"
@@ -197,6 +198,10 @@ public:
 	// Return the ranges at which the weapon's damage dropoff begins and ends.
 	const std::pair<double, double> &DropoffRanges() const;
 
+	double Get(const char *attribute) const;
+	double Get(const std::string &attribute) const;
+	double Get(const Attribute &attribute) const;
+	const AttributeStore &Attributes() const;
 
 protected:
 	// Legacy support: allow turret outfits with no turn rate to specify a
@@ -207,9 +212,10 @@ protected:
 	// of that outfit consumed upon fire.
 	std::pair<const Outfit*, int> ammo;
 
+	mutable AttributeStore attributes;
 
 private:
-	double TotalDamage(int index) const;
+	double TotalDamage(const AttributeEffect effect) const;
 
 
 private:
@@ -271,62 +277,10 @@ private:
 	double infraredTracking = 0.;
 	double radarTracking = 0.;
 
-	double firingEnergy = 0.;
-	double firingForce = 0.;
-	double firingFuel = 0.;
-	double firingHeat = 0.;
-	double firingHull = 0.;
-	double firingShields = 0.;
-	double firingIon = 0.;
-	double firingScramble = 0.;
-	double firingSlowing = 0.;
-	double firingDisruption = 0.;
-	double firingDischarge = 0.;
-	double firingCorrosion = 0.;
-	double firingLeak = 0.;
-	double firingBurn = 0.;
-
-	double relativeFiringEnergy = 0.;
-	double relativeFiringHeat = 0.;
-	double relativeFiringFuel = 0.;
-	double relativeFiringHull = 0.;
-	double relativeFiringShields = 0.;
-
 	double splitRange = 0.;
 	double triggerRadius = 0.;
 	double blastRadius = 0.;
 	double safeRange = 0.;
-
-	static const int DAMAGE_TYPES = 23;
-	static const int HIT_FORCE = 0;
-	// Normal damage types:
-	static const int SHIELD_DAMAGE = 1;
-	static const int HULL_DAMAGE = 2;
-	static const int DISABLED_DAMAGE = 3;
-	static const int MINABLE_DAMAGE = 4;
-	static const int FUEL_DAMAGE = 5;
-	static const int HEAT_DAMAGE = 6;
-	static const int ENERGY_DAMAGE = 7;
-	// Status effects:
-	static const int ION_DAMAGE = 8;
-	static const int WEAPON_JAMMING_DAMAGE = 9;
-	static const int DISRUPTION_DAMAGE = 10;
-	static const int SLOWING_DAMAGE = 11;
-	static const int DISCHARGE_DAMAGE = 12;
-	static const int CORROSION_DAMAGE = 13;
-	static const int LEAK_DAMAGE = 14;
-	static const int BURN_DAMAGE = 15;
-	// Relative damage types:
-	static const int RELATIVE_SHIELD_DAMAGE = 16;
-	static const int RELATIVE_HULL_DAMAGE = 17;
-	static const int RELATIVE_DISABLED_DAMAGE = 18;
-	static const int RELATIVE_MINABLE_DAMAGE = 19;
-	static const int RELATIVE_FUEL_DAMAGE = 20;
-	static const int RELATIVE_HEAT_DAMAGE = 21;
-	static const int RELATIVE_ENERGY_DAMAGE = 22;
-	mutable double damage[DAMAGE_TYPES] = {};
-
-	double piercing = 0.;
 
 	double rangeOverride = 0.;
 	double velocityOverride = 0.;
@@ -371,66 +325,66 @@ inline double Weapon::OpticalTracking() const { return opticalTracking; }
 inline double Weapon::InfraredTracking() const { return infraredTracking; }
 inline double Weapon::RadarTracking() const { return radarTracking; }
 
-inline double Weapon::FiringEnergy() const { return firingEnergy; }
-inline double Weapon::FiringForce() const { return firingForce; }
-inline double Weapon::FiringFuel() const { return firingFuel; }
-inline double Weapon::FiringHeat() const { return firingHeat; }
-inline double Weapon::FiringHull() const { return firingHull; }
-inline double Weapon::FiringShields() const { return firingShields; }
-inline double Weapon::FiringIon() const{ return firingIon; }
-inline double Weapon::FiringScramble() const { return firingScramble; }
-inline double Weapon::FiringSlowing() const{ return firingSlowing; }
-inline double Weapon::FiringDisruption() const{ return firingDisruption; }
-inline double Weapon::FiringDischarge() const{ return firingDischarge; }
-inline double Weapon::FiringCorrosion() const{ return firingCorrosion; }
-inline double Weapon::FiringLeak() const{ return firingLeak; }
-inline double Weapon::FiringBurn() const{ return firingBurn; }
+inline double Weapon::FiringEnergy() const { return Get(Attribute(FIRING, ENERGY)); }
+inline double Weapon::FiringForce() const { return Get(Attribute(FIRING, FORCE)); }
+inline double Weapon::FiringFuel() const { return Get(Attribute(FIRING, FUEL)); }
+inline double Weapon::FiringHeat() const { return Get(Attribute(FIRING, HEAT)); }
+inline double Weapon::FiringHull() const { return Get(Attribute(FIRING, HULL)); }
+inline double Weapon::FiringShields() const { return Get(Attribute(FIRING, SHIELDS)); }
+inline double Weapon::FiringIon() const{ return Get(Attribute(FIRING, ION)); }
+inline double Weapon::FiringScramble() const { return Get(Attribute(FIRING, SCRAMBLE)); }
+inline double Weapon::FiringSlowing() const{ return Get(Attribute(FIRING, SLOWING)); }
+inline double Weapon::FiringDisruption() const{ return Get(Attribute(FIRING, DISRUPTION)); }
+inline double Weapon::FiringDischarge() const{ return Get(Attribute(FIRING, DISCHARGE)); }
+inline double Weapon::FiringCorrosion() const{ return Get(Attribute(FIRING, CORROSION)); }
+inline double Weapon::FiringLeak() const{ return Get(Attribute(FIRING, LEAK)); }
+inline double Weapon::FiringBurn() const{ return Get(Attribute(FIRING, BURN)); }
 
-inline double Weapon::RelativeFiringEnergy() const{ return relativeFiringEnergy; }
-inline double Weapon::RelativeFiringHeat() const{ return relativeFiringHeat; }
-inline double Weapon::RelativeFiringFuel() const{ return relativeFiringFuel; }
-inline double Weapon::RelativeFiringHull() const{ return relativeFiringHull; }
-inline double Weapon::RelativeFiringShields() const{ return relativeFiringShields; }
+inline double Weapon::RelativeFiringEnergy() const{ return Get(Attribute(FIRING, ENERGY).Relative()); }
+inline double Weapon::RelativeFiringHeat() const{ return Get(Attribute(FIRING, HEAT).Relative()); }
+inline double Weapon::RelativeFiringFuel() const{ return Get(Attribute(FIRING, FUEL).Relative()); }
+inline double Weapon::RelativeFiringHull() const{ return Get(Attribute(FIRING, HULL).Relative()); }
+inline double Weapon::RelativeFiringShields() const{ return Get(Attribute(FIRING, SHIELDS).Relative()); }
 
-inline double Weapon::Piercing() const { return piercing; }
+inline double Weapon::Piercing() const { return Get(Attribute(DAMAGE, PIERCING)); }
 
 inline double Weapon::SplitRange() const { return splitRange; }
 inline double Weapon::TriggerRadius() const { return triggerRadius; }
 inline double Weapon::BlastRadius() const { return blastRadius; }
 inline double Weapon::SafeRange() const { return safeRange; }
-inline double Weapon::HitForce() const { return TotalDamage(HIT_FORCE); }
+inline double Weapon::HitForce() const { return TotalDamage(FORCE); }
 
 inline bool Weapon::IsSafe() const { return isSafe; }
 inline bool Weapon::IsPhasing() const { return isPhasing; }
 inline bool Weapon::IsDamageScaled() const { return isDamageScaled; }
 inline bool Weapon::IsGravitational() const { return isGravitational; }
 
-inline double Weapon::ShieldDamage() const { return TotalDamage(SHIELD_DAMAGE); }
-inline double Weapon::HullDamage() const { return TotalDamage(HULL_DAMAGE); }
-inline double Weapon::DisabledDamage() const { return TotalDamage(DISABLED_DAMAGE); }
-inline double Weapon::MinableDamage() const { return TotalDamage(MINABLE_DAMAGE); }
-inline double Weapon::FuelDamage() const { return TotalDamage(FUEL_DAMAGE); }
-inline double Weapon::HeatDamage() const { return TotalDamage(HEAT_DAMAGE); }
-inline double Weapon::EnergyDamage() const { return TotalDamage(ENERGY_DAMAGE); }
+inline double Weapon::ShieldDamage() const { return TotalDamage(SHIELDS); }
+inline double Weapon::HullDamage() const { return TotalDamage(HULL); }
+inline double Weapon::DisabledDamage() const { return TotalDamage(DISABLED); }
+inline double Weapon::MinableDamage() const { return TotalDamage(MINABLE); }
+inline double Weapon::FuelDamage() const { return TotalDamage(FUEL); }
+inline double Weapon::HeatDamage() const { return TotalDamage(HEAT); }
+inline double Weapon::EnergyDamage() const { return TotalDamage(ENERGY); }
 
-inline double Weapon::IonDamage() const { return TotalDamage(ION_DAMAGE); }
-inline double Weapon::ScramblingDamage() const { return TotalDamage(WEAPON_JAMMING_DAMAGE); }
-inline double Weapon::DisruptionDamage() const { return TotalDamage(DISRUPTION_DAMAGE); }
-inline double Weapon::SlowingDamage() const { return TotalDamage(SLOWING_DAMAGE); }
-inline double Weapon::DischargeDamage() const { return TotalDamage(DISCHARGE_DAMAGE); }
-inline double Weapon::CorrosionDamage() const { return TotalDamage(CORROSION_DAMAGE); }
-inline double Weapon::LeakDamage() const { return TotalDamage(LEAK_DAMAGE); }
-inline double Weapon::BurnDamage() const { return TotalDamage(BURN_DAMAGE); }
+inline double Weapon::IonDamage() const { return TotalDamage(ION); }
+inline double Weapon::ScramblingDamage() const { return TotalDamage(SCRAMBLE); }
+inline double Weapon::DisruptionDamage() const { return TotalDamage(DISRUPTION); }
+inline double Weapon::SlowingDamage() const { return TotalDamage(SLOWING); }
+inline double Weapon::DischargeDamage() const { return TotalDamage(DISCHARGE); }
+inline double Weapon::CorrosionDamage() const { return TotalDamage(CORROSION); }
+inline double Weapon::LeakDamage() const { return TotalDamage(LEAK); }
+inline double Weapon::BurnDamage() const { return TotalDamage(BURN); }
 
-inline double Weapon::RelativeShieldDamage() const { return TotalDamage(RELATIVE_SHIELD_DAMAGE); }
-inline double Weapon::RelativeHullDamage() const { return TotalDamage(RELATIVE_HULL_DAMAGE); }
-inline double Weapon::RelativeDisabledDamage() const { return TotalDamage(RELATIVE_DISABLED_DAMAGE); }
-inline double Weapon::RelativeMinableDamage() const { return TotalDamage(RELATIVE_MINABLE_DAMAGE); }
-inline double Weapon::RelativeFuelDamage() const { return TotalDamage(RELATIVE_FUEL_DAMAGE); }
-inline double Weapon::RelativeHeatDamage() const { return TotalDamage(RELATIVE_HEAT_DAMAGE); }
-inline double Weapon::RelativeEnergyDamage() const { return TotalDamage(RELATIVE_ENERGY_DAMAGE); }
+inline double Weapon::RelativeShieldDamage() const { return TotalDamage(Attribute(DAMAGE, SHIELDS).Relative().Effect()); }
+inline double Weapon::RelativeHullDamage() const { return TotalDamage(Attribute(DAMAGE, HULL).Relative().Effect()); }
+inline double Weapon::RelativeDisabledDamage() const { return TotalDamage(Attribute(DAMAGE, DISABLED).Relative().Effect()); }
+inline double Weapon::RelativeMinableDamage() const { return TotalDamage(Attribute(DAMAGE, MINABLE).Relative().Effect()); }
+inline double Weapon::RelativeFuelDamage() const { return TotalDamage(Attribute(DAMAGE, FUEL).Relative().Effect()); }
+inline double Weapon::RelativeHeatDamage() const { return TotalDamage(Attribute(DAMAGE, HEAT).Relative().Effect()); }
+inline double Weapon::RelativeEnergyDamage() const { return TotalDamage(Attribute(DAMAGE, ENERGY).Relative().Effect()); }
 
-inline bool Weapon::DoesDamage() const { if(!calculatedDamage) TotalDamage(0); return doesDamage; }
+inline bool Weapon::DoesDamage() const { if(!calculatedDamage) TotalDamage(SHIELDS); return doesDamage; }
 
 inline bool Weapon::HasDamageDropoff() const { return hasDamageDropoff; }
 

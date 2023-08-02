@@ -74,6 +74,12 @@
 		<Unit filename="source/Armament.h" />
 		<Unit filename="source/AsteroidField.cpp" />
 		<Unit filename="source/AsteroidField.h" />
+		<Unit filename="source/Attribute.cpp" />
+		<Unit filename="source/Attribute.h" />
+		<Unit filename="source/AttributeCategory.h" />
+		<Unit filename="source/AttributeEffect.h" />
+		<Unit filename="source/AttributeStore.cpp" />
+		<Unit filename="source/AttributeStore.h" />
 		<Unit filename="source/Audio.cpp" />
 		<Unit filename="source/Audio.h" />
 		<Unit filename="source/BankPanel.cpp" />
