@@ -17,101 +17,21 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Attribute.h"
 
-#include <limits>
-
 using namespace std;
 
-namespace {
-	const double EPS = 0.0000000001;
-	const auto MINIMUM_OVERRIDES = map<string, double>{
-		{"hull threshold", numeric_limits<double>::lowest()},
-		{"energy generation", numeric_limits<double>::lowest()},
-		{"energy consumption", numeric_limits<double>::lowest()},
-		{"fuel generation", numeric_limits<double>::lowest()},
-		{"fuel consumption", numeric_limits<double>::lowest()},
-		{"fuel energy", numeric_limits<double>::lowest()},
-		{"fuel heat", numeric_limits<double>::lowest()},
-		{"heat generation", numeric_limits<double>::lowest()},
-		{"flotsam chance", numeric_limits<double>::lowest()},
-		{"crew equivalent", numeric_limits<double>::lowest()}
-	};
-}
-
-// Checking if an attribute is present.
-template <class A>
-bool AttributeStore::IsPresent(const A &attribute) const
-{
-	return Get(attribute) != 0.;
-}
-
-
-
-bool AttributeStore::IsPresent(const char *attribute) const
-{
-	return Get(attribute) != 0.;
-}
-
-
-
-// Getting the value of an attribute, or a default.
-template <>
-double AttributeStore::Get(const string &attribute) const
-{
-	return textAttributes.Get(attribute);
-}
-
-
-
-double AttributeStore::Get(const char *attribute) const
-{
-	return textAttributes.Get(attribute);
-}
-
-
-
-template <>
-double AttributeStore::Get(const Attribute &attribute) const
-{
-	auto it = categorizedAttributes.find(attribute);
-	if(it == categorizedAttributes.end())
-		return 0.;
-	return it->second;
-}
-
-
-
-// Setting attribute values
-template <>
-void AttributeStore::Set(const string &attribute, double value)
-{
-	auto it = MINIMUM_OVERRIDES.find(attribute);
-	if(it != MINIMUM_OVERRIDES.end())
-		value = max(value, it->second);
-	if(value && abs(value) < EPS)
-		value = 0.;
-	textAttributes[attribute] = value;
-}
-
-
-
-void AttributeStore::Set(const char *attribute, double value)
-{
-	Set(string(attribute), value);
-}
-
-
-
-template <>
-void AttributeStore::Set(const Attribute &attribute, double value)
-{
-	value = max(value, attribute.GetMinimumValue());
-	if(value && abs(value) < EPS)
-		value = 0.;
-	categorizedAttributes[attribute] = value;
-	textAttributes[attribute.GetLegacyName()] = value;
-}
-
-
+const double AttributeStore::EPS = 0.0000000001;
+const map<string, double> AttributeStore::MINIMUM_OVERRIDES = {
+	{"hull threshold", numeric_limits<double>::lowest()},
+	{"energy generation", numeric_limits<double>::lowest()},
+	{"energy consumption", numeric_limits<double>::lowest()},
+	{"fuel generation", numeric_limits<double>::lowest()},
+	{"fuel consumption", numeric_limits<double>::lowest()},
+	{"fuel energy", numeric_limits<double>::lowest()},
+	{"fuel heat", numeric_limits<double>::lowest()},
+	{"heat generation", numeric_limits<double>::lowest()},
+	{"flotsam chance", numeric_limits<double>::lowest()},
+	{"crew equivalent", numeric_limits<double>::lowest()}
+};
 
 // Checks whether there are any attributes stored here.
 bool AttributeStore::empty() const
@@ -124,33 +44,6 @@ bool AttributeStore::empty() const
 			return false;
 	}
 	return true;
-}
-
-
-
-// Gets the minimum allowed value of the attribute.
-template <>
-double AttributeStore::GetMinimum(const Attribute &attribute) const
-{
-	return attribute.GetMinimumValue();
-}
-
-
-
-template <>
-double AttributeStore::GetMinimum(const string &attribute) const
-{
-	auto it = MINIMUM_OVERRIDES.find(attribute);
-	if(it != MINIMUM_OVERRIDES.end())
-		return it->second;
-	return 0.;
-}
-
-
-
-double AttributeStore::GetMinimum(const char *attribute) const
-{
-	return GetMinimum(string(attribute));
 }
 
 
@@ -301,28 +194,6 @@ void AttributeStore::Save(DataWriter &writer, const Attribute &attribute, set<At
 
 
 
-// Determine whether the given number of instances of the given attributes can
-// be added to this instance. If not, return the maximum number that can be added.
-template <class A>
-int AttributeStore::CanAdd(const A &attribute, const AttributeStore &other, int count) const
-{
-	if(count)
-	{
-		double minimum = GetMinimum(attribute);
-		if(attribute == string("required crew"))
-			minimum = !(IsPresent(string("automaton")) || other.IsPresent(string("automaton")));
-
-		double value = Get(attribute);
-		double amount = other.Get(attribute);
-		// Allow for rounding errors:
-		if(value + amount * count < minimum - EPS)
-			return (value - minimum) / -amount + EPS;
-	}
-	return count;
-}
-
-
-
 int AttributeStore::CanAdd(const AttributeStore &other, int count) const
 {
 	for(const auto &it : textAttributes)
@@ -337,44 +208,6 @@ void AttributeStore::Add(const AttributeStore &other, const int count)
 {
 	for(auto &it : other.textAttributes)
 		Add(it.first, other, count);
-}
-
-
-
-template <>
-void AttributeStore::Add(const string &attribute, const AttributeStore &other, const int count)
-{
-	Set(attribute, Get(attribute) + other.Get(attribute) * count);
-}
-
-
-
-template <>
-void AttributeStore::Add(const Attribute &attribute, const AttributeStore &other, const int count)
-{
-	Set(attribute, Get(attribute) + other.Get(attribute) * count);
-}
-
-
-
-void AttributeStore::Add(const char *attribute, const AttributeStore &other, const int count)
-{
-	Set(attribute, Get(attribute) + other.Get(attribute) * count);
-}
-
-
-
-template <class A>
-void AttributeStore::Add(const A &attribute, const double amount)
-{
-	Set(attribute, Get(attribute) + amount);
-}
-
-
-
-void AttributeStore::Add(const char *attribute, const double amount)
-{
-	Add(string(attribute), amount);
 }
 
 
