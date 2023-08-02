@@ -393,7 +393,7 @@ bool LocationFilter::Matches(const Ship &ship) const
 	{
 		// Create a set from the positive-valued attributes of this ship.
 		set<string> shipAttributes;
-		ship.Attributes().Attributes().ForEach([&shipAttributes](const auto &attr)
+		ship.Attributes().Attributes().ForEach([&shipAttributes](const tuple<std::string, Attribute *, double> &attr)
 		{
 			if(get<2>(attr) > 0.)
 				shipAttributes.insert(shipAttributes.end(), get<0>(attr));

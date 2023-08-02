@@ -502,7 +502,10 @@ namespace {
 			for(auto &it : GameData::Outfits())
 			{
 				const Outfit &outfit = it.second;
-				outfit.Attributes().ForEach([&attributes](const auto &it){attributes.insert(get<0>(it));});
+				outfit.Attributes().ForEach([&attributes](const tuple<std::string, Attribute *, double> &it)
+				{
+					attributes.insert(get<0>(it));
+				});
 			}
 
 			cout << "name" << ',' << "category" << ',' << "cost" << ',' << "mass";
