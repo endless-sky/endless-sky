@@ -3663,6 +3663,15 @@ void PlayerInfo::RegisterDerivedConditions()
 	visitedSystemProvider.SetGetFunction(visitedSystemFun);
 	visitedSystemProvider.SetHasFunction(visitedSystemFun);
 
+	auto &&pluginProvider = conditions.GetProviderPrefixed("installed plugin: ");
+	auto pluginFun = [](const string &name) -> bool
+	{
+		const Plugin *plugin = Plugins::Get().Find(name.substr(strlen("installed plugin: ")));
+		return plugin ? plugin->enabled : false;
+	};
+	pluginProvider.SetHasFunction(pluginFun);
+	pluginProvider.SetGetFunction(pluginFun);
+
 	// Read-only navigation conditions.
 	auto HyperspaceTravelDays = [](const System *origin, const System *destination) -> int
 	{
