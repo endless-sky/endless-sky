@@ -564,6 +564,7 @@ void PreferencesPanel::DrawSettings()
 		ON_HIT_EFFECTS,
 		BACKGROUND_PARALLAX,
 		"Show hyperspace flash",
+		"Extended jump effects",
 		SHIP_OUTLINES,
 		"\t",
 		"HUD",
