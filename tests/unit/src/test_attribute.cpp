@@ -47,7 +47,7 @@ TEST_CASE( "Attribute::IsMultiplier", "[Attribute][IsMultiplier]" ) {
 		CHECK( Attribute(PASSIVE, SHIELDS).Multiplier().Relative().IsMultiplier() );
 		CHECK( Attribute(PASSIVE, ENERGY).Multiplier().Relative().IsMultiplier() );
 		CHECK( Attribute(PASSIVE, static_cast<AttributeEffect>(ATTRIBUTE_EFFECT_COUNT - 1))
-				.Multiplier().Relative().IsMultiplier() );
+				.Multiplier().Relative().IsMultiplier());
 	}
 }
 
@@ -71,20 +71,20 @@ TEST_CASE( "IsRelative", "[Attribute][IsRelative]" ) {
 		CHECK( Attribute(PASSIVE, SHIELDS).Multiplier().Relative().IsRelative() );
 		CHECK( Attribute(PASSIVE, ENERGY).Multiplier().Relative().IsRelative() );
 		CHECK( Attribute(PASSIVE, static_cast<AttributeEffect>(ATTRIBUTE_EFFECT_COUNT - 1))
-				.Multiplier().Relative().IsRelative() );
+				.Multiplier().Relative().IsRelative());
 	}
 }
 
 TEST_CASE( "Attribute::Relative", "[Attribute][Relative]" ) {
 	SECTION( "Equality" ) {
-		CHECK( Attribute(PASSIVE,SHIELDS).Relative() == Attribute(PASSIVE,SHIELDS).Relative().Relative() );
-		CHECK( Attribute(PASSIVE,SHIELDS).Relative().Multiplier() == Attribute(PASSIVE,SHIELDS).Multiplier().Relative() );
+		CHECK( Attribute(PASSIVE, SHIELDS).Relative() == Attribute(PASSIVE, SHIELDS).Relative().Relative() );
+		CHECK( Attribute(PASSIVE, SHIELDS).Relative().Multiplier() == Attribute(PASSIVE, SHIELDS).Multiplier().Relative() );
 	}
 }
 
 TEST_CASE( "Attribute::Multiplier", "[Attribute][Multiplier]" ) {
 	SECTION( "Equality" ) {
-		CHECK( Attribute(PASSIVE,SHIELDS).Multiplier() == Attribute(PASSIVE,SHIELDS).Multiplier().Multiplier() );
+		CHECK( Attribute(PASSIVE, SHIELDS).Multiplier() == Attribute(PASSIVE, SHIELDS).Multiplier().Multiplier() );
 	}
 }
 
