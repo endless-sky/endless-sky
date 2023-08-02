@@ -172,10 +172,10 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		{
 			map<const Outfit*, int> uniqueOutfits;
 			for(const auto &it : shipIt->get()->Outfits())
-				if(it.first->Category() == "Unique" || it.first->Attributes().Get("unique") > 0)
+				if(it.first->Attributes().Get("unique") > 0)
 					uniqueOutfits[it.first] = it.second;
 			for(const auto &it : shipIt->get()->Cargo().Outfits())
-				if(it.first->Category() == "Unique" || it.first->Attributes().Get("unique") > 0)
+				if(it.first->Attributes().Get("unique") > 0)
 					uniqueOutfits[it.first] += it.second;
 
 			string message = "Are you sure you want to disown \""
