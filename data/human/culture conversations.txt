@@ -555,15 +555,15 @@ mission "Scientists at the Pub after a Conference"
 					decline
 			label "overheard scientists 1"
 			`	Fragments of conversation make their way to you through the din of the pub.`
-			` `
+			``
 			`	Two of the younger attendees are looking a bit nervous. "I'm so glad to have my presentation over with. I was so worried about having to present on the first day, but now I can finally just relax and actually listen to the other talks!"`
 			`	"Oh definitely! I probably shouldn't even be here - I should really be rehearsing... Oh! Waiter, another beer, please!"`
 			`	"Got your slide deck ready for tomorrow?"`
 			`	"Yeah, but I'm still terrified. I hate public speaking."`
 			`	"Don't worry, you know more about your particular area of expertise than they do. You'll be fine once you're on stage! And besides, graduate school is one giant exercise in public speaking. Comfort comes with practice."`
-			` `
+			``
 			`	Another scientist is rolling his eyes after a post-mortem of the day's events. "Is there some law I don't know about that requires every 'question' to start with 'I guess this isn't so much a question as a comment...'?"`
-			` `
+			``
 			`	An exasperated academic is speaking emphatically to her friend about what you infer to be a presentation they both heard earlier. "I don't think the nucleotide evidence supports their hypothesis at all! Like, I know the proteomic data could be used to support their conclusion, but they're ignoring synonymous mutations!"`
 			choice
 				`	(Order another beverage and continue listening.)`
@@ -573,12 +573,12 @@ mission "Scientists at the Pub after a Conference"
 			label "overheard scientists 2"
 			`	The group's conversation grows louder by virtue of both passion for the subject as well as the influence of a few drinks.`
 			`	"Look, the analysis might be fine, but if they can't even be bothered to provide the version numbers for their analytical software, then it isn't reproducible and that's an automatic 'reject' from me."`
-			` `
+			``
 			`	One person is looking slightly shell-shocked after considering what might have been. "Can you believe my computer crashed right before I had to present? Good thing I had backups. Two is one and one is none."`
-			` `
+			``
 			`	A group seem to be discussing some other colleagues in the field who are, presumably, not present this evening. "Singh and Esterhazy are such arrogant jerks. Their work is okay, I guess, but not enough to justify their wannabe rockstar personalities!"`
 			`	"Sure, but they aren't just arrogant jerks, they're charismatic arrogant jerks. Charisma attracts good grad students to their lab, who produce good papers, who they put their name on. It's a positive feedback loop."`
-			` `
+			``
 			`	Grant applications seem to be a common subject. "The Republic Medical Research Agency said my work is too theoretical, but the University of Chiron Department of Microbiology says it's too applied!"`
 			`	"That's a conundrum, alright. Maybe you could find some funding from industry? The Syndicate might be interested in your work."`
 			`	"Yeah, but I'm not sure yet if I'm willing to give up my academic freedom."`
@@ -590,7 +590,7 @@ mission "Scientists at the Pub after a Conference"
 			label "overheard scientists 3"
 			`	Two attendees compare gripes about job demands. "Teaching sucks. Between class hours, office hours, and preparing lectures, there's hardly any time left for research."`
 			`	"That's funny! Teaching undergrads is my one respite from grant-writing!"`
-			` `
+			``
 			`	A sociable but exhausted-looking man is sitting back in his chair. "These conferences only last three or four days, but it always feels like it ages you a year."`
 			`	You leave after finishing your meal, reflecting on having overheard a slice of a life very different from your own.`
 				decline
