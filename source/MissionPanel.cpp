@@ -210,37 +210,48 @@ void MissionPanel::Draw()
 	hoverSortCount += hoverSort >= 0 ? (hoverSortCount < HOVER_TIME) : (hoverSortCount ? -1 : 0);
 
 	Color routeColor(.2f, .1f, 0.f, 0.f);
-	const System *system = selectedSystem;
-	while(distance.Days(system) > 0)
+	const Ship *flagship = player.Flagship();
+	const double jumpRange = flagship ? flagship->JumpNavigation().JumpRange() : 0.;
+	const System *next = selectedSystem;
+	const System *previous;
+	for(; distance.Days(next) > 0; next = previous)
 	{
-		const System *next = distance.Route(system);
+		previous = distance.Route(next);
+		const bool isHyper = previous->Links().count(next);
+		bool isWormhole = false;
+		bool isMappable = true;
+		for(const StellarObject &object : previous->Objects())
+			if(object.HasSprite() && object.HasValidPlanet()
+				&& object.GetPlanet()->IsWormhole()
+				&& player.HasVisited(*object.GetPlanet())
+				&& player.HasVisited(*previous) && player.HasVisited(*next)
+				&& &object.GetPlanet()->GetWormhole()->WormholeDestination(*previous) == next)
+			{
+				isWormhole = true;
+				if(object.GetPlanet()->GetWormhole()->IsMappable())
+				{
+					isMappable = true;
+					break;
+				}
+			}
+		const bool isJump = !isHyper && !isWormhole && previous->JumpNeighbors(jumpRange).count(next);
 
-		Point from = Zoom() * (next->Position() + center);
-		Point to = Zoom() * (system->Position() + center);
+		if(!isHyper && !isJump && !isWormhole)
+			break;
+		if(isWormhole && !isMappable)
+			continue;
+
+		Point from = Zoom() * (previous->Position() + center);
+		Point to = Zoom() * (next->Position() + center);
 		const Point unit = (to - from).Unit();
 		from += LINK_OFFSET * unit;
 		to -= LINK_OFFSET * unit;
 
-		const bool isHyper = system->Links().count(next);
-		bool isWormhole = false;
-		for(const StellarObject &object : system->Objects())
-			if(object.HasSprite() && object.HasValidPlanet()
-				&& object.GetPlanet()->IsWormhole()
-				&& player.HasVisited(*object.GetPlanet())
-				&& object.GetPlanet()->GetWormhole()->IsMappable()
-				&& player.HasVisited(*system) && player.HasVisited(*next)
-				&& &object.GetPlanet()->GetWormhole()->WormholeDestination(*next) == system)
-			{
-				isWormhole = true;
-				break;
-			}
-
-		if(isHyper || isWormhole)
-			LineShader::Draw(from, to, 5.f, routeColor);
-		else
+		// Non-hyperspace jumps are drawn with a dashed line.
+		if(isJump)
 			LineShader::DrawDashed(from, to, unit, 5.f, routeColor, 11., 4.);
-
-		system = next;
+		else
+			LineShader::Draw(from, to, 5.f, routeColor);
 	}
 
 	const Set<Color> &colors = GameData::Colors();

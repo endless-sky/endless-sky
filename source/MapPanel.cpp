@@ -1021,31 +1021,36 @@ void MapPanel::DrawTravelPlan()
 		}
 	stranded |= !hasEscort;
 
+	const double jumpRange = flagship->JumpNavigation().JumpRange();
+	const System *next;
 	const System *previous = &playerSystem;
-	double jumpRange = flagship->JumpNavigation().JumpRange();
-	for(int i = player.TravelPlan().size() - 1; i >= 0; --i)
+	for(int i = player.TravelPlan().size() - 1; i >= 0; --i, previous = next)
 	{
-		const System *next = player.TravelPlan()[i];
-		bool isHyper = previous->Links().count(next);
+		next = player.TravelPlan()[i];
+		const bool isHyper = previous->Links().count(next);
 		bool isWormhole = false;
+		bool isMappable = true;
 		for(const StellarObject &object : previous->Objects())
-		{
 			if(object.HasSprite() && object.HasValidPlanet()
 				&& object.GetPlanet()->IsWormhole()
 				&& player.HasVisited(*object.GetPlanet())
-				&& object.GetPlanet()->GetWormhole()->IsMappable()
 				&& player.HasVisited(*previous) && player.HasVisited(*next)
 				&& &object.GetPlanet()->GetWormhole()->WormholeDestination(*previous) == next)
 			{
 				isWormhole = true;
-				wormholeColor = *object.GetPlanet()->GetWormhole()->GetLinkColor();
-				break;
+				if(object.GetPlanet()->GetWormhole()->IsMappable())
+				{
+					isMappable = true;
+					wormholeColor = *object.GetPlanet()->GetWormhole()->GetLinkColor();
+					break;
+				}
 			}
-		}
-		bool isJump = !isHyper && !isWormhole && previous->JumpNeighbors(jumpRange).count(next);
+		const bool isJump = !isHyper && !isWormhole && previous->JumpNeighbors(jumpRange).count(next);
 
 		if(!isHyper && !isJump && !isWormhole)
 			break;
+		if(isWormhole && !isMappable)
+			continue;
 
 		// Wormholes cost nothing to go through. If this is not a wormhole,
 		// check how much fuel every ship will expend to go through it.
@@ -1073,18 +1078,17 @@ void MapPanel::DrawTravelPlan()
 		else if(fuel[flagship] >= 0.)
 			drawColor = defaultColor;
 
-		Point from = Zoom() * (next->Position() + center);
-		Point to = Zoom() * (previous->Position() + center);
+		Point from = Zoom() * (previous->Position() + center);
+		Point to = Zoom() * (next->Position() + center);
 		const Point unit = (to - from).Unit();
 		from += LINK_OFFSET * unit;
 		to -= LINK_OFFSET * unit;
+
 		// Non-hyperspace jumps are drawn with a dashed line.
 		if(isJump)
 			LineShader::DrawDashed(from, to, unit, 3.f, drawColor, 11., 4.);
 		else
 			LineShader::Draw(from, to, 3.f, drawColor);
-
-		previous = next;
 	}
 }
 
