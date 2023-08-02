@@ -28,7 +28,8 @@ public:
 	// The created attribute may report a different category or effect
 	// if the same attribute can be described in multiple ways.
 	Attribute(AttributeCategory category, AttributeEffect effect,
-			AttributeEffect secondary = static_cast<AttributeEffect>(-1));
+			AttributeEffect secondary = static_cast<AttributeEffect>(-1),
+			bool usePreferred = true);
 	// Gets the attribute for the specified token, if any.
 	static Attribute *Parse(const std::string &token);
 
