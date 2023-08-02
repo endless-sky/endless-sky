@@ -35,20 +35,23 @@ bool Attribute::cached = false;
 
 
 // Creates a new categorized attribute. Use -1 if there is no category or effect in the definition.
-Attribute::Attribute(AttributeCategory category, AttributeEffect effect, AttributeEffect secondary)
+Attribute::Attribute(AttributeCategory category, AttributeEffect effect, AttributeEffect secondary, bool usePreferred)
 {
-	if(category == -1)
-		category = PASSIVE;
-	if(category == PASSIVE && effect <= CLOAK && effect > HULL)
-		category = static_cast<AttributeCategory>(effect);
-	else if(effect == -1 && category <= CLOAKING)
-		effect = static_cast<AttributeEffect>(category);
-	else if(effect == -1 && category == AFTERBURNING)
-		effect = THRUST;
-	if(category == PASSIVE && effect == PIERCING)
-		category = DAMAGE;
-	if(category == COOL && effect == ENERGY)
-		category = ACTIVE_COOL;
+	if(usePreferred)
+	{
+		if(category == -1)
+			category = PASSIVE;
+		if(category == PASSIVE && effect <= CLOAK && effect > HULL)
+			category = static_cast<AttributeCategory>(effect);
+		else if(effect == -1 && category <= CLOAKING)
+			effect = static_cast<AttributeEffect>(category);
+		else if(effect == -1 && category == AFTERBURNING)
+			effect = THRUST;
+		if(category == PASSIVE && effect == PIERCING)
+			category = DAMAGE;
+		if(category == COOL && effect == ENERGY)
+			category = ACTIVE_COOL;
+	}
 	this->category = category;
 	this->effect = effect;
 	this->secondary = secondary;

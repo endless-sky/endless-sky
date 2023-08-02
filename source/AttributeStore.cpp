@@ -210,15 +210,15 @@ void AttributeStore::Save(DataWriter &writer) const
 			writer.Write(it.first, it.second);
 	}
 	set<Attribute> written;
-	Attribute empty(static_cast<AttributeCategory>(-1), static_cast<AttributeEffect>(-1));
+	Attribute last(static_cast<AttributeCategory>(-1), static_cast<AttributeEffect>(-1));
 	for(auto &it : categorizedAttributes)
 	{
 		if(it.second)
-			Save(writer, it.first, written, empty);
+			Save(writer, it.first, written, last);
 	}
-	if(empty.Secondary() != -1)
+	if(last.Secondary() != -1)
 		writer.EndChild();
-	if(empty.Effect() != -1)
+	if(last.Effect() != -1 && last.Category() != PASSIVE)
 		writer.EndChild();
 }
 
@@ -228,10 +228,11 @@ void AttributeStore::Save(DataWriter &writer) const
 Attribute GetParent(const Attribute &attribute)
 {
 	if(attribute.Secondary() != -1)
-		return Attribute(attribute.Category(), attribute.Effect());
+		return Attribute(attribute.Category(), attribute.Effect(), static_cast<AttributeEffect>(-1), false);
 	if(attribute.Effect() != -1)
-		return Attribute(attribute.Category(), static_cast<AttributeEffect>(-1));
-	return Attribute(static_cast<AttributeCategory>(-1), static_cast<AttributeEffect>(-1));
+		return Attribute(attribute.Category(), static_cast<AttributeEffect>(-1), static_cast<AttributeEffect>(-1), false);
+	return Attribute(static_cast<AttributeCategory>(-1), static_cast<AttributeEffect>(-1),
+			static_cast<AttributeEffect>(-1), false);
 }
 
 
@@ -239,14 +240,26 @@ Attribute GetParent(const Attribute &attribute)
 // Checks if the attribute is a (direct or indirect) child of the other.
 bool IsChild(const Attribute &parent, const Attribute &child)
 {
-	Attribute a = GetParent(child);
-	if(a == parent)
+	if(parent.Category() == -1)
 		return true;
-	a = GetParent(a);
-	if(a == parent)
+	else if(parent == child)
+		return false;
+	else if(parent.Secondary() != -1)
+		return false;
+	else if(parent.Category() == PASSIVE && parent.Effect() == -1)
 		return true;
-	a = GetParent(a);
-	return a == parent;
+	else if(parent.Effect() == child.Effect() || (parent.Effect() != -1 && child.Effect() == -1))
+		return true;
+	return parent.Category() == child.Category();
+}
+
+
+
+// Gets the value that is saved for this attribute. Used here because attributes are not
+// always in their preferred form when saving.
+Attribute GetPreferredForm(const Attribute &attribute)
+{
+	return Attribute(attribute.Category(), attribute.Effect(), attribute.Secondary());
 }
 
 
@@ -255,7 +268,8 @@ bool IsChild(const Attribute &parent, const Attribute &child)
 void AttributeStore::Save(DataWriter &writer, const Attribute &attribute, set<Attribute> &written,
 		Attribute &previous) const
 {
-	if(attribute.Category() == -1 || written.count(attribute))
+	if(attribute.Category() == -1 || (attribute.Category() == PASSIVE && attribute.Effect() == -1)
+			|| written.count(attribute))
 		return;
 
 	if(!IsChild(GetParent(previous), attribute)) // wrong parent
@@ -263,22 +277,26 @@ void AttributeStore::Save(DataWriter &writer, const Attribute &attribute, set<At
 		writer.EndChild();
 		previous = GetParent(previous);
 	}
-	Save(writer, GetParent(attribute), written, previous);
-	if(previous.Category() != -1 && GetParent(attribute) == previous) // first child after parent
-		writer.BeginChild();
+
+	Save(writer, GetParent(attribute), written, previous);// saving parent
+	if(written.count(GetPreferredForm(attribute))) // don't duplicate attributes
+		return;
+
+	if(previous.Category() != -1 && previous.Category() != PASSIVE && GetParent(attribute) == previous)
+		writer.BeginChild(); // first child after parent
 
 	if(attribute.Effect() != -1)
 		writer.WriteToken(Attribute::GetEffectName(attribute.Secondary() == -1 ? attribute.Effect() : attribute.Secondary()));
 	else
 		writer.WriteToken(Attribute::GetCategoryName(attribute.Category()));
-
-	if(IsPresent(attribute))
-		writer.Write(Get(attribute));
+	Attribute preferred = GetPreferredForm(attribute);
+	if(IsPresent(preferred))
+		writer.Write(Get(preferred));
 	else
 		writer.Write();
-
 	previous = attribute;
 	written.emplace(attribute);
+	written.emplace(preferred);
 }
 
 
