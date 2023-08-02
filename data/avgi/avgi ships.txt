@@ -1045,12 +1045,12 @@ ship "Prismaios"
 	"steering engine" 3 99
 		angle -90
 		right
+	gun -9 -48
+	gun 9 -48
 	gun -9 33 "Sidereal Launcher"
 		angle -90
 	gun 9 33 "Sidereal Launcher"
 		angle 90
-	gun -9 -48
-	gun 9 -48
 	turret -9 18 "Speckle Turret"
 	turret 9 18 "Speckle Turret"
 	turret 0 90 "Phased Array Laser (Green)"

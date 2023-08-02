@@ -1,0 +1,473 @@
+ship "Twilight Ka'sei 1A"
+	"display name" "Aberration Type I-A"
+	plural "Type I-A Aberrations"
+	sprite "ship/aberration 1-a"
+	thumbnail "thumbnail/aberration 1-a"
+	"never disabled"
+	attributes
+		category "Interceptor"
+		"cost" 5700000
+		"shields" 4800
+		"hull" 14400
+		"required crew" 1
+		"bunks" 1
+		"mass" 289
+		"drag" 3.0
+		"heat dissipation" .91
+		"fuel capacity" 300
+		"ramscoop" 0.2
+		"cargo space" 82
+		"outfit space" 403
+		"weapon capacity" 194
+		"engine capacity" 96
+		"energy capacity" 12000
+		"inscrutable" 1
+		"energy generation" 39
+		"heat generation" 32
+		"shield heat" 3.4
+		"shield generation" 0.9
+		"hull repair rate" 0.9
+		"ka'sei" 1
+		weapon
+			"blast radius" 500
+			"shield damage" 8400
+			"hull damage" 6800
+			"hit force" 7800
+	outfits
+		"Ka'het Ravager Beam" 2
+
+		"Ka'het Primary Cooling"
+		"Ka'het Shield Restorer"
+		"Ka'het MHD Generator"
+		"Ka'het Reserve Accumulator"
+
+		"Ka'het Compact Engine" 2
+
+	gun -12 -31 "Ka'het Ravager Beam"
+	gun 12 -31 "Ka'het Ravager Beam"
+
+	engine -18 35.5
+	engine 18 35.5
+
+	explode "tiny explosion" 8
+	explode "small explosion" 14
+	explode "medium explosion" 26
+	explode "large explosion" 18
+	"final explode" "nuke explosion"
+	"final explode" "nuke residue fast" 50
+	description "This appears to be some kind of organo-metallic entity, made from a strange mosaic of organic tissue, conventional material, and an exotic matter that defies conventional analysis."
+	description "This variant in particular seems to be as close to the baseline as can be expected from such a strange creature."
+
+ship "Twilight Ka'sei 1A" "Twilight Ka'sei 1A (Disable-able)"
+	"uncapturable"
+
+ship "Twilight Ka'sei 1B"
+	"display name" "Aberration Type I-B"
+	plural "Type I-B Aberrations"
+	sprite "ship/aberration 1-b"
+	thumbnail "thumbnail/aberration 1-b"
+	"never disabled"
+	attributes
+		category "Interceptor"
+		"cost" 5700000
+		"shields" 3200
+		"hull" 14400
+		"required crew" 1
+		"bunks" 1
+		"mass" 304
+		"drag" 3.2
+		"heat dissipation" .91
+		"fuel capacity" 300
+		"ramscoop" 0.2
+		"cargo space" 61
+		"outfit space" 421
+		"weapon capacity" 237
+		"engine capacity" 96
+		"energy capacity" 12000
+		"inscrutable" 1
+		"energy generation" 39
+		"heat generation" 32
+		"shield heat" 3.4
+		"shield generation" 0.9
+		"hull repair rate" 0.9
+		"ka'sei" 1
+		weapon
+			"blast radius" 500
+			"shield damage" 8400
+			"hull damage" 6800
+			"hit force" 7800
+	outfits
+		"Ka'het Ravager Beam" 6
+		"Nucleolysis Beam"
+
+		"Ka'het Primary Cooling"
+		"Ka'het Shield Restorer"
+		"Ka'het MHD Generator"
+		"Antimatter Power Cell"
+		"Ka'het Reserve Accumulator"
+
+		"Ka'het Compact Engine" 2
+
+	gun -13.5 -36.5 "Ka'het Ravager Beam"
+	gun 13.5 -36.5 "Ka'het Ravager Beam"
+	gun -24.5 -29.5 "Ka'het Ravager Beam"
+	gun 24.5 -29.5 "Ka'het Ravager Beam"
+	gun 0 -27.5 "Nucleolysis Beam"
+	gun -28 -19.5 "Ka'het Ravager Beam"
+	gun 28 -19.5 "Ka'het Ravager Beam"
+
+	engine -18 50.5 "Ka'het Ravager Beam"
+	engine 18 50.5 "Ka'het Ravager Beam"
+
+	explode "tiny explosion" 8
+	explode "small explosion" 14
+	explode "medium explosion" 26
+	explode "large explosion" 18
+	"final explode" "nuke explosion"
+	"final explode" "nuke residue fast" 50
+	description "This appears to be some kind of organo-metallic entity, made from a strange mosaic of organic tissue, conventional material, and an exotic matter that defies conventional analysis."
+	description "This variant in particular seems to be much more heavily armed than most others of its kind."
+
+ship "Twilight Ka'sei 1B" "Twilight Ka'sei 1B (Disable-able)"
+	"uncapturable"
+
+ship "Twilight Ka'sei 1C"
+	"display name" "Aberration Type I-C"
+	plural "Type I-C Aberrations"
+	sprite "ship/aberration 1-c"
+	thumbnail "thumbnail/aberration 1-c"
+	"never disabled"
+	attributes
+		category "Interceptor"
+		"cost" 5700000
+		"shields" 6800
+		"hull" 18600
+		"required crew" 1
+		"bunks" 1
+		"mass" 354
+		"drag" 3.7
+		"heat dissipation" .91
+		"fuel capacity" 300
+		"ramscoop" 0.2
+		"cargo space" 123
+		"outfit space" 443
+		"weapon capacity" 194
+		"engine capacity" 101
+		"energy capacity" 17000
+		"inscrutable" 1
+		"energy generation" 39
+		"heat generation" 32
+		"shield heat" 3.4
+		"shield generation" 0.9
+		"hull repair rate" 0.9
+		"ka'sei" 1
+		weapon
+			"blast radius" 500
+			"shield damage" 8400
+			"hull damage" 6800
+			"hit force" 7800
+	outfits
+		"Ka'het Ravager Beam" 2
+
+		"Ka'het Primary Cooling"
+		"Ka'het Shield Restorer"
+		"Ka'het MHD Generator"
+		"Ka'het Reserve Accumulator"
+
+		"Ka'het Compact Engine" 2
+
+	gun -11 -40.5
+	gun 11 -40.5
+
+	engine -19 57
+	engine 19 57
+
+	explode "tiny explosion" 8
+	explode "small explosion" 14
+	explode "medium explosion" 26
+	explode "large explosion" 18
+	"final explode" "nuke explosion"
+	"final explode" "nuke residue fast" 50
+	description "This appears to be some kind of organo-metallic entity, made from a strange mosaic of organic tissue, conventional material, and an exotic matter that defies conventional analysis."
+	description "This variant in particular seems to be somewhat larger and sturdier than others."
+
+
+ship "Twilight Ka'sei 1C" "Twilight Ka'sei 1C (Disable-able)"
+	"uncapturable"
+
+ship "Twilight Ka'sei 1D"
+	"display name" "Aberration Type I-D"
+	plural "Type I-D Aberrations"
+	sprite "ship/aberration 1-d"
+	thumbnail "thumbnail/aberration 1-d"
+	"never disabled"
+	attributes
+		category "Interceptor"
+		"cost" 5700000
+		"shields" 4800
+		"hull" 14400
+		"required crew" 1
+		"bunks" 1
+		"mass" 289
+		"drag" 3.0
+		"heat dissipation" .91
+		"fuel capacity" 300
+		"ramscoop" 0.2
+		"cargo space" 82
+		"outfit space" 403
+		"weapon capacity" 194
+		"engine capacity" 96
+		"energy capacity" 12000
+		"inscrutable" 1
+		"energy generation" 39
+		"heat generation" 32
+		"shield heat" 3.4
+		"shield generation" 0.9
+		"hull repair rate" 0.9
+		"turn" 492
+		"turning heat" 0.9
+		"ka'sei" 1
+		weapon
+			"blast radius" 500
+			"shield damage" 8400
+			"hull damage" 6800
+			"hit force" 7800
+	outfits
+		"Ka'het Ravager Beam" 2
+
+		"Ka'het Primary Cooling"
+		"Ka'het Shield Restorer"
+		"Ka'het MHD Generator"
+		"Ka'het Reserve Accumulator"
+
+		"Ka'het Compact Engine" 2
+
+	gun -9 -23.5 "Ka'het Ravager Beam"
+	gun 9 -23.5 "Ka'het Ravager Beam"
+
+	engine -12.5 37.5
+	engine 12.5 37.5
+
+	explode "tiny explosion" 8
+	explode "small explosion" 14
+	explode "medium explosion" 26
+	explode "large explosion" 18
+	"final explode" "nuke explosion"
+	"final explode" "nuke residue fast" 50
+	description "This appears to be some kind of organo-metallic entity, made from a strange mosaic of organic tissue, conventional material, and an exotic matter that defies conventional analysis."
+	description "This variant in particular appears to have vane-like structures behind its engines, allowing it to turn more quickly."
+
+ship "Twilight Ka'sei 1D" "Twilight Ka'sei 1D (Disable-able)"
+	"uncapturable"
+
+ship "Twilight Ka'sei 1E"
+	"display name" "Aberration Type I-E"
+	plural "Type I-E Aberrations"
+	sprite "ship/aberration 1-e"
+	thumbnail "thumbnail/aberration 1-e"
+	"never disabled"
+	attributes
+		category "Interceptor"
+		"cost" 5700000
+		"shields" 4800
+		"hull" 14400
+		"required crew" 1
+		"bunks" 1
+		"mass" 240
+		"drag" 1.4
+		"heat dissipation" .96
+		"fuel capacity" 300
+		"ramscoop" 0.2
+		"cargo space" 82
+		"outfit space" 403
+		"weapon capacity" 223
+		"engine capacity" 96
+		"energy capacity" 12000
+		"inscrutable" 1
+		"energy generation" 39
+		"heat generation" 32
+		"shield heat" 3.4
+		"shield generation" 0.9
+		"hull repair rate" 0.9
+		"ka'sei" 1
+		weapon
+			"blast radius" 500
+			"shield damage" 8400
+			"hull damage" 6800
+			"hit force" 7800
+	outfits
+		"Ka'het Ravager Beam" 4
+
+		"Ka'het Primary Cooling"
+		"Ka'het Shield Restorer"
+		"Ka'het MHD Generator"
+		"Ka'het Reserve Accumulator"
+
+		"Ka'het Compact Engine" 3
+
+	gun -16.5 -8.5 "Ka'het Ravager Beam"
+	gun 16.5 -8.5 "Ka'het Ravager Beam"
+	gun -13 -3.5 "Ka'het Ravager Beam"
+	gun 13 -3.5 "Ka'het Ravager Beam"
+
+	engine -11.5 85.5
+	engine 11.5 85.5
+
+	explode "tiny explosion" 8
+	explode "small explosion" 14
+	explode "medium explosion" 26
+	explode "large explosion" 18
+	"final explode" "nuke explosion"
+	"final explode" "nuke residue fast" 50
+	description "This appears to be some kind of organo-metallic entity, made from a strange mosaic of organic tissue, conventional material, and an exotic matter that defies conventional analysis."
+	description "This variant in particular seems to be lighter and capable of higher speeds while carrying an enlarged armament."
+
+ship "Twilight Ka'sei 1E" "Twilight Ka'sei 1E (Disable-able)"
+	"uncapturable"
+
+
+
+ship "Twilight Ka'sei 1F"
+	"display name" "Aberration Type I-F"
+	plural "Type I-F Aberrations"
+	sprite "ship/aberration 1-f"
+	thumbnail "thumbnail/aberration 1-f"
+	"never disabled"
+	attributes
+		category "Interceptor"
+		"cost" 5700000
+		"shields" 5400
+		"hull" 17200
+		"required crew" 1
+		"bunks" 1
+		"mass" 303
+		"drag" 2.7
+		"heat dissipation" .91
+		"fuel capacity" 300
+		"ramscoop" 0.2
+		"cargo space" 82
+		"outfit space" 453
+		"weapon capacity" 194
+		"engine capacity" 154
+		"energy capacity" 12000
+		"inscrutable" 1
+		"energy generation" 39
+		"heat generation" 32
+		"shield heat" 3.4
+		"shield generation" 0.9
+		"hull repair rate" 0.9
+		"ka'sei" 1
+		weapon
+			"blast radius" 500
+			"shield damage" 8400
+			"hull damage" 6800
+			"hit force" 7800
+	outfits
+		"Ka'het Ravager Beam" 2
+
+		"Ka'het Primary Cooling"
+		"Ka'het Shield Restorer"
+		"Ka'het MHD Generator"
+		"Ka'het Reserve Accumulator"
+
+		"Ka'het Compact Engine" 5
+
+	gun -14.5 -63.5 "Ka'het Ravager Beam"
+	gun 14.5 -63.5 "Ka'het Ravager Beam"
+	turret -11.5 -21.5
+	turret 11.5 -21.5
+
+	engine -14 37.5
+		zoom 1.5
+	engine 14 37.5
+		zoom 1.5
+	engine -6.5 39.5
+		zoom 1.5
+	engine 6.5 39.5
+		zoom 1.5
+
+	explode "tiny explosion" 8
+	explode "small explosion" 14
+	explode "medium explosion" 26
+	explode "large explosion" 18
+	"final explode" "nuke explosion"
+	"final explode" "nuke residue fast" 50
+	description "This appears to be some kind of organo-metallic entity, made from a strange mosaic of organic tissue, conventional material, and an exotic matter that defies conventional analysis."
+	description "This variant in particular seems to have grown extra thrusters around a lean, sleek fuselage."
+
+ship "Twilight Ka'sei 1F" "Twilight Ka'sei 1F (Disable-able)"
+	"uncapturable"
+
+ship "Twilight Ka'sei 1G"
+	"display name" "Aberration Type I-G"
+	plural "Type I-G Aberrations"
+	sprite "ship/aberration 1-g"
+	thumbnail "thumbnail/aberration 1-g"
+	"never disabled"
+	attributes
+		category "Interceptor"
+		"cost" 5700000
+		"shields" 4800
+		"hull" 14400
+		"required crew" 1
+		"bunks" 1
+		"mass" 469
+		"drag" 4.8
+		"heat dissipation" .91
+		"fuel capacity" 300
+		"ramscoop" 0.2
+		"cargo space" 82
+		"outfit space" 463
+		"weapon capacity" 244
+		"engine capacity" 96
+		"energy capacity" 12000
+		"inscrutable" 1
+		"energy generation" 39
+		"heat generation" 32
+		"shield heat" 3.4
+		"shield generation" 0.9
+		"hull repair rate" 0.9
+		"ka'sei" 1
+		weapon
+			"blast radius" 500
+			"shield damage" 8400
+			"hull damage" 6800
+			"hit force" 7800
+	outfits
+		"Ka'het Ravager Beam" 2
+		"Telescopic Antimissile" 4
+
+		"Ka'het Primary Cooling"
+		"Ka'het Shield Restorer"
+		"Ka'het MHD Generator"
+		"Ka'het Reserve Accumulator"
+
+		"Ka'het Compact Engine" 2
+
+	gun -34.5 -58
+	gun 34.5 -58
+	turret -9.5 -22.5 "Telescopic Antimissile"
+	turret 9.5 -22.5 "Telescopic Antimissile"
+	turret -33.5 -9.5 "Telescopic Antimissile"
+	turret 33.5 -9.5 "Telescopic Antimissile"
+	turret 0 -2.5
+
+	engine -3.5 43.5
+	engine 3.5 43.5
+
+	explode "tiny explosion" 8
+	explode "small explosion" 14
+	explode "medium explosion" 26
+	explode "large explosion" 18
+	"final explode" "nuke explosion"
+	"final explode" "nuke residue fast" 50
+	description "This appears to be some kind of organo-metallic entity, made from a strange mosaic of organic tissue, conventional material, and an exotic matter that defies conventional analysis."
+	description "This variant in particular appears to have several hardpoints designed to mount turrets."
+
+ship "Twilight Ka'sei 1G" "Twilight Ka'sei 1G (Disable-able)"
+	"uncapturable"
+
+
+
+
+

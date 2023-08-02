@@ -2,8 +2,8 @@
 
 outfit "Nucleolysis Beam"
 	category "Guns"
-	cost 322000
-	thumbnail "outfit/nucleolysis"
+	cost 1800000
+	thumbnail "outfit/nucleolysis beam"
 	"mass" 16
 	"outfit space" -23
 	"weapon capacity" -23
@@ -11,8 +11,8 @@ outfit "Nucleolysis Beam"
 	weapon
 		sprite "projectile/nucleolysis beam"
 			"frame rate" 15
-		sound "disruptor"
-		"hit effect" "ravager impact"
+		sound "fire-lance"
+		"hit effect" "acuit hit"
 		"inaccuracy" .2
 		"velocity" 380
 		"lifetime" 1
@@ -28,19 +28,49 @@ outfit "Nucleolysis Beam"
 	description "In aggregate, this can rapidly deplete a ship's deuterium fuel while also causing the very matter of its hull to decay."
 
 
+outfit "Telescopic Antimissile"
+	category "Turrets"
+	cost 6000000
+	thumbnail "outfit/telescopic anti missile"
+	"mass" 40
+	"outfit space" -40
+	"weapon capacity" -40
+	"turret mounts" -1
+	weapon
+		"hit effect" "quarg anti-missile"
+		"hardpoint sprite" "hardpoint/quarg anti missile"
+		"anti-missile" 20
+		"velocity" 760
+		"lifetime" 1
+		"reload" 15
+		"firing energy" 90
+
+
+
 # Systems:
 
 
+outfit "Anomalous Shield Projector"
+	category "Systems"
+	cost 22000000
+	thumbnail "outfit/anomalous shield projector"
+	"mass" 8
+	"outfit space" -12
+	"shield generation" 6
+	"shield energy" 6
+	description "This emitter produces no detectable fields of any kind, yet a shield somehow springs into existence whenever something that could damage it comes near enough."
 
 
 
 # Power:
 
-outfit "Anomalous Antimatter Cell"
+outfit "Antimatter Power Cell"
 	category "Power"
-	cost 27000
-	thumbnail "outfit/ka'het reserve accumulator"
-	"mass" 2
-	"outfit space" -3
-	"energy capacity" 2400
-	description "This strange device seems to be partially organic in nature, slowly leaking antiprotons through a constantly-regrowing mesh to produce anomalous amounts of power."
+	cost 11000000
+	thumbnail "outfit/antimatter cell"
+	"mass" 32
+	"outfit space" -13
+	"energy generation" 9.9
+	"heat generation" 4.9
+	"unplunderable"
+	description "This strange device seems to be partially organic in nature, slowly leaking antiprotons through a constantly-regrowing spongelike structure to release energy. The amount of power produced is inconsistent with the amount of matter and antimatter being annihilated, inexplicably producing more than should be possible."
