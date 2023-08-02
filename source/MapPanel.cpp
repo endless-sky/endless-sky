@@ -1041,7 +1041,7 @@ void MapPanel::DrawTravelPlan()
 		bool skip = true;
 		for(const StellarObject &object : previous->Objects())
 		{
-			// Determine if this step fo the travel plan can be completed by traversing a wormhole.
+			// Determine if this step of the travel plan can be completed by traversing a wormhole.
 			bool wormholeConnection = object.HasSprite()
 				&& object.HasValidPlanet()
 				&& object.GetPlanet()->IsWormhole()
