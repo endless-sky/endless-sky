@@ -341,8 +341,16 @@ void AttributeStore::Add(const AttributeStore &other, const int count)
 
 
 
-template <class A>
-void AttributeStore::Add(const A &attribute, const AttributeStore &other, const int count)
+template <>
+void AttributeStore::Add(const string &attribute, const AttributeStore &other, const int count)
+{
+	Set(attribute, Get(attribute) + other.Get(attribute) * count);
+}
+
+
+
+template <>
+void AttributeStore::Add(const Attribute &attribute, const AttributeStore &other, const int count)
 {
 	Set(attribute, Get(attribute) + other.Get(attribute) * count);
 }
