@@ -351,6 +351,13 @@ void AttributeStore::Add(const A &attribute, const AttributeStore &other, const 
 
 
 
+void AttributeStore::Add(const char *attribute, const AttributeStore &other, const int count)
+{
+	Set(attribute, Get(attribute) + other.Get(attribute) * count);
+}
+
+
+
 template <class A>
 void AttributeStore::Add(const A &attribute, const double amount)
 {
