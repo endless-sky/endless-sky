@@ -417,6 +417,7 @@ government "Hai"
 	"player reputation" 0
 	"attitude toward"
 		"Hai (Wormhole Access)" 1
+		"Hai Merchant" 1
 		"Hai Merchant (Sympathizers)" 1
 		"Hai Merchant (Human)" 1
 		"Hai (Unfettered)" -.1
@@ -439,6 +440,7 @@ government "Hai (Wormhole Access)"
 	"player reputation" 0
 	"attitude toward"
 		"Hai" 1
+		"Hai Merchant" 1
 		"Hai Merchant (Sympathizers)" 1
 		"Hai Merchant (Human)" 1
 		"Hai (Unfettered)" -.1
@@ -447,6 +449,27 @@ government "Hai (Wormhole Access)"
 		"Merchant" .01
 		"Elenctic Commune" .1
 	"bribe" .2
+	"friendly hail" "friendly hai"
+	"friendly disabled hail" "friendly disabled hai"
+	"hostile hail" "hostile hai"
+	"hostile disabled hail" "hostile disabled hai"
+
+government "Hai Merchant"
+	"display name" "Hai"
+	swizzle 0
+	color "governments: Hai"
+	
+	"player reputation" 0
+	"attitude toward"
+		"Hai" 1
+		"Hai (Wormhole Access)" 1
+		"Hai Merchant (Sympathizers)" .95
+		"Hai Merchant (Human)" .95
+		"Hai (Unfettered)" -.1
+		"Hai (Friendly Unfettered)" .1
+		"Hai (Unfettered Civilians)" .1
+		"Merchant" .01
+	"bribe" .02
 	"friendly hail" "friendly hai"
 	"friendly disabled hail" "friendly disabled hai"
 	"hostile hail" "hostile hai"
@@ -461,6 +484,7 @@ government "Hai Merchant (Sympathizers)"
 	"attitude toward"
 		"Hai" 1
 		"Hai (Wormhole Access)" 1
+		"Hai Merchant" .95
 		"Hai Merchant (Human)" .95
 		"Hai (Unfettered)" .01
 		"Hai (Friendly Unfettered)" .5
@@ -481,6 +505,7 @@ government "Hai Merchant (Human)"
 	"attitude toward"
 		"Hai" 1
 		"Hai (Wormhole Access)" 1
+		"Hai Merchant" .95
 		"Hai Merchant (Sympathizers)" .95
 		"Hai (Unfettered)" -.2
 		"Hai (Friendly Unfettered)" .1
@@ -503,6 +528,7 @@ government "Hai (Unfettered)"
 		"Hai (Unfettered Wanderer Tribute)" 2
 		"Hai" -.01
 		"Hai (Wormhole Access)" -.01
+		"Hai Merchant" -.01
 		"Hai Merchant (Sympathizers)" .1
 		"Hai (Friendly Unfettered)" 1
 		"Hai (Unfettered Civilians)" 2
@@ -1393,6 +1419,7 @@ government "Wormhole Alpha"
 	"fine" 0
 	"attitude toward"
 		"Hai" -.01
+		"Hai Merchant" -.01
 		"Hai Merchant (Sympathizers)" -.01
 		"Hai Merchant (Human)" -.01
 		"Hai (Unfettered)" -.01
