@@ -1,0 +1,79 @@
+phrase "aberrant names"
+	phrase
+		"builder beginning"
+	word
+		"'si" 6
+		"'se" 6
+		"'sy" 5
+		"'sie" 2
+		"'sei"
+
+fleet "Small Aberrant"
+	government "Ka'sei (Twilight)"
+	names "aberrant names"
+	personality
+		confusion 90
+		hunting coward vindictive unconstrained harvests mining secretive
+	variant 10
+		"Twilight Ka'sei 1A"
+	variant 5
+		"Twilight Ka'sei 1A (Disable-able)"
+	variant 10
+		"Twilight Ka'sei 1B"
+	variant 5
+		"Twilight Ka'sei 1B (Disable-able)"
+	variant 10
+		"Twilight Ka'sei 1C"
+	variant 5
+		"Twilight Ka'sei 1C (Disable-able)"
+	variant 10
+		"Twilight Ka'sei 1D"
+	variant 5
+		"Twilight Ka'sei 1D (Disable-able)"
+	variant 10
+		"Twilight Ka'sei 2A"
+	variant 5
+		"Twilight Ka'sei 2A (Disable-able)"
+	variant 10
+		"Twilight Ka'sei 2B"
+	variant 5
+		"Twilight Ka'sei 2B (Disable-able)"
+	variant 10
+		"Twilight Ka'sei 2C"
+	variant 5
+		"Twilight Ka'sei 2C (Disable-able)"
+	variant 10
+		"Twilight Ka'sei 2D"
+	variant 5
+		"Twilight Ka'sei 2D (Disable-able)"
+	variant 10
+		"Twilight Ka'sei 2E"
+	variant 5
+		"Twilight Ka'sei 2E (Disable-able)"
+
+fleet "Large Aberrant"
+	government "Ka'sei (Twilight)"
+	names "aberrant names"
+	personality
+		confusion 90
+		hunting coward vindictive unconstrained harvests mining secretive
+	variant 10
+		"Twilight Ka'sei 1E"
+	variant 5
+		"Twilight Ka'sei 1E (Disable-able)"
+	variant 15
+		"Twilight Ka'sei 1F"
+	variant 5
+		"Twilight Ka'sei 1F (Disable-able)"
+	variant 10
+		"Twilight Ka'sei 1G"
+	variant 5
+		"Twilight Ka'sei 1G (Disable-able)"
+	variant 10
+		"Twilight Ka'sei 2F"
+	variant 5
+		"Twilight Ka'sei 2F (Disable-able)"
+	variant 2
+		"Twilight Ka'sei 2G"
+	variant 10
+		"Twilight Ka'sei 2G (Disable-able)"
