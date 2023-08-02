@@ -73,6 +73,7 @@ public:
 	void Add(const AttributeStore &other, const int count);
 	template <class A>
 	void Add(const A &attribute, const AttributeStore &other, const int count);
+	void Add(const char *attribute, const AttributeStore &other, const int count);
 	template <class A>
 	void Add(const A &attribute, const double amount);
 	void Add(const char *attribute, const double amount);
