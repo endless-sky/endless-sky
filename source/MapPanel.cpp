@@ -1047,7 +1047,7 @@ void MapPanel::DrawTravelPlan()
 			}
 		const bool isJump = !isHyper && !isWormhole && previous->JumpNeighbors(jumpRange).count(next);
 
-		if(!isHyper && !isJump && !isWormhole)
+		if(!isHyper && !isWormhole && !isJump)
 			break;
 		if(isWormhole && !isMappable)
 			continue;

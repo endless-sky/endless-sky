@@ -220,23 +220,24 @@ void MissionPanel::Draw()
 		const bool isHyper = previous->Links().count(next);
 		bool isWormhole = false;
 		bool isMappable = true;
-		for(const StellarObject &object : previous->Objects())
-			if(object.HasSprite() && object.HasValidPlanet()
-				&& object.GetPlanet()->IsWormhole()
-				&& player.HasVisited(*object.GetPlanet())
-				&& player.HasVisited(*previous) && player.HasVisited(*next)
-				&& &object.GetPlanet()->GetWormhole()->WormholeDestination(*previous) == next)
-			{
-				isWormhole = true;
-				if(object.GetPlanet()->GetWormhole()->IsMappable())
+		if(!isHyper)
+			for(const StellarObject &object : previous->Objects())
+				if(object.HasSprite() && object.HasValidPlanet()
+					&& object.GetPlanet()->IsWormhole()
+					&& player.HasVisited(*object.GetPlanet())
+					&& player.HasVisited(*previous) && player.HasVisited(*next)
+					&& &object.GetPlanet()->GetWormhole()->WormholeDestination(*previous) == next)
 				{
-					isMappable = true;
-					break;
+					isWormhole = true;
+					if(object.GetPlanet()->GetWormhole()->IsMappable())
+					{
+						isMappable = true;
+						break;
+					}
 				}
-			}
 		const bool isJump = !isHyper && !isWormhole && previous->JumpNeighbors(jumpRange).count(next);
 
-		if(!isHyper && !isJump && !isWormhole)
+		if(!isHyper && !isWormhole && !isJump)
 			break;
 		if(isWormhole && !isMappable)
 			continue;
