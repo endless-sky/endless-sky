@@ -419,7 +419,7 @@ fleet "Avgi Dissonance Miners"
 
 
 fleet "Avgi Small Angry Dissonance"
-	government "Avgi (Dissonance Aggressive)""
+	government "Avgi (Dissonance Aggressive)"
 	names "avgi civilian names"
 	fighters
 		names "avgi fighter names"

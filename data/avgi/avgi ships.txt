@@ -1300,7 +1300,7 @@ ship "Difraktos"
 	turret -9 -66
 	turret 9 -66
 	turret 0 36
-	turret 0 90 "Phased Array Laser
+	turret 0 90 "Phased Array Laser"
 
 	bay "Drone" -21 -21
 	bay "Drone" 21 -21

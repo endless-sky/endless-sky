@@ -1,34 +1,13 @@
 galaxy "label twilight"
-	pos -420 770
+	pos -420 750
 	sprite label/twilight
 
 galaxy "label tangled shroud"
-	pos -240 880
-	sprite label/"tangled
-
-system Methuselah
-	pos -1226.734 2181.733
-	government Uninhabited
-	habitable 2160
-	belt 1987 10
-	object
-		sprite star/g0-old
-		period 10
-	object
-		sprite planet/gas0-hot
-		distance 4120.546
-		period 2276.488
-	object
-		sprite planet/dust5-b
-		distance 20951
-		period 26099.985
-	object
-		sprite planet/ganymede-b
-		distance 1755.89
-		period 633.256
+	pos -150 900
+	sprite "label/tangled shroud"
 
 system Anax
-	pos -460 700
+	pos -462.815 698.074
 	government Avgi
 	habitable 2200
 	belt 6000 10
@@ -536,7 +515,7 @@ system Anax
 			period 430.255
 
 system Clip
-	pos -507.612 713.893
+	pos -503.612 714.337
 	government Avgi
 	habitable 625
 	belt 1750 4
@@ -636,7 +615,7 @@ system Empyrean
 		period 1483.999
 
 system Tumble
-	pos -309.212 653.72
+	pos -308.471 655.498
 	government Uninhabited
 	habitable 980
 	belt 2632 10
@@ -697,54 +676,13 @@ system Tumble
 			distance 236
 			period 94.882
 
-system Quanta
-	pos -676.245 2679.712
-	government Uninhabited
-	habitable 700
-	belt 1298 9
-	haze _menu/haze-twilight-thin
-	asteroids "medium rock" 1 5.797
-	asteroids "large rock" 2 6.615
-	asteroids "small metal" 3 5.115
-	asteroids "medium metal" 2 5.115
-	asteroids "large metal" 9 4.842
-	object
-		sprite star/g3
-		period 10
-	object
-		sprite planet/lava3
-		distance 812
-		period 349.82
-	object
-		sprite planet/gas12
-		distance 2963.206
-		period 2438.674
-	object
-		sprite planet/rock15
-		distance 3678.603
-		period 3373.147
-	object
-		sprite planet/ice8-b
-		distance 4240.936
-		period 4175.453
-	object
-		sprite planet/io-b
-		distance 4925
-		period 5225.409
-	object
-		sprite planet/ringworld-sliver
-			scale 0.5
-		distance 812
-		period 349.82
-		offset 180
-
 system Firmament
-	pos -318.235 787.297
+	pos -312.679 788.63
 	government Uninhabited
 	habitable 11374.753
 	belt 1176 5
 	belt 1701 6
-	haze _menu/haze-twilight
+	haze _menu/haze-twilight-thin
 	link Empyrean
 	link Lumine
 	asteroids "small rock" 2 2.037
@@ -781,7 +719,7 @@ system Firmament
 		period 9555.788
 
 system Quintessence
-	pos -357.895 851.768
+	pos -361.747 851.175
 	government Uninhabited
 	habitable 22300
 	belt 1958 4
@@ -826,7 +764,6 @@ system Decet
 	haze _menu/haze-twilit-embers
 	link Octet
 	minables tungsten 48 6.199
-	fleet "" 1000
 	hazard "Magnetar Magnetic Field" 1
 	hazard "Magnetar Induction" 1
 	object
@@ -837,7 +774,7 @@ system Decet
 		period 1
 
 system Mote
-	pos -491.994 903.273
+	pos -491.253 892.829
 	government Uninhabited
 	habitable 10
 	belt 1416 5
@@ -864,7 +801,7 @@ system Mote
 			period 96.091
 
 system Octet
-	pos -204.294 644.489
+	pos -202.794 645.906
 	government Uninhabited
 	habitable 3000
 	belt 1559 10
@@ -877,6 +814,8 @@ system Octet
 	asteroids "large metal" 6 2.542
 	minables neodymium 4 1.818
 	minables lead 4 1.206
+	fleet "Small Aberrant" 300
+	fleet "Large Aberrant" 600
 	object
 		sprite star/k-giant
 		period 10
@@ -914,7 +853,7 @@ system Octet
 		period 5702.866
 
 system Frenzy
-	pos -395.523 679.966
+	pos -397.597 677.299
 	government Uninhabited
 	habitable 695.072
 	belt 1840 6
@@ -974,7 +913,7 @@ system Trio
 	habitable 950
 	belt 1813 4
 	belt 2160 10
-	haze _menu/haze-red
+	haze _menu/haze-twilit-embers
 	link Duet
 	link Headwind
 	link Quartet
@@ -983,6 +922,8 @@ system Trio
 	asteroids "large metal" 5 1.898
 	minables copper 8 1.321
 	minables titanium 10 1.421
+	hazard "Ember Waste Base Storm" 100
+	hazard "Ember Waste Base Storm" 25000
 	object
 		sprite star/k5-old
 		period 10
@@ -1113,6 +1054,8 @@ system Quintet
 	asteroids "large metal" 2 1.43
 	minables lead 7 1.923
 	minables copper 8 1.471
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/k0
 		period 10
@@ -1172,6 +1115,8 @@ system Septet
 	minables silver 18 1.041
 	minables uranium 8 1.055
 	minables iron 23 3.31
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/carbon-core
 		period 10
@@ -1199,7 +1144,7 @@ system Septet
 		distance 7204.814
 		period 1925.525
 		object Gateway
-			sprite planet/gateway-active
+			sprite planet/gateway-inactive
 				scale 0.5
 				"frame rate" 1
 			distance 405.246
@@ -1210,13 +1155,15 @@ system Nonet
 	government Uninhabited
 	habitable 138.293
 	belt 1293 2
-	haze _menu/haze-red
+	haze _menu/haze-twilit-embers
 	link Octet
 	asteroids "small metal" 6 1.142
 	asteroids "medium metal" 2 1.535
 	asteroids "large metal" 1 3.499
 	minables uranium 8 1.019
 	minables titanium 17 1.793
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 25000
 	object
 		sprite star/l-dwarf
 		distance 71.453
@@ -1339,6 +1286,7 @@ system Ensemble
 	link "#bed3bb"
 	link "#edf8f7"
 	link "#f5fbc7"
+	link "#f70113"
 	asteroids "large metal" 1 6.84
 	object
 		sprite star/a8
@@ -1391,6 +1339,8 @@ system Quartet
 	asteroids "medium metal" 4 1.56
 	asteroids "large metal" 3 1.64
 	minables gold 14 1.015
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/nova-small
 		period 10
@@ -1420,7 +1370,7 @@ system Quartet
 		period 30689.117
 
 system Gust
-	pos -662.668 788.721
+	pos -659.038 793.499
 	government Uninhabited
 	habitable 450
 	belt 1116 8
@@ -1458,7 +1408,7 @@ system Gust
 		period 7672.549
 
 system Headwind
-	pos -287.673 762.241
+	pos -283.34 767.324
 	government Uninhabited
 	habitable 320
 	belt 1856 6
@@ -1468,6 +1418,8 @@ system Headwind
 	link Tailwind
 	link Trio
 	asteroids "large metal" 1 1.04
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 25000
 	object
 		sprite star/m0
 		period 10
@@ -1521,6 +1473,8 @@ system Duet
 	haze _menu/haze-twilit-embers
 	link Headwind
 	link Trio
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 25000
 	object
 		sprite star/m3
 		distance 62.932
@@ -1840,7 +1794,7 @@ system Interlude
 		period 1150.023
 
 system Requiem
-	pos -1484.589 2341.53
+	pos -1000.559 926.972
 	government Uninhabited
 	habitable 8650
 	belt 1150 3
@@ -1915,6 +1869,7 @@ system Lumine
 	habitable 8400
 	belt 1206
 	belt 2358 7
+	haze _menu/haze-twilight
 	link Empyrean
 	link Firmament
 	asteroids "small metal" 1 1.55
@@ -2025,14 +1980,15 @@ system Span
 			period 222.855
 
 system Vorpal
-	pos -148.84 808.12
+	pos -418.007 799.25
 	government Uninhabited
 	habitable 100
-	belt 1108 7
-	haze _menu/haze-none
+	belt 2108 7
+	haze _menu/haze-twilight
 	asteroids "large metal" 1 3.234
-	minables platinum 1 3.234
-	hazard "" 1
+	minables platinum 17 3.234
+	minables gold 6 2.138
+	hazard "Neutron Star Magnetic Field" 1
 	object
 		sprite star/neutron-core
 		period 1
@@ -2061,7 +2017,7 @@ system Vorpal
 			period 449.031
 
 system Concerto
-	pos -169.986 1022.241
+	pos -170.282 1022.167
 	government Avgi
 	habitable 4050
 	belt 4475 10
@@ -2198,7 +2154,7 @@ system Cusp
 			period 244.909
 
 system Gossamer
-	pos -751.977 798.827
+	pos -742.496 802.383
 	government Uninhabited
 	habitable 2560
 	belt 2100 10
@@ -2247,6 +2203,7 @@ system Prelude
 	habitable 4050
 	belt 1664 5
 	link "#100b14"
+	link "#78898c"
 	asteroids "small rock" 23 4.111
 	asteroids "medium rock" 51 3.953
 	asteroids "large rock" 31 4.585
@@ -2290,11 +2247,12 @@ system Prelude
 			period 178.034
 
 system Symphony
-	pos -133.06 988.149
+	pos -132.616 991.927
 	government Avgi
 	habitable 450
 	belt 1997 7
 	belt 2468 5
+	link "#914fa1"
 	link "#b6457f"
 	asteroids "small rock" 28 5.25
 	asteroids "medium rock" 65 5.18
@@ -2365,54 +2323,8 @@ system Symphony
 		distance 10923
 		period 21526.164
 
-system Crescendo
-	pos -782.061 2197.364
-	government Uninhabited
-	habitable 2160
-	belt 1469 9
-	asteroids "small rock" 3 2.888
-	asteroids "medium rock" 3 3.61
-	asteroids "large rock" 2 2.318
-	asteroids "small metal" 6 3.192
-	asteroids "medium metal" 4 3.648
-	asteroids "large metal" 3 2.242
-	minables titanium 11 6.229
-	minables iron 24 5.329
-	object
-		sprite star/g0-old
-		period 10
-	object
-		sprite planet/callisto-b
-		distance 423
-		period 74.876
-	object
-		sprite planet/dust0
-		distance 728
-		period 169.056
-	object
-		sprite planet/gas11
-		distance 2251
-		period 919.171
-		object Aspar
-			sprite planet/earth-b
-				scale 0.5
-			distance 417.504
-			period 240
-		object
-			sprite planet/miranda
-			distance 282.684
-			period 332.591
-	object
-		sprite planet/gas7-b
-		distance 4697
-		period 2770.537
-		object
-			sprite planet/rock3-b
-			distance 257
-			period 155.74
-
 system Threnody
-	pos -1440.787 2383.754
+	pos -956.757 969.196
 	government Uninhabited
 	link Coronach
 	link Dirge
@@ -2421,76 +2333,28 @@ system Threnody
 	link Requiem
 
 system Dirge
-	pos -1462.064 2328.63
+	pos -978.034 914.072
 	government Uninhabited
 	link Requiem
 	link Threnody
 
 system Coronach
-	pos -1368.362 2344.445
+	pos -884.332 929.887
 	government Uninhabited
 	link Threnody
 
 system Elegy
-	pos -1431.917 2425.482
+	pos -947.887 1010.924
 	government Uninhabited
 	link Lament
 	link Threnody
 
 system Keen
-	pos -1368.917 2401.482
+	pos -884.887 986.924
 	government Uninhabited
-
-system Cantata
-	pos -851.886 2136.979
-	government Uninhabited
-	habitable 6300
-	belt 1173 6
-	belt 2481 7
-	belt 2499 7
-	asteroids "large metal" 1 3.672
-	object
-		sprite star/b3
-		period 10
-	object
-		sprite planet/gas9-b
-		distance 704
-		period 94.134
-		object
-			sprite planet/dust5
-			distance 291
-			period 129.914
-		object
-			sprite planet/dust0
-			distance 456
-			period 599.71
-	object
-		sprite planet/gas16
-		distance 1780
-		period 378.46
-	object
-		sprite planet/jupiter
-		distance 2526
-		period 639.793
-		object
-			sprite planet/dust5-b
-			distance 298
-			period 134.63
-	object
-		sprite planet/gas4
-		distance 5373
-		period 1984.792
-		object
-			sprite planet/io
-			distance 246
-			period 145.849
-		object
-			sprite planet/rock14-b
-			distance 418
-			period 223.657
 
 system Whirlwind
-	pos -660.471 853.777
+	pos -655.138 852.74
 	government Uninhabited
 	habitable 2267.708
 	belt 1653 6
@@ -2554,7 +2418,7 @@ system Whirlwind
 			period 212.515
 
 system Lament
-	pos -1510.739 2440.268
+	pos -1026.709 1025.71
 	government Uninhabited
 	habitable 3650
 	belt 1749 6
@@ -2614,110 +2478,6 @@ system Lament
 			distance 290
 			period 304.152
 
-system Antiphon
-	pos -1239.672 2117.54
-	government Uninhabited
-	habitable 2160
-	belt 1386 6
-	link Katoptrizo
-	asteroids "small rock" 61 8.119
-	asteroids "medium rock" 10 5.022
-	asteroids "large rock" 13 5.357
-	asteroids "medium metal" 1 5.608
-	asteroids "large metal" 1 8.203
-	minables copper 1 9.075
-	minables titanium 1 13.749
-	minables aluminum 3 13.207
-	object
-		sprite star/g0-old
-		period 10
-	object
-		sprite planet/dust6
-		distance 405
-		period 70.148
-	object
-		sprite planet/gas7
-		distance 1141
-		period 331.712
-	object
-		sprite planet/gas10-b
-		distance 2534
-		period 1097.85
-		object
-			sprite planet/callisto
-			distance 256
-			period 107.196
-		object
-			sprite planet/tethys-b
-			distance 413
-			period 516.915
-	object
-		sprite planet/gas12
-		distance 4673
-		period 2749.329
-		object
-			sprite planet/rock0-b
-			distance 304
-			period 200.36
-	object
-		sprite planet/gas13-b
-		distance 8384
-		period 6607.087
-		object
-			sprite planet/dust4-b
-			distance 321
-			period 178.869
-		object
-			sprite planet/ice7
-			distance 454
-			period 253.164
-		object
-			sprite planet/rock3
-			distance 592
-			period 544.482
-	object ""
-		sprite planet/wormhole-red
-		distance 9744.307
-		period 8278.65
-
-system Allegrissimo
-	pos -1330.328 2107.426
-	government Uninhabited
-	habitable 5600
-	belt 1652 3
-	asteroids "small rock" 36 1.615
-	asteroids "medium rock" 19 1.581
-	asteroids "large rock" 27 1.292
-	asteroids "small metal" 2 1.496
-	asteroids "large metal" 2 1.003
-	hazard "" 1
-	object
-		sprite star/neutron-core
-		period 10
-	object
-		sprite star/neutron
-		period 1
-	object
-		sprite planet/gas3-b
-		distance 2298.878
-		period 340.172
-		object
-			sprite planet/dust1-b
-			distance 326
-			period 183.065
-	object
-		sprite planet/gas10
-		distance 3765
-		period 1234.848
-		object
-			sprite planet/rock0-b
-			distance 204
-			period 110.14
-		object
-			sprite planet/dust4-b
-			distance 318
-			period 176.368
-
 system Vivace
 	pos -540.542 699.806
 	government Uninhabited
@@ -2732,8 +2492,8 @@ system Vivace
 	asteroids "large metal" 3 2.652
 	minables titanium 3 2.362
 	minables copper 3 2.311
-	minables gold 4 4.131
-	hazard "" 1
+	minables gold 9 4.131
+	hazard "Neutron Star Magnetic Field" 1
 	object
 		sprite star/neutron-core
 		period 1
@@ -2789,47 +2549,6 @@ system Billow
 			sprite planet/dust0
 			distance 582
 			period 864.727
-
-system Katoptrizo
-	pos -1344.703 2171.393
-	government Uninhabited
-	habitable 6075
-	belt 1715 10
-	link Antiphon
-	asteroids "small rock" 23 3.696
-	asteroids "medium rock" 13 3.696
-	asteroids "large rock" 9 6.72
-	asteroids "medium metal" 31 4.032
-	asteroids "large metal" 1 4.368
-	minables uranium 5 4.437
-	minables silver 8 4.588
-	object
-		sprite star/g-supergiant
-		period 10
-	object
-		sprite planet/cloud8
-		distance 730
-		period 101.221
-	object
-		sprite planet/rhea
-		distance 1113
-		period 190.559
-	object
-		sprite planet/gas1
-		distance 2352
-		period 585.387
-		object
-			sprite planet/lava0-b
-			distance 507
-			period 298.765
-	object
-		sprite planet/ice7-b
-		distance 5471
-		period 2076.763
-	object ""
-		sprite planet/wormhole-red
-		distance 16000
-		period 10386.443
 
 system Pinnacle
 	pos -250.748 693.704
@@ -2924,7 +2643,7 @@ system Tap
 	asteroids "large metal" 6 1.22
 	minables titanium 9 2.712
 	minables gold 6 1.872
-	hazard "" 1
+	hazard "Neutron Star Magnetic Field" 1
 	object
 		sprite star/neutron-core
 		period 1
@@ -2953,7 +2672,7 @@ system Tap
 		period 34884.076
 
 system Mellow
-	pos -381.044 647.337
+	pos -384.748 645.559
 	government Uninhabited
 	habitable 832.541
 	belt 1521 6
@@ -3005,7 +2724,7 @@ system Mellow
 		period 7272.613
 
 system Postlude
-	pos 143.891 826.993
+	pos 141.372 829.66
 	government Uninhabited
 	habitable 1330.038
 	belt 1814 6
@@ -3034,7 +2753,7 @@ system Postlude
 			period 174.787
 
 system Corporeal
-	pos -399.034 783.378
+	pos -401.83 780.193
 	government Uninhabited
 	habitable 700
 	belt 1263 4
@@ -3098,52 +2817,43 @@ system Corporeal
 			distance 258
 			period 255.225
 
-system "#11e79d"
-	pos -512.463 2490.177
-	government Uninhabited
-	link "#074033"
-	link "#131373"
-	link "#a9d9ec"
-
 system "#31a999"
-	pos -22.392 1000.069
+	pos -24.17 1000.365
 	government Uninhabited
 	link "#d2e5ec"
+	link "#dee723"
 
 system "#01a9a9"
-	pos -195.915 846.223
+	pos -192.211 848.742
 	government Uninhabited
 	link "#007477"
 	link "#bed3bb"
 	link "#d9534f"
 
 system "#ecd543"
-	pos -158.088 1054.486
+	pos -162.532 1056.338
 	government Uninhabited
 	link "#79c2ed"
 	link Concerto
 
 system "#08078a"
-	pos -1046.41 2391.192
+	pos -171.072 920.748
 	government Uninhabited
+	link "#384e08"
+	link "#46d125"
 
 system "#0a6b84"
 	pos -16.872 832.201
 	government Uninhabited
 	link "#acf472"
 
-system "#a9d9ec"
-	pos -553.205 2460.595
-	government Uninhabited
-	link "#11e79d"
-
 system "#cfc14d"
-	pos -662.673 2514.853
+	pos 98.609 877.834
 	government Uninhabited
-	link "#e260c2"
+	link "#5cb85c"
 
 system "#f5fbc7"
-	pos -295.786 896.488
+	pos -298.453 895.747
 	government Uninhabited
 	link "#baa7f9"
 	link Arche
@@ -3154,31 +2864,34 @@ system "#25f949"
 	government Uninhabited
 	link "#0fe276"
 	link "#baa7f9"
+	link "#f70113"
 	link Ensemble
 
 system "#bed3bb"
-	pos -220.375 897.316
+	pos -217.838 888.001
 	government Uninhabited
 	link "#01a9a9"
 	link "#edf8f7"
 	link Ensemble
 
 system "#79c2ed"
-	pos -130.479 1039.115
+	pos -134.923 1040.967
 	government Uninhabited
 	link "#ecd543"
 	link Concerto
 
 system "#0fe276"
-	pos -218.819 1003.793
+	pos -221.041 1010.682
 	government Uninhabited
 	link "#25f949"
 	link "#b6457f"
 	link Concerto
 
 system "#f70113"
-	pos -989.628 2343.341
+	pos -187.586 955.23
 	government Uninhabited
+	link "#25f949"
+	link Ensemble
 
 system "#1e877d"
 	pos 82.003 937.49
@@ -3193,12 +2906,12 @@ system "#bd370f"
 	link "#5cb85c"
 
 system "#914fa1"
-	pos -530.841 2428.227
+	pos -95.825 977.968
 	government Uninhabited
-	link "#27ab16"
+	link Symphony
 
 system "#3fee8d"
-	pos 0.75 944.133
+	pos 4.185 943.689
 	government Uninhabited
 	habitable 10
 	belt 1302 7
@@ -3236,17 +2949,18 @@ system "#007477"
 	link "#46d125"
 
 system "#0313f4"
-	pos -256.826 816.487
+	pos -265.289 829.783
 	government Uninhabited
 	link "#d9534f"
 
 system "#384e08"
 	pos -126.08 939.357
 	government Uninhabited
+	link "#08078a"
 	link "#46d125"
 
 system "#b6457f"
-	pos -156.105 973.562
+	pos -158.475 980.006
 	government Uninhabited
 	link "#0fe276"
 	link Concerto
@@ -3259,6 +2973,7 @@ system "#46d125"
 	belt 1606 5
 	belt 2416
 	link "#007477"
+	link "#08078a"
 	link "#100b14"
 	link "#384e08"
 	asteroids "small rock" 6 1.054
@@ -3286,14 +3001,16 @@ system "#a6d944"
 	link "#8b808b"
 	link "#acf472"
 	link "#f9f9f9"
+	link Symphony
 
 system "#e0bef3"
-	pos -593.791 2492.489
+	pos -401.749 890.619
 	government Uninhabited
 	link "#e260c2"
+	link Arche
 
 system "#acf472"
-	pos -25.384 872.219
+	pos -27.384 873.775
 	government Uninhabited
 	link "#0a6b84"
 	link "#a6d944"
@@ -3329,17 +3046,17 @@ system "#8b808b"
 	link Interlude
 
 system "#e260c2"
-	pos -596.918 2542.207
+	pos -383.673 919.318
 	government Uninhabited
-	link "#131373"
-	link "#cfc14d"
 	link "#e0bef3"
+	link Arche
 
 system "#dee723"
-	pos -1014.191 2301.512
+	pos 10.406 985.068
 	government Uninhabited
 	habitable 10
 	belt 1212 2
+	link "#31a999"
 	asteroids "small metal" 2 1.16
 	asteroids "medium metal" 3 1.68
 	asteroids "large metal" 6 1.74
@@ -3372,53 +3089,23 @@ system "#dee723"
 			distance 480
 			period 397.523
 
-system "#27ab16"
-	pos -454.002 2431.843
-	government Uninhabited
-	link "#2c404d"
-	link "#819894"
-	link "#914fa1"
-
 system "#78898c"
-	pos -1019.508 2420.555
+	pos -108.726 817.962
 	government Uninhabited
-
-system "#819894"
-	pos -469.965 2474.399
-	government Uninhabited
-	link "#27ab16"
-
-system "#074033"
-	pos -450.716 2533.85
-	government Uninhabited
-	link "#11e79d"
-	link "#131373"
-	link "#2c404d"
-
-system "#131373"
-	pos -533.43 2525.223
-	government Uninhabited
-	link "#074033"
-	link "#11e79d"
-	link "#e260c2"
+	link Prelude
 
 system "#edf8f7"
-	pos -256.682 891.639
+	pos -254.312 895.343
 	government Uninhabited
 	link "#bed3bb"
 	link "#d9534f"
 	link Ensemble
 
-system "#2c404d"
-	pos -399.861 2479.717
-	government Uninhabited
-	link "#074033"
-	link "#27ab16"
-
 system Caesura
-	pos -746.138 842.864
+	pos -735.666 834.642
 	government Uninhabited
 	habitable 3450
+	haze _menu/haze-twilight-thin
 	object
 		sprite star/black-hole-core
 		period 10
@@ -3427,12 +3114,14 @@ system Caesura
 		period 10
 
 system Arche
-	pos -349.538 882.946
+	pos -356.501 878.946
 	government Uninhabited
 	habitable 14197.215
 	belt 1808 2
 	belt 2396 8
 	link "#d9534f"
+	link "#e0bef3"
+	link "#e260c2"
 	link "#f5fbc7"
 	link Quintessence
 	asteroids "small rock" 3 5.94
@@ -3492,7 +3181,7 @@ system Arche
 			period 237.628
 
 system Twirl
-	pos -580.165 956.823
+	pos -580.387 959.49
 	government Uninhabited
 	habitable 1250
 	belt 1877 9
@@ -3535,7 +3224,7 @@ system Twirl
 			period 109.718
 
 system Peak
-	pos -301.081 627.203
+	pos -295.081 629.87
 	government Uninhabited
 	habitable 490
 	belt 1833 10
@@ -3614,7 +3303,7 @@ system Tailwind
 		period 1494.459
 
 system Wave
-	pos -567.841 828.814
+	pos -560.434 833.851
 	government Uninhabited
 	habitable 550
 	belt 1402 7
@@ -3721,7 +3410,7 @@ system Tide
 			period 221.64
 
 system Lift
-	pos -539.14 910.638
+	pos -539.51 903.082
 	government Uninhabited
 	habitable 230
 	belt 1192 6
@@ -3769,7 +3458,7 @@ system Lift
 			period 210.152
 
 system Apeiron
-	pos -440.773 878.291
+	pos -445.588 872.587
 	government Uninhabited
 	habitable 2267.708
 	belt 1990 7
@@ -3831,7 +3520,7 @@ system Apeiron
 		period 1747.482
 
 system Evanescence
-	pos -454.654 829.162
+	pos -457.765 826.347
 	government Uninhabited
 	habitable 2160
 	belt 1990 7
@@ -3890,7 +3579,7 @@ system Evanescence
 		period 2949.062
 
 system Torrent
-	pos -603.04 866.085
+	pos -600.318 868.326
 	government Uninhabited
 	habitable 2654.36
 	belt 1483 5
@@ -3930,7 +3619,7 @@ system Torrent
 		period 1765.289
 
 system Rivulet
-	pos -536.285 801.433
+	pos -535.248 803.655
 	government Uninhabited
 	habitable 2200
 	belt 1600 5
@@ -3973,7 +3662,7 @@ system Rivulet
 		period 7194.41
 
 system Gale
-	pos -634.977 892.461
+	pos -631.644 900.461
 	government Uninhabited
 	habitable 1080
 	belt 1707 5
@@ -4009,7 +3698,7 @@ system Gale
 		period 2307.861
 
 system Current
-	pos -614.866 820.125
+	pos -606.051 822.319
 	government Uninhabited
 	habitable 1250
 	belt 1923 9
@@ -4058,7 +3747,7 @@ system Current
 			period 299.01
 
 system Glide
-	pos -547.645 884.877
+	pos -547.052 881.099
 	government Uninhabited
 	habitable 1328.533
 	belt 1057 10
@@ -4120,7 +3809,7 @@ system Glide
 system Aileron
 	pos -576.745 771.883
 	government Uninhabited
-	habitable 10009.027
+	habitable 1320.275
 	belt 1094 6
 	belt 1907 7
 	link Rivulet
@@ -4136,13 +3825,13 @@ system Aileron
 		period 34.055
 		offset 180
 	object
-		sprite star/o5
+		sprite star/g5-old
 		distance 29.384
 		period 34.055
 	object
 		sprite planet/rock4-b
 		distance 2140.075
-		period 395.829
+		period 1089.862
 		object
 			sprite planet/miranda
 			distance 182
@@ -4150,37 +3839,22 @@ system Aileron
 	object
 		sprite planet/rock14-b
 		distance 3173.673
-		period 714.838
+		period 1968.209
 	object
 		sprite planet/callisto
 		distance 5684.451
-		period 1713.55
+		period 4718.029
 	object
 		sprite planet/gas17-b
 		distance 8804.402
-		period 3303.04
+		period 9094.475
 		object
 			sprite planet/rhea-b
 			distance 252
 			period 124.417
 
-system Vortice
-	pos -733.826 2814.642
-	government Uninhabited
-	habitable 100
-	asteroids "small metal" 26 2.734
-	asteroids "medium metal" 14 1.231
-	minables gold 2 2.1
-	hazard "" 1
-	object
-		sprite star/neutron-core
-		period 1
-	object
-		sprite star/neutron
-		period 1
-
 system Circulate
-	pos -502.478 844.643
+	pos -510.478 848.865
 	government Uninhabited
 	habitable 1250
 	belt 1454 8
@@ -4246,10 +3920,11 @@ system "#5cb85c"
 	government Uninhabited
 	link "#2b5d50"
 	link "#bd370f"
+	link "#cfc14d"
 	link Postlude
 
 system "#d9534f"
-	pos -288.292 841.454
+	pos -288.292 842.639
 	government Uninhabited
 	link "#01a9a9"
 	link "#0313f4"
@@ -4269,6 +3944,7 @@ system "#a6d944"
 	link "#8b808b"
 	link "#acf472"
 	link "#f9f9f9"
+	link Symphony
 
 system Feraticus
 	object
@@ -4297,3 +3973,11 @@ system "#a6d944"
 	link "#f9f9f9"
 	link Symphony
 
+system "#a6d944"
+	pos -9.278 907.623
+	government Uninhabited
+	link "#2b5d50"
+	link "#8b808b"
+	link "#acf472"
+	link "#f9f9f9"
+	link Symphony

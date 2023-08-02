@@ -286,7 +286,7 @@ phrase "avgi warm greetings"
 		"avgi polite playername"
 	word
 		"."
-		"!
+		"!""
 
 phrase "avgi cold greetings"
 	phrase
@@ -308,7 +308,7 @@ phrase "dissonance warm greetings"
 		"dissonance polite playername"
 	word
 		"."
-		"!
+		"!""
 
 phrase "dissonance cold greetings"
 	phrase
@@ -698,9 +698,10 @@ phrase "avgi questions"
 
 
 phrase "avgi commerce"
-	phrase "avgi commerce win"
-	phrase "avgi commerce loss"
-	phrase "avgi commerce neutral"
+	phrase
+		"avgi commerce win"
+		"avgi commerce loss"
+		"avgi commerce neutral"
 
 phrase "avgi commerce win"
 	word
