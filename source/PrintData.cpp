@@ -502,8 +502,7 @@ namespace {
 			for(auto &it : GameData::Outfits())
 			{
 				const Outfit &outfit = it.second;
-				for(const auto &attribute : outfit.Attributes())
-					attributes.insert(attribute.first);
+				outfit.Attributes().ForEach([&attributes](const auto &it){attributes.insert(get<0>(it));});
 			}
 
 			cout << "name" << ',' << "category" << ',' << "cost" << ',' << "mass";

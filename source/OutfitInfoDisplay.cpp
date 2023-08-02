@@ -334,9 +334,10 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 		requirementsHeight += 10;
 	}
 
-	for(const pair<const char *, double> &it : outfit.Attributes())
-		if(!count(BEFORE.begin(), BEFORE.end(), it.first))
-			AddRequirementAttribute(it.first, it.second);
+	outfit.Attributes().ForEach([&](const auto &attr){
+		if(!count(BEFORE.begin(), BEFORE.end(), get<0>(attr)))
+			AddRequirementAttribute(get<0>(attr), get<2>(attr));
+	});
 }
 
 
@@ -402,30 +403,30 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		hasNormalAttributes = true;
 	}
 
-	for(const pair<const char *, double> &it : outfit.Attributes())
+	outfit.Attributes().ForEach([&](const auto &it)
 	{
-		if(count(EXPECTED_NEGATIVE.begin(), EXPECTED_NEGATIVE.end(), it.first))
-			continue;
+		if(count(EXPECTED_NEGATIVE.begin(), EXPECTED_NEGATIVE.end(), get<0>(it)))
+			return;
 
 		// Only show positive values here, with some exceptions.
 		// Negative values are usually handled as a "requirement"
-		if(static_cast<string>(it.first) == "required crew")
+		if(get<0>(it) == "required crew")
 		{
 			// 'required crew' is inverted - positive values are requirements.
-			if(it.second > 0)
-				continue;
+			if(get<2>(it) > 0)
+				return;
 
 			// A negative 'required crew' would be a benefit, so it is listed here.
 		}
 		// If this attribute is not a requirement, it is always listed here, though it may be negative.
-		else if(it.second < 0 && !IsNotRequirement(it.first))
-			continue;
+		else if(get<2>(it) < 0 && !IsNotRequirement(get<0>(it)))
+			return;
 
-		auto sit = SCALE.find(it.first);
+		auto sit = SCALE.find(get<0>(it));
 		double scale = (sit == SCALE.end() ? 1. : SCALE_LABELS[sit->second].first);
 		string units = (sit == SCALE.end() ? "" : SCALE_LABELS[sit->second].second);
 
-		auto bit = BOOLEAN_ATTRIBUTES.find(it.first);
+		auto bit = BOOLEAN_ATTRIBUTES.find(get<0>(it));
 		if(bit != BOOLEAN_ATTRIBUTES.end())
 		{
 			attributeLabels.emplace_back(bit->second);
@@ -434,12 +435,12 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		}
 		else
 		{
-			attributeLabels.emplace_back(static_cast<string>(it.first) + ":");
-			attributeValues.emplace_back(Format::Number(it.second * scale) + units);
+			attributeLabels.emplace_back(get<0>(it) + ":");
+			attributeValues.emplace_back(Format::Number(get<2>(it) * scale) + units);
 			attributesHeight += 20;
 		}
 		hasNormalAttributes = true;
-	}
+	});
 
 	if(!outfit.IsWeapon())
 		return;

@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SpriteSet.h"
 
 #include <algorithm>
+#include <limits>
 
 using namespace std;
 
@@ -36,10 +37,11 @@ void Weapon::LoadWeapon(const DataNode &node)
 	calculatedDamage = false;
 	doesDamage = false;
 	bool safeRangeOverriden = false;
-	bool disabledDamageSet = false;
-	bool minableDamageSet = false;
-	bool relativeDisabledDamageSet = false;
-	bool relativeMinableDamageSet = false;
+	// using infinity to keep track of whether these values have been parsed
+	attributes.Set(Attribute(DAMAGE, DISABLED), numeric_limits<double>::infinity());
+	attributes.Set(Attribute(DAMAGE, DISABLED).Relative(), numeric_limits<double>::infinity());
+	attributes.Set(Attribute(DAMAGE, MINABLE), numeric_limits<double>::infinity());
+	attributes.Set(Attribute(DAMAGE, MINABLE).Relative(), numeric_limits<double>::infinity());
 
 	for(const DataNode &child : node)
 	{
@@ -191,44 +193,6 @@ void Weapon::LoadWeapon(const DataNode &node)
 				infraredTracking = max(0., min(1., value));
 			else if(key == "radar tracking")
 				radarTracking = max(0., min(1., value));
-			else if(key == "firing energy")
-				firingEnergy = value;
-			else if(key == "firing force")
-				firingForce = value;
-			else if(key == "firing fuel")
-				firingFuel = value;
-			else if(key == "firing heat")
-				firingHeat = value;
-			else if(key == "firing hull")
-				firingHull = value;
-			else if(key == "firing shields")
-				firingShields = value;
-			else if(key == "firing ion")
-				firingIon = value;
-			else if(key == "firing scramble")
-				firingScramble = value;
-			else if(key == "firing slowing")
-				firingSlowing = value;
-			else if(key == "firing disruption")
-				firingDisruption = value;
-			else if(key == "firing discharge")
-				firingDischarge = value;
-			else if(key == "firing corrosion")
-				firingCorrosion = value;
-			else if(key == "firing leak")
-				firingLeak = value;
-			else if(key == "firing burn")
-				firingBurn = value;
-			else if(key == "relative firing energy")
-				relativeFiringEnergy = value;
-			else if(key == "relative firing heat")
-				relativeFiringHeat = value;
-			else if(key == "relative firing fuel")
-				relativeFiringFuel = value;
-			else if(key == "relative firing hull")
-				relativeFiringHull = value;
-			else if(key == "relative firing shields")
-				relativeFiringShields = value;
 			else if(key == "split range")
 				splitRange = max(0., value);
 			else if(key == "trigger radius")
@@ -240,66 +204,6 @@ void Weapon::LoadWeapon(const DataNode &node)
 				safeRange = max(0., value);
 				safeRangeOverriden = true;
 			}
-			else if(key == "shield damage")
-				damage[SHIELD_DAMAGE] = value;
-			else if(key == "hull damage")
-				damage[HULL_DAMAGE] = value;
-			else if(key == "disabled damage")
-			{
-				damage[DISABLED_DAMAGE] = value;
-				disabledDamageSet = true;
-			}
-			else if(key == "minable damage")
-			{
-				damage[MINABLE_DAMAGE] = value;
-				minableDamageSet = true;
-			}
-			else if(key == "fuel damage")
-				damage[FUEL_DAMAGE] = value;
-			else if(key == "heat damage")
-				damage[HEAT_DAMAGE] = value;
-			else if(key == "energy damage")
-				damage[ENERGY_DAMAGE] = value;
-			else if(key == "ion damage")
-				damage[ION_DAMAGE] = value;
-			else if(key == "scrambling damage")
-				damage[WEAPON_JAMMING_DAMAGE] = value;
-			else if(key == "disruption damage")
-				damage[DISRUPTION_DAMAGE] = value;
-			else if(key == "slowing damage")
-				damage[SLOWING_DAMAGE] = value;
-			else if(key == "discharge damage")
-				damage[DISCHARGE_DAMAGE] = value;
-			else if(key == "corrosion damage")
-				damage[CORROSION_DAMAGE] = value;
-			else if(key == "leak damage")
-				damage[LEAK_DAMAGE] = value;
-			else if(key == "burn damage")
-				damage[BURN_DAMAGE] = value;
-			else if(key == "relative shield damage")
-				damage[RELATIVE_SHIELD_DAMAGE] = value;
-			else if(key == "relative hull damage")
-				damage[RELATIVE_HULL_DAMAGE] = value;
-			else if(key == "relative disabled damage")
-			{
-				damage[RELATIVE_DISABLED_DAMAGE] = value;
-				relativeDisabledDamageSet = true;
-			}
-			else if(key == "relative minable damage")
-			{
-				damage[RELATIVE_MINABLE_DAMAGE] = value;
-				relativeMinableDamageSet = true;
-			}
-			else if(key == "relative fuel damage")
-				damage[RELATIVE_FUEL_DAMAGE] = value;
-			else if(key == "relative heat damage")
-				damage[RELATIVE_HEAT_DAMAGE] = value;
-			else if(key == "relative energy damage")
-				damage[RELATIVE_ENERGY_DAMAGE] = value;
-			else if(key == "hit force")
-				damage[HIT_FORCE] = value;
-			else if(key == "piercing")
-				piercing = max(0., value);
 			else if(key == "range override")
 				rangeOverride = max(0., value);
 			else if(key == "velocity override")
@@ -313,19 +217,19 @@ void Weapon::LoadWeapon(const DataNode &node)
 			else if(key == "dropoff modifier")
 				damageDropoffModifier = max(0., value);
 			else
-				child.PrintTrace("Unrecognized weapon attribute: \"" + key + "\":");
+				attributes.Load(child, true);
 		}
 	}
-	// Disabled damage defaults to hull damage instead of 0.
-	if(!disabledDamageSet)
-		damage[DISABLED_DAMAGE] = damage[HULL_DAMAGE];
-	if(!relativeDisabledDamageSet)
-		damage[RELATIVE_DISABLED_DAMAGE] = damage[RELATIVE_HULL_DAMAGE];
-	// Minable damage defaults to hull damage instead of 0.
-	if(!minableDamageSet)
-		damage[MINABLE_DAMAGE] = damage[HULL_DAMAGE];
-	if(!relativeMinableDamageSet)
-		damage[RELATIVE_MINABLE_DAMAGE] = damage[RELATIVE_HULL_DAMAGE];
+	// Disabled damage defaults to hull damage if not specified.
+	if(attributes.Get(Attribute(DAMAGE, DISABLED)) == numeric_limits<double>::infinity())
+		attributes.Set(Attribute(DAMAGE, DISABLED), attributes.Get(Attribute(DAMAGE, HULL)));
+	if(attributes.Get(Attribute(DAMAGE, DISABLED).Relative()) == numeric_limits<double>::infinity())
+		attributes.Set(Attribute(DAMAGE, DISABLED).Relative(), attributes.Get(Attribute(DAMAGE, HULL).Relative()));
+	// Minable damage defaults to hull damage if not specified.
+	if(attributes.Get(Attribute(DAMAGE, MINABLE)) == numeric_limits<double>::infinity())
+		attributes.Set(Attribute(DAMAGE, MINABLE), attributes.Get(Attribute(DAMAGE, HULL)));
+	if(attributes.Get(Attribute(DAMAGE, MINABLE).Relative()) == numeric_limits<double>::infinity())
+		attributes.Set(Attribute(DAMAGE, MINABLE).Relative(), attributes.Get(Attribute(DAMAGE, HULL).Relative()));
 
 	// Sanity checks:
 	if(burstReload > reload)
@@ -426,6 +330,34 @@ const Sprite *Weapon::Icon() const
 
 
 
+double Weapon::Get(const char *attribute) const
+{
+	return Get(string(attribute));
+}
+
+
+
+double Weapon::Get(const string &attribute) const
+{
+	return attributes.Get(attribute);
+}
+
+
+
+double Weapon::Get(const Attribute &attribute) const
+{
+	return attributes.Get(attribute);
+}
+
+
+
+const AttributeStore &Weapon::Attributes() const
+{
+	return attributes;
+}
+
+
+
 // Effects to be created at the start or end of the weapon's lifetime.
 const map<const Effect *, int> &Weapon::FireEffects() const
 {
@@ -519,19 +451,20 @@ void Weapon::SetTurretTurn(double rate)
 
 
 
-double Weapon::TotalDamage(int index) const
+double Weapon::TotalDamage(const AttributeEffect effect) const
 {
 	if(!calculatedDamage)
 	{
 		calculatedDamage = true;
-		for(int i = 0; i < DAMAGE_TYPES; ++i)
+		for(int i = 0; i < ATTRIBUTE_EFFECT_COUNT; ++i)
 		{
+			Attribute a = Attribute(DAMAGE, static_cast<AttributeEffect>(i));
 			for(const auto &it : submunitions)
-				damage[i] += it.weapon->TotalDamage(i) * it.count;
-			doesDamage |= (damage[i] > 0.);
+				attributes.Add(a, it.weapon->attributes, it.count);
+			doesDamage |= (attributes.Get(a) > 0.);
 		}
 	}
-	return damage[index];
+	return attributes.Get(Attribute(DAMAGE, effect));
 }
 
 
