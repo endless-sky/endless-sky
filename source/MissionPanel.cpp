@@ -237,8 +237,6 @@ void MissionPanel::Draw()
 				}
 		const bool isJump = !isHyper && !isWormhole && previous->JumpNeighbors(jumpRange).count(next);
 
-		if(!isHyper && !isWormhole && !isJump)
-			break;
 		if(isWormhole && !isMappable)
 			continue;
 
