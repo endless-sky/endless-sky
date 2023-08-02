@@ -33,7 +33,6 @@ public:
 	// Gets the attribute for the specified token, if any.
 	static Attribute *Parse(const std::string &token);
 
-	// Checks whether the specified combination is fully supported by the engine.
 	// Gets the data format name of the effect, as used in the new syntax. This also supports
 	// variants, so for any effect E, passing E + ATTRIBUTE_EFFECT_COUNT will produce the name of the
 	// multiplier effect.
