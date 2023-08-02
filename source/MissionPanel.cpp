@@ -212,8 +212,8 @@ void MissionPanel::Draw()
 	Color routeColor(.2f, .1f, 0.f, 0.f);
 	const Ship *flagship = player.Flagship();
 	const double jumpRange = flagship ? flagship->JumpNavigation().JumpRange() : 0.;
-	const System *next = selectedSystem;
 	const System *previous;
+	const System *next = selectedSystem;
 	for(; distance.Days(next) > 0; next = previous)
 	{
 		previous = distance.Route(next);
