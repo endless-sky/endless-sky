@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <functional>
 #include <limits>
 #include <map>
+#include <cmath>
 #include <set>
 #include <string>
 
@@ -147,7 +148,7 @@ inline void AttributeStore::Set(const std::string &attribute, double value)
 	auto it = MINIMUM_OVERRIDES.find(attribute);
 	if(it != MINIMUM_OVERRIDES.end())
 		value = std::max(value, it->second);
-	if(value && abs(value) < EPS)
+	if(value && fabs(value) < EPS)
 		value = 0.;
 	textAttributes[attribute] = value;
 }
@@ -165,7 +166,7 @@ template <>
 inline void AttributeStore::Set(const Attribute &attribute, double value)
 {
 	value = std::max(value, attribute.GetMinimumValue());
-	if(value && abs(value) < EPS)
+	if(value && fabs(value) < EPS)
 		value = 0.;
 	categorizedAttributes[attribute] = value;
 	textAttributes[attribute.GetLegacyName()] = value;
