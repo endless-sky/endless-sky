@@ -112,6 +112,8 @@ protected:
 
 	int64_t LicenseCost(const Outfit *outfit, bool onlyOwned = false) const;
 
+	void CheckSelection();
+
 
 protected:
 	class Zone : public ClickZone<const Ship *> {
@@ -144,6 +146,7 @@ protected:
 
 protected:
 	PlayerInfo &player;
+	bool isShipyard = false;
 	// Remember the current day, for calculating depreciation.
 	int day;
 	const Planet *planet = nullptr;
@@ -201,7 +204,6 @@ private:
 	void MainRight();
 	void MainUp();
 	void MainDown();
-	void CheckSelection();
 	void CategoryAdvance(const std::string &);
 	std::vector<Zone>::const_iterator Selected() const;
 	// Check if the given point is within the button zone, and if so return the
