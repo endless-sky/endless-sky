@@ -279,9 +279,9 @@ ShipEffectsShader::EffectItem ShipEffectsShader::Prepare(const Ship* ship, const
 	item.position[1] = static_cast<float>(position.Y() * zoom);
 
 	// Get unit vectors in the direction of the object's width and height.
-	double width = ship->Width();
-	double height = ship->Height();
-	Point unit = ship->Facing().Unit();
+	const double width = ship->Width();
+	const double height = ship->Height();
+	const Point unit = ship->Facing().Unit();
 	Point uw = unit * width;
 	Point uh = unit * height;
 
@@ -306,8 +306,8 @@ ShipEffectsShader::EffectItem ShipEffectsShader::Prepare(const Ship* ship, const
 	for(int i = 0; i < static_cast<int>(item.recentHits); i++)
 	{
 		const auto newP = sub.Rotate(recth->at(i).first * Point(-1, -1));
-		item.recentHitPoints[2 * i] = (newP.X() / ((2 / 1.5) * ship->Radius()));
-		item.recentHitPoints[2 * i + 1] = (newP.Y() / ((2 / 1.2) * ship->Radius()));
+		item.recentHitPoints[2 * i] = newP.X() / width;
+		item.recentHitPoints[2 * i + 1] = newP.Y() / height;
 		item.recentHitDamage[i] = (min(1., recth->at(i).second));
 	}
 

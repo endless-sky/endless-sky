@@ -1575,7 +1575,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	if(!isBeingDestroyed)
 		DoGeneration();
 
-	DoPassiveEffects(visuals, flotsam);
+	DoEffects(visuals, flotsam);
 	DoJettison(flotsam);
 	DoCloakDecision();
 
@@ -3768,47 +3768,6 @@ void Ship::DoGeneration()
 	double maxHull = attributes.Get("hull");
 	hull = min(hull, maxHull);
 
-	if(static_cast<int>(Preferences::GetHitEffects()) > 0) {
-		if(static_cast<int>(Preferences::GetHitEffects()) == 1)
-		{
-			if(recentHits.size() > 64)
-			{
-				sort(recentHits.begin(), recentHits.end(),
-					[](const pair<Point, double> &left, const pair<Point, double> &right)
-					{
-						return left.second > right.second;
-					}
-				);
-				recentHits.resize(64);
-			}
-		}
-		else if(static_cast<int>(Preferences::GetHitEffects()) == 2)
-		{
-			double total = 0.;
-			for(const auto &it : recentHits)
-			{
-				total += it.second;
-			}
-			recentHits.clear();
-			recentHits.push_back(pair<Point, double>(Point(), total));
-		}
-		for(unsigned int i = 0; i < recentHits.size();)
-		{
-			if(recentHits[i].second > 1.)
-				recentHits[i].second *= 0.5;
-			else
-				recentHits[i].second *= 0.92;
-
-			if(recentHits[i].second < 0.001)
-				recentHits.erase(recentHits.begin() + i);
-			else
-				i++;
-		}
-	}
-	else if(!recentHits.empty())
-		recentHits.clear();
-
-
 	isDisabled = isOverheated || hull < MinimumHull() || (!crew && RequiredCrew());
 
 	// Update ship supply levels.
@@ -3870,7 +3829,7 @@ void Ship::DoGeneration()
 
 
 
-void Ship::DoPassiveEffects(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
+void Ship::DoEffects(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 {
 	// Adjust the error in the pilot's targeting.
 	personality.UpdateConfusion(firingCommands.IsFiring());
@@ -3892,6 +3851,47 @@ void Ship::DoPassiveEffects(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &
 		CreateSparks(visuals, "leakage spark", leakage * .1);
 	if(burning)
 		CreateSparks(visuals, "burning spark", burning * .1);
+
+	// Handle Shield Visuals last.
+	if(static_cast<int>(Preferences::GetHitEffects()) > 0) {
+		if(static_cast<int>(Preferences::GetHitEffects()) == 1)
+		{
+			if(recentHits.size() > 64)
+			{
+				sort(recentHits.begin(), recentHits.end(),
+					[](const pair<Point, double> &left, const pair<Point, double> &right)
+					{
+						return left.second > right.second;
+					}
+				);
+				recentHits.resize(64);
+			}
+		}
+		else if(static_cast<int>(Preferences::GetHitEffects()) == 2)
+		{
+			double total = 0.;
+			for(const auto &it : recentHits)
+			{
+				total += it.second;
+			}
+			recentHits.clear();
+			recentHits.push_back(pair<Point, double>(Point(), total));
+		}
+		for(unsigned int i = 0; i < recentHits.size();)
+		{
+			if(recentHits[i].second > 1.)
+				recentHits[i].second *= 0.5;
+			else
+				recentHits[i].second *= 0.92;
+
+			if(recentHits[i].second < 0.001)
+				recentHits.erase(recentHits.begin() + i);
+			else
+				i++;
+		}
+	}
+	else if(!recentHits.empty())
+		recentHits.clear();
 }
 
 
