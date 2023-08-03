@@ -177,6 +177,18 @@ void ShopPanel::Draw()
 
 
 
+// Copy ship sidebar information and state from another shop panel.
+void ShopPanel::UpdateShipInfo(const ShopPanel &panel)
+{
+	playerShip = panel.playerShip;
+	dragShip = panel.dragShip;
+	isDraggingShip = panel.isDraggingShip;
+	dragPoint = panel.dragPoint;
+	playerShips = panel.playerShips;
+}
+
+
+
 void ShopPanel::DrawShipsSidebar()
 {
 	const bool designMode = player.IsDesignPlayer();

@@ -46,6 +46,8 @@ public:
 	virtual void Step() override;
 	virtual void Draw() override;
 
+	void UpdateShipInfo(const ShopPanel &panel);
+
 
 protected:
 	// BuyResult holds the result of an attempt to buy. It is implicitly

@@ -386,7 +386,7 @@ bool ShipyardPanel::CanSellMultiple() const
 // Only override the ones you need; the default action is to return false.
 bool ShipyardPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	const Panel *oldPanel = selectedPanel;
+	const ShopPanel *oldPanel = selectedPanel;
 	const bool inDesignCenter = player.IsDesignPlayer();
 	const bool hasDesignCenter = designPlayer.IsDesignPlayer();
 
@@ -409,11 +409,15 @@ bool ShipyardPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 	else if(key == 'o' && hasDesignCenter && selectedPanel)
 	{
 		selectedPanel = designOutfitterPanel.get();
+		if(oldPanel)
+			selectedPanel->UpdateShipInfo(*oldPanel);
 		GetUI()->Push(designOutfitterPanel);
 	}
 	else if(key == 'y' && hasDesignCenter && selectedPanel)
 	{
 		selectedPanel = designShipyardPanel.get();
+		if(oldPanel)
+			selectedPanel->UpdateShipInfo(*oldPanel);
 		GetUI()->Push(designShipyardPanel);
 	}
 	else if((key == 'l' || key == 'd' || key == SDLK_ESCAPE
