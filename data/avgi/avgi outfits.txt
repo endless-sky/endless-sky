@@ -35,7 +35,7 @@ outfit "Speckle Railgun"
 	weapon
 		sound "repeater"
 		ammo "Speck Round"
-		"fire effect" "ion spark"
+		"fire effect" "speck fire"
 		"inaccuracy" 1.5
 		"velocity" 60
 		"range override" 1800
@@ -46,7 +46,7 @@ outfit "Speckle Railgun"
 		"firing energy" 6
 		"firing heat" 12
 		"firing force" 12
-		"submunition" "speckle slug"
+		"submunition" "speck slug"
 	description "This compact railgun rapidly fires a stream of hypervelocity projectiles, trading accuracy for sheer rate of fire. Friction between the projectiles and the rails, while reduced due to special coatings, produces enough heat that the gun must cool down after a burst of fire to prevent rail ablation."
 	description "A small internal capacitor allows the Speckle Railgun to be trickle charged, even if a ship's power supply would otherwise be insufficient to fire a single shot."
 	
@@ -66,22 +66,25 @@ outfit "Speckle Turret"
 		ammo "Speck Round"
 		"hardpoint sprite" "hardpoint/speckle turret"
 		"hardpoint offset" 6
-		"fire effect" "ion spark"
+		"fire effect" "speck fire"
 		"inaccuracy" 1.2
 		"velocity" 60
 		"range override" 1800
 		"lifetime" 1
-		"reload" 3
+		"reload" 12
 		"turret turn" 6
-		"firing energy" 6
-		"firing heat" 12
-		"firing force" 12
-		"submunition" "speckle slug"
+		"firing energy" 12
+		"firing heat" 24
+		"firing force" 24
+		"submunition" "speck slug"
+			"offset" -3 0
+		"submunition" "speck slug"
+			"offset" 3 0
 	description "The turreted version of the Speckle Railgun mounts a pair of railguns onto a nimble swiveling base. Its light weight and minimal size allows even small ships to engage much larger targets at extreme ranges. By alternating the fire of each railgun on the turret, the required cooldown period can be staggered to the point of providing an appearance of constant fire."
 	description "A small internal capacitor allows the Speckle Turret to be trickle charged, even if a ship's power supply would otherwise be insufficient to fire a single shot."
 
 
-outfit "speckle slug"
+outfit "speck slug"
 	weapon
 		sprite "projectile/speck"
 			"frame rate" 12
@@ -92,6 +95,14 @@ outfit "speckle slug"
 		"shield damage" 6
 		"hull damage" 15
 		"hit force" 12
+
+effect "speck fire"
+	sprite "effect/emp torpedo fire"
+		"scale" 0.75
+		"random start frame"
+		"frame rate" 60
+	"lifetime" 3
+	"random angle" 30
 
 
 outfit "Fleck Round"
@@ -171,8 +182,10 @@ outfit "Fleck Turret"
 
 outfit "fleck slug"
 	weapon
-		sprite "projectile/coilgun"
+		sprite "projectile/fleck"
 			"frame rate" 6
+			"random start frame"
+			"rewind"
 		"hit effect" "bombardment impact"
 		"lifetime" 120
 		"random lifetime" 30
@@ -180,6 +193,15 @@ outfit "fleck slug"
 		"shield damage" 60
 		"hull damage" 90
 		"hit force" 60
+
+
+effect "fleck fire"
+	sprite "effect/emp torpedo fire"
+		"scale" 1
+		"random start frame"
+		"frame rate" 60
+	"lifetime" 3
+	"random angle" 30
 
 
 outfit "Phased Array Laser (Green)"
@@ -399,9 +421,9 @@ outfit "Sidereal Active"
 		"hit effect" "missile hit"
 		"lifetime" 450
 		"split range" 420
-		"acceleration" 0.6
-		"drag" .015
-		"turn" 18
+		"acceleration" 1.8
+		"drag" .09
+		"turn" 12
 		"homing" 4
 		"radar tracking" 0.6
 		"infrared tracking" 0.9
@@ -419,8 +441,8 @@ outfit "Sidereal Flack"
 			"frame rate" .1
 		"die effect" "missile death"
 		"hit effect" "bombardment impact"
-		"inaccuracy" 9
-		"random velocity" 6
+		"inaccuracy" 12
+		"random velocity" 12
 		"lifetime" 60
 		"random lifetime" 180
 		"shield damage" 18
