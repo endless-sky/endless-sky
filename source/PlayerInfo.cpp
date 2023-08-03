@@ -1373,7 +1373,7 @@ double PlayerInfo::RaidFleetAttraction(const Government::RaidFleet &raid, const 
 		// If the player's fleet is attractive enough but too well guarded for a simple raid, stack them up.
 		if(attraction > 1. + govAttraction && raidStrength * (govAttraction + 10.) < FleetStrength())
 		{
-			govAttraction += (attraction - 1.) * .15;
+			govAttraction += (attraction - 1.) * .1;
 			return 0.;
 		}
 		if(attraction < 1. && govAttraction > 0.)
@@ -1386,6 +1386,17 @@ double PlayerInfo::RaidFleetAttraction(const Government::RaidFleet &raid, const 
 		return max(0., attraction);
 	}
 	return 0.;
+}
+
+
+
+void PlayerInfo::RefreshRaiding()
+{
+	for(auto &it : raidAttraction)
+		if(it.second > 2.)
+			it.second -= .1;
+		else
+		 	it.second *= .95;
 }
 
 

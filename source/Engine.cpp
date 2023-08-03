@@ -1331,6 +1331,7 @@ void Engine::EnterSystem()
 				CreateWeather(hazard, stellar.Position());
 	}
 
+	player.RefreshRaiding();
 	for(const auto &raidFleet : system->GetGovernment()->RaidFleets())
 	{
 		double attraction = player.RaidFleetAttraction(raidFleet, system);

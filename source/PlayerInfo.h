@@ -179,6 +179,7 @@ public:
 	// Get the attraction factors of the player's fleet to raid fleets.
 	std::pair<double, double> RaidFleetFactors() const;
 	double RaidFleetAttraction(const Government::RaidFleet &raidFleet, const System *system);
+	void RefreshRaiding();
 
 	// Get cargo information.
 	CargoHold &Cargo();
