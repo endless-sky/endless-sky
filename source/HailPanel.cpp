@@ -214,7 +214,7 @@ void HailPanel::Draw()
 
 	DrawList draw;
 	// If this is a ship, copy its swizzle, animation settings, etc.
-	// Also draw its fighters and hardpoints.
+	// Also draw its fighters and weapon hardpoints.
 	if(ship)
 	{
 		bool hasFighters = ship->PositionFighters();
