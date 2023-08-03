@@ -1338,11 +1338,11 @@ pair<double, double> PlayerInfo::RaidFleetFactors() const
 
 double PlayerInfo::RaidFleetAttraction(const Government::RaidFleet &raid, const System *system)
 {
+	double attraction = 0.;
 	const Fleet *raidFleet = raid.GetFleet();
 	const Government *raidGov = raidFleet ? raidFleet->GetGovernment() : nullptr;
 	if(raidGov && raidGov->IsEnemy())
 	{
-		double attraction = 0.;
 		double &govAttraction = raidAttraction[raidGov];
 		// The player's base attraction to a fleet is determined by their fleet attraction minus
 		// their fleet deterrence, minus whatever the minimum attraction of this raid fleet is.
@@ -1371,21 +1371,20 @@ double PlayerInfo::RaidFleetAttraction(const Government::RaidFleet &raid, const 
 				}
 			}
 		// If the player's fleet is attractive enough but too well guarded for a simple raid, stack them up.
-		if(attraction > 1. + govAttraction && raidStrength * (govAttraction + 10.) < FleetStrength())
+		if(attraction > 1. + govAttraction)
 		{
-			govAttraction += (attraction - 1.) * .1;
-			return 0.;
+			if(raidStrength * (govAttraction + 10.) < FleetStrength())
+			{
+				govAttraction += min(.15, (attraction - 1.) * .1);
+				attraction = 0.;
+			}
 		}
-		if(attraction < 1. && govAttraction > 0.)
-		{
-			govAttraction -= (1. - attraction);
-			return attraction;
-		}
-		attraction += govAttraction;
-		raidAttraction.erase(raidGov);
-		return max(0., attraction);
+		// When the fleet is big enough to hit, or
+		// if the current attraction became lower than what it used to be adjust it and use the new one as maximum.
+		else
+			govAttraction -= attraction;
 	}
-	return 0.;
+	return max(0., attraction);
 }
 
 
@@ -1393,10 +1392,7 @@ double PlayerInfo::RaidFleetAttraction(const Government::RaidFleet &raid, const 
 void PlayerInfo::RefreshRaiding()
 {
 	for(auto &it : raidAttraction)
-		if(it.second > 2.)
-			it.second -= .1;
-		else
-		 	it.second *= .95;
+		it.second = max(0., it.second - .1);
 }
 
 
