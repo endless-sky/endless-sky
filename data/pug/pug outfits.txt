@@ -152,6 +152,7 @@ outfit "Tier 3 Anti-Missile"
 	"outfit space" -67
 	"weapon capacity" -67
 	"turret mounts" -1
+	"unique" 1
 	weapon
 		"hardpoint sprite" "hardpoint/t3 anti missile"
 		"fire effect" "tier 3 anti-missile fire"
@@ -189,6 +190,7 @@ outfit "Pug Gridfire Turret"
 	"outfit space" -83
 	"weapon capacity" -83
 	"turret mounts" -1
+	"unique" 1
 	weapon
 		"hardpoint sprite" "hardpoint/pug gridfire turret"
 		"fire effect" "gridfire fire"
