@@ -65,6 +65,8 @@ outfit "Speckle Turret"
 	weapon
 		sound "repeater"
 		ammo "Speck Round"
+		"hardpoint sprite" "hardpoint/speckle turret"
+		"hardpoint offset" 6
 		"fire effect" "finisher sparks"
 		"hit effect" "bombardment impact"
 		"inaccuracy" 1.2
@@ -126,6 +128,8 @@ outfit "Fleck Coilgun"
 	weapon
 		sound "repeater"
 		ammo "Fleck Round"
+		"hardpoint sprite" "hardpoint/fleck turret"
+		"hardpoint offset" 6
 		"fire effect" "finisher sparks"
 		"hit effect" "bombardment impact"
 		"inaccuracy" 0.6
@@ -1068,6 +1072,7 @@ outfit "Z-360 Fusion Torch"
 	"drag reduction" 1
 	"flare sprite" "effect/avgi fusion flare/medium"
 		"frame rate" 30
+		"scale" 0.75
 	"flare sound" "remnant afterburner"
 
 	"afterburner thrust" 30
@@ -1092,6 +1097,11 @@ outfit "Z-600 Fusion Torch"
 		"frame rate" 30
 	"flare sound" "remnant afterburner"
 
+	"afterburner thrust" 60
+	"afterburner fuel" 0.24
+	"afterburner heat" -9
+	"afterburner effect" "fusion afterburner"
+
 
 outfit "Z-960 Fusion Torch"
 	category "Engines"
@@ -1105,9 +1115,14 @@ outfit "Z-960 Fusion Torch"
 	"thrusting heat" 54
 	"thrusting fuel" 0.12
 	"drag reduction" 1.8
-	"flare sprite" "effect/avgi fusion flare/huge"
+	"flare sprite" "effect/avgi fusion flare/large"
 		"frame rate" 30
 	"flare sound" "remnant afterburner"
+
+	"afterburner thrust" 90
+	"afterburner fuel" 0.24
+	"afterburner heat" -9
+	"afterburner effect" "fusion afterburner"
 
 
 effect "fusion afterburner"
