@@ -13,7 +13,7 @@
 
 # Blue Shields
 # Generic shields
-color "shields default" .43 .55 .70 .75
+color "shields default" .43 .55 .70 .8
 # Deep, maybe?
 color "shields deep" .10 .25 .60 .75
 color "shields wanderer" .02 .08 .46 .8
