@@ -1,12 +1,12 @@
 fleet "Avgi Core Defense"
-	government "Avgi (Spaceguard)"
+	government "Avgi (Consonance)"
 	names "avgi military names"
 	fighters
 		names "avgi fighter names"
 		personality
 			heroic surveillance swarming
 	personality
-		lingering surveillance heroic merciful
+		lingering surveillance heroic
 	variant 8
 		"Atenuatia"
 		"Vibratia" 18
@@ -58,7 +58,7 @@ fleet "Avgi Core Defense"
 
 
 fleet "Avgi Orbital Defense"
-	government "Avgi (Spaceguard)"
+	government "Avgi (Consonance)"
 	names "avgi fighter names"
 	personality
 		lingering heroic surveillance swarming
@@ -73,7 +73,7 @@ fleet "Avgi Orbital Defense"
 
 
 fleet "Avgi Patrol"
-	government "Avgi (Spaceguard)"
+	government "Avgi (Consonance)"
 	names "avgi military names"
 	cargo 4
 	commodities "Food" "Metal" "Equipment" "Medical" "Heavy Metals"
@@ -82,7 +82,7 @@ fleet "Avgi Patrol"
 		personality
 			disables surveillance
 	personality
-		surveillance merciful disables
+		surveillance hunting
 	variant 10
 		"Tremoros"
 	variant 8
@@ -107,7 +107,7 @@ fleet "Avgi Scouts"
 	fighters
 		names "avgi fighter names"
 	personality
-		surveillance timid coward merciful disables
+		surveillance timid coward merciful
 		confusion 20
 	variant 10
 		"Polari"
@@ -127,14 +127,14 @@ fleet "Avgi Scouts"
 
 
 fleet "Avgi Strike Group"
-	government "Avgi (Spaceguard)"
+	government "Avgi (Consonance)"
 	names "avgi military names"
 	cargo 4
 	commodities "Food" "Metal" "Equipment" "Medical" "Heavy Metals"
 	fighters
 		names "avgi fighter names"
 		personality
-			hunting disables
+			hunting disables merciful
 	personality
 		confusion 10
 		heroic disables
@@ -144,7 +144,7 @@ fleet "Avgi Strike Group"
 
 
 fleet "Avgi Fleetgroup"
-	government "Avgi (Spaceguard)"
+	government "Avgi (Consonance)"
 	names "avgi military names"
 	cargo 4
 	commodities "Food" "Metal" "Equipment" "Medical" "Heavy Metals"
@@ -207,7 +207,7 @@ fleet "Avgi Logistics"
 
 
 
-fleet "Avgi Small Merchant"
+fleet "Small Avgi Merchants"
 	government "Avgi"
 	names "avgi civilian names"
 	fighters
@@ -236,7 +236,7 @@ fleet "Avgi Small Merchant"
 		"Tremoros"
 
 
-fleet "Avgi Large Merchant"
+fleet "Large Avgi Merchants"
 	government "Avgi"
 	names "avgi civilian names"
 	fighters
@@ -322,7 +322,7 @@ fleet "Avgi Miners"
 		"Akoustiki" 3
 
 
-fleet "Avgi Small Dissonance"
+fleet "Small Dissonance Merchants"
 	government "Avgi (Dissonance)"
 	names "avgi civilian names"
 	fighters
@@ -351,7 +351,7 @@ fleet "Avgi Small Dissonance"
 		"Tremoros"
 
 
-fleet "Avgi Large Dissonance"
+fleet "Large Dissonance Merchants"
 	government "Avgi (Dissonance)"
 	names "avgi civilian names"
 	fighters
@@ -387,9 +387,7 @@ fleet "Avgi Large Dissonance"
 		"Akoustiki" 2
 
 
-
-
-fleet "Avgi Dissonance Miners"
+fleet "Dissonance Miners"
 	government "Avgi (Dissonance)"
 	names "avgi civilian names"
 	fighters
@@ -417,8 +415,7 @@ fleet "Avgi Dissonance Miners"
 		"Akoustiki" 3
 
 
-
-fleet "Avgi Small Angry Dissonance"
+fleet "Small Dissonance Pirates"
 	government "Avgi (Dissonance Aggressive)"
 	names "avgi civilian names"
 	fighters
@@ -434,7 +431,7 @@ fleet "Avgi Small Angry Dissonance"
 		"Akoustiki" 2
 
 
-fleet "Avgi Large Angry Dissonance"
+fleet "Large Dissonance Pirates"
 	government "Avgi (Dissonance Aggressive)"
 	names "avgi civilian names"
 	fighters

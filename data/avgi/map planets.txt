@@ -6,6 +6,7 @@ planet "Antivli Station"
 	attributes twilight avgi station
 	landscape land/station25
 	description "This was once a particle accelerator several kilometers in diameter. With beamed power provided by the hundreds of solar collection satellites in low orbit around Anax, enough antimatter could be produced each year to supply both Avgi research and industrial efforts."
+	description "Combined, the amat farms around Anax produced only a few dozen kilograms of antimatter each year."
 	government Uninhabited
 
 
@@ -45,18 +46,18 @@ planet Aviskir
 	outfitter "Avgi Atomics"
 
 
-
 planet Sela
 	attributes twilight avgi uninhabited
 	landscape land/snow23
 	description "A former planetoid captured into Aviskir's orbit only a few hundred million years ago, Sela is unusual for large moons in that it is not tidally locked, instead having a rapid rotational period of only forty-two hours. Almost one third of the moon is covered in a glassy plain of ice, smoothed by seasonal melting and refreezing. This is thought to have been deposited by a cometary impact relatively recently, and has been steadily sublimating away into space ever since."
 	description "An Avgi first set foot on another world here, carried by a ship driven by nuclear pulsed propulsion. Driving a ship by detonating small nuclear explosives behind a pusher plate is seen as insanity by most species, but for the Avgi it was their first stepping stone in the colonization of their home system."
+	government Uninhabited
 
 
 planet "Feo Platform"
 	attributes twilight avgi station uninhabited
 	landscape land/station46
-	description "A giant hypervelocity gun, lmao"
+	description "A giant hypervelocity gun, lmao WIP"
 	government Uninhabited
 
 
@@ -66,6 +67,7 @@ planet Thilos
 	description "The Avgi were fortunate to have this nearly habitable planet in their home system. Covered in a thick crust of ice, a deep subsurface ocean lies just below the surface, heated by the radioactive decay of isotopes in its rocky core."
 	description "This planet was the first to be settled by the Avgi, who almost immediately began thickening its atmosphere, oxygenating it, and warming the surface with orbital mirrors. Despite beginning this process nearly three centuries ago, it will likely be another century before Thilos becomes warm enough to live on, though its atmosphere is already breathable."
 	spaceport "The primary spaceport is located near a region where the icy crust is thin. The landing pads are built from enormous slabs of ice, thick enough to absorb the plume of a fusion torch. During the summer, the plumes of cryovolcanoes often surround the spaceport, tinging the tenuous sky with pale blue streaks."
+	government Uninhabited
 
 
 planet Oura
@@ -79,12 +81,15 @@ planet Oura
 
 planet Anitlos
 	attributes twilight avgi uninhabited
+	landscape land/mars3
+	description "Anitlos is a completely useless ball of rock and ice. WIP"
+	government Uninhabited
 	
 
 planet "Nisos Cylinder"
 	attributes twilight avgi urban station uninhabited
 	landscape land/station47
-	description "An O'Neil Cylinder"
+	description "An O'Neil Cylinder WIP"
 	government Uninhabited
 
 
@@ -94,6 +99,7 @@ planet Entantel
 	description "Entantel is notable in that it is almost entirely comprised of water ice. With a diminutive rocky core, its low average density gives rise to a very low gravitational acceleration for its size."
 	description "Because of its shallow gravity well and abundance of volatiles, Entantel is one of the biggest exporters of water ice in the outer Anax system."
 	spaceport "The spaceport here launches most upmass via mass driver rather than starship, and despite the abundance of water, and thus deuterium, there is barely enough fuel to fill a few large tankers."
+	government Uninhabited
 
 
 
@@ -314,7 +320,7 @@ planet "Alonis Observatory"
 planet Anatrefo
 	attributes twilight uninhabited
 	landscape land/station19
-	description "Anatrefo was discovered mere years after the Avgi discovered the hyperdrive, and was soon considered the most momentous discovery in Avgi history. An intact alien station, albeit one stripped of any advanced technologies, proved once and for all that the Avgi were not alone in the universe. Even more significant was a long, slender structure near the station, appearing as though construction on it had barely been started - speculated to be a fragment of a ringworld, a monumental undertaking."
+	description "Anatrefo was discovered mere years after the Avgi discovered the hyperdrive, and was soon considered the most momentous discovery in Avgi history. An intact alien station, albeit one stripped of any advanced technologies, proved once and for all that the Avgi were not alone in the universe. Even more significant was a long, slender megastructure near the station, appearing as though construction on it had barely been started."
 	description "While study of the station's structure was hoped to provide insights into advanced alien technologies, it has so far proven stubbornly difficult to understand or reverse engineer, with some Avgi scientists remarking that even the station's materials appear to intelligently circumvent attempts to probe their internal structure."
 
 

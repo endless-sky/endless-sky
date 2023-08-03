@@ -7,6 +7,8 @@ outfit "Nucleolysis Beam"
 	"mass" 16
 	"outfit space" -23
 	"weapon capacity" -23
+	"flotsam chance" 0.1
+	"unplunderable" 1
 	"gun ports" -1
 	weapon
 		sprite "projectile/nucleolysis beam"
@@ -34,6 +36,8 @@ outfit "Telescopic Antimissile"
 	"mass" 40
 	"outfit space" -40
 	"weapon capacity" -40
+	"flotsam chance" 0.1
+	"unplunderable" 1
 	"turret mounts" -1
 	weapon
 		"hit effect" "quarg anti-missile"
@@ -55,6 +59,8 @@ outfit "Anomalous Shield Projector"
 	"outfit space" -12
 	"shield generation" 6
 	"shield energy" 6
+	"flotsam chance" 0.1
+	"unplunderable" 1
 	description "This emitter produces no detectable fields of any kind, yet a shield somehow springs into existence whenever something that could damage it comes near enough."
 
 
@@ -68,5 +74,6 @@ outfit "Antimatter Power Cell"
 	"outfit space" -13
 	"energy generation" 9.9
 	"heat generation" 4.9
+	"flotsam chance" 0.1
 	"unplunderable" 1
 	description "This strange device seems to be partially organic in nature, slowly leaking antiprotons through a constantly-regrowing spongelike structure to release energy. The amount of power produced is inconsistent with the amount of matter and antimatter being annihilated, inexplicably producing more than should be possible."

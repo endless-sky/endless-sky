@@ -1033,10 +1033,10 @@ outfit "Magnetoplasma Drive"
 	"engine capacity" -18
 	"thrust" 9
 	"thrusting energy" 1.2
-	"thrusting heat" 0.6
+	"thrusting heat" 0.3
 	"reverse thrust" 3
 	"reverse thrusting energy" 0.6
-	"reverse thrusting heat" 0.3
+	"reverse thrusting heat" 0.15
 	"turn" 210
 	"turning energy" 0.6
 	"turning heat" 0.3

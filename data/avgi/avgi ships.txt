@@ -3,8 +3,8 @@
 ship "Koryfi"
 	sprite "ship/avgi koryfi/koryfi"
 		"frame rate" 30
-	swizzle 0
 	thumbnail "thumbnail/avgi koryfi"
+	swizzle 0
 	attributes
 		category "Transport"
 		"shields" 600
@@ -111,6 +111,7 @@ ship "Melodikos"
 	sprite "ship/avgi melodikos/melodikos"
 		"frame rate" 30
 	thumbnail "thumbnail/avgi melodikos"
+	swizzle 0
 	attributes
 		category "Space Liner"
 		"shields" 1200
@@ -253,6 +254,7 @@ ship "Avlaki"
 		"frame rate" 30
 	swizzle 0
 	thumbnail "thumbnail/avgi avlaki"
+	swizzle 0
 	attributes
 		category "Light Freighter"
 		"shields" 600
@@ -358,6 +360,7 @@ ship "Harmonikos"
 	sprite "ship/avgi harmonikos"
 		"frame rate" 30
 	thumbnail "thumbnail/avgi harmonikos"
+	swizzle 0
 	attributes
 		category "Heavy Freighter"
 		"shields" 1200
@@ -557,6 +560,7 @@ ship "Phononos"
 ship "Frequentia"
 	sprite "ship/avgi frequentia"
 	thumbnail "thumbnail/avgi frequentia"
+	swizzle 0
 	attributes
 		category "Utility"
 		"shields" 600
@@ -623,6 +627,7 @@ ship "Frequentia"
 ship "Undsyni"
 	sprite "ship/avgi undsyni"
 	thumbnail "thumbnail/avgi undsyni"
+	swizzle 0
 	attributes
 		category "Utility"
 		"shields" 2400
@@ -712,6 +717,7 @@ ship "Undsyni"
 ship "Polari"
 	sprite "ship/avgi polari"
 	thumbnail "thumbnail/avgi polari"
+	swizzle 0
 	attributes
 		category "Utility"
 		"shields" 600
@@ -789,6 +795,7 @@ ship "Entasi"
 	sprite "ship/avgi entasi"
 	swizzle 0
 	thumbnail "thumbnail/avgi entasi"
+	swizzle 0
 	attributes
 		category "Utility"
 		"shields" 1500
@@ -987,8 +994,8 @@ ship "Tremoros"
 
 ship "Prismaios"
 	sprite "ship/avgi prismaios"
-	swizzle 0
 	thumbnail "thumbnail/avgi prismaios"
+	swizzle 0
 	attributes
 		category "Light Warship"
 		"cost" 240000
@@ -1069,6 +1076,7 @@ ship "Interferos"
 	sprite "ship/avgi interferos"
 	swizzle 0
 	thumbnail "thumbnail/avgi interferos"
+	swizzle 0
 	attributes
 		category "Light Warship"
 		"cost" 240000
@@ -1149,6 +1157,7 @@ ship "Interferos"
 ship "Diaspersi"
 	sprite "ship/avgi diaspersi"
 	thumbnail "thumbnail/avgi diaspersi"
+	swizzle 0
 	attributes
 		category "Medium Warship"
 		"cost" 2400000
@@ -1246,6 +1255,7 @@ ship "Diaspersi"
 ship "Difraktos"
 	sprite "ship/avgi difraktos"
 	thumbnail "thumbnail/avgi difraktos"
+	swizzle 0
 	attributes
 		category "Medium Warship"
 		"cost" 3600000
@@ -1341,6 +1351,7 @@ ship "Difraktos"
 ship "Refraktos"
 	sprite "ship/avgi refraktos"
 	thumbnail "thumbnail/avgi refraktos"
+	swizzle 0
 	attributes
 		category "Medium Warship"
 		"shields" 3600
@@ -1430,6 +1441,7 @@ ship "Refraktos"
 ship "Atenuatia"
 	sprite "ship/avgi atenuatia"
 	thumbnail "thumbnail/avgi atenuatia"
+	swizzle 0
 	attributes
 		category "Heavy Warship"
 		"shields" 4200
@@ -1840,7 +1852,7 @@ ship "Optikon"
 		"crew equivalent" 1
 		"mass" 12
 		"drag" .6
-		"heat dissipation" .84
+		"heat dissipation" .9
 		"fuel capacity" 100
 		"outfit space" 60
 		"engine capacity" 24

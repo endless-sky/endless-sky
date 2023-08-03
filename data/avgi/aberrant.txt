@@ -9,7 +9,7 @@ phrase "aberrant names"
 		"'sei"
 
 fleet "Small Aberrant"
-	government "Ka'sei (Twilight)"
+	government "Aberrant"
 	names "aberrant names"
 	personality
 		confusion 90
@@ -97,7 +97,7 @@ fleet "Small Aberrant"
 		"Twilight Ka'sei 2E (Disable-able)"
 
 fleet "Large Aberrant"
-	government "Ka'sei (Twilight)"
+	government "Aberrant"
 	names "aberrant names"
 	personality
 		confusion 90

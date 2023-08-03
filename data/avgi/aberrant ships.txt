@@ -42,6 +42,7 @@ ship "Twilight Ka'sei 1A"
 		"Ka'het Reserve Accumulator"
 
 		"Ka'het Compact Engine" 2
+		"Hyperdrive"
 
 	gun -12 -31 "Ka'het Ravager Beam"
 	gun 12 -31 "Ka'het Ravager Beam"
@@ -110,6 +111,7 @@ ship "Twilight Ka'sei 1B"
 		"Ka'het Reserve Accumulator"
 
 		"Ka'het Compact Engine" 2
+		"Hyperdrive"
 
 	gun -13.5 -36.5 "Ka'het Ravager Beam"
 	gun 13.5 -36.5 "Ka'het Ravager Beam"
@@ -181,6 +183,7 @@ ship "Twilight Ka'sei 1C"
 		"Ka'het Reserve Accumulator"
 
 		"Ka'het Compact Engine" 2
+		"Hyperdrive"
 
 	gun -11 -40.5
 	gun 11 -40.5
@@ -249,6 +252,7 @@ ship "Twilight Ka'sei 1D"
 		"Ka'het Reserve Accumulator"
 
 		"Ka'het Compact Engine" 2
+		"Hyperdrive"
 
 	gun -9 -23.5 "Ka'het Ravager Beam"
 	gun 9 -23.5 "Ka'het Ravager Beam"
@@ -315,6 +319,7 @@ ship "Twilight Ka'sei 1E"
 		"Ka'het Reserve Accumulator"
 
 		"Ka'het Compact Engine" 3
+		"Hyperdrive"
 
 	gun -16.5 -8.5 "Ka'het Ravager Beam"
 	gun 16.5 -8.5 "Ka'het Ravager Beam"
@@ -383,6 +388,7 @@ ship "Twilight Ka'sei 1F"
 		"Ka'het Reserve Accumulator"
 
 		"Ka'het Compact Engine" 5
+		"Hyperdrive"
 
 	gun -14.5 -63.5 "Ka'het Ravager Beam"
 	gun 14.5 -63.5 "Ka'het Ravager Beam"
@@ -458,6 +464,7 @@ ship "Twilight Ka'sei 1G"
 		"Ka'het Reserve Accumulator"
 
 		"Ka'het Compact Engine" 2
+		"Hyperdrive"
 
 	gun -34.5 -58
 	gun 34.5 -58
@@ -529,6 +536,7 @@ ship "Twilight Ka'sei 2A"
 		"Ka'het Reserve Accumulator"
 
 		"Ka'het Compact Engine" 2
+		"Hyperdrive"
 
 	gun -9.5 -27.5 "Ka'het Ravager Beam"
 	gun 9.5 -27.5 "Ka'het Ravager Beam"
@@ -594,6 +602,7 @@ ship "Twilight Ka'sei 2B"
 		"Ka'het Reserve Accumulator"
 
 		"Ka'het Compact Engine" 2
+		"Hyperdrive"
 
 	gun -10.5 -42.5 "Ka'het Ravager Beam"
 	gun 10.5 -42.5 "Ka'het Ravager Beam"
@@ -659,6 +668,7 @@ ship "Twilight Ka'sei 2C"
 		"Ka'het Reserve Accumulator"
 
 		"Ka'het Compact Engine" 2
+		"Hyperdrive"
 
 	gun -9.5 -39 "Ka'het Ravager Beam"
 	gun 9.5 -39 "Ka'het Ravager Beam"
@@ -724,6 +734,7 @@ ship "Twilight Ka'sei 2D"
 		"Ka'het Reserve Accumulator"
 
 		"Ka'het Compact Engine" 2
+		"Hyperdrive"
 
 	gun -3.5 -35.5 "Ka'het Ravager Beam"
 	gun 3.5 -35.5 "Ka'het Ravager Beam"
@@ -791,6 +802,7 @@ ship "Twilight Ka'sei 2E"
 		"Ka'het Reserve Accumulator"
 
 		"Ka'het Compact Engine" 3
+		"Hyperdrive"
 
 	gun -9 -46.5 "Ka'het Ravager Beam"
 	gun 9 -46.5 "Ka'het Ravager Beam"
@@ -857,6 +869,7 @@ ship "Twilight Ka'sei 2F"
 		"Ka'het Reserve Accumulator"
 
 		"Ka'het Compact Engine" 2
+		"Hyperdrive"
 
 	gun -8.5 -42 "Nucleolysis Beam"
 	gun 8.5 -42 "Nucleolysis Beam"
@@ -933,6 +946,7 @@ ship "Twilight Ka'sei 2G"
 		"Ka'het Reserve Accumulator"
 
 		"Ka'het Compact Engine" 2
+		"Hyperdrive"
 
 	gun -2 -37 "Nucleolysis Beam"
 	gun 16 -37 "Nucleolysis Beam"
