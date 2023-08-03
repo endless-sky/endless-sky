@@ -1243,7 +1243,7 @@ void ShopPanel::MainDown()
 void ShopPanel::CheckSelection()
 {
 	if((!selectedOutfit && !selectedShip) ||
-			(selectedShip && HasItem(selectedShip->TrueModelName())) ||
+			(selectedShip && HasItem(selectedShip->VariantName())) ||
 			(selectedOutfit && HasItem(selectedOutfit->TrueName())))
 		return;
 
@@ -1257,7 +1257,7 @@ void ShopPanel::CheckSelection()
 	{
 		const Ship *ship = it->GetShip();
 		const Outfit *outfit = it->GetOutfit();
-		if((ship && HasItem(ship->TrueModelName())) || (outfit && HasItem(outfit->TrueName())))
+		if((ship && HasItem(ship->VariantName())) || (outfit && HasItem(outfit->TrueName())))
 			break;
 	}
 
@@ -1270,7 +1270,7 @@ void ShopPanel::CheckSelection()
 			--it;
 			const Ship *ship = it->GetShip();
 			const Outfit *outfit = it->GetOutfit();
-			if((ship && HasItem(ship->TrueModelName())) || (outfit && HasItem(outfit->TrueName())))
+			if((ship && HasItem(ship->VariantName())) || (outfit && HasItem(outfit->TrueName())))
 			{
 				++it;
 				break;
