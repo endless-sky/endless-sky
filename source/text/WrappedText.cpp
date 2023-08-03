@@ -211,6 +211,7 @@ void WrappedText::Wrap()
 	// Do this as a finite state machine.
 	Word word;
 	bool hasWord = false;
+	bool finalLineHadWord = false;
 
 	// Keep track of how wide the current line is. This is just so we know how
 	// much extra space must be allotted by the alignment code.
@@ -262,6 +263,7 @@ void WrappedText::Wrap()
 
 			// Adjust the word spacings on the now-completed line.
 			AdjustLine(lineBegin, lineWidth, true);
+			finalLineHadWord = false;
 		}
 		// Otherwise, whitespace just adds to the x position.
 		else if(c <= ' ')
@@ -270,9 +272,11 @@ void WrappedText::Wrap()
 		else if(!hasWord)
 		{
 			hasWord = true;
+			finalLineHadWord = true;
 			word.index = it - text.begin();
 		}
 	}
+
 	// Handle the final word.
 	if(hasWord)
 	{
@@ -294,6 +298,10 @@ void WrappedText::Wrap()
 		word.x += width;
 		lineWidth = word.x;
 	}
+	// If we are not in a word, advance to the next line if this line has any words.
+	else if(finalLineHadWord)
+		word.y += lineHeight + paragraphBreak;
+
 	// Adjust the spacing of words in the final line of text.
 	AdjustLine(lineBegin, lineWidth, true);
 
