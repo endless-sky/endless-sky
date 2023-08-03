@@ -1066,9 +1066,14 @@ outfit "Z-360 Fusion Torch"
 	"thrusting heat" 15
 	"thrusting fuel" 0.06
 	"drag reduction" 1
-	"flare sprite" "effect/avgi fusion flare/large"
+	"flare sprite" "effect/avgi fusion flare/medium"
 		"frame rate" 30
 	"flare sound" "remnant afterburner"
+
+	"afterburner thrust" 30
+	"afterburner fuel" 0.24
+	"afterburner heat" -9
+	"afterburner effect" "fusion afterburner"
 
 
 outfit "Z-600 Fusion Torch"
@@ -1100,15 +1105,14 @@ outfit "Z-960 Fusion Torch"
 	"thrusting heat" 54
 	"thrusting fuel" 0.12
 	"drag reduction" 1.8
-	"flare sprite" "effect/avgi fusion flare/large"
+	"flare sprite" "effect/avgi fusion flare/huge"
 		"frame rate" 30
 	"flare sound" "remnant afterburner"
 
 
 effect "fusion afterburner"
-	sprite "effect/fusionflare"
-		"frame rate" 10
-		zoom 2
+	sprite "effect/avgi fusion afterburner/medium"
+		"frame rate" 30
 	sound "remnant afterburner"
 
 
@@ -1126,11 +1130,11 @@ outfit "XY-180 Radial Thrusters"
 	"reverse thrust" 9
 	"reverse thrusting energy" 0.3
 	"reverse thrusting heat" 0.3
-	"steering flare sprite" "effect/avgi fusion flare/large"
+	"steering flare sprite" "effect/avgi fusion flare/medium"
 		"frame rate" 30
 		scale 0.125
 	"steering flare sound" "plasma small"
-	"reverse flare sprite" "effect/avgi fusion flare/large"
+	"reverse flare sprite" "effect/avgi fusion flare/medium"
 		"frame rate" 30
 		scale 0.25
 	"reverse flare sound" "plasma small"

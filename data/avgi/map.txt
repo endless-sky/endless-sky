@@ -2510,6 +2510,9 @@ system Pinnacle
 	asteroids "small metal" 2 3.442
 	asteroids "medium metal" 3 5.535
 	asteroids "large metal" 1 3.645
+	fleet "Avgi Scouts" 48000
+	fleet "Small Aberrant" 480
+	fleet "Large Aberrant" 720
 	object
 		sprite star/a0
 		period 10
@@ -2632,6 +2635,9 @@ system Mellow
 	asteroids "medium metal" 18 0.858
 	asteroids "large metal" 22 1.301
 	minables neodymium 9 1.587
+	fleet "Avgi Scouts" 42000
+	fleet "Small Aberrant" 480
+	fleet "Large Aberrant" 900
 	object
 		sprite star/g5
 		distance 71.975
@@ -2679,6 +2685,7 @@ system Postlude
 	asteroids "medium metal" 13 5.468
 	asteroids "large metal" 1 6.634
 	minables lead 1 8.654
+	fleet "Small Dissonance Merchants" 18000
 	object
 		sprite star/nova-small
 		period 10
@@ -2768,290 +2775,6 @@ system Corporeal
 			sprite planet/rock17
 			distance 258
 			period 255.225
-
-system "#31a999"
-	pos -24.17 1000.365
-	government Uninhabited
-	link "#d2e5ec"
-	link "#dee723"
-
-system "#01a9a9"
-	pos -192.211 848.742
-	government Uninhabited
-	link "#007477"
-	link "#bed3bb"
-	link "#d9534f"
-
-system "#ecd543"
-	pos -162.532 1056.338
-	government Uninhabited
-	link "#79c2ed"
-	link Concerto
-
-system "#08078a"
-	pos -171.072 920.748
-	government Uninhabited
-	link "#384e08"
-	link "#46d125"
-
-system "#0a6b84"
-	pos -16.872 832.201
-	government Uninhabited
-	link "#acf472"
-
-system "#cfc14d"
-	pos 98.609 877.834
-	government Uninhabited
-	link "#5cb85c"
-
-system "#f5fbc7"
-	pos -298.453 895.747
-	government Uninhabited
-	link "#baa7f9"
-	link Arche
-	link Ensemble
-
-system "#25f949"
-	pos -222.367 963.803
-	government Uninhabited
-	link "#0fe276"
-	link "#baa7f9"
-	link "#f70113"
-	link Ensemble
-
-system "#bed3bb"
-	pos -217.838 888.001
-	government Uninhabited
-	link "#01a9a9"
-	link "#edf8f7"
-	link Ensemble
-
-system "#79c2ed"
-	pos -134.923 1040.967
-	government Uninhabited
-	link "#ecd543"
-	link Concerto
-
-system "#0fe276"
-	pos -221.041 1010.682
-	government Uninhabited
-	link "#25f949"
-	link "#b6457f"
-	link Concerto
-
-system "#f70113"
-	pos -187.586 955.23
-	government Uninhabited
-	link "#25f949"
-	link Ensemble
-
-system "#1e877d"
-	pos 82.003 937.49
-	government Uninhabited
-	link "#2b5d50"
-	link "#f9f9f9"
-
-system "#bd370f"
-	pos 28.705 856.962
-	government Uninhabited
-	link "#2b5d50"
-	link "#5cb85c"
-
-system "#914fa1"
-	pos -95.825 977.968
-	government Uninhabited
-	link Symphony
-
-system "#3fee8d"
-	pos 4.185 943.689
-	government Uninhabited
-	habitable 10
-	belt 1302 7
-	belt 1536
-	belt 2928 3
-	link Interlude
-	asteroids "medium rock" 1 1.488
-	asteroids "large rock" 1 0.947
-	asteroids "large metal" 2 0.616
-	object
-		sprite planet/browndwarf-y-rouge
-		period 10
-	object
-		sprite planet/desert4
-		distance 1582
-		period 7959.205
-	object
-		sprite planet/gas9-b
-		distance 2465.35
-		period 15483.809
-		object
-			sprite planet/ice7-b
-			distance 257
-			period 107.824
-	object
-		sprite planet/desert4-b
-		distance 5401.633
-		period 50216.639
-
-system "#007477"
-	pos -132.749 894.646
-	government Uninhabited
-	link "#01a9a9"
-	link "#100b14"
-	link "#46d125"
-
-system "#0313f4"
-	pos -265.289 829.783
-	government Uninhabited
-	link "#d9534f"
-
-system "#384e08"
-	pos -126.08 939.357
-	government Uninhabited
-	link "#08078a"
-	link "#46d125"
-
-system "#b6457f"
-	pos -158.475 980.006
-	government Uninhabited
-	link "#0fe276"
-	link Concerto
-	link Symphony
-
-system "#46d125"
-	pos -112.707 910.219
-	government Uninhabited
-	habitable 500.1
-	belt 1606 5
-	belt 2416
-	link "#007477"
-	link "#08078a"
-	link "#100b14"
-	link "#384e08"
-	asteroids "small rock" 6 1.054
-	asteroids "small metal" 4 1.496
-	object
-		sprite planet/browndwarf-l-rouge
-		period 64.247
-	object
-		sprite planet/desert4
-		distance 853
-		period 445.61
-
-system "#2b5d50"
-	pos 50.682 899.606
-	government Uninhabited
-	link "#1e877d"
-	link "#5cb85c"
-	link "#a6d944"
-	link "#bd370f"
-
-system "#a6d944"
-	pos -9.278 907.623
-	government Uninhabited
-	link "#2b5d50"
-	link "#8b808b"
-	link "#acf472"
-	link "#f9f9f9"
-	link Symphony
-
-system "#e0bef3"
-	pos -401.749 890.619
-	government Uninhabited
-	link "#e260c2"
-	link Arche
-
-system "#acf472"
-	pos -27.384 873.775
-	government Uninhabited
-	link "#0a6b84"
-	link "#a6d944"
-
-system "#100b14"
-	pos -84.513 885.871
-	government Uninhabited
-	link "#007477"
-	link "#46d125"
-	link "#8b808b"
-	link Prelude
-
-system "#baa7f9"
-	pos -254.819 955.056
-	government Uninhabited
-	link "#25f949"
-	link "#f5fbc7"
-	link Ensemble
-
-system "#d2e5ec"
-	pos -64.786 973.671
-	government Uninhabited
-	link "#31a999"
-	link "#8b808b"
-	link Interlude
-
-system "#8b808b"
-	pos -59.923 922.488
-	government Uninhabited
-	link "#100b14"
-	link "#a6d944"
-	link "#d2e5ec"
-	link Interlude
-
-system "#e260c2"
-	pos -383.673 919.318
-	government Uninhabited
-	link "#e0bef3"
-	link Arche
-
-system "#dee723"
-	pos 10.406 985.068
-	government Uninhabited
-	habitable 10
-	belt 1212 2
-	link "#31a999"
-	asteroids "small metal" 2 1.16
-	asteroids "medium metal" 3 1.68
-	asteroids "large metal" 6 1.74
-	minables aluminum 7 2.238
-	object
-		sprite planet/browndwarf-t-rouge
-		period 10
-	object
-		sprite planet/gas9
-		distance 1108
-		period 4665.193
-		object
-			sprite planet/rock17
-			distance 227.621
-			period 156.23
-	object
-		sprite planet/gas10
-		distance 3497.752
-		period 26166.376
-		object
-			sprite planet/rhea
-			distance 208
-			period 93.298
-		object
-			sprite planet/dust5
-			distance 368
-			period 184.752
-		object
-			sprite planet/rock0
-			distance 480
-			period 397.523
-
-system "#78898c"
-	pos -108.726 817.962
-	government Uninhabited
-	link Prelude
-
-system "#edf8f7"
-	pos -254.312 895.343
-	government Uninhabited
-	link "#bed3bb"
-	link "#d9534f"
-	link Ensemble
 
 system Caesura
 	pos -735.666 834.642
@@ -3152,6 +2875,9 @@ system Twirl
 	asteroids "medium metal" 5 2.178
 	asteroids "large metal" 1 1.625
 	minables uranium 1 4.255
+	fleet "Avgi Scouts" 18000
+	fleet "Small Aberrant" 6000
+	fleet "Large Aberrant" 9000
 	object
 		sprite star/g5-old
 		period 10
@@ -3195,6 +2921,8 @@ system Peak
 	asteroids "large metal" 11 2.495
 	minables iron 2 3.017
 	minables aluminum 22 3.106
+	fleet "Small Aberrant" 450
+	fleet "Large Aberrant" 900
 	object
 		sprite star/k0
 		period 10
@@ -3237,6 +2965,8 @@ system Tailwind
 	asteroids "large metal" 12 1.596
 	minables lead 5 2.717
 	minables tungsten 15 3.546
+	fleet "Small Aberrant" 150
+	fleet "Large Aberrant" 300
 	object
 		sprite star/k0
 		distance 53.4
@@ -3275,10 +3005,8 @@ system Wave
 	asteroids "large metal" 7 5.852
 	minables silver 2 8.327
 	fleet "Avgi Scouts" 12000
-	fleet "Avgi Patrol" 36000
 	fleet "Small Aberrant" 2400
 	fleet "Large Aberrant" 4200
-	hazard "" 1
 	object
 		sprite star/g8
 		period 10
@@ -3337,6 +3065,9 @@ system Tide
 	asteroids "small metal" 39 1.893
 	asteroids "medium metal" 30 2.535
 	asteroids "large metal" 13 2.332
+	fleet "Avgi Scouts" 42000
+	fleet "Small Aberrant" 450
+	fleet "Large Aberrant" 900
 	object
 		sprite star/a-giant
 		period 10
@@ -3386,6 +3117,9 @@ system Lift
 	asteroids "large metal" 8 2.246
 	minables neodymium 12 3.029
 	minables iron 11 2.79
+	fleet "Avgi Scouts" 18000
+	fleet "Small Aberrant" 3600
+	fleet "Large Aberrant" 5400
 	object
 		sprite star/m3
 		period 10
@@ -3567,6 +3301,9 @@ system Torrent
 	asteroids "large metal" 24 1.615
 	minables copper 2 2.608
 	minables iron 14 2.67
+	fleet "Avgi Scouts" 24000
+	fleet "Small Aberrant" 3300
+	fleet "Large Aberrant" 6900
 	object
 		sprite star/m-giant
 		distance 46.571
@@ -3605,6 +3342,7 @@ system Rivulet
 	asteroids "large metal" 9 6.042
 	minables aluminum 14 6.651
 	fleet "Avgi Scouts" 12000
+	fleet "Avgi Patrol" 15000
 	fleet "Small Aberrant" 2100
 	fleet "Large Aberrant" 3600
 	object
@@ -3650,6 +3388,9 @@ system Gale
 	asteroids "medium metal" 10 2.48
 	asteroids "large metal" 11 4.493
 	minables titanium 7 6.298
+	fleet "Avgi Scouts" 18000
+	fleet "Small Aberrant" 6000
+	fleet "Large Aberrant" 9000
 	object
 		sprite star/g0
 		period 10
@@ -3687,6 +3428,9 @@ system Current
 	asteroids "medium metal" 7 3.162
 	asteroids "large metal" 8 2.312
 	minables lead 16 3.533
+	fleet "Avgi Scouts" 21000
+	fleet "Small Aberrant" 4200
+	fleet "Large Aberrant" 7800
 	object
 		sprite star/g5-old
 		period 10
@@ -3735,7 +3479,6 @@ system Glide
 	asteroids "large rock" 9 3.571
 	asteroids "large metal" 1 2.195
 	fleet "Avgi Scouts" 12000
-	fleet "Avgi Patrol" 3600
 	fleet "Small Aberrant" 3600
 	fleet "Large Aberrant" 4800
 	object
@@ -3847,6 +3590,9 @@ system Circulate
 	asteroids "large metal" 6 3.65
 	minables tungsten 3 6.793
 	minables iron 6 7.093
+	fleet "Avgi Scouts" 30000
+	fleet "Small Aberrant" 4200
+	fleet "Large Aberrant" 6000
 	object
 		sprite star/g5-old
 		period 10
@@ -3873,13 +3619,16 @@ system Wake
 	haze _menu/haze-twilight
 	link Rivulet
 	link Stream
-	link Wake
 	asteroids "small rock" 2 3.226
 	asteroids "medium rock" 8 2.33
 	asteroids "large rock" 3 3.853
 	asteroids "small metal" 29 2.688
 	asteroids "medium metal" 81 2.688
 	asteroids "large metal" 18 2.33
+	fleet "Avgi Scouts" 12000
+	fleet "Avgi Patrol" 24000
+	fleet "Small Aberrant" 2100
+	fleet "Large Aberrant" 3600
 	object
 		sprite star/k0
 		period 10
@@ -3927,23 +3676,200 @@ system "#a6d944"
 	link "#f9f9f9"
 	link Symphony
 
-system Feraticus
+system "#a6d944"
+	pos -9.278 907.623
+	government Uninhabited
+	link "#2b5d50"
+	link "#8b808b"
+	link "#acf472"
+	link "#f9f9f9"
+	link Symphony
+
+system "#a6d944"
+	pos -9.278 907.623
+	government Uninhabited
+	link "#2b5d50"
+	link "#8b808b"
+	link "#acf472"
+	link "#f9f9f9"
+	link Symphony
+
+system "#31a999"
+	pos -24.17 1000.365
+	government Uninhabited
+	link "#d2e5ec"
+	link "#dee723"
+
+system "#01a9a9"
+	pos -192.211 848.742
+	government Uninhabited
+	link "#007477"
+	link "#bed3bb"
+	link "#d9534f"
+
+system "#ecd543"
+	pos -162.532 1056.338
+	government Uninhabited
+	link "#79c2ed"
+	link Concerto
+
+system "#08078a"
+	pos -171.072 920.748
+	government Uninhabited
+	link "#384e08"
+	link "#46d125"
+
+system "#0a6b84"
+	pos -16.872 832.201
+	government Uninhabited
+	link "#acf472"
+
+system "#cfc14d"
+	pos 98.609 877.834
+	government Uninhabited
+	link "#5cb85c"
+
+system "#f5fbc7"
+	pos -298.453 895.747
+	government Uninhabited
+	link "#baa7f9"
+	link Arche
+	link Ensemble
+
+system "#25f949"
+	pos -222.367 963.803
+	government Uninhabited
+	link "#0fe276"
+	link "#baa7f9"
+	link "#f70113"
+	link Ensemble
+
+system "#bed3bb"
+	pos -217.838 888.001
+	government Uninhabited
+	link "#01a9a9"
+	link "#edf8f7"
+	link Ensemble
+
+system "#79c2ed"
+	pos -134.923 1040.967
+	government Uninhabited
+	link "#ecd543"
+	link Concerto
+
+system "#0fe276"
+	pos -221.041 1010.682
+	government Uninhabited
+	link "#25f949"
+	link "#b6457f"
+	link Concerto
+
+system "#f70113"
+	pos -187.586 955.23
+	government Uninhabited
+	link "#25f949"
+	link Ensemble
+
+system "#1e877d"
+	pos 82.003 937.49
+	government Uninhabited
+	link "#2b5d50"
+	link "#f9f9f9"
+
+system "#bd370f"
+	pos 28.705 856.962
+	government Uninhabited
+	link "#2b5d50"
+	link "#5cb85c"
+
+system "#914fa1"
+	pos -95.825 977.968
+	government Uninhabited
+	link Symphony
+
+system "#3fee8d"
+	pos 4.185 943.689
+	government Uninhabited
+	habitable 10
+	belt 1302 7
+	belt 1536
+	belt 2928 3
+	link Interlude
+	asteroids "medium rock" 1 1.488
+	asteroids "large rock" 1 0.947
+	asteroids "large metal" 2 0.616
 	object
-		sprite planet/browndwarf-l-rouge
+		sprite planet/browndwarf-y-rouge
 		period 10
 	object
-		sprite planet/rock0-b
-		distance 364.77
-		period 881.229
+		sprite planet/desert4
+		distance 1582
+		period 7959.205
 	object
-		sprite planet/lava0
-		distance 622.81
-		period 1966.045
+		sprite planet/gas9-b
+		distance 2465.35
+		period 15483.809
+		object
+			sprite planet/ice7-b
+			distance 257
+			period 107.824
 	object
-		sprite planet/gateway-frozen
-			scale 0.5
-		distance 10000
-		period 126491.106
+		sprite planet/dust1
+		distance 5401.633
+		period 50216.639
+
+system "#007477"
+	pos -132.749 894.646
+	government Uninhabited
+	link "#01a9a9"
+	link "#100b14"
+	link "#46d125"
+
+system "#0313f4"
+	pos -265.289 829.783
+	government Uninhabited
+	link "#d9534f"
+
+system "#384e08"
+	pos -126.08 939.357
+	government Uninhabited
+	link "#08078a"
+	link "#46d125"
+
+system "#b6457f"
+	pos -158.475 980.006
+	government Uninhabited
+	link "#0fe276"
+	link Concerto
+	link Symphony
+
+system "#46d125"
+	pos -112.707 910.219
+	government Uninhabited
+	habitable 500.1
+	belt 1606 5
+	belt 2416
+	link "#007477"
+	link "#08078a"
+	link "#100b14"
+	link "#384e08"
+	asteroids "small rock" 6 1.054
+	asteroids "small metal" 4 1.496
+	object
+		sprite planet/browndwarf-l-rouge
+		period 64.247
+	object
+		sprite planet/dust4
+		distance 853
+		period 445.61
+
+system "#2b5d50"
+	pos 50.682 899.606
+	government Uninhabited
+	link "#1e877d"
+	link "#5cb85c"
+	link "#a6d944"
+	link "#bd370f"
 
 system "#a6d944"
 	pos -9.278 907.623
@@ -3954,11 +3880,100 @@ system "#a6d944"
 	link "#f9f9f9"
 	link Symphony
 
-system "#a6d944"
-	pos -9.278 907.623
+system "#e0bef3"
+	pos -401.749 890.619
 	government Uninhabited
-	link "#2b5d50"
+	link "#e260c2"
+	link Arche
+
+system "#acf472"
+	pos -27.384 873.775
+	government Uninhabited
+	link "#0a6b84"
+	link "#a6d944"
+
+system "#100b14"
+	pos -84.513 885.871
+	government Uninhabited
+	link "#007477"
+	link "#46d125"
 	link "#8b808b"
-	link "#acf472"
-	link "#f9f9f9"
-	link Symphony
+	link Prelude
+
+system "#baa7f9"
+	pos -254.819 955.056
+	government Uninhabited
+	link "#25f949"
+	link "#f5fbc7"
+	link Ensemble
+
+system "#d2e5ec"
+	pos -64.786 973.671
+	government Uninhabited
+	link "#31a999"
+	link "#8b808b"
+	link Interlude
+
+system "#8b808b"
+	pos -59.923 922.488
+	government Uninhabited
+	link "#100b14"
+	link "#a6d944"
+	link "#d2e5ec"
+	link Interlude
+
+system "#e260c2"
+	pos -383.673 919.318
+	government Uninhabited
+	link "#e0bef3"
+	link Arche
+
+system "#dee723"
+	pos 10.406 985.068
+	government Uninhabited
+	habitable 10
+	belt 1212 2
+	link "#31a999"
+	asteroids "small metal" 2 1.16
+	asteroids "medium metal" 3 1.68
+	asteroids "large metal" 6 1.74
+	minables aluminum 7 2.238
+	object
+		sprite planet/browndwarf-t-rouge
+		period 10
+	object
+		sprite planet/gas9
+		distance 1108
+		period 4665.193
+		object
+			sprite planet/rock17
+			distance 227.621
+			period 156.23
+	object
+		sprite planet/gas10
+		distance 3497.752
+		period 26166.376
+		object
+			sprite planet/rhea
+			distance 208
+			period 93.298
+		object
+			sprite planet/dust5
+			distance 368
+			period 184.752
+		object
+			sprite planet/rock0
+			distance 480
+			period 397.523
+
+system "#78898c"
+	pos -108.726 817.962
+	government Uninhabited
+	link Prelude
+
+system "#edf8f7"
+	pos -254.312 895.343
+	government Uninhabited
+	link "#bed3bb"
+	link "#d9534f"
+	link Ensemble
