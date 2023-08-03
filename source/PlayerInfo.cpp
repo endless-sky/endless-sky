@@ -1200,7 +1200,7 @@ void PlayerInfo::SellShip(const Ship *selected)
 
 			// Record the transfer of this ship in the depreciation and stock info.
 			stockDepreciation.Buy(*selected, day, &depreciation);
-			const Ship *model = GameData::Ships().Find(selected->TrueModelName());
+			const Ship *model = GameData::Ships().Find(selected->VariantName());
 			AddStock(model, 1);
 			for(const auto &it : selected->Outfits())
 				stock[it.first] += it.second;
