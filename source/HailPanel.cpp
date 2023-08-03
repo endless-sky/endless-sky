@@ -234,11 +234,9 @@ void HailPanel::Draw()
 
 		if(hasFighters)
 			for(const Ship::Bay &bay : ship->Bays())
-			{
 				if(bay.side == Ship::Bay::UNDER && bay.ship)
 					draw.Add(Body(*bay.ship, center + zoom * facing.Rotate(bay.point),
 						Point(), facing + bay.facing, zoom));
-			}
 		for(const Hardpoint &hardpoint : ship->Weapons())
 			if(hardpoint.IsUnder())
 				addHardpoint(hardpoint);
@@ -248,11 +246,9 @@ void HailPanel::Draw()
 				addHardpoint(hardpoint);
 		if(hasFighters)
 			for(const Ship::Bay &bay : ship->Bays())
-			{
 				if(bay.side == Ship::Bay::OVER && bay.ship)
 					draw.Add(Body(*bay.ship, center + zoom * facing.Rotate(bay.point),
 						Point(), facing + bay.facing, zoom));
-			}
 	}
 	else
 		draw.Add(Body(sprite, center, Point(), facing, zoom));
