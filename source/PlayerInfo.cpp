@@ -1370,13 +1370,13 @@ double PlayerInfo::RaidFleetAttraction(const Government::RaidFleet &raid, const 
 					attraction -= (gov->IsEnemy(raidGov) - gov->IsEnemy()) * (strength / raidStrength);
 				}
 			}
-		// If the player's fleet is attractive enough but too well guarded for a simple raid, stack them up.
+		// If the player's fleet is attractive enough but too well guarded for the current raids, stack them up more.
 		if(attraction > 1. + govAttraction)
 		{
-			if(raidStrength * (govAttraction + 10.) < FleetStrength())
+			if(raidStrength * attraction * 10. < FleetStrength())
 			{
-				govAttraction += min(.15, (attraction - 1.) * .1);
-				attraction = 0.;
+				govAttraction += max(.15, (attraction - 1.) * .2);
+				return 0;
 			}
 		}
 		// When the fleet is big enough to hit, or
