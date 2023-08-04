@@ -639,10 +639,12 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		GetUI()->Pop(this);
 	}
 	else if(command.Has(Command::MAP))
+	{
 		if(isOutfitter)
 			GetUI()->Push(new MapOutfitterPanel(player));
 		else
 			GetUI()->Push(new MapShipyardPanel(player));
+	}
 	else if(key == 'b' || key == 'i' || key == 'c')
 	{
 		const auto result = CanBuy(key == 'i' || key == 'c');
