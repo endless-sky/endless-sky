@@ -9,7 +9,7 @@ galaxy "label tangled shroud"
 system Anax
 	pos -462.815 698.074
 	government "Aberrant"
-	attributes "twilight" "avgi core"
+	attributes "twilight" "avgi"
 	habitable 2200
 	belt 6000 10
 	haze _menu/haze-twilight
@@ -521,6 +521,7 @@ system Anax
 system Clip
 	pos -503.464 712.559
 	government "Aberrant"
+	attributes "twilight" "avgi"
 	habitable 625
 	belt 1750 4
 	haze _menu/haze-twilight
@@ -585,6 +586,7 @@ system Clip
 system Empyrean
 	pos -368.134 814.778
 	government Uninhabited
+	attributes "twilight" "bright star" "giant star" "notable star"
 	habitable 7900
 	belt 1027 5
 	haze _menu/haze-twilight-thin
@@ -628,6 +630,7 @@ system Empyrean
 system Tumble
 	pos -308.471 655.498
 	government Uninhabited
+	attributes "twilight"
 	habitable 980
 	belt 2632 10
 	haze _menu/haze-twilight
@@ -692,6 +695,7 @@ system Tumble
 system Firmament
 	pos -312.679 788.63
 	government Uninhabited
+	attributes "twilight" "bright star" "giant star" "multi-star" notable star"
 	habitable 11374.753
 	belt 1176 5
 	belt 1701 6
@@ -739,6 +743,7 @@ system Firmament
 system Quintessence
 	pos -361.747 851.175
 	government Uninhabited
+	attributes "twilight" "bright star" "giant star" "notable star"
 	habitable 22300
 	belt 1958 4
 	haze _menu/haze-black
@@ -782,6 +787,7 @@ system Quintessence
 system Decet
 	pos -151.933 607.226
 	government Uninhabited
+	attributes "twilight" "neutron" "magnetar"
 	habitable 100
 	belt 8211
 	"jump range" 180
@@ -800,6 +806,7 @@ system Decet
 system Mote
 	pos -491.253 892.829
 	government Uninhabited
+	attributes "twilight"
 	habitable 10
 	belt 1416 5
 	belt 1829 6
@@ -830,6 +837,7 @@ system Mote
 system Octet
 	pos -202.794 645.906
 	government Uninhabited
+	attributes "twilight" "ember waste" "giant star" "notable star"
 	habitable 3000
 	belt 1559 10
 	haze _menu/haze-twilit-embers
@@ -884,6 +892,7 @@ system Octet
 system Frenzy
 	pos -397.597 677.299
 	government Uninhabited
+	attributes "twilight"
 	habitable 695.072
 	belt 1840 6
 	belt 1892 7
@@ -941,6 +950,7 @@ system Frenzy
 system Trio
 	pos -222.867 740.912
 	government Uninhabited
+	attributes "twilight" "ember waste"
 	habitable 950
 	belt 1813 4
 	belt 2160 10
@@ -1016,6 +1026,7 @@ system Trio
 system Sextet
 	pos -217.766 704.609
 	government Uninhabited
+	attributes "twilight" "ember waste"
 	habitable 532.001
 	belt 1934 6
 	belt 2313 6
@@ -1080,6 +1091,7 @@ system Sextet
 system Quintet
 	pos -186.285 757.655
 	government Uninhabited
+	attributes "twilight" "ember waste"
 	habitable 490
 	belt 1669 5
 	haze _menu/haze-red
@@ -1141,6 +1153,7 @@ system Quintet
 system Septet
 	pos -169.482 721.182
 	government Uninhabited
+	attributes "twilight" "ember waste" "carbon" "notable star"
 	habitable 3100
 	belt 2640 6
 	haze _menu/haze-red
@@ -1193,6 +1206,7 @@ system Septet
 system Nonet
 	pos -158.609 630.05
 	government Uninhabited
+	attributes "twilight" "ember waste" 
 	habitable 138.293
 	belt 1293 2
 	haze _menu/haze-twilit-embers
@@ -1259,6 +1273,7 @@ system Nonet
 system Stream
 	pos -491.146 793.263
 	government Uninhabited
+	attributes "twilight" "bright star" "notable star"
 	habitable 3403.763
 	belt 1004 8
 	belt 1501 5
@@ -1325,6 +1340,7 @@ system Stream
 system Ensemble
 	pos -244.872 910.714
 	government Avgi
+	attributes "tangled shroud" "avgi" "consonance"
 	habitable 3250
 	belt 1401 5
 	haze _menu/haze-none
@@ -1383,6 +1399,7 @@ system Ensemble
 system Quartet
 	pos -208.534 818.541
 	government Uninhabited
+	attributes "ember waste" "nova" "notable star"
 	habitable 100
 	belt 1217 8
 	belt 1952 10
@@ -1427,6 +1444,7 @@ system Quartet
 system Gust
 	pos -659.038 793.499
 	government Uninhabited
+	attributes "twilight"
 	habitable 450
 	belt 1116 8
 	haze _menu/haze-twilight-thin
@@ -1469,6 +1487,7 @@ system Gust
 system Headwind
 	pos -283.34 767.324
 	government Uninhabited
+	attributes "twilight" "ember waste"
 	habitable 320
 	belt 1856 6
 	belt 2092 7
@@ -1528,6 +1547,7 @@ system Headwind
 system Duet
 	pos -248.609 778.168
 	government Uninhabited
+	attributes "twilight" "ember waste"
 	habitable 280.179
 	belt 1869 10
 	belt 2347 6
@@ -1579,6 +1599,7 @@ system Duet
 system Soar
 	pos -449.741 655.204
 	government "Aberrant"
+	attributes "twilight" "avgi"
 	habitable 490
 	belt 2200 10
 	haze _menu/haze-twilight
@@ -1661,6 +1682,7 @@ system Soar
 system Thread
 	pos -417.054 737.075
 	government "Aberrant"
+	attributes "twilight" "avgi"
 	habitable 1088.405
 	belt 2100 10
 	haze _menu/haze-twilight
@@ -1720,6 +1742,7 @@ system Thread
 system Sail
 	pos -543.979 666.89
 	government "Aberrant"
+	attributes "twilight" "avgi"
 	habitable 1310
 	belt 1110 3
 	belt 1903 8
@@ -1805,6 +1828,7 @@ system Sail
 system Interlude
 	pos -22.147 951.674
 	government "Avgi"
+	attributes "tangled shroud" "ember waste" "avgi" "dissonance"
 	habitable 7906.478
 	belt 3024 10
 	haze _menu/haze-67
@@ -1870,6 +1894,7 @@ system Interlude
 system Lumine
 	pos -348.286 760.64
 	government Uninhabited
+	attributes "twilight" "supergiant star" "notable star"
 	habitable 8400
 	belt 1206
 	belt 2358 7
@@ -1926,6 +1951,7 @@ system Lumine
 system Span
 	pos -513.167 654.44
 	government Uninhabited
+	attributes "twilight"
 	habitable 450
 	belt 1754 10
 	belt 2266 9
@@ -1994,6 +2020,7 @@ system Span
 system Vorpal
 	pos -421.757 803
 	government Uninhabited
+	attributes "twilight" "neutron" "notable star"
 	habitable 100
 	belt 2108 7
 	haze _menu/haze-twilight
@@ -2031,6 +2058,7 @@ system Vorpal
 system Concerto
 	pos -170.282 1022.167
 	government Avgi
+	attributes "tangled shroud" "avgi" "consonance" "bright star" "notable star"
 	habitable 3650
 	belt 4475 10
 	haze _menu/haze-67
@@ -2122,6 +2150,7 @@ system Concerto
 system Cusp
 	pos -523.618 589.626
 	government Uninhabited
+	attributes "twilight"
 	habitable 320
 	belt 1825 10
 	haze _menu/haze-twilight-thin
@@ -2171,6 +2200,7 @@ system Cusp
 system Gossamer
 	pos -742.496 802.383
 	government Uninhabited
+	attributes "twilight" "smoke ring"
 	habitable 2560
 	belt 2100 10
 	haze _menu/haze-twilight
@@ -2218,6 +2248,7 @@ system Gossamer
 system Prelude
 	pos -123.092 859.188
 	government "Avgi"
+	attributes "tangled shroud" "ember waste" "avgi" "dissonance"
 	habitable 2300
 	belt 1664 5
 	haze _menu/haze-red
@@ -2276,6 +2307,7 @@ system Prelude
 system Symphony
 	pos -132.616 991.927
 	government Avgi
+	attributes "tangled shroud" "avgi" "consonance"
 	habitable 450
 	belt 1997 7
 	belt 2468 5
@@ -2358,6 +2390,7 @@ system Symphony
 system Whirlwind
 	pos -655.138 852.74
 	government Uninhabited
+	attributes "twilight"
 	habitable 2267.708
 	belt 1653 6
 	belt 2177 7
@@ -2425,6 +2458,7 @@ system Whirlwind
 system Vivace
 	pos -540.542 699.806
 	government Uninhabited
+	attributes "twilight" "neutron" "notable star"
 	habitable 100
 	belt 1074 5
 	belt 2129 4
@@ -2456,6 +2490,7 @@ system Vivace
 system Billow
 	pos -419.562 615.608
 	government Uninhabited
+	attributes "twilight"
 	habitable 320
 	belt 1921 6
 	belt 2280 2
@@ -2500,6 +2535,7 @@ system Billow
 system Pinnacle
 	pos -250.748 693.704
 	government Uninhabited
+	attributes "twilight" "bright star" "notable star"
 	habitable 3650
 	belt 1764 6
 	haze _menu/haze-twilight
@@ -2541,6 +2577,7 @@ system Pinnacle
 system Flutter
 	pos -254.444 636.675
 	government Uninhabited
+	attributes "twilight" "nova" "notable star"
 	habitable 100
 	belt 1874
 	haze _menu/haze-twilight-thick
@@ -2583,6 +2620,7 @@ system Flutter
 system Tap
 	pos -347.857 581.21
 	government Uninhabited
+	attributes "twilight" "neutron" "notable star"
 	habitable 100
 	belt 1482 4
 	belt 1983
@@ -2624,6 +2662,7 @@ system Tap
 system Mellow
 	pos -384.748 645.559
 	government Uninhabited
+	attributes "twilight"
 	habitable 832.541
 	belt 1521 6
 	haze _menu/haze-twilight
@@ -2679,6 +2718,7 @@ system Mellow
 system Postlude
 	pos 141.372 829.66
 	government Uninhabited
+	attributes "tangled shroud" "ember waste" "hiders"
 	habitable 1330.038
 	belt 1814 6
 	haze _menu/haze-brown
@@ -2710,6 +2750,7 @@ system Postlude
 system Corporeal
 	pos -401.83 780.193
 	government Uninhabited
+	attributes "twilight" "ringworld"
 	habitable 700
 	belt 1263 4
 	belt 1635 3
@@ -2780,6 +2821,7 @@ system Corporeal
 system Caesura
 	pos -735.666 834.642
 	government Uninhabited
+	attributes "twilight" black hole" "notable star"
 	habitable 3450
 	haze _menu/haze-twilight-thin
 	object
@@ -2792,6 +2834,7 @@ system Caesura
 system Arche
 	pos -356.501 878.946
 	government Uninhabited
+	attributes "twilight" "multi-star" bright star" "notable star"
 	habitable 14197.215
 	belt 1808 2
 	belt 2396 8
@@ -2864,6 +2907,7 @@ system Arche
 system Twirl
 	pos -580.387 959.49
 	government Uninhabited
+	attributes "twilight" "neutron" "notable star"
 	habitable 100
 	belt 1877 9
 	belt 2445 6
@@ -2912,6 +2956,7 @@ system Twirl
 system Peak
 	pos -295.081 629.87
 	government Uninhabited
+	attributes "twilight"
 	habitable 490
 	belt 1833 10
 	haze _menu/haze-twilight
@@ -2954,6 +2999,7 @@ system Peak
 system Tailwind
 	pos -335.364 724.609
 	government Uninhabited
+	attributes "twilight"
 	habitable 585.235
 	belt 1973 5
 	belt 2047 7
@@ -2996,6 +3042,7 @@ system Tailwind
 system Wave
 	pos -560.434 833.851
 	government Uninhabited
+	attributes "twilight"
 	habitable 550
 	belt 1402 7
 	belt 1954 5
@@ -3059,6 +3106,8 @@ system Wave
 system Tide
 	pos -468.313 603.86
 	government Uninhabited
+	attributes "twilight" 
+	"bright star" "giant star" "notable star"
 	habitable 7900
 	belt 1927 3
 	haze _menu/haze-twilight
@@ -3109,6 +3158,7 @@ system Tide
 system Lift
 	pos -539.51 903.082
 	government Uninhabited
+	attributes "twilight"
 	habitable 230
 	belt 1192 6
 	haze _menu/haze-twilight-thin
@@ -3161,6 +3211,7 @@ system Lift
 system Apeiron
 	pos -445.588 872.587
 	government Uninhabited
+	attributes "twilight"
 	habitable 2267.708
 	belt 1990 7
 	belt 2362 9
@@ -3229,6 +3280,7 @@ system Apeiron
 system Evanescence
 	pos -457.765 826.347
 	government Uninhabited
+	attributes "twilight"
 	habitable 2160
 	belt 1990 7
 	belt 2362 9
@@ -3293,6 +3345,7 @@ system Evanescence
 system Torrent
 	pos -600.318 868.326
 	government Uninhabited
+	attributes "twilight" "giant star" "bright star" "multi-star" notable star"
 	habitable 2654.36
 	belt 1483 5
 	belt 2387 4
@@ -3336,6 +3389,7 @@ system Torrent
 system Rivulet
 	pos -535.248 803.655
 	government Uninhabited
+	attributes "twilight"
 	habitable 2200
 	belt 1600 5
 	belt 2227 10
@@ -3383,6 +3437,7 @@ system Rivulet
 system Gale
 	pos -631.644 900.461
 	government Uninhabited
+	attributes "twilight"
 	habitable 1080
 	belt 1707 5
 	belt 2124 3
@@ -3474,6 +3529,7 @@ system Current
 system Glide
 	pos -547.052 881.099
 	government Uninhabited
+	attributes "twilight"
 	habitable 1328.533
 	belt 1057 10
 	haze _menu/haze-twilight-thin
@@ -3537,6 +3593,7 @@ system Glide
 system Aileron
 	pos -576.745 771.883
 	government Uninhabited
+	attributes "twilight"
 	habitable 1320.275
 	belt 1094 6
 	belt 1907 7
@@ -3588,6 +3645,7 @@ system Aileron
 system Circulate
 	pos -510.478 848.865
 	government Uninhabited
+	attributes "twilight"
 	habitable 1250
 	belt 1454 8
 	haze _menu/haze-black
@@ -3657,6 +3715,7 @@ system Wake
 system "#5cb85c"
 	pos 81.376 868.695
 	government Uninhabited
+	attributes "tangled shroud" "ember waste" "hiders"
 	habitable 370
 	belt 1863 9
 	belt 1967 9
@@ -3694,6 +3753,7 @@ system "#5cb85c"
 system "#d9534f"
 	pos -288.292 842.639
 	government Uninhabited
+	attributes "tangled shroud"
 	habitable 10
 	belt 1487
 	haze _menu/haze-none
@@ -3718,6 +3778,7 @@ system "#d9534f"
 system "#f9f9f9"
 	pos 64.227 953.358
 	government Uninhabited
+	attributes "tangled shroud" "hiders"
 	habitable 14.142
 	belt 1565 2
 	belt 2323 10
@@ -3766,6 +3827,7 @@ system "#f9f9f9"
 system "#a6d944"
 	pos -9.278 907.623
 	government Uninhabited
+	attributes "tangled shroud" "ember waste" hiders"
 	habitable 230
 	belt 1601 6
 	belt 1914
@@ -3794,7 +3856,7 @@ system "#a6d944"
 		distance 2189
 		period 2701.25
 	object
-		sprite planet/gateway-active
+		sprite planet/gas4
 		distance 17942
 		period 63387.314
 		object
@@ -3806,95 +3868,11 @@ system "#a6d944"
 			distance 406
 			period 503.829
 
-system "#a6d944"
-	pos -9.278 907.623
-	government Uninhabited
-	habitable 230
-	belt 1601 6
-	belt 1914
-	haze _menu/haze-red
-	link "#2b5d50"
-	link "#8b808b"
-	link "#acf472"
-	link "#f9f9f9"
-	link Symphony
-	asteroids "small rock" 5 2.013
-	asteroids "large rock" 2 1.877
-	asteroids "small metal" 1 1.986
-	asteroids "medium metal" 3 1.55
-	minables neodymium 4 3.253
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 25000
-	object
-		sprite star/m3
-		period 10
-	object
-		sprite planet/lava6
-		distance 862
-		period 667.509
-	object
-		sprite planet/gas5-b
-		distance 2189
-		period 2701.25
-	object
-		sprite planet/gateway-active
-		distance 17942
-		period 63387.314
-		object
-			sprite planet/rock14-b
-			distance 241
-			period 97.914
-		object
-			sprite planet/tethys
-			distance 406
-			period 503.829
-
-system "#a6d944"
-	pos -9.278 907.623
-	government Uninhabited
-	habitable 230
-	belt 1601 6
-	belt 1914
-	haze _menu/haze-red
-	link "#2b5d50"
-	link "#8b808b"
-	link "#acf472"
-	link "#f9f9f9"
-	link Symphony
-	asteroids "small rock" 5 2.013
-	asteroids "large rock" 2 1.877
-	asteroids "small metal" 1 1.986
-	asteroids "medium metal" 3 1.55
-	minables neodymium 4 3.253
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 25000
-	object
-		sprite star/m3
-		period 10
-	object
-		sprite planet/lava6
-		distance 862
-		period 667.509
-	object
-		sprite planet/gas5-b
-		distance 2189
-		period 2701.25
-	object
-		sprite planet/gateway-active
-		distance 17942
-		period 63387.314
-		object
-			sprite planet/rock14-b
-			distance 241
-			period 97.914
-		object
-			sprite planet/tethys
-			distance 406
-			period 503.829
 
 system "#31a999"
 	pos -24.17 1000.365
 	government Uninhabited
+	attributes "tangled shroud"
 	habitable 320
 	belt 1497 8
 	link "#d2e5ec"
@@ -3913,6 +3891,7 @@ system "#31a999"
 system "#01a9a9"
 	pos -192.211 848.742
 	government Uninhabited
+	attributes "tangled shroud"
 	habitable 10
 	belt 1131 4
 	haze _menu/haze-none
@@ -3936,6 +3915,7 @@ system "#01a9a9"
 system "#ecd543"
 	pos -162.532 1056.338
 	government Uninhabited
+	attributes "tangled shroud" "bright star" "notable star"
 	habitable 3400
 	belt 1490 8
 	haze _menu/haze-133
@@ -3980,6 +3960,7 @@ system "#ecd543"
 system "#08078a"
 	pos -171.072 920.748
 	government Uninhabited
+	attributes "tangled shroud"
 	habitable 10
 	belt 1989 5
 	haze _menu/haze-none
@@ -4024,6 +4005,7 @@ system "#08078a"
 system "#0a6b84"
 	pos -16.872 832.201
 	government Uninhabited
+	attributes "tangled shroud" "ember waste"
 	habitable 135
 	belt 1692 7
 	haze _menu/haze-red
@@ -4083,6 +4065,7 @@ system "#0a6b84"
 system "#cfc14d"
 	pos 98.609 877.834
 	government Uninhabited
+	attributes "tangled shroud" "ember waste" "hiders"
 	habitable 10
 	belt 1356 5
 	haze _menu/haze-red
@@ -4105,6 +4088,7 @@ system "#cfc14d"
 system "#f5fbc7"
 	pos -302.314 894.673
 	government Uninhabited
+	attributes "tangled shroud"
 	habitable 10
 	belt 1448 7
 	haze _menu/haze-none
@@ -4128,6 +4112,7 @@ system "#f5fbc7"
 system "#25f949"
 	pos -222.367 963.803
 	government Uninhabited
+	attributes "tangled shroud"
 	habitable 10
 	belt 1758 6
 	belt 1846 9
@@ -4149,6 +4134,7 @@ system "#25f949"
 system "#bed3bb"
 	pos -213.357 900.325
 	government Uninhabited
+	attributes "tangled shroud"
 	habitable 320
 	belt 1419 5
 	belt 2336 6
@@ -4183,6 +4169,7 @@ system "#bed3bb"
 system "#79c2ed"
 	pos -134.923 1040.967
 	government Uninhabited
+	attributes "tangled shroud" "bright star" "notable star"
 	habitable 3000
 	belt 1078
 	haze _menu/haze-133
@@ -4220,6 +4207,7 @@ system "#79c2ed"
 system "#0fe276"
 	pos -221.041 1010.682
 	government Uninhabited
+	attributes "tangled shroud"
 	habitable 10
 	belt 1144
 	belt 2010 6
@@ -4243,6 +4231,7 @@ system "#0fe276"
 system "#f70113"
 	pos -187.586 955.23
 	government Uninhabited
+	attributes "tangled shroud"
 	habitable 10
 	belt 1315 10
 	belt 2249 8
@@ -4274,6 +4263,7 @@ system "#f70113"
 system "#1e877d"
 	pos 82.003 937.49
 	government Uninhabited
+	attributes "tangled shroud"
 	habitable 135
 	belt 1511 9
 	haze _menu/haze-67
@@ -4313,6 +4303,7 @@ system "#1e877d"
 system "#bd370f"
 	pos 28.705 856.962
 	government Uninhabited
+	attributes "tangled shroud" "ember waste" "hiders"
 	habitable 230
 	belt 1490 3
 	haze _menu/haze-red
@@ -4344,6 +4335,7 @@ system "#bd370f"
 system "#914fa1"
 	pos -92.844 973.172
 	government Uninhabited
+	attributes "tangled shroud"
 	habitable 10
 	belt 1137 4
 	haze _menu/haze-none
@@ -4377,6 +4369,7 @@ system "#914fa1"
 system "#3fee8d"
 	pos 4.185 943.689
 	government Uninhabited
+	attributes "tangled shroud"
 	habitable 1715
 	belt 1564 4
 	haze _menu/haze-67
@@ -4422,6 +4415,7 @@ system "#3fee8d"
 system "#007477"
 	pos -132.749 894.646
 	government Uninhabited
+	attributes "tangled shroud" "ember waste"
 	habitable 450
 	belt 1588 2
 	belt 1771 3
@@ -4455,6 +4449,7 @@ system "#007477"
 system "#0313f4"
 	pos -265.289 829.783
 	government Uninhabited
+	attributes "tangled shroud"
 	habitable 10
 	belt 1352 7
 	haze _menu/haze-none
@@ -4471,6 +4466,7 @@ system "#0313f4"
 system "#384e08"
 	pos -126.08 939.357
 	government Uninhabited
+	attributes "tangled shroud" "ember waste"
 	habitable 425
 	belt 1872 3
 	belt 2228 3
@@ -4502,6 +4498,7 @@ system "#384e08"
 system "#b6457f"
 	pos -158.475 980.006
 	government Uninhabited
+	attributes "tangled shroud"
 	habitable 10
 	belt 1140 4
 	belt 1715 8
@@ -4524,6 +4521,7 @@ system "#b6457f"
 system "#46d125"
 	pos -112.707 910.219
 	government Uninhabited
+	attributes "tangled shroud" "ember waste"
 	habitable 500.1
 	belt 1606 5
 	belt 2416
@@ -4547,6 +4545,7 @@ system "#46d125"
 system "#2b5d50"
 	pos 50.682 899.606
 	government Uninhabited
+	attributes "tangled shroud" "ember waste"
 	habitable 10
 	belt 1927 8
 	haze _menu/haze-red
@@ -4570,6 +4569,7 @@ system "#2b5d50"
 system "#a6d944"
 	pos -9.278 907.623
 	government Uninhabited
+	attributes "tangled shroud" "ember waste"
 	habitable 230
 	belt 1601 6
 	belt 1914
@@ -4613,6 +4613,7 @@ system "#a6d944"
 system "#e0bef3"
 	pos -401.749 890.619
 	government Uninhabited
+	attributes "tangled shroud"
 	habitable 10
 	belt 1985 4
 	haze _menu/haze-133
@@ -4631,6 +4632,7 @@ system "#e0bef3"
 system "#acf472"
 	pos -27.384 873.775
 	government Uninhabited
+	attributes "tangled shroud"
 	habitable 10
 	belt 1514 3
 	haze _menu/haze-red
@@ -4664,6 +4666,7 @@ system "#acf472"
 system "#100b14"
 	pos -84.513 885.871
 	government Uninhabited
+	attributes "tangled shroud"
 	habitable 135
 	belt 1112 7
 	belt 1644 9
@@ -4695,6 +4698,7 @@ system "#100b14"
 system "#baa7f9"
 	pos -254.819 955.056
 	government Uninhabited
+	attributes "tangled shroud"
 	habitable 10
 	belt 1086
 	haze _menu/haze-none
@@ -4750,6 +4754,7 @@ system "#baa7f9"
 system "#d2e5ec"
 	pos -64.786 973.671
 	government Uninhabited
+	attributes "tangled shroud"
 	habitable 2160
 	belt 1811 4
 	haze _menu/haze-67
@@ -4780,6 +4785,7 @@ system "#d2e5ec"
 system "#8b808b"
 	pos -59.923 922.488
 	government Uninhabited
+	attributes "tangled shroud" "ember waste"
 	habitable 160.312
 	belt 1885 3
 	belt 2084 8
@@ -4792,6 +4798,8 @@ system "#8b808b"
 	asteroids "small metal" 6 1.624
 	asteroids "large metal" 3 2.8
 	minables silver 1 3.762
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 25000
 	object
 		sprite planet/browndwarf-y-rouge
 		distance 290.378
@@ -4821,6 +4829,7 @@ system "#8b808b"
 system "#e260c2"
 	pos -383.673 919.318
 	government Uninhabited
+	attributes "tangled shroud"
 	habitable 10
 	belt 1578 5
 	belt 2409
@@ -4843,9 +4852,11 @@ system "#e260c2"
 system "#dee723"
 	pos 10.406 985.068
 	government Uninhabited
+	attributes "tangled shroud"
 	habitable 1080
 	belt 1979 5
 	belt 2230 3
+	haze _menu/haze-67
 	link "#31a999"
 	asteroids "small rock" 4 1.197
 	asteroids "medium rock" 2 1.691
@@ -4885,6 +4896,7 @@ system "#dee723"
 system "#78898c"
 	pos -108.726 817.962
 	government Uninhabited
+	attributes "tangled shroud" "ember waste"
 	habitable 135
 	belt 1224 4
 	haze _menu/haze-red
@@ -4934,6 +4946,7 @@ system "#78898c"
 system "#edf8f7"
 	pos -258.164 889.417
 	government Uninhabited
+	attributes "tangled shroud"
 	habitable 426.439
 	belt 1414 6
 	belt 2203 3
