@@ -3675,7 +3675,8 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto &&destroyedPersonProvider = conditions.GetProviderPrefixed("destroyed person: ");
 	auto destroyedPersonFun = [](const string &name) -> bool
 	{
-		return GameData::Persons().Has(name.substr(strlen("destroyed person: ")));
+		const Person *person = GameData::Persons().Get(name.substr(strlen("destroyed person: ")));
+		return person ? person->IsDestroyed() : false;
 	};
 	destroyedPersonProvider.SetGetFunction(destroyedPersonFun);
 	destroyedPersonProvider.SetHasFunction(destroyedPersonFun);
