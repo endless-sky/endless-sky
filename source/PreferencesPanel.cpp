@@ -141,7 +141,8 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 {
 	if(static_cast<unsigned>(editing) < zones.size())
 	{
-		Command::SetKey(zones[editing].Value(), key);
+		if (key != SDLK_AC_BACK && key != SDLK_ESCAPE)
+			Command::SetKey(zones[editing].Value(), key);
 		EndEditing();
 		return true;
 	}
