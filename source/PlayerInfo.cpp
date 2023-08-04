@@ -2892,7 +2892,6 @@ void PlayerInfo::ApplyChanges()
 
 	// Check if any special persons have been destroyed.
 	GameData::DestroyPersons(destroyedPersons);
-	destroyedPersons.clear();
 
 	// Check which planets you have dominated.
 	for(auto it = tributeReceived.begin(); it != tributeReceived.end(); ++it)
