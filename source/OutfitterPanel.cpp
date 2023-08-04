@@ -323,7 +323,7 @@ int OutfitterPanel::DrawDetails(const Point &center)
 	}
 
 	// Draw this string representing the selected item (if any), centered in the details side panel
-	Point selectedPoint(center.X() - .5 * INFOBAR_WIDTH, center.Y());
+	Point selectedPoint(center.X() - INFOBAR_WIDTH / 2 + 10, center.Y());
 	font.Draw({selectedItem, {INFOBAR_WIDTH - 20, Alignment::CENTER, Truncate::MIDDLE}},
 		selectedPoint, bright);
 
