@@ -3,7 +3,7 @@
 
 
 planet "Antivli Station"
-	attributes twilight avgi station
+	attributes avgi station
 	landscape land/station25
 	description "This was once a particle accelerator several kilometers in diameter. With beamed power provided by the hundreds of solar collection satellites in low orbit around Anax, enough antimatter could be produced each year to supply both Avgi research and industrial efforts."
 	description "Combined, the amat farms around Anax produced only a few dozen kilograms of antimatter each year."
@@ -11,7 +11,7 @@ planet "Antivli Station"
 
 
 planet Omanet
-	attributes twilight avgi uninhabited
+	attributes moon uninhabited
 	landscape land/mars0
 	description "Omanet is thought to be a chthonian world, a former gas giant whose atmosphere was stripped away until the rocky core was left bare. For whatever reason, Omanet went a step further, and its silicate crust and mantle were also boiled off, leaving behind an extraordinarily dense planet made almost entirely out of metal."
 	description "Despite its unfavorable position deep in Anax's gravity well, Omanet was heavily industrialized, with autofabs building enormous discs of nickel-iron, anodized with silver. These orbital mirrors are then launched via mass driver, collecting sunlight for uses from industrial asteroid smelting to remote beamed power. Avgi futurists saw this as first steps of a Dyson swarm, but the current rate of mirror assembly will take millenia to exploit a meaningful fraction of Anax's output."
@@ -417,6 +417,7 @@ planet "Outpost Enka"
 	attributes avgi dissonance station asteroid "avgi diaspora"
 	description "WIP"
 	"required reputation" 10
+	"Avgi (Dissonance)"
 
 
 
@@ -424,12 +425,14 @@ planet "Outpost Tekis"
 	attributes avgi dissonance station asteroid "avgi diaspora"
 	description "WIP"
 	"required reputation" 10
+	"Avgi (Dissonance)"
 
 
 planet "Outpost Lito"
 	attributes avgi dissonance station asteroid "avgi diaspora"
 	description "WIP"
 	"required reputation" 10
+	"Avgi (Dissonance)"
 
 	
 

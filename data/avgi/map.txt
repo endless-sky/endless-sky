@@ -9,6 +9,7 @@ galaxy "label tangled shroud"
 system Anax
 	pos -462.815 698.074
 	government "Aberrant"
+	attributes "twilight" "avgi core"
 	habitable 2200
 	belt 6000 10
 	haze _menu/haze-twilight
@@ -216,7 +217,7 @@ system Anax
 			distance 126.98
 			period 24
 	object Aviskir
-		sprite planet/earth
+		sprite planet/aviskir
 		distance 2400
 		period 1002.687
 		object
@@ -1803,7 +1804,7 @@ system Sail
 
 system Interlude
 	pos -22.147 951.674
-	government "Avgi (Dissonance)"
+	government "Avgi"
 	habitable 7906.478
 	belt 3024 10
 	haze _menu/haze-67
@@ -2216,7 +2217,7 @@ system Gossamer
 
 system Prelude
 	pos -123.092 859.188
-	government "Avgi (Dissonance)"
+	government "Avgi"
 	habitable 2300
 	belt 1664 5
 	haze _menu/haze-red
@@ -2863,7 +2864,7 @@ system Arche
 system Twirl
 	pos -580.387 959.49
 	government Uninhabited
-	habitable 1250
+	habitable 100
 	belt 1877 9
 	belt 2445 6
 	haze _menu/haze-black
@@ -2874,13 +2875,15 @@ system Twirl
 	asteroids "small metal" 2 2.99
 	asteroids "medium metal" 5 2.178
 	asteroids "large metal" 1 1.625
-	minables uranium 1 4.255
+	minables uranium 3 4.255
+	minables gold 6 1.872
 	fleet "Avgi Scouts" 18000
-	fleet "Small Aberrant" 6000
-	fleet "Large Aberrant" 9000
 	object
-		sprite star/g5-old
-		period 10
+		sprite star/neutron-core
+		period 1
+	object
+		sprite star/neutron
+		period 1
 	object
 		sprite planet/rock5-b
 		distance 312
