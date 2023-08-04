@@ -3672,6 +3672,15 @@ void PlayerInfo::RegisterDerivedConditions()
 	pluginProvider.SetHasFunction(pluginFun);
 	pluginProvider.SetGetFunction(pluginFun);
 
+	auto &&destroyedPersonProvider = conditions.GetProviderPrefixed("destroyed person: ");
+	auto destroyedPersonFun = [this](const string &name) -> bool
+	{
+		return std::find(destroyedPersons.begin(), destroyedPersons.end(), 
+			name.substr(strlen("destroyed person: "))) != destroyedPersons.end();
+	};
+	destroyedPersonProvider.SetGetFunction(destroyedPersonFun);
+	destroyedPersonProvider.SetHasFunction(destroyedPersonFun);
+
 	// Read-only navigation conditions.
 	auto HyperspaceTravelDays = [](const System *origin, const System *destination) -> int
 	{
