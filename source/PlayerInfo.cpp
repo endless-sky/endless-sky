@@ -2892,6 +2892,7 @@ void PlayerInfo::ApplyChanges()
 
 	// Check if any special persons have been destroyed.
 	GameData::DestroyPersons(destroyedPersons);
+	destroyedPersons.clear();
 
 	// Check which planets you have dominated.
 	for(auto it = tributeReceived.begin(); it != tributeReceived.end(); ++it)
@@ -3672,10 +3673,9 @@ void PlayerInfo::RegisterDerivedConditions()
 	pluginProvider.SetGetFunction(pluginFun);
 
 	auto &&destroyedPersonProvider = conditions.GetProviderPrefixed("destroyed person: ");
-	auto destroyedPersonFun = [this](const string &name) -> bool
+	auto destroyedPersonFun = [](const string &name) -> bool
 	{
-		return std::find(destroyedPersons.begin(), destroyedPersons.end(), 
-			name.substr(strlen("destroyed person: "))) != destroyedPersons.end();
+		return GameData::Persons().Has(name.substr(strlen("destroyed person: ")));
 	};
 	destroyedPersonProvider.SetGetFunction(destroyedPersonFun);
 	destroyedPersonProvider.SetHasFunction(destroyedPersonFun);
