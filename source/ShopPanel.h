@@ -151,6 +151,7 @@ protected:
 	int day;
 	const Planet *planet = nullptr;
 	ShipSelection shipSelection;
+	const bool isOutfitter;
 
 	// The player-owned ship being reordered.
 	Ship *dragShip = nullptr;
