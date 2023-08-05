@@ -3071,9 +3071,6 @@ mission "Wanderers: Sestor: Exiles 3"
 	to offer
 		has "Wanderers: Sestor: Exiles 2: active"
 	on offer
-		log "Succeeded in communicating with the Korath exiles, by landing on the one habitable planet in their territory. (It seems like the exiles might have a taboo against using weapons on that world.) The exiles agreed to send some ships to help disable the remaining Kor Sestor factory."
-		fail "Wanderers: Sestor: Exiles 2"
-		event "wanderers: exiles peaceful"
 		conversation
 			`The Korath ships tail you to the planet's surface, but they do not fire on you. Instead, they hover above your ship for a long, indecisive moment. You hold your fire, and they eventually land in the sand next to you. Their airlocks open, and a few of them step out and approach your ship. They do not appear to be armed. Perhaps they have a cultural taboo against using weapons on this world.`
 			choice
@@ -3090,6 +3087,10 @@ mission "Wanderers: Sestor: Exiles 3"
 			label end
 			`	Rek speaks with the Korath again, and then tells you, "They say that three of their 'world-ships' will travel with us to meet with the Wanderer leaders. If they are able to work out favorable terms, and are convinced that the Wanderers have peaceful intentions, they will go with us to the Sestor factory world and shut it down."`
 				accept
+	on accept
+		log "Succeeded in communicating with the Korath exiles, by landing on the one habitable planet in their territory. (It seems like the exiles might have a taboo against using weapons on that world.) The exiles agreed to send some ships to help disable the remaining Kor Sestor factory."
+		fail "Wanderers: Sestor: Exiles 2"
+		event "wanderers: exiles peaceful"
 	npc accompany save
 		government "Korath"
 		personality escort
