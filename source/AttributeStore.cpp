@@ -82,7 +82,7 @@ void AttributeStore::Load(const DataNode &node, const bool isWeapon, const Attri
 				node.PrintTrace("Attribute should be inside weapon node: \"" + key + "\":");
 		}
 		else if(node.Size() >= 2)
-			node.PrintTrace("Unsupported attribute: \"" + key + "\":");
+			textAttributes[key] = node.Value(1);
 		for(const DataNode &child : node)
 			Load(child, isWeapon, attribute);
 	}
