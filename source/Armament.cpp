@@ -249,9 +249,7 @@ void Armament::Fire(int index, Ship &ship, vector<Projectile> &projectiles, vect
 			it->second += it->first->Reload() * hardpoints[index].BurstRemaining();
 		}
 	}
-	if(jammed)
-		hardpoints[index].Jam();
-	else
+	if(!jammed || !hardpoints[index].Jam())
 		hardpoints[index].Fire(ship, projectiles, visuals);
 }
 

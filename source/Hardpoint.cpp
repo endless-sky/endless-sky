@@ -182,6 +182,8 @@ void Hardpoint::Step()
 		return;
 
 	wasFiring = isFiring;
+	if(jamImmunity > 0.)
+		--jamImmunity;
 	if(reload > 0.)
 		--reload;
 	// If the full reload time is elapsed, reset the burst counter.
@@ -286,14 +288,26 @@ bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, vector
 
 
 // This weapon jammed. Increase its reload counters, but don't fire.
-void Hardpoint::Jam()
+bool Hardpoint::Jam()
 {
+	if(jamImmunity)
+		return false;
 	// Since this is only called internally by Armament (no one else has non-
 	// const access), assume Armament checked that this is a valid call.
 
 	// Reset the reload count.
 	reload += outfit->Reload();
+
+	// If this is a continuous weapon add half a second immunity to prevent flickering.
+	if(reload == 1)
+	{
+		reload += 30;
+		jamImmunity += 60;
+	}
+
 	burstReload += outfit->BurstReload();
+
+	return true;
 }
 
 
