@@ -8,7 +8,7 @@ galaxy "label tangled shroud"
 
 system Anax
 	pos -462.815 698.074
-	government ""
+	government "Aberrant"
 	attributes avgi twilight
 	habitable 2200
 	belt 6000 10
@@ -520,7 +520,7 @@ system Anax
 
 system Clip
 	pos -503.464 712.559
-	government ""
+	government "Aberrant"
 	attributes avgi twilight
 	habitable 625
 	belt 1750 4
@@ -1598,7 +1598,7 @@ system Duet
 
 system Soar
 	pos -449.741 655.204
-	government ""
+	government "Aberrant"
 	attributes avgi twilight
 	habitable 490
 	belt 2200 10
@@ -1681,7 +1681,7 @@ system Soar
 
 system Thread
 	pos -417.054 737.075
-	government ""
+	government "Aberrant"
 	attributes avgi twilight
 	habitable 1088.405
 	belt 2100 10
@@ -1741,7 +1741,7 @@ system Thread
 
 system Sail
 	pos -543.979 666.89
-	government ""
+	government "Aberrant"
 	attributes avgi twilight
 	habitable 1310
 	belt 1110 3
@@ -3677,7 +3677,7 @@ system Circulate
 
 system Wake
 	pos -519.902 764.569
-	government ""
+	government "Aberrant"
 	habitable 490
 	belt 1052 3
 	belt 1608 5
