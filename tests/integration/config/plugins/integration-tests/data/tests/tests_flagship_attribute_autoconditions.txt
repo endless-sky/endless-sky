@@ -32,7 +32,7 @@ test-data "Flagship Attribute Autoconditions Save"
 				"hull energy" 0.9
 				"hull repair rate" 2.5
 				"ion protection" 0.25
-				"scrambling protection" 0.25
+				"scramble protection" 0.25
 				"outfit scan power" 18
 				"outfit scan efficiency" 22
 				"outfit space" 552
