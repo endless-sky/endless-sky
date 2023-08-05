@@ -42,7 +42,7 @@ jobs:
 
     # Test the binary
     - name: Install runtime dependencies
-      run: sudo apt-get install -y --no-install-recommends libosmesa6 mesa-utils
+      run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libosmesa6 mesa-utils
     - name: Restore cached Steam Runtime environment
       id: cache-runtime
       uses: actions/cache@v3
