@@ -153,6 +153,7 @@ protected:
 	int day;
 	const Planet *planet = nullptr;
 	ShipSelection shipSelection;
+	const bool isOutfitter;
 
 	bool isDraggingShips = false;
 	Point dragStart;

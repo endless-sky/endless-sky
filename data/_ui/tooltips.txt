@@ -1079,3 +1079,24 @@ tip "insufficient energy to fire?"
 # Boolean attributes:
 tip "This outfit is considered an atrocity."
 	`Governments that scan for illegal goods will attack you upon discovering this item in your possession in space, or arrest you if found when landed.`
+
+
+
+# Controls
+tip `Reverse`
+	`Turn opposite to the flight direction (or use reverse engines if you have them installed). Combine with <shift> key to stop your ship.`
+
+
+
+# Settings
+tip "Automatic aiming"
+	`Automatically turn your ship towards your target to aim fixed weapons.`
+
+tip "Automatic firing"
+	`Automatically fire your primary weapons if your enemy is within the weapon's range.`
+
+tip "Flotsam collection"
+	`Control which of your ships can pick up cargo floating in space.`
+
+tip "System map sends move orders"
+	`Right-click on a location in the system mini-map on the galaxy map to send your escort to that location in the selected system.`
