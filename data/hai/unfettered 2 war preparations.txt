@@ -1337,7 +1337,7 @@ mission "<uhai> 16: Strength Of A Leader: He-Yi"
 					to display
 						not "unfettered: name choice"
 					goto tejolis
-				`	"Why is your ship hull so strong?"`
+				`	"Why is the hull of your ship so resilient?"`
 					to display
 						not "unfettered: hull choice"
 					goto hull
