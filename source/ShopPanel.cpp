@@ -65,7 +65,7 @@ namespace {
 
 
 ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
-	: player(player), isShipyard(!isOutfitter), day(player.GetDate().DaysSinceEpoch()),
+	: player(player), isOutfitter(isOutfitter), day(player.GetDate().DaysSinceEpoch()),
 	planet(player.GetPlanet()), playerShip(player.Flagship()),
 	categories(GameData::GetCategory(isOutfitter ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	collapsed(player.Collapsed(isOutfitter ? "outfitter" : "shipyard"))
@@ -610,7 +610,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	if(key == 'l' || key == 'd' || key == SDLK_ESCAPE
 			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 	{
-		if(isShipyard)
+		if(!isOutfitter)
 			player.UpdateCargoCapacities();
 		GetUI()->Pop(this);
 	}
@@ -622,7 +622,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			Buy(key == 'i' || key == 'c');
 			// Ship-based updates to cargo are handled when leaving.
 			// Ship-based selection changes are asynchronous, and handled by ShipyardPanel.
-			if(!isShipyard)
+			if(isOutfitter)
 			{
 				player.UpdateCargoCapacities();
 				CheckSelection();
@@ -640,7 +640,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			int modifier = CanSellMultiple() ? Modifier() : 1;
 			for(int i = 0; i < modifier && CanSell(toStorage); ++i)
 				Sell(toStorage);
-			if(!isShipyard)
+			if(isOutfitter)
 			{
 				player.UpdateCargoCapacities();
 				CheckSelection();
