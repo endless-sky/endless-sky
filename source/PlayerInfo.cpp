@@ -3663,6 +3663,24 @@ void PlayerInfo::RegisterDerivedConditions()
 	visitedSystemProvider.SetGetFunction(visitedSystemFun);
 	visitedSystemProvider.SetHasFunction(visitedSystemFun);
 
+	auto &&pluginProvider = conditions.GetProviderPrefixed("installed plugin: ");
+	auto pluginFun = [](const string &name) -> bool
+	{
+		const Plugin *plugin = Plugins::Get().Find(name.substr(strlen("installed plugin: ")));
+		return plugin ? plugin->enabled : false;
+	};
+	pluginProvider.SetHasFunction(pluginFun);
+	pluginProvider.SetGetFunction(pluginFun);
+
+	auto &&destroyedPersonProvider = conditions.GetProviderPrefixed("person destroyed: ");
+	auto destroyedPersonFun = [](const string &name) -> bool
+	{
+		const Person *person = GameData::Persons().Find(name.substr(strlen("person destroyed: ")));
+		return person ? person->IsDestroyed() : false;
+	};
+	destroyedPersonProvider.SetGetFunction(destroyedPersonFun);
+	destroyedPersonProvider.SetHasFunction(destroyedPersonFun);
+
 	// Read-only navigation conditions.
 	auto HyperspaceTravelDays = [](const System *origin, const System *destination) -> int
 	{
@@ -3737,6 +3755,27 @@ void PlayerInfo::RegisterDerivedConditions()
 		gov->SetReputation(value);
 		return true;
 	});
+
+	// A condition for returning a random integer in the range [0, input). Input may be a number,
+	// or it may be the name of a condition. For example, "roll: 100" would roll a random
+	// integer in the range [0, 100), but if you had a condition "max roll" with a value of 100,
+	// calling "roll: max roll" would provide a value from the same range.
+	// Returns 0 if the input condition's value is <= 1.
+	auto &&randomRollProvider = conditions.GetProviderPrefixed("roll: ");
+	auto randomRollFun = [this](const string &name) -> int64_t
+	{
+		string input = name.substr(strlen("roll: "));
+		int64_t value = 0;
+		if(DataNode::IsNumber(input))
+			value = static_cast<int64_t>(DataNode::Value(input));
+		else
+			value = conditions.Get(input);
+		if(value <= 1)
+			return 0;
+		return Random::Int(value);
+	};
+	randomRollProvider.SetHasFunction(randomRollFun);
+	randomRollProvider.SetGetFunction(randomRollFun);
 
 	// Global conditions setters and getters:
 	auto &&globalProvider = conditions.GetProviderPrefixed("global: ");

@@ -2818,6 +2818,7 @@ mission "Remnant: Face to Maw 1"
 	description "Plume would be very interested in a report on what happened with the void sprites."
 	to offer
 		has "event: remnant: return the samples timer"
+		has "flagship model: Puffin"
 		or
 			not "Remnant: Cognizance 1: offered"
 			has "Remnant: Cognizance 19: done"
