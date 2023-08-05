@@ -147,7 +147,7 @@ double MapShipyardPanel::SystemValue(const System *system) const
 		return .5;
 
 	// Visiting a system is sufficient to know what ports are available on its planets.
-	double value = -.5;
+	double value = -1.;
 	for(const StellarObject &object : system->Objects())
 		if(object.HasSprite() && object.HasValidPlanet())
 		{
