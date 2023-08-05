@@ -146,10 +146,10 @@ protected:
 
 protected:
 	PlayerInfo &player;
-	bool isOutfitter = false;
 	// Remember the current day, for calculating depreciation.
 	int day;
 	const Planet *planet = nullptr;
+	const bool isOutfitter;
 
 	// The player-owned ship that was first selected in the sidebar (or most recently purchased).
 	Ship *playerShip = nullptr;

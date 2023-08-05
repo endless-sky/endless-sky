@@ -65,8 +65,8 @@ namespace {
 
 
 ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
-	: player(player), isOutfitter(isOutfitter), day(player.GetDate().DaysSinceEpoch()),
-	planet(player.GetPlanet()), playerShip(player.Flagship()),
+	: player(player), day(player.GetDate().DaysSinceEpoch()),
+	planet(player.GetPlanet()), isOutfitter(isOutfitter), playerShip(player.Flagship()),
 	categories(GameData::GetCategory(isOutfitter ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	collapsed(player.Collapsed(isOutfitter ? "outfitter" : "shipyard"))
 {
