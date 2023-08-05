@@ -1375,7 +1375,7 @@ double PlayerInfo::RaidFleetAttraction(const Government::RaidFleet &raid, const 
 		{
 			if(raidStrength * attraction * 10. < FleetStrength())
 			{
-				govAttraction += max(.15, (attraction - 1.) * .2);
+				govAttraction += max(.15, sqrt(attraction - 1.) * .3);
 				return 0;
 			}
 		}
