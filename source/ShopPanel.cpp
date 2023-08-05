@@ -65,7 +65,7 @@ namespace {
 
 
 ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
-	: player(player), isShipyard(!isOutfitter), day(player.GetDate().DaysSinceEpoch()),
+	: player(player), isOutfitter(isOutfitter), day(player.GetDate().DaysSinceEpoch()),
 	planet(player.GetPlanet()), playerShip(player.Flagship()),
 	categories(GameData::GetCategory(isOutfitter ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	collapsed(player.Collapsed(isOutfitter ? "outfitter" : "shipyard"))
@@ -362,7 +362,7 @@ void ShopPanel::DrawDesignButtons()
 		Point(INFOBAR_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
 
 	// The normal Outfitter doesn't have any buttons here.
-	if(!isShipyard && !player.IsDesignPlayer())
+	if(isOutfitter && !player.IsDesignPlayer())
 		return;
 
 	const Font &bigFont = FontSet::Get(18);
@@ -377,7 +377,7 @@ void ShopPanel::DrawDesignButtons()
 	static const string DESIGN_SHIPYARD = "Design Ship_yard";
 	bigFont.Draw(player.IsDesignPlayer() ? DESIGN_SHIPYARD : DESIGN_CENTER,
 		shipyardCenter - .5 * Point(bigFont.Width(DESIGN_SHIPYARD), bigFont.Height()),
-		isShipyard && player.IsDesignPlayer() ? inactive : (hoverButton == 'd' ? hover : active));
+		!isOutfitter && player.IsDesignPlayer() ? inactive : (hoverButton == 'd' ? hover : active));
 
 	if(player.IsDesignPlayer())
 	{
@@ -386,7 +386,7 @@ void ShopPanel::DrawDesignButtons()
 		static const string DESIGN_OUTFITTER = "Design _Outfitter";
 		bigFont.Draw(DESIGN_OUTFITTER,
 			outfitterCenter - .5 * Point(bigFont.Width(DESIGN_OUTFITTER), bigFont.Height()),
-			isShipyard ? (hoverButton == 'o' ? hover : active) : inactive);
+			isOutfitter ? inactive : hoverButton == 'o' ? hover : active);
 	}
 }
 

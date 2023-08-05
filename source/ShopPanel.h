@@ -150,7 +150,7 @@ protected:
 
 protected:
 	PlayerInfo &player;
-	bool isShipyard;
+	bool isOutfitter;
 	// Remember the current day, for calculating depreciation.
 	int day;
 	const Planet *planet = nullptr;
