@@ -3672,10 +3672,10 @@ void PlayerInfo::RegisterDerivedConditions()
 	pluginProvider.SetHasFunction(pluginFun);
 	pluginProvider.SetGetFunction(pluginFun);
 
-	auto &&destroyedPersonProvider = conditions.GetProviderPrefixed("destroyed person: ");
+	auto &&destroyedPersonProvider = conditions.GetProviderPrefixed("person destroyed: ");
 	auto destroyedPersonFun = [](const string &name) -> bool
 	{
-		const Person *person = GameData::Persons().Get(name.substr(strlen("destroyed person: ")));
+		const Person *person = GameData::Persons().Get(name.substr(strlen("person destroyed: ")));
 		return person ? person->IsDestroyed() : false;
 	};
 	destroyedPersonProvider.SetGetFunction(destroyedPersonFun);
