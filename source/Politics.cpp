@@ -77,6 +77,9 @@ void Politics::Reset()
 
 bool Politics::IsEnemy(const Government *first, const Government *second) const
 {
+	if(!first || !second)
+		return false;
+
 	if(first == second)
 		return false;
 
