@@ -21,6 +21,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
+namespace {
+	// Cached mappings between the two formats. The indexing of newToOld is offset by one compared to the enum values.
+	string newToOld[ATTRIBUTE_CATEGORY_COUNT + 1][ATTRIBUTE_EFFECT_COUNT * 4 + 1][ATTRIBUTE_EFFECT_COUNT * 4 + 1];
+	unordered_map<string, Attribute*> oldToNew;
+}
+
 const string Attribute::effectNames[] = {"shields", "hull", "thrust", "reverse thrust", "turn",
 		"cooling", "active cooling", "cloak", "force", "energy", "fuel", "heat", "discharge", "corrosion", "leak", "burn",
 		"ion", "scramble", "slowing", "disruption", "disabled", "minable", "ramscoop", "piercing", "delay", "depleted delay"};
@@ -164,14 +170,6 @@ string Attribute::CalculateLegacyName() const
 	if(IsMultiplier())
 		composite += " multiplier";
 	return composite;
-}
-
-
-
-namespace {
-	// Cached mappings between the two formats. The indexing of newToOld is offset by one compared to the enum values.
-	string newToOld[ATTRIBUTE_CATEGORY_COUNT + 1][ATTRIBUTE_EFFECT_COUNT * 4 + 1][ATTRIBUTE_EFFECT_COUNT * 4 + 1];
-	unordered_map<string, Attribute*> oldToNew;
 }
 
 
