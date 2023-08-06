@@ -837,7 +837,7 @@ outfit "Heshi"
 	"capture defense" 8
 	"maintenance costs" 100
 	description "This is an aquarium containing what the Hai call a 'Heshi' - a huge scorpion looking creature. It must be fed and cared for but can be very useful in damaging the moral of enemies attacking the ship."
-	description "	On the offensive it can be used to intimidate enemies into surrendering, with the knowledge they could become its next meal if they do not... Furthermore, it is very useful in the event of an interrogation."
+	description "	On the offensive it can be used to intimidate enemies into surrendering, when they are made aware they could become its next meal if they do not cooperate... Furthermore, it is very useful in the event of an interrogation."
 
 # SPOILER: he tests your military aptitude before asking you to take him to pirate space.
 # gameplay wise if you win this mission you should be able to do the following ones, it tests if your strength is high enough.
@@ -863,38 +863,38 @@ mission "<uhai> 2: Prove Your Strength"
 				or
 					has "<uhai> 2: Prove Your Strength: deferred"
 					has "<uhai> 2: Prove Your Strength: offered"
-			`You start wandering in the spaceport, and notice that everything around you here is incredibly simple, efficient, and ordered. The Unfettered here are proudly showing their weapons, more so than on other planets, and some of them are even armored. It seems they are ready for action at any time. It is good they no longer consider you an enemy, at least for the moment.`
+			`You start wandering in the spaceport, and notice that everything around you here is incredibly simple, efficient, and ordered, unlike the world of Firelode. The Unfettered here are proudly showing their weapons, more so than on other planets, and some of them are even armored. It seems they are ready for action at any time. It is good they no longer consider you an enemy, at least for the moment.`
 			`	Eventually you find a gathering, someone speaking to a small crowd of people. They all seem very familiar with each other, and as you watch, they have noticed you too. The one who was addressing the others saunters through the group and over to you. This could mean trouble.`
-			`	"Arrr, be this the bilge-sucking space-monkey ye all speak so highly of? The one who fears not to come into our ports, to fight our ships?" He asks the others, apparently mocking you. You're a little surprised at his creative grasp of your language.`
+			`	"Arrr, be this the bilge-sucking <, unfettered title> ye all speak so highly of? The one who fears not to come into our ports, to fight our ships?" He asks the others, apparently mocking you. You're a little surprised at his creative grasp of your language.`
 			choice
 				`	"I fear nothing. Do you?"`
 					goto provoke
 				`	(Say nothing.)`
 				`	(Run away.)`
-					goto away
+					goto run
 			`	"See? The lily-livered monkey dares not even speak! This scallywag be no more than shark bait! Even our 'umble clipper would be sending ye straight to Davy Jones' locker! We be ready to prove it, too, yet we dare not, lest we lose our dancing monkey to the briny deep! But mateys, there be no shame if it dance away, with a dinghy looking like that!" He seems very full of himself. Perhaps someone should teach him a lesson.`
 			choice
-				`	"You dare insult my <ship>?"`
+				`	"You dare insult the <ship>?"`
 				`	"I have no need to prove myself to a rodent."`
 					goto provoke
 				`	(Go. He's not worth it.)`
-					goto away
+					goto run
 			`	"Sink me! That flotsam really be your ship? Given the hornswoggle of your reputation, I pegged you for a fancier type. Your prowess is no lie, indeed then, if you land in such a scow, but can ye truly fight in it?" he says, and then he turns to address the crowd once again. "I wonder if it can even launch again. Perhaps we should scuttle it right here."`
 				goto lesson
 			label provoke
-			`	"So the space-monkey can speak? Let us see if it can fight as well," he says with a provocative tone.`
+			`	"So the <, unfettered title> can speak? Let us see if it can fight as well," he says with a provocative tone.`
 			label lesson
 			`	Time for him to learn a lesson. The thought that you may be in over your head briefly crosses your mind, but you brush it aside.`
-			`	After a cheering from his crowd, the arrogant Hai then speaks to you directly. "Ye and me then, a battle of flagships. Face me above the tallest trees, whenever ye find the courage. But rest assured, monkey, I have the skill to humiliate ye without feeding ye to the fishes."`
+			`	After a cheering from his crowd, the arrogant Hai then speaks to you directly. "Ye and me then, a battle of flagships. Face me far above the tallest trees, whenever ye find the courage. But rest assured, monkey, I have the skill to humiliate ye without feeding ye to the fishes!"`
 			choice
 				`	"Let me show you my worth in battle. Right now."`
 					goto accept
-				`	(Crush his rodent face with your fist.)`
-					goto crush
 				`	"Can you tell me more about the rules of this fight?"`
 					goto rules
+				`	(Crush his rodent face with your fist.)`
+					goto crush
 				`	(Run away.)`
-			label away
+			label run
 			`	As you move away you hear laughter, but nobody tries to stop you. You have just shown to the Unfettered how much of a coward you are, and will probably never be offered any missions from them anymore.`
 				decline
 			label rules
@@ -904,7 +904,7 @@ mission "<uhai> 2: Prove Your Strength"
 					goto accept
 				`	(Crush his rodent face with your fist.)`
 				`	(Run away.)`
-					decline
+					goto run
 			label crush
 			`	You rush his way, fist raised, giving his friends in the crowd the exact excuse they were looking for to open fire on you. You wake up later, left alone on the floor. Luckily their weapons only stunned you, but you can forget about doing any further business with the Unfettered.`
 				decline
@@ -914,7 +914,7 @@ mission "<uhai> 2: Prove Your Strength"
 				`	(Yes.)`
 				`	(Later.)`
 					defer
-			`	You call the captain who comes surprisingly quickly, his ship already in the air above you. He hails you directly.`
+			`	You look for the ship of the Captain using its signature, and once you find it proceed to ask his crew to contact him, making your way back to your own ship. He comes surprisingly quickly, and his ship is already in the air above you by the time you can reach yours. He hails you directly.`
 			label accept
 			branch "too many ships"
 				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 > 12
@@ -925,12 +925,14 @@ mission "<uhai> 2: Prove Your Strength"
 				set "unfettered: brought too many ships"
 			`	"Ye cannot run a rig on me, monkey! First ye must park some of those ships! I will not be facing your whole armada. A heavy man-o-war is already over compensating, after all. When ye are ready for a fair duel, see me in orbit."`
 			``
-			`The Unfettered captain will only show up if you have a small enough fleet for the duel to be fair; you are currently bringing too many ships. (To park ships press "I", and then select "Park All" or manually select the ships you want to park. For this fight, you are limited to a single heavy warship or a small group of lighter vessels.)`
+			`	(The Unfettered captain will only show up if you have a small enough fleet for the duel to be fair; you are currently bringing too many ships.)`
+			`	(To park ships press "I", and then select "Park All" or manually select the ships you want to park. For this fight, you are limited to a single heavy warship, or a small group of lighter vessels.)`
 			action
 				"<uhai> 2: Prove Your Strength: deferred" ++
-			`Land again when you meet those specifications.`
+			`	Land again when you meet those specifications.`
 				defer
 	on enter
+		clear "<uhai> 2: Prove Your Strength: deferred"
 		conversation
 			branch "cheating bugger"
 				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 > 12
@@ -949,21 +951,21 @@ mission "<uhai> 2: Prove Your Strength"
 		personality disables staying heroic target launching
 		ship "Si-Ra' Scorpion" "Intrepid"
 		on kill
+			dialog `The Unfettered authorities hail you immediately after the destruction of the <npc>. They speak in Hai but the tone alone is enough to understand what they mean: you should leave, or you risk being shot at.`
 			event "unfettered: outcast"
 		conversation
-			`Now that you have disabled the <npc>, its captain hails you. "It seems ye fight admirably after all. Ye've earned my respect today," he says with a voice so calm you are surprised it came from the same captain who was recently provoking you for no apparent reason.`
+			`Now that you have disabled the <npc>, its captain hails you.`
+			branch "wanderer first"
+				has "Wanderers: Defend Vara Ke'sok: aborted"
+			`	"It seems ye fight admirably after all. Ye've earned my respect today," he says with a voice so calm you are surprised it came from the same captain who was recently provoking you for no apparent reason.`
+				goto fire
+			label "wanderer first"
+			`	"Well<, unfettered title>, it seems you be worthy of joining our crew! I was the one who contacted you on behalf of our ship captain, in the alien space up north! Ye've earned my respect today," he says with a voice so calm you are surprised it came from the same captain who was recently provoking you for no apparent reason.`
+			`	"However, since I knew you I made sure to allow you to prove yerself pretty fast, but if you want to continue doing business with us, jump drives are always appreciated..."`
 				to display
-					not "Wanderers: Defend Vara Ke'sok: aborted"
-			`Now that you have disabled the <npc>, its captain hails you. "Well<, unfettered title>, it seems you be worthy of joining our crew! I was the one who contacted you on behalf of our ship captain, in the alien space up north! Ye've earned my respect today," he says with a voice so calm you are surprised it came from the same captain who was recently provoking you for no apparent reason. In the background you hear fires roaring, it seems the damage to his ship was quite serious indeed.`
-				to display
-					has "Wanderers: Defend Vara Ke'sok: aborted"
-					has "Unfettered Jump Drive 1: offered"
-			`Now that you have disabled the <npc>, its captain hails you. "Well<, unfettered title>, it seems you be worthy of joining our crew! I was the one who contacted you on behalf of our ship captain, in the alien space up north! Ye've earned my respect today. However, since I knew you I made sure to allow you to prove yerself pretty fast, but if you want to continue doing business with us, jump drives are always appreciated..." he says this with a voice so calm you are surprised it came from the same captain who was recently provoking you for no apparent reason.`
-				to display
-					has "Wanderers: Defend Vara Ke'sok: aborted"
 					not "Unfettered Jump Drive 1: offered"
+			label fire
 			`	In the background you hear fires roaring, it seems the damage to his ship was quite serious indeed.`
-			label choose
 			choice
 				`	"Be careful with provoking me. You may have gotten killed. Do not count on me to repair your ship."`
 					goto dangerous
@@ -1058,12 +1060,12 @@ mission "<uhai> 3: Recover Jump Drives"
 				`	"Sure, I would do anything for my favorite squirrel!"`
 					goto insult
 				`	"Just admit it. You're scared to fight me."`
-			`	"Nice try, but I've learned me lesson. Worry not, soon I shall have a grander vessel, and when I do, 'twill be ye that walks the plank in our next battle! Most of the time, having the bigger chase guns on yer man-o-war is all the strategy and diplomacy ye need. In this case, however, I be lacking said guns, so the best choice is for me to fold. For now, at least."`
+			`	"Nice try, but ye will not trick this old monkey! Worry not, soon I shall have a grander vessel, and when I do, 'twill be ye that walks the plank in our next battle! Most of the time, having the bigger chase guns on yer man-o-war is all the strategy and diplomacy ye need. In this case, however, I be lacking cannons, so the best choice is for me to fold. For now, at least."`
 			choice
 				`	"What can I do for my favorite squirrel?"`
 					goto insult
 				`	"How soon will you have that new ship?"`
-				`	"Well, just do it with that bigger ship then. I'm not interested."`
+				`	"Well, just do it with that bigger ship of yours, then. I'm not interested."`
 					decline
 			`	"Once this job be done, hopefully! It should pay handsomely - 'buying a brand new ship' kind of handsome." Judging from your last encounter, this will probably be a very dangerous mission, but it may well be worth it.`
 			choice
@@ -1095,13 +1097,13 @@ mission "<uhai> 3: Recover Jump Drives"
 			label leave
 			`	"One last warning for ye: Ye should sail the skies with a hyperdrive, especially with the dangers of where we be headed. A jump drive won't do us any favors getting there, but 'twill bring more than a mite of unwanted company. Nor should we risk the Wanderers decided to fit ye with a hempen halter from yer association with us."`
 			`	You accompany him to your ship, and he seems actually impressed, even more so when seeing the interior. "Your ship indeed be... adequate, for a warrior and this task," he begrudges.`
-			`	"Hold up right there matey, the sea sooner be purple than I'd see ye can fit 4 drives in yer holds! Ya better make some space!"`
+			`	"Hold up right there matey, the sea sooner be purple than I'd see ye can fit four drives in yer holds! Ya better make some space!"`
 				to display
 					"cargo space" < 80
 			`	You show him to his bunk but he refuses to go there, "Where ye be sending me? Ye need me on the helm, you scabby sea bass!" You have no choice but to let him sit on the bridge.`
 				accept
 	on enter Alnitak
-		dialog `Seeing you enter this system, the captain speaks up. "Sails down, matey! I'd recommend to stop here before we head into more open seas!"`
+		dialog `Seeing you enter this system, the captain speaks up. "Sails down, matey! I'd recommend to stop here before we head into more open seas!" He says with a pat on your shoulder that almost makes you lose your balance.`
 	on visit
 		dialog "You do not have the jump drives. You either did not go to <destination> to get the jump drives yet, or you left them in planetary storage, or you left the escort carrying the jump drives behind."
 	to fail
@@ -1284,7 +1286,8 @@ mission "<uhai> 3: Jump Drive Vault: Attracted Attention"
 
 
 
-# This variant has no reverse thrusters to make it easier to scan it, even with the new formula.
+# This variant has no reverse thrusters to make it easier to scan it and to attract more attention,
+# especially with the keystones.
 ship "Geocoris" "Geocoris (Keystones)"
 	crew 56
 	outfits
