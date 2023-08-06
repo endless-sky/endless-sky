@@ -9,7 +9,6 @@ outfit "Speck Round"
 	"speck capacity" -1
 	"flotsam chance" 1
 	description "These dense metallic glass slugs are capable of inflicting a good amount of kinetic damage via hypervelocity impacts, but are easily stopped by momentum-repulsion shield systems."
-	description "Due to their simple makeup, they can be easily manufactured out of most commonly found metals."
 
 
 outfit "Speck Magazine"
@@ -19,7 +18,7 @@ outfit "Speck Magazine"
 	"mass" 1.2
 	"outfit space" -12
 	"speck capacity" 7200
-	description "While Speckle Railguns on their own carry a considerable amount of ammunition, for longer expeditions or for carrier based resupply operations the Avgi use these compact ammunition storages to expand their supply of Speck Rounds."
+	description "While Speckle Railguns carry a considerable amount of ammunition in their internal magazines, for longer expeditions or for resupply operations the Avgi use these compact ammunition storages."
 
 
 outfit "Speckle Railgun"
@@ -47,7 +46,7 @@ outfit "Speckle Railgun"
 		"firing heat" 12
 		"firing force" 12
 		"submunition" "speck slug"
-	description "This compact railgun rapidly fires a stream of hypervelocity projectiles, trading accuracy for sheer rate of fire. Friction between the projectiles and the rails, while reduced due to special coatings, produces enough heat that the gun must cool down after a burst of fire to prevent rail ablation."
+	description "This compact railgun rapidly fires a stream of hypervelocity projectiles, trading accuracy for sheer rate of fire. Friction between the projectiles and the rails is reduced via advanced techniques, but still produces enough heat that the gun must cool down after a burst of fire to prevent rail ablation."
 	description "A small internal capacitor allows the Speckle Railgun to be trickle charged, even if a ship's power supply would otherwise be insufficient to fire a single shot."
 	
 
@@ -76,15 +75,15 @@ outfit "Speckle Turret"
 		"firing energy" 12
 		"firing heat" 24
 		"firing force" 24
-		"submunition" "speck slug"
+		"submunition" "speck"
 			"offset" -3 0
-		"submunition" "speck slug"
+		"submunition" "speck"
 			"offset" 3 0
-	description "The turreted version of the Speckle Railgun mounts a pair of railguns onto a nimble swiveling base. Its light weight and minimal size allows even small ships to engage much larger targets at extreme ranges. By alternating the fire of each railgun on the turret, the required cooldown period can be staggered to the point of providing an appearance of constant fire."
+	description "The turreted version of the Speckle Railgun mounts a pair of railguns onto a nimble swiveling base. Its light weight and minimal size allows even small ships to engage much larger targets at extreme ranges. By alternating the fire of each railgun on the turret, the required cooldown period can be staggered to let the turret maintain a constant rate of fire."
 	description "A small internal capacitor allows the Speckle Turret to be trickle charged, even if a ship's power supply would otherwise be insufficient to fire a single shot."
 
 
-outfit "speck slug"
+outfit "speck"
 	weapon
 		sprite "projectile/speck"
 			"frame rate" 12
@@ -111,8 +110,7 @@ outfit "Fleck Round"
 	thumbnail
 	"mass" 0.009
 	"fleck capacity" -1
-	description "These copper slugs are capable of inflicting a large amount of kinetic damage via hypervelocity impacts, but are easily stopped by momentum-repulsion shield systems."
-	description "Due to their homogenous composition, they can be easily manufactured out of common copper ore."
+	description "These copper slugs can inflict a large amount of kinetic damage via hypervelocity impacts, but are easily stopped by momentum-repulsion shield systems."
 
 
 outfit "Fleck Magazine"
@@ -122,7 +120,7 @@ outfit "Fleck Magazine"
 	"mass" 4.2
 	"outfit space" -15
 	"fleck capacity" 1200
-	description "Capital ships and artillery platforms can often benefit from expanding their ammunition capacity. This autoloading magazine allows ships to carry considerably more Fleck Rounds than their guns could store alone."
+	description "Capital ships and artillery platforms can often benefit from expanding their ammunition capacity. This autoloading magazine allows ships to carry considerably more Fleck Rounds than their guns could store internally alone."
 
 
 outfit "Fleck Coilgun"
@@ -150,7 +148,7 @@ outfit "Fleck Coilgun"
 		"firing heat" 15
 		"firing force" 60
 		"submunition" "fleck slug"
-	description "redo this"
+	description "A powerful row of superconducting coils can accelerate a conductive metal projectile to impressive velocities while avoiding the friction associated with railguns. This "
 
 
 outfit "Fleck Turret"
@@ -1222,6 +1220,34 @@ outfit "XY-720 Radial Thrusters"
 		scale 0.75
 	"reverse flare sound" "plasma small"
 
+
+outfit "Beam Core Antimatter Torch"
+	category "Engines"
+	"cost" 900000000
+	thumbnail
+	"mass" 120
+	"outfit space" -120
+	"engine capacity" -120
+	"thrust" 360
+	"thrusting energy" 12
+	"thrusting heat" 90
+	"thrusting fuel" 0.24
+	"drag reduction" 3.6
+	"flare sprite" "effect/avgi fusion flare/long"
+		"frame rate" 30
+	"flare sound" "remnant afterburner"
+	"turn" 2790
+	"turning energy" 3.6
+	"turning heat" 2.4
+	"reverse thrust" 36
+	"reverse thrusting energy" 1.2
+	"reverse thrusting heat" 1.2
+	"steering flare sprite" "effect/avgi fusion flare/long"
+		"frame rate" 30
+	"steering flare sound" "remnant afterburner"
+	"reverse flare sprite" "effect/avgi fusion flare/long"
+		"frame rate" 30
+	"reverse flare sound" "remnant afterburner"
 
 
 # Special:

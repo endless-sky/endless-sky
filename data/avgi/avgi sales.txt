@@ -13,6 +13,7 @@ shipyard "Avgi Civilian Advanced"
 	"Undsyni"
 	"Interferos"
 	"Polari"
+	"Tachytia"
 
 shipyard "Avgi Dissonance Basics"
 	"Entasi"

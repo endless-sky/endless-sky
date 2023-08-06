@@ -793,7 +793,6 @@ ship "Polari"
 
 ship "Entasi"
 	sprite "ship/avgi entasi"
-	swizzle 0
 	thumbnail "thumbnail/avgi entasi"
 	swizzle 0
 	attributes
@@ -916,6 +915,136 @@ ship "Entasi"
 	"final explode" "final explosion medium"
 
 	description "The Entasi is a mid-sized "
+
+
+
+
+
+
+
+
+
+
+
+ship "Tachytia"
+	sprite "ship/avgi tachytia/tachytia"
+		"frame rate" 30
+	thumbnail "thumbnail/avgi tachytia/tachytia"
+	swizzle 0
+	attributes
+		category "Utility"
+		"shields" 6000
+		"hull" 36000
+		"required crew" 300
+		"bunks" 6000
+		"mass" 1800
+		"drag" 6
+		"heat dissipation" 1.5
+		"fuel capacity" 60000
+		"cargo space" 1200
+		"outfit space" 900
+		"weapon capacity" 180
+		"engine capacity" 420
+		"anchor point" 6
+		weapon
+			"blast radius" 900
+			"shield damage" 14400
+			"hull damage" 14400
+			"hit force" 9000
+	outfits
+		"Phased Array Laser (Blue)" 2
+		"Phased Array Laser (Green)" 3
+		"Dipole Ramscoop"
+		
+		"Radiant Fusion Core"
+		"Ultracapacitor Bank" 2
+		"Specular Deflector"
+		"Optical Lasing Generator" 2
+		"Multispectral Scanner" 9
+		"Spectrometer Array" 9
+		"Electrostatic Ramscoop" 6
+		
+		"Beam Core Antimatter Torch"
+		"Hyperdrive"
+
+	turret 36 183 "Phased Array Laser (Blue)"
+	turret -36 183 "Phased Array Laser (Blue)"
+	turret -44 354 "Phased Array Laser (Blue)"
+	turret 44 354 "Phased Array Laser (Blue)"
+	turret -12 375 "Phased Array Laser (Green)"
+	turret 12 375 "Phased Array Laser (Green)"
+	turret 0 480 "Phased Array Laser (Green)"
+	gun 0 -405
+
+	bay "Drone" -18 420
+	bay "Drone" 18 420
+	bay "Drone" -18 432
+	bay "Drone" 18 432
+	bay "Drone" -18 447
+	bay "Drone" 18 447
+	bay "Drone" -18 459
+	bay "Drone" 18 459
+	bay "Fighter" -21 432
+	bay "Fighter" 21 432
+	bay "Fighter" -21 420
+	bay "Fighter" 21 420
+	bay "Fighter" -21 447
+	bay "Fighter" 21 447
+	bay "Fighter" -21 459
+	bay "Fighter" 21 459
+
+	engine -207 -489
+		angle 9
+	engine 207 -489
+		angle -9
+	engine -186 -456
+		angle 9
+	engine 186 -456
+		angle -9
+
+	leak "leak" 60 15
+	leak "flame" 60 15
+	explode "tiny explosion" 15
+	explode "small explosion" 12
+	explode "medium explosion" 9
+	explode "medium large" 9
+	explode "medium huge" 9
+	explode "nuke explosion" 3
+	"final explode" "nuke explosion" 3
+	"final explode" "nuke residue fast" 90
+
+	description "The Tachytia was once "
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
