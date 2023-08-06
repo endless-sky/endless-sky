@@ -750,8 +750,8 @@ mission "<uhai> 1: Bring Medicine"
 					goto translation
 				`	(I don't have time for this.)`
 			label leave
-			`	You manage to leave without anyone stopping you in all the rush, though you're sure someone was trying to get your attention. If they remember you, the Unfettered will likely not be too happy. You probably also shouldn't stay landed here too long in case they decide to follow you.`
-				decline
+			`	You manage to leave without anyone stopping you in all the rush, though you're sure someone was trying to get your attention. If they remember you, the Unfettered will likely not be too happy. You decide to run off immediately in case someone noticed. The Chief that asked for your assistance will probably be disappointed about this.`
+				flee
 			label translation
 			`	You hail the nearest Unfettered ship, sending a request for a translation of the message. Surprisingly, they are more than willing to translate the important parts for you, although they have trouble finding some of the words. "There is a... 'plague' here. Go to <stopovers> to get the... the anti-plague! Now!" They then cut the transmission.`
 			choice
@@ -775,8 +775,8 @@ mission "<uhai> 1: Bring Medicine"
 		log "People" "Sookootow" `An Unfettered Chief worried for his people, inside Hai or Unfettered territory. He seems to believe that all Hai are equal, and as a member of the council he has significant influence.`
 		payment 1500000
 		conversation
-			`The staff seem greatly relieved when you return promptly with the medical supplies. As you're returning to your ship, one of them catches up to you. "Hello<, unfettered title> <last>. I am Merki, manager of this hospital. I wanted to express my deepest thanks to you and give you the <payment> personally. I find it quite admirable that an outsider would risk getting caught up in all of this. It would mean a great deal to me if your bravery holds fast, so make sure to check the job board for more jobs like this."`
-			`	Once Merki leaves, you notice a recognizable face: the same Hai Chief from Firelode, speaking with someone who, judging by their demeanor and attire, could be the hospital's chief medical officer. He soon sees you as well and hurriedly finishes his conversation, seeming more than a bit emotional as he then moves to speak with you. "I knew you could be counted on as a friend to the Unfettered! With the swift response of captains like you, it seems like it has calmed down here. We did not before have the time to get properly introduced. I am Sookootow." He makes a little gesture, you assume of deference. You try to imitate the motion, apparently badly, amusing Sookootow. "Worry not, <first> <last>, I already know who you are."`
+			`The staff seem greatly relieved when you return promptly with the medical supplies. To your surprise, some Unfettered have weapons even near this hospital, albeit holstered at all times. As you're returning to your ship, one of them catches up to you. "Hello, <last>. I am Merki, manager of this hospital. I wanted to express my deepest thanks to you and give you the <payment> personally. I find it quite admirable that an outsider would risk getting caught up in all of this. It would mean a great deal to me if your bravery holds fast, so make sure to check the job board for more jobs like this."`
+			`	Once Merki leaves, you notice a recognizable face: the same Hai Chief from Firelode, speaking with someone who, judging by their demeanor and attire, could be the hospital's chief medical officer. He soon sees you as well and hurriedly finishes his conversation, seeming more than a bit emotional as he then moves to speak with you. "I knew you could be counted on as a friend to the Unfettered! With the swift response of captains like you, it seems like it has calmed down here. We did not before have the time to get properly introduced. I am Sookootow." He makes a little gesture, you assume of deference, by moving his left hand to the side whilst bowing his head ever so slightly and holding his right hand firmly. You try to imitate the motion, apparently badly, amusing Sookootow. "Worry not, <first> <last>, I already know who you are."`
 			`	"You have been granted access to our basic outfitter on Firelode as a reward for your help, should you need it to store goods or prepare yourself for a raid."`
 			choice
 				`	"I only did what little I could do to help save people. Hopefully I will be able to do more next time we meet."`
@@ -784,17 +784,25 @@ mission "<uhai> 1: Bring Medicine"
 				`	"What could have caused this crisis? Does it happen often?"`
 				`	"Are all Unfettered soldiers? I see a lot of you armed and seemingly ready for action."`
 					goto soldiers
-			`	"It depends on who you ask... Some will say the aliens, your people, are the reason, given the Hai have much contact with them, and we with the Hai. Of course, the Hai who sympathize with our cause do so with many others as well, such as helping humans with low funds relocate to their space. As you have probably noticed, we ourselves do not get many visits from outsiders; they obviously do not feel very welcomed when getting shot at for their supplies. That means we are not protected against the diseases they may bring.`
+			`	"It depends on who you ask... Some will say the aliens, your people, are the reason, given the Hai have much contact with them, and we with the Hai. Of course, some of the Hai who sympathize with our cause do so with many others as well, such as helping humans with low funds relocate to their space. As you have probably noticed, we ourselves do not get many visits from outsiders; they obviously do not feel very welcomed when getting shot at for their supplies. That means we are not protected against the diseases they may bring.`
 			`	"As for the frequency, the precarious conditions here mean this happens too often for our liking. As a result, we have a habit of quickly reacting to any seemingly deadly diseases. That means that sometimes we worry for nothing, but this was not one of those times. We are a strong people, but even a strong Heshi is nothing in shallow waters. It is a matter of life or death that the hospital be in its best possible state, but it is only that way thanks to much work and investments. The many places in which our people live are not quite as sophisticated."`
 			choice
 				`	"What is a 'Heshi'?"`
+					to display
+						not "outfit: Heshi"
+					goto explainheshi
+				`	"A Heshi, like this one you mean?"`
+					to display
+						has "outfit: Heshi"
 				`	"Glad to have prevented a disaster then."`
 					decline
+			`	You can see the confusion on his face when you show him a picture of the Heshi you won from fighting the Captain, "So you have proven yourself already, impressive. You show great potential! The next time you fight this Captain you will gain his position as per the rules of the duels!`
+			label explainheshi
 			`	"The Heshi is a great predator which rules the seas on our homeworld. It is swift and nimble, so you do not see it coming, and when you do, it is already too late. Most are not very big, however, so they often hunt in groups. Your people have described it as looking like a 'sea scorpion', I believe, and rumour has it Si-Ra possesses one of monstruous size."`
 				decline
 			label soldiers
-			`	He looks around him, before answering, "Do I look like a soldier to you? Does this medic look like one? No, we Unfettered only dare to think in another way. In truth, quite a few of us would like to be artists! It is the principle of the matter which drives us though, and it is a shame we must help fight for our right to live by another philosophy than the Hai one of stagnation, to break out of the prison they have cast for all of us! Our soldiers indeed suffer the most from that fight."`
-			`	"And then, I have to grant it to you, many may be armed among those you see here, but remember that you often wander in the spaceports, where soldiers come to resupply. We also all need to be ready for action, in case the raiders ever return."`
+			`	He looks around him, before answering, "Do I look like a soldier to you? Does this medic look like one? No, we Unfettered only dare to think in another way. In truth, quite a few of us would like to be artists! It is the principle of the matter which drives us though, and it is a shame we must help fight for our right to live by another philosophy than the Hai one of stagnation, to break out of the prison they have cast for all of us! Our soldiers indeed suffer the most from that fight.`
+			`	"And then, I have to grant it to you, many may be armed among those you see here, but remember that you often wander in the spaceports, where soldiers come to resupply. We also all need to be ready for action, in case the raiders ever return..."`
 			choice
 				`	"Glad to have prevented a disaster then."`
 					decline
@@ -804,13 +812,14 @@ mission "<uhai> 1: Bring Medicine"
 				`	"The raiders?"`
 					goto raiders
 			`	He does not answer your question directly. "These supplies were indeed used to treat an outbreak of a disease that started among soldiers, but thus prevented a wider crisis that would have affected all of us. Most of the wounds came from battle, that is true, but the 'soldiers' as you say need to be kept well just as everyone else, or else we do all suffer. The Hai would not dare to kill us, of course, but they could destroy our way of life, our spirits. And we need our soldiers to bring us supplies."`
-				decline
+				goto leave
 			label forsoldiers
 			`	"I do not view any of the Hai as 'soldiers' or otherwise separate. We are all Hai and all deserve to be saved; we do not designate supplies to help some before others."`
-				decline
+				goto leave
 			label raiders
 			`	"A few eclipses ago they came, in great ships and with superior technology. We, the Hai, had to defend ourselves, so some of us became more military-focused. A lot of those you see here are among those who wanted to repay the raiders in kind once they stopped. Even if our brothers do, we cannot lay down our arms. If these raiders returned, someone has to protect all of us."`
-				decline
+			label leave
+			`	Someone then calls upon Sookootow in hai and he is forced to promptly leave.`
 
 event "unfettered: access to Mera's lab"
 	planet "Firelode"
@@ -832,6 +841,7 @@ outfit "Heshi"
 
 # SPOILER: he tests your military aptitude before asking you to take him to pirate space.
 # gameplay wise if you win this mission you should be able to do the following ones, it tests if your strength is high enough.
+# Since it is the first one you can do it many times until you succeed.
 mission "<uhai> 2: Prove Your Strength"
 	autosave
 	repeat
@@ -852,7 +862,7 @@ mission "<uhai> 2: Prove Your Strength"
 			branch waiting
 				or
 					has "<uhai> 2: Prove Your Strength: deferred"
-					has "<uhai> 2: Prove Your Strength: oferred"
+					has "<uhai> 2: Prove Your Strength: offered"
 			`You start wandering in the spaceport, and notice that everything around you here is incredibly simple, efficient, and ordered. The Unfettered here are proudly showing their weapons, more so than on other planets, and some of them are even armored. It seems they are ready for action at any time. It is good they no longer consider you an enemy, at least for the moment.`
 			`	Eventually you find a gathering, someone speaking to a small crowd of people. They all seem very familiar with each other, and as you watch, they have noticed you too. The one who was addressing the others saunters through the group and over to you. This could mean trouble.`
 			`	"Arrr, be this the bilge-sucking space-monkey ye all speak so highly of? The one who fears not to come into our ports, to fight our ships?" He asks the others, apparently mocking you. You're a little surprised at his creative grasp of your language.`
@@ -931,6 +941,9 @@ mission "<uhai> 2: Prove Your Strength"
 			action
 				fail "<uhai> 2: Prove Your Strength"
 				fine 25000
+	on disable
+		dialog `The Captain hails you, "Full of holes so soon, matey? No matter, I get me fee of 250 thousand credits! When ye're ready to fight like a Heshi, come to the 'port to see if I'm on the deck! In the mean time I can repair ye for a lil' purse's worth, but be sure to give it in a private hail and then hail me ship again to ask for help, me first mate must not know about it or I could have a mutiny on my hands for not sharing!"`
+		fine 250000
 	npc save disable
 		government "Hai (Unfettered Challenger)"
 		personality disables staying heroic target launching
@@ -1002,7 +1015,7 @@ mission "<uhai> 2: Prove Your Strength"
 				"unfettered: took Si-Ra' gold" = "outfit (all): Gold Bars"
 				"unfettered: took Si-Ra' weapons" = "outfit (all): Ionic Blaster Prototype" + "outfit (all): Ionic Turret Prototype" * 3
 				log `Defeated a young Unfettered Captain in a duel, and took part in a surprisingly scary Unfettered martial ceremony.`
-			`	Si-Ra does not give you any explanation, instead he proceeds to raise his fist. As you do not react he geastures with his other hand, clearly meaning you ought to do the same.`
+			`	Si-Ra does not give you any explanation, instead he proceeds to raise his fist. As you do not react he gestures with his other hand, clearly meaning you ought to do the same.`
 			`	After you rise your fist in response, he bows his head so slightly you barely notice it, and moves away. You wonder what you should do with the creature, but refusing the gift does not seem like an option.`
 				accept
 			label stay
