@@ -449,6 +449,7 @@ phrase "avgi physics"
 		Reflection
 		Refraction
 		Scalar
+		Spectrum
 		Spin
 		Static
 		Strength
@@ -518,6 +519,7 @@ phrase "avgi virtues"
 		Sanguine
 		Serene
 		Sorry
+		Spectral
 		Storied
 		Tranquiline
 		Trustworthy

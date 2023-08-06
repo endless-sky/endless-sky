@@ -274,7 +274,11 @@ politics between military and scientists
 
 
 
+Lyrica
+Katherine
+Nina
 
+Darius
 
 
 
@@ -319,7 +323,7 @@ conversation
 
 
 
-
+"We flew past a neutron star that fried our electronics. I've marked it on your map" leads to Tap, red herring for Decet
 
 
 

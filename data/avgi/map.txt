@@ -695,7 +695,7 @@ system Tumble
 system Firmament
 	pos -312.679 788.63
 	government Uninhabited
-	attributes "bright star" "giant star" multi-star notable star" twilight
+	attributes "bright star" "giant star" multi-star "notable star" twilight
 	habitable 11374.753
 	belt 1176 5
 	belt 1701 6
@@ -1030,7 +1030,7 @@ system Sextet
 	habitable 532.001
 	belt 1934 6
 	belt 2313 6
-	haze _menu/haze-twilight
+	haze _menu/haze-twilit-embers
 	link Quintet
 	asteroids "small metal" 8 1.312
 	asteroids "medium metal" 6 1.516
@@ -1340,7 +1340,7 @@ system Stream
 system Ensemble
 	pos -244.872 910.714
 	government Avgi
-	attributes avgi consonance "tangled shroud"
+	attributes avgi consonance "tangled shroud" "bright star" "notable star"
 	habitable 3250
 	belt 1401 5
 	haze _menu/haze-none
@@ -1828,7 +1828,7 @@ system Sail
 system Interlude
 	pos -22.147 951.674
 	government Avgi
-	attributes avgi dissonance "ember waste" "tangled shroud"
+	attributes avgi dissonance "ember waste" "tangled shroud" "multi-star" "bright star" "giant star" "notable star"
 	habitable 7906.478
 	belt 3024 10
 	haze _menu/haze-67
@@ -2058,7 +2058,7 @@ system Vorpal
 system Concerto
 	pos -170.282 1022.167
 	government Avgi
-	attributes avgi "bright star" consonance "notable star" "tangled shroud"
+	attributes avgi consonance "bright star" "notable star" "tangled shroud"
 	habitable 3650
 	belt 4475 10
 	haze _menu/haze-67
@@ -2248,7 +2248,7 @@ system Gossamer
 system Prelude
 	pos -123.092 859.188
 	government Avgi
-	attributes avgi dissonance "ember waste" "tangled shroud"
+	attributes avgi dissonance "ember waste" "tangled shroud" "giant star" "notable star"
 	habitable 2300
 	belt 1664 5
 	haze _menu/haze-red
@@ -2535,7 +2535,7 @@ system Billow
 system Pinnacle
 	pos -250.748 693.704
 	government Uninhabited
-	attributes "bright star" "notable star" twilight
+	attributes twilight "bright star" "notable star"
 	habitable 3650
 	belt 1764 6
 	haze _menu/haze-twilight
@@ -2821,7 +2821,7 @@ system Corporeal
 system Caesura
 	pos -735.666 834.642
 	government Uninhabited
-	attributes black hole" "notable star" twilight
+	attributes "black hole" "notable star" twilight
 	habitable 3450
 	haze _menu/haze-twilight-thin
 	object
@@ -2834,7 +2834,7 @@ system Caesura
 system Arche
 	pos -356.501 878.946
 	government Uninhabited
-	attributes bright multi-star "notable star" star" twilight
+	attributes twilight "bright star" multi-star "notable star"
 	habitable 14197.215
 	belt 1808 2
 	belt 2396 8
@@ -3106,7 +3106,7 @@ system Wave
 system Tide
 	pos -468.313 603.86
 	government Uninhabited
-	attributes twilight
+	attributes twilight "bright star" "giant star" "notable star"
 	habitable 7900
 	belt 1927 3
 	haze _menu/haze-twilight
@@ -3344,7 +3344,7 @@ system Evanescence
 system Torrent
 	pos -600.318 868.326
 	government Uninhabited
-	attributes "bright star" "giant star" multi-star notable star" twilight
+	attributes "bright star" "giant star" multi-star "notable star" twilight
 	habitable 2654.36
 	belt 1483 5
 	belt 2387 4
