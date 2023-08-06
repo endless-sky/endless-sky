@@ -2823,7 +2823,6 @@ void PlayerInfo::AddStock(const Ship *model, const int count)
 const Ship *PlayerInfo::StockShip(const Ship *model) const
 {
 	const auto it = stockShips.find(model);
-	// This should always find an entry, but if not, return model.
 	return (it == stockShips.end() ? model : it->second.get());
 }
 
@@ -4280,11 +4279,11 @@ void PlayerInfo::Save(DataWriter &out) const
 			using StockElement = pair<const Ship *const, int>;
 			WriteSorted(shipStock,
 				[](const StockElement *lhs, const StockElement *rhs)
-					{ return lhs->first->TrueModelName() < rhs->first->TrueModelName(); },
+					{ return lhs->first->VariantName() < rhs->first->VariantName(); },
 				[&out](const StockElement &it)
 				{
 					if(it.second)
-						out.Write(it.first->TrueModelName(), it.second);
+						out.Write(it.first->VariantName(), it.second);
 				});
 		}
 		out.EndChild();

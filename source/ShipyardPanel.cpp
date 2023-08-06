@@ -179,82 +179,83 @@ int ShipyardPanel::DrawDetails(const Point &center)
 {
 	string selectedItem = "No Ship Selected";
 	const Font &font = FontSet::Get(14);
-	const Color &bright = *GameData::Colors().Get("bright");
-	const Color &dim = *GameData::Colors().Get("medium");
-	const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
 
 	int heightOffset = 20;
 
 	if(selectedShip)
 	{
+		const bool isShipyardShip = shipyard.Has(selectedShip);
 		// Ships in stock have no outfits, so get an appropriate version.
 		const Ship *infoShip = selectedShip;
-		if(!shipyard.Has(selectedShip) || LicenseCost(&selectedShip->Attributes()) < 0)
+		// If the ship is license restricted, check to see if there's one in stock.
+		if(!isShipyardShip || LicenseCost(&selectedShip->Attributes()) < 0)
 			infoShip = player.StockShip(selectedShip);
 
-		shipInfo.Update(*infoShip, player, collapsed.count("description"));
+		shipInfo.Update(*infoShip, player, !isShipyardShip || collapsed.count("description"));
 		selectedItem = selectedShip->DisplayModelName();
 
-		const Sprite *background = SpriteSet::Get("ui/shipyard selected");
-		const Sprite *shipSprite = selectedShip->GetSprite();
-		float spriteScale = shipSprite
-			? min(1.f, (INFOBAR_WIDTH - 20.f) / max(shipSprite->Width(), shipSprite->Height()))
-			: 1.f;
-
-		int swizzle = selectedShip->CustomSwizzle() >= 0
-			? selectedShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
-
-		Point spriteCenter(center.X(), center.Y() + 20 + TileSize() / 2);
-		Point startPoint(center.X() - INFOBAR_WIDTH / 2 + 20, center.Y() + 20 + TileSize());
-
-		double descriptionOffset = 35.;
-		Point descCenter(Screen::Right() - SIDE_WIDTH + INFOBAR_WIDTH / 2, startPoint.Y() + 20.);
-
-		// Maintenance note: This can be replaced with collapsed.contains() in C++20
-		if(!collapsed.count("description"))
-		{
-			descriptionOffset = shipInfo.DescriptionHeight();
-			shipInfo.DrawDescription(startPoint);
-		}
-		else
-		{
-			std::string label = "description";
-			font.Draw(label, startPoint + Point(35., 12.), dim);
-			SpriteShader::Draw(collapsedArrow, startPoint + Point(20., 20.));
-		}
-
-		// Calculate the new ClickZone for the description.
-		Point descDimensions(INFOBAR_WIDTH, descriptionOffset + 10.);
-		ClickZone<std::string> collapseDescription = ClickZone<std::string>(
-			descCenter, descDimensions, std::string("description"));
-
-		// Find the old zone, and replace it with the new zone.
+		// Find the old description zone and remove it.
 		for(auto it = categoryZones.begin(); it != categoryZones.end(); ++it)
-		{
 			if(it->Value() == "description")
 			{
 				categoryZones.erase(it);
 				break;
 			}
-		}
-		categoryZones.emplace_back(collapseDescription);
 
-		Point attrPoint(startPoint.X(), startPoint.Y() + descriptionOffset);
-		Point outfPoint(startPoint.X(), attrPoint.Y() + shipInfo.AttributesHeight());
-
+		const Point spriteCenter(center.X(), center.Y() + 10 + TileSize() / 2);
+		const Point startPoint(center.X() - INFOBAR_WIDTH / 2 + 20, center.Y() + 20 + TileSize());
+		const Sprite *background = SpriteSet::Get("ui/shipyard selected");
 		SpriteShader::Draw(background, spriteCenter);
+
+		const Sprite *shipSprite = selectedShip->GetSprite();
 		if(shipSprite)
+		{
+			const float spriteScale = min(1.f, (INFOBAR_WIDTH - 20.f) / max(shipSprite->Width(), shipSprite->Height()));
+			const int swizzle = selectedShip->CustomSwizzle() >= 0
+				? selectedShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
 			SpriteShader::Draw(shipSprite, spriteCenter, spriteScale, swizzle);
+		}
 
-		shipInfo.DrawAttributes(attrPoint);
-		shipInfo.DrawOutfits(outfPoint);
+		double descriptionOffset = 35.;
 
-		heightOffset = outfPoint.Y() + shipInfo.OutfitsHeight();
+		// Don't show description unless ship is normally sold here.
+		if(isShipyardShip)
+		{
+			// Maintenance note: This can be replaced with collapsed.contains() in C++20
+			if(!collapsed.count("description"))
+			{
+				descriptionOffset = shipInfo.DescriptionHeight();
+				shipInfo.DrawDescription(startPoint);
+			}
+			else
+			{
+				const Color &dim = *GameData::Colors().Get("medium");
+				const string label = "description";
+				font.Draw(label, startPoint + Point(35., 12.), dim);
+				const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
+				SpriteShader::Draw(collapsedArrow, startPoint + Point(20., 20.));
+			}
+
+			// Calculate the new ClickZone for the description.
+			const Point descriptionDimensions(INFOBAR_WIDTH, descriptionOffset);
+			const Point descriptionCenter(center.X(), startPoint.Y() + descriptionDimensions.Y() / 2);
+			const ClickZone<string> collapseDescription = ClickZone<string>(
+				descriptionCenter, descriptionDimensions, string("description"));
+			categoryZones.emplace_back(collapseDescription);
+		}
+
+		const Point attributesPoint(startPoint.X(), startPoint.Y() + descriptionOffset);
+		const Point outfitsPoint(startPoint.X(), attributesPoint.Y() + shipInfo.AttributesHeight());
+		shipInfo.DrawAttributes(attributesPoint);
+		shipInfo.DrawOutfits(outfitsPoint);
+
+		heightOffset = outfitsPoint.Y() + shipInfo.OutfitsHeight();
 	}
 
 	// Draw this string representing the selected ship (if any), centered in the details side panel
-	Point selectedPoint(center.X() - INFOBAR_WIDTH / 2, center.Y());
-	font.Draw({selectedItem, {INFOBAR_WIDTH - 20, Alignment::CENTER, Truncate::MIDDLE}},
+	const Color &bright = *GameData::Colors().Get("bright");
+	const Point selectedPoint(center.X() - INFOBAR_WIDTH / 2, center.Y());
+	font.Draw({selectedItem, {INFOBAR_WIDTH, Alignment::CENTER, Truncate::MIDDLE}},
 		selectedPoint, bright);
 
 	return heightOffset;
