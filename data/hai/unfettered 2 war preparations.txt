@@ -85,7 +85,7 @@ mission "<uhai> 10: Belt Materials"
 			variant
 				"Water Bug"
 	to fail
-		has "event: unfettered: outcast"
+		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
@@ -187,7 +187,7 @@ mission "<uhai> 11: Shipyard Intel"
 			`	"You will pretend to bring this tribute of food, and use that as a pretext to wander around the ships with an alibi."`
 				accept
 	to fail
-		has "event: unfettered: outcast"
+		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on stopover
@@ -370,7 +370,7 @@ mission "<uhai> 12: Outfitter Upgrade"
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	to fail
-		has "event: unfettered: outcast"
+		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
@@ -504,7 +504,7 @@ mission "<uhai> 13: Korath Specialty"
 			`	"Be sure to bring back 300 tons worth of, say, nitrogen coolers, so we have a solid base to work on. Don't bring us things like simple, water-based systems."`
 				accept
 	to fail
-		has "event: unfettered: outcast"
+		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
@@ -703,7 +703,7 @@ mission "<uhai> 14: Ion Materials"
 				"midas: proven worthy" ++
 				"reputation: Midas" >?= 0
 	to fail
-		has "event: unfettered: outcast"
+		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 		# you may decline this mission but if you accept it, you need to finish it
@@ -885,7 +885,7 @@ mission "<uhai> 15: Modified Beetle"
 			`	"You are NOT to take any weapons from this ship, since you will receive it shortly. You should land so we can talk about suggestions on how to improve the outfit loadout in greater details."`
 			`	"Furthermore, I would love to examine the effect these prototypes had on your ship, but you must land today for that!"`
 	to fail
-		has "event: unfettered: outcast"
+		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail If Killed"
 	on visit
@@ -1236,7 +1236,7 @@ mission "<uhai> 16: Strength Of A Leader: Si-Ra"
 		ship "Shield Beetle (Jump)" "Ghost"
 		system "Prakacha'a"
 	to fail
-		has "event: unfettered: outcast"
+		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail If Killed"
 
@@ -1285,7 +1285,7 @@ mission "<uhai> 16: Strength Of A Leader: He-Yi"
 		personality disables staying heroic target launching
 		conversation "unfettered war ready"
 	to fail
-		has "event: unfettered: outcast"
+		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail If Killed"
 	on complete

@@ -663,6 +663,7 @@ event "Sich'ka'ara restored"
 
 
 event "unfettered: outcast"
+	set "unfettered: outcast"
 	planet "Firelode"
 		remove outfitter "Mera's Lab"
 	planet "Darkcloak"
@@ -714,7 +715,7 @@ mission "Unfettered: Betrayed"
 mission "Unfettered: Restitution"
 	invisible
 	to offer
-		has "event: unfettered: outcast"
+		has "unfettered: outcast"
 		has "ship model (all): Modified Shield Beetle"
 		has "Wanderers: Alpha Surveillance D: done"
 		or

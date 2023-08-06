@@ -723,7 +723,7 @@ mission "<uhai> 20: Bigeminate Sigil: Boarding Equipement"
 				`	"I have no interest in bringing you weapons, even the least deadly."`
 					decline
 	to fail
-		has "event: unfettered: outcast"
+		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	to complete

@@ -542,7 +542,7 @@ substitutions
 	"<, unfettered title>" ", High Warlord"
 		has "unfettered: high warlord"
 	"<, unfettered title>" ", outcast"
-		has "event: unfettered: outcast"
+		has "unfettered: outcast"
 
 mission "<uhai> 0: Bring Hai"
 	name `Bring True Hai`
@@ -694,7 +694,7 @@ mission "<uhai> 0: Bring Hai"
 	on stopover
 		dialog `The small group of Hai are waiting for you in the spaceport as planned, and they seem happy to get on your ship. Now return to <origin> with them.`
 	to fail
-		has "event: unfettered: outcast"
+		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
@@ -764,7 +764,7 @@ mission "<uhai> 1: Bring Medicine"
 	on stopover
 		dialog `You're surprised to see the Hai are more than happy to give you the medical supplies needed. They load up the cargo and, once they are done, one of them addresses you. "Tell our brothers and sisters to stay strong. Hopefully it is not too late," he says with determination.`
 	to fail
-		has "event: unfettered: outcast"
+		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
@@ -988,7 +988,7 @@ mission "<uhai> 2: Prove Your Strength"
 			``
 			`	"Now land at once, we must officially conclude this duel, matey, else it will be worth no more than an empty chest!"`
 	to fail
-		has "event: unfettered: outcast"
+		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail If Killed"
 	on visit
@@ -1105,7 +1105,7 @@ mission "<uhai> 3: Recover Jump Drives"
 	on visit
 		dialog "You do not have the jump drives. You either did not go to <destination> to get the jump drives yet, or you left them in planetary storage, or you left the escort carrying the jump drives behind."
 	to fail
-		has "event: unfettered: outcast"
+		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	to complete
@@ -1394,7 +1394,7 @@ mission "<uhai> 4: Scan Geocoris"
 		system "Ya Hai"
 		ship "Grasshopper (Ion)" "Beholder"
 	to fail
-		has "event: unfettered: outcast"
+		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit

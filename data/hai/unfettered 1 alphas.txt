@@ -315,7 +315,7 @@ mission "<uhai> 5: Scan Auxiliary"
 	on visit
 		dialog "You should have landed on <destination>, but you did not scan the Auxiliary yet. Time is of essence, take off and scan its cargo as soon as possible!"
 	to fail
-		has "event: unfettered: outcast"
+		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
@@ -336,7 +336,7 @@ mission "<uhai> 5: Auxiliary Scans"
 	to offer
 		has "<uhai> 5: Scan Auxiliary: done"
 	to fail
-		has "event: unfettered: outcast"
+		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on complete
@@ -860,7 +860,7 @@ mission "<uhai> 7: Stolen Cargo"
 		# only fails if you kill them, not saving them only means you won't have any other missions with them.
 		has "midas: thorn talon murdered"
 	to fail
-		has "event: unfettered: outcast"
+		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
@@ -1311,7 +1311,7 @@ mission "<uhai> 9: Capture The Alpha Auxiliary"
 	to fail
 		has "Wanderers: Defend Vara Ke'sok: done"
 	to fail
-		has "event: unfettered: outcast"
+		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	on visit
