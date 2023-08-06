@@ -2419,11 +2419,13 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 
 	// Check if this ship is fast enough to keep distance from target.
 	// Have a 10% minimum to avoid ships getting in a chase loop.
+	// Ships able to run backwards can always try to move away whilst firing.
 	const bool isAbleToRun = target.MaxVelocity() * SAFETY_MULTIPLIER < ship.MaxVelocity();
 
 	ShipAICache &shipAICache = ship.GetAICache();
 	const bool artilleryOverride = ship.GetPersonality().IsArtillery();
-	const bool useArtilleryAI = artilleryOverride || (shipAICache.IsArtilleryAI() && isAbleToRun);
+	const bool useArtilleryAI = (artilleryOverride || shipAICache.IsArtilleryAI())
+		&& (isAbleToRun || ship.MaxReverseVelocity());
 	const double shortestRange = shipAICache.ShortestRange();
 	const double shortestArtillery = shipAICache.ShortestArtillery();
 	double minSafeDistance = isAbleToRun ? shipAICache.MinSafeDistance() : 0.;
@@ -2433,21 +2435,21 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 	// Average distance from this ship's weapons to the enemy ship.
 	const double weaponDistanceFromTarget = direction.Length() - totalRadius / 3.;
 
-	// If this ship has mostly long-range weapons, or some weapons have a
+	// If this ship has an artillery AI, or some weapons have a
 	// blast radius, it should keep some distance instead of closing in.
 	// If a weapon has blast radius, some leeway helps avoid getting hurt.
-	if(minSafeDistance || (artilleryOverride && shortestArtillery < weaponDistanceFromTarget)
+	if(minSafeDistance || (artilleryOverride && weaponDistanceFromTarget < shortestArtillery)
 		|| (useArtilleryAI && shortestRange < weaponDistanceFromTarget))
 	{
 		minSafeDistance = 1.25 * minSafeDistance + totalRadius;
 
 		double approachSpeed = (ship.Velocity() - target.Velocity()).Dot(direction.Unit());
-		double slowdownDistance = 0.;
 		// If this ship can use reverse thrusters, consider doing so.
 		double reverseSpeed = ship.MaxReverseVelocity();
-		bool useReverse = reverseSpeed && (reverseSpeed >= min(target.MaxVelocity(), ship.MaxVelocity())
-				|| target.Velocity().Dot(-direction.Unit()) <= reverseSpeed);
-		slowdownDistance = approachSpeed * approachSpeed / (useReverse ?
+		bool useReverse = reverseSpeed && (!isAbleToRun
+			|| reverseSpeed >= min(target.MaxVelocity(), ship.MaxVelocity())
+			|| target.Velocity().Dot(-direction.Unit()) <= reverseSpeed);
+		double slowdownDistance = approachSpeed * approachSpeed / (useReverse ?
 			ship.ReverseAcceleration() : (ship.Acceleration() + 160. / ship.TurnRate())) / 2.;
 
 		// If we're too close, run away.
@@ -2470,7 +2472,7 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 		else
 		{
 			// This isn't perfect, but it works well enough.
-			if((useArtilleryAI && ((approachSpeed > 0. || artilleryOverride)
+			if((useArtilleryAI && ((artilleryOverride || approachSpeed > 0.)
 					&& weaponDistanceFromTarget < shortestArtillery * .9)) ||
 					weaponDistanceFromTarget < shortestRange * .75)
 				AimToAttack(ship, command, target);
