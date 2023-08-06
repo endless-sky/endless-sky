@@ -20,6 +20,7 @@ government "Aberrant"
 	"attitude toward"
 		Avgi -0.01
 		"Avgi (Consonance)" -0.01
+		"Avgi (Twilight Guard)" -0.01
 		"Avgi (Dissonance)" -0.01
 		"Avgi (Dissonance Aggressive)" -0.01
 	"penalty for"
@@ -52,6 +53,7 @@ government "Avgi"
 	"player reputation" 1
 	"attitude toward"
 		"Avgi (Consonance)" 0.5
+		"Avgi (Twilight Guard)" 0.5
 		"Avgi (Dissonance)" 0.01
 		"Avgi (Dissonance Aggressive)" -0.05
 		"Ka'sei (Twilight)" -0.1
@@ -78,6 +80,30 @@ government "Avgi (Consonance)"
 		board 0.2
 		capture 3
 		destroy 2
+	bribe 0
+	"friendly hail" "friendly avgi"
+	"friendly disabled hail" "friendly disabled avgi"
+	"hostile hail" "hostile avgi"
+	"hostile disabled hail" "hostile disabled avgi"
+
+government "Avgi (Twilight Guard)"
+	"display name" "Twilight Guard"
+	swizzle 3
+	language Avgi
+	color "governments: Avgi"
+
+	"player reputation" 1
+	"attitude toward"
+		"Avgi" 1
+		"Avgi (Consonance) 1"
+		"Avgi (Dissonance)" 0.1
+		"Avgi (Dissonance Aggressive)" -0.05
+		"Ka'sei (Twilight)" -0.1
+	"penalty for"
+		disable 0.3
+		board 0.2
+		capture 3
+		destroy 2
 		provoke 0.1
 	bribe 0
 	"friendly hail" "friendly avgi"
@@ -96,6 +122,7 @@ government "Avgi (Dissonance)"
 	"attitude toward"
 		"Avgi" 1
 		"Avgi (Consonance)" 0.01
+		"Avgi (Twilight Guard)" 0.01
 		"Avgi (Dissonance Aggressive)" 0.01
 		"Ka'sei (Twilight)" -0.01
 	"penalty for"
@@ -118,6 +145,7 @@ government "Avgi (Dissonance Aggressive)"
 	"attitude toward"
 		"Avgi" -0.01
 		"Avgi (Consonance)" -0.05
+		"Avgi (Twilight Guard)" -0.05
 		"Avgi (Dissonance)" 1
 		"Ka'sei (Twilight)" -0.01
 	"penalty for"

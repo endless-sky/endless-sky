@@ -667,11 +667,12 @@ ship "Undsyni"
 		"XY-420 Radial Thrusters"
 		"Hyperdrive"
 
-	gun 0 -144
+	gun 0 -213
+		over
 	gun -42 -139 "Sidereal Launcher"
 		angle -90
 	gun 42 -139 "Sidereal Launcher"
-		angle -90
+		angle 90
 	turret -33 -138 "Speckle Turret"
 	turret 33 -138 "Speckle Turret"
 	turret 0 -30 "Phased Array Laser (Green)"
@@ -711,7 +712,7 @@ ship "Undsyni"
 	explode "huge explosion" 9
 	"final explode" "final explosion large"
 
-	description "Undsyni-class Armed Freighter"
+	description "Undsyni-class Auxiliary Freighter"
 
 
 ship "Polari"
@@ -916,20 +917,10 @@ ship "Entasi"
 
 	description "The Entasi is a mid-sized "
 
-
-
-
-
-
-
-
-
-
-
 ship "Tachytia"
 	sprite "ship/avgi tachytia/tachytia"
-		"frame rate" 30
-	thumbnail "thumbnail/avgi tachytia/tachytia"
+		"frame rate" 15
+	thumbnail "thumbnail/tachytia"
 	swizzle 0
 	attributes
 		category "Utility"
@@ -974,7 +965,7 @@ ship "Tachytia"
 	turret -12 375 "Phased Array Laser (Green)"
 	turret 12 375 "Phased Array Laser (Green)"
 	turret 0 480 "Phased Array Laser (Green)"
-	gun 0 -405
+	gun 0 -384
 
 	bay "Drone" -18 420
 	bay "Drone" 18 420
@@ -995,12 +986,16 @@ ship "Tachytia"
 
 	engine -207 -489
 		angle 9
+		zoom 2
 	engine 207 -489
 		angle -9
+		zoom 2
 	engine -186 -456
 		angle 9
+		zoom 2
 	engine 186 -456
 		angle -9
+		zoom 2
 
 	leak "leak" 60 15
 	leak "flame" 60 15
@@ -1412,7 +1407,7 @@ ship "Difraktos"
 		"Fleck Round" 4800
 		"Sidereal VLS Array" 2
 		"Sidereal Magazine" 2
-		"Sidereal Missile" 312
+		"Sidereal Missile" 324
 
 		"Brilliant Fusion Core"
 		"Pebble Bed Cell"
@@ -1599,7 +1594,7 @@ ship "Atenuatia"
 		"Sidereal VLS Array"
 		"Equinox Torpedo Stockpile" 3
 		"Equinox Torpedo" 36
-		"Sidereal Missile" 120
+		"Sidereal Missile" 126
 		
 		"Radiant Fusion Core"
 		"Ultracapacitor Bank" 2
@@ -1690,7 +1685,6 @@ ship "Atenuatia"
 	"final explode" "final explosion large"
 
 	description "The Atenuatia is"
-
 
 
 # Fighters
@@ -1837,7 +1831,7 @@ ship "Photikon"
 
 ship "Vibratia"
 	sprite "ship/avgi vibratia"
-	thumbnail "thumbnail/vibratia"
+	thumbnail "thumbnail/avgi vibratia"
 	attributes
 		category "Drone"
 		"cost" 36000

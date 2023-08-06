@@ -31,6 +31,26 @@ ship "Undsyni" "Undsyni (Tanker)"
 		"Hyperdrive"
 
 
+# Light Warships
+
+ship "Prismaios" "Prismaios (Coilgun)"
+	outfits
+		"Phased Array Laser (Green)"
+		"Fleck Turret" 2
+		"Fleck Round" 4800
+
+		"Luminous Fusion Core"
+		"Ultracapacitor Bank" 2
+		"Diffuse Deflector"
+		"Optical Lasing Generator"
+		"Multispectral Scanner"
+		"Electrostatic Ramscoop"
+		
+		"Z-360 Fusion Torch"
+		"XY-180 Radial Thrusters"
+		"Hyperdrive"
+
+
 # Medium Warships
 
 ship "Difraktos" "Difraktos (Missile Cruiser)"

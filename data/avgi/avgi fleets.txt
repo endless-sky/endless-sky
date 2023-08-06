@@ -1,5 +1,5 @@
 fleet "Avgi Core Defense"
-	government "Avgi (Consonance)"
+	government "Avgi (Twilight Guard)"
 	names "avgi military names"
 	fighters
 		names "avgi fighter names"
@@ -58,7 +58,7 @@ fleet "Avgi Core Defense"
 
 
 fleet "Avgi Orbital Defense"
-	government "Avgi (Consonance)"
+	government "Avgi (Twilight Guard)"
 	names "avgi fighter names"
 	personality
 		lingering heroic surveillance swarming
@@ -73,7 +73,7 @@ fleet "Avgi Orbital Defense"
 
 
 fleet "Avgi Patrol"
-	government "Avgi (Consonance)"
+	government "Avgi (Twilight Guard)"
 	names "avgi military names"
 	cargo 4
 	commodities "Food" "Metal" "Equipment" "Medical" "Heavy Metals"
@@ -101,7 +101,7 @@ fleet "Avgi Patrol"
 
 
 fleet "Avgi Scouts"
-	government "Avgi (Consonance)"
+	government "Avgi (Twilight Guard)"
 	names "avgi civilian names"
 	commodities "Food" "Equipment" "Medical"
 	fighters
@@ -127,7 +127,7 @@ fleet "Avgi Scouts"
 
 
 fleet "Avgi Strike Group"
-	government "Avgi (Consonance)"
+	government "Avgi (Twilight Guard)"
 	names "avgi military names"
 	cargo 4
 	commodities "Food" "Metal" "Equipment" "Medical" "Heavy Metals"
@@ -144,7 +144,7 @@ fleet "Avgi Strike Group"
 
 
 fleet "Avgi Fleetgroup"
-	government "Avgi (Consonance)"
+	government "Avgi (Twilight Guard)"
 	names "avgi military names"
 	cargo 4
 	commodities "Food" "Metal" "Equipment" "Medical" "Heavy Metals"
