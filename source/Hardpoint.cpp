@@ -301,8 +301,8 @@ bool Hardpoint::Jam()
 	// If this is a continuous weapon add half a second immunity to prevent flickering.
 	if(reload == 1)
 	{
-		reload += 30;
-		jamImmunity += 60;
+		reload = Random::Int(60);
+		jamImmunity = reload * 2.;
 	}
 
 	burstReload += outfit->BurstReload();
