@@ -29,6 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class Color;
 class Conversation;
+class Mission;
 class PlayerInfo;
 class Point;
 class Ship;
@@ -43,8 +44,8 @@ class System;
 class ConversationPanel : public Panel {
 public:
 	ConversationPanel(PlayerInfo &player, const Conversation &conversation,
-		const System *system = nullptr, const std::shared_ptr<Ship> &ship = nullptr,
-		bool useTransactions = false);
+		const Mission *caller = nullptr, const System *system = nullptr,
+		const std::shared_ptr<Ship> &ship = nullptr, bool useTransactions = false);
 
 template <class T>
 	void SetCallback(T *t, void (T::*fun)(int));
@@ -107,6 +108,9 @@ private:
 private:
 	// Reference to the player, to apply any changes to them.
 	PlayerInfo &player;
+
+	// A pointer to the mission that called this conversation.
+	const Mission *caller = nullptr;
 
 	// Should we use a PlayerInfo transaction to prevent save-load glitches?
 	bool useTransactions = false;

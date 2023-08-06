@@ -355,7 +355,7 @@ mission "Ka'het: Patir Mystery 1"
 				`	"How did the attempt at tracking the Ka'het go?"`
 				`	"Sorry, but I can't help you this time. You're going to have to find somebody else."`
 					decline
-			`	"Oh, the scanner is working perfectly. But the Ka'het seem to follow no pattern whatsoever, not even the most basic ones. I guess you could compare them to simple animals, searching for food and fighting each other for their territory. They seem to have some sort of "imprinting" towards the stations that breeds them, but other than that, they have not shown any other particular behavior yet."`
+			`	"Oh, the scanner is working perfectly. But the Ka'het seem to follow no pattern whatsoever, not even the most basic ones. I guess you could compare them to simple animals, searching for food and fighting each other for their territory. They seem to have some sort of 'imprinting' towards the stations that breeds them, but other than that, they have not shown any other particular behavior yet."`
 			choice
 				`	"Alright, let's mount the scanner!"`
 				`	"Sorry, but I can't help you this time. You're going to have to find somebody else."`
