@@ -980,7 +980,10 @@ ship "Sea Scorpion" "Sea Scorpion (Ion)"
 		"Hyperdrive"
 		"Pulse Rifle" 15
 
+# These are prototype equipped ship that do not spawn normally, as such they are guarded against boarding,
+# although part of the crew on the ship are engineers monitering the success of the weapons.
 ship "Sea Scorpion" "Sea Scorpion (Ionic)"
+	crew 30
 	outfits
 		`"Biroo" Atomic Steering`
 		`"Bondir" Atomic Thruster`
@@ -993,9 +996,10 @@ ship "Sea Scorpion" "Sea Scorpion (Ionic)"
 		"Ion Cannon"
 		"Ionic Blaster Prototype" 2
 		"Ionic Turret Prototype"
-		"Pulse Rifle" 15
+		"Pulse Rifle" 36
 
 ship "Sea Scorpion" "Sea Scorpion (Shredder)"
+	crew 30
 	outfits
 		`"Biroo" Atomic Steering`
 		`"Biroo" Atomic Thruster`

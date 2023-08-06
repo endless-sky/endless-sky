@@ -100,7 +100,6 @@ ship "Ancient Ladybug"
 		"tactical scan power" 25
 		"atmosphere scan" 100
 		"asteroid scan power" 30
-		
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -146,7 +145,7 @@ mission "Hai Legacy 1"
 		"reputation: Hai (Unfettered)" < 0
 		not "Unfettered Jump Drive 1: offered"
 		not "event: hai ladybug available"
-		"credits" + "net worth" > 65000000
+		"credits" + "net worth" / 2 > 65000000
 	on offer
 		conversation
 			branch first
@@ -277,7 +276,7 @@ mission "Hai Legacy 2"
 				`(Prepare for takeoff.)`
 			`	As you head to the bridge, preparing to take off from the planet, you notice a message on the command panel, probably from your "associates:"`
 			`	"Use the Ladybug as your flagship.`
-			`	"Do not bring any other ships."`
+			`	"Do not bring any other ships, as they are not needed for the cargo and would only be a liability at best in Unfettered space, when they could easily provoke them at worst."`
 			`	Given the dangers of Unfettered space, it would be a good idea to familiarize yourself with the design of the Ancient Ladybug and even customize it more to your own liking - especially if you plan to deliver the cargo in only this single ship, as requested.`
 				accept
 	on enter
@@ -332,21 +331,23 @@ mission "Hai Legacy 3"
 		conversation
 			`As you land, you realize your ship is the center of the spaceport crowd's attention, probably due to the ancient design. One Unfettered that looks like an engineer comes to speak to you, warmer than usual based on your experiences with the Unfettered. "Welcome. Although I do not know how you have obtained this ship, I imagine some of us will see it as a sign. It is a relic of our past, a past we are quite proud of.`
 			`	"As such, most will say that you need to prove to us you have a right to use that ship. Lucky for you, I don't believe in any of that. What matters to me is that this ship is very durable, and it's filled with valuable ancient technology."`
-			`	Their tone suddenly changes as they raise their voice for everyone to hear. "I challenge you! The winner will earn the right to own this honorable relic!"`
+			`	Her tone suddenly changes as they raise her voice for everyone to hear. "I challenge you! The winner will earn the right to own this honorable relic!"`
 			choice
 				`	"What do I get if I win?"`
 					goto win
 				`	"Can't I just sell it to you?"`
+				`	"I bought this ship. It's mine and I shall do what I please with it."`
+					goto headingout
 			`	"No, because in the eyes of my brethren that would mean I, too, did not deserve this ship. They would then challenge me for it."`
 			label win
-			`	"You will win the right to access our worlds for just a meager daily fee of 500 credits. In order to keep our respect, this Ancient Ladybug may not be destroyed or sold. This is a priceless artifact. Should you refuse to prove your worth, you will no longer be allowed to land here.`
-			`	"Beware, for there are no rules, other than the fact that you may only use this one ship. So, will you take to the skies, or are you too afraid?"`
+			`	"You will win the right to access our worlds for just a meager daily fee of 600 credits. In order to keep our respect, this Ancient Ladybug may not be destroyed or sold, until you prove yourself another way. This is a priceless artifact. Should you refuse to prove your worth, you will no longer be allowed to land here without paying a fee.`
+			`	"Beware, for there are no official rules, other than the fact that you may only use this one ship. So, will you take to the skies, or are you too afraid?"`
 			choice
 				`	"I accept."`
 				`	"I have nothing to prove to you."`
 					decline
 			`	"Good! Of course, I won't be fighting you personally, as it is too risky to do so. I would also not want to deny my brethren the opportunity to prove themselves against a mighty human warrior!"`
-			`	You're not sure if they're being serious or not, but their friends seem to be in for it. Their leader approaches you. "So you think you deserve to fly this mighty ship of the Hai empire?"`
+			`	You're not sure if she's being serious or not, but her friends seem to be in for it. Their leader approaches you. "So you think you deserve to fly this mighty ship of the Hai empire?"`
 			`	"Yeah, what makes you think that, human?" another one adds.`
 			choice
 				`	(Say nothing.)`
@@ -354,29 +355,36 @@ mission "Hai Legacy 3"
 					goto scare
 			`	"I guess we'll find out." says a third.`
 			label scare
-			`	The leader gets closer and addresses you in a more serious tone. "You should be aware that this is not a friendly competition. This is a fight for you to truly earn your place with this ship. As far as I'm concerned, you are an enemy. Make no mistakes about that. This fight has only two rules: nobody other than us here may interfere, and being disabled counts as a loss. Don't even think about tricking us by switching to something other than this Ladybug, or we will not bother showing up! You must prove your worth only with the Ladybug.`
-			`	"We can understand some may die in glorious battle, and to the victor go the spoils, so looting as allowed. Capturing, however, is off limits. Do so, and the whole of the Unfettered will be against you."`
+			`	The leader gets closer and addresses you in a more serious tone. "You should be aware that this is not a friendly competition. This is a fight for you to truly earn your place with this ship. As far as I'm concerned, you are an enemy. Make no mistakes about that. As far as I am concerned, this fight has a few... unofficial rules: of course nobody other than us here may interfere, but also know that being disabled counts as a loss. Don't even think about tricking us by switching to something other than this Ladybug, or we will not bother showing up! You must prove your worth only with the Ladybug.`
+			`	"Furthermore we can understand some may die in glorious battle, and to the victor go the spoils, so looting as allowed. Capturing, however, is off limits. Do so, and all the Unfettered will be against you."`
 			# This is a "warning" for the incoming extra ship that happens because you killed/captured 10 Shield Beetles
 			# (But in reality with disabling a lot of ships it goes faster than that)
-			`	They suddenly look at you intensively, straight in the eyes, "We sometimes bend the rules for our friends, but that is not your case," they say with a sudden change of tone, before leaving.`
+			`	He suddenly look at you intensively, straight in the eyes, "We sometimes bend the rules for our friends, but that is not your case," he says with a sudden change of tone, before leaving.`
 				to display
 					"reputation: Hai (Unfettered)" < -2000
-			`	The engineer comes back, looking a bit impatient. "Are you going to talk all day, or are you going to fight?" The Unfettered pilots immediately head to their ships. The engineer pulls you in close once they are far enough away. "I want this done by the end of the day, so do not try my patience. You are lucky I offered this deal in the first place. Now, quick, get to your ship!" You see the contestants have already begun the launching procedures and launch as soon as you can.`
+			`	The engineer comes back, looking a bit impatient. "Are you going to talk all day, or are you going to fight?" The Unfettered pilots immediately head to their ships. The engineer pulls you in close once they are far enough away. "I want this done by the end of the day, so do not try my patience. You are lucky I offered this deal in the first place, they were planning to take the relic by force. Now, quick, get to your ship!" You see the contestants have already begun the launching procedures and launch as soon as you can.`
 			`	(Remember to park your other ships and make sure your flagship is the Ancient Ladybug.)`
 				accept
+			label headingout
+			action
+				"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
+				set "unfettered: refused to sell the bug"
+			`	Seeing as they are unlikely to cooperate you quickly head to your ship and launch before they have time to react, but it seems like you are being followed.`
+				launch
 	on decline
-		"reputation: Hai (Unfettered)" >?= -1000
+		"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 	on disabled
 		fail "Hai Legacy 3"
 		dialog `The enemy ships hail you. "You have failed the challenge. We will take the ship from you when we see fit. I suggest you land on Darkcloak so that we take it from you without trouble - we can even leave you with the outfits. If you try to keep it from us, we'll do things the hard way."`
 	on fail
-		"reputation: Hai (Unfettered)" >?= -1000
+		"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 		dialog `The Unfettered hail you. "You failed to complete the duel properly, and as such, are no longer authorized to land on our worlds. You will not enjoy unwarranted respect any longer!"`
 	npc disable
 		government "Hai (Unfettered Challenger)"
 		to spawn
 			"total ships" == 1
 			has "flagship model: Ancient Ladybug"
+			not "unfettered: refused to sell the bug"
 		to despawn
 			"total ships" != 1
 		personality unconstrained launching plunders staying target heroic disables
@@ -396,12 +404,13 @@ mission "Hai Legacy 3"
 	npc disable
 		government "Hai (Unfettered Challenger)"
 		to spawn
+			not "unfettered: refused to sell the bug"
 			"old reputation: Hai (Unfettered)" < -2000
 			has "flagship model: Ancient Ladybug"
 			"total ships" == 1
 		to despawn
 			"total ships" != 1
-		personality unconstrained entering plunders staying target heroic
+		personality unconstrained entering plunders target heroic
 		ship "Sea Scorpion (Shredder)" "Requiem"
 		system "Hi Yahr"
 		dialog "You have managed to defeat the last of the Unfettered challengers. Now it's time to land and claim your reward."
@@ -409,15 +418,28 @@ mission "Hai Legacy 3"
 			set "unfettered: beaten extra bugs"
 	npc
 		government "Hai (Unfettered)"
+		to spawn
+			not "unfettered: refused to sell the bug"
 		ship "Lightning Bug (Unfettered Shipyards)"
 		personality launching staying surveillance
 		on disable
 			dialog `The ship hails you. "Stop! The duel will not be valid if you destroy us!"`
 		on kill
 			fail "Hai Legacy 3"
+	# if you refuse to sell the ship (you'll lose it later anyway)
+	npc
+		government "Hai (Unfettered)"
+		to spawn
+			has "unfettered: refused to sell the bug"
+		personality unconstrained nemesis launching heroic marked
+		fleet
+			names "hai"
+			variant
+				ship "Sea Scorpion (Ionic)"
 	on visit
 		dialog "You have not beaten all challenging ships yet. If they have not shown up it is probably because you have cheated and brought more ships into the fight. Load an earlier save and try again if you want to finish this mission. You may also have capped too many of their ships, in which case you should disown them."
 	to complete
+		not "unfettered: refused to sell the bug"
 		has "unfettered: beaten the bugs"
 		has "flagship model: Ancient Ladybug"
 		# If they bended the rules you can get away with capping one ship.
@@ -426,6 +448,7 @@ mission "Hai Legacy 3"
 			"old reputation: Hai (Unfettered)" > -2000
 			has "unfettered: beaten extra bugs"
 	on complete
+		clear "unfettered: beaten the bugs"
 		conversation
 			`When you land in one piece, the engineer approaches, shocked. "You really won? It was close until the end, was it not? Or did the captains already make stories to justify their incompetence?"`
 			choice

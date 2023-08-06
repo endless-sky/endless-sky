@@ -349,8 +349,8 @@ mission "Unfettered Big Medicals Rush"
 		government "Hai"
 		attributes "spaceport"
 	to offer
-		has "Unfettered Jump Drive 1: offered"
-		random < 40
+		"reputation: Hai (Unfettered)" >= 0
+		random < 20 + "Unfettered Jump Drive 1: offered" * 20
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on stopover
