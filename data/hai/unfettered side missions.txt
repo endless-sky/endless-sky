@@ -426,6 +426,9 @@ mission "Hai Legacy 3"
 			dialog `The ship hails you. "Stop! The duel will not be valid if you destroy us!"`
 		on kill
 			fail "Hai Legacy 3"
+			# Block you from doing the Unfettered campaign because you just killed one of it's core characters
+			set "unfettered: outcast"
+			dialog `As the Lightning Bug is destroyed you receive a hail from the local authorities, "You completely disrespected the rules of the duel and killed one of our engineers. You will not be welcome here anymore!"`
 	# if you refuse to sell the ship (you'll lose it later anyway)
 	npc
 		government "Hai (Unfettered)"
