@@ -233,8 +233,11 @@ void Attribute::PrepareCache()
 // Checks whether the specified combination is fully supported by the engine.
 bool Attribute::IsSupported() const
 {
+	// Attributes without effect don't do anything
 	if(effect == -1)
 		return false;
+	// Only resistance has secondary effects, and only if the resistance itself is supported.
+	// The secondary effect can only be energy, heat or fuel.
 	if(secondary != -1)
 	{
 		if(category != RESISTANCE)
@@ -245,6 +248,7 @@ bool Attribute::IsSupported() const
 			return false;
 		return secondary == ENERGY || secondary == HEAT || secondary == FUEL;
 	}
+	// Relative effects are only used when dealing damage, and only for specific effects.
 	if(IsRelative())
 	{
 		if(IsMultiplier())
@@ -262,6 +266,7 @@ bool Attribute::IsSupported() const
 				return false;
 		}
 	}
+	// Multipliers are only used in shield and hull repair attributes, and for a handful of effects.
 	if(IsMultiplier())
 	{
 		if(category != SHIELD_GENERATION && category != HULL_REPAIR)
@@ -269,15 +274,21 @@ bool Attribute::IsSupported() const
 		int effectType = effect % ATTRIBUTE_EFFECT_COUNT;
 		return effectType == ENERGY || effectType == HEAT || effectType == FUEL || effectType == category;
 	}
+	// Thrust/turn etc. is only supported in its own category,
+	// unless it's afterburner thrust.
 	if(effect == THRUST && category == AFTERBURNING)
 		return true;
 	if(effect >= THRUST && effect <= CLOAK)
 		return static_cast<int>(effect) == static_cast<int>(category);
+	// Energy, fuel and heat can be produced/consumed nearly everywhere, except in
+	// attributes like cooling or resistance.
 	if(effect >= ENERGY && effect <= HEAT)
 		return (category != COOL && category != ACTIVE_COOL && category != RESISTANCE) ||
 				(effect == ENERGY && category == ACTIVE_COOL);
+	// Most damage types
 	if(effect >= DISCHARGE && effect <= DISRUPTION)
 		return (category >= AFTERBURNING && category <= DAMAGE) || (category >= THRUSTING && category <= TURNING);
+	// More obscure combinations of attributes
 	switch(effect)
 	{
 		case SHIELDS:
