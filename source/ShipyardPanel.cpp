@@ -218,31 +218,27 @@ int ShipyardPanel::DrawDetails(const Point &center)
 
 		double descriptionOffset = 35.;
 
-		// Don't show description unless ship is normally sold here.
-		if(isShipyardShip)
+		// Maintenance note: This can be replaced with collapsed.contains() in C++20
+		if(!collapsed.count("description"))
 		{
-			// Maintenance note: This can be replaced with collapsed.contains() in C++20
-			if(!collapsed.count("description"))
-			{
-				descriptionOffset = shipInfo.DescriptionHeight();
-				shipInfo.DrawDescription(startPoint);
-			}
-			else
-			{
-				const Color &dim = *GameData::Colors().Get("medium");
-				const string label = "description";
-				font.Draw(label, startPoint + Point(35., 12.), dim);
-				const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
-				SpriteShader::Draw(collapsedArrow, startPoint + Point(20., 20.));
-			}
-
-			// Calculate the new ClickZone for the description.
-			const Point descriptionDimensions(INFOBAR_WIDTH, descriptionOffset);
-			const Point descriptionCenter(center.X(), startPoint.Y() + descriptionDimensions.Y() / 2);
-			const ClickZone<string> collapseDescription = ClickZone<string>(
-				descriptionCenter, descriptionDimensions, string("description"));
-			categoryZones.emplace_back(collapseDescription);
+			descriptionOffset = shipInfo.DescriptionHeight();
+			shipInfo.DrawDescription(startPoint);
 		}
+		else
+		{
+			const Color &dim = *GameData::Colors().Get("medium");
+			const string label = "description";
+			font.Draw(label, startPoint + Point(35., 12.), dim);
+			const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
+			SpriteShader::Draw(collapsedArrow, startPoint + Point(20., 20.));
+		}
+
+		// Calculate the new ClickZone for the description.
+		const Point descriptionDimensions(INFOBAR_WIDTH, descriptionOffset);
+		const Point descriptionCenter(center.X(), startPoint.Y() + descriptionOffset / 2);
+		const ClickZone<string> collapseDescription = ClickZone<string>(
+			descriptionCenter, descriptionDimensions, string("description"));
+		categoryZones.emplace_back(collapseDescription);
 
 		const Point attributesPoint(startPoint.X(), startPoint.Y() + descriptionOffset);
 		const Point outfitsPoint(startPoint.X(), attributesPoint.Y() + shipInfo.AttributesHeight());
