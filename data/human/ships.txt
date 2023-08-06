@@ -491,13 +491,13 @@ ship "Bastion"
 		
 	engine 31.5 89.5
 	engine -31.5 89.5
-	gun 52.5 -0.5 "Heavy Rocket Launcher"
-	gun 52.5 -0.5 "Plasma Cannon"
 	gun -52.5 -0.5 "Heavy Rocket Launcher"
 	gun -52.5 -0.5 "Plasma Cannon"
-	turret 35.5 29.5 "Blaster Turret"
-	turret -35.5 29.5 "Blaster Turret"
+	gun 52.5 -0.5 "Heavy Rocket Launcher"
+	gun 52.5 -0.5 "Plasma Cannon"
 	turret 0 0.5 "Anti-Missile Turret"
+	turret -35.5 29.5 "Blaster Turret"
+	turret 35.5 29.5 "Blaster Turret"
 	leak "leak" 40 50
 	leak "flame" 40 80
 	leak "big leak" 70 30
@@ -868,13 +868,13 @@ ship "Bulwark"
 		
 	engine 31.5 89.5
 	engine -31.5 89.5
-	gun 52.5 -0.5 "Heavy Rocket Launcher"
-	gun 52.5 -0.5 "Plasma Cannon"
 	gun -52.5 -0.5 "Heavy Rocket Launcher"
 	gun -52.5 -0.5 "Plasma Cannon"
-	turret 35.5 29.5 "Quad Blaster Turret"
-	turret -35.5 29.5 "Quad Blaster Turret"
+	gun 52.5 -0.5 "Heavy Rocket Launcher"
+	gun 52.5 -0.5 "Plasma Cannon"
 	turret 0 0.5 "Heavy Anti-Missile Turret"
+	turret -35.5 29.5 "Quad Blaster Turret"
+	turret 35.5 29.5 "Quad Blaster Turret"
 	leak "leak" 40 50
 	leak "flame" 40 80
 	leak "big leak" 70 30
@@ -1461,9 +1461,9 @@ ship "Dagger"
 		
 	engine -8 34
 	engine 8 34
+	gun 0 -35 "Beam Laser"
 	gun -11 -21 "Javelin Mini Pod"
 	gun 11 -21 "Javelin Mini Pod"
-	gun 0 -35 "Beam Laser"
 	leak "leak" 60 50
 	explode "tiny explosion" 15
 	explode "small explosion" 5
@@ -1688,9 +1688,9 @@ ship "Finch"
 		
 	engine -5 32
 	engine 5 32
+	gun 0 -31.5 "Beam Laser"
 	gun -7 -14 "Javelin Mini Pod"
 	gun 7 -14 "Javelin Mini Pod"
-	gun 0 -31.5 "Beam Laser"
 	leak "flame" 60 80
 	explode "tiny explosion" 15
 	explode "small explosion" 5
@@ -2394,9 +2394,9 @@ ship "Lance"
 		
 	engine -14.5 30.5 0.5
 	engine 14.5 30.5 0.5
+	gun 0 -34 "Energy Blaster"
 	gun -13.5 -6.5 "Sidewinder Missile Pod"
 	gun 13.5 -6.5 "Sidewinder Missile Pod"
-	gun 0 -34 "Energy Blaster"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description "The Lance is the primary fighter used by the Republic Navy. As with all fighters, it is weak by itself but very effective as part of a larger squadron."
@@ -2519,12 +2519,12 @@ ship "Mammoth"
 	gun 47.5 -57.5
 	turret -31 -50 "Anti-Missile Turret"
 	turret 31 -50 "Anti-Missile Turret"
+	turret -14.5 0 "Quad Blaster Turret"
+	turret 14.5 0 "Quad Blaster Turret"
 	turret -47.5 33.5 "Proton Turret"
 	turret 47.5 33.5 "Proton Turret"
 	turret -22 66.5 "Anti-Missile Turret"
 	turret 22 66.5 "Anti-Missile Turret"
-	turret -14.5 0 "Quad Blaster Turret"
-	turret 14.5 0 "Quad Blaster Turret"
 	leak "leak" 30 50
 	leak "flame" 30 80
 	leak "big leak" 50 30
@@ -2577,12 +2577,12 @@ ship "Manta"
 		
 	engine -33 40
 	engine 33 40
+	gun -68.5 -33 "Torpedo Pod"
+	gun 68.5 -33 "Torpedo Pod"
 	gun -20 -31 "Particle Cannon"
 	gun 20 -31 "Particle Cannon"
 	gun -26.5 -30 "Particle Cannon"
 	gun 26.5 -30 "Particle Cannon"
-	gun -68.5 -33 "Torpedo Pod"
-	gun 68.5 -33 "Torpedo Pod"
 	leak "leak" 60 50
 	leak "flame" 40 80
 	explode "tiny explosion" 10
@@ -2884,10 +2884,10 @@ ship "Osprey"
 	engine 42.5 62.5 .8
 	engine -16.5 105 .6
 	engine 16.5 105 .6
-	gun -25 -49.5 "Plasma Cannon"
-	gun 25 -49.5 "Plasma Cannon"
 	gun -9.5 -95.5 "Plasma Cannon"
 	gun 9.5 -95.5 "Plasma Cannon"
+	gun -25 -49.5 "Plasma Cannon"
+	gun 25 -49.5 "Plasma Cannon"
 	turret -15.5 -12 "Quad Blaster Turret"
 	turret 15.5 -12 "Heavy Anti-Missile Turret"
 	leak "leak" 40 50
@@ -2947,14 +2947,14 @@ ship "Protector"
 	engine 12 122.5
 	gun -17.5 -101 "Meteor Missile Launcher"
 	gun 17.5 -101 "Meteor Missile Launcher"
-	turret 0 -28.5 "Heavy Anti-Missile Turret"
 	turret -48.5 -48.5 "Quad Blaster Turret"
 	turret 48.5 -48.5 "Quad Blaster Turret"
+	turret 0 -28.5 "Heavy Anti-Missile Turret"
 	turret -68.5 0 "Quad Blaster Turret"
 	turret 68.5 0 "Quad Blaster Turret"
+	turret 0 30 "Anti-Missile Turret"
 	turret -48.5 48.5 "Quad Blaster Turret"
 	turret 48.5 48.5 "Quad Blaster Turret"
-	turret 0 30 "Anti-Missile Turret"
 	leak "leak" 60 50
 	leak "flame" 20 80
 	explode "tiny explosion" 18
