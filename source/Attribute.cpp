@@ -69,7 +69,7 @@ Attribute::Attribute(AttributeCategory category, AttributeEffect effect, Attribu
 // Gets the data format name of the category, as used in the new syntax.
 string Attribute::GetCategoryName(const AttributeCategory category)
 {
-	return (category > 0 && category < ATTRIBUTE_CATEGORY_COUNT) ? categoryNames[category] : "";
+	return (category >= 0 && category < ATTRIBUTE_CATEGORY_COUNT) ? categoryNames[category] : "";
 }
 
 
