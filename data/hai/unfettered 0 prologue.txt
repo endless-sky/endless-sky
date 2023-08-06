@@ -560,28 +560,27 @@ mission "<uhai> 0: Bring Hai"
 	on defer
 		set "unfettered: offered bring hai"
 	substitutions
-		# They're speaking Hai, but so are the Wanderers.
 		# Translate it if you have a translator, otherwise someone will offer to do it for you.
 		<firstgroup> "but because it is in Hai you cannot make sense of the words. However even from afar you can see how malnurished the children are."
-			not "language: Wanderer"
+			not "language: Hai"
 		<firstgroup> `you use your translator device to make sense of what is said. "... and we fear the next season will be even more [rough, hard, taxing]. We need funding to restore the lands; very little grows on them anymore!"`
-			has "language: Wanderer"
+			has "language: Hai"
 		<secondgroup> "He does not seem pleased, speaking with contained anger. You are not sure if he is demanding something, or simply complaining."
-			not "language: Wanderer"
+			not "language: Hai"
 		<secondgroup> `"Things are going [poorly, worse]. In all my life never has it been more [rough, unsustainable]. Never have there been so many in need. Never so little to harvest, worse [housing, sanitation]... Something needs to be done, and quickly. We, and our way of life, are dying."`
-			has "language: Wanderer"
+			has "language: Hai"
 		<thirdgroup> "seemingly heartbroken by this little one's words. Raising his voice for all to hear, he appears to be asking something to the gathered Hai."
-			not "language: Wanderer"
+			not "language: Hai"
 		<thirdgroup> `"The little one asks if he can go to Hai [space, safety]," the Chief explains, then continues. "Unfortunately, as you all know, we cannot send back a child alone, he needs to be [taken care of, protected]. Who will fulfil this duty?"`
-			has "language: Wanderer"
+			has "language: Hai"
 		<fourthgroup> "This one is also requesting something, but they do not seem to be malnourished at all. The Chiefs seem bothered by this request."
-			not "language: Wanderer"
+			not "language: Hai"
 		<fourthgroup> `"My cousins would like to join me, but they lack the funds to [easily pay, afford] the transport. Would you allow more to join us, and become [True, authentic, unfettered]?" This seems to bother the Chiefs, and they answer briefly, "We will pass along this request to [True, unaltered] ship captains, but I fear they are indeed [busy, overworked, too few] these days. That can explain why the prices have gone up."`
-			has "language: Wanderer"
+			has "language: Hai"
 		<closing> "He speaks with a conclusive and conciliatory tone to the many Hai still waiting in line for the stage."
-			not "language: Wanderer"
+			not "language: Hai"
 		<closing> `"It is late. You would do well to go home and care for your [family, friends]. Come next [cycle, period] for the next session."`
-			has "language: Wanderer"
+			has "language: Hai"
 	on offer
 		conversation
 			`Looking outside, you see the sun is setting. You take a moment to admire the breathtaking view of the sun passing trough some clouds of pollution and notice a large, white, square-shaped structure in the distance, perhaps some sort of stadium, which a growing crowd of Unfettered are streaming towards. Ships keep landing and unloading even more Hai all over the spaceport, so much so that, exiting your ship, you cannot avoid being caught up in the crowd, almost carried, as they head towards the building. It is grandiose compared to its surroundings, distinguished by its sheer length and pure white appearance. In contrast, most of the surrounding structures appear to be houses or bars, all with more dilapidated appearances.`
@@ -732,22 +731,22 @@ mission "<uhai> 1: Bring Medicine"
 		has "<uhai> 0: Bring Hai: done"
 	substitutions
 		<prioritymessage> `Unfortunately, because it's in Hai, you can only guess at the meaning out of it, but it is clearly important. You can see the Hai word for "Unfettered" repeated several times, as well as numbers in the hundreds.`
-			not "language: Wanderer"
+			not "language: Hai"
 		<prioritymessage> `"Assistance requested from all available pilots, Unfettered or not. Local outbreak of broiling sickness has spread catastrophically in our space, and is now classified as an uncontrolled [epidemic, plague]. Hundreds of Hai are already critically ill and Unfettered hospitals have declared an emergency situation, fearing the consequences of current [medical, treatment] supply levels. Medical supplies are to be retrieved from Snowfeather for immediate return."`
-			has "language: Wanderer"
+			has "language: Hai"
 	on offer
 		conversation
 			`When you land, there is a message repeating on priority channels in Hai standard and tagged with the information for one of the hospitals nearby. <prioritymessage> Unsure whether they would accept your assistance as an outsider, especially given the message is in Hai, you decide to first look for more information planet-side. After all, it is unlikely that a Hai disease would be of any risk to you.`
-			`	When landing on an Unfettered planet, even after having brought them a jump drive, there is always some lingering tension. Now you feel the tension much more than usual, probably because of the medical emergency. Unfettered rush around, and various vehicles are frequently coming and going, bringing both supplies and the infected to the hospital. The hospital itself looks different than the rest of the Unfettered structures: it seems more organized, proper. It is probably the best maintained structure here alongside the shipyards - or at least it has that appearance. One part of it looks to have been grafted onto the rest though, and seems to be a recent addition. Not even their critical buildings appear to be totally safe from the Unfettered's propensity for haphazard building extensions.`
+			`	When landing on an Unfettered planet, even after having brought them a jump drive, there is always some lingering tension. Now you feel the tension much more than usual, probably because of the medical emergency. Unfettered rush around, and various vehicles are frequently coming and going, bringing both supplies and the infected to the hospital. The hospital itself looks different than the rest of the Unfettered structures: it seems more organized, proper. It is probably amongst the best maintained ones here, alongside the shipyards - or at least it has that appearance. One part of it looks to have been grafted onto the rest though, and seems to be a recent addition. Not even their critical buildings appear to be totally safe from the Unfettered's propensity for haphazard building extensions.`
 			`	Many pilots seem to have taken up the call, but it appears the organizers here are still interested in all the volunteers they can get. Now that you're here, you're not sure you'll be able to leave without at least being accosted for your assistance with this.`
 			choice
 				`	(Signal them that I'm going to get the supplies.)`
 					to display
-						has "language: Wanderer"
+						has "language: Hai"
 					goto agree
 				`	(Ask a local ship to translate.)`
 					to display
-						not "language: Wanderer"
+						not "language: Hai"
 					goto translation
 				`	(I don't have time for this.)`
 			label leave

@@ -1142,7 +1142,7 @@ mission "<uhai> 16: Strength Of A Leader: Si-Ra"
 	description `Prove your strength against He-Yi in battle, and then land again on <destination> on the same day.`
 	to offer
 		has "event: unfettered: darkcloak outfitter upgrade"
-		has "language: Wanderer"
+		has "language: Hai"
 		has "<uhai> 15: Modified Beetle: done"
 		not "<uhai> 16: Strength Of A Leader: Si-Ra: done"
 	on offer
@@ -1762,7 +1762,7 @@ mission "<uhai> 19: Scout Wanderer Systems"
 		attributes "unfettered"
 	destination "Warfeed"
 	to offer
-		has "language: Wanderer"
+		has "language: Hai"
 		has "<uhai> 12: Outfitter Upgrade: done"
 		not "<uhai> 18: Hai Language: active"
 	on offer
@@ -1827,7 +1827,7 @@ mission "<uhai> 19: Weird Aliens Spotted"
 		"<pug aliens>" "Pug"
 			has "main plot completed"
 	to offer
-		has "language: Wanderer"
+		has "language: Hai"
 		has "<uhai> 12: Outfitter Upgrade: done"
 		not "<uhai> 18: Hai Language: active"
 	waypoint "Pug Iyik"

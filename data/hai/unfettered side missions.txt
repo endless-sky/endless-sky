@@ -261,7 +261,7 @@ conversation "modified shield beetle prize"
 	`As promised by Mera, you find the unusual Shield Beetle that seems to be waiting for you. There is a projected message on the hull of the ship: "Here is your very special reward<, unfettered title>. As promised, it is equipped with plenty of prototype weapons and has some in particular which I am sure you will like, and includes a reinforced shield matrix. Please accept this as a way for me to thank you for your assistance so far!"`
 	`	When you enter the ship you realize that something is blinking red in the cockpit. Getting close you realize it is a communicator with a high priority message from Mera. Once the ship recognizes your identity, it displays the message. "This is for your eyes only. This ship is not just given to you for you to have fun shooting around. It includes a very advanced communicator, that we would not replace should you lose it. Eventually you will be able to use it to coordinate fleet actions, or even to call for reinforcements, I hope."`
 	branch "has communicator"
-		has "language: Wanderer"
+		has "language: Hai"
 	`	"Once you acquire a translator, we will equip it on your ship so that you may easily communicate with any Hai."`
 		goto then
 	label "has communicator"
@@ -544,6 +544,7 @@ mission "<uhai> 18: Detainer For Translator"
 		fail "First Contact: Wanderer"
 		outfit "Korath Detainer" -1
 		set "language: Wanderer"
+		set "language: Hai"
 		dialog `He-Yi is impressed that you managed to bring this detainer to him, and happily exchanges it for a translator. He says you should still go to his herald to bring him news of this, and the scans for a reward.`
 
 mission "<uhai> 18: Hai Language: Found Detainer"

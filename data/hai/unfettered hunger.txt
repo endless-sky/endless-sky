@@ -223,7 +223,7 @@ mission "Unfettered: Hunger Stories 1"
 					goto business
 
 			branch translator
-				has "language: Wanderer"
+				has "language: Hai"
 
 			`	Your approach startles her out of her distraction and she pulls the boy close. When you speak to her it's clear she doesn't understand you. You look around for an Unfettered who could translate, but she grabs your sleeve and shakes her head. Eventually one hai who understands your language as well comes to help translate.`
 				goto message
