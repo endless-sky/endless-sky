@@ -294,7 +294,7 @@ private:
 	double blastRadius = 0.;
 	double safeRange = 0.;
 
-	static const int DAMAGE_TYPES = 23;
+	static const int DAMAGE_TYPES = 24;
 	static const int HIT_FORCE = 0;
 	// Normal damage types:
 	static const int SHIELD_DAMAGE = 1;
