@@ -1,3 +1,39 @@
+Version 0.10.3
+  * Bug fixes:
+    * Content bugs:
+	  * Typo fixes. (@AlexSeaLion, @warp-core)
+	* Engine bugs:
+	  * Using hotkeys to search for the nearest asteroid no longer crashes the game. (@RisingLeaf)
+	  * Player escorts no longer appear as landed on the planet that the player landed on if they themselves could not land on that planet. (@TomGoodIdea)
+	  * The autopilot AI no longer attempts to make pointless turn commands when already in the process of jumping. (@Zitchas)
+	  * Escorts now properly offload their cargo on every landing. (@flowers9)
+	  * Map buttons no longer overlap on smaller screens. (@TomGoodIdea)
+  * Game content:
+	* New content:
+	  * New mission where you answer a distress call in Korath space. (@UnorderedSigh, @williaji)
+	* Mission changes:
+	  * Mentioned in the conversation and description of "Deal Change 2" that you need to hail the destination planet in order to land. (@bene-dictator)
+	* Balance:
+	  * Added weaponry to some human fighters to fit in the additional hardpoints that they were recently given. (@AvianGeneticist)
+	  * Increased the reputation gains with Unfettered sympathizers when doing Unfettered jobs. (@Hurleveur)
+	* Graphics:
+	* Other:
+	  * Tweaked the wording of the description of the Vivid Aether planet. (@Zitchas)
+  * Game mechanics:
+    * New mechanics:
+	  * Fighters will now grab a chunk of energy from their carrier's batteries when they deploy if the fighter's energy reserves are not full. Useful for battery-only fighters. (@tibetiroka)
+	* Changed mechanics:
+    * AI:
+	  * Ships with only secondary weapons that run out of ammo will now attempt to flee instead of flying straight at their target without any weapons. (@TomGoodIdea)
+	  * Escorts that are capable of cloaking can now cloak on their own without input from the player if they are low on health. (@TomGoodIdea)
+  * User interface:
+    * Weapons that use both outfits and fuel as ammunition now properly display the number of shots remaining instead of ignoring the fuel use. (@tibetiroka)
+	* The flagship now has a separate color scheme from friendlies in the HUD overlay. (@warp-core)
+  * Under the hood:
+    * Refactored part of PlayerInfo::Land to reduce code duplication. (@warp-core)
+  * CI/CD and development environment:
+    * Added some rudamentary checks for proper use of indefinite articles to the content style checker. (@tibetiroka)
+
 Version 0.10.2
   * Bug fixes:
     * Content bugs:
