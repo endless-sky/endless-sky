@@ -315,10 +315,10 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 	const CargoHold &cargo = player.DistributeCargo();
 	// Are you overbooked? Don't count fireable flagship crew.
 	// (If your ship can't support its required crew, it is counted as having no fireable crew.)
-	int overbooked = cargo.Passengers() - flagship->Crew() + flagship->RequiredCrew();
-	int missionCargoToSell = cargo.MissionCargoSize();
+	const int overbooked = cargo.Passengers() - flagship->Crew() + flagship->RequiredCrew();
+	const int missionCargoToSell = cargo.MissionCargoSize();
 	// Will you have to sell something other than regular cargo?
-	int commoditiesToSell = cargo.CommoditiesSize();
+	const int commoditiesToSell = cargo.CommoditiesSize();
 	int outfitsToSell = 0;
 	for(auto &it : cargo.Outfits())
 		outfitsToSell += it.second;
@@ -346,7 +346,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 		// Warn about missions that will fail on takeoff.
 		if(missionCargoToSell > 0 || overbooked > 0)
 		{
-			bool both = (missionCargoToSell > 0 && overbooked > 0);
+			const bool both = (missionCargoToSell > 0 && overbooked > 0);
 			out << "If you take off now, you will abort a mission due to not having enough ";
 
 			if(overbooked > 0)
