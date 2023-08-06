@@ -607,20 +607,79 @@ person "Patrol Team"
 			"Should you find another ship owned by Brick, tell them to work harder!"
 			"Should you find another ship owned by Zitchas, tell them they've a typo on line 9. They'll never see it coming!"
 			"If you don't know where to start in helping the game, take a nice look at the files. Sometimes, it helps!"
-			"If you're interested in helping out but don't have time, consider being a proof-reader! You can take my job and I get to laze around doing nothing!"
+			"If you're interested in helping out but don't have time, consider being a proofreader! You can take my job and I get to laze around doing nothing!"
 			"If you see something and it shoots at you, cheat your way to victory!"
 			"What did you just say about me you little-"
-			"The number of times someone breaks the fourth wall, it’s mind boggling!"
+			"The number of times someone breaks the fourth wall, it’s mind-boggling!"
 			"Look, we aren’t here for your money. We do all this for free, and look where that gets us…"
 			"If you don't know where to start in helping the game, come and review some missions on GitHub. It helps!"
 			"If you're interested in helping out but don't have time, consider looking through the proposals on GitHub! Sometimes, a new perspective is needed!"
 			"What do you mean you don’t have a save file for this Pull!?"
 			"Please, for the love of god, don’t make an issue before checking if others have done the same."
+			"This statement is, intentionally wrote wrongly to make point."
+
 		
 		#Roadrunner addition
 			"Typo detected. Initiating weapons engagement."
 			"Code non-functional. Destroy them."
-		
+
+		#Saugia addition
+			"Yea... way too much detail. I can't see the cockpit anymore."
+			"Just don't go ham on details."
+			"These areas are looking much better, though. The contrast of the lesser details here and the more elsewhere is a lot nicer."
+			"I'm just trying to see this half that size and I'm losing a lot of detail."
+			"It's awesome, but far too detailed."
+			"Now there's a lot less detail conflicting with one another."
+
+		#tibetiroka addition
+			"Lol, we broke master again."
+			"It's just the Steam CI, no need to panic."
+			"DERPY???!!!!!"
+			"Did you check for nullptr?"
+				"How do we indent after line breaks again?"
+			"Please put the includes in alphabetical order."
+			"Uhh, you sure about this?"
+			"Always keep three empty lines between functions."
+			"aLiEnS DoN'T SpEaK EnGlIsH, nO NeEd tO ChEcK ThE GrAmMaR,"
+
+		#1010todd addition
+			"Style check."
+			"Quick pass."  
+			"I'll give this a better look later."  
+			"What is this for?" 
+			"This should be a private member." 
+			"Comments?" 
+			"Please remove unnecessary space." 
+
+			"Looks good to me."  
+			"This should be const"  
+			"Is this the best name?" 
+			"<reviewer> requested a review from (Amazinite/Tehhowch)" 
+			"The standard copyright header was changed recently."
+
+			"Please use the template."
+			"The decision to implement fancy quote is one of the worst in computer history."
+		"This need another indent." 
+
+	phrase
+		word
+			"#"
+
+		word
+			"4034"
+			"2979"
+			"645"
+			"4124"
+			"1255"
+			"5311"
+			"4460"
+			"651"
+			"3148"
+			"802"
+			"3907"
+			"362"
+
+
 	#EjoThims addition
 	phrase
 		word
