@@ -257,7 +257,7 @@ void MissionPanel::Draw()
 	DrawSelectedSystem();
 	DrawMissionInfo();
 	DrawTooltips();
-	DrawButtons("is missions");
+	FinishDrawing("is missions");
 }
 
 

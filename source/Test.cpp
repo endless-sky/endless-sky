@@ -626,10 +626,8 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 
 	if(!conditions.empty())
 		Logger::LogError(conditions);
-	else if(player.Conditions().PrimariesBegin() == player.Conditions().PrimariesEnd())
-		Logger::LogError("Player had no conditions set at the moment of failure.");
 	else
-		Logger::LogError("No test conditions were set at the moment of failure.");
+		Logger::LogError("No conditions to display at the moment of failure.");
 
 	// If this test was expected to fail, then return a success exitcode from the program
 	// because the test did what it was expected to do.

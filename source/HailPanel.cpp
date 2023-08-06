@@ -52,7 +52,7 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 	if(!ship->Name().empty())
 		header = gov->GetName() + " " + ship->Noun() + " \"" + ship->Name() + "\":";
 	else
-		header = ship->ModelName() + " (" + gov->GetName() + "): ";
+		header = ship->DisplayModelName() + " (" + gov->GetName() + "): ";
 	// Drones are always unpiloted, so they never respond to hails.
 	bool isMute = ship->GetPersonality().IsMute() || (ship->Attributes().Category() == "Drone");
 	hasLanguage = !isMute && (gov->Language().empty() || player.Conditions().Get("language: " + gov->Language()));
@@ -260,7 +260,8 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		if(GameData::GetPolitics().HasDominated(planet))
 		{
 			GameData::GetPolitics().DominatePlanet(planet, false);
-			player.Conditions().Erase("tribute: " + planet->Name());
+			// Set payment 0 to erase the tribute.
+			player.SetTribute(planet, 0);
 			message = "Thank you for granting us our freedom!";
 		}
 		else
@@ -349,7 +350,8 @@ void HailPanel::SetBribe(double scale)
 	for(const shared_ptr<Ship> &it : player.Ships())
 		value += it->Cost();
 
+	if(value <= 0)
+		value = 1;
+
 	bribe = 1000 * static_cast<int64_t>(sqrt(value) * scale);
-	if(scale && !bribe)
-		bribe = 1000;
 }

@@ -302,5 +302,3 @@ fleet "Iije (Surveillance)"
 	variant 1
 		"Ayym"
 		"Jje" 9
-		
-
