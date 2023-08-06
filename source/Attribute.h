@@ -26,7 +26,8 @@ class Attribute {
 public:
 	// Creates a new categorized attribute. Use -1 if there is no category or effect in the definition.
 	// The created attribute may report a different category or effect
-	// if the same attribute can be described in multiple ways.
+	// if the same attribute can be described in multiple ways, and usePreferred is set to true.
+	// In that case, the preferred version of the attribute is created, which is safe to use in AttributeStore::Set().
 	Attribute(AttributeCategory category, AttributeEffect effect,
 			AttributeEffect secondary = static_cast<AttributeEffect>(-1),
 			bool usePreferred = true);
