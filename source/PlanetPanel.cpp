@@ -252,7 +252,7 @@ void PlanetPanel::TakeOffIfReady()
 	// Check whether the player can be warned before takeoff.
 	if(player.ShouldLaunch())
 	{
-		TakeOff();
+		TakeOff(true);
 		return;
 	}
 
@@ -385,22 +385,32 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 			out << " that you do not have space for.";
 		}
 		out << " Are you sure you want to continue?";
-		GetUI()->Push(new Dialog(this, &PlanetPanel::TakeOff, out.str()));
+		GetUI()->Push(new Dialog(this, &PlanetPanel::WarningsDialogCallback, out.str()));
 		return;
 	}
 
 	// There was no need to ask the player whether we can get rid of anything,
 	// so go ahead and take off.
-	TakeOff();
+	TakeOff(false);
 }
 
 
 
-void PlanetPanel::TakeOff()
+void PlanetPanel::WarningsDialogCallback(const bool isOk)
+{
+	if(isOk)
+		TakeOff(false);
+	else
+		player.PoolCargo();
+}
+
+
+
+void PlanetPanel::TakeOff(const bool distributeCargo)
 {
 	flightChecks.clear();
 	player.Save();
-	if(player.TakeOff(GetUI()))
+	if(player.TakeOff(GetUI(), distributeCargo))
 	{
 		if(callback)
 			callback();
