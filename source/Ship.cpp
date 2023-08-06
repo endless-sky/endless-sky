@@ -3833,7 +3833,7 @@ void Ship::DoPassiveEffects(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &
 	if(ionization)
 		CreateSparks(visuals, "ion spark", ionization * .05);
 	if(engineScrambling)
-		CreateSparks(visuals, "slowing spark", engineScrambling * .05);
+		CreateSparks(visuals, "discharge spark", engineScrambling * .05);
 	if(scrambling)
 		CreateSparks(visuals, "scramble spark", scrambling * .05);
 	if(disruption)
