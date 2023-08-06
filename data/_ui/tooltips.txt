@@ -36,6 +36,9 @@ tip "afterburner corrosion:"
 tip "afterburner ion:"
 	`Accumulated ionization per second when firing this afterburner.`
 
+tip "afterburner engine scramble:"
+	`Accumulated engine scrambling per second when firing this afterburner.`
+
 tip "afterburner scramble:"
 	`Accumulated scrambling per second when firing this afterburner.`
 
@@ -312,6 +315,9 @@ tip "inertia reduction:"
 tip "ion protection:"
 	`Protection against weapons that do ion damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in ion damage, while a total value of 11 only results in a 10 percent reduction.`
 
+tip "engine scramble protection:"
+	`Protection against weapons that do engine scrambling damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in ion damage, while a total value of 11 only results in a 10 percent reduction.`
+
 tip "scramble protection:"
 	`Protection against weapons that do scrambling damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in ion damage, while a total value of 11 only results in a 10 percent reduction.`
 
@@ -329,6 +335,18 @@ tip "ion resistance heat:"
 
 tip "landing speed:"
 	`How fast this ship is able to land on a planet, or travel through a wormhole.`
+
+tip "engine scramble resistance:"
+	`How much engine scrambling damage this ship can resist per second.`
+
+tip "engine scramble resistance energy:"
+	`Energy consumed per second when resisting engine scrambling damage.`
+
+tip "engine scramble resistance fuel:"
+	`Fuel consumed per second when resisting engine scrambling damage.`
+
+tip "engine scramble resistance heat:"
+	`Heat generated per second when resisting engine scrambling damage.`
 
 tip "scramble resistance:"
 	`How much scrambling damage this ship can resist per second.`
@@ -465,6 +483,9 @@ tip "reverse thrusting corrosion:"
 tip "reverse thrusting ion:"
 	`Accumulated ionization per second when firing reverse thrusters.`
 
+tip "reverse thrusting engine scramble:"
+	`Accumulated engine scrambling per second when firing reverse thrusters.`
+
 tip "reverse thrusting scramble:"
 	`Accumulated scrambling per second when firing reverse thrusters.`
 
@@ -600,6 +621,9 @@ tip "thrusting corrosion:"
 tip "thrusting ion:"
 	`Accumulated ionization per second when firing thrusters.`
 
+tip "thrusting engine scramble:"
+	`Accumulated engine scrambling per second when firing thrusters.`
+
 tip "thrusting scramble:"
 	`Accumulated scrambling per second when firing thrusters.`
 
@@ -644,6 +668,9 @@ tip "turning corrosion:"
 
 tip "turning ion:"
 	`Accumulated ionization per second when turning.`
+
+tip "turning engine scramble:"
+	`Accumulated engine scrambling per second when turning.`
 
 tip "turning scramble:"
 	`Accumulated scrambling per second when turning.`
@@ -773,6 +800,9 @@ tip "energy damage / second:"
 
 tip "ion damage / second:"
 	`Reduces the target's energy. Ionization slowly wears off over time.`
+
+tip "engine scrambling damage / second:"
+	`Causes engine failures. Afterburners are immunized. Engine scrambling slowly wears off over time.`
 
 tip "scrambling damage / second:"
 	`Causes weapon failures. Scrambling slowly wears off over time.`
@@ -915,6 +945,9 @@ tip "energy damage / shot:"
 tip "ion damage / shot:"
 	`Each shot increases the target's ionization by this amount. Ionization reduces the target's energy. Ionization slowly wears off over time.`
 
+tip "engine scrambling damage / shot:"
+	`Each shot increases the target's engine scrambling by this amount. engine scrambling causes engines failures. Afterburners are immunized. It slowly wears off over time.`
+
 tip "scrambling damage / shot:"
 	`Each shot increases the target's scrambling by this amount. scrambling causes weapon failures. It slowly wears off over time.`
 
@@ -971,6 +1004,9 @@ tip "firing shields / shot:"
 
 tip "firing ion / shot:"
 	`Each shot increases the ship's ionization by this amount. Ionization reduces the ship's energy and slowly wears off over time.`
+
+tip "firing engine scramble / shot:"
+	`Each shot increases the ship's engine scrambling by this amount. This disable engines for a slip second and slowly wears off over time. Afterburners are immunized.`
 
 tip "firing scramble / shot:"
 	`Each shot increases the ship's scrambling by this amount. This jams the weapons and slowly wears off over time.`

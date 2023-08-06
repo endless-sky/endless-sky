@@ -350,7 +350,7 @@ namespace {
 				<< "shots/second" << ',' << "energy/shot" << ',' << "heat/shot" << ',' << "recoil/shot" << ','
 				<< "energy/s" << ',' << "heat/s" << ',' << "recoil/s" << ',' << "shield/s" << ','
 				<< "discharge/s" << ',' << "hull/s" << ',' << "corrosion/s" << ',' << "heat dmg/s" << ','
-				<< "burn dmg/s" << ',' << "energy dmg/s" << ',' << "ion dmg/s" << ',' << "scrambling dmg/s" << ','
+				<< "burn dmg/s" << ',' << "energy dmg/s" << ',' << "ion dmg/s" << ',' << "engine scrambling dmg/s" << ',' << "scrambling dmg/s" << ','
 				<< "slow dmg/s" << ',' << "disruption dmg/s" << ',' << "piercing" << ',' << "fuel dmg/s" << ','
 				<< "leak dmg/s" << ',' << "push/s" << ',' << "homing" << ',' << "strength" << ','
 				<< "deterrence" << '\n';
@@ -407,6 +407,8 @@ namespace {
 				cout << energyDmg << ',';
 				double ionDmg = outfit.IonDamage() * 100. * fireRate;
 				cout << ionDmg << ',';
+				double engineScramblingDmg = outfit.EngineScramblingDamage() * 100. * fireRate;
+				cout << engineScramblingDmg << ',';
 				double scramblingDmg = outfit.ScramblingDamage() * 100. * fireRate;
 				cout << scramblingDmg << ',';
 				double slowDmg = outfit.SlowingDamage() * fireRate;

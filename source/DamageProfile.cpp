@@ -176,12 +176,13 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 		* ScaleType(.5, 0., attributes.Get("fuel protection"));
 
 	// DoT damage types with an instantaneous analog.
-	// Ion and burn damage are blocked 50% by shields.
+	// Ion, burn and engine scrambling damage are blocked 50% by shields.
 	// Corrosion and leak damage are blocked 100%.
 	// Discharge damage is blocked 50% by the absence of shields.
 	damage.dischargeDamage = weapon.DischargeDamage() * ScaleType(0., .5, attributes.Get("discharge protection"));
 	damage.corrosionDamage = weapon.CorrosionDamage() * ScaleType(1., 0., attributes.Get("corrosion protection"));
 	damage.ionDamage = weapon.IonDamage() * ScaleType(.5, 0., attributes.Get("ion protection"));
+	damage.engineScramblingDamage = weapon.ScramblingDamage() * ScaleType(.5, 0., attributes.Get("engine scrambling protection"));
 	damage.burnDamage = weapon.BurnDamage() * ScaleType(.5, 0., attributes.Get("burn protection"));
 	damage.leakDamage = weapon.LeakDamage() * ScaleType(1., 0., attributes.Get("leak protection"));
 

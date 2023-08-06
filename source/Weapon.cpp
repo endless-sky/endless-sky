@@ -205,6 +205,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				firingShields = value;
 			else if(key == "firing ion")
 				firingIon = value;
+			else if(key == "firing engine scramble")
+				firingEngineScramble = value;
 			else if(key == "firing scramble")
 				firingScramble = value;
 			else if(key == "firing slowing")
@@ -262,6 +264,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				damage[ENERGY_DAMAGE] = value;
 			else if(key == "ion damage")
 				damage[ION_DAMAGE] = value;
+			else if(key == "engine scrambling damage")
+				damage[ENGINE_SCRAMBLING_DAMAGE] = value;
 			else if(key == "scrambling damage")
 				damage[WEAPON_JAMMING_DAMAGE] = value;
 			else if(key == "disruption damage")

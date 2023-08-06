@@ -178,6 +178,19 @@ namespace {
 		return transferred;
 	}
 
+	// Ships which are engine scrambled have a chance for their engines to disable for a split second,
+	// delaying their firing for another reload cycle. The less energy
+	// a ship has relative to its max and the more engine scrambled the ship is,
+	// the higher the chance that a engine will disable. The engine scrambling chance is
+	// capped at 50%. Very small amounts of engine scrambling are ignored.
+	// The scale is such that a weapon with a engine scrambling damage of 5 and a reload
+	// of 60
+	double CalculateEngineScramblingChance(double maxEnergy, double engineScrambling)
+	{
+		double scale = maxEnergy * 220.;
+		return engineScrambling > .1 ? min(0.5, scale ? engineScrambling / scale : 1.) : 0.;
+	}
+
 	// Ships which are scrambled have a chance for their weapons to jam,
 	// delaying their firing for another reload cycle. The less energy
 	// a ship has relative to its max and the more scrambled the ship is,
@@ -1289,6 +1302,7 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	// Make sure various special status values are reset.
 	heat = IdleHeat();
 	ionization = 0.;
+	engineScrambling = 0.;
 	scrambling = 0.;
 	disruption = 0.;
 	slowness = 0.;
@@ -2282,6 +2296,7 @@ void Ship::Recharge(bool atSpaceport)
 
 	heat = IdleHeat();
 	ionization = 0.;
+	engineScrambling = 0.;
 	scrambling = 0.;
 	disruption = 0.;
 	slowness = 0.;
@@ -2723,6 +2738,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	discharge += damage.Discharge();
 	corrosion += damage.Corrosion();
 	ionization += damage.Ion();
+	engineScrambling += damage.EngineScrambling();
 	scrambling += damage.Scrambling();
 	burning += damage.Burn();
 	leakage += damage.Leak();
@@ -2774,6 +2790,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 				|| ((damage.Heat() || damage.Burn()) && isOverheated)
 				|| ((damage.Energy() || damage.Ion()) && Energy() < 0.5)
 				|| ((damage.Fuel() || damage.Leak()) && fuel < navigation.JumpFuel() * 2.)
+				|| (damage.EngineScrambling() && CalculateEngineScramblingChance(Energy(), engineScrambling) > 0.1)
 				|| (damage.Scrambling() && CalculateJamChance(Energy(), scrambling) > 0.1)
 				|| (damage.Slowing() && slowness > 10.)
 				|| (damage.Disruption() && disruption > 100.)))
@@ -3214,6 +3231,7 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 	// Since weapons fire from within the shields, hull and "status" damages are dealt in full.
 	hull -= weapon.FiringHull() + relativeHullChange;
 	ionization += weapon.FiringIon();
+	engineScrambling += weapon.FiringEngineScramble();
 	scrambling += weapon.FiringScramble();
 	disruption += weapon.FiringDisruption();
 	slowness += weapon.FiringSlowing();
@@ -3476,6 +3494,7 @@ int Ship::StepDestroyed(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flot
 		energy = 0.;
 		heat = 0.;
 		ionization = 0.;
+		engineScrambling = 0.;
 		scrambling = 0.;
 		fuel = 0.;
 		velocity = Point();
@@ -3641,6 +3660,16 @@ void Ship::DoGeneration()
 			energy, ionEnergy, fuel, ionFuel, heat, ionHeat);
 	}
 
+	if(engineScrambling)
+	{
+		double engineScramblingResistance = attributes.Get("engine scramble resistance");
+		double engineScramblingEnergy = attributes.Get("engine scramble resistance energy") / engineScramblingResistance;
+		double engineScramblingFuel = attributes.Get("engine scramble resistance fuel") / engineScramblingResistance;
+		double engineScramblingHeat = attributes.Get("engine scramble resistance heat") / engineScramblingResistance;
+		DoStatusEffect(isDisabled, engineScrambling, engineScramblingResistance,
+			energy, engineScramblingEnergy, fuel, engineScramblingFuel, heat, engineScramblingHeat);
+	}
+
 	if(scrambling)
 	{
 		double scramblingResistance = attributes.Get("scramble resistance");
@@ -3803,6 +3832,8 @@ void Ship::DoPassiveEffects(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &
 	// Handle ionization effects, etc.
 	if(ionization)
 		CreateSparks(visuals, "ion spark", ionization * .05);
+	if(engineScrambling)
+		CreateSparks(visuals, "slowing spark", engineScrambling * .05);
 	if(scrambling)
 		CreateSparks(visuals, "scramble spark", scrambling * .05);
 	if(disruption)
@@ -4167,6 +4198,11 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 			if(cost > 0. && heat < cost * fabs(commands.Turn()))
 				commands.SetTurn(commands.Turn() * heat / (cost * fabs(commands.Turn())));
 
+			double engineScramblingChance = CalculateEngineScramblingChance(Energy(), engineScrambling);
+			double randNum = (rand() * 0.5 / RAND_MAX * 2) + 1;
+			if(Random::Real() < engineScramblingChance)
+				commands.SetTurn(commands.Turn() / randNum);
+
 			if(commands.Turn())
 			{
 				isSteering = true;
@@ -4184,6 +4220,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				discharge += scale * attributes.Get("turning discharge");
 				corrosion += scale * attributes.Get("turning corrosion");
 				ionization += scale * attributes.Get("turning ion");
+				engineScrambling += scale * attributes.Get("turning engine scramble");
 				scrambling += scale * attributes.Get("turning scramble");
 				leakage += scale * attributes.Get("turning leakage");
 				burning += scale * attributes.Get("turning burn");
@@ -4223,6 +4260,11 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 			if(cost > 0. && heat < cost)
 				thrustCommand *= heat / cost;
 
+			double engineScramblingChance = CalculateEngineScramblingChance(Energy(), engineScrambling);
+			double randNum = (rand() * 0.5 / RAND_MAX * 2) + 1;
+			if(Random::Real() < engineScramblingChance)
+				thrustCommand /= randNum;
+
 			if(thrustCommand)
 			{
 				// If a reverse thrust is commanded and the capability does not
@@ -4242,6 +4284,8 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 					discharge += scale * attributes.Get(isThrusting ? "thrusting discharge" : "reverse thrusting discharge");
 					corrosion += scale * attributes.Get(isThrusting ? "thrusting corrosion" : "reverse thrusting corrosion");
 					ionization += scale * attributes.Get(isThrusting ? "thrusting ion" : "reverse thrusting ion");
+					engineScrambling += scale * attributes.Get(isThrusting ? "thrusting engine scramble" :
+						"reverse thrusting engine scramble");
 					scrambling += scale * attributes.Get(isThrusting ? "thrusting scramble" :
 						"reverse thrusting scramble");
 					burning += scale * attributes.Get(isThrusting ? "thrusting burn" : "reverse thrusting burn");
@@ -4267,6 +4311,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 			double dischargeCost = attributes.Get("afterburner discharge");
 			double corrosionCost = attributes.Get("afterburner corrosion");
 			double ionCost = attributes.Get("afterburner ion");
+			double engineScramblingCost = attributes.Get("afterburner engine scramble");
 			double scramblingCost = attributes.Get("afterburner scramble");
 			double leakageCost = attributes.Get("afterburner leakage");
 			double burningCost = attributes.Get("afterburner burn");
@@ -4286,6 +4331,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				discharge += dischargeCost;
 				corrosion += corrosionCost;
 				ionization += ionCost;
+				engineScrambling += engineScramblingCost;
 				scrambling += scramblingCost;
 				leakage += leakageCost;
 				burning += burningCost;
