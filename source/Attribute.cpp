@@ -338,7 +338,7 @@ bool Attribute::IsRequirement() const
 bool Attribute::IsMultiplier() const
 {
 	return effect >= ATTRIBUTE_EFFECT_COUNT && (effect < ATTRIBUTE_EFFECT_COUNT * 2
-			|| effect >= ATTRIBUTE_EFFECT_COUNT * 3);
+		|| effect >= ATTRIBUTE_EFFECT_COUNT * 3);
 }
 
 
