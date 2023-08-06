@@ -820,7 +820,7 @@ mission "<uhai> 15: Modified Beetle"
 			label duel
 			`	"Well you did not come in vain, in that case.`
 			label ship
-			`	Here is your prize," she says, presenting you a picture of a ship that looks pretty similar to a Shield Beetle, although it has peculiar weapons, and a somewhat different look.`
+			`	"Here is your prize," she says, presenting you a picture of a ship that looks pretty similar to a Shield Beetle, although it has peculiar weapons, and a somewhat different look.`
 			choice
 				`	"Alright, thanks. I guess I will be flying it then."`
 				`	"I came all this way just for a Shield Beetle?"`
@@ -1473,7 +1473,7 @@ mission "<uhai> 17: Spy On Hai A"
 					accept
 				`	"You could have just sent a message on a secure channel."`
 			`	"What is secure? There is no code that cannot be broken, and I did not have to travel far anyway. The Fettered Hai have become quite apt at languages, with their interest to communicate with other species like the Quarg or humans. Encryption is just like another language. We cannot risk them learning of this particular mission - you will understand why later. Information is the key here, and it always has been. We also don't want those up north to learn about this. They would surely be able to decrypt it.`
-			`	We are not all as brutal as we let other races think. My warlord believes that it is to our advantage to not appear cunning, so that they may underestimate us." He seems to have had enough of talking, and is now waiting for you to answer He-Yi's request.`
+			`	"We are not all as brutal as we let other races think. My warlord believes that it is to our advantage to not appear cunning, so that they may underestimate us." He seems to have had enough of talking, and is now waiting for you to answer He-Yi's request.`
 			choice
 				`	"I will depart as soon as I can."`
 					accept
