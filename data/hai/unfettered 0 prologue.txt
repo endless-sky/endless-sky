@@ -571,7 +571,7 @@ mission "<uhai> 0: Bring Hai"
 			has "language: Hai"
 		<thirdgroup> "seemingly heartbroken by this little one's words. Raising his voice for all to hear, he appears to be asking something to the gathered Hai."
 			not "language: Hai"
-		<thirdgroup> `"The little one asks if he can go to Hai [space, safety]," the Chief explains, then continues. "Unfortunately, as you all know, we cannot send back a child alone, he needs to be [taken care of, protected]. Who will fulfil this duty?"`
+		<thirdgroup> `"The little one asks if he can go to Hai [space, safety]," the Chief explains, then continues. "Unfortunately, as you all know, we cannot send back a child alone, he needs to be [taken care of, protected]. Who will fulfill this duty?"`
 			has "language: Hai"
 		<fourthgroup> "This one is also requesting something, but they do not seem to be malnourished at all. The Chiefs seem bothered by this request."
 			not "language: Hai"
@@ -589,7 +589,7 @@ mission "<uhai> 0: Bring Hai"
 				`	(Go into the stadium.)`
 				`	(Ignore them and go back to my ship.)`
 					defer
-			`	As you are moving with the crowd towards the nearest stadium entrance - a large wide open corridor leading directly into the seating areas around the main pavilion - you begin to hear words being spoken loudly, probably amplified by some kind of device. Given that the Hai are generally quite small in comparison to humans,  you can already see some of what is going on inside over most of the crowd while waiting to filter inside. It seems much of the line is not for the seating itself; it instead heads directly to the central stage where a group of official-looking Unfettered Hai await.`
+			`	As you are moving with the crowd towards the nearest stadium entrance - a large wide open corridor leading directly into the seating areas around the main pavilion - you begin to hear words being spoken loudly, probably amplified by some kind of device. Given that the Hai are generally quite small in comparison to humans, you can already see some of what is going on inside over most of the crowd while waiting to filter inside. It seems much of the line is not for the seating itself; it instead heads directly to the central stage where a group of official-looking Unfettered Hai await.`
 			`	They are approached by the next in line, a couple towing four children with them, who begin to plead, <firstgroup> The officials, perhaps the "Chiefs", which you have heard lead the Unfettered, speak among themselves, then, together, close their hand and raise it up, before lowering it, as if presenting something, as they turn back to the petitioners. By the relief on their faces, you assume their request has been granted.`
 			choice
 				`	(Move a bit to see the next petitionners as they approach.)`
@@ -943,7 +943,7 @@ mission "<uhai> 2: Prove Your Strength"
 			action
 				fail "<uhai> 2: Prove Your Strength"
 				fine 25000
-	on disable
+	on disabled
 		dialog `The Captain hails you, "Full of holes so soon, matey? No matter, I get me fee of 250 thousand credits! When ye're ready to fight like a Heshi, come to the 'port to see if I'm on the deck! In the mean time I can repair ye for a lil' purse's worth, but be sure to give it in a private hail and then hail me ship again to ask for help, me first mate must not know about it or I could have a mutiny on my hands for not sharing!"`
 		fine 250000
 	npc save disable

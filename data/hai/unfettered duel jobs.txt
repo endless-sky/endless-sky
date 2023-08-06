@@ -224,7 +224,7 @@ mission "Unfettered Challenge [0]"
 		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 9 + "unfettered: total challengers"
 	on accept
 		"unfettered: total challengers" += 9
-	on disable
+	on disabled
 		fail
 	npc save disable
 		government "Hai (Unfettered Challenger)"
@@ -254,7 +254,7 @@ mission "Unfettered Challenge [1A]"
 		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 15 + "unfettered: total challengers"
 	on accept
 		"unfettered: total challengers" += 15
-	on disable
+	on disabled
 		fail
 	npc save disable
 		government "Hai (Unfettered Challenger)"
@@ -284,7 +284,7 @@ mission "Unfettered Challenge [1B]"
 		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 15 + "unfettered: total challengers"
 	on accept
 		"unfettered: total challengers" += 15
-	on disable
+	on disabled
 		fail
 	npc save disable
 		government "Hai (Unfettered Challenger)"
@@ -314,7 +314,7 @@ mission "Unfettered Challenge [2]"
 		"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 21 + "unfettered: total challengers"
 	on accept
 		"unfettered: total challengers" += 21
-	on disable
+	on disabled
 		fail
 	npc save disable
 		government "Hai (Unfettered Challenger)"
