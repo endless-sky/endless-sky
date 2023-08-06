@@ -43,6 +43,14 @@ ShipSelection::ShipSelection(PlayerInfo &player)
 
 
 
+void ShipSelection::Copy(const ShipSelection &shipSelection)
+{
+	selectedShip = shipSelection.selectedShip;
+	allSelected = shipSelection.allSelected;
+}
+
+
+
 bool ShipSelection::Has(Ship *ship) const
 {
 	return allSelected.count(ship);

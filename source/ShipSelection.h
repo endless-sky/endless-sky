@@ -28,6 +28,8 @@ class ShipSelection {
 public:
 	explicit ShipSelection(PlayerInfo &player);
 
+	void Copy(const ShipSelection &shipSelection);
+
 	bool Has(Ship *ship) const;
 	bool HasMany() const;
 
