@@ -787,7 +787,7 @@ mission "Heliarch Recon 3-A"
 				`	"Okay, I'll be heading there as soon as possible."`
 					accept
 				`	"Sorry, but I don't want to risk upsetting the Quarg any more than I already have."`
-					decline
+					goto decline
 				`	"Why didn't you just have me do that last time?"`
 			branch license2
 				has "Heliarch License: done"
@@ -797,20 +797,30 @@ mission "Heliarch Recon 3-A"
 				`	"And why would that be any different this time?"`
 					goto choice2
 				`	"Well, I don't want to risk any of that. Sorry, but I can't help you."`
-					decline
+					goto decline
 			label license2
 			`	"Dangerous for you, it could have been," the Arach explains. "Provoked the Quarg into attacking you, it might have."`
 			choice
 				`	"And why would that be any different this time?"`
 				`	"Well, I don't want to risk any of that. Sorry, but I can't help you."`
-					decline
+					goto decline
 			label choice2
 			`	"Come upon some valuable information, the consuls have," the Saryd responds. "A much safer, easier task it would be. Until here at the <planet>, you are, permitted to discuss the details, we are not. Interested in helping us once again, are you, Captain?"`
 			choice
 				`	"Alright, if you're sure it'll be safe, I'll help you."`
 					accept
 				`	"Sorry, I don't like the sound of this."`
-					decline
+			label decline
+			branch license3
+				has "Heliarch License: done"
+			`	They are both surprised and distraught by your refusal, clearly not having expected it. They insist a bit further, but eventually give up on trying to convince you to help. Disappointed, they leave for a Heliarch office.`
+				decline
+			label license3
+			`	They are both surprised and distraught by your refusal, clearly not having expected it. Their expressions then coalesce into cold, fearful gazes. They whisper briefly among themselves, then the Saryd addresses you.`
+			`	"Captain, insist we must. An order from the consul, it is. In our ranks now you are, so do you should as dictates the chain of command."`
+			`	"Lose your rank, you could, if to disobey such an order you were. For the best it is that continue aiding us and the consul, you do," the Kimek continues.`
+			`	"Continue, you will. Inform the consul of that we shall." The Arach says, bringing out a device and seemingly confirming you'll be heading to <destination>. Without giving you much window to protest, the three thank you for your compliance, and board a Heliarch ship.`
+				accept
 	on complete
 		fail "Rim Archaeology 5B"
 
@@ -1300,7 +1310,7 @@ mission "Heliarch Containment 3"
 			`	"Agreed to work with us, have you, Captain?" the Arach asks. "The one who asked for you, I am. Call me Consul Plortup, you may."`
 			choice
 				`	"<first> <last>, pleasure to meet you."`
-				`	"I wouldn't call this "agreeing" to work. Why the secrecy anyway?"`
+				`	"I wouldn't call this 'agreeing' to work. Why the secrecy anyway?"`
 			`	"In need of one such as you, we are. Anonymous reports, we have received, from loyal patriots and colleagues alike. On <stopovers>, a Saryd world, terrible activity may be brewing. Rising in activity there, outlaw groups are, we fear," he says. "Your destination, that is."`
 			`	A couple small boxes are brought inside and set on the table. Upon opening them, Plortup shows you they contain several small drones - drones very similar to those employed by the repair modules used here.`
 			`	"A union of technologies, it is. Of the scanning module, the incredible surveillance capabilities are. Of the repair drones, the versatile mobility and durable shells are." He explains to you that you're to head to Secret Sky to pick up <cargo> produced on the planet, but as you're coming in for a landing, you are to jettison the crates with the drones so that they may act as spybots. "Inconspicuous, you must be. Appear to be a simple, regular job, this must. Back to <origin>, you must return, after completed this task, you have. Readily available then, your payment will be. Suffice, <payment> will, surely."`
