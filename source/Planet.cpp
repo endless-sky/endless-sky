@@ -205,10 +205,12 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 							defenseFleets.clear();
 							resetFleets = false;
 						}
-						defenseFleets.insert(defenseFleets.end(),
-								grand.Size() >= 3 ? grand.Value(2) : 1,
-								GameData::Fleets().Get(grand.Token(1))
-						);
+						const Fleet *fleet = GameData::Fleets().Get(grand.Token(1));
+						if(fleet->IsValid())
+							defenseFleets.insert(defenseFleets.end(),
+									grand.Size() >= 3 ? grand.Value(2) : 1,
+									fleet
+							);
 					}
 					else
 						grand.PrintTrace("Skipping unsupported tribute fleet definition:");
