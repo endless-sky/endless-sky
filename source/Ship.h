@@ -125,10 +125,10 @@ public:
 
 	Ship() = default;
 	// Construct and Load() at the same time.
-	Ship(const DataNode &node);
+	Ship(const DataNode &node, bool isSavedShip = false);
 
 	// Load data for a type of ship:
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, bool isSavedShip = false);
 	// When loading a ship, some of the outfits it lists may not have been
 	// loaded yet. So, wait until everything has been loaded, then call this.
 	void FinishLoading(bool isNewInstance);

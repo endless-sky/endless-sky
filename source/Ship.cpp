@@ -196,20 +196,21 @@ namespace {
 
 
 // Construct and Load() at the same time.
-Ship::Ship(const DataNode &node)
+Ship::Ship(const DataNode &node, const bool isSavedShip)
 {
-	Load(node);
+	Load(node, isSavedShip);
 }
 
 
 
-void Ship::Load(const DataNode &node)
+void Ship::Load(const DataNode &node, const bool isSavedShip)
 {
 	if(node.Size() >= 2)
 		trueModelName = node.Token(1);
 	if(node.Size() >= 3)
 	{
-		base = GameData::Ships().Get(trueModelName);
+		if(!isSavedShip)
+			base = GameData::Ships().Get(trueModelName);
 		variantName = node.Token(2);
 	}
 	isDefined = true;
@@ -858,7 +859,10 @@ bool Ship::IsValid() const
 // Save a full description of this ship, as currently configured.
 void Ship::Save(DataWriter &out) const
 {
-	out.Write("ship", trueModelName);
+	if(variantName.empty())
+		out.Write("ship", trueModelName);
+	else
+		out.Write("ship", trueModelName, variantName);
 	out.BeginChild();
 	{
 		out.Write("name", name);

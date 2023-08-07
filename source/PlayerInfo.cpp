@@ -260,7 +260,7 @@ void PlayerInfo::Load(const string &path)
 		else if(child.Token(0) == "ship")
 		{
 			// Ships owned by the player have various special characteristics:
-			ships.push_back(make_shared<Ship>(child));
+			ships.push_back(make_shared<Ship>(child, true));
 			ships.back()->SetIsSpecial();
 			ships.back()->SetIsYours();
 			// Defer finalizing this ship until we have processed all changes to game state.
