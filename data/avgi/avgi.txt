@@ -434,10 +434,12 @@ phrase "avgi physics"
 		Horizon
 		Integral
 		Lepton
+		Manifold
 		Mass
 		Meson
 		Metric
 		Momentum
+		Monopole
 		Muon
 		Negentropy
 		Neutrino
@@ -449,16 +451,21 @@ phrase "avgi physics"
 		Reflection
 		Refraction
 		Scalar
+		Singularity
 		Spectrum
+		Sphaeron
 		Spin
 		Static
+		Strangelet
 		Strength
 		Tauon
 		Tensor
+		Topology
 		Toughness
 		Uncertainty
 		Vector
 		Velocity
+		Wormhole
 
 phrase "avgi virtues"
 	word

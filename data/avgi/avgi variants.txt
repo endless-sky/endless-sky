@@ -53,7 +53,7 @@ ship "Prismaios" "Prismaios (Coilgun)"
 
 # Medium Warships
 
-ship "Difraktos" "Difraktos (Missile Cruiser)"
+ship "Difraktos" "Difraktos (Missile)"
 	outfits
 		"Sidereal VLS Array" 6
 		"Sidereal Magazine" 6
@@ -71,7 +71,7 @@ ship "Difraktos" "Difraktos (Missile Cruiser)"
 		"Hyperdrive"
 
 
-ship "Difraktos" "Difraktos (Battlecruiser)"
+ship "Difraktos" "Difraktos (Kinetic)"
 	outfits
 		"Phased Array Laser (Green)" 2
 		"Fleck Turret" 4

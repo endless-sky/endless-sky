@@ -76,7 +76,7 @@ fleet "Avgi Patrol"
 	government "Avgi (Twilight Guard)"
 	names "avgi military names"
 	cargo 4
-	commodities "Food" "Metal" "Equipment" "Medical" "Heavy Metals"
+	commodities "Food" "Equipment" "Medical"
 	fighters
 		names "avgi fighter names"
 		personality
@@ -89,6 +89,8 @@ fleet "Avgi Patrol"
 		"Tremoros" 3
 	variant 5
 		"Prismaios"
+	variant 5
+		"Prismaios (Coilgun)"
 	variant 2
 		"Diaspersi"
 		"Vibratia" 3
@@ -98,11 +100,13 @@ fleet "Avgi Patrol"
 		"Difraktos"
 	variant 1
 		"Refraktos"
+		"Tremoros" 2
 
 
 fleet "Avgi Scouts"
 	government "Avgi (Twilight Guard)"
 	names "avgi civilian names"
+	cargo 3
 	commodities "Food" "Equipment" "Medical"
 	fighters
 		names "avgi fighter names"
@@ -123,14 +127,14 @@ fleet "Avgi Scouts"
 	variant 1
 		"Polari" 2
 		"Optikon" 2
-		"Prismaios"
+		"Prismaios (Coilgun)"
 
 
 fleet "Avgi Strike Group"
 	government "Avgi (Twilight Guard)"
 	names "avgi military names"
-	cargo 4
-	commodities "Food" "Metal" "Equipment" "Medical" "Heavy Metals"
+	cargo 3
+	commodities "Food" "Equipment" "Medical"
 	fighters
 		names "avgi fighter names"
 		personality
@@ -139,15 +143,30 @@ fleet "Avgi Strike Group"
 		confusion 10
 		heroic disables
 	variant 10
-		"Coherence"
-		"Wavelet" 6
+		"Prismaios" 2
+		"Prismaios (Coilgun)"
+	variant 10
+		"Diaspersi"
+		"Vibratia" 3
+		"Optikon" 3
+		"Photikon" 2
+	variant 10
+		"Difraktos"
+	variant 10
+		"Difraktos (Missile)"
+		"Refraktos"
+	variant 5
+		"Atenuatia"
+		"Vibratia" 18
+		"Photikon" 6
+
 
 
 fleet "Avgi Fleetgroup"
 	government "Avgi (Twilight Guard)"
 	names "avgi military names"
 	cargo 4
-	commodities "Food" "Metal" "Equipment" "Medical" "Heavy Metals"
+	commodities "Food" "Equipment" "Medical" "Heavy Metals"
 	fighters
 		names "avgi fighter names"
 		personality
@@ -167,7 +186,7 @@ fleet "Avgi Fleetgroup"
 		"Vibratia" 18
 		"Photikon" 6
 		"Difraktos (Missile)"
-		"Prismaios"
+		"Prismaios (Coilgun)"
 		"Tremoros" 3
 	variant 5
 		"Atenuatia"
@@ -190,7 +209,7 @@ fleet "Avgi Fleetgroup"
 		"Difraktos (Missile)"
 		"Difraktos (Kinetic)"
 		"Refractos"
-		"Prismaios" 2
+		"Prismaios (Coilgun)" 2
 		"Tremoros" 3
 	variant 2
 		"Atenuatia"

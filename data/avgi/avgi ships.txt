@@ -244,7 +244,7 @@ ship "Melodikos"
 	explode "medium explosion" 15
 	"final explode" "final explosion large"
 
-	description "Melodikos"
+	description "The Melodikos is a large passenger transport built on the same propulsion and structural frame as the Koryfi, but with a significantly larger centrifuge habitat and a vastly enlarged solar array."
 
 
 # Freighters
@@ -743,7 +743,7 @@ ship "Polari"
 		"Phased Array Laser (Blue)"
 		"Phased Array Laser (Green)"
 
-		"Pebble Bed Cell"
+		"Particle Bed Reactor"
 		"Photoelectric Scales"
 		"Ultracapacitor Cell" 3
 		"Diffuse Deflector"
@@ -1073,7 +1073,7 @@ ship "Tremoros"
 		"Speckle Railgun" 4
 		"Speck Round" 14400
 		
-		"Pebble Bed Cell"
+		"Particle Bed Reactor"
 		"Ultracapacitor Cell" 3
 		"Diffuse Deflector"
 		"Multispectral Scanner"
