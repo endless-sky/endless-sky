@@ -34,7 +34,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Preferences.h"
 #include "Random.h"
 #include "Ship.h"
-#include "ship/ShipAICache.h"
+#include "ShipAICache.h"
 #include "ShipEvent.h"
 #include "ShipJumpNavigation.h"
 #include "StellarObject.h"

@@ -270,6 +270,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Shader.h
 	Ship.cpp
 	Ship.h
+	ShipAICache.cpp
+	ShipAICache.h
 	ShipEvent.cpp
 	ShipEvent.h
 	ShipInfoDisplay.cpp
@@ -342,8 +344,6 @@ target_sources(EndlessSkyLib PRIVATE
 	comparators/ByGivenOrder.h
 	comparators/ByName.h
 	comparators/BySeriesAndIndex.h
-	ship/ShipAICache.cpp
-	ship/ShipAICache.h
 	text/DisplayText.cpp
 	text/DisplayText.h
 	text/Font.cpp

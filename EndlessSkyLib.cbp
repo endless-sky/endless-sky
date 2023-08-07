@@ -318,6 +318,8 @@
 		<Unit filename="source/Shader.h" />
 		<Unit filename="source/Ship.cpp" />
 		<Unit filename="source/Ship.h" />
+		<Unit filename="source/ShipAICache.cpp" />
+		<Unit filename="source/ShipAICache.h" />
 		<Unit filename="source/ShipEvent.cpp" />
 		<Unit filename="source/ShipEvent.h" />
 		<Unit filename="source/ShipInfoDisplay.cpp" />
@@ -390,8 +392,6 @@
 		<Unit filename="source/comparators/ByGivenOrder.h" />
 		<Unit filename="source/comparators/ByName.h" />
 		<Unit filename="source/comparators/BySeriesAndIndex.h" />
-		<Unit filename="source/ship/ShipAICache.cpp" />
-		<Unit filename="source/ship/ShipAICache.h" />
 		<Unit filename="source/text/DisplayText.cpp" />
 		<Unit filename="source/text/DisplayText.h" />
 		<Unit filename="source/text/Font.cpp" />
