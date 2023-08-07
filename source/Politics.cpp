@@ -111,6 +111,9 @@ bool Politics::IsEnemy(const Government *first, const Government *second) const
 // reputation.
 void Politics::Offend(const Government *gov, int eventType, int count)
 {
+	if(!gov)
+		return;
+
 	if(gov->IsPlayer())
 		return;
 
