@@ -992,9 +992,11 @@ const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 	if(planet)
 	{
 		for(const Mission &mission : missions)
-		{
-			clearance |= mission.HasClearance(planet);
-		}
+			if(mission.HasClearance(planet))
+			{
+				clearance = true;
+				break;
+			}
 	}
 	if(!flagship)
 		for(const shared_ptr<Ship> &it : ships)
