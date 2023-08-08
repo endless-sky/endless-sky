@@ -663,7 +663,7 @@ outfit "Arkrof GP Hybrid Thruster"
 	"mass" 19
 	"outfit space" -19
 	"engine capacity" -19
-	"thrust" 19.85
+	"thrust" 19.3
 	"thrusting energy" 2.6
 	"thrusting heat" 3
 	"flare sprite" "effect/efreti flare/tiny"
@@ -678,7 +678,7 @@ outfit "Farves GP Hybrid Thruster"
 	"mass" 33
 	"outfit space" -33
 	"engine capacity" -33
-	"thrust" 36.4
+	"thrust" 35.4
 	"thrusting energy" 5.05
 	"thrusting heat" 5.9
 	"flare sprite" "effect/efreti flare/small"
@@ -693,7 +693,7 @@ outfit "Gaktem GP Hybrid Thruster"
 	"mass" 57
 	"outfit space" -57
 	"engine capacity" -57
-	"thrust" 66.54
+	"thrust" 64.95
 	"thrusting energy" 9.1
 	"thrusting heat" 11.05
 	"flare sprite" "effect/efreti flare/medium"
@@ -708,7 +708,7 @@ outfit "Nelmeb GP Hybrid Thruster"
 	"mass" 86
 	"outfit space" -86
 	"engine capacity" -86
-	"thrust" 105
+	"thrust" 104.6
 	"thrusting energy" 14
 	"thrusting heat" 18
 	"flare sprite" "effect/efreti flare/large"
