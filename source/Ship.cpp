@@ -2073,7 +2073,14 @@ bool Ship::IsEnteringHyperspace() const
 
 bool Ship::IsHyperspacing() const
 {
-	return hyperspaceCount != 0;
+	return GetHyperspacePercentage() != 0;
+}
+
+
+
+int Ship::GetHyperspacePercentage() const
+{
+	return hyperspaceCount;
 }
 
 

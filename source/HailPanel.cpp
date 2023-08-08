@@ -214,14 +214,12 @@ void HailPanel::Draw()
 
 	DrawList draw;
 	// If this is a ship, copy its swizzle, animation settings, etc.
+	// Also draw its fighters and weapon hardpoints.
 	if(ship)
-		draw.Add(Body(*ship, center, Point(), facing, zoom));
-	else
-		draw.Add(Body(sprite, center, Point(), facing, zoom));
-
-	// If hailing a ship, draw its turret sprites.
-	if(ship)
-		for(const Hardpoint &hardpoint : ship->Weapons())
+	{
+		bool hasFighters = ship->PositionFighters();
+		auto addHardpoint = [this, &draw, &center, zoom](const Hardpoint &hardpoint) -> void
+		{
 			if(hardpoint.GetOutfit() && hardpoint.GetOutfit()->HardpointSprite().HasSprite())
 			{
 				Body body(
@@ -232,6 +230,40 @@ void HailPanel::Draw()
 					zoom);
 				draw.Add(body);
 			}
+		};
+		auto addFighter = [this, &draw, &center, zoom](const Ship::Bay &bay) -> void
+		{
+			if(bay.ship)
+			{
+				Body body(
+					*bay.ship,
+					center + zoom * facing.Rotate(bay.point),
+					Point(),
+					facing + bay.facing,
+					zoom);
+				draw.Add(body);
+			}
+		};
+
+		if(hasFighters)
+			for(const Ship::Bay &bay : ship->Bays())
+				if(bay.side == Ship::Bay::UNDER)
+					addFighter(bay);
+		for(const Hardpoint &hardpoint : ship->Weapons())
+			if(hardpoint.IsUnder())
+				addHardpoint(hardpoint);
+		draw.Add(Body(*ship, center, Point(), facing, zoom));
+		for(const Hardpoint &hardpoint : ship->Weapons())
+			if(!hardpoint.IsUnder())
+				addHardpoint(hardpoint);
+		if(hasFighters)
+			for(const Ship::Bay &bay : ship->Bays())
+				if(bay.side == Ship::Bay::OVER)
+					addFighter(bay);
+	}
+	else
+		draw.Add(Body(sprite, center, Point(), facing, zoom));
+
 	draw.Draw();
 
 	// Draw the current message.
