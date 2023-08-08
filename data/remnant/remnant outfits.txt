@@ -734,7 +734,7 @@ outfit "Crucible-Class Thruster"
 	"thrust" 16.55
 	"thrusting energy" 2.1
 	"thrusting heat" 2.0
-	"reverse thrust" 10.8
+	"reverse thrust" 12.4
 	"reverse thrusting energy" 1.6
 	"reverse thrusting heat" 1.5
 	"slowing resistance" 0.012
@@ -758,7 +758,7 @@ outfit "Forge-Class Thruster"
 	"thrust" 34
 	"thrusting energy" 4.4
 	"thrusting heat" 4.25
-	"reverse thrust" 23.6
+	"reverse thrust" 25.5
 	"reverse thrusting energy" 3.3
 	"reverse thrusting heat" 3.2
 	"slowing resistance" 0.024
