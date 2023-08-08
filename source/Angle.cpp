@@ -23,6 +23,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cstdlib>
 #include <vector>
 
+using namespace std;
+
 namespace {
 	// Suppose you want to be able to turn 360 degrees in one second. Then you are
 	// turning 6 degrees per time step. If the Angle lookup is 2^16 steps, then 6
@@ -118,11 +120,25 @@ Angle Angle::operator-() const
 
 
 
+bool Angle::operator==(const Angle &other) const
+{
+	return angle == other.angle;
+}
+
+
+
+bool Angle::operator!=(const Angle &other) const
+{
+	return angle != other.angle;
+}
+
+
+
 // Get a unit vector in the direction of this angle.
 Point Angle::Unit() const
 {
 	// The very first time this is called, create a lookup table of unit vectors.
-	static std::vector<Point> cache;
+	static vector<Point> cache;
 	if(cache.empty())
 	{
 		cache.reserve(STEPS);
