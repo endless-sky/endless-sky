@@ -971,22 +971,48 @@ void MissionPanel::Accept(bool force)
 	if(availableIt == available.end() && !available.empty())
 		--availableIt;
 
+	cycleInvolvedIndex = 0;
+
 	// Check if any other jobs are available with the same destination. Prefer
 	// jobs that also have the same destination planet.
 	if(toAccept.Destination())
 	{
+		const list<Mission>::const_iterator startHere = availableIt;
 		const Planet *planet = toAccept.Destination();
 		const System *system = planet->GetSystem();
-		for(auto it = available.begin(); it != available.end(); ++it)
+		bool stillLooking = true;
+		for(auto it = startHere; it != available.end(); ++it)
 			if(it->Destination() && it->Destination()->IsInSystem(system))
 			{
-				availableIt = it;
 				if(it->Destination() == planet)
-					break;
+				{
+					availableIt = it;
+					return;
+				}
+				else if(stillLooking)
+				{
+					stillLooking = false;
+					availableIt = it;
+				}
 			}
+		for(auto it = startHere; it != available.begin(); )
+		{
+			--it;
+			if(it->Destination() && it->Destination()->IsInSystem(system))
+			{
+				if(it->Destination() == planet)
+				{
+					availableIt = it;
+					return;
+				}
+				else if(stillLooking)
+				{
+					stillLooking = false;
+					availableIt = it;
+				}
+			}
+		}
 	}
-
-	cycleInvolvedIndex = 0;
 }
 
 
