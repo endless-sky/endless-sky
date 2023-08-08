@@ -30,7 +30,7 @@ mission "<uhai> 10: Belt Materials"
 			`	It looks like she is done speaking to the others, so now she comes to you and says, "Hello <first>. It's been a while since I last saw you. Heard you took care of that Auxiliary and brought back quite the treasure; great work!"`
 			label choice
 			choice
-				`	"See you soon with the ressources."`
+				`	"See you soon with the requested resources."`
 					accept
 				`	"How should I collect minerals from asteroids?"`
 					to display

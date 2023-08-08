@@ -54,7 +54,7 @@ ship "Auxiliary" "Auxiliary (Alpha)"
 		"launch effect" "human internal"
 	bay "Fighter" 0 83
 		"launch effect" "human internal"
-	add description "This ship was stolen by the Alphas to move supplies and outfits, mainly for trading with the Unfettered. It seems that they did not modify it much and it conveniently retained their logs, although in an encrypted form."
+	description "This ship was stolen by the Alphas to move supplies and outfits, mainly for trading with the Unfettered. It seems that they did not modify it much and it conveniently retained their logs, although in an encrypted form."
 
 # Alphas don't give the best loot to the Unfettered, excluding things like:
 # detainers, triple plasma cores, large syscores, husk slicer turrets and shield disruptors from the normal deliveries
