@@ -145,7 +145,8 @@ mission "Hai Legacy 1"
 		"reputation: Hai (Unfettered)" < 0
 		not "Unfettered Jump Drive 1: offered"
 		not "event: hai ladybug available"
-		"credits" + "net worth" / 2 > 65000000
+		# it will offer but defer itself the first time if you lack money but have net worth
+		"credits" + "net worth" * ( 1 - "Hai Legacy 1: deferred" ) > 65000000
 	on offer
 		conversation
 			branch first
@@ -159,7 +160,12 @@ mission "Hai Legacy 1"
 				`	(Never.)`
 					decline
 			label first
-			`As you're browsing the shipyard, you are discreetly approached by a hooded figure. When you stop to see what they want to say, they grab and pull your arm to follow them. "Keep walking," the stranger hisses. After pointing at and commenting on random ship, as if to mimic the actions of regular passerby, they address you again. "My associates and I have a lucrative business proposition for you. If you are interested, come find us at these coordinates." Without waiting for a response, they fold a piece of paper into your hand before quickly fading into the crowd. It lists only a location: a beach on the other side of the planet. Will you go there?`
+			`As you're browsing the shipyard, you are discreetly approached by a hooded figure. When you stop to see what they want to say, they grab and pull your arm to follow them. "Keep walking," the stranger hisses. After pointing at and commenting on random ship, as if to mimic the actions of regular passerby, they address you again. "My associates and I have a lucrative business proposition for you. If you are interested, come find us at these coordinates." Without waiting for a response, they fold a piece of paper into your hand before quickly fading into the crowd. It lists only a location: a beach on the other side of the planet.`
+			`	However, it also mentions you need to have at least 6.5 millions in cash! It may be a good idea to save up or take a debt and then come back another day to head to the location.`
+				to display
+					"credits" < 65000000
+				defer
+			`	Will you go there?`
 			choice
 				`	(Sure.)`
 				`	(Maybe another time.)`
@@ -179,11 +185,8 @@ mission "Hai Legacy 1"
 			`	Without any incidents, you return to the train station and buy a ticket back to the spaceport.`
 				decline
 			label know
-			`	They grin, "You need to become known by the Hai in order to land on our homeworld."`
-			`	"We know you have provided help, by doing various jobs."`
-				to display
-					"reputation: Hai (Unfettered)" >= -1250
-			`	"Do not think we are unaware of your skirmishes with the Unfettered," they add with a serious tone.`
+			`	The other one grins. "Any outsider landing on our homeworld must be well-known. We know you have provided various assistance to our kind."`
+			`	"Though do not think we are unaware of your skirmishes with the Unfettered," the first adds with a serious tone.`
 				to display
 					"reputation: Hai (Unfettered)" < -1250
 			label tellme
@@ -233,7 +236,7 @@ mission "Hai Legacy 1"
 			branch lucky??
 				random < 40
 			`	The shot reaches the ship, but the small weapon has no chance of doing anything to the heavy armor, even in its current state. The ship's speakers then activate, almost deafening you. "MY TURN!"`
-			`	The ship then hits your weapon, disarming you with surgical accuracy using its Bullfrog Anti-Missiles. One of the two Hai comes, seemingly disappointed. "It looks like you angered the piloting AI. You're lucky it did not kill you, but even so you are of no use to us if you think it wise to use your firearm on a spaceship. Farewell." They turn and leave without another word, and the ship flies off.`
+			`	The ship then hits your weapon, disarming you with surgical accuracy using its Bullfrog Anti-Missiles. One of the two Hai comes, seemingly disappointed. "It looks like you angered the piloting AI enough to make it override the silence protocols we had put in place. You're lucky it did not kill you, but even so you are of no use to us if you think it wise to use your firearm on a spaceship. Farewell." They turn and leave without another word, and the ship flies off.`
 				decline
 			label lucky??
 			`	You manage to land a lucky hit on what you assume to be the ship's navigation system, because it comes down, seemingly crashing.`
@@ -315,7 +318,7 @@ mission "Hai Legacy 2"
 
 # no category, meaning you can't remove it from the Ladybug
 outfit "Unfettered Landing Permit"
-	"maintenance costs" 681
+	"maintenance costs" 650
 	description "This item is needed in order to land on Unfettered planets, and its loss will cancel the arrangement."
 
 mission "Hai Legacy 3"
@@ -355,7 +358,7 @@ mission "Hai Legacy 3"
 					goto scare
 			`	"I guess we'll find out." says a third.`
 			label scare
-			`	The leader gets closer and addresses you in a more serious tone. "You should be aware that this is not a friendly competition. This is a fight for you to truly earn your place with this ship. As far as I'm concerned, you are an enemy. Make no mistakes about that. As far as I am concerned, this fight has a few... unofficial rules: of course nobody other than us here may interfere, but also know that being disabled counts as a loss. Don't even think about tricking us by switching to something other than this Ladybug, or we will not bother showing up! You must prove your worth only with the Ladybug.`
+			`	The leader gets closer and addresses you in a more serious tone. "You should be aware that this is not a friendly competition. This is a fight for you to truly earn your place with this ship. As far as I'm concerned, you are an enemy. Make no mistakes about that. As far as I am concerned, this fight has a few... implicit rules. We would assume everyone know them, but since you are an outsider I will explain them to you: naturally since this is a duel nobody other than us here may interfere, but also know that being disabled counts as a loss. Don't even think about tricking us by switching to something other than this Ladybug, or we will not bother showing up! You must prove you deserve this ship, after all.`
 			`	"Furthermore we can understand some may die in glorious battle, and to the victor go the spoils, so looting as allowed. Capturing, however, is off limits. Do so, and all the Unfettered will be against you."`
 			# This is a "warning" for the incoming extra ship that happens because you killed/captured 10 Shield Beetles
 			# (But in reality with disabling a lot of ships it goes faster than that)
@@ -440,7 +443,7 @@ mission "Hai Legacy 3"
 			variant
 				"Sea Scorpion (Ionic)"
 	on visit
-		dialog "You have not beaten all challenging ships yet. If they have not shown up it is probably because you have cheated and brought more ships into the fight. Load an earlier save and try again if you want to finish this mission. You may also have capped too many of their ships, in which case you should disown them."
+		dialog "You have not beaten all challenging ships yet. If they have not shown up it is probably because you have cheated and brought more ships into the fight. Load an earlier save and try again if you want to finish this mission. You may also have captured ships included in the duel, in which case you should disown them or try again."
 	to complete
 		not "unfettered: refused to sell the bug"
 		has "unfettered: beaten the bugs"
@@ -460,7 +463,8 @@ mission "Hai Legacy 3"
 				`	"What are you talking about? This was easy!"`
 			`	"Don't become overconfident now, Captain. I am sure you know what happens to such people.`
 			label next
-			`	"Congratulations, I never expected you had it in you. I will give you authorization to land on the condition that you keep this relic from our past in good condition. Make sure you do not lose it until you truly earn the right to call us friends, or we will consider you a true enemy of the Unfettered. Oh, and there are taxes on the daily fee, totaling 681 credits per day. I hope you don't mind."`
+			`	"Congratulations, I never expected you had it in you. I will give you authorization to land on the condition that you keep this relic from our past in good condition. Make sure you do not lose it until you truly earn the right to call us friends, or we will consider you a true enemy of the Unfettered. Oh, and there are taxes on the daily fee, totaling 650 credits per day. I hope you don't mind.`
+			`	"Do keep it mind that if you lose this permit at any time and have not proven yourself another way you will be treated like an outsider again."`
 			choice
 				`	"Thank you for your trust."`
 					goto trust
