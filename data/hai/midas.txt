@@ -148,12 +148,12 @@ ship "Antlion"
 	turret 22.5 -57.5 "Chameleon Anti-Missile"
 	turret -15 41 "Ionic Turret Prototype"
 	turret 15 41 "Ionic Turret Prototype"
-	bay Drone -67 -76
-		under
-	bay Drone 67 -76
-		under
-	bay Drone 0 70.5
-		over
+	bay Drone -67 -76 under
+		"launch effect" "hai launch"
+	bay Drone 67 -76 under
+		"launch effect" "hai launch"
+	bay Drone 0 70.5 over
+		"launch effect" "hai launch"
 	leak leak 40 50
 	leak flame 50 80
 	leak "big leak" 60 50
@@ -346,7 +346,6 @@ fleet "Marauders"
 
 
 mission "Midas: Stash of Bars"
-	landing
 	outfitter
 	invisible
 	repeat
@@ -360,7 +359,6 @@ mission "Midas: Stash of Bars"
 		fail
 
 mission "Midas: Who is the mad one?"
-	landing
 	outfitter
 	name "A golden opportunity!"
 	description "Go to any pirate world to see if you can sell these gold bars for a good price."

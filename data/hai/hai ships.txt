@@ -720,6 +720,8 @@ ship "Modified Shield Beetle"
 		"outfit space" 855
 		"weapon capacity" 336
 		"engine capacity" 145
+		# any ship with this can be remotely blown by the Alphas or Unfettered
+		"unfettered remote" 1
 		weapon
 			"blast radius" 500
 			"shield damage" 5500

@@ -1102,7 +1102,7 @@ mission "Wanderers: Alpha Surveillance A"
 					goto where
 				`	"I'm pretty sure I found one of their old bases."`
 					to display
-						has "found alpha base"
+						has "alpha: host found"
 					goto oldbase
 			`	"No," he says, "It has been two hundred years, and our worlds are populous and overseen with great diligence. Unless they have taken refuge with the Unfettered, they are not in our space."`
 			`	"Then where could they have gone?" you ask.`
@@ -1328,10 +1328,10 @@ mission "Wanderers: Alpha Surveillance D"
 			has "told them the alpha base location"
 		"<base found>" "It appears that the base was not as old and abandoned as it had first looked."
 			not "told them the alpha base location"
-			has "found alpha base"
+			has "alpha: host found"
 		<guess> `".`
 		<guess> `". This probably will be the same path as last time.`
-			has "found alpha base"
+			has "alpha: host found"
 	
 	on offer
 		log "Met a human named Elias Hanover who is friends with the Quarg and who has been given permission to use Quarg technology to track the Alpha ship that is selling jump drives to the Unfettered."
@@ -1367,13 +1367,12 @@ mission "Wanderers: Alpha Surveillance D"
 		conversation
 			`When you enter this system, your sensors pick up a Navy Carrier in orbit around an Earth-like planet. <base found> "That's them," says Hanover. "I hope you're strong enough to destroy them." The Carrier starts to launch fighters: Korath ones, not human ships. This might be a difficult fight...`
 			branch nothing
-				not "flagship model: Auxiliary (Alpha)"
-				not "flagship model: Modified Shield Beetle"
+				not "flagship base attribute: unfettered remote"
 			``
-			`	You start ordering your crew, preparing for the fight, but seconds later you notice an orange light on your console, blinking slowly.`
+			`	You start preparing for the fight, but seconds later you notice an orange light on your console, blinking slowly.`
 			`	Time seems to slow down as it starts flashing faster and faster, and you finally realize what it must be.`
 			``
-			`	A self-destruct indicator.`
+			`	A self-destruct indicator! Maybe coming here with the <ship> as your flagship was not the best idea.`
 				explode
 			label nothing
 	
@@ -1427,7 +1426,7 @@ mission "Wanderers: Alpha Surveillance D (Avalon)"
 		<sensors> "you are able to locate it after some time, however"
 			"outfit (installed): Value Detector" + "outfit (installed): Research Laboratory" + "outfit (installed): Surveillance Pod" + "ship model: Peregrine" + "ship model: Merganser" > 0
 		<sensors> "you still know the location from last time, however it is heavily guarded this time,"
-			has "found alpha base"
+			has "alpha: host found"
 	on offer
 		conversation
 			`You park your ship high up on a mountain where you will be able to see if any of the giant reptiles approach. This is almost certainly where the Alphas have their base, <sensors> you do not have a military ground force with you. To take care of the threat once and for all, you will need to return with an invasion force.`

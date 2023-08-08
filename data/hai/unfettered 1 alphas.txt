@@ -11,31 +11,15 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-# needs its own definition to have a proper model but the stats are the same, for now.
-ship "Auxiliary (Alpha)"
+ship "Auxiliary" "Auxiliary (Alpha)"
 	plural "Auxiliaries"
 	sprite "ship/auxiliaryc"
 	thumbnail "thumbnail/auxiliaryc"
-	attributes
-		category "Utility"
-		"cost" 13720000
-		"shields" 17100
-		"hull" 5900
-		"required crew" 87
-		"bunks" 138
-		"mass" 820
-		"drag" 13.3
-		"heat dissipation" .45
-		"fuel capacity" 900
-		"cargo space" 450
-		"outfit space" 720
-		"weapon capacity" 160
-		"engine capacity" 200
-		weapon
-			"blast radius" 280
-			"shield damage" 2800
-			"hull damage" 1400
-			"hit force" 4200
+	add attributes
+		"bunks" -112
+		"cargo space" 200
+		"alpha logs" 1
+		"unfettered remote" 1
 	outfits
 		"Hai Tracker Pod" 2
 		"Hai Tracker" 112
@@ -56,34 +40,21 @@ ship "Auxiliary (Alpha)"
 		"Steering (Planetary Class)"
 		"Jump Drive"
 		"Scram Drive"
-	engine -41. 180.5 0.45
-	engine 41. 180.5 0.45
-	gun -12 -180 "Hai Tracker Pod"
-	gun 12 -180 "Hai Tracker Pod"
+	gun -12 -186
+	gun 12.5 -186
 	turret 0 -72 "Bullfrog Anti-Missile"
-	turret 0 -21 "Shield Disruptor Turret"
-	turret 0 31 "Husk-Slice Turret"
+	turret 0 -20
+	turret 0 32
 	turret 0 83 "Bullfrog Anti-Missile"
 	bay "Fighter" 0 -72
+		"launch effect" "human internal"
 	bay "Fighter" 0 -20
+		"launch effect" "human internal"
 	bay "Fighter" 0 32
+		"launch effect" "human internal"
 	bay "Fighter" 0 83
-	leak "leak" 30 50
-	leak "flame" 30 80
-	leak "big leak" 30 30
-	explode "tiny explosion" 20
-	explode "small explosion" 45
-	explode "medium explosion" 50
-	explode "large explosion" 40
-	explode "huge explosion" 10
-	"final explode" "final explosion large"
-	description "This is a stolen Auxiliary that was used by the Alphas to move supplies and outfits around, mainly for trading with the Unfettered. It seems that they did not modify it much and it conveniently retained their logs, although in an encrypted form."
-
-conversation "unfettered: destroyed auxiliary"
-	`The Unfettered that hails you is enraged, "How dare you?! This ship was helping us by providing supplies, and you just shoot it down? We don't care who may have drawn the first shot, you are now an enemy of the Unfettered."`
-	action
-		set "unfettered: destroyed auxiliary"
-		"reputation: Hai (Unfettered)" <?= -1
+		"launch effect" "human internal"
+	add description "This ship was stolen by the Alphas to move supplies and outfits, mainly for trading with the Unfettered. It seems that they did not modify it much and it conveniently retained their logs, although in an encrypted form."
 
 # Alphas don't give the best loot to the Unfettered, excluding things like:
 # detainers, triple plasma cores, large syscores, husk slicer turrets and shield disruptors from the normal deliveries
@@ -136,7 +107,13 @@ outfitter "Unfettered Alpha Trade"
 	"Type 3 Radiant Thruster"
 	"Type 3 Radiant Steering"
 
-mission "Unfettered: Alpha Supplies: Leaving"
+conversation "unfettered: destroyed auxiliary"
+	`The Unfettered that hails you is enraged, "How dare you?! This ship was helping us by providing supplies, and you just shoot it down? We don't care who may have drawn the first shot, you are now an enemy of the Unfettered."`
+	action
+		set "unfettered: destroyed auxiliary"
+		"reputation: Hai (Unfettered)" <?= -1
+
+mission "Unfettered: Alpha Supplies"
 	invisible
 	minor
 	repeat
@@ -167,16 +144,16 @@ mission "Unfettered: Alpha Supplies: Leaving"
 			`	They insist: "Whatever you do, do not destroy that incoming ship."`
 				accept
 			label leaving
-			`As you launch, the local authorities hail you, "An important guest is leaving with you. They seem to have activated their weapon systems... Get out, fast. And do not interfere with that launching ship, or at least do not destroy it."`
+			`As you launch, the local authorities hail you, "An important guest is leaving with you. They seem to have already activated their weapon systems... Get out, fast. And do not interfere with that launching ship, or at least do not destroy it."`
 				accept
 			label enough
 			branch consequences
 				"alpha: worry" >= 4
-			`As you launch, the local authorities hail you, "We are getting tired by this little game you have with the Alphas, we cannot tolerate these disruption to our supplies for much longer. If you keep on doing this there will be consequences!"`
+			`As you launch, the local authorities hail you, "We are getting tired of your childish conflict with the Alphas! We will not tolerate these disruption to our supplies anymore!"`
 			`	You hear them speak among themselves, "Is this monkey truly the one Mera said could be useful?"`
 				accept
 			label consequences
-			`One angry sounding Hai hails you as you enter orbit, "Enough is enough. You better bring us a Jump Drive to make yourself be forgiven, but until then you have lost the privileges you had with us."`
+			`One angry sounding Hai hails you as you enter orbit, "Enough is enough. The Alphas have informed us of your constant disturbance to our supplies of Jump Drives! You better bring us at least one to make yourself be forgiven, but until then you have lost the privileges you had with us."`
 			action
 				"reputation: Hai (Unfettered)" -= 1000
 	npc kill
@@ -230,7 +207,7 @@ mission "Unfettered: Alpha Supplies: Leaving"
 # SPOILER: this mission is what sets the Alphas against you, because they can't afford to let you know they operate here, thinking you could be with the Navy.
 mission "<uhai> 5: Scan Auxiliary"
 	name `Scan the human ship`
-	description `Scan the human ship in <waypoints> using a Value Detector by <date>, and then come back to <origin> with the logs when you can.`
+	description `Scan the human ship in <waypoints> using a Value Detector by <date>, and then come back to <origin> with the logs whenever you can.`
 	source "Firelode"
 	destination "Warfeed"
 	deadline 4
@@ -354,7 +331,7 @@ mission "<uhai> 5: Auxiliary Scans"
 					decline
 			`	"Worry not, I did not want to talk to you about the drag of that ship, or its shield matrix. Although they are very interesting, to be sure!"`
 			label questions
-			# She almost reveals to you the existence of the old super drone carrier project; the Lycosidae.
+			# SPOILER: She almost reveals to you the existence of the old super drone carrier project; the Lycosidae.
 			`	"I already have access to the specs of the ship. My questions are mostly related to how well they fare in battle. As far as I know, we have never seriously tried ships carrying fighters before. Well, to be fair, we did-" She stops herself, this is probably not something she can talk to you about. "We, hum, did - think of it. We just never tested them in battle.`
 			`	"The limitations could have been the ethical implications, but I think it was mostly due to technical difficulties building a ship large enough to contain and launch multiple interceptor-like crafts. I want to know how effective they are and how are they countered." She is clearly very excited to learn more about them.`
 			choice
@@ -383,7 +360,7 @@ mission "<uhai> 5: Auxiliary Scans"
 						not "unfettered: it's the Alphas!"
 				`	(I'll find it out on my own.)`
 					decline
-			`	"We use 'unfettered' to describe members of a species that fight for what they believe in, instead of, for instance, doing their day to day routine. That includes the anarchists organizations you refer to as pirates, but not only." She is clearly unwilling to tell you more than this.`
+			`	"We use 'unfettered' to describe groups that fight for what they believe in. That includes the anarchists organizations you refer to as pirates, but not only." She is clearly unwilling to tell you more than this.`
 
 
 
@@ -407,7 +384,7 @@ mission "<uhai> 6 A: Loyal Escort"
 	on offer
 		conversation
 			`As you leave your ship, an Unfettered Chief approaches you. After some time you finally recognize Sookootow, the one you helped earlier with moving people and medical supplies. You have not yet seen him so worried before, nor moving at such speed.`
-			`	"<first>! I asked to be notified of your arrival as soon as possible, as we need your services. A fleet of True Hai needs your immediate assistance escorting them through Hai space, from <stopovers>. They are not Unfettered, but their hearts beat true still. I would blame myself if anything was to happen to them, and I could have done anything more to prevent it."`
+			`	"<first>! I asked to be notified of your arrival as soon as possible, as we need your services. A fleet of True Hai needs your immediate assistance escorting them through Hai space, from <stopovers>. They may not be Unfettered, but their hearts beat true still. I would blame myself if anything was to happen to them, and I could have done anything more to prevent it."`
 			choice
 				`	"Why do you need my help specifically?"`
 				`	"What are you even doing here?"`
@@ -445,14 +422,14 @@ mission "<uhai> 6 A: Loyal Escort"
 			`	He takes you aside and murmurs, "Do not repeat this as to not alarm the general population, but there are reasons to believe this was no natural event. Some prominent Hai will be part of the medical teams, for reasons you need not know, and it would be a disaster if something was to happen to them."`
 				accept
 			label beback
-			`	"If you need another ship you should indeed get one, but I cannot allow you to have more time than until <date>, so you must simply get a ship on the way, or before landing on <stopovers>. Try your best, <last>, your relationship with the Unfettered depends on this!"`
+			`	"If you need another ship you should indeed get one, but I cannot allow you to have more time than until <date>, so you must simply get a ship on the way, or before landing on <stopovers>. Try your best, <last>, your reputation with us depends on it!"`
 			choice
 				`	"I'll find a way to land there with a battle-ready ship."`
 					goto dewit
 	on enter "Due Yoot"
 		dialog
 			`As you enter the system, you are notified by the local authorities that the fleet is waiting for you in the spaceport.`
-			`	The fleet admiral hails you, "Hello, <last>. I have been notified of your presence as an escort. Standard procedure dictates we must search your ship on the planet before proceeding with the mission. My security detachment will be waiting for you to land."`
+			`	The fleet admiral hails you, "Hello, <last>. I have been told you will be escorting us. Standard procedure dictates we must search your ship on the planet before proceeding with the mission. My security detachment will be waiting for you to land."`
 	npc accompany save
 		government "Hai (Governor Escort)"
 		to spawn
@@ -1005,7 +982,7 @@ mission "<uhai> 8: I Know The Way"
 	on complete
 		dialog "It takes you a lot of time, but suspecting there must be something to find here you persevere, until you find a very well concealed Alpha base using your ship's sensors. This must be where the Auxiliary came from."
 		set "unfettered: it's the Alphas!"
-		set "found alpha base"
+		set "alpha: host found"
 
 mission "<uhai> 8: Wrong Planet"
 	invisible
@@ -1195,7 +1172,7 @@ mission "<uhai> 9: Alpha Quest"
 				`	"How can I find them?"`
 				`	"I already know the way."`
 					to display
-						has "found alpha base"
+						has "alpha: host found"
 					goto know
 			`	He seems amused. "That, <first>, is the easy part. You still have those sensor logs about their ships... Maybe it can point you in a direction. You should probably go to Mera and ask her if she found anything useful in the logs."`
 			choice
@@ -1285,6 +1262,8 @@ mission "<uhai> 9: Capture The Alpha Auxiliary"
 		personality heroic nemesis staying vindictive target
 		ship "Auxiliary (Alpha)" "Settler"
 		conversation
+			action
+				set "unfettered: captured the auxiliary"
 			`While capturing the ship, you noticed that only very few of the crew were actually Alphas. What little were Alphas seem to have disappeared. They probably used an escape pod to get away unoticed in the middle of the fight, or maybe they were never there in the first place. Whatever the case, you cannot find any trace of them. The crew was composed of a mix of mercenaries and indoctrinated pirates.`
 			`	There was no doubt who was in command of this vessel, however. The jump drives don't seem to be aboard the ship. You should head to the Alpha base to see if you can find them or anything else of interest.`
 	npc
@@ -1318,7 +1297,7 @@ mission "<uhai> 9: Capture The Alpha Auxiliary"
 		dialog `You have landed, but the Auxiliary is not your flagship, or you landed without the jump drives. Go and look for traces of fuel from the Auxiliary in systems neighboring Hi Yahr. Don't forget to land on the Alpha base to recover any information or jump drives it may have! Don't forget the Jump Drives need to be on your flagship or in cargo.`
 	to complete
 		has "<uhai> 9: Alpha Base: offered"
-		has "flagship model: Auxiliary (Alpha)"
+		has "flagship base attribute: alpha logs"
 	on complete
 		outfit "Jump Drive" -10
 		log `Captured the Alpha Auxiliary. The Alphas had a trap set but it failed. Or, at least, that's what they want everyone to think.`
@@ -1406,9 +1385,11 @@ mission "<uhai> 9: Alpha Base"
 	destination "Darkcloak"
 	to offer
 		has "<uhai> 9: Capture The Alpha Auxiliary: active"
-		has "ship model: Auxiliary (Alpha)"
+		has "unfettered: captured the auxiliary"
+		has "ship model: Auxiliary"
 	on offer
-		set "found alpha base"
+		clear "unfettered: captured the auxiliary"
+		set "alpha: host found"
 		conversation
 			`You do a detailed scan of the Alpha base to see if there are any more Jump Drives or anyone who could have witnessed the fight. You cannot retrieve any information: it seems to either be too deep or at least shielded from scans in some way. You will have to go in blind.`
 			`	The doors of the hangar open to let you in. Maybe it is an automated response to this ship, or whoever is down here assumed the Alphas won the fight. That said, if there is anyone here, it's probably a skeleton crew.`

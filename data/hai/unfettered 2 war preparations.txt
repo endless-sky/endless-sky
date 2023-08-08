@@ -27,42 +27,30 @@ mission "<uhai> 10: Belt Materials"
 				`	"What kind of materials do you need?"`
 			`	She notices you and responds to your question explicitly, speaking to all that are present, "Do not bother with silicon, friends, we already have plenty, and its uses are limited. No, we need a lot of silver and lead. Also do not forget we are selling asteroid scanners in the outfitter, should you require any.`
 			`	"Some Titanium would also be welcomed, but as you well know there is only a very limited amount of it left in this system, and the fact there is a lot in Ik'kara'ka, as they call it, does little to help us."`
+			`	It looks like she is done speaking to the others, so now she comes to you and says, "Hello <first>. It's been a while since I last saw you. Heard you took care of that Auxiliary and brought back quite the treasure; great work!"`
+			label choice
 			choice
-				`	(I know how and where to mine those asteroids. Better get going.)`
+				`	"See you soon with the ressources."`
 					accept
-				`	"How do I even collect minerals from asteroids?"`
-					goto asteroidtuto
-				`	"Where can I get those resources from?"`
+				`	"How should I collect minerals from asteroids?"`
+					to display
+						not "unfettered: asteroid tuto"
+				`	"From which systems can I get those resources from?"`
+					to display
+						not "unfettered: asteroid systems"
 					goto where
+				`	"Sorry, but I'm no miner. I did not join you thinking I would have to do this kind of thing."`
+					decline
 			label asteroidtuto
-			`	It looks like she is done speaking to the others, so now she comes to you and says, "Hello <first>. It's been a while since I last saw you. Heard you took care of that Auxiliary and brought back quite the treasure; great work! Now, back to your question: you've never mined asteroids? I recommend you install an asteroid scanner so your ship can target them automatically. Just try to keep your ship stable around one and shoot it as you would any other ships. Keep in mind they have no shields, and you might not want to waste missiles on them, since they don't shoot back."`
-			choice
-				`	"I have no more questions. See you soon."`
-					accept
-				`	"Where can I get those resources from?"`
-					goto where2
-				`	"Sorry, but I'm no miner."`
-					decline
+			action
+				set "unfettered: asteroid tuto"
+			`	She seems a bit surprised, "You've never mined asteroids? I recommend you install an asteroid scanner so your ship can target them automatically. Just try to keep your ship stable around one and shoot it as you would any other ships. Keep in mind they have no shields, and you might not want to waste missiles on them, since they don't shoot back."`
+				goto choice
 			label where
-			`	It looks like she is done speaking to the others, now she comes to you and says, "Hi <first>, it has been a while since I last saw you. Heard you took care of that Auxiliary and brought back quite the treasure, great work! Now back about your question: it's quite simple: silicon can be found right over our heads, and silver in Ehma Ti. The silicon asteroid looks similar to copper but is bigger. You can also just differentiate them with an asteroid scanner. Silver is easy to recognize with its very small size and natural resistance."`
-			choice
-				`	"I have no more questions, see you soon."`
-					accept
-				`	"How do I even collect minerals from asteroids?"`
-					goto asteroidtuto2
-				`	"Sorry, but I am no miner."`
-					decline
-			label where2
-			`	"Silicon can be found right over our heads, and silver in Ehma Ti. The silicon asteroid looks similar to copper, but they're bigger. You can also just differentiate them with an asteroid scanner. Silver is easy to recognize, with its very small size and natural resistance. So, are you ready to go?"`
-				goto finalchoice
-			label asteroidtuto2
-			`	She seems a bit surprised. "You've never mined asteroids? I recommend you install an asteroid scanner so your ship can target them automatically. Just try to keep your ship stable around one and shoot it as you would any other ships. Keep in mind they have no shields, and you might not want to waste missiles on them, since they don't shoot back. Now, are you ready to go?"`
-			label finalchoice
-			choice
-				`	"Indeed. See you soon."`
-					accept
-				`	"Sorry, but I'm no miner."`
-					decline
+			action
+				set "unfettered: asteroid systems"
+			`	Silicon can simply be found right over our heads, and there are silver asteroids present in Ehma Ti. The silicon asteroid looks similar to copper but is bigger. You can also just differentiate them with an asteroid scanner. Silver is easy to recognize with its very small size and natural sturdiness."`
+				goto choice
 	npc
 		government "Hai (Unfettered)"
 		personality harvests mining uninterested staying
@@ -91,6 +79,8 @@ mission "<uhai> 10: Belt Materials"
 	on visit
 		dialog "You have landed, but you do not mined enough materials from asteroids yet, or they are in one of your escorts that is not in the system. Remember that silver can be acquired in Ehma Ti, whilst Silicon can be found in Wah Yoot."
 	on complete
+		clear "unfettered: asteroid tuto"
+		clear "unfettered: asteroid systems"
 		log `Gathered materials for the Unfettered shipyards. They're building sizable ships here.`
 		outfit "Lead" -50
 		outfit "Silver" -20
@@ -111,7 +101,7 @@ mission "<uhai> 10: Titanium"
 		has "salary: Unfettered"
 		"reputation: Wanderer" >= 0
 	on offer
-		dialog "Do you want to go get Titanium from <waypoints> as Mera suggested?"
+		dialog "Do you want to go mine 40 tons of Titanium from <waypoints> as Mera suggested?"
 	on complete
 		"unfettered: Mera's favor" ++
 		payment 1000000
@@ -122,7 +112,6 @@ mission "<uhai> 10: Titanium"
 
 
 mission "<uhai> 11: Shipyard Intel"
-	landing
 	shipyard
 	name `Gather intel on Hai shipyards`
 	description `Go to <stopovers> and try to discreetly learn how their ships are produced.`
@@ -237,7 +226,6 @@ mission "<uhai> 11: Shipyard Intel"
 
 # linked to the previous mission, it's what happens when you land to get intel
 mission "<uhai> 11: Shipyard Inspection"
-	landing
 	shipyard
 	invisible
 	source "Hai-home"
@@ -326,7 +314,6 @@ mission "<uhai> 11: Shipyard Inspection"
 
 
 mission "<uhai> 12: Outfitter Upgrade"
-	landing
 	shipyard
 	name `Bring industrial materials`
 	description `Go to <stopovers> and load up <cargo>`
@@ -403,7 +390,6 @@ mission "Unfettered: Improved Production"
 
 
 mission "<uhai> 13: Korath Specialty"
-	landing
 	outfitter
 	name `Primitive Cooling Technology`
 	description `Mera has asked you to bring coolants to her on <origin>, where she is working with the Korath you rescued to design a better cooling system. Bring back 15 Liquid Nitrogen Coolers.`
