@@ -1037,22 +1037,19 @@ double ShopPanel::Zone::ScrollY() const
 
 
 
-bool ShopPanel::DoScroll(double dy)
+bool ShopPanel::DoScroll(const double dy)
 {
-	double *scroll = &mainScroll;
-	double maximum = maxMainScroll;
 	if(activePane == ShopPane::Info)
-	{
-		scroll = &infobarScroll;
-		maximum = maxInfobarScroll;
-	}
+		infobarScroll = max(0., min(maxInfobarScroll, infobarScroll - dy));
 	else if(activePane == ShopPane::Sidebar)
 	{
-		scroll = &sidebarScroll;
-		maximum = maxSidebarScroll;
+		const double scrollStart = sidebarScroll;
+		sidebarScroll = max(0., min(maxSidebarScroll, sidebarScroll - dy));
+		if(isDraggingShips)
+			dragStart.Y() += scrollStart - sidebarScroll;
 	}
-
-	*scroll = max(0., min(maximum, *scroll - dy));
+	else
+		mainScroll = max(0., min(maxMainScroll, mainScroll - dy));
 
 	return true;
 }
