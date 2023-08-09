@@ -30,10 +30,10 @@ namespace {
 	// turning 6 degrees per time step. If the Angle lookup is 2^16 steps, then 6
 	// degrees is 1092 steps, and your turn speed is accurate to +- 0.05%. That seems
 	// plenty accurate to me. At that step size, the lookup table is exactly 1 MB.
-	const int32_t STEPS = 0x10000;
-	const int32_t MASK = STEPS - 1;
-	const double DEG_TO_STEP = STEPS / 360.;
-	const double STEP_TO_RAD = PI / (STEPS / 2);
+	constexpr int32_t STEPS = 0x10000;
+	constexpr int32_t MASK = STEPS - 1;
+	constexpr double DEG_TO_STEP = STEPS / 360.;
+	constexpr double STEP_TO_RAD = PI / (STEPS / 2);
 
 	vector<Point> InitUnitCache()
 	{
@@ -51,7 +51,7 @@ namespace {
 		return cache;
 	}
 
-	vector<Point> unitCache = InitUnitCache();
+	const vector<Point> unitCache = InitUnitCache();
 }
 
 
@@ -65,18 +65,18 @@ Angle Angle::Random()
 
 
 // Get a random angle between 0 and the given number of degrees.
-Angle Angle::Random(double range)
+Angle Angle::Random(const double range)
 {
 	// The given range would have to be about 22.6 million degrees to overflow
 	// the size of a 32-bit int, which should never happen in normal usage.
-	uint32_t mod = static_cast<uint32_t>(fabs(range) * DEG_TO_STEP) + 1;
+	const uint32_t mod = static_cast<uint32_t>(fabs(range) * DEG_TO_STEP) + 1;
 	return Angle(mod ? static_cast<int32_t>(Random::Int(mod)) & MASK : 0);
 }
 
 
 
 // Construct an Angle from the given angle in degrees.
-Angle::Angle(double degrees) noexcept
+Angle::Angle(const double degrees) noexcept
 	: angle(llround(degrees * DEG_TO_STEP) & MASK)
 {
 	// Make sure llround does not overflow with the values of System::SetDate.
@@ -162,7 +162,7 @@ Point Angle::Rotate(const Point &point) const
 {
 	// If using the normal mathematical coordinate system, this would be easier.
 	// Since we're not, the math is a tiny bit less elegant:
-	Point unit = Unit();
+	const Point unit = Unit();
 	return Point(-unit.Y() * point.X() - unit.X() * point.Y(),
 		-unit.Y() * point.Y() + unit.X() * point.X());
 }
@@ -170,7 +170,7 @@ Point Angle::Rotate(const Point &point) const
 
 
 // Constructor using Angle's internal representation.
-Angle::Angle(int32_t angle)
+Angle::Angle(const int32_t angle)
 	: angle(angle)
 {
 }
