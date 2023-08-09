@@ -2201,7 +2201,7 @@ system Gossamer
 	attributes "smoke ring" twilight
 	habitable 2560
 	belt 2100 10
-	haze _menu/haze-twilight
+	haze _menu/haze-twilight-thick
 	link Whirlwind
 	minables "small droplet" 240 1.8
 	minables "medium droplet" 90 1.2
@@ -2663,7 +2663,7 @@ system Mellow
 	attributes twilight
 	habitable 832.541
 	belt 1521 6
-	haze _menu/haze-twilight
+	haze _menu/haze-twilight-thick
 	link Frenzy
 	link Tumble
 	asteroids "small rock" 24 1.23

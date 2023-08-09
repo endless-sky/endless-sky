@@ -6,25 +6,22 @@ phrase "avgi civilian names"
 	word
 		" "
 	phrase
-		"avgi nature"
-		"avgi celestial"
+		"avgi nature" 3
+		"avgi celestial" 3
 		"avgi elements"
 
-
 phrase "avgi military names"
-	word
-		"ACV "
 	phrase
 		"avgi virtues"
 	word
 		" "
 	phrase
 		"avgi physics"
-		"avgi elements"
+		"avgi elements" 3
 
 phrase "avgi fighter names"
 	phrase
-		"avgi elements"
+		"letter"
 	word
 		" - "
 	phrase
@@ -482,6 +479,7 @@ phrase "avgi virtues"
 		Creation's
 		Defending
 		Destined
+		Distant
 		Enlightened
 		Enthusiastic
 		Etheral

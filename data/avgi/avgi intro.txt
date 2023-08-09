@@ -1,9 +1,12 @@
 mission "First Contact: Avgi 1"
+	autosave
 	landing
 	name "First Contact: Avgi"
 	description "Follow the mysterious alien ship to the destination marked on your map."
 	source
 		attributes "avgi"
+	waypoint "Arche"
+	waypoint "Ensemble"
 	destination "Peripheria"
 	on offer
 		conversation
@@ -23,16 +26,16 @@ mission "First Contact: Avgi 1"
 			action
 				set "avgi: planetary battery fire"
 			choice
-				`	(Attempt to land)`
+				`	(Attempt to land regardless)`
 					goto explode
 					to display
-						"flagship attribute: shields" + "flagship attribute: hull" <= 30000 * 1000
-				`	(Attempt to land)`
+						"flagship attribute: shields" + "flagship attribute: hull" <= 18000 * 1000
+				`	(Attempt to land regardless)`
 					goto hit
 					to display
-						"flagship attribute: shields" + "flagship attribute: hull" > 30000 * 1000	
+						"flagship attribute: shields" + "flagship attribute: hull" > 18000 * 1000	
 						"flagship attribute: shields" + "flagship attribute: hull" < 90000 * 1000
-				`	(Attempt to land)`
+				`	(Attempt to land regardless)`
 					goto scratched
 					to display
 							"flagship attribute: shields" + "flagship attribute: hull" >= 90000 * 1000
@@ -45,16 +48,16 @@ mission "First Contact: Avgi 1"
 			action
 				set "avgi: planetary battery fire"
 			choice
-				`	(Attempt to land)`
+				`	(Attempt to land regardless)`
 					goto explode
 					to display
-						"flagship attribute: shields" + "flagship attribute: hull" <= 18000 * 1000
-				`	(Attempt to land)`
+						"flagship attribute: shields" + "flagship attribute: hull" <= 9000 * 1000
+				`	(Attempt to land regardless)`
 					goto hit
 					to display
-						"flagship attribute: shields" + "flagship attribute: hull" > 18000 * 1000	
+						"flagship attribute: shields" + "flagship attribute: hull" > 9000 * 1000	
 						"flagship attribute: shields" + "flagship attribute: hull" < 60000 * 1000
-				`	(Attempt to land)`
+				`	(Attempt to land regardless)`
 					goto scratched
 					to display
 							"flagship attribute: shields" + "flagship attribute: hull" >= 60000 * 1000
@@ -74,7 +77,7 @@ mission "First Contact: Avgi 1"
 				goto orbit
 
 			label uninhabited
-			`While this world is unsettled, you can clearly make out signs that it has been explored, and even exploited, by an alien civilization. However, the signs also show that something disastrous happened here. Ruined satellites litter low orbit, and you can detect the broken remnants of surface outposts smeared across the land below. You take the <ship> in for a close pass over one of the structures, and can see small craters and patches of glassed terrain scattered around it.`
+			`While this world looks presently unsettled, you can clearly make out signs that it has been explored, and even exploited, by an alien civilization. However, the signs also show that something disastrous happened here. Ruined satellites litter low orbit, and you can detect the broken remnants of surface outposts smeared across the land below. You take the <ship> in for a close pass over one of the structures, and can see small craters and patches of glassed terrain scattered around it.`
 				goto orbit
 
 			label orbit
@@ -95,8 +98,6 @@ mission "First Contact: Avgi 1"
 					goto talk
 				`	(Transmit a series of prime numbers)`
 					goto prime
-				`	(Attack)`
-					goto attack
 
 			label talk
 			`	You aren't quite sure how to proceed in communicating with a completely unknown species, but you transmit a standard hail, if only to assure the alien vessel that you're trying to signal it.`
@@ -112,32 +113,31 @@ mission "First Contact: Avgi 1"
 
 			label transmission
 			`	"Salutations. I am of the Avgi. You human, question? Important. You will follow. This space, Twilight, not safe. You have hyperdrive, correct? Emphasis. Space we will travel is unstable, a maze. Follow closely and be careful."`
-			`	The message includes an alien-looking star chart, pointing to a system far to the south. Something appears to have been lost in translation, as the hyperlanes leading there are mostly unmarked, labeled as "perturbed," whatever that means. Just as you are still processing first contact with an alien civilization, a group of the same ships that attacked you earlier jump into the system.`
+			`	The message includes an alien-looking star chart, with a trail of marked systems leading to a system far to the south. Something appears to have been lost in translation, as the hyperlanes leading there are mostly unmarked past a certain point, labeled as "tangled," whatever that means. Just as you are still processing first contact with an alien civilization, a group of the same ships that attacked you earlier jump into the system.`
 				launch
-
-			label attack
-				`	You power up your weapons and prepare to attack, but the alien ship responds in kind.`
-				apply
-					set "avgi: attacked scout"
-					"reputation: Avgi" <?= -10
-				launch
-				fail
-
+				
 	npc
 		government "Aberrant"
 		personality entering heroic
-		fleet "Twilight Ka'sei 1A" 4
-	npc save
+		ship "Twilight Ka'sei 1A" 4
+
+	npc save accompany
 		government "Avgi (Twilight Guard)"
-		personality fleeing waiting escort
-		ship "Polari" "Forward Shores"
+		personality fleeing timid launching escort
+		ship "Polari" "Distant Shores"
+
 	on accept
-		"reputation: Avgi" >?= 5
+		"reputation: Avgi" >?= 10
+		"reputation: Avgi (Consonance)" >?= 10
+		"reputation: Avgi (Twilight Guard)" >?= 10
 		event "twilight label"
 		log "Factions" "Avgi" `Met an alien race calling themselves the "Avgi"`
 
 	on fail
-		log "Met an alien race and attacked them."
+		dialog `The alien ship has been destroyed. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+
+	on visit
+		dialog `You have reached <planet>, but you left the alien ship behind! Better depart and wait for them to to properly introduce you.`
 
 	on complete
 		"reputation: Avgi" += 10
