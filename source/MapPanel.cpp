@@ -1029,7 +1029,7 @@ void MapPanel::DrawTravelPlan()
 		next = player.TravelPlan()[i];
 		const bool isHyper = previous->Links().count(next);
 		bool isWormhole = false;
-		bool isMappable = true;
+		bool isMappable = false;
 		for(const StellarObject &object : previous->Objects())
 			if(object.HasSprite() && object.HasValidPlanet()
 				&& object.GetPlanet()->IsWormhole()

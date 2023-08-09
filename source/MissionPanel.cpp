@@ -219,7 +219,7 @@ void MissionPanel::Draw()
 		previous = distance.Route(next);
 		const bool isHyper = previous->Links().count(next);
 		bool isWormhole = false;
-		bool isMappable = true;
+		bool isMappable = false;
 		if(!isHyper)
 			for(const StellarObject &object : previous->Objects())
 				if(object.HasSprite() && object.HasValidPlanet()
