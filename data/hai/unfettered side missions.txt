@@ -184,7 +184,7 @@ mission "Hai Legacy 1"
 			`	Without any incidents, you return to the train station and buy a ticket back to the spaceport.`
 				decline
 			label know
-			`	The other one grins. "Any outsider landing on our homeworld must be well-known. We know you have provided various assistance to our kind."`
+			`	The second one grins. "Any outsider landing on our homeworld must be well-known. We know you have provided various assistance to our kind."`
 			`	"Though do not think we are unaware of your skirmishes with the Unfettered," the first adds with a serious tone.`
 				to display
 					"reputation: Hai (Unfettered)" < -1250
@@ -202,14 +202,14 @@ mission "Hai Legacy 1"
 					goto foolish
 			`	As you try to react, the Hai closest to you firmly grabs your arm and shouts through the noise. "Wait! If this ship wanted to kill you, <last>, you would already be dead."`
 			label wait
-			`	You can barely hear anything over the sound of the engines as the ship proceeds to land on the beach. Suddenly, all is calm. They turn to you, surprisingly calm. "This ship means you no harm."`
+			`	You can barely hear anything over the sound of the engines as the ship proceeds to land on the beach. Suddenly, all is calm. They turn to you, the second one surprisingly calm but you can tell the first one was a bit tense, "This ship means you no harm," they say to reassure you.`
 			choice
 				`	(Say nothing.)`
 					goto explain
 				`	"Why didn't you say anything before that happened?"`
-			`	"We could have, but where's the fun in that? We wanted to see how you would react.`
+			`	The second one speaks, "We could have, but where's the fun in that? We wanted to see how you would react.`
 			label explain
-			`	"This ship is our... garantee that nothing goes wrong," says the second one.`
+			`	"This ship is our... guarantee that nothing goes wrong, we are still not sure if we can trust you, after all," says the second one.`
 			`	The first one speaks again, after taking you to a nearby cave to show you another ship. "We would never sell you that junk. This ship, however, is a mighty relic of the past, intended for war from the times our Empire used to control the stars: an Anomalocaris!`
 			scene "ship/hai anomalocaris"
 			`	"We have a proposition for you: should you agree to bring supplies to our brethren, the Unfettered Hai, we will sell you this ship for the modest price of 7.5 million credits, with the outfits that include 2 very powerful Korath Detainers! You may have heard of those in legends as weapons able to almost disable any engines to give you the speed advantage. You'll be able to recuperate the cost of this ship with ease by running more of these jobs, or bringing medical supplies to the Unfettered. This cargo is needed on short notice, on <destination>, and we lack the time and personnel to bring them.`
@@ -232,7 +232,7 @@ mission "Hai Legacy 1"
 			label pilot
 			action
 				set "unfettered: pilot dialog"
-			`	"You mean what is piloting it," says the first one, "You only need to know that it will no longer be active once we give the ship to you," adds the second.`
+			`	"You mean what is-" says the first one, stopped by the second, "The less you know, the better for both of us, Captain."`
 				goto choice
 			label ocean
 			action
@@ -268,7 +268,7 @@ mission "Hai Legacy 1"
 			`	It might have seemed lucky, that is, until it blows up, taking you and everyone else on the beach down with it.`
 				die
 			label miss
-			`	You miss your shot. Neither the ship nor the two Hai react, probably not viewing you as a threat. You still have time to do something else or try again. You feel like you heard a laugh but you're not sure where it came from.`
+			`	You miss your shot. Neither the ship nor the two Hai react, probably not viewing you as a threat. You still have time to do something else or try again. You feel like you heard a chuckle, but you're not sure where it came from.`
 				goto tryagain
 	on defer
 		set "Hai Legacy 1: deferred"
@@ -383,8 +383,7 @@ mission "Hai Legacy 3"
 			label scare
 			`	The leader gets closer and addresses you in a more serious tone. "You should be aware that this is not a friendly competition. This is a fight for you to truly earn your place with this ship. As far as I'm concerned, you are an enemy. Make no mistakes about that. As far as I am concerned, this fight has a few... implicit rules. We would assume everyone know them, but since you are an outsider I will explain them to you: naturally since this is a duel nobody other than us here may interfere, but also know that being disabled counts as a loss. Don't even think about tricking us by switching to something other than this Anomalocaris, or we will not bother showing up! You must prove you deserve this ship, after all.`
 			`	"Furthermore we can understand some may die in glorious battle, and to the victor go the spoils, so looting as allowed. Capturing, however, is off limits. Do so, and all the Unfettered will be against you."`
-			# This is a "warning" for the incoming extra ship that happens because you killed/captured 10 Shield Beetles
-			# (But in reality with disabling a lot of ships it goes faster than that)
+			# This is a "warning" for the incoming extra ship that happens because you killed/captured 10 Shield Beetles or so.
 			`	He suddenly look at you intensively, straight in the eyes, "We sometimes bend the rules for our friends, but that is not your case," he says with a sudden change of tone, before leaving.`
 				to display
 					"reputation: Hai (Unfettered)" < -2000
@@ -455,7 +454,7 @@ mission "Hai Legacy 3"
 			# Block you from doing the Unfettered campaign because you just killed one of it's core characters
 			set "unfettered: outcast"
 			dialog `As the Lightning Bug is destroyed you receive a hail from the local authorities, "You completely disrespected the rules of the duel and killed one of our engineers. You will not be welcome here anymore!"`
-	# if you refuse to sell the ship (you'll lose it later anyway)
+	# If you refuse to sell the ship (you'll lose it later anyway)
 	npc
 		government "Hai (Unfettered)"
 		to spawn
@@ -471,7 +470,7 @@ mission "Hai Legacy 3"
 		not "unfettered: refused to sell the bug"
 		has "unfettered: beaten the bugs"
 		has "flagship model: Anomalocaris"
-		# If they bended the rules you can get away with capping one ship.
+		# If they bent the rules you can get away with capping one ship.
 		"total ships" <= 1 + "unfettered: beaten extra bugs"
 		or
 			"old reputation: Hai (Unfettered)" > -2000
@@ -527,6 +526,7 @@ mission "Undeserved Anomalocaris"
 			`	You order the evacuation of the ship, but as soon as every member of your crew has exited...`
 			action
 				take ship "Anomalocaris" "with outfits"
+			# this ship also had an AI
 			`	It takes off, seemingly on its own! Looks like the Unfettered are getting this ship no matter what you do. It... hails you? You hear a robotic voice, "See you never, monkey. Don't attempt anything or I am programmed to self-destruct!"`
 				decline
 			label "unfet space"
