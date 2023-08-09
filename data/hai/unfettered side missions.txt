@@ -141,9 +141,10 @@ mission "Hai Legacy 1"
 	clearance
 	to offer
 		has "First Contact: Unfettered: offered"
+		# note: this mission chain could be tweaked later to trigger even after they are friendly
 		"reputation: Hai (Unfettered)" < 0
 		not "Unfettered Jump Drive 1: offered"
-		# it will offer but defer itself the first time if you lack money but have net worth
+		# it will offer but defer itself the first time if you lack money but have sufficient net worth
 		"credits" + "net worth" * ( 1 - "Hai Legacy 1: deferred" ) > 75000000
 	on offer
 		conversation
@@ -208,14 +209,33 @@ mission "Hai Legacy 1"
 				`	"Why didn't you say anything before that happened?"`
 			`	"We could have, but where's the fun in that? We wanted to see how you would react.`
 			label explain
-			`	"We have a proposition for you: should you agree to bring supplies to our brethren, the Unfettered Hai, we will sell you this ship for the modest price of 7.5 million credits, with the outfits that include 2 very powerful Korath Detainers. You'll be able to recuperate the cost with ease by running more of these jobs. These supplies are needed on short notice, on <destination>, and we lack the time and personnel to bring them.`
+			`	"We have a proposition for you: should you agree to bring supplies to our brethren, the Unfettered Hai, we will sell you this ship for the modest price of 7.5 million credits, with the outfits that include 2 very powerful Korath Detainers! You may have heard of those in legends as weapons able to almost disable any engines to give you the speed advantage. You'll be able to recuperate the cost of this ship with ease by running more of these jobs, or bringing medical supplies to the Unfettered. This cargo is needed on short notice, on <destination>, and we lack the time and personnel to bring them.`
 			`	"Of course, the ship is aged, and you should not expect the best price in a shipyard. Nevertheless, it is a fine vessel, capable of fighting, freighting, and mining. So, what do you say, <last>? This is the opportunity of a lifetime; they simply don't make ships like this anymore."`
+			label choice
 			choice
 				`	"I'll take it!"`
 					goto take
+				`	"If you lack crew, who is piloting it now?"`
+					to display
+						not "unfettered: pilot dialog"
+					goto pilot
+				`	"Why was this ship submerged under the ocean for what seems to have been a long time?"`
+					to display
+						not "unfettered: ocean dialog"
+					goto ocean
 				`	"No thanks. I'm not looking to add another ship to my fleet."`
 			`	"A shame. We will probably not meet again. Farewell," one says. They signal the ship to submerge into the ocean again and walk off along the beach.`
 				goto trainback
+			label pilot
+			action
+				set "unfettered: pilot dialog"
+			`	"You mean what is piloting it," says the first one, "You only need to know that it will no longer be active once we give the ship to you," adds the second.`
+				goto choice
+			label ocean
+			action
+				set "unfettered: ocean dialog"
+			`	"We found it here," the first one begins, "It is hard to find a drop of rain in a storm, but the drop of rain may see all," the other one adds.`
+				goto choice
 			label take
 			action
 				give ship "Anomalocaris" "Good Omen"
@@ -249,6 +269,9 @@ mission "Hai Legacy 1"
 				goto tryagain
 	on defer
 		set "Hai Legacy 1: deferred"
+	on accept
+		clear "unfettered: ocean dialog"
+		clear "unfettered: pilot dialog"
 
 mission "Hai Legacy 2"
 	autosave
