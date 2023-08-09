@@ -320,11 +320,11 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 	// Will you have to sell something other than regular cargo?
 	int cargoToSell = -(cargo.Free() + cargo.CommoditiesSize());
 	// Have you left any unique items at the outfitter?
-	bool hasUniques = false;
+	bool leftUniques = false;
 	for(const auto &it : player.GetStock())
 		if(it.first->Attributes().Get("unique") > 0)
 		{
-			hasUniques = true;
+			leftUniques = true;
 			break;
 		}
 	// Count how many active ships we have that cannot make the jump (e.g. due to lack of fuel,
@@ -345,7 +345,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 				}
 	}
 
-	if(nonJumpCount > 0 || cargoToSell > 0 || overbooked > 0 || hasUniques)
+	if(nonJumpCount > 0 || cargoToSell > 0 || overbooked > 0 || leftUniques)
 	{
 		ostringstream out;
 		// Warn about missions that will fail on takeoff.
@@ -365,7 +365,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 				out << "cargo space to hold " << Format::CargoString(missionCargoToSell, "your mission cargo") << ".";
 		}
 		// Warn about unique items you sold.
-		else if(hasUniques)
+		else if(leftUniques)
 		{
 			out << "If you take off now you won't be able to re-purchase unique outfits you sold at the outfitter.";
 		}
