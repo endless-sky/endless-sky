@@ -459,6 +459,7 @@ Files:
  images/outfit/rock?3*
  images/outfit/rock?4*
  images/scene/penguinscene*
+ images/ship/hai?anomalocaris*
  images/ship/hai?sea?scorpion*
  images/ship/ibis*
  images/ship/mbactriane*
@@ -472,6 +473,7 @@ Files:
  images/ship/pug?maboro*
  images/ship/pug?arfecta*
  images/thumbnail/hai?sea?scorpion*
+ images/thumbnail/hai?anomalocaris*
  images/thumbnail/ibis*
  images/thumbnail/merganser*
  images/thumbnail/penguin*
@@ -2122,8 +2124,6 @@ Comment: Derived from _menu/haze-133 (no copyright given).
 
 Files:
  images/scene/emerging?ladybug*
- images/ship/hai?ancient?ladybug*
- images/thumbnail/hai?ancient?ladybug*
 Copyright: RisingLeaf (https://github.com/RisingLeaf)
 License: CC-BY-SA-4.0
 Comment: Derived from public domain works previously submitted to Endless Sky
