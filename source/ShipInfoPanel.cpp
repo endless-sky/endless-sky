@@ -192,8 +192,11 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 				message += "\nAdditionally, this ship is carrying the following unique items:";
 				auto it = uniqueOutfits.begin();
 				for(int i = 0; i < detailedOutfitList; ++i)
+				{
 					message += "\n" + to_string(it->second) + " "
 						+ (it->second == 1 ? it->first->DisplayName() : it->first->PluralName());
+					++it;
+				}
 				if(it != uniqueOutfits.end())
 				{
 					int otherUniquesCount = 0;
