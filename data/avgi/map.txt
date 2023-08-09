@@ -804,7 +804,7 @@ system Decet
 		period 1
 
 system Mote
-	pos -491.253 892.829
+	pos -490.911 894.88
 	government Uninhabited
 	attributes twilight
 	habitable 10
@@ -1340,7 +1340,7 @@ system Stream
 system Ensemble
 	pos -244.872 910.714
 	government Avgi
-	attributes avgi consonance "tangled shroud" "bright star" "notable star"
+	attributes avgi "bright star" consonance "notable star" "tangled shroud"
 	habitable 3250
 	belt 1401 5
 	haze _menu/haze-none
@@ -1442,7 +1442,7 @@ system Quartet
 		period 30689.117
 
 system Gust
-	pos -659.038 793.499
+	pos -648.098 791.448
 	government Uninhabited
 	attributes twilight
 	habitable 450
@@ -1828,7 +1828,7 @@ system Sail
 system Interlude
 	pos -22.147 951.674
 	government Avgi
-	attributes avgi dissonance "ember waste" "tangled shroud" "multi-star" "bright star" "giant star" "notable star"
+	attributes avgi "bright star" dissonance "ember waste" "giant star" multi-star "notable star" "tangled shroud"
 	habitable 7906.478
 	belt 3024 10
 	haze _menu/haze-67
@@ -2058,7 +2058,7 @@ system Vorpal
 system Concerto
 	pos -170.282 1022.167
 	government Avgi
-	attributes avgi consonance "bright star" "notable star" "tangled shroud"
+	attributes avgi "bright star" consonance "notable star" "tangled shroud"
 	habitable 3650
 	belt 4475 10
 	haze _menu/haze-67
@@ -2198,7 +2198,7 @@ system Cusp
 			period 244.909
 
 system Gossamer
-	pos -742.496 802.383
+	pos -755.943 796.685
 	government Uninhabited
 	attributes "smoke ring" twilight
 	habitable 2560
@@ -2248,7 +2248,7 @@ system Gossamer
 system Prelude
 	pos -123.092 859.188
 	government Avgi
-	attributes avgi dissonance "ember waste" "tangled shroud" "giant star" "notable star"
+	attributes avgi dissonance "ember waste" "giant star" "notable star" "tangled shroud"
 	habitable 2300
 	belt 1664 5
 	haze _menu/haze-red
@@ -2388,7 +2388,7 @@ system Symphony
 		period 21526.164
 
 system Whirlwind
-	pos -655.138 852.74
+	pos -669.44 846.643
 	government Uninhabited
 	attributes twilight
 	habitable 2267.708
@@ -2535,7 +2535,7 @@ system Billow
 system Pinnacle
 	pos -250.748 693.704
 	government Uninhabited
-	attributes twilight "bright star" "notable star"
+	attributes "bright star" "notable star" twilight
 	habitable 3650
 	belt 1764 6
 	haze _menu/haze-twilight
@@ -2819,7 +2819,7 @@ system Corporeal
 			period 255.225
 
 system Caesura
-	pos -735.666 834.642
+	pos -705.694 862.904
 	government Uninhabited
 	attributes "black hole" "notable star" twilight
 	habitable 3450
@@ -2834,7 +2834,7 @@ system Caesura
 system Arche
 	pos -356.501 878.946
 	government Uninhabited
-	attributes twilight "bright star" multi-star "notable star"
+	attributes "bright star" multi-star "notable star" twilight
 	habitable 14197.215
 	belt 1808 2
 	belt 2396 8
@@ -2905,7 +2905,7 @@ system Arche
 			period 237.628
 
 system Twirl
-	pos -580.387 959.49
+	pos -581.755 958.35
 	government Uninhabited
 	attributes neutron "notable star" twilight
 	habitable 100
@@ -3040,7 +3040,7 @@ system Tailwind
 		period 1494.459
 
 system Wave
-	pos -560.434 833.851
+	pos -561.915 830.66
 	government Uninhabited
 	attributes twilight
 	habitable 550
@@ -3106,7 +3106,7 @@ system Wave
 system Tide
 	pos -468.313 603.86
 	government Uninhabited
-	attributes twilight "bright star" "giant star" "notable star"
+	attributes "bright star" "giant star" "notable star" twilight
 	habitable 7900
 	belt 1927 3
 	haze _menu/haze-twilight
@@ -3155,7 +3155,7 @@ system Tide
 			period 221.64
 
 system Lift
-	pos -539.51 903.082
+	pos -541.561 902.854
 	government Uninhabited
 	attributes twilight
 	habitable 230
@@ -3342,7 +3342,7 @@ system Evanescence
 		period 2949.062
 
 system Torrent
-	pos -600.318 868.326
+	pos -597.925 864.223
 	government Uninhabited
 	attributes "bright star" "giant star" multi-star "notable star" twilight
 	habitable 2654.36
@@ -3434,7 +3434,7 @@ system Rivulet
 		period 7194.41
 
 system Gale
-	pos -631.644 900.461
+	pos -640.875 886.786
 	government Uninhabited
 	attributes twilight
 	habitable 1080
@@ -3474,7 +3474,7 @@ system Gale
 		period 2307.861
 
 system Current
-	pos -606.051 822.319
+	pos -607.077 818.9
 	government Uninhabited
 	habitable 1250
 	belt 1923 9
@@ -3526,7 +3526,7 @@ system Current
 			period 299.01
 
 system Glide
-	pos -547.052 881.099
+	pos -547.736 880.073
 	government Uninhabited
 	attributes twilight
 	habitable 1328.533
@@ -3854,7 +3854,7 @@ system "#a6d944"
 		distance 2189
 		period 2701.25
 	object
-		sprite planet/gateway-active
+		sprite planet/gas4
 		distance 17942
 		period 63387.314
 		object
@@ -4563,49 +4563,6 @@ system "#2b5d50"
 	object
 		sprite planet/browndwarf-l-rouge
 		period 204.702
-
-system "#a6d944"
-	pos -9.278 907.623
-	government Uninhabited
-	attributes "ember waste" hiders "tangled shroud"
-	habitable 230
-	belt 1601 6
-	belt 1914
-	haze _menu/haze-red
-	link "#2b5d50"
-	link "#8b808b"
-	link "#acf472"
-	link "#f9f9f9"
-	asteroids "small rock" 5 2.013
-	asteroids "large rock" 2 1.877
-	asteroids "small metal" 1 1.986
-	asteroids "medium metal" 3 1.55
-	minables neodymium 4 3.253
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 25000
-	object
-		sprite star/m3
-		period 10
-	object
-		sprite planet/lava6
-		distance 862
-		period 667.509
-	object
-		sprite planet/gas5-b
-		distance 2189
-		period 2701.25
-	object
-		sprite planet/gateway-active
-		distance 17942
-		period 63387.314
-		object
-			sprite planet/rock14-b
-			distance 241
-			period 97.914
-		object
-			sprite planet/tethys
-			distance 406
-			period 503.829
 
 system "#e0bef3"
 	pos -401.749 890.619
