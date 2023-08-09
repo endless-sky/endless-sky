@@ -56,7 +56,7 @@ government "Avgi"
 		"Avgi (Twilight Guard)" 0.5
 		"Avgi (Dissonance)" 0.01
 		"Avgi (Dissonance Aggressive)" -0.05
-		"Ka'sei (Twilight)" -0.1
+		"Aberrant" -0.1
 	bribe 0.3
 	"friendly hail" "friendly avgi"
 	"friendly disabled hail" "friendly disabled avgi"
@@ -74,7 +74,7 @@ government "Avgi (Consonance)"
 		"Avgi" 1
 		"Avgi (Dissonance)" 0.1
 		"Avgi (Dissonance Aggressive)" -0.05
-		"Ka'sei (Twilight)" -0.1
+		"Aberrant" -0.1
 	"penalty for"
 		disable 0.3
 		board 0.2
@@ -98,7 +98,7 @@ government "Avgi (Twilight Guard)"
 		"Avgi (Consonance) 1"
 		"Avgi (Dissonance)" 0.1
 		"Avgi (Dissonance Aggressive)" -0.05
-		"Ka'sei (Twilight)" -0.1
+		"Aberrant" -0.1
 	"penalty for"
 		disable 0.3
 		board 0.2
@@ -124,7 +124,7 @@ government "Avgi (Dissonance)"
 		"Avgi (Consonance)" 0.01
 		"Avgi (Twilight Guard)" 0.01
 		"Avgi (Dissonance Aggressive)" 0.01
-		"Ka'sei (Twilight)" -0.01
+		"Aberrant" -0.01
 	"penalty for"
 		scan 0.1
 	"custom penalties for"
@@ -147,7 +147,7 @@ government "Avgi (Dissonance Aggressive)"
 		"Avgi (Consonance)" -0.05
 		"Avgi (Twilight Guard)" -0.05
 		"Avgi (Dissonance)" 1
-		"Ka'sei (Twilight)" -0.01
+		"Aberrant" -0.01
 	"penalty for"
 		scan 0.1
 	bribe 0.3

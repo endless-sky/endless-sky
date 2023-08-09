@@ -878,10 +878,10 @@ outfit "Spectrometer Array"
 	thumbnail
 	"mass" 6
 	"outfit space" -12
-	"outfit scan power" 30
-	"outfit scan speed" 9
-	"cargo scan power" 12
-	"cargo scan speed" 9
+	"outfit scan power" 42
+	"outfit scan efficiency" 18
+	"cargo scan power" 24
+	"cargo scan efficiency" 18
 	"asteroid scan power" 144
 	"energy consumption" 0.03
 	description "This sensor array features a set of sensitive spectrometers capable of analyzing the spectral signatures of materials in order to determine their composition. A small ultraviolet laser can speed this process up for asteroids by vaporizing a small surface sample, making the spectral lines much more visibile, but is sadly useless against shielded ships and their internal systems."
@@ -964,7 +964,7 @@ outfit "Photoelectric Scales"
 	description "Photovoltaic Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star. However, they also tend to increase the amount of heat absorbed from the local star."
 
 
-outfit "Particle Bed Reactor"
+outfit "Lantern Fission Core"
 	category "Power"
 	cost 1200000
 	thumbnail
@@ -972,7 +972,7 @@ outfit "Particle Bed Reactor"
 	"outfit space" -24
 	"energy generation" 3.6
 	"heat generation" 5.4
-	description "The Particle Bed is an extremely compact dusty plasma fission reactor designed to fit even on large fighters or interceptors. By suspending uranium dust in a hydrogen plasma, which is in turn contained by a magnetic field, the reactor can achieve core temperatures high enough to make it efficient for its size."
+	description "The Lantern is an extremely compact dusty plasma fission reactor designed to fit even on large fighters or interceptors. By suspending uranium dust in a hydrogen plasma, which is in turn contained by a magnetic field, the reactor can achieve core temperatures high enough to make it efficient for its size."
 
 
 outfit "Luminous Fusion Core"
@@ -984,6 +984,7 @@ outfit "Luminous Fusion Core"
 	"energy generation" 12
 	"heat generation" 30
 	"fuel consumption" 0.0033
+	description "Balance TBD"
 	
 
 outfit "Brilliant Fusion Core"
@@ -995,7 +996,8 @@ outfit "Brilliant Fusion Core"
 	"energy generation" 21
 	"heat generation" 54
 	"fuel consumption" 0.0042
-	
+	description "Balance TBD"
+
 
 outfit "Radiant Fusion Core"
 	category "Power"
@@ -1006,7 +1008,8 @@ outfit "Radiant Fusion Core"
 	"energy generation" 36
 	"heat generation" 96
 	"fuel consumption" 0.0066
-	
+	description "Balance TBD"
+
 
 outfit "Stellar Fusion Core"
 	category "Power"
@@ -1017,6 +1020,7 @@ outfit "Stellar Fusion Core"
 	"energy generation" 54
 	"heat generation" 156
 	"fuel consumption" 0.009
+	description "Balance TBD"
 
 
 outfit "Ultracapacitor Cell"
@@ -1097,6 +1101,7 @@ outfit "Z-360 Fusion Torch"
 	"afterburner fuel" 0.24
 	"afterburner heat" -9
 	"afterburner effect" "fusion afterburner"
+	description "Balance TBD"
 
 
 outfit "Z-600 Fusion Torch"
@@ -1119,6 +1124,7 @@ outfit "Z-600 Fusion Torch"
 	"afterburner fuel" 0.24
 	"afterburner heat" -9
 	"afterburner effect" "fusion afterburner"
+	description "Balance TBD"
 
 
 outfit "Z-960 Fusion Torch"
@@ -1141,6 +1147,7 @@ outfit "Z-960 Fusion Torch"
 	"afterburner fuel" 0.24
 	"afterburner heat" -9
 	"afterburner effect" "fusion afterburner"
+	description "Balance TBD"
 
 
 effect "fusion afterburner"
@@ -1171,6 +1178,7 @@ outfit "XY-180 Radial Thrusters"
 		"frame rate" 30
 		scale 0.25
 	"reverse flare sound" "plasma small"
+	description "Balance TBD"
 
 
 outfit "XY-420 Radial Thrusters"
@@ -1195,6 +1203,7 @@ outfit "XY-420 Radial Thrusters"
 		"frame rate" 30
 		scale 0.5
 	"reverse flare sound" "plasma small"
+	description "Balance TBD"
 
 
 outfit "XY-720 Radial Thrusters"
@@ -1219,6 +1228,7 @@ outfit "XY-720 Radial Thrusters"
 		"frame rate" 30
 		scale 0.75
 	"reverse flare sound" "plasma small"
+	description "Balance TBD"
 
 
 outfit "Beam Core Antimatter Torch"
@@ -1248,6 +1258,7 @@ outfit "Beam Core Antimatter Torch"
 	"reverse flare sprite" "effect/avgi fusion flare/long"
 		"frame rate" 30
 	"reverse flare sound" "remnant afterburner"
+	description "Balance TBD"
 
 
 # Special:

@@ -4527,6 +4527,7 @@ system "#46d125"
 	link "#08078a"
 	link "#100b14"
 	link "#384e08"
+	link "#8b808b"
 	asteroids "small rock" 6 1.054
 	asteroids "small metal" 4 1.496
 	hazard "Ember Waste Base Heat" 100
@@ -4787,6 +4788,7 @@ system "#8b808b"
 	belt 2084 8
 	haze _menu/haze-red
 	link "#100b14"
+	link "#46d125"
 	link "#a6d944"
 	link "#d2e5ec"
 	link Interlude

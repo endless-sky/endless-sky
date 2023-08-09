@@ -50,7 +50,7 @@ planet Sela
 	attributes avgi moon "ice moon" frozen uninhabited
 	landscape land/snow23
 	description "A former planetoid captured into Aviskir's orbit only a few hundred million years ago, Sela is unusual for large moons in that it is not tidally locked, instead having a rapid rotational period of only forty-two hours. Almost one third of the moon is covered in a glassy plain of ice, smoothed by seasonal melting and refreezing. This is thought to have been deposited by a cometary impact relatively recently, and has been steadily sublimating away into space ever since."
-	description "An Avgi first set foot on another world here, carried by a ship driven by nuclear pulsed propulsion. Driving a ship by detonating small nuclear explosives behind a pusher plate is seen as insanity by most species, but for the Avgi it was their first stepping stone in the colonization of their home system."
+	description "An Avgi first set foot on another world here, carried by a ship driven by nuclear pulsed propulsion. Driving a ship by detonating small nuclear explosives behind a pusher plate would be seen as insanity by most species, but for the Avgi it was their first stepping stone in the colonization of their home system."
 	government Uninhabited
 
 
@@ -393,7 +393,7 @@ planet "Peripheria"
 	spaceport "The usual amenities often located around a spaceport fill a dense ring of shops, restaurants, and other services surrounding the spaceport, but many in the Assembly are considering expanding the spaceport outwards at their expense."
 	government "Avgi (Consonance)"
 	security 0.5
-	"required reputation" 5
+	"required reputation" 10
 
 
 planet "Napigeo Station"
@@ -402,6 +402,7 @@ planet "Napigeo Station"
 	description `	Napigeo Station is a dedicated shipyard, with dozens of modular drydocks capable of quickly building and repairing ships.`
 	"required reputation" 100
 	government "Avgi (Consonance)"
+	"required reputation" 10
 
 
 planet Weledos
@@ -428,6 +429,7 @@ planet "Tilo Station"
 	description `	As a result, the station's crew has been thoroughly penetrated by those with sympathies to the Dissonance.`
 	"required reputation" 10
 	government "Avgi (Consonance)"
+	"required reputation" 10
 
 
 
@@ -437,6 +439,7 @@ planet Trojan
 	description "This refueling depot services asteroid mining ships that target the trojan asteroids at the L4 and L5 points between Concerto and its largest gas giant."
 	"required reputation" 10
 	government "Avgi (Consonance)"
+	"required reputation" 10
 
 planet "Aktina Cylinder"
 	attributes avgi "avgi diaspora" station uninhabited
@@ -444,12 +447,14 @@ planet "Aktina Cylinder"
 	description "Incomplete O'Neil cylinder"
 	"required reputation" 10
 	government "Avgi (Consonance)"
+	"required reputation" 10
 
 planet "Outpost Enka"
 	attributes avgi "avgi diaspora" dissonance station asteroid
 	description "WIP"
 	"required reputation" 10
 	government "Avgi (Dissonance)"
+	"required reputation" 10
 
 
 
@@ -458,6 +463,7 @@ planet "Outpost Tekis"
 	description "WIP"
 	"required reputation" 10
 	government "Avgi (Dissonance)"
+	"required reputation" 10
 
 
 planet "Outpost Lito"
@@ -465,6 +471,7 @@ planet "Outpost Lito"
 	description "WIP"
 	"required reputation" 10
 	government "Avgi (Dissonance)"
+	"required reputation" 10
 
 	
 

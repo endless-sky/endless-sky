@@ -244,7 +244,9 @@ ship "Melodikos"
 	explode "medium explosion" 15
 	"final explode" "final explosion large"
 
-	description "The Melodikos is a large passenger transport built on the same propulsion and structural frame as the Koryfi, but with a significantly larger centrifuge habitat and a vastly enlarged solar array."
+	description "The Melodikos is a large passenger transport built on the same propulsion and structural frame as the Koryfi and Avlaki, but with a vastly enlarged solar array, as well as a spacious centrifuge habitat. Once used as an interplanetary cycler, it is now used for mass transit between the stars."
+	description "While not as modular as the Koryfi and Avlaki designs, the Melodikos shares the same solar array and structural frame as the Harmonikos. Refits to swap the centrifuge for a set of cargo pods are uncommon due to the work involved, but still possible."
+	description "While its standard set of magnetoplasmadynamic thrusters give it an acceleration generously described as sluggish, the Melodikos' constant thrust flight profile allows it to reach an impressive cruising velocity given enough time."
 
 
 # Freighters
@@ -281,7 +283,7 @@ ship "Avlaki"
 			"Ultracapacitor Bank"
 			"Diffuse Deflector"
 
-			"Magnetoplasma Drive"
+			"Magnetoplasma Drive" 2
 			"Hyperdrive"
 
 	gun 0 -27
@@ -492,7 +494,9 @@ ship "Harmonikos"
 	explode "medium explosion" 15
 	"final explode" "final explosion large"
 
-	description "Harmonikos"
+	description "The Harmonikos is a large passenger transport built on the same propulsion and structural frame as the Koryfi and Avlaki, but with a vastly enlarged solar array, as well as a huge assembly of cargo modules towed behind the main truss. Once used as an interplanetary cycler, it is now used for mass transit between the stars."
+	description "While not as modular as the Koryfi and Avlaki designs, the Melodikos shares the same solar array and structural frame as the Harmonikos. Refits to swap the centrifuge for a set of cargo pods are uncommon due to the work involved, but still possible."
+	description "While its standard set of magnetoplasmadynamic thrusters give it an acceleration generously described as sluggish, the Melodikos' constant thrust flight profile allows it to reach an impressive cruising velocity given enough time."
 
 
 ship "Phononos"
@@ -581,8 +585,7 @@ ship "Frequentia"
 			"hull damage" 1200
 			"hit force" 2400
 	outfits
-		"Pebble Bed Cell"
-		"Concentrating Solar Cell" 3
+		"Lantern Fission Core"
 		"Ultracapacitor Cell" 3
 		"Multispectral Scanner"
 		"Cryogenic Deuterium Tank" 6
@@ -619,7 +622,7 @@ ship "Frequentia"
 	explode "large explosion" 12
 	"final explode" "final explosion medium"
 
-	description "Frequentia-class Freighter"
+	description "The Frequentia-class Freighter is most commonly found serving as a fuel tender for ships in larger fleets, taking advantage of its large (and ungainly) cargo receptacle to store enough cryogenic deuterium fuel to satisfy a small fleet's needs."
 
 
 # Utility
@@ -712,7 +715,9 @@ ship "Undsyni"
 	explode "huge explosion" 9
 	"final explode" "final explosion large"
 
-	description "Undsyni-class Auxiliary Freighter"
+	description "The Undsyni-class Auxiliary Freighter is not just a bulk freighter, but one built to be large and strong enough to hold its own against attacks from smaller, more militarized vessels. While not quite as payload efficient as more spindly ships such as the Avlaki and Harmonikos, the Undsyni's resilience makes it much more survivable against attacks, with its fusion torch giving it the acceleration to both evade enemies and minimize travel times."
+	description "Even before the Incursion, the Undsyni's strong hull and internal outfit capacity made it a popular option as a capital warship for groups who could not gain access to specialized warships."
+	description "A reinforced spine running the length of the ship allows it to fit a huge Dipole Ramscoop, capable of bearing the extreme stresses the ramscoop's magnetic field puts on its superconducting magnets. In this configuration, a tanker Undsyni can supply the fuel needs of an entire fleetgroup across dozens of systems."
 
 
 ship "Polari"
@@ -733,6 +738,7 @@ ship "Polari"
 		"outfit space" 294
 		"weapon capacity" 36
 		"engine capacity" 60
+		"asteroid scan power" 72
 		"anchor point" 1
 		weapon
 			"blast radius" 90
@@ -743,7 +749,7 @@ ship "Polari"
 		"Phased Array Laser (Blue)"
 		"Phased Array Laser (Green)"
 
-		"Particle Bed Reactor"
+		"Lantern Fission Core"
 		"Photoelectric Scales"
 		"Ultracapacitor Cell" 3
 		"Diffuse Deflector"
@@ -787,9 +793,10 @@ ship "Polari"
 	leak "flame" 30 60
 	explode "tiny explosion" 12
 	explode "small explosion" 9
-	"final explode" "final explosion small"
+	"final explode" "final explosion medium"
 
-	description "Polari-class Scout"
+	description "The Polari-class Scout is a legacy design that has managed to remain relevant in the current era by virtue of fulfilling a role historically not requiring much in the way of combat power. A specialized science ship, it is fitted with a spacious laboratory for analyzing samples and processing data, as well as an extensive suite of sensor arrays for recording observations. A pair of bays can deploy Optikon sensor drones, while an external mount is designed to hold an Akoustiki excursion vehicle for piloted sample gathering operations."
+	description "Desptie this versatility, the contested battlespace of the post-Incursion Avgi cluster is one in which the Polari is simply not as capable in. As science crews are increasingly asked to lead risky scouting expeditions back to the Avgi homeworld, demands for a newer, more survivable science ship routinely make their way to the Twilight Guard."
 
 
 ship "Entasi"
@@ -913,11 +920,12 @@ ship "Entasi"
 	explode "tiny explosion" 15
 	explode "small explosion" 12
 	explode "medium explosion" 9
-	"final explode" "final explosion medium"
+	"final explode" "final explosion large"
 
-	description "The Entasi is a mid-sized "
+	description "The Entasi is a mid-sized mining vessel powered by a pair of solar thermal generators. With the power and weapons capacity available to support laser mining weapons, the Entasi is able to quickly and efficiently break asteroids, whose mineral contents are then collected by the significant fleet of Sonikos cargo drones it can carry into an asteroid field."
 
-ship "Tachytia"
+
+ship "Modified Tachytia"
 	sprite "ship/avgi tachytia/tachytia"
 		"frame rate" 15
 	thumbnail "thumbnail/tachytia"
@@ -933,9 +941,10 @@ ship "Tachytia"
 		"heat dissipation" 1.5
 		"fuel capacity" 60000
 		"cargo space" 1200
-		"outfit space" 900
+		"outfit space" 1200
 		"weapon capacity" 180
 		"engine capacity" 420
+		"spinal mount"
 		"anchor point" 6
 		weapon
 			"blast radius" 900
@@ -943,17 +952,22 @@ ship "Tachytia"
 			"hull damage" 14400
 			"hit force" 9000
 	outfits
-		"Phased Array Laser (Blue)" 2
+		"Phased Array Laser (Blue)" 6
 		"Phased Array Laser (Green)" 3
 		"Dipole Ramscoop"
 		
+		"Stellar Fusion Core"
 		"Radiant Fusion Core"
-		"Ultracapacitor Bank" 2
-		"Specular Deflector"
-		"Optical Lasing Generator" 2
+		"Photoelectric Scales"
+		"Ultracapacitor Bank" 6
+		"Specular Deflector" 2
+		"Optical Lasing Generator" 4
 		"Multispectral Scanner" 9
 		"Spectrometer Array" 9
-		"Electrostatic Ramscoop" 6
+		"Electrostatic Ramscoop" 3
+		"Concealment Scales" 3
+		"Nanoceramic Scales"
+		"Radiative Scales"
 		
 		"Beam Core Antimatter Torch"
 		"Hyperdrive"
@@ -962,10 +976,12 @@ ship "Tachytia"
 	turret -36 183 "Phased Array Laser (Blue)"
 	turret -44 354 "Phased Array Laser (Blue)"
 	turret 44 354 "Phased Array Laser (Blue)"
+	turret -28.5 -333 "Phased Array Laser (Blue)"
+	turret 28.5 -333 "Phased Array Laser (Blue)"
 	turret -12 375 "Phased Array Laser (Green)"
 	turret 12 375 "Phased Array Laser (Green)"
 	turret 0 480 "Phased Array Laser (Green)"
-	gun 0 -384
+	gun 0 -384 "Dipole Ramscoop"
 
 	bay "Drone" -18 420
 	bay "Drone" 18 420
@@ -984,16 +1000,16 @@ ship "Tachytia"
 	bay "Fighter" -21 459
 	bay "Fighter" 21 459
 
-	engine -207 -489
+	engine -207 -483
 		angle 9
 		zoom 2
-	engine 207 -489
+	engine 207 -483
 		angle -9
 		zoom 2
-	engine -186 -456
+	engine -186 -453
 		angle 9
 		zoom 2
-	engine 186 -456
+	engine 186 -453
 		angle -9
 		zoom 2
 
@@ -1008,38 +1024,8 @@ ship "Tachytia"
 	"final explode" "nuke explosion" 3
 	"final explode" "nuke residue fast" 90
 
-	description "The Tachytia was once "
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	description "This was once an Avgi sublight starship, one of the last models built before the discovery of the hyperdrive. Most starships around this period used ram augmented fusion drives to reach cruising speeds of up to 0.25c, but the Tachytia class was designed to reach a velocity of 0.4c with an antimatter fuel source to ignite propellant gathered with its huge ramscoop."
+	description "This particular ship was never launched on its mission, commissioned just before the hyperdrive made it obsolete. Now, it has been extensively modified by removing many of its propellant tanks, replacing them with a hyperdrive, additional equipment spaces, and several docking bays. The cryosleep bay has also been subtituted for spacious habitatation cylinders, making this a true city ship."
 
 
 
@@ -1073,7 +1059,7 @@ ship "Tremoros"
 		"Speckle Railgun" 4
 		"Speck Round" 14400
 		
-		"Particle Bed Reactor"
+		"Lantern Fission Core"
 		"Ultracapacitor Cell" 3
 		"Diffuse Deflector"
 		"Multispectral Scanner"
@@ -1111,7 +1097,8 @@ ship "Tremoros"
 	explode "small explosion" 9
 	"final explode" "final explosion small"
 
-	description "Tremoros-class Interceptor"
+	description "The Tremoros-class Interceptor is a small autonomous ship designed to support patrol and interdiction missions. With an emphasis on speed, it can rocket past most adversaries even as it brings its guns to bear, making it exceedingly difficult to hit."
+	description "The Tremoros has also seen use as an escort for smaller merchant convoys, with the ability to intercept any enemies that might pose a threat before they can come within range of vulnerable civilian ships."
 
 
 # Light Warships
@@ -1193,7 +1180,7 @@ ship "Prismaios"
 	explode "medium explosion" 15
 	"final explode" "final explosion medium"
 
-	description "The Prismaios-class Frigate is a recent design, hailed by the Spaceguard as a highly successful addition to Avgi strike fleets. New construction techniques allowed for unprecedented gains in structural integrity in a lightweight frame, allowing the frigate to serve on the front lines against the Aberrant as a fast, versatile, multipurpose warship."
+	description "The Prismaios-class Frigate is a recent, streamlined design, praised by many Twilight Guard captains as a highly successful addition to Avgi strike fleets. New construction techniques allow for unprecedented gains in structural integrity for such a lightweight frame, allowing the frigate to serve on the front lines against the Aberrant as a fast, versatile, multipurpose warship."
 
 
 ship "Interferos"
@@ -1273,7 +1260,7 @@ ship "Interferos"
 	explode "medium explosion" 6
 	"final explode" "final explosion medium"
 
-	description "Interferos-class Frigate"
+	description "The Interferos-class Frigate is an autonomous support ship, designed to be easy to build and disposable enough for mass production. To free up front line warships from having to escort merchant convoys in the Tangles, the Consonance commissioned this design with the intent of licensing its sale to independent merchant captains. It has since become popular due to its impressively large armament, though its attrition rates leave something to be desired."
 
 
 # Medium Warships
@@ -1373,7 +1360,7 @@ ship "Diaspersi"
 	explode "large explosion" 9
 	"final explode" "final explosion medium"
 
-	description "The Diaspersi-class Escort Carrier"
+	description "The Diaspersi-class Escort Carrier is a light carrier capable of providing carrier operations support to smaller fleets, while also being capable of independent strike missions with minimal support. Seen escorting large merchant convoys and small Guard fleets alike, the Diaspersi can support two wings of combat drones as well as a single wing of larger fighters."
 
 
 ship "Difraktos"
@@ -1383,11 +1370,11 @@ ship "Difraktos"
 	attributes
 		category "Medium Warship"
 		"cost" 3600000
-		"shields" 4200
-		"hull" 18000
+		"shields" 6000
+		"hull" 18600
 		"required crew" 15
 		"bunks" 42
-		"mass" 240
+		"mass" 270
 		"drag" 1.8
 		"heat dissipation" 2.1
 		"fuel capacity" 1800
@@ -1410,7 +1397,7 @@ ship "Difraktos"
 		"Sidereal Missile" 324
 
 		"Brilliant Fusion Core"
-		"Pebble Bed Cell"
+		"Lantern Fission Core"
 		"Ultracapacitor Bank"
 		"Ultracapacitor Cell"
 		"Diffuse Deflector"
@@ -1467,7 +1454,7 @@ ship "Difraktos"
 	explode "large explosion" 12
 	"final explode" "final explosion large"
 
-	description "The Diaspersi-class Cruiser is a versatile platform capable of serving in configurations from a high-performance kinetic weapon battlecruiser to a guided missile cruiser, or anything in between."
+	description "The Diaspersi-class Cruiser is a versatile platform capable of serving in configurations from a high-performance kinetic weapon battlecruiser to a guided missile cruiser, or anything in between. Its powerful torch drive is used to push its heavily armored hull, rather than for speed, giving the Diaspersi good survivability even in close range brawls."
 
 
 
@@ -1558,6 +1545,7 @@ ship "Refraktos"
 
 	description "The Refraktos-class Laserstar is a relatively recent, post-Diaspora design with a single focus: directed energy weapons. While its armor and shielding systems are light for its size, its expansive radiators can support the thermal loads of a staggering array of laser weapons, both offensive and defensive, allowing it to destroy both missiles and small ships from a vast distance."
 	description "A long truss running the length of the ship is built to fit an impressively large mirror-cell fusion torch, giving the Refraktos the mobility needed to evade opponents until they are reduced to hot vapor."
+	description "Due to the anemic damage output of Avgi laser weapons compared to their kinetic weapons and missiles, the Refraktos is most often seen in a support role, providing antimissile coverage to entire fleets."
 
 
 # Heavy Warships
@@ -1684,7 +1672,7 @@ ship "Atenuatia"
 	explode "huge explosion" 6
 	"final explode" "final explosion large"
 
-	description "The Atenuatia is"
+	description "The Atenuatia is an Avgi fleet carrier, a capital ship that makes up the centerpiece of their battlefleets. With six wings of combat drones and two wings of bombers, an Atenuatia can bring forth an astounding amount of firepower. Carrying this arsenal of fighters has its cost, however, and the Atenuatia can carry relayively few heavy weapons for its size."
 
 
 # Fighters
@@ -1778,8 +1766,8 @@ ship "Photikon"
 			"hull damage" 360
 			"hit force" 180
 	outfits
-		"Equinox Torpedo Pylon" 2
-		"Equinox Torpedo" 2
+		"Equinox Torpedo Pylon" 3
+		"Equinox Torpedo" 3
 		
 		"Concentrating Solar Array"
 		"Ultracapacitor Cell" 3
@@ -1815,6 +1803,7 @@ ship "Photikon"
 		right
 
 	gun -6 -30 "Equinox Torpedo Pylon"
+	gun 0 -30 "Equinox Torpedo Pylon"
 	gun 6 -30 "Equinox Torpedo Pylon"
 	turret 0 -33
 
@@ -1979,6 +1968,7 @@ ship "Optikon"
 		"fuel capacity" 100
 		"outfit space" 60
 		"engine capacity" 24
+		"atmosphere scan" 30
 		weapon
 			"blast radius" 9
 			"shield damage" 150
@@ -2052,6 +2042,6 @@ ship "Sonikis"
 	leak "leak" 30 60
 	explode "tiny explosion" 9
 
-	description "The Sonikis Utility Drone"
+	description "The Sonikis Utility Drone was built as a cheap interorbital cargo drone, designed to carry modular cargo containers between stations and small moons. It is now commonly used by large freighters to assist in moving cargo on and offboard ship, as well as to collect ores while asteroid mining."
 	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
