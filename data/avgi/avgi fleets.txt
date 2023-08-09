@@ -226,9 +226,6 @@ fleet "Avgi Fleetgroup"
 		"Prismaios" 2
 		"Tremoros" 3
 
-fleet "Avgi Logistics"
-
-
 
 fleet "Small Avgi Merchants"
 	government "Avgi"

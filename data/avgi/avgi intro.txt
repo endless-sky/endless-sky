@@ -7,7 +7,6 @@ mission "First Contact: Avgi 1"
 	destination "Peripheria"
 	on offer
 		conversation
-			`Test`
 			branch aviskir
 				has "flagship planet: Aviskir"
 			branch coreworld
@@ -27,17 +26,17 @@ mission "First Contact: Avgi 1"
 				`	(Attempt to land)`
 					goto explode
 					to display
-						"flagship attribute: shields" + "flagship attribute: hull" <= 60000 * 1000
+						"flagship attribute: shields" + "flagship attribute: hull" <= 30000 * 1000
 				`	(Attempt to land)`
 					goto hit
 					to display
-						"flagship attribute: shields" + "flagship attribute: hull" > 60000 * 1000	
-						"flagship attribute: shields" + "flagship attribute: hull" < 120000 * 1000
+						"flagship attribute: shields" + "flagship attribute: hull" > 30000 * 1000	
+						"flagship attribute: shields" + "flagship attribute: hull" < 90000 * 1000
 				`	(Attempt to land)`
 					goto scratched
 					to display
-							"flagship attribute: shields" + "flagship attribute: hull" >= 120000 * 1000
-				`(Move to a higher orbit)`
+							"flagship attribute: shields" + "flagship attribute: hull" >= 90000 * 1000
+				`	(Move to a higher orbit)`
 					goto orbit
 
 			label coreworld
@@ -49,17 +48,17 @@ mission "First Contact: Avgi 1"
 				`	(Attempt to land)`
 					goto explode
 					to display
-						"flagship attribute: shields" + "flagship attribute: hull" <= 40000 * 1000
+						"flagship attribute: shields" + "flagship attribute: hull" <= 18000 * 1000
 				`	(Attempt to land)`
 					goto hit
 					to display
-						"flagship attribute: shields" + "flagship attribute: hull" > 40000 * 1000	
-						"flagship attribute: shields" + "flagship attribute: hull" < 80000 * 1000
+						"flagship attribute: shields" + "flagship attribute: hull" > 18000 * 1000	
+						"flagship attribute: shields" + "flagship attribute: hull" < 60000 * 1000
 				`	(Attempt to land)`
 					goto scratched
 					to display
-							"flagship attribute: shields" + "flagship attribute: hull" >= 80000 * 1000
-				`(Move to a higher orbit)`
+							"flagship attribute: shields" + "flagship attribute: hull" >= 60000 * 1000
+				`	(Move to a higher orbit)`
 					goto orbit
 
 			label explode
@@ -75,7 +74,7 @@ mission "First Contact: Avgi 1"
 				goto orbit
 
 			label uninhabited
-			`While this world is lifeless, you can clearly make out signs that it has been explored, and even exploited, by an alien civilization. However, the signs also show that something disastrous happened here. Ruined satellites litter low orbit, and you can detect the broken remnants of surface outposts smeared across the land below. You take the <ship> in for a close pass over one of the structures, and can see small craters and patches of glassed terrain scattered around it.`
+			`While this world is unsettled, you can clearly make out signs that it has been explored, and even exploited, by an alien civilization. However, the signs also show that something disastrous happened here. Ruined satellites litter low orbit, and you can detect the broken remnants of surface outposts smeared across the land below. You take the <ship> in for a close pass over one of the structures, and can see small craters and patches of glassed terrain scattered around it.`
 				goto orbit
 
 			label orbit
@@ -103,15 +102,16 @@ mission "First Contact: Avgi 1"
 			`	You aren't quite sure how to proceed in communicating with a completely unknown species, but you transmit a standard hail, if only to assure the alien vessel that you're trying to signal it.`
 			`	To your shock, however, the alien vessel responds after only a few minutes, not only in the same frequency band, but with an encoding your ship's computer is able to interpret: a standard human data format, similar to the one you've just sent. Either these aliens have an astonishing ability to decipher transmissions, or they have somehow encountered humanity before.`
 			`The message is short and direct:`
-			`	"Salutations. I am of the Avgi. You human, question? Important. You will follow. This space, Twilight, not safe. You have hyperdrive, correct? Emphasis. Space we will travel is unstable, a maze. Follow closely and be careful."`
-			`	The message includes an alien-looking star chart, pointing to a system far to the south. Something appears to have been lost in translation, as the hyperlanes leading there are mostly unmarked, labeled as "perturbed," whatever that means. Just as you are still processing first contact with an alien civilization, a group of the same ships that attacked you earlier jump into the system.`
-				launch
+				goto transmission
 
 			label prime
 			`	You can't expect a new alien species to be able to decode your transmissions, let alone understand your language, so you transmit a short list of prime numbers via simple amplitude modulated signals, if only to assure the alien vessel that you're attempting to communicate`
 			`	To your shock, however, the alien vessel interrupts you just as you send the number "37", with a transmission not only in the same frequency band, but with an encoding your ship's computer is able to interpret: a standard human data format, similar to the one you've just sent. They must have somehow encountered humanity before.`
 			`The message is short and direct:`
-			`	"Salutations. I am of the Avgi. You are human, question? Important. This space is not safe. You must follow. Emphasis, we will travel through unstable space, mazelike. Follow closely and be careful."`
+				goto transmission
+
+			label transmission
+			`	"Salutations. I am of the Avgi. You human, question? Important. You will follow. This space, Twilight, not safe. You have hyperdrive, correct? Emphasis. Space we will travel is unstable, a maze. Follow closely and be careful."`
 			`	The message includes an alien-looking star chart, pointing to a system far to the south. Something appears to have been lost in translation, as the hyperlanes leading there are mostly unmarked, labeled as "perturbed," whatever that means. Just as you are still processing first contact with an alien civilization, a group of the same ships that attacked you earlier jump into the system.`
 				launch
 
@@ -130,10 +130,10 @@ mission "First Contact: Avgi 1"
 	npc save
 		government "Avgi (Twilight Guard)"
 		personality fleeing waiting escort
-		ship "Crest" "Forward Shores"
+		ship "Polari" "Forward Shores"
 	on accept
 		"reputation: Avgi" >?= 5
-		event "label twilight"
+		event "twilight label"
 		log "Factions" "Avgi" `Met an alien race calling themselves the "Avgi"`
 
 	on fail
@@ -145,7 +145,7 @@ mission "First Contact: Avgi 1"
 		"reputation: Avgi (Twilight Guard)" += 10
 		set "discovered avgi"
 		log "Factions" "Avgi" `The Avgi are a young race of dragonfly-like aliens inhabiting this part of the galaxy. Their homeworld and core space have been occupied by an alien invasion.`
-		event "label twilight"
+		event "tangled shroud label"
 		conversation
 			`After a confusing journey through the winding hyperlanes, you finally arrive at the system the alien marked on your map. You notice that your flight computer has failed to record the location of the systems you passed through, probably due to the same anomaly that made your ship almost completely blind within the region. This system appears unaffected however, and your computer is able to chart its position.`
 			`	The alien ship pings you, indicating to follow as it flies towards what looks to be a large inhabited station in the system. Shaped like a circular disk, a large cutout in the center exposes hundreds of docking bays and what looks to be a spaceport. As you watch, a trio of sleek looking fightercraft launch from the station and take up escort positions around you and the other alien ship you have followed all this way. You can only assume your escort is in communication with the station authorities.` 

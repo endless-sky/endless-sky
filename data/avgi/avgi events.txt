@@ -1,9 +1,7 @@
+event "twilight label"
+	galaxy "label twilight"
+		sprite label/twilight
 
-show twilight label
-
-
-show tangled shroud label
-
-
-set dissonance aggressive to be hostile
-
+event "tangled shroud label"
+	galaxy "label tangled shroud"
+		sprite label/tangled shroud

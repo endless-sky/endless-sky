@@ -95,7 +95,7 @@ government "Avgi (Twilight Guard)"
 	"player reputation" 1
 	"attitude toward"
 		"Avgi" 1
-		"Avgi (Consonance) 1"
+		"Avgi (Consonance)" 1
 		"Avgi (Dissonance)" 0.1
 		"Avgi (Dissonance Aggressive)" -0.05
 		"Aberrant" -0.1

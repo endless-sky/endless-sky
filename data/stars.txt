@@ -198,10 +198,9 @@ star "planet/rogue-radiating"
 star "star/neutron"
 	power 4
 	wind 0.4
-star star/magnetar
+star "star/magnetar"
 	power 4
 	wind 0.8
-	icon map/magnetar
 
 # Dwarves scaled like stars.
 star "star/o-dwarf"
