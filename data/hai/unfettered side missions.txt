@@ -217,7 +217,7 @@ mission "Hai Legacy 1"
 			`	"Of course, the ship is aged, and you should not expect the best price in a shipyard. Nevertheless, it is a fine vessel, capable of fighting, freighting, and mining. So, what do you say, <last>? This is the opportunity of a lifetime; they simply don't make ships like this anymore."`
 			label choice
 			choice
-				`	"I'll take that Anomal..ocaris?"`
+				`	"I'll take that... Anomalocaris?"`
 					goto take
 				`	"If you lack crew, who was piloting that Ladybug?"`
 					to display
