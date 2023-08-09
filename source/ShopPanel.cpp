@@ -1061,7 +1061,11 @@ bool ShopPanel::SetScrollToTop()
 	if(activePane == ShopPane::Info)
 		infobarScroll = 0.;
 	else if(activePane == ShopPane::Sidebar)
+	{
+		if(isDraggingShips)
+			dragStart.Y() += sidebarScroll;
 		sidebarScroll = 0.;
+	}
 	else
 		mainScroll = 0.;
 
@@ -1075,7 +1079,11 @@ bool ShopPanel::SetScrollToBottom()
 	if(activePane == ShopPane::Info)
 		infobarScroll = maxInfobarScroll;
 	else if(activePane == ShopPane::Sidebar)
+	{
+		if(isDraggingShips)
+			dragStart.Y() += sidebarScroll - maxSidebarScroll;
 		sidebarScroll = maxSidebarScroll;
+	}
 	else
 		mainScroll = maxMainScroll;
 
