@@ -202,24 +202,27 @@ mission "Hai Legacy 1"
 					goto foolish
 			`	As you try to react, the Hai closest to you firmly grabs your arm and shouts through the noise. "Wait! If this ship wanted to kill you, <last>, you would already be dead."`
 			label wait
-			`	You can barely hear anything over the sound of the engines as the ship proceeds to land on the beach. Suddenly, all is calm. They turn to you, surprisingly calm. "This ship means you no harm. This is a mighty relic of the past, from the times our Empire used to control the stars: an Anomalocaris!`
+			`	You can barely hear anything over the sound of the engines as the ship proceeds to land on the beach. Suddenly, all is calm. They turn to you, surprisingly calm. "This ship means you no harm."`
 			choice
 				`	(Say nothing.)`
 					goto explain
 				`	"Why didn't you say anything before that happened?"`
 			`	"We could have, but where's the fun in that? We wanted to see how you would react.`
 			label explain
+			`	"This ship is our... garantee that nothing goes wrong," says the second one.`
+			`	The first one speaks again, after taking you to a nearby cave to show you another ship. "We would never sell you that junk. This ship, however, is a mighty relic of the past, intended for war from the times our Empire used to control the stars: an Anomalocaris!`
+			scene "ship/hai anomalocaris"
 			`	"We have a proposition for you: should you agree to bring supplies to our brethren, the Unfettered Hai, we will sell you this ship for the modest price of 7.5 million credits, with the outfits that include 2 very powerful Korath Detainers! You may have heard of those in legends as weapons able to almost disable any engines to give you the speed advantage. You'll be able to recuperate the cost of this ship with ease by running more of these jobs, or bringing medical supplies to the Unfettered. This cargo is needed on short notice, on <destination>, and we lack the time and personnel to bring them.`
 			`	"Of course, the ship is aged, and you should not expect the best price in a shipyard. Nevertheless, it is a fine vessel, capable of fighting, freighting, and mining. So, what do you say, <last>? This is the opportunity of a lifetime; they simply don't make ships like this anymore."`
 			label choice
 			choice
 				`	"I'll take it!"`
 					goto take
-				`	"If you lack crew, who is piloting it now?"`
+				`	"If you lack crew, who was piloting that Ladybug?"`
 					to display
 						not "unfettered: pilot dialog"
 					goto pilot
-				`	"Why was this ship submerged under the ocean for what seems to have been a long time?"`
+				`	"Why was this ship submerged under the ocean? I can still see the water dropping from it."`
 					to display
 						not "unfettered: ocean dialog"
 					goto ocean
@@ -234,7 +237,7 @@ mission "Hai Legacy 1"
 			label ocean
 			action
 				set "unfettered: ocean dialog"
-			`	"We found it here," the first one begins, "It is hard to find a drop of rain in a storm, but the drop of rain may see all," the other one adds.`
+			`	"We found it here," the first one begins, "It is hard to find a drop of rain in a storm, but the drop of rain may see all, and we were that drop. Worry not, we have restored its cuirass of rust." the other one adds.`
 				goto choice
 			label take
 			action
