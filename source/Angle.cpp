@@ -23,6 +23,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cstdlib>
 #include <vector>
 
+using namespace std;
+
 namespace {
 	// Suppose you want to be able to turn 360 degrees in one second. Then you are
 	// turning 6 degrees per time step. If the Angle lookup is 2^16 steps, then 6
@@ -32,6 +34,24 @@ namespace {
 	const int32_t MASK = STEPS - 1;
 	const double DEG_TO_STEP = STEPS / 360.;
 	const double STEP_TO_RAD = PI / (STEPS / 2);
+
+	vector<Point> InitUnitCache()
+	{
+		vector<Point> cache;
+		cache.reserve(STEPS);
+		for(int i = 0; i < STEPS; ++i)
+		{
+			const double radians = i * STEP_TO_RAD;
+			// The graphics use the usual screen coordinate system, meaning that
+			// positive Y is down rather than up. Angles are clock angles, i.e.
+			// 0 is 12:00 and angles increase in the clockwise direction. So, an
+			// angle of 0 degrees is pointing in the direction (0, -1).
+			cache.emplace_back(sin(radians), -cos(radians));
+		}
+		return cache;
+	}
+
+	vector<Point> unitCache = InitUnitCache();
 }
 
 
@@ -121,22 +141,7 @@ Angle Angle::operator-() const
 // Get a unit vector in the direction of this angle.
 Point Angle::Unit() const
 {
-	// The very first time this is called, create a lookup table of unit vectors.
-	static std::vector<Point> cache;
-	if(cache.empty())
-	{
-		cache.reserve(STEPS);
-		for(int i = 0; i < STEPS; ++i)
-		{
-			double radians = i * STEP_TO_RAD;
-			// The graphics use the usual screen coordinate system, meaning that
-			// positive Y is down rather than up. Angles are clock angles, i.e.
-			// 0 is 12:00 and angles increase in the clockwise direction. So, an
-			// angle of 0 degrees is pointing in the direction (0, -1).
-			cache.emplace_back(sin(radians), -cos(radians));
-		}
-	}
-	return cache[angle];
+	return unitCache[angle];
 }
 
 
