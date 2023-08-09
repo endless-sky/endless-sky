@@ -183,10 +183,24 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 				+ "\"? Disowning a ship rather than selling it means you will not get any money for it.";
 			if(!uniqueOutfits.empty())
 			{
+				const int uniquesSize = uniqueOutfits.size();
+				int detailedOutfitList = 20;
+				if(detailedOutfitList > uniquesSize)
+					detailedOutfitList = uniquesSize;
+				else if(detailedOutfitList < uniquesSize)
+					--detailedOutfitList;
 				message += "\nAdditionally, this ship is carrying the following unique items:";
-				for(const auto &it : uniqueOutfits)
-					message += "\n" + to_string(it.second) + " "
-						+ (it.second == 1 ? it.first->DisplayName() : it.first->PluralName());
+				auto it = uniqueOutfits.begin();
+				for(int i = 0; i < detailedOutfitList; ++i)
+					message += "\n" + to_string(it->second) + " "
+						+ (it->second == 1 ? it->first->DisplayName() : it->first->PluralName());
+				if(it != uniqueOutfits.end())
+				{
+					int otherUniquesCount = 0;
+					while(it != uniqueOutfits.end())
+						otherUniquesCount += (it++)->second;
+					message += "\nand " + to_string(otherUniquesCount) + " other unique outfits";
+				}
 			}
 
 			GetUI()->Push(new Dialog(this, &ShipInfoPanel::Disown, message));

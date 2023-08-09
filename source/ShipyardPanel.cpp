@@ -321,14 +321,14 @@ bool ShipyardPanel::CanSell(bool toStorage) const
 
 void ShipyardPanel::Sell(bool toStorage)
 {
-	static const int MAX_LIST = 20;
+	static const int MAX_SHIP_LIST = 20;
 
 	int count = playerShips.size();
 	int initialCount = count;
 	string message = "Sell the ";
 	if(count == 1)
 		message += playerShip->Name();
-	else if(count <= MAX_LIST)
+	else if(count <= MAX_SHIP_LIST)
 	{
 		auto it = playerShips.begin();
 		message += (*it++)->Name();
@@ -348,10 +348,10 @@ void ShipyardPanel::Sell(bool toStorage)
 	{
 		auto it = playerShips.begin();
 		message += (*it++)->Name() + ",\n";
-		for(int i = 1; i < MAX_LIST - 1; ++i)
+		for(int i = 1; i < MAX_SHIP_LIST - 1; ++i)
 			message += (*it++)->Name() + ",\n";
 
-		message += "and " + to_string(count - (MAX_LIST - 1)) + " other ships";
+		message += "and " + to_string(count - (MAX_SHIP_LIST - 1)) + " other ships";
 	}
 	map<const Outfit*, int> uniqueOutfits;
 	// To allow calculating the sale price of all the ships in the list,
@@ -367,10 +367,33 @@ void ShipyardPanel::Sell(bool toStorage)
 	bool hasUniques = !uniqueOutfits.empty();
 	if(hasUniques)
 	{
+		const int uniquesSize = uniqueOutfits.size();
+		int detailedOutfitList = 5;
+		if(detailedOutfitList > uniquesSize)
+			detailedOutfitList = uniquesSize;
+		else
+		{
+			// The less ships we list, the more place we have for unique outfits.
+			if(initialCount < MAX_SHIP_LIST)
+				detailedOutfitList += MAX_SHIP_LIST - initialCount;
+			if(detailedOutfitList < uniquesSize)
+				--detailedOutfitList;
+		}
 		message += string((initialCount > 2) ? "\n" : " ") + "with the following unique outfits installed:";
-		for(const auto &it : uniqueOutfits)
-			message += "\n" + to_string(it.second) + " "
-				+ (it.second == 1 ? it.first->DisplayName() : it.first->PluralName());
+		auto it = uniqueOutfits.begin();
+		for(int i = 0; i < detailedOutfitList; ++i)
+		{
+			message += "\n" + to_string(it->second) + " "
+				+ (it->second == 1 ? it->first->DisplayName() : it->first->PluralName());
+			++it;
+		}
+		if(it != uniqueOutfits.end())
+		{
+			int otherUniquesCount = 0;
+			while(it != uniqueOutfits.end())
+				otherUniquesCount += (it++)->second;
+			message += "\nand " + to_string(otherUniquesCount) + " other unique outfits";
+		}
 	}
 	int64_t total = player.FleetDepreciation().Value(toSell, day);
 	message += ((initialCount > 2 || hasUniques) ? "\nfor " : " for ") + Format::CreditString(total) + "?";
