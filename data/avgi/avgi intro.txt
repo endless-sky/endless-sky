@@ -3,11 +3,11 @@ mission "First Contact: Avgi 1"
 	name "First Contact: Avgi"
 	description "Follow the mysterious alien ship to the destination marked on your map."
 	source
-		government "Avgi"
+		attributes "avgi"
 	destination "Peripheria"
 	on offer
-		log "Factions" "Avgi" `Met an alien race calling themselves the "Avgi"`
 		conversation
+			`Test`
 			branch aviskir
 				has "flagship planet: Aviskir"
 			branch coreworld
@@ -21,57 +21,46 @@ mission "First Contact: Avgi 1"
 			label aviskir
 			`The first thing you notice about this Earthlike world is the utter devastation in orbit. Your ship's sensors pick up the remains of what appear to be dozens of wrecked stations and countless destroyed satellites, forming a large swath of debris scattered in various orbits. A few larger objects are mostly intact, but lifeless, with no signal emissions or heat signatures. As your ship touches the upper atmosphere, you can see, even with your naked eye, glittering fragments of an immensely long tether slowly spinning in orbit.`
 			`	Your observations are interrupted by a blared warning from your ship. You barely manage to yank your ship aside as a bright trail of plasma nearly clips your ship, the wake of a hypervelocity projectile fired from the ground. Clearly, someone is still alive down there, despite the destruction in orbit. Proceeding could be dangerous, if your ship isn't able to withstand a direct hit from those planetary defense batteries.`
-			action`
-				set "avgi: fired on by planets"
+			action
+				set "avgi: planetary battery fire"
 			choice
-			`	(Attempt to land)`
-				goto explode
-				to display
-					"flagship attribute: shields" + "flagship attribute: hull" =< 60000 * 1000
-			`	(Attempt to land)`
-				goto hit
-				to display
-					"flagship attribute: shields" + "flagship attribute: hull" > 60000 * 1000	
-					not
-						"flagship attribute: shields" + "flagship attribute: hull" > 120000 * 1000
-			`	(Attempt to land)`
-				goto scratched
-				to display
-						"flagship attribute: shields" + "flagship attribute: hull" > 120000 * 1000
-			`(Move to a higher orbit)`
-				goto orbit
+				`	(Attempt to land)`
+					goto explode
+					to display
+						"flagship attribute: shields" + "flagship attribute: hull" <= 60000 * 1000
+				`	(Attempt to land)`
+					goto hit
+					to display
+						"flagship attribute: shields" + "flagship attribute: hull" > 60000 * 1000	
+						"flagship attribute: shields" + "flagship attribute: hull" < 120000 * 1000
+				`	(Attempt to land)`
+					goto scratched
+					to display
+							"flagship attribute: shields" + "flagship attribute: hull" >= 120000 * 1000
+				`(Move to a higher orbit)`
+					goto orbit
 
 			label coreworld
 			`The first thing you notice about this habitable world is the utter devastation in orbit. Your ship's sensors pick up the remains of what appear to be a handful of wrecked stations and countless destroyed satellites, forming a large swath of debris scattered in various orbits. A few larger objects are mostly intact, but lifeless, with no signal emissions or heat signatures. As your ship touches the upper atmosphere, you can see the tumbling remains of what looks like half of an enormous starship with an equally large drive, splintered and broken along its spine.`
 			`	Your observations are interrupted by a blared warning from your ship. You barely manage to yank your ship aside as a bright trail of plasma nearly clips your ship, the wake of a hypervelocity projectile fired from the ground. Clearly, someone is still alive down there, despite the destruction in orbit. Proceeding could be dangerous, if your ship isn't able to withstand a direct hit from those planetary defense batteries.`
-				action
-					set "avgi: fired on by planets"
+			action
+				set "avgi: planetary battery fire"
 			choice
-			`	(Attempt to land)`
-				to display
-					and
-						"flagship attribute: shields" =< 20000 * 1000
-						"flagship attribute: hull" =< 30000 * 1000
-				goto explode
-			`	(Attempt to land)`
-				to display
-					or
-						"flagship attribute: shields" > 20000 * 1000
-						"flagship attribute: hull" > 30000 * 1000
-						
-					not
-						or
-							"flagship attribute: shields" > 40000 * 1000
-							"flagship attribute: hull" > 40000 * 1000
-				goto hit
-			`	(Attempt to land)`
-				to display
-					or
-						"flagship attribute: shields" > 40000 * 1000
-						"flagship attribute: hull" > 40000 * 1000
-				goto scratched
-			`  (Move to a higher orbit)`
-				goto orbit
+				`	(Attempt to land)`
+					goto explode
+					to display
+						"flagship attribute: shields" + "flagship attribute: hull" <= 40000 * 1000
+				`	(Attempt to land)`
+					goto hit
+					to display
+						"flagship attribute: shields" + "flagship attribute: hull" > 40000 * 1000	
+						"flagship attribute: shields" + "flagship attribute: hull" < 80000 * 1000
+				`	(Attempt to land)`
+					goto scratched
+					to display
+							"flagship attribute: shields" + "flagship attribute: hull" >= 80000 * 1000
+				`(Move to a higher orbit)`
+					goto orbit
 
 			label explode
 			`	You make it no more than a few seconds before your ship is lanced by a rapid succession of shots from below. Your shields shatter almost instantly, your hull pierced as though it is tissue paper. You don't even have time to think before you are consumed by the rapidly expanding cloud of plasma that was once the <ship>.`
@@ -98,7 +87,6 @@ mission "First Contact: Avgi 1"
 					goto prime
 				`	(Attack)`
 					goto attack
-
 
 			label station
 			`This alien station has certainly seen better days. While the bulk of the structure is still intact, avoiding the fate of whatever became the debris fields you have seen elsewhere, the hull is scored and chipped by what appears to be powerful weapons fire. The station's systems all seem to be powered down, as you can detect no emissions of light or heat. Without expecting to find anyone or anything alive, you maneuver near what you think is an open docking bay.`
@@ -143,263 +131,46 @@ mission "First Contact: Avgi 1"
 		government "Avgi (Twilight Guard)"
 		personality fleeing waiting escort
 		ship "Crest" "Forward Shores"
-		on accept
-			"reputation: Avgi" >?= 5
-			event "label twilight"
+	on accept
+		"reputation: Avgi" >?= 5
+		event "label twilight"
+		log "Factions" "Avgi" `Met an alien race calling themselves the "Avgi"`
 
-		on fail
-			log "Met an alien race and attacked them."
+	on fail
+		log "Met an alien race and attacked them."
 
-		on complete
-			"reputation: Avgi" += 10
-			"reputation: Avgi (Consonance)" += 10
-			"reputation: Avgi (Twilight Guard)" += 10
-			set "discovered avgi"
-			log "Factions" "Avgi" `The Avgi are a young race of dragonfly-like aliens inhabiting this part of the galaxy. Their homeworld and core space have been occupied by an alien invasion.`
-			event "label twilight"
-			conversation
-				`After a confusing journey through the winding hyperlanes, you finally arrive at the system the alien marked on your map. You notice that your flight computer has failed to record the location of the systems you passed through, probably due to the same anomaly that made your ship almost completely blind within the region. This system appears unaffected however, and your computer is able to chart its position.`
-				`	The alien ship pings you, indicating to follow as it flies towards what looks to be a large inhabited station in the system. Shaped like a circular disk, a large cutout in the center exposes hundreds of docking bays and what looks to be a spaceport. As you watch, a trio of sleek looking fightercraft launch from the station and take up escort positions around you and the other alien ship you have followed all this way. You can only assume your escort is in communication with the station authorities.` 
-				`	Your companion speeds ahead, neatly pulling into one of the bays on the outer levels. When you attempt to follow, the fightercraft zip in front of you, herding you towards a different bay closer to the middle decks.`
-				`	The docking bay is full of activity, and you finally get your first glimpse at this new species up close. They appear to be something analogous to an Earth dragonfly, or maybe more closely to a damselfly, maybe a meter and a half long on average. A group of them quickly close in around your ship as you finally land in a clear space, moving precisely. These aliens have clearly been expecting you.`
-				`	None of the aliens look to be armed, but are arrayed around your ship in a clearly defensive circular pattern, both on foot and flitting about in the air. Some of them look to be wearing some kind of body armor, but they don't seem to be carrying any obvious weapons.`
-				choice
-					`	"I come in peace."`
-					`	"Hello there."`
-					`	"Do you speak my language?"`
-					`	Shoot them`
-						goto die
-
-				`	The aliens hum and chirp excitedly amongst themselves, the sound reminding you of a string instrument. You notice they seem to produce sounds not from any particular vocal organs, but by rubbing their forearms or legs together akin to a cricket.`
-
-
-				label die
-				`	You draw your sidearm and begin firing at the group of aliens, who scatter in all directions. Your first shot glances off an alien's body armor, but your second burns a hole in a wing, sending the alien tumbling. You have little time to celebrate your victory, however, before a 300 kilowatt green laser turns you into a rapidly expanding cloud of hot vapor.`
-
-
-
-
-
-
-				`	You are led into what you think is some kind of office, a small, round room with a high ceiling. Waiting there, behind a lectern, is another alien, this one colored bright green. It is perched upon a smooth metal bar, hung from a short stand by thin wires, but gestures towards a human style seat on the other side of the lectern. One of two seats, in fact, which puzzles you.`
-
-
-
-
-
-
-Landing intro
-
-Talk to Avgi, introduce human dude. Talk about the ka'sei invasion. Avgi don't know what started the Incursion, but know they suddenly came from the east.
-
-Fly to the O'neil cylinder to meet another crew dude
-
-Once there you are asked to go help defend Ensemble from a raid
-Option to say you want to go home. Avgi promise to help you but tell you not to risk your life on something stupid.
-
-
-
-Afterward, deep crewmember talks to you about wanting to go home. Consonance doesn't want you to leave/risk your life. Deep dude says you should explore some different areas
-Says they know someone on a Dissonance station, takes you to explore that area. Meet the Dissonance dude, who tells you the rumors about the gateway and how the incursion really started
-
-
-
-Find the magnetar
-
-Return, take crew back to Valhalla and Midgard
-
-
-
-
-Get invited to see some nuclear testing
-
-
-mission "First Contact: Avgi 2"
-	landing
-	invisible
-	source Peripheria
-	to offer
-		"First Contact: Avgi 1: done"
-	on offer
+	on complete
+		"reputation: Avgi" += 10
+		"reputation: Avgi (Consonance)" += 10
+		"reputation: Avgi (Twilight Guard)" += 10
+		set "discovered avgi"
 		log "Factions" "Avgi" `The Avgi are a young race of dragonfly-like aliens inhabiting this part of the galaxy. Their homeworld and core space have been occupied by an alien invasion.`
 		event "label twilight"
 		conversation
+			`After a confusing journey through the winding hyperlanes, you finally arrive at the system the alien marked on your map. You notice that your flight computer has failed to record the location of the systems you passed through, probably due to the same anomaly that made your ship almost completely blind within the region. This system appears unaffected however, and your computer is able to chart its position.`
+			`	The alien ship pings you, indicating to follow as it flies towards what looks to be a large inhabited station in the system. Shaped like a circular disk, a large cutout in the center exposes hundreds of docking bays and what looks to be a spaceport. As you watch, a trio of sleek looking fightercraft launch from the station and take up escort positions around you and the other alien ship you have followed all this way. You can only assume your escort is in communication with the station authorities.` 
+			`	Your companion speeds ahead, neatly pulling into one of the bays on the outer levels. When you attempt to follow, the fightercraft zip in front of you, herding you towards a different bay closer to the middle decks.`
+			`	The docking bay is full of activity, and you finally get your first glimpse at this new species up close. They appear to be something analogous to an Earth dragonfly, or maybe more closely to a damselfly, maybe a meter and a half long on average. A group of them quickly close in around your ship as you finally land in a clear space, moving precisely. These aliens have clearly been expecting you.`
+			`	None of the aliens look to be armed, but are arrayed around your ship in a clearly defensive circular pattern, both on foot and flitting about in the air. Some of them look to be wearing some kind of body armor, but they don't seem to be carrying any obvious weapons.`
+			choice
+				`	"I come in peace."`
+				`	"Hello there."`
+				`	"Do you speak my language?"`
+				`	Shoot them`
+					goto die
 
+			`	The aliens hum and chirp excitedly amongst themselves, the sound reminding you of a string instrument. You notice they seem to produce sounds not from any particular vocal organs, but by rubbing their forearms or legs together akin to a cricket.`
 
-why did your planets shoot at me?
 
+			label die
+			`	You draw your sidearm and begin firing at the group of aliens, who scatter in all directions. Your first shot glances off an alien's body armor, but your second burns a hole in a wing, sending the alien tumbling. You have little time to celebrate your victory, however, before a 300 kilowatt green laser turns you into a rapidly expanding cloud of hot vapor.`
 
-		choice
-			`	"Who are you?"`
-			`	"Who's the second chair for?"`
 
 
 
 
 
+			`	You are led into what you think is some kind of office, a small, round room with a high ceiling. Waiting there, behind a lectern, is another alien, this one colored bright green. It is perched upon a smooth metal bar, hung from a short stand by thin wires, but gestures towards a human style seat on the other side of the lectern. One of two seats, in fact, which puzzles you.`
 
 
-		choice
-			`	"What are they?"`
-			goto aberration
-
-		label aberration
-		`	"Something that may not be of this reality"
-
-		choice
-			`	"I've seen something like them before"`
-
-
-The next few hours are a blur, a confusing medley of dignitaries and officials whose names you cannot pronounce, let alone remember
-
-
-x pulls you to the side. "You look like you could use a break"
-
-
-
-
-
-
-
-
-We are lucky they are so stupid
-
-
-
-
-
-
-gruff sergeant stereotype but he's actually legitimately cold hearted
-
-
-
-
-
-Would you like to see a nuclear test? (implied to be pure fusion research but they can't tell you much cause you're still new)
-
-1st test succeeds
-
-2nd fails
-
-politics between military and scientists
-
-
-
-
-Lyrica
-Katherine
-Nina
-
-Darius
-
-
-
-
-mission "Avgi Nuclear Testing: 1"
-	landing
-	source 
-		attributes "avgi diaspora"
-		government "Avgi (Consonance)"
-	to offer
-		"First Contact: Avgi 1: done"
-	on offer
-		log "Factions" "Avgi" `The Avgi are a young race of dragonfly-like aliens inhabiting this part of the galaxy. Their homeworld and core space have been occupied by an alien invasion.`
-conversation
-	`	"Would you like to see a test of a small nuclear device, question?"`
-	choice
-		`	"Seeing your nukes? Isn't that a security risk?"`
-			goto public
-		`	"Sure, that sounds like it could be interesting."`
-		`	"I'm not a fan of weapons of mass destruction."`
-			goto lame
-
-
-	label public
-		`	Dismissal. A foreign representative witnessing a weapons test from afar is no threat to our security, and in any cases the tests are open to the public. The Fleet could not legally keep you from it, unless they appealed to the Assembly for an injunction."`
-
-
-	label lame
-		`	"As you wish," he says. "Though you should realize we have no other effective way to defend ourselves from the Abberant."`
-		decline
-
-
-
-
-
-
-
-
-
-
-
-
-
-"We flew past a neutron star that fried our electronics. I've marked it on your map" leads to Tap, red herring for Decet
-
-
-
-
-I'm the Director of Logistics for the Consonance Fleet. 
-
-
-
-
-
-
-
-
-
-
-
-
-The license is covered with a quantum dot phased array, allowing it to recieve and transmit information across the electromagnetic spectrum between microwaves and visible light. It can handshake with our systems remotely
-
-
-
-
-
-
-`	"Where and how did you get a Jump Drive!?"`
-choice
-	`	"I took it from a hostile alien race"`
-		goto aliens
-	`	"I took it from an alien race living in Deneb"`
-		to display
-			has "FWC Pug 2D"
-		goto aliens
-	`	"It was given to me by the Syndicate, who took it from an alien race near the Core"`
-		to display
-			has "FW Pug 2B: done"
-	`	"I stole it from the Quarg"`
-		goto unbelievable
-	`	"I'm afraid I can't tell you that"`
-
-
-
-
-
-
-choice
-	`	"I can fight my way through"`
-	`	"I'll just skip over with my Jump Drive"`
-
-
-
-`	He hands you a small black rod, shaped like a large hairpin. "This is a translator. We developed it with the Avgi and they produced a handful of them for the crew, but we keep a few spares on hand." He shows you how to tuck it behind your ear, where it fits suprisingly well.
-
-
-
-
-"Before we discovered the starways, to travel faster than light was thought impossible with an ironclad certainty"
-
-"Sometimes I feel as though our race is out of place with the universe"
-
-
-
-
-
-
-has explored Decet
-
-"Actually I think I know I have a way to get out"
 

@@ -500,6 +500,8 @@ outfit "Equinox Torpedo Pylon"
 		"velocity" 3
 		"turn" 12
 		"homing" 2
+		"optical tracking" 0.9
+		"radar tracking" 0.6
 		"range override" 720
 		"hit effect" "thermonuclear flash"
 		"hit effect" "prompt radiation" 24

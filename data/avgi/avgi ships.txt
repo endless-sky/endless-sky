@@ -928,7 +928,7 @@ ship "Entasi"
 ship "Modified Tachytia"
 	sprite "ship/avgi tachytia/tachytia"
 		"frame rate" 15
-	thumbnail "thumbnail/tachytia"
+	thumbnail "thumbnail/avgi tachytia"
 	swizzle 0
 	attributes
 		category "Utility"
@@ -1405,7 +1405,7 @@ ship "Difraktos"
 		"Multispectral Scanner" 2
 		"Concealment Scales"
 		"Electrostatic Ramscoop"
-		
+
 		"Z-600 Fusion Torch"
 		"XY-420 Radial Thrusters"
 		"Hyperdrive"
