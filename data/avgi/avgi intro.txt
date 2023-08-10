@@ -150,27 +150,43 @@ mission "First Contact: Avgi 1"
 			`After a confusing journey through the winding hyperlanes, you finally arrive at the system the alien marked on your map. You notice that your flight computer has failed to record the location of the systems you passed through, probably due to the same anomaly that made your ship almost completely blind within the region. This system appears unaffected however, and your computer is able to chart its position.`
 			`	The alien ship pings you, indicating to follow as it flies towards what looks to be a large inhabited station in the system. Shaped like a circular disk, a large cutout in the center exposes hundreds of docking bays and what looks to be a spaceport. As you watch, a trio of sleek looking fightercraft launch from the station and take up escort positions around you and the other alien ship you have followed all this way. You can only assume your escort is in communication with the station authorities.` 
 			`	Your companion speeds ahead, neatly pulling into one of the bays on the outer levels. When you attempt to follow, the fightercraft zip in front of you, herding you towards a different bay closer to the middle decks.`
-			`	The docking bay is full of activity, and you finally get your first glimpse at this new species up close. They appear to be something analogous to an Earth dragonfly, or maybe more closely to a damselfly, maybe a meter and a half long on average. A group of them quickly close in around your ship as you finally land in a clear space, moving precisely. These aliens have clearly been expecting you.`
-			`	None of the aliens look to be armed, but are arrayed around your ship in a clearly defensive circular pattern, both on foot and flitting about in the air. Some of them look to be wearing some kind of body armor, but they don't seem to be carrying any obvious weapons.`
+			`	The docking bay is full of activity, and you finally get your first glimpse at this new species up close. They appear to be something analogous to an Earth dragonfly, or maybe more closely to a damselfly, maybe a meter and a half long on average and with six limbs and wings. A group of them quickly close in around your ship as you finally land in a clear space, moving precisely. These aliens have clearly been expecting you.`
+			`	None of the aliens look to be armed, but are arrayed around your ship in a clearly defensive circular pattern, both on foot and flitting about in the air. Some of them look to be wearing some kind of body armor, but they don't seem to be carrying any obvious weapons. As you step out of the <ship>, a small group quickly moves forward to meet you.`
 			choice
 				`	"I come in peace."`
 				`	"Hello there."`
+				`	"Take me to your leader"`
 				`	"Do you speak my language?"`
 				`	Shoot them`
 					goto die
 
-			`	The aliens hum and chirp excitedly amongst themselves, the sound reminding you of a string instrument. You notice they seem to produce sounds not from any particular vocal organs, but by rubbing their forearms or legs together akin to a cricket.`
+			`	The aliens hum and chirp excitedly amongst themselves, the sound reminding you of a string instrument. You notice they seem to produce sounds not from any particular vocal organs, but by rubbing their forearms or legs together akin to a cricket. One of the aliens seems to hush the others, flaring their wings out before returning them to a folded position on their back. They then raise a curved, black instrument reminiscent of a violin bow, drawing it over one of their forelimbs for a moment before the device begins to speak in a synthetic voice.`
+			`	"Invitation. Welcome, visiting human. I am [name1] of the Avgi, and would show you to our leaders to discuss your arrival to our space."`
+			choice
+				`	"How can you speak my language?"`
+				`	"What happened to the systems I met your ship in?"`
+				`	"Why are the hyperlanes in this region so confusing?"`
 
-
-			label die
-			`	You draw your sidearm and begin firing at the group of aliens, who scatter in all directions. Your first shot glances off an alien's body armor, but your second burns a hole in a wing, sending the alien tumbling. You have little time to celebrate your victory, however, before a 300 kilowatt green laser turns you into a rapidly expanding cloud of hot vapor.`
-
-
-
-
-
+			`	"Placating. All of your questions will be answered in time. Please, follow now."`
 
 			`	You are led into what you think is some kind of office, a small, round room with a high ceiling. Waiting there, behind a lectern, is another alien, this one colored bright green. It is perched upon a smooth metal bar, hung from a short stand by thin wires, but gestures towards a human style seat on the other side of the lectern. One of two seats, in fact, which puzzles you.`
 
 
+
+
+
+			label die
+			`	You draw your sidearm and begin firing at the group of aliens, who scatter in all directions. Your first shot glances off an alien's body armor, but your second burns a hole in a wing, sending the alien tumbling. You have little time to celebrate your victory, however, before a flash of unfathomably bright green light turns you into a rapidly expanding cloud of hot vapor.`
+
+
+mission "First Contact: Avgi 2"
+	name "Meet [name]"
+	description "Pick up [name]'s friend on the Aktina cylinder."
+	source "Peripheria"
+	destination "Aktina Cylinder"
+	to offer
+		has "First Contact: Avgi 1: done"
+	on complete
+		conversation
+			`blah blah blah blah`
 
