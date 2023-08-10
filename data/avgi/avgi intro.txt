@@ -195,8 +195,8 @@ mission "First Contact: Avgi 2"
 
 
 
-mission "First Contact: Avgi 2"
-	name "Meet [name]"
+mission "First Contact: Avgi 3"
+	name "Weledos Defense"
 	description "Assist the Avgi in the Ensemble system with an Aberrant deep raid."
 	source "Aktina Cylinder"
 	destination "Weledos"

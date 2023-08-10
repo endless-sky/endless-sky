@@ -4060,7 +4060,7 @@ system "H-1"
 system "Fr-223"
 	pos 98.609 877.834
 	government Uninhabited
-	attributes "ember waste" hiders "tangled shroud"
+	attributes "ember waste" hiders "tangled shroud" wormhole
 	habitable 10
 	belt 1356 5
 	haze _menu/haze-red
@@ -4075,8 +4075,8 @@ system "Fr-223"
 		sprite planet/rock6
 		distance 4966
 		period 44265.978
-	object
-		sprite planet/gas8-b
+	object "Shrouded Embers"
+		sprite planet/wormhole-red
 		distance 9467
 		period 116514.119
 
@@ -4330,10 +4330,10 @@ system "Rb-85"
 system "Ca-40"
 	pos -92.844 973.172
 	government Uninhabited
-	attributes "tangled shroud"
+	attributes "ember waste" tangled shroud" wormhole
 	habitable 10
 	belt 1137 4
-	haze _menu/haze-none
+	haze _menu/haze-red
 	link Symphony
 	asteroids "small rock" 2 4.644
 	asteroids "large rock" 8 3.51
@@ -4341,6 +4341,8 @@ system "Ca-40"
 	asteroids "large metal" 1 3.672
 	minables titanium 2 5.388
 	minables copper 8 4.361
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 25000
 	object
 		sprite planet/browndwarf-t-rouge
 		period 10
@@ -4356,8 +4358,8 @@ system "Ca-40"
 			sprite planet/oberon
 			distance 364
 			period 427.707
-	object
-		sprite planet/gas17-b
+	object "Shrouded Embers"
+		sprite planet/wormhole-red
 		distance 13561
 		period 199754.957
 
@@ -4849,7 +4851,7 @@ system "Rn-222"
 system "Ts-294"
 	pos -108.726 817.962
 	government Uninhabited
-	attributes "ember waste" "tangled shroud"
+	attributes "ember waste" "tangled shroud" wormhole
 	habitable 135
 	belt 1224 4
 	haze _menu/haze-red
@@ -4883,10 +4885,6 @@ system "Ts-294"
 		sprite planet/gas7-b
 		distance 3143
 		period 6066.102
-	object
-		sprite planet/gas0
-		distance 7953
-		period 24416.847
 		object
 			sprite planet/rhea-b
 			distance 304
@@ -4895,6 +4893,11 @@ system "Ts-294"
 			sprite planet/rock20
 			distance 422
 			period 327.695
+	object "Shrouded Embers"
+		sprite planet/wormhole-red
+		distance 7953
+		period 24416.847
+
 
 system "Te-128"
 	pos -258.164 889.417

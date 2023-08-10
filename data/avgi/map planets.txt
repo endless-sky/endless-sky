@@ -484,8 +484,9 @@ planet Gateway
 
 wormhole "Shrouded Embers"
 	mappable
-	link Lucina Rouseu
-	link Rouseu Lucina
+	link Ca-40 Fr-223
+	link Fr-223 Ts-294
+	link Ts-294 Ca-40
 	color "wormholes: Ember Waste"
 
 planet "Shrouded Embers"
