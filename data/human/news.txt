@@ -2006,6 +2006,7 @@ news "explorer on frozen world"
 		word
 			"Arctic"
 			"Glacial"
+			"Polar"
 		word
 			" "
 		word
