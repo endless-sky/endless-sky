@@ -1669,7 +1669,7 @@ ship "Solifuge"
 	attributes
 		category "Heavy Warship"
 		licenses
-			"True Unfettered License"
+			"True Unfettered"
 		"cost" 22800000
 		"shields" 37800
 		"hull" 11000
