@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Dialog.h"
 #include "Files.h"
 #include "CrashState.h"
+#include "GamePad.h"
 #include "text/Font.h"
 #include "FrameTimer.h"
 #include "GameData.h"
@@ -47,7 +48,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 #include "text/FontSet.h"
 
-#include <SDL2/SDL_events.h>
+#include <SDL.h>
+#include <SDL_events.h>
 #include <SDL_scancode.h>
 #include <chrono>
 #include <iostream>
@@ -279,6 +281,14 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	SDL_SetEventFilter(EventFilter, nullptr);
 	SDL_SetHint(SDL_HINT_TOUCH_MOUSE_EVENTS, "0"); // turn off mouse emulation
 	SDL_SetHint(SDL_HINT_MOUSE_TOUCH_EVENTS, "0"); // turn off mouse emulation
+	SDL_SetHint(SDL_HINT_ACCELEROMETER_AS_JOYSTICK, "0"); // this shows up as bonus joystick
+
+	// SDL BUG? Calling SetEventFilter seems to drop the pending
+	// SDL_CONTROLLERDEVICEADDED event. This is why I'm calling
+	// SDL_Init(SDL_INIT_GAMECONTROLLER) *after* adding the event
+	// filter instead of as part of the SDL_INIT_VIDEO invocation
+	// in the GameWindow::Init() function.
+	SDL_Init(SDL_INIT_GAMECONTROLLER);
 
 	// gamePanels is used for the main panel where you fly your spaceship.
 	// All other game content related dialogs are placed on top of the gamePanels.
@@ -373,7 +383,21 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 				event.key.keysym.sym = SDLK_AC_BACK;
 			}
 #endif
-			
+
+			// Filter these through the gamepad handler before checking if the
+			// UI needs the event
+			if(event.type == SDL_CONTROLLERAXISMOTION ||  // these are the inputs
+			   event.type == SDL_CONTROLLERBUTTONDOWN ||
+			   event.type == SDL_CONTROLLERBUTTONUP ||
+			   event.type == SDL_CONTROLLERDEVICEADDED ||   // controller presence
+			   event.type == SDL_CONTROLLERDEVICEREMOVED ||
+				event.type == SDL_JOYAXISMOTION || // These events are for
+				event.type == SDL_JOYHATMOTION ||  // configuring new gamepads
+				event.type == SDL_JOYBUTTONDOWN ||
+				event.type == SDL_JOYBUTTONUP)
+			{
+				GamePad::Handle(event);
+			}
 
 			// Filter touch events through the gesture manager. It will create
 			// user gesture events we can use for input.

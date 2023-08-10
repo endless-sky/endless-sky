@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "PreferencesPanel.h"
 
+#include "GamepadPanel.h"
 #include "text/alignment.hpp"
 #include "Audio.h"
 #include "Color.h"
@@ -37,6 +38,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/truncate.hpp"
 #include "UI.h"
 #include "text/WrappedText.h"
+#include <SDL_keycode.h>
 #ifdef __ANDROID__
 #include "AndroidFile.h"
 #endif
@@ -195,6 +197,10 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	{
 		if(zones[latest].Value().KeyName() != Command::MENU.KeyName())
 			Command::SetKey(zones[latest].Value(), 0);
+	}
+	else if(page == 'c' && key == 'g')
+	{
+		GetUI()->Push(new GamepadPanel());
 	}
 	else
 		return false;

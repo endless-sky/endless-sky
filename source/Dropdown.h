@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define DROPDOWN_H_
 
 
+#include "Color.h"
 #include "Rectangle.h"
 #include <functional>
 #include <vector>
@@ -52,6 +53,7 @@ public:
 	void SetPadding(int p) { padding = p;}
 
 	void SetEnabled(bool e) { enabled = e; }
+	void SetBgColor(const Color& color) { bg_color = color; }
 
 	typedef std::function<void(int, const std::string&)> ChangedCallback;
 
@@ -66,6 +68,7 @@ private:
 	std::string selected_string;
 	int selected_index = -1;
 	int highlight_index = -1;
+	Color bg_color;
 
 	bool is_popped = false;
 	bool is_hover = false;

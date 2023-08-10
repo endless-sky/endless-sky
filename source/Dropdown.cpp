@@ -83,14 +83,17 @@ void Dropdown::Draw()
 	// const Font &font = FontSet::Get(14);
 	// const Color &bright = *GameData::Colors().Get("bright");
 	// const Color &dim = *GameData::Colors().Get("medium");
-	const Color &back = *GameData::Colors().Get("panel background");
+	if(bg_color == Color())
+	{
+		bg_color = *GameData::Colors().Get("panel background");
+	}
 	const Font &font = FontSet::Get(font_size);
 	const Color &hover = *GameData::Colors().Get("hover");
 	const Color &active = *GameData::Colors().Get("active");
 	const Color &inactive = *GameData::Colors().Get("inactive");
 	const Color &dim = *GameData::Colors().Get("dim");
 
-	FillShader::Fill(position.Center(), position.Dimensions(), back);
+	FillShader::Fill(position.Center(), position.Dimensions(), bg_color);
 	Rectangle text_bounds(position.Center(), position.Dimensions() - Point(padding*2, padding*2));
 	font.Draw(selected_string,
 		AlignText(alignment, font, text_bounds, selected_string),
@@ -110,7 +113,7 @@ void Dropdown::Draw()
 		// Draw outline
 		FillShader::Fill(bg_rect.Center(), bg_rect.Dimensions() + Point(2, 2), dim);
 		// Draw background
-		FillShader::Fill(bg_rect.Center(), bg_rect.Dimensions(), back);
+		FillShader::Fill(bg_rect.Center(), bg_rect.Dimensions(), bg_color);
 		// Draw a highlight
 		if (highlight_index >= 0)
 		{

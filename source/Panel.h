@@ -91,6 +91,7 @@ protected:
 	virtual bool FingerMove(int x, int y, int fid);
 	virtual bool FingerUp(int x, int y, int fid);
 	virtual bool Gesture(Gesture::GestureEnum gesture);
+	virtual bool ControllersChanged();
 	// If a clickable zone is clicked while editing is happening, the panel may
 	// need to know to exit editing mode before handling the click.
 	virtual void EndEditing() {}

@@ -31,6 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "FillShader.h"
 #include "Fleet.h"
 #include "FogShader.h"
+#include "GamePad.h"
 #include "text/FontSet.h"
 #include "FormationPattern.h"
 #include "Galaxy.h"
@@ -224,6 +225,8 @@ void GameData::LoadShaders(bool useShaderSwizzle)
 		*GameData::Colors().Get("dim"),
 		*GameData::Colors().Get("bright")
 	);
+
+	GamePad::Init();
 
 	background.Init(16384, 4096);
 }

@@ -171,6 +171,11 @@ bool UI::Handle(const SDL_Event &event)
 				handled = (*it)->KeyDown(0, 0, command, true);
 			}
 		}
+		else if(event.type == SDL_CONTROLLERDEVICEADDED ||
+		        event.type == SDL_CONTROLLERDEVICEREMOVED)
+		{
+			handled = (*it)->ControllersChanged();
+		}
 
 		// If this panel does not want anything below it to receive events, do
 		// not let this event trickle further down the stack.

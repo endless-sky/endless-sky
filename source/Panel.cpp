@@ -268,6 +268,13 @@ bool Panel::Gesture(Gesture::GestureEnum gesture)
 
 
 
+bool Panel::ControllersChanged()
+{
+	return false;
+}
+
+
+
 void Panel::SetIsFullScreen(bool set)
 {
 	isFullScreen = set;
