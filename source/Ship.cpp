@@ -2603,7 +2603,8 @@ int Ship::Crew() const
 // Calculate drag, accounting for drag reduction.
 double Ship::Drag() const
 {
-	return attributes.Get("drag") / (1. + attributes.Get("drag reduction"));
+	const double drag = attributes.LinearGet("drag", true);
+	return drag / (1. + attributes.LinearGet("drag reduction"));
 }
 
 
@@ -3539,29 +3540,43 @@ void Ship::DoGeneration()
 		// 4. Shields of carried fighters
 		// 5. Transfer of excess energy and fuel to carried fighters.
 
-		const double hullAvailable = attributes.Get("hull repair rate")
-			* (1. + attributes.Get("hull repair multiplier"));
-		const double hullEnergy = (attributes.Get("hull energy")
-			* (1. + attributes.Get("hull energy multiplier"))) / hullAvailable;
-		const double hullFuel = (attributes.Get("hull fuel")
-			* (1. + attributes.Get("hull fuel multiplier"))) / hullAvailable;
-		const double hullHeat = (attributes.Get("hull heat")
-			* (1. + attributes.Get("hull heat multiplier"))) / hullAvailable;
-		double hullRemaining = hullAvailable;
-		if(!hullDelay)
-			DoRepair(hull, hullRemaining, attributes.Get("hull"), energy, hullEnergy, fuel, hullFuel, heat, hullHeat);
+		const double hullHull = attributes.LinearGet("hull", true);
+		double hullEnergy = attributes.LinearGet("hull energy");
+		const double hullEnergyMultiplier = attributes.LinearGet("hull energy multiplier");
+		double hullFuel = attributes.LinearGet("hull fuel");
+		const double hullFuelMultiplier = attributes.LinearGet("hull fuel multiplier");
+		double hullHeat = attributes.LinearGet("hull heat");
+		const double hullHeatMultiplier = attributes.LinearGet("hull heat multiplier");
+		const double hullRepairMultiplier = attributes.LinearGet("hull repair multiplier");
+		const double hullRepairRate = attributes.LinearGet("hull repair rate");
 
-		const double shieldsAvailable = attributes.Get("shield generation")
-			* (1. + attributes.Get("shield generation multiplier"));
-		const double shieldsEnergy = (attributes.Get("shield energy")
-			* (1. + attributes.Get("shield energy multiplier"))) / shieldsAvailable;
-		const double shieldsFuel = (attributes.Get("shield fuel")
-			* (1. + attributes.Get("shield fuel multiplier"))) / shieldsAvailable;
-		const double shieldsHeat = (attributes.Get("shield heat")
-			* (1. + attributes.Get("shield heat multiplier"))) / shieldsAvailable;
+		const double hullAvailable = hullRepairRate * (1. + hullRepairMultiplier);
+		hullEnergy *= (1. + hullEnergyMultiplier) / hullAvailable;
+		hullFuel *= (1. + hullFuelMultiplier) / hullAvailable;
+		hullHeat *= (1. + hullHeatMultiplier) / hullAvailable;
+		double hullRemaining = hullAvailable;
+
+		if(!hullDelay)
+			DoRepair(hull, hullRemaining, hullHull, energy, hullEnergy, fuel, hullFuel, heat, hullHeat);
+
+		double shieldsEnergy = attributes.LinearGet("shield energy", true);
+		const double shieldsEnergyMultiplier = attributes.LinearGet("shield energy multiplier");
+		double shieldsFuel = attributes.LinearGet("shield fuel");
+		const double shieldsFuelMultiplier = attributes.LinearGet("shield fuel multiplier");
+		const double shieldsGenerationMultiplier = attributes.LinearGet("shield generation multiplier");
+		const double shieldsGenerationRate = attributes.LinearGet("shield generation rate");
+		double shieldsHeat = attributes.LinearGet("shield heat");
+		const double shieldsHeatMultiplier = attributes.LinearGet("shield heat multiplier");
+		const double shieldsShields = attributes.LinearGet("shields");
+
+		const double shieldsAvailable = shieldsGenerationRate * (1. + shieldsGenerationMultiplier);
+		shieldsEnergy *= (1. + shieldsEnergyMultiplier) / shieldsAvailable;
+		shieldsFuel *= (1. + shieldsFuelMultiplier) / shieldsAvailable;
+		shieldsHeat *= (1. + shieldsHeatMultiplier) / shieldsAvailable;
 		double shieldsRemaining = shieldsAvailable;
+
 		if(!shieldDelay)
-			DoRepair(shields, shieldsRemaining, attributes.Get("shields"),
+			DoRepair(shields, shieldsRemaining, shieldsShields,
 				energy, shieldsEnergy, fuel, shieldsFuel, heat, shieldsHeat);
 
 		if(!bays.empty())
@@ -3633,80 +3648,80 @@ void Ship::DoGeneration()
 	// TODO: Mothership gives status resistance to carried ships?
 	if(ionization)
 	{
-		double ionResistance = attributes.Get("ion resistance");
-		double ionEnergy = attributes.Get("ion resistance energy") / ionResistance;
-		double ionFuel = attributes.Get("ion resistance fuel") / ionResistance;
-		double ionHeat = attributes.Get("ion resistance heat") / ionResistance;
+		const double ionResistance = attributes.LinearGet("ion resistance", true);
+		const double ionEnergy = attributes.LinearGet("ion resistance energy") / ionResistance;
+		const double ionFuel = attributes.LinearGet("ion resistance fuel") / ionResistance;
+		const double ionHeat = attributes.LinearGet("ion resistance heat") / ionResistance;
 		DoStatusEffect(isDisabled, ionization, ionResistance,
 			energy, ionEnergy, fuel, ionFuel, heat, ionHeat);
 	}
 
 	if(scrambling)
 	{
-		double scramblingResistance = attributes.Get("scramble resistance");
-		double scramblingEnergy = attributes.Get("scramble resistance energy") / scramblingResistance;
-		double scramblingFuel = attributes.Get("scramble resistance fuel") / scramblingResistance;
-		double scramblingHeat = attributes.Get("scramble resistance heat") / scramblingResistance;
+		const double scramblingResistance = attributes.LinearGet("scramble resistance", true);
+		const double scramblingEnergy = attributes.LinearGet("scramble resistance energy") / scramblingResistance;
+		const double scramblingFuel = attributes.LinearGet("scramble resistance fuel") / scramblingResistance;
+		const double scramblingHeat = attributes.LinearGet("scramble resistance heat") / scramblingResistance;
 		DoStatusEffect(isDisabled, scrambling, scramblingResistance,
 			energy, scramblingEnergy, fuel, scramblingFuel, heat, scramblingHeat);
 	}
 
 	if(disruption)
 	{
-		double disruptionResistance = attributes.Get("disruption resistance");
-		double disruptionEnergy = attributes.Get("disruption resistance energy") / disruptionResistance;
-		double disruptionFuel = attributes.Get("disruption resistance fuel") / disruptionResistance;
-		double disruptionHeat = attributes.Get("disruption resistance heat") / disruptionResistance;
+		const double disruptionResistance = attributes.LinearGet("disruption resistance", true);
+		const double disruptionEnergy = attributes.LinearGet("disruption resistance energy") / disruptionResistance;
+		const double disruptionFuel = attributes.LinearGet("disruption resistance fuel") / disruptionResistance;
+		const double disruptionHeat = attributes.LinearGet("disruption resistance heat") / disruptionResistance;
 		DoStatusEffect(isDisabled, disruption, disruptionResistance,
 			energy, disruptionEnergy, fuel, disruptionFuel, heat, disruptionHeat);
 	}
 
 	if(slowness)
 	{
-		double slowingResistance = attributes.Get("slowing resistance");
-		double slowingEnergy = attributes.Get("slowing resistance energy") / slowingResistance;
-		double slowingFuel = attributes.Get("slowing resistance fuel") / slowingResistance;
-		double slowingHeat = attributes.Get("slowing resistance heat") / slowingResistance;
+		const double slowingResistance = attributes.LinearGet("slowing resistance", true);
+		const double slowingEnergy = attributes.LinearGet("slowing resistance energy") / slowingResistance;
+		const double slowingFuel = attributes.LinearGet("slowing resistance fuel") / slowingResistance;
+		const double slowingHeat = attributes.LinearGet("slowing resistance heat") / slowingResistance;
 		DoStatusEffect(isDisabled, slowness, slowingResistance,
 			energy, slowingEnergy, fuel, slowingFuel, heat, slowingHeat);
 	}
 
 	if(discharge)
 	{
-		double dischargeResistance = attributes.Get("discharge resistance");
-		double dischargeEnergy = attributes.Get("discharge resistance energy") / dischargeResistance;
-		double dischargeFuel = attributes.Get("discharge resistance fuel") / dischargeResistance;
-		double dischargeHeat = attributes.Get("discharge resistance heat") / dischargeResistance;
+		const double dischargeResistance = attributes.LinearGet("discharge resistance", true);
+		const double dischargeEnergy = attributes.LinearGet("discharge resistance energy") / dischargeResistance;
+		const double dischargeFuel = attributes.LinearGet("discharge resistance fuel") / dischargeResistance;
+		const double dischargeHeat = attributes.LinearGet("discharge resistance heat") / dischargeResistance;
 		DoStatusEffect(isDisabled, discharge, dischargeResistance,
 			energy, dischargeEnergy, fuel, dischargeFuel, heat, dischargeHeat);
 	}
 
 	if(corrosion)
 	{
-		double corrosionResistance = attributes.Get("corrosion resistance");
-		double corrosionEnergy = attributes.Get("corrosion resistance energy") / corrosionResistance;
-		double corrosionFuel = attributes.Get("corrosion resistance fuel") / corrosionResistance;
-		double corrosionHeat = attributes.Get("corrosion resistance heat") / corrosionResistance;
+		const double corrosionResistance = attributes.LinearGet("corrosion resistance", true);
+		const double corrosionEnergy = attributes.LinearGet("corrosion resistance energy") / corrosionResistance;
+		const double corrosionFuel = attributes.LinearGet("corrosion resistance fuel") / corrosionResistance;
+		const double corrosionHeat = attributes.LinearGet("corrosion resistance heat") / corrosionResistance;
 		DoStatusEffect(isDisabled, corrosion, corrosionResistance,
 			energy, corrosionEnergy, fuel, corrosionFuel, heat, corrosionHeat);
 	}
 
 	if(leakage)
 	{
-		double leakResistance = attributes.Get("leak resistance");
-		double leakEnergy = attributes.Get("leak resistance energy") / leakResistance;
-		double leakFuel = attributes.Get("leak resistance fuel") / leakResistance;
-		double leakHeat = attributes.Get("leak resistance heat") / leakResistance;
+		const double leakResistance = attributes.LinearGet("leak resistance", true);
+		const double leakEnergy = attributes.LinearGet("leak resistance energy") / leakResistance;
+		const double leakFuel = attributes.LinearGet("leak resistance fuel") / leakResistance;
+		const double leakHeat = attributes.LinearGet("leak resistance heat") / leakResistance;
 		DoStatusEffect(isDisabled, leakage, leakResistance,
 			energy, leakEnergy, fuel, leakFuel, heat, leakHeat);
 	}
 
 	if(burning)
 	{
-		double burnResistance = attributes.Get("burn resistance");
-		double burnEnergy = attributes.Get("burn resistance energy") / burnResistance;
-		double burnFuel = attributes.Get("burn resistance fuel") / burnResistance;
-		double burnHeat = attributes.Get("burn resistance heat") / burnResistance;
+		const double burnResistance = attributes.LinearGet("burn resistance", true);
+		const double burnEnergy = attributes.LinearGet("burn resistance energy") / burnResistance;
+		const double burnFuel = attributes.LinearGet("burn resistance fuel") / burnResistance;
+		const double burnHeat = attributes.LinearGet("burn resistance heat") / burnResistance;
 		DoStatusEffect(isDisabled, burning, burnResistance,
 			energy, burnEnergy, fuel, burnFuel, heat, burnHeat);
 	}
@@ -3722,17 +3737,15 @@ void Ship::DoGeneration()
 	if(heat > MaximumHeat())
 	{
 		isOverheated = true;
-		double heatRatio = Heat() / (1. + attributes.Get("overheat damage threshold"));
+		const double heatRatio = Heat() / (1. + attributes.Get("overheat damage threshold"));
 		if(heatRatio > 1.)
 			hull -= attributes.Get("overheat damage rate") * heatRatio;
 	}
 	else if(heat < .9 * MaximumHeat())
 		isOverheated = false;
 
-	double maxShields = attributes.Get("shields");
-	shields = min(shields, maxShields);
-	double maxHull = attributes.Get("hull");
-	hull = min(hull, maxHull);
+	shields = min(shields, attributes.Get("shields"));
+	hull = min(hull, attributes.Get("hull"));
 
 	isDisabled = isOverheated || hull < MinimumHull() || (!crew && RequiredCrew());
 
@@ -3760,24 +3773,25 @@ void Ship::DoGeneration()
 		heat -= coolingEfficiency * attributes.Get("cooling");
 
 		// Convert fuel into energy and heat only when the required amount of fuel is available.
-		if(attributes.Get("fuel consumption") <= fuel)
+		const double fuelConsumption = attributes.LinearGet("fuel consumption", true);
+		if(fuelConsumption <= fuel)
 		{
-			fuel -= attributes.Get("fuel consumption");
-			energy += attributes.Get("fuel energy");
-			heat += attributes.Get("fuel heat");
+			fuel -= fuelConsumption;
+			energy += attributes.LinearGet("fuel energy");
+			heat += attributes.LinearGet("fuel heat");
 		}
 
 		// Apply active cooling. The fraction of full cooling to apply equals
 		// your ship's current fraction of its maximum temperature.
-		double activeCooling = coolingEfficiency * attributes.Get("active cooling");
+		const double activeCooling = coolingEfficiency * attributes.Get("active cooling");
 		if(activeCooling > 0. && heat > 0. && energy >= 0.)
 		{
 			// Handle the case where "active cooling"
 			// does not require any energy.
-			double coolingEnergy = attributes.Get("cooling energy");
+			const double coolingEnergy = attributes.Get("cooling energy");
 			if(coolingEnergy)
 			{
-				double spentEnergy = min(energy, coolingEnergy * min(1., Heat()));
+				const double spentEnergy = min(energy, coolingEnergy * min(1., Heat()));
 				heat -= activeCooling * spentEnergy / coolingEnergy;
 				energy -= spentEnergy;
 			}
@@ -3843,29 +3857,36 @@ void Ship::DoCloakDecision()
 	if(!cloak)
 		cloakDisruption = max(0., cloakDisruption - 1.);
 
-	double cloakingSpeed = attributes.Get("cloak");
-	bool canCloak = (!isDisabled && cloakingSpeed > 0. && !cloakDisruption
-		&& fuel >= attributes.Get("cloaking fuel")
-		&& energy >= attributes.Get("cloaking energy"));
+	const double cloakingSpeed = attributes.LinearGet("cloak", true);
 
-	if(commands.Has(Command::CLOAK) && canCloak)
+	if(!cloakingSpeed)
+		cloak = 0.;
+	else if(commands.Has(Command::CLOAK))
 	{
-		cloak = min(1., cloak + cloakingSpeed);
-		fuel -= attributes.Get("cloaking fuel");
-		energy -= attributes.Get("cloaking energy");
-		heat += attributes.Get("cloaking heat");
-	}
-	else if(cloakingSpeed)
-	{
-		cloak = max(0., cloak - cloakingSpeed);
-		// If you're trying to cloak but are unable to (too little energy or
-		// fuel) you're forced to decloak fully for one frame before you can
-		// engage cloaking again.
-		if(commands.Has(Command::CLOAK))
+		const double cloakingEnergy = attributes.LinearGet("cloaking energy");
+		const double cloakingFuel = attributes.LinearGet("cloaking fuel");
+		const bool canCloak = !isDisabled && !cloakDisruption
+			&& energy >= cloakingEnergy && fuel >= cloakingFuel;
+
+		if (canCloak)
+		{
+			cloak = min(1., cloak + cloakingSpeed);
+			energy -= cloakingEnergy;
+			fuel -= cloakingFuel;
+			const double cloakingHeat = attributes.LinearGet("cloaking heat");
+			heat += cloakingHeat;
+		}
+		else
+		{
+			cloak = max(0., cloak - cloakingSpeed);
+			// If you're trying to cloak but are unable to (too little energy or
+			// fuel) you're forced to decloak fully for one frame before you can
+			// engage cloaking again.
 			cloakDisruption = max(cloakDisruption, 1.);
+		}
 	}
 	else
-		cloak = 0.;
+		cloak = max(0., cloak - cloakingSpeed);
 }
 
 
@@ -4137,35 +4158,41 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 {
 	isUsingAfterburner = false;
 
-	double mass = InertialMass();
-	double slowMultiplier = 1. / (1. + slowness * .05);
+	const double mass = InertialMass();
+	const double slowMultiplier = 1. / (1. + slowness * .05);
 
 	if(isDisabled)
 		velocity *= 1. - Drag() / mass;
 	else if(!pilotError)
 	{
+
 		if(commands.Turn())
 		{
+			const double turningBurn = attributes.LinearGet("turning burn", true);
+			const double turningCorrosion = attributes.LinearGet("turning corrosion");
+			const double turningDischarge = attributes.LinearGet("turning discharge");
+			const double turningDisruption = attributes.LinearGet("turning disruption");
+			const double turningEnergy = attributes.LinearGet("turning energy");
+			const double turningFuel = attributes.LinearGet("turning fuel");
+			const double turningHeat = -attributes.LinearGet("turning heat");
+			const double turningHull = attributes.LinearGet("turning hull");
+			const double turningIon = attributes.LinearGet("turning ion");
+			const double turningLeakage = attributes.LinearGet("turning leakage");
+			const double turningScramble = attributes.LinearGet("turning scramble");
+			const double turningShields = attributes.LinearGet("turning shields");
+			const double turningSlowing = attributes.LinearGet("turning slowing");
+
 			// Check if we are able to turn.
-			double cost = attributes.Get("turning energy");
-			if(cost > 0. && energy < cost * fabs(commands.Turn()))
-				commands.SetTurn(commands.Turn() * energy / (cost * fabs(commands.Turn())));
-
-			cost = attributes.Get("turning shields");
-			if(cost > 0. && shields < cost * fabs(commands.Turn()))
-				commands.SetTurn(commands.Turn() * shields / (cost * fabs(commands.Turn())));
-
-			cost = attributes.Get("turning hull");
-			if(cost > 0. && hull < cost * fabs(commands.Turn()))
-				commands.SetTurn(commands.Turn() * hull / (cost * fabs(commands.Turn())));
-
-			cost = attributes.Get("turning fuel");
-			if(cost > 0. && fuel < cost * fabs(commands.Turn()))
-				commands.SetTurn(commands.Turn() * fuel / (cost * fabs(commands.Turn())));
-
-			cost = -attributes.Get("turning heat");
-			if(cost > 0. && heat < cost * fabs(commands.Turn()))
-				commands.SetTurn(commands.Turn() * heat / (cost * fabs(commands.Turn())));
+			if(turningEnergy > 0. && energy < turningEnergy * fabs(commands.Turn()))
+				commands.ScaleTurn(energy / turningEnergy);
+			if(turningFuel > 0. && fuel < turningFuel * fabs(commands.Turn()))
+				commands.ScaleTurn(fuel / turningFuel);
+			if(turningHeat > 0. && heat < turningHeat * fabs(commands.Turn()))
+				commands.ScaleTurn(heat / turningHeat);
+			if(turningHull > 0. && hull < turningHull * fabs(commands.Turn()))
+				commands.ScaleTurn(hull / turningHull);
+			if(turningShields > 0. && shields < turningShields * fabs(commands.Turn()))
+				commands.ScaleTurn(shields / turningShields);
 
 			if(commands.Turn())
 			{
@@ -4174,132 +4201,193 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				// If turning at a fraction of the full rate (either from lack of
 				// energy or because of tracking a target), only consume a fraction
 				// of the turning energy and produce a fraction of the heat.
-				double scale = fabs(commands.Turn());
+				const double scale = fabs(commands.Turn());
 
-				shields -= scale * attributes.Get("turning shields");
-				hull -= scale * attributes.Get("turning hull");
-				energy -= scale * attributes.Get("turning energy");
-				fuel -= scale * attributes.Get("turning fuel");
-				heat += scale * attributes.Get("turning heat");
-				discharge += scale * attributes.Get("turning discharge");
-				corrosion += scale * attributes.Get("turning corrosion");
-				ionization += scale * attributes.Get("turning ion");
-				scrambling += scale * attributes.Get("turning scramble");
-				leakage += scale * attributes.Get("turning leakage");
-				burning += scale * attributes.Get("turning burn");
-				slowness += scale * attributes.Get("turning slowing");
-				disruption += scale * attributes.Get("turning disruption");
+				energy -= scale * turningEnergy;
+				fuel -= scale * turningFuel;
+				heat -= scale * turningHeat;
+				hull -= scale * turningHull;
+				shields -= scale * turningShields;
+
+				burning += scale * turningBurn;
+				corrosion += scale * turningCorrosion;
+				discharge += scale * turningDischarge;
+				disruption += scale * turningDisruption;
+				ionization += scale * turningIon;
+				leakage += scale * turningLeakage;
+				scrambling += scale * turningScramble;
+				slowness += scale * turningSlowing;
 
 				angle += commands.Turn() * TurnRate() * slowMultiplier;
 			}
 		}
-		double thrustCommand = commands.Has(Command::FORWARD) - commands.Has(Command::BACK);
+
+		const bool moveForward = commands.Has(Command::FORWARD) && !commands.Has(Command::BACK);
+		const bool moveReverse = !commands.Has(Command::FORWARD) && commands.Has(Command::BACK);
 		double thrust = 0.;
-		if(thrustCommand)
+		double thrustCommand = 1.;
+
+		if(moveForward)
 		{
-			// Check if we are able to apply this thrust.
-			double cost = attributes.Get((thrustCommand > 0.) ?
-				"thrusting energy" : "reverse thrusting energy");
-			if(cost > 0. && energy < cost)
-				thrustCommand *= energy / cost;
+			thrust = attributes.LinearGet("thrust", true);
+			const double thrustingBurn = attributes.LinearGet("thrusting burn");
+			const double thrustingCorrosion = attributes.LinearGet("thrusting corrosion");
+			const double thrustingDischarge = attributes.LinearGet("thrusting discharge");
+			const double thrustingDisruption = attributes.LinearGet("thrusting disruption");
+			const double thrustingEnergy = attributes.LinearGet("thrusting energy");
+			const double thrustingFuel = attributes.LinearGet("thrusting fuel");
+			const double thrustingHeat = -attributes.LinearGet("thrusting heat");
+			const double thrustingHull = attributes.LinearGet("thrusting hull");
+			const double thrustingIon = attributes.LinearGet("thrusting ion");
+			const double thrustingLeakage = attributes.LinearGet("thrusting leakage");
+			const double thrustingScramble = attributes.LinearGet("thrusting scramble");
+			const double thrustingShields = attributes.LinearGet("thrusting shields");
+			const double thrustingSlowing = attributes.LinearGet("thrusting slowing");
 
-			cost = attributes.Get((thrustCommand > 0.) ?
-				"thrusting shields" : "reverse thrusting shields");
-			if(cost > 0. && shields < cost)
-				thrustCommand *= shields / cost;
-
-			cost = attributes.Get((thrustCommand > 0.) ?
-				"thrusting hull" : "reverse thrusting hull");
-			if(cost > 0. && hull < cost)
-				thrustCommand *= hull / cost;
-
-			cost = attributes.Get((thrustCommand > 0.) ?
-				"thrusting fuel" : "reverse thrusting fuel");
-			if(cost > 0. && fuel < cost)
-				thrustCommand *= fuel / cost;
-
-			cost = -attributes.Get((thrustCommand > 0.) ?
-				"thrusting heat" : "reverse thrusting heat");
-			if(cost > 0. && heat < cost)
-				thrustCommand *= heat / cost;
+			// Check if we are able to turn.
+			if(thrustingEnergy > 0. && energy < thrustingEnergy * thrustCommand)
+				thrustCommand *= energy / thrustingEnergy;
+			if(thrustingFuel > 0. && fuel < thrustingFuel * thrustCommand)
+				thrustCommand *= fuel / thrustingFuel;
+			if(thrustingHeat > 0. && heat < thrustingHeat * thrustCommand)
+				thrustCommand *= heat / thrustingHeat;
+			if(thrustingHull > 0. && hull < thrustingHull * thrustCommand)
+				thrustCommand *= hull / thrustingHull;
+			if(thrustingShields > 0. && shields < thrustingShields * thrustCommand)
+				thrustCommand *= shields / thrustingShields;
 
 			if(thrustCommand)
 			{
-				// If a reverse thrust is commanded and the capability does not
-				// exist, ignore it (do not even slow under drag).
-				isThrusting = (thrustCommand > 0.);
-				isReversing = !isThrusting && attributes.Get("reverse thrust");
-				thrust = attributes.Get(isThrusting ? "thrust" : "reverse thrust");
+				isThrusting = true;
+				isReversing = false;
 				if(thrust)
 				{
-					double scale = fabs(thrustCommand);
+					const double scale = thrustCommand;
 
-					shields -= scale * attributes.Get(isThrusting ? "thrusting shields" : "reverse thrusting shields");
-					hull -= scale * attributes.Get(isThrusting ? "thrusting hull" : "reverse thrusting hull");
-					energy -= scale * attributes.Get(isThrusting ? "thrusting energy" : "reverse thrusting energy");
-					fuel -= scale * attributes.Get(isThrusting ? "thrusting fuel" : "reverse thrusting fuel");
-					heat += scale * attributes.Get(isThrusting ? "thrusting heat" : "reverse thrusting heat");
-					discharge += scale * attributes.Get(isThrusting ? "thrusting discharge" : "reverse thrusting discharge");
-					corrosion += scale * attributes.Get(isThrusting ? "thrusting corrosion" : "reverse thrusting corrosion");
-					ionization += scale * attributes.Get(isThrusting ? "thrusting ion" : "reverse thrusting ion");
-					scrambling += scale * attributes.Get(isThrusting ? "thrusting scramble" :
-						"reverse thrusting scramble");
-					burning += scale * attributes.Get(isThrusting ? "thrusting burn" : "reverse thrusting burn");
-					leakage += scale * attributes.Get(isThrusting ? "thrusting leakage" : "reverse thrusting leakage");
-					slowness += scale * attributes.Get(isThrusting ? "thrusting slowing" : "reverse thrusting slowing");
-					disruption += scale * attributes.Get(isThrusting ? "thrusting disruption" : "reverse thrusting disruption");
+					energy -= scale * thrustingEnergy;
+					fuel -= scale * thrustingFuel;
+					heat -= scale * thrustingHeat;
+					hull -= scale * thrustingHull;
+					shields -= scale * thrustingShields;
 
-					acceleration += angle.Unit() * (thrustCommand * thrust / mass);
+					burning += scale * thrustingBurn;
+					corrosion += scale * thrustingCorrosion;
+					discharge += scale * thrustingDischarge;
+					disruption += scale * thrustingDisruption;
+					ionization += scale * thrustingIon;
+					leakage += scale * thrustingLeakage;
+					scrambling += scale * thrustingScramble;
+					slowness += scale * thrustingSlowing;
+
+					acceleration += angle.Unit() * (scale * thrust / mass);
 				}
 			}
 		}
-		bool applyAfterburner = (commands.Has(Command::AFTERBURNER) || (thrustCommand > 0. && !thrust))
-				&& !CannotAct();
+		else if(moveReverse)
+		{
+			thrust = attributes.LinearGet("reverse thrust", true);
+			const double thrustingBurn = attributes.LinearGet("reverse thrusting burn");
+			const double thrustingCorrosion = attributes.LinearGet("reverse thrusting corrosion");
+			const double thrustingDischarge = attributes.LinearGet("reverse thrusting discharge");
+			const double thrustingDisruption = attributes.LinearGet("reverse thrusting disruption");
+			const double thrustingEnergy = attributes.LinearGet("reverse thrusting energy");
+			const double thrustingFuel = attributes.LinearGet("reverse thrusting fuel");
+			const double thrustingHeat = -attributes.LinearGet("reverse thrusting heat");
+			const double thrustingHull = attributes.LinearGet("reverse thrusting hull");
+			const double thrustingIon = attributes.LinearGet("reverse thrusting ion");
+			const double thrustingLeakage = attributes.LinearGet("reverse thrusting leakage");
+			const double thrustingScramble = attributes.LinearGet("reverse thrusting scramble");
+			const double thrustingShields = attributes.LinearGet("reverse thrusting shields");
+			const double thrustingSlowing = attributes.LinearGet("reverse thrusting slowing");
+
+			// Check if we are able to turn.
+			if(thrustingEnergy > 0. && energy < thrustingEnergy * thrustCommand)
+				thrustCommand *= energy / thrustingEnergy;
+			if(thrustingFuel > 0. && fuel < thrustingFuel * thrustCommand)
+				thrustCommand *= fuel / thrustingFuel;
+			if(thrustingHeat > 0. && heat < thrustingHeat * thrustCommand)
+				thrustCommand *= heat / thrustingHeat;
+			if(thrustingHull > 0. && hull < thrustingHull * thrustCommand)
+				thrustCommand *= hull / thrustingHull;
+			if(thrustingShields > 0. && shields < thrustingShields * thrustCommand)
+				thrustCommand *= shields / thrustingShields;
+
+			if(thrustCommand)
+			{
+				isThrusting = false;
+				// If a reverse thrust is commanded and the capability does not
+				// exist, ignore it (do not even slow under drag).
+				isReversing = thrust;
+				if(thrust)
+				{
+					const double scale = thrustCommand;
+
+					energy -= scale * thrustingEnergy;
+					fuel -= scale * thrustingFuel;
+					heat -= scale * thrustingHeat;
+					hull -= scale * thrustingHull;
+					shields -= scale * thrustingShields;
+
+					burning += scale * thrustingBurn;
+					corrosion += scale * thrustingCorrosion;
+					discharge += scale * thrustingDischarge;
+					disruption += scale * thrustingDisruption;
+					ionization += scale * thrustingIon;
+					leakage += scale * thrustingLeakage;
+					scrambling += scale * thrustingScramble;
+					slowness += scale * thrustingSlowing;
+
+					acceleration -= angle.Unit() * (scale * thrust / mass);
+				}
+			}
+		}
+
+		const bool applyAfterburner = (commands.Has(Command::AFTERBURNER) || (moveForward && !thrust))
+			&& !CannotAct();
 		if(applyAfterburner)
 		{
-			thrust = attributes.Get("afterburner thrust");
-			double shieldCost = attributes.Get("afterburner shields");
-			double hullCost = attributes.Get("afterburner hull");
-			double energyCost = attributes.Get("afterburner energy");
-			double fuelCost = attributes.Get("afterburner fuel");
-			double heatCost = -attributes.Get("afterburner heat");
+			const double afterburnerBurn = attributes.LinearGet("afterburner burn", true);
+			const double afterburnerCorrosion = attributes.LinearGet("afterburner corrosion");
+			const double afterburnerDischarge = attributes.LinearGet("afterburner discharge");
+			const double afterburnerDisruption = attributes.LinearGet("afterburner disruption");
+			const double afterburnerEnergy = attributes.LinearGet("afterburner energy");
+			const double afterburnerFuel = attributes.LinearGet("afterburner fuel");
+			const double afterburnerHeat = -attributes.LinearGet("afterburner heat");
+			const double afterburnerHull = attributes.LinearGet("afterburner hull");
+			const double afterburnerIon = attributes.LinearGet("afterburner ion");
+			const double afterburnerLeakage = attributes.LinearGet("afterburner leakage");
+			const double afterburnerScramble = attributes.LinearGet("afterburner scramble");
+			const double afterburnerShields = attributes.LinearGet("afterburner shields");
+			const double afterburnerSlowing = attributes.LinearGet("afterburner slowing");
+			thrust = attributes.LinearGet("afterburner thrust");
 
-			double dischargeCost = attributes.Get("afterburner discharge");
-			double corrosionCost = attributes.Get("afterburner corrosion");
-			double ionCost = attributes.Get("afterburner ion");
-			double scramblingCost = attributes.Get("afterburner scramble");
-			double leakageCost = attributes.Get("afterburner leakage");
-			double burningCost = attributes.Get("afterburner burn");
-
-			double slownessCost = attributes.Get("afterburner slowing");
-			double disruptionCost = attributes.Get("afterburner disruption");
-
-			if(thrust && shields >= shieldCost && hull >= hullCost
-				&& energy >= energyCost && fuel >= fuelCost && heat >= heatCost)
+			// No partial afterburning - they're either off or fully on.
+			if(thrust && shields >= afterburnerShields && hull >= afterburnerHull
+				&& energy >= afterburnerEnergy && fuel >= afterburnerFuel && heat >= afterburnerHeat)
 			{
-				shields -= shieldCost;
-				hull -= hullCost;
-				energy -= energyCost;
-				fuel -= fuelCost;
-				heat -= heatCost;
+				energy -= afterburnerEnergy;
+				fuel -= afterburnerFuel;
+				heat -= afterburnerHeat;
+				hull -= afterburnerHull;
+				shields -= afterburnerShields;
 
-				discharge += dischargeCost;
-				corrosion += corrosionCost;
-				ionization += ionCost;
-				scrambling += scramblingCost;
-				leakage += leakageCost;
-				burning += burningCost;
+				burning += afterburnerBurn;
+				corrosion += afterburnerCorrosion;
+				discharge += afterburnerDischarge;
+				disruption += afterburnerDisruption;
+				ionization += afterburnerIon;
+				leakage += afterburnerLeakage;
+				scrambling += afterburnerScramble;
+				slowness += afterburnerSlowing;
 
-				slowness += slownessCost;
-				disruption += disruptionCost;
-
-				acceleration += angle.Unit() * thrust / mass;
+				acceleration += angle.Unit() * (thrust / mass);
 
 				// Only create the afterburner effects if the ship is in the player's system.
 				isUsingAfterburner = !forget;
 			}
 		}
 	}
+
 	if(acceleration)
 	{
 		acceleration *= slowMultiplier;

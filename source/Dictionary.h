@@ -34,11 +34,19 @@ public:
 	// Get the value of a key, or 0 if it does not exist:
 	double Get(const char *key) const;
 	double Get(const std::string &key) const;
+	// Get optimized for successive calls with sorted and near adjacent keys:
+	// (Set init to true for first call in each group.)
+	double LinearGet(const char *key, bool init = false) const;
+	double LinearGet(const std::string &key, bool init = false) const;
 
 	// Expose certain functions from the underlying vector:
 	using std::vector<std::pair<const char *, double>>::empty;
 	using std::vector<std::pair<const char *, double>>::begin;
 	using std::vector<std::pair<const char *, double>>::end;
+
+
+private:
+	mutable size_t hint = 0;
 };
 
 

@@ -465,6 +465,20 @@ double Outfit::Get(const string &attribute) const
 
 
 
+double Outfit::LinearGet(const char *attribute, const bool init) const
+{
+	return attributes.LinearGet(attribute, init);
+}
+
+
+
+double Outfit::LinearGet(const string &attribute, const bool init) const
+{
+	return LinearGet(attribute.c_str(), init);
+}
+
+
+
 const Dictionary &Outfit::Attributes() const
 {
 	return attributes;

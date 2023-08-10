@@ -67,6 +67,8 @@ public:
 
 	double Get(const char *attribute) const;
 	double Get(const std::string &attribute) const;
+	double LinearGet(const char *attribute, bool init = false) const;
+	double LinearGet(const std::string &attribute, bool init = false) const;
 	const Dictionary &Attributes() const;
 
 	// Determine whether the given number of instances of the given outfit can
