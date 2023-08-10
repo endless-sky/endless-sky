@@ -45,7 +45,7 @@ outfit "Speckle Railgun"
 		"firing energy" 6
 		"firing heat" 12
 		"firing force" 12
-		"submunition" "speck slug"
+		"submunition" "Speck"
 	description "This compact railgun rapidly fires a stream of hypervelocity projectiles, trading accuracy for sheer rate of fire. Friction between the projectiles and the rails is reduced via advanced techniques, but still produces enough heat that the gun must cool down after a burst of fire to prevent rail ablation."
 	description "A small internal capacitor allows the Speckle Railgun to be trickle charged, even if a ship's power supply would otherwise be insufficient to fire a single shot."
 	
@@ -75,15 +75,15 @@ outfit "Speckle Turret"
 		"firing energy" 12
 		"firing heat" 24
 		"firing force" 24
-		"submunition" "speck"
+		"submunition" "Speck"
 			"offset" -3 0
-		"submunition" "speck"
+		"submunition" "Speck"
 			"offset" 3 0
 	description "The turreted version of the Speckle Railgun mounts a pair of railguns onto a nimble swiveling base. Its light weight and minimal size allows even small ships to engage much larger targets at extreme ranges. By alternating the fire of each railgun on the turret, the required cooldown period can be staggered to let the turret maintain a constant rate of fire."
 	description "A small internal capacitor allows the Speckle Turret to be trickle charged, even if a ship's power supply would otherwise be insufficient to fire a single shot."
 
 
-outfit "speck"
+outfit "Speck"
 	weapon
 		sprite "projectile/speck"
 			"frame rate" 12
@@ -148,7 +148,7 @@ outfit "Fleck Coilgun"
 		"firing energy" 60
 		"firing heat" 15
 		"firing force" 60
-		"submunition" "fleck"
+		"submunition" "Fleck"
 	description "A powerful row of superconducting coils can accelerate a conductive metal projectile to impressive velocities while avoiding the friction associated with railguns. This fixed gun enables even modestly sized ships to provide precision artillery support at range, or bring to bear a powerful kinetic weapon for close quarter combat."
 
 
@@ -175,11 +175,11 @@ outfit "Fleck Turret"
 		"firing energy" 45
 		"firing heat" 12
 		"firing force" 60
-		"submunition" "fleck"
+		"submunition" "Fleck"
 	description "A pair of Fleck Coilguns on a sturdy turret mount produces a powerful kinetic artillery piece capable of lobbing projectiles across an entire battlefield. An inductive energy recovery system allows the firing of one coilgun to prime the other instead of simply dissipating the charge as heat, making the turret more efficient compared to its single gun variant."
 
 
-outfit "fleck"
+outfit "Fleck"
 	weapon
 		sprite "projectile/fleck"
 			"frame rate" 6

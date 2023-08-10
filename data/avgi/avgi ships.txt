@@ -1512,8 +1512,8 @@ ship "Refraktos"
 	turret 18 -81 "Phased Array Laser (Blue)"
 	turret -18 -72 "Phased Array Laser (Blue)"
 	turret 18 -72 "Phased Array Laser (Blue)"
-	turret -21 -57 "Phased Array Laser (Green)"
-	turret 21 -57 "Phased Array Laser (Green)"
+	turret -21 -60 "Phased Array Laser (Green)"
+	turret 21 -60 "Phased Array Laser (Green)"
 	turret 0 54 "Phased Array Laser (Green)"
 
 	engine 0 150

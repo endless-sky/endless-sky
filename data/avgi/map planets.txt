@@ -272,7 +272,7 @@ planet Hespair
 	attributes uninhabited
 	landscape land/beach18
 	description `Hespair was once a life bearing world, but no longer. An unknown event several million years ago thoroughly sterilized the planet down to the last bacterium, and life has not since reemerged.`
-	description`	However, during their exploration of the planet, the Avgi accidentally, if inevitably, introduced bacteria from their own ships to Hespair's oceans. These motes of life are still sparse, but even if the Avgi refrain from terraforming this world, they will form the seeds of a new biosphere.`
+	description `	However, during their exploration of the planet, the Avgi accidentally, if inevitably, introduced bacteria from their own ships to Hespair's oceans. These motes of life are still sparse, but even if the Avgi refrain from terraforming this world, they will form the seeds of a new biosphere.`
 	government Uninhabited
 
 
@@ -480,3 +480,15 @@ planet "Outpost Lito"
 planet Gateway
 	attributes gateway
 	
+
+
+wormhole "Shrouded Embers"
+	mappable
+	link Lucina Rouseu
+	link Rouseu Lucina
+	color "wormholes: Ember Waste"
+
+planet "Shrouded Embers"
+	attributes "requires: quantum keystone"
+	spaceport ``
+	wormhole "Shrouded Embers"

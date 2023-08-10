@@ -1342,12 +1342,12 @@ system Ensemble
 	habitable 3250
 	belt 1401 5
 	haze _menu/haze-none
-	link "#25f949"
-	link "#baa7f9"
-	link "#bed3bb"
-	link "#edf8f7"
-	link "#f5fbc7"
-	link "#f70113"
+	link "Ge-73"
+	link "Si-28"
+	link "Sb-122"
+	link "Te-128"
+	link "B-11"
+	link "As-75"
 	asteroids "large metal" 1 6.84
 	fleet "Avgi Orbital Defense" 1200
 	fleet "Avgi Patrol" 900
@@ -1830,10 +1830,10 @@ system Interlude
 	habitable 7906.478
 	belt 3024 10
 	haze _menu/haze-67
-	link "#3fee8d"
-	link "#8b808b"
-	link "#a6d944"
-	link "#d2e5ec"
+	link "Og-294"
+	link "Ar-40"
+	link "Ne-20"
+	link "Kr-84"
 	asteroids "small rock" 2 1.485
 	asteroids "large rock" 4 2.554
 	asteroids "large metal" 8 2.673
@@ -2060,10 +2060,10 @@ system Concerto
 	habitable 3650
 	belt 4475 10
 	haze _menu/haze-67
-	link "#0fe276"
-	link "#79c2ed"
-	link "#b6457f"
-	link "#ecd543"
+	link "Ba-137"
+	link "Mg-24"
+	link "Sr-88"
+	link "Be-9"
 	asteroids "small rock" 2 1.735
 	asteroids "medium rock" 7 1.86
 	asteroids "large rock" 3 1.191
@@ -2250,8 +2250,8 @@ system Prelude
 	habitable 2300
 	belt 1664 5
 	haze _menu/haze-red
-	link "#100b14"
-	link "#78898c"
+	link "At-210"
+	link "Ts-294"
 	asteroids "small rock" 3 4.111
 	asteroids "medium rock" 5 3.953
 	asteroids "large rock" 1 4.585
@@ -2310,8 +2310,8 @@ system Symphony
 	belt 1997 7
 	belt 2468 5
 	haze _menu/haze-33
-	link "#914fa1"
-	link "#b6457f"
+	link "Ca-40"
+	link "Sr-88"
 	asteroids "small rock" 2 5.25
 	asteroids "medium rock" 6 5.18
 	asteroids "small metal" 2 5.39
@@ -2720,7 +2720,7 @@ system Postlude
 	habitable 1330.038
 	belt 1814 6
 	haze _menu/haze-brown
-	link "#5cb85c"
+	link "Cs-133"
 	asteroids "medium metal" 13 5.468
 	asteroids "large metal" 1 6.634
 	minables lead 1 8.654
@@ -2836,10 +2836,10 @@ system Arche
 	habitable 14197.215
 	belt 1808 2
 	belt 2396 8
-	link "#d9534f"
-	link "#e0bef3"
-	link "#e260c2"
-	link "#f5fbc7"
+	link "O-16"
+	link "C-12"
+	link "N-14"
+	link "B-11"
 	link Quintessence
 	asteroids "small rock" 3 5.94
 	asteroids "medium rock" 6 3.66
@@ -3709,7 +3709,7 @@ system Wake
 		distance 2659.018
 		period 2477.672
 
-system "#5cb85c"
+system "Cs-133"
 	pos 81.376 868.695
 	government Uninhabited
 	attributes "ember waste" hiders "tangled shroud"
@@ -3717,9 +3717,9 @@ system "#5cb85c"
 	belt 1863 9
 	belt 1967 9
 	haze _menu/haze-red
-	link "#2b5d50"
-	link "#bd370f"
-	link "#cfc14d"
+	link "K-39"
+	link "Rb-85"
+	link "Fr-223"
 	link Postlude
 	asteroids "small rock" 1 2.698
 	asteroids "small metal" 11 3.519
@@ -3747,16 +3747,16 @@ system "#5cb85c"
 		distance 4019
 		period 5298.295
 
-system "#d9534f"
+system "O-16"
 	pos -288.292 842.639
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
 	belt 1487
 	haze _menu/haze-none
-	link "#01a9a9"
-	link "#0313f4"
-	link "#edf8f7"
+	link "S-32"
+	link "P-31"
+	link "Te-128"
 	link Arche
 	asteroids "medium rock" 7 3.937
 	asteroids "large rock" 1 4.043
@@ -3772,7 +3772,7 @@ system "#d9534f"
 			distance 317
 			period 347.603
 
-system "#f9f9f9"
+system "Li-7"
 	pos 64.227 953.358
 	government Uninhabited
 	attributes hiders "tangled shroud"
@@ -3781,8 +3781,8 @@ system "#f9f9f9"
 	belt 2323 10
 	belt 2984 7
 	haze _menu/haze-67
-	link "#1e877d"
-	link "#a6d944"
+	link "Na-23"
+	link "Ne-20"
 	asteroids "small rock" 29 3.289
 	asteroids "medium rock" 6 4.306
 	asteroids "large rock" 8 5.741
@@ -3821,7 +3821,7 @@ system "#f9f9f9"
 		distance 7459.166
 		period 68523.248
 
-system "#a6d944"
+system "Ne-20"
 	pos -9.278 907.623
 	government Uninhabited
 	attributes "ember waste" hiders "tangled shroud"
@@ -3829,10 +3829,10 @@ system "#a6d944"
 	belt 1601 6
 	belt 1914
 	haze _menu/haze-red
-	link "#2b5d50"
-	link "#8b808b"
-	link "#acf472"
-	link "#f9f9f9"
+	link "K-39"
+	link "Ar-40"
+	link "He-4"
+	link "Li-7"
 	asteroids "small rock" 5 2.013
 	asteroids "large rock" 2 1.877
 	asteroids "small metal" 1 1.986
@@ -3864,14 +3864,14 @@ system "#a6d944"
 			distance 406
 			period 503.829
 
-system "#31a999"
+system "Xe-131"
 	pos -24.17 1000.365
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 320
 	belt 1497 8
-	link "#d2e5ec"
-	link "#dee723"
+	link "Kr-84"
+	link "Rn-222"
 	asteroids "small rock" 1 2.944
 	asteroids "large rock" 2 1.792
 	asteroids "small metal" 7 1.728
@@ -3883,16 +3883,16 @@ system "#31a999"
 		distance 786
 		period 492.741
 
-system "#01a9a9"
+system "S-32"
 	pos -192.211 848.742
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
 	belt 1131 4
 	haze _menu/haze-none
-	link "#007477"
-	link "#bed3bb"
-	link "#d9534f"
+	link "F-19"
+	link "Sb-122"
+	link "O-16"
 	asteroids "small rock" 3 2.05
 	asteroids "medium rock" 1 2.184
 	asteroids "large rock" 2 2.923
@@ -3907,14 +3907,14 @@ system "#01a9a9"
 		distance 2461
 		period 15442.849
 
-system "#ecd543"
+system "Be-9"
 	pos -162.532 1056.338
 	government Uninhabited
 	attributes "bright star" "notable star" "tangled shroud"
 	habitable 3400
 	belt 1490 8
 	haze _menu/haze-133
-	link "#79c2ed"
+	link "Mg-24"
 	link Concerto
 	asteroids "medium rock" 4 5.116
 	asteroids "large rock" 3 4.953
@@ -3952,15 +3952,15 @@ system "#ecd543"
 			distance 244
 			period 144.074
 
-system "#08078a"
+system "Br-80"
 	pos -171.072 920.748
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
 	belt 1989 5
 	haze _menu/haze-none
-	link "#384e08"
-	link "#46d125"
+	link "I-127"
+	link "Cl-35"
 	asteroids "small rock" 1 1.61
 	asteroids "large rock" 6 2.383
 	asteroids "small metal" 6 2.19
@@ -3997,14 +3997,14 @@ system "#08078a"
 		distance 5220.073
 		period 47706.203
 
-system "#0a6b84"
+system "H-1"
 	pos -16.872 832.201
 	government Uninhabited
 	attributes "ember waste" hiders "tangled shroud"
 	habitable 135
 	belt 1692 7
 	haze _menu/haze-red
-	link "#acf472"
+	link "He-4"
 	asteroids "small rock" 1 1.548
 	asteroids "large rock" 1 1.525
 	asteroids "small metal" 17 2.195
@@ -4057,14 +4057,14 @@ system "#0a6b84"
 			distance 242
 			period 98.524
 
-system "#cfc14d"
+system "Fr-223"
 	pos 98.609 877.834
 	government Uninhabited
 	attributes "ember waste" hiders "tangled shroud"
 	habitable 10
 	belt 1356 5
 	haze _menu/haze-red
-	link "#5cb85c"
+	link "Cs-133"
 	asteroids "large metal" 1 3.943
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 25000
@@ -4080,14 +4080,14 @@ system "#cfc14d"
 		distance 9467
 		period 116514.119
 
-system "#f5fbc7"
+system "B-11"
 	pos -302.314 894.673
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
 	belt 1448 7
 	haze _menu/haze-none
-	link "#baa7f9"
+	link "Si-28"
 	link Arche
 	link Ensemble
 	asteroids "small rock" 3 3.139
@@ -4104,7 +4104,7 @@ system "#f5fbc7"
 		distance 3246
 		period 23392.83
 
-system "#25f949"
+system "Ge-73"
 	pos -222.367 963.803
 	government Uninhabited
 	attributes "tangled shroud"
@@ -4112,9 +4112,9 @@ system "#25f949"
 	belt 1758 6
 	belt 1846 9
 	haze _menu/haze-none
-	link "#0fe276"
-	link "#baa7f9"
-	link "#f70113"
+	link "Ba-137"
+	link "Si-28"
+	link "As-75"
 	link Ensemble
 	asteroids "small metal" 1 1.584
 	minables copper 1 1.851
@@ -4126,7 +4126,7 @@ system "#25f949"
 		distance 3460.455
 		period 25748.963
 
-system "#bed3bb"
+system "Sb-122"
 	pos -213.357 900.325
 	government Uninhabited
 	attributes "tangled shroud"
@@ -4134,8 +4134,8 @@ system "#bed3bb"
 	belt 1419 5
 	belt 2336 6
 	haze _menu/haze-none
-	link "#01a9a9"
-	link "#edf8f7"
+	link "S-32"
+	link "Te-128"
 	link Ensemble
 	asteroids "small rock" 2 4.947
 	asteroids "medium rock" 6 4.284
@@ -4161,14 +4161,14 @@ system "#bed3bb"
 		distance 4052
 		period 5767.521
 
-system "#79c2ed"
+system "Mg-24"
 	pos -134.923 1040.967
 	government Uninhabited
 	attributes "bright star" "notable star" "tangled shroud"
 	habitable 3000
 	belt 1078
 	haze _menu/haze-133
-	link "#ecd543"
+	link "Be-9"
 	link Concerto
 	asteroids "large metal" 1 3.584
 	object
@@ -4199,7 +4199,7 @@ system "#79c2ed"
 		distance 5854.284
 		period 3271.223
 
-system "#0fe276"
+system "Ba-137"
 	pos -221.041 1010.682
 	government Uninhabited
 	attributes "tangled shroud"
@@ -4207,8 +4207,8 @@ system "#0fe276"
 	belt 1144
 	belt 2010 6
 	haze _menu/haze-none
-	link "#25f949"
-	link "#b6457f"
+	link "Ge-73"
+	link "Sr-88"
 	link Concerto
 	asteroids "medium rock" 3 3.283
 	asteroids "large rock" 1 3.334
@@ -4223,7 +4223,7 @@ system "#0fe276"
 		distance 1168
 		period 5049.22
 
-system "#f70113"
+system "As-75"
 	pos -187.586 955.23
 	government Uninhabited
 	attributes "tangled shroud"
@@ -4231,7 +4231,7 @@ system "#f70113"
 	belt 1315 10
 	belt 2249 8
 	haze _menu/haze-none
-	link "#25f949"
+	link "Ge-73"
 	link Ensemble
 	asteroids "small rock" 2 2.228
 	minables iron 3 4.749
@@ -4255,15 +4255,15 @@ system "#f70113"
 		distance 17618
 		period 295797.773
 
-system "#1e877d"
+system "Na-23"
 	pos 82.003 937.49
 	government Uninhabited
 	attributes hiders "tangled shroud"
 	habitable 135
 	belt 1511 9
 	haze _menu/haze-67
-	link "#2b5d50"
-	link "#f9f9f9"
+	link "K-39"
+	link "Li-7"
 	asteroids "small metal" 10 3.168
 	asteroids "medium metal" 1 4.205
 	asteroids "large metal" 3 4.262
@@ -4295,15 +4295,15 @@ system "#1e877d"
 			distance 333
 			period 159.032
 
-system "#bd370f"
+system "Rb-85"
 	pos 28.705 856.962
 	government Uninhabited
 	attributes "ember waste" hiders "tangled shroud"
 	habitable 230
 	belt 1490 3
 	haze _menu/haze-red
-	link "#2b5d50"
-	link "#5cb85c"
+	link "K-39"
+	link "Cs-133"
 	asteroids "large metal" 1 1.034
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
@@ -4327,7 +4327,7 @@ system "#bd370f"
 			distance 438
 			period 346.507
 
-system "#914fa1"
+system "Ca-40"
 	pos -92.844 973.172
 	government Uninhabited
 	attributes "tangled shroud"
@@ -4361,7 +4361,7 @@ system "#914fa1"
 		distance 13561
 		period 199754.957
 
-system "#3fee8d"
+system "Og-294"
 	pos 4.185 943.689
 	government Uninhabited
 	attributes "tangled shroud"
@@ -4407,7 +4407,7 @@ system "#3fee8d"
 			distance 317
 			period 213.348
 
-system "#007477"
+system "F-19"
 	pos -132.749 894.646
 	government Uninhabited
 	attributes "ember waste" "tangled shroud"
@@ -4415,9 +4415,9 @@ system "#007477"
 	belt 1588 2
 	belt 1771 3
 	haze _menu/haze-red
-	link "#01a9a9"
-	link "#100b14"
-	link "#46d125"
+	link "S-32"
+	link "At-210"
+	link "Cl-35"
 	asteroids "medium rock" 11 4.392
 	asteroids "large rock" 1 5.544
 	asteroids "medium metal" 1 6.336
@@ -4441,14 +4441,14 @@ system "#007477"
 			distance 220
 			period 154.364
 
-system "#0313f4"
+system "P-31"
 	pos -265.289 829.783
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
 	belt 1352 7
 	haze _menu/haze-none
-	link "#d9534f"
+	link "O-16"
 	asteroids "medium metal" 6 3.29
 	object
 		sprite planet/browndwarf-l-rouge
@@ -4458,7 +4458,7 @@ system "#0313f4"
 		distance 1783
 		period 9523.29
 
-system "#384e08"
+system "I-127"
 	pos -126.08 939.357
 	government Uninhabited
 	attributes "ember waste" "tangled shroud"
@@ -4467,8 +4467,8 @@ system "#384e08"
 	belt 2228 3
 	belt 2966 6
 	haze _menu/haze-red
-	link "#08078a"
-	link "#46d125"
+	link "Br-80"
+	link "Cl-35"
 	asteroids "small metal" 1 1.71
 	asteroids "medium metal" 4 2.651
 	minables titanium 2 3.51
@@ -4490,7 +4490,7 @@ system "#384e08"
 			distance 214
 			period 81.929
 
-system "#b6457f"
+system "Sr-88"
 	pos -158.475 980.006
 	government Uninhabited
 	attributes "tangled shroud"
@@ -4498,7 +4498,7 @@ system "#b6457f"
 	belt 1140 4
 	belt 1715 8
 	haze _menu/haze-none
-	link "#0fe276"
+	link "Ba-137"
 	link Concerto
 	link Symphony
 	asteroids "small metal" 4 4.353
@@ -4513,7 +4513,7 @@ system "#b6457f"
 		distance 1137
 		period 4849.542
 
-system "#46d125"
+system "Cl-35"
 	pos -112.707 910.219
 	government Uninhabited
 	attributes "ember waste" "tangled shroud"
@@ -4521,11 +4521,11 @@ system "#46d125"
 	belt 1606 5
 	belt 2416
 	haze _menu/haze-red
-	link "#007477"
-	link "#08078a"
-	link "#100b14"
-	link "#384e08"
-	link "#8b808b"
+	link "F-19"
+	link "Br-80"
+	link "At-210"
+	link "I-127"
+	link "Ar-40"
 	asteroids "small rock" 6 1.054
 	asteroids "small metal" 4 1.496
 	hazard "Ember Waste Base Heat" 100
@@ -4538,17 +4538,17 @@ system "#46d125"
 		distance 853
 		period 445.61
 
-system "#2b5d50"
+system "K-39"
 	pos 50.682 899.606
 	government Uninhabited
 	attributes "ember waste" hiders "tangled shroud"
 	habitable 10
 	belt 1927 8
 	haze _menu/haze-red
-	link "#1e877d"
-	link "#5cb85c"
-	link "#a6d944"
-	link "#bd370f"
+	link "Na-23"
+	link "Cs-133"
+	link "Ne-20"
+	link "Rb-85"
 	asteroids "medium rock" 3 3.618
 	asteroids "large rock" 1 4.427
 	asteroids "small metal" 25 2.523
@@ -4562,14 +4562,14 @@ system "#2b5d50"
 		sprite planet/browndwarf-l-rouge
 		period 204.702
 
-system "#e0bef3"
+system "C-12"
 	pos -401.749 890.619
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
 	belt 1985 4
 	haze _menu/haze-133
-	link "#e260c2"
+	link "N-14"
 	link Arche
 	asteroids "small rock" 5 3.864
 	asteroids "small metal" 4 3.735
@@ -4581,15 +4581,15 @@ system "#e0bef3"
 		distance 1783
 		period 9523.29
 
-system "#acf472"
+system "He-4"
 	pos -27.384 873.775
 	government Uninhabited
 	attributes "ember waste" hiders "tangled shroud"
 	habitable 10
 	belt 1514 3
 	haze _menu/haze-red
-	link "#0a6b84"
-	link "#a6d944"
+	link "H-1"
+	link "Ne-20"
 	asteroids "small rock" 16 1.903
 	asteroids "medium rock" 10 2.808
 	asteroids "small metal" 9 2.402
@@ -4615,7 +4615,7 @@ system "#acf472"
 		distance 2697
 		period 17716.642
 
-system "#100b14"
+system "At-210"
 	pos -84.513 885.871
 	government Uninhabited
 	attributes "ember waste" "tangled shroud"
@@ -4623,9 +4623,9 @@ system "#100b14"
 	belt 1112 7
 	belt 1644 9
 	haze _menu/haze-red
-	link "#007477"
-	link "#46d125"
-	link "#8b808b"
+	link "F-19"
+	link "Cl-35"
+	link "Ar-40"
 	link Prelude
 	asteroids "medium metal" 6 3.959
 	minables tungsten 7 2.964
@@ -4647,15 +4647,15 @@ system "#100b14"
 			distance 323
 			period 219.434
 
-system "#baa7f9"
+system "Si-28"
 	pos -254.819 955.056
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
 	belt 1086
 	haze _menu/haze-none
-	link "#25f949"
-	link "#f5fbc7"
+	link "Ge-73"
+	link "B-11"
 	link Ensemble
 	asteroids "small rock" 3 1.994
 	asteroids "medium rock" 2 3.128
@@ -4703,15 +4703,15 @@ system "#baa7f9"
 			distance 270
 			period 209.873
 
-system "#d2e5ec"
+system "Kr-84"
 	pos -64.786 973.671
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 2160
 	belt 1811 4
 	haze _menu/haze-67
-	link "#31a999"
-	link "#8b808b"
+	link "Xe-131"
+	link "Ar-40"
 	link Interlude
 	asteroids "large metal" 1 3.325
 	object
@@ -4734,7 +4734,7 @@ system "#d2e5ec"
 			distance 311
 			period 143.535
 
-system "#8b808b"
+system "Ar-40"
 	pos -59.923 922.488
 	government Uninhabited
 	attributes "ember waste" "tangled shroud"
@@ -4742,10 +4742,10 @@ system "#8b808b"
 	belt 1885 3
 	belt 2084 8
 	haze _menu/haze-red
-	link "#100b14"
-	link "#46d125"
-	link "#a6d944"
-	link "#d2e5ec"
+	link "At-210"
+	link "Cl-35"
+	link "Ne-20"
+	link "Kr-84"
 	link Interlude
 	asteroids "large rock" 1 2.296
 	asteroids "small metal" 6 1.624
@@ -4779,7 +4779,7 @@ system "#8b808b"
 		distance 5456.727
 		period 12734.3
 
-system "#e260c2"
+system "N-14"
 	pos -383.673 919.318
 	government Uninhabited
 	attributes "tangled shroud"
@@ -4787,7 +4787,7 @@ system "#e260c2"
 	belt 1578 5
 	belt 2409
 	haze _menu/haze-none
-	link "#e0bef3"
+	link "C-12"
 	link Arche
 	asteroids "large metal" 2 4.844
 	object
@@ -4802,7 +4802,7 @@ system "#e260c2"
 			distance 320
 			period 178.034
 
-system "#dee723"
+system "Rn-222"
 	pos 10.406 985.068
 	government Uninhabited
 	attributes "tangled shroud"
@@ -4810,7 +4810,7 @@ system "#dee723"
 	belt 1979 5
 	belt 2230 3
 	haze _menu/haze-67
-	link "#31a999"
+	link "Xe-131"
 	asteroids "small rock" 4 1.197
 	asteroids "medium rock" 2 1.691
 	asteroids "large rock" 5 1.216
@@ -4846,7 +4846,7 @@ system "#dee723"
 			distance 382
 			period 195.395
 
-system "#78898c"
+system "Ts-294"
 	pos -108.726 817.962
 	government Uninhabited
 	attributes "ember waste" "tangled shroud"
@@ -4896,7 +4896,7 @@ system "#78898c"
 			distance 422
 			period 327.695
 
-system "#edf8f7"
+system "Te-128"
 	pos -258.164 889.417
 	government Uninhabited
 	attributes "tangled shroud"
@@ -4904,8 +4904,8 @@ system "#edf8f7"
 	belt 1414 6
 	belt 2203 3
 	haze _menu/haze-none
-	link "#bed3bb"
-	link "#d9534f"
+	link "Sb-122"
+	link "O-16"
 	link Ensemble
 	asteroids "small rock" 1 3.564
 	asteroids "medium rock" 3 3.049
