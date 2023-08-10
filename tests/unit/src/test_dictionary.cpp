@@ -53,6 +53,20 @@ SCENARIO( "A Dictionary instance is being used", "[dictionary]") {
 	}
 }
 
+SCENARIO( "A Dictionary instance is being used with optimization", "[dictionary]") {
+	GIVEN( "an empty dictionary" ) {
+		Dictionary dict;
+		THEN( "add new elements works" ) {
+			dict["foo"] = 10.;
+			dict["bar"] = 42.;
+			CHECK( dict.LinearGet("bar", true) == 42. );
+			CHECK( dict.LinearGet("foo") == 10. );
+			CHECK( dict.LinearGet("bar") == 0. );
+			CHECK( std::distance(dict.begin(), dict.end()) == 2 );
+		}
+	}
+}
+
 // #region benchmarks
 #ifdef CATCH_CONFIG_ENABLE_BENCHMARKING
 TEST_CASE( "Benchmark Dictionary::Get", "[!benchmark][dictionary]" ) {
@@ -74,6 +88,29 @@ TEST_CASE( "Benchmark Dictionary::Get", "[!benchmark][dictionary]" ) {
 
 	BENCHMARK( "Dictionary::Get()", i ) {
 		return dict.Get(strings[i % SIZE]);
+	};
+}
+TEST_CASE( "Benchmark Dictionary::LinearGet", "[!benchmark][dictionary]" ) {
+	constexpr int SIZE = 100;
+	constexpr int AVERAGE_ATTRIBUTE_LENGTH = 20;
+
+	Dictionary dict;
+	std::vector<std::string> strings;
+	for(int i = 0; i < SIZE; ++i)
+	{
+		auto str = std::to_string(char(i + ' '));
+		const int size = str.size();
+		for(int j = 0; j < AVERAGE_ATTRIBUTE_LENGTH / size; ++j)
+			str += str;
+
+		dict[str] = i;
+		strings.emplace_back(std::move(str));
+	}
+
+	// I'm assuming i is given sequentially, not randomly.
+	BENCHMARK( "Dictionary::LinearGet()", i ) {
+		const int j = i % SIZE;
+		return dict.LinearGet(strings[j], !j);
 	};
 }
 #endif

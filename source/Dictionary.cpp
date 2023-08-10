@@ -114,8 +114,18 @@ double Dictionary::Get(const string &key) const
 double Dictionary::LinearGet(const char *key, const bool init) const
 {
 	const pair<size_t, bool> pos = init ? Search(key, *this) : LinearSearch(key, *this, hint);
-	hint = pos.first;
-	return (pos.second ? data()[pos.first].second : 0.);
+	if(pos.second)
+	{
+		// Advance hint to next entry if key is found.
+		hint = pos.first + 1;
+		return data()[pos.first].second;
+	}
+	else
+	{
+		hint = pos.first;
+		return 0.;
+	}
+
 }
 
 
