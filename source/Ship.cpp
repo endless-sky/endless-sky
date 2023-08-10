@@ -3868,7 +3868,7 @@ void Ship::DoCloakDecision()
 		const bool canCloak = !isDisabled && !cloakDisruption
 			&& energy >= cloakingEnergy && fuel >= cloakingFuel;
 
-		if (canCloak)
+		if(canCloak)
 		{
 			cloak = min(1., cloak + cloakingSpeed);
 			energy -= cloakingEnergy;

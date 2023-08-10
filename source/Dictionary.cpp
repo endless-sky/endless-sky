@@ -52,7 +52,7 @@ namespace {
 	// "true" in the second element if the key is already in the vector.
 	pair<size_t, bool> LinearSearch(const char *key, const vector<pair<const char *, double>> &v, size_t pos)
 	{
-		for (; pos < v.size(); ++pos)
+		for(; pos < v.size(); ++pos)
 		{
 			const int cmp = strcmp(key, v[pos].first);
 			if(!cmp)
