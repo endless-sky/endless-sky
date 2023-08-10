@@ -716,6 +716,87 @@ person "Patrol Team"
 	ship "Waverider" "Madness of the Balancers"
 		"never disabled"
 
+ship "Waverider"
+	sprite "ship/waverider"
+	thumbnail "thumbnail/waverider"
+	attributes
+		category "Light Warship"
+		"cost" -
+		"shields" -
+		"hull" -
+		"required crew" -
+		"bunks" -
+		"mass" -
+		"drag" -
+		"heat dissipation" -
+		"fuel capacity" 1000
+		"cargo space" 30
+		"outfit space" -
+		"weapon capacity" -
+		"engine capacity" -
+		weapon
+			"blast radius" 340
+			"shield damage" 3400
+			"hull damage" 1700
+			"hit force" 5100
+	outfits
+		"Prototype Fusion Cannon"
+		"Quad Blaster Turret" 4
+		"Heavy Laser Turret" 4
+		"Electron Turret" 2
+		"Wanderer Anti-Missile"
+		"Torpedo Pod" 4
+		"Torpedo Storage Rack" 2
+		"Torpedo" 42
+		"Typhoon Pod" 2
+		"Typhoon Torpedo" 34
+		
+		"Dark Storm Shielding" 2
+		"Triple Plasma Core"
+		"LP036a Battery Pack"
+		"LP072a Battery Pack"
+		"Large Heat Shunt" 3
+		"Fuel Processor" 3
+		"Tactical Scanner"
+
+		"Afterburner (Lunar Class)"
+		"A370 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+		
+	engine 45 212
+	engine 21 220
+		zoom 0.8
+	engine -45 212
+	engine -21 220
+		zoom 0.8
+	gun 0 -223 "Prototype Fusion Cannon"
+	gun -59 14 "Typhoon Pod"
+	gun 59 14 "Typhoon Pod"
+	gun -72 25 "Torpedo Pod"
+	gun 72 26 "Torpedo Pod"
+	gun -84 38 "Torpedo Pod"
+	gun 84 38 "Torpedo Pod"
+	turret -37 -11 "Electron Turret"
+	turret 37 -11 "Electron Turret"
+	turret 0 10 "Wanderer Anti-Missile"
+	turret -37 31 "Quad Blaster Turret"
+	turret 37 31 "Quad Blaster Turret"
+	turret -39 73 "Quad Blaster Turret"
+	turret 39 73 "Quad Blaster Turret"
+	turret -75 108 "Heavy Laser Turret"
+	turret 75 108 "Heavy Laser Turret"
+	turret -23 108 "Heavy Laser Turret"
+	turret 23 108 "Heavy Laser Turret"
+	explode "tiny explosion" 20
+	explode "small explosion" 45
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large"
+	description `The Waverider was a ship that was first requested and never used for Five Years, Seven Months and Twenty-Seven Days.
+	Its disappointment was so immense, it willed itself into being.`
+
 
 
 	
