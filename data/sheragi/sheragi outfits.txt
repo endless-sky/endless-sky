@@ -101,7 +101,7 @@ outfit "Fusion Drive"
 	"turn" 2496.0
 	"turning energy" 4.55
 	"turning heat" 12.35
-	"thrust" 190
+	"thrust" 180.5
 	"thrusting energy" 11
 	"thrusting heat" 33
 	"reverse thrust" 44.8
