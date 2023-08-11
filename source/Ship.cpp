@@ -4149,23 +4149,23 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 			// Check if we are able to turn.
 			double cost = attributes.Get("turning energy");
 			if(cost > 0. && energy < cost * fabs(commands.Turn()))
-				commands.SetTurn(commands.Turn() * energy / (cost * fabs(commands.Turn())));
+				commands.ScaleTurn(energy / cost);
 
 			cost = attributes.Get("turning shields");
 			if(cost > 0. && shields < cost * fabs(commands.Turn()))
-				commands.SetTurn(commands.Turn() * shields / (cost * fabs(commands.Turn())));
+				commands.ScaleTurn(shields / cost);
 
 			cost = attributes.Get("turning hull");
 			if(cost > 0. && hull < cost * fabs(commands.Turn()))
-				commands.SetTurn(commands.Turn() * hull / (cost * fabs(commands.Turn())));
+				commands.ScaleTurn(hull / cost);
 
 			cost = attributes.Get("turning fuel");
 			if(cost > 0. && fuel < cost * fabs(commands.Turn()))
-				commands.SetTurn(commands.Turn() * fuel / (cost * fabs(commands.Turn())));
+				commands.ScaleTurn(fuel / cost);
 
 			cost = -attributes.Get("turning heat");
 			if(cost > 0. && heat < cost * fabs(commands.Turn()))
-				commands.SetTurn(commands.Turn() * heat / (cost * fabs(commands.Turn())));
+				commands.ScaleTurn(heat / cost);
 
 			if(commands.Turn())
 			{
@@ -4200,27 +4200,27 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 			// Check if we are able to apply this thrust.
 			double cost = attributes.Get((thrustCommand > 0.) ?
 				"thrusting energy" : "reverse thrusting energy");
-			if(cost > 0. && energy < cost)
+			if(cost > 0. && energy < cost * fabs(thrustCommand))
 				thrustCommand *= energy / cost;
 
 			cost = attributes.Get((thrustCommand > 0.) ?
 				"thrusting shields" : "reverse thrusting shields");
-			if(cost > 0. && shields < cost)
+			if(cost > 0. && shields < cost * fabs(thrustCommand))
 				thrustCommand *= shields / cost;
 
 			cost = attributes.Get((thrustCommand > 0.) ?
 				"thrusting hull" : "reverse thrusting hull");
-			if(cost > 0. && hull < cost)
+			if(cost > 0. && hull < cost * fabs(thrustCommand))
 				thrustCommand *= hull / cost;
 
 			cost = attributes.Get((thrustCommand > 0.) ?
 				"thrusting fuel" : "reverse thrusting fuel");
-			if(cost > 0. && fuel < cost)
+			if(cost > 0. && fuel < cost * fabs(thrustCommand))
 				thrustCommand *= fuel / cost;
 
 			cost = -attributes.Get((thrustCommand > 0.) ?
 				"thrusting heat" : "reverse thrusting heat");
-			if(cost > 0. && heat < cost)
+			if(cost > 0. && heat < cost * fabs(thrustCommand))
 				thrustCommand *= heat / cost;
 
 			if(thrustCommand)

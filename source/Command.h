@@ -121,9 +121,11 @@ public:
 	// Get the commands that are set in this and not in the given command.
 	Command AndNot(Command command) const;
 
-	// Get or set the turn amount. The amount must be between -1 and 1, but it
-	// can be a fractional value to allow finer control.
+	// Get, set, or scale the turn amount. The amount must be between -1 and 1,
+	// but it can be a fractional value to allow finer control.  The scale should
+	// be between 0 and 1.
 	void SetTurn(double amount);
+	void ScaleTurn(double scale);
 	double Turn() const;
 
 	// Check if any bits are set in this command (including a nonzero turn).
