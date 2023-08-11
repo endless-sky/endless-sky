@@ -2408,6 +2408,8 @@ mission "Wanderers Defend Sich'ka'ara"
 # Compatibility patch for users who completed "Wanderers Defend Sich'ka'ara"
 # before 0.10.3 when the "solifuge deployment" event was added.
 mission "Solifuge Shipyards Patch"
+	landing
+	invisible
 	to offer
 		has "event: battle for sich'ka'ara ends"
 		not "event: solifuge deployment"
