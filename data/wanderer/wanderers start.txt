@@ -2405,7 +2405,8 @@ mission "Wanderers Defend Sich'ka'ara"
 		conversation
 			`The Unfettered fleet has been driven off. Tele'ek thanks you for taking part in defending this world. "Unfortunately," he says, "I just received news that this was only half of the Unfettered [assault, attack]. An equally large fleet attacked the Chirr'ay'akai system, and overwhelmed the defenses there so [quickly, unexpectedly] that some of our people did not have time to [escape, evacuate] and have been forced into hiding. If you're willing to help rescue them, please meet me in the spaceport once I am done [debriefing, informing] the warriors."`
 
-# 0.10.2 Compatibility patch
+# Compatibility patch for users who completed "Wanderers Defend Sich'ka'ara"
+# before 0.10.3 when the "solifuge deployment" event was added.
 mission "Solifuge Shipyards Patch"
 	to offer
 		has "event: battle for sich'ka'ara ends"
