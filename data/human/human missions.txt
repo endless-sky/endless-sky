@@ -6331,7 +6331,7 @@ mission "Take Me To the South A"
 			`	"An independent captain, yes. I could tell. I would like to hire you to transport a package." Torrey indicates the box beside her with a nudge of her toe.`
 			choice
 				`	"What's in the box?"`
-				`	"Wouldn't it be easier and cheaper to send it via the commercial courier services?"``
+				`	"Wouldn't it be easier and cheaper to send it via the commercial courier services?"`
 					goto commercial
 			`	"What's in the box?"`
 			`	She glances down at it. "It's nothing too special - some local stuff from around here. Mostly foods and things that you just can't get made the same anywhere else."`
