@@ -218,6 +218,10 @@ mission "Esstch Visit Tracker"
 		fail
 
 
+# mission "Transmission"
+# A brief mission that pops up in Heutesl where a Gegno ship attempts to contact the player, or something.
+
+
 mission "Brief Bystander"
 	# invisible
 	landing
@@ -244,28 +248,15 @@ mission "Brief Bystander"
 				decline
 
 
-mission "Recurring Rumors"
-	invisible
-	landing
-	to offer
-		has "event: gegno suspicions"
-		has "Brief Bystander: done"
-		has "Foreign Spectator I: failed"
-		has "Passive-Aggressive Observations: done"
-	on offer
-		fail
-		event "recurring rumors" 5 7
-
-
-event "recurring rumors"
-
-
 mission "Gegno Intervention"
 	# invisible
 	landing
 	source "Giaru Gegno"
 	to offer
-		has "event: recurring rumors"
+		has "event: gegno suspicions"
+		has "Brief Bystander: done"
+		has "Foreign Spectator I: failed"
+		has "Passive-Aggressive Observations: done"
 		not "Gegno Genocide Defense: offered"
 	on offer
 		conversation
@@ -325,7 +316,7 @@ mission "Gegno Intervention"
 				decline
 
 			label pacifist
-			`	"Test."`
+			`	"Path if the player chose the "leave" option on all previous missions."`
 				decline
 
 
@@ -421,7 +412,7 @@ mission "Scin Presence on Cyife"
 	on offer
 		set "visited cyfie"
 		conversation
-			`Test.`
+			`Nothing is much of interest on a cold, unwelcoming moon.`
 				decline
 
 
@@ -497,4 +488,5 @@ mission "Battle over Zydee"
 # 	Vi more angry at you if hostile to them during Passive-Aggressive
 #	Interruption Consequence for Eogho Duel (set a condition)
 #	Fleet size difference for level of hostility for either faction in Aquiescence
+#	Cap of hostility with either/both war factions prevents further story content
 # 	Etc..
