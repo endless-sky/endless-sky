@@ -1265,15 +1265,9 @@ outfit "Beam Core Antimatter Torch"
 	"turn" 2790
 	"turning energy" 3.6
 	"turning heat" 2.4
-	"reverse thrust" 36
-	"reverse thrusting energy" 1.2
-	"reverse thrusting heat" 1.2
 	"steering flare sprite" "effect/avgi fusion flare/long"
 		"frame rate" 30
 	"steering flare sound" "remnant afterburner"
-	"reverse flare sprite" "effect/avgi fusion flare/long"
-		"frame rate" 30
-	"reverse flare sound" "remnant afterburner"
 	description "Balance TBD"
 
 
