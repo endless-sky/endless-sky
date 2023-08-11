@@ -39,8 +39,8 @@ system Anax
 	trade Metal 494
 	trade Plastic 258
 	fleet "Avgi Scouts" 24000
-	fleet "Small Aberrant" 240
-	fleet "Large Aberrant" 480
+	fleet "Small Aberrant" 1800
+	fleet "Large Aberrant" 3400
 	object
 		sprite star/f3
 		period 10
@@ -526,8 +526,8 @@ system Clip
 	link Anax
 	asteroids "large metal" 1 3.181
 	fleet "Avgi Scouts" 36000
-	fleet "Small Aberrant" 450
-	fleet "Large Aberrant" 1200
+	fleet "Small Aberrant" 2300
+	fleet "Large Aberrant" 3900
 	object
 		sprite star/g5
 		period 10
@@ -597,8 +597,8 @@ system Empyrean
 	asteroids "large rock" 1 3.353
 	asteroids "large metal" 2 3.985
 	fleet "Avgi Scouts" 6000
-	fleet "Avgi Patrol" 1800
-	fleet "Avgi Strike Group" 9000
+	fleet "Avgi Patrol" 2300
+	fleet "Avgi Strike Group" 9800
 	fleet "Small Aberrant" 2400
 	fleet "Large Aberrant" 4200
 	object
@@ -648,8 +648,8 @@ system Tumble
 	minables tungsten 21 1.052
 	minables gold 6 4.787
 	minables neodymium 12 1.877
-	fleet "Small Aberrant" 300
-	fleet "Large Aberrant" 900
+	fleet "Small Aberrant" 2000
+	fleet "Large Aberrant" 3700
 	object
 		sprite star/k0-old
 		period 10
@@ -708,7 +708,7 @@ system Firmament
 	minables aluminum 3 3.056
 	minables platinum 3 2.083
 	fleet "Avgi Scouts" 6000
-	fleet "Avgi Patrol" 1800
+	fleet "Avgi Patrol" 3100
 	fleet "Avgi Strike Group" 12000
 	fleet "Small Aberrant" 8400
 	fleet "Large Aberrant" 9600
@@ -753,11 +753,11 @@ system Quintessence
 	minables platinum 12 5.527
 	minables tungsten 14 4.785
 	fleet "Avgi Scouts" 6000
-	fleet "Avgi Patrol" 1800
-	fleet "Avgi Strike Group" 2400
+	fleet "Avgi Patrol" 2700
+	fleet "Avgi Strike Group" 3900
 	fleet "Avgi Fleetgroup" 9000
-	fleet "Small Aberrant" 1200
-	fleet "Large Aberrant" 3600
+	fleet "Small Aberrant" 2100
+	fleet "Large Aberrant" 3900
 	object
 		sprite star/o-giant
 		period 10
@@ -847,8 +847,8 @@ system Octet
 	asteroids "large metal" 6 2.542
 	minables neodymium 4 1.818
 	minables lead 4 1.206
-	fleet "Small Aberrant" 150
-	fleet "Large Aberrant" 300
+	fleet "Small Aberrant" 1500
+	fleet "Large Aberrant" 3000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
@@ -904,8 +904,9 @@ system Frenzy
 	asteroids "medium metal" 60 1.702
 	asteroids "large metal" 5 2.66
 	minables lead 9 2.682
-	fleet "Small Aberrant" 240
-	fleet "Large Aberrant" 360
+	fleet "Avgi Scouts" 12000
+	fleet "Small Aberrant" 2400
+	fleet "Large Aberrant" 3600
 	object
 		sprite star/g8
 		distance 60.256
@@ -961,8 +962,8 @@ system Trio
 	asteroids "large metal" 5 1.898
 	minables copper 8 1.321
 	minables titanium 10 1.421
-	fleet "Small Aberrant" 150
-	fleet "Large Aberrant" 300
+	fleet "Small Aberrant" 1500
+	fleet "Large Aberrant" 3000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 25000
 	object
@@ -1033,8 +1034,8 @@ system Sextet
 	asteroids "small metal" 8 1.312
 	asteroids "medium metal" 6 1.516
 	minables copper 12 1.344
-	fleet "Small Aberrant" 300
-	fleet "Large Aberrant" 900
+	fleet "Small Aberrant" 2100
+	fleet "Large Aberrant" 3900
 	hazard "Ember Waste Base Heat" 100
 	object
 		sprite star/k5
@@ -1100,8 +1101,8 @@ system Quintet
 	asteroids "large metal" 2 1.43
 	minables lead 7 1.923
 	minables copper 8 1.471
-	fleet "Small Aberrant" 150
-	fleet "Large Aberrant" 300
+	fleet "Small Aberrant" 1500
+	fleet "Large Aberrant" 3900
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
@@ -1164,8 +1165,7 @@ system Septet
 	minables silver 18 1.041
 	minables uranium 8 1.055
 	minables iron 23 3.31
-	fleet "Small Aberrant" 150
-	fleet "Large Aberrant" 150
+	fleet "Large Aberrant" 2100
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
@@ -1214,8 +1214,8 @@ system Nonet
 	asteroids "large metal" 1 3.499
 	minables uranium 8 1.019
 	minables titanium 17 1.793
-	fleet "Small Aberrant" 600
-	fleet "Large Aberrant" 900
+	fleet "Small Aberrant" 2100
+	fleet "Large Aberrant" 3900
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 25000
 	object
@@ -1291,8 +1291,8 @@ system Stream
 	minables lead 14 3.024
 	fleet "Avgi Scouts" 12000
 	fleet "Avgi Patrol" 24000
-	fleet "Small Aberrant" 2100
-	fleet "Large Aberrant" 3600
+	fleet "Small Aberrant" 2700
+	fleet "Large Aberrant" 5900
 	object
 		sprite star/m5
 		distance 85.387
@@ -1350,11 +1350,13 @@ system Ensemble
 	link "As-75"
 	asteroids "large metal" 1 6.84
 	fleet "Avgi Orbital Defense" 1200
-	fleet "Avgi Patrol" 900
+	fleet "Avgi Patrol" 1200
 	fleet "Avgi Core Defense" 6000
 	fleet "Avgi Fleetgroup" 12000
-	fleet "Small Avgi Merchants" 900
-	fleet "Large Avgi Merchants" 2400
+	fleet "Small Avgi Merchants" 2500
+	fleet "Large Avgi Merchants" 4000
+	fleet "Small Dissonance Merchants" 4200
+	fleet "Large Dissonance Merchants" 7500
 	object
 		sprite star/a8
 		distance 111.791
@@ -1494,8 +1496,8 @@ system Headwind
 	link Tailwind
 	link Trio
 	asteroids "large metal" 1 1.04
-	fleet "Small Aberrant" 150
-	fleet "Large Aberrant" 300
+	fleet "Small Aberrant" 1900
+	fleet "Large Aberrant" 3900
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 25000
 	object
@@ -1552,8 +1554,8 @@ system Duet
 	haze _menu/haze-twilit-embers
 	link Headwind
 	link Trio
-	fleet "Small Aberrant" 180
-	fleet "Large Aberrant" 360
+	fleet "Small Aberrant" 1800
+	fleet "Large Aberrant" 3600
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 25000
 	object
@@ -1614,8 +1616,8 @@ system Soar
 	minables uranium 14 4.265
 	minables silicon 33 4.238
 	fleet "Avgi Scouts" 36000
-	fleet "Small Aberrant" 360
-	fleet "Large Aberrant" 720
+	fleet "Small Aberrant" 2100
+	fleet "Large Aberrant" 4500
 	object
 		sprite star/k0
 		period 10
@@ -1695,9 +1697,9 @@ system Thread
 	minables lead 11 2.077
 	minables tungsten 12 1.312
 	minables iron 14 2.332
-	fleet "Avgi Scouts" 30000
-	fleet "Small Aberrant" 300
-	fleet "Large Aberrant" 600
+	fleet "Avgi Scouts" 9000
+	fleet "Small Aberrant" 2200
+	fleet "Large Aberrant" 4700
 	object
 		sprite star/g0
 		distance 24.431
@@ -1844,8 +1846,8 @@ system Interlude
 	minables titanium 14 3.517
 	minables platinum 4 18.241
 	minables uranium 2 20.512
-	fleet "Small Dissonance Merchants" 600
-	fleet "Large Dissonance Merchants" 1800
+	fleet "Small Dissonance Merchants" 1600
+	fleet "Large Dissonance Merchants" 2900
 	fleet "Dissonance Miners" 3600
 	fleet "Small Avgi Merchants" 4200
 	fleet "Large Avgi Merchants" 9000
@@ -1902,7 +1904,7 @@ system Lumine
 	asteroids "small metal" 1 1.55
 	minables titanium 2 2.262
 	fleet "Avgi Scouts" 12000
-	fleet "Avgi Patrol" 1800
+	fleet "Avgi Patrol" 2700
 	fleet "Avgi Strike Group" 12000
 	fleet "Small Aberrant" 8400
 	fleet "Large Aberrant" 9600
@@ -1965,8 +1967,8 @@ system Span
 	asteroids "medium metal" 2 2.744
 	asteroids "large metal" 1 2.184
 	fleet "Avgi Scouts" 36000
-	fleet "Small Aberrant" 360
-	fleet "Large Aberrant" 720
+	fleet "Small Aberrant" 2100
+	fleet "Large Aberrant" 4500
 	object
 		sprite star/k3
 		period 10
@@ -2069,11 +2071,11 @@ system Concerto
 	asteroids "large rock" 3 1.191
 	asteroids "large metal" 1 1.714
 	minables iron 24 2.437
-	fleet "Avgi Orbital Defense" 600
-	fleet "Avgi Core Defense" 1200
-	fleet "Avgi Fleetgroup" 1200
-	fleet "Small Avgi Merchants" 600
-	fleet "Large Avgi Merchants" 1200
+	fleet "Avgi Orbital Defense" 3600
+	fleet "Avgi Core Defense" 2600
+	fleet "Avgi Fleetgroup" 3800
+	fleet "Small Avgi Merchants" 2400
+	fleet "Large Avgi Merchants" 3200
 	fleet "Avgi Miners" 3600
 	object
 		sprite star/a0
@@ -2102,7 +2104,6 @@ system Concerto
 			offset 180
 		object Peripheria
 			sprite planet/station-disk-a0
-				zoom 0.5
 			distance 400
 			period 120
 	object
@@ -2208,7 +2209,6 @@ system Gossamer
 	minables "medium droplet" 90 1.2
 	minables "large droplet" 60 0.9
 	minables "integral tree" 30 1.5
-	fleet "Avgi Scouts" 18000
 	object
 		sprite star/f0
 		period 1
@@ -2260,10 +2260,10 @@ system Prelude
 	minables iron 1 7.462
 	minables gold 1 6.375
 	minables lead 5 7.644
-	fleet "Small Dissonance Merchants" 900
-	fleet "Large Dissonance Merchants" 2400
-	fleet "Dissonance Miners" 4200
-	fleet "Small Avgi Merchants" 6000
+	fleet "Small Dissonance Merchants" 1800
+	fleet "Large Dissonance Merchants" 4100
+	fleet "Dissonance Miners" 3700
+	fleet "Small Avgi Merchants" 9000
 	fleet "Large Avgi Merchants" 18000
 	fleet "Avgi Patrol" 42000
 	hazard "Ember Waste Base Heat" 100
@@ -2316,12 +2316,12 @@ system Symphony
 	asteroids "small metal" 2 5.39
 	asteroids "medium metal" 3 4.2
 	minables aluminum 5 9.3
-	fleet "Avgi Orbital Defense" 600
-	fleet "Avgi Core Defense" 1500
-	fleet "Avgi Fleetgroup" 1200
-	fleet "Small Avgi Merchants" 900
-	fleet "Large Avgi Merchants" 1800
-	fleet "Avgi Miners" 3600
+	fleet "Avgi Orbital Defense" 2000
+	fleet "Avgi Core Defense" 3100
+	fleet "Avgi Fleetgroup" 3800
+	fleet "Small Avgi Merchants" 2100
+	fleet "Large Avgi Merchants" 4300
+	fleet "Avgi Miners" 4300
 	object
 		sprite star/k3
 		period 10
@@ -2399,9 +2399,6 @@ system Whirlwind
 	asteroids "large rock" 1 3.168
 	asteroids "medium metal" 2 3.456
 	asteroids "large metal" 1 4.368
-	fleet "Avgi Scouts" 24000
-	fleet "Small Aberrant" 3300
-	fleet "Large Aberrant" 6900
 	object
 		sprite star/g8
 		distance 67.394
@@ -2495,8 +2492,8 @@ system Billow
 	link Soar
 	asteroids "large metal" 1 1.911
 	fleet "Avgi Scouts" 42000
-	fleet "Small Aberrant" 540
-	fleet "Large Aberrant" 960
+	fleet "Small Aberrant" 2500
+	fleet "Large Aberrant" 4800
 	object
 		sprite star/m0
 		period 10
@@ -2544,8 +2541,8 @@ system Pinnacle
 	asteroids "medium metal" 3 5.535
 	asteroids "large metal" 1 3.645
 	fleet "Avgi Scouts" 48000
-	fleet "Small Aberrant" 480
-	fleet "Large Aberrant" 720
+	fleet "Small Aberrant" 2400
+	fleet "Large Aberrant" 6800
 	object
 		sprite star/a0
 		period 10
@@ -2723,7 +2720,6 @@ system Postlude
 	asteroids "medium metal" 13 5.468
 	asteroids "large metal" 1 6.634
 	minables lead 1 8.654
-	fleet "Small Dissonance Merchants" 18000
 	object
 		sprite star/nova-small
 		period 10
@@ -2760,11 +2756,11 @@ system Corporeal
 	asteroids "large metal" 1 1.534
 	minables titanium 8 2.229
 	minables lead 11 4.235
-	fleet "Avgi Scouts" 12000
-	fleet "Avgi Patrol" 1800
+	fleet "Avgi Scouts" 9300
+	fleet "Avgi Patrol" 4200
 	fleet "Avgi Strike Group" 12000
-	fleet "Small Aberrant" 8400
-	fleet "Large Aberrant" 9600
+	fleet "Small Aberrant" 5400
+	fleet "Large Aberrant" 8600
 	object
 		sprite star/g3
 		period 10
@@ -2850,10 +2846,9 @@ system Arche
 	minables gold 6 8.493
 	minables platinum 6 6.303
 	fleet "Avgi Scouts" 9000
-	fleet "Avgi Patrol" 1200
+	fleet "Avgi Patrol" 2800
 	fleet "Avgi Strike Group" 6000
-	fleet "Small Aberrant" 1800
-	fleet "Large Aberrant" 3600
+	fleet "Small Aberrant" 2400
 	object
 		sprite star/o0
 		distance 17.842
@@ -2967,8 +2962,8 @@ system Peak
 	asteroids "large metal" 11 2.495
 	minables iron 2 3.017
 	minables aluminum 22 3.106
-	fleet "Small Aberrant" 450
-	fleet "Large Aberrant" 900
+	fleet "Small Aberrant" 2200
+	fleet "Large Aberrant" 4600
 	object
 		sprite star/k0
 		period 10
@@ -3012,6 +3007,7 @@ system Tailwind
 	asteroids "large metal" 12 1.596
 	minables lead 5 2.717
 	minables tungsten 15 3.546
+	fleet "Avgi Scouts" 13000
 	fleet "Small Aberrant" 150
 	fleet "Large Aberrant" 300
 	object
@@ -3054,8 +3050,8 @@ system Wave
 	asteroids "large metal" 7 5.852
 	minables silver 2 8.327
 	fleet "Avgi Scouts" 12000
-	fleet "Small Aberrant" 2400
-	fleet "Large Aberrant" 4200
+	fleet "Small Aberrant" 3100
+	fleet "Large Aberrant" 4900
 	object
 		sprite star/g8
 		period 10
@@ -3116,8 +3112,8 @@ system Tide
 	asteroids "medium metal" 30 2.535
 	asteroids "large metal" 13 2.332
 	fleet "Avgi Scouts" 42000
-	fleet "Small Aberrant" 450
-	fleet "Large Aberrant" 900
+	fleet "Small Aberrant" 2300
+	fleet "Large Aberrant" 4500
 	object
 		sprite star/a-giant
 		period 10
@@ -3223,10 +3219,10 @@ system Apeiron
 	minables lead 3 4.669
 	minables aluminum 6 5.28
 	fleet "Avgi Scouts" 9000
-	fleet "Avgi Patrol" 2400
+	fleet "Avgi Patrol" 2700
 	fleet "Avgi Strike Group" 9000
 	fleet "Small Aberrant" 3600
-	fleet "Large Aberrant" 4800
+	fleet "Large Aberrant" 4900
 	object
 		sprite star/g8
 		distance 85.387
@@ -3293,10 +3289,10 @@ system Evanescence
 	minables silver 3 4.716
 	minables lead 3 4.669
 	minables aluminum 6 5.28
-	fleet "Avgi Scouts" 6000
-	fleet "Avgi Patrol" 1200
-	fleet "Avgi Strike Group" 6000
-	fleet "Small Aberrant" 1800
+	fleet "Avgi Scouts" 5100
+	fleet "Avgi Patrol" 2500
+	fleet "Avgi Strike Group" 6200
+	fleet "Small Aberrant" 2100
 	fleet "Large Aberrant" 3600
 	object
 		sprite star/g0-old
@@ -3400,8 +3396,8 @@ system Rivulet
 	minables aluminum 14 6.651
 	fleet "Avgi Scouts" 12000
 	fleet "Avgi Patrol" 15000
-	fleet "Small Aberrant" 2100
-	fleet "Large Aberrant" 3600
+	fleet "Small Aberrant" 3600
+	fleet "Large Aberrant" 4900
 	object
 		sprite star/f3
 		period 10
@@ -3538,8 +3534,8 @@ system Glide
 	asteroids "large rock" 9 3.571
 	asteroids "large metal" 1 2.195
 	fleet "Avgi Scouts" 12000
-	fleet "Small Aberrant" 3600
-	fleet "Large Aberrant" 4800
+	fleet "Small Aberrant" 4100
+	fleet "Large Aberrant" 5800
 	object
 		sprite star/g5-old
 		distance 56.051
@@ -3602,8 +3598,8 @@ system Aileron
 	asteroids "large metal" 20 3.871
 	minables neodymium 8 4.138
 	fleet "Avgi Scouts" 12000
-	fleet "Small Aberrant" 2100
-	fleet "Large Aberrant" 3600
+	fleet "Small Aberrant" 2900
+	fleet "Large Aberrant" 5600
 	object
 		sprite star/k5
 		distance 104.116
@@ -3759,6 +3755,12 @@ system "O-16"
 	link Arche
 	asteroids "medium rock" 7 3.937
 	asteroids "large rock" 1 4.043
+	fleet "Small Avgi Merchants" 3600
+	fleet "Large Avgi Merchants" 5400
+	fleet "Avgi Scouts" 5600
+	fleet "Avgi Patrol" 2400
+	fleet "Avgi Strike Group" 9000
+	fleet "Small Aberrant" 2800
 	object
 		sprite planet/browndwarf-y-rouge
 		period 10
@@ -3839,6 +3841,8 @@ system "Ne-20"
 	minables neodymium 4 3.253
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 25000
+	fleet "Dissonance Miners" 4300
+	fleet "Small Avgi Merchants" 8000
 	object
 		sprite star/m3
 		period 10
@@ -3874,6 +3878,7 @@ system "Xe-131"
 	asteroids "small rock" 1 2.944
 	asteroids "large rock" 2 1.792
 	asteroids "small metal" 7 1.728
+	fleet "Dissonance Miners" 4000
 	object
 		sprite star/m0
 		period 10
@@ -3964,6 +3969,8 @@ system "Br-80"
 	asteroids "large rock" 6 2.383
 	asteroids "small metal" 6 2.19
 	asteroids "large metal" 2 2.93
+	fleet "Dissonance Miners" 5000
+	fleet "Small Avgi Merchants" 6100
 	object
 		sprite planet/browndwarf-y-rouge
 		period 60.864
@@ -4012,6 +4019,7 @@ system "H-1"
 	minables iron 7 2.226
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
+	fleet "Dissonance Miners" 5000
 	object
 		sprite star/m8
 		period 10
@@ -4117,6 +4125,9 @@ system "Ge-73"
 	link Ensemble
 	asteroids "small metal" 1 1.584
 	minables copper 1 1.851
+	fleet "Small Avgi Merchants" 5600
+	fleet "Large Avgi Merchants" 7300
+	fleet "Avgi Core Defense" 3800
 	object
 		sprite planet/browndwarf-y-rouge
 		period 207.807
@@ -4140,6 +4151,8 @@ system "Sb-122"
 	asteroids "medium rock" 6 4.284
 	asteroids "large rock" 1 3.519
 	minables tungsten 1 4.758
+	fleet "Small Avgi Merchants" 3900
+	fleet "Large Avgi Merchants" 5500
 	object
 		sprite star/m0
 		period 10
@@ -4214,6 +4227,9 @@ system "Ba-137"
 	asteroids "small metal" 3 4.771
 	asteroids "medium metal" 1 4.72
 	asteroids "large metal" 2 3.232
+	fleet "Small Avgi Merchants" 5400
+	fleet "Large Avgi Merchants" 6600
+	fleet "Avgi Core Defense" 3700
 	object
 		sprite planet/browndwarf-t-rouge
 		period 10
@@ -4234,6 +4250,8 @@ system "As-75"
 	link Ensemble
 	asteroids "small rock" 2 2.228
 	minables iron 3 4.749
+	fleet "Small Avgi Merchants" 3700
+	fleet "Avgi Core Defense" 4200
 	object
 		sprite planet/browndwarf-l-rouge
 		period 10
@@ -4374,6 +4392,7 @@ system "Og-294"
 	asteroids "small metal" 1 1.724
 	minables lead 4 2.765
 	minables neodymium 4 2.624
+	fleet "Dissonance Miners" 5000
 	object
 		sprite star/f5
 		distance 7.038
@@ -4426,6 +4445,9 @@ system "F-19"
 	minables lead 6 5.488
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 25000
+	fleet "Dissonance Miners" 4000
+	fleet "Small Avgi Merchants" 3800
+	fleet "Large Avgi Merchants" 6300
 	object
 		sprite star/k3
 		period 10
@@ -4475,6 +4497,8 @@ system "I-127"
 	minables titanium 2 3.51
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 25000
+	fleet "Dissonance Miners" 5000
+	fleet "Small Avgi Merchants" 6500
 	object
 		sprite star/k5
 		period 10
@@ -4531,6 +4555,9 @@ system "Cl-35"
 	asteroids "small metal" 4 1.496
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 25000
+	fleet "Dissonance Miners" 4000
+	fleet "Small Avgi Merchants" 4500
+	fleet "Large Avgi Merchants" 6100
 	object
 		sprite planet/browndwarf-l-rouge
 		period 64.247
@@ -4559,6 +4586,7 @@ system "K-39"
 	minables copper 3 4.652
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 25000
+	fleet "Dissonance Miners" 5000
 	object
 		sprite planet/browndwarf-l-rouge
 		period 204.702
@@ -4574,6 +4602,10 @@ system "C-12"
 	link Arche
 	asteroids "small rock" 5 3.864
 	asteroids "small metal" 4 3.735
+	fleet "Avgi Scouts" 6800
+	fleet "Avgi Patrol" 2800
+	fleet "Avgi Strike Group" 11300
+	fleet "Small Aberrant" 4800
 	object
 		sprite planet/browndwarf-y-rouge
 		period 10
@@ -4600,6 +4632,7 @@ system "He-4"
 	minables lead 16 3.38
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
+	fleet "Dissonance Miners" 4600
 	object
 		sprite planet/browndwarf-y-rouge
 		period 10
@@ -4632,6 +4665,9 @@ system "At-210"
 	minables tungsten 7 2.964
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 25000
+	fleet "Dissonance Miners" 4000
+	fleet "Small Avgi Merchants" 4700
+	fleet "Large Avgi Merchants" 7200
 	object
 		sprite star/m8
 		period 10
@@ -4664,6 +4700,8 @@ system "Si-28"
 	asteroids "small metal" 3 3.715
 	asteroids "large metal" 1 3.441
 	minables copper 2 5.83
+	fleet "Small Avgi Merchants" 3800
+	fleet "Avgi Core Defense" 4200
 	object
 		sprite planet/browndwarf-t-rouge
 		period 10
@@ -4715,6 +4753,7 @@ system "Kr-84"
 	link "Ar-40"
 	link Interlude
 	asteroids "large metal" 1 3.325
+	fleet "Dissonance Miners" 4300
 	object
 		sprite star/g0-old
 		period 10
@@ -4751,9 +4790,13 @@ system "Ar-40"
 	asteroids "large rock" 1 2.296
 	asteroids "small metal" 6 1.624
 	asteroids "large metal" 3 2.8
-	minables silver 1 3.762
+	minables silver 7 3.762
+	minables copper 3 3.762
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 25000
+	fleet "Dissonance Miners" 4000
+	fleet "Small Dissonance Merchants" 4200
+	fleet "Large Dissonance Merchants" 5700
 	object
 		sprite planet/browndwarf-y-rouge
 		distance 290.378
@@ -4819,6 +4862,7 @@ system "Rn-222"
 	asteroids "medium metal" 3 1.653
 	asteroids "large metal" 36 1.482
 	minables silver 14 2.516
+	fleet "Dissonance Miners" 5000
 	object
 		sprite star/g0
 		period 10
@@ -4861,6 +4905,8 @@ system "Ts-294"
 	minables copper 12 6.663
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
+	fleet "Dissonance Miners" 4300
+	fleet "Small Avgi Merchants" 5100
 	object
 		sprite star/m8
 		period 10

@@ -7,20 +7,6 @@ fleet "Avgi Core Defense"
 			heroic surveillance swarming
 	personality
 		lingering surveillance heroic
-	variant 8
-		"Atenuatia"
-		"Vibratia" 18
-		"Photikon" 6
-	variant 2
-		"Atenuatia"
-		"Vibratia" 12
-		"Undulon" 6
-		"Photikon" 6
-	variant 5
-		"Atenuatia"
-		"Vibratia" 12
-		"Optikon" 6
-		"Photikon" 6
 	variant 10
 		"Dispersi"
 		"Vibratia" 6
@@ -241,6 +227,8 @@ fleet "Small Avgi Merchants"
 		"Koryfi"
 	variant 20
 		"Avlaki"
+	variant 20
+		"Phononos"
 	variant 10
 		"Koryfi"
 		"Avlaki"
@@ -324,11 +312,11 @@ fleet "Avgi Miners"
 	personality
 		confusion 30
 		mining harvests timid coward appeasing disables
-	variant 10
+	variant 20
 		"Entasi"
 		"Sonikis" 6
 		"Akoustiki" 2
-	variant 15
+	variant 25
 		"Entasi"
 		"Sonikis (Armed)" 6
 		"Akoustiki" 2
@@ -358,16 +346,18 @@ fleet "Small Dissonance Merchants"
 		"Avlaki"
 	variant 10
 		"Koryfi"
+		"Phononos"
+	variant 10
 		"Avlaki"
+		"Phononos"
 	variant 10
-		"Koryfi" 2
-	variant 10
-		"Avlaki" 2
-	variant 10
-		"Koryfi" 2
+		"Phononos"
 		"Tremoros"
 	variant 10
-		"Avlaki" 2
+		"Koryfi"
+		"Tremoros"
+	variant 10
+		"Avlaki"
 		"Tremoros"
 
 
@@ -382,25 +372,39 @@ fleet "Large Dissonance Merchants"
 		confusion 15
 		coward timid disables secretive opportunistic
 	variant 10
-		"Koryfi" 3
+		"Koryfi" 2
 		"Tremoros" 2
 	variant 10
-		"Avlaki" 3
-		"Tremoros" 2
+		"Avlaki" 2
+		"Tremoros" 3
 	variant 10
-		"Koryfi" 3
+		"Koryfi" 2
 		"Interferos"
 	variant 10
-		"Avlaki" 3
+		"Avlaki" 2
 		"Interferos"
+	variant 10
+		"Avlaki"
+		"Frequentia"
+		"Tremoros"
 	variant 10
 		"Undsyni"
 		"Sonikis" 4
+		"Frequentia"
+	variant 10
+		"Undsyni"
+		"Sonikis" 4
+		"Frequentia" 2
 	variant 10
 		"Entasi"
 		"Sonikis" 6
 		"Akoustiki" 2
 		"Interferos"
+	variant 10
+		"Entasi"
+		"Sonikis" 6
+		"Akoustiki" 2
+		"Tremoros" 2
 	variant 15
 		"Entasi"
 		"Sonikis (Armed)" 6
@@ -413,15 +417,15 @@ fleet "Dissonance Miners"
 	fighters
 		names "avgi fighter names"
 		personality
-			mining harvests swarming
+			mining harvests
 	personality
 		confusion 20
 		mining harvests timid coward hunting disables plunders secretive
-	variant 10
+	variant 20
 		"Entasi"
 		"Sonikis" 6
 		"Akoustiki" 2
-	variant 15
+	variant 25
 		"Entasi"
 		"Sonikis (Armed)" 6
 		"Akoustiki" 2

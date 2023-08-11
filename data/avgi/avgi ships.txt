@@ -108,6 +108,7 @@ ship "Koryfi"
 
 
 ship "Melodikos"
+	plural "Melodikos"
 	sprite "ship/avgi melodikos/melodikos"
 		"frame rate" 30
 	thumbnail "thumbnail/avgi melodikos"
@@ -359,6 +360,7 @@ ship "Avlaki"
 
 
 ship "Harmonikos"
+	plural "Harmonikos"
 	sprite "ship/avgi harmonikos"
 		"frame rate" 30
 	thumbnail "thumbnail/avgi harmonikos"
@@ -500,6 +502,7 @@ ship "Harmonikos"
 
 
 ship "Phononos"
+	plural "Phononos"
 	sprite "ship/avgi phononos"
 	thumbnail "thumbnail/avgi phononos"
 	attributes
@@ -662,8 +665,6 @@ ship "Undsyni"
 		"Ultracapacitor Bank" 3
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
-		"Multispectral Scanner"
-		"Spectrometer Array"
 		"Electrostatic Ramscoop"
 
 		"Z-360 Fusion Torch"
@@ -830,7 +831,6 @@ ship "Entasi"
 			"Sidereal Launcher" 2
 			"Sidereal Missile" 84
 
-			"Photovoltaic Scales" 2
 			"Ultracapacitor Bank" 3
 			"Diffuse Deflector"
 			"Optical Lasing Generator"
@@ -844,9 +844,9 @@ ship "Entasi"
 	gun 36 9 "Sidereal Launcher"
 	gun -36 9
 	gun 36 9
-	turret 0 -42 "Phased Array Laser (Blue)"
-	turret 0 -18 "Phased Array Laser (Blue)"
-	turret 0 72
+	turret -10 72 "Phased Array Laser (Blue)"
+	turret 10 72 "Phased Array Laser (Blue)"
+	turret 0 -4
 	bay "Fighter" 0 -30
 		over
 	bay "Fighter" 0 -30
@@ -922,12 +922,12 @@ ship "Entasi"
 	explode "medium explosion" 9
 	"final explode" "final explosion large"
 
-	description "The Entasi is a mid-sized mining vessel powered by a pair of solar thermal generators. With the power and weapons capacity available to support laser mining weapons, the Entasi is able to quickly and efficiently break asteroids, whose mineral contents are then collected by the significant fleet of Sonikos cargo drones it can carry into an asteroid field."
+	description "The Entasi is a mid-sized mining vessel powered by a pair of solar thermal generators. With the power and weapons capacity available to support laser mining weapons, the Entasi is able to quickly and efficiently break asteroids, whose mineral contents are then collected by the significant fleet of Sonikis cargo drones it can carry into an asteroid field."
 
 
 ship "Modified Tachytia"
 	sprite "ship/avgi tachytia/tachytia"
-		"frame rate" 15
+		"frame rate" 20
 	thumbnail "thumbnail/avgi tachytia"
 	swizzle 0
 	attributes
@@ -978,8 +978,8 @@ ship "Modified Tachytia"
 	turret 44 354 "Phased Array Laser (Blue)"
 	turret -28.5 -333 "Phased Array Laser (Blue)"
 	turret 28.5 -333 "Phased Array Laser (Blue)"
-	turret -12 375 "Phased Array Laser (Green)"
-	turret 12 375 "Phased Array Laser (Green)"
+	turret 0 6 "Phased Array Laser (Green)"
+	turret 0 -367 "Phased Array Laser (Green)"
 	turret 0 480 "Phased Array Laser (Green)"
 	gun 0 -384 "Dipole Ramscoop"
 
@@ -1000,18 +1000,35 @@ ship "Modified Tachytia"
 	bay "Fighter" -21 459
 	bay "Fighter" 21 459
 
-	engine -207 -483
+	engine -215 -475
 		angle 9
 		zoom 2
-	engine 207 -483
+	engine 215 -475
 		angle -9
 		zoom 2
-	engine -186 -453
+	engine -186 -450
 		angle 9
 		zoom 2
-	engine 186 -453
+	engine 186 -450
 		angle -9
 		zoom 2
+
+	"steering engine" -5 498
+		angle 90
+		zoom 0.1
+		left
+	"steering engine" 5 498
+		angle -90
+		zoom 0.1
+		right
+	"steering engine" -35 -318
+		angle 90
+		zoom 0.1
+		right
+	"steering engine" 35 -318
+		angle -90
+		zoom 0.1
+		left
 
 	leak "leak" 60 15
 	leak "flame" 60 15
@@ -1032,6 +1049,7 @@ ship "Modified Tachytia"
 # Interceptors
 
 ship "Tremoros"
+	plural "Tremoros"
 	sprite "ship/avgi tremoros"
 	thumbnail "thumbnail/avgi tremoros"
 	attributes
@@ -1104,6 +1122,7 @@ ship "Tremoros"
 # Light Warships
 
 ship "Prismaios"
+	plural "Prismaios"
 	sprite "ship/avgi prismaios"
 	thumbnail "thumbnail/avgi prismaios"
 	swizzle 0
@@ -1184,6 +1203,7 @@ ship "Prismaios"
 
 
 ship "Interferos"
+	plural "Interferos"
 	sprite "ship/avgi interferos"
 	swizzle 0
 	thumbnail "thumbnail/avgi interferos"
@@ -1364,6 +1384,7 @@ ship "Diaspersi"
 
 
 ship "Difraktos"
+	plural "Difraktos"
 	sprite "ship/avgi difraktos"
 	thumbnail "thumbnail/avgi difraktos"
 	swizzle 0
@@ -1460,6 +1481,7 @@ ship "Difraktos"
 
 
 ship "Refraktos"
+	plural "Refraktos"
 	sprite "ship/avgi refraktos"
 	thumbnail "thumbnail/avgi refraktos"
 	swizzle 0
@@ -1588,8 +1610,6 @@ ship "Atenuatia"
 		"Ultracapacitor Bank" 2
 		"Specular Deflector"
 		"Optical Lasing Generator" 2
-		"Multispectral Scanner" 9
-		"Spectrometer Array"
 		"Electrostatic Ramscoop" 2
 		
 		"Z-600 Fusion Torch"
@@ -1997,6 +2017,7 @@ ship "Optikon"
 
 
 ship "Sonikis"
+	plural "Sonikis"
 	sprite "ship/avgi sonikis"
 	thumbnail "thumbnail/avgi sonikis"
 	attributes

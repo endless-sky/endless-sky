@@ -94,8 +94,9 @@ ship "Difraktos" "Difraktos (Kinetic)"
 # Fighters
 
 ship "Photikon" "Photikon (Gunboat)"
+	outfits
 		"Speckle Turret"
-		"Speck Rounds" 7200
+		"Speck Round" 7200
 		
 		"Concentrating Solar Array"
 		"Ultracapacitor Cell" 3
@@ -109,7 +110,7 @@ ship "Photikon" "Photikon (Gunboat)"
 ship "Sonikis" "Sonikis (Armed)"
 	outfits
 		"Speckle Railgun"
-		"Speck Rounds" 3600
+		"Speck Round" 3600
 
 		"Concentrating Solar Array"
 		"Ultracapacitor Cell" 2
