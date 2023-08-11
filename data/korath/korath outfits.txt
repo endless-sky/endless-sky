@@ -368,7 +368,7 @@ outfit "Engine (Meteor Class)"
 	"mass" 18
 	"outfit space" -18
 	"engine capacity" -18
-	"thrust" 9.6
+	"thrust" 10.5
 	"thrusting energy" 1.35
 	"thrusting heat" 2.9
 	"turn" 240
@@ -394,7 +394,7 @@ outfit "Bow Drive (Meteor Class)"
 	"turn" 240
 	"turning energy" 0.65
 	"turning heat" 1.95
-	"reverse thrust" 9.6
+	"reverse thrust" 10.5
 	"reverse thrusting energy" 1.35
 	"reverse thrusting heat" 2.9
 	"steering flare sprite" "effect/korath flare/tiny"
