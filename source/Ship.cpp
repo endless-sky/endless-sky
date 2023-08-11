@@ -4200,27 +4200,27 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 			// Check if we are able to apply this thrust.
 			double cost = attributes.Get((thrustCommand > 0.) ?
 				"thrusting energy" : "reverse thrusting energy");
-			if(cost > 0. && energy < cost * thrustCommand)
+			if(cost > 0. && energy < cost * fabs(thrustCommand))
 				thrustCommand = copysign(energy / cost, thrustCommand);
 
 			cost = attributes.Get((thrustCommand > 0.) ?
 				"thrusting shields" : "reverse thrusting shields");
-			if(cost > 0. && shields < cost * thrustCommand)
+			if(cost > 0. && shields < cost * fabs(thrustCommand))
 				thrustCommand = copysign(shields / cost, thrustCommand);
 
 			cost = attributes.Get((thrustCommand > 0.) ?
 				"thrusting hull" : "reverse thrusting hull");
-			if(cost > 0. && hull < cost * thrustCommand)
+			if(cost > 0. && hull < cost * fabs(thrustCommand))
 				thrustCommand = copysign(hull / cost, thrustCommand);
 
 			cost = attributes.Get((thrustCommand > 0.) ?
 				"thrusting fuel" : "reverse thrusting fuel");
-			if(cost > 0. && fuel < cost * thrustCommand)
+			if(cost > 0. && fuel < cost * fabs(thrustCommand))
 				thrustCommand = copysign(fuel / cost, thrustCommand);
 
 			cost = -attributes.Get((thrustCommand > 0.) ?
 				"thrusting heat" : "reverse thrusting heat");
-			if(cost > 0. && heat < cost * thrustCommand)
+			if(cost > 0. && heat < cost * fabs(thrustCommand))
 				thrustCommand = copysign(heat / cost, thrustCommand);
 
 			if(thrustCommand)
