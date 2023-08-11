@@ -2102,6 +2102,7 @@ system Concerto
 			offset 180
 		object Peripheria
 			sprite planet/station-disk-a0
+				zoom 0.5
 			distance 400
 			period 120
 	object
@@ -2208,8 +2209,6 @@ system Gossamer
 	minables "large droplet" 60 0.9
 	minables "integral tree" 30 1.5
 	fleet "Avgi Scouts" 18000
-	fleet "Small Aberrant" 3600
-	fleet "Large Aberrant" 7200
 	object
 		sprite star/f0
 		period 1

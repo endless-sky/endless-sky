@@ -271,10 +271,11 @@ phrase "avgi elements"
 		Uranium
 		Neptunium
 		Plutonium
-		Adamantium
+		Adamant
 		Adamantine
 		Unobtanium
 		Handwavium
+		Hullium
 		Phlebotinum
 		MacGuffinite
 

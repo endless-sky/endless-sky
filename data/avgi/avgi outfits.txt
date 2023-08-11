@@ -434,6 +434,7 @@ outfit "Sidereal Active"
 			"frame rate" .25
 		"die effect" "tiny explosion"
 		"hit effect" "missile hit"
+		"live effect" "flame" 300
 		"lifetime" 450
 		"split range" 420
 		"acceleration" 1.8
@@ -618,6 +619,7 @@ outfit "Nadir Active"
 		"hit effect" "prompt radiation" 9
 		"hit effect" "fission fragments" 240
 		"die effect" "missile death"
+		"live effect" "ionic afterburner" 300
 		"lifetime" 600
 		"acceleration" 0.9
 		"drag" 0.03

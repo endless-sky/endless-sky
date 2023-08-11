@@ -1,4 +1,4 @@
-mission "First Contact: Avgi"
+mission "Avgi: First Contact"
 	autosave
 	landing
 	name "First Contact: Avgi"
@@ -172,15 +172,61 @@ mission "First Contact: Avgi"
 
 			`	You are led into what you think is some kind of office, a small, round room with a high ceiling. Waiting there, behind a lectern, is another alien, this one colored bright green. It is perched upon a smooth metal bar, hung from a short stand by thin wires, but gestures towards a human style seat on the other side of the lectern. One of two seats, in fact, which puzzles you.`
 
+			NEW CHARACTER
+			introduce the scout dude you met here
 
 
+			NEW CHARACTER
+			one of the avgi leader gals
 
 
 			label die
 			`	You draw your sidearm and begin firing at the group of aliens, who scatter in all directions. Your first shot glances off an alien's body armor, but your second burns a hole in a wing, sending the alien tumbling. You have little time to celebrate your victory, however, before a flash of unfathomably bright green light turns you into a rapidly expanding cloud of hot vapor.`
 
 
-mission "First Contact: Avgi 2"
+
+
+character names
+Prasinos
+
+Mavro - Black
+Aspro - White
+Kokkino - Red
+Kitrino - Yellow
+Prasino - Green
+Kafe - Brown
+Ble - Blue
+Galazio - Light blue
+Galano - Light blue
+Rose - Pink
+Porokali - Orange
+Mauv - Purple
+Kiano - Purple
+Asimenio - Silver
+Asime - Silver
+Hriso - Gold
+Hrisafenio - Gold
+
+
+Erythros - red
+Glaukos - Light blue/green
+Kyaneos - dark blue
+Lampros - Sky blue / azure
+Prasinos - green
+Chloros - bright green/yellow
+Melas - black
+Leukos - white
+Purrhos - orange-red
+Xanthos - orange
+Halourgos - purple
+Porphyreos - purple/pink
+Ion - violet
+Phaios - brown/grey
+Chrysos - gold
+Argyros - silver
+
+
+mission "Avgi: Deep Reunion"
 	name "Meet [name]"
 	description "Pick up [name]'s friend on the Aktina cylinder."
 	source "Peripheria"
@@ -192,11 +238,13 @@ mission "First Contact: Avgi 2"
 			`blah blah blah blah`
 			`meet me in the spaceport`
 			`we need help at ensemble, pls help with raid`
+			`btw there will be nukes used in the defense`
+			choice "omg nukes are scary"
 
 
 
-mission "First Contact: Avgi 3"
-	name "Weledos Defense"
+mission "Avgi: Defend Ensemble"
+	name "Ensemble Defense"
 	description "Assist the Avgi in the Ensemble system with an Aberrant deep raid."
 	source "Aktina Cylinder"
 	destination "Weledos"
@@ -205,21 +253,108 @@ mission "First Contact: Avgi 3"
 	on complete
 		conversation
 			`blah blah blah blah`
-			`meet me in the spaceport`
-			`we need help at ensemble, pls help with raid`
+			`can I go home yet'
+			`Avgi: don't risk your life being dumb`
+			`Deep dude: yeah I want to go home too, maybe we can explore some different areas`
+
+			BRANCH
+			`Avgi: do you have a battleship / are you willing to fight on the front lines with your advanced alien technology?`
+
+
+
+mission "Avgi: Frontline Combat"
+	name "Hold Evanescence"
+	description "Help the Avgi hold Evanescence against constant Aberrant attacks."
+	source "Aktina Cylinder"
+	destination "Weledos"
+	to offer
+		has "First Contact: Avgi 1: done"
+	on complete
+		conversation
+			`given if you said yes to having a combat ship`
 
 
 
 
+mission "Avgi: Scout Rescue"
+	name "Avgi Scout Rescue"
+	description "Find and evacuate the crew of the <npc>."
+	source "Aktina Cylinder"
+	destination "Weledos"
+	to offer
+		has "First Contact: Avgi 1: done"
+	on complete
+		conversation
+			`given if you said no to having a combat ship`
+			`avgi ask you to use your JD to jump over the front lines and look for a scout that missed its check in time` MEET MINOR CHARACTER, SCOUT DUDE THAT'S FRIENDS OF THE ORIGINAL SCOUT YOU MET
 
 
 
+mission "Avgi: Dissonance Outreach"
+	name "Dissonance Outreach"
+	description "Take mr diplomat dude to <destination>."
+	source "Aktina Cylinder"
+	destination "Weledos"
+	to offer
+		has "First Contact: Avgi 1: done"
+	on complete
+		conversation
+			`given after the last two`
+			`Avgi ask you to use your JD to quickly take an ambassador over to one of the Dissonance stations` MEET NEW CHARACTER, DIPLOMAT
+			`learn more about the dissonance and why there's issues with the consonance`
+			`deep dudes tell you they know an avgi here that could maybe tell you the full story behind the incursion`
+			`avgi guy (NEW CHARACTER) tells you that while none of the original crew survived, he heard a rumor that through the Avgi EW systems there's a way out and that's how the aberrant got in`
+			`mentions some kind of gateway in a region of red space`
+			`Deep dude tells you he needs to gather up the rest of the original Deep crew and you can set out together
 
 
+mission "Avgi: Deep Gathering 1"
+	name "Gather the Deep Crew: name"
+	description "Find and evacuate the crew of the <npc>."
+	source "Aktina Cylinder"
+	destination "Weledos"
+	to offer
+		has "First Contact: Avgi 1: done"
+	on complete
+		conversation
+			`deep dude has you collect a person and bring them to a camp on ensemble`
+
+mission "Avgi: Deep Gathering 2"
+	name "Gather the Deep Crew: name"
+	description "Find and evacuate the crew of the <npc>."
+	source "Aktina Cylinder"
+	destination "Weledos"
+	to offer
+		has "First Contact: Avgi 1: done"
+	on complete
+		conversation
+			`deep dude has you collect a person and bring them to a camp on ensemble`
+
+mission "Avgi: Deep Gathering 3"
+	name "Gather the Deep Crew: name"
+	description "Find and evacuate the crew of the <npc>."
+	source "Aktina Cylinder"
+	destination "Weledos"
+	to offer
+		has "First Contact: Avgi 1: done"
+	on complete
+		conversation
+			`deep dude has you collect a person and bring them to a camp on ensemble`
 
 
-
-
+mission "Avgi: Escape the Twilight"
+	name "Escape the Twilight"
+	description "Find a way out of the Twilight."
+	source "Aktina Cylinder"
+	destination "Weledos"
+	to offer
+		has "First Contact: Avgi 1: done"
+	on complete
+		conversation
+			`you are told to jump to the northeast until you reach a reddish part of space`
+			`get to the magnetar, on enter message telling you it's doing funky stuff to your JD with resonance technobabble`
+			`on enter to any surrounding systems (escape) you get messages about how relieved everyone is and to find a way home to the Deep`
+			`if you jump to the graveyard they're all like wtf and ask if you can plot a way home regardless`
 
 
 - Landing intro
@@ -228,16 +363,16 @@ mission "First Contact: Avgi 3"
 
 - Fly to the O'neil cylinder to meet another crew dude
 
-Once there you are asked to go help defend Ensemble from a raid
-Option to say you want to go home. Avgi promise to help you but tell you not to risk your life on something stupid.
-Afterward, deep crewmember talks to you about wanting to go home. Consonance doesn't want you to leave/risk your life. Deep dude says you should explore some different areas
+- Once there you are asked to go help defend Ensemble from a raid
+- Option to say you want to go home. Avgi promise to help you but tell you not to risk your life on something stupid.
+- Afterward, deep crewmember talks to you about wanting to go home. Consonance doesn't want you to leave/risk your life. Deep dude says you should explore some different areas
 
 
-Avgi ask if you have a battleship. If you do, they ask you to go help with combat in the Evanescence system for a couple days
-Fight a battle or two in Evanescence.
+- Avgi ask if you have a battleship. If you do, they ask you to go help with combat in the Evanescence system for a couple days
+- Fight a battle or two in Evanescence.
 
-Avgi ask you to use your JD to take a diplomat to a Dissonance station for some diplomacy. Talk about the Dissonance, maybe meet some people there.
-Deep crewmember says they know someone on a Dissonance station, takes you to meet them after helping the Avgi ambassador with a negotiation. Meet the Dissonance dude, who tells you the rumors about the gateway and how the incursion really started
+- Avgi ask you to use your JD to take a diplomat to a Dissonance station for some diplomacy. Talk about the Dissonance, maybe meet some people there.
+- Deep crewmember says they know someone on a Dissonance station, takes you to meet them after helping the Avgi ambassador with a negotiation. Meet the Dissonance dude, who tells you the rumors about the gateway and how the incursion really started
 
 
 
