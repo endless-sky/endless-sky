@@ -103,7 +103,7 @@ outfit "X1050 Ion Engines"
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
-	"thrust" 5.5
+	"thrust" 6.2
 	"thrusting energy" .4
 	"thrusting heat" .6
 	"turn" 132
