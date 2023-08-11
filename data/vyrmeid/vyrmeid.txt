@@ -252,7 +252,7 @@ outfit "Astral Mouth"
 # Fleets:
 
 fleet "Vyrmeid (Plankton)"
-	government "Indigenous Lifeform"
+	government "Indigenous Lifeform (Vyrmeid)"
 	cargo 0
 	personality
 		timid mute swarming surveillance unconstrained
@@ -268,7 +268,7 @@ fleet "Vyrmeid (Plankton)"
 		"Vyrmeid"
 
 fleet "Vyrmeid (Boomerang)"
-	government "Indigenous Lifeform"
+	government "Indigenous Lifeform (Vyrmeid)"
 	cargo 0
 	personality
 		timid mute
@@ -280,7 +280,7 @@ fleet "Vyrmeid (Boomerang)"
 		"Vyrmeid (B)" 3
 
 fleet "Vyrmeid (Cephalopod)"
-	government "Indigenous Lifeform"
+	government "Indigenous Lifeform (Vyrmeid)"
 	cargo 0
 	personality
 		timid mute pacifist
