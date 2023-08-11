@@ -104,7 +104,7 @@ outfit "Fusion Drive"
 	"thrust" 180.5
 	"thrusting energy" 11
 	"thrusting heat" 33
-	"reverse thrust" 44.8
+	"reverse thrust" 42.6
 	"reverse thrusting energy" 4.9
 	"reverse thrusting heat" 13.3
 	"flare sprite" "effect/fusionflare"
