@@ -6329,7 +6329,14 @@ mission "Take Me To the South A"
 			`	You make your way through the crowd to the edge of her personal space bubble. As soon as you do, she extends her hand. "I'm Torrey. Torrey Dupont."`
 			`	You take the hand and shake it, somewhat bemused. "<first> <last>. I'm a -"`
 			`	"An independent captain, yes. I could tell. I would like to hire you to transport a package." Torrey indicates the box beside her with a nudge of her toe.`
-			`	You raise an eyebrow. "Wouldn't it be easier and cheaper to send it via the commercial courier services?"`
+			choice
+				`	"What's in the box?"`
+				`	"Wouldn't it be easier and cheaper to send it via the commercial courier services?"``
+					goto commercial
+			`	"What's in the box?"`
+			`	She glances down at it. "It's nothing too special - some local stuff from around here. Mostly foods and things that you just can't get made the same anywhere else."`
+			label commercial
+			`	"Wouldn't it be easier and cheaper to send it via the commercial courier services?"`
 			`	Torrey gives a somewhat sardonic smile. "Well, yes; the thing is, I'm sending it to a friend who's a gunnery sergeant in the militia for the Southern Mutual Defense Pact. Normally, of course, that would be fine, but... then there's who I am." She reaches into a pocket and pulls out a piece of paper. It appears to be a printout of a news headline, "Protests Block Access To Council Chambers For Fourth Straight Day," with a picture under it. Prominent in the picture is a woman holding up a sign decrying recent actions by the government. The woman is unmistakably Torrey.`
 			`	"So you see," she continues, "I'm already being somewhat watched by the Republic government. What with the rumors lately, I really don't want to do anything that would throw any suspicion onto Irene, but..." she glances down at the box. "She's really been missing some of the stuff from home, and I don't want to make her life less pleasant just because I do things that draw negative attention from high places."`
 			`	She falls silent, waiting impassively for your response.`
@@ -6348,6 +6355,8 @@ mission "Take Me To the South A"
 		payment 15000 1500
 		conversation
 			`You arrive at the militia base on <destination>, and ask at the gate for Gunnery Sergeant Irene Brower. After a few minutes, a compact young woman with close-cropped blonde hair appears and walks over. When she sees the package at your feet, her face splits into a lopsided grin and her steps quicken. "I see you've brought me a package; this must be from Torrey!"`
+			choice
+				`(Introduce yourself and tell how you met Torrey.)`
 			`	You nod, introduce yourself, and briefly recount your meeting with her friend on <origin>. Irene laughs. "Yep, that's her. Well, thank you so much for bringing this." She hefts the heavy box with no apparent effort, gives you a firm nod, and turns to head back into the base.`
 			`	Before going more than three steps, she stops and turns back to you. "Oh, sorry - I'll authorize your payment as soon as I get back to my room. I don't have it with me."`
 			`	Sure enough, less than five minutes after she disappears into a building in the distance, your communicator bleeps and reports that <payment> has been credited to your account.`
