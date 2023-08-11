@@ -267,7 +267,7 @@ outfit "SC-1 Plasma Engines"
 	"mass" 21
 	"outfit space" -21
 	"engine capacity" -21
-	"thrust" 5.8
+	"thrust" 6.55
 	"thrusting energy" 0.4
 	"thrusting heat" 1
 	"flare sprite" "effect/scin flare/tiny"
