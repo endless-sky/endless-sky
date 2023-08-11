@@ -138,6 +138,20 @@ Angle Angle::operator-() const
 
 
 
+bool Angle::operator==(const Angle &other) const
+{
+	return angle == other.angle;
+}
+
+
+
+bool Angle::operator!=(const Angle &other) const
+{
+	return angle != other.angle;
+}
+
+
+
 // Get a unit vector in the direction of this angle.
 Point Angle::Unit() const
 {
