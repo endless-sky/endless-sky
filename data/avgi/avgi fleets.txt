@@ -6,7 +6,7 @@ fleet "Avgi Core Defense"
 		personality
 			heroic surveillance swarming
 	personality
-		lingering surveillance heroic
+		lingering heroic
 	variant 10
 		"Dispersi"
 		"Vibratia" 6

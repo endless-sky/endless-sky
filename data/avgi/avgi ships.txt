@@ -666,6 +666,8 @@ ship "Undsyni"
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
 		"Electrostatic Ramscoop"
+		"Multispectral Scanner"
+		"Spectrometer Array"
 
 		"Z-360 Fusion Torch"
 		"XY-420 Radial Thrusters"
@@ -831,6 +833,7 @@ ship "Entasi"
 			"Sidereal Launcher" 2
 			"Sidereal Missile" 84
 
+			"Photoelectric Scales" 2
 			"Ultracapacitor Bank" 3
 			"Diffuse Deflector"
 			"Optical Lasing Generator"
@@ -1611,6 +1614,7 @@ ship "Atenuatia"
 		"Specular Deflector"
 		"Optical Lasing Generator" 2
 		"Electrostatic Ramscoop" 2
+		"Multispectral Scanner" 9
 		
 		"Z-600 Fusion Torch"
 		"XY-420 Radial Thrusters"
