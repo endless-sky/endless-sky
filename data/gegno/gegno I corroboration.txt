@@ -412,6 +412,7 @@ mission "Scin Presence on Cyife"
 	on offer
 		set "visited cyfie"
 		conversation
+			# Scin presence on a moon far away from their space.
 			`Nothing is much of interest on a cold, unwelcoming moon.`
 				decline
 
@@ -429,7 +430,7 @@ mission "Battle over Zydee"
 	on offer
 		set "zydee appearance"
 		conversation
-			`Test.`
+			`Background simulator - Gegno Vi attack on the Scin world of Zydee.`
 
 	on enter "Kneirc"
 		fail
