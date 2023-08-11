@@ -24,8 +24,7 @@ ship "Vyrmeid"
 		"cost" 0
 		"shields" 0
 		"hull" 400
-		"required crew" 1
-		"bunks" 1
+		"automaton" 1
 		"mass" 60
 		"drag" 8
 		"heat dissipation" 1.4
@@ -81,8 +80,7 @@ ship "Vyrmeid" "Vyrmeid (B)"
 		"cost" 0
 		"shields" 0
 		"hull" 1420
-		"required crew" 1
-		"bunks" 1
+		"automaton" 1
 		"mass" 140
 		"drag" 10
 		"heat dissipation" 1
@@ -132,8 +130,7 @@ ship "Vyrmeid" "Vyrmeid (C)"
 		"cost" 0
 		"shields" 0
 		"hull" 860
-		"required crew" 1
-		"bunks" 1
+		"automaton" 1
 		"mass" 200
 		"drag" 9
 		"heat dissipation" 1.8
@@ -186,8 +183,7 @@ ship "Astral Cetacean"
 		"cost" 0
 		"shields" 0
 		"hull" 11000
-		"required crew" 1
-		"bunks" 1
+		"automaton" 1
 		"mass" 1200
 		"drag" 15.7
 		"heat dissipation" 0.68
