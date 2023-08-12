@@ -677,7 +677,7 @@ government "Indigenous Lifeform (Astral)"
 
 	"attitude toward"
 		"Indigenous Lifeform" -0.01
-		"Indigenous Lifeform (Vyrmeid)" -0.01
+		"Indigenous Lifeform (Acheron)" -0.01
 	"penalty for"
 		assist 0
 		disable 0
