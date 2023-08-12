@@ -636,7 +636,7 @@ person "Patrol Team"
 			"It's just the Steam CI, no need to panic."
 			"DERPY???!!!!!"
 			"Did you check for nullptr?"
-				"How do we indent after line breaks again?"
+			"		How do we indent after line breaks again?"
 			"Please put the includes in alphabetical order."
 			"Uhh, you sure about this?"
 			"Always keep three empty lines between functions."
@@ -659,7 +659,7 @@ person "Patrol Team"
 
 			"Please use the template."
 			"The decision to implement fancy quote is one of the worst in computer history."
-		"This need another indent." 
+			"	This need another indent." 
 
 	phrase
 		word
@@ -721,16 +721,16 @@ ship "Waverider"
 	thumbnail "thumbnail/waverider"
 	attributes
 		category "Light Warship"
-		"cost" -
-		"shields" -
-		"hull" -
-		"required crew" -
-		"bunks" -
-		"mass" -
-		"drag" -
-		"heat dissipation" -
+		"cost" 0
+		"shields" 10000
+		"hull" 10000
+		"required crew" 1
+		"bunks" 1
+		"mass" 150
+		"drag" 1.5
+		"heat dissipation" 1
 		"fuel capacity" 1000
-		"cargo space" 30
+		"cargo space" 10000
 		"outfit space" -
 		"weapon capacity" -
 		"engine capacity" -
@@ -738,7 +738,7 @@ ship "Waverider"
 			"blast radius" 340
 			"shield damage" 3400
 			"hull damage" 1700
-			"hit force" 5100
+			"hit force" 5000
 	outfits
 		"Prototype Fusion Cannon"
 		"Quad Blaster Turret" 4
@@ -794,8 +794,8 @@ ship "Waverider"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description `The Waverider was a ship that was first requested and never used for Five Years, Seven Months and Twenty-Seven Days.`
-	description `	Its disappointment was so immense, it willed itself into being.`
+	description "The Waverider was a ship that was first requested and never used for Five Years, Seven Months and Twenty-Seven Days."
+	description "	Its disappointment was so immense, it willed itself into being."
 
 
 
