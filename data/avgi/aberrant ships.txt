@@ -7,7 +7,7 @@ ship "Twilight Ka'sei 1A"
 	attributes
 		category "Interceptor"
 		"cost" 5700000
-		"shields" 4800
+		"shields" 9600
 		"hull" 14400
 		"required crew" 1
 		"bunks" 1
@@ -74,7 +74,7 @@ ship "Twilight Ka'sei 1B"
 	attributes
 		category "Interceptor"
 		"cost" 5700000
-		"shields" 3200
+		"shields" 6400
 		"hull" 14400
 		"required crew" 1
 		"bunks" 1
@@ -148,7 +148,7 @@ ship "Twilight Ka'sei 1C"
 	attributes
 		category "Interceptor"
 		"cost" 5700000
-		"shields" 6800
+		"shields" 13600
 		"hull" 18600
 		"required crew" 1
 		"bunks" 1
@@ -215,7 +215,7 @@ ship "Twilight Ka'sei 1D"
 	attributes
 		category "Interceptor"
 		"cost" 5700000
-		"shields" 4800
+		"shields" 9600
 		"hull" 14400
 		"required crew" 1
 		"bunks" 1
@@ -284,7 +284,7 @@ ship "Twilight Ka'sei 1E"
 	attributes
 		category "Interceptor"
 		"cost" 5700000
-		"shields" 4800
+		"shields" 9600
 		"hull" 14400
 		"required crew" 1
 		"bunks" 1
@@ -353,7 +353,7 @@ ship "Twilight Ka'sei 1F"
 	attributes
 		category "Interceptor"
 		"cost" 5700000
-		"shields" 5400
+		"shields" 10800
 		"hull" 17200
 		"required crew" 1
 		"bunks" 1
@@ -428,7 +428,7 @@ ship "Twilight Ka'sei 1G"
 	attributes
 		category "Light Warship"
 		"cost" 5700000
-		"shields" 9600
+		"shields" 19200
 		"hull" 33800
 		"required crew" 1
 		"bunks" 1
@@ -501,7 +501,7 @@ ship "Twilight Ka'sei 2A"
 	attributes
 		category "Interceptor"
 		"cost" 5700000
-		"shields" 3200
+		"shields" 6400
 		"hull" 18600
 		"required crew" 1
 		"bunks" 1
@@ -567,7 +567,7 @@ ship "Twilight Ka'sei 2B"
 	attributes
 		category "Interceptor"
 		"cost" 5700000
-		"shields" 3800
+		"shields" 7600
 		"hull" 21600
 		"required crew" 1
 		"bunks" 1
@@ -633,7 +633,7 @@ ship "Twilight Ka'sei 2C"
 	attributes
 		category "Interceptor"
 		"cost" 5700000
-		"shields" 3300
+		"shields" 6600
 		"hull" 17900
 		"required crew" 1
 		"bunks" 1
@@ -699,7 +699,7 @@ ship "Twilight Ka'sei 2D"
 	attributes
 		category "Interceptor"
 		"cost" 5700000
-		"shields" 3300
+		"shields" 6600
 		"hull" 15200
 		"required crew" 1
 		"bunks" 1
@@ -767,7 +767,7 @@ ship "Twilight Ka'sei 2E"
 	attributes
 		category "Interceptor"
 		"cost" 5700000
-		"shields" 3100
+		"shields" 6200
 		"hull" 17200
 		"required crew" 1
 		"bunks" 1
@@ -833,7 +833,7 @@ ship "Twilight Ka'sei 2F"
 	attributes
 		category "Light Warship"
 		"cost" 5700000
-		"shields" 17300
+		"shields" 34600
 		"hull" 33800
 		"required crew" 1
 		"bunks" 1
@@ -910,7 +910,7 @@ ship "Twilight Ka'sei 2G"
 	attributes
 		category "Light Warship"
 		"cost" 5700000
-		"shields" 7100
+		"shields" 14200
 		"hull" 16600
 		"required crew" 1
 		"bunks" 1

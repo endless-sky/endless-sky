@@ -6,7 +6,7 @@ galaxy "label tangled shroud"
 
 system Anax
 	pos -462.815 698.074
-	government "Aberrant"
+	government Aberrant
 	attributes avgi twilight
 	habitable 2200
 	belt 6000 10
@@ -327,9 +327,9 @@ system Anax
 				distance 63.53
 				period 60
 				offset 225
-	object "Feo Platform"
-		sprite planet/station-weapon-a3
-			scale 0.5
+	object
+		sprite planet/station-cylinder-broken
+			scale 0.25
 		distance 2400
 		period 1002.687
 		offset 30
@@ -518,7 +518,7 @@ system Anax
 
 system Clip
 	pos -503.464 712.559
-	government "Aberrant"
+	government Aberrant
 	attributes avgi twilight
 	habitable 625
 	belt 1750 4
@@ -1337,17 +1337,17 @@ system Stream
 
 system Ensemble
 	pos -244.872 910.714
-	government Avgi
+	government "Avgi (Consonance)"
 	attributes avgi "bright star" consonance "notable star" "tangled shroud"
 	habitable 3250
 	belt 1401 5
 	haze _menu/haze-none
-	link "Ge-73"
-	link "Si-28"
-	link "Sb-122"
-	link "Te-128"
-	link "B-11"
-	link "As-75"
+	link As-75
+	link B-11
+	link Ge-73
+	link Sb-122
+	link Si-28
+	link Te-128
 	asteroids "large metal" 1 6.84
 	fleet "Avgi Orbital Defense" 1200
 	fleet "Avgi Patrol" 1200
@@ -1598,7 +1598,7 @@ system Duet
 
 system Soar
 	pos -449.741 655.204
-	government "Aberrant"
+	government Aberrant
 	attributes avgi twilight
 	habitable 490
 	belt 2200 10
@@ -1681,7 +1681,7 @@ system Soar
 
 system Thread
 	pos -417.054 737.075
-	government "Aberrant"
+	government Aberrant
 	attributes avgi twilight
 	habitable 1088.405
 	belt 2100 10
@@ -1741,7 +1741,7 @@ system Thread
 
 system Sail
 	pos -543.979 666.89
-	government "Aberrant"
+	government Aberrant
 	attributes avgi twilight
 	habitable 1310
 	belt 1110 3
@@ -1827,15 +1827,15 @@ system Sail
 
 system Interlude
 	pos -22.147 951.674
-	government Avgi
+	government "Avgi (Dissonance)"
 	attributes avgi "bright star" dissonance "ember waste" "giant star" multi-star "notable star" "tangled shroud"
 	habitable 7906.478
 	belt 3024 10
 	haze _menu/haze-67
-	link "Og-294"
-	link "Ar-40"
-	link "Ne-20"
-	link "Kr-84"
+	link Ar-40
+	link Kr-84
+	link Ne-20
+	link Og-294
 	asteroids "small rock" 2 1.485
 	asteroids "large rock" 4 2.554
 	asteroids "large metal" 8 2.673
@@ -2062,10 +2062,10 @@ system Concerto
 	habitable 3650
 	belt 4475 10
 	haze _menu/haze-67
-	link "Ba-137"
-	link "Mg-24"
-	link "Sr-88"
-	link "Be-9"
+	link Ba-137
+	link Be-9
+	link Mg-24
+	link Sr-88
 	asteroids "small rock" 2 1.735
 	asteroids "medium rock" 7 1.86
 	asteroids "large rock" 3 1.191
@@ -2244,13 +2244,13 @@ system Gossamer
 
 system Prelude
 	pos -123.092 859.188
-	government Avgi
+	government "Avgi (Dissonance)"
 	attributes avgi dissonance "ember waste" "giant star" "notable star" "tangled shroud"
 	habitable 2300
 	belt 1664 5
 	haze _menu/haze-red
-	link "At-210"
-	link "Ts-294"
+	link At-210
+	link Ts-294
 	asteroids "small rock" 3 4.111
 	asteroids "medium rock" 5 3.953
 	asteroids "large rock" 1 4.585
@@ -2303,14 +2303,14 @@ system Prelude
 
 system Symphony
 	pos -132.616 991.927
-	government Avgi
+	government "Avgi (Consonance)"
 	attributes avgi consonance "tangled shroud"
 	habitable 450
 	belt 1997 7
 	belt 2468 5
 	haze _menu/haze-33
-	link "Ca-40"
-	link "Sr-88"
+	link Ca-40
+	link Sr-88
 	asteroids "small rock" 2 5.25
 	asteroids "medium rock" 6 5.18
 	asteroids "small metal" 2 5.39
@@ -2655,7 +2655,7 @@ system Tap
 
 system Mellow
 	pos -384.748 645.559
-	government "Aberrant"
+	government Aberrant
 	attributes avgi twilight
 	habitable 832.541
 	belt 1521 6
@@ -2716,7 +2716,7 @@ system Postlude
 	habitable 1330.038
 	belt 1814 6
 	haze _menu/haze-brown
-	link "Cs-133"
+	link Cs-133
 	asteroids "medium metal" 13 5.468
 	asteroids "large metal" 1 6.634
 	minables lead 1 8.654
@@ -2826,15 +2826,15 @@ system Caesura
 
 system Arche
 	pos -356.501 878.946
-	government Uninhabited
-	attributes "bright star" multi-star "notable star" twilight
+	government "Avgi (Twilight Guard)"
+	attributes avgi "bright star" consonance multi-star "notable star" twilight
 	habitable 14197.215
 	belt 1808 2
 	belt 2396 8
-	link "O-16"
-	link "C-12"
-	link "N-14"
-	link "B-11"
+	link B-11
+	link C-12
+	link N-14
+	link O-16
 	link Quintessence
 	asteroids "small rock" 3 5.94
 	asteroids "medium rock" 6 3.66
@@ -2883,8 +2883,9 @@ system Arche
 			sprite planet/dust7
 			distance 388
 			period 288.9
-		object
-			sprite planet/rock3-b
+		object "Feo Platform"
+			sprite planet/station-weapon-a3
+				scale 0.5
 			distance 531
 			period 462.533
 	object
@@ -3670,7 +3671,7 @@ system Circulate
 
 system Wake
 	pos -519.902 764.569
-	government "Aberrant"
+	government Aberrant
 	habitable 490
 	belt 1052 3
 	belt 1608 5
@@ -3704,7 +3705,7 @@ system Wake
 		distance 2659.018
 		period 2477.672
 
-system "Cs-133"
+system Cs-133
 	pos 81.376 868.695
 	government Uninhabited
 	attributes "ember waste" hiders "tangled shroud"
@@ -3712,10 +3713,10 @@ system "Cs-133"
 	belt 1863 9
 	belt 1967 9
 	haze _menu/haze-red
-	link "K-39"
-	link "Rb-85"
-	link "Fr-223"
+	link Fr-223
+	link K-39
 	link Postlude
+	link Rb-85
 	asteroids "small rock" 1 2.698
 	asteroids "small metal" 11 3.519
 	minables iron 2 5.674
@@ -3742,17 +3743,17 @@ system "Cs-133"
 		distance 4019
 		period 5298.295
 
-system "O-16"
+system O-16
 	pos -288.292 842.639
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
 	belt 1487
 	haze _menu/haze-none
-	link "S-32"
-	link "P-31"
-	link "Te-128"
 	link Arche
+	link P-31
+	link S-32
+	link Te-128
 	asteroids "medium rock" 7 3.937
 	asteroids "large rock" 1 4.043
 	fleet "Small Avgi Merchants" 3600
@@ -3773,7 +3774,7 @@ system "O-16"
 			distance 317
 			period 347.603
 
-system "Li-7"
+system Li-7
 	pos 64.227 953.358
 	government Uninhabited
 	attributes hiders "tangled shroud"
@@ -3782,8 +3783,8 @@ system "Li-7"
 	belt 2323 10
 	belt 2984 7
 	haze _menu/haze-67
-	link "Na-23"
-	link "Ne-20"
+	link Na-23
+	link Ne-20
 	asteroids "small rock" 29 3.289
 	asteroids "medium rock" 6 4.306
 	asteroids "large rock" 8 5.741
@@ -3822,7 +3823,7 @@ system "Li-7"
 		distance 7459.166
 		period 68523.248
 
-system "Ne-20"
+system Ne-20
 	pos -9.278 907.623
 	government Uninhabited
 	attributes "ember waste" hiders "tangled shroud"
@@ -3830,19 +3831,19 @@ system "Ne-20"
 	belt 1601 6
 	belt 1914
 	haze _menu/haze-red
-	link "K-39"
-	link "Ar-40"
-	link "He-4"
-	link "Li-7"
+	link Ar-40
+	link He-4
+	link K-39
+	link Li-7
 	asteroids "small rock" 5 2.013
 	asteroids "large rock" 2 1.877
 	asteroids "small metal" 1 1.986
 	asteroids "medium metal" 3 1.55
 	minables neodymium 4 3.253
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 25000
 	fleet "Dissonance Miners" 4300
 	fleet "Small Avgi Merchants" 8000
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 25000
 	object
 		sprite star/m3
 		period 10
@@ -3867,14 +3868,14 @@ system "Ne-20"
 			distance 406
 			period 503.829
 
-system "Xe-131"
+system Xe-131
 	pos -24.17 1000.365
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 320
 	belt 1497 8
-	link "Kr-84"
-	link "Rn-222"
+	link Kr-84
+	link Rn-222
 	asteroids "small rock" 1 2.944
 	asteroids "large rock" 2 1.792
 	asteroids "small metal" 7 1.728
@@ -3887,16 +3888,16 @@ system "Xe-131"
 		distance 786
 		period 492.741
 
-system "S-32"
+system S-32
 	pos -192.211 848.742
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
 	belt 1131 4
 	haze _menu/haze-none
-	link "F-19"
-	link "Sb-122"
-	link "O-16"
+	link F-19
+	link O-16
+	link Sb-122
 	asteroids "small rock" 3 2.05
 	asteroids "medium rock" 1 2.184
 	asteroids "large rock" 2 2.923
@@ -3911,15 +3912,15 @@ system "S-32"
 		distance 2461
 		period 15442.849
 
-system "Be-9"
+system Be-9
 	pos -162.532 1056.338
 	government Uninhabited
 	attributes "bright star" "notable star" "tangled shroud"
 	habitable 3400
 	belt 1490 8
 	haze _menu/haze-133
-	link "Mg-24"
 	link Concerto
+	link Mg-24
 	asteroids "medium rock" 4 5.116
 	asteroids "large rock" 3 4.953
 	minables aluminum 5 11.355
@@ -3956,15 +3957,15 @@ system "Be-9"
 			distance 244
 			period 144.074
 
-system "Br-80"
+system Br-80
 	pos -171.072 920.748
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
 	belt 1989 5
 	haze _menu/haze-none
-	link "I-127"
-	link "Cl-35"
+	link Cl-35
+	link I-127
 	asteroids "small rock" 1 1.61
 	asteroids "large rock" 6 2.383
 	asteroids "small metal" 6 2.19
@@ -4003,23 +4004,23 @@ system "Br-80"
 		distance 5220.073
 		period 47706.203
 
-system "H-1"
+system H-1
 	pos -16.872 832.201
 	government Uninhabited
 	attributes "ember waste" hiders "tangled shroud"
 	habitable 135
 	belt 1692 7
 	haze _menu/haze-red
-	link "He-4"
+	link He-4
 	asteroids "small rock" 1 1.548
 	asteroids "large rock" 1 1.525
 	asteroids "small metal" 17 2.195
 	asteroids "medium metal" 1 1.317
 	asteroids "large metal" 17 1.779
 	minables iron 7 2.226
+	fleet "Dissonance Miners" 5000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
-	fleet "Dissonance Miners" 5000
 	object
 		sprite star/m8
 		period 10
@@ -4064,14 +4065,14 @@ system "H-1"
 			distance 242
 			period 98.524
 
-system "Fr-223"
+system Fr-223
 	pos 98.609 877.834
 	government Uninhabited
 	attributes "ember waste" hiders "tangled shroud" wormhole
 	habitable 10
 	belt 1356 5
 	haze _menu/haze-red
-	link "Cs-133"
+	link Cs-133
 	asteroids "large metal" 1 3.943
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 25000
@@ -4087,16 +4088,16 @@ system "Fr-223"
 		distance 9467
 		period 116514.119
 
-system "B-11"
+system B-11
 	pos -302.314 894.673
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
 	belt 1448 7
 	haze _menu/haze-none
-	link "Si-28"
 	link Arche
 	link Ensemble
+	link Si-28
 	asteroids "small rock" 3 3.139
 	asteroids "small metal" 3 2.713
 	object
@@ -4111,7 +4112,7 @@ system "B-11"
 		distance 3246
 		period 23392.83
 
-system "Ge-73"
+system Ge-73
 	pos -222.367 963.803
 	government Uninhabited
 	attributes "tangled shroud"
@@ -4119,10 +4120,10 @@ system "Ge-73"
 	belt 1758 6
 	belt 1846 9
 	haze _menu/haze-none
-	link "Ba-137"
-	link "Si-28"
-	link "As-75"
+	link As-75
+	link Ba-137
 	link Ensemble
+	link Si-28
 	asteroids "small metal" 1 1.584
 	minables copper 1 1.851
 	fleet "Small Avgi Merchants" 5600
@@ -4136,7 +4137,7 @@ system "Ge-73"
 		distance 3460.455
 		period 25748.963
 
-system "Sb-122"
+system Sb-122
 	pos -213.357 900.325
 	government Uninhabited
 	attributes "tangled shroud"
@@ -4144,9 +4145,9 @@ system "Sb-122"
 	belt 1419 5
 	belt 2336 6
 	haze _menu/haze-none
-	link "S-32"
-	link "Te-128"
 	link Ensemble
+	link S-32
+	link Te-128
 	asteroids "small rock" 2 4.947
 	asteroids "medium rock" 6 4.284
 	asteroids "large rock" 1 3.519
@@ -4173,14 +4174,14 @@ system "Sb-122"
 		distance 4052
 		period 5767.521
 
-system "Mg-24"
+system Mg-24
 	pos -134.923 1040.967
 	government Uninhabited
 	attributes "bright star" "notable star" "tangled shroud"
 	habitable 3000
 	belt 1078
 	haze _menu/haze-133
-	link "Be-9"
+	link Be-9
 	link Concerto
 	asteroids "large metal" 1 3.584
 	object
@@ -4211,7 +4212,7 @@ system "Mg-24"
 		distance 5854.284
 		period 3271.223
 
-system "Ba-137"
+system Ba-137
 	pos -221.041 1010.682
 	government Uninhabited
 	attributes "tangled shroud"
@@ -4219,9 +4220,9 @@ system "Ba-137"
 	belt 1144
 	belt 2010 6
 	haze _menu/haze-none
-	link "Ge-73"
-	link "Sr-88"
 	link Concerto
+	link Ge-73
+	link Sr-88
 	asteroids "medium rock" 3 3.283
 	asteroids "large rock" 1 3.334
 	asteroids "small metal" 3 4.771
@@ -4238,7 +4239,7 @@ system "Ba-137"
 		distance 1168
 		period 5049.22
 
-system "As-75"
+system As-75
 	pos -187.586 955.23
 	government Uninhabited
 	attributes "tangled shroud"
@@ -4246,8 +4247,8 @@ system "As-75"
 	belt 1315 10
 	belt 2249 8
 	haze _menu/haze-none
-	link "Ge-73"
 	link Ensemble
+	link Ge-73
 	asteroids "small rock" 2 2.228
 	minables iron 3 4.749
 	fleet "Small Avgi Merchants" 3700
@@ -4272,15 +4273,15 @@ system "As-75"
 		distance 17618
 		period 295797.773
 
-system "Na-23"
+system Na-23
 	pos 82.003 937.49
 	government Uninhabited
 	attributes hiders "tangled shroud"
 	habitable 135
 	belt 1511 9
 	haze _menu/haze-67
-	link "K-39"
-	link "Li-7"
+	link K-39
+	link Li-7
 	asteroids "small metal" 10 3.168
 	asteroids "medium metal" 1 4.205
 	asteroids "large metal" 3 4.262
@@ -4312,15 +4313,15 @@ system "Na-23"
 			distance 333
 			period 159.032
 
-system "Rb-85"
+system Rb-85
 	pos 28.705 856.962
 	government Uninhabited
 	attributes "ember waste" hiders "tangled shroud"
 	habitable 230
 	belt 1490 3
 	haze _menu/haze-red
-	link "K-39"
-	link "Cs-133"
+	link Cs-133
+	link K-39
 	asteroids "large metal" 1 1.034
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
@@ -4344,10 +4345,10 @@ system "Rb-85"
 			distance 438
 			period 346.507
 
-system "Ca-40"
+system Ca-40
 	pos -92.844 973.172
 	government Uninhabited
-	attributes "ember waste" tangled shroud" wormhole
+	attributes "ember waste" shroud" tangled wormhole
 	habitable 10
 	belt 1137 4
 	haze _menu/haze-red
@@ -4380,7 +4381,7 @@ system "Ca-40"
 		distance 13561
 		period 199754.957
 
-system "Og-294"
+system Og-294
 	pos 4.185 943.689
 	government Uninhabited
 	attributes "tangled shroud"
@@ -4427,7 +4428,7 @@ system "Og-294"
 			distance 317
 			period 213.348
 
-system "F-19"
+system F-19
 	pos -132.749 894.646
 	government Uninhabited
 	attributes "ember waste" "tangled shroud"
@@ -4435,19 +4436,19 @@ system "F-19"
 	belt 1588 2
 	belt 1771 3
 	haze _menu/haze-red
-	link "S-32"
-	link "At-210"
-	link "Cl-35"
+	link At-210
+	link Cl-35
+	link S-32
 	asteroids "medium rock" 11 4.392
 	asteroids "large rock" 1 5.544
 	asteroids "medium metal" 1 6.336
 	asteroids "large metal" 5 3.744
 	minables lead 6 5.488
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 25000
 	fleet "Dissonance Miners" 4000
 	fleet "Small Avgi Merchants" 3800
 	fleet "Large Avgi Merchants" 6300
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 25000
 	object
 		sprite star/k3
 		period 10
@@ -4464,14 +4465,14 @@ system "F-19"
 			distance 220
 			period 154.364
 
-system "P-31"
+system P-31
 	pos -265.289 829.783
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
 	belt 1352 7
 	haze _menu/haze-none
-	link "O-16"
+	link O-16
 	asteroids "medium metal" 6 3.29
 	object
 		sprite planet/browndwarf-l-rouge
@@ -4481,7 +4482,7 @@ system "P-31"
 		distance 1783
 		period 9523.29
 
-system "I-127"
+system I-127
 	pos -126.08 939.357
 	government Uninhabited
 	attributes "ember waste" "tangled shroud"
@@ -4490,15 +4491,15 @@ system "I-127"
 	belt 2228 3
 	belt 2966 6
 	haze _menu/haze-red
-	link "Br-80"
-	link "Cl-35"
+	link Br-80
+	link Cl-35
 	asteroids "small metal" 1 1.71
 	asteroids "medium metal" 4 2.651
 	minables titanium 2 3.51
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 25000
 	fleet "Dissonance Miners" 5000
 	fleet "Small Avgi Merchants" 6500
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 25000
 	object
 		sprite star/k5
 		period 10
@@ -4515,7 +4516,7 @@ system "I-127"
 			distance 214
 			period 81.929
 
-system "Sr-88"
+system Sr-88
 	pos -158.475 980.006
 	government Uninhabited
 	attributes "tangled shroud"
@@ -4523,7 +4524,7 @@ system "Sr-88"
 	belt 1140 4
 	belt 1715 8
 	haze _menu/haze-none
-	link "Ba-137"
+	link Ba-137
 	link Concerto
 	link Symphony
 	asteroids "small metal" 4 4.353
@@ -4538,7 +4539,7 @@ system "Sr-88"
 		distance 1137
 		period 4849.542
 
-system "Cl-35"
+system Cl-35
 	pos -112.707 910.219
 	government Uninhabited
 	attributes "ember waste" "tangled shroud"
@@ -4546,18 +4547,18 @@ system "Cl-35"
 	belt 1606 5
 	belt 2416
 	haze _menu/haze-red
-	link "F-19"
-	link "Br-80"
-	link "At-210"
-	link "I-127"
-	link "Ar-40"
+	link Ar-40
+	link At-210
+	link Br-80
+	link F-19
+	link I-127
 	asteroids "small rock" 6 1.054
 	asteroids "small metal" 4 1.496
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 25000
 	fleet "Dissonance Miners" 4000
 	fleet "Small Avgi Merchants" 4500
 	fleet "Large Avgi Merchants" 6100
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 25000
 	object
 		sprite planet/browndwarf-l-rouge
 		period 64.247
@@ -4566,17 +4567,17 @@ system "Cl-35"
 		distance 853
 		period 445.61
 
-system "K-39"
+system K-39
 	pos 50.682 899.606
 	government Uninhabited
 	attributes "ember waste" hiders "tangled shroud"
 	habitable 10
 	belt 1927 8
 	haze _menu/haze-red
-	link "Na-23"
-	link "Cs-133"
-	link "Ne-20"
-	link "Rb-85"
+	link Cs-133
+	link Na-23
+	link Ne-20
+	link Rb-85
 	asteroids "medium rock" 3 3.618
 	asteroids "large rock" 1 4.427
 	asteroids "small metal" 25 2.523
@@ -4584,22 +4585,22 @@ system "K-39"
 	asteroids "large metal" 3 3.57
 	minables iron 2 4.796
 	minables copper 3 4.652
+	fleet "Dissonance Miners" 5000
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 25000
-	fleet "Dissonance Miners" 5000
 	object
 		sprite planet/browndwarf-l-rouge
 		period 204.702
 
-system "C-12"
+system C-12
 	pos -401.749 890.619
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
 	belt 1985 4
 	haze _menu/haze-133
-	link "N-14"
 	link Arche
+	link N-14
 	asteroids "small rock" 5 3.864
 	asteroids "small metal" 4 3.735
 	fleet "Avgi Scouts" 6800
@@ -4614,15 +4615,15 @@ system "C-12"
 		distance 1783
 		period 9523.29
 
-system "He-4"
+system He-4
 	pos -27.384 873.775
 	government Uninhabited
 	attributes "ember waste" hiders "tangled shroud"
 	habitable 10
 	belt 1514 3
 	haze _menu/haze-red
-	link "H-1"
-	link "Ne-20"
+	link H-1
+	link Ne-20
 	asteroids "small rock" 16 1.903
 	asteroids "medium rock" 10 2.808
 	asteroids "small metal" 9 2.402
@@ -4630,9 +4631,9 @@ system "He-4"
 	asteroids "large metal" 7 1.872
 	minables titanium 7 2.557
 	minables lead 16 3.38
+	fleet "Dissonance Miners" 4600
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
-	fleet "Dissonance Miners" 4600
 	object
 		sprite planet/browndwarf-y-rouge
 		period 10
@@ -4649,7 +4650,7 @@ system "He-4"
 		distance 2697
 		period 17716.642
 
-system "At-210"
+system At-210
 	pos -84.513 885.871
 	government Uninhabited
 	attributes "ember waste" "tangled shroud"
@@ -4657,17 +4658,17 @@ system "At-210"
 	belt 1112 7
 	belt 1644 9
 	haze _menu/haze-red
-	link "F-19"
-	link "Cl-35"
-	link "Ar-40"
+	link Ar-40
+	link Cl-35
+	link F-19
 	link Prelude
 	asteroids "medium metal" 6 3.959
 	minables tungsten 7 2.964
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 25000
 	fleet "Dissonance Miners" 4000
 	fleet "Small Avgi Merchants" 4700
 	fleet "Large Avgi Merchants" 7200
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 25000
 	object
 		sprite star/m8
 		period 10
@@ -4684,16 +4685,16 @@ system "At-210"
 			distance 323
 			period 219.434
 
-system "Si-28"
+system Si-28
 	pos -254.819 955.056
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 10
 	belt 1086
 	haze _menu/haze-none
-	link "Ge-73"
-	link "B-11"
+	link B-11
 	link Ensemble
+	link Ge-73
 	asteroids "small rock" 3 1.994
 	asteroids "medium rock" 2 3.128
 	asteroids "large rock" 3 2.893
@@ -4742,16 +4743,16 @@ system "Si-28"
 			distance 270
 			period 209.873
 
-system "Kr-84"
+system Kr-84
 	pos -64.786 973.671
 	government Uninhabited
 	attributes "tangled shroud"
 	habitable 2160
 	belt 1811 4
 	haze _menu/haze-67
-	link "Xe-131"
-	link "Ar-40"
+	link Ar-40
 	link Interlude
+	link Xe-131
 	asteroids "large metal" 1 3.325
 	fleet "Dissonance Miners" 4300
 	object
@@ -4774,7 +4775,7 @@ system "Kr-84"
 			distance 311
 			period 143.535
 
-system "Ar-40"
+system Ar-40
 	pos -59.923 922.488
 	government Uninhabited
 	attributes "ember waste" "tangled shroud"
@@ -4782,21 +4783,21 @@ system "Ar-40"
 	belt 1885 3
 	belt 2084 8
 	haze _menu/haze-red
-	link "At-210"
-	link "Cl-35"
-	link "Ne-20"
-	link "Kr-84"
+	link At-210
+	link Cl-35
 	link Interlude
+	link Kr-84
+	link Ne-20
 	asteroids "large rock" 1 2.296
 	asteroids "small metal" 6 1.624
 	asteroids "large metal" 3 2.8
 	minables silver 7 3.762
 	minables copper 3 3.762
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 25000
 	fleet "Dissonance Miners" 4000
 	fleet "Small Dissonance Merchants" 4200
 	fleet "Large Dissonance Merchants" 5700
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 25000
 	object
 		sprite planet/browndwarf-y-rouge
 		distance 290.378
@@ -4823,7 +4824,7 @@ system "Ar-40"
 		distance 5456.727
 		period 12734.3
 
-system "N-14"
+system N-14
 	pos -383.673 919.318
 	government Uninhabited
 	attributes "tangled shroud"
@@ -4831,8 +4832,8 @@ system "N-14"
 	belt 1578 5
 	belt 2409
 	haze _menu/haze-none
-	link "C-12"
 	link Arche
+	link C-12
 	asteroids "large metal" 2 4.844
 	object
 		sprite planet/browndwarf-t-rouge
@@ -4846,7 +4847,7 @@ system "N-14"
 			distance 320
 			period 178.034
 
-system "Rn-222"
+system Rn-222
 	pos 10.406 985.068
 	government Uninhabited
 	attributes "tangled shroud"
@@ -4854,7 +4855,7 @@ system "Rn-222"
 	belt 1979 5
 	belt 2230 3
 	haze _menu/haze-67
-	link "Xe-131"
+	link Xe-131
 	asteroids "small rock" 4 1.197
 	asteroids "medium rock" 2 1.691
 	asteroids "large rock" 5 1.216
@@ -4891,7 +4892,7 @@ system "Rn-222"
 			distance 382
 			period 195.395
 
-system "Ts-294"
+system Ts-294
 	pos -108.726 817.962
 	government Uninhabited
 	attributes "ember waste" "tangled shroud" wormhole
@@ -4903,10 +4904,10 @@ system "Ts-294"
 	asteroids "small metal" 6 3.405
 	asteroids "large metal" 4 2.554
 	minables copper 12 6.663
-	hazard "Ember Waste Base Heat" 100
-	hazard "Ember Waste Base Storm" 9000
 	fleet "Dissonance Miners" 4300
 	fleet "Small Avgi Merchants" 5100
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/m8
 		period 10
@@ -4943,8 +4944,7 @@ system "Ts-294"
 		distance 7953
 		period 24416.847
 
-
-system "Te-128"
+system Te-128
 	pos -258.164 889.417
 	government Uninhabited
 	attributes "tangled shroud"
@@ -4952,9 +4952,9 @@ system "Te-128"
 	belt 1414 6
 	belt 2203 3
 	haze _menu/haze-none
-	link "Sb-122"
-	link "O-16"
 	link Ensemble
+	link O-16
+	link Sb-122
 	asteroids "small rock" 1 3.564
 	asteroids "medium rock" 3 3.049
 	asteroids "large rock" 2 2.693

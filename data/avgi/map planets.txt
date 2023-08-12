@@ -57,8 +57,8 @@ planet Sela
 planet "Feo Platform"
 	attributes avgi station military uninhabited
 	landscape land/station46
-	description "A giant hypervelocity gun, lmao WIP"
-	government Uninhabited
+	description "Hastily assembled from mothballed mass driver components, the Feo Platform is an enormous hypervelocity gun intended to provide fire support to Avgi fleets defending the Tangled Shroud from Aberrant invasion. While a few Aberrations sometimes manage to slip past, the gun together with the fleetgroup the platform supports have so far managed to hold the lines."
+	government "Avgi (Twilight Guard)"
 
 
 planet Thilos
@@ -435,7 +435,8 @@ planet "Tilo Station"
 planet "Aktina Cylinder"
 	attributes avgi "avgi diaspora" station uninhabited
 	landscape land/station52
-	description "Incomplete O'Neil cylinder"
+	description "Aktina Cylinder is an incomplete space station of an enormous scale. Two dozen kilometers in diameter and three times that in length, when complete it will be able to house tens of millions of Avgi in urban conditions. Thousands of cylinders like these were built over the years in the Avgi core systems, but limited resources have constrained the Avgi in the Tangled Shroud to only building one over the last decade."
+	description "	With resources constantly being reallocated towards new warships and mining installations, many wonder if the cylinder will ever be completed, which would provide enough space to allow the millions of Avgi in cryogenic storage to be revived."
 	"required reputation" 10
 	government "Avgi (Consonance)"
 	"required reputation" 10
