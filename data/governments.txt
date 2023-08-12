@@ -653,8 +653,8 @@ government "Indigenous Lifeform"
 		destroy 0
 		atrocity 0
 
-government "Indigenous Lifeform (Vyrmeid)"
-	# This indigenous gov is specifically for Vyrmeid life so it does not influence Ember Waste life.
+government "Indigenous Lifeform (Acheron)"
+	# This indigenous gov is specifically for Acheron space life so they do not influence Ember Waste life.
 	"display name" "Indigenous Lifeform"
 	"player reputation" 1
 	"bribe" 0
