@@ -750,7 +750,7 @@ effect "fission fragments"
 outfit "Radiative Scales"
 	category "Systems"
 	cost 200000
-	thumbnail "outfit/radiant scales"
+	thumbnail "outfit/unknown"
 	"mass" 12
 	"anchor point" -1
 	"heat dissipation" 0.3
