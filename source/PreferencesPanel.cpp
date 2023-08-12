@@ -605,8 +605,6 @@ void PreferencesPanel::DrawSettings()
 		"Always underline shortcuts",
 		REACTIVATE_HELP,
 		"Interrupt fast-forward",
-		SCROLL_SPEED,
-		DATE_FORMAT
 		"Landing zoom",
 		SCROLL_SPEED,
 		DATE_FORMAT
