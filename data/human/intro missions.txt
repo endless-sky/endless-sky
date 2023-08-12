@@ -576,14 +576,14 @@ mission "Intro [Mining]"
 
 			label safety
 			`	The captain shrugs and you get the feeling she's disappointed in your question. "Go where pirates aren't welcome," she says. There are some systems in the dirt belt with a strong navy presence and high quality asteroids. Or you could go to the Quarg systems and you won't be bothered. Just know that danger and opportunity go together so you'll often find lucrative mining in uninhabited spaces and around pirate worlds.`
-					goto more
+				goto more
 
 			label pirates
 			`	"You can always bribe them when you get into the system and they'll leave you alone. If the minerals are good enough and you have enough cargo capacity you'll still turn a profit. If you have a fast ship, you can just run away. Most pirates are lazy and will turn back if you head to the edges of the system. Of course, with enough of a fleet you just fight them off." She shakes her head. "Most pirates would be richer and live longer if they just mined instead of extorting bribes and cargo."`
 				goto more
 			
 			label noscanner
-			`	The captain smiles as if you've offered her a tasty treat. "A good pilot can do it. The worthless asteroids are either brown and smooth or grey and spiky with no apparent orbit. Valuable asteroids will always orbit the star and have a range of colors and surface textures. You have to be skilled to chase it down while firing and a better one to pick the minerals up sometimes. The good news is that if you're in a good system, you'll be able to afford a scanner quickly.`
+			`	The captain smiles as if you've offered her a tasty treat. "A good pilot can do it. The worthless asteroids are either brown and smooth or gray and spiky with no apparent orbit. Valuable asteroids will always orbit the star and have a range of colors and surface textures. You have to be skilled to chase it down while firing and a better one to pick the minerals up sometimes. The good news is that if you're in a good system, you'll be able to afford a scanner quickly.`
 				goto more
 			
 			label value
@@ -599,4 +599,4 @@ mission "Intro [Mining]"
 				goto choices
 			
 			label end
-			`	Captain Zinaida shakes your hand firmly and tells you, "If you don't take risks, you won't drink champagne. Good flying to you, Captain <last>.`	
+			`	Captain Zinaida shakes your hand firmly and tells you, "If you don't take risks, you won't drink champagne. Good flying to you, Captain <last>.`
