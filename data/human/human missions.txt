@@ -6333,10 +6333,9 @@ mission "Take Me To the South A"
 				`	"What's in the box?"`
 				`	"Wouldn't it be easier and cheaper to send it via the commercial courier services?"`
 					goto commercial
-			`	"What's in the box?"`
 			`	She glances down at it. "It's nothing too special - some local stuff from around here. Mostly foods and things that you just can't get made the same anywhere else."`
-			label commercial
 			`	"Wouldn't it be easier and cheaper to send it via the commercial courier services?"`
+			label commercial
 			`	Torrey gives a somewhat sardonic smile. "Well, yes; the thing is, I'm sending it to a friend who's a gunnery sergeant in the militia for the Southern Mutual Defense Pact. Normally, of course, that would be fine, but... then there's who I am." She reaches into a pocket and pulls out a piece of paper. It appears to be a printout of a news headline, "Protests Block Access To Council Chambers For Fourth Straight Day," with a picture under it. Prominent in the picture is a woman holding up a sign decrying recent actions by the government. The woman is unmistakably Torrey.`
 			`	"So you see," she continues, "I'm already being somewhat watched by the Republic government. What with the rumors lately, I really don't want to do anything that would throw any suspicion onto Irene, but..." she glances down at the box. "She's really been missing some of the stuff from home, and I don't want to make her life less pleasant just because I do things that draw negative attention from high places."`
 			`	She falls silent, waiting impassively for your response.`
