@@ -723,7 +723,7 @@ void PreferencesPanel::DrawSettings()
 				text = "dd/mm/yyyy";
 			else if(datefmtShortName == Preferences::DateFormat::mdy)
 				text = "mm/dd/yyyy";
-    }
+		}
 		else if(setting == FLOTSAM_SETTING)
 		{
 			text = Preferences::FlotsamSetting();
