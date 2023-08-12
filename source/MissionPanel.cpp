@@ -968,10 +968,12 @@ void MissionPanel::Accept(bool force)
 
 	++availableIt;
 	player.AcceptJob(toAccept, GetUI());
-	if(availableIt == available.end() && !available.empty())
-		--availableIt;
 
 	cycleInvolvedIndex = 0;
+	if(available.empty())
+		return;
+	if(availableIt == available.end())
+		--availableIt;
 
 	// Check if any other jobs are available with the same destination. Prefer
 	// jobs that also have the same destination planet.
