@@ -794,7 +794,7 @@ ship "Waverider"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description `The Waverider was a ship that was first requested and never used for Five Years, Seven Months and Twenty-Seven Days.
+	description `The Waverider was a ship that was first requested and never used for Five Years, Seven Months and Twenty-Seven Days.`
 	description `	Its disappointment was so immense, it willed itself into being.`
 
 
