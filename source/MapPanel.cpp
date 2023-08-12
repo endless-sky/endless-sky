@@ -1016,7 +1016,7 @@ void MapPanel::DrawTravelPlan()
 	bool hasEscort = false;
 	map<const Ship *, double> fuel;
 	for(const shared_ptr<Ship> &it : player.Ships())
-		if(!it->IsParked() && !it->CanBeCarried() && it->GetSystem() == flagship->GetSystem())
+		if(!it->IsParked() && (!it->CanBeCarried() || it.get() == flagship) && it->GetSystem() == flagship->GetSystem())
 		{
 			if(it->IsDisabled())
 			{
