@@ -988,24 +988,26 @@ Ship *PlayerInfo::Flagship()
 // Determine which ship is the flagship and return the shared pointer to it.
 const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 {
-	bool clearance = false;
-	if(planet)
-	{
-		for(const Mission &mission : missions)
-			if(mission.HasClearance(planet))
-			{
-				clearance = true;
-				break;
-			}
-	}
 	if(!flagship)
+	{
+		bool clearance = false;
+		if(planet)
+		{
+			for(const Mission &mission : missions)
+				if(mission.HasClearance(planet))
+				{
+					clearance = true;
+					break;
+				}
+		}
 		for(const shared_ptr<Ship> &it : ships)
 			if(!it->IsParked() && it->GetSystem() == system && it->CanBeFlagship()
-					&& (!planet || clearance || planet->CanLand(*it)))
+			   && (!planet || clearance || planet->CanLand(*it)))
 			{
 				flagship = it;
 				break;
 			}
+	}
 
 	static const shared_ptr<Ship> empty;
 	return (flagship && flagship->IsYours()) ? flagship : empty;
