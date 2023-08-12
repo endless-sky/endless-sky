@@ -1207,7 +1207,6 @@ ship "Prismaios"
 ship "Interferos"
 	plural "Interferos"
 	sprite "ship/avgi interferos"
-	swizzle 0
 	thumbnail "thumbnail/avgi interferos"
 	swizzle 0
 	attributes

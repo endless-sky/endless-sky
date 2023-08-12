@@ -4,7 +4,7 @@
 outfit "Speck Round"
 	category "Ammunition"
 	cost 6
-	thumbnail
+	thumbnail "outfit/speck round"
 	"mass" 0.0015
 	"speck capacity" -1
 	"flotsam chance" 1
@@ -14,7 +14,7 @@ outfit "Speck Round"
 outfit "Speck Magazine"
 	category "Ammunition"
 	cost 60000
-	thumbnail
+	thumbnail "outfit/unknown"
 	"mass" 1.2
 	"outfit space" -12
 	"speck capacity" 7200
@@ -108,7 +108,7 @@ effect "speck fire"
 outfit "Fleck Round"
 	category "Ammunition"
 	cost 6
-	thumbnail
+	thumbnail "outfit/fleck round"
 	"mass" 0.009
 	"fleck capacity" -1
 	description "These copper slugs can inflict a large amount of kinetic damage via hypervelocity impacts, but are easily stopped by momentum-repulsion shield systems."
@@ -117,7 +117,7 @@ outfit "Fleck Round"
 outfit "Fleck Magazine"
 	category "Ammunition"
 	cost 60000
-	thumbnail
+	thumbnail "outfit/unknown"
 	"mass" 4.2
 	"outfit space" -15
 	"fleck capacity" 1200
@@ -127,7 +127,7 @@ outfit "Fleck Magazine"
 outfit "Fleck Coilgun"
 	category "Guns"
 	cost 40000
-	thumbnail
+	thumbnail "outfit/fleck coilgun"
 	"mass" 7.2
 	"outfit space" -18
 	"weapon capacity" -18
@@ -155,7 +155,7 @@ outfit "Fleck Coilgun"
 outfit "Fleck Turret"
 	category "Turrets"
 	cost 40000
-	thumbnail
+	thumbnail "outfit/fleck turret"
 	"mass" 17.4
 	"outfit space" -39
 	"weapon capacity" -39
@@ -204,9 +204,10 @@ effect "fleck fire"
 
 
 outfit "Phased Array Laser (Green)"
+	plural "Phased Array Lasers (Green)"
 	category "Turrets"
 	cost 120000
-	thumbnail
+	thumbnail "outfit/green phaser"
 	"mass" 6
 	"outfit space" -6
 	"weapon capacity" -6
@@ -229,59 +230,60 @@ outfit "Phased Array Laser (Green)"
 
 
 outfit "Phased Array Laser (Blue)"
-    category "Turrets"
-    cost 120000
-    thumbnail
-    "mass" 9
-    "outfit space" -9
-    "weapon capacity" -9
-    "turret mounts" -1
-    "optical jamming" 12
-    "lasing power" -3
-    weapon
-        "hardpoint sprite" "hardpoint/blue phaser"
-        sprite "projectile/avgi phaser blue"
-            "frame rate" 1
-        "hit effect" "laser ejecta" 4
-        "hit effect" "blue phaser return" 30
-        "hit effect" "blue phaser scattering"
-        "fire effect" "blue phaser fire"
-        "velocity" 3600
-        "lifetime" 1
-        "reload" 1
-        "turret turn" 6
-        "firing energy" 15
-        "firing heat" 12
-        "shield damage" 3.6
-        "hull damage" 4.2
-        "heat damage" 6
-        "damage dropoff" 0 2400
-        "dropoff modifier" 0.15
+	plural "Phased Array Lasers (Blue)"
+	category "Turrets"
+	cost 120000
+	thumbnail "outfit/blue phaser"
+	"mass" 9
+	"outfit space" -9
+	"weapon capacity" -9
+	"turret mounts" -1
+	"optical jamming" 12
+	"lasing power" -3
+	weapon
+		"hardpoint sprite" "hardpoint/blue phaser"
+		sprite "projectile/avgi phaser blue"
+			"frame rate" 1
+		"hit effect" "laser ejecta" 4
+		"hit effect" "blue phaser return" 30
+		"hit effect" "blue phaser scattering"
+		"fire effect" "blue phaser fire"
+		"velocity" 3600
+		"lifetime" 1
+		"reload" 1
+		"turret turn" 6
+		"firing energy" 15
+		"firing heat" 12
+		"shield damage" 3.6
+		"hull damage" 4.2
+		"heat damage" 6
+		"damage dropoff" 0 2400
+		"dropoff modifier" 0.15
 	description "This phased array laser, or phaser, binds thousands of individual optical fibers together to create a single collimated beam precise enough to target projectiles in flight. An azure glow strong enough to blind the naked eye is the only indication of this weapon firing."
 	description "The turret itself only contains the optics needed to synthesize and target the beam, allowing the laser light to be produced elsewhere. Because of this, an Optical Lasing Generator is needed to run this turret, providing enough power to support two Blue Phasers."
 	description "Without the advanced insights needed to produce classical 'beam weapons' such as those used by humans and other species, the laser suffers from diffraction as it travels. This causes its damage to rapidly drop off with distance, becoming almost useless at its maximum range."
 
 
 effect "laser ejecta"
-    sprite "effect/static"
-        "no repeat"
-        "frame rate" 20
-        scale 0.75
-    "random lifetime" 3
-    "random angle" 30
-    "random spin" 20
-    "random velocity" -12
-    "velocity scale" -0.003
+	sprite "effect/static"
+		"no repeat"
+		"frame rate" 20
+		scale 0.75
+	"random lifetime" 3
+	"random angle" 30
+	"random spin" 20
+	"random velocity" -12
+	"velocity scale" -0.003
 
 effect "blue phaser return"
-    sprite "effect/skylance impact"
-        "no repeat"
-        "frame rate" 20
-        "scale" 0.125
-    "lifetime" 3
-    "random lifetime" 2
-    "random velocity" -12
-    "velocity scale" -0.003
+	sprite "effect/skylance impact"
+		"no repeat"
+		"frame rate" 20
+		"scale" 0.125
+	"lifetime" 3
+	"random lifetime" 2
+	"random velocity" -12
+	"velocity scale" -0.003
 
 effect "blue phaser scattering"
 	sprite "effect/skylance impact"
@@ -312,7 +314,7 @@ effect "green phaser fire"
 outfit "Sidereal Missile"
 	category "Ammunition"
 	cost 600
-	thumbnail
+	thumbnail "outfit/sidereal missile"
 	"mass" 0.3
 	"sidereal capacity" -1
 	description "The Sidereal missile is a cheap, disposable kinetic kill vehicle designed for situations where a nuclear warhead would be unnecessary. Upon closing in on a target, the missile unwraps into dozens of thin tungsten rods to create a cone shaped area of effect. This makes it difficult to shoot down without very long ranged antimissile systems."
@@ -321,7 +323,7 @@ outfit "Sidereal Missile"
 outfit "Sidereal Launcher"
 	category "Secondary Weapons"
 	cost 1370000
-	thumbnail
+	thumbnail "outfit/unknown"
 	"mass" 2.4
 	"outfit space" -15
 	"weapon capacity" -15
@@ -356,7 +358,7 @@ outfit "Sidereal Launcher"
 outfit "Sidereal Pod"
 	category "Secondary Weapons"
 	cost 1370000
-	thumbnail
+	thumbnail "outfit/unknown"
 	"mass" 1.8
 	"outfit space" -3
 	"weapon capacity" -3
@@ -391,7 +393,7 @@ outfit "Sidereal Pod"
 outfit "Sidereal VLS Array"
 	category "Secondary Weapons"
 	cost 1370000
-	thumbnail
+	thumbnail "outfit/unknown"
 	"mass" 6
 	"outfit space" -42
 	"weapon capacity" -42
@@ -434,7 +436,6 @@ outfit "Sidereal Active"
 			"frame rate" .25
 		"die effect" "tiny explosion"
 		"hit effect" "missile hit"
-		"live effect" "flame" 300
 		"lifetime" 450
 		"split range" 420
 		"acceleration" 1.8
@@ -471,7 +472,7 @@ outfit "Sidereal Flack"
 outfit "Sidereal Magazine"
 	category "Ammunition"
 	cost 1440000
-	thumbnail
+	thumbnail "outfit/unknown"
 	"mass" 1.2
 	"outfit space" -12
 	"sidereal capacity" 36
@@ -482,7 +483,7 @@ outfit "Sidereal Magazine"
 outfit "Equinox Torpedo"
 	category "Ammunition"
 	cost 660000
-	thumbnail
+	thumbnail "outfit/equinox torpedo"
 	"mass" 3
 	"equinox capacity" -1
 	description "The Equinox makes no compromises with its design goal of fitting the largest thermonuclear warhead feasible. After minimalizing its propulsion system to little more than a few reaction control thrusters, the Equinox is essentially an unguided torpedo. A carrying ship must instead both accelerate and aim the torpedo properly to ensure a hit."
@@ -492,7 +493,7 @@ outfit "Equinox Torpedo"
 outfit "Equinox Torpedo Pylon"
 	category "Secondary Weapons"
 	cost 80000
-	thumbnail
+	thumbnail "outfit/unknown"
 	"mass" 6
 	"outfit space" -6
 	"weapon capacity" -9
@@ -555,7 +556,7 @@ outfit "Equinox Active"
 outfit "Equinox Torpedo Stockpile"
 	category "Ammunition"
 	cost 1440000
-	thumbnail
+	thumbnail "outfit/unknown"
 	"mass" 6
 	"outfit space" -24
 	"cargo space" -18
@@ -569,7 +570,7 @@ outfit "Equinox Torpedo Stockpile"
 outfit "Nadir Missile"
 	category "Ammunition"
 	cost 660000
-	thumbnail
+	thumbnail "outfit/nadir missile"
 	"mass" 0.9
 	"nadir capacity" -1
 	description "Unlike humanity, the Avgi do not have a strong taboo against the use of nuclear weapons in space. To them, nuclear weapons are simply another tool, albeit one with a particularly high energy density, to be used when the occasion calls for it. Nuclear weapons have been the Avgi's trump card against the Aberrant, the one weapon they have capable of reliably breaking their advanced shields and atomizing their armor."
@@ -579,7 +580,7 @@ outfit "Nadir Missile"
 outfit "Nadir Launcher"
 	category "Secondary Weapons"
 	cost 1370000
-	thumbnail
+	thumbnail "outfit/unknown"
 	"mass" 4.8
 	"outfit space" -21
 	"weapon capacity" -21
@@ -619,7 +620,6 @@ outfit "Nadir Active"
 		"hit effect" "prompt radiation" 9
 		"hit effect" "fission fragments" 240
 		"die effect" "missile death"
-		"live effect" "ionic afterburner" 300
 		"lifetime" 600
 		"acceleration" 0.9
 		"drag" 0.03
@@ -638,7 +638,7 @@ outfit "Nadir Active"
 outfit "Nadir Magazine"
 	category "Ammunition"
 	cost 1440000
-	thumbnail
+	thumbnail "outfit/unknown"
 	"mass" 3
 	"outfit space" -18
 	"nadir capacity" 12
@@ -648,7 +648,7 @@ outfit "Nadir Magazine"
 outfit "Azimuth Missile"
 	category "Ammunition"
 	cost 660000
-	thumbnail
+	thumbnail "outfit/casaba howitzer"
 	"mass" 1
 	"azimuth capacity" -1
 	description "Casaba Howitzer (campaign unlock, not needed for initial PR)"
@@ -659,7 +659,7 @@ outfit "Azimuth Launcher"
 	licenses
 		Heliarch
 	cost 1370000
-	thumbnail
+	thumbnail "outfit/casaba howitzer launcher"
 	"mass" 24
 	"outfit space" -24
 	"weapon capacity" -24
@@ -750,9 +750,10 @@ effect "fission fragments"
 # Systems:
 
 outfit "Radiative Scales"
+	plural "Radiative Scales"
 	category "Systems"
 	cost 200000
-	thumbnail
+	thumbnail "outfit/unknown"
 	"mass" 12
 	"anchor point" -1
 	"heat dissipation" 0.3
@@ -762,9 +763,10 @@ outfit "Radiative Scales"
 
 
 outfit "Concealment Scales"
+	plural "Concealment Scales"
 	category "Systems"
 	cost 200000
-	thumbnail
+	thumbnail "outfit/unknown"
 	"mass" 6
 	"anchor point" -1
 	"scan interference" 6
@@ -776,9 +778,10 @@ outfit "Concealment Scales"
 
 
 outfit "Nanoceramic Scales"
+	plural "Nanoceramic Scales"
 	category "Systems"
 	cost 200000
-	thumbnail
+	thumbnail "outfit/unknown"
 	"mass" 36
 	"anchor point" -1
 	"hull multiplier" 0.33
@@ -788,9 +791,10 @@ outfit "Nanoceramic Scales"
 
 
 outfit "Adamant Scales"
+	plural "Adamant Scales"
 	category "Systems"
 	cost 200000
-	thumbnail
+	thumbnail "outfit/unknown"
 	"mass" 36
 	"anchor point" -1
 	"hull multiplier" 1
@@ -800,9 +804,10 @@ outfit "Adamant Scales"
 
 
 outfit "Warding Scales"
+	plural "Warding Scales"
 	category "Systems"
 	cost 200000
-	thumbnail
+	thumbnail "outfit/unknown"
 	"mass" 42
 	"anchor point" -1
 	"shield multiplier" 2
@@ -814,7 +819,7 @@ outfit "Warding Scales"
 outfit "Electrostatic Ramscoop"
 	category "Systems"
 	cost 60000
-	thumbnail
+	thumbnail "outfit/unknown"
 	"mass" 12
 	"outfit space" -12
 	"ramscoop" 3.6
@@ -827,7 +832,7 @@ outfit "Electrostatic Ramscoop"
 outfit "Dipole Ramscoop"
 	category "Systems"
 	cost 60000000
-	thumbnail
+	thumbnail "outfit/unknown"
 	"mass" 60
 	"outfit space" -120
 	"gun ports" -1
@@ -844,7 +849,7 @@ outfit "Dipole Ramscoop"
 outfit "Deuterium Slush Tank"
 	category "Systems"
 	cost 90000
-	thumbnail "outfit/cryo fuel tank"
+	thumbnail "outfit/deuterium slush tank"
 	"mass" 3
 	"outfit space" -12
 	"fuel capacity" 300
@@ -855,7 +860,7 @@ outfit "Deuterium Slush Tank"
 outfit "Cryogenic Deuterium Tank"
 	category "Systems"
 	cost 30000
-	thumbnail "outfit/cryo fuel tank"
+	thumbnail "outfit/unknown"
 	"mass" 12
 	"outfit space" -6
 	"cargo space" -30
@@ -877,7 +882,7 @@ outfit "Thermal Sink Partition"
 outfit "Multispectral Scanner"
 	category "Systems"
 	cost 24000
-	thumbnail
+	thumbnail "outfit/multispectral scanner"
 	"mass" 3
 	"outfit space" -6
 	"tactical scan power" 72
@@ -891,7 +896,7 @@ outfit "Multispectral Scanner"
 outfit "Spectrometer Array"
 	category "Systems"
 	cost 24000
-	thumbnail
+	thumbnail "outfit/spectrometer array"
 	"mass" 6
 	"outfit space" -12
 	"outfit scan power" 42
@@ -907,7 +912,7 @@ outfit "Spectrometer Array"
 outfit "Diffuse Deflector"
 	category "Systems"
 	cost 1200000
-	thumbnail
+	thumbnail "outfit/unknown"
 	"mass" 48
 	"outfit space" -48
 	"shield generation" 0.6
@@ -920,7 +925,7 @@ outfit "Diffuse Deflector"
 outfit "Specular Deflector"
 	category "Systems"
 	cost 2100000
-	thumbnail
+	thumbnail "outfit/unknown"
 	"mass" 72
 	"outfit space" -72
 	"shield generation" 1.2
@@ -933,7 +938,7 @@ outfit "Specular Deflector"
 outfit "Optical Lasing Generator"
 	category "Systems"
 	cost 120000
-	thumbnail
+	thumbnail "outfit/unknown"
 	"mass" 30
 	"outfit space" -30
 	"lasing power" 6
@@ -948,7 +953,7 @@ outfit "Optical Lasing Generator"
 outfit "Concentrating Solar Cell"
 	category "Power"
 	cost 200000
-	thumbnail
+	thumbnail "outfit/unknown"
 	"mass" 1
 	"outfit space" -3
 	"solar collection" 0.3
@@ -959,7 +964,7 @@ outfit "Concentrating Solar Cell"
 outfit "Concentrating Solar Array"
 	category "Power"
 	cost 200000
-	thumbnail
+	thumbnail "outfit/unknown"
 	"mass" 3
 	"outfit space" -18
 	"solar collection" 2.4
@@ -969,9 +974,10 @@ outfit "Concentrating Solar Array"
 
 
 outfit "Photoelectric Scales"
+	plural "Photoelectric Scales"
 	category "Power"
 	cost 200000
-	thumbnail
+	thumbnail "outfit/photoelectric scales"
 	"mass" 24
 	"anchor point" -1
 	"solar collection" 6
@@ -983,7 +989,7 @@ outfit "Photoelectric Scales"
 outfit "Lantern Fission Core"
 	category "Power"
 	cost 1200000
-	thumbnail
+	thumbnail "outfit/lantern fission core"
 	"mass" 24
 	"outfit space" -24
 	"energy generation" 3.6
@@ -994,7 +1000,7 @@ outfit "Lantern Fission Core"
 outfit "Luminous Fusion Core"
 	category "Power"
 	cost 20460000
-	thumbnail
+	thumbnail "outfit/fusion core small"
 	"mass" 36
 	"outfit space" -36
 	"energy generation" 12
@@ -1006,7 +1012,7 @@ outfit "Luminous Fusion Core"
 outfit "Brilliant Fusion Core"
 	category "Power"
 	cost 20460000
-	thumbnail
+	thumbnail "outfit/unknown"
 	"mass" 72
 	"outfit space" -72
 	"energy generation" 21
@@ -1018,7 +1024,7 @@ outfit "Brilliant Fusion Core"
 outfit "Radiant Fusion Core"
 	category "Power"
 	cost 20460000
-	thumbnail
+	thumbnail "outfit/unknown"
 	"mass" 120
 	"outfit space" -120
 	"energy generation" 36
@@ -1030,7 +1036,7 @@ outfit "Radiant Fusion Core"
 outfit "Stellar Fusion Core"
 	category "Power"
 	cost 20460000
-	thumbnail
+	thumbnail "outfit/unknown"
 	"mass" 144
 	"outfit space" -144
 	"energy generation" 54
@@ -1042,7 +1048,7 @@ outfit "Stellar Fusion Core"
 outfit "Ultracapacitor Cell"
 	category "Power"
 	cost 200000
-	thumbnail
+	thumbnail "outfit/unknown"
 	"mass" 1
 	"outfit space" -3
 	"energy capacity" 1500
@@ -1054,7 +1060,7 @@ outfit "Ultracapacitor Cell"
 outfit "Ultracapacitor Bank"
 	category "Power"
 	cost 200000
-	thumbnail
+	thumbnail "outfit/unknown"
 	"mass" 6
 	"outfit space" -18
 	"energy capacity" 10800
@@ -1069,7 +1075,7 @@ outfit "Ultracapacitor Bank"
 outfit "Magnetoplasma Drive"
 	category "Engines"
 	"cost" 30000
-	thumbnail
+	thumbnail "outfit/magnetoplasma drive"
 	"mass" 12
 	"outfit space" -18
 	"engine capacity" -18
@@ -1099,7 +1105,7 @@ outfit "Magnetoplasma Drive"
 outfit "Z-360 Fusion Torch"
 	category "Engines"
 	"cost" 100000
-	thumbnail
+	thumbnail "outfit/fusion engine small"
 	"mass" 36
 	"outfit space" -36
 	"engine capacity" -36
@@ -1123,7 +1129,7 @@ outfit "Z-360 Fusion Torch"
 outfit "Z-600 Fusion Torch"
 	category "Engines"
 	"cost" 100000
-	thumbnail
+	thumbnail "outfit/fusion engine medium"
 	"mass" 60
 	"outfit space" -60
 	"engine capacity" -60
@@ -1146,7 +1152,7 @@ outfit "Z-600 Fusion Torch"
 outfit "Z-960 Fusion Torch"
 	category "Engines"
 	"cost" 100000
-	thumbnail
+	thumbnail "outfit/fusion engine large"
 	"mass" 96
 	"outfit space" -96
 	"engine capacity" -96
@@ -1176,7 +1182,7 @@ outfit "XY-180 Radial Thrusters"
 	plural "XY-180 Radial Thrusters"
 	category "Engines"
 	"cost" 221000
-	thumbnail
+	thumbnail "outfit/rcs small"
 	"mass" 18
 	"outfit space" -18
 	"engine capacity" -18
@@ -1201,7 +1207,7 @@ outfit "XY-420 Radial Thrusters"
 	plural "XY-360 Radial Thrusters"
 	category "Engines"
 	"cost" 473000
-	thumbnail
+	thumbnail "outfit/rcs large"
 	"mass" 42
 	"outfit space" -42
 	"engine capacity" -42
@@ -1226,7 +1232,7 @@ outfit "XY-720 Radial Thrusters"
 	plural "XY-720 Radial Thrusters"
 	category "Engines"
 	"cost" 1077000
-	thumbnail
+	thumbnail "outfit/unknown"
 	"mass" 72
 	"outfit space" -72
 	"engine capacity" -72
@@ -1250,7 +1256,7 @@ outfit "XY-720 Radial Thrusters"
 outfit "Beam Core Antimatter Torch"
 	category "Engines"
 	"cost" 900000000
-	thumbnail
+	thumbnail "outfit/unknown"
 	"mass" 120
 	"outfit space" -120
 	"engine capacity" -120
@@ -1277,7 +1283,7 @@ outfit "Beam Core Antimatter Torch"
 outfit "Electromotive Rifle"
 	category "Hand to Hand"
 	cost 53000
-	thumbnail
+	thumbnail "outfit/unknown"
 	"capture attack" 0.6
 	"capture defense" 1.2
 	"unplunderable" 1
@@ -1287,7 +1293,7 @@ outfit "Electromotive Rifle"
 outfit "Lancet Adamant"
 	category "Unique"
 	cost 3000000
-	thumbnail
+	thumbnail "outfit/unknown"
 	"capture attack" 3
 	"capture defense" 6
 	"unplunderable" 1
