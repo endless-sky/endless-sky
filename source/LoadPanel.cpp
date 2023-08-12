@@ -68,7 +68,7 @@ namespace {
 	string TimestampString(time_t timestamp)
 	{
 		pair<pair<string, string>, size_t> fmt = TimestampFormatString(Preferences::GetDateFormat());
-		char* buf = static_char<char*>(std::malloc(fmt.second));
+		char* buf = static_cast<char*>(std::malloc(fmt.second));
 
 #ifdef _WIN32
 		tm date;
