@@ -7,7 +7,7 @@ mission "Avgi: Trapped in Twilight"
 		system
 			attributes "twilight"
 		fail
-		dialogue phrase "twilight trapped"
+		dialog phrase "twilight trapped"
 
 phrase "twilight trapped"
 	word
@@ -103,8 +103,6 @@ mission "Avgi: First Contact"
 					goto talk
 				`	(Transmit a series of prime numbers)`
 					goto prime
-				`	(Attack)`
-					goto attack
 
 			label station
 			`This alien station has certainly seen better days. While the bulk of the structure is still intact, avoiding the fate of whatever became the debris fields you have seen elsewhere, the hull is scored and chipped by what appears to be powerful weapons fire. The station's systems all seem to be powered down, as you can detect no emissions of light or heat. Without expecting to find anyone or anything alive, you maneuver near what you think is an open docking bay.`
@@ -203,7 +201,7 @@ mission "Avgi: First Contact"
 			label avgi
 			action
 				set "avgi: asked about avgi"
-			`	She twitches her wings slightly in what might be laughter. "Amusement. That would take a very long time to do in any detail, but I will make an attempt." Reverting back to her own language, she consults with the two other Avgi for a minute before turning back to you.
+			`	She twitches her wings slightly in what might be laughter. "Amusement. That would take a very long time to do in any detail, but I will make an attempt." Reverting back to her own language, she consults with the two other Avgi for a minute before turning back to you.`
 			`	"Pride, accomplishment. We are the Avgi. Our six systems, with seven worlds, and hundreds of orbitals each the size of a city, together a thousand polities united towards the betterment of civilization and progress-"`
 			`	Galano, interrupts, his translator's voice sounding aged, somehow. "Remembrance. But before all that, before the hyperdrive, we still crossed the void between stars. I was a child when the last true starship launched, but I remember. Long before we learned to surpass light, we settled the worlds beyond our home star system, at great cost and effort. We first touched space four centuries ago, and-"`
 			`	He is cut off by Prasinos. "Rebuke. You should start from the beginning, long before we left Aviskir. Our ancestors made their homes around the springs in the valleys of the Fel Mountains, and spread across our planet for millenia. From fire to spears to the atom, our skill in turning the natural world to our will grew, and with it our ability to form civilization: Groups of Avgi bound together by more than close kinship or geography, instead by ideology and heritage and religion. And with that came conflict, each polity striving with the others to- "`
@@ -218,14 +216,14 @@ mission "Avgi: First Contact"
 					goto aberrant
 					to display
 						not "avgi: asked about aberrant"
-					"That's all the questions I have. What happens now?"`
+				`	"That's all the questions I have. What happens now?"`
 					goto conclusion
 
 			label humans
 			action
 				set "avgi: asked about humans"
-			`	"Hesitance. It may come as a surprise to you, but you are not the first human to come to our space. Three-- no, that would be six of your years ago, an alien ship was found drifting around a star in our space, swarmed by Aberrations. By some miracle they were driven away, and the ship recovered. And those were the first, and until now, the only humans we have had the honor of meeting. A crew of explorers from, I believe they said, 'the depths,' though I am not quite sure if that is a planet or a region of space."
-			`	"Appreciation. They have told us much of humanity, and developed these devices so as to allow us to more easily communicate. And without the ability to return home, they now live among us, helping where they can with their knowledge of humanity's advanced technologies."
+			`	"Hesitance. It may come as a surprise to you, but you are not the first human to come to our space. Three-- no, that would be six of your years ago, an alien ship was found drifting around a star in our space, swarmed by Aberrations. By some miracle they were driven away, and the ship recovered. And those were the first, and until now, the only humans we have had the honor of meeting. A crew of explorers from, I believe they said, 'the depths,' though I am not quite sure if that is a planet or a region of space."`
+			`	"Appreciation. They have told us much of humanity, and developed these devices so as to allow us to more easily communicate. And without the ability to return home, they now live among us, helping where they can with their knowledge of humanity's advanced technologies."`
 			label humanquestions
 			choice
 				`	"Aberrations?"`
@@ -254,9 +252,10 @@ mission "Avgi: First Contact"
 				set "avgi: asked about aberrant"
 			`	Galano speaks. "Sorrow. The Aberrant, as we call them, remain enigmatic despite all they have taken from us. From where they came, we are not completely certain. They came two decades ago, from the east, beyond the reach of our knowledge, from a perilous region of space we have found difficult to probe. The scouts and explorers on the fringes of known space went dark first, and then the outposts fell one by one."`
 			`	Asime continues. "Regret. When the Consonance finally took note, they swept away the ships Aviskir's polities were able to gather to oppose them. An entire generation of the Twilight Guard, wiped away in a single battle. Their technology is far beyond our own, and at the time it was impossible to oppose them. And the few Aberrations we were able to destroy baffled us. No crew, just a single organic entity inside. And systems operating on principles unknown to us. It can be said that we learned how to make shields from humanity, but we first learned what shields could do from the Aberrant.`
-			`	Prasinos says, "Anger. And thus we find ourselves here. When the hopelessness of the military situation became evident, every ship with a hyperdrive was ordered to take on passengers and make its way into the Tangled Shroud, this confusing web of broken hyperlanes and shadowed space that we now must call home. We abandoned our planets to the mercy of the Aberrant with little more than their surface defenses, scavenging the orbital infrastructure that had been painstakingly built over the centuries."
+			`	Prasinos says, "Anger. And thus we find ourselves here. When the hopelessness of the military situation became evident, every ship with a hyperdrive was ordered to take on passengers and make its way into the Tangled Shroud, this confusing web of broken hyperlanes and shadowed space that we now must call home. We abandoned our planets to the mercy of the Aberrant with little more than their surface defenses, scavenging the orbital infrastructure that had been painstakingly built over the centuries."`
 			`	He is interrupted by Asime, who seems annoyed. "Clarification. We were not heartless. The decision to evacuate was only made once it became evident the Aberrant had little interest in orbital bombardment, and that our surface batteries could drive off the ones that did. And we took tens of millions of civilians with us, in cryosleep, to be revived as resources allow."`
 			`	"Resolve. We will return. We have suffered a defeat, yes, but we will reclaim our systems in the end," says Galano with finality. The others do not dispute this.`
+			choice
 				`	"How do you know my language?"`
 					goto humans
 					to display
@@ -283,7 +282,7 @@ mission "Avgi: First Contact"
 			`	Asime looks like she wants to object, but then Galano says, "Agreement. A reasonable compromise, one I can sell to the Assembly fairly easily. Beyond that, we will provide you with a line of credit with which to purchase housing and nutrition. I cannot vouch for its usefulness among... certain elements that do not recognize the Consonance, but anywhere else, you should find no issues."`
 			action
 				set "license: Avgi Civilian"
-			`	"Finality. For now, we will leave you with some time and space to think. The former Captain of the ship that brought the other humans, Darius, is currently advising construction on the cylinder habitat in this system. You will find him on Aktina Cylinder, if you wish to speak with him."
+			`	"Finality. For now, we will leave you with some time and space to think. The former Captain of the ship that brought the other humans, Darius, is currently advising construction on the cylinder habitat in this system. You will find him on Aktina Cylinder, if you wish to speak with him."`
 
 			label die
 			`	You draw your sidearm and begin firing at the group of aliens, who scatter in all directions. Your first shot glances off alien body armor, but your second burns a hole in a wing, sending the alien tumbling. You have little time to celebrate your short-lived victory, however, before a flash of unfathomably bright green light turns you into a rapidly expanding cloud of hot vapor.`
