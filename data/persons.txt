@@ -759,35 +759,19 @@ ship "Waverider"
 		"Fuel Processor" 3
 		"Tactical Scanner"
 
-		"Afterburner (Lunar Class)"
-		"A370 Atomic Thruster"
-		"A375 Atomic Steering"
-		"Hyperdrive"
+		"120 Atomic Thruster"
+		"A125 Atomic Steering"
+		"A125 Atomic Steering"
+		"Scram Drive"
 		
-	engine 45 212
-	engine 21 220
-		zoom 0.8
-	engine -45 212
-	engine -21 220
-		zoom 0.8
-	gun 0 -223 "Prototype Fusion Cannon"
-	gun -59 14 "Typhoon Pod"
-	gun 59 14 "Typhoon Pod"
-	gun -72 25 "Torpedo Pod"
-	gun 72 26 "Torpedo Pod"
-	gun -84 38 "Torpedo Pod"
-	gun 84 38 "Torpedo Pod"
-	turret -37 -11 "Electron Turret"
-	turret 37 -11 "Electron Turret"
-	turret 0 10 "Wanderer Anti-Missile"
-	turret -37 31 "Quad Blaster Turret"
-	turret 37 31 "Quad Blaster Turret"
-	turret -39 73 "Quad Blaster Turret"
-	turret 39 73 "Quad Blaster Turret"
-	turret -75 108 "Heavy Laser Turret"
-	turret 75 108 "Heavy Laser Turret"
-	turret -23 108 "Heavy Laser Turret"
-	turret 23 108 "Heavy Laser Turret"
+	gun -22.5 -56.5 "Particle Cannon"
+    	gun 22.5 -56.5 "Particle Cannon"
+    	gun -31.5 -6 "Particle Cannon"
+    	gun 31.5 -6 "Particle Cannon"
+    	engine -32 -6 "A125 Atomic Steering"
+	engine 32 -6 "A125 Atomic Steering"
+        engine 0 55.5 "A120 Atomic Thruster"
+
 	explode "tiny explosion" 20
 	explode "small explosion" 45
 	explode "medium explosion" 50
