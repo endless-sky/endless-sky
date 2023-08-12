@@ -70,7 +70,7 @@ const Plugin *Plugins::Load(const string &path)
 
 	string pluginFile = path + "plugin.txt";
 
-	// Loads plugin metadata from plugin.txt.
+	// Load plugin metadata from plugin.txt.
 	DataFile file(pluginFile);
 	for(const DataNode &child : file)
 	{
@@ -80,8 +80,7 @@ const Plugin *Plugins::Load(const string &path)
 			plugin->aboutText = child.Token(1);
 	}
 
-	// Sets missing required values.
-	// Also sets values for classic plugins without plugin.txt.
+	// Set missing required values.
 	if(plugin->name.empty())
 	{
 		plugin->name = std::move(name);
@@ -91,6 +90,7 @@ const Plugin *Plugins::Load(const string &path)
 				"Failed to find name field in plugin.txt. Defaulting plugin name to folder name: \"" + plugin->name + "\"");
 		}
 	}
+	// Set values from old about.txt files.
 	if(plugin->aboutText.empty())
 		plugin->aboutText = Files::Read(path + "about.txt");
 
