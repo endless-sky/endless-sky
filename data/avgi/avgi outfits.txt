@@ -204,6 +204,7 @@ effect "fleck fire"
 
 
 outfit "Phased Array Laser (Green)"
+	plural "Phased Array Lasers (Green)"
 	category "Turrets"
 	cost 120000
 	thumbnail "outfit/green phaser"
@@ -229,6 +230,7 @@ outfit "Phased Array Laser (Green)"
 
 
 outfit "Phased Array Laser (Blue)"
+	plural "Phased Array Lasers (Blue)"
 	category "Turrets"
 	cost 120000
 	thumbnail "outfit/blue phaser"
@@ -748,6 +750,7 @@ effect "fission fragments"
 # Systems:
 
 outfit "Radiative Scales"
+	plural "Radiative Scales"
 	category "Systems"
 	cost 200000
 	thumbnail "outfit/unknown"
@@ -760,6 +763,7 @@ outfit "Radiative Scales"
 
 
 outfit "Concealment Scales"
+	plural "Concealment Scales"
 	category "Systems"
 	cost 200000
 	thumbnail "outfit/unknown"
@@ -774,6 +778,7 @@ outfit "Concealment Scales"
 
 
 outfit "Nanoceramic Scales"
+	plural "Nanoceramic Scales"
 	category "Systems"
 	cost 200000
 	thumbnail "outfit/unknown"
@@ -786,6 +791,7 @@ outfit "Nanoceramic Scales"
 
 
 outfit "Adamant Scales"
+	plural "Adamant Scales"
 	category "Systems"
 	cost 200000
 	thumbnail "outfit/unknown"
@@ -798,6 +804,7 @@ outfit "Adamant Scales"
 
 
 outfit "Warding Scales"
+	plural "Warding Scales"
 	category "Systems"
 	cost 200000
 	thumbnail "outfit/unknown"
@@ -967,6 +974,7 @@ outfit "Concentrating Solar Array"
 
 
 outfit "Photoelectric Scales"
+	plural "Photoelectric Scales"
 	category "Power"
 	cost 200000
 	thumbnail "outfit/photoelectric scales"
