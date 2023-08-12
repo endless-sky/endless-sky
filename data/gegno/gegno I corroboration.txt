@@ -298,7 +298,7 @@ mission "Gegno Intervention"
 				goto cases
 
 			label coincidence
-			`	"Even a mere blandful coincidence can cause the greatest of tragedies. An untroubled stone becomes a deadly meteor if it should fall many enough lengths." The Quarg then ponders for a moment.`
+			`	"Even a mere bland coincidence can cause the greatest of tragedies. An untroubled stone becomes a deadly meteor if it should fall many enough lengths." The Quarg then ponders for a moment.`
 				goto cases
 
 			label dismissive
@@ -311,12 +311,32 @@ mission "Gegno Intervention"
 
 			label cases
 			`	"Imagine, if you will, during the substantial conflicts the humans call the Turf Wars, a strange alien came to human space. We Quarg woefully witnessed that hazardous conflict - it was a time of great waste, unfortunate peril, and unsavory distrust among humanity. The Gegno are in a vulnerable state notably comparable to such a time. Reluctantly, the truth remains that we have been contacted by numerous members of high Gegno standing in respect to your continued interference. We wish for it to be matter only for further strict cautionaries, but regrettably, the Gegno believe it a matter beyond intricate attentiveness." The Quarg leaves its chair and motions you to do the same.`
-			`	"Our best of recommendations to you is in departure from Gegno space as of this decisive moment. Meanwhile, we shall attempt a most careful negotiation with their hierarchy to come in terms of an acceptable toleration of storts. Should we find commonality, you will receive communication from one of the title "Adrauni", as has been bestowed upon me."`
+			`	"Our best of recommendations to you is in departure from Gegno space as of this decisive moment. Meanwhile, we shall attempt a most careful negotiation with their hierarchy to come in terms of an acceptable toleration of storts. Should we find commonality, you will receive communication from one of the title 'Adrauni', as has been bestowed upon me."`
 			`	The rest of the Quarg, who have been listening to the conversation attentively the whole time, begin to escort you out of the room. If the Gegno are willing to go as far as to contact the Quarg about your appearances, then this is truly an important matter to them. For the time being, it's probably best to listen to the Quarg's warnings this time around and leave Gegno space until some kind of resolution is found, if at all.`
 				decline
 
 			label pacifist
-			`	"Path if the player chose the "leave" option on all previous missions."`
+			`	"Formerly, I have offered suggestions of heedful interplay regarding the Gegno. We have been alerted of a few additional encounters you've experienced, although they seemed minimal in nature. In such cases, it has been generally described that you left in a timely manner, in which we are notably appreciative of."`
+			`	"However," the Quarg continues, "despite your efforts in reccommended cautions, there are some meaningful figures of Gegno standing that expressed frustration in your trivial appearances. They inquired us of the possibility of unnecessary reoccurences."`
+			choice
+				`	"Why does this frustrate them?"`
+				`	"It was more coincidential than anything."`
+					goto coincidental
+				`	"I wish to learn more about them."`
+					goto learn
+
+			label coincidental
+			`	"Even a mere brief coincidence may cause a result not desired, neither foreseen, by the instigator. All living things owe their existence to series of arbitrary coincidences." The Quarg then ponders for a moment.`
+				goto imagine
+
+			label learn
+			`	"Not always does the desire to learn lead to pleasant opportunities. The most curious of creatures can easily be harmed when naive to the nature of their interests." The Quarg then ponders for a moment.`
+				goto imagine
+				
+			label imagine
+			`	"Imagine, if you will, during the substantial conflicts the humans call the Turf Wars, a strange alien came to human space. We Quarg woefully witnessed that hazardous conflict - it was a time of great waste, unfortunate peril, and unsavory distrust among humanity. The Gegno are in a vulnerable state notably comparable to such a time. The truth remains that we have been contacted by a few Gegno of importance in respect to your past presences, and there has been show of concern to your unstated intentions." After a brief pause, the Quarg looks to you in a strange manner, and you aren't sure what to make of it. "Though, unexpectedly, a select few times we have also been curiously asked of your origins, an experience we are not strongly familiar with involving the Gegno." The Quarg leaves its chair and motions you to do the same.`
+			`	"Our best of recommendations to you is to avoid further contact in the coming future. Meanwhile, we shall attempt a most careful negotiation with their hierarchy to come to terms of a ground of acceptance for your presence. Should we find commonality, you will receive communication from one of the title 'Adrauni', as has been bestowed upon me."`
+			`	The rest of the Quarg, who have been listening to the conversation attentively the whole time, begin to escort you out of the room. If the Gegno are willing to go as far as to contact the Quarg about your appearances, then this is truly an important matter to them. For the time being, it's probably best to allow the Quarg to find some kind of resolution with the Gegno while you keep your distance.`
 				decline
 
 
