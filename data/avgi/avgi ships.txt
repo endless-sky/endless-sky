@@ -1714,7 +1714,7 @@ ship "Akoustiki"
 		"drag" 0.9
 		"heat dissipation" 0.9
 		"fuel capacity" 100
-		"cargo space" 15
+		"cargo space" 30
 		"outfit space" 96
 		"weapon capacity" 24
 		"engine capacity" 24
@@ -1973,7 +1973,7 @@ ship "Undulon"
 
 	explode "tiny explosion" 12
 
-	description "The Undulon Orbital Silo was first envisioned as a cheap static defense satellite, little more than a tube capable of storing and launching nuclear missiles. Over time, this specialization was broadened, and the modern line of Undulons is alternatively capable of mounting a large fixed gun, and carrying the energy supply to support it, in order to serve as in the ranged artillery role. Their mostly hollow construction provides a great deal of internal space for their size, but also makes the drone quite fragile."
+	description "The Undulon Orbital Silo was first envisioned as a cheap static defense satellite, little more than a tube capable of storing and launching nuclear tipped missiles. Over time, this specialization was broadened, and the modern line of Undulons is alternatively capable of mounting a large fixed gun, and carrying the energy supply to support it, in order to serve as in the ranged artillery role. Their mostly hollow construction provides a great deal of internal space for their size, but also makes the drone quite fragile."
 	description "Undulons are usually seen defending critical planets and stations, ready to unload their atomic payloads on any hostile ships that jump into the system."
 	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 

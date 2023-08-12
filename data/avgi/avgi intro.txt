@@ -1,3 +1,18 @@
+mission "Avgi: Trapped in Twilight"
+	invisible
+	landing
+	to complete
+		never
+	on enter
+		system
+			attributes "twilight"
+		fail
+		dialogue phrase "twilight trapped"
+
+phrase "twilight trapped"
+	word
+		`As soon as you jump into the <system> system, you notice something is wrong. The characteristic plasma of your Jump Drive fades unnaturally quickly, and as you check your systems you notice its temperature is somehow much lower than normal. You attempt to plot a jump back to human space, but your computer tells you the system you just came from is out of range. It appears you are stuck in this region for now.`
+
 mission "Avgi: First Contact"
 	autosave
 	landing
@@ -152,7 +167,7 @@ mission "Avgi: First Contact"
 			`	The alien ship pings you, indicating to follow as it flies towards what looks to be a large inhabited station in the system. Shaped like a circular disk, a large cutout in the center exposes hundreds of docking bays and what looks to be a spaceport. As you watch, a trio of sleek looking fightercraft launch from the station and take up escort positions around you and the other alien ship you have followed all this way. You can only assume your escort is in communication with the station authorities.` 
 			`	Your companion speeds ahead, neatly pulling into one of the bays on the outer levels. When you attempt to follow, the fightercraft zip in front of you, herding you towards a different bay closer to the middle decks.`
 			`	The docking bay is full of activity, and you finally get your first glimpse at this new species up close. They appear to be something analogous to an Earth dragonfly, or maybe more closely to a damselfly, maybe a meter and a half long on average and with six limbs and wings. A group of them quickly close in around your ship as you finally land in a clear space, moving precisely. These aliens have clearly been expecting you.`
-			`	None of the aliens look to be armed, but are arrayed around your ship in a clearly defensive circular pattern, both on foot and flitting about in the air. Some of them look to be wearing some kind of body armor, but they don't seem to be carrying any obvious weapons. As you step out of the <ship>, a small group quickly moves forward to meet you.`
+			`	None of the aliens look to be armed, but are arrayed around your ship in a clearly defensive circular pattern, both on foot and flitting about in the air. Some of them look to be wearing some kind of body armor, but they don't seem to be carrying any obvious weapons. As you step out of the <ship>, noticing the lighter gravity, a small group quickly moves forward to meet you.`
 			choice
 				`	"I come in peace."`
 				`	"Hello there."`
@@ -161,95 +176,220 @@ mission "Avgi: First Contact"
 				`	Shoot them`
 					goto die
 
-			`	The aliens hum and chirp excitedly amongst themselves, the sound reminding you of a string instrument. You notice they seem to produce sounds not from any particular vocal organs, but by rubbing their forearms or legs together akin to a cricket. One of the aliens seems to hush the others, flaring their wings out before returning them to a folded position on their back. They then raise a curved, black instrument reminiscent of a violin bow, drawing it over one of their forelimbs for a moment before the device begins to speak in a synthetic voice.`
-			`	"Invitation. Welcome, visiting human. I am [name1] of the Avgi, and would show you to our leaders to discuss your arrival to our space."`
+			`	The aliens hum and chirp excitedly amongst themselves, the sound reminding you of a string instrument. You notice they seem to produce sounds not from any particular vocal organs, but by rubbing their forearms or legs together akin to a cricket. One of the aliens seems to hush the others, flaring their wings out before returning them to a folded position on their back. They then raise a curved, black instrument reminiscent of a violin bow, drawing it over one of their forelimbs for a moment before the device begins to speak in a synthetic, vaguely masculine voice.`
+			`	"Invitation. Welcome, visiting human. I am Galazio of the Avgi, and would show you to our leaders to discuss your arrival to our space."`
+			`	"I'm Captain <first> <last>," you say.`
 			choice
 				`	"How can you speak my language?"`
-				`	"What happened to the systems I met your ship in?"`
-				`	"Why are the hyperlanes in this region so confusing?"`
+				`	"Who are those hostile aliens back toward the north?"`
+				`	"Tell me about your civilization."`
 
-			`	"Placating. All of your questions will be answered in time. Please, follow now."`
+			`	"Reassurance. All of your questions will be answered in time, Captain <last>. Please, now follow."`
+			`	You are led through the hangar, an entourage of guards separating you from curious onlookers - pilots, mechanics, or soldiers, you aren't sure. It's a bit awkward to be corraled by a group of people whose height barely comes past your knees, but you allow yourself to be escorted nonetheless. You exit through a ramp set in the floor, sloping downwards, then follow a long passageway that seems to perpetually curve upwards. You're reminded of older model space stations, ones that relied on spin gravity before gravity plating became commonplace.`
+			`	Eventually, after a number of turns and descents, you pass through an open archway into some kind of conference room. Large and circular, with a high ceiling, it is occupied by a trio of multicolored dragonfly aliens, each perched on a metal ring running around a circular table.`
+			choice
+				`	"I come in peace"`
+				`	"Hello there"`
+				`	"Pleased to meet you"`
+			`	The alien directly across from you, grey-white in color, begins speaking with the aid of another of the translator devices, this time taking on a feminine voice.`
+			`	"Invitation. I apologize for the inconvenience of traveling so far from your ship to meet us, but I was advised against being present for your arrival for fear of any unexpected hostilities, as small as such chances were estimated. My name, for lack of a direct translation, is 'Asime,' and with me are Speakers Prasinos and Galano. Together, we represent the Avgi Consonance as the First Speakers of the Assembly of Polities."`
+			`	Prasinos, in grass-green, and Galano, a milky-white Avgi that looks vaguely aged, both wave at you with their forelimbs in a surreal imitation of the human gesture.`
+			choice
+				`	"How can you speak my language?"`
+					goto humans
+				`	"Who are those hostile aliens back toward the north?"`
+					goto aberrant
+				`	"Tell me about your civilization."`
+			label avgi
+			action
+				set "avgi: asked about avgi"
+			`	She twitches her wings slightly in what might be laughter. "Amusement. That would take a very long time to do in any detail, but I will make an attempt." Reverting back to her own language, she consults with the two other Avgi for a minute before turning back to you.
+			`	"Pride, accomplishment. We are the Avgi. Our six systems, with seven worlds, and hundreds of orbitals each the size of a city, together a thousand polities united towards the betterment of civilization and progress-"`
+			`	Galano, interrupts, his translator's voice sounding aged, somehow. "Remembrance. But before all that, before the hyperdrive, we still crossed the void between stars. I was a child when the last true starship launched, but I remember. Long before we learned to surpass light, we settled the worlds beyond our home star system, at great cost and effort. We first touched space four centuries ago, and-"`
+			`	He is cut off by Prasinos. "Rebuke. You should start from the beginning, long before we left Aviskir. Our ancestors made their homes around the springs in the valleys of the Fel Mountains, and spread across our planet for millenia. From fire to spears to the atom, our skill in turning the natural world to our will grew, and with it our ability to form civilization: Groups of Avgi bound together by more than close kinship or geography, instead by ideology and heritage and religion. And with that came conflict, each polity striving with the others to- "`
+			`	Now both Asime and Galano make noises of dissent, and Galano, sounding rather hurried, interrupts. "Urgency. Perhaps we are not as united as you, the humans, and it is true that we have fought many wars among ourselves. Emphasis. But that time is long since past. We saw reason, and so the Consonance was created, governed by an Assembly of Polities to represent every division of the Avgi, small or large. From the nation-states to the ideolopoli, a consensus government of our species to resolve disputes, to prevent another Great War. And while there have still been wars fought by the foolish and shortsighted, there has not been a nuclear initiation on Aviskir's surface in more than a century. The Assembly, for all its faults, works."`
+			`	Asime adds, "Truth. And we are what the Avgi need, now that all of that could be lost to the Incursion, to the Aberrant it spawned. We need what humanity has, a united Republic to lead all of our people."`
+			choice
+				`	"How do you know of humanity?"`
+					goto humans
+					to display
+						not "avgi: asked about humans"
+				`	"The Aberrant?"`
+					goto aberrant
+					to display
+						not "avgi: asked about aberrant"
+					"That's all the questions I have. What happens now?"`
+					goto conclusion
 
-			`	You are led into what you think is some kind of office, a small, round room with a high ceiling. Waiting there, behind a lectern, is another alien, this one colored bright green. It is perched upon a smooth metal bar, hung from a short stand by thin wires, but gestures towards a human style seat on the other side of the lectern. One of two seats, in fact, which puzzles you.`
+			label humans
+			action
+				set "avgi: asked about humans"
+			`	"Hesitance. It may come as a surprise to you, but you are not the first human to come to our space. Three-- no, that would be six of your years ago, an alien ship was found drifting around a star in our space, swarmed by Aberrations. By some miracle they were driven away, and the ship recovered. And those were the first, and until now, the only humans we have had the honor of meeting. A crew of explorers from, I believe they said, 'the depths,' though I am not quite sure if that is a planet or a region of space."
+			`	"Appreciation. They have told us much of humanity, and developed these devices so as to allow us to more easily communicate. And without the ability to return home, they now live among us, helping where they can with their knowledge of humanity's advanced technologies."
+			label humanquestions
+			choice
+				`	"Aberrations?"`
+					goto aberrant
+					to display
+						not "avgi: asked about aberrant"
+				`	"Tell me more about the Avgi"`
+					goto avgi
+					to display
+						not "avgi: asked about avgi"
+				`	"I don't know if I'd call human technology advanced"`
+					goto technology
+					to display
+						not "avgi: asked about human tech"
+				`	"That's all the questions I have. I'd like to meet these humans."`
+					goto conclusion
 
-			NEW CHARACTER
-			introduce the scout dude you met here
+			label technology
+			action
+				set "avgi: asked about human tech"
+			`	Galano speaks. "Appreciation. Perhaps not to you, but humanity has had the hyperdrive since long before we reached our homeworld's moon. I have seen the changes and advancements even a handful of decades can bring, and your species' advantage over us of centuries has brought you miracles such from shields to repulsors."`
+				goto humanquestions
 
+			label aberrant
+			action
+				set "avgi: asked about aberrant"
+			`	Galano speaks. "Sorrow. The Aberrant, as we call them, remain enigmatic despite all they have taken from us. From where they came, we are not completely certain. They came two decades ago, from the east, beyond the reach of our knowledge, from a perilous region of space we have found difficult to probe. The scouts and explorers on the fringes of known space went dark first, and then the outposts fell one by one."`
+			`	Asime continues. "Regret. When the Consonance finally took note, they swept away the ships Aviskir's polities were able to gather to oppose them. An entire generation of the Twilight Guard, wiped away in a single battle. Their technology is far beyond our own, and at the time it was impossible to oppose them. And the few Aberrations we were able to destroy baffled us. No crew, just a single organic entity inside. And systems operating on principles unknown to us. It can be said that we learned how to make shields from humanity, but we first learned what shields could do from the Aberrant.`
+			`	Prasinos says, "Anger. And thus we find ourselves here. When the hopelessness of the military situation became evident, every ship with a hyperdrive was ordered to take on passengers and make its way into the Tangled Shroud, this confusing web of broken hyperlanes and shadowed space that we now must call home. We abandoned our planets to the mercy of the Aberrant with little more than their surface defenses, scavenging the orbital infrastructure that had been painstakingly built over the centuries."
+			`	He is interrupted by Asime, who seems annoyed. "Clarification. We were not heartless. The decision to evacuate was only made once it became evident the Aberrant had little interest in orbital bombardment, and that our surface batteries could drive off the ones that did. And we took tens of millions of civilians with us, in cryosleep, to be revived as resources allow."`
+			`	"Resolve. We will return. We have suffered a defeat, yes, but we will reclaim our systems in the end," says Galano with finality. The others do not dispute this.`
+				`	"How do you know my language?"`
+					goto humans
+					to display
+						not "avgi: asked about humans"
+				`	"Tell me more about the Avgi"`
+					goto avgi
+					to display
+						not "avgi: asked about avgi"
+				`	"That's all the questions I have. What happens now?"`
+					goto conclusion
 
-			NEW CHARACTER
-			one of the avgi leader gals
-
+			label conclusion
+			`	Prasinos says, "Assurance. Of course, we will introduce your fellow humans to you. But..." He trails off.`
+			`	Asime continues for him. "Apprehension. The humans that came here before you, I must confess are still here for a reason. Perhaps they can give more details, but they have told us that when they first entered our space, they immediately attempted to turn around. For whatever reason, they were unable to. I do not know the means by which you were able to travel to our space, but perhaps you will be able to return, and take these stranded humans with you."`
+			`	"Or, you may find yourself trapped here, just as they are. In any case, we will of course make you as comfortable as we can, as an honored guest, and treat you as we would any foreign dignitary."`
+			`	"I have a Jump Drive that lets me travel beyond the hyperlanes, but it won't let me jump back to human space," you say.`
+			`	"Regret. Then the situation is most unfortunate," she says. "Committment. We will offer you what help we can, but I did not wish to lie to you about their predicament, or provide you with false hope."`
+			`	"Caution. Perhaps Captain <last> will be able to find a solution." says Galano. "I would not dismiss the possibility too quickly."`
+			choice
+				`	"While I'm here, can I buy your technology?"`
+			`	Galano says, "Interest. I would expect human technology to be superior to our own in most aspects, but we will of course allow you to purchase items with your human credits, which we will back with our own currency with the agreement of the Assembly. In the event that it becomes possible to open trade relations with your human government, we may find it useful to have a small stockpile of currency available."`
+			`	"Amusment. Not to mention the goodwill such a gesture could buy us," says Asime.`
+			`	Prasinos says, more seriously, "Reservation. Our material resources are quite limited at the moment, so for now I would only support providing for the requisition of small items that do not strain the needs of the Guard. No military goods, at least not now."`
+			`	Asime looks like she wants to object, but then Galano says, "Agreement. A reasonable compromise, one I can sell to the Assembly fairly easily. Beyond that, we will provide you with a line of credit with which to purchase housing and nutrition. I cannot vouch for its usefulness among... certain elements that do not recognize the Consonance, but anywhere else, you should find no issues."`
+			action
+				set "license: Avgi Civilian"
+			`	"Finality. For now, we will leave you with some time and space to think. The former Captain of the ship that brought the other humans, Darius, is currently advising construction on the cylinder habitat in this system. You will find him on Aktina Cylinder, if you wish to speak with him."
 
 			label die
-			`	You draw your sidearm and begin firing at the group of aliens, who scatter in all directions. Your first shot glances off an alien's body armor, but your second burns a hole in a wing, sending the alien tumbling. You have little time to celebrate your victory, however, before a flash of unfathomably bright green light turns you into a rapidly expanding cloud of hot vapor.`
+			`	You draw your sidearm and begin firing at the group of aliens, who scatter in all directions. Your first shot glances off alien body armor, but your second burns a hole in a wing, sending the alien tumbling. You have little time to celebrate your short-lived victory, however, before a flash of unfathomably bright green light turns you into a rapidly expanding cloud of hot vapor.`
+				fail
 
 
 
 
-character names
-Prasinos
-
-Mavro - Black
-Aspro - White
-Kokkino - Red
-Kitrino - Yellow
-Prasino - Green
-Kafe - Brown
-Ble - Blue
-Galazio - Light blue
-Galano - Light blue
-Rose - Pink
-Porokali - Orange
-Mauv - Purple
-Kiano - Purple
-Asimenio - Silver
-Asime - Silver
-Hriso - Gold
-Hrisafenio - Gold
-
-
-Erythros - red
-Glaukos - Light blue/green
-Kyaneos - dark blue
-Lampros - Sky blue / azure
-Prasinos - green
-Chloros - bright green/yellow
-Melas - black
-Leukos - white
-Purrhos - orange-red
-Xanthos - orange
-Halourgos - purple
-Porphyreos - purple/pink
-Ion - violet
-Phaios - brown/grey
-Chrysos - gold
-Argyros - silver
-
-
-mission "Avgi: Deep Reunion"
-	name "Meet [name]"
-	description "Pick up [name]'s friend on the Aktina cylinder."
+mission "Avgi: Human Encounter"
+	landing
+	name "Humans Among the Avgi"
+	description "Visit the other humans in Avgi space on the Aktina cylinder."
 	source "Peripheria"
 	destination "Aktina Cylinder"
 	to offer
-		has "First Contact: Avgi 1: done"
+		has "Avgi: First Contact: done"
+	on offer
+		conversation
+			`You meet [deep dude] in the spaceport`
+			`Take me to the cylinder bro`
 	on complete
 		conversation
 			`blah blah blah blah`
 			`meet me in the spaceport`
 			`we need help at ensemble, pls help with raid`
-			`btw there will be nukes used in the defense`
-			choice "omg nukes are scary"
+			`go to the shipyard thing to pick up a fleet`
 
 
+mission "Avgi: Defend Ensemble 1"
+	landing
+	name "Avgi Strike Force"
+	description "Meet up with the Avgi strike force at <destination>."
+	source "Aktina Cylinder"
+	destination "Napigeo Station"
+	to offer
+		has "Avgi: Deep Reunion: done"
+	on offer
+		conversation
+			`You meet [deep dude] in the spaceport`
+			`Take me to the cylinder bro`
+	on complete
+		conversation
+			`blah blah blah blah`
+			`meet me in the spaceport`
+			`we need help at ensemble, pls help with raid`
+			`go to the shipyard thing to pick up a fleet`
 
-mission "Avgi: Defend Ensemble"
+
+mission "Avgi: Defend Ensemble 2"
 	name "Ensemble Defense"
 	description "Assist the Avgi in the Ensemble system with an Aberrant deep raid."
-	source "Aktina Cylinder"
+	source "Napigeo Station"
 	destination "Weledos"
 	to offer
 		has "First Contact: Avgi 1: done"
+	on offer
+		conversation
+			`btw there will be nukes used in the defense`
+			choice "omg nukes are scary"
+			accept
+	npc
+		government "Avgi (Twilight Guard)"
+		personality heroic unconstrained
+		fleet
+			names "avgi military names"
+			variant
+				"Prismaios (Coilgun)" 2
+				"Tremoros" 3
+				"Diaspersi"
+				"Vibratia" 6
+				"Photikon (Kinetic)" 2
+	npc
+		government "Avgi (Twilight Guard)"
+		personality heroic waiting
+		fleet
+			names "avgi military names"
+			variant
+				"Prismaios (Coilgun)" 2
+				"Difraktos (Missile)"
+				"Difraktos (Kinetic)"
+				"Refraktos"
+				"Atenuatia"
+				"Vibratia" 18
+				"Photikon" 6
+	npc evade
+		government "Aberrant"
+		personality
+			confusion 90
+			hunting coward vindictive unconstrained secretive
+		system "Ensemble"
+		fleet
+			names "aberrant names"
+			variant
+				"Twilight Ka'sei 1A" 6
+				"Twilight Ka'sei 1B" 3
+				"Twilight Ka'sei 1C" 3
+		fleet
+			names "aberrant names"
+			variant
+				"Twilight Ka'sei 2B" 2
+				"Twilight Ka'sei 2D" 2
+		fleet
+			names "aberrant names"
+			variant
+				"Twilight Ka'sei 2F" 3
+				"Twilight Ka'sei 2G (Disable-able)"
 	on complete
 		conversation
 			`blah blah blah blah`
@@ -287,7 +427,11 @@ mission "Avgi: Scout Rescue"
 		conversation
 			`given if you said no to having a combat ship`
 			`avgi ask you to use your JD to jump over the front lines and look for a scout that missed its check in time` MEET MINOR CHARACTER, SCOUT DUDE THAT'S FRIENDS OF THE ORIGINAL SCOUT YOU MET
-
+	npc board
+		government "Avgi (Twilight Guard)"
+		personality derelict
+		ship "Polari" "Blue Albedo"
+		conversation
 
 
 mission "Avgi: Dissonance Outreach"
@@ -317,29 +461,7 @@ mission "Avgi: Deep Gathering 1"
 		has "First Contact: Avgi 1: done"
 	on complete
 		conversation
-			`deep dude has you collect a person and bring them to a camp on ensemble`
-
-mission "Avgi: Deep Gathering 2"
-	name "Gather the Deep Crew: name"
-	description "Find and evacuate the crew of the <npc>."
-	source "Aktina Cylinder"
-	destination "Weledos"
-	to offer
-		has "First Contact: Avgi 1: done"
-	on complete
-		conversation
-			`deep dude has you collect a person and bring them to a camp on ensemble`
-
-mission "Avgi: Deep Gathering 3"
-	name "Gather the Deep Crew: name"
-	description "Find and evacuate the crew of the <npc>."
-	source "Aktina Cylinder"
-	destination "Weledos"
-	to offer
-		has "First Contact: Avgi 1: done"
-	on complete
-		conversation
-			`deep dude has you collect a person and bring them to a camp on ensemble`
+			`deep dude has you collect people and bring them to a camp on ensemble`
 
 
 mission "Avgi: Escape the Twilight"

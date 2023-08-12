@@ -2655,8 +2655,8 @@ system Tap
 
 system Mellow
 	pos -384.748 645.559
-	government Uninhabited
-	attributes twilight
+	government "Aberrant"
+	attributes avgi twilight
 	habitable 832.541
 	belt 1521 6
 	haze _menu/haze-twilight-thick

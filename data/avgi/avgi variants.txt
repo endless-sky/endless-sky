@@ -93,7 +93,7 @@ ship "Difraktos" "Difraktos (Kinetic)"
 
 # Fighters
 
-ship "Photikon" "Photikon (Gunboat)"
+ship "Photikon" "Photikon (Kinetic)"
 	outfits
 		"Speckle Turret"
 		"Speck Round" 7200
