@@ -833,7 +833,6 @@ ship "Entasi"
 			"Sidereal Launcher" 2
 			"Sidereal Missile" 84
 
-			"Photoelectric Scales" 2
 			"Ultracapacitor Bank" 3
 			"Diffuse Deflector"
 			"Optical Lasing Generator"
@@ -862,60 +861,60 @@ ship "Entasi"
 	bay "Drone" 18 72
 
 	engine -45 45
-	engine 45 45
-	engine -39 45
-	engine 39 45
-	engine -33 45
-	engine 33 45
-	engine -27 45
-	engine 27 45
-	"reverse engine" -45 9
-	"reverse engine" 45 9
-	"reverse engine" -39 9
-	"reverse engine" 39 9
-	"reverse engine" -33 9
-	"reverse engine" 33 9
-	"reverse engine" -27 9
-	"reverse engine" 27 9
-	"steering engine" -45 9
-		angle 180
+		zoom 0.8
+	engine 45 45 
+		zoom 0.8
+	engine -39.5 44.5 
+		zoom 0.8
+	engine 39.5 44.5 
+		zoom 0.8
+	engine -34 44 
+		zoom 0.8
+	engine 34 44 
+		zoom 0.8
+	engine -29 44 
+		zoom 0.8
+	engine 29 44 
+		zoom 0.8
+	"reverse engine" -22 52.5
+		zoom 0.7
+	"reverse engine" 22 52.5
+		zoom 0.7
+	"reverse engine" -17.5 52.5
+		zoom 0.7
+	"reverse engine" 17.5 52.5
+		zoom 0.7
+	"steering engine" 13 -70 
+		zoom 0.7
+		angle 270
 		left
-	"steering engine" 45 9
-		angle 180
-		right
-	"steering engine" -39 9
-		angle 180
+	"steering engine" 13 -64.5 
+		zoom 0.7
+		angle 270
 		left
-	"steering engine" 39 9
-		angle 180
+	"steering engine" -13 -70 
+		zoom 0.7
+		angle 90
 		right
-	"steering engine" -33 9
-		angle 180
+	"steering engine" -13 -64.5 
+		zoom 0.7
+		angle 90
+		right
+	"steering engine" 8.5 86.5 
+		zoom 0.7
+		angle 270
+		right
+	"steering engine" 8.5 91.5 
+		zoom 0.7
+		angle 270
+		right
+	"steering engine" -8.5 86.5 
+		zoom 0.7
+		angle 90
 		left
-	"steering engine" 33 9
-		angle 180
-		right
-	"steering engine" -27 9
-		angle 180
-		left
-	"steering engine" 27 9
-		angle 180
-		right
-	"steering engine" -45 45
-		right
-	"steering engine" 45 45
-		left
-	"steering engine" -39 45
-		right
-	"steering engine" 39 45
-		left
-	"steering engine" -33 45
-		right
-	"steering engine" 33 45
-		left
-	"steering engine" -27 45
-		right
-	"steering engine" 27 45
+	"steering engine" -8.5 91.5 
+		zoom 0.7
+		angle 90
 		left
 
 	leak "leak" 60 60

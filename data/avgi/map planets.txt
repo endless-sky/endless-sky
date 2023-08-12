@@ -432,15 +432,6 @@ planet "Tilo Station"
 	"required reputation" 10
 
 
-
-planet Trojan
-	attributes avgi "avgi diaspora" station
-	landscape land/station51
-	description "This refueling depot services asteroid mining ships that target the trojan asteroids at the L4 and L5 points between Concerto and its largest gas giant."
-	"required reputation" 10
-	government "Avgi (Consonance)"
-	"required reputation" 10
-
 planet "Aktina Cylinder"
 	attributes avgi "avgi diaspora" station uninhabited
 	landscape land/station52
