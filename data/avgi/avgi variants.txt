@@ -11,6 +11,9 @@
 
 # Utility
 
+ship "Polari" "Polari (Derelict)"
+	outfits
+
 ship "Undsyni" "Undsyni (Tanker)"
 	outfits
 		"Phased Array Laser (Green)" 3

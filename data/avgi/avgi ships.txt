@@ -747,7 +747,7 @@ ship "Polari"
 			"Avgi Civilian"
 		"shields" 600
 		"hull"	2100
-		"required crew" 3
+		"required crew" 6
 		"bunks" 12
 		"mass" 120
 		"drag" 1.5

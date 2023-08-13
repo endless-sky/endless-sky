@@ -182,7 +182,7 @@ mission "Avgi: First Contact"
 				fail
 			label next
 			`	The aliens hum and chirp excitedly amongst themselves, the sound reminding you of a string instrument. You notice they seem to produce sounds not from any particular vocal organs, but by rubbing their forearms or legs together akin to a cricket. One of the aliens seems to hush the others, flaring their wings out before returning them to a folded position on their back. They then raise a curved, black instrument reminiscent of a violin bow, drawing it over one of their forelimbs for a moment before the device begins to speak in a synthetic, vaguely masculine voice.`
-			`	"Invitation. Welcome, visiting human. I am Galazio of the Avgi, and would show you to our leaders to discuss your arrival to our space."`
+			`	"Invitation. Welcome, visiting human. I am Kitrino of the Avgi, the one with whom you spoke earlier. I would show you to our leaders to discuss your arrival to our space."`
 			`	"I'm Captain <first> <last>," you say.`
 			choice
 				`	"How can you speak my language?"`
@@ -289,7 +289,9 @@ mission "Avgi: First Contact"
 			action
 				set "license: Avgi Civilian"
 			`	"Conclusion. For now, we will leave you with some time and space to think. The former Captain of the ship that brought the other humans, one Darius Calwell, is currently advising construction on the cylinder habitat in this system. You will find him on Aktina Cylinder, if you wish to speak with him."`
-
+			`	You are dismissed, and on the way out you are given a black hairpin-sized translator device, a smaller cousin of the one the Avgi have been using to communicate with you.`
+			action
+				set "language: Avgi"
 
 mission "Avgi: Deep Humans"
 	landing
@@ -393,7 +395,7 @@ mission "Avgi: Defend Ensemble 1"
 			choice
 				`	"We'll join it. The <ship> is a mighty fine ship."`
 					accept
-				`	"Sorry, this just isn't my fight"`
+				`	"Sorry, this just isn't my fight."`
 					decline
 
 
@@ -408,7 +410,7 @@ mission "Avgi: Defend Ensemble 2"
 	on offer
 		conversation
 			`	Napigeo Station is buzzing with activity as you pull into one of the few open berths available. Avgi ships of all sizes, painted in the blue-green of the Twilight Guard, launch every few minutes, replaced moments later by battle-scarred warships that slip into drydock for repair.`
-			`	Parked a few kilometers from the station, a fleetgroup is assembling in a wide formation. You see a handful of cruiser sized ships, along with a dozen smaller ships congregated around them.`
+			`	Parked a few kilometers from the station, a fleetgroup is assembling in a wide formation. You see a handful of cruiser sized ships, along with a dozen smaller ships congregated around them. You hail them, asking to join the formation, and a surprised Avgi admiral directs you to fly towards the Ensemble system.`
 				accept
 	npc
 		government "Avgi (Twilight Guard)"
@@ -478,56 +480,52 @@ mission "Avgi: Defend Ensemble 2"
 				"Twilight Ka'sei 2G (Disable-able)"
 	on complete
 		conversation
-			`You land back on Weledos after the battle, while most of the surviving Avgi ships begin temporary repairs in orbit before they travel back to Napigeo Station. An Avgi cruiser, which you think is called a 'Refraktos-class Laserstar', settles down on the pad next to yours while you are checking the <ship> for damage, and an Avgi officer disembarks.`
-			`	"Salutations. Hello, Captain <first> <last>. My name is Kokkino, Captain of the Distant Collision. Tell me, Captain <last>, is the <ship> a warship?"`
+			`You land back on Weledos after the battle, while most of the surviving Avgi ships begin temporary repairs in orbit before they travel back to Napigeo Station. An Avgi cruiser, which you recognize as a Refraktos-class Laserstar, settles down on the pad next to yours while you are checking the <ship> for damage, and an Avgi officer disembarks.`
+			`	"Salutations. Hello, Captain <first> <last>. My name is Kokkino, Captain of the Distant Collision. Tell me, Captain <last>, is the <ship> a warship, question?"`
 			choice
 				`	"Yes, the <ship> is as powerful as they come."`
 					goto warship
 				`	"No, the <ship> isn't made for combat."`
-			`	"Consideration. But, are you still willing to help us in a way that takes advantage of your ship's ability to bypass the starways?"`
+			`	"Consideration. But, are you still willing to help us in a way that takes advantage of your ship's ability to bypass the starways, question?"`
 			choice
 				`	"Yes, of course"`
 				`	"I'll hear you out."`
 				`	"I'd rather not"`
 					decline
-			`	"Approval. That is very good, for your unique capabilities may help us save the lives of some very brave people. Come, meet me in the spaceport in an hour." He gives you a set of directions to a small building in Ensemble's main spaceport.`
+			`	"Approval. That is very good, for your unique capabilities may help us save the lives of some very brave people. Come, meet me in the spaceport in an hour." He gives you a set of directions to a small building in Ensemble's main spaceport before leaving. "We will have much to discuss."`
+				goto end
 
 			label warship
-			`	"Excellent. I am unsurprised, given its performance in the battle, but for all we know your alien vessel could be a simple freighter and yet still bring such firepower to bear. Are you willing to assist us with your formidible warship?"`
+			`	"Excellent. I am unsurprised, given its performance in the battle, but for all we know your alien vessel could be a simple freighter and yet still be formidible in our eyes. Are you willing to assist us with your warship's strength, question?"`
 			choice
 				`	"Yes, of course"`
 				`	"I'll hear you out."`
 				`	"I'd rather not"`
 					decline
-			`	"Then, if you would, meet me in the spaceport in an hour." He gives you a set of directions to a small building in Ensemble's main spaceport. "We will have much to discuss."`
+			`	"Enthusiasm. Your help will save many lives. Then, if you would, meet me in the spaceport in an hour." He gives you a set of directions to a small building in Ensemble's main spaceport before leaving. "We will have much to discuss."`
+
+			label end
+			`	Darius exits the <ship> behind you. "What was that about?" he asks.`
+			`	"It sounds like they'd like my help with something," you say.`
+			`	He frowns. "I see. When do you think you'll be able to head up north to look for a way out?"`
+			choice
+				`	"We'll do it after this mission."`
+				`	"I'm not sure."`
+			`	He sighs. "Well, I suppose there's no real urgency to it. But be careful about getting too caught up "
 
 	on decline
 		conversation
 			`	"Disappointment. I see. I will ensure you are not troubled by requests for aid in the future." He flies away, vanishing quickly.`
 
 
-mission "Avgi: Frontline Combat"
-	name "Hold Evanescence"
-	description "Help the Avgi hold Evanescence against constant Aberrant attacks."
-	source "Weledos"
-	destination "Feo Platform"
-	to offer
-		has "First Contact: Avgi 1: done"
-	on complete
-		conversation
-			`given if you said yes to having a combat ship`
-
-
-
-
 mission "Avgi: Scout Rescue"
 	name "Avgi Scout Rescue"
 	description "Find and evacuate the crew of the <npc>."
 	source "Weledos"
+	passengers 12
 	destination "Peripheria"
 	to offer
 		has "First Contact: Avgi 1: done"
-
 	on offer
 		`	You follow Kokkino's instructions to a prefab building in the spaceport, which looks to be some kind of command center. Kokkino is waiting for you by a table in the middle, which lights up, projecting a map of Avgi space in the air with some colored markings you can't read.`
 			`	"Explanation. We send scouting teams and patrols into the space controlled by the Aberrant regularly. Every expedition beyond Evanescence is essentially behind enemy lines, cut off from resupply and in many cases communication. As you might imagine, such adventures are fraught with danger, and it is unfortunately not unheard of for a scout ship to be lost."`
@@ -538,21 +536,40 @@ mission "Avgi: Scout Rescue"
 			`	"Agreement. The Polari are a fine line of vessels, but not one made for the environment of war. We have experimented with using the Prismaios as an intelligence platform in more contested environments, but it lacks the versatility and drone bays that has made the Polari so venerable in the first place."`
 			label exploration
 			`	He flicks his wings. "Regret. It is a sad truth, but those on the forefront of expanding our knowledge are often those who face the most danger from the unknown."`
-			`	"But, to the point. A scout team, aboard the Polari-class scout 'Silver Albedo' was sent to survey the Twirl system two weeks ago, but has missed its check in by multiple days. To reach that star cluster and return would normally require a trip of weeks, all thorough perilous territory, and I am ashamed to say that we could be forced to consider writing off the scouts as lost. But I have heard that the visiting human, Captain <last>, is in possession of a new kind of faster-than-light drive, one that can travel without the need for starways. Tell me, is this true?"`
+			`	"But, to the point. A scout team, aboard the Polari-class scout 'Silver Albedo' was sent to survey the Twirl system two weeks ago, but has missed its check in by multiple days. To reach that star cluster and return would normally require a trip of weeks, all thorough perilous territory, and I am ashamed to say that we could be forced to consider writing off the scouts as lost. But I have heard that the visiting human, Captain <last>, is in possession of a new kind of faster-than-light drive, one that can travel without the need for starways. Tell me, is this true, question?"`
 			choice
 				`	"Yes, I have a Jump Drive. It can bypass hyperlanes entirely."`
-			`	"Excitement. Then, the trip could be shortened to mere days, giving us the possibility of mountin a rescue. Are you willing to assist us with this, Captain <last>?"`
+			`	"Excitement. Then, the trip could be shortened to mere days, giving us the possibility of mountin a rescue. Are you willing to assist us with this, Captain <last>, question?"`
 			choice
 				`	"Yes"
 				`	"I'd rather not risk it."`
 					decline
-			`	"Approval. Excellent. I will mark the location of the Twirl system on your map, though it is probable that the Silver Albedo is elsewhere in the star cluster."
+			`	"Approval. Excellent. I will mark the location of the Twirl system on your map, though it is probable that the Silver Albedo is elsewhere in the star cluster." The highest priority is of course the safe recovery of its crew, though if you could recover any data or samples they have managed to gather that would also be much appreciated.`
+				accept
 
+	npc assist
+		government "Derelict"
+		personality derelict target pacifist mute
+		system Whirlwind
+		ship "Polari (Derelict)" "Silver Albedo"
+		conversation
+			`You maneuver alongside with the Silver Albedo, the ship covered in scorch marks and other signs of damage. After transmitting a code given to you by Captain Kokkino, you wait for any signs of life. Eventually, after a few minutes you recieve a response, which you pass through your translator.`
+			`	"Caution. Unfamiliar vessel, how did you obtain Consonance identification codes?"`
+			choice
+				`	"There's no time for that. I'm here to rescue you."`
+					goto serious
+				`	"I'm a space alien here in my alien spaceship here to rescue you."`
+			`	"Amusement. Very well, I suppose we have little choice but to accept your help, opportune jester.  As you can see, the Albedo is in something of a predicament."
+				goto next
+			label serious
+			`	"Consideration. I suppose we have little choice but to accept your help, stranger. As you can see, the Albedo is in something of a predicament."
+			label next
+			`	You speak with the Avgi commander about treating the wounded as you dock your ship with the Silver Albedo. After everyone is safely transferred to the <ship>, you decouple from the derelict ship.`
 
 	on complete
 		conversation
-			`given if you said no to having a combat ship`
-			`avgi ask you to use your JD to jump over the front lines and look for a scout that missed its check in time` MEET MINOR CHARACTER, SCOUT DUDE THAT'S FRIENDS OF THE ORIGINAL SCOUT YOU MET
+			`You recieve a warm welcome back on Peripheria Station, as the former crew of the Silver Albedo disembarks. Some of the more badly injured crewmembers are carried out on hammock-like stretchers, but most are able to walk or fly out of the <ship> on their own power.`
+			`	After a short celebration and many expressions of deep gratitude toward you, you find Captain Darius 
 
 
 
@@ -566,13 +583,19 @@ mission "Avgi: Scout Rescue"
 		conversation
 			`	"Disappointment. I see. I will ensure you are not troubled by requests for aid in the future." He flies away, vanishing quickly.`
 
-	npc board
-		government "Avgi (Twilight Guard)"
-		personality derelict
-		system Whirlwind
-		ship "Polari" "Silver Albedo"
+
+
+mission "Avgi: Frontline Combat"
+	name "Hold Evanescence"
+	description "Help the Avgi hold Evanescence against constant Aberrant attacks."
+	source "Weledos"
+	destination "Feo Platform"
+	to offer
+		has "First Contact: Avgi 1: done"
+	on complete
 		conversation
-			`You dock with the Silver Albedo.`
+			`given if you said yes to having a combat ship`
+
 
 
 mission "Avgi: Dissonance Outreach"
