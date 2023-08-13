@@ -506,12 +506,20 @@ mission "Avgi: Defend Ensemble 2"
 
 			label end
 			`	Darius exits the <ship> behind you. "What was that about?" he asks.`
-			`	"It sounds like they'd like my help with something," you say.`
-			`	He frowns. "I see. When do you think you'll be able to head up north to look for a way out?"`
 			choice
-				`	"We'll do it after this mission."`
+				`	"It sounds like they'd like my help with something."`
+				`	"I'm going to help them with the war effort."`
+			`	He frowns. "I see. When do you think we'll be able to head up north to look for a way out?"`
+			choice
+				`	"We'll do it soon, I promise."`
 				`	"I'm not sure."`
-			`	He sighs. "Well, I suppose there's no real urgency to it. But be careful about getting too caught up "
+			`	He looks a little disappointed, then collects himself. "Well, I suppose there's no real urgency to it. Though, I've been thinking. If your Jump Drive wasn't able to let you escape from the north, there might not be a point in looking in that direction."`
+			choice
+				`	"What do you suggest?"`
+				`	"Where should we look then?"`
+			`	"I have a friend among the Avgi, one who doesn't frequent the official circles in the Consonance as much. There's an entire second branch of the Tangled Shroud, mostly ran by miners and small time shipbuilders, the kind of people who talk a lot among themselvess about rumors and tall tales. The official story behind the Incursion, the invasion of the Aberrant, is that they came from a chain of systems in the East, but no one ever talks about where exactly that chain leads. I'm wondering if my friend knows anyone with more to the story."
+			`	"They had to come from sonewhere," you realize.`
+			`	"Exactly. And if they came into Avgi space from somewhere, there might be a way out too. Either way, I think we should pay my friend a visit after you wrap up this mission. Might as well head to the spaceport and see what Kokkino wants."`
 
 	on decline
 		conversation
