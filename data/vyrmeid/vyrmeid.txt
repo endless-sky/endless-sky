@@ -132,8 +132,8 @@ ship "Vyrmeid" "Vyrmeid (C)"
 		"cost" 0
 		"shields" 0
 		"hull" 860
-		"required crew" 1
-		"bunks" 1
+		"required crew" 2
+		"bunks" 2
 		"mass" 200
 		"drag" 9
 		"heat dissipation" 1.8
@@ -186,8 +186,8 @@ ship "Astral Cetacean"
 		"cost" 0
 		"shields" 0
 		"hull" 11000
-		"required crew" 1
-		"bunks" 1
+		"required crew" 9
+		"bunks" 9
 		"mass" 1200
 		"drag" 15.7
 		"heat dissipation" 0.68
@@ -252,7 +252,7 @@ outfit "Astral Mouth"
 # Fleets:
 
 fleet "Vyrmeid (Plankton)"
-	government "Indigenous Lifeform"
+	government "Indigenous Lifeform (Acheron)"
 	cargo 0
 	personality
 		timid mute swarming surveillance unconstrained
@@ -268,7 +268,7 @@ fleet "Vyrmeid (Plankton)"
 		"Vyrmeid"
 
 fleet "Vyrmeid (Boomerang)"
-	government "Indigenous Lifeform"
+	government "Indigenous Lifeform (Acheron)"
 	cargo 0
 	personality
 		timid mute
@@ -280,7 +280,7 @@ fleet "Vyrmeid (Boomerang)"
 		"Vyrmeid (B)" 3
 
 fleet "Vyrmeid (Cephalopod)"
-	government "Indigenous Lifeform"
+	government "Indigenous Lifeform (Acheron)"
 	cargo 0
 	personality
 		timid mute pacifist
