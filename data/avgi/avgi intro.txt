@@ -634,7 +634,7 @@ mission "Avgi: Frontline Combat"
 	waypoint "Firmament"
 	waypoint "Lumine"
 	to offer
-		has " Avgi: Defend Ensemble 2: done"
+		has "Avgi: Defend Ensemble 2: done"
 		has "avgi: warship intro"
 	on offer
 		conversation

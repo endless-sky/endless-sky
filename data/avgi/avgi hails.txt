@@ -30,29 +30,29 @@ phrase "hostile disabled avgi"
 	phrase
 		"avgi rude playername"
 
-# Spaceguard hails
+# Twilight Guard hails
 
-phrase "friendly spaceguard"
+phrase "friendly Twilight Guard"
 	phrase
 		"avgi warm greetings"
-		"spaceguard greeting" 3
+		"twilight guard greeting" 3
 		"avgi warnings" 3
 
-phrase "hostile spaceguard"
+phrase "hostile Twilight Guard"
 	phrase
-		"angry spaceguard" 3
+		"angry Twilight Guard" 3
 		"avgi angry" 3
 
-phrase "friendly disabled spaceguard"
+phrase "friendly disabled Twilight Guard"
 	phrase
 		"avgi friendly help"
-		"spaceguard friendly help"
+		"twilight guard friendly help"
 	word
 		", "
 	phrase
 		"avgi polite playername"
 
-phrase "hostile disabled spaceguard"
+phrase "hostile disabled Twilight Guard"
 	phrase
 		"avgi angry help"
 	word
@@ -66,8 +66,6 @@ phrase "friendly dissonance"
 	phrase
 		"dissonance warm greetings" 3
 		"dissonance warnings" 6
-		"dissonance complaints" 6
-		"dissonance commerce" 3
 
 phrase "hostile dissonance"
 	phrase
@@ -321,7 +319,16 @@ phrase "dissonance cold greetings"
 		"."
 		"!"
 
-
+phrase "twilight guard greeting"
+	phrase
+		"avgi warm acknowledgement"
+	word
+		", "
+	phrase
+		"avgi polite playername"
+	word
+		"."
+		"!"
 
 phrase "avgi warnings"
 	word
@@ -434,7 +441,7 @@ phrase "dissonance warnings"
 		"price controls"
 		"regulations"
 		"Silencers"
-		"Spaceguard"
+		"Twilight Guard"
 		"state of emergency"
 		"tariffs"
 		"tax collectors"
@@ -503,7 +510,7 @@ phrase "avgi complaints"
 		" "
 	word
 		"care only for themselves"
-		"disrespect our Spaceguard"
+		"disrespect our Twilight Guard"
 		"disrespect the Assembly"
 		"disrespect us"
 		"hide in their outposts"
@@ -513,7 +520,7 @@ phrase "avgi complaints"
 		"let others protect them"
 		"let us do the fighting"
 		"neglect our fleets"
-		"neglect our Spaceguard"
+		"neglect our Twilight Guard"
 		"only care about their own wings"
 		"refrain from helping"
 		"refuse to bolster our defenses"
@@ -718,10 +725,10 @@ phrase "avgi commerce win"
 		"I found a new ore vein yesterday!"
 		"I found a new route through the Tangles. The Consonance will pay millions for it!"
 		"I got this ship for a steal only a week ago. Now I can travel the stars!"
-		"I heard the Spaceguard defeated an Aberrant raid yesterday. Soon we can send them back whence they came!"
+		"I heard the Twilight Guard defeated an Aberrant raid yesterday. Soon we can send them back whence they came!"
 		"I made an enormous profit trading iron futures!"
-		"The Spaceguard just rotected my convoy from an Aberrant attack."
-		"The Spaceguard saved my ship from a Dissonance pirate last week."
+		"The Twilight Guard just rotected my convoy from an Aberrant attack."
+		"The Twilight Guard saved my ship from a Dissonance pirate last week."
 		"This ore nugget bumped into my ship today. Turns out it was pure beryllium!"
 		"Turns out people on Peripheria will pay a lot for fresh fruit."
 	word
@@ -785,7 +792,7 @@ phrase "avgi commerce neutral"
 	word
 		"Now that I have a ship of my own, I can run when the Aberrations come for us."
 		"With this ship I can help defend our refuge. One day I will help retake Aviskir!"
-		"Tomorrow I will join the Spaceguard. They need as many wings as they can get."
+		"Tomorrow I will join the Twilight Guard. They need as many wings as they can get."
 		"Only a fool would live without their own ship."
 		"If I sell this ship I can finally retire in peace."
 		"If we can't run, I can hide. Someone told me about a group that hides in the Tangles. I should seek them out."
@@ -871,7 +878,7 @@ phrase "avgi angry help"
 
 
 
-phrase "spaceguard friendly help"
+phrase "twilight guard friendly help"
 	word
 		"Calm"
 		"Commanding"
@@ -982,7 +989,7 @@ phrase "dissonance angry"
 		"dissonance rude playername"
 
 
-phrase "spaceguard angry"
+phrase "twilight guard angry"
 	word
 		"Anger"
 		"Dutiful"

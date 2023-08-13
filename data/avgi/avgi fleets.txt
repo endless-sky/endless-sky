@@ -8,18 +8,18 @@ fleet "Avgi Core Defense"
 	personality
 		lingering heroic
 	variant 10
-		"Dispersi"
+		"Diaspersi"
 		"Vibratia" 6
 		"Photikon" 2
 	variant 5
-		"Dispersi"
+		"Diaspersi"
 		"Vibratia" 3
 		"Undulon" 3
 		"Photikon" 2
 	variant 10
 		"Difraktos"
 	variant 10
-		"Refractos"
+		"Refraktos"
 	variant 10
 		"Difraktos"
 	variant 10
@@ -32,13 +32,13 @@ fleet "Avgi Core Defense"
 		"Tremoros" 3
 	variant 1
 		"Atenuatia"
-		"Dispersi"
+		"Diaspersi"
 		"Vibratia" 22
 		"Photikon" 8
 		"Optikon" 2
 		"Difraktos (Missile)"
 		"Difraktos (Kinetic)"
-		"Refractos"
+		"Refraktos"
 		"Prismaios" 2
 		"Tremoros" 3
 
@@ -189,7 +189,7 @@ fleet "Avgi Fleetgroup"
 		"Atenuatia"
 		"Vibratia" 18
 		"Photikon" 6
-		"Refractos"
+		"Refraktos"
 		"Prismaios"
 		"Tremoros" 3
 	variant 3
@@ -198,17 +198,17 @@ fleet "Avgi Fleetgroup"
 		"Photikon" 6
 		"Difraktos (Missile)"
 		"Difraktos (Kinetic)"
-		"Refractos"
+		"Refraktos"
 		"Prismaios (Coilgun)" 2
 		"Tremoros" 3
 	variant 2
 		"Atenuatia"
-		"Dispersi"
+		"Diaspersi"
 		"Vibratia" 22
 		"Photikon" 8
 		"Optikon" 2
 		"Difraktos"
-		"Refractos"
+		"Refraktos"
 		"Prismaios" 2
 		"Tremoros" 3
 

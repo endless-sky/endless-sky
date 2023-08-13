@@ -433,7 +433,7 @@ outfit "Boiled Fish"
 	category Minerals
 	plural "Boiled Fish"
 	cost 2400
-	thumbnail "outfit/cooked fish"
+	thumbnail "outfit/unknown"
 	"flotsam sprite" "effect/flotsam iron"
 	"mass" 1
 	"installable" -1
