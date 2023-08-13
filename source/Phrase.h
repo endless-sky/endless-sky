@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef PHRASE_H_
@@ -27,6 +30,15 @@ class DataNode;
 // Class representing a set of rules for generating text strings from words.
 class Phrase {
 public:
+	// Replace all occurrences ${phrase name} with the expanded phrase from GameData::Phrases()
+	static std::string ExpandPhrases(const std::string &source);
+
+
+public:
+	Phrase() = default;
+	// Construct and Load() at the same time.
+	Phrase(const DataNode &node);
+
 	// Parse the given node into a new branch associated with this phrase.
 	void Load(const DataNode &node);
 
@@ -49,9 +61,6 @@ private:
 		// Create a choice from a grandchild DataNode.
 		Choice(const DataNode &node, bool isPhraseName = false);
 
-		// The likelihood that this choice will be picked by its part.
-		int Weight() const { return weight; };
-		int weight;
 		// Enable empty checks and iteration:
 		using std::vector<std::pair<std::string, const Phrase *>>::empty;
 		using std::vector<std::pair<std::string, const Phrase *>>::begin;

@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef HAIL_PANEL_H_
@@ -36,7 +39,8 @@ class StellarObject;
 // to bribe a planet to allow you to land there.
 class HailPanel : public Panel {
 public:
-	HailPanel(PlayerInfo &player, const std::shared_ptr<Ship> &ship, std::function<void(const Government *)> bribeCallback);
+	HailPanel(PlayerInfo &player, const std::shared_ptr<Ship> &ship,
+		std::function<void(const Government *)> bribeCallback);
 	HailPanel(PlayerInfo &player, const StellarObject *object);
 
 	virtual void Draw() override;
@@ -65,9 +69,11 @@ private:
 	int64_t bribe = 0;
 	const Government *bribed = nullptr;
 	bool playerNeedsHelp = false;
+	bool canAssistPlayer = true;
 	bool canGiveFuel = false;
 	bool canRepair = false;
 	bool hasLanguage = true;
+	bool requestedToBribeShip = false;
 };
 
 

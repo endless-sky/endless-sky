@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef DATA_WRITER_H_
@@ -32,6 +35,8 @@ class DataWriter {
 public:
 	// Constructor, specifying the file to write.
 	explicit DataWriter(const std::string &path);
+	// Constructor for a DataWriter that will not save its contents automatically
+	DataWriter();
 	DataWriter(const DataWriter &) = delete;
 	DataWriter(DataWriter &&) = delete;
 	DataWriter &operator=(const DataWriter &) = delete;
@@ -39,6 +44,9 @@ public:
 	// The file is not actually saved until the destructor is called. This makes
 	// it possible to write the whole file in a single chunk.
 	~DataWriter();
+
+	// Save the contents to a file.
+	void SaveToPath(const std::string &path);
 
 	// The Write() function can take any number of arguments. Each argument is
 	// converted to a token. Arguments may be strings or numeric values.
@@ -69,7 +77,7 @@ public:
 
 
 private:
-	// Save path (in UTF-8).
+	// Save path (in UTF-8). Empty string for in-memory DataWriter.
 	std::string path;
 	// Current indentation level.
 	std::string indent;

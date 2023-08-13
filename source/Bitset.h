@@ -7,15 +7,18 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef BITSET_H_
 #define BITSET_H_
 
-#include <limits>
 #include <cstddef>
 #include <cstdint>
+#include <limits>
 #include <vector>
 
 
@@ -39,6 +42,8 @@ public:
 	bool Test(size_t index) const noexcept;
 	// Sets the bit at the specified index.
 	void Set(size_t index) noexcept;
+	// Resets all bits in the bitset.
+	void Reset() noexcept;
 	// Whether any bits are set.
 	bool Any() const noexcept;
 	// Whether no bits are set.

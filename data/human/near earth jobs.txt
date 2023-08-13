@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "Historical field trip to <planet>"
 	job
@@ -35,7 +38,7 @@ mission "To Earth Day celebration [0]"
 	repeat
 	description `Bring <fare> to <destination> by <date> for the Earth Day celebration on April 22nd. Payment is <payment>.`
 	passengers 4 4 .5
-	deadline
+	deadline 0 2
 	to offer
 		or
 			and
@@ -49,6 +52,7 @@ mission "To Earth Day celebration [0]"
 				random < 20
 				month == 4
 				day < 22
+		"days until year end" - 2 * "hyperjumps to system: Sol" > 253
 	to fail
 		month * 100 + day >= 422
 	source
@@ -68,7 +72,7 @@ mission "To Earth Day celebration [1]"
 	repeat
 	description `Deliver <cargo> to <destination> by <date> in preparation for the Earth Day celebration on April 22nd. Payment is <payment>.`
 	cargo random 5 2 .1
-	deadline
+	deadline 0 2
 	to offer
 		or
 			and
@@ -82,6 +86,7 @@ mission "To Earth Day celebration [1]"
 				random < 20
 				month == 4
 				day < 22
+		"days until year end" - 2 * "hyperjumps to system: Sol" > 253
 	to fail
 		month * 100 + day >= 422
 	source
@@ -155,3 +160,53 @@ mission "From Earth Day celebration [1]"
 		payment
 		payment 1000
 		dialog `Your passengers thank you for returning them to <planet>, and you collect your payment of <payment>.`
+
+
+mission "Transport farmers to Mars"
+	job
+	repeat
+	description "This group of <bunks> factory workers are hoping to start anew on <planet> as farmers. They will pay you <payment> to take them there."
+	passengers 2 2 .8
+	to offer
+		random < 50
+	source "Earth"
+	destination "Mars"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 2000
+		dialog "You wish the workers the best of luck on <planet>, and collect your payment of <payment>."
+
+
+mission "Transport tourists to Luna"
+	job
+	repeat
+	description "This family of <bunks> would like to see the historic sights on Luna. They will pay you <payment> to take them there."
+	passengers 2 2 .8
+	to offer
+		random < 50
+	source "Earth"
+	destination "Luna"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 2000
+		dialog "You wish the workers the best of luck on <planet>, and collect your payment of <payment>."
+
+mission "Transport seasonal workers to Earth"
+	job
+	repeat
+	description "This group of <bunks> temporary farm workers are looking for transportation back home to Earth. They will pay you <payment> to take them there."
+	passengers 2 2 .8
+	to offer
+		random < 50
+	source "Mars"
+	destination "Earth"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 2000
+		dialog "You wish the workers the best of luck on <planet>, and collect your payment of <payment>."

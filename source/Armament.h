@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef ARMAMENT_H_
@@ -16,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Hardpoint.h"
 
 #include <map>
+#include <set>
 #include <vector>
 
 class FireCommand;
@@ -61,6 +65,8 @@ public:
 	const std::vector<Hardpoint> &Get() const;
 	int GunCount() const;
 	int TurretCount() const;
+	// Determine the ammunition used by this armament that can be resupplied (i.e. is not self-uninstalling).
+	std::set<const Outfit *> RestockableAmmo() const;
 
 	// Adjust the aim of the turrets.
 	void Aim(const FireCommand &command);

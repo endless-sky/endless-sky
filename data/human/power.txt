@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 outfit "Supercapacitor"
 	category "Power"
@@ -84,7 +87,7 @@ outfit "KP-6 Photovoltaic Array"
 
 outfit "nGVF-AA Fuel Cell"
 	category "Power"
-	cost 40000
+	cost 35000
 	thumbnail "outfit/tiny fuel cell"
 	"mass" 20
 	"outfit space" -20
@@ -192,7 +195,7 @@ outfit "Breeder Reactor"
 	"outfit space" -80
 	"energy generation" 12.8
 	"heat generation" 35
-	description "A breeder reactor is a more efficient fission reactor that captures some of the neutron radiation produced by the reactor and uses it to enrich more fuel. They are also, of course, bigger and more expensive as a result."
+	description "A Breeder Reactor is a more efficient fission reactor that captures some of the neutron radiation produced by the reactor and uses it to enrich more fuel. They are also, of course, bigger and more expensive as a result."
 
 outfit "Fusion Reactor"
 	category "Power"

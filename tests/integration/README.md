@@ -2,7 +2,7 @@
 
 This directory contains scripts that help the execution of the integration tests.
 
-The actual integration tests are located under [the data directory](../../data/tests) and in the future there will also be [test-universes with embedded integration tests](universes) under the current directory (for testing features that are in the codebase, but not in the datafiles for the main game).
+The actual integration tests are located under [the data directory](config/plugins/integration-tests/data/tests/) and in the future there will also be test-universes with embedded integration tests under the current directory (for testing features that are in the codebase, but not in the datafiles for the main game).
 
 # Writing Integration Tests
 

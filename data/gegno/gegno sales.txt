@@ -1,0 +1,124 @@
+# Copyright (c) 2022 by Saugia
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+# Gegno Civilians
+
+shipyard "Gegno Basic"
+	"Dolomite"
+	"Shale"
+
+shipyard "Gegno Intermediate"
+	"Conglomerate"
+	"Granofel"
+
+shipyard "Gegno Advanced"
+	"Gypsum"
+	"Corundum"
+
+outfitter "Gegno Basic"
+	"C3 Scrap Cell"
+	"C7 Brawl Cell"
+	"Hyperdrive"
+	"Local Map"
+	"R01 Skirmish Battery"
+	"RG15 Torch Steering"
+	"RG15 Torch Thruster"
+	
+outfitter "Gegno Intermediate"
+	"R02 Battlezone Battery"
+	"RG18 Torch Steering"
+	"RG18 Torch Thruster"
+
+
+# Gegno Vi
+
+shipyard "Vi Cargo"
+	"Slate"
+	"Schist"
+
+shipyard "Vi Warships I"
+	"Hornfel"
+	"Gneiss"
+
+shipyard "Vi Warships II"
+	"Eclogite"
+	"Diorite"
+
+shipyard "Vi Utility"
+	"Granulite"
+
+outfitter "Vi Basic"
+	"C3 Scrap Cell"
+	"C7 Brawl Cell"
+	"Hyperdrive"
+	"Irate Cannon"
+	"Irate Cannon Turret"
+	"Local Map"
+	"R01 Skirmish Battery"
+	"R02 Battlezone Battery"
+	"RG15 Torch Steering"
+	"RG15 Torch Thruster"
+	"RG18 Torch Steering"
+	"RG18 Torch Thruster"
+
+outfitter "Vi Intermediate"
+	"C17 Warzone Core"
+	"C27 Campaign Core"
+	"Choleric Cannon"
+	"Choleric Cannon Turret"
+	"Ballistic Cannon"
+	"Ballistic Cannon Turret"
+	"RG3 Torch Steering"
+	"RG3 Torch Thruster"
+	"R03 Warforge Battery"
+	"R04 Crusade Battery"
+
+
+# Gegno Scin
+
+shipyard "Scin Cargo"
+	"Mica"
+	"Felsic"
+	
+shipyard "Scin Warships"
+	"Coesite"
+	"Felsic"
+	"Feldspar"
+	
+shipyard "Scin Utility"
+	"Halite"
+	"Epidote"
+	"Tridymite"
+	
+outfitter "Scin Basic"
+	"Hyperdrive"
+	"Local Map"
+	"R01 Skirmish Battery"
+	"R02 Battlezone Battery"
+	"SC-12 Plasma Steering"
+	"SC-12 Plasma Thruster"
+	"SC-14 Plasma Steering"
+	"SC-14 Plasma Thruster"
+
+outfitter "Scin Intermediate"
+	"Acuit Artillery"
+	"Astuit Battery"
+	"R03 Warforge Battery"
+	"R04 Crusade Battery"
+	
+outfitter "Scin Advanced"
+	"Guile Pulse Laser"
+	"I70 Ameliorate Cell"
+	"SC-1 Plasma Engines"
+	"SC-15 Plasma Thrusters"

@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Mortgage.h"
@@ -20,21 +23,24 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+namespace {
+	const int MORTGAGE_TERM = 365;
+}
+
 
 
 // Find out how much you can afford to borrow with the given annual revenue
 // and the given credit score (which should be between 200 and 800).
-int64_t Mortgage::Maximum(int64_t annualRevenue, int creditScore, int64_t currentPayments)
+int64_t Mortgage::Maximum(int64_t annualRevenue, int creditScore, double currentPayments)
 {
-	const int term = 365;
-	annualRevenue -= term * currentPayments;
-	if(annualRevenue <= 0)
+	const double revenue = annualRevenue - MORTGAGE_TERM * currentPayments;
+	if(revenue <= 0.)
 		return 0;
 
-	double interest = (600 - creditScore / 2) * .00001;
-	double power = pow(1. + interest, term);
-	double multiplier = interest * term * power / (power - 1.);
-	return static_cast<int64_t>(max(0., annualRevenue / multiplier));
+	const double interest = (600 - creditScore / 2) * .00001;
+	const double power = pow(1. + interest, MORTGAGE_TERM);
+	const double multiplier = interest * MORTGAGE_TERM * power / (power - 1.);
+	return static_cast<int64_t>(max(0., revenue / multiplier));
 }
 
 
@@ -176,4 +182,18 @@ int64_t Mortgage::Payment() const
 	// Always require every payment to be at least 1 credit.
 	double power = pow(1. + interest, term);
 	return max<int64_t>(1, lround(principal * interest * power / (power - 1.)));
+}
+
+
+
+// Check the amount of the next payment due.
+double Mortgage::PrecisePayment() const
+{
+	if(!term)
+		return principal;
+	if(!interest)
+		return static_cast<double>(principal) / term;
+
+	const double power = pow(1. + interest, term);
+	return principal * interest * power / (power - 1.);
 }

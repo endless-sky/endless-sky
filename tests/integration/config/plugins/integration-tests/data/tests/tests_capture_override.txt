@@ -1,0 +1,131 @@
+test-data "Capture Uncapturable With Capturable Override Save"
+	category "savegame"
+	contents
+		pilot Bobbi Bughunter
+		date 16 11 3013
+		system "Terra Incognita"
+		planet Ruin
+		clearance
+		"reputation with"
+			Quarg -1000
+		ship "Star Barge"
+			name "Buggy Barge"
+			sprite "ship/star barge"
+			attributes
+				category "Light Freighter"
+				cost 190000
+				mass 70
+				bunks 3
+				"cargo space" 50
+				drag 2.1
+				"engine capacity" 40
+				"fuel capacity" 300
+				"heat dissipation" 0.8
+				hull 1000
+				"outfit space" 130
+				"required crew" 1
+				shields 600
+				"turret mounts" 1
+				"weapon capacity" 20
+				"thrust" 25
+				"turn" 250
+				"energy generation" 10
+			outfits
+				Hyperdrive
+			crew 1
+			fuel 300
+			shields 600
+			hull 1000
+			position 0 0
+			engine -9 38 1
+			engine 9 38 1
+			system "Terra Incognita"
+			planet Ruin
+		account
+			credits 100000000
+			score 400
+			history
+		visited "Terra Incognita"
+		"visited planet" Ruin
+		changes
+			system "Terra Incognita"
+				fleet "%TEST%: derelicts" 5
+		conditions
+			"%TEST%: ILLEGAL CAPTURE"
+			"Ruin: Landing: offered"
+
+ship "%TEST%: outfitless wardragon"
+	uncapturable
+	sprite "ship/wardragon"
+	thumbnail "thumbnail/wardragon"
+	attributes
+		category "Heavy Warship"
+		cost 5900000
+		mass 360
+		automaton 1
+		drag 9.3
+		"heat dissipation" 0.5
+		hull 50000
+		"outfit scan power" 1e+10
+		"outfit scan efficiency" 1e+10
+		"cargo scan power" 1e+09
+		"cargo scan efficiency" 1e+09
+		"energy generation" 10
+		shields 160000
+
+fleet "%TEST%: derelicts"
+	personality derelict
+	government "Quarg"
+	variant
+		"%TEST%: outfitless wardragon"
+
+test-data "Capture Uncapturable With Capturable Override Mission"
+	category mission
+	contents
+		mission "%TEST%: Capture That Quarg!"
+			boarding
+				"override capture"
+			to offer
+				has "%TEST%: ILLEGAL CAPTURE"
+			on offer
+				conversation
+					`Skip this and get your own Quarg automaton, today!`
+						accept
+			destination "Earth"
+
+
+test "Capture Uncapturable With Capturable Override"
+	status active
+	description "Starts the mission, accepts it and then boards the quarg ship to capture it."
+	sequence
+		inject "Capture Uncapturable With Capturable Override Mission"
+		inject "Capture Uncapturable With Capturable Override Save"
+		call "Load First Savegame"
+		watchdog 6000
+		# to make sure we can capture
+		assert
+			"reputation: Quarg" < 0
+		call "Depart"
+		input
+			command board
+		label "floating"
+		# empty input to make time pass
+		input
+			key return
+		branch "floating"
+			not "%TEST%: Capture That Quarg!: offered"
+		# skip dialog
+		input
+			key "return"
+		# attempt capture and attack, then close the panel and land
+		input
+			key c
+		input
+			key a
+		input
+			key d
+		call "Land"
+		call "Wait 10 steps"
+		assert
+			"ship model: %TEST%: outfitless wardragon" == 1
+			"test: %TEST%: Capture That Quarg!: declined" == 0

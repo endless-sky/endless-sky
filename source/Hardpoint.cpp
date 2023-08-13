@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Hardpoint.h"
@@ -39,7 +42,8 @@ namespace {
 
 
 // Constructor.
-Hardpoint::Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret, bool isParallel, bool isUnder, const Outfit *outfit)
+Hardpoint::Hardpoint(const Point &point, const Angle &baseAngle, bool isTurret,
+	bool isParallel, bool isUnder, const Outfit *outfit)
 	: outfit(outfit), point(point * .5), baseAngle(baseAngle), isTurret(isTurret), isParallel(isParallel), isUnder(isUnder)
 {
 }
@@ -221,7 +225,7 @@ void Hardpoint::Fire(Ship &ship, vector<Projectile> &projectiles, vector<Visual>
 
 	// Apply the weapon's inaccuracy to the aim. This allows firing effects
 	// to share the same inaccuracy as the projectile.
-	aim += Projectile::Inaccuracy(outfit->Inaccuracy());
+	aim += Distribution::GenerateInaccuracy(outfit->Inaccuracy(), outfit->InaccuracyDistribution());
 
 	// Create a new projectile, originating from this hardpoint.
 	// In order to get projectiles to start at the right position they are drawn

@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef FLOTSAM_H_
@@ -34,13 +37,12 @@ public:
 	Flotsam(const std::string &commodity, int count, const Government *sourceGovernment = nullptr);
 	Flotsam(const Outfit *outfit, int count, const Government *sourceGovernment = nullptr);
 
-	/* Functions provided by the Body base class:
-	Frame GetFrame(int step = -1) const;
-	const Point &Position() const;
-	const Point &Velocity() const;
-	const Angle &Facing() const;
-	Point Unit() const;
-	*/
+	// Functions provided by the Body base class:
+	// Frame GetFrame(int step = -1) const;
+	// const Point &Position() const;
+	// const Point &Velocity() const;
+	// const Angle &Facing() const;
+	// Point Unit() const;
 
 	// Place this flotsam, and set the given ship as its source. This is a
 	// separate function because a ship may queue up flotsam to dump but take

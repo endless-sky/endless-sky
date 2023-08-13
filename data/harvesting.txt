@@ -6,11 +6,15 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 minable "aluminum"
 	sprite "asteroid/silicon/spin"
-	hull 1000
+	hull 900
+	"random hull" 200
 	payload "Aluminum" 40
 	explode "smoke" 40
 	explode "bolide" 40
@@ -18,7 +22,7 @@ minable "aluminum"
 
 outfit "Aluminum"
 	plural "Aluminum"
-	category "Special"
+	category "Minerals"
 	cost 1800
 	thumbnail "outfit/harvested aluminum"
 	"flotsam sprite" "effect/flotsam aluminum"
@@ -30,7 +34,8 @@ outfit "Aluminum"
 
 minable "copper"
 	sprite "asteroid/gold/spin"
-	hull 1200
+	hull 1080
+	"random hull" 240
 	payload "Copper" 20
 	explode "smoke" 20
 	explode "bolide" 20
@@ -38,7 +43,7 @@ minable "copper"
 
 outfit "Copper"
 	plural "Copper"
-	category "Special"
+	category "Minerals"
 	cost 3000
 	thumbnail "outfit/harvested copper"
 	"flotsam sprite" "effect/flotsam copper"
@@ -50,7 +55,8 @@ outfit "Copper"
 
 minable "gold"
 	sprite "asteroid/gold/spin"
-	hull 2800
+	hull 2520
+	"random hull" 560
 	payload "Gold" 16
 	explode "smoke" 20
 	explode "bolide" 20
@@ -58,7 +64,7 @@ minable "gold"
 
 outfit "Gold"
 	plural "Gold"
-	category "Special"
+	category "Minerals"
 	cost 8000
 	thumbnail "outfit/harvested gold"
 	"flotsam sprite" "effect/flotsam gold"
@@ -70,7 +76,8 @@ outfit "Gold"
 
 minable "iron"
 	sprite "asteroid/iron/spin"
-	hull 1600
+	hull 1440
+	"random hull" 320
 	payload "Iron" 50
 	explode "smoke" 40
 	explode "bolide" 40
@@ -78,7 +85,7 @@ minable "iron"
 
 outfit "Iron"
 	plural "Iron"
-	category "Special"
+	category "Minerals"
 	cost 1200
 	thumbnail "outfit/harvested iron"
 	"flotsam sprite" "effect/flotsam iron"
@@ -90,7 +97,8 @@ outfit "Iron"
 
 minable "lead"
 	sprite "asteroid/lead/spin"
-	hull 800
+	hull 720
+	"random hull" 160
 	payload "Lead" 32
 	explode "smoke" 30
 	explode "bolide" 30
@@ -98,7 +106,7 @@ minable "lead"
 
 outfit "Lead"
 	plural "Lead"
-	category "Special"
+	category "Minerals"
 	cost 900
 	thumbnail "outfit/harvested lead"
 	"flotsam sprite" "effect/flotsam lead"
@@ -110,7 +118,8 @@ outfit "Lead"
 
 minable "neodymium"
 	sprite "asteroid/iron/spin"
-	hull 3600
+	hull 3240
+	"random hull" 720
 	payload "Neodymium" 40
 	explode "smoke" 40
 	explode "bolide" 40
@@ -118,7 +127,7 @@ minable "neodymium"
 
 outfit "Neodymium"
 	plural "Neodymium"
-	category "Special"
+	category "Minerals"
 	cost 3800
 	thumbnail "outfit/harvested neodymium"
 	"flotsam sprite" "effect/flotsam neodymium"
@@ -130,7 +139,8 @@ outfit "Neodymium"
 
 minable "platinum"
 	sprite "asteroid/silver/spin"
-	hull 4000
+	hull 3600
+	"random hull" 800
 	payload "Platinum" 16
 	explode "smoke" 20
 	explode "bolide" 20
@@ -138,7 +148,7 @@ minable "platinum"
 
 outfit "Platinum"
 	plural "Platinum"
-	category "Special"
+	category "Minerals"
 	cost 10000
 	thumbnail "outfit/harvested platinum"
 	"flotsam sprite" "effect/flotsam platinum"
@@ -150,7 +160,8 @@ outfit "Platinum"
 
 minable "silicon"
 	sprite "asteroid/silicon/spin"
-	hull 400
+	hull 360
+	"random hull" 80
 	payload "Silicon" 50
 	explode "smoke" 40
 	explode "bolide" 40
@@ -158,7 +169,7 @@ minable "silicon"
 
 outfit "Silicon"
 	plural "Silicon"
-	category "Special"
+	category "Minerals"
 	cost 400
 	thumbnail "outfit/harvested silicon"
 	"flotsam sprite" "effect/flotsam silicon"
@@ -170,7 +181,8 @@ outfit "Silicon"
 
 minable "silver"
 	sprite "asteroid/silver/spin"
-	hull 2000
+	hull 1800
+	"random hull" 400
 	payload "Silver" 20
 	explode "smoke" 20
 	explode "bolide" 20
@@ -178,7 +190,7 @@ minable "silver"
 
 outfit "Silver"
 	plural "Silver"
-	category "Special"
+	category "Minerals"
 	cost 6000
 	thumbnail "outfit/harvested silver"
 	"flotsam sprite" "effect/flotsam silver"
@@ -190,7 +202,8 @@ outfit "Silver"
 
 minable "titanium"
 	sprite "asteroid/titanium/spin"
-	hull 2400
+	hull 2160
+	"random hull" 480
 	payload "Titanium" 32
 	explode "smoke" 30
 	explode "bolide" 30
@@ -198,7 +211,7 @@ minable "titanium"
 
 outfit "Titanium"
 	plural "Titanium"
-	category "Special"
+	category "Minerals"
 	cost 2500
 	thumbnail "outfit/harvested titanium"
 	"flotsam sprite" "effect/flotsam titanium"
@@ -210,7 +223,8 @@ outfit "Titanium"
 
 minable "tungsten"
 	sprite "asteroid/titanium/spin"
-	hull 4800
+	hull 4320
+	"random hull" 960
 	payload "Tungsten" 24
 	explode "smoke" 30
 	explode "bolide" 30
@@ -218,7 +232,7 @@ minable "tungsten"
 
 outfit "Tungsten"
 	plural "Tungsten"
-	category "Special"
+	category "Minerals"
 	cost 4500
 	thumbnail "outfit/harvested tungsten"
 	"flotsam sprite" "effect/flotsam tungsten"
@@ -230,7 +244,8 @@ outfit "Tungsten"
 
 minable "uranium"
 	sprite "asteroid/lead/spin"
-	hull 3200
+	hull 2880
+	"random hull" 640
 	payload "Uranium" 24
 	explode "smoke" 30
 	explode "bolide" 30
@@ -238,7 +253,7 @@ minable "uranium"
 
 outfit "Uranium"
 	plural "Uranium"
-	category "Special"
+	category "Minerals"
 	cost 5000
 	thumbnail "outfit/harvested uranium"
 	"flotsam sprite" "effect/flotsam uranium"
@@ -250,7 +265,8 @@ outfit "Uranium"
 
 minable "yottrite"
 	sprite "asteroid/yottrite/spin"
-	hull 20000
+	hull 18000
+	"random hull" 4000
 	payload "Yottrite" 7
 	explode "smoke" 30
 	explode "bolide" 30
@@ -258,14 +274,14 @@ minable "yottrite"
 
 outfit "Yottrite"
 	plural "Yottrite"
-	category "Special"
+	category "Minerals"
 	cost 200000
 	thumbnail "outfit/harvested yottrite"
 	"flotsam sprite" "effect/flotsam yottrite"
 	"mass" 3.14
 	"installable" -1
 	"minable" 1
-	description "An extraordinarily rare crystalline formation, forged over tens of thousands of years in the molecular clouds around supernova remnants. Although less advanced species can potentially harvest it, very few civilizations other than the Quarg have developed the technology needed to incorporate Yottrite in an alloy."
+	description "An extraordinarily rare crystalline formation, forged over tens of thousands of years in the molecular clouds around supernova remnants. Although less advanced species can potentially harvest it, very few civilizations other than the Quarg have developed the technology needed to incorporate yottrite in an alloy."
 
 
 
@@ -274,15 +290,18 @@ outfit "Yottrite"
 
 minable "plant"
 	sprite "asteroid/plant/plant"
-	hull 2800
+	hull 2520
+	"random hull" 560
 	payload "Void Orchid" 21
 	explode "smoke" 30
 	explode "bolide" 30
 	explode "final explosion medium"
 
 minable "plant2"
+	"display name" "Plant"
 	sprite "asteroid/plant2/plant2"
-	hull 2600
+	hull 2340
+	"random hull" 520
 	payload "Void Orchid" 20
 	explode "smoke" 30
 	explode "bolide" 30
@@ -290,7 +309,8 @@ minable "plant2"
 
 minable "plant cluster"
 	sprite "asteroid/plant cluster/plant cluster"
-	hull 1200
+	hull 1080
+	"random hull" 240
 	payload "Void Orchid" 11
 	explode "smoke" 20
 	explode "bolide" 20
@@ -298,15 +318,18 @@ minable "plant cluster"
 
 minable "large plant"
 	sprite "asteroid/large plant/large plant"
-	hull 3800
+	hull 3420
+	"random hull" 760
 	payload "Void Orchid" 41
 	explode "smoke" 30
 	explode "bolide" 40
 	explode "final explosion medium"
 
 minable "large plant2"
+	"display name" "Large Plant"
 	sprite "asteroid/large plant2/large plant2"
-	hull 3600
+	hull 3240
+	"random hull" 720
 	payload "Void Orchid" 41
 	explode "smoke" 30
 	explode "bolide" 40
@@ -314,7 +337,8 @@ minable "large plant2"
 
 minable "large plant cluster"
 	sprite "asteroid/large plant cluster/large plant cluster"
-	hull 2200
+	hull 1980
+	"random hull" 440
 	payload "Void Orchid" 22
 	explode "smoke" 30
 	explode "bolide" 40
@@ -322,7 +346,8 @@ minable "large plant cluster"
 
 minable "live crystal"
 	sprite "asteroid/livecrystal/livecrystal"
-	hull 1000
+	hull 900
+	"random hull" 200
 	payload "Void Orchid" 8
 	explode "smoke" 15
 	explode "bolide" 10
@@ -330,7 +355,8 @@ minable "live crystal"
 
 minable "space flora"
 	sprite "asteroid/space flora/space flora"
-	hull 1000
+	hull 900
+	"random hull" 200
 	payload "Void Orchid" 8
 	explode "smoke" 15
 	explode "bolide" 10
@@ -338,7 +364,8 @@ minable "space flora"
 
 minable "large space flora"
 	sprite "asteroid/large space flora/large space flora"
-	hull 2000
+	hull 1800
+	"random hull" 400
 	payload "Void Orchid" 16
 	explode "smoke" 25
 	explode "bolide" 20
@@ -347,11 +374,24 @@ minable "large space flora"
 
 outfit "Void Orchid"
 	plural "Void Orchids"
-	category "Special"
+	category "Minerals"
 	cost 15000
 	thumbnail "outfit/harvested silicon"
 	"flotsam sprite" "effect/flotsam silicon"
 	"mass" 1
 	"installable" -1
 	"minable" 1
-	description "'Void orchid' is the generic term for a variety of strange, plant-like organisms that live primarily on asteroids. Due to the way they concentrate minerals from their host asteroid, they are valued both as scientific curiosities as well as for their mineral content."
+	description "'Void Orchid' is the generic term for a variety of strange, plant-like organisms that live primarily on asteroids. Due to the way they concentrate minerals from their host asteroid, they are valued both as scientific curiosities as well as for their mineral content."
+
+
+
+# Acheron Space-life Asteroids
+
+minable "unknown"
+	sprite "asteroid/bioroid/spin"
+	hull 1600
+	"random hull" 810
+	explode "smoke" 10
+	explode "bolide" 20
+	explode "blood" 10
+	explode "final explosion medium"

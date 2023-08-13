@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "News.h"
@@ -106,7 +109,7 @@ bool News::IsEmpty() const
 
 
 // Check if this news item is available given the player's planet and conditions.
-bool News::Matches(const Planet *planet, const map<string, int64_t> &conditions) const
+bool News::Matches(const Planet *planet, const ConditionsStore &conditions) const
 {
 	// If no location filter is specified, it should never match. This can be
 	// used to create news items that are never shown until an event "activates"

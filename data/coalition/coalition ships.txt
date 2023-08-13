@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 ship "Arach Courier"
 	sprite "ship/arach courier"
@@ -39,6 +42,7 @@ ship "Arach Courier"
 		"Small Repair Module"
 		
 		"Small Thrust Module" 2
+		"Small Reverse Module" 2
 		"Small Steering Module" 2
 		"Hyperdrive"
 		
@@ -52,6 +56,19 @@ ship "Arach Courier"
 	explode "small explosion" 10
 	"final explode" "final explosion small"
 	description `These hardy little cargo ships are the perfect size for young Arachi just setting out into the sky with dreams of one day building their own merchant fleets. Of course, an Arach lucky enough to be born into one of the great Houses can probably find a patron to buy them a much larger ship instead.`
+
+ship "Arach Courier" "Arach Courier (Miner)"
+	outfits
+		"MCS Extractor" 2
+		
+		"Small Cogeneration Module" 2
+		"Small Collector Module" 2
+		"Small Battery Module" 2
+		"Small Repair Module"
+		
+		"Small Thrust Module" 2
+		"Small Steering Module" 3
+		"Hyperdrive"
 
 ship "Arach Freighter"
 	sprite "ship/arach freighter"
@@ -85,7 +102,9 @@ ship "Arach Freighter"
 		"Small Repair Module" 2
 		
 		"Large Thrust Module"
+		"Large Reverse Module"
 		"Small Thrust Module" 2
+		"Small Reverse Module" 2
 		"Large Steering Module"
 		"Small Steering Module" 2
 		"Hyperdrive"
@@ -102,6 +121,24 @@ ship "Arach Freighter"
 	explode "medium explosion" 15
 	"final explode" "final explosion medium"
 	description `Arach cargo ship hulls are legendary for their durability. It is not uncommon for a large Arach family to convert a freighter that is no longer space-worthy into a planet-side dwelling, and even in the harshest of conditions these converted houses can last for hundreds of years with little or no exterior maintenance.`
+
+ship "Arach Freighter" "Arach Freighter (Miner)"
+	outfits
+		"MCS Extractor" 2
+		
+		"Small Cogeneration Module" 2
+		"Small Collector Module" 3
+		"Small Battery Module" 2
+		"Small Shield Module"
+		"Small Repair Module" 2
+		
+		"Large Thrust Module"
+		"Large Reverse Module"
+		"Large Steering Module"
+		"Small Thrust Module" 2
+		"Small Reverse Module" 2
+		"Small Steering Module" 2
+		"Hyperdrive"
 
 ship "Arach Hulk"
 	sprite "ship/arach hulk"
@@ -136,7 +173,9 @@ ship "Arach Hulk"
 		"Large Repair Module"
 		
 		"Large Thrust Module" 2
+		"Large Reverse Module" 2
 		"Small Thrust Module" 2
+		"Small Reverse Module" 2
 		"Large Steering Module" 2
 		"Small Steering Module" 2
 		"Hyperdrive"
@@ -156,6 +195,26 @@ ship "Arach Hulk"
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
 	description `The Arachi believe that efficient functionality is the highest form of beauty, and none of their ships demonstrate that principle more clearly than the ugly yet utilitarian Hulk, designed with detachable side pods that can be swapped out on a planet in a matter of minutes if the captain is in a hurry to reach the next destination.`
+
+ship "Arach Hulk" "Arach Hulk (Miner)"
+	outfits
+		"MCS Extractor" 2
+		
+		"Large Cogeneration Module"
+		"Large Collector Module"
+		"Large Battery Module"
+		"Small Collector Module"
+		"Small Battery Module"
+		"Small Shield Module" 2
+		"Large Repair Module"
+		
+		"Large Thrust Module" 2
+		"Large Reverse Module" 2
+		"Large Steering Module" 2
+		"Small Thrust Module" 2
+		"Small Reverse Module" 2
+		"Small Steering Module" 2
+		"Hyperdrive"
 
 ship "Arach Spindle"
 	sprite "ship/arach spindle"
@@ -191,7 +250,9 @@ ship "Arach Spindle"
 		"Cooling Module"
 		
 		"Large Thrust Module" 2
+		"Large Reverse Module" 2
 		"Small Thrust Module" 3
+		"Small Reverse Module" 3
 		"Large Steering Module" 2
 		"Small Steering Module" 1
 		"Hyperdrive"
@@ -208,6 +269,27 @@ ship "Arach Spindle"
 	explode "large explosion" 20
 	"final explode" "final explosion large"
 	description `The Arach Hulk is an ungainly, lumbering behemoth of a ship, but with its side pods removed it becomes the much more maneuverable Spindle. Because of its much lower cargo space, usually the only reason a fleet would include a Spindle is if they are planning on picking up new cargo pods at their destination.`
+
+ship "Arach Spindle" "Arach Spindle (Miner)"
+	outfits
+		"MCS Extractor" 2
+		
+		"Large Collector Module"
+		"Large Battery Module"
+		"Small Cogeneration Module" 2
+		"Small Collector Module" 2
+		"Small Battery Module"
+		"Cooling Module"
+		"Small Shield Module" 2
+		"Small Repair Module" 3
+		
+		"Large Thrust Module" 2
+		"Large Reverse Module" 2
+		"Large Steering Module" 2
+		"Small Thrust Module" 3
+		"Small Reverse Module" 3
+		"Small Steering Module"
+		"Hyperdrive"
 
 ship "Arach Transport"
 	sprite "ship/arach transport"
@@ -241,6 +323,7 @@ ship "Arach Transport"
 		"Small Repair Module"
 		
 		"Large Thrust Module"
+		"Large Reverse Module"
 		"Large Steering Module"
 		"Small Steering Module"
 		"Hyperdrive"
@@ -257,6 +340,22 @@ ship "Arach Transport"
 	explode "large explosion" 5
 	"final explode" "final explosion medium"
 	description `The Arach Transport is the oldest of their ship designs, dating back to the time when they first joined the Coalition in overthrowing the Quarg and capturing their ringworlds. Back then, Transports were occasionally used as warships, but now, thousands of years later, they are considered outdated compared to the latest Heliarch military ships.`
+
+ship "Arach Transport" "Arach Transport (Miner)"
+	outfits
+		"MCS Extractor" 2
+		
+		"Small Cogeneration Module" 2
+		"Small Collector Module" 3
+		"Small Battery Module" 2
+		"Small Shield Module"
+		"Small Repair Module"
+		
+		"Large Thrust Module"
+		"Large Reverse Module"
+		"Large Steering Module"
+		"Small Steering Module"
+		"Hyperdrive"
 
 
 ship "Heliarch Breacher"
@@ -275,6 +374,7 @@ ship "Heliarch Breacher"
 		"drag" 3.2
 		"heat dissipation" .77
 		"ion protection" .1
+		"scramble protection" .1
 		"fuel capacity" 800
 		"cargo space" 13
 		"outfit space" 372
@@ -392,6 +492,7 @@ ship "Heliarch Hunter"
 		"drag" 5.3
 		"heat dissipation" .71
 		"ion protection" .2
+		"scramble protection" .2
 		"fuel capacity" 1500
 		"cargo space" 27
 		"outfit space" 552
@@ -439,9 +540,34 @@ ship "Heliarch Hunter"
 	"final explode" "final explosion large" 1
 	description `Although they mostly serve as patrol vessels nowadays in peacetime, Hunters were originally designed to quickly track down dissidents and bring them to justice.`
 
+ship "Heliarch Hunter" "Heliarch Hunter (Burst Fire)"
+	outfits
+		"Finisher Maegrolain" 2
+		"Finisher Storage Tube" 2
+		"Finisher Torpedo" 160
+		
+		"Large Reactor Module"
+		"Small Battery Module" 2
+		"Overcharged Shield Module"
+		"Overclocked Repair Module"
+		"Cooling Module" 2
+		"Scanning Module"
+		"Outfits Expansion"
+		"Enforcer Riot Staff" 12
+		"Enforcer Confrontation Gear" 35
+		
+		"Large Thrust Module" 2
+		"Small Thrust Module" 2
+		"Large Steering Module"
+		"Small Steering Module" 4
+		"Scram Drive"
+		
+	gun
+	gun "Finisher Maegrolain"
+	gun "Finisher Maegrolain"
+	
 ship "Heliarch Hunter" "Heliarch Hunter (Interdicting)"
 	outfits
-		"Bombardment Cannon"
 		"Finisher Pod" 2
 		"Finisher Storage Tube"
 		"Finisher Torpedo" 100
@@ -462,9 +588,9 @@ ship "Heliarch Hunter" "Heliarch Hunter (Interdicting)"
 		"Small Thrust Module"
 		"Large Steering Module" 2
 		"Small Steering Module"
-		"Hyperdrive"
+		"Scram Drive"
 	
-	gun "Bombardment Cannon"
+	gun
 	gun "Finisher Pod"
 	gun "Finisher Pod"
 	turret "Heliarch Repulsor"
@@ -479,7 +605,7 @@ ship "Heliarch Hunter" "Heliarch Hunter (Ions)"
 		"Small Reactor Module"
 		"Large Battery Module"
 		"Overcharged Shield Module" 2
-		"Overclocked Repair Module" 2
+		"Overclocked Repair Module"
 		"Cooling Module" 3
 		"Scanning Module"
 		"Outfits Expansion"
@@ -487,21 +613,23 @@ ship "Heliarch Hunter" "Heliarch Hunter (Ions)"
 		"Enforcer Confrontation Gear" 16
 		
 		"Large Thrust Module" 2
+		"Small Thrust Module"
 		"Large Steering Module" 2
-		"Hyperdrive"
+		"Small Steering Module" 2
+		"Scram Drive"
 
 ship "Heliarch Hunter" "Heliarch Hunter (Missile)"
 	outfits
 		"Finisher Pod" 3
-		"Finisher Storage Tube" 8
-		"Finisher Torpedo" 280
+		"Finisher Storage Tube" 6
+		"Finisher Torpedo" 240
 		
-		"Small Reactor Module" 2
-		"Small Battery Module"
+		"Large Reactor Module"
+		"Small Battery Module" 2
 		"Overcharged Shield Module"
 		"Overclocked Repair Module"
 		"Cooling Module" 2
-		"Scanning Module"
+		"Scanning Module" 2
 		"Outfits Expansion"
 		"Enforcer Riot Staff" 27
 		"Enforcer Confrontation Gear" 17
@@ -509,7 +637,7 @@ ship "Heliarch Hunter" "Heliarch Hunter (Missile)"
 		"Large Thrust Module" 2
 		"Small Thrust Module" 3
 		"Large Steering Module" 2
-		"Hyperdrive"
+		"Scram Drive"
 
 ship "Heliarch Hunter" "Heliarch Hunter (Scrappy)"
 	outfits
@@ -522,7 +650,7 @@ ship "Heliarch Hunter" "Heliarch Hunter (Scrappy)"
 		"Overcharged Shield Module"
 		"Overclocked Repair Module" 2
 		"Cooling Module" 3
-		"Scanning Module" 2
+		"Scanning Module"
 		"Outfits Expansion"
 		"Enforcer Riot Staff" 26
 		"Enforcer Confrontation Gear" 18
@@ -530,8 +658,8 @@ ship "Heliarch Hunter" "Heliarch Hunter (Scrappy)"
 		"Large Thrust Module" 2
 		"Small Thrust Module"
 		"Large Steering Module" 2
-		"Small Steering Module" 2
-		"Hyperdrive"
+		"Small Steering Module"
+		"Scram Drive"
 
 
 ship "Heliarch Interdictor"
@@ -550,6 +678,7 @@ ship "Heliarch Interdictor"
 		"drag" 7.4
 		"heat dissipation" .70
 		"ion protection" .2
+		"scramble protection" .2
 		"fuel capacity" 800
 		"cargo space" 79
 		"outfit space" 544
@@ -611,6 +740,28 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Bombardment)"
 		"Scanning Module" 3
 		"Enforcer Riot Staff" 31
 		"Enforcer Confrontation Gear" 27
+		
+		"Large Thrust Module" 2
+		"Small Thrust Module"
+		"Large Steering Module" 2
+		"Small Steering Module"
+		"Hyperdrive"
+
+ship "Heliarch Interdictor" "Heliarch Interdictor (Burst Fire)"
+	outfits
+		"Finisher Maegrolain" 2
+		"Finisher Storage Tube" 4
+		"Finisher Torpedo" 200
+		
+		"Large Reactor Module"
+		"Small Battery Module" 4
+		"Overcharged Shield Module"
+		"Overclocked Repair Module"
+		"Cooling Module" 2
+		"Scanning Module"
+		"Outfits Expansion" 3
+		"Enforcer Riot Staff" 20
+		"Enforcer Confrontation Gear" 63
 		
 		"Large Thrust Module" 2
 		"Small Thrust Module"
@@ -700,6 +851,7 @@ ship "Heliarch Judicator"
 		"drag" 7.9
 		"heat dissipation" .67
 		"ion protection" .2
+		"scramble protection" .2
 		"fuel capacity" 900
 		"cargo space" 136
 		"outfit space" 524
@@ -739,11 +891,17 @@ ship "Heliarch Judicator"
 	gun 13 -124.5 "Finisher Pod"
 	turret 0 45 "Ion Hail Turret"
 	bay "Fighter" -34.5 -82
+		"launch effect" "coalition launch"
 	bay "Fighter" 34.5 -82
+		"launch effect" "coalition launch"
 	bay "Fighter" -67.5 35
+		"launch effect" "coalition launch"
 	bay "Fighter" -67.5 35
+		"launch effect" "coalition launch"
 	bay "Fighter" 67.5 35
+		"launch effect" "coalition launch"
 	bay "Fighter" 67.5 35
+		"launch effect" "coalition launch"
 	explode "small explosion" 20
 	explode "medium explosion" 50
 	explode "large explosion" 20
@@ -877,6 +1035,7 @@ ship "Heliarch Neutralizer"
 		"drag" 4.1
 		"heat dissipation" .75
 		"ion protection" .1
+		"scramble protection" .1
 		"fuel capacity" 1000
 		"cargo space" 36
 		"outfit space" 367
@@ -997,10 +1156,11 @@ ship "Heliarch Punisher"
 		"drag" 12.2
 		"heat dissipation" .60
 		"ion protection" .3
+		"scramble protection" .3
 		"fuel capacity" 600
 		"cargo space" 94
 		"outfit space" 885
-		"weapon capacity" 324
+		"weapon capacity" 352
 		"engine capacity" 187
 		weapon
 			"blast radius" 400
@@ -1047,6 +1207,36 @@ ship "Heliarch Punisher"
 	explode "huge explosion" 20
 	"final explode" "final explosion large" 1
 	description `Although not quite as strong or powerful as the Quarg ships that they are designed to oppose, Heliarch Punishers are versatile and durable ships. Rumors say that the Heliarchs have a small stash of stolen Quarg Skylances that they can outfit the Punishers with in times of war.`
+
+ship "Heliarch Punisher" "Heliarch Punisher (Burst Fire)"
+	outfits
+		"Finisher Maegrolain" 4
+		"Finisher Storage Tube" 4
+		"Finisher Torpedo" 320
+		
+		"Large Reactor Module"
+		"Small Reactor Module"
+		"Large Battery Module"
+		"Overcharged Shield Module" 2
+		"Overclocked Repair Module" 2
+		"Cooling Module" 3
+		"Scanning Module"
+		"Outfits Expansion" 4
+		"Enforcer Riot Staff" 29
+		"Enforcer Confrontation Gear" 113
+		
+		"Large Thrust Module" 3
+		"Small Thrust Module" 2
+		"Large Steering Module" 2
+		"Small Steering Module" 3
+		"Hyperdrive"
+	
+	gun "Finisher Maegrolain"
+	gun "Finisher Maegrolain"
+	gun
+	gun
+	gun "Finisher Maegrolain"
+	gun "Finisher Maegrolain"
 
 ship "Heliarch Punisher" "Heliarch Punisher (Interdicting)"
 	outfits
@@ -1377,6 +1567,7 @@ ship "Kimek Briar"
 		"Small Shield Module" 2
 		
 		"Large Thrust Module"
+		"Large Reverse Module"
 		"Large Steering Module"
 		"Hyperdrive"
 		
@@ -1392,11 +1583,25 @@ ship "Kimek Briar"
 	"final explode" "final explosion medium"
 	description `With more than twice the population of the Saryds and Arachi combined, the Kimek are constantly in need of transport ships to carry individuals from one world to another.`
 
+ship "Kimek Briar" "Kimek Briar (Miner)"
+	outfits
+		"MCS Extractor" 2
+		
+		"Small Cogeneration Module" 2
+		"Small Collector Module" 3
+		"Small Battery Module" 2
+		"Small Shield Module" 2
+		
+		"Large Thrust Module"
+		"Large Reverse Module"
+		"Large Steering Module"
+		"Hyperdrive"
+
 ship "Kimek Spire"
 	sprite "ship/kimek spire"
 	thumbnail "thumbnail/kimek spire"
 	attributes
-		category "Transport"
+		category "Space Liner"
 		licenses
 			Coalition
 		"cost" 9375000
@@ -1425,6 +1630,7 @@ ship "Kimek Spire"
 		"Small Shield Module"
 		
 		"Large Thrust Module" 2
+		"Large Reverse Module" 2
 		"Large Steering Module" 2
 		"Small Steering Module"
 		"Hyperdrive"
@@ -1445,6 +1651,23 @@ ship "Kimek Spire"
 	explode "huge explosion" 5
 	"final explode" "final explosion large"
 	description `The Spire is the largest passenger transport in Coalition space, able to carry nearly three hundred individuals... as long as they're comfortable staying in the tiny bunk rooms that are primarily designed to meet the needs of a Kimek. Most of the ceilings are too short for a Saryd to stand up straight, and the beds are too small for an Arach to stretch their legs out comfortably.`
+
+ship "Kimek Spire" "Kimek Spire (Miner)"
+	outfits
+		"MCS Extractor" 2
+		
+		"Large Cogeneration Module"
+		"Large Collector Module"
+		"Large Battery Module"
+		"Small Collector Module" 2
+		"Large Shield Module"
+		"Small Shield Module"
+		
+		"Large Thrust Module" 2
+		"Large Reverse Module" 2
+		"Large Steering Module" 2
+		"Small Steering Module"
+		"Hyperdrive"
 
 ship "Kimek Thistle"
 	sprite "ship/kimek thistle"
@@ -1477,7 +1700,9 @@ ship "Kimek Thistle"
 		"Small Shield Module" 3
 		
 		"Large Thrust Module"
+		"Large Reverse Module"
 		"Small Thrust Module" 2
+		"Small Reverse Module" 2
 		"Large Steering Module"
 		"Small Steering Module"
 		"Hyperdrive"
@@ -1494,6 +1719,24 @@ ship "Kimek Thistle"
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
 	description `The Kimek love traveling so much that some of them will happily spend months at a time in a transport this size, and the passengers often grow into a tight-knit community by the end of their journeys together.`
+
+ship "Kimek Thistle" "Kimek Thistle (Miner)"
+	outfits
+		"MCS Extractor" 2
+		
+		"Large Collector Module"
+		"Small Cogeneration Module" 2
+		"Small Collector Module"
+		"Small Battery Module" 2
+		"Small Shield Module" 3
+		
+		"Large Thrust Module"
+		"Large Reverse Module"
+		"Large Steering Module"
+		"Small Thrust Module" 2
+		"Small Reverse Module" 2
+		"Small Steering Module"
+		"Hyperdrive"
 
 ship "Kimek Thorn"
 	sprite "ship/kimek thorn"
@@ -1526,6 +1769,7 @@ ship "Kimek Thorn"
 		"Small Shield Module"
 		
 		"Small Thrust Module" 2
+		"Small Reverse Module" 2
 		"Small Steering Module" 2
 		"Hyperdrive"
 		
@@ -1539,12 +1783,25 @@ ship "Kimek Thorn"
 	"final explode" "final explosion small"
 	description `The Thorn is the Kimek equivalent of a shuttle, and thanks to their speed and maneuverability they are used throughout Coalition space for transferring passengers from one ship to another or from a planet into orbit.`
 
+ship "Kimek Thorn" "Kimek Thorn (Miner)"
+	outfits
+		"MCS Extractor" 2
+		
+		"Small Cogeneration Module" 2
+		"Small Collector Module"
+		"Small Battery Module"
+		"Small Shield Module"
+		
+		"Small Thrust Module" 2
+		"Small Steering Module" 2
+		"Hyperdrive"
+
 
 ship "Saryd Runabout"
 	sprite "ship/saryd runabout"
 	thumbnail "thumbnail/saryd runabout"
 	attributes
-		category "Light Freighter"
+		category "Transport"
 		licenses
 			Coalition
 		"cost" 942000
@@ -1571,6 +1828,7 @@ ship "Saryd Runabout"
 		"Small Shield Module"
 		
 		"Small Thrust Module" 2
+		"Small Reverse Module" 2
 		"Small Steering Module" 3
 		"Hyperdrive"
 		
@@ -1583,11 +1841,24 @@ ship "Saryd Runabout"
 	"final explode" "final explosion small"
 	description `Saryds place high value both on solitude, but also on community and collaboration. So, it is not surprising that their smallest spacefaring vessel requires a team of at least two individuals to operate it. It is quite common for a lone Saryd to take on a Kimek or Arach copilot as a way of building cross-species friendships.`
 
+ship "Saryd Runabout" "Saryd Runabout (Miner)"
+	outfits
+		"MCS Extractor" 2
+		
+		"Small Cogeneration Module" 2
+		"Small Collector Module" 3
+		"Small Battery Module" 2
+		"Small Shield Module"
+		
+		"Small Thrust Module" 2
+		"Small Steering Module" 3
+		"Hyperdrive"
+
 ship "Saryd Sojourner"
 	sprite "ship/saryd sojourner"
 	thumbnail "thumbnail/saryd sojourner"
 	attributes
-		category "Heavy Freighter"
+		category "Utility"
 		licenses
 			Coalition
 		"cost" 11075000
@@ -1616,7 +1887,9 @@ ship "Saryd Sojourner"
 		"Small Repair Module" 2
 		
 		"Large Thrust Module" 2
+		"Large Reverse Module" 2
 		"Small Thrust Module" 3
+		"Small Reverse Module" 3
 		"Large Steering Module" 2
 		"Small Steering Module"
 		"Hyperdrive"
@@ -1638,11 +1911,32 @@ ship "Saryd Sojourner"
 	"final explode" "final explosion large"
 	description `When the first wars were fought against the Quarg, the Saryds had been spacefaring for more than ten thousand Earth years, and their starship technology was considerably more advanced than the Kimek or the Arachi. At that time, ships similar to the modern Sojourner were the most powerful capital ships in the Coalition fleet.`
 
+ship "Saryd Sojourner" "Saryd Sojourner (Miner)"
+	outfits
+		"MCS Extractor" 2
+		
+		"Large Cogeneration Module"
+		"Large Collector Module"
+		"Large Battery Module"
+		"Small Cogeneration Module"
+		"Small Collector Module" 3
+		"Small Battery Module" 2
+		"Large Shield Module"
+		"Small Repair Module" 2
+		
+		"Large Thrust Module" 2
+		"Large Reverse Module" 2
+		"Large Steering Module" 2
+		"Small Thrust Module" 3
+		"Small Reverse Module" 3
+		"Small Steering Module"
+		"Hyperdrive"
+
 ship "Saryd Traveler"
 	sprite "ship/saryd traveler"
 	thumbnail "thumbnail/saryd traveler"
 	attributes
-		category "Heavy Freighter"
+		category "Utility"
 		licenses
 			Coalition
 		"cost" 3385000
@@ -1658,6 +1952,8 @@ ship "Saryd Traveler"
 		"outfit space" 466
 		"weapon capacity" 177
 		"engine capacity" 79
+		"asteroid scan power" 36
+		"atmosphere scan" 100
 		weapon
 			"blast radius" 72
 			"shield damage" 720
@@ -1670,7 +1966,9 @@ ship "Saryd Traveler"
 		"Small Repair Module"
 		
 		"Large Thrust Module"
+		"Large Reverse Module"
 		"Small Thrust Module"
+		"Small Reverse Module"
 		"Large Steering Module"
 		"Small Steering Module"
 		"Hyperdrive"
@@ -1691,11 +1989,29 @@ ship "Saryd Traveler"
 	"final explode" "final explosion medium"
 	description `Travelers were originally designed as science vessels, thousands of years ago before the Saryds had catalogued all the life forms and physical phenomena of every world in Coalition space. Today, many Saryd communities still choose to live in a Traveler and journey together from system to system rather than putting down roots on a planet.`
 
+ship "Saryd Traveler" "Saryd Traveler (Miner)"
+	outfits
+		"MCS Extractor" 4
+		
+		"Large Cogeneration Module"
+		"Small Collector Module" 3
+		"Small Battery Module" 3
+		"Small Shield Module" 2
+		"Small Repair Module"
+		
+		"Large Thrust Module"
+		"Large Reverse Module"
+		"Large Steering Module"
+		"Small Thrust Module"
+		"Small Reverse Module"
+		"Small Steering Module"
+		"Hyperdrive"
+
 ship "Saryd Visitor"
 	sprite "ship/saryd visitor"
 	thumbnail "thumbnail/saryd visitor"
 	attributes
-		category "Light Freighter"
+		category "Transport"
 		licenses
 			Coalition
 		"cost" 1982000
@@ -1723,6 +2039,7 @@ ship "Saryd Visitor"
 		"Small Repair Module"
 		
 		"Small Thrust Module" 3
+		"Small Reverse Module" 3
 		"Large Steering Module"
 		"Hyperdrive"
 		
@@ -1738,3 +2055,18 @@ ship "Saryd Visitor"
 	explode "medium explosion" 5
 	"final explode" "final explosion medium"
 	description `Rather than specializing in carrying passengers or carrying cargo, Saryds seek to make their ships as well-balanced and versatile as possible. As a result, the crew of a typical Visitor can count on performing a different sort of job every week.`
+
+ship "Saryd Visitor" "Saryd Visitor (Miner)"
+	outfits
+		"MCS Extractor" 2
+		
+		"Small Cogeneration Module" 2
+		"Small Collector Module" 4
+		"Small Battery Module" 2
+		"Small Shield Module"
+		"Small Repair Module"
+		
+		"Large Steering Module"
+		"Small Thrust Module" 3
+		"Small Reverse Module" 3
+		"Hyperdrive"

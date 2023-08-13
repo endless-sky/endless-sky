@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "MapShipyardPanel.h"
@@ -112,7 +115,7 @@ void MapShipyardPanel::Select(int index)
 	else
 	{
 		selected = list[index];
-		selectedInfo.Update(*selected, player.StockDepreciation(), player.GetDate().DaysSinceEpoch());
+		selectedInfo.Update(*selected, player);
 	}
 	UpdateCache();
 }
@@ -126,7 +129,7 @@ void MapShipyardPanel::Compare(int index)
 	else
 	{
 		compare = list[index];
-		compareInfo.Update(*compare, player.StockDepreciation(), player.GetDate().DaysSinceEpoch());
+		compareInfo.Update(*compare, player);
 	}
 }
 
@@ -138,7 +141,7 @@ double MapShipyardPanel::SystemValue(const System *system) const
 		return numeric_limits<double>::quiet_NaN();
 
 	// Visiting a system is sufficient to know what ports are available on its planets.
-	double value = -.5;
+	double value = -1.;
 	for(const StellarObject &object : system->Objects())
 		if(object.HasSprite() && object.HasValidPlanet())
 		{
@@ -159,7 +162,7 @@ int MapShipyardPanel::FindItem(const string &text) const
 	int bestItem = -1;
 	for(unsigned i = 0; i < list.size(); ++i)
 	{
-		int index = Search(list[i]->ModelName(), text);
+		int index = Search(list[i]->DisplayModelName(), text);
 		if(index >= 0 && index < bestIndex)
 		{
 			bestIndex = index;
@@ -179,8 +182,9 @@ void MapShipyardPanel::DrawItems()
 		DoHelp("map advanced shops");
 	list.clear();
 	Point corner = Screen::TopLeft() + Point(0, scroll);
-	for(const string &category : categories)
+	for(const auto &cat : categories)
 	{
+		const string &category = cat.Name();
 		auto it = catalog.find(category);
 		if(it == catalog.end())
 			continue;
@@ -191,7 +195,7 @@ void MapShipyardPanel::DrawItems()
 
 		for(const Ship *ship : it->second)
 		{
-			string price = Format::Credits(ship->Cost()) + " credits";
+			string price = Format::CreditString(ship->Cost());
 
 			string info = Format::Number(ship->Attributes().Get("shields")) + " shields / ";
 			info += Format::Number(ship->Attributes().Get("hull")) + " hull";
@@ -214,7 +218,7 @@ void MapShipyardPanel::DrawItems()
 			if(!sprite)
 				sprite = ship->GetSprite();
 			Draw(corner, sprite, ship->CustomSwizzle(), isForSale, ship == selected,
-					ship->ModelName(), price, info);
+					ship->DisplayModelName(), price, info);
 			list.push_back(ship);
 		}
 	}
@@ -238,5 +242,5 @@ void MapShipyardPanel::Init()
 
 	for(auto &it : catalog)
 		sort(it.second.begin(), it.second.end(),
-			[](const Ship *a, const Ship *b) { return a->ModelName() < b->ModelName(); });
+			[](const Ship *a, const Ship *b) { return a->DisplayModelName() < b->DisplayModelName(); });
 }

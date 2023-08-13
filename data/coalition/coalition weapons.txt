@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 outfit "Bombardment Cannon"
 	category "Guns"
@@ -96,7 +99,7 @@ outfit "Finisher Pod"
 		ammo "Finisher Torpedo"
 		icon "icon/finisher"
 		"fire effect" "finisher sparks" 8
-		"hit effect" "finisher impact" 2
+		"hit effect" "finisher impact" 1
 		"hit effect" "finisher fragment" 12
 		"die effect" "finisher fragment" 6
 		"inaccuracy" 5
@@ -114,12 +117,51 @@ outfit "Finisher Pod"
 		"submunition" "Active Finisher" 1
 	description `Finisher Torpedoes are one of the Heliarchs' most dreaded weapons. In fact, in one way or another most of their other weapons merely exist to hold a ship in place for long enough for a barrage of Finishers to destroy it.`
 
+outfit "Finisher Maegrolain"
+	category "Secondary Weapons"
+	licenses
+		Heliarch
+	cost 7260000
+	thumbnail "outfit/finisher maegrolain"
+	"mass" 58
+	"outfit space" -88
+	"weapon capacity" -88
+	"gun ports" -1
+	"finisher capacity" 60
+	weapon
+		sprite "projectile/finisher activating"
+			"frame rate" 1
+			"no repeat"
+		sound "finisher"
+		ammo "Finisher Torpedo"
+		icon "icon/finisher"
+		"fire effect" "finisher sparks" 8
+		"hit effect" "finisher impact" 1
+		"hit effect" "finisher fragment" 12
+		"die effect" "finisher fragment" 6
+		"inaccuracy" 6
+		"velocity" 9
+		"lifetime" 60
+		"reload" 60
+		"burst reload" 15
+		"burst count" 20
+		"firing energy" 184
+		"firing heat" 76
+		"acceleration" .8
+		"drag" .1
+		"turn" 0.1
+		"homing" 2
+		"radar tracking" .8
+		"missile strength" 50
+		"submunition" "Active Finisher" 1
+	description `Baptized with the Saryd word for "furious thunderstorm," this enormous launcher is not meant for prolonged fights nor for use by lighter craft, but for delivering a few quick, devastating bursts of Finisher Torpedoes. It has much greater damage potential than its smaller counterpart.`
+
 outfit "Active Finisher"
 	weapon
 		sprite "projectile/finisher"
 			"frame rate" 2.4
 		"live effect" "finisher trail" 50
-		"hit effect" "finisher impact" 2
+		"hit effect" "finisher impact" 1
 		"hit effect" "finisher fragment" 12
 		"die effect" "small explosion"
 		"lifetime" 500
@@ -143,7 +185,7 @@ outfit "Finisher Storage Tube"
 	"energy capacity" 120
 	"finisher capacity" 20
 	ammo "Finisher Torpedo"
-	description "In order to allow Heliarch ships to install more Finisher storage tubes, Heliarch engineers have incorporated a tiny battery pack into each module. This allows for Heliarch ships to have a respectable energy capacity while also carrying a fearsome number of Finishers."
+	description "In order to allow Heliarch ships to install more Finisher Storage Tubes, Heliarch engineers have incorporated a tiny battery pack into each module. This allows for Heliarch ships to have a respectable energy capacity while also carrying a fearsome number of Finishers."
 
 outfit "Finisher Torpedo"
 	plural "Finisher Torpedoes"
@@ -176,7 +218,8 @@ effect "finisher impact"
 	sprite "effect/finisher impact"
 		"no repeat"
 		"frame rate" 20
-	"lifetime" 13
+	sound "torpedo hit"
+	"lifetime" 18
 	"random spin" 20
 	"random velocity" 2
 	"velocity scale" -.2
@@ -319,6 +362,7 @@ outfit "ion hail"
 		"shield damage" 12
 		"hull damage" 5
 		"ion damage" .32
+		"scrambling damage" .32
 
 
 outfit "Ion Rain Gun"
@@ -348,6 +392,7 @@ outfit "Ion Rain Gun"
 		"shield damage" 12
 		"hull damage" 5
 		"ion damage" .32
+		"scrambling damage" .32
 	description "Heliarch ships primarily serve as a police force. This weapon is designed to neutralize a target's offensive capabilities until more Heliarch ships can join the fray."
 
 effect "ion rain impact"
@@ -359,3 +404,42 @@ effect "ion rain impact"
 	"random spin" 2
 	"random velocity" 10
 	"velocity scale" -.1
+
+
+
+outfit "MCS Extractor"
+	category "Guns"
+	licenses
+		Coalition
+	cost 106000
+	thumbnail "outfit/mcs extractor"
+	"mass" 18
+	"outfit space" -18
+	"weapon capacity" -18
+	"asteroid scan power" 18
+	"gun ports" -1
+	weapon
+		sound "drill"
+		"hit effect" "drilling"
+		"velocity" 10
+		"lifetime" 1
+		"reload" 1
+		"firing energy" .78
+		"firing heat" .68
+		"shield damage" .2
+		"hull damage" 1.4
+		"minable damage" 8.2
+	description `Not legally a weapon under Heliarch definitions, the "Mineral Collection and Sorting" extraction unit consists of a set of sharp, durable blades designed to quickly break down minable asteroids. It also comes with an integrated scanning system that looks for asteroids rich in minerals to facilitate the mining efforts.`
+	description `	Especially popular with novice pilots looking to pay off their ships, the extractor has been a reliable tool of mining businesses in the Coalition for millennia.`
+
+effect "drilling"
+	sprite effect/smoke
+		"no repeat"
+		scale 0.5
+	sound "explosion tiny"
+	lifetime 12
+	"velocity scale" -0.05
+	"random angle" 360
+	"random velocity" 2
+	"random spin" 2
+	"random frame rate" 2

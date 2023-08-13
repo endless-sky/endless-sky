@@ -7,22 +7,27 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Weather.h"
 
 #include "Angle.h"
 #include "Hazard.h"
-#include "Visual.h"
 #include "Random.h"
+#include "Screen.h"
+#include "Visual.h"
 
 #include <cmath>
 
 using namespace std;
 
 Weather::Weather(const Hazard *hazard, int totalLifetime, int lifetimeRemaining, double strength, Point origin)
-	: hazard(hazard), totalLifetime(totalLifetime), lifetimeRemaining(lifetimeRemaining), strength(strength), origin(origin)
+	: hazard(hazard), totalLifetime(totalLifetime), lifetimeRemaining(lifetimeRemaining),
+		strength(strength), origin(origin)
 {
 	// Using a deviation of totalLifetime / 4.3 causes the strength of the
 	// weather to start and end at about 10% the maximum. Store the entire
@@ -70,29 +75,50 @@ const Point &Weather::Origin() const
 
 
 // Create any environmental effects and decrease the lifetime of this weather.
-void Weather::Step(vector<Visual> &visuals)
+void Weather::Step(vector<Visual> &visuals, const Point &center)
 {
 	// Environmental effects are created by choosing a random angle and distance from
 	// their origin, then creating the effect there.
 	double minRange = hazard->MinRange();
 	double maxRange = hazard->MaxRange();
+	double effectMultiplier = currentStrength;
 
-	// Estimate the number of visuals to be generated this frame.
-	// MAYBE: create only a subset of possible effects per frame.
-	int totalAmount = 0;
-	for(auto &&effect : hazard->EnvironmentalEffects())
-		totalAmount += effect.second;
-	totalAmount *= currentStrength;
-	visuals.reserve(visuals.size() + totalAmount);
+	// If a hazard is system-wide, the max range becomes the edge of the screen,
+	// and the number of effects drawn is scaled accordingly.
+	if(hazard->SystemWide() && maxRange > 0.)
+	{
+		// Find the farthest possible point from the screen center and use that as
+		// our new max range. Multiply by 2 to account for the max view zoom level.
+		double newMax = 2. * Screen::Dimensions().Length();
+		// Maintain the same density of effects by dividing the new area
+		// by the old. (The pis cancel out and therefore need not be taken
+		// into account.)
+		effectMultiplier *= (newMax * newMax) / (maxRange * maxRange);
+		maxRange = newMax;
+	}
 
-	for(auto &&effect : hazard->EnvironmentalEffects())
-		for(int i = 0; i < effect.second * currentStrength; ++i)
-		{
-			Point angle = Angle::Random().Unit();
-			double magnitude = (maxRange - minRange) * sqrt(Random::Real());
-			Point pos = origin + (minRange + magnitude) * angle;
-			visuals.emplace_back(*effect.first, std::move(pos), Point(), Angle::Random());
-		}
+	// Don't draw effects if a system-wide hazard moved the max range to
+	// be less than the min range.
+	if(minRange <= maxRange)
+	{
+		// Estimate the number of visuals to be generated this frame.
+		// MAYBE: create only a subset of possible effects per frame.
+		float totalAmount = 0;
+		for(auto &&effect : hazard->EnvironmentalEffects())
+			totalAmount += effect.second;
+		totalAmount *= effectMultiplier;
+		visuals.reserve(visuals.size() + static_cast<int>(totalAmount));
+
+		for(auto &&effect : hazard->EnvironmentalEffects())
+			for(int i = 0; i < effect.second * effectMultiplier; ++i)
+			{
+				Point angle = Angle::Random().Unit();
+				double magnitude = (maxRange - minRange) * sqrt(Random::Real());
+				Point pos = (hazard->SystemWide() ? center : origin)
+					+ (minRange + magnitude) * angle;
+				visuals.emplace_back(*effect.first, std::move(pos), Point(), Angle::Random());
+			}
+	}
 
 	if(--lifetimeRemaining <= 0)
 		shouldBeRemoved = true;

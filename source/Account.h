@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef ACCOUNT_H_
@@ -16,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Mortgage.h"
 
 #include <cstdint>
+#include <map>
 #include <string>
 #include <vector>
 
@@ -40,8 +44,13 @@ public:
 	// Step forward one day, and return a string summarizing payments made.
 	std::string Step(int64_t assets, int64_t salaries, int64_t maintenance);
 
+	// Structural income.
+	const std::map<std::string, int64_t> &SalariesIncome() const;
+	int64_t SalariesIncomeTotal() const;
+	void SetSalaryIncome(std::string name, int64_t amount);
+
 	// Overdue crew salaries:
-	int64_t SalariesOwed() const;
+	int64_t CrewSalariesOwed() const;
 	void PaySalaries(int64_t amount);
 	// Overdue maintenance costs:
 	int64_t MaintenanceDue() const;
@@ -67,9 +76,11 @@ private:
 
 private:
 	int64_t credits = 0;
+	// Regular income from salaries paid to the player.
+	std::map<std::string, int64_t> salariesIncome;
 	// If back salaries and maintenance cannot be paid, they pile up rather
 	// than being ignored.
-	int64_t salariesOwed = 0;
+	int64_t crewSalariesOwed = 0;
 	int64_t maintenanceDue = 0;
 	// Your credit score determines the interest rate on your mortgages.
 	int creditScore = 400;

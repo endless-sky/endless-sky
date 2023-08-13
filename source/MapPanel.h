@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef MAP_PANEL_H_
@@ -71,7 +74,9 @@ public:
 	virtual void Step() override;
 	virtual void Draw() override;
 
-	void DrawButtons(const std::string &condition);
+	// Draw map mode buttons, escort/storage tooltips, and the non-routable system warning.
+	void FinishDrawing(const std::string &buttonCondition);
+
 	static void DrawMiniMap(const PlayerInfo &player, float alpha, const System *const jump[2], int step);
 
 	// Map panels allow fast-forward to stay active.
@@ -162,9 +167,9 @@ private:
 	void DrawSystems();
 	void DrawNames();
 	void DrawMissions();
-	void DrawTooltips();
 	void DrawPointer(const System *system, unsigned &systemCount, const Color &color, bool bigger = false);
-	static void DrawPointer(Point position, unsigned &systemCount, const Color &color, bool drawBack = true, bool bigger = false);
+	static void DrawPointer(Point position, unsigned &systemCount, const Color &color,
+		bool drawBack = true, bool bigger = false);
 
 
 private:
@@ -173,7 +178,8 @@ private:
 
 	class Node {
 	public:
-		Node(const Point &position, const Color &color, const std::string &name, const Color &nameColor, const Government *government)
+		Node(const Point &position, const Color &color, const std::string &name,
+			const Color &nameColor, const Government *government)
 			: position(position), color(color), name(name), nameColor(nameColor), government(government) {}
 
 		Point position;
