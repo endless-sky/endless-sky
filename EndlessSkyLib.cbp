@@ -324,6 +324,8 @@
 		<Unit filename="source/ShipInfoDisplay.h" />
 		<Unit filename="source/ShipInfoPanel.cpp" />
 		<Unit filename="source/ShipInfoPanel.h" />
+		<Unit filename="source/ShipManager.cpp" />
+		<Unit filename="source/ShipManager.h" />
 		<Unit filename="source/ShipJumpNavigation.cpp" />
 		<Unit filename="source/ShipJumpNavigation.h" />
 		<Unit filename="source/ShipyardPanel.cpp" />

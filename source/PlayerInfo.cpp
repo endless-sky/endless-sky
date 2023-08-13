@@ -411,6 +411,11 @@ void PlayerInfo::Load(const string &path)
 			availableMissions.emplace_back(child);
 		else if(child.Token(0) == "conditions")
 			conditions.Load(child);
+		else if(child.Token(0) == "gifted ships" && child.HasChildren())
+		{
+			for(const DataNode &grand : child)
+				giftedShips[grand.Token(0)] = EsUuid::FromString(grand.Token(1));
+		}
 		else if(child.Token(0) == "event")
 			gameEvents.emplace_back(child);
 		else if(child.Token(0) == "changes")
@@ -1203,39 +1208,46 @@ void PlayerInfo::AddShip(const shared_ptr<Ship> &ship)
 
 
 // Adds a ship of the given model with the given name to the player's fleet.
-// If this ship is being gifted, it costs nothing and starts fully depreciated.
-void PlayerInfo::BuyShip(const Ship *model, const string &name, bool isGift)
+void PlayerInfo::BuyShip(const Ship *model, const string &name)
 {
 	if(!model)
 		return;
 
 	int day = date.DaysSinceEpoch();
-	int64_t cost = isGift ? 0 : stockDepreciation.Value(*model, day);
+	int64_t cost = stockDepreciation.Value(*model, day);
 	if(accounts.Credits() >= cost)
 	{
-		// Copy the model instance into a new instance.
-		ships.push_back(make_shared<Ship>(*model));
-		ships.back()->SetName(name);
-		ships.back()->SetSystem(system);
-		ships.back()->SetPlanet(planet);
-		ships.back()->SetIsSpecial();
-		ships.back()->SetIsYours();
-		ships.back()->SetGovernment(GameData::PlayerGovernment());
+		AddStockShip(model, name);
 
 		accounts.AddCredits(-cost);
 		flagship.reset();
 
-		// Record the transfer of this ship in the depreciation and stock info.
-		if(!isGift)
-		{
-			depreciation.Buy(*model, day, &stockDepreciation);
-			for(const auto &it : model->Outfits())
-				stock[it.first] -= it.second;
-		}
+		depreciation.Buy(*model, day, &stockDepreciation);
+		for(const auto &it : model->Outfits())
+			stock[it.first] -= it.second;
 
 		if(ships.back()->HasBays())
 			displayCarrierHelp = true;
 	}
+}
+
+
+
+// Because this ship is being gifted, it costs nothing and starts fully depreciated.
+const Ship *PlayerInfo::GiftShip(const Ship *model, const string &name, const string &id)
+{
+	if(!model)
+		return nullptr;
+
+	AddStockShip(model, name);
+
+	flagship.reset();
+
+	// If an id was given, associate and store it with the UUID of the gifted ship.
+	if(!id.empty())
+		giftedShips[id].clone(ships.back()->UUID());
+
+	return ships.back().get();
 }
 
 
@@ -1255,9 +1267,42 @@ void PlayerInfo::SellShip(const Ship *selected)
 				stock[it.first] += it.second;
 
 			accounts.AddCredits(cost);
+			ForgetGiftedShip(*it->get());
 			ships.erase(it);
 			flagship.reset();
-			return;
+			break;
+		}
+}
+
+
+
+// Take the ship from the player, if a model is specified this will permanently remove outfits in said model,
+// instead of allowing the player to buy them back by putting them in the stock.
+void PlayerInfo::TakeShip(const Ship *shipToTake, const Ship *model, bool takeOutfits)
+{
+	for(auto it = ships.begin(); it != ships.end(); ++it)
+		if(it->get() == shipToTake)
+		{
+			// Record the transfer of this ship in the depreciation and stock info.
+			stockDepreciation.Buy(*shipToTake, date.DaysSinceEpoch(), &depreciation);
+			if(takeOutfits)
+				for(const auto &it : shipToTake->Outfits())
+				{
+					// We only take all of the outfits specified in the model without putting them in the stock.
+					// The extra outfits of this ship are transfered into the stock.
+					int amountToTake = 0;
+					if(model)
+					{
+						auto outfit = model->Outfits().find(it.first);
+						if(outfit != model->Outfits().end())
+							amountToTake = max(it.second, outfit->second);
+					}
+					stock[it.first] += it.second - amountToTake;
+				}
+			ForgetGiftedShip(*it->get(), false);
+			ships.erase(it);
+			flagship.reset();
+			break;
 		}
 }
 
@@ -1269,6 +1314,7 @@ vector<shared_ptr<Ship>>::iterator PlayerInfo::DisownShip(const Ship *selected)
 		if(it->get() == selected)
 		{
 			flagship.reset();
+			ForgetGiftedShip(*it->get());
 			it = ships.erase(it);
 			return (it == ships.begin()) ? it : --it;
 		}
@@ -1499,6 +1545,7 @@ void PlayerInfo::Land(UI *ui)
 			// depreciation records. Transfer it to a throw-away record:
 			Depreciation().Buy(**it, date.DaysSinceEpoch(), &depreciation);
 
+			ForgetGiftedShip(*it->get());
 			it = ships.erase(it);
 		}
 		else
@@ -2255,6 +2302,14 @@ ConditionsStore &PlayerInfo::Conditions()
 const ConditionsStore &PlayerInfo::Conditions() const
 {
 	return conditions;
+}
+
+
+
+// Uuid for the gifted ships, with the ship class follow by the names they had when they were gifted to the player.
+const map<string, EsUuid> &PlayerInfo::GiftedShips() const
+{
+	return giftedShips;
 }
 
 
@@ -3126,7 +3181,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto &&tributeProvider = conditions.GetProviderPrefixed("tribute: ");
 	auto tributeHasGetFun = [this](const string &name) -> int64_t
 	{
-		const Planet *planet = GameData::Planets().Find(name);
+		const Planet *planet = GameData::Planets().Find(name.substr(strlen("tribute: ")));
 		if(!planet)
 			return 0;
 
@@ -3682,6 +3737,24 @@ void PlayerInfo::RegisterDerivedConditions()
 	visitedSystemProvider.SetGetFunction(visitedSystemFun);
 	visitedSystemProvider.SetHasFunction(visitedSystemFun);
 
+	auto &&pluginProvider = conditions.GetProviderPrefixed("installed plugin: ");
+	auto pluginFun = [](const string &name) -> bool
+	{
+		const Plugin *plugin = Plugins::Get().Find(name.substr(strlen("installed plugin: ")));
+		return plugin ? plugin->enabled : false;
+	};
+	pluginProvider.SetHasFunction(pluginFun);
+	pluginProvider.SetGetFunction(pluginFun);
+
+	auto &&destroyedPersonProvider = conditions.GetProviderPrefixed("person destroyed: ");
+	auto destroyedPersonFun = [](const string &name) -> bool
+	{
+		const Person *person = GameData::Persons().Find(name.substr(strlen("person destroyed: ")));
+		return person ? person->IsDestroyed() : false;
+	};
+	destroyedPersonProvider.SetGetFunction(destroyedPersonFun);
+	destroyedPersonProvider.SetHasFunction(destroyedPersonFun);
+
 	// Read-only navigation conditions.
 	auto HyperspaceTravelDays = [](const System *origin, const System *destination) -> int
 	{
@@ -3756,6 +3829,27 @@ void PlayerInfo::RegisterDerivedConditions()
 		gov->SetReputation(value);
 		return true;
 	});
+
+	// A condition for returning a random integer in the range [0, input). Input may be a number,
+	// or it may be the name of a condition. For example, "roll: 100" would roll a random
+	// integer in the range [0, 100), but if you had a condition "max roll" with a value of 100,
+	// calling "roll: max roll" would provide a value from the same range.
+	// Returns 0 if the input condition's value is <= 1.
+	auto &&randomRollProvider = conditions.GetProviderPrefixed("roll: ");
+	auto randomRollFun = [this](const string &name) -> int64_t
+	{
+		string input = name.substr(strlen("roll: "));
+		int64_t value = 0;
+		if(DataNode::IsNumber(input))
+			value = static_cast<int64_t>(DataNode::Value(input));
+		else
+			value = conditions.Get(input);
+		if(value <= 1)
+			return 0;
+		return Random::Int(value);
+	};
+	randomRollProvider.SetHasFunction(randomRollFun);
+	randomRollProvider.SetGetFunction(randomRollFun);
 
 	// Global conditions setters and getters:
 	auto &&globalProvider = conditions.GetProviderPrefixed("global: ");
@@ -4301,6 +4395,18 @@ void PlayerInfo::Save(DataWriter &out) const
 	// Save any "primary condition" flags that are set.
 	conditions.Save(out);
 
+	// Save the UUID of any ships given to the player with a specified name, and ship class.
+	if(!giftedShips.empty())
+	{
+		out.Write("gifted ships");
+		out.BeginChild();
+		{
+			for(const auto &it : giftedShips)
+				out.Write(it.first, it.second.ToString());
+		}
+		out.EndChild();
+	}
+
 	// Save pending events, and changes that have happened due to past events.
 	for(const GameEvent &event : gameEvents)
 		event.Save(out);
@@ -4491,6 +4597,38 @@ void PlayerInfo::SelectShip(const shared_ptr<Ship> &ship, bool *first)
 bool PlayerInfo::DisplayCarrierHelp() const
 {
 	return displayCarrierHelp;
+}
+
+
+
+// Instantiate the given model and add it to the player's fleet.
+void PlayerInfo::AddStockShip(const Ship *model, const string &name)
+{
+	ships.push_back(make_shared<Ship>(*model));
+	ships.back()->SetName(!name.empty() ? name : GameData::Phrases().Get("civilian")->Get());
+	ships.back()->SetSystem(system);
+	ships.back()->SetPlanet(planet);
+	ships.back()->SetIsSpecial();
+	ships.back()->SetIsYours();
+	ships.back()->SetGovernment(GameData::PlayerGovernment());
+}
+
+
+
+// When we remove a ship, forget its stored ID.
+void PlayerInfo::ForgetGiftedShip(const Ship &oldShip, bool failsMissions)
+{
+	const EsUuid &id = oldShip.UUID();
+	auto shipToForget = find_if(giftedShips.begin(), giftedShips.end(),
+		[&id](const pair<const string, EsUuid> &shipId) { return shipId.second == id; });
+	if(shipToForget != giftedShips.end())
+	{
+		if(failsMissions)
+			for(auto &mission : missions)
+				if(mission.RequiresGiftedShip(shipToForget->first))
+					mission.Fail();
+		giftedShips.erase(shipToForget);
+	}
 }
 
 

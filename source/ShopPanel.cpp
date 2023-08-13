@@ -26,6 +26,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "MapOutfitterPanel.h"
+#include "MapShipyardPanel.h"
 #include "Mission.h"
 #include "OutlineShader.h"
 #include "Planet.h"
@@ -697,6 +699,13 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	{
 		player.UpdateCargoCapacities();
 		GetUI()->Pop(this);
+	}
+	else if(command.Has(Command::MAP))
+	{
+		if(isOutfitter)
+			GetUI()->Push(new MapOutfitterPanel(player));
+		else
+			GetUI()->Push(new MapShipyardPanel(player));
 	}
 	else if(key == 'b' || key == 'i' || key == 'c')
 	{
