@@ -3263,7 +3263,7 @@ system Alcyone
 		distance 58.7886
 		period 26.2809
 	object Stormhold
-		sprite planet/ocean0
+		sprite planet/cloud1
 		distance 332.91
 		period 141.461
 	object

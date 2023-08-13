@@ -4576,9 +4576,9 @@ phrase "friendly pirate"
 	phrase
 		"pirate plans attack"
 	word
-		"! "
+		"!"
 	word
-		"${pirate attack outcomes}!" 2
+		" ${pirate attack outcomes}!" 2
 		""
 
 phrase "pirate plans attack"
