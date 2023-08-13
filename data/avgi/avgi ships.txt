@@ -1055,8 +1055,8 @@ ship "Modified Tachytia"
 	explode "tiny explosion" 15
 	explode "small explosion" 12
 	explode "medium explosion" 9
-	explode "medium large" 9
-	explode "medium huge" 9
+	explode "large explosion" 9
+	explode "huge explosion" 9
 	explode "nuke explosion" 3
 	"final explode" "nuke explosion" 3
 	"final explode" "nuke residue fast" 90
@@ -1238,7 +1238,7 @@ ship "Interferos"
 		"cost" 240000
 		"shields" 900
 		"hull" 3600
-		"automaton"
+		"automaton" 1
 		"crew equivalent" 6
 		"mass" 90
 		"drag" 1.5

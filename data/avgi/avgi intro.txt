@@ -642,14 +642,14 @@ mission "Avgi: Frontline Combat"
 			`	"Explanation. The Aberrant are relentless, but as a rule only push lightly against our lines into the Tangled Shroud. The recent incursion excepted, of course. But Arche holds the first lines of defense, with the Feo Platform and its cannons." He points to a trinary system just outside the Shroud.`
 			`	"But, if we are to reclaim our homes, we cannot merely fight on the defensive. Thus, the front lines of this war are as of late drawn in the Quintessence system, and the triangle of systems to its north, which we are still in the process of clearing."`
 			choice
-			`	"Where do I come in?"`
-			`	"What do you want me to do?"`
-		`	"Consideration. Your ship is far beyond anything we can produce indigenously, at least for the moment. While you are certainly skilled in fleet combat, I am of the opinion that you would be best put to use launching independent strikes, those that a single one of our vessels could not manage on their own." He looks down at a device similar to a tablet. "With the attack on Ensemble, we were forced to pull back our main fleetgroups from the front lines in Quintessence in an attempt to contain them. While we have since reclaimed our initial positions, during the maneuvering a large group of Aberrant were able to slip past us, not into the Shroud, but rather north, towards the Empyrean system. With the current situation, I do not want to divert an entire strike force from the defenses to hunt them down, but would the <ship> be capable of handling them on its own?"`
-		choice
-			`	"Yes, the <ship> can take them."`
-			`	"I'd rather not take the risk"."`
+				`	"Where do I come in?"`
+				`	"What do you want me to do?"`
+			`	"Consideration. Your ship is far beyond anything we can produce indigenously, at least for the moment. While you are certainly skilled in fleet combat, I am of the opinion that you would be best put to use launching independent strikes, those that a single one of our vessels could not manage on their own." He looks down at a device similar to a tablet. "With the attack on Ensemble, we were forced to pull back our main fleetgroups from the front lines in Quintessence in an attempt to contain them. While we have since reclaimed our initial positions, during the maneuvering a large group of Aberrant were able to slip past us, not into the Shroud, but rather north, towards the Empyrean system. With the current situation, I do not want to divert an entire strike force from the defenses to hunt them down, but would the <ship> be capable of handling them on its own?"`
+			choice
+				`	"Yes, the <ship> can take them."`
+				`	"I'd rather not take the risk"."`
 				goto decline
-		`	"Excellent. Report back to the Feo Platform when the Aberrant are eliminated."`
+			`	"Excellent. Report back to the Feo Platform when the Aberrant are eliminated."`
 
 	npc kill
 		government "Aberrant"
@@ -723,7 +723,8 @@ mission "Avgi: Dissonance Outreach 0.5"
 	to offer
 		has "Avgi: Frontline Combat: done"
 	on complete
-		`	As you take the <ship> in for a landing in one of the hangars, Darius says, "I'll get in contact with Hriso and have him meet us in the spaceport."`
+		conversation
+			`	As you take the <ship> in for a landing in one of the hangars, Darius says, "I'll get in contact with Hriso and have him meet us in the spaceport."`
 
 
 mission "Avgi: Dissonance Outreach"

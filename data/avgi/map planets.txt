@@ -438,7 +438,7 @@ planet "Aktina Cylinder"
 planet "Outpost Enka"
 	attributes avgi "avgi diaspora" dissonance station asteroid
 	description "Outpost Enka is a huge station built between two large asteroids, which are steadily being mined for the metals and minerals they contain. Most of the habitat is free standing, mounted on the spar that links both asteroids, but one of them also contains significant numbers of pressurized tunnels filled with farms and large green spaces."
-	desciption "Outpost Enka is a major source of nickel-iron ore, which is common in the system despite the overall metal-poor state of the Tangled Shroud. The station is rumored to be a haven for rebels and dissidents even beyond the usual Dissonance supporters."
+	description "Outpost Enka is a major source of nickel-iron ore, which is common in the system despite the overall metal-poor state of the Tangled Shroud. The station is rumored to be a haven for rebels and dissidents even beyond the usual Dissonance supporters."
 	spaceport "The station's spaceport is spacious, with room for the many small drones used to harvest other asteroids in the belt. Several berths are also open to larger mining vessels, with a few occupied at the moment."
 	government "Avgi (Dissonance)"
 	"required reputation" 10
@@ -447,7 +447,7 @@ planet "Outpost Enka"
 planet "Outpost Tekis"
 	attributes avgi "avgi diaspora" dissonance station asteroid
 	description "Outpost Tekis is a station built into a huge asteroid, with tunnels and habitats throughout its entire volume. Its surface is covered in tubes and habitat domes, many of which grow massive amounts of food in farms and gardens."
-	desciption "Outpost Tekis is a major exporter of titanium and other rare metals, which are otherwise very rare in the metal-poor Tangled Shroud. A local chapter of the Dissonance movement is openly headquartered there, often the public face of negotiations with the Consonance Assembly."
+	description "Outpost Tekis is a major exporter of titanium and other rare metals, which are otherwise very rare in the metal-poor Tangled Shroud. A local chapter of the Dissonance movement is openly headquartered there, often the public face of negotiations with the Consonance Assembly."
 	spaceport "The spaceport is somewhat cramped, being mostly intended for the intrasystem ships used in asteroid mining. A flexible docking arm allows larger ships to be moored off the asteroid, but you are able to barely squeeze your ship into the main hangar."
 	government "Avgi (Dissonance)"
 	"required reputation" 10

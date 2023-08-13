@@ -23,9 +23,9 @@ fleet "Avgi Core Defense"
 	variant 10
 		"Difraktos"
 	variant 10
-		"Difraktos (Missile Cruiser)"
+		"Difraktos (Missile)"
 	variant 10
-		"Difraktos (Battlecruiser)"
+		"Difraktos (Kinetic)"
 	variant 10
 		"Prismaios" 2
 	variant 10
@@ -36,8 +36,8 @@ fleet "Avgi Core Defense"
 		"Vibratia" 22
 		"Photikon" 8
 		"Optikon" 2
-		"Difraktos (Missile Cruiser)"
-		"Difraktos (Battlecruiser)"
+		"Difraktos (Missile)"
+		"Difraktos (Kinetic)"
 		"Refractos"
 		"Prismaios" 2
 		"Tremoros" 3
