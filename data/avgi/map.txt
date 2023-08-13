@@ -328,8 +328,8 @@ system Anax
 				period 60
 				offset 225
 	object
-		sprite planet/station-cylinder-broken
-			scale 0.25
+		sprite planet/station-asteroid-a1
+			scale 0.5
 		distance 2400
 		period 1002.687
 		offset 30
@@ -1323,7 +1323,7 @@ system Stream
 			distance 232
 			period 133.577
 	object
-		sprite planet/station-asteroid-a2
+		sprite planet/gas6
 		distance 14027
 		period 11390.1
 		object
@@ -1886,7 +1886,7 @@ system Interlude
 			distance 597
 			period 551.394
 	object "Outpost Tekis"
-		sprite planet/station-asteroid-a1
+		sprite planet/station-asteroid-a2
 			scale 0.5
 		distance 7555.364
 		period 2954.279

@@ -480,7 +480,37 @@ mission "Avgi: Defend Ensemble 2"
 				"Twilight Ka'sei 2G (Disable-able)"
 	on complete
 		conversation
-			`You land back on Weledos after the battle, while most of the surviving Avgi ships begin temporary repairs in orbit before they travel back to Napigeo Station. An Avgi cruiser, which you recognize as a Refraktos-class Laserstar, settles down on the pad next to yours while you are checking the <ship> for damage, and an Avgi officer disembarks.`
+			`You land back on Weledos after the battle, while most of the surviving Avgi ships begin temporary repairs in orbit before they travel back to Napigeo Station. While you and Darius are checking the <ship> for damage, you hear someone walk up with distinctly human footsteps.`
+			`	"So, those rumors weren't all talk. There really is another one of us here." You look up to see a woman in combat fatigues standing in front of you, hand extended.`
+			choice
+				`	(Shake her hand.)`
+					goto handshake
+				`	"Who are you?"`
+			`	She drops her hand after a moment. "Name's Sora. And you?"`
+				goto name
+			label handshake
+			`	"Name's Sora. And you?"
+			label name
+			`	"Captain <first> <last>," you say.`
+			`	"And I see you've got a tagalong, too. Finally got ol' Darius to come out of his shell, did you?" You look over at Darius, a look of deep shame on his face as he stares at the ground.`
+			`	"Now, I'm very interested in how exactly you managed to find your way here. Care to explain?" she asks.`
+			choice
+				`	(Explain.)`
+			`	You fill Sora in on how your travels brought you here, and how you were able to acquire a Jump Drive. Darius stays nothing throughout, standing by silently.`
+			`	"Amazing. So, your Jump Drive can get us out of here then?"`
+			choice
+				`	"I'm afraid not. It can't return to human space for some reason."`
+				`	"No, but I'm not giving up on finding a different way out."`
+				`	"Nope!"`
+			`	"Damn. That would be too easy, I guess. But it's been too long since I've seen a fresh human face. I've been working for the Twilight Guard here for months, trying to build up a second line of defenses in case that station in Arche falls. At least today's battle shows those defenses, together with a supporting fleet, can hold. You mind if I tag along with you, in case you do manage to find a way out?"`
+			choice
+				`	"Of course."`
+					goto yes
+				`	"Sure, as long as Darius doesn't mind"
+			`	You look over at Darius, who responds after a few seconds of silence. "Of course you can come along, Sora."`
+			label yes
+			`	"Sounds good to me, then. I'll see you around when you're ready to leave." She walks off to collect her belongings.`
+			`	A few hours later, an Avgi cruiser, which you recognize as a Refraktos-class Laserstar, settles down on the pad next to yours, and an Avgi officer disembarks.`
 			`	"Salutations. Hello, Captain <first> <last>. My name is Kokkino, Captain of the Distant Collision. Tell me, Captain <last>, is the <ship> a warship, question?"`
 			choice
 				`	"Yes, the <ship> is as powerful as they come."`
@@ -496,6 +526,8 @@ mission "Avgi: Defend Ensemble 2"
 				goto end
 
 			label warship
+			action
+				set "avgi: warship intro"
 			`	"Excellent. I am unsurprised, given its performance in the battle, but for all we know your alien vessel could be a simple freighter and yet still be formidible in our eyes. Are you willing to assist us with your warship's strength, question?"`
 			choice
 				`	"Yes, of course."`
@@ -527,13 +559,14 @@ mission "Avgi: Defend Ensemble 2"
 
 
 mission "Avgi: Scout Rescue"
-	name "Avgi Scout Rescue"
+	name "Scout Search and Rescue"
 	description "Find and evacuate the crew of the <npc>."
 	source "Weledos"
 	passengers 12
 	destination "Peripheria"
 	to offer
 		has "First Contact: Avgi 1: done"
+		not "avgi: warship intro"
 	on offer
 		conversation
 			`	You follow Kokkino's instructions to a prefab building in the spaceport, which looks to be some kind of command center. Kokkino is waiting for you by a table in the middle, which lights up, projecting a map of Avgi space in the air with some colored markings you can't read.`
@@ -578,8 +611,10 @@ mission "Avgi: Scout Rescue"
 	on complete
 		conversation
 			`You recieve a warm welcome back on Peripheria Station, as the former crew of the Silver Albedo disembarks. Some of the more badly injured crewmembers are carried out on hammock-like stretchers, but most are able to walk or fly out of the <ship> on their own power.`
-			`	After a short celebration and many expressions of deep gratitude toward you, you find Captain Darius waiting by the <ship> to speak with you.`
-			`	"<first>, I think we have a golden opportunity," he says. "I was just talking to an Assemblyman, Hriso, who's worried about the situation in the eastern branch of the Tangled Shroud. Something about the miners grumbling about price controls on nickel-iron, but he wants to know if you could use your Jump Drive to take him there for some outreach to the miners without needing to spend weeks wandering through the mess of twisted hyperlanes. It's the perfect chance to meet my friend and ask him some questions. What do you think?"`
+			`	After a short celebration and many expressions of deep gratitude toward you, you find Darius and Sora waiting by the <ship> to speak with you.`
+			`	"<first>, I think we have a golden opportunity," he says. "I was just talking to an Assemblyman, Hriso, who's worried about the political situation in the eastern branch of the Tangled Shroud.`
+			`	"A bunch of selfish cowards, they are," says Sora disdainfully.`
+			`	"Something about the miners grumbling about price controls on nickel-iron," Darius says after a moment, "but he wants to know if you could use your Jump Drive to take him there for some outreach to the miners without needing to spend weeks wandering through the mess of twisted hyperlanes. It's the perfect chance to meet my friend and ask him some questions. What do you think?"`
 			choice
 				`	"Sounds good to me."`
 			`	"Good. Meet me in the spaceport in an hour and we'll get this trip sorted out."`
@@ -589,28 +624,106 @@ mission "Avgi: Scout Rescue"
 			`	"Disappointment. I see. I will ensure you are not troubled by requests for aid in the future." He flies away, vanishing quickly.`
 
 
-
 mission "Avgi: Frontline Combat"
-	name "Hold Evanescence"
-	description "Help the Avgi hold Evanescence against constant Aberrant attacks."
+	name "Hunt the Aberrant"
+	description "Help the Avgi clear the systems north of Quintessence to free up defensive resources."
 	source "Weledos"
 	destination "Feo Platform"
+	waypoint "Corporeal"
+	waypoint "Empyrean"
+	waypoint "Firmament"
+	waypoint "Lumine"
 	to offer
 		has "First Contact: Avgi 1: done"
+		has "avgi: warship intro"
+	on offer
+		conversation
+			`	You follow Kokkino's instructions to a prefab building in the spaceport, which looks to be some kind of command center. Kokkino is waiting for you by a table in the middle, which lights up, projecting a map of Avgi space in the air with some colored markings you can't read.`
+			`	"Explanation. The Aberrant are relentless, but as a rule only push lightly against our lines into the Tangled Shroud. The recent incursion excepted, of course. But Arche holds the first lines of defense, with the Feo Platform and its cannons." He points to a trinary system just outside the Shroud.`
+			`	"But, if we are to reclaim our homes, we cannot merely fight on the defensive. Thus, the front lines of this war are as of late drawn in the Quintessence system, and the triangle of systems to its north, which we are still in the process of clearing."`
+			choice
+			`	"Where do I come in?"`
+			`	"What do you want me to do?"`
+		`	"Consideration. Your ship is far beyond anything we can produce indigenously, at least for the moment. While you are certainly skilled in fleet combat, I am of the opinion that you would be best put to use launching independent strikes, those that a single one of our vessels could not manage on their own." He looks down at a device similar to a tablet. "With the attack on Ensemble, we were forced to pull back our main fleetgroups from the front lines in Quintessence in an attempt to contain them. While we have since reclaimed our initial positions, during the maneuvering a large group of Aberrant were able to slip past us, not into the Shroud, but rather north, towards the Empyrean system. With the current situation, I do not want to divert an entire strike force from the defenses to hunt them down, but would the <ship> be capable of handling them on its own?"`
+		choice
+			`	"Yes, the <ship> can take them."`
+			`	"I'd rather not take the risk"."`
+				goto decline
+		`	"Excellent. Report back to Peripheria when the Aberrant are eliminated."`
+
+	npc kill
+		government "Aberrant"
+		personality
+			confusion 90
+			hunting coward vindictive unconstrained secretive
+		system "Corporeal"
+		fleet
+			names "aberrant names"
+			variant
+				"Twilight Ka'sei 2A" 1
+				"Twilight Ka'sei 2B" 2
+				"Twilight Ka'sei 2G (Disable-able)" 1
+	npc kill
+		government "Aberrant"
+		personality
+			confusion 90
+			hunting coward vindictive unconstrained secretive
+		system "Empyrean"
+		fleet
+			names "aberrant names"
+			variant
+				"Twilight Ka'sei 1D" 2
+				"Twilight Ka'sei 1C" 2
+	npc kill
+		government "Aberrant"
+		personality
+			confusion 90
+			hunting coward vindictive unconstrained secretive
+		system "Firmament"
+		fleet
+			names "aberrant names"
+			variant
+				"Twilight Ka'sei 1E" 3
+				"Twilight Ka'sei 1F" 3
+	npc kill
+		government "Aberrant"
+		personality
+			confusion 90
+			hunting coward vindictive unconstrained secretive
+		system "Lumine"
+		fleet
+			names "aberrant names"
+			variant
+				"Twilight Ka'sei 1A" 2
+				"Twilight Ka'sei 1B" 3
+				"Twilight Ka'sei 1C" 1
+
 	on complete
 		conversation
-			`given if you said yes to having a combat ship`
+			`You recieve a hero's welcome back on the Feo Platform, as stories of your exploits spread.`
+			`	After a short celebration and many expressions of deep gratitude toward you, you find Darius and Sora waiting by the <ship> to speak with you.`
+			`	"<first>, I think we have a golden opportunity," he says. "I was just talking to an Assemblyman, Hriso, who's worried about the political situation in the eastern branch of the Tangled Shroud.`
+			`	"A bunch of selfish cowards, they are," says Sora disdainfully.`
+			`	"Something about the miners grumbling about price controls on nickel-iron," Darius says after a moment, "but he wants to know if you could use your Jump Drive to take him there for some outreach to the miners without needing to spend weeks wandering through the mess of twisted hyperlanes. It's the perfect chance to meet my friend and ask him some questions. What do you think?"`
+			choice
+				`	"Sounds good to me."`
+			`	"Good. Meet me in the spaceport in an hour and we'll get this trip sorted out."`
 
+	on decline
+		conversation
+			`	"Disappointment. I see. I will ensure you are not troubled by requests for aid in the future." He flies away, vanishing quickly.`
 
 
 mission "Avgi: Dissonance Outreach"
 	name "Dissonance Outreach"
 	description "Take mr diplomat dude to <destination>."
-	source "Aktina Cylinder"
+	source "Peripheria"
 	passengers 2
-	destination "Weledos"
+	destination "Outpost Tekis"
 	to offer
-		has "First Contact: Avgi 1: done"
+		or
+			has "First Contact: Scout Rescue: done"
+			has "First Contact: Frontline Combat: done"
 	on complete
 		conversation
 			`given after the last two`
@@ -622,31 +735,23 @@ mission "Avgi: Dissonance Outreach"
 			`Deep dude tells you he needs to gather up the rest of the original Deep crew and you can set out together`
 
 
-mission "Avgi: Deep Gathering"
-	name "Gather the Deep Crew: name"
-	description "Find and evacuate the crew of the <npc>."
-	source "Aktina Cylinder"
-	destination "Weledos"
-	to offer
-		has "First Contact: Avgi 1: done"
-	on complete
-		conversation
-			`deep dude has you collect people and bring them to a camp on ensemble`
 
-
-mission "Avgi: Escape the Twilight"
+mission "Avgi: Twilight Escape"
 	name "Escape the Twilight"
 	description "Find a way out of the Twilight."
-	source "Aktina Cylinder"
-	destination "Weledos"
+	source "Peripheria"
+	destination "Valhalla"
 	to offer
 		has "First Contact: Avgi 1: done"
-	on complete
+	on enter
+		system
+			attributes "dirt belt" "near earth" "rim" "south"
 		conversation
-			`you are told to jump to the northeast until you reach a reddish part of space`
-			`get to the magnetar, on enter message telling you it's doing funky stuff to your JD with resonance technobabble`
-			`on enter to any surrounding systems (escape) you get messages about how relieved everyone is and to find a way home to the Deep`
-			`if you jump to the graveyard they're all like wtf and ask if you can plot a way home regardless`
+			`	As the purple flames of your Jump Drive fade, Darius, Sora, and Leon are all speechless. For the first time in six years, they are back in human space.`
+			`	"<first>," says Darius in a shaky voice. "Take us to Valhalla, please. I need to see someone."`
+	on completion
+		conversation
+			`	
 
 
 - Landing intro
