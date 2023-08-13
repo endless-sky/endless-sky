@@ -4128,7 +4128,7 @@ planet Stonebreak
 	security 0.3
 
 planet Stormhold
-	attributes core "core pirate" frontier pirate
+	attributes core "core pirate" forest frontier pirate
 	landscape land/fog11
 	description `A cold planet, with dense, foggy atmosphere. As with many pirate outposts, Stormhold is home to an unknown number of villages and hidden outposts, each controlled by a different pirate faction. It is also said that some of the most dangerous fugitives in the galaxy live deep in the forests of this planet, escaping detection by living underground or by avoiding the use of electronic devices.`
 	spaceport `The spaceport is a large town, with a population of roughly thirty thousand. People of all races and cultures mingle freely, while keeping a wary eye open for off-worlders who may be Republic agents in disguise.`
