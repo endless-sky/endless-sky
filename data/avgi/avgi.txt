@@ -72,7 +72,7 @@ phrase "avgi colors"
 		Gamboge
 		Glaucous
 		Gloss
-		Gold
+		Golden
 		Gray
 		Green
 		Grullo
@@ -421,6 +421,7 @@ phrase "avgi physics"
 		Displacement
 		Dynamics
 		Electron
+		Emission
 		Emissivity
 		Energy
 		Enthalpy

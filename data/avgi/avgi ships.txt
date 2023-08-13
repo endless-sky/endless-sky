@@ -1566,7 +1566,7 @@ ship "Refraktos"
 	explode "large explosion" 6
 	"final explode" "final explosion medium"
 
-	description "The Refraktos-class Laserstar is a relatively recent, post-Diaspora design with a single focus: directed energy weapons. While its armor and shielding systems are light for its size, its expansive radiators can support the thermal loads of a staggering array of laser weapons, both offensive and defensive, allowing it to destroy both missiles and small ships from a vast distance."
+	description "The Refraktos-class Laserstar is a relatively recent, post-Diaspora destroyer design with a single focus: directed energy weapons. While its armor and shielding systems are light for its size, its expansive radiators can support the thermal loads of a staggering array of laser weapons, both offensive and defensive, allowing it to destroy both missiles and small ships from a vast distance."
 	description "A long truss running the length of the ship is built to fit an impressively large mirror-cell fusion torch, giving the Refraktos the mobility needed to evade opponents until they are reduced to hot vapor."
 	description "Due to the anemic damage output of Avgi laser weapons compared to their kinetic weapons and missiles, the Refraktos is most often seen in a support role, providing antimissile coverage to entire fleets."
 
@@ -1864,7 +1864,7 @@ ship "Vibratia"
 			"hull damage" 150
 			"hit force" 120
 	outfits
-		"Speckle Railgun" 1
+		"Speckle Railgun"
 		"Speck Round" 1800
 		"Sidereal Pod"
 		"Sidereal Missile" 6

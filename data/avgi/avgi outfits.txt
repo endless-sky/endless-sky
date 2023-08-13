@@ -192,6 +192,7 @@ outfit "Fleck"
 		"shield damage" 90
 		"hull damage" 120
 		"hit force" 60
+		"missile strength" 3
 
 
 effect "fleck fire"
