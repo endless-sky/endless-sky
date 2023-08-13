@@ -155,7 +155,7 @@ planet Uryyhr
 
 planet Stilacrest
 	attributes avgi fishing rich religious
-	landscape land/myrabella-4
+	landscape land/myrabella4
 	description "This warm world, with its shallow freshwater seas, pleasant weather, and white limestone cliffs would be an ideal vacation world to any human. The mountain-born Avgi, however, were rather discomforted by its relatively flat landscape and sluggish winds, and permanent settlement has been sparse."
 	description "The oceans are rich in appetizing sea life, and Stilacrest is home to an abundance of independent fishing boats run by those seeking to build a new life away from the homeworld. The lure of the calm waves and mild weather is said to have attracted a meditative, laid back sort of personality."
 	spaceport "The largest spaceport is built on the edge of one of the smalller continents, with ample access to the sea. Unlike most Avgi spaceports, the city that grew around it has fairly few skyscrapers or tall buildings, with most structures being short and sprawling."
@@ -211,7 +211,7 @@ planet Elthe
 
 planet Hilothire
 	attributes avgi frontier frozen uninhabited
-	landscape land/ice8
+	landscape land/snow28
 	description "While Hilothire contains an oxygen-rich atmosphere, it is almost entirely covered in icy oceans. At the poles, massive ice caps stretch nearly to the tropics. Pristine icebergs often float down to the equator, where they accumulate around the few rocky islands that peek above the waves. "
 	spaceport "A large research outpost was once set up on one of the larger islands to study the possibility of terraforming the world and warming its climate, but after the Incursion it has since gone uncrewed. The fueling station still contains a significant amount of stored fuel, however, which can be used by any passing ships to refuel."
 	government Uninhabited
@@ -300,13 +300,13 @@ planet Vanikos
 planet Kalakil
 	attributes forest uninhabited
 	landscape land/mountain38
-	description "Kalakil is an uninhabited misty forest moon covered in insects. That is all. WIP" 
+	description "Kalakil is an uninhabited misty forest moon. That is all. WIP" 
 	government Uninhabited
 
 planet Janalos
 	attributes forest uninhabited
 	landscape land/forest14
-	description "Janalos is an uninhabited lush forest planet. That is all. WIP"
+	description "Janalos is an uninhabited lush forest planet covered in insects. That is all. WIP"
 	government Uninhabited
 
 
@@ -366,7 +366,7 @@ planet Silwan
 planet Ashkelon
 	attributes predecessor uninhabited
 	landscape land/mountain33
-	description "An otherwise mundane rocky world, Ashkelon is littered with thousands of basalt monoliths. Most are cracked, many others reduced to rubble, and a scant few are intact enough for the deep carvings that cover their surface to be read. These glyphs were seemingly designed to be easily translated, which Avgi researchers quickly did. There was much excitement when it was realized that the monoliths contained instructions and advice on various technologies, but this quickly turned to disappointment when a years-long survey revealed that no monolith contained information on anything more advanced than the reciprocating steam engine."
+	description "An otherwise mundane rocky world, Ashkelon is littered with thousands of basalt monoliths. Most are cracked, many others reduced to rubble, and a scant few are intact enough for the deep carvings that cover their surface to be read. These glyphs were seemingly designed to be easily translated, which Avgi researchers quickly did. There was much excitement when it was realized that the monoliths contained instructions and advice on various technologies, but this quickly turned to disappointment when a years-long survey revealed that no monolith had information on anything more advanced than the steam engine."
 	description "Whoever left the monoliths here either never documented their more advanced technologies, or someone went to the trouble of destroying the monoliths that contained them."
 	government Uninhabited
 
@@ -431,7 +431,7 @@ planet "Aktina Cylinder"
 	landscape land/station52
 	description "Aktina Cylinder is an incomplete space station of an enormous scale. Two dozen kilometers in diameter and three times that in length, when complete it will be able to house tens of millions of Avgi in urban conditions. Thousands of cylinders like these were built over the years in the Avgi core systems, but limited resources have constrained the Avgi in the Tangled Shroud to only building one over the last decade."
 	description "	With resources constantly being reallocated towards new warships and mining installations, many wonder if the cylinder will ever be completed, which would provide enough space to allow the millions of Avgi in cryogenic storage to be revived."
-	"The main habitat body is still open to space, and the only area sealed against vacuum is a relatively small section tucked under what will be the habitat's "floor," which will become a maintenance bay once the station is complete."
+	description "The main habitat body is still open to space, and the only area sealed against vacuum is a relatively small section tucked under what will be the habitat's "floor," which will become a maintenance bay once the station is complete."
 	government "Avgi (Consonance)"
 	"required reputation" 10
 
