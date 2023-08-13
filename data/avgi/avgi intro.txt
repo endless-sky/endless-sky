@@ -414,10 +414,10 @@ mission "Avgi: Defend Ensemble 2"
 			`	"Warning. Atomics will be used in the upcoming battle, so stay your distance from our warheads," she says.`
 			choice
 				`	"Acknowledged."`
-				`	"Wait, nuclear weapons? You people use those?"
+					goto end
+				`	"Wait, nuclear weapons? You people use those?"`
 			`	"Affirmation. Yes, why wouldn't we?" She turns away from the viewscreen as another Avgi starts speaking to her.`
-					accept
-
+			label end
 				accept
 	npc
 		government "Avgi (Twilight Guard)"

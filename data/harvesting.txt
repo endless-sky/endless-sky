@@ -426,7 +426,7 @@ minable "large droplet"
 	sprite "asteroid/large droplet/large droplet"
 	hull 300
 	"random hull" 120
-	payload "Boiled Fish" 15
+	payload "Boiled Fish" 12
 	explode puff
 
 outfit "Boiled Fish"

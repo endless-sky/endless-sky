@@ -40,7 +40,7 @@ phrase "friendly twilight guard"
 
 phrase "hostile twilight guard"
 	phrase
-		"angry twilight guard" 3
+		"twilight guard angry" 3
 		"avgi angry" 3
 
 phrase "friendly disabled twilight guard"

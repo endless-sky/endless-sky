@@ -1470,8 +1470,8 @@ ship "Difraktos"
 	turret 9 -87 "Sidereal VLS Array"
 	turret -9 -66
 	turret 9 -66
-	turret 0 36
-	turret 0 90 "Phased Array Laser"
+	turret 0 36 "Phased Array Laser (Green)"
+	turret 0 90 "Phased Array Laser (Green)"
 
 	bay "Drone" -21 -21
 	bay "Drone" 21 -21
