@@ -528,7 +528,7 @@ outfit "Equinox Torpedo Pylon"
 	licenses
 		"Avgi Atomics"
 	cost 80000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/equinox torpedo pylon"
 	"mass" 6
 	"outfit space" -6
 	"weapon capacity" -9
@@ -621,7 +621,7 @@ outfit "Nadir Launcher"
 	licenses
 		"Avgi Atomics"
 	cost 1370000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/nadir missile launcher"
 	"mass" 4.8
 	"outfit space" -21
 	"weapon capacity" -21
@@ -1341,7 +1341,7 @@ outfit "XY-720 Radial Thrusters"
 	licenses
 		"Avgi Military"
 	"cost" 1077000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/rcs huge"
 	"mass" 72
 	"outfit space" -72
 	"engine capacity" -72
