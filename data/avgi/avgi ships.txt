@@ -7,6 +7,8 @@ ship "Koryfi"
 	swizzle 0
 	attributes
 		category "Transport"
+		licenses
+			"Avgi Civilian"
 		"shields" 600
 		"hull" 1800
 		"required crew" 2
@@ -115,6 +117,8 @@ ship "Melodikos"
 	swizzle 0
 	attributes
 		category "Space Liner"
+		licenses
+			"Avgi Civilian"
 		"shields" 1200
 		"hull" 2400
 		"required crew" 6
@@ -260,6 +264,8 @@ ship "Avlaki"
 	swizzle 0
 	attributes
 		category "Light Freighter"
+		licenses
+			"Avgi Civilian"
 		"shields" 600
 		"hull" 1800
 		"required crew" 2
@@ -367,6 +373,8 @@ ship "Harmonikos"
 	swizzle 0
 	attributes
 		category "Heavy Freighter"
+		licenses
+			"Avgi Civilian"
 		"shields" 1200
 		"hull" 2400
 		"required crew" 6
@@ -507,6 +515,8 @@ ship "Phononos"
 	thumbnail "thumbnail/avgi phononos"
 	attributes
 		category "Light Freighter"
+		licenses
+			"Avgi Civilian"
 		"shields" 240
 		"hull" 1500
 		"automaton" 1
@@ -570,6 +580,8 @@ ship "Frequentia"
 	swizzle 0
 	attributes
 		category "Utility"
+		licenses
+			"Avgi Civilian"
 		"shields" 600
 		"hull"	1800
 		"required crew" 2
@@ -636,6 +648,8 @@ ship "Undsyni"
 	swizzle 0
 	attributes
 		category "Utility"
+		licenses
+			"Avgi Civilian"
 		"shields" 2400
 		"hull" 15000
 		"required crew" 12
@@ -729,6 +743,8 @@ ship "Polari"
 	swizzle 0
 	attributes
 		category "Utility"
+		licenses
+			"Avgi Civilian"
 		"shields" 600
 		"hull"	2100
 		"required crew" 3
@@ -808,6 +824,8 @@ ship "Entasi"
 	swizzle 0
 	attributes
 		category "Utility"
+		licenses
+			"Avgi Civilian"
 		"shields" 1500
 		"hull" 3600
 		"required crew" 6
@@ -1056,6 +1074,8 @@ ship "Tremoros"
 	thumbnail "thumbnail/avgi tremoros"
 	attributes
 		category "Interceptor"
+		licenses
+			"Avgi Civilian"
 		"cost" 490000
 		"shields" 600
 		"hull" 3600
@@ -1130,6 +1150,8 @@ ship "Prismaios"
 	swizzle 0
 	attributes
 		category "Light Warship"
+		licenses
+			"Avgi Military"
 		"cost" 240000
 		"shields" 1440
 		"hull" 7200
@@ -1211,6 +1233,8 @@ ship "Interferos"
 	swizzle 0
 	attributes
 		category "Light Warship"
+		licenses
+			"Avgi Civilian"
 		"cost" 240000
 		"shields" 900
 		"hull" 3600
@@ -1292,6 +1316,8 @@ ship "Diaspersi"
 	swizzle 0
 	attributes
 		category "Medium Warship"
+		licenses
+			"Avgi Military"
 		"cost" 2400000
 		"shields" 2400
 		"hull" 12000
@@ -1391,6 +1417,8 @@ ship "Difraktos"
 	swizzle 0
 	attributes
 		category "Medium Warship"
+		licenses
+			"Avgi Military"
 		"cost" 3600000
 		"shields" 6000
 		"hull" 18600
@@ -1488,6 +1516,8 @@ ship "Refraktos"
 	swizzle 0
 	attributes
 		category "Medium Warship"
+		licenses
+			"Avgi Military"
 		"shields" 3600
 		"hull" 8400
 		"required crew" 12
@@ -1579,6 +1609,8 @@ ship "Atenuatia"
 	swizzle 0
 	attributes
 		category "Heavy Warship"
+		licenses
+			"Avgi Military"
 		"shields" 4200
 		"hull" 27600
 		"required crew" 60
@@ -1704,6 +1736,8 @@ ship "Akoustiki"
 	thumbnail "thumbnail/avgi akoustiki"
 	attributes
 		category "Fighter"
+		licenses
+			"Avgi Civilian"
 		"shields" 180
 		"hull" 1200
 		"required crew" 1
@@ -1771,6 +1805,8 @@ ship "Photikon"
 	thumbnail "thumbnail/avgi photikon"
 	attributes
 		category "Fighter"
+		licenses
+			"Avgi Military"
 		"shields" 240
 		"hull" 1800
 		"automaton" 1
@@ -1845,6 +1881,8 @@ ship "Vibratia"
 	thumbnail "thumbnail/avgi vibratia"
 	attributes
 		category "Drone"
+		licenses
+			"Avgi Military"
 		"cost" 36000
 		"hull" 1500
 		"automaton" 1
@@ -1911,6 +1949,8 @@ ship "Undulon"
 	thumbnail "thumbnail/avgi undulon"
 	attributes
 		category "Drone"
+		licenses
+			"Avgi Military"
 		"cost" 36000
 		"hull" 600
 		"automaton" 1
@@ -1981,6 +2021,8 @@ ship "Optikon"
 	thumbnail "thumbnail/avgi optikon"
 	attributes
 		category "Drone"
+		licenses
+			"Avgi Civilian"
 		"hull" 600
 		"automaton" 1
 		"crew equivalent" 1
@@ -2024,6 +2066,8 @@ ship "Sonikis"
 	thumbnail "thumbnail/avgi sonikis"
 	attributes
 		category "Drone"
+		licenses
+			"Avgi Civilian"
 		"hull" 600
 		"automaton" 1
 		"crew equivalent" 1

@@ -342,18 +342,19 @@ mission "Avgi: Defend Ensemble 1"
 				goto next
 
 			label korath
-			`	"Aliens other than the Quarg?" You nod. "Huh. I've heard rumors about attacks in the Core before, but I always thought it was the Syndicate making excuses for piracy."`
+			`	"Aliens other than the Quarg?" You nod. "Huh. I've heard rumors about alien attacks in the Core before, but I always thought it was the Syndicate making excuses for piracy."`
 				goto next
 
 			label pug
-			`	"Deneb? There's no hyperlanes to that system, are there?"`
+			`	"Deneb? There's no hyperlanes to that system, are there? Strange." He looks thoughtful for a moment. "I've heard stories before, of... nevermind, excuse me."`
 				goto next
 
 			label quarg
-			`	"...What?"
+			`	"...What? You're kidding, right? How the hell did you defeat a Quarg ship?" He looks worried for a second, taking a step back. "Do I even want to be seen associating with you?" he laughs nervously.`
+				goto next
 
 			label next
-
+			`	He shakes his head for a moment, then looks back at you. "Well, "
 
 
 				accept

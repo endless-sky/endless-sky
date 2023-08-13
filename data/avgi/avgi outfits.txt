@@ -3,6 +3,8 @@
 
 outfit "Speck Round"
 	category "Ammunition"
+	licenses
+		"Avgi Civilian"
 	cost 6
 	thumbnail "outfit/speck round"
 	"mass" 0.0015
@@ -13,6 +15,8 @@ outfit "Speck Round"
 
 outfit "Speck Magazine"
 	category "Ammunition"
+	licenses
+		"Avgi Civilian"
 	cost 60000
 	thumbnail "outfit/unknown"
 	"mass" 1.2
@@ -23,6 +27,8 @@ outfit "Speck Magazine"
 
 outfit "Speckle Railgun"
 	category "Guns"
+	licenses
+		"Avgi Civilian"
 	cost 40000
 	thumbnail "outfit/speckle gun"
 	"mass" 3.6
@@ -52,6 +58,8 @@ outfit "Speckle Railgun"
 
 outfit "Speckle Turret"
 	category "Turrets"
+	licenses
+		"Avgi Civilian"
 	cost 40000
 	thumbnail "outfit/speckle turret"
 	"mass" 10.2
@@ -107,6 +115,8 @@ effect "speck fire"
 
 outfit "Fleck Round"
 	category "Ammunition"
+	licenses
+		"Avgi Military"
 	cost 6
 	thumbnail "outfit/fleck round"
 	"mass" 0.009
@@ -116,6 +126,8 @@ outfit "Fleck Round"
 
 outfit "Fleck Magazine"
 	category "Ammunition"
+	licenses
+		"Avgi Military"
 	cost 60000
 	thumbnail "outfit/unknown"
 	"mass" 4.2
@@ -126,6 +138,8 @@ outfit "Fleck Magazine"
 
 outfit "Fleck Coilgun"
 	category "Guns"
+	licenses
+		"Avgi Military"
 	cost 40000
 	thumbnail "outfit/fleck coilgun"
 	"mass" 7.2
@@ -154,6 +168,8 @@ outfit "Fleck Coilgun"
 
 outfit "Fleck Turret"
 	category "Turrets"
+	licenses
+		"Avgi Military"
 	cost 40000
 	thumbnail "outfit/fleck turret"
 	"mass" 17.4
@@ -207,6 +223,8 @@ effect "fleck fire"
 outfit "Phased Array Laser (Green)"
 	plural "Phased Array Lasers (Green)"
 	category "Turrets"
+	licenses
+		"Avgi Civilian"
 	cost 120000
 	thumbnail "outfit/green phaser"
 	"mass" 6
@@ -233,6 +251,8 @@ outfit "Phased Array Laser (Green)"
 outfit "Phased Array Laser (Blue)"
 	plural "Phased Array Lasers (Blue)"
 	category "Turrets"
+	licenses
+		"Avgi Military"
 	cost 120000
 	thumbnail "outfit/blue phaser"
 	"mass" 9
@@ -314,6 +334,8 @@ effect "green phaser fire"
 
 outfit "Sidereal Missile"
 	category "Ammunition"
+	licenses
+		"Avgi Military"
 	cost 600
 	thumbnail "outfit/sidereal missile"
 	"mass" 0.3
@@ -323,6 +345,8 @@ outfit "Sidereal Missile"
 
 outfit "Sidereal Launcher"
 	category "Secondary Weapons"
+	licenses
+		"Avgi Military"
 	cost 1370000
 	thumbnail "outfit/unknown"
 	"mass" 2.4
@@ -358,6 +382,8 @@ outfit "Sidereal Launcher"
 
 outfit "Sidereal Pod"
 	category "Secondary Weapons"
+	licenses
+		"Avgi Military"
 	cost 1370000
 	thumbnail "outfit/unknown"
 	"mass" 1.8
@@ -393,6 +419,8 @@ outfit "Sidereal Pod"
 
 outfit "Sidereal VLS Array"
 	category "Secondary Weapons"
+	licenses
+		"Avgi Military"
 	cost 1370000
 	thumbnail "outfit/unknown"
 	"mass" 6
@@ -472,6 +500,8 @@ outfit "Sidereal Flack"
 
 outfit "Sidereal Magazine"
 	category "Ammunition"
+	licenses
+		"Avgi Military"
 	cost 1440000
 	thumbnail "outfit/unknown"
 	"mass" 1.2
@@ -483,6 +513,8 @@ outfit "Sidereal Magazine"
 
 outfit "Equinox Torpedo"
 	category "Ammunition"
+	licenses
+		"Avgi Atomics"
 	cost 660000
 	thumbnail "outfit/equinox torpedo"
 	"mass" 3
@@ -493,6 +525,8 @@ outfit "Equinox Torpedo"
 
 outfit "Equinox Torpedo Pylon"
 	category "Secondary Weapons"
+	licenses
+		"Avgi Atomics"
 	cost 80000
 	thumbnail "outfit/unknown"
 	"mass" 6
@@ -556,6 +590,8 @@ outfit "Equinox Active"
 
 outfit "Equinox Torpedo Stockpile"
 	category "Ammunition"
+	licenses
+		"Avgi Atomics"
 	cost 1440000
 	thumbnail "outfit/unknown"
 	"mass" 6
@@ -570,6 +606,8 @@ outfit "Equinox Torpedo Stockpile"
 
 outfit "Nadir Missile"
 	category "Ammunition"
+	licenses
+		"Avgi Atomics"
 	cost 660000
 	thumbnail "outfit/nadir missile"
 	"mass" 0.9
@@ -580,6 +618,8 @@ outfit "Nadir Missile"
 
 outfit "Nadir Launcher"
 	category "Secondary Weapons"
+	licenses
+		"Avgi Atomics"
 	cost 1370000
 	thumbnail "outfit/unknown"
 	"mass" 4.8
@@ -638,6 +678,8 @@ outfit "Nadir Active"
 
 outfit "Nadir Magazine"
 	category "Ammunition"
+	licenses
+		"Avgi Atomics"
 	cost 1440000
 	thumbnail "outfit/unknown"
 	"mass" 3
@@ -648,6 +690,8 @@ outfit "Nadir Magazine"
 
 outfit "Azimuth Missile"
 	category "Ammunition"
+	licenses
+		"Avgi Atomics"
 	cost 660000
 	thumbnail "outfit/casaba howitzer"
 	"mass" 1
@@ -658,7 +702,7 @@ outfit "Azimuth Missile"
 outfit "Azimuth Launcher"
 	category "Secondary Weapons"
 	licenses
-		Heliarch
+		"Avgi Atomics"
 	cost 1370000
 	thumbnail "outfit/casaba howitzer launcher"
 	"mass" 24
@@ -753,6 +797,8 @@ effect "fission fragments"
 outfit "Radiative Scales"
 	plural "Radiative Scales"
 	category "Systems"
+	licenses
+		"Avgi Civilian"
 	cost 200000
 	thumbnail "outfit/unknown"
 	"mass" 12
@@ -766,6 +812,8 @@ outfit "Radiative Scales"
 outfit "Concealment Scales"
 	plural "Concealment Scales"
 	category "Systems"
+	licenses
+		"Avgi Military"
 	cost 200000
 	thumbnail "outfit/unknown"
 	"mass" 6
@@ -781,19 +829,23 @@ outfit "Concealment Scales"
 outfit "Nanoceramic Scales"
 	plural "Nanoceramic Scales"
 	category "Systems"
+	licenses
+		"Avgi Military"
 	cost 200000
 	thumbnail "outfit/unknown"
 	"mass" 36
 	"anchor point" -1
 	"hull multiplier" 0.33
 	"solar heat" 3
-	description "Thanks to recent breakthroughts in materials science, the Avgi have devised this retrofitting kit to allow older ships to take advantage of the increased hull strength offered by exotic materials. These armor plates and structural members reinforce both the skin and core strength of a ship, strengthening it without compromising its internal structure."
-	description "Adamant Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
+	description "These extra armor platings can significantly reinforce a ship's hull, but are quite bulky."
+	description "Nanoceramic Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
 
 
 outfit "Adamant Scales"
 	plural "Adamant Scales"
 	category "Systems"
+	licenses
+		"Avgi Military"
 	cost 200000
 	thumbnail "outfit/unknown"
 	"mass" 36
@@ -807,6 +859,8 @@ outfit "Adamant Scales"
 outfit "Warding Scales"
 	plural "Warding Scales"
 	category "Systems"
+	licenses
+		"Avgi Military"
 	cost 200000
 	thumbnail "outfit/unknown"
 	"mass" 42
@@ -819,6 +873,8 @@ outfit "Warding Scales"
 
 outfit "Electrostatic Ramscoop"
 	category "Systems"
+	licenses
+		"Avgi Civilian"
 	cost 60000
 	thumbnail "outfit/unknown"
 	"mass" 12
@@ -832,6 +888,8 @@ outfit "Electrostatic Ramscoop"
 
 outfit "Dipole Ramscoop"
 	category "Systems"
+	licenses
+		"Avgi Civilian"
 	cost 60000000
 	thumbnail "outfit/unknown"
 	"mass" 60
@@ -849,6 +907,8 @@ outfit "Dipole Ramscoop"
 
 outfit "Deuterium Slush Tank"
 	category "Systems"
+	licenses
+		"Avgi Civilian"
 	cost 90000
 	thumbnail "outfit/deuterium slush tank"
 	"mass" 3
@@ -860,6 +920,8 @@ outfit "Deuterium Slush Tank"
 
 outfit "Cryogenic Deuterium Tank"
 	category "Systems"
+	licenses
+		"Avgi Civilian"
 	cost 30000
 	thumbnail "outfit/unknown"
 	"mass" 12
@@ -871,6 +933,8 @@ outfit "Cryogenic Deuterium Tank"
 
 outfit "Thermal Sink Partition"
 	category "Systems"
+	licenses
+		"Avgi Civilian"
 	cost 30000
 	thumbnail "outfit/densified fuel tank"
 	"mass" 9
@@ -882,6 +946,8 @@ outfit "Thermal Sink Partition"
 
 outfit "Multispectral Scanner"
 	category "Systems"
+	licenses
+		"Avgi Civilian"
 	cost 24000
 	thumbnail "outfit/multispectral scanner"
 	"mass" 3
@@ -896,6 +962,8 @@ outfit "Multispectral Scanner"
 
 outfit "Spectrometer Array"
 	category "Systems"
+	licenses
+		"Avgi Civilian"
 	cost 24000
 	thumbnail "outfit/spectrometer array"
 	"mass" 6
@@ -912,6 +980,8 @@ outfit "Spectrometer Array"
 
 outfit "Diffuse Deflector"
 	category "Systems"
+	licenses
+		"Avgi Civilian"
 	cost 1200000
 	thumbnail "outfit/unknown"
 	"mass" 48
@@ -925,6 +995,8 @@ outfit "Diffuse Deflector"
 
 outfit "Specular Deflector"
 	category "Systems"
+	licenses
+		"Avgi Military"
 	cost 2100000
 	thumbnail "outfit/unknown"
 	"mass" 72
@@ -938,6 +1010,8 @@ outfit "Specular Deflector"
 
 outfit "Optical Lasing Generator"
 	category "Systems"
+	licenses
+		"Avgi Civilian"
 	cost 120000
 	thumbnail "outfit/unknown"
 	"mass" 30
@@ -953,6 +1027,8 @@ outfit "Optical Lasing Generator"
 
 outfit "Concentrating Solar Cell"
 	category "Power"
+	licenses
+		"Avgi Civilian"
 	cost 200000
 	thumbnail "outfit/unknown"
 	"mass" 1
@@ -964,6 +1040,8 @@ outfit "Concentrating Solar Cell"
 
 outfit "Concentrating Solar Array"
 	category "Power"
+	licenses
+		"Avgi Civilian"
 	cost 200000
 	thumbnail "outfit/unknown"
 	"mass" 3
@@ -977,6 +1055,8 @@ outfit "Concentrating Solar Array"
 outfit "Photoelectric Scales"
 	plural "Photoelectric Scales"
 	category "Power"
+	licenses
+		"Avgi Civilian"
 	cost 200000
 	thumbnail "outfit/photoelectric scales"
 	"mass" 24
@@ -989,6 +1069,8 @@ outfit "Photoelectric Scales"
 
 outfit "Lantern Fission Core"
 	category "Power"
+	licenses
+		"Avgi Civilian"
 	cost 1200000
 	thumbnail "outfit/lantern fission core"
 	"mass" 24
@@ -1000,6 +1082,8 @@ outfit "Lantern Fission Core"
 
 outfit "Luminous Fusion Core"
 	category "Power"
+	licenses
+		"Avgi Civilian"
 	cost 20460000
 	thumbnail "outfit/fusion core small"
 	"mass" 36
@@ -1012,6 +1096,8 @@ outfit "Luminous Fusion Core"
 
 outfit "Brilliant Fusion Core"
 	category "Power"
+	licenses
+		"Avgi Military"
 	cost 20460000
 	thumbnail "outfit/unknown"
 	"mass" 72
@@ -1024,6 +1110,8 @@ outfit "Brilliant Fusion Core"
 
 outfit "Radiant Fusion Core"
 	category "Power"
+	licenses
+		"Avgi Military"
 	cost 20460000
 	thumbnail "outfit/unknown"
 	"mass" 120
@@ -1036,6 +1124,8 @@ outfit "Radiant Fusion Core"
 
 outfit "Stellar Fusion Core"
 	category "Power"
+	licenses
+		"Avgi Military"
 	cost 20460000
 	thumbnail "outfit/unknown"
 	"mass" 144
@@ -1048,6 +1138,8 @@ outfit "Stellar Fusion Core"
 
 outfit "Ultracapacitor Cell"
 	category "Power"
+	licenses
+		"Avgi Civilian"
 	cost 200000
 	thumbnail "outfit/unknown"
 	"mass" 1
@@ -1060,6 +1152,8 @@ outfit "Ultracapacitor Cell"
 	
 outfit "Ultracapacitor Bank"
 	category "Power"
+	licenses
+		"Avgi Civilian"
 	cost 200000
 	thumbnail "outfit/unknown"
 	"mass" 6
@@ -1075,6 +1169,8 @@ outfit "Ultracapacitor Bank"
 
 outfit "Magnetoplasma Drive"
 	category "Engines"
+	licenses
+		"Avgi Civilian"
 	"cost" 30000
 	thumbnail "outfit/magnetoplasma drive"
 	"mass" 12
@@ -1105,6 +1201,8 @@ outfit "Magnetoplasma Drive"
 
 outfit "Z-360 Fusion Torch"
 	category "Engines"
+	licenses
+		"Avgi Military"
 	"cost" 100000
 	thumbnail "outfit/fusion engine small"
 	"mass" 36
@@ -1129,6 +1227,8 @@ outfit "Z-360 Fusion Torch"
 
 outfit "Z-600 Fusion Torch"
 	category "Engines"
+	licenses
+		"Avgi Military"
 	"cost" 100000
 	thumbnail "outfit/fusion engine medium"
 	"mass" 60
@@ -1152,6 +1252,8 @@ outfit "Z-600 Fusion Torch"
 
 outfit "Z-960 Fusion Torch"
 	category "Engines"
+	licenses
+		"Avgi Military"
 	"cost" 100000
 	thumbnail "outfit/fusion engine large"
 	"mass" 96
@@ -1182,6 +1284,8 @@ effect "fusion afterburner"
 outfit "XY-180 Radial Thrusters"
 	plural "XY-180 Radial Thrusters"
 	category "Engines"
+	licenses
+		"Avgi Military"
 	"cost" 221000
 	thumbnail "outfit/rcs small"
 	"mass" 18
@@ -1207,6 +1311,8 @@ outfit "XY-180 Radial Thrusters"
 outfit "XY-420 Radial Thrusters"
 	plural "XY-360 Radial Thrusters"
 	category "Engines"
+	licenses
+		"Avgi Military"
 	"cost" 473000
 	thumbnail "outfit/rcs large"
 	"mass" 42
@@ -1232,6 +1338,8 @@ outfit "XY-420 Radial Thrusters"
 outfit "XY-720 Radial Thrusters"
 	plural "XY-720 Radial Thrusters"
 	category "Engines"
+	licenses
+		"Avgi Military"
 	"cost" 1077000
 	thumbnail "outfit/unknown"
 	"mass" 72
@@ -1283,6 +1391,8 @@ outfit "Beam Core Antimatter Torch"
 
 outfit "Electromotive Rifle"
 	category "Hand to Hand"
+	licenses
+		"Avgi Civilian"
 	cost 53000
 	thumbnail "outfit/unknown"
 	"capture attack" 0.6
