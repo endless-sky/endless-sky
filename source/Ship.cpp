@@ -4184,15 +4184,15 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 
 			// Check if we are able to turn.
 			if(turningEnergy > 0. && energy < turningEnergy * fabs(commands.Turn()))
-				commands.ScaleTurn(energy / turningEnergy);
+				commands.SetTurn(copysign(energy / turningEnergy, commands.Turn()));
 			if(turningFuel > 0. && fuel < turningFuel * fabs(commands.Turn()))
-				commands.ScaleTurn(fuel / turningFuel);
+				commands.SetTurn(copysign(fuel / turningFuel, commands.Turn()));
 			if(turningHeat > 0. && heat < turningHeat * fabs(commands.Turn()))
-				commands.ScaleTurn(heat / turningHeat);
+				commands.SetTurn(copysign(heat / turningHeat, commands.Turn()));
 			if(turningHull > 0. && hull < turningHull * fabs(commands.Turn()))
-				commands.ScaleTurn(hull / turningHull);
+				commands.SetTurn(copysign(hull / turningHull, commands.Turn()));
 			if(turningShields > 0. && shields < turningShields * fabs(commands.Turn()))
-				commands.ScaleTurn(shields / turningShields);
+				commands.SetTurn(copysign(shields / turningShields, commands.Turn()));
 
 			if(commands.Turn())
 			{
@@ -4246,15 +4246,15 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 
 			// Check if we are able to turn.
 			if(thrustingEnergy > 0. && energy < thrustingEnergy * thrustCommand)
-				thrustCommand *= energy / thrustingEnergy;
+				thrustCommand = energy / thrustingEnergy;
 			if(thrustingFuel > 0. && fuel < thrustingFuel * thrustCommand)
-				thrustCommand *= fuel / thrustingFuel;
+				thrustCommand = fuel / thrustingFuel;
 			if(thrustingHeat > 0. && heat < thrustingHeat * thrustCommand)
-				thrustCommand *= heat / thrustingHeat;
+				thrustCommand = heat / thrustingHeat;
 			if(thrustingHull > 0. && hull < thrustingHull * thrustCommand)
-				thrustCommand *= hull / thrustingHull;
+				thrustCommand = hull / thrustingHull;
 			if(thrustingShields > 0. && shields < thrustingShields * thrustCommand)
-				thrustCommand *= shields / thrustingShields;
+				thrustCommand = shields / thrustingShields;
 
 			if(thrustCommand)
 			{
@@ -4302,15 +4302,15 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 
 			// Check if we are able to turn.
 			if(thrustingEnergy > 0. && energy < thrustingEnergy * thrustCommand)
-				thrustCommand *= energy / thrustingEnergy;
+				thrustCommand = energy / thrustingEnergy;
 			if(thrustingFuel > 0. && fuel < thrustingFuel * thrustCommand)
-				thrustCommand *= fuel / thrustingFuel;
+				thrustCommand = fuel / thrustingFuel;
 			if(thrustingHeat > 0. && heat < thrustingHeat * thrustCommand)
-				thrustCommand *= heat / thrustingHeat;
+				thrustCommand = heat / thrustingHeat;
 			if(thrustingHull > 0. && hull < thrustingHull * thrustCommand)
-				thrustCommand *= hull / thrustingHull;
+				thrustCommand = hull / thrustingHull;
 			if(thrustingShields > 0. && shields < thrustingShields * thrustCommand)
-				thrustCommand *= shields / thrustingShields;
+				thrustCommand = shields / thrustingShields;
 
 			if(thrustCommand)
 			{
