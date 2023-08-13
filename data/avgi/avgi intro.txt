@@ -306,25 +306,28 @@ mission "Avgi: Defend Ensemble 1"
 	name "Avgi Strike Force"
 	description "Meet up with the Avgi strike force at <destination>."
 	source "Aktina Cylinder"
+	passengers 1
+	blocked "You'll need a free bunk on the <ship> if you want to take Darius anywhere off this station."
 	destination "Napigeo Station"
 	to offer
 		has "Avgi: Deep Humans: done"
 	on offer
 		conversation
 			`From afar, Aktina station is a titanic skeleton, with graphene ribs and a metallic backbone. Reminiscent of the human concept of an O'Neil Cylinder, it will be able to house millions of Avgi once completed. For now though, its construction has been hampered by the constant demand for new warships and mining stations throughout the Tangled Shroud, to the point that many are skeptical of its projected completion time within another few years.`
-			`	Following the instructions of the station's control authority, you fly through the station's open frame to its small pressurized area, which houses the construction workers and maintenance crews. You've been told that word of your arrival has been sent ahead of you, so you aren't entirely surprised to see another human waiting in the hangar, a look of pure astonishment on his face as your ship settles into a free space. You disembark the <ship> to find Darius waiting right outside the hatch.`
+			`	Following the instructions of the station's control authority, you fly through the station's open frame to its small pressurized area, which houses the construction workers and maintenance crews. You've been told that word of your arrival has been sent ahead of you, so you aren't entirely surprised to see a middle-aged human waiting in the hangar, a look of pure astonishment on his face as your ship settles into a free space. You disembark the <ship> to find Darius waiting right outside the hatch.`
 			choice
+				`	"Hello."`
 				`	"Hey there."`
 				`	"I come in peace."`
-			`	The man blinks in surprise, then extends a hand, which you shake. "So, another one of us here in Neverland. I don't know if I should be glad to see another friendly face, or feel bad that another soul is stranded here along with us." He shakes his head. "If you don't mind telling me, how'd you end up here anyway?"`
+			`	The man blinks in surprise, then extends a hand, which you shake. "So, another one of us here in Fairyland. I don't know if I should be glad to see another friendly face, or feel bad that another soul is stranded here along with us." He shakes his head. "Let's find somewhere to talk. If you don't mind telling me, how'd you end up here anyway?"`
 			choice
 				`	"I have a Jump Drive."`
-			`	He somehow manages to look even more astonished. "A Jump Drive? Where the hell did you get one of those?"`
+			`	He somehow manages to look even more astonished as you walk. "A Jump Drive? Where the hell did you get one of those?"`
 				choice
 					`	"I took it from some hostile aliens near the Core."`
 						goto korath
 						to display
-							has "reputation: Korath" < 0
+							"reputation: Korath" < -10
 					`	"I took it from some aliens in the Deneb system."`
 						goto pug
 						to display
@@ -336,7 +339,7 @@ mission "Avgi: Defend Ensemble 1"
 					`	"I took it from the Quarg."`
 						goto quarg
 						to display
-							has "reputation: Quarg" < 0
+							"reputation: Quarg" < 0
 					`	"I'm afraid I can't tell you that."`
 			`	He looks skeptical. "Alright then, keep your secrets."`
 				goto next
@@ -354,10 +357,44 @@ mission "Avgi: Defend Ensemble 1"
 				goto next
 
 			label next
-			`	He shakes his head for a moment, then looks back at you. "Well, "
+			`	Darius shakes his head for a moment, then looks back at you. "Well, since you're still here, I'm assuming your Jump Drive couldn't get you out of here?" You tell him about how you were unable to jump back to human space, and he nods along.`
+			`	"There has to be a way out, I just know it. But in six years, we've only been able to spend a few days at a time in the systems bordering human space, before those damn space shoggoths forced us back. And," he lowers his voice, looking around surreptitiously, "I don't think the Avgi are that enthusiastic about us trying to map the place either. I don't think they're exactly trying to keep us here or anything, but they've been pretty insistant on us humans not getting ourselves killed doing something stupid, like say, desperately trying to find a way back to our homes." He sounds frustrated.`
+			choice
+				`	"Don't worry, I'm sure we'll find a way back home."`
+					goto reassuring
+				`	"The Avgi are trying to keep you here? That's worrying."`
 
+			`	"I'm probably just paranoid. After all, they're really enthusiastic about trying for an alliance with humanity to help them against these Aberrant, no matter how many times I explain humans aren't really all that technologically advanced. But they think if I can find a way home, we might be able to find a way to open up a connection between human space and Avgi space, especially given the way we got here. Not that I'd want to do that, with the chance of the Aberrant overrunning human space."`
 
-				accept
+			label reassuring
+			`	"Sometimes I find it hard to believe that we'll ever make it home, but it helps to tell myself there's hope," he says.`
+			choice
+				`	"How'd you end up in Avgi space without a Jump Drive?"`
+
+			`	"Funny story, that," he says. "We were part of a big convoy from Valhalla, sponsored by one of the big universities there. I was working with Deep Security, after my stint in the Navy ended with... well, that's a story for another time." He trails off. "Anyway, we were in a Mule carrying some scanning equipment. To research the Quarg, you see. Officially we were there for cultural outreach and exchange, you know the usual, but really we wanted some good scans of a Wardragon. The Quarg don't really approve of it, but they don't do much to discourage it either."`
+			`	"So, we were on our way back, just hopped over to Dabih. Really successful trip and everything, with a big bonus waiting for me thanks to how long the trip across the entire Republic took. But then our scanners started picking up weird readings from particular hyperlanes, and we started hearing some pirates chattering about how something weird was happening in the Sadr system. A new hyperlane, pointing South, they said. It was just a few jumps away from our current location, and we were the only Deep ship in the area that could go off alone."`
+			`	He looks at his hands. "So I... I made the decision, as Captain. I volunteered my crew to investigate it, to travel through that hyperlane in the name of science. For what the Deep holds highest, because I guess I wanted... I don't know. Not the prestige. But to live up to what the Deep's supposed to be, the ones at the forefront of human exploration and research. They took me in when I had nowhere else to go, and I guess I wanted to repay that somehow. And now, now a dozen good men and women are dead, and the rest are stuck here behind a hyperlane that closed the moment we went through it, living among aliens fighting a war of extinction that they probably can't win."`
+			choice
+				`	"The other members of your crew, where are they now?"`
+			`	"There are a few of us left," he sighs, "but, well, I'm not on the best of terms with them. They blame me for bringing them here, and I can't blame them."`
+			choice
+				`	"That seems unfair. There's no way you could have known what would happen."
+					goto blame
+				`	"Is there a chance of reconciling with them?"`
+			`	"I've made... a lot of mistakes. Ones with a price paid in lives. But," he looks down, "...maybe. They don't hate me or anything like that, we just... keep our distance. Sora's off doing who knows what with the Twilight Guard on Weledos, and Leon is on and off with those mining guilds to the East. There are a few others left too, but like I said. A price paid in lives."
+				goto end
+
+			label blame
+				`	"I wish it was that simple. I made more mistakes after that, ones with a price measured in lives. Eleven dead after our ship was disabled, all because I ordered us to get too close to the scary looking alien ships in the hope we could communicate with them. Sure, you could say I couldn't have known the Aberrant would try to kill us, but I ignored the advice of my crew, just because I was desperate to get home. Sora, Leon, they both told me we should run, but I didn't listen to them."`
+					goto end
+
+			`	You sit together in silence for a few more minutes, when Darius seems to recieve a message on his communicator. "I get patched in to the emergency alert system," he explains as he reads it. Suddenly, he pales. "There's a massive invasion headed towards the Ensemble system. Dozens of Aberrations, flying straight into the Shroud." He looks up at you. "They don't normally try to go too deep in the Shroud. Something about it spooks them, I think, but Ensemble is shallow enough that they've attacked it before. Nothing of this scale though, and... damn, Sora's on Weledos, the moon in the Ensemble system."`
+			`	He looks at you, hopeful. " We've got to do something. The Avgi are assembling a relief force around Napigeo Station, their big shipyard near here."`
+			choice
+				`	"We'll join it. The <ship> is a mighty fine ship."`
+					accept
+				`	"Sorry, this just isn't my fight"`
+					decline
 
 
 mission "Avgi: Defend Ensemble 2"
