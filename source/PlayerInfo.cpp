@@ -209,31 +209,20 @@ void PlayerInfo::NewDesignPlayer(const PlayerInfo &player)
 	// Used to stock stores with items known to be for sale.
 	visitedSystems = player.visitedSystems;
 
-	// Add any not-for-sale outfits in storage somewhere into the
-	// player's cargo, so they'll show up in the Design Outfitter.
-	Cargo().Clear();
-	Cargo().SetSize(-1);
-	set<const Outfit *> seen;
-	// Find all outfits sold by outfitters of visited systems.
-	for(const auto &it : GameData::Planets())
-		if(it.second.IsValid() && player.HasVisited(*it.second.GetSystem()))
-			for(const Outfit *outfit : it.second.Outfitter())
-				if(!seen.count(outfit))
-					seen.insert(outfit);
-	// Add not-for-sale outfits in planetary storage
+	// Pool outfits in any planetary storage to local planetary storage.
+	CargoHold &planetStorage = planetaryStorage[GetPlanet()];
 	for(const auto &it : player.PlanetaryStorage())
 		for(const auto &oit : it.second.Outfits())
-			if(!seen.count(oit.first))
-				Cargo().Add(oit.first, oit.second);
-	// Add not-for-sale outfits in player cargo
+			planetStorage.Add(oit.first, oit.second);
+
+	// Pool all outfits in any cargo (ship or player) to player cargo.
+	Cargo().Clear();
+	Cargo().SetSize(-1);
 	for(const auto &it : player.Cargo().Outfits())
-		if(!seen.count(it.first))
-			Cargo().Add(it.first, it.second);
-	// Add not-for-sale outfits in ship cargo
+		Cargo().Add(it.first, it.second);
 	for(const auto &it : player.Ships())
 		for(const auto &oit : it->Cargo().Outfits())
-			if(!seen.count(oit.first))
-				Cargo().Add(oit.first, oit.second);
+			Cargo().Add(oit.first, oit.second);
 
 	// We don't add not-for-sale outfits that can be gotten from
 	// for-sale ships - players can manage those themselves in the
