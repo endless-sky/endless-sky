@@ -593,6 +593,7 @@ void PreferencesPanel::DrawSettings()
 		"Rehire extra crew when lost",
 		"",
 		"Map",
+		"Deadline blink by distance",
 		"Hide unexplored map regions",
 		"Show escort systems on map",
 		"Show stored outfits on map",
