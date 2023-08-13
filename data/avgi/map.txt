@@ -3009,8 +3009,8 @@ system Tailwind
 	minables lead 5 2.717
 	minables tungsten 15 3.546
 	fleet "Avgi Scouts" 13000
-	fleet "Small Aberrant" 150
-	fleet "Large Aberrant" 300
+	fleet "Small Aberrant" 2100
+	fleet "Large Aberrant" 3900
 	object
 		sprite star/k0
 		distance 53.4
