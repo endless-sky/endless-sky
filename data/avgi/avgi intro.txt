@@ -292,14 +292,14 @@ mission "Avgi: First Contact"
 			action
 				set "language: Avgi"
 
-mission "Avgi: Deep Humans"
+mission "Avgi: Humans From the Deep"
 	landing
 	name "Humans Among the Avgi"
 	description "Visit the <destination>, where there is another human, Darius Calwell, stranded in Avgi space."
 	source "Peripheria"
 	destination "Aktina Cylinder"
 	to offer
-		has "Avgi: First Contact: offered"
+		has "Avgi: First Contact: done"
 
 
 mission "Avgi: Defend Ensemble 1"
@@ -311,7 +311,7 @@ mission "Avgi: Defend Ensemble 1"
 	blocked "You'll need a free bunk on the <ship> if you want to take Darius anywhere off this station."
 	destination "Napigeo Station"
 	to offer
-		has "Avgi: Deep Humans: done"
+		has "Avgi: Humans From the Deep: done"
 	on offer
 		conversation
 			`From afar, Aktina station is a titanic skeleton, with graphene ribs and a metallic backbone. Reminiscent of the human concept of an O'Neil Cylinder, it will be able to house millions of Avgi once completed. For now though, its construction has been hampered by the constant demand for new warships and mining stations throughout the Tangled Shroud, to the point that many are skeptical of its projected completion time within another few years.`
@@ -634,7 +634,7 @@ mission "Avgi: Frontline Combat"
 	waypoint "Firmament"
 	waypoint "Lumine"
 	to offer
-		has "First Contact: Avgi 1: done"
+		has " Avgi: Defend Ensemble 2: done"
 		has "avgi: warship intro"
 	on offer
 		conversation
@@ -649,7 +649,7 @@ mission "Avgi: Frontline Combat"
 			`	"Yes, the <ship> can take them."`
 			`	"I'd rather not take the risk"."`
 				goto decline
-		`	"Excellent. Report back to Peripheria when the Aberrant are eliminated."`
+		`	"Excellent. Report back to the Feo Platform when the Aberrant are eliminated."`
 
 	npc kill
 		government "Aberrant"
@@ -700,32 +700,74 @@ mission "Avgi: Frontline Combat"
 
 	on complete
 		conversation
-			`You recieve a hero's welcome back on the Feo Platform, as stories of your exploits spread.`
-			`	After a short celebration and many expressions of deep gratitude toward you, you find Darius and Sora waiting by the <ship> to speak with you.`
+			`You recieve a hero's welcome back on the Feo Platform from the Twilight Guards stationed there, as stories of your exploits spread.`
+			`	After a short celebration and many expressions of praise toward you, an alien stranger, you find Darius and Sora waiting by the <ship> to speak with you.`
 			`	"<first>, I think we have a golden opportunity," he says. "I was just talking to an Assemblyman, Hriso, who's worried about the political situation in the eastern branch of the Tangled Shroud.`
 			`	"A bunch of selfish cowards, they are," says Sora disdainfully.`
 			`	"Something about the miners grumbling about price controls on nickel-iron," Darius says after a moment, "but he wants to know if you could use your Jump Drive to take him there for some outreach to the miners without needing to spend weeks wandering through the mess of twisted hyperlanes. It's the perfect chance to meet my friend and ask him some questions. What do you think?"`
 			choice
 				`	"Sounds good to me."`
-			`	"Good. Meet me in the spaceport in an hour and we'll get this trip sorted out."`
+			`	"Good. We'll need to head to Peripheria to pick up Hriso and get this trip sorted out."`
 
 	on decline
 		conversation
 			`	"Disappointment. I see. I will ensure you are not troubled by requests for aid in the future." He flies away, vanishing quickly.`
 
 
+mission "Avgi: Dissonance Outreach 0.5"
+	name "Return to Peripheria"
+	description "Return to <destination> to collect Hriso, a Consonance Assemblyman."
+	source "Feo Platform"
+	passengers 2
+	destination "Peripheria"
+	to offer
+		has "Avgi: Frontline Combat: done"
+	on complete
+		`	As you take the <ship> in for a landing in one of the hangars, Darius says, "I'll get in contact with Hriso and have him meet us in the spaceport."`
+
+
 mission "Avgi: Dissonance Outreach"
 	name "Dissonance Outreach"
-	description "Take mr diplomat dude to <destination>."
+	description "Take Hriso to <destination> for negotiations with the local miners."
 	source "Peripheria"
-	passengers 2
+	passengers 3
+	blocked "You'll need three free bunks on the <ship> to transport Darius, Sora, and Hriso."
 	destination "Outpost Tekis"
+	clearance
 	to offer
 		or
-			has "First Contact: Scout Rescue: done"
-			has "First Contact: Frontline Combat: done"
+			has "Avgi: Scout Rescue: done"
+			has "Avgi: Frontline Combat: done"
+	on offer
+		conversation
+			`	Hriso turns out to be a yellow-orange Avgi of middling age. "Excitement. A true pleasure to meet you, Captain <first> <last>. I look forward to your company during these negotiations."
+			choice
+				`	"Who are you negotiating with exactly? Aren't the Avgi united under the Consonance?"`
+			`	He thrums in laughter. "One can only wish our species was that unified. No, membership in the Consonance is purely at-will, and many polities have chosen to go it alone even with the current crisis. Regret. The initial evacuation into the Tangled Shroud was haphazard to say the least, as much of it was, and still is, unmapped. Many captains took their ships down differing paths, meeting up with each other and forming alliances just to survive. In a way, it's a miracle that the Consonance was even able to reconstitute itself at all."`
+			`	"Those polities not fully aligned with the Consonance are largely independent of each other, but their movement has collectively been labeled as the 'Dissonance.' Imperative. Please do understand, we are not enemies, nor would I say we bear them any ill-will. The Dissonance participates in trade with us and de facto follows the regulations passed by the Assembly, and each and every one of them wants the Aberrant scoured from our space as much as the rest of us."
+			`	"The individuals we will be negotiating with on this trip are still loyal to the Consonance, merely unhappy with the price controls in place on certain minerals. Necessary for the Twilight Guard to expand the fleet," he explains.`
+			`	Sora says, "I still think they're a bunch of cowards. The existence of your species is threatened, and you let someone else do the fighting? Then you complain about the price they can pay for iron? What kind of person does that?"`
+			`	Hriso flicks his wings. "Reproach. The kind that still has to support themselves, and pay for the precision machinery they cannot make themselves. But we can discuss this later. For now, let us set off as soon as possible."`
 	on complete
 		conversation
+			`	Outpost Tekis is a large station built into a large asteroid several kilometers across, with networks of tubes and habitats crisscrossing the surface. You pull the <ship> into a cramped hangar dug into the rock and disembark with Hriso, who immediately sets out for a prearranged meeting place. You notice many of the Avgi in the outpost stare at you, Darius, and Sora, likely their first glimpse of a human.`
+			`	"You enter a large, round conference room with walls of polished rock. Waiting there are a handful of Avgi of various ages, who immediately begin conversing with Hriso in their own language."`
+			choice
+				`	"What are they saying?"`
+				`	(Remain silent.)`
+					goto next
+
+
+			label next
+
+
+			label informant
+			`	On your way back to the <ship>, Darius pulls you aside. "I had a talk with a few people, and they had some interesting things to say."`
+			choice
+				`	"What did they say?"`
+				`	"That being?"`
+			`	"There are rumors that the Aberrant didn't just come out of nowhere"
+
 			`given after the last two`
 			`Avgi ask you to use your JD to quickly take an ambassador over to one of the Dissonance stations MEET NEW CHARACTER, DIPLOMAT`
 			`learn more about the dissonance and why there's issues with the consonance`
@@ -750,8 +792,9 @@ mission "Avgi: Twilight Escape"
 			`	As the purple flames of your Jump Drive fade, Darius, Sora, and Leon are all speechless. For the first time in six years, they are back in human space.`
 			`	"<first>," says Darius in a shaky voice. "Take us to Valhalla, please. I need to see someone."`
 	on completion
+		"reputation: Avgi (Dissonance Aggressive)" <?= -10
 		conversation
-			`	
+			`	You land in Valhalla's main spaceport, and Darius practically jumps out of your ship before it can even touch down. 
 
 
 - Landing intro

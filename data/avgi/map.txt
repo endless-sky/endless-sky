@@ -2257,7 +2257,7 @@ system Prelude
 	asteroids "small metal" 2 2.899
 	asteroids "medium metal" 2 4.005
 	asteroids "large metal" 1 4.005
-	minables iron 1 7.462
+	minables iron 12 7.462
 	minables gold 1 6.375
 	minables lead 5 7.644
 	fleet "Small Dissonance Merchants" 1800
