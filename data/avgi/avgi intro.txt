@@ -489,7 +489,7 @@ mission "Avgi: Defend Ensemble 2"
 			`	She drops her hand after a moment. "Name's Sora. And you?"`
 				goto name
 			label handshake
-			`	"Name's Sora. And you?"
+			`	"Name's Sora. And you?"`
 			label name
 			`	"Captain <first> <last>," you say.`
 			`	"And I see you've got a tagalong, too. Finally got ol' Darius to come out of his shell, did you?" You look over at Darius, a look of deep shame on his face as he stares at the ground.`
@@ -506,7 +506,7 @@ mission "Avgi: Defend Ensemble 2"
 			choice
 				`	"Of course."`
 					goto yes
-				`	"Sure, as long as Darius doesn't mind"
+				`	"Sure, as long as Darius doesn't mind"`
 			`	You look over at Darius, who responds after a few seconds of silence. "Of course you can come along, Sora."`
 			label yes
 			`	"Sounds good to me, then. I'll see you around when you're ready to leave." She walks off to collect her belongings.`
@@ -648,7 +648,7 @@ mission "Avgi: Frontline Combat"
 			choice
 				`	"Yes, the <ship> can take them."`
 				`	"I'd rather not take the risk"."`
-				goto decline
+					decline
 			`	"Excellent. Report back to the Feo Platform when the Aberrant are eliminated."`
 
 	npc kill
@@ -741,11 +741,11 @@ mission "Avgi: Dissonance Outreach"
 			has "Avgi: Frontline Combat: done"
 	on offer
 		conversation
-			`	Hriso turns out to be a yellow-orange Avgi of middling age. "Excitement. A true pleasure to meet you, Captain <first> <last>. I look forward to your company during these negotiations."
+			`	Hriso turns out to be a yellow-orange Avgi of middling age. "Excitement. A true pleasure to meet you, Captain <first> <last>. I look forward to your company during these negotiations."`
 			choice
 				`	"Who are you negotiating with exactly? Aren't the Avgi united under the Consonance?"`
 			`	He thrums in laughter. "One can only wish our species was that unified. No, membership in the Consonance is purely at-will, and many polities have chosen to go it alone even with the current crisis. Regret. The initial evacuation into the Tangled Shroud was haphazard to say the least, as much of it was, and still is, unmapped. Many captains took their ships down differing paths, meeting up with each other and forming alliances just to survive. In a way, it's a miracle that the Consonance was even able to reconstitute itself at all."`
-			`	"Those polities not fully aligned with the Consonance are largely independent of each other, but their movement has collectively been labeled as the 'Dissonance.' Imperative. Please do understand, we are not enemies, nor would I say we bear them any ill-will. The Dissonance participates in trade with us and de facto follows the regulations passed by the Assembly, and each and every one of them wants the Aberrant scoured from our space as much as the rest of us."
+			`	"Those polities not fully aligned with the Consonance are largely independent of each other, but their movement has collectively been labeled as the 'Dissonance.' Imperative. Please do understand, we are not enemies, nor would I say we bear them any ill-will. The Dissonance participates in trade with us and de facto follows the regulations passed by the Assembly, and each and every one of them wants the Aberrant scoured from our space as much as the rest of us."`
 			`	"The individuals we will be negotiating with on this trip are still loyal to the Consonance, merely unhappy with the price controls in place on certain minerals. Necessary for the Twilight Guard to expand the fleet," he explains.`
 			`	Sora says, "I still think they're a bunch of cowards. The existence of your species is threatened, and you let someone else do the fighting? Then you complain about the price they can pay for iron? What kind of person does that?"`
 			`	Hriso flicks his wings. "Reproach. The kind that still has to support themselves, and pay for the precision machinery they cannot make themselves. But we can discuss this later. For now, let us set off as soon as possible."`
@@ -776,7 +776,7 @@ mission "Avgi: Dissonance Outreach"
 			choice
 				`	"Captain <last>. I was stranded here, just like you."`
 				`	"<first>. Pleased to meet you."`
-			`	You quicly explain how you found yourself in Avgi space, and Leon nods. "Figures. And, let me guess, you want to get out, and this Jump Drive of yours won't let you?"
+			`	You quicly explain how you found yourself in Avgi space, and Leon nods. "Figures. And, let me guess, you want to get out, and this Jump Drive of yours won't let you?"`
 			choice
 				`	"Yes."`
 			`	"That explains the questions the good Captain was asking," he says, nodding at Darius. "I've spent years collecting this information, from hearing the official narrative to dredging the corners of Avgi space for rumors. So, before I tell you this, one condition. I've spent months looking for a way to get a ship to take me to... well, you'll see. But not a lot of captains are willing to take their ships out of the Tangled Shroud and through the Aberrant blockade, so if this leads anywhere, I want a bunk on your ship."`
@@ -795,7 +795,7 @@ mission "Avgi: Dissonance Outreach"
 				`	"Where do you think this gateway leads?"`
 			`	"I don't know where it leads, but it'll be somewhere other than Avgi space. Maybe somewhere your Jump Drive can work, which would let us eventually make our way back to human space. But it's better than sitting here and twiddling our thumbs for another six years."`
 			choice
-			`	"Where is this gateway?"`
+				`	"Where is this gateway?"`
 			`	"The Aberrant came from the East, beyond the furthest reaches of Avgi space. A place the Avgi always had trouble exploring, due to strange energy storms periodically ionizing entire systems. But it's apparently recognizable by the red nebula suffusing it, just as the Twilight is surrounded by a cluster of blue nebulas."`
 			`	"There's no point in waiting, then. If there's a chance, even a small one, we should check it out," says Darius, looking hopeful for the first time since you've met him.`
 
@@ -809,14 +809,14 @@ mission "Avgi: Twilight Escape"
 		has "First Contact: Avgi 1: done"
 	on enter "Decet"
 		conversation
-		`	Just as your Jump Drive reacted strangely when you first entered Avgi space, it does so again, but with an inverse effect. Your instrumentation say it is much warmer than usual, almost hot enough to be dangerous. Maybe something has changed about your Jump Drive's range?.`
+			`	Just as your Jump Drive reacted strangely when you first entered Avgi space, it does so again, but with an inverse effect. Your instrumentation say it is much warmer than usual, almost hot enough to be dangerous. Maybe something has changed about your Jump Drive's range?.`
 	on enter
 		system
 			attributes "core" "deep" dirt belt" "near earth" "rim" "south"
 		conversation
 			`	As the purple flames of your Jump Drive fade, Darius, Sora, and Leon are all speechless. For the first time in six years, they are back in human space.`
 			`	"<first>," says Darius in a shaky voice. "Take us to Valhalla, please. I need to see someone."`
-	on comple
+	on complete
 		"reputation: Avgi (Dissonance Aggressive)" <?= -10
 		conversation
 			`	You land in Valhalla's main spaceport, and Darius practically jumps out of your ship before it can even touch down. "I'll be in contact, <first>, but I have to tell someone that I'm still alive."`

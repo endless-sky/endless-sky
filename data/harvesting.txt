@@ -434,7 +434,7 @@ outfit "Boiled Fish"
 	plural "Boiled Fish"
 	cost 2400
 	thumbnail "outfit/cooked fish"
-	"flotsam sprite" "outfit/cooked fish"
+	"flotsam sprite" "effect/flotsam iron"
 	"mass" 1
 	"installable" -1
 	"minable" 1
@@ -454,8 +454,8 @@ outfit "Integral Wood"
 	category Minerals
 	plural "Integral Wood"
 	cost 12000
-	thumbnail "outfit/integral wood"
-	"flotsam sprite" "outfit/integral wood"
+	thumbnail "outfit/unknown"
+	"flotsam sprite" "effect/flotsam neodymium"
 	"mass" 0.3
 	"installable" -1
 	"minable" 1

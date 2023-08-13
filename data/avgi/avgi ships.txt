@@ -964,7 +964,7 @@ ship "Modified Tachytia"
 		"outfit space" 1200
 		"weapon capacity" 180
 		"engine capacity" 420
-		"spinal mount"
+		"spinal mount" 1
 		"anchor point" 6
 		weapon
 			"blast radius" 900
@@ -1365,7 +1365,7 @@ ship "Diaspersi"
 		angle 90
 	turret -9 12 "Phased Array Laser (Green)"
 	turret 9 12 "Phased Array Laser (Green)"
-	turret 0 51 "Speckle Turret"
+	turret 0 51 "Fleck Turret"
 
 	bay "Fighter" 0 -63
 		over
