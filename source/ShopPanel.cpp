@@ -700,9 +700,12 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		player.UpdateCargoCapacities();
 		GetUI()->Pop(this);
 	}
-	else if(command.Has(Command::MAP) && !player.IsDesignPlayer())
+	else if(command.Has(Command::MAP))
 	{
-		if(isOutfitter)
+		// The design player does not have access to maps.
+		if(player.IsDesignPlayer())
+			return true;
+		else if(isOutfitter)
 			GetUI()->Push(new MapOutfitterPanel(player));
 		else
 			GetUI()->Push(new MapShipyardPanel(player));
