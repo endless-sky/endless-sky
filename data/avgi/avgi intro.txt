@@ -577,15 +577,11 @@ mission "Avgi: Scout Rescue"
 	on complete
 		conversation
 			`You recieve a warm welcome back on Peripheria Station, as the former crew of the Silver Albedo disembarks. Some of the more badly injured crewmembers are carried out on hammock-like stretchers, but most are able to walk or fly out of the <ship> on their own power.`
-			`	After a short celebration and many expressions of deep gratitude toward you, you find Captain Darius 
-
-
-
-
-			`blah blah blah blah`
-			`can I go home yet'
-			`Avgi: don't risk your life being dumb`
-			`Deep dude: yeah I want to go home too, maybe we can explore some different areas`
+			`	After a short celebration and many expressions of deep gratitude toward you, you find Captain Darius waiting by the <ship> to speak with you.
+			`	"<first>, I think we have a golden opportunity," he says. "I was just talking to an Assemblyman, Hriso, who's worried about the situation in the eastern branch of the Tangled Shroud. Something about the miners grumbling about price controls on nickel-iron, but he wants to know if you could use your Jump Drive to take him there for some outreach to the miners without needing to spend weeks wandering through the mess of twisted hyperlanes. It's the perfect chance to meet my friend and ask him some questions. What do you think?"`
+			choice
+				`	"Sounds good to me."`
+			`	"Good. Meet me in the spaceport in an hour and we'll get this trip sorted out."`
 
 	on decline
 		conversation
@@ -610,6 +606,7 @@ mission "Avgi: Dissonance Outreach"
 	name "Dissonance Outreach"
 	description "Take mr diplomat dude to <destination>."
 	source "Aktina Cylinder"
+	passengers 2
 	destination "Weledos"
 	to offer
 		has "First Contact: Avgi 1: done"
