@@ -1194,7 +1194,7 @@ system Septet
 		sprite planet/browndwarf-l
 		distance 7204.814
 		period 1925.525
-		object Gateway
+		object
 			sprite planet/gateway-inactive
 				scale 0.5
 				"frame rate" 1

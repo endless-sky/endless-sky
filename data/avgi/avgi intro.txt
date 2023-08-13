@@ -572,7 +572,7 @@ mission "Avgi: Scout Rescue"
 	passengers 12
 	destination "Peripheria"
 	to offer
-		has "First Contact: Avgi 1: done"
+		has "First Contact: Defend Ensemble 2: done"
 		not "avgi: warship intro"
 	on offer
 		conversation
