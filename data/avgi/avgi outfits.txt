@@ -38,7 +38,7 @@ outfit "Speckle Railgun"
 	"gun ports" -1
 	"speck capacity" 3600
 	weapon
-		sound "repeater"
+		sound "speckle"
 		ammo "Speck Round"
 		"fire effect" "speck fire"
 		"inaccuracy" 1.5
@@ -69,7 +69,7 @@ outfit "Speckle Turret"
 	"turret mounts" -1
 	"speck capacity" 7200
 	weapon
-		sound "repeater"
+		sound "speckle"
 		ammo "Speck Round"
 		"hardpoint sprite" "hardpoint/speckle turret"
 		"hardpoint offset" 6
@@ -148,7 +148,7 @@ outfit "Fleck Coilgun"
 	"gun ports" -1
 	"fleck capacity" 1200
 	weapon
-		sound "repeater"
+		sound "fleck"
 		ammo "Fleck Round"
 		"hardpoint sprite" "hardpoint/fleck turret"
 		"hardpoint offset" 6
@@ -178,7 +178,7 @@ outfit "Fleck Turret"
 	"turret mounts" -1
 	"fleck capacity" 2400
 	weapon
-		sound "repeater"
+		sound "fleck"
 		ammo "Fleck Round"
 		"fire effect" "finisher sparks"
 		"hit effect" "bombardment impact"
