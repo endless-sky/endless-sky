@@ -65,7 +65,7 @@ public:
 	bool RequiresGiftedShip(const std::string &shipId) const;
 	// Perform this action. If a conversation is shown, the given destination
 	// will be highlighted in the map if you bring it up.
-	void Do(PlayerInfo &player, UI *ui = nullptr, const Mission *caller = nullptr,
+	void Do(PlayerInfo &player, UI *ui, const Mission *caller,
 		const System *destination = nullptr, const std::shared_ptr<Ship> &ship = nullptr,
 		const bool isUnique = true) const;
 
