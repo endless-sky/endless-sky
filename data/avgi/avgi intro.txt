@@ -15,11 +15,11 @@ phrase "twilight trapped"
 
 mission "Avgi: First Contact"
 	autosave
-	landing
 	name "First Contact: Avgi"
 	description "Follow the mysterious alien ship to the destination marked on your map."
 	source
 		attributes "avgi"
+	landing
 	waypoint "Arche"
 	waypoint "Ensemble"
 	destination "Peripheria"
@@ -293,20 +293,20 @@ mission "Avgi: First Contact"
 				set "language: Avgi"
 
 mission "Avgi: Humans From the Deep"
-	landing
 	name "Humans Among the Avgi"
 	description "Visit the <destination>, where there is another human, Darius Calwell, stranded in Avgi space."
 	source "Peripheria"
+	landing
 	destination "Aktina Cylinder"
 	to offer
 		has "Avgi: First Contact: done"
 
 
 mission "Avgi: Defend Ensemble 1"
-	landing
 	name "Avgi Strike Force"
 	description "Meet up with the Avgi strike force at <destination>."
 	source "Aktina Cylinder"
+	landing
 	passengers 1
 	blocked "You'll need a free bunk on the <ship> if you want to take Darius anywhere off this station."
 	destination "Napigeo Station"
@@ -400,10 +400,10 @@ mission "Avgi: Defend Ensemble 1"
 
 
 mission "Avgi: Defend Ensemble 2"
-	landing
 	name "Ensemble Defense"
 	description "Assist the Avgi in the Ensemble system with an Aberrant deep raid."
 	source "Napigeo Station"
+	landing
 	destination "Weledos"
 	to offer
 		has "Avgi: Defend Ensemble 1: done"
@@ -411,6 +411,13 @@ mission "Avgi: Defend Ensemble 2"
 		conversation
 			`	Napigeo Station is buzzing with activity as you pull into one of the few open berths available. Avgi ships of all sizes, painted in the blue-green of the Twilight Guard, launch every few minutes, replaced moments later by battle-scarred warships that slip into drydock for repair.`
 			`	Parked a few kilometers from the station, a fleetgroup is assembling in a wide formation. You see a handful of cruiser sized ships, along with a dozen smaller ships congregated around them. You hail them, asking to join the formation, and a surprised Avgi admiral directs you to fly towards the Ensemble system.`
+			`	"Warning. Atomics will be used in the upcoming battle, so stay your distance from our warheads," she says.`
+			choice
+				`	"Acknowledged."`
+				`	"Wait, nuclear weapons? You people use those?"
+			`	"Affirmation. Yes, why wouldn't we?" She turns away from the viewscreen as another Avgi starts speaking to her.`
+					accept
+
 				accept
 	npc
 		government "Avgi (Twilight Guard)"
@@ -650,6 +657,7 @@ mission "Avgi: Frontline Combat"
 				`	"I'd rather not take the risk"."`
 					decline
 			`	"Excellent. Report back to the Feo Platform when the Aberrant are eliminated."`
+				accept
 
 	npc kill
 		government "Aberrant"
@@ -718,6 +726,7 @@ mission "Avgi: Dissonance Outreach 0.5"
 	name "Return to Peripheria"
 	description "Return to <destination> to collect Hriso, a Consonance Assemblyman."
 	source "Feo Platform"
+	landing
 	passengers 2
 	destination "Peripheria"
 	to offer

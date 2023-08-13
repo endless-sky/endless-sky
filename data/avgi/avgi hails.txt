@@ -32,18 +32,18 @@ phrase "hostile disabled avgi"
 
 # Twilight Guard hails
 
-phrase "friendly Twilight Guard"
+phrase "friendly twilight guard"
 	phrase
 		"avgi warm greetings"
 		"twilight guard greeting" 3
 		"avgi warnings" 3
 
-phrase "hostile Twilight Guard"
+phrase "hostile twilight guard"
 	phrase
-		"angry Twilight Guard" 3
+		"angry twilight guard" 3
 		"avgi angry" 3
 
-phrase "friendly disabled Twilight Guard"
+phrase "friendly disabled twilight guard"
 	phrase
 		"avgi friendly help"
 		"twilight guard friendly help"
@@ -52,7 +52,7 @@ phrase "friendly disabled Twilight Guard"
 	phrase
 		"avgi polite playername"
 
-phrase "hostile disabled Twilight Guard"
+phrase "hostile disabled twilight guard"
 	phrase
 		"avgi angry help"
 	word

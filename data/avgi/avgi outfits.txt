@@ -735,7 +735,6 @@ outfit "Azimuth Launcher"
 	description `Casaba Howitzer`
 
 
-
 outfit "Active Azimuth"
 	weapon
 		sprite "projectile/thunderhead"
@@ -758,6 +757,19 @@ outfit "Active Azimuth"
 		"hull damage" 3600
 		"hit force" 2100
 		"missile strength" 50
+
+
+outfit "Azimuth Magazine"
+	category "Ammunition"
+	licenses
+		"Avgi Atomics"
+	cost 1440000
+	thumbnail "outfit/unknown"
+	"mass" 3
+	"outfit space" -18
+	"azimuth capacity" 12
+	ammo "Azimuth Missile"
+	description "Azimuth storage"
 
 
 effect "thermonuclear flash"
