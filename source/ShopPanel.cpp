@@ -700,7 +700,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		player.UpdateCargoCapacities();
 		GetUI()->Pop(this);
 	}
-	else if(command.Has(Command::MAP))
+	else if(command.Has(Command::MAP) && !player.IsDesignPlayer())
 	{
 		if(isOutfitter)
 			GetUI()->Push(new MapOutfitterPanel(player));
