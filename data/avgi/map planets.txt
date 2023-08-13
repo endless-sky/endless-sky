@@ -60,6 +60,13 @@ planet "Feo Platform"
 	description "Hastily assembled from mothballed mass driver components, the Feo Platform is an enormous hypervelocity gun intended to provide fire support to Avgi fleets defending the Tangled Shroud from Aberrant invasion. While a few Aberrations sometimes manage to slip past, the gun together with the fleetgroup the platform supports have so far managed to hold the lines."
 	spaceport "The spaceport is designed to service an entire fleetgroup of Avgi warships at once, with drydocks large enough to repair mid-sized vessels without them needing to venture back into the Tangled Shroud."
 	government "Avgi (Twilight Guard)"
+	shipyard "Avgi Civilian Basics"
+	shipyard "Avgi Spaceguard Light"
+	outfitter "Avgi Basic Systems"
+	outfitter "Avgi Basic Drives"
+	outfitter "Avgi Basic Combat"
+	outfitter "Avgi Advanced Combat"
+	outfitter "Avgi Atomics"
 
 
 planet Thilos
@@ -113,6 +120,13 @@ planet Livolua
 	spaceport "The primary spaceport was built into the center of the first settlement to be established on the planet, which recieved incoming starships for decades. Since then, it was expanded upwards into a surprisingly tall cylinder of basalt and steel, itself housing millions of Avgi."
 	government Avgi
 	security 0
+	shipyard "Avgi Civilian Basics"
+	shipyard "Avgi Civilian Advanced"
+	outfitter "Avgi Basic Systems"
+	outfitter "Avgi Advanced Systems"
+	outfitter "Avgi Basic Drives"
+	outfitter "Avgi Advanced Drives"
+	outfitter "Avgi Basic Combat"
 
 
 planet Kalesi
@@ -162,7 +176,13 @@ planet Stilacrest
 	spaceport "The largest spaceport is built on the edge of one of the smalller continents, with ample access to the sea. Unlike most Avgi spaceports, the city that grew around it has fairly few skyscrapers or tall buildings, with most structures being short and sprawling."
 	government Avgi
 	security 0
-	
+	shipyard "Avgi Civilian Basics"
+	shipyard "Avgi Civilian Advanced"
+	outfitter "Avgi Basic Systems"
+	outfitter "Avgi Advanced Systems"
+	outfitter "Avgi Basic Drives"
+	outfitter "Avgi Advanced Drives"
+	outfitter "Avgi Basic Combat"
 	
 planet Cyreal
 	attributes avgi forest tourism
@@ -171,6 +191,14 @@ planet Cyreal
 	description "While somewhat metal-poor, by exploiting the asteroids and other bodies in the Span system, Cyreal developed a robust industrial base that allowed it to weather the economic shock that came with the invention of the hyperdrive relatively easily."
 	spaceport "The spaceport is large for the moon's population, a product of its status as a hub for the many mining ships in the system."
 	government Avgi
+	shipyard "Avgi Civilian Basics"
+	shipyard "Avgi Civilian Advanced"
+	outfitter "Avgi Basic Systems"
+	outfitter "Avgi Advanced Systems"
+	outfitter "Avgi Basic Drives"
+	outfitter "Avgi Advanced Drives"
+	outfitter "Avgi Basic Combat"
+	outfitter "Avgi Advanced Combat"
 
 
 planet Amathil
@@ -179,6 +207,8 @@ planet Amathil
 	description "As far as desert worlds come, Amathil is merely dry and sandy, with a mild surface temperature that is surprisingly uniform across latitudes thanks to high altitude winds. While unattractive for settlement due to the scarcity of greenery, Amathil is still home to the descendents of those who arrived on the first few sublight starships, back when little was known about the planet besides that it had an oxygenated atmosphere. The unique culture that has since grown here, under a unified planetary government, emphasizes a sense of community and generosity, or at least that is the way the locals are percieved by outsiders."
 	spaceport "The spaceport is spartan, with Amathil not recieving much traffic on a daily basis. Amathil's primary export is people, with many choosing to leave the isolated world in favor of moving to one of the more cosmopolitan worlds elsewhere."
 	government Avgi
+	outfitter "Avgi Basic Systems"
+	outfitter "Avgi Basic Drives"
 	
 
 planet Felorap
@@ -198,6 +228,9 @@ planet Araio
 	spaceport "Though imports of advanced technology from other worlds, which the planet lacks the development to manufacture itself, were cut off with the Incursion, the planet is self-sufficient enough to get by for the foreseeable future, even if it means a slight regression in technology."
 	government Avgi
 	security 0
+	shipyard "Avgi Civilian Basics"
+	outfitter "Avgi Basic Systems"
+	outfitter "Avgi Basic Drives"
 
 
 planet Elthe
@@ -338,6 +371,7 @@ planet Anatrefo
 	landscape land/station19
 	description "Anatrefo was discovered mere years after the Avgi discovered the hyperdrive, and was soon considered the most momentous discovery in Avgi history. An intact alien station, albeit one stripped of any advanced technologies, proved once and for all that the Avgi were not alone in the universe. Even more significant was a long, slender megastructure near the station, appearing as though construction on it had barely been started."
 	description "While study of the station's structure was hoped to provide insights into advanced alien technologies, it has so far proven stubbornly difficult to understand or reverse engineer, with some Avgi scientists remarking that even the station's materials appear to intelligently circumvent attempts to probe their internal structure."
+	government Uninhabited
 
 
 planet Gamla
@@ -372,11 +406,6 @@ planet Ashkelon
 	government Uninhabited
 
 
-
-
-
-
-
 planet "Peripheria"
 	attributes avgi "avgi diaspora" station urban
 	landscape land/station48
@@ -388,6 +417,15 @@ planet "Peripheria"
 	government "Avgi (Consonance)"
 	security 0.5
 	"required reputation" 10
+	shipyard "Avgi Civilian Basics"
+	shipyard "Avgi Civilian Advanced"
+	shipyard "Avgi Spaceguard Light"
+	outfitter "Avgi Basic Systems"
+	outfitter "Avgi Advanced Systems"
+	outfitter "Avgi Basic Drives"
+	outfitter "Avgi Advanced Drives"
+	outfitter "Avgi Basic Combat"
+	outfitter "Avgi Advanced Combat"
 
 
 planet "Napigeo Station"
@@ -398,6 +436,17 @@ planet "Napigeo Station"
 	"required reputation" 100
 	government "Avgi (Twilight Guard)"
 	"required reputation" 10
+	shipyard "Avgi Civilian Basics"
+	shipyard "Avgi Civilian Advanced"
+	shipyard "Avgi Spaceguard Light"
+	shipyard "Avgi Spaceguard Heavy"
+	outfitter "Avgi Basic Systems"
+	outfitter "Avgi Advanced Systems"
+	outfitter "Avgi Basic Drives"
+	outfitter "Avgi Advanced Drives"
+	outfitter "Avgi Basic Combat"
+	outfitter "Avgi Advanced Combat"
+	outfitter "Avgi Atomics"
 
 
 planet Weledos
@@ -409,6 +458,9 @@ planet Weledos
 	"required reputation" 10
 	government "Avgi"
 	security 0
+	outfitter "Avgi Basic Systems"
+	outfitter "Avgi Basic Drives"
+	outfitter "Avgi Basic Combat"
 
 
 planet Aspar
@@ -436,6 +488,7 @@ planet "Aktina Cylinder"
 	government "Avgi (Consonance)"
 	"required reputation" 10
 
+
 planet "Outpost Enka"
 	attributes avgi "avgi diaspora" dissonance station asteroid
 	description "Outpost Enka is a huge station built between two large asteroids, which are steadily being mined for the metals and minerals they contain. Most of the habitat is free standing, mounted on the spar that links both asteroids, but one of them also contains significant numbers of pressurized tunnels filled with farms and large green spaces."
@@ -443,6 +496,13 @@ planet "Outpost Enka"
 	spaceport "The station's spaceport is spacious, with room for the many small drones used to harvest other asteroids in the belt. Several berths are also open to larger mining vessels, with a few occupied at the moment."
 	government "Avgi (Dissonance)"
 	"required reputation" 10
+	shipyard "Avgi Civilian Basics"
+	shipyard "Avgi Civilian Advanced"
+	shipyard "Avgi Dissonance Basics"
+	outfitter "Avgi Basic Systems"
+	outfitter "Avgi Advanced Systems"
+	outfitter "Avgi Basic Drives"
+	outfitter "Avgi Basic Combat"
 
 
 planet "Outpost Tekis"
@@ -452,6 +512,13 @@ planet "Outpost Tekis"
 	spaceport "The spaceport is somewhat cramped, being mostly intended for the intrasystem ships used in asteroid mining. A flexible docking arm allows larger ships to be moored off the asteroid, but you are able to barely squeeze your ship into the main hangar."
 	government "Avgi (Dissonance)"
 	"required reputation" 10
+	shipyard "Avgi Civilian Basics"
+	shipyard "Avgi Civilian Advanced"
+	shipyard "Avgi Dissonance Basics"
+	outfitter "Avgi Basic Systems"
+	outfitter "Avgi Advanced Systems"
+	outfitter "Avgi Basic Drives"
+	outfitter "Avgi Basic Combat"
 
 
 planet "Outpost Lito"
@@ -461,13 +528,9 @@ planet "Outpost Lito"
 	government "Avgi (Dissonance)"
 	"required reputation" 10
 
-	
-
-
 
 planet Gateway
 	attributes gateway
-	
 
 
 wormhole "Shrouded Embers"

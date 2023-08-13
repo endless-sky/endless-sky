@@ -758,6 +758,7 @@ mission "Avgi: Dissonance Outreach"
 			`	"The individuals we will be negotiating with on this trip are still loyal to the Consonance, merely unhappy with the price controls in place on certain minerals. Necessary for the Twilight Guard to expand the fleet," he explains.`
 			`	Sora says, "I still think they're a bunch of cowards. The existence of your species is threatened, and you let someone else do the fighting? Then you complain about the price they can pay for iron? What kind of person does that?"`
 			`	Hriso flicks his wings. "Reproach. The kind that still has to support themselves, and pay for the precision machinery they cannot make themselves. But we can discuss this later. For now, let us set off as soon as possible."`
+				accept
 	on complete
 		conversation
 			`	Outpost Tekis is a large station built into a large asteroid several kilometers across, with networks of tubes and habitats crisscrossing the surface. You pull the <ship> into a cramped hangar dug into the rock and disembark with Hriso, who immediately sets out for a prearranged meeting place. You notice many of the Avgi in the outpost stare at you, Darius, and Sora, likely their first glimpse of a human.`
@@ -815,7 +816,7 @@ mission "Avgi: Twilight Escape"
 	source "Outpost Tekis"
 	destination "Valhalla"
 	to offer
-		has "First Contact: Avgi 1: done"
+		has "First Contact: Dissonance Outreach: done"
 	on enter "Decet"
 		conversation
 			`	Just as your Jump Drive reacted strangely when you first entered Avgi space, it does so again, but with an inverse effect. Your instrumentation say it is much warmer than usual, almost hot enough to be dangerous. Maybe something has changed about your Jump Drive's range?.`
