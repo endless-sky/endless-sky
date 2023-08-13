@@ -2124,7 +2124,7 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 	// and pointed in the right direction.
 	if(!isJump && scramThreshold)
 	{
-		double deviation = fabs(direction.Unit().Cross(velocity));
+		const double deviation = fabs(direction.Unit().Cross(velocity));
 		if(deviation > scramThreshold)
 			return false;
 	}
@@ -2134,11 +2134,11 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 	if(!isJump)
 	{
 		// Figure out if we're within one turn step of facing this system.
-		bool left = direction.Cross(angle.Unit()) < 0.;
-		Angle turned = angle + TurnRate() * (left - !left);
-		bool stillLeft = direction.Cross(turned.Unit()) < 0.;
+		const bool left = direction.Cross(angle.Unit()) < 0.;
+		const Angle turned = angle + TurnRate() * (left - !left);
+		const bool stillLeft = direction.Cross(turned.Unit()) < 0.;
 
-		if(left == stillLeft)
+		if(left == stillLeft && turned != Angle(direction))
 			return false;
 	}
 

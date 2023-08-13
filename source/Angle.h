@@ -49,6 +49,9 @@ public:
 	Angle &operator-=(const Angle &other);
 	Angle operator-() const;
 
+	bool operator==(const Angle &other) const;
+	bool operator!=(const Angle &other) const;
+
 	// Get a unit vector in the direction of this angle.
 	Point Unit() const;
 	// Convert an Angle object to degrees, in the range -180 to 180.
