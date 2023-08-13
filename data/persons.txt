@@ -740,16 +740,7 @@ ship "Waverider"
 			"hull damage" 1700
 			"hit force" 5000
 	outfits
-		"Prototype Fusion Cannon"
-		"Quad Blaster Turret" 4
-		"Heavy Laser Turret" 4
-		"Electron Turret" 2
-		"Wanderer Anti-Missile"
-		"Torpedo Pod" 4
-		"Torpedo Storage Rack" 2
-		"Torpedo" 42
-		"Typhoon Pod" 2
-		"Typhoon Torpedo" 34
+		"Particle Cannon" 4
 		
 		"Dark Storm Shielding" 2
 		"Triple Plasma Core"
@@ -759,18 +750,19 @@ ship "Waverider"
 		"Fuel Processor" 3
 		"Tactical Scanner"
 
-		"120 Atomic Thruster"
+		"A120 Atomic Thruster"
 		"A125 Atomic Steering"
 		"A125 Atomic Steering"
 		"Scram Drive"
-		
+	
 	gun -22.5 -56.5 "Particle Cannon"
-    	gun 22.5 -56.5 "Particle Cannon"
-    	gun -31.5 -6 "Particle Cannon"
-    	gun 31.5 -6 "Particle Cannon"
-    	engine -32 -6 "A125 Atomic Steering"
-	engine 32 -6 "A125 Atomic Steering"
-        engine 0 55.5 "A120 Atomic Thruster"
+	gun 22.5 -56.5 "Particle Cannon"
+	gun -31.5 -7 "Particle Cannon"
+	gun 31.5 -7 "Particle Cannon"
+	engine 0 56 "A120 Atomic Thruster"
+	engine -23 64 "A125 Atomic Steering"
+	engine 23 64 "A125 Atomic Steering"
+	
 
 	explode "tiny explosion" 20
 	explode "small explosion" 45
