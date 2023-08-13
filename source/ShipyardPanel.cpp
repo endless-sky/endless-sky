@@ -403,6 +403,8 @@ bool ShipyardPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		}
 		// Leave the shipyard ui on the stack to handle design center panel switching.
 		selectedPanel = designShipyardPanel.get();
+		if(oldPanel)
+			selectedPanel->UpdateShipInfo(*oldPanel);
 		GetUI()->Push(designShipyardPanel);
 	}
 	// The design panels fall through to allow their parent to switch between them.

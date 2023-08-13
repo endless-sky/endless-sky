@@ -187,6 +187,7 @@ void ShopPanel::UpdateShipInfo(const ShopPanel &panel)
 	isDraggingShip = panel.isDraggingShip;
 	dragPoint = panel.dragPoint;
 	playerShips = panel.playerShips;
+	sidebarScroll = panel.sidebarScroll;
 }
 
 

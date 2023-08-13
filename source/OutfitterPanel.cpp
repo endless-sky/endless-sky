@@ -849,6 +849,7 @@ void OutfitterPanel::ToggleCargo()
 bool OutfitterPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	const bool inDesignCenter = player.IsDesignPlayer();
+
 	// The design panels fall through to allow their parent to switch between them.
 	if(key == 'y' && inDesignCenter)
 		return false;
