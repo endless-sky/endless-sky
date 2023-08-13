@@ -2384,7 +2384,7 @@ ship "Lance"
 		"Sidewinder Missile Rack"
 		"Sidewinder Missile" 31
 		
-		"nGVF-AA Fuel Cell"
+		"KP-6 Photovoltaic Panel"
 		"Supercapacitor" 4
 		"D14-RN Shield Generator"
 		"Small Radar Jammer" 2
