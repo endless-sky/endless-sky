@@ -355,14 +355,6 @@ void Command::SetTurn(double amount)
 
 
 
-// Scale the existing turn by a fraction between 0 and 1.
-void Command::ScaleTurn(const double scale)
-{
-	turn *= max(0., min(1., scale));
-}
-
-
-
 // Get the turn amount.
 double Command::Turn() const
 {
