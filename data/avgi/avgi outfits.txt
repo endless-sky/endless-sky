@@ -688,6 +688,7 @@ outfit "Nadir Magazine"
 	ammo "Nadir Missile"
 	description "Nadir storage"
 
+
 outfit "Azimuth Missile"
 	category "Ammunition"
 	licenses

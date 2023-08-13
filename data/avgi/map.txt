@@ -1447,6 +1447,7 @@ system Gust
 	attributes twilight
 	habitable 450
 	belt 1116 8
+	"jump range" 30
 	haze _menu/haze-twilight-thin
 	link Current
 	asteroids "small rock" 64 6.12
@@ -1602,6 +1603,7 @@ system Soar
 	attributes avgi twilight
 	habitable 490
 	belt 2200 10
+	"jump range" 30
 	haze _menu/haze-twilight
 	link Anax
 	link Billow
@@ -1746,6 +1748,7 @@ system Sail
 	habitable 1310
 	belt 1110 3
 	belt 1903 8
+	"jump range" 30
 	haze _menu/haze-twilight-thick
 	link Span
 	asteroids "small rock" 3 4.34
@@ -1955,6 +1958,7 @@ system Span
 	habitable 450
 	belt 1754 10
 	belt 2266 9
+	"jump range" 30
 	haze _menu/haze-twilight
 	link Anax
 	link Cusp
@@ -2153,6 +2157,7 @@ system Cusp
 	attributes twilight
 	habitable 320
 	belt 1825 10
+	"jump range" 30
 	haze _menu/haze-twilight-thin
 	link Span
 	asteroids "small rock" 8 1.9
@@ -2203,6 +2208,7 @@ system Gossamer
 	attributes "smoke ring" twilight
 	habitable 2560
 	belt 2100 10
+	"jump range" 30
 	haze _menu/haze-twilight-thick
 	link Whirlwind
 	minables "small droplet" 240 1.8
@@ -2456,6 +2462,7 @@ system Vivace
 	habitable 100
 	belt 1074 5
 	belt 2129 4
+	"jump range" 30
 	haze _menu/haze-twilight-thick
 	asteroids "small rock" 6 2.777
 	asteroids "medium rock" 4 1.622
@@ -2488,6 +2495,7 @@ system Billow
 	habitable 320
 	belt 1921 6
 	belt 2280 2
+	"jump range" 30
 	haze _menu/haze-twilight
 	link Soar
 	asteroids "large metal" 1 1.911
@@ -2574,6 +2582,7 @@ system Flutter
 	attributes "notable star" nova twilight
 	habitable 100
 	belt 1874
+	"jump range" 90
 	haze _menu/haze-twilight-thick
 	asteroids "small metal" 9 1.976
 	asteroids "medium metal" 6 1.125
@@ -2618,6 +2627,7 @@ system Tap
 	habitable 100
 	belt 1482 4
 	belt 1983
+	"jump range" 30
 	haze _menu/haze-twilight-thin
 	link Peak
 	asteroids "small metal" 9 1.86
@@ -2952,6 +2962,7 @@ system Peak
 	attributes twilight
 	habitable 490
 	belt 1833 10
+	"jump range" 30
 	haze _menu/haze-twilight
 	link Tap
 	link Tumble
@@ -3103,6 +3114,7 @@ system Tide
 	attributes "bright star" "giant star" "notable star" twilight
 	habitable 7900
 	belt 1927 3
+	"jump range" 30
 	haze _menu/haze-twilight
 	link Soar
 	link Span
@@ -3590,6 +3602,7 @@ system Aileron
 	habitable 1320.275
 	belt 1094 6
 	belt 1907 7
+	"jump range" 30
 	haze _menu/haze-twilight
 	link Rivulet
 	asteroids "small rock" 3 3.363
@@ -4010,6 +4023,7 @@ system H-1
 	attributes "ember waste" hiders "tangled shroud"
 	habitable 135
 	belt 1692 7
+	"jump range" 0
 	haze _menu/haze-red
 	link He-4
 	asteroids "small rock" 1 1.548
@@ -4898,6 +4912,7 @@ system Ts-294
 	attributes "ember waste" "tangled shroud" wormhole
 	habitable 135
 	belt 1224 4
+	"jump range" 0
 	haze _menu/haze-red
 	link Prelude
 	asteroids "small rock" 4 4.435
