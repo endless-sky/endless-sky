@@ -772,7 +772,7 @@ mission "Remnant: Cognizance 21"
 		government "Remnant"
 		attributes "remnant primary"
 	stopover "Ssil Vida"
-	blocked "You need 10 free space for this mission."
+	blocked "You need 10 free space and a Research Laboratory for this mission."
 	cargo "supplies" 10
 	to offer
 		has "Remnant: Cognizance 20: done"
