@@ -1235,8 +1235,6 @@ mission "Remnant: Cognizance 27"
 	destination "Caelian"
 	to offer
 		has "Remnant: Cognizance 26: done"
-	to complete
-		not "remnant: dusk busy"
 
 
 
