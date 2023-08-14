@@ -1063,7 +1063,12 @@ mission "Remnant: Cognizance 23"
 		conversation
 			`You disembark to the sight of Taely striding across the tarmac, but she veers away from you at the last minute to pat the nose of one of the Mergansers. She runs a finger gently along a weapon score for a moment, then turns to face you. "So, the Korath are still capable fighters, I see." She pauses, her eyes take on a distant look for a second before she continues. "But you have returned with the flock intact. Come, join us for a meal and tell me how they fared." She leads you into the hanger where a bunch of engineers and technicians are gathered in one corner with a rack full of food trays. They enthusiastically greet you and the Merganser pilots, and quickly pull you into discussions of how the Mergansers handled their first patrol.`
 			`	Before long the technicians and pilots are trading stories while the Mergansers overshadow the group. Sometimes they poke various engineers or technicians, and the technicians frequently share messages from their commlinks. Apparently they have them hooked up to the Mergansers, so the ships are sharing their own accounts of the patrol. After several hours of the festivities, Taely announces that everyone needs to get to sleep because tomorrow is a new day. As everyone bids their farewells, you note that they include the ships, with most people patting or stroking one or more of the ships on their way out.`
-			`	"Stop by the cafeteria tomorrow morning, <first>. There will be more you can help with, if you are interested." With that, she gestures farewell and heads off at a brisk pace.`
+			branch busy
+				has "remnant: dusk busy"
+			`	"Stop by the cafeteria tomorrow morning, <first>. Dusk and I will have more you can help with, if you are interested." With that, she gestures farewell and heads off at a brisk pace.`
+				decline
+			label busy
+			`	"Stop by the cafeteria once your current work with Dusk is concluded; we will have more you can help with, if you are interested." With that, she gestures farewell and heads off at a brisk pace.`
 
 
 
