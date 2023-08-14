@@ -525,99 +525,6 @@ outfit "Sidereal Magazine"
 	description "Sidereal storage"
 
 
-outfit "Equinox Torpedo"
-	category "Ammunition"
-	licenses
-		"Avgi Atomics"
-	cost 660000
-	thumbnail "outfit/equinox torpedo"
-	"mass" 3
-	"equinox capacity" -1
-	description "The Equinox makes no compromises with its design goal of fitting the largest thermonuclear warhead feasible. After minimalizing its propulsion system to little more than a few reaction control thrusters, the Equinox is essentially an unguided torpedo. A carrying ship must instead both accelerate and aim the torpedo properly to ensure a hit."
-	description "A thin coating of ablative polymer designed to resist lasers was the only mass the Avgi were willing to allocate to armor, and as such the Equinox is easily shot down by most modern antimissile systems."
-
-
-outfit "Equinox Torpedo Pylon"
-	category "Secondary Weapons"
-	licenses
-		"Avgi Atomics"
-	cost 80000
-	thumbnail "outfit/equinox torpedo pylon"
-	"mass" 6
-	"outfit space" -6
-	"weapon capacity" -9
-	"gun ports" -1
-	"equinox capacity" 1
-	weapon
-		sprite "projectile/emp torpedo"
-			"frame rate" 3
-		sound "torpedo"
-		ammo "Equinox Torpedo"
-		"stream"
-		icon "icon/nuke"
-		"fire effect" "torpedo fire"
-		"firing energy" 30
-		"reload" 360
-		"lifetime" 30
-		"drag" 60
-		"velocity" 3
-		"turn" 12
-		"homing" 2
-		"optical tracking" 0.9
-		"radar tracking" 0.6
-		"range override" 720
-		"hit effect" "thermonuclear flash"
-		"hit effect" "prompt radiation" 24
-		"hit effect" "fission fragments" 860
-		"die effect" "missile death"
-		"missile strength" 24
-		"submunition" "Equinox Active"
-	description "Developed concurrently with the Photikon Torpedo Bomber, the Equinox Torpedo is a large, minimally guided thermonuclear torpedo that allows even small drones to pose a credible threat to a capital warship."
-	description "Unlike the nuclear missiles employed by the Avgi, the Equinox carries only enough propellant to make small adjustments to its trajectory, and lacks the ability to accelerate entirely. It instead relies on the speed of the bomber carrying it, trading an independent propulsive capability for an oversized warhead."
-	description "This pylon externally mounts a single torpedo, employing a small electromagnetic catapult to fling the torpedo towards its target."
-
-
-outfit "Equinox Active"
-	weapon
-		sprite "projectile/emp torpedo"
-			"frame rate" 3
-		"lifetime" 600
-		"velocity" 3
-		"acceleration" 0.09
-		"drag" 0.03
-		"turn" 0.06
-		"homing" 4
-		"optical tracking" .9
-		"radar tracking" .6
-		"hit effect" "nuke explosion"
-		"hit effect" "mhd explosion"
-		"hit effect" "mhd spark" 860
-		"die effect" "missile death"
-		"shield damage" 14400
-		"hull damage" 9000
-		"heat damage" 7200
-		"hit force" 3600
-		"blast radius" 240
-		"trigger radius" 120
-		"missile strength" 24
-
-
-outfit "Equinox Torpedo Stockpile"
-	category "Ammunition"
-	licenses
-		"Avgi Atomics"
-	cost 1440000
-	thumbnail "outfit/unknown"
-	"mass" 6
-	"outfit space" -24
-	"cargo space" -18
-	"crew requirement" 3
-	"equinox capacity" 12
-	ammo "Equinox Torpedo"
-	description "This remotely operated reloading bay, intended for use on carriers, can quickly replenish a docked fighter or drone with Equinox Torpedoes. A generous stockpile of torpedoes allows a carrier to support multiple sorties before needing to resupply."
-	description "The restocking system requires oversight by a small team of specialists to ensure no accidents occur during the loading process."
-
-
 outfit "Nadir Missile"
 	category "Ammunition"
 	licenses
@@ -647,7 +554,6 @@ outfit "Nadir Launcher"
 			"no repeat"
 		sound "finisher"
 		ammo "Nadir Missile"
-		stream
 		icon "icon/finisher"
 		"fire effect" "finisher sparks" 6
 		"die effect" "finisher fragment" 6
@@ -663,8 +569,46 @@ outfit "Nadir Launcher"
 		"radar tracking" .9
 		"missile strength" 36
 		"submunition" "Nadir Active"
+		stream
 	description "Unlike humanity, the Avgi do not have a strong taboo against the use of nuclear weapons in space. To them, nuclear weapons are simply another tool, albeit one with a particularly high energy density, to be used when the occasion calls for it. Nuclear weapons have been the Avgi's trump card against the Aberrant, the one weapon they have capable of reliably breaking their advanced shields and atomizing their armor."
 	description "A standard modular launcher such as this one is designed to be easily installed on light to medium warships."
+
+
+outfit "Nadir VLS Array"
+	category "Secondary Weapons"
+	licenses
+		"Avgi Atomics"
+	cost 1370000
+	thumbnail "outfit/unknown"
+	"mass" 4.8
+	"outfit space" -48
+	"weapon capacity" -48
+	"turret mounts" -1
+	"nadir capacity" 48
+	weapon
+		sprite "projectile/thunderhead"
+			"frame rate" 1
+			"no repeat"
+		sound "finisher"
+		ammo "Nadir Missile"
+		icon "icon/finisher"
+		"fire effect" "finisher sparks" 6
+		"die effect" "finisher fragment" 6
+		"inaccuracy" 3
+		"velocity" 9
+		"lifetime" 30
+		"range override" 4800
+		"reload" 60
+		"burst reload" 30
+		"burst count" 3
+		"firing energy" 6
+		"firing heat" 9
+		"turn" 6
+		"homing" 2
+		"radar tracking" .9
+		"missile strength" 36
+		"submunition" "Nadir Active"
+		"stream"
 
 
 outfit "Nadir Active"
@@ -682,10 +626,10 @@ outfit "Nadir Active"
 		"homing" 4
 		"radar tracking" 0.6
 		"infrared tracking" 0.9
-		"trigger radius" 36
-		"blast radius" 240
-		"shield damage" 9600
-		"hull damage" 7200
+		"trigger radius" 18
+		"blast radius" 180
+		"shield damage" 7200
+		"hull damage" 6000
 		"hit force" 3600
 		"missile strength" 36
 
@@ -785,6 +729,99 @@ outfit "Azimuth Magazine"
 	"azimuth capacity" 12
 	ammo "Azimuth Missile"
 	description "Azimuth storage"
+
+
+outfit "Equinox Torpedo"
+	category "Ammunition"
+	licenses
+		"Avgi Atomics"
+	cost 660000
+	thumbnail "outfit/equinox torpedo"
+	"mass" 3
+	"equinox capacity" -1
+	description "The Equinox makes no compromises with its design goal of fitting the largest thermonuclear warhead feasible. After minimalizing its propulsion system to little more than a few reaction control thrusters, the Equinox is essentially an unguided torpedo. A carrying ship must instead both accelerate and aim the torpedo properly to ensure a hit."
+	description "A thin coating of ablative polymer designed to resist lasers was the only mass the Avgi were willing to allocate to armor, and as such the Equinox is easily shot down by most modern antimissile systems."
+
+
+outfit "Equinox Torpedo Pylon"
+	category "Secondary Weapons"
+	licenses
+		"Avgi Atomics"
+	cost 80000
+	thumbnail "outfit/equinox torpedo pylon"
+	"mass" 6
+	"outfit space" -6
+	"weapon capacity" -9
+	"gun ports" -1
+	"equinox capacity" 1
+	weapon
+		sprite "projectile/emp torpedo"
+			"frame rate" 3
+		sound "torpedo"
+		ammo "Equinox Torpedo"
+		"stream"
+		icon "icon/nuke"
+		"fire effect" "torpedo fire"
+		"firing energy" 30
+		"reload" 360
+		"lifetime" 30
+		"drag" 60
+		"velocity" 3
+		"turn" 12
+		"homing" 2
+		"optical tracking" 0.9
+		"radar tracking" 0.6
+		"range override" 720
+		"hit effect" "thermonuclear flash"
+		"hit effect" "prompt radiation" 24
+		"hit effect" "fission fragments" 860
+		"die effect" "missile death"
+		"missile strength" 24
+		"submunition" "Equinox Active"
+	description "Developed concurrently with the Photikon Torpedo Bomber, the Equinox Torpedo is a large, minimally guided thermonuclear torpedo that allows even small drones to pose a credible threat to a capital warship."
+	description "Unlike the nuclear missiles employed by the Avgi, the Equinox carries only enough propellant to make small adjustments to its trajectory, and lacks the ability to accelerate entirely. It instead relies on the speed of the bomber carrying it, trading an independent propulsive capability for an oversized warhead."
+	description "This pylon externally mounts a single torpedo, employing a small electromagnetic catapult to fling the torpedo towards its target."
+
+
+outfit "Equinox Active"
+	weapon
+		sprite "projectile/emp torpedo"
+			"frame rate" 3
+		"lifetime" 600
+		"velocity" 3
+		"acceleration" 0.09
+		"drag" 0.03
+		"turn" 0.06
+		"homing" 4
+		"optical tracking" .9
+		"radar tracking" .6
+		"hit effect" "nuke explosion"
+		"hit effect" "mhd explosion"
+		"hit effect" "mhd spark" 860
+		"die effect" "missile death"
+		"shield damage" 14400
+		"hull damage" 9000
+		"heat damage" 7200
+		"hit force" 3600
+		"blast radius" 240
+		"trigger radius" 120
+		"missile strength" 24
+
+
+outfit "Equinox Torpedo Stockpile"
+	category "Ammunition"
+	licenses
+		"Avgi Atomics"
+	cost 1440000
+	thumbnail "outfit/unknown"
+	"mass" 6
+	"outfit space" -24
+	"cargo space" -18
+	"crew requirement" 3
+	"equinox capacity" 12
+	ammo "Equinox Torpedo"
+	description "This remotely operated reloading bay, intended for use on carriers, can quickly replenish a docked fighter or drone with Equinox Torpedoes. A generous stockpile of torpedoes allows a carrier to support multiple sorties before needing to resupply."
+	description "The restocking system requires oversight by a small team of specialists to ensure no accidents occur during the loading process."
 
 
 effect "thermonuclear flash"

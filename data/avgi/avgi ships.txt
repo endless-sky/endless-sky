@@ -1193,14 +1193,14 @@ ship "Prismaios"
 		"Sidereal Missile" 84
 
 		"Luminous Fusion Core"
-		"Ultracapacitor Bank" 2
+		"Ultracapacitor Bank"
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
 		"Multispectral Scanner"
 		"Electrostatic Ramscoop"
 		
 		"Z-360 Fusion Torch"
-		"XY-180 Radial Thrusters"
+		"XY-420 Radial Thrusters"
 		"Hyperdrive"
 
 	engine 0 108

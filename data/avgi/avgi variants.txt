@@ -60,7 +60,52 @@ ship "Prismaios" "Prismaios (Coilgun)"
 		"Hyperdrive"
 
 
+ship "Prismaios" "Prismaios (Atomic)"
+	outfits
+		"Phased Array Laser (Green)"
+		"Speckle Turret" 2
+		"Speck Round" 14400
+		"Nadir Launcher" 2
+		"Nadir Magazine"
+		"Nadir Missile 48"
+
+		"Luminous Fusion Core"
+		"Ultracapacitor Cell" 3
+		"Diffuse Deflector"
+		"Optical Lasing Generator"
+		"Multispectral Scanner"
+		"Electrostatic Ramscoop"
+		
+		"Z-360 Fusion Torch"
+		"XY-180 Radial Thrusters"
+		"Hyperdrive"
+
+
 # Medium Warships
+
+ship "Diaspersi" "Diaspersi (Atomic)"
+	outfits
+		"Phased Array Laser (Green)" 2
+		"Fleck Turret"
+		"Fleck Round" 2400
+		"Nadir Launcher" 2
+		"Nadir Missile" 36
+		"Equinox Torpedo Stockpile"
+		"Equinox Torpedo" 12
+		
+		"Luminous Fusion Core"
+		"Ultracapacitor Bank"
+		"Diffuse Deflector"
+		"Optical Lasing Generator"
+		"Multispectral Scanner" 2
+		"Concealment Scales"
+		"Deuterium Slush Tank"
+		"Electrostatic Ramscoop"
+		
+		"Z-600 Fusion Torch"
+		"XY-420 Radial Thrusters"
+		"Hyperdrive"
+
 
 ship "Difraktos" "Difraktos (Missile)"
 	outfits
@@ -98,6 +143,54 @@ ship "Difraktos" "Difraktos (Kinetic)"
 		"Z-360 Fusion Torch"
 		"XY-420 Radial Thrusters"
 		"Hyperdrive"
+
+
+ship "Difraktos" "Difraktos (Atomic)"
+	outfits
+		"Phased Array Laser (Green)"
+		"Fleck Turret" 2
+		"Fleck Round" 4800
+		"Nadir VLS Array" 2
+		"Nadir Missile" 108
+		"Nadir Magazine"
+
+		"Radiant Fusion Core"
+		"Ultracapacitor Bank"
+		"Diffuse Deflector"
+		"Optical Lasing Generator"
+		"Multispectral Scanner" 2
+		"Concealment Scales"
+		"Electrostatic Ramscoop"
+		
+		"Z-600 Fusion Torch"
+		"XY-420 Radial Thrusters"
+		"Hyperdrive"
+
+
+# Heavy Warships
+
+ship "Atenuatia" "Atenuatia (Atomic)"
+	outfits
+		"Fleck Turret"
+		"Fleck Round" 2400
+		"Phased Array Laser (Blue)" 2
+		"Phased Array Laser (Green)" 3
+		"Nadir VLS Array"
+		"Equinox Torpedo Stockpile" 3
+		"Equinox Torpedo" 36
+		"Nadir Missile" 48
+		
+		"Radiant Fusion Core"
+		"Ultracapacitor Bank" 2
+		"Specular Deflector"
+		"Optical Lasing Generator" 2
+		"Electrostatic Ramscoop" 2
+		"Multispectral Scanner" 9
+		
+		"Z-600 Fusion Torch"
+		"XY-420 Radial Thrusters"
+		"Hyperdrive"
+
 
 
 # Fighters
