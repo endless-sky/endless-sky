@@ -38,7 +38,7 @@ outfit "Nucleolysis Beam"
 		"hull damage" 5.6
 		"heat damage" -9.1
 		"fuel damage" 0.9
-		"corrosion damage" 0.1
+		"corrosion damage" 0.06
 	description "This beam weapon somehow creates a field inside which otherwise stable atomic nuclei rapidly decay. This effect seems to be inversely proportional to the mass of the nucleus, causing isotopes like deuterium to break down at a higher rate than heavier elements. As the resultant fission products have a higher energy state than the original nucleus, this effectively cools the target ship, defying conventional thermodynamics."
 	description "In aggregate, this can rapidly deplete a ship's deuterium fuel while also causing the very matter of its hull to decay."
 
@@ -55,11 +55,13 @@ outfit "Telescopic Antimissile"
 	weapon
 		"hit effect" "quarg anti-missile"
 		"hardpoint sprite" "hardpoint/quarg anti missile"
-		"anti-missile" 20
+		"anti-missile" 30
 		"velocity" 760
 		"lifetime" 1
 		"reload" 15
 		"firing energy" 90
+	description "Oddly enough, this antimissile system resembles an array of scanners and telescopes. Such an assortment of sensing devices was certainly not intended to be used as a weapon, but somehow enough power has been pumped into a scanning beam to make it a potent antimissile defense."
+	description "The various lenses and mirrors that make up a large telescope seem to be used to focus the emitted beam, giving this antimissile system a very long range."
 
 
 # Systems:
@@ -69,12 +71,12 @@ outfit "Anomalous Shield Projector"
 	cost 22000000
 	thumbnail "outfit/unknown"
 	"mass" 8
-	"outfit space" -12
-	"shield generation" 6
+	"outfit space" -25
+	"shield generation" 1.8
 	"shield energy" 6
 	"flotsam chance" 0.1
 	"unplunderable" 1
-	description "This emitter produces no detectable fields of any kind, yet a shield somehow springs into existence whenever something that could damage it comes near enough."
+	description "This emitter produces no detectable fields of any kind, but a shield somehow springs into existence whenever something that could damage it comes near enough."
 
 
 # Power:
@@ -85,7 +87,7 @@ outfit "Antimatter Power Cell"
 	thumbnail "outfit/unknown"
 	"mass" 32
 	"outfit space" -13
-	"energy generation" 9.9
+	"energy generation" 6.6
 	"heat generation" 4.9
 	"flotsam chance" 0.1
 	"unplunderable" 1

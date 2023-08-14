@@ -601,6 +601,7 @@ outfit "Nadir VLS Array"
 		"reload" 60
 		"burst reload" 30
 		"burst count" 3
+		"turret turn" 9
 		"firing energy" 6
 		"firing heat" 9
 		"turn" 6
