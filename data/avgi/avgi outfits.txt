@@ -1,3 +1,17 @@
+# Copyright (c) 2023 by Azure
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+
 # Weapons:
 
 
@@ -99,8 +113,8 @@ outfit "Speck"
 		"hit effect" "bullet impact"
 		"lifetime" 36
 		"random lifetime" 15
-		"shield damage" 6
-		"hull damage" 15
+		"shield damage" 18
+		"hull damage" 30
 		"hit force" 12
 
 
@@ -205,8 +219,8 @@ outfit "Fleck"
 		"lifetime" 120
 		"random lifetime" 30
 		"inaccuracy" 0.3
-		"shield damage" 90
-		"hull damage" 120
+		"shield damage" 72
+		"hull damage" 90
 		"hit force" 60
 		"missile strength" 3
 
@@ -1424,5 +1438,14 @@ outfit "Lancet Adamant"
 	description "A purely ceremonial weapon, this sleek shortspear is made from a continuous piece of adamantine, or nanodiamond. While not particularly useful in the realities of modern ranged combat, it certainly looks impressive."
 
 
+outfit "Avgi Civilian License"
+	category "Licenses"
+	thumbnail "outfit/unknown"
 
+outfit "Avgi Military License"
+	category "Licenses"
+	thumbnail "outfit/unknown
 
+outfit "Avgi Atomics License"
+	category "Licenses"
+	thumbnail "outfit/unknown

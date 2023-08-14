@@ -1,5 +1,15 @@
-
-# Anax planets
+# Copyright (c) 2023 by Azure
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 planet "Antivli Station"
@@ -110,10 +120,6 @@ planet Entantel
 	spaceport "The spaceport here launches most upmass via mass driver rather than starship, and despite the abundance of water, and thus deuterium, there is barely enough fuel to fill a few large tankers."
 	government Uninhabited
 
-
-
-
-# Early Avgi colonies
 
 planet Livolua
 	attributes avgi "avgi core" rich urban
@@ -239,7 +245,7 @@ planet Elthe
 	attributes avgi frontier mining shipping moon
 	landscape land/mars2
 	description "Elthe's parent gas giant, Sef, hosts a rich system of rings and moons chock full of valuable minerals. Lucrative returns made by independent miners attracted many settlers from Araio who became discontented with planetary life, leading to the rings of Sef becoming a wild frontier, one with orbital tether robberies and mass driver shootouts."
-	description "	By unspoken agreement, the airless moon Elthe, which was found to contain the only significant deposits of fissiles around Sef, became something of a neutral ground. Settling old scores or resolving disputed claims the "usual" way is heavily frowned upon here, and as such offworld companies felt safe enough to establish trading posts to ship out the vast quantities of minerals mined around Sef."
+	description `	By unspoken agreement, the airless moon Elthe, which was found to contain the only significant deposits of fissiles around Sef, became something of a neutral ground. Settling old scores or resolving disputed claims the "usual" way is heavily frowned upon here, and as such offworld companies felt safe enough to establish trading posts to ship out the vast quantities of minerals mined around Sef.`
 	government Uninhabited
 	security 0
 
@@ -321,7 +327,7 @@ planet Kapnos
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/clouds9
 	description `Kapnos is the heart of one of the most spectacular sights in the Milky Way. The gas giant is composed of largely molecular oxygen, despite the seeming impossibility of such an occurrence in nature. Its abnormally rapid spin, which causes the planet to bulge wildly at the equator, throws oxygen and water vapor off the top of its atmosphere to to form the famous Gossamer "gas torus," something that has sparked awe in the entire Avgi civilization from the moment of its discovery.`
-	description "The fact that there is more gas in the torus than one gas giant can account for has not been unnoticed, however, and many among the Avgi believe the entire system to be an artificial construct engineered by the long dead Predecessors." 
+	description "The fact that there is more gas in the torus than one gas giant can account for has not been unnoticed, however, and many among the Avgi believe the entire system to be an artificial construct engineered by the long dead Predecessors."
 	government Uninhabited
 	security 0
 

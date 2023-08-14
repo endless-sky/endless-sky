@@ -155,7 +155,7 @@ government "Avgi (Dissonance Aggressive)"
 	"friendly disabled hail" "friendly disabled dissonance"
 	"hostile hail" "hostile dissonance"
 	"hostile disabled hail" "hostile disabled dissonance"
-	raid "Dissonance Large"
+	raid "Large Dissonance Pirates"
 
 government "Bad Trip"
 	swizzle 0
