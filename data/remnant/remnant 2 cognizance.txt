@@ -756,7 +756,12 @@ mission "Remnant: Cognizance 20"
 	on complete
 		require "Research Laboratory"
 		conversation
+			branch busy
+				has "remnant: dusk busy"
 			`One of the Remnant is waiting for you. "Thanks for picking up the equipment. The team that you will be taking to Ssil Vida is waiting for you in the spaceport."`
+				decline
+			label busy
+			`One of the Remnant is waiting for you. "Thanks for picking up the equipment. Dusk will lead the team that you will take to Ssil Vida, but we understand he is currently busy elsewhere with you. You should complete that work, then return to the spaceport here to begin the next expedition."`
 
 
 
