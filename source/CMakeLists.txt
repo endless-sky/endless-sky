@@ -213,6 +213,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Outfit.h
 	OutfitInfoDisplay.cpp
 	OutfitInfoDisplay.h
+	OutfitOptimizer.cpp
+	OutfitOptimizer.h
 	OutfitterPanel.cpp
 	OutfitterPanel.h
 	OutlineShader.cpp
