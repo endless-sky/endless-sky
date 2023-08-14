@@ -322,7 +322,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 	int outfitsToSell = 0;
 	for(auto &it : cargo.Outfits())
 		outfitsToSell += it.second;
-  // Have you left any unique items at the outfitter?
+	// Have you left any unique items at the outfitter?
 	bool leftUniques = false;
 	for(const auto &it : player.GetStock())
 		if(it.first->Attributes().Get("unique") > 0)
@@ -380,7 +380,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 		else if(leftUniques)
 		{
 			out << "If you take off now you won't be able to re-purchase unique outfits you sold at the outfitter.";
-    }
+		}
 		// Warn about ships that won't travel with you.
 		else if(nonJumpCount > 0)
 		{
