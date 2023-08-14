@@ -187,3 +187,15 @@ bool Rectangle::Overlaps(const Rectangle &other) const
 {
 	return !(other.Left() > Right() || other.Right() < Left() || other.Top() > Bottom() || other.Bottom() < Top());
 }
+
+
+
+bool Rectangle::Overlaps(const Point &circle, const double radius) const
+{
+	// Handle case where circle is entirely within rectangle.
+	if(Contains(circle))
+		return true;
+
+	const Point closest = {min(Left(), max(Right(), circle.X())), min(Top(), max(Bottom(), circle.Y()))};
+	return (circle - closest).LengthSquared() < radius * radius;
+}
