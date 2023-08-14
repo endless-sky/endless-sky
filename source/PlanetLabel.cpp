@@ -36,21 +36,21 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	const double LINE_ANGLE[4] = {60., 120., 300., 240.};
-	const double LINE_LENGTH = 60.;
-	const double INNER_SPACE = 10.;
-	const double LINE_GAP = 1.7;
-	const double GAP = 6.;
-	const double MIN_DISTANCE = 30.;
+	constexpr double LINE_ANGLE[4] = {60., 120., 300., 240.};
+	constexpr double LINE_LENGTH = 60.;
+	constexpr double INNER_SPACE = 10.;
+	constexpr double LINE_GAP = 1.7;
+	constexpr double GAP = 6.;
+	constexpr double MIN_DISTANCE = 30.;
 
 	// Check if the given label for the given stellar object and direction overlaps
 	// with any other stellar object in the system.
 	bool Overlaps(const System &system, const StellarObject &object, const double zoom,
 			const Rectangle &label, const int direction)
 	{
-		const Point start = zoom * (object.Position() + Angle(LINE_ANGLE[direction]).Unit() *
-			(object.Radius() + INNER_SPACE + LINE_GAP + LINE_LENGTH));
-		// Offset the label depending on its location relative to the stellar object.
+		const Point start = zoom * object.Position() + Angle(LINE_ANGLE[direction]).Unit() *
+			(zoom * object.Radius() + INNER_SPACE + LINE_GAP + LINE_LENGTH);
+		// Offset the label depending on its position relative to the stellar object.
 		const Point halfUnit(LINE_ANGLE[direction] < 180. ? .5 : -.5, 0.);
 		const Rectangle box = label + start + halfUnit * label.Width();
 
@@ -89,7 +89,7 @@ PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, con
 		color = Color(.3f, .3f, .3f, 1.f);
 		government = "(No government)";
 	}
-	float alpha = static_cast<float>(min(.5, max(0., .6 - (position.Length() - object.Radius()) * .001 * zoom)));
+	const float alpha = static_cast<float>(min(.5, max(0., .6 - (position.Length() - object.Radius()) * .001 * zoom)));
 	color = Color(color.Get()[0] * alpha, color.Get()[1] * alpha, color.Get()[2] * alpha, 0.);
 
 	if(!system)

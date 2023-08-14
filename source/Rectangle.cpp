@@ -200,6 +200,6 @@ bool Rectangle::Overlaps(const Point &circle, const double radius) const
 	if(Contains(circle))
 		return true;
 
-	const Point closest = {min(Left(), max(Right(), circle.X())), min(Top(), max(Bottom(), circle.Y()))};
+	const Point closest = {max(Left(), min(Right(), circle.X())), max(Top(), min(Bottom(), circle.Y()))};
 	return (circle - closest).LengthSquared() < radius * radius;
 }
