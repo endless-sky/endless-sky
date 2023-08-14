@@ -387,8 +387,7 @@ outfit "Void Orchid"
 
 # Acheron Space-life Asteroids
 
-minable "bioroid"
-	"display name" "Unknown"
+minable "unknown"
 	sprite "asteroid/bioroid/spin"
 	hull 1600
 	"random hull" 810

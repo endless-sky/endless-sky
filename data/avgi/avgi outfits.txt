@@ -1444,8 +1444,8 @@ outfit "Avgi Civilian License"
 
 outfit "Avgi Military License"
 	category "Licenses"
-	thumbnail "outfit/unknown
+	thumbnail "outfit/unknown"
 
 outfit "Avgi Atomics License"
 	category "Licenses"
-	thumbnail "outfit/unknown
+	thumbnail "outfit/unknown"

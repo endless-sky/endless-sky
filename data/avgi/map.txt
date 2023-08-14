@@ -4376,7 +4376,7 @@ system Rb-85
 system Ca-40
 	pos -92.844 973.172
 	government Uninhabited
-	attributes "ember waste" shroud" tangled wormhole
+	attributes "ember waste" "tangled shroud" wormhole
 	habitable 10
 	belt 1137 4
 	haze _menu/haze-red
