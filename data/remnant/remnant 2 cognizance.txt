@@ -1425,6 +1425,7 @@ mission "Remnant: Cognizance 32"
 			`	A hatch opens on the Peregrine, and all the workers quickly finish their tasks and stow their equipment onboard. "Ready for departure when you are, Captain!" calls one from the hatch.`
 				accept
 	on accept
+		set "remnant: dusk busy"
 		give ship Peregrine "Shadow Flight"
 		event "remnant: cognizance peregrine"
 	on decline
