@@ -67,7 +67,7 @@ ship "Prismaios" "Prismaios (Atomic)"
 		"Speck Round" 14400
 		"Nadir Launcher" 2
 		"Nadir Magazine"
-		"Nadir Missile 48"
+		"Nadir Missile" 48
 
 		"Luminous Fusion Core"
 		"Ultracapacitor Cell" 3
@@ -154,7 +154,7 @@ ship "Difraktos" "Difraktos (Atomic)"
 		"Nadir Missile" 108
 		"Nadir Magazine"
 
-		"Radiant Fusion Core"
+		"Brilliant Fusion Core"
 		"Ultracapacitor Bank"
 		"Diffuse Deflector"
 		"Optical Lasing Generator"

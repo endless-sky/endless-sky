@@ -147,7 +147,10 @@ mission "Avgi: First Contact"
 	npc
 		government "Aberrant"
 		personality entering heroic
-		ship "Twilight Ka'sei 1A" 4
+		fleet
+			names "aberrant names"
+			variant
+				"Twilight Ka'sei 1A" 4
 
 	npc save accompany
 		government "Avgi (Twilight Guard)"
