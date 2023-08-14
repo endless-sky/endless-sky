@@ -1389,7 +1389,8 @@ system Ensemble
 		distance 2899.962
 		period 1095.738
 		object Weledos
-			sprite planet/water0
+			sprite planet/forest7
+				scale 0.5
 			distance 400.418
 			period 30
 	object

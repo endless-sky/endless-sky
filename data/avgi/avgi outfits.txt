@@ -164,9 +164,7 @@ outfit "Fleck Coilgun"
 	weapon
 		sound "fleck"
 		ammo "Fleck Round"
-		"hardpoint sprite" "hardpoint/fleck turret"
-		"hardpoint offset" 6
-		"fire effect" "finisher sparks"
+		"fire effect" "fleck fire"
 		"hit effect" "bombardment impact"
 		"inaccuracy" 0.6
 		"velocity" 60
@@ -194,7 +192,9 @@ outfit "Fleck Turret"
 	weapon
 		sound "fleck"
 		ammo "Fleck Round"
-		"fire effect" "finisher sparks"
+		"hardpoint sprite" "hardpoint/fleck turret"
+		"hardpoint offset" 6
+		"fire effect" "fleck fire"
 		"hit effect" "bombardment impact"
 		"inaccuracy" 0.3
 		"velocity" 60
@@ -504,8 +504,8 @@ outfit "Sidereal Flack"
 		"inaccuracy" 12
 			narrow
 		"random velocity" 12
-		"lifetime" 60
-		"random lifetime" 60
+		"lifetime" 30
+		"random lifetime" 30
 		"shield damage" 18
 		"hull damage" 30
 		"hit force" 36
@@ -676,17 +676,17 @@ outfit "Nadir Active"
 		"hit effect" "fission fragments" 240
 		"die effect" "missile death"
 		"lifetime" 600
-		"acceleration" 0.9
-		"drag" 0.03
-		"turn" 2.4
+		"acceleration" 1.8
+		"drag" .09
+		"turn" 12
 		"homing" 4
-		"radar tracking" .9
-		"optical tracking" .6
-		"trigger radius" 18
-		"blast radius" 150
-		"shield damage" 5400
-		"hull damage" 4200
-		"hit force" 1800
+		"radar tracking" 0.6
+		"infrared tracking" 0.9
+		"trigger radius" 36
+		"blast radius" 240
+		"shield damage" 9600
+		"hull damage" 7200
+		"hit force" 3600
 		"missile strength" 36
 
 

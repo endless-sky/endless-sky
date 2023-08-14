@@ -55,7 +55,6 @@ phrase "friendly twilight guard"
 phrase "hostile twilight guard"
 	phrase
 		"twilight guard angry" 3
-		"avgi angry" 3
 
 phrase "friendly disabled twilight guard"
 	phrase
@@ -963,7 +962,8 @@ phrase "avgi angry"
 		"Uncertain"
 		"Wary"
 	word
-		" "
+		". "
+		"; "
 	word
 		"Attacking the innocent is shameful"
 		"Don't hurt me, I beg you"

@@ -26,7 +26,7 @@ fleet "Small Aberrant"
 	government "Aberrant"
 	names "aberrant names"
 	personality
-		confusion 90
+		confusion 60
 		hunting coward vindictive unconstrained harvests mining secretive
 	variant 20
 		"Twilight Ka'sei 1A"
@@ -114,7 +114,7 @@ fleet "Large Aberrant"
 	government "Aberrant"
 	names "aberrant names"
 	personality
-		confusion 90
+		confusion 60
 		hunting coward vindictive unconstrained harvests mining secretive
 	variant 10
 		"Twilight Ka'sei 1E"
