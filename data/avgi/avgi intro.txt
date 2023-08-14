@@ -473,7 +473,7 @@ mission "Avgi: Defend Ensemble 2"
 		government "Aberrant"
 		personality
 			confusion 90
-			hunting coward vindictive unconstrained secretive
+			hunting coward vindictive staying unconstrained secretive
 		system "Ensemble"
 		fleet
 			names "aberrant names"
