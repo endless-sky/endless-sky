@@ -38,11 +38,18 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	// Location filter flags.
+	// ENTERED = Player has entered (visited) this system.
 	const int ENTERED = 1 << 0;
+	// LANDED = Player has landed on (visited) this planet.
 	const int LANDED = 1 << 1;
+	// REACHABLE = Player's flagship is able to fly to this system, even if the player doesn't know how.
 	const int REACHABLE = 1 << 2;
+	// MAPPED = Player has mapped a route to this system, even if their flagship can't reach it.
 	const int MAPPED = 1 << 3;
+	// PLAYER_FILTERS = A bitwise or of all filters that need PlayerInfo.
 	const int PLAYER_FILTERS = ENTERED | LANDED | REACHABLE | MAPPED;
+	// ELSEWHERE = Not in the center of the search.
 	const int ELSEWHERE = 1 << 4;
 
 	bool SetsIntersect(const set<string> &a, const set<string> &b)
