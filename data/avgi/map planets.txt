@@ -483,13 +483,12 @@ planet "Tilo Station"
 	landscape land/space0
 	description "Tilo Station was the first major refueling station built in the Tangled Shroud, predating the Incursion, and while it continues to harvest deuterium and helium-3 from the gas giant below, it has largely been supplanted by smaller, less centralized ice-based deuterium refineries. This has led to a degree of neglect by the Assembly, and a posting here is generally regarded as a minor punishment."
 	description "	As a result, the station's crew has been thoroughly penetrated by those with sympathies to the Dissonance."
-	"required reputation" 10
 	government "Avgi (Consonance)"
 	"required reputation" 10
 
 
 planet "Aktina Cylinder"
-	attributes avgi "avgi diaspora" station uninhabited
+	attributes avgi "avgi diaspora" station
 	landscape land/station52
 	description "Aktina Cylinder is an incomplete space station of an enormous scale. Two dozen kilometers in diameter and three times that in length, when complete it will be able to house tens of millions of Avgi in urban conditions. Thousands of cylinders like these were built over the years in the Avgi core systems, but limited resources have constrained the Avgi in the Tangled Shroud to only building one over the last decade."
 	description `	With resources constantly being reallocated towards new warships and mining installations, many wonder if the cylinder will ever be completed, which would provide enough space to allow the millions of Avgi in cryogenic storage to be revived. The main habitat body is still open to space, and the only area sealed against vacuum is a relatively small section tucked under what will be the habitat's "floor," which will become a maintenance bay once the station is complete.`
