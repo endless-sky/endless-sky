@@ -505,7 +505,7 @@ outfit "Sidereal Flack"
 			narrow
 		"random velocity" 12
 		"lifetime" 60
-		"random lifetime" 180
+		"random lifetime" 60
 		"shield damage" 18
 		"hull damage" 30
 		"hit force" 36

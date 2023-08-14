@@ -432,7 +432,7 @@ phrase "dissonance warnings"
 	word
 		" "
 	word
-		"the"
+		"the "
 	word
 		"bureaucratic"
 		"excessive"
@@ -446,6 +446,8 @@ phrase "dissonance warnings"
 		"unlimited"
 		"parasitical"
 		"authoritarian"
+	word
+		" "
 	word
 		"Assembly"
 		"Consonance"
