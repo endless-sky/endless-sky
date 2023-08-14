@@ -99,7 +99,7 @@ PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, con
 	// Adjust down so attachment point is at center of name.
 	const Rectangle label({0., (height - bigFont.Height()) / 2.}, {width, height});
 
-	// Try to find a label direction that not overlapping under any zoom.
+	// Try to find a label direction that is not overlapping under any zoom.
 	for(int d = 0; d < 4; ++d)
 		if(!Overlaps(*system, object, Preferences::MinViewZoom(), label, d)
 				&& !Overlaps(*system, object, Preferences::MaxViewZoom(), label, d))
