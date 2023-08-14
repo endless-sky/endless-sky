@@ -865,7 +865,7 @@ outfit "Adamant Scales"
 	"anchor point" -1
 	"hull multiplier" 1
 	"solar heat" 3
-	description "Thanks to recent breakthroughts in materials science, the Avgi have devised this retrofitting kit to allow older ships to take advantage of the increased hull strength offered by exotic materials. These armor plates and structural members reinforce both the skin and core strength of a ship, strengthening it without compromising its internal structure."
+	description "Thanks to recent breakthroughs in materials science, the Avgi have devised this retrofitting kit to allow older ships to take advantage of the increased hull strength offered by exotic materials. These armor plates and structural members reinforce both the skin and core strength of a ship, strengthening it without compromising its internal structure."
 	description "Adamant Scales take advantage of special external hardpoints built into most Avgi ships, allowing them to be mounted without taking up any outfit space. However, they also tend to increase the amount of heat absorbed from the local star."
 
 
@@ -987,7 +987,7 @@ outfit "Spectrometer Array"
 	"cargo scan efficiency" 18
 	"asteroid scan power" 144
 	"energy consumption" 0.03
-	description "This sensor array features a set of sensitive spectrometers capable of analyzing the spectral signatures of materials in order to determine their composition. A small ultraviolet laser can speed this process up for asteroids by vaporizing a small surface sample, making the spectral lines much more visibile, but is sadly useless against shielded ships and their internal systems."
+	description "This sensor array features a set of sensitive spectrometers capable of analyzing the spectral signatures of materials in order to determine their composition. A small ultraviolet laser can speed this process up for asteroids by vaporizing a small surface sample, making the spectral lines much more visible, but is sadly useless against shielded ships and their internal systems."
 	description "Unfortunately, while Avgi sensors excel in reading basic physical and chemical information, such as the composition of an object, the amount of sensor data required to predict an outfit's functionality means this sensor can be quite slow when scanning a ship's complex systems or cargo."
 
 
@@ -1209,7 +1209,7 @@ outfit "Magnetoplasma Drive"
 		"frame rate" 5
 	"reverse flare sound" "plasma tiny"
 	description "This compact set of magnetoplasmadynamic thrusters can propel small ships to impressive speeds over time, but is also quite energy hungry."
-	description "Designed to be clustered, this design is capable of full six-axis control." 
+	description "Designed to be clustered, this design is capable of full six-axis control."
 
 
 outfit "Z-360 Fusion Torch"

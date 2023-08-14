@@ -30,12 +30,12 @@ ship "Koryfi"
 			"hull damage" 240
 			"hit force" 240
 	outfits
-			"Ultracapacitor Cell" 3
-			"Diffuse Deflector"
-			"Luxury Accommodations"
+		"Ultracapacitor Cell" 3
+		"Diffuse Deflector"
+		"Luxury Accommodations"
 
-			"Magnetoplasma Drive" 2
-			"Hyperdrive"
+		"Magnetoplasma Drive" 2
+		"Hyperdrive"
 
 	gun 0 -27
 	turret 0 -12
@@ -287,11 +287,11 @@ ship "Avlaki"
 			"hull damage" 240
 			"hit force" 240
 	outfits
-			"Ultracapacitor Bank"
-			"Diffuse Deflector"
+		"Ultracapacitor Bank"
+		"Diffuse Deflector"
 
-			"Magnetoplasma Drive" 2
-			"Hyperdrive"
+		"Magnetoplasma Drive" 2
+		"Hyperdrive"
 
 	gun 0 -27
 	turret 0 -12
@@ -360,7 +360,7 @@ ship "Avlaki"
 	explode "medium explosion" 9
 	"final explode" "final explosion medium"
 
-	description "The Avlaki is a mid-sized freighter loosely descended from a pre-hyperdrive solar-electric tug design. Its low cost and reknowned maintainability has enabled it to remain in service to this day, a popular choice among independent captains."
+	description "The Avlaki is a mid-sized freighter loosely descended from a pre-hyperdrive solar-electric tug design. Its low cost and renowned maintainability has enabled it to remain in service to this day, a popular choice among independent captains."
 	description "Enterprising captains often exploit the commonality of the Koryfi and Avlaki designs, swapping out the standard cargo containers for a centrifuge habitat."
 	description "While its standard set of magnetoplasmadynamic thrusters give it an acceleration generously described as sluggish, the Avlaki's constant thrust flight profile allows it to reach an impressive cruising velocity given enough time."
 
@@ -533,7 +533,7 @@ ship "Phononos"
 			"shield damage" 420
 			"hull damage" 360
 			"hit force" 180
-	outfits	
+	outfits
 		"Concentrating Solar Array"
 		"Ultracapacitor Cell"
 		
@@ -847,18 +847,18 @@ ship "Entasi"
 			"hull damage" 1200
 			"hit force" 1200
 	outfits
-			"Phased Array Laser (Blue)" 2
-			"Sidereal Launcher" 2
-			"Sidereal Missile" 84
+		"Phased Array Laser (Blue)" 2
+		"Sidereal Launcher" 2
+		"Sidereal Missile" 84
 
-			"Ultracapacitor Bank" 3
-			"Diffuse Deflector"
-			"Optical Lasing Generator"
-			"Multispectral Scanner" 3
-			"Spectrometer Array" 6
+		"Ultracapacitor Bank" 3
+		"Diffuse Deflector"
+		"Optical Lasing Generator"
+		"Multispectral Scanner" 3
+		"Spectrometer Array" 6
 
-			"Magnetoplasma Drive" 2
-			"Hyperdrive"
+		"Magnetoplasma Drive" 2
+		"Hyperdrive"
 
 	gun -36 9 "Sidereal Launcher"
 	gun 36 9 "Sidereal Launcher"
@@ -879,58 +879,58 @@ ship "Entasi"
 	bay "Drone" 18 72
 
 	engine -45 45
-		zoom 0.8
-	engine 45 45 
-		zoom 0.8
-	engine -39.5 44.5 
-		zoom 0.8
-	engine 39.5 44.5 
-		zoom 0.8
-	engine -34 44 
-		zoom 0.8
-	engine 34 44 
-		zoom 0.8
-	engine -29 44 
-		zoom 0.8
-	engine 29 44 
-		zoom 0.8
-	"reverse engine" -22 52.5
+		zoom 0.9
+	engine 45 45
+		zoom 0.9
+	engine -39 45
+		zoom 0.9
+	engine 39 45
+		zoom 0.9
+	engine -33 45
+		zoom 0.9
+	engine 33 45
+		zoom 0.9
+	engine -30 45
+		zoom 0.9
+	engine 30 45
+		zoom 0.9
+	"reverse engine" -21 51
 		zoom 0.7
-	"reverse engine" 22 52.5
+	"reverse engine" 21 51
 		zoom 0.7
-	"reverse engine" -17.5 52.5
+	"reverse engine" -18 51
 		zoom 0.7
-	"reverse engine" 17.5 52.5
+	"reverse engine" 18 51
 		zoom 0.7
-	"steering engine" 13 -70 
-		zoom 0.7
-		angle 270
-		left
-	"steering engine" 13 -64.5 
+	"steering engine" 12 -69
 		zoom 0.7
 		angle 270
 		left
-	"steering engine" -13 -70 
+	"steering engine" 12 -63
+		zoom 0.7
+		angle 270
+		left
+	"steering engine" -12 -69
 		zoom 0.7
 		angle 90
 		right
-	"steering engine" -13 -64.5 
+	"steering engine" -12 -63
 		zoom 0.7
 		angle 90
 		right
-	"steering engine" 8.5 86.5 
+	"steering engine" 9 87
 		zoom 0.7
 		angle 270
 		right
-	"steering engine" 8.5 91.5 
+	"steering engine" 9 90
 		zoom 0.7
 		angle 270
 		right
-	"steering engine" -8.5 86.5 
+	"steering engine" -9 87
 		zoom 0.7
 		angle 90
 		left
-	"steering engine" -8.5 91.5 
+	"steering engine" -9 90
 		zoom 0.7
 		angle 90
 		left
@@ -1062,7 +1062,7 @@ ship "Modified Tachytia"
 	"final explode" "nuke residue fast" 90
 
 	description "This was once an Avgi sublight starship, one of the last models built before the discovery of the hyperdrive. Most starships around this period used ram augmented fusion drives to reach cruising speeds of up to 0.25c, but the Tachytia class was designed to reach a velocity of 0.4c with an antimatter fuel source to ignite propellant gathered with its huge ramscoop."
-	description "This particular ship was never launched on its mission, commissioned just before the hyperdrive made it obsolete. Now, it has been extensively modified by removing many of its propellant tanks, replacing them with a hyperdrive, additional equipment spaces, and several docking bays. The cryosleep bay has also been subtituted for spacious habitatation cylinders, making this a true city ship."
+	description "This particular ship was never launched on its mission, commissioned just before the hyperdrive made it obsolete. Now, it has been extensively modified by removing many of its propellant tanks, replacing them with a hyperdrive, additional equipment spaces, and several docking bays. The cryosleep bay has also been substituted for spacious habitatation cylinders, making this a true city ship."
 
 
 
@@ -1971,13 +1971,13 @@ ship "Undulon"
 	outfits
 		"Nadir Launcher"
 		"Nadir Missile" 6
-		
+
 		"Concentrating Solar Cell" 3
 		"Ultracapacitor Cell"
 		"Multispectral Scanner"
 
 		"Magnetoplasma Drive"
-			
+
 	engine -15 3
 		angle 15
 		zoom 0.5
@@ -2046,11 +2046,11 @@ ship "Optikon"
 
 		"Magnetoplasma Drive"
 
-	engine 0 21 
-	"steering engine" -6 12 
+	engine 0 21
+	"steering engine" -6 12
 		angle 90
 		left
-	"steering engine" 6 12 
+	"steering engine" 6 12
 		angle -90
 		right
 
@@ -2091,19 +2091,19 @@ ship "Sonikis"
 		"Magnetoplasma Drive"
 
 	gun 0 -6
-	engine -39 -6 
-	engine 39 -6 
-	"reverse engine" -39 -6 
-	"reverse engine" 39 -6 
-	"steering engine" -39 -6 
+	engine -39 -6
+	engine 39 -6
+	"reverse engine" -39 -6
+	"reverse engine" 39 -6
+	"steering engine" -39 -6
 		angle 180
 		left
-	"steering engine" 39 -6 
+	"steering engine" 39 -6
 		angle 180
 		right
-	"steering engine" -39 -6 
+	"steering engine" -39 -6
 		right
-	"steering engine" 39 -6 
+	"steering engine" 39 -6
 		left
 
 	leak "leak" 30 60

@@ -109,7 +109,7 @@ phrase "avgi colors"
 		Nadeshiko
 		Noir
 		Nyanza
-		Ochre
+		Ocher
 		Olive
 		Onyx
 		Opera
@@ -162,7 +162,7 @@ phrase "avgi colors"
 		Verdant
 		Verdigris
 		Vermilion
-		Vermillion
+		Vermilion
 		Veron
 		Violet
 		Viridian

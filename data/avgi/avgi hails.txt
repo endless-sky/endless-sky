@@ -118,7 +118,7 @@ phrase "avgi polite playername"
 		"sojourner"
 		"sophont"
 		"traveler"
-		"visiter"
+		"visitor"
 		"voyager"
 		"wanderer"
 
@@ -196,9 +196,9 @@ phrase "dissonance rude playername"
 		"traitor"
 		"xeno"
 
-phrase "avgi warm acknowledgement"
+phrase "avgi warm acknowledgment"
 	word
-		"Acknowledgement"
+		"Acknowledgment"
 		"Amenable"
 		"Amicable"
 		"Awe"
@@ -229,7 +229,7 @@ phrase "avgi warm acknowledgement"
 		"Greetings"
 		"Hello"
 		"I acknowledge you"
-		"I recieve you"
+		"I receive you"
 		"May you find joy"
 		"Recognized"
 		"Salutations"
@@ -239,7 +239,7 @@ phrase "avgi warm acknowledgement"
 		"You are acknowldged"
 
 
-phrase "avgi cold acknowledgement"
+phrase "avgi cold acknowledgment"
 	word
 		"Anger"
 		"Disdain"
@@ -266,18 +266,18 @@ phrase "avgi cold acknowledgement"
 		"Curse you"
 		"I see you for what you are"
 		"Keep your distance"
-		"Recieved"
+		"Received"
 		"Recognized"
 		"Remain in place"
 		"Stay away from me"
 		"Stay away"
 		"You are acknowledged"
-		"You are recieved"
+		"You are received"
 
 
 phrase "avgi warm greetings"
 	phrase
-		"avgi warm acknowledgement"
+		"avgi warm acknowledgment"
 	word
 		", "
 	phrase
@@ -288,7 +288,7 @@ phrase "avgi warm greetings"
 
 phrase "avgi cold greetings"
 	phrase
-		"avgi cold acknowledgement"
+		"avgi cold acknowledgment"
 	word
 		", "
 	phrase
@@ -299,7 +299,7 @@ phrase "avgi cold greetings"
 
 phrase "dissonance warm greetings"
 	phrase
-		"avgi warm acknowledgement"
+		"avgi warm acknowledgment"
 	word
 		", "
 	phrase
@@ -310,7 +310,7 @@ phrase "dissonance warm greetings"
 
 phrase "dissonance cold greetings"
 	phrase
-		"avgi cold acknowledgement"
+		"avgi cold acknowledgment"
 	word
 		", "
 	phrase
@@ -321,7 +321,7 @@ phrase "dissonance cold greetings"
 
 phrase "twilight guard greeting"
 	phrase
-		"avgi warm acknowledgement"
+		"avgi warm acknowledgment"
 	word
 		", "
 	phrase
@@ -359,7 +359,7 @@ phrase "avgi warnings"
 		"cowardly pirates" 2
 		"creatures of darkness"
 		"creatures of the night"
-		"Dissonance pirates" 6 
+		"Dissonance pirates" 6
 		"enemy aliens" 3
 		"genocidal aliens" 3
 		"government thieves"
@@ -370,7 +370,7 @@ phrase "avgi warnings"
 		"shadow monsters" 2
 		"tangling yourself in the hyperlanes" 3
 		"tax collectors" 3
-		"the Abberations" 12
+		"the Aberations" 12
 		"the Aberrant" 6
 		"the invaders" 6
 		"the invading aliens" 6
@@ -718,7 +718,7 @@ phrase "avgi commerce win"
 		"Enthusiasm"
 	word
 		". "
-		"; "		
+		"; "
 	word
 		"Did you know that phosphorus isn't taxed at all?"
 		"I discovered an asteroid with a rich platinum vein. I'm not telling anyone where!"

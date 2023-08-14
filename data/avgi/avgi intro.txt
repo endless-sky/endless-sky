@@ -11,7 +11,7 @@ mission "Avgi: Trapped in Twilight"
 
 phrase "twilight trapped"
 	word
-		`As soon as you jump into the <system> system, you notice something is wrong. The characteristic plasma of your Jump Drive fades unnaturally quickly, and as you check your systems you notice its temperature is somehow much lower than normal. You attempt to plot a jump back to human space, but your computer tells you the system you just came from is out of range. It appears you are stuck in this region for now.`
+		`As soon as you jump into the system, you notice something is wrong. The characteristic plasma of your Jump Drive fades unnaturally quickly, and as you check your systems you notice its temperature is somehow much lower than normal. You attempt to plot a jump back to human space, but your computer tells you the system you just came from is out of range. It appears you are stuck in this region for now.`
 
 mission "Avgi: First Contact"
 	autosave
@@ -49,12 +49,12 @@ mission "Avgi: First Contact"
 				`	(Attempt to land regardless.)`
 					goto hit
 					to display
-						"flagship attribute: shields" + "flagship attribute: hull" > 18000 * 1000	
+						"flagship attribute: shields" + "flagship attribute: hull" > 18000 * 1000
 						"flagship attribute: shields" + "flagship attribute: hull" < 90000 * 1000
 				`	(Attempt to land regardless.)`
 					goto scratched
 					to display
-							"flagship attribute: shields" + "flagship attribute: hull" >= 90000 * 1000
+						"flagship attribute: shields" + "flagship attribute: hull" >= 90000 * 1000
 				`	(Move to a higher orbit.)`
 					goto orbit
 
@@ -71,12 +71,12 @@ mission "Avgi: First Contact"
 				`	(Attempt to land regardless)`
 					goto hit
 					to display
-						"flagship attribute: shields" + "flagship attribute: hull" > 9000 * 1000	
+						"flagship attribute: shields" + "flagship attribute: hull" > 9000 * 1000
 						"flagship attribute: shields" + "flagship attribute: hull" < 60000 * 1000
 				`	(Attempt to land regardless)`
 					goto scratched
 					to display
-							"flagship attribute: shields" + "flagship attribute: hull" >= 60000 * 1000
+						"flagship attribute: shields" + "flagship attribute: hull" >= 60000 * 1000
 				`	(Move to a higher orbit)`
 					goto orbit
 
@@ -162,7 +162,7 @@ mission "Avgi: First Contact"
 		event "tangled shroud label"
 		conversation
 			`After a confusing journey through the winding hyperlanes, you finally arrive at the system the alien marked on your map. You notice that your flight computer has failed to record the location of the systems you passed through, probably due to the same anomaly that made your ship almost completely blind within the region. This system appears unaffected however, and your computer is able to chart its position.`
-			`	The alien ship pings you, indicating to follow as it flies towards what looks to be a large inhabited station in the system. Shaped like a circular disk, a large cutout in the center exposes hundreds of docking bays and what looks to be a spaceport. As you watch, a trio of sleek looking fightercraft launch from the station and take up escort positions around you and the other alien ship you have followed all this way. You can only assume your escort is in communication with the station authorities.` 
+			`	The alien ship pings you, indicating to follow as it flies towards what looks to be a large inhabited station in the system. Shaped like a circular disk, a large cutout in the center exposes hundreds of docking bays and what looks to be a spaceport. As you watch, a trio of sleek looking fightercraft launch from the station and take up escort positions around you and the other alien ship you have followed all this way. You can only assume your escort is in communication with the station authorities.`
 			`	Your companion speeds ahead, neatly pulling into one of the bays on the outer levels. When you attempt to follow, the fightercraft zip in front of you, herding you towards a different bay closer to the middle decks.`
 			`	The docking bay is full of activity, and you finally get your first glimpse at this new species up close. They appear to be something analogous to an Earth dragonfly, or maybe more closely to a damselfly, maybe a meter and a half long on average and with six limbs and wings. A group of them quickly close in around your ship as you finally land in a clear space, moving precisely. These aliens have clearly been expecting you.`
 			`	None of the aliens look to be armed, but are arrayed around your ship in a clearly defensive circular pattern, both on foot and flitting about in the air. Some of them look to be wearing some kind of body armor, but they don't seem to be carrying any obvious weapons. As you step out of the <ship>, noticing the lighter gravity, a small group quickly moves forward to meet you.`
@@ -209,7 +209,7 @@ mission "Avgi: First Contact"
 			`	She twitches her wings slightly in what might be laughter. "Amusement. That would take a very long time to do in any detail, but I will make an attempt." Reverting back to her own language, she consults with the two other Avgi for a minute before turning back to you.`
 			`	"Pride, accomplishment. We are the Avgi. Our six systems, with seven worlds, and hundreds of orbitals each the size of a city, together a thousand polities united towards the betterment of civilization and progress-"`
 			`	Galano, interrupts, his translator's voice sounding aged, somehow. "Remembrance. But before all that, before the hyperdrive, we still crossed the void between stars. I was a child when the last true starship launched, but I remember. Long before we learned to surpass light, we settled the worlds beyond our home star system, at great cost and effort. We first touched space four centuries ago, and-"`
-			`	He is cut off by Prasinos. "Rebuke. You should start from the beginning, long before we left Aviskir. Our ancestors made their homes around the springs in the valleys of the Fel Mountains, and spread across our planet for millenia. From fire to spears to the atom, our skill in turning the natural world to our will grew, and with it our ability to form civilization: Groups of Avgi bound together by more than close kinship or geography, instead by ideology and heritage and religion. And with that came conflict, each polity striving with the others to- "`
+			`	He is cut off by Prasinos. "Rebuke. You should start from the beginning, long before we left Aviskir. Our ancestors made their homes around the springs in the valleys of the Fel Mountains, and spread across our planet for millennia. From fire to spears to the atom, our skill in turning the natural world to our will grew, and with it our ability to form civilization: Groups of Avgi bound together by more than close kinship or geography, instead by ideology and heritage and religion. And with that came conflict, each polity striving with the others to- "`
 			`	Now both Asime and Galano make noises of dissent, and Galano, sounding rather hurried, interrupts. "Urgency. Perhaps we are not as united as you, the humans, and it is true that we have fought many wars among ourselves. Emphasis. But that time is long since past. We saw reason, and so the Consonance was created, governed by an Assembly of Polities to represent every division of the Avgi, small or large. From the nation-states to the ideolopoli, a consensus government of our species to resolve disputes, to prevent another Great War. And while there have still been wars fought by the foolish and shortsighted, there has not been a nuclear initiation on Aviskir's surface in more than a century. The Assembly, for all its faults, works."`
 			`	Asime adds, "Truth. And we are what the Avgi need, now that all of that could be lost to the Incursion, to the Aberrant it spawned. We need what humanity has, a united Republic to lead all of our people."`
 			choice
@@ -277,7 +277,7 @@ mission "Avgi: First Contact"
 			`	Asime continues for him. "Apprehension. The humans that came here before you, I must confess are still here for a reason. Perhaps they can give more details, but they have told us that when they first entered our space, they immediately attempted to turn around. For whatever reason, they were unable to. I do not know the means by which you were able to travel to our space, but perhaps you will be able to return, and take these stranded humans with you."`
 			`	"Or, you may find yourself trapped here, just as they are. In any case, we will of course make you as comfortable as we can, as an honored guest, and treat you as we would any foreign dignitary."`
 			`	"I have a Jump Drive that lets me travel beyond the hyperlanes, but it won't let me jump back to human space," you say.`
-			`	"Regret. Then the situation is most unfortunate," she says. "Committment. We will offer you what help we can, but I did not wish to lie to you about their predicament, or provide you with false hope."`
+			`	"Regret. Then the situation is most unfortunate," she says. "Commitment. We will offer you what help we can, but I did not wish to lie to you about their predicament, or provide you with false hope."`
 			`	"Reservation. Perhaps Captain <last> will be able to find a solution." says Galano. "I would not dismiss the possibility too quickly."`
 			choice
 				`	"While I'm here, can I buy your technology?"`
@@ -390,8 +390,8 @@ mission "Avgi: Defend Ensemble 1"
 					goto end
 
 			label end
-			`	You sit together in silence for a few more minutes, when Darius seems to recieve a message on his communicator. "I get patched in to the emergency alert system," he explains as he reads it. Suddenly, he pales. "There's a massive invasion headed towards the Ensemble system. Dozens of Aberrations, flying straight into the Shroud." He looks up at you. "They don't normally try to go too deep in the Shroud. Something about it spooks them, I think, but Ensemble is shallow enough that they've attacked it before. Nothing of this scale though, and... damn, Sora's on Weledos, the moon in the Ensemble system."`
-			`	He looks at you, hopeful. " We've got to do something. The Avgi are assembling a relief force around Napigeo Station, their big shipyard near here."`
+			`	You sit together in silence for a few more minutes, when Darius seems to receive a message on his communicator. "I get patched in to the emergency alert system," he explains as he reads it. Suddenly, he pales. "There's a massive invasion headed towards the Ensemble system. Dozens of Aberrations, flying straight into the Shroud." He looks up at you. "They don't normally try to go too deep in the Shroud. Something about it spooks them, I think, but Ensemble is shallow enough that they've attacked it before. Nothing of this scale though, and... damn, Sora's on Weledos, the moon in the Ensemble system."`
+			`	He looks at you, hopeful. "We've got to do something. The Avgi are assembling a relief force around Napigeo Station, their big shipyard near here."`
 			choice
 				`	"We'll join it. The <ship> is a mighty fine ship."`
 					accept
@@ -535,7 +535,7 @@ mission "Avgi: Defend Ensemble 2"
 			label warship
 			action
 				set "avgi: warship intro"
-			`	"Excellent. I am unsurprised, given its performance in the battle, but for all we know your alien vessel could be a simple freighter and yet still be formidible in our eyes. Are you willing to assist us with your warship's strength, question?"`
+			`	"Excellent. I am unsurprised, given its performance in the battle, but for all we know your alien vessel could be a simple freighter and yet still be formidable in our eyes. Are you willing to assist us with your warship's strength, question?"`
 			choice
 				`	"Yes, of course."`
 				`	"I'll hear you out."`
@@ -602,13 +602,13 @@ mission "Avgi: Scout Rescue"
 		system Whirlwind
 		ship "Polari (Derelict)" "Silver Albedo"
 		conversation
-			`You maneuver alongside with the Silver Albedo, the ship covered in scorch marks and other signs of damage. After transmitting a code given to you by Captain Kokkino, you wait for any signs of life. Eventually, after a few minutes you recieve a response, which you pass through your translator.`
+			`You maneuver alongside with the Silver Albedo, the ship covered in scorch marks and other signs of damage. After transmitting a code given to you by Captain Kokkino, you wait for any signs of life. Eventually, after a few minutes you receive a response, which you pass through your translator.`
 			`	"Caution. Unfamiliar vessel, how did you obtain Consonance identification codes?"`
 			choice
 				`	"There's no time for that. I'm here to rescue you."`
 					goto serious
 				`	"I'm a space alien here in my alien spaceship here to rescue you."`
-			`	"Amusement. Very well, I suppose we have little choice but to accept your help, opportune jester.  As you can see, the Albedo is in something of a predicament."`
+			`	"Amusement. Very well, I suppose we have little choice but to accept your help, opportune jester. As you can see, the Albedo is in something of a predicament."`
 				goto next
 			label serious
 			`	"Consideration. I suppose we have little choice but to accept your help, stranger. As you can see, the Albedo is in something of a predicament."`
@@ -617,7 +617,7 @@ mission "Avgi: Scout Rescue"
 
 	on complete
 		conversation
-			`You recieve a warm welcome back on Peripheria Station, as the former crew of the Silver Albedo disembarks. Some of the more badly injured crewmembers are carried out on hammock-like stretchers, but most are able to walk or fly out of the <ship> on their own power.`
+			`You receive a warm welcome back on Peripheria Station, as the former crew of the Silver Albedo disembarks. Some of the more badly injured crewmembers are carried out on hammock-like stretchers, but most are able to walk or fly out of the <ship> on their own power.`
 			`	After a short celebration and many expressions of deep gratitude toward you, you find Darius and Sora waiting by the <ship> to speak with you.`
 			`	"<first>, I think we have a golden opportunity," he says. "I was just talking to an Assemblyman, Hriso, who's worried about the political situation in the eastern branch of the Tangled Shroud.`
 			`	"A bunch of selfish cowards, they are," says Sora disdainfully.`
@@ -708,7 +708,7 @@ mission "Avgi: Frontline Combat"
 
 	on complete
 		conversation
-			`You recieve a hero's welcome back on the Feo Platform from the Twilight Guards stationed there, as stories of your exploits spread.`
+			`You receive a hero's welcome back on the Feo Platform from the Twilight Guards stationed there, as stories of your exploits spread.`
 			`	After a short celebration and many expressions of praise toward you, an alien stranger, you find Darius and Sora waiting by the <ship> to speak with you.`
 			`	"<first>, I think we have a golden opportunity," he says. "I was just talking to an Assemblyman, Hriso, who's worried about the political situation in the eastern branch of the Tangled Shroud.`
 			`	"A bunch of selfish cowards, they are," says Sora disdainfully.`
@@ -768,7 +768,7 @@ mission "Avgi: Dissonance Outreach"
 				`	(Remain silent.)`
 			`	Hriso turns to you. "Consideration. I suppose you might be curious about what we are discussing. The local mining guild here says they cannot sustain their operations with the low price on iron mandated by the Consonance, as we are not buying enough rarer metals like titanium to make up for it."`
 			`	"That's stupid," says Sora. "Without cheap steel we wouldn't be able to keep expanding Peripheria or build the Aktina Cylinder."`
-			`	 Hriso doesn't translate that, returning to conversing with the miners. Sora pulls out a translator of her own, listening intently to the conversation, but Darius pulls you aside. "I had a talk with a few people on the way here, and they say there's someone who knows more about the first days after Incursion. Come on."`
+			`	Hriso doesn't translate that, returning to conversing with the miners. Sora pulls out a translator of her own, listening intently to the conversation, but Darius pulls you aside. "I had a talk with a few people on the way here, and they say there's someone who knows more about the first days after Incursion. Come on."`
 			choice
 				`	"What did they say?"`
 			`	"Apparently it's someone we have to meet in person" he grumbles. "I don't like it, but I don't think it's anything dangerous. Just inconvenient." You excuse yourself and walk along with Darius.`
@@ -786,7 +786,7 @@ mission "Avgi: Dissonance Outreach"
 			choice
 				`	"Captain <last>. I was stranded here, just like you."`
 				`	"<first>. Pleased to meet you."`
-			`	You quicly explain how you found yourself in Avgi space, and Leon nods. "Figures. And, let me guess, you want to get out, and this Jump Drive of yours won't let you?"`
+			`	You quickly explain how you found yourself in Avgi space, and Leon nods. "Figures. And, let me guess, you want to get out, and this Jump Drive of yours won't let you?"`
 			choice
 				`	"Yes."`
 			`	"That explains the questions the good Captain was asking," he says, nodding at Darius. "I've spent years collecting this information, from hearing the official narrative to dredging the corners of Avgi space for rumors. So, before I tell you this, one condition. I've spent months looking for a way to get a ship to take me to... well, you'll see. But not a lot of captains are willing to take their ships out of the Tangled Shroud and through the Aberrant blockade, so if this leads anywhere, I want a bunk on your ship."`
@@ -822,7 +822,7 @@ mission "Avgi: Twilight Escape"
 			`	Just as your Jump Drive reacted strangely when you first entered Avgi space, it does so again, but with an inverse effect. Your instrumentation say it is much warmer than usual, almost hot enough to be dangerous. Maybe something has changed about your Jump Drive's range?.`
 	on enter
 		system
-			attributes "core" "deep" dirt belt" "near earth" "rim" "south"
+			attributes "core" "deep" "dirt belt" "near earth" "rim" "south"
 		conversation
 			`	As the purple flames of your Jump Drive fade, Darius, Sora, and Leon are all speechless. For the first time in six years, they are back in human space.`
 			`	"<first>," says Darius in a shaky voice. "Take us to Valhalla, please. I need to see someone."`
