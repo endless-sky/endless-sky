@@ -572,13 +572,15 @@ phrase "avgi questions"
 		". "
 		"; "
 	word
-		"Do tell us,"
+		"Do tell us"
 		"Educate us"
-		"Enlighten us,"
+		"Enlighten us"
 		"Inform us"
-		"Please tell us,"
+		"Please tell us"
 		"Share with us"
-		"Tell us,"
+		"Tell us"
+	word
+		", "
 	phrase
 		"avgi polite playername"
 	word

@@ -106,10 +106,10 @@ government "Avgi (Twilight Guard)"
 		destroy 2
 		provoke 0.1
 	bribe 0
-	"friendly hail" "friendly avgi"
-	"friendly disabled hail" "friendly disabled avgi"
-	"hostile hail" "hostile avgi"
-	"hostile disabled hail" "hostile disabled avgi"
+	"friendly hail" "friendly twilight guard"
+	"friendly disabled hail" "friendly disabled twilight guard"
+	"hostile hail" "hostile twilight guard"
+	"hostile disabled hail" "hostile disabled twilight guard"
 
 
 color "governments: Dissonance" 1 0 0.588
