@@ -184,14 +184,10 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			if(!uniqueOutfits.empty())
 			{
 				const int uniquesSize = uniqueOutfits.size();
-				int detailedOutfitList = 20;
-				if(detailedOutfitList > uniquesSize)
-					detailedOutfitList = uniquesSize;
-				else if(detailedOutfitList < uniquesSize)
-					--detailedOutfitList;
+				const int detailedOutfitSize = (uniquesSize > 20 ? 19 : uniquesSize);
 				message += "\nAdditionally, this ship is carrying the following unique items:";
 				auto it = uniqueOutfits.begin();
-				for(int i = 0; i < detailedOutfitList; ++i)
+				for(int i = 0; i < detailedOutfitSize; ++i)
 				{
 					message += "\n" + to_string(it->second) + " "
 						+ (it->second == 1 ? it->first->DisplayName() : it->first->PluralName());
