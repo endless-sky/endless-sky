@@ -30,14 +30,15 @@ class Outfit;
 // smallest (in outfit space) set of outfits that will satisfy it.
 class OutfitOptimizer {
 public:
-	OutfitOptimizer(const std::string &attribute, double amount, double space);
+	// Set targetAmount to zero to perform an exhaustive search for the highest possible amount.
+	OutfitOptimizer(const std::string &attribute, double targetAmount, double spaceLimit);
 
 	// Add outfits from the outfitters.
 	void AddOutfits(const std::set<const Outfit *> &outfits);
 	// Add outfits from cargo or stock.
 	void AddOutfits(const std::map<const Outfit *, int> &outfits);
 
-	// Returns an empty set if no solution was found.
+	// If given a target amount, returns an empty set if no solution was found.
 	std::map<const Outfit *, int> Optimize();
 
 
@@ -58,7 +59,8 @@ private:
 
 private:
 	bool InitializeOutfitList();
-	bool FindBest(size_t offset, double targetAmount, double spaceLimit);
+	bool FindBestFit(size_t offset, double targetAmount, double spaceLimit);
+	double FindBestAmount(size_t offset, double spaceLimit);
 
 
 private:

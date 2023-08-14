@@ -95,6 +95,7 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 		for(auto &it : GameData::Planets())
 			if(it.second.IsValid() && player.HasVisited(*it.second.GetSystem()))
 				outfitter.Add(it.second.Outfitter());
+		// XXX - Remove license-restricted outfits.
 		// Allow switching key events to fall through to parent.
 		SetTrapAllEvents(false);
 	}
