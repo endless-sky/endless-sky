@@ -55,13 +55,9 @@ namespace {
 		const Rectangle box = label + start + halfUnit * label.Width();
 
 		for(const StellarObject &other : system.Objects())
-		{
-			if(&other == &object)
-				continue;
-
-			if(box.Overlaps(other.Position() * zoom, other.Radius() * zoom + MIN_DISTANCE))
+			if(&other != &object && box.Overlaps(other.Position() * zoom,
+					other.Radius() * zoom + MIN_DISTANCE))
 				return true;
-		}
 
 		return false;
 	}
@@ -95,9 +91,9 @@ PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, con
 	if(!system)
 		return;
 
+	// Figure out how big the label has to be.
 	const Font &font = FontSet::Get(14);
 	const Font &bigFont = FontSet::Get(18);
-	// Figure out how big the label has to be.
 	const double width = max(bigFont.Width(name) + 4., font.Width(government) + 8.);
 	const double height = bigFont.Height() + 1. + font.Height();
 	// Adjust down so attachment point is at center of name.
