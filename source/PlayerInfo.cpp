@@ -210,7 +210,7 @@ void PlayerInfo::NewDesignPlayer(const PlayerInfo &player)
 	visitedSystems = player.visitedSystems;
 
 	// Pool outfits in any planetary storage to local planetary storage.
-	CargoHold &planetStorage = planetaryStorage[GetPlanet()];
+	CargoHold &planetStorage = *Storage(true);
 	for(const auto &it : player.PlanetaryStorage())
 		for(const auto &oit : it.second.Outfits())
 			planetStorage.Add(oit.first, oit.second);
@@ -223,6 +223,9 @@ void PlayerInfo::NewDesignPlayer(const PlayerInfo &player)
 	for(const auto &it : player.Ships())
 		for(const auto &oit : it->Cargo().Outfits())
 			Cargo().Add(oit.first, oit.second);
+
+	// Include any outfits the player has sold since landing.
+	stock = player.stock;
 
 	// We don't add not-for-sale outfits that can be gotten from
 	// for-sale ships - players can manage those themselves in the
