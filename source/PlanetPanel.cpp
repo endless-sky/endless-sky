@@ -252,7 +252,7 @@ void PlanetPanel::TakeOffIfReady()
 	// Check whether the player can be warned before takeoff.
 	if(player.ShouldLaunch())
 	{
-		TakeOff();
+		TakeOff(true);
 		return;
 	}
 
@@ -312,14 +312,17 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 
 	// Check for items that would be sold, or mission passengers that would be abandoned on-planet.
 	const Ship *flagship = player.Flagship();
-	const CargoHold &cargo = player.Cargo();
+	const CargoHold &cargo = player.DistributeCargo();
 	// Are you overbooked? Don't count fireable flagship crew.
 	// (If your ship can't support its required crew, it is counted as having no fireable crew.)
-	int overbooked = -cargo.BunksFree() - max(0, flagship->Crew() - flagship->RequiredCrew());
-	int missionCargoToSell = cargo.MissionCargoSize() - cargo.Size();
+	const int overbooked = cargo.Passengers() - flagship->Crew() + flagship->RequiredCrew();
+	const int missionCargoToSell = cargo.MissionCargoSize();
 	// Will you have to sell something other than regular cargo?
-	int cargoToSell = -(cargo.Free() + cargo.CommoditiesSize());
-	// Have you left any unique items at the outfitter?
+	const int commoditiesToSell = cargo.CommoditiesSize();
+	int outfitsToSell = 0;
+	for(auto &it : cargo.Outfits())
+		outfitsToSell += it.second;
+  // Have you left any unique items at the outfitter?
 	bool leftUniques = false;
 	for(const auto &it : player.GetStock())
 		if(it.first->Attributes().Get("unique") > 0)
@@ -345,14 +348,15 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 				}
 	}
 
-	if(nonJumpCount > 0 || cargoToSell > 0 || overbooked > 0 || leftUniques)
+	if(nonJumpCount > 0 || missionCargoToSell > 0 || outfitsToSell > 0 || commoditiesToSell > 0 || overbooked > 0
+		|| leftUniques)
 	{
 		ostringstream out;
 		// Warn about missions that will fail on takeoff.
 		if(missionCargoToSell > 0 || overbooked > 0)
 		{
-			bool both = ((cargoToSell > 0 && cargo.MissionCargoSize()) && overbooked > 0);
-			out << "If you take off now you will abort a mission due to not having enough ";
+			const bool both = (missionCargoToSell > 0 && overbooked > 0);
+			out << "If you take off now, you will abort a mission due to not having enough ";
 
 			if(overbooked > 0)
 			{
@@ -364,11 +368,19 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 			if(missionCargoToSell > 0)
 				out << "cargo space to hold " << Format::CargoString(missionCargoToSell, "your mission cargo") << ".";
 		}
+		// Warn about outfits that can't be carried.
+		else if(outfitsToSell > 0)
+		{
+			out << "If you take off now, you will ";
+			out << (planet.HasOutfitter() ? "store " : "sell ") << outfitsToSell << " outfit";
+			out << (outfitsToSell > 1 ? "s" : "");
+			out << " that none of your ships can hold.";
+		}
 		// Warn about unique items you sold.
 		else if(leftUniques)
 		{
 			out << "If you take off now you won't be able to re-purchase unique outfits you sold at the outfitter.";
-		}
+    }
 		// Warn about ships that won't travel with you.
 		else if(nonJumpCount > 0)
 		{
@@ -383,26 +395,36 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 		else
 		{
 			out << "If you take off now you will have to sell ";
-			out << Format::CargoString(cargoToSell, "cargo");
+			out << Format::CargoString(commoditiesToSell, "cargo");
 			out << " that you do not have space for.";
 		}
 		out << " Are you sure you want to continue?";
-		GetUI()->Push(new Dialog(this, &PlanetPanel::TakeOff, out.str()));
+		GetUI()->Push(new Dialog(this, &PlanetPanel::WarningsDialogCallback, out.str()));
 		return;
 	}
 
 	// There was no need to ask the player whether we can get rid of anything,
 	// so go ahead and take off.
-	TakeOff();
+	TakeOff(false);
 }
 
 
 
-void PlanetPanel::TakeOff()
+void PlanetPanel::WarningsDialogCallback(const bool isOk)
+{
+	if(isOk)
+		TakeOff(false);
+	else
+		player.PoolCargo();
+}
+
+
+
+void PlanetPanel::TakeOff(const bool distributeCargo)
 {
 	flightChecks.clear();
 	player.Save();
-	if(player.TakeOff(GetUI()))
+	if(player.TakeOff(GetUI(), distributeCargo))
 	{
 		if(callback)
 			callback();

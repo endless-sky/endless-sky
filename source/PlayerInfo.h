@@ -194,8 +194,12 @@ public:
 	void UpdateCargoCapacities();
 	// Switch cargo from being stored in ships to being stored here.
 	void Land(UI *ui);
-	// Load the cargo back into your ships. This may require selling excess.
-	bool TakeOff(UI *ui);
+	// Make ships ready for take off. This may require selling excess cargo.
+	bool TakeOff(UI *ui, bool distributeCargo);
+	// Pool cargo from local ships.
+	void PoolCargo();
+	// Distribute cargo to local ships. Returns a reference to the player's cargo.
+	const CargoHold &DistributeCargo();
 
 	// Get or add to pilot's playtime.
 	double GetPlayTime() const noexcept;
