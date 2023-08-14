@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "PointerShader.h"
 #include "Preferences.h"
+#include "Rectangle.h"
 #include "RingShader.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -44,35 +45,22 @@ namespace {
 
 	// Check if the given label for the given stellar object and direction overlaps
 	// with any other stellar object in the system.
-	bool Overlaps(const System &system, const StellarObject &object, double zoom, double width, int direction)
+	bool Overlaps(const System &system, const StellarObject &object, const double zoom,
+			const Rectangle &label, const int direction)
 	{
-		Point start = zoom * (object.Position() +
-			(object.Radius() + INNER_SPACE + LINE_GAP + LINE_LENGTH) * Angle(LINE_ANGLE[direction]).Unit());
-		// Offset the label correctly depending on its location relative to the stellar object.
-		Point unit(LINE_ANGLE[direction] > 180. ? -1. : 1., 0.);
-		Point end = start + unit * width;
+		const Point start = zoom * (object.Position() + Angle(LINE_ANGLE[direction]).Unit() *
+			(object.Radius() + INNER_SPACE + LINE_GAP + LINE_LENGTH));
+		// Offset the label depending on its location relative to the stellar object.
+		const Point halfUnit(LINE_ANGLE[direction] < 180. ? .5 : -.5, 0.);
+		const Rectangle box = label + start + halfUnit * label.Width();
 
 		for(const StellarObject &other : system.Objects())
 		{
 			if(&other == &object)
 				continue;
 
-			double minDistance = (other.Radius() + MIN_DISTANCE) * zoom;
-
-			Point otherPos = other.Position() * zoom;
-			double startDistance = otherPos.Distance(start);
-			double endDistance = otherPos.Distance(end);
-			if(startDistance < minDistance || endDistance < minDistance)
+			if(box.Overlaps(other.Position() * zoom, other.Radius() * zoom + MIN_DISTANCE))
 				return true;
-
-			// Check overlap with the middle of the label, when the end and/or start might not overlap.
-			double projection = (otherPos - start).Dot(unit);
-			if(projection > 0. && projection < width)
-			{
-				double distance = sqrt(startDistance * startDistance - projection * projection);
-				if(distance < minDistance)
-					return true;
-			}
 		}
 
 		return false;
@@ -107,13 +95,18 @@ PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, con
 	if(!system)
 		return;
 
+	const Font &font = FontSet::Get(14);
+	const Font &bigFont = FontSet::Get(18);
 	// Figure out how big the label has to be.
-	double width = max(FontSet::Get(18).Width(name), FontSet::Get(14).Width(government)) + 8.;
+	const double width = max(bigFont.Width(name) + 4., font.Width(government) + 8.);
+	const double height = bigFont.Height() + 1. + font.Height();
+	// Adjust down so attachment point is at center of name.
+	const Rectangle label({0., (height - bigFont.Height()) / 2.}, {width, height});
 
 	// Try to find a label direction that not overlapping under any zoom.
 	for(int d = 0; d < 4; ++d)
-		if(!Overlaps(*system, object, Preferences::MinViewZoom(), width, d)
-				&& !Overlaps(*system, object, Preferences::MaxViewZoom(), width, d))
+		if(!Overlaps(*system, object, Preferences::MinViewZoom(), label, d)
+				&& !Overlaps(*system, object, Preferences::MaxViewZoom(), label, d))
 		{
 			direction = d;
 			return;
@@ -122,7 +115,7 @@ PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, con
 	// If we can't find a suitable direction, then try to find a direction under the current
 	// zoom that is not overlapping.
 	for(int d = 0; d < 4; ++d)
-		if(!Overlaps(*system, object, zoom, width, d))
+		if(!Overlaps(*system, object, zoom, label, d))
 		{
 			direction = d;
 			return;

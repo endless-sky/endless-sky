@@ -15,6 +15,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Rectangle.h"
 
+#include <algorithm>
+
+using namespace std;
+
 
 
 // Construct a rectangle by specifying the two corners rather than the
