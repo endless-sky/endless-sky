@@ -531,6 +531,8 @@ mission "Avgi: Defend Ensemble 2"
 				`	"Yes, the <ship> is as powerful as they come."`
 					goto warship
 				`	"No, the <ship> isn't made for combat."`
+			action
+				set "avgi: rescue intro"
 			`	"Consideration. But, are you still willing to help us in a way that takes advantage of your ship's ability to bypass the starways, question?"`
 			choice
 				`	"Yes, of course."`
@@ -580,8 +582,9 @@ mission "Avgi: Scout Rescue"
 	passengers 12
 	destination "Peripheria"
 	to offer
-		has "First Contact: Defend Ensemble 2: done"
-		not "avgi: warship intro"
+		has "Avgi: Defend Ensemble 2: done"
+	to fail
+		has "avgi: warship intro"
 	on offer
 		conversation
 			`	You follow Kokkino's instructions to a prefab building in the spaceport, which looks to be some kind of command center. Kokkino is waiting for you by a table in the middle, which lights up, projecting a map of Avgi space in the air with some colored markings you can't read.`
@@ -650,7 +653,8 @@ mission "Avgi: Frontline Combat"
 	waypoint "Lumine"
 	to offer
 		has "Avgi: Defend Ensemble 2: done"
-		has "avgi: warship intro"
+	to fail
+		has "avgi: rescue intro"
 	on offer
 		conversation
 			`	You follow Kokkino's instructions to a prefab building in the spaceport, which looks to be some kind of command center. Kokkino is waiting for you by a table in the middle, which lights up, projecting a map of Avgi space in the air with some colored markings you can't read.`
