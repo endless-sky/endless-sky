@@ -679,7 +679,7 @@ mission "Avgi: Frontline Combat"
 		government "Aberrant"
 		personality
 			confusion 90
-			hunting coward vindictive unconstrained secretive
+			coward vindictive staying unconstrained uninterested secretive target
 		system "Corporeal"
 		fleet
 			names "aberrant names"
@@ -691,7 +691,7 @@ mission "Avgi: Frontline Combat"
 		government "Aberrant"
 		personality
 			confusion 90
-			hunting coward vindictive unconstrained secretive
+			coward vindictive staying unconstrained uninterested secretive target
 		system "Empyrean"
 		fleet
 			names "aberrant names"
@@ -702,24 +702,24 @@ mission "Avgi: Frontline Combat"
 		government "Aberrant"
 		personality
 			confusion 90
-			hunting coward vindictive unconstrained secretive
+			coward vindictive staying unconstrained uninterested secretive target
 		system "Firmament"
 		fleet
 			names "aberrant names"
 			variant
-				"Twilight Ka'sei 1E" 3
-				"Twilight Ka'sei 1F" 3
+				"Twilight Ka'sei 1E" 2
+				"Twilight Ka'sei 1F" 1
 	npc kill
 		government "Aberrant"
 		personality
 			confusion 90
-			hunting coward vindictive unconstrained secretive
+			coward vindictive staying unconstrained uninterested secretive target
 		system "Lumine"
 		fleet
 			names "aberrant names"
 			variant
-				"Twilight Ka'sei 1A" 2
-				"Twilight Ka'sei 1B" 3
+				"Twilight Ka'sei 1A" 1
+				"Twilight Ka'sei 1B" 2
 				"Twilight Ka'sei 1C" 1
 
 	on complete
