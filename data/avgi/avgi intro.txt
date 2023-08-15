@@ -843,7 +843,7 @@ mission "Avgi: Twilight Escape"
 			attributes "core" "deep" "dirt belt" "near earth" "rim" "south"
 		conversation
 			`	As the purple flames of your Jump Drive fade, Darius, Sora, and Leon are all speechless. For the first time in six years, they are back in human space.`
-			`	"<first>," says Darius in a shaky voice. "Take us to Valhalla, please. I need to see someone."`
+			`	"<first>," says Darius in a shaky voice. "Take us to Valhalla, please. I need to see my home."`
 	on complete
 		"reputation: Avgi (Dissonance Aggressive)" <?= -10
 		conversation
