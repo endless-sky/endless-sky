@@ -668,11 +668,11 @@ ship "Undsyni"
 		"hull" 15000
 		"required crew" 12
 		"bunks" 30
-		"cargo space" 720
+		"cargo space" 600
 		"mass" 600
 		"drag" 4.2
 		"heat dissipation" 1.8
-		"fuel capacity" 4800
+		"fuel capacity" 2400
 		"outfit space" 600
 		"weapon capacity" 153
 		"engine capacity" 168
