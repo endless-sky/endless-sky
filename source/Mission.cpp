@@ -1561,7 +1561,7 @@ bool Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 	const auto originalSize = didEnter.size();
 	if(eit != onEnter.end() && !didEnter.count(&eit->second) && eit->second.CanBeDone(player))
 	{
-		eit->second.Do(player, ui);
+		eit->second.Do(player, ui, this);
 		didEnter.insert(&eit->second);
 	}
 	// If no specific `on enter` was performed, try matching to a generic "on enter,"
@@ -1570,7 +1570,7 @@ bool Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 		for(MissionAction &action : genericOnEnter)
 			if(!didEnter.count(&action) && action.CanBeDone(player))
 			{
-				action.Do(player, ui);
+				action.Do(player, ui, this);
 				didEnter.insert(&action);
 				break;
 			}
