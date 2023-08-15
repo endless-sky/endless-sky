@@ -60,6 +60,21 @@ namespace {
 	{
 		return ship.GetPlanet() == here;
 	}
+
+	// Update smooth scroll towards scroll.
+	void UpdateSmoothScroll(const double scroll, double &smoothScroll)
+	{
+		const double dy = scroll - smoothScroll;
+		if(dy)
+		{
+			// Handle small increments.
+			if(fabs(dy) < 5)
+				smoothScroll += copysign(1., dy);
+			// Keep scroll value an integer to prevent odd text artifacts.
+			else
+				smoothScroll = round(smoothScroll + dy * 0.2);
+		}
+	}
 }
 
 
@@ -157,14 +172,7 @@ void ShopPanel::DrawShipsSidebar()
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
 
-	// Only adjust the smooth scrolling if needed, but at least by one.
-	const double dy = sidebarScroll - sidebarSmoothScroll;
-	if(!dy)
-		;
-	else if(fabs(dy) < 5)
-		sidebarSmoothScroll += copysign(1., dy);
-	else
-		sidebarSmoothScroll += round(dy * 0.2);
+	UpdateSmoothScroll(sidebarScroll, sidebarSmoothScroll);
 
 	// Fill in the background.
 	FillShader::Fill(
@@ -295,14 +303,7 @@ void ShopPanel::DrawDetailsSidebar()
 	const Color &line = *GameData::Colors().Get("dim");
 	const Color &back = *GameData::Colors().Get("shop info panel background");
 
-	// Only adjust the smooth scrolling if needed, but at least by one.
-	const double dy = infobarScroll - infobarSmoothScroll;
-	if(!dy)
-		;
-	else if(fabs(dy) < 5)
-		infobarSmoothScroll += copysign(1., dy);
-	else
-		infobarSmoothScroll += round(dy * 0.2);
+	UpdateSmoothScroll(infobarScroll, infobarSmoothScroll);
 
 	FillShader::Fill(
 		Point(Screen::Right() - SIDEBAR_WIDTH - INFOBAR_WIDTH, 0.),
@@ -408,14 +409,7 @@ void ShopPanel::DrawMain()
 	const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
 	const Sprite *expandedArrow = SpriteSet::Get("ui/expanded");
 
-	// Only adjust the smooth scrolling if needed, but at least by one.
-	const double dy = mainScroll - mainSmoothScroll;
-	if(!dy)
-		;
-	else if(fabs(dy) < 5)
-		mainSmoothScroll += copysign(1., dy);
-	else
-		mainSmoothScroll += round(dy * 0.2);
+	UpdateSmoothScroll(mainScroll, mainSmoothScroll);
 
 	// Draw all the available items.
 	// First, figure out how many columns we can draw.
