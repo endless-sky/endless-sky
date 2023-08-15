@@ -832,7 +832,7 @@ mission "Avgi: Twilight Escape"
 	source "Outpost Tekis"
 	destination "Valhalla"
 	to offer
-		has "First Contact: Dissonance Outreach: done"
+		has "Avgi: Dissonance Outreach: done"
 	on enter "Decet"
 		conversation
 			`	Just as your Jump Drive reacted strangely when you first entered Avgi space, it does so again, but with an inverse effect. Your instrumentation say it is much warmer than usual, almost hot enough to be dangerous. Maybe something has changed about your Jump Drive's range?.`
