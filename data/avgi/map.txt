@@ -2235,7 +2235,7 @@ system Gossamer
 		period 1
 	object
 		sprite "star/smoke ring"
-			scale 1
+			scale 1.5
 		period 914.299
 		offset 180
 	object Kapnos
