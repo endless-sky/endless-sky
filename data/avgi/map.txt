@@ -1169,6 +1169,7 @@ system Septet
 	attributes carbon "ember waste" "notable star" twilight
 	habitable 3100
 	belt 2640 6
+	"jump range" 30
 	haze _menu/haze-red
 	link Octet
 	link Quintet
@@ -4927,7 +4928,7 @@ system Ts-294
 	attributes "ember waste" "tangled shroud" wormhole
 	habitable 135
 	belt 1224 4
-	"jump range" 0
+	"jump range" 30
 	haze _menu/haze-red
 	link Prelude
 	asteroids "small rock" 4 4.435
