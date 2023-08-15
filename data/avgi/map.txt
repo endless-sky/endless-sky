@@ -2477,7 +2477,7 @@ system Vivace
 	habitable 100
 	belt 1074 5
 	belt 2129 4
-	"jump range" 30
+	"jump range" 60
 	haze _menu/haze-twilight-thick
 	asteroids "small rock" 6 2.777
 	asteroids "medium rock" 4 1.622

@@ -944,8 +944,8 @@ outfit "Electrostatic Ramscoop"
 	thumbnail "outfit/unknown"
 	"mass" 12
 	"outfit space" -12
-	"ramscoop" 3.6
-	"fuel generation" 0.03
+	"ramscoop" 6
+	"fuel generation" 0.06
 	"energy consumption" 1.2
 	description "A powerful bank of lasers ionizes the interstellar medium around ships equipped with these ramscoops, allowing electromagnets to collect extra material on top of the naturally charged solar wind. This results in a predictable supply of fuel, even around stars with solar winds poor in deuterium."
 	description "Ramscoops like these were used in Avgi ram-augmented torchships, allowing them to sustain constant burns during their sublight interstellar journeys."

@@ -72,7 +72,7 @@ outfit "Anomalous Shield Projector"
 	thumbnail "outfit/unknown"
 	"mass" 8
 	"outfit space" -25
-	"shield generation" 1.8
+	"shield generation" 3
 	"shield energy" 6
 	"flotsam chance" 0.1
 	"unplunderable" 1

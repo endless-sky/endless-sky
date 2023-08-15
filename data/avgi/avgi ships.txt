@@ -1493,9 +1493,9 @@ ship "Difraktos"
 	engine -3 135
 	engine 3 135
 	"reverse engine" -9 138
-		angle -30
+		angle -35
 	"reverse engine" 9 138
-		angle 30
+		angle 35
 	"steering engine" -18 -132
 		angle 90
 		right
