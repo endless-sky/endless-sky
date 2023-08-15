@@ -119,6 +119,8 @@ government "Avgi (Dissonance)"
 	swizzle 1
 	language Avgi
 	color "governments: Dissonance"
+
+	"player reputation" 1
 	"attitude toward"
 		"Avgi" 1
 		"Avgi (Consonance)" 0.01
