@@ -371,7 +371,7 @@ mission "<uhai> 12: Outfitter Upgrade"
 			`	"There could be more opportunities on Darkcloak for you, we do not only buy Jump Drives against money.`
 				to display
 					not "Unfettered Jump Drive Trading: offered"
-			`	"He-Yi also wants you to know you should check the job board for more jobs like this one, and be mindful that it will take a while to improve the outfitter with these new materials and schematics you provided." As soon as they have delivered their message, the herald leaves without giving you a chance to ask more questions.`
+			`	"He-Yi also wants you to know you should check the job board for more jobs like this one, and be mindful that it will take a while to improve the outfitter with these new materials and schematics you provided. We may use more of your help once that will be the case." As soon as they have delivered their message, the herald leaves without giving you a chance to ask more questions.`
 
 event "unfettered: darkcloak outfitter upgrade"
 	planet "Darkcloak"
@@ -421,7 +421,7 @@ mission "<uhai> 13: Korath Specialty"
 		<younglings> "'Rem' <young>"
 	to offer
 		has "salary: Unfettered"
-		has "event: unfettered: Korath back up"
+		has "event: unfettered: korath back up"
 	on offer
 		conversation
 			`As soon as enter the labs, an Unfettered there notifies you that Mera wishes to speak with you, and you should come with him to see her.`
@@ -499,7 +499,7 @@ mission "<uhai> 13: Korath Specialty"
 		outfit "Liquid Nitrogen Cooler" -15
 		log `Brought human nitrogen cooling systems to the Unfettered. They should be able to retrofit them into something more useful.`
 		payment 2500000
-		dialog `Seeing you brought the coolers, Mera thanks you and hands you <payment>. "These systems should be useful. We'll upgrade the coolers you brought us into something less... primitive. The only thing we can use here is the base materials."`
+		dialog `Seeing you brought the coolers, Mera thanks you and hands you <payment>. "These systems should be useful. We'll upgrade the coolers you brought us into something less... primitive. The only thing we can use here is the base materials. It will probably take a month to repurpose it."`
 		event "unfettered: new cooling system" 25
 
 event "unfettered: new cooling system"

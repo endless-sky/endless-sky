@@ -1019,6 +1019,7 @@ mission "<uhai> 2: Prove Your Strength"
 				log `Defeated a young Unfettered Captain in a duel, and took part in a surprisingly scary Unfettered martial ceremony.`
 			`	Si-Ra does not give you any explanation, instead he proceeds to raise his fist. As you do not react he gestures with his other hand, clearly meaning you ought to do the same.`
 			`	After you rise your fist in response, he bows his head so slightly you barely notice it, and moves away. You wonder what you should do with the creature, but refusing the gift does not seem like an option.`
+			`	As he passes near you he quickly speaks, "I'll be a few weeks before I'm ready for more action."`
 				accept
 			label stay
 			`	You stay there, surely impressing all Hai present! However it also means you get hit by the tail of the monster as it jumps out to hit you, and everything gets dark in a minute.`
@@ -1406,7 +1407,7 @@ mission "<uhai> 4: Scan Geocoris"
 		clear "unfettered: entered Ya Hai"
 		log `Scanned a Geocoris for the Unfettered. They seemed interested in the design - probably with a ship of their own in mind.`
 		payment 150000
-		dialog `You send the scans to the Unfettered government and receive a payment of <payment>. They tell you Mera will need some time to analyze the scans.`
+		dialog `You send the scans to the Unfettered government and receive a payment of <payment>. They tell you Mera will need some time to analyze the scans and you may return in a few weeks for further work.`
 		event "unfettered: analyzed the scans" 10 20
 
 mission "<uhai> 4: Geocoris Arrival"
