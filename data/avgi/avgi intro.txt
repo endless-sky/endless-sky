@@ -684,9 +684,9 @@ mission "Avgi: Frontline Combat"
 		fleet
 			names "aberrant names"
 			variant
-				"Twilight Ka'sei 2A" 1
-				"Twilight Ka'sei 2B" 2
-				"Twilight Ka'sei 2G (Disable-able)" 1
+				"Twilight Ka'sei 2A"
+				"Twilight Ka'sei 2B"
+				"Twilight Ka'sei 2G (Disable-able)"
 	npc kill
 		government "Aberrant"
 		personality
@@ -696,8 +696,8 @@ mission "Avgi: Frontline Combat"
 		fleet
 			names "aberrant names"
 			variant
-				"Twilight Ka'sei 1D" 2
-				"Twilight Ka'sei 1C" 2
+				"Twilight Ka'sei 1D"
+				"Twilight Ka'sei 1C"
 	npc kill
 		government "Aberrant"
 		personality
@@ -708,7 +708,7 @@ mission "Avgi: Frontline Combat"
 			names "aberrant names"
 			variant
 				"Twilight Ka'sei 1E" 2
-				"Twilight Ka'sei 1F" 1
+				"Twilight Ka'sei 1F"
 	npc kill
 		government "Aberrant"
 		personality
@@ -718,9 +718,9 @@ mission "Avgi: Frontline Combat"
 		fleet
 			names "aberrant names"
 			variant
-				"Twilight Ka'sei 1A" 1
+				"Twilight Ka'sei 1A"
 				"Twilight Ka'sei 1B" 2
-				"Twilight Ka'sei 1C" 1
+				"Twilight Ka'sei 1C"
 
 	on complete
 		conversation
