@@ -25,7 +25,7 @@ mission "Avgi: Trapped in Twilight"
 
 phrase "twilight trapped"
 	word
-		`As soon as you jump into the system, you notice something is wrong. The characteristic plasma of your Jump Drive fades unnaturally quickly, and as you check your systems you notice its temperature is somehow much lower than normal. You attempt to plot a jump back to human space, but your computer tells you the system you just came from is out of range. It appears you are stuck in this region for now.`
+		`As soon as you jump into the system, you notice something is wrong. The characteristic plasma of your Jump Drive fades unnaturally quickly, and as you check your ship's systems, you notice its temperature is somehow much lower than normal. You attempt to plot a jump back to human space, but your computer tells you the system you just came from is out of range. It appears you are stuck in this region for now.`
 
 mission "Avgi: First Contact"
 	autosave
