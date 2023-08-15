@@ -830,6 +830,8 @@ mission "Avgi: Twilight Escape"
 	description "Find a way out of the Twilight."
 	invisible
 	source "Outpost Tekis"
+	passengers 3
+	blocked "You'll need three free bunks on the <ship> to transport Darius, Sora, and Leon."
 	destination "Valhalla"
 	to offer
 		has "Avgi: Dissonance Outreach: done"
