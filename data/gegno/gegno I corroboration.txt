@@ -317,7 +317,7 @@ mission "Gegno Intervention"
 
 			label pacifist
 			`	"Formerly, I have offered suggestions of heedful interplay regarding the Gegno. We have been alerted of a few additional encounters you've experienced, although they seemed minimal in nature. In such cases, it has been generally described that you left in a timely manner, in which we are notably appreciative of."`
-			`	"However," the Quarg continues, "despite your efforts in reccommended cautions, there are some meaningful figures of Gegno standing that expressed frustration in your trivial appearances. They inquired us of the possibility of unnecessary reoccurences."`
+			`	"However," the Quarg continues, "despite your efforts in recommended cautions, there are some meaningful figures of Gegno standing that expressed frustration in your trivial appearances. They inquired us of the possibility of unnecessary reoccurences."`
 			choice
 				`	"Why does this frustrate them?"`
 				`	"It was more coincidential than anything."`
