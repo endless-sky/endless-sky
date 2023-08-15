@@ -161,7 +161,12 @@ void ShopPanel::Draw()
 		if(selected != zones.end())
 			MainAutoScroll(selected);
 	}
-	mainScroll = max(0., min(maxMainScroll, mainScroll));
+	if(mainScroll > maxMainScroll)
+		mainScroll = maxMainScroll;
+	if(infobarScroll > maxInfobarScroll)
+		infobarScroll = maxInfobarScroll;
+	if(sidebarScroll > maxSidebarScroll)
+		sidebarScroll = maxSidebarScroll;
 }
 
 
