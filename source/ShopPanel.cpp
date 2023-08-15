@@ -157,7 +157,14 @@ void ShopPanel::DrawShipsSidebar()
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
 
-	sidebarSmoothScroll = sidebarSmoothScroll + (sidebarScroll - sidebarSmoothScroll) * 0.2;
+	// Only adjust the smooth scrolling if needed, but at least by one.
+	const double dy = sidebarScroll - sidebarSmoothScroll;
+	if(!dy)
+		;
+	else if(fabs(dy) < 5)
+		sidebarSmoothScroll += copysign(1., dy);
+	else
+		sidebarSmoothScroll += round(dy * 0.2);
 
 	// Fill in the background.
 	FillShader::Fill(
@@ -288,7 +295,14 @@ void ShopPanel::DrawDetailsSidebar()
 	const Color &line = *GameData::Colors().Get("dim");
 	const Color &back = *GameData::Colors().Get("shop info panel background");
 
-	infobarSmoothScroll = infobarSmoothScroll + (infobarScroll - infobarSmoothScroll) * 0.2;
+	// Only adjust the smooth scrolling if needed, but at least by one.
+	const double dy = infobarScroll - infobarSmoothScroll;
+	if(!dy)
+		;
+	else if(fabs(dy) < 5)
+		infobarSmoothScroll += copysign(1., dy);
+	else
+		infobarSmoothScroll += round(dy * 0.2);
 
 	FillShader::Fill(
 		Point(Screen::Right() - SIDEBAR_WIDTH - INFOBAR_WIDTH, 0.),
@@ -394,7 +408,14 @@ void ShopPanel::DrawMain()
 	const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
 	const Sprite *expandedArrow = SpriteSet::Get("ui/expanded");
 
-	mainSmoothScroll = mainSmoothScroll + (mainScroll - mainSmoothScroll) * 0.2;
+	// Only adjust the smooth scrolling if needed, but at least by one.
+	const double dy = mainScroll - mainSmoothScroll;
+	if(!dy)
+		;
+	else if(fabs(dy) < 5)
+		mainSmoothScroll += copysign(1., dy);
+	else
+		mainSmoothScroll += round(dy * 0.2);
 
 	// Draw all the available items.
 	// First, figure out how many columns we can draw.
