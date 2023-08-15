@@ -83,7 +83,7 @@ protected:
 	// These are for the individual shop panels to override.
 	virtual int TileSize() const = 0;
 	virtual int VisibilityCheckboxesSize() const;
-	virtual int DrawPlayerShipInfo(const Point &point) = 0;
+	virtual int DrawPlayerShipInfo(const Point &point);
 	virtual bool HasItem(const std::string &name) const = 0;
 	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) = 0;
 	virtual int DividerOffset() const = 0;

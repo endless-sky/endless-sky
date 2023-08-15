@@ -120,18 +120,6 @@ int OutfitterPanel::VisibilityCheckboxesSize() const
 
 
 
-int OutfitterPanel::DrawPlayerShipInfo(const Point &point)
-{
-	shipInfo.Update(*playerShip, player, collapsed.count("description"));
-	shipInfo.DrawAttributes(point);
-	const int attributesHeight = shipInfo.AttributesHeight();
-	shipInfo.DrawOutfits(Point(point.X(), point.Y() + attributesHeight));
-
-	return attributesHeight + shipInfo.OutfitsHeight();
-}
-
-
-
 bool OutfitterPanel::HasItem(const string &name) const
 {
 	const Outfit *outfit = GameData::Outfits().Get(name);

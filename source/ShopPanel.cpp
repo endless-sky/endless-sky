@@ -559,6 +559,18 @@ void ShopPanel::CheckForMissions(Mission::Location location)
 
 
 
+int ShopPanel::DrawPlayerShipInfo(const Point &point)
+{
+	shipInfo.Update(*playerShip, player, collapsed.count("description"));
+	shipInfo.DrawAttributes(point, !isOutfitter);
+	const int attributesHeight = shipInfo.GetAttributesHeight(!isOutfitter);
+	shipInfo.DrawOutfits(Point(point.X(), point.Y() + attributesHeight));
+
+	return attributesHeight + shipInfo.OutfitsHeight();
+}
+
+
+
 void ShopPanel::FailSell(bool toStorage) const
 {
 }

@@ -116,18 +116,6 @@ int ShipyardPanel::TileSize() const
 
 
 
-int ShipyardPanel::DrawPlayerShipInfo(const Point &point)
-{
-	shipInfo.Update(*playerShip, player, collapsed.count("description"));
-	shipInfo.DrawAttributes(point, true);
-	const int attributesHeight = shipInfo.GetAttributesHeight(true);
-	shipInfo.DrawOutfits(Point(point.X(), point.Y() + attributesHeight));
-
-	return attributesHeight + shipInfo.OutfitsHeight();
-}
-
-
-
 bool ShipyardPanel::HasItem(const string &name) const
 {
 	const Ship *ship = GameData::Ships().Get(name);
