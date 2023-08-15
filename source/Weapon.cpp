@@ -158,8 +158,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				missileStrength = max(0., value);
 			else if(key == "anti-missile")
 				antiMissile = max(0., value);
-			else if(key == "penetration")
-				penetration = value;
+			else if(key == "penetration count")
+				penetrationCount = static_cast<uint16_t>(value);
 			else if(key == "velocity")
 				velocity = value;
 			else if(key == "random velocity")

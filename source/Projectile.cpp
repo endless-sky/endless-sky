@@ -52,7 +52,7 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 	weapon(weapon), targetShip(parent.GetTargetShip()), lifetime(weapon->Lifetime())
 {
 	government = parent.GetGovernment();
-	penetrations = weapon->Penetration();
+	hitsRemaining = weapon->PenetrationCount();
 
 	// If you are boarding your target, do not fire on it.
 	if(parent.IsBoarding() || parent.Commands().Has(Command::BOARD))
@@ -79,7 +79,7 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 {
 	government = parent.government;
 	targetGovernment = parent.targetGovernment;
-	penetrations = weapon->Penetration();
+	hitsRemaining = weapon->PenetrationCount();
 
 	cachedTarget = TargetPtr().get();
 
@@ -280,7 +280,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 
 
 // This projectile hit something. Create the explosion, if any. This also
-// marks the projectile as needing deletion if it has run out of penetrations.
+// marks the projectile as needing deletion if it has run out of hits.
 void Projectile::Explode(vector<Visual> &visuals, double intersection, Point hitVelocity)
 {
 	distanceTraveled += dV.Length() * intersection;
@@ -289,10 +289,8 @@ void Projectile::Explode(vector<Visual> &visuals, double intersection, Point hit
 		{
 			visuals.emplace_back(*it.first, position + velocity * intersection, velocity, angle, hitVelocity);
 		}
-	// Projectiles that start with negative penetration values are allowed
-	// to penetrate infinitely. Otherwise, the projectile dies if it was at
-	// 0 penetrations when it exploded.
-	if(penetrations-- == 0)
+	// The projectile dies if it has no hits remaining.
+	if(--hitsRemaining == 0)
 	{
 		clip = intersection;
 		lifetime = -100;
@@ -321,7 +319,6 @@ bool Projectile::IsDead() const
 void Projectile::Kill()
 {
 	lifetime = 0;
-	penetrations = 0;
 }
 
 
