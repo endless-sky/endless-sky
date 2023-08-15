@@ -35,10 +35,10 @@ outfit "Nucleolysis Beam"
 		"firing energy" 4.2
 		"firing heat" 1.5
 		"shield damage" 0.8
-		"hull damage" 5.6
+		"hull damage" 1.6
 		"heat damage" -9.1
 		"fuel damage" 0.9
-		"corrosion damage" 0.06
+		"corrosion damage" 0.15
 	description "This beam weapon somehow creates a field inside which otherwise stable atomic nuclei rapidly decay. This effect seems to be inversely proportional to the mass of the nucleus, causing isotopes like deuterium to break down at a higher rate than heavier elements. As the resultant fission products have a higher energy state than the original nucleus, this effectively cools the target ship, defying conventional thermodynamics."
 	description "In aggregate, this can rapidly deplete a ship's deuterium fuel while also causing the very matter of its hull to decay."
 
