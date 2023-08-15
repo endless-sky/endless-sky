@@ -673,7 +673,7 @@ ship "Undsyni"
 		"drag" 4.2
 		"heat dissipation" 1.8
 		"fuel capacity" 2400
-		"outfit space" 600
+		"outfit space" 630
 		"weapon capacity" 153
 		"engine capacity" 168
 		"spinal mount" 1

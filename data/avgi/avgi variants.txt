@@ -32,7 +32,7 @@ ship "Undsyni" "Undsyni (Tanker)"
 		"Optical Lasing Generator"
 		"Multispectral Scanner"
 		"Spectrometer Array"
-		"Cryogenic Deuterium Tank" 21
+		"Cryogenic Deuterium Tank" 18
 		"Dipole Ramscoop"
 
 		"Z-360 Fusion Torch"
