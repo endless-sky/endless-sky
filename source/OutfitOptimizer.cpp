@@ -237,7 +237,7 @@ OutfitOptimizer::OutfitStats::OutfitStats(const Outfit *outfit, const double amo
 
 
 
-bool OutfitOptimizer::OutfitStats::operator<(const OutfitStats &other)
+bool OutfitOptimizer::OutfitStats::operator<(const OutfitStats &other) const
 {
 	if(other.efficiency != efficiency)
 		return other.efficiency < efficiency;
