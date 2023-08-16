@@ -29,7 +29,7 @@ void Galaxy::Load(const DataNode &node)
 		const bool remove = child.Token(0) == "remove";
 		const int keyIndex = remove;
 		const bool hasKey = child.Size() > keyIndex;
-		const string &key = hasKey ? child.Token(0) : child.Token(keyIndex);
+		const string &key = hasKey ? child.Token(keyIndex) : child.Token(0);
 
 		if(remove && hasKey)
 		{
