@@ -224,7 +224,8 @@ double OutfitOptimizer::FindBestAmount(const size_t offset, double spaceLimit)
 
 
 
-OutfitOptimizer::OutfitStats::OutfitStats(const Outfit *outfit, const double amount, const double space, const int count)
+OutfitOptimizer::OutfitStats::OutfitStats(const Outfit *outfit, const double amount, const double space,
+		const int count)
 	: outfit(outfit), amount(amount), space(space), efficiency(amount / space), count(count)
 {
 }
