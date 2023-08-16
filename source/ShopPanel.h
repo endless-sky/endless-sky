@@ -71,13 +71,7 @@ protected:
 
 
 protected:
-	void DrawShipsSidebar();
-	void DrawDetailsSidebar();
-	void DrawButtons();
-	void DrawMain();
-
 	void DrawShip(const Ship &ship, const Point &center, bool isSelected);
-	int DrawPlayerShipInfo(const Point &point);
 
 	void CheckForMissions(Mission::Location location);
 
@@ -196,6 +190,13 @@ protected:
 
 
 private:
+	void DrawShipsSidebar();
+	void DrawDetailsSidebar();
+	void DrawButtons();
+	void DrawMain();
+
+	int DrawPlayerShipInfo(const Point &point);
+
 	bool DoScroll(double dy);
 	bool SetScrollToTop();
 	bool SetScrollToBottom();
