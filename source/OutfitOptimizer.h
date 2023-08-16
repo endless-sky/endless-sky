@@ -47,7 +47,7 @@ private:
 	public:
 		OutfitStats(const Outfit *outfit, double amount, double space, int count);
 
-		bool operator<(const OutfitStats &other);
+		bool operator<(const OutfitStats &other) const;
 
 		const Outfit *outfit;
 		double amount;

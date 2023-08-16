@@ -56,19 +56,24 @@ void OutfitOptimizer::AddOutfits(const map<const Outfit *, int> &outfitList)
 
 map<const Outfit *, int> OutfitOptimizer::Optimize()
 {
+	// See if request was satisfied with zero-space outfits.
 	if(InitializeOutfitList())
 		return results;
 
-	if(totalAmount)
+	// Do the best we can with the space available.
+	if(!totalAmount)
 	{
-		if(FindBestFit(0, totalAmount, totalSpace))
-			for(size_t i = 0; i < counts.size(); ++i)
-				results[outfitStats[i].outfit] = counts[i];
-		else
-			results.clear();
-	}
-	else
 		FindBestAmount(0, totalSpace);
+		for(size_t i = 0; i < counts.size(); ++i)
+			results[outfitStats[i].outfit] = counts[i];
+	}
+	// See if we can satisfy the requested amount.
+	else if(FindBestFit(0, totalAmount, totalSpace))
+		for(size_t i = 0; i < counts.size(); ++i)
+			results[outfitStats[i].outfit] = counts[i];
+	// If not, don't include any outfits, even free ones.
+	else
+		results.clear();
 
 	return results;
 }
