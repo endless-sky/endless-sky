@@ -88,15 +88,29 @@ OutfitterPanel::OutfitterPanel(PlayerInfo &player)
 
 	if(player.GetPlanet())
 		outfitter = player.GetPlanet()->Outfitter();
+
 	if(player.IsDesignPlayer())
 	{
 		checkedRefill = true;
+
 		// Add all outfits sold by outfitters of visited planets.
 		for(auto &it : GameData::Planets())
 			if(it.second.IsValid() && player.HasVisited(*it.second.GetSystem()))
 				outfitter.Add(it.second.Outfitter());
-		// XXX - Remove license-restricted outfits.
-		// Allow switching key events to fall through to parent.
+
+		// Remove license-restricted outfits.
+		for(auto it = outfitter.begin(); it != outfitter.end(); )
+		{
+			const vector<string> &licenses = (*it)->Licenses();
+			auto missing = find_if(licenses.begin(), licenses.end(),
+				[&](const string license) { return !player.HasLicense(license); });
+			if(missing == licenses.end())
+				++it;
+			else
+				it = outfitter.erase(it);
+		}
+
+		// Allow events to fall through to parent (for panel switching).
 		SetTrapAllEvents(false);
 	}
 }

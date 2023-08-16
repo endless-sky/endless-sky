@@ -98,13 +98,27 @@ ShipyardPanel::ShipyardPanel(PlayerInfo &player)
 
 	if(player.GetPlanet())
 		shipyard = player.GetPlanet()->Shipyard();
+
 	if(player.IsDesignPlayer())
 	{
 		// Add all ships sold by shipyards of visited planets.
 		for(const auto &it : GameData::Planets())
 			if(it.second.IsValid() && player.HasVisited(*it.second.GetSystem()))
 				shipyard.Add(it.second.Shipyard());
-		// Allow switching key events to fall through to parent.
+
+		// Remove license-restricted ships.
+		for(auto it = shipyard.begin(); it != shipyard.end(); )
+		{
+			const vector<string> &licenses = (*it)->Attributes().Licenses();
+			auto missing = find_if(licenses.begin(), licenses.end(),
+				[&](const string license) { return !player.HasLicense(license); });
+			if(missing == licenses.end())
+				++it;
+			else
+				it = shipyard.erase(it);
+		}
+
+		// Allow events to fall through to parent (for panel switching).
 		SetTrapAllEvents(false);
 	}
 }
