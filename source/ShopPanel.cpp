@@ -68,7 +68,7 @@ namespace {
 		if(dy)
 		{
 			// Handle small increments.
-			if(fabs(dy) < 5)
+			if(fabs(dy) < 6)
 				smoothScroll += copysign(1., dy);
 			// Keep scroll value an integer to prevent odd text artifacts.
 			else
