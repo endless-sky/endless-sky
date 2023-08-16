@@ -1681,7 +1681,7 @@ mission "FW Pirates: Diplomacy 4"
 			label next
 			`	"So, what will happen to Tomek?" you ask.`
 			`	"That's for the Senate to decide," says JJ. "But he's a tactical genius. We'll need his advice, if this war turns worse."`
-			`	Just then, Alondo comes running onto your ship, looking particularly worried. "I hope I'm not interrupting anything too important, but I just received word that our sensors on Hope have detected increased Naval fleet movements. It seems like they're getting ready for an assault."`
+			`	Just then, Alondo comes running onto your ship, looking particularly worried. "I hope I'm not interrupting anything too important, but I just received word that our sensors on Hope have detected increased Navy fleet movements. It seems like they're getting ready for an assault."`
 			`	"Have they entered our space?" JJ asks.`
 			`	"No, not yet. Not even a single scout," says Alondo.`
 			`	"We should head to <planet> before deciding our next move," says Freya.`
