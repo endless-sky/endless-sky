@@ -259,6 +259,8 @@
 		<Unit filename="source/Outfit.h" />
 		<Unit filename="source/OutfitInfoDisplay.cpp" />
 		<Unit filename="source/OutfitInfoDisplay.h" />
+		<Unit filename="source/OutfitOptimizer.cpp" />
+		<Unit filename="source/OutfitOptimizer.h" />
 		<Unit filename="source/OutfitterPanel.cpp" />
 		<Unit filename="source/OutfitterPanel.h" />
 		<Unit filename="source/OutlineShader.cpp" />
