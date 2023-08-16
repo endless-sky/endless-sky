@@ -640,6 +640,9 @@ mission "Unfettered: Bring Legendary Combo"
 
 
 # They ask you to sell the weapons you used to defeat them, the chance increases the more duels you win.
+# currently: flamethrower, inferno, ravager, repeaters, particle cannons
+# add more for: syscores, kahet nuke, asteroid afterburner, detainer, mandible cannon, coalition stuff
+# + remnant reactors, inhibitors and consequences for selling them if ur being watched
 mission "Unfettered: Bring Fire"
 	job
 	repeat
@@ -879,10 +882,14 @@ phrase "unfettered dueling"
 		"Under no circumstances are you to interrupt us, or you will suffer the wrath of the Unfettered"
 		"Stop distracting me"
 		"If you try anything, the whole fleet will be on you"
+		"Careful, you do not want to know what happens to Kavakais"
 	word
 		"! "
 	word
-		"Go away now, I need to focus on the duel"
+		"Go away now, I need to focus"
+		"Leave"
+		"Let me focus"
+		"Do not disturb me further"
 	word
 		"!"
 		"."
