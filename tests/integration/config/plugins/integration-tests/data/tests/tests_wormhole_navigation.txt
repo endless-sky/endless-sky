@@ -49,7 +49,7 @@ test-data "Wormhole Navigation Save"
 				"force protection" 1
 				"heat protection" 1.5
 				"ion resistance" 0.3
-				"scrambling resistance" 0.3
+				"scramble resistance" 0.3
 				"slowing resistance" 3
 				"remnant node" 11
 				weapon
@@ -166,7 +166,7 @@ test-data "Ember Wastes Navigation Save"
 				"force protection" 1
 				"heat protection" 1.5
 				"ion resistance" 0.3
-				"scrambling resistance" 0.3
+				"scramble resistance" 0.3
 				"slowing resistance" 3
 				"remnant node" 11
 				weapon

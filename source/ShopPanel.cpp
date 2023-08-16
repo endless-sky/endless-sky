@@ -26,6 +26,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "MapOutfitterPanel.h"
+#include "MapShipyardPanel.h"
 #include "Mission.h"
 #include "OutlineShader.h"
 #include "Planet.h"
@@ -56,9 +58,9 @@ namespace {
 	constexpr int ICON_COLS = 4;
 	constexpr float ICON_SIZE = ICON_TILE - 8;
 
-	bool CanShowInSidebar(const Ship &ship, const System *here)
+	bool CanShowInSidebar(const Ship &ship, const Planet *here)
 	{
-		return ship.GetSystem() == here && !ship.IsDisabled();
+		return ship.GetPlanet() == here;
 	}
 }
 
@@ -66,7 +68,7 @@ namespace {
 
 ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	: player(player), day(player.GetDate().DaysSinceEpoch()),
-	planet(player.GetPlanet()), playerShip(player.Flagship()),
+	planet(player.GetPlanet()), isOutfitter(isOutfitter), playerShip(player.Flagship()),
 	categories(GameData::GetCategory(isOutfitter ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	collapsed(player.Collapsed(isOutfitter ? "outfitter" : "shipyard"))
 {
@@ -203,7 +205,7 @@ void ShopPanel::DrawShipsSidebar()
 		Screen::Right() - SIDEBAR_WIDTH / 2 - 93,
 		Screen::Top() + SIDEBAR_WIDTH / 2 - sidebarScroll + 40 - 93);
 
-	const System *here = player.GetSystem();
+	const Planet *here = player.GetPlanet();
 	int shipsHere = 0;
 	for(const shared_ptr<Ship> &ship : player.Ships())
 		shipsHere += CanShowInSidebar(*ship, here);
@@ -535,7 +537,7 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 
 	// Draw the ship name.
 	const Font &font = FontSet::Get(14);
-	const string &name = ship.Name().empty() ? ship.ModelName() : ship.Name();
+	const string &name = ship.Name().empty() ? ship.DisplayModelName() : ship.Name();
 	Point offset(-SIDEBAR_WIDTH / 2, -.5f * SHIP_SIZE + 10.f);
 	font.Draw({name, {SIDEBAR_WIDTH, Alignment::CENTER, Truncate::MIDDLE}},
 		center + offset, *GameData::Colors().Get("bright"));
@@ -636,6 +638,13 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		player.UpdateCargoCapacities();
 		GetUI()->Pop(this);
 	}
+	else if(command.Has(Command::MAP))
+	{
+		if(isOutfitter)
+			GetUI()->Push(new MapOutfitterPanel(player));
+		else
+			GetUI()->Push(new MapShipyardPanel(player));
+	}
 	else if(key == 'b' || key == 'i' || key == 'c')
 	{
 		const auto result = CanBuy(key == 'i' || key == 'c');
@@ -719,7 +728,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			if(allWereSelected)
 				added.clear();
 
-			const System *here = player.GetSystem();
+			const Planet *here = player.GetPlanet();
 			for(Ship *ship : added)
 				if(CanShowInSidebar(*ship, here))
 					playerShips.insert(ship);
@@ -733,7 +742,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			playerShips.clear();
 			set<Ship *> wanted = player.GetGroup(group);
 
-			const System *here = player.GetSystem();
+			const Planet *here = player.GetPlanet();
 			for(Ship *ship : wanted)
 				if(CanShowInSidebar(*ship, here))
 					playerShips.insert(ship);
@@ -760,7 +769,7 @@ bool ShopPanel::Click(int x, int y, int /* clicks */)
 	if(button)
 		return DoKey(button);
 
-	// Check for clicks in the scroll arrows.
+	// Check for clicks on the ShipsSidebar pane arrows.
 	if(x >= Screen::Right() - 20)
 	{
 		if(y < Screen::Top() + 20)
@@ -768,6 +777,15 @@ bool ShopPanel::Click(int x, int y, int /* clicks */)
 		if(y < Screen::Bottom() - BUTTON_HEIGHT && y >= Screen::Bottom() - BUTTON_HEIGHT - 20)
 			return Scroll(0, -4);
 	}
+	// Check for clicks on the DetailsSidebar pane arrows.
+	else if(x >= Screen::Right() - SIDEBAR_WIDTH - 20 && x < Screen::Right() - SIDEBAR_WIDTH)
+	{
+		if(y < Screen::Top() + 20)
+			return Scroll(0, 4);
+		if(y >= Screen::Bottom() - 20)
+			return Scroll(0, -4);
+	}
+	// Check for clicks on the Main pane arrows.
 	else if(x >= Screen::Right() - SIDE_WIDTH - 20 && x < Screen::Right() - SIDE_WIDTH)
 	{
 		if(y < Screen::Top() + 20)
@@ -1054,7 +1072,7 @@ void ShopPanel::SideSelect(int count)
 	}
 
 
-	const System *here = player.GetSystem();
+	const Planet *here = player.GetPlanet();
 	if(count < 0)
 	{
 		while(count)
@@ -1092,7 +1110,7 @@ void ShopPanel::SideSelect(Ship *ship)
 	if(shift)
 	{
 		bool on = false;
-		const System *here = player.GetSystem();
+		const Planet *here = player.GetPlanet();
 		for(const shared_ptr<Ship> &other : player.Ships())
 		{
 			// Skip any ships that are "absent" for whatever reason.
