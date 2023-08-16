@@ -17,6 +17,7 @@ outfit "Nucleolysis Beam"
 	category "Guns"
 	cost 1800000
 	thumbnail "outfit/unknown"
+	"flotsam sprite" "outfit/unknown"
 	"mass" 29
 	"outfit space" -23
 	"weapon capacity" -23
@@ -46,6 +47,7 @@ outfit "Telescopic Antimissile"
 	category "Turrets"
 	cost 6000000
 	thumbnail "outfit/unknown"
+	"flotsam sprite" "outfit unknown"
 	"mass" 40
 	"outfit space" -40
 	"weapon capacity" -40
@@ -70,6 +72,7 @@ outfit "Anomalous Shield Projector"
 	category "Systems"
 	cost 22000000
 	thumbnail "outfit/unknown"
+	"flotsam sprite" "outfit/unknown"
 	"mass" 37
 	"outfit space" -25
 	"shield generation" 3
@@ -85,6 +88,7 @@ outfit "Antimatter Power Cell"
 	category "Power"
 	cost 11000000
 	thumbnail "outfit/unknown"
+	"flotsam sprite" "outfit/unknown"
 	"mass" 34
 	"outfit space" -13
 	"energy generation" 6.6

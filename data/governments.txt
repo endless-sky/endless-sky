@@ -23,6 +23,7 @@ government "Aberrant"
 		"Avgi (Twilight Guard)" -0.01
 		"Avgi (Dissonance)" -0.01
 		"Avgi (Dissonance Aggressive)" -0.01
+		"Avgi (Wandering Fleet)" -0.01
 	"penalty for"
 		assist 0
 		disable 0
@@ -80,7 +81,7 @@ government "Avgi (Consonance)"
 		board 0.2
 		capture 3
 		destroy 2
-	bribe 0
+	bribe 0.3
 	"friendly hail" "friendly avgi"
 	"friendly disabled hail" "friendly disabled avgi"
 	"hostile hail" "hostile avgi"
@@ -158,6 +159,29 @@ government "Avgi (Dissonance Aggressive)"
 	"hostile hail" "hostile dissonance"
 	"hostile disabled hail" "hostile disabled dissonance"
 	raid "Large Dissonance Pirates"
+
+
+government "Avgi (Wandering Fleet)"
+	"display name" "Wandering Fleet"
+	swizzle 3
+	language Avgi
+	color "governments: Avgi"
+
+	"player reputation" 0
+	"attitude toward"
+		"Avgi" 1
+		"Avgi (Consonance)" 0.01
+		"Avgi (Twilight Guard)" 0.01
+		"Avgi (Dissonance)" 0.01
+		"Aberrant" -0.1
+	"penalty for"
+		disable 1
+		board 1
+		capture 3
+		destroy 2
+		provoke 0.1
+		scan 0.1
+	bribe 0
 
 government "Bad Trip"
 	swizzle 0

@@ -629,8 +629,8 @@ outfit "Nadir Active"
 		"infrared tracking" 0.9
 		"trigger radius" 18
 		"blast radius" 180
-		"shield damage" 7200
-		"hull damage" 6000
+		"shield damage" 6000
+		"hull damage" 4800
 		"hit force" 3600
 		"missile strength" 36
 

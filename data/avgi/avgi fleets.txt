@@ -29,7 +29,7 @@ fleet "Avgi Core Defense"
 		"Diaspersi"
 		"Vibratia" 3
 		"Undulon" 3
-		"Photikon" 2
+		"Photikon (Atomic)" 2
 	variant 10
 		"Difraktos"
 	variant 10
@@ -48,7 +48,7 @@ fleet "Avgi Core Defense"
 		"Atenuatia"
 		"Diaspersi"
 		"Vibratia" 22
-		"Photikon" 8
+		"Photikon (Atomic)" 8
 		"Optikon" 2
 		"Difraktos (Missile)"
 		"Difraktos (Kinetic)"
@@ -67,7 +67,7 @@ fleet "Avgi Orbital Defense"
 	variant 20
 		"Vibratia" 6
 	variant 10
-		"Photikon" 3
+		"Photikon (Atomic)" 3
 	variant 5
 		"Optikon" 3
 
@@ -295,7 +295,7 @@ fleet "Large Avgi Merchants"
 		"Sonikis" 4
 	variant 10
 		"Undsyni (Tanker)"
-		"Sonikis (Fuel)" 4
+		"Sonikis (Tanker)" 4
 	variant 10
 		"Koryfi" 2
 	variant 10
@@ -309,7 +309,7 @@ fleet "Large Avgi Merchants"
 		"Harmonikos"
 		"Melodikos"
 		"Undsyni (Tanker)"
-		"Sonikis (Fuel)" 4
+		"Sonikis (Tanker)" 4
 
 
 fleet "Avgi Miners"

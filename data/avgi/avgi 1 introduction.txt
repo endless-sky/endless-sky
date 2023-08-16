@@ -19,7 +19,7 @@ mission "Avgi: Trapped in Twilight"
 		never
 	on enter
 		system
-			attributes "twilight"
+			attributes "twilight" "tangled shroud"
 		fail
 		dialog phrase "twilight trapped"
 
@@ -454,7 +454,7 @@ mission "Avgi: Defend Ensemble 2"
 				"Refraktos"
 				"Atenuatia (Atomic)"
 				"Vibratia" 18
-				"Photikon" 6
+				"Photikon (Atomic)" 6
 	npc
 		government "Avgi (Twilight Guard)"
 		personality heroic staying waiting
@@ -468,7 +468,7 @@ mission "Avgi: Defend Ensemble 2"
 				"Refraktos"
 				"Diaspersi"
 				"Vibratia" 6
-				"Photikon (Kinetic)" 2
+				"Photikon" 2
 	npc evade
 		government "Aberrant"
 		personality
@@ -686,7 +686,6 @@ mission "Avgi: Frontline Combat"
 			variant
 				"Twilight Ka'sei 2A"
 				"Twilight Ka'sei 2B"
-				"Twilight Ka'sei 2G (Disable-able)"
 	npc kill
 		government "Aberrant"
 		personality

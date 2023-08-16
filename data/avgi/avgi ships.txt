@@ -961,7 +961,7 @@ ship "Entasi"
 
 ship "Modified Tachytia"
 	sprite "ship/avgi tachytia/tachytia"
-		"frame rate" 20
+		"frame rate" 30
 	thumbnail "thumbnail/avgi tachytia"
 	swizzle 0
 	attributes
@@ -997,7 +997,6 @@ ship "Modified Tachytia"
 		"Specular Deflector" 2
 		"Optical Lasing Generator" 4
 		"Multispectral Scanner" 9
-		"Spectrometer Array" 9
 		"Electrostatic Ramscoop" 3
 		"Concealment Scales" 3
 		"Nanoceramic Scales"
@@ -1838,8 +1837,8 @@ ship "Photikon"
 			"hull damage" 360
 			"hit force" 180
 	outfits
-		"Equinox Torpedo Pylon" 3
-		"Equinox Torpedo" 3
+		"Speckle Turret"
+		"Speck Round" 7200
 		
 		"Concentrating Solar Array"
 		"Ultracapacitor Cell" 3
@@ -1964,7 +1963,7 @@ ship "Undulon"
 	attributes
 		category "Drone"
 		licenses
-			"Avgi Military"
+			"Avgi Atomics"
 		"cost" 36000
 		"hull" 600
 		"automaton" 1

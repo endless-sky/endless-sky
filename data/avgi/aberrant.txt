@@ -25,6 +25,8 @@ phrase "aberrant names"
 fleet "Small Aberrant"
 	government "Aberrant"
 	names "aberrant names"
+	"cargo settings"
+		cargo 0
 	personality
 		confusion 60
 		hunting coward vindictive unconstrained harvests mining secretive
@@ -113,6 +115,8 @@ fleet "Small Aberrant"
 fleet "Large Aberrant"
 	government "Aberrant"
 	names "aberrant names"
+	"cargo settings"
+		cargo 0
 	personality
 		confusion 60
 		hunting coward vindictive unconstrained harvests mining secretive
@@ -124,10 +128,6 @@ fleet "Large Aberrant"
 		"Twilight Ka'sei 1F"
 	variant 5
 		"Twilight Ka'sei 1F (Disable-able)"
-	variant 10
-		"Twilight Ka'sei 1G"
-	variant 5
-		"Twilight Ka'sei 1G (Disable-able)"
 	variant 10
 		"Twilight Ka'sei 2F"
 	variant 5

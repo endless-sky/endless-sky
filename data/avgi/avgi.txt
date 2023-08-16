@@ -42,6 +42,8 @@ phrase "avgi fighter names"
 		"avgi digits"
 	phrase
 		"avgi digits"
+	phrase
+		"avgi digits"
 
 phrase "avgi digits"
 	word
@@ -188,6 +190,106 @@ phrase "avgi colors"
 		Yellow
 		Yinmn
 		Zaffre
+
+phrase "avgi virtues"
+	word
+		Agreeable
+		Altered
+		Amazing
+		Beautiful
+		Brave
+		Celestial
+		Charitable
+		Clarified
+		Compromising
+		Content
+		Creation's
+		Defending
+		Destined
+		Distant
+		Enlightened
+		Enthusiastic
+		Etheral
+		Fanciful
+		Fated
+		Fearless
+		Forgiving
+		Fortified
+		Fortituous
+		Forward
+		Gloriful
+		Guarded
+		Harmonious
+		Heavenly
+		Honest
+		Hopeful
+		Humble
+		Indestructable
+		Insurmountable
+		Languid
+		Magical
+		Merciful
+		Mighty
+		Mirthful
+		Mysterious
+		Negligible
+		Otherworldly
+		Overwhelming
+		Patriotic
+		Penitent
+		Poetic
+		Powerful
+		Precious
+		Precious
+		Promised
+		Protective
+		Qualified
+		Relaxed
+		Reluctant
+		Repentive
+		Reserved
+		Sanguine
+		Serene
+		Sorry
+		Spectral
+		Storied
+		Tranquiline
+		Trustworthy
+		Unashamed
+		Unavoidable
+		Unbounded
+		Unknown
+		Unyielding
+		Valued
+		Virtuous
+		Wonderful
+
+phrase "avgi phases"
+	word
+		Boiled
+		Condensed
+		Crystalline
+		Crystallized
+		Energized
+		Evaporated
+		Excited
+		Frozen
+		Gaseous
+		Gasified
+		Ionized
+		Liquid
+		Liquifacted
+		Liquified
+		Melted
+		Precipitated
+		Solid
+		Solidifed
+		Sublimated
+		Thawed
+		Vaporized
+		Vaporized
+		Vitreous
+		Vitrified
 
 phrase "avgi elements"
 	word
@@ -480,102 +582,7 @@ phrase "avgi physics"
 		Velocity
 		Wormhole
 
-phrase "avgi virtues"
-	word
-		Agreeable
-		Altered
-		Amazing
-		Beautiful
-		Brave
-		Celestial
-		Charitable
-		Clarified
-		Compromising
-		Content
-		Creation's
-		Defending
-		Destined
-		Distant
-		Enlightened
-		Enthusiastic
-		Etheral
-		Fanciful
-		Fated
-		Fearless
-		Forgiving
-		Fortified
-		Fortituous
-		Forward
-		Gloriful
-		Guarded
-		Harmonious
-		Heavenly
-		Honest
-		Hopeful
-		Humble
-		Indestructable
-		Insurmountable
-		Languid
-		Magical
-		Merciful
-		Mighty
-		Mirthful
-		Mysterious
-		Negligible
-		Otherworldly
-		Overwhelming
-		Patriotic
-		Penitent
-		Poetic
-		Powerful
-		Precious
-		Precious
-		Promised
-		Protective
-		Qualified
-		Relaxed
-		Reluctant
-		Repentive
-		Reserved
-		Sanguine
-		Serene
-		Sorry
-		Spectral
-		Storied
-		Tranquiline
-		Trustworthy
-		Unashamed
-		Unavoidable
-		Unbounded
-		Unyielding
-		Valued
-		Virtuous
-		Wonderful
 
 
-phrase "avgi phases"
-	word
-		Boiled
-		Condensed
-		Crystalline
-		Crystallized
-		Energized
-		Evaporated
-		Excited
-		Frozen
-		Gaseous
-		Gasified
-		Ionized
-		Liquid
-		Liquifacted
-		Liquified
-		Melted
-		Precipitated
-		Solid
-		Solidifed
-		Sublimated
-		Thawed
-		Vaporized
-		Vaporized
-		Vitreous
-		Vitrified
+
+

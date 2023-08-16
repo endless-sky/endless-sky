@@ -195,10 +195,10 @@ ship "Atenuatia" "Atenuatia (Atomic)"
 
 # Fighters
 
-ship "Photikon" "Photikon (Kinetic)"
+ship "Photikon" "Photikon (Atomic)"
 	outfits
-		"Speckle Turret"
-		"Speck Round" 7200
+		"Equinox Torpedo Pylon" 3
+		"Equinox Torpedo" 3
 		
 		"Concentrating Solar Array"
 		"Ultracapacitor Cell" 3
@@ -222,7 +222,7 @@ ship "Sonikis" "Sonikis (Armed)"
 		"Magnetoplasma Drive"
 
 
-ship "Sonikis" "Sonikis (Fuel)"
+ship "Sonikis" "Sonikis (Tanker)"
 	outfits
 		"Concentrating Solar Array"
 		"Ultracapacitor Cell" 2
