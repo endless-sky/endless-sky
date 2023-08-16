@@ -1873,9 +1873,9 @@ ship "Photikon"
 		zoom 0.5
 		right
 
-	gun -6 -30 "Equinox Torpedo Pylon"
-	gun 0 -30 "Equinox Torpedo Pylon"
-	gun 6 -30 "Equinox Torpedo Pylon"
+	gun -6 -30
+	gun 0 -30 "Speckle Turret"
+	gun 6 -30
 	turret 0 -33
 
 	leak "flame" 30 60
