@@ -643,7 +643,7 @@ void Planet::DeployDefense(list<shared_ptr<Ship>> &ships) const
 	if(defenseFleets[defenseDeployed]->IsValid())
 		defenseFleets[defenseDeployed]->Enter(*GetSystem(), defenders, this);
 	else
-		Logger::LogError("Warning: skipped an undefined tribute fleet of planet \"" + name + "\".");
+		Logger::LogError("Warning: skipped an incomplete defense fleet of planet \"" + name + "\".");
 	ships.insert(ships.begin(), defenders.begin(), end);
 
 	// All defenders use a special personality.
