@@ -209,7 +209,7 @@ void MissionPanel::Draw()
 	// Update the tooltip timer [0-60].
 	hoverSortCount += hoverSort >= 0 ? (hoverSortCount < HOVER_TIME) : (hoverSortCount ? -1 : 0);
 
-	Color routeColor(.2f, .1f, 0.f, 0.f);
+	const Color routeColor(.2f, .1f, 0.f, 0.f);
 	const Ship *flagship = player.Flagship();
 	const double jumpRange = flagship ? flagship->JumpNavigation().JumpRange() : 0.;
 	const System *previous = nullptr;
@@ -217,26 +217,10 @@ void MissionPanel::Draw()
 	for(; distance.Days(next) > 0; next = previous)
 	{
 		previous = distance.Route(next);
-		const bool isHyper = previous->Links().count(next);
-		bool isWormhole = false;
-		bool isMappable = false;
-		if(!isHyper)
-			for(const StellarObject &object : previous->Objects())
-				if(object.HasSprite() && object.HasValidPlanet()
-					&& object.GetPlanet()->IsWormhole()
-					&& player.HasVisited(*object.GetPlanet())
-					&& player.HasVisited(*previous) && player.HasVisited(*next)
-					&& &object.GetPlanet()->GetWormhole()->WormholeDestination(*previous) == next)
-				{
-					isWormhole = true;
-					if(object.GetPlanet()->GetWormhole()->IsMappable())
-					{
-						isMappable = true;
-						break;
-					}
-				}
-		const bool isJump = !isHyper && !isWormhole && previous->JumpNeighbors(jumpRange).count(next);
 
+		bool isJump, isWormhole, isMappable;
+		if (!GetTravelInfo(previous, next, jumpRange, isJump, isWormhole, isMappable, nullptr))
+			break;
 		if(isWormhole && !isMappable)
 			continue;
 

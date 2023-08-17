@@ -826,6 +826,36 @@ int MapPanel::Search(const string &str, const string &sub)
 
 
 
+bool MapPanel::GetTravelInfo(const System *previous, const System *next, const double jumpRange,
+	bool &isJump, bool &isWormhole, bool &isMappable, Color *wormholeColor) const
+{
+	const bool isHyper = previous->Links().count(next);
+	isWormhole = false;
+	isMappable = false;
+	// Short-circuit the loop for MissionPanel, which draws hyperlinks and wormholes the same.
+	if(!isHyper || wormholeColor)
+		for(const StellarObject &object : previous->Objects())
+			if(object.HasSprite() && object.HasValidPlanet()
+				&& object.GetPlanet()->IsWormhole()
+				&& player.HasVisited(*object.GetPlanet())
+				&& player.HasVisited(*previous) && player.HasVisited(*next)
+				&& &object.GetPlanet()->GetWormhole()->WormholeDestination(*previous) == next)
+			{
+				isWormhole = true;
+				if(object.GetPlanet()->GetWormhole()->IsMappable())
+				{
+					isMappable = true;
+					if(wormholeColor)
+						*wormholeColor = *object.GetPlanet()->GetWormhole()->GetLinkColor();
+					break;
+				}
+			}
+	isJump = !isHyper && !isWormhole && previous->JumpNeighbors(jumpRange).count(next);
+	return isHyper || isWormhole || isJump;
+}
+
+
+
 void MapPanel::CenterOnSystem(const System *system, bool immediate)
 {
 	if(immediate)
@@ -996,7 +1026,6 @@ void MapPanel::DrawTravelPlan()
 	const Color &defaultColor = *colors.Get("map travel ok flagship");
 	const Color &outOfFlagshipFuelRangeColor = *colors.Get("map travel ok none");
 	const Color &withinFleetFuelRangeColor = *colors.Get("map travel ok fleet");
-	Color wormholeColor;
 
 	// At each point in the path, keep track of how many ships in the
 	// fleet are able to make it this far.
@@ -1027,27 +1056,10 @@ void MapPanel::DrawTravelPlan()
 	for(int i = player.TravelPlan().size() - 1; i >= 0; --i, previous = next)
 	{
 		next = player.TravelPlan()[i];
-		const bool isHyper = previous->Links().count(next);
-		bool isWormhole = false;
-		bool isMappable = false;
-		for(const StellarObject &object : previous->Objects())
-			if(object.HasSprite() && object.HasValidPlanet()
-				&& object.GetPlanet()->IsWormhole()
-				&& player.HasVisited(*object.GetPlanet())
-				&& player.HasVisited(*previous) && player.HasVisited(*next)
-				&& &object.GetPlanet()->GetWormhole()->WormholeDestination(*previous) == next)
-			{
-				isWormhole = true;
-				if(object.GetPlanet()->GetWormhole()->IsMappable())
-				{
-					isMappable = true;
-					wormholeColor = *object.GetPlanet()->GetWormhole()->GetLinkColor();
-					break;
-				}
-			}
-		const bool isJump = !isHyper && !isWormhole && previous->JumpNeighbors(jumpRange).count(next);
 
-		if(!isHyper && !isWormhole && !isJump)
+		bool isJump, isWormhole, isMappable;
+		Color wormholeColor;
+		if(!GetTravelInfo(previous, next, jumpRange, isJump, isWormhole, isMappable, &wormholeColor))
 			break;
 		if(isWormhole && !isMappable)
 			continue;
