@@ -438,7 +438,8 @@ private:
 
 	std::map<const Outfit *, int> stock;
 	std::map<const Ship *, int> shipStock;
-	std::map<const Ship *, std::shared_ptr<Ship>> stockShips;
+	// Outfit-stripped ship models suitable for re-purchase from shop.
+	std::map<const Ship *, std::shared_ptr<Ship>> shipChassis;
 	Depreciation depreciation;
 	Depreciation stockDepreciation;
 	std::set<std::pair<const System *, const Outfit *>> harvested;

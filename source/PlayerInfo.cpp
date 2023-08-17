@@ -1613,7 +1613,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 	doneMissions.clear();
 	stock.clear();
 	shipStock.clear();
-	stockShips.clear();
+	shipChassis.clear();
 
 	// Special persons who appeared last time you left the planet, can appear again.
 	GameData::ResetPersons();
@@ -2805,11 +2805,11 @@ void PlayerInfo::AddStock(const Ship *model, const int count)
 {
 	shipStock[model] += count;
 
-	if(shipStock[model] <= 0 || stockShips.find(model) != stockShips.end())
+	if(shipStock[model] <= 0 || shipChassis.find(model) != shipChassis.end())
 		return;
 
-	stockShips[model] = make_shared<Ship>(*model);
-	Ship &ship = *stockShips[model];
+	shipChassis[model] = make_shared<Ship>(*model);
+	Ship &ship = *shipChassis[model];
 
 	// Make a copy so we can remove all the outfits safely.
 	map<const Outfit *, int> outfits = ship.Outfits();
@@ -2822,8 +2822,8 @@ void PlayerInfo::AddStock(const Ship *model, const int count)
 // Convert a model ship pointer to a pointer to a stock ship.
 const Ship *PlayerInfo::StockShip(const Ship *model) const
 {
-	const auto it = stockShips.find(model);
-	return (it == stockShips.end() ? model : it->second.get());
+	const auto it = shipChassis.find(model);
+	return (it == shipChassis.end() ? model : it->second.get());
 }
 
 
