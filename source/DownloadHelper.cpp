@@ -18,10 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <archive.h>
 #include <archive_entry.h>
 #include <cstring>
-#if defined _WIN32
-#define WIN32_LEAN_AND_MEAN
-#include <winsock2.h>
-#endif
 #include <curl/curl.h>
 #include <sys/stat.h>
 #include <stdio.h>
