@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define STRICT
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
+#include <conio.h>
 #else
 #include <dirent.h>
 #include <sys/stat.h>
@@ -496,89 +497,73 @@ void Files::Delete(const string &filePath)
 
 
 
-bool Files::DeleteDir(const string path)
+int Files::DeleteDir(const string path)
 {
 #if defined (_WIN32)
-	string str(pathname);
-	if(!str.empty())
+	bool bSubdirectory = false; // Flag, indicating whether subdirectories have been found
+	HANDLE hFile; // Handle to directory
+	std::string strFilePath; // Filepath
+	std::string strPattern; // Pattern
+	WIN32_FIND_DATA FileInformation; // File information
+
+
+	strPattern = refcstrRootDirectory + "\\*.*";
+	hFile = ::FindFirstFile(strPattern.c_str(), &FileInformation);
+	if(hFile != INVALID_HANDLE_VALUE)
 	{
-		while(*str.rbegin() == '\\' || *str.rbegin() == '/')
+		do
 		{
-			str.erase(str.size()-1);
-		}
-	}
-	replace(str.begin(),str.end(),'/','\\');
-
-	struct stat sb;
-	if (stat((char *)str.c_str(),&sb) == 0 && S_ISDIR(sb.st_mode))
-	{
-			HANDLE hFind;
-			WIN32_FIND_DATA FindFileData;
-
-			TCHAR DirPath[MAX_PATH];
-			TCHAR FileName[MAX_PATH];
-
-			_tcscpy(DirPath,(char *)str.c_str());
-			_tcscat(DirPath,"\\*");
-			_tcscpy(FileName,(char *)str.c_str());
-			_tcscat(FileName,"\\");
-
-			hFind = FindFirstFile(DirPath,&FindFileData);
-			if(hFind == INVALID_HANDLE_VALUE)
-				return 0;
-			_tcscpy(DirPath,FileName);
-
-			bool bSearch = true;
-			while(bSearch)
+			if(FileInformation.cFileName[0] != '.')
 			{
-				if(FindNextFile(hFind,&FindFileData))
+				strFilePath.erase();
+				strFilePath = refcstrRootDirectory + "\\" + FileInformation.cFileName;
+
+				if(FileInformation.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
 				{
-					if(!(_tcscmp(FindFileData.cFileName,".") && _tcscmp(FindFileData.cFileName,"..")))
-						continue;
-					_tcscat(FileName,FindFileData.cFileName);
-					if((FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
+					if(bDeleteSubdirectories)
 					{
-						if(!directory_delete(FileName))
-						{
-							FindClose(hFind);
-							return 0;
-						}
-						RemoveDirectory(FileName);
-						_tcscpy(FileName,DirPath);
+						// Delete subdirectory
+						int iRC = DeleteDir(strFilePath, bDeleteSubdirectories);
+						if(iRC)
+							return iRC;
 					}
 					else
-					{
-						if(FindFileData.dwFileAttributes &
-							FILE_ATTRIBUTE_READONLY)
-							_chmod(FileName, _S_IWRITE);
-
-						if(!DeleteFile(FileName))
-						{
-							FindClose(hFind);
-							return 0;
-						}
-						_tcscpy(FileName,DirPath);
-					}
+						bSubdirectory = true;
 				}
 				else
 				{
-					if(GetLastError() == ERROR_NO_MORE_FILES)
-						bSearch = false;
-					else
-					{
-						FindClose(hFind);
-						return 0;
-					}
+					// Set file attributes
+					if(::SetFileAttributes(strFilePath.c_str(), FILE_ATTRIBUTE_NORMAL) == FALSE)
+						return ::GetLastError();
+
+					// Delete file
+					if(::DeleteFile(strFilePath.c_str()) == FALSE)
+						return ::GetLastError();
 				}
 			}
-			FindClose(hFind);
+		} while(::FindNextFile(hFile, &FileInformation) == TRUE);
 
-			return (double)(RemoveDirectory((char *)str.c_str()) == true);
+		// Close handle
+    	::FindClose(hFile);
+
+		DWORD dwError = ::GetLastError();
+		if(dwError != ERROR_NO_MORE_FILES)
+			return dwError;
+		else
+		{
+			if(!bSubdirectory)
+			{
+				// Set directory attributes
+				if(::SetFileAttributes(refcstrRootDirectory.c_str(), FILE_ATTRIBUTE_NORMAL) == FALSE)
+					return ::GetLastError();
+				
+				// Delete directory
+				if(::RemoveDirectory(refcstrRootDirectory.c_str()) == FALSE)
+					return ::GetLastError();
+			}
+		}
 	}
-	else
-	{
-		return 0;
-	}
+	return 0;
 #else
 	DIR *dir = opendir(path.c_str());
 	if(!dir)

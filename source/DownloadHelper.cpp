@@ -24,7 +24,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <curl/curl.h>
 #include <sys/stat.h>
 #include <stdio.h>
+
+#if defined _WIN32
+#include <windows.h>
+#else
 #include <unistd.h>
+#endif
 
 using namespace std;
 
