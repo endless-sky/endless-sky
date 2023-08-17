@@ -829,11 +829,9 @@ mission "Greenrock Lost Announcement"
 				`	"We shouldn't have wasted the resources on it at all."`
 			`	"I suppose, but things should have gone differently. The Free Worlds, and the Pact before that, was founded to eliminate piracy from the South, so I thought it was the right thing to do. We really put the pirates on the wire when we went straight for their guts.`
 			choice
-				`	"Well, the most obvious threat to the Free Worlds' sovereignty is the Navy. Attacking Greenrock hasn't helped in that eliminating that threat."`
+				`	"Well, the most obvious threat to the Free Worlds' sovereignty is the Navy. Attacking Greenrock hasn't helped in that regard."`
 					goto challenge
 				`	"Tomek's plan didn't work out, though. The other pirate planets didn't surrender when Greenrock fell, like he had wanted."`
-				`	(Stay silent.)`
-					goto silent
 			`	"That's true. But we mustn't lose sight of our original goals, either. Piracy is a bloody stain on the Southern Rim, and every ship we lose fighting a petty war between Bourne and Earth is a ship that can't protect our families on Solace or Longjump from the horrors of piracy.`
 			`	"But now it looks like we'll have our hands full for the foreseeable future, and the pirates are going to make the most out of this for sure. Best to see this war over with."`
 				goto end
