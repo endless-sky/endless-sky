@@ -269,7 +269,7 @@ mission "Robotic Musical 1"
 	minor
 	source
 		government "Hai"
-		attributes "tourism"
+		attributes "hai tourism"
 		not attributes "station"
 	to offer
 		random < 1

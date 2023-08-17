@@ -61,8 +61,8 @@ namespace {
 
 // Constructor.
 ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &conversation,
-	const System *system, const shared_ptr<Ship> &ship, bool useTransactions)
-	: player(player), useTransactions(useTransactions), conversation(conversation),
+	const Mission *caller, const System *system, const shared_ptr<Ship> &ship, bool useTransactions)
+	: player(player), caller(caller), useTransactions(useTransactions), conversation(conversation),
 	scroll(0.), system(system), ship(ship)
 {
 #if defined _WIN32
@@ -399,7 +399,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 			// Action nodes are able to perform various actions, e.g. changing
 			// the player's conditions, granting payments, triggering events,
 			// and more. They are not allowed to spawn additional UI elements.
-			conversation.GetAction(node).Do(player, nullptr);
+			conversation.GetAction(node).Do(player, nullptr, caller);
 		}
 		else if(conversation.ShouldDisplayNode(player.Conditions(), node))
 		{

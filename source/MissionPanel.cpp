@@ -968,7 +968,13 @@ void MissionPanel::Accept(bool force)
 
 	++availableIt;
 	player.AcceptJob(toAccept, GetUI());
-	if(availableIt == available.end() && !available.empty())
+
+	cycleInvolvedIndex = 0;
+
+	if(available.empty())
+		return;
+
+	if(availableIt == available.end())
 		--availableIt;
 
 	// Check if any other jobs are available with the same destination. Prefer
@@ -977,16 +983,35 @@ void MissionPanel::Accept(bool force)
 	{
 		const Planet *planet = toAccept.Destination();
 		const System *system = planet->GetSystem();
-		for(auto it = available.begin(); it != available.end(); ++it)
+		bool stillLooking = true;
+
+		// Updates availableIt if matching system found, returns true if planet also matches.
+		auto SelectNext = [this, planet, system, &stillLooking](list<Mission>::const_iterator &it) -> bool
+		{
 			if(it->Destination() && it->Destination()->IsInSystem(system))
 			{
-				availableIt = it;
 				if(it->Destination() == planet)
-					break;
+				{
+					availableIt = it;
+					return true;
+				}
+				else if(stillLooking)
+				{
+					stillLooking = false;
+					availableIt = it;
+				}
 			}
-	}
+			return false;
+		};
 
-	cycleInvolvedIndex = 0;
+		const list<Mission>::const_iterator startHere = availableIt;
+		for(auto it = startHere; it != available.end(); ++it)
+			if(SelectNext(it))
+				return;
+		for(auto it = startHere; it != available.begin(); )
+			if(SelectNext(--it))
+				return;
+	}
 }
 
 
