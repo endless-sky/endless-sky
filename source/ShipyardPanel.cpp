@@ -216,8 +216,7 @@ int ShipyardPanel::DrawDetails(const Point &center)
 		else
 		{
 			const Color &dim = *GameData::Colors().Get("medium");
-			const string label = DESCRIPTION;
-			font.Draw(label, startPoint + Point(35., 12.), dim);
+			font.Draw(DESCRIPTION, startPoint + Point(35., 12.), dim);
 			const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
 			SpriteShader::Draw(collapsedArrow, startPoint + Point(20., 20.));
 		}
