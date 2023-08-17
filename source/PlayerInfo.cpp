@@ -1516,9 +1516,7 @@ void PlayerInfo::Land(UI *ui)
 	// Cargo management needs to be done after updating ship locations (above).
 	UpdateCargoCapacities();
 	// Ships that are landed with you on the planet should pool all their cargo together.
-	for(const shared_ptr<Ship> &ship : ships)
-		if(ship->GetPlanet() == planet && !ship->IsParked())
-			ship->Cargo().TransferAll(cargo);
+	PoolCargo();
 	// Adjust cargo cost basis for any cargo lost due to a ship being destroyed.
 	for(const auto &it : lostCargo)
 		AdjustBasis(it.first, -(costBasis[it.first] * it.second) / (cargo.Get(it.first) + it.second));
@@ -1581,7 +1579,7 @@ void PlayerInfo::Land(UI *ui)
 
 // Load the cargo back into your ships. This may require selling excess, in
 // which case a message will be returned.
-bool PlayerInfo::TakeOff(UI *ui)
+bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 {
 	// This can only be done while landed.
 	if(!system || !planet)
@@ -1624,24 +1622,10 @@ bool PlayerInfo::TakeOff(UI *ui)
 			}
 			else
 				ship->Recharge(hasSpaceport);
-
-			if(ship != flagship)
-			{
-				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->RequiredCrew());
-				cargo.TransferAll(ship->Cargo());
-			}
-			else
-			{
-				// Your flagship takes first priority for passengers but last for cargo.
-				desiredCrew = ship->Crew();
-				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - desiredCrew);
-				for(const auto &it : cargo.PassengerList())
-					cargo.TransferPassengers(it.first, it.second, ship->Cargo());
-			}
 		}
-	// Load up your flagship last, so that it will have space free for any
-	// plunder that you happen to acquire.
-	cargo.TransferAll(flagship->Cargo());
+
+	if(distributeCargo)
+		DistributeCargo();
 
 	if(cargo.Passengers())
 	{
@@ -1803,6 +1787,46 @@ bool PlayerInfo::TakeOff(UI *ui)
 	}
 
 	return true;
+}
+
+
+
+void PlayerInfo::PoolCargo()
+{
+	// This can only be done while landed.
+	if(!planet)
+		return;
+	for(const shared_ptr<Ship> &ship : ships)
+		if(ship->GetPlanet() == planet && !ship->IsParked())
+			ship->Cargo().TransferAll(cargo);
+}
+
+
+
+const CargoHold &PlayerInfo::DistributeCargo()
+{
+	for(const shared_ptr<Ship> &ship : ships)
+		if(!ship->IsParked() && !ship->IsDisabled() && ship->GetPlanet() == planet)
+		{
+			if(ship != flagship)
+			{
+				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->RequiredCrew());
+				cargo.TransferAll(ship->Cargo());
+			}
+			else
+			{
+				// Your flagship takes first priority for passengers but last for cargo.
+				desiredCrew = ship->Crew();
+				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - desiredCrew);
+				for(const auto &it : cargo.PassengerList())
+					cargo.TransferPassengers(it.first, it.second, ship->Cargo());
+			}
+		}
+	// Load up your flagship last, so that it will have space free for any
+	// plunder that you happen to acquire.
+	cargo.TransferAll(flagship->Cargo());
+
+	return cargo;
 }
 
 
@@ -3209,6 +3233,17 @@ void PlayerInfo::RegisterDerivedConditions()
 	flagshipAttributeProvider.SetGetFunction(flagshipAttributeFun);
 	flagshipAttributeProvider.SetHasFunction(flagshipAttributeFun);
 
+	auto &&flagshipBaysProvider = conditions.GetProviderPrefixed("flagship bays: ");
+	auto flagshipBaysFun = [this](const string &name) -> int64_t
+	{
+		if(!flagship)
+			return 0;
+
+		return flagship->BaysTotal(name.substr(strlen("flagship bays: ")));
+	};
+	flagshipBaysProvider.SetGetFunction(flagshipBaysFun);
+	flagshipBaysProvider.SetHasFunction(flagshipBaysFun);
+
 	auto &&playerNameProvider = conditions.GetProviderPrefixed("name: ");
 	auto playerNameFun = [this](const string &name) -> bool
 	{
@@ -3671,6 +3706,15 @@ void PlayerInfo::RegisterDerivedConditions()
 	};
 	pluginProvider.SetHasFunction(pluginFun);
 	pluginProvider.SetGetFunction(pluginFun);
+
+	auto &&destroyedPersonProvider = conditions.GetProviderPrefixed("person destroyed: ");
+	auto destroyedPersonFun = [](const string &name) -> bool
+	{
+		const Person *person = GameData::Persons().Find(name.substr(strlen("person destroyed: ")));
+		return person ? person->IsDestroyed() : false;
+	};
+	destroyedPersonProvider.SetGetFunction(destroyedPersonFun);
+	destroyedPersonProvider.SetHasFunction(destroyedPersonFun);
 
 	// Read-only navigation conditions.
 	auto HyperspaceTravelDays = [](const System *origin, const System *destination) -> int

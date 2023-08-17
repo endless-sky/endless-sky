@@ -689,6 +689,38 @@ test "Depart"
 		call "Wait 55 steps"
 
 
+test "Depart and Ignore Warning Message"
+	status partial
+	description "Helper function to depart from a planet when a message requiring acknowledgement via keyboard input is expected."
+	sequence
+		input
+			key d
+		# The game needs 2 gamesteps for processing the launch before commands like the jump command can be given.
+		# Using empty inputs to trigger those game loops.
+		input
+		input
+		# Acknowledge the expected message
+		input
+			key "Return"
+		# The ships zoom gets restored at a rate of .02 per step, so wait for a bit more than 50 steps to get to full zoom/full control.
+		call "Wait 55 steps"
+
+
+test "Depart and Abort on Warning Message"
+	status partial
+	description "Helper function to attempt departure from a planet, then stop when an expected warning message is given."
+	sequence
+		input
+			key d
+		# The game needs 2 gamesteps for processing the launch before commands like the jump command can be given.
+		# Using empty inputs to trigger those game loops.
+		input
+		input
+		# Acknowledge the expected message and abort take off.
+		input
+			key "Escape"
+
+
 test "Sell first ship"
 	status partial
 	description "Test procedure that handles selling of the first ship in the list."

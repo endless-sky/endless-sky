@@ -1095,6 +1095,9 @@ tip "Automatic aiming"
 tip "Automatic firing"
 	`Automatically fire your primary weapons if your enemy is within the weapon's range.`
 
+tip "Deadline blink by distance"
+	`For rush missions, subtract the distance to the destination from the deadline to determine how fast to blink the map marker.`
+
 tip "Flotsam collection"
 	`Control which of your ships can pick up cargo floating in space.`
 
