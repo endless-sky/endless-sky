@@ -167,7 +167,8 @@ news "Incipias common"
 			"Incipias Captain"
 			"Incipias Crew Member"
 	message
-		phrase "incipias common hard defined"
+		phrase
+			"incipias common hard defined"
 
 phrase "incipias common"
 	phrase
