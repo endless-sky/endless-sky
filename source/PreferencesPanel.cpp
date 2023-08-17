@@ -82,7 +82,7 @@ namespace {
 	// How many pages of settings there are.
 	const int SETTINGS_PAGE_COUNT = 2;
 	const unsigned int MAX_INSTALL_ABLES_PER_PAGE = 18;
-  
+
 	// Hovering a preference for this many frames activates the tooltip.
 	const int HOVER_TIME = 60;
 }

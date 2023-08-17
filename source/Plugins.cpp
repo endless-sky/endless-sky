@@ -102,7 +102,7 @@ const Plugin *Plugins::Load(const string &path)
 
 	plugin->path = path;
 
-  plugin->aboutText = Files::Read(path + "about.txt");
+	plugin->aboutText = Files::Read(path + "about.txt");
 	plugin->version = Files::Read(path + "version.txt");
 
 	return plugin;
