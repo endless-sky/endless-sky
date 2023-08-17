@@ -3150,7 +3150,7 @@ planet Occupas
 	attributes "requires: gaslining"
 	government "Silent Ones"
 	landscape land/nasa10
-	description `There are no places to land on this planet, so you end up simply gliding through the upper layers of clouds. From time to time some strange giant shadows appear in the deeper layers, but they never stay long. This gas giant has a relatively calm weather; the winds are not that strong and storms do not appear very often.`
+	description `There are no places to land on this planet, so you end up simply gliding through the upper layers of clouds. From time to time some strange giant shadows appear in the deeper layers, but they never stay long. This gas giant has relatively calm weather; the winds are mild and storms do not appear very often.`
 
 planet "Ogmur's Siphon"
 	attributes arach "coalition station" research
@@ -3332,10 +3332,10 @@ planet "Pon'tes"
 	"required reputation" 1.0
 	outfitter "Hicemus"
 	shipyard "Hicemus"
-	description "This station is uncomfortable, even compared to human stations. As the Incipias are able to propel themselves through the air, there are no handles or surface for you to grip onto. The simulated gravity through the rotation of the station is not helping."
-	description "The station is a bit larger than the most human ones and a lot of Incipias are living here. They all seem very busy when they float through the tube like hallways."
+	description "This station is uncomfortable, even compared to human stations. As the Incipias are able to propel themselves through the air, there are no handles or surface for you to grip onto. The simulated gravity caused by the rotation of the station is not helping."
+	description "The station is a bit larger than the most human ones and a lot of Incipias are living here. They all seem very busy as they float through the tube-like hallways."
 	spaceport "The station has no normal spaceport, only a small docking area. Most of the people present appear to be workers, as opposed to visiting captains."
-	spaceport "You notice a lot of traffic, most of the ships are delivering minerals but some also deliver supplies from the homeworld. Only a few seem to transport people."
+	spaceport "Most of the ships are delivering minerals but some also deliver supplies from Redias. Only a few seem to transport people."
 
 planet Poseidos
 	attributes fishing rim
@@ -3434,8 +3434,8 @@ planet Redias
 	landscape land/gasgiant1
 	attributes "requires: gaslining"
 	"required reputation" 1
-	description "The home planet of the Incipias is reigned by powerful storms. Lightning and thunder appear without pause and a powerful wind moves the clouds at a disorienting speed."
-	description "The Incipias adjusted perfectly to this harsh environment. Their cities are built like them: large balloon-like structures which hold spheres of buildings in the air. The Incipias themselves can move freely through the atmosphere, so the cities have no roads. To travel larger distances, they use gliders that can fly against the powerful winds."
+	description "The home planet of the Incipias is reigned over by powerful storms. Lightning and thunder appear without pause and a powerful wind moves the clouds at a disorienting speed."
+	description "The Incipias have adjusted perfectly to this harsh environment. Their cities are built like them: large balloon-like structures which hold spheres of buildings in the air. The Incipias themselves can move freely through the atmosphere, so the cities have no roads. To travel larger distances, they use gliders that can fly against the powerful winds."
 	spaceport "Because of the size of their homeworld the Incipias built not only one but four spaceports. These spaceports are the only platforms with fixed positions. They were built in heights where the storms are not so strong, but they still need a lot of energy to be held in place."
 	spaceport "The spaceport itself is a giant circular platform with a few of the Incipias' housing spheres at the bottom. Traffic is negligible because only one ship can land here at a time."
 	government "Incipias"

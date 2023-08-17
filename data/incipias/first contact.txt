@@ -40,10 +40,10 @@ mission "Incipias: First Contact II"
 				"I am in search for new technologies and species."
 					goto science
 			label explorer
-			`	"Exploring the whole galaxy? That is a great task you have burdened yourself with. But as long as you do not wish to conquer the regions of space you find, we do not mind you travelling around." The Quarg looks at you carefully. "On the other hand, we do not know what your real goals are." For a moment you feel threatened by the presence of the Quarg, which is strange considering their physical strength. But the moment passes, and the Quarg seems friendly again. "That aside, can I help you with something?"`
+			`	"Exploring the whole galaxy? That is a great task you have burdened yourself with. But as long as you do not wish to conquer the regions of space you encounter, we do not mind you traveling around." The Quarg looks at you carefully. "Conversely, we do not know what your real goals are." For a moment you feel threatened by the presence of the Quarg, which is strange considering their physical strength. But the moment passes, and the Quarg seems friendly again. "That aside, can I assist you with something?"`
 				goto helpquarg
 			label science
-			`	"Is there are species in the galaxy that has not at some point searched for the greatest godkin technology? Only few have found it. Some gave up searching and concentrated on an easier life, rather than on endless trials and errors. But I can understand your kind. You are a young species that has not yet seen the deep darknesses that exist in this galaxy." The Quarg pauses for a moment, then continues. "We wont give you any technology ourselves, but I can answer your questions, if you have any."`
+			`	"Is there are species in the galaxy that has not at some point searched for the greatest godkin technology? Only few have found it. Some gave up searching and concentrated on an easier life, rather than on endless trials and errors. But I can understand your kind. You are a young species that has not yet seen the deep darknesses that exist in this galaxy." The Quarg pauses for a moment, then continues. "We shall not give you any technology ourselves, but I can answer your questions, if you have any."`
 			label helpquarg
 			choice
 				"What do you know about the species that lives south from here?"

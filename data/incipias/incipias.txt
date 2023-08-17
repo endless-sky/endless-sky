@@ -170,11 +170,11 @@ news "Incipias common"
 		word
 			"You say you left this [system, home]? One day, [I, we] will also see other [systems, homes]."
 			"There were more [interesting, dangerous] times, to fly a spaceship, nower days a lot of people have one."
-			"I just got my license for being part of a spaceship renewed, the government controls them [strictly, like freaks]."
-			"There is nothing more [exciting, fun] to switch in turbines mode and fly through the clouds of [our home, our origin]."
-			"It has been [some, a lot of] time since the last great breakthrough has been achieved. The government [says, promises us] that they work on something, but my guess is that they have no clue what to do."
-			"I saw a plasma discharger with a leak not so long ago, the ship looked good from the outside, but inside of it was a firestorm."
-			"I have never seen something like [you, your species], why don't you float like us?"
+			"I just got my license for being part of a spaceship renewed. The government controls them [strictly, like freaks]."
+			"There is nothing more [exciting, fun] to switch to turbine mode and fly through the clouds of [our home, our origin]."
+			"It has been [some, a lot of] time since the last great breakthrough has been achieved. The government [says, promises us] that they are working on something, but my guess is that they have no clue what to do."
+			"I saw a plasma discharger with a [leak, crack] not so long ago. The ship looked good from the outside, but the inside was a firestorm."
+			"I have never seen something like [you, your species]. Why don't you float like us?"
 
 phrase "incipias common"
 	phrase
@@ -194,10 +194,10 @@ phrase "incipias common hard defined"
 phrase "incipias common generated"
 	word
 		"These technologies"
-		"These [ships, relocate mechanisms]"
+		"These [ships, relocation mechanisms]"
 		"These [weapons, death machines]"
 		"These [engines, movement devices]"
-		"These [shields, secure mechanism]"
+		"These [shields, secure mechanisms]"
 	word
 		" "
 	word
@@ -223,9 +223,9 @@ news "Hicemus official"
 			"Hicemus Executive"
 	message
 		word
-			"We go forward to [evolve, be superior], no one can stop us."
-			"Have you seen our newest engines, they are much more efficient than anything before them."
-			"Our technology is superior, no one can question our authority."
+			"We go forward to [evolve, be superior]. No one can stop us."
+			"Have you seen our newest engines? They are much more efficient than anything before them."
+			"Our technology is superior. No one can question our authority."
 			"As long as we exist, we will progress."
 
 # is this ok derpy? XD
