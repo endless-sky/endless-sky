@@ -507,7 +507,7 @@ int Files::DeleteDir(const string path)
 
 
 	strPattern = path + "\\*.*";
-	hFile = ::FindFirstFile(strPattern.c_str(), &FileInformation);
+	hFile = FindFirstFile(Utf8::ToUTF16(strPattern).c_str(), &FileInformation);
 	if(hFile != INVALID_HANDLE_VALUE)
 	{
 		do {
@@ -526,20 +526,20 @@ int Files::DeleteDir(const string path)
 				else
 				{
 					// Set file attributes
-					if(::SetFileAttributes(strFilePath.c_str(), FILE_ATTRIBUTE_NORMAL) == FALSE)
-						return ::GetLastError();
+					if(SetFileAttributes(strFilePath.c_str(), FILE_ATTRIBUTE_NORMAL) == FALSE)
+						return GetLastError();
 
 					// Delete file
-					if(::DeleteFile(strFilePath.c_str()) == FALSE)
-						return ::GetLastError();
+					if(DeleteFile(strFilePath.c_str()) == FALSE)
+						return GetLastError();
 				}
 			}
-		} while(::FindNextFile(hFile, &FileInformation) == TRUE);
+		} while(FindNextFile(hFile, &FileInformation) == TRUE);
 
 		// Close handle
-		::FindClose(hFile);
+		FindClose(hFile);
 
-		DWORD dwError = ::GetLastError();
+		DWORD dwError = GetLastError();
 		if(dwError != ERROR_NO_MORE_FILES)
 			return dwError;
 	}
