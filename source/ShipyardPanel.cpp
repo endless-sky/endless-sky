@@ -202,7 +202,7 @@ int ShipyardPanel::DrawDetails(const Point &center)
 				break;
 			}
 
-		const Point spriteCenter(center.X(), center.Y() + 10 + TileSize() / 2);
+		const Point spriteCenter(center.X(), center.Y() + 20 + TileSize() / 2);
 		const Point startPoint(center.X() - INFOBAR_WIDTH / 2 + 20, center.Y() + 20 + TileSize());
 		const Sprite *background = SpriteSet::Get("ui/shipyard selected");
 		SpriteShader::Draw(background, spriteCenter);
