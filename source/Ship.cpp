@@ -1798,11 +1798,11 @@ int Ship::Scan(const PlayerInfo &player)
 	// being scanned instantly, or causing a divide by zero error at sizes
 	// of 0.
 	// If instantly scanning very small ships is desirable, this can be removed.
-	double outfits = max(SCAN_MIN_OUTFIT_SPACE, target->baseAttributes.Get("outfit space")) * SCAN_OUTFIT_FACTOR;
-	double cargo = max(SCAN_MIN_CARGO_SPACE, target->attributes.Get("cargo space")) * SCAN_CARGO_FACTOR;
 	// One point of scan opacity is the equivalent of an additional ton of cargo / outfit space
-	double outfits = max(10., target->baseAttributes.Get("outfit space") + target->attributes.Get("outfit scan opacity")) * .005;
-	double cargo = max(10., target->attributes.Get("cargo space") + target->attributes.Get("cargo scan opacity")) * .005;
+	const double outfitsSize = target->baseAttributes.Get("outfit space") + target->attributes.Get("outfit scan opacity");
+	const double cargoSize = target->attributes.Get("cargo space") + target->attributes.Get("cargo scan opacity");
+	double outfits = max(SCAN_MIN_OUTFIT_SPACE, outfitsSize) * SCAN_OUTFIT_FACTOR;
+	double cargo = max(SCAN_MIN_CARGO_SPACE, cargoSize) * SCAN_CARGO_FACTOR;
 
 	// Check if either scanner has finished scanning.
 	bool startedScanning = false;
@@ -1810,24 +1810,35 @@ int Ship::Scan(const PlayerInfo &player)
 	int result = 0;
 	auto doScan = [&distanceSquared, &startedScanning, &activeScanning, &result]
 			(double &elapsed, const double speed, const double scannerRangeSquared,
-					const double sizeFactor, const int event)
+					const double depth, const int event)
 	-> void
 	{
 		if(elapsed > SCAN_TIME)
 			return;
-		if(distanceSquared < MAX_SCAN_RANGE_FACTOR * scannerRangeSquared)
+		if(distanceSquared < scannerRangeSquared)
 			return;
 
 		startedScanning |= !elapsed;
 		activeScanning = true;
 
-		double sizeAdjustment = pow(sizeFactor, -2. / 3.);
+		// Total scan time is:
+		// Proportional to e^(0.5 * (distance / range)^2),
+		// which gives a guassian relation between scan speed and distance.
+		// And proportional to: depth^(2 / 3),
+		// which means 8 times the cargo or outfit space takes 4 times as long to scan.
+		// Therefore, scan progress each step is proportional to the reciprocals of these values.
+		// This can be calculated by multiplying the exponents by -1.
+		// Progress = (e^(-0.5 * (distance / range)^2))*deptch^(-2 / 3).
 
-		// Gaussian drop-off of scan speed.
-		double distanceExponent = -distanceSquared / max<double>(1e-3, 2 * scannerRangeSquared);
+		// Set a minimum scan range to avoid extreme values.
+		const double distanceExponent = -distanceSquared / max<double>(1e-3, 2. * scannerRangeSquared);
 
-		elapsed += max<double>(MIN_SCAN_STEPS, min<double>(MAX_SCAN_STEPS,
-			exp(distanceExponent) * sqrt(speed) * sizeAdjustment));
+		const double depthFactor = pow(depth, -2. / 3.);
+
+		const double progress = exp(distanceExponent) * sqrt(speed) * depthFactor;
+
+		// Bound progress each step to limit minimum and maximum scan times.
+		elapsed += max<double>(MIN_SCAN_STEPS, min<double>(MAX_SCAN_STEPS, progress));
 
 		if(elapsed >= SCAN_TIME)
 			result |= event;
