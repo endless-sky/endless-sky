@@ -206,7 +206,7 @@ int main(int argc, char *argv[])
 	}
 	catch(Test::known_failure_tag)
 	{
-		// This is not an error. Simply exit succesfully.
+		// This is not an error. Simply exit successfully.
 	}
 	catch(const runtime_error &error)
 	{
