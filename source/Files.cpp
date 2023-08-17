@@ -507,7 +507,7 @@ int Files::DeleteDir(const string path)
 
 
 	strPattern = path + "\\*.*";
-	hFile = FindFirstFile(Utf8::ToUTF16(strPattern).c_str(), &FileInformation);
+	hFile = FindFirstFile(strPattern.c_str(), &FileInformation);
 	if(hFile != INVALID_HANDLE_VALUE)
 	{
 		do {
