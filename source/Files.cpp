@@ -507,14 +507,14 @@ int Files::DeleteDir(const string path)
 
 
 	strPattern = path + "\\*.*";
-	hFile = FindFirstFile(strPattern.c_str(), &FileInformation);
+	hFile = FindFirstFileW(strPattern.c_str(), &FileInformation);
 	if(hFile != INVALID_HANDLE_VALUE)
 	{
 		do {
 			if(FileInformation.cFileName[0] != '.')
 			{
 				strFilePath.erase();
-				strFilePath = path + "\\" + FileInformation.cFileName;
+				strFilePath = path + "\\" + Utf8::ToUTF8(FileInformation.cFileName);
 
 				if(FileInformation.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
 				{
