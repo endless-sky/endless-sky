@@ -3238,7 +3238,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	{
 		if(!flagship)
 			return 0;
-		
+
 		return flagship->BaysTotal(name.substr(strlen("flagship bays: ")));
 	};
 	flagshipBaysProvider.SetGetFunction(flagshipBaysFun);
