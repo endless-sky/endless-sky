@@ -204,7 +204,6 @@
 		<Unit filename="source/Interface.h" />
 		<Unit filename="source/ItemInfoDisplay.cpp" />
 		<Unit filename="source/ItemInfoDisplay.h" />
-		<Unit filename="source/external/json.hpp" />
 		<Unit filename="source/JumpTypes.h" />
 		<Unit filename="source/LineShader.cpp" />
 		<Unit filename="source/LineShader.h" />
