@@ -34,7 +34,7 @@ ship "Nimbus"
 		"gaslining" 1
 		"fuel capacity" 200
 	outfits
-		"Liquid Class Shield"
+		"Liquid-Class Shield"
 		"Liquid Hydrogen Cell"
 		"Plasma Discharger" 4
 		"Tractor Beam"
@@ -59,7 +59,7 @@ ship "Nimbus"
 	description "The Nimbus is the first spaceship that the Incipias built that was really able to navigate through a system. Since it was first manufactured it has been loved among wealthier captains and a dream of captains just starting out."
 	description "Although the Nimbus is labeled as a medium warship, it is a multi-purpose ship. Whether one uses it for mining, passengers or cargo it will perform its job nicely. It is only occasionally used in combat because the Incipias are not fighting open wars."
 
-ship "Stratus"
+ship "Nimbo Stratus"
 	"plural" "Strati"
 	"sprite" ship/stratus
 	"thumbnail" thumbnail/stratus
@@ -81,7 +81,7 @@ ship "Stratus"
 		"fuel capacity" 200
 
 	outfits
-		"Gas Class Shield"
+		"Gas-Class Shield"
 		"Liquid Hydrogen Cell"
 		"Plasma Discharger" 2
 
@@ -96,7 +96,7 @@ ship "Stratus"
 	"final explode" "final explosion medium"
 	description "Mining has always been a big bussiness in Incipias society, that is why the Stratus is one of the most popular ships for captains in their early year, while not too expensive it is able to bring money in quickly. While the stratus could be used in combat, it stands no chance to the Nimbus and therefore has never been used by the Hicemus military forces."
 
-ship "Cirrus"
+ship "Nimbo Cirrus"
 	"plural" "Cirri"
 	"sprite" ship/cirrus
 	"thumbnail" thumbnail/cirrus
@@ -116,7 +116,7 @@ ship "Cirrus"
 		"gaslining" 1
 		"fuel capacity" 200
 	outfits
-		"Gas Class Shield"
+		"Gas-Class Shield"
 		"Liquid Hydrogen Cell"
 
 		"MH Green-Class Engine"

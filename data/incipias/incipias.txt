@@ -29,28 +29,18 @@ phrase "hicemus military"
 		"it"
 	word
 		"en #"
-	word
-		"ff"
-		"b9"
-		"89"
-		"5d"
-		"32"
-		"00"
-	word
-		"ff"
-		"b9"
-		"89"
-		"5d"
-		"32"
-		"00"
-	word
-		"ff"
-		"b9"
-		"89"
-		"5d"
-		"32"
-		"00"
-
+	phrase
+		"hex digit"
+	phrase
+		"hex digit"
+	phrase
+		"hex digit"
+	phrase
+		"hex digit"
+	phrase
+		"hex digit"
+	phrase
+		"hex digit"
 
 phrase "incipias civilian"
 	word
@@ -75,27 +65,37 @@ phrase "incipias civilian"
 		"iam"
 	word
 		" #"
+	phrase
+		"hex digit"
+	phrase
+		"hex digit"
+	phrase
+		"hex digit"
+	phrase
+		"hex digit"
+	phrase
+		"hex digit"
+	phrase
+		"hex digit"
+
+phrase "hex digit"
 	word
-		"ff"
-		"b9"
-		"89"
-		"5d"
-		"32"
-		"00"
-	word
-		"ff"
-		"b9"
-		"89"
-		"5d"
-		"32"
-		"00"
-	word
-		"ff"
-		"b9"
-		"89"
-		"5d"
-		"32"
-		"00"
+		"0"
+		"1"
+		"2"
+		"3"
+		"4"
+		"5"
+		"6"
+		"7"
+		"8"
+		"9"
+		"a"
+		"b"
+		"c"
+		"d"
+		"e"
+		"f"
 
 
 fleet "Hicemus Standard Mining"
@@ -107,11 +107,11 @@ fleet "Hicemus Standard Mining"
 	variant 2
 		"Nimbus"
 	variant 5
-		"Stratus"
+		"Nimbo Stratus"
 	variant 5
-		"Stratus" 2
+		"Nimbo Stratus" 2
 	variant 1
-		"Stratus"
+		"Nimbo Stratus"
 		"Nimbus"
 
 fleet "Hicemus Standard Surveilance"
@@ -133,11 +133,11 @@ fleet "Hicemus Standard Trade"
 		confusion 40
 		timid frugal appeasing
 	variant 5
-		"Cirrus"
+		"Nimbo Cirrus"
 	variant 1
 		"Nimbus"
 	variant 4
-		"Cirrus" 2
+		"Nimbo Cirrus" 2
 
 outfitter "Hicemus"
 	"Plasma Discharger"
@@ -155,8 +155,8 @@ outfitter "Hicemus"
 	"MH Red-Class Steering"
 
 shipyard "Hicemus"
-	"Cirrus"
-	"Stratus"
+	"Nimbo Cirrus"
+	"Nimbo Stratus"
 	"Nimbus"
 
 news "Incipias common"

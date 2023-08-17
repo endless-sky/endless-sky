@@ -123,7 +123,7 @@ outfit "Liquid Hydrogen Cell"
 	thumbnail "outfit/liquid hydrogen cell"
 	mass 20
 	"outfit space" -20
-	"energy capacity" 2000
+	"energy capacity" 500
 	description "This form of energy storage was discovered early by the Incipias because of the great amount of hydrogen on their homeworld. Because Incipias ships mostly access its energy at the time it is produced, only a small amount of storage is needed. Most of their ships have only one cell installed as a consequence."
 
 # Engines:
@@ -136,6 +136,7 @@ outfit "MH Blue-Class Engine"
 	"thrust" 16
 	"thrusting energy" 2
 	"thrusting heat" 2.5
+	description "For the Incipias blue is the weakest color, when engine gets labeled with blue one can only imagine how ships using it will be."
 
 outfit "MH Blue-Class Steering"
 	category "Engines"
@@ -144,6 +145,7 @@ outfit "MH Blue-Class Steering"
 	"turn" 332
 	"turning energy" 1.
 	"turning heat" 3
+	description "This steering is barely providing the minimum force to turn a ship, but it still used often because of how cheap it is."
 
 outfit "MH Green-Class Engine"
 	category "Engines"
@@ -154,14 +156,16 @@ outfit "MH Green-Class Engine"
 	"thrust" 16
 	"thrusting energy" 2
 	"thrusting heat" 2.5
+	description "Green is a color of balance for the Incipias, this engine holds the balance between taking too much space and moving too slow."
 
 outfit "MH Green-Class Steering"
 	category "Engines"
 	thumbnail "outfit/mh green-class steering"
 	"steering flare sound" "plasma huge"
 	"turn" 343
-	"turning energy" 1.
-	"turning heat" 3
+	"turning energy" 1.1
+	"turning heat" 3.1
+	description "The Incipias seem to have something against turning their ships, even though this steering is supposed to be an upgrade of the blue-class it barely holds any improvements."
 
 outfit "MH Red-Class Engine"
 	category "Engines"
@@ -172,6 +176,7 @@ outfit "MH Red-Class Engine"
 	"thrust" 32
 	"thrusting energy" 5
 	"thrusting heat" 10
+	description "The Incipias burn metallic hydrogen to move around in space. As a race that has easy access to metallic hydrogen on their homeplanet this allows for very efficient engines."
 
 outfit "MH Red-Class Steering"
 	category "Engines"
@@ -180,6 +185,7 @@ outfit "MH Red-Class Steering"
 	"turn" 756
 	"turning energy" 2.5
 	"turning heat" 12
+	description "Even the Incipias realize that ships need to turn towards their target to be able to shoot it. These steerings are specifically designed for combat but capatains with a lot of money find it very useful for mining."
 
 
 # Hand to Hand
