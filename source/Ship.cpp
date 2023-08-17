@@ -66,16 +66,15 @@ namespace {
 	const double MAXIMUM_TEMPERATURE = 100.;
 
 	// Scanning takes between 2 and 10 seconds (SCAN_TIME / MAX_SCAN_STEPS and SCAN_TIME / MIN_SCAN_STEPS)
-	// dependent on the range from the ship (among other factors).  The scan speed uses a gaussian
-	// drop-off with the reported scan radius as the standard deviation. Scanning goes out to the
-	// scanner's reported maximum range times MAX_SCAN_RANGE, beyond which the ships cease to scan.
-	// ships cease to scan. This MAX_SCAN_RANGE is critical since anywhere within that range, you
-	// still have a reasonable maximum scan time.
+	// dependent on the range from the ship (among other factors).
+	// The scan speed uses a gaussian drop-off with the reported scan radius as the standard deviation.
 	const double SCAN_TIME = 600.;
-	const double MIN_SCAN_STEPS = 1; // maximum of 10 seconds to scan
+	// Always gain at least 1 step of scan progress for every frame spent scanning while in range.
+	// This ensures every scan completes within 600 frames (10 seconds) of being in range.
+	const double MIN_SCAN_STEPS = 1;
+	// Gain no more than 5 steps of scan progress for every frame spent scanning while in range.
+	// This ensures no scan takes fewer than 120 frames (2 seconds.)
 	const double MAX_SCAN_STEPS = 5; // minimum of 2 seconds to scan
-	const double MAX_SCAN_RANGE = 2; // about 12% scan rate
-	const double MAX_SCAN_RANGE_FACTOR = MAX_SCAN_RANGE * MAX_SCAN_RANGE;
 
 	// These numbers ensure it takes 10 seconds for a Cargo Scanner to scan
 	// a Bulk Freighter at point blank range. Any ship with less than 40
