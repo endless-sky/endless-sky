@@ -500,14 +500,13 @@ void Files::Delete(const string &filePath)
 int Files::DeleteDir(const string path)
 {
 #if defined (_WIN32)
-	bool bSubdirectory = false; // Flag, indicating whether subdirectories have been found
 	HANDLE hFile; // Handle to directory
 	std::string strFilePath; // Filepath
 	std::string strPattern; // Pattern
 	WIN32_FIND_DATA FileInformation; // File information
 
 
-	strPattern = refcstrRootDirectory + "\\*.*";
+	strPattern = path + "\\*.*";
 	hFile = ::FindFirstFile(strPattern.c_str(), &FileInformation);
 	if(hFile != INVALID_HANDLE_VALUE)
 	{
@@ -516,19 +515,14 @@ int Files::DeleteDir(const string path)
 			if(FileInformation.cFileName[0] != '.')
 			{
 				strFilePath.erase();
-				strFilePath = refcstrRootDirectory + "\\" + FileInformation.cFileName;
+				strFilePath = path + "\\" + FileInformation.cFileName;
 
 				if(FileInformation.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
 				{
-					if(bDeleteSubdirectories)
-					{
-						// Delete subdirectory
-						int iRC = DeleteDir(strFilePath, bDeleteSubdirectories);
-						if(iRC)
-							return iRC;
-					}
-					else
-						bSubdirectory = true;
+					// Delete subdirectory
+					int iRC = DeleteDir(strFilePath);
+					if(iRC)
+						return iRC;
 				}
 				else
 				{
@@ -549,19 +543,6 @@ int Files::DeleteDir(const string path)
 		DWORD dwError = ::GetLastError();
 		if(dwError != ERROR_NO_MORE_FILES)
 			return dwError;
-		else
-		{
-			if(!bSubdirectory)
-			{
-				// Set directory attributes
-				if(::SetFileAttributes(refcstrRootDirectory.c_str(), FILE_ATTRIBUTE_NORMAL) == FALSE)
-					return ::GetLastError();
-				
-				// Delete directory
-				if(::RemoveDirectory(refcstrRootDirectory.c_str()) == FALSE)
-					return ::GetLastError();
-			}
-		}
 	}
 	return 0;
 #else
@@ -569,7 +550,7 @@ int Files::DeleteDir(const string path)
 	if(!dir)
 	{
 		std::cerr << "Error opening directory.\n";
-		return false;
+		return true;
 	}
 
 	struct dirent *entry;
@@ -584,16 +565,16 @@ int Files::DeleteDir(const string path)
 			{
 				std::cerr << "Error getting file/directory stat.\n";
 				closedir(dir);
-				return false;
+				return true;
 			}
 
 			if(S_ISDIR(fileStat.st_mode))
 			{
 				// Recursively delete subdirectories.
-				if(!DeleteDir(filePath))
+				if(DeleteDir(filePath))
 				{
 					closedir(dir);
-					return false;
+					return true;
 				}
 			}
 			else
@@ -603,7 +584,7 @@ int Files::DeleteDir(const string path)
 				{
 					std::cerr << "Error deleting file: " << filePath << "\n";
 					closedir(dir);
-					return false;
+					return true;
 				}
 			}
 		}
@@ -615,10 +596,10 @@ int Files::DeleteDir(const string path)
 	if(rmdir(path.c_str()) != 0)
 	{
 		std::cerr << "Error removing directory: " << path << "\n";
-		return false;
+		return true;
 	}
 
-	return true;
+	return false;
 #endif
 }
 
