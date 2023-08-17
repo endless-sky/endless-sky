@@ -144,7 +144,7 @@ namespace DownloadHelper {
 		hasHeadFolder = secondEntry.find(firstEntry) != std::string::npos;
 		if(!hasHeadFolder)
 #if defined(_WIN32)
-			mkdir((destination + expectedName).c_str());
+			_mkdir((destination + expectedName).c_str());
 #else
 			mkdir((destination + expectedName).c_str(), 0777);
 #endif
