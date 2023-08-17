@@ -23,7 +23,6 @@ set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELEASE TRUE)
 # On Linux use relative RPATH.
 set(CMAKE_BUILD_RPATH_USE_ORIGIN ON)
 
-
 # Setup vcpkg.
 if(ES_USE_VCPKG)
 	# No need to bootstrap vcpkg if the toolchain file is explictly provided.
