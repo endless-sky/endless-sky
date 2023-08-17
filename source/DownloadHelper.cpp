@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <stdio.h>
 
 #if defined _WIN32
+#include "text/Utf8.h"
 #include <windows.h>
 #else
 #include <unistd.h>
@@ -53,7 +54,7 @@ namespace DownloadHelper {
 		{
 #if defined _WIN32
 			FILE *out = nullptr;
-			_wfopen_s(&out, location, L"w");
+			_wfopen_s(&out, Utf8::ToUTF16(location).c_str(), L"w");
 #else
 			FILE *out = fopen(location, "wb");
 #endif
