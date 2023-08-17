@@ -28,24 +28,11 @@ ship "Nimbus"
 		"mass" 900
 		"drag" 7
 		"heat dissipation" .7
-		"cargo space" 100
+		"cargo space" 75
 		"outfit space" 450
 		"weapon capacity" 120
 		"gaslining" 1
 		"fuel capacity" 200
-
-		"steering flare sound" "plasma huge"
-		"turn" 756
-		"turning energy" 2.5
-		"turning heat" 12
-
-		"flare sprite" "effect/metallic hydrogen"
-			"frame rate" 24
-		"flare sound" "plasma huge"
-		"thrust" 32
-		"thrusting energy" 5
-		"thrusting heat" 10
-
 	outfits
 		"Liquid Class Shield"
 		"Liquid Hydrogen Cell"
@@ -78,7 +65,7 @@ ship "Stratus"
 	"thumbnail" thumbnail/stratus
 	"swizzle" 0
 	attributes
-		"category" "Utility"
+		"category" "Interceptor"
 		"cost" 50000
 		"hull" 500
 		"shields" 1400
@@ -107,7 +94,7 @@ ship "Stratus"
 	explode "medium explosion" 10
 	explode "large explosion" 20
 	"final explode" "final explosion medium"
-	description "stratus description"
+	description "Mining has always been a big bussiness in Incipias society, that is why the Stratus is one of the most popular ships for captains in their early year, while not too expensive it is able to bring money in quickly. While the stratus could be used in combat, it stands no chance to the Nimbus and therefore has never been used by the Hicemus military forces."
 
 ship "Cirrus"
 	"plural" "Cirri"
@@ -128,19 +115,6 @@ ship "Cirrus"
 		"outfit space" 100
 		"gaslining" 1
 		"fuel capacity" 200
-
-		"steering flare sound" "plasma huge"
-		"turn" 343
-		"turning energy" 1.
-		"turning heat" 3
-
-		"flare sprite" "effect/metallic hydrogen"
-			"frame rate" 24
-		"flare sound" "plasma huge"
-		"thrust" 16
-		"thrusting energy" 2
-		"thrusting heat" 2.5
-
 	outfits
 		"Gas Class Shield"
 		"Liquid Hydrogen Cell"
@@ -154,4 +128,4 @@ ship "Cirrus"
 	explode "medium explosion" 20
 	explode "large explosion" 30
 	"final explode" "final explosion medium"
-	description "cirrus description"
+	description "When Pontes was built the need for a ship that could carry material and supplies into the orbit arose. While the Nimbus is able to carry some cargo, it is not specialized for that kind of work. The Cirrus on the other hand is a pure cargo ship and the inhabitants of Pontes rely on the regular deliveries."
