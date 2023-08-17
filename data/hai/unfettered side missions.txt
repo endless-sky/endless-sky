@@ -146,7 +146,7 @@ mission "Hai Legacy 1"
 		"reputation: Hai (Unfettered)" < 0
 		not "Unfettered Jump Drive 1: offered"
 		# it will offer but defer itself the first time if you lack money but have sufficient net worth
-		"credits" + "net worth" * ( 1 - "Hai Legacy 1: deferred" ) > 100000000
+		"credits" + "net worth" * ( 1 - "Hai Legacy 1: deferred" ) > 10000000
 	on offer
 		conversation
 			branch first
@@ -163,7 +163,7 @@ mission "Hai Legacy 1"
 			`As you're browsing the shipyard, you are discreetly approached by a hooded figure. When you stop to see what they want to say, they grab and pull your arm to follow them. "Keep walking," the stranger hisses. After pointing at and commenting on random ship, as if to mimic the actions of regular passerby, they address you again. "My associates and I have a lucrative business proposition for you. If you are interested, come find us at these coordinates." Without waiting for a response, they fold a piece of paper into your hand before quickly fading into the crowd. It lists only a location: a beach on the other side of the planet.`
 			`	However, it also mentions you need to have at least 10 millions in cash! It may be a good idea to save up or take a debt and then come back another day to head to the location.`
 				to display
-					"credits" < 100000000
+					"credits" < 10000000
 				defer
 			`	Will you go there?`
 			choice
@@ -297,7 +297,7 @@ mission "Hai Legacy 2"
 		has "First Contact: Unfettered: offered"
 		"reputation: Hai (Unfettered)" < 0
 		not "Unfettered Jump Drive 1: offered"
-		"credits" > 100000000
+		"credits" > 10000000
 	to accept
 		has "ship model: Anomalocaris"
 	on offer
