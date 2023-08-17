@@ -47,6 +47,9 @@ class System;
 using namespace std;
 
 namespace {
+	// Label for the decription field of the detail pane.
+	const string DESCRIPTION = "description";
+
 	// The name entry dialog should include a "Random" button to choose a random
 	// name using the civilian ship name generator.
 	class NameDialog : public Dialog {
@@ -118,7 +121,7 @@ int ShipyardPanel::TileSize() const
 
 int ShipyardPanel::DrawPlayerShipInfo(const Point &point)
 {
-	shipInfo.Update(*playerShip, player, collapsed.count("description"));
+	shipInfo.Update(*playerShip, player, collapsed.count(DESCRIPTION));
 	shipInfo.DrawAttributes(point, true);
 	const int attributesHeight = shipInfo.GetAttributesHeight(true);
 	shipInfo.DrawOutfits(Point(point.X(), point.Y() + attributesHeight));
@@ -191,16 +194,14 @@ int ShipyardPanel::DrawDetails(const Point &center)
 		if(!isShipyardShip || LicenseCost(&selectedShip->Attributes()) < 0)
 			infoShip = player.StockShip(selectedShip);
 
-		shipInfo.Update(*infoShip, player, !isShipyardShip || collapsed.count("description"));
+		shipInfo.Update(*infoShip, player, !isShipyardShip || collapsed.count(DESCRIPTION));
 		selectedItem = selectedShip->DisplayModelName();
 
 		// Find the old description zone and remove it.
-		for(auto it = categoryZones.begin(); it != categoryZones.end(); ++it)
-			if(it->Value() == "description")
-			{
-				categoryZones.erase(it);
-				break;
-			}
+		auto descriptionZone = find_if(categoryZones.begin(), categoryZones.end(),
+			[&](const ClickZone<string> &zone) { return zone.Value() == DESCRIPTION; });
+		if(descriptionZone != categoryZones.end())
+			categoryZones.erase(descriptionZone);
 
 		const Point spriteCenter(center.X(), center.Y() + 20 + TileSize() / 2);
 		const Point startPoint(center.X() - INFOBAR_WIDTH / 2 + 20, center.Y() + 20 + TileSize());
@@ -219,7 +220,7 @@ int ShipyardPanel::DrawDetails(const Point &center)
 		double descriptionOffset = 35.;
 
 		// Maintenance note: This can be replaced with collapsed.contains() in C++20
-		if(!collapsed.count("description"))
+		if(!collapsed.count(DESCRIPTION))
 		{
 			descriptionOffset = shipInfo.DescriptionHeight();
 			shipInfo.DrawDescription(startPoint);
@@ -227,7 +228,7 @@ int ShipyardPanel::DrawDetails(const Point &center)
 		else
 		{
 			const Color &dim = *GameData::Colors().Get("medium");
-			const string label = "description";
+			const string label = DESCRIPTION;
 			font.Draw(label, startPoint + Point(35., 12.), dim);
 			const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
 			SpriteShader::Draw(collapsedArrow, startPoint + Point(20., 20.));
@@ -237,7 +238,7 @@ int ShipyardPanel::DrawDetails(const Point &center)
 		const Point descriptionDimensions(INFOBAR_WIDTH, descriptionOffset);
 		const Point descriptionCenter(center.X(), startPoint.Y() + descriptionOffset / 2);
 		const ClickZone<string> collapseDescription = ClickZone<string>(
-			descriptionCenter, descriptionDimensions, string("description"));
+			descriptionCenter, descriptionDimensions, DESCRIPTION);
 		categoryZones.emplace_back(collapseDescription);
 
 		const Point attributesPoint(startPoint.X(), startPoint.Y() + descriptionOffset);
