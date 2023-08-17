@@ -18,7 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <archive.h>
 #include <archive_entry.h>
 #include <cstring>
-#
 #include <curl/curl.h>
 #include <sys/stat.h>
 #include <stdio.h>
@@ -145,7 +144,7 @@ namespace DownloadHelper {
 		hasHeadFolder = secondEntry.find(firstEntry) != std::string::npos;
 		if(!hasHeadFolder)
 #if defined(_WIN32)
-			_wmkdir((destination + expectedName).c_str());
+			_wmkdir(Utf8::ToUTF16(destination + expectedName).c_str());
 #else
 			mkdir((destination + expectedName).c_str(), 0777);
 #endif
