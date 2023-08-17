@@ -88,35 +88,6 @@ effect "tractor beam impact"
 	"random angle" 2
 	"velocity scale" -.005
 
-outfit "Escape Zone"
-	category "Turrets"
-	mass 30
-	"outfit space" -30
-	"weapon capacity" -30
-	"turret mounts" -1
-	thumbnail "outfit/tractor beam"
-	weapon
-		sprite "projectile/escape zone/escape zone"
-			"frame rate" 6
-		"hardpoint sprite" "hardpoint/tractor beam"
-		sound "laser"
-		"hit effect" "tractor beam impact"
-		"turret turn" 7.5
-		"velocity" 0
-		"lifetime" 60
-		"reload" 30
-		"firing energy" 0.5
-		"firing heat" 3.2
-		# Deal damage to provoke ships.
-		"shield damage" 0.1
-		"hull damage" 0.1
-		"hit force" 80
-		"slowing damage" 0.2
-	description "The Tractor Beam is one of the few technologies of the Incipias that surpasses anything humanity has made thus far - in fact, the first prototypes were built before the Incipias dreamed of space travel. Giant reactors were constructed to pull asteroids out of their home planet's orbit for easy access to more resources. Naturally, a mechanism to slow the asteroids down was also implemented to prevent accidental asteroid strikes."
-	description "As the Incipias' mastery of spaceflight grew, so did the generators' efficiency - this allowed for more compact, ship-based tractor beams. Resource collection was greatly streamlined by these new models - much to the benefit of the Incipias' otherwise sluggish ships."
-	description "Officially, these beams are used for mining operations; however, less scrupulous individuals have found they are equally valuable in combat, using the beams to lock down and pull in their opponents for the kill."
-	description "The secret of how these beams work is only known to a few scientists of the Incipias who are under the control of the state. Such knowledge, if made public, could have disastrous consequences."
-
 # Shields/Energy:
 outfit "Gas-Class Shield"
 	category "Systems"
