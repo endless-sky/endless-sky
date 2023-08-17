@@ -17,13 +17,19 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MissionPanel.h"
 
+#include "text/alignment.hpp"
 #include "Command.h"
 #include "CoreStartData.h"
 #include "Dialog.h"
+#include "text/DisplayText.h"
 #include "FillShader.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "text/layout.hpp"
 #include "LineShader.h"
 #include "Mission.h"
 #include "Planet.h"
@@ -37,15 +43,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SpriteSet.h"
 #include "SpriteShader.h"
 #include "System.h"
+#include "text/truncate.hpp"
 #include "UI.h"
 #include "Wormhole.h"
-#include "text/DisplayText.h"
-#include "text/Font.h"
-#include "text/FontSet.h"
-#include "text/Format.h"
-#include "text/alignment.hpp"
-#include "text/layout.hpp"
-#include "text/truncate.hpp"
 
 #include <algorithm>
 #include <cmath>
