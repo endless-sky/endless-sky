@@ -18,8 +18,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <archive.h>
 #include <archive_entry.h>
 #include <cstring>
-#ifdef _WIN32
+#if defined _WIN32
 #include <winsock2.h>
+#define _WINSOCKAPI_
 #endif
 #include <curl/curl.h>
 #include <sys/stat.h>

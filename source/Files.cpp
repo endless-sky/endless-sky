@@ -510,8 +510,7 @@ int Files::DeleteDir(const string path)
 	hFile = ::FindFirstFile(strPattern.c_str(), &FileInformation);
 	if(hFile != INVALID_HANDLE_VALUE)
 	{
-		do
-		{
+		do {
 			if(FileInformation.cFileName[0] != '.')
 			{
 				strFilePath.erase();
@@ -538,7 +537,7 @@ int Files::DeleteDir(const string path)
 		} while(::FindNextFile(hFile, &FileInformation) == TRUE);
 
 		// Close handle
-    	::FindClose(hFile);
+		::FindClose(hFile);
 
 		DWORD dwError = ::GetLastError();
 		if(dwError != ERROR_NO_MORE_FILES)
