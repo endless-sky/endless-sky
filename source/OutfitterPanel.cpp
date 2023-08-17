@@ -120,18 +120,6 @@ int OutfitterPanel::VisibilityCheckboxesSize() const
 
 
 
-int OutfitterPanel::DrawPlayerShipInfo(const Point &point)
-{
-	shipInfo.Update(*playerShip, player, collapsed.count("description"));
-	shipInfo.DrawAttributes(point);
-	const int attributesHeight = shipInfo.AttributesHeight();
-	shipInfo.DrawOutfits(Point(point.X(), point.Y() + attributesHeight));
-
-	return attributesHeight + shipInfo.OutfitsHeight();
-}
-
-
-
 bool OutfitterPanel::HasItem(const string &name) const
 {
 	const Outfit *outfit = GameData::Outfits().Get(name);
@@ -323,7 +311,7 @@ int OutfitterPanel::DrawDetails(const Point &center)
 	}
 
 	// Draw this string representing the selected item (if any), centered in the details side panel
-	Point selectedPoint(center.X() - .5 * INFOBAR_WIDTH, center.Y());
+	Point selectedPoint(center.X() - INFOBAR_WIDTH / 2 + 10, center.Y());
 	font.Draw({selectedItem, {INFOBAR_WIDTH - 20, Alignment::CENTER, Truncate::MIDDLE}},
 		selectedPoint, bright);
 
