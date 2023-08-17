@@ -927,7 +927,7 @@ void PreferencesPanel::DrawInstallAbles()
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
-	const Color &yellow = *GameData::Colors().Get("yellow");
+	const Color &outdated = *GameData::Colors().Get("plugin outdated");
 
 	const int MAX_TEXT_WIDTH = 230;
 	Table table;
@@ -959,7 +959,7 @@ void PreferencesPanel::DrawInstallAbles()
 		if(isSelected)
 			table.DrawHighlight(back);
 		if(installedVersion && installedVersion->version != version)
-			table.Draw(name, yellow);
+			table.Draw(name, outdated);
 		else if(isSelected)
 			table.Draw(name, bright);
 		else if(installedVersion)
