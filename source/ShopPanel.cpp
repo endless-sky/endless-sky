@@ -725,7 +725,7 @@ void ShopPanel::DrawShipsSidebar()
 			}
 		}
 
-		if(isSelected && playerShips.size() > 1 && ship->OutfitCount(selectedOutfit))
+		if(isSelected && shipSelection.HasMany() && ship->OutfitCount(selectedOutfit))
 			PointerShader::Draw(Point(point.X() - static_cast<int>(ICON_TILE / 3), point.Y()),
 				Point(1., 0.), 14.f, 12.f, 0., Color(.9f, .9f, .9f, .2f));
 
@@ -973,7 +973,7 @@ void ShopPanel::DrawMain()
 
 int ShopPanel::DrawPlayerShipInfo(const Point &point)
 {
-	shipInfo.Update(*playerShip, player, collapsed.count("description"));
+	shipInfo.Update(*shipSelection.Selected(), player, collapsed.count("description"));
 	shipInfo.DrawAttributes(point, !isOutfitter);
 	const int attributesHeight = shipInfo.GetAttributesHeight(!isOutfitter);
 	shipInfo.DrawOutfits(Point(point.X(), point.Y() + attributesHeight));
