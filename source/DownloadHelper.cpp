@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <archive.h>
 #include <archive_entry.h>
 #include <cstring>
+#
 #include <curl/curl.h>
 #include <sys/stat.h>
 #include <stdio.h>
@@ -50,7 +51,12 @@ namespace DownloadHelper {
 		curl = curl_easy_init();
 		if(curl)
 		{
+#if defined _WIN32
+			FILE *out = nullptr;
+			_wfopen_s(&out, location, L"w");
+#else
 			FILE *out = fopen(location, "wb");
+#endif
 			curl_easy_setopt(curl, CURLOPT_URL, url);
 			curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1l);
 			curl_easy_setopt(curl, CURLOPT_CA_CACHE_TIMEOUT, 604800L);
