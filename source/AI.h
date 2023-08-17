@@ -78,6 +78,9 @@ template <class Type>
 	int64_t AllyStrength(const Government *government);
 	int64_t EnemyStrength(const Government *government);
 
+	// Find nearest landing location.
+	static const StellarObject *FindLandingLocation(const Ship &ship, const bool refuel = true);
+
 
 private:
 	// Check if a ship can pursue its target (i.e. beyond the "fence").
@@ -126,6 +129,7 @@ private:
 	void DoMining(Ship &ship, Command &command);
 	bool DoHarvesting(Ship &ship, Command &command) const;
 	bool DoCloak(Ship &ship, Command &command);
+	void DoPatrol(Ship &ship, Command &command) const;
 	// Prevent ships from stacking on each other when many are moving in sync.
 	void DoScatter(Ship &ship, Command &command);
 	bool DoSecretive(Ship &ship, Command &command);
