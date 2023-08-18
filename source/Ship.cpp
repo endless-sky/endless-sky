@@ -65,7 +65,31 @@ namespace {
 
 	const double MAXIMUM_TEMPERATURE = 100.;
 
+	// Scanning takes between 2 and 10 seconds (SCAN_TIME / MAX_SCAN_STEPS and SCAN_TIME / MIN_SCAN_STEPS)
+	// dependent on the range from the ship (among other factors).
+	// The scan speed uses a gaussian drop-off with the reported scan radius as the standard deviation.
 	const double SCAN_TIME = 600.;
+	// Always gain at least 1 step of scan progress for every frame spent scanning while in range.
+	// This ensures every scan completes within 600 frames (10 seconds) of being in range.
+	const double MIN_SCAN_STEPS = 1;
+	// Gain no more than 5 steps of scan progress for every frame spent scanning while in range.
+	// This ensures no scan takes fewer than 120 frames (2 seconds.)
+	const double MAX_SCAN_STEPS = 5; // minimum of 2 seconds to scan
+
+	// These numbers ensure it takes 10 seconds for a Cargo Scanner to scan
+	// a Bulk Freighter at point blank range. Any ship with less than 40
+	// cargo space takes as long as a ship with 40 cargo space.
+	const double SCAN_MIN_CARGO_SPACE = 40;
+	const double SCAN_CARGO_FACTOR = 3;
+
+	// This ensures it takes 10 seconds for an Outfit Scanner to scan a
+	// Bactrian at point blank range. Any ship with less than 200 outfit
+	// space takes as long as a ship with 200 outfit space.
+	const double SCAN_MIN_OUTFIT_SPACE = 200;
+	const double SCAN_OUTFIT_FACTOR = 10;
+
+	// Formula for the scan outfit or cargo factor is:
+	// factor = pow(sqrt(scanEfficiency) * framesToFullScan / SCAN_TIME, 1.5) / referenceSize
 
 	// Helper function to transfer energy to a given stat if it is less than the
 	// given maximum value.
@@ -1767,52 +1791,56 @@ int Ship::Scan(const PlayerInfo &player)
 	// Because this uses distance squared, to reach 200 pixels away you need 4 "scan power".
 	double distanceSquared = target->position.DistanceSquared(position) * .0001;
 
-	// Check the target's outfit and cargo space. A larger ship takes longer to scan.
-	// Normalized around 200 tons of cargo/outfit space.
-	// A ship with less than 10 tons of outfit space or cargo space takes as long to
-	// scan as one with 10 tons. This avoids small sizes being scanned instantly, or
-	// causing a divide by zero error at sizes of 0.
+	// Check the target's outfit and cargo space. A larger ship takes
+	// longer to scan.  There's a minimum size below which a smaller ship
+	// takes the same amount of time to scan. This avoids small sizes
+	// being scanned instantly, or causing a divide by zero error at sizes
+	// of 0.
 	// If instantly scanning very small ships is desirable, this can be removed.
 	// One point of scan opacity is the equivalent of an additional ton of cargo / outfit space
-	double outfits = max(10., (target->baseAttributes.Get("outfit space")
-		+ target->attributes.Get("outfit scan opacity"))) * .005;
-	double cargo = max(10., (target->attributes.Get("cargo space")
-		+ target->attributes.Get("cargo scan opacity"))) * .005;
+	const double outfitsSize = target->baseAttributes.Get("outfit space") + target->attributes.Get("outfit scan opacity");
+	const double cargoSize = target->attributes.Get("cargo space") + target->attributes.Get("cargo scan opacity");
+	double outfits = max(SCAN_MIN_OUTFIT_SPACE, outfitsSize) * SCAN_OUTFIT_FACTOR;
+	double cargo = max(SCAN_MIN_CARGO_SPACE, cargoSize) * SCAN_CARGO_FACTOR;
 
 	// Check if either scanner has finished scanning.
 	bool startedScanning = false;
 	bool activeScanning = false;
 	int result = 0;
 	auto doScan = [&distanceSquared, &startedScanning, &activeScanning, &result]
-			(double &elapsed, const double speed, const double scannerRange,
+			(double &elapsed, const double speed, const double scannerRangeSquared,
 					const double depth, const int event)
 	-> void
 	{
-		if(elapsed < SCAN_TIME && distanceSquared < scannerRange)
-		{
-			startedScanning |= !elapsed;
-			activeScanning = true;
+		if(elapsed > SCAN_TIME)
+			return;
+		if(distanceSquared > scannerRangeSquared)
+			return;
 
-			// Division is more expensive to calculate than multiplication,
-			// so rearrange the formula to minimize divisions.
+		startedScanning |= !elapsed;
+		activeScanning = true;
 
-			// "(scannerRange - 0.5 * distance) / scannerRange"
-			// This line hits 1 at distace = 0, and 0.5 at distance = scannerRange.
-			// There is also a hard cap on scanning range.
+		// Total scan time is:
+		// Proportional to e^(0.5 * (distance / range)^2),
+		// which gives a guassian relation between scan speed and distance.
+		// And proportional to: depth^(2 / 3),
+		// which means 8 times the cargo or outfit space takes 4 times as long to scan.
+		// Therefore, scan progress each step is proportional to the reciprocals of these values.
+		// This can be calculated by multiplying the exponents by -1.
+		// Progress = (e^(-0.5 * (distance / range)^2))*deptch^(-2 / 3).
 
-			// "speed / (sqrt(speed) + distance)"
-			// This gives a modest speed boost at no distance, and
-			// the boost tapers off to 0 at arbitrarily large distances.
+		// Set a minimum scan range to avoid extreme values.
+		const double distanceExponent = -distanceSquared / max<double>(1e-3, 2. * scannerRangeSquared);
 
-			// "1 / depth"
-			// This makes scan time proportional to cargo or outfit space.
+		const double depthFactor = pow(depth, -2. / 3.);
 
-			elapsed += ((scannerRange - .5 * distanceSquared) * speed)
-				/ (scannerRange * (sqrt(speed) + distanceSquared) * depth);
+		const double progress = exp(distanceExponent) * sqrt(speed) * depthFactor;
 
-			if(elapsed >= SCAN_TIME)
-				result |= event;
-		}
+		// Bound progress each step to limit minimum and maximum scan times.
+		elapsed += max<double>(MIN_SCAN_STEPS, min<double>(MAX_SCAN_STEPS, progress));
+
+		if(elapsed >= SCAN_TIME)
+			result |= event;
 	};
 	doScan(cargoScan, cargoSpeed, cargoDistanceSquared, cargo, ShipEvent::SCAN_CARGO);
 	doScan(outfitScan, outfitSpeed, outfitDistanceSquared, outfits, ShipEvent::SCAN_OUTFITS);
