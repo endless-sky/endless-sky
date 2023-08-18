@@ -1,4 +1,4 @@
-/* DownloadHelper.cpp
+/* PluginHelper.cpp
 Copyright (c) 2023 by RisingLeaf(https://github.com/RisingLeaf)
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -13,7 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "DownloadHelper.h"
+#include "PluginHelper.h"
 
 #if defined _WIN32
 #define WIN32_LEAN_AND_MEAN
@@ -37,7 +37,7 @@ using namespace std;
 
 
 
-namespace DownloadHelper {
+namespace PluginHelper {
 	size_t WriteData(void *ptr, size_t size, size_t nmemb, FILE *stream) {
 		size_t written = fwrite(ptr, size, nmemb, stream);
 		return written;
@@ -61,9 +61,13 @@ namespace DownloadHelper {
 #else
 			FILE *out = fopen(location, "wb");
 #endif
+			// Set the url that gets downloaded
 			curl_easy_setopt(curl, CURLOPT_URL, url);
+			// Follow redirects
 			curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1l);
+			// How long we will wait
 			curl_easy_setopt(curl, CURLOPT_CA_CACHE_TIMEOUT, 604800L);
+			// Set the write function and the output file used in the write function
 			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteData);
 			curl_easy_setopt(curl, CURLOPT_WRITEDATA, out);
 
@@ -82,6 +86,7 @@ namespace DownloadHelper {
 
 
 
+	// Copy an entry from one archive to the other
 	int CopyData(struct archive *ar, struct archive *aw)
 	{
 		int retVal;
@@ -113,7 +118,7 @@ namespace DownloadHelper {
 
 	bool ExtractZIP(const char *filename, string destination, string expectedName)
 	{
-		struct archive *a;
+		struct archive *archive;
 		struct archive *ext;
 		struct archive_entry *entry;
 		int retVal;
@@ -124,53 +129,55 @@ namespace DownloadHelper {
 		flags |= ARCHIVE_EXTRACT_ACL;
 		flags |= ARCHIVE_EXTRACT_FFLAGS;
 
-		a = archive_read_new();
+		// Create the handles for reading/writing
+		archive = archive_read_new();
 		ext = archive_write_disk_new();
 		archive_write_disk_set_options(ext, flags);
-		archive_read_support_format_all(a);
+		archive_read_support_format_all(archive);
 		if(filename != NULL && strcmp(filename, "-") == 0)
 			filename = NULL;
-		if((retVal = archive_read_open_filename(a, filename, 10240)))
+		if((retVal = archive_read_open_filename(archive, filename, 10240)))
 		{
-			printf("archive_read_open_filename(), %s, %i", archive_error_string(a), retVal);
+			printf("archive_read_open_filename(), %s, %i", archive_error_string(archive), retVal);
 			return false;
 		}
 
-		// Do some inital checks.
-		bool fitsExpected = true;
-		bool hasHeadFolder = true;
-		archive_read_next_header(a, &entry);
+		// Check if this plugin has the right head folder name
+		retVal = archive_read_next_header(archive, &entry);
 		string firstEntry = archive_entry_pathname(entry);
-		fitsExpected = firstEntry == (expectedName);
-		archive_read_data_skip(a);
-		archive_read_next_header(a, &entry);
+		bool fitsExpected = firstEntry == (expectedName);
+		archive_read_data_skip(archive);
+		// Check if this plugin has a head folder, if not create one in the destination
+		retVal = archive_read_next_header(archive, &entry);
 		string secondEntry = archive_entry_pathname(entry);
-		hasHeadFolder = secondEntry.find(firstEntry) != std::string::npos;
+		bool hasHeadFolder = secondEntry.find(firstEntry) != std::string::npos;
 		if(!hasHeadFolder)
 #if defined(_WIN32)
 			_wmkdir(Utf8::ToUTF16(destination + expectedName).c_str());
 #else
 			mkdir((destination + expectedName).c_str(), 0777);
 #endif
-		archive_read_close(a);
-		archive_read_free(a);
+		// Close the archive so we can start again from the beginning
+		archive_read_close(archive);
+		archive_read_free(archive);
 
 		// Read another time, this time for writing.
-		a = archive_read_new();
-		archive_read_support_format_all(a);
-		archive_read_open_filename(a, filename, 10240);
+		archive = archive_read_new();
+		archive_read_support_format_all(archive);
+		archive_read_open_filename(archive, filename, 10240);
 
 		string dest_file;
 		for(;;)
 		{
-			retVal = archive_read_next_header(a, &entry);
+			retVal = archive_read_next_header(archive, &entry);
 			if(retVal == ARCHIVE_EOF)
 				break;
 			if(retVal != ARCHIVE_OK)
 			{
-				printf("archive_read_next_header(), %s, %i", archive_error_string(a), retVal);
+				printf("archive_read_next_header(), %s, %i", archive_error_string(archive), retVal);
 				return false;
 			}
+
 			// Adjust root folder name if neccessary.
 			if(!fitsExpected && hasHeadFolder)
 			{
@@ -182,16 +189,18 @@ namespace DownloadHelper {
 				}
 				archive_entry_set_pathname(entry, thisEntryName.c_str());
 			}
+
 			// Add root folder to path if neccessary.
 			dest_file = (destination + (hasHeadFolder ? "" : expectedName)) + archive_entry_pathname(entry);
 			archive_entry_set_pathname(entry, dest_file.c_str());
+
 			// Write files.
 			retVal = archive_write_header(ext, entry);
 			if(retVal != ARCHIVE_OK)
 				printf("archive_write_header(), %s", archive_error_string(ext));
 			else
 			{
-				CopyData(a, ext);
+				CopyData(archive, ext);
 				retVal = archive_write_finish_entry(ext);
 				if(retVal != ARCHIVE_OK)
 				{
@@ -202,8 +211,8 @@ namespace DownloadHelper {
 		}
 
 		// Free all data.
-		archive_read_close(a);
-		archive_read_free(a);
+		archive_read_close(archive);
+		archive_read_free(archive);
 		archive_write_close(ext);
 		archive_write_free(ext);
 		return true;

@@ -135,8 +135,8 @@
 		<Unit filename="source/DistanceMap.h" />
 		<Unit filename="source/Distribution.cpp" />
 		<Unit filename="source/Distribution.h" />
-		<Unit filename="source/DownloadHelper.cpp" />
-		<Unit filename="source/DownloadHelper.h" />
+		<Unit filename="source/PluginHelper.cpp" />
+		<Unit filename="source/PluginHelper.h" />
 		<Unit filename="source/DrawList.cpp" />
 		<Unit filename="source/DrawList.h" />
 		<Unit filename="source/Effect.cpp" />

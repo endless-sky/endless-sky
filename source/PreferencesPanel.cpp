@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Audio.h"
 #include "Color.h"
 #include "Dialog.h"
-#include "DownloadHelper.h"
+#include "PluginHelper.h"
 #include "Files.h"
 #include "FillShader.h"
 #include "text/Font.h"
@@ -200,7 +200,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		page = 'i';
 		if(!downloadedInfo)
 		{
-			DownloadHelper::Download(
+			PluginHelper::Download(
 				"https://raw.githubusercontent.com/endless-sky/endless-sky-plugins/master/generated/plugins.json",
 				(Files::Config() + "plugins.json").c_str());
 			ifstream pluginlistFile(Files::Config() + "plugins.json");

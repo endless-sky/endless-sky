@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
-#include "DownloadHelper.h"
+#include "PluginHelper.h"
 #include "Files.h"
 #include "Logger.h"
 
@@ -190,11 +190,11 @@ future<void> Plugins::Install(string url, string name, std::string version)
 		{
 			currentBackgroundActivity.store(currentBackgroundActivity + 1);
 
-			bool success = DownloadHelper::Download(url.c_str(),
+			bool success = PluginHelper::Download(url.c_str(),
 				(Files::Plugins() + name + ".zip").c_str());
 			if(success)
 			{
-				success = DownloadHelper::ExtractZIP(
+				success = PluginHelper::ExtractZIP(
 					(Files::Plugins() + name + ".zip").c_str(),
 					Files::Plugins().c_str(), name + "/");
 			}

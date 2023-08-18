@@ -1,4 +1,4 @@
-/* DownloadHelper.h
+/* PluginHelper.h
 Copyright (c) 2023 by RisingLeaf(https://github.com/RisingLeaf)
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -17,8 +17,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-namespace DownloadHelper
+// This namespace holds functions for installing and updating plugins.
+namespace PluginHelper
 {
+	// Download any file.
 	bool Download(const char *url, const char *location);
+	// Extract a plugin from a zip file.
+	// Could be used for other zips as well, but is tailored to plugins.
 	bool ExtractZIP(const char *filename, std::string destination, std::string expectedName);
 }
