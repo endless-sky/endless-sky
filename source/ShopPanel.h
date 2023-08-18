@@ -73,12 +73,6 @@ protected:
 
 
 protected:
-	void DrawShipsSidebar();
-	void DrawDetailsSidebar();
-	void DrawDesignButtons();
-	void DrawShopButtons();
-	void DrawMain();
-
 	void DrawShip(const Ship &ship, const Point &center, bool isSelected);
 
 	void CheckForMissions(Mission::Location location);
@@ -86,7 +80,6 @@ protected:
 	// These are for the individual shop panels to override.
 	virtual int TileSize() const = 0;
 	virtual int VisibilityCheckboxesSize() const;
-	virtual int DrawPlayerShipInfo(const Point &point) = 0;
 	virtual bool HasItem(const std::string &name) const = 0;
 	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) = 0;
 	virtual int DividerOffset() const = 0;
@@ -199,6 +192,14 @@ protected:
 
 
 private:
+	void DrawShipsSidebar();
+	void DrawDetailsSidebar();
+	void DrawDesignButtons();
+	void DrawShopButtons();
+	void DrawMain();
+
+	int DrawPlayerShipInfo(const Point &point);
+
 	bool DoScroll(double dy);
 	bool SetScrollToTop();
 	bool SetScrollToBottom();
