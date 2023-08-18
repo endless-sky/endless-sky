@@ -205,7 +205,7 @@ int ShipyardPanel::DrawDetails(const Point &center)
 			SpriteShader::Draw(shipSprite, spriteCenter, spriteScale, swizzle);
 		}
 
-		double descriptionOffset = 35.;
+		double descriptionOffset = 40.;
 
 		// Maintenance note: This can be replaced with collapsed.contains() in C++20
 		if(!collapsed.count(DESCRIPTION))
