@@ -135,9 +135,7 @@ void ShipManager::Do(PlayerInfo &player) const
 ShipManager ShipManager::Instantiate(const map<string, string> &subs) const
 {
 	ShipManager result = *this;
-	result.name = !result.name.empty()
-			? Format::Replace(Phrase::ExpandPhrases(name), subs)
-			: GameData::Phrases().Get("civilian")->Get();
+	result.name = Format::Replace(Phrase::ExpandPhrases(name), subs);
 	return result;
 }
 
