@@ -1814,7 +1814,7 @@ int Ship::Scan(const PlayerInfo &player)
 	{
 		if(elapsed > SCAN_TIME)
 			return;
-		if(distanceSquared < scannerRangeSquared)
+		if(distanceSquared > scannerRangeSquared)
 			return;
 
 		startedScanning |= !elapsed;
