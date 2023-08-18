@@ -102,6 +102,14 @@ const string &DataNode::Token(int index) const
 
 
 
+// Add a new token to the end of this node.
+void DataNode::AddToken(string token)
+{
+	tokens.emplace_back(token);
+}
+
+
+
 // Convert the token with the given index to a numerical value.
 double DataNode::Value(int index) const
 {
