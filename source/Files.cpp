@@ -502,12 +502,10 @@ int Files::DeleteDir(const string path)
 #if defined (_WIN32)
 	HANDLE hFile; // Handle to directory
 	std::string strFilePath; // Filepath
-	std::string strPattern; // Pattern
+	std::string strPattern = path + "\\*.*"; // Pattern
 	WIN32_FIND_DATA FileInformation; // File information
 
-
-	strPattern = path + "\\*.*";
-	hFile = FindFirstFileW(strPattern.c_str(), &FileInformation);
+	hFile = FindFirstFileW(Utf8::ToUTF16(strPattern).c_str(), &FileInformation);
 	if(hFile != INVALID_HANDLE_VALUE)
 	{
 		do {
@@ -526,11 +524,11 @@ int Files::DeleteDir(const string path)
 				else
 				{
 					// Set file attributes
-					if(SetFileAttributes(strFilePath.c_str(), FILE_ATTRIBUTE_NORMAL) == FALSE)
+					if(SetFileAttributes(Utf8::ToUTF16(strFilePath).c_str(), FILE_ATTRIBUTE_NORMAL) == FALSE)
 						return GetLastError();
 
 					// Delete file
-					if(DeleteFile(strFilePath.c_str()) == FALSE)
+					if(DeleteFile(Utf8::ToUTF16(strFilePath).c_str()) == FALSE)
 						return GetLastError();
 				}
 			}

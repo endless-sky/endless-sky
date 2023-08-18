@@ -135,11 +135,11 @@ namespace DownloadHelper {
 		// Do some inital checks.
 		bool fitsExpected = true;
 		bool hasHeadFolder = true;
-		retVal = archive_read_next_header(a, &entry);
+		archive_read_next_header(a, &entry);
 		string firstEntry = archive_entry_pathname(entry);
 		fitsExpected = firstEntry == (expectedName);
 		archive_read_data_skip(a);
-		retVal = archive_read_next_header(a, &entry);
+		archive_read_next_header(a, &entry);
 		string secondEntry = archive_entry_pathname(entry);
 		hasHeadFolder = secondEntry.find(firstEntry) != std::string::npos;
 		if(!hasHeadFolder)
