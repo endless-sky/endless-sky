@@ -469,7 +469,7 @@ bool ShopPanel::Click(int x, int y, int /* clicks */)
 	{
 		if(y < Screen::Top() + 20)
 			return Scroll(0, 4);
-		if(y < Screen::Bottom() - BUTTON_HEIGHT && y >= Screen::Bottom() - 20)
+		if(y < Screen::Bottom() && y >= Screen::Bottom() - 20)
 			return Scroll(0, -4);
 	}
 
