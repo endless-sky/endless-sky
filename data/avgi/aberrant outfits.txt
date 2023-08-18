@@ -46,8 +46,8 @@ outfit "Nucleolysis Beam"
 outfit "Telescopic Antimissile"
 	category "Turrets"
 	cost 6000000
-	thumbnail "outfit/unknown"
-	"flotsam sprite" "outfit unknown"
+	thumbnail "outfit/telescopic antimissile"
+	"flotsam sprite" "outfit/telescopic antimissile"
 	"mass" 40
 	"outfit space" -40
 	"weapon capacity" -40
@@ -68,11 +68,11 @@ outfit "Telescopic Antimissile"
 
 # Systems:
 
-outfit "Anomalous Shield Projector"
+outfit "Anomalous Shield Restorer"
 	category "Systems"
 	cost 22000000
-	thumbnail "outfit/unknown"
-	"flotsam sprite" "outfit/unknown"
+	thumbnail "outfit/anomalous shield restorer"
+	"flotsam sprite" "outfit/anomalous shield restorer"
 	"mass" 37
 	"outfit space" -25
 	"shield generation" 3
@@ -87,8 +87,8 @@ outfit "Anomalous Shield Projector"
 outfit "Antimatter Power Cell"
 	category "Power"
 	cost 11000000
-	thumbnail "outfit/unknown"
-	"flotsam sprite" "outfit/unknown"
+	thumbnail "outfit/antimatter power cell"
+	"flotsam sprite" "outfit/antimatter power cell"
 	"mass" 34
 	"outfit space" -13
 	"energy generation" 6.6

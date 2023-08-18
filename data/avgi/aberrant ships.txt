@@ -195,6 +195,7 @@ ship "Twilight Ka'sei 1C"
 		"Ka'het Shield Restorer"
 		"Ka'het MHD Generator"
 		"Ka'het Reserve Accumulator"
+		"Anomalous Shield Restorer"
 
 		"Ka'het Compact Engine" 2
 		"Hyperdrive"
@@ -331,6 +332,7 @@ ship "Twilight Ka'sei 1E"
 		"Ka'het Shield Restorer"
 		"Ka'het MHD Generator"
 		"Ka'het Reserve Accumulator"
+		"Antimatter Power Cell"
 
 		"Ka'het Compact Engine" 3
 		"Hyperdrive"
@@ -400,6 +402,7 @@ ship "Twilight Ka'sei 1F"
 		"Ka'het Shield Restorer"
 		"Ka'het MHD Generator"
 		"Ka'het Reserve Accumulator"
+		"Antimatter Power Cell"
 
 		"Ka'het Compact Engine" 5
 		"Hyperdrive"
@@ -476,6 +479,7 @@ ship "Twilight Ka'sei 1G"
 		"Ka'het Shield Restorer"
 		"Ka'het MHD Generator"
 		"Ka'het Reserve Accumulator"
+		"Antimatter Power Cell"
 
 		"Ka'het Compact Engine" 2
 		"Hyperdrive"
@@ -614,6 +618,7 @@ ship "Twilight Ka'sei 2B"
 		"Ka'het Shield Restorer"
 		"Ka'het MHD Generator"
 		"Ka'het Reserve Accumulator"
+		"Anomalous Shield Restorer"
 
 		"Ka'het Compact Engine" 2
 		"Hyperdrive"
@@ -881,6 +886,7 @@ ship "Twilight Ka'sei 2F"
 		"Ka'het Shield Restorer"
 		"Ka'het MHD Generator"
 		"Ka'het Reserve Accumulator"
+		"Anomalous Shield Restorer"
 
 		"Ka'het Compact Engine" 2
 		"Hyperdrive"
@@ -958,6 +964,7 @@ ship "Twilight Ka'sei 2G"
 		"Ka'het Shield Restorer"
 		"Ka'het MHD Generator"
 		"Ka'het Reserve Accumulator"
+		"Anomalous Shield Restorer"
 
 		"Ka'het Compact Engine" 2
 		"Hyperdrive"
