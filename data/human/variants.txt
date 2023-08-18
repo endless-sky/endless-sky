@@ -397,6 +397,10 @@ ship "Bastion" "Bastion (Scanner)"
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
 		"Hyperdrive"
+	gun "Heavy Rocket Launcher"
+	gun "Plasma Cannon"
+	gun "Heavy Rocket Launcher"
+	gun "Plasma Cannon"
 
 
 
@@ -738,9 +742,9 @@ ship "Bulwark" "Bulwark (Heavy)"
 	gun "Plasma Cannon"
 	gun "Torpedo Launcher"
 	gun "Plasma Cannon"
-	turret "Anti-Missile Turret"
-	turret "Anti-Missile Turret"
 	turret "Heavy Laser Turret"
+	turret "Anti-Missile Turret"
+	turret "Anti-Missile Turret"
 
 
 
@@ -2056,6 +2060,9 @@ ship "Lance" "Lance (Gatling)"
 		"D14-RN Shield Generator"
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
+	gun
+	gun "Gatling Gun"
+	gun "Gatling Gun"
 
 
 
@@ -2198,12 +2205,12 @@ ship "Manta" "Manta (Mark II)"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 		"Ionic Afterburner"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
 	gun "Sidewinder Missile Launcher"
 	gun
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
 
 
 ship "Manta" "Manta (Nuclear)"
@@ -2218,12 +2225,12 @@ ship "Manta" "Manta (Nuclear)"
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
 	gun "Nuclear Missile"
 	gun "Nuclear Missile"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
 
 
 ship "Manta" "Manta (Proton)"
@@ -2618,14 +2625,14 @@ ship "Protector" "Protector (Laser)"
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
-	turret
-	turret "Heavy Laser Turret"
-	turret "Heavy Laser Turret"
-	turret "Anti-Missile Turret"
-	turret "Anti-Missile Turret"
 	turret "Heavy Laser Turret"
 	turret "Heavy Laser Turret"
 	turret
+	turret "Anti-Missile Turret"
+	turret "Anti-Missile Turret"
+	turret
+	turret "Heavy Laser Turret"
+	turret "Heavy Laser Turret"
 
 
 ship "Protector" "Protector (Proton)"
@@ -2643,14 +2650,14 @@ ship "Protector" "Protector (Proton)"
 		"A370 Atomic Thruster"
 		"A375 Atomic Steering"
 		"Hyperdrive"
-	turret
-	turret "Proton Turret"
-	turret "Proton Turret"
-	turret "Heavy Anti-Missile Turret"
-	turret "Heavy Anti-Missile Turret"
 	turret "Proton Turret"
 	turret "Proton Turret"
 	turret
+	turret "Heavy Anti-Missile Turret"
+	turret "Heavy Anti-Missile Turret"
+	turret
+	turret "Proton Turret"
+	turret "Proton Turret"
 
 
 ship "Protector" "Protector (Quad Blaster)"

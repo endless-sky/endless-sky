@@ -158,10 +158,10 @@ ship "Pug Maboro"
 		
 	engine -21 134.5
 	engine 21 134.5
-	gun -33.5 -142.5 "Pug Seeker"
-	gun 33.5 -142.5 "Pug Seeker"
 	gun -24.5 -165 "Pug Seeker"
 	gun 24.5 -165 "Pug Seeker"
+	gun -33.5 -142.5 "Pug Seeker"
+	gun 33.5 -142.5 "Pug Seeker"
 	turret 0 -68 "Pug Anti-Missile"
 	turret -13.5 -11.5 "Pug Zapper Turret"
 	turret 13.5 -11.5 "Pug Zapper Turret"
