@@ -46,6 +46,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	// Label for the decription field of the detail pane.
+	const string DESCRIPTION = "description";
+
 	// Determine the refillable ammunition a particular ship consumes or stores.
 	set<const Outfit *> GetRefillableAmmunition(const Ship &ship) noexcept
 	{
@@ -243,76 +246,67 @@ int OutfitterPanel::DrawDetails(const Point &center)
 {
 	string selectedItem = "Nothing Selected";
 	const Font &font = FontSet::Get(14);
-	const Color &bright = *GameData::Colors().Get("bright");
-	const Color &dim = *GameData::Colors().Get("medium");
-	const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
 
 	int heightOffset = 20;
 
 	if(selectedOutfit)
 	{
-		outfitInfo.Update(*selectedOutfit, player, CanSell(), collapsed.count("description"));
+		outfitInfo.Update(*selectedOutfit, player, CanSell(), collapsed.count(DESCRIPTION));
 		selectedItem = selectedOutfit->DisplayName();
 
-		const Sprite *thumbnail = selectedOutfit->Thumbnail();
-		const Sprite *background = SpriteSet::Get("ui/outfitter selected");
+		// Find the old description zone and remove it.
+		auto descriptionZone = find_if(categoryZones.begin(), categoryZones.end(),
+			[&](const ClickZone<string> &zone) { return zone.Value() == DESCRIPTION; });
+		if(descriptionZone != categoryZones.end())
+			categoryZones.erase(descriptionZone);
 
-		float tileSize = thumbnail
+		const Sprite *thumbnail = selectedOutfit->Thumbnail();
+		const float tileSize = thumbnail
 			? max(thumbnail->Height(), static_cast<float>(TileSize()))
 			: static_cast<float>(TileSize());
+		const Point thumbnailCenter(center.X(), center.Y() + 20 + static_cast<int>(tileSize / 2));
+		const Point startPoint(center.X() - INFOBAR_WIDTH / 2 + 20, center.Y() + 20 + tileSize);
 
-		Point thumbnailCenter(center.X(), center.Y() + 20 + static_cast<int>(tileSize / 2));
+		const Sprite *background = SpriteSet::Get("ui/outfitter selected");
+		SpriteShader::Draw(background, thumbnailCenter);
+		if(thumbnail)
+			SpriteShader::Draw(thumbnail, thumbnailCenter);
 
-		Point startPoint(center.X() - INFOBAR_WIDTH / 2 + 20, center.Y() + 20 + tileSize);
-
-		double descriptionOffset = 35.;
-		Point descCenter(Screen::Right() - SIDE_WIDTH + INFOBAR_WIDTH / 2, startPoint.Y() + 20.);
+		double descriptionOffset = 40.;
 
 		// Maintenance note: This can be replaced with collapsed.contains() in C++20
-		if(!collapsed.count("description"))
+		if(!collapsed.count(DESCRIPTION))
 		{
 			descriptionOffset = outfitInfo.DescriptionHeight();
 			outfitInfo.DrawDescription(startPoint);
 		}
 		else
 		{
-			std::string label = "description";
-			font.Draw(label, startPoint + Point(35., 12.), dim);
+			const Color &dim = *GameData::Colors().Get("medium");
+			font.Draw(DESCRIPTION, startPoint + Point(35., 12.), dim);
+			const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
 			SpriteShader::Draw(collapsedArrow, startPoint + Point(20., 20.));
 		}
 
 		// Calculate the new ClickZone for the description.
-		Point descDimensions(INFOBAR_WIDTH, descriptionOffset + 10.);
-		ClickZone<std::string> collapseDescription = ClickZone<std::string>(descCenter,
-			descDimensions, std::string("description"));
-
-		// Find the old zone, and replace it with the new zone.
-		for(auto it = categoryZones.begin(); it != categoryZones.end(); ++it)
-		{
-			if(it->Value() == "description")
-			{
-				categoryZones.erase(it);
-				break;
-			}
-		}
+		const Point descriptionDimensions(INFOBAR_WIDTH, descriptionOffset);
+		const Point descriptionCenter(center.X(), startPoint.Y() + descriptionOffset / 2);
+		ClickZone<string> collapseDescription = ClickZone<string>(
+			descriptionCenter, descriptionDimensions, DESCRIPTION);
 		categoryZones.emplace_back(collapseDescription);
 
-		Point reqsPoint(startPoint.X(), startPoint.Y() + descriptionOffset);
-		Point attrPoint(startPoint.X(), reqsPoint.Y() + outfitInfo.RequirementsHeight());
+		const Point requirementsPoint(startPoint.X(), startPoint.Y() + descriptionOffset);
+		const Point attributesPoint(startPoint.X(), requirementsPoint.Y() + outfitInfo.RequirementsHeight());
+		outfitInfo.DrawRequirements(requirementsPoint);
+		outfitInfo.DrawAttributes(attributesPoint);
 
-		SpriteShader::Draw(background, thumbnailCenter);
-		if(thumbnail)
-			SpriteShader::Draw(thumbnail, thumbnailCenter);
-
-		outfitInfo.DrawRequirements(reqsPoint);
-		outfitInfo.DrawAttributes(attrPoint);
-
-		heightOffset = attrPoint.Y() + outfitInfo.AttributesHeight();
+		heightOffset = attributesPoint.Y() + outfitInfo.AttributesHeight();
 	}
 
 	// Draw this string representing the selected item (if any), centered in the details side panel
-	Point selectedPoint(center.X() - INFOBAR_WIDTH / 2 + 10, center.Y());
-	font.Draw({selectedItem, {INFOBAR_WIDTH - 20, Alignment::CENTER, Truncate::MIDDLE}},
+	const Color &bright = *GameData::Colors().Get("bright");
+	Point selectedPoint(center.X() - INFOBAR_WIDTH / 2, center.Y());
+	font.Draw({selectedItem, {INFOBAR_WIDTH, Alignment::CENTER, Truncate::MIDDLE}},
 		selectedPoint, bright);
 
 	return heightOffset;
