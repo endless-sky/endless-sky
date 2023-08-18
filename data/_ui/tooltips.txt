@@ -172,7 +172,7 @@ tip "disruption protection:"
 	`Protection provided against shield disruption damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in disruption damage, while a total value of 11 only results in a 10 percent reduction.`
 
 tip "disruption resistance:"
-	`Shield disruption damage resised per second.`
+	`Shield disruption damage resisted per second.`
 
 tip "disruption resistance energy:"
 	`Energy consumed per second when resisting disruption damage.`
