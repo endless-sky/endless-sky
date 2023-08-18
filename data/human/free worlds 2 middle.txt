@@ -1145,7 +1145,7 @@ mission "FW Northern 4.2A"
 mission "FW Alphas 1.1"
 	landing
 	name "Liberate Poisonwood"
-	description "Destroy all pirates ships in the <system> system with the help of the Navy Oathkeepers, then land on the planet and let the Navy troops eliminate the Alphas."
+	description "Destroy the pirate ships occupying the <system> system with the help of the Navy Oathkeepers, then land on the planet and let the Navy troops eliminate the Alphas."
 	autosave
 	source "New Tibet"
 	destination Poisonwood

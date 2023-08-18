@@ -237,9 +237,9 @@ mission "FW Conservatory 2"
 	npc accompany save
 		government "Merchant"
 		personality escort timid
-		ship "Argosy" "F.M.S. Daybreak"
-		ship "Argosy" "F.M.S. Monsoon"
-		ship "Argosy" "F.M.S. Summer"
+		ship "Argosy" "F.S. Daybreak"
+		ship "Argosy" "F.S. Monsoon"
+		ship "Argosy" "F.S. Summer"
 	npc
 		government "Pirate"
 		personality plunders
@@ -267,9 +267,9 @@ mission "FW Conservatory 2B"
 	npc accompany save
 		government "Merchant"
 		personality escort timid
-		ship "Argosy" "F.M.S. Daybreak"
-		ship "Argosy" "F.M.S. Monsoon"
-		ship "Argosy" "F.M.S. Summer"
+		ship "Argosy" "F.S. Daybreak"
+		ship "Argosy" "F.S. Monsoon"
+		ship "Argosy" "F.S. Summer"
 	npc
 		government "Pirate"
 		personality plunders
