@@ -48,7 +48,7 @@ public:
 	// DataFile loading guarantees index 0 always exists.
 	const std::string &Token(int index) const;
 	// Add a new token to the end of this node.
-	void AddToken(std::string token);
+	void AddToken(std::string token = "");
 	// Convert the token at the given index to a number. This returns 0 and prints an
 	// error if the index is out of range or the token cannot be interpreted as a number.
 	double Value(int index) const;
