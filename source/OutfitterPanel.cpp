@@ -272,7 +272,7 @@ int OutfitterPanel::DrawDetails(const Point &center)
 		if(thumbnail)
 			SpriteShader::Draw(thumbnail, thumbnailCenter);
 
-		double descriptionOffset = 35.;
+		double descriptionOffset = 40.;
 
 		// Maintenance note: This can be replaced with collapsed.contains() in C++20
 		if(!collapsed.count(DESCRIPTION))
