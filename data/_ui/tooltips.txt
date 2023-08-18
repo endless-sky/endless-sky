@@ -910,7 +910,7 @@ tip "heat damage / shot:"
 	`Increases the target ship's heat by this amount per shot. Only half as effective when the target's shields are up.`
 
 tip "energy damage / shot:"
-	`Reduces the target ship's energy by this amount per shot, or half this amount if its shields are up.`
+	`Reduces the target ship's energy by this amount per shot. Only half as effective when the target's shields are up.`
 
 tip "ion damage / shot:"
 	`Increases the target's ionization by this amount per shot. Only half as effective when the target's shields are up. Ionization reduces the target's energy, and slowly wears off over time.`
