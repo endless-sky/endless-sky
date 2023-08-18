@@ -116,18 +116,6 @@ int ShipyardPanel::TileSize() const
 
 
 
-int ShipyardPanel::DrawPlayerShipInfo(const Point &point)
-{
-	shipInfo.Update(*playerShip, player, collapsed.count("description"));
-	shipInfo.DrawAttributes(point, true);
-	const int attributesHeight = shipInfo.GetAttributesHeight(true);
-	shipInfo.DrawOutfits(Point(point.X(), point.Y() + attributesHeight));
-
-	return attributesHeight + shipInfo.OutfitsHeight();
-}
-
-
-
 bool ShipyardPanel::HasItem(const string &name) const
 {
 	const Ship *ship = GameData::Ships().Get(name);
@@ -180,7 +168,7 @@ int ShipyardPanel::DrawDetails(const Point &center)
 		const Sprite *background = SpriteSet::Get("ui/shipyard selected");
 		const Sprite *shipSprite = selectedShip->GetSprite();
 		float spriteScale = shipSprite
-			? min(1.f, (INFOBAR_WIDTH - 20.f) / max(shipSprite->Width(), shipSprite->Height()))
+			? min(1.f, (INFOBAR_WIDTH - 60.f) / max(shipSprite->Width(), shipSprite->Height()))
 			: 1.f;
 
 		int swizzle = selectedShip->CustomSwizzle() >= 0
@@ -235,7 +223,7 @@ int ShipyardPanel::DrawDetails(const Point &center)
 	}
 
 	// Draw this string representing the selected ship (if any), centered in the details side panel
-	Point selectedPoint(center.X() - INFOBAR_WIDTH / 2, center.Y());
+	Point selectedPoint(center.X() - INFOBAR_WIDTH / 2 + 10, center.Y());
 	font.Draw({selectedItem, {INFOBAR_WIDTH - 20, Alignment::CENTER, Truncate::MIDDLE}},
 		selectedPoint, bright);
 
