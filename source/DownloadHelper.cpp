@@ -15,6 +15,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DownloadHelper.h"
 
+#if defined _WIN32
+#define WIN32_LEAN_AND_MEAN
+#endif
+
 #include <archive.h>
 #include <archive_entry.h>
 #include <cstring>
@@ -24,8 +28,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #if defined _WIN32
 #include "text/Utf8.h"
-#define WIN32_LEAN_AND_MEAN
-#include <WinSock2.h>
 #include <windows.h>
 #else
 #include <unistd.h>
