@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "EsUuid.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Messages.h"
 #include "PlayerInfo.h"
@@ -129,6 +130,16 @@ void ShipManager::Do(PlayerInfo &player) const
 		(Giving() ? "added to" : "removed from") + " your fleet.", Messages::Importance::High);
 }
 
+
+
+ShipManager ShipManager::Instantiate(const map<string, string> &subs) const
+{
+	ShipManager result=*this;
+	result.name = !result.name.empty()
+			? Format::Replace(Phrase::ExpandPhrases(name), subs)
+			: GameData::Phrases().Get("civilian")->Get();
+	return result;
+}
 
 
 const Ship *ShipManager::ShipModel() const
