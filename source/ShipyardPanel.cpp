@@ -179,7 +179,7 @@ int ShipyardPanel::DrawDetails(const Point &center)
 		// Ships in stock have no outfits, so get an appropriate version.
 		const Ship *infoShip = selectedShip;
 		// If the ship is license restricted, check to see if there's one in stock.
-		if(!isShipyardShip || LicenseCost(&selectedShip->Attributes()) < 0)
+		if(!isShipyardShip || LicenseCost(selectedShip) < 0)
 			infoShip = player.StockShip(selectedShip);
 
 		shipInfo.Update(*infoShip, player, !isShipyardShip || collapsed.count(DESCRIPTION));
@@ -270,7 +270,7 @@ ShopPanel::BuyResult ShipyardPanel::CanBuy(bool onlyOwned) const
 	}
 
 	// Check that the player has any necessary licenses.
-	const int64_t licenseCost = LicenseCost(&selectedShip->Attributes(), onlyOwned, selectedShip);
+	const int64_t licenseCost = LicenseCost(selectedShip);
 	if(licenseCost < 0)
 		return "Buying this ship requires a special license. "
 			"You will probably need to complete some sort of mission to get one.";
@@ -307,7 +307,7 @@ ShopPanel::BuyResult ShipyardPanel::CanBuy(bool onlyOwned) const
 
 void ShipyardPanel::Buy(bool onlyOwned)
 {
-	const int64_t licenseCost = LicenseCost(&selectedShip->Attributes(), onlyOwned, selectedShip);
+	const int64_t licenseCost = LicenseCost(selectedShip);
 	if(licenseCost < 0)
 		return;
 
@@ -393,16 +393,16 @@ bool ShipyardPanel::CanSellMultiple() const
 
 void ShipyardPanel::BuyShip(const string &name)
 {
-	const int64_t licenseCost = LicenseCost(&selectedShip->Attributes(), false, selectedShip);
+	const int64_t licenseCost = LicenseCost(selectedShip);
 	if(licenseCost)
 	{
 		player.Accounts().AddCredits(-licenseCost);
 		for(const string &licenseName : selectedShip->Attributes().Licenses())
-			if(!player.HasLicense(licenseName))
-				player.AddLicense(licenseName);
+			player.AddLicense(licenseName);
 	}
 
-	const bool isFromShop = shipyard.Has(selectedShip) && LicenseCost(&selectedShip->Attributes()) >= 0;
+	// Buy a store model if the store sells them and it's not license restricted.
+	const bool isFromShop = shipyard.Has(selectedShip) && LicenseCost(selectedShip, true) >= 0;
 	for(int i = 1; i <= modifier && CanBuy(true); ++i)
 	{
 		// If no name is given, choose a random name. Otherwise, if buying

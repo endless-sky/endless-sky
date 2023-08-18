@@ -104,7 +104,8 @@ protected:
 	virtual bool Release(int x, int y) override;
 	virtual bool Scroll(double dx, double dy) override;
 
-	int64_t LicenseCost(const Outfit *outfit, bool onlyOwned = false, const Ship *ship = nullptr) const;
+	int64_t LicenseCost(const Outfit *outfit, bool onlyOwned = false) const;
+	int64_t LicenseCost(const Ship *ship, bool onlyStoreModels = false) const;
 
 
 protected:
