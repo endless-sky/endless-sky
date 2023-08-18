@@ -18,9 +18,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
-#include "PluginHelper.h"
 #include "Files.h"
 #include "Logger.h"
+#include "PluginHelper.h"
 
 #include <algorithm>
 #include <atomic>
