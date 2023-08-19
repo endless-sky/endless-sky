@@ -3805,7 +3805,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 					message += (oxfordComma ? ", and " : " and ");
 			}
 			message += " in the system you are jumping to.";
-			Messages::Add(message, Messages::Importance::High);
+			Messages::Add(message, Messages::Importance::Info);
 		}
 		// If any destination was found, find the corresponding stellar object
 		// and set it as your ship's target planet.
