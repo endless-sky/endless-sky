@@ -45,7 +45,7 @@ namespace PluginHelper {
 
 
 
-	bool Download(const char *url, const char *location)
+	bool Download(string url, string location)
 	{
 		CURL *curl;
 		CURLcode res = CURLE_OK;
@@ -59,10 +59,10 @@ namespace PluginHelper {
 			FILE *out = nullptr;
 			_wfopen_s(&out, Utf8::ToUTF16(location).c_str(), L"w");
 #else
-			FILE *out = fopen(location, "wb");
+			FILE *out = fopen(location.c_str(), "wb");
 #endif
 			// Set the url that gets downloaded
-			curl_easy_setopt(curl, CURLOPT_URL, url);
+			curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
 			// Follow redirects
 			curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1l);
 			// How long we will wait
@@ -116,7 +116,7 @@ namespace PluginHelper {
 
 
 
-	bool ExtractZIP(const char *filename, string destination, string expectedName)
+	bool ExtractZIP(string filename, string destination, string expectedName)
 	{
 		struct archive *archive;
 		struct archive *ext;
@@ -134,9 +134,9 @@ namespace PluginHelper {
 		ext = archive_write_disk_new();
 		archive_write_disk_set_options(ext, flags);
 		archive_read_support_format_all(archive);
-		if(filename != NULL && strcmp(filename, "-") == 0)
-			filename = NULL;
-		if((retVal = archive_read_open_filename(archive, filename, 10240)))
+		if(!filename.empty() && strcmp(filename.c_str(), "-") == 0)
+			filename = "";
+		if((retVal = archive_read_open_filename(archive, filename.c_str(), 10240)))
 		{
 			printf("archive_read_open_filename(), %s, %i", archive_error_string(archive), retVal);
 			return false;
@@ -164,7 +164,7 @@ namespace PluginHelper {
 		// Read another time, this time for writing.
 		archive = archive_read_new();
 		archive_read_support_format_all(archive);
-		archive_read_open_filename(archive, filename, 10240);
+		archive_read_open_filename(archive, filename.c_str(), 10240);
 
 		string dest_file;
 		for(;;)

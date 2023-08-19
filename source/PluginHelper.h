@@ -21,8 +21,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 namespace PluginHelper
 {
 	// Download any file.
-	bool Download(const char *url, const char *location);
+	bool Download(std::string url, std::string location);
 	// Extract a plugin from a zip file.
 	// Could be used for other zips as well, but is tailored to plugins.
-	bool ExtractZIP(const char *filename, std::string destination, std::string expectedName);
+	bool ExtractZIP(std::string filename, std::string destination, std::string expectedName);
 }
