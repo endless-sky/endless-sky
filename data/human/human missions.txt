@@ -6394,7 +6394,7 @@ mission "Derelict Family Investment 1"
 				`	(Keep the credits to yourself.)`
 			action
 				payment 325000
-			`	You decide to keep the credits to yourself. After all, it's not every day that you find a score worth <payment> credits.`
+			`	You decide to keep the money. After all, it's not every day that you find a score worth <payment>.`
 				decline
 	on complete
 		conversation
@@ -6414,7 +6414,7 @@ mission "Derelict Family Investment 2"
 	on complete
 		payment 500000
 		conversation
-			`	It doesn't take long to find the Sawyers' home on <planet>. The building makes it clear that the family has done well for themselves. After a quick explanation with the desk clerk that you have something important to give, you take an elevator ride to the penthouse. You ring the buzzer and are greeted by a woman in her late fifties, who asks, "A delivery?"`
+			`	It doesn't take long to find the Sawyers' home on <planet>. The building makes it clear that the family has done well for themselves. After a quick explanation with the desk clerk that you have something important to give, you take an elevator ride to the penthouse. You ring the buzzer and are greeted by a woman in her late fifties. "A delivery?" she asks.`
 			choice
 				`	"Do you know a Colin Sawyer?"`
 			`	A scowl appears on her face as she spits out a response. "What do you know of my Da? That deadbeat left me and my family with next to nothing."`

@@ -632,7 +632,7 @@ mission "Boarding Derelict"
 				`	(Repair the power first.)`
 			branch powersurge
 				random < 80
-			`	With a few simple repairs you manage to get the ship's power systems operational and everything runs smoothly.`
+			`	With a few simple repairs you manage to get the ship's power systems operational and running smoothly.`
 			choice
 				`	(Repair the engines next.)`
 					goto engines(p)
@@ -677,7 +677,7 @@ mission "Boarding Derelict"
 			label engines
 			branch misfire
 				random < 60
-			`	As you are fixing the engine systems a valve bursts open, luckily the secondary valve is mechanical and doesn't need power, allowing it to close itself automatically, preventing the coolant from forcefully spraying out. With more caution, you finish up your repairs of the engines.`
+			`	As you are fixing the engine systems a valve bursts open. Luckily the secondary valve is mechanical and doesn't need power, allowing it to close itself automatically and prevent the coolant from forcefully spraying out. With more caution, you finish up your repairs of the engines.`
 			choice
 				`	(Repair the hull next.)`
 					goto hull(e)
@@ -686,7 +686,7 @@ mission "Boarding Derelict"
 			label engines(h)
 			branch misfire
 				random < 60
-			`	As you are fixing the engine systems a valve bursts open. Luckily the secondary valve is mechanical and doesn't need power, allowing it to close itself automatically and  prevent the coolant from forcefully spraying out. With more caution, you finish up your repairs of the engines.`
+			`	As you are fixing the engine systems a valve bursts open. Luckily the secondary valve is mechanical and doesn't need power, allowing it to close itself automatically and prevent the coolant from forcefully spraying out. With more caution, you finish up your repairs of the engines.`
 			choice
 				`	(Repair the power.)`
 					goto power(eh)
@@ -710,7 +710,7 @@ mission "Boarding Derelict"
 			label power(h)
 			branch powersurge
 				random < 5
-			`	With a few simple repairs you manage to get the ship's power systems operational and everything runs smoothly.`
+			`	With a few simple repairs you manage to get the ship's power systems operational and running smoothly.`
 			choice
 				`	(Repair the engines.)`
 					goto engines(hp)
@@ -719,7 +719,7 @@ mission "Boarding Derelict"
 			label power(e)
 			branch powersurge
 				random < 55
-			`	With a few simple repairs you manage to get the ship's power systems operational and everything runs smoothly.`
+			`	With a few simple repairs you manage to get the ship's power systems operational and running smoothly.`
 			choice
 				`	(Repair the hull.)`
 					goto hull(ep)
@@ -728,7 +728,7 @@ mission "Boarding Derelict"
 			label power(eh)
 			branch powersurge
 				random < 15
-			`	With a few simple repairs you manage to get the ship's power systems operational and everything runs smoothly.`
+			`	With a few simple repairs you manage to get the ship's power systems operational and running smoothly.`
 			`	With the repairs finished you head to the cockpit to see if the <origin> starts without exploding. Prepared to bolt for the airlock should things go wrong, you start the ship.`
 			branch fail
 				random < 25
@@ -794,7 +794,7 @@ mission "Boarding Derelict"
 			branch valuable
 				random < 40
 			action
-				payment 22500
+				payment 10000
 			`	Upon a brief inspection of the ship you find few valuables, only managing to salvage a meager <payment> credits from the <origin>. Before you depart you detonate the ship to prevent any other derelict hunters from scouring an empty ship.`
 				depart
 			label valuable
