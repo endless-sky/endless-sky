@@ -802,7 +802,7 @@ tip "% hull damage / second:"
 	`Hull damage dealt per second, as a percentage of the target's total hull strength.`
 
 tip "% minable damage / second:"
-	`Minable damage dealt per second, as a percentage of the target's total healt.`
+	`Minable damage dealt per second, as a percentage of the target's total health.`
 
 tip "% fuel damage / second:"
 	`Fuel loss caused per second as a percentage of the target's total fuel capacity. Only half as effective when the target's shields are up.`
