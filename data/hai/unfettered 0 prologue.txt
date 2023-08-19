@@ -1212,7 +1212,7 @@ mission "<uhai> 3: Jump Drive Vault"
 				"unfettered: offended Si-Ra" ++
 			`	He makes some kind of sign you do not understand, but it seems pretty clear he wants you to keep quiet. Looking around, you notice the two of you have attracted quite a bit of attention from the impoverished locals. While they all seem to have nothing to lose, the vast majority of them are very young and probably not the hardened criminals you had expected.`
 			label discreet
-			`	After skirting the outskirts of the shanty town, you head further into the mountains, and eventually you spot what appears to be a local in the distance. Though he did not seem to be following you, something seems odd about him, but you cannot pinpoint what. `
+			`	After skirting the outskirts of the shanty town, you head further into the mountains, and eventually you spot what appears to be a local in the distance. Though he did not seem to be following you, something seems odd about him, but you cannot pinpoint what.`
 			`	Continuing up the mountain, more and more you get the impression that this vault is no simple, small depot. This is confirmed when you pass several security turrets, and, while it is safe to assume that even more defenses are hidden, you wonder why any would be left in plain sight around a "hidden" depot. Crossing a ridge, you begin to notice that some of your surroundings look strange, as the mountain has only been affected by the elements in some places and not others. Suddenly, the armored Hai stops and raises a hand high, palm open. Recognizing the sign, you stop as well.`
 			`	The Hai reaches for some kind of device in his pocket and enters what you assume to be access codes. By the look on his face, it doesn't seem to be working very well. "Blimey, someone else has accessed the vault. This was not expected," he hisses as his grip tightens on his weapon, and he dons his helmet. "Stay here. I will take care of this."`
 			choice
@@ -1353,7 +1353,7 @@ mission "<uhai> 4: Scan Geocoris"
 			label know
 			branch JD
 				has "Unfettered Jump Drive 1: offered"
-			`	"I know you have helped us when we needed it most. Word quickly got around of a human medling in our business, but most view it in a positive way, such as myself. I could use some of that interferance myself, in fact!" She says with a slight movement of the ears.`
+			`	"I know you have helped us when we needed it most. Word quickly got around of a human medling in our business, but most view it in a positive way, such as myself. I could use some of that interference myself, in fact!" She says with a slight movement of the ears.`
 				goto job
 			label JD
 			`	"Someone who brings us something as precious as a jump drive is not quickly forgotten! Now back to our business, if you don't mind."`

@@ -894,7 +894,7 @@ mission "<uhai> 15: Modified Beetle"
 				"unfettered: Mera's favor" == 3
 			action
 				outfit "Systems Core (Medium)"
-			`	"I am sure this medium systems core will be very helpfull."`
+			`	"I am sure this medium systems core will be very helpful."`
 				goto modifications
 			label Favor
 			`	"A large systems core! Surely this will help you upgrade a ship of your choosing. I had to pull of a few strings to be authorized to give it to you," she says with a movement of her ears.`

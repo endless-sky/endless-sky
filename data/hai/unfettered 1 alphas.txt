@@ -234,7 +234,7 @@ mission "<uhai> 5: Scan Auxiliary"
 				`	"Seems good to me. I'll do it."`
 					goto beforeugo
 				`	"Why not just do it yourself?"`
-					to diplay
+					to display
 						not "unfettered: why me question"
 				`	"What kind of ship are we talking about?"`
 					goto ship
@@ -345,7 +345,7 @@ mission "<uhai> 5: Auxiliary Scans"
 		event "unfettered: analyzed the scans" 15 30
 		conversation
 			`You send your logs as you land and receive a very generous payment of <payment>.`
-			`	Moments later, on your bridge, you hear a familiar voice from the coms. "Oh, you're back! Good!" You are a bit surprised by the interruption, but quickly recognize Mera. "Hey, I have received the scans, it will take me a few weeks to analyze them but in the meantime can I speak to you about the ship? I really am intrigued about that 'Auxiliary'." The exitation in her voice is hard to miss.`
+			`	Moments later, on your bridge, you hear a familiar voice from the coms. "Oh, you're back! Good!" You are a bit surprised by the interruption, but quickly recognize Mera. "Hey, I have received the scans, it will take me a few weeks to analyze them but in the meantime can I speak to you about the ship? I really am intrigued about that 'Auxiliary'." The excitation in her voice is hard to miss.`
 			choice
 				`	"Sorry, but I'm no engineer. I have no idea about how those work."`
 				`	"Sure. What is it you want to know about them?"`
