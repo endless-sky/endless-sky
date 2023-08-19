@@ -234,7 +234,7 @@ mission "<uhai> 5: Scan Auxiliary"
 				`	"Seems good to me. I'll do it."`
 					goto beforeugo
 				`	"Why not just do it yourself?"`
-					to diplomacy
+					to diplay
 						not "unfettered: why me question"
 				`	"What kind of ship are we talking about?"`
 					goto ship

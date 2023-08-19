@@ -900,7 +900,7 @@ mission "<uhai> 15: Modified Beetle"
 			`	"A large systems core! Surely this will help you upgrade a ship of your choosing. I had to pull of a few strings to be authorized to give it to you," she says with a movement of her ears.`
 			action
 				outfit "Systems Core (Large)"
-			label modification
+			label modifications
 			`	"Since this was partly a test-run, what suggestions would you make to improve the design, before I finally give this ship to you?"`
 			choice
 				`	"Keep it as it is."`
