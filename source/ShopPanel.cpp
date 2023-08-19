@@ -109,6 +109,8 @@ void ShopPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 
+	// These get added by both DrawMain and DrawDetailsSidebar, so clear them here.
+	categoryZones.clear();
 	DrawMain();
 	DrawShipsSidebar();
 	DrawDetailsSidebar();
@@ -917,7 +919,6 @@ void ShopPanel::DrawMain()
 	Point point = begin;
 	const float endX = Screen::Right() - (SIDE_WIDTH + 1);
 	double nextY = begin.Y() + TILE_SIZE;
-	categoryZones.clear();
 	zones.clear();
 	for(const auto &cat : categories)
 	{
