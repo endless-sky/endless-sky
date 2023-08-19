@@ -287,7 +287,6 @@ phrase "avgi phases"
 		Sublimated
 		Thawed
 		Vaporized
-		Vaporized
 		Vitreous
 		Vitrified
 

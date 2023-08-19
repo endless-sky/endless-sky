@@ -744,7 +744,7 @@ phrase "avgi commerce win"
 		"I got this ship for a steal only a week ago. Now I can travel the stars!"
 		"I heard the Twilight Guard defeated an Aberrant raid yesterday. Soon we can send them back whence they came!"
 		"I made an enormous profit trading iron futures!"
-		"The Twilight Guard just rotected my convoy from an Aberrant attack."
+		"The Twilight Guard just protected my convoy from an Aberrant attack."
 		"The Twilight Guard saved my ship from a Dissonance pirate last week."
 		"This ore nugget bumped into my ship today. Turns out it was pure beryllium!"
 		"Turns out people on Peripheria will pay a lot for fresh fruit."
@@ -1008,6 +1008,9 @@ phrase "dissonance angry"
 		" "
 	phrase
 		"dissonance rude playername"
+	word
+		"."
+		"!"
 
 
 phrase "twilight guard angry"
