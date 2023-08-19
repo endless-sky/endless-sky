@@ -183,20 +183,20 @@ void Plugins::TogglePlugin(const string &name)
 
 
 
-future<void> Plugins::Install(const PluginInstallData &installData)
+future<void> Plugins::Install(const InstallData &installData)
 {
 	oldNetworkActivity = true;
 	return async(launch::async, [installData]() noexcept -> void
 		{
 			++currentBackgroundActivity;
 
-			bool success = PluginHelper::Download(installData.url.c_str(),
-				(Files::Plugins() + installData.name + ".zip").c_str());
+			bool success = PluginHelper::Download(installData.url,
+				Files::Plugins() + installData.name + ".zip");
 			if(success)
 			{
 				success = PluginHelper::ExtractZIP(
-					(Files::Plugins() + installData.name + ".zip").c_str(),
-					Files::Plugins().c_str(), installData.name + "/");
+					Files::Plugins() + installData.name + ".zip",
+					Files::Plugins(), installData.name + "/");
 			}
 			Files::Write(Files::Plugins() + installData.name + "/version.txt", installData.version);
 			Files::Delete(Files::Plugins() + installData.name + ".zip");
@@ -206,10 +206,10 @@ future<void> Plugins::Install(const PluginInstallData &installData)
 
 
 
-future<void> Plugins::Update(const PluginInstallData &installData)
+future<void> Plugins::Update(const InstallData &installData)
 {
 	plugins.Get(installData.name)->version = installData.version;
 
-	Files::DeleteDir((Files::Plugins() + installData.name).c_str());
+	Files::DeleteDir(Files::Plugins() + installData.name);
 	return Install(installData);
 }

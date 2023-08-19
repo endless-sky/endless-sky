@@ -49,12 +49,12 @@ struct Plugin {
 // This object is updated by toggling plugins in the Preferences UI.
 class Plugins {
 public:
-	struct PluginInstallData
+	struct InstallData
 	{
 		std::string name;
 		std::string url;
 		std::string version;
-		PluginInstallData(std::string name = "", std::string url = "", std::string version = "")
+		InstallData(std::string name = "", std::string url = "", std::string version = "")
 		: name(name), url(url), version(version) {}
 	};
 
@@ -81,8 +81,8 @@ public:
 	static void TogglePlugin(const std::string &name);
 
 	// Manage a Plugin with git.
-	static std::future<void> Install(const PluginInstallData &installData);
-	static std::future<void> Update(const PluginInstallData &installData);
+	static std::future<void> Install(const InstallData &installData);
+	static std::future<void> Update(const InstallData &installData);
 };
 
 

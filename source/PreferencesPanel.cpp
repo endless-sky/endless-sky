@@ -203,10 +203,9 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		page = 'i';
 		if(!downloadedInfo)
 		{
-			PluginHelper::Download(PLUGIN_LIST_URL.c_str(), (Files::Config() + "plugins.json").c_str());
+			PluginHelper::Download(PLUGIN_LIST_URL, Files::Config() + "plugins.json");
 			ifstream pluginlistFile(Files::Config() + "plugins.json");
 			pluginInstallList = nlohmann::json::parse(pluginlistFile);
-			pluginlistFile.close();
 			pluginInstallPages = ((pluginInstallList.size() - (pluginInstallList.size() % MAX_PLUGIN_INSTALLS_PER_PAGE))
 				/ MAX_PLUGIN_INSTALLS_PER_PAGE) + (pluginInstallList.size() % MAX_PLUGIN_INSTALLS_PER_PAGE > 0);
 			downloadedInfo = true;
@@ -951,7 +950,7 @@ void PreferencesPanel::DrawPluginInstalls()
 		if(!name.size())
 			continue;
 		pluginInstallZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(),
-			Plugins::PluginInstallData(name, url, version));
+			Plugins::InstallData(name, url, version));
 		// Use url as that is more unique, just in case.
 		bool isSelected = (url == selectedPluginInstall.url);
 		const Plugin *installedVersion = Plugins::Get().Find(name);
