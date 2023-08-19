@@ -104,6 +104,15 @@ namespace {
 			return SystemEntry::WORMHOLE;
 		return SystemEntry::TAKE_OFF;
 	}
+
+	bool HasClearance(const PlayerInfo &player, const Planet *planet)
+	{
+		auto CheckClearance = [&planet](const Mission &mission) -> bool
+		{
+			return mission.HasClearance(planet);
+		};
+		return any_of(player.Missions().begin(), player.Missions().end(), CheckClearance);
+	}
 }
 
 
