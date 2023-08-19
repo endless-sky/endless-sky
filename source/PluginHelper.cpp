@@ -38,6 +38,8 @@ using namespace std;
 
 
 namespace PluginHelper {
+	bool curlInitialized = false;
+
 	size_t WriteData(void *ptr, size_t size, size_t nmemb, FILE *stream) {
 		size_t written = fwrite(ptr, size, nmemb, stream);
 		return written;
@@ -50,7 +52,11 @@ namespace PluginHelper {
 		CURL *curl;
 		CURLcode res = CURLE_OK;
 
-		curl_global_init(CURL_GLOBAL_DEFAULT);
+		if(!curlInitialized)
+		{
+			curl_global_init(CURL_GLOBAL_DEFAULT);
+			curlInitialized = true;
+		}
 
 		curl = curl_easy_init();
 		if(curl)
@@ -92,13 +98,9 @@ namespace PluginHelper {
 		int retVal;
 		const void *buff;
 		size_t size;
-#if ARCHIVE_VERSION_NUMBER >= 3000000
 		int64_t offset;
-#else
-		off_t offset;
-#endif
 
-		for(;;)
+		while(true)
 		{
 			retVal = archive_read_data_block(ar, &buff, &size, &offset);
 			if(retVal == ARCHIVE_EOF)
@@ -157,6 +159,7 @@ namespace PluginHelper {
 #else
 			mkdir((destination + expectedName).c_str(), 0777);
 #endif
+
 		// Close the archive so we can start again from the beginning
 		archive_read_close(archive);
 		archive_read_free(archive);
@@ -167,7 +170,7 @@ namespace PluginHelper {
 		archive_read_open_filename(archive, filename.c_str(), 10240);
 
 		string dest_file;
-		for(;;)
+		while (true)
 		{
 			retVal = archive_read_next_header(archive, &entry);
 			if(retVal == ARCHIVE_EOF)
