@@ -1001,14 +1001,7 @@ const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 	{
 		bool clearance = false;
 		if(planet)
-		{
-			for(const Mission &mission : missions)
-				if(mission.HasClearance(planet))
-				{
-					clearance = true;
-					break;
-				}
-		}
+			clearance = planet->CanLand() || HasClearance(*this, planet);
 		for(const shared_ptr<Ship> &it : ships)
 			if(!it->IsParked() && it->GetSystem() == system && it->CanBeFlagship()
 				&& (!planet || clearance || planet->CanLand(*it)))
