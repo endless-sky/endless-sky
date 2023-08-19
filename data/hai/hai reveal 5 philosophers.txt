@@ -616,7 +616,7 @@ mission "Hai Reveal [B08] Syndicate Internal Affairs"
 	autosave
 	landing
 	name "Syndicate Internal Affairs"
-	description "Go directly to <planet>. Do not pass Go. Do not collect $200."
+	description "Go directly to <planet> to report to Syndicate Internal Affairs before <date>, or you will become a fugitive in Republic space."
 	deadline
 	source "Earth"
 	destination "Hephaestus"
@@ -626,7 +626,7 @@ mission "Hai Reveal [B08] Syndicate Internal Affairs"
 		has "Hai Reveal [B07-1] Boarded Smuggler: done"
 	on offer
 		fail "Hai Reveal [B02-S] Republic Intelligence Stalkers"
-		log `Giti tripped an alert which places you both under the jurisdiction of a Syndicate Internal Affairs investigation. You've were sent directly to Hephaestus.`
+		log `Have been placed under investigation by Syndicate Internal Affairs alongside Giti after she tripped an alert. Ordered to go directly to Hephaestus.`
 		log "Minor People" `Agent Horst Kopkow` `A Republic Intelligence officer who intercepted your investigation with Giti before involving you with Syndicate Internal Affairs. From her unprompted knowledge of his first name, it seems this may not have been her first run-in with the law.`
 		log "Factions" "Republic Intelligence" `The top police force of the Republic, who deal with high-profile civilian crimes that local authorities can't handle: murder investigations, interplanetary kidnappings, and the like. They also gather intelligence throughout human space, and possibly beyond, reporting directly to the Republic Parliament... which mostly means it's beholden to the interests of the members of Parliament.`
 		conversation

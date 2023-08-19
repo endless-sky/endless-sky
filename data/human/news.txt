@@ -890,6 +890,22 @@ news "mechanic"
 		word
 			`"`
 
+news "mechanic on frozen world"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "frozen"
+	name
+		word
+			"Mechanic"
+	message
+		word
+			`"`
+		word
+			"If the generators or heaters fail, you could have a lot of very cold folks right quick."
+			"People don't appreciate the toll this climate takes on infrastructure and machinery. Expanding ice cracks concrete. Shrinking metal cracks ships."
+			"If your ship is deploying any surface vehicles, be sure to have them properly winterized with low-temperature oils and lubricants."
+		word
+			`"`
 
 
 news "ship salesperson"
@@ -1463,6 +1479,25 @@ news "tourist"
 		word
 			`"`
 
+news "tourist on frozen world"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
+		attributes "frozen"
+	name
+		word
+			"Adventure tourist"
+			"Arctic tourist"
+			"Tourist"
+	message
+		word
+			`"`
+		word
+			"Have you ever seen so much white?"
+			"This place has such a stark beauty."
+			"I know this isn't the usual sort of tourist destination, but I like getting off the beaten path."
+			"Enjoying a hot tub while in the bitter cold really is the sort of pleasure that is frustratingly rare in the Paradise Worlds."
+		word
+			`"`
 
 news "protester"
 	location
@@ -1962,6 +1997,36 @@ news "republic navy advisory system [wartime]"
 			"Attention: Dangerous combat conditions persist in the galactic South. Avoid all travel to affected systems unless strictly necessary."
 		word
 			`"`
+
+news "explorer on frozen world"
+	location
+		government "Republic" "Free Worlds" "Neutral" "Independent" "Syndicate"
+		attributes "frozen"
+	name
+		word
+			"Arctic"
+			"Glacial"
+			"Polar"
+		word
+			" "
+		word
+			"explorer"
+			"surveyor"
+	message
+		word
+			`"`
+		word
+			"There's only so much you can get from orbital mapping. Sometimes, you've got to gear up and go see it yourself."
+			"Cold? You don't know cold. You don't know true cold until you've been bivouacked in a scree field for a week, wondering when the storm will end."
+			"Happiness is finding the can of peaches you buried in the snow a month ago."
+			"It's my responsibility to check on the remote weather stations. If one of those go down, the whole colony could be at risk."
+			"There's no bad weather, only bad clothing."
+			"It lacks the romance of furs and seal skin, but I'm glad for modern textiles."
+			"It's hard to have a bond with a snowcat quite like you do with a husky."
+			"It's not intuitive, but make sure you wear sunglasses here. Snowblindness is a sunburn on your corneas. Trust me, it's unpleasant."
+		word
+			`"`
+
 
 phrase "republic motto graffiti"
 	word
