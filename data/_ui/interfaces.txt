@@ -940,8 +940,9 @@ interface "planet"
 		size 18
 		align left
 		pad 10 0
+	visible
 	
-	visible if "has ship"
+	active if "has ship"
 	sprite "ui/planet dialog button"
 		center 280 270
 	button d "_Depart"
