@@ -20,7 +20,7 @@ mission "Heliarch Investigation 1"
 		random < 65
 		"coalition jobs" >= 70
 		has "Coalition: Contributor: done"
-		not "Resistance: Questions: done"
+		not "Lunarium: Questions: done"
 	source
 		near "Quaru" 4 10
 	destination "Ring of Friendship"
@@ -48,7 +48,7 @@ mission "Heliarch Investigation 2"
 	passengers 3
 	to offer
 		has "Heliarch Investigation 1: done"
-		not "Resistance: Questions: done"
+		not "Lunarium: Questions: done"
 	source "Ring of Friendship"
 	destination "Ring of Friendship"
 	to complete
@@ -94,11 +94,11 @@ mission "Heliarch Investigation 2"
 			`	"Unearthed some useful information, we have," Tugroob tells her, as he delivers the agents' reports. "Essential to the mission's success, Captain <last>'s cooperativeness was."`
 			`	She nods, as she hands the data to one of the Heliarchs behind her, who immediately move to start analyzing the findings. "Eager to read on the progress made, I am."`
 			branch evidence1
-				"resistance evidence" == 1
+				"lunarium evidence" == 1
 			branch evidence2
-				"resistance evidence" == 2
+				"lunarium evidence" == 2
 			branch evidence3
-				"resistance evidence" == 3
+				"lunarium evidence" == 3
 			label finalthanks
 			`	Iekie thanks you for your efforts in the operation, and goes to analyze the findings with her team. Iplora, Kirrie and Tugroob remain there with them, and you're escorted back to your ships by the guards.`
 				accept
@@ -117,14 +117,14 @@ mission "Heliarch Investigation 2 - Bonus 1"
 	landing
 	to offer
 		has "Heliarch Investigation 2: done"
-		"resistance evidence" == 1
+		"lunarium evidence" == 1
 	source
 		government "Coalition"
 	on offer
 		payment 300000
 		conversation
 			action
-				clear "resistance evidence"
+				clear "lunarium evidence"
 			`You receive a message from the Heliarch Consul Iekie as you go in for a landing. "Captain <last>! Analyzed your findings, we have. Brought light to some stolen equipment, your aid has, and for that, grateful we are. Sending a monetary bonus as thanks, I am."`
 			`	When she finishes, <payment> are transferred to your account.`
 				decline
@@ -134,14 +134,14 @@ mission "Heliarch Investigation 2 - Bonus 2"
 	landing
 	to offer
 		has "Heliarch Investigation 2: done"
-		"resistance evidence" == 2
+		"lunarium evidence" == 2
 	source
 		government "Coalition"
 	on offer
 		payment 700000
 		conversation
 			action
-				clear "resistance evidence"
+				clear "lunarium evidence"
 			`You receive a message from the Heliarch consul Iekie as you go in for a landing. "Captain <last>! Analyzed your findings, we have. A great boon, your assistance was; located two stashes of our stolen equipment, we have. Investigating who was involved in such operations, my teams are. Very grateful for your help, we are, so sending a monetary bonus as thanks, I am."`
 			`	When she finishes, <payment> are transferred to your account.`
 				decline
@@ -151,14 +151,14 @@ mission "Heliarch Investigation 2 - Bonus 3"
 	landing
 	to offer
 		has "Heliarch Investigation 2: done"
-		"resistance evidence" == 3
+		"lunarium evidence" == 3
 	source
 		government "Coalition"
 	on offer
 		payment 1200000
 		conversation
 			action
-				clear "resistance evidence"
+				clear "lunarium evidence"
 			`You receive a message from the Heliarch Consul Iekie as you go in for a landing. "Captain <last>! Analyzed your findings, we have. Worry me greatly, all these stashes of stolen equipment do. Indebted to you, we are, as without your help, found all these operations, we would not have. A monetary bonus, as thanks, I am sending. Deserve it, you do, Captain."`
 			`	When she finishes, <payment> are transferred to your account.`
 				decline
@@ -210,7 +210,7 @@ mission "Heliarch Investigation 2 - Mebla's Portion"
 				accept
 			label reactor
 			action
-				"resistance evidence" ++
+				"lunarium evidence" ++
 			`	Kirrie approaches the door and waits for a few seconds, as if expecting it to open. When it doesn't, he picks his headpiece off, and fiddles with it briefly. He puts it on again, and waits some more, again to no avail. "To all of these warehouses I should have access. Damaged, the door's electronics don't seem to be," he comments. He then grabs a small sidearm, busting the door open with a couple shots.`
 			`	At first glance there is nothing inside, but after he furiously crawls all over the place, he puts his head to a large metal panel on the opposite end of the room, before shooting that too. You approach him to find a hidden staircase leading underground.`
 			`	On your way down, Kirrie yells for you to take cover, and you barely escape a barrage of shots as you head back up. Kirrie isn't as lucky, as a shot hit one of his back legs just before he gets to the stairs. You go to help him up before any more shots come, but he seems to make do with five good legs well enough.`
@@ -340,7 +340,7 @@ mission "Heliarch Investigation 2 - Shifting Sand"
 				goto fail
 			label tunnel
 			action
-				"resistance evidence" ++
+				"lunarium evidence" ++
 			`	As Tugroob is more familiar with the vehicles than you are, he checks them before joining you in exploring the tunnels dug into the sides of the mining hole. The holes mostly head in straight lines down, forming straightforward paths to where the lesser ore veins were.`
 			`	The sand continues to pile up into the mine hole when you two come to a vehicle that wasn't driven back fully, and is still blocking the entrance to its tunnel. Tugroob climbs up to see if there's any way to crawl inside, but he is surprised upon checking the driving controls: it's still operational. He drives it back, opening up the hole, and you two go in.`
 			`	Lighting the way ahead with your flashlight, you're surprised to see this tunnel is dug slightly upwards, and brings you not to a large, dug out ore vein spot, but to a rustic mineshaft. A few lights on the walls flicker on as you approach them, lighting up the wooden beams supporting the long hallway. Before you go further inside, you're stopped by Tugroob, who crawls around the floor, walls and ceiling just before the first lamp, looping several times without ever going further in. He only stops to slowly reach one leg inside, then right back out after apparently touching something.`
@@ -488,7 +488,7 @@ mission "Heliarch Investigation 2 - Into White"
 			`	After clearing out what snow you could from over the rest of the object, you see it's many times larger than either of you. You try to look for some way to open it while she starts going over her bag, looking for something, but the cold, frost-plagued metal doesn't budge to your efforts. She finally seems to find what she was looking for - some sort of comms device - but before she has a chance to activate it, an energy blast from the far side of the resort rattles the ground nearby. It misses her by only a meter or so, and melts much of the snow it hit to nothing.`
 			`	She yells for you to get down, pulling out a Heliarch blaster weapon from the bag and firing back in the direction the shot came from.`
 			action
-				"resistance evidence" ++
+				"lunarium evidence" ++
 			choice
 				`	(Take cover.)`
 				`	(Pull out your gun and help her.)`
@@ -545,7 +545,7 @@ mission "Heliarch Recon 1"
 		has "visited planet: Kuwaru Efreti"
 		has "First Contact: Hai: offered"
 		has "Coalition: Contributor: done"
-		not "Resistance: Questions: done"
+		not "Lunarium: Questions: done"
 	on offer
 		require "Jump Drive"
 		conversation
@@ -658,7 +658,7 @@ mission "Heliarch Recon 2-A"
 	destination "Ring of Wisdom"
 	to offer
 		has "event: heliarch recon break"
-		not "Resistance: Questions: done"
+		not "Lunarium: Questions: done"
 	on offer
 		conversation
 			`When you land, you're contacted by the Heliarch agents who had you land on some Quarg worlds and rings to collect data. "Captain <last>, a new task for you, we have," the Kimek says.`
@@ -685,7 +685,7 @@ mission "Heliarch Recon 2-B"
 	waypoint "Enif"
 	to offer
 		has "Heliarch Recon 2-A: done"
-		not "Resistance: Questions: done"
+		not "Lunarium: Questions: done"
 	on offer
 		conversation
 			`The Heliarch agents who spoke to you are ready with a team of engineers once you land. They remove the outfit scanner from your ship and take it to a restricted area. After about an hour, they come back, and while you can't see any visible changes to the outfit, they assure you it is better suited for scanning Quarg ships now.`
@@ -770,7 +770,7 @@ mission "Heliarch Recon 3-A"
 		has "Quarg Interrogation: offered"
 		has "Rim Archaeology 5B: active"
 		has "event: rim archaeology results"
-		not "Resistance: Questions: done"
+		not "Lunarium: Questions: done"
 		"coalition jobs" >= 65
 	on offer
 		conversation
@@ -834,7 +834,7 @@ mission "Heliarch Recon 3-B"
 	deadline 15
 	to offer
 		has "Heliarch Recon 3-A: done"
-		not "Resistance: Questions: done"
+		not "Lunarium: Questions: done"
 		not "Heliarch License: done"
 	on offer
 		conversation
@@ -1288,7 +1288,7 @@ mission "Heliarch Containment 3"
 	cargo "medication" 15
 	to offer
 		has "Heliarch Containment 2: done"
-		not "Resistance: Questions: done"
+		not "Lunarium: Questions: done"
 	source "Ring of Power"
 	stopover "Secret Sky"
 	on offer
@@ -1331,7 +1331,7 @@ mission "Heliarch Containment 4-A"
 		has "event: plasma turret available"
 		has "Heliarch Containment 2: done"
 		has "Heliarch Containment 3: done"
-		not "Resistance: Questions: done"
+		not "Lunarium: Questions: done"
 	source "Ring of Power"
 	destination "Remote Blue"
 	on offer
@@ -1367,7 +1367,7 @@ mission "Heliarch Containment 4-B"
 	landing
 	to offer
 		has "Heliarch Containment 4-A: done"
-		not "Resistance: Questions: done"
+		not "Lunarium: Questions: done"
 	source "Remote Blue"
 	destination "Station Cian"
 	on offer
@@ -1387,11 +1387,11 @@ mission "Heliarch Containment 5"
 	landing
 	to offer
 		has "Heliarch Containment 4-B: done"
-		not "Resistance: Questions: done"
+		not "Lunarium: Questions: done"
 	source "Station Cian"
 	on offer
 		"reputation: Lunarium" = -1000
-		event "resistance fleeing rb"
+		event "lunarium fleeing rb"
 		conversation
 			`After the transmission with Plortup ends, the station is awfully quiet for a few hours. You head outside your ship to see if you can find something interesting to do, but you don't find anything particularly eye-catching, as the station holds few shops. You move to the job board, but find it completely empty. You also notice that the market's trade values are not updating, and any news system is non-functional.`
 			`	Suddenly, some of the few Heliarchs still stationed here rush past you heading for an office. They quickly reemerge and approach you.`
@@ -1426,7 +1426,7 @@ mission "Heliarch Containment 5"
 				launch
 	on complete
 		"reputation: Lunarium" = 1
-		event "resistance detained rb"
+		event "lunarium detained rb"
 		"assisted heliarch" ++
 		payment 1320000
 		conversation
@@ -1435,11 +1435,11 @@ mission "Heliarch Containment 5"
 			`	"Humiliating, it would be, had under such circumstances, the criminal ships escaped. Done well, you have, Captain." He discusses with you the outfits that the ships were using and is alarmed to learn that they had not only Heliarch equipment, but had also acquired human weapons. He lets out something you can't quite put, resembling a gasp or a roar; you only know that your ears don't want to hear it again.`
 			`	"Bring this report to the other consuls, at once I will. Further tasks, of you we may ask, but for now, done your work is, Captain," he ends the transmission after a short salute. Heliarch ships rush back in as the local garrison returns from Remote Blue. Many of the ship captains come to personally congratulate you for stopping the fleeing ships.`
 
-event "resistance fleeing rb"
+event "lunarium fleeing rb"
 	system "12 Autumn Above"
 		remove fleet "Heliarch"
 
-event "resistance detained rb"
+event "lunarium detained rb"
 	system "12 Autumn Above"
 		add fleet "Heliarch" 800
 
@@ -1454,7 +1454,7 @@ mission "Heliarch Drills 1"
 	destination "Belug's Plunge"
 	to offer
 		has "Coalition: Contributor: done"
-		not "Resistance: Questions: done"
+		not "Lunarium: Questions: done"
 		random < 8
 		"combat rating" >= 8104
 	on offer
@@ -1512,7 +1512,7 @@ mission "Heliarch Drills 2-A"
 	destination "Shadow of Leaves"
 	to offer
 		has "Heliarch Drills 1: done"
-		not "Resistance: Questions: done"
+		not "Lunarium: Questions: done"
 	on offer
 		conversation
 			`When you find Magister Lotuora in the spaceport, she shows you to a map of the Coalition. Pointing to two systems, she indicates one in Kimek and one in Saryd space. "Made many calls, I have, and to assemble many ships for this drill, I've managed. How fit for their job, our Hunters are, we shall see."`
@@ -1589,7 +1589,7 @@ mission "Heliarch Drills 2-B"
 	destination "Ashy Reach"
 	to offer
 		has "Heliarch Drills 2-A: done"
-		not "Resistance: Questions: done"
+		not "Lunarium: Questions: done"
 	on offer
 		conversation
 			`You land without any of the Heliarch Hunters tailing you, and a Heliarch on the ground speaks on a communicator while looking at your ship. Minutes later, Magister Lotuora contacts you. "Well done, Captain! Onto the next target, <planet> you may move." She wishes you good luck again, and signs off.`
@@ -1660,7 +1660,7 @@ mission "Heliarch Drills 2-C"
 	destination "Belug's Plunge"
 	to offer
 		has "Heliarch Drills 2-B: done"
-		not "Resistance: Questions: done"
+		not "Lunarium: Questions: done"
 	on offer
 		conversation
 			`Once again, you managed to avoid the Hunters while landing on <origin>, and a local Heliarch agent informs Magister Lotuora of your success. "Excellent work, Captain <last>," she says when she contacts you. "Now, talked with some contacts I have, and one more drill for you to help with, I have arranged. Return to <planet> at your earliest convenience, you may." She signs off, but calls back seconds after. "Ah, forgive me Captain. Forgotten something, I had. Heard of the recent drills, some colleagues did, and readied their own Hunters to participate, they now have. Avoid them on your return to <planet>, as per usual, you should."`
@@ -1808,7 +1808,7 @@ mission "Heliarch Drills 3"
 	waypoint "Torbab"
 	to offer
 		has "Heliarch Drills 2-C: done"
-		not "Resistance: Questions: done"
+		not "Lunarium: Questions: done"
 	on offer
 		conversation
 			`Lotuora is speaking with a Kimek Heliarch captain at the entrance to the spaceport. "Ah, there the Captain is," she tells the Kimek. "Captain <last>, your sparring partner, this is," she says, gesturing to the Kimek, who salutes you with a short bow of her head. "Excited to test her ship against an outsider, she is."`
@@ -1853,9 +1853,9 @@ mission "Heliarch License"
 			and
 				"coalition jobs" >= 120
 				"assisted heliarch" == 3
-		not "Resistance: Questions: done"
+		not "Lunarium: Questions: done"
 	to fail
-		has "Resistance: Questions: done"
+		has "Lunarium: Questions: done"
 	on offer
 		conversation
 			`When you land on <origin>, you find a Heliarch delegation waiting for you outside. When you meet them, the Saryd of the group says, "A great ally to our Coalition, you have proven to be."`
