@@ -805,7 +805,7 @@ tip "% minable damage / second:"
 	`Minable damage dealt per second, as a percentage of the target's total healt.`
 
 tip "% fuel damage / second:"
-	`Fuel loss caused per second as a percentage of the the target's total fuel capacity. Only half as effective when the target's shields are up.`
+	`Fuel loss caused per second as a percentage of the target's total fuel capacity. Only half as effective when the target's shields are up.`
 
 tip "% heat damage / second:"
 	`Increases the target's heat as a percentage of its maximum heat capacity by this amount per second. Only half as effective when the target's shields are up.`
