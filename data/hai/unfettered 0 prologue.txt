@@ -528,6 +528,10 @@ phrase "Essential Unfettered Mission Fail If Killed"
 		`If you did not kill the duelling ship, you may try this mission again later. Otherwise, you have failed an essential Unfettered mission. You may want to reload your previous save if you want to be able to finish the campaign.`
 
 # using <, > so we can have an empty name
+# could add some depending on the kind of warlord you are (and SB you choose):
+# Heshi: sneaky, deadly
+# Mem'he: fast
+# Toor: enduring
 substitutions
 	"<uhai>" "Unfettered: Path To Glory"
 	"<, unfettered title>" ", monkey"

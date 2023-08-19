@@ -414,7 +414,7 @@ phrase "midas defeated"
 	word
 		`After disabling the last of the pirate ships, you wonder what could have motivated such an attack. Do you possess something valuable to them? When they entered the system, they only sent one message: "nemo me impune lacessit". It is probably best to store whatever they were interested in on a planet (using U) or to get rid of it.`
 
-# attacks to get the bars back, in Hai and human space; as they have more influence in human space they are more numerous there
+# Attacks to get the bars back, in Hai and human space; as they have more influence in human space they are more numerous there
 mission "Midas: Nemo Me Impune Lacessit"
 	minor
 	landing
@@ -586,34 +586,31 @@ mission "Midas: Betrayal For The Bars"
 	on accept
 		fail "Midas: Betrayal For The Bars"
 
-# sells the bars if you agreed to the deal, 1 million a piece.
+# Sell the bars if you agreed to the deal, 1 million a piece and 5 by 5 followed by one by one so we can get all of them.
 mission "Midas: Bar Selling"
 	minor
 	landing
 	invisible
 	repeat
+	substitutions
+		"<amount>" "one"
+		"<amount>" "five"
+		"<amount>" "ten"
 	to offer
 		has "midas: sold bars"
+		has "outfit: Gold Bars"
 	on offer
-		outfit "Gold Bars" -5
-		payment 5000000
 		conversation
-			`An operative of the organization you're selling to offers you the usual <payment> for 5 of your gold bars. It doesn't seem like you have much choice in the matter, so you hand them over.`
-				decline
-
-mission "Midas: Bar Selling 2"
-	minor
-	landing
-	invisible
-	repeat
-	to offer
-		has "midas: sold bars"
-		not "Midas: Bar Selling: active"
-	on offer
-		outfit "Gold Bars" -1
-		payment 1000000
-		conversation
-			`An operative of the organization you're selling to offers you the usual <payment> for 1 of your gold bars. It doesn't seem like you have much choice in the matter, so you hand one over.`
+			action
+				payment 1000000
+				outfit "Gold Bars" -1
+			branch selling
+				"outfit: Gold Bars" < 4
+			action
+				payment 4000000
+				outfit "Gold Bars" -4
+			label selling
+			`An operative of the organization you're selling to offers you the usual one million per stack of gold bars, for <amount> of your gold bars. It doesn't seem like you have much choice in the matter, so you hand them over.`
 				decline
 
 
@@ -623,7 +620,7 @@ mission "Midas: Bar Selling 2"
 mission "<uhai> 6 B: To The Wolves"
 	landing
 	name "Feed them to the Wolves"
-	description "Take the governor's fleet trough <waypoints> instead of going by the shortest way. A fleet will be waiting for them. You may interfere, but you risk angering the Hai by doing so."
+	description "Instead of escorting the governor as planned, take their fleet to <waypoints>, for an ambush. You may disable the governor's ships too, but risk angering the Hai by doing so."
 	source "Greenbloom"
 	destination "Warfeed"
 	to offer
@@ -632,24 +629,24 @@ mission "<uhai> 6 B: To The Wolves"
 		not "event: mountaintop ascendant"
 	on offer
 		dialog
-			`You are alone in your quarters, waiting for the security detachment of the Hai admiral to arrive, when you hear a mysterious voice. They make no effort to introduce themselves.`
+			`You are alone in your quarters, waiting for the security detachment of the Hai admiral to arrive, when you hear a mysterious voice.`
 			`	"She of the Void requests that you bring the Hai ships to <waypoints>, without delay, in order to preserve Unfettered integrity. Do so and you will be richly rewarded.`
-			`	"Worry not, they should not suspect you for taking what will look like a small detour. We will bring the supplies to the Unfettered ourselves, we are only acting in their best interest, after all.`
-			`	"Whatever you decide, you do not want to speak of us to them," they add in a very serious tone, before the transmission stops. You notice a contract on your desk computer, ready to be accepted. This clearly conflicts with the official deal that was concluded between the Unfettered and the Hai.`
+			`	"Worry not, they will not suspect you for taking a small detour. We will bring the supplies to the Unfettered ourselves, we are only acting in their best interest, after all.`
+			`	"Whatever you decide, you do not want to speak of us to them," they add in a very serious tone, before the transmission stops. You notice a contract on your desk computer, ready to be accepted. This clearly conflicts with the official deal that was concluded between the Unfettered and the Hai, so you will have to choose between the two.`
 			``
-			`	Do you accept this deal and work for this "She of the Void", or do you want to escort the governor as planned, and risk their wrath?`
+			`	Do you accept this deal from 'She of the Void', or do you want to escort the governor as planned?`
 	waypoint "Heia Due"
 	on waypoint
 		"reputation: Midas" >?= 0
 		conversation
-			`One of the unindentified ships hail you. "You did well, Captain. Here is part of your reward: 1 million credits. You may help us by taking out these Hai ships, but it may be wise not to so that the rest of the Hai government will not suspect it was not simply in the confusion, and think this was an unfortunate pirate attack.`
-			`	When this is done, go to <destination> for your reward. They are going to be in high need of food, and you should bring them as much as you can to compensate for this small... delay in Hai food supplies."`
+			`One of the unindentified ships hail you. "You did well, Captain. Here is the first part of your reward: <payment>. You may help us by taking out these Hai ships, but it may be wise not to so that the rest of the Hai government will not suspect you for this unfortunate pirate attack.`
+			`	When this is done, go to <destination> for your reward. The Unfettered are going to be in high need of food, and you should bring them as much as you can to compensate for this small... delay in Hai food supplies."`
 			`	Right after that, the governor's ship hails you. "What have you done?" You feel like she was about to continue, but before she could all communications are jammed.`
-			`	You can see some pirates present with the Mercenaries' fleets, probably to distract other Hai ships that happen to be in the system.`
+			`	You can see some pirates present with the Midas fleets, probably to distract other Hai ships that happen to be in the system.`
 		payment 1000000
 	# as of yet, we cannot make the main mission fail as your escorts are boarded, meaning these will not be disables
 	npc
-		# The Alphas and their minions left Midas alone so that this would happen. They probably even gave them a tip about it, but not in person.
+		# The Alphas and their minions left Midas alone so that this would happen. They probably even gave them an anonymous tip about it.
 		government "Midas"
 		system "Heia Due"
 		personality plunders staying harvests
@@ -668,7 +665,8 @@ mission "<uhai> 6 B: To The Wolves"
 			has "<uhai> 6 A: Loyal Escort: done"
 			has "<uhai> 6 A: Loyal Escort: aborted"
 	on fail
-		dialog `You hear a voice once alone in your quarters, "A shame, captain. Truly a shame."`
+		dialog `You hear a voice once alone in your quarters, "A shame, captain. Truly a shame you would not simply take an alternate path."`
+		"reputation: Midas" <?= -1000
 	to complete
 		has "<uhai> 6 A: Loyal Escort: failed"
 	on complete
@@ -678,8 +676,8 @@ mission "<uhai> 6 B: To The Wolves"
 		log `The plan was to escort a Hai fleet carying supplies and passengers into Unfettered space but an opportunity to feed them to the wolves instead was presented, and taken.`
 		payment 4000000
 		dialog
-			`As before, a voice addresses you once you are alone in your quarters. "We have transferred 4 million credits to your account, and made sure the Chief will not bother you.`
-			`	"Do be aware, however, that a food situation has arrisen, not because of our small operation, but because of the bomb's presence in the first place.`
+			`As before, a voice addresses you once you are alone in your quarters. "We have transferred <payment> to your account, and made sure the Chief will not make your life difficult.`
+			`	"Do be aware, however, that a food situation has arrisen, not because of our small operation, but because of the bomb's presence in the first place, placed by our rivals.`
 			`	"The Unfettered will probably be busy for some time... As for the governor, if it can ease your conscience, we only captured her."`
 
 
