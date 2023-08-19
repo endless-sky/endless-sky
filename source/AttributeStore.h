@@ -21,10 +21,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataWriter.h"
 #include "Dictionary.h"
 
+#include <cmath>
 #include <functional>
 #include <limits>
 #include <map>
-#include <cmath>
 #include <set>
 #include <string>
 
