@@ -254,12 +254,6 @@ int OutfitterPanel::DrawDetails(const Point &center)
 		outfitInfo.Update(*selectedOutfit, player, CanSell(), collapsed.count(DESCRIPTION));
 		selectedItem = selectedOutfit->DisplayName();
 
-		// Find the old description zone and remove it.
-		auto descriptionZone = find_if(categoryZones.begin(), categoryZones.end(),
-			[&](const ClickZone<string> &zone) { return zone.Value() == DESCRIPTION; });
-		if(descriptionZone != categoryZones.end())
-			categoryZones.erase(descriptionZone);
-
 		const Sprite *thumbnail = selectedOutfit->Thumbnail();
 		const float tileSize = thumbnail
 			? max(thumbnail->Height(), static_cast<float>(TileSize()))
@@ -288,7 +282,7 @@ int OutfitterPanel::DrawDetails(const Point &center)
 			SpriteShader::Draw(collapsedArrow, startPoint + Point(20., 20.));
 		}
 
-		// Calculate the new ClickZone for the description.
+		// Calculate the ClickZone for the description and add it.
 		const Point descriptionDimensions(INFOBAR_WIDTH, descriptionOffset);
 		const Point descriptionCenter(center.X(), startPoint.Y() + descriptionOffset / 2);
 		ClickZone<string> collapseDescription = ClickZone<string>(
