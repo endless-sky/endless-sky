@@ -1506,13 +1506,14 @@ void PlayerInfo::Land(UI *ui)
 
 	// Ships that are landed with you on the planet should fully recharge.
 	// Those in remote systems restore what they can without landing.
-	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();
+	bool clearance = HasClearance(*this, planet);
+	bool hasSpaceport = planet->HasSpaceport() && (clearance || planet->CanUseServices());
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsParked() && !ship->IsDisabled())
 		{
 			if(ship->GetSystem() == system)
 			{
-				if(planet->CanLand(*ship))
+				if(planet->CanLand(*ship) || (clearance && planet->IsAccessible(ship.get())))
 				{
 					ship->Recharge(hasSpaceport);
 					if(!ship->GetPlanet())
