@@ -531,12 +531,12 @@ interface "install plugins"
 		dimensions 90 30
 		color bright
 
-	active if "installed plugin"
-	button u "_Update"
+	active if "can install/update"
+	button i "_Install/Update"
 		center -195 210
 		dimensions 120 30
-	active if "!installed plugin"
-	button i "_Install"
+	active if "installed plugin"
+	button d "_Delete"
 		center -65 210
 		dimensions 120 30
 

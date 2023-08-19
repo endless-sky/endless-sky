@@ -25,8 +25,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <atomic>
 #include <cassert>
+#include <future>
 #include <map>
+#include <mutex>
+#include <set>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -52,7 +56,9 @@ namespace {
 	}
 
 	bool oldNetworkActivity = false;
-	atomic<int> currentBackgroundActivity{0};
+
+	mutex activePluginsMutex;
+	set<string> activePlugins;
 }
 
 
@@ -161,7 +167,8 @@ bool Plugins::HasChanged()
 
 bool Plugins::IsInBackground()
 {
-	return currentBackgroundActivity;
+	lock_guard<mutex> guard(activePluginsMutex);
+	return !activePlugins.empty();
 }
 
 
@@ -183,12 +190,19 @@ void Plugins::TogglePlugin(const string &name)
 
 
 
-future<void> Plugins::Install(const InstallData &installData)
+future<void> Plugins::Install(const InstallData &installData, bool guarded)
 {
 	oldNetworkActivity = true;
+	if(!guarded)
+	{
+		lock_guard<mutex> guard(activePluginsMutex);
+		if(activePlugins.count(installData.name))
+			return future<void>();
+		else
+			activePlugins.insert(installData.name);
+	}
 	return async(launch::async, [installData]() noexcept -> void
 		{
-			++currentBackgroundActivity;
 
 			bool success = PluginHelper::Download(installData.url,
 				Files::Plugins() + installData.name + ".zip");
@@ -200,7 +214,10 @@ future<void> Plugins::Install(const InstallData &installData)
 			}
 			Files::Write(Files::Plugins() + installData.name + "/version.txt", installData.version);
 			Files::Delete(Files::Plugins() + installData.name + ".zip");
-			--currentBackgroundActivity;
+			{
+				lock_guard<mutex> guard(activePluginsMutex);
+				activePlugins.erase(installData.name);
+			}
 		});
 }
 
@@ -208,8 +225,29 @@ future<void> Plugins::Install(const InstallData &installData)
 
 future<void> Plugins::Update(const InstallData &installData)
 {
+	{
+		lock_guard<mutex> guard(activePluginsMutex);
+		if(activePlugins.count(installData.name))
+			return future<void>();
+		else
+			activePlugins.insert(installData.name);
+	}
+
 	plugins.Get(installData.name)->version = installData.version;
 
 	Files::DeleteDir(Files::Plugins() + installData.name);
 	return Install(installData);
+}
+
+
+
+void Plugins::DeletePlugin(const InstallData &installData)
+{
+	{
+		lock_guard<mutex> guard(activePluginsMutex);
+		if(activePlugins.count(installData.name))
+			return;
+	}
+
+	Files::DeleteDir(Files::Plugins() + installData.name);
 }

@@ -129,8 +129,10 @@ void PreferencesPanel::Draw()
 		info.SetCondition("show previous");
 	if(currentSettingsPage + 1 < SETTINGS_PAGE_COUNT)
 		info.SetCondition("show next");
-	if(Plugins::Get().Find(selectedPluginInstall.name))
+	if(selectedPluginInstall.installed)
 		info.SetCondition("installed plugin");
+	if(selectedPluginInstall.outdated || !selectedPluginInstall.installed)
+		info.SetCondition("can install/update");
 	if(currentPluginInstallPage > 0)
 		info.SetCondition("previous install plugin");
 	if(currentPluginInstallPage < pluginInstallPages - 1)
@@ -211,10 +213,12 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 			downloadedInfo = true;
 		}
 	}
-	else if(key == 'i' && page == 'i' && selectedPluginInstall.url.size())
+	else if(key == 'i' && page == 'i' && selectedPluginInstall.url.size() && !selectedPluginInstall.installed)
 		installFeedbacks.emplace_back(Plugins::Install(selectedPluginInstall));
-	else if(key == 'u' && page == 'i' && selectedPluginInstall.url.size())
+	else if(key == 'i' && page == 'i' && selectedPluginInstall.url.size() && selectedPluginInstall.outdated)
 		installFeedbacks.emplace_back(Plugins::Update(selectedPluginInstall));
+	else if(key == 'd' && page == 'i' && selectedPluginInstall.url.size() && selectedPluginInstall.installed)
+		Files::DeleteDir(Files::Plugins() + selectedPluginInstall.name);
 	else if(key == 'r' && page == 'i')
 		currentPluginInstallPage = currentPluginInstallPage > 0 ? currentPluginInstallPage - 1 : 0;
 	else if(key == 'e' && page == 'i')
@@ -944,29 +948,32 @@ void PreferencesPanel::DrawPluginInstalls()
 	for(int x = currentPageIndex; x < maxIndex; x++)
 	{
 		const auto &plugin = pluginInstallList.at(x);
-		string name = plugin["name"];
-		string url = plugin["url"];
-		string version = plugin["version"];
-		if(!name.size())
+		const Plugin *installedVersion = Plugins::Get().Find(plugin["name"]);
+		Plugins::InstallData installData(
+			plugin["name"],
+			plugin["url"],
+			plugin["version"],
+			installedVersion && installedVersion->version != plugin["version"],
+			installedVersion
+		);
+		if(!installData.name.size())
 			continue;
-		pluginInstallZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(),
-			Plugins::InstallData(name, url, version));
+		pluginInstallZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), installData);
 		// Use url as that is more unique, just in case.
-		bool isSelected = (url == selectedPluginInstall.url);
-		const Plugin *installedVersion = Plugins::Get().Find(name);
+		bool isSelected = (installData.url == selectedPluginInstall.url);
 		if(isSelected)
 			table.DrawHighlight(back);
-		if(installedVersion && installedVersion->version != version)
-			table.Draw(name, outdated);
+		if(installedVersion && installedVersion->version != installData.version)
+			table.Draw(installData.name, outdated);
 		else if(isSelected)
-			table.Draw(name, bright);
+			table.Draw(installData.name, bright);
 		else if(installedVersion)
-			table.Draw(name, dim);
+			table.Draw(installData.name, dim);
 		else
-			table.Draw(name, medium);
+			table.Draw(installData.name, medium);
 		if(isSelected)
 		{
-			const Sprite *sprite = SpriteSet::Get(name);
+			const Sprite *sprite = SpriteSet::Get(installData.name);
 			Point top(15., firstY);
 			if(sprite)
 			{

@@ -54,8 +54,11 @@ public:
 		std::string name;
 		std::string url;
 		std::string version;
-		InstallData(std::string name = "", std::string url = "", std::string version = "")
-		: name(name), url(url), version(version) {}
+		bool installed = false;
+		bool outdated = false;
+		InstallData(std::string name = "", std::string url = "", std::string version = "",
+			bool installed = false, bool outdated = false)
+		: name(name), url(url), version(version), installed(installed), outdated(outdated) {}
 	};
 
 
@@ -80,9 +83,10 @@ public:
 	// Toggles enabling or disabling a plugin for the next game restart.
 	static void TogglePlugin(const std::string &name);
 
-	// Manage a Plugin with git.
-	static std::future<void> Install(const InstallData &installData);
+	// Install or update or delete a plugin.
+	static std::future<void> Install(const InstallData &installData, bool guarded = false);
 	static std::future<void> Update(const InstallData &installData);
+	void DeletePlugin(const InstallData &installData);
 };
 
 
