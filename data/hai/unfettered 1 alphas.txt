@@ -111,7 +111,7 @@ conversation "unfettered: destroyed auxiliary"
 	`The Unfettered that hails you is enraged, "How dare you?! This ship was helping us by providing supplies, and you just shoot it down? We don't care who may have drawn the first shot, you are now an enemy of the Unfettered."`
 	action
 		set "unfettered: destroyed auxiliary"
-		"reputation: Hai (Unfettered)" <?= -1
+		"reputation: Hai (Unfettered)" <?= -1000
 
 mission "Unfettered: Alpha Supplies"
 	invisible
@@ -218,26 +218,49 @@ mission "<uhai> 5: Scan Auxiliary"
 		clear "event: unfettered: analyzed the scans"
 		conversation
 			`You go get a drink in the spaceport, taking a beverage that appears to be water, wanting to take no risks on this alien world. After tasting it, you are sure it is indeed water. The Unfettered here do not have the habit of consuming many special drinks - at least not on a regular basis.`
+			branch goodmonke
+				has "<uhai> 4: Scan Geocoris: done"
+			`	An Unfettered that looks like a soldier comes to you, "Mera wants to see you," he starts, "Now!" He says before giving you time to argue, a hand clearly placed on his gun as a passive threat.`
+			`	"Monkey. I hope I did not disturb you too much," she says ironically. "I hope you will judge this mission worthy of your attention," she says, her teeth clenched in contained anger.`
+				goto mention
+			label goodmonke
 			`	You ask around for Mera, the Unfettered engineer you met before. She said she would tell you more once she gets the Geocoris logs, but you have yet to see her since you brought those logs to the local authorities. Hopefully she can be trusted. After you spend an hour talking with the local Unfettered and drinking, she finally arrives. She seems to be in quite a hurry.`
-			`	"Sorry I could not see you earlier; I was busy. I know I have promised you information, but there is a more pressing matter we should focus on. A human ship will enter <system> in a few days. I need you to scan it for me with the same scanner we gave you, and then I will meet you back here with the others and answer any questions you may have," she promises.`
+			`	"Sorry I could not see you earlier; I was busy. I know I have promised you information, but there is a more pressing matter we should focus on.`
+			label mention
+			`	"A human ship will enter <system> in a few days. I need you to scan it for me with the same scanner we gave you, and then I will meet you back here with the others and answer any questions you may have," she promises.`
 			`	"Oh, and before I forget, you should not attack them, even if they strike first. I am not sure how they will even react to your presence, so bring as little ships as possible so you do not scare them," she adds.`
-			choice
-				`	"Okay, I better get going right now then."`
-					goto beforeugo
-				`	"Why not just do it yourself?"`
-			`	"We don't know what their reaction could be. It would be preferable if you did it because they are more likely to think of you as separate from us. We value trust a lot, with anyone. Once it is damaged, even by a misinterpreted act as simple as this, it cannot easily be repaired." She still seems to be in a hurry, but you figure one more minute would not change much in your ability to catch that ship.`
+			label choose
 			choice
 				`	"Seems good to me. I'll do it."`
 					goto beforeugo
+				`	"Why not just do it yourself?"`
+					to diplomacy
+						not "unfettered: why me question"
 				`	"What kind of ship are we talking about?"`
-			`	She seems reluctant to tell you. "It's a human ship, and quite a big one. We do not know its designation in human space, but it carries a few small ships and uses alien technologies. You do not need to be able to destroy it; just scan it and then come back here." She did not seem to want to answer the last question, and maybe only answered this one so you would go away. Now she is waiting for an answer. Maybe you should reassure her in your abilities before she starts doubting you and hiring someone else.`
+					goto ship
+			action
+				set "unfettered: why me question"
+			`	"Trust me if I did not need your help I would not have brought you to me!`
+				to display
+					not "<uhai> 4: Scan Geocoris: done"
+			`	"We don't know what their reaction could be. It would be preferable if you did it because they are more likely to think of you as separate from us. We value trust a lot, with anyone. Once it is damaged, even by a misinterpreted act as simple as this, it cannot easily be repaired," she says, looking away at time. She seems to be in a hurry judging by the speed at which she is speaking, but you figure one more minute would not change much in your ability to catch that ship.`
+				goto choose
+			label ship
+			`	She seems reluctant to tell you, looking down a bit before looking at you straight in the eyes. "It's a human ship, and quite a big one. We do not know its designation in human space, but it carries a few small ships and uses alien technologies. You do not need to be able to destroy it; just scan it and then come back here." Now she is waiting for an answer, turning her head to the side. Maybe you should reassure her in your abilities before she starts doubting you and hiring someone else.`
 			choice
 				`	"I'm not worried about any one ship. I'll do it."`
 					goto beforeugo
-				`	"That seems too dangerous to me. Sorry, but I will not be helping you anymore."`
+				`	"That seems too dangerous to me. Sorry, but I will not be helping you."`
 					decline
 			label beforeugo
+			action
+				clear "unfettered: why me question"
+			# She is being listened to, probably by the Herald given the big military consequences of this, and turns that off temporarily here.
+			`	She looks around her quickly, giving you a word of warning, "Be careful, <last>. These are not the kind of people you want to mess around with," she says in a serious tone, her tail lowered before she returns to normal as if nothing happened.`
+				to display
+					has "<uhai> 4: Scan Geocoris: done"
 			`	"Before you go, I must remind you that you need to use one of our Value Detectors to scan the ship, like before. I'd advise you to do it quickly, in the lab, before you go."`
+			`	She then moves away, visibly exited, "This data will be interesting!" She appears to be speaking to herself but she could also be in a call.`
 				accept
 	waypoint "Hi Yahr"
 	on waypoint
@@ -322,7 +345,7 @@ mission "<uhai> 5: Auxiliary Scans"
 		event "unfettered: analyzed the scans" 15 30
 		conversation
 			`You send your logs as you land and receive a very generous payment of <payment>.`
-			`	Moments later, on your bridge, you hear a familiar voice from the coms. "Oh, you're back! Good!" You are a bit surprised by the interruption, but quickly recognize Mera. "Can I speak to you about your scans? I really am intrigued about that 'Auxiliary'."`
+			`	Moments later, on your bridge, you hear a familiar voice from the coms. "Oh, you're back! Good!" You are a bit surprised by the interruption, but quickly recognize Mera. "Hey, I have received the scans, it will take me a few weeks to analyze them but in the meantime can I speak to you about the ship? I really am intrigued about that 'Auxiliary'." The exitation in her voice is hard to miss.`
 			choice
 				`	"Sorry, but I'm no engineer. I have no idea about how those work."`
 				`	"Sure. What is it you want to know about them?"`
@@ -331,6 +354,8 @@ mission "<uhai> 5: Auxiliary Scans"
 					decline
 			`	"Worry not, I did not want to talk to you about the drag of that ship, or its shield matrix. Although they are very interesting, to be sure!"`
 			label questions
+			action
+				"unfettered: Mera's favor" ++
 			# SPOILER: She almost reveals to you the existence of the old super drone carrier project; the Lycosidae.
 			`	"I already have access to the specs of the ship. My questions are mostly related to how well they fare in battle. As far as I know, we have never seriously tried ships carrying fighters before. Well, to be fair, we did-" She stops herself, this is probably not something she can talk to you about. "We, hum, did - think of it. We just never tested them in battle.`
 			`	"The limitations could have been the ethical implications, but I think it was mostly due to technical difficulties building a ship large enough to contain and launch multiple interceptor-like crafts. I want to know how effective they are and how are they countered." She is clearly very excited to learn more about them.`
@@ -1415,7 +1440,8 @@ mission "<uhai> 9: Alpha Base"
 	on enter "Host"
 		dialog "Before leaving, you remember that the Unfettered want you to show them the Auxiliary, and they probably expect you to land with it as flagship. Make sure you bring all 10 jump drives back in your cargo or on the flagship, and that you keep this ship alive at all cost. It may be wise to wait a bit and replenish your fuel in this system."
 	on enter "Ehma Ti" "Hi Yahr" "Wah Yoot"
-		dialog `When you arrive in the Unfettered system, you hail Mera, asking for clarifications on what happened. She relays a message back to you, later on, "I am truly sorry, <first>, obviously I was wrong. The particles were left on purpose by the Alphas, evidently hoping I would tell you to go after those. I am not going to pretend I had no idea - it was something in the back of my mind, since a normal captain just appeared to find these specific particles so conveniently."`
+		# Would be good to make it only display if you didn't annoy her but not sure how to do that without requiring a separate mission for it.
+		dialog `When you arrive in the Unfettered system, the authorities relay a message from Mera to you, "I am sorry, <first>, obviously I was wrong. The particles were left on purpose by the Alphas, evidently hoping I would tell you to go after those. I am not going to pretend I had no idea - it was something in the back of my mind, since a normal Captain just appeared to find these specific particles so conveniently."`
 
 
 

@@ -103,7 +103,7 @@ mission "<uhai> 10: Titanium"
 	on offer
 		dialog "Do you want to go mine 40 tons of Titanium from <waypoints> as Mera suggested?"
 	on complete
-		"unfettered: Mera's favor" ++
+		"unfettered: Mera's favor" += 2
 		payment 1000000
 		outfit "Titanium" -40
 		log `Brought additional Titanium to the Unfettered to help in their ship construction.`
@@ -881,18 +881,26 @@ mission "<uhai> 15: Modified Beetle"
 	on complete
 		conversation
 			`	Mera rejoins you in the lab when you land, and sends a small team with scanners to take a look at your ship. Her ship appears to only have been superficially damaged.`
-			branch "took weapons"
+			branch thief
 				or
 					"outfit (all): Ionic Blaster Prototype" > "blasters owned"
 					"outfit (all): Ionic Turret Prototype" > "turrets owned"
-			branch "nothing special"
+			branch normal
 				not "unfettered: Mera's favor"
-			branch "no extras"
+			branch modifications
 				"unfettered: Mera's favor" < 2
 			`	"Truly you fought well, <first>. You deserve this extra gift, feel free to install it on your new ship when you get it!`
+			branch Favor
+				"unfettered: Mera's favor" == 3
 			action
 				outfit "Systems Core (Medium)"
-			label "no extras"
+			`	"I am sure this medium systems core will be very helpfull."`
+				goto modifications
+			label Favor
+			`	"A large systems core! Surely this will help you upgrade a ship of your choosing. I had to pull of a few strings to be authorized to give it to you," she says with a movement of her ears.`
+			action
+				outfit "Systems Core (Large)"
+			label modification
 			`	"Since this was partly a test-run, what suggestions would you make to improve the design, before I finally give this ship to you?"`
 			choice
 				`	"Keep it as it is."`
@@ -942,12 +950,12 @@ mission "<uhai> 15: Modified Beetle"
 			`	"Of course, this means that it will take a bit before you can receive the ship. I will send you a notice when that is the case, I do not expect the preparations to last more than a week or two. It is not so much a matter of finding what you asked for, but of getting the permission to equip it on this ship. Once the ship is ready, it will be waiting for you on Darkcloak, since that is where I will make the necessary modifications."`
 				decline
 
-			label "took weapons"
+			label thief
 			`	She seems upset, "I told you not to take any weapons, what were you thinking? That was not officially part of the duels so you can get away with it, but I certainly do not approve of it. Don't conut on me to give you any special treatment for this ship.`
 			action
 				clear "unfettered: Mera's favor"
 				set "unfettered: prize right away"
-			label "nothing special"
+			label normal
 			`	"I will make the needed repairs to the ship, you can go pick it up on Darkcloak when you are ready."`
 
 
@@ -1142,8 +1150,10 @@ mission "<uhai> 16: Strength Of A Leader: Si-Ra"
 			`	Si-Ra comes closer and takes you aside to speak to you, privately.`
 			`	"You should know I do not approve of your rise of power, even though there is probably nothing I can do about it. Fight well, your life may depend on it."`
 				to display
-					not "midas: tracker relay"
-					"unfettered: took Si-Ra' gold" > 5
+					or
+						not "midas: tracker relay"
+						"midas: wronged" > 1
+					"unfettered: offended Si-Ra" >= 2
 			`	"I have managed to buy myself a ship with the money from our last business opportunity. It is much stronger than the old one! And as a warlord, He-Yi has a strong fleet as well, though he will not use it here - only his flagship. You may want to consider this seriously. You will first have to duel me and then him. Don't forget you can call the fight off and come back once you're ready by giving us a symbolic fee." He then takes a pause before asking, "What do you say, <last>? Are you ready to fight us?"`
 			choice
 				`	"I was born ready."`
@@ -1155,8 +1165,7 @@ mission "<uhai> 16: Strength Of A Leader: Si-Ra"
 				or
 					not "midas: tracker relay"
 					"midas: wronged" > 1
-				"unfettered: took Si-Ra' gold" > 5
-				has "unfettered: offended Si-Ra"
+				"unfettered: offended Si-Ra" >= 2
 			`	"And may you die ready as well. Let us fight, on the same terms of honor as before. Take off when you're ready, I will be waiting for you. Once you defeat me you will be able to fight the Tejolis."`
 			`	"I would highly advise you mark yourself as not ready for spontaneous challenges from the job board, for they may disrupt the fight."`
 				accept
@@ -1740,7 +1749,7 @@ mission "<uhai> 17: Mirror Spy"
 
 # 18 is optional, in side missions because you can learn Hai trough the Hai diplomats
 
-
+# for later: add a duel against the Herald where they have a Water Bug wearing an Octopulse
 mission "<uhai> 19: Scout Wanderer Systems"
 	name `Know your enemy`
 	description `Go to <waypoints> and scout the fleet presence of all Wanderer ships. Then, come back to <destination> for your reward.`

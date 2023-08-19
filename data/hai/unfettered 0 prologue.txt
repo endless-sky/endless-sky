@@ -1042,7 +1042,7 @@ event "cerberus revealed"
 	government "Cerberus"
 		remove "display name"
 
-# SPOILER: stealing JD from the Alpha's indoctrinated pirates: Cerberus
+# SPOILER: stealing JD from a vault guarded by the Alpha's indoctrinated pirates: Cerberus
 mission "<uhai> 3: Recover Jump Drives"
 	name `Recover the jump drives`
 	description `Go to the pirate world of <stopovers> and recover jump drives from a vault.`
@@ -1150,6 +1150,7 @@ mission "<uhai> 3: Recover Jump Drives"
 				"unfettered: took Si-Ra' weapons" <= 2
 			action
 				payment -1250000
+				"unfettered: offended Si-Ra" ++
 			`	"Alright, but since yer changing the deal, I be deducting an extra!"`
 				goto choice
 			label "good boy!"
@@ -1165,6 +1166,9 @@ mission "<uhai> 3: Recover Jump Drives"
 			action
 				event "cerberus revealed"
 			label leave
+			action
+				clear "unfettered: took Si-Ra' gold"
+				clear "unfettered: took Si-Ra' weapons"
 			`	"<first> was also the name of my mentor, ye know. Always flying a Sparrow, that one. Told him it'd get him in trouble one day, but he never listened... t'was a cheerful lad, I wonder what happened to him."`
 				to display
 					has "first name: Jack"
@@ -1181,46 +1185,52 @@ mission "<uhai> 3: Jump Drive Vault"
 		has "<uhai> 3: Recover Jump Drives: active"
 	on offer
 		conversation
-			`You park your ship close to the hidden depot, as suggested by the Hai, at a lesser-used auxiliary spaceport. Often used by captains seeking a degree of discretion, they tend to still be close enough to the main hubs to not draw the same types of unwanted attention as landing fully off-grid. Your crew should be plenty close enough to intervene should anything go wrong.`
+			`You park your ship close to the hidden depot, as suggested by the Hai, at a less-used auxiliary spaceport. Often used by captains seeking a degree of discretion, they tend to still be close enough to the main hubs to not draw the same types of unwanted attention as landing fully off-grid. Your crew should be close enough to intervene should anything go wrong.`
 			`	You then follow the Unfettered captain to the hatch. He is well-prepared and quite deft, even given that he is wearing what seems to be a heavy combat suit.`
 			choice
-				`	"Who made this vault? What should I expect?"`
-				`	"Should we not take more men to ensure our safety?"`
-					goto moremen
 				`	(No time for talking.)`
 					goto outsideship
-			`	"Arrr, I cannot be telling anyone that, not even ye after bringing me, and especially not here anyway. I dare not risk bringing danger to their door or their ire to mine. At least while we still need their supply of jump drives. For now, just think of them as more pirates, like me and the rest of the scallywags on this bilge water planet here, and know that we be ready to face them in battle, should it come to that," he tells you.`
+				`	"Who made this vault? What should I expect?"`
+				`	"Shouldn't we take more men to ensure our safety?"`
+					goto moremen
+			`	"Arrr, I cannot be telling anyone that, not even ye after bringing me, and especially not here. I dare not risk bringing danger to their door or their ire to mine. At least while we still need their supply of jump drives. For now, just think of them as more pirates, like me and the rest of the scallywags on this bilge water planet here, and know that we be ready to face them in battle, should it come to that," he tells you.`
 				goto outsideship
 			label moremen
+			action
+				set "unfettered: dumb Si-Ra question"
 			`	"We be needing discretion here, not to draw attention! The larger our group is, the more suspicion we attract. The more suspicion we attract, the more likely someone fits us for a hempen halter. We be wanting them to think we hold no loot, not that we be hunting treasure, savvy?" Judging from his tone, this was a stupid question.`
 			label outsideship
 			`	Before exiting, he warns you, "Whatever be happening, do not try anything stupid and stay behind me at all times."`
-			`	Once outside, he moves at a quick pace, and you have difficulties following him, especially with the terrain as you head into the mountains. He seems worried and keeps looking around furtively, making surprisingly little sound with his armored suit. All things considered, he is impressively stealthy; the suit must have been crafted specifically for him in order to be so discreet. He presses a switch every so often which pops out a mirror, allowing him to peer cautiously around corners and obstacles in your path in case of an ambush.`
+			`	Once outside, he moves at a quick pace, and you have difficulties following him, especially with the terrain as you head into the mountains. He seems worried and keeps looking around furtively. All things considered, he is impressively stealthy; the suit must have been crafted specifically for him. He presses a switch every so often which pops out a mirror, allowing him to peer cautiously around corners and obstacles in your path in case of an ambush.`
 			`	Before long, you arrive at a small shanty town constructed with metal and other scraps the builders could gather nearby. Even considering what it is, it appears recently constructed and especially ramshackle.`
 			choice
-				`	"Is everything alright?"`
-				`	"There is no need to be worried, that cache must be well hidden, right?"`
 				`	(Keep walking, ready to reach for my gun.)`
 					goto discreet
+				`	"Is everything alright?"`
+				`	"There is no need to be worried, that cache must be well hidden, right?"`
+			action
+				"unfettered: offended Si-Ra" ++
 			`	He makes some kind of sign you do not understand, but it seems pretty clear he wants you to keep quiet. Looking around, you notice the two of you have attracted quite a bit of attention from the impoverished locals. While they all seem to have nothing to lose, the vast majority of them are very young and probably not the hardened criminals you had expected.`
 			label discreet
-			`	After skirting the outskirts of the shanty town, you head further into the mountains, and eventually you spot what appears to be a local in the distance. Though he did not seem to be following you, something seems odd about him, but you cannot pinpoint what. Continuing up the mountain, more and more you get the impression that this vault is no simple, small depot. This is confirmed when you pass several security turrets, and, while it safe to assume that even more defenses are hidden, you wonder why any would be left in plain sight around a "hidden" depot. Crossing a ridge, you begin to notice that some of your surroundings look strange, as the mountain has only been affected by the elements in some places and not others. Suddenly, the armored Hai stops and raises a hand high, palm open. Recognizing the sign, you stop as well.`
+			`	After skirting the outskirts of the shanty town, you head further into the mountains, and eventually you spot what appears to be a local in the distance. Though he did not seem to be following you, something seems odd about him, but you cannot pinpoint what. `
+			`	Continuing up the mountain, more and more you get the impression that this vault is no simple, small depot. This is confirmed when you pass several security turrets, and, while it is safe to assume that even more defenses are hidden, you wonder why any would be left in plain sight around a "hidden" depot. Crossing a ridge, you begin to notice that some of your surroundings look strange, as the mountain has only been affected by the elements in some places and not others. Suddenly, the armored Hai stops and raises a hand high, palm open. Recognizing the sign, you stop as well.`
 			`	The Hai reaches for some kind of device in his pocket and enters what you assume to be access codes. By the look on his face, it doesn't seem to be working very well. "Blimey, someone else has accessed the vault. This was not expected," he hisses as his grip tightens on his weapon, and he dons his helmet. "Stay here. I will take care of this."`
 			choice
-				`	"Do you not want one extra gun, then?"`
+				`	"Don't you want one extra gun?"`
 					goto wannafight
-				`	"What about the locals? They don't seem friendly. I just saw one nearby."`
+				`	"What about the locals? They don't seem friendly."`
 			`	"Those bilge-sucking scum? They would never dare attack a well-equipped swashbuckler like meself. Furthermore, there shouldn't be any around these parts, so far from those hovels." He steps forward, then glances back at you, unprotected and armed only with a laser that seems like a toy in comparison to his. "But maybe ye should come with me, after all."`
 				goto choose
 			label wannafight
 			`	"If the vault indeed be compromised, 'twas not by landlubbers. Those inside will be more dangerous and well-armed than the lily-livered locals. Still, I do not be having to guarantee yer safety to secure me loot, so ye be free to do as ye wish. The defense mechanisms be offline for the moment, so ye would have to fend for yerself. These locals be so young and frail and malnourished that even ye can surely handle yerself against them." The disdain in the last words is palpable.`
 			label choose
 			choice
+				`	(Come in.)`
 				`	(Stay outside.)`
 					goto outside
-				`	(Come in.)`
-			`	He sighs. "As ye wish, but I do hope ye can hold yer own on the ground as well as in space. I have disabled the automated defenses, in case they have been hijacked. We just have to go in, make sure they recognize us as friendlies, and then reactivate them." You really wonder where the vault could be, until you see the Hai walk right through part of the mountain in front of you. It must be a hologram to disguise the entry! You hurry to follow behind him.`
-			`	At first, you don't notice anything particularly suspicious, but you do hear the low hum of running electronics and machinery in the distance. Though the vault is clearly alien in origin, you cannot pinpoint one race; instead, it seems to be a mix of many. All of it is very, very old, and there is no illumination, possibly because your friend deactivated the lights along with the turrets, though you don't see why why he would. Even without it, you can tell there is clearly is space to move around - enough for an armored vehicle, in fact. As you acclimate to the darkness inside the vault, you notice a flash of light, far away on your left.`
+			# He would be fine with you dying so he does not have to share to loot...
+			`	He sighs. "As ye wish, but I do hope ye can hold yer own on the ground as well as in space. I have disabled the automated defenses, in case they have been hijacked. We just have to go in, make sure they recognize us as friendlies, and then reactivate them." You really wonder where the vault could be, until you see the Hai walk right through part of the mountain in front of you. It must be a hologram, disguising the entry! You hurry up to catch up to him.`
+			`	At first, you don't notice anything particularly suspicious, but you do hear the low hum of running electronics and machinery in the distance. Though the vault is clearly alien in origin, you cannot pinpoint one race; instead, it seems to be a mix of many. All of it is very, very old, and there is no illumination, possibly because your friend cut all power. Even without light, you can tell there is clearly is space to move around - enough for an armored vehicle, in fact. As you acclimate to the darkness inside the vault, you notice a flash of green light, far away on your left.`
 			choice
 				`	(It's just a light flickering. No need to worry.)`
 				`	"GET DOWN!"`
@@ -1231,36 +1241,43 @@ mission "<uhai> 3: Jump Drive Vault"
 			action
 				fail "<uhai> 3: Recover Jump Drives"
 			`	It may have felt like the right thing to do at the time, but you quickly realize splitting up and then staying here in the open was not very intelligent. It is too late, unfortunately, because you get stabbed by a local pirate, who is no longer impressed by your now-missing armored friend. You can see his bloody knife, with what seems to be a snake on it, before losing consciousness.`
-			`	When you wake up everything is blurry, all you can see if a powerful, almost divine, light.`
-			`	Coming back to your senses, you notice you are in what must be a hospital, half naked. The captain is staring at you. "The Gods of battle have judged ye, <first>. And they found you wanting." It seems clear that you will not be able to continue missions with the Unfettered after such a failure.`
+			`	When you wake up everything is blurry, all you can see is a powerful, almost divine, light.`
+			`	Coming back to your senses, you notice you are in what must be a hospital, half naked. The captain is staring at you. "The Gods of battle have judged ye, <first>. And they found you wanting." It seems clear that you will not be able to continue missions with the Unfettered.`
 				decline
 			label down
-			`	You get down yourself as you give the warning, then to see if it was heeded. The Unfettered was evidently well trained for this, as he is already on the ground and sighting his rifle. You're impressed by the precision of his weapon; the sniper is quite clearly taken out with the first shot, but your armored companion fires three more times to be sure.`
-			`	After searching through the vault to eliminate any other surprises, the Hai declares the area cleared. Any other stalkers have probably run off after seeing the firepower your Unfettered friend carries. You then inspect the Jump Drives to the best of your ability with a device he quickly instructed you how to use, while he finishes taking care of the security systems. While waiting for him to return once you are done, you look around and notice a small symbol in the lower corner of a nearby wall: a dog with multiple heads. You double-check the Jump Drives as you continue to wait, and when the Hai captain comes back, he conveniently places his gun to hide the symbol. Best not ask him about it.`
-			`	He switches a lever, and the electric humming you've been hearing suddenly stops. "I have disabled the holographic field generator, so yer ship can come to pick up the drives. Best have it come quickly, in the hopes it reaches us before the intruders return, in force," he suggests. You quickly send a message to the <ship>, asking them to dock with the vault.`
+			action
+				"unfettered: offended Si-Ra" --
+			`	You get down yourself as you give the warning, then turn to see if it was heeded. The Unfettered was evidently well trained for this, as he is already on the ground and sighting his rifle. You're impressed by the precision of his weapon; the sniper is quite clearly taken out with the first shot, but your armored companion fires three more times still.`
+			`	After searching through the vault to eliminate any other surprises, the Hai declares the area cleared. Any other stalkers have probably run off after seeing the firepower your Unfettered friend carries. You then inspect the Jump Drives to the best of your ability with a device he quickly instructed you how to use, while he finishes taking care of the security systems. While waiting for him to return once you are done, you look around and notice a small symbol in the lower corner of a nearby wall: a dog with multiple heads. You double-check the Jump Drives as you continue to wait, and when the Hai captain comes back, he conveniently places his gun to hide the symbol. Best not to ask about it now.`
+			`	He switches a lever, and the electric humming you've been hearing suddenly stops. "I have disabled the holographic field generator, so yer ship can come to pick up the drives. Best have it come quickly, in the hopes it reaches us before the intruders return, in force," he suggests. You immediately order the <ship> to dock with the vault.`
 			choice
 				`	(Wait for the ship to arrive.)`
 					goto ship
 				`	"We could have just come into the vault swarming with ground forces instead of risking our lives..."`
 				`	"Is this holographic field the reason we had to go into the vault in person, instead of just connecting it to the ship?"`
 					goto vault
-			`	"We needed to act discreetly, so we would have the time to check the status of the Jump Drives without being swarmed by opportunist pirates. More people would have only attracted more attention and been more targets for the vault's defenses against. As ye have probably noticed, we have not accessed this vault for quite some time. Some unfettered humans could have snuck in and sabotaged the Jump Drives, like they did with the turrets." You have a hunch that there could be more to all this than what he's admitting.`
+			branch notagain
+				not "unfettered: dumb Si-Ra question"
+			`	"Why are you asking about this again? Are you trying to provoke me? I shall explain one last time.`
+			action
+				clear "unfettered: dumb Si-Ra question"
+				"unfettered: offended Si-Ra" ++
+			label notagain
+			`	"We needed to act discreetly, so we would have the time to check the status of the jump drives without being swarmed by opportunist pirates. More people would have only attracted more attention and been more targets for the vault's defenses against. As ye have probably noticed, we have not accessed this vault for quite some time. Some unfettered humans could have snuck in and sabotaged the jump drives, like they did with the turrets." You have a hunch that there could be more to all this than what he's admitting.`
 				goto ship
 			label vault
-			`	"Yes and no. It be not only a holographic generator, but also a set of jammers, meaning your ship would not be able to pinpoint the exact location and would have to land blindly. We also needed to make sure the Jump Drives were not sabotaged and that the vault defenses were not compromised; they could probably have taken yer ship down. Needless to say, even monkeys could rig the Jump Drives to blow when used. Checking that takes time. Besides, we want to be using this vault later, so may as well ensure its safety. That said, it seems we left it sit too long, it be too compromised for further use." You have a hunch that there could be more to all this than what he's admitting.`
+			`	"Yes and no. It be not only a holographic generator, but also a set of jammers, meaning your ship would not be able to pinpoint the exact location and would have to land blindly. We also needed to make sure the jump drives were not sabotaged and that the vault defenses were not compromised; they could probably have taken yer ship down. Needless to say, even monkeys could rig the drives to blow when used. Checking that takes time." He takes some time to think before continuing, "Besides, we want to be using this vault later, so may as well ensure its safety. That said, it seems we left it sit too long, it be too compromised for further use." You have a hunch that there could be more to all this than what he's admitting.`
 			choice
 				`	(Go back to the ship.)`
 					goto ship
-				`	"If this world is so wild, why put the Jump Drives here in the first place?"`
-			`	"The Unfettered be not the ones who placed these Jump Drives here..." He leaves it at that. The Hai doesn't seem to want to tell you much about this vault.`
-			
+				`	"If this world is so wild, why put the jump drives here in the first place?"`
+			`	"We be not the ones who placed these drives here..." The Hai doesn't seem to want to tell you much about this vault.`
 			label ship
-			`	As soon as your ship arrives, you give the orders to collect and either transfer the jump drives into cargo or install them directly onto your ship if possible, so you may flee more swiftly. When your ship takes off, you notice more activity than on the way in...`
-			`	The Hai comes to speak to you on the bridge. "Batten down the hatches, matey! It took us too long to check and load the jump drives, and we seem to have attracted attention. I guess a lookout got away from the vault and contacted some friends..." Multiple alarms start going off, confirming his suspicions - hostile ships are launching and heading straight for you. You launch as soon as you can, rushing through the correct procedures. Meanwhile, the Unfettered captain joins you on the bridge, clearly used to being where the action is, invited or not.`
+			`	As soon as your ship arrives, you give the orders to collect the jump drives and install them if possible, so you may flee more swiftly. When your ship takes off, you notice more activity than on the way in...`
+			`	The Hai comes to speak to you on the bridge. "Batten down the hatches, matey! It took us too long to check and load the drives, and we seem to have attracted attention. I guess a lookout got away from the vault and contacted some friends..." Multiple alarms start going off, confirming his suspicions - hostile ships are launching and heading straight for you. You launch as soon as you can, rushing through the correct procedures. Meanwhile, the Unfettered captain joins you on the bridge, clearly used to being where the action is, invited or not.`
 				launch
 	on accept
-		"outfit" "Jump Drive" 4
-	# a side mission will spawn additional ships if you brought a JD with you before the start of this mission.
+		outfit "Jump Drive" 4
 	npc evade
 		government "Cerberus"
 		personality disables plunders vindictive
@@ -1268,6 +1285,7 @@ mission "<uhai> 3: Jump Drive Vault"
 		fleet "Large Northern Pirates"
 		fleet "Small Northern Pirates" 2
 
+# Additional ships will spawn if you brought a JD with you before the start of this mission.
 mission "<uhai> 3: Jump Drive Vault: Attracted Attention"
 	landing
 	invisible
@@ -1310,7 +1328,7 @@ ship "Geocoris" "Geocoris (Keystones)"
 
 mission "<uhai> 4: Scan Geocoris"
 	name `Scan the Geocoris`
-	description `Scan the cargo of the Hai Geocoris in Ya Hai with the Unfettered scanner, then return to <destination> with the scanner logs.`
+	description `Scan the cargo of the Hai Geocoris in Ya Hai with the Value Detector, then return to <destination> with the scanner logs. You may abort this, at a cost.`
 	source "Firelode"
 	waypoint "Ya Hai"
 	to offer
@@ -1321,56 +1339,97 @@ mission "<uhai> 4: Scan Geocoris"
 			`As you wander through the spaceport, you find a market with a limited diversity of goods, although some of it seems to be completely alien, even by Hai standards. You can even spot human food and technology, although those are the only recent items here. Most of it is very ancient, and you doubt everything is functional...`
 			`	Most Unfettered here are just busy buying what little food there is, that is if they can even afford it. You see two of them disputing, probably over the cost of some item, but decide not to intervene given how they generally respond to your mere presence...`
 			`	An Unfettered approaches you. At first, you wonder why the Hai happens to be coming towards you in particular, but then you realize that you naturally stand out in the crowd. There are not many non-Hai on the Unfettered worlds.`
-			`	"Captain <last>! I am Mera, an engineer. We have an easy job for you, if you are interested," she says.`
+			`	"Captain <last>! I am Mera, an engineer. We have an easy job for you, if you are interested," she says. "It would pay well," she adds.`
 			choice
 				`	"Sure, what can I do for you?"`
 				`	"How do you know me?"`
 					goto know
 				`	"Sorry, but I'm quite busy at the moment."`
 					defer
+			action
+				"unfettered: Mera's favor" ++
 			`	"Straight to the point! I am starting to like you."`
 				goto job
 			label know
+			branch JD
+				has "Unfettered Jump Drive 1: offered"
+			`	"I know you have helped us when we needed it most. Word quickly got around of a human medling in our business, but most view it in a positive way, such as myself. I could use some of that interferance myself, in fact!" She says with a slight movement of the ears.`
+				goto job
+			label JD
 			`	"Someone who brings us something as precious as a jump drive is not quickly forgotten! Now back to our business, if you don't mind."`
 			label job
-			`	"As you probably already know, the other Hai do not think like us. They believe in trading with all the galaxy in harmony forever, without seeing how it softens them. As such, they have wasted time designing a ship for the sole purpose of transporting goods in great quantities: the Geocoris. Or at least that is what we thought, at first. It now seems to us that the design is... interesting, so we want you to scan it."`
+			`	"As you probably already know, the other Hai do not think like us. They believe in trading with all the galaxy in harmony forever, without seeing how it softens them. As such, they have wasted time designing a ship for the sole purpose of transporting goods in great quantities: the Geocoris. The biggest upside is being more competitive than humans in terms of the biggest cargo ship, but that would not have been an issue had they not opened trade so much in the first place! Or at least that is how we used to view it. It now seems to us that the design is... interesting, so we want you to scan it."`
 			`	"It is pretty much guaranteed there will be one such ship at all times around their home system, Ya-Hai, the center of their trade. For obvious reasons we cannot scan that ship ourselves, and we prefer that the Hai be ignorant of our interest in that design, anyway. Bring us the full scanner logs and you will be well rewarded."`
+			label choose
 			choice
+				`	"How should I scan it?"`
+					to display
+						not "unfettered: scan question"
+					goto scan
 				`	"Seems easy. I'll do it."`
+					to display
+						has "unfettered: scan question"
 					goto agree
 				`	"Why the sudden interest for that ship?"`
+					to display
+						not "unfettered: design question"
 					goto design
 				`	"You could just ask the Hai that come to you from their space about it."`
-			`	"That is what we will be forced to do if you refuse, but we would prefer this to be kept a secret. So do you agree to do this for us?"`
-			choice
-				`	"It seems easy enough. I'll do it."`
-					goto agree
-				`	"How do I scan it?"`
-					goto scan
+					to display
+						not "unfettered: hesitant question"
 				`	"I don't want to get in trouble with the Hai."`
-			`	"That should not be a problem, the Hai will not bothered about you scanning their ship, if they even notice it."`
-			label design
-			`	"We would like to know how they avoided vulnerabilities in the hull of a ship of such size, and the way cargo can be stored without making the ship defenseless. Extra space on a ship cannot only be used for cargo... I will tell you more about it later, once you bring us the scans. That is, if you are willing of course."`
-			choice
-				`	"Sure, will do."`
-					goto agree
-				`	"How do I scan it?"`
-			label scan
-			`	"You need to use at least one of our Value Detectors, the information provided by it should be sufficient, as it goes beyond a simple cargo scan. If you don't have one, you can install one here. You may want to get multiple scanners so you can scan the ship from a longer range, and faster. Please do actively scan it. Passive intel gathered on the fly will not do."`
-			choice
-				`	"Sure, will do."`
-					goto agree
+					to display
+						has "unfettered: hesitant question"
+					goto trouble
 				`	"I'm not interested in scanning ships for you."`
-					decline
+					to display
+						"unfettered: hesitant question" == 2
+					goto declining
+			action
+				set "unfettered: hesitant question"
+			`	"That is what we will be forced to do if you refuse, but we would prefer this to be kept a secret. So do you agree to do this for us?"`
+				goto choose
+			label trouble
+			action
+				"unfettered: hesitant question" ++
+			`	"That should not be a problem, the Hai will not bothered about you scanning their ship, if they even notice it," she says with a quick sniffing.`
+				goto choose
+			label design
+			action
+				set "unfettered: design question"
+			`	"We would like to know how they avoided vulnerabilities in the hull of a ship of such size, and the way cargo can be stored without making the ship defenseless. Extra space on a ship cannot only be used for cargo... I will tell you more about it later, once you bring us the scans."`
+				goto choose
+			label scan
+			action
+				set "unfettered: scan question"
+			`	"You need to use at least one of our Value Detectors, the information provided by it should be sufficient, as it goes beyond a simple cargo scan. If you don't have one, you can install one here. You may want to get multiple scanners so you can scan the ship from a longer range, and faster. Please do actively scan it. Passive intel gathered on the fly will not do."`
+				goto choose
 			label agree
-			`	On the way back to your ship, Mera runs up to you. "One... last... thing<, unfettered title>!" You let her catch her breath. "We have noticed one Geocoris just entered <waypoints> as expected, but seems to have some special modifications. Please scan that one specifically. We have marked its signature for you to recognize it. We want to have a detailed scan of its cargo. Also, I've just found a captain willing to give you two of our scanners. They will be placed in your cargo hold if there is no space on your ship, but do go in the lab to make sure they are installed them properly.`
+			`	On the way back to your ship, Mera runs up to you. "One... last... thing!" You let her catch her breath. "We have noticed one Geocoris just entered <waypoints> as expected, but seems to have some special modifications. Please scan that one specifically. We have marked its signature for you to recognize it. We want to have a detailed scan of its cargo. Also, I've just found a captain willing to give you two of our scanners. They will be placed in your cargo hold if there is no space on your ship, but do go to the lab's outfitter to make sure they are installed them properly.`
 			action
 				outfit "Value Detector" 2
 				outfit "Cargo Scanner" 5
+				clear "unfettered: scan question"
+				clear "unfettered: design question"
+				clear "unfettered: hesitant question"
 			`	"I cannot stress enough that you NEED to use at least one Value Detector, as any other scanners will simply either not contain enough information, or we could be unable to make good use of it. Since the Geocoris is quite complex, it may take some time to complete the scan, so feel free to buy more scanners here. I'd recommend going to the lab to check if they are well connected to your ship."`
 			`	"Do note, however, that they can be supplemented by Cargo Scanners, which is why I have decided to provide a few of those to you as well. You can go to the outfitter to set it all up correctly."`
 				accept
+			label declining
+			action
+				"unfettered: Mera's favor" --
+			`	She clench her fist, visibly angry for a moment, before calming down. "Alright, but it will take a while for me to get someone else to scan a Geocoris, and we're missing a significant opportunity."`
+			choice
+				`	"Not my problem."`
+				`	"Okay, okay. I changed my mind."`
+					goto choose
 		log "People" "Mera" `An Unfettered engineer who is interested in ship designs of all kinds. She is easily excited by new technologies and ships.`
+	on decline
+		event "unfettered: analyzed the scans" 30 60
+	on abort
+		dialog `Mera hails you when she learns of you aborting this mission. "This will slow us down significantly, by a month at least."`
+		"unfettered: Mera's favor" --
+		event "unfettered: analyzed the scans" 30 60
 	on waypoint
 		dialog `You do not see the Geocoris that Mera mentioned; it's probably in a system nearby. You should land and depart when it arrives.`
 		set "unfettered: entered Ya Hai"
