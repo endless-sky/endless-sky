@@ -934,7 +934,7 @@ tip "leak damage / shot:"
 	`Fuel damage dealt over time by this weapon per shot.`
 
 tip "burn damage / shot:"
-	`Fuel damage dealt over time by this weapon per shot.`
+	`Heat damage dealt over time by this weapon per shot.`
 
 tip "% shield damage / shot:"
 	`Shield damage dealt per shot, as a percentage of your target's total shield strength.`
