@@ -30470,8 +30470,8 @@ system "Sol Kimek"
 		period 31.1678
 	object "Ki Patek Ka"
 		sprite planet/ocean1
-		distance 679.68
-		period 343.812
+		distance 466.11
+		period 291.452
 		object "Starting Rubin"
 			sprite planet/station1c
 				scale 0.5

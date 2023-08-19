@@ -3233,6 +3233,17 @@ void PlayerInfo::RegisterDerivedConditions()
 	flagshipAttributeProvider.SetGetFunction(flagshipAttributeFun);
 	flagshipAttributeProvider.SetHasFunction(flagshipAttributeFun);
 
+	auto &&flagshipBaysProvider = conditions.GetProviderPrefixed("flagship bays: ");
+	auto flagshipBaysFun = [this](const string &name) -> int64_t
+	{
+		if(!flagship)
+			return 0;
+
+		return flagship->BaysTotal(name.substr(strlen("flagship bays: ")));
+	};
+	flagshipBaysProvider.SetGetFunction(flagshipBaysFun);
+	flagshipBaysProvider.SetHasFunction(flagshipBaysFun);
+
 	auto &&playerNameProvider = conditions.GetProviderPrefixed("name: ");
 	auto playerNameFun = [this](const string &name) -> bool
 	{
