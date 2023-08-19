@@ -40,13 +40,10 @@ planet Aviskir
 	landscape land/mountain39
 	description "Aviskir is a world of sweeping mountains and sparkling oceans. It also happens to be the Avgi homeworld, bustling with nine billion members of the species. Civilization has concentrated largely around bountiful mountain valleys and fjords, many warmed by hot springs and geothermal heat. The largest cities are built around the smaller peaks, laced with slender bridges and bright skyscrapers. They stand in contrast to the rural valley settlements below, which are said to offer simpler, more traditional lives."
 	description "The Incursion has forced the remaining Avgi on the surface to dedicate a large part of their industry towards building defensive missile systems and banks of lasers, all in the hope of turning away the attack runs the Aberrant sometimes make on the surface."
-	spaceport "The largest spaceports once hosted 'beanstalks,' space elevators capable of lifting cargo en masse to geostationary orbit. After the invention of the gravity repulsor, they were largely relegated to historical curiosities, but the Aberrant still severed them during their attack on Avgiskir's orbital infrastructure."
+	spaceport "The largest spaceports once hosted 'beanstalks,' space elevators capable of lifting cargo en masse to geostationary orbit. After the invention of the gravity repulsor, they were largely relegated to historical curiosities, but the Aberrant still severed them during their attack on Aviskir's orbital infrastructure."
 	government Avgi
 	shipyard "Avgi Civilian Basics"
 	shipyard "Avgi Civilian Advanced"
-	shipyard "Avgi Dissonance Basics"
-	shipyard "Avgi Spaceguard Light"
-	shipyard "Avgi Spaceguard Heavy"
 	outfitter "Avgi Basic Systems"
 	outfitter "Avgi Advanced Systems"
 	outfitter "Avgi Basic Drives"
