@@ -747,7 +747,7 @@ mission "Avgi: Dissonance Outreach 0.5"
 	to offer
 		has "Avgi: Frontline Combat: done"
 	on complete
-		conversation
+		dialog
 			`	As you take the <ship> in for a landing in one of the hangars, Darius says, "I'll get in contact with Hriso and have him meet us in the spaceport."`
 
 
@@ -777,7 +777,7 @@ mission "Avgi: Dissonance Outreach"
 	on complete
 		conversation
 			`	Outpost Tekis is a large station built into a large asteroid several kilometers across, with networks of tubes and habitats crisscrossing the surface. You pull the <ship> into a cramped hangar dug into the rock and disembark with Hriso, who immediately sets out for a prearranged meeting place. You notice many of the Avgi in the outpost stare at you, Darius, and Sora, likely their first glimpse of a human.`
-			`	"You enter a large, round conference room with walls of polished rock. Waiting there are a handful of Avgi of various ages, who immediately begin conversing with Hriso in their own language."`
+			`	You enter a large, round conference room with walls of polished rock. Waiting there are a handful of Avgi of various ages, who immediately begin conversing with Hriso in their own language.`
 			choice
 				`	"What are they saying?"`
 				`	(Remain silent.)`

@@ -998,9 +998,12 @@ phrase "dissonance angry"
 		"Uncertain"
 		"Wary"
 	word
-		" "
+		". "
+		"; "
 	word
 		"You are nothing more than a"
+		"You are a"
+		"Curse you, "
 	word
 		" "
 	phrase
