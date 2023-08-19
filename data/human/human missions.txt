@@ -6327,6 +6327,7 @@ mission "Derelict Informer"
 			`	"Well quite simply, it's nobody's."`
 			choice
 				`	"What are you doing with it then?"`
+				`	"If it isn't yours, why do you have it?"`
 			label what
 			`	An easy, broad smile upon his face tells you he's heard such a question before. "Glad you asked. It's always a pleasure to teach another captain about the niche trade of derelict hunting."`
 			choice
@@ -6378,6 +6379,7 @@ mission "Derelict Treasure Map"
 			`	You grab the <payment> credits and with the assistance of some machinery you bring the weapons back to your ship.`
 
 mission "Derelict Family Investment 1"
+	name "Lost Family Investment"
 	description "Return the credits you found in a derelict ship to the family it belongs to."
 	name "Colin Sawyer's Investment"
 	landing
@@ -6405,6 +6407,7 @@ mission "Derelict Family Investment 1"
 			`	"Sawyer? Yeah, that's the family that sold me this here farm. If you're looking for them I believe they moved to a more populated planet, own some big corporation now." The man gives you the Sawyer's new place of residence and bids you farewell.`
 
 mission "Derelict Family Investment 2"
+	name "Lost Family Investment"
 	description "Return the credits you found in a derelict ship to the family it belongs to."
 	name "Colin Sawyer's Investment"
 	landing
