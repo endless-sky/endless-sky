@@ -496,7 +496,7 @@ void Files::Delete(const string &filePath)
 
 
 
-int Files::DeleteDir(const string path)
+int Files::DeleteDir(const string &path)
 {
 #if defined (_WIN32)
 	HANDLE hFile; // Handle to directory
