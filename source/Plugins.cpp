@@ -183,33 +183,33 @@ void Plugins::TogglePlugin(const string &name)
 
 
 
-future<void> Plugins::Install(string url, string name, std::string version)
+future<void> Plugins::Install(const PluginInstallData &installData)
 {
 	oldNetworkActivity = true;
-	return async(launch::async, [url, name, version]() noexcept -> void
+	return async(launch::async, [installData]() noexcept -> void
 		{
 			++currentBackgroundActivity;
 
-			bool success = PluginHelper::Download(url.c_str(),
-				(Files::Plugins() + name + ".zip").c_str());
+			bool success = PluginHelper::Download(installData.url.c_str(),
+				(Files::Plugins() + installData.name + ".zip").c_str());
 			if(success)
 			{
 				success = PluginHelper::ExtractZIP(
-					(Files::Plugins() + name + ".zip").c_str(),
-					Files::Plugins().c_str(), name + "/");
+					(Files::Plugins() + installData.name + ".zip").c_str(),
+					Files::Plugins().c_str(), installData.name + "/");
 			}
-			Files::Write(Files::Plugins() + name + "/version.txt", version);
-			Files::Delete(Files::Plugins() + name + ".zip");
+			Files::Write(Files::Plugins() + installData.name + "/version.txt", installData.version);
+			Files::Delete(Files::Plugins() + installData.name + ".zip");
 			--currentBackgroundActivity;
 		});
 }
 
 
 
-future<void> Plugins::Update(string url, string name, std::string version)
+future<void> Plugins::Update(const PluginInstallData &installData)
 {
-	plugins.Get(name)->version = version;
+	plugins.Get(installData.name)->version = installData.version;
 
-	Files::DeleteDir((Files::Plugins() + name).c_str());
-	return Install(url, name, version);
+	Files::DeleteDir((Files::Plugins() + installData.name).c_str());
+	return Install(installData);
 }

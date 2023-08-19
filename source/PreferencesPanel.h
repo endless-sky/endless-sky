@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ClickZone.h"
 #include "Command.h"
+#include "Plugins.h"
 #include "Point.h"
 #include "text/WrappedText.h"
 
@@ -53,24 +54,11 @@ private:
 	void DrawControls();
 	void DrawSettings();
 	void DrawPlugins();
-	void DrawInstallAbles();
+	void DrawPluginInstalls();
 
 	void DrawTooltips();
 
 	void Exit();
-
-	void InstallPlugin(const std::string &);
-
-private:
-	struct InstallAble
-	{
-		std::string name = "";
-		std::string url = "";
-		std::string version = "";
-		InstallAble(std::string name, std::string url, std::string version)
-		: name(name), url(url), version(version) {}
-		InstallAble() {}
-	};
 
 private:
 	int editing;
@@ -92,17 +80,17 @@ private:
 
 	std::string selectedPlugin;
 
-	nlohmann::json installAbles;
-	InstallAble selectedInstallAble;
-	unsigned int installAblePages = 1;
-	unsigned int currentInstallAblePage = 0;
+	nlohmann::json pluginInstallList;
+	Plugins::PluginInstallData selectedPluginInstall;
+	unsigned int pluginInstallPages = 1;
+	unsigned int currentPluginInstallPage = 0;
 	bool downloadedInfo = false;
 	std::vector<std::future<void>> installFeedbacks;
 
 	std::vector<ClickZone<Command>> zones;
 	std::vector<ClickZone<std::string>> prefZones;
 	std::vector<ClickZone<std::string>> pluginZones;
-	std::vector<ClickZone<InstallAble>> installAbleZones;
+	std::vector<ClickZone<Plugins::PluginInstallData>> pluginInstallZones;
 };
 
 

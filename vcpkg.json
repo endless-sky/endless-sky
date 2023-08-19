@@ -41,13 +41,15 @@
       "description": "System libraries missing in the Flatpak runtime.",
       "dependencies": [
         "libmad",
-        "glew"
+        "glew",
+        "nlohmann-json"
       ]
     },
     "steam-libs": {
       "description": "System libraries not provided in the Steam Sniper Runtime.",
       "dependencies": [
-        "libmad"
+        "libmad",
+        "nlohmann-json"
       ]
     }
   }

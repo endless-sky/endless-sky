@@ -28,7 +28,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Interface.h"
 #include "text/layout.hpp"
 #include "PluginHelper.h"
-#include "Plugins.h"
 #include "Preferences.h"
 #include "Screen.h"
 #include "Sprite.h"
@@ -81,10 +80,14 @@ namespace {
 
 	// How many pages of settings there are.
 	const int SETTINGS_PAGE_COUNT = 2;
-	const unsigned int MAX_INSTALL_ABLES_PER_PAGE = 18;
+	const unsigned int MAX_PLUGIN_INSTALLS_PER_PAGE = 18;
 
 	// Hovering a preference for this many frames activates the tooltip.
 	const int HOVER_TIME = 60;
+
+	// The url to the plugins-list.
+	const string PLUGIN_LIST_URL =
+		"https://raw.githubusercontent.com/endless-sky/endless-sky-plugins/master/generated/plugins.json";
 }
 
 
@@ -126,11 +129,11 @@ void PreferencesPanel::Draw()
 		info.SetCondition("show previous");
 	if(currentSettingsPage + 1 < SETTINGS_PAGE_COUNT)
 		info.SetCondition("show next");
-	if(Plugins::Get().Find(selectedInstallAble.name))
+	if(Plugins::Get().Find(selectedPluginInstall.name))
 		info.SetCondition("installed plugin");
-	if(currentInstallAblePage > 0)
+	if(currentPluginInstallPage > 0)
 		info.SetCondition("previous install plugin");
-	if(currentInstallAblePage < installAblePages - 1)
+	if(currentPluginInstallPage < pluginInstallPages - 1)
 		info.SetCondition("next install plugin");
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	string pageName = (page == 'c' ? "controls" : page == 's' ? "settings" : page == 'p' ? "plugins" : "install plugins");
@@ -143,7 +146,7 @@ void PreferencesPanel::Draw()
 	zones.clear();
 	prefZones.clear();
 	pluginZones.clear();
-	installAbleZones.clear();
+	pluginInstallZones.clear();
 	if(page == 'c')
 	{
 		DrawControls();
@@ -157,7 +160,7 @@ void PreferencesPanel::Draw()
 	else if(page == 'p')
 		DrawPlugins();
 	else if(page == 'i')
-		DrawInstallAbles();
+		DrawPluginInstalls();
 }
 
 
@@ -200,28 +203,24 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		page = 'i';
 		if(!downloadedInfo)
 		{
-			PluginHelper::Download(
-				"https://raw.githubusercontent.com/endless-sky/endless-sky-plugins/master/generated/plugins.json",
-				(Files::Config() + "plugins.json").c_str());
+			PluginHelper::Download(PLUGIN_LIST_URL.c_str(), (Files::Config() + "plugins.json").c_str());
 			ifstream pluginlistFile(Files::Config() + "plugins.json");
-			installAbles = nlohmann::json::parse(pluginlistFile);
+			pluginInstallList = nlohmann::json::parse(pluginlistFile);
 			pluginlistFile.close();
-			installAblePages = ((installAbles.size() - (installAbles.size() % MAX_INSTALL_ABLES_PER_PAGE))
-				/ MAX_INSTALL_ABLES_PER_PAGE) + (installAbles.size() % MAX_INSTALL_ABLES_PER_PAGE > 0);
+			pluginInstallPages = ((pluginInstallList.size() - (pluginInstallList.size() % MAX_PLUGIN_INSTALLS_PER_PAGE))
+				/ MAX_PLUGIN_INSTALLS_PER_PAGE) + (pluginInstallList.size() % MAX_PLUGIN_INSTALLS_PER_PAGE > 0);
 			downloadedInfo = true;
 		}
 	}
-	else if(key == 'i' && page == 'i' && selectedInstallAble.url.size())
-		installFeedbacks.emplace_back(Plugins::Install(selectedInstallAble.url,
-			selectedInstallAble.name, selectedInstallAble.version));
-	else if(key == 'u' && page == 'i' && selectedInstallAble.url.size())
-		installFeedbacks.emplace_back(Plugins::Update(selectedInstallAble.url,
-			selectedInstallAble.name, selectedInstallAble.version));
+	else if(key == 'i' && page == 'i' && selectedPluginInstall.url.size())
+		installFeedbacks.emplace_back(Plugins::Install(selectedPluginInstall));
+	else if(key == 'u' && page == 'i' && selectedPluginInstall.url.size())
+		installFeedbacks.emplace_back(Plugins::Update(selectedPluginInstall));
 	else if(key == 'r' && page == 'i')
-		currentInstallAblePage = currentInstallAblePage > 0 ? currentInstallAblePage - 1 : 0;
+		currentPluginInstallPage = currentPluginInstallPage > 0 ? currentPluginInstallPage - 1 : 0;
 	else if(key == 'e' && page == 'i')
-		currentInstallAblePage = currentInstallAblePage < installAblePages - 1 ?
-			currentInstallAblePage + 1 : installAblePages - 1;
+		currentPluginInstallPage = currentPluginInstallPage < pluginInstallPages - 1 ?
+			currentPluginInstallPage + 1 : pluginInstallPages - 1;
 	else
 		return false;
 
@@ -337,10 +336,10 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 			break;
 		}
 
-	for(const auto &zone : installAbleZones)
+	for(const auto &zone : pluginInstallZones)
 		if(zone.Contains(point))
 		{
-			selectedInstallAble = zone.Value();
+			selectedPluginInstall = zone.Value();
 			break;
 		}
 
@@ -920,7 +919,7 @@ void PreferencesPanel::DrawPlugins()
 
 
 
-void PreferencesPanel::DrawInstallAbles()
+void PreferencesPanel::DrawPluginInstalls()
 {
 	const Color &back = *GameData::Colors().Get("faint");
 	const Color &dim = *GameData::Colors().Get("dim");
@@ -940,20 +939,20 @@ void PreferencesPanel::DrawInstallAbles()
 
 	const Font &font = FontSet::Get(14);
 
-	const int currentPageIndex = MAX_INSTALL_ABLES_PER_PAGE * currentInstallAblePage;
-	const int maxIndex = currentPageIndex + MAX_INSTALL_ABLES_PER_PAGE > installAbles.size() ?
-		installAbles.size() : currentPageIndex + MAX_INSTALL_ABLES_PER_PAGE;
+	const int currentPageIndex = MAX_PLUGIN_INSTALLS_PER_PAGE * currentPluginInstallPage;
+	const int maxIndex = currentPageIndex + MAX_PLUGIN_INSTALLS_PER_PAGE > pluginInstallList.size() ?
+		pluginInstallList.size() : currentPageIndex + MAX_PLUGIN_INSTALLS_PER_PAGE;
 	for(int x = currentPageIndex; x < maxIndex; x++)
 	{
-		const auto &plugin = installAbles.at(x);
+		const auto &plugin = pluginInstallList.at(x);
 		string name = plugin["name"];
 		string url = plugin["url"];
 		string version = plugin["version"];
 		if(!name.size())
 			continue;
-		installAbleZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), InstallAble(name, url, version));
+		pluginInstallZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), Plugins::PluginInstallData(name, url, version));
 		// Use url as that is more unique, just in case.
-		bool isSelected = (url == selectedInstallAble.url);
+		bool isSelected = (url == selectedPluginInstall.url);
 		const Plugin *installedVersion = Plugins::Get().Find(name);
 		if(isSelected)
 			table.DrawHighlight(back);
