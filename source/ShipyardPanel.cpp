@@ -165,12 +165,6 @@ int ShipyardPanel::DrawDetails(const Point &center)
 		shipInfo.Update(*selectedShip, player, collapsed.count(DESCRIPTION));
 		selectedItem = selectedShip->DisplayModelName();
 
-		// Find the old description zone and remove it.
-		auto descriptionZone = find_if(categoryZones.begin(), categoryZones.end(),
-			[&](const ClickZone<string> &zone) { return zone.Value() == DESCRIPTION; });
-		if(descriptionZone != categoryZones.end())
-			categoryZones.erase(descriptionZone);
-
 		const Point spriteCenter(center.X(), center.Y() + 20 + TileSize() / 2);
 		const Point startPoint(center.X() - INFOBAR_WIDTH / 2 + 20, center.Y() + 20 + TileSize());
 		const Sprite *background = SpriteSet::Get("ui/shipyard selected");
