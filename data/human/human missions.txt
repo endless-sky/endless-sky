@@ -6301,3 +6301,63 @@ mission "Blind Man from Martini"
 				clear "Blind Man from Martini: label looking"
 			`	With that, he grabs his cane and his luggage, and follows a hospital attendant toward his daughter's room, leaving you in the reception.`
 
+
+mission "FW Disaster Aid Intro 1"
+	minor
+	name "Cut through Free Worlds Bureaucracy"
+	description "Help Walter, a frustrated Free Worlds public servant, cut through the red tape to get precautionary disaster relief placed."
+	source "derp"
+	destination "Bourne"
+	to offer
+		has "chosen sides" # to make sure the player has met the Council
+		random < 10
+	on offer
+		conversation
+			`While you grab a refreshment in the spaceport, you notice a paper poster on the establishment's wall. It advertises, "Government cargo contract available. Safe. Small and large deliveries available." At the bottom, there is an address. A quick check with the local directory reveals it's in a nondescript office building that houses, amongst other things, the Bureau of Internal Concerns.`
+			choice
+				`(Follow up on the lead and visit the address.)
+				`(I have work to do and better places to be.)
+				decline
+			`	The address does indeed take you, as promised, to the Bureau of Internal Concerns, Office of Disaster Aid Distribution. Referencing the poster, the receptionist leads you to a drab office which contains a cheap desk, a tired chair, and a middle-aged man. Besides a pair of potted plants and some pictures of his children, the main adornment in the room are five portraits of the Council along one wall. He stands up on your arrival, and leans forward to shake your hand. "Hi, Howard Kowalski. I'm the Regional Coordinator for Water Supplies and Relief Distribution for this sector. I understand you're here about the poster?" You nod.`
+			`	"Fantastic. It's a simple job really. I just need you to go to <destination>, pick up a small delivery - ten tons of emergency rations - and bring it to <destination>."
+			choice
+				`	"Seems like a pretty standard job. Why the special meeting to arrange it? You could have just listed this on the public job board."`
+					goto explain
+				`	"Sounds good. Easy pickup job."`
+					goto accept
+				`	"Sorry. I have somewhere else to be. I'll have to decline."`
+					decline
+			label "explain"
+			`	"My basic problem is this: Do you own a plunger? You know, like you'd use to clear a clogged drain? You don't spend a lot of time thinking about your plunger, and most of time you don't need a one. Maybe you don't even own one; It's easy to go years without ever having to use it. But when you want it, you really, really want it. Well, that's my office. Easy to neglect, but one day, everyone is looking for you all at once."`
+			choice
+				`	"Sometimes running a society involves crucial but unglamorous tasks."`
+				goto "actual pitch"
+				`	"What the hell are you talking about?"`
+				goto "actual pitch"
+
+			label "actual pitch"
+			`	"I've been trying to get a shipment of disaster relief supplies delivered to our regional distribution warehouse, so we're prepared in case something happens and supplies don't have to spend a week or more transiting from Bourne. There's no shortage of willing merchants willing to haul it, but I can't get the necessary approval to release it onto their ships. No one's really opposed, per se, but no one is particularly sure who is actually responsible. Listen, I'm as patriotic as the next person," Howard gestures to the five portraits along his office wall, "But sometimes these... everyday details don't quite grab the attention of our superiors."`
+			`	"If you can travel to <destination>, you'll pick up a cargo of ten tons of 'coffee creamer'. Don't worry - it's all legal. Just a budget thing. I have standing approval spend funds out of the office supplies budget, but the expenses involved in buying, you know, disaster relief supplies to the Office of Disaster Aid Distribution apparently needs approval which may or may not require a signature from a Council member!" He composes himself after having let some exasperation come through in his voice, "Emergency rations are a food, and thus covered under the same billing code as the creamer. Anyway, go to <destination>, pick up the aid supplies, and bring them to our warehouse here. That way we'll have them in place in case anything happens in this region of the galaxy. Oh, by the way, payment is 20,000. Not spectacular, I know, but the route is safe enough."`
+			choice
+				`	"I didn't start a career as an independent ship captain out of a love paperwork. I'll help you collect the aid supplies, er, coffee creamer."`
+				accept
+				`	"Sorry. I'm not willing to bend the rules quite like this."
+				decline
+	on complete
+		`At the Bureau of Internal Concerns' spaceport warehouse, you collect your cargo of "coffee creamer".`
+
+mission "FW Disaster Aid Intro 2"
+	landing
+	name "Cut through Free Worlds Bureaucracy"
+	description "Deliver emergency rations to <destination>, though the manifest says <cargo>."
+	cargo "coffee creamer" 10
+	blocked "The spaceport's stevedores tell you to make space for the ten tons of cargo you'll be picking up."
+	source "Bourne"
+	destination "derp"
+	to offer
+		has "FW Disaster Aid 1: done"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 20000
+		dialog `As the dockworkers unload your cargo, you notice Walter observing the operation. He gives you a smile and a wave. Your account is credited for <payment>.`
