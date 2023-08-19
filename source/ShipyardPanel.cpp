@@ -215,20 +215,12 @@ int ShipyardPanel::DrawDetails(const Point &center)
 			SpriteShader::Draw(collapsedArrow, startPoint + Point(20., 20.));
 		}
 
-		// Calculate the ClickZone for the description and update it (or add it).
+		// Calculate the ClickZone for the description and add it.
 		const Point descriptionDimensions(INFOBAR_WIDTH, descriptionOffset);
 		const Point descriptionCenter(center.X(), startPoint.Y() + descriptionOffset / 2);
-
-		auto descriptionZone = find_if(categoryZones.begin(), categoryZones.end(),
-			[&](const ClickZone<string> &zone) { return zone.Value() == DESCRIPTION; });
-		if(descriptionZone != categoryZones.end())
-			*descriptionZone = {descriptionCenter, descriptionDimensions};
-		else
-		{
-			const ClickZone<string> collapseDescription = ClickZone<string>(
-				descriptionCenter, descriptionDimensions, DESCRIPTION);
-			categoryZones.emplace_back(collapseDescription);
-		}
+		const ClickZone<string> collapseDescription = ClickZone<string>(
+			descriptionCenter, descriptionDimensions, DESCRIPTION);
+		categoryZones.emplace_back(collapseDescription);
 
 		const Point attributesPoint(startPoint.X(), startPoint.Y() + descriptionOffset);
 		const Point outfitsPoint(startPoint.X(), attributesPoint.Y() + shipInfo.AttributesHeight());
