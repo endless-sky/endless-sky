@@ -1513,7 +1513,8 @@ void PlayerInfo::Land(UI *ui)
 		{
 			if(ship->GetSystem() == system)
 			{
-				if(planet->CanLand(*ship) || (clearance && planet->IsAccessible(ship.get())))
+				const bool alreadyLanded = ship->GetPlanet() == planet;
+				if(alreadyLanded || planet->CanLand(*ship) || (clearance && planet->IsAccessible(ship.get())))
 				{
 					ship->Recharge(hasSpaceport);
 					if(!ship->GetPlanet())
