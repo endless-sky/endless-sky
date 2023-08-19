@@ -73,6 +73,11 @@ public:
 	Dialog(T *t, void (T::*fun)(), const std::string &text,
 		Truncate truncate = Truncate::NONE, bool allowsFastForward = false);
 
+	// Callback is always called with value user input to dialog (ok == true, cancel == false).
+	template <class T>
+	Dialog(T *t, void (T::*fun)(bool), const std::string &text,
+		Truncate truncate = Truncate::NONE, bool allowsFastForward = false);
+
 	// Draw this panel.
 	virtual void Draw() override;
 
@@ -93,7 +98,7 @@ protected:
 private:
 	// Common code from all three constructors:
 	void Init(const std::string &message, Truncate truncate, bool canCancel = true, bool isMission = false);
-	void DoCallback() const;
+	void DoCallback(bool isOk = true) const;
 
 
 protected:
@@ -103,6 +108,7 @@ protected:
 	std::function<void(int)> intFun;
 	std::function<void(const std::string &)> stringFun;
 	std::function<void()> voidFun;
+	std::function<void(bool)> boolFun;
 	std::function<bool(const std::string &)> validateFun;
 
 	bool canCancel;
@@ -172,6 +178,15 @@ Dialog::Dialog(T *t, void (T::*fun)(const std::string &), const std::string &tex
 template <class T>
 Dialog::Dialog(T *t, void (T::*fun)(), const std::string &text, Truncate truncate, bool allowsFastForward)
 	: voidFun(std::bind(fun, t)), allowsFastForward(allowsFastForward)
+{
+	Init(text, truncate);
+}
+
+
+
+template <class T>
+Dialog::Dialog(T *t, void (T::*fun)(bool), const std::string &text, Truncate truncate, bool allowsFastForward)
+	: boolFun(std::bind(fun, t, std::placeholders::_1)), allowsFastForward(allowsFastForward)
 {
 	Init(text, truncate);
 }
