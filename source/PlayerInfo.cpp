@@ -1003,12 +1003,20 @@ const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 		if(planet)
 			clearance = planet->CanLand() || HasClearance(*this, planet);
 		for(const shared_ptr<Ship> &it : ships)
-			if(!it->IsParked() && it->GetSystem() == system && it->CanBeFlagship()
-				&& (!planet || clearance || planet->CanLand(*it)))
+		{
+			if(it->IsParked())
+				continue;
+			if(it->GetSystem() != system)
+				continue;
+			if(!it->CanBeFlagship())
+				continue;
+			const bool sameLocation = !planet || it->GetPlanet() == planet;
+			if(sameLocation || (clearance && !it->GetPlanet() && planet->IsAccessible(it.get())))
 			{
 				flagship = it;
 				break;
 			}
+		}
 	}
 
 	static const shared_ptr<Ship> empty;
