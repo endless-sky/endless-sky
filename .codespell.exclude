@@ -88,7 +88,7 @@ planet "Sies Upi"
 		`Once you are alone in your quarters you hear a voice, darker and more serious than ever before. "You have betrayed us. Nemo Me Impune Laccessit, <first>. We have a message to transmit to you on behalf of the council of Chiefs.`
 			`	"Nemo Me Impune Lacessit"`
 				`	"Can you tell me more? The message was signed with 'nemo me impune lacessit'."`
-			`	"She of the Void does not forget. Nemo Me Impune Lacessit, <last>. Do not presume to attempt to betray us again."`
+			`	"She of the Void does not forget. Nemo Me Impune Lacessit, <last>. Do not presume to attempt to betray us again or there will be consequences."`
 			`You receive an ominous message of defiance, "Nemo me impune lacessit."`
 			`	They evaluate their surroundings before coming closer to you, and once they are a meter away they stop, clearly speaking their words as a threat, with a pause between each of them "Nemo. Me. Impune. Laccesit."`
 	description "It shines; you can feel its value. For some reason, the text 'nemo me impune lacessit' is written on them. You wonder what that could mean... surely nothing to worry about. Most outfitters are not real 'connoisseurs' of the value these hold however, and would not give you any more than the price of brute gold for it."

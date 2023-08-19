@@ -694,8 +694,8 @@ mission "<uhai> 7: Stolen Cargo"
 	to offer
 		has "event: unfettered: shipment lost"
 	substitutions
-		<abducted?> "only wishing to scare us with the possibility of abducting"
-		<abducted?> "although to be completely frank I have no clue how they managed to abduct"
+		<abducted> "only wishing to scare us with the possibility of abducting"
+		<abducted> "although to be completely frank I have no clue how they managed to abduct"
 			has "<uhai> 6 A: Loyal Escort: failed"
 	on accept
 		conversation
@@ -706,7 +706,7 @@ mission "<uhai> 7: Stolen Cargo"
 			`	"<last>! I was hoping to find you here."`
 				to display
 					has "<uhai> 6 A: Loyal Escort: done"
-			`	"I just happen to be in needs of your services. Remember the mission you did earlier, escorting Hai ships? Well that shipment was not the only one that got attacked by pirates, in fact I believe their attack on it may have been nothing more than a distraction; they knew full well they could not take that cargo in the middle of Hai space, <abducted?> the governor."`
+			`	"I just happen to be in needs of your services. Remember the mission you did earlier, escorting Hai ships? Well that shipment was not the only one that got attacked by pirates, in fact I believe their attack on it may have been nothing more than a distraction; they knew full well they could not take that cargo in the middle of Hai space, <abducted> the governor."`
 			`	"Now, that shipment you escorted was exceptional due to the disaster, and it came from the Hai, who focused all of their nearby fleet's attention on it, albeit without following it in an obvious way either, of course." He was about to continue but is stopped by an advisor to deal with an urgent matter, and deals with them swiftly.`
 			choice
 				`	"What about this cargo, then?"`
