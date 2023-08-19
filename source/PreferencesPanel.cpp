@@ -950,7 +950,8 @@ void PreferencesPanel::DrawPluginInstalls()
 		string version = plugin["version"];
 		if(!name.size())
 			continue;
-		pluginInstallZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), Plugins::PluginInstallData(name, url, version));
+		pluginInstallZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(),
+			Plugins::PluginInstallData(name, url, version));
 		// Use url as that is more unique, just in case.
 		bool isSelected = (url == selectedPluginInstall.url);
 		const Plugin *installedVersion = Plugins::Get().Find(name);
