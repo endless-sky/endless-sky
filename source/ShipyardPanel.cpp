@@ -199,7 +199,7 @@ int ShipyardPanel::DrawDetails(const Point &center)
 				SpriteShader::Draw(collapsedArrow, startPoint + Point(20., 20.));
 			}
 
-			// Calculate the new ClickZone for the description.
+			// Calculate the ClickZone for the description and add it.
 			const Point descriptionDimensions(INFOBAR_WIDTH, descriptionOffset);
 			const Point descriptionCenter(center.X(), startPoint.Y() + descriptionOffset / 2);
 			const ClickZone<string> collapseDescription = ClickZone<string>(
