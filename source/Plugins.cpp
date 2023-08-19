@@ -154,7 +154,7 @@ bool Plugins::HasChanged()
 	for(const auto &it : plugins)
 		if(it.second.enabled != it.second.currentState)
 			return true;
-	return false || oldNetworkActivity;
+	return oldNetworkActivity;
 }
 
 
@@ -188,7 +188,7 @@ future<void> Plugins::Install(string url, string name, std::string version)
 	oldNetworkActivity = true;
 	return async(launch::async, [url, name, version]() noexcept -> void
 		{
-			currentBackgroundActivity.store(currentBackgroundActivity + 1);
+			++currentBackgroundActivity;
 
 			bool success = PluginHelper::Download(url.c_str(),
 				(Files::Plugins() + name + ".zip").c_str());
@@ -200,7 +200,7 @@ future<void> Plugins::Install(string url, string name, std::string version)
 			}
 			Files::Write(Files::Plugins() + name + "/version.txt", version);
 			Files::Delete(Files::Plugins() + name + ".zip");
-			currentBackgroundActivity.store(currentBackgroundActivity - 1);
+			--currentBackgroundActivity;
 		});
 }
 

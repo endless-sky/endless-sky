@@ -32,7 +32,7 @@
           ],
           "platform": "linux"
         },
-        "libcurl-simple-https",
+        "curl",
         "libarchive",
         "nlohmann-json"
       ]
