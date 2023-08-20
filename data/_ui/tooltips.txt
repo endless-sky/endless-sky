@@ -22,10 +22,10 @@ tip "afterburner energy:"
 	`Energy consumed per second when firing this afterburner.`
 
 tip "afterburner shields:"
-	`Shields displaced, consumed, or destroyed, per second when firing this afterburner.`
+	`Shield damage dealt to the ship per second when firing this afterburner.`
 
 tip "afterburner hull:"
-	`Hull that flakes off, breaks apart, or is otherwise compromised, per second when firing this afterburner.`
+	`Hull damage dealt to the ship per second when firing this afterburner.`
 
 tip "afterburner fuel:"
 	`Fuel consumed per second when firing this afterburner.`
@@ -460,10 +460,10 @@ tip "reverse thrusting heat:"
 	`Heat produced per second when firing reverse thrusters.`
 
 tip "reverse thrusting shields:"
-	`Shields displaced, consumed, or destroyed per second when firing reverse thrusters.`
+	`Shield damage dealt to the ship per second when firing reverse thrusters.`
 
 tip "reverse thrusting hull:"
-	`Hull that flakes off, breaks apart, or is otherwise compromised per second when firing reverse thrusters.`
+	`Hull damage dealt to the ship per second when firing reverse thrusters.`
 
 tip "reverse thrusting fuel:"
 	`Fuel consumed per second when firing reverse thrusters.`
@@ -583,10 +583,10 @@ tip "thrusting heat:"
 	`Heat generated per second when firing thrusters.`
 
 tip "thrusting shields:"
-	`Shields displaced, consumed, or destroyed, per second when firing thrusters.`
+	`Shield damage dealt to the ship per second when firing thrusters.`
 
 tip "thrusting hull:"
-	`Hull that flakes off, breaks apart, or is otherwise compromised, per second when firing thrusters.`
+	`Hull damage dealt to the ship per second when firing thrusters.`
 
 tip "thrusting fuel:"
 	`Fuel consumed per second when firing thrusters.`
@@ -628,10 +628,10 @@ tip "turning heat:"
 	`Heat generated per second when turning.`
 
 tip "turning shields:"
-	`Shields displaced, consumed, or destroyed, per second when turning.`
+	`Shield damage dealt to the ship per second when turning.`
 
 tip "turning hull:"
-	`Hull that flakes off, breaks apart, or is otherwise compromised, per second when turning.`
+	`Hull damage dealt to the ship per second when turning.`
 
 tip "turning fuel:"
 	`Fuel consumed per second when turning.`
