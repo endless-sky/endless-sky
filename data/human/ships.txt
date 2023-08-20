@@ -420,6 +420,7 @@ ship "Barb"
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description `Though the Syndicate doesn't build fighter carriers, it is testing the waters with the Barb, a cheap and flexible carrier-launched craft featuring newly-developed miniaturized ion engines. The design philosophy of the Barb seems to have been "uglier than the Protector," and as you look at the cockpit nestled between the massive gun port and turret mount, you wonder where the power systems are supposed to go. Though an awkward-looking ship, it seems flexible enough to become a dangerous addition to any fleet with carriers.`
+	description "	In order to be capable of fitting a Proton Gun while still maintaining a turret mount, Syndicated Systems had to remove various life support systems, requiring that the pilot wear a pressurized suit rather than having the cabin be fully pressurized. Although it makes piloting a Barb an uncomfortable experience, the result is a level of short-range firepower that is unheard-of for a craft its size."
 	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 
