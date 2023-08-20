@@ -1336,19 +1336,21 @@ void Engine::EnterSystem()
 				CreateWeather(hazard, stellar.Position());
 	}
 
-	for(const auto &raidFleet : system->GetGovernment()->RaidFleets())
-	{
-		double attraction = player.RaidFleetAttraction(raidFleet, system);
-		if(attraction > 0.)
-			for(int i = 0; i < 10; ++i)
-				if(Random::Real() < attraction)
-				{
-					raidFleet.GetFleet()->Place(*system, newShips);
-					Messages::Add("Your fleet has attracted the interest of a "
-							+ raidFleet.GetFleet()->GetGovernment()->GetName() + " raiding party.",
-							Messages::Importance::Highest);
-				}
-	}
+	if(!system->NoRaids())
+		for(const auto &raidFleet : !system->RaidFleets().empty() ?
+				system->RaidFleets(): system->GetGovernment()->RaidFleets())
+		{
+			double attraction = player.RaidFleetAttraction(raidFleet, system);
+			if(attraction > 0.)
+				for(int i = 0; i < 10; ++i)
+					if(Random::Real() < attraction)
+					{
+						raidFleet.GetFleet()->Place(*system, newShips);
+						Messages::Add("Your fleet has attracted the interest of a "
+								+ raidFleet.GetFleet()->GetGovernment()->GetName() + " raiding party.",
+								Messages::Importance::Highest);
+					}
+		}
 
 	grudge.clear();
 

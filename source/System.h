@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Hazard.h"
 #include "Point.h"
+#include "RaidFleets.h"
 #include "RandomEvent.h"
 #include "Set.h"
 #include "StellarObject.h"
@@ -173,6 +174,9 @@ public:
 	// The smallest arrival period of a fleet (or 0 if no fleets arrive)
 	int MinimumFleetPeriod() const;
 
+	const RaidFleets &RaidFleets() const;
+	bool NoRaids() const;
+
 
 private:
 	void LoadObject(const DataNode &node, Set<Planet> &planets, int parent = -1);
@@ -242,6 +246,9 @@ private:
 	double solarWind = 0.;
 	double starfieldDensity = 1.;
 	int minimumFleetPeriod = 0;
+
+	class RaidFleets raidFleets;
+	bool noRaids = false;
 
 	// The amount of additional distance that ships will arrive away from the
 	// system center when entering this system through a hyperspace link.
