@@ -98,7 +98,7 @@ void Set<Type>::Erase(std::string key)
 {
 	const auto it = data.find(key);
 	if(it != data.end())
-    	data.erase(it);
+		data.erase(it);
 }
 
 

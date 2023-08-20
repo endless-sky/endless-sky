@@ -200,7 +200,7 @@ future<void> Plugins::Install(const InstallData &installData, bool guarded)
 			return future<void>();
 		else
 			activePlugins.insert(installData.name);
-		
+
 		// Create a new entry for the plugin.
 		Plugin *newPlugin = plugins.Get(installData.name);
 		newPlugin->name = installData.name;
