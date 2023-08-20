@@ -1033,7 +1033,7 @@ tip "no fuel!"
 	`This ship does not have enough fuel to provide energy to power its systems. You should increase the fuel capacity.`
 
 tip "no thruster!"
-	`This ship is unable to move. You should install some thrusters.`
+	`This ship is unable to move. You should install thrusters.`
 
 tip "no steering!"
 	`This ship is unable to turn. You should install some steering systems.`
