@@ -762,9 +762,9 @@ ship "Waverider"
 	gun 22.5 -56.5 "Particle Cannon"
 	gun -31.5 -7 "Particle Cannon"
 	gun 31.5 -7 "Particle Cannon"
-	engine 0 56 "A120 Atomic Thruster"
-	engine -23 64 "A125 Atomic Steering"
-	engine 23 64 "A125 Atomic Steering"
+	engine 0 56 
+	engine -23 64 
+	engine 23 64 
 	
 
 	explode "tiny explosion" 20
