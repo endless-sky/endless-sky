@@ -39,7 +39,6 @@ using namespace std;
 
 namespace PluginHelper {
 	const int MAX_SIZE = 1000000000;
-	bool curlInitialized = false;
 
 	size_t WriteData(void *ptr, size_t size, size_t nmemb, FILE *stream) {
 		size_t written = fwrite(ptr, size, nmemb, stream);
@@ -50,21 +49,12 @@ namespace PluginHelper {
 
 	bool Download(string url, string location)
 	{
-		CURL *curl;
-		CURLcode res = CURLE_OK;
-
-		if(!curlInitialized)
-		{
-			curl_global_init(CURL_GLOBAL_DEFAULT);
-			curlInitialized = true;
-		}
-
-		curl = curl_easy_init();
+		CURL *curl = curl_easy_init();
 		if(curl)
 		{
 #if defined _WIN32
 			FILE *out = nullptr;
-			_wfopen_s(&out, Utf8::ToUTF16(location).c_str(), L"w");
+			_wfopen_s(&out, Utf8::ToUTF16(location).c_str(), L"wb");
 #else
 			FILE *out = fopen(location.c_str(), "wb");
 #endif
@@ -75,22 +65,22 @@ namespace PluginHelper {
 			// How long we will wait
 			curl_easy_setopt(curl, CURLOPT_CA_CACHE_TIMEOUT, 604800L);
 			// What is the maximum filesize in bytes.
-			curl_easy_setopt(curl, CURLOPT_MAXFILESIZE, 1000000000L);
+			curl_easy_setopt(curl, CURLOPT_MAXFILESIZE, MAX_SIZE);
 			// Set the write function and the output file used in the write function
 			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteData);
 			curl_easy_setopt(curl, CURLOPT_WRITEDATA, out);
 
-			res = curl_easy_perform(curl);
+			CURLcode res = curl_easy_perform(curl);
 			if(res != CURLE_OK)
 				fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(res));
 			curl_easy_cleanup(curl);
 
 			fclose(out);
+
+			return res == CURLE_OK;
 		}
-
-		curl_global_cleanup();
-
-		return res == CURLE_OK;
+		else
+			return false;
 	}
 
 

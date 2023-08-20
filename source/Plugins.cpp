@@ -212,17 +212,19 @@ future<void> Plugins::Install(const InstallData &installData, bool guarded)
 	}
 	return async(launch::async, [installData]() noexcept -> void
 		{
-
-			bool success = PluginHelper::Download(installData.url,
-				Files::Plugins() + installData.name + ".zip");
+			string zipLocation = Files::Plugins() + installData.name + ".zip";
+			bool success = PluginHelper::Download(installData.url, zipLocation);
 			if(success)
 			{
 				success = PluginHelper::ExtractZIP(
-					Files::Plugins() + installData.name + ".zip",
+					zipLocation,
 					Files::Plugins(), installData.name + "/");
+				if(success)
+					Files::Write(Files::Plugins() + installData.name + "/version.txt", installData.version);
+				else
+					Files::DeleteDir(Files::Plugins() + installData.name);
 			}
-			Files::Write(Files::Plugins() + installData.name + "/version.txt", installData.version);
-			Files::Delete(Files::Plugins() + installData.name + ".zip");
+			Files::Delete(zipLocation);
 			{
 				lock_guard<mutex> guard(activePluginsMutex);
 				activePlugins.erase(installData.name);

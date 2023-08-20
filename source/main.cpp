@@ -45,6 +45,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include <chrono>
+#include <curl/curl.h>
 #include <iostream>
 #include <map>
 #include <thread>
@@ -87,6 +88,7 @@ int main(int argc, char *argv[])
 	if(argc > 1)
 		InitConsole();
 #endif
+
 	Conversation conversation;
 	bool debugMode = false;
 	bool loadOnly = false;
@@ -126,6 +128,9 @@ int main(int argc, char *argv[])
 	}
 	printData = PrintData::IsPrintDataArgument(argv);
 	Files::Init(argv);
+
+	// Init curl.
+	curl_global_init(CURL_GLOBAL_DEFAULT);
 
 	try {
 		// Load plugin preferences before game data if any.
@@ -225,6 +230,9 @@ int main(int argc, char *argv[])
 
 	Audio::Quit();
 	GameWindow::Quit();
+
+	// Exit curl.
+	curl_global_cleanup();
 
 	return 0;
 }
