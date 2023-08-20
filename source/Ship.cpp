@@ -1812,7 +1812,7 @@ int Ship::Scan(const PlayerInfo &player)
 					const double depth, const int event)
 	-> void
 	{
-		if(elapsed > SCAN_TIME)
+		if(elapsed >= SCAN_TIME)
 			return;
 		if(distanceSquared > scannerRangeSquared)
 			return;
