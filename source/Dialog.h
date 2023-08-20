@@ -39,7 +39,7 @@ class System;
 class Dialog : public Panel {
 public:
 	// An OK / Cancel dialog where Cancel can be disabled. The okIsActive lets
-	// you select whether "OK" (true) or "Cancel" (false) are selected.
+	// you select whether "OK" (true) or "Cancel" (false) are selected as the default option.
 	Dialog(std::function<void()> okFunction, const std::string &message, Truncate truncate,
 		bool canCancel, bool okIsActive);
 	// Dialog that has no callback (information only). In this form, there is
