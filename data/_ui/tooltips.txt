@@ -388,7 +388,7 @@ tip "mass:"
 	`Mass, in tons. A ship's mass determines how fast it turns and accelerates and its maximum heat before overheating.`
 
 tip "max speed:"
-	`The maximum speed of the ship when using thrusters but no afterburners.`
+	`The maximum speed of this ship when using thrusters. Excludes the effect of afterburners, unless there are no normal thrusters installed.`
 
 tip "movement:"
 	`How quickly this ship can accelerate and turn.`
