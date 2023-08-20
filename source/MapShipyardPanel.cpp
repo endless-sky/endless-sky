@@ -141,7 +141,7 @@ double MapShipyardPanel::SystemValue(const System *system) const
 		return numeric_limits<double>::quiet_NaN();
 
 	// Visiting a system is sufficient to know what ports are available on its planets.
-	double value = -.5;
+	double value = -1.;
 	for(const StellarObject &object : system->Objects())
 		if(object.HasSprite() && object.HasValidPlanet())
 		{
@@ -162,7 +162,7 @@ int MapShipyardPanel::FindItem(const string &text) const
 	int bestItem = -1;
 	for(unsigned i = 0; i < list.size(); ++i)
 	{
-		int index = Search(list[i]->ModelName(), text);
+		int index = Search(list[i]->DisplayModelName(), text);
 		if(index >= 0 && index < bestIndex)
 		{
 			bestIndex = index;
@@ -218,7 +218,7 @@ void MapShipyardPanel::DrawItems()
 			if(!sprite)
 				sprite = ship->GetSprite();
 			Draw(corner, sprite, ship->CustomSwizzle(), isForSale, ship == selected,
-					ship->ModelName(), price, info);
+					ship->DisplayModelName(), price, info);
 			list.push_back(ship);
 		}
 	}
@@ -242,5 +242,5 @@ void MapShipyardPanel::Init()
 
 	for(auto &it : catalog)
 		sort(it.second.begin(), it.second.end(),
-			[](const Ship *a, const Ship *b) { return a->ModelName() < b->ModelName(); });
+			[](const Ship *a, const Ship *b) { return a->DisplayModelName() < b->DisplayModelName(); });
 }
