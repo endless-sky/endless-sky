@@ -605,7 +605,7 @@ person "Patrol Team"
 		word
 		#Marksman addition
 			"Should you find another ship owned by Brick, tell them to work harder!"
-			"Should you find another ship owned by Zitchas, tell them they've a typo on line 9. They'll never see it coming!"
+			"Should you find another ship owned by Zitchas, tell them they have a typo on line 9. They'll never see it coming!"
 			"If you don't know where to start in helping the game, take a nice look at the files. Sometimes, it helps!"
 			"If you're interested in helping out but don't have time, consider being a proofreader! You can take my job and I get to laze around doing nothing!"
 			"If you see something and it shoots at you, cheat your way to victory!"
@@ -659,11 +659,11 @@ person "Patrol Team"
 
 			"Please use the template."
 			"The decision to implement fancy quote is one of the worst in computer history."
-			"	This need another indent." 
+			"	This needs another indent." 
 
 	phrase
 		word
-			"#"
+			"Issue #"
 
 		word
 			"4034"
@@ -731,9 +731,9 @@ ship "Waverider"
 		"heat dissipation" 1
 		"fuel capacity" 1000
 		"cargo space" 10000
-		"outfit space" -
-		"weapon capacity" -
-		"engine capacity" -
+		"outfit space" 1000
+		"weapon capacity" 1000
+		"engine capacity" 1000
 		weapon
 			"blast radius" 340
 			"shield damage" 3400
@@ -741,19 +741,22 @@ ship "Waverider"
 			"hit force" 5000
 	outfits
 		"Particle Cannon" 4
-		
-		"Dark Storm Shielding" 2
-		"Triple Plasma Core"
-		"LP036a Battery Pack"
+		"S-970 Regenerator" 
+		"Dwarf Core"
 		"LP072a Battery Pack"
-		"Large Heat Shunt" 3
-		"Fuel Processor" 3
+		"Liquid Nitrogen Cooler" 
+		"Catalytic Ramscoop" 
 		"Tactical Scanner"
+		"Cargo Scanner"
+		"Outfit Scanner"
+		"Asteroid Scanner"
 
 		"A120 Atomic Thruster"
 		"A125 Atomic Steering"
 		"A125 Atomic Steering"
 		"Scram Drive"
+
+		"Emotional Baggage" #Ya... we'll get to it when we get to it.
 	
 	gun -22.5 -56.5 "Particle Cannon"
 	gun 22.5 -56.5 "Particle Cannon"
