@@ -24,7 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cstring>
 #include <curl/curl.h>
 #include <sys/stat.h>
-#include <stdio.h>
+#include <cstdio>
 
 #if defined _WIN32
 #include "text/Utf8.h"
