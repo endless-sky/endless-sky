@@ -154,8 +154,9 @@ color "warning conflict" .315 .27 .12 1.
 color "warning no command" 0.16 0.16 0.13 1.
 
 # Colors used for messages
-color "message importance highest"	1. .5 0. 1.
-color "message importance default"	1. 1. 1. 1.
+color "message importance highest" 1. .5 0. 1.
+color "message importance info" 0. 1. .5 1.
+color "message importance default" 1. 1. 1. 1.
 
 # Colors used when drawing the map (system names, links, and the player's desired route).
 # (The color of the ring that represents a given system is context-sensitive.)

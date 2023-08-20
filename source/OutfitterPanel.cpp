@@ -266,28 +266,33 @@ int OutfitterPanel::DrawDetails(const Point &center)
 		if(thumbnail)
 			SpriteShader::Draw(thumbnail, thumbnailCenter);
 
-		double descriptionOffset = 40.;
+		const bool hasDescription = outfitInfo.DescriptionHeight();
 
-		// Maintenance note: This can be replaced with collapsed.contains() in C++20
-		if(!collapsed.count(DESCRIPTION))
-		{
-			descriptionOffset = outfitInfo.DescriptionHeight();
-			outfitInfo.DrawDescription(startPoint);
-		}
-		else
-		{
-			const Color &dim = *GameData::Colors().Get("medium");
-			font.Draw(DESCRIPTION, startPoint + Point(35., 12.), dim);
-			const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
-			SpriteShader::Draw(collapsedArrow, startPoint + Point(20., 20.));
-		}
+		double descriptionOffset = hasDescription ? 40. : 0.;
 
-		// Calculate the ClickZone for the description and add it.
-		const Point descriptionDimensions(INFOBAR_WIDTH, descriptionOffset);
-		const Point descriptionCenter(center.X(), startPoint.Y() + descriptionOffset / 2);
-		ClickZone<string> collapseDescription = ClickZone<string>(
-			descriptionCenter, descriptionDimensions, DESCRIPTION);
-		categoryZones.emplace_back(collapseDescription);
+		if(hasDescription)
+		{
+			// Maintenance note: This can be replaced with collapsed.contains() in C++20
+			if(!collapsed.count(DESCRIPTION))
+			{
+				descriptionOffset = outfitInfo.DescriptionHeight();
+				outfitInfo.DrawDescription(startPoint);
+			}
+			else
+			{
+				const Color &dim = *GameData::Colors().Get("medium");
+				font.Draw(DESCRIPTION, startPoint + Point(35., 12.), dim);
+				const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
+				SpriteShader::Draw(collapsedArrow, startPoint + Point(20., 20.));
+			}
+
+			// Calculate the ClickZone for the description and add it.
+			const Point descriptionDimensions(INFOBAR_WIDTH, descriptionOffset);
+			const Point descriptionCenter(center.X(), startPoint.Y() + descriptionOffset / 2);
+			ClickZone<string> collapseDescription = ClickZone<string>(
+				descriptionCenter, descriptionDimensions, DESCRIPTION);
+			categoryZones.emplace_back(collapseDescription);
+		}
 
 		const Point requirementsPoint(startPoint.X(), startPoint.Y() + descriptionOffset);
 		const Point attributesPoint(startPoint.X(), requirementsPoint.Y() + outfitInfo.RequirementsHeight());
