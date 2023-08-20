@@ -438,11 +438,11 @@ tip "optical jamming:"
 tip "piercing:"
 	`Percentage of this weapon's damage that leaks through to the hull while the target's shields are still active.`
 
-tip "piercing resistance:"
-	`Piercing damage resisted on all incoming projectiles, preventing damage from leaking through the shields to the hull.`
-
 tip "piercing protection:"
 	`Protection provided against shield piercing damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in damage leak, while a total value of 11 only results in a 10 percent reduction.`
+
+tip "piercing resistance:"
+	`Piercing damage resisted on all incoming projectiles, preventing damage from leaking through the shields to the hull.`
 
 tip "radar jamming:"
 	`Reduces the ability of radar-guided missiles to track your ship. The more radar jamming is installed, the greater the distance at which missiles can be jammed, and the greater the chance that a jammed missile will fly off in a random direction.`
