@@ -4440,7 +4440,7 @@ mission "Fumbling Mugger"
 			label why2
 			`	The woman looks at you with a confused expression. "Huh? Why would you want to know that?"`
 			`	"Just humor me for a moment," you reply.`
-			`	She sighs. "A while ago, I was in a bad situation. My boyfriend had just moved to <planet> for employment, and I was to join him in a year. My father had other plans. He used my boyfriend's absence to justify marrying me into another, richer family. Wanted a chunk of their fortune, I suppose. I tried everying I could to convince him otherwise, but..." She looks down. "So I snuck off to the spaceport and got a merchant to transport me. She forced me to pay upfront, however, and as soon as we landed on <origin>, she kicked me out to make space for another set of passengers."`
+			`	She sighs. "A while ago, I was in a bad situation. My boyfriend had just moved to <planet> for employment, and I was to join him in a year. My father had other plans. He used my boyfriend's absence to justify marrying me into another, richer family. Wanted a chunk of their fortune, I suppose. I tried everything I could to convince him otherwise, but..." She looks down. "So I snuck off to the spaceport and got a merchant to transport me. She forced me to pay upfront, however, and as soon as we landed on <origin>, she kicked me out to make space for another set of passengers."`
 			`	Her eyebrows furrow. "Wait, you're not planning to bring me to <planet> after what I've just done, are you?"`
 			choice
 				`	"I can take you there."`

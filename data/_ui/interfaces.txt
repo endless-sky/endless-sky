@@ -154,8 +154,9 @@ color "warning conflict" .315 .27 .12 1.
 color "warning no command" 0.16 0.16 0.13 1.
 
 # Colors used for messages
-color "message importance highest"	1. .5 0. 1.
-color "message importance default"	1. 1. 1. 1.
+color "message importance highest" 1. .5 0. 1.
+color "message importance info" 0. 1. .5 1.
+color "message importance default" 1. 1. 1. 1.
 
 # Colors used when drawing the map (system names, links, and the player's desired route).
 # (The color of the ring that represents a given system is context-sensitive.)
@@ -164,7 +165,6 @@ color "map name" .6 .6 .6 .6
 color "map travel ok fleet" .2 .5 0. 0.
 color "map travel ok flagship" .5 .4 0. 0.
 color "map travel ok none" .55 .1 0. 0.
-color "map travel wormhole" .5 .2 .9 1.
 color "map wormhole" .5 .2 .9 1.
 color "map orbits fleet destination" 1. 1. 1. 1.
 
@@ -789,8 +789,9 @@ interface "planet"
 		size 18
 		align left
 		pad 10 0
+	visible
 	
-	visible if "has ship"
+	active if "has ship"
 	sprite "ui/planet dialog button"
 		center 280 270
 	button d "_Depart"
