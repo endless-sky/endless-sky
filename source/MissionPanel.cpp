@@ -257,7 +257,7 @@ void MissionPanel::Draw()
 	DrawSelectedSystem();
 	DrawMissionInfo();
 	DrawTooltips();
-	DrawButtons("is missions");
+	FinishDrawing("is missions");
 }
 
 
@@ -385,11 +385,17 @@ bool MissionPanel::Click(int x, int y, int clicks)
 		unsigned index = max(0, (y + static_cast<int>(availableScroll) - 36 - Screen::Top()) / 20);
 		if(index < available.size())
 		{
+			const auto lastAvailableIt = availableIt;
 			availableIt = available.begin();
 			while(index--)
 				++availableIt;
 			acceptedIt = accepted.end();
 			dragSide = -1;
+			if(availableIt == lastAvailableIt)
+			{
+				CycleInvolvedSystems(*availableIt);
+				return true;
+			}
 			SetSelectedScrollAndCenter();
 			return true;
 		}
@@ -400,6 +406,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 		int index = max(0, (y + static_cast<int>(acceptedScroll) - 36 - Screen::Top()) / 20);
 		if(index < AcceptedVisible())
 		{
+			const auto lastAcceptedIt = acceptedIt;
 			acceptedIt = accepted.begin();
 			while(index || !acceptedIt->IsVisible())
 			{
@@ -408,6 +415,11 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			}
 			availableIt = available.end();
 			dragSide = 1;
+			if(lastAcceptedIt == acceptedIt)
+			{
+				CycleInvolvedSystems(*acceptedIt);
+				return true;
+			}
 			SetSelectedScrollAndCenter();
 			return true;
 		}
@@ -595,6 +607,8 @@ void MissionPanel::SetSelectedScrollAndCenter(bool immediate)
 
 	// Center on the selected system.
 	CenterOnSystem(selectedSystem, immediate);
+
+	cycleInvolvedIndex = 0;
 }
 
 
@@ -954,7 +968,13 @@ void MissionPanel::Accept(bool force)
 
 	++availableIt;
 	player.AcceptJob(toAccept, GetUI());
-	if(availableIt == available.end() && !available.empty())
+
+	cycleInvolvedIndex = 0;
+
+	if(available.empty())
+		return;
+
+	if(availableIt == available.end())
 		--availableIt;
 
 	// Check if any other jobs are available with the same destination. Prefer
@@ -963,13 +983,34 @@ void MissionPanel::Accept(bool force)
 	{
 		const Planet *planet = toAccept.Destination();
 		const System *system = planet->GetSystem();
-		for(auto it = available.begin(); it != available.end(); ++it)
+		bool stillLooking = true;
+
+		// Updates availableIt if matching system found, returns true if planet also matches.
+		auto SelectNext = [this, planet, system, &stillLooking](list<Mission>::const_iterator &it) -> bool
+		{
 			if(it->Destination() && it->Destination()->IsInSystem(system))
 			{
-				availableIt = it;
 				if(it->Destination() == planet)
-					break;
+				{
+					availableIt = it;
+					return true;
+				}
+				else if(stillLooking)
+				{
+					stillLooking = false;
+					availableIt = it;
+				}
 			}
+			return false;
+		};
+
+		const list<Mission>::const_iterator startHere = availableIt;
+		for(auto it = startHere; it != available.end(); ++it)
+			if(SelectNext(it))
+				return;
+		for(auto it = startHere; it != available.begin(); )
+			if(SelectNext(--it))
+				return;
 	}
 }
 
@@ -1066,4 +1107,30 @@ bool MissionPanel::SelectAnyMission()
 		return availableIt != available.end() || acceptedIt != accepted.end();
 	}
 	return false;
+}
+
+
+
+void MissionPanel::CycleInvolvedSystems(const Mission &mission)
+{
+	cycleInvolvedIndex++;
+
+	int index = 0;
+	for(const System *waypoint : mission.Waypoints())
+		if(++index == cycleInvolvedIndex)
+		{
+			CenterOnSystem(waypoint);
+			return;
+		}
+
+	for(const Planet *stopover : mission.Stopovers())
+		if(++index == cycleInvolvedIndex)
+		{
+			CenterOnSystem(stopover->GetSystem());
+			return;
+		}
+
+
+	cycleInvolvedIndex = 0;
+	CenterOnSystem(mission.Destination()->GetSystem());
 }

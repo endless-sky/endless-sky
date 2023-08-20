@@ -20,7 +20,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "EsUuid.h"
 #include "ExclusiveItem.h"
 #include "Fleet.h"
+#include "FleetCargo.h"
 #include "LocationFilter.h"
+#include "NPCAction.h"
 #include "Personality.h"
 #include "Phrase.h"
 
@@ -32,6 +34,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class DataNode;
 class DataWriter;
 class Government;
+class Mission;
 class Planet;
 class PlayerInfo;
 class Ship;
@@ -77,7 +80,9 @@ public:
 	const std::list<std::shared_ptr<Ship>> Ships() const;
 
 	// Handle the given ShipEvent.
-	void Do(const ShipEvent &event, PlayerInfo &player, UI *ui = nullptr, bool isVisible = true);
+	enum Trigger {KILL, BOARD, ASSIST, DISABLE, SCAN_CARGO, SCAN_OUTFITS, CAPTURE, PROVOKE};
+	void Do(const ShipEvent &event, PlayerInfo &player, UI *ui = nullptr,
+		const Mission *caller = nullptr, bool isVisible = true);
 	// Determine if the NPC is in a successful state, assuming the player is in the given system.
 	// (By default, a despawnable NPC has succeeded and is not actually checked.)
 	bool HasSucceeded(const System *playerSystem, bool ignoreIfDespawnable = true) const;
@@ -89,13 +94,23 @@ public:
 
 	// Create a copy of this NPC but with the fleets replaced by the actual
 	// ships they represent, wildcards in the conversation text replaced, etc.
-	NPC Instantiate(std::map<std::string, std::string> &subs, const System *origin, const System *destination) const;
+	NPC Instantiate(std::map<std::string, std::string> &subs, const System *origin, const System *destination,
+			int jumps, int64_t payload) const;
+
+
+private:
+	// Handle any NPC mission actions that may have been triggered by a ShipEvent.
+	void DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, UI *ui, const Mission *caller);
 
 
 private:
 	// The government of the ships in this NPC:
 	const Government *government = nullptr;
 	Personality personality;
+
+	// The cargo ships in this NPC will be able to carry.
+	FleetCargo cargo;
+	bool overrideFleetCargo = false;
 
 	EsUuid uuid;
 
@@ -136,7 +151,11 @@ private:
 	int failIf = 0;
 	bool mustEvade = false;
 	bool mustAccompany = false;
-	std::map<const Ship *, int> actions;
+	// The ShipEvent actions that have been done to each ship.
+	std::map<const Ship *, int> shipEvents;
+
+	// The NPCActions that this NPC can run on certain events/triggers.
+	std::map<Trigger, NPCAction> npcActions;
 };
 
 
