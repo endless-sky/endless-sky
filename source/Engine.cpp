@@ -1338,7 +1338,7 @@ void Engine::EnterSystem()
 
 	if(!system->NoRaids())
 		for(const auto &raidFleet : !system->GetRaidFleets().empty() ?
-				system->GetRaidFleets(): system->GetGovernment()->GetRaidFleets())
+				system->GetRaidFleets() : system->GetGovernment()->GetRaidFleets())
 		{
 			double attraction = player.RaidFleetAttraction(raidFleet, system);
 			if(attraction > 0.)

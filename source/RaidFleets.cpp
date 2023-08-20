@@ -1,4 +1,4 @@
-/* RaidFleet.cpp
+/* RaidFleets.cpp
 Copyright (c) 2023 by Hurleveur
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -13,10 +13,11 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
+#include "RaidFleets.h"
+
 #include "DataNode.h"
 #include "Fleet.h"
 #include "GameData.h"
-#include "RaidFleets.h"
 
 
 RaidFleet::RaidFleet(const Fleet *fleet, double minAttraction, double maxAttraction)

@@ -1,4 +1,4 @@
-/* RaidFleet.h
+/* RaidFleets.h
 Copyright (c) 2023 by Hurleveur
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -23,13 +23,13 @@ class DataNode;
 
 class RaidFleet {
 public:
-	RaidFleet(const Fleet* fleet, double minAttraction, double maxAttraction);
-	const Fleet* GetFleet() const;
+	RaidFleet(const Fleet *fleet, double minAttraction, double maxAttraction);
+	const Fleet *GetFleet() const;
 	double MinAttraction() const;
 	double MaxAttraction() const;
 
 private:
-	const Fleet* fleet = nullptr;
+	const Fleet *fleet = nullptr;
 	double minAttraction;
 	double maxAttraction;
 };
