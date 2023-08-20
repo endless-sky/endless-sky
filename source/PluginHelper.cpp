@@ -119,7 +119,7 @@ namespace PluginHelper {
 		archive_write_disk_set_options(ext, flags);
 		archive_read_support_format_all(read);
 		if(!filename.empty() && strcmp(filename.c_str(), "-") == 0)
-			filename = "";
+			filename.clear();
 		if(archive_read_open_filename(read, filename.c_str(), 10240))
 			return false;
 
