@@ -439,7 +439,7 @@ tip "piercing:"
 	`Percentage of this weapon's damage that leaks through to the hull while the target's shields are still active.`
 
 tip "piercing protection:"
-	`Protection provided against shield piercing damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in damage leak, while a total value of 11 only results in a 10 percent reduction.`
+	`Protection provided against piercing weapons. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in piercing effectiveness, while a total value of 11 only results in a 10 percent reduction.`
 
 tip "piercing resistance:"
 	`Piercing damage resisted on all incoming projectiles, preventing damage from leaking through the shields to the hull.`
