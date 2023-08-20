@@ -189,7 +189,7 @@ void Government::Load(const DataNode &node)
 		}
 
 		if(key == "raid")
-			raidFleets.Load(node, remove, valueIndex);
+			raidFleets.Load(child, remove, valueIndex);
 		// Handle the attributes which cannot have a value removed.
 		else if(remove)
 			child.PrintTrace("Cannot \"remove\" a specific value from the given key:");

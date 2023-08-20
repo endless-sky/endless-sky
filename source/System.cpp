@@ -275,7 +275,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				fleets.emplace_back(fleet, child.Value(valueIndex + 1));
 		}
 		else if(key == "raid")
-			raidFleets.Load(node, remove, valueIndex);
+			raidFleets.Load(child, remove, valueIndex);
 		else if(key == "hazard")
 		{
 			const Hazard *hazard = GameData::Hazards().Get(value);
