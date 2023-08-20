@@ -300,8 +300,8 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		else if(!planet->IsDefending())
 			GetUI()->Push(new Dialog([this]() { message = planet->DemandTribute(player); },
 				"Demanding tribute may cause this planet to launch defense fleets to fight you. "
-				"After battling the fleets, you can keep demanding tribute until the planet relents.\n"
-				"This barbaric act may hurt your reputation severely. Do you want to proceed?",
+				"After battling the fleets, you can demand tribute again for the planet to relent.\n"
+				"This act may hurt your reputation severely. Do you want to proceed?",
 				Truncate::NONE, true, false));
 		else
 			message = planet->DemandTribute(player);
