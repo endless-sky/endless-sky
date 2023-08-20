@@ -38,6 +38,7 @@ using namespace std;
 
 
 namespace PluginHelper {
+	// Max size for extracting an archive in bytes this will be 1GB.
 	const int MAX_SIZE = 1000000000;
 	bool curlInitialized = false;
 
