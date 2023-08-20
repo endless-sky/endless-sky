@@ -28,10 +28,6 @@ target_sources(EndlessSkyLib PRIVATE
 	Armament.h
 	AsteroidField.cpp
 	AsteroidField.h
-	Attribute.cpp
-	Attribute.h
-	AttributeCategory.h
-	AttributeEffect.h
 	AttributeStore.cpp
 	AttributeStore.h
 	Audio.cpp
@@ -349,6 +345,10 @@ target_sources(EndlessSkyLib PRIVATE
 	opengl.h
 	pi.h
 	shift.h
+	attribute/Attribute.cpp
+	attribute/Attribute.h
+	attribute/AttributeCategory.h
+	attribute/AttributeEffect.h
 	comparators/ByGivenOrder.h
 	comparators/ByName.h
 	comparators/BySeriesAndIndex.h

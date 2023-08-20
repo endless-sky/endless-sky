@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "AttributeCategory.h"
 #include "AttributeEffect.h"
-#include "DataNode.h"
+#include "../DataNode.h"
 
 #include <string>
 

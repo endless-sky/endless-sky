@@ -74,10 +74,6 @@
 		<Unit filename="source/Armament.h" />
 		<Unit filename="source/AsteroidField.cpp" />
 		<Unit filename="source/AsteroidField.h" />
-		<Unit filename="source/Attribute.cpp" />
-		<Unit filename="source/Attribute.h" />
-		<Unit filename="source/AttributeCategory.h" />
-		<Unit filename="source/AttributeEffect.h" />
 		<Unit filename="source/AttributeStore.cpp" />
 		<Unit filename="source/AttributeStore.h" />
 		<Unit filename="source/Audio.cpp" />
@@ -397,6 +393,10 @@
 		<Unit filename="source/opengl.h" />
 		<Unit filename="source/pi.h" />
 		<Unit filename="source/shift.h" />
+		<Unit filename="source/attribute/Attribute.cpp" />
+		<Unit filename="source/attribute/Attribute.h" />
+		<Unit filename="source/attribute/AttributeCategory.h" />
+		<Unit filename="source/attribute/AttributeEffect.h" />
 		<Unit filename="source/comparators/ByGivenOrder.h" />
 		<Unit filename="source/comparators/ByName.h" />
 		<Unit filename="source/comparators/BySeriesAndIndex.h" />

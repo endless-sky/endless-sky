@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef ATTRIBUTE_STORE_H_
 #define ATTRIBUTE_STORE_H_
 
-#include "Attribute.h"
+#include "attribute/Attribute.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Dictionary.h"

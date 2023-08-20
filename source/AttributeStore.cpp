@@ -15,8 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "AttributeStore.h"
 
-#include "Attribute.h"
-
 using namespace std;
 
 const double AttributeStore::EPS = 0.0000000001;
