@@ -50,10 +50,24 @@ public:
 		WHEN_FIRING
 	};
 
+	enum class AutoFire : int_fast8_t {
+		OFF = 0,
+		ON,
+		GUNS_ONLY,
+		TURRETS_ONLY
+	};
+
 	enum class BoardingPriority : int_fast8_t {
 		PROXIMITY = 0,
 		VALUE,
 		MIXED
+	};
+
+	enum class FlotsamCollection : int_fast8_t {
+		OFF = 0,
+		ON,
+		FLAGSHIP,
+		ESCORT
 	};
 
 	enum class BackgroundParallax : int {
@@ -110,6 +124,11 @@ public:
 	static AutoAim GetAutoAim();
 	static const std::string &AutoAimSetting();
 
+	// Auto fire setting, either "off", "on", "guns only", or "turrets only".
+	static void ToggleAutoFire();
+	static AutoFire GetAutoFire();
+	static const std::string &AutoFireSetting();
+
 	// Background parallax setting, either "fast", "fancy", or "off".
 	static void ToggleParallax();
 	static BackgroundParallax GetBackgroundParallax();
@@ -119,6 +138,11 @@ public:
 	static void ToggleBoarding();
 	static BoardingPriority GetBoardingPriority();
 	static const std::string &BoardingSetting();
+
+	// Flotsam setting, either "off", "on", "flagship only", or "escorts only".
+	static void ToggleFlotsam();
+	static FlotsamCollection GetFlotsamCollection();
+	static const std::string &FlotsamSetting();
 
 	// Red alert siren and symbol
 	static void ToggleAlert();
