@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "EscortDisplay.h"
 
 #include "Color.h"
-#include "FillShader.h"
+#include "text/DisplayText.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
