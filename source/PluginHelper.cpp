@@ -118,7 +118,7 @@ namespace PluginHelper {
 		archive *ext = archive_write_disk_new();
 		archive_write_disk_set_options(ext, flags);
 		archive_read_support_format_all(read);
-		if(!filename.empty() && strcmp(filename.c_str(), "-") == 0)
+		if(!filename.empty() && filename.front() == '-')
 			filename.clear();
 		if(archive_read_open_filename(read, filename.c_str(), 10240))
 			return false;
