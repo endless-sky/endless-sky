@@ -450,7 +450,7 @@ fleet "Dissonance Miners"
 
 
 fleet "Small Dissonance Pirates"
-	government "Avgi (Dissonance Aggressive)"
+	government "Avgi (Angry Dissonance)"
 	names "avgi civilian names"
 	fighters
 		names "avgi fighter names"
@@ -466,7 +466,7 @@ fleet "Small Dissonance Pirates"
 
 
 fleet "Large Dissonance Pirates"
-	government "Avgi (Dissonance Aggressive)"
+	government "Avgi (Angry Dissonance)"
 	names "avgi civilian names"
 	fighters
 		names "avgi fighter names"
