@@ -38,6 +38,7 @@ using namespace std;
 
 
 namespace PluginHelper {
+	const int MAX_SIZE = 1000000000;
 	bool curlInitialized = false;
 
 	size_t WriteData(void *ptr, size_t size, size_t nmemb, FILE *stream) {
@@ -73,6 +74,8 @@ namespace PluginHelper {
 			curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1l);
 			// How long we will wait
 			curl_easy_setopt(curl, CURLOPT_CA_CACHE_TIMEOUT, 604800L);
+			// What is the maximum filesize in bytes.
+			curl_easy_setopt(curl, CURLOPT_MAXFILESIZE, 1000000000L);
 			// Set the write function and the output file used in the write function
 			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteData);
 			curl_easy_setopt(curl, CURLOPT_WRITEDATA, out);
@@ -116,6 +119,8 @@ namespace PluginHelper {
 
 	bool ExtractZIP(string filename, string destination, string expectedName)
 	{
+		int size = 0;
+
 		int flags = ARCHIVE_EXTRACT_TIME;
 		flags |= ARCHIVE_EXTRACT_PERM;
 		flags |= ARCHIVE_EXTRACT_ACL;
@@ -166,9 +171,11 @@ namespace PluginHelper {
 			if(retVal == ARCHIVE_EOF)
 				break;
 			if(retVal != ARCHIVE_OK)
-			{
 				return false;
-			}
+
+			size += archive_entry_size(entry);
+			if(size > MAX_SIZE)
+				return false;
 
 			// Adjust root folder name if neccessary.
 			if(!fitsExpected && hasHeadFolder)
