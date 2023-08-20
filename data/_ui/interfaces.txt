@@ -742,6 +742,7 @@ interface "escort element"
 	visible if "other system"
 	string "system"
 		from 10 28
+		width 120
 		size 14
 		align left
 		truncate back
