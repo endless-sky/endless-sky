@@ -457,6 +457,8 @@ mission "Intro [3 Interceptor]"
 			choice
 				`	"What equipment do I need to mine?"`
 					goto equipment
+				`	"Can my fleet help me mine?"`
+					goto fleet
 				`	"Where are safe places to mine?"`
 					goto safety
 				`	"How do you deal with pirates?"`
@@ -467,7 +469,7 @@ mission "Intro [3 Interceptor]"
 					goto end
 			
 			label equipment
-			`	"Well, you need a weapon that does hull damage," James says."A beam laser will get the job done but it will take awhile. The most valuable tool is an asteroid scanner. They're expensive but they connect into your navigation and targeting systems to point you towards minable asteroids. You can also set them to find the most valuable asteroids which increases your profitability per run. After that, a tactical scanner will give you range to target and show how much damage you're doing. An afterburner is good for chasing down fast moving asteroids or getting away from pirates without leaving the system. If you have a fleet, you can target an asteroid and they will all fire on it and then pick up the minerals. You can work much more quickly and harvest more in a run. If you have a carrier, you can have fighters mine and return the minerals to your hold."`
+			`	"Well, you need a weapon that does hull damage," James says."A beam laser will get the job done but it will take awhile. The most valuable tool is an asteroid scanner. They're expensive but they connect into your navigation and targeting systems to point you towards minable asteroids. You can also set them to find the most valuable asteroids which increases your profitability per run. After that, a tactical scanner will give you range to target and show how much damage you're doing. An afterburner is good for chasing down fast moving asteroids or getting away from pirates without leaving the system. A ramscoop will let you refuel while mining. You can extend your range and be ready for a quick escape."`
 			choice
 				`	"I can't fit all that on my ship!"`
 					goto shipmods
@@ -476,6 +478,10 @@ mission "Intro [3 Interceptor]"
 			
 			label shipmods
 			`	James gives you a knowing smile as he answers, "Not in a factory build, you won't. But you'd be surprised how much space you can free up even in a Sparrow if you're willing to flexible about health and safety. Do you really need that much power? If you've got an outfitter on the planet where you're mining, do you need a hyperdrive, or even a shield regenerator? Maybe a cargo expansion would be more use." Seeing the look on your face he holds up his hands. "I'm not saying you should, of course, but you have options."`
+				goto more
+
+			label fleet
+			`	"If you have a fleet, you can target an asteroid and they will all fire on it and then pick up the minerals. You can work much more quickly and harvest more in a run. If you have a carrier, you can have fighters mine and return the minerals to your hold."`
 				goto more
 
 			label safety
