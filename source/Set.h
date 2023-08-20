@@ -50,7 +50,7 @@ public:
 	void Revert(const Set<Type> &other);
 
 	// Remove an entry by key.
-	void Erase(std::string key);
+	void Erase(const std::string &key);
 
 private:
 	mutable std::map<std::string, Type> data;
@@ -94,7 +94,7 @@ void Set<Type>::Revert(const Set<Type> &other)
 
 
 template <class Type>
-void Set<Type>::Erase(std::string key)
+void Set<Type>::Erase(const std::string &key)
 {
 	const auto it = data.find(key);
 	if(it != data.end())

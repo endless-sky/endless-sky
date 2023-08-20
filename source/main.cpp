@@ -217,6 +217,7 @@ int main(int argc, char *argv[])
 		Audio::Quit();
 		bool doPopUp = testToRunName.empty();
 		GameWindow::ExitWithError(error.what(), doPopUp);
+		curl_global_cleanup();
 		return 1;
 	}
 

@@ -51,37 +51,33 @@ namespace PluginHelper {
 	bool Download(string url, string location)
 	{
 		CURL *curl = curl_easy_init();
-		if(curl)
-		{
-#if defined _WIN32
-			FILE *out = nullptr;
-			_wfopen_s(&out, Utf8::ToUTF16(location).c_str(), L"wb");
-#else
-			FILE *out = fopen(location.c_str(), "wb");
-#endif
-			// Set the url that gets downloaded
-			curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-			// Follow redirects
-			curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1l);
-			// How long we will wait
-			curl_easy_setopt(curl, CURLOPT_CA_CACHE_TIMEOUT, 604800L);
-			// What is the maximum filesize in bytes.
-			curl_easy_setopt(curl, CURLOPT_MAXFILESIZE, MAX_SIZE);
-			// Set the write function and the output file used in the write function
-			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteData);
-			curl_easy_setopt(curl, CURLOPT_WRITEDATA, out);
-
-			CURLcode res = curl_easy_perform(curl);
-			if(res != CURLE_OK)
-				fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(res));
-			curl_easy_cleanup(curl);
-
-			fclose(out);
-
-			return res == CURLE_OK;
-		}
-		else
+		if(!curl)
 			return false;
+#if defined _WIN32
+		FILE *out = nullptr;
+		_wfopen_s(&out, Utf8::ToUTF16(location).c_str(), L"wb");
+#else
+		FILE *out = fopen(location.c_str(), "wb");
+#endif
+		// Set the url that gets downloaded
+		curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+		// Follow redirects
+		curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1l);
+		// How long we will wait
+		curl_easy_setopt(curl, CURLOPT_CA_CACHE_TIMEOUT, 604800L);
+		// What is the maximum filesize in bytes.
+		curl_easy_setopt(curl, CURLOPT_MAXFILESIZE, MAX_SIZE);
+		// Set the write function and the output file used in the write function
+		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteData);
+		curl_easy_setopt(curl, CURLOPT_WRITEDATA, out);
+
+		CURLcode res = curl_easy_perform(curl);
+		if(res != CURLE_OK)
+			fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(res));
+
+		curl_easy_cleanup(curl);
+		fclose(out);
+		return res == CURLE_OK;
 	}
 
 
