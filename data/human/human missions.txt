@@ -6412,6 +6412,7 @@ mission "Moving House 1"
 		not attributes "rim" "south"
 	destination "Lichen"
 	stopover
+		distance 3 7
 		government "Syndicate"
 	to offer
 		not "event: war begins"
