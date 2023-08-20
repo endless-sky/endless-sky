@@ -316,7 +316,7 @@ tip "ion protection:"
 	`Protection provided against ion damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in ion damage, while a total value of 11 only results in a 10 percent reduction.`
 
 tip "scramble protection:"
-	`Protection provided against weapons that do scrambling damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in scramble damage, while a total value of 11 only results in a 10 percent reduction.`
+	`Protection provided against scrambling damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in scramble damage, while a total value of 11 only results in a 10 percent reduction.`
 
 tip "ion resistance:"
 	`Ion damage resisted per second.`
