@@ -1018,7 +1018,7 @@ tip "missile strength:"
 	`This projectile's resistance to anti-missile shots.`
 
 tip "anti-missile:"
-	`The power of the anti-missile shots. Higher values make it easier to destroy stronger missiles.`
+	`The power of the anti-missile shots. Higher values make it easier to destroy stronger projectiles.`
 
 
 
