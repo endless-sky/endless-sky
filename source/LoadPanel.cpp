@@ -57,11 +57,11 @@ namespace {
 		// pair<string, string>: Linux (1st) and Windows (2nd) format strings
 		// size_t: BUF_SIZE
 		if(fmt == Preferences::DateFormat::ymd)
-			return make_pair(make_pair("%F %T","%F %T"), 26);
+			return make_pair(make_pair("%F %T", "%F %T"), 26);
 		if(fmt == Preferences::DateFormat::mdy)
 			return make_pair(make_pair("%-I:%M %p on %b %-d, %Y", "%#I:%M %p on %b %#d, %Y"), 25);
 		if(fmt == Preferences::DateFormat::dmy)
-			return make_pair(make_pair("%-I:%M %p on %-d %b %Y","%#I:%M %p on %#d %b %Y"), 24);
+			return make_pair(make_pair("%-I:%M %p on %-d %b %Y", "%#I:%M %p on %#d %b %Y"), 24);
 	}
 
 	// Convert a time_t to a human-readable time and date.
