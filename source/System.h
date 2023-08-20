@@ -247,7 +247,7 @@ private:
 	double starfieldDensity = 1.;
 	int minimumFleetPeriod = 0;
 
-	class RaidFleets raidFleets;
+	RaidFleets raidFleets;
 	bool noRaids = false;
 
 	// The amount of additional distance that ships will arrive away from the

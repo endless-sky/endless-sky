@@ -167,7 +167,7 @@ private:
 	const Phrase *hostileDisabledHail = nullptr;
 	std::string language;
 	bool sendUntranslatedHails = false;
-	class RaidFleets raidFleets;
+	RaidFleets raidFleets;
 	double crewAttack = 1.;
 	double crewDefense = 2.;
 	bool provokedOnScan = false;
