@@ -128,11 +128,13 @@ government "Avgi (Dissonance)"
 		"Avgi (Twilight Guard)" 0.01
 		"Avgi (Angry Dissonance)" 0.01
 		"Aberrant" -0.01
-	"penalty for"
-		scan 0.1
 	"custom penalties for"
 		"Avgi (Angry Dissonance)"
 			disable 0
+			board 0.1
+			capture 1
+			destroy 1
+			provoke 0
 	bribe 0.3
 	"friendly hail" "friendly dissonance"
 	"friendly disabled hail" "friendly disabled dissonance"
@@ -150,10 +152,8 @@ government "Avgi (Angry Dissonance)"
 		"Avgi" -0.01
 		"Avgi (Consonance)" -0.05
 		"Avgi (Twilight Guard)" -0.05
-		"Avgi (Dissonance)" 0.01
+		"Avgi (Dissonance)" 1
 		"Aberrant" -0.01
-	"penalty for"
-		scan 0.1
 	bribe 0.3
 	"friendly hail" "friendly dissonance"
 	"friendly disabled hail" "friendly disabled dissonance"
@@ -181,7 +181,7 @@ government "Avgi (Wandering Fleet)"
 		capture 3
 		destroy 2
 		provoke 0.1
-		scan 0.1
+		scan 0.01
 	bribe 0
 
 government "Bad Trip"
