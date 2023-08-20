@@ -120,11 +120,6 @@ namespace PluginHelper {
 
 	bool ExtractZIP(string filename, string destination, string expectedName)
 	{
-		struct archive *archive;
-		struct archive *ext;
-		struct archive_entry *entry;
-		int retVal;
-
 		int flags;
 		flags = ARCHIVE_EXTRACT_TIME;
 		flags |= ARCHIVE_EXTRACT_PERM;
@@ -132,25 +127,24 @@ namespace PluginHelper {
 		flags |= ARCHIVE_EXTRACT_FFLAGS;
 
 		// Create the handles for reading/writing
-		archive = archive_read_new();
-		ext = archive_write_disk_new();
+		archive *read = archive_read_new();
+		archive *ext = archive_write_disk_new();
 		archive_write_disk_set_options(ext, flags);
-		archive_read_support_format_all(archive);
+		archive_read_support_format_all(read);
 		if(!filename.empty() && strcmp(filename.c_str(), "-") == 0)
 			filename = "";
-		if((retVal = archive_read_open_filename(archive, filename.c_str(), 10240)))
-		{
-			printf("archive_read_open_filename(), %s, %i", archive_error_string(archive), retVal);
+		if(archive_read_open_filename(read, filename.c_str(), 10240))
 			return false;
-		}
 
 		// Check if this plugin has the right head folder name
-		retVal = archive_read_next_header(archive, &entry);
+		archive_entry *entry;
+		archive_read_next_header(read, &entry);
 		string firstEntry = archive_entry_pathname(entry);
 		bool fitsExpected = firstEntry == (expectedName);
-		archive_read_data_skip(archive);
+		archive_read_data_skip(read);
+
 		// Check if this plugin has a head folder, if not create one in the destination
-		retVal = archive_read_next_header(archive, &entry);
+		archive_read_next_header(read, &entry);
 		string secondEntry = archive_entry_pathname(entry);
 		bool hasHeadFolder = secondEntry.find(firstEntry) != std::string::npos;
 		if(!hasHeadFolder)
@@ -161,23 +155,23 @@ namespace PluginHelper {
 #endif
 
 		// Close the archive so we can start again from the beginning
-		archive_read_close(archive);
-		archive_read_free(archive);
+		archive_read_close(read);
+		archive_read_free(read);
 
 		// Read another time, this time for writing.
-		archive = archive_read_new();
-		archive_read_support_format_all(archive);
-		archive_read_open_filename(archive, filename.c_str(), 10240);
+		read = archive_read_new();
+		archive_read_support_format_all(read);
+		archive_read_open_filename(read, filename.c_str(), 10240);
 
 		string dest_file;
+		int retVal;
 		while (true)
 		{
-			retVal = archive_read_next_header(archive, &entry);
+			retVal = archive_read_next_header(read, &entry);
 			if(retVal == ARCHIVE_EOF)
 				break;
 			if(retVal != ARCHIVE_OK)
 			{
-				printf("archive_read_next_header(), %s, %i", archive_error_string(archive), retVal);
 				return false;
 			}
 
@@ -187,9 +181,8 @@ namespace PluginHelper {
 				string thisEntryName = archive_entry_pathname(entry);
 				size_t start_pos = thisEntryName.find(firstEntry);
 				if(start_pos != std::string::npos)
-				{
 					thisEntryName.replace(start_pos, firstEntry.length(), expectedName);
-				}
+
 				archive_entry_set_pathname(entry, thisEntryName.c_str());
 			}
 
@@ -198,24 +191,17 @@ namespace PluginHelper {
 			archive_entry_set_pathname(entry, dest_file.c_str());
 
 			// Write files.
-			retVal = archive_write_header(ext, entry);
-			if(retVal != ARCHIVE_OK)
-				printf("archive_write_header(), %s", archive_error_string(ext));
-			else
+			if(archive_write_header(ext, entry) == ARCHIVE_OK)
 			{
-				CopyData(archive, ext);
-				retVal = archive_write_finish_entry(ext);
-				if(retVal != ARCHIVE_OK)
-				{
-					printf("archive_write_finish_entry(), %s, %i", archive_error_string(ext), 1);
+				CopyData(read, ext);
+				if(archive_write_finish_entry(ext) != ARCHIVE_OK)
 					return false;
-				}
 			}
 		}
 
 		// Free all data.
-		archive_read_close(archive);
-		archive_read_free(archive);
+		archive_read_close(read);
+		archive_read_free(read);
 		archive_write_close(ext);
 		archive_write_free(ext);
 		return true;

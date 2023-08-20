@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "PreferencesPanel.h"
 
+#include "Plugins.h"
 #include "text/alignment.hpp"
 #include "Audio.h"
 #include "Color.h"
@@ -218,7 +219,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	else if(key == 'i' && page == 'i' && selectedPluginInstall.url.size() && selectedPluginInstall.outdated)
 		installFeedbacks.emplace_back(Plugins::Update(selectedPluginInstall));
 	else if(key == 'd' && page == 'i' && selectedPluginInstall.url.size() && selectedPluginInstall.installed)
-		Files::DeleteDir(Files::Plugins() + selectedPluginInstall.name);
+		Plugins::DeletePlugin(selectedPluginInstall);
 	else if(key == 'r' && page == 'i')
 		currentPluginInstallPage = currentPluginInstallPage > 0 ? currentPluginInstallPage - 1 : 0;
 	else if(key == 'e' && page == 'i')
@@ -953,8 +954,9 @@ void PreferencesPanel::DrawPluginInstalls()
 			plugin["name"],
 			plugin["url"],
 			plugin["version"],
-			installedVersion && installedVersion->version != plugin["version"],
-			installedVersion
+			plugin["description"],
+			installedVersion,
+			installedVersion && installedVersion->version != plugin["version"]
 		);
 		if(!installData.name.size())
 			continue;
@@ -965,10 +967,10 @@ void PreferencesPanel::DrawPluginInstalls()
 			table.DrawHighlight(back);
 		if(installedVersion && installedVersion->version != installData.version)
 			table.Draw(installData.name, outdated);
-		else if(isSelected)
-			table.Draw(installData.name, bright);
 		else if(installedVersion)
 			table.Draw(installData.name, dim);
+		else if(isSelected)
+			table.Draw(installData.name, bright);
 		else
 			table.Draw(installData.name, medium);
 		if(isSelected)

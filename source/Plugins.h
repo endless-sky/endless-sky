@@ -54,11 +54,13 @@ public:
 		std::string name;
 		std::string url;
 		std::string version;
+		std::string aboutText;
 		bool installed = false;
 		bool outdated = false;
 		InstallData(std::string name = "", std::string url = "", std::string version = "",
-			bool installed = false, bool outdated = false)
-		: name(name), url(url), version(version), installed(installed), outdated(outdated) {}
+			std::string aboutText = "", bool installed = false, bool outdated = false)
+		: name(name), url(url), version(version), aboutText(aboutText), installed(installed),
+			outdated(outdated) {}
 	};
 
 
@@ -86,7 +88,7 @@ public:
 	// Install or update or delete a plugin.
 	static std::future<void> Install(const InstallData &installData, bool guarded = false);
 	static std::future<void> Update(const InstallData &installData);
-	void DeletePlugin(const InstallData &installData);
+	static void DeletePlugin(const InstallData &installData);
 };
 
 

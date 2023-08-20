@@ -49,6 +49,8 @@ public:
 	// those that are in the given set, revert to their contents.
 	void Revert(const Set<Type> &other);
 
+	// Remove an entry by key.
+	void Erase(std::string key);
 
 private:
 	mutable std::map<std::string, Type> data;
@@ -87,6 +89,16 @@ void Set<Type>::Revert(const Set<Type> &other)
 		// There should never be a case when an entry in the set we are
 		// reverting to has a name that is not also in this set.
 	}
+}
+
+
+
+template <class Type>
+void Set<Type>::Erase(std::string key)
+{
+	const auto it = data.find(key);
+	if (it != data.end())
+    	data.erase(it);
 }
 
 

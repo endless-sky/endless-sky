@@ -200,6 +200,15 @@ future<void> Plugins::Install(const InstallData &installData, bool guarded)
 			return future<void>();
 		else
 			activePlugins.insert(installData.name);
+		
+		// Create a new entry for the plugin.
+		Plugin *newPlugin = plugins.Get(installData.name);
+		newPlugin->name = installData.name;
+		newPlugin->aboutText = installData.aboutText;
+		newPlugin->path = Files::Plugins() + installData.name + "/";
+		newPlugin->version = installData.version;
+		newPlugin->enabled = false;
+		newPlugin->currentState = true;
 	}
 	return async(launch::async, [installData]() noexcept -> void
 		{
@@ -248,6 +257,8 @@ void Plugins::DeletePlugin(const InstallData &installData)
 		if(activePlugins.count(installData.name))
 			return;
 	}
+
+	plugins.Erase(installData.name);
 
 	Files::DeleteDir(Files::Plugins() + installData.name);
 }
