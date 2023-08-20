@@ -246,7 +246,7 @@ future<void> Plugins::Update(const InstallData &installData)
 	plugins.Get(installData.name)->version = installData.version;
 
 	Files::DeleteDir(Files::Plugins() + installData.name);
-	return Install(installData);
+	return Install(installData, true);
 }
 
 
