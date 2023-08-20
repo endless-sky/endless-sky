@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef SHIP_EVENT_H_
@@ -43,6 +46,7 @@ public:
 		// of that ship's government; this will result in temporary animosities
 		// between the two governments. If a ship is "forbearing," it can only
 		// be "provoked" if its shields are below 90%.
+		// Some governments are provoked by starting a scan.
 		PROVOKE = (1 << 3),
 		// This ship disabled the given ship. This will have a permanent effect
 		// on your reputation with the given government. This event is generated
@@ -64,19 +68,19 @@ public:
 		// This ship just jumped into a different system.
 		JUMP = (1 << 9)
 	};
-	
-	
+
+
 public:
 	ShipEvent(const Government *actor, const std::shared_ptr<Ship> &target, int type);
 	ShipEvent(const std::shared_ptr<Ship> &actor, const std::shared_ptr<Ship> &target, int type);
-	
+
 	const std::shared_ptr<Ship> &Actor() const;
 	const Government *ActorGovernment() const;
 	const std::shared_ptr<Ship> &Target() const;
 	const Government *TargetGovernment() const;
 	int Type() const;
-	
-	
+
+
 private:
 	std::shared_ptr<Ship> actor;
 	const Government *actorGovernment = nullptr;

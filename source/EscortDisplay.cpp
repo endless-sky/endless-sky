@@ -7,19 +7,24 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "EscortDisplay.h"
 
 #include "Color.h"
-#include "Font.h"
-#include "FontSet.h"
+#include "text/DisplayText.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
 #include "GameData.h"
 #include "Government.h"
 #include "LineShader.h"
 #include "OutlineShader.h"
 #include "Point.h"
+#include "PointerShader.h"
 #include "Rectangle.h"
 #include "Ship.h"
 #include "Sprite.h"
@@ -66,11 +71,12 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 	stacks.clear();
 	zones.clear();
 	static const Set<Color> &colors = GameData::Colors();
-	
+
 	// Draw escort status.
 	const Font &font = FontSet::Get(14);
 	// Top left corner of the current escort icon.
 	Point corner = Point(bounds.Left(), bounds.Bottom());
+	const Color &disabledColor = *colors.Get("escort disabled");
 	const Color &elsewhereColor = *colors.Get("escort elsewhere");
 	const Color &cannotJumpColor = *colors.Get("escort blocked");
 	const Color &notReadyToJumpColor = *colors.Get("escort not ready");
@@ -81,7 +87,7 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 	{
 		if(!escort.sprite)
 			continue;
-		
+
 		corner.Y() -= escort.Height();
 		// Show only as many escorts as we have room for on screen.
 		if(corner.Y() <= bounds.Top())
@@ -92,13 +98,16 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 			corner.Y() = bounds.Bottom() - escort.Height();
 		}
 		Point pos = corner + Point(PAD + .5 * ICON_SIZE, .5 * ICON_SIZE);
-		
+
 		// Draw the system name for any escort not in the current system.
 		if(!escort.system.empty())
-			font.Draw(escort.system, pos + Point(-10., 10.), elsewhereColor);
+			font.Draw({escort.system, {static_cast<int>(WIDTH - 20.), Alignment::LEFT, Truncate::BACK}},
+				pos + Point(-10., 10.), elsewhereColor);
 
 		Color color;
-		if(escort.isHostile)
+		if(escort.isDisabled)
+			color = disabledColor;
+		else if(escort.isHostile)
 			color = hostileColor;
 		else if(!escort.isHere)
 			color = elsewhereColor;
@@ -106,13 +115,15 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 			color = cannotJumpColor;
 		else if(escort.notReadyToJump)
 			color = notReadyToJumpColor;
-		else if(escort.isSelected)
-			color = selectedColor;
 		else
 			color = hereColor;
-		
+
+		// Draw the selection pointer
+		if(escort.isSelected)
+			PointerShader::Draw(pos, Point(1., 0.), ICON_SIZE / 2, ICON_SIZE / 2, -ICON_SIZE / 2, selectedColor);
+
 		// Figure out what scale should be applied to the ship sprite.
-		double scale = min(ICON_SIZE / escort.sprite->Width(), ICON_SIZE / escort.sprite->Height());
+		float scale = min(ICON_SIZE / escort.sprite->Width(), ICON_SIZE / escort.sprite->Height());
 		Point size(escort.sprite->Width() * scale, escort.sprite->Height() * scale);
 		OutlineShader::Draw(escort.sprite, pos, size, color);
 		zones.push_back(pos);
@@ -122,14 +133,14 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 		if(escort.ships.size() > 1)
 		{
 			string number = to_string(escort.ships.size());
-		
+
 			Point numberPos = pos;
 			numberPos.X() += 15. + width - font.Width(number);
 			numberPos.Y() -= .5 * font.Height();
 			font.Draw(number, numberPos, elsewhereColor);
 			width -= 20.;
 		}
-		
+
 		// Draw the status bars.
 		static const Color fullColor[5] = {
 			colors.Get("shields")->Additive(1.), colors.Get("hull")->Additive(1.),
@@ -148,14 +159,14 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 			{
 				bool isSplit = (escort.low[i] != escort.high[i]);
 				const Color &color = (isSplit ? halfColor : fullColor)[i];
-				
+
 				Point to = from + Point(width * min(1., escort.high[i]), 0.);
-				LineShader::Draw(from, to, 1.5, color);
-				
+				LineShader::Draw(from, to, 1.5f, color);
+
 				if(isSplit)
 				{
 					Point to = from + Point(width * max(0., escort.low[i]), 0.);
-					LineShader::Draw(from, to, 1.5, color);
+					LineShader::Draw(from, to, 1.5f, color);
 				}
 			}
 			from.Y() += 4.;
@@ -177,7 +188,7 @@ const vector<const Ship *> &EscortDisplay::Click(const Point &point) const
 	for(unsigned i = 0; i < zones.size(); ++i)
 		if(point.Distance(zones[i]) < 15.)
 			return stacks[i];
-	
+
 	static const vector<const Ship *> empty;
 	return empty;
 }
@@ -186,7 +197,8 @@ const vector<const Ship *> &EscortDisplay::Click(const Point &point) const
 
 EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected)
 	: sprite(ship.GetSprite()),
-	isHere(isHere && !ship.IsDisabled()),
+	isDisabled(ship.IsDisabled()),
+	isHere(isHere),
 	isHostile(ship.GetGovernment() && ship.GetGovernment()->IsEnemy()),
 	notReadyToJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.IsReadyToJump(true)),
 	cannotJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.JumpsRemaining()),
@@ -218,6 +230,7 @@ int EscortDisplay::Icon::Height() const
 
 void EscortDisplay::Icon::Merge(const Icon &other)
 {
+	isDisabled &= other.isDisabled;
 	isHere &= other.isHere;
 	isHostile |= other.isHostile;
 	notReadyToJump |= other.notReadyToJump;
@@ -225,7 +238,7 @@ void EscortDisplay::Icon::Merge(const Icon &other)
 	isSelected |= other.isSelected;
 	if(system.empty() && !other.system.empty())
 		system = other.system;
-	
+
 	for(unsigned i = 0; i < low.size(); ++i)
 	{
 		low[i] = min(low[i], other.low[i]);
@@ -240,28 +253,28 @@ void EscortDisplay::MergeStacks(int maxHeight) const
 {
 	if(icons.empty())
 		return;
-	
+
 	set<const Sprite *> unstackable;
 	while(true)
 	{
 		Icon *cheapest = nullptr;
-		
+
 		int height = 0;
 		for(Icon &icon : icons)
 		{
 			if(!unstackable.count(icon.sprite) && (!cheapest || *cheapest < icon))
 				cheapest = &icon;
-			
+
 			height += icon.Height();
 		}
-		
+
 		if(height < maxHeight || !cheapest)
 			break;
-		
+
 		// Merge together each group of escorts that have this icon and are in
 		// the same system and have the same attitude towards the player.
 		map<const bool, map<string, Icon *>> merged;
-		
+
 		// The "cheapest" element in the list may be removed to merge it with an
 		// earlier ship of the same type, so store a copy of its sprite pointer:
 		const Sprite *sprite = cheapest->sprite;
@@ -273,7 +286,7 @@ void EscortDisplay::MergeStacks(int maxHeight) const
 				++it;
 				continue;
 			}
-			
+
 			// If this is the first escort we've seen so far in its system, it
 			// is the one we will merge all others in this system into.
 			auto mit = merged[it->isHostile].find(it->system);
@@ -285,7 +298,7 @@ void EscortDisplay::MergeStacks(int maxHeight) const
 			else
 			{
 				mit->second->Merge(*it);
-				it = icons.erase(it);	
+				it = icons.erase(it);
 			}
 		}
 		unstackable.insert(sprite);

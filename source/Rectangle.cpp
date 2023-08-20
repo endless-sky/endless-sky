@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Rectangle.h"
@@ -163,7 +166,7 @@ Point Rectangle::BottomRight() const
 // Check if a point is inside this rectangle.
 bool Rectangle::Contains(const Point &point) const
 {
-	// The point is withing the rectangle if its distance to the center is less
+	// The point is within the rectangle if its distance to the center is less
 	// than half the dimensions.
 	Point d = 2. * abs(point - center);
 	return (d.X() <= dimensions.X() && d.Y() <= dimensions.Y());
@@ -176,4 +179,11 @@ bool Rectangle::Contains(const Point &point) const
 bool Rectangle::Contains(const Rectangle &other) const
 {
 	return Contains(other.TopLeft()) && Contains(other.BottomRight());
+}
+
+
+
+bool Rectangle::Overlaps(const Rectangle &other) const
+{
+	return !(other.Left() > Right() || other.Right() < Left() || other.Top() > Bottom() || other.Bottom() < Top());
 }

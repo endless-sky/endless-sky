@@ -7,16 +7,20 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Account.h"
 
 #include "DataNode.h"
 #include "DataWriter.h"
-#include "Format.h"
+#include "text/Format.h"
 
 #include <algorithm>
+#include <numeric>
 #include <sstream>
 
 using namespace std;
@@ -29,29 +33,35 @@ namespace {
 
 
 
-// Default constructor.
-Account::Account()
-	: credits(0), salariesOwed(0), creditScore(400)
-{
-}
-
-
-
 // Load account information from a data file (saved game or starting conditions).
-void Account::Load(const DataNode &node)
+void Account::Load(const DataNode &node, bool clearFirst)
 {
-	credits = 0;
-	salariesOwed = 0;
-	creditScore = 400;
-	history.clear();
-	mortgages.clear();
-	
+	if(clearFirst)
+	{
+		credits = 0;
+		crewSalariesOwed = 0;
+		maintenanceDue = 0;
+		creditScore = 400;
+		mortgages.clear();
+		history.clear();
+	}
+
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "credits" && child.Size() >= 2)
 			credits = child.Value(1);
+		else if(child.Token(0) == "salaries income")
+			for(const DataNode &grand : child)
+			{
+				if(grand.Size() < 2)
+					grand.PrintTrace("Skipping incomplete salary income:");
+				else
+					salariesIncome[grand.Token(0)] = grand.Value(1);
+			}
 		else if(child.Token(0) == "salaries" && child.Size() >= 2)
-			salariesOwed = child.Value(1);
+			crewSalariesOwed = child.Value(1);
+		else if(child.Token(0) == "maintenance" && child.Size() >= 2)
+			maintenanceDue = child.Value(1);
 		else if(child.Token(0) == "score" && child.Size() >= 2)
 			creditScore = child.Value(1);
 		else if(child.Token(0) == "mortgage")
@@ -59,6 +69,8 @@ void Account::Load(const DataNode &node)
 		else if(child.Token(0) == "history")
 			for(const DataNode &grand : child)
 				history.push_back(grand.Value(0));
+		else
+			child.PrintTrace("Skipping unrecognized account item:");
 	}
 }
 
@@ -71,10 +83,22 @@ void Account::Save(DataWriter &out) const
 	out.BeginChild();
 	{
 		out.Write("credits", credits);
-		if(salariesOwed)
-			out.Write("salaries", salariesOwed);
+		if(salariesIncome.size() > 0)
+		{
+			out.Write("salaries income");
+			out.BeginChild();
+			{
+				for(const auto &income : salariesIncome)
+					out.Write(income.first, income.second);
+			}
+			out.EndChild();
+		}
+		if(crewSalariesOwed)
+			out.Write("salaries", crewSalariesOwed);
+		if(maintenanceDue)
+			out.Write("maintenance", maintenanceDue);
 		out.Write("score", creditScore);
-		
+
 		out.Write("history");
 		out.BeginChild();
 		{
@@ -82,7 +106,7 @@ void Account::Save(DataWriter &out) const
 				out.Write(worth);
 		}
 		out.EndChild();
-		
+
 		for(const Mortgage &mortgage : mortgages)
 			mortgage.Save(out);
 	}
@@ -114,10 +138,10 @@ void Account::PayExtra(int mortgage, int64_t amount)
 	if(static_cast<unsigned>(mortgage) >= mortgages.size() || amount > credits
 			|| amount > mortgages[mortgage].Principal())
 		return;
-	
+
 	mortgages[mortgage].PayExtra(amount);
 	credits -= amount;
-	
+
 	// If this payment was for the entire remaining amount in the mortgage,
 	// remove it from the list.
 	if(!mortgages[mortgage].Principal())
@@ -127,35 +151,58 @@ void Account::PayExtra(int mortgage, int64_t amount)
 
 
 // Step forward one day, and return a string summarizing payments made.
-string Account::Step(int64_t assets, int64_t salaries)
+string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 {
 	ostringstream out;
-	
+
 	// Keep track of what payments were made and whether any could not be made.
-	salariesOwed += salaries;
-	bool paid = true;
-	
+	crewSalariesOwed += salaries;
+	maintenanceDue += maintenance;
+	bool missedPayment = false;
+
 	// Crew salaries take highest priority.
-	int64_t salariesPaid = salariesOwed;
-	if(salariesOwed)
+	int64_t salariesPaid = crewSalariesOwed;
+	if(crewSalariesOwed)
 	{
-		if(salariesOwed > credits)
+		if(crewSalariesOwed > credits)
 		{
 			// If you can't pay the full salary amount, still pay some of it and
 			// remember how much back wages you owe to your crew.
 			salariesPaid = max<int64_t>(credits, 0);
-			salariesOwed -= salariesPaid;
+			crewSalariesOwed -= salariesPaid;
 			credits -= salariesPaid;
-			paid = false;
-			out << "You could not pay all your crew salaries. ";
+			missedPayment = true;
+			out << "You could not pay all your crew salaries.";
 		}
 		else
 		{
-			credits -= salariesOwed;
-			salariesOwed = 0;
+			credits -= crewSalariesOwed;
+			crewSalariesOwed = 0;
 		}
 	}
-	
+
+	// Maintenance costs are dealt with after crew salaries given that they act similarly.
+	int64_t maintenancePaid = maintenanceDue;
+	if(maintenanceDue)
+	{
+		if(maintenanceDue > credits)
+		{
+			// Like with crew salaries, maintenance costs can be paid in part with
+			// the unpaid costs being paid later.
+			maintenancePaid = max<int64_t>(credits, 0);
+			maintenanceDue -= maintenancePaid;
+			credits -= maintenancePaid;
+			if(!missedPayment)
+				out << "You could not pay all your maintenance costs.";
+			missedPayment = true;
+		}
+		else
+		{
+			credits -= maintenanceDue;
+			maintenanceDue = 0;
+		}
+	}
+
 	// Unlike salaries, each mortgage payment must either be made in its entirety,
 	// or skipped completely (accruing interest and reducing your credit score).
 	int64_t mortgagesPaid = 0;
@@ -166,9 +213,9 @@ string Account::Step(int64_t assets, int64_t salaries)
 		if(payment > credits)
 		{
 			mortgage.MissPayment();
-			if(paid)
-				out << "You missed a mortgage payment. ";
-			paid = false;
+			if(!missedPayment)
+				out << "You missed a mortgage payment.";
+			missedPayment = true;
 		}
 		else
 		{
@@ -190,57 +237,126 @@ string Account::Step(int64_t assets, int64_t salaries)
 		else
 			++it;
 	}
-	
+
 	// Keep track of your net worth over the last HISTORY days.
 	if(history.size() > HISTORY)
 		history.erase(history.begin());
-	history.push_back(credits + assets - salariesOwed);
-	
+	history.push_back(credits + assets - crewSalariesOwed - maintenanceDue);
+
 	// If you failed to pay any debt, your credit score drops. Otherwise, even
 	// if you have no debts, it increases. (Because, having no debts at all
 	// makes you at least as credit-worthy as someone who pays debts on time.)
-	creditScore = max(200, min(800, creditScore + (paid ? 1 : -5)));
-	
+	creditScore = max(200, min(800, creditScore + (missedPayment ? -5 : 1)));
+
 	// If you didn't make any payments, no need to continue further.
-	if(!(salariesPaid + mortgagesPaid + finesPaid))
+	if(!(salariesPaid + maintenancePaid + mortgagesPaid + finesPaid))
 		return out.str();
-	
+	else if(missedPayment)
+		out << " ";
+
 	out << "You paid ";
-	
-	// If you made payments of all three types, the punctuation needs to
+
+	map<string, int64_t> typesPaid;
+	if(salariesPaid)
+		typesPaid["crew salaries"] = salariesPaid;
+	if(maintenancePaid)
+		typesPaid["maintenance"] = maintenancePaid;
+	if(mortgagesPaid)
+		typesPaid["mortgages"] = mortgagesPaid;
+	if(finesPaid)
+		typesPaid["fines"] = finesPaid;
+
+	// If you made payments of three or more types, the punctuation needs to
 	// include commas, so just handle that separately here.
-	if(salariesPaid && mortgagesPaid && finesPaid)
-		out << Format::Number(salariesPaid) << " credits in crew salaries, " << Format::Number(mortgagesPaid)
-			<< " in mortgages, and " << Format::Number(finesPaid) << " in fines.";
+	if(typesPaid.size() >= 3)
+	{
+		auto it = typesPaid.begin();
+		for(unsigned int i = 0; i < typesPaid.size() - 1; ++i)
+		{
+			out << Format::CreditString(it->second) << " in " << it->first << ", ";
+			++it;
+		}
+		out << "and " << Format::CreditString(it->second) << " in " << it->first + ".";
+	}
 	else
 	{
 		if(salariesPaid)
-			out << Format::Number(salariesPaid) << ((mortgagesPaid || finesPaid) ?
-				" credits in crew salaries and " : " credits in crew salaries.");
+			out << Format::CreditString(salariesPaid) << " in crew salaries"
+				<< ((mortgagesPaid || finesPaid || maintenancePaid) ? " and " : ".");
+		if(maintenancePaid)
+			out << Format::CreditString(maintenancePaid) << "  in maintenance"
+				<< ((mortgagesPaid || finesPaid) ? " and " : ".");
 		if(mortgagesPaid)
-			out << Format::Number(mortgagesPaid) << (salariesPaid ? " " : " credits ")
-				<< (finesPaid ? "in mortgage payments and " : "in mortgage payments.");
+			out << Format::CreditString(mortgagesPaid) << " in mortgages"
+				<< (finesPaid ? " and " : ".");
 		if(finesPaid)
-			out << Format::Number(finesPaid) << ((salariesPaid || mortgagesPaid) ?
-				" in fines." : " credits in fines.");
+			out << Format::CreditString(finesPaid) << " in fines.";
 	}
 	return out.str();
 }
 
 
 
-int64_t Account::SalariesOwed() const
+const map<string, int64_t> &Account::SalariesIncome() const
 {
-	return salariesOwed;
+	return salariesIncome;
+}
+
+
+
+int64_t Account::SalariesIncomeTotal() const
+{
+	return accumulate(
+		salariesIncome.begin(),
+		salariesIncome.end(),
+		0,
+		[](int64_t value, const std::map<string, int64_t>::value_type &salary)
+		{
+			return value + salary.second;
+		}
+	);
+}
+
+
+
+void Account::SetSalaryIncome(string name, int64_t amount)
+{
+	if(amount == 0)
+		salariesIncome.erase(name);
+	else
+		salariesIncome[name] = amount;
+}
+
+
+
+int64_t Account::CrewSalariesOwed() const
+{
+	return crewSalariesOwed;
 }
 
 
 
 void Account::PaySalaries(int64_t amount)
 {
-	amount = min(min(amount, salariesOwed), credits);
+	amount = min(min(amount, crewSalariesOwed), credits);
 	credits -= amount;
-	salariesOwed -= amount;
+	crewSalariesOwed -= amount;
+}
+
+
+
+int64_t Account::MaintenanceDue() const
+{
+	return maintenanceDue;
+}
+
+
+
+void Account::PayMaintenance(int64_t amount)
+{
+	amount = min(min(amount, maintenanceDue), credits);
+	credits -= amount;
+	maintenanceDue -= amount;
 }
 
 
@@ -274,14 +390,14 @@ void Account::AddFine(int64_t amount)
 // Check how big a mortgage the player can afford to pay at their current income.
 int64_t Account::Prequalify() const
 {
-	int64_t payments = 0;
+	double payments = 0.;
 	int64_t liabilities = 0;
 	for(const Mortgage &mortgage : mortgages)
 	{
-		payments += mortgage.Payment();
+		payments += mortgage.PrecisePayment();
 		liabilities += mortgage.Principal();
 	}
-	
+
 	// Put a limit on new debt that the player can take out, as a fraction of
 	// their net worth, to avoid absurd mortgages being offered when the player
 	// has just captured some very lucrative ships.
@@ -315,7 +431,7 @@ int64_t Account::TotalDebt(const string &type) const
 	for(const Mortgage &mortgage : mortgages)
 		if(type.empty() || mortgage.Type() == type)
 			total += mortgage.Principal();
-	
+
 	return total;
 }
 
@@ -327,7 +443,7 @@ int64_t Account::YearlyRevenue() const
 {
 	if(history.empty() || history.back() <= history.front())
 		return 0;
-	
+
 	// Note that this intentionally under-estimates if the player has not yet
 	// played for long enough to accumulate a full income history.
 	return ((history.back() - history.front()) * 365) / HISTORY;

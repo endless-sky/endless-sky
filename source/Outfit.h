@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef OUTFIT_H_
@@ -40,15 +43,20 @@ class Outfit : public Weapon {
 public:
 	// These are all the possible category strings for outfits.
 	static const std::vector<std::string> CATEGORIES;
-	
+
 public:
 	// An "outfit" can be loaded from an "outfit" node or from a ship's
 	// "attributes" node.
 	void Load(const DataNode &node);
-	
-	const std::string &Name() const;
+	bool IsDefined() const;
+
+	const std::string &TrueName() const;
+	const std::string &DisplayName() const;
+	void SetName(const std::string &name);
 	const std::string &PluralName() const;
 	const std::string &Category() const;
+	const std::string &Series() const;
+	const int Index() const;
 	const std::string &Description() const;
 	int64_t Cost() const;
 	double Mass() const;
@@ -56,11 +64,11 @@ public:
 	const std::vector<std::string> &Licenses() const;
 	// Get the image to display in the outfitter when buying this item.
 	const Sprite *Thumbnail() const;
-	
+
 	double Get(const char *attribute) const;
 	double Get(const std::string &attribute) const;
 	const Dictionary &Attributes() const;
-	
+
 	// Determine whether the given number of instances of the given outfit can
 	// be added to a ship with the attributes represented by this instance. If
 	// not, return the maximum number that can be added.
@@ -71,32 +79,63 @@ public:
 	// Modify this outfit's attributes. Note that this cannot be used to change
 	// special attributes, like cost and mass.
 	void Set(const char *attribute, double value);
-	
+
 	// Get this outfit's engine flare sprites, if any.
 	const std::vector<std::pair<Body, int>> &FlareSprites() const;
+	const std::vector<std::pair<Body, int>> &ReverseFlareSprites() const;
+	const std::vector<std::pair<Body, int>> &SteeringFlareSprites() const;
 	const std::map<const Sound *, int> &FlareSounds() const;
+	const std::map<const Sound *, int> &ReverseFlareSounds() const;
+	const std::map<const Sound *, int> &SteeringFlareSounds() const;
 	// Get the afterburner effect, if any.
 	const std::map<const Effect *, int> &AfterburnerEffects() const;
+	// Get this outfit's jump effects and sounds, if any.
+	const std::map<const Effect *, int> &JumpEffects() const;
+	const std::map<const Sound *, int> &HyperSounds() const;
+	const std::map<const Sound *, int> &HyperInSounds() const;
+	const std::map<const Sound *, int> &HyperOutSounds() const;
+	const std::map<const Sound *, int> &JumpSounds() const;
+	const std::map<const Sound *, int> &JumpInSounds() const;
+	const std::map<const Sound *, int> &JumpOutSounds() const;
 	// Get the sprite this outfit uses when dumped into space.
 	const Sprite *FlotsamSprite() const;
-	
-	
+
+
 private:
-	std::string name;
+	bool isDefined = false;
+	std::string trueName;
+	std::string displayName;
 	std::string pluralName;
 	std::string category;
+	// The series that this outfit is a part of and its index within that series.
+	// Used for sorting within shops.
+	std::string series;
+	int index;
 	std::string description;
 	const Sprite *thumbnail = nullptr;
 	int64_t cost = 0;
 	double mass = 0.;
 	// Licenses needed to purchase this item.
 	std::vector<std::string> licenses;
-	
+
 	Dictionary attributes;
-	
+
+	// The integers in these pairs/maps indicate the number of
+	// sprites/effects/sounds to be placed/played.
 	std::vector<std::pair<Body, int>> flareSprites;
+	std::vector<std::pair<Body, int>> reverseFlareSprites;
+	std::vector<std::pair<Body, int>> steeringFlareSprites;
 	std::map<const Sound *, int> flareSounds;
+	std::map<const Sound *, int> reverseFlareSounds;
+	std::map<const Sound *, int> steeringFlareSounds;
 	std::map<const Effect *, int> afterburnerEffects;
+	std::map<const Effect *, int> jumpEffects;
+	std::map<const Sound *, int> hyperSounds;
+	std::map<const Sound *, int> hyperInSounds;
+	std::map<const Sound *, int> hyperOutSounds;
+	std::map<const Sound *, int> jumpSounds;
+	std::map<const Sound *, int> jumpInSounds;
+	std::map<const Sound *, int> jumpOutSounds;
 	const Sprite *flotsamSprite = nullptr;
 };
 

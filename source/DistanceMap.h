@@ -7,11 +7,16 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef DISTANCE_MAP_H_
 #define DISTANCE_MAP_H_
+
+#include "WormholeStrategy.h"
 
 #include <map>
 #include <queue>
@@ -34,6 +39,10 @@ public:
 	// Find paths to the given system. The optional arguments put a limit on how
 	// many systems will be returned and how far away they are allowed to be.
 	explicit DistanceMap(const System *center, int maxCount = -1, int maxDistance = -1);
+	// Find paths to the given system, potentially using wormholes, a jump drive, or both.
+	// Optional arguments are as above.
+	explicit DistanceMap(const System *center, WormholeStrategy wormholeStrategy,
+			bool useJumpDrive, int maxCount = -1, int maxDistance = -1);
 	// If a player is given, the map will only use hyperspace paths known to the
 	// player; that is, one end of the path has been visited. Also, if the
 	// player's flagship has a jump drive, the jumps will be make use of it.
@@ -42,71 +51,75 @@ public:
 	// ship will use a jump drive or hyperdrive depending on what it has. The
 	// pathfinding will stop once a path to the destination is found.
 	DistanceMap(const Ship &ship, const System *destination);
-	
+
 	// Find out if the given system is reachable.
 	bool HasRoute(const System *system) const;
 	// Find out how many days away the given system is.
 	int Days(const System *system) const;
 	// Starting in the given system, what is the next system along the route?
 	const System *Route(const System *system) const;
-	
+
 	// Get a set containing all the systems.
 	std::set<const System *> Systems() const;
-	
+	// Get the end of the route.
+	const System *End() const;
+
 	// How much fuel is needed to travel between two systems.
 	int RequiredFuel(const System *system1, const System *system2) const;
-	
-	
+
+
 private:
 	// For each system, track how much fuel it will take to get there, how many
 	// days, how much danger you will pass through, and where you will go next.
 	class Edge {
 	public:
 		Edge(const System *system = nullptr);
-		
+
 		// Sorting operator to prioritize the "best" edges. The priority queue
 		// returns the "largest" item, so this should return true if this item
 		// is lower priority than the given item.
 		bool operator<(const Edge &other) const;
-		
+
 		const System *next = nullptr;
 		int fuel = 0;
 		int days = 0;
 		double danger = 0.;
 	};
-	
-	
+
+
 private:
 	// Depending on the capabilities of the given ship, use hyperspace paths,
 	// jump drive paths, or both to find the shortest route. Bail out if the
 	// source system or the maximum count is reached.
-	void Init(const System *center, const Ship *ship = nullptr);
+	void Init(const Ship *ship = nullptr);
 	// Add the given links to the map. Return false if an end condition is hit.
 	bool Propagate(Edge edge, bool useJump);
 	// Check if we already have a better path to the given system.
-	bool HasBetter(const System *to, const Edge &edge);
+	bool HasBetter(const System &to, const Edge &edge);
 	// Add the given path to the record.
-	void Add(const System *to, Edge edge);
+	void Add(const System &to, Edge edge);
 	// Check whether the given link is travelable. If no player was given in the
 	// constructor then this is always true; otherwise, the player must know
 	// that the given link exists.
-	bool CheckLink(const System *from, const System *to, bool useJump) const;
-	
-	
+	bool CheckLink(const System &from, const System &to, bool useJump) const;
+
+
 private:
 	std::map<const System *, Edge> route;
-	
+
 	// Variables only used during construction:
 	std::priority_queue<Edge> edges;
 	const PlayerInfo *player = nullptr;
 	const System *source = nullptr;
+	const System *center = nullptr;
+	WormholeStrategy wormholeStrategy = WormholeStrategy::ALL;
 	int maxCount = -1;
 	int maxDistance = -1;
 	// How much fuel is used for travel. If either value is zero, it means that
 	// the ship does not have that type of drive.
 	int hyperspaceFuel = 100;
 	int jumpFuel = 0;
-	bool useWormholes = true;
+	double jumpRange = 0.;
 };
 
 

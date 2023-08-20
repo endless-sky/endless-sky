@@ -1,0 +1,51 @@
+# Copyright (c) 2022 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+# A set of constants and booleans that determine game behavior.
+# If the game data does not specify a value for a certain gamerule, then its default
+# value is used.
+gamerules
+	# Determines whether the "universal ramscoop" is active on all ships. This ramscoop
+	# provides a very small amount of fuel to every ship regardless of whether they have
+	# an actual ramscoop or not. The strength of this ramscoop is scaled with the distance
+	# to the system center twice, meaning it falls off much more quickly than a normal ramscoop.
+	# DEFAULT: true
+	# ALLOWABLE VALUES: false, true, 0, 1
+	"universal ramscoop" true
+	
+	# An attempt to spawn a person ship happens on average every this many frames.
+	# DEFAULT: 36000 frames (ten minutes)
+	# ALLOWABLE VALUES: any integer >= 1
+	"person spawn period" 36000
+	
+	# While an attempt to spawn a person ship is made on average every number of frames specified
+	# above, a person ship may still not spawn. Each person ship has a "weight" associated with them
+	# which determines their chance of spawning. The chance of any single person ship spawning is their
+	# weight divided by the sum of the weights of all person ships and this value here. That means that
+	# the chance of no person ship spawning is this number over the same sum.
+	# DEFAULT: 1000
+	# ALLOWABLE VALUES: any integer >= 0
+	"no person spawn weight" 1000
+	
+	# NPC ships with the mining personality will spend this many frames mining in the current system
+	# before deciding to do something else. The purpose of this limit is so that NPC ships can be seen
+	# by the player to show how to mine without also stripping the system bare of minable asteroids.
+	# This limit does not apply to mining ships that are spawned by a mission.
+	# DEFAULT: 3600 frames (one minute)
+	# ALLOWABLE VALUES: any integer >= 0
+	"npc max mining time" 3600
+	
+	# Ships with the "frugal" personality will only use weapons that consume ammo or fuel while their health is at or below this fraction.
+	# DEFAULT: .75 (75 percent)
+	# ALLOWABLE VALUES: any value between 0. and 1.
+	"universal frugal threshold" .75

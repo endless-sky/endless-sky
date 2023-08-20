@@ -7,12 +7,21 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "FrameTimer.h"
 
 #include <thread>
+
+#ifdef _WIN32
+#define STRICT
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#endif
 
 using namespace std;
 
@@ -55,14 +64,21 @@ void FrameTimer::Wait()
 		// the sleep time is never longer than one frame.
 		if(now + step + maxLag < next)
 			next = now + step;
-		
+
+		// The Winpthreads implementation of sleep on MinGW > 8 is inaccurate when
+		// compared to the native Windows Sleep function.
+		// See the thread starting with https://sourceforge.net/p/mingw-w64/mailman/message/37013810/.
+#ifdef _WIN32
+		Sleep(chrono::duration_cast<chrono::milliseconds>(next - now).count());
+#else
 		this_thread::sleep_until(next);
+#endif
 		now = chrono::steady_clock::now();
 	}
 	// If the lag is too high, don't try to do catch-up.
 	if(now - next > maxLag)
 		next = now;
-	
+
 	Step();
 }
 

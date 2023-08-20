@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef SHIPYARD_PANEL_H_
@@ -33,32 +36,32 @@ class Ship;
 class ShipyardPanel : public ShopPanel {
 public:
 	explicit ShipyardPanel(PlayerInfo &player);
-	
-	
+
+	virtual void Step() override;
+
+
 protected:
 	virtual int TileSize() const override;
-	virtual int DrawPlayerShipInfo(const Point &point) override;
 	virtual bool HasItem(const std::string &name) const override;
 	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) override;
 	virtual int DividerOffset() const override;
 	virtual int DetailWidth() const override;
 	virtual int DrawDetails(const Point &center) override;
-	virtual bool CanBuy() const override;
-	virtual void Buy(bool fromCargo = false) override;
-	virtual void FailBuy() const override;
-	virtual bool CanSell(bool toCargo = false) const override;
-	virtual void Sell(bool toCargo = false) override;
+	virtual BuyResult CanBuy(bool onlyOwned = false) const override;
+	virtual void Buy(bool onlyOwned = false) override;
+	virtual bool CanSell(bool toStorage = false) const override;
+	virtual void Sell(bool toStorage = false) override;
 	virtual bool CanSellMultiple() const override;
-	
-	
+
+
 private:
 	void BuyShip(const std::string &name);
 	void SellShip();
-	
-	
+
+
 private:
 	int modifier;
-	
+
 	Sale<Ship> shipyard;
 };
 

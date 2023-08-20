@@ -1,0 +1,1332 @@
+# Copyright (c) 2014 by Michael Zahniser and Nate Graham
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+mission "Paradise Job: Care Package"
+	name "Care package to <planet>"
+	job
+	repeat
+	deadline
+	description "An anxious mother will pay you <payment> to deliver a care package of <cargo> to her child studying on <destination> by <date>."
+	cargo "Food" 1
+	to offer
+		random < 10
+	source
+		attributes "paradise"
+	destination
+		distance 2 5
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "paradise" "research" "rich"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 5000
+		dialog "Still wondering why one university student would possibly need such a large quantity of <commodity>, you deliver the interstellar care package and collect your payment of <payment>."
+
+
+mission "Paradise Job: Birthday Supplies"
+	name "Birthday supplies to <planet>"
+	job
+	repeat
+	deadline
+	description "An elderly couple wishes to contribute <cargo> for their grandchild's birthday bash on <destination> by <date>. Payment is <payment>."
+	cargo "Luxury Goods" 1 3
+	to offer
+		random < 10
+	source
+		attributes "paradise"
+	destination
+		distance 2 10
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "paradise" "rich" "core" "near earth"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 5000
+		dialog "You deliver the cargo to the garden of an imposing mansion in the countryside, wherein some pouty young sprout is throwing a very conspicuous fit at the center of a swarm of guests. The parents sheepishly hand you your payment of <payment>."
+
+
+mission "Paradise Job: Art Delivery"
+	name "Art delivery to <planet>"
+	job
+	repeat
+	deadline
+	description "Deliver <cargo> for an upcoming art exhibition on <destination> by <date>. Payment is <payment>."
+	cargo "Luxury Goods" 1 2 .4
+	to offer
+		random < 10
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "rich"
+	destination
+		distance 2 5
+		attributes "paradise"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 5000
+		dialog "Your ship is directed to the rear loading dock of a palatial complex where your cargo of <commodity> is unloaded. You collect your payment of <payment>."
+
+
+mission "Paradise Job: Newlyweds"
+	name "Newlyweds to <planet>"
+	job
+	repeat
+	deadline
+	description "This pair of newlyweds seeks passage on a luxurious ship to reach their honeymoon on <destination> by <date>, along with <tons> of their wedding gifts. They will pay you <payment> to take them there."
+	passengers 2
+	cargo "wedding gifts" 2 4
+	to offer
+		random < 10
+	to accept
+		has "outfit (installed): Luxury Accommodations"
+	source
+		attributes "paradise"
+	destination
+		distance 2 15
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Quarg"
+		attributes "paradise" "rich" "core" "near earth"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10000 250
+		dialog "You bid the two lovebirds goodbye on <planet> and collect your payment of <payment>."
+
+
+mission "Paradise Job: Theater Props"
+	name "Theater props to <planet>"
+	job
+	repeat
+	deadline
+	description "A theater troupe on <destination> needs a delivery of <tons> of special <commodity> to use as props in an upcoming performance on <date>. Payment is <payment>."
+	cargo "Luxury Goods" 2 6 .35
+	to offer
+		random < 10
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "rich" "urban"
+	destination
+		distance 2 8
+		attributes "paradise"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 8000
+		dialog "Your ship is directed to the rear loading dock of a sprawling entertainment complex where your cargo of <commodity> is unloaded. You collect your payment of <payment>."
+
+
+mission "Paradise Job: Fine Food"
+	name "Fine food to <planet>"
+	job
+	repeat
+	deadline
+	description "A highly-rated restaurant on <destination> seeks to acquire <tons> of fine <commodity> by <date>. Payment is <payment>."
+	cargo "Food" 2 5 .25
+	to offer
+		random < 10
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "farming" "fishing"
+	destination
+		distance 2 10
+		attributes "paradise"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 8000
+		dialog "Your ship is directed to the rear loading dock of a very impressive eatery. White-gloved waiters gingerly unload the cargo of <commodity> and relay your payment of <payment>."
+
+
+mission "Transport partiers [1]"
+	name "Party-goers to <planet>"
+	job
+	repeat
+	description "This group of <bunks> university students is willing to pay <payment> for a deluxe ride to a huge party on <destination>, along with <tons> of their completely legal pharmaceuticals."
+	passengers 7 12
+	cargo "pharmaceuticals" 2 4
+	illegal 1000 `It turns out that the "completely legal pharmaceuticals" in your hold are not so completely legal after all. The officers who confiscate the goods spend a long time talking with one of the students, whom you suspect to be politically connected. You're not surprised by the small size of the fine you receive as well as the fact that nobody was arrested.`
+	stealth
+	to offer
+		random < 10
+	to accept
+		has "outfit (installed): Luxury Accommodations"
+	source
+		attributes "paradise"
+	destination
+		distance 4 12
+		attributes "tourism"
+		not attributes "station"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10000 200
+		dialog "You're not sorry to say goodbye to the rowdy and uncouth troublemakers you've been transporting. Their parents send you your payment of <payment> with not a word of acknowledgment."
+
+
+mission "Transport partiers [2]"
+	name "Party-goers to <planet>"
+	job
+	repeat
+	description "This group of <bunks> university students is willing to pay <payment> for a deluxe ride to a huge party on <destination>, along with <tons> of their snacks and school supplies."
+	passengers 7 12
+	cargo "snacks and school supplies" 2 4
+	to offer
+		random < 10
+	to accept
+		has "outfit (installed): Luxury Accommodations"
+	source
+		attributes "paradise"
+	destination
+		distance 4 12
+		attributes "tourism"
+		not attributes "station"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 5000 190
+		dialog "You bid goodbye to the students, who behaved surprisingly well during the journey - yielding many fascinating conversations on subjects as diverse as philosophy, microfluidics, and intergalactic economics. Their proud parents send you your payment of <payment>."
+
+mission "Paradise Job: Food Donations"
+	name "Food donations to <planet>"
+	job
+	repeat
+	description "The fine citizens of <origin> seek a compassionate captain for a mission of mercy to donate <cargo> to the undernourished souls of <destination>. Payment is <payment>."
+	cargo "Food" 7 2 .1
+	to offer
+		random < 10
+	source
+		attributes "paradise"
+	destination
+		distance 2 16
+		attributes "rim" "south" "dirt belt" "frontier" "military"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 1000 90
+		dialog "You collect your payment of <payment>, but not before noticing the general robustness and ample bellies of the dockworkers unloading the donation of <commodity>."
+
+
+mission "Paradise Job: Clothing Donations"
+	name "Clothing donations to <planet>"
+	job
+	repeat
+	description "The fine citizens of <origin> seek a compassionate captain for a mission of mercy to donate <cargo> to the under-dressed and fashion-deprived souls of <destination>. Payment is <payment>."
+	cargo "Clothing" 7 2 .1
+	to offer
+		random < 10
+	source
+		attributes "paradise"
+	destination
+		distance 2 16
+		attributes "rim" "south" "dirt belt" "frontier" "military"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 1000 100
+		dialog "You collect your payment of <payment>, but not before noticing the fine quality of the clothes worn by the dockworkers unloading the donation of <commodity>."
+
+
+mission "Paradise Job: Medical Aid"
+	name "Medical aid to <planet>"
+	job
+	repeat
+	description "The fine citizens of <origin> seek a compassionate captain for a mission of mercy to donate <cargo> to the suffering souls of <destination>. Payment is <payment>."
+	cargo "Medical" 7 2 .1
+	to offer
+		random < 10
+	source
+		attributes "paradise"
+	destination
+		distance 2 16
+		attributes "rim" "south" "dirt belt" "frontier" "military"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 1000 100
+		dialog "You collect your payment of <payment>, but not before noticing the general health and vigor of the dockworkers unloading the donation of <commodity>."
+
+
+mission "Paradise Job: Charity"
+	name "Charity goods to <planet>"
+	job
+	repeat
+	description "The fine citizens of <origin> seek a compassionate captain for a mission of mercy to donate <cargo> to the naive and culturally-underexposed souls of <destination>. Payment is <payment>."
+	cargo "Luxury Goods" 7 2 .1
+	to offer
+		random < 10
+	source
+		attributes "paradise"
+	destination
+		distance 2 16
+		attributes "rim" "south" "dirt belt" "frontier" "military"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 1000 100
+		dialog "You collect your payment of <payment>, but not before noticing the quality of the clothes, jewelry, and personal electronics carried by the dockworkers unloading the donation of <commodity>."
+
+
+mission "Paradise Job: Party Goods"
+	name "Party goods from <planet stopovers>"
+	job
+	repeat
+	deadline
+	description "Planetside supplies of <commodity> are running low in the wake of an important gala. Pick up <tons> of it on <stopovers> and return to <origin> by <date>. Payment is <payment>."
+	cargo "Luxury Goods" 10 2 .1
+	to offer
+		random < 10
+	source
+		attributes "paradise"
+	stopover
+		distance 5 9
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "paradise" "rich"
+		attributes "spaceport"
+	on stopover
+		dialog "You oversee the loading as dockworkers carry box after box of <commodity> onto your ship. Must be some party."
+	on visit
+		dialog "You've returned to <planet>, but forgot to pick up the <commodity> on <stopovers> first! Better head there before it's too late."
+	on complete
+		payment
+		payment 10000 135
+		dialog "Your ship is directed to land on a makeshift tarmac near a sprawling greenfield where novelty castles are being constructed. Sharply-dressed stewards unload the <commodity> and you collect your payment of <payment>."
+
+
+mission "Paradise Job: Estate Assets"
+	name "Estate assets to <planet>"
+	job
+	repeat
+	description "Trustees are seeking starship captains willing to deliver individual portions of a recently deceased upstanding citizen's estate - <cargo> - to the upcoming estate sale on <destination>. Payment is <payment>."
+	cargo "Luxury Goods" 18 2 .15
+	to offer
+		random < 10
+	source
+		attributes "paradise"
+	destination
+		distance 3 12
+		attributes "rich"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 10000
+		dialog "As you watch the dockworkers unload crate after crate, you can't help but wonder what would drive someone to collect such a huge quantity of <commodity>. You collect your payment of <payment>."
+
+
+mission "Paradise Jobs: Contract Laborers"
+	name "Contract laborers from <planet stopovers>"
+	job
+	repeat
+	description "Return to <destination> after picking up <bunks> contract laborers located on <stopovers> who are eager to experience the luxury of the Paradise Worlds. Payment is <payment>."
+	passengers 13 30
+	to offer
+		random < 10
+	source
+		attributes "paradise"
+	stopover
+		distance 7 15
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "mining" "fishing" "textiles" "factory" "farming" "oil"
+		attributes "spaceport"
+	on stopover
+		dialog "The shabbily-dressed young men and women in the group don't look nearly as happy to be boarding your ship as you expected, given the new opportunity that awaits them. They shuffle wearily up the ramp for the return trip to <planet>."
+	on visit
+		dialog phrase "generic missing stopover or passengers"
+	on complete
+		payment 10000 50
+		dialog "The bedraggled contract laborers kept to themselves and didn't say a word to you throughout the entire trip. The scruffy foreman who receives you on <origin> seems pleased, however. He hands you your payment of <payment>."
+
+
+mission "Paradise Job: Waste Disposal"
+	name "Waste disposal on <planet>"
+	job
+	repeat
+	description "Urgent waste disposal is needed. Transport <cargo> to <destination> to keep property values from falling. Payment is <payment>."
+	cargo "Garbage" 30 2 .03
+	to offer
+		random < 10
+	source
+		attributes "paradise"
+	destination
+		distance 2 20
+		attributes "dirt belt"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		dialog "You drop off the exceptionally foul shipment of <commodity> on <planet>, already looking forward to the chemical bath your cargo hold is going to receive. You collect your payment of <payment> and hope that somebody around here knows what to do with the unpleasant mess you dropped off."
+
+
+mission "Transport high-class tourists"
+	description "Bring <bunks> outrageously wealthy tourists on a fabulous journey to the wild and exotic world of <destination>. They'll only consider thinking about your ship if you have the 'appropriate facilities' for a comfortable journey. Payment is <payment>."
+	job
+	repeat
+	passengers 8 22
+	to offer
+		random < 10
+	to accept
+		has "outfit (installed): Luxury Accommodations"
+	source
+		attributes "paradise"
+	destination
+		attributes "religious" "quarg" "pirate" "volcanic" "frontier"
+		distance 8 20
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog "Your passengers begin to wander off, some of them sporting puzzled looks as the memories of glossy photos in the brochures give way to reality. You collect your payment of <payment>."
+		payment 25000 250
+
+
+mission "Pleasure cruise security"
+	description "Escort the <npc> on a pleasure cruise to the wild and exotic planet of <stopovers> along with <tons> of their <commodity>, then return to <destination>, where you will be paid <payment>."
+	job
+	repeat
+	cargo "Luxury Goods" 15 3 .17
+	to offer
+		random < 10
+		"combat rating" > 10
+	source
+		attributes "paradise" "rich"
+	stopover
+		attributes "tourism" "religious" "quarg" "pirate" "volcanic" "frontier" "moon" "fishing"
+		attributes "spaceport"
+		distance 6 15
+	destination
+		attributes "paradise"
+		distance 1 6
+	npc accompany save
+		government "Merchant"
+		personality escort timid
+		fleet
+			names "civilian"
+			variant
+				"Star Queen"
+	on stopover
+		dialog "The passengers of the <npc> wander off, bedecked in the most conspicuous tourist attire they seem to have been able to find, and begin oohing and aahing at the exoticism of this faraway world. Hopefully none of them gets robbed. You prepare for the return journey to <destination>."
+	on visit
+		dialog "You have reached <planet>, but you can't complete this mission until the <npc> has visited <stopovers> with you and then joined you here."
+	on complete
+		dialog "You bid goodbye to the captain of the <npc> and accept your payment of <payment>."
+		payment
+		payment 50000
+
+
+mission "Paradise Job: Parolees"
+	name "Parolees to <planet>"
+	job
+	repeat
+	description `These <bunks> non-violent repeat offenders have accepted longer community service sentences in return for serving their time on the Paradise World of <destination>. They will need to be transported in a secure ship. Payment is <payment>.`
+	passengers 20 4 .1
+	to offer
+		random < 15
+		"passenger space" > 40
+	to accept
+		has "outfit (installed): Brig"
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "mining" "fishing" "textiles" "factory" "farming" "oil"
+	destination
+		distance 2 18
+		attributes "paradise"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 10000
+		dialog "The passengers shuffle unhappily out of the ship under the watchful eye of a local security force as they prepare to repay their debts to society. A clerk on <planet> checks their condition as they're led off. He seems mostly pleased and hands you your payment of <payment>."
+
+
+mission "Paradise Job: Debtors"
+	name "Debtors to <planet>"
+	job
+	repeat
+	description `These <bunks> poor souls have bankrupted themselves attempting to live beyond their means. In response, the local government will pay you <payment> to transport them securely to <destination> to "make themselves useful."`
+	passengers 20 4 .1
+	to offer
+		random < 15
+		"passenger space" > 40
+	to accept
+		has "outfit (installed): Brig"
+	source
+		attributes "paradise"
+	destination
+		distance 2 30
+		attributes "mining" "fishing" "forest" "textiles" "factory" "farming" "oil" "frontier" "dirt belt" "south" "rim"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 10000
+		dialog "The passengers shuffle unhappily out of the ship under the watchful eye of immigration officials. A grinning job service provider is on hand to pay you the <payment> you are owed."
+
+
+mission "Paradise Job: Retirees"
+	name "Wealthy retirees to <planet>"
+	job
+	repeat
+	description "This coterie of <bunks> wealthy retirees is willing to pay <payment> to be transported in style to <destination>, along with <tons> of their most treasured possessions."
+	passengers 7 12 .6
+	cargo "treasured possessions" 7 12 .2
+	to offer
+		random < 10
+		"passenger space" > 15
+		"cargo space" > 40
+	to accept
+		has "outfit (installed): Luxury Accommodations"
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest" "urban"
+	destination
+		distance 3 16
+		attributes "paradise"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10000 200
+		dialog "You bid goodbye to the retirees, who were somewhat prone to spilling drinks or irritating you whilst attempting to do work. They were otherwise extremely polite and full of highly amusing, though often morally questionable, anecdotes. Once the last of their belongings have been safely unloaded your accounts receive the payment of <payment> from their travel broker."
+
+
+mission "Paradise Job: Pirate Retirees (Illegal)"
+	name "Wealthy retirees to <planet>"
+	job
+	repeat
+	description `This coterie of <bunks> wealthy "retirees" is willing to pay <payment> for stylish, no-questions-asked transport to <destination>, along with <tons> of their most treasured possessions.`
+	passengers 4 10 .6
+	cargo "treasured possessions" 4 10 .2
+	illegal 15000 `After scanning your ship, law enforcement notifies you. Apparently the "retirees" you've been carting around are secretly wanted individuals. After taking boarding your ship, they arrest the so-called retirees and search through their "treasured possessions," which are innocent enough, besides being obtained illegally. In the end, they confiscate the possessions and take away the criminals, leaving you with a small fine.`
+	stealth
+	to offer
+		random < 5
+		"passenger space" > 15
+		"cargo space" > 40
+	to accept
+		has "outfit: Luxury Accommodations"
+	source
+		government "Pirate"
+	destination
+		distance 3 16
+		attributes "paradise"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 15000 300
+		dialog "You bid goodbye to the self-proclaimed retirees, who were somewhat prone to spilling drinks or irritating you whilst attempting to do work. They were otherwise extremely polite, if raucous, and full of highly amusing, though often morally questionable, anecdotes. Once the last of their belongings have been safely unloaded your accounts receive the payment of <payment> from an anyonymous source."
+
+
+mission "Paradise Job: Pirate Retirees (Legal)"
+	name "Wealthy retirees to <planet>"
+	job
+	repeat
+	description `This coterie of <bunks> wealthy "retirees" is willing to pay <payment> for stylish, no-questions-asked transport to <destination>, along with <tons> of their most treasured possessions.`
+	passengers 4 10 .6
+	cargo "treasured possessions" 4 10 .2
+	to offer
+		random < 5
+		"passenger space" > 15
+		"cargo space" > 40
+	to accept
+		has "outfit: Luxury Accommodations"
+	source
+		government "Pirate"
+	destination
+		distance 3 16
+		attributes "paradise"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10000 200
+		dialog "You bid goodbye to the self-proclaimed retirees, who were somewhat prone to spilling drinks or irritating you whilst attempting to do work. They were otherwise extremely polite, if raucous, and full of highly amusing, though often morally questionable, anecdotes. Once the last of their belongings have been safely unloaded your accounts receive the payment of <payment> from an anyonymous source."
+
+
+mission "Paradise Job: Wilderness Retreat"
+	name "Wilderness Retreat to <planet>"
+	job
+	repeat
+	description `Bring <bunks> pseudo-celebrities and wealthy tourists to the wild and untamed world of <destination> for a "Wilderness Retreat." They'll only consider your ship if you can ensure that they can have a comfortable journey. Payment is <payment>.`
+	passengers 10 4 .1
+	to offer
+		random < 10
+		"passenger space" > 25
+	to accept
+		has "outfit (installed): Luxury Accommodations"
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		attributes "urban" "near earth" "core" "paradise"
+	destination
+		distance 6 20
+		attributes "frontier" "rim" "forest" "fishing"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 25000 250
+		dialog `Your passengers are met by an overly enthusiastic greeting service of comically overdressed "wilderness guides." You can't help but think these people are either about to end up on a popular reality show, or be safely fleeced of their money, but they're not the sort of characters who engender much sympathy for such fates. One of the greeters quietly transfers to you your payment of <payment>.`
+
+
+
+# Martini Bombings jobs
+
+mission "Martini Evacuation (Resident Family)"
+	name "Evacuate Martini family to <planet>"
+	description "This family of <bunks> from Martini had their <martini house> destroyed in the nuclear bombing and wish to leave immediately. Transport them and their <cargo> to <planet>, where they have accommodation. They will pay you <payment>."
+	job
+	repeat
+	passengers 3 20 .96
+	cargo "belongings" 2 4
+	substitutions
+		"<martini house>" "apartment"
+		"<martini house>" "house"
+			random < 50
+		"<martini house>" "condo"
+			random < 33
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2" # Gives the player about a month to do these missions.
+		random < 30
+	source Martini
+	destination
+		distance 2 5
+		attributes "paradise" "rich" "urban"
+		not attributes "station"
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		dialog phrase "martini evac dialog plural"
+		payment 8000 200
+
+
+mission "Martini Evacuation (Resident Group)"
+	name "Evacuate Martini residents to <planet>"
+	description "These <bunks> residents from Martini had their <martini house> destroyed in the nuclear bombing and wish to leave immediately. Transport them and their <cargo> to <planet>, where they have accommodation. They will pay you <payment>."
+	job
+	repeat
+	passengers 3 2 .68
+	cargo "belongings" 3 6
+	substitutions
+		"<martini house>" "apartment"
+		"<martini house>" "house"
+			random < 50
+		"<martini house>" "condo"
+			random < 33
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+		random < 30
+	source Martini
+	destination
+		distance 2 5
+		attributes "paradise" "rich" "urban"
+		not attributes "station"
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		dialog phrase "martini evac dialog plural"
+		payment 8000 200
+
+
+mission "Martini Evacuation (Resident)"
+	name "Evacuate Martini resident to <planet>"
+	description "This resident from Martini had their <martini house> destroyed in the nuclear bombing and wishes to leave immediately. Transport them and their <cargo> to <planet>, where they have accommodation. They will pay you <payment>."
+	job
+	repeat
+	passengers 1
+	cargo "belongings" 1 2
+	substitutions
+		"<martini house>" "apartment"
+		"<martini house>" "house"
+			random < 50
+		"<martini house>" "condo"
+			random < 33
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+		random < 30
+	source Martini
+	destination
+		distance 2 5
+		attributes "paradise" "rich" "urban"
+		not attributes "station"
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		dialog phrase "martini evac dialog singular"
+		payment 6000 200
+
+
+mission "Martini Evacuation (Family, Luxury)"
+	name "Evacuate Martini residents to <planet>"
+	description "This family of <bunks> from Martini had their <martini house> destroyed in the nuclear bombing, and wish to leave immediately on a luxury ship. Transport them and their <cargo> to <planet>, where they have accommodation. They will pay you <payment>."
+	job
+	repeat
+	passengers 3 20 .96
+	cargo "belongings" 2 4
+	substitutions
+		"<martini house>" "apartment"
+		"<martini house>" "house"
+			random < 50
+		"<martini house>" "condo"
+			random < 33
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+		random < 30
+	to accept
+		has "outfit: Luxury Accommodations"
+	source Martini
+	destination
+		distance 2 5
+		attributes "paradise" "rich" "urban"
+		not attributes "station"
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		dialog phrase "martini evac dialog plural"
+		payment 12000 230
+
+
+mission "Martini Evacuation (Singular, Luxury)"
+	name "Evacuate Martini resident to <planet>"
+	description "This resident from Martini had their <martini house> destroyed in the nuclear bombing, and wishes to leave immediately on a luxury ship. Transport them and their <cargo> to <planet>, where they have accommodation. They will pay you <payment>."
+	job
+	repeat
+	passengers 1
+	cargo "belongings" 1 2
+	substitutions
+		"<martini house>" "apartment"
+		"<martini house>" "house"
+			random < 50
+		"<martini house>" "condo"
+			random < 33
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+		random < 30
+	to accept
+		has "outfit: Luxury Accommodations"
+	source Martini
+	destination
+		distance 2 5
+		attributes "paradise" "rich" "urban"
+		not attributes "station"
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		dialog phrase "martini evac dialog singular"
+		payment 8000 230
+
+
+mission "Martini Evacuation (Tourist)"
+	name "Evacuate tourist to <planet>"
+	description "This tourist from <planet>, who was on Martini to see its sights when the nuclear bombings occurred, wishes to leave immediately. Transport them back to their home on <planet>, where they will pay you <payment>."
+	job
+	repeat
+	passengers 1
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+		random < 30
+	source Martini
+	destination
+		distance 2 8
+		not attributes "station"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog phrase "generic passenger dropoff payment"
+		payment 3000 170
+
+
+mission "Martini Evacuation (Tourist Couple)"
+	name "Evacuate tourist couple to <planet>"
+	description "This tourist couple from <planet>, who was on Martini to see its sights when the nuclear bombings occurred, wishes to leave immediately. Transport them back to their home on <planet>, where they will pay you <payment>."
+	job
+	repeat
+	passengers 2
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+		random < 30
+	source Martini
+	destination
+		distance 2 8
+		not attributes "station"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog phrase "generic passenger dropoff payment"
+		payment 3000 170
+
+
+mission "Martini Evacuation (Tourist Family)"
+	name "Evacuate tourist family to <planet>"
+	description "This family of <bunks> tourists from <planet>, who were on Martini to see its sights when the nuclear bombings occurred, wish to leave immediately. Transport them back to their home on <planet>, where they will pay you <payment>."
+	job
+	repeat
+	passengers 3 20 .96
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+		random < 30
+	source Martini
+	destination
+		distance 2 5
+		not attributes "station"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog phrase "generic passenger dropoff payment"
+		payment 5000 170
+
+mission "Martini Evacuation (Tourist Group)"
+	name "Evacuate tourist group to <planet>"
+	description "This group of <bunks> tourists from <planet>, who were on Martini to see its sights when the nuclear bombings occurred, wish to leave immediately. Transport them back to their homes on <planet>, where they will pay you <payment>."
+	job
+	repeat
+	passengers 3 20 .68
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+		random < 30
+	source Martini
+	destination
+		distance 2 5
+		not attributes "station"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog phrase "generic passenger dropoff payment"
+		payment 5000 170
+
+
+mission "Martini Evacuation (Businessman Group)"
+	name "Evacuate group of businessmen from Martini to <planet>"
+	description "This group of <bunks> businessmen, who were on Martini conducting a business trip when the nuclear bombings occurred, wish to leave immediately. Transport them back to their homes on <planet>, where they will pay you <payment>."
+	job
+	repeat
+	passengers 3 6
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+		random < 30
+	source Martini
+	destination
+		distance 2 8
+		attributes "paradise" "rich"
+		not attributes "station"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog phrase "martini evac dialog plural"
+		payment 10000 200
+
+
+mission "Martini Evacuation (Businessman)"
+	name "Evacuate businessman to <planet>"
+	description "This businessman, who was on Martini conducting a business trip when the nuclear bombings occurred, wishes to leave immediately. Transport them back to their home on <planet>, where they will pay you <payment>."
+	job
+	repeat
+	passengers 1
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+		random < 30
+	source Martini
+	destination
+		distance 2 8
+		not attributes "station"
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		dialog phrase "martini evac dialog singular"
+		payment 5000 200
+
+
+mission "Martini Evacuation (Exhausted Doctors)"
+	name "Transport discharged doctors to <planet>"
+	description "These <bunks> doctors have been constantly treating patients on Martini after the bombings, and now have been discharged. Transport them back to their home on <planet>, where they will pay you <payment>."
+	job
+	repeat
+	passengers 2 10 .9
+	to offer
+		has "event: initial deployment 1"
+		not "event: initial deployment 2"
+		random < 30
+	source Martini
+	destination
+		distance 4 12
+		not attributes "station"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog phrase "generic passenger dropoff payment"
+		payment 5000 170
+
+
+mission "Martini Evacuation (Exhausted Search and Rescue Team)"
+	name "Transport discharged search and rescue team to <planet>"
+	description "These <bunks> search and rescue operatives have been searching for victims of the nuclear bombings in Martini's capital city, and now have been discharged. Transport them back to their home on <planet>, where they will pay you <payment>."
+	job
+	repeat
+	passengers 2 10 .9
+	to offer
+		has "event: initial deployment 1"
+		not "event: initial deployment 2"
+		random < 30
+	source Martini
+	destination
+		distance 4 12
+		not attributes "station"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog phrase "generic passenger dropoff payment"
+		payment 5000 170
+
+
+
+# Martini evac on complete dialog
+phrase "martini evac dialog singular"
+	word
+		"Throughout the trip"
+		"While on board"
+		"During their time on board"
+		"Between hyperjumps"
+	word
+		", your passenger from Martini has been "
+	phrase
+		"martini evac 1"
+
+phrase "martini evac 1"
+	word
+		"accusing"
+		"repeatedly accusing"
+		"denouncing"
+	word
+		" "
+	word
+		"the Free Worlds"
+		"the Southern Defense Pact"
+		"the Southern Pact"
+		"'those ${insults for southerners}'"
+		"'them ${insults for southerners}'"
+		"the '${insults for southerners}'"
+	word
+		" for the "
+	word
+		"nuclear bombings"
+		"destruction"
+		"devastation"
+		"disaster"
+	word
+		" on Martini. They hand you <payment> and head off for their"
+	word
+		" " 10
+		" well-kept "
+		" expensive "
+		" opulent "
+		" exorbitant "
+		" summer "
+		" vacation "
+		" extra "
+		" other "
+		" friend's "
+		" relative's "
+	word
+		"penthouse"
+		"condo"
+		"apartment"
+		"mansion"
+		"house"
+	word
+		" on <planet>."
+
+phrase "martini evac 1"
+	word
+		"telling you"
+		"letting you know"
+		"talking"
+		"informing you"
+	word
+		" of the "
+		" about the "
+	word
+		"desperation of the people on Martini"
+		"people they knew who died in the blasts"
+		"dire conditions that the people are facing on Martini"
+		"deteriorating state on the ground on Martini"
+		"destruction on Martini"
+		"devastation they personally witnessed"
+		"breakdowns and losses they endured on Martini"
+		"people they haven't heard back from on Martini"
+	word
+		", and implore you to help out further in the relief efforts"
+		", and thank you for bringing them off-planet"
+		""
+	word
+		". They hand you <payment> and head off for "
+	word
+		"an apartment"
+		"a house"
+	word
+		" on <planet>."
+
+
+phrase "martini evac dialog plural"
+	word
+		"Throughout the trip"
+		"While on board"
+		"During their time on board"
+		"Between hyperjumps"
+	word
+		", your passengers from Martini have been "
+	phrase
+		"martini evac 2"
+
+phrase "martini evac 2"
+	word
+		"accusing"
+		"repeatedly accusing"
+		"denouncing"
+	word
+		" "
+	word
+		"the Free Worlds"
+		"the Southern Defense Pact"
+		"the Southern Pact"
+		"'those ${insults for southerners}'"
+		"'them ${insults for southerners}'"
+		"the '${insults for southerners}'"
+	word
+		" for the "
+	word
+		"nuclear bombings"
+		"destruction"
+		"devastation"
+	word
+		" on Martini. The group hands you <payment> and head off for their"
+	word
+		" " 4
+		" well-kept "
+		" expensive "
+		" opulent "
+		" exorbitant "
+	word
+		"penthouses"
+		"apartments"
+		"houses"
+		"villas"
+	word
+		" and "
+	word
+		"estates"
+		"condos"
+		"mansions"
+		"manors"
+	word
+		" on <planet>."
+
+phrase "martini evac 2"
+	word
+		"telling you"
+		"letting you know"
+		"talking"
+		"informing you"
+	word
+		" of the "
+		" about the "
+	word
+		"desperation of the people on Martini"
+		"people they knew who died in the blasts"
+		"dire conditions that the people are facing on Martini"
+		"deteriorating state on the ground on Martini"
+		"destruction on Martini"
+		"devastation they personally witnessed"
+		"breakdowns and losses they endured on Martini"
+		"people they haven't heard back from on Martini"
+	word
+		". They "
+	word
+		"implore you to help out further in the relief efforts,"
+		"thank you for bringing them off-planet,"
+	word
+		" hand you <payment> and head off for their "
+	word
+		"apartments"
+		"houses"
+		"apartments and houses"
+	word
+		" on <planet>."
+
+phrase "insults for southerners"
+	word
+		"bloody"
+		"damn"
+		"jumpy"
+		"upstart"
+		"whining"
+		"whingeing"
+		"stupid"
+		"seditious"
+		"treasonous"
+		"betraying"
+		"treacherous"
+		"deceptive"
+		"terrorizing"
+		"greedy"
+		"cowardly"
+		"base"
+	word
+		" "
+	word
+		"southrons"
+		"southerners"
+		"collectivists"
+		"subversives"
+		"insurrectionists"
+		"charity-cases"
+		"rocketeers"
+		"pirates"
+		"unlawfuls"
+		"gunrunners"
+		"sunnavaguns'"
+		"privateers"
+	word
+		" from "
+	word
+		"Bourne"
+		"Rust"
+		"Solace"
+		"Greenrock"
+		"Thule"
+		"Zug"
+		"Longjump"
+		"the South"
+		"the Rim"
+		"the Southern Rim"
+
+
+
+mission "Martini Relief (Medical) [0]"
+	name "Disaster relief to Martini"
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help treat the wounded. You will need to hail the spaceport controller to gain clearance to the planet. Payment is <payment>."
+	job
+	repeat
+	cargo Medical 1 2 .2
+	clearance "When you explain to the spaceport controller that you are carrying a vital supply of <commodity> to help treat the wounded, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+		random < 25
+	source
+		near Pollux 2 10
+	destination Martini
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 6000 170
+		dialog phrase "generic cargo delivery payment"
+
+
+mission "Martini Relief (Medical) [1]"
+	name "Disaster relief to Martini"
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help treat the wounded. You will need to hail the spaceport controller to gain clearance to the planet. Payment is <payment>."
+	job
+	repeat
+	cargo Medical 1 2 .2
+	clearance "When you explain to the spaceport controller that you are carrying a vital supply of <commodity> to help treat the wounded, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+		random < 10
+	source
+		near Pollux 2 10
+	destination Martini
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 8000 180
+		dialog phrase "generic cargo delivery payment"
+
+
+mission "Martini Relief (Reconstruction)"
+	name "Construction supplies to Martini"
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help the reconstruction efforts. You will need to hail the spaceport controller to gain clearance to the planet. Payment is <payment>."
+	job
+	repeat
+	cargo Construction 1 2 .2
+	clearance "When you explain to the spaceport controller that you are carrying a vital supply of <commodity> for the reconstruction efforts, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+		random < 20
+	source
+		near Pollux 2 10
+	destination Martini
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 7000 170
+		dialog phrase "generic cargo delivery payment"
+
+
+mission "Martini Relief (Food)"
+	name "Food packages to Martini"
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help keep up supply. You will need to hail the spaceport controller to gain clearance to the planet. Payment is <payment>."
+	job
+	repeat
+	cargo "food packages" 1 2 .2
+	clearance "When you explain to the spaceport controller that you are carrying a vital supply of <commodity> for the refugee camps, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+		random < 20
+	source
+		near Pollux 2 10
+	destination Martini
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 7000 180
+		dialog phrase "generic cargo delivery payment"
+
+
+mission "Martini Relief (Water Tablets)"
+	name "Water purification tablets to Martini"
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help keep up supply. You will need to hail the spaceport controller to gain clearance to the planet. Payment is <payment>."
+	job
+	repeat
+	cargo "water purification tablets" 1 2 .2
+	clearance "When you explain to the spaceport controller that you are carrying a vital supply of <commodity> for the refugee camps, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+		random < 20
+	source
+		near Pollux 2 10
+	destination Martini
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 7000 180
+		dialog phrase "generic cargo delivery payment"
+
+
+mission "Martini Relief (Fire Retardant)"
+	name "Fire retardant to Martini"
+	description "Due to the recent nuclear bombings, bring <cargo> to <planet> to help keep up supply. You will need to hail the spaceport controller to gain clearance to the planet. Payment is <payment>."
+	job
+	repeat
+	cargo "fire retardant" 1 2 .2
+	clearance "When you explain to the spaceport controller that you are carrying a vital supply of <commodity> to help defeat the growing fires around the capital, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+		random < 10
+	source
+		near Pollux 2 10
+	destination Martini
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 7000 170
+		dialog phrase "generic cargo delivery payment"
+
+
+mission "Martini Relief (People) [0]"
+	name "Relief workers to Martini"
+	description "Due to the recent nuclear bombings on Martini, bring <bunks> <martini relief occupations> to <planet> to release demand from overloaded hospitals. You will need to hail the spaceport controller to gain clearance to the planet. Payment is <payment>."
+	job
+	repeat
+	passengers 2 2 .3
+	substitutions
+		"<martini relief occupations>" "doctors"
+		"<martini relief occupations>" "technicians"
+			random < 50
+		"<martini relief occupations>" "nurses"
+			random < 33
+		"<martini relief occupations>" "surgeons"
+			random < 25
+	clearance "When you explain to the spaceport controller that you have on board a group of <martini relief occupations> for Martini's disaster relief efforts, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+		random < 25
+	source
+		near Pollux 2 10
+	destination Martini
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10000 180
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Martini Relief (People) [1]"
+	name "Relief workers to Martini"
+	description "Due to the recent nuclear bombings on Martini, bring <bunks> <martini relief occupations> to <planet> to assist in Martini's relief efforts. You will need to hail the spaceport controller to gain clearance to the planet. Payment is <payment>."
+	job
+	repeat
+	passengers 2 2 .3
+	substitutions
+		"<martini relief occupations>" "evacuation coordinators"
+		"<martini relief occupations>" "search and rescue operatives"
+			random < 50
+		"<martini relief occupations>" "firefighters"
+			random < 33
+		"<martini relief occupations>" "volunteers"
+			random < 25
+	clearance "When you explain to the spaceport controller that you have on board a group of <martini relief occupations> for Martini's disaster relief efforts, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+		random < 15
+	source
+		near Pollux 2 10
+	destination Martini
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10000 180
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Martini Relief (People) [2]"
+	name "Relief workers to Martini"
+	description "Due to the recent nuclear bombings on Martini, bring <bunks> <martini relief occupations> to <planet> to assist in the accommodation and reconstruction efforts. You will need to hail the spaceport controller to gain clearance to the planet. Payment is <payment>."
+	job
+	repeat
+	passengers 2 2 .3
+	substitutions
+		"<martini relief occupations>" "engineers"
+		"<martini relief occupations>" "technicians"
+			random < 50
+		"<martini relief occupations>" "construction workers"
+			random < 33
+		"<martini relief occupations>" "volunteers"
+			random < 25
+	clearance "When you explain to the spaceport controller that you have on board a group of <martini relief occupations> for Martini's disaster relief efforts, they give you the clearance to land."
+	to offer
+		has "event: war begins"
+		not "event: initial deployment 2"
+		random < 10
+	source
+		near Pollux 2 10
+	destination Martini
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10000 180
+		dialog phrase "generic passenger dropoff payment"

@@ -1,0 +1,3 @@
+{
+  "Exclude": ["\\.mp3$", "test_datafile.cpp", "\\Shader.cpp$", "Font.cpp", "Mask.cpp"]
+}
