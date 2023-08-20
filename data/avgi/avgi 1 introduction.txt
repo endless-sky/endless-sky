@@ -354,6 +354,10 @@ mission "Avgi: Defend Ensemble 1"
 					goto korath
 					to display
 						has "FW Pug 2B: done"
+				`	"I took it from some angry space squirrels."`
+					goto unfettered
+					to display
+						has "visited system: Ehma Ti"
 				`	"I took it from the Quarg."`
 					goto quarg
 					to display
@@ -368,6 +372,10 @@ mission "Avgi: Defend Ensemble 1"
 
 			label pug
 			`	"Deneb? There's no hyperlanes to that system, are there? Strange." He looks thoughtful for a moment. "I've heard stories before, of... nevermind, excuse me."`
+				goto next
+
+			label unfettered
+			`	"The Hai have Jump Drives? I didn't think their technology was that advanced." He looks thoughtful. "Unless they got them from someone else, that is."`
 				goto next
 
 			label quarg
