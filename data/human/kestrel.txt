@@ -161,8 +161,7 @@ mission "Kestrel: More Weapons"
 		has "kestrel: more weapons"
 	on offer
 		event "kestrel available: more weapons" 50
-	to complete
-		has "kestrel available"
+		fail
 
 
 
@@ -173,8 +172,7 @@ mission "Kestrel: More Engines"
 		has "kestrel: more engines"
 	on offer
 		event "kestrel available: more engines" 50
-	to complete
-		has "kestrel available"
+		fail
 
 
 
@@ -185,8 +183,7 @@ mission "Kestrel: More Shields"
 		has "kestrel: more shields"
 	on offer
 		event "kestrel available: more shields" 50
-	to complete
-		has "kestrel available"
+		fail
 
 
 
