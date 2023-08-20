@@ -174,7 +174,7 @@ public:
 	// The smallest arrival period of a fleet (or 0 if no fleets arrive)
 	int MinimumFleetPeriod() const;
 
-	const RaidFleets &RaidFleets() const;
+	const RaidFleets &GetRaidFleets() const;
 	bool NoRaids() const;
 
 

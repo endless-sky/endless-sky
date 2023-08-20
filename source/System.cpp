@@ -972,7 +972,7 @@ int System::MinimumFleetPeriod() const
 
 
 
-const RaidFleets &System::RaidFleets() const
+const RaidFleets &System::GetRaidFleets() const
 {
 	return raidFleets;
 }

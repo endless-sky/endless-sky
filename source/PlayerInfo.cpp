@@ -3319,7 +3319,7 @@ void PlayerInfo::RegisterDerivedConditions()
 
 		// This variable represents the probability of no raid fleets spawning.
 		double safeChance = 1.;
-		for(const auto &raidFleet : system->GetGovernment()->RaidFleets())
+		for(const auto &raidFleet : system->GetGovernment()->GetRaidFleets())
 		{
 			// The attraction is the % chance for a single instance of this fleet to appear.
 			double attraction = RaidFleetAttraction(raidFleet, system);
