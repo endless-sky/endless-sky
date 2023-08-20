@@ -93,7 +93,7 @@ namespace PluginHelper {
 
 
 	// Copy an entry from one archive to the other
-	int CopyData(struct archive *ar, struct archive *aw)
+	void CopyData(struct archive *ar, struct archive *aw)
 	{
 		int retVal;
 		const void *buff;
@@ -104,15 +104,11 @@ namespace PluginHelper {
 		{
 			retVal = archive_read_data_block(ar, &buff, &size, &offset);
 			if(retVal == ARCHIVE_EOF)
-				return (ARCHIVE_OK);
+				return;
 			if(retVal != ARCHIVE_OK)
-				return (retVal);
-			retVal = archive_write_data_block(aw, buff, size, offset);
-			if(retVal != ARCHIVE_OK)
-			{
-				printf("archive_write_data_block(), %s", archive_error_string(aw));
-				return (retVal);
-			}
+				return;
+			if(archive_write_data_block(aw, buff, size, offset) != ARCHIVE_OK)
+				return;
 		}
 	}
 
@@ -120,8 +116,7 @@ namespace PluginHelper {
 
 	bool ExtractZIP(string filename, string destination, string expectedName)
 	{
-		int flags;
-		flags = ARCHIVE_EXTRACT_TIME;
+		int flags = ARCHIVE_EXTRACT_TIME;
 		flags |= ARCHIVE_EXTRACT_PERM;
 		flags |= ARCHIVE_EXTRACT_ACL;
 		flags |= ARCHIVE_EXTRACT_FFLAGS;

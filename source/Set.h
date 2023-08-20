@@ -97,7 +97,7 @@ template <class Type>
 void Set<Type>::Erase(std::string key)
 {
 	const auto it = data.find(key);
-	if (it != data.end())
+	if(it != data.end())
     	data.erase(it);
 }
 

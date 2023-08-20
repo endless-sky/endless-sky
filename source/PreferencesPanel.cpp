@@ -15,7 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "PreferencesPanel.h"
 
-#include "Plugins.h"
 #include "text/alignment.hpp"
 #include "Audio.h"
 #include "Color.h"
