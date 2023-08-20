@@ -9,9 +9,9 @@ The [issues page](https://github.com/endless-sky/endless-sky/issues) on GitHub i
 * Check to make sure it is not a duplicate of an existing issue.
 * Create a separate "issue" for each bug you are reporting and each feature you are requesting.
 * Choose the correct issue template and fill it out to the best of your ability.
-* Do not use the issues page for things other than bug reports and feature requests. Use the [discussions page](https://github.com/endless-sky/endless-sky/discussions) instead.
+* Do not use the issues page for things other than what match the provided issue templates. Use the [discussions page](https://github.com/endless-sky/endless-sky/discussions) instead. Examples of what the discussion pages would be used for include topics that are not looking for a resolution (as the point of an issue is to have it be resolved) or topics that are extremely broad and not befitting of an issue because there is no single resolution to the topic.
 
-If requesting a new feature, first ask yourself: will this make the game more fun or interesting? Remember that this is a game, not a simulator. Changes will not be made purely for the sake of realism, especially if they introduce needless complexity or aggravation.
+If requesting a new feature, first ask yourself: will this make the game more fun or interesting within the existing scope of the game? Remember that this is not a simulator game; while you may find such games fun or interesting, that is not the type of game that Endless Sky is trying to be.
 
 ### Closing issues
 
@@ -43,5 +43,4 @@ The type (and size) of pull request you open will also influence when it is elig
 * During the development of an unstable release, any type of pull request is up for merging. Unstable releases are typically developed over the course of three to four months and with odd version numbers (e.g. v0.10.1).
 * During the development of a stable release, we typically only accept bug fixes and minor content tweaks. Stable releases are typically developed over the course of two to six weeks and with even version numbers (e.g. v0.10.2).
 
-If you have opened a new feature pull request during a stable release development cycle, it is unlikely to be merged until the stable release is finished. Similarly, if you open a large pull request toward the end of an unstable release, it will likely have to wait until the next unstable release development cycle has begun before it has a chance to be merged.
-Additionally, towards the end of an unstable release, Developers and Reviewers are often focused closely on a priority list determined in advance. A large pull request opened towards the end of an unstable release may not be reviewed at all until after the start of the next unstable release period. In this scenario your large PR may not receive much attention for upwards of eight weeks after opening. Please understand that this may be unavoidable, and does not mean that the PR is valued less than anything else during that time. Please be especially patient if you find yourself in this unfortunate circumstance.
+If you have opened a new feature pull request during a stable release development cycle, it is unlikely to be merged until the stable release is finished. Similarly, if you open a large pull request toward the end of an unstable release, it will likely have to wait until the next unstable release development cycle has begun before people will begin reviewing it and it has a chance to be merged. This is because the time it would take to appropriately review the pull request is longer than the time until the next release, and Developers and Reviewers are often focused closely on a priority list determined in advance closer to the release date.
