@@ -1036,7 +1036,7 @@ tip "no thruster!"
 	`This ship is unable to move. You should install thrusters.`
 
 tip "no steering!"
-	`This ship is unable to turn. You should install some steering systems.`
+	`This ship is unable to turn. You should install steering systems.`
 
 tip "insufficient bunks?"
 	`This ship does not have enough bunks for its crew. It could become unresponsive at random times.`
