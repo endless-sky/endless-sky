@@ -418,7 +418,7 @@ mission "Intro [2 Interceptor]"
 
 
 mission "Intro [3 Interceptor]"
-	landing
+	priority
 	name "Mine at <planet>"
 	description "Mine asteroids at <destination>."
 	passengers 1
@@ -433,16 +433,16 @@ mission "Intro [3 Interceptor]"
 			`	"This is Captain Marshall," James says as you pull up a chair. "He mines in this part of space and says there's a good system nearby if you're willing to give it a try."`
 			choice
 				`	"I'm up for a challenge."`
-					accept
 					goto mining
 				`	"I'm ready to head out on my own."`
 					decline
 	
 			label "mining"
 			`	"That's good to hear," Captain Marshall says with a smile. Mining without an asteroid scanner is a test of your piloting skills, but one that pays well."`
-			`	"The first challenge," he continues, "will be finding which asteroids are valuable. The worthless asteroids are either brown and smooth or gray and spiky with no apparent orbit. It doesn't matter how long you shoot them, they won't be destroyed. Valuable asteroids will always orbit the star and have a range of colors and surface textures. Titanium tends to be a bit larger, with a pitted surface. Lead is light gray and sort of boxy shape. Silicon has a bit of a greenish cast and looks like it's been melted in places. I increase the resolution on my displays to make identification and targeting easier."`
+			`	"The first challenge," he continues, "will be finding which asteroids are valuable. The worthless asteroids are either brown and smooth or gray and spiky with no apparent orbit. It doesn't matter how long you shoot them, they won't be destroyed. Valuable asteroids will always orbit the star and have a range of colors and surface textures. Titanium tends to be a bit larger, with a pitted surface. Lead is light gray and has a boxy shape. Silicon has a bit of a greenish cast and looks like it's been melted in places. I increase the resolution on my control displays to make identification and targeting easier."`
 			`	"Also remember that the more valuable the mineral the longer it takes to mine. Silicon breaks up quickly and you'll fill your hold in a hurry. Titanium is more work, but you make several times the number of credits for the effort.`
 			`	Captain Marshall wishes you luck and heads out into the spaceport. You and James spend a few minutes going over the plan as you finish your drinks. "Leave your hold empty and fill it up before you land at <destination>. You can sell what you mine when we land. Remember there's no guaranteed payment in this kind of work. How much you make is based on the value of the minerals in your hold."`
+				accept
 	
 	on complete
 		conversation
@@ -451,7 +451,7 @@ mission "Intro [3 Interceptor]"
 				`	"I can't believe anyone would do that much work."`
 				`	"I can't believe how profitable that was."`
 			`	James nods and says, "When you're starting off, mining can be a fast way to build cash for your next ship. It's also a great way to explore the galaxy. Jobs always follow the trade routes and settled areas. Mining makes it profitable to explore the nooks and crannies of the hyperlanes. If the place you end up landing has an economy, they'll buy the minerals in your hold. Mainly though, it's about how you like to spend your time. Some captains like managing a trading fleet while others like to strike out on their own and fly their ship directly."`
-			`	Mining can be complex compared to running jobs or trading commodities. Are there any questions you'd like to ask?"`
+			`	"Mining can be complex compared to running jobs or trading commodities. Are there any questions you'd like to ask?"`
 
 			label choices
 			choice
@@ -487,7 +487,7 @@ mission "Intro [3 Interceptor]"
 				goto more
 			
 			label value
-			`	If you check the outfitter section of your star map you will find minerals listed at the very bottom. Selecting a mineral will show you systems where your asteroid scanner has detected them.`
+			`	"If you check the outfitter section of your star map you will find minerals listed at the very bottom. Selecting a mineral will show you systems where your asteroid scanner has detected them."`
 				goto more
 
 			label more
