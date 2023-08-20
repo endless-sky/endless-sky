@@ -29,6 +29,8 @@ on:
         value: ${{ jobs.changed.outputs.changelog }}
       parse_script:
         value: ${{ jobs.changed.outputs.parse_script }}
+      content_style_script:
+        value: ${{ jobs.changed.outputs.content_style_script }}
 
 jobs:
   changed:
@@ -47,6 +49,7 @@ jobs:
       copyright: ${{ steps.filter.outputs.copyright }}
       changelog: ${{ steps.filter.outputs.changelog }}
       parse_script: ${{ steps.filter.outputs.parse_script }}
+      content_style_script: ${{ steps.filter.outputs.content_style_script }}
     steps:
     - uses: actions/checkout@v3
       with:
