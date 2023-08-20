@@ -26,7 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <sys/stat.h>
 #include <cstdio>
 
-#if defined _WIN32
+#ifdef _WIN32
 #include "text/Utf8.h"
 #include <windows.h>
 #else
