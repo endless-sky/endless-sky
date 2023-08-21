@@ -633,12 +633,12 @@ ship "Marauder Manta"
 	
 	engine -33 40
 	engine 33 40
+	gun -68.5 -33 "Meteor Missile Launcher"
+	gun 68.5 -33 "Meteor Missile Launcher"
 	gun -20 -31 "Plasma Cannon"
 	gun 20 -31 "Plasma Cannon"
 	gun -26.5 -30 "Plasma Cannon"
 	gun 26.5 -30 "Plasma Cannon"
-	gun -68.5 -33 "Meteor Missile Launcher"
-	gun 68.5 -33 "Meteor Missile Launcher"
 	turret 0 -28 "Quad Blaster Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
