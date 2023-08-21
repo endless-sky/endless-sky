@@ -573,11 +573,22 @@ mission "<uhai> 14: Ion Materials"
 				`	"Old ship? You don't have it any more?"`
 					goto ship
 				`	"To be fair, you did ask for it."`
+				`	"How are you, Jiko?"`
+					to display
+						has "unfettered: Jiko true Si-Ra"
+					goto jiko
 			`	"True... true... I even provoked ya, didn't I?" He's probably not angry about it, but he really seems agitated - so much so that he spills some of the purple liquid from his drink onto the floor.`
+				goto whatship
+			label jiko
+			action
+				"unfettered: offended Si-Ra" ++
+			`	He shushes you, and appeared ready to slap you but instead he comes uncomfortably close to murmur something to you, "Do not speak of that name, ever again. Or I will scalp you," he says with an intense look. His public image then returns, drunk as ever.`
+			label whatship
 			choice
 				`	"So, what happened to your ship?"`
 			label ship
-			`	Nostalgia fills his eyes. "My beauty, the Intrepid! Pretty she was! Well... we made quite a large sum of money last time, and I thought I just needed a wee bit more to get a new ship. I sold the old one and took out a loan at the bank. But when I got to the shipyard, they told me the ship I wanted was another million credits more than I thought. Now I've got plenty of credits, but not enough for a ship."`
+			# This happened to me so many times
+			`	Nostalgia fills his eyes. "My beauty, the Intrepid! Pretty she was! Well... we made quite a large sum of money last time, and I thought I just needed a wee bit more to get a new ship. I sold the old one and took out a loan at the bank. But when I got to the shipyard, they told me the ship I wanted was another million credits more than I thought. Now I've got plenty of credits, but not enough for a ship. And I have a loan to repay."`
 			choice
 				`	"I've noticed you lost your... accent?"`
 			`	At first he does not seem to understand, and then starts laughing uncontrollably for a while. "Matey, it's just branding! After doing a lot of business with human pirates, I was led to believe humans all spoke this way. What a laugh they must have had thinking of me, unsuspecting the prank! But I noticed that it helps to get the business going to speak this way. It helps intimidating some, and attracting others. It shows part of a clan... So I spoke like that with you at first as well. Now it's not of any use anymore though, so I'll stop."`
@@ -1208,7 +1219,7 @@ mission "<uhai> 16: Strength Of A Leader: Si-Ra"
 	# he'd get demoted for this anyway
 	npc disable
 		government "Hai (Unfettered Challenger)"
-		ship "Si-Ra' angry Beetle" "Defiant"
+		ship "Si-Ra' angry Beetle" "Hellfire"
 		to spawn
 			has "unfettered: mad Si-Ra"
 			"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 18

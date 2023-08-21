@@ -275,6 +275,8 @@ mission "<uhai> 5: Scan Auxiliary"
 		ship "Auxiliary (Alpha)" "Settler"
 		on board
 			"alpha: worry" ++
+		on "scan outfits"
+			set "unfettered: scanned auxiliary's outfits"
 		on kill
 			dialog `The local authorities hail you, with a code purple message. "You have disappointed us. Think very carefully before you make any more mistakes, or it will be war!"`
 			"reputation: Hai (Unfettered)" <?= 0
@@ -869,12 +871,16 @@ mission "<uhai> 7: Stolen Cargo"
 		clear "unfettered: boarded bactrian"
 		outfit "Building Materials" -142
 		payment 2000000
-		log `Helped Sookootow by bringing cargo to help maintain and build houses. This whole story feels weird, with pirates stealing from other pirates, and one may wonder how it is related to the Alphas, and Shadow.``You look for Sookootow in the spaceport, and find him talking with Si-Ra, who was about to leave. Seeing you, Si-Ra shows a quick greeting in sign of respect, before leaving.`
+		log `Helped Sookootow by bringing cargo to help maintain and build houses. This whole story feels weird, with pirates stealing from other pirates, and one may wonder how it is related to the Alphas, and Shadow.`
+		conversation
+			`You look for Sookootow in the spaceport, and find him talking with Si-Ra, who was about to leave. Seeing you, Si-Ra shows a quick greeting in sign of respect, before leaving.`
 			`	The Chief then shakes your hands in true human fashion. "Jiko has just told me of your success<, unfettered title>. Congratulations are in order!"`
 			choice
 				`	"Thanks. Here is the cargo."`
 					goto cargo
 				`	"Jiko? I thought his name was Si-Ra."`
+			action
+				set "unfettered: Jiko true Si-Ra"
 			`	"He wishes that were his name! When we appoint a warlord, we also give him a name, indicative of his function. He may then wear it proudly, and that name protects him as well. Real names have power, you see... Do you not react when hearing your name, <first>? It identifies you, and a warlord is meant to become different when he earns the title. He must fit the task. To represent that, their names are changed, though they can still use their old names.`
 			`	"Si-Ra actually means the raging sea, it is a title appointed to the warlords that must stand against enemies, no matter how strong, and never give up or break. They may lose battles, but never the war. As the sea, they can be calm. However, in time of need, they can show sign of the flame burning within them, and let it out." He seems very passionate about it. It occurs to you he probably participated in the creation of some of the warlord titles. "The sea takes all kinds of punishment without real damage, and some think they may tame it, as space... They can't. Those named Si-Ra are the masters of the sea, the masters of space. They never give any information to the enemy when captured, and..."`
 			`	You just couldn't seem to stop him in his reasoning. He realizes it and pauses. "Right, the materials. I could talk about those names for hours, you know. You did well, and deserved the <payment>. I will post jobs in the job board if this event happens again."`
@@ -994,7 +1000,7 @@ mission "<uhai> 8: I Know The Way"
 	to offer
 		has "<uhai> 5: Scan Auxiliary: done"
 	on enter "Host"
-		dialog "Upon entering the system you realize it is very quiet, unlike most nearby systems. This would appear to be the ideal place to hide..."
+		dialog "Upon entering the system you realize it is very quiet  and isolated from nearby systems. Like the eye of the storm. This would appear to be the ideal place to hide..."
 	destination "Avalon"
 	to fail
 		has "unfettered: it's the Alphas!"
@@ -1124,10 +1130,10 @@ mission "<uhai> 8: It's The Alphas"
 				not "midas: wronged"
 			branch "dead, boy!"
 				"midas: wronged" > 1
-			`You ask around for this Auxiliary; 'Settler', but no-one will reveal anything about it to you, until, suspecting you will not leave until you have something, someone comes, their face concealed. "You. You have betrayed us by revealing our plan to the governor, you are not to be trusted. That said, those that you are looking for are our enemies as well, so I will reveal you the location you need -if- you agree to give us compensation for your mistake. We demand 10 million credits, in the form of a fine, to make sure you will have to pay us interests should you lack money."`
+			`You ask around for this Auxiliary; 'Settler', but no-one will reveal anything about it to you, until, suspecting you will not leave until you have something, someone comes, their face concealed. "You. You have betrayed us by revealing our plan to the governor, you are not to be trusted. That said, those that you are looking for are our enemies as well, so I will reveal you the location you need -if- you agree to give us compensation for your mistake. We demand 10 million credits, in the form of a fine."`
 			choice
 				`	"I will give you your 10 million credits.`
-				`	"I will give you 10 gold bars instead."`
+				`	"I will give you 10 gold bars."`
 					to display
 						"outfit: Gold Bars" >= 10
 					goto bars
@@ -1140,7 +1146,7 @@ mission "<uhai> 8: It's The Alphas"
 			label bars
 			action
 				outfit "Gold Bars" -10
-			`	"That would be acceptable, yes. Here is a set of coordinates." They do not give any more details, and disappear as soon as the bars have been transferred.`
+			`	"That would be acceptable, yes." They take hold of the Gold Bars and verify them with a small device before continuing. "Here is a set of coordinates." They do not give any more details.`
 			label "okay boy!"
 			action
 				set "unfettered: it's the Alphas!"
@@ -1148,18 +1154,18 @@ mission "<uhai> 8: It's The Alphas"
 			`	You order another drink and look at the mural in more detail. You nearly choke on your drink when you realize that the exposed face and hands of the knight are green.`
 				decline
 			label "dead, boy!"
-			`As soon as you set foot on the planet, a team of mercenaries comes out of the shadows, armored with the same kind of armor Si-Ra had. Their weapons may be holstered, but you can feel the tension in the air. Their leader speaks up. "We know your query. Consider yourself lucky to not be killed on the spot. We do not guarantee that will not happen, should you land again."`
+			`As soon as you set foot on the planet, a team of mercenaries comes out of the shadows, equippped with the same kind of armor Si-Ra had. Their weapons may be holstered, but you can feel the tension in the air. Their leader speaks up. "We know your query. Consider yourself lucky to not be killed on the spot. We do not guarantee that will not happen, should you land again."`
 			`	They evaluate their surroundings before coming closer to you, and once they are a meter away they stop, clearly speaking their words as a threat, with a pause between each of them "Nemo. Me. Impune. Laccesit."`
 			choice
-				`	(Threaten them).`
 				`	"Surely there is something you can tell me?"`
 					goto hint
+				`	(Threaten them).`
 				`	(Leave).`
 					decline
-			`	You move your arm to your weapon but before you can reach it you find yourself shot from all directions by what appears to be ion based weapons, not unlike the Hai pulse rifles. You may have been able to survive a few shots, but given the sheer amount of fire from all directions, you never wake up again.`
+			`	You move your arm to reach your weapon or a communicator to call reinforcements, but before you can reach it you find yourself shot from all directions by what appears to be ion based weapons, not unlike the Hai pulse rifles. You may have been able to survive a few shots, but given the sheer amount of fire from all directions, you never wake up again.`
 				die
 			label hint
-			`	Some of them already aim for you with remarkable speed, ready to shoot, but what you suspect to be their leader makes them lower their weapons again with a gesture of their hand. "The ones you seek are a common enemy, so I will tell you this: look far, human, and you may find them." They then disappear as quickly as they had come.`
+			`	Some of them already aim for you with remarkable speed, ready to shoot, but what you suspect to be their leader makes them lower their weapons again with a gesture of their hand. "The ones you seek are a common enemy, so I will tell you this: look far, human, and you may find them in the eye of a storm that has been raging for centuries." They then disappear as quickly as they had come.`
 
 
 
@@ -1181,7 +1187,7 @@ mission "<uhai> 9: Alpha Quest"
 				`	(Enter the stadium and go see them.)`
 				`	(I don't have time right now.)`
 					defer
-			`	Seeing you approach, one of the leaders steps forward, and you recognize Sookootow. "It seems you are an enemy to the unfettered humans. We cannot risk a disruption in our supply of jump drives. You may have provided some to us, but so did they. Because of this, we have a task to ask of you. Should you accept, you would be able to join us - still not officially for now, but all good things come in time." You assume that by unfettered humans he means the Alphas.`
+			`	Seeing you approach, one of the leaders steps forward, and you recognize Sookootow. "It seems you are an enemy of the unfettered humans. We cannot risk a disruption in our supply of jump drives. You may have provided some to us, but so did they," He says, speaking almost theatrically, with big geastures, "Because of this, we have a task to ask of you. Should you accept, you would be able to join us - still not officially for now, but all good things come in time." You assume that by unfettered humans he means the Alphas.`
 			choice
 				`	"What is it you want me to do? I don't like these Alphas."`
 					goto hate
@@ -1189,9 +1195,9 @@ mission "<uhai> 9: Alpha Quest"
 			`	"Good, and neither should it be, but if you want to join us, you will have to prove yourself. Beat that Auxiliary and bring back any loot you may find."`
 				goto next
 			label hate
-			`	"Perfect! We want you to prove your worth. Beat that unfettered human Auxiliary and return here for the greatest reward you can imagine."`
+			`	"Perfect! We want you to prove your worth. Beat that 'Alpha' Auxiliary and return here for the greatest reward you can imagine."`
 			label next
-			`	"And while you're at it, find out where they are getting these jump drives from. You can become our new supplier for even richer rewards. Of course, if you cannot obtain such information, we will at least ask for proof that you have taken on the Alphas by bringing their ship back."`
+			`	"And while you're at it, find out where they are getting these jump drives from. You can become our new supplier for even richer rewards. Of course, if you cannot obtain such information, we will at least ask for proof that you have taken on the 'Alphas', by bringing their ship back."`
 			choice
 				`	"How can I find them?"`
 				`	"I already know the way."`
@@ -1201,10 +1207,10 @@ mission "<uhai> 9: Alpha Quest"
 			`	He seems amused. "That, <first>, is the easy part. You still have those sensor logs about their ships... Maybe it can point you in a direction. You should probably go to Mera and ask her if she found anything useful in the logs."`
 			choice
 				`	"I better get on my way to kill Alphas then."`
-				`	"I won't risk engaging the Alphas."`
+				`	"I won't risk engaging the Alphas. This is over."`
 					decline
 			label warning
-			`	Before you go, one of the warlords comes to speak to you personally. "Do not dare come back to us asking for more cooperation, should you fail this. That said, I'm not sure you would ever come back if you are not victorious. But never forget that jump drives matter more than anything else. You should steal as many as you can if you do indeed manage to beat the Alphas."`
+			`	Before you go, one of the warlords comes to speak to you personally. "Do not dare come back to us asking for more cooperation, should you fail this. That said, I'm not sure you would ever come back if defeated. But never forget that jump drives matter more than anything else. You should steal as many as you can if you do indeed manage to beat the Alphas."`
 				accept
 			label know
 			`	You explain to him you have already found an Alpha base in the system of Host. "How can you know this is where you will find this Auxiliary? They could have went anywhere. I agree that it is the most likely spot, but you should still go listen to what Mera has to say, she may reveal tactical opportunities for you to exploit."`
@@ -1225,17 +1231,17 @@ mission "<uhai> 9: Capture The Alpha Auxiliary"
 		has "<uhai> 9: Alpha Quest: done"
 	on offer
 		conversation
-			`Mera is expecting you, and comes to your ship right away. She is eager to give you the intel, which will hopefully help you find the Auxiliary. "I am glad you came so fast! But don't worry: that Auxiliary can't go very far before some serious repairs - not with the kind of damage it suffered anyway." She seems somewhere else, as if disturbed by something.`
+			`Mera is expecting you, and comes to your ship right away. She must be eager to give you the intel, which will hopefully help you find the Auxiliary. "I'm glad you came so fast! But don't worry: that Auxiliary can't go very far before some serious repairs - not with the kind of damage it suffered anyway." She seems somewhere else, as if disturbed by something, and keeps looking down.`
 			choice
 				`	"Get to the point. Where can I find it?"`
 				`	"What kind of damage?"`
 					goto damage
 				`	"How could I capture such a ship, with so many defending it?"`
 					goto capture
-			`	You seem to have stressed her a bit. "Are you always in a rush?" she asks. "Just look for traces of these particles; it should lead you to them. Based on chemical composition, these particles seem to be coming from the jump drive - it must be malfunctioning, but I have no idea in what way it is. This Auxiliary is no joke - it has room for over 100 crew members, so be sure to have what it takes to capture it. You could always disable it and then come back later to board them; but in that case, make sure to be quick, or else the Alphas could repair it." You remember it also had fighters accompanying it.`
+			`	You seem to have stressed her a bit. "Are you always in a rush?" she asks. "Just look for traces of these particles; it should lead you to them. Based on chemical composition, these particles seem to be coming from the jump drive - it must be malfunctioning, but I have no idea in what way it is. This Auxiliary is no joke - it has room for over one hundred crew members, so be sure to have what it takes to capture it. You could always disable it and then come back later to board them; but in that case, make sure to be quick, or else the Alphas could repair it." You remember it also had fighters accompanying it.`
 				goto agree
 			label capture
-			`	She takes a while to answer, "We never focused too much on capturing ships at any cost, preferring to see the enemy eye to eye and only stun them, so they may live to fight another day but I am sure you humans may have... alternative approaches. Their base is probably isolated, so you could always disable them and come back later with a different ship, or just outfit the one you have differently."`
+			`	She takes a while to answer, "We never focused too much on capturing ships, preferring to see the enemy eye to eye and only stun them, so they may live to fight another day but I'm sure you humans may have... alternative approaches. Their base is probably isolated, so you could always disable them and come back later with a different ship, or just outfit the one you have differently, or even take a Centipede with your fighting ship."`
 			choice
 				`	"What about the damage on their ship? How is that relevant to my mission?"`
 					goto information
@@ -1253,12 +1259,34 @@ mission "<uhai> 9: Capture The Alpha Auxiliary"
 				`	"What about the damage on their ship? How is that relevant to my mission?"`
 					goto information
 				`	"You should have asked me to do an outfit scan, earlier."`
+					to display
+						not "unfettered: scanned auxiliary's outfits"
+				`	"I did well to scan its outfits anyway then, so we have some information to work with."`
+					to display
+						has "unfettered: scanned auxiliary's outfits"
+					goto scanned
 			`	"Maybe, but it could have provoked them further. They apparently like their secrets. I only wanted to know about the structure of the ship, but I'd agree that knowing more about those weapons would be useful. Now, back to the damage on their ship.`
+				goto information
+			label scanned
+			action
+				"unfettered: Mera's favor" ++
+			`	She moves her head to the side, surprised, "You... Did? Let me take a look at it then," she asks, and you give her the details. "It seems like this ship was outfitted for speed rather than combat, luckily for you. They are using 2 Tracker Pods, 2 Bullfrogs and one combo of turrets that disrupt shields and slice trough hull. I am not much of a strategist so I'll let you decide what to make out of this intel," she says, before taking another look at the logs. And almost jumping in place, "Wait! They have a Systems Core, and plenty of fuel. That must mean that the damage to their ship should have been repaired very quickly. The trail could run cold very quickly in that case, I'd advise you to head east as soon as you can." She stops for a second, unsure what to say, "No, that can't be. Anyway, back to the damage suffered to their ship."`
+			choice
+				`	(Let her continue.)`
+					goto information
+				`	"What were you about to say?"`
+			`	She looks down once more, "Be careful, <last>. Something is not right here," she says, not willing to reveal more.`
 			label information
-			`	"Obviously, this amount of damage has consequences. It looks like they've quickly patched it up, so it won't affect their hull resistance to weapon's fire. However, this is interesting," she says, pointing out particles on her pad you have not seen before. "Another captain found weird particles in that same system. We've never found traces of those particles before. I guess it could mean a shot got through and did some damage to one of the jump drives they are carrying - maybe even the one they use to jump. One thing is certain: these particles are not left by normal human ships, or Hai for that matter. My best guess would be that when the ship jumped, the hole it left behind did not close as quickly as it should, and antimatter came from the other side. Perhaps it left these peculiar particles when being annihilated by contacting matter. Or maybe the particles just came through the opening in space?`
-			`	"It doesn't matter much anyway. I suspect that they would have gone back to their base to at least take a look at it, so there should be traces leading to it. Something bothers me about this: from our experience, jump drives either work or explode. Maybe it's because the jump drive is not actually being used, and is only leaking particles passively, that this is possible? Or maybe the damage done by these weapons is really special. After all, they are more advanced than what we have, or what the aliens up north possess. Only the Quarg and Korath have a similar level of technology, and those are the races that are rumoured to have invented the jump drives, so it could be some of these weapons are intended to disrupt it specifically."`
+			`	Her ears move slightly, as she starts to explain technical things to you, "Obviously, this amount of damage has consequences. It looks like they've quickly patched it up, so it won't affect their hull resistance to weapon's fire. However, this is interesting," she says, pointing out particles on her pad you have not seen before. "Another captain found weird particles in that same system. We've never found traces of those particles before. I guess it could mean a shot got through and did some damage to one of the jump drives they are carrying - maybe even the one they use to jump. One thing is certain: these particles are not left by normal human ships, or Hai for that matter. My best guess would be that when the ship jumped, the hole it left behind did not close as quickly as it should, and antimatter came from the other side. Perhaps it left these peculiar particles when being annihilated by contacting matter. Or maybe the particles just came through the opening in space?"`
+			`	She shakes her head, getting focused again. "It doesn't matter much anyway, I must be boring you with this stuff," she says with a chuckle. "I suspect that they would have gone back to their base to at least take a look at it, so there should be traces leading to it. Something bothers me about this: from our experience, jump drives either work or explode. Maybe it's because the jump drive is not actually being used, and is only leaking particles passively, that this is possible? Or maybe the damage done by these weapons is really special. After all, they are more advanced than what we have, or what the aliens up north possess. Only the Quarg and Korath have a similar level of technology, and those are the races that are rumoured to have invented the jump drives, so it could be some of these weapons are intended to disrupt it specifically."`
 			label agree
 			`	You were ready to go, but she seems to have something more to say. "Oh, and one last thing before you leave: the base is probably far away, so I would advise taking some fuel pods.`
+			branch nogift
+				"unfettered: Mera's favor" < 2
+			`	"In fact, here is a gift for you to help with that: a Fuel Processor. Don't ask how I got it and you can keep it, deal?`
+			action
+				outfit "Fuel Processor"
+			label nogift
 			`	"Considering the damage left on the Auxiliary you will probably not have much time to wait to fuel up from the local stars. Finally, be prepared for a fight in space, as well as within the ship itself, in order to claim it, although I suspect you should be able to leave the ship disabled and come back to gear for boarding, given how isolated it has to be."`
 				accept
 	waypoint "Hi Yahr"
@@ -1279,7 +1307,10 @@ mission "<uhai> 9: Capture The Alpha Auxiliary"
 	on enter "Ferukistek"
 		dialog `There are traces here indeed. You spot one system with no hyperspace links north-east of here. It seems like a logical place for the Alphas to go, considering the drones do not appear to have jump drives.`
 	on enter "Host"
-		dialog `You arrive in the system expecting to find a vault and the ship repairing, but it's a trap! The Auxiliary from earlier is indeed here, but it's not damaged at all, and it looks like it's waiting for you with quite a few drones. Whatever the case, it probably has the jump drives on board or on the nearby planet. You should first capture the ship, as asked by the Unfettered, and then inspect the planet. Strangely, you do not find a single trace of the particles in this system.`
+		dialog
+			`You arrive in the system expecting to find a vault and the ship repairing, but it looks more like... It's a trap!`
+			`	The Auxiliary from earlier is indeed here, but it's not damaged at all, and it looks like it's waiting for you with quite a few drones, more than last time.`
+			`	Whatever the case, it probably has the jump drives on board or on the nearby planet. You should first capture the ship, as asked by the Unfettered, and then inspect the planet. Strangely, you do not find a single trace of the particle trace you have been following so far in this system.`
 	npc capture
 		government "Cerberus"
 		system "Host"
@@ -1288,7 +1319,7 @@ mission "<uhai> 9: Capture The Alpha Auxiliary"
 		conversation
 			action
 				set "unfettered: captured the auxiliary"
-			`While capturing the ship, you noticed that only very few of the crew were actually Alphas. What little were Alphas seem to have disappeared. They probably used an escape pod to get away unoticed in the middle of the fight, or maybe they were never there in the first place. Whatever the case, you cannot find any trace of them. The crew was composed of a mix of mercenaries and indoctrinated pirates.`
+			`While capturing the ship, you noticed that only very few of the crew were actually Alphas. What little were Alphas seem to have disappeared in the middle of the fight. They probably used an escape pod to get away unoticed, or maybe they were never truly there in the first place. Whatever the case, you cannot find any trace of them. The crew was composed of a mix of mercenaries and indoctrinated pirates that would obey only to 'the Masters' and did not reveal anything useful.`
 			`	There was no doubt who was in command of this vessel, however. The jump drives don't seem to be aboard the ship. You should head to the Alpha base to see if you can find them or anything else of interest.`
 	npc
 		government "Cerberus"
@@ -1324,7 +1355,7 @@ mission "<uhai> 9: Capture The Alpha Auxiliary"
 		has "flagship base attribute: alpha logs"
 	on complete
 		outfit "Jump Drive" -10
-		log `Captured the Alpha Auxiliary. The Alphas had a trap set but it failed. Or, at least, that's what they want everyone to think.`
+		log `Captured the Alpha Auxiliary. The Alphas had a trap set but it failed, and I was able to rescue a few Korath prisonners. Or, at least, that's what the Alphas want everyone to think.`
 		payment 10000000
 		"salary: Unfettered" = 1000
 		event "unfettered: korath back up" 20 50

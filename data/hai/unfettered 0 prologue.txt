@@ -1124,7 +1124,7 @@ mission "<uhai> 3: Recover Jump Drives"
 		log `Helped a young Unfettered Captain to bring jump drives from a pirate world.`
 		log "People" "Si-Ra" `A young, impetuous Unfettered captain with a unique, if eccentric, grasp of your language, who seems to grow wiser by the day. He has impressive leadership and combat skills, yet always seeks to refine his tactics. He does seem to be also be a fan of acquiring bigger and bigger ships.`
 		conversation
-			`"Here be yer share: <payment>. Ye have saved me life<, unfettered title> <first>, and I shall never forget it. For this, ye have earned the right to know my name: "Si-Ra". It be one I earned and wear with pride. Come see me again soon if ye be up for a challenge. I'll surely be able to find one for ye even if me own ship not be ready to give ye one. In the meantime, make sure to check the job boards if ye just be looking for more runs like this one."`
+			`"Here be yer share: <payment>. Ye have saved me life<, unfettered title> <first>, and I shall never forget it. For this, ye have earned the right to know my name: 'Si-Ra'. It be one I earned and wear with pride. Come see me again soon if ye be up for a challenge. I'll surely be able to find one for ye even if me own ship not be ready to give ye one. In the meantime, make sure to check the job boards if ye just be looking for more runs like this one."`
 			label choice
 			choice
 				`	(Don't say anything).`
