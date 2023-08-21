@@ -669,3 +669,10 @@ void Planet::ResetDefense() const
 	defenseDeployed = 0;
 	defenders.clear();
 }
+
+
+
+bool Planet::IsDefending() const
+{
+	return isDefending;
+}
