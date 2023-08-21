@@ -1000,7 +1000,7 @@ mission "<uhai> 8: I Know The Way"
 	to offer
 		has "<uhai> 5: Scan Auxiliary: done"
 	on enter "Host"
-		dialog "Upon entering the system you realize it is very quiet  and isolated from nearby systems. Like the eye of the storm. This would appear to be the ideal place to hide..."
+		dialog "Upon entering the system you realize it is very quiet and isolated from nearby systems. Like the eye of the storm. This would appear to be the ideal place to hide..."
 	destination "Avalon"
 	to fail
 		has "unfettered: it's the Alphas!"

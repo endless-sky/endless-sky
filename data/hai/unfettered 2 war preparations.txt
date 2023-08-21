@@ -136,13 +136,21 @@ mission "<uhai> 11: Shipyard Intel"
 				`	"Why do you call me monkey? Have I not earned your respect yet?"`
 					goto monkey
 			`	"Not at all. They're something much more powerful, something so strong it would [contend with, beat] even your Carriers. We were producing Shield Beetles here for quite some time already, long before your pitiful [existence, coming here]." he actually seems to be believing what he just said, but it's a bit difficult to imagine something that much stronger than a Carrier developed by the Unfettered.`
+			`	"That said if you're willing I would pay well for you to bring a Shield Beetle over from Hai space."`
 			choice
+				`	"How well would you pay me for that service, exactly?"`
+					goto sbprice
 				`	"Why can't I even buy advanced Hai outfits here then?"`
 				`	"Nothing's better than a Carrier."`
 					goto brag
 			`	"We haven't allowed you to purchase our best outfits because we didn't have the [capacity, resources, desire] to build enough of them at the same time. But you may help us with that, actually."`
 				goto mighty
+			label sbprice
+			`	"40 millions. But this is a one time offer only, and it must come from the hai shipyards. This way they will have one fewer ship, and we will have one more."`
+				goto mighty
 			label brag
+			action
+				"unfettered: He-Yi's opinion" --
 			`	"[Stupid, Young] monkey, thinks it knows everything... There are higher powers in this galaxy, and even then size isn't the only thing. Even if it is big and impressive, we have made something more advanced."`
 				goto mighty
 			label monkey
@@ -192,11 +200,57 @@ mission "<uhai> 11: Shipyard Intel"
 			branch noboughtship
 				not "unfettered: bought ship"
 			choice
+				`	(Sell him the ship you bought.)`
+					to display
+						or
+							and
+								has "unfettered: bought sb"
+								has "ship model: Shield Beetle"
+							and
+								has "unfettered: bought geocoris"
+								has "ship model: Geocoris"
+							and
+								has "unfettered: bought centipede"
+								has "ship model: Geocoris"
 				`	(Ask him to pay for the ship you bought, and show him the detailed scanner logs.)`
+					goto bought
 				`	(Just roll with it. You do not need extra money, and the more detailed scans were not asked for.)`
 					goto noboughtship
 			action
-				payment 1000000
+				"unfettered: He-Yi's opinion" += 2
+				set "unfettered: sold bought ship"
+			branch sb
+				has "unfettered: bought SB"
+			branch geocoris
+				has "unfettered: bought geocoris"
+			action
+				take ship "Centipede"
+					"with outfits"
+				payment 10000000
+			`	"A Centipede... This relatively recent design would be useful to study indeed."`
+				goto sell
+			label sb
+			action
+				set "unfettered: sold SB"
+				take ship "Shield Beetle"
+					"with outfits"
+				payment 40000000
+			`	"A Shield Beetle, just like I [required, asked], perfect!"`
+				goto sell
+			label geocoris
+			action
+				take ship "Geocoris"
+					"with outfits"
+				payment 20000000
+				"unfettered: Solifuge deployment" ++
+			`	"Mera told me she could make use of one of these, perfect!`
+			label sell
+			`	"You have well deserved these <payment>!"`
+				goto noboughtship
+
+			label bought
+			action
+				payment 5000000
 				"unfettered: He-Yi's opinion" ++
 			`	"You had to pay a ship? Clever way to remove [suspicion, attention]. I can give you an extra <payment> to compensate. These scans are perfect! They are indeed much more [detailed, refined] that what I even asked for."`
 			`	"It seems like you have some cunning after all."`
@@ -207,7 +261,7 @@ mission "<uhai> 11: Shipyard Intel"
 				`	"Does this mean I can buy the new ships now?"`
 				`	"What about my pay, for the tribute?"`
 					goto tribute
-			`	He seems amused. "They are not completed building and for that you would have to do a bit more than bringing some intel. We still don't have much [capacity, resources] to build ships. But that will come soon - I first have to do some [managing, reordering]." He may have exaggerated how quickly you will get access to Shield Beetles.`
+			`	He seems amused. "They are not completed building and for that you would have to do a bit more than bringing some intel. We still don't have much [capacity, resources] to build ships. But that will come soon - I first have to do some [managing, reordering]." He may have exaggerated how quickly you will get access to the new ships, as they're not even done being built yet! As for the outfitter access it may take one more mission to make use of these upgrades in practise.`
 			choice
 				`	(Go.)`
 					decline
@@ -259,18 +313,21 @@ mission "<uhai> 11: Shipyard Inspection"
 					goto centipede
 				`	"This Geocoris seems like brand new tech. I like that."`
 					goto geocoris
+				`	"I will take a Shield Beetle, new ships just don't beat that one!"`
+					goto sb
 				`	"Actually, I am only here to get a tribute for the Unfettered. These ships seem too costly for me, sorry."`
 			action
 				set "unfettered: too suspect"
 			`	You can tell by looking at his face he probably does not truly believe that to be the case, but he does not seem to act upon it.`
 				goto suspect
 			label centipede
-			`	"You will see it has no equal as cost efficient to transport troops or passengers around! And for a mere 4 million credits."`
+			`	"You will see it has no equal as cost efficient to transport troops or passengers around! And for a mere 5 million credits."`
 			choice
 				`	"I'll take it, then."`
 				`	"Actually, I changed my mind."`
 					goto changedmind
 			action
+				set "unfettered: bought centipede"
 				give ship "Centipede"
 				fine 5000000
 			`	"And you are right to do so indeed! These ships are among the most recent ones we have in store."`
@@ -282,8 +339,19 @@ mission "<uhai> 11: Shipyard Inspection"
 				`	"Actually, I changed my mind."`
 					goto changedmind
 			action
+				set "unfettered: bought geocoris"
 				give ship "Geocoris"
 				fine 10000000
+			label sb
+			`	"Only the best? I can relate with that for sure. This ship is useful in many ways: as a warship, an escort, or even a cargo hauler of its own right with its acceptable 142 cargo space. It also is the most customizable ship we sell! All of that comes at a cost, however, as I am sure you understand. 20 million credits."`
+			choice
+				`	"I'll take it, then."`
+				`	"Actually, I changed my mind."`
+					goto changedmind
+			action
+				set "unfettered: bought SB"
+				give ship "Shield Beetle"
+				fine 20000000
 			label bought
 			action
 				set "unfettered: bought ship"
@@ -587,7 +655,7 @@ mission "<uhai> 14: Ion Materials"
 			choice
 				`	"So, what happened to your ship?"`
 			label ship
-			# This happened to me so many times
+			# This happened to me a few times, and is a bit of a warning.
 			`	Nostalgia fills his eyes. "My beauty, the Intrepid! Pretty she was! Well... we made quite a large sum of money last time, and I thought I just needed a wee bit more to get a new ship. I sold the old one and took out a loan at the bank. But when I got to the shipyard, they told me the ship I wanted was another million credits more than I thought. Now I've got plenty of credits, but not enough for a ship. And I have a loan to repay."`
 			choice
 				`	"I've noticed you lost your... accent?"`
@@ -604,7 +672,7 @@ mission "<uhai> 14: Ion Materials"
 					goto alternative
 			`	He seems to get a bit angry. "There's a ship with precious cargo that we want. Specific enough for you?" It's probably best not to push him too far, especially considering the state he's in right now. The Hai seem to have a different reaction to alcohol, or maybe this wasn't even alcohol at all...`
 			choice
-				`	"Tell me more about it."`
+				`	"Got it."`
 				`	"That's still not too clear, but I'll manage."`
 			label tellmore
 			`	"It would probably be a good idea to be around <waypoints> very soon, monkey. But I still want my cut for giving you this information. You'll get 75% of the cut. But be sure to bring back at least 400 tons of cargo, or there's no deal!" The Alpha Auxiliary you managed to capture not long ago seems perfect for this task, but maybe it's not as easy as he presents it.`
@@ -619,7 +687,7 @@ mission "<uhai> 14: Ion Materials"
 				`	"Okay, whatever."`
 					accept
 			label alternative
-			`	"There is another way, but it's no fun. I could just pay that cargo, instead of paying you to get it... But the captain asked for a stupid amount of money for it. So in that case, I want a compensation of 500 000 credits from you."`
+			`	"There is another way, but it's no fun. I could just pay that cargo, instead of paying you to get it... But the captain asked for a stupid amount of money for it. So in that case, I want a compensation of <fine> from you, as a fine for... excessive stupidity!"`
 			choice
 				`	"A small amount to pay to avoid needless bloodshed."`
 				`	"I'd prefer to hunt it down, in that case."`
@@ -786,7 +854,7 @@ mission "<uhai> 15: Modified Beetle"
 			has "<uhai> 14: Ion Materials: declined"
 		has "event: unfettered: new cooling system"
 		or
-			random < 20 + "<uhai> 12: Outfitter Upgrade: done" * 50
+			random < 20 + "<uhai> 12: Outfitter Upgrade: done" * 50 + "unfettered: sold SB" * 30
 			has "<uhai> 15: Modified Beetle: deferred"
 		has "event: unfettered: modded SB ready"
 		has "Unfettered Jump Drive Trading: offered"

@@ -776,7 +776,7 @@ mission "<uhai> 1: Bring Medicine"
 	on complete
 		event "unfettered: access to Mera's lab"
 		log `Brought medial supplies to Darkcloak to prevent an epidemic.`
-		log "People" "Sookootow" `An Unfettered Chief worried for his people, inside Hai or Unfettered territory. He seems to believe that all Hai are equal, and as a member of the council he has significant influence.`
+		log "People" "Sookootow" `An Unfettered Chief worried for his people, inside Hai or Unfettered territory. He seems to believe that all Hai are equal, and as a member of the council he has significant influence. He also appears to be quite empathic.`
 		payment 1500000
 		conversation
 			`The staff seem greatly relieved when you return promptly with the medical supplies. To your surprise, some Unfettered have weapons even near this hospital, albeit holstered at all times. As you're returning to your ship, one of them catches up to you. "Hello, <last>. I am Merki, manager of this hospital. I wanted to express my deepest thanks to you and give you the <payment> personally. I find it quite admirable that an outsider would risk getting caught up in all of this. It would mean a great deal to me if your bravery holds fast, so make sure to check the job board for more jobs like this."`
@@ -1427,7 +1427,7 @@ mission "<uhai> 4: Scan Geocoris"
 				`	"Not my problem."`
 				`	"Okay, okay. I changed my mind."`
 					goto choose
-		log "People" "Mera" `An Unfettered engineer who is interested in ship designs of all kinds. She is easily excited by new technologies and ships.`
+		log "People" "Mera" `An Unfettered engineer who is interested in ship designs of all kinds. She is easily excited by new technologies and ships, and seems to communicate partly trough her bodily language.`
 	on decline
 		event "unfettered: analyzed the scans" 30 60
 	on abort
@@ -1467,6 +1467,7 @@ mission "<uhai> 4: Scan Geocoris"
 	on visit
 		dialog `You have not scanned the Geocoris yet. Go to Ya Hai to scan it, and then come back here.`
 	on complete
+		"unfettered: Solifuge deployment" ++
 		clear "unfettered: entered Ya Hai"
 		log `Scanned a Geocoris for the Unfettered. They seemed interested in the design - probably with a ship of their own in mind.`
 		payment 150000

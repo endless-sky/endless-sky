@@ -175,7 +175,7 @@ mission "<uhai> 13: Better Translator Directions"
 					defer
 				`	(Never.)`
 					decline
-			`	You head to his throne room to see him, and this time the Unfettered guards have no issue with letting you pass. It is only once you enter the room you learn he is missing from one of his aid. They tell you to go look on Firelode, on top of the biggest mountain, as that's probably where he would be.`
+			`	You head to his throne room to see him, and this time the Unfettered guards have no issue with letting you pass. It is only once you enter the room that you see the void left by his absense. One of his aids comes your way, equipped with a translator. When you ask where he might be they think a bit and come up with the only logical answer, "Go look on Firelode, on top of the [biggest, most prominent] mountain. That is where he usually is at this [time, day]."`
 				accept
 
 mission "<uhai> 13: Better Translator"
@@ -190,10 +190,10 @@ mission "<uhai> 13: Better Translator"
 		has "<uhai> 13: Better Translator Directions: offered"
 	on offer
 		conversation
-			`	You climb on top of the greatest mountain when you find Choot'k is indeed there, admiring the view.`
+			`	You climb on top of the greatest mountain for hours, having been told that using a ship or any other means of transportation would make you be judged unworthy. Choot'k is indeed there, on the top, admiring the view.`
 			scene "scene/chootk firelode"
-			`	He notices your arrival and invites you to admire the view as well. He seems happy to see you. "<first>! It's been a while, but I keep hearing rumors about you. One day you may even threaten to take my place..." You see his grip around his blade tightening. For a few seconds you can feel some tension, but then he laughs.`
-			`	"No, not yet, at least. Now, I would duel you if I had the time, but I have duties to attend to, which you may help me with, actually. I want to go to <stopovers> to get the records of Korath interactions before the raids. Mera has informed me that the translator - whilst better than nothing - is not sufficient for all the tasks we have in mind."`
+			`	He notices your arrival and invites you to admire the view as well with a geasture of the hand. He seems glad to see you. "<first>! I often come to this place, to meditate..." he says, before turning to take a good look at you. "It's been a while, but I keep hearing rumors about you. One day you may even threaten to take my place..." You see his grip around his blade tightening. For a few seconds you can feel some tension, but then he laughs.`
+			`	"No, not yet, at least. Now, I would duel you if I had the time, but I have duties to attend to, which you may help me with, actually. I want to go to <stopovers> to get the records of Korath interactions before the raids. Mera has informed me that the translator we recovered - whilst better than nothing - is not sufficient for all the tasks we have in mind."`
 			`	"I am sure you have already noticed that communication with the Korath can be... difficult, since you met them."`
 				to display
 					has "<uhai> 13: Korath Specialty: offered"
@@ -238,8 +238,8 @@ mission "<uhai> 13: Better Translator"
 		clear "unfettered: stopped on hai-home"
 		clear "unfettered: why give info"
 		clear "unfettered: how got info"
-		event "unfettered: better sestor translator" 45
-		dialog "Choot'k thanks you, and tells you they will be able to upgrade the translator so they can communicate better with the Sestor."
+		event "unfettered: better sestor translator" 10
+		dialog `Choot'k thanks you personally, "Next time I will take my warship! I hate relying on others for my own safety, but you have my gratitude for bringing me back in one piece. Back to the translator matter, we will be able to upgrade it translator so better communication with the Sestor is possible. My advisor tells me it will be about 2 weeks before the translator is upgraded."`
 
 # SPOILER: they see this as an opportunity to get the leader and also don't want the Unfettered (and you) to be able to communicate too deeply with Sestor...
 mission "<uhai> 13: A Warlord's Reception"
