@@ -233,7 +233,7 @@ mission "Ask Quarg About Coalition Early"
 		has "Coalition: First Contact: done"
 		not "assisted heliarch"
 		not "Heliarch Recon 1: offered"
-		not "Resistance: Introductions: offered"
+		not "Lunarium: Introductions: offered"
 	source
 		attributes "quarg"
 		attributes "station"
