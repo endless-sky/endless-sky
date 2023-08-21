@@ -1035,9 +1035,9 @@ outfit "Spectrometer Array"
 	"mass" 6
 	"outfit space" -12
 	"outfit scan power" 42
-	"outfit scan efficiency" 18
-	"cargo scan power" 24
-	"cargo scan efficiency" 18
+	"outfit scan efficiency" 12
+	"cargo scan power" 42
+	"cargo scan efficiency" 12
 	"asteroid scan power" 144
 	"energy consumption" 0.03
 	description "This sensor array features a set of sensitive spectrometers capable of analyzing the spectral signatures of materials in order to determine their composition. A small ultraviolet laser can speed this process up for asteroids by vaporizing a small surface sample, making the spectral lines much more visible, but is sadly useless against shielded ships and their internal systems."

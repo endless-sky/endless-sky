@@ -18,7 +18,7 @@ fleet "Avgi Core Defense"
 	fighters
 		names "avgi fighter names"
 		personality
-			heroic surveillance swarming
+			heroic surveillance
 	personality
 		lingering heroic
 	variant 10
@@ -61,8 +61,8 @@ fleet "Avgi Orbital Defense"
 	government "Avgi (Twilight Guard)"
 	names "avgi fighter names"
 	personality
-		lingering heroic surveillance swarming
-	variant 10
+		lingering heroic surveillance
+	variant 20
 		"Undulon" 3
 	variant 20
 		"Vibratia" 6

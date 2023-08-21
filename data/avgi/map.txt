@@ -2091,8 +2091,8 @@ system Concerto
 	asteroids "large rock" 3 1.191
 	asteroids "large metal" 1 1.714
 	minables iron 24 2.437
-	fleet "Avgi Orbital Defense" 3600
-	fleet "Avgi Core Defense" 2600
+	fleet "Avgi Orbital Defense" 1200
+	fleet "Avgi Core Defense" 2700
 	fleet "Avgi Fleetgroup" 3800
 	fleet "Small Avgi Merchants" 2400
 	fleet "Large Avgi Merchants" 3200
