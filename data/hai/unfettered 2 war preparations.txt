@@ -261,7 +261,7 @@ mission "<uhai> 11: Shipyard Intel"
 				`	"Does this mean I can buy the new ships now?"`
 				`	"What about my pay, for the tribute?"`
 					goto tribute
-			`	He seems amused. "They are not completed building and for that you would have to do a bit more than bringing some intel. We still don't have much [capacity, resources] to build ships. But that will come soon - I first have to do some [managing, reordering]." He may have exaggerated how quickly you will get access to the new ships, as they're not even done being built yet! As for the outfitter access it may take one more mission to make use of these upgrades in practise.`
+			`	He seems amused. "They are not completed building and for that you would have to do a bit more than bringing some intel. We still don't have much [capacity, resources] to build ships. But that will come soon - I first have to do some [managing, reordering]." He may have exaggerated how quickly you will get access to the new ships, as they're not even done being built yet! As for the outfitter access it may take one more mission to make use of these upgrades in practice.`
 			choice
 				`	(Go.)`
 					decline

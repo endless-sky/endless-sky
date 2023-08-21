@@ -175,7 +175,7 @@ mission "<uhai> 13: Better Translator Directions"
 					defer
 				`	(Never.)`
 					decline
-			`	You head to his throne room to see him, and this time the Unfettered guards have no issue with letting you pass. It is only once you enter the room that you see the void left by his absense. One of his aids comes your way, equipped with a translator. When you ask where he might be they think a bit and come up with the only logical answer, "Go look on Firelode, on top of the [biggest, most prominent] mountain. That is where he usually is at this [time, day]."`
+			`	You head to his throne room to see him, and this time the Unfettered guards have no issue with letting you pass. It is only once you enter the room that you see the void left by his absence. One of his aids comes your way, equipped with a translator. When you ask where he might be they think a bit and come up with the only logical answer, "Go look on Firelode, on top of the [biggest, most prominent] mountain. That is where he usually is at this [time, day]."`
 				accept
 
 mission "<uhai> 13: Better Translator"
