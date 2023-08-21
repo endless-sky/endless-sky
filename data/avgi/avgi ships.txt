@@ -47,6 +47,7 @@ ship "Koryfi"
 		"Ultracapacitor Cell" 3
 		"Diffuse Deflector"
 		"Luxury Accommodations"
+		"Electromotive Rifle" 2
 
 		"Magnetoplasma Drive" 2
 		"Hyperdrive"
@@ -160,6 +161,7 @@ ship "Melodikos"
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
 		"Luxury Accommodations"
+		"Electromotive Rifle" 6
 
 		"Magnetoplasma Drive"
 		"Hyperdrive"
@@ -303,6 +305,7 @@ ship "Avlaki"
 	outfits
 		"Ultracapacitor Bank"
 		"Diffuse Deflector"
+		"Electromotive Rifle" 2
 
 		"Magnetoplasma Drive" 2
 		"Hyperdrive"
@@ -415,6 +418,7 @@ ship "Harmonikos"
 		"Ultracapacitor Bank" 2
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
+		"Electromotive Rifle" 6
 
 		"Magnetoplasma Drive"
 		"Hyperdrive"
@@ -619,6 +623,7 @@ ship "Frequentia"
 		"Multispectral Scanner"
 		"Cryogenic Deuterium Tank" 6
 		"Electrostatic Ramscoop"
+		"Electromotive Rifle" 2
 
 		"Z-360 Fusion Torch"
 		"XY-180 Radial Thrusters"
@@ -655,101 +660,6 @@ ship "Frequentia"
 
 
 # Utility
-
-ship "Undsyni"
-	sprite "ship/avgi undsyni"
-	thumbnail "thumbnail/avgi undsyni"
-	swizzle 0
-	attributes
-		category "Utility"
-		licenses
-			"Avgi Civilian"
-		"shields" 2400
-		"hull" 15000
-		"required crew" 12
-		"bunks" 30
-		"cargo space" 600
-		"mass" 600
-		"drag" 4.2
-		"heat dissipation" 1.8
-		"fuel capacity" 2400
-		"outfit space" 630
-		"weapon capacity" 153
-		"engine capacity" 168
-		"spinal mount" 1
-		"anchor point" 3
-			"blast radius" 540
-			"shield damage" 3600
-			"hull damage" 2400
-			"hit force" 4800
-	outfits
-		"Phased Array Laser (Green)" 3
-		"Speckle Turret" 2
-		"Speck Round" 14400
-		"Sidereal Launcher" 2
-		"Sidereal Missile" 84
-
-		"Luminous Fusion Core"
-		"Ultracapacitor Bank" 3
-		"Diffuse Deflector"
-		"Optical Lasing Generator"
-		"Electrostatic Ramscoop"
-		"Multispectral Scanner"
-		"Spectrometer Array"
-
-		"Z-360 Fusion Torch"
-		"XY-420 Radial Thrusters"
-		"Hyperdrive"
-
-	gun 0 -213
-		over
-	gun -42 -139 "Sidereal Launcher"
-		angle -90
-	gun 42 -139 "Sidereal Launcher"
-		angle 90
-	turret -33 -138 "Speckle Turret"
-	turret 33 -138 "Speckle Turret"
-	turret 0 -30 "Phased Array Laser (Green)"
-	turret 0 42 "Phased Array Laser (Green)"
-	turret 0 186 "Phased Array Laser (Green)"
-
-	bay "Drone" -65.5 3
-	bay "Drone" 65.5 3
-	bay "Drone" 65.5 29
-	bay "Drone" -65.5 29
-
-	engine 0 239
-	"reverse engine" -6 240
-		angle -30
-	"reverse engine" 6 240
-		angle 30
-	"steering engine" -42 -138
-		angle 90
-		right
-	"steering engine" 42 -138
-		angle -90
-		left
-	"steering engine" -6 240
-		angle 90
-		left
-	"steering engine" 6 240
-		angle -90
-		right
-
-	leak "leak" 30 90
-	leak "flame" 30 90
-	leak "big leak" 30 90
-	explode "tiny explosion" 18
-	explode "small explosion" 30
-	explode "medium explosion" 60
-	explode "large explosion" 30
-	explode "huge explosion" 9
-	"final explode" "final explosion large"
-
-	description "The Undsyni-class Auxiliary Freighter is not just a bulk freighter, but one built to be large and strong enough to hold its own against attacks from smaller, more militarized vessels. While not quite as payload efficient as more spindly ships such as the Avlaki and Harmonikos, the Undsyni's resilience makes it much more survivable against attacks, with its fusion torch giving it the acceleration to both evade enemies and minimize travel times."
-	description "Even before the Incursion, the Undsyni's strong hull and internal outfit capacity made it a popular option as a capital warship for groups who could not gain access to specialized warships."
-	description "A reinforced spine running the length of the ship allows it to fit a huge Dipole Ramscoop, capable of bearing the extreme stresses the ramscoop's magnetic field puts on its superconducting magnets. In this configuration, a tanker Undsyni can supply the fuel needs of an entire fleetgroup across dozens of systems."
-
 
 ship "Polari"
 	sprite "ship/avgi polari"
@@ -792,6 +702,7 @@ ship "Polari"
 		"Thermal Sink Partition"
 		"Deuterium Slush Tank"
 		"Electrostatic Ramscoop"
+		"Electromotive Rifle" 9
 
 		"Z-360 Fusion Torch"
 		"XY-180 Radial Thrusters"
@@ -870,6 +781,7 @@ ship "Entasi"
 		"Optical Lasing Generator"
 		"Multispectral Scanner" 3
 		"Spectrometer Array" 6
+		"Electromotive Rifle" 9
 
 		"Magnetoplasma Drive" 2
 		"Hyperdrive"
@@ -959,6 +871,102 @@ ship "Entasi"
 	description "The Entasi is a mid-sized mining vessel powered by a pair of solar thermal generators. With the power and weapons capacity available to support laser mining weapons, the Entasi is able to quickly and efficiently break asteroids, whose mineral contents are then collected by the significant fleet of Sonikis cargo drones it can carry into an asteroid field."
 
 
+ship "Undsyni"
+	sprite "ship/avgi undsyni"
+	thumbnail "thumbnail/avgi undsyni"
+	swizzle 0
+	attributes
+		category "Utility"
+		licenses
+			"Avgi Civilian"
+		"shields" 2400
+		"hull" 15000
+		"required crew" 12
+		"bunks" 60
+		"cargo space" 600
+		"mass" 600
+		"drag" 4.2
+		"heat dissipation" 1.8
+		"fuel capacity" 2400
+		"outfit space" 630
+		"weapon capacity" 153
+		"engine capacity" 168
+		"spinal mount" 1
+		"anchor point" 3
+			"blast radius" 540
+			"shield damage" 3600
+			"hull damage" 2400
+			"hit force" 4800
+	outfits
+		"Phased Array Laser (Green)" 3
+		"Speckle Turret" 2
+		"Speck Round" 14400
+		"Sidereal Launcher" 2
+		"Sidereal Missile" 84
+		"Electromotive Rifle" 24
+
+		"Luminous Fusion Core"
+		"Ultracapacitor Bank" 3
+		"Diffuse Deflector"
+		"Optical Lasing Generator"
+		"Electrostatic Ramscoop"
+		"Multispectral Scanner"
+		"Spectrometer Array"
+
+		"Z-360 Fusion Torch"
+		"XY-420 Radial Thrusters"
+		"Hyperdrive"
+
+	gun 0 -213
+		over
+	gun -42 -139 "Sidereal Launcher"
+		angle -90
+	gun 42 -139 "Sidereal Launcher"
+		angle 90
+	turret -33 -138 "Speckle Turret"
+	turret 33 -138 "Speckle Turret"
+	turret 0 -30 "Phased Array Laser (Green)"
+	turret 0 42 "Phased Array Laser (Green)"
+	turret 0 186 "Phased Array Laser (Green)"
+
+	bay "Drone" -65.5 3
+	bay "Drone" 65.5 3
+	bay "Drone" 65.5 29
+	bay "Drone" -65.5 29
+
+	engine 0 239
+	"reverse engine" -6 240
+		angle -30
+	"reverse engine" 6 240
+		angle 30
+	"steering engine" -42 -138
+		angle 90
+		right
+	"steering engine" 42 -138
+		angle -90
+		left
+	"steering engine" -6 240
+		angle 90
+		left
+	"steering engine" 6 240
+		angle -90
+		right
+
+	leak "leak" 30 90
+	leak "flame" 30 90
+	leak "big leak" 30 90
+	explode "tiny explosion" 18
+	explode "small explosion" 30
+	explode "medium explosion" 60
+	explode "large explosion" 30
+	explode "huge explosion" 9
+	"final explode" "final explosion large"
+
+	description "The Undsyni-class Auxiliary Freighter is not just a bulk freighter, but one built to be large and strong enough to hold its own against attacks from smaller, more militarized vessels. While not quite as payload efficient as more spindly ships such as the Avlaki and Harmonikos, the Undsyni's resilience makes it much more survivable against attacks, with its fusion torch giving it the acceleration to both evade enemies and minimize travel times."
+	description "Even before the Incursion, the Undsyni's strong hull and internal outfit capacity made it a popular option as a capital warship for groups who could not gain access to specialized warships."
+	description "A reinforced spine running the length of the ship allows it to fit a huge Dipole Ramscoop, capable of bearing the extreme stresses the ramscoop's magnetic field puts on its superconducting magnets. In this configuration, a tanker Undsyni can supply the fuel needs of an entire fleetgroup across dozens of systems."
+
+
 ship "Modified Tachytia"
 	sprite "ship/avgi tachytia/tachytia"
 		"frame rate" 30
@@ -1001,6 +1009,7 @@ ship "Modified Tachytia"
 		"Concealment Scales" 3
 		"Nanoceramic Scales"
 		"Radiative Scales"
+		"Electromotive Rifle" 600
 		
 		"Beam Core Antimatter Torch"
 		"Hyperdrive"
@@ -1093,7 +1102,7 @@ ship "Tremoros"
 		"shields" 600
 		"hull" 3600
 		"automaton" 1
-		"crew equivalent" 3
+		"crew equivalent" 1
 		"mass" 45
 		"drag" .3
 		"heat dissipation" 0.9
@@ -1190,6 +1199,7 @@ ship "Prismaios"
 		"Speck Round" 14400
 		"Sidereal Launcher" 2
 		"Sidereal Missile" 84
+		"Electromotive Rifle" 6
 
 		"Luminous Fusion Core"
 		"Ultracapacitor Bank"
@@ -1252,7 +1262,7 @@ ship "Interferos"
 		"shields" 900
 		"hull" 3600
 		"automaton" 1
-		"crew equivalent" 6
+		"crew equivalent" 3
 		"mass" 90
 		"drag" 1.5
 		"heat dissipation" 1.5
@@ -1367,6 +1377,7 @@ ship "Diaspersi"
 		"Concealment Scales"
 		"Deuterium Slush Tank"
 		"Electrostatic Ramscoop"
+		"Electromotive Rifle" 36
 		
 		"Z-600 Fusion Torch"
 		"XY-420 Radial Thrusters"
@@ -1468,6 +1479,7 @@ ship "Difraktos"
 		"Multispectral Scanner" 2
 		"Concealment Scales"
 		"Electrostatic Ramscoop"
+		"Electromotive Rifle" 42
 
 		"Z-600 Fusion Torch"
 		"XY-420 Radial Thrusters"
@@ -1561,6 +1573,7 @@ ship "Refraktos"
 		"Multispectral Scanner" 3
 		"Electrostatic Ramscoop"
 		"Thermal Sink Partition" 3
+		"Electromotive Rifle" 24
 		
 		"Z-360 Fusion Torch"
 		"XY-420 Radial Thrusters"
@@ -1627,7 +1640,7 @@ ship "Atenuatia"
 		"shields" 4200
 		"hull" 27600
 		"required crew" 60
-		"bunks" 84
+		"bunks" 90
 		"mass" 450
 		"drag" 3.6
 		"heat dissipation" 1.8
@@ -1658,6 +1671,7 @@ ship "Atenuatia"
 		"Optical Lasing Generator" 2
 		"Electrostatic Ramscoop" 2
 		"Multispectral Scanner" 9
+		"Electromotive Rifle" 90
 		
 		"Z-600 Fusion Torch"
 		"XY-420 Radial Thrusters"
@@ -1776,6 +1790,7 @@ ship "Akoustiki"
 		"Ultracapacitor Cell" 3
 		"Multispectral Scanner"
 		"Spectrometer Array"
+		"Electromotive Rifle" 2
 		
 		"Magnetoplasma Drive"
 
