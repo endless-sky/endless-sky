@@ -17,6 +17,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "BoardingPanel.h"
 #include "Command.h"
+#include "GamePad.h"
+#include "RadialSelectionPanel.h"
 #include "RingShader.h"
 #include "comparators/ByGivenOrder.h"
 #include "CategoryList.h"
@@ -309,9 +311,9 @@ void MainPanel::Draw()
 			Rectangle scBounds = mapButtonUi->GetBox("onscreen joystick");
 			const char* colorStr = "faint";
 			if(osJoystick)
-				colorStr = osJoystickMax ? "dim" : "dimmer";
+				colorStr = joystickMax ? "dim" : "dimmer";
 			const Color &color = *GameData::Colors().Get(colorStr);
-			RingShader::Draw(scBounds.Center(), scBounds.Width()/2, osJoystickMax ? 4.0 : 2.0, 1.0, color);
+			RingShader::Draw(scBounds.Center(), scBounds.Width()/2, joystickMax ? 4.0 : 2.0, 1.0, color);
 
 			if(osJoystick)
 			{
@@ -391,6 +393,21 @@ bool MainPanel::Click(int x, int y, int clicks)
 	// Don't respond to clicks if another panel is active.
 	if(!canClick)
 		return true;
+
+	
+	if(x > -100 && x < 100 && y > -100 && y < 100)
+	{
+		auto selection = new RadialSelectionPanel();
+		selection->ReleaseWithMouseUp(Point(x, y), 1);
+		selection->AddOption("ui/up_button", "Up Button", []() { Messages::Add("user clicked \"Up Button\""); });
+		selection->AddOption("ui/right_button", "Right Button", []() { Messages::Add("user clicked \"Right Button\""); });
+		selection->AddOption("ui/down_button", "Down Button", []() { Messages::Add("user clicked \"Down Button\""); });
+		selection->AddOption("ui/left_button", "Left Button", []() { Messages::Add("user clicked \"Left Button\""); });
+		GetUI()->Push(selection);
+		return true;
+	}
+
+
 	// Only allow drags that start when clicking was possible.
 	canDrag = true;
 
@@ -485,7 +502,7 @@ bool MainPanel::FingerDown(int x, int y, int fid)
 			if(pring.LengthSquared() < radius * radius)
 			{
 				osJoystick = Point(x, y);
-				osJoystickMax = false;
+				joystickMax = false;
 				osJoystickFinger = fid;
 
 				Ship* flagship = player.Flagship();
@@ -533,18 +550,18 @@ bool MainPanel::FingerMove(int x, int y, int fid)
 		if(distance > radius)
 		{
 			osJoystick = scBounds.Center() + pring * (radius / distance);
-			if(!osJoystickMax)
+			if(!joystickMax)
 			{
-				osJoystickMax = true;
+				joystickMax = true;
 				Command::InjectSet(Command::AFTERBURNER);
 			}
 		}
 		else
 		{
 			osJoystick = Point(x, y);
-			if(osJoystickMax)
+			if(joystickMax)
 			{
-				osJoystickMax = false;
+				joystickMax = false;
 				Command::InjectUnset(Command::AFTERBURNER);
 			}
 		}
@@ -573,7 +590,7 @@ bool MainPanel::FingerUp(int x, int y, int fid)
 	if(osJoystick && fid == osJoystickFinger)
 	{
 		osJoystick = Point();
-		osJoystickMax = false;
+		joystickMax = false;
 		osJoystickFinger = -1;
 		Command::InjectUnset(Command::MOVETOWARD);
 		Command::InjectUnset(Command::AFTERBURNER);
@@ -585,6 +602,69 @@ bool MainPanel::FingerUp(int x, int y, int fid)
 	}
 	return engine.FingerUp(Point(x, y), fid);
 }
+
+
+
+bool MainPanel::ControllerAxis(SDL_GameControllerAxis axis, int position)
+{
+	if(axis == SDL_CONTROLLER_AXIS_LEFTX || axis == SDL_CONTROLLER_AXIS_LEFTY)
+	{
+		// TODO: combine this logic with the onscreen joystick logic?
+		Ship* flagship = player.Flagship();
+		if(flagship)
+		{
+			Point p = GamePad::LeftStick();
+
+			if(p)
+			{
+				Command::InjectSet(Command::MOVETOWARD);
+			
+				flagship->SetMoveToward(p);
+
+				if(p.LengthSquared() > 30000*30000)
+				{
+					if(!joystickMax)
+					{
+						joystickMax = true;
+						Command::InjectSet(Command::AFTERBURNER);
+					}
+				}
+				else if(joystickMax)
+				{
+					joystickMax = false;
+					Command::InjectUnset(Command::AFTERBURNER);
+				}
+			}
+			else
+			{
+				// joystick has returned to zero position
+				Command::InjectUnset(Command::MOVETOWARD);
+				Command::InjectUnset(Command::AFTERBURNER);
+				joystickMax = false;
+			}
+		}
+		return true;
+	}
+	return false;
+}
+
+
+
+//bool MainPanel::ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive)
+//{
+//	if(axis == SDL_CONTROLLER_AXIS_RIGHTY)
+//	{
+//		// TODO: you have to press and release this multiple times to trigger,
+//		// but it feels like it should just keep zooming as long as you hold down
+//		// the stick.
+//		if(positive)
+//			Preferences::ZoomViewOut();
+//		else
+//			Preferences::ZoomViewIn();
+//		return true;
+//	}
+//	return false;
+//}
 
 
 

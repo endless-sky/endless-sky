@@ -54,6 +54,7 @@ public:
 
 	void SetEnabled(bool e) { enabled = e; }
 	void SetBgColor(const Color& color) { bg_color = color; }
+	void ShowDropIcon(bool s) { showDropIcon = s; }
 
 	typedef std::function<void(int, const std::string&)> ChangedCallback;
 
@@ -82,6 +83,7 @@ private:
 	int padding = 5;
 
 	bool enabled = true;
+	bool showDropIcon = false;
 
 	std::function<void(int, const std::string&)> changed_callback;
 };

@@ -17,6 +17,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "FillShader.h"
 #include "Rectangle.h"
 #include "Screen.h"
+#include "SpriteSet.h"
+#include "SpriteShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
@@ -98,6 +100,13 @@ void Dropdown::Draw()
 	font.Draw(selected_string,
 		AlignText(alignment, font, text_bounds, selected_string),
 		is_active ? (is_hover ? hover : active) : inactive);
+
+	if(showDropIcon)
+	{
+		Point dropIconPos = position.Center();
+		dropIconPos.X() += position.Width()/2 - position.Height()/2;
+		SpriteShader::Draw(SpriteSet::Get("ui/sort descending"), dropIconPos);
+	}
 
 	if (is_popped)
 	{

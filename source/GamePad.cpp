@@ -50,7 +50,7 @@ namespace {
 	// rapidly triggers input at the polling rate.
 	uint32_t g_last_input_ticks = 0;
 	const uint32_t RAPID_INPUT_COOLDOWN = 100; // ms
-
+	
 	// Store extra mappings here.
 	const char EXTRA_MAPPINGS_FILE[] = "gamepad_mappings.txt";
 
@@ -59,8 +59,9 @@ namespace {
 	// below the deadzone before we accept more input (otherwise, it will
 	// repeatedly flag the same joystick events as new inputs)
 	int g_last_axis = -1;
-
-	constexpr int g_DeadZone = 5000; // ~ 20% of range. TODO: This should be configurable
+	int g_DeadZone = 5000; // ~ 20% of range. TODO: This should be configurable
+	// threshold before we count an axis as a binary input
+	int g_AxisIsButtonThreshold = 25000;
 
 	// We don't support every button/axis. just mark the ones we do care about
 	const std::set<SDL_GameControllerButton> g_UsedButtons = {
@@ -247,15 +248,15 @@ void GamePad::Handle(const SDL_Event &event)
 		}
 		break;
 	case SDL_CONTROLLERAXISMOTION:
-		SDL_Log("Axis %d: %d", static_cast<int>(event.caxis.axis), static_cast<int>(event.caxis.value));
+		//SDL_Log("Axis %d: %d", static_cast<int>(event.caxis.axis), static_cast<int>(event.caxis.value));
 		g_axes[event.caxis.axis] = event.caxis.value;
 		break;
 	case SDL_CONTROLLERBUTTONDOWN:
-		SDL_Log("Button down: %d", static_cast<int>(event.cbutton.button));
+		//SDL_Log("Button down: %d", static_cast<int>(event.cbutton.button));
 		g_held[event.cbutton.button] = true;
 		break;
 	case SDL_CONTROLLERBUTTONUP:
-		SDL_Log("Button up: %d", static_cast<int>(event.cbutton.button));
+		//SDL_Log("Button up: %d", static_cast<int>(event.cbutton.button));
 		g_held[event.cbutton.button] = false;
 		break;
 	
@@ -271,13 +272,13 @@ void GamePad::Handle(const SDL_Event &event)
 		}
 		else if(g_capture_next_button && g_last_axis == -1)
 		{
-			if(event.jaxis.value > 25000)
+			if(event.jaxis.value > g_AxisIsButtonThreshold)
 			{
 				g_joystick_last_input = "+a" + std::to_string(event.jaxis.axis);
 				g_capture_next_button = false;
 				g_last_axis = event.jaxis.axis;
 			}
-			else if(event.jaxis.value < -25000)
+			else if(event.jaxis.value < -g_AxisIsButtonThreshold)
 			{
 				g_joystick_last_input = "-a" + std::to_string(event.jaxis.axis);
 				g_capture_next_button = false;
@@ -321,6 +322,35 @@ void GamePad::Handle(const SDL_Event &event)
 		break;
 	}
 }
+
+
+
+int GamePad::DeadZone()
+{
+	return g_DeadZone;
+}
+
+
+
+void GamePad::SetDeadZone(int dz)
+{
+	g_DeadZone = dz;
+}
+
+
+
+int GamePad::AxisIsButtonPressThreshold()
+{
+	return g_AxisIsButtonThreshold;
+}
+
+
+
+void GamePad::SetAxisIsButtonPressThreshold(int t)
+{
+	g_AxisIsButtonThreshold = t;
+}
+
 
 
 
@@ -490,17 +520,17 @@ Point GamePad::RightStick()
 
 
 
-//double GamePad::LeftTrigger() const
-//{
-//	return axis[SDL_CONTROLLER_AXIS_TRIGGERLEFT];
-//}
+bool GamePad::LeftTrigger()
+{
+	return g_axes[SDL_CONTROLLER_AXIS_TRIGGERLEFT] > g_AxisIsButtonThreshold;
+}
 
 
 
-//double GamePad::RightTrigger() const
-//{
-//	return axis[SDL_CONTROLLER_AXIS_TRIGGERRIGHT];
-//}
+bool GamePad::RightTrigger()
+{
+	return g_axes[SDL_CONTROLLER_AXIS_TRIGGERRIGHT] > g_AxisIsButtonThreshold;
+}
 
 
 

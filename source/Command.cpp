@@ -18,10 +18,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "GamePad.h"
 #include "text/Format.h"
 
 #include <SDL2/SDL.h>
 
+#include <SDL_gamecontroller.h>
 #include <algorithm>
 #include <atomic>
 #include <cmath>
@@ -36,6 +38,8 @@ namespace {
 	map<Command, string> keyName;
 	map<int, Command> commandForKeycode;
 	map<Gesture::GestureEnum, Command> commandForGesture;
+	map<SDL_GameControllerButton, Command> commandForControllerButton;
+	map<SDL_GameControllerAxis, Command> commandForControllerTrigger;
 	map<Command, int> keycodeForCommand;
 	// Keep track of any keycodes that are mapped to multiple commands, in order
 	// to display a warning to the player.
@@ -143,6 +147,26 @@ void Command::ReadKeyboard()
 
 	const Uint8 *keyDown = SDL_GetKeyboardState(nullptr);
 
+	// Read commands from the game controller
+	const GamePad::Buttons& gamepadButtons = GamePad::Held();
+	for(auto &kv : commandForControllerButton)
+	{
+		if(static_cast<size_t>(kv.first) < sizeof(gamepadButtons) / sizeof(*gamepadButtons))
+		{
+			if(gamepadButtons[kv.first])
+				*this |= kv.second;
+		}
+	}
+	// TODO: should we support other axes as well? I kind of have plans for the
+	// rest of them.
+	for(auto &kv : commandForControllerTrigger)
+	{
+		if((kv.first == SDL_CONTROLLER_AXIS_TRIGGERLEFT && GamePad::LeftTrigger()) ||
+		   (kv.first == SDL_CONTROLLER_AXIS_TRIGGERRIGHT && GamePad::RightTrigger()))
+			*this |= kv.second;
+	}
+
+
 	// Each command can only have one keycode, but misconfigured settings can
 	// temporarily cause one keycode to be used for two commands. Also, more
 	// than one key can be held down at once.
@@ -178,6 +202,22 @@ void Command::LoadSettings(const string &path)
 			if(node.Token(1) == "gesture" && node.Size() >= 3)
 			{
 				SetGesture(command, static_cast<Gesture::GestureEnum>(node.Value(2)));
+			}
+			else if(node.Token(1) == "controller_button" && node.Size() >= 3)
+			{
+				auto button = static_cast<SDL_GameControllerButton>(node.Value(2));
+				if(button >= 0 && button < SDL_CONTROLLER_BUTTON_MAX)
+				{
+					commandForControllerButton[button] = command;
+				}
+			}
+			else if(node.Token(1) == "controller_trigger" && node.Size() >= 3)
+			{
+				auto axis = static_cast<SDL_GameControllerAxis>(node.Value(2));
+				if(axis >= 0 && axis < SDL_CONTROLLER_AXIS_MAX)
+				{
+					commandForControllerTrigger[axis] = command;
+				}
 			}
 			else
 			{
@@ -216,6 +256,18 @@ void Command::SaveSettings(const string &path)
 		auto dit = description.find(kv.second);
 		if(dit != description.end())
 			out.Write(dit->second, "gesture", static_cast<int>(kv.first));
+	}
+	for(const auto& kv : commandForControllerButton)
+	{
+		auto dit = description.find(kv.second);
+		if(dit != description.end())
+			out.Write(dit->second, "controller_button", static_cast<int>(kv.first));
+	}
+	for(const auto& kv : commandForControllerTrigger)
+	{
+		auto dit = description.find(kv.second);
+		if(dit != description.end())
+			out.Write(dit->second, "controller_trigger", static_cast<int>(kv.first));
 	}
 }
 
@@ -264,6 +316,76 @@ void Command::SetGesture(Command command, Gesture::GestureEnum gesture)
 
 
 
+// Set the gesture that is mapped to the given command
+void Command::SetControllerButton(Command command, SDL_GameControllerButton button)
+{
+	// Erase any buttons or triggers for this command
+	for(auto it = commandForControllerButton.begin(); it != commandForControllerButton.end();)
+	{
+		if(it->second == command)
+		{
+			it = commandForControllerButton.erase(it);
+		}
+		else
+		{
+			++it;
+		}
+	}
+	for(auto it = commandForControllerTrigger.begin(); it != commandForControllerTrigger.end();)
+	{
+		if(it->second == command)
+		{
+			it = commandForControllerTrigger.erase(it);
+		}
+		else
+		{
+			++it;
+		}
+	}
+
+	if(button < SDL_CONTROLLER_BUTTON_MAX && button != SDL_CONTROLLER_BUTTON_INVALID)
+	{
+		commandForControllerButton[button] = command;
+	}
+}
+
+
+
+// Set the gesture that is mapped to the given command
+void Command::SetControllerTrigger(Command command, SDL_GameControllerAxis axis)
+{
+	// Erase any buttons or triggers for this command
+	for(auto it = commandForControllerButton.begin(); it != commandForControllerButton.end();)
+	{
+		if(it->second == command)
+		{
+			it = commandForControllerButton.erase(it);
+		}
+		else
+		{
+			++it;
+		}
+	}
+	for(auto it = commandForControllerTrigger.begin(); it != commandForControllerTrigger.end();)
+	{
+		if(it->second == command)
+		{
+			it = commandForControllerTrigger.erase(it);
+		}
+		else
+		{
+			++it;
+		}
+	}
+
+	if(axis < SDL_CONTROLLER_AXIS_MAX && axis != SDL_CONTROLLER_AXIS_INVALID)
+	{
+		commandForControllerTrigger[axis] = command;
+	}
+}
+
+
+
 // Get the description of this command. If this command is a combination of more
 // than one command, an empty string is returned.
 const string &Command::Description() const
@@ -279,10 +401,18 @@ const string &Command::Description() const
 // a combination of more than one command, an empty string is returned.
 const string &Command::KeyName() const
 {
-	static const string empty = "(none)";
+	static const string empty = "(Not Set)";
 	auto it = keyName.find(*this);
 	if(it != keyName.end())
 		return it->second;
+	return empty;
+}
+
+
+
+const std::string &Command::GestureName() const
+{
+	static const string empty = "(Not Set)";
 	
 	for(auto& kv: commandForGesture)
 	{
@@ -292,6 +422,29 @@ const string &Command::KeyName() const
 		}
 	}
 	return empty;
+}
+
+
+
+const char* Command::ButtonName() const
+{
+	// Only one button or trigger should be set
+	for(auto& kv: commandForControllerButton)
+	{
+		if(kv.second == *this)
+		{
+			return SDL_GameControllerGetStringForButton(kv.first);
+		}
+	}
+
+	for(auto& kv: commandForControllerTrigger)
+	{
+		if(kv.second == *this)
+		{
+			return SDL_GameControllerGetStringForAxis(kv.first);
+		}
+	}
+	return "(Not Set)";
 }
 
 

@@ -38,6 +38,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/truncate.hpp"
 #include "UI.h"
 #include "text/WrappedText.h"
+#include <SDL_gamecontroller.h>
 #include <SDL_keycode.h>
 #ifdef __ANDROID__
 #include "AndroidFile.h"
@@ -82,6 +83,11 @@ namespace {
 
 	// How many pages of settings there are.
 	const int SETTINGS_PAGE_COUNT = 2;
+
+	// Control types
+	const string SHOW_KEYS = "Show Keys";
+	const string SHOW_GESTURES = "Show Gestures";
+	const string SHOW_GAMEPAD = "Show Gamepad";
 }
 
 
@@ -98,6 +104,20 @@ PreferencesPanel::PreferencesPanel()
 		}
 
 	SetIsFullScreen(true);
+
+	controlTypeDropdown.SetPadding(0);
+	controlTypeDropdown.ShowDropIcon(true);
+	controlTypeDropdown.SetFontSize(14);
+	controlTypeDropdown.SetOptions({
+		SHOW_KEYS,
+		SHOW_GESTURES,
+		SHOW_GAMEPAD
+	});
+	controlTypeDropdown.SetBgColor(*GameData::Colors().Get("conversation background"));
+
+#ifdef __ANDROID__
+	controlTypeDropdown.SetSelected(SHOW_GESTURES);
+#endif
 }
 
 
@@ -144,6 +164,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	if(static_cast<unsigned>(editing) < zones.size())
 	{
 		Command::SetKey(zones[editing].Value(), key);
+		controlTypeDropdown.SetSelected(SHOW_KEYS);
 		EndEditing();
 		return true;
 	}
@@ -212,13 +233,31 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 
 bool PreferencesPanel::Click(int x, int y, int clicks)
 {
+	if(controlTypeDropdown.MouseDown(x, y))
+		return true;
 	return FingerDown(x, y, 0) && FingerUp(x, y, 0);
+}
+
+
+
+bool PreferencesPanel::Drag(double x, double y)
+{
+	return controlTypeDropdown.MouseMove(x, y);
+}
+
+
+
+bool PreferencesPanel::Release(int x, int y)
+{
+	return controlTypeDropdown.MouseUp(x, y);
 }
 
 
 
 bool PreferencesPanel::FingerDown(int x, int y, int fid)
 {
+	if(controlTypeDropdown.MouseDown(x, y))
+		return true;
 	if(editing >= 0 && editing < static_cast<ssize_t>(zones.size()))
 	{
 		Command::SetGesture(zones[editing].Value(), Gesture::NONE);
@@ -229,8 +268,17 @@ bool PreferencesPanel::FingerDown(int x, int y, int fid)
 
 
 
+bool PreferencesPanel::FingerMove(int x, int y, int fid)
+{
+	return controlTypeDropdown.MouseMove(x, y);
+}
+
+
+
 bool PreferencesPanel::FingerUp(int x, int y, int fid)
 {
+	if(controlTypeDropdown.MouseUp(x, y))
+		return true;
 	EndEditing();
 
 	if(x >= 265 && x < 295 && y >= -220 && y < 70)
@@ -341,6 +389,8 @@ bool PreferencesPanel::FingerUp(int x, int y, int fid)
 
 bool PreferencesPanel::Hover(int x, int y)
 {
+	if(controlTypeDropdown.Hover(x, y))
+		return true;
 	hoverPoint = Point(x, y);
 
 	hover = -1;
@@ -411,14 +461,42 @@ bool PreferencesPanel::Gesture(Gesture::GestureEnum gesture)
 {
 	if(editingGesture >= 0 && editingGesture < static_cast<ssize_t>(zones.size()))
 	{
-		SDL_Log("PreferencesPanel::Gesture(%d)", static_cast<int>(gesture));
+		controlTypeDropdown.SetSelected(SHOW_GESTURES);
 		Command::SetGesture(zones[editingGesture].Value(), gesture);
 	}
-	else
-	{
-		SDL_Log("editing has been unset");
-	}
 	return true;
+}
+
+
+
+bool PreferencesPanel::ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive)
+{
+	// don't mess with left/right joysticks here, as their behavior is
+	// controlled by the specific panels that need them. We only flag the
+	// triggers here.
+	if((axis == SDL_CONTROLLER_AXIS_TRIGGERLEFT ||
+	    axis == SDL_CONTROLLER_AXIS_TRIGGERRIGHT) &&
+		 editing >= 0 && editing < static_cast<int>(zones.size()))
+	{
+		controlTypeDropdown.SetSelected(SHOW_GAMEPAD);
+		Command::SetControllerTrigger(zones[editing].Value(), axis);
+		return true;
+	}
+	else
+		return Panel::ControllerTriggerPressed(axis, positive);
+}
+
+
+
+bool PreferencesPanel::ControllerButtonDown(SDL_GameControllerButton button)
+{
+	if(editing >= 0 && editing < static_cast<int>(zones.size()))
+	{
+		Command::SetControllerButton(zones[editing].Value(), button);
+		return true;
+	}
+	else
+		return Panel::ControllerButtonDown(button);
 }
 
 
@@ -530,7 +608,7 @@ void PreferencesPanel::DrawControls()
 			bool isConflicted = command.HasConflict();
 			bool isEmpty = !command.HasBinding();
 			bool isEditing = (index == editing);
-			if(isConflicted || isEditing || isEmpty)
+			if(isConflicted || isEditing)
 			{
 				table.SetHighlight(56, 120);
 				table.DrawHighlight(isEditing ? dim : isEmpty ? noCommand : warning);
@@ -552,7 +630,14 @@ void PreferencesPanel::DrawControls()
 			zones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), command);
 
 			table.Draw(command.Description(), medium);
-			table.Draw(command.KeyName(), isEditing ? bright : medium);
+			std::string controlName = "(None)";
+			if(controlTypeDropdown.GetSelected() == SHOW_GESTURES)
+				controlName = command.GestureName();
+			else if(controlTypeDropdown.GetSelected() == SHOW_GAMEPAD)
+				controlName = command.ButtonName();
+			else
+				controlName = command.KeyName();
+			table.Draw(controlName, isEditing ? bright : medium);
 		}
 	}
 
@@ -569,6 +654,7 @@ void PreferencesPanel::DrawControls()
 	shiftTable.Draw("Talk to planet", medium);
 	shiftTable.Draw("Board disabled escort", medium);
 
+	// Draw gesture table for reference
 	auto* ui = GameData::Interfaces().Get("controls");
 	Rectangle gestureRect = ui->GetBox("supported gestures");
 	const string gestureLabel = "Supported Gestures";
@@ -590,6 +676,11 @@ void PreferencesPanel::DrawControls()
 			break;
 		gestureTable.Draw(description, medium);
 	}
+
+	// Dropdown for displayed control type
+	Rectangle controlTypeRect = ui->GetBox("control type");
+	controlTypeDropdown.SetPosition(controlTypeRect);
+	controlTypeDropdown.Draw();
 }
 
 

@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef COMMAND_H_
 #define COMMAND_H_
 
+#include <SDL_gamecontroller.h>
 #include <cstdint>
 #include <string>
 #include <atomic>
@@ -109,11 +110,15 @@ public:
 	static void SaveSettings(const std::string &path);
 	static void SetKey(Command command, int keycode);
 	static void SetGesture(Command command, Gesture::GestureEnum gesture);
+	static void SetControllerButton(Command command, SDL_GameControllerButton button);
+	static void SetControllerTrigger(Command command, SDL_GameControllerAxis trigger);
 
 	// Get the description or keycode name for this command. If this command is
 	// a combination of more than one command, an empty string is returned.
 	const std::string &Description() const;
 	const std::string &KeyName() const;
+	const std::string &GestureName() const;
+	const char* ButtonName() const;
 	bool HasBinding() const;
 	bool HasConflict() const;
 

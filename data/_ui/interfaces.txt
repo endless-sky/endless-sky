@@ -423,6 +423,13 @@ interface "controls"
 		center -344.5 -50
 		dimensions 136 137
 	
+	# dropdown for displayed control type
+	uirect
+		center -344.5 170
+		dimensions 161 30
+	box "control type"
+		center -344.5 170
+		dimensions 159 28
 
 	button c "_Controls"
 		center -300 -230

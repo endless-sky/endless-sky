@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Engine.h"
 #include "ZoomGesture.h"
 
+#include <SDL_gamecontroller.h>
 #include <list>
 
 class PlayerInfo;
@@ -63,6 +64,8 @@ protected:
 	virtual bool FingerDown(int x, int y, int fid) override;
 	virtual bool FingerMove(int x, int y, int fid) override;
 	virtual bool FingerUp(int x, int y, int fid) override;
+	virtual bool ControllerAxis(SDL_GameControllerAxis axis, int position) override;
+	//virtual bool ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive) override;
 
 
 private:
@@ -100,7 +103,7 @@ private:
 	bool canDrag = false;
 
 	Point osJoystick;	// onscreen joystick
-	bool osJoystickMax = false;
+	bool joystickMax = false;
 	int osJoystickFinger = -1;
 
 	// track zoom gestures

@@ -90,7 +90,7 @@ void GameLoadingPanel::Step()
 		{
 			GetUI()->Push(new Dialog("Endless Sky crashed during a previously attempted load. "
 											 "\"Reduced Graphics\" mode has been turned on, and all "
-											 "plugins have been disbled. Please remove any plugins "
+											 "plugins have been disabled. Please remove any plugins "
 											 "you do not need before restarting."));
 		}
 

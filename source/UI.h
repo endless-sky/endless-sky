@@ -16,8 +16,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef UI_H_
 #define UI_H_
 
+#include "Panel.h"
 #include "Point.h"
 
+#include <SDL_gamecontroller.h>
 #include <memory>
 #include <vector>
 #include <map>
@@ -83,6 +85,12 @@ private:
 	// If a push or pop is queued, apply it.
 	void PushOrPop();
 
+	// Default behavior for game controller events
+	bool DefaultControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive);
+	bool DefaultControllerTriggerReleased(SDL_GameControllerAxis axis, bool positive);
+	bool DefaultControllerButtonUp(SDL_GameControllerButton button);
+	bool DefaultControllerButtonDown(SDL_GameControllerButton button);
+	std::vector<Panel::Zone*> GetZones();
 
 private:
 	// Whether the player has taken actions that enable us to save the game.
@@ -99,6 +107,14 @@ private:
 	// finger controls to the correct one.
 	int zoneFingerId = -1;
 	int panelFingerId = -1;
+
+	// Track active axis value so that we can simulate button presses from
+	// triggers
+	SDL_GameControllerAxis activeAxis = SDL_CONTROLLER_AXIS_INVALID;
+	bool activeAxisIsPositive = false;
+	int16_t lastAxisValue = 0;
+	bool controllerCursorActive = false;
+	Point controllerCursorPosition;
 };
 
 

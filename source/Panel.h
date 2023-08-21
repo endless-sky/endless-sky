@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Rectangle.h"
 #include "Command.h"
 
+#include <SDL_gamecontroller.h>
 #include <functional>
 #include <list>
 #include <string>
@@ -92,6 +93,11 @@ protected:
 	virtual bool FingerUp(int x, int y, int fid);
 	virtual bool Gesture(Gesture::GestureEnum gesture);
 	virtual bool ControllersChanged();
+	virtual bool ControllerButtonDown(SDL_GameControllerButton button);
+	virtual bool ControllerButtonUp(SDL_GameControllerButton button);
+	virtual bool ControllerAxis(SDL_GameControllerAxis axis, int position);
+	virtual bool ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive);
+	virtual bool ControllerTriggerReleased(SDL_GameControllerAxis axis, bool positive);
 	// If a clickable zone is clicked while editing is happening, the panel may
 	// need to know to exit editing mode before handling the click.
 	virtual void EndEditing() {}

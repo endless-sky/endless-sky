@@ -39,6 +39,11 @@ public:
 	static void SaveMapping();
 	static void Handle(const SDL_Event &event);
 
+	static int DeadZone();
+	static void SetDeadZone(int dz);
+	static int AxisIsButtonPressThreshold();
+	static void SetAxisIsButtonPressThreshold(int t);
+
 	// Read held buttons and how long they have been held.
 	// std::map<Uint8, std::chrono::milliseconds> HeldButtons() const;
 	// Read held buttons and when they were first pressed.
@@ -66,6 +71,8 @@ public:
 	// Axis state
 	static Point LeftStick();
 	static Point RightStick();
+	static bool LeftTrigger();
+	static bool RightTrigger();
 
 	// bool RepeatAxis(Uint8 axis);
 	// bool RepeatAxisNeg(Uint8 axis);

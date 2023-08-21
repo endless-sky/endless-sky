@@ -38,6 +38,7 @@ public:
 
    static uint32_t EventID();
    static const std::string& Description(GestureEnum gesture);
+   
 
 
 private:
