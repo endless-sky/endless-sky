@@ -1853,12 +1853,12 @@ ship "Modified Ladybug"
 
 person "Patrol Team"
 	government "Author"
-	frequency 300
+	frequency 150
 	personality
 		mining harvests plunders
 	phrase
 		word
-		#Marksman addition
+#		Marksman
 			"Should you find another ship owned by Brick, tell them to work harder!"
 			"Should you find another ship owned by Zitchas, tell them they have a typo on line 9. They'll never see it coming!"
 			"If you don't know where to start in helping the game, take a nice look at the files. Sometimes, it helps!"
@@ -1873,12 +1873,11 @@ person "Patrol Team"
 			"Please, for the love of god, don't make an issue before checking if others have done the same."
 			"This statement is, intentionally wrote wrongly to make point."
 
-		
-		#Roadrunner addition
+#		Roadrunner
 			"Typo detected. Initiating weapons engagement."
 			"Code non-functional. Destroy them."
 
-		#Saugia addition
+#		Saugia
 			"Yea... way too much detail. I can't see the cockpit anymore."
 			"Just don't go ham on details."
 			"These areas are looking much better, though. The contrast of the lesser details here and the more elsewhere is a lot nicer."
@@ -1886,7 +1885,7 @@ person "Patrol Team"
 			"It's awesome, but far too detailed."
 			"Now there's a lot less detail conflicting with one another."
 
-		#tibetiroka addition
+#		tibetiroka
 			"Lol, we broke master again."
 			"It's just the Steam CI, no need to panic."
 			"DERPY???!!!!!"
@@ -1897,7 +1896,7 @@ person "Patrol Team"
 			"Always keep three empty lines between functions."
 			"aLiEnS DoN'T SpEaK EnGlIsH, nO NeEd tO ChEcK ThE GrAmMaR,"
 
-		#1010todd addition
+#		1010todd
 			"Style check."
 			"Quick pass."
 			"I'll give this a better look later."
@@ -1934,8 +1933,7 @@ person "Patrol Team"
 			"3907"
 			"362"
 
-
-	#EjoThims addition
+#		EjoThims
 	phrase
 		word
 			"If you do not want your pull request to be merged, "
@@ -1957,7 +1955,7 @@ person "Patrol Team"
 			"." 5
 			". Trust me, it works."
 			". You shouldn't do those things though, I'm just kidding."
-			
+
 	ship "Waverider" "Pain of the Proofreader"
 		"never disabled"
 	ship "Waverider" "Regret of the Art Critics"
@@ -2011,7 +2009,7 @@ ship "Waverider"
 		"A125 Atomic Steering"
 		"Scram Drive"
 
-		"Emotional Baggage" #Ya... we'll get to it when we get to it.
+#		"Emotional Baggage"
 	
 	gun -22.5 -56.5 "Particle Cannon"
 	gun 22.5 -56.5 "Particle Cannon"
@@ -2020,6 +2018,5 @@ ship "Waverider"
 	engine 0 56 
 	engine -23 64 
 	engine 23 64 
-	description "The Waverider was a ship that was first requested and never used for Five Years, Seven Months and Twenty-Seven Days."
-	description "	Its disappointment was so immense, it willed itself into being."
-
+	description `The Waverider was a ship that was first requested and never used for Five Years, Seven Months and Twenty-Seven Days.`
+	description `	Its disappointment was so immense, it willed itself into being.`
