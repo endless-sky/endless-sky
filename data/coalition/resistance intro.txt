@@ -161,7 +161,7 @@ mission "Resistance: Smuggling: Charity 3"
 				`	"Sorry, I'm not interested in helping anymore."`
 					decline
 			`	"Lack many of their preferred diet options, the Arachi and Saryds on <planet> do," they explain. "Enough to order it from off-world, the poorer of them do not have, so sending them a care package, our group is."`
-			`	They show you to a pile of containers and crates near the hangars, and you have them loaded into your ship. "Once on <planet>, you are, pay you <payment>, we will. Thankful of your help, we are, Captain."  They wish you a safe trip, and vanish into the spaceport halls.`
+			`	They show you to a pile of containers and crates near the hangars, and you have them loaded into your ship. "Once on <planet>, you are, pay you <payment>, we will. Thankful of your help, we are, Captain." They wish you a safe trip, and vanish into the spaceport halls.`
 				accept
 			label chiree
 			`A group of Kimek approach you in the spaceport. They are all in the blue uniforms of Chiree's "charity" group, and one of them signals to your ship once they're close. You get the hint, and bring them aboard. "More work for you, Chiree has. To <planet>," one of them begins the moment you close the hatch. "Prepared an important job, she has. One only you can do. Paid <payment> to deliver <cargo> to <planet>, you will be, and once there, tell you the details about the main mission, she can."`
