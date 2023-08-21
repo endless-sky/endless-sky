@@ -523,6 +523,8 @@ void Engine::Step(bool isActive)
 	{
 		center = flagship->Position();
 		centerVelocity = flagship->Velocity();
+		if(flagship->IsHyperspacing() && Preferences::Has("Extended jump effects"))
+			centerVelocity *= 1. + pow(flagship->GetHyperspacePercentage() / 20., 2);
 		if(doEnter && flagship->Zoom() == 1. && !flagship->IsHyperspacing())
 		{
 			doEnter = false;
@@ -1086,6 +1088,9 @@ void Engine::Draw() const
 				break;
 			case Messages::Importance::High:
 				color = GameData::Colors().Find("message importance high");
+				break;
+			case Messages::Importance::Info:
+				color = GameData::Colors().Find("message importance info");
 				break;
 			case Messages::Importance::Low:
 				color = GameData::Colors().Find("message importance low");
