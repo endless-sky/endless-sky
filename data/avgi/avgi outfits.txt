@@ -250,7 +250,8 @@ outfit "Phased Array Laser (Green)"
 	"lasing power" -2
 	weapon
 		"hardpoint sprite" "hardpoint/green phaser"
-		"die effect" "laser ejecta" 2
+		"die effect" "laser ejecta" 4
+		"die effect" "green phaser return" 30
 		"die effect" "green phaser scattering"
 		"fire effect" "green phaser fire"
 		"anti-missile" 3
@@ -339,7 +340,16 @@ effect "green phaser scattering"
 		"frame rate" 30
 		"random start frame"
 	"lifetime" 1
-	"velocity scale" 1
+	"velocity scale" 0
+
+effect "green phaser return"
+	sprite "effect/heavy laser impact"
+		"frame rate" 20
+		"random start frame"
+		scale 0.25
+	"lifetime" 3
+	"random lifetime" 2
+	"random velocity" -24
 	
 effect "green phaser fire"
 	sprite "effect/heavy laser impact"
