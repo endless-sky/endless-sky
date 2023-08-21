@@ -1853,7 +1853,7 @@ ship "Modified Ladybug"
 
 person "Patrol Team"
 	government "Author"
-	frequency 150
+	frequency 300
 	personality
 		mining harvests plunders
 	phrase
