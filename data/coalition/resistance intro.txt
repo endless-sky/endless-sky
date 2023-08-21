@@ -20,7 +20,7 @@ mission "Lunarium Initial Log"
 		log "Factions" "Lunarium Redoubt" "The Lunarium Redoubt is a resistance movement within the Coalition that is opposed to the Heliarchs, aiming to free it from their rule."
 		fail
 
-mission "Resistance: Smuggling: Charity 1"
+mission "Lunarium: Smuggling: Charity 1"
 	name "Charity Delivery"
 	description "Deliver a care package of <cargo> to <destination>, as part of a charity initiative."
 	minor
@@ -34,11 +34,11 @@ mission "Resistance: Smuggling: Charity 1"
 		has "Coalition: First Contact: done"
 		not "Heliarch License: done"
 		not "Heliarch Investigation 2: active"
-		not "Resistance: Questions: active"
+		not "Lunarium: Questions: active"
 	on offer
 		conversation
 			branch chiree
-				has "Resistance: Questions: done"
+				has "Lunarium: Questions: done"
 			`A Kimek in a blue uniform approaches you. "Good day, Captain. Interested in helping with some charity work, would you be?" she asks.`
 			choice
 				`	"What sort of charity work?"`
@@ -76,7 +76,7 @@ mission "Resistance: Smuggling: Charity 1"
 		payment 44000
 		conversation
 			branch chiree
-				has "Resistance: Questions: done"
+				has "Lunarium: Questions: done"
 			`You find the local charity workers, and they begin unloading the supplies from your ship. When they're about done, you receive a transmission from the Kimek who gave you the job.`
 			`	"Grateful for your services I am, Captain. As simple as the job may seem to you, a great help for those in need, these deliveries are. Contact you again, we shall, if interested in helping more, you are," she says. Once the workers are done, they hand you <payment> and move the crates to a building where Kimek are lining up to receive the supplies. Other workers continue to unload more cargo from arriving ships.`
 				decline
@@ -84,7 +84,7 @@ mission "Resistance: Smuggling: Charity 1"
 			`You find the local charity workers, and they begin unloading the supplies from your ship. When they're about done, you receive a transmission from Chiree.`
 			`	"A simple job it was, Captain, but important nonetheless. More work for you, we'll have, so ask that you keep watch for more members in Kimek space, I do." Once the workers are done, they hand you <payment>, and move the crates to a building where Kimek are lining up to receive the supplies. Other workers continue to unload more cargo from arriving ships.`
 
-mission "Resistance: Smuggling: Charity 2"
+mission "Lunarium: Smuggling: Charity 2"
 	name "Charity Delivery"
 	description "Bring <cargo> and <bunks> doctors to <destination>, to aid the poor Kimek on the planet who are suffering through harsh winter conditions."
 	passengers 5
@@ -94,14 +94,14 @@ mission "Resistance: Smuggling: Charity 2"
 	destination "Into White"
 	to offer
 		random < 50
-		has "Resistance: Smuggling: Charity 1: done"
+		has "Lunarium: Smuggling: Charity 1: done"
 		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
-		not "Resistance: Questions: active"
+		not "Lunarium: Questions: active"
 	on offer
 		conversation
 			branch chiree
-				has "Resistance: Questions: done"
+				has "Lunarium: Questions: done"
 			`As you make your way through the spaceport on <origin>, a Kimek in a blue uniform sees you and approaches. You recognize her as the charity worker who had you deliver some supplies to the poor Kimek world of Fourth Shadow.`
 			`	"Again we meet, Captain <last>! In some more charity work, are you interested?"`
 			choice
@@ -132,13 +132,13 @@ mission "Resistance: Smuggling: Charity 2"
 		payment 132000
 		conversation
 			branch chiree
-				has "Resistance: Questions: done"
+				has "Lunarium: Questions: done"
 			`More blue-uniformed workers are waiting when you land, though these uniforms consist of incredibly thick, bulky coats. They take the crates out of your ship while the doctors are directed to a hospital building, and <payment> are transferred to you when the workers are done. They thank you for your help and ask that you look for them in Kimek worlds if you wish to continue helping.`
 				decline
 			label chiree
 			`More blue-uniformed workers are waiting when you land, though these uniforms consist of incredibly thick, bulky coats. They take the crates out of your ships while the "doctors" are directed to a hospital building, and <payment> are transferred to you when the workers are done. They thank you for your help, and come in close as they're about to leave, quietly asking that you look for more members on worlds in northern Kimek space.`
 
-mission "Resistance: Smuggling: Charity 3"
+mission "Lunarium: Smuggling: Charity 3"
 	name "Charity Delivery"
 	description "Bring <cargo> to <destination>"
 	cargo "charity supplies" 46
@@ -147,14 +147,14 @@ mission "Resistance: Smuggling: Charity 3"
 	destination "Remote Blue"
 	to offer
 		random < 70
-		has "Resistance: Smuggling: Charity 2: done"
+		has "Lunarium: Smuggling: Charity 2: done"
 		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
-		not "Resistance: Questions: active"
+		not "Lunarium: Questions: active"
 	on offer
 		conversation
 			branch chiree
-				has "Resistance: Questions: done"
+				has "Lunarium: Questions: done"
 			`A group of Kimek approach you in the spaceport. They are all in the blue uniforms of the charity you have been helping by transporting supplies and people. "Greetings, Captain <last>," one of them says. "Helped our charity before, you have. Interested in more work, are you?"`
 			choice
 				`	"What do you need me to do?"`
@@ -174,14 +174,14 @@ mission "Resistance: Smuggling: Charity 3"
 	on complete
 		payment 261000
 
-mission "Resistance: Smuggling: Grenades"
+mission "Lunarium: Smuggling: Grenades"
 	name "Grenade Smuggling"
 	description "Bring 100 Fragmentation Grenades from human space to <destination>."
 	landing
 	source "Remote Blue"
 	destination "Mebla's Portion"
 	to offer
-		has "Resistance: Smuggling: Charity 3: done"
+		has "Lunarium: Smuggling: Charity 3: done"
 		not "Heliarch License: done"
 	on offer
 		log "Been providing transport services for a charity that is actually the Lunarium, a resistance group within the Coalition aiming to free it from the Heliarchs' rule. Some of the work was genuinely charity, apparently, but some was to support the resistance."
@@ -189,7 +189,7 @@ mission "Resistance: Smuggling: Grenades"
 		conversation
 			`You drop off the crates full of charity goods, and the spaceport workers start getting them up on vehicles to transport them to the poor. One of the workers transfers 261,000 credits to your account, thanking you for the help.`
 			branch chiree
-				has "Resistance: Questions: done"
+				has "Lunarium: Questions: done"
 			`	As they move the last few crates, you hear a rapid tapping approaching from behind, and when you turn to investigate a Kimek tackles you. Some more join in, covering your head with some dark sack, and start shoving you around once they restrain you. You call out for help, but nobody comes. The Kimek keep pushing and tugging at you as they bring you around the city. After many minutes, you hear some doors close behind you, and your captors force you into some cramped room or compartment. You try to stand up straight, but hit your head against the ceiling. It soon becomes clear you're in a descending elevator, and when it stops, you're walked around for a while longer. Finally, the Kimek seat you and remove the sack from your head.`
 			`	The insides remind you of an office building or call center; several Kimek are working in cubicles, most examining computer screens while others speak into communicators. You look back to where you reckon you came from, seeing the entrance to a short elevator by the end of a hallway. Coming around the corner, a Kimek you recognize approaches to sit opposite to you - the Kimek who first contacted you about the charity missions. A group of the blue uniformed Kimek follow after her as they bring a crate: one of the crates you transported here. "Forgive us for the discomfort you must, Captain," she says, as the workers open up the crate, revealing several Heliarch guns stuffed inside. "Wished to speak away from prying eyes, I did. Rest easy, you may, harm you, we will not."`
 			choice
@@ -249,7 +249,7 @@ mission "Resistance: Smuggling: Grenades"
 			`As you approach the standard docking bay, a message pops up on your monitor telling you to go to the edge of the city. You follow the instructions and find yourself in the middle of several dozen warehouses. Another message arrives and asks that you unload the grenades and bring them to a specified warehouse. As this information comes in, you notice that a few Arachi have arrived just outside your ship with some cargo loaders, seemingly waiting for you to begin moving the smuggled weapons. You open up your hatch, and help them get the grenade crates out of your ship and into the designated warehouse as fast as you can, worried that someone might see you. The door is open, with a few more Arachi waiting inside by a staircase. They say nothing to you and simply take the grenade crates, lifting them off of the cargo loader and bringing them down the stairs, crate by crate.`
 			`	When you're done with the last one, one of the Arachi hands you several credit chips, worth <payment> in total. "Contact you for more deliveries of this kind, we will," they say as they head down with the final grenade box. You head back to your ship, and leave for the usual hangars.`
 
-mission "Resistance: Smuggling: AM"
+mission "Lunarium: Smuggling: AM"
 	name "Anti-Missile Smuggling"
 	description "Bring three Heavy Anti-Missile Turrets to <destination>."
 	landing
@@ -258,8 +258,8 @@ mission "Resistance: Smuggling: AM"
 		not planet "Mebla's Portion"
 	destination "Fourth Shadow"
 	to offer
-		has "Resistance: Smuggling: Grenades: done"
-		random < 15 + 3 * "assisted resistance" * "assisted resistance"
+		has "Lunarium: Smuggling: Grenades: done"
+		random < 15 + 3 * "assisted lunarium" * "assisted lunarium"
 		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
 	to fail
@@ -290,7 +290,7 @@ mission "Resistance: Smuggling: AM"
 			`Your monitor beeps loudly as you prepare for your descent onto <planet>, indicating that you have a message. The message details instructions on how to complete your delivery. Under the guise that you're transporting heavy factory equipment, you stop on a landing pad adjacent to a massive automated compound. A gantry crane moves the turrets down to ground levels, setting them on cargo platforms, which are then pulled into a large warehouse. Once all is done, you see that <payment> have been added to your account.`
 			`	You look to your monitor again, and see a message explaining the Lunarium would happily take more copies of smuggled equipment, if you wish to help further. The message details that they've prepared a method of integrating their missions into your job board. The device installed in your ship will include them in your list of regular jobs whenever they're available.`
 
-mission "Resistance: Smuggling: Torpedoes"
+mission "Lunarium: Smuggling: Torpedoes"
 	landing
 	name "Torpedo Smuggling"
 	description "Bring two Torpedo and two Typhoon Launchers to <destination>, along with the maximum ammunition each can carry."
@@ -300,9 +300,9 @@ mission "Resistance: Smuggling: Torpedoes"
 		not planet "Into White"
 	destination "Into White"
 	to offer
-		has "Resistance: Smuggling: AM: done"
+		has "Lunarium: Smuggling: AM: done"
 		has "event: deep sky tech available"
-		random < 20 + 3 * "assisted resistance" * "assisted resistance"
+		random < 20 + 3 * "assisted lunarium" * "assisted lunarium"
 		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
 	to fail
@@ -340,7 +340,7 @@ mission "Resistance: Smuggling: Torpedoes"
 			label end
 			`	The final torpedo is brought out of your ship, and the Saryds start bringing them inside a cave leading into the mountain. The Saryd who paid you thanks you again, and follows after the others. You head back to your ship and fly it to the hangars, hoping to find something warm to drink.`
 
-mission "Resistance: Smuggling: Heat"
+mission "Lunarium: Smuggling: Heat"
 	landing
 	name "Heated Smuggling"
 	description "Deliver two Plasma Turrets and ten Flamethrowers to <destination>."
@@ -349,9 +349,9 @@ mission "Resistance: Smuggling: Heat"
 		not planet "Secret Sky"
 	destination "Secret Sky"
 	to offer
-		has "Resistance: Smuggling: Torpedoes: done"
+		has "Lunarium: Smuggling: Torpedoes: done"
 		has "event: flamethrower available"
-		random < 25 + 3 * "assisted resistance" * "assisted resistance"
+		random < 25 + 3 * "assisted lunarium" * "assisted lunarium"
 		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
 	to fail
@@ -395,7 +395,7 @@ mission "Resistance: Smuggling: Heat"
 			label end
 			`	He bids you farewell once the last Flamethrower is loaded onto the barge, and gets on it with the others to sail away. The barge is fully encompassed by the planet's ever-present fog within minutes of raising the anchor. You get inside your ship, and head to the usual hangars.`
 
-mission "Resistance: Smuggling: Reactors"
+mission "Lunarium: Smuggling: Reactors"
 	landing
 	name "Reactor Smuggling"
 	description "Bring an Armageddon Core, a Fusion Reactor, and a Breeder Reactor to <destination>. To avoid the risk of larger Heliarch patrols you must deliver them before the fifth day of any month."
@@ -404,8 +404,8 @@ mission "Resistance: Smuggling: Reactors"
 		not planet "Mebla's Portion"
 	destination "Mebla's Portion"
 	to offer
-		has "Resistance: Smuggling: Heat: done"
-		random < 40 + 3 * "assisted resistance" * "assisted resistance"
+		has "Lunarium: Smuggling: Heat: done"
+		random < 40 + 3 * "assisted lunarium" * "assisted lunarium"
 		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
 	to fail
@@ -430,7 +430,7 @@ mission "Resistance: Smuggling: Reactors"
 		outfit "Fusion Reactor" -1
 		outfit "Breeder Reactor" -1
 		payment 33000000
-		"assisted resistance" ++
+		"assisted lunarium" ++
 		log "After delivering some nuclear reactors, Chiree says she won't make further contact via the usual communicator, but others of the Lunarium on Coalition worlds may offer similar work."
 		log "Factions" "Lunarium Redoubt" "Apparently, some Arach Houses are not entirely happy with the status of the Coalition under the Heliarchs, and so they help fund the Lunarium."
 		conversation
@@ -557,12 +557,12 @@ mission "House Bebliss 2-FW"
 			choice
 				`	"Thank you, but why exactly did you want to talk to me so badly?"`
 				`	"You asked me to come here for a job. What is the job?"`
-			branch resistance
-				has "Resistance: Questions: done"
+			branch lunarium
+				has "Lunarium: Questions: done"
 			`	"The great House Bebliss, we represent. Maintain the local hyperspace communication network, our House does," he says as he swirls the drink in his cup before taking a sip.`
 			`	The other one jumps in. "Studied hyperspace links, for millennia we have. More recently, an application of such phenomena that would help the Coalition, we have searched for."`
 				goto choice
-			label resistance
+			label lunarium
 			`	"To be trusted, you are. Assured us of that, Chiree has," the one Arach still by the blueprints chimes in. "The Lunarium's guardian angels, we are," she boasts. "Safeguard them against the Heliarchs, our meddling in the communication network does. To better serve that purpose, look further into this field, we must."`
 			label choice
 			`	Still gently swirling his drink in between periodic sips, the other Arach beside you asks, "Knowledge, we have acquired, of a certain conflict in human space. Invaded by aliens, were you? Aliens with such technology?"`
@@ -576,11 +576,11 @@ mission "House Bebliss 2-FW"
 				`	"I see. Well, yes, we were invaded by aliens known as the Pug."`
 					goto pug
 				`	"And how did the Heliarchy know?"`
-			branch "resistance 2"
-				has "Resistance: Questions: done"
+			branch "lunarium 2"
+				has "Lunarium: Questions: done"
 			`	"In 'their' space, are you not? Scanned by their ships, you were. Subtly amassed, your flight records, your charted map of the galaxy, were," she finishes, and her and the other two look to you, waiting for your answer.`
 				goto "pug reveal"
-			label "resistance 2"
+			label "lunarium 2"
 			`	"In 'their' space, are you not? Scanned by their ships, you were. Subtly amassed, your flight records, your charted map of the galaxy, were," she finishes. "Of course, register any such logs, your ship does not, when running tasks or simply coming to meet us like this, you are. Permit them find our bases that easily, we must not. But, digress I do. Please Captain, intrigued about these aliens, we very much are." She gestures toward you with one leg, as the other Bebliss members eye you eagerly.`
 			label "pug reveal"
 			choice
@@ -612,11 +612,11 @@ mission "House Bebliss 2-FW"
 			`	You wave for the maid with the Arach drinks, and she looks to the other maid in surprise. She tries explaining to you that she isn't sure if these drinks are meant for human consumption. Regardless, you insist, so she reluctantly walks over, handing you one of the cups. You bring it to your nose, and an overwhelming aroma hits your nostrils. The drink somehow smells oddly similar to the feeling you have in your mouth after waking up extremely parched after a long night of sleep. You carefully sip some of it, bringing the cup away from your mouth once the liquid hits your tongue. The sweetness has a sting to it, as if it's lightly biting your tongue as it travels through your mouth. Swallowing it, your throat feels a worrying numbing sensation for several seconds. You put the cup back on the platter, and the maids move away. After about a minute, you start struggling to keep your eyes open. Your surroundings suddenly appear much brighter than before, as if the lights in the ceiling have somehow intensified their output and the colors on everything around you have sharpened their image. You close your eyes for a few minutes to gain your bearings, and everything seems to go back to normal.`
 			label accept
 			`	When your hosts return, they hand you a small suitcase of sorts. "Translated our proposal into your language, we have," one of them says. "Bring that to Miss Freya, you must. Hopeful, we are, that willing to share the research material with us, she is."`
-			branch "resistance 3"
-				has "Resistance: Questions: done"
+			branch "lunarium 3"
+				has "Lunarium: Questions: done"
 			`	"Also inside, certain... research papers are. A gift, she may consider it," the other adds.`
 				goto end
-			label "resistance 3"
+			label "lunarium 3"
 			`	"Also inside, certain... research papers are. A gift, she may consider it," the other adds. "And, Captain, one last thing. Realize we do that in order to explain it all to her, inevitably tell Miss Freya of the Coalition, you will. Only, ask of you, I must, that reveal anything about the Lunarium, you do not. A bordering human world the Heliarchs periodically visit, and no means of culling what information they there gain, we have. Safer, it will be, if keep the Redoubt a secret, you do."`
 			label end
 			`	They say they will be waiting in the estate for her response, and have the servants escort you back to your ship.`
@@ -637,12 +637,12 @@ mission "House Bebliss 3-FW"
 		conversation
 			`You look around for Freya, asking the local dock workers where the people researching the Pug tech left on the planet are. They direct you to a quieter, less crowded place, where some warehouse complexes have been set up. Some are painted in the usual Syndicate colors, some are guarded by a few Navy troops, and a Free Worlds flag flies by the entrance of the one you enter. Inside, you see groups of people surrounding the various artifacts the Pug left behind. Some of them are running complicated looking tests, but it seems that they are mostly discussing what to do with the artifacts next. One of the graviton transmitters sits opposite to the entrance, half intact, half dismantled, with an array of scientists poking and prodding the inside machinery.`
 			`	Freya is atop a ladder near the transmitter when she sees you. She quickly hops down from her perch and runs towards you. "<first>! It's nice to see you again. What brings you here?" You tell her you have some important matters to discuss, and she has you follow her to an office-like room packed with tools and components.`
-			branch resistance
-				has "Resistance: Questions: done"
+			branch lunarium
+				has "Lunarium: Questions: done"
 			label "don't tell"
 			`	You give her a rundown of the Coalition, explaining about the three species, the Heliarchs and their fight against the Quarg, and about who House Bebliss is, handing her the suitcase when you're done.`
 				goto suitcase
-			label resistance
+			label lunarium
 			choice
 				`	(Tell her everything, including the Lunarium.)`
 				`	(Don't mention the Lunarium.)`
@@ -683,14 +683,14 @@ mission "House Bebliss 4-FW"
 			`	"How are you, <first>?" Katya gets up to greet you. "We came as soon as we got Freya's message, but I was still a bit surprised to get here before you, given the new toys you must have by now. You and Freya have gotten Ijs all worried and theorizing there," she says as she points to him.`
 			`	"Well, one minute I'm speaking on a panel, the other I get word we need to come to <origin> because <first> has something 'critical' to tell all of us. Of course I'll be worried." He stops, and comes to greet you. "Sorry. It's good to see you again <first>, I just... got a bit carried away thinking about Freya's message."`
 			`	Alondo also stands up and comes to greet you. "Maybe you worry too much, maybe we don't worry enough. Let's decide after <first> tells us all about... well, whatever it is you're telling us."`
-			branch resistance
-				has "Resistance: Questions: done"
+			branch lunarium
+				has "Lunarium: Questions: done"
 			choice
 				`	"Some more aliens."`
 					goto standard
 				`	"I hope none of you are afraid of spiders."`
 					goto standard
-			label resistance
+			label lunarium
 			choice
 				`	(Explain everything, including the Lunarium.)`
 					goto tell
@@ -828,7 +828,7 @@ mission "House Bebliss 7-FW"
 			`	When you finish reading the message, you plot a course to <destination>.`
 				accept
 	on complete
-		"assisted resistance" ++
+		"assisted lunarium" ++
 		outfit "Jump Drive" 1
 		payment 2000000
 		conversation
@@ -838,7 +838,7 @@ mission "House Bebliss 7-FW"
 
 
 
-mission "Resistance: Evacuation 1"
+mission "Lunarium: Evacuation 1"
 	name "Pick Up Students"
 	description "Head to <destination> to pick up <bunks> students and teachers by <date>, and bring them back to their home planet of Second Viridian."
 	minor
@@ -872,8 +872,8 @@ mission "Resistance: Evacuation 1"
 					decline
 			label alright
 			`	One of them brings you to the Spire, sending a message as you two head there, and the hatch is opened right as you arrive. They thank you for helping, and rush to board their own ship and depart. You go up the Spire's ramp and meet some more Kimek from the company, who greet you and guide you through the ship. Halfway through a corridor, they stop and ask that you wait there. A different Kimek carring nearly a dozen different devices emerges from a side corridor, and the group begins patting and circling your body with the devices. You ask them what they're doing, but they don't respond. After every single one of the machines has finished its beeps and chirps around you, and the Kimek seem satisfied, they continue on. Surprisingly, they bring you not to the cockpit, but to one of the bunks, where a Kimek is talking with a Saryd man. Once she sees you're there, the Kimek gives a glance to the Saryd, and leaves with the others, leaving you two alone.`
-			branch resistance
-				has "Resistance: Questions: done"
+			branch lunarium
+				has "Lunarium: Questions: done"
 			`	Middle-aged, the Saryd has little hair on his head and a dense beard. "Greetings, human friend. <first> <last> your name is, correct?" You nod. "Apologize I do, for the safety measures experienced, you must have. You see, rather sickly lately, I have been, and while usually fine around Kimek or Arach employees and passengers, wish to try my health against a Saryd or human disease, I did not. But, come to listen of my woes, you have not. Called Elirom, and owner of this company, I am. For those wishing to travel in leisure or for work, provide comfortable ships we do," he explains. "Run into some trouble, one of our ships has. Supposed to transport <bunks> students and teachers back to Second Viridian after their school trip was done, but now waiting for repairs for the ship's malfunctioning outfits, they are. Picked up by <date>, the students must be, so as to not miss their tests, but elsewhere busy, our other ships are. Pick them up in our stead, would you? <payment> from our company, you will receive."`
 			choice
 				`	"Sure, where am I picking them up from?"`
@@ -881,7 +881,7 @@ mission "Resistance: Evacuation 1"
 					decline
 			`	"Waiting on <planet> they are. Inform them to expect your ship, I will. Remember, picked up before <date> they must be." He bends his front legs lightly in a bow, thanking you for agreeing to help, and asks for one of the Kimek to come back and escort you out. They repeat the same tedious search process with the devices on your way out, and wish you good luck when they're finally done.`
 				accept
-			label resistance
+			label lunarium
 			`	Middle-aged, with little hair on his head and a dense beard, you switftly recognize the Saryd as Elirom, one of the Lunarium leaders you met on Remote Blue. "Hello Captain <last>, good to see you it is. Forgive me for the convoluted security measures, you must, always listening they are..." He rubs one hand over the other while glancing down. "Looking for our members all over <planet>, Heliarch ships are. Received word, I have, that arrive there by <date>, many more Punishers will. If get there they do before evacuated our members, we have, afraid I am that unfeasible to save them, it will become. Still waiting for a ship, <bunks> of them are, and get back there before the Punishers arrive on <date>, our other ships will not. Captain, help us, you must. Compensate you with <payment>, I will."`
 			choice
 				`	"Of course, I'll head there right away."`
@@ -894,7 +894,7 @@ mission "Resistance: Evacuation 1"
 	on visit
 		dialog `You land on <planet>, but realize that your escort with the <bunks> bunks for the students hasn't arrived in the system yet. Better depart and wait for it.`
 
-mission "Resistance: Evacuation 2"
+mission "Lunarium: Evacuation 2"
 	name "Transport The Students"
 	description "Now that you've picked up the <bunks> students and teachers, bring them to their home planet of <destination>."
 	passengers 33
@@ -902,7 +902,7 @@ mission "Resistance: Evacuation 2"
 	source "Fourth Shadow"
 	destination "Second Viridian"
 	to offer
-		has "Resistance: Evacuation 1: done"
+		has "Lunarium: Evacuation 1: done"
 		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
 	to fail
@@ -910,15 +910,15 @@ mission "Resistance: Evacuation 2"
 	on offer
 		conversation
 			`A line of Kimek, with some Saryds and Arachi in their midst, approach your ship shortly after you've finished landing. These must be the students. They are carrying very little luggage, and board your ship once you open the hatch. Given the young appearance of all of them, you struggle to guess which ones are the teachers. After the last of them comes in, you look outside for a while, confused. Only <bunks> came in, not the 35 that Elirom mentioned.`
-			branch resistance
-				has "Resistance: Questions: done"
+			branch lunarium
+				has "Lunarium: Questions: done"
 			choice
 				`	"Weren't there 35 of you?"`
 				`	(Say nothing.)`
 					goto accept
 			`	Many of them wince at the question, and some of the Kimek start making some rhythmless, low clicking sounds. One of the Saryds comes to close the hatch. "Mistaken, the one who contacted you, must have been," she says. "Here, all of us are."`
 				goto accept
-			label resistance
+			label lunarium
 			choice
 				`	"Weren't there 35 of you?"`
 				`	(Say nothing.)`
@@ -933,8 +933,8 @@ mission "Resistance: Evacuation 2"
 		payment 386730
 		conversation
 			`Some of the local Kimek are waiting with transport vehicles for the students. They hand you <payment> once you step off your ship, and one of them appears to tick away at a list with each student that steps off your ship. After the last one leaves, he continues to look at your ship for a few seconds, then to the students, entering the vehicles. He strikes two lines, and thanks you for helping. Back inside your ship, you receive a call from Elirom.`
-			branch resistance
-				has "Resistance: Questions: done"
+			branch lunarium
+				has "Lunarium: Questions: done"
 			`	"<last>! Thank you for helping, I must," he says. "Difficult it can be, when relying on contractors we are. Prefer to travel in ships of my company, our clients usually do. Glad I am, that no issues with the 35 of them, you had. If any more trouble with our usual transports, I have, ask for your services again I may."`
 			choice
 				`	"Sure thing, it's no problem helping with this."`
@@ -942,7 +942,7 @@ mission "Resistance: Evacuation 2"
 				`	"There were only <bunks>, actually."`
 			`	"Only... oh, I..." he pauses for a few seconds just as his voice cracks a little. "Forgive me, Captain, mistaken, it appears I was. Mixed up the number of passengers with that of another client, I did. Pay more attention next time, I shall." He thanks you again, and ends the call.`
 				accept
-			label resistance
+			label lunarium
 			`	"<last>! A life saver, you are, quite literally," he says. "Handling other evacuations, I still am, so be there to thank you in person, I could not, but know that deeply grateful for your saving those 35, I am. Contact you again I will, when in need of more help rescuing members we are."`
 			choice
 				`	"Of course, I'd be glad to help again."`
@@ -953,7 +953,7 @@ mission "Resistance: Evacuation 2"
 			label end
 			`	"Appreciate your willingness to assist us, I do, Captain. Until we meet again." He thanks you once more and ends the call.`
 
-mission "Resistance: Evacuation 3"
+mission "Lunarium: Evacuation 3"
 	name "Pick Up Desert Ranchers"
 	description "Head to <destination> to pick up the <bunks> ranchers by <date> and bring them back to their world, Shifting Sand."
 	deadline 8
@@ -965,15 +965,15 @@ mission "Resistance: Evacuation 3"
 	destination "Chosen Nexus"
 	to offer
 		random < 50
-		has "Resistance: Evacuation 2: done"
+		has "Lunarium: Evacuation 2: done"
 		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
 	to fail
 		has "Heliarch Investigation 2: active"
 	on offer
 		conversation
-			branch resistance
-				has "Resistance: Questions: done"
+			branch lunarium
+				has "Lunarium: Questions: done"
 			`Walking around the spaceport for a few minutes, you're met by a pair of Saryds. "Captain <last>? Worked with our company before, you have. Helped with transporting a group of students, you had." You nod. "Another troubling situation, we have. Help us again, would you?" They point to a Kimek Spire, presumably the very same you boarded last time, parked at the edge of the local docks.`
 			choice
 				`	"Sure, lead the way."`
@@ -989,7 +989,7 @@ mission "Resistance: Evacuation 3"
 			`	"Contracted us for transport to <planet>, some Arach ranchers did. Attempting to start a longcow business on the deserts of Shifting Sand, they are, and hoping for a loan from a prestigious bank on <planet>, to start off a new expansion to the ranch they were. <bunks> they are, in total, both ranchers and their employees. Only..." He pauses for a moment, as if considering something. "Difficult, the Arachi can be at times. Once discovered they had, that originally from a rival Arach House, the captain of their original transport was, refuse to return with him, they did. Given us until <date> to find a new transport, before they cancel out on us, they have."`
 			`	He says you'll receive <payment> once the ranchers are back on Shifting Sand, and urges you to hurry to <destination> before <date>, so that the Arachi don't cancel the transport. He wishes you good luck, and you're brought back out of the ship. The Saryds that went in with you stay inside, and the Spire departs not long after you've left.`
 				accept
-			label resistance
+			label lunarium
 			`Walking around the spaceport for a few minutes, you're met by a pair of Saryds. "Captain <last>? Worked with our company before, you have. Helped with transporting a group of students, you had." You nod. "Another troubling situation, we have. Help us again, would you?" They point to a Kimek Spire, presumably the very same you boarded last time, parked at the edge of the local docks.`
 			`	You follow them to the Spire, and they come in with you, unlike the Kimek from last time. You're all escorted through the corridors, and searched by the security devices, before you're finally brought to Elirom. "Hello Captain, good to see you it is," he greets you. "Word of more Heliarch fleet activity, I have received. Headed to <destination>, to aid on an ongoing search for our members, they are. Arrive there by <date>, they should, so in urgent need of a ship to rescue some <bunks> still on the planet, I am. Pay you <payment>, I will."`
 			choice
@@ -1003,7 +1003,7 @@ mission "Resistance: Evacuation 3"
 	on visit
 		dialog `You land on <planet>, but realize that your escort with the <bunks> bunks for the ranchers hasn't arrived in the system yet. Better depart and wait for it.`
 
-mission "Resistance: Evacuation 4"
+mission "Lunarium: Evacuation 4"
 	name "Transport The Ranchers"
 	description "Bring the <bunks> ranchers to their world, <destination>."
 	passengers 47
@@ -1011,7 +1011,7 @@ mission "Resistance: Evacuation 4"
 	source "Chosen Nexus"
 	destination "Shifting Sand"
 	to offer
-		has "Resistance: Evacuation 3: done"
+		has "Lunarium: Evacuation 3: done"
 		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
 	to fail
@@ -1019,8 +1019,8 @@ mission "Resistance: Evacuation 4"
 	on offer
 		conversation
 			`The ranchers arrive to the hangars shortly after you land, most of them Arachi, with a few Saryds and Kimek in their midst. They come into your ship, all <bunks> of them present.`
-			branch resistance
-				has "Resistance: Questions: done"
+			branch lunarium
+				has "Lunarium: Questions: done"
 			`	"All ready to leave, we are," one Arach tells you as most of the others head to find their bunks.`
 			choice
 				`	"Got it, we'll leave soon."`
@@ -1028,7 +1028,7 @@ mission "Resistance: Evacuation 4"
 				`	"How did getting that loan go?"`
 			`	"What?" She looks at you with puzzled eyes, until another Arach lightly whacks one of her legs. "Ah, yes, the loan. Well enough. Agreed to grant us the amount needed, they have." She looks back at the other Arach, who stares at her for a moment. "Well, very tired we all are, Captain, so head to my bunk, I will."`
 				goto accept
-			label resistance
+			label lunarium
 			`	"Thought I had, that left behind we would be," one Arach tells you after you've closed the hatch. "Hurry to <planet>, you should. Risk an 'inspection' by the Heliarchs, we cannot."`
 			choice
 				`	"Got it, we'll leave soon."`
@@ -1049,8 +1049,8 @@ mission "Resistance: Evacuation 4"
 		payment 748300
 		conversation
 			`The Arachi, along with the scattered few Saryds and Kimek, are ready to leave your ship right as you land, thanking you briefly as each one leaves. The Arachi who seemed to be leading the group give you more of a farewell, chatting a bit, until they see a Kimek Spire - that you all guess to be Elirom's ship - approaching. They grunt, and leave with the rest. You head into the Spire and meet Elirom, who hands you <payment> while watching the group leave in transports via one of the cameras on the outside of the ship.`
-			branch resistance
-				has "Resistance: Questions: done"
+			branch lunarium
+				has "Lunarium: Questions: done"
 			choice
 				`	"They didn't seem very happy to see you."`
 					goto happy1
@@ -1060,7 +1060,7 @@ mission "Resistance: Evacuation 4"
 			label happy1
 			`	"No, they were not." He sighs. "Well, understandable it is, from their perspective. More careful about who I sent to transport them, I should have been."`
 				goto end
-			label resistance
+			label lunarium
 			choice
 				`	"They didn't seem very happy to see you."`
 					goto happy2
@@ -1072,7 +1072,7 @@ mission "Resistance: Evacuation 4"
 			label end
 			`	He thanks you for helping out again, and says he'll be in contact if he needs any more of your help.`
 
-mission "Resistance: Evacuation 5"
+mission "Lunarium: Evacuation 5"
 	name "Pick Up Immigrants"
 	description "Head to <destination> by <date> to pick up <bunks> immigrants, who are seeking to start a new life on Ablub's Invention."
 	deadline 7
@@ -1083,7 +1083,7 @@ mission "Resistance: Evacuation 5"
 	destination "Cool Forest"
 	to offer
 		random < 80
-		has "Resistance: Evacuation 4: done"
+		has "Lunarium: Evacuation 4: done"
 		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
 	to fail
@@ -1092,8 +1092,8 @@ mission "Resistance: Evacuation 5"
 		require "Jump Drive"
 		payment 1387562
 		conversation
-			branch resistance
-				has "Resistance: Questions: done"
+			branch lunarium
+				has "Lunarium: Questions: done"
 			`You receive a call seconds after you've touched down on <origin>. It's from Elirom, the Saryd who had you help transport some of his company's clients. "Captain <last>! Your help again, we need," he begins. "Hired us to bring them to their new home on Ablub's Invention, some immigrants from <destination> did. <bunks> in total. Only..." he looks down, his mouth struggling for words. "Fallen ill, the captain of the ship we had arranged for them has. Supposed to leave by <date>, they were, but get to <planet> in time, we cannot. You, however, a jump drive possess. Help us now, only you can, Captain."`
 			choice
 				`	"I'd be glad to help. I'll head there as quick as I can."`
@@ -1105,13 +1105,13 @@ mission "Resistance: Evacuation 5"
 			label glad
 			`	He sighs in relief, then quickly types away at something close to the camera on his end, and you're notified of <payment> in total just having been transferred to your account. "Paid much more you will be, once safe, the immigrants are. Bring them back to Ablub's Invention, you must. Send word for them to expect you, I shall." He bows lightly, then logs off.`
 				accept
-			label resistance
+			label lunarium
 			`You receive a call seconds after you've touched down on <origin>. It's from Elirom, and he wastes no time giving you your next mission. "A particularly urgent matter, this is. Looking for our members on <planet>, the Heliarchs are. Found, dozens have already been, and even more Heliarchs by <date> will there arrive. Make it in time, none of our ships can, too far away it is. You, however, a jump drive possess. Rescue the <bunks> remaining, you must." He types away at something on his end for a bit, and you see <payment> have been transferred to your account. "Much more I will give you, once safely back on Ablub's Invention you are. If stopped by the Heliarchs you are..." He trails off for a while, and you can hear the increasingly hurried, repeated tapping of hooves on the floor. "If stopped you are, tell them that transporting immigrants to their new homes on Ablub's Invention, you will. Hired by House Idriss, they have been." He urges you to go to <destination> immediately, wishing you good luck, and logging off.`
 				accept
 	on visit
 		dialog `You land on <planet>, but realize that your escort with the <bunks> bunks for the immigrants hasn't arrived in the system yet. Better depart and wait for it.`
 
-mission "Resistance: Evacuation 6"
+mission "Lunarium: Evacuation 6"
 	name "Transport The Immigrants"
 	description "Bring the <bunks> immigrants to their new homes on <destination>."
 	passengers 91
@@ -1119,7 +1119,7 @@ mission "Resistance: Evacuation 6"
 	source "Cool Forest"
 	destination "Ablub's Invention"
 	to offer
-		has "Resistance: Evacuation 5: done"
+		has "Lunarium: Evacuation 5: done"
 		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
 	to fail
@@ -1127,15 +1127,15 @@ mission "Resistance: Evacuation 6"
 	on offer
 		conversation
 			`The moment your ship touches down on the hangar you can already see a very large group of Saryds waiting. When you open your hatch, they rush in dozens at a time, and you catch some Kimek and Arachi in the middle, struggling to keep with the galloping mass. Once everyone is inside, you run a passenger count: only <bunks> of the 116 are on board. You look out, and see nobody else coming to your ship. One of the older Saryds approaches you, pressing the button to close the hatch. "Leave we must," he says. Looking back to the Saryd crowd, many of the adults are comforting their children. The sobs of one Saryd girl in particular drown out the others.`
-			branch resistance
-				has "Resistance: Questions: done"
+			branch lunarium
+				has "Lunarium: Questions: done"
 			choice
 				`	"I was told there were 116 of you for me to pick up. We only have <bunks>."`
 				`	"Alright, we'll leave in a few minutes."`
 					goto launch
 			`	He squints, clenching his hands into fists and then relaxing them again. "Only <bunks> you are getting. Take us away from here, now, or fly your ship myself, I will."`
 				goto launch
-			label resistance
+			label lunarium
 			choice
 				`	"Understood. We'll leave in a few minutes."`
 					goto launch
@@ -1147,13 +1147,13 @@ mission "Resistance: Evacuation 6"
 	on visit
 		dialog `You land on <planet>, but realize that your escort with the <bunks> immigrants hasn't arrived in the system yet. Better depart and wait for it.`
 	on complete
-		"assisted resistance" ++
+		"assisted lunarium" ++
 		payment 7149832
 		conversation
 			`You receive a message from Elirom as you enter the planet's airspace, passing you some coordinates and instructing you to land there instead of the usual ports here. You come to a complex in the middle of a prairie, with a blue-ish metal building at its center. As you come down for a landing, you see Elirom's own ship is landed there.`
 			`	Just as quickly as they entered it, your passengers rush out of your ship, greeting and hugging some of the people waiting for them. One of them, Elirom, shyly watches from the Spire, not having come down the ramp yet. The older Saryd who was accompanying the crying Saryd girl leaves her side briefly once he sees him, walking at a quick pace towards Elirom. He grabs him by the shoulders and shouts something in the Saryd language, though no translators pick it up. When he lets go of his shoulders, he goes back to accompanying the girl, and Elirom stays put. You go to him, which prompts him to reach in a pocket and grab a bunch of credit chips, handing them to you. <payment>, in total. "Told you I did, that well paid you would be."`
-			branch resistance
-				has "Resistance: Questions: done"
+			branch lunarium
+				has "Lunarium: Questions: done"
 			choice
 				`	"What were all of them so worked up about?"`
 				`	"What's really going on with you and your company?"`
@@ -1183,7 +1183,7 @@ mission "Resistance: Evacuation 6"
 			label join
 			`	He gets up to leave. "Come ask for your help directly again, for a long time I may not, but still in need of help saving our members, we will be. Very grateful, we would be, if help us again when we need it, you would." He extends his arm, and shakes your hand, just before following you back out of the Spire. He quickly trots inside the central building, and you head to your ship and fly to the main spaceport.`
 				accept
-			label resistance
+			label lunarium
 			choice
 				`	"He seemed angry at you."`
 					goto angry
@@ -1197,7 +1197,7 @@ mission "Resistance: Evacuation 6"
 
 
 
-mission "Resistance: Propaganda 1"
+mission "Lunarium: Propaganda 1"
 	name "Promoting Culture"
 	description "Bring Tummug to <destination>, where he'll meet with others to spread a set of promotional posters around the planet."
 	minor
@@ -1214,8 +1214,8 @@ mission "Resistance: Propaganda 1"
 		has "Heliarch Investigation 2: active"
 	on offer
 		conversation
-			branch resistance
-				has "Resistance: Questions: done"
+			branch lunarium
+				has "Lunarium: Questions: done"
 			`The spaceport of <origin> looks different than the usual Saryd ports: several large posters with some form of badge or logo are scattered about, some fallen to the ground, others still sticking to the walls. As you pick one up to get a better look, an Arach approaches you. "Captain <last> you are, yes?" You nod. "Tummug, I am called. Caught your eye, I see that our posters have. Part of a group promoting new cultural festivals and movies, I am. A tiresome task at times, repetitive even, but always worth it, in the end, helping spread word of new art pieces is."`
 			choice
 				`	"What are these ones for?"`
@@ -1230,7 +1230,7 @@ mission "Resistance: Propaganda 1"
 					decline
 			`	You give him the berth for your ship, and he tells you he'll meet you there soon before running off. A few minutes after you've reached the <ship>, you see him approaching, pushing a small crate "filled to the brim with the posters," he explains as you help him load it into your cargo. When you're done, you show him to his bunk, and prepare for the trip.`
 				accept
-			label resistance
+			label lunarium
 			`The spaceport of <origin> looks different than the usual Saryd ports: several large posters with some form of badge or logo are scattered about, some fallen to the ground, others still sticking to the walls. Picking one up to get a better look, you recognize the symbol to be that of the Lunarium Redoubt, two moons swallowing a dimming sun. "Up to any unlawful behavior, Captain <last>?" You turn to see an Arach standing there, looking at you. You recognize him as Tummug, one of the Lunarium leaders you met on Remote Blue. "Talk in your ship, could we?" You bring him to the <ship>, and seal the hatch. "Spreading propaganda material against the Heliarchy, I am. The purpose of those posters you found, that is," he explains. "Not the best recruitment strategy, but what I can do without risking too many of our members, it is. Available, are you? In need of transport to <planet>, to continue the work, I am."`
 			choice
 				`	"Of course, we'll leave right away."`
@@ -1244,15 +1244,15 @@ mission "Resistance: Propaganda 1"
 		payment 288000
 		conversation
 			`As you're still handling landing procedures, Tummug is organizing the posters in several smaller piles. "Make sure everyone has the same amount of posters, I must. Let any of them slack off, I will not," he banters. Your ship touches down on the hangar, and Tummug hands you <payment>. He makes a call, and minute after minute some Saryds start coming to your ship. You open the hatch, and he starts handing out a pile of posters to each one who comes in. The posters aren't all identical, though the imagery is pretty much the same in all of them: a dark, nine-pointed star, crumbling to pieces.`
-			branch resistance
-				has "Resistance: Questions: done"
+			branch lunarium
+				has "Lunarium: Questions: done"
 			choice
 				`	"So what are these posters for?"`
 				`	"Do you really need that many posters?"`
 					goto many
 			`	He pauses at your question. "What they are for? Oh, the... 'Crumbling Winter Star' I believe it is called? The play these posters are for?" he asks to one of the Saryds, extending his legs to give them their pile of posters. The Saryd looks at him, then you, and nods. "A big hit on Saros, I hear it was."`
 				goto end
-			label resistance
+			label lunarium
 			choice
 				`	"How exactly are these images going to help?"`
 				`	"Do you really need that many posters?"`
@@ -1264,7 +1264,7 @@ mission "Resistance: Propaganda 1"
 			label end
 			`	He hands out one of the final two piles to the last Saryd, and grabs the last one for himself. "Now, help them with the posters, I will. If interested in helping us further, meet you in the spaceport, I will. Have some dozen extra bunks available, you must make sure," he says as he leaves your ship.`
 
-mission "Resistance: Propaganda 2"
+mission "Lunarium: Propaganda 2"
 	name "Promoting Culture"
 	description "Bring Tummug and his colleagues to <destination>, where they'll spread around some sets of banners around the planet."
 	passengers 11
@@ -1273,7 +1273,7 @@ mission "Resistance: Propaganda 2"
 	source "Bright Echo"
 	destination "Factory of Eblumab"
 	to offer
-		has "Resistance: Propaganda 1: done"
+		has "Lunarium: Propaganda 1: done"
 		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
 	to fail
@@ -1281,8 +1281,8 @@ mission "Resistance: Propaganda 2"
 	on offer
 		conversation
 			`As before, you find the local spaceport decorated with Tummug's various posters, with some all over the walls and a few on the floor already. Either they were taken down or simply failed to stick to the wall properly. Most of the locals just glance at them, then continue on with their business; only a few pockets of people have formed near some of the posters, perhaps discussing the imagery. Some of the spaceport cleaning workers, on the other hand, take them down nonchalantly, though they don't seem to care too much about getting all the posters.`
-			branch resistance
-				has "Resistance: Questions: done"
+			branch lunarium
+				has "Lunarium: Questions: done"
 			`	You find Tummug waiting for you in a cafe with some Saryds. "Ready to help us again are you, Captain?" he asks as you sit down.`
 			choice
 				`	"Where are we going now?"`
@@ -1293,7 +1293,7 @@ mission "Resistance: Propaganda 2"
 			`	He runs one leg over his mandibles in an almost contemplative gesture. "To my home, we will go. <destination>. Setting up one of the famous Arachi soirees, some of the locals are, and tasked with helping them gather attention, we were. Paid <payment> once on <planet> we are, you will be."`
 			`	You all leave the cafe, and Tummug and the ten others follow you to your ship. They bring in <cargo>, and settle in their bunks.`
 				accept
-			label resistance
+			label lunarium
 			`	You find Tummug waiting for you in a cafe with some Saryds. He gets up once he sees you, and the Saryds follow him outside the establishment. "Talk in your ship, we should," he says once he's close. You all head to the hangars and get inside your ship, with some of the Saryds heading elsewhere to pick up the cargo you'll be carrying. "Run into some trouble, a few of ours have. Leaving for <planet>, we are. Born and raised there, I was, so more familiar with the city's layout, I am. Less likely for some of us to be caught, it should be. Provide them a place to lay low for some time, we will."`
 			choice
 				`	"Shouldn't we help the ones who got caught?"`
@@ -1309,15 +1309,15 @@ mission "Resistance: Propaganda 2"
 		payment 576000
 		conversation
 			`As before, Tummug separates the banners into small piles as you're finishing your landing procedures. He hands you <payment> right before the first few Saryds leave with their piles, and a few local Arachi join them in picking up banners to distribute around their local neighborhoods. "Meet you in the spaceport again, we will," Tummug says as he finishes distributing the banners. Looking at his own pile, you see an image split with a sharp line running from top to bottom, with the drawing of an Arach collapsing under a scorching sun on the left side contrasted with one having a happy dinner under the moonlight on the right side. Some message in the Arach language is written out at the bottom, below the two images.`
-			branch resistance
-				has "Resistance: Questions: done"
+			branch lunarium
+				has "Lunarium: Questions: done"
 			choice
 				`	"What does that say?"`
 				`	"Alright, I'll meet you at the spaceport in a few hours."`
 					goto end
 			`	"This? 'The Twins' Twin Ships' it is, a... mostly comedic play," he explains. "Nearly identical in looks, the two Arach main characters are, but a rich member of a great House, one of them is, while simply cheap transport to a world with a better job, the other wants. On the same planet, unaware of one another, book passage with the two different Kimek captains, they do. Only, also alike, the two Kimek are, and fly the same model of ship, the Kimek Thistle, they do. Brought to a scorching, stale Saryd factory world, the rich Arach is, while a fancy welcome by the powerful House, the worker gets." He catches himself before going further into the plot. "Well, uh, like I said, mostly a comedy, it is. Not too interesting, I suppose it might be."`
 				goto end
-			label resistance
+			label lunarium
 			choice
 				`	"What does that say?"`
 				`	"Alright, I'll meet you at the spaceport in a few hours."`
@@ -1326,7 +1326,7 @@ mission "Resistance: Propaganda 2"
 			label end
 			`	He prepares to leave, and tells you to free up some ten tons of cargo space and keep five bunks available before meeting with him in the spaceport. He then heads down the hatch and disappears into the city.`
 
-mission "Resistance: Propaganda 3"
+mission "Lunarium: Propaganda 3"
 	name "Promoting Culture"
 	description "Bring Tummug and his Arachi colleagues to <destination>, with their <cargo>."
 	passengers 5
@@ -1335,7 +1335,7 @@ mission "Resistance: Propaganda 3"
 	source "Factory of Eblumab"
 	destination "Sandy Two"
 	to offer
-		has "Resistance: Propaganda 2: done"
+		has "Lunarium: Propaganda 2: done"
 		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
 	to fail
@@ -1344,8 +1344,8 @@ mission "Resistance: Propaganda 3"
 		conversation
 			`The spaceport on <origin> shows fewer of the banners than you expected, with only a few scattered about the walls. One Arach leaves their work building and gasps at the first banner they see, taking it down and throwing it in a bin. They seem stunned for a second, and look around in a hurry, right before scurrying off. Another Arach has a similar reaction to a different banner, but after pondering for a bit, leaves it alone and walks away.`
 			`	When you're done gauging the local reception to Tummug's banners, you go look for him. Eventually you arrive at a workshop, where he's talking with four other Arachi as they work on some small robots not too different from those employed in Arach hull repair systems. The only difference appears to be "wings" that the Arachi are testing by controlling them remotely. "Captain <last>!" Tummug exclaims when he notices you. "Apologize, I must, for not waiting for you in the spaceport. Caught up in testing the prototypes, we were."`
-			branch resistance
-				has "Resistance: Questions: done"
+			branch lunarium
+				has "Lunarium: Questions: done"
 			choice
 				`	"What were you testing?"`
 				`	"What are those robots for?"`
@@ -1356,7 +1356,7 @@ mission "Resistance: Propaganda 3"
 				`	"What's written there?"`
 			`	He pulls back the flyer, looking closely at it. "It should be... 'Hottest Summer' and 'an attraction for all people.' A Kimek movie, it is. Not too used to reading Kimek, I am, but designed by some of our Kimek coworkers, these were, so no issues here, there should be." He looks back at the robots. "Only keep the skywriting correct as well, we need."`
 				goto accept
-			label resistance
+			label lunarium
 			`	He signals to one of the Arachi, and they walk past you to close the doors and windows to the workshop. "Headed for <destination> next, we are. Too populous a world it is, for us to cover all ground with posters or banners. Use the robots, we will." He asks one of the Arachi for their controller and brings the robot closer to you. He presses a button, and it prompts several compartments around the drone to open up, releasing a reddish smoke. "Leave our messages in skywriting, we will," he says as he hands the controller back to the Arachi. He approaches you, showing you a flyer small enough to fit in your palm, with some short messages in the Kimek language. "Use them to drop these around the main spaceport city, we also will."`
 			choice
 				`	"Isn't that too risky? Wouldn't the Heliarchs find you out with ease?"`
@@ -1375,18 +1375,18 @@ mission "Resistance: Propaganda 3"
 		payment 491000
 		conversation
 			`This time Tummug doesn't go on to split the flyers into various piles as you're landing. "Already arranged them in the boxes, we have," he says. He directs you to land in a lone hangar on one of the factories far from the city. Upon landing, several Kimek enter the hangar and start crating off the flyers and skywriting drones back to the factory, presumably to make sure they're all in working order. Tummug hands you <payment>, thanking you for bringing them here.`
-			branch resistance
-				has "Resistance: Questions: done"
+			branch lunarium
+				has "Lunarium: Questions: done"
 			`	"Now Captain, fly the drones over the city we will. Only here to keep an eye on any issues they might have, and repair them, we are," he explains. "To better enjoy the show, head back to the main hangars closer to the city, you should. Once finished, we are, meet you in the spaceport I will. Some more cargo space and bunks, we'll need." You head to your ship, and fly it back to the city.`
 				goto end
-			label resistance
+			label lunarium
 			`	"Now <last>, safe here we should be, but even with fewer Heliarch ships now, stay docked here you should not. If traced to here, the signal controlling the drones is, ready to abandon the facility and flee, everyone is," he explains. "Meet you in the spaceport later, I will. Some more cargo space and bunks, we'll need." You head to your ship, and fly it back to the city.`
 			label end
 			`	Almost half an hour goes by with you watching the skies of <planet> before the first signs of the drones show: they're too small for you to see from where you are, but you make out the piles of red smoke swiftly growing into Kimek letters in the sky, appearing in spiraling columns and arcs, with small, spread out dots separating the letters. Crowds clog the streets, Kimek look out the windows and some even gather atop apartment buildings to gaze at the messages. When the drones are done, the messages Tummug had shown you on the flyer are fully formed, and the drones take a short break. When they return, they get to work on another set of messages as the first one begins dissipating. After a few repetitions, and another pause, flyers begin raining down the city streets, the local Kimek picking them up in curiosity and discussing among themselves. The "rain" goes on for several minutes, before the drones start heading to other portions of the city and you lose sight of them.`
 			`	Focusing now on the crowds and their reception, you see the Kimek are split: nearly everywhere they are in heated discussion, with many on one side seemingly approving of the display, while others yell and gesture for the messages to be put out, throwing the flyers to the ground and stomping on them. The Heliarch agents present on the ground do their best to separate the crowds and keep the order, but struggle against the sheer number of Kimek. Not long after the drones disappeared, however, Heliarch warships fly through the atmosphere in a fury, speedily undoing the skywriting as they head in the direction of the factory. Some ships leave more agents on the ground, and with increased personnel the Heliarchs now manage to stop the crowd infighting, and start clearing out the streets.`
 				decline
 
-mission "Resistance: Propaganda 4"
+mission "Lunarium: Propaganda 4"
 	name "Promoting Culture"
 	description "Bring Tummug, his colleagues, and their <cargo> to <destination>."
 	passengers 18
@@ -1395,7 +1395,7 @@ mission "Resistance: Propaganda 4"
 	source "Sandy Two"
 	destination "Warm Slope"
 	to offer
-		has "Resistance: Propaganda 3: done"
+		has "Lunarium: Propaganda 3: done"
 		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
 	to fail
@@ -1403,24 +1403,24 @@ mission "Resistance: Propaganda 4"
 	on offer
 		conversation
 			`Tummug is quick to find you in the spaceport. He approaches you with the Arachi who helped him with the drones, as well as some Saryds and Kimek, all following behind him in a dash. "Delay you long this time I will not, Captain <last>," he says. "Headed to <destination> we are. Already arranged for what we'll need to be brought to your ship, I have."`
-			branch resistance
-				has "Resistance: Questions: done"
+			branch lunarium
+				has "Lunarium: Questions: done"
 			`	He then tugs on your clothing as if asking you to bow down a bit, as he himself stretches up. "Leave at once, we must!" he whispers.`
 			`	You do your best to keep up as you run with them back to your ship, where they help some others load boxes and crates of promotional posters into your cargo hold. Strangely enough, you don't see any of the flyers that the drones rained from above earlier, or any sort of video displaying the skywriting on screens around the spaceport. Once the cargo is all in your ship, Tummug comes to say you'll receive <payment> for the job, and rushes inside your ship with the others.`
 				accept
-			label resistance
+			label lunarium
 			`	He briefly glances around, then says, "A busy day it is, so hurry back to your ship we should. Otherwise, difficult to find, available cargo loaders will be."`
 			`	Running back to your ship, you notice a total lack of the flyers that rained down the city earlier, or any replay of the skywriting on any of the screens around the spaceport. Tummug and the Arachi who worked on the drones are all with the group, but their rush to get to your ship leaves you uneasy. You all help some more members get boxes and crates of posters into your ship, and head inside with Tummug and the others once you're done. "Leave now, we must. Too much attention, the drone show seems to have gained us," he tells you. "Pay you <payment> once on <planet> we are, I will. Go." They all head to their bunks, and you move to the cockpit, firing up your engines.`
 				launch
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Tummug, his colleagues and the posters hasn't arrived in the system yet. Better depart and wait for it.`
 	on complete
-		"assisted resistance" ++
+		"assisted lunarium" ++
 		payment 894000
 		conversation
 			`Tummug gives you the <payment> and starts working on opening up the crates and boxes with the others. By the time you open the hatch, they've only managed to open some of the crates, but it seems like they've called in several Saryds from the hangar to help unload the remaining boxes and move them elsewhere. You approach Tummug, who's still picking through the posters. The posters are emblazoned with images of Saryds, Kimek and Arachi jailed and imprisoned in cages made out of chains. Looking closely, you realize the "chains" are made out of circlets like those used by the Heliarchs. Your eyes go to Tummug, who's looking back at you.`
-			branch resistance
-				has "Resistance: Questions: done"
+			branch lunarium
+				has "Lunarium: Questions: done"
 			choice
 				`	"What exactly are these for?"`
 					goto for
@@ -1438,7 +1438,7 @@ mission "Resistance: Propaganda 4"
 			label who
 			`	He remains quiet for a while, focusing his eyes on the images, then on yours as he hands you one of the posters. "Called the Lunarium Redoubt, my group is. Nickname us rebels and outlaws, the Heliarchs kindly do in their broadcasts. Helped us you have, <last>, and help us a lot more, in other ways you can." He pauses, still locking eyes with you. "Think not the Heliarchs as benefactors. Ruin us they will, if stop them we cannot."`
 				goto end
-			label resistance
+			label lunarium
 			`	"Self explanatory, I imagine?" he says before he picks up the last few of them from the box. "Spread these around the planets, we of course will, but more valuable, the information in the unopened boxes and crates is."`
 			choice
 				`	"What information?"`
@@ -1453,7 +1453,7 @@ mission "Resistance: Propaganda 4"
 
 
 
-mission "Resistance: Combat Training 1"
+mission "Lunarium: Combat Training 1"
 	name "Bootcamp"
 	description "Bring <bunks> Lunarium members, along with their <cargo> to <destination>, where they will purchase some ships and use them to fight pirates to train their combat tactics."
 	minor
@@ -1465,9 +1465,9 @@ mission "Resistance: Combat Training 1"
 	to offer
 		random < 20
 		or
-			has "Resistance: Propaganda 4: done"
-			has "Resistance: Evacuation 6: done"
-			has "Resistance: Reactors: done"
+			has "Lunarium: Propaganda 4: done"
+			has "Lunarium: Evacuation 6: done"
+			has "Lunarium: Reactors: done"
 		and
 			or
 				not "event: fw suppressed Greenrock"
@@ -1480,8 +1480,8 @@ mission "Resistance: Combat Training 1"
 		require "Jump Drive"
 		conversation
 			`After wandering the spaceport for a while, you notice a crowd of dozens of individuals heading to the hangars, specifically in what looks like the direction of your ship. A roughly equal number of Kimek and Arachi, with some Saryds as well, they stand in front of the <ship>, looking around as if searching for its captain. You approach them, and one of the Kimek, whose thorax and abdomen are slimmer than the usual for her species, meets you to speak for their group.`
-			branch resistance
-				has "Resistance: Questions: done"
+			branch lunarium
+				has "Lunarium: Questions: done"
 			`	"There you are, Captain <last>," she greets you. "Pyakri, my name is, and looking for your transport services, me and my friends are. Talk in your ship, could we? Wish to discuss the details there, I do."`
 			choice
 				`	"Sure, let me get the hatch."`
@@ -1512,7 +1512,7 @@ mission "Resistance: Combat Training 1"
 					decline
 			`	She perks up with your answer. "<bunks> in total, our group is. Wish to cause a commotion in human space, we do not, so bringing along <cargo> to sustain ourselves for a while, we are. Avoid leaving the ships at all, we will."`
 				goto accept
-			label resistance
+			label lunarium
 			`	You recognize her as Pyakri, a Lunarium military leader who you met on Remote Blue, and bring her aboard your ship to talk. "Looking for you I have been, Captain <last>. Need your help I do, for a training endeavor of sorts."`
 			choice
 				`	"What do you need help with?"`
@@ -1527,14 +1527,14 @@ mission "Resistance: Combat Training 1"
 	on visit
 		dialog `You've reached <planet>, but your escort bringing Pyakri and the other Lunarium members and their supplies hasn't entered the system yet. Better depart and wait for them.`
 
-mission "Resistance: Combat Training 2"
+mission "Lunarium: Combat Training 2"
 	name "Combat Test"
 	description "Escort Pyakri's fleet to <waypoints>, and help them fight a pirate fleet there to get started with their training. Make sure all of the Lunarium ships survive."
 	landing
 	source "Zug"
 	waypoint "Shaula"
 	to offer
-		has "Resistance: Combat Training 1: done"
+		has "Lunarium: Combat Training 1: done"
 		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
 	to fail
@@ -1567,7 +1567,7 @@ mission "Resistance: Combat Training 2"
 			`	You find the ship's interior already undergoing modifications, with many of the Arachi using various legs to hold wires in place as they replace the human control pads and keys to versions they are more accustomed to. Pyakri is inside the cockpit, testing many of the controls as she looks at a manual on one screen, already translated to the Kimek language. "Ah, hello again Captain. Worked well, the plan has, and seen we were not. At least hope that, I do." She opens up a map, pointing to a star you recognize as <waypoints>. "Taken our first job, we have. Since far more experienced in fighting human pirates, you are, ask for your help in this first fight, I must. Informed me the job offer has, that in this system the bounties are. Head there quickly to face them, we should, before time to flee, they have. Follow your ship there, we will." You go ship by ship, reminding each of the captains to be careful in the coming fight, and then enter your own. With the purpose of this training being to grow the Lunarium's combat experience and tactics, things certainly wouldn't work well if some of them died right in their first fight, so you should try and keep them all alive.`
 				accept
 	on accept
-		event "resistance training: shaula empty"
+		event "lunarium training: shaula empty"
 	on visit
 		dialog `You land on <planet>, but you're not done with the mission yet. Either some of the Lunarium's ships haven't entered the system yet, or some of the pirate ships in <waypoints> haven't been defeated. Return once everything is in order.`
 	npc accompany save
@@ -1590,12 +1590,12 @@ mission "Resistance: Combat Training 2"
 		ship "Modified Argosy" "Taruntius"
 		ship "Manta" "Necho"
 	on complete
-		event "resistance training: shaula back to normal"
-		event "resistance training done" 96 148
+		event "lunarium training: shaula back to normal"
+		event "lunarium training done" 96 148
 		conversation
 			`Pyakri contacts you right as you land, by a text message in your monitor. "A great help you were, Captain! More... veteran members, if you could call them that, the crew I brought are, so much trouble with their morale, I had not, but still worried, the pirates had me. Used to human ships, we are not, so fly them well enough to combat such fleets, we cannot. Not yet. Now that guided us through this first fight, you have, work on our own for a while - taking smaller, simpler bounties - we will. Contact you again, I shall, once done with our training, we are."`
 
-event "resistance training: shaula empty"
+event "lunarium training: shaula empty"
 	system "Shaula"
 		remove fleet "Small Southern Pirates"
 		remove fleet "Large Southern Pirates"
@@ -1606,7 +1606,7 @@ event "resistance training: shaula empty"
 		remove fleet "Large Militia"
 		remove fleet "Large Free Worlds"
 
-event "resistance training: shaula back to normal"
+event "lunarium training: shaula back to normal"
 	system "Shaula"
 		add fleet "Small Southern Pirates" 500
 		add fleet "Large Southern Pirates" 800
@@ -1616,9 +1616,9 @@ event "resistance training: shaula back to normal"
 		add fleet "Large Northern Pirates" 9000
 		add fleet "Large Free Worlds" 9000
 
-event "resistance training done"
+event "lunarium training done"
 
-mission "Resistance: Combat Training 3"
+mission "Lunarium: Combat Training 3"
 	name "Pick Up Pyakri"
 	description "Pyakri and the other 53 Lunarium members are done with their training in human space. Head to <planet>, where they are waiting to be picked up and brought back to the Coalition."
 	landing
@@ -1626,7 +1626,7 @@ mission "Resistance: Combat Training 3"
 		near "Aldhibain" 1 100
 	destination "Glaze"
 	to offer
-		has "event: resistance training done"
+		has "event: lunarium training done"
 		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
 	to fail
@@ -1636,7 +1636,7 @@ mission "Resistance: Combat Training 3"
 			`Your monitor shifts into a messaging interface as you're landing, and some text quickly pours in. "Captain, hello. Pyakri, it is. In the last few months, fought many human pirates, and managed to practice and hone fleet movements, we have. Return to the others in the Coalition, we now must, so need your help again, we will. Waiting on <planet>, we will be." The message ends and your monitor returns to normal. You set a marker on <destination> to head there later and pick up the Lunarium members.`
 				accept
 
-mission "Resistance: Combat Training 4"
+mission "Lunarium: Combat Training 4"
 	name "Homecoming"
 	description "Bring the <bunks> Lunarium members back to the Coalition, to <destination>."
 	passengers 54
@@ -1645,7 +1645,7 @@ mission "Resistance: Combat Training 4"
 	source "Glaze"
 	destination "Factory of Eblumab"
 	to offer
-		has "Resistance: Combat Training 3: done"
+		has "Lunarium: Combat Training 3: done"
 		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
 	to fail
@@ -1669,19 +1669,19 @@ mission "Resistance: Combat Training 4"
 	on visit
 		dialog `You've reached <planet>, but your escort bringing Pyakri and the other Lunarium members hasn't entered the system yet. Better depart and wait for them.`
 	on complete
-		"assisted resistance" ++
+		"assisted lunarium" ++
 		conversation
 			`Shortly after you land, several groups come to meet some of the Lunarium members and escort them to their ships. They depart right away, while any remaining members leave straight for the city. "Gotten word of our return, the others have not yet, so wait here for more ships to bring them to the planet they normally operate from, they will," Pyakri explains.`
-			branch resistance
-				has "Resistance: Questions: done"
+			branch lunarium
+				has "Lunarium: Questions: done"
 			`	"A great help you were, Captain. Train normally, against each other as in drills, we cannot, as risk the Heliarchs finding us, it would. Not very useful either, since fighting ships weak like our own, we will not be." She looks out to the others, preparing to head into the city herself. "Aware I am that joined up with us, you have not, Captain. Your choice, it is, whether you do help us further, help the Heliarchs, or just leave and never return. Just, ask you I do, that think well about it before deciding, you must." With that, she says goodbye, and follows the others into the city.`
 				accept
-			label resistance
+			label lunarium
 			`	"Lucky we are that joined us, you have, Captain <last>. Wanted for years to try some tactics in real combat, I had, but of course, do it here without risking our whole operation, we could not. Hope I do that boost the confidence of our lower ranks, the recent experience we gained will." She asks you to be careful in your travels, and says goodbye, following the others into the city.`
 
 
 
-mission "Resistance: Questions"
+mission "Lunarium: Questions"
 	name "Lunarium Meeting"
 	description "Now that you've further helped the Lunarium, head to <destination>, where you were invited to meet with their leaders, who have a special task in mind for you."
 	minor
@@ -1692,32 +1692,32 @@ mission "Resistance: Questions"
 	destination "Remote Blue"
 	to offer
 		or
-			"assisted resistance" == 5
+			"assisted lunarium" == 5
 			and
 				"coalition jobs" >= 80
-				"assisted resistance" == 4
+				"assisted lunarium" == 4
 			and
 				"coalition jobs" >= 110
-				"assisted resistance" == 3
+				"assisted lunarium" == 3
 		"reputation: Quarg" >= 0
 		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
-		not "Resistance: Smuggling: Charity 1: active"
-		not "Resistance: Smuggling: Charity 2: active"
-		not "Resistance: Smuggling: Charity 3: active"
-		not "Resistance: Evacuation 1: active"
-		not "Resistance: Evacuation 2: active"
-		not "Resistance: Evacuation 3: active"
-		not "Resistance: Evacuation 4: active"
-		not "Resistance: Evacuation 5: active"
-		not "Resistance: Evacuation 6: active"
-		not "Resistance: Propaganda 1: active"
-		not "Resistance: Propaganda 2: active"
-		not "Resistance: Propaganda 3: active"
-		not "Resistance: Propaganda 4: active"
+		not "Lunarium: Smuggling: Charity 1: active"
+		not "Lunarium: Smuggling: Charity 2: active"
+		not "Lunarium: Smuggling: Charity 3: active"
+		not "Lunarium: Evacuation 1: active"
+		not "Lunarium: Evacuation 2: active"
+		not "Lunarium: Evacuation 3: active"
+		not "Lunarium: Evacuation 4: active"
+		not "Lunarium: Evacuation 5: active"
+		not "Lunarium: Evacuation 6: active"
+		not "Lunarium: Propaganda 1: active"
+		not "Lunarium: Propaganda 2: active"
+		not "Lunarium: Propaganda 3: active"
+		not "Lunarium: Propaganda 4: active"
 		or
-			not "Resistance: Combat Training 1: done"
-			has "Resistance: Combat Training 4: done"
+			not "Lunarium: Combat Training 1: done"
+			has "Lunarium: Combat Training 4: done"
 	to fail
 		or
 			has "Heliarch Investigation 2: active"
@@ -1730,7 +1730,7 @@ mission "Resistance: Questions"
 			`	The message cuts off shortly after you finish reading it. Your monitor is back to normal, and no humming sound can be heard. You mark <planet> on your map.`
 				accept
 
-mission "Resistance: Quarg Interview"
+mission "Lunarium: Quarg Interview"
 	name "The Interview"
 	description "Travel to <destination> with Oobat, an Arach diplomat from the Lunarium, to try and speak with the Quarg about their thoughts on the current Coalition."
 	passengers 1
@@ -1739,7 +1739,7 @@ mission "Resistance: Quarg Interview"
 	source "Remote Blue"
 	destination "Lagrange"
 	to offer
-		has "Resistance: Questions: done"
+		has "Lunarium: Questions: done"
 	on offer
 		conversation
 			`You leave your ship to find a pair of Kimek waiting for you. "Follow us to the meeting point, you will," one of them says, and you oblige, trying to keep a low profile as you go with them across the city. You reach a district near the center of town, with modest blocks and few skyscrapers, and head into what seems to be a Kimek restaurant. You continue following the two Kimek past busy tables and Kimek patrons who all have eyes on you as you head to the back.`
@@ -1810,14 +1810,14 @@ mission "Resistance: Quarg Interview"
 	on visit
 		dialog `You've reached <planet>, but your escort bringing Oobat hasn't entered the system yet. Better depart and wait for it.`
 
-mission "Resistance: Join"
+mission "Lunarium: Join"
 	name "Report Back"
 	description "Now that you and Oobat have interviewed the Quarg, head back to <destination> to inform the Lunarium leaders of how it went."
 	landing
 	source "Lagrange"
 	destination "Remote Blue"
 	to offer
-		has "Resistance: Quarg Interview: done"
+		has "Lunarium: Quarg Interview: done"
 	on offer
 		conversation
 			`Once you've docked in <origin>, you go check on Oobat, who's readying some form of camera while rehearsing the questions for the interview. "Just a moment Captain, ready in a minute I will be," she says. You head out of your ship and flag down the first Quarg you see.`
@@ -1853,7 +1853,7 @@ mission "Resistance: Join"
 		dialog `You've reached <planet>, but your escort bringing Oobat hasn't entered the system yet. Better depart and wait for it.`
 	on complete
 		set "language: Coalition"
-		event "first resistance unlock"
+		event "first lunarium unlock"
 		conversation
 			`When you and Oobat reach the Lunarium's complex, you're welcomed back by Chiree, Elirom and Tummug. "Told you I did that come back safely, they would," Tummug says to Elirom. "So, well enough to use in our efforts, was it?"`
 			`	Oobat shows them the recording, satisfaction clear on their faces as they listen to the Quarg. The mood darkens when the last question appears, however. Once it ends, Elirom stands up and heads to the nearest wall, slamming an arm onto it. Chiree sighs, and turns to Tummug, "Worth using the footage still, is it?"`
@@ -1876,18 +1876,18 @@ mission "Resistance: Join"
 			`	When they leave, you start tinkering with the translation device, figuring out how to configure it to translate from each of the languages. After testing it with local transmissions and broadcasts for half an hour or so, you're decently fast with it, to the point where you can change what language it translates to or from a few times in a second.`
 			`	It may be a long time still before the Lunarium is ready to take up arms against the Heliarchs, so for now you figure you could help by looking into what minor jobs they may have for you.`
 
-event "first resistance unlock"
+event "first lunarium unlock"
 	planet "Remote Blue"
-		outfitter "Resistance Basics"
+		outfitter "Lunarium Basics"
 	planet "Fourth Shadow"
-		outfitter "Resistance Basics"
+		outfitter "Lunarium Basics"
 	planet "Into White"
-		outfitter "Resistance Basics"
+		outfitter "Lunarium Basics"
 	planet "Secret Sky"
-		outfitter "Resistance Basics"
+		outfitter "Lunarium Basics"
 	planet "Shifting Sand"
-		outfitter "Resistance Basics"
+		outfitter "Lunarium Basics"
 	planet "Mebla's Portion"
-		outfitter "Resistance Basics"
+		outfitter "Lunarium Basics"
 	planet "Refuge of Belugt"
-		outfitter "Resistance Basics"
+		outfitter "Lunarium Basics"

@@ -395,7 +395,7 @@ outfitter "Heliarch"
 	"Ion Rain Gun"
 	"Local Map"
 
-outfitter "Resistance Basics"
+outfitter "Lunarium Basics"
 	"Refuelling Module"
 	"Decoy Plating"
 	"Shield Refactor Module"
