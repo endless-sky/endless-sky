@@ -507,9 +507,9 @@ outfit "Sidereal Active"
 
 outfit "Sidereal Flack"
 	weapon
-		sprite "projectile/rail slug"
+		sprite "projectile/speck"
+			"frame rate" 36
 			"no repeat"
-			"frame rate" .1
 		"die effect" "missile death"
 		"hit effect" "bombardment impact"
 		"inaccuracy" 12
