@@ -1994,11 +1994,11 @@ ship "Waverider"
 			"hit force" 5000
 	outfits
 		"Particle Cannon" 4
-		"S-970 Regenerator" 
+		"S-970 Regenerator"
 		"Dwarf Core"
 		"LP072a Battery Pack"
-		"Liquid Nitrogen Cooler" 
-		"Catalytic Ramscoop" 
+		"Liquid Nitrogen Cooler"
+		"Catalytic Ramscoop"
 		"Tactical Scanner"
 		"Cargo Scanner"
 		"Outfit Scanner"
@@ -2015,8 +2015,8 @@ ship "Waverider"
 	gun 22.5 -56.5 "Particle Cannon"
 	gun -31.5 -7 "Particle Cannon"
 	gun 31.5 -7 "Particle Cannon"
-	engine 0 56 
-	engine -23 64 
-	engine 23 64 
+	engine 0 56
+	engine -23 64
+	engine 23 64
 	description `The Waverider was a ship that was first requested and never used for Five Years, Seven Months and Twenty-Seven Days.`
 	description `	Its disappointment was so immense, it willed itself into being.`
