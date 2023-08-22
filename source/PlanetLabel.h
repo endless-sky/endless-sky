@@ -18,8 +18,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Color.h"
 #include "Point.h"
+#include "Rectangle.h"
 
 #include <string>
+#include <vector>
 
 class StellarObject;
 class System;
@@ -28,13 +30,23 @@ class System;
 
 class PlanetLabel {
 public:
-	PlanetLabel(const Point &position, const StellarObject &object, const System *system, double zoom);
+	PlanetLabel(const Point &position, const StellarObject &object, const System *system, double zoom,
+		const std::vector<PlanetLabel> &labels);
 
 	void Draw() const;
+
+	bool Overlaps(const Rectangle &box, double zoom) const;
+
+
+private:
+	void SetBoundingBox(const Rectangle &label, const StellarObject &object, int direction);
 
 
 private:
 	Point position;
+	// box + zoom * zoomOffset = the label's boundary box, as drawn.
+	Point zoomOffset;
+	Rectangle box;
 	double radius = 0.;
 	std::string name;
 	std::string government;
