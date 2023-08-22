@@ -59,8 +59,10 @@ private:
 
 private:
 	bool InitializeOutfitList();
-	bool FindBestFit(size_t offset, double targetAmount, double spaceLimit);
-	double FindBestAmount(size_t offset, double spaceLimit);
+	// Returns space needed to reach target amount, or zero if no solutions exist.
+	double FindBestFit(size_t offset, double targetAmount, double spaceLimit);
+	// Find highest amount possible, given the space limit.
+	double FindGreatestAmount(size_t offset, double targetAmount, double spaceLimit);
 
 
 private:
