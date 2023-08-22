@@ -533,10 +533,6 @@ government "Hai Merchant (Human)"
 		"Merchant" .01
 	"penalty for"
 		assist -.15
-	"custom penalties for"
-		"Hai (Unfettered)"
-			capture 0
-			destroy 0
 	"bribe" .02
 	"friendly hail" "friendly civilian"
 	"hostile hail" "hostile civilian"
