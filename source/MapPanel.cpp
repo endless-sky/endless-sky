@@ -166,17 +166,17 @@ namespace {
 				if(Preferences::Has("Deadline blink by distance"))
 				{
 					DistanceMap distance(player, player.GetSystem());
-					if(distance.HasRoute(mission.Destination()->GetSystem()))
+					if(distance.HasRoute(*mission.Destination()->GetSystem()))
 					{
 						set<const System *> toVisit;
 						for(const Planet *stopover : mission.Stopovers())
 						{
-							if(distance.HasRoute(stopover->GetSystem()))
+							if(distance.HasRoute(*stopover->GetSystem()))
 								toVisit.insert(stopover->GetSystem());
 							--daysLeft;
 						}
 						for(const System *waypoint : mission.Waypoints())
-							if(distance.HasRoute(waypoint))
+							if(distance.HasRoute(*waypoint))
 								toVisit.insert(waypoint);
 
 						int systemCount = toVisit.size();
@@ -185,16 +185,16 @@ namespace {
 							const System *closest;
 							int minimalDist = numeric_limits<int>::max();
 							for(const System *sys : toVisit)
-								if(distance.Days(sys) < minimalDist)
+								if(distance.Days(*sys) < minimalDist)
 								{
 									closest = sys;
-									minimalDist = distance.Days(sys);
+									minimalDist = distance.Days(*sys);
 								}
-							daysLeft -= distance.Days(closest);
+							daysLeft -= distance.Days(*closest);
 							distance = DistanceMap(player, closest);
 							toVisit.erase(closest);
 						}
-						daysLeft -= distance.Days(mission.Destination()->GetSystem());
+						daysLeft -= distance.Days(*mission.Destination()->GetSystem());
 					}
 				}
 				int blinkFactor = min(6, max(1, daysLeft));

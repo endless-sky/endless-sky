@@ -49,11 +49,11 @@ DistanceMap::DistanceMap(const System *center, WormholeStrategy wormholeStrategy
 
 
 
-// If a player is given, the map will start from the player's system.
+// If a player is given with no center, the map will start from the player's system.
 // Pathfinding will only use hyperspace paths known to the player; that is,
 // one end of the path has been visited. Also, if the ship has a jump drive
 // or wormhole access, the route will make use of it.
-DistanceMap::DistanceMap(const PlayerInfo &player)
+DistanceMap::DistanceMap(const PlayerInfo &player, const System *center)
 	: player(&player), useWormholes(true)
 {
 	const Ship *flagship = player.Flagship();
@@ -61,10 +61,15 @@ DistanceMap::DistanceMap(const PlayerInfo &player)
 	if(!flagship)
 		return;
 
-	if(flagship->IsEnteringHyperspace())
-		center = flagship->GetTargetSystem();
+	if (center)
+	{
+		this->center = center;
+	}
+	else if(flagship->IsEnteringHyperspace())
+		this->center = flagship->GetTargetSystem();
 	else
-		center = flagship->GetSystem();
+		this->center = flagship->GetSystem();
+
 
 	Init(flagship);
 }

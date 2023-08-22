@@ -42,12 +42,12 @@ public:
 	// a limit on how many systems will be returned (e.g. buying a local map) and
 	// a limit on how many jumps away they can be (e.g. a valid mission location).
 	explicit DistanceMap(const System *center, int maxSystems = -1, int maxDays = -1);
-	// If a player is given, the map will start from the player's system.
+	// If a player is given with no center, the map will start from the player's system.
 	// Pathfinding will only use hyperspace paths known to the player; that is,
 	// one end of the path has been visited. Also, if the ship has a jump drive
 	// or wormhole access, the route will make use of it.
-	explicit DistanceMap(const PlayerInfo &player);
-	// Find paths to the given system, potentially using wormholes, a jump drive, or both.
+	explicit DistanceMap(const PlayerInfo &player, const System *center = nullptr);
+	// Find paths from the given system, potentially using wormholes, a jump drive, or both.
 	// Optional arguments are as above.
 	explicit DistanceMap(const System *center, WormholeStrategy wormholeStrategy,
 			bool useJumpDrive, int maxSystems = -1, int maxDays = -1);
