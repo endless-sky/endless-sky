@@ -306,7 +306,7 @@ mission "<uhai> 11: Shipyard Inspection"
 			`	He gives you a VIP tour of the whole shipyard facility, which is too good to be true. The tour ends at the local militia office, which has some questions about that scanner they find on you...`
 				decline
 			label buyship
-			`	"Oh, is that so? Well, normally I can't sell ships, but I could make an exception for you... I have some ships that, unlike the rest, have already endured the test of time! They come at less than half the price, too. But you do understand I cannot sell you a warship." He may mean you'll have to pay more for said ship. Better prepare your bank account! You think he would probably suspect something if you backed out now. Noticing your hesitation, he adds, "There's no issue if you don't have the money right now. I can offer you a loan, with a small... bonus."`
+			`	"Oh, is that so? Well, normally I can't sell ships, but I could make an exception for you... I have some ships that, unlike the rest, have already endured the test of time! They come at less than half the price, too. But you do understand I cannot sell you a warship." He may mean you'll have to pay more for said ship. Better prepare your bank account! You think he would probably suspect something if you backed out now. Noticing your hesitation, he adds, "There's no issue if you don't have the money right now. I can offer you a loan of 5 million, with a small... bonus."`
 			label changedmind
 			choice
 				`	"I would like a Centipede."`
@@ -315,11 +315,24 @@ mission "<uhai> 11: Shipyard Inspection"
 					goto geocoris
 				`	"I will take a Shield Beetle, new ships just don't beat that one!"`
 					goto sb
+				`	"I'd like to take that loan offer."`
+					goto loan
 				`	"Actually, I am only here to get a tribute for the Unfettered. These ships seem too costly for me, sorry."`
 			action
 				set "unfettered: too suspect"
 			`	You can tell by looking at his face he probably does not truly believe that to be the case, but he does not seem to act upon it.`
 				goto suspect
+			label loan
+			`	"Good idea! I can loan you 5 million credits but due to the extra risk I have it will cost you 7 millions instead."`
+			choice
+				`	"Count me in."`
+				`	"Actually, I changed my mind."`
+					goto changedmind
+			action
+				payment 5000000
+				fine 7000000
+			`	"Done. With this you'll at least be able to afford the Centipede."`
+				goto changedmind
 			label centipede
 			`	"You will see it has no equal as cost efficient to transport troops or passengers around! And for a mere 5 million credits."`
 			choice
@@ -329,7 +342,7 @@ mission "<uhai> 11: Shipyard Inspection"
 			action
 				set "unfettered: bought centipede"
 				give ship "Centipede"
-				fine 5000000
+				payment -5000000
 			`	"And you are right to do so indeed! These ships are among the most recent ones we have in store."`
 				goto bought
 			label geocoris
@@ -341,7 +354,7 @@ mission "<uhai> 11: Shipyard Inspection"
 			action
 				set "unfettered: bought geocoris"
 				give ship "Geocoris"
-				fine 10000000
+				payment -10000000
 			label sb
 			`	"Only the best? I can relate with that for sure. This ship is useful in many ways: as a warship, an escort, or even a cargo hauler of its own right with its acceptable 142 cargo space. It also is the most customizable ship we sell! All of that comes at a cost, however, as I am sure you understand. 20 million credits."`
 			choice
@@ -351,7 +364,7 @@ mission "<uhai> 11: Shipyard Inspection"
 			action
 				set "unfettered: bought SB"
 				give ship "Shield Beetle"
-				fine 20000000
+				payment -20000000
 			label bought
 			action
 				set "unfettered: bought ship"
