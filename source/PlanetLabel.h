@@ -41,17 +41,21 @@ public:
 
 
 private:
-	void SetBoundingBox(const Rectangle &label, const StellarObject &object, int direction);
+	void SetBoundingBox(const Rectangle &label, int direction);
 
 
 private:
 	Point objectPosition;
 	double objectRadius;
-	// box + zoom * zoomOffset = the label's boundary box, as drawn.
-	Point zoomOffset;
+
+	// Bounding box = box + zoomOffset * zoom.
 	Rectangle box;
+	Point zoomOffset;
+
+	// Position and radius for drawing label.
 	Point position;
-	double radius = 0.;
+	double radius;
+
 	std::string name;
 	std::string government;
 	Color color;
