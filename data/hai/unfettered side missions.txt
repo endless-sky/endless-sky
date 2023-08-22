@@ -298,7 +298,7 @@ mission "Hai Legacy 3"
 		conversation
 			`As you land, you realize your ship is the center of the spaceport crowd's attention, probably due to the ancient design. One Unfettered that looks like an engineer comes to speak to you, warmer than usual based on your experiences with the Unfettered. "Welcome. Although I do not know how you have obtained this ship, I imagine some of us will see it as a sign. It is a relic of our past, a past we are quite proud of.`
 			`	"As such, most will say that you need to prove to us you have a right to use that ship. Lucky for you, I don't believe in any of that. What matters to me is that this ship is very durable, and it's filled with valuable ancient technology, as well as Korath technology we have a right to salvage for."`
-			`	Her tone suddenly changes as they raise her voice for everyone to hear. "I challenge you! The winner will earn the right to own this honorable relic and its mighty weapons!"`
+			`	Her tone suddenly changes as she raises her voice for everyone to hear. "I, Mera, challenge you! The winner will earn the right to own this honorable relic and its mighty weapons!"`
 			choice
 				`	"What do I get if I win?"`
 					goto win
@@ -314,7 +314,7 @@ mission "Hai Legacy 3"
 				`	"I have nothing to prove to you. If you want it, you'll have to chase me down. No duel."`
 					goto headingout
 			`	"Good! Of course, I won't be fighting you personally, as it is too risky to do so. I would also not want to deny my brethren the opportunity to prove themselves against a mighty human warrior!"`
-			`	You're not sure if she's being serious or not, but her friends seem to be in for it. Their leader approaches you. "So you think you deserve to fly this mighty ship of the Hai empire?"`
+			`	You're not sure if Mera is being serious or not, but her friends seem to be in for it. Their leader approaches you. "So you think you deserve to fly this mighty ship of the Hai empire?"`
 			`	"Yeah, what makes you think that, human?" another one adds.`
 			choice
 				`	(Say nothing.)`
@@ -391,12 +391,12 @@ mission "Hai Legacy 3"
 		ship "Lightning Bug (Unfettered Shipyards)"
 		personality launching staying surveillance
 		on disable
-			dialog `The ship hails you. "Stop! The duel will not be valid if you destroy us!"`
+			dialog `Mera hails you. "Stop! The duel will not be valid if you destroy us!"`
 		on kill
 			fail "Hai Legacy 3"
-			# Block you from doing the Unfettered campaign because you just killed one of it's core characters
+			# This ship is not AI controlled because it's not her style. She wants to see it firsthand, but she will land before you do and pretend nothing happened.
 			set "unfettered: outcast"
-			dialog `As the Lightning Bug is destroyed you receive a hail from the local authorities, "You completely disrespected the rules of the duel and killed one of our engineers. You will not be welcome here anymore!"`
+			dialog `As the Lightning Bug is destroyed you receive a hail from the local authorities, "You completely disrespected the rules of the duel and attempted to kill our most prominent researcher. You will not be welcome here anymore!"`
 	# If you refuse to sell the ship (you'll lose it later anyway)
 	npc
 		government "Hai (Unfettered)"
@@ -419,7 +419,7 @@ mission "Hai Legacy 3"
 	on complete
 		clear "unfettered: beaten the bugs"
 		conversation
-			`When you land in one piece, the engineer approaches, shocked. "You really won? It was close until the end, was it not? Or did the captains already make stories to justify their incompetence, after they used their escape pods to get back here like cowards?"`
+			`When you land in one piece, Mera approaches, shocked. "You really won? It was close until the end, was it not? Or did the captains already make stories to justify their incompetence, after they used their escape pods to get back here like cowards?"`
 			choice
 				`	"It was fun."`
 					goto next
