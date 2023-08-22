@@ -14,7 +14,8 @@
 ship "Archon"
 	noun "entity"
 	sprite "ship/archon"
-		"frame rate" 0.87
+		"frame rate" 1.74
+		"rewind"
 	thumbnail "thumbnail/archon"
 	"never disabled"
 	attributes
@@ -81,11 +82,11 @@ ship "Archon"
 	turret 0 -10 "Drak Draining Field"
 	turret 0 -10 "Drak Draining Field (Augmented)"
 		under
-	turret -40 -13 "Drak Turret"
-	turret -40 -13 "Drak Turret (Augmented)"
+	turret -33 -29 "Drak Turret"
+	turret -33 -29 "Drak Turret (Augmented)"
 		under
-	turret 40 -13 "Drak Turret"
-	turret 40 -13 "Drak Turret (Augmented)"
+	turret 33 -29 "Drak Turret"
+	turret 33 -29 "Drak Turret (Augmented)"
 		under
 	turret 0 81 "Drak Turret"
 	turret 0 81 "Drak Turret (Augmented)"
@@ -98,14 +99,23 @@ ship "Archon"
 ship "Archon" "Archon B"
 	"never disabled"
 	sprite "ship/archon b"
-		"frame rate" 0.87
+		"frame rate" 1.74
+		"rewind"
 	"final explode" "archon b teleport"
 
 ship "Archon" "Archon C"
 	"never disabled"
 	sprite "ship/archon c"
-		"frame rate" 0.87
+		"frame rate" 1.74
+		"rewind"
 	"final explode" "archon c teleport"
+	
+ship "Archon" "Archon D"
+	"never disabled"
+	sprite "ship/archon d"
+		"frame rate" 1.74
+		"rewind"
+	"final explode" "archon d teleport"
 
 ship "Archon" "Archon (Cloaked)"
 	sprite "ship/archon c"
@@ -133,6 +143,14 @@ effect "archon b teleport"
 
 effect "archon c teleport"
 	sprite "effect/archon teleport/archoncteleport"
+		"no repeat"
+		"frame rate" 30
+	sound "archonteleport"
+	"random spin" 1
+	"lifetime" 41
+	
+effect "archon d teleport"
+	sprite "effect/archon teleport/archondteleport"
 		"no repeat"
 		"frame rate" 30
 	sound "archonteleport"

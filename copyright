@@ -480,8 +480,6 @@ Files:
  images/planet/station1c*
  images/planet/station2c*
  images/planet/station3c*
- images/ship/archon?b*
- images/ship/archon?c*
  images/asteroid/plant*
  images/asteroid/plant2*
  images/asteroid/plant?cluster*
@@ -1387,11 +1385,6 @@ Copyright: michael_kur95
 License: CC-BY-3.0
 Comment: Taken from https://freesound.org/people/michael_kur95/sounds/332993/ and modified.
 
-Files: images/effect/archon?teleport/*
-Copyright: @Karirawri (crim@live.no)
-License: CC-BY-SA-4.0
-Comment: Derived from works by Michael Zahniser and Becca Tommaso (under the same license).
-
 Files: sounds/archonteleport*
 Copyright: oldestmillennial
 License: CC-BY-3.0
@@ -1583,6 +1576,7 @@ Files:
  images/projectile/korath?inferno*
  images/projectile/missile-0*
  images/projectile/missile-1*
+ images/ship/archon*
  images/ship/battleship*
  images/ship/corvette*
  images/ship/dagger*
@@ -1595,6 +1589,7 @@ Files:
  images/star/neutron*
  images/star/small-black-hole*
  images/thumbnail/battleship*
+ images/thumbnail/archon*
  images/thumbnail/corvette*
  images/thumbnail/dagger*
  images/thumbnail/flivver*
@@ -1604,6 +1599,15 @@ Files:
  images/thumbnail/splinter*
 Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
 License: CC-BY-SA-4.0
+
+Files:
+ images/effect/archonteleport/*
+ images/effect/archonbteleport/*
+ images/effect/archoncteleport/*
+ images/effect/archondteleport/*
+Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
+License: CC-BY-SA-4.0
+Comment: Derived from works by @Karirawri (under the same license).
 
 Files:
  images/outfit/small?photovoltaic*
