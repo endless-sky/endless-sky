@@ -56,14 +56,14 @@ void OutfitOptimizer::AddOutfits(const map<const Outfit *, int> &outfitList)
 
 map<const Outfit *, int> OutfitOptimizer::Optimize()
 {
-	// See if request was satisfied with zero-space outfits.
+	// See if request was satisfied with "free" outfits.
 	if(InitializeOutfitList())
 		return results;
 
 	// Do the best we can with the space available.
 	if(!totalAmount)
 	{
-		FindGreatestAmount(0, 0, totalSpace);
+		FindGreatestAmount(0, totalAmount, totalSpace);
 		for(size_t i = 0; i < counts.size(); ++i)
 			if(counts[i])
 				results[outfitStats[i].outfit] = counts[i];
@@ -85,7 +85,7 @@ map<const Outfit *, int> OutfitOptimizer::Optimize()
 
 
 // Create the list of outfits to check (some may be winnowed out).
-// Will add in "free" outfits (ones with no space requirement).
+// Will add in "free" outfits (ones with no (or negative) space requirement).
 bool OutfitOptimizer::InitializeOutfitList()
 {
 	outfitStats.reserve(outfits.size());
@@ -142,7 +142,7 @@ double OutfitOptimizer::FindBestFit(const size_t offset, const double targetAmou
 {
 	const OutfitStats &outfit(outfitStats[offset]);
 
-	// Check if remaining outfits are theoretically efficient enough to improve the target.
+	// Check if remaining outfits are theoretically efficient enough to meet the target.
 	if(targetAmount > spaceLimit * outfit.efficiency)
 		return 0.;
 
@@ -164,19 +164,24 @@ double OutfitOptimizer::FindBestFit(const size_t offset, const double targetAmou
 	}
 	else
 	{
-		bestSpace = n * outfit.space;
 		counts[offset] = n;
+		bestSpace = n * outfit.space;
 	}
 
 	// Check for possibly better results with fewer of this outfit.
 	vector<int> bestCounts(counts.size() - offset - 1, 0);
 	for(--n; n > -1; --n)
 	{
-		const double space = n * outfit.space;
-		const double otherSpace = FindBestFit(offset + 1, targetAmount - n * outfit.amount, spaceLimit - space);
-		if(otherSpace && (!bestSpace || bestSpace > space + otherSpace))
+		const double mySpace = n * outfit.space;
+		const double otherSpace = FindBestFit(offset + 1, targetAmount - n * outfit.amount, spaceLimit - mySpace);
+
+		// Check if remaining outfits are too inefficient to improve our best.
+		if(!otherSpace)
+			break;
+
+		if(!bestSpace || bestSpace > mySpace + otherSpace)
 		{
-			bestSpace = space + otherSpace;
+			bestSpace = mySpace + otherSpace;
 			counts[offset] = n;
 			copy(counts.begin() + offset + 1, counts.end(), bestCounts.begin());
 		}
@@ -211,10 +216,15 @@ double OutfitOptimizer::FindGreatestAmount(const size_t offset, const double tar
 	for(; n > -1; --n)
 	{
 		const double myAmount = n * outfit.amount;
-		const double amount = myAmount + FindGreatestAmount(offset + 1, bestAmount - myAmount, spaceLimit - n * outfit.space);
-		if(bestAmount < amount)
+		const double otherAmount = FindGreatestAmount(offset + 1, bestAmount - myAmount, spaceLimit - n * outfit.space);
+
+		// Check if remaining outfits are too inefficient to improve our best.
+		if(!otherAmount)
+			break;
+
+		if(bestAmount < myAmount + otherAmount)
 		{
-			bestAmount = amount;
+			bestAmount = myAmount + otherAmount;
 			counts[offset] = n;
 			copy(counts.begin() + offset + 1, counts.end(), bestCounts.begin());
 		}
