@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "Dialog.h"
 #include "Files.h"
+#include "FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
@@ -53,6 +54,7 @@ namespace {
 	const int ZOOM_FACTOR_INCREMENT = 10;
 	const string VIEW_ZOOM_FACTOR = "View zoom factor";
 	const string AUTO_AIM_SETTING = "Automatic aiming";
+	const string AUTO_FIRE_SETTING = "Automatic firing";
 	const string SCREEN_MODE_SETTING = "Screen mode";
 	const string VSYNC_SETTING = "VSync";
 	const string STATUS_OVERLAYS_ALL = "Show status overlays";
@@ -61,6 +63,7 @@ namespace {
 	const string STATUS_OVERLAYS_ENEMY = "   Show enemy overlays";
 	const string STATUS_OVERLAYS_NEUTRAL = "   Show neutral overlays";
 	const string EXPEND_AMMO = "Escorts expend ammo";
+	const string FLOTSAM_SETTING = "Flotsam collection";
 	const string TURRET_TRACKING = "Turret tracking";
 	const string FOCUS_PREFERENCE = "Turrets focus fire";
 	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
@@ -75,6 +78,8 @@ namespace {
 
 	// How many pages of settings there are.
 	const int SETTINGS_PAGE_COUNT = 2;
+	// Hovering a preference for this many frames activates the tooltip.
+	const int HOVER_TIME = 60;
 }
 
 
@@ -91,6 +96,11 @@ PreferencesPanel::PreferencesPanel()
 		}
 
 	SetIsFullScreen(true);
+
+	// Initialize a centered tooltip.
+	hoverText.SetFont(FontSet::Get(14));
+	hoverText.SetWrapWidth(150);
+	hoverText.SetAlignment(Alignment::LEFT);
 }
 
 
@@ -120,9 +130,15 @@ void PreferencesPanel::Draw()
 	prefZones.clear();
 	pluginZones.clear();
 	if(page == 'c')
+	{
 		DrawControls();
+		DrawTooltips();
+	}
 	else if(page == 's')
+	{
 		DrawSettings();
+		DrawTooltips();
+	}
 	else if(page == 'p')
 		DrawPlugins();
 }
@@ -147,13 +163,21 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	else if(key == 'b' || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		Exit();
 	else if(key == 'c' || key == 's' || key == 'p')
+	{
 		page = key;
+		hoverItem.clear();
+	}
 	else if(key == 'o' && page == 'p')
 		Files::OpenUserPluginFolder();
 	else if((key == 'n' || key == SDLK_PAGEUP) && currentSettingsPage < SETTINGS_PAGE_COUNT - 1)
 		++currentSettingsPage;
 	else if((key == 'r' || key == SDLK_PAGEDOWN) && currentSettingsPage > 0)
 		--currentSettingsPage;
+	else if((key == 'x' || key == SDLK_DELETE) && (page == 'c'))
+	{
+		if(zones[latest].Value().KeyName() != Command::MENU.KeyName())
+			Command::SetKey(zones[latest].Value(), 0);
+	}
 	else
 		return false;
 
@@ -222,19 +246,23 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 						"Unable to change VSync state. (Your system's graphics settings may be controlling it instead.)"));
 			}
 			else if(zone.Value() == STATUS_OVERLAYS_ALL)
-				Preferences::SetStatusOverlays(false, 0);
+				Preferences::CycleStatusOverlays(Preferences::OverlayType::ALL);
 			else if(zone.Value() == STATUS_OVERLAYS_FLAGSHIP)
-				Preferences::SetStatusOverlays(false, 1);
+				Preferences::CycleStatusOverlays(Preferences::OverlayType::FLAGSHIP);
 			else if(zone.Value() == STATUS_OVERLAYS_ESCORT)
-				Preferences::SetStatusOverlays(false, 2);
+				Preferences::CycleStatusOverlays(Preferences::OverlayType::ESCORT);
 			else if(zone.Value() == STATUS_OVERLAYS_ENEMY)
-				Preferences::SetStatusOverlays(false, 3);
+				Preferences::CycleStatusOverlays(Preferences::OverlayType::ENEMY);
 			else if(zone.Value() == STATUS_OVERLAYS_NEUTRAL)
-				Preferences::SetStatusOverlays(false, 4);
+				Preferences::CycleStatusOverlays(Preferences::OverlayType::NEUTRAL);
 			else if(zone.Value() == AUTO_AIM_SETTING)
 				Preferences::ToggleAutoAim();
+			else if(zone.Value() == AUTO_FIRE_SETTING)
+				Preferences::ToggleAutoFire();
 			else if(zone.Value() == EXPEND_AMMO)
 				Preferences::ToggleAmmoUsage();
+			else if(zone.Value() == FLOTSAM_SETTING)
+				Preferences::ToggleFlotsam();
 			else if(zone.Value() == TURRET_TRACKING)
 				Preferences::Set(FOCUS_PREFERENCE, !Preferences::Has(FOCUS_PREFERENCE));
 			else if(zone.Value() == REACTIVATE_HELP)
@@ -274,20 +302,21 @@ bool PreferencesPanel::Hover(int x, int y)
 {
 	hoverPoint = Point(x, y);
 
+	hoverItem.clear();
+	tooltip.clear();
+
 	hover = -1;
 	for(unsigned index = 0; index < zones.size(); ++index)
 		if(zones[index].Contains(hoverPoint))
 			hover = index;
 
-	hoverPreference.clear();
 	for(const auto &zone : prefZones)
 		if(zone.Contains(hoverPoint))
-			hoverPreference = zone.Value();
+			hoverItem = zone.Value();
 
-	hoverPlugin.clear();
 	for(const auto &zone : pluginZones)
 		if(zone.Contains(hoverPoint))
-			hoverPlugin = zone.Value();
+			hoverItem = zone.Value();
 
 	return true;
 }
@@ -297,10 +326,10 @@ bool PreferencesPanel::Hover(int x, int y)
 // Change the value being hovered over in the direction of the scroll.
 bool PreferencesPanel::Scroll(double dx, double dy)
 {
-	if(!dy || hoverPreference.empty())
+	if(!dy || page != 's' || hoverItem.empty())
 		return false;
 
-	if(hoverPreference == ZOOM_FACTOR)
+	if(hoverItem == ZOOM_FACTOR)
 	{
 		int zoom = Screen::UserZoom();
 		if(dy < 0. && zoom > ZOOM_FACTOR_MIN)
@@ -317,14 +346,14 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 		point += .5 * Point(Screen::RawWidth(), Screen::RawHeight());
 		SDL_WarpMouseInWindow(nullptr, point.X(), point.Y());
 	}
-	else if(hoverPreference == VIEW_ZOOM_FACTOR)
+	else if(hoverItem == VIEW_ZOOM_FACTOR)
 	{
 		if(dy < 0.)
 			Preferences::ZoomViewOut();
 		else
 			Preferences::ZoomViewIn();
 	}
-	else if(hoverPreference == SCROLL_SPEED)
+	else if(hoverItem == SCROLL_SPEED)
 	{
 		int speed = Preferences::ScrollSpeed();
 		if(dy < 0.)
@@ -352,8 +381,17 @@ void PreferencesPanel::DrawControls()
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
 
-	// Check for conflicts.
+	// Colors for highlighting.
 	const Color &warning = *GameData::Colors().Get("warning conflict");
+	const Color &noCommand = *GameData::Colors().Get("warning no command");
+
+	if(selected != oldSelected)
+		latest = selected;
+	if(hover != oldHover)
+		latest = hover;
+
+	oldSelected = selected;
+	oldHover = hover;
 
 	Table table;
 	table.AddColumn(-115, {230, Alignment::LEFT});
@@ -364,13 +402,12 @@ void PreferencesPanel::DrawControls()
 	table.DrawAt(Point(-130, firstY));
 
 	static const string CATEGORIES[] = {
-		"Navigation",
-		"Weapons",
-		"Targeting",
-		"Navigation",
+		"Keyboard Navigation",
 		"Interface",
-		"Fleet",
-		"Targeting"
+		"Targeting",
+		"Weapons",
+		"Interface",
+		"Fleet"
 	};
 	const string *category = CATEGORIES;
 	static const Command COMMANDS[] = {
@@ -380,26 +417,27 @@ void PreferencesPanel::DrawControls()
 		Command::RIGHT,
 		Command::BACK,
 		Command::AFTERBURNER,
+		Command::AUTOSTEER,
 		Command::LAND,
 		Command::JUMP,
 		Command::NONE,
-		Command::PRIMARY,
-		Command::SELECT,
-		Command::SECONDARY,
-		Command::CLOAK,
+		Command::MAP,
+		Command::INFO,
 		Command::NONE,
 		Command::NEAREST,
 		Command::TARGET,
 		Command::HAIL,
 		Command::BOARD,
 		Command::NEAREST_ASTEROID,
+		Command::SCAN,
 		Command::NONE,
+		Command::PRIMARY,
+		Command::SELECT,
+		Command::SECONDARY,
+		Command::CLOAK,
 		Command::MOUSE_TURNING_HOLD,
-		Command::MOUSE_TURNING_TOGGLE,
 		Command::NONE,
 		Command::MENU,
-		Command::MAP,
-		Command::INFO,
 		Command::FULLSCREEN,
 		Command::FASTFORWARD,
 		Command::NONE,
@@ -408,9 +446,7 @@ void PreferencesPanel::DrawControls()
 		Command::GATHER,
 		Command::HOLD,
 		Command::AMMO,
-		Command::HARVEST,
-		Command::NONE,
-		Command::SCAN
+		Command::HARVEST
 	};
 	static const Command *BREAK = &COMMANDS[19];
 	for(const Command &command : COMMANDS)
@@ -435,11 +471,12 @@ void PreferencesPanel::DrawControls()
 			int index = zones.size();
 			// Mark conflicts.
 			bool isConflicted = command.HasConflict();
+			bool isEmpty = !command.HasBinding();
 			bool isEditing = (index == editing);
-			if(isConflicted || isEditing)
+			if(isConflicted || isEditing || isEmpty)
 			{
 				table.SetHighlight(56, 120);
-				table.DrawHighlight(isEditing ? dim : warning);
+				table.DrawHighlight(isEditing ? dim : isEmpty ? noCommand : warning);
 			}
 
 			// Mark the selected row.
@@ -453,7 +490,10 @@ void PreferencesPanel::DrawControls()
 			// Highlight whichever row the mouse hovers over.
 			table.SetHighlight(-120, 120);
 			if(isHovering)
+			{
 				table.DrawHighlight(back);
+				hoverItem = command.Description();
+			}
 
 			zones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), command);
 
@@ -465,7 +505,7 @@ void PreferencesPanel::DrawControls()
 	Table shiftTable;
 	shiftTable.AddColumn(125, {150, Alignment::RIGHT});
 	shiftTable.SetUnderline(0, 130);
-	shiftTable.DrawAt(Point(-400, 52));
+	shiftTable.DrawAt(Point(-400, 32));
 
 	shiftTable.DrawUnderline(medium);
 	shiftTable.Draw("With <shift> key", bright);
@@ -511,19 +551,7 @@ void PreferencesPanel::DrawSettings()
 		VIEW_ZOOM_FACTOR,
 		SCREEN_MODE_SETTING,
 		VSYNC_SETTING,
-		STATUS_OVERLAYS_ALL,
-		STATUS_OVERLAYS_FLAGSHIP,
-		STATUS_OVERLAYS_ESCORT,
-		STATUS_OVERLAYS_ENEMY,
-		STATUS_OVERLAYS_NEUTRAL,
-		"Show missile overlays",
-		"Highlight player's flagship",
-		"Rotate flagship in HUD",
-		"Show planet labels",
-		"Show mini-map",
-		"Show asteroid scanner overlay",
-		"Always underline shortcuts",
-		"\t",
+		"",
 		"Performance",
 		"Show CPU / GPU load",
 		"Render motion blur",
@@ -532,31 +560,53 @@ void PreferencesPanel::DrawSettings()
 		"Draw starfield",
 		BACKGROUND_PARALLAX,
 		"Show hyperspace flash",
+		"Extended jump effects",
 		SHIP_OUTLINES,
+		"\t",
+		"HUD",
+		STATUS_OVERLAYS_ALL,
+		STATUS_OVERLAYS_FLAGSHIP,
+		STATUS_OVERLAYS_ESCORT,
+		STATUS_OVERLAYS_ENEMY,
+		STATUS_OVERLAYS_NEUTRAL,
+		"Show missile overlays",
+		"Show asteroid scanner overlay",
+		"Highlight player's flagship",
+		"Rotate flagship in HUD",
+		"Show planet labels",
+		"Show mini-map",
+		"Clickable radar display",
+		ALERT_INDICATOR,
+		"Extra fleet status messages",
 		"\n",
 		"Gameplay",
+		"Control ship with mouse",
 		AUTO_AIM_SETTING,
-		"Automatic firing",
+		AUTO_FIRE_SETTING,
+		TURRET_TRACKING,
+		TARGET_ASTEROIDS_BASED_ON,
 		BOARDING_PRIORITY,
 		EXPEND_AMMO,
-		"Extra fleet status messages",
+		FLOTSAM_SETTING,
+		FIGHTER_REPAIR,
 		"Fighters transfer cargo",
 		"Rehire extra crew when lost",
-		FIGHTER_REPAIR,
-		TARGET_ASTEROIDS_BASED_ON,
-		TURRET_TRACKING,
-		"\t",
-		"Other",
-		"Clickable radar display",
+		"",
+		"Map",
+		"Deadline blink by distance",
 		"Hide unexplored map regions",
-		REACTIVATE_HELP,
-		"Interrupt fast-forward",
-		SCROLL_SPEED,
 		"Show escort systems on map",
 		"Show stored outfits on map",
 		"System map sends move orders",
-		ALERT_INDICATOR
+		"\t",
+		"Other",
+		"Always underline shortcuts",
+		REACTIVATE_HELP,
+		"Interrupt fast-forward",
+		"Landing zoom",
+		SCROLL_SPEED
 	};
+
 	bool isCategory = true;
 	int page = 0;
 	for(const string &setting : SETTINGS)
@@ -625,27 +675,27 @@ void PreferencesPanel::DrawSettings()
 		}
 		else if(setting == STATUS_OVERLAYS_ALL)
 		{
-			text = Preferences::StatusOverlaysSetting(0);
+			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::ALL);
 			isOn = text != "off";
 		}
 		else if(setting == STATUS_OVERLAYS_FLAGSHIP)
 		{
-			text = Preferences::StatusOverlaysSetting(1);
+			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::FLAGSHIP);
 			isOn = text != "off" && text != "--";
 		}
 		else if(setting == STATUS_OVERLAYS_ESCORT)
 		{
-			text = Preferences::StatusOverlaysSetting(2);
+			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::ESCORT);
 			isOn = text != "off" && text != "--";
 		}
 		else if(setting == STATUS_OVERLAYS_ENEMY)
 		{
-			text = Preferences::StatusOverlaysSetting(3);
+			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::ENEMY);
 			isOn = text != "off" && text != "--";
 		}
 		else if(setting == STATUS_OVERLAYS_NEUTRAL)
 		{
-			text = Preferences::StatusOverlaysSetting(4);
+			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::NEUTRAL);
 			isOn = text != "off" && text != "--";
 		}
 		else if(setting == AUTO_AIM_SETTING)
@@ -653,8 +703,18 @@ void PreferencesPanel::DrawSettings()
 			text = Preferences::AutoAimSetting();
 			isOn = text != "off";
 		}
+		else if(setting == AUTO_FIRE_SETTING)
+		{
+			text = Preferences::AutoFireSetting();
+			isOn = text != "off";
+		}
 		else if(setting == EXPEND_AMMO)
 			text = Preferences::AmmoUsage();
+		else if(setting == FLOTSAM_SETTING)
+		{
+			text = Preferences::FlotsamSetting();
+			isOn = text != "off";
+		}
 		else if(setting == TURRET_TRACKING)
 		{
 			isOn = true;
@@ -729,7 +789,7 @@ void PreferencesPanel::DrawSettings()
 		else
 			text = isOn ? "on" : "off";
 
-		if(setting == hoverPreference)
+		if(setting == hoverItem)
 			table.DrawHighlight(back);
 		table.Draw(setting, isOn ? medium : dim);
 		table.Draw(text, isOn ? bright : medium);
@@ -769,7 +829,7 @@ void PreferencesPanel::DrawPlugins()
 		pluginZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), plugin.name);
 
 		bool isSelected = (plugin.name == selectedPlugin);
-		if(isSelected || plugin.name == hoverPlugin)
+		if(isSelected || plugin.name == hoverItem)
 			table.DrawHighlight(back);
 
 		const Sprite *sprite = box[plugin.currentState];
@@ -805,6 +865,46 @@ void PreferencesPanel::DrawPlugins()
 			wrap.Draw(top, medium);
 		}
 	}
+}
+
+
+
+void PreferencesPanel::DrawTooltips()
+{
+	if(hoverItem.empty())
+	{
+		// Step the tooltip timer back.
+		hoverCount -= hoverCount ? 1 : 0;
+		return;
+	}
+
+	// Step the tooltip timer forward [0-60].
+	hoverCount += hoverCount < HOVER_TIME;
+
+	if(hoverCount < HOVER_TIME)
+		return;
+
+	// Create the tooltip text.
+	if(tooltip.empty())
+	{
+		tooltip = GameData::Tooltip(hoverItem);
+		// No tooltip for this item.
+		if(tooltip.empty())
+			return;
+		hoverText.Wrap(tooltip);
+	}
+
+	Point size(hoverText.WrapWidth(), hoverText.Height() - hoverText.ParagraphBreak());
+	size += Point(20., 20.);
+	Point topLeft = hoverPoint;
+	// Do not overflow the screen dimensions.
+	if(topLeft.X() + size.X() > Screen::Right())
+		topLeft.X() -= size.X();
+	if(topLeft.Y() + size.Y() > Screen::Bottom())
+		topLeft.Y() -= size.Y();
+	// Draw the background fill and the tooltip text.
+	FillShader::Fill(topLeft + .5 * size, size, *GameData::Colors().Get("tooltip background"));
+	hoverText.Draw(topLeft + Point(10., 10.), *GameData::Colors().Get("medium"));
 }
 
 

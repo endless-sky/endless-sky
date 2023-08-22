@@ -37,9 +37,9 @@ public:
 	static const Command FORWARD;
 	static const Command LEFT;
 	static const Command RIGHT;
+	static const Command AUTOSTEER;
 	static const Command BACK;
 	static const Command MOUSE_TURNING_HOLD;
-	static const Command MOUSE_TURNING_TOGGLE;
 	static const Command PRIMARY;
 	static const Command SECONDARY;
 	static const Command SELECT;
@@ -104,6 +104,7 @@ public:
 	// a combination of more than one command, an empty string is returned.
 	const std::string &Description() const;
 	const std::string &KeyName() const;
+	bool HasBinding() const;
 	bool HasConflict() const;
 
 	// Load this command from an input file (for testing or scripted missions).

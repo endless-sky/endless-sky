@@ -87,8 +87,8 @@ void MapSalesPanel::Draw()
 	DrawKey();
 	DrawPanel();
 	DrawItems();
-	DrawButtons(isOutfitters ? "is outfitters" : "is shipyards");
 	DrawInfo();
+	FinishDrawing(isOutfitters ? "is outfitters" : "is shipyards");
 }
 
 
@@ -225,7 +225,7 @@ void MapSalesPanel::DrawKey() const
 	Point textOff(10., -.5 * font.Height());
 
 	static const double VALUE[] = {
-		-.5,
+		-1.,
 		0.,
 		1.
 	};

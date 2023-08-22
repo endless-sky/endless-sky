@@ -34,6 +34,13 @@
         }
       ]
     },
+    "flatpak-libs": {
+      "description": "System libraries missing in the Flatpak runtime.",
+      "dependencies": [
+        "libmad",
+        "glew"
+      ]
+    },
     "steam-libs": {
       "description": "System libraries not provided in the Steam Sniper Runtime.",
       "dependencies": [

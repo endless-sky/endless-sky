@@ -19,7 +19,17 @@ codespell:
 
 codeblocks_files:
   - '*.cbp'
-  - 'utils/check_codeblocks.sh'
+  - utils/check_codeblocks.sh
+
+editorconfig_files:
+  - '**/!(*.mp3)'
+
+content_style_check:
+  - utils/check_content_style.py
+  - utils/contentStyle.json
+
+code_style_check:
+  - utils/check_code_style.py
 
 cmake_files:
   - CMakeLists.txt
@@ -27,12 +37,17 @@ cmake_files:
   - tests/CMakeLists.txt
   - tests/integration/IntegrationTests.cmake
   - utils/vcpkg_bootstrap.cmake
+  - utils/check_cmake.sh
   - CMakePresets.json
   - vcpkg.json
   - vcpkg-configuration.json
 
 copyright:
-  - 'copyright'
+  - copyright
+  - utils/check_copyright.py
+
+changelog:
+  - changelog
 
 parse_script:
-  - 'utils/test_parse.ps1'
+  - utils/test_parse.ps1

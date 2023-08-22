@@ -100,6 +100,8 @@ void MainPanel::Step()
 	if(flagship)
 	{
 		// Check if any help messages should be shown.
+		if(isActive && Preferences::Has("Control ship with mouse"))
+			isActive = !DoHelp("control ship with mouse");
 		if(isActive && flagship->IsTargetable())
 			isActive = !DoHelp("navigation");
 		if(isActive && flagship->IsDestroyed())
@@ -357,14 +359,14 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 					out << "This " + target->Noun() + " is carrying:\n";
 				first = false;
 
-				out << "\t" << it.second;
+				out << "\t";
 				if(it.first->Get("installable") < 0.)
 				{
 					int tons = ceil(it.second * it.first->Mass());
 					out << Format::CargoString(tons, Format::LowerCase(it.first->PluralName())) << "\n";
 				}
 				else
-					out << " " << (it.second == 1 ? it.first->DisplayName(): it.first->PluralName()) << "\n";
+					out << it.second << " " << (it.second == 1 ? it.first->DisplayName() : it.first->PluralName()) << "\n";
 			}
 		if(first)
 			out << "This " + target->Noun() + " is not carrying any cargo.\n";
@@ -405,7 +407,7 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 		for(const Ship::Bay &bay : target->Bays())
 			if(bay.ship)
 			{
-				int &value = count[bay.ship->ModelName()];
+				int &value = count[bay.ship->DisplayModelName()];
 				if(value)
 				{
 					// If the name and the plural name are the same string, just
