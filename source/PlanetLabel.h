@@ -30,8 +30,10 @@ class System;
 
 class PlanetLabel {
 public:
-	PlanetLabel(const Point &position, const StellarObject &object, const System *system, double zoom,
-		const std::vector<PlanetLabel> &labels);
+	PlanetLabel(const std::vector<PlanetLabel> &labels, const System &system,
+		const StellarObject &object, double zoom);
+
+	void Update(const Point &center, double zoom);
 
 	void Draw() const;
 
@@ -43,10 +45,12 @@ private:
 
 
 private:
-	Point position;
+	Point objectPosition;
+	double objectRadius;
 	// box + zoom * zoomOffset = the label's boundary box, as drawn.
 	Point zoomOffset;
 	Rectangle box;
+	Point position;
 	double radius = 0.;
 	std::string name;
 	std::string government;

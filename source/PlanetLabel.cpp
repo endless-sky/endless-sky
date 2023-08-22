@@ -46,8 +46,8 @@ namespace {
 
 	// Check if the given label for the given stellar object and direction overlaps
 	// with any existing label or any stellar object in the system.
-	bool CheckOverlaps(const System &system, const StellarObject &object, const double zoom,
-			const Rectangle &box, const vector<PlanetLabel> &labels)
+	bool CheckOverlaps(const vector<PlanetLabel> &labels, const System &system,
+			const StellarObject &object, const double zoom, const Rectangle &box)
 	{
 		for(const PlanetLabel &label : labels)
 			if(label.Overlaps(box, zoom))
@@ -64,9 +64,9 @@ namespace {
 
 
 
-PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, const System *system, double zoom,
-		const vector<PlanetLabel> &labels)
-	: position(position * zoom), radius(object.Radius() * zoom)
+PlanetLabel::PlanetLabel(const vector<PlanetLabel> &labels, const System &system,
+		const StellarObject &object, const double zoom)
+	: objectPosition(object.Position()), objectRadius(object.Radius())
 {
 	const Planet &planet = *object.GetPlanet();
 	name = planet.Name();
@@ -85,11 +85,6 @@ PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, con
 		color = Color(.3f, .3f, .3f, 1.f);
 		government = "(No government)";
 	}
-	const float alpha = static_cast<float>(min(.5, max(0., .6 - (position.Length() - object.Radius()) * .001 * zoom)));
-	color = Color(color.Get()[0] * alpha, color.Get()[1] * alpha, color.Get()[2] * alpha, 0.);
-
-	if(!system)
-		return;
 
 	// Figure out how big the label has to be.
 	const Font &font = FontSet::Get(14);
@@ -99,14 +94,14 @@ PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, con
 	// Adjust down so attachment point is at center of name.
 	const Rectangle label({0., (height - bigFont.Height()) / 2.}, {width, height});
 
+	const double minZoom = Preferences::MinViewZoom();
+	const double maxZoom = Preferences::MaxViewZoom();
 	// Try to find a label direction that is not overlapping under any zoom.
 	for(int d = 0; d < 4; ++d)
 	{
 		SetBoundingBox(label, object, d);
-		if(!CheckOverlaps(*system, object, Preferences::MinViewZoom(),
-					box + Preferences::MinViewZoom() * zoomOffset, labels)
-				&& !CheckOverlaps(*system, object, Preferences::MaxViewZoom(),
-					box + Preferences::MaxViewZoom() * zoomOffset, labels))
+		if(!CheckOverlaps(labels, system, object, minZoom, box + zoomOffset * minZoom)
+				&& !CheckOverlaps(labels, system, object, maxZoom, box + zoomOffset * maxZoom))
 		{
 			direction = d;
 			return;
@@ -118,7 +113,7 @@ PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, con
 	for(int d = 0; d < 4; ++d)
 	{
 		SetBoundingBox(label, object, d);
-		if(!CheckOverlaps(*system, object, zoom, box + zoom * zoomOffset, labels))
+		if(!CheckOverlaps(labels, system, object, zoom, box + zoomOffset * zoom))
 		{
 			direction = d;
 			return;
@@ -131,8 +126,25 @@ PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, con
 
 
 
+void PlanetLabel::Update(const Point &center, const double zoom)
+{
+	position = (objectPosition - center) * zoom;
+	radius = objectRadius * zoom;
+}
+
+
+
 void PlanetLabel::Draw() const
 {
+	// Don't draw if too far away from center of screen.
+	const double offset = position.Length() - radius;
+	if(offset >= 600.)
+		return;
+
+	// Fade label as we get farther from the center of the screen.
+	const float alpha = static_cast<float>(min(.5, max(0., .6 - offset * .001)));
+	const Color labelColor = Color(color.Get()[0] * alpha, color.Get()[1] * alpha, color.Get()[2] * alpha, 0.);
+
 	// Draw any active planet labels.
 	const Font &font = FontSet::Get(14);
 	const Font &bigFont = FontSet::Get(18);
@@ -142,26 +154,26 @@ void PlanetLabel::Draw() const
 	double innerAngle = LINE_ANGLE[direction];
 	double outerAngle = innerAngle - 360. * GAP / (2. * PI * radius);
 	Point unit = Angle(innerAngle).Unit();
-	RingShader::Draw(position, radius + INNER_SPACE, 2.3f, .9f, color, 0.f, innerAngle);
-	RingShader::Draw(position, radius + INNER_SPACE + GAP, 1.3f, .6f, color, 0.f, outerAngle);
+	RingShader::Draw(position, radius + INNER_SPACE, 2.3f, .9f, labelColor, 0.f, innerAngle);
+	RingShader::Draw(position, radius + INNER_SPACE + GAP, 1.3f, .6f, labelColor, 0.f, outerAngle);
 
 	if(!name.empty())
 	{
 		Point from = position + (radius + INNER_SPACE + LINE_GAP) * unit;
 		Point to = from + LINE_LENGTH * unit;
-		LineShader::Draw(from, to, 1.3f, color);
+		LineShader::Draw(from, to, 1.3f, labelColor);
 
 		double nameX = to.X() + (direction < 2 ? 2. : -bigFont.Width(name) - 2.);
-		bigFont.DrawAliased(name, nameX, to.Y() - .5 * bigFont.Height(), color);
+		bigFont.DrawAliased(name, nameX, to.Y() - .5 * bigFont.Height(), labelColor);
 
 		double governmentX = to.X() + (direction < 2 ? 4. : -font.Width(government) - 4.);
-		font.DrawAliased(government, governmentX, to.Y() + .5 * bigFont.Height() + 1., color);
+		font.DrawAliased(government, governmentX, to.Y() + .5 * bigFont.Height() + 1., labelColor);
 	}
 	Angle barbAngle(innerAngle + 36.);
 	for(int i = 0; i < hostility; ++i)
 	{
 		barbAngle += Angle(800. / (radius + 25.));
-		PointerShader::Draw(position, barbAngle.Unit(), 15.f, 15.f, radius + 25., color);
+		PointerShader::Draw(position, barbAngle.Unit(), 15.f, 15.f, radius + 25., labelColor);
 	}
 }
 
