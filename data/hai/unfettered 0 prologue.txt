@@ -1173,6 +1173,7 @@ mission "<uhai> 3: Recover Jump Drives"
 			action
 				clear "unfettered: took Si-Ra' gold"
 				clear "unfettered: took Si-Ra' weapons"
+				"unfettered rep: Si-Ra" ++
 			`	"<first> was also the name of my mentor, ye know. Always flying a Sparrow, that one. Told him it'd get him in trouble one day, but he never listened... t'was a cheerful lad, I wonder what happened to him."`
 				to display
 					has "first name: Jack"
@@ -1216,6 +1217,8 @@ mission "<uhai> 3: Jump Drive Vault"
 				"unfettered rep: Si-Ra" --
 			`	He makes some kind of sign you do not understand, but it seems pretty clear he wants you to keep quiet. Looking around, you notice the two of you have attracted quite a bit of attention from the impoverished locals. While they all seem to have nothing to lose, the vast majority of them are very young and probably not the hardened criminals you had expected.`
 			label discreet
+			action
+				"unfettered rep: Si-Ra" ++
 			`	After skirting the outskirts of the shanty town, you head further into the mountains, and eventually you spot what appears to be a local in the distance. Though he did not seem to be following you, something seems odd about him, but you cannot pinpoint what.`
 			`	Continuing up the mountain, more and more you get the impression that this vault is no simple, small depot. This is confirmed when you pass several security turrets, and, while it is safe to assume that even more defenses are hidden, you wonder why any would be left in plain sight around a "hidden" depot. Crossing a ridge, you begin to notice that some of your surroundings look strange, as the mountain has only been affected by the elements in some places and not others. Suddenly, the armored Hai stops and raises a hand high, palm open. Recognizing the sign, you stop as well.`
 			`	The Hai reaches for some kind of device in his pocket and enters what you assume to be access codes. By the look on his face, it doesn't seem to be working very well. "Blimey, someone else has accessed the vault. This was not expected," he hisses as his grip tightens on his weapon, and he dons his helmet. "Stay here. I will take care of this."`
@@ -1264,7 +1267,6 @@ mission "<uhai> 3: Jump Drive Vault"
 				not "unfettered: dumb Si-Ra question"
 			`	"Why are you asking about this again? Are you trying to provoke me? I shall explain one last time.`
 			action
-				clear "unfettered: dumb Si-Ra question"
 				"unfettered rep: Si-Ra" --
 			label notagain
 			`	"We needed to act discreetly, so we would have the time to check the status of the jump drives without being swarmed by opportunist pirates. More people would have only attracted more attention and been more targets for the vault's defenses against. As ye have probably noticed, we have not accessed this vault for quite some time. Some unfettered humans could have snuck in and sabotaged the jump drives, like they did with the turrets." You have a hunch that there could be more to all this than what he's admitting.`
@@ -1282,6 +1284,7 @@ mission "<uhai> 3: Jump Drive Vault"
 				launch
 	on accept
 		outfit "Jump Drive" 4
+		clear "unfettered: dumb Si-Ra question"
 	npc evade
 		government "Cerberus"
 		personality disables plunders vindictive
@@ -1424,15 +1427,16 @@ mission "<uhai> 4: Scan Geocoris"
 				"unfettered rep: Mera" --
 			`	She clench her fist, visibly angry for a moment, before calming down. "Alright, but it will take a while for me to get someone else to scan a Geocoris, and we're missing a significant opportunity."`
 			choice
-				`	"Not my problem."`
 				`	"Okay, okay. I changed my mind."`
 					goto choose
+				`	"Not my problem."`
+					decline
 		log "People" "Mera" `An Unfettered engineer who is interested in ship designs of all kinds. She is easily excited by new technologies and ships, and seems to communicate partly trough her bodily language.`
 	on decline
 		event "unfettered: analyzed the scans" 30 60
 	on abort
 		dialog `Mera hails you when she learns of you aborting this mission. "This will slow us down significantly, by a month at least."`
-		"unfettered rep: Mera" --
+		"unfettered rep: Mera" -= 2
 		event "unfettered: analyzed the scans" 30 60
 	on waypoint
 		dialog `You do not see the Geocoris that Mera mentioned; it's probably in a system nearby. You should land and depart when it arrives.`

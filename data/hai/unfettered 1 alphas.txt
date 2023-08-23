@@ -612,6 +612,7 @@ mission "<uhai> 6: Taking Off With Hai Fleet"
 			label recovered
 			action
 				clear "midas: tracker relay"
+				"midas: wronged" ++
 			`	Once you recovered, she explains. "Someone had placed a tracker on your shoulder. A very nasty kind of tracker, wired with communications capabilities, and I did not want to find out what else it could do before shooting it. Sorry if I took you by surprise, Captain, but you did well to warn us, and the governor will reward you justly for it once we arrive at the destination."`
 			label leave
 			branch otherships
@@ -859,9 +860,6 @@ mission "<uhai> 7: Stolen Cargo"
 			label "allies died"
 			`	You are left wondering who those mysterious allies coming to help you were. Their death will probably mean you won't ever be able to have missions from their organization. They may even seek revange.`
 	to fail
-		# only fails if you kill them, not saving them only means you won't have any other missions with them.
-		has "midas: thorn talon murdered"
-	to fail
 		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
@@ -927,7 +925,24 @@ mission "<uhai> 7: Cavalry Arrives"
 		government "Shadow"
 		personality entering heroic uninterested staying mute
 		ship "Sea Dragon" "Thorn"
+		on provoke
+			dialog `The ships both hail you, "What exactly do you think you are doing, <first> <last>? Nemo Me Impune Laccessit. You do not want to know what it means."`
+		on kill
+			"midas: wronged" ++
+			set "midas: thorn assassination"
+			event "midas: thorn talon vengeance" 360
+			dialog `You receive an ominous and final message of defiance, "Nemo me impune lacessit!"`
+	npc save
+		government "Shadow"
+		personality entering heroic uninterested staying mute
 		ship "Sea Dragon" "Talon"
+		on provoke
+			dialog `The ships both hail you, "What exactly do you think you are doing, <first> <last>? Nemo Me Impune Laccessit. You do not want to know what it means."`
+		on kill
+			"midas: wronged" ++
+			set "midas: talon assassination"
+			event "midas: thorn talon vengeance" 360
+			dialog `You receive an ominous and final message of defiance, "Nemo me impune lacessit!"`
 	# the Korath see this as an opportunity to hunt some Alpha dogs.
 	npc
 		government "Korath"
@@ -957,30 +972,6 @@ mission "<uhai> 7: Cavalry Arrives"
 		not "<uhai> 7: Stolen Cargo: active"
 	on fail
 		"unfettered rep: Sookootow" --
-		conversation
-			branch completed
-				has "<uhai> 7: Stolen Cargo: done"
-			branch betrayed
-				"reputation: Shadow" < 0
-			branch failed
-				has "<uhai> 7: Stolen Cargo: failed"
-			action
-				set "midas: thorn talon death"
-			`One of the ships, Thorn, or Talon, got killed. You will need to restart the mission in order to progress further with the Shadow of Mintaka.`
-				decline
-			label betrayed
-			action
-				set "midas: thorn talon murdered"
-				"midas: wronged" ++
-				set "midas: thorn talon death"
-				event "midas: thorn talon vengeance" 360
-			`You receive an ominous message of defiance, "Nemo me impune lacessit."`
-				decline
-			label failed
-			`You gave up on fixing the Unfettered cargo situation.`
-				decline
-			label completed
-			`Once alone in your quarters you hear a voice, "Well done, <last>."`
 
 
 
@@ -1471,6 +1462,7 @@ mission "<uhai> 9: Alpha Base"
 			`	There are also multiple flight logs. It seems they had been using this Auxiliary as a mobile base and for bringing jump drives to the Unfettered. These logs probably contain indications of where they have been getting the jump drives, but analyzing all of them will take more time. It doesn't take much, though, to notice they have spent significant time near Korath Exile territory. It is now time to leave the planet and go see the Chiefs.`
 			label warning
 			`	"Before leaving, you remember that the Unfettered want you to show them the Auxiliary, and they probably expect you to land with it as flagship. Make sure you bring all 10 jump drives back in your cargo or on the flagship, and that you keep this ship alive at all cost. It may be wise to wait a bit and replenish your fuel in this system."`
+			# She will warn you if she likes you.
 			branch accept
 				has "unfettered rep: Mera"
 		outfit "Jump Drive" 10

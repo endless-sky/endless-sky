@@ -233,7 +233,7 @@ mission "<uhai> 13: Better Translator"
 		dialog `Choot'k managed to get out from the ship before it exploded, by heading to an escape hatch when it started getting messy. His suit protected him from space long enough for a Hai ship to pick him off. However, he will probably not attempt something like this again...`
 	on complete
 		"unfettered rep: Choot'k" ++
-		"unfettered rep: Mera" ++
+		"unfettered rep: Mera" += 2
 		log `Went to Hai-home with Choot'k to gather some data on the Sestor language from before the raids started. We got attacked by Cerberus, they were probably after him.`
 		clear "unfettered: stopped on hai-home"
 		clear "unfettered: why give info"
@@ -489,7 +489,7 @@ mission "<uhai> 18: Hai Language"
 					accept
 			label met
 			action
-				"unfettered rep: He-Yi" ++
+				"unfettered rep: He-Yi" += 2
 			`	"We suspected that to be the case, but you do well to be frank by telling us. You can go to Warfeed, where He-Yi will give you a mission to earn a translator."`
 				decline
 	on visit

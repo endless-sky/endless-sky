@@ -670,7 +670,7 @@ mission "<uhai> 6 B: To The Wolves"
 	to complete
 		has "<uhai> 6 A: Loyal Escort: failed"
 	on complete
-		"unfettered rep: Sookootow" --
+		"unfettered rep: Sookootow" -= 2
 		"reputation: Midas" <?= -1000
 		clear "unfettered: stopped on Greenbloom"
 		log `The plan was to escort a Hai fleet carying supplies and passengers into Unfettered space but an opportunity to feed them to the wolves instead was presented, and taken.`
@@ -720,9 +720,9 @@ mission "<uhai> 7: Duel"
 		ship "Sea Dragon" "Talon"
 		on kill
 			dialog `Killing at least one of the twins will have consequences with the Shadow of Mintaka. As they said, "nemo me impune lacessit!" The Unfettered may refrain from offering you missions, for disrespecting the sacred rules of the duel, if they get wind of this.`
-			set "midas: thorn talon death"
-			set "midas: thorn talon murdered"
-			"midas: wronged" ++
+			set "midas: thorn assassination"
+			set "midas: talon assassination"
+			"midas: wronged" += 2
 			event "midas: thorn talon vengeance" 180
 			log `Destroyed mysterious ships that serve the 'Sadow of Mintaka' in a duel. What's the worst that could happen? No idea if the Unfettered will forgive this act.`
 		conversation
@@ -745,7 +745,6 @@ mission "<uhai> 7: Duel"
 				to display
 					has "midas: won the duel"
 
-# vengeance will come
 event "midas: thorn talon vengeance"
 	"reputation: Shadow" <?= -1000
 	# super high bribe for when they attack you
