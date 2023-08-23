@@ -107,9 +107,9 @@ namespace {
 
 	bool HasClearance(const PlayerInfo &player, const Planet *planet)
 	{
-		auto CheckClearance = [&planet](const Mission &mission) -> bool
+		auto CheckClearance = [&player, &planet](const Mission &mission) -> bool
 		{
-			return mission.HasClearance(planet);
+			return mission.HasClearance(player, planet);
 		};
 		return any_of(player.Missions().begin(), player.Missions().end(), CheckClearance);
 	}
