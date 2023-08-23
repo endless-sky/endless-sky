@@ -499,9 +499,9 @@ ship "Rai'alorej"
 		angle 270
 	turret -96.5 -129.5 "Langrage Hyper-Heaver"
 	turret 96.5 -129.5 "Warder Anti-Missile"
+	turret 36.5 -55.5 "Banisher Grav-Turret"
 	turret -62.5 55 "Warder Anti-Missile"
 	turret 62.5 55 "Langrage Hyper-Heaver"
-	turret 36.5 -55.5 "Banisher Grav-Turret"
 	bay "Fighter" -115 -152
 		angle 30
 		"launch effect" "korath internal"
