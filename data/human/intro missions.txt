@@ -485,7 +485,7 @@ mission "Intro [3 Interceptor]"
 				goto more
 
 			label safety
-			`	James takes a moment to think before responding, "Go where pirates aren't welcome," he says. "The Navy heavily patrols the Paradise Worlds and pirates don't last long in the Deep. There are some systems in the dirt belt with a strong navy presence and high quality asteroids. You could also go to the Quarg systems and you won't be bothered. Just know that danger and opportunity go together so you'll often find lucrative mining in uninhabited spaces and around pirate worlds."`
+			`	James takes a moment to think before responding, "Go where pirates aren't welcome," he says. "The Navy heavily patrols the Paradise Worlds and pirates don't last long in the Deep. There are some systems in the dirt belt with a strong Navy presence and high quality asteroids. You could also go to the Quarg systems and you won't be bothered. Just know that danger and opportunity go together so you'll often find lucrative mining in uninhabited spaces and around pirate worlds.`
 				goto more
 
 			label pirates
