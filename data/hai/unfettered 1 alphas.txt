@@ -357,7 +357,7 @@ mission "<uhai> 5: Auxiliary Scans"
 			`	"Worry not, I did not want to talk to you about the drag of that ship, or its shield matrix. Although they are very interesting, to be sure!"`
 			label questions
 			action
-				"unfettered: Mera's favor" ++
+				"unfettered rep: Mera" ++
 			# SPOILER: She almost reveals to you the existence of the old super drone carrier project; the Lycosidae.
 			`	"I already have access to the specs of the ship. My questions are mostly related to how well they fare in battle. As far as I know, we have never seriously tried ships carrying fighters before. Well, to be fair, we did-" She stops herself, shaking her head. This is probably not something she can talk to you about. "We, hum, did - think of it. We just never tested them in battle.`
 			`	"The limitations could have been the ethical implications, but I think it was mostly due to technical difficulties building a ship large enough to contain and launch multiple interceptor-like crafts. I want to know how effective they are and how are they countered." She is clearly very excited to learn more about them, as her moving tail shows.`
@@ -956,7 +956,7 @@ mission "<uhai> 7: Cavalry Arrives"
 	to fail
 		not "<uhai> 7: Stolen Cargo: active"
 	on fail
-		"unfettered: upset Sookootow" ++
+		"unfettered rep: Sookootow" --
 		conversation
 			branch completed
 				has "<uhai> 7: Stolen Cargo: done"
@@ -1187,17 +1187,17 @@ mission "<uhai> 9: Alpha Quest"
 				`	(Enter the stadium and go see them.)`
 				`	(I don't have time right now.)`
 					defer
-			`	Seeing you approach, one of the leaders steps forward, and you recognize Sookootow. "It seems you are an enemy of the unfettered humans. We cannot risk a disruption in our supply of jump drives. You may have provided some to us, but so did they," He says, speaking almost theatrically, with big geastures, "Because of this, we have a task to ask of you. Should you accept, you would be able to join us - still not officially for now, but all good things come in time." You assume that by unfettered humans he means the Alphas.`
+			`	Seeing you approach, one of the leaders steps forward, and you recognize Sookootow. "It seems you are an enemy of the unfettered humans. We cannot risk a disruption in our supply of jump drives. You may have provided some to us, but so did they," He says, speaking almost theatrically, with big geastures, "We have a task to ask of you. Should you accept, you would be able to join us - still not officially for now, but all good things come in time." You assume that by unfettered humans he means the Alphas.`
 			choice
 				`	"What is it you want me to do? I don't like these Alphas."`
 					goto hate
 				`	"Who supplies your jump drives is none of my concern."`
-			`	"Good, and neither should it be, but if you want to join us, you will have to prove yourself. Beat that Auxiliary and bring back any loot you may find."`
+			`	"Good, and neither should it be, but if you want to join us, you will have to prove yourself. Beat that Auxiliary and bring back any loot you may find, we will reward you handsomely for it."`
 				goto next
 			label hate
 			`	"Perfect! We want you to prove your worth. Beat that 'Alpha' Auxiliary and return here for the greatest reward you can imagine."`
 			label next
-			`	"And while you're at it, find out where they are getting these jump drives from. You can become our new supplier for even richer rewards. Of course, if you cannot obtain such information, we will at least ask for proof that you have taken on the 'Alphas', by bringing their ship back."`
+			`	"And while you're at it, find out where they are getting these jump drives from. You can become our new supplier for even richer rewards. Of course, if you cannot obtain such information, we will at least ask for proof that you have taken on these 'Alphas', by bringing their ship back."`
 			choice
 				`	"How can I find them?"`
 				`	"I already know the way."`
@@ -1227,6 +1227,10 @@ mission "<uhai> 9: Capture The Alpha Auxiliary"
 	description `You found out that the Auxiliary has a problem with its jump drive. Try and find the traces Mera pointed out around the system you last saw it in, and then capture it. You need to land with that Auxiliary as your flagship, and all jump drives you may find.`
 	source "Firelode"
 	destination "Darkcloak"
+	substitutions
+		<Veteran> "The veteran"
+		<Veteran> "Choot'k"
+			has "Hai Reveal [B03] Contact Giti: done"
 	to offer
 		has "<uhai> 9: Alpha Quest: done"
 	on offer
@@ -1269,7 +1273,7 @@ mission "<uhai> 9: Capture The Alpha Auxiliary"
 				goto information
 			label scanned
 			action
-				"unfettered: Mera's favor" ++
+				"unfettered rep: Mera" ++
 			`	She moves her head to the side, surprised, "You... Did? Let me take a look at it then," she asks, and you give her the details. "It seems like this ship was outfitted for speed rather than combat, luckily for you. They are using 2 Tracker Pods, 2 Bullfrogs and one combo of turrets that disrupt shields and slice trough hull. I am not much of a strategist so I'll let you decide what to make out of this intel," she says, before taking another look at the logs. And almost jumping in place, "Wait! They have a Systems Core, and plenty of fuel. That must mean that the damage to their ship should have been repaired very quickly. The trail could run cold very quickly in that case, I'd advise you to head east as soon as you can." She stops for a second, unsure what to say, "No, that can't be. Anyway, back to the damage suffered to their ship."`
 			choice
 				`	(Let her continue.)`
@@ -1282,7 +1286,7 @@ mission "<uhai> 9: Capture The Alpha Auxiliary"
 			label agree
 			`	You were ready to go, but she seems to have something more to say. "Oh, and one last thing before you leave: the base is probably far away, so I would advise taking some fuel pods.`
 			branch nogift
-				"unfettered: Mera's favor" < 2
+				"unfettered rep: Mera" < 2
 			`	"In fact, here is a gift for you to help with that: a Fuel Processor. Don't ask how I got it and you can keep it, deal?`
 			action
 				outfit "Fuel Processor"
@@ -1370,10 +1374,10 @@ mission "<uhai> 9: Capture The Alpha Auxiliary"
 			`	They approve of your risen fist, and seem happy you understand their culture.`
 				goto stadium
 			label bow
-			`	It does not seem to be the right reaction at all. They shout at you; all form of respect is gone. One very shocked Unfettered soldier even tries to shoot you for this insult! It looks like you have shown yourself to be weak to them. After some time, a warlord arrives and calms them down.`
+			`	It does not seem to be the right reaction at all. They shout at you; all form of respect is gone. One very shocked Unfettered soldier even tries to shoot you for this insult! It looks like you have shown yourself to be weak to them. After some time, a warlord arrives and calms them down by rising their blade, that shines brightly enough to draw their attention.`
 			label stadium
-			`	The crowd lead you to the stadium.`
-			`	The council seems surprised to see you return, especially the Unfettered warlord that annoyed you earlier, but they address you with a deeper respect than before. "You have proven yourself. Now we have almost enough jump drives for the next phase..." You look at them intensely, and after a few moments they realize, "Oh right, your payment! Here it is: <payment>! From now on, you will be referred to as herald."`
+			`	The crowd leads you to the stadium.`
+			`	The council seems surprised to see you return, especially the Unfettered warlord that annoyed you earlier, but they address you with a deeper respect than before. "You have proven yourself. Now we have almost enough jump drives for the next phase..." You look at them intensely, and after a few moments they realize, "Oh right, your payment! Here it is: <payment>! From now on, you will be referred to as Herald."`
 			choice
 				`	"I have found Korath prisoners on the Alpha ship."`
 			`	This seems to trouble them deeply. They are split between those who want to interrogate the Korath for their technological secrets, and those who still remember too freshly the horrors of the Korath raids. The Chiefs are now the most active ones - some show scars or speak of lost family, others insult the Korath. A few, however, keep their calm.`
@@ -1381,9 +1385,11 @@ mission "<uhai> 9: Capture The Alpha Auxiliary"
 			`	You recognize Choot'k, he looks different without his armor but there can be no doubts that it's him.`
 				to display
 					has "Hai Reveal [B03] Contact Giti: done"
-			`	"We have lost much, so much. Too much... But so have they. They are victims of that war as much as we are. And the raids happened long ago, so I did not fight these Korath, I fought their ancestors. If we view it as fair to raid the Wanderers today, we must see what the Korath did in the same way. The Korath did not always raid us, there was a time of peace. That peace ended when they asked for our help in their war, and we declined... Now, like then, these ones need our help. They should be considered assets at the very least, not prisoners. They could help us against the soulless killers."`
+			`	"We have lost much, so much. Too much... But so have they. They are victims of that war as much as we are. The raids happened long ago, I didn't fight these Korath, I fought their ancestors. If we view it as fair to raid the Wanderers today, we must see what the Korath did in the same way.`
+			# soulless killers = automatons
+			`	"But even then, they did not always raid us, there was a time of peace. That peace ended when they asked for our help in their war, and we declined... Now, like then, they need our help. They should be considered assets at the very least, not prisoners. They could help us against the soulless killers."`
 			`	This mention set off much murmuring, you can feel that not everyone agrees with what he said, but he has enough influence that they will not argue about it, at least for now. You wonder what the soulless killers could be, but feel like now is not the time to ask.`
-			`	The veteran speaks again, "Now, would you show these Korath to me?"`
+			`	<Veteran> speaks again, but directly to you this time, "Now, would you show these Korath to me?"`
 			choice
 				`	"Sure."`
 					goto auxiliary
@@ -1391,19 +1397,19 @@ mission "<uhai> 9: Capture The Alpha Auxiliary"
 			`	"I want to see if I recognize them," he says, seeming sincere. You agree to take him to them, warning him of their condition.`
 			label auxiliary
 			action
-				"unfettered: Choot'k grateful" ++
+				"unfettered rep: Choot'k" ++
 			# If you did not give the logs to the UHai or not notice them, he'll retrieve them here, without you noticing.
-			`	You take him to the Auxiliary, alone, as he insists to, unsure how some may react. When you enter the medical facility of the Auxiliary, the Korath are already speaking between themselves, and he seems surprised, stopping himself at the door. "I... I recognize that language! It brings back memories... I may not be ready to face them yet. But I'll arrange for their transport to our most advanced medical facility, I expect it will be months before they are back on their feet, and we have plans for them when they do. It would be best if you could help us then, since you are the one that rescued them." On the way out he addresses what seems to be the first Hai he sees with that task, and they get to it straight away. You then go back to the stadium.`
-			`	They discuss among themselves again, then the warlord from earlier speaks, seemingly with a heavy burden. "Now that you officially work for us, you will receive a daily share of 1000 credits. We will not make you wear our colors yet, because it could cause problems with the Hai. We wish for you to be free to travel in their territory." They then make the necessary preparations to transfer the Korath out of your ship, after stabilizing them as much as possible.`
+			`	You take him to the Auxiliary, alone, as he insists, unsure how some may react. When you enter the medical facility, the Korath are already speaking between themselves, and he seems surprised, stopping himself at the door. "I... I recognize that language! It brings back memories... I may not be ready to face them yet. But I'll arrange for their transport to our most advanced medical facility, I expect it will be months before they are back on their feet, and we have plans for them when they do. It would be best if you could help us then, since you are the one that rescued them." On the way out he addresses what seems to be the first Hai he sees with that task, and they get to it straight away. You then go back to the stadium.`
+			`	When you arrive they are discussing among themselves again, and the warlord from earlier speaks as he sees you, seemingly with a heavy burden. "Now that you officially work for us, you will receive a daily share of 1000 credits. We will not make you wear our colors yet, because it could cause problems with the Hai and the aliens up north. We wish for you to be free to travel in their territory." They then make the necessary preparations to transfer the Korath out of your ship, after stabilizing them as much as possible.`
 			branch logs
 				has "<uhai> 9: Alpha Base: done"
-			# The Alpha logs self destructed if you didn't make a copy of them earlier.
+			# The Alpha logs self-destruct if you didn't make a copy of them earlier.
 			`	Having nothing more to show the Unfettered, you leave. This leaves you wondering if there was something hidden in the Auxiliary, but after a short inspection you summize that if there was, it is no longer there now.`
 				decline
 			label logs
 			choice
-				`	"There are logs on my ship, apparently speaking about the source of the jump drives. I will send them to you."`
-				`	"Did you know that the Alphas intended the leak, to lure me into a trap?"`
+				`	"There are logs on my ship, certainly speaking about the source of the jump drives. I will send them to you."`
+				`	"Did you know that the Alphas faked the leak?"`
 					goto setup
 				`	(Do not speak to them about the logs.)`
 					decline
@@ -1446,10 +1452,11 @@ mission "<uhai> 9: Alpha Base"
 		clear "unfettered: captured the auxiliary"
 		set "alpha: host found"
 		conversation
-			`You do a detailed scan of the Alpha base to see if there are any more Jump Drives or anyone who could have witnessed the fight. You cannot retrieve any information: it seems to either be too deep or at least shielded from scans in some way. You will have to go in blind.`
-			`	The doors of the hangar open to let you in. Maybe it is an automated response to this ship, or whoever is down here assumed the Alphas won the fight. That said, if there is anyone here, it's probably a skeleton crew.`
-			`	You and your crew carefully exit your ship, but you see no signs of life here. They could be hidden, so you proceed cautiously, looking for the jump drive vault. On the way you hear sounds - sounds that definitely did not originate from humans. Heading that way, you find a brig full of Korath slaves, with a lizard head displayed above the cells. They seem to have been prisoners of the Alphas, and you find what appears to be a crudely rigged translation device with them. They do not look to be in a state to talk about anything though, so you should probably take them to Darkcloak and talk to the Chiefs about this. Hopefully the Korath will have recovered by then. You notice one has a very serious injury to his leg, it seems that it has been partially replaced by a crude prosthetic. He may not survive the transport.`
-			`	You find the Jump Drives easily enough, close to the hangar. There are ten here, and you load them all onto your ship. It seems the base was abandoned for some reason.`
+			`You do a detailed scan of the Alpha base to see if there are any more jump drives, or anyone who could have witnessed the fight. You cannot retrieve any information: it seems to either be too deep or shielded from scans in some way. You will have to go in blind.`
+			`	Surprisingly, the doors of the hangar open to let you in. Maybe it is an automated response to this ship, or whoever is down here assumed the Alphas won the fight. That said, if there is anyone here, it's probably a skeleton crew.`
+			`	You and your crew carefully exit your ship, but you see no signs of life here. They could be hidden, so you proceed cautiously, looking for the jump drive vault. On the way you hear sounds - sounds that definitely did not originate from humans. Heading that way, you find a brig full of Korath slaves, with a lizard head displayed above the cells. They seem to have been prisoners of the Alphas, and you find what appears to be a crudely rigged translation device next to their cell.`
+			`	The captives themselves must have endured a lot, you should take them to Darkcloak and ask the Chiefs for help. You notice one of them has a very serious injury to their leg, it seems that it has been partially replaced by a crude prosthetic. He may not survive the transport.`
+			`	You find the jump drives easily enough, close to the hangar. There are ten here, and you load them all onto your ship. It seems the base was abandoned for some reason, but you can find no bodies or signs of an attack. Deciding to not overstay your welcome, you head back to the Auxiliary.`
 			choice
 				`	(Explore the Auxiliary.)`
 				`	(Leave the planet.)`
@@ -1460,16 +1467,14 @@ mission "<uhai> 9: Alpha Base"
 				`	(Better not dig too deep.)`
 					goto warning
 			`	You find out the particles were created deliberately as a lure to draw you into the ambush here. Indeed the instructions to lay those weird traces were explained to these mercenaries in detail. Thankfully, you were tougher than they anticipated and secured victory for yourself. Did the Unfettered know about this, or did Mera really think it was a jump drive malfunction?`
-			`	You find a few squirrel symbols, and a fist that could indicate they forced them to. The Alphas seem to often communicate using simple symbols for their logs as a primitive code, on top of the more serious encryptions used for sensitive information. Going deeper into these recent logs of activities, you find a monkey symbol, with an eye next to it. But it is not all, there is a symbol of a crossed portal, with a red skull icon.`
+			`	You find a few squirrel symbols, and a fist that could indicate they were coerced. The Alphas seem to often communicate using simple symbols for their logs as a primitive code, on top of the more serious encryptions used for sensitive information. Going deeper into these recent logs of activities, you find a monkey symbol, with an eye next to it. But it is not all, there is a symbol of a crossed portal, with a red skull icon.`
 			`	There are also multiple flight logs. It seems they had been using this Auxiliary as a mobile base and for bringing jump drives to the Unfettered. These logs probably contain indications of where they have been getting the jump drives, but analyzing all of them will take more time. It doesn't take much, though, to notice they have spent significant time near Korath Exile territory. It is now time to leave the planet and go see the Chiefs.`
-				accept
 			label warning
-			"Before leaving, you remember that the Unfettered want you to show them the Auxiliary, and they probably expect you to land with it as flagship. Make sure you bring all 10 jump drives back in your cargo or on the flagship, and that you keep this ship alive at all cost. It may be wise to wait a bit and replenish your fuel in this system."
+			`	"Before leaving, you remember that the Unfettered want you to show them the Auxiliary, and they probably expect you to land with it as flagship. Make sure you bring all 10 jump drives back in your cargo or on the flagship, and that you keep this ship alive at all cost. It may be wise to wait a bit and replenish your fuel in this system."`
+			branch accept
+				has "unfettered rep: Mera"
 		outfit "Jump Drive" 10
-	on enter "Host"
-		dialog "Before leaving, you remember that the Unfettered want you to show them the Auxiliary, and they probably expect you to land with it as flagship. Make sure you bring all 10 jump drives back in your cargo or on the flagship, and that you keep this ship alive at all cost. It may be wise to wait a bit and replenish your fuel in this system."
 	on enter "Ehma Ti" "Hi Yahr" "Wah Yoot"
-		# Would be good to make it only display if you didn't annoy her but not sure how to do that without requiring a separate mission for it.
 		dialog `When you arrive in the Unfettered system, the authorities relay a message from Mera to you, "I am sorry, <first>, obviously I was wrong. The particles were left on purpose by the Alphas, evidently hoping I would tell you to go after those. I am not going to pretend I had no idea - it was something in the back of my mind, since a normal Captain just appeared to find these specific particles so conveniently."`
 
 
@@ -1500,7 +1505,6 @@ phrase "cerberus hails"
 		"Do you even know what you have gotten yourself into?"
 		"You will never go beyond that simple, mortal, shell!"
 		"Maybe in death you will find peace."
-		# secret language:
 		# the (reality destroyer/dimensional eraser) will be made safe
 		"Kashalam Eshar!"
 		# you will never be "prime"

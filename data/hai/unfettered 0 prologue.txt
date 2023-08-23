@@ -533,7 +533,7 @@ phrase "Essential Unfettered Mission Fail If Killed"
 # Mem'he: fast
 # Toor: enduring
 substitutions
-	"<uhai>" "Unfettered: Path To Glory"
+	"<uhai>" "Triumph of the True Hai"
 	"<, unfettered title>" ", monkey"
 	"<, unfettered title>" ", space-monkey"
 		has "Unfettered Jump Drive 1: offered"
@@ -1090,7 +1090,7 @@ mission "<uhai> 3: Recover Jump Drives"
 				`	"What will my cut be?"`
 					goto cut
 			action
-				"unfettered: offended Si-Ra" ++
+				"unfettered rep: Si-Ra" --
 			`	"Jump drives be a fine spot of loot amongst me people. I would not risk one by traveling through hostile space. Ye've had one yerself, so ye should know about the scurvy dogs to the south who give no quarter. The lily-livered scallywags to the north would like to see me walk the plank as well... A jump drive would be of no special help to us on this voyage." He seems disappointed by you having to ask such an obvious thing.`
 			choice
 				`	"Let's go then!"`
@@ -1124,7 +1124,7 @@ mission "<uhai> 3: Recover Jump Drives"
 		log `Helped a young Unfettered Captain to bring jump drives from a pirate world.`
 		log "People" "Si-Ra" `A young, impetuous Unfettered captain with a unique, if eccentric, grasp of your language, who seems to grow wiser by the day. He has impressive leadership and combat skills, yet always seeks to refine his tactics. He does seem to be also be a fan of acquiring bigger and bigger ships.`
 		conversation
-			`"Here be yer share: <payment>. Ye have saved me life<, unfettered title> <first>, and I shall never forget it. For this, ye have earned the right to know my name: 'Si-Ra'. It be one I earned and wear with pride. Come see me again soon if ye be up for a challenge. I'll surely be able to find one for ye even if me own ship not be ready to give ye one. In the meantime, make sure to check the job boards if ye just be looking for more runs like this one."`
+			`"Here be yer share: <payment>. Ye have saved me life<, unfettered title> <first>, and I shall never forget it. For this, ye have earned the right to know my name: 'Si-Ra.' It be one I earned and wear with pride. Come see me again soon if ye be up for a challenge. I'll surely be able to find one for ye even if me own ship not be ready to give ye one. In the meantime, make sure to check the job boards if ye just be looking for more runs like this one."`
 			label choice
 			choice
 				`	(Don't say anything).`
@@ -1154,7 +1154,7 @@ mission "<uhai> 3: Recover Jump Drives"
 				"unfettered: took Si-Ra' weapons" <= 2
 			action
 				payment -1250000
-				"unfettered: offended Si-Ra" ++
+				"unfettered rep: Si-Ra" --
 			`	"Alright, but since yer changing the deal, I be deducting an extra!"`
 				goto choice
 			label "good boy!"
@@ -1213,7 +1213,7 @@ mission "<uhai> 3: Jump Drive Vault"
 				`	"Is everything alright?"`
 				`	"There is no need to be worried, that cache must be well hidden, right?"`
 			action
-				"unfettered: offended Si-Ra" ++
+				"unfettered rep: Si-Ra" --
 			`	He makes some kind of sign you do not understand, but it seems pretty clear he wants you to keep quiet. Looking around, you notice the two of you have attracted quite a bit of attention from the impoverished locals. While they all seem to have nothing to lose, the vast majority of them are very young and probably not the hardened criminals you had expected.`
 			label discreet
 			`	After skirting the outskirts of the shanty town, you head further into the mountains, and eventually you spot what appears to be a local in the distance. Though he did not seem to be following you, something seems odd about him, but you cannot pinpoint what.`
@@ -1250,7 +1250,7 @@ mission "<uhai> 3: Jump Drive Vault"
 				decline
 			label down
 			action
-				"unfettered: offended Si-Ra" --
+				"unfettered rep: Si-Ra" ++
 			`	You get down yourself as you give the warning, then turn to see if it was heeded. The Unfettered was evidently well trained for this, as he is already on the ground and sighting his rifle. You're impressed by the precision of his weapon; the sniper is quite clearly taken out with the first shot, but your armored companion fires three more times still.`
 			`	After searching through the vault to eliminate any other surprises, the Hai declares the area cleared. Any other stalkers have probably run off after seeing the firepower your Unfettered friend carries. You then inspect the Jump Drives to the best of your ability with a device he quickly instructed you how to use, while he finishes taking care of the security systems. While waiting for him to return once you are done, you look around and notice a small symbol in the lower corner of a nearby wall: a dog with multiple heads. You double-check the Jump Drives as you continue to wait, and when the Hai captain comes back, he conveniently places his gun to hide the symbol. Best not to ask about it now.`
 			`	He switches a lever, and the electric humming you've been hearing suddenly stops. "I have disabled the holographic field generator, so yer ship can come to pick up the drives. Best have it come quickly, in the hopes it reaches us before the intruders return, in force," he suggests. You immediately order the <ship> to dock with the vault.`
@@ -1265,7 +1265,7 @@ mission "<uhai> 3: Jump Drive Vault"
 			`	"Why are you asking about this again? Are you trying to provoke me? I shall explain one last time.`
 			action
 				clear "unfettered: dumb Si-Ra question"
-				"unfettered: offended Si-Ra" ++
+				"unfettered rep: Si-Ra" --
 			label notagain
 			`	"We needed to act discreetly, so we would have the time to check the status of the jump drives without being swarmed by opportunist pirates. More people would have only attracted more attention and been more targets for the vault's defenses against. As ye have probably noticed, we have not accessed this vault for quite some time. Some unfettered humans could have snuck in and sabotaged the jump drives, like they did with the turrets." You have a hunch that there could be more to all this than what he's admitting.`
 				goto ship
@@ -1299,7 +1299,7 @@ mission "<uhai> 3: Jump Drive Vault: Attracted Attention"
 		has "<uhai> 3: Recover Jump Drives: active"
 		has "outfit (installed): Jump Drive"
 	on enter "Almaaz"
-		"unfettered: offended Si-Ra" += 2
+		"unfettered rep: Si-Ra" -= 2
 		dialog `The Unfettered "pirate" spits a string of old-timey nautical curses, but one word, which you can barely hear him mutter, stands out: "Cerberus." He then comes closer to address you directly, "There be even more of these scurvy bilge rats than I expected. I warned ye about coming here with a jump drive!"`
 	npc evade
 		government "Cerberus"
@@ -1351,7 +1351,7 @@ mission "<uhai> 4: Scan Geocoris"
 				`	"Sorry, but I'm quite busy at the moment."`
 					defer
 			action
-				"unfettered: Mera's favor" ++
+				"unfettered rep: Mera" ++
 			`	"Straight to the point! I am starting to like you."`
 				goto job
 			label know
@@ -1421,7 +1421,7 @@ mission "<uhai> 4: Scan Geocoris"
 				accept
 			label declining
 			action
-				"unfettered: Mera's favor" --
+				"unfettered rep: Mera" --
 			`	She clench her fist, visibly angry for a moment, before calming down. "Alright, but it will take a while for me to get someone else to scan a Geocoris, and we're missing a significant opportunity."`
 			choice
 				`	"Not my problem."`
@@ -1432,7 +1432,7 @@ mission "<uhai> 4: Scan Geocoris"
 		event "unfettered: analyzed the scans" 30 60
 	on abort
 		dialog `Mera hails you when she learns of you aborting this mission. "This will slow us down significantly, by a month at least."`
-		"unfettered: Mera's favor" --
+		"unfettered rep: Mera" --
 		event "unfettered: analyzed the scans" 30 60
 	on waypoint
 		dialog `You do not see the Geocoris that Mera mentioned; it's probably in a system nearby. You should land and depart when it arrives.`
