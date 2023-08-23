@@ -41,14 +41,15 @@ public:
 
 
 private:
-	void SetBoundingBox(const Rectangle &label, int direction);
+	void SetBoundingBox(const Point &labelDimensions, double angle, int nameHeight);
+	Rectangle GetBoundingBox(double zoom) const;
 
 
 private:
 	Point objectPosition;
 	double objectRadius;
 
-	// Bounding box = box + zoomOffset * zoom.
+	// Bounding box = box + zoomOffset * zoom; only used for overlap detection.
 	Rectangle box;
 	Point zoomOffset;
 
@@ -58,9 +59,11 @@ private:
 
 	std::string name;
 	std::string government;
+	Point nameOffset;
+	Point governmentOffset;
 	Color color;
 	int hostility = 0;
-	int direction = 0;
+	double innerAngle = 0.;
 };
 
 
