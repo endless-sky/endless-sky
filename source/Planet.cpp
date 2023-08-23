@@ -643,7 +643,8 @@ string Planet::DemandTribute(PlayerInfo &player) const
 		for(const auto &fleet : defenseFleets)
 			toProvoke.insert(fleet->GetGovernment());
 		for(const auto &gov : toProvoke)
-			gov->Offend(ShipEvent::PROVOKE);
+			if(gov)
+				gov->Offend(ShipEvent::PROVOKE);
 		// Terrorizing a planet is not taken lightly by it or its allies.
 		// TODO: Use a distinct event type for the domination system and
 		// expose syntax for controlling its impact on the targeted government
@@ -677,7 +678,10 @@ void Planet::DeployDefense(list<shared_ptr<Ship>> &ships) const
 		return;
 
 	auto end = defenders.begin();
-	defenseFleets[defenseDeployed]->Enter(*GetSystem(), defenders, this);
+	if(defenseFleets[defenseDeployed]->IsValid())
+		defenseFleets[defenseDeployed]->Enter(*GetSystem(), defenders, this);
+	else
+		Logger::LogError("Warning: skipped an incomplete defense fleet of planet \"" + name + "\".");
 	ships.insert(ships.begin(), defenders.begin(), end);
 
 	// All defenders use a special personality.
@@ -737,4 +741,11 @@ string Planet::ConcatinateDescription(const DescriptionStore &content, const Con
 		if(!vars || !item.second || item.second->Test(*vars))
 			description += item.first;
 	return description;
+}
+
+
+
+bool Planet::IsDefending() const
+{
+	return isDefending;
 }
