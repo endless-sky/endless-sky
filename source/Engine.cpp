@@ -393,13 +393,6 @@ void Engine::Place()
 	ships.splice(ships.end(), newShips);
 
 	player.SetPlanet(nullptr);
-
-	// Create the planet labels.
-	labels.clear();
-	if(system)
-		for(const StellarObject &object : system->Objects())
-			if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsAccessible(flagship.get()))
-				labels.emplace_back(labels, *system, object, zoom);
 }
 
 
@@ -1362,6 +1355,13 @@ void Engine::EnterSystem()
 		Messages::Add(GameData::HelpMessage("basics 1"), Messages::Importance::High);
 		Messages::Add(GameData::HelpMessage("basics 2"), Messages::Importance::High);
 	}
+
+	// Create the planet labels.
+	labels.clear();
+	if(system)
+		for(const StellarObject &object : system->Objects())
+			if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsAccessible(flagship))
+				labels.emplace_back(labels, *system, object, zoom);
 }
 
 
