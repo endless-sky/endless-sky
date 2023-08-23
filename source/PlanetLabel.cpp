@@ -45,23 +45,6 @@ namespace {
 	constexpr double LINE_GAP = 1.7;
 	constexpr double GAP = 6.;
 	constexpr double MIN_DISTANCE = 30.;
-
-	// Check if the label for the given stellar object overlaps
-	// with any existing label or any other stellar object in the system.
-	bool CheckOverlaps(const vector<PlanetLabel> &labels, const System &system,
-			const StellarObject &object, const double zoom, const Rectangle &box)
-	{
-		for(const PlanetLabel &label : labels)
-			if(label.Overlaps(box, zoom))
-				return true;
-
-		for(const StellarObject &other : system.Objects())
-			if(&other != &object && box.Overlaps(other.Position() * zoom,
-					other.Radius() * zoom + MIN_DISTANCE))
-				return true;
-
-		return false;
-	}
 }
 
 
@@ -100,8 +83,7 @@ PlanetLabel::PlanetLabel(const vector<PlanetLabel> &labels, const System &system
 	for(const double angle : LINE_ANGLES)
 	{
 		SetBoundingBox(labelDimensions, angle, nameHeight);
-		if(!CheckOverlaps(labels, system, object, minZoom, GetBoundingBox(minZoom))
-				&& !CheckOverlaps(labels, system, object, maxZoom, GetBoundingBox(maxZoom)))
+		if(!HasOverlaps(labels, system, object, minZoom) && !HasOverlaps(labels, system, object, maxZoom))
 		{
 			innerAngle = angle;
 			break;
@@ -122,6 +104,8 @@ PlanetLabel::PlanetLabel(const vector<PlanetLabel> &labels, const System &system
 
 	// Have to adjust the more extreme angles differently or it looks bad.
 	const double yOffset = topSide ? nameHeight * 2. / 3. : bottomSide ? nameHeight / 3. : nameHeight * .5;
+
+	// Cache the offsets for both labels.
 	nameOffset = Point(rightSide ? 2. : -bigFont.Width(name) - 2., -yOffset);
 	governmentOffset = Point(rightSide ? 4. : -font.Width(government) - 4., nameOffset.Y() + nameHeight + 1.);
 }
@@ -178,13 +162,6 @@ void PlanetLabel::Draw() const
 
 
 
-bool PlanetLabel::Overlaps(const Rectangle &otherBox, const double zoom) const
-{
-	return GetBoundingBox(zoom).Overlaps(otherBox);
-}
-
-
-
 void PlanetLabel::SetBoundingBox(const Point &labelDimensions, const double angle, const int nameHeight)
 {
 	const Point unit = Angle(angle).Unit();
@@ -207,4 +184,24 @@ void PlanetLabel::SetBoundingBox(const Point &labelDimensions, const double angl
 Rectangle PlanetLabel::GetBoundingBox(const double zoom) const
 {
 	return box + zoomOffset * zoom;
+}
+
+
+
+// Check if the label for the given stellar object overlaps
+// with any existing label or any other stellar object in the system.
+bool PlanetLabel::HasOverlaps(const vector<PlanetLabel> &labels, const System &system,
+		const StellarObject &object, const double zoom) const
+{
+	const Rectangle box = GetBoundingBox(zoom);
+
+	for(const PlanetLabel &label : labels)
+		if(box.Overlaps(label.GetBoundingBox(zoom)))
+			return true;
+
+	for(const StellarObject &other : system.Objects())
+		if(&other != &object && box.Overlaps(other.Position() * zoom, other.Radius() * zoom + MIN_DISTANCE))
+			return true;
+
+	return false;
 }

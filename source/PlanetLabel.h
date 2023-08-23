@@ -36,12 +36,13 @@ public:
 
 	void Draw() const;
 
-	bool Overlaps(const Rectangle &box, double zoom) const;
-
 
 private:
+	// Overlap detection.
 	void SetBoundingBox(const Point &labelDimensions, double angle, int nameHeight);
 	Rectangle GetBoundingBox(double zoom) const;
+	bool HasOverlaps(const std::vector<PlanetLabel> &labels, const System &system,
+		const StellarObject &object, double zoom) const;
 
 
 private:
