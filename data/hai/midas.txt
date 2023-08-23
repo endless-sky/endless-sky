@@ -845,10 +845,31 @@ mission "Midas: Daemons Unleashed"
 	npc
 		system "Wah Yoot"
 		government "Shadow"
-		personality heroic nemesis mute
+		personality heroic staying nemesis mute
 		ship "Tick" "Hell Unleashed"
 		ship "Tick" "Fire Incarnate"
 		ship "Far Lek 14" "Phoenix"
+	npc
+		system "Wah Yoot"
+		government "Shadow"
+		personality heroic staying nemesis mute
+		ship "Sea Scorpion" "Thorn wishes Talon"
+		to spawn
+			or
+				not "midas: talon assassination"
+				not "midas: thorn assassination"
+		on kill
+			set "midas: thorn assassination"
+			set "midas: talon assassination"
+	npc kill
+		system "Wah Yoot"
+		government "Shadow"
+		personality disables plunders harvests staying
+		ship "Marauder Firebird (Bars)" "Dark Angel"
+		to spawn
+			not "midas: angel assassination"
+		on kill
+			set "midas: angel assassination"
 	npc
 		system "Wah Yoot"
 		government "Midas"

@@ -94,7 +94,7 @@ mission "<uhai> 10: Belt Materials"
 		outfit "Silver" -20
 		payment 500000
 		conversation
-			`You bring your cargo directly to the Unfettered shipyards, and you can see huge ships being built in the distance - it might be worth checking on another day, after they put some of the materials you brought into practise. You also notice that not all materials are brought to the shipyards, some are simply sent to more rural areas.`
+			`You bring your cargo directly to the Unfettered shipyards, and you can see huge ships being built in the distance - it might be worth checking on another day, after they put some of the materials you brought into practice. You also notice that not all materials are brought to the shipyards, some are simply sent to more rural areas.`
 			`	One of the Unfettered team leaders comes to speak to you, "My greatest thanks for these materials, they will be crucial in repairing our houses, probably more so than for our ships. Please, if you have the time, try to bring us more materials, we post missions on the job board when we need them the most. In the meantime, take these <payment> as a token of my gratitude."`
 
 mission "<uhai> 10: Titanium"
@@ -763,7 +763,7 @@ mission "<uhai> 14: Ion Materials"
 			label crazy
 			action
 				fine 1000000
-			`	"Tell me, would a friend do this?" You hear the sound of a fine being added to your account. "Seems like you were found in posession of nerve gas. Do not test me!"`
+			`	"Tell me, would a friend do this?" You hear the sound of a fine being added to your account. "Seems like you were found in possession of nerve gas. Do not test me!"`
 	waypoint "Rajak"
 	on waypoint
 		dialog `You can't find the ship here, but you find a bit of abandoned cargo. There may have been a fight... Maybe the ship has ran away to a nearby system.`
@@ -831,7 +831,7 @@ mission "<uhai> 14: Ion Materials"
 		conversation
 			`You manage to take out the leader of the fleet, and you can feel them lose coherence. A captain from another ship hails you. "Get out of here, now. We will not pursue you."`
 			action
-				set "midas: took out Dark Angel"
+				set "midas: angel assassination"
 				"midas: proven worthy" ++
 				"reputation: Midas" >?= 0
 	to fail
@@ -865,7 +865,7 @@ mission "<uhai> 14: Ion Materials"
 			`	"A little bit of competition cannot hurt, can it? Since when are you afraid of a few pirates? You may have softened up since we last saw each other."`
 			`	"But I heard of your exploits, these were no mere pirates. That was the Dark Angel." He speaks louder for the entire bar to hear, "And with a fleet of dozens of ships! Drinks are on me, boys!" Most Hai were ignoring him up to this point, but as soon as he said that you can hear them rejoicing and praising this exploit.`
 				to display
-					has "midas: took out Dark Angel"
+					has "midas: angel assassination"
 			label loot
 			`	"Well, I guess I can tell you. We had arranged for this Behemoth to bring us important tech materials. I cannot tell you more than this, but I can guarantee you that you'll like the outcome."`
 			choice

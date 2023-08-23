@@ -89,7 +89,6 @@ planet "Sies Upi"
 			`	"Nemo Me Impune Lacessit"`
 				`	"Can you tell me more? The message was signed with 'nemo me impune lacessit'."`
 			`	"She of the Void does not forget. Nemo Me Impune Lacessit, <last>. Do not presume to attempt to betray us again or there will be consequences."`
-			`You receive an ominous message of defiance, "Nemo me impune lacessit."`
 			`	They evaluate their surroundings before coming closer to you, and once they are a meter away they stop, clearly speaking their words as a threat, with a pause between each of them "Nemo. Me. Impune. Laccesit."`
 	description "It shines; you can feel its value. For some reason, the text 'nemo me impune lacessit' is written on them. You wonder what that could mean... surely nothing to worry about. Most outfitters are not real 'connoisseurs' of the value these hold however, and would not give you any more than the price of brute gold for it."
 		`After disabling the last of the pirate ships, you wonder what could have motivated such an attack. Do you possess something valuable to them? When they entered the system, they only sent one message: "nemo me impune lacessit". It is probably best to store whatever they were interested in on a planet (using U) or to get rid of it.`
@@ -102,7 +101,7 @@ mission "Midas: Nemo Me Impune Lacessit 2"
 		"Nemo Me Impune Lacessit"
 		"Nemo Me Impune Lacessit" 3
 			dialog `The ships both hail you, "What exactly do you think you are doing, <first> <last>? Nemo Me Impune Laccessit. You do not want to know what it means."`
-			dialog `You receive an ominous message of defiance, "Nemo me impune lacessit!"`
+			dialog `You receive an ominous and final message of defiance, "Nemo me impune lacessit!"`
 			dialog `Killing at least one of the twins will have consequences with the Shadow of Mintaka. As they said, "nemo me impune lacessit!" The Unfettered may refrain from offering you missions, for disrespecting the sacred rules of the duel, if they get wind of this.`
 			`Once you are alone in your quarters you hear a voice, darker and more serious than ever before. "You have betrayed us. Nemo Me Impune Laccessit, <first>. We have a message to transmit to you on behalf of the council of Chiefs.`
 			`	She gives you a little smile and nods. "If you come across someone and have difficulty getting them to trust you, try telling them 'Luf e ow, vai, luf e eh'."`
