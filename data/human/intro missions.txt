@@ -467,7 +467,7 @@ mission "Intro [3 Interceptor]"
 					goto value
 				`	"I don't have any more questions."`
 					goto end
-			
+
 			label equipment
 			`	"Well, you need a weapon that does hull damage," James says." A beam laser will get the job done, but it will take awhile. The most valuable tool is an asteroid scanner. They're expensive, but they connect into your navigation and targeting systems to point you towards minable asteroids. You can also set them to find the most valuable asteroids which increases your profitability per run. After that, a tactical scanner will give you range to target and show how much damage you're doing. An afterburner is good for chasing down fast moving asteroids or getting away from pirates without leaving the system. A ramscoop will let you refuel while mining. You can extend your range and be ready for a quick escape."`
 			choice
@@ -518,7 +518,7 @@ mission "Intro [4 Interceptor]"
 	
 	on offer
 		conversation
-			`You find James sitting at the spaceport's tiny bar, sipping a beer while watching the large displays that show the landing pads and the irrigated fields beyond. The displays are suppposed to make the underground building feel less claustrophobic, but living on a ship, that doesn't bother you much.  "Care for a drink?" he asks.`
+			`You find James sitting at the spaceport's tiny bar, sipping a beer while watching the large displays that show the landing pads and the irrigated fields beyond. The displays are suppposed to make the underground building feel less claustrophobic, but living on a ship, that doesn't bother you much. "Care for a drink?" he asks.`
 			choice
 				`	"Sure."`
 				`	"No thanks."`
