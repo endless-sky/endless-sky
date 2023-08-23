@@ -493,7 +493,7 @@ mission "Intro [3 Interceptor]"
 				goto more
 			
 			label value
-			`	"If you check the outfitter section of your star map you will find minerals listed at the very bottom. Selecting a mineral will show you systems where your asteroid scanner has detected them."`
+			`	"If you check the outfitter section of your star map you will find minerals listed at the very bottom. Selecting a mineral will show you systems where your asteroid scanner has detected them.`
 				goto more
 
 			label more
