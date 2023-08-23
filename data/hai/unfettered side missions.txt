@@ -169,7 +169,7 @@ mission "Hai Legacy 1"
 			label pilot
 			action
 				set "unfettered: pilot dialog"
-			`	"Actually, it's a 'what,' not a-" starts the first one, but they are again interrupted by the second. "The less you know, the better for all of us, Captain."
+			`	"Actually, it's a 'what,' not a-" starts the first one, but they are again interrupted by the second. "The less you know, the better for all of us, Captain."`
 				goto choice
 			label ocean
 			action
