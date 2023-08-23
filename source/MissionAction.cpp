@@ -87,9 +87,9 @@ void MissionAction::LoadSingle(const DataNode &child)
 	if(key == "dialog")
 		LoadDialog(child);
 	else if(key == "conversation" && child.HasChildren())
-		conversation = ExclusiveItem<Conversation>(Conversation(child, missionName));
+		conversation = ExclusiveItem<Conversation>(Conversation(child));
 	else if(key == "conversation" && hasValue)
-			conversation = ExclusiveItem<Conversation>(GameData::Conversations().Get(child.Token(1)));
+		conversation = ExclusiveItem<Conversation>(GameData::Conversations().Get(child.Token(1)));
 	else if(key == "require" && hasValue)
 	{
 		int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
@@ -146,6 +146,7 @@ void MissionAction::SaveBody(DataWriter &out) const
 	{
 		out.Write("dialog");
 		out.BeginChild();
+		for(auto &item : dialog)
 		{
 			out.Write(item.first);
 			if(item.second)
