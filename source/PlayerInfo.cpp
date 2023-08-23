@@ -3237,7 +3237,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	flagshipModelProvider.SetHasFunction(flagshipModelFun);
 	flagshipModelProvider.SetGetFunction(flagshipModelFun);
 
-	auto &&flagshipDisabledProvider = conditions.GetProviderNamed("flagship disabled");
+	auto &&flagshipDisabledProvider = conditions->GetProviderNamed("flagship disabled");
 	auto flagshipDisabledFun = [this](const string &name) -> bool
 	{
 		return flagship && flagship->IsDisabled();
