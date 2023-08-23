@@ -73,7 +73,7 @@ ship "Anomalocaris"
 	explode "medium explosion" 30
 	explode "large explosion" 14
 	"final explode" "final explosion medium"
-	description "This ship is rumored to be one of the first agile warships the Hai made, when conflicts started to erupt with the Sheragi. The high cargo capacity and low engine space was probably due to the first designs of the ship being intended for mining or freighting instead, but it was useful to collect loot from the enemy ships and carry ammo as well as escorting more vulnerable ships. Vessels from that time used a more expensive but also more durable material, allowing this ship to take quite a pounding, although its time under water may have damaged it."
+	description "First created during the Hai's initial conflicts with the Sheragi, the Anomalocaris was supposedly one of the most agile Hai warships of its time. Its high cargo capacity and low engine space suggest the first designs of the ship were intended for mining or freighting, but this also made it useful for collecting loot from enemy ships and carrying ammunition. Vessels from that time used a more expensive but also more durable material, allowing this ship to take quite a pounding, although its time under water may have damaged it."
 
 
 
