@@ -531,8 +531,6 @@ government "Hai Merchant (Human)"
 		"Hai (Friendly Unfettered)" .1
 		"Hai (Unfettered Civilians)" .1
 		"Merchant" .01
-	"penalty for"
-		assist -.15
 	"bribe" .02
 	"friendly hail" "friendly civilian"
 	"hostile hail" "hostile civilian"
