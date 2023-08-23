@@ -457,7 +457,7 @@ mission "Intro [3 Interceptor]"
 			choice
 				`	"What equipment do I need to mine?"`
 					goto equipment
-				`	"Can my fleet help me mine?"`
+				`	"Can a fleet help me mine?"`
 					goto fleet
 				`	"Where are safe places to mine?"`
 					goto safety
