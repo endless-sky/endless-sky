@@ -32,6 +32,7 @@ public:
 	enum class Importance : uint_least8_t {
 		Highest,
 		High,
+		Info,
 		Low
 	};
 

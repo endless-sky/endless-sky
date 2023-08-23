@@ -100,6 +100,7 @@ private:
 	FleetCargo cargo;
 
 	Personality personality;
+	Personality fighterPersonality;
 };
 
 
