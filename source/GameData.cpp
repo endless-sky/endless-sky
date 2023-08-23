@@ -549,7 +549,6 @@ const Set<Effect> &GameData::Effects()
 
 
 
-
 const Set<GameEvent> &GameData::Events()
 {
 	return objects.events;
@@ -603,7 +602,6 @@ const Set<Minable> &GameData::Minables()
 {
 	return objects.minables;
 }
-
 
 
 
@@ -737,7 +735,6 @@ const vector<Trade::Commodity> &GameData::Commodities()
 {
 	return objects.trade.Commodities();
 }
-
 
 
 

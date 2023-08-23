@@ -24,7 +24,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Government.h"
 #include "Logger.h"
 #include "Messages.h"
-#include "MissionAction.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Random.h"
@@ -68,14 +67,14 @@ namespace {
 
 
 // Construct and Load() at the same time.
-NPC::NPC(const DataNode &node, const string &missionName)
+NPC::NPC(const DataNode &node)
 {
-	Load(node, missionName);
+	Load(node);
 }
 
 
 
-void NPC::Load(const DataNode &node, const string &missionName)
+void NPC::Load(const DataNode &node)
 {
 	// Any tokens after the "npc" tag list the things that must happen for this
 	// mission to succeed.
@@ -200,7 +199,7 @@ void NPC::Load(const DataNode &node, const string &missionName)
 			};
 			auto it = trigger.find(child.Token(1));
 			if(it != trigger.end())
-				npcActions[it->second].Load(child, missionName);
+				npcActions[it->second].Load(child);
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
@@ -447,7 +446,7 @@ const list<shared_ptr<Ship>> NPC::Ships() const
 
 
 // Handle the given ShipEvent.
-void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
+void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, const Mission *caller, bool isVisible)
 {
 	// First, check if this ship is part of this NPC. If not, do nothing. If it
 	// is an NPC and it just got captured, replace it with a destroyed copy of
@@ -503,7 +502,7 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 			shipEvents[bay.ship.get()] |= type;
 
 	// Run any mission actions that trigger on this event.
-	DoActions(event, newEvent, player, ui);
+	DoActions(event, newEvent, player, ui, caller);
 
 	// Check if the success status has changed. If so, display a message.
 	if(isVisible && !alreadyFailed && HasFailed())
@@ -513,7 +512,7 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, bool isVisible)
 		// If "completing" this NPC displays a conversation, reference
 		// it, to allow the completing event's target to be destroyed.
 		if(!conversation->IsEmpty())
-			ui->Push(new ConversationPanel(player, *conversation, nullptr, ship));
+			ui->Push(new ConversationPanel(player, *conversation, caller, nullptr, ship));
 		if(!dialogText.empty())
 			ui->Push(new Dialog(dialogText));
 	}
@@ -731,7 +730,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 	if(!result.ships.empty())
 	{
 		subs["<npc>"] = result.ships.front()->Name();
-		subs["<npc model>"] = result.ships.front()->ModelName();
+		subs["<npc model>"] = result.ships.front()->DisplayModelName();
 	}
 	// Do string replacement on any dialog or conversation.
 	string dialogText = !dialogPhrase->IsEmpty() ? dialogPhrase->Get() : this->dialogText;
@@ -747,7 +746,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 
 
 // Handle any NPC mission actions that may have been triggered by a ShipEvent.
-void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, UI *ui)
+void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, UI *ui, const Mission *caller)
 {
 	// Map the ShipEvent that was received to the Triggers it could flip.
 	static const map<int, vector<Trigger>> eventTriggers = {
@@ -790,10 +789,7 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 					return it != shipEvents.end() && it->second & type;
 				}))
 		{
-			it->second.Do(player, ui);
-			// All actions are currently one-time-use. Erase the action from
-			// the map so that it can't be reused.
-			npcActions.erase(it);
+			it->second.Do(player, ui, caller);
 		}
 	}
 }
