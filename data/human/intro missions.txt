@@ -469,7 +469,7 @@ mission "Intro [3 Interceptor]"
 					goto end
 
 			label equipment
-			`	"Well, you need a weapon that does hull damage," James says." A beam laser will get the job done, but it will take awhile. The most valuable tool is an asteroid scanner. They're expensive, but they connect into your navigation and targeting systems to point you towards minable asteroids. You can also set them to find the most valuable asteroids which increases your profitability per run. After that, a tactical scanner will give you range to target and show how much damage you're doing. An afterburner is good for chasing down fast moving asteroids or getting away from pirates without leaving the system. A ramscoop will let you refuel while mining. You can extend your range and be ready for a quick escape."`
+			`	"Well, you need a weapon that does hull damage," James says. "A beam laser will get the job done, but it will take awhile. The most valuable tool is an asteroid scanner. They're expensive, but they connect into your navigation and targeting systems to point you towards minable asteroids. You can also set them to find the most valuable asteroids which increases your profitability per run. After that, a tactical scanner will give you range to target and show how much damage you're doing. An afterburner is good for chasing down fast moving asteroids or getting away from pirates without leaving the system. A ramscoop will let you refuel while mining. You can extend your range and be ready for a quick escape."`
 			choice
 				`	"I can't fit all that on my ship!"`
 					goto shipmods
