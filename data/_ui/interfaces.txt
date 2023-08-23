@@ -25,7 +25,7 @@ color "faint" .1 .1 .1 0.
 color "dark" .05 .05 .05 0.
 
 # Colors used for drawing ship list in player info panel.
-color "flagship" .5 .5 .1 0.
+color "flagship" 0. 1. .35 0.
 color "disabled" .5 .3 .1 0.
 color "dead" .4 0. 0. 0.
 
