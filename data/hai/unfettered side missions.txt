@@ -139,7 +139,7 @@ mission "Hai Legacy 1"
 					goto foolish
 			`	As you try to react, the Hai closest to you firmly grabs your arm and shouts through the noise. "Wait! If this ship wanted to kill you, <last>, you would already be dead."`
 			label wait
-			`	You can barely hear anything over the sound of the engines as the ship proceeds to land on the beach. Suddenly, all is calm. They turn to you, the second one surprisingly calm but you can tell the first one was a bit tense, "This ship means you no harm," they say.`
+			`	You can barely hear anything over the sound of the engines as the ship proceeds to land on the beach. Suddenly, all is calm. They turn to you, one more at ease than the other. "This ship means you no harm."`
 			choice
 				`	(Say nothing.)`
 					goto explain
@@ -148,7 +148,7 @@ mission "Hai Legacy 1"
 			label explain
 			`	"This ship is our guarantee that nothing goes wrong. After all, we are still not sure if we can trust you," says the second one.`
 			`	The first one speaks again, after taking you to a nearby cave to show you another ship. "That ship is not for sale. This ship, however, is a mighty relic of the past, intended for war from the times our empire used to control the stars: an Anomalocaris!`
-			scene "ship/hai anomalocaris"
+			scene "thumbnail/hai anomalocaris"
 			`	The second one now takes a step toward you to speak, almost interrupting the first. "We have a proposition for you: should you agree to bring much needed supplies to our brethren, the Unfettered Hai, we will sell you this ship for the modest price of 10 million credits, including 2 very powerful Korath Detainers!" The first one seems surprised by this and tries to intervene, but the second resumes before they can speak up. "These legendary weapons can interfere with nearly any enemy engine system to give you a significant maneuverability advantage. Worry not, you'll be able to recuperate the cost of this ship with ease by bringing medical supplies to the Unfettered. This cargo is needed on short notice, on <destination>, and we lack the time and personnel to bring them.`
 			`	"Of course, the ship is aged, and you should not expect the best price in a shipyard. Nevertheless, it is a fine vessel, capable of fighting, freighting, and mining. So, what do you say, <last>? This is the opportunity of a lifetime; they simply don't make ships like this anymore."`
 			label choice
@@ -169,12 +169,13 @@ mission "Hai Legacy 1"
 			label pilot
 			action
 				set "unfettered: pilot dialog"
-			`	"You mean what is-" says the first one, stopped by the second, "The less you know, the better for both of us, Captain."`
+			`	"Actually, it's a 'what,' not a-" starts the first one, but they are again interrupted by the second. "The less you know, the better for all of us, Captain."
 				goto choice
 			label ocean
 			action
 				set "unfettered: ocean dialog"
-			`	"We found it there," the first one begins, "It is hard to find a drop of rain in a storm, but the drop of rain may see all, and we were that drop. Worry not, we have restored its cuirass." the other one adds.`
+			`	"We found it there," the first one answers.`
+			`	"It is hard to find a drop of rain in a storm, but the drop of rain may see all, and we were that drop. Worry not, we have restored its hull," the other one adds.`
 				goto choice
 			label take
 			action
