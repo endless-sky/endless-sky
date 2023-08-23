@@ -489,7 +489,7 @@ mission "Intro [3 Interceptor]"
 				goto more
 
 			label pirates
-			`	"You can always bribe them when you get into the system and they'll leave you alone. If the minerals are good enough and you have enough cargo capacity you'll still turn a profit. If you have a fast ship, you can just run away. Most pirates are lazy and will turn back if you head to the edges of the system. Of course, with enough of a fleet you just fight them off." He shakes his head. "Most pirates would be richer and live longer if they just mined instead of extorting bribes and cargo."`
+			`	"You can always bribe them when you get into the system and they'll leave you alone. If the minerals are good enough and you have enough cargo capacity you'll still turn a profit. If you have a fast ship, you can just run away. Most pirates are lazy and will turn back if you head to the edges of the system. Of course, with enough of a fleet you just fight them off." He shakes his head. "Most pirates would be richer and live longer if they just mined instead of extorting bribes and cargo.`
 				goto more
 			
 			label value
