@@ -481,7 +481,7 @@ mission "Intro [3 Interceptor]"
 				goto more
 
 			label fleet
-			`	"If you have a fleet, you can target an asteroid and they will all fire on it and then pick up the minerals. You can work much more quickly and harvest more in a run. If you have a carrier, you can have fighters mine and return the minerals to your hold."`
+			`	"If you have a fleet, you can target an asteroid and they will all fire on it and then pick up the minerals. You can work much more quickly and harvest more in a run. If you have a carrier, you can have fighters mine and return the minerals to your hold.`
 				goto more
 
 			label safety
