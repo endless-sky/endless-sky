@@ -580,6 +580,22 @@ ship "Lightning Bug"
 	"final explode" "final explosion small"
 	description "The Lightning Bug is a small defensive ship, mostly used by the Hai as a convoy escort. The Lightning Bug, as with many insects, works best in a swarm: even a small number of Lightning Bugs can manage to leave the largest of ships helpless with their stock-fitted Ion Cannons."
 
+# this design purposely lacks energy
+ship "Lightning Bug" "Lightning Bug (Ionic)"
+	outfits
+		"Ionic Blaster Prototype"
+		"Ionic Turret Prototype"
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling"
+		"Quantum Keystone"
+		"Value Detector"
+		"Sand Cell" 3
+		"Hai Fissure Batteries"
+		"Pulse Rifle" 10
+		`"Benga" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		"Hyperdrive"
+
 ship "Lightning Bug" "Lightning Bug (Pulse)"
 	outfits
 		"Hai Tracker Pod"
@@ -626,21 +642,6 @@ ship "Lightning Bug" "Lightning Bug (Unfettered Shipyards)"
 		`"Biroo" Atomic Steering`
 		"Hyperdrive"
 
-# this design purposely lacks energy
-ship "Lightning Bug" "Lightning Bug (Ionic)"
-	outfits
-		"Ionic Blaster Prototype"
-		"Ionic Turret Prototype"
-		"Hai Corundum Regenerator"
-		"Hai Williwaw Cooling"
-		"Quantum Keystone"
-		"Value Detector"
-		"Sand Cell" 3
-		"Hai Fissure Batteries"
-		"Pulse Rifle" 10
-		`"Benga" Atomic Thruster`
-		`"Biroo" Atomic Steering`
-		"Hyperdrive"
 
 ship "Ladybug"
 	sprite "ship/hai ladybug"
