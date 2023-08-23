@@ -30,8 +30,7 @@ class System;
 
 class PlanetLabel {
 public:
-	PlanetLabel(const std::vector<PlanetLabel> &labels, const System &system,
-		const StellarObject &object, double zoom);
+	PlanetLabel(const std::vector<PlanetLabel> &labels, const System &system, const StellarObject &object);
 
 	void Update(const Point &center, double zoom);
 

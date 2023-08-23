@@ -66,8 +66,7 @@ namespace {
 
 
 
-PlanetLabel::PlanetLabel(const vector<PlanetLabel> &labels, const System &system,
-		const StellarObject &object, const double zoom)
+PlanetLabel::PlanetLabel(const vector<PlanetLabel> &labels, const System &system, const StellarObject &object)
 	: objectPosition(object.Position()), objectRadius(object.Radius())
 {
 	const Planet &planet = *object.GetPlanet();
@@ -108,19 +107,6 @@ PlanetLabel::PlanetLabel(const vector<PlanetLabel> &labels, const System &system
 			break;
 		}
 	}
-
-	// If we can't find a suitable direction, then try to find a direction under the current
-	// zoom that is not overlapping.
-	if(!innerAngle)
-		for(const double angle : LINE_ANGLES)
-		{
-			SetBoundingBox(labelDimensions, angle, nameHeight);
-			if(!CheckOverlaps(labels, system, object, zoom, GetBoundingBox(zoom)))
-			{
-				innerAngle = angle;
-				break;
-			}
-		}
 
 	// No good choices, so set this to the default.
 	if(!innerAngle)

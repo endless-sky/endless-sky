@@ -1361,7 +1361,7 @@ void Engine::EnterSystem()
 	if(system)
 		for(const StellarObject &object : system->Objects())
 			if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsAccessible(flagship))
-				labels.emplace_back(labels, *system, object, zoom);
+				labels.emplace_back(labels, *system, object);
 }
 
 
