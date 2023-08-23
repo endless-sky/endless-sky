@@ -54,10 +54,10 @@ ship "Anomalocaris"
 
 	gun -24 -89.5
 	gun 24 -89.5
-	turret -24 -89.5
-	turret 24 -89.5
+	turret -40 -28
+	turret 40 -28
 	turret 0 60
-	turret 0.5 -32.5
+	turret 0 -32.5
 	engine -50 15
 	engine 50 15
 	"steering engine" -50 15
