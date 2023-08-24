@@ -63,7 +63,7 @@ private:
 	Point governmentOffset;
 	Color color;
 	int hostility = 0;
-	double innerAngle = 0.;
+	double innerAngle = -1.;
 };
 
 

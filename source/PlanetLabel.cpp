@@ -38,7 +38,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	// Label offset angles, in order of preference (do not use 0).
+	// Label offset angles, in order of preference.
 	constexpr array<double, 8> LINE_ANGLES = {60., 120., 300., 240., 30., 150., 330., 210.};
 	constexpr double LINE_LENGTH = 60.;
 	constexpr double INNER_SPACE = 10.;
@@ -91,7 +91,7 @@ PlanetLabel::PlanetLabel(const vector<PlanetLabel> &labels, const System &system
 	}
 
 	// No good choices, so set this to the default.
-	if(!innerAngle)
+	if(innerAngle < 0.)
 	{
 		innerAngle = LINE_ANGLES[0];
 		SetBoundingBox(labelDimensions, innerAngle, nameHeight);
@@ -103,7 +103,7 @@ PlanetLabel::PlanetLabel(const vector<PlanetLabel> &labels, const System &system
 	const bool bottomSide = 135. < innerAngle && innerAngle < 225.;
 
 	// Have to adjust the more extreme angles differently or it looks bad.
-	const double yOffset = topSide ? nameHeight * 2. / 3. : bottomSide ? nameHeight / 3. : nameHeight * .5;
+	const double yOffset = topSide ? nameHeight * .75 : bottomSide ? nameHeight * .25 : nameHeight * .5;
 
 	// Cache the offsets for both labels.
 	nameOffset = Point(rightSide ? 2. : -bigFont.Width(name) - 2., -yOffset);
@@ -174,7 +174,7 @@ void PlanetLabel::SetBoundingBox(const Point &labelDimensions, const double angl
 
 	// Offset the label depending on its position relative to the stellar object.
 	const double xOffset = (rightSide ? labelDimensions.X() : -labelDimensions.X()) * 0.5;
-	const double yOffset = topSide ? nameHeight * 2. / 3. : bottomSide ? nameHeight / 3. : nameHeight * .5;
+	const double yOffset = topSide ? nameHeight * .75 : bottomSide ? nameHeight * .25 : nameHeight * .5;
 	box = Rectangle(unit * (INNER_SPACE + LINE_GAP + LINE_LENGTH) +
 		Point(xOffset, labelDimensions.Y() * .5 - yOffset), labelDimensions);
 }
@@ -193,14 +193,15 @@ Rectangle PlanetLabel::GetBoundingBox(const double zoom) const
 bool PlanetLabel::HasOverlaps(const vector<PlanetLabel> &labels, const System &system,
 		const StellarObject &object, const double zoom) const
 {
-	const Rectangle box = GetBoundingBox(zoom);
+	const Rectangle boundingBox = GetBoundingBox(zoom);
 
 	for(const PlanetLabel &label : labels)
-		if(box.Overlaps(label.GetBoundingBox(zoom)))
+		if(boundingBox.Overlaps(label.GetBoundingBox(zoom)))
 			return true;
 
 	for(const StellarObject &other : system.Objects())
-		if(&other != &object && box.Overlaps(other.Position() * zoom, other.Radius() * zoom + MIN_DISTANCE))
+		if(&other != &object && boundingBox.Overlaps(other.Position() * zoom,
+				other.Radius() * zoom + MIN_DISTANCE))
 			return true;
 
 	return false;
