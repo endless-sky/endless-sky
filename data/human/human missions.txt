@@ -6306,7 +6306,7 @@ mission "Care Package to South 1"
 	name "Care package to <planet>"
 	source
 		government "Republic" "Syndicate"
-		not attributes "rim" "south"
+		not attributes "rim" "south" "station"
 	destination
 		attributes "rim" "south"
 		not government "Pirate"
@@ -6335,8 +6335,9 @@ mission "Care Package to South 1"
 			`	She glances down at it. "It's nothing too special - some local stuff from around here. Mostly foods and things that you just can't get made the same anywhere else."`
 			`	"Wouldn't it be easier and cheaper to send it via the commercial courier services?"`
 			label commercial
-			`	Torrey gives a somewhat sardonic smile. "Well, yes; the thing is, I'm sending it to a friend who's a gunnery sergeant in the militia for the Southern Mutual Defense Pact. Normally, of course, that would be fine, but... then there's who I am." She reaches into a pocket and pulls out a piece of paper. It appears to be a printout of a news headline, "Protests Block Access To Council Chambers For Fourth Straight Day," with a picture under it. Prominent in the picture is a woman holding up a sign decrying recent actions by the government. The woman is unmistakably Torrey.`
-			`	"So you see," she continues, "I'm already being watched by the Republic government. What with the rumors lately, I really don't want to do anything that would throw any suspicion onto Irene, but..." She glances down at the box. "She's really been missing some of the stuff from home, and I don't want to make her life less pleasant because of what I've been doing."`
+			`	Torrey gives a sardonic smile. "Well, yes; the thing is, I'm sending it to a friend who's an NCO in the militia for the Southern Mutual Defense Pact. Normally, of course, that would be fine, but... then there's who I am." She reaches into a pocket and pulls out a piece of paper - a printout of a news headline. "Protests Block Access To Council Chambers For Fourth Straight Day." Underneath the headline is a picture of Torrey holding up a sign decrying recent actions by the government.`
+			`	"So you see," she continues, "I'm already being somewhat watched by the Republic government. What with the rumors lately, I really don't want to do anything that would throw any suspicion onto Irene, but..." she glances down at the box. "She's really been missing some of the stuff from home, and I don't want to make her life less pleasant just because I do things that draw negative attention from high places."`
+			`	She falls silent, waiting impassively for your response.`
 			choice
 				`	"All right; I'll deliver the package."`
 					goto deliver
@@ -6351,9 +6352,7 @@ mission "Care Package to South 1"
 	on complete
 		payment 7500 750
 		conversation
-			`You arrive at the militia base on <destination>, and ask at the gate for Gunnery Sergeant Irene Brower. After a few minutes, a compact young woman with close-cropped blonde hair appears and walks over. When she sees the package at your feet, her face splits into a lopsided grin and her steps quicken. "I see you've brought me a package; this must be from Torrey!"`
-			choice
-				`(Introduce yourself and tell how you met Torrey.)`
+			`You arrive at the militia base on <destination>, and ask at the gate for Gunnery Sergeant Irene Brower. After a few minutes, a compact young woman with close-cropped blonde hair appears and walks over. When she sees the package at your feet, her face splits into a lopsided grin and her steps quicken. "I see you've brought me a package; this must be from Torrey! She said she was sending something."`
 			`	You nod, introduce yourself, and briefly recount your meeting with her friend on <origin>. Irene laughs. "Yep, that's her. Well, thank you so much for bringing this." She hefts the heavy box with no apparent effort, gives you a firm nod, and turns to head back into the base.`
 			`	Before going more than three steps, she stops and turns back to you. "Oh, sorry - I'll authorize your payment as soon as I get back to my room. I don't have it with me."`
 			`	Sure enough, less than five minutes later, your communicator bleeps and reports that <payment> has been credited to your account.`
@@ -6376,13 +6375,20 @@ mission "Care Package to South 3a"
 	landing
 	invisible
 	to offer
-		has  "Care Package to South 3a: offered"
+		has "Care Package to South 3a: offered"
 		has "FW Pirates: Attack 3: done"
 	on offer
 		conversation
-			`Now that you have a minute to breathe, you turn to your computer and pull up the casualty lists from the Battle of Greenrock. You only have to scroll through it for a few seconds before you see what you are looking for and dreading:`
+			`Now that you have a minute to breathe, you stop to check your non-urgent messages. Among them you see the casualty lists from the Battle of Greenrock.`
+			choice
+				`	(Open the message.)`
+					goto read
+				`	(Delete it unread.)`
+			decline
+			label read
+			`You only have to scroll through the lists for a few seconds before you see:`
 			`	`
-			`		MSGT BROWER, TORREY`
+			`		MSGT BROWER, IRENE`
 			`			KILLED IN ACTION`
 			`			POSTHUMOUS MEDAL OF VALOR`
 			``
@@ -6398,10 +6404,23 @@ mission "Care Package to South 2b"
 		has "FW Pirates: Diplomacy 4: done"
 	on offer
 		conversation
-			`As you leave the quartermaster's building, you spot a familiar face coming in the other direction: Irene Brower, the gunnery sergeant you delivered a care package to before the war, though she seems to have master sergeant insignia now. She's on crutches, with what looks like a brand-new prosthetic leg. When she spots you, her pained face brightens. "Hey, I know you! You brought me that package from Tor before. Thanks!" She shifts her weight, then winces and shifts it back.`
-			`	She notices you looking at her leg, and grins lopsidedly. "Yeah, I was a casualty of the Battle of Greenrock. My CO thought it was a good idea to follow Voigt's plan to suppress the pirates there. To be honest, I agreed with him at the time." She pauses a moment. "Now, not so sure, and not just because a blown-out shield capacitor lost me a leg. I heard what happened on Thule, both the good and the bad of it. I'm not sure force was the best answer now."`
-			`	"So... that prosthetic is very new, then?" you say tentatively.`
-			`	She nods. "Yep, just came from getting it fitted, and gotta check in at the quartermaster's to get myself a float chair for the first six weeks of adjustment to it. Six months of medical leave, then I'll be back in action. And hopefully assigned to ships a little less eager to jump into the thick of it when it's not really necessary, eh?"`
+			`As you leave the quartermaster's building, you spot a familiar face coming in the other direction: Irene Brower, the gunnery sergeant you delivered a care package to before the war, though she seems to have master sergeant insignia now. She's on crutches, with what looks like a brand-new prosthetic leg. She spots you at about the same time, and her face, though lined with pain, brightens. She limps over. "Hey, I know you! You brought me that package from Tor, before - thanks!" She shifts her weight, and something evidently twinges, for she winces and shifts it back.`
+			`	You open your mouth, then shut it again, feeling a little awkward and unsure what to say about Irene's condition. She immediately notices your embarrassment, and grins lopsidedly. "Yeah, I was a casualty of the Battle of Greenrock. My CO thought it was a good idea to follow Councilor Voigt's plan to suppress the pirates there - to be honest, I agreed with him at the time." She pauses a moment. "Now, not so sure, and not just because a blown-out shield capacitor lost me a leg. I heard what happened on Thule, both the good and the bad of it. I'm not sure I can really say I think force was the best answer now."`
+			choice
+				`	"I'm so sorry for your loss."`
+					goto sorry
+				`	"So... that prosthetic is very new, then?"`
+					goto new
+				`	"With that prosthetic, soon you'll have a leg up on the rest of us, eh?"`
+			`	She grins broadly at your pun. "Yep! Just here to get a float chair for the first few weeks of adjustment."`
+				goto leave
+			label sorry
+			`	She waves it off, but her face softens. "Thanks. I'm here to pick up a float chair, for the first six weeks of adjustment."`
+				goto leave
+			label new
+			`	She nods. "Yep, just came from getting it fitted, and gotta check in at the quartermaster's to get myself a float chair for the first six weeks of adjustment to it."` 
+			label leave
+			`	"Six months of medical leave, then I'll be back in action. And hopefully assigned to ships a little less eager to jump into the thick of it when it's not really necessary, eh?"`
 			`	You join in her wry chuckle, then she gives you a wave with one crutch and bids you farewell.`
 
 
@@ -6433,12 +6452,34 @@ mission "Moving House 1"
 			label sure
 			`	They stop in surprise, then nod briefly. "I'll be at your ship within an hour.`
 			`	An hour later, you see them approach the <ship> carrying a small suitcase. They've exchanged their formal appearance for a button-down shirt and skirt with their hair loose, hanging down to their shoulders. They walk right up to you and stick out a hand. "Kris Brecht."`
+			choice
+				`	(Shake their hand.)`
+					goto shake
+				`	(Just stare at their odd outfit.)`
+			`	You stare at Kris' unorthodox getup while they stand there with their hand out for a few beats. Then they sigh and take it back. "Will this be a problem?" They gesture to themselves.`
+			choice
+				`	"No, I was just surprised."`
+					goto surprised
+				`	"Yeah, I don't think I can carry someone like you."`
+			`	Their expression turns cold. "Right. I get it. Someone like me." They turn and stalk away.`
+				decline
+			
+			label surprised
+			`	Their confident demeanor returns, and they nod. "I can have that effect on people. Glad to see you're not another of those stuck-up establishment types. Well, all the rest of my stuff is on <planet stopovers>, so we'd better get going!"`
+				goto establishment
+			
+			label shake
 			`	You shake their hand. "<first> <last>. That's all you've got with you?"`
-			`	Kris nods. "All the rest of my stuff is on <planet stopovers>."`
-			`	You hesitate, then ask, "Why do you need me to do this? Wouldn't contracting with one of the regular moving services be more, well...usual?"`
-			`	"Well, I don't like dealing with them too much. They're too close to the establishment for my tastes."`
-			`	You blink. "The... establishment?"`
-			`	Kris nods again. "Yeah, y'know, The Man. I don't support government or any of its tools, and I've heard that the South is more open to this kind of philosophy and lifestyle."`
+			`	Kris nods. "All the rest of my stuff is on <planet stopovers>. I was just here for a meeting with some others who feel like I do about the establishment."`
+
+			label establishment
+			choice
+				`	"The...establishment?"`
+				`	(Just let it pass.)`
+					goto pass
+			`	Kris nods again. "Yeah, y'know, The Man!"`
+			label pass
+			`	"I don't support government or any of its tools, and I've heard that the South is more open to this kind of philosophy and lifestyle."`
 			`	Before you can say more, they walk past you into the <ship>. "Which did you say my berth was again...?"`
 				accept
 			
@@ -6485,7 +6526,7 @@ mission "Moving House 2"
 			`You arrive on <destination>, rent a local transport, and make your way to the location specified. When you knock on the door, Kris bursts out almost instantly. This time, they've got on a ruffly skirt, a button-down shirt, and suspenders, and their hair is in a tight bun. "Finally!" they say. "Everything's packed already; we just need to load it in and get to the spaceport."`
 			`	It takes much less time to load everything this time than the last time you helped Kris move, and soon they hop in the driver's seat of the van, calling to you, "I'll meet you at the spaceport in an hour or two!"`
 
-mission "Take Me To The South B: Followup 2"
+mission "Moving House 3"
 	name "Moving House, Again"
 	source "Lichen"
 	destination "Thule"
@@ -6495,7 +6536,18 @@ mission "Take Me To The South B: Followup 2"
 		has "Moving House 2: done"
 	on offer
 		conversation
-			`Kris' possessions fit more easily into your hold this time - it seems like they really do have less than before. Once they're loaded in and Kris climbs aboard, hoping to head off (or at least delay) their interminable tirades on the power of the state by getting some frustrations about <origin>'s ever-damp weather instead, you ask, "So what is it about <origin> that you can't stand?"`
+			`Kris' possessions fit more easily into your hold this time - it seems like they really do have less than before. Once they're loaded in and Kris climbs aboard, they open their mouth to begin what is sure to be another of their interminable tirades on the power of the state.`
+			choice
+				`	(Try to change the subject.)`
+					goto weather
+				`	(Just let it happen.)`
+			`	Surprisingly, Kris begins by talking about how uncomfortable the ever-damp weather on <origin> is, and how they'll be glad to be properly dry for the first time in weeks. This doesn't last, though, as soon talk of the planet brings up the other people there.`
+				goto fire
+			
+			label weather
+			`	"So, what is it about <origin> you can't stand? Is it the damp weather?"`
+			
+			label fire
 			`	A fire kindles in Kris' eyes, and a righteous fury seems to possess them. "I thought when I came here that I'd be among like-minded souls. There's barely any government to speak of here! But then when the war started, they were aaaaall sooooo delighted with the so-called Free Worlds! "Free!" They're just another state!"`
 			`	Kris continues in this vein as you complete your pre-flight checks. Fortunately, they do at least mention your destination is <destination> during their rant.`
 				accept
@@ -6524,7 +6576,7 @@ mission "Stranded In Paradise 1"
 	on offer
 		conversation
 			`No sooner have you entered the spaceport than you are bowled over by a trio of adults, two women and a man, with a child trailing close behind them.`
-			`	"Oh - sorry!" the older of the two women exclaims. She puts out a hand to help you up, then gets a better look at you as you take it, stand, and dust yourself off. "Wait; are you an independent captain?" she says after a moment.`
+			`	"Oh - sorry!" the older of the two women exclaims. She puts out a hand to help you up, then gets a better look at you as you take it, stand, and dust yourself off. "Wait; are you a ship captain?" she says after a moment.`
 			`	"<first> <last>, captain of the <ship>," you reply. "Why?"`
 			`	"Oh! You may be the answer to our prayers, dearie!" She and the others have now gotten themselves a bit more organized, and you can tell that they must be a family; the other woman looks to be their young adult daughter, and the child is actually their slightly-built teenage son. Confirming this, the woman says, "We're the Burnbecks; I'm Shirley, this is my husband Darren, and these are our dau - our kids, Leigh and Erin." She indicates them each in turn, with the daughter last. "We were on vacation here on <origin> when news of the war and those awful bombings came out. Well, I don't need to tell you, it's caused us some trouble! Or, well, maybe I do, since I didn't say where we're from: <destination>, down in what they're now calling the Free Worlds!"`
 			`	Her husband cuts in, "Anyway, the short of it is that we really need to get home, and right now, none of the regular services are running from here to <destination> because of the war. Could you possibly take the four of us back home? We...can't pay a lot, right now, but we can pay."`
@@ -6556,7 +6608,16 @@ mission "Stranded In Paradise 2"
 		has "FW Embassy 1B: done"
 	on offer
 		conversation
-			`While walking through the spaceport, you are surprised to see Shirley and Darren Burnbeck, with their son Leigh trailing behind them. They greet you warmly, reassure you that Erin is just off to university on Zug, and invite you to have dinner with them at the spaceport cafe. There, they listen raptly to your stories of participating in the Free Worlds' campaign to remain independent from the Republic. When you talk about transporting the Earth ambassadors to Bourne, Darren shakes his head in something like admiration.`
+			`While walking through the spaceport, you are surprised to see Shirley and Darren Burnbeck, with their son Leigh trailing behind them. They greet you warmly, reassure you that Erin is just off to university on Zug, and so couldn't join them on this vacation, and invite you to have dinner with them at the spaceport cafe.`
+			choice
+				`	(Accept.)`
+					goto cafe
+				`	(Politely decline.)`
+			`	You apologize, and they reassure you it's fine and thank you once again.`
+				decline
+			
+			label cafe
+			`	You join them, and they listen raptly to your stories of participating in the Free Worlds' campaign to remain independent from the Republic. When you talk about transporting the Earth ambassadors to Bourne, Darren shakes his head in something like admiration.`
 			`	"You know," he says, "I was never quite sure that the Free Worlds hadn't really been behind those awful bombings, but now, it looks like I was wrong. In fact, I think I might have been wrong about a lot of things about the Free Worlds Council and Senate, back then. It's still true that they've upended our lives, but from what I've seen of their actions since, especially with the pirates, they really do seem to have the best interests of the people here in the South at heart."`
 			`	After a round of compliments and words of solidarity from the other members of the family, you finish up your dinners and bid them goodbye.`
 				decline
