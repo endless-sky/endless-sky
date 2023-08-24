@@ -447,7 +447,7 @@ mission "<uhai> 18: Hai Language"
 	on offer
 		conversation
 			`Moving through the spaceport, you notice some buildings do not seem as crumbling as before. You wonder if the Unfettered are the ones who invested into repairs, or if the new Hai arrivals brought this about. Whatever the case is, this does not look like a place of conflict anymore. It looks like a place of hope.`
-			`	An Unfettered herald - recognizable with his peculiar bird mask - approaches and notices you looking around. "Incredible, is it not? To see hope on the face of buildings and on the face of people. I am here to say that it's time you learn how to communicate with us - with the True language of the Hai. You also need to be able to make demands to the birds, and there is only one appropriate language for it. We have learned that they too speak Hai, even if they disgrace our language by doing so."`
+			`	An Unfettered Herald - recognizable with their peculiar bird mask - approaches and notices you looking around. "Incredible, is it not? To see hope on the face of buildings and on the face of people. I am here to say that it's time you learn how to communicate with us - with the True language of the Hai. You also need to be able to make demands to the birds, and there is only one appropriate language for it. We have learned that they too speak Hai, even if they disgrace our language by doing so."`
 			choice
 				`	"How can I learn Hai?"`
 				`	"Is there some kind of translator?"`
@@ -469,6 +469,8 @@ mission "<uhai> 18: Hai Language"
 			`	"We know. Here is a message in Hai that you will transmit to them. It says that you are our ambassador, so do not open fire on them for now."`
 			action
 				"reputation: Wanderer" = 0
+				"unfettered rep: Herald" --
+				"unfettered rep: He-Yi" --
 			label neutral
 			choice
 				`	"I have in fact met them and I am on friendly terms with them already."`
@@ -554,6 +556,7 @@ mission "<uhai> 18: Hai Language: Found Detainer"
 		outfits "Korath Detainer"
 	on offer
 		conversation
+			scene "outfit/detainer"
 			`The 'Detainer' on this ship matches He-Yi's description perfectly! Quickly, grab it and get out of here.`
 
 
@@ -568,7 +571,7 @@ mission "<uhai> 20: Bigeminate Sigil: Cloak"
 	on offer
 		require "Cloaking Device"
 		conversation
-			`A herald tells you He-Yi wants to see you again in his war room for a very generous proposition. He also mentions it's not urgent, so you can come back later if you're busy.`
+			`A Herald tells you He-Yi wants to see you again in his war room for a very generous proposition. They also mention it's not urgent, so you can come back later if you're busy.`
 			choice
 				`	(Comply with the request.)`
 				`	(Later.)`
@@ -576,8 +579,8 @@ mission "<uhai> 20: Bigeminate Sigil: Cloak"
 			`	You arrive to He-Yi standing proudly in front of a statue in his war room. "I had no idea you were a disciple of Tejolis as well."`
 			choice
 				`	"What do you mean?"`
-				`	(Let him continue speaking.)`
-			`	"I have discovered that you have somehow acquired an item I myself thought only a thing of legends. Something so [precious, rare] and yet so evasive. I want it. I am of course referring to the 'cloaking device.' I consider this item of the highest [importance, priority], and I am willing to give you 50 million credits for it. I will not lie to you: this item nearly [guarantees, ensures] the survival of the one who has it if he knows how to use it properly. It would also allow new strategies in our war against the bird people."`
+				`	(Let him continue.)`
+			`	"I have discovered that you have somehow acquired an item I myself thought only a thing of legends. Something so [precious, rare] and yet so evasive. I want it. I am of course referring to the 'cloaking device.' I consider this item of the highest [importance, priority], and I am willing to give you <payment> for it. I will not lie to you: this item nearly [guarantees, ensures] the survival of the one who has it if he knows how to use it properly. It would also allow new strategies in our war against the bird people."`
 			choice
 				`	"I accept."`
 					accept

@@ -766,6 +766,73 @@ ship "Modified Shield Beetle"
 	"final explode" "final explosion large"
 	description "This is a prototype created by the Unfettered. They have upgraded its shield matrix as well as most other components of the ship, but this process has sacrificed stability and increased heat generation."
 
+ship "Modified Shield Beetle" "Si-Ra' Golden Beetle"
+	add attributes
+		"shields" -2000
+		"hull" 500
+		"heat dissipation" .05
+		"cargo space" -20
+		"outfit space" 15
+	outfits
+		"Tripulse Shredder" 8
+
+		"Hai Octopus Jammer"
+		"Large Heat Shunt"
+		"Hai Zephyr Cooling" 3
+		Hyperdrive
+		"Quantum Keystone"
+		"Hai Diamond Regenerator"
+		"Systems Core (Medium)"
+
+		"Boulder Reactor"
+		"Geode Reactor"
+		"Hai Ravine Batteries"
+
+		"Pulse Rifle" 77
+		"Dual Pulse Pistols"
+
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
+	cargo
+		outfits
+			"Gold Bars" 40
+
+# he's really angry at this point if you kicked him to this beetle,
+# he risked everything to upgrade his ship and to kill you so that he can get back into Midas
+ship "Modified Shield Beetle" "Si-Ra' angry Beetle"
+	add attributes
+		"shields" -2000
+		"heat dissipation" .05
+		"cargo space" -20
+		"outfit space" 19
+		"weapon capacity" 3
+	outfits
+		"Tripulse Shredder" 5
+		"Pulse Cannon" 3
+		"Pulse Turret" 2
+		"Chameleon Anti-Missile"
+
+		"Hai Octopus Jammer" 2
+		"Large Heat Shunt" 2
+		"Hai Zephyr Cooling"
+		"Quantum Keystone" 4
+		"Outfits Expansion" 3
+		"Fuel Processor"
+		"Hyperdrive"
+		"Value Detector" 2
+		"Dark Storm Shielding"
+		"S-970 Regenerator"
+		"Systems Core (Medium)"
+
+		"Double Plasma Core"
+		"Large Biochemical Cell"
+		"Hai Gorge Batteries"
+
+		"Pulse Rifle" 70
+		"Dual Pulse Pistols" 8
+
+		`"Bondir" Atomic Thruster`
+		`"Bufaer" Atomic Steering`
 
 
 ship "Pond Strider"

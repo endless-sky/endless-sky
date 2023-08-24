@@ -765,39 +765,6 @@ event "joined midas"
 
 
 
-ship "Modified Shield Beetle" "Si-Ra' Golden Beetle"
-	add attributes
-		"shields" -2000
-		"hull" 500
-		"heat dissipation" .05
-		"cargo space" -20
-		"outfit space" 15
-	outfits
-		"Tripulse Shredder" 8
-
-		"Hai Octopus Jammer"
-		"Large Heat Shunt"
-		"Hai Zephyr Cooling" 3
-		Hyperdrive
-		"Quantum Keystone"
-		"Hai Diamond Regenerator"
-		"Systems Core (Medium)"
-
-		"Boulder Reactor"
-		"Geode Reactor"
-		"Hai Ravine Batteries"
-
-		"Pulse Rifle" 77
-		"Dual Pulse Pistols"
-
-		`"Bondir" Atomic Thruster`
-		`"Bufaer" Atomic Steering`
-	cargo
-		outfits
-			"Gold Bars" 40
-
-
-
 # they get mad when you kill the twins, striking at you after they had time to muster their strength.
 # the Hai did not dare to contest them
 mission "Midas: Daemons Unleashed"

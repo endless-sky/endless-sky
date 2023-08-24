@@ -440,7 +440,7 @@ mission "<uhai> 12: Outfitter Upgrade"
 			has "unfettered: monke!"
 	on offer
 		conversation
-			`You easily find He-Yi near the shipyard, as he is the centre of all activities. He seems to be giving orders to make preparations for incoming changes. Do you go see him?`
+			`You easily find He-Yi near the shipyard, as he is the center of all activities. He seems to be giving orders to make preparations for incoming changes. Do you go see him?`
 			choice
 				`	(He promised some big ships eventually...)`
 				`	(Later.)`
@@ -479,14 +479,14 @@ mission "<uhai> 12: Outfitter Upgrade"
 		log `Helped the Unfettered upgrade their shipyards and received a prototype ship as thanks.`
 		event "unfettered: darkcloak outfitter upgrade" 30
 		conversation
-			`After unloading all the cargo, you go check for He-Yi in the shipyard, but instead you find a herald, ready to rely a message to you, "Ah, <first>. You have completed your part of the bargain, now you may have your reward.`
+			`After unloading all the cargo, you go check for He-Yi in the shipyard, but instead you find a Herald, ready to rely a message to you, "Ah, <first>. You have completed your part of the bargain, now you may have your reward.`
 			`	"This will help Mera prepare your reward, should you prove yourself to be worthy of it.`
 				to display
 					not "<uhai> 15: Modified Beetle: done"
 			`	"There could be more opportunities on Darkcloak for you, we do not only buy Jump Drives against money.`
 				to display
 					not "Unfettered Jump Drive Trading: offered"
-			`	"He-Yi also wants you to know you should check the job board for more jobs like this one, and be mindful that it will take a while to improve the outfitter with these new materials and schematics you provided. We may use more of your help once that will be the case." As soon as they have delivered their message, the herald leaves without giving you a chance to ask more questions.`
+			`	"He-Yi also wants you to know you should check the job board for more jobs like this one, and be mindful that it will take a while to improve the outfitter with these new materials and schematics you provided. We may use more of your help once that will be the case." As soon as they have delivered their message, they leave without giving you a chance to ask more questions.`
 			branch accept
 				not "unfettered: light on the flame"
 			choice
@@ -997,7 +997,7 @@ mission "<uhai> 15: Modified Beetle"
 				`	"Get ready to launch."`
 					accept
 				`	"Can you refresh my mind about the rules of the dual?"`
-			`	"Of course! You may not destroy or capture my ship, and looting it is not encouraged - in this case due to the limit stock of these weapons I'd be quite disapointed if you were to do it."`
+			`	"Of course! You may not destroy or capture my ship, and looting it is not encouraged - in this case due to the limit stock of these weapons I'd be quite disappointed if you were to do it."`
 				accept
 	on enter
 		conversation
@@ -1143,43 +1143,6 @@ mission "<uhai> 15: Modified Beetle"
 			`	"I will make the needed repairs to the ship, you can go pick it up on Darkcloak when you are ready."`
 
 
-
-# he's really angry at this point if you kicked him to this beetle,
-# he risked everything to upgrade his ship and to kill you so that he can get back into Midas
-ship "Modified Shield Beetle" "Si-Ra' angry Beetle"
-	add attributes
-		"shields" -2000
-		"heat dissipation" .05
-		"cargo space" -20
-		"outfit space" 19
-		"weapon capacity" 3
-	outfits
-		"Tripulse Shredder" 5
-		"Pulse Cannon" 3
-		"Pulse Turret" 2
-		"Chameleon Anti-Missile"
-
-		"Hai Octopus Jammer" 2
-		"Large Heat Shunt" 2
-		"Hai Zephyr Cooling"
-		"Quantum Keystone" 4
-		"Outfits Expansion" 3
-		"Fuel Processor"
-		"Hyperdrive"
-		"Value Detector" 2
-		"Dark Storm Shielding"
-		"S-970 Regenerator"
-		"Systems Core (Medium)"
-
-		"Double Plasma Core"
-		"Large Biochemical Cell"
-		"Hai Gorge Batteries"
-
-		"Pulse Rifle" 70
-		"Dual Pulse Pistols" 8
-
-		`"Bondir" Atomic Thruster`
-		`"Bufaer" Atomic Steering`
 
 conversation "unfettered war ready"
 	`Now that the fight is over, both warlords hail you, and He-Yi speaks first.`
@@ -1613,8 +1576,8 @@ mission "<uhai> 17: Spy On Hai A"
 		fleet "Large Syndicate"
 	on visit
 		dialog `You don't have the item He-Yi asked for. Or you have not brought the right item back. If that's the case, go back and board the ship to take the right item.`
-	on complete
-		require "Mystery Cube"
+	to complete
+		has "outfit (all): Mystery Cube"
 
 
 # This mission triggers when you land on the world instead of taking the cube in orbit, either bargain for it or steal it (or the wrong item)
@@ -1851,8 +1814,7 @@ mission "<uhai> 17: Mirror Spy"
 
 
 # 18 is optional, in side missions because you can learn Hai trough the Hai diplomats
-
-# for later: add a duel against the Herald where they have a Water Bug wearing an Octopulse
+# idea: add a duel against the Herald where they have a Water Bug wearing an Octopulse
 mission "<uhai> 19: Scout Wanderer Systems"
 	name `Know your enemy`
 	description `Go to <waypoints> and scout the fleet presence of all Wanderer ships. Then, come back to <destination> for your reward.`
@@ -1864,33 +1826,36 @@ mission "<uhai> 19: Scout Wanderer Systems"
 		has "<uhai> 12: Outfitter Upgrade: done"
 		not "<uhai> 18: Hai Language: active"
 	on offer
-		log "Minor People" "Mysterious Unfettered Herald" "A herald of He-Yi that does not want to reveal his true identity. He seems to have a lot of culture, and stays calm in most situations."
+		log "Minor People" "Mysterious Herald" "A Herald of He-Yi that does not want to reveal their true identity. They seem to have a lot of culture, and stay calm in most situations."
 		conversation
-			`A herald comes to your ship as you exit it. He is still wearing that same mask, although you feel like the color has slightly changed, "Hello again, <last>, my master has yet another task for you before the war starts."`
+			`A Herald comes to your ship as you exit it. They are still wearing that same mask, although you feel like the color has slightly changed, "Hello again, <last>, my master has yet another task for you before the war starts."`
 			choice
 				`	"I am listening."`
 					goto task
 				`	"First I have a question, why have you not introduced yourself yet?"`
 				`	"Later."`
 					defer
-			`	"When I wear that mask, I may not reveal my identity to anyone, that is my burden as a herald of He-Yi. I do not wear this mask all the time, of course, only when I am on mission for him, or in his war room."`
+			`	"When I wear that mask, I may not reveal my identity to anyone, that is my burden as a Herald of He-Yi. I do not wear this mask all the time, of course, only when I am on mission for him, or in his war room."`
 			label task
 			`	"We want you to survey all systems belonging to our enemies, to assess if they have some backup fleets or potential allies nearby."`
 			branch neutral
 				"reputation: Wanderer" >= 0
 			choice
 				`	"But I am at war with them. It would be at a risk for me."`
-			`	He seems a bit angry, "Again? In the last mission we had arranged for them to not shoot at you, what did you do?? Well there is nothing we can do for you this time, I just hope you have some means of hiding, or a very agile ship. Theirs are not that impressive but they do have long range missiles, meaning you should probably install some Chameleon defenses on your ship."`
+			action
+				"unfettered rep: Herald" --
+				"unfettered rep: He-Yi" --
+			`	They seem a bit angry, for once, "Again? In the last mission we had arranged for them to not shoot at you, what did you do?? Well there is nothing we can do for you this time, I just hope you have some means of hiding, or a very agile ship. Theirs are not that impressive but they do have long range missiles, meaning you should probably install some Chameleon Anti-Missiles on your ship."`
 			label neutral
 			choice
 				`	"I'm in."`
 					accept
 				`	"Why can't you do it yourselves?"`
-			`	"He-Yi is currently busy, too busy to go do a survey in his personal ship, and he will not let anyone else fly it, including me. That means we have no way to do the scouting ourselves without risking lives."`
+			`	"He-Yi is currently busy, too busy to go do a survey in his personal ship, and he will not let anyone else fly it, including me. That means we have no way to do the scouting ourselves without risking lives. Even his ship risks suffering malfunctions and be then cut off from us, behind enemy lines. We cannot risk that!"`
 			choice
 				`	"Got it, you need me. I'll do it then."`
 					accept
-				`	"Well you'll have to wait for him to find the time, I'm not interested in taking this kind of risk."`
+				`	"I'm not interested in taking this kind of risk either."`
 					decline
 	waypoint "Chy'chra"
 	waypoint "Pik'ro'iyak"
@@ -1948,12 +1913,13 @@ mission "<uhai> 19: Weird Aliens Spotted"
 				payment 150000
 				log `Warned the Unfettered about the weird aliens presence north of the Wanderers.`
 				set "unfettered: warned about the pug"
-			`	You explain to the herald you have seen some weird aliens in the north that could be allied with the Wanderers. Looking at the brief scans you took of them he seems to discard that warning as if it was nothing, "I do not know how those aliens have obtained jump drives, they must have stolen them somehow. Once we have taken Wanderer space they will prove to be a very handy supply of new jump drives... I would not worry about their pathetic, although strange looking weapons. Still, I appreciate you taking this initiative of coming here to warn us, please accept these <payment> for that."`
+			`	You explain to the herald you have seen some weird aliens in the north that could be allied with the Wanderers. Looking at the brief scans you took of them, they seem to discard that warning as if it was nothing, "I do not know how those aliens have obtained jump drives, they must have stolen them somehow. Once we have taken Wanderer space they will prove to be a very handy supply of new jump drives... I would not worry about their pathetic, although strange looking weapons. Still, I appreciate you taking this initiative of coming here to warn us, please accept these <payment> for that."`
 				goto "show arfecta?"
 			label pug
 			action
+				"unfettered rep: Herald" ++
 				payment 250000
-			`	You explain to the herald that you have seen weird aliens in the north, the Pug, that have interfered with humanity in the past. He does not seem to believe you when you speak of technology capable of breaking down starlanes, "there is no way an alien race with such primitive ships would have that kind of technology. They must have simply abused your primitive sensors. They must have stolen the jump drives, and I only see that as an opportunity for later." You try to convince him he should not take them lightly, but he does not want to listen. "We have already done too much to prepare for war to turn back at the first sign of potential trouble. Still, I appreciate you taking this initiative of coming here to warn us, especially with this precise information. You seem to have learned the ways of my master quickly.`
+			`	You explain to the herald that you have seen weird aliens in the north, the Pug, that have interfered with humanity in the past. They do not seem to believe you when you speak of technology capable of breaking down starlanes, "There is no way an alien race with such primitive ships would have that kind of technology. They must have simply abused your primitive sensors. They must have stolen the jump drives, and I only see that as an opportunity for later." You try to convince them that they should not take them lightly, but they do not want to listen. "We have already done too much to prepare for war to turn back at the first sign of potential trouble. Still, I appreciate you taking this initiative of coming here to warn us, especially with this precise information. You seem to have learned the ways of my master quickly.`
 			`	"Please accept <payment> for that."`
 			label "show arfecta?"
 			choice
@@ -1968,6 +1934,7 @@ mission "<uhai> 19: Weird Aliens Spotted"
 					decline
 			action
 				set "unfettered: warned of arfecta"
+				"unfettered rep: Herald" ++
 				payment 250000
 			`	"Did you not say these Pug, as you call them, are masters of deception?`
 				to display
@@ -1978,6 +1945,7 @@ mission "<uhai> 19: Weird Aliens Spotted"
 			action
 				set "unfettered: preparing for the arfectas"
 				set "unfettered: high warlord"
+				"unfettered rep: Herald" += 2
 				"salary: Unfettered" *= 2
-			`	Since he does not seem to believe you, you show him the designs of the Arfecta you captured. You can see a mix of surprise and fear in his eyes as he takes a step back. "How did you capture such a ship? It seems that you will prove an even better ally than we had anticipated... That ship would be fitting of a warlord. A High Warlord, even! We will double your salary, you deserve it! We have indeed heard of these Pug, but never did we imagine they would be able to display such strength... It is good to have an ally like you."`
+			`	Since they do not seem to believe you, you show them the designs of the Arfecta you captured. You can see a mix of surprise and fear in their eyes as they take a step back. "How did you capture such a ship? It seems that you will prove an even better ally than we had anticipated... That ship would be fitting of a warlord. A High Warlord, even! We will double your salary, you deserve it! We have indeed heard of these Pug, but never did we imagine they would be able to display such strength... It is good to have an ally like you."`
 				accept
