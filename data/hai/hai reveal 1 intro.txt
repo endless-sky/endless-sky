@@ -263,16 +263,15 @@ mission "Hai Reveal Concern Period: Humans Going Home"
 			choice
 				`	"I'll talk to them."`
 				`	"Sorry, I'm not going that way."`
-					goto label "not ever"
+					goto "not ever"
 			`	As it turns out, it is almost impossible to miss these humans, as their camp is located directly in the crossroads of the spaceport's major thoroughfares. Judging by their expensive clothing and somewhat impatient attitude they are people of means, which makes this even more odd.`
-			choice
-			`	As soon as it becomes apparent that you're approaching them, one comes forward to greet you. "Ah, I trust you are here because you've been encouraged to help us. I am Brin." You introduce yourself in response, and they continue, "We have run an import services business here for some time, but with the recent events suspicion of human Captains has arisen. Some Hai seem to believe any human captain is potentially someone who will abduct them." They say with a chuckle. "As you can imagine, we've been here a long time, so when we were asked to vet a few arrivals first we were happy enough to do so. It's gotten out of hand though. The other day we even had the Portmaster insisting that we vet every human captain to arrive, but we don't have time for that, and we don't have access to any services that would really let us do that reliably. So we had to put our foot down and refuse.
+			`	As soon as it becomes apparent that you're approaching them, one comes forward to greet you. "Ah, I trust you are here because you've been encouraged to help us. I am Brin." You introduce yourself in response, and they continue, "We have run an import services business here for some time, but with the recent events suspicion of human Captains has arisen. Some Hai seem to believe any human captain is potentially someone who will abduct them." They say with a chuckle. "As you can imagine, we've been here a long time, so when we were asked to vet a few arrivals first we were happy enough to do so. It's gotten out of hand though. The other day we even had the Portmaster insisting that we vet every human captain to arrive, but we don't have time for that, and we don't have access to any services that would really let us do that reliably. So we had to put our foot down and refuse.`
 			`	"Naturally, business immediately suffered, and we got enough flak for it that we decided it was time to shut up shop and go elsewhere until this all blows over. This offended someone and then several Hai captains refused to take us. Now, well, they've relented since we started camping out, but I can't honestly say we trust them either right now. We will be more than happy to give you a just compensation of <payment> to take us somewhere we won't be nearly the only humans in town."`
 			`	Another one steps forward, "We were hoping that the small amount of humans was a good business opportunity, which was true... until recently. Indeed, my colleagues and I will return to a location where we used to do business in the past, but you understand we cannot just ask any captain to take us, even if we are willing to make do without proper accommodations due to the relative urgency of the situation."`
 			choice
 				`	"Of course, welcome aboard."`
 				`	"Sorry, you're on your own."`
-					goto label "rejected"
+					goto "rejected"
 			`	You proceed to show them all their bunks, which they describe as "satisfactory".`
 				accept
 			label "not now"
