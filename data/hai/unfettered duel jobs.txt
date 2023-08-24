@@ -11,53 +11,6 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-ship "Sea Scorpion" "Sea Scorpion (Shields, Trackers)"
-	outfits
-		`"Biroo" Atomic Steering`
-		`"Biroo" Atomic Thruster`
-		"Boulder Reactor"
-		"Bullfrog Anti-Missile" 2
-		"Hai Diamond Regenerator" 4
-		"Hai Ravine Batteries"
-		"Hai Tracker" 224
-		"Hai Tracker Pod" 4
-		"Hai Williwaw Cooling"
-		Hyperdrive
-		"Outfits Expansion" 2
-		"Pulse Rifle" 15
-
-fleet "Sea Scorpion Challenger"
-	government "Hai (Unfettered Challenger)"
-	names "hai"
-	personality disables plunders staying timid target
-	variant 5
-		"Sea Scorpion (Pulse)"
-	variant 3
-		"Sea Scorpion (Shields, Trackers)"
-	variant 5
-		"Sea Scorpion (Ion)"
-	variant
-		"Sea Scorpion (Ionic)"
-	variant 2
-		"Sea Scorpion (Shredder)"
-
-fleet "Shield Beetle Challenger"
-	government "Hai (Unfettered Challenger)"
-	names "hai"
-	personality disables plunders staying timid target
-	variant 5
-		"Shield Beetle (Pulse)"
-	variant 5
-		"Shield Beetle"
-	variant 5
-		"Shield Beetle (Tracker)"
-	variant
-		"Shield Beetle (Ionic)"
-	variant
-		"Shield Beetle (Sunbeam)"
-	variant
-		"Shield Beetle (Thunderhead)"
-
 event "unfettered: challengers arrive"
 	"unfettered: challengers" ++
 	"unfettered: total challengers" += 5
@@ -161,6 +114,25 @@ mission "Unfettered: Remove The Challengers"
 
 
 
+phrase "beaten in duel"
+	word
+		`Ha!`
+		`Well...`
+	word
+		` `
+	word
+		`It seems that you are not invincible after all`
+		`I have beaten you`
+		`You have been bested`
+		`You have found your match`
+		`Finally beaten`
+		`There will be tales of this`
+		`You have fought well`
+	word
+		`! `
+	word
+		`Now if you will only give me the symbolic fee of 1000 credits I will repair your ship, the next time you hail me.`
+
 phrase "unfettered challenger defeated"
 	word
 		`You receive a message from the disabled challenger ship`
@@ -225,6 +197,7 @@ mission "Unfettered Challenge [0]"
 	on accept
 		"unfettered: total challengers" += 9
 	on disabled
+		dialog "beaten in duel"
 		fail
 	npc save disable
 		government "Hai (Unfettered Challenger)"
@@ -255,6 +228,7 @@ mission "Unfettered Challenge [1A]"
 	on accept
 		"unfettered: total challengers" += 15
 	on disabled
+		dialog "beaten in duel"
 		fail
 	npc save disable
 		government "Hai (Unfettered Challenger)"
@@ -285,6 +259,7 @@ mission "Unfettered Challenge [1B]"
 	on accept
 		"unfettered: total challengers" += 15
 	on disabled
+		dialog "beaten in duel"
 		fail
 	npc save disable
 		government "Hai (Unfettered Challenger)"
@@ -315,6 +290,7 @@ mission "Unfettered Challenge [2]"
 	on accept
 		"unfettered: total challengers" += 21
 	on disabled
+		dialog "beaten in duel"
 		fail
 	npc save disable
 		government "Hai (Unfettered Challenger)"
@@ -464,50 +440,6 @@ mission "Unfettered Red Blue Shield Beetle Duel"
 
 
 
-# unlocked if you do the mission below
-ship "Stag Beetle" "Stag Beetle (Flamer)"
-	outfits
-		"Sunbeam" 4
-		"Flamethrower" 2
-		"Korath Detainer"
-		"Grab-Strike Turret"
-		"Banisher Grav-Turret"
-		"Bullfrog Anti-Missile" 3
-		
-		"Liquid Sodium Cooler"
-		"Systems Core (Large)" 2
-		"Outfits Expansion" 4
-		"Wanderer Ramscoop"
-		"Jump Drive"
-		
-		`"Bufaer" Atomic Steering`
-		"Afterburner (Comet Class)"
-		"Thruster (Lunar Class)"
-		
-		"Double Plasma Core"
-		"Large Biochemical Cell"
-		
-		"Thermal Repeater Rifle" 20
-		"Pulse Rifle" 60
-		"Dual Pulse Pistols" 10
-		"True Unfettered License"
-	gun 0 -7 "Korath Detainer"
-	gun -22 -102 "Sunbeam"
-	gun 22 -102 "Sunbeam"
-	gun -34 -68 "Sunbeam"
-	gun 34 -68 "Sunbeam"
-	gun -49 -38
-	gun 49 -38
-	gun -61 -14 "Flamethrower"
-	gun 61 -14 "Flamethrower"
-	turret -51 21.5 "Grab-Strike Turret"
-	turret 51 21.5 "Bullfrog Anti-Missile"
-	turret -56.5 75 "Banisher Grav-Turret"
-	turret 56.5 75 "Bullfrog Anti-Missile"
-	turret 0 85.5 "Bullfrog Anti-Missile"
-
-
-
 phrase "unfettered weapon delivery"
 	word
 		`The Unfettered captain is delighted that you were able to give him <weapons>`
@@ -534,28 +466,6 @@ phrase "unfettered weapon delivery"
 		`"I truly hope that with this there will be less unfortunate casualties in my next raiding."`
 		
 
-
-ship "Sea Scorpion" "Sea Scorpion (Disruptor Slicer)"
-	add attributes
-		"fuel capacity" 300
-		"cargo space" -5
-		"engine capacity" -24
-	outfits
-		"Hai Tracker" 420
-		"Hai Tracker Pod" 4
-		"Tracker Storage Pod" 7
-		"Shield Disruptor Turret"
-		"Husk-Slice Turret"
-		"Hai Diamond Regenerator"
-		"Hai Octopus Jammer" 2
-		"Outfits Expansion" 2
-		Hyperdrive
-		"Hai Williwaw Cooling" 2
-		"Boulder Reactor"
-		"Hai Fissure Batteries"
-		"Pulse Rifle" 20
-		`"Biroo" Atomic Thruster`
-		`"Bondir" Atomic Steering`
 
 mission "Unfettered: Bring Legendary Combo"
 	minor

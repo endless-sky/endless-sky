@@ -888,3 +888,35 @@ fleet "Unfettered Raid"
 	variant
 		"Shield Beetle (Jump)" 1
 		"Shield Beetle (Jump, Tracker)" 2
+
+fleet "Sea Scorpion Challenger"
+	government "Hai (Unfettered Challenger)"
+	names "hai"
+	personality disables plunders staying timid target
+	variant 5
+		"Sea Scorpion (Pulse)"
+	variant 3
+		"Sea Scorpion (Shields, Trackers)"
+	variant 5
+		"Sea Scorpion (Ion)"
+	variant
+		"Sea Scorpion (Ionic)"
+	variant 2
+		"Sea Scorpion (Shredder)"
+
+fleet "Shield Beetle Challenger"
+	government "Hai (Unfettered Challenger)"
+	names "hai"
+	personality disables plunders staying timid target
+	variant 5
+		"Shield Beetle (Pulse)"
+	variant 5
+		"Shield Beetle"
+	variant 5
+		"Shield Beetle (Tracker)"
+	variant
+		"Shield Beetle (Ionic)"
+	variant
+		"Shield Beetle (Sunbeam)"
+	variant
+		"Shield Beetle (Thunderhead)"

@@ -440,29 +440,35 @@ mission "<uhai> 12: Outfitter Upgrade"
 			has "unfettered: monke!"
 	on offer
 		conversation
-			`You see the He-Yi near the shipyard. He seems to be giving orders to make preparations for incoming changes. Do you go see him?`
+			`You easily find He-Yi near the shipyard, as he is the centre of all activities. He seems to be giving orders to make preparations for incoming changes. Do you go see him?`
 			choice
 				`	(He promised some big ships eventually...)`
 				`	(Later.)`
 					defer
-			`	He does not seem very surprised to see you. "Coming for more [big, strong] ships?" You feel like him asking this is just a formality. He already knows your answer.`
+			`	He does not seem very surprised to see you, and quickly looks at you before looking back at his plans. "Coming for more [big, strong] ships?" You feel like him asking this is just a formality. He already knows your answer.`
 			choice
 				`	"Yeah. Just tell me what to do to help."`
 					goto help
 				`	"Why do you say that?"`
 			`	"I know that <monke> love [big, strong] things. I guess they are not the only ones. Since you are here, you can help us anyway."`
 			label help
-			`	He checks his plans and consults a few experts, estimating the quantities you should bring. "We need industrial [materials, supplies] to build the new sections, and a lot of them. We already have some on the way, but more would help speed things up [significantly, reasonably], especially given that your jump drives can make it there faster than pirates. Hopefully that also results in less risk to [the cargo, your ship]."`
+			`	He checks his plans again, and consults a few experts, estimating the quantities you should bring. "We need industrial [materials, supplies] to build the new sections, and a lot of them. We already have some on the way, but more would help speed things up [significantly, reasonably], especially given that your jump drives can make it there faster than pirates. Hopefully that also results in less risk to [the cargo, your ship]."`
 			choice
 				`	"I will cover whatever distance necessary."`
 				`	"I don't want to do long distance cargo missions. Screw the Unfettered and your big ships."`
 					decline
-			`	"Good, then go to <stopovers> and take the [materials, supplies] there.. Don't stay too long, and try not to attract [suspicion, attention]. These [green humans, unfettered humans] are relentless, like us, and they will not stop at anything if they learn you have this cargo. This place is a shipyard with major [extracting, processing] operations, so we can easily arrange for you to acquire [materials, supplies] from there."`
-			choice
-				`	"Time to go then."`
-					accept
+			`	"Good, then go to <stopovers> and take the [materials, supplies] there.. Don't stay too long, and try not to attract [suspicion, attention]. The unfettered humans are relentless, like us, and they will not stop at anything if they learn you have this cargo. This place is a shipyard with major [extracting, processing] operations, so we can easily arrange for you to acquire [materials, supplies] from there."`
+				accept
 	on stopover
 		dialog "You find your cargo waiting for you and take it without asking questions or losing time."
+		set "unfettered: stopped on covert"
+	npc evade
+		system Gienah
+		personality waiting marked
+		government "Bounty (Disguised)"
+		ship "Scout" "Flame's Shadow"
+		on kill
+			set "unfettered: light on the flame"
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	to fail
@@ -481,6 +487,21 @@ mission "<uhai> 12: Outfitter Upgrade"
 				to display
 					not "Unfettered Jump Drive Trading: offered"
 			`	"He-Yi also wants you to know you should check the job board for more jobs like this one, and be mindful that it will take a while to improve the outfitter with these new materials and schematics you provided. We may use more of your help once that will be the case." As soon as they have delivered their message, the herald leaves without giving you a chance to ask more questions.`
+			branch accept
+				not "unfettered: light on the flame"
+			choice
+				`	"I was trailed by some disguised pirates."`
+				`	(Don't tell him.)`
+					goto heknows
+			action
+				"unfettered rep: He-Yi" ++
+				payment 200000
+			`	He takes a look at the details of the ship that was following you, "Indeed, they must have found this activity [suspicious, worthy of attention], or maybe they were trailing you, looking for an opportunity to try and steal your cargo. Information is [power, potential]." He is interrupted by an engineer, before quickly addressing you again, "Here, <payment> for your trouble."`
+				accept
+			label heknows
+			`	You were leaving when he says something out-loud, probably not expecting an answer, "The [fire, flame] has been extinguished, why do you [conceil, hide] it?" When you look around again, he is gone.`
+				to display
+					has "flagship base attribute: unfettered remote"
 
 event "unfettered: darkcloak outfitter upgrade"
 	planet "Darkcloak"
@@ -494,23 +515,23 @@ mission "Unfettered: Improved Production"
 		has "event: unfettered: darkcloak outfitter upgrade"
 	on offer
 		conversation
-			`You receive a written message from He-Yi. "Thanks to you, the shipyard on Darkcloak is capable of producing Shield Beetles in greater quantities. Continue helping us and you may have access to much bigger, brand new ships, once the time is right. In the meantime, you can enjoy the additional outfits we are now able to produce there."`
+			`You receive a written message from He-Yi. "Thanks to you, the shipyard on Darkcloak is capable of producing Shield Beetles in greater quantities. Continue helping us and you may have access to much bigger, brand new ships, once the time is right. In the meantime, you can enjoy the additional outfits we are now able to easily produce there."`
 
 
 
 mission "<uhai> 13: Korath Specialty"
 	outfitter
 	name `Primitive Cooling Technology`
-	description `Mera has asked you to bring coolants to her on <origin>, where she is working with the Korath you rescued to design a better cooling system. Bring back 15 Liquid Nitrogen Coolers.`
+	description `Mera has asked you to bring 15 Liquid Nitrogen Coolers to her on <origin>, where she is working with the Korath you rescued to design a better cooling system.`
 	source "Firelode"
 	substitutions
 		# translation to the Sestor language
 		"<we, us>" "'Tek'"
 		"<we, us>" "We"
-			has "event: unfettered: better sestor translators"
+			has "unfettered: better sestor"
 		<not> "'Ak'"
 		<not> "not"
-			has "event: unfettered: better sestor translators"
+			has "unfettered: better sestor"
 		<one> "'Mer'" # it refers to the player
 		<transform> "'Mah'"
 		<make> "'Mahem'"
@@ -521,12 +542,12 @@ mission "<uhai> 13: Korath Specialty"
 		<settled> "'Nocem'"
 		<strong> "'Akeh'"
 		<strong> "strong"
-			has "event: unfettered: better sestor translators"
+			has "unfettered: better sestor"
 		<consume> "'Keh'"
 		<bad> "'Eta'"
 		<young> "'Sorobeh'"
 		<young> "young"
-			has "event: unfettered: better sestor translators"
+			has "unfettered: better sestor"
 		<younglings> "'Rem' <young>"
 	to offer
 		has "salary: Unfettered"
@@ -538,21 +559,25 @@ mission "<uhai> 13: Korath Specialty"
 				`	(Follow him.)`
 				`	"I don't have time right now. I'll come back later."`
 					defer
-			`	The lab is like nothing you've seen before, certainly not on the surface. Here, things are not only efficient but aesthetically pleasing. It almost looks like a museum, with different kinds of alien technologies. You find Mera working around a Williwaw cooler, but she's not alone. The Korath prisoners you rescued are with her. It appears they have recovered from recent events, although you notice one is missing, the one with the serious leg injury. They are all busy looking around, seemingly excited, like they can't focus on one thing at a time. Or maybe this is just too easy of a task for them... Their main focus, however, is on the cooler and its surrounding technologies, so they have not noticed you yet, or at least they have not reacted to your presence.`
+			`	These sections of lab are like nothing you've seen before, certainly not on the surface. Here, things are not only efficient but aesthetically pleasing. It almost looks like a museum, with different kinds of alien technologies. You find Mera working around a Williwaw cooler, but she is not alone. The Korath prisoners you rescued are with her. It appears they have recovered from recent events, although you notice one is missing, the one with the serious leg injury. They are all busy looking around, seemingly excited, like they can't focus on one thing at a time. Or maybe this is just too easy of a task for them... Their main focus, however, is on the cooler and its surrounding technologies, so they have not noticed you yet, or at least they have not reacted to your presence.`
 			choice
 				`	"Here I am. What do you need me for?"`
 				`	(Wait for them to notice me.)`
 					goto wait
-				`	(Ask the Korath about the one who's missing.)"`
+				`	"Where is the missing Korath?"`
 					goto other
 			`	After you speak, a voice in an alien language that seems robotic in nature speaks. You realize it's the crude translator you found with them. It probably just translated everything you said, but it often repeats words you said in your own language. This translator is definitely incomplete.`
 				goto objective
 			label other
+			action
+				"unfettered rep: sestors" --
 			`	After you speak, a voice in an alien language that seems robotic in nature speaks. You realize it's the crude translator you found with them. It probably just translated everything you said, but it often repeats words you said in your own language. This translator is definitely incomplete.`
 			`	They speak very quickly, and the translator can barely follow. They don't seem to pause when speaking, and are gesturing around, almost as if they were doing a performance. "<we, us> will <not> speak about it to <one> which <we, us> do <not> trust insist and <we, us> will <transform> you into nutrigel only the brood master could <make>."`
 			`	When speaking, the Korath was rapidly pointing around, showing themselves and you, after which they showed the ground and sat down, quietly. It seems like you have saddened them by speaking of this, and you probably cannot get any more information out of them for now. The moment of calm is already over, and they start speaking together even faster than before, so fast that the translator cannot make any sense out of it. They may be in disagreement over something, and this ends with a long "Hsssssss" that they murmur, looking at each others in the eyes.`
 				goto objective
 			label wait
+			action
+				"unfettered rep: sestors" ++
 			`	The Korath eventually notice you and begin staring at you. They move around in a decisive manner but never stop staring. You begin to feel intense pressure as they are scrutinizing you, learning every details, and probably guessing why you arrived. Or maybe they just wonder if you're the breakfast.`
 			`	Then they speak in an alien language and the translator starts working, speaking in a robotic voice, but you have trouble keeping up, and they don't seem to have enough patience to wait for it to catch up. "Ah it is the <one> who saved <we, us> why is it <surprised> to see <we, us> did it expect <we, us> would all <be over>?" Whilst speaking the Korath almost did a performance, getting down and moving around before joining together. You notice they pronounce some sounds longer, maybe in the hope of letting the translator make sense out of it, although most sounds are very short. You realize they've probably noticed you're surprised to see them here.`
 			choice
@@ -575,13 +600,13 @@ mission "<uhai> 13: Korath Specialty"
 			`	They seem to grumble a bit about what you just said, but the translator cannot decipher any meaning. Considering what they could be saying, it's probably for the best. Still, they look at you menacingly, making themselves tall, much taller than humans would be. After that they suddenly move your way, covering 5 meters in the blink of an eye, close to the ground, running through equipment without disturbing it... Seeing you step back and almost fall on your back in fear, they seem satisfied, and go back to where they were. You realize they must be used to crowded spaces like this.`
 			label objective
 			`	Mera stops whatever it is that she was doing on the cooler and comes to speak to you. Seeing this, the Korath make a show of what you assume to be disdain before getting back to work, putting what they just designed to the test of a small flame.`
-			`	Mera watches closely before addressing you, "We have been working on improved cooling systems for a while now. To speed it up we could use some samples of other 'primitive' cooling technologies to work on as base materials. I thought I would ask you, considering you came from a very... 'young' civilization," she explains.`
+			`	Mera watches closely before addressing you, "We have been working on improved cooling systems for a while now. To speed it up we could use some samples of other 'primitive' cooling technologies to work on as base materials. I thought I would ask you, considering you came from a very... 'young' civilization," she explains with a smile.`
 			`	"I managed to combine the new records you got from Hai-home with the existing translator to improve its performances. However, in order for that to work I have to leave it constantly connected to the records, which is not very practical, although it does serve us well in this context."`
 				to display
-					has "event: unfettered: better sestor translators"
+					has "unfettered: better sestor"
 			`	"I did not manage to integrate the new records yet, I may end up having to connect them permanently to the translator. However, I am sure it will help, eventually."`
 				to display
-					not "event: unfettered: better sestor translators"
+					not "unfettered: better sestor"
 					has "<uhai> 13: Better Translator: done"
 			`	"I really wish we could improve the translator, somehow. Maybe there is someone of importance in the council that would have interest for this?"`
 				to display
@@ -634,10 +659,6 @@ outfit "Loot"
 	"mass" 1
 	installable -1
 	description "You're not sure what this is, but you feel your hair go up when you're near the cargo... Probably best not to touch it."
-
-phrase "Blood and Thunder"
-	word
-		"Blood and Thunder"
 
 ship "Mammoth" "Mammoth (Hai)"
 	add attributes
@@ -788,18 +809,27 @@ mission "<uhai> 14: Ion Materials"
 		government "Cerberus"
 		system "Sumar"
 		personality derelict target
-		fleet
-			names "Blood and Thunder"
-			cargo 0
-			variant
-				"Mammoth (Hai)"
+		ship "Mammoth (Hai)" "Blood and Thunder"
 		dialog "As you board the Mammoth, you realize it is a modified Behemoth, probably able to endure an attack from even a Cruiser for a while before having to disengage with relative ease, or to transport illegal cargo across long distances. All that is left to do now is to take the Loot!"
+	npc kill
+		government "Midas"
+		personality disables plunders harvests staying
+		system "Sumar"
+		ship "Marauder Firebird (Bars)" "Dark Angel"
+		to despawn
+			has "outfit (all): Loot"
+		conversation
+			`You manage to take out the leader of the fleet, and you can feel them lose coherence. A captain from another ship hails you. "Get out of here, now. We will not pursue you, and when you return I'll have sorted things out."`
+			action
+				set "midas: angel assassination"
+				"midas: proven worthy" ++
+				"reputation: Midas" >?= 0
 	npc
 		government "Midas"
 		personality derelict
 		system "Rajak"
 		fleet
-			names pirate
+			names "ancient script"
 			variant
 				"Scrapper (Gatling)"
 				"Wasp"
@@ -812,7 +842,7 @@ mission "<uhai> 14: Ion Materials"
 		system "Sumar"
 		# this is a quick fleet of captured ships
 		fleet
-			names pirate
+			names "ancient script"
 			variant
 				"Raven"
 				"Headhunter"
@@ -821,19 +851,6 @@ mission "<uhai> 14: Ion Materials"
 				"Splinter"
 				"Hauler"
 				"Scrapper"
-	npc kill
-		government "Midas"
-		personality disables plunders harvests staying
-		system "Sumar"
-		ship "Marauder Firebird (Bars)" "Dark Angel"
-		to despawn
-			has "outfit (all): Loot"
-		conversation
-			`You manage to take out the leader of the fleet, and you can feel them lose coherence. A captain from another ship hails you. "Get out of here, now. We will not pursue you."`
-			action
-				set "midas: angel assassination"
-				"midas: proven worthy" ++
-				"reputation: Midas" >?= 0
 	to fail
 		has "unfettered: outcast"
 	on fail
@@ -857,21 +874,19 @@ mission "<uhai> 14: Ion Materials"
 					decline
 			`	You continue the celebration with them, and before long Si-Ra is drunk again. You figure the pirates from earlier probably knew about the Behemoth because of his lack of discretion.`
 			choice
+				`	(Just celebrate.)`
+					goto celebrate
 				`	"You should be more careful. I was almost beaten to the chase by pirates."`
 				`	"What was this loot about anyway?"`
 					goto loot
-				`	(Just celebrate.)`
-					goto celebrate
 			`	"A little bit of competition cannot hurt, can it? Since when are you afraid of a few pirates? You may have softened up since we last saw each other."`
 			`	"But I heard of your exploits, these were no mere pirates. That was the Dark Angel." He speaks louder for the entire bar to hear, "And with a fleet of dozens of ships! Drinks are on me, boys!" Most Hai were ignoring him up to this point, but as soon as he said that you can hear them rejoicing and praising this exploit.`
 				to display
 					has "midas: angel assassination"
 			label loot
-			`	"Well, I guess I can tell you. We had arranged for this Behemoth to bring us important tech materials. I cannot tell you more than this, but I can guarantee you that you'll like the outcome."`
+			`	"Well, I guess I can tell you. We had arranged for this Behemoth to bring us important tech materials. I should not tell you more than this, but I can guarantee you that you'll like the outcome."`
 			choice
 				`	"Outcome?"`
-				`	(Leave.)`
-					decline
 			`	"Better guns! These new ones will be perfect against those who dared to occupy our old worlds."`
 			choice
 				`	(Celebrate.)`
@@ -887,7 +902,7 @@ mission "<uhai> 14: Ion Materials"
 			label pirates
 			`	"Pirates? What are you talking about? Did you consume something before coming here? Ah! I see I am not the only one then..." His confusion then quickly dissipates as he empties his drink. It seems that the vault did not belong to pirates at all.`
 			label celebrate
-			`	Now that the celebration is advancing, you realize you are the only one without a drink. Which beverage do you take? The green one is the one Sookootow was taking when you first came here, now he has a purple one.`
+			`	Now that the celebration is advancing, you realize you are the only one without a drink. Which beverage do you take? The green one is the one Si-Ra was taking when you first came here, now he has a purple one.`
 			choice
 				`	(The purple one.)`
 				`	(The green one.)`
@@ -902,7 +917,7 @@ mission "<uhai> 14: Ion Materials"
 			`	You continue the party late into the night. There won't be any way to get information out of Si-Ra now - he's heavily inebriated. After several hours, you leave with a slight headache. These Unfettered drinks are stronger than you thought, but you don't feel drunk in the way human drinks would make you.`
 				decline
 			label none
-			`	Even without a drink you can celebrate! You continue the party until late, even though some Unfettered do not seem to appreciate that you drink very little, if at all. You leave after several hours and get a good night's rest.`
+			`	Even without a drink you can celebrate! You continue the party until late, even though some Unfettered do not seem to appreciate that you drink very little, if at all, but it could just be the fact that you're a monkey that troubles them. You leave after several hours and get a good night's rest.`
 
 event "unfettered: modded SB ready"
 
@@ -930,6 +945,7 @@ mission "<uhai> 15: Modified Beetle"
 		conversation
 			branch waiting
 				has "<uhai> 15: Modified Beetle: deferred"
+			scene "thumbnail/hai modified shield beetle"
 			`Passing by the labs on the way down, you notice some kind of modified beetle outside, in the middle of what must be a test field, filled with craters you assume to be made during weapon testing.`
 			`	Do you want to go see Mera to see what you can learn about this ship?`
 				to display
@@ -941,14 +957,15 @@ mission "<uhai> 15: Modified Beetle"
 				`	(Sure.)`
 				`	(Later.)`
 					defer
-			`	You go to Mera's laboratory, almost getting lost in the sheer amount of technology there is all over... She seems to be quite busy making prototypes, or maybe this is just because of the presence of the Korath. After stumbling on what you can only assume to be pieces of scrap, you find her, watching and working with the Korath.`
-			`	As you wonder who is assisting who, she notices you, "<last>! He-Yi thought you would be quick to come if I was to let that modified beetle hanging near the labs. It is good to see you again, but I guess this is not simply a courtesy visit, you must be here about the prize." As is usual here, her phrases are translated by the crude Korath translator. The Korath seem to be focused on their tasks, but they are probably listening to the conversation at the same time, given their usual quick thinking pace.`
+			`	You go to Mera's laboratory, almost getting lost in the sheer amount of technology there is all over... She seems to be quite busy making new prototypes, or maybe this is just because of the presence of the Korath that asked for technology to experiment upon. After stumbling on what you can only assume to be pieces of scrap, you find her, watching and working with the Korath.`
+			`	As you wonder who is assisting who, she notices you, "<last>! He-Yi thought you would be quick to come if I was to let that Modified Shield Beetle hanging near the labs. It is good to see you again, but I guess this is not simply a courtesy visit, you must be here about the prize." As is usual here, her phrases are translated by the crude Korath translator, and she seems to be listening to it carefully. "I am trying to learn their language, so I do not depend on this device anymore," She says with her hand waving irritably at it. The Korath seem to be focused on their tasks, but they are probably listening to the conversation at the same time, given their usual quick thinking pace.`
 			choice
 				`	"That is the reason for my presence indeed."`
 					goto duel
-				`	"Why did you leave the translator online?"`
+				`	"Maybe you should turn the translator off if it's irritating you."`
 			`	"Oh, I was talking with them, but I left it on in the hope of inspiring trust from the Korath. We cannot expect them to trust us if we do not allow them to hear what we have to say. This new ship... well it is more of a modification than an actual new ship, actually, but anyway even if it is not public knowledge yet, they would not give that information away." You are surprised when one of the Korath makes a very guttural sound, which, you realize after some time, is probably a laugh. However, they do not seem to care about any of this in the slightest, and go back to their work, completely immersed in it, all of them working as one with remarkable speed, speaking in short phrases, and too quickly for the translator to make any sense out of it.`
 			`	"What do you mean, not revealed yet? What ship are you talking about?" you ask.`
+				goto ship
 			label duel
 			`	"Well you did not come in vain, in that case.`
 			label ship
@@ -959,8 +976,11 @@ mission "<uhai> 15: Modified Beetle"
 					goto justSB
 			`	"Not so fast! You have to earn it first, and I would not mind doing some more testing... Usually I let the Unfettered captains have fun with it but I do not want to risk it getting damaged. And then, it's about time I get to have some fun too!"`
 			label justSB
-			`	"This ship may look like a Shield Beetle to you, because that is indeed what it used to be, but I modified it heavily, to make sure it would be able to take on heavy damage, and thus play an important role in the coming Wanderer conflict. On top of that, I equipped it with unique prototype weaponry, different attempts at increasing the ionizing payload of our weapons. The turrets are intended to disable even the most powerful reactors! And the blasters should offer reasonable firepower, combined with a touch of ion - not enough to disable enemy ships, but enough to scramble their weapons if they are not equipped against it!" She seems to care about that ship a great deal.`
-			`	"But I talk too much... You shall see how mighty this ship is in the only context that matters: battle! I challenge you in a duel, <first>. Should you win, you will earn the right to use this ship. The usual rules of challenges still apply, of course!"`
+			`	"This ship may look like a Shield Beetle to you, because that is indeed what it used to be, but I modified it heavily, to make sure it would be able to take on heavy damage, and thus play an important role in the coming conflict. On top of that, I equipped it with unique prototype weaponry, different attempts at increasing the ionizing payload of our weapons. The turrets are intended to disable even the most powerful reactors! And the blasters should offer reasonable firepower, combined with scrambling - it will not disable enemy ships, but it will make their weapons malfunction if they are not equipped against it!" She seems to care about that ship a great deal.`
+			`	"I hope you approve of the modifications we have done to the ship you supplied to us," she says with a wink.`
+				to display
+					has "unfettered: sold SB"
+			`	"But I talk too much... You shall see how mighty this ship is in the only context that matters: battle! I challenge you in a duel, <first>. Should you win, you will earn the right to use this ship. The usual rules of challenges still apply, of course!" She looks impatient to try this ship in proper battle.`
 				goto fight
 			label waiting
 			`	Do you wish to go see Mera now?`
@@ -968,11 +988,16 @@ mission "<uhai> 15: Modified Beetle"
 				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 <= 18
 			action
 				set "<uhai> 15: Modified Beetle: deferred"
-			`	"Speaking of which, your fleet is too big at the moment, please park ships until you have less than 2 heavy warships, say 3 medium warships at most or a heavy and a medium, and then come back to me. Best leave any ships not meant for battle out of it too.`
+			`	"Speaking of which, your fleet is too big at the moment, please park ships until you have less than 2 heavy warships, say 3 medium warships at most or a heavy and a medium, and then come back to me after taking of and landing again. Best leave any ships not meant for battle out of it too.`
 				defer
 			label fight
 			`	"Launch your ship whenever you feel ready for the fight, I will be waiting for you in space, trying some of these new fancy toys. I may not be a warlord, or a captain even, but I will give you my best!"`
 			`	"And don't forget to disable the extra challengers from the job board, except if you really want a challenge."`
+			choice
+				`	"Get ready to launch."`
+					accept
+				`	"Can you refresh my mind about the rules of the dual?"`
+			`	"Of course! You may not destroy or capture my ship, and looting it is not encouraged - in this case due to the limit stock of these weapons I'd be quite disapointed if you were to do it."`
 				accept
 	on enter
 		conversation
@@ -981,15 +1006,15 @@ mission "<uhai> 15: Modified Beetle"
 			`Mera hails you, "May crossing swords sharpen our blades<, unfettered title>. I would tell you not to hold back but if I'm being honest I probably will seem like holding back, given my lack of experience piloting ships. Fight well!"`
 				accept
 			label "cheating bugger"
-			`Mera hails you, "That is too big of a fleet for me, you overestimate my power. I cancel this challenge, come back to me again when you are ready to do it by the book."`
+			`Mera hails you, "That's too big of a fleet for me, you overestimate my power. I cancel this challenge, come back to me again when you are ready to do it by the book."`
 			action
-				fail "<uhai> 15: Modified Beetle"
+				fail
 	npc save disable
 		government "Hai (Unfettered Challenger)"
 		personality
 			confusion 50
 			disables staying heroic target waiting
-		ship "Modified Shield Beetle" "Basilisk"
+		ship "Modified Shield Beetle" "Basiliscus"
 		on kill
 			event "unfettered: outcast"
 		to spawn
@@ -1016,12 +1041,18 @@ mission "<uhai> 15: Modified Beetle"
 			label suggestions
 			`	"You are NOT to take any weapons from this ship, since you will receive it shortly. You should land so we can talk about suggestions on how to improve the outfit loadout in greater details."`
 			`	"Furthermore, I would love to examine the effect these prototypes had on your ship, but you must land today for that!"`
+	on disabled
+		dialog
+			`Mera hails you, very excited, "Ha! I got you! I can't believe it... Give me my 1000 credits and I'll happily repair you next time you hail.`
+			`	"I will not take anything from you, the fun has been enough! Come back to me anytime when you want to try your luck again, you could perhaps bring an extra ship if you have less than 2 heavy warships or 3 mediums.`
+			`	"Until next time, then!"`
+		fail
 	to fail
 		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail If Killed"
 	on visit
-		dialog "You have not yet defeated Mera, and landing like this means you choose to delay the duel to another time."
+		dialog "You have not yet defeated Mera, and landing like this means you choose to delay the duel to another time, due to the duel having to be completed in one day."
 	to complete
 		has "unfettered: defeated Mera"
 	on complete
@@ -1033,28 +1064,14 @@ mission "<uhai> 15: Modified Beetle"
 					"outfit (all): Ionic Turret Prototype" > "turrets owned"
 			branch normal
 				not "unfettered rep: Mera"
-			branch modifications
-				"unfettered rep: Mera" < 2
-			`	"Truly you fought well, <first>. You deserve this extra gift, feel free to install it on your new ship when you get it!`
-			branch Favor
-				"unfettered rep: Mera" == 3
-			action
-				outfit "Systems Core (Medium)"
-			`	"I am sure this medium systems core will be very helpful."`
-				goto modifications
-			label Favor
-			`	"A large systems core! Surely this will help you upgrade a ship of your choosing. I had to pull of a few strings to be authorized to give it to you," she says with a movement of her ears.`
-			action
-				outfit "Systems Core (Large)"
-			label modifications
 			`	"Since this was partly a test-run, what suggestions would you make to improve the design, before I finally give this ship to you?"`
 			choice
-				`	"Keep it as it is."`
+				`	"The ship is fine, but I could use an extra outfit to modify the loadout myself."`
 				`	"I feel like it is lacking in raw firepower, missiles will just get intercepted before they can hit."`
 					goto dakka
 				`	"I was expecting even more ionic damage out of it."`
 					goto ion
-				`	"Could you give it some more shield regenerators?"`
+				`	"Could you give it some more shield regeneration?"`
 					goto shield
 				`	"How about more energy storage? A bigger battery would go a long way to help it in battle, once heat brings its generators down."`
 					goto energy
@@ -1062,42 +1079,63 @@ mission "<uhai> 15: Modified Beetle"
 					goto hull
 				`	"It really is too unstable, more cooling is needed."`
 					goto cooling
+			`	"Indeed you fought well, <first>, so you deserve this extra gift, feel free to install this on your new ship when you get it! You could also store it in the lab if you so wish.`
+			branch bigfavor
+				"unfettered rep: Mera" >= 3
+			branch simpleprize
+				"unfettered rep: Mera" == 1
+			action
+				outfit "Double Plasma Core"
+			`	"I am sure this Double Plasma Core will be very helpful to power the ship! Be careful to not let it overheat, however, I did not equip it myself because of that limitation, but I am sure you can easily obtain the necessary coolers."`
+				goto ship
+			label bigfavor
+			action
+				outfit "Korath Inferno"
+			`	"I hear the Koraths call this one the 'Inferno'! Surely this will help you upgrade a ship of your choosing. I had to pull of a few strings to be authorized to give it to you," she says with a movement of her ears.`
+				goto ship
+			label simpleprize
+			action
+				outfit "Korath Heat Shunt"
+				set "unfettered: sestor gift"
+			`	"The Koraths wanted you to have this. They told me they made it themselves, with our 'primitive' parts, which is an accomplishment on its own!"`
+			label ship
 			action
 				set "unfettered: prize right away"
-			`	"In that case you can go claim it tomorrow, on Darkcloak, once I am done with the repairs. It should not take long!"`
+			`	"You can go claim the ship itself tomorrow, on Darkcloak, once I am done with the repairs. It should not take long!"`
 				accept
 			label dakka
 			action
 				event "unfettered: more dakka" 14
-			`	"This ship was never intended as a damage dealer, but rather as a survivor that can tank many hits whilst it disables its target with the ionic weaponry. Once the enemy is disabled, you can do as much damage as you like and they won't be able to hit back. However, it is to be your ship so I will follow your preferences, and switch the tracker pods for more blasters."`
+			`	"This ship was never intended as a damage dealer, but rather as a survivor that can tank many hits whilst it disables its target with the ionic weaponry. Once the enemy is disabled, you can do as much damage as you like and they won't be able to hit back. However, it is to be your ship so I will follow your preferences, and switch the tracker pods for more blasters.`
+			`	"I understand not being a fan of missiles, especially given your missions will easily take you far away.`
 				goto delay
 			label cooling
 			action
 				event "unfettered: cooler" 7
-			`	"That was one of my worries when putting 3 shield generators on it indeed, since they generate a lot of heat when recharging the shields. That said, I think I have an idea on how to fix that..."`
+			`	"That was one of my worries when putting 3 shield generators on it indeed, since they generate a lot of heat when recharging the shields. That said, I think I have an idea on how to fix that...`
 				goto delay
 			label ion
 			action
 				event "unfettered: disable-er" 14
-			`	"I will swap out a shield generator and the anti-missile to be able to fit one more of the Ionic Turret Prototypes, that will do plenty of ion damage."`
+			`	"I will swap out a shield generator and the anti-missile to be able to fit one more of the Ionic Turret Prototypes, that will do plenty of ion damage.`
 				goto delay
 			label energy
-			`	"Oh, that is true, but as I told you before, this ship is not intended to fight against our brethren but rather against the aliens up north, which lack in any kind of ionic damage. However, since that's what you want, and you'll be in command of that ship anyway, I will find a way to increase its energy storage."`
+			`	"Oh, that is true, but as I told you before, this ship is not intended to fight against our brethren but rather against the aliens up north, which lack in any kind of ionic damage. However, since that's what you want, and you'll be in command of that ship anyway, I will find a way to increase its energy storage without losing combat potential.`
 				goto delaysys
 			label hull
-			`	"Are you intending to use it against the soulless machines to the east, or did you get intimidated that badly by the piercing weapon of earlier missions? Whatever the case, do not worry, I know how to address that, and more."`
+			`	"Are you intending to use it against the soulless machines to the east, or did you get intimidated that badly by the piercing weapon of earlier missions? Whatever the case, do not worry, I know how to address that, and more.`
 				goto delaysys
 			label shield
-			`	"I thought I had already placed enough shield generators, 3 of them in fact... But you're the one who will be flying that ship so I will do as you suggest. Indeed, I think I know of a way to address that, and other weaknesses I've found when piloting the ship has as well."`
+			`	"I thought I had already placed enough shield generators, 3 of them in fact... But you're the one who will be flying that ship so I will do as you suggest. Indeed, I think I know of a way to address that, and other weaknesses I've found when piloting the ship has as well.`
 			label delaysys
 			action
 				event "unfettered: syscore's got it" 10
 			label delay
-			`	"Of course, this means that it will take a bit before you can receive the ship. I will send you a notice when that is the case, I do not expect the preparations to last more than a week or two. It is not so much a matter of finding what you asked for, but of getting the permission to equip it on this ship. Once the ship is ready, it will be waiting for you on Darkcloak, since that is where I will make the necessary modifications."`
+			`	"Of course, this means that it will take a bit before you can receive the ship. I will send you a notice when that is the case, I do not expect the preparations to last more than a week or two. It is not so much a matter of finding what you asked for, but of getting the permission to equip it on this ship.`
+			`	"Once the ship is ready, it will be waiting for you on Darkcloak, since that is where I will make the necessary modifications."`
 				decline
-
 			label thief
-			`	She seems upset, "I told you not to take any weapons, what were you thinking? That was not officially part of the duels so you can get away with it, but I certainly do not approve of it. Don't conut on me to give you any special treatment for this ship.`
+			`	She seems upset, "I told you not to take any weapons, what were you thinking? That was not officially part of the duels so you can get away with it, but I certainly do not approve of it. Don't count on me to give you any special treatment for this ship.`
 			action
 				"unfettered rep: Mera" -= 3
 				set "unfettered: prize right away"
@@ -1143,95 +1181,8 @@ ship "Modified Shield Beetle" "Si-Ra' angry Beetle"
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 
-# He Yi's Beetle (has flamethrower variant defined in the side missions, provided you sell flamers)
-ship "Stag Beetle"
-	sprite "ship/hai stag beetle"
-	thumbnail "thumbnail/hai stag beetle"
-	attributes
-		category "Heavy Warship"
-		"cost" 30400000
-		"shields" 39000
-		"hull" 11000
-		"required crew" 70
-		"bunks" 78
-		"mass" 720
-		"drag" 9.1
-		"cloak" .01
-		"cloaking energy" 5
-		"cloaking fuel" .5
-		"cloaking heat" 5
-		"heat dissipation" .45
-		"fuel capacity" 600
-		"cargo space" 80
-		"outfit space" 834
-		"weapon capacity" 353
-		"engine capacity" 145
-		"spinal mount" 1
-		"scrambling resistance" 2
-		weapon
-			"blast radius" 515
-			"shield damage" 6000
-			"hull damage" 3500
-			"hit force" 4000
-	outfits
-		"Sunbeam" 2
-		"Fire-Lance" 2
-		"Ionic Blaster Prototype" 2
-		"Korath Detainer"
-		"Grab-Strike Turret"
-		"Banisher Grav-Turret"
-		"Bullfrog Anti-Missile" 3
-		
-		"Liquid Sodium Cooler"
-		"Systems Core (Large)"
-		"Dark Storm Shielding"
-		"Outfits Expansion" 4
-		"Fuel Processor"
-		"Large Heat Shunt"
-		"Jump Drive"
-		
-		`"Bufaer" Atomic Steering`
-		"Afterburner (Comet Class)"
-		"Thruster (Lunar Class)"
-		
-		"Triple Plasma Core"
-		"Small Biochemical Cell"
-		
-		"Thermal Repeater Rifle" 20
-		"Pulse Rifle" 60
-		"Dual Pulse Pistols" 10
-		"True Unfettered License"
-	
-	engine -45 123
-	engine 45 123
-	gun 0 -7 "Korath Detainer"
-	gun -22 -102 "Sunbeam"
-	gun 22 -102 "Sunbeam"
-	gun -34 -68 "Fire-Lance"
-	gun 34 -68 "Fire-Lance"
-	gun -49 -38
-	gun 49 -38
-	gun -61 -14 "Ionic Blaster Prototype"
-	gun 61 -14 "Ionic Blaster Prototype"
-	turret -51 21.5 "Grab-Strike Turret"
-	turret 51 21.5 "Bullfrog Anti-Missile"
-	turret -56.5 75 "Banisher Grav-Turret"
-	turret 56.5 75 "Bullfrog Anti-Missile"
-	turret 0 85.5 "Bullfrog Anti-Missile"
-	leak "leak" 35 45
-	leak "flame" 60 95
-	leak "big leak" 50 45
-	explode "tiny explosion" 65
-	explode "small explosion" 53
-	explode "medium explosion" 56
-	explode "large explosion" 55
-	explode "huge explosion" 25
-	"final explode" "final explosion large"
-	description "At the core of this vessel are the ancient remains of a Korath raider that, despite making good use of a cloaking device, harassed the Unfettered one too many times. Although it does suffer from higher mass than a normal shield beetle, it also enjoys a more resilient hull and shield matrix."
-	description "The owner of this ship is the servant of Tejolis; they are the incarnation of strategical might on the battlefield."
-
 conversation "unfettered war ready"
-	`Now that the fight is over, they both hail you, and He-Yi speaks first.`
+	`Now that the fight is over, both warlords hail you, and He-Yi speaks first.`
 		to display
 			not "unfettered: mad Si-Ra"
 	`Now that the fight is over, He-Yi hails you.`
@@ -1245,19 +1196,18 @@ conversation "unfettered war ready"
 		`	"I was easily able to outmaneuver you."`
 			goto mistake
 		`	"Nothing specific. Well fought."`
-			goto train
+			goto "after Si-Ra"
 	`	He-Yi answers. "It looks like that was indeed the case. Sheer strength may be enough to defeat nearly everything in your way, but is it fun? Is it strategic? I try not to rely on that tactic too often."`
-	branch "no Si-Ra"
+	branch "after Si-Ra"
 		has "unfettered: mad Si-Ra"
 	`	Si-Ra then speaks. "Well<, unfettered title>, I sure wish I had the money for such a fleet. I could barely afford this ship, and it will need repairs again now."`
-		goto train
+		goto "after Si-Ra"
 	label mistake
 	`	He-Yi answers. "Yes, that is true. We'll try not to repeat that mistake again, [warlord, esteemed adversary]."`
-	branch "no Si-Ra"
+	branch "after Si-Ra"
 		has "unfettered: mad Si-Ra"
 	`	Si-Ra then speaks. "Indeed, you have deserved the title of warlord. But make no mistake, next time it will not be so easy<, unfettered title>!"`
-	label "no Si-Ra"
-	label train
+	label "after Si-Ra"
 	`	"The war will start soon, but there is still some time to train. Use that time well, Warlord, and do bring us as many Jump Drives as you can."`
 	`	"Si-Ra's actions are [unacceptable, unforgivable]. But you have still managed to prove yourself against him, and well deserve the title of warlord."`
 		to display
@@ -1298,7 +1248,7 @@ mission "<uhai> 16: Strength Of A Leader: Si-Ra"
 				to display
 					"midas: wronged" > 1
 					"unfettered rep: Si-Ra" <= -2
-			`	"I have managed to buy myself a ship with the money from our last business opportunity. It is much stronger than the old one! And as a warlord, He-Yi has a strong fleet as well, though he will not use it here - only his flagship. You may want to consider this seriously. You will first have to duel me and then him. Don't forget you can call the fight off and come back once you're ready by giving us a symbolic fee." He then takes a pause before asking, "What do you say, <last>? Are you ready to fight us?"`
+			`	"I have managed to buy myself a ship with the money from our last business opportunity. It is much stronger than the old one! And as a warlord, He-Yi has a strong fleet as well, though he will not use it here - only his flagship. You may want to consider this seriously. You will first have to duel me and then him. Don't forget you can call the fight off and come back once you're ready, by giving us a symbolic fee." He then takes a pause before asking, "What do you say, <last>? Are you ready to fight us?"`
 			choice
 				`	"I was born ready."`
 				`	"On second thought, I'll come back later."`
@@ -1372,6 +1322,10 @@ mission "<uhai> 16: Strength Of A Leader: Si-Ra"
 		personality entering vindictive nemesis heroic
 		ship "Shield Beetle (Jump)" "Ghost"
 		system "Prakacha'a"
+	on disabled
+		dialog `Si-Ra hails you, "It seems that you are not ready for war yet, <last>. Come back when you will be and we will see. In the meantime I will deduce a fee of <fine> from you for this fight. Oh, and you should give me the symbolic fee of 1000 credits if you want repairs."`
+		fail
+		fine 250000
 	to fail
 		has "unfettered: outcast"
 	on fail
@@ -1421,14 +1375,17 @@ mission "<uhai> 16: Strength Of A Leader: He-Yi"
 		ship "Stag Beetle (Flamer)" "Tejolis"
 		personality disables staying heroic target launching
 		conversation "unfettered war ready"
+	on disabled
+		dialog `He-Yi hails you, "It seems that my observation of your ship loadout payed well. I quite enjoyed the distraction, come back to me once you will truly be ready, and in the meantime you will have to give me the symbolic 1000 credits for losing."`
+		fail
 	to fail
 		has "unfettered: outcast"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail If Killed"
 	on complete
-		log `Officially joined the Unfettered Militia and received a license to purchase their heavy ships, that is, when they become available in the near future.`
+		log `Officially joined the Unfettered Militia and received a license to purchase their heavy ships, when they become available in the near future.`
 		"salary: Unfettered" = 5000
-		set "license: True Unfettered"
+		set "license: Unfettered"
 		clear "unfettered: defeated Si-Ra"
 		conversation
 			`He-Yi joins you on your ship after having parked his.`
@@ -1436,7 +1393,7 @@ mission "<uhai> 16: Strength Of A Leader: He-Yi"
 			`	"I was told by one of Si-Ra' officers that he was planning to disrespect the rules of the duel, and to kill you. Fortunately he did not succeed, but his escape pod managed to escape, so this is may not be the last time we will hear of him. He has been marked as an outcast."`
 				to display
 					has "unfettered: mad Si-Ra"
-			`	"We will notify you once you may be of more help to the war effort. In the meantime, we have increased your salary to 5,000 credits so you can [muster, gather] an even larger fleet.`
+			`	"We will notify you once you may be of more help to the war effort. In the meantime, we have increased your salary to 5,000 credits so you can [muster, gather] enough strength for the coming fight.`
 			`	"Also, from now on, you will officially have the permission to proudly wear our [flag, colors]. We have informed the Hai so that they will [recognize, distinguish] you and not be hostile to you. We cannot say the same for the Wanderers, though, so be careful. If you want we can delay it until the war truly starts."`
 			choice
 				`	"I'd prefer if we waited, I do not want to be at war with the Wanderers yet."`
@@ -1451,16 +1408,14 @@ mission "<uhai> 16: Strength Of A Leader: He-Yi"
 				`	"I will prove myself worthy of it."`
 					goto worthy
 				`	"He came a warlord?"`
-			`	"You did not know? If a warlord is defeated in battle, he will have to give up his position or the item most dear to him, and considering your recent exploits, you are certainly more worthy of it than him. Si-Ra finally managed to overcome the owner of Scarred, using his new beetle, but I suspect that this will not be the last time we hear of either of them..."`
+			`	"You did not know? If a warlord is defeated in battle, he will have to give up his position or the item most dear to him, and considering your recent exploits, you are certainly more worthy of it than him. Si-Ra finally managed to overcome the owner of Scarred, using his new modified beetle, but I suspect that this will not be the last time we hear of either of them..."`
 			label worthy
-			`	He then draws his long sword, which has the same appearance as the keystone pendants popular among his race, and he hands it to you. "You have also deserved the right to have this. It is a proof of our trust toward you and means you will have access to all of our ships. Whenever a warlord is defeated in battle, he has to surrender his sword to the one who vanquished him."`
+			`	He then draws his long sword, which has the same appearance as the keystone pendants popular among his race, and hands it to you. "You have also deserved the right to have this. It is a proof of our trust toward you and means you will have access to all of our ships. Whenever a warlord is defeated in battle, he has to surrender his sword to the one who vanquished him."`
 			choice
 				`	"I would like to ask a few questions, about your ship."`
 				`	"I am honored, and hope we will fight again, later."`
 					accept
 			`	"Yes, that was to be [suspected, expected]. I am prepared to answer a few, but choose wisely what you want to ask."`
-			action
-				"unfettered: questions" = 0
 			label questions
 			action
 				"unfettered: questions" ++

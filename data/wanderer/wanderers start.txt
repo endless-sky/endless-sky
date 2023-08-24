@@ -670,7 +670,7 @@ event "unfettered: outcast"
 		remove outfitter "Unfettered"
 	government "Hai (Unfettered)"
 		"bribe" .04
-	clear "license: True Unfettered"
+	clear "license: Unfettered"
 
 mission "Unfettered: Regrets"
 	landing
@@ -682,7 +682,7 @@ mission "Unfettered: Regrets"
 		event "unfettered: challengers leave"
 	on enter "Ehma Ti" "Wah Yoot" "Hi Yahr"
 		event "unfettered: outcast"
-		outfit "True Unfettered License"
+		outfit "Unfettered License"
 		dialog
 			`The instant you enter the system, you receive a priority message from the local authorities. "<last>, because of your recent involvements with the aliens up north, we have decided to stop offering you important missions."`
 			`	Since this is a recorded message you cannot respond, but even if you could they would probably just ignore you. You assume that your Unfettered license no longer has any value to them.`
@@ -703,7 +703,7 @@ mission "Unfettered: Betrayed"
 			has "midas: tracker relay"
 			has "flagship model: Modified Shield Beetle"
 	on fail
-		outfit "True Unfettered License"
+		outfit "Unfettered License"
 		event "unfettered: outcast"
 		dialog
 			`Once you are alone in your quarters you hear a voice, darker and more serious than ever before. "You have betrayed us. Nemo Me Impune Laccessit, <first>. We have a message to transmit to you on behalf of the council of Chiefs.`
@@ -1368,10 +1368,8 @@ mission "Wanderers: Alpha Surveillance D"
 			`When you enter this system, your sensors pick up a Navy Carrier in orbit around an Earth-like planet. <base found> "That's them," says Hanover. "I hope you're strong enough to destroy them." The Carrier starts to launch fighters: Korath ones, not human ships. This might be a difficult fight...`
 			branch nothing
 				not "flagship base attribute: unfettered remote"
-			``
 			`	You start preparing for the fight, but seconds later you notice an orange light on your console, blinking slowly.`
 			`	Time seems to slow down as it starts flashing faster and faster, and you finally realize what it must be.`
-			``
 			`	A self-destruct indicator! Maybe coming here with the <ship> as your flagship was not the best idea.`
 				explode
 			label nothing

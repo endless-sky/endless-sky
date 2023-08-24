@@ -1065,6 +1065,43 @@ ship "Sea Scorpion" "Sea Scorpion (Shredder)"
 		"Quantum Keystone"
 		"Tripulse Shredder" 2
 
+ship "Sea Scorpion" "Sea Scorpion (Shields, Trackers)"
+	outfits
+		`"Biroo" Atomic Steering`
+		`"Biroo" Atomic Thruster`
+		"Boulder Reactor"
+		"Bullfrog Anti-Missile" 2
+		"Hai Diamond Regenerator" 4
+		"Hai Ravine Batteries"
+		"Hai Tracker" 224
+		"Hai Tracker Pod" 4
+		"Hai Williwaw Cooling"
+		Hyperdrive
+		"Outfits Expansion" 2
+		"Pulse Rifle" 15
+
+ship "Sea Scorpion" "Sea Scorpion (Disruptor Slicer)"
+	add attributes
+		"fuel capacity" 300
+		"cargo space" -5
+		"engine capacity" -24
+	outfits
+		"Hai Tracker" 420
+		"Hai Tracker Pod" 4
+		"Tracker Storage Pod" 7
+		"Shield Disruptor Turret"
+		"Husk-Slice Turret"
+		"Hai Diamond Regenerator"
+		"Hai Octopus Jammer" 2
+		"Outfits Expansion" 2
+		Hyperdrive
+		"Hai Williwaw Cooling" 2
+		"Boulder Reactor"
+		"Hai Fissure Batteries"
+		"Pulse Rifle" 20
+		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+
 
 
 ship "Scarab"
@@ -1550,6 +1587,92 @@ ship "Shield Beetle" "Shield Beetle (Thunderhead)"
 		"Thunderhead Missile" 160
 
 
+# He Yi's Beetle (has flamethrower variant defined in the side missions, provided you sell flamers)
+ship "Stag Beetle"
+	sprite "ship/hai stag beetle"
+	thumbnail "thumbnail/hai stag beetle"
+	attributes
+		category "Heavy Warship"
+		"cost" 30400000
+		"shields" 39000
+		"hull" 11000
+		"required crew" 70
+		"bunks" 78
+		"mass" 720
+		"drag" 9.1
+		"cloak" .01
+		"cloaking energy" 5
+		"cloaking fuel" .5
+		"cloaking heat" 5
+		"heat dissipation" .45
+		"fuel capacity" 600
+		"cargo space" 80
+		"outfit space" 834
+		"weapon capacity" 353
+		"engine capacity" 145
+		"spinal mount" 1
+		"scrambling resistance" 2
+		weapon
+			"blast radius" 515
+			"shield damage" 6000
+			"hull damage" 3500
+			"hit force" 4000
+	outfits
+		"Sunbeam" 2
+		"Fire-Lance" 2
+		"Ionic Blaster Prototype" 2
+		"Korath Detainer"
+		"Grab-Strike Turret"
+		"Banisher Grav-Turret"
+		"Bullfrog Anti-Missile" 3
+		
+		"Liquid Sodium Cooler"
+		"Systems Core (Large)"
+		"Dark Storm Shielding"
+		"Outfits Expansion" 4
+		"Fuel Processor"
+		"Large Heat Shunt"
+		"Jump Drive"
+		
+		`"Bufaer" Atomic Steering`
+		"Afterburner (Comet Class)"
+		"Thruster (Lunar Class)"
+		
+		"Triple Plasma Core"
+		"Small Biochemical Cell"
+		
+		"Thermal Repeater Rifle" 20
+		"Pulse Rifle" 60
+		"Dual Pulse Pistols" 10
+		"Unfettered License"
+	engine -45 123
+	engine 45 123
+	gun 0 -7 "Korath Detainer"
+	gun -22 -102 "Sunbeam"
+	gun 22 -102 "Sunbeam"
+	gun -34 -68 "Fire-Lance"
+	gun 34 -68 "Fire-Lance"
+	gun -49 -38
+	gun 49 -38
+	gun -61 -14 "Ionic Blaster Prototype"
+	gun 61 -14 "Ionic Blaster Prototype"
+	turret -51 21.5 "Grab-Strike Turret"
+	turret 51 21.5 "Bullfrog Anti-Missile"
+	turret -56.5 75 "Banisher Grav-Turret"
+	turret 56.5 75 "Bullfrog Anti-Missile"
+	turret 0 85.5 "Bullfrog Anti-Missile"
+	leak "leak" 35 45
+	leak "flame" 60 95
+	leak "big leak" 50 45
+	explode "tiny explosion" 65
+	explode "small explosion" 53
+	explode "medium explosion" 56
+	explode "large explosion" 55
+	explode "huge explosion" 25
+	"final explode" "final explosion large"
+	description "At the core of this vessel are the ancient remains of a Korath raider that, despite making good use of a cloaking device, harassed the Unfettered one too many times. Although it does suffer from higher mass than a normal shield beetle, it also enjoys a more resilient hull and shield matrix."
+	description "The owner of this ship is the servant of Tejolis; they are the incarnation of strategical might on the battlefield."
+
 
 # Flagship of the Unfettered Hai, filled with the spoils of wars against Korath and Wanderers:
 ship "Emperor Beetle"
@@ -1661,6 +1784,46 @@ ship "Emperor Beetle"
 	description "	As it is not meant to plunder but to lead in glorious battle, many of the cargo bays were removed and converted to space for weapons and defensive improvements. This change came at the cost of increased mass and lowered agility, but that is a sacrifice the Unfettered are more than willing to make."
 	description "	More than just a ship, the Emperor Beetle was built to inspire fear in its enemies, making it known that they face no simple Hai, but the military leaders of the Unfettered leading at the front of those they command. Some believe it to be foolish to show their leaders' ships in such a manner, but that is not how the Unfettered think. This ship was built to withstand far more punishment than any normal Shield Beetle, while still being able to dish out damage of its own."
 
+ship "Stag Beetle" "Stag Beetle (Flamer)"
+	outfits
+		"Sunbeam" 4
+		"Flamethrower" 2
+		"Korath Detainer"
+		"Grab-Strike Turret"
+		"Banisher Grav-Turret"
+		"Bullfrog Anti-Missile" 3
+		
+		"Liquid Sodium Cooler"
+		"Systems Core (Large)" 2
+		"Outfits Expansion" 4
+		"Wanderer Ramscoop"
+		"Jump Drive"
+		
+		`"Bufaer" Atomic Steering`
+		"Afterburner (Comet Class)"
+		"Thruster (Lunar Class)"
+		
+		"Double Plasma Core"
+		"Large Biochemical Cell"
+		
+		"Thermal Repeater Rifle" 20
+		"Pulse Rifle" 60
+		"Dual Pulse Pistols" 10
+		"Unfettered License"
+	gun 0 -7 "Korath Detainer"
+	gun -22 -102 "Sunbeam"
+	gun 22 -102 "Sunbeam"
+	gun -34 -68 "Sunbeam"
+	gun 34 -68 "Sunbeam"
+	gun -49 -38
+	gun 49 -38
+	gun -61 -14 "Flamethrower"
+	gun 61 -14 "Flamethrower"
+	turret -51 21.5 "Grab-Strike Turret"
+	turret 51 21.5 "Bullfrog Anti-Missile"
+	turret -56.5 75 "Banisher Grav-Turret"
+	turret 56.5 75 "Bullfrog Anti-Missile"
+	turret 0 85.5 "Bullfrog Anti-Missile"
 
 
 ship "Solifuge"
@@ -1669,7 +1832,7 @@ ship "Solifuge"
 	attributes
 		category "Heavy Warship"
 		licenses
-			"True Unfettered"
+			"Unfettered"
 		"cost" 22800000
 		"shields" 37800
 		"hull" 11000
