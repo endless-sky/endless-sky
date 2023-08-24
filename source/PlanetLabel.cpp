@@ -38,7 +38,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	// Label offset angles, in order of preference.
+	// Label offset angles, in order of preference (non-negative only).
 	constexpr array<double, 8> LINE_ANGLES = {60., 120., 300., 240., 30., 150., 330., 210.};
 	constexpr double LINE_LENGTH = 60.;
 	constexpr double INNER_SPACE = 10.;
@@ -103,7 +103,7 @@ PlanetLabel::PlanetLabel(const vector<PlanetLabel> &labels, const System &system
 	const bool bottomSide = 135. < innerAngle && innerAngle < 225.;
 
 	// Have to adjust the more extreme angles differently or it looks bad.
-	const double yOffset = topSide ? nameHeight * .75 : bottomSide ? nameHeight * .25 : nameHeight * .5;
+	const double yOffset = (topSide ? .75 : bottomSide ? .25 : .5) * nameHeight;
 
 	// Cache the offsets for both labels.
 	nameOffset = Point(rightSide ? 2. : -bigFont.Width(name) - 2., -yOffset);
@@ -173,8 +173,8 @@ void PlanetLabel::SetBoundingBox(const Point &labelDimensions, const double angl
 	const bool bottomSide = 135. < angle && angle < 225.;
 
 	// Offset the label depending on its position relative to the stellar object.
-	const double xOffset = (rightSide ? labelDimensions.X() : -labelDimensions.X()) * 0.5;
-	const double yOffset = topSide ? nameHeight * .75 : bottomSide ? nameHeight * .25 : nameHeight * .5;
+	const double xOffset = (rightSide ? .5 : -.5) * labelDimensions.X();
+	const double yOffset = (topSide ? .75 : bottomSide ? .25 : .5) * nameHeight;
 	box = Rectangle(unit * (INNER_SPACE + LINE_GAP + LINE_LENGTH) +
 		Point(xOffset, labelDimensions.Y() * .5 - yOffset), labelDimensions);
 }
