@@ -242,7 +242,7 @@ event "hr: concern period"
 
 mission "Hai Reveal Concern Period: Humans Going Home"
 	landing
-	invisible
+	passengers 5 10
 	source
 		government "Hai"
 		not attributes "uninhabited" "retirement"
@@ -253,8 +253,18 @@ mission "Hai Reveal Concern Period: Humans Going Home"
 		random < 10
 	on offer
 		conversation
-			`Humans with business on worlds that have very little human presence are moving or returning to homes where there are more humans. They're not coping with the suspicion directed at them.`
+			`As you land you are hailed by the local Hai authorities, "<last>, we have a situation developing. Tensions between the Hai and humans are rising and we fear it may worsen if we do not act soon." Another Hai interrupts them, "This is why we want your help, Captain, we fear that if we were to ask Hai captains, it could easily degenerate. We think these <passengers> humans would be safer on <destination>."`
+			`	You go to the spaceport to meet with these humans, and speak to what appears to the leader of the group. Judging by their expensive clothing and somewhat impatient attitude they must be business men, or perhaps even diplomats.`
+			choice
+				`	(Invite them to my ship.)`
+					accept
+				`	"What seems to be the problem?"`
+			`	"Ah, I trust you are the Captain that has been allocated to help us. I am Brin." You introduce yourself in response, and they continue, "We are conducting business here, as we have been for some time, in fact, but with the recent events suspicion has arisen. Some of them believe we will abduct them when we ask to move for more private locations to conduct contracts!" They say with a chuckle. "As you can imagine, business is suffering as a result, and we will be more than happy to give you a just compensation of <payment> for this transport to more fruitful lands."`
+			`	Another one steps forward, "We were hoping that the small amount of humans was a good business opportunity, which was only true until recently. Indeed, my colleagues and I will return to a location where we used to do business in the past, but you understand we cannot just ask any captain to take us, even if we are willing to make do without proper accommodations due to the relative urgency of the situation. Now if you'll show me my bunks please, I have a call to make." You proceed to show them all their bunks, which they describe as "satisfactory".`
 				accept
+	on complete
+		payment 100000
+		dialog `The little group of business partners depart from your ship, and their representative addresses you again, "Very pleasant little ride, Captain. You deserve these <payment> for it, we were even able to conduct some lucrative business opportunities from within your ship. Until next time, <last>."`
 
 
 
@@ -441,7 +451,8 @@ mission "Hai Reveal Concern Period: Securing Sandsnap"
 		has "hr: allhome raided"
 	on offer
 		conversation
-			`	Keep the station secure and ensure the supply convoy arrives safely.`
+			`	As you arrive you are greeted by a message requesting you to head to the center of operations within the station. You proceed to equip your suit and exit your ship. The station itself seems relatively well preserved, except for the lack of atmosphere. Nothing seems to have vented it, no big hole in the ceiling, and walking trough feels like walking in a ghost city. A few of the light bulbs are activated, showing you the way.`
+			`	You quickly arrive to the center of operations, and are able to remove your helmet. One Hai that seems to be in charge heads to you from the other side, covering the gap at an impressing pace. "<last>! It is splendid you could make it here so quickly, we will be able to begin the reparation process at once. I am sure you have questions but they will have to wait until this is over, as the longer we wait the more pirates will be attracted. We need you to get in orbit and destroy all that enter the system to ensure the supplies can arrive here safely." You are left with little choice but nodding and getting on your way.`
 				accept
 	on accept
 		set "hr: sandsnap project"
