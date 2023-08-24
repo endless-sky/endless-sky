@@ -34,6 +34,7 @@ namespace {
 		"outfitter",
 		"news",
 		"planet",
+		"pricing",
 		"shipyard",
 		"system",
 		"substitutions",

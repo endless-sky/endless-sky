@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Depreciation.h"
 
+#include "CustomSaleManager.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "GameData.h"
@@ -264,16 +265,17 @@ int64_t Depreciation::Value(const Ship *ship, int day, int count) const
 // Get the value of an outfit.
 int64_t Depreciation::Value(const Outfit *outfit, int day, int count) const
 {
+	int64_t cost = CustomSaleManager::OutfitCost(*outfit);
 	if(outfit->Get("installable") < 0.)
-		return count * outfit->Cost();
+		return count * cost;
 
 	// Check whether a record exists for this outfit. If not, its value is full
-	// if this is  planet's stock, or fully depreciated if this is the player.
+	// if this is the planet's stock, or fully depreciated if this is the player's.
 	auto recordIt = outfits.find(outfit);
 	if(recordIt == outfits.end() || recordIt->second.empty())
-		return DefaultDepreciation() * count * outfit->Cost();
+		return DefaultDepreciation() * count * cost;
 
-	return Depreciate(recordIt->second, day, count) * outfit->Cost();
+	return Depreciate(recordIt->second, day, count) * cost;
 }
 
 

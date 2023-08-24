@@ -1,0 +1,815 @@
+test-data "Custom Sale Price"
+	category "savegame"
+	contents
+		pilot Bobbi Bughunter
+		date 16 11 2513
+		system Sol
+		planet Mars
+		# What you own:
+		ship Grasshopper
+			name "Dawn Journey"
+			sprite "ship/hai grasshopper"
+			thumbnail "thumbnail/hai grasshopper"
+			uuid 79dc5926-a9d1-4cf2-bf31-b7ffe831fc03
+			attributes
+				category Interceptor
+				cost 684000
+				mass 95
+				bunks 5
+				"cargo space" 29
+				drag 1.5
+				"engine capacity" 61
+				"fuel capacity" 300
+				"gun ports" 2
+				"heat dissipation" 0.85
+				hull 600
+				"outfit space" 169
+				"required crew" 1
+				shields 3300
+				"weapon capacity" 38
+			outfits
+				`"Benga" Atomic Thruster`
+				`"Biroo" Atomic Steering`
+				"Fuel Pod"
+				"Hai Chasm Batteries"
+				"Hai Corundum Regenerator"
+				"Hai Williwaw Cooling" 2
+				Hyperdrive
+				"Outfits Expansion"
+				"Pebble Core"
+				"Pulse Cannon" 2
+				"Quantum Keystone"
+			crew 1
+			fuel 400
+			shields 3300
+			hull 600
+			position 0 0
+			engine 0 36
+				zoom 1
+				angle 0
+				under
+			gun -6 -34 "Pulse Cannon"
+				under
+			gun 6 -34 "Pulse Cannon"
+				under
+			leak leak 60 50
+			explode "medium explosion" 5
+			explode "small explosion" 20
+			explode "tiny explosion" 10
+			"final explode" "final explosion small" 1
+			system Sol
+			planet Mars
+		account
+			credits 0
+			score 400
+			history
+		changes
+			pricing outfits "1000 pulse"
+				location "Mars"
+
+				value
+					"Pulse Cannon" 500
+				offset
+					"Pulse Cannon" 1 %
+
+			# We need to add an outfitter for the outfitter panel to be available
+			planet Mars
+				add outfitter "Nuke"
+
+
+test "CustomSale Price Sell Outfit With Custom Price and relative offset"
+	status "active"
+	description "Test selling a 1000 credits outfit."
+	sequence
+		# Create/inject the savegame and load it.
+		inject "Custom Sale Price"
+		call "Load First Savegame"
+		#  Value and offset should cumulate on top of each other, meaning the final price is 500 * 2
+		call "Sell first outfit"
+		call "Depart"
+		# We can only check the conditions after departing, since the conditions are not updated directly after loading or selling.
+		apply
+			"test: credits" = "credits"
+		assert
+			"credits" == 1000
+
+
+
+test-data "Custom Sale Outfitter Price"
+	category "savegame"
+	contents
+		pilot Bobbi Bughunter
+		date 16 11 2513
+		system Sol
+		planet Mars
+		# What you own:
+		ship Grasshopper
+			name "Dawn Journey"
+			sprite "ship/hai grasshopper"
+			thumbnail "thumbnail/hai grasshopper"
+			uuid 79dc5926-a9d1-4cf2-bf31-b7ffe831fc03
+			attributes
+				category Interceptor
+				cost 684000
+				mass 95
+				bunks 5
+				"cargo space" 29
+				drag 1.5
+				"engine capacity" 61
+				"fuel capacity" 300
+				"gun ports" 2
+				"heat dissipation" 0.85
+				hull 600
+				"outfit space" 169
+				"required crew" 1
+				shields 3300
+				"weapon capacity" 38
+			outfits
+				`"Benga" Atomic Thruster`
+				`"Biroo" Atomic Steering`
+				"Fuel Pod"
+				"Hai Chasm Batteries"
+				"Hai Corundum Regenerator"
+				"Hai Williwaw Cooling" 2
+				Hyperdrive
+				"Outfits Expansion"
+				"Pebble Core"
+				"Pulse Cannon" 2
+				"Quantum Keystone"
+			crew 1
+			fuel 400
+			shields 3300
+			hull 600
+			position 0 0
+			engine 0 36
+				zoom 1
+				angle 0
+				under
+			gun -6 -34 "Pulse Cannon"
+				under
+			gun 6 -34 "Pulse Cannon"
+				under
+			leak leak 60 50
+			explode "medium explosion" 5
+			explode "small explosion" 20
+			explode "tiny explosion" 10
+			"final explode" "final explosion small" 1
+			system Sol
+			planet Mars
+		account
+			credits 0
+			score 400
+			history
+		changes
+			pricing outfitters "import hai double price"
+				location "Mars"
+
+				value
+					"Hai Basics" 2
+
+			planet Mars
+				add outfitter "Nuke"
+
+
+test "CustomSale Price Outfitter Double Relative Price"
+	status "active"
+	description "Test trying to buy the first outfit, which had its price modified, as it was part of the specified outfitter."
+	sequence
+		# Create/inject the savegame and load it.
+		inject "Custom Sale Outfitter Price"
+		call "Load First Savegame"
+		call "Sell first outfit"
+		call "Depart"
+		# We can only check the conditions after departing, since the conditions are not updated directly after loading or selling.
+		apply
+			"test: credits" = "credits"
+		# the price of the pulse cannon is 130 000 by default, and it got doubled.
+		assert
+			"credits" == 260000
+
+
+
+test-data "Custom Sale Import"
+	category "savegame"
+	contents
+		pilot Bobbi Bughunter
+		date 16 11 2513
+		system Sol
+		planet Mars
+		# What you own:
+		ship Grasshopper
+			name "Dawn Journey"
+			sprite "ship/hai grasshopper"
+			thumbnail "thumbnail/hai grasshopper"
+			uuid 79dc5926-a9d1-4cf2-bf31-b7ffe831fc03
+			attributes
+				category Interceptor
+				cost 684000
+				mass 95
+				bunks 5
+				"cargo space" 29
+				drag 1.5
+				"engine capacity" 61
+				"fuel capacity" 300
+				"gun ports" 2
+				"heat dissipation" 0.85
+				hull 600
+				"outfit space" 169
+				"required crew" 1
+				shields 3300
+				"weapon capacity" 38
+			outfits
+				`"Benga" Atomic Thruster`
+				`"Biroo" Atomic Steering`
+				"Fuel Pod"
+				"Hai Chasm Batteries"
+				"Hai Corundum Regenerator"
+				"Hai Williwaw Cooling" 2
+				Hyperdrive
+				"Outfits Expansion"
+				"Pebble Core"
+				"Pulse Cannon"
+				"Quantum Keystone"
+			crew 1
+			fuel 400
+			shields 3300
+			hull 600
+			position 0 0
+			engine 0 36
+				zoom 1
+				angle 0
+				under
+			gun -6 -34 "Pulse Cannon"
+				under
+			gun 6 -34
+				under
+			leak leak 60 50
+			explode "medium explosion" 5
+			explode "small explosion" 20
+			explode "tiny explosion" 10
+			"final explode" "final explosion small" 1
+			system Sol
+			planet Mars
+		account
+			credits 1000000
+			score 400
+			history
+		changes
+			pricing outfits "import pulse"
+				import
+				location "Mars"
+
+				value
+					"Pulse Cannon"
+
+			planet Mars
+				add outfitter "%TEST%: PULSE CANNON"
+
+
+outfitter "%TEST%: PULSE CANNON"
+	"Pulse Cannon"
+
+
+test "CustomSale Import Cannot Buy New"
+	status "active"
+	description "Test trying to buy the first outfit."
+	sequence
+		# Create/inject the savegame and load it.
+		inject "Custom Sale Import"
+		call "Load First Savegame"
+		call "FailBuy first outfit"
+		call "Depart"
+		# We can only check the conditions after departing, since the conditions are not updated directly after loading or selling.
+		apply
+			"test: credits" = "credits"
+		assert
+			"credits" == 1000000
+
+
+test "CustomSale Import Can Buy Back"
+	status "active"
+	description "Make sure you can buy back an import item you just sold."
+	sequence
+		# Create/inject the savegame and load it.
+		inject "Custom Sale Import"
+		call "Load First Savegame"
+		call "Sell first outfit"
+		# if we can buy it back it'll put us back at 0 credits
+		call "FailBuy first outfit"
+		call "Depart"
+		# We can only check the conditions after departing, since the conditions are not updated directly after loading or selling.
+		apply
+			"test: credits" = "credits"
+		assert
+			"credits" == 1000000
+
+
+
+test-data "Custom Sale Hidden"
+	category "savegame"
+	contents
+		pilot Bobbi Bughunter
+		date 16 11 2513
+		system Sol
+		planet Mars
+		# What you own:
+		ship Grasshopper
+			name "Dawn Journey"
+			sprite "ship/hai grasshopper"
+			thumbnail "thumbnail/hai grasshopper"
+			uuid 79dc5926-a9d1-4cf2-bf31-b7ffe831fc03
+			attributes
+				category Interceptor
+				cost 684000
+				mass 95
+				bunks 5
+				"cargo space" 29
+				drag 1.5
+				"engine capacity" 61
+				"fuel capacity" 300
+				"gun ports" 2
+				"heat dissipation" 0.85
+				hull 600
+				"outfit space" 169
+				"required crew" 1
+				shields 3300
+				"weapon capacity" 38
+			outfits
+				`"Benga" Atomic Thruster`
+				`"Biroo" Atomic Steering`
+				"Fuel Pod"
+				"Hai Chasm Batteries"
+				"Hai Corundum Regenerator"
+				"Hai Williwaw Cooling" 2
+				Hyperdrive
+				"Outfits Expansion"
+				"Pebble Core"
+				"Pulse Cannon" 2
+				"Quantum Keystone"
+			crew 1
+			fuel 400
+			shields 3300
+			hull 600
+			position 0 0
+			engine 0 36
+				zoom 1
+				angle 0
+				under
+			gun -6 -34 "Pulse Cannon"
+				under
+			gun 6 -34 "Pulse Cannon"
+				under
+			leak leak 60 50
+			explode "medium explosion" 5
+			explode "small explosion" 20
+			explode "tiny explosion" 10
+			"final explode" "final explosion small" 1
+			system Sol
+			planet Mars
+		account
+			credits 0
+			score 400
+			history
+		changes
+			pricing outfits "Hidden pulse and blaster"
+				location "Mars"
+
+				value
+					"Pulse Cannon" 1000
+					"Energy Blaster" 5000
+
+			# dont add the right outfitter on purpose meaning these outfits will not be buyable
+			planet Mars
+				add outfitter "Nuke"
+
+
+test "CustomSale Hidden Behavior"
+	status "active"
+	description "Test buying the first seen hidden outfit."
+	sequence
+	# Create/inject the savegame and load it.
+		inject "Custom Sale Hidden"
+		call "Load First Savegame"
+		# Normally, the energy blaster is shown first, but here we should not see it since we do not have one.
+		# However, we have a pulse cannon, meaning it is that one that will be shown, and sold.
+		call "Sell first outfit"
+		call "Depart"
+		# We can only check the conditions after departing, since the conditions are not updated directly after loading or selling.
+		apply
+			"test: credits" = "credits"
+		assert
+			"credits" == 1000
+
+
+test-data "Custom Sale Conditions"
+	category "savegame"
+	contents
+		pilot Bobbi Bughunter
+		date 16 11 2513
+		system Sol
+		planet Mars
+		# What you own:
+		ship Grasshopper
+			name "Dawn Journey"
+			sprite "ship/hai grasshopper"
+			thumbnail "thumbnail/hai grasshopper"
+			uuid 79dc5926-a9d1-4cf2-bf31-b7ffe831fc03
+			attributes
+				category Interceptor
+				cost 684000
+				mass 95
+				bunks 5
+				"cargo space" 29
+				drag 1.5
+				"engine capacity" 61
+				"fuel capacity" 300
+				"gun ports" 2
+				"heat dissipation" 0.85
+				hull 600
+				"outfit space" 169
+				"required crew" 1
+				shields 3300
+				"weapon capacity" 38
+			outfits
+				`"Benga" Atomic Thruster`
+				`"Biroo" Atomic Steering`
+				"Fuel Pod"
+				"Hai Chasm Batteries"
+				"Hai Corundum Regenerator"
+				"Hai Williwaw Cooling" 2
+				Hyperdrive
+				"Outfits Expansion"
+				"Pebble Core"
+				"Pulse Cannon"
+				"Quantum Keystone"
+			crew 1
+			fuel 400
+			shields 3300
+			hull 600
+			position 0 0
+			engine 0 36
+				zoom 1
+				angle 0
+				under
+			gun -6 -34 "Pulse Cannon"
+				under
+			gun 6 -34
+				under
+			leak leak 60 50
+			explode "medium explosion" 5
+			explode "small explosion" 20
+			explode "tiny explosion" 10
+			"final explode" "final explosion small" 1
+			system Sol
+			planet Mars
+		account
+			credits 1
+			score 400
+			history
+		changes
+			pricing outfits "cheap pulse"
+				conditions
+					has "been a good boy"
+				location "Mars"
+
+				value
+					"Pulse Cannon" 1
+
+			planet Mars
+				add outfitter "%TEST%: PULSE CANNON"
+
+
+test "CustomSale Conditions Apply Correctly"
+	status "active"
+	description "Test that conditions are checked for the pricing outfit, when having the right condition."
+	sequence
+		# Create/inject the savegame and load it.
+		inject "Custom Sale Conditions"
+		call "Load First Savegame"
+		apply
+			"been a good boy" = 1
+		call "FailBuy first outfit"
+		call "Depart"
+		# We can only check the conditions after departing, since the conditions are not updated directly after loading or selling.
+		apply
+			"test: credits" = "credits"
+		assert
+			"credits" == 0
+
+
+test "CustomSale Conditions Not Always On"
+	status "active"
+	description "Test that conditions are checked for the pricing outfit, without the right condition."
+	sequence
+		# Create/inject the savegame and load it.
+		inject "Custom Sale Conditions"
+		call "Load First Savegame"
+		call "FailBuy first outfit"
+		call "Depart"
+		# We can only check the conditions after departing, since the conditions are not updated directly after loading or selling.
+		apply
+			"test: credits" = "credits"
+		assert
+			"credits" == 1
+
+
+test-data "Custom Sale Price Priorities 0"
+	category "savegame"
+	contents
+		pilot Bobbi Bughunter
+		date 16 11 2513
+		system Sol
+		planet Mars
+		# What you own:
+		ship Grasshopper
+			name "Dawn Journey"
+			sprite "ship/hai grasshopper"
+			thumbnail "thumbnail/hai grasshopper"
+			uuid 79dc5926-a9d1-4cf2-bf31-b7ffe831fc03
+			attributes
+				category Interceptor
+				cost 684000
+				mass 95
+				bunks 5
+				"cargo space" 29
+				drag 1.5
+				"engine capacity" 61
+				"fuel capacity" 300
+				"gun ports" 2
+				"heat dissipation" 0.85
+				hull 600
+				"outfit space" 169
+				"required crew" 1
+				shields 3300
+				"weapon capacity" 38
+			outfits
+				`"Benga" Atomic Thruster`
+				`"Biroo" Atomic Steering`
+				"Fuel Pod"
+				"Hai Chasm Batteries"
+				"Hai Corundum Regenerator"
+				"Hai Williwaw Cooling" 2
+				Hyperdrive
+				"Outfits Expansion"
+				"Pebble Core"
+				"Pulse Cannon" 2
+				"Quantum Keystone"
+			crew 1
+			fuel 400
+			shields 3300
+			hull 600
+			position 0 0
+			engine 0 36
+				zoom 1
+				angle 0
+				under
+			gun -6 -34 "Pulse Cannon"
+				under
+			gun 6 -34 "Pulse Cannon"
+				under
+			leak leak 60 50
+			explode "medium explosion" 5
+			explode "small explosion" 20
+			explode "tiny explosion" 10
+			"final explode" "final explosion small" 1
+			system Sol
+			planet Mars
+		account
+			credits 0
+			score 400
+			history
+		changes
+			pricing outfitters "import hai double price"
+				location "Mars"
+
+				value
+					"Hai Basics" 2
+
+			pricing outfits "1000 pulse cannon"
+				location "Mars"
+
+				value
+					"Pulse Cannon" 1000
+
+			planet Mars
+				add outfitter "%TEST%: PULSE CANNON"
+
+
+# NOTE: If one wants the two to combine with each others, they would use offsets, not plain prices!
+test "CustomSale Priorities Outfit over Outfitter"
+	status "active"
+	description "Test trying to buy the first outfit, when there is a conflict between outfit and outfitter prices."
+	sequence
+		# Create/inject the savegame and load it.
+		inject "Custom Sale Price Priorities 0"
+		call "Load First Savegame"
+		# outfit specified has priority over outfitter specified
+		call "Sell first outfit"
+		call "Depart"
+		# We can only check the conditions after departing, since the conditions are not updated directly after loading or selling.
+		apply
+			"test: credits" = "credits"
+		assert
+			"credits" == 1000
+
+
+test-data "Custom Sale Price Priorities 1"
+	category "savegame"
+	contents
+		pilot Bobbi Bughunter
+		date 16 11 2513
+		system Sol
+		planet Mars
+		# What you own:
+		ship Grasshopper
+			name "Dawn Journey"
+			sprite "ship/hai grasshopper"
+			thumbnail "thumbnail/hai grasshopper"
+			uuid 79dc5926-a9d1-4cf2-bf31-b7ffe831fc03
+			attributes
+				category Interceptor
+				cost 684000
+				mass 95
+				bunks 5
+				"cargo space" 29
+				drag 1.5
+				"engine capacity" 61
+				"fuel capacity" 300
+				"gun ports" 2
+				"heat dissipation" 0.85
+				hull 600
+				"outfit space" 169
+				"required crew" 1
+				shields 3300
+				"weapon capacity" 38
+			outfits
+				`"Benga" Atomic Thruster`
+				`"Biroo" Atomic Steering`
+				"Fuel Pod"
+				"Hai Chasm Batteries"
+				"Hai Corundum Regenerator"
+				"Hai Williwaw Cooling" 2
+				Hyperdrive
+				"Outfits Expansion"
+				"Pebble Core"
+				"Pulse Cannon"
+				"Quantum Keystone"
+			crew 1
+			fuel 400
+			shields 3300
+			hull 600
+			position 0 0
+			engine 0 36
+				zoom 1
+				angle 0
+				under
+			gun -6 -34 "Pulse Cannon"
+				under
+			gun 6 -34
+				under
+			leak leak 60 50
+			explode "medium explosion" 5
+			explode "small explosion" 20
+			explode "tiny explosion" 10
+			"final explode" "final explosion small" 1
+			system Sol
+			planet Mars
+		account
+			credits 1000000
+			score 400
+			history
+		changes
+			pricing outfits "1000 pulse cannon"
+				location "Mars"
+
+				value
+					"Pulse Cannon" 1000
+
+			pricing outfits "importing pulses"
+				import
+				location "Mars"
+
+				value
+					"Pulse Cannon"
+
+			planet Mars
+				add outfitter "%TEST%: PULSE CANNON"
+
+
+
+test "CustomSale Priorities Import over Visible"
+	status "active"
+	description "Test trying to buy the first outfit, which cannot be bought, then sell it at normal price, overriding the visible price modification."
+	sequence
+		# Create/inject the savegame and load it.
+		inject "Custom Sale Price Priorities 1"
+		call "Load First Savegame"
+		# to check import does apply
+		call "FailBuy first outfit"
+		# should sell at the default price
+		call "Sell first outfit"
+		call "Depart"
+		# We can only check the conditions after departing, since the conditions are not updated directly after loading or selling.
+		apply
+			"test: credits" = "credits"
+		# the price of the pulse cannon is 130 000 by default
+		assert
+			"credits" == 1000000 + 130000
+
+
+test-data "Custom Sale Price Priorities 2"
+	category "savegame"
+	contents
+		pilot Bobbi Bughunter
+		date 16 11 2513
+		system Sol
+		planet Mars
+		# What you own:
+		ship Grasshopper
+			name "Dawn Journey"
+			sprite "ship/hai grasshopper"
+			thumbnail "thumbnail/hai grasshopper"
+			uuid 79dc5926-a9d1-4cf2-bf31-b7ffe831fc03
+			attributes
+				category Interceptor
+				cost 684000
+				mass 95
+				bunks 5
+				"cargo space" 29
+				drag 1.5
+				"engine capacity" 61
+				"fuel capacity" 300
+				"gun ports" 2
+				"heat dissipation" 0.85
+				hull 600
+				"outfit space" 169
+				"required crew" 1
+				shields 3300
+				"weapon capacity" 38
+			outfits
+				`"Benga" Atomic Thruster`
+				`"Biroo" Atomic Steering`
+				"Fuel Pod"
+				"Hai Chasm Batteries"
+				"Hai Corundum Regenerator"
+				"Hai Williwaw Cooling" 2
+				Hyperdrive
+				"Outfits Expansion"
+				"Pebble Core"
+				"Pulse Cannon"
+				"Quantum Keystone"
+			crew 1
+			fuel 400
+			shields 3300
+			hull 600
+			position 0 0
+			engine 0 36
+				zoom 1
+				angle 0
+				under
+			gun -6 -34 "Pulse Cannon"
+				under
+			gun 6 -34
+				under
+			leak leak 60 50
+			explode "medium explosion" 5
+			explode "small explosion" 20
+			explode "tiny explosion" 10
+			"final explode" "final explosion small" 1
+			system Sol
+			planet Mars
+		account
+			credits 0
+			score 400
+			history
+		changes
+			pricing outfits "1000 pulse cannon"
+				location "Mars"
+
+				value
+					"Pulse Cannon" 1000
+
+			pricing outfits "importing pulses"
+				location "Mars"
+
+				value
+					"Pulse Cannon" 2000
+
+			planet Mars
+				add outfitter "%TEST%: PULSE CANNON"
+
+
+test "CustomSale Priorities Highest Price"
+	status "active"
+	description "Test trying to buy the first outfit, which had its price modified in two different ways, of which the highest price should have priority."
+	sequence
+		# Create/inject the savegame and load it.
+		inject "Custom Sale Price Priorities 2"
+		call "Load First Savegame"
+		call "Sell first outfit"
+		call "Depart"
+		# We can only check the conditions after departing, since the conditions are not updated directly after loading or selling.
+		apply
+			"test: credits" = "credits"
+		assert
+			"credits" == 2000

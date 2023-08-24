@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "comparators/ByName.h"
 #include "CoreStartData.h"
+#include "CustomSaleManager.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Outfit.h"

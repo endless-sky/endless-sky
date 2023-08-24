@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapShipyardPanel.h"
 
 #include "CoreStartData.h"
+#include "CustomSaleManager.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Planet.h"
@@ -207,6 +208,7 @@ void MapShipyardPanel::DrawItems()
 				for(const StellarObject &object : selectedSystem->Objects())
 					if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->Shipyard().Has(ship))
 					{
+						price = Format::Credits(CustomSaleManager::ShipCost(*ship)) + " credits";
 						isForSale = true;
 						break;
 					}

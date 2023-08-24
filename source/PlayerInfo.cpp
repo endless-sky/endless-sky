@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "AI.h"
 #include "Audio.h"
 #include "ConversationPanel.h"
+#include "CustomSaleManager.h"
 #include "DataFile.h"
 #include "DataWriter.h"
 #include "Dialog.h"
@@ -756,6 +757,10 @@ void PlayerInfo::IncrementDate()
 		Messages::Add(message, Messages::Importance::High);
 		accounts.AddCredits(salariesIncome + tributeIncome + b.assetsReturns);
 	}
+
+
+	// The standard prices will be used to query the value of the fleet of the player, instead of the local prices.
+	CustomSaleManager::Clear();
 
 	// For accounting, keep track of the player's net worth. This is for
 	// calculation of yearly income to determine maximum mortgage amounts.

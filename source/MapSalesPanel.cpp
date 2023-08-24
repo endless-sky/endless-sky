@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "CategoryTypes.h"
 #include "Command.h"
+#include "CustomSaleManager.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
 #include "FillShader.h"
@@ -58,6 +59,7 @@ MapSalesPanel::MapSalesPanel(PlayerInfo &player, bool isOutfitters)
 	isOutfitters(isOutfitters),
 	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map"))
 {
+	CustomSaleManager::Refresh(player.GetSystem(), player.Conditions());
 }
 
 
@@ -68,6 +70,7 @@ MapSalesPanel::MapSalesPanel(const MapPanel &panel, bool isOutfitters)
 	isOutfitters(isOutfitters),
 	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map"))
 {
+	CustomSaleManager::Refresh(player.GetSystem(), player.Conditions());
 	commodity = SHOW_SPECIAL;
 }
 
@@ -157,7 +160,13 @@ bool MapSalesPanel::Click(int x, int y, int clicks)
 		onlyShowSoldHere = (!onlyShowSoldHere && y >= Screen::Top() + 42 && y < Screen::Top() + 62);
 	}
 	else
-		return MapPanel::Click(x, y, clicks);
+	{
+		const System *previousSystem = MapPanel::selectedSystem;
+		bool result = MapPanel::Click(x, y, clicks);
+		if(MapPanel::selectedSystem != previousSystem)
+			CustomSaleManager::Refresh(MapPanel::selectedSystem, player.Conditions());
+		return result;
+	}
 
 	return true;
 }
