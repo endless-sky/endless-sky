@@ -49,7 +49,7 @@ private:
 	Point objectPosition;
 	double objectRadius;
 
-	// Bounding box = box + zoomOffset * zoom; only used for overlap detection.
+	// Used for overlap detection during label creation.
 	Rectangle box;
 	Point zoomOffset;
 
