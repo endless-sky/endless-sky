@@ -333,7 +333,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 	if(nonJumpCount > 0 || missionCargoToSell > 0 || outfitsToSell > 0 || commoditiesToSell > 0 || overbooked > 0)
 	{
 		ostringstream out;
-		string warningEnd = ".\n- - - - - - - - - - - - - - - - - - - - - - - - -\n";
+		string warningEnd = ".\n---------------------------------------------\n";
 		// Warn about missions that will fail on takeoff.
 		if(missionCargoToSell > 0 || overbooked > 0)
 		{
