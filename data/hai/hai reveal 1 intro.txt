@@ -251,20 +251,42 @@ mission "Hai Reveal Concern Period: Humans Going Home"
 	to offer
 		has "event: hr: pirates respond to leaks"
 		random < 10
+		"passenger space" > 9
 	on offer
 		conversation
-			`As you land you are hailed by the local Hai authorities, "<last>, we have a situation developing. Tensions between the Hai and humans are rising and we fear it may worsen if we do not act soon." Another Hai interrupts them, "This is why we want your help, Captain, we fear that if we were to ask Hai captains, it could easily degenerate. We think these <passengers> humans would be safer on <destination>."`
-			`	You go to the spaceport to meet with these humans, and speak to what appears to the leader of the group. Judging by their expensive clothing and somewhat impatient attitude they must be business men, or perhaps even diplomats.`
+			`As you land you are hailed separately by one of the Hai in the local control center. "Captain, apologies for calling you on a non-control related matter, but I noticed that you've got capacity to potentially help resolve a situation that's developing."`
 			choice
-				`	(Invite them to my ship.)`
-					accept
-				`	"What seems to be the problem?"`
-			`	"Ah, I trust you are the Captain that has been allocated to help us. I am Brin." You introduce yourself in response, and they continue, "We are conducting business here, as we have been for some time, in fact, but with the recent events suspicion has arisen. Some of them believe we will abduct them when we ask to move for more private locations to conduct contracts!" They say with a chuckle. "As you can imagine, business is suffering as a result, and we will be more than happy to give you a just compensation of <payment> for this transport to more fruitful lands."`
-			`	Another one steps forward, "We were hoping that the small amount of humans was a good business opportunity, which was only true until recently. Indeed, my colleagues and I will return to a location where we used to do business in the past, but you understand we cannot just ask any captain to take us, even if we are willing to make do without proper accommodations due to the relative urgency of the situation. Now if you'll show me my bunks please, I have a call to make." You proceed to show them all their bunks, which they describe as "satisfactory".`
+				`	"What's the matter?"`
+				`	"I'm sorry, I'm busy right now."`
+					goto "not now"
+			`	"Well, there are a number of humans trying to get transport to somewhere else, but they're unwilling to book passage with any Hai captains. They've set up camp in the spaceport and they've been there long enough that it's causing some tension. We don't want to take direct action, but I think these <passengers> humans would be much better off if you could talk to them, and maybe at least take them to <destination>."`
+			choice
+				`	"I'll talk to them."`
+				`	"Sorry, I'm not going that way."`
+					goto label "not ever"
+			`	As it turns out, it is almost impossible to miss these humans, as their camp is located directly in the crossroads of the spaceport's major thoroughfares. Judging by their expensive clothing and somewhat impatient attitude they are people of means, which makes this even more odd.`
+			choice
+			`	As soon as it becomes apparent that you're approaching them, one comes forward to greet you. "Ah, I trust you are here because you've been encouraged to help us. I am Brin." You introduce yourself in response, and they continue, "We have run an import services business here for some time, but with the recent events suspicion of human Captains has arisen. Some Hai seem to believe any human captain is potentially someone who will abduct them." They say with a chuckle. "As you can imagine, we've been here a long time, so when we were asked to vet a few arrivals first we were happy enough to do so. It's gotten out of hand though. The other day we even had the Portmaster insisting that we vet every human captain to arrive, but we don't have time for that, and we don't have access to any services that would really let us do that reliably. So we had to put our foot down and refuse.
+			`	"Naturally, business immediately suffered, and we got enough flak for it that we decided it was time to shut up shop and go elsewhere until this all blows over. This offended someone and then several Hai captains refused to take us. Now, well, they've relented since we started camping out, but I can't honestly say we trust them either right now. We will be more than happy to give you a just compensation of <payment> to take us somewhere we won't be nearly the only humans in town."`
+			`	Another one steps forward, "We were hoping that the small amount of humans was a good business opportunity, which was true... until recently. Indeed, my colleagues and I will return to a location where we used to do business in the past, but you understand we cannot just ask any captain to take us, even if we are willing to make do without proper accommodations due to the relative urgency of the situation."`
+			choice
+				`	"Of course, welcome aboard."`
+				`	"Sorry, you're on your own."`
+					goto label "rejected"
+			`	You proceed to show them all their bunks, which they describe as "satisfactory".`
 				accept
+			label "not now"
+			`	The Hai seems disappointed. "Very well Captain, I understand. Hopefully someone else comes along."`
+				defer
+			label "not ever"
+			`	"Very well Captain, enjoy your stay." The Hai tuts before disconnecting the call.`
+				decline
+			label "rejected"
+			`	You leave Brin spluttering in shock, and manage to draw a number of very dark looks from nearby Hai.`
+				decline
 	on complete
 		payment 100000
-		dialog `The little group of business partners depart from your ship, and their representative addresses you again, "Very pleasant little ride, Captain. You deserve these <payment> for it, we were even able to conduct some lucrative business opportunities from within your ship. Until next time, <last>."`
+		dialog `The little group of business partners depart from your ship, and their representative addresses you again, "Very pleasant little ride, Captain. We have transferred <payment> as agreed, we were even able to conduct some lucrative business opportunities from within your ship. Until next time, <last>."`
 
 
 
