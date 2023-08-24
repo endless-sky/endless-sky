@@ -39,7 +39,7 @@ public:
 
 private:
 	// Overlap detection.
-	void SetBoundingBox(const Point &labelDimensions, double angle, int nameHeight);
+	void SetBoundingBox(const Point &labelDimensions, double angle);
 	Rectangle GetBoundingBox(double zoom) const;
 	bool HasOverlaps(const std::vector<PlanetLabel> &labels, const System &system,
 		const StellarObject &object, double zoom) const;

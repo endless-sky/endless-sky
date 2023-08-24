@@ -39,12 +39,52 @@ using namespace std;
 
 namespace {
 	// Label offset angles, in order of preference (non-negative only).
-	constexpr array<double, 8> LINE_ANGLES = {60., 120., 300., 240., 30., 150., 330., 210.};
+	constexpr array<double, 12> LINE_ANGLES = {60., 120., 300., 240., 30., 150., 330., 210., 90., 270., 0., 180.};
 	constexpr double LINE_LENGTH = 60.;
 	constexpr double INNER_SPACE = 10.;
 	constexpr double LINE_GAP = 1.7;
 	constexpr double GAP = 6.;
 	constexpr double MIN_DISTANCE = 30.;
+
+	// Find the intersection of a ray and a box, both centered on the origin.
+	// Then shift the resulting point up and left by half the box size (since
+	// text drawing coords start at the upper left, not center, of the text),
+	// and shift 2 more away from the origin on whatever side it's on.
+	Point GetOffset(const Point &unit, const Point &dimensions)
+	{
+		// Box ranges from (-width/2, -height/2) to (width/2, height/2).
+		const Point box = dimensions * .5;
+
+		// Special case to avoid division by zero.
+		if(unit.X() == 0.)
+		{
+			if(unit.Y() < 0.)
+				return Point(-box.X(), -dimensions.Y() - 2.);
+			else
+				return Point(-box.X(), 2.);
+		}
+
+		const double slope = unit.Y() / unit.X();
+		const double y = slope * box.X();
+
+		// Left and right sides.
+		if(-box.Y() <= y && y <= box.Y())
+		{
+			if(unit.X() < 0.)
+				return Point(-dimensions.X() - 2., -y - box.Y());
+			else
+				return Point(2., y - box.Y());
+		}
+		// Top and bottom sides.
+		else
+		{
+			const double x = box.Y() / slope;
+			if(unit.Y() < 0.)
+				return Point(-x - box.X(), -dimensions.Y() - 2.);
+			else
+				return Point(x - box.X(), 2.);
+		}
+	}
 }
 
 
@@ -82,7 +122,7 @@ PlanetLabel::PlanetLabel(const vector<PlanetLabel> &labels, const System &system
 	const double maxZoom = Preferences::MaxViewZoom();
 	for(const double angle : LINE_ANGLES)
 	{
-		SetBoundingBox(labelDimensions, angle, nameHeight);
+		SetBoundingBox(labelDimensions, angle);
 		if(!HasOverlaps(labels, system, object, minZoom) && !HasOverlaps(labels, system, object, maxZoom))
 		{
 			innerAngle = angle;
@@ -94,20 +134,22 @@ PlanetLabel::PlanetLabel(const vector<PlanetLabel> &labels, const System &system
 	if(innerAngle < 0.)
 	{
 		innerAngle = LINE_ANGLES[0];
-		SetBoundingBox(labelDimensions, innerAngle, nameHeight);
+		SetBoundingBox(labelDimensions, innerAngle);
 	}
 
-	// Where the label is relative to the object.
-	const bool rightSide = innerAngle < 180.;
-	const bool topSide = innerAngle < 45. || 315. < innerAngle;
-	const bool bottomSide = 135. < innerAngle && innerAngle < 225.;
-
-	// Have to adjust the more extreme angles differently or it looks bad.
-	const double yOffset = (topSide ? .75 : bottomSide ? .25 : .5) * nameHeight;
+	const bool leftSide = innerAngle > 180.;
+	const Point offset = GetOffset(Angle(innerAngle).Unit(), box.Dimensions());
 
 	// Cache the offsets for both labels.
-	nameOffset = Point(rightSide ? 2. : -bigFont.Width(name) - 2., -yOffset);
-	governmentOffset = Point(rightSide ? 4. : -font.Width(government) - 4., nameOffset.Y() + nameHeight + 1.);
+
+	// Box was made with the larger of two widths, so adjust the smaller one if on the left.
+	const double widthDiff = bigFont.Width(name) - font.Width(government);
+	const double nameOffsetX = leftSide && widthDiff < 0. ? -widthDiff : 0.;
+	nameOffset = Point(offset.X() + nameOffsetX, offset.Y());
+	// Government is offset 2 in if it's the smaller label.
+	const double governmentOffsetX = leftSide ? (widthDiff < 0. ? 0. : widthDiff - 2.) :
+		(widthDiff < 0. ? 0. : 2.);
+	governmentOffset = Point(offset.X() + governmentOffsetX, offset.Y() + nameHeight + 1.);
 }
 
 
@@ -162,21 +204,12 @@ void PlanetLabel::Draw() const
 
 
 
-void PlanetLabel::SetBoundingBox(const Point &labelDimensions, const double angle, const int nameHeight)
+void PlanetLabel::SetBoundingBox(const Point &labelDimensions, const double angle)
 {
 	const Point unit = Angle(angle).Unit();
 	zoomOffset = objectPosition + unit * objectRadius;
-
-	// Where the label is relative to the object.
-	const bool rightSide = angle < 180.;
-	const bool topSide = angle < 45. || 315. < angle;
-	const bool bottomSide = 135. < angle && angle < 225.;
-
-	// Offset the label depending on its position relative to the stellar object.
-	const double xOffset = (rightSide ? .5 : -.5) * labelDimensions.X();
-	const double yOffset = (topSide ? .75 : bottomSide ? .25 : .5) * nameHeight;
-	box = Rectangle(unit * (INNER_SPACE + LINE_GAP + LINE_LENGTH) +
-		Point(xOffset, labelDimensions.Y() * .5 - yOffset), labelDimensions);
+	box = Rectangle(unit * (INNER_SPACE + LINE_GAP + LINE_LENGTH) + GetOffset(unit, labelDimensions),
+		labelDimensions);
 }
 
 
