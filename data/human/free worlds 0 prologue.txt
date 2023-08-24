@@ -736,6 +736,8 @@ mission "FW Escort 1B"
 	npc accompany save
 		government "Merchant"
 		personality escort timid
+		"cargo settings"
+			outfitters "Common Outfits" "Kraz Advanced" "Delta V Advanced"
 		ship Freighter "F.S. Raleigh"
 		ship Freighter "F.S. Scott"
 		ship Freighter "F.S. Hudson"
@@ -861,6 +863,8 @@ mission "FW Escort 2B"
 	npc accompany save
 		government "Merchant"
 		personality escort timid
+		"cargo settings"
+			outfitters "Common Outfits" "Kraz Advanced" "Delta V Advanced"
 		ship Freighter "F.S. Raleigh"
 		ship Freighter "F.S. Scott"
 		ship Freighter "F.S. Hudson"
@@ -925,6 +929,8 @@ mission "FW Escort 3"
 	npc accompany save
 		government "Merchant"
 		personality escort derelict timid
+		"cargo settings"
+			outfitters "Common Outfits" "Kraz Advanced" "Delta V Advanced"
 		system "Lesath"
 		ship "Freighter" "F.S. Shackleton"
 	
@@ -1012,7 +1018,7 @@ mission "FW Escort Second Chance"
 mission "FW Bounty 1"
 	minor
 	name "Free Worlds Bounty Hunting"
-	description `Hunt down and destroy the "Rat Pack," a gang of pirate ships led by a flagship named "Cluny" who have been attacking freighters in Free Worlds space. They were last seen attacking freighters in the Seginus system.`
+	description `Hunt down and destroy the "Rat Pack," a gang of pirate ships led by a flagship named "Cluny" who have been harassing merchants in Free Worlds space. They were last seen attacking freighters in the Seginus system.`
 	source
 		government "Free Worlds"
 	to offer
