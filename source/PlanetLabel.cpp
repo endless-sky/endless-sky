@@ -45,45 +45,28 @@ namespace {
 	constexpr double LINE_GAP = 1.7;
 	constexpr double GAP = 6.;
 	constexpr double MIN_DISTANCE = 30.;
+	constexpr double BORDER = 2.;
 
 	// Find the intersection of a ray and a box, both centered on the origin.
-	// Then shift the resulting point up and left by half the box size (since
-	// text drawing coords start at the upper left, not center, of the text),
-	// and shift 2 more away from the origin on whatever side it's on.
 	Point GetOffset(const Point &unit, const Point &dimensions)
 	{
 		// Box ranges from (-width/2, -height/2) to (width/2, height/2).
 		const Point box = dimensions * .5;
 
-		// Special case to avoid division by zero.
+		// Check to avoid division by zero.
 		if(unit.X() == 0.)
-		{
-			if(unit.Y() < 0.)
-				return Point(-box.X(), -dimensions.Y() - 2.);
-			else
-				return Point(-box.X(), 2.);
-		}
+			return Point(0., copysign(box.Y(), unit.Y()));
 
 		const double slope = unit.Y() / unit.X();
-		const double y = slope * box.X();
 
 		// Left and right sides.
-		if(-box.Y() <= y && y <= box.Y())
-		{
-			if(unit.X() < 0.)
-				return Point(-dimensions.X() - 2., -y - box.Y());
-			else
-				return Point(2., y - box.Y());
-		}
+		const double y = fabs(box.X() * slope);
+		if(y <= box.Y())
+			return Point(copysign(box.X(), unit.X()), copysign(y, unit.Y()));
+
 		// Top and bottom sides.
-		else
-		{
-			const double x = box.Y() / slope;
-			if(unit.Y() < 0.)
-				return Point(-x - box.X(), -dimensions.Y() - 2.);
-			else
-				return Point(x - box.X(), 2.);
-		}
+		const double x = box.Y() / slope;
+		return Point(copysign(x, unit.X()), copysign(box.Y(), unit.Y()));
 	}
 }
 
@@ -114,8 +97,8 @@ PlanetLabel::PlanetLabel(const vector<PlanetLabel> &labels, const System &system
 	const Font &bigFont = FontSet::Get(18);
 	const double labelWidth = max(bigFont.Width(name), font.Width(government));
 	const double nameHeight = bigFont.Height();
-	const double labelHeight = nameHeight + 1. + font.Height();
-	const Point labelDimensions = {labelWidth, labelHeight};
+	const double labelHeight = nameHeight + (government.empty() ? 0. : 1. + font.Height());
+	const Point labelDimensions = {labelWidth + BORDER * 2., labelHeight + BORDER * 2.};
 
 	// Try to find a label direction that is not overlapping under any zoom.
 	const double minZoom = Preferences::MinViewZoom();
@@ -130,23 +113,19 @@ PlanetLabel::PlanetLabel(const vector<PlanetLabel> &labels, const System &system
 		}
 	}
 
-	// No good choices, so set this to the default.
+	// No non-overlapping choices, so set this to the default.
 	if(innerAngle < 0.)
 	{
 		innerAngle = LINE_ANGLES[0];
 		SetBoundingBox(labelDimensions, innerAngle);
 	}
 
-	// Cache the offsets for both labels.
-	const Point offset = GetOffset(Angle(innerAngle).Unit(), box.Dimensions());
-	const double widthDiff = (bigFont.Width(name) - font.Width(government)) * .5;
-
-	// Center labels, adjusting smaller one inward.
-	const double nameOffsetX = widthDiff > 0. ? 0. : -widthDiff;
-	nameOffset = Point(offset.X() + nameOffsetX, offset.Y());
-
-	const double governmentOffsetX = widthDiff > 0. ? widthDiff : 0.;
-	governmentOffset = Point(offset.X() + governmentOffsetX, offset.Y() + nameHeight + 1.);
+	// Cache the offsets for both labels; center labels.
+	const Point offset = GetOffset(Angle(innerAngle).Unit(), box.Dimensions()) - box.Dimensions() * .5;
+	const double nameX = (box.Width() - bigFont.Width(name)) * .5;
+	nameOffset = Point(offset.X() + nameX, offset.Y() + BORDER);
+	const double governmentX = (box.Width() - font.Width(government)) * .5;
+	governmentOffset = Point(offset.X() + governmentX, nameOffset.Y() + nameHeight + 1.);
 }
 
 
