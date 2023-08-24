@@ -112,7 +112,7 @@ PlanetLabel::PlanetLabel(const vector<PlanetLabel> &labels, const System &system
 	// Figure out how big the label is.
 	const Font &font = FontSet::Get(14);
 	const Font &bigFont = FontSet::Get(18);
-	const double labelWidth = max(bigFont.Width(name) + 4., font.Width(government) + 8.);
+	const double labelWidth = max(bigFont.Width(name), font.Width(government));
 	const double nameHeight = bigFont.Height();
 	const double labelHeight = nameHeight + 1. + font.Height();
 	const Point labelDimensions = {labelWidth, labelHeight};
@@ -137,18 +137,15 @@ PlanetLabel::PlanetLabel(const vector<PlanetLabel> &labels, const System &system
 		SetBoundingBox(labelDimensions, innerAngle);
 	}
 
-	const bool leftSide = innerAngle > 180.;
-	const Point offset = GetOffset(Angle(innerAngle).Unit(), box.Dimensions());
-
 	// Cache the offsets for both labels.
+	const Point offset = GetOffset(Angle(innerAngle).Unit(), box.Dimensions());
+	const double widthDiff = (bigFont.Width(name) - font.Width(government)) * .5;
 
-	// Box was made with the larger of two widths, so adjust the smaller one if on the left.
-	const double widthDiff = bigFont.Width(name) - font.Width(government);
-	const double nameOffsetX = leftSide && widthDiff < 0. ? -widthDiff : 0.;
+	// Center labels, adjusting smaller one inward.
+	const double nameOffsetX = widthDiff > 0. ? 0. : -widthDiff;
 	nameOffset = Point(offset.X() + nameOffsetX, offset.Y());
-	// Government is offset 2 in if it's the smaller label.
-	const double governmentOffsetX = leftSide ? (widthDiff < 0. ? 0. : widthDiff - 2.) :
-		(widthDiff < 0. ? 0. : 2.);
+
+	const double governmentOffsetX = widthDiff > 0. ? widthDiff : 0.;
 	governmentOffset = Point(offset.X() + governmentOffsetX, offset.Y() + nameHeight + 1.);
 }
 
@@ -186,12 +183,12 @@ void PlanetLabel::Draw() const
 		PointerShader::Draw(position, barbAngle.Unit(), 15.f, 15.f, barbRadius, labelColor);
 	}
 
-	// Draw any active planet labels.
+	// Draw planet label, if any.
 	if(!name.empty())
 	{
 		const Point unit = Angle(innerAngle).Unit();
-		const Point from = position + (radius + INNER_SPACE + LINE_GAP) * unit;
-		const Point to = from + LINE_LENGTH * unit;
+		const Point from = position + unit * (radius + INNER_SPACE + LINE_GAP);
+		const Point to = from + unit * LINE_LENGTH;
 		LineShader::Draw(from, to, 1.3f, labelColor);
 
 		FontSet::Get(18).DrawAliased(name, to.X() + nameOffset.X(),
@@ -199,7 +196,6 @@ void PlanetLabel::Draw() const
 		FontSet::Get(14).DrawAliased(government, to.X() + governmentOffset.X(),
 			to.Y() + governmentOffset.Y(), labelColor);
 	}
-
 }
 
 
