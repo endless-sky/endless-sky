@@ -5486,7 +5486,7 @@ mission "Wool Smuggling 1"
 			`	"Suit yourself, then." He haughtily walks off into the spaceport.`
 				decline
 	on complete
-		dialog `When you land, dock workers begin loading crates with woolen garments on board as arranged. Time to set course for Bloodsea.`
+		dialog `When you land, dock workers come over to your ship to load it up.`
 
 
 mission "Wool Smuggling 2"
@@ -5495,7 +5495,7 @@ mission "Wool Smuggling 2"
 	name "Wool to <planet>"
 	description "Deliver <cargo> to the pirate world of <destination>. Payment will be <payment>."
 	cargo "wool garments" 15
-	blocked `The spaceport workers inform you that you need <tons> of cargo free to pick up the woollen goods intended for <planet>.`
+	blocked `However, the spaceport workers inform you that you need <tons> of cargo free to pick up the woollen goods intended for <planet>.`
 	source "New Kansas"
 	destination "Bloodsea"
 	to offer
