@@ -843,7 +843,7 @@ void ShopPanel::DrawDetailsSidebar()
 
 
 
-void ShopPanel::DrawDesignButtons()
+void ShopPanel::DrawDesignButtons() const
 {
 	// The last 70 pixels on the end of the info panel are for the design buttons:
 	Point buttonSize(INFOBAR_WIDTH, BUTTON_HEIGHT);
@@ -884,7 +884,7 @@ void ShopPanel::DrawDesignButtons()
 
 
 
-void ShopPanel::DrawShopButtons()
+void ShopPanel::DrawShopButtons() const
 {
 	// The last 70 pixels on the end of the side panel are for the buttons:
 	Point buttonSize(SIDEBAR_WIDTH, BUTTON_HEIGHT);

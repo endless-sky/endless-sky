@@ -194,8 +194,8 @@ protected:
 private:
 	void DrawShipsSidebar();
 	void DrawDetailsSidebar();
-	void DrawDesignButtons();
-	void DrawShopButtons();
+	void DrawDesignButtons() const;
+	void DrawShopButtons() const;
 	void DrawMain();
 
 	int DrawPlayerShipInfo(const Point &point);
