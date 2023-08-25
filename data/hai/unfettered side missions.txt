@@ -148,7 +148,7 @@ mission "Hai Legacy 1"
 			label explain
 			`	"This ship is our guarantee that nothing goes wrong. After all, we are still not sure if we can trust you," says the second one.`
 			`	The first one speaks again, after taking you to a nearby cave to show you another ship. "That ship is not for sale. This ship, however, is a mighty relic of the past, intended for war from the times our empire used to control the stars: an Anomalocaris!`
-			scene "thumbnail/hai anomalocaris"
+			scene "ship/hai anomalocaris"
 			`	The second one now takes a step toward you to speak, almost interrupting the first. "We have a proposition for you: should you agree to bring much needed supplies to our brethren, the Unfettered Hai, we will sell you this ship for the modest price of 10 million credits, including 2 very powerful Korath Detainers!" The first one seems surprised by this and tries to intervene, but the second resumes before they can speak up. "These legendary weapons can interfere with nearly any enemy engine system to give you a significant maneuverability advantage. Worry not, you'll be able to recuperate the cost of this ship with ease by bringing medical supplies to the Unfettered. This cargo is needed on short notice, on <destination>, and we lack the time and personnel to bring them.`
 			`	"Of course, the ship is aged, and you should not expect the best price in a shipyard. Nevertheless, it is a fine vessel, capable of fighting, freighting, and mining. So, what do you say, <last>? This is the opportunity of a lifetime; they simply don't make ships like this anymore."`
 			label choice
