@@ -636,6 +636,8 @@ bool Interface::BarElement::ParseLine(const DataNode &node)
 		spanAngle = max(0., min(360., node.Value(1)));
 	else if(node.Token(0) == "start angle" && node.Size() >= 2)
 		startAngle = max(0., min(360., node.Value(1)));
+	else if(node.Token(0) == "reversed")
+		reversed = true;
 	else
 		return false;
 
@@ -669,9 +671,12 @@ void Interface::BarElement::Draw(const Rectangle &rect, const Information &info,
 	else
 	{
 		// Figue out where the line should be drawn from and to.
-		// Note: this assumes that the bottom of the rectangle is the start.
-		Point start = rect.BottomRight();
+		// Note: the default start position is the bottom right.
+		// If "reversed" was specified, the top left will be used instead.
+		Point start = reversed ? rect.TopLeft() : rect.BottomRight();
 		Point dimensions = -rect.Dimensions();
+		if(reversed)
+			dimensions *= -1.;
 		double length = dimensions.Length();
 
 		// We will have (segments - 1) gaps between the segments.
