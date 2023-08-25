@@ -342,10 +342,15 @@ mission "Hai Legacy 3"
 		"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 	on disabled
 		fail "Hai Legacy 3"
-		dialog `The enemy ships hail you. "You have failed the challenge. We will take the ship from you when we see fit. I suggest you land on Darkcloak so that we take it from you without trouble - we can even leave you with the outfits. If you try to keep it from us, we'll do things the hard way."`
+		dialog
+			`The enemy ships hail you. "You have failed the challenge. We will take the ship from you when we see fit. I suggest you land on Darkcloak so that we take it from you without trouble - we can even leave you with the outfits. If you try to keep it from us, we'll do things the hard way."`
+			`	"Oh, and you should probably bribe our brethren as well. Quickly."`
 		outfit "Korath Detainer" -2
-	on fail
 		"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
+	on abort
+		"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
+	on fail
+		# I would deduce the reputation here but being on a planet that becomes hostile as you land seem to cause issues for the game.
 		dialog `The Unfettered hail you. "You failed to complete the duel properly, and as such, are no longer authorized to land on our worlds. You will not enjoy unwarranted respect any longer!"`
 	npc disable
 		government "Hai (Unfettered Challenger)"
@@ -447,12 +452,12 @@ mission "Hai Legacy 3"
 
 mission "Undeserved Anomalocaris"
 	minor
-	landing
 	invisible
+	landing
 	to offer
 		has "ship model: Anomalocaris"
-		"reputation: Hai (Unfettered)" < -1000
-		# No you can't keep the ship forever for free, nice try.
+		"reputation: Hai (Unfettered)" <= -1000
+		# No you can't keep the ship for free forever, nice try.
 		not "Hai Legacy 2: active"
 		# To make sure you are not stranded.
 		or
@@ -481,14 +486,11 @@ mission "Undeserved Anomalocaris"
 				`	(Let them have it.)`
 				`	(Take off, now!)`
 					depart
-			`	You end your crew exit what was briefly your ship, and you inform the local Unfettered militia that it is now theirs. The Unfettered that were assembling around your ship happily disperse, except for one, probably the leader judging by their open display of rare weaponry: dual pulse pistols. They come to talk to you, weapons in hand but lowered. "We are happy you could see reason and decided to hand over the ship with no resistance. As we only wanted the ship itself, and you kindly delivered it to us, we have decided to allocate <payment> to you.`
-			`	"You may even buy the outfits back at a reduced price, if you so wish.`
-				to display
-					has "flagship planet attribute: shipyard"
+			`	You end your crew exit what was briefly your ship, and you inform the local Unfettered militia that it is now theirs. The Unfettered that were assembling around your ship happily disperse, except for one, probably the leader judging by their open display of rare weaponry: dual pulse pistols. They come to talk to you, weapons in hand but lowered. "We are happy you could see reason and decided to hand over the ship with no resistance. As we only wanted the ship itself, and you kindly delivered it to us, we have decided to allocate <payment> to you, to pay for the outfits.`
 			`	"This ship was not meant for you, but remember that there are other ways for you to prove yourself." The leader of these Unfettered continues with blatantly forced casualness. "Say, for example, bringing us a Jump Drive... or two... that might begin earning you favor."`
 			action
 				take ship "Anomalocaris"
-				payment 2000000
+				payment 4000000
 
 mission "Unfettered Landing Permit Lost"
 	landing
