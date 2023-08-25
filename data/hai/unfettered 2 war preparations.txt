@@ -293,14 +293,6 @@ mission "<uhai> 11: Shipyard Intel"
 			action
 				log "Failed a spying mission on the Hai homeworld, meaning another path will be required to get the intel."
 				set "unfettered: express cube"
-			`	You do not even the time to head to the warlord before a Herald stops you. "<last>. You have failed. He-Yi will not see you anymore, but he did tell me to give you a message: you should have placed the cube." He says, before leaving.`
-				to display
-					not "<uhai> 17: Mirror Spy: done"
-				decline
-			`	You come to the warlord to report your failure. "Worry not, <last>, this is partly why we placed a cube on Hai-home, I will ask my agents to transfer the information, even if it is not ideal."`
-				to display
-					has "<uhai> 17: Mirror Spy: done"
-				accept
 			`	You come to the warlord to report your failure, and he does not seem surprised in the slightest. "Monkeys, monkeys..." he says in a disrespectfull tone. You are lucky that I have [planned it, an alternative]! I will make the final preparations for my plan, come back to me when you can."`
 			`	You were about to leave but he stops you, "Oh, and don't fail this time."`
 
@@ -1504,9 +1496,9 @@ mission "<uhai> 17: Spy On Hai A"
 	source
 		attributes "unfettered"
 	to offer
-		has "salary: Unfettered"
+		has "<uhai> 11: Shipyard Intel: offered"
 		# this is the alternative to that other mission should you fail it
-		random < 20 + "<uhai> 11: Shipyard Inspection: declined" * 80
+		random < 25 + "<uhai> 11: Shipyard Inspection: declined" * 75
 	waypoint "Alcyone"
 	destination "Warfeed"
 	on offer
