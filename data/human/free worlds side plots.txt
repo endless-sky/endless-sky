@@ -837,9 +837,9 @@ mission "Greenrock Lost Announcement"
 				goto end
 
 			label risked
-			`	"I was at Shaula that day too, although it wasn't me who was commanding the ship. I thought my old captain did the right thing at that time, but he took the fall for it when the Senate began to butt their heads into our business. Even when Bourne decided losing capable officers by overriding the orders of their most senior combat commander was a severe misjudgement, they go and disregard all our sacrifices in Shaula and throw Greenrock back to the jackals."`
+			`	"I was at Shaula that day too, although it wasn't me who was commanding the ship. I thought my old captain did the right thing at that time, but he took the fall for it when the Senate began to butt their heads into our business. Even when Bourne decided overriding the orders of their most capable combat commander was a severe misjudgement, they go and disregard all our sacrifices in Shaula and throw Greenrock back to the jackals."`
 			choice
-				`	"Perhaps the Senate made a wise decision this time around. After all, Tomek's plan involved the rest of the pirate worlds surrendering after Greenrock, and that didn't happen."`
+				`	"Perhaps the Senate made a wise decision this time around. After all, Tomek's plan relied on the rest of the pirate worlds surrendering after Greenrock, and that didn't happen."`
 				`	"There's little we can do now. The challenge now is the Navy, not the pirates."`
 					goto challenge
 				`	(Stay silent.)`
