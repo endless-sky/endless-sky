@@ -343,8 +343,8 @@ mission "Hai Legacy 3"
 	on disabled
 		fail "Hai Legacy 3"
 		dialog
-			`The enemy ships hail you. "You have failed the challenge. We will take the ship from you when we see fit. I suggest you land on Darkcloak so that we take it from you without trouble, whilst giving you a most generous compensation fee. If you try to keep it from us, we'll do things the hard way."`
-			`	"Be warned, however, that your truce with us ends as soon as you land."`
+			`The enemy ships hail you. "You have failed the challenge. We will take the ship from you when we see fit. I suggest you land on Darkcloak so that we take it from you without trouble, whilst giving you a most generous compensation. If you try to keep it from us, we'll do things the hard way."`
+			`	"Be warned, however, that your truce with us ends as soon as you land. This is not necesseraly the end, <last>, you will simply have to prove yourself another way."`
 	on fail
 		"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 		# I would deduce the reputation here but being on a planet that becomes hostile as you land seem to cause issues for the game.
@@ -458,10 +458,8 @@ mission "Undeserved Anomalocaris"
 		not "Hai Legacy 2: active"
 		# To make sure you are not stranded.
 		or
-			and
-				has "flagship planet attribute: shipyard"
-				"credits" >= 1500000
 			"total ships" > 1
+			has "flagship planet attribute: unfettered"
 	on offer
 		conversation
 			branch "unfet space"
@@ -479,15 +477,17 @@ mission "Undeserved Anomalocaris"
 			`	One of them hails you on a private channel. "You do not deserve to fly this relic of old, and you missed your opportunity for a glorious battle to earn that right!"`
 				to display
 					not "Hai Legacy 3: offered"
+			`	"We will give you another ship so you can leave, but you must surrender this one," one of them explains to you in a threatening tone.`
 			choice
 				`	(Let them have it.)`
 				`	(Take off, now!)`
 					depart
-			`	You end your crew exit what was briefly your ship, and you inform the local Unfettered militia that it is now theirs. The Unfettered that were assembling around your ship happily disperse, except for one, probably the leader judging by their open display of rare weaponry: dual pulse pistols. They come to talk to you, weapons in hand but lowered. "We are happy you could see reason and decided to hand over the ship with no resistance. As we only wanted the ship itself, and you kindly delivered it to us, we have decided to allocate <payment> to you, to pay for the outfits.`
-			`	"This ship was not meant for you, but remember that there are other ways for you to prove yourself." The leader of these Unfettered continues with blatantly forced casualness. "Say, for example, bringing us a Jump Drive... or two... that might begin earning you favor."`
+			`	You end your crew exit what was briefly your ship, and you inform the local Unfettered militia that it is now theirs. The Unfettered that were assembling around your ship happily disperse, except for one, probably the leader judging by their open display of rare weaponry: dual pulse pistols. They come to talk to you, weapons in hand but lowered. "We are happy you could see reason and decided to hand over the ship. For this, we have decided to provide you with a suitable replacement, that should hopefully allow you exit our space safely.`
+			`	"Indeed that relic was not meant for you, but remember that there are other ways for you to prove yourself." The leader of these Unfettered continues with blatantly forced casualness. "Say, for example, bringing us a Jump Drive... or two... that for sure will be earning you favor, and prove you can fight.`
+			`	"For now, you have enough to worry about with all of the missiles that will be heading your way. If I were you I'd install a lot of jammers, you'll need them, ha!" A general laughter erupts, and they let you get confortable in the new ship. You may want to get a better one, or at least upgrade this one in order to escape safely. You can also use bribes.`
 			action
+				give ship "Scarab" "Good Will"
 				take ship "Anomalocaris"
-				payment 4000000
 
 mission "Unfettered Landing Permit Lost"
 	landing
