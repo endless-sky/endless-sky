@@ -553,7 +553,7 @@ government "Hai (Unfettered Challenger)"
 	"crew defense" 2.2
 
 	"player reputation" -1000
-	"bribe" .0001
+	"bribe" .00025
 	"fine" 0
 	"friendly hail" "friendly unfettered"
 	"friendly disabled hail" "friendly disabled unfettered"

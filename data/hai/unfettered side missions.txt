@@ -82,7 +82,7 @@ mission "Hai Legacy 1"
 		"reputation: Hai (Unfettered)" < 0
 		not "Unfettered Jump Drive 1: offered"
 		# it will offer but defer itself the first time if you lack money but have sufficient net worth
-		"credits" + "net worth" * ( 1 - "Hai Legacy 1: deferred" ) > 10000000
+		"credits" + "net worth" * ( 1 - "Hai Legacy 1: deferred" ) >= 10000000
 	on offer
 		conversation
 			branch first
@@ -109,7 +109,7 @@ mission "Hai Legacy 1"
 			label go
 			`	While you're pondering whether there will be enough space to land your ship at the destination, you notice a train ticket was placed in your pocket, with instructions written on the back. You proceed to take the train and hike a few hours to get the rest of the way there.`
 			`	Upon arriving, you take a look around, looking for the stranger. Except for a cave, some sparse vegetation, and of course the beach itself, you cannot see much of interest in the vicinity. You double check that these are the right coordinates and look around some more.`
-			`	After waiting for some time, you spot two hooded figures further down the beach making their way toward you. You start to doubt whether or not this was a good idea, but it's too late to back down now. Even, when they're close enough to speak, their faces somehow remain impossible to glimpse beneath the hoods. "Hello, <last>," one says to you. "We are sorry for all the complications, but the truth is, we cannot afford to take risks. It is best for all if you do not know who we are, and we needed a secluded area to speak to you."`
+			`	After waiting for some time, you spot two hooded figures further down the beach making their way toward you. You start to doubt whether or not this was a good idea, but it's too late to back out now. Even, when they're close enough to speak, their faces somehow remain impossible to glimpse beneath the hoods. "Hello, <last>," one says to you. "We are sorry for all the complications, but the truth is, we cannot afford to take risks. It is best for all if you do not know who we are, and we needed a secluded area to speak to you."`
 			choice
 				`	"Tell me more."`
 					goto tellme
@@ -146,7 +146,7 @@ mission "Hai Legacy 1"
 				`	"Why didn't you say anything before that happened?"`
 			`	The second one replies, "We could have, but where's the fun in that? We wanted to see how you would react.`
 			label explain
-			`	"This ship is our guarantee that nothing goes wrong. After all, we are still not sure if we can trust you," says the second one.`
+			`	"This ship is our guarantee that nothing goes wrong. After all, we are still not sure if we can trust you."`
 			`	The first one speaks again, after taking you to a nearby cave to show you another ship. "That ship is not for sale. This ship, however, is a mighty relic of the past, intended for war from the times our empire used to control the stars: an Anomalocaris!`
 			scene "ship/hai anomalocaris"
 			`	The second one now takes a step toward you to speak, almost interrupting the first. "We have a proposition for you: should you agree to bring much needed supplies to our brethren, the Unfettered Hai, we will sell you this ship for the modest price of 10 million credits, including 2 very powerful Korath Detainers!" The first one seems surprised by this and tries to intervene, but the second resumes before they can speak up. "These legendary weapons can interfere with nearly any enemy engine system to give you a significant maneuverability advantage. Worry not, you'll be able to recuperate the cost of this ship with ease by bringing medical supplies to the Unfettered. This cargo is needed on short notice, on <destination>, and we lack the time and personnel to bring them.`
@@ -234,7 +234,7 @@ mission "Hai Legacy 2"
 		has "First Contact: Unfettered: offered"
 		"reputation: Hai (Unfettered)" < 0
 		not "Unfettered Jump Drive 1: offered"
-		"credits" > 10000000
+		"credits" >= 10000000
 	to accept
 		has "ship model: Anomalocaris"
 	on offer
@@ -428,7 +428,7 @@ mission "Hai Legacy 3"
 			`	"Don't become overconfident now, Captain. I am sure you know what happens to such people.`
 			label next
 			`	"Congratulations, I never expected you had it in you. I will give you authorization to land on the condition that you keep this relic from our past in good condition. Make sure you do not lose it until you truly earn the right to call us friends, or we will consider you a true enemy of the Unfettered. Oh, and there are taxes on the daily fee, totaling 650 credits per day. I hope you don't mind.`
-			`	"Do keep it mind that if you lose this permit at any time and have not proven yourself another way you will be treated like an outsider again."`
+			`	"Do keep it mind that if you lose this permit at any time and have not proven yourself another way, like by bringing us a Jump Drive, you will be treated like an outsider again."`
 			choice
 				`	"Thank you for your trust."`
 					goto trust
