@@ -60,6 +60,7 @@ list(APPEND INTEGRATION_TESTS
 	integration/config/plugins/integration-tests/data/tests/tests_store_outfits_on_take_off.txt
 	integration/config/plugins/integration-tests/data/tests/tests_to_accept.txt
 	integration/config/plugins/integration-tests/data/tests/tests_wormhole_navigation.txt
+	integration/config/plugins/integration-tests/data/tests/tests_installed_plugin.txt
 )
 
 target_include_directories(EndlessSkyTests PRIVATE unit/include)
