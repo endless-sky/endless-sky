@@ -484,7 +484,7 @@ mission "Undeserved Anomalocaris"
 					depart
 			`	You end your crew exit what was briefly your ship, and you inform the local Unfettered militia that it is now theirs. The Unfettered that were assembling around your ship happily disperse, except for one, probably the leader judging by their open display of rare weaponry: dual pulse pistols. They come to talk to you, weapons in hand but lowered. "We are happy you could see reason and decided to hand over the ship. For this, we have decided to provide you with a suitable replacement, that should hopefully allow you exit our space safely.`
 			`	"Indeed that relic was not meant for you, but remember that there are other ways for you to prove yourself." The leader of these Unfettered continues with blatantly forced casualness. "Say, for example, bringing us a Jump Drive... or two... that for sure will be earning you favor, and prove you can fight.`
-			`	"For now, you have enough to worry about with all of the missiles that will be heading your way. If I were you I'd install a lot of jammers, you'll need them, ha!" A general laughter erupts, and they let you get confortable in the new ship. You may want to get a better one, or at least upgrade this one in order to escape safely. You can also use bribes.`
+			`	"For now, you have enough to worry about with all of the missiles that will be heading your way. If I were you I'd install a lot of jammers, you'll need them, ha!" A general laughter erupts, and they let you get comfortable in the new ship. You may want to get a better one, or at least upgrade this one in order to escape safely. You can also use bribes.`
 			action
 				give ship "Scarab" "Good Will"
 				take ship "Anomalocaris"
