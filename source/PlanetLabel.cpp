@@ -170,6 +170,7 @@ void PlanetLabel::Draw() const
 		const Point to = from + unit * LINE_LENGTH;
 		LineShader::Draw(from, to, 1.3f, labelColor);
 
+		// Use non-rounding version to prevent labels from jittering.
 		FontSet::Get(18).DrawAliased(name, to.X() + nameOffset.X(),
 			to.Y() + nameOffset.Y(), labelColor);
 		FontSet::Get(14).DrawAliased(government, to.X() + governmentOffset.X(),
