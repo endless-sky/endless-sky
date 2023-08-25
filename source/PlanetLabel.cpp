@@ -47,10 +47,10 @@ namespace {
 	constexpr double MIN_DISTANCE = 30.;
 	constexpr double BORDER = 2.;
 
-	// Find the intersection of a ray and a box, both centered on the origin.
+	// Find the intersection of a ray and a rectangle, both centered on the origin.
 	Point GetOffset(const Point &unit, const Point &dimensions)
 	{
-		// Box ranges from (-width/2, -height/2) to (width/2, height/2).
+		// Rectangle ranges from (-width/2, -height/2) to (width/2, height/2).
 		const Point box = dimensions * .5;
 
 		// Check to avoid division by zero.
@@ -121,10 +121,10 @@ PlanetLabel::PlanetLabel(const vector<PlanetLabel> &labels, const System &system
 	}
 
 	// Cache the offsets for both labels; center labels.
-	const Point offset = GetOffset(Angle(innerAngle).Unit(), box.Dimensions()) - box.Dimensions() * .5;
-	const double nameX = (box.Width() - bigFont.Width(name)) * .5;
+	const Point offset = GetOffset(Angle(innerAngle).Unit(), labelDimensions) - labelDimensions * .5;
+	const double nameX = (labelDimensions.X() - bigFont.Width(name)) * .5;
 	nameOffset = Point(offset.X() + nameX, offset.Y() + BORDER);
-	const double governmentX = (box.Width() - font.Width(government)) * .5;
+	const double governmentX = (labelDimensions.X() - font.Width(government)) * .5;
 	governmentOffset = Point(offset.X() + governmentX, nameOffset.Y() + nameHeight + 1.);
 }
 
