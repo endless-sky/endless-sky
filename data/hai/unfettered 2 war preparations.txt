@@ -1490,7 +1490,6 @@ ship "Marauder Leviathan" "Leviathan (Cube)"
 			"Mystery Cube"
 
 mission "<uhai> 17: Spy On Hai A"
-	minor
 	name `Mystery item`
 	description `Go to <waypoints> and find a way to acquire a "unique" item from the prominent warlord there. Her ship is the <npc>, once you have retrieved it bring the item to He-Yi on <planet>.`
 	source
