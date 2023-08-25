@@ -343,13 +343,10 @@ mission "Hai Legacy 3"
 	on disabled
 		fail "Hai Legacy 3"
 		dialog
-			`The enemy ships hail you. "You have failed the challenge. We will take the ship from you when we see fit. I suggest you land on Darkcloak so that we take it from you without trouble - we can even leave you with the outfits. If you try to keep it from us, we'll do things the hard way."`
-			`	"Oh, and you should probably bribe our brethren as well. Quickly."`
-		outfit "Korath Detainer" -2
-		"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
-	on abort
-		"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
+			`The enemy ships hail you. "You have failed the challenge. We will take the ship from you when we see fit. I suggest you land on Darkcloak so that we take it from you without trouble, whilst giving you a most generous compensation fee. If you try to keep it from us, we'll do things the hard way."`
+			`	"Be warned, however, that your truce with us ends as soon as you land."`
 	on fail
+		"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 		# I would deduce the reputation here but being on a planet that becomes hostile as you land seem to cause issues for the game.
 		dialog `The Unfettered hail you. "You failed to complete the duel properly, and as such, are no longer authorized to land on our worlds. You will not enjoy unwarranted respect any longer!"`
 	npc disable
