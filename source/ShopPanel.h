@@ -73,7 +73,7 @@ protected:
 
 
 protected:
-	void DrawShip(const Ship &ship, const Point &center, bool isSelected);
+	void DrawShip(const Ship &ship, const Point &center, bool isSelected) const;
 
 	void CheckForMissions(Mission::Location location);
 
