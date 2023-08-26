@@ -4576,18 +4576,20 @@ double Ship::CalculateDeterrence() const
 			const Outfit *weapon = hardpoint.GetOutfit();
 			// Ignore disabled and asteroid damages.
 			// Effects over time are considered over 60 frames, and disruption is % based so multiply it by 100 too.
-			// First consider special effects, then hull, shileds, energy and heat.
+			// Damaging effects are considered more significant.
+			// First consider damaging effects, then energy and heat, and finally special effects.
 			double strength = weapon->DisruptionDamage() * 600.
-				+ weapon->SlowingDamage() * 60.
-				+ (weapon->FuelDamage() + weapon->LeakDamage() * 60)
 				+ (weapon->ShieldDamage() + weapon->RelativeShieldDamage() * attributes.Get("shields"))
 					+ weapon->DischargeDamage() * 60.
 				+ (weapon->HullDamage() + weapon->RelativeHullDamage() * attributes.Get("hull"))
 					+ weapon->CorrosionDamage() * 60.
 				+ ((weapon->EnergyDamage() + weapon->RelativeEnergyDamage() * attributes.Get("energy capacity"))
-					+ weapon->IonDamage() * 60. + weapon->ScramblingDamage() * 60) / 2.
+					+ weapon->IonDamage() * 60. + weapon->ScramblingDamage() * 60) * .25
 				+ ((weapon->HeatDamage() + weapon->RelativeHeatDamage() * MaximumHeat())
-					+ weapon->BurnDamage() * 60.) / 10.;
+					+ weapon->BurnDamage() * 60.) * .1
+				+ weapon->SlowingDamage() * 10.
+				+ (weapon->FuelDamage() + weapon->LeakDamage() * 60.) * 2.;
+				
 			tempDeterrence += .12 * strength / weapon->Reload();
 		}
 	return tempDeterrence;
