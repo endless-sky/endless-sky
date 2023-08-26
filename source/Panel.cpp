@@ -17,14 +17,18 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Color.h"
 #include "Command.h"
+#include "DelaunayTriangulation.h"
 #include "Dialog.h"
 #include "FillShader.h"
+#include "GamePad.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Point.h"
 #include "Preferences.h"
 #include "Screen.h"
 #include "UI.h"
+
+#include <SDL_gamecontroller.h>
 
 using namespace std;
 
@@ -141,6 +145,7 @@ bool Panel::ZoneMouseDown(const Point &point)
 			// click has broken it out of that mode, so it doesn't interpret a
 			// button press and a text character entered.
 			EndEditing();
+			zoneMousePos = point;
 			zone.MouseDown();
 			return true;
 		}
@@ -262,6 +267,58 @@ bool Panel::FingerUp(int x, int y, int fid)
 
 
 bool Panel::Gesture(Gesture::GestureEnum gesture)
+{
+	return false;
+}
+
+
+
+bool Panel::ControllersChanged()
+{
+	return false;
+}
+
+
+
+bool Panel::ControllerButtonDown(SDL_GameControllerButton button)
+{
+	return false;
+}
+
+
+
+bool Panel::ControllerButtonUp(SDL_GameControllerButton button)
+{
+	return false;
+}
+
+
+
+bool Panel::ControllerAxis(SDL_GameControllerAxis axis, int position)
+{
+	return false;
+}
+
+
+
+bool Panel::ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive)
+{
+	// By default, convert the right joystick into a scroll event.
+	// for mouse wheel, positive is up, so flip the direction
+	// TODO: This feels a little stilted, because you have to repeatedly flick
+	// the joystick to zoom/scroll more than once. We should make these events
+	// repeat, like keypresses.
+	if(axis == SDL_CONTROLLER_AXIS_RIGHTY)
+		Scroll(0, positive ? -1 : 1);
+	else if(axis == SDL_CONTROLLER_AXIS_RIGHTX)
+		Scroll(positive ? -1 : 1, 0);
+
+	return false;
+}
+
+
+
+bool Panel::ControllerTriggerReleased(SDL_GameControllerAxis axis, bool positive)
 {
 	return false;
 }

@@ -15,9 +15,16 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "UI.h"
 
+#include "Angle.h"
+#include "Color.h"
 #include "Command.h"
+#include "DelaunayTriangulation.h"
+#include "GameData.h"
+#include "GamePad.h"
 #include "Gesture.h"
+#include "LineShader.h"
 #include "Panel.h"
+#include "PointerShader.h"
 #include "Screen.h"
 
 #include <SDL2/SDL.h>
@@ -27,6 +34,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
+namespace
+{
+	Angle g_pointer_angle;
+}
+
 
 
 // Handle an event. The event is handed to each panel on the stack until one
@@ -34,6 +46,8 @@ using namespace std;
 bool UI::Handle(const SDL_Event &event)
 {
 	bool handled = false;
+	SDL_GameControllerAxis axisTriggered = SDL_CONTROLLER_AXIS_INVALID;
+	SDL_GameControllerAxis axisUnTriggered = SDL_CONTROLLER_AXIS_INVALID;
 
 	vector<shared_ptr<Panel>>::iterator it = stack.end();
 	while(it != stack.begin() && !handled)
@@ -155,7 +169,7 @@ bool UI::Handle(const SDL_Event &event)
 		else if(event.type == Command::EventID())
 		{
 			Command command(event);
-			if(event.button.state == SDL_PRESSED)
+			if(event.key.state == SDL_PRESSED)
 				handled = (*it)->KeyDown(0, 0, command, true);
 		}
 		else if(event.type == Gesture::EventID())
@@ -171,11 +185,78 @@ bool UI::Handle(const SDL_Event &event)
 				handled = (*it)->KeyDown(0, 0, command, true);
 			}
 		}
+		else if(event.type == SDL_CONTROLLERDEVICEADDED ||
+		        event.type == SDL_CONTROLLERDEVICEREMOVED)
+		{
+			handled = (*it)->ControllersChanged();
+		}
+		else if(event.type == SDL_CONTROLLERAXISMOTION)
+		{
+			// Try a raw axis event first. If nobody handles it, then convert it
+			// to an axis trigger event, and try again.
+			if(!(handled = (*it)->ControllerAxis(static_cast<SDL_GameControllerAxis>(event.caxis.axis), event.caxis.value)))
+			{
+				// Not handled. Convert it to a trigger event
+				if(activeAxis == SDL_CONTROLLER_AXIS_INVALID)
+				{
+					if(SDL_abs(event.caxis.value) > GamePad::AxisIsButtonPressThreshold())
+					{
+						// Trigger/axis has moved far enough that we are certain the
+						// user meant to press it.
+						activeAxisIsPositive = event.caxis.value > 0;
+						activeAxis = static_cast<SDL_GameControllerAxis>(event.caxis.axis);
+						handled = (*it)->ControllerTriggerPressed(activeAxis, activeAxisIsPositive);
+						if(!handled)
+						{
+							Command command(activeAxis, activeAxisIsPositive);
+							handled = (*it)->KeyDown(0, 0, command, true);
+						}
+						axisTriggered = activeAxis;
+					}
+				}
+				else if(activeAxis == event.caxis.axis && SDL_abs(event.caxis.value) < GamePad::DeadZone())
+				{
+					// Trigger returned to zero-ish position.
+					handled = (*it)->ControllerTriggerReleased(activeAxis, activeAxisIsPositive);
+					axisUnTriggered = activeAxis;
+					activeAxis = SDL_CONTROLLER_AXIS_INVALID;
+				}
+			}
+		}
+		else if(event.type == SDL_CONTROLLERBUTTONDOWN)
+		{
+			handled = (*it)->ControllerButtonDown(static_cast<SDL_GameControllerButton>(event.cbutton.button));
+			if(!handled)
+			{
+				Command command(static_cast<SDL_GameControllerButton>(event.cbutton.button));
+				handled = (*it)->KeyDown(0, 0, command, true);
+			}
+		}
+		else if(event.type == SDL_CONTROLLERBUTTONUP)
+		{
+			handled = (*it)->ControllerButtonUp(static_cast<SDL_GameControllerButton>(event.cbutton.button));
+		}
 
 		// If this panel does not want anything below it to receive events, do
 		// not let this event trickle further down the stack.
 		if((*it)->TrapAllEvents())
 			break;
+	}
+
+	// If game controller events are not explicitly handled by the panels, then
+	// handle them here. We do this outside of the panel loop, because in order
+	// to pick and choose buttons to navigate to, we need to consider all of the
+	// panels, not just the top one.
+	if(!handled)
+	{
+		if(axisTriggered != SDL_CONTROLLER_AXIS_INVALID)
+			handled = DefaultControllerTriggerPressed(axisTriggered, activeAxisIsPositive);
+		else if(axisUnTriggered != SDL_CONTROLLER_AXIS_INVALID)
+			handled = DefaultControllerTriggerReleased(axisTriggered, activeAxisIsPositive);
+		else if(event.type == SDL_CONTROLLERBUTTONDOWN)
+			handled = DefaultControllerButtonDown(static_cast<SDL_GameControllerButton>(event.cbutton.button));
+		else if(event.type == SDL_CONTROLLERBUTTONUP)
+			handled = DefaultControllerButtonUp(static_cast<SDL_GameControllerButton>(event.cbutton.button));
 	}
 
 	// Handle any queued push or pop commands.
@@ -215,6 +296,34 @@ void UI::DrawAll()
 
 	for( ; it != stack.end(); ++it)
 		(*it)->Draw();
+
+	// TODO: troubleshooting code. we don't want this.
+	//DelaunayTriangulation dt;
+	//for(auto* zone: GetZones())
+	//{
+	//	dt.AddPoint(zone->Center());
+	//}
+	//auto points = dt.Points();
+	//for(auto& e: dt.Edges())
+	//{
+	//	LineShader::Draw(points[e.first], points[e.second], 3, Color(0));
+	//	LineShader::Draw(points[e.first], points[e.second], 1, Color());
+	//}
+	// End troubleshooting code
+
+	// If the panel has a valid ui element selected, draw a rotating indicator
+	// around it
+	if(controllerCursorActive)
+	{
+		g_pointer_angle += Angle(.2);
+		const Color* color = GameData::Colors().Get("medium");
+		PointerShader::Bind();
+		PointerShader::Add(controllerCursorPosition, g_pointer_angle.Unit(), 8, 20, -20, *color);
+		PointerShader::Add(controllerCursorPosition, (g_pointer_angle + Angle(90.)).Unit(), 8, 20, -20, *color);
+		PointerShader::Add(controllerCursorPosition, (g_pointer_angle + Angle(180.)).Unit(), 8, 20, -20, *color);
+		PointerShader::Add(controllerCursorPosition, (g_pointer_angle + Angle(270.)).Unit(), 8, 20, -20, *color);
+		PointerShader::Unbind();
+	}
 }
 
 
@@ -366,6 +475,10 @@ Point UI::GetMouse()
 // If a push or pop is queued, apply it.
 void UI::PushOrPop()
 {
+	// If panel state is changing, reset the controller cursor state
+	if(!toPush.empty() || !toPop.empty())
+		controllerCursorActive = false;
+
 	// Handle any panels that should be added.
 	for(shared_ptr<Panel> &panel : toPush)
 		if(panel)
@@ -384,4 +497,159 @@ void UI::PushOrPop()
 			}
 	}
 	toPop.clear();
+}
+
+
+
+// Handle panel button navigation. This is done in the UI class instead of the
+// panel class because we need to know where all the buttons on all the panels
+// are in order to correctly handle navigation.
+bool UI::DefaultControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive)
+{
+	// By default, treat the left joystick like a zone selector.
+	if(axis == SDL_CONTROLLER_AXIS_LEFTX || axis == SDL_CONTROLLER_AXIS_LEFTY)
+	{
+		std::vector<Panel::Zone*> zones = GetZones();
+		if(!zones.empty())
+		{
+			if(!controllerCursorActive)
+			{
+				controllerCursorPosition = zones.front()->Center();
+				controllerCursorActive = true;
+			}
+			else if(zones.size() > 1)
+			{
+				// Get the joystick angle
+				Point joystick_direction = GamePad::LeftStick().Unit();
+
+				// Find the angles to every button near the selected one.
+				DelaunayTriangulation dt;
+				for(auto& zone: zones)
+				{
+					dt.AddPoint(zone->Center());
+				}
+
+				// We want to be within 45 degrees of any vector, which means
+				// the match has to be better than sqrt(2)/2. (a value of 1 means
+				// a perfect match)
+				float best_result = .70710678;
+				size_t best_idx = zones.size();
+				auto points = dt.Points();
+				for(const auto &edge: dt.Edges())
+				{
+					size_t other = zones.size();
+					// testing for floating point equality is ok here, since we
+					// didn't do any math on these points, just assignments.
+					if(points[edge.first].X() == controllerCursorPosition.X() &&
+						points[edge.first].Y() == controllerCursorPosition.Y())
+						other = edge.second;
+					else if(points[edge.second].X() == controllerCursorPosition.X() &&
+						points[edge.second].Y() == controllerCursorPosition.Y())
+						other = edge.first;
+
+					if(other < zones.size())
+					{
+						// this edge leads away from the currently selected zone.
+						// compare it to the joystick angle, and pick the closest
+						// one.
+						Point edge_direction = (points[other] - controllerCursorPosition).Unit();
+						// dot product gets closer to 1 the more it matches
+						double dot = joystick_direction.Dot(edge_direction);
+						if(dot > best_result)
+						{
+							best_result = dot;
+							best_idx = other;
+						}
+					}
+				}
+
+				if(best_idx < zones.size())
+				{
+					controllerCursorPosition = zones[best_idx]->Center();
+				}
+			}
+			return true;
+		}
+	}
+	return false;
+}
+
+
+
+// Handle panel button navigation. This is done in the UI class instead of the
+// panel class because we need to know where all the buttons on all the panels
+// are in order to correctly handle navigation.
+bool UI::DefaultControllerTriggerReleased(SDL_GameControllerAxis axis, bool positive)
+{
+	return false;
+}
+
+
+
+// Handle panel button navigation. This is done in the UI class instead of the
+// panel class because the button press might apply to a different panel than
+// the top one.
+bool UI::DefaultControllerButtonUp(SDL_GameControllerButton button)
+{
+	if(button == SDL_CONTROLLER_BUTTON_A && controllerCursorActive)
+	{
+		for(Panel::Zone* zone: GetZones())
+		{
+			// floating point equality comparision is safe here, since we haven't
+			// done math on these, just assignments.
+			if(zone->Center().X() == controllerCursorPosition.X() &&
+				zone->Center().Y() == controllerCursorPosition.Y())
+			{
+				zone->MouseDown();
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+
+
+// Handle panel button navigation. This is done in the UI class instead of the
+// panel class because the button press might apply to a different panel than
+// the top one.
+bool UI::DefaultControllerButtonDown(SDL_GameControllerButton button)
+{
+	if(button == SDL_CONTROLLER_BUTTON_A && controllerCursorActive)
+	{
+		for(Panel::Zone* zone: GetZones())
+		{
+			// floating point equality comparision is safe here, since we haven't
+			// done math on these, just assignments.
+			if(zone->Center().X() == controllerCursorPosition.X() &&
+				zone->Center().Y() == controllerCursorPosition.Y())
+			{
+				zone->MouseUp();
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+
+
+// Get all the zones from currently active panels
+std::vector<Panel::Zone*> UI::GetZones()
+{
+	std::vector<Panel::Zone*> zones;
+	for(auto it = stack.rbegin(); it != stack.rend(); ++it)
+	{
+		// Don't handle panels destined for death.
+		if(count(toPop.begin(), toPop.end(), it->get()))
+			continue;
+
+		for(Panel::Zone& zone: (*it)->zones)
+			zones.push_back(&zone);
+
+		// Don't consider anything beneath a modal panel
+		if((*it)->TrapAllEvents())
+			break;
+	}
+	return zones;
 }

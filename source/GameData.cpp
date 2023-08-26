@@ -31,6 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "FillShader.h"
 #include "Fleet.h"
 #include "FogShader.h"
+#include "GamePad.h"
 #include "text/FontSet.h"
 #include "FormationPattern.h"
 #include "Galaxy.h"
@@ -207,6 +208,28 @@ void GameData::LoadShaders(bool useShaderSwizzle)
 	Command::SetGesture(Command::BOARD, Gesture::CARET_UP);
 	Command::SetGesture(Command::GATHER, Gesture::CIRCLE);
 	Command::SetGesture(Command::HOLD, Gesture::X);
+
+	Command::SetControllerButton(Command::LAND, SDL_CONTROLLER_BUTTON_A);
+	Command::SetControllerButton(Command::HAIL, SDL_CONTROLLER_BUTTON_B);
+	Command::SetControllerButton(Command::SCAN, SDL_CONTROLLER_BUTTON_X);
+	Command::SetControllerButton(Command::JUMP, SDL_CONTROLLER_BUTTON_Y);
+	Command::SetControllerButton(Command::INFO, SDL_CONTROLLER_BUTTON_BACK);
+	Command::SetControllerButton(Command::MENU, SDL_CONTROLLER_BUTTON_GUIDE);
+	Command::SetControllerButton(Command::MAP, SDL_CONTROLLER_BUTTON_START);
+	Command::SetControllerButton(Command::STOP, SDL_CONTROLLER_BUTTON_LEFTSTICK);
+	Command::SetControllerButton(Command::NEAREST_ASTEROID, SDL_CONTROLLER_BUTTON_RIGHTSTICK);
+	Command::SetControllerButton(Command::SELECT, SDL_CONTROLLER_BUTTON_RIGHTSHOULDER);
+	Command::SetControllerButton(Command::DEPLOY, SDL_CONTROLLER_BUTTON_DPAD_UP);
+	Command::SetControllerButton(Command::BOARD, SDL_CONTROLLER_BUTTON_DPAD_DOWN);
+	Command::SetControllerButton(Command::CLOAK, SDL_CONTROLLER_BUTTON_DPAD_LEFT);
+	Command::SetControllerButton(Command::FASTFORWARD, SDL_CONTROLLER_BUTTON_DPAD_RIGHT);
+
+	Command::SetControllerTrigger(Command::TARGET, SDL_CONTROLLER_AXIS_RIGHTX, false);
+	Command::SetControllerTrigger(Command::NEAREST, SDL_CONTROLLER_AXIS_RIGHTX, true);
+	Command::SetControllerTrigger(Command::PRIMARY, SDL_CONTROLLER_AXIS_TRIGGERLEFT, true);
+	Command::SetControllerTrigger(Command::SECONDARY, SDL_CONTROLLER_AXIS_TRIGGERRIGHT, true);
+
+
 	Command::LoadSettings(Files::Resources() + "keys.txt");
 	Command::LoadSettings(Files::Config() + "keys.txt");
 
@@ -224,6 +247,8 @@ void GameData::LoadShaders(bool useShaderSwizzle)
 		*GameData::Colors().Get("dim"),
 		*GameData::Colors().Get("bright")
 	);
+
+	GamePad::Init();
 
 	background.Init(16384, 4096);
 }

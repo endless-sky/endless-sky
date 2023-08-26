@@ -134,6 +134,10 @@ target_sources(EndlessSkyLib PRIVATE
 	GameEvent.h
 	GameLoadingPanel.cpp
 	GameLoadingPanel.h
+	GamePad.cpp
+	GamePad.h
+	GamepadPanel.cpp
+	GamepadPanel.h
 	Gamerules.cpp
 	Gamerules.h
 	GameWindow.cpp
@@ -261,6 +265,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Projectile.h
 	Radar.cpp
 	Radar.h
+	RadialSelectionPanel.cpp
+	RadialSelectionPanel.h
 	Random.cpp
 	Random.h
 	RandomEvent.h

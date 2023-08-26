@@ -18,10 +18,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "GamePad.h"
 #include "text/Format.h"
 
 #include <SDL2/SDL.h>
 
+#include <SDL_gamecontroller.h>
 #include <algorithm>
 #include <atomic>
 #include <cmath>
@@ -34,8 +36,11 @@ namespace {
 	// the name of the key it is mapped to, or the SDL keycode it is mapped to.
 	map<Command, string> description;
 	map<Command, string> keyName;
+	map<Command, string> iconName;
 	map<int, Command> commandForKeycode;
 	map<Gesture::GestureEnum, Command> commandForGesture;
+	map<SDL_GameControllerButton, Command> commandForControllerButton;
+	map<std::pair<SDL_GameControllerAxis, bool>, Command> commandForControllerTrigger;
 	map<Command, int> keycodeForCommand;
 	// Keep track of any keycodes that are mapped to multiple commands, in order
 	// to display a warning to the player.
@@ -58,26 +63,26 @@ const Command Command::MOUSE_TURNING_HOLD(ONE << 5, "Mouse turning (hold)");
 const Command Command::PRIMARY(ONE << 6, "Fire primary weapon");
 const Command Command::SECONDARY(ONE << 7, "Fire secondary weapon");
 const Command Command::SELECT(ONE << 8, "Select secondary weapon");
-const Command Command::LAND(ONE << 9, "Land on planet / station");
-const Command Command::BOARD(ONE << 10, "Board selected ship");
-const Command Command::HAIL(ONE << 11, "Talk to selected ship");
+const Command Command::LAND(ONE << 9, "Land on planet / station", "ui/icon_land");
+const Command Command::BOARD(ONE << 10, "Board selected ship", "ui/icon_board");
+const Command Command::HAIL(ONE << 11, "Talk to selected ship", "ui/icon_talk");
 const Command Command::SCAN(ONE << 12, "Scan selected ship");
 const Command Command::JUMP(ONE << 13, "Initiate hyperspace jump");
 const Command Command::FLEET_JUMP(ONE << 14, "");
 const Command Command::TARGET(ONE << 15, "Select next ship");
 const Command Command::NEAREST(ONE << 16, "Select nearest hostile ship");
 const Command Command::NEAREST_ASTEROID(ONE << 17, "Select nearest asteroid");
-const Command Command::DEPLOY(ONE << 18, "Deploy / recall fighters");
+const Command Command::DEPLOY(ONE << 18, "Deploy / recall fighters", "ui/icon_deploy");
 const Command Command::AFTERBURNER(ONE << 19, "Fire afterburner");
-const Command Command::CLOAK(ONE << 20, "Toggle cloaking device");
+const Command Command::CLOAK(ONE << 20, "Toggle cloaking device", "ui/icon_cloak");
 const Command Command::MAP(ONE << 21, "View star map");
 const Command Command::INFO(ONE << 22, "View player info");
 const Command Command::FULLSCREEN(ONE << 23, "Toggle fullscreen");
 const Command Command::FASTFORWARD(ONE << 24, "Toggle fast-forward");
-const Command Command::FIGHT(ONE << 25, "Fleet: Fight my target");
-const Command Command::GATHER(ONE << 26, "Fleet: Gather around me");
-const Command Command::HOLD(ONE << 27, "Fleet: Hold position");
-const Command Command::HARVEST(ONE << 28, "Fleet: Harvest flotsam");
+const Command Command::FIGHT(ONE << 25, "Fleet: Fight my target", "ui/icon_fleet_fight");
+const Command Command::GATHER(ONE << 26, "Fleet: Gather around me", "ui/icon_fleet_gather");
+const Command Command::HOLD(ONE << 27, "Fleet: Hold position", "ui/icon_fleet_stop");
+const Command Command::HARVEST(ONE << 28, "Fleet: Harvest flotsam", "ui/icon_fleet_harvest");
 const Command Command::AMMO(ONE << 29, "Fleet: Toggle ammo usage");
 const Command Command::AUTOSTEER(ONE << 30, "Auto steer");
 const Command Command::WAIT(ONE << 31, "");
@@ -87,6 +92,7 @@ const Command Command::MOVETOWARD(ONE << 34, "");
 
 std::atomic<uint64_t> Command::simulated_command{};
 std::atomic<uint64_t> Command::simulated_command_once{};
+bool Command::simulated_command_skip = false;
 
 
 // In the given text, replace any instances of command names (in angle brackets)
@@ -133,15 +139,63 @@ Command::Command(Gesture::GestureEnum gesture)
 
 
 
+// Create a command representing the given axis trigger
+Command::Command(SDL_GameControllerAxis axis, bool positive)
+{
+	auto it = commandForControllerTrigger.find(std::make_pair(axis, positive));
+	if(it != commandForControllerTrigger.end())
+		*this = it->second;
+}
+
+
+// Create a command representing the given controller button
+Command::Command(SDL_GameControllerButton button)
+{
+	auto it = commandForControllerButton.find(button);
+	if(it != commandForControllerButton.end())
+		*this = it->second;
+}
+
+
+
 // Read the current keyboard state.
 void Command::ReadKeyboard()
 {
 	Clear();
 
 	// inject simulated commands
-	state = simulated_command.load(std::memory_order_relaxed) | simulated_command_once.exchange(0);
+	state = simulated_command.load(std::memory_order_relaxed);
+	// inject simulated once commands
+	if(simulated_command_skip)
+	{
+		// we want to skip the first Read, and inject on the next one
+		simulated_command_skip = false;
+	}
+	else
+		state |= simulated_command_once.exchange(0);
 
 	const Uint8 *keyDown = SDL_GetKeyboardState(nullptr);
+
+	// Read commands from the game controller
+	const GamePad::Buttons& gamepadButtons = GamePad::Held();
+	for(auto &kv : commandForControllerButton)
+	{
+		if(static_cast<size_t>(kv.first) < sizeof(gamepadButtons) / sizeof(*gamepadButtons))
+		{
+			if(gamepadButtons[kv.first])
+				*this |= kv.second;
+		}
+	}
+	// Read Trigger values (this may include joystick axes as well)
+	for(auto &kv : commandForControllerTrigger)
+	{
+		if(kv.first.first < SDL_CONTROLLER_AXIS_MAX)
+		{
+			if(GamePad::Trigger(kv.first.first, kv.first.second))
+				*this |= kv.second;
+		}
+	}
+
 
 	// Each command can only have one keycode, but misconfigured settings can
 	// temporarily cause one keycode to be used for two commands. Also, more
@@ -178,6 +232,23 @@ void Command::LoadSettings(const string &path)
 			if(node.Token(1) == "gesture" && node.Size() >= 3)
 			{
 				SetGesture(command, static_cast<Gesture::GestureEnum>(node.Value(2)));
+			}
+			else if(node.Token(1) == "controller_button" && node.Size() >= 3)
+			{
+				auto button = static_cast<SDL_GameControllerButton>(node.Value(2));
+				if(button >= 0 && button < SDL_CONTROLLER_BUTTON_MAX)
+				{
+					commandForControllerButton[button] = command;
+				}
+			}
+			else if(node.Token(1) == "controller_trigger" && node.Size() >= 4)
+			{
+				auto axis = static_cast<SDL_GameControllerAxis>(node.Value(2));
+				bool positive = node.BoolValue(3);
+				if(axis >= 0 && axis < SDL_CONTROLLER_AXIS_MAX)
+				{
+					commandForControllerTrigger[std::make_pair(axis, positive)] = command;
+				}
 			}
 			else
 			{
@@ -216,6 +287,18 @@ void Command::SaveSettings(const string &path)
 		auto dit = description.find(kv.second);
 		if(dit != description.end())
 			out.Write(dit->second, "gesture", static_cast<int>(kv.first));
+	}
+	for(const auto& kv : commandForControllerButton)
+	{
+		auto dit = description.find(kv.second);
+		if(dit != description.end())
+			out.Write(dit->second, "controller_button", static_cast<int>(kv.first));
+	}
+	for(const auto& kv : commandForControllerTrigger)
+	{
+		auto dit = description.find(kv.second);
+		if(dit != description.end())
+			out.Write(dit->second, "controller_trigger", static_cast<int>(kv.first.first), kv.first.second ? "1": "0");
 	}
 }
 
@@ -264,6 +347,76 @@ void Command::SetGesture(Command command, Gesture::GestureEnum gesture)
 
 
 
+// Set the gesture that is mapped to the given command
+void Command::SetControllerButton(Command command, SDL_GameControllerButton button)
+{
+	// Erase any buttons or triggers for this command
+	for(auto it = commandForControllerButton.begin(); it != commandForControllerButton.end();)
+	{
+		if(it->second == command)
+		{
+			it = commandForControllerButton.erase(it);
+		}
+		else
+		{
+			++it;
+		}
+	}
+	for(auto it = commandForControllerTrigger.begin(); it != commandForControllerTrigger.end();)
+	{
+		if(it->second == command)
+		{
+			it = commandForControllerTrigger.erase(it);
+		}
+		else
+		{
+			++it;
+		}
+	}
+
+	if(button < SDL_CONTROLLER_BUTTON_MAX && button != SDL_CONTROLLER_BUTTON_INVALID)
+	{
+		commandForControllerButton[button] = command;
+	}
+}
+
+
+
+// Set the gesture that is mapped to the given command
+void Command::SetControllerTrigger(Command command, SDL_GameControllerAxis axis, bool positive)
+{
+	// Erase any buttons or triggers for this command
+	for(auto it = commandForControllerButton.begin(); it != commandForControllerButton.end();)
+	{
+		if(it->second == command)
+		{
+			it = commandForControllerButton.erase(it);
+		}
+		else
+		{
+			++it;
+		}
+	}
+	for(auto it = commandForControllerTrigger.begin(); it != commandForControllerTrigger.end();)
+	{
+		if(it->second == command)
+		{
+			it = commandForControllerTrigger.erase(it);
+		}
+		else
+		{
+			++it;
+		}
+	}
+
+	if(axis < SDL_CONTROLLER_AXIS_MAX && axis != SDL_CONTROLLER_AXIS_INVALID)
+	{
+		commandForControllerTrigger[std::make_pair(axis, positive)] = command;
+	}
+}
+
+
+
 // Get the description of this command. If this command is a combination of more
 // than one command, an empty string is returned.
 const string &Command::Description() const
@@ -279,10 +432,18 @@ const string &Command::Description() const
 // a combination of more than one command, an empty string is returned.
 const string &Command::KeyName() const
 {
-	static const string empty = "(none)";
+	static const string empty = "(Not Set)";
 	auto it = keyName.find(*this);
 	if(it != keyName.end())
 		return it->second;
+	return empty;
+}
+
+
+
+const std::string &Command::GestureName() const
+{
+	static const string empty = "(Not Set)";
 	
 	for(auto& kv: commandForGesture)
 	{
@@ -292,6 +453,39 @@ const string &Command::KeyName() const
 		}
 	}
 	return empty;
+}
+
+
+
+const std::string Command::ButtonName() const
+{
+	// Only one button or trigger should be set
+	for(auto& kv: commandForControllerButton)
+	{
+		if(kv.second == *this)
+		{
+			return SDL_GameControllerGetStringForButton(kv.first);
+		}
+	}
+
+	for(auto& kv: commandForControllerTrigger)
+	{
+		if(kv.second == *this)
+		{
+			return std::string(SDL_GameControllerGetStringForAxis(kv.first.first)) + (kv.first.second ? " +" : " -");
+		}
+	}
+	return "(Not Set)";
+}
+
+
+
+// Retrieve the icon associated with this command (if any)
+const std::string& Command::Icon() const
+{
+	static string EMPTY;
+	auto it = iconName.find(*this);
+	return it == iconName.end() ? EMPTY : it->second;
 }
 
 
@@ -502,11 +696,14 @@ Command::Command(uint64_t state)
 
 // Private constructor that also stores the given description in the lookup
 // table. (This is used for the enumeration at the top of this file.)
-Command::Command(uint64_t state, const string &text)
+Command::Command(uint64_t state, const string &text, const string &icon)
 	: state(state)
 {
 	if(!text.empty())
 		description[*this] = text;
+
+	if(!icon.empty())
+		iconName[*this] = icon;
 }
 
 
@@ -540,9 +737,10 @@ void Command::InjectSet(const Command& command)
 
 
 // Simulate a keyboard press for commands
-void Command::InjectOnce(const Command& command)
+void Command::InjectOnce(const Command& command, bool next)
 {
 	simulated_command_once.fetch_or(command.state, std::memory_order_relaxed);
+	simulated_command_skip = next;
 	SDL_Event event{};
 	event.type = EventID();
 	event.key.windowID = command.state;

@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef COMMAND_H_
 #define COMMAND_H_
 
+#include <SDL_gamecontroller.h>
 #include <cstdint>
 #include <string>
 #include <atomic>
@@ -100,6 +101,10 @@ public:
 	explicit Command(const union SDL_Event &event);
 	// Create a command representing whatever is mapped to the given gesture
 	explicit Command(Gesture::GestureEnum gesture);
+	// Create a command representing a game controller axis trigger
+	explicit Command(SDL_GameControllerAxis axis, bool positive);
+	// Create a command representing a game controller button press
+	explicit Command(SDL_GameControllerButton button);
 
 	// Read the current keyboard state and set this object to reflect it.
 	void ReadKeyboard();
@@ -109,11 +114,16 @@ public:
 	static void SaveSettings(const std::string &path);
 	static void SetKey(Command command, int keycode);
 	static void SetGesture(Command command, Gesture::GestureEnum gesture);
+	static void SetControllerButton(Command command, SDL_GameControllerButton button);
+	static void SetControllerTrigger(Command command, SDL_GameControllerAxis trigger, bool positive);
 
 	// Get the description or keycode name for this command. If this command is
 	// a combination of more than one command, an empty string is returned.
 	const std::string &Description() const;
 	const std::string &KeyName() const;
+	const std::string &GestureName() const;
+	const std::string ButtonName() const;
+	const std::string &Icon() const;
 	bool HasBinding() const;
 	bool HasConflict() const;
 
@@ -148,7 +158,7 @@ public:
 	bool operator==(const Command &command) const { return command.state == state && command.turn == turn; }
 
 	// Allow UI's to simulate keyboard input
-	static void InjectOnce(const Command& command);
+	static void InjectOnce(const Command& command, bool next = false);
 	static void InjectSet(const Command& command);
 	static void InjectClear();
 	static void InjectUnset(const Command& command);
@@ -161,7 +171,7 @@ public:
 
 private:
 	explicit Command(uint64_t state);
-	Command(uint64_t state, const std::string &text);
+	Command(uint64_t state, const std::string &text, const std::string &icon = "");
 
 
 private:
@@ -174,6 +184,7 @@ private:
 	// If we want to simulate input from the ui, place it here to be read later
 	static std::atomic<uint64_t> simulated_command;
 	static std::atomic<uint64_t> simulated_command_once;
+	static bool simulated_command_skip;
 };
 
 

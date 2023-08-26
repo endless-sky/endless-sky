@@ -290,6 +290,26 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 
 
 
+bool Dialog::ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive)
+{
+	// Treat all axis inputs as left and right buttons
+	KeyDown(positive ? SDLK_RIGHT : SDLK_LEFT, 0, Command(), true);
+	return true;
+}
+
+
+
+bool Dialog::ControllerButtonDown(SDL_GameControllerButton button)
+{
+	if(button == SDL_CONTROLLER_BUTTON_A)
+		return KeyDown(SDLK_RETURN, 0, Command(), true);
+	else if(button == SDL_CONTROLLER_BUTTON_GUIDE)
+		return KeyDown(SDLK_ESCAPE, 0, Command(), true);
+	return true;
+}
+
+
+
 bool Dialog::Click(int x, int y, int clicks)
 {
 	Point clickPos(x, y);

@@ -61,9 +61,9 @@ void UiRectShader::Init(const Color& border1, const Color& border2, const Color&
 		"// fragment uirect shader\n"
 		"precision mediump float;\n"
 		"uniform vec4 color;\n"
-		"const vec4 bg1 = vec4("+std::to_string(border1.Get()[0])+", "+std::to_string(border1.Get()[1])+", "+std::to_string(border1.Get()[2])+", " +std::to_string(border1.Get()[3])+ ");\n"
-		"const vec4 bg2 = vec4("+std::to_string(border2.Get()[0])+", "+std::to_string(border2.Get()[1])+", "+std::to_string(border2.Get()[2])+", " +std::to_string(border2.Get()[3])+ ");\n"
-		"const vec4 bg3 = vec4("+std::to_string(border3.Get()[0])+", "+std::to_string(border3.Get()[1])+", "+std::to_string(border3.Get()[2])+", " +std::to_string(border3.Get()[3])+ ");\n"
+		"const vec4 bg1 = vec4("+std::to_string(border1.Get()[0])+", "+std::to_string(border1.Get()[1])+", "+std::to_string(border1.Get()[2])+", 1.0);\n"
+		"const vec4 bg2 = vec4("+std::to_string(border2.Get()[0])+", "+std::to_string(border2.Get()[1])+", "+std::to_string(border2.Get()[2])+", 1.0);\n"
+		"const vec4 bg3 = vec4("+std::to_string(border3.Get()[0])+", "+std::to_string(border3.Get()[1])+", "+std::to_string(border3.Get()[2])+", 1.0);\n"
 		"uniform vec2 center;\n"
 		"uniform vec2 size;\n"
 

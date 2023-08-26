@@ -16,12 +16,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef PREFERENCES_PANEL_H_
 #define PREFERENCES_PANEL_H_
 
+#include "Dropdown.h"
 #include "Panel.h"
 
 #include "ClickZone.h"
 #include "Command.h"
 #include "Point.h"
 
+#include <SDL_gamecontroller.h>
 #include <string>
 #include <vector>
 
@@ -45,9 +47,13 @@ protected:
 	virtual bool Gesture(Gesture::GestureEnum gesture) override;
 	virtual bool FingerDown(int x, int y, int fid) override;
 	virtual bool FingerUp(int x, int y, int fid) override;
+	virtual bool ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive) override;
+	virtual bool ControllerButtonDown(SDL_GameControllerButton button) override;
 
 	virtual void EndEditing() override;
 
+	
+	
 
 private:
 	void DrawControls();
@@ -59,7 +65,7 @@ private:
 
 private:
 	int editing;
-	int editingGesture;
+	int editingGesture; // Why is this separate from editing?
 	int selected;
 	int hover;
 	int oldSelected;
@@ -78,6 +84,8 @@ private:
 	std::vector<ClickZone<Command>> zones;
 	std::vector<ClickZone<std::string>> prefZones;
 	std::vector<ClickZone<std::string>> pluginZones;
+
+	Dropdown controlTypeDropdown;
 };
 
 

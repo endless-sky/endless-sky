@@ -379,13 +379,13 @@ interface "info panel"
 		# from -500 -240 to -250 230
 	box "outfits"
 		from 250 40 top left
-		to 0 260 top right
+		to 500 0 bottom left
 	box "weapons"
-		from 250 260 top left
-		to 750 -50 bottom left
+		from 500 40 top left
+		to -50 -50 bottom right
 	box "cargo"
-		from 750 40 top left
-		to 0 -50 bottom right
+		from 250 -80 bottom left
+		to 500 0 bottom left
 
 	visible
 	line

@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Rectangle.h"
 #include "Command.h"
 
+#include <SDL_gamecontroller.h>
 #include <functional>
 #include <list>
 #include <string>
@@ -77,6 +78,11 @@ public:
 	// Is fast-forward allowed to be on when this panel is on top of the GUI stack?
 	virtual bool AllowsFastForward() const noexcept;
 
+	// Return UI associated with this panel
+	UI *GetUI() const noexcept;
+
+	// Return the mouse position for the last zone click
+	const Point& ZoneMousePos() const { return zoneMousePos; }
 
 protected:
 	// Only override the ones you need; the default action is to return false.
@@ -91,6 +97,12 @@ protected:
 	virtual bool FingerMove(int x, int y, int fid);
 	virtual bool FingerUp(int x, int y, int fid);
 	virtual bool Gesture(Gesture::GestureEnum gesture);
+	virtual bool ControllersChanged();
+	virtual bool ControllerButtonDown(SDL_GameControllerButton button);
+	virtual bool ControllerButtonUp(SDL_GameControllerButton button);
+	virtual bool ControllerAxis(SDL_GameControllerAxis axis, int position);
+	virtual bool ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive);
+	virtual bool ControllerTriggerReleased(SDL_GameControllerAxis axis, bool positive);
 	// If a clickable zone is clicked while editing is happening, the panel may
 	// need to know to exit editing mode before handling the click.
 	virtual void EndEditing() {}
@@ -101,8 +113,6 @@ protected:
 
 	// Dim the background of this panel.
 	void DrawBackdrop() const;
-
-	UI *GetUI() const noexcept;
 
 	// This is not for overriding, but for calling KeyDown with only one or two
 	// arguments. In this form, the command is never set, so you can call this
@@ -150,6 +160,8 @@ private:
 	std::list<Zone> zones;
 
 	Command cached_zone_commands;
+
+	Point zoneMousePos;
 
 	friend class UI;
 };

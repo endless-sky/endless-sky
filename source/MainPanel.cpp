@@ -17,6 +17,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "BoardingPanel.h"
 #include "Command.h"
+#include "GamePad.h"
+#include "RadialSelectionPanel.h"
 #include "RingShader.h"
 #include "comparators/ByGivenOrder.h"
 #include "CategoryList.h"
@@ -51,6 +53,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "opengl.h"
 
+#include <SDL_gamecontroller.h>
 #include <cmath>
 #include <sstream>
 #include <string>
@@ -309,9 +312,9 @@ void MainPanel::Draw()
 			Rectangle scBounds = mapButtonUi->GetBox("onscreen joystick");
 			const char* colorStr = "faint";
 			if(osJoystick)
-				colorStr = osJoystickMax ? "dim" : "dimmer";
+				colorStr = joystickMax ? "dim" : "dimmer";
 			const Color &color = *GameData::Colors().Get(colorStr);
-			RingShader::Draw(scBounds.Center(), scBounds.Width()/2, osJoystickMax ? 4.0 : 2.0, 1.0, color);
+			RingShader::Draw(scBounds.Center(), scBounds.Width()/2, joystickMax ? 4.0 : 2.0, 1.0, color);
 
 			if(osJoystick)
 			{
@@ -391,6 +394,7 @@ bool MainPanel::Click(int x, int y, int clicks)
 	// Don't respond to clicks if another panel is active.
 	if(!canClick)
 		return true;
+
 	// Only allow drags that start when clicking was possible.
 	canDrag = true;
 
@@ -485,7 +489,7 @@ bool MainPanel::FingerDown(int x, int y, int fid)
 			if(pring.LengthSquared() < radius * radius)
 			{
 				osJoystick = Point(x, y);
-				osJoystickMax = false;
+				joystickMax = false;
 				osJoystickFinger = fid;
 
 				Ship* flagship = player.Flagship();
@@ -533,18 +537,18 @@ bool MainPanel::FingerMove(int x, int y, int fid)
 		if(distance > radius)
 		{
 			osJoystick = scBounds.Center() + pring * (radius / distance);
-			if(!osJoystickMax)
+			if(!joystickMax)
 			{
-				osJoystickMax = true;
+				joystickMax = true;
 				Command::InjectSet(Command::AFTERBURNER);
 			}
 		}
 		else
 		{
 			osJoystick = Point(x, y);
-			if(osJoystickMax)
+			if(joystickMax)
 			{
-				osJoystickMax = false;
+				joystickMax = false;
 				Command::InjectUnset(Command::AFTERBURNER);
 			}
 		}
@@ -573,7 +577,7 @@ bool MainPanel::FingerUp(int x, int y, int fid)
 	if(osJoystick && fid == osJoystickFinger)
 	{
 		osJoystick = Point();
-		osJoystickMax = false;
+		joystickMax = false;
 		osJoystickFinger = -1;
 		Command::InjectUnset(Command::MOVETOWARD);
 		Command::InjectUnset(Command::AFTERBURNER);
@@ -584,6 +588,129 @@ bool MainPanel::FingerUp(int x, int y, int fid)
 		return true;
 	}
 	return engine.FingerUp(Point(x, y), fid);
+}
+
+
+
+bool MainPanel::ControllerAxis(SDL_GameControllerAxis axis, int position)
+{
+	if(axis == SDL_CONTROLLER_AXIS_LEFTX || axis == SDL_CONTROLLER_AXIS_LEFTY)
+	{
+		// TODO: combine this logic with the onscreen joystick logic?
+		Ship* flagship = player.Flagship();
+		if(flagship)
+		{
+			Point p = GamePad::LeftStick();
+
+			if(p)
+			{
+				Command::InjectSet(Command::MOVETOWARD);
+			
+				flagship->SetMoveToward(p);
+
+				if(p.LengthSquared() > 32500*32500) // make this configurable?
+				{
+					if(!joystickMax)
+					{
+						joystickMax = true;
+						Command::InjectSet(Command::AFTERBURNER);
+					}
+				}
+				else if(joystickMax)
+				{
+					joystickMax = false;
+					Command::InjectUnset(Command::AFTERBURNER);
+				}
+			}
+			else
+			{
+				// joystick has returned to zero position
+				Command::InjectUnset(Command::MOVETOWARD);
+				Command::InjectUnset(Command::AFTERBURNER);
+				joystickMax = false;
+			}
+		}
+		return true;
+	}
+	return false;
+}
+
+
+
+bool MainPanel::ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive)
+{
+	return false;
+}
+
+
+
+bool MainPanel::ControllerButtonDown(SDL_GameControllerButton	button)
+{
+	// TODO: make these configurable.
+	if(button == SDL_CONTROLLER_BUTTON_LEFTSHOULDER)
+	{
+		bool hasFleet = false;
+		bool hasFighters = false;
+		bool hasReservedFighters = false;
+		for(auto &ship: player.Ships())
+		{
+			if(ship.get() == player.Flagship())
+				continue;
+			if(!ship->IsParked() && !ship->IsDestroyed())
+			{
+				if (ship->CanBeCarried())
+				{
+					hasFighters = true;
+
+					if (!(ship->HasDeployOrder()))
+					{
+						// This ship still needs deployed
+						hasReservedFighters = true;
+					}
+					else
+					{
+						// already deployed, flying around somewhere
+						hasFleet = true;
+					}
+				}
+				else
+				{
+					// normal ship that isn't the flagship
+					hasFleet = true;
+				}
+			}
+		}
+		bool canHail = player.Flagship()->GetTargetShip() || player.Flagship()->GetTargetStellar();
+		bool canCloak = player.Flagship()->Attributes().Get("cloak");
+
+		// Don't pop up the selection if there is nothing to display
+		if(!hasFleet && !hasFighters && !canHail && !canCloak)
+			return false;
+
+		auto selection = new RadialSelectionPanel();
+		selection->ReleaseWithButtonUp(button);
+		if(hasFleet)
+		{
+			selection->AddOption(Command::FIGHT);
+			selection->AddOption(Command::GATHER);
+			selection->AddOption(Command::HOLD);
+			selection->AddOption(Command::HARVEST);
+		}
+		if(hasFighters)
+		{
+			if(hasReservedFighters)
+				selection->AddOption("ui/icon_deploy", "Deploy Fighters", []() { Command::InjectOnce(Command::DEPLOY, true); });
+			else
+				selection->AddOption("ui/icon_recall", "Recall Fighters", []() { Command::InjectOnce(Command::DEPLOY, true); });
+		}
+		if(canHail)
+			selection->AddOption(Command::HAIL);
+		if(canCloak)
+			selection->AddOption(Command::CLOAK);
+		GetUI()->Push(selection);
+		return true;
+	}
+	return false;
 }
 
 
