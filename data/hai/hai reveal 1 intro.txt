@@ -160,14 +160,48 @@ mission "Hai Reveal Exploration Period: Hei Low Io Stocks Up"
 	invisible
 	source
 		government "Hai"
-		not attributes "uninhabited" "retirement"
+		not planet "Greenview"
+		not attributes "uninhabited" "station" "retirement"
 	to offer
 		has "Hai Reveal: Meet the Team: Sayari 2: done"
 		not "event: hr: exploration period"
 		random < 10
 	on offer
 		conversation
-			`More and more Hai are asking their human friends to vet other humans before they deal with them.`
+			`The spaceport feels a little quiet as you enter, but it seems that everyone seems to be coming or going from the same direction.`
+			choice
+				`	(Check it out.)`
+				`	(Ignore it.)`
+					decline
+			`	Following along it becomes clear that there is a large gathering adjacent to the job services section. A number of Hai are clamoring for attention while several others appear to be in intense discussion. Notes are changing hands and numbers are being thrown up and you realize suddenly that, while the format is a little odd, this is an auction of some sort.`
+			`	A moment later there's a cry that rings out in Hai, followed by a second voice calling, "A done deal." As you watch, a human wearing very non-human clothing steps up, takes something, and proceeds into a room behind the podium this was being led from. There are a number of grumbles and the crowd immediately begins to disperse.`
+			choice
+				`	(Ask someone about the auction.)`
+				`	(Leave.)`
+					goto "depart"
+			`	You manage to flag down a younger Hai who doesn't appear to be too disappointed in the outcome. He looks at you and asks with a terrible accent, "What you want?"`
+			`	After briefly explaining that you want to know what the auction was about, he thinks for a second and answers. "In your worlds you have place called zuu, no, zoos. Yes, zoos, with animals and such? We have station called Greenview. Hei Low Io run special zoo there with rare species from everywhere. Current situation make them nervous about supply lines and trade with Republic, so they put out bounty for supplies, stock up in case of diplomatic catastrophe or war."`
+			choice
+				`	"They think there will be a war?"`
+				`	"How do you put a bounty on supplies?"`
+					goto "bounty on supplies"
+			`	He shakes his head, "No, not think war, they prepare for anything. They are vulnerable organization. Small disruption of supply for important thing make them lose many millions of credits if artificial ecosystem fails, or specific food nutrient cause species death. Very, very, sensitive to possible shocks they are. Always first to take action when politics is uncertain. Always first to prepare. Usually right to prepare.`
+			`	"They put out call for supplies to be stocked full as quickly as possible, but also, do not need more supplies than can be stored. So have an agency handle contracts, merchants bid for lucrative contracts to fill up Hei Low Io's supplies."`
+				goto "finish"
+			label "bounty on supplies"
+			`	"They put out call for supplies to be stocked full as quickly as possible. They are vulnerable organization, they always first to take action when politics is uncertain to ensure supplies. Because they do not need more supplies than can be stored they do not put open bounty. They hire agency to handle contracts. Agency holds auction for lucrative contracts to fill up Hei Low Io's supplies, without this they have many merchants bringing too much or too little of the things they need. Agency makes sure that all contracts are completed by due date."`
+			label "finish"
+			choice
+				`	"It's a shame that I missed it."`
+				`	"Will there be more auctions?"`
+					goto "more auctions"
+			`	"Not really," he shakes his head. "These contracts are fiddly. Often require knowledge of local contacts to make really good profit. Very strict timelines too. There was only one that I could bid on confidently, but my cargo was too small to compete with winner of that one. I will go now, but maybe visit Greenview some time, it very pretty."`
+				decline
+			label "more auctions"
+			`	"Unlikely," he shakes his head. "These contracts quite fiddly, quite hard, need to know contacts beforehand to make really good profit. Merchants take them only when very confident. If some small handful fall through, agency usually select specific captain from back-up list for fulfillment. Cost agency extra, but make sure job gets done properly and on time. I will go now, but maybe visit Greenview some time, it very pretty."`
+				decline
+			label "depart"
+			`	Whatever is happening isn't worth your time.`
 				decline
 
 
