@@ -104,8 +104,6 @@ namespace PluginHelper {
 
 	bool ExtractZIP(string filename, string destination, string expectedName)
 	{
-		int size = 0;
-
 		int flags = ARCHIVE_EXTRACT_TIME;
 		flags |= ARCHIVE_EXTRACT_PERM;
 		flags |= ARCHIVE_EXTRACT_ACL;
@@ -148,11 +146,10 @@ namespace PluginHelper {
 		archive_read_support_format_all(read);
 		archive_read_open_filename(read, filename.c_str(), 10240);
 
-		string dest_file;
-		int retVal;
+		int size = 0;
 		while (true)
 		{
-			retVal = archive_read_next_header(read, &entry);
+			int retVal = archive_read_next_header(read, &entry);
 			if(retVal == ARCHIVE_EOF)
 				break;
 			if(retVal != ARCHIVE_OK)
@@ -174,7 +171,7 @@ namespace PluginHelper {
 			}
 
 			// Add root folder to path if neccessary.
-			dest_file = (destination + (hasHeadFolder ? "" : expectedName)) + archive_entry_pathname(entry);
+			string dest_file = (destination + (hasHeadFolder ? "" : expectedName)) + archive_entry_pathname(entry);
 			archive_entry_set_pathname(entry, dest_file.c_str());
 
 			// Write files.
