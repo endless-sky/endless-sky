@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PluginHelper.h"
 
 #if defined _WIN32
-#define WIN32_LEAN_AND_MEAN
 #endif
 
 #include <archive.h>
@@ -27,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <sys/stat.h>
 
 #ifdef _WIN32
+#define WIN32_LEAN_AND_MEAN
 #include "text/Utf8.h"
 #include <windows.h>
 #else
