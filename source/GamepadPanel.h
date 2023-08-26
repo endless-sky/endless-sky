@@ -55,6 +55,8 @@ protected:
 
 private:
 	Dropdown gamepadList;
+	Dropdown deadZoneList;
+	Dropdown triggerThresholdList;
 
 	bool reloadGamepad = true;
 

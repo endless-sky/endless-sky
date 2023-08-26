@@ -29,6 +29,7 @@ public:
 
 	static void Init();
 	static void SaveMapping();
+	static void SaveConfig();
 	static void Handle(const SDL_Event &event);
 
 	static int DeadZone();

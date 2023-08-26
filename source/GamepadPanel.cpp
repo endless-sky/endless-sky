@@ -18,39 +18,21 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GamePad.h"
 #include "RingShader.h"
 #include "Screen.h"
-#include "ShipInfoPanel.h"
 
-#include "SpriteSet.h"
 #include "text/alignment.hpp"
-#include "CategoryList.h"
-#include "CategoryTypes.h"
 #include "Command.h"
-#include "Dialog.h"
-#include "text/DisplayText.h"
-#include "text/Font.h"
-#include "text/FontSet.h"
-#include "text/Format.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
-#include "LineShader.h"
-#include "LogbookPanel.h"
-#include "Messages.h"
-#include "MissionPanel.h"
-#include "OutlineShader.h"
-#include "PlayerInfo.h"
-#include "PlayerInfoPanel.h"
 #include "Rectangle.h"
-#include "Ship.h"
-#include "Sprite.h"
-#include "SpriteShader.h"
 #include "text/Table.h"
-#include "text/truncate.hpp"
 #include "UI.h"
 
 #include <SDL_gamecontroller.h>
 #include <algorithm>
 #include <ctime>
+#include <string>
+#include <vector>
 
 namespace
 {
@@ -95,6 +77,30 @@ GamepadPanel::GamepadPanel():
 	gamepadList.SetOptions(NO_CONTROLLERS);
 	gamepadList.SetCallback([this](int idx, const std::string&) { GamePad::SetControllerIdx(idx); reloadGamepad = true; });
 	gamepadList.SetBgColor(*GameData::Colors().Get("shop info panel background"));
+
+	deadZoneList.SetPadding(0);
+	deadZoneList.ShowDropIcon(true);
+	std::vector<std::string> deadZoneStrings;
+	for (int i = 0; i < 60; i += 5)
+		deadZoneStrings.push_back(std::to_string(i) + " %");
+	deadZoneList.SetOptions(deadZoneStrings);
+	deadZoneList.SetBgColor(*GameData::Colors().Get("shop info panel background"));
+	deadZoneList.SetCallback([](int idx, const std::string& s) {
+		GamePad::SetDeadZone(atoi(s.c_str()) * 32767.0 / 100 + .5);
+	});
+	deadZoneList.SetSelected(std::to_string(static_cast<int>(GamePad::DeadZone() * 100.0 / 32767 + .5)) + " %");
+
+	triggerThresholdList.SetPadding(0);
+	triggerThresholdList.ShowDropIcon(true);
+	std::vector<std::string> triggerThresholdStrings;
+	for (int i = 50; i < 100; i += 5)
+		triggerThresholdStrings.push_back(std::to_string(i) + " %");
+	triggerThresholdList.SetOptions(triggerThresholdStrings);
+	triggerThresholdList.SetBgColor(*GameData::Colors().Get("shop info panel background"));
+	triggerThresholdList.SetCallback([](int idx, const std::string& s) {
+		GamePad::SetAxisIsButtonPressThreshold(atoi(s.c_str()) * 32767.0 / 100 + .5);
+	});
+	triggerThresholdList.SetSelected(std::to_string(static_cast<int>(GamePad::AxisIsButtonPressThreshold() * 100.0 / 32767 + .5)) + " %");
 }
 
 void GamepadPanel::Step()
@@ -296,6 +302,14 @@ void GamepadPanel::Draw()
 	auto gamepadListRect = ui->GetBox("Gamepad Dropdown");
 	gamepadList.SetPosition(gamepadListRect);
 	gamepadList.Draw(this);
+
+	auto deadZoneListRect = ui->GetBox("Deadzone Dropdown");
+	deadZoneList.SetPosition(deadZoneListRect);
+	deadZoneList.Draw(this);
+
+	auto triggerThresholdListRect = ui->GetBox("Trigger Threshold Dropdown");
+	triggerThresholdList.SetPosition(triggerThresholdListRect);
+	triggerThresholdList.Draw(this);
 }
 
 

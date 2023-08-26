@@ -21,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 
 #include <SDL2/SDL.h>
+#include <string>
 
 namespace {
 
@@ -41,14 +42,15 @@ namespace {
 	
 	// Store extra mappings here.
 	const char EXTRA_MAPPINGS_FILE[] = "gamepad_mappings.txt";
+	const char CONFIG_FILE[] = "gamepad_config.txt";
 
 	// If we have marked a joystick axis, we have to wait for it to dip back
 	// below the deadzone before we accept more input (otherwise, it will
 	// repeatedly flag the same joystick events as new inputs)
 	int g_last_axis = -1;
-	int g_DeadZone = 5000; // ~ 20% of range.
+	int g_DeadZone = 5000;
 	// threshold before we count an axis as a binary input
-	int g_AxisIsButtonThreshold = 25000;
+	int g_AxisIsButtonThreshold = 24576;
 
 	// We don't support every button/axis. just mark the ones we do care about
 	const std::set<SDL_GameControllerButton> g_UsedButtons = {
@@ -153,9 +155,44 @@ void GamePad::Init()
 	// Read any mappings the user has created.
 	SDL_RWops* in = SDL_RWFromFile((Files::Config() + EXTRA_MAPPINGS_FILE).c_str(), "rb");
 
-	if (in)
+	if(in)
 	{
+		// This function call closes the RWops when it is done
 		SDL_GameControllerAddMappingsFromRW(in, 1);
+	}
+
+	// Read any additional config options.
+	in = SDL_RWFromFile((Files::Config() + CONFIG_FILE).c_str(), "rb");
+
+	if(in)
+	{
+		ssize_t pos = SDL_RWseek(in, 0, RW_SEEK_END);
+		if(pos > 0)
+		{
+			std::vector<char> buffer(pos);
+			SDL_RWseek(in, 0, RW_SEEK_SET);
+			if(SDL_RWread(in, buffer.data(), 1, buffer.size()) == buffer.size())
+			{
+				buffer.push_back(0);
+				for(const std::string& line: StringSplit(buffer.data(), '\n'))
+				{
+					auto kv = StringSplit(line.c_str(), ' ');
+					if(kv.size() == 2)
+					{
+						try
+						{
+							if(kv.front() == "dead_zone")
+								g_DeadZone = std::stoul(kv.back());
+							else if(kv.front() == "trigger_threshold")
+								g_AxisIsButtonThreshold = std::stoul(kv.back());
+						}
+						catch(...)
+						{}
+					}
+				}
+			}
+		}
+		SDL_RWclose(in);
 	}
 }
 
@@ -201,6 +238,23 @@ void GamePad::SaveMapping()
 		std::shared_ptr<char> current_mapping(SDL_GameControllerMapping(g_gc), SDL_free);
 		SDL_RWwrite(out.get(), current_mapping.get(), 1, strlen(current_mapping.get()));
 		SDL_RWwrite(out.get(), ",", 1, 1);
+	}
+}
+
+
+
+void GamePad::SaveConfig()
+{
+	const std::string CONFIG_FILE_PATH = Files::Config() + CONFIG_FILE;
+	std::shared_ptr<SDL_RWops> out(SDL_RWFromFile(CONFIG_FILE_PATH.c_str(), "wb"), [](SDL_RWops* p) { if(p) SDL_RWclose(p); });
+
+	if(out)
+	{
+		std::string config =
+			"dead_zone " + std::to_string(g_DeadZone) + "\n" +
+			"trigger_threshold " + std::to_string(g_AxisIsButtonThreshold) + "\n"
+		;
+		SDL_RWwrite(out.get(), config.data(), 1, config.size());
 	}
 }
 
@@ -333,6 +387,7 @@ int GamePad::DeadZone()
 void GamePad::SetDeadZone(int dz)
 {
 	g_DeadZone = dz;
+	SaveConfig();
 }
 
 
@@ -347,6 +402,7 @@ int GamePad::AxisIsButtonPressThreshold()
 void GamePad::SetAxisIsButtonPressThreshold(int t)
 {
 	g_AxisIsButtonThreshold = t;
+	SaveConfig();
 }
 
 

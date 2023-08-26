@@ -621,6 +621,19 @@ interface "gamepad panel"
 	box "Button List"
 		from -360 82 top right
 		to -60 -60 bottom right
+	
+	label "Joystick Dead Zone:"
+		from -550 60 to -450 80 top right
+		size 18
+		align right
+	box "Deadzone Dropdown"
+		from -445 60 to -365 80 top right
+	label "Joystick Trigger Threshold:"
+		from -550 85 to -450 105 top right
+		size 18
+		align right
+	box "Trigger Threshold Dropdown"
+		from -445 85 to -365 105 top right
 
 	string "status"
 		from 60 -60 to 80 -80 bottom left
