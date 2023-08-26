@@ -53,6 +53,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "opengl.h"
 
+#include <SDL_gamecontroller.h>
 #include <cmath>
 #include <sstream>
 #include <string>
@@ -394,20 +395,6 @@ bool MainPanel::Click(int x, int y, int clicks)
 	if(!canClick)
 		return true;
 
-	
-	if(x > -100 && x < 100 && y > -100 && y < 100)
-	{
-		auto selection = new RadialSelectionPanel();
-		selection->ReleaseWithMouseUp(Point(x, y), 1);
-		selection->AddOption("ui/up_button", "Up Button", []() { Messages::Add("user clicked \"Up Button\""); });
-		selection->AddOption("ui/right_button", "Right Button", []() { Messages::Add("user clicked \"Right Button\""); });
-		selection->AddOption("ui/down_button", "Down Button", []() { Messages::Add("user clicked \"Down Button\""); });
-		selection->AddOption("ui/left_button", "Left Button", []() { Messages::Add("user clicked \"Left Button\""); });
-		GetUI()->Push(selection);
-		return true;
-	}
-
-
 	// Only allow drags that start when clicking was possible.
 	canDrag = true;
 
@@ -621,7 +608,7 @@ bool MainPanel::ControllerAxis(SDL_GameControllerAxis axis, int position)
 			
 				flagship->SetMoveToward(p);
 
-				if(p.LengthSquared() > 30000*30000)
+				if(p.LengthSquared() > 32500*32500) // make this configurable?
 				{
 					if(!joystickMax)
 					{
@@ -650,21 +637,81 @@ bool MainPanel::ControllerAxis(SDL_GameControllerAxis axis, int position)
 
 
 
-//bool MainPanel::ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive)
-//{
-//	if(axis == SDL_CONTROLLER_AXIS_RIGHTY)
-//	{
-//		// TODO: you have to press and release this multiple times to trigger,
-//		// but it feels like it should just keep zooming as long as you hold down
-//		// the stick.
-//		if(positive)
-//			Preferences::ZoomViewOut();
-//		else
-//			Preferences::ZoomViewIn();
-//		return true;
-//	}
-//	return false;
-//}
+bool MainPanel::ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive)
+{
+	return false;
+}
+
+
+
+bool MainPanel::ControllerButtonDown(SDL_GameControllerButton	button)
+{
+	// TODO: make these configurable.
+	if(button == SDL_CONTROLLER_BUTTON_LEFTSHOULDER)
+	{
+		bool hasFleet = false;
+		bool hasFighters = false;
+		bool hasReservedFighters = false;
+		for(auto &ship: player.Ships())
+		{
+			if(ship.get() == player.Flagship())
+				continue;
+			if(!ship->IsParked() && !ship->IsDestroyed())
+			{
+				if (ship->CanBeCarried())
+				{
+					hasFighters = true;
+
+					if (!(ship->HasDeployOrder()))
+					{
+						// This ship still needs deployed
+						hasReservedFighters = true;
+					}
+					else
+					{
+						// already deployed, flying around somewhere
+						hasFleet = true;
+					}
+				}
+				else
+				{
+					// normal ship that isn't the flagship
+					hasFleet = true;
+				}
+			}
+		}
+		bool canHail = player.Flagship()->GetTargetShip() || player.Flagship()->GetTargetStellar();
+		bool canCloak = player.Flagship()->Attributes().Get("cloak");
+
+		// Don't pop up the selection if there is nothing to display
+		if(!hasFleet && !hasFighters && !canHail && !canCloak)
+			return false;
+
+		auto selection = new RadialSelectionPanel();
+		selection->ReleaseWithButtonUp(button);
+		if(hasFleet)
+		{
+			selection->AddOption(Command::FIGHT);
+			selection->AddOption(Command::GATHER);
+			selection->AddOption(Command::HOLD);
+			selection->AddOption(Command::HARVEST);
+		}
+		if(hasFighters)
+		{
+			if(hasReservedFighters)
+				selection->AddOption("ui/icon_deploy", "Deploy Fighters", []() { Command::InjectOnce(Command::DEPLOY, true); });
+			else
+				selection->AddOption("ui/icon_recall", "Recall Fighters", []() { Command::InjectOnce(Command::DEPLOY, true); });
+		}
+		if(canHail)
+			selection->AddOption(Command::HAIL);
+		if(canCloak)
+			selection->AddOption(Command::CLOAK);
+		GetUI()->Push(selection);
+		return true;
+	}
+	return false;
+}
 
 
 

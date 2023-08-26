@@ -34,6 +34,7 @@ public:
 	void ReleaseWithAxisZero(SDL_GameControllerAxis axis);
 
 	void AddOption(const std::string& icon, const std::string& description, std::function<void()> callback);
+	void AddOption(Command command);
 
 	// Adjustable properties
 	// Where the panel is centered

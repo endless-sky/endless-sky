@@ -145,6 +145,7 @@ bool Panel::ZoneMouseDown(const Point &point)
 			// click has broken it out of that mode, so it doesn't interpret a
 			// button press and a text character entered.
 			EndEditing();
+			zoneMousePos = point;
 			zone.MouseDown();
 			return true;
 		}

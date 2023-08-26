@@ -23,8 +23,38 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "GameData.h"
 #include "Color.h"
-#include <SDL2/SDL_log.h>
-#include <SDL2/SDL_timer.h>
+#include "UI.h"
+
+#include <SDL2/SDL.h>
+
+
+class Dropdown::DroppedPanel: public Panel
+{
+public:
+	DroppedPanel(Dropdown* parent);
+
+	void SetMousePos(const Point& p) { mouse_pos = p; }
+
+protected:
+	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool Drag(double dx, double dy) override;
+	virtual bool Release(int x, int y) override;
+	virtual bool Hover(int x, int y) override;
+	virtual bool ControllerButtonDown(SDL_GameControllerButton button) override;
+	virtual bool ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive) override;
+
+	virtual void Draw() override;
+
+private:
+	Dropdown* dd = nullptr;
+
+	uint32_t click_stamp = 0;
+	Point mouse_pos;
+
+	int highlight_index = -1;
+};
+
+
 
 void Dropdown::SetSelected(const std::string& s)
 {
@@ -40,6 +70,8 @@ void Dropdown::SetSelected(const std::string& s)
 	}
 }
 
+
+
 void Dropdown::SetSelectedIndex(int idx)
 {
 	if (idx >= static_cast<int>(options.size()) || idx < 0)
@@ -54,6 +86,8 @@ void Dropdown::SetSelectedIndex(int idx)
 	}
 }
 
+
+
 void Dropdown::SetOptions(const std::vector<std::string>& options)
 {
 	this->options = options;
@@ -67,19 +101,23 @@ void Dropdown::SetOptions(const std::vector<std::string>& options)
 	}
 }
 
+
+
 Point AlignText(Dropdown::ALIGN alignment, const Font& font, const Rectangle& pos, const std::string& s)
 {
 	switch(alignment)
 	{
-	case Dropdown::LEFT:  return Point(pos.Left(), pos.Center().Y() - font.Height() / 2);
-	case Dropdown::RIGHT: return Point(pos.Right() - font.Width(s), pos.Center().Y() - font.Height() / 2);
-	default:					 return pos.Center() - Point(font.Width(s) / 2, font.Height() / 2);
+	case Dropdown::LEFT:  return Point(pos.Left(), pos.Center().Y() - font.Height() / 2.0);
+	case Dropdown::RIGHT: return Point(pos.Right() - font.Width(s), pos.Center().Y() - font.Height() / 2.0);
+	default:					 return pos.Center() - Point(font.Width(s) / 2.0, font.Height() / 2.0);
 	}
 }
 
-void Dropdown::Draw()
+
+
+void Dropdown::Draw(Panel* parent)
 {
-	if (!enabled)
+	if(!visible)
 		return;
 
 	// const Font &font = FontSet::Get(14);
@@ -93,9 +131,9 @@ void Dropdown::Draw()
 	const Color &hover = *GameData::Colors().Get("hover");
 	const Color &active = *GameData::Colors().Get("active");
 	const Color &inactive = *GameData::Colors().Get("inactive");
-	const Color &dim = *GameData::Colors().Get("dim");
 
 	FillShader::Fill(position.Center(), position.Dimensions(), bg_color);
+	
 	Rectangle text_bounds(position.Center(), position.Dimensions() - Point(padding*2, padding*2));
 	font.Draw(selected_string,
 		AlignText(alignment, font, text_bounds, selected_string),
@@ -108,139 +146,22 @@ void Dropdown::Draw()
 		SpriteShader::Draw(SpriteSet::Get("ui/sort descending"), dropIconPos);
 	}
 
-	if (is_popped)
-	{
-		Point bg_size{position.Width(), position.Height() * options.size()};
-		// if we are close to the bottom of the screen, draw the options above
-		// instead of below;
-		bool is_drawn_down = !(position.Bottom() + bg_size.Y() > Screen::Bottom());
-
-		const Rectangle bg_rect = is_drawn_down
-			? Rectangle::FromCorner({position.Left(), position.Bottom()}, bg_size)
-			: Rectangle::FromCorner({position.Left(), position.Top() - bg_size.Y()}, bg_size);
-
-		// Draw outline
-		FillShader::Fill(bg_rect.Center(), bg_rect.Dimensions() + Point(2, 2), dim);
-		// Draw background
-		FillShader::Fill(bg_rect.Center(), bg_rect.Dimensions(), bg_color);
-		// Draw a highlight
-		if (highlight_index >= 0)
-		{
-			const Rectangle highlight_rect = Rectangle::FromCorner(
-				bg_rect.TopLeft() + Point(0, position.Height() * highlight_index),
-				position.Dimensions());
-			FillShader::Fill(highlight_rect.Center(), highlight_rect.Dimensions(),
-				*GameData::Colors().Get("shop side panel background"));
-		}
-		Rectangle opt_pos(bg_rect.TopLeft() + position.Dimensions() * .5, position.Dimensions() - Point(padding*2, padding*2));
-
-		for (size_t i = 0; i < options.size(); ++i)
-		{
-			font.Draw(options[i],
-				AlignText(alignment, font, opt_pos, options[i]),
-				static_cast<int>(i) == selected_index ? active : inactive);
-			opt_pos += Point(0, position.Height());
-		}
-	}
+	if(enabled)
+		parent->AddZone(position, [this, parent](){ DoDropdown(parent); });
 }
 
-bool Dropdown::MouseDown(int x, int y)
+
+
+void Dropdown::DoDropdown(Panel* parent)
 {
-	if (!enabled)
-		return false;
-
-	mouse_pos = Point(x, y);
-
-	if (!is_popped)
-	{
-		if (position.Contains(Point(x, y)))
-		{
-			is_popped = true;
-			click_stamp = SDL_GetTicks();
-			return true;
-		}
-	}
-	else
-	{
-		int idx = IdxFromPoint(x, y);
-		if (idx >= 0)
-		{
-			SetSelectedIndex(idx);
-			if (changed_callback)
-				changed_callback(selected_index, selected_string);
-		}
-
-		is_popped = false;
-		return true; // mark it as handled whether it was in our popup or not
-	}
-	return false;
+	DroppedPanel *p = new DroppedPanel(this);
+	p->SetMousePos(parent->ZoneMousePos());
+	parent->GetUI()->Push(p);
 }
 
-bool Dropdown::MouseMove(int dx, int dy)
-{
-	if (!enabled)
-		return false;
 
-	mouse_pos += Point(dx, dy);
 
-	if (is_popped)
-	{
-		highlight_index = IdxFromPoint(mouse_pos.X(), mouse_pos.Y());
-	}
-
-	return is_popped;
-}
-
-bool Dropdown::MouseUp(int x, int y)
-{
-	if (!enabled)
-		return false;
-	if (is_popped)
-	{
-		// short click, leave it up. Long click, see what they selected
-		if (SDL_GetTicks() - click_stamp < 500)
-		{
-			// short click... leave the popup up
-			return true;
-		}
-		else
-		{
-			int idx = IdxFromPoint(x, y);
-			if (idx >= 0)
-			{
-				SetSelectedIndex(idx);
-				if (changed_callback)
-					changed_callback(selected_index, selected_string);
-			}
-			is_popped = false;
-			return true;
-		}
-	}
-	return false;
-}
-
-bool Dropdown::Hover(int x, int y)
-{
-	is_hover = false;
-	if (!is_popped)
-	{
-		if (position.Contains(Point(x, y)))
-		{
-			is_hover = true;
-			return true;
-		}
-	}
-	else
-	{
-		highlight_index = IdxFromPoint(x, y);
-		if (highlight_index >= 0)
-			return true;
-	}
-
-	return false;
-}
-
-int Dropdown::IdxFromPoint(int x, int y)
+int Dropdown::IdxFromPoint(int x, int y) const
 {
 	Point bg_size{position.Width(), position.Height() * options.size()};
 	// if we are close to the bottom of the screen, they will be drawn down
@@ -260,4 +181,165 @@ int Dropdown::IdxFromPoint(int x, int y)
 		return idx;
 	}
 	return -1;
+}
+
+
+
+Dropdown::DroppedPanel::DroppedPanel(Dropdown* parent):
+	dd(parent),
+	click_stamp(SDL_GetTicks())
+{
+	SetTrapAllEvents(true);
+	SetInterruptible(false);
+}
+
+
+
+bool Dropdown::DroppedPanel::Click(int x, int y, int clicks)
+{
+	mouse_pos = Point(x, y);
+
+	int idx = dd->IdxFromPoint(x, y);
+	if (idx >= 0)
+	{
+		dd->SetSelectedIndex(idx);
+		if (dd->changed_callback)
+			dd->changed_callback(dd->selected_index, dd->selected_string);
+	}
+
+	GetUI()->Pop(this);
+
+	return true; // mark it as handled whether it was in our popup or not
+}
+
+
+
+bool Dropdown::DroppedPanel::Drag(double dx, double dy)
+{
+	mouse_pos += Point(dx, dy);
+	highlight_index = dd->IdxFromPoint(mouse_pos.X(), mouse_pos.Y());
+
+	return true;
+}
+
+
+
+bool Dropdown::DroppedPanel::Release(int x, int y)
+{
+	// short click, leave it up. Long click, see what they selected
+	if (SDL_GetTicks() - click_stamp < 500)
+	{
+		// short click... leave the popup up
+	}
+	else
+	{
+		// long click and drag.
+		int idx = dd->IdxFromPoint(x, y);
+		if (idx >= 0)
+		{
+			dd->SetSelectedIndex(idx);
+			if (dd->changed_callback)
+				dd->changed_callback(dd->selected_index, dd->selected_string);
+		}
+		GetUI()->Pop(this);
+	}
+	return true;
+}
+
+
+
+bool Dropdown::DroppedPanel::Hover(int x, int y)
+{
+	highlight_index = dd->IdxFromPoint(x, y);
+	return highlight_index >= 0;
+}
+
+
+
+bool Dropdown::DroppedPanel::ControllerButtonDown(SDL_GameControllerButton button)
+{
+	if(button == SDL_CONTROLLER_BUTTON_A)
+	{
+		if(highlight_index >= 0 && highlight_index < static_cast<int>(dd->options.size()))
+		{
+			dd->SetSelectedIndex(highlight_index);
+			if (dd->changed_callback)
+				dd->changed_callback(dd->selected_index, dd->selected_string);
+		}
+	}
+	GetUI()->Pop(this);
+	return true;
+}
+
+
+
+bool Dropdown::DroppedPanel::ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive)
+{
+	// Don't really care what axis is used, just its direction
+	if(positive)
+	{
+		if(highlight_index < 0 || highlight_index >= static_cast<int>(dd->options.size()))
+			highlight_index = 0;
+		else
+		{
+			++highlight_index;
+			if(highlight_index >= static_cast<int>(dd->options.size()))
+				highlight_index = dd->options.size() - 1;
+		}
+	}
+	else
+	{
+		if(highlight_index < 0 || highlight_index >= static_cast<int>(dd->options.size()))
+			highlight_index = dd->options.size() - 1;
+		else
+		{
+			--highlight_index;
+			if(highlight_index < 0)
+				highlight_index = 0;
+		}
+	}
+
+	return true;
+}
+
+
+
+void Dropdown::DroppedPanel::Draw()
+{
+	const Font &font = FontSet::Get(dd->font_size);
+	const Color &active = *GameData::Colors().Get("active");
+	const Color &inactive = *GameData::Colors().Get("inactive");
+	const Color &dim = *GameData::Colors().Get("dim");
+
+	Point bg_size{dd->position.Width(), dd->position.Height() * dd->options.size()};
+	// if we are close to the bottom of the screen, draw the options above
+	// instead of below;
+	bool is_drawn_down = !(dd->position.Bottom() + bg_size.Y() > Screen::Bottom());
+
+	const Rectangle bg_rect = is_drawn_down
+		? Rectangle::FromCorner({dd->position.Left(), dd->position.Bottom()}, bg_size)
+		: Rectangle::FromCorner({dd->position.Left(), dd->position.Top() - bg_size.Y()}, bg_size);
+
+	// Draw outline
+	FillShader::Fill(bg_rect.Center(), bg_rect.Dimensions() + Point(2, 2), dim);
+	// Draw background
+	FillShader::Fill(bg_rect.Center(), bg_rect.Dimensions(), dd->bg_color);
+	// Draw a highlight
+	if (highlight_index >= 0)
+	{
+		const Rectangle highlight_rect = Rectangle::FromCorner(
+			bg_rect.TopLeft() + Point(0, dd->position.Height() * highlight_index),
+			dd->position.Dimensions());
+		FillShader::Fill(highlight_rect.Center(), highlight_rect.Dimensions(),
+			*GameData::Colors().Get("shop side panel background"));
+	}
+	Rectangle opt_pos(bg_rect.TopLeft() + dd->position.Dimensions() * .5, dd->position.Dimensions() - Point(dd->padding*2, dd->padding*2));
+
+	for (size_t i = 0; i < dd->options.size(); ++i)
+	{
+		font.Draw(dd->options[i],
+			AlignText(dd->alignment, font, opt_pos, dd->options[i]),
+			static_cast<int>(i) == dd->selected_index ? active : inactive);
+		opt_pos += Point(0, dd->position.Height());
+	}
 }

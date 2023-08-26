@@ -233,31 +233,13 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 
 bool PreferencesPanel::Click(int x, int y, int clicks)
 {
-	if(controlTypeDropdown.MouseDown(x, y))
-		return true;
 	return FingerDown(x, y, 0) && FingerUp(x, y, 0);
-}
-
-
-
-bool PreferencesPanel::Drag(double x, double y)
-{
-	return controlTypeDropdown.MouseMove(x, y);
-}
-
-
-
-bool PreferencesPanel::Release(int x, int y)
-{
-	return controlTypeDropdown.MouseUp(x, y);
 }
 
 
 
 bool PreferencesPanel::FingerDown(int x, int y, int fid)
 {
-	if(controlTypeDropdown.MouseDown(x, y))
-		return true;
 	if(editing >= 0 && editing < static_cast<ssize_t>(zones.size()))
 	{
 		Command::SetGesture(zones[editing].Value(), Gesture::NONE);
@@ -268,17 +250,8 @@ bool PreferencesPanel::FingerDown(int x, int y, int fid)
 
 
 
-bool PreferencesPanel::FingerMove(int x, int y, int fid)
-{
-	return controlTypeDropdown.MouseMove(x, y);
-}
-
-
-
 bool PreferencesPanel::FingerUp(int x, int y, int fid)
 {
-	if(controlTypeDropdown.MouseUp(x, y))
-		return true;
 	EndEditing();
 
 	if(x >= 265 && x < 295 && y >= -220 && y < 70)
@@ -389,8 +362,6 @@ bool PreferencesPanel::FingerUp(int x, int y, int fid)
 
 bool PreferencesPanel::Hover(int x, int y)
 {
-	if(controlTypeDropdown.Hover(x, y))
-		return true;
 	hoverPoint = Point(x, y);
 
 	hover = -1;
@@ -461,8 +432,9 @@ bool PreferencesPanel::Gesture(Gesture::GestureEnum gesture)
 {
 	if(editingGesture >= 0 && editingGesture < static_cast<ssize_t>(zones.size()))
 	{
-		controlTypeDropdown.SetSelected(SHOW_GESTURES);
 		Command::SetGesture(zones[editingGesture].Value(), gesture);
+		controlTypeDropdown.SetSelected(SHOW_GESTURES);
+		EndEditing();
 	}
 	return true;
 }
@@ -471,19 +443,20 @@ bool PreferencesPanel::Gesture(Gesture::GestureEnum gesture)
 
 bool PreferencesPanel::ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive)
 {
-	// don't mess with left/right joysticks here, as their behavior is
-	// controlled by the specific panels that need them. We only flag the
-	// triggers here.
-	if((axis == SDL_CONTROLLER_AXIS_TRIGGERLEFT ||
-	    axis == SDL_CONTROLLER_AXIS_TRIGGERRIGHT) &&
-		 editing >= 0 && editing < static_cast<int>(zones.size()))
+	if(editing >= 0 && editing < static_cast<int>(zones.size()))
 	{
-		controlTypeDropdown.SetSelected(SHOW_GAMEPAD);
-		Command::SetControllerTrigger(zones[editing].Value(), axis);
-		return true;
+		// Reserve some axes here for flight/zoom
+		if(axis != SDL_CONTROLLER_AXIS_LEFTX &&
+			axis != SDL_CONTROLLER_AXIS_LEFTY &&
+			axis != SDL_CONTROLLER_AXIS_RIGHTY)
+		{
+			Command::SetControllerTrigger(zones[editing].Value(), axis, positive);
+			controlTypeDropdown.SetSelected(SHOW_GAMEPAD);
+			EndEditing();
+			return true;
+		}
 	}
-	else
-		return Panel::ControllerTriggerPressed(axis, positive);
+	return Panel::ControllerTriggerPressed(axis, positive);
 }
 
 
@@ -492,7 +465,15 @@ bool PreferencesPanel::ControllerButtonDown(SDL_GameControllerButton button)
 {
 	if(editing >= 0 && editing < static_cast<int>(zones.size()))
 	{
-		Command::SetControllerButton(zones[editing].Value(), button);
+		// TODO: provide a way to edit submenu buttons? Maybe just allow the user
+		//       to select multiple commands for a single button. For now, just
+		//       don't let the user set the shoulder buttons
+		if(button != SDL_CONTROLLER_BUTTON_LEFTSHOULDER)
+		{
+			Command::SetControllerButton(zones[editing].Value(), button);
+			controlTypeDropdown.SetSelected(SHOW_GAMEPAD);
+			EndEditing();
+		}
 		return true;
 	}
 	else
@@ -680,7 +661,7 @@ void PreferencesPanel::DrawControls()
 	// Dropdown for displayed control type
 	Rectangle controlTypeRect = ui->GetBox("control type");
 	controlTypeDropdown.SetPosition(controlTypeRect);
-	controlTypeDropdown.Draw();
+	controlTypeDropdown.Draw(this);
 }
 
 

@@ -169,7 +169,7 @@ bool UI::Handle(const SDL_Event &event)
 		else if(event.type == Command::EventID())
 		{
 			Command command(event);
-			if(event.button.state == SDL_PRESSED)
+			if(event.key.state == SDL_PRESSED)
 				handled = (*it)->KeyDown(0, 0, command, true);
 		}
 		else if(event.type == Gesture::EventID())

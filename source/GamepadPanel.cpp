@@ -14,8 +14,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "GamepadPanel.h"
+#include "FillShader.h"
 #include "GamePad.h"
 #include "RingShader.h"
+#include "Screen.h"
 #include "ShipInfoPanel.h"
 
 #include "SpriteSet.h"
@@ -62,8 +64,8 @@ namespace
 		SDL_CONTROLLER_BUTTON_BACK,
 		SDL_CONTROLLER_BUTTON_GUIDE,
 		SDL_CONTROLLER_BUTTON_START,
-		// SDL_CONTROLLER_BUTTON_LEFTSTICK,
-		// SDL_CONTROLLER_BUTTON_RIGHTSTICK,
+		SDL_CONTROLLER_BUTTON_LEFTSTICK,
+		SDL_CONTROLLER_BUTTON_RIGHTSTICK,
 		SDL_CONTROLLER_BUTTON_LEFTSHOULDER,
 		SDL_CONTROLLER_BUTTON_RIGHTSHOULDER,
 		SDL_CONTROLLER_BUTTON_DPAD_UP,
@@ -165,7 +167,8 @@ void GamepadPanel::Step()
 void GamepadPanel::Draw()
 {
 	// Dim everything behind this panel.
-	DrawBackdrop();
+	const Color &back = *GameData::Colors().Get("dialog backdrop");
+	FillShader::Fill(Point(), Point(Screen::Width(), Screen::Height()), back);
 	
 	const GamePad::Buttons &buttons = GamePad::Held();
 	const GamePad::Axes &axes = GamePad::Positions();
@@ -185,8 +188,8 @@ void GamepadPanel::Draw()
 		if(buttons[SDL_CONTROLLER_BUTTON_RIGHTSHOULDER]) info.SetCondition("Right Shoulder Button");
 		if(axes[SDL_CONTROLLER_AXIS_TRIGGERLEFT] > 16000) info.SetCondition("Left Trigger Button");
 		if(axes[SDL_CONTROLLER_AXIS_TRIGGERRIGHT] > 16000) info.SetCondition("Right Trigger Button");
-		// if(buttons[SDL_CONTROLLER_BUTTON_LEFTSTICK])     info.SetCondition("Left Stick Button");
-		// if(buttons[SDL_CONTROLLER_BUTTON_RIGHTSTICK])    info.SetCondition("Right Stick Button");
+		if(buttons[SDL_CONTROLLER_BUTTON_LEFTSTICK])     info.SetBar("Left Stick Button", 1);
+		if(buttons[SDL_CONTROLLER_BUTTON_RIGHTSTICK])    info.SetBar("Right Stick Button", 1);
 		if(buttons[SDL_CONTROLLER_BUTTON_DPAD_LEFT])     info.SetCondition("Left Dpad Button");
 		if(buttons[SDL_CONTROLLER_BUTTON_DPAD_RIGHT])    info.SetCondition("Right Dpad Button");
 		if(buttons[SDL_CONTROLLER_BUTTON_DPAD_UP])       info.SetCondition("Up Dpad Button");
@@ -221,8 +224,8 @@ void GamepadPanel::Draw()
 			if(button == SDL_CONTROLLER_BUTTON_DPAD_UP)       info.SetCondition("Up Dpad Button");
 			if(button == SDL_CONTROLLER_BUTTON_DPAD_DOWN)     info.SetCondition("Down Dpad Button");
 
-			// if(button == SDL_CONTROLLER_BUTTON_LEFTSTICK)     info.SetCondition("Left Stick Button");
-			// if(button == SDL_CONTROLLER_BUTTON_RIGHTSTICK)    info.SetCondition("Right Stick Button");
+			if(button == SDL_CONTROLLER_BUTTON_LEFTSTICK)     info.SetCondition("Left Stick Button");
+			if(button == SDL_CONTROLLER_BUTTON_RIGHTSTICK)    info.SetCondition("Right Stick Button");
 		}
 		else if(static_cast<size_t>(remapIdx) < CONFIGURABLE_BUTTONS.size() + CONFIGURABLE_AXES.size())
 		{
@@ -292,7 +295,7 @@ void GamepadPanel::Draw()
 
 	auto gamepadListRect = ui->GetBox("Gamepad Dropdown");
 	gamepadList.SetPosition(gamepadListRect);
-	gamepadList.Draw();
+	gamepadList.Draw(this);
 }
 
 
@@ -339,35 +342,6 @@ bool GamepadPanel::ControllersChanged()
 {
 	reloadGamepad = true;
 	return true;
-}
-
-
-
-bool GamepadPanel::Click(int x, int y, int clicks)
-{
-	return gamepadList.MouseDown(x, y);
-}
-
-
-
-bool GamepadPanel::Drag(double dx, double dy)
-{
-	return gamepadList.MouseMove(dx, dy);
-}
-
-
-
-bool GamepadPanel::Hover(int x, int y)
-{
-	return gamepadList.Hover(x, y);
-
-}
-
-
-
-bool GamepadPanel::Release(int x, int y)
-{
-	return gamepadList.MouseUp(x, y);
 }
 
 

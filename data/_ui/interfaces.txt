@@ -556,16 +556,17 @@ interface "gamepad panel"
 		center 460 84
 		dimensions 30 42
 		color shields
-	# ring "Left Stick Button"
-	# 	center 1 2
-	# 	dimensions 20 20
-	# 	color shields
-	# 	size 11
-	# ring "Right Stick Button"
-	# 	center 1 2
-	# 	dimensions 20 20
-	# 	color shields
-	# 	size 11
+	visible
+	ring "Left Stick Button"
+		center 157 236
+		dimensions 26 26
+		color shields
+		size 14
+	ring "Right Stick Button"
+		center 391 314
+		dimensions 26 26
+		color shields
+		size 14
 	visible if "Left Dpad Button"
 	sprite "ui/left_button"
 		center 207 302

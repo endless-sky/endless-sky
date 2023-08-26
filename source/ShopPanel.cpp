@@ -86,7 +86,7 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	selected_quantity.SetPadding(0);
 	selected_quantity.SetOptions({"1", "10", "100", "1000"});
 
-	outfit_disposition.SetEnabled(isOutfitter);
+	outfit_disposition.SetVisible(isOutfitter);
 	outfit_disposition.SetAlign(Dropdown::LEFT);
 	outfit_disposition.SetFontSize(14);
 	outfit_disposition.SetPadding(0);
@@ -461,11 +461,11 @@ void ShopPanel::DrawButtons()
 
 	const Point sqCenter = Screen::BottomRight() - Point(150, 60);
 	selected_quantity.SetPosition(Rectangle(sqCenter, {45, 20}));
-	selected_quantity.Draw();
+	selected_quantity.Draw(this);
 
 	const Point odCenter = Screen::BottomRight() - Point(65, 60);
 	outfit_disposition.SetPosition(Rectangle(odCenter, {110, 20}));
-	outfit_disposition.Draw();
+	outfit_disposition.Draw(this);
 }
 
 
@@ -822,10 +822,6 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 bool ShopPanel::Click(int x, int y, int clicks)
 {
 	dragShip = nullptr;
-	// Handle clicks on the buttons.
-	if (selected_quantity.MouseDown(x, y) ||
-	    outfit_disposition.MouseDown(x, y))
-		return true;
 	char button = CheckButton(x, y);
 	if(button)
 		return DoKey(button);
@@ -947,16 +943,6 @@ bool ShopPanel::Hover(int x, int y)
 	Point point(x, y);
 	// Check that the point is not in the button area.
 	hoverButton = CheckButton(x, y);
-	if(selected_quantity.Hover(x, y) || outfit_disposition.Hover(x, y) || hoverButton)
-	{
-		shipInfo.ClearHover();
-		outfitInfo.ClearHover();
-	}
-	else
-	{
-		shipInfo.Hover(point);
-		outfitInfo.Hover(point);
-	}
 
 	activePane = ShopPane::Main;
 	if(x > Screen::Right() - SIDEBAR_WIDTH)
@@ -970,9 +956,6 @@ bool ShopPanel::Hover(int x, int y)
 
 bool ShopPanel::Drag(double dx, double dy)
 {
-	if (selected_quantity.MouseMove(dx, dy) ||
-	    outfit_disposition.MouseMove(dx, dy))
-		return true;
 	if(dragShip)
 	{
 		isDraggingShip = true;
@@ -1008,9 +991,6 @@ bool ShopPanel::Drag(double dx, double dy)
 
 bool ShopPanel::Release(int x, int y)
 {
-	if (selected_quantity.MouseUp(x, y) ||
-	    outfit_disposition.MouseUp(x, y))
-		return true;
 	if (isDraggingShip)
 	{
 		dragShip = nullptr;

@@ -1,5 +1,6 @@
 /* GamePad.cpp
 Copyright (c) 2022 by Kari Pahula
+Copyright (c) 2023 by Rian Shelley
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -13,28 +14,20 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GamePad.h"
 #include "Files.h"
 
-//#include "pi.h"
-//#include "Preferences.h"
-
-#include <SDL_gamecontroller.h>
-#include <SDL_guid.h>
-#include <SDL_rwops.h>
-#include <SDL_stdinc.h>
 #include <cmath>
-#include <map>
+#include <set>
 #include <memory>
-#include <mutex>
+#include <set>
+
 
 #include <SDL2/SDL.h>
-#include <string>
 
 namespace {
 
 	GamePad::Axes g_axes = {};
+	enum {TRIGGER_NONE, TRIGGER_POSITIVE, TRIGGER_NEGATIVE} g_triggers[SDL_CONTROLLER_AXIS_MAX] = {};
 	GamePad::Buttons g_held = {};
 
-	// int g_jsDeviceId = -1;
-	// SDL_Joystick* g_js = nullptr;
 	SDL_GameController* g_gc = nullptr;
 	// this is guaranteed to be unique per controller per connection. It changes
 	// if the controller disconnects and reconnects. This is different from the
@@ -45,21 +38,15 @@ namespace {
 	std::vector<std::pair<std::string, std::string>> g_mapping;
 	std::string g_joystick_last_input;
 	bool g_capture_next_button = false;
-
-	// I keep hitting a bug in the linux nintendo joystick controller that
-	// rapidly triggers input at the polling rate.
-	uint32_t g_last_input_ticks = 0;
-	const uint32_t RAPID_INPUT_COOLDOWN = 100; // ms
 	
 	// Store extra mappings here.
 	const char EXTRA_MAPPINGS_FILE[] = "gamepad_mappings.txt";
-
 
 	// If we have marked a joystick axis, we have to wait for it to dip back
 	// below the deadzone before we accept more input (otherwise, it will
 	// repeatedly flag the same joystick events as new inputs)
 	int g_last_axis = -1;
-	int g_DeadZone = 5000; // ~ 20% of range. TODO: This should be configurable
+	int g_DeadZone = 5000; // ~ 20% of range.
 	// threshold before we count an axis as a binary input
 	int g_AxisIsButtonThreshold = 25000;
 
@@ -72,8 +59,8 @@ namespace {
 		SDL_CONTROLLER_BUTTON_BACK,
 		SDL_CONTROLLER_BUTTON_GUIDE,
 		SDL_CONTROLLER_BUTTON_START,
-		// SDL_CONTROLLER_BUTTON_LEFTSTICK,
-		// SDL_CONTROLLER_BUTTON_RIGHTSTICK,
+		SDL_CONTROLLER_BUTTON_LEFTSTICK,
+		SDL_CONTROLLER_BUTTON_RIGHTSTICK,
 		SDL_CONTROLLER_BUTTON_LEFTSHOULDER,
 		SDL_CONTROLLER_BUTTON_RIGHTSHOULDER,
 		SDL_CONTROLLER_BUTTON_DPAD_UP,
@@ -250,6 +237,18 @@ void GamePad::Handle(const SDL_Event &event)
 	case SDL_CONTROLLERAXISMOTION:
 		//SDL_Log("Axis %d: %d", static_cast<int>(event.caxis.axis), static_cast<int>(event.caxis.value));
 		g_axes[event.caxis.axis] = event.caxis.value;
+		if(g_triggers[event.caxis.axis] != TRIGGER_NONE)
+		{
+			if(event.caxis.value < SDL_abs(g_DeadZone))
+				g_triggers[event.caxis.axis] = TRIGGER_NONE;
+		}
+		else if(g_triggers[event.caxis.axis] == TRIGGER_NONE)
+		{
+			if(event.caxis.value > g_AxisIsButtonThreshold)
+				g_triggers[event.caxis.axis] = TRIGGER_POSITIVE;
+			else if(event.caxis.value < -g_AxisIsButtonThreshold)
+				g_triggers[event.caxis.axis] = TRIGGER_NEGATIVE;
+		}
 		break;
 	case SDL_CONTROLLERBUTTONDOWN:
 		//SDL_Log("Button down: %d", static_cast<int>(event.cbutton.button));
@@ -292,12 +291,11 @@ void GamePad::Handle(const SDL_Event &event)
 		break;
 	case SDL_JOYBUTTONUP:
 		// SDL_Log("Joystick button %d up", event.jbutton.button);
-		if(g_capture_next_button && SDL_GetTicks() - g_last_input_ticks > RAPID_INPUT_COOLDOWN)
+		if(g_capture_next_button)
 		{
 			g_joystick_last_input = "b" + std::to_string(event.jbutton.button);
 			g_capture_next_button = false;
 		}
-		g_last_input_ticks = SDL_GetTicks();
 		break;
 	case SDL_JOYHATMOTION:
 		// Hats are weird. They are a mask indicating which bits are held, so
@@ -353,115 +351,6 @@ void GamePad::SetAxisIsButtonPressThreshold(int t)
 
 
 
-
-// Button counts as held if there's been a down event but no corresponding up event yet.
-//map<Uint8, chrono::milliseconds> GamePad::HeldButtons() const
-//{
-//	lock_guard<mutex> lock(gamePadMutex);
-//	chrono::time_point<std::chrono::steady_clock> now = chrono::steady_clock::now();
-//	std::map<Uint8, chrono::milliseconds> result;
-//	for(auto it = held.cbegin(); it != held.cend(); ++it)
-//	{
-//		if(released.count(it->first) == 0)
-//			result[it->first] = chrono::duration_cast<chrono::milliseconds>(now - it->second);
-//	}
-//	return result;
-//}
-
-
-
-//map<Uint8, std::chrono::time_point<std::chrono::steady_clock>> GamePad::HeldButtonsSince() const
-//{
-//	lock_guard<mutex> lock(gamePadMutex);
-//	map<Uint8, std::chrono::time_point<std::chrono::steady_clock>> result(held);
-//	for(auto it = result.begin(); it != result.cend();)
-//	{
-//		if(released.find(it->first) != released.cend())
-//			it = result.erase(it);
-//		else
-//			++it;
-//	}
-//	return result;
-//}
-
-
-
-//std::map<Uint8, chrono::milliseconds> GamePad::ReleasedButtons() const
-//{
-//	lock_guard<mutex> lock(gamePadMutex);
-//	std::map<Uint8, chrono::milliseconds> result;
-//	for(auto it = released.cbegin(); it != released.cend(); ++it)
-//	{
-//		if(unreportedReleases.find(it->first) != unreportedReleases.cend())
-//		{
-//			auto start = held.find(it->first);
-//			result[it->first] = start != held.cend() ?
-//				chrono::duration_cast<chrono::milliseconds>(it->second - start->second) :
-//					chrono::milliseconds::zero();
-//		}
-//	}
-//	return result;
-//}
-
-
-
-//bool GamePad::Held(Uint8 button) const
-//{
-//	lock_guard<mutex> lock(gamePadMutex);
-//	return held.find(button) != held.cend() && released.find(button) == released.cend();
-//}
-
-
-
-//void GamePad::Clear()
-//{
-//	lock_guard<mutex> lock(gamePadMutex);
-//	held.clear();
-//	released.clear();
-//	unreportedReleases.clear();
-//}
-
-
-
-//void GamePad::Clear(const set<Uint8> &toClear)
-//{
-//	lock_guard<mutex> lock(gamePadMutex);
-//	for(auto it = toClear.cbegin(); it != toClear.cend(); ++it)
-//	{
-//		held.erase(*it);
-//		released.erase(*it);
-//		unreportedReleases.erase(*it);
-//	}
-//}
-
-
-
-//void GamePad::Clear(Uint8 button)
-//{
-//	lock_guard<mutex> lock(gamePadMutex);
-//	held.erase(button);
-//	released.erase(button);
-//	unreportedReleases.erase(button);
-//}
-
-
-
-//bool GamePad::HavePads() const
-//{
-//	return activePads > 0;
-//}
-
-
-
-//std::set<Uint8> GamePad::ReadHeld(const std::set<Uint8> &interest)
-//{
-//	std::set<Uint8> result;
-//	lock_guard<mutex> lock(gamePadMutex);
-//	for(auto it = held.cbegin(); it != held.cend(); ++it)
-//		if(released.find(it->first) == released.cend() && interest.find(it->first) != interest.cend())
-//			result.insert(it->first);
-//	return result;
-//}
 const GamePad::Buttons& GamePad::Held()
 {
 	return g_held;
@@ -492,246 +381,10 @@ Point GamePad::RightStick()
 
 
 
-//double GamePad::LeftStickX() const
-//{
-//	return axis[SDL_CONTROLLER_AXIS_LEFTX];
-//}
-
-
-
-//double GamePad::LeftStickY() const
-//{
-//	return axis[SDL_CONTROLLER_AXIS_LEFTY];
-//}
-
-
-
-//double GamePad::RightStickX() const
-//{
-//	return axis[SDL_CONTROLLER_AXIS_RIGHTX];
-//}
-
-
-
-//double GamePad::RightStickY() const
-//{
-//	return axis[SDL_CONTROLLER_AXIS_RIGHTY];
-//}
-
-
-
-bool GamePad::LeftTrigger()
+bool GamePad::Trigger(SDL_GameControllerAxis axis, bool positive)
 {
-	return g_axes[SDL_CONTROLLER_AXIS_TRIGGERLEFT] > g_AxisIsButtonThreshold;
+	return g_triggers[axis] == (positive ? TRIGGER_POSITIVE : TRIGGER_NEGATIVE);
 }
-
-
-
-bool GamePad::RightTrigger()
-{
-	return g_axes[SDL_CONTROLLER_AXIS_TRIGGERRIGHT] > g_AxisIsButtonThreshold;
-}
-
-
-
-//bool GamePad::RepeatAxis(Uint8 which)
-//{
-//	double threshold;
-//	double gradient = axis[which];
-//	if(gradient > 0.5)
-//		threshold = 1500;
-//	else
-//		return false;
-//	return Repeat(which, threshold, which + SDL_CONTROLLER_AXIS_MAX);
-//}
-
-
-
-//bool GamePad::RepeatAxisNeg(Uint8 which)
-//{
-//	double threshold;
-//	double gradient = axis[which];
-//	if(gradient < -0.5)
-//		threshold = 1500;
-//	else
-//		return false;
-//	return Repeat(which + SDL_CONTROLLER_AXIS_MAX, threshold);
-//}
-
-
-
-//bool GamePad::RepeatButton(Uint8 button)
-//{
-//	if(held.find(button) == held.cend())
-//		return false;
-//	else if(released.find(button) != released.cend())
-//		return false;
-//	else
-//		return Repeat(button + SDL_CONTROLLER_AXIS_MAX * 2, 200.);
-//}
-
-
-
-//Command GamePad::ToCommand()
-//{
-//	Command command;
-//	std::map<Uint8, std::chrono::milliseconds> heldButtons = HeldButtons();
-//	std::map<Uint8, std::chrono::milliseconds> releasedButtons = ReleasedButtons();
-//	lock_guard<mutex> lock(gamePadMutex);
-//	// Overloaded buttons with short press commands
-//	for(auto it = releasedButtons.cbegin(); it != releasedButtons.cend(); ++it)
-//	{
-//		if(it->first == SDL_CONTROLLER_BUTTON_B
-//				&& it->second.count() < GamePad::LONG_PRESS_MILLISECONDS)
-//			command.Set(Command::LAND);
-//		else if(it->first == SDL_CONTROLLER_BUTTON_X
-//				&& it->second.count() < GamePad::LONG_PRESS_MILLISECONDS)
-//			command.Set(Command::CLOAK);
-//		else if(it->first == SDL_CONTROLLER_BUTTON_Y
-//				&& it->second.count() < GamePad::LONG_PRESS_MILLISECONDS)
-//		{
-//			command.Set(Command::BOARD);
-//		}
-//		else
-//			continue;
-//		held.erase(it->first);
-//		released.erase(it->first);
-//	}
-//
-//	// Single click commands and held or long press triggered alternative commands
-//	for(auto it = heldButtons.cbegin(); it != heldButtons.cend(); ++it)
-//	{
-//		if(it->first == SDL_CONTROLLER_BUTTON_A)
-//			command.Set(Command::JUMP);
-//		else if(it->first == SDL_CONTROLLER_BUTTON_X
-//				&& it->second.count() >= GamePad::LONG_PRESS_MILLISECONDS)
-//			command.Set(Command::SCAN);
-//		else if(it->first == SDL_CONTROLLER_BUTTON_LEFTSHOULDER)
-//			command.Set(Command::SECONDARY);
-//		else if(it->first == SDL_CONTROLLER_BUTTON_RIGHTSHOULDER)
-//			command.Set(Command::PRIMARY);
-//		else if(it->first >= SDL_CONTROLLER_BUTTON_DPAD_UP
-//				&& it->first <= SDL_CONTROLLER_BUTTON_DPAD_RIGHT)
-//		{
-//			if(it->first == SDL_CONTROLLER_BUTTON_DPAD_UP)
-//				command.Set(Command::SELECT);
-//			else if(it->first == SDL_CONTROLLER_BUTTON_DPAD_DOWN)
-//				command.Set(Command::NEAREST);
-//			else if(it->first == SDL_CONTROLLER_BUTTON_DPAD_LEFT)
-//				command.Set(Command::TARGET);
-//			else if(it->first == SDL_CONTROLLER_BUTTON_DPAD_RIGHT)
-//				command.Set(Command::TARGET | Command::SHIFT);
-//			held.erase(it->first);
-//		}
-//		else if(it->first == SDL_CONTROLLER_BUTTON_RIGHTSTICK)
-//		{
-//			Command rightStickCommand = RightStickCommand();
-//			if(rightStickCommand && !rightStickCommand.Has(Command::AMMO))
-//			{
-//				command |= rightStickCommand;
-//				held.erase(it->first);
-//			}
-//		}
-//	}
-//	//Point leftStick = LeftStick();
-//	//if(leftStick.LengthSquared() > GamePad::VECTOR_TURN_THRESHOLD)
-//	//	command.SetTurnPoint(leftStick);
-//	//if(axis[SDL_CONTROLLER_AXIS_TRIGGERRIGHT] > 0.1)
-//	//{
-//	//	double thrust = axis[SDL_CONTROLLER_AXIS_TRIGGERRIGHT] * THRUST_MULTI;
-//	//	command.SetThrustGradient(thrust);
-//	//	if(thrust >= 1. && axis[SDL_CONTROLLER_AXIS_TRIGGERLEFT] > 0.5)
-//	//		command.Set(Command::AFTERBURNER);
-//	//}
-//	//else if(axis[SDL_CONTROLLER_AXIS_TRIGGERLEFT] > 0.1)
-//	//{
-//	//	double thrust = -axis[SDL_CONTROLLER_AXIS_TRIGGERLEFT] * THRUST_MULTI;
-//	//	command.SetThrustGradient(thrust);
-//	//}
-//	return command;
-//}
-
-
-
-//Command GamePad::ToPanelCommand()
-//{
-//	Command command;
-//	std::map<Uint8, std::chrono::milliseconds> heldButtons = HeldButtons();
-//	lock_guard<mutex> lock(gamePadMutex);
-//	for(std::map<Uint8, std::chrono::milliseconds>::const_iterator it = heldButtons.cbegin(); it != heldButtons.cend(); ++it)
-//	{
-//		if(it->first == SDL_CONTROLLER_BUTTON_B
-//			&& it->second.count() >= GamePad::LONG_PRESS_MILLISECONDS)
-//			command.Set(Command::SHIFT | Command::HAIL);
-//		else if(it->first == SDL_CONTROLLER_BUTTON_Y
-//				&& it->second.count() >= GamePad::LONG_PRESS_MILLISECONDS)
-//			command.Set(Command::HAIL);
-//		else if(it->first == SDL_CONTROLLER_BUTTON_BACK)
-//			command.Set(Command::INFO);
-//		else if(it->first == SDL_CONTROLLER_BUTTON_LEFTSTICK)
-//			command.Set(Command::MAP);
-//		else if(it->first == SDL_CONTROLLER_BUTTON_RIGHTSTICK && RightStickCommand().Has(Command::AMMO))
-//			command.Set(Command::AMMO);
-//		else
-//			continue;
-//		held.erase(it->first);
-//	}
-//
-//	return command;
-//}
-
-
-
-//Command GamePad::RightStickCommand() const
-//{
-//	Command command;
-//	Point stick = RightStick();
-//	if(stick.LengthSquared() > GamePad::VECTOR_TURN_THRESHOLD)
-//	{
-//		double deg = std::atan2(stick.Y(), stick.X()) * TO_DEG;
-//		double degAbs = fabs(deg);
-//		if(degAbs >= 150.)
-//			command.Set(Command::DEPLOY);
-//		else if(degAbs <= 30.)
-//			command.Set(Command::BOARD | Command::SHIFT);
-//		else if(deg < 150. && deg >= 90.)
-//			command.Set(Command::HOLD);
-//		else if(deg < 90. && deg > 30.)
-//			command.Set(Command::GATHER);
-//		else if(deg < -30. && deg >= -90.)
-//			command.Set(Command::FIGHT);
-//		else
-//			command.Set(Command::AMMO);
-//	}
-//	return command;
-//}
-
-
-
-//bool GamePad::Repeat(Uint8 which, double threshold, Uint8 opposite)
-//{
-//	auto it = repeatTimer.find(which);
-//	chrono::time_point<std::chrono::steady_clock> now = chrono::steady_clock::now();
-//	if(it != repeatTimer.cend())
-//	{
-//		threshold *= Preferences::ScrollSpeed() / 60.;
-//		int diff = chrono::duration_cast<chrono::milliseconds>(now - it->second).count();
-//		if(diff > threshold)
-//			repeatTimer[which] = now;
-//		else
-//			return false;
-//	}
-//	else
-//		repeatTimer[which] = chrono::steady_clock::now();
-//	// Releasing a stick quickly may cause opposite spikes.
-//	if(opposite != 255)
-//	{
-//		chrono::time_point<std::chrono::steady_clock> adjust = chrono::steady_clock::now();
-//		now -= chrono::milliseconds(int(threshold) - 100);
-//		repeatTimer[opposite] = adjust;
-//	}
-//	return true;
-//}
 
 
 
@@ -862,16 +515,7 @@ void GamePad::SetControllerButtonMapping(const std::string& controllerButton, co
 	// 1. If a +joyaxis and -joyaxis are assigned to the +controlleraxis and -controlleraxis, then merge them
 	// 2. if a -joyaxis and +joyaxis are assigend to +controlleraxis and -controlleraxis, then merge them, and mark them as backwards
 	// 3. If a +joyaxis is added and joyaxis already exists, then we need to split them.
-	// auto FindButton = [](const std::string& s)
-	// {
-	// 	auto it = g_mapping.begin();
-	// 	for(; it != g_mapping.end(); ++it)
-	// 	{
-	// 		if(it->first == s)
-	// 			break;
-	// 	}
-	// 	return it;
-	// };
+
 	
 	g_mapping.emplace_back(controllerButton, joystickButton);
 
@@ -894,5 +538,3 @@ void GamePad::SetControllerButtonMapping(const std::string& controllerButton, co
 	std::shared_ptr<char> mappingStr(SDL_GameControllerMapping(g_gc), SDL_free);
 	//SDL_Log("Updating controller mapping: %s", mappingStr.get());
 }
-
-

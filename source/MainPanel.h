@@ -65,8 +65,8 @@ protected:
 	virtual bool FingerMove(int x, int y, int fid) override;
 	virtual bool FingerUp(int x, int y, int fid) override;
 	virtual bool ControllerAxis(SDL_GameControllerAxis axis, int position) override;
-	//virtual bool ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive) override;
-
+	virtual bool ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive) override;
+	virtual bool ControllerButtonDown(SDL_GameControllerButton	button) override;
 
 private:
 	void ShowScanDialog(const ShipEvent &event);

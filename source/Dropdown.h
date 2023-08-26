@@ -18,7 +18,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 #include "Color.h"
+#include "Panel.h"
 #include "Rectangle.h"
+
 #include <functional>
 #include <vector>
 #include <string>
@@ -39,20 +41,14 @@ public:
 	const std::string& GetSelected() const { return selected_string; }
 	int GetSelectedIndex() const { return selected_index; }
 
-	bool MouseDown(int x, int y);
-	bool MouseMove(int dx, int dy);
-	bool MouseUp(int x, int y);
-	bool Hover(int x, int y);
-
-	bool MouseCaptured() const { return is_popped; }
-
-	void Draw();
+	void Draw(Panel* parent);
 
 	enum ALIGN { LEFT, CENTER, RIGHT };
 	void SetAlign(ALIGN a) { alignment = a; }
 	void SetPadding(int p) { padding = p;}
 
 	void SetEnabled(bool e) { enabled = e; }
+	void SetVisible(bool v) { visible = v; }
 	void SetBgColor(const Color& color) { bg_color = color; }
 	void ShowDropIcon(bool s) { showDropIcon = s; }
 
@@ -60,32 +56,34 @@ public:
 
 	void SetCallback(ChangedCallback cb) { changed_callback = cb; }
 
+protected:
+	void DoDropdown(Panel* parent);
+
 private:
-	int IdxFromPoint(int x, int y);
+	int IdxFromPoint(int x, int y) const;
 
 
 	Rectangle position;
 	std::vector<std::string> options;
 	std::string selected_string;
 	int selected_index = -1;
-	int highlight_index = -1;
 	Color bg_color;
 
-	bool is_popped = false;
+	//bool is_popped = false;
 	bool is_hover = false;
 	bool is_active = true;
-
-	uint32_t click_stamp = 0;
-	Point mouse_pos;
 
 	int font_size = 18;
 	ALIGN alignment = LEFT;
 	int padding = 5;
 
 	bool enabled = true;
+	bool visible = true;
 	bool showDropIcon = false;
 
 	std::function<void(int, const std::string&)> changed_callback;
+
+	class DroppedPanel;
 };
 
 #endif

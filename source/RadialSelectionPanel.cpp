@@ -14,10 +14,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 */
 #include "RadialSelectionPanel.h"
 #include "Color.h"
+#include "FillShader.h"
 #include "GameData.h"
 #include "GamePad.h"
 #include "LineShader.h"
 #include "OutlineShader.h"
+#include "RingShader.h"
 #include "Set.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
@@ -132,6 +134,19 @@ void RadialSelectionPanel::AddOption(const std::string& icon, const std::string&
 }
 
 
+void RadialSelectionPanel::AddOption(Command command)
+{
+	// Add the command. Set the next flag in the lambda, so that it applies the
+	// command after this panel goes away (the engine will discard any keyboard
+	// state on its first startup)
+	AddOption(
+		command.Icon(),
+		command.Description(),
+		[command]() { Command::InjectOnce(command, true); }
+	);
+}
+
+
 
 void RadialSelectionPanel::SetStartAngle(float a)
 {
@@ -243,12 +258,16 @@ bool RadialSelectionPanel::ControllerAxis(SDL_GameControllerAxis axis, int posit
 			return true;
 		}
 	}
-	else if (m_triggered_axis == SDL_CONTROLLER_AXIS_LEFTX ||
-	         m_triggered_axis == SDL_CONTROLLER_AXIS_LEFTY)
+	else if (axis == SDL_CONTROLLER_AXIS_LEFTX ||
+	         axis == SDL_CONTROLLER_AXIS_LEFTY)
 	{
-		// TODO: should we allow the right controller to move this as well?
-		//       It should probably be a configuration parameter.
-		MoveCursor(m_position + GamePad::LeftStick() * m_radius / 65536);
+		MoveCursor(m_position + GamePad::LeftStick() * m_radius / 32767);
+		return true;
+	}
+	else if (axis == SDL_CONTROLLER_AXIS_RIGHTX ||
+	         axis == SDL_CONTROLLER_AXIS_RIGHTY)
+	{
+		MoveCursor(m_position + GamePad::RightStick() * m_radius / 32767);
 		return true;
 	}
 	return false;
@@ -325,37 +344,79 @@ void RadialSelectionPanel::UpdateLabelPosition()
 
 void RadialSelectionPanel::Draw()
 {
+	DrawBackdrop();
 	if(m_zoom < 1)
 		m_zoom += 8.0/60;
 	else
 		m_zoom = 1.0;
 	
 	const Color* color = GameData::Colors().Get("medium");
+	const Color* colorBright = GameData::Colors().Get("bright");
 
 	if(m_selected_idx >= 0 && m_selected_idx < static_cast<int>(m_options.size()))
 		LineShader::Draw(m_position, m_position + m_options[m_selected_idx].position * m_zoom, 3, *color);
 	else
 		LineShader::Draw(m_position, m_cursor_pos, 1, *color);
 
+	const Font &font = FontSet::Get(18);
+	std::set<std::string> used_chars;
+
 	for(int i = 0; i < static_cast<int>(m_options.size()); ++i)
 	{
-		const Sprite *sprite = SpriteSet::Get(m_options[i].icon);
 		Point draw_position = m_position + m_options[i].position * m_zoom;
-		if(i == m_selected_idx)
-			SpriteShader::Draw(sprite, draw_position);
+
+		const Sprite *sprite = nullptr;
+		if(!m_options[i].icon.empty() && (sprite = SpriteSet::Get(m_options[i].icon)))
+		{
+			if(i == m_selected_idx)
+				SpriteShader::Draw(sprite, draw_position);
+			else
+				OutlineShader::Draw(sprite, draw_position, {sprite->Width(), sprite->Height()}, *color);
+		}
 		else
-			OutlineShader::Draw(sprite, draw_position, {sprite->Width(), sprite->Height()}, *color);
+		{
+			// no icon. just draw a circle with the first letter of the command in it.
+			if(i == m_selected_idx)
+			{
+				RingShader::Draw(draw_position, 32, 28, *colorBright);
+			}
+			else
+			{
+				RingShader::Draw(draw_position, 32, 30, *color);
+			}
+			
+			std::string icon_label = "?";
+
+			// trim "Fleet: " off the front if it is present
+			std::string description = m_options[i].description;
+			if(description.substr(0, 7) == "Fleet: ")
+				description = description.substr(7);
+
+			for(char c: description)
+			{
+				auto result = used_chars.insert(std::string(1, c));
+				if(result.second)
+				{
+					icon_label = *result.first;
+					break;
+				}
+			}
+
+			float posx = draw_position.X() - font.Width(icon_label) / 2.0;
+			float posy = draw_position.Y() - font.Height() / 2.0;
+			font.DrawAliased(icon_label, posx, posy, i == m_selected_idx ? *colorBright : *color);
+		}
 	}
 
 
 	if(m_selected_idx >= 0 && m_selected_idx < static_cast<int>(m_options.size()))
 	{
-		const Color* textColor = GameData::Colors().Get("bright");
-
-		const Font &font = FontSet::Get(14);
-		float posx = m_position.X() + (m_labelPos.X() - font.Width(m_options[m_selected_idx].description)) / 2;
-		float posy = m_position.Y() + (m_labelPos.Y() - font.Height() / 2.0);
-		font.DrawAliased(m_options[m_selected_idx].description, posx, posy, *textColor);
+		float width = font.Width(m_options[m_selected_idx].description);
+		float height = font.Height();
+		float posx = m_position.X() + (m_labelPos.X() - width / 2.0);
+		float posy = m_position.Y() + (m_labelPos.Y() - height/ 2.0);
+		FillShader::Fill(m_labelPos, {width, height}, Color(0, .5));
+		font.DrawAliased(m_options[m_selected_idx].description, posx, posy, *colorBright);
 	}
 	
 }

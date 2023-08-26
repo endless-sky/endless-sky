@@ -245,8 +245,8 @@ void TradingPanel::Draw()
 	tradeUi->Draw(info, this);
 
 
-	buyMultiplier.Draw();
-	sellMultiplier.Draw();
+	buyMultiplier.Draw(this);
+	sellMultiplier.Draw(this);
 }
 
 
@@ -309,10 +309,6 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 
 bool TradingPanel::Click(int x, int y, int clicks)
 {
-	// Handle clicks on the dropdowns.
-	if (buyMultiplier.MouseDown(x, y) ||
-	    sellMultiplier.MouseDown(x, y))
-		return true;
 	const Interface *tradeUi = GameData::Interfaces().Get("trade");
 	const Rectangle box = tradeUi->GetBox("content");
 	const int MIN_X = box.Left();
@@ -331,17 +327,6 @@ bool TradingPanel::Click(int x, int y, int clicks)
 		return false;
 
 	return true;
-}
-
-
-
-bool TradingPanel::Release(int x, int y)
-{
-	// Handle clicks on the dropdowns.
-	if(buyMultiplier.MouseUp(x, y) ||
-	    sellMultiplier.MouseUp(x, y))
-		return true;
-	return false;
 }
 
 
