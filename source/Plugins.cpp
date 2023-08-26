@@ -135,7 +135,8 @@ void Plugins::Save()
 	out.BeginChild();
 	{
 		for(const auto &it : plugins)
-			out.Write(it.first, it.second.currentState);
+			if(!it.second.removed)
+				out.Write(it.first, it.second.currentState);
 	}
 	out.EndChild();
 }
@@ -259,7 +260,8 @@ void Plugins::DeletePlugin(const InstallData &installData)
 			return;
 	}
 
-	plugins.Erase(installData.name);
+
+	plugins.Get(installData.name)->removed = true;
 
 	Files::DeleteDir(Files::Plugins() + installData.name);
 }

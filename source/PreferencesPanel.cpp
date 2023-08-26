@@ -857,6 +857,7 @@ void PreferencesPanel::DrawPlugins()
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
+	const Color &removed = *GameData::Colors().Get("plugin removed");
 
 	const Sprite *box[2] = { SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked") };
 
@@ -895,7 +896,9 @@ void PreferencesPanel::DrawPlugins()
 		Rectangle zoneBounds = Rectangle::FromCorner(topLeft, Point(sprite->Width() - 8., sprite->Height() - 8.));
 
 		AddZone(zoneBounds, [&]() { Plugins::TogglePlugin(plugin.name); });
-		if(isSelected)
+		if(plugin.removed)
+			table.Draw(plugin.name, removed);
+		else if(isSelected)
 			table.Draw(plugin.name, bright);
 		else
 			table.Draw(plugin.name, plugin.enabled ? medium : dim);
@@ -949,13 +952,14 @@ void PreferencesPanel::DrawPluginInstalls()
 	{
 		const auto &plugin = pluginInstallList.at(x);
 		const Plugin *installedVersion = Plugins::Get().Find(plugin["name"]);
+		bool isInstalled = installedVersion && !installedVersion->removed;
 		Plugins::InstallData installData(
 			plugin["name"],
 			plugin["url"],
 			plugin["version"],
 			plugin["description"],
-			installedVersion,
-			installedVersion && installedVersion->version != plugin["version"]
+			isInstalled,
+			isInstalled && installedVersion->version != plugin["version"]
 		);
 		if(!installData.name.size())
 			continue;
@@ -964,9 +968,9 @@ void PreferencesPanel::DrawPluginInstalls()
 		bool isSelected = (installData.url == selectedPluginInstall.url);
 		if(isSelected)
 			table.DrawHighlight(back);
-		if(installedVersion && installedVersion->version != installData.version)
+		if(isInstalled && installedVersion->version != installData.version)
 			table.Draw(installData.name, outdated);
-		else if(installedVersion)
+		else if(isInstalled)
 			table.Draw(installData.name, dim);
 		else if(isSelected)
 			table.Draw(installData.name, bright);

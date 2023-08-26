@@ -41,6 +41,8 @@ struct Plugin {
 	bool enabled = true;
 	// The current state state of the plugin.
 	bool currentState = true;
+
+	bool removed = false;
 };
 
 

@@ -174,6 +174,7 @@ color "wormholes: Ember Waste" .7 .1 .3
 # Colors used in the plugin panel
 color "plugin reload required" .75 .1 .1 0.
 color "plugin outdated" .75 .75 0. 0.
+color "plugin removed" .7 .1 .0 0.
 
 
 
