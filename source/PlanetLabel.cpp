@@ -31,7 +31,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Wormhole.h"
 
 #include <algorithm>
-#include <array>
 #include <cmath>
 #include <vector>
 
@@ -39,7 +38,7 @@ using namespace std;
 
 namespace {
 	// Label offset angles, in order of preference (non-negative only).
-	constexpr array<double, 12> LINE_ANGLES = {60., 120., 300., 240., 30., 150., 330., 210., 90., 270., 0., 180.};
+	const vector<double> LINE_ANGLES = {60., 120., 300., 240., 30., 150., 330., 210., 90., 270., 0., 180.};
 	constexpr double LINE_LENGTH = 60.;
 	constexpr double INNER_SPACE = 10.;
 	constexpr double LINE_GAP = 1.7;
@@ -101,12 +100,15 @@ PlanetLabel::PlanetLabel(const vector<PlanetLabel> &labels, const System &system
 	const Point labelDimensions = {labelWidth + BORDER * 2., labelHeight + BORDER * 2.};
 
 	// Try to find a label direction that is not overlapping under any zoom.
-	const double minZoom = Preferences::MinViewZoom();
-	const double maxZoom = Preferences::MaxViewZoom();
+	const vector<double> &allZooms = Preferences::Zooms();
 	for(const double angle : LINE_ANGLES)
 	{
 		SetBoundingBox(labelDimensions, angle);
-		if(!HasOverlaps(labels, system, object, minZoom) && !HasOverlaps(labels, system, object, maxZoom))
+		if(allZooms.end() == find_if(allZooms.begin(), allZooms.end(),
+				[&](const double zoom)
+				{
+					return HasOverlaps(labels, system, object, zoom);
+				}))
 		{
 			innerAngle = angle;
 			break;
