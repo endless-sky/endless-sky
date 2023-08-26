@@ -205,8 +205,8 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 	Point position;
 	double radius = 1000.;
 
-	// The chosen stellar the fleet will depart from.
-	const StellarObject *sourceStellar = nullptr;
+	// The chosen stellar object the fleet will depart from, if any.
+	const StellarObject *object = nullptr;
 	// Only pick a random entry point for this fleet if a source planet was not specified.
 	if(!planet)
 	{
@@ -276,8 +276,8 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		// If a planet is chosen, also pick a system to travel to after taking off.
 		if(choice >= linkVector.size())
 		{
-			sourceStellar = stellarVector[choice - linkVector.size()];
-			planet = sourceStellar->GetPlanet();
+			object = stellarVector[choice - linkVector.size()];
+			planet = object->GetPlanet();
 			if(!linkVector.empty())
 				target = linkVector[Random::Int(linkVector.size())];
 		}
@@ -295,7 +295,10 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 	// Find the stellar object for this planet if necessary, and place the ships there.
 	if(planet)
 	{
-		const StellarObject *object = sourceStellar ? sourceStellar : system.FindStellar(planet);
+		if(!object)
+			object = system.FindStellar(planet);
+
+		// If the souce planet isn't in the source for some reason, bail out.
 		if(!object)
 		{
 			// Log this error.
