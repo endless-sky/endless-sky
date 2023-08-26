@@ -288,17 +288,17 @@ void UI::DrawAll()
 		(*it)->Draw();
 
 	// TODO: troubleshooting code. we don't want this.
-	DelaunayTriangulation dt;
-	for(auto* zone: GetZones())
-	{
-		dt.AddPoint(zone->Center());
-	}
-	auto points = dt.Points();
-	for(auto& e: dt.Edges())
-	{
-		LineShader::Draw(points[e.first], points[e.second], 3, Color(0));
-		LineShader::Draw(points[e.first], points[e.second], 1, Color());
-	}
+	//DelaunayTriangulation dt;
+	//for(auto* zone: GetZones())
+	//{
+	//	dt.AddPoint(zone->Center());
+	//}
+	//auto points = dt.Points();
+	//for(auto& e: dt.Edges())
+	//{
+	//	LineShader::Draw(points[e.first], points[e.second], 3, Color(0));
+	//	LineShader::Draw(points[e.first], points[e.second], 1, Color());
+	//}
 	// End troubleshooting code
 
 	// If the panel has a valid ui element selected, draw a rotating indicator
