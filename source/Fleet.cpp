@@ -205,6 +205,8 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 	Point position;
 	double radius = 1000.;
 
+	// The chosen stellar the fleet will depart from.
+	const StellarObject *sourceStellar = nullptr;
 	// Only pick a random entry point for this fleet if a source planet was not specified.
 	if(!planet)
 	{
@@ -247,23 +249,23 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		}
 
 		// Find all the inhabited planets this fleet could take off from.
-		vector<const Planet *> planetVector;
+		vector<const StellarObject *> stellarVector;
 		if(!personality.IsSurveillance())
 			for(const StellarObject &object : system.Objects())
 				if(object.HasValidPlanet() && object.GetPlanet()->HasSpaceport()
 						&& !object.GetPlanet()->GetGovernment()->IsEnemy(government))
-					planetVector.push_back(object.GetPlanet());
+					stellarVector.push_back(&object);
 
 		// If there is nowhere for this fleet to come from, don't create it.
-		size_t options = linkVector.size() + planetVector.size();
+		size_t options = linkVector.size() + stellarVector.size();
 		if(!options)
 		{
 			// Prefer to launch from inhabited planets, but launch from
 			// uninhabited ones if there is no other option.
 			for(const StellarObject &object : system.Objects())
 				if(object.HasValidPlanet() && !object.GetPlanet()->GetGovernment()->IsEnemy(government))
-					planetVector.push_back(object.GetPlanet());
-			options = planetVector.size();
+					stellarVector.push_back(&object);
+			options = stellarVector.size();
 			if(!options)
 				return;
 		}
@@ -274,7 +276,8 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		// If a planet is chosen, also pick a system to travel to after taking off.
 		if(choice >= linkVector.size())
 		{
-			planet = planetVector[choice - linkVector.size()];
+			sourceStellar = stellarVector[choice - linkVector.size()];
+			planet = sourceStellar->GetPlanet();
 			if(!linkVector.empty())
 				target = linkVector[Random::Int(linkVector.size())];
 		}
@@ -289,10 +292,10 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 	for(auto &ship : placed)
 		PlaceFighter(ship, placed);
 
-	// Find the stellar object for this planet, and place the ships there.
+	// Find the stellar object for this planet if necessary, and place the ships there.
 	if(planet)
 	{
-		const StellarObject *object = system.FindStellar(planet);
+		const StellarObject *object = sourceStellar ? sourceStellar : system.FindStellar(planet);
 		if(!object)
 		{
 			// Log this error.
