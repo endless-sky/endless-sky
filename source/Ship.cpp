@@ -4589,7 +4589,6 @@ double Ship::CalculateDeterrence() const
 					+ weapon->BurnDamage() * 60.) * .1
 				+ weapon->SlowingDamage() * 10.
 				+ (weapon->FuelDamage() + weapon->LeakDamage() * 60.) * 2.;
-				
 			tempDeterrence += .12 * strength / weapon->Reload();
 		}
 	return tempDeterrence;
