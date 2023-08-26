@@ -109,7 +109,7 @@ mission "Hai Legacy 1"
 			label go
 			`	While you're pondering whether there will be enough space to land your ship at the destination, you notice a train ticket was placed in your pocket, with instructions written on the back. You proceed to take the train and hike a few hours to get the rest of the way there.`
 			`	Upon arriving, you take a look around, looking for the stranger. Except for a cave, some sparse vegetation, and of course the beach itself, you cannot see much of interest in the vicinity. You double check that these are the right coordinates and look around some more.`
-			`	After waiting for some time, you spot two hooded figures further down the beach making their way toward you. You start to doubt whether or not this was a good idea, but it's too late to back out now. Even, when they're close enough to speak, their faces somehow remain impossible to glimpse beneath the hoods. "Hello, <last>," one says to you. "We are sorry for all the complications, but the truth is, we cannot afford to take risks. It is best for all if you do not know who we are, and we needed a secluded area to speak to you."`
+			`	After waiting for some time, you spot two hooded figures further down the beach making their way toward you. You start to doubt whether or not this was a good idea, but it's too late to back out now. Even when they're close enough to speak, their faces somehow remain impossible to glimpse beneath the hoods. "Hello, <last>," one says to you. "We are sorry for all the complications, but the truth is, we cannot afford to take risks. It is best for all if you do not know who we are, and we needed a secluded area to speak to you."`
 			choice
 				`	"Tell me more."`
 					goto tellme
@@ -169,7 +169,8 @@ mission "Hai Legacy 1"
 			label pilot
 			action
 				set "unfettered: pilot dialog"
-			`	"Actually, it's a 'what,' not a-" starts the first one, but they are again interrupted by the second. "The less you know, the better for all of us, Captain."`
+			`	"Actually, it's a 'what,' not a-" starts the first one, but they are again interrupted by the second.`
+			`	"The less you know, the better for all of us, Captain."`
 				goto choice
 			label ocean
 			action
@@ -203,7 +204,7 @@ mission "Hai Legacy 1"
 				decline
 			label lucky??
 			`	You manage to land a lucky hit on what you assume to be the ship's navigation system, because it comes down, seemingly crashing. You feel like you hear a robotic voice cry out, but it's hard to tell with all the noise.`
-			`	Unfortunately, the crashes right on you, and it seems more like a landing than an actual crash, especially considering the Hai are left mostly untouched, having taken a few leaps back right in time.`
+			`	Unfortunately, the crash is right on top you, and it seems more like a landing than an actual crash, especially considering the Hai are left mostly untouched, having taken a few leaps back right in time.`
 				die
 			label lucky?
 			`	Probably thanks to the fact the ship's shields are down, and its depreciated state, you manage to land a very lucky shot, going through a layer of rust and severely damaging the reactor of the ship. The ship's speakers cry out, "MY REACTOR... NOT MY REACTOR!"`
@@ -323,13 +324,13 @@ mission "Hai Legacy 3"
 					goto scare
 			`	"I guess we'll find out." says a third.`
 			label scare
-			`	The leader gets closer and addresses you in a more serious tone. "You should be aware that this is not a friendly competition. This is a fight for you to truly earn your place with this ship. As far as I'm concerned, you are an enemy. Make no mistakes about that. As far as I am concerned, this fight has a few... implicit rules. We would assume everyone know them, but since you are an outsider I will explain them to you: naturally since this is a duel nobody other than us here may interfere, but also know that being disabled counts as a loss. Don't even think about tricking us by switching to something other than this Anomalocaris, or we will not bother showing up! You must prove you deserve this ship, after all.`
+			`	The leader gets closer and addresses you in a more serious tone. "You should be aware that this is not a friendly competition. This is a fight for you to truly earn your place with this ship. As far as I'm concerned, you are an enemy. Make no mistakes about that. This fight has a few... implicit rules. We would assume everyone know them, but since you are an outsider I will explain them to you: naturally since this is a duel nobody other than us here may interfere, but also know that being disabled counts as a loss. Don't even think about tricking us by switching to something other than this Anomalocaris, or we will not bother showing up! You must prove you deserve this ship, after all.`
 			`	"Furthermore we can understand some may die in glorious battle, and to the victor go the spoils, so looting as allowed. Capturing, however, is off limits. Do so, and all the Unfettered will be against you."`
 			# This is a "warning" for the incoming extra ship that happens because you killed/captured 10 Shield Beetles or so.
 			`	He suddenly look at you intensively, straight in the eyes, "We sometimes bend the rules for our friends, but that is not your case," he says with a sudden change of tone, before leaving.`
 				to display
 					"reputation: Hai (Unfettered)" < -2000
-			`	The engineer comes back, looking a bit impatient. "Are you going to talk all day, or are you going to fight?" The Unfettered pilots immediately head to their ships. The engineer pulls you in close once they are far enough away. "I want this done by the end of the day, so do not try my patience. You are lucky I offered this deal in the first place, they were planning to take the relic by force. Now, quick, get to your ship!" You see the contestants have already begun the launching procedures and launch as soon as you can.`
+			`	Mera comes back, looking a bit impatient. "Are you going to talk all day, or are you going to fight?" The Unfettered pilots immediately head to their ships. The engineer pulls you in close once they are far enough away. "I want this done by the end of the day, so do not try my patience. You are lucky I offered this deal in the first place, they were planning to take the relic by force. Now, quick, get to your ship!" You see the contestants have already begun the launching procedures and launch as soon as you can.`
 			`	(Remember to park your other ships and make sure your flagship is the Anomalocaris.)`
 				accept
 			label headingout
@@ -343,8 +344,8 @@ mission "Hai Legacy 3"
 	on disabled
 		fail "Hai Legacy 3"
 		dialog
-			`The enemy ships hail you. "You have failed the challenge. We will take the ship from you when we see fit. I suggest you land on Darkcloak so that we take it from you without trouble, whilst giving you a most generous compensation. If you try to keep it from us, we'll do things the hard way."`
-			`	"Be warned, however, that your truce with us ends as soon as you land. This is not necesseraly the end, <last>, you will simply have to prove yourself another way."`
+			`The enemy ships hail you. "You have failed the challenge. We will take the ship from you when we see fit. I'll fix your ship and leave you alone for a bribe, but I suggest you land on an Unfettered world and return the ship to us, with a most generous compensation. If you try to keep it from us, we'll do things the hard way."`
+			`	"Be warned, however, that your truce with us ends as soon as you land. This is not necessarily the end, <last>, you will simply have to prove yourself another way."`
 	on fail
 		"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 		# I would deduce the reputation here but being on a planet that becomes hostile as you land seem to cause issues for the game.
@@ -429,7 +430,7 @@ mission "Hai Legacy 3"
 				`	"What are you talking about? This was easy!"`
 			`	"Don't become overconfident now, Captain. I am sure you know what happens to such people.`
 			label next
-			`	"Congratulations, I never expected you had it in you. I will give you authorization to land on the condition that you keep this relic from our past in good condition. Make sure you do not lose it until you truly earn the right to call us friends, or we will consider you a true enemy of the Unfettered. Oh, and there are taxes on the daily fee, totaling 650 credits per day. I hope you don't mind.`
+			`	"Congratulations, I never expected you had it in you. I will give you authorization to land on the condition that you keep this relic from our past in one piece. Make sure you do not lose it until you truly earn the right to call us friends, or we will consider you a true enemy of the Unfettered. Oh, and there are taxes on the daily fee, totaling 650 credits per day. I hope you don't mind.`
 			`	"Do keep it mind that if you lose this permit at any time and have not proven yourself another way, like by bringing us a Jump Drive, you will be treated like an outsider again."`
 			choice
 				`	"Thank you for your trust."`
