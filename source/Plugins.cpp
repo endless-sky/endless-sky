@@ -196,7 +196,7 @@ future<void> Plugins::Install(const InstallData &installData, bool guarded)
 	if(!guarded)
 	{
 		lock_guard<mutex> guard(activePluginsMutex);
-		if(activePlugins.insert(installData.name).second)
+		if(!activePlugins.insert(installData.name).second)
 			return future<void>();
 
 		// Create a new entry for the plugin.
