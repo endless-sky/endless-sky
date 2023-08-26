@@ -33,7 +33,10 @@
           "platform": "linux"
         },
         "curl",
-        "libarchive",
+        {
+          "name": "libarchive",
+          "default-features": false
+        },
         "nlohmann-json"
       ]
     },
