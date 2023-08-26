@@ -139,6 +139,25 @@ Command::Command(Gesture::GestureEnum gesture)
 
 
 
+// Create a command representing the given axis trigger
+Command::Command(SDL_GameControllerAxis axis, bool positive)
+{
+	auto it = commandForControllerTrigger.find(std::make_pair(axis, positive));
+	if(it != commandForControllerTrigger.end())
+		*this = it->second;
+}
+
+
+// Create a command representing the given controller button
+Command::Command(SDL_GameControllerButton button)
+{
+	auto it = commandForControllerButton.find(button);
+	if(it != commandForControllerButton.end())
+		*this = it->second;
+}
+
+
+
 // Read the current keyboard state.
 void Command::ReadKeyboard()
 {

@@ -101,6 +101,10 @@ public:
 	explicit Command(const union SDL_Event &event);
 	// Create a command representing whatever is mapped to the given gesture
 	explicit Command(Gesture::GestureEnum gesture);
+	// Create a command representing a game controller axis trigger
+	explicit Command(SDL_GameControllerAxis axis, bool positive);
+	// Create a command representing a game controller button press
+	explicit Command(SDL_GameControllerButton button);
 
 	// Read the current keyboard state and set this object to reflect it.
 	void ReadKeyboard();

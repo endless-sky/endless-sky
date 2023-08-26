@@ -206,6 +206,11 @@ bool UI::Handle(const SDL_Event &event)
 						activeAxisIsPositive = event.caxis.value > 0;
 						activeAxis = static_cast<SDL_GameControllerAxis>(event.caxis.axis);
 						handled = (*it)->ControllerTriggerPressed(activeAxis, activeAxisIsPositive);
+						if(!handled)
+						{
+							Command command(activeAxis, activeAxisIsPositive);
+							handled = (*it)->KeyDown(0, 0, command, true);
+						}
 						axisTriggered = activeAxis;
 					}
 				}
@@ -221,6 +226,11 @@ bool UI::Handle(const SDL_Event &event)
 		else if(event.type == SDL_CONTROLLERBUTTONDOWN)
 		{
 			handled = (*it)->ControllerButtonDown(static_cast<SDL_GameControllerButton>(event.cbutton.button));
+			if(!handled)
+			{
+				Command command(static_cast<SDL_GameControllerButton>(event.cbutton.button));
+				handled = (*it)->KeyDown(0, 0, command, true);
+			}
 		}
 		else if(event.type == SDL_CONTROLLERBUTTONUP)
 		{

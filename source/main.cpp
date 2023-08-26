@@ -427,6 +427,14 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 				menuPanels.Push(shared_ptr<Panel>(
 					new MenuPanel(player, gamePanels)));
 			}
+			else if(event.type == SDL_CONTROLLERBUTTONDOWN && menuPanels.IsEmpty()
+					&& (Command(static_cast<SDL_GameControllerButton>(event.cbutton.button)).Has(Command::MENU))
+					&& !gamePanels.IsEmpty() && gamePanels.Top()->IsInterruptible())
+			{
+				// User pressed the Menu key on a game controller
+				menuPanels.Push(shared_ptr<Panel>(
+					new MenuPanel(player, gamePanels)));
+			}
 			else if(event.type == SDL_QUIT)
 			{
 				menuPanels.Quit();
@@ -450,6 +458,11 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			}
 			else if(event.type == SDL_KEYDOWN && !event.key.repeat
 					&& (Command(event.key.keysym.sym).Has(Command::FASTFORWARD)))
+			{
+				isFastForward = !isFastForward;
+			}
+			else if(event.type == SDL_CONTROLLERBUTTONDOWN
+					&& (Command(static_cast<SDL_GameControllerButton>(event.cbutton.button)).Has(Command::FASTFORWARD)))
 			{
 				isFastForward = !isFastForward;
 			}
