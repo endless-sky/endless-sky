@@ -23,8 +23,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <archive_entry.h>
 #include <cstring>
 #include <curl/curl.h>
-#include <sys/stat.h>
 #include <cstdio>
+#include <sys/stat.h>
 
 #ifdef _WIN32
 #include "text/Utf8.h"
@@ -41,11 +41,6 @@ namespace PluginHelper {
 	// Max size for extracting an archive in bytes this will be 1GB.
 	const int MAX_SIZE = 1000000000;
 
-	size_t WriteData(void *ptr, size_t size, size_t nmemb, FILE *stream) {
-		size_t written = fwrite(ptr, size, nmemb, stream);
-		return written;
-	}
-
 
 
 	bool Download(string url, string location)
@@ -59,6 +54,9 @@ namespace PluginHelper {
 #else
 		FILE *out = fopen(location.c_str(), "wb");
 #endif
+		if(!out)
+			return false;
+
 		// Set the url that gets downloaded
 		curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
 		// Follow redirects
@@ -68,7 +66,7 @@ namespace PluginHelper {
 		// What is the maximum filesize in bytes.
 		curl_easy_setopt(curl, CURLOPT_MAXFILESIZE, MAX_SIZE);
 		// Set the write function and the output file used in the write function
-		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteData);
+		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, fwrite);
 		curl_easy_setopt(curl, CURLOPT_WRITEDATA, out);
 
 		CURLcode res = curl_easy_perform(curl);
