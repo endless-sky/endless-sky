@@ -49,6 +49,7 @@ public:
 	// those that are in the given set, revert to their contents.
 	void Revert(const Set<Type> &other);
 
+
 private:
 	mutable std::map<std::string, Type> data;
 };

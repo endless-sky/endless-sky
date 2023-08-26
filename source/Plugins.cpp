@@ -236,7 +236,7 @@ future<void> Plugins::Update(const InstallData &installData)
 {
 	{
 		lock_guard<mutex> guard(activePluginsMutex);
-		if(activePlugins.insert(installData.name).second)
+		if(!activePlugins.insert(installData.name).second)
 			return future<void>();
 	}
 
