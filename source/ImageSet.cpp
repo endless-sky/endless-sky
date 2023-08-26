@@ -249,7 +249,7 @@ void ImageSet::ValidateFrames() noexcept(false)
 	if(paths[3].size() > paths[0].size())
 	{
 		Logger::LogError(prefix + to_string(paths[3].size() - paths[0].size())
-				+ " extra frames for the mask sprite will be ignored.");
+				+ " extra frames for the @2x mask sprite will be ignored.");
 		paths[3].resize(paths[0].size());
 	}
 }
@@ -303,7 +303,7 @@ void ImageSet::Load() noexcept(false)
 	for(size_t i = 0; i < frames && i < paths[2].size(); ++i)
 		if(!buffer[2].Read(paths[2][i], i))
 		{
-			Logger::LogError("Removing @2x mask frames for \"" + name + "\" due to read error");
+			Logger::LogError("Removing mask frames for \"" + name + "\" due to read error");
 			buffer[2].Clear();
 			break;
 		}
