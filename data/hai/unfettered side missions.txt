@@ -486,7 +486,7 @@ mission "Undeserved Anomalocaris"
 			`	"Indeed that relic was not meant for you, but remember that there are other ways for you to prove yourself." The leader of these Unfettered continues with blatantly forced casualness. "Say, for example, bringing us a Jump Drive... or two... that for sure will be earning you favor, and prove you can fight.`
 			`	"For now, you have enough to worry about with all of the missiles that will be heading your way. If I were you I'd install a lot of jammers, you'll need them, ha!" A general laughter erupts, and they let you get confortable in the new ship. You may want to get a better one, or at least upgrade this one in order to escape safely. You can also use bribes.`
 			action
-				give ship "Scarab" "Good Will"
+				give ship "Lightning Bug (Unfettered Shipyards)" "Good Will"
 				take ship "Anomalocaris"
 
 mission "Unfettered Landing Permit Lost"
