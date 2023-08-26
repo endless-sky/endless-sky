@@ -14,7 +14,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "PluginHelper.h"
-#include <iostream>
 
 #ifdef _WIN32
 #define WIN32_LEAN_AND_MEAN
@@ -127,7 +126,6 @@ namespace PluginHelper {
 		string firstEntry = archive_entry_pathname(entry);
 		firstEntry = firstEntry.substr(0, firstEntry.find("/")) + "/";
 		bool fitsExpected = firstEntry == (expectedName);
-		std::cout<<"hi there: "<<fitsExpected<< " " << firstEntry <<" "<<expectedName<<std::endl;
 		archive_read_data_skip(read);
 
 		// Check if this plugin has a head folder, if not create one in the destination
