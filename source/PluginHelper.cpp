@@ -21,8 +21,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <archive.h>
 #include <archive_entry.h>
 #include <cstring>
-#include <curl/curl.h>
 #include <cstdio>
+#include <curl/curl.h>
 #include <sys/stat.h>
 
 #ifdef _WIN32

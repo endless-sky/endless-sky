@@ -196,10 +196,8 @@ future<void> Plugins::Install(const InstallData &installData, bool guarded)
 	if(!guarded)
 	{
 		lock_guard<mutex> guard(activePluginsMutex);
-		if(activePlugins.count(installData.name))
+		if(activePlugins.insert(installData.name).second)
 			return future<void>();
-		else
-			activePlugins.insert(installData.name);
 
 		// Create a new entry for the plugin.
 		Plugin *newPlugin = plugins.Get(installData.name);
@@ -238,10 +236,8 @@ future<void> Plugins::Update(const InstallData &installData)
 {
 	{
 		lock_guard<mutex> guard(activePluginsMutex);
-		if(activePlugins.count(installData.name))
+		if(activePlugins.insert(installData.name).second)
 			return future<void>();
-		else
-			activePlugins.insert(installData.name);
 	}
 
 	plugins.Get(installData.name)->version = installData.version;
