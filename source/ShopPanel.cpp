@@ -68,7 +68,7 @@ namespace {
 
 ShopPanel::ShopPanel(PlayerInfo &player, Mission::Location location)
 	: LandedOfferPanel(player, location), day(player.GetDate().DaysSinceEpoch()),
-	planet(player.GetPlanet()), isOutfitter(location == MissioN::OUTFITTER), playerShip(player.Flagship()),
+	planet(player.GetPlanet()), isOutfitter(location == Mission::OUTFITTER), playerShip(player.Flagship()),
 	categories(GameData::GetCategory(isOutfitter ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	collapsed(player.Collapsed(isOutfitter ? "outfitter" : "shipyard"))
 {
@@ -213,20 +213,6 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 	Point offset(-SIDEBAR_WIDTH / 2, -.5f * SHIP_SIZE + 10.f);
 	font.Draw({name, {SIDEBAR_WIDTH, Alignment::CENTER, Truncate::MIDDLE}},
 		center + offset, *GameData::Colors().Get("bright"));
-}
-
-
-
-void ShopPanel::CheckForMissions(Mission::Location location)
-{
-	if(!GetUI()->IsTop(this))
-		return;
-
-	Mission *mission = player.MissionToOffer(location);
-	if(mission)
-		mission->Do(Mission::OFFER, player, GetUI());
-	else
-		player.HandleBlockedMissions(location, GetUI());
 }
 
 
