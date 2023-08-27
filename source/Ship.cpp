@@ -1921,7 +1921,7 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 			if(weapon->AntiMissile())
 				antiMissileRange = max(antiMissileRange, weapon->Velocity() + weaponRadius);
 			else if(firingCommands.HasFire(i))
-				armament.Fire(i, *this, projectiles, visuals, Random::Real() < jamChance);
+				armament.Fire(i, *this, projectiles, visuals, Random::Real() < jamChance ? jamChance * 100. : 0);
 		}
 	}
 

@@ -75,7 +75,7 @@ public:
 	// Fire an anti-missile. Returns true if the missile should be killed.
 	bool FireAntiMissile(Ship &ship, const Projectile &projectile, std::vector<Visual> &visuals);
 	// This weapon jammed. Increase its reload counters, but don't fire.
-	bool Jam();
+	bool Jam(int jam = 0);
 
 	// Install a weapon here (assuming it is empty). This is only for
 	// Armament to call internally.

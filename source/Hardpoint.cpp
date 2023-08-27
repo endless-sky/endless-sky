@@ -288,7 +288,7 @@ bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, vector
 
 
 // This weapon jammed. Increase its reload counters, but don't fire.
-bool Hardpoint::Jam()
+bool Hardpoint::Jam(int jam)
 {
 	if(jamImmunity)
 		return false;
@@ -298,10 +298,10 @@ bool Hardpoint::Jam()
 	// Reset the reload count.
 	reload += outfit->Reload();
 
-	// If this is a continuous weapon add half a second immunity to prevent flickering.
+	// If this is a continuous weapon disable it for some time and add immunity for that long again, to prevent flickering.
 	if(reload == 1)
 	{
-		reload = Random::Int(60);
+		reload = Random::Int(jam);
 		jamImmunity = reload * 2.;
 	}
 
