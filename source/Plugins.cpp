@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Files.h"
+#include "Logger.h"
 
 #include <algorithm>
 #include <cassert>
@@ -66,9 +67,34 @@ const Plugin *Plugins::Load(const string &path)
 	string name = path.substr(pos, path.length() - 1 - pos);
 
 	auto *plugin = plugins.Get(name);
-	plugin->name = std::move(name);
+
+	string pluginFile = path + "plugin.txt";
+
+	// Load plugin metadata from plugin.txt.
+	DataFile file(pluginFile);
+	for(const DataNode &child : file)
+	{
+		if(child.Token(0) == "name" && child.Size() >= 2)
+			plugin->name = child.Token(1);
+		else if(child.Token(0) == "about" && child.Size() >= 2)
+			plugin->aboutText = child.Token(1);
+	}
+
+	// Set missing required values.
+	if(plugin->name.empty())
+	{
+		plugin->name = std::move(name);
+		if(Files::Exists(pluginFile))
+		{
+			Logger::LogError(
+				"Failed to find name field in plugin.txt. Defaulting plugin name to folder name: \"" + plugin->name + "\"");
+		}
+	}
+	// Set values from old about.txt files.
+	if(plugin->aboutText.empty())
+		plugin->aboutText = Files::Read(path + "about.txt");
+
 	plugin->path = path;
-	plugin->aboutText = Files::Read(path + "about.txt");
 
 	return plugin;
 }

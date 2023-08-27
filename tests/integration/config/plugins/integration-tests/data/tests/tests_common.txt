@@ -1,3 +1,16 @@
+# Copyright (c) 2020 by Peter van der Meer
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
 test-data "Three Earthly Barges Save"
 	category "savegame"
 	contents
@@ -687,6 +700,38 @@ test "Depart"
 		input
 		# The ships zoom gets restored at a rate of .02 per step, so wait for a bit more than 50 steps to get to full zoom/full control.
 		call "Wait 55 steps"
+
+
+test "Depart and Ignore Warning Message"
+	status partial
+	description "Helper function to depart from a planet when a message requiring acknowledgement via keyboard input is expected."
+	sequence
+		input
+			key d
+		# The game needs 2 gamesteps for processing the launch before commands like the jump command can be given.
+		# Using empty inputs to trigger those game loops.
+		input
+		input
+		# Acknowledge the expected message
+		input
+			key "Return"
+		# The ships zoom gets restored at a rate of .02 per step, so wait for a bit more than 50 steps to get to full zoom/full control.
+		call "Wait 55 steps"
+
+
+test "Depart and Abort on Warning Message"
+	status partial
+	description "Helper function to attempt departure from a planet, then stop when an expected warning message is given."
+	sequence
+		input
+			key d
+		# The game needs 2 gamesteps for processing the launch before commands like the jump command can be given.
+		# Using empty inputs to trigger those game loops.
+		input
+		input
+		# Acknowledge the expected message and abort take off.
+		input
+			key "Escape"
 
 
 test "Sell first ship"
