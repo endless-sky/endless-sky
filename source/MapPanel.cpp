@@ -1360,7 +1360,6 @@ void MapPanel::DrawMissions()
 		int reserved = min(MAX_MISSION_POINTERS_DRAWN / 2, it.available + it.unavailable);
 		if(it.drawn >= MAX_MISSION_POINTERS_DRAWN - reserved)
 			continue;
-
 		if(!mission.HideWaypoints())
 			for(const System *waypoint : mission.Waypoints())
 				DrawPointer(waypoint, missionCount[waypoint].drawn, waypointColor);
@@ -1373,11 +1372,6 @@ void MapPanel::DrawMissions()
 		pair<bool, bool> blink = BlinkMissionIndicator(player, mission, step);
 		bool isSatisfied = IsSatisfied(player, mission) && blink.second;
 		DrawPointer(system, it.drawn, blink.first ? black : isSatisfied ? currentColor : blockedColor, isSatisfied);
-
-		for(const System *waypoint : mission.Waypoints())
-			DrawPointer(waypoint, missionCount[waypoint].drawn, waypointColor);
-		for(const Planet *stopover : mission.Stopovers())
-			DrawPointer(stopover->GetSystem(), missionCount[stopover->GetSystem()].drawn, waypointColor);
 	}
 	// Draw the available and unavailable jobs.
 	for(auto &&it : missionCount)
