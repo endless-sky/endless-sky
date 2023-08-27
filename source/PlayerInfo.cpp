@@ -3314,12 +3314,13 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto systemAttractionFun = [this](const string &name) -> double
 	{
 		const System *system = GameData::Systems().Find(name.substr(strlen("raid chance in system: ")));
-		if(!system)
+		if(!system ||system->NoRaids())
 			return 0.;
 
 		// This variable represents the probability of no raid fleets spawning.
 		double safeChance = 1.;
-		for(const auto &raidFleet : system->GetGovernment()->GetRaidFleets())
+		for(const auto &raidFleet : !system->RaidFleets().empty() ?
+				system->RaidFleets() : system->GetGovernment()->RaidFleets())
 		{
 			// The attraction is the % chance for a single instance of this fleet to appear.
 			double attraction = RaidFleetAttraction(raidFleet, system);

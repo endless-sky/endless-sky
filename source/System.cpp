@@ -972,7 +972,7 @@ int System::MinimumFleetPeriod() const
 
 
 
-const std::vector<RaidFleet> &System::GetRaidFleets() const
+const std::vector<RaidFleet> &System::RaidFleets() const
 {
 	return raidFleets;
 }

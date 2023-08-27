@@ -174,7 +174,7 @@ public:
 	// The smallest arrival period of a fleet (or 0 if no fleets arrive)
 	int MinimumFleetPeriod() const;
 
-	const std::vector<RaidFleet> &GetRaidFleets() const;
+	const std::vector<RaidFleet> &RaidFleets() const;
 	// Whether or not raids are allowed to spawn in this system.
 	bool NoRaids() const;
 
