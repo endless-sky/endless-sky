@@ -52,13 +52,8 @@ void RaidFleets::Load(const DataNode &node, bool remove, int valueIndex)
 {
 	const Fleet *fleet = GameData::Fleets().Get(node.Token(valueIndex));
 	if(remove)
-	{
-		for(auto it = begin(); it != end(); )
-			if(it->GetFleet() == fleet)
-				it = erase(it);
-			else
-				++it;
-	}
+		erase(std::remove_if(begin(), end(), 
+			[fleet](const RaidFleet &raidFleet) noexcept -> bool { return raidFleet.GetFleet() == fleet; }), end());
 	else
 		emplace_back(fleet,
 			node.Size() > (valueIndex + 1) ? node.Value(valueIndex + 1) : 2.,

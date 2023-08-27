@@ -13,14 +13,17 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef RAID_FLEET_H_
-#define RAID_FLEET_H_
+#ifndef RAID_FLEETS_H_
+#define RAID_FLEETS_H_
+
+#include <vector>
 
 class Fleet;
 class DataNode;
 
-#include <vector>
 
+
+// Information about how a fleet intended for raiding behaves.
 class RaidFleet {
 public:
 	RaidFleet(const Fleet *fleet, double minAttraction, double maxAttraction);

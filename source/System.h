@@ -175,6 +175,7 @@ public:
 	int MinimumFleetPeriod() const;
 
 	const RaidFleets &GetRaidFleets() const;
+	// Whether or not raids are allowed to spawn in this system.
 	bool NoRaids() const;
 
 
