@@ -1988,7 +1988,7 @@ ship "Waverider"
 		"A125 Atomic Steering"
 		"Scram Drive"
 
-#		"Emotional Baggage"
+		"Emotional Baggage"
 	
 	gun -22.5 -56.5 "Particle Cannon"
 	gun 22.5 -56.5 "Particle Cannon"
@@ -1999,3 +1999,9 @@ ship "Waverider"
 	engine 23 64
 	description `The Waverider was a ship that was first requested and never used for Five Years, Seven Months and Twenty-Seven Days.`
 	description `	Its disappointment was so immense, it willed itself into being.`
+
+outfit "Emotional Baggage"
+	category "Unique"
+	thumbnail "outfit/unknown"
+	description `The physical embodiment of everything that made the Reviewers who they are today.`
+	description `	Unfortunately, it's not for sale.`
