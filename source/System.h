@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Hazard.h"
 #include "Point.h"
-#include "RaidFleets.h"
+#include "RaidFleet.h"
 #include "RandomEvent.h"
 #include "Set.h"
 #include "StellarObject.h"
@@ -174,7 +174,7 @@ public:
 	// The smallest arrival period of a fleet (or 0 if no fleets arrive)
 	int MinimumFleetPeriod() const;
 
-	const RaidFleets &GetRaidFleets() const;
+	const std::vector<RaidFleet> &GetRaidFleets() const;
 	// Whether or not raids are allowed to spawn in this system.
 	bool NoRaids() const;
 
@@ -248,7 +248,7 @@ private:
 	double starfieldDensity = 1.;
 	int minimumFleetPeriod = 0;
 
-	RaidFleets raidFleets;
+	std::vector<RaidFleet> raidFleets;
 	bool noRaids = false;
 
 	// The amount of additional distance that ships will arrive away from the

@@ -35,7 +35,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Plugins.h"
 #include "Politics.h"
 #include "Preferences.h"
-#include "RaidFleets.h"
+#include "RaidFleet.h"
 #include "Random.h"
 #include "SavedGame.h"
 #include "Ship.h"

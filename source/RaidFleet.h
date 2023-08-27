@@ -1,4 +1,4 @@
-/* RaidFleets.h
+/* RaidFleet.h
 Copyright (c) 2023 by Hurleveur
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef RAID_FLEETS_H_
-#define RAID_FLEETS_H_
+#ifndef RAID_FLEET_H_
+#define RAID_FLEET_H_
 
 #include <vector>
 
@@ -27,6 +27,7 @@ class DataNode;
 class RaidFleet {
 public:
 	RaidFleet(const Fleet *fleet, double minAttraction, double maxAttraction);
+	static void Load(const DataNode &node, std::vector<RaidFleet> &raidFleets, bool remove, int valueIndex);
 	const Fleet *GetFleet() const;
 	double MinAttraction() const;
 	double MaxAttraction() const;
@@ -35,11 +36,6 @@ private:
 	const Fleet *fleet = nullptr;
 	double minAttraction;
 	double maxAttraction;
-};
-
-class RaidFleets : public std::vector<RaidFleet> {
-public:
-	void Load(const DataNode &node, bool remove, int valueIndex);
 };
 
 #endif

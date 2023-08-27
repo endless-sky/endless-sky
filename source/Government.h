@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "ExclusiveItem.h"
 #include "LocationFilter.h"
-#include "RaidFleets.h"
+#include "RaidFleet.h"
 
 #include <limits>
 #include <map>
@@ -97,7 +97,7 @@ public:
 	// Pirate raids in this government's systems use these fleet definitions. If
 	// it is empty, there are no pirate raids.
 	// The second attribute denotes the minimal and maximal attraction required for the fleet to appear.
-	const RaidFleets &GetRaidFleets() const;
+	const std::vector<RaidFleet> &GetRaidFleets() const;
 
 	// Check if, according to the politics stored by GameData, this government is
 	// an enemy of the given government right now.
@@ -167,7 +167,7 @@ private:
 	const Phrase *hostileDisabledHail = nullptr;
 	std::string language;
 	bool sendUntranslatedHails = false;
-	RaidFleets raidFleets;
+	std::vector<RaidFleet> raidFleets;
 	double crewAttack = 1.;
 	double crewDefense = 2.;
 	bool provokedOnScan = false;

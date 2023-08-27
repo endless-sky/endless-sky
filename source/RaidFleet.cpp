@@ -1,4 +1,4 @@
-/* RaidFleets.cpp
+/* RaidFleet.cpp
 Copyright (c) 2023 by Hurleveur
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -13,16 +13,32 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "RaidFleets.h"
+#include "RaidFleet.h"
 
 #include "DataNode.h"
 #include "Fleet.h"
 #include "GameData.h"
 
+#include <algorithm>
+
 
 RaidFleet::RaidFleet(const Fleet *fleet, double minAttraction, double maxAttraction)
 	: fleet(fleet), minAttraction(minAttraction), maxAttraction(maxAttraction)
 {
+}
+
+
+
+void RaidFleet::Load(const DataNode &node, std::vector<RaidFleet> &raidFleets, bool remove, int valueIndex)
+{
+	const Fleet *fleet = GameData::Fleets().Get(node.Token(valueIndex));
+	if(remove)
+		raidFleets.erase(remove_if(raidFleets.begin(), raidFleets.end(),
+			[fleet](const RaidFleet &raidFleet) noexcept -> bool { return raidFleet.GetFleet() == fleet; }), end());
+	else
+		raidFleets.emplace_back(fleet,
+			node.Size() > (valueIndex + 1) ? node.Value(valueIndex + 1) : 2.,
+			node.Size() > (valueIndex + 2) ? node.Value(valueIndex + 2) : 0.);
 }
 
 
@@ -44,18 +60,4 @@ double RaidFleet::MinAttraction() const
 double RaidFleet::MaxAttraction() const
 {
 	return maxAttraction;
-}
-
-
-
-void RaidFleets::Load(const DataNode &node, bool remove, int valueIndex)
-{
-	const Fleet *fleet = GameData::Fleets().Get(node.Token(valueIndex));
-	if(remove)
-		erase(std::remove_if(begin(), end(),
-			[fleet](const RaidFleet &raidFleet) noexcept -> bool { return raidFleet.GetFleet() == fleet; }), end());
-	else
-		emplace_back(fleet,
-			node.Size() > (valueIndex + 1) ? node.Value(valueIndex + 1) : 2.,
-			node.Size() > (valueIndex + 2) ? node.Value(valueIndex + 2) : 0.);
 }

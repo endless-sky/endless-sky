@@ -275,7 +275,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				fleets.emplace_back(fleet, child.Value(valueIndex + 1));
 		}
 		else if(key == "raid")
-			raidFleets.Load(child, remove, valueIndex);
+			RaidFleet::Load(child, raidFleets, remove, valueIndex);
 		else if(key == "hazard")
 		{
 			const Hazard *hazard = GameData::Hazards().Get(value);
@@ -972,7 +972,7 @@ int System::MinimumFleetPeriod() const
 
 
 
-const RaidFleets &System::GetRaidFleets() const
+const std::vector<RaidFleet> &System::GetRaidFleets() const
 {
 	return raidFleets;
 }

@@ -189,7 +189,7 @@ void Government::Load(const DataNode &node)
 		}
 
 		if(key == "raid")
-			raidFleets.Load(child, remove, valueIndex);
+			RaidFleet::Load(child, raidFleets, remove, valueIndex);
 		// Handle the attributes which cannot have a value removed.
 		else if(remove)
 			child.PrintTrace("Cannot \"remove\" a specific value from the given key:");
@@ -549,7 +549,7 @@ bool Government::SendUntranslatedHails() const
 // Pirate raids in this government's systems use these fleet definitions. If
 // it is empty, there are no pirate raids.
 // The second attribute denotes the minimal and maximal attraction required for the fleet to appear.
-const RaidFleets &Government::GetRaidFleets() const
+const std::vector<RaidFleet> &Government::GetRaidFleets() const
 {
 	return raidFleets;
 }
