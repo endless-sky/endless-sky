@@ -518,9 +518,10 @@ void MapDetailPanel::DrawKey()
 		"You have visited:",
 		"", // Special should never be active in this mode.
 		"Government:",
-		"System:"
+		"System:",
+		"Danger level:"
 	};
-	const string &header = HEADER[-min(0, max(-6, commodity))];
+	const string &header = HEADER[-min(0, max(-7, commodity))];
 	font.Draw(header, pos + headerOff, medium);
 	pos.Y() += 20.;
 
@@ -626,6 +627,18 @@ void MapDetailPanel::DrawKey()
 		font.Draw("Dominated", pos + textOff, dim);
 		pos.Y() += 20.;
 	}
+	else if(commodity == SHOW_DANGER)
+	{
+		// Each system is colored in accordance with its danger to the player,
+		// including threats from any "raid fleet" presence.
+		static const vector<string> labels = {"None", "Risky", "Dangerous", "Treacherous"};
+		for(size_t i = 0; i < labels.size(); ++i)
+		{
+			RingShader::Draw(pos, OUTER, INNER, MapColor(i * (2. / 3.) - 1.));
+			font.Draw(labels[i], pos + textOff, dim);
+			pos.Y() += 20.;
+		}
+	}
 
 	RingShader::Draw(pos, OUTER, INNER, UninhabitedColor());
 	font.Draw("Uninhabited", pos + textOff, dim);
@@ -721,6 +734,8 @@ void MapDetailPanel::DrawInfo()
 		selectedSystem->Name() : "Unexplored System";
 	const auto alignLeft = Layout(145, Truncate::BACK);
 	font.Draw({systemName, alignLeft}, uiPoint + Point(0., -7.), medium);
+	if(commodity == SHOW_DANGER)
+		PointerShader::Draw(uiPoint, Point(1., 0.), 10.f, 10.f, 0.f, medium);
 
 	governmentY = uiPoint.Y() + textMargin;
 	string gov = player.HasVisited(*selectedSystem) ?
