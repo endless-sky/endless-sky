@@ -90,8 +90,8 @@ void Fleet::Load(const DataNode &node)
 		else if(key == "fighters" && hasValue)
 		{
 			fighterNames = GameData::Phrases().Get(child.Token(1));
-			child.PrintTrace("Warning: Deprecated use of \"fighters\" <names>."
-				" Use \"names\" <names> node under \"fighters\" instead.");
+			if(child.HasChildren())
+				child.PrintTrace("Warning: Skipping unused children of \"fighters\" tag:");
 		}
 		else if(key == "fighters" && child.HasChildren())
 		{
