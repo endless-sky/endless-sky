@@ -483,12 +483,20 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 
 			if(!mission.HideWaypoints())
 				for(const System *waypoint : mission.Waypoints())
-					if(missionCounter < MAX_MISSION_POINTERS_DRAWN && waypoint == &system)
+				{
+					if(missionCounter >= MAX_MISSION_POINTERS_DRAWN)
+						break;
+					if(waypoint == &system)
 						DrawPointer(from, missionCounter, waypointColor, false);
+				}
 			if(!mission.HideStopovers())
 				for(const Planet *stopover : mission.Stopovers())
-					if(missionCounter < MAX_MISSION_POINTERS_DRAWN && stopover->IsInSystem(&system))
+				{
+					if(missionCounter >= MAX_MISSION_POINTERS_DRAWN)
+						break;
+					if(stopover->IsInSystem(&system))
 						DrawPointer(from, missionCounter, waypointColor, false);
+				}
 		}
 	}
 
@@ -1362,13 +1370,6 @@ void MapPanel::DrawMissions()
 		if(mission.HideDestination())
 			continue;
 
-		bool blink = false;
-		if(mission.Deadline())
-		{
-			int days = min(5, mission.Deadline() - player.GetDate()) + 1;
-			if(days > 0)
-				blink = (step % (10 * days) > 5 * days);
-		}
 		pair<bool, bool> blink = BlinkMissionIndicator(player, mission, step);
 		bool isSatisfied = IsSatisfied(player, mission) && blink.second;
 		DrawPointer(system, it.drawn, blink.first ? black : isSatisfied ? currentColor : blockedColor, isSatisfied);
