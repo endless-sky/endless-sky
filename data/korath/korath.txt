@@ -221,7 +221,8 @@ fleet "Korath Raid"
 fleet "Kor Isaha Raid"
 	government "Kor Isaha"
 	names "korath"
-	fighters "korath"
+	fighters
+		names "korath"
 	cargo 1
 	personality
 		disables plunders opportunistic harvests
@@ -261,7 +262,8 @@ fleet "Korath Ember Waste Raid"
 fleet "Kor Alaji Raid"
 	government "Kor Alaji"
 	names "korath"
-	fighters "korath"
+	fighters
+		names "korath"
 	cargo 1
 	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 	outfitters "Korath Exiles Remnant Donations"
@@ -394,7 +396,8 @@ fleet "Korath Defense"
 fleet "Korath Humanika Tribute Response"
 	government "Korath"
 	names "korath"
-	fighters "korath"
+	fighters
+		names "korath"
 	cargo 0
 	personality
 		disables plunders opportunistic harvests hunting staying unconstrained
@@ -562,7 +565,8 @@ fleet "Korath Civilian Large"
 fleet "Korath Civilian Delivery"
 	government "Korath (Civilian)"
 	names "korath"
-	fighters "korath"
+	fighters
+		names "korath"
 	cargo 3
 	personality
 		frugal opportunistic disables forbearing
