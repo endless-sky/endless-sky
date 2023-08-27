@@ -65,7 +65,31 @@ namespace {
 
 	const double MAXIMUM_TEMPERATURE = 100.;
 
+	// Scanning takes between 2 and 10 seconds (SCAN_TIME / MAX_SCAN_STEPS and SCAN_TIME / MIN_SCAN_STEPS)
+	// dependent on the range from the ship (among other factors).
+	// The scan speed uses a gaussian drop-off with the reported scan radius as the standard deviation.
 	const double SCAN_TIME = 600.;
+	// Always gain at least 1 step of scan progress for every frame spent scanning while in range.
+	// This ensures every scan completes within 600 frames (10 seconds) of being in range.
+	const double MIN_SCAN_STEPS = 1;
+	// Gain no more than 5 steps of scan progress for every frame spent scanning while in range.
+	// This ensures no scan takes fewer than 120 frames (2 seconds.)
+	const double MAX_SCAN_STEPS = 5; // minimum of 2 seconds to scan
+
+	// These numbers ensure it takes 10 seconds for a Cargo Scanner to scan
+	// a Bulk Freighter at point blank range. Any ship with less than 40
+	// cargo space takes as long as a ship with 40 cargo space.
+	const double SCAN_MIN_CARGO_SPACE = 40;
+	const double SCAN_CARGO_FACTOR = 3;
+
+	// This ensures it takes 10 seconds for an Outfit Scanner to scan a
+	// Bactrian at point blank range. Any ship with less than 200 outfit
+	// space takes as long as a ship with 200 outfit space.
+	const double SCAN_MIN_OUTFIT_SPACE = 200;
+	const double SCAN_OUTFIT_FACTOR = 10;
+
+	// Formula for the scan outfit or cargo factor is:
+	// factor = pow(sqrt(scanEfficiency) * framesToFullScan / SCAN_TIME, 1.5) / referenceSize
 
 	// Helper function to transfer energy to a given stat if it is less than the
 	// given maximum value.
@@ -150,9 +174,9 @@ namespace {
 		return equipped;
 	}
 
-	void LogWarning(const string &modelName, const string &name, string &&warning)
+	void LogWarning(const string &trueModelName, const string &name, string &&warning)
 	{
-		string shipID = modelName + (name.empty() ? ": " : " \"" + name + "\": ");
+		string shipID = trueModelName + (name.empty() ? ": " : " \"" + name + "\": ");
 		Logger::LogError(shipID + std::move(warning));
 	}
 
@@ -206,10 +230,10 @@ Ship::Ship(const DataNode &node)
 void Ship::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
-		modelName = node.Token(1);
+		trueModelName = node.Token(1);
 	if(node.Size() >= 3)
 	{
-		base = GameData::Ships().Get(modelName);
+		base = GameData::Ships().Get(trueModelName);
 		variantName = node.Token(2);
 	}
 	isDefined = true;
@@ -242,6 +266,8 @@ void Ship::Load(const DataNode &node)
 			thumbnail = SpriteSet::Get(child.Token(1));
 		else if(key == "name" && child.Size() >= 2)
 			name = child.Token(1);
+		else if(key == "display name" && child.Size() >= 2)
+			displayModelName = child.Token(1);
 		else if(key == "plural" && child.Size() >= 2)
 			pluralModelName = child.Token(1);
 		else if(key == "noun" && child.Size() >= 2)
@@ -518,13 +544,16 @@ void Ship::Load(const DataNode &node)
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 
+	if(displayModelName.empty())
+		displayModelName = trueModelName;
+
 	// If no plural model name was given, default to the model name with an 's' appended.
 	// If the model name ends with an 's' or 'z', print a warning because the default plural will never be correct.
 	// Variants will import their plural name from the base model in FinishLoading.
 	if(pluralModelName.empty() && variantName.empty())
 	{
-		pluralModelName = modelName + 's';
-		if(modelName.back() == 's' || modelName.back() == 'z')
+		pluralModelName = displayModelName + 's';
+		if(displayModelName.back() == 's' || displayModelName.back() == 'z')
 			node.PrintTrace("Warning: explicit plural name definition required, but none is provided. Defaulting to \""
 					+ pluralModelName + "\".");
 	}
@@ -540,10 +569,12 @@ void Ship::FinishLoading(bool isNewInstance)
 	// definition stored safely in the ship model, which will not be destroyed
 	// until GameData is when the program quits. Also copy other attributes of
 	// the base model if no overrides were given.
-	if(GameData::Ships().Has(modelName))
+	if(GameData::Ships().Has(trueModelName))
 	{
-		const Ship *model = GameData::Ships().Get(modelName);
+		const Ship *model = GameData::Ships().Get(trueModelName);
 		explosionWeapon = &model->BaseAttributes();
+		if(displayModelName.empty())
+			displayModelName = model->displayModelName;
 		if(pluralModelName.empty())
 			pluralModelName = model->pluralModelName;
 		if(noun.empty())
@@ -702,15 +733,15 @@ void Ship::FinishLoading(bool isNewInstance)
 		string message;
 		if(isYours)
 		{
-			message = "Player ship " + modelName + " \"" + name + "\":";
+			message = "Player ship " + trueModelName + " \"" + name + "\":";
 			string PREFIX = plural ? "\n\tUndefined outfit " : " undefined outfit ";
 			for(auto &&outfit : undefinedOutfits)
 				message += PREFIX + outfit;
 		}
 		else
 		{
-			message = variantName.empty() ? "Stock ship \"" + modelName + "\": "
-				: modelName + " variant \"" + variantName + "\": ";
+			message = variantName.empty() ? "Stock ship \"" + trueModelName + "\": "
+				: trueModelName + " variant \"" + variantName + "\": ";
 			message += to_string(undefinedOutfits.size()) + " undefined outfit" + (plural ? "s" : "") + " installed.";
 		}
 
@@ -726,7 +757,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		if(outfit && outfit->IsDefined()
 				&& (hardpoint.IsTurret() != (outfit->Get("turret mounts") != 0.)))
 		{
-			string warning = (!isYours && !variantName.empty()) ? "variant \"" + variantName + "\"" : modelName;
+			string warning = (!isYours && !variantName.empty()) ? "variant \"" + variantName + "\"" : trueModelName;
 			if(!name.empty())
 				warning += " \"" + name + "\"";
 			warning += ": outfit \"" + outfit->TrueName() + "\" installed as a ";
@@ -818,8 +849,8 @@ void Ship::FinishLoading(bool isNewInstance)
 	// account for systems accessible via wormholes, but also does not need to as AI will route the ship properly.
 	if(!isNewInstance && targetSystem)
 	{
-		string message = "Warning: " + string(isYours ? "player-owned " : "NPC ") + modelName + " \"" + name + "\": "
-			"Cannot reach target system \"" + targetSystem->Name();
+		string message = "Warning: " + string(isYours ? "player-owned " : "NPC ")
+			+ trueModelName + " \"" + name + "\": Cannot reach target system \"" + targetSystem->Name();
 		if(!currentSystem)
 		{
 			Logger::LogError(message + "\" (no current system).");
@@ -851,11 +882,13 @@ bool Ship::IsValid() const
 // Save a full description of this ship, as currently configured.
 void Ship::Save(DataWriter &out) const
 {
-	out.Write("ship", modelName);
+	out.Write("ship", trueModelName);
 	out.BeginChild();
 	{
 		out.Write("name", name);
-		if(pluralModelName != modelName + 's')
+		if(displayModelName != trueModelName)
+			out.Write("display name", displayModelName);
+		if(pluralModelName != displayModelName + 's')
 			out.Write("plural", pluralModelName);
 		if(!noun.empty())
 			out.Write("noun", noun);
@@ -1082,16 +1115,23 @@ const string &Ship::Name() const
 
 
 // Set / Get the name of this class of ships, e.g. "Marauder Raven."
-void Ship::SetModelName(const string &model)
+void Ship::SetTrueModelName(const string &model)
 {
-	this->modelName = model;
+	this->trueModelName = model;
 }
 
 
 
-const string &Ship::ModelName() const
+const string &Ship::TrueModelName() const
 {
-	return modelName;
+	return trueModelName;
+}
+
+
+
+const string &Ship::DisplayModelName() const
+{
+	return displayModelName;
 }
 
 
@@ -1106,7 +1146,7 @@ const string &Ship::PluralModelName() const
 // Get the name of this ship as a variant.
 const string &Ship::VariantName() const
 {
-	return variantName.empty() ? modelName : variantName;
+	return variantName.empty() ? trueModelName : variantName;
 }
 
 
@@ -1207,12 +1247,12 @@ vector<string> Ship::FlightCheck() const
 		checks.emplace_back("no thruster!");
 	else if(!turn)
 		checks.emplace_back("no steering!");
-	else if(RequiredCrew() > attributes.Get("bunks"))
-		checks.emplace_back("insufficient bunks!");
 
 	// If no errors were found, check all warning conditions:
 	if(checks.empty())
 	{
+		if(RequiredCrew() > attributes.Get("bunks"))
+			checks.emplace_back("insufficient bunks?");
 		if(!thrust && !reverseThrust)
 			checks.emplace_back("afterburner only?");
 		if(!thrust && !afterburner)
@@ -1751,49 +1791,56 @@ int Ship::Scan(const PlayerInfo &player)
 	// Because this uses distance squared, to reach 200 pixels away you need 4 "scan power".
 	double distanceSquared = target->position.DistanceSquared(position) * .0001;
 
-	// Check the target's outfit and cargo space. A larger ship takes longer to scan.
-	// Normalized around 200 tons of cargo/outfit space.
-	// A ship with less than 10 tons of outfit space or cargo space takes as long to
-	// scan as one with 10 tons. This avoids small sizes being scanned instantly, or
-	// causing a divide by zero error at sizes of 0.
+	// Check the target's outfit and cargo space. A larger ship takes
+	// longer to scan.  There's a minimum size below which a smaller ship
+	// takes the same amount of time to scan. This avoids small sizes
+	// being scanned instantly, or causing a divide by zero error at sizes
+	// of 0.
 	// If instantly scanning very small ships is desirable, this can be removed.
-	double outfits = max(10., target->baseAttributes.Get("outfit space")) * .005;
-	double cargo = max(10., target->attributes.Get("cargo space")) * .005;
+	// One point of scan opacity is the equivalent of an additional ton of cargo / outfit space
+	const double outfitsSize = target->baseAttributes.Get("outfit space") + target->attributes.Get("outfit scan opacity");
+	const double cargoSize = target->attributes.Get("cargo space") + target->attributes.Get("cargo scan opacity");
+	double outfits = max(SCAN_MIN_OUTFIT_SPACE, outfitsSize) * SCAN_OUTFIT_FACTOR;
+	double cargo = max(SCAN_MIN_CARGO_SPACE, cargoSize) * SCAN_CARGO_FACTOR;
 
 	// Check if either scanner has finished scanning.
 	bool startedScanning = false;
 	bool activeScanning = false;
 	int result = 0;
 	auto doScan = [&distanceSquared, &startedScanning, &activeScanning, &result]
-			(double &elapsed, const double speed, const double scannerRange,
+			(double &elapsed, const double speed, const double scannerRangeSquared,
 					const double depth, const int event)
 	-> void
 	{
-		if(elapsed < SCAN_TIME && distanceSquared < scannerRange)
-		{
-			startedScanning |= !elapsed;
-			activeScanning = true;
+		if(elapsed >= SCAN_TIME)
+			return;
+		if(distanceSquared > scannerRangeSquared)
+			return;
 
-			// Division is more expensive to calculate than multiplication,
-			// so rearrange the formula to minimize divisions.
+		startedScanning |= !elapsed;
+		activeScanning = true;
 
-			// "(scannerRange - 0.5 * distance) / scannerRange"
-			// This line hits 1 at distace = 0, and 0.5 at distance = scannerRange.
-			// There is also a hard cap on scanning range.
+		// Total scan time is:
+		// Proportional to e^(0.5 * (distance / range)^2),
+		// which gives a guassian relation between scan speed and distance.
+		// And proportional to: depth^(2 / 3),
+		// which means 8 times the cargo or outfit space takes 4 times as long to scan.
+		// Therefore, scan progress each step is proportional to the reciprocals of these values.
+		// This can be calculated by multiplying the exponents by -1.
+		// Progress = (e^(-0.5 * (distance / range)^2))*deptch^(-2 / 3).
 
-			// "speed / (sqrt(speed) + distance)"
-			// This gives a modest speed boost at no distance, and
-			// the boost tapers off to 0 at arbitrarily large distances.
+		// Set a minimum scan range to avoid extreme values.
+		const double distanceExponent = -distanceSquared / max<double>(1e-3, 2. * scannerRangeSquared);
 
-			// "1 / depth"
-			// This makes scan time proportional to cargo or outfit space.
+		const double depthFactor = pow(depth, -2. / 3.);
 
-			elapsed += ((scannerRange - .5 * distanceSquared) * speed)
-				/ (scannerRange * (sqrt(speed) + distanceSquared) * depth);
+		const double progress = exp(distanceExponent) * sqrt(speed) * depthFactor;
 
-			if(elapsed >= SCAN_TIME)
-				result |= event;
-		}
+		// Bound progress each step to limit minimum and maximum scan times.
+		elapsed += max<double>(MIN_SCAN_STEPS, min<double>(MAX_SCAN_STEPS, progress));
+
+		if(elapsed >= SCAN_TIME)
+			result |= event;
 	};
 	doScan(cargoScan, cargoSpeed, cargoDistanceSquared, cargo, ShipEvent::SCAN_CARGO);
 	doScan(outfitScan, outfitSpeed, outfitDistanceSquared, outfits, ShipEvent::SCAN_OUTFITS);
@@ -1823,7 +1870,7 @@ int Ship::Scan(const PlayerInfo &player)
 			if(!target->Name().empty())
 				tag = gov + " " + target->Noun() + " \"" + target->Name() + "\": ";
 			else
-				tag = target->ModelName() + " (" + gov + "): ";
+				tag = target->DisplayModelName() + " (" + gov + "): ";
 			Messages::Add(tag + "Please refrain from scanning us or we will be forced to take action.",
 				Messages::Importance::Highest);
 		}
@@ -2054,7 +2101,14 @@ bool Ship::IsEnteringHyperspace() const
 
 bool Ship::IsHyperspacing() const
 {
-	return hyperspaceCount != 0;
+	return GetHyperspacePercentage() != 0;
+}
+
+
+
+int Ship::GetHyperspacePercentage() const
+{
+	return hyperspaceCount;
 }
 
 
@@ -2098,7 +2152,7 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 	// and pointed in the right direction.
 	if(!isJump && scramThreshold)
 	{
-		double deviation = fabs(direction.Unit().Cross(velocity));
+		const double deviation = fabs(direction.Unit().Cross(velocity));
 		if(deviation > scramThreshold)
 			return false;
 	}
@@ -2108,11 +2162,11 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 	if(!isJump)
 	{
 		// Figure out if we're within one turn step of facing this system.
-		bool left = direction.Cross(angle.Unit()) < 0.;
-		Angle turned = angle + TurnRate() * (left - !left);
-		bool stillLeft = direction.Cross(turned.Unit()) < 0.;
+		const bool left = direction.Cross(angle.Unit()) < 0.;
+		const Angle turned = angle + TurnRate() * (left - !left);
+		const bool stillLeft = direction.Cross(turned.Unit()) < 0.;
 
-		if(left == stillLeft)
+		if(left == stillLeft && turned != Angle(direction))
 			return false;
 	}
 
@@ -2528,9 +2582,9 @@ double Ship::IdleHeat() const
 	double activeCooling = coolingEfficiency * attributes.Get("active cooling");
 
 	// Idle heat is the heat level where:
-	// heat = heat * diss + heatGen - cool - activeCool * heat / (100 * mass)
-	// heat = heat * (diss - activeCool / (100 * mass)) + (heatGen - cool)
-	// heat * (1 - diss + activeCool / (100 * mass)) = (heatGen - cool)
+	// heat = heat - heat * diss + heatGen - cool - activeCool * heat / maxHeat
+	// heat = heat - heat * (diss + activeCool / maxHeat) + (heatGen - cool)
+	// heat * (diss + activeCool / maxHeat) = (heatGen - cool)
 	double production = max(0., attributes.Get("heat generation") - cooling);
 	double dissipation = HeatDissipation() + activeCooling / MaximumHeat();
 	if(!dissipation) return production ? numeric_limits<double>::max() : 0;
@@ -3171,13 +3225,9 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 		// A realistic fraction applicable to all cases cannot be computed, so assume 50%.
 		heat -= weapon.AmmoUsage() * .5 * ammo->Mass() * MAXIMUM_TEMPERATURE * Heat();
 		AddOutfit(ammo, -weapon.AmmoUsage());
-		// Only the player's ships make use of attraction and deterrence.
-		if(isYours && !OutfitCount(ammo) && ammo->AmmoUsage())
-		{
-			// Recalculate the AI to account for the loss of this weapon.
+		// Recalculate the AI to account for the loss of this weapon.
+		if(!OutfitCount(ammo) && ammo->AmmoUsage())
 			aiCache.Calibrate(*this);
-			deterrence = CalculateDeterrence();
-		}
 	}
 
 	energy -= weapon.FiringEnergy() + relativeEnergyChange;
@@ -3578,6 +3628,15 @@ void Ship::DoGeneration()
 					DoRepair(ship.energy, energyRemaining, ship.attributes.Get("energy capacity"));
 				if(fuelRemaining > 0.)
 					DoRepair(ship.fuel, fuelRemaining, ship.attributes.Get("fuel capacity"));
+			}
+
+			// Carried ships can recharge energy from their parent's batteries,
+			// if they are preparing for deployment.
+			for(const pair<double, Ship *> &it : carried)
+			{
+				Ship &ship = *it.second;
+				if(ship.HasDeployOrder())
+					DoRepair(ship.energy, energy, ship.attributes.Get("energy capacity"));
 			}
 		}
 		// Decrease the shield and hull delays by 1 now that shield generation
@@ -4111,23 +4170,23 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 			// Check if we are able to turn.
 			double cost = attributes.Get("turning energy");
 			if(cost > 0. && energy < cost * fabs(commands.Turn()))
-				commands.SetTurn(commands.Turn() * energy / (cost * fabs(commands.Turn())));
+				commands.SetTurn(copysign(energy / cost, commands.Turn()));
 
 			cost = attributes.Get("turning shields");
 			if(cost > 0. && shields < cost * fabs(commands.Turn()))
-				commands.SetTurn(commands.Turn() * shields / (cost * fabs(commands.Turn())));
+				commands.SetTurn(copysign(shields / cost, commands.Turn()));
 
 			cost = attributes.Get("turning hull");
 			if(cost > 0. && hull < cost * fabs(commands.Turn()))
-				commands.SetTurn(commands.Turn() * hull / (cost * fabs(commands.Turn())));
+				commands.SetTurn(copysign(hull / cost, commands.Turn()));
 
 			cost = attributes.Get("turning fuel");
 			if(cost > 0. && fuel < cost * fabs(commands.Turn()))
-				commands.SetTurn(commands.Turn() * fuel / (cost * fabs(commands.Turn())));
+				commands.SetTurn(copysign(fuel / cost, commands.Turn()));
 
 			cost = -attributes.Get("turning heat");
 			if(cost > 0. && heat < cost * fabs(commands.Turn()))
-				commands.SetTurn(commands.Turn() * heat / (cost * fabs(commands.Turn())));
+				commands.SetTurn(copysign(heat / cost, commands.Turn()));
 
 			if(commands.Turn())
 			{
@@ -4162,28 +4221,28 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 			// Check if we are able to apply this thrust.
 			double cost = attributes.Get((thrustCommand > 0.) ?
 				"thrusting energy" : "reverse thrusting energy");
-			if(cost > 0. && energy < cost)
-				thrustCommand *= energy / cost;
+			if(cost > 0. && energy < cost * fabs(thrustCommand))
+				thrustCommand = copysign(energy / cost, thrustCommand);
 
 			cost = attributes.Get((thrustCommand > 0.) ?
 				"thrusting shields" : "reverse thrusting shields");
-			if(cost > 0. && shields < cost)
-				thrustCommand *= shields / cost;
+			if(cost > 0. && shields < cost * fabs(thrustCommand))
+				thrustCommand = copysign(shields / cost, thrustCommand);
 
 			cost = attributes.Get((thrustCommand > 0.) ?
 				"thrusting hull" : "reverse thrusting hull");
-			if(cost > 0. && hull < cost)
-				thrustCommand *= hull / cost;
+			if(cost > 0. && hull < cost * fabs(thrustCommand))
+				thrustCommand = copysign(hull / cost, thrustCommand);
 
 			cost = attributes.Get((thrustCommand > 0.) ?
 				"thrusting fuel" : "reverse thrusting fuel");
-			if(cost > 0. && fuel < cost)
-				thrustCommand *= fuel / cost;
+			if(cost > 0. && fuel < cost * fabs(thrustCommand))
+				thrustCommand = copysign(fuel / cost, thrustCommand);
 
 			cost = -attributes.Get((thrustCommand > 0.) ?
 				"thrusting heat" : "reverse thrusting heat");
-			if(cost > 0. && heat < cost)
-				thrustCommand *= heat / cost;
+			if(cost > 0. && heat < cost * fabs(thrustCommand))
+				thrustCommand = copysign(heat / cost, thrustCommand);
 
 			if(thrustCommand)
 			{
@@ -4353,7 +4412,7 @@ void Ship::StepTargeting()
 					bool isEnemy = government->IsEnemy(target->government);
 					if(isEnemy && Random::Real() < target->Attributes().Get("self destruct"))
 					{
-						Messages::Add("The " + target->ModelName() + " \"" + target->Name()
+						Messages::Add("The " + target->DisplayModelName() + " \"" + target->Name()
 							+ "\" has activated its self-destruct mechanism.", Messages::Importance::High);
 						GetTargetShip()->SelfDestruct();
 					}
@@ -4515,8 +4574,6 @@ double Ship::CalculateDeterrence() const
 		if(hardpoint.GetOutfit())
 		{
 			const Outfit *weapon = hardpoint.GetOutfit();
-			if(weapon->Ammo() && weapon->AmmoUsage() && !OutfitCount(weapon->Ammo()))
-				continue;
 			double strength = weapon->ShieldDamage() + weapon->HullDamage()
 				+ (weapon->RelativeShieldDamage() * attributes.Get("shields"))
 				+ (weapon->RelativeHullDamage() * attributes.Get("hull"));
