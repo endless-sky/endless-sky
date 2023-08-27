@@ -1,7 +1,8 @@
 Version 0.10.3
+  * Big changes:
   * Bug fixes:
     * Content bugs:
-	  * Typo fixes. (@AlexSeaLion, @justinnhli, @lumbar527, @Pshy0, @tibetiroka, @warp-core, @Wedge009)
+	  * Typo fixes. (@AlexSeaLion, @aradapilot, @ashdnazg, @justinnhli, @lumbar527, @Pshy0, @tibetiroka, @warp-core, @Wedge009)
 	  * Re-added the planet Eavine to the map, as it was accidentally removed in a previous release. (@warp-core)
 	  * Added the "inscrutable" attribute to a space creature that was missing it. (@Saugia)
 	  * Added the "unplunderable" attribute to the Lasher Pistol. (@Quantumshark)
@@ -10,6 +11,10 @@ Version 0.10.3
 	  * "Expedition to Hope 2" now give clearance to the destination, allowing it to offer if you are hostile with the destination instead of not offering without explanation. (@warp-core)
 	  * Old pilots who completed part of the Wanderer campaign will now be properly retroactively granted the Wanderer outfit license. (@warp-core)
 	  * The "Remnant; Expanded Horizons Astral" job can no longer choose the Deep Space systems as waypoints. (@Quantumshark)
+	  * Ssil Vida station no longer loses one of its planet attributes after an event. (@danaris)
+	  * Spaceport news intended for occupied Pug worlds no longer appears on uninhabited worlds. (@Anarchist2)
+	  * Added the "minor" mission tag to a Free Worlds side plot storyline to prevent it from offering at the same time as major storyline missions. (@Anarchist2)
+	  * Fixed the "Remnant: Face to Maw 1" mission to properly require that the player is flying a Puffin. (@Zitchas)
 	* Engine bugs:
 	  * Using hotkeys to search for the nearest asteroid no longer crashes the game. (@RisingLeaf)
 	  * Player escorts no longer appear as landed on the planet that the player landed on if they themselves could not land on that planet. (@TomGoodIdea)
@@ -19,6 +24,9 @@ Version 0.10.3
 	  * Empty strings are now saved as "" so that they don't disappear on subsequent loads. (@warp-core)
 	  * Bribe can no longer have negative values. (@Hurleveur)
 	  * The scroll buttons on the shop detail panel can now be clicked. (@flowers9)
+	  * Improved the rounding used for mortgage calculations to result in the proper payment amount. (@flowers9)
+	  * The shipyard and outfitter mission offer location tags will now properly write to the save file. (@flowers9)
+	  * Fixed an error that prevented the "tribute: " autocondition from being used. (@Hurleveur)
   * Game content:
 	* New content:
 	  * New mission where you answer a distress call in Korath space. (@UnorderedSigh, @williaji)
@@ -28,12 +36,15 @@ Version 0.10.3
 	  * Mentioned in the conversation and description of "Deal Change 2" that you need to hail the destination planet in order to land. (@bene-dictator)
 	  * The player can not ask Tomek for combat advice prior to the first major Free Worlds battle. (@warp-core)
 	  * Revised the smuggler arc of the Hai Reveal storyline. (@UnorderedSigh)
+	  * Bounty jobs now provide their payment the moment the bounty fleet is destroyed, instead of requiring that the player return to the offer location of the job to receive pay. (@Anarchist2)
 	* Balance:
 	  * Added weaponry to some human fighters to fit in the additional hardpoints that they were recently given. (@AvianGeneticist)
 	  * Increased the reputation gains with Unfettered sympathizers when doing Unfettered jobs. (@Hurleveur)
 	  * Changed the stock Frigate to have two Torpedo Launchers instead of one Torpedo and a Sidewinder, in exchange for less battery power. (@warp-core)
 	  * Added a deadline to the pirate occupation spaceport missions to prevent them from being stacked indefinitely. (@lumbar527)
 	  * The Quarg in Korath space now receive permanent reputation hits if you attack the Efreti. (@Saugia)
+	  * Gave the Dagger +5 engine space and stock A120 Atomic Thrusters to give it more of a niche among the other human fighters. (@Quantumshark)
+	  * Gave the Violin Spider +4 weapon space to allow it to equip an anti-missile turret in addition to its gun. (@Hurleveur)
 	* Graphics:
 	* Other:
 	  * Tweaked the wording of the description of the Vivid Aether planet. (@Zitchas)
@@ -46,6 +57,7 @@ Version 0.10.3
 	  * Ships can now be given display names for their model name. (@TomGoodIdea)
 	  * Created new "cargo scan opacity" and "outfit scan opacity" attributes that increase the time it takes for a scanner to scan your cargo or outfits respectively. (@Quantumshark)
 	  * Game actions are now able to take ships from the player. (@Hurleveur)
+	  * Fighters in fleets can now be given different personalities than the rest of the fleet. (@Quantumshark)
 	  * New autoconditions:
 	    * "flagship disabled" returns 1 if the player's flagship is disabled, 0 otherwise. (@TomGoodIdea)
 	* Changed mechanics:
@@ -53,6 +65,7 @@ Version 0.10.3
     * AI:
 	  * Ships with only secondary weapons that run out of ammo will now attempt to flee instead of flying straight at their target without any weapons. (@TomGoodIdea)
 	  * Escorts that are capable of cloaking can now cloak on their own without input from the player if they are low on health. (@TomGoodIdea)
+	  * Ships with the "surveillance" personality will now patrol the system they are in when there are no other ships to scan instead of freezing up and doing nothing. (@tibetiroka)
   * User interface:
     * Weapons that use both outfits and fuel as ammunition now properly display the number of shots remaining instead of ignoring the fuel use. (@tibetiroka)
 	* The flagship now has a separate color scheme from friendlies in the HUD overlay. (@warp-core)
@@ -61,12 +74,19 @@ Version 0.10.3
 	* Added support for drawing pointers in the interface game data. (@warp-core)
 	* Increased the saturation of the shields HUD color. (@Quantumshark)
 	* Added a new setting that determines which ships in your fleet will pick up flotsams, if at all. (@OcelotWalrus)
+	* The outfits installed on player ships are now displayed in a list format under all the other ship stats in the shipyard and outfitter, similar to how they're displayed for ships that are sold in the shipyard. (@flowers9)
+	* Changed the "has no shipyard/outfitter" color on the shipyard and outfitter map keys to a darker shade of blue to better differentiate it from the "has shipyard/outfitter" color. (@flowers9)
+	* Added a "landing zoom" UI setting that zooms the camera in or out when landing on our launching from a planet. (@flowers9)
+	* Human engines in the outfitter are now ordered according to the engine set that they come from, from smallest to largest, and listed with steering before thrusters, instead of purely alphabetically. (@warp-core)
   * Under the hood:
     * Refactored part of PlayerInfo::Land to reduce code duplication. (@warp-core)
 	* Selling all your commodities in the trade panel now loops over the commodities that the player owns instead of looping through all commodities in the game and seeing if the player owns them. (@flowers9)
 	* Separated the pug.txt file into separate, more specific files. (@tibetiroka)
 	* Combined the Remnant keystone missions using new mission syntax to reduce data duplication. (@warp-core)
 	* Relocated pirate raid and bounty hunter warning missions to a more sensible file. (@MasterOfGrey)
+	* Updated fleet definitions to use the new fighter naming syntax. (@flowers9)
+	* Reordered the hardpoint definitions on various ships to match the expected style. (@warp-core)
+	* Updated a code comment to match the actual code below it. (@ashdnazg)
   * CI/CD and development environment:
     * Added some rudamentary checks for proper use of indefinite articles to the content style checker. (@tibetiroka)
 	* Added a link to the mobile port when creating new issues on Github. (@m0ctave)
