@@ -19,7 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 namespace CrashState
 {
 
-static State g_prev_state = INVALID;
+State g_prev_state = INVALID;
+bool g_is_test = false;
 
 static State Get()
 {
@@ -37,7 +38,12 @@ static State Get()
    return CrashState::INVALID;
 }
 
-void Init() { g_prev_state = Get(); Set(INITIAL); }
+void Init(bool test)
+{
+   g_is_test = test;
+   g_prev_state = Get();
+   Set(INITIAL);
+}
 
 void Set(State s)
 {
@@ -46,6 +52,13 @@ void Set(State s)
 
 State Previous() { return g_prev_state; }
 
-
+bool HasCrashed()
+{
+   if(g_is_test)
+      return false; // don't do crash logic for unit tests
+   return Previous() != INVALID &&
+          Previous() != LOADED &&
+          Previous() != EXITED;
+}
 
 }

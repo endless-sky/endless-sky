@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef COMMAND_H_
 #define COMMAND_H_
 
-#include <SDL_gamecontroller.h>
 #include <cstdint>
 #include <string>
 #include <atomic>
@@ -102,9 +101,9 @@ public:
 	// Create a command representing whatever is mapped to the given gesture
 	explicit Command(Gesture::GestureEnum gesture);
 	// Create a command representing a game controller axis trigger
-	explicit Command(SDL_GameControllerAxis axis, bool positive);
+	static Command FromTrigger(uint8_t axis, bool positive);
 	// Create a command representing a game controller button press
-	explicit Command(SDL_GameControllerButton button);
+	static Command FromButton(uint8_t button);
 
 	// Read the current keyboard state and set this object to reflect it.
 	void ReadKeyboard();
@@ -114,8 +113,8 @@ public:
 	static void SaveSettings(const std::string &path);
 	static void SetKey(Command command, int keycode);
 	static void SetGesture(Command command, Gesture::GestureEnum gesture);
-	static void SetControllerButton(Command command, SDL_GameControllerButton button);
-	static void SetControllerTrigger(Command command, SDL_GameControllerAxis trigger, bool positive);
+	static void SetControllerButton(Command command, uint8_t button);
+	static void SetControllerTrigger(Command command, uint8_t trigger, bool positive);
 
 	// Get the description or keycode name for this command. If this command is
 	// a combination of more than one command, an empty string is returned.

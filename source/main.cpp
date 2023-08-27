@@ -135,7 +135,8 @@ int main(int argc, char *argv[])
 	Files::Init(argv);
 
 	// Config now set. It is safe to access the config now
-	CrashState::Init();
+	CrashState::Init(!testToRunName.empty());
+	CrashState::Set(CrashState::LOADED);
 
 	try {
 		// Load plugin preferences before game data if any.

@@ -23,6 +23,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <SDL2/SDL.h>
 #include <string>
 
+// Make sure these match. Note that GamePad.h can't include SDL_gamecontroller.h
+static_assert(GamePad::AXIS_MAX == SDL_CONTROLLER_AXIS_MAX, "AXIS_MAX needs to match SDL_CONTROLLER_AXIS_MAX");
+static_assert(GamePad::BUTTON_MAX == SDL_CONTROLLER_BUTTON_MAX, "AXIS_MAX needs to match SDL_CONTROLLER_BUTTON_MAX");
+
 namespace {
 
 	GamePad::Axes g_axes = {};
@@ -437,7 +441,7 @@ Point GamePad::RightStick()
 
 
 
-bool GamePad::Trigger(SDL_GameControllerAxis axis, bool positive)
+bool GamePad::Trigger(uint8_t axis, bool positive)
 {
 	return g_triggers[axis] == (positive ? TRIGGER_POSITIVE : TRIGGER_NEGATIVE);
 }
@@ -590,7 +594,21 @@ void GamePad::SetControllerButtonMapping(const std::string& controllerButton, co
 	}
 	// note that the terminating comma is intentional
 	SDL_GameControllerAddMapping(newMapping.c_str());
-	
+
 	std::shared_ptr<char> mappingStr(SDL_GameControllerMapping(g_gc), SDL_free);
 	//SDL_Log("Updating controller mapping: %s", mappingStr.get());
+}
+
+
+
+const char* GamePad::AxisDescription(uint8_t axis)
+{
+	return SDL_GameControllerGetStringForAxis(static_cast<SDL_GameControllerAxis>(axis));
+}
+
+
+
+const char* GamePad::ButtonDescription(uint8_t button)
+{
+	return SDL_GameControllerGetStringForButton(static_cast<SDL_GameControllerButton>(button));
 }

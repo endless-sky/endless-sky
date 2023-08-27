@@ -23,7 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "Point.h"
 
-#include <SDL_gamecontroller.h>
+#include <SDL2/SDL.h>
 #include <string>
 #include <vector>
 

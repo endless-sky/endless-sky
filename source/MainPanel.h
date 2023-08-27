@@ -22,7 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Engine.h"
 #include "ZoomGesture.h"
 
-#include <SDL_gamecontroller.h>
+#include <SDL2/SDL.h>
 #include <list>
 
 class PlayerInfo;

@@ -23,7 +23,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <SDL2/SDL.h>
 
-#include <SDL_gamecontroller.h>
 #include <algorithm>
 #include <atomic>
 #include <cmath>
@@ -39,8 +38,8 @@ namespace {
 	map<Command, string> iconName;
 	map<int, Command> commandForKeycode;
 	map<Gesture::GestureEnum, Command> commandForGesture;
-	map<SDL_GameControllerButton, Command> commandForControllerButton;
-	map<std::pair<SDL_GameControllerAxis, bool>, Command> commandForControllerTrigger;
+	map<uint8_t, Command> commandForControllerButton;
+	map<std::pair<uint8_t, bool>, Command> commandForControllerTrigger;
 	map<Command, int> keycodeForCommand;
 	// Keep track of any keycodes that are mapped to multiple commands, in order
 	// to display a warning to the player.
@@ -140,20 +139,22 @@ Command::Command(Gesture::GestureEnum gesture)
 
 
 // Create a command representing the given axis trigger
-Command::Command(SDL_GameControllerAxis axis, bool positive)
+Command Command::FromTrigger(uint8_t axis, bool positive)
 {
 	auto it = commandForControllerTrigger.find(std::make_pair(axis, positive));
 	if(it != commandForControllerTrigger.end())
-		*this = it->second;
+		return it->second;
+	return Command();
 }
 
 
 // Create a command representing the given controller button
-Command::Command(SDL_GameControllerButton button)
+Command Command::FromButton(uint8_t button)
 {
 	auto it = commandForControllerButton.find(button);
 	if(it != commandForControllerButton.end())
-		*this = it->second;
+		return it->second;
+	return Command();
 }
 
 
@@ -348,7 +349,7 @@ void Command::SetGesture(Command command, Gesture::GestureEnum gesture)
 
 
 // Set the gesture that is mapped to the given command
-void Command::SetControllerButton(Command command, SDL_GameControllerButton button)
+void Command::SetControllerButton(Command command, uint8_t button)
 {
 	// Erase any buttons or triggers for this command
 	for(auto it = commandForControllerButton.begin(); it != commandForControllerButton.end();)
@@ -374,7 +375,7 @@ void Command::SetControllerButton(Command command, SDL_GameControllerButton butt
 		}
 	}
 
-	if(button < SDL_CONTROLLER_BUTTON_MAX && button != SDL_CONTROLLER_BUTTON_INVALID)
+	if(button < GamePad::BUTTON_MAX && button != GamePad::BUTTON_INVALID)
 	{
 		commandForControllerButton[button] = command;
 	}
@@ -383,7 +384,7 @@ void Command::SetControllerButton(Command command, SDL_GameControllerButton butt
 
 
 // Set the gesture that is mapped to the given command
-void Command::SetControllerTrigger(Command command, SDL_GameControllerAxis axis, bool positive)
+void Command::SetControllerTrigger(Command command, uint8_t axis, bool positive)
 {
 	// Erase any buttons or triggers for this command
 	for(auto it = commandForControllerButton.begin(); it != commandForControllerButton.end();)
@@ -409,7 +410,7 @@ void Command::SetControllerTrigger(Command command, SDL_GameControllerAxis axis,
 		}
 	}
 
-	if(axis < SDL_CONTROLLER_AXIS_MAX && axis != SDL_CONTROLLER_AXIS_INVALID)
+	if(axis < GamePad::AXIS_MAX && axis != GamePad::AXIS_INVALID)
 	{
 		commandForControllerTrigger[std::make_pair(axis, positive)] = command;
 	}
@@ -464,7 +465,9 @@ const std::string Command::ButtonName() const
 	{
 		if(kv.second == *this)
 		{
-			return SDL_GameControllerGetStringForButton(kv.first);
+			const char* description = GamePad::ButtonDescription(kv.first);
+			return description ? description : "(unknown)";
+
 		}
 	}
 
@@ -472,7 +475,9 @@ const std::string Command::ButtonName() const
 	{
 		if(kv.second == *this)
 		{
-			return std::string(SDL_GameControllerGetStringForAxis(kv.first.first)) + (kv.first.second ? " +" : " -");
+			const char* description = GamePad::ButtonDescription(kv.first.first);
+			if(description)
+				return std::string(description ? description : "(unknown)") + (kv.first.second ? " +" : " -");
 		}
 	}
 	return "(Not Set)";

@@ -28,8 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "pi.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
-#include <SDL_gamecontroller.h>
-#include <SDL_stdinc.h>
+#include <SDL2/SDL.h>
 
 
 namespace

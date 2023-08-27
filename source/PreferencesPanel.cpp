@@ -38,8 +38,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/truncate.hpp"
 #include "UI.h"
 #include "text/WrappedText.h"
-#include <SDL_gamecontroller.h>
-#include <SDL_keycode.h>
+#include <SDL2/SDL.h>
 #ifdef __ANDROID__
 #include "AndroidFile.h"
 #endif

@@ -18,19 +18,23 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <vector>
 #include <string>
 
-#include <SDL2/SDL.h>
-
 // GamePad state. It gets updated via SDL events and all users of it access this
 // class to get it. No direct queries to SDL for getting it.
 class GamePad {
 public:
-   typedef bool Buttons[SDL_CONTROLLER_BUTTON_MAX];
-   typedef int16_t Axes[SDL_CONTROLLER_AXIS_MAX];
+	// These are duplicates of some constants in SDL_gamecontroller.h, but
+	// without a dependency on sdl to mess up unit test compilation.
+	static constexpr uint8_t BUTTON_MAX = 21;
+	static constexpr uint8_t BUTTON_INVALID = -1;
+	static constexpr uint8_t AXIS_MAX = 6;
+	static constexpr uint8_t AXIS_INVALID = -1;
+   typedef bool Buttons[BUTTON_MAX];
+   typedef int16_t Axes[AXIS_MAX];
 
 	static void Init();
 	static void SaveMapping();
 	static void SaveConfig();
-	static void Handle(const SDL_Event &event);
+	static void Handle(const union SDL_Event &event);
 
 	static int DeadZone();
 	static void SetDeadZone(int dz);
@@ -43,7 +47,7 @@ public:
 	// Axis state
 	static Point LeftStick();
 	static Point RightStick();
-	static bool Trigger(SDL_GameControllerAxis axis, bool positive);
+	static bool Trigger(uint8_t axis, bool positive);
 
 	// Retrieve a list of all the controller button->joystick button mappings
 	static std::vector<std::pair<std::string, std::string>> GetCurrentSdlMappings();
@@ -65,6 +69,9 @@ public:
 	static const std::string& GetNextJoystickInput();
 	// Set a joystick to controller button mapping.
 	static void SetControllerButtonMapping(const std::string& controllerButton, const std::string& joystickButton);
+
+	static const char* AxisDescription(uint8_t axis);
+	static const char* ButtonDescription(uint8_t button);
 };
 
 

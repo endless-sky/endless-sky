@@ -19,7 +19,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 #include "Point.h"
 
-#include <SDL_gamecontroller.h>
 #include <memory>
 #include <vector>
 #include <map>

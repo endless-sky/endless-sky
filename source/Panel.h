@@ -19,7 +19,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Rectangle.h"
 #include "Command.h"
 
-#include <SDL_gamecontroller.h>
 #include <functional>
 #include <list>
 #include <string>

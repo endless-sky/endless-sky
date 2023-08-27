@@ -53,7 +53,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "opengl.h"
 
-#include <SDL_gamecontroller.h>
+#include <SDL2/SDL.h>
 #include <cmath>
 #include <sstream>
 #include <string>

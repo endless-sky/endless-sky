@@ -28,7 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Screen.h"
 #include "UI.h"
 
-#include <SDL_gamecontroller.h>
+#include <SDL2/SDL.h>
 
 using namespace std;
 

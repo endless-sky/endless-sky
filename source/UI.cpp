@@ -208,7 +208,7 @@ bool UI::Handle(const SDL_Event &event)
 						handled = (*it)->ControllerTriggerPressed(activeAxis, activeAxisIsPositive);
 						if(!handled)
 						{
-							Command command(activeAxis, activeAxisIsPositive);
+							Command command = Command::FromTrigger(event.caxis.axis, activeAxisIsPositive);
 							handled = (*it)->KeyDown(0, 0, command, true);
 						}
 						axisTriggered = activeAxis;
@@ -228,7 +228,7 @@ bool UI::Handle(const SDL_Event &event)
 			handled = (*it)->ControllerButtonDown(static_cast<SDL_GameControllerButton>(event.cbutton.button));
 			if(!handled)
 			{
-				Command command(static_cast<SDL_GameControllerButton>(event.cbutton.button));
+				Command command = Command::FromButton(event.cbutton.button);
 				handled = (*it)->KeyDown(0, 0, command, true);
 			}
 		}

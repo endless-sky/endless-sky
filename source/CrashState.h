@@ -23,15 +23,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
  */
 namespace CrashState
 {
-   enum State { INVALID, INITIAL, PREFERENCES, OPENGL, DATA, LOADED, EXITED };
+   enum State { INVALID, UNIT_TEST, INITIAL, PREFERENCES, OPENGL, DATA, LOADED, EXITED };
 
-   void Init();
+   void Init(bool is_test);
    void Set(State state);
    State Previous();
 
-   inline bool HasCrashed() { return Previous() != INVALID &&
-                                     Previous() != LOADED &&
-                                     Previous() != EXITED; }
+   bool HasCrashed();
 }
 
 
