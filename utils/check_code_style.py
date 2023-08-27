@@ -560,7 +560,7 @@ def check_include(sanitized_lines, original_lines, file):
 				group_lines[i] = line
 		for i in range(len(group) - 1):
 			if group_lines[i].lower() > group_lines[i + 1].lower():
-				warnings.append(Warning(group_lines[i], group[i] + 1, "includes are not in alphabetical order"))
+				errors.append(Error(group_lines[i], group[i] + 1, "includes are not in alphabetical order"))
 	return errors, warnings
 
 
