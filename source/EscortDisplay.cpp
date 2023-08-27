@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "EscortDisplay.h"
 
 #include "Color.h"
+#include "text/DisplayText.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
@@ -100,7 +101,8 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 
 		// Draw the system name for any escort not in the current system.
 		if(!escort.system.empty())
-			font.Draw(escort.system, pos + Point(-10., 10.), elsewhereColor);
+			font.Draw({escort.system, {static_cast<int>(WIDTH - 20.), Alignment::LEFT, Truncate::BACK}},
+				pos + Point(-10., 10.), elsewhereColor);
 
 		Color color;
 		if(escort.isDisabled)

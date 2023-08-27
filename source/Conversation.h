@@ -60,9 +60,9 @@ public:
 public:
 	Conversation() = default;
 	// Construct and Load() at the same time.
-	Conversation(const DataNode &node, const std::string &missionName = "");
+	Conversation(const DataNode &node);
 	// Read or write to files.
-	void Load(const DataNode &node, const std::string &missionName = "");
+	void Load(const DataNode &node);
 	void Save(DataWriter &out) const;
 	// Check if any data is loaded in this conversation object.
 	bool IsEmpty() const noexcept;

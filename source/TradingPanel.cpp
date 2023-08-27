@@ -234,21 +234,22 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	else if(key == 'B' || (key == 'b' && (mod & KMOD_SHIFT)))
 		Buy(1000000000);
 	else if(key == 'S' || (key == 's' && (mod & KMOD_SHIFT)))
-		for(const auto &it : GameData::Commodities())
+		for(const auto &it : player.Cargo().Commodities())
 		{
-			int64_t amount = player.Cargo().Get(it.name);
-			int64_t price = system.Trade(it.name);
+			const string &commodity = it.first;
+			const int64_t &amount = it.second;
+			int64_t price = system.Trade(commodity);
 			if(!price || !amount)
 				continue;
 
-			int64_t basis = player.GetBasis(it.name, -amount);
-			player.AdjustBasis(it.name, basis);
+			int64_t basis = player.GetBasis(commodity, -amount);
 			profit += amount * price + basis;
 			tonsSold += amount;
 
-			player.Cargo().Remove(it.name, amount);
+			GameData::AddPurchase(system, commodity, -amount);
+			player.AdjustBasis(commodity, basis);
 			player.Accounts().AddCredits(amount * price);
-			GameData::AddPurchase(system, it.name, -amount);
+			player.Cargo().Remove(commodity, amount);
 		}
 	else if(key == 'P' || (key == 'p' && (mod & KMOD_SHIFT)))
 	{
