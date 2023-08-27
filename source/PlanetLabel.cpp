@@ -104,7 +104,7 @@ PlanetLabel::PlanetLabel(const vector<PlanetLabel> &labels, const System &system
 	for(const double angle : LINE_ANGLES)
 	{
 		SetBoundingBox(labelDimensions, angle);
-		if(allZooms.end() == find_if(allZooms.begin(), allZooms.end(),
+		if(none_of(allZooms.begin(), allZooms.end(),
 				[&](const double zoom)
 				{
 					return HasOverlaps(labels, system, object, zoom);
