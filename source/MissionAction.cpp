@@ -86,53 +86,34 @@ void MissionAction::LoadSingle(const DataNode &child)
 
 	if(key == "dialog")
 	{
-		if(hasValue && child.Token(1) == "phrase")
-		{
-			const DataNode *firstNonButtonGrand = nullptr;
-			for(auto &grand : child)
-				if(grand.Size() != 2 || grand.Token(0) != "to")
-				{
-					if(!firstNonButtonGrand)
-						firstNonButtonGrand = &grand;
-				}
-				else if(grand.Token(1) == "decline")
-				{
-					if(!toDecline)
-						toDecline = make_shared<ConditionSet>(grand);
-					else
-						toDecline->Load(grand);
-				}
-				else if(grand.Token(1) == "accept")
-					child.PrintTrace("Cannot control whether the dialog \"Accept\" button is available");
-				else
-					child.PrintTrace("Unrecognized button name " + grand.Token(1));
-			if(hasValue && child.Token(1) == "phrase")
+		// Collect the "to decline" button condition and determine if there are text grandchildren
+		const DataNode *firstNonButtonGrand = nullptr;
+		for(auto &grand : child)
+			if(grand.Size() != 2 || grand.Token(0) != "to")
 			{
-				if(!firstNonButtonGrand && child.Size() == 3)
-					dialogPhrase = ExclusiveItem<Phrase>(GameData::Phrases().Get(child.Token(2)));
-				else
-					child.PrintTrace("Skipping unsupported dialog phrase syntax:");
+				if(!firstNonButtonGrand)
+					firstNonButtonGrand = &grand;
 			}
-			else if(!hasValue && firstNonButtonGrand && (*child.begin()).Token(0) == "phrase")
-			{
-				if(firstNonButtonGrand->Size() == 1 && firstNonButtonGrand->HasChildren())
-					dialogPhrase = ExclusiveItem<Phrase>(Phrase(*firstNonButtonGrand));
-				else
-					firstNonButtonGrand->PrintTrace("Skipping unsupported dialog phrase syntax:");
-			}
+			else if(grand.Token(1) != "decline")
+				grand.PrintTrace("Expected \"phrase\", \"to decline\", or dialog text:");
+			else if(toDecline)
+				toDecline->Load(grand);
 			else
-				child.PrintTrace("Skipping unsupported dialog phrase syntax:");
-		}
-		else if(!hasValue && child.HasChildren() && (*child.begin()).Token(0) == "phrase")
+				toDecline = make_shared<ConditionSet>(grand);
+
+		// Construct the dialog phrase or text, if it is valid
+		if(child.Size() == 3 && child.Token(1) == "phrase" && !firstNonButtonGrand)
 		{
-			const DataNode &firstGrand = (*child.begin());
-			if(firstGrand.Size() == 1 && firstGrand.HasChildren())
-				dialogPhrase = ExclusiveItem<Phrase>(Phrase(firstGrand));
+			const Phrase *phrase = GameData::Phrases().Get(child.Token(2));
+			if(phrase)
+				dialogPhrase = ExclusiveItem<Phrase>(phrase);
 			else
-				firstGrand.PrintTrace("Skipping unsupported dialog phrase syntax:");
+				child.PrintTrace("Unknown phrase \"" + child.Token(2) + "\":");
 		}
-		else
+		else if((child.Size() == 1 && firstNonButtonGrand) || (child.Size() > 1 && child.Token(1) != "phrase"))
 			Dialog::ParseTextNode(child, 1, dialogText);
+		else
+			child.PrintTrace("Skipping unsupported dialog phrase syntax:");
 	}
 	else if(key == "conversation" && child.HasChildren())
 		conversation = ExclusiveItem<Conversation>(Conversation(child));
