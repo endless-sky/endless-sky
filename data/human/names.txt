@@ -1009,6 +1009,11 @@ phrase "female names"
 		"Andromeda"
 		"Cassiopeia"
 
+phrase "human names"
+	phrase
+		"male names"
+		"female names"
+
 # Only used in news items, not ship names yet.
 phrase "family names"
 	word
