@@ -87,22 +87,24 @@ void MissionAction::LoadSingle(const DataNode &child)
 	if(key == "dialog")
 	{
 		// Collect the "to decline" button condition and determine if there are text grandchildren
-		const DataNode *firstNonButtonGrand = nullptr;
+		const DataNode *firstText = nullptr;
 		for(auto &grand : child)
-			if(grand.Size() != 2 || grand.Token(0) != "to")
+			if(grand.Size() == 1 && grand.Token(0) == "ok/cancel")
+				dialogOkCancel = true;
+			else if(grand.Size() != 2 || grand.Token(0) != "to")
 			{
-				if(!firstNonButtonGrand)
-					firstNonButtonGrand = &grand;
+				if(!firstText)
+					firstText = &grand;
 			}
 			else if(grand.Token(1) != "decline")
-				grand.PrintTrace("Expected \"phrase\", \"to decline\", or dialog text:");
+				grand.PrintTrace("Expected \"phrase\", \"to decline\", \"ok/cancel\", or dialog text:");
 			else if(toDecline)
 				toDecline->Load(grand);
 			else
 				toDecline = make_shared<ConditionSet>(grand);
 
 		// Construct the dialog phrase or text, if it is valid
-		if(child.Size() == 3 && child.Token(1) == "phrase" && !firstNonButtonGrand)
+		if(child.Size() == 3 && child.Token(1) == "phrase" && !firstText)
 		{
 			const Phrase *phrase = GameData::Phrases().Get(child.Token(2));
 			if(phrase)
@@ -110,7 +112,10 @@ void MissionAction::LoadSingle(const DataNode &child)
 			else
 				child.PrintTrace("Unknown phrase \"" + child.Token(2) + "\":");
 		}
-		else if((child.Size() == 1 && firstNonButtonGrand) || (child.Size() > 1 && child.Token(1) != "phrase"))
+		else if(child.Size() == 1 && firstText && firstText->Size() == 1 && firstText->Token(0) == "phrase" &&
+				firstText->HasChildren())
+			dialogPhrase = ExclusiveItem<Phrase>(Phrase(*firstText));
+		else if((child.Size() == 1 && firstText) || (child.Size() > 1 && child.Token(1) != "phrase"))
 			Dialog::ParseTextNode(child, 1, dialogText);
 		else
 			child.PrintTrace("Skipping unsupported dialog phrase syntax:");
@@ -183,6 +188,8 @@ void MissionAction::SaveBody(DataWriter &out) const
 				toDecline->Save(out);
 				out.EndChild();
 			}
+			if(dialogOkCancel)
+				out.Write("ok/cancel");
 			// Break the text up into paragraphs.
 			for(const string &line : Format::Split(dialogText, "\n\t"))
 				out.Write(line);
@@ -366,6 +373,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 		if(dialog)
 		{
 			dialog->SetCanCancel(!toDecline || toDecline->Test(player.Conditions()));
+			dialog->SetAcceptDecline(!dialogOkCancel);
 			ui->Push(dialog);
 		}
 	}
@@ -395,6 +403,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 
 	// Create any associated dialog text from phrases, or use the directly specified text.
 	string dialogText = !dialogPhrase->IsEmpty() ? dialogPhrase->Get() : this->dialogText;
+	result.dialogOkCancel = dialogOkCancel;
 	if(!dialogText.empty())
 		result.dialogText = Format::Replace(Phrase::ExpandPhrases(dialogText), subs);
 	if(toDecline)

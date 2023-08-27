@@ -122,6 +122,13 @@ void Dialog::SetCanCancel(bool canCancel)
 
 
 
+void Dialog::SetAcceptDecline(bool acceptDecline)
+{
+	this->acceptDecline = acceptDecline;
+}
+
+
+
 // Draw this panel.
 void Dialog::Draw()
 {
@@ -163,7 +170,7 @@ void Dialog::Draw()
 	const Color &inactive = *GameData::Colors().Get("inactive");
 	if(canCancel)
 	{
-		string cancelText = isMission ? "Decline" : "Cancel";
+		string cancelText = acceptDecline ? "Decline" : "Cancel";
 		cancelPos = pos + Point(10., 0.);
 		SpriteShader::Draw(cancel, cancelPos);
 		Point labelPos(
@@ -171,7 +178,7 @@ void Dialog::Draw()
 			cancelPos.Y() - .5 * font.Height());
 		font.Draw(cancelText, labelPos, !okIsActive ? bright : dim);
 	}
-	string okText = isMission ? "Accept" : "OK";
+	string okText = acceptDecline ? "Accept" : "OK";
 	okPos = pos + Point(90., 0.);
 	Point labelPos(
 		okPos.X() - .5 * font.Width(okText),
@@ -210,7 +217,7 @@ void Dialog::ParseTextNode(const DataNode &node, size_t startingIndex, string &t
 	}
 	for(const DataNode &child : node)
 	{
-		if(child.Size() > 1 && child.Token(0) == "to")
+		if((child.Size() > 1 && child.Token(0) == "to") || child.Token(0) == "ok/cancel")
 			// Caller already handles options.
 			continue;
 		for(int i = 0; i < child.Size(); ++i)
@@ -340,7 +347,7 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 {
 	SetInterruptible(isMission);
 
-	this->isMission = isMission;
+	this->isMission = acceptDecline = isMission;
 	this->canCancel = canCancel;
 	okIsActive = true;
 
