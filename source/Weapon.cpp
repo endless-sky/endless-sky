@@ -113,8 +113,6 @@ void Weapon::LoadWeapon(const DataNode &node)
 					child.PrintTrace("Skipping unknown or incomplete submunition attribute:");
 			}
 		}
-		else if(key == "fade out" && child.Size() >= 2)
-			fadeOut = child.Value(1);
 		else if(key == "inaccuracy")
 		{
 			inaccuracy = child.Value(1);
@@ -144,7 +142,9 @@ void Weapon::LoadWeapon(const DataNode &node)
 		else
 		{
 			double value = child.Value(1);
-			if(key == "lifetime")
+			if(key == "fade out")
+				fadeOut = max(0., value);
+			else if(key == "lifetime")
 				lifetime = max(0., value);
 			else if(key == "random lifetime")
 				randomLifetime = max(0., value);
