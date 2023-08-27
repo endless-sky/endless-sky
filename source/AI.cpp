@@ -2435,7 +2435,7 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 	// Average distance from this ship's weapons to the enemy ship.
 	const double weaponDistanceFromTarget = direction.Length() - totalRadius / 3.;
 
-	// If this ship has an artillery AI, or some weapons have a
+	// If this ship uses an artillery AI, or some weapons have a
 	// blast radius, it should keep some distance instead of closing in.
 	// If a weapon has blast radius, some leeway helps avoid getting hurt.
 	if(minSafeDistance || (artilleryOverride && weaponDistanceFromTarget < shortestArtillery)
