@@ -175,6 +175,7 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/PrintData.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Projectile.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Radar.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/RadialSelectionPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Random.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Rectangle.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/RingShader.cpp

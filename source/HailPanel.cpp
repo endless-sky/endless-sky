@@ -254,6 +254,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		if(bribeCallback && bribed)
 			bribeCallback(bribed);
 		GetUI()->Pop(this);
+		return true;
 	}
 	else if(key == 't' && hasLanguage && planet)
 	{
@@ -293,6 +294,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			else
 				message = "You don't seem to be in need of repairs or fuel assistance.";
 		}
+		return true;
 	}
 	else if((key == 'b' || key == 'o') && hasLanguage)
 	{
@@ -336,9 +338,10 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		}
 		else
 			message = "I do not want your money.";
+		return true;
 	}
 
-	return true;
+	return false;
 }
 
 

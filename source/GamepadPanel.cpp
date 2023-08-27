@@ -229,9 +229,8 @@ void GamepadPanel::Draw()
 			if(button == SDL_CONTROLLER_BUTTON_DPAD_RIGHT)    info.SetCondition("Right Dpad Button");
 			if(button == SDL_CONTROLLER_BUTTON_DPAD_UP)       info.SetCondition("Up Dpad Button");
 			if(button == SDL_CONTROLLER_BUTTON_DPAD_DOWN)     info.SetCondition("Down Dpad Button");
-
-			if(button == SDL_CONTROLLER_BUTTON_LEFTSTICK)     info.SetCondition("Left Stick Button");
-			if(button == SDL_CONTROLLER_BUTTON_RIGHTSTICK)    info.SetCondition("Right Stick Button");
+			if(button == SDL_CONTROLLER_BUTTON_LEFTSTICK)     info.SetBar("Left Stick Button", 1);
+			if(button == SDL_CONTROLLER_BUTTON_RIGHTSTICK)    info.SetBar("Right Stick Button", 1);
 		}
 		else if(static_cast<size_t>(remapIdx) < CONFIGURABLE_BUTTONS.size() + CONFIGURABLE_AXES.size())
 		{
@@ -248,7 +247,7 @@ void GamepadPanel::Draw()
 		}
 	}
 
-	if(gamepadList.GetSelected() != NO_CONTROLLERS.front())
+	if(gamepadList.GetSelected() != NO_CONTROLLERS.front() && remapIdx == -1)
 		info.SetCondition("has controller");
 
 	ui->Draw(info, this);

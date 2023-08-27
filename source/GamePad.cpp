@@ -205,7 +205,7 @@ void GamePad::SaveMapping()
 	{
 		const std::string MAPPING_FILE_PATH = Files::Config() + EXTRA_MAPPINGS_FILE;
 		char guidstr[64];
-		SDL_GUIDToString(g_guid, guidstr, sizeof(guidstr));
+		SDL_JoystickGetGUIDString(g_guid, guidstr, sizeof(guidstr));
 
 		// Load the existing entries into memory
 		std::vector<char> existing_entries;
@@ -342,14 +342,14 @@ void GamePad::Handle(const SDL_Event &event)
 		break;
 	case SDL_JOYBUTTONDOWN:
 		// SDL_Log("Joystick button %d down", event.jbutton.button);
-		break;
-	case SDL_JOYBUTTONUP:
-		// SDL_Log("Joystick button %d up", event.jbutton.button);
 		if(g_capture_next_button)
 		{
 			g_joystick_last_input = "b" + std::to_string(event.jbutton.button);
 			g_capture_next_button = false;
 		}
+		break;
+	case SDL_JOYBUTTONUP:
+		// SDL_Log("Joystick button %d up", event.jbutton.button);
 		break;
 	case SDL_JOYHATMOTION:
 		// Hats are weird. They are a mask indicating which bits are held, so

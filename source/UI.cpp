@@ -318,10 +318,10 @@ void UI::DrawAll()
 		g_pointer_angle += Angle(.2);
 		const Color* color = GameData::Colors().Get("medium");
 		PointerShader::Bind();
-		PointerShader::Add(controllerCursorPosition, g_pointer_angle.Unit(), 8, 20, -20, *color);
-		PointerShader::Add(controllerCursorPosition, (g_pointer_angle + Angle(90.)).Unit(), 8, 20, -20, *color);
-		PointerShader::Add(controllerCursorPosition, (g_pointer_angle + Angle(180.)).Unit(), 8, 20, -20, *color);
-		PointerShader::Add(controllerCursorPosition, (g_pointer_angle + Angle(270.)).Unit(), 8, 20, -20, *color);
+		PointerShader::Add(controllerCursorPosition, g_pointer_angle.Unit(), 12, 20, -20, *color);
+		PointerShader::Add(controllerCursorPosition, (g_pointer_angle + Angle(90.)).Unit(), 12, 20, -20, *color);
+		PointerShader::Add(controllerCursorPosition, (g_pointer_angle + Angle(180.)).Unit(), 12, 20, -20, *color);
+		PointerShader::Add(controllerCursorPosition, (g_pointer_angle + Angle(270.)).Unit(), 12, 20, -20, *color);
 		PointerShader::Unbind();
 	}
 }
