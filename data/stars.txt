@@ -179,7 +179,7 @@ star "star/nova-small"
 	power 0.2
 	wind 4
 star "star/wr"
-	power 0.4
+	power 5
 	wind 4
 star "star/protostar-orange"
 	power 0.5

@@ -51,7 +51,8 @@ protected:
 private:
 	void TakeOffIfReady();
 	void CheckWarningsAndTakeOff();
-	void TakeOff();
+	void WarningsDialogCallback(bool isOk);
+	void TakeOff(bool distributeCargo);
 
 
 private:
