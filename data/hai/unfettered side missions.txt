@@ -288,9 +288,9 @@ outfit "Unfettered Landing Permit"
 	description "This item is needed in order to land on Unfettered planets, and its loss will cancel the arrangement."
 
 mission "Hai Legacy 3"
+	landing
 	name "Ancient claim"
 	description "Beat the Lightning Bugs in combat. You only have one day, and becoming disabled will result in losing the fight."
-	landing
 	source "Firelode"
 	deadline 2
 	to offer
@@ -346,10 +346,11 @@ mission "Hai Legacy 3"
 		dialog
 			`The enemy ships hail you. "You have failed the challenge. We will take the ship from you when we see fit. I'll fix your ship and leave you alone for a bribe, but I suggest you land on an Unfettered world and return the ship to us, with a most generous compensation. If you try to keep it from us, we'll do things the hard way."`
 			`	"Be warned, however, that your truce with us ends as soon as you land. This is not necessarily the end, <last>, you will simply have to prove yourself another way."`
+			`	"Oh and a word of advise: maybe you should have outfitted your ship differently, or used your range advantage by moving away at full thrust, before turning back to fire on us."`
 	on fail
 		"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 		# I would deduce the reputation here but being on a planet that becomes hostile as you land seem to cause issues for the game.
-		dialog `The Unfettered hail you. "You failed to complete the duel properly, and as such, are no longer authorized to land on our worlds. You will not enjoy unwarranted respect any longer!"`
+		dialog `The Unfettered hail you. "You failed to complete the duel, and as such, are no longer authorized to land on our worlds. You will not enjoy unwarranted respect any longer!"`
 	npc disable
 		government "Hai (Unfettered Challenger)"
 		to spawn
@@ -382,12 +383,19 @@ mission "Hai Legacy 3"
 			"total ships" == 1
 		to despawn
 			"total ships" != 1
-		personality unconstrained entering plunders target heroic
+		personality unconstrained entering plunders target heroic mute
 		ship "Sea Scorpion (Shredder)" "Requiem"
 		system "Hi Yahr"
-		dialog "You have managed to defeat the last of the Unfettered challengers. Now it's time to land and claim your reward."
-		on disable
-			set "unfettered: beaten extra bugs"
+		conversation
+			branch "first one"
+				not "unfettered: beaten extra bugs"
+			`You have managed to defeat the last of the Unfettered challengers. Now it's time to land and claim your reward.`
+				goto score
+			label "first one"
+			`You receive no hail from this extra challenger, but there can be no doubt that they are indeed defeated.`
+			label score
+			action
+				set "unfettered: beaten extra bugs"
 	npc
 		government "Hai (Unfettered)"
 		to spawn
