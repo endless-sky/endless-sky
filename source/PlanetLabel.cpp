@@ -38,7 +38,7 @@ using namespace std;
 
 namespace {
 	// Label offset angles, in order of preference (non-negative only).
-	const vector<double> LINE_ANGLES = {60., 120., 300., 240., 30., 150., 330., 210., 90., 270., 0., 180.};
+	constexpr double LINE_ANGLES[] = {60., 120., 300., 240., 30., 150., 330., 210., 90., 270., 0., 180.};
 	constexpr double LINE_LENGTH = 60.;
 	constexpr double INNER_SPACE = 10.;
 	constexpr double LINE_GAP = 1.7;
