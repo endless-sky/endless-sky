@@ -14,6 +14,7 @@
 
 
 mission "FW Zug Expansion: Assisted"
+	minor
 	name "Convoy to Zug"
 	description "Escort a convoy of freighters to <destination> for an important project. Expect pirate raids."
 	source
@@ -236,9 +237,9 @@ mission "FW Conservatory 2"
 	npc accompany save
 		government "Merchant"
 		personality escort timid
-		ship "Argosy" "F.M.S. Daybreak"
-		ship "Argosy" "F.M.S. Monsoon"
-		ship "Argosy" "F.M.S. Summer"
+		ship "Argosy" "F.S. Daybreak"
+		ship "Argosy" "F.S. Monsoon"
+		ship "Argosy" "F.S. Summer"
 	npc
 		government "Pirate"
 		personality plunders
@@ -266,9 +267,9 @@ mission "FW Conservatory 2B"
 	npc accompany save
 		government "Merchant"
 		personality escort timid
-		ship "Argosy" "F.M.S. Daybreak"
-		ship "Argosy" "F.M.S. Monsoon"
-		ship "Argosy" "F.M.S. Summer"
+		ship "Argosy" "F.S. Daybreak"
+		ship "Argosy" "F.S. Monsoon"
+		ship "Argosy" "F.S. Summer"
 	npc
 		government "Pirate"
 		personality plunders
@@ -549,6 +550,8 @@ mission "FW Wolf Pack 2A"
 		government "Republic"
 		system "Sarin"
 		personality timid staying target
+		"cargo settings"
+			commodities "Food"
 		ship "Freighter" "Horn of Plenty"
 		ship "Freighter" "Autumn Twilight"
 		ship "Freighter" "Bounty Harvest"
@@ -622,6 +625,8 @@ mission "FW Wolf Pack 3"
 		government "Republic"
 		system "Gacrux"
 		personality timid staying target
+		"cargo settings"
+			commodities "Food"
 		ship "Bulk Freighter" "Dew of the Morning"
 		ship "Bulk Freighter" "Heaven's Blessing"
 		dialog "The food convoy has been destroyed. You can now return to Solace."
@@ -692,7 +697,9 @@ mission "FW Wolf Pack 4"
 		government "Republic"
 		system "Mizar"
 		personality timid staying target
-		ship "Auxiliary (Cargo Mark II)" "RNS Golden Fleece"
+		"cargo settings"
+			commodities "Food"
+		ship "Auxiliary (Cargo Mark II)" "R.N.S. Golden Fleece"
 		dialog "You have eliminated the Auxiliary that was carrying food to the Republic. Time to report back to the Wolf Pack and receive your reward."
 	npc
 		government "Republic"
@@ -700,7 +707,8 @@ mission "FW Wolf Pack 4"
 		personality heroic staying
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			cargo 0
 			variant
 				"Carrier"

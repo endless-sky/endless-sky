@@ -85,6 +85,14 @@ namespace {
 }
 
 
+Dialog::Dialog(function<void()> okFunction, const string &message, Truncate truncate, bool canCancel, bool okIsActive)
+	: voidFun(okFunction)
+{
+	Init(message, truncate, canCancel, false);
+	this->okIsActive = okIsActive;
+}
+
+
 
 // Dialog that has no callback (information only). In this form, there is
 // only an "ok" button, not a "cancel" button.
@@ -254,7 +262,12 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 			okIsActive = true;
 		if(key == 'd' || (canCancel && isCloseRequest))
 			okIsActive = false;
-		if(okIsActive || isMission)
+		if(boolFun)
+		{
+			DoCallback(okIsActive);
+			GetUI()->Pop(this);
+		}
+		else if(okIsActive || isMission)
 		{
 			// If the OK button is disabled (because the input failed the validation),
 			// don't execute the callback.
@@ -333,7 +346,7 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 
 
 
-void Dialog::DoCallback() const
+void Dialog::DoCallback(const bool isOk) const
 {
 	if(isMission)
 	{
@@ -360,4 +373,7 @@ void Dialog::DoCallback() const
 
 	if(voidFun)
 		voidFun();
+
+	if(boolFun)
+		boolFun(isOk);
 }
