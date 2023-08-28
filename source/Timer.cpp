@@ -41,7 +41,7 @@ void Timer::Load(const DataNode &node, Mission *mission)
 		base = static_cast<int64_t>(node.Value(2));
 	if(node.Size() > 3)
 		rand = static_cast<uint32_t>(node.Value(3));
-	
+
 	this->mission = mission;
 
 	timeToWait = base + Random::Int(rand);
@@ -99,7 +99,8 @@ void Timer::Save(DataWriter &out) const
 	out.Write("timer", name, timeRemaining);
 	out.BeginChild();
 	{
-		out.Write("system", system->Name());
+		if(system)
+			out.Write("system", system->Name());
 		if(requireIdle)
 			out.Write("idle");
 		if(requireUncloaked)
@@ -214,7 +215,7 @@ void Timer::Step(PlayerInfo &player, UI *ui)
 {
 	if(isComplete)
 		return;
-	if(player.Flagship()->GetSystem() != system)
+	if(system && player.Flagship()->GetSystem() != system)
 	{
 		ResetOn(LEAVE_SYSTEM);
 		isActive = false;

@@ -107,7 +107,7 @@ private:
 	bool isComplete = false;
 	// Set to true when all the conditions are met
 	bool isActive = false;
-	
+
 	const Mission *mission = nullptr;
 };
 
