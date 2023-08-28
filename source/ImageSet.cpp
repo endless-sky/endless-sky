@@ -294,13 +294,9 @@ void ImageSet::Load() noexcept(false)
 	};
 	// Now, load the 2x sprites, if they exist. Because the number of 1x frames
 	// is definitive, don't load any frames beyond the size of the 1x list.
-	loadSprites(paths[1], buffer[1], "@2x");
-	// Now, load the mask sprites, if they exist. Because the number of 1x frames
-	// is definitive, don't load any frames beyond the size of the 1x list.
-	loadSprites(paths[2], buffer[2], "mask");
-	// Now, load the @2x mask sprites, if they exist. Because the number of 1x frames
-	// is definitive, don't load any frames beyond the size of the 1x list.
-	loadSprites(paths[3], buffer[3], "@2x mask");
+	LoadSprites(paths[1], buffer[1], "@2x");
+	LoadSprites(paths[2], buffer[2], "mask");
+	LoadSprites(paths[3], buffer[3], "@2x mask");
 
 	// Warn about a "high-profile" image that will be blurry due to rendering at 50% scale.
 	bool willBlur = (buffer[0].Width() & 1) || (buffer[0].Height() & 1);
