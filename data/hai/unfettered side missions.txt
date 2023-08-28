@@ -516,8 +516,8 @@ mission "Unfettered Landing Permit Lost"
 		"reputation: Hai (Unfettered)" <?= -1
 
 mission "Free Permit"
-	landing
 	invisible
+	landing
 	source
 		attributes "unfettered"
 	to offer
