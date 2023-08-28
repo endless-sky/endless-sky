@@ -209,7 +209,9 @@ void MissionPanel::Draw()
 	// Update the tooltip timer [0-60].
 	hoverSortCount += hoverSort >= 0 ? (hoverSortCount < HOVER_TIME) : (hoverSortCount ? -1 : 0);
 
-	const Color routeColor(.2f, .1f, 0.f, 0.f);
+	const Set<Color> &colors = GameData::Colors();
+
+	const Color &routeColor = *colors.Get("mission route");
 	const Ship *flagship = player.Flagship();
 	const double jumpRange = flagship ? flagship->JumpNavigation().JumpRange() : 0.;
 	const System *previous = nullptr;
@@ -237,7 +239,6 @@ void MissionPanel::Draw()
 			LineShader::Draw(from, to, 5.f, routeColor);
 	}
 
-	const Set<Color> &colors = GameData::Colors();
 	const Color &availableColor = *colors.Get("available back");
 	const Color &unavailableColor = *colors.Get("unavailable back");
 	const Color &currentColor = *colors.Get("active back");
