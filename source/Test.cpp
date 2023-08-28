@@ -645,5 +645,5 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 void Test::UnexpectedSuccessResult() const
 {
 	throw runtime_error("Unexpected test result: Test marked with status '" + StatusText()
-		+ "' was not expected to finish succesfully.\n");
+		+ "' was not expected to finish successfully.\n");
 }
