@@ -241,7 +241,7 @@ void ImageSet::ValidateFrames() noexcept(false)
 		}
 	};
 
-	// Drop any @2x paths that will not be used.
+	// Drop any @2x and mask paths that will not be used.
 	DropPaths(paths[1], "@2x");
 	DropPaths(paths[2], "mask");
 	DropPaths(paths[3], "@2x mask");
@@ -292,7 +292,7 @@ void ImageSet::Load() noexcept(false)
 				break;
 			}
 	};
-	// Now, load the 2x sprites, if they exist. Because the number of 1x frames
+	// Now, load the mask and 2x sprites, if they exist. Because the number of 1x frames
 	// is definitive, don't load any frames beyond the size of the 1x list.
 	LoadSprites(paths[1], buffer[1], "@2x");
 	LoadSprites(paths[2], buffer[2], "mask");
