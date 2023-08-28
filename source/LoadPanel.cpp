@@ -267,42 +267,69 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		if(sideHasFocus)
 		{
 			auto it = files.begin();
-			for( ; it != files.end(); ++it)
+			int index = 0;
+			for( ; it != files.end(); ++it, ++index)
 				if(it->first == selectedPilot)
 					break;
 
 			if(key == SDLK_DOWN)
 			{
+				const int lastVisibleIndex = (sideScroll / 20.) + 13.;
+				if(index >= lastVisibleIndex)
+					sideScroll += 20.;
 				++it;
 				if(it == files.end())
+				{
 					it = files.begin();
+					sideScroll = 0.;
+				}
 			}
 			else
 			{
+				const int firstVisibleIndex = sideScroll / 20.;
+				if(index <= firstVisibleIndex)
+					sideScroll -= 20.;
 				if(it == files.begin())
+				{
 					it = files.end();
+					sideScroll = 20. * files.size() - 280.;
+				}
 				--it;
 			}
 			selectedPilot = it->first;
 			selectedFile = it->second.front().first;
+			centerScroll = 0.;
 		}
 		else if(pit != files.end())
 		{
 			auto it = pit->second.begin();
-			for( ; it != pit->second.end(); ++it)
+			int index = 0;
+			for( ; it != pit->second.end(); ++it, ++index)
 				if(it->first == selectedFile)
 					break;
 
 			if(key == SDLK_DOWN)
 			{
 				++it;
+				const int lastVisibleIndex = (centerScroll / 20.) + 13.;
+				if(index >= lastVisibleIndex)
+					centerScroll += 20.;
 				if(it == pit->second.end())
+				{
 					it = pit->second.begin();
+					centerScroll = 0.;
+				}
 			}
 			else
 			{
+				const int firstVisibleIndex = centerScroll / 20.;
+				if(index <= firstVisibleIndex)
+					centerScroll -= 20.;
 				if(it == pit->second.begin())
+				{
 					it = pit->second.end();
+					centerScroll = 20. * pit->second.size() - 280.;
+				}
 				--it;
 			}
 			selectedFile = it->first;
