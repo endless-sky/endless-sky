@@ -45,7 +45,7 @@ ShipInfoDisplay::ShipInfoDisplay(const Ship &ship, const PlayerInfo &player, boo
 
 
 // Call this every time the ship changes.
-// scrollingPanel is for panels such as the shipyard and outfitter that cannot overflow because they scroll.
+// Panels that have scrolling abilities are not limited by space, allowing more detailled attributes.
 void ShipInfoDisplay::Update(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed, bool scrollingPanel)
 {
 	UpdateDescription(ship.Description(), ship.Attributes().Licenses(), true);

@@ -123,7 +123,6 @@ int OutfitterPanel::VisibilityCheckboxesSize() const
 
 
 
-
 bool OutfitterPanel::HasItem(const string &name) const
 {
 	const Outfit *outfit = GameData::Outfits().Get(name);
