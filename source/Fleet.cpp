@@ -296,18 +296,30 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 	if(planet)
 	{
 		if(!object)
-			object = system.FindStellar(planet);
-
-		// If the souce planet isn't in the source for some reason, bail out.
-		if(!object)
 		{
-			// Log this error.
-			Logger::LogError("Fleet::Enter: Unable to find valid stellar object for planet \""
-				+ planet->TrueName() + "\" in system \"" + system.Name() + "\"");
-			return;
+			// Search the stellar object associated with the given planet.
+			// If there are many possible candidates (for example for ringworlds),
+			// then choose a random one.
+			vector<const StellarObject *> stellarObjects;
+			for(const auto &object : system.Objects())
+				if(object.GetPlanet() == planet)
+					stellarObjects.push_back(&object);
+
+			// If the souce planet isn't in the source for some reason, bail out.
+			if(stellarObjects.empty())
+			{
+				// Log this error.
+				Logger::LogError("Fleet::Enter: Unable to find valid stellar object for planet \""
+					+ planet->TrueName() + "\" in system \"" + system.Name() + "\"");
+				return;
+			}
+
+			object = stellarObjects[Random::Int(stellarObjects.size())];
 		}
+
+
 		// To take off from the planet, all non-carried ships must be able to access it.
-		else if(planet->IsUnrestricted() || all_of(placed.cbegin(), placed.cend(), [&](const shared_ptr<Ship> &ship)
+		if(planet->IsUnrestricted() || all_of(placed.cbegin(), placed.cend(), [&](const shared_ptr<Ship> &ship)
 				{ return ship->GetParent() || planet->IsAccessible(ship.get()); }))
 		{
 			position = object->Position();
