@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerHailPanel.h"
 
 #include "text/alignment.hpp"
+#include "Dialog.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -45,12 +46,11 @@ PlayerHailPanel::PlayerHailPanel(PlayerInfo &player, const shared_ptr<Ship> &shi
 		function<void(const Government *)> bribeCallback)
 	: player(player), ship(ship), bribeCallback(bribeCallback)
 {
-
 	const Government *gov = ship->GetGovernment();
 	if(!ship->Name().empty())
 		header = gov->GetName() + " " + ship->Noun() + " \"" + ship->Name() + "\":";
 	else
-		header = ship->ModelName() + " (" + gov->GetName() + "): ";
+		header = ship->DisplayModelName() + " (" + gov->GetName() + "): ";
 	// Drones are always unpiloted, so they never respond to hails.
 	bool isMute = ship->GetPersonality().IsMute() || (ship->Attributes().Category() == "Drone");
 	hasLanguage = !isMute && (gov->Language().empty() || player.Conditions().Get("language: " + gov->Language()));
@@ -223,9 +223,16 @@ bool PlayerHailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 		if(GameData::GetPolitics().HasDominated(planet))
 		{
 			GameData::GetPolitics().DominatePlanet(planet, false);
-			player.Conditions().Erase("tribute: " + planet->Name());
+			// Set payment 0 to erase the tribute.
+			player.SetTribute(planet, 0);
 			message = "Thank you for granting us our freedom!";
 		}
+		else if(!planet->IsDefending())
+			GetUI()->Push(new Dialog([this]() { message = planet->DemandTribute(player); },
+				"Demanding tribute may cause this planet to launch defense fleets to fight you. "
+				"After battling the fleets, you can demand tribute again for the planet to relent.\n"
+				"This act may hurt your reputation severely. Do you want to proceed?",
+				Truncate::NONE, true, false));
 		else
 			message = planet->DemandTribute(player);
 		return true;
@@ -312,7 +319,8 @@ void PlayerHailPanel::SetBribe(double scale)
 	for(const shared_ptr<Ship> &it : player.Ships())
 		value += it->Cost();
 
+	if(value <= 0)
+		value = 1;
+
 	bribe = 1000 * static_cast<int64_t>(sqrt(value) * scale);
-	if(scale && !bribe)
-		bribe = 1000;
 }

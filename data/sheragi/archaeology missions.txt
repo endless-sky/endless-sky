@@ -218,7 +218,7 @@ mission "Deep Archaeology 5"
 		ship "Raven (Afterburner)" "D.P.S. Wyrd"
 		to despawn
 			has "dps wyrd dead"
-	npc 
+	npc
 		personality heroic
 		government "Deep"
 		ship "Raven (Afterburner)" "D.P.S. Skuld"

@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipInfoPanel.h"
 
 #include "text/alignment.hpp"
+#include "CategoryList.h"
 #include "CategoryTypes.h"
 #include "Command.h"
 #include "Dialog.h"
@@ -350,8 +351,9 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 	table.DrawAt(start);
 
 	// Draw the outfits in the same order used in the outfitter.
-	for(const string &category : GameData::Category(CategoryType::OUTFIT))
+	for(const auto &cat : GameData::GetCategory(CategoryType::OUTFIT))
 	{
+		const string &category = cat.Name();
 		auto it = outfits.find(category);
 		if(it == outfits.end())
 			continue;
@@ -484,10 +486,13 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 		zones.emplace_back(zoneCenter, LINE_SIZE, index);
 
 		// Determine what color to use for the line.
-		float high = (index == hoverIndex ? .8f : .5f);
-		Color color(high, .75f * high, 0.f, 1.f);
+		Color color;
 		if(isTurret)
-			color = Color(0.f, .75f * high, high, 1.f);
+			color = *GameData::Colors().Get(isHover ? "player info hardpoint turret hover"
+			: "player info hardpoint turret");
+		else
+			color = *GameData::Colors().Get(isHover ? "player info hardpoint gun hover"
+			: "player info hardpoint gun");
 
 		// Draw the line.
 		Point from(fromX[isRight], zoneCenter.Y());

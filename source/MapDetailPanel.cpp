@@ -131,6 +131,7 @@ void MapDetailPanel::Draw()
 	DrawInfo();
 	DrawOrbits();
 	DrawKey();
+	FinishDrawing("is ports");
 }
 
 
@@ -801,8 +802,6 @@ void MapDetailPanel::DrawInfo()
 		text.Wrap(selectedPlanet->Description());
 		text.Draw(Point(Screen::Right() - X_OFFSET - WIDTH, Screen::Top() + 20), medium);
 	}
-
-	DrawButtons("is ports");
 }
 
 
@@ -810,6 +809,7 @@ void MapDetailPanel::DrawInfo()
 // Draw the planet orbits in the currently selected system, on the current day.
 void MapDetailPanel::DrawOrbits()
 {
+	planets.clear();
 	const Sprite *orbitSprite = SpriteSet::Get("ui/orbits and key");
 	SpriteShader::Draw(orbitSprite, Screen::TopRight() + .5 * Point(-orbitSprite->Width(), orbitSprite->Height()));
 	Point orbitCenter = Screen::TopRight() + Point(-120., 160.);
@@ -871,7 +871,6 @@ void MapDetailPanel::DrawOrbits()
 	}
 
 	// Draw the planets themselves.
-	planets.clear();
 	for(const StellarObject &object : selectedSystem->Objects())
 	{
 		if(object.Radius() <= 0.)

@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "HailPanel.h"
 
 #include "text/alignment.hpp"
+#include "Dialog.h"
 #include "DrawList.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -73,13 +74,17 @@ void HailPanel::DrawHail()
 
 void HailPanel::DrawIcon(const Ship &ship)
 {
-	const float zoom = min(2.f, 400.f / max(ship.GetSprite()->Width(), ship.GetSprite()->Height()));
-	const Point center(-170., -10.);
-	const auto facing = ship.Facing();
+	// Draw the sprite, rotated, scaled, and swizzled as necessary.
+	float zoom = min(2.f, 400.f / max(ship.GetSprite()->Width(), ship.GetSprite()->Height()));
+	Point center(-170., -10.);
+	const Angle facing = ship.Facing();
 
 	DrawList draw;
-	draw.Add(Body(ship, center, Point(), facing, zoom));
-	for(const Hardpoint &hardpoint : ship.Weapons())
+	// Copy the ships's swizzle, animation settings, etc.
+	// Also draw its fighters and weapon hardpoints.
+	bool hasFighters = ship.PositionFighters();
+	auto addHardpoint = [this, &draw, &center, zoom, &facing](const Hardpoint &hardpoint) -> void
+	{
 		if(hardpoint.GetOutfit() && hardpoint.GetOutfit()->HardpointSprite().HasSprite())
 		{
 			Body body(
@@ -90,6 +95,35 @@ void HailPanel::DrawIcon(const Ship &ship)
 				zoom);
 			draw.Add(body);
 		}
+	};
+	auto addFighter = [this, &draw, &center, zoom, &facing](const Ship::Bay &bay) -> void
+	{
+		if(bay.ship)
+		{
+			Body body(
+				*bay.ship,
+				center + zoom * facing.Rotate(bay.point),
+				Point(),
+				facing + bay.facing,
+				zoom);
+			draw.Add(body);
+		}
+	};
+	if(hasFighters)
+		for(const Ship::Bay &bay : ship.Bays())
+			if(bay.side == Ship::Bay::UNDER)
+				addFighter(bay);
+	for(const Hardpoint &hardpoint : ship.Weapons())
+		if(hardpoint.IsUnder())
+			addHardpoint(hardpoint);
+	draw.Add(Body(ship, center, Point(), facing, zoom));
+	for(const Hardpoint &hardpoint : ship.Weapons())
+		if(!hardpoint.IsUnder())
+			addHardpoint(hardpoint);
+	if(hasFighters)
+		for(const Ship::Bay &bay : ship.Bays())
+			if(bay.side == Ship::Bay::OVER)
+				addFighter(bay);
 	draw.Draw();
 }
 

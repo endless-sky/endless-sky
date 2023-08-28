@@ -47,7 +47,7 @@ IllegalHailPanel::IllegalHailPanel(PlayerInfo &player, const Ship &hailingShip, 
 	if(!hailingShip.Name().empty())
 		header = gov->GetName() + " " + hailingShip.Noun() + " \"" + hailingShip.Name() + "\"";
 	else
-		header = hailingShip.ModelName() + " (" + gov->GetName() + ")";
+		header = hailingShip.DisplayModelName() + " (" + gov->GetName() + ")";
 	header += " is hailing you:";
 
 	static const std::string defaultMessage

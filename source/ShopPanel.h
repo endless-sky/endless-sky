@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Panel.h"
 
+#include "CategoryList.h"
 #include "ClickZone.h"
 #include "Mission.h"
 #include "OutfitInfoDisplay.h"
@@ -70,11 +71,6 @@ protected:
 
 
 protected:
-	void DrawShipsSidebar();
-	void DrawDetailsSidebar();
-	void DrawButtons();
-	void DrawMain();
-
 	void DrawShip(const Ship &ship, const Point &center, bool isSelected);
 
 	void CheckForMissions(Mission::Location location);
@@ -82,7 +78,6 @@ protected:
 	// These are for the individual shop panels to override.
 	virtual int TileSize() const = 0;
 	virtual int VisibilityCheckboxesSize() const;
-	virtual int DrawPlayerShipInfo(const Point &point) = 0;
 	virtual bool HasItem(const std::string &name) const = 0;
 	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) = 0;
 	virtual int DividerOffset() const = 0;
@@ -109,7 +104,7 @@ protected:
 	virtual bool Release(int x, int y) override;
 	virtual bool Scroll(double dx, double dy) override;
 
-	int64_t LicenseCost(const Outfit *outfit) const;
+	int64_t LicenseCost(const Outfit *outfit, bool onlyOwned = false) const;
 
 
 protected:
@@ -149,6 +144,7 @@ protected:
 	// Remember the current day, for calculating depreciation.
 	int day;
 	const Planet *planet = nullptr;
+	const bool isOutfitter;
 
 	// The player-owned ship that was first selected in the sidebar (or most recently purchased).
 	Ship *playerShip = nullptr;
@@ -182,8 +178,8 @@ protected:
 	std::vector<Zone> zones;
 	std::vector<ClickZone<std::string>> categoryZones;
 
-	std::map<std::string, std::set<std::string>> catalog;
-	const std::vector<std::string> &categories;
+	std::map<std::string, std::vector<std::string>> catalog;
+	const CategoryList &categories;
 	std::set<std::string> &collapsed;
 
 	ShipInfoDisplay shipInfo;
@@ -194,6 +190,13 @@ protected:
 
 
 private:
+	void DrawShipsSidebar();
+	void DrawDetailsSidebar();
+	void DrawButtons();
+	void DrawMain();
+
+	int DrawPlayerShipInfo(const Point &point);
+
 	bool DoScroll(double dy);
 	bool SetScrollToTop();
 	bool SetScrollToBottom();
