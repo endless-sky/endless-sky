@@ -33,9 +33,12 @@ void RaidFleet::Load(const DataNode &node, std::vector<RaidFleet> &raidFleets, b
 {
 	const Fleet *fleet = GameData::Fleets().Get(node.Token(valueIndex));
 	if(remove)
-		raidFleets.erase(remove_if(raidFleets.begin(), raidFleets.end(),
-			[fleet](const RaidFleet &raidFleet) noexcept -> bool { return raidFleet.GetFleet() == fleet; }),
-		raidFleets.end());
+	{
+		auto fleetMatcher = [fleet](const RaidFleet &raidFleet) noexcept -> bool {
+			return raidFleet.GetFleet() == fleet;
+		};
+		raidFleets.erase(remove_if(raidFleets.begin(), raidFleets.end(), fleetMatcher), raidFleets.end());
+	}
 	else
 		raidFleets.emplace_back(fleet,
 			node.Size() > (valueIndex + 1) ? node.Value(valueIndex + 1) : 2.,

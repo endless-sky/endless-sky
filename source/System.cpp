@@ -972,9 +972,10 @@ int System::MinimumFleetPeriod() const
 
 
 
-const std::vector<RaidFleet> &System::RaidFleets() const
+const vector<RaidFleet> &System::RaidFleets() const
 {
-	return raidFleets;
+	// If the system defines its own raid fleets then those are used in lieu of the government's fleets.
+	return (raidFleets.empty() && government) ? government->RaidFleets() : raidFleets;
 }
 
 

@@ -549,7 +549,7 @@ bool Government::SendUntranslatedHails() const
 // Pirate raids in this government's systems use these fleet definitions. If
 // it is empty, there are no pirate raids.
 // The second attribute denotes the minimal and maximal attraction required for the fleet to appear.
-const std::vector<RaidFleet> &Government::RaidFleets() const
+const vector<RaidFleet> &Government::RaidFleets() const
 {
 	return raidFleets;
 }
