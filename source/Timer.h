@@ -38,9 +38,9 @@ class UI;
 class Timer {
 public:
 	Timer() = default;
-	Timer(const DataNode &node, const std::string &missionName);
+	Timer(const DataNode &node, Mission *mission);
 	// Set up the timer from its data file node
-	void Load(const DataNode &node, const std::string &missionName);
+	void Load(const DataNode &node, Mission *mission);
 	// Note: the Save() function can assume this is an instantiated Timer, not a template,
 	// so the time to wait will be saved fully calculated, and with any elapsed time subtracted
 	void Save(DataWriter &out) const;
@@ -107,6 +107,8 @@ private:
 	bool isComplete = false;
 	// Set to true when all the conditions are met
 	bool isActive = false;
+	
+	const Mission *mission = nullptr;
 };
 
 
