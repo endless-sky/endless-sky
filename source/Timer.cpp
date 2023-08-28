@@ -125,6 +125,7 @@ void Timer::Save(DataWriter &out) const
 				{
 					out.Write(proximityCenter->Name());
 				}
+				out.EndChild();
 			}
 		}
 
