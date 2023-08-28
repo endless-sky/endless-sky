@@ -116,10 +116,14 @@ void MapDetailPanel::Step()
 
 	if(selectedSystem != shownSystem)
 		GeneratePlanetCards(*selectedSystem);
-	if(!player.GetPlanet())
-		DoHelp("map");
-	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
-		DoHelp("map advanced ports");
+
+	bool displayHelp = true;
+	if(displayHelp && !player.GetPlanet())
+		displayHelp = !DoHelp("map");
+	if(displayHelp && GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
+		displayHelp = !DoHelp("map advanced ports");
+	if(displayHelp)
+		displayHelp = !DoHelp("map advanced danger");
 }
 
 

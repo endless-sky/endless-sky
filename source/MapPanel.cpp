@@ -204,12 +204,13 @@ namespace {
 	}
 
 	// Return total value of raid fleet (if any) and 60 frames worth of system danger.
-	double DangerFleetTotal(const PlayerInfo &player, const System &system)
+	double DangerFleetTotal(const PlayerInfo &player, const System &system, const bool withRaids)
 	{
 		double danger = system.Danger() * 60;
-		for(const auto &raidFleet : system.GetGovernment()->RaidFleets())
-			if(player.RaidFleetAttraction(raidFleet, &system) > 0.)
-				danger += raidFleet.GetFleet()->Strength();
+		if(withRaids)
+			for(const auto &raidFleet : system.GetGovernment()->RaidFleets())
+				danger += player.RaidFleetAttraction(raidFleet, &system) *
+					raidFleet.GetFleet()->Strength();
 		return danger;
 	}
 
@@ -925,6 +926,7 @@ void MapPanel::UpdateCache()
 	double dangerScale = 1.;
 	if(commodity == SHOW_DANGER)
 	{
+		// Scale danger to span [0, 1] based on known systems, without including raid fleets.
 		double dangerMin = numeric_limits<double>::max();
 		for(const auto &it : GameData::Systems())
 		{
@@ -938,7 +940,7 @@ void MapPanel::UpdateCache()
 			if(!player.HasVisited(system))
 				continue;
 
-			const double danger = DangerFleetTotal(player, system);
+			const double danger = DangerFleetTotal(player, system, false);
 			if(danger > 0.)
 			{
 				if(dangerMax < danger)
@@ -1028,7 +1030,7 @@ void MapPanel::UpdateCache()
 			}
 			else if(commodity == SHOW_DANGER)
 			{
-				const double danger = DangerFleetTotal(player, system);
+				const double danger = DangerFleetTotal(player, system, true);
 				if(danger > 0.)
 					color = DangerColor(1. - dangerScale * log(danger / dangerMax));
 			}
