@@ -66,35 +66,33 @@ const Plugin *Plugins::Load(const string &path)
 	size_t pos = path.rfind('/', path.length() - 2) + 1;
 	string name = path.substr(pos, path.length() - 1 - pos);
 
-	auto *plugin = plugins.Get(name);
-
 	string pluginFile = path + "plugin.txt";
+	string aboutText;
 
 	// Load plugin metadata from plugin.txt.
-	DataFile file(pluginFile);
-	for(const DataNode &child : file)
+	bool hasName = false;
+	for(const DataNode &child : DataFile(pluginFile))
 	{
 		if(child.Token(0) == "name" && child.Size() >= 2)
-			plugin->name = child.Token(1);
-		else if(child.Token(0) == "about" && child.Size() >= 2)
-			plugin->aboutText = child.Token(1);
-	}
-
-	// Set missing required values.
-	if(plugin->name.empty())
-	{
-		plugin->name = std::move(name);
-		if(Files::Exists(pluginFile))
 		{
-			Logger::LogError(
-				"Failed to find name field in plugin.txt. Defaulting plugin name to folder name: \"" + plugin->name + "\"");
+			name = child.Token(1);
+			hasName = true;
 		}
+		else if(child.Token(0) == "about" && child.Size() >= 2)
+			aboutText = child.Token(1);
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
 	}
-	// Set values from old about.txt files.
-	if(plugin->aboutText.empty())
-		plugin->aboutText = Files::Read(path + "about.txt");
 
+	// 'name' is a required field for plugins with a plugin description file.
+	if(Files::Exists(pluginFile) && !hasName)
+		Logger::LogError("Warning: Missing required \"name\" field inside plugin.txt");
+
+	auto *plugin = plugins.Get(name);
+	plugin->name = std::move(name);
 	plugin->path = path;
+	// Read the deprecated about.txt content if no about text was specified.
+	plugin->aboutText = aboutText.empty() ? Files::Read(path + "about.txt") : std::move(aboutText);
 
 	return plugin;
 }
