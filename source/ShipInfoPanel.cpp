@@ -440,7 +440,7 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	// Draw the ship, using the black silhouette swizzle.
 	if(sprite)
 	{
-		SpriteShader::Draw(sprite, bounds.Center(), scale, 28, 0.f);
+		SpriteShader::Draw(sprite, bounds.Center(), scale, 28);
 		OutlineShader::Draw(sprite, bounds.Center(), scale * Point(sprite->Width(), sprite->Height()), Color(.5f));
 	}
 
