@@ -359,8 +359,10 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 			return true;
 		}
 		// Clicking the system name activates the view of the player's reputation with various governments.
+		// But the bit to the left will show danger of pirate/raid fleets instead.
 		else if(y < governmentY && y > governmentY - 30)
-			SetCommodity(SHOW_REPUTATION);
+			SetCommodity(x < Screen::Left() + mapInterface->GetValue("text margin") ?
+				SHOW_DANGER : SHOW_REPUTATION);
 		// Clicking the government name activates the view of system / planet ownership.
 		else if(y >= governmentY && y < governmentY + 25)
 			SetCommodity(SHOW_GOVERNMENT);
@@ -631,8 +633,8 @@ void MapDetailPanel::DrawKey()
 	{
 		// Each system is colored in accordance with its danger to the player,
 		// including threats from any "raid fleet" presence.
-		static const vector<string> labels = {"None", "Risky", "Dangerous", "Treacherous"};
-		for(size_t i = 0; i < labels.size(); ++i)
+		static const string labels[4] = {"Minimal", "Low", "Moderate", "High"};
+		for(int i = 0; i < 4; ++i)
 		{
 			RingShader::Draw(pos, OUTER, INNER, MapColor(i * (2. / 3.) - 1.));
 			font.Draw(labels[i], pos + textOff, dim);
@@ -730,12 +732,15 @@ void MapDetailPanel::DrawInfo()
 	SpriteShader::Draw(systemSprite, uiPoint + Point(systemSprite->Width() / 2. - textMargin, 0.));
 
 	const Font &font = FontSet::Get(14);
+	const Sprite *alertSprite = SpriteSet::Get(commodity == SHOW_DANGER ? "ui/red alert" : "ui/red alert greyed");
+	const float alertScale = min<float>(1.f, min<double>(textMargin,
+		font.Height()) / max(alertSprite->Width(), alertSprite->Height()));
+	SpriteShader::Draw(alertSprite, uiPoint + Point(-textMargin / 2., -7. + font.Height() / 2.), alertScale);
+
 	string systemName = player.KnowsName(*selectedSystem) ?
 		selectedSystem->Name() : "Unexplored System";
 	const auto alignLeft = Layout(145, Truncate::BACK);
 	font.Draw({systemName, alignLeft}, uiPoint + Point(0., -7.), medium);
-	if(commodity == SHOW_DANGER)
-		PointerShader::Draw(uiPoint, Point(1., 0.), 10.f, 10.f, 0.f, medium);
 
 	governmentY = uiPoint.Y() + textMargin;
 	string gov = player.HasVisited(*selectedSystem) ?

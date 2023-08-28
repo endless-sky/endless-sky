@@ -2130,6 +2130,12 @@ Files:
 Copyright: CyberJudas (cyberjudas@dnmx.org)
 License: CC-BY-SA-4.0
 
+Files:
+ images/ui/red?alert?greyed*
+Copyright: Dave Flowers
+License: CC-BY-SA-4.0
+Comment: greyscale version of images/ui/red alert, by Zitchas (zitchas.jma@gmail.com)
+
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by

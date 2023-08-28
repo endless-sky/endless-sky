@@ -202,6 +202,17 @@ namespace {
 		}
 		return pair<bool, bool>(blink, daysLeft > 0);
 	}
+
+	// Return total value of raid fleet (if any) and 60 frames worth of system danger.
+	double DangerFleetTotal(const PlayerInfo &player, const System &system)
+	{
+		double danger = system.Danger() * 60;
+		for(const auto &raidFleet : system.GetGovernment()->RaidFleets())
+			if(player.RaidFleetAttraction(raidFleet, &system) > 0.)
+				danger += raidFleet.GetFleet()->Strength();
+		return danger;
+	}
+
 }
 
 const float MapPanel::OUTER = 6.f;
@@ -899,6 +910,37 @@ void MapPanel::UpdateCache()
 	cachedCommodity = commodity;
 	nodes.clear();
 
+	// Get danger level range so we can scale by it.
+	double dangerMax = 0.;
+	double dangerScale = 1.;
+	if(commodity == SHOW_DANGER)
+	{
+		double dangerMin = numeric_limits<double>::max();
+		for(const auto &it : GameData::Systems())
+		{
+			const System &system = it.second;
+
+			// Only check displayed systems.
+			if(!system.IsValid() || system.Inaccessible())
+				continue;
+			if(!player.HasSeen(system) && &system != specialSystem)
+				continue;
+			if(!player.HasVisited(system))
+				continue;
+
+			const double danger = DangerFleetTotal(player, system);
+			if(danger > 0.)
+			{
+				if(dangerMax < danger)
+					dangerMax = danger;
+				if(dangerMin > danger)
+					dangerMin = danger;
+			}
+		}
+		if(dangerMax)
+			dangerScale = 2. / log(dangerMin / dangerMax);
+	}
+
 	// Draw the circles for the systems, colored based on the selected criterion,
 	// which may be government, services, or commodity prices.
 	const Color &closeNameColor = *GameData::Colors().Get("map name");
@@ -976,20 +1018,9 @@ void MapPanel::UpdateCache()
 			}
 			else if(commodity == SHOW_DANGER)
 			{
-				// A system's danger level is set by a combination of the normal hostile fleet
-				// presence, and the presence of a "raid fleet" attracted by unprotected cargo.
-				double danger = system.Danger();
-				for(const auto &raidFleet : system.GetGovernment()->RaidFleets())
-				{
-					const double attraction = player.RaidFleetAttraction(raidFleet, &system);
-					// Convert the raid fleet strength into a "danger" level. Up to 10
-					// may be spawned. The "pirate raid" strength is ~7.6m credits.
-					if(attraction > 0.)
-						danger += (raidFleet.GetFleet()->Strength() / 2000) * (1. - pow(1. - attraction, 10.));
-				}
-				// The highest base "Danger" level is ~700k, while the minimum is 0.
-				// Map these towards the expected [-1, 1] value range.
-				color = MapColor(log10(1. + danger) / 2 - 1.75);
+				const double danger = DangerFleetTotal(player, system);
+				if(danger > 0.)
+					color = MapColor(1. - dangerScale * log(danger / dangerMax));
 			}
 			else
 			{
