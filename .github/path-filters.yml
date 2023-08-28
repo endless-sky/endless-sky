@@ -1,20 +1,10 @@
 data:
-  - 'changelog*'
-  - 'copyright*'
-  - credits.txt
-  - icon.png
-  - keys.txt
-  - license.txt
   - 'data/**/*'
   - 'images/**/*'
   - 'sounds/**/*'
 
-game_code: &build
+game_code:
   - 'source/**'
-
-linux:
-  - SConstruct
-  - *build
 
 unit_tests:
   - 'tests/unit/**/*.h'
@@ -22,9 +12,6 @@ unit_tests:
   - 'tests/unit/**/*.cpp'
 
 integration_tests:
-  - 'utils/test_parse.*'
-  - 'tests/integration/run_tests*'
-  - 'data/tests/**'
   - 'tests/integration/config/plugins/integration-tests/**'
 
 codespell:
@@ -32,7 +19,17 @@ codespell:
 
 codeblocks_files:
   - '*.cbp'
-  - 'utils/check_codeblocks.sh'
+  - utils/check_codeblocks.sh
+
+editorconfig_files:
+  - '**/!(*.mp3)'
+
+content_style_check:
+  - utils/check_content_style.py
+  - utils/contentStyle.json
+
+code_style_check:
+  - utils/check_code_style.py
 
 cmake_files:
   - CMakeLists.txt
@@ -40,10 +37,17 @@ cmake_files:
   - tests/CMakeLists.txt
   - tests/integration/IntegrationTests.cmake
   - utils/vcpkg_bootstrap.cmake
+  - utils/check_cmake.sh
   - CMakePresets.json
-  - 'vcpkg/**'
   - vcpkg.json
   - vcpkg-configuration.json
 
 copyright:
-  - 'copyright'
+  - copyright
+  - utils/check_copyright.py
+
+changelog:
+  - changelog
+
+parse_script:
+  - utils/test_parse.ps1

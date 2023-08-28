@@ -27,10 +27,10 @@ shipyard "Imo Loo Mer Advanced"
 
 # Mon Ki o'Uden Splinter (unfettered) shipyards:
 shipyard "Mon Ki o'Uden Advanced"
-	"Aphid"
-	"Lightning Bug"	#Stolen
+	"Aphid (Unfettered)"
+	"Lightning Bug (Unfettered Shipyards)"	#Stolen
 	"Sea Scorpion"
-	"Shield Beetle"
+	"Shield Beetle (Unfettered Shipyards)"
 	# Has "Solifuge" and "Violin Spider" added by event.
 	# Technically has the specs for the "Ladybug" but not the resources to build it.
 
@@ -186,6 +186,7 @@ outfitter "Unfettered Basics"
 	"Hai Tracker"
 	"Bullfrog Anti-Missile"
 	"Hai Octopus Jammer"
+	"Sand Cell"
 	"Geode Reactor"
 	"Hai Williwaw Cooling"
 	"Hyperdrive"
@@ -202,6 +203,8 @@ outfitter "Unfettered Basics"
 	"Local Map"
 	"Quantum Keystone"
 	"Pulse Rifle"
+	"Asteroid Scanner"
+	"Outfit Scanner"
 
 # For ships, stations, or corporations.
 phrase "hai"

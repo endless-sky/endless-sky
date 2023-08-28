@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Sale.h"
 #include "Set.h"
 
+#include "CategoryList.h"
 #include "Color.h"
 #include "Conversation.h"
 #include "Effect.h"
@@ -27,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "FormationPattern.h"
 #include "Galaxy.h"
 #include "GameEvent.h"
+#include "Gamerules.h"
 #include "Government.h"
 #include "Hazard.h"
 #include "Interface.h"
@@ -122,6 +124,7 @@ private:
 	Set<Wormhole> wormholes;
 	std::set<double> neighborDistances;
 
+	Gamerules gamerules;
 	TextReplacements substitutions;
 	Trade trade;
 	std::vector<StartConditions> startConditions;
@@ -129,7 +132,7 @@ private:
 	std::map<const Sprite *, std::string> landingMessages;
 	std::map<const Sprite *, double> solarPower;
 	std::map<const Sprite *, double> solarWind;
-	std::map<CategoryType, std::vector<std::string>> categories;
+	std::map<CategoryType, CategoryList> categories;
 
 	std::map<std::string, std::string> tooltips;
 	std::map<std::string, std::string> helpMessages;

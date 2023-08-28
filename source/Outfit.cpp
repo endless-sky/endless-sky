@@ -208,6 +208,7 @@ void Outfit::Load(const DataNode &node)
 	{
 		strings["display name"] = &displayName;
 		strings["category"] = &category;
+		strings["series"] = &series;
 		strings["plural"] = &pluralName;
 		strings["description"] = &description;
 
@@ -324,7 +325,9 @@ void Outfit::Load(const DataNode &node)
 				audioIt->second->clear();
 				continue;
 			}
-			if(key == "thumbnail")
+			if(key == "index")
+				index = 0;
+			else if(key == "thumbnail")
 				thumbnail = nullptr;
 			else if(key == "ammo")
 			{
@@ -359,6 +362,8 @@ void Outfit::Load(const DataNode &node)
 		{
 			// Not all attributes support 'add'.
 			static const set<string> cannotAdd = {
+				"series",
+				"index",
 				"flotsam sprite",
 				"thumbnail",
 				"ammo"
@@ -411,7 +416,9 @@ void Outfit::Load(const DataNode &node)
 					++(*audioIt->second)[Audio::Get(valueStr)];
 				continue;
 			}
-			if(key == "flotsam sprite")
+			if(key == "index")
+				index = child.Value(valueIndex);
+			else if(key == "flotsam sprite")
 				flotsamSprite = SpriteSet::Get(valueStr);
 			else if(key == "thumbnail")
 				thumbnail = SpriteSet::Get(valueStr);
@@ -490,7 +497,7 @@ void Outfit::Load(const DataNode &node)
 	// so no runtime code has to check for both.
 	auto convertScan = [&](string &&kind) -> void
 	{
-		const string label = kind + " scan";
+		string label = kind + " scan";
 		double initial = attributes.Get(label);
 		if(initial)
 		{
@@ -502,8 +509,22 @@ void Outfit::Load(const DataNode &node)
 			attributes[label + " power"] += initial * initial * .0001;
 			// The default scan speed of 1 is unrelated to the magnitude of the scan value.
 			// It may have been already specified, and if so, should not be increased.
-			if(!attributes.Get(label + " speed"))
-				attributes[label + " speed"] = 1.;
+			if(!attributes.Get(label + " efficiency"))
+				attributes[label + " efficiency"] = 15.;
+		}
+
+		// Similar check for scan speed which is replaced with scan efficiency.
+		label += " speed";
+		initial = attributes.Get(label);
+		if(initial)
+		{
+			attributes[label] = 0.;
+			node.PrintTrace("Warning: Deprecated use of \"" + label + "\" instead of \""
+					+ kind + " scan efficiency\":");
+			// A reasonable update is 15x the previous value, as the base scan time
+			// is 10x what it was before scan efficiency was introduced, along with
+			// ships which are larger or further away also increasing the scan time.
+			attributes[kind + " scan efficiency"] += initial * 15.;
 		}
 	};
 	convertScan("outfit");
@@ -553,6 +574,20 @@ const string &Outfit::PluralName() const
 const string &Outfit::Category() const
 {
 	return category;
+}
+
+
+
+const string &Outfit::Series() const
+{
+	return series;
+}
+
+
+
+const int Outfit::Index() const
+{
+	return index;
 }
 
 
@@ -623,7 +658,7 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 
 		// Only automatons may have a "required crew" of 0.
 		if(!strcmp(at.first, "required crew"))
-			minimum = !attributes.Get("automaton");
+			minimum = !(attributes.Get("automaton") || other.attributes.Get("automaton"));
 
 		double value = Get(at.first);
 		// Allow for rounding errors:

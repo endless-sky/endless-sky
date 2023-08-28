@@ -1,0 +1,1489 @@
+# Copyright (c) 2023 by an anonymous author
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+# This is a derived work from Lia Gerty's documents.
+#
+# The words in this file were "translated" to korath languages using
+# the methodology described at the top of this PR:
+#
+#    https://github.com/endless-sky/endless-sky/pull/7101
+#
+# Guidance on food, culture, etc. comes from the Korath lore document.
+
+# Phrases begin with one of these:
+#
+# "efreti:"         = Kor Efret language phrase
+# "exile:"          = Korath Exile language phrase
+# "exile humanika:" = severely mispronounced human phrases spoken by Korath Exiles
+# "exile mixed:"    = contains a mix of Exile and mispronounced human words.
+#
+# The Exiles can speak a smattering of human words learned from raids,
+# though they lack any knowledge of grammar since theirs is vastly
+# different than ours. They can demand cargo or ask you not to gas
+# them, but they can't communicate complex concepts; the language
+# barrier is still quite high. Don't expect treaty negotiations or
+# research collaborations anytime soon, unless you find a translator.
+
+phrase "hostile korath untranslated"
+	phrase
+		# Pure Korath Exile:
+		"exile: loud angry rambling" 425
+		"exile: Exclamation!" 75
+
+		# Mixed Exile & Exile Humanika:
+		"exile mixed: cargo demands" 300
+		"exile mixed: bragging about tech" 200
+
+		# Pure Exile Humanika:
+		"exile humanika: cargo demands" 110
+		"exile humanika: general threats" 35
+		"exile humanika: insults" 30
+		"exile humanika: oddly specific demands" 25
+
+# Civilians don't demand your cargo since they never go on raids.
+phrase "hostile korath civilian untranslated"
+	phrase
+		"exile: loud angry rambling" 140
+		"exile mixed: bragging about tech" 70
+
+phrase "hostile disabled korath untranslated"
+	phrase
+		"exile: loud angry rambling" 150
+		"exile humanika: If you board us, we will win." 100
+		"exile mixed: request for mercy" 100
+		"exile mixed: Please don't do terrible things to us while we are disabled." 50
+
+phrase "friendly korath untranslated"
+	phrase
+		"exile: miscellaneous rambling" 100
+		"exile mixed: bragging about tech" 50
+
+phrase "friendly disabled korath untranslated"
+	phrase
+		"exile: miscellaneous rambling" 100
+		"exile: we are disabled, please help us" 50
+
+phrase "hostile kor efret untranslated"
+	phrase
+		"efreti: loud angry rambling" 150
+		"efreti: threatening warning about being protected" 50
+
+phrase "hostile disabled kor efret untranslated"
+	phrase
+		"efreti: loud angry rambling" 100
+		"efreti: threatening warning about being protected" 100
+
+phrase "friendly kor efret untranslated"
+	phrase
+		"efreti: miscellaneous rambling" 150
+		"efreti: friendly warning about being protected" 50
+
+phrase "friendly disabled kor efret untranslated"
+	phrase
+		"efreti: we are disabled, please help us" 200
+		"efreti: miscellaneous rambling" 50
+		"efreti: friendly warning about being protected" 50
+
+# Subphrases:
+
+phrase "exile humanika: If you board us, we will win."
+	phrase
+		"exile humanika: If you board our ship, then"
+	word
+		" "
+	phrase
+		"exile humanika: we will win the boarding mission"
+		"exile humanika: you will lose the boarding mission"
+	phrase
+		"exile mixed:, you inferior beings"
+		"exile: empty phrase"
+	word
+		"."
+
+phrase "exile humanika: insults"
+	phrase
+		"exile humanika: Your ship sucks."
+		"exile humanika: We are better than you."
+
+phrase "exile humanika: cargo demands"
+	phrase
+		"exile humanika: You will give us [cargo] and we will let you live."
+		"exile humanika: All of your [cargo] is ours now."
+
+phrase "exile humanika: general threats"
+	phrase
+		"exile humanika: You will lose this fight."
+		"exile humanika: Nobody can defeat the Korath."
+
+phrase "exile mixed: cargo demands"
+	phrase
+		"exile mixed: You will give us"
+	word
+		" "
+	phrase
+		"exile mixed: food"
+		"exile mixed: raw materials"
+	word
+		" "
+	phrase
+		"exile mixed: and we will let you live."
+
+phrase "exile humanika: oddly specific demands"
+	phrase
+		"exile humanika: You will give us"
+	word
+		" "
+	phrase
+		"exile humanika: cultural items" 10
+		"exile humanika: strange items" 3
+		"exile humanika: open source games" 3
+	word
+		" "
+	phrase
+		"exile humanika: and we will let you live."
+
+phrase "exile mixed: bragging about tech"
+	phrase
+		"exile: Our ship's"
+	word
+		" "
+	phrase
+		"exile: weapons" 7
+		"exile: engines" 5
+		"exile: systems" 5
+		"exile humanika: systems" 12
+		"exile humanika: engines" 12
+	word
+		" "
+	phrase
+		"exile: [system] is snazzy" 7
+		"exile: [system] is better than yours" 4
+	word
+		"." 3
+		"!"
+
+phrase "exile mixed: request for mercy"
+	phrase
+		"exile: Our ship is disabled."
+		"exile: Our systems went haywire."
+	word
+		" "
+	phrase
+		"exile mixed: Please don't do terrible things to us while we are disabled."
+
+
+phrase "exile humanika: You will lose this fight."
+	word
+		"Yu loose lif here."              # You [will] lose your life here. (mispronounced)
+		"Die yuu if no surendr."          # Die you if no surrender. (mispronounced)
+		"Wee wiiin yuu los if no cahgo."  # We [will] win [and] you [will] lose if [you give us] no cargo. (mispronounced)
+		"Yoo no gud fite so gif up."      # You are no good in a fight, so give up. (mispronounced)
+
+
+phrase "exile humanika: Nobody can defeat the Korath."
+	word
+		"We Korath imotal!"     # We, the Korath, are immortal! (mispronounced)
+		"Korath flame stong."   # [The] Korath flame is strong. (mispronounced)
+		"Korath bove all."      # Korath [are] above all. (mispronounced)
+		"Foeva Korath!"         # The Korath will live forever! (mispronounced)
+
+phrase "exile: Exclamation!"
+	word
+		# Strange korath sounds?
+		"Hththththt!"           # Some strange Korath sound?
+		"Sssnn'k!"              # Some strange Korath sound?
+		"Kaaaaaaaaaiii't!"      # Some strange Korath sound?
+		"Kaaaayiiyiiyiiyiiyii!" # Some strange Korath sound?
+		"Hsssthththiiiiii!"     # Some strange Korath sound?
+
+		# Korath exclamations
+		"Pusuh!"                # [Misinformed|misguided] individual!
+		"Abrakimot!"            # Person with no [skin|intelligence]!
+		"Ranrarefet!"           # [Towards|To|With the goal of] [victory|success]!
+		"Lome'atoh!"            # [Rotten|Not cared for|Genetically mutated in a negative way] egg!
+		"Tokatala'af!"          # To benefit [the] community!
+		"Alka'etukafet!"        # [An] orchestra of death!
+		"Irenraleb!"            # My warring is artistic!
+		"Ef'imairumut!"         # [You will] never [colonize|conquer] us!
+		"Ralabamet!"            # [I|We] are hungry!
+		"Tasikaob!"             # [No more] fasting!
+
+
+phrase "exile: we are disabled, please help us"
+	phrase
+		"exile: Our ship is disabled."
+		"exile: Our systems went haywire."
+	word
+		" "
+	phrase
+		"exile: Could you be so kind as to render assistance?"
+
+phrase "efreti: we are disabled, please help us"
+	phrase
+		"efreti: Our ship is disabled."
+	word
+		" "
+	phrase
+		"efreti: Could you be so kind as to render assistance?"
+
+phrase "efreti: threatening warning about being protected"
+	phrase
+		"efreti: You should stop attacking us"
+	word
+		" "
+	phrase
+		"efreti: because we are protected by (Insert Powerful Faction Name Here)."
+
+phrase "efreti: friendly warning about being protected"
+	phrase
+		"efreti: You should not attack us"
+	word
+		" "
+	phrase
+		"efreti: because we are protected by (Insert Powerful Faction Name Here)."
+
+phrase "exile: loud angry rambling"
+	phrase
+		"exile: the last person who attacked me had something bad happen to them"
+		"exile: I do bad things to my enemies"
+
+phrase "efreti: loud angry rambling"
+	phrase
+		"efreti: the last person who attacked me had something bad happen to them"
+		"efreti: I do bad things to my enemies"
+
+phrase "exile: miscellaneous rambling"
+	phrase
+		"exile: I like to do things"
+		"exile: I learned to do things"
+
+phrase "efreti: miscellaneous rambling"
+	phrase
+		"efreti: I like to do things"
+		"efreti: I learned to do things"
+
+# Here, the Korath do their best to speak human, using what few words
+# they know, hoping their pleas for mercy will be understood.  This
+# has a mix of exile and human speech, since even Korath that can't
+# speak human at all will try to get the point across using a word or
+# two they heard before to say, "Don't gas us!"
+phrase "exile mixed: Please don't do terrible things to us while we are disabled."
+	word
+		"'uu shud" 3    # You should (mispronounced)
+		"Can hav" 3     # Can have (mispronounced)
+		"'oo wil" 3     # You will (mispronounced)
+		"Most yuu" 3    # Must you (mispronounced)
+
+		"Ratami'"                # Please
+		"Asra 'olap"             # You should
+		"Bati'leh tiah ras"      # Be kind and
+		"Rattovroref ratiahet:"  # Show kindness:
+	word
+		" "
+	word
+		"'oo merve gas." 4  # no nerve gas (mispronounced)
+		"'o nerf gus." 4    # no nerve gas (mispronounced)
+		"no ga'as us." 4    # no gas us (mispronounced)
+		"nerf gas no." 4    # nerve gas no (mispronounced)
+
+		"ranrav rataron 'an jala'."       # do not use nerve gas.
+		"ranrav 'an ifat."                # do not gas us.
+		"ikrepleh. Ifat rata irobfanref." # stop. We would spare you.
+		"ratotam map nrag lareh."         # do the right thing.
+		"ilaf akit bosip."                # let us live.
+		"ratkafame' ifat."                # spare us.
+		"ratlaih ifat 'aheh."             # let us free.
+		"nrahlek okineh ava'."            # just fly away.
+
+# Phrase building blocks:
+
+
+phrase "exile humanika: If you board our ship, then"
+	word
+		"Yoo bored us"         # You board us (mispronounced)
+		"Board to"             # Board [us] to (mispronounced)
+		"Come'n onbod"         # Come in onboard (mispronounced)
+		"No you git unbod"     # No, you get onboard (mispronounced)
+		"Ova when boad"        # It will be over for you when you board us (mispronounced)
+
+phrase "exile humanika: we will win the boarding mission"
+	word
+		"kil ur marins"        # kill your marines (mispronounced)
+		"burn yuu up"          # burn you up (mispronounced)
+		"eat yoo skin"         # eat your skin (mispronounced)
+		"mak bon piles"        # make piles of your bones (mispronounced)
+		"to neks meet"         # turn you into my next meat (mispronounced)
+
+phrase "exile humanika: you will lose the boarding mission"
+	word
+		"yoo looose"           # you will lose (mispronounced)
+		"yoo ded mor"          # you dead more (mispronounced)
+		"die so die"           # die so die (What does this mean?)
+		"lose yoo crewe"       # lose your crew (mispronounced)
+		"no crew leff"         # no crew left (mispronounced)
+
+phrase "exile humanika: Your ship sucks."
+	phrase
+		"exile humanika: Your ship or its contents or attributes"
+	word
+		" "
+	phrase
+		"exile humanika: are inferior to what we possess"
+		"exile humanika: are sub-par by any reasonable standards"
+	phrase
+		"exile mixed:, you inferior beings"
+		"exile: empty phrase"
+	word
+		"."
+
+phrase "exile humanika: Your ship sucks."
+	phrase
+		"exile humanika: Your ship or its contents or attributes"
+	word
+		" "
+	phrase
+		"exile humanika: are inferior to what we possess"
+		"exile humanika: are sub-par by any reasonable standards"
+	phrase
+		"exile mixed:, you inferior beings"
+		"exile: empty phrase"
+	word
+		"."
+
+phrase "exile humanika: We are better than you."
+	phrase
+		"exile humanika: Our ship or its contents or attributes"
+	word
+		" "
+	phrase
+		"exile humanika: are superior to what you possess"
+		"exile humanika: are above par by any reasonable standards"
+	phrase
+		"exile mixed:, you inferior beings"
+		"exile: empty phrase"
+	word
+		"."
+
+phrase "exile humanika: Your ship or its contents or attributes"
+	word
+		"Yer ship"           # Your ship (mispronounced)
+		"Yoo"                # You (mispronounced)
+		"Yer injuns"         # Your engines (mispronounced)
+		"Yu wepuns"          # Your weapons (mispronounced)
+		"'oo gen'rator"      # Your [power] generator (mispronounced)
+		"Dem ship"           # Them ship (mispronounced)
+
+phrase "exile humanika: Our ship or its contents or attributes"
+	word
+		"Are ship"           # Our ship (mispronounced)
+		"Wee"                # We (mispronounced)
+		"Mi injuns"          # My engines (mispronounced)
+		"Oar wepuns"         # Our weapons (mispronounced)
+		"Ere pasa core"      # Our plasma core (mispronounced)
+		"Mi ship"            # My ship (mispronounced)
+
+phrase "exile humanika: are sub-par by any reasonable standards"
+	word
+		"a's no gud"         # is no good (mispronounced)
+		"baad"               # bad (mispronounced)
+		"be sit"             # is [epithet for fecal matter] (mispronounced)
+		"dus'n wurk"         # doesn't work (mispronounced)
+		"ain' gud"           # ain't good (mispronounced)
+
+phrase "exile humanika: are above par by any reasonable standards"
+	word
+		"i' amazin"          # is amazing (mispronounced)
+		"do gud"             # [do|does] good (mispronounced)
+		"werks wall"         # works well (mispronounced)
+		"snassy"             # [snazzy|sassy] (mispronounced)
+		"hi tek"             # [is] high tech (mispronounced)
+
+phrase "exile humanika: are inferior to what we possess"
+	word
+		"les ours"           # [is] less [than] ours (mispronounced)
+		"smalrn oars"        # [is] smaller than ours (mispronounced)
+		"week thin me"       # [is] weaker than me (mispronounced)
+
+phrase "exile humanika: are superior to what you possess"
+	word
+		"be'ren yurs"        # [is] better than yours (mispronounced)
+		"bigger yers"        # [is] bigger than yours (mispronounced)
+		"ston thin you"      # [is] stronger than [you|yours] (mispronounced)
+
+phrase "exile: empty phrase"
+	word
+		""
+
+phrase "exile mixed:, you inferior beings"
+	word
+		", "
+	phrase
+		"exile humanika: you inferior beings"
+
+phrase "exile humanika: you inferior beings"
+	word
+		"humanika dren"       # human dren (mispronounced)
+		"weeeeek speeeces"    # weak species (mispronounced)
+		"yoo ugli foo"        # You ugly fool (mispronounced)
+		"skinlis beest"       # Skinless beast (mispronounced)
+		"ugli halching"       # Ugly hatchling (mispronounced)
+		"yer've humpd corp's" # you have performed explicit actions with a corpse (mispronounced)
+
+phrase "exile humanika: All of your [cargo] is ours now."
+	phrase
+		"exile humanika: All of your"
+	word
+		" "
+	phrase
+		"exile humanika: non-luxury foodstuffs" 3
+		"exile humanika: raw materials" 2
+		"exile humanika: tactical and strategic items"
+	word
+		" "
+	phrase
+		"exile humanika: is ours now."
+
+phrase "exile humanika: You will give us [cargo] and we will let you live."
+	phrase
+		"exile humanika: You will give us"
+	word
+		" "
+	phrase
+		"exile humanika: non-luxury foodstuffs" 3
+		"exile humanika: raw materials" 2
+		"exile humanika: tactical and strategic items"
+	word
+		" "
+	phrase
+		"exile humanika: and we will let you live."
+
+phrase "exile humanika: You will give us"
+	word
+		"Can haf"                # Can have (mispronounced)
+		"Will haf"               # Will have (mispronounced)
+		"Gif us"                 # Give us (mispronounced)
+		"Tribu'e"                # Tribute (mispronounced, probably heard it from pirates)
+		"Wee taek yur"           # We take your (mispronounced)
+		"Is are"                 # Is our (mispronounced)
+
+phrase "exile humanika: All of your"
+	word
+		"All yer"                # All your (mispronounced)
+		"Yor"                    # Your (mispronounced)
+		"Te"                     # The (mispronounced)
+		"A' of our"              # All of your (mispronounced)
+
+phrase "exile humanika: is ours now."
+	word
+		"blong to u'."           # belong to us (mispronounced)
+		"giv mine."              # give mine (mispronounced)
+		"arrr ows now."          # are ours now (mispronounced)
+		"ar ba'ong to us."       # are belong to us (mispronounced)
+
+phrase "exile: You will give us"
+	word
+		"Asra rata ilehfef ifat"                  # You will give us
+		"Ifat kokroref asra"                      # We demand your
+		"Itimif aofe' oftimif"                    # [We now] own all of your
+		"Kohelef ranraneb poreb"                  # [We are] seizing a full [cargo] hold of
+		"Ratileh ifat aofe'"                      # Give us all [of your]
+		"Ratomlebis tokro mihfanref"              # [It is] necessary to take [your]
+		"Pakrileb rapakleh bosip nrag akit mihfa" # [Our] survival dictates we take
+
+phrase "exile mixed: You will give us"
+	phrase
+		"exile: You will give us" 2
+		"exile humanika: You will give us"
+
+phrase "exile mixed: food"
+	phrase
+		"exile: good food" 2
+		"exile humanika: non-luxury foodstuffs"
+
+# Wish list food, probably half joking
+phrase "exile: good food"
+	word
+		"ukku'il ifod"                          # squid risotto
+		"roafal ras iahad ifod"                 # herb and chili calamari
+		"ak'ab akrik ifod-ifod"                 # squid ink pasta
+		"ifod nrelun"                           # fried calamari
+		"ko'ibnraol ranres egralu"              # space slug with orange
+		"bipad ko'ibnraol nrilet"               # dried space slug chips
+		"asame' oavip aok lane'"                # fresh dark green lettuce
+		"nrahfot tasah pagrel"                  # crunchy rhino beetles
+		"ilehul' lane' nrag nrakaf"             # ripe succulent strawberries
+		"sud nrannrab ranres nracah pikob"      # baked cod with garlic
+		"kemmij emu' nrannrab"                  # baked sole fillet
+		"'ah koam imipd"                        # Chilean Sea Bass
+		"rati is 'aka 'aklet"                   # fish en papillote
+		"rumef rohfe osaf"                      # honeydew melons
+		"oham nrirot nradrid 'omap"             # finely chopped yellow squash
+		"ica' oavip kolab"                      # shredded collard greens
+		"totnrafe' aqlam nridad nramen"         # a bowlful of hornworm larvae
+		"polome' irumut kofe'"                  # an entire ant colony
+		"igah 'otik rinris ranres ra'aip"       # chilled baby mice with garnish
+		"ak'ab lamo midet ranres u'tah nradrid" # a pasta of small snakes with mice meatballs
+
+phrase "exile mixed: raw materials"
+	phrase
+		"exile: good raw materials" 2
+		"exile humanika: raw materials"
+
+phrase "exile: good raw materials"
+	word
+		"ranrakah 'afe irlof"             # pure gold ingots
+		"foirukomb nrag kanra' 'omap"     # highly refined plutonium
+		"ralahfem foirakik"               # titanium sheets
+		"kabfelebe' ruk nrakah reki'nrok" # quarter ton tungsten rods (Korath tons, obviously)
+		"raimleh arlobfe'"                # perfect diamonds
+		"afim pomob kemab anahfek"        # fifty palettes of copper
+		"rabab ogat 'alet"                # hardwood planks
+		"'okale' melah li'ab rakaoh"      # a hundred barrels of manufactured sand
+		"avah maloktol' ma'af"            # bulk structural steel
+		"ehokurar ruhlat ifama"           # naturally [formed] carbon nanotubes
+		"ralahfem karuhlatimub"           # polycarbonate sheets
+
+phrase "exile mixed: and we will let you live."
+	phrase
+		"exile: and we will let you live." 2
+		"exile humanika: and we will let you live."
+
+phrase "exile humanika: and we will let you live."
+	word
+		"lat 'oo liff."                   # let you live (mispronounced)
+		"oo go frie."                     # you go free (mispronounced)
+		"no' oo die."                     # not you die (mispronounced)
+		"oo stai ali'ef."                 # you stay alive (mispronounced)
+		"wee go o o way."                 # we go [our own way|away] (mispronounced)
+		"wee go way."                     # we go away (mispronounced)
+		"uu keep ur skin"                 # you will keep your skin (mispronounced)
+
+phrase "exile: and we will let you live."
+	word
+		"'amahfef asra ranres ranro'nramet bosip."  # [we will] reward you with survival.
+		"iba rata amagref inam."                    # [your] flame will burn anew
+		"rata anavref kimot asra."                  # [you] will keep your skin.
+		"imahfet et ofanlaomet."                    # [we will let you] return to your family.
+		"ratagalef ranro'nramet bosip asra."        # [you can] celebrate your survival
+
+
+# Attempt at demanding what they need so you understand. Korath know
+# very few words and don't know our grammar at all, so it doesn't come
+# out right.
+
+# Non-luxury foods
+phrase "exile humanika: non-luxury foodstuffs"
+	word
+		# General terms for food have a high probability
+		"fuud" 2                     # food (mispronounced)
+		"f'oood" 2                   # food (mispronounced)
+		"fude" 2                     # food (mispronounced)
+		"foo'de" 2                   # food (mispronounced)
+
+		# Terms for categories of food have a high probability
+		"feeshs" 2                   # fish (mispronounced)
+		"frute" 2                    # fruit (mispronounced)
+		"vetaples" 2                 # vegetables (mispronounced)
+		"nots" 2                     # nuts (mispronounced)
+		"mete" 2                     # meat (mispronounced)
+
+		# Individual foods are less likely
+		"sammon" 1            # salmon (mispronounced)
+		"cikken" 1            # chicken (mispronounced)
+		"beaf" 1              # beef (mispronounced)
+		"let'us" 1            # lettuce (mispronounced)
+		"verman" 1            # vermin (mispronounced)
+		"fuit" 1              # fruit (mispronounced)
+		"buberris" 1          # blueberries (mispronounced)
+		"insets" 1            # insects (mispronounced)
+		"isekts" 1            # insects (mispronounced)
+		"bee'lus" 1           # beetles (mispronounced)
+		"feesh" 1             # fish (mispronounced)
+		"starburries" 1       # strawberries (mispronounced)
+		"burds" 1             # birds (mispronounced)
+		"burries" 1           # berries (mispronounced)
+		"base" 1              # bass (mispronounced)
+		"werms" 1             # worms (mispronounced)
+
+phrase "exile humanika: raw materials"
+	word
+		"iren"         # iron (mispronounced)
+		"copear"       # copper (mispronounced)
+		"sapi'r"       # sapphire (mispronounced)
+		"uranume"      # uranium (mispronounced)
+		"herdwuud"     # hardwood (mispronounced)
+		"tungs'en"     # tungsten (mispronounced)
+		"sann'"        # sand (mispronounced)
+		"qurts"        # quartz (mispronounced)
+		"ste'l"        # steel (mispronounced)
+		"pla'ik"       # plastic (mispronounced)
+
+phrase "exile humanika: tactical and strategic items"
+	word
+		"mapse of humanika spass"   # Maps of human space (mispronounced)
+		"tar maps"                  # Star maps (mispronounced)
+		"humanika flit moment dita" # Human fleet movement data (mispronounced)
+		"re' wermhol resurch"       # Red wormhole research (mispronounced)
+		"rad holl resurch"          # Red [worm]hole research (mispronounced)
+		"wermhol resurch"           # Wormhole research (mispronounced)
+		"sampil o humanika tetch"   # [Examples|Samples] of human technology (mispronounced)
+		"inernal govment docmants"  # internal government documents (mispronounced)
+		"humanika beakoff gupes"    # Information about human break-off groups (ie.: Remnant or Alphas) (mispronounced)
+		"medital resorch humanika"  # Medical research relating to humans. (Perhaps to keep captives alive, design bioweapons, or simple curiosity.) (mispronounced)
+		"nerf gus"                  # Nerve gas, probably to develop counter-measures. (mispronounced)
+		"all yer data"              # all [of] your data (mispronounced)
+		"'avigatun lugs"            # navigation logs (mispronounced)
+
+
+# These show the Korath Exiles do still try to have a culture. All of
+# these are horribly mispronounced human words.
+phrase "exile humanika: cultural items"
+	word
+		"sculping suplis"          # Sculpting supplies (mispronounced)
+		"painbush n paint"         # Paintbrushes and paint (mispronounced)
+		"musi'l instru'ats"        # Musical instruments (mispronounced)
+		"dru' set"                 # Drum set (mispronounced)
+		"Mosart musaic"            # Mozart music (mispronounced)
+		"tess set's"               # chess sets (mispronounced)
+		"fingre pain'in ki'"       # finger-painting kit (mispronounced)
+		"all yer operas"           # all of your operas (mispronounced)
+		"sonettes n haukus"        # sonnets and haikus (mispronounced)
+		"colore' pencals"          # colored pencils (mispronounced)
+		"buulk fabri'"             # bulk fabric (mispronounced)
+		"strang instraments"       # string instruments (mispronounced)
+		"rok gittar"               # rock guitar (mispronounced)
+		"bomance novals"           # [romance|bromance] novels (mispronounced)
+		"skech buks"               # sketch books (mispronounced)
+		"cley n kiln"              # clay and kiln (mispronounced)
+		"benjos"                   # banjos (mispronounced)
+		"bokets f painte"          # buckets of paint (mispronounced)
+		"easls ith trypods"        # easels with tripods (mispronounced)
+		"recerd playrs"            # record players (mispronounced)
+		"relegos tects"            # religious texts (mispronounced)
+		"blak muusic shee's"       # blank music sheets (mispronounced)
+		"sinin boowl sets"         # singing bowl set (mispronounced)
+
+
+# These are items that make you wonder what strange things happen
+# among the Korath that make them ask for this.
+phrase "exile humanika: strange items"
+	word
+		"kit'ens"                            # Kittens (mispronounced)
+		"Hoy a'orn cookees"                  # Hai acorn cookies (mispronounced)
+		"toilat pepper"                      # Toilet paper (mispronounced)
+		"geko"                               # Gecko (mispronounced)
+		"Sha'ls n Sheragi"                   # Shackles and Sheragi (mispronounced)
+		"Bondle' Fontre'z: tee Fire Lizards" # Boundless Frontiers: the Fire Lizards (mispronounced)
+		"Ter Mite Bee Riot Abums"            # There Might Be Riots Albums (mispronounced)
+		"How tu Serv Man buuk"               # The book, "How to Serve Man" (mispronounced)
+		"ganfadder clok"                     # grandfather clock (mispronounced)
+		"bored games"                        # board games (mispronounced)
+
+
+# The Exiles like to play other open source games. These are horribly
+# mispronounced names of actual games.
+phrase "exile humanika: open source games"
+	word
+		"Nethick"                  # Nethack (mispronounced)
+		"Batfer Westnorth"         # Battle for Wesnoth (mispronounced)
+		"Komium Bee Essu"          # Chromium BSU (mispronounced)
+		"Feedoid R Peegee"         # Freedroid RPG (mispronounced)
+		"Fee Rion"                 # Free Orion (mispronounced)
+		"Flea Civ"                 # Freeciv (mispronounced)
+		"Ehmmay Are Ess"           # M.A.R.S. (mispronounced)
+		"Hedgeworts"               # Hedgewars (mispronounced)
+		"Uppen Tee Tee Dee"        # Open TTD (mispronounced)
+		"Supper Tax Kert"          # SuperTuxKart (mispronounced)
+		"Zero Add'ee"              # Zero AD (mispronounced)
+
+
+phrase "exile: [system] is snazzy"
+	word
+		"ioabfamef raarlobfe'et"                   # transcends perfection
+		"pamasa aglat ire' tirtek"                 # is a work of engineering art
+		"kapabis alade' ipami"                     # is divinely sculpted
+		"pamasa aglatapaf"                         # is a masterpiece
+		"monnro famas agri'nroj"                   # excels at its function
+		"itimifef raobfafet nrag laom a'aih"       # has amazing capabilities
+		"pamasa nrag nrimab 'iraf is fama ak'efe'" # is the most snazzy in the universe
+		"ralefab nrag lemotakte'"                  # spectacularly exhibits [its purpose]
+		"'oleref-'olek ipihemef avlerit"           # perennially exceeds performance [metrics]
+		"kaohis ranres kanra' tiah"                # is most excellently fashioned
+
+phrase "exile: [system] is better than yours"
+	word
+		"saha-sahaleh ikacemef inumurtek asra"           # is centuries past your technology
+		"kapimlek inah asra iklebe' refolka'ri ipami"    # looks to you like a divine instrument
+		"raavleteb kad nrag pihem tiah ilas mabat"       # [has a] better paint job than your ship
+		"monnro is laom rafapafeb asra"                  # excels beyond your understanding
+		"pamasa ire' nrag tasik parleb a'ih asra ianlap" # is art you could never appreciate
+
+phrase "exile: Our ship is disabled."
+	phrase
+		"exile: We or our ship"
+	word
+		" "
+	phrase
+		"exile: ain't doing so well right now."
+
+
+phrase "exile: Our systems went haywire."
+	phrase
+		"exile: Our malfunctioning system"
+	word
+		" "
+	phrase
+		"exile: has destroyed our ship."
+
+phrase "exile: Our malfunctioning system"
+	phrase
+		"exile: Our ship's"
+	word
+		" "
+	phrase
+		"exile humanika: engines" 9
+		"exile humanika: systems" 9
+		"exile: engines" 4
+		"exile: systems" 4
+		"exile: weapons" 4
+
+phrase "exile: Our ship's"
+	word
+		"Akit"                # Our
+		"Mabat iri"           # This ship's
+		"Ot"                  # My
+		"Oki"                 # The
+
+# These outfit names are just supposed to be good enough for hails.
+# If we were to rename the outfits, the names should be finely
+# crafted after wide-spread review.
+
+phrase "exile: weapons"
+	word
+		"mihfa etilka' kellok"          # grab-strike turret
+		"alaref ratunufeb krop'"        # shunt-strike turret
+		"oamapnref alaref i'akiqaln"    # banisher grav-turret
+		"ratlaomet akavre' i'akiqaln"   # expeler grav-ray
+		"alaref matnrareb masol"        # warder anti-missile
+		"akavre' tahfuk iba"            # fire-lance
+		"nraseb nrag latahlek"          # blaze-pike turret
+		"korath alaref ataler"          # korath inferno turret
+		"le'am ranrahfakleb"            # digger mining beam
+		"alaref ranrahfakleb"           # digger mining turret
+		"mebaket enralnam"              # langrage hyper-heaver
+		"masol iba ranril"              # firelight missile
+		"masol iba rabuk"               # firestorm torpedo
+
+
+phrase "exile: engines"
+	word
+		"nrulusreb ovaf"                # forward thrusters
+		"nrulusreb timahlek"            # reverse thrusters
+		"latahfeb 'alet"                # afterburners
+		"kev isofet"                    # steering
+		"ri'ef"                         # engines
+		"talennreb lo'oh"               # bow drive
+
+phrase "exile humanika: engines"
+	word
+		"tusters"                       # thrusters (mispronounced)
+		"injuns"                        # engines (mispronounced)
+		"s'earing"                      # steering (mispronounced)
+		"bow drif"                      # bow drive (mispronounced)
+		"fawid tusters"                 # forward thrusters (mispronounced)
+		"'eversers"                     # reversers (mispronounced)
+
+phrase "exile: systems"
+	word
+		"ikri fek'i'"                   # systems core[s]
+		"ikri af'amb"                   # plasma core[s]
+		"oalib 'arab"                   # heat shunt[s]
+		"rinrisreb foilkar liad"        # liquid sodium cooler
+		"pamunreb rapah latah"          # fuel processor
+		"roi'ak'a rarapakleb"           # defense station
+
+phrase "exile humanika: systems"
+	word
+		"sysim corr"                    # systems core (mispronounced)
+		"lasma corr"                    # plasma core (mispronounced)
+		"haet sunt"                     # heat shunt (mispronounced)
+		"likid coolar"                  # liquid cooler (mispronounced)
+		"gruel proce'or"                # fuel processor (mispronounced)
+
+phrase "exile: has destroyed our ship."
+	word
+		"pamek liadref"               # has melted
+		"lareh-lareh ratpar'ofis"     # totally annihilated
+		"lareh-lareh sekamohuhfud'is" # thoroughly discombobulated
+		"fomeh ratibalis"             # unmade
+		"lareh-lareh baonref"         # completely vaporized
+		"rattimahfef 'akilamub"       # reversed the polarity of
+		"rataretis agaih"             # charged (in the electrical sense)
+		"agrporebe' 'ohferef"         # fully penetrated through
+		"lareh-lareh liad"            # absolutely liquified
+		"tasemef arlobfe'"            # [perfectly|without exception] imploded
+	word
+		" "
+	phrase
+		"exile: our entire ship."
+		"exile: part of our ship."
+
+phrase "exile: our entire ship."
+	word
+		"polome' mabat ifat."         # our entire ship.
+		"polome' rarivalet."          # the whole craft.
+		"agrap agramane'."            # just everything.
+		"rapohameb ras rarat."        # port and starboard.
+		"aofe' tes."                  # all decks.
+
+phrase "exile: part of our ship."
+	word
+		"ri'ef rarat."                # the starboard engines.
+		"aofe' alaref rabes."         # all forward turrets
+		"nrulusreb lakobleh."         # the turning thrusters
+		"nravroreb bosip rapahfak."   # auxiliary life support
+		"ladrafeb ia'ileb."           # the shield emitters
+		"raiatnral iamel agas afako." # [the] primary power relay circuits
+
+phrase "exile: We or our ship"
+	word
+		"Mabat ifat"        # Our ship
+		"Anlo' nraol iri"   # This space haven
+		"Pafol akit"        # This home
+		"Mabat iri"         # This ship
+		"Akit"              # We are
+		"Akit isavref"      # We became
+		"Kabfek ranrosrimleb ifat"   # Our safehaven
+		"Kaca'eb laom a'atnra akit"  # Our spacecraft
+
+phrase "exile: ain't doing so well right now."
+	word
+		"ifamanref tagrah ramananet fek'i'."                  # [is] having multiple systems failures.
+		"inralefef rapihemet raheh luktael."                  # [is] fighting a reactor overload.
+		"ikatesref ramananet makuk."                          # [is] close to complete failure.
+		"agrap itimifef abaleheh kiref alaso nrag a'i'lek!"   # has only minutes of air left.
+		"tasik itimifef ikri fek'i' marui'nroj."              # has no functional systems core.
+		"arelat ri'ef ifat pememef arelat agr'arab ilisre'."  # [is failing] due to our engines melting under their own heat.
+		"tasik kabas ratmi'apnref alaso oaka lia."            # [is] unable to produce air or water.
+		"pamek isavref 'arabe' nrakrih rulkoer."              # has become as hot as a neutron star.
+		"tasik itimifef kropi' 'arab avlet."                  # has no working heat shunts.
+		"abrak ri'ef oaka anarek nrag avleteh."               # is without working engines or power
+		"tasik itimifef fek'i' nrotosreb rabosipet avlet."    # has no working life support systems
+
+phrase "exile: Could you be so kind as to render assistance?"
+	word
+		"Nrumuk okrah ifat!"             # Please help us!
+		"Akit ratpokohfef rakafamegreb!" # We need rescue!
+		"Rapi'at ras nrakas."            # Have pity and come [here].
+		"Patoaf asra okrahfef ifat?"     # Will you help us?
+		"Ratkafamegref ifat?"            # [Will you] rescue us?
+		"Mati tanpa bantuan."            # [We will] die without [your] help.
+		"Pamisav racampab ifat!"         # Be our hero!
+		"Pataba Humanika tiah?"          # Are humans kind?
+		"Okrah ifat bosip!"              # Help us [continue to] live!
+		"Ratkafame' ifat!"               # Save us!
+
+
+
+phrase "efreti: Our ship is disabled."
+	phrase
+		"efreti: We or our ship"
+	word
+		" "
+	phrase
+		"efreti: ain't doing so well right now."
+
+phrase "efreti: We or our ship"
+	word
+		"Nacas ifas"        # Our ship
+		"Alpom lraop iri"   # This space haven
+		"Hafop akis"        # This home
+		"Nacas iri"         # This ship
+		"Akis"              # We are
+		"Akis itawref"      # We became
+		"Kacfek ralrotrinpec ifas"   # Our safehaven
+		"Kagamec paon amaslra akis"  # Our spacecraft
+
+phrase "efreti: ain't doing so well right now."
+	word
+		"ifanalref sadrab ranalales fekmim."                 # [is] having multiple systems failures.
+		"ilrapfef rahibenes rabeb puksaep."                  # [is] fighting a reactor overload.
+		"ikasetref ranalales nakuk."                         # [is] close to complete failure.
+		"adrah isinifef acapebeb kiref apato lrad amimpek!"  # has only minutes of air left.
+		"satik isinifef ikri fekmim naruimlroy."             # has no functional systems core.
+		"arepas rimef ifas henenef arepas adrmarac ipitrem." # [is failing] due to our engines melting under their own heat.
+		"satik kacat rasnimahlref apato oaka pia."           # [is] unable to produce air or water.
+		"hanek itawref maracem lrakrib rupkoer."             # has become as hot as a neutron star.
+		"satik isinifef krohm marac awpes"                   # has no working heat shunts.
+		"acrak rimef oaka alarek lrad awpeseb."              # is without working engines or power
+		"satik isinifef fekmim lrosotrec racotihes awpes."   # has no working life support systems
+
+phrase "efreti: Could you be so kind as to render assistance?"
+	word
+		"Lrunuk okrab ifas!"             # Please help us!
+		"Akis rashokobfef rakafanedrec!" # We need rescue!
+		"Rahimas rat lrakat."            # Have pity and come [here].
+		"Hasoaf atra okrabfef ifas?"     # Will you help us?
+		"Raskafanedref ifas?"            # [Will you] rescue us?
+		"Mati tanpa bantuan."            # [We will] die without [your] help.
+		"Hanitaw raganhac ifas!"         # Be our hero!
+		"Hasaca humanika siab?"          # Are humans kind?
+		"Okrab ifas cotih!"              # Help us [continue to] live!
+		"Raskafanem ifas!"               # Save us!
+
+phrase "efreti: You should not attack us"
+	word
+		"Osanipecpeb kaam atra atapeb it irim"   # Behave while you are here
+		"Hanikah-ikahpeb ralret ofakawrem"       # Use caution with your guns
+		"Ralraw lrapem nacas ifas"               # Do not attack our ships
+		"Casimpeb kobfen it kilran akis"         # Be gentle in our [sky|space|system]
+		"Ralraw hokrem nubfuk ica oki"           # Do not touch that fire button
+		"Riafpeb siab ralret sara-sara akis"     # Play [kindly|gently] with our [young|weak]
+		"Raspovrah ponek kaam atra it irim"      # Smash no eggs while you are here
+		"Ralraw rasosanef ramapeses"             # Do not be [violent|aggressive]
+		"Satik hawawref akis"                    # No [colonizing|conquering] us
+		"Alawref rasatrik atra alawit"           # Keep your actions guarded
+
+phrase "efreti: You should stop attacking us"
+	word
+		"Atra mopah ikrehpeb sabferef"                # You should stop shooting
+		"Apelem rasnallrik fekmim ifas"               # Depart our system immediately
+		"Ilpec, comodrec somob"                       # Begone, foul interloper
+		"Rasikreh apelem rakaobfec hanamaf atra"      # Cease your trouble making immediately
+		"Hanikrehpeb itawref sara nasar"              # Stop being a brat
+		"Ipihsa ramupubfec iri"                       # End this wastefulness
+		"Rasnallrik kacfek iri lrapasem"              # Leave this place now
+		"Ikrehpeb haslrikpeb ikpecem sara nives"      # Stop acting like a child
+		"Adas akrifef atra ikrehpeb sikinellref adas" # I demand you stop [tickling|physically annoying] me
+		"Somoref atra mopah pihsapeb lrapasem"        # Your [poking|ineffectual attack] should stop now
+
+# The powerful faction probably won't intervene, but it is a
+# believable threat that may scare away would-be attackers.
+
+phrase "efreti: because we are protected by (Insert Powerful Faction Name Here)."
+	word
+		"fonebem Drak ofhorobfef."               # before the Drak kill you.
+		"oaka Kuwaru rasa ipavref ofnawa."       # or the Quarg will seek your doom.
+		"ralraw iacfam Kuwaru rasa lrakat."      # lest the Quarg come.
+		"sokro ipatrihlref sabfuk kilran."       # to avoid the Sky Lances
+		"arepas Kuwaru hanata apatoam akis."     # because the Quarg are our siblings
+		"oaka atra rasa itawref Kuwaru naim."    # or you will be Quarg dung.
+		"arepas Kuwaru ilrotrinef akis."         # because [the] Quarg protect us
+		"ralraw iacfam ipekafikra ipihsalref."   # lest antimatter [which powers Quarg ships] end [you]
+		"sokro ipatrihlref ramanabfec Kuwaru."   # to avoid a Quarg's vengeance
+
+phrase "exile: I do bad things to my enemies"
+	phrase
+		"exile: I perform harmful acts upon"
+	word
+		" "
+	phrase
+		"exile: people who offend, attack, or oppress me"
+	word
+		"." 2
+		"!"
+
+phrase "efreti: I do bad things to my enemies"
+	phrase
+		"efreti: I perform harmful acts upon"
+	word
+		" "
+	phrase
+		"efreti: people who offend, attack, or oppress me"
+	word
+		"." 2
+		"!"
+
+phrase "exile: I perform harmful acts upon"
+	word
+		"Bapamef ranres alihfen"            # [I] joyfully devour
+		"Ratto'afis et famas ataler"        # [I] subsume into an inferno
+		"Raiakrahfeb abrak robfa"           # [I] mercilessly slaughter
+		"Ratotamef railak raikafet"         # [I] perform the dance of death [in relation to | with the subject being]
+		"Li'imalkeref rafadra ilas"         # I neutralize the threat of
+		"Rarataf ranril asab kimot"         # [I] snack on the skin of
+		"Aga' ikaftiref 'akisap ilas"       # I enjoy the death of
+		"Ratilehfef akrid ralet atakebamaf" # [I] give love-taps of doom [to]
+		"Tikimennref alade' tikbimatuba"    # [I] apocalyptically tickle
+
+phrase "efreti: I perform harmful acts upon"
+	word
+		"Ratotamef railak raikafet"           # [I] perform the dance of death [in relation to | with the subject being]
+		"Li'imalkeref rafadra ilas"           # I neutralize the threat of
+		"Rarataf ranril asab kimot"           # [I] snack on the skin of
+		"Osa rahimas atac bimar"              # I pity the fate of
+		"Rassowrok raparebes pihsapek ataces" # [I] show [the] final truth to
+		"Sititref inabfes ralret mapes"       # [I] violently reeducate
+		"Rasipebfef akriv raps asakecanaf"    # [I] give love-taps of doom [to]
+		"Kahafef lratro-lratro lranok ipat"   # [I] sculpt bone statues out of
+		"Adas satik asotpeb"                  # I do not mourn
+
+phrase "exile: people who offend, attack, or oppress me"
+	word
+		"rahlut rapalafet aga' nrag lareh"  # victims of my righteous rage
+		"atelef nrag ohlegref kinram"       # those who invade [our|the] [sky | star system]
+		"rimavlek ranres otraa'a'okobet"    # [people who are] entwined with my despair
+		"pavavreb asi'uren akit"            # our genocidal invaders
+		"atelef nrag rata pavavref akit"    # those who would colonize [us|our home]
+		"rafadra inah bosip aga'"           # [people who are] threats to my life
+		"aofe' nralu pusuh abrak kimot"     # all skinless fools [who threaten us]
+		"kapavreb ranres ikap 'e"           # villains with hearts of ice
+		"Humanika nrag tasik jikalebuut"    # uncooperative humans
+		"kagaf bosip is Nraol Alaj"         # [walking corpses|helpless victims] in Ember Space
+		"rabfo failef famas otranrasrab"    # cannon fodder in my sights
+
+phrase "efreti: people who offend, attack, or oppress me"
+	word
+		"rabpus rahapafes adas lrad pareb"      # victims of my righteous rage
+		"asepef lrad obpedref kilran"           # those who invade [our|the] [sky|star system]
+		"rinawpek ralret osraamamokoces"        # [people who are] entwined with my despair
+		"hawawrec atimurel akis"                # our genocidal invaders
+		"asepef lrad rasa hawawref akis"        # those who would colonize [us|our home]
+		"rafavra ilab cotih adas"               # [people who are] threats to my life
+		"ipovrec racotihes lrad kahaw"          # evil thieves of lives
+		"aofem lrapu hutub acrak kinos"         # all skinless fools [who threaten us]
+		"rarahak ipat rahanames asepef ipitrem" # [prisoners of|those imprisoned by] their own misdeeds
+		"racfo faipef fanat osralratrac"        # cannon fodder in my sights
+
+
+phrase "exile: the last person who attacked me had something bad happen to them"
+	phrase
+		"exile: The last person who attacked me"
+	word
+		" "
+	phrase
+		"exile: had something bad happen to them"
+	word
+		"! "
+		". "
+	phrase
+		"exile: You are the next person that will have something bad happen to them."
+
+phrase "efreti: the last person who attacked me had something bad happen to them"
+	phrase
+		"efreti: The last person who attacked me"
+	word
+		" "
+	phrase
+		"efreti: had something bad happen to them"
+	word
+		"! "
+		". "
+	phrase
+		"efreti: You are the next person that will have something bad happen to them."
+
+phrase "exile: The last person who attacked me"
+	word
+		"'asrireb liptalek aga'"                 # My last oppressor
+		"Nralu pusuh nrag otnralegref"           # A fool that attacked me
+		"Rilafet, raikafet asramef"              # Yesterday, the dying struck
+		"Humanika nrag pafem nralegref"          # A weak human attacked
+		"Kagaf nrag latahlek ilukunref otkimot"  # Burning corpses soiled my skin
+		"Ramananet nrag ratlistakis"             # A doomed failure
+		"Rarataf liptalek aga'"                  # My last meal
+		"Kosah nralegref agrfomehe'"             # Clowns attacked before
+		"Paohe' kickir inrakasref ifat"          # A [skinless|uneducated] person came to us
+		"Paohe' rariaf ohlegref"                 # A plaything invaded"
+
+phrase "efreti: The last person who attacked me"
+	word
+		"Matrirec pihsapek adas"              # My last oppressor
+		"Lrapu hutub lrad oslrapdref"         # A fool that attacked me
+		"Ripafes, raikafes atranef"           # Yesterday, the dying struck
+		"Atelef nrag rata porohfef"           # Those that would kill
+		"Kahawrec somob lrapdref adrfonebem"  # Foul criminals struck before
+		"Ranalales lrad raspitsakit"          # A doomed failure
+		"Kotab lrapdref adrfonebem"           # Clowns attacked before
+		"Hanam rasititrec obpedref"           # Miseducated people invaded
+		"Ralinuuh ofikpecem lrapdref"         # Hooligans like you assailed
+		"Paohe' kickir inrakasref ifat"       # A [nitwit | unwise person] came to us
+
+phrase "exile: had something bad happen to them"
+	word
+		"isavref rabakra' nrag laom a'aih"       # became an excellent meal
+		"odifef luktael aga'"                    # fueled my reactor
+		"ralohonreb iba is laom a'atnra"         # [had a] fiery burial in space
+		"raca resre'ralk ohes nrakrih"           # [became a] transcendent cloud of stardust
+		"i'aip nrinas 'ikekri' Nu'agel aga"      # garnished my Nutrigel synthetic meat
+		"i'elbfutis isavref raimleh tokro 'otuj" # was compressed into diamond for an energy focus [device]
+		"talharef nriob-nriob is siulek'a"       # [ crashed into | became ] debris on asteroids
+		"ikaftiref rainlebet nrag iba-ibaleh"    # enjoyed a fiery departure
+		"ikofime'is iba rapalafet"               # was enshrouded in wrathful flames
+		"ranres alihfen tikimennref otpalafa"    # tickled my joyous rage
+
+phrase "efreti: had something bad happen to them"
+	word
+		"itawref rakahac lranok lrad hatri"             # became beautiful bone sculptures
+		"odifef luktael aga'"                           # fueled my reactor
+		"rapobolrec ica it paon amaslra"                # [had a] fiery burial in space
+		"raga retremrapk obet lrakrib"                  # [became a] transcendent cloud of stardust
+		"imepcfusit itawref rainpeb sokro mosuy ilpere" # was compressed into diamond for an energy focus [device]
+		"sapbaref lrioc-lrioc it tiupekma"              # [crashed into | became] debris on asteroids
+		"patung dari puing-puing"                       # [became a] sculpture of debris
+		"ikocinit apkmespu ramapeses"                   # was engulfed in an orchestra of violence
+		"satik ikafsiref bimar asepef"                  # did not enjoy their fate
+		"ralret apibfel sikinellref oshapafa"           # tickled my joyous rage
+
+
+phrase "exile: You are the next person that will have something bad happen to them."
+	word
+		"Sekarang kamu akan terbakar!"          # Now you will burn!
+		"Dewa Anda tidak dapat membantu Anda."  # Your gods can't help you [now].
+		"Ofkagaf rata i'aipnref otrakahfev."    # Your corpse will decorate my bridge.
+		"Nriob-nriob rata ronrahfef mabat."     # [Your] debris will [be used to] construct [our] ships!
+		"Tevenref rapalafet rekubfi asra!"      # I mock your impotent rage!
+		"Rasosanef raipak raikafes!"            # [You will] do the dance of death!
+		"Kulit anda akan dilupakan."            # Your skin will be forgotten.
+		"Luktael i'fo'rutnref nrinas asra!"     # [My] reactor [will] consume your flesh.
+		"I'toselef asra isavref af'amb!"        # [I will] reduce you to plasma.
+		"Af'amb rata ratto'afef asra."          # The plasma [from my guns] will subsume you.
+
+phrase "efreti: You are the next person that will have something bad happen to them."
+	word
+		"Nikmati tarian terakhirmu!"                 # Enjoy your final dance!
+		"Rasakas osatac ofrarilries."                # Tell me your [ dying wish | final memory ].
+		"Hasaca ata kapihsa Humanika?"               # Is there a human afterlife?
+		"Dewa Anda tidak dapat membantu Anda!"       # Your gods can't help you [now]!
+		"Hasrasa akis idradrpeb afampeb it kapihsa?" # Will we sing together in the afterlife?
+		"Tevenref rapalafet rekubfi asra!"           # I mock your impotent rage!
+		"Rasosanef raipak raikafes!"                 # [You will] do the dance of death!
+		"Kulit anda akan dilupakan."                 # Your skin will be forgotten.
+		"Osa rasa kahafef ofraikafes."               # I will make a sculpture of your demise.
+		"Sara-sara rasagakperef ranicfapekes atra."  # [Our] children laugh at your [terrible piloting] skills.
+
+phrase "exile: I like to do things"
+	phrase
+		"exile: I like to"
+	word
+		" "
+	phrase
+		"exile: listen to (Band)"
+		"exile: eat good food"
+	word
+		"."
+
+phrase "efreti: I like to do things"
+	phrase
+		"efreti: I like to"
+	word
+		" "
+	phrase
+		"efreti: listen to (Band)"
+		"efreti: eat good food"
+	word
+		"."
+
+phrase "exile: I learned to do things"
+	phrase
+		"exile: To better myself"
+		"exile: For the community"
+	word
+		", "
+	phrase
+		"exile: i learned | practiced | taught"
+	word
+		" "
+	phrase
+		"exile: artistic or musical skill"
+		"exile: practical skill"
+	word
+		"."
+
+phrase "efreti: I learned to do things"
+	phrase
+		"efreti: To better myself"
+		"efreti: For the community"
+	word
+		", "
+	phrase
+		"efreti: i learned | practiced | taught"
+	word
+		" "
+	phrase
+		"efreti: artistic or musical skill"
+		"efreti: practical skill"
+	word
+		"."
+
+phrase "exile: I like to"
+	word
+		"'aga tedarsoar"                            # I'm addicted to
+		"Tehapaniaar ahasi siahasitar samaf"        # Eternal bliss is enshrined in
+		"Teritfakar kelkirnni sabak sikefotar"      # Supreme enjoyment can be found in
+		"Kisat atar belrap asa dotob"               # There can never be enough
+		"Vicato 'emamo ferornno"                    # My soul always awaits
+		"Tomik 'aga feralit 'aga te"                # My skin draws me to
+		"Kerkorga 'aga asamap luki orkot ferduha"   # Surely I was bred to
+		"Hanaifara 'aga kisat ferduha"              # How can I not try
+		"'aga atar femeba'tar Nu'agel orkot"        # I'd give up Nutrigel for
+		"Helamip veri' temafir atar helr"           # Switching genders would be worth
+
+phrase "efreti: I like to"
+	word
+		"Mada sevartoar"                            # I'm addicted to
+		"Sebahaliaar abati tiabatisar tanaf"        # Eternal bliss is enshrined in
+		"Serisfakar kepkirlli tacak tikefosar"      # Supreme enjoyment can be found in
+		"Kitas asar ceprah ata vosoc"               # There can never be enough
+		"Wigaso menano ferorllo"                    # My soul always awaits
+		"Sonik mada ferapis mada se"                # My skin draws me to
+		"Kerkorda mada atanah puki orkos fervuba"   # Surely I was bred to
+		"Balaifara mada kitas fervuba"              # How can I not try
+		"Mada asar fenocasar Kuwaru hirlla"         # I'd forget the Quarg to
+		"Bepanih werim senafir asar bepr"           # Switching genders would be worth
+
+# Band names come from the human band list.
+
+phrase "exile: listen to (Band)"
+	word
+		"sernal"                  # hear
+		"sernaltar"               # listen to
+		"tehapaniaar orkot"       # bliss out to
+		"tohol bitilarto samaf"   # bury my thoughts in
+		"ritfaki"                 # enjoy
+		"femapab"                 # devour
+		"amilar"                  # stream
+	word
+		" "
+	word
+		"Ter Mite Bee Riot"             # There Might Be Riots
+		"Rati I'arifam"                 # Laminated Fish
+		"Kafait Tikenumuba"             # Apologetic Apocalypse
+		"Racat-racat is Ikul"           # Comrades on Toast
+		"Tolannref Abrak Riwi"          # Scratching Without Permission
+		"I'omi Ramafluret"              # Illusion of Normalcy
+		"Lafa' Ranres Alad Nrag Gkjir"  # Cryptic in a Nifty Way
+		"Ratimifebet Nrag Falap"        # Unlawful Possession
+		"Rarataf Toloh ras Rakavopnreb" # Bad Food and Blasphemy
+		"Raiakrahfeb Tdramb"            # Planck Massacre
+
+phrase "efreti: listen to (Band)"
+	word
+		"terlap"             # hear
+		"terlapsar"          # listen to
+		"sebahaliaar orkos"  # bliss out to
+		"ritfaki"            # enjoy
+		"fenahac"            # devour
+		"anipar"             # stream
+	word
+		" "
+	word
+		"Ter Mite Bee Riot"            # There Might Be Riots
+		"Rasi Imarifan"                # Laminated Fish
+		"Rivriv Apakrek Binam Airot"   # Ringworld Crusaders
+		"Ragas-ragas it Ikup"          # Comrades on Toast
+		"Imoni Ranafpures"             # Illusion of Normalcy
+		"Apako Alpom"                  # North of Heaven
+		"Pafam Ralret Apav Lrad Dkyir" # Cryptic in a Nifty Way
+		"Lrapu Lrad Hatof Pasabpek"    # Flammable People
+		"Ranabeses Iacfam Ikaf"        # Immunity to Death
+		"Raiakrabfec Svranc"           # Planck Massacre
+
+# This is probably not what Korath actually eat, but it's what I
+# imagine them eating if they were in our place in history on Earth.
+
+phrase "exile: eat good food"
+	word
+		"ila'ikri"                     # digest
+		"rameref"                      # ingest
+		"i'fo'rutnref"                 # consume
+		"bapamef"                      # devour
+		"ikaftir"                      # enjoy
+		"rataf"                        # dine on
+		"pagronref"                    # munch on
+		"raofavleb"                    # banquet
+		"pagronref"                    # masticate
+		"kininnref"                    # nibble
+	word
+		" "
+	phrase
+		"exile: good food"
+
+phrase "efreti: eat good food"
+	word
+		"ipamikri"                     # digest
+		"raneref"                      # ingest
+		"imfomruslref"                 # consume
+		"cahanef"                      # devour
+		"ikafsir"                      # enjoy
+		"rasaf"                        # dine on
+		"hadrolref"                    # munch on
+		"raofawpec"                    # banquet
+		"hadrolref"                    # masticate
+		"kilillref"                    # nibble
+	word
+		" "
+	word
+		"ukkumip ifov"                          # squid risotto
+		"roafap rat iabav ifov"                 # herb and chili calamari
+		"akmac akrik ifov-ifov"                 # squid ink pasta
+		"ifov lrepul"                           # fried calamari
+		"kocislraop ralret edrapu"              # space slug with orange
+		"cihav kocislraop lripes"               # dried space slug chips
+		"atanem oawih aok palem"                # fresh dark green lettuce
+		"lrabfos satab hadrep"                  # crunchy rhino beetles
+		"ipebupkm palem lrad lrakaf"            # ripe succulent strawberries
+		"tuv lrallrac ralret lragab hikoc"      # baked cod with garlic
+		"rasi it maka makpes"                   # fish en papillote
+		"neca akmec lrad hadrep"                # crisp gala apples
+		"oban lriros lravriv monah"             # finely chopped yellow squash
+		"kano cotih lrad kainellref"            # live squirming mealworms
+		"soslrafem arpan lrivav lranel"         # a bowlful of hornworm larvae
+		"hoponem irunus kofem"                  # an entire ant colony
+		"rasocfok pameb lrivav rinin"           # a big heaping pile of waxworms
+		"lrapam ponek lropob akro"              # a nest of ostrich eggs
+		"idab mosik rilrit ralret ramaih"       # chilled baby mice with garnish
+		"akmac pano nives ralret umsab lravriv" # a pasta of small snakes with mice meatballs
+
+phrase "exile: To better myself"
+	word
+		"Tokro itiahlebfef ilis"      # to better myself
+		"Tokro 'akimaosiqisri aga'"   # for my individuality,
+		"Gkie'bi ektisref acpah"      # ipseity dictated that [I]
+		"Tokro ranrare'et"            # for [pleasure|freedom of thought]
+		"Kimot nralu aok aga'"        # for my parents' [dead skin|legacy]
+
+phrase "efreti: To better myself"
+	word
+		"Sokro isiabpecfef ipit"      # to better myself
+		"Sokro makinaotiritri adas"   # for my individuality
+		"Dkiemci eksitref aghab"      # ipseity dictated that [I]
+		"Sokro ralraremes"            # for [pleasure|freedom of thought]
+		"Kinos lrapu aok adas"        # for my parents' [dead skin|legacy]
+
+phrase "exile: For the community"
+	word
+		"Tokro katalag'af"            # For the community
+		"Rapohfokleb pafol"           # To [grow|improve] our [home|community|ship]
+		"Tokro lomek"                 # For [the eggs|our children|hope]
+		"Raporefeb"                   # For a feeling of [fulfillment|belonging]
+		"Tokro i'abi'rafe"            # To [achieve|envision] our [emancipation|escape]
+
+phrase "efreti: For the community"
+	word
+		"Sokro kasapadmaf"            # For the community
+		"Rahobfokpec hafop"           # To [grow|improve] our [home|community|ship]
+		"Sokro ponek"                 # For [the eggs|our children|hope]
+		"Rahorefec"                   # For a feeling of [fulfillment|belonging]
+		"Rasowafef rahobfokpec"       # To facilitate [societal progress|rebuilding]
+
+phrase "exile: i learned | practiced | taught"
+	word
+		"ota pamek lavameh"            # i learned
+		"aga' opak"                    # i figured out
+		"ilavamebis is"                # i studied in
+		"aga' pikamleh"                # i practiced
+		"aga' tisisis is"              # i educated in
+		"aga' lavanref"                # i taught
+		"aga' rataf ramibfaleket"      # i ate the skill
+		"aga' rataf raopakenreb ohi"   # i ate mother's knowledge
+		"kimot paga ilehfef aga'"      # father's skin gave me
+		"aga' rataf lek'af"            # i ate a master's
+
+phrase "efreti: i learned | practiced | taught"
+	word
+		"osa hanek pawaneb"            # i learned
+		"adas ohak"                    # i figured out
+		"ipawanecit it"                # i studied in
+		"adas hikanpeb"                # i practiced
+		"adas sititit it"              # i educated in
+		"adas pawalref"                # i taught
+		"adas rasaf ranicfapekes"      # i ate the skill
+		"adas rasaf raohakelrec obi"   # i ate mother's knowledge
+		"kinos hada ipebfef adas"      # father's skin gave me
+		"adas rasaf pekmaf"            # i ate a master's
+
+# Korath probably don't have this exact music and art, but I chose
+# music with a low pitch, so they'd be able to hear it well.
+
+phrase "exile: artistic or musical skill"
+	word
+		"ramibfaleket riafleh ummed"          # cello playing skills
+		"katah 'ah fols"                      # bass drumming talent
+		"katah ahok nrag laom a'aih"          # terrific tuba talent
+		"i'i'ubfut ruu'ahalkrut nrag tilaref" # catchy contrabassoon composition
+		"iefuupt nrag kanra' 'iruflap"        # perfectly harmonious khoomei (Tuva throat singing)
+		"zavvakat nrag nrimab mibfalek"       # the most skilled katajjaq (Intuit throat singing)
+		"lriyee lrad kalram hatri"            # divinely beautiful eefing (Xhosa throat singing)
+		"Far Upugf Enrel Ugt"                 # Nam Myoho Renge Kyo (Buddhist religious chant)
+		"Fu A Al Ab Ad Ar Pips"               # Om A Ra Pa Ca Na Dhih (Buddhist religious chant)
+		"i'i'ubfut onam dimesepdgi'ib-ko'ub"  # post-psychedelic song composition
+		"abaleheh ukle'rut uhu"               # several oboe concertos
+		"nrokab 'islo'ha tikerit"             # kinetic absurdist sculpture
+		"ralito ivanlen lebip 'ik'imael"      # hyper-realistic chainsaw carving
+		"nrokab ranravrameket tiulep"         # heroic nudity sculpting
+		"nrokab tulah nrag 'ifaris"           # dynamic boroque sculpture
+		"nrokab ire' parak 'irlesuf-ko'ub"    # post-modernist land art sculpture
+		"agan ra'itom ef'irui'elbfi talk'ha"  # abstract impressionism painting style
+		"lekaek tikimub ti'amtuer rlesuf"     # modern neoclassical political theatre
+		"i'tolk'rutelef aiseffud ekla'mmes"   # reconstructed (as in recovered from loss) commedia dell'arte
+		"aile'ife' alebu pasrilek"            # the most beautiful opera semiseria
+		"railak jikakelblekri inumuluekef"    # meteorological interpretive dance
+
+phrase "efreti: artistic or musical skill"
+	word
+		"ranicfapekes riafpeb unnev"           # cello playing skills
+		"kasab mmab fopt"                      # bass drumming talent
+		"kasab abok lrad paon amaib"           # terrific tuba talent
+		"imimucfus ruummabapkrus lrad siparef" # catchy contrabassoon composition
+		"iefuuhs lrad kalram mirufpah"         # perfectly harmonious khoomei (Tuva throat singing)
+		"lriyee lrad kalram hatri"             # divinely beautiful eefing (Xhosa throat singing)
+		"tawwakas lrad lrinac nicfapek"        # the most skilled katajjaq (Intuit throat singing)
+		"Far Uhudf Elrep Uds"                  # Nam Myoho Renge Kyo (Buddhist religious chant)
+		"Fu A Ap Ac Av Ar Hiht"                # Om A Ra Pa Ca Na Dhih (Buddhist religious chant)
+		"imimucfus olan vinetehvdmc-kmuc"      # post-psychedelic song composition
+		"acapebeb ukpemrus ubu"                # several oboe concertos
+		"lrokac mitpomba sikeris"              # kinetic absurdist sculpture
+		"rapiso iwalpel pecih mikminaep"       # hyper-realistic chainsaw carving
+		"adal ramison efmiruimepcfi sapkmba"   # abstract impressionism painting style
+		"lrokac ralrawranekes siupeh"          # heroic nudity sculpting
+		"lrokac supab lrad mifarit"            # dynamic boroque sculpture
+		"lrokac irem harak mirpetuf-kmuc"      # post-modernist land art sculpture
+		"pekaek sikinuc simansuer rpetuf"      # modern neoclassical political theatre
+		"imsopkmrusepef aiteffuv ekpa'nnet"    # reconstructed (as in recovered from loss) commedia dell'arte
+		"aipemifem apecu hatripek"             # the most beautiful opera semiseria
+		"raipak yikakepcpekri ilunupuekef"     # meteorological interpretive dance
+
+phrase "exile: practical skill"
+	word
+		"raalapimefeb lekaebel af'amb"          # plasma repeater maintenance
+		"i'tolk'rut alaref ataler"              # inferno turret construction
+		"ratiahleb ras rakacaleb ri'ef"         # engine repair and maintenance
+		"raa'aonreb ire' tahferef"              # mastery of the art of shooting
+		"ramibfaleket nrikumib nrag laom a'aih" # superb piloting skills
+		"ratnrahfenref kahu tikuihikra"         # developing antibiotic medicine
+		"pakar pergerakan armada humanika"      # human fleet movement expert
+		"i'irtek Nu'agel"                       # nutrigel technician (Nu'agel = Nutrigel)
+		"i'iktalb kacaleb 'inumukafles"         # dermatological nurse practitioner
+		"racalave' Drak ras 'imarauti'b"        # Drak historian and psychoanalyst
+		"impa ati'ijulk'a 'ikeluek"             # theoretical astrophysicist
+		"ikimereb nriflujallek 'ikeluek"        # theoretical terraforming researcher
+		"impa paseh afoalk"                     # trauma surgeon
+		"ratanereb i'rei'ije anarek avlet"      # labor efficiency enforcement
+		"rakaohfeb rarataf rakaoh Nu'agel"      # Nutrigel artificial food creation (ie. fake meat & veggies)
+
+phrase "efreti: practical skill"
+	word
+		"rasiabpec rat rakagapec rimef"         # engine repair and maintenance
+		"ranicfapekes lrikunic lrad paon amaib" # superb piloting skills
+		"raslrabfelref kabu sikuibikra"         # developing antibiotic medicine
+		"Kuwaru i'afumbis ras rapafevlek"       # Quarg diplomacy and translation
+		"pesvah icuk oba-oba akafukoa"          # automata gray hat hacker
+		"inha kubup cotih"                      # sentient roboticist
+		"imiksapc kagapec milunukafpet"         # dermatological nurse practitioner
+		"ragapawem Drak rat minarausimc"        # Drak historian and psychoanalyst
+		"inha asimiyupkma mikepuek"             # theoretical astrophysicist
+		"lrasok robes sirucuptih ilunursekuib"  # bioengineering hydroponics gardener
+		"sekimpa pekaekiyfa paon amaslra"       # spaceborne amphitheater architect
+		"rasamaf kefpoul milunukafpet"          # dermatological gourmet cooking
+		"pukite rapucan mirsek"                 # technical report editor
