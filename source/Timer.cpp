@@ -28,12 +28,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
-Timer::Timer(const DataNode &node, const std::string &missionName)
+Timer::Timer(const DataNode &node, Mission *mission)
 {
-	Load(node, missionName);
+	Load(node, mission);
 }
 
-void Timer::Load(const DataNode &node, const string &missionName)
+void Timer::Load(const DataNode &node, Mission *mission)
 {
 	if(node.Size() > 1)
 		name = node.Token(1);
@@ -41,6 +41,8 @@ void Timer::Load(const DataNode &node, const string &missionName)
 		base = static_cast<int64_t>(node.Value(2));
 	if(node.Size() > 3)
 		rand = static_cast<uint32_t>(node.Value(3));
+	
+	this->mission = mission;
 
 	timeToWait = base + Random::Int(rand);
 
@@ -80,7 +82,7 @@ void Timer::Load(const DataNode &node, const string &missionName)
 		}
 		// We keep "on timeup" as separate tokens so that it's compatible with MissionAction syntax
 		else if(child.Token(0) == "on" && child.Size() > 1 && child.Token(1) == "timeup")
-			action.Load(child, missionName);
+			action.Load(child);
 
 	}
 }
@@ -261,7 +263,7 @@ void Timer::Step(PlayerInfo &player, UI *ui)
 	timeElapsed += (1. / 60.);
 	if(timeElapsed >= timeToWait)
 	{
-		action.Do(player, ui);
+		action.Do(player, ui, mission);
 		player.Conditions().Add("timer: " + name + ": complete", 1);
 		isComplete = true;
 	}
