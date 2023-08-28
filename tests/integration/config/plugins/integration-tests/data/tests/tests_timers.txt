@@ -1,0 +1,34 @@
+test-data "Timer Test Mission"
+	category mission
+	contents
+		mission "10 second timer"
+			landing
+			timer "why do I have a name" 10
+				reset "leave system"
+				on timeup
+					set "test: timer condition"
+
+
+test "Timer - Simple 10 seconds timer"
+	status active
+	description "Tests if a timer will trigger a mission event in 10 seconds as planned."
+	sequence
+		inject "Three Earthly Barges Save"
+		inject "Timer Test Mission"
+		call "Load First Savegame"
+		# Trigger the mission
+		call "Depart"
+		call "Land"
+		call "Depart"
+		watchdog 900
+		apply
+			"test: steps to wait" = 10 * 60
+		label "floating"
+		# empty input to make 10 seconds and one frame pass
+		input
+		apply
+			"test: steps to wait" = "test: steps to wait" - 1
+		branch "floating"
+			"test: steps to wait" >= 0
+		assert
+			"test: timer condition" == 1
