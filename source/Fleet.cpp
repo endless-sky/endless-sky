@@ -87,14 +87,10 @@ void Fleet::Load(const DataNode &node)
 			government = GameData::Governments().Get(child.Token(1));
 		else if(key == "names" && hasValue)
 			names = GameData::Phrases().Get(child.Token(1));
-		else if(key == "fighters" && hasValue)
+		else if(key == "fighters" && (hasValue || child.HasChildren()))
 		{
-			fighterNames = GameData::Phrases().Get(child.Token(1));
-			if(child.HasChildren())
-				child.PrintTrace("Warning: Skipping unused children of \"fighters\" tag:");
-		}
-		else if(key == "fighters" && child.HasChildren())
-		{
+			if(hasValue)
+				fighterNames = GameData::Phrases().Get(child.Token(1));
 			for(const DataNode &grand : child)
 			{
 				const string &fighterKey = grand.Token(0);
