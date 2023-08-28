@@ -150,6 +150,7 @@ public:
 	std::string DemandTribute(PlayerInfo &player) const;
 	void DeployDefense(std::list<std::shared_ptr<Ship>> &ships) const;
 	void ResetDefense() const;
+	bool IsDefending() const;
 
 
 private:

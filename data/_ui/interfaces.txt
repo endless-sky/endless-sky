@@ -41,13 +41,17 @@ color "shop side panel background" .2 .2 .2 1.
 color "shop side panel footer" .3 .3 .3 1.
 color "shop info panel background" .055 .055 .055 1.
 color "tooltip background" .2 .2 .2 1.
+color "player info hardpoint gun" .5 .375 0. 1.
+color "player info hardpoint gun hover" .8 .6 0. 1.
+color "player info hardpoint turret" 0. .375 .5 1.
+color "player info hardpoint turret hover" 0. .6 .8 1.
 color "logbook sidebar" .09 .09 .09 1.
 color "logbook background" .125 .125 .125 1.
 color "logbook line" .2 .2 .2 1.
 color "item selected" 0. 0. 0. .3
 
 # Colors used to draw certain HUD elements in-flight.
-color "shields" .43 .55 .70 .75
+color "shields" .43 .55 .85 .8
 color "hull" .70 .62 .43 .75
 color "disabled hull" .3 0 0 .3
 color "heat" .70 .43 .43 .75
@@ -72,6 +76,7 @@ color "blocked back" 0. .15 .2 .5
 color "special mission" 1. 1. 1. 1.
 color "waypoint" .1 .2 .9 1.
 color "waypoint back" 0. .3 .7 .5
+color "mission route" .2 .1 0. 0.
 
 # Colors for the Escort HUD that is displayed in-flight.
 color "escort disabled" .4 .4 .4 0.
@@ -150,8 +155,9 @@ color "warning conflict" .315 .27 .12 1.
 color "warning no command" 0.16 0.16 0.13 1.
 
 # Colors used for messages
-color "message importance highest"	1. .5 0. 1.
-color "message importance default"	1. 1. 1. 1.
+color "message importance highest" 1. .5 0. 1.
+color "message importance info" 0. 1. .5 1.
+color "message importance default" 1. 1. 1. 1.
 
 # Colors used when drawing the map (system names, links, and the player's desired route).
 # (The color of the ring that represents a given system is context-sensitive.)
@@ -160,7 +166,6 @@ color "map name" .6 .6 .6 .6
 color "map travel ok fleet" .2 .5 0. 0.
 color "map travel ok flagship" .5 .4 0. 0.
 color "map travel ok none" .55 .1 0. 0.
-color "map travel wormhole" .5 .2 .9 1.
 color "map wormhole" .5 .2 .9 1.
 color "map orbits fleet destination" 1. 1. 1. 1.
 
@@ -785,8 +790,9 @@ interface "planet"
 		size 18
 		align left
 		pad 10 0
+	visible
 	
-	visible if "has ship"
+	active if "has ship"
 	sprite "ui/planet dialog button"
 		center 280 270
 	button d "_Depart"
