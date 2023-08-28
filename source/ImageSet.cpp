@@ -232,7 +232,7 @@ void ImageSet::ValidateFrames() noexcept(false)
 	framePaths[2].clear();
 	framePaths[3].clear();
 
-	static auto dropPaths = [&](vector<string> &toResize, const string &specifier) {
+	auto DropPaths = [&](vector<string> &toResize, const string &specifier) {
 		if(toResize.size() > paths[0].size())
 		{
 			Logger::LogError(prefix + to_string(toResize.size() - paths[0].size())
