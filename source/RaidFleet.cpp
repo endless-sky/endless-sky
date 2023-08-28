@@ -29,7 +29,7 @@ RaidFleet::RaidFleet(const Fleet *fleet, double minAttraction, double maxAttract
 
 
 
-void RaidFleet::Load(std::vector<RaidFleet> &raidFleets, const DataNode &node, bool remove, int valueIndex)
+void RaidFleet::Load(vector<RaidFleet> &raidFleets, const DataNode &node, bool remove, int valueIndex)
 {
 	const Fleet *fleet = GameData::Fleets().Get(node.Token(valueIndex));
 	if(remove)
