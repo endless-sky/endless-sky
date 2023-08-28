@@ -58,7 +58,6 @@ public:
 	static void Bind();
 	static void Add(const Item &item, bool withBlur = false);
 	static void Unbind();
-
 };
 
 

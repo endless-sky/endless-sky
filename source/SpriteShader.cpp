@@ -123,7 +123,7 @@ void SpriteShader::Init()
 		"        color += scale * texture(tex, vec3(coord, first));\n"
 		"    }\n"
 		"  }\n"
-		"  vec4 swizzleColor = color;\n"
+		"  vec4 swizzleColor;\n"
 		"  switch (swizzler) {\n"
 		// 0 red + yellow markings (republic)
 		"    case 0:\n"
