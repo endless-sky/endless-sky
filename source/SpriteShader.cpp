@@ -364,7 +364,7 @@ void SpriteShader::Add(const Item &item, bool withBlur)
 	glUniform1f(alphaI, item.alpha);
 
 	// Bounds check for the swizzle value:
-	int swizzle = (static_cast<size_t>(item.swizzle) >= SWIZZLE.size() ? 0 : item.swizzle);
+	int swizzle = (static_cast<size_t>(item.swizzle) >= 29 ? 0 : item.swizzle);
 	// Set the color swizzle.
 	glUniform1i(swizzlerI, swizzle);
 
