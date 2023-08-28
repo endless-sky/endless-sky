@@ -13,7 +13,7 @@
 
 outfit "Supercapacitor"
 	category "Power"
-	cost 9000
+	cost 1500
 	thumbnail "outfit/supercapacitor"
 	"mass" 2
 	"outfit space" -2
