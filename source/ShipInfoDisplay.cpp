@@ -133,8 +133,8 @@ void ShipInfoDisplay::DrawOutfits(const Point &topLeft) const
 
 
 
-void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &player,
-bool descriptionCollapsed, bool scrollingPanel = false)
+void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed,
+		bool scrollingPanel)
 {
 	bool isGeneric = ship.Name().empty() || ship.GetPlanet();
 
