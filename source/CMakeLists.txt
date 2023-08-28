@@ -136,6 +136,8 @@ target_sources(EndlessSkyLib PRIVATE
 	GameLoadingPanel.h
 	GamePad.cpp
 	GamePad.h
+	GamepadCursor.cpp
+	GamepadCursor.h
 	GamepadPanel.cpp
 	GamepadPanel.h
 	Gamerules.cpp

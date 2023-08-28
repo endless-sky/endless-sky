@@ -112,8 +112,6 @@ private:
 	SDL_GameControllerAxis activeAxis = SDL_CONTROLLER_AXIS_INVALID;
 	bool activeAxisIsPositive = false;
 	int16_t lastAxisValue = 0;
-	bool controllerCursorActive = false;
-	Point controllerCursorPosition;
 };
 
 

@@ -429,7 +429,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 					new MenuPanel(player, gamePanels)));
 			}
 			else if(event.type == SDL_CONTROLLERBUTTONDOWN && menuPanels.IsEmpty()
-					&& (Command(static_cast<SDL_GameControllerButton>(event.cbutton.button)).Has(Command::MENU))
+					&& (Command::FromButton(event.cbutton.button).Has(Command::MENU))
 					&& !gamePanels.IsEmpty() && gamePanels.Top()->IsInterruptible())
 			{
 				// User pressed the Menu key on a game controller
@@ -463,7 +463,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 				isFastForward = !isFastForward;
 			}
 			else if(event.type == SDL_CONTROLLERBUTTONDOWN
-					&& (Command(static_cast<SDL_GameControllerButton>(event.cbutton.button)).Has(Command::FASTFORWARD)))
+					&& (Command::FromButton(event.cbutton.button).Has(Command::FASTFORWARD)))
 			{
 				isFastForward = !isFastForward;
 			}

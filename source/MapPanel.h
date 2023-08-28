@@ -94,6 +94,9 @@ protected:
 	virtual bool FingerDown(int x, int y, int fid) override;
 	virtual bool FingerMove(int x, int y, int fid) override;
 	virtual bool FingerUp(int x, int y, int fid) override;
+	virtual bool ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive) override;
+	virtual bool ControllerButtonDown(SDL_GameControllerButton button) override;
+
 
 	// Get the color mapping for various system attributes.
 	static Color MapColor(double value);
@@ -207,6 +210,9 @@ private:
 
 	double mapZoom = 1.0;
 	ZoomGesture zoomGesture;
+
+	enum {FOCUS_DETAIL, FOCUS_MAP, FOCUS_BUTTONS} controllerFocus = FOCUS_MAP;
+	size_t controllerSelected = -1;
 };
 
 
