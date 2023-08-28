@@ -138,26 +138,34 @@ void MapShipyardPanel::Compare(int index)
 
 double MapShipyardPanel::SystemValue(const System *system) const
 {
-	if(!system || !player.HasVisited(*system) || !system->IsInhabited(player.Flagship()))
+	if(!system || !player.HasVisited(*system))
 		return numeric_limits<double>::quiet_NaN();
 
-	// See if the player has parked a ship of this type at the system.
+	// If there is a shipyard with parked ships, the order of precendence is
+	// a selected parked ship, the shipyard, parked ships.
+
 	const auto &systemShips = parkedShips.find(system);
 	if(systemShips != parkedShips.end() && systemShips->second.find(selected) != systemShips->second.end())
 		return .5;
-
-	// Visiting a system is sufficient to know what ports are available on its planets.
-	double value = -1.;
-	for(const StellarObject &object : system->Objects())
-		if(object.HasSprite() && object.HasValidPlanet())
-		{
-			const auto &shipyard = object.GetPlanet()->Shipyard();
-			if(shipyard.Has(selected))
-				return 1.;
-			if(!shipyard.empty())
-				value = 0.;
-		}
-	return value;
+ 	else if(system->IsInhabited(player.Flagship()))
+	{
+		// Visiting a system is sufficient to know what ports are available on its planets.
+		double value = -1.;
+		for(const StellarObject &object : system->Objects())
+			if(object.HasSprite() && object.HasValidPlanet())
+			{
+				const auto &shipyard = object.GetPlanet()->Shipyard();
+				if(shipyard.Has(selected))
+					return 1.;
+				if(!shipyard.empty())
+					value = 0.;
+			}
+		return value;
+	}
+	else if(systemShips != parkedShips.end())
+		return .5;
+	else
+		return numeric_limits<double>::quiet_NaN();
 }
 
 
