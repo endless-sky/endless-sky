@@ -285,7 +285,7 @@ void ImageSet::Load() noexcept(false)
 		}
 	}
 
-	static auto loadSprites = [&](vector<string> &toLoad, ImageBuffer &buffer, const string &specifier) {
+	auto LoadSprites = [&](vector<string> &toLoad, ImageBuffer &buffer, const string &specifier) {
 		for(size_t i = 0; i < frames && i < toLoad.size(); ++i)
 			if(!buffer.Read(toLoad[i], i))
 			{
