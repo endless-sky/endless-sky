@@ -346,9 +346,6 @@ void SpriteShader::Add(const Item &item, bool withBlur)
 	glUniform1i(texI, 0);
 	glBindTexture(GL_TEXTURE_2D_ARRAY, item.texture);
 
-	// Bind the swizzleMask texture to texture index 1.
-	// Don't use a swizzlemask for swizzle 27 and 28.
-	// Bind the sizzleMask texture.
 	glUniform1i(swizzleMaskI, 1);
 	glUniform1i(useSwizzleMaskI, item.swizzle == 27 || item.swizzleMask == 28 ? 0 : item.swizzleMask);
 	glActiveTexture(GL_TEXTURE1);
