@@ -48,6 +48,8 @@ namespace {
 
 	GLuint vao;
 	GLuint vbo;
+
+	const int SWIZZLES = 29;
 }
 
 // Initialize the shaders.
@@ -364,7 +366,7 @@ void SpriteShader::Add(const Item &item, bool withBlur)
 	glUniform1f(alphaI, item.alpha);
 
 	// Bounds check for the swizzle value:
-	int swizzle = (static_cast<size_t>(item.swizzle) >= 29 ? 0 : item.swizzle);
+	int swizzle = (static_cast<size_t>(item.swizzle) >= SWIZZLES ? 0 : item.swizzle);
 	// Set the color swizzle.
 	glUniform1i(swizzlerI, swizzle);
 
