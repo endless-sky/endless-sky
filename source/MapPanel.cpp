@@ -733,6 +733,16 @@ Color MapPanel::GovernmentColor(const Government *government)
 
 
 
+Color MapPanel::DangerColor(const double danger)
+{
+	if(danger > .5)
+		return Color(.6, .4 * (2. - 2. * danger), 0., .4);
+	else
+		return MapColor(2. * danger - 1.);
+}
+
+
+
 Color MapPanel::UninhabitedColor()
 {
 	return GovernmentColor(GameData::Governments().Get("Uninhabited"));
@@ -938,7 +948,7 @@ void MapPanel::UpdateCache()
 			}
 		}
 		if(dangerMax)
-			dangerScale = 2. / log(dangerMin / dangerMax);
+			dangerScale = 1. / log(dangerMin / dangerMax);
 	}
 
 	// Draw the circles for the systems, colored based on the selected criterion,
@@ -1020,7 +1030,7 @@ void MapPanel::UpdateCache()
 			{
 				const double danger = DangerFleetTotal(player, system);
 				if(danger > 0.)
-					color = MapColor(1. - dangerScale * log(danger / dangerMax));
+					color = DangerColor(1. - dangerScale * log(danger / dangerMax));
 			}
 			else
 			{

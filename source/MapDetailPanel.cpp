@@ -636,7 +636,7 @@ void MapDetailPanel::DrawKey()
 		static const string labels[4] = {"Minimal", "Low", "Moderate", "High"};
 		for(int i = 0; i < 4; ++i)
 		{
-			RingShader::Draw(pos, OUTER, INNER, MapColor(i * (2. / 3.) - 1.));
+			RingShader::Draw(pos, OUTER, INNER, DangerColor(i / 3.));
 			font.Draw(labels[i], pos + textOff, dim);
 			pos.Y() += 20.;
 		}

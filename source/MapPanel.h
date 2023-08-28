@@ -96,6 +96,7 @@ protected:
 	static Color MapColor(double value);
 	static Color ReputationColor(double reputation, bool canLand, bool hasDominated);
 	static Color GovernmentColor(const Government *government);
+	static Color DangerColor(double danger);
 	static Color UninhabitedColor();
 	static Color UnexploredColor();
 
