@@ -2812,7 +2812,6 @@ mission "Remnant: remnant research update compatibility"
 
 
 mission "Remnant: Face to Maw 1"
-	minor
 	landing
 	name "Talk to Plume about the void sprites"
 	description "Plume would be very interested in a report on what happened with the void sprites."
@@ -2858,6 +2857,7 @@ mission "Remnant: Face to Maw 1B"
 	landing
 	to offer
 		has "event: remnant: return the samples timer"
+		has "flagship model: Puffin"
 		or
 			not "Remnant: Cognizance 1: offered"
 			has "Remnant: Cognizance 19: done"

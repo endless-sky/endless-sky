@@ -4815,7 +4815,7 @@ phrase "pirate big raid"
 	word
 		"!"
 
-phrase	"pirate big raid"
+phrase "pirate big raid"
 	word
 		"the "
 	word
@@ -4870,7 +4870,7 @@ phrase	"pirate big raid"
 	word
 		"!"
 
-phrase	"pirate boast"
+phrase "pirate boast"
 	word
 		"We made off with so many ships"
 		"We made off with so many credits"

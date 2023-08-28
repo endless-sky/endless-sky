@@ -1068,6 +1068,9 @@ void Engine::Draw() const
 			case Messages::Importance::High:
 				color = GameData::Colors().Find("message importance high");
 				break;
+			case Messages::Importance::Info:
+				color = GameData::Colors().Find("message importance info");
+				break;
 			case Messages::Importance::Low:
 				color = GameData::Colors().Find("message importance low");
 				break;
@@ -1333,7 +1336,7 @@ void Engine::EnterSystem()
 				CreateWeather(hazard, stellar.Position());
 	}
 
-	for(const auto &raidFleet : system->GetGovernment()->RaidFleets())
+	for(const auto &raidFleet : system->RaidFleets())
 	{
 		double attraction = player.RaidFleetAttraction(raidFleet, system);
 		if(attraction > 0.)

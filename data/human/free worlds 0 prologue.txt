@@ -736,6 +736,8 @@ mission "FW Escort 1B"
 	npc accompany save
 		government "Merchant"
 		personality escort timid
+		"cargo settings"
+			outfitters "Common Outfits" "Kraz Advanced" "Delta V Advanced"
 		ship Freighter "F.S. Raleigh"
 		ship Freighter "F.S. Scott"
 		ship Freighter "F.S. Hudson"
@@ -861,6 +863,8 @@ mission "FW Escort 2B"
 	npc accompany save
 		government "Merchant"
 		personality escort timid
+		"cargo settings"
+			outfitters "Common Outfits" "Kraz Advanced" "Delta V Advanced"
 		ship Freighter "F.S. Raleigh"
 		ship Freighter "F.S. Scott"
 		ship Freighter "F.S. Hudson"
@@ -925,6 +929,8 @@ mission "FW Escort 3"
 	npc accompany save
 		government "Merchant"
 		personality escort derelict timid
+		"cargo settings"
+			outfitters "Common Outfits" "Kraz Advanced" "Delta V Advanced"
 		system "Lesath"
 		ship "Freighter" "F.S. Shackleton"
 	
