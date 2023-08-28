@@ -2010,8 +2010,15 @@ mission "Wanderers Hai Assistance Fleet"
 		system "Wah Ki"
 		fleet "Large Hai" 6
 
+# This prevents the raids from going beyond Wah Ki
 event "hai blockade"
-	government "Hai Merchant (Sympathizers)"
+	system Boral
+		remove raid
+	system "Bosuno Le"
+		remove raid
+	system Ilirco
+		remove raid
+	system Zosma
 		remove raid
 
 mission "Wanderers Hai Assistance Fleet patch"
