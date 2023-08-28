@@ -3314,7 +3314,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto systemAttractionFun = [this](const string &name) -> double
 	{
 		const System *system = GameData::Systems().Find(name.substr(strlen("raid chance in system: ")));
-		if(!system ||system->NoRaids())
+		if(!system)
 			return 0.;
 
 		// This variable represents the probability of no raid fleets spawning.

@@ -30,7 +30,7 @@ public:
 	// A static loading method for RaidFleet which handles the addition and removal of RaidFleets from the given
 	// vector. Implemented this way so that Government and System don't need to duplicate the loading of
 	// raid fleets.
-	static void Load(const DataNode &node, std::vector<RaidFleet> &raidFleets, bool remove, int valueIndex);
+	static void Load(std::vector<RaidFleet> &raidFleets, const DataNode &node, bool remove, int valueIndex);
 	const Fleet *GetFleet() const;
 	double MinAttraction() const;
 	double MaxAttraction() const;

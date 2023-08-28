@@ -175,8 +175,6 @@ public:
 	int MinimumFleetPeriod() const;
 
 	const std::vector<RaidFleet> &RaidFleets() const;
-	// Whether or not raids are allowed to spawn in this system.
-	bool NoRaids() const;
 
 
 private:
