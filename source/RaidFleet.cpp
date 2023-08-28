@@ -21,6 +21,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 
+using namespace std;
+
 
 RaidFleet::RaidFleet(const Fleet *fleet, double minAttraction, double maxAttraction)
 	: fleet(fleet), minAttraction(minAttraction), maxAttraction(maxAttraction)
