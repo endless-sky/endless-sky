@@ -83,7 +83,7 @@ void HailPanel::DrawIcon(const Ship &ship)
 	// Copy the ships's swizzle, animation settings, etc.
 	// Also draw its fighters and weapon hardpoints.
 	bool hasFighters = ship.PositionFighters();
-	auto addHardpoint = [this, &draw, &center, zoom, &facing](const Hardpoint &hardpoint) -> void
+	auto addHardpoint = [&draw, &center, zoom, &facing](const Hardpoint &hardpoint) -> void
 	{
 		if(hardpoint.GetOutfit() && hardpoint.GetOutfit()->HardpointSprite().HasSprite())
 		{
@@ -96,7 +96,7 @@ void HailPanel::DrawIcon(const Ship &ship)
 			draw.Add(body);
 		}
 	};
-	auto addFighter = [this, &draw, &center, zoom, &facing](const Ship::Bay &bay) -> void
+	auto addFighter = [&draw, &center, zoom, &facing](const Ship::Bay &bay) -> void
 	{
 		if(bay.ship)
 		{
