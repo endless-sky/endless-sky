@@ -737,7 +737,7 @@ Color MapPanel::GovernmentColor(const Government *government)
 Color MapPanel::DangerColor(const double danger)
 {
 	if(danger > .5)
-		return Color(.6, .4 * (2. - 2. * danger), 0., .4);
+		return Color(.6, .4 * (2. - 2. * min(1., danger)), 0., .4);
 	else
 		return MapColor(2. * danger - 1.);
 }
