@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ImageSet.h"
 
 #include "GameData.h"
+#include "ImageBuffer.h"
 #include "Logger.h"
 #include "Mask.h"
 #include "MaskManager.h"
@@ -231,27 +232,21 @@ void ImageSet::ValidateFrames() noexcept(false)
 	framePaths[2].clear();
 	framePaths[3].clear();
 
+	static auto dropPaths = [&](vector<string> &toResize, const string &specifier) {
+		if(toResize.size() > paths[0].size())
+		{
+			Logger::LogError(prefix + to_string(toResize.size() - paths[0].size())
+				+ " extra frames for the " + specifier + " sprite will be ignored.");
+			toResize.resize(paths[0].size());
+		}
+	};
+
 	// Drop any @2x paths that will not be used.
-	if(paths[1].size() > paths[0].size())
-	{
-		Logger::LogError(prefix + to_string(paths[1].size() - paths[0].size())
-				+ " extra frames for the @2x sprite will be ignored.");
-		paths[1].resize(paths[0].size());
-	}
+	dropPaths(paths[1], "@2x");
 	// Drop any mask paths that will not be used.
-	if(paths[2].size() > paths[0].size())
-	{
-		Logger::LogError(prefix + to_string(paths[2].size() - paths[0].size())
-				+ " extra frames for the mask sprite will be ignored.");
-		paths[2].resize(paths[0].size());
-	}
+	dropPaths(paths[2], "mask");
 	// Drop any @2x mask paths that will not be used.
-	if(paths[3].size() > paths[0].size())
-	{
-		Logger::LogError(prefix + to_string(paths[3].size() - paths[0].size())
-				+ " extra frames for the @2x mask sprite will be ignored.");
-		paths[3].resize(paths[0].size());
-	}
+	dropPaths(paths[3], "@2x mask");
 }
 
 
@@ -289,33 +284,25 @@ void ImageSet::Load() noexcept(false)
 				Logger::LogError("Failed to create collision mask for \"" + name + "\" frame #" + to_string(i));
 		}
 	}
+
+	static auto loadSprites = [&](vector<string> &toLoad, ImageBuffer &buffer, const string &specifier) {
+		for(size_t i = 0; i < frames && i < toLoad.size(); ++i)
+			if(!buffer.Read(toLoad[i], i))
+			{
+				Logger::LogError("Removing " + specifier + " frames for \"" + name + "\" due to read error");
+				buffer.Clear();
+				break;
+			}
+	};
 	// Now, load the 2x sprites, if they exist. Because the number of 1x frames
 	// is definitive, don't load any frames beyond the size of the 1x list.
-	for(size_t i = 0; i < frames && i < paths[1].size(); ++i)
-		if(!buffer[1].Read(paths[1][i], i))
-		{
-			Logger::LogError("Removing @2x frames for \"" + name + "\" due to read error");
-			buffer[1].Clear();
-			break;
-		}
+	loadSprites(paths[1], buffer[1], "@2x");
 	// Now, load the mask sprites, if they exist. Because the number of 1x frames
 	// is definitive, don't load any frames beyond the size of the 1x list.
-	for(size_t i = 0; i < frames && i < paths[2].size(); ++i)
-		if(!buffer[2].Read(paths[2][i], i))
-		{
-			Logger::LogError("Removing mask frames for \"" + name + "\" due to read error");
-			buffer[2].Clear();
-			break;
-		}
+	loadSprites(paths[2], buffer[2], "mask");
 	// Now, load the @2x mask sprites, if they exist. Because the number of 1x frames
 	// is definitive, don't load any frames beyond the size of the 1x list.
-	for(size_t i = 0; i < frames && i < paths[3].size(); ++i)
-		if(!buffer[3].Read(paths[3][i], i))
-		{
-			Logger::LogError("Removing @2x mask frames for \"" + name + "\" due to read error");
-			buffer[3].Clear();
-			break;
-		}
+	loadSprites(paths[3], buffer[3], "@2x mask");
 
 	// Warn about a "high-profile" image that will be blurry due to rendering at 50% scale.
 	bool willBlur = (buffer[0].Width() & 1) || (buffer[0].Height() & 1);
