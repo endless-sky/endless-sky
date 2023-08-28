@@ -14,16 +14,18 @@ Version 0.10.3
 	  * Ssil Vida station no longer loses one of its planet attributes after an event. (@danaris)
 	  * Spaceport news intended for occupied Pug worlds no longer appears on uninhabited worlds. (@Anarchist2)
 	  * Added the "minor" mission tag to a Free Worlds side plot storyline to prevent it from offering at the same time as major storyline missions. (@Anarchist2)
-	  * Fixed the "Remnant: Face to Maw 1" mission to properly require that the player is flying a Puffin. (@Zitchas)
+	  * Fixed the "Remnant: Face to Maw" missions to properly offer under the expected circumstances. (@Zitchas, @warp-core)
 	  * Replaced the "shield resistance" attribute (which doesn't do anything) on the Embersylph with "ion resistance". (@Quantumshark)
 	  * Set the Hai merchant fleets to use the correct government. (@warp-core)
 	  * Contacting the Korath Exiles can now properly be deferred and reoffered instead of deferring the mission effectively declining it. (@Hurleveur)
 	  * Corrected the offer location on "Robotic Musical 1", as it was unable to offer with the location it was given. (@Terin)
 	  * Corrected uses of the "scrambling protection/resistance" attribute to the proper "scramble protection/resistance" attribute. (@warp-core)
 	  * Separated the government used for space life near the Gegno to be different to the one used for space life in the Ember Waste to prevent one from unintentionally affecting the other. (@Saugia)
+	  * Adjusted the location of the planet Ki Patek Ka in its system as to not overlap with the orbits of its neighboring gas giant (@Quantumshark)
 	* Engine bugs:
 	  * Using hotkeys to search for the nearest asteroid no longer crashes the game. (@RisingLeaf)
 	  * Player escorts no longer appear as landed on the planet that the player landed on if they themselves could not land on that planet. (@TomGoodIdea)
+	    * Fixed an error with this where landing on planets under certain circumstances, such as when losing mission clearance after landing, could cause no ship to be chosen as the player's flagship, stranding you on the planet. (@danaris, @warp-core)
 	  * The autopilot AI no longer attempts to make pointless turn commands when already in the process of jumping. (@Zitchas)
 	  * Escorts now properly offload their cargo on every landing. (@flowers9)
 	  * Map buttons no longer overlap on smaller screens. (@TomGoodIdea)
@@ -41,6 +43,11 @@ Version 0.10.3
 	  * Fixed the new "fail" action behavior not working with the "on enter" action (@Hurleveur)
 	  * Fixed a logic error when checking if a ship is ready to jump that prevented some ships from jumping. (@flowers9)
 	  * The amount of thrust provided by engines when you have insufficient resources (e.g. energy, fuel) available to fire them at 100% now correctly scales down the thrust provided by the amount of resources you have. (@flowers9)
+	  * Planets no longer launch defense fleets from invalid definitions, which could cause the game to crash. (@TomGoodIdea)
+	  * The click zones for the descriptions of ships and outfits in the shop are now properly aligned with the description text. (@flowers9)
+	  * Ships and outfits without descriptions in the shop will no longer display description clikc zones. (@warp-core)
+	  * Fixed an issue where scanning a ship's cargo or outfits could cause the scan dialog to appear twice. (@warp-core)
+	  * Selecting a new system on the map now always clears the system orbit data, instead of only doing so when the newly selected system has been visited. (@TomGoodIdea)
   * Game content:
 	* New content:
 	  * New mission where you answer a distress call in Korath space. (@UnorderedSigh, @williaji)
@@ -61,7 +68,24 @@ Version 0.10.3
 	  * The Quarg in Korath space now receive permanent reputation hits if you attack the Efreti. (@Saugia)
 	  * Gave the Dagger +5 engine space and stock A120 Atomic Thrusters to give it more of a niche among the other human fighters. (@Quantumshark)
 	  * Gave the Violin Spider +4 weapon space to allow it to equip an anti-missile turret in addition to its gun. (@Hurleveur)
+	  * Flattened the thrust scaling of sets of engines as you get bigger engines in a set. (@Quantumshark)
+	    * The exact changes depend on the set of engines, but the changes are roughly as follows:
+		  * Tiny: +23.0% thrust
+		  * Small: +14.3%
+		  * Medium: +5.5%
+		  * Large: +0.0%
+		  * Huge: -5.1%
+		* Put in words, small engines have been made stronger while large engines have been made slightly weaker. The result of this is that smaller ships should be generally quicker than they were before while larger ships should either see no change or should be slightly slower.
+		* Afterburners have been unchanged.
 	  * Reduced the cost of the supercapacitor from 9,000 credits to 1,500, to bring it closer in line with other human batteries while still having a slight "premium" for its tiny size. (@Zitchas)
+	  * Removed a few ship variants from the pirate raid fleet that had high damage weapons not conducive to disabling their target. (@Zitchas)
+	  * The Ka'het Nullifier has been rebalanced to more effective disable targets by draining their energy. (@beccabunny)
+	    * Energy damage from 0 to 3200. This is energy which is immediately removed from the target's batteries on impact.
+		* Ion damage from 150 to 220. This is lingering energy loss that results in about 22,000 energy lost over the course of the next ten seconds after impact.
+		* Scrambling damage from 150 to 10. This causes the Nullifier to have much less of an effect on the target's weapons, instead relying on its much greater energy and ion damage.
+	  * Buffed the Ion Cannon's ion and scrambling damage by 20%, from 5 to 6 for each in order to make it a bit more competitive with other weaponry. (@Hurleveur)
+	  * Reduced the profitability of commodity trading in Hai space by about 40% by bringing trade prices closer together, as the lack of piracy in Hai space makes it an easy place for trading. (@Anarchist2)
+	  * Combined the two Barb variants into a single ship. This effectively just means that the turreted variant of the ship has gained +4 weapon space, and the Proton Gun variant of the ship is no longer sold. These two ships weren't sufficiently differentiated from one another to justify keeping both around. (@Quantumshark)
 	* Graphics:
 	* Other:
 	  * Tweaked the wording of the description of the Vivid Aether planet. (@Zitchas)
@@ -69,6 +93,11 @@ Version 0.10.3
 	  * Added a "frozen" attribute to various cold and frozen worlds for missions and spaceport news to use. (@dorbarker, @Anarchist2)
 	  * The Unfettered Solifuge and Violin Spider are now added the Unfettered shipyards at the same time that the ships are added to Unfettered fleets. (@Hurleveur)
 	  * Added the "forest" attribute to Stormhold and changed its planet sprite in order to better match the planet's description. (@bene-dictator)
+	  * Various Free Worlds missions which state that mission NPC ships cargo on them now actually have the cargo you're told they have. (@bene-dictator)
+	  * Changed the attitude of various Hai governments toward certain actions that the player takes to better reflect the story. (@Hurleveur)
+	    * You no longer gain reputation with the Hai for attacking or destroying Unfettered ships.
+	    * You no longer lose reputation with the Unfettered for disabling Unfettered ships.
+		* You now gain 50% more reputation for assisting Hai ships.
   * Game mechanics:
     * New mechanics:
 	  * Fighters will now grab a chunk of energy from their carrier's batteries when they deploy if the fighter's energy reserves are not full. Useful for battery-only fighters. (@tibetiroka)
@@ -84,8 +113,14 @@ Version 0.10.3
 		* "installed plugins: <name>" returns 1 if a plugin of the given name is installed, 0 otherwise. (@1010Todd, @Hurleveur)
 		* "roll: <number or condition>" returns a random number between 0 and the specified number, or between 0 and the value of the given condition if a condition name is provided. (@Amazinite)
 		* "person destroyed: <name>" returns 1 if the person ship with the given name has been destroyed, 0 otherwise. (@Hurleveur)
+		* "flagship bays: <type>" returns the number of bays of the given type that the player's flagship has. (@TomGoodIdea)
 	* Changed mechanics:
 	  * Having more required crew than you have bunks is now an outfitter warning instead of an error that prevents you from leaving. (@TomGoodIdea)
+	  * Redesigned how outfit and cargo scanning works. (@UnorderedSigh)
+	    * The scan time is now always 2 seconds at the best and 10 seconds at the worst.
+		* Scan speed now follows a gaussian decay as distance increases.
+		* Scan time increases with cargo hold or outfit space size with the 2/3rd power of the size instead of linearly.
+	  * Pirate raid deterence no longer looks at whether you have ammo in your launchers. (@TomGoodIdea)
     * AI:
 	  * Ships with only secondary weapons that run out of ammo will now attempt to flee instead of flying straight at their target without any weapons. (@TomGoodIdea)
 	  * Escorts that are capable of cloaking can now cloak on their own without input from the player if they are low on health. (@TomGoodIdea)
@@ -109,6 +144,10 @@ Version 0.10.3
 	* The auto-selection of available jobs when you accept one job now moves to the next available job for the destination instead of reseting back to the top of the list of jobs for that destination. (@flowers9)
 	* Added a preference to blink the map mission marker for missions with a deadline more quickly if you have less extra days to reach the destination compared to the minimum number of days necessary to reach it. The default behavior is to simply blink based on the number of days until the deadline. (@TomGoodIdea)
 	* The player will now be warned when taking off if they don't have enough cargo space for outfits that are marked as in cargo. (@flowers9, @warp-core)
+	* Buttons on the planet panel when you are landed no longer disappear if you don't have a flagship. (@flowers9)
+	* Mission destination reminder messages are now colored in a new green "info" message level. (@RisingLeaf)
+	* Interface bars can now be defined to draw from the top left corner instead of only drawing from the bottom right. (@warp-core)
+	* Added a confirmation dialog to demanding tribute from a planet, to prevent the player accidentally demanding tribute from a planet and ruining their reputation. (@UnorderedSigh)
   * Under the hood:
     * Refactored part of PlayerInfo::Land to reduce code duplication. (@warp-core)
 	* Selling all your commodities in the trade panel now loops over the commodities that the player owns instead of looping through all commodities in the game and seeing if the player owns them. (@flowers9)
@@ -123,12 +162,16 @@ Version 0.10.3
 	* Fixed incorrectly ordered includes in source files. (@tibetiroka)
 	* Created a new type of dialog that always runs its callback function regardless of the user's choice. (@flowers9)
 	* Added null pointer checks to functions in Politics. (@warp-core)
+	* Refactored ShipyardPanel and OutfitterPanel code into the ShopPanel base class. (@flowers9)
+	* Removed a redundant check in the ShipyardPanel and OutfitterPanel code. (@flowers9)
   * CI/CD and development environment:
     * Added some rudamentary checks for proper use of indefinite articles to the content style checker. (@tibetiroka)
 	* Added a link to the mobile port when creating new issues on Github. (@m0ctave)
 	* Improved checking of quote style issues in the style checker. (@flowers9, @tibetiroka)
 	* apt-get update is now run before apt-get install in CI jobs. (@MCOfficer)
 	* Incorrectly ordered includes in source files now causes a style check error instead of a warning. (@tibetiroka)
+	* The content style checker now also runs on integration test data. (@warp-core)
+	* Fixed an indefinite article issue false positive in the style checker that had to do with abbreviations. (@tibetiroka)
 
 Version 0.10.2
   * Bug fixes:
