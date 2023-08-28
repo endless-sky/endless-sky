@@ -970,7 +970,8 @@ void MapPanel::UpdateCache()
 		Color color = UninhabitedColor();
 		if(!player.HasVisited(system))
 			color = UnexploredColor();
-		else if(system.IsInhabited(player.Flagship()) || commodity == SHOW_SPECIAL || commodity == SHOW_VISITED || commodity == SHOW_DANGER)
+		else if(system.IsInhabited(player.Flagship()) || commodity == SHOW_SPECIAL
+				|| commodity == SHOW_VISITED || commodity == SHOW_DANGER)
 		{
 			if(commodity >= SHOW_SPECIAL)
 			{
