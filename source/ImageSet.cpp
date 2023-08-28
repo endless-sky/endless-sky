@@ -242,11 +242,9 @@ void ImageSet::ValidateFrames() noexcept(false)
 	};
 
 	// Drop any @2x paths that will not be used.
-	dropPaths(paths[1], "@2x");
-	// Drop any mask paths that will not be used.
-	dropPaths(paths[2], "mask");
-	// Drop any @2x mask paths that will not be used.
-	dropPaths(paths[3], "@2x mask");
+	DropPaths(paths[1], "@2x");
+	DropPaths(paths[2], "mask");
+	DropPaths(paths[3], "@2x mask");
 }
 
 
