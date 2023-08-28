@@ -118,8 +118,8 @@ outfit "Ion Cannon"
 		"hit force" 120
 		"shield damage" 168
 		"hull damage" 60
-		"ion damage" 5
-		"scrambling damage" 5
+		"ion damage" 6
+		"scrambling damage" 6
 	description "Ion cannons do not inflict as much damage as some other weapons, but they disrupt the electrical systems on any ship they hit, draining its energy and causing its weapons to jam. If a ship has sizable battery reserves, this may have little effect, but for a ship running at near its energy generation capacity an ion strike can take it out of the battle for a few seconds while it recovers, or otherwise cause it to have difficulty firing its weapons."
 
 effect "ion impact"
