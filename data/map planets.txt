@@ -161,7 +161,7 @@ planet Antipode
 	attributes core frontier mining
 	landscape land/snow17
 	description `Antipode is a frozen, unforgiving world, orbiting far enough from a dim star that even when the sun breaks through the clouds, it brings little warmth. The few settlements that exist here are built near surface deposits of rare earth metals that were discovered recently, and that are mined for use in electronics and equipment throughout this sector.`
-	description `	What little amenites are available for the people living here are of subpar quality; only half the houses have a dedicated heating system, and it can take months before a store is able to restock its goods.`
+	description `	What little amenites are available for the people living here are of subpar quality; a third of the houses lack a dedicated heating system, and it can take months before a store is able to restock its goods.`
 	description `	The inhabitants of Antipode are among the best downhill skiers in the galaxy, and they have made some attempts to draw off-world tourists to the ski resorts here, but the weather is so hostile, and living conditions so squalid, that they have had very little success.`
 	spaceport `The spaceport consists of a single enormous warehouse. The air inside is cold, but you are glad to get out of the howling wind. In one corner is a counter advertising skiing adventures, but no one is staffing it; they must be out to lunch or taking the day off.`
 	spaceport `	As with many of these small spaceports, it seems that the only option for food is a pub, but the smells coming from it are enticing; for once, you may have found a spaceport bar whose chef actually knows how to cook.`
