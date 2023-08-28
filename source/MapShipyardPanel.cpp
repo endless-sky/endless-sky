@@ -147,7 +147,7 @@ double MapShipyardPanel::SystemValue(const System *system) const
 	const auto &systemShips = parkedShips.find(system);
 	if(systemShips != parkedShips.end() && systemShips->second.find(selected) != systemShips->second.end())
 		return .5;
- 	else if(system->IsInhabited(player.Flagship()))
+	else if(system->IsInhabited(player.Flagship()))
 	{
 		// Visiting a system is sufficient to know what ports are available on its planets.
 		double value = -1.;
