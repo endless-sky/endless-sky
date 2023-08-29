@@ -24,12 +24,12 @@ Endless Sky has very minimal system requirements, meaning most systems should be
 
 ## Building from source
 
-Most development is done on Linux and Windows, using CMake ([build instructions](readme-cmake.md)) to compile the project. For those wishing to use an IDE, project files are provided for [Code::Blocks](https://www.codeblocks.org/) to simplify the project setup, and other IDEs are supported through their respective CMake integration. [SCons](https://scons.org/) was the primary build tool up until 0.9.16, and some files and information continue to be available for it.
-For full installation instructions, consult the [Build Instructions](https://github.com/endless-sky/endless-sky/blob/master/readme-developer.md) readme.
+Most development is done on Linux and Windows, using CMake ([build instructions](docs/readme-cmake.md)) to compile the project. For those wishing to use an IDE, project files are provided for [Code::Blocks](https://www.codeblocks.org/) to simplify the project setup, and other IDEs are supported through their respective CMake integration. [SCons](https://scons.org/) was the primary build tool up until 0.9.16, and some files and information continue to be available for it.
+For full installation instructions, consult the [Build Instructions](docs/readme-developer.md) readme.
 
 ## Contributing
 
-As a free and open source game, Endless Sky is the product of many people's work. Contributions of artwork, storylines, and other writing are most in-demand, though there is a loosely defined [roadmap](https://github.com/endless-sky/endless-sky/wiki/DevelopmentRoadmap). Those who wish to [contribute](CONTRIBUTING.md) are encouraged to review the [wiki](https://github.com/endless-sky/endless-sky/wiki), and to post in the [community-run Discord](https://discord.gg/ZeuASSx) beforehand. Those who prefer to use Steam can use its [discussion rooms](https://steamcommunity.com/app/404410/discussions/) as well, or GitHub's [discussion zone](https://github.com/endless-sky/endless-sky/discussions).
+As a free and open source game, Endless Sky is the product of many people's work. Contributions of artwork, storylines, and other writing are most in-demand, though there is a loosely defined [roadmap](https://github.com/endless-sky/endless-sky/wiki/DevelopmentRoadmap). Those who wish to [contribute](docs/CONTRIBUTING.md) are encouraged to review the [wiki](https://github.com/endless-sky/endless-sky/wiki), and to post in the [community-run Discord](https://discord.gg/ZeuASSx) beforehand. Those who prefer to use Steam can use its [discussion rooms](https://steamcommunity.com/app/404410/discussions/) as well, or GitHub's [discussion zone](https://github.com/endless-sky/endless-sky/discussions).
 
 Endless Sky's main discussion and development area was once [Google Groups](https://groups.google.com/g/endless-sky), but due to factors outside our control, it is now inaccessible to new users, and should not be used anymore.
 

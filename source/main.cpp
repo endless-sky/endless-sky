@@ -189,7 +189,7 @@ int main(int argc, char *argv[])
 		if(!GameWindow::Init())
 			return 1;
 
-		GameData::LoadShaders(!GameWindow::HasSwizzle());
+		GameData::LoadShaders();
 
 		// Show something other than a blank window.
 		GameWindow::Step();
@@ -206,7 +206,7 @@ int main(int argc, char *argv[])
 	}
 	catch(Test::known_failure_tag)
 	{
-		// This is not an error. Simply exit succesfully.
+		// This is not an error. Simply exit successfully.
 	}
 	catch(const runtime_error &error)
 	{
@@ -459,7 +459,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky ver. 0.10.1-alpha" << endl;
+	cerr << "Endless Sky ver. 0.10.3-alpha" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;

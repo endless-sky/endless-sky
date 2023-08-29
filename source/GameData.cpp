@@ -195,7 +195,7 @@ void GameData::CheckReferences()
 
 
 
-void GameData::LoadShaders(bool useShaderSwizzle)
+void GameData::LoadShaders()
 {
 	FontSet::Add(Files::Images() + "font/ubuntu14r.png", 14);
 	FontSet::Add(Files::Images() + "font/ubuntu18r.png", 18);
@@ -210,7 +210,7 @@ void GameData::LoadShaders(bool useShaderSwizzle)
 	OutlineShader::Init();
 	PointerShader::Init();
 	RingShader::Init();
-	SpriteShader::Init(useShaderSwizzle);
+	SpriteShader::Init();
 	BatchShader::Init();
 
 	background.Init(16384, 4096);
@@ -538,7 +538,6 @@ const Set<Effect> &GameData::Effects()
 
 
 
-
 const Set<GameEvent> &GameData::Events()
 {
 	return objects.events;
@@ -592,7 +591,6 @@ const Set<Minable> &GameData::Minables()
 {
 	return objects.minables;
 }
-
 
 
 
@@ -719,7 +717,6 @@ const vector<Trade::Commodity> &GameData::Commodities()
 {
 	return objects.trade.Commodities();
 }
-
 
 
 
