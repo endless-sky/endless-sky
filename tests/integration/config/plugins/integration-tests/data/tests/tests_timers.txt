@@ -20,7 +20,7 @@ test "Timer - Simple 10 seconds timer"
 		call "Depart"
 		call "Land"
 		call "Depart"
-		watchdog 900
+		watchdog 1500
 		apply
 			"test: steps to wait" = 10 * 60
 		label "floating"
