@@ -320,11 +320,7 @@ void Interface::Element::Draw(const Information &info, Panel *panel) const
 		return;
 
 	// Get the bounding box of this element, relative to the anchor point.
-	Rectangle box;
-	if(info.CustomRegion())
-		box = Bounds(info);
-	else
-		box = Bounds();
+	Rectangle box = (info.CustomRegion() ? Bounds(info) : Bounds());
 	// Check if this element is active.
 	int state = info.HasCondition(activeIf);
 	// Check if the mouse is hovering over this element.
