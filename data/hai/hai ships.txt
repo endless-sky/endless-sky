@@ -31,32 +31,31 @@ ship "Anomalocaris"
 		"outfit space" 533
 		"weapon capacity" 192
 		"engine capacity" 93
-		# Disabled faster due to the ship's sea time, which the Unfettered know about
-		"threshold percentage" 0.4
 		weapon
 			"blast radius" 84
 			"shield damage" 840
 			"hull damage" 420
 			"hit force" 1260
-	outfits
-		"Korath Detainer" 2
-		"Bullfrog Anti-Missile" 4
-		"Hai Williwaw Cooling"
-		"Boulder Reactor"
-		"Value Detector"
-		"Asteroid Scanner"
-		"Hai Valley Batteries"
-		"Hai Diamond Regenerator"
-		`"Biroo" Atomic Thruster`
-		`"Bondir" Atomic Steering`
-		"Hyperdrive"
-		"Pulse Rifle" 20
-
+		outfits
+			`"Biroo" Atomic Thruster`
+			`"Bondir" Atomic Steering`
+			"Asteroid Scanner"
+			"Boulder Reactor"
+			"Bullfrog Anti-Missile"
+			"Chameleon Anti-Missile" 3
+			"Hai Diamond Regenerator"
+			"Hai Ravine Batteries"
+			"Hai Williwaw Cooling"
+			"Fuel Pod"
+			"Quantum Keystone"
+			Hyperdrive
+			"Ion Cannon" 2
+			"Pulse Rifle" 20
 	gun -24 -89.5
 	gun 24 -89.5
 	turret -40 -28
 	turret 40 -28
-	turret 0 60
+	turret 0 60 "Bullfrog Anti-Missile"
 	turret 0 -32.5
 	engine -50 15
 	engine 50 15
@@ -73,8 +72,26 @@ ship "Anomalocaris"
 	explode "medium explosion" 30
 	explode "large explosion" 14
 	"final explode" "final explosion medium"
-	description "First created during the Hai's initial conflicts with the Sheragi, the Anomalocaris was supposedly one of the most agile Hai warships of its time. Its high cargo capacity and low engine space suggest the first designs of the ship were intended for mining or freighting, but this also made it useful for looting enemy ships and carrying ammunition. Vessels from that time used a more expensive material, allowing this ship to take quite a pounding, especially from big impacts, although its time under water may have damaged it."
+	description "First created during the Hai's initial conflicts with the Sheragi, the Anomalocaris was supposedly one of the most agile Hai warships of its time. Its high cargo capacity and low engine space suggest the first designs of the ship were intended for mining or freighting, but this also made it useful for looting enemy ships and carrying ammunition. Vessels from that time used a more expensive material, allowing this ship to take quite a pounding, especially from big impacts."
 
+ship "Anomalocaris" "Anomalocaris (Venerable)"
+	add attributes
+		# Disabled faster due to the ship's sea time, which the Unfettered know about
+		"threshold percentage" 0.4
+	outfits
+		"Korath Detainer" 2
+		"Bullfrog Anti-Missile" 4
+		"Hai Williwaw Cooling"
+		"Boulder Reactor"
+		"Value Detector"
+		"Asteroid Scanner"
+		"Hai Valley Batteries"
+		"Hai Diamond Regenerator"
+		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		"Hyperdrive"
+		"Pulse Rifle" 20
+	description "First created during the Hai's initial conflicts with the Sheragi, the Anomalocaris was supposedly one of the most agile Hai warships of its time. Its high cargo capacity and low engine space suggest the first designs of the ship were intended for mining or freighting, but this also made it useful for looting enemy ships and carrying ammunition. Vessels from that time used a more expensive material, allowing this ship to take quite a pounding, especially from big impacts, although its time under water may have damaged it."
 
 ship "Aphid"
 	sprite "ship/hai aphid"

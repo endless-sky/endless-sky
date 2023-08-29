@@ -180,7 +180,8 @@ mission "Hai Legacy 1"
 				goto choice
 			label take
 			action
-				give ship "Anomalocaris" "Good Omen"
+				give ship "Anomalocaris (Venerable)" "Good Omen"
+					id "hai legacy"
 				fine 10000000
 				log "Accepted a somewhat shady deal for an old Hai ship, an Anomalocaris, that seems to still be in good functioning state."
 			`	They give you access to the ship and proceed to explain the details. "It is of no real significance, but surely you understand we cannot go through standard means for this sale. We will instead present it as a fine. You'll be charged for carrying Korath tech you had no idea was forbidden, and it will not go on your permanent record. These Detainers are suspicious looking indeed."`
@@ -476,7 +477,8 @@ mission "Undeserved Anomalocaris"
 			`As you land on this planet with the Anomalocaris, sirens and warning lights of all different types begin to go off; it seems the ancient ship is finally ready to completely fall apart!`
 			`	You order the evacuation of the ship, but as soon as every member of your crew has exited...`
 			action
-				take ship "Anomalocaris" "with outfits"
+				take ship "Anomalocaris (Venerable)" "with outfits"
+					id "hai legacy"
 			# this ship also had an AI
 			`	It takes off, seemingly on its own! Looks like the Unfettered are getting this ship no matter what you do. It... hails you? You hear a robotic voice, "See you never, monkey. Don't attempt anything or I am programmed to self-destruct!"`
 				decline
@@ -497,6 +499,7 @@ mission "Undeserved Anomalocaris"
 			action
 				give ship "Lightning Bug (Unfettered Shipyards)" "Good Will"
 				take ship "Anomalocaris"
+					id "hai legacy"
 
 mission "Unfettered Landing Permit Lost"
 	landing
