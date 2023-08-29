@@ -24,7 +24,7 @@ using namespace std;
 void Information::SetRegion(const Rectangle &rect)
 {
 	region = rect;
-	customRegion = true;
+	hasCustomRegion = true;
 }
 
 
@@ -38,7 +38,7 @@ const Rectangle &Information::GetCustomRegion() const
 
 bool Information::HasCustomRegion() const
 {
-	return customRegion;
+	return hasCustomRegion;
 }
 
 

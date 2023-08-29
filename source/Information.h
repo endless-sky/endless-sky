@@ -57,7 +57,7 @@ public:
 
 private:
 	Rectangle region;
-	bool customRegion = false;
+	bool hasCustomRegion = false;
 
 	std::map<std::string, const Sprite *> sprites;
 	std::map<std::string, Point> spriteUnits;
