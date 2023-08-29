@@ -189,7 +189,7 @@ int main(int argc, char *argv[])
 		if(!GameWindow::Init())
 			return 1;
 
-		GameData::LoadShaders(!GameWindow::HasSwizzle());
+		GameData::LoadShaders();
 
 		// Show something other than a blank window.
 		GameWindow::Step();
@@ -206,7 +206,7 @@ int main(int argc, char *argv[])
 	}
 	catch(Test::known_failure_tag)
 	{
-		// This is not an error. Simply exit succesfully.
+		// This is not an error. Simply exit successfully.
 	}
 	catch(const runtime_error &error)
 	{

@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "ExclusiveItem.h"
 #include "LocationFilter.h"
+#include "RaidFleet.h"
 
 #include <limits>
 #include <map>
@@ -59,19 +60,6 @@ public:
 		PenaltyEffect(double reputationChange = 0., SpecialPenalty specialPenalty = SpecialPenalty::NONE) :
 			reputationChange(reputationChange), specialPenalty(specialPenalty)
 		{}
-	};
-
-	class RaidFleet {
-		public:
-			RaidFleet(const Fleet *fleet, double minAttraction, double maxAttraction);
-			const Fleet *GetFleet() const;
-			double MinAttraction() const;
-			double MaxAttraction() const;
-
-		private:
-			const Fleet *fleet = nullptr;
-			double minAttraction;
-			double maxAttraction;
 	};
 
 
