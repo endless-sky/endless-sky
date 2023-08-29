@@ -44,11 +44,13 @@ if(NOT ES_USE_SYSTEM_LIBRARIES)
 	list(APPEND VCPKG_MANIFEST_FEATURES "system-libs")
 endif()
 
-# Tell vcpkg to use system libraries that are missing in the Flatpak or Steam runtime if necessary.
+# Tell vcpkg to use system libraries that are missing on the respective platform.
 if(ES_FLATPAK)
 	list(APPEND VCPKG_MANIFEST_FEATURES "flatpak-libs")
 elseif(ES_STEAM)
 	list(APPEND VCPKG_MANIFEST_FEATURES "steam-libs")
+elseif(APPLE)
+	list(APPEND VCPKG_MANIFEST_FEATURES "macos-libs")
 endif()
 
 # Various helpful options for IDEs.
