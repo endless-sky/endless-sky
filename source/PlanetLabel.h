@@ -47,7 +47,7 @@ private:
 
 private:
 	Point objectPosition;
-	double objectRadius;
+	double objectRadius = 0.;
 
 	// Used for overlap detection during label creation.
 	Rectangle box;
@@ -55,7 +55,7 @@ private:
 
 	// Position and radius for drawing label.
 	Point position;
-	double radius;
+	double radius = 0.;
 
 	std::string name;
 	std::string government;

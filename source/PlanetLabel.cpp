@@ -164,7 +164,7 @@ void PlanetLabel::Draw() const
 		PointerShader::Draw(position, barbAngle.Unit(), 15.f, 15.f, barbRadius, labelColor);
 	}
 
-	// Draw planet label, if any.
+	// Draw planet name label, if any.
 	if(!name.empty())
 	{
 		const Point unit = Angle(innerAngle).Unit();
