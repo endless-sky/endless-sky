@@ -321,7 +321,7 @@ void Interface::Element::Draw(const Information &info, Panel *panel) const
 
 	// Get the bounding box of this element, relative to the anchor point.
 	Rectangle box;
-	if(info.CustomRegion())
+	if(info.HasCustomRegion())
 		box = Bounds(info);
 	else
 		box = Bounds();

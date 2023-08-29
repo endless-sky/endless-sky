@@ -34,7 +34,7 @@ class Information {
 public:
 	void SetRegion(const Rectangle &rect);
 	const Rectangle &GetCustomRegion() const;
-	bool CustomRegion() const;
+	bool HasCustomRegion() const;
 
 	void SetSprite(const std::string &name, const Sprite *sprite, const Point &unit = Point(0., -1.), float frame = 0.f);
 	const Sprite *GetSprite(const std::string &name) const;

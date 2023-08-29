@@ -36,7 +36,7 @@ const Rectangle &Information::GetCustomRegion() const
 
 
 
-bool Information::CustomRegion() const
+bool Information::HasCustomRegion() const
 {
 	return customRegion;
 }
