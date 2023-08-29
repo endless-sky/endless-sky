@@ -58,10 +58,10 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 {
 	const Interface &element = *GameData::Interfaces().Get("escort element");
 
-	const int WIDTH = element.GetValue("width");
+	const int width = element.GetValue("width");
 
 	// Figure out how much space there is for the icons.
-	int maxColumns = max(1., bounds.Width() / WIDTH);
+	int maxColumns = max(1., bounds.Width() / width);
 	MergeStacks(maxColumns * bounds.Height());
 	icons.sort();
 	stacks.clear();
@@ -89,8 +89,8 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 		// Show only as many escorts as we have room for on screen.
 		if(corner.Y() <= bounds.Top())
 		{
-			corner.X() += WIDTH;
-			if(corner.X() + WIDTH > bounds.Right())
+			corner.X() += width;
+			if(corner.X() + width > bounds.Right())
 				break;
 			corner.Y() = bounds.Bottom() - escort.Height();
 		}
@@ -146,7 +146,7 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 			info.SetBar(levels[i][1], escort.low[i]);
 		}
 
-		const Point dimensions(WIDTH, escort.Height());
+		const Point dimensions(width, escort.Height());
 		const Point center(corner + dimensions / 2.);
 
 		info.SetRegion(Rectangle(center, dimensions));
