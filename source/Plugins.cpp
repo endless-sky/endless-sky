@@ -89,14 +89,14 @@ const Plugin *Plugins::Load(const string &path)
 		Logger::LogError("Warning: Missing required \"name\" field inside plugin.txt");
 
 	// Plugin names should be unique.
-	if(plugins.Find(name))
+	auto *plugin = plugins.Find(name);
+	if(!plugin || plugin->IsValid())
 	{
 		Logger::LogError("Warning: Skipping plugin located at \"" + path
 			+ "\" because another plugin with the same name has already been loaded");
 		return nullptr;
 	}
 
-	auto *plugin = plugins.Get(name);
 	plugin->name = std::move(name);
 	plugin->path = path;
 	// Read the deprecated about.txt content if no about text was specified.

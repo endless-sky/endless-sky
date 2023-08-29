@@ -33,6 +33,7 @@ public:
 	const Type *Get(const std::string &name) const { return &data[name]; }
 	// If an item already exists in this set, get it. Otherwise, return a null
 	// pointer rather than creating the item.
+	Type *Find(const std::string &name);
 	const Type *Find(const std::string &name) const;
 
 	bool Has(const std::string &name) const { return data.count(name); }
@@ -53,6 +54,15 @@ public:
 private:
 	mutable std::map<std::string, Type> data;
 };
+
+
+
+template <class Type>
+Type *Set<Type>::Find(const std::string &name)
+{
+	auto it = data.find(name);
+	return (it == data.end() ? nullptr : &it->second);
+}
 
 
 
