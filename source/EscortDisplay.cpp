@@ -42,13 +42,17 @@ using namespace std;
 void EscortDisplay::Clear()
 {
 	icons.clear();
+
+	element = GameData::Interfaces().Get("escort element");
+	basicHeight = element->GetValue("basic height");
+	systemLabelHeight = element->GetValue("system label height");
 }
 
 
 
 void EscortDisplay::Add(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected)
 {
-	icons.emplace_back(ship, isHere, fleetIsJumping, isSelected);
+	icons.emplace_back(ship, isHere, fleetIsJumping, isSelected, basicHeight, systemLabelHeight);
 }
 
 
@@ -56,9 +60,7 @@ void EscortDisplay::Add(const Ship &ship, bool isHere, bool fleetIsJumping, bool
 // Draw as many escort icons as will fit in the given bounding box.
 void EscortDisplay::Draw(const Rectangle &bounds) const
 {
-	const Interface &element = *GameData::Interfaces().Get("escort element");
-
-	const int width = element.GetValue("width");
+	const int width = element->GetValue("width");
 
 	// Figure out how much space there is for the icons.
 	int maxColumns = max(1., bounds.Width() / width);
@@ -123,7 +125,7 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 		// Figure out what scale should be applied to the ship sprite.
 		info.SetSprite("icon", escort.sprite);
 		info.SetOutlineColor(color);
-		zones.push_back(element.GetBox("icon").Center());
+		zones.push_back(element->GetBox("icon").Center());
 		stacks.push_back(escort.ships);
 		// Draw the number of ships in this stack.
 		if(escort.ships.size() > 1)
@@ -151,7 +153,7 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 
 		info.SetRegion(Rectangle(center, dimensions));
 
-		element.Draw(info);
+		element->Draw(info);
 	}
 }
 
@@ -171,7 +173,8 @@ const vector<const Ship *> &EscortDisplay::Click(const Point &point) const
 
 
 
-EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected)
+EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected,
+		int basicHeight, int systemLabelHeight)
 	: sprite(ship.GetSprite()),
 	isDisabled(ship.IsDisabled()),
 	isHere(isHere),
@@ -185,6 +188,9 @@ EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool fleetIsJumping, bo
 	high(low),
 	ships(1, &ship)
 {
+	height = basicHeight;
+	if(!system.empty())
+		height += systemLabelHeight;
 }
 
 
@@ -199,10 +205,6 @@ bool EscortDisplay::Icon::operator<(const Icon &other) const
 
 int EscortDisplay::Icon::Height() const
 {
-	const Interface *element = GameData::Interfaces().Get("escort element");
-	int height = element->GetValue("basic height");
-	if(!system.empty())
-		height += element->GetValue("system label height");
 	return height;
 }
 
