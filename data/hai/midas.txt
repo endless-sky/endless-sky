@@ -650,9 +650,9 @@ mission "<uhai> 6 B: To The Wolves"
 		government "Midas"
 		system "Heia Due"
 		personality plunders staying harvests
-		fleet "Large Northern Pirates" 6
+		fleet "Marauders" 6
 		on provoke
-			dialog `You hear a voice once alone in your quarters, "You have chosen your side. Nemo Me Impune Lacessit, <first>." You feel a strong pain in your neck.`
+			dialog `You hear a voice the instant you fire on the ships you had pretended to ally with, seemingly coming from nowhere, "You have chosen your side. Nemo Me Impune Lacessit, <first>." You suddenly feel a strong pain in your neck.`
 			"reputation: Midas" <?= -1000
 			"midas: wronged" ++
 	npc

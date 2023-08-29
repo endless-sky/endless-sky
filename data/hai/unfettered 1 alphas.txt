@@ -516,7 +516,7 @@ mission "<uhai> 6 A: Loyal Escort"
 			not "<uhai> 6 B: To The Wolves: active"
 		system "Ya Hai"
 		personality disables plunders vindictive
-		fleet "Large Northern Pirates" 2
+		fleet "Marauders" 2
 	on fail
 		# The shipment gets lost faster, because if this fails Midas are busy shipping supplies to Unfettered space and can't dedicate as much resources to stealing Alpha supplies.
 		event "unfettered: shipment lost" 20

@@ -872,7 +872,7 @@ mission "<uhai> 14: Ion Materials"
 				`	"What was this loot about anyway?"`
 					goto loot
 			`	"A little bit of competition cannot hurt, can it? Since when are you afraid of a few pirates? You may have softened up since we last saw each other."`
-			`	"But I heard of your exploits, these were no mere pirates. That was the Dark Angel." He speaks louder for the entire bar to hear, "And with a fleet of dozens of ships! Drinks are on me, boys!" Most Hai were ignoring him up to this point, but as soon as he said that you can hear them rejoicing and praising this exploit.`
+			`	"But I heard of your exploits, these were no mere pirates. That was the Dark Angel! They earned that name by taking out Archangel." He speaks louder for the entire bar to hear, "And with a fleet of dozens of ships! Drinks are on me, boys!" Most Hai were ignoring him up to this point, but as soon as he said that you can hear them rejoicing and praising this exploit.`
 				to display
 					has "midas: angel assassination"
 			label loot
