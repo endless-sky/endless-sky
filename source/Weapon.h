@@ -74,11 +74,11 @@ public:
 	const std::map<const Effect *, int> &TargetEffects() const;
 	const std::map<const Effect *, int> &DieEffects() const;
 	const std::vector<Submunition> &Submunitions() const;
-	int FadeOut() const;
 
 	// Accessor functions for various attributes.
 	int Lifetime() const;
 	int RandomLifetime() const;
+	int FadeOut() const;
 	double Reload() const;
 	double BurstReload() const;
 	int BurstCount() const;
@@ -222,7 +222,6 @@ private:
 	std::map<const Effect *, int> targetEffects;
 	std::map<const Effect *, int> dieEffects;
 	std::vector<Submunition> submunitions;
-	int fadeOut = 0;
 
 	// This stores whether or not the weapon has been loaded.
 	bool isWeapon = false;
@@ -241,6 +240,7 @@ private:
 	// Attributes.
 	int lifetime = 0;
 	int randomLifetime = 0;
+	int fadeOut = 0;
 	double reload = 1.;
 	double burstReload = 1.;
 	int burstCount = 1;
@@ -342,6 +342,7 @@ private:
 // Inline the accessors because they get called so frequently.
 inline int Weapon::Lifetime() const { return lifetime; }
 inline int Weapon::RandomLifetime() const { return randomLifetime; }
+inline int Weapon::FadeOut() const { return fadeOut; }
 inline double Weapon::Reload() const { return reload; }
 inline double Weapon::BurstReload() const { return burstReload; }
 inline int Weapon::BurstCount() const { return burstCount; }

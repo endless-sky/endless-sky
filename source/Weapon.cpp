@@ -142,12 +142,12 @@ void Weapon::LoadWeapon(const DataNode &node)
 		else
 		{
 			double value = child.Value(1);
-			if(key == "fade out")
-				fadeOut = max(0., value);
-			else if(key == "lifetime")
+			if(key == "lifetime")
 				lifetime = max(0., value);
 			else if(key == "random lifetime")
 				randomLifetime = max(0., value);
+			else if(key == "fade out")
+				fadeOut = max(0., value);
 			else if(key == "reload")
 				reload = max(1., value);
 			else if(key == "burst reload")
@@ -467,13 +467,6 @@ const map<const Effect *, int> &Weapon::DieEffects() const
 const vector<Weapon::Submunition> &Weapon::Submunitions() const
 {
 	return submunitions;
-}
-
-
-
-int Weapon::FadeOut() const
-{
-	return fadeOut;
 }
 
 
