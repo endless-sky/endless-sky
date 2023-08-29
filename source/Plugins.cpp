@@ -90,7 +90,7 @@ const Plugin *Plugins::Load(const string &path)
 
 	// Plugin names should be unique.
 	auto *plugin = plugins.Find(name);
-	if(!plugin || plugin->IsValid())
+	if(plugin && plugin->IsValid())
 	{
 		Logger::LogError("Warning: Skipping plugin located at \"" + path
 			+ "\" because another plugin with the same name has already been loaded");
