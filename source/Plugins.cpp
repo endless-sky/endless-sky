@@ -97,6 +97,8 @@ const Plugin *Plugins::Load(const string &path)
 		return nullptr;
 	}
 
+	if(!plugin)
+		plugin = plugins.Get(name);
 	plugin->name = std::move(name);
 	plugin->path = path;
 	// Read the deprecated about.txt content if no about text was specified.
