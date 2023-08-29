@@ -16,7 +16,7 @@ tip "acceleration:"
 	`How quickly this ship gains speed. The higher a ship's mass (including the mass of any cargo or fighters it is carrying), the slower it accelerates.`
 
 tip "active cooling:"
-	`Cooling provided per second when running at full strength. Active cooling requires energy, but if your heat level is low it runs at a lower cooling rate and lower energy draw. The amount of cooling is proportional to the temperature of your ship, reaching the full level only if you are about to overheat.`
+	`Cooling provided per second when running at full strength. Active cooling requires energy, but if your heat level is low it runs at a lower cooling rate and lower energy draw. The amount of cooling is proportional to the temperature of your ship, reaching the full level only if your ship is overheated.`
 
 tip "afterburner energy:"
 	`Energy consumed per second when firing this afterburner.`
@@ -130,7 +130,7 @@ tip "cooling:"
 	`Heat dissipated per second. This is for when your ship's built-in heat dissipation is not sufficient to keep it from overheating.`
 
 tip "cooling energy:"
-	`Energy consumed per second when active cooling is running at full strength (because your ship's temperature is approaching the overheating threshold).`
+	`Energy consumed per second when active cooling is running at full strength (because your ship is overheated).`
 
 tip "cooling inefficiency:"
 	`Interference with your ship's cooling abilities. Its cooling systems will only be about 75% effective at a cooling inefficiency of 5, and 30% at an inefficiency of 10.`
