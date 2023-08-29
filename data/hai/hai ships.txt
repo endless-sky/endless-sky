@@ -36,21 +36,21 @@ ship "Anomalocaris"
 			"shield damage" 840
 			"hull damage" 420
 			"hit force" 1260
-		outfits
-			`"Biroo" Atomic Thruster`
-			`"Bondir" Atomic Steering`
-			"Asteroid Scanner"
-			"Boulder Reactor"
-			"Bullfrog Anti-Missile"
-			"Chameleon Anti-Missile" 3
-			"Hai Diamond Regenerator"
-			"Hai Ravine Batteries"
-			"Hai Williwaw Cooling"
-			"Fuel Pod"
-			"Quantum Keystone"
-			Hyperdrive
-			"Ion Cannon" 2
-			"Pulse Rifle" 20
+	outfits
+		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		"Asteroid Scanner"
+		"Boulder Reactor"
+		"Bullfrog Anti-Missile"
+		"Chameleon Anti-Missile" 3
+		"Hai Diamond Regenerator"
+		"Hai Ravine Batteries"
+		"Hai Williwaw Cooling"
+		"Fuel Pod"
+		"Quantum Keystone"
+		Hyperdrive
+		"Ion Cannon" 2
+		"Pulse Rifle" 20
 	gun -24 -89.5
 	gun 24 -89.5
 	turret -40 -28
