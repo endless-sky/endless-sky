@@ -646,9 +646,18 @@ void MapDetailPanel::DrawKey()
 		}
 	}
 
-	RingShader::Draw(pos, OUTER, INNER, UninhabitedColor());
-	font.Draw("Uninhabited", pos + textOff, dim);
-	pos.Y() += 20.;
+	if(commodity == SHOW_DANGER)
+	{
+		RingShader::Draw(pos, OUTER, INNER, DangerColor(numeric_limits<double>::quiet_NaN()));
+		font.Draw("Safe", pos + textOff, dim);
+		pos.Y() += 20.;
+	}
+	else
+	{
+		RingShader::Draw(pos, OUTER, INNER, UninhabitedColor());
+		font.Draw("Uninhabited", pos + textOff, dim);
+		pos.Y() += 20.;
+	}
 
 	RingShader::Draw(pos, OUTER, INNER, UnexploredColor());
 	font.Draw("Unexplored", pos + textOff, dim);

@@ -736,7 +736,9 @@ Color MapPanel::GovernmentColor(const Government *government)
 
 Color MapPanel::DangerColor(const double danger)
 {
-	if(danger > .5)
+	if(std::isnan(danger))
+		return Color(.1, .6, 0., .4);
+	else if(danger > .5)
 		return Color(.6, .4 * (2. - 2. * min(1., danger)), 0., .4);
 	else
 		return MapColor(2. * danger - 1.);
@@ -1034,6 +1036,8 @@ void MapPanel::UpdateCache()
 				const double danger = DangerFleetTotal(player, system, true);
 				if(danger > 0.)
 					color = DangerColor(1. - dangerScale * log(danger / dangerMax));
+				else
+					color = DangerColor(numeric_limits<double>::quiet_NaN());
 			}
 			else
 			{
