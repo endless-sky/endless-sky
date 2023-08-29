@@ -125,7 +125,7 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 		// Figure out what scale should be applied to the ship sprite.
 		info.SetSprite("icon", escort.sprite);
 		info.SetOutlineColor(color);
-		zones.push_back(element->GetBox("icon").Center());
+		zones.push_back(corner + element->GetBox("icon").Center());
 		stacks.push_back(escort.ships);
 		// Draw the number of ships in this stack.
 		if(escort.ships.size() > 1)
