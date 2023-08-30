@@ -33,9 +33,9 @@ Please note that it is recommended to use VS 2022 (or higher) for its better CMa
 2. Wait while Visual Studio loads everything. This may take a few minutes the first time, but should be relatively fast on subsequent loads.
 3. On the toolbar you're able to choose between Debug and Release.
 4. You might need to select the target to launch in the dropdown menu of the Run button (it's the one with the green arrow). Select "Endless Sky (build/.../)" (not the one with install).
-4. Hit the Run button (F5) to build and run the game.
-5. In the status window it will give a scrolling list of actions being completed. Wait until it states "Build Complete"
-6. You'll find the executables and libraries located inside the build directory in the root folder.
+5. Hit the Run button (F5) to build and run the game.
+6. In the status window it will give a scrolling list of actions being completed. Wait until it states "Build Complete"
+7. You'll find the executables and libraries located inside the build directory in the root folder.
 
 </details>
 
