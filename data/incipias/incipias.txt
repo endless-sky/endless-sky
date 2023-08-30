@@ -119,11 +119,13 @@ fleet "Hicemus Standard Surveilance"
 	names "hicemus military"
 	cargo 0
 	personality
-		heroic vindictive swarming
-	variant 5
+		heroic vindictive
+	variant 10
 		"Nimbus"
-	variant 1
+	variant 4
 		"Nimbus" 2
+	variant 4
+		"Venta"
 
 fleet "Hicemus Standard Trade"
 	government "Incipias Civilian"
@@ -131,13 +133,23 @@ fleet "Hicemus Standard Trade"
 	cargo 4
 	personality
 		confusion 40
-		timid frugal appeasing
+		timid appeasing
 	variant 5
 		"Nimbo Cirrus"
 	variant 1
 		"Nimbus"
 	variant 4
 		"Nimbo Cirrus" 2
+	variant 3
+		"Gero"
+	variant 2
+		"Gero" 2
+	variant 2
+		"Gero"
+		"Nimbo Cirrus"
+	variant 1
+		"Nimbo Cirrus" 2
+		"Nimbus"
 
 outfitter "Hicemus"
 	"Plasma Discharger"

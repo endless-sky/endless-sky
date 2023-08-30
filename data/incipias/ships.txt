@@ -11,6 +11,58 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+ship "Venta"
+	"plural" "Ventae"
+	"sprite" ship/venta
+	"thumbnail" thumbnail/venta
+	"swizzle" 0
+	attributes
+		"category" "Large Warship"
+		licenses
+			"Hicemus Conflict"
+		"cost" 25000000
+		"hull" 12000
+		"shields" 16000
+		"required crew" 40
+		"bunks" 45
+		"mass" 1200
+		"drag" 6.
+		"heat dissipation" .7
+		"cargo space" 20
+		"outfit space" 520
+		"weapon capacity" 230
+		"engine capacity" 130
+		"gaslining" 1
+		"fuel capacity" 200
+	outfits
+		"Solid-Class Shield"
+		"Liquid-Class Shield"
+		"Liquid Hydrogen Cell"
+		"Plasma Discharger" 4
+		"Star Tail" 2
+		"Star Tail Cell" 60
+		"Star Tail Storage"
+		"Heavy Machine Gun" 40
+
+		"MH Red-Class Engine"
+		"MH Red-Class Steering"
+
+	engine -90.5 42
+	engine 0 42
+		"over"
+	engine 90 42
+	gun 58.5 -76.5
+	gun 29 -76.5
+	gun 29 -76.5
+	gun -28 -76.5
+	gun -28 -76.5
+	gun -57 -76
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large"
+	description "When the Hicemus came to power they needed a ship to symbolize their strength. With six guns and one turret, the venta is not only symbolizing strength but also the most powerful ship in Incipias history. Thanks to its sleek and aerodynamic design it is able to hunt down outlaws in space as well as in the clouds of a gas giant."
+
 ship "Nimbus"
 	"plural" "Nimbi"
 	"sprite" ship/nimbus
@@ -21,8 +73,8 @@ ship "Nimbus"
 		licenses
 			"Hicemus Conflict"
 		"cost" 500000
-		"hull" 2500
-		"shields" 3800
+		"hull" 5000
+		"shields" 7500
 		"required crew" 20
 		"bunks" 40
 		"mass" 900
@@ -68,7 +120,7 @@ ship "Nimbo Stratus"
 		"category" "Interceptor"
 		"cost" 50000
 		"hull" 500
-		"shields" 1400
+		"shields" 700
 		"required crew" 5
 		"bunks" 10
 		"mass" 400
@@ -129,3 +181,36 @@ ship "Nimbo Cirrus"
 	explode "large explosion" 30
 	"final explode" "final explosion medium"
 	description "When Pontes was built the need for a ship that could carry material and supplies into the orbit arose. While the Nimbus is able to carry some cargo, it is not specialized for that kind of work. The Cirrus on the other hand is a pure cargo ship and the inhabitants of Pontes rely on the regular deliveries."
+
+ship "Gero"
+	"sprite" ship/gero
+	"thumbnail" thumbnail/gero
+	"swizzle" 0
+	attributes
+		"category" "Transport"
+		"cost" 100000
+		"hull" 850
+		"shields" 1700
+		"required crew" 10
+		"bunks" 72
+		"mass" 550
+		"drag" 6.5
+		"heat dissipation" .75
+		"cargo space" 20
+		"outfit space" 100
+		"gaslining" 1
+		"fuel capacity" 200
+	outfits
+		"Gas-Class Shield"
+		"Liquid Hydrogen Cell"
+
+		"MH Blue-Class Engine"
+		"MH Blue-Class Steering"
+
+	engine -41 76.5
+	engine 0 76.5
+	engine 41 76.5
+	explode "medium explosion" 20
+	explode "large explosion" 30
+	"final explode" "final explosion medium"
+	description "With a huge spacestation like Pontes come people travelling between the station and the home planet. The designers from Alto shipyards quickly saw the opportunity and so the first passenger only ship was built."
