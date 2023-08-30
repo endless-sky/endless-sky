@@ -19,7 +19,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "ExclusiveItem.h"
 #include "LocationFilter.h"
+#include "RaidFleet.h"
 
+#include <limits>
 #include <map>
 #include <set>
 #include <string>
@@ -45,21 +47,6 @@ class System;
 // color "swizzle." Some government's ships can also be easier or harder to
 // bribe than others.
 class Government {
-public:
-	class RaidFleet {
-		public:
-			RaidFleet(const Fleet *fleet, double minAttraction, double maxAttraction);
-			const Fleet *GetFleet() const;
-			double MinAttraction() const;
-			double MaxAttraction() const;
-
-		private:
-			const Fleet *fleet = nullptr;
-			double minAttraction;
-			double maxAttraction;
-	};
-
-
 public:
 	// Default constructor.
 	Government();
@@ -105,6 +92,8 @@ public:
 	std::string GetHail(bool isDisabled) const;
 	// Find out if this government speaks a different language.
 	const std::string &Language() const;
+	// Find out if this government should send custom hails even if the player does not know its language.
+	bool SendUntranslatedHails() const;
 	// Pirate raids in this government's systems use these fleet definitions. If
 	// it is empty, there are no pirate raids.
 	// The second attribute denotes the minimal and maximal attraction required for the fleet to appear.
@@ -135,9 +124,13 @@ public:
 	bool Condemns(const Outfit *outfit) const;
 	// Returns the fine for given outfit for this government.
 	int Fines(const Outfit *outfit) const;
+	// Check if given ship has illegal outfits or cargo.
+	bool FinesContents(const Ship *ship) const;
 
 	// Get or set the player's reputation with this government.
 	double Reputation() const;
+	double ReputationMax() const;
+	double ReputationMin() const;
 	void AddReputation(double value) const;
 	void SetReputation(double value) const;
 
@@ -159,6 +152,8 @@ private:
 	std::set<const Government *> trusted;
 	std::map<unsigned, std::map<int, double>> customPenalties;
 	double initialPlayerReputation = 0.;
+	double reputationMax = std::numeric_limits<double>::max();
+	double reputationMin = std::numeric_limits<double>::lowest();
 	std::map<int, double> penaltyFor;
 	std::map<const Outfit*, int> illegals;
 	std::map<const Outfit*, bool> atrocities;
@@ -171,6 +166,7 @@ private:
 	const Phrase *hostileHail = nullptr;
 	const Phrase *hostileDisabledHail = nullptr;
 	std::string language;
+	bool sendUntranslatedHails = false;
 	std::vector<RaidFleet> raidFleets;
 	double crewAttack = 1.;
 	double crewDefense = 2.;

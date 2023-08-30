@@ -87,6 +87,11 @@ mission "Han Sizer Month [0]"
 	repeat
 	description `In celebration of Han Sizer month, bring <fare> to all the marked systems and return to <destination> for <payment>.`
 	passengers 2 10 .9
+	substitutions
+		"<on Longjump>" "somewhere nearby"
+			has "flagship planet: Longjump"
+		"<on Longjump>" "on Longjump"
+			not "flagship planet: Longjump"
 	to offer
 		random < 30
 		month == 8
@@ -102,7 +107,7 @@ mission "Han Sizer Month [0]"
 		not attributes "station"
 	on complete
 		payment 10000 170
-		dialog `Your passengers thank you for taking them on a journey around the Rim, and you collect your payment of <payment>.`
+		dialog `Your passengers thank you for taking them on a journey around the Rim, and you collect your payment of <payment>. As they depart, you hear them talking about celebrating their trip with a party <on Longjump>.`
 
 
 mission "Han Sizer Month [1]"
@@ -111,6 +116,11 @@ mission "Han Sizer Month [1]"
 	repeat
 	description `In celebration of Han Sizer month, bring <fare> to all the marked systems and return to <destination> for <payment>.`
 	passengers 2 10 .8
+	substitutions
+		"<on Longjump>" "near here"
+			has "flagship planet: Longjump"
+		"<on Longjump>" "on Longjump"
+			not "flagship planet: Longjump"
 	to offer
 		random < 20
 		month == 8
@@ -130,7 +140,7 @@ mission "Han Sizer Month [1]"
 		not attributes "station"
 	on complete
 		payment 15000 170
-		dialog `Your passengers thank you for taking them on a journey around the Rim, and you collect your payment of <payment>.`
+		dialog `Your passengers are excited to have completed their journey around the Rim and pay you the agreed fee of <payment>. One is already uploading a travelogue to someone <on Longjump> as they start walking away.`
 
 
 mission "Han Sizer Month [2]"
@@ -162,4 +172,4 @@ mission "Han Sizer Month [2]"
 		not attributes "station"
 	on complete
 		payment 20000 170
-		dialog `Your passengers thank you for taking them on a journey around the Rim, and you collect your payment of <payment>.`
+		dialog `Your guests thank you for taking them on a journey along the flight path of Han Sizer and cheerfully pay you <payment>. You notice one has a star chart open to Sabik's entry as they head off.`

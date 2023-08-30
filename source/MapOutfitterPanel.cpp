@@ -141,7 +141,7 @@ double MapOutfitterPanel::SystemValue(const System *system) const
 		return numeric_limits<double>::quiet_NaN();
 
 	// Visiting a system is sufficient to know what ports are available on its planets.
-	double value = -.5;
+	double value = -1.;
 	for(const StellarObject &object : system->Objects())
 		if(object.HasSprite() && object.HasValidPlanet())
 		{
@@ -182,8 +182,9 @@ void MapOutfitterPanel::DrawItems()
 		DoHelp("map advanced shops");
 	list.clear();
 	Point corner = Screen::TopLeft() + Point(0, scroll);
-	for(const string &category : categories)
+	for(const auto &cat : categories)
 	{
+		const string &category = cat.Name();
 		auto it = catalog.find(category);
 		if(it == catalog.end())
 			continue;
@@ -202,12 +203,12 @@ void MapOutfitterPanel::DrawItems()
 			else if(outfit->Get("installable") < 0.)
 			{
 				double space = outfit->Mass();
-				info = Format::Number(space) + (abs(space) == 1. ? " ton" : " tons") + " of space";
+				info = Format::CargoString(space, "space");
 			}
 			else
 			{
 				double space = -outfit->Get("outfit space");
-				info = Format::Number(space) + (abs(space) == 1. ? " ton" : " tons");
+				info = Format::MassString(space);
 				if(space && -outfit->Get("weapon capacity") == space)
 					info += " of weapon space";
 				else if(space && -outfit->Get("engine capacity") == space)

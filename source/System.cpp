@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Date.h"
 #include "Fleet.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "Government.h"
 #include "Hazard.h"
 #include "Minable.h"
@@ -174,6 +175,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				hidden = false;
 			else if(key == "inaccessible")
 				inaccessible = false;
+			else if(key == "no raids")
+				noRaids = false;
 
 			// If not in "overwrite" mode, move on to the next node.
 			if(overwriteAll)
@@ -187,6 +190,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			hidden = true;
 		else if(key == "inaccessible")
 			inaccessible = true;
+		else if(key == "no raids")
+			noRaids = true;
 		else if(key == "ramscoop")
 		{
 			for(const DataNode &grand : child)
@@ -194,7 +199,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				const string &key = grand.Token(0);
 				bool hasValue = grand.Size() >= 2;
 				if(key == "universal" && hasValue)
-					universalRamscoop = grand.Value(1);
+					universalRamscoop = grand.BoolValue(1);
 				else if(key == "addend" && hasValue)
 					ramscoopAddend = grand.Value(1);
 				else if(key == "multiplier" && hasValue)
@@ -269,6 +274,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			else
 				fleets.emplace_back(fleet, child.Value(valueIndex + 1));
 		}
+		else if(key == "raid")
+			RaidFleet::Load(raidFleets, child, remove, valueIndex);
 		else if(key == "hazard")
 		{
 			const Hazard *hazard = GameData::Hazards().Get(value);
@@ -512,6 +519,13 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 		attributes.erase("uninhabited");
 	else
 		attributes.insert("uninhabited");
+
+	// Calculate the smallest arrival period of a fleet (or 0 if no fleets arrive)
+	minimumFleetPeriod = numeric_limits<int>::max();
+	for(auto &event : fleets)
+		minimumFleetPeriod = min<int>(minimumFleetPeriod, event.Period());
+	if(minimumFleetPeriod == numeric_limits<int>::max())
+		minimumFleetPeriod = 0;
 }
 
 
@@ -626,8 +640,9 @@ bool System::Hidden() const
 double System::RamscoopFuel(double shipRamscoop, double scale) const
 {
 	// Even if a ship has no ramscoop, it can harvest a tiny bit of fuel by flying close to the star,
-	// provided the system allows it.
-	double universal = 0.05 * scale * universalRamscoop;
+	// provided the system allows it. Both the system and the gamerule must allow the universal ramscoop
+	// in order for it to function.
+	double universal = 0.05 * scale * universalRamscoop * GameData::GetGamerules().UniversalRamscoopActive();
 	return max(0., SolarWind() * .03 * scale * ramscoopMultiplier * (sqrt(shipRamscoop) + universal) + ramscoopAddend);
 }
 
@@ -946,6 +961,22 @@ double System::Danger() const
 			danger += static_cast<double>(fleet.Get()->Strength()) / fleet.Period();
 	}
 	return danger;
+}
+
+
+
+int System::MinimumFleetPeriod() const
+{
+	return minimumFleetPeriod;
+}
+
+
+
+const vector<RaidFleet> &System::RaidFleets() const
+{
+	static const vector<RaidFleet> EMPTY;
+	// If the system defines its own raid fleets then those are used in lieu of the government's fleets.
+	return noRaids ? EMPTY : ((raidFleets.empty() && government) ? government->RaidFleets() : raidFleets);
 }
 
 

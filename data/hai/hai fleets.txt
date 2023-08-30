@@ -199,7 +199,7 @@ fleet "Hai Wormhole Guards"
 		"Lightning Bug (Pulse)" 2
 
 fleet "Small Hai Merchant"
-	government "Hai"
+	government "Hai Merchant"
 	names "hai"
 	cargo 3
 	personality
@@ -282,7 +282,7 @@ fleet "Small Hai Merchant"
 		"Cicada"
 
 fleet "Large Hai Merchant"
-	government "Hai"
+	government "Hai Merchant"
 	names "hai"
 	cargo 4
 	personality
@@ -641,7 +641,7 @@ fleet "Large Hai Merchant (Human)"
 
 
 fleet "Unfettered Logistics"
-	government "Hai (Friendly Unfettered)"
+	government "Hai (Unfettered Civilians)"
 	names "hai"
 	cargo 1
 	commodities "Food" "Heavy Metals" "Medical"

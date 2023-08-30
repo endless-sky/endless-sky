@@ -232,8 +232,8 @@ outfit "EMP Torpedo Storage Bay"
 	"energy capacity" 400
 	"emp torpedo capacity" 7
 	ammo "EMP Torpedo"
-	description "The EMP torpedo storage bay is used to store extra ammunition for weapons that use EMP torpedoes."
-	description "	In addition to its ammunition capacity, the storage bay can also contain a small amount of charge, enough to let an otherwise battery-less ship fire EMP torpedoes."
+	description "The EMP Torpedo Storage Bay is used to store extra ammunition for weapons that use EMP torpedoes."
+	description "	In addition to its ammunition capacity, the storage bay can also contain a small amount of charge, enough to let an otherwise battery-less ship fire EMP Torpedoes."
 
 outfit "EMP Torpedo Bay"
 	category "Secondary Weapons"
@@ -291,8 +291,8 @@ outfit "Teciimach Canister"
 	thumbnail "outfit/emp torpedo"
 	"mass" 1
 	"teciimach canister capacity" -1
-	description "This canister contains everything required to assemble a Teciimach torpedo. These weapons emit strong electromagnetic pulses which interfere with a ship's generators and neutralize a portion of their energy."
-	description `	Unlike the previous generation of "EMP torpedoes," the Teciimach torpedoes actively shape their emission pattern to avoid impacting their allies.`
+	description "This canister contains everything required to assemble a Teciimach Torpedo. These weapons emit strong electromagnetic pulses which interfere with a ship's generators and neutralize a portion of their energy."
+	description `	Unlike the previous generation of "EMP Torpedoes," the Teciimach torpedoes actively shape their emission pattern to avoid impacting their allies.`
 
 outfit "Teciimach Canister Rack"
 	category "Ammunition"
@@ -306,7 +306,7 @@ outfit "Teciimach Canister Rack"
 	"teciimach canister capacity" 9
 	ammo "Teciimach Canister"
 	description "The Teciimach Canister Rack is used to store extra sets of components, both to expand the capacity of a ship, and on carriers for resupplying fighters."
-	description "	In addition to its ammunition capacity, the storage bay can also contain a small amount of charge, enough to let an otherwise battery-less ship assemble Teciimach torpedoes."
+	description "	In addition to its ammunition capacity, the storage bay can also contain a small amount of charge, enough to let an otherwise battery-less ship assemble Teciimach Torpedoes."
 
 outfit "Teciimach Bay"
 	category "Secondary Weapons"
@@ -541,7 +541,7 @@ outfit "Crystal Capacitor"
 	"energy consumption" .4
 	"heat generation" .4
 	"ion resistance" 0.01
-	"scrambling resistance" 0.01
+	"scramble resistance" 0.01
 	description "These crystals, mined on the Remnant planet Viminal, can store a surprising amount of power in a compact form. Crystals pure enough to be used in such a manner are hard to find, however."
 	description "	The capacitors tend to leak small amounts of energy in the form of excess heat. This leaking of energy also results in a quicker dissipation of ionization, granting ships with these crystals some resistance against the occasional ion storms that occur in the Waste."
 
@@ -556,7 +556,7 @@ outfit "Millennium Cell"
 	"energy generation" 3.6
 	"heat generation" 6.0
 	"ion resistance" 0.025
-	"scrambling resistance" 0.025
+	"scramble resistance" 0.025
 	description "This quite compact radiothermal generator uses isotopes so radioactive, and so tightly packed together, that it could almost be classified as a nuclear reactor."
 	description "	Although not very impressive in terms of how much energy they produce, Remnant generators have been designed to better handle the energy draining effects of ionization."
 
@@ -571,7 +571,7 @@ outfit "Epoch Cell"
 	"energy generation" 12.7
 	"heat generation" 19.8
 	"ion resistance" 0.085
-	"scrambling resistance" 0.085
+	"scramble resistance" 0.085
 	description "Efficient Remnant technology ensures that nearly all the heat produced by this generator's radioisotopes is converted into electricity instead of becoming waste heat."
 	description "	The Remnant took the ion dissipation effects of the crystals found on Viminal and replicated them for their generators in order to help survive the hostile environment of the Ember Waste."
 
@@ -586,7 +586,7 @@ outfit "Aeon Cell"
 	"energy generation" 21.9
 	"heat generation" 31.5
 	"ion resistance" 0.14
-	"scrambling resistance" 0.14
+	"scramble resistance" 0.14
 	description "The early Remnant engineers did not trust the finicky and unpredictable nuclear reactors that were then in use in human space, so they instead focused on perfecting the art of radioisotope thermoelectric power."
 	description "	The ion resistance on all Remnant generators not only allows them to bounce back from ion storms more quickly, but also gives their ships a window of time when an ion storm starts where they are not affected, giving them a chance to escape before becoming debilitated by the storm."
 
@@ -662,7 +662,7 @@ outfit "Salvage Scanner"
 	"outfit scan power" 13
 	"outfit scan efficiency" 12
 	"tactical scan power" 84
-	description "When the Remnant unraveled the alien point defense turrets guarding the vaults on Aventine, they also deciphered the mechanisms that guided the ancient weapons. After significant investments in research and development, they have transformed those guidance systems into sophisticated scanning technology."
+	description "When the Remnant unraveled the alien Point Defense Turrets guarding the vaults on Aventine, they also deciphered the mechanisms that guided the ancient weapons. After significant investments in research and development, they have transformed those guidance systems into sophisticated scanning technology."
 	description "	While all Remnant ships are equipped with internal scanners, some captains still prefer to boost their range and power to more effectively select enemy ships worth targeting."
 
 
@@ -683,7 +683,7 @@ outfit "Bellows-Class Afterburner"
 	"afterburner heat" 8.0
 	"afterburner effect" "remnant afterburner"
 	description "The Remnant live in an environment where the raw materials for fuel are relatively common on the winds of the nebula. As such, their ships incorporate significant built-in ramscoop technology, and while they are reluctant to waste fuel, they aren't afraid of using it when needed. Far more important is the ability for their ships to quickly and efficiently enter or exit combat as needed. At the end of the day, it is continued life that is paramount."
-	description "	The Bellows-Class afterburner embodies this philosophy by providing captains with a tool that allows them to make great leaps of acceleration, typically during evasive maneuvers or to catch up with a fleeing target. Due to their enormous fuel usage, only the most specialized of ships have enough fuel to use these for more than a few seconds at a time before completely running out of fuel."
+	description "	The Bellows-Class Afterburner embodies this philosophy by providing captains with a tool that allows them to make great leaps of acceleration, typically during evasive maneuvers or to catch up with a fleeing target. Due to their enormous fuel usage, only the most specialized of ships have enough fuel to use these for more than a few seconds at a time before completely running out of fuel."
 
 effect "remnant afterburner"
 	sprite "effect/remnant afterburner/remnant afterburner"
@@ -701,13 +701,13 @@ outfit "Anvil-Class Engine"
 	"mass" 26
 	"outfit space" -26
 	"engine capacity" -26
-	"thrust" 13.5
+	"thrust" 13.8
 	"thrusting energy" 2.05
 	"thrusting heat" 1.95
 	"turn" 369.6
 	"turning energy" 1.05
 	"turning heat" 1.1
-	"reverse thrust" 10.1
+	"reverse thrust" 10.3
 	"reverse thrusting energy" 1.5
 	"reverse thrusting heat" 1.45
 	"slowing resistance" 0.02
@@ -731,10 +731,10 @@ outfit "Crucible-Class Thruster"
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
-	"thrust" 14.4
+	"thrust" 16.55
 	"thrusting energy" 2.1
 	"thrusting heat" 2.0
-	"reverse thrust" 10.8
+	"reverse thrust" 12.4
 	"reverse thrusting energy" 1.6
 	"reverse thrusting heat" 1.5
 	"slowing resistance" 0.012
@@ -755,10 +755,10 @@ outfit "Forge-Class Thruster"
 	"mass" 39
 	"outfit space" -39
 	"engine capacity" -39
-	"thrust" 31.5
+	"thrust" 34
 	"thrusting energy" 4.4
 	"thrusting heat" 4.25
-	"reverse thrust" 23.6
+	"reverse thrust" 25.5
 	"reverse thrusting energy" 3.3
 	"reverse thrusting heat" 3.2
 	"slowing resistance" 0.024
@@ -877,8 +877,8 @@ outfit "Void Rifle"
 	"capture defense" 20
 	"energy consumption" 0.017
 	"unplunderable" 1
-	description "The Remnant made a significant number of these weapons during the early years of their research on the void sprites, but have not been able to make any new ones since the Archon stopped their harvests. Without a supply of new tentacles to use, the Remnant have been unable to manufacture more. While durable, they rarely last more than a decade, so even the best cared for of the old void rifles degraded into uselessness centuries ago. These highly effective weapons are credited with helping the Remnant safeguard their refuges from ground-based threats during their early years."
-	description "	When fired, the void rifle emits a beam that has a strong paralyzing effect on the nervous system. With an area of effect that penetrates walls and other solid objects, it is an incredibly effective weapon."
+	description "The Remnant made a significant number of these weapons during the early years of their research on the void sprites, but have not been able to make any new ones since the Archon stopped their harvests. Without a supply of new tentacles to use, the Remnant have been unable to manufacture more. While durable, they rarely last more than a decade, so even the best cared for of the old Void Rifles degraded into uselessness centuries ago. These highly effective weapons are credited with helping the Remnant safeguard their refuges from ground-based threats during their early years."
+	description "	When fired, the Void Rifle emits a beam that has a strong paralyzing effect on the nervous system. With an area of effect that penetrates walls and other solid objects, it is an incredibly effective weapon."
 
 
 
