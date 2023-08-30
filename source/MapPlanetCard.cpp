@@ -29,8 +29,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Politics.h"
 #include "Screen.h"
 #include "SpriteShader.h"
-#include "System.h"
 #include "StellarObject.h"
+#include "System.h"
 #include "text/WrappedText.h"
 
 using namespace std;
