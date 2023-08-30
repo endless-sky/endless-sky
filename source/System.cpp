@@ -217,8 +217,6 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		}
 		else if(!remove && child.Size() == valueIndex + 1 && key == "linger time")
 			requestedLingerTime = child.Value(valueIndex);
-		else if(key == "linger time")
-			child.PrintTrace("Invalid \"linger time\" specification.");
 		// Handle the attributes which can be "removed."
 		else if(key == "attributes")
 		{
