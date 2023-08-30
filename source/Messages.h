@@ -35,6 +35,7 @@ public:
 		Highest,
 		High,
 		Info,
+		Daily,
 		Low
 	};
 

@@ -1233,7 +1233,7 @@ void Engine::EnterSystem()
 
 	Messages::Add("Entering the " + system->Name() + " system on "
 		+ today.ToString() + (system->IsInhabited(flagship) ?
-			"." : ". No inhabited planets detected."), Messages::Importance::High);
+			"." : ". No inhabited planets detected."), Messages::Importance::Daily);
 
 	// Preload landscapes and determine if the player used a wormhole.
 	// (It is allowed for a wormhole's exit point to have no sprite.)

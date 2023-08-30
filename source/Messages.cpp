@@ -121,6 +121,9 @@ const Color *Messages::GetColor(Importance importance)
 		case Messages::Importance::Info:
 			color = GameData::Colors().Find("message importance info");
 			break;
+		case Messages::Importance::Daily:
+			color = GameData::Colors().Find("message importance daily");
+			break;
 		case Messages::Importance::Low:
 			color = GameData::Colors().Find("message importance low");
 			break;
