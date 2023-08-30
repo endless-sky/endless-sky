@@ -130,6 +130,6 @@ const Color *Messages::GetColor(Importance importance)
 	}
 	if(!color)
 		color = GameData::Colors().Get("message importance default");
-	
+
 	return color;
 }
