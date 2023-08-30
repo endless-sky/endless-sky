@@ -211,8 +211,6 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			child.PrintTrace("Error: Expected key to have a value:");
 			continue;
 		}
-		else if(remove && child.Size() == 2 && key == "linger time")
-			lingerTime = -1;
 		else if(!remove && child.Size() == valueIndex + 1 && key == "linger time")
 			lingerTime = child.Value(valueIndex);
 		else if(key == "linger time")
