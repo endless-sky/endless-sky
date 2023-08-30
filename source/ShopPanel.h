@@ -110,6 +110,9 @@ protected:
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Release(int x, int y) override;
 	virtual bool Scroll(double dx, double dy) override;
+	virtual bool ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive) override;
+	virtual bool ControllerButtonDown(SDL_GameControllerButton button) override;
+
 
 	int64_t LicenseCost(const Outfit *outfit, bool onlyOwned = false) const;
 
@@ -176,6 +179,8 @@ protected:
 	double maxMainScroll = 0.;
 	double maxSidebarScroll = 0.;
 	double maxInfobarScroll = 0.;
+	double mainScrollAnimate = 0.;
+	int mainScrollAnimateSteps = 0;
 	ShopPane activePane = ShopPane::Main;
 	int mainDetailHeight = 0;
 	int sideDetailHeight = 0;

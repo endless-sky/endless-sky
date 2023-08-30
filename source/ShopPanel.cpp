@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ShopPanel.h"
 
+#include "GamepadCursor.h"
 #include "Rectangle.h"
 #include "text/alignment.hpp"
 #include "CategoryTypes.h"
@@ -46,6 +47,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "opengl.h"
 #include <SDL2/SDL.h>
 
+#include <SDL_gamecontroller.h>
 #include <algorithm>
 
 using namespace std;
@@ -425,9 +427,13 @@ void ShopPanel::DrawButtons()
 	else
 		buyTextColor = &active;
 	string BUY = isOwned ? (playerShip ? "_Install" : "_Cargo") : "_Buy";
+	char keyToPress = isOwned ? (playerShip ? 'i' : 'c') : 'b';
 	bigFont.Draw(BUY,
 		buyCenter - .5 * Point(bigFont.Width(BUY), bigFont.Height()),
 		*buyTextColor);
+	AddZone(Rectangle(buyCenter, Point(60, 30)), [this, keyToPress]() {
+		KeyDown(keyToPress, 0, Command(), true);
+	});
 
 	const Point sellCenter = Screen::BottomRight() - Point(130, 25);
 	FillShader::Fill(sellCenter, Point(60, 30), back);
@@ -435,6 +441,9 @@ void ShopPanel::DrawButtons()
 	bigFont.Draw(SELL,
 		sellCenter - .5 * Point(bigFont.Width(SELL), bigFont.Height()),
 		CanSell() ? hoverButton == 's' ? hover : active : inactive);
+	AddZone(Rectangle(sellCenter, Point(60, 30)), [this]() {
+		KeyDown('s', 0, Command(), true);
+	});
 
 	const Point leaveCenter = Screen::BottomRight() - Point(45, 25);
 	FillShader::Fill(leaveCenter, Point(70, 30), back);
@@ -442,6 +451,9 @@ void ShopPanel::DrawButtons()
 	bigFont.Draw(LEAVE,
 		leaveCenter - .5 * Point(bigFont.Width(LEAVE), bigFont.Height()),
 		hoverButton == 'l' ? hover : active);
+	AddZone(Rectangle(leaveCenter, Point(70, 30)), [this]() {
+		KeyDown(SDLK_ESCAPE, 0, Command(), true);
+	});
 
 	int modifier = Modifier();
 	if(modifier > 1)
@@ -490,9 +502,19 @@ void ShopPanel::DrawMain()
 	const int columns = mainWidth / TILE_SIZE;
 	const int columnWidth = mainWidth / columns;
 
+	if(mainScrollAnimateSteps > 0)
+	{
+		double d = (mainScroll - mainScrollAnimate) / mainScrollAnimateSteps;
+		mainScrollAnimate += d;
+		--mainScrollAnimateSteps;
+	}
+	else
+		mainScrollAnimate = mainScroll;
+
+
 	const Point begin(
 		(Screen::Width() - columnWidth) / -2,
-		(Screen::Height() - TILE_SIZE) / -2 - mainScroll);
+		(Screen::Height() - TILE_SIZE) / -2 - mainScrollAnimate);
 	Point point = begin;
 	const float endX = Screen::Right() - (SIDE_WIDTH + 1);
 	double nextY = begin.Y() + TILE_SIZE;
@@ -819,6 +841,59 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 
 
+bool ShopPanel::ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive)
+{
+	// treat left joystick like arrow keys, right joystick like navigation keys.
+	// Fallback to the default zone-navigation behavior on the side pane.
+	if(activePane == ShopPane::Main)
+	{
+		if(axis == SDL_CONTROLLER_AXIS_LEFTX)
+			return KeyDown(positive ? SDLK_RIGHT : SDLK_LEFT, 0, Command(), true);
+		else if(axis == SDL_CONTROLLER_AXIS_LEFTY)
+			return KeyDown(positive ? SDLK_DOWN : SDLK_UP, 0, Command(), true);
+	}
+	if(axis == SDL_CONTROLLER_AXIS_RIGHTX)
+	{
+		if(positive && activePane == ShopPane::Main)
+		{
+			activePane = ShopPane::Sidebar;
+			GamepadCursor::SetEnabled(true);
+		}
+		else if(!positive && activePane == ShopPane::Sidebar)
+		{
+			activePane = ShopPane::Main;
+			GamepadCursor::SetEnabled(false);
+		}
+		return true;
+	}
+	//else if(axis == SDL_CONTROLLER_AXIS_RIGHTY)
+	//	return KeyDown(positive ? SDLK_PAGEUP : SDLK_PAGEDOWN, 0, Command(), true);
+	return false;
+}
+
+
+
+bool ShopPanel::ControllerButtonDown(SDL_GameControllerButton button)
+{
+	if(button == SDL_CONTROLLER_BUTTON_GUIDE)
+		return KeyDown(SDLK_ESCAPE, 0, Command(), true);
+	if(activePane == ShopPane::Main)
+	{
+		if(button == SDL_CONTROLLER_BUTTON_A)
+		{
+			activePane = ShopPane::Sidebar;
+			// switch to the sidebar, and highlight the buy button
+			// TODO: need a butter way to find this.
+			const Point buyCenter = Screen::BottomRight() - Point(210, 25);
+			GamepadCursor::SetPosition(buyCenter);
+			return true;
+		}
+	}
+	return false;
+}
+
+
+
 bool ShopPanel::Click(int x, int y, int clicks)
 {
 	dragShip = nullptr;
@@ -1113,6 +1188,11 @@ bool ShopPanel::DoScroll(double dy)
 		scroll = &sidebarScroll;
 		maximum = maxSidebarScroll;
 	}
+	else
+	{
+		mainScrollAnimate = mainScroll;
+		mainScrollAnimateSteps = 7;
+	}
 
 	*scroll = max(0., min(maximum, *scroll - dy));
 
@@ -1276,6 +1356,9 @@ void ShopPanel::MainLeft()
 		return;
 	}
 
+	mainScrollAnimate = mainScroll;
+	mainScrollAnimateSteps = 15;
+
 	if(it == start)
 	{
 		mainScroll = 0;
@@ -1311,6 +1394,9 @@ void ShopPanel::MainRight()
 		selectedOutfit = start->GetOutfit();
 		return;
 	}
+
+	mainScrollAnimate = mainScroll;
+	mainScrollAnimateSteps = 15;
 
 	int previousY = it->Center().Y();
 	++it;
@@ -1349,6 +1435,9 @@ void ShopPanel::MainUp()
 		selectedOutfit = it->GetOutfit();
 		return;
 	}
+
+	mainScrollAnimate = mainScroll;
+	mainScrollAnimateSteps = 15;
 
 	int previousX = it->Center().X();
 	int previousY = it->Center().Y();
@@ -1390,6 +1479,9 @@ void ShopPanel::MainDown()
 		selectedOutfit = start->GetOutfit();
 		return;
 	}
+
+	mainScrollAnimate = mainScroll;
+	mainScrollAnimateSteps = 15;
 
 	int previousX = it->Center().X();
 	int previousY = it->Center().Y();
