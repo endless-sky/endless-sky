@@ -737,7 +737,7 @@ Color MapPanel::GovernmentColor(const Government *government)
 Color MapPanel::DangerColor(const double danger)
 {
 	if(std::isnan(danger))
-		return Color(.1, .6, 0., .4);
+		return *GameData::Colors().Get("map danger none");
 	else if(danger > .5)
 		return Color(.6, .4 * (2. - 2. * min(1., danger)), 0., .4);
 	else
@@ -935,11 +935,7 @@ void MapPanel::UpdateCache()
 			const System &system = it.second;
 
 			// Only check displayed systems.
-			if(!system.IsValid() || system.Inaccessible())
-				continue;
-			if(!player.HasSeen(system) && &system != specialSystem)
-				continue;
-			if(!player.HasVisited(system))
+			if(!system.IsValid() || system.Inaccessible() || !player.HasVisited(system))
 				continue;
 
 			const double danger = DangerFleetTotal(player, system, false);
