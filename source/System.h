@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Hazard.h"
 #include "Point.h"
+#include "RaidFleet.h"
 #include "RandomEvent.h"
 #include "Set.h"
 #include "StellarObject.h"
@@ -180,6 +181,8 @@ public:
 	// unless something else overrides that linger time.
 	int ActualLingerTime() const;
 
+	const std::vector<RaidFleet> &RaidFleets() const;
+
 
 private:
 	void LoadObject(const DataNode &node, Set<Planet> &planets, int parent = -1);
@@ -254,6 +257,9 @@ private:
 	int requestedLingerTime = -1;
 	// Actual linger time, using a fallback for negative times.
 	int actualLingerTime = 0;
+
+	std::vector<RaidFleet> raidFleets;
+	bool noRaids = false;
 
 	// The amount of additional distance that ships will arrive away from the
 	// system center when entering this system through a hyperspace link.
