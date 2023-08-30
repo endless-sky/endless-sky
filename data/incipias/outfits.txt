@@ -95,6 +95,7 @@ outfit "Star Tail"
 	"weapon capacity" -50
 	"gun ports" -1
 	thumbnail "outfit/star tail launcher"
+	"star tail capacity" 20
 	weapon
 		sprite "projectile/star tail upload"
 			"frame rate" 7
@@ -109,7 +110,6 @@ outfit "Star Tail"
 		"hull damage" 860
 		"range override" 3000
 		"parallel"
-		"star tail capacity" 20
 		ammo "Star Tail Cell"
 		"submunition" "Star Tail Projectile" 1
 
