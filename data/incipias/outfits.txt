@@ -162,7 +162,7 @@ outfit "Star Tail Storage"
 	thumbnail "outfit/star tail cell"
 	"mass" 10
 	"star tail capacity" 20
-	description "One layer of this easily expandable system is already shiped with the gun itself. More layers are just stacked on top."
+	description "One layer of this easily expandable system is already shipped with the gun itself. More layers are just stacked on top."
 
 # Shields/Energy:
 outfit "Gas-Class Shield"
