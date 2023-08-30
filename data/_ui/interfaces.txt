@@ -76,6 +76,7 @@ color "blocked back" 0. .15 .2 .5
 color "special mission" 1. 1. 1. 1.
 color "waypoint" .1 .2 .9 1.
 color "waypoint back" 0. .3 .7 .5
+color "mission route" .2 .1 0. 0.
 
 # Colors for the Escort HUD that is displayed in-flight.
 color "escort disabled" .4 .4 .4 0.
