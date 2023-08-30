@@ -24,6 +24,7 @@ namespace {
 
 	vector<pair<string, Messages::Importance>> incoming;
 	vector<Messages::Entry> list;
+	vector<pair<string, Messages::Importance>> log;
 }
 
 
@@ -33,6 +34,7 @@ void Messages::Add(const string &message, Importance importance)
 {
 	lock_guard<mutex> lock(incomingMutex);
 	incoming.emplace_back(message, importance);
+	log.emplace_back(message, importance);
 }
 
 
@@ -79,6 +81,13 @@ const vector<Messages::Entry> &Messages::Get(int step)
 	}
 	incoming.clear();
 	return list;
+}
+
+
+
+const vector<pair<string, Messages::Importance>> &Messages::GetLog()
+{
+	return log;
 }
 
 
