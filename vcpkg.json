@@ -46,6 +46,12 @@
       "dependencies": [
         "libmad"
       ]
+    },
+    "macos-libs": {
+      "description": "System libraries that are always needed on MacOS.",
+      "dependencies": [
+        "openal-soft"
+      ]
     }
   }
 }
