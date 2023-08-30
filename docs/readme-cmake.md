@@ -8,50 +8,25 @@ First you need a copy of the code (if you intend on working on the game, use you
 
 The game's root directory, where your `git clone`d files reside, will be your starting point for compiling the game.
 
-Next, you will need to install a couple of dependencies to build the game. There are several different ways to build Endless Sky, depending on your operating system and preference.
+Next, you will need to install a couple of dependencies to build the game. There are several different ways to build Endless Sky, depending on your operating system and preference. As an IDE, we recommend using [Visual Studio Code](#visual-studio-code).
 
 - [Windows](#windows)
+- [Windows (MinGW)](#windows-mingw)
 - [MacOS](#macos)
 - [Linux](#linux)
 
+
 ## Windows
 
-It is recommended to use the toolchain from Visual Studio to build the game (regardless of the IDE you wish to use). The other supported toolchain is [MinGW](#mingw).
+It is recommended to use the toolchain from Visual Studio to build the game (regardless of the IDE you wish to use).
 
-Download Visual Studio (if you do not want to use Visual Studio, you can alternatively download the VS Build Tools), and make sure to install the following components:
+Download Visual Studio (if you do not want to install Visual Studio, you can alternatively download the VS Build Tools), and make sure to install the following components:
 
 - "Desktop Development with C++",
 - "C++ Clang Compiler for Windows",
 - "C++ CMake tools for Windows".
 
-Please note that it is recommended to use VS 2022 (or higher) for its better CMake integration.
-
-<details>
-<summary>Step-by-step instructions for Visual Studio</summary>
-
-1. Open the repository's root folder using Visual Studio ("Open Folder")
-2. Wait while Visual Studio loads everything. This may take a few minutes the first time, but should be relatively fast on subsequent loads.
-3. On the toolbar you're able to choose between Debug and Release.
-4. You might need to select the target to launch in the dropdown menu of the Run button (it's the one with the green arrow). Select "Endless Sky (build/.../)" (not the one with install).
-5. Hit the Run button (F5) to build and run the game.
-6. In the status window it will give a scrolling list of actions being completed. Wait until it states "Build Complete"
-7. You'll find the executables and libraries located inside the build directory in the root folder.
-
-</details>
-
-### Notes
-
-#### Earlier versions of Visual Studio
-
-If you are on an earlier version of Visual Studio, or would like to use an actual VS solution, you will need to generate the solution manually as follows:
-
-```powershell
-> cmake --preset clang-cl -G"Visual Studio 17 2022"
-```
-
-This will create a Visual Studio 2022 solution. If you are using an older version of VS, you will need to adjust the version. Now you will find a complete solution in the `build/` folder. Find the solution and open it and you're good to go!
-
-#### MinGW
+## Windows (MinGW)
   
 You can download the [MinGW Winlibs](https://winlibs.com/#download-release) build, which also includes various tools you'll need to build the game as well. It is possible to use other MinGW distributions too (like Msys2 for example).
 
@@ -126,13 +101,38 @@ Replace `<preset>` with one of the following presets:
 - MacOS: `macos` or `macos-arm` (builds with the default compiler, for x64 and ARM64 respectively)
 - Linux: `linux` (builds with the default compiler)
 
-## Building with other IDEs
+## Using an IDE
 
 ### Visual Studio Code
 
 Install the [C/C++](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools) and [CMake Tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools) extensions, and open the project folder under File -> Open Folder.
 
 You'll be asked to select a preset. Select the one you want (see the list above in the previous section for help). If you get asked to configure the project, click on Yes. You can use the bar at the very bottom to select between different configurations (Debug/Release), build, start the game, and execute the unit tests. On the left you can click on the test icon to run individual integration tests.
+
+### Visual Studio
+
+It is recommened to use Visual Studio 2022, because of its better CMake integration. Once you have installed Visual Studio, you can simply open the root folder.
+
+<details>
+<summary>Step-by-step instructions for Visual Studio 2022+</summary>
+
+1. Open the repository's root folder using Visual Studio ("Open Folder")
+2. Wait while Visual Studio loads everything. This may take a few minutes the first time, but should be relatively fast on subsequent loads.
+3. On the toolbar you're able to choose between Debug and Release.
+4. You might need to select the target to launch in the dropdown menu of the Run button (it's the one with the green arrow). Select "Endless Sky (build/.../)" (not the one with install).
+5. Hit the Run button (F5) to build and run the game.
+6. In the status window it will give a scrolling list of actions being completed. Wait until it states "Build Complete"
+7. You'll find the executables and libraries located inside the build directory in the root folder.
+
+</details>
+
+If you are on an earlier version of Visual Studio, or would like to use an actual VS solution, you will need to generate the solution manually as follows:
+
+```powershell
+> cmake --preset clang-cl -G"Visual Studio 17 2022"
+```
+
+This will create a Visual Studio 2022 solution. If you are using an older version of VS, you will need to adjust the version. Now you will find a complete solution in the `build/` folder. Find the solution and open it and you're good to go!
 
 ### Building with Code::Blocks
 
