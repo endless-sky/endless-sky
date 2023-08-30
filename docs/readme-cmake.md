@@ -1,6 +1,6 @@
 # Build instructions
 
-First you need a copy of the code (if you intend on working on the game use your fork's URL here):
+First you need a copy of the code (if you intend on working on the game, use your fork's URL here):
 
 ```powershell
 > git clone https://github.com/endless-sky/endless-sky
@@ -55,7 +55,7 @@ This will create a Visual Studio 2022 solution. If you are using an older versio
   
 You can download the [MinGW Winlibs](https://winlibs.com/#download-release) build, which also includes various tools you'll need to build the game as well. It is possible to use other MinGW distributions too (like Msys2 for example).
 
-You'll need the POSIX version of MinGW. For the Winlibs distribution mentioned above, the latest version is currently gcc 13 ([direct download link](https://github.com/brechtsanders/winlibs_mingw/releases/download/13.2.0-16.0.6-11.0.0-ucrt-r1/winlibs-x86_64-posix-seh-gcc-13.2.0-mingw-w64ucrt-11.0.0-r1.zip)). Download and extract the zip file in a folder whose path doesn't contain a space (C:\ for example) and add the bin\ folder inside to your PATH (Press the Windows key and type "edit environment variables", then click on PATH and add it in the list).
+You'll need the POSIX version of MinGW. For the Winlibs distribution mentioned above, the latest version is currently gcc 13 ([direct download link](https://github.com/brechtsanders/winlibs_mingw/releases/download/13.2.0-16.0.6-11.0.0-ucrt-r1/winlibs-x86_64-posix-seh-gcc-13.2.0-mingw-w64ucrt-11.0.0-r1.zip)). Download and extract the zip file in a folder whose path doesn't contain a space (C:\ for example) and add the bin\ folder inside to your PATH (Press the Windows key and type "edit environment variables", then click on PATH and add it to the list).
 
 You will also need to install [CMake](https://cmake.org/download/) (if you don't already have it).
 
