@@ -135,6 +135,10 @@ namespace {
 
 		{"jumpdrive damage", 0.},
 		{"hyperdrive damage", 0.},
+		{"jumpdrive shield damage", 0.},
+		{"hyperdrive shield damage", 0.},
+		{"jumpdrive hull damage", 0.},
+		{"hyperdrive hull damage", 0.},
 
 		// "Protection" attributes appear in denominators and are incremented by 1.
 		{"shield protection", -0.99},

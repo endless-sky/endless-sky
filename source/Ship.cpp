@@ -3652,17 +3652,23 @@ void Ship::DoGeneration()
 	fuel -= leakage;
 	heat += burning;
 
-	if(stackJumpDamage)
+	if(stackJumpDamage || stackJumpHullDamage || stackJumpShieldDamage)
 	{
-		if(shields < stackJumpDamage)
+		double totalDamageShields = stackJumpShieldDamage > shields ? shields : stackJumpShieldDamage;
+		if(totalDamageShields < shields)
 		{
-			stackJumpDamage -= shields > 0 ? shields : 0.;
-			shields = 0;
-			hull -= stackJumpDamage;
+			totalDamageShields += stackJumpDamage > shields - totalDamageShields ?
+				shields - totalDamageShields : stackJumpDamage;
+			stackJumpDamage -= stackJumpDamage > shields - totalDamageShields ?
+				shields - totalDamageShields : stackJumpDamage;
 		}
-		else
-			shields -= stackJumpDamage;
+		double totalDamageHull = stackJumpDamage + stackJumpHullDamage;
+		shields -= totalDamageShields;
+		hull -= totalDamageHull;
+
 		stackJumpDamage = 0;
+		stackJumpHullDamage = 0;
+		stackJumpShieldDamage = 0;
 	}
 
 	// TODO: Mothership gives status resistance to carried ships?
@@ -3971,6 +3977,10 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 		// Add damage dealt by this jump to stack.
 		stackJumpDamage += isUsingJumpDrive ?
 			attributes.Get("jumpdrive damage") : attributes.Get("hyperdrive damage");
+		stackJumpHullDamage += isUsingJumpDrive ?
+			attributes.Get("jumpdrive hull damage") : attributes.Get("hyperdrive hull damage");
+		stackJumpShieldDamage += isUsingJumpDrive ?
+			attributes.Get("jumpdrive shield damage") : attributes.Get("hyperdrive shield damage");
 
 		// If you have a target planet in the destination system, exit
 		// hyperspace aimed at it. Otherwise, target the first planet that

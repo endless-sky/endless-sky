@@ -366,6 +366,18 @@ tip "jumpdrive damage:"
 tip "hyperdrive damage:"
 	`Damage received when using a Hyperdrive. Damage is applied regardless of resistance.`
 
+tip "jumpdrive shield damage:"
+	`Shield damage received when using a Jump Drive. Damage is applied regardless of resistance.`
+
+tip "hyperdrive shield damage:"
+	`Shield damage received when using a Hyperdrive. Damage is applied regardless of resistance.`
+
+tip "jumpdrive hull damage:"
+	`Hull damage received when using a Jump Drive. Damage is applied regardless of resistance.`
+
+tip "hyperdrive hull damage:"
+	`Hull damage received when using a Hyperdrive. Damage is applied regardless of resistance.`
+
 tip "leak protection:"
 	`Protection provided against leak damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in leak damage, while a total value of 11 only results in a 10 percent reduction.`
 

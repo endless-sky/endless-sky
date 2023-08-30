@@ -620,6 +620,8 @@ private:
 
 	// Jump Damage: damage dealt after jumping.
 	double stackJumpDamage = 0.;
+	double stackJumpShieldDamage = 0.;
+	double stackJumpHullDamage = 0.;
 
 	int crew = 0;
 	int pilotError = 0;
