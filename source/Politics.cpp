@@ -298,7 +298,6 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 						maxFine = fine;
 						reason = " for having illegal outfits installed on your ship.";
 					}
-
 				}
 
 			int shipFine = gov->Fines(ship.get());
