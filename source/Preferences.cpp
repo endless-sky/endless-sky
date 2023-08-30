@@ -167,6 +167,7 @@ void Preferences::Load()
 	settings["Show buttons on map"] = true;
 	settings["Automatic firing"] = true;
 	settings["Onscreen Joystick"] = false;
+	settings["Automatic chase"] = true;
 
 	// Default to "Reduced graphics" if the device has less than 2 gig of ram
 	struct sysinfo si;

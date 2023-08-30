@@ -4059,7 +4059,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	else if(activeCommands.Has(Command::SCAN))
 	{
 		command |= Command::SCAN;
-		if(Preferences::Has("Show buttons on map"))
+		if(Preferences::Has("Automatic chase") && !activeCommands.Has(Command::MOVETOWARD))
 		{
 			// On android, chase the target if they get too far away while the
 			// user is holding the scan button.
@@ -4101,7 +4101,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	{
 		TargetMinable(ship);
 
-		if(Preferences::Has("Show buttons on map"))
+		if(Preferences::Has("Automatic chase") && !activeCommands.Has(Command::MOVETOWARD))
 		{
 			// On android, chase the target if they get too far away while the
 			// user is holding the scan button.
@@ -4166,7 +4166,6 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 
 		if(activeCommands.Has(Command::PRIMARY))
 		{
-			bool onscreenButtons = Preferences::Has("Show buttons on map");
 			bool autoFire = Preferences::GetAutoFire() != Preferences::AutoFire::OFF;
 			auto targetShip = ship.GetTargetShip();
 			auto targetAsteroid = ship.GetTargetAsteroid();
@@ -4199,7 +4198,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				}
 				++index;
 			}
-			if(onscreenButtons)
+			if(Preferences::Has("Automatic chase") && !activeCommands.Has(Command::MOVETOWARD))
 			{
 				// On android, chase the target if they get too far away while the
 				// user is holding the fire button.

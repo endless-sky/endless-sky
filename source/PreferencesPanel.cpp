@@ -729,6 +729,7 @@ void PreferencesPanel::DrawSettings()
 		"Control ship with mouse",
 		AUTO_AIM_SETTING,
 		AUTO_FIRE_SETTING,
+		"Automatic chase",
 		TURRET_TRACKING,
 		TARGET_ASTEROIDS_BASED_ON,
 		BOARDING_PRIORITY,

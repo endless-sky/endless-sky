@@ -249,11 +249,13 @@ void MainPanel::Draw()
 				}
 			}
 
-			if (player.Flagship()->GetTargetShip())
+
+			auto target = player.Flagship()->GetTargetShip();
+			if (target)
 			{
 				info.SetCondition("can hail");
 				info.SetCondition("can scan");
-				if (!player.Flagship()->GetTargetShip()->IsYours())
+				if (!target->IsYours())
 				{
 					info.SetCondition("can attack");
 				}
