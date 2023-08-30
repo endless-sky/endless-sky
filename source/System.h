@@ -173,9 +173,12 @@ public:
 	// The smallest arrival period of a fleet (or 0 if no fleets arrive)
 	int MinimumFleetPeriod() const;
 
+	// The value of "linger time" from the data files:
+	int RequestedLingerTime() const;
+
 	// Amount of time a ship should linger when it has nothing to do,
 	// unless something else overrides that linger time.
-	int LingerTime() const;
+	int ActualLingerTime() const;
 
 
 private:
@@ -246,7 +249,11 @@ private:
 	double solarWind = 0.;
 	double starfieldDensity = 1.;
 	int minimumFleetPeriod = 0;
-	int lingerTime = -1;
+
+	// The "linger time" from data files:
+	int requestedLingerTime = -1;
+	// Actual linger time, using a fallback for negative times.
+	int actualLingerTime = 0;
 
 	// The amount of additional distance that ships will arrive away from the
 	// system center when entering this system through a hyperspace link.
