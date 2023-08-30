@@ -256,17 +256,6 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 
 		int failedMissions = 0;
 
-		if(!scan || (scan & ShipEvent::TARGET))
-		{
-			int fine = gov->Fines(ship.get());
-			if(gov->Condemns(ship.get()))
-				fine = -1;
-			if((fine > maxFine && maxFine >= 0) || fine < 0)
-			{
-				maxFine = fine;
-				reason = " for flying an illegal ship.";
-			}
-		}
 		if((!scan || (scan & ShipEvent::SCAN_CARGO)) && !EvadesCargoScan(*ship))
 		{
 			int64_t fine = ship->Cargo().IllegalCargoFine(gov);
@@ -297,6 +286,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 			}
 		}
 		if((!scan || (scan & ShipEvent::SCAN_OUTFITS)) && !EvadesOutfitScan(*ship))
+		{
 			for(const auto &it : ship->Outfits())
 				if(it.second)
 				{
@@ -308,11 +298,23 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 						maxFine = fine;
 						reason = " for having illegal outfits installed on your ship.";
 					}
+
 				}
+
+			int shipFine = gov->Fines(ship.get());
+			if(gov->Condemns(ship.get()))
+				shipFine = -1;
+			if((shipFine > maxFine && maxFine >= 0) || shipFine < 0)
+			{
+				maxFine = shipFine;
+				reason = " for flying an illegal ship.";
+			}
+		}
 		if(failedMissions && maxFine > 0)
 		{
 			reason += "\n\tYou failed " + Format::Number(failedMissions)
-			+ ((failedMissions > 1) ? " missions" : " mission") + " after your illegal cargo was discovered.";
+				+ ((failedMissions > 1) ? " missions" : " mission")
+				+ " after your illegal cargo was discovered.";
 		}
 	}
 
@@ -322,7 +324,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 		if(!scan)
 			reason = "atrocity";
 		else
-			reason = "After looking at your ship's data, the " + gov->GetName()
+			reason = "After scanning your ship, the " + gov->GetName()
 				+ " captain hails you with a grim expression on his face. He says, "
 				"\"I'm afraid we're going to have to put you to death " + reason + " Goodbye.\"";
 	}
@@ -333,8 +335,8 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 		reason = "The " + gov->GetName() + " authorities fine you "
 			+ Format::CreditString(maxFine) + reason;
 		player.Accounts().AddFine(maxFine);
+		fined.insert(gov);
 	}
-	fined.insert(gov);
 	return reason;
 }
 

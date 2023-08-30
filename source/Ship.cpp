@@ -3310,10 +3310,7 @@ void Ship::SetTargetShip(const shared_ptr<Ship> &ship)
 		// When you change targets, clear your scanning records.
 		cargoScan = 0.;
 		outfitScan = 0.;
-		targetEventTarget = ship;
 	}
-	else
-		targetEventTarget.reset();
 	targetAsteroid.reset();
 }
 
@@ -3390,13 +3387,6 @@ shared_ptr<Ship> Ship::GetParent() const
 const vector<weak_ptr<Ship>> &Ship::GetEscorts() const
 {
 	return escorts;
-}
-
-
-
-shared_ptr<Ship> Ship::GetTargetEventTarget() const
-{
-	return targetEventTarget.lock();
 }
 
 
