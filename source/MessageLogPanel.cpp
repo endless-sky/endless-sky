@@ -124,12 +124,9 @@ bool MessageLogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 bool MessageLogPanel::Click(int x, int y, int clicks)
 {
 	x -= Screen::Left();
-	y -= Screen::Top();
 	
 	if(x > width)
 		GetUI()->Pop(this);
-	else if(false)
-		return false;
 
 	return true;
 }
