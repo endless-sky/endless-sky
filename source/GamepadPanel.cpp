@@ -19,6 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "RingShader.h"
 #include "Screen.h"
 
+#include "text/Font.h"
+#include "text/FontSet.h"
 #include "text/alignment.hpp"
 #include "Command.h"
 #include "GameData.h"
@@ -309,6 +311,20 @@ void GamepadPanel::Draw()
 	auto triggerThresholdListRect = ui->GetBox("Trigger Threshold Dropdown");
 	triggerThresholdList.SetPosition(triggerThresholdListRect);
 	triggerThresholdList.Draw(this);
+
+	// This is probably temporary debug code.
+	Point textPos = triggerThresholdListRect.TopLeft();
+	textPos.X() -= 200;
+	textPos.Y() += triggerThresholdListRect.Height() * 2;
+
+	GamePad::DebugStrings debugStrings;
+	GamePad::DebugEvents(debugStrings);
+	const Font &font = FontSet::Get(18);
+	for(size_t i = 0; i < sizeof(debugStrings) / sizeof(*debugStrings); ++i)
+	{
+		font.Draw(debugStrings[i], textPos, Color(.8));
+		textPos.Y() += triggerThresholdListRect.Height();
+	}
 }
 
 

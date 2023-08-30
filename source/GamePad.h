@@ -73,6 +73,9 @@ public:
 
 	static const char* AxisDescription(uint8_t axis);
 	static const char* ButtonDescription(uint8_t button);
+
+	typedef const char* DebugStrings[10];
+	static void DebugEvents(DebugStrings v);
 };
 
 

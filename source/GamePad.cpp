@@ -56,6 +56,9 @@ namespace {
 	// threshold before we count an axis as a binary input
 	int g_AxisIsButtonThreshold = 24576;
 
+	std::string g_event_debug[10];
+	size_t g_event_debug_idx = 0;
+
 	// We don't support every button/axis. just mark the ones we do care about
 	const std::set<SDL_GameControllerButton> g_UsedButtons = {
 		SDL_CONTROLLER_BUTTON_A,
@@ -139,6 +142,15 @@ namespace {
 	inline std::string NullCheck(const char* s)
 	{
 		return s ? s : "";
+	}
+
+	void AddEventDebugString(const std::string& s)
+	{
+		g_event_debug[g_event_debug_idx] = s;
+
+		++g_event_debug_idx;
+		if(g_event_debug_idx == sizeof(g_event_debug) / sizeof(*g_event_debug))
+			g_event_debug_idx = 0;
 	}
 }
 
@@ -319,6 +331,7 @@ void GamePad::Handle(const SDL_Event &event)
 	
 	// cache joypad events if we are doing remapping
 	case SDL_JOYAXISMOTION:
+		AddEventDebugString("Axis " + std::to_string(static_cast<int>(event.jaxis.axis)) + " " + std::to_string(event.jaxis.value));
 		if(g_last_axis != -1)
 		{
 			if(event.jaxis.axis == g_last_axis && event.jaxis.value < g_DeadZone && event.jaxis.value > -g_DeadZone)
@@ -345,6 +358,7 @@ void GamePad::Handle(const SDL_Event &event)
 
 		break;
 	case SDL_JOYBUTTONDOWN:
+		AddEventDebugString("Button " + std::to_string(static_cast<int>(event.jbutton.button)) + " Down");
 		// SDL_Log("Joystick button %d down", event.jbutton.button);
 		if(g_capture_next_button)
 		{
@@ -353,9 +367,11 @@ void GamePad::Handle(const SDL_Event &event)
 		}
 		break;
 	case SDL_JOYBUTTONUP:
+		AddEventDebugString("Button " + std::to_string(static_cast<int>(event.jbutton.button)) + " Up");
 		// SDL_Log("Joystick button %d up", event.jbutton.button);
 		break;
 	case SDL_JOYHATMOTION:
+		AddEventDebugString("Hat " + std::to_string(static_cast<int>(event.jhat.hat)) + " mask " + std::to_string(static_cast<int>(event.jhat.value)));
 		// Hats are weird. They are a mask indicating which bits are held, so
 		// we need to know what was *previously* set to know what changed.
 		if(g_capture_next_button)
@@ -611,4 +627,18 @@ const char* GamePad::AxisDescription(uint8_t axis)
 const char* GamePad::ButtonDescription(uint8_t button)
 {
 	return SDL_GameControllerGetStringForButton(static_cast<SDL_GameControllerButton>(button));
+}
+
+
+
+void GamePad::DebugEvents(DebugStrings v)
+{
+	size_t idx = g_event_debug_idx;
+	for(int i = 0; i < 10; ++i)
+	{
+		v[i] = g_event_debug[idx].c_str();
+		++idx;
+		if(idx == sizeof(g_event_debug) / sizeof(*g_event_debug))
+			idx = 0;
+	}
 }
