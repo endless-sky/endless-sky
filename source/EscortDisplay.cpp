@@ -80,6 +80,8 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 	const Color &hereColor = *colors.Get("escort present");
 	const Color &hostileColor = *colors.Get("escort hostile");
 
+	const Point iconZoneOffset = element->GetBox("icon click zone").Center();
+
 	for(const Icon &escort : icons)
 	{
 		if(!escort.sprite)
@@ -125,7 +127,7 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 		// Figure out what scale should be applied to the ship sprite.
 		info.SetSprite("icon", escort.sprite);
 		info.SetOutlineColor(color);
-		zones.push_back(corner + element->GetBox("icon").Center());
+		zones.push_back(corner + iconZoneOffset);
 		stacks.push_back(escort.ships);
 		// Draw the number of ships in this stack.
 		if(escort.ships.size() > 1)
