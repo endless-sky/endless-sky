@@ -200,7 +200,7 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 		const double margin = mapInterface->GetValue("text margin");
 		if(hasGovernments && FitsCategory(categories))
 			font.Draw(governmentName, uiPoint + Point(margin, textStart + categorySize),
-				governmentName == "Uninhabited" ? faint : medium);
+				governmentName == "Uninhabited" ? faint : dim);
 		if(FitsCategory(4.))
 			font.Draw(reputationLabel, uiPoint + Point(margin, textStart + categorySize * (1. + hasGovernments)),
 				hasSpaceport ? medium : faint);
