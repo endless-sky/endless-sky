@@ -3651,6 +3651,20 @@ void Ship::DoGeneration()
 	energy -= ionization;
 	fuel -= leakage;
 	heat += burning;
+
+	if(stackJumpDamage)
+	{
+		if(shields < stackJumpDamage)
+		{
+			stackJumpDamage -= shields > 0 ? shields : 0.;
+			shields = 0;
+			hull -= stackJumpDamage;
+		}
+		else
+			shields -= stackJumpDamage;
+		stackJumpDamage = 0;
+	}
+
 	// TODO: Mothership gives status resistance to carried ships?
 	if(ionization)
 	{
@@ -3953,6 +3967,10 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 				targetPlanet = parent->targetPlanet;
 		}
 		direction = -1;
+
+		// Add damage dealt by this jump to stack.
+		stackJumpDamage += isUsingJumpDrive ?
+			attributes.Get("jumpdrive damage") : attributes.Get("hyperdrive damage");
 
 		// If you have a target planet in the destination system, exit
 		// hyperspace aimed at it. Otherwise, target the first planet that
