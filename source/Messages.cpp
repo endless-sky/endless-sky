@@ -15,6 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Messages.h"
 
+#include "Color.h"
+#include "GameData.h"
+
 #include <mutex>
 
 using namespace std;
@@ -23,7 +26,7 @@ namespace {
 	mutex incomingMutex;
 
 	vector<pair<string, Messages::Importance>> incoming;
-	vector<Messages::Entry> list;
+	vector<Messages::Entry> recent;
 	vector<pair<string, Messages::Importance>> log;
 }
 
@@ -57,7 +60,7 @@ const vector<Messages::Entry> &Messages::Get(int step)
 		if(importance == Importance::Low)
 		{
 			bool skip = false;
-			for(const Messages::Entry &entry : list)
+			for(const Messages::Entry &entry : recent)
 				skip |= (entry.message == message);
 			if(skip)
 				continue;
@@ -65,22 +68,22 @@ const vector<Messages::Entry> &Messages::Get(int step)
 
 		// For each incoming message, if it exactly matches an existing message,
 		// replace that one with this new one.
-		auto it = list.begin();
-		while(it != list.end())
+		auto it = recent.begin();
+		while(it != recent.end())
 		{
 			// Each time a new message comes in, "age" all the existing ones to
 			// limit how many of them appear at once.
 			it->step -= 60;
 			// Also erase messages that have reached the end of their lifetime.
 			if((importance != Importance::Low && it->message == message) || it->step < step - 1000)
-				it = list.erase(it);
+				it = recent.erase(it);
 			else
 				++it;
 		}
-		list.emplace_back(step, message, importance);
+		recent.emplace_back(step, message, importance);
 	}
 	incoming.clear();
-	return list;
+	return recent;
 }
 
 
@@ -97,6 +100,33 @@ void Messages::Reset()
 {
 	lock_guard<mutex> lock(incomingMutex);
 	incoming.clear();
-	list.clear();
+	recent.clear();
 	log.clear();
+}
+
+
+
+// Get color that should be used for drawing messages of given importance.
+const Color *Messages::GetColor(Importance importance)
+{
+	const Color *color;
+	switch(importance)
+	{
+		case Messages::Importance::Highest:
+			color = GameData::Colors().Find("message importance highest");
+			break;
+		case Messages::Importance::High:
+			color = GameData::Colors().Find("message importance high");
+			break;
+		case Messages::Importance::Info:
+			color = GameData::Colors().Find("message importance info");
+			break;
+		case Messages::Importance::Low:
+			color = GameData::Colors().Find("message importance low");
+			break;
+	}
+	if(!color)
+		color = GameData::Colors().Get("message importance default");
+	
+	return color;
 }

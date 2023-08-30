@@ -1059,25 +1059,7 @@ void Engine::Draw() const
 		if(messagePoint.Y() < messageBox.Top())
 			break;
 		float alpha = (it->step + 1000 - step) * .001f;
-		const Color *color = nullptr;
-		switch(it->importance)
-		{
-			case Messages::Importance::Highest:
-				color = GameData::Colors().Find("message importance highest");
-				break;
-			case Messages::Importance::High:
-				color = GameData::Colors().Find("message importance high");
-				break;
-			case Messages::Importance::Info:
-				color = GameData::Colors().Find("message importance info");
-				break;
-			case Messages::Importance::Low:
-				color = GameData::Colors().Find("message importance low");
-				break;
-		}
-		if(!color)
-			color = GameData::Colors().Get("message importance default");
-		messageLine.Draw(messagePoint, color->Additive(alpha));
+		messageLine.Draw(messagePoint, Messages::GetColor(it->importance)->Additive(alpha));
 	}
 
 	// Draw crosshairs around anything that is targeted.

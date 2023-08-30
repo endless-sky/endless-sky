@@ -76,35 +76,17 @@ void MessageLogPanel::Draw()
 	const Font &font = FontSet::Get(14);
 
 	// Parameters for drawing messages:
-	WrappedText wrap(font);
-	wrap.SetAlignment(Alignment::LEFT);
-	wrap.SetWrapWidth(width - 2. * PAD);
+	WrappedText messageLine(font);
+	messageLine.SetAlignment(Alignment::LEFT);
+	messageLine.SetWrapWidth(width - 2. * PAD);
 
 	// Draw messages.
 	Point pos = Screen::BottomLeft() + Point(PAD, scroll);
 	for(auto it = messages.rbegin(); it != messages.rend(); ++it)
 	{
-		wrap.Wrap(it->first);
-		const Color *color = nullptr;
-		switch(it->second)
-		{
-			case Messages::Importance::Highest:
-				color = GameData::Colors().Find("message importance highest");
-				break;
-			case Messages::Importance::High:
-				color = GameData::Colors().Find("message importance high");
-				break;
-			case Messages::Importance::Info:
-				color = GameData::Colors().Find("message importance info");
-				break;
-			case Messages::Importance::Low:
-				color = GameData::Colors().Find("message importance low");
-				break;
-		}
-		if(!color)
-			color = GameData::Colors().Get("message importance default");
-		pos.Y() -= wrap.Height() + PAD / 2;
-		wrap.Draw(pos, *color);
+		messageLine.Wrap(it->first);
+		pos.Y() -= messageLine.Height() + PAD / 2;
+		messageLine.Draw(pos, *Messages::GetColor(it->second));
 	}
 	pos.Y() -= PAD / 2;
 

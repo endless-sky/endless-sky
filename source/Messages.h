@@ -20,6 +20,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class Color;
+
 
 
 // Class representing messages that should be shown to the user. The messages
@@ -59,6 +61,9 @@ public:
 
 	// Reset the messages (i.e. because a new game was loaded).
 	static void Reset();
+
+	// Get color that should be used for drawing messages of given importance.
+	static const Color *GetColor(Importance importance);
 };
 
 
