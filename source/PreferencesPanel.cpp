@@ -440,6 +440,7 @@ void PreferencesPanel::DrawControls()
 		Command::MENU,
 		Command::FULLSCREEN,
 		Command::FASTFORWARD,
+		Command::MESSAGE_LOG,
 		Command::NONE,
 		Command::DEPLOY,
 		Command::FIGHT,

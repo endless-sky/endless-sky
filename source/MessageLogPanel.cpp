@@ -1,0 +1,169 @@
+/* MessageLogPanel.cpp
+Copyright (c) 2023 by TomGoodIdea
+
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
+*/
+
+#include "MessageLogPanel.h"
+
+#include "text/alignment.hpp"
+#include "Color.h"
+#include "Command.h"
+#include "FillShader.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "GameData.h"
+#include "Preferences.h"
+#include "Screen.h"
+#include "Sprite.h"
+#include "SpriteSet.h"
+#include "SpriteShader.h"
+#include "UI.h"
+#include "text/WrappedText.h"
+
+using namespace std;
+
+namespace {
+	const double PAD = 10.;
+	const double LINE_HEIGHT = 25.;
+}
+
+
+
+MessageLogPanel::MessageLogPanel(const vector<pair<string, Messages::Importance>> &messages)
+	: messages(messages)
+{
+	SetInterruptible(false);
+}
+
+
+
+// Draw this panel.
+void MessageLogPanel::Draw()
+{
+	// Dim out everything outside this panel.
+	DrawBackdrop();
+
+	// Draw the panel.
+	width = Screen::Width() - 300;
+	const Color &backColor = *GameData::Colors().Get("message log background");
+	FillShader::Fill(
+		Point(Screen::Left() + .5 * width, 0.),
+		Point(width, Screen::Height()),
+		backColor);
+
+	const Sprite *edgeSprite = SpriteSet::Get("ui/right edge");
+	if(edgeSprite->Height())
+	{
+		// If the screen is high enough, the edge sprite should repeat.
+		double spriteHeight = edgeSprite->Height();
+		Point pos(
+			Screen::Left() + width + .5 * edgeSprite->Width(),
+			Screen::Top() + .5 * spriteHeight);
+		for( ; pos.Y() - .5 * spriteHeight < Screen::Bottom(); pos.Y() += spriteHeight)
+			SpriteShader::Draw(edgeSprite, pos);
+	}
+
+	const Font &font = FontSet::Get(14);
+
+	// Parameters for drawing messages:
+	WrappedText wrap(font);
+	wrap.SetAlignment(Alignment::LEFT);
+	wrap.SetWrapWidth(width - 2. * PAD);
+
+	// Draw messages.
+	Point pos = Screen::BottomLeft() + Point(PAD, scroll);
+	for(auto it = messages.rbegin(); it != messages.rend(); ++it)
+	{
+		wrap.Wrap(it->first);
+		const Color *color = nullptr;
+		switch(it->second)
+		{
+			case Messages::Importance::Highest:
+				color = GameData::Colors().Find("message importance highest");
+				break;
+			case Messages::Importance::High:
+				color = GameData::Colors().Find("message importance high");
+				break;
+			case Messages::Importance::Info:
+				color = GameData::Colors().Find("message importance info");
+				break;
+			case Messages::Importance::Low:
+				color = GameData::Colors().Find("message importance low");
+				break;
+		}
+		if(!color)
+			color = GameData::Colors().Get("message importance default");
+		pos.Y() -= wrap.Height() + PAD / 2;
+		wrap.Draw(pos, *color);
+	}
+	pos.Y() -= PAD / 2;
+
+	maxScroll = max(0., scroll - pos.Y() + Screen::Top());
+}
+
+
+
+bool MessageLogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
+{
+	if(command.Has(Command::MESSAGE_LOG)
+			|| key == 'd' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
+		GetUI()->Pop(this);
+	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
+	{
+		double direction = (key == SDLK_PAGEUP) - (key == SDLK_PAGEDOWN);
+		Drag(0., (Screen::Height() - 100.) * direction);
+	}
+	else if(key == SDLK_HOME || key == SDLK_END)
+	{
+		double direction = (key == SDLK_HOME) - (key == SDLK_END);
+		Drag(0., maxScroll * direction);
+	}
+	else if(key == SDLK_UP || key == SDLK_DOWN)
+	{
+		double direction = (key == SDLK_UP) - (key == SDLK_DOWN);
+		Drag(0., LINE_HEIGHT * direction);
+	}
+
+	return true;
+}
+
+
+
+bool MessageLogPanel::Click(int x, int y, int clicks)
+{
+	x -= Screen::Left();
+	y -= Screen::Top();
+	
+	if(x > width)
+		GetUI()->Pop(this);
+	else if(false)
+		return false;
+
+	return true;
+}
+
+
+
+bool MessageLogPanel::Drag(double dx, double dy)
+{
+	scroll = max(0., min(maxScroll, scroll + dy));
+
+	return true;
+}
+
+
+
+bool MessageLogPanel::Scroll(double dx, double dy)
+{
+	return Drag(0., dy * Preferences::ScrollSpeed());
+}

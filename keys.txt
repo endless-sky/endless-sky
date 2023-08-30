@@ -20,6 +20,7 @@
 "Toggle cloaking device" 99
 "View star map" 109
 "View player info" 105
+"View message log" 96
 "Toggle fullscreen" 1073741892
 "Toggle fast-forward" 1073741881
 "Fleet: Fight my target" 102
