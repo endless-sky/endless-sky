@@ -635,6 +635,9 @@ void MapDetailPanel::DrawKey()
 	}
 	else if(commodity == SHOW_DANGER)
 	{
+		RingShader::Draw(pos, OUTER, INNER, DangerColor(numeric_limits<double>::quiet_NaN()));
+		font.Draw("None", pos + textOff, dim);
+		pos.Y() += 20.;
 		// Each system is colored in accordance with its danger to the player,
 		// including threats from any "raid fleet" presence.
 		static const string labels[4] = {"Minimal", "Low", "Moderate", "High"};
@@ -646,13 +649,7 @@ void MapDetailPanel::DrawKey()
 		}
 	}
 
-	if(commodity == SHOW_DANGER)
-	{
-		RingShader::Draw(pos, OUTER, INNER, DangerColor(numeric_limits<double>::quiet_NaN()));
-		font.Draw("Safe", pos + textOff, dim);
-		pos.Y() += 20.;
-	}
-	else
+	if(commodity != SHOW_DANGER)
 	{
 		RingShader::Draw(pos, OUTER, INNER, UninhabitedColor());
 		font.Draw("Uninhabited", pos + textOff, dim);
