@@ -52,7 +52,11 @@
       "description": "System libraries not provided in the Steam Sniper Runtime.",
       "dependencies": [
         "libmad",
-        "nlohmann-json"
+        "nlohmann-json",
+        {
+          "name": "libarchive",
+          "default-features": false
+        }
       ]
     }
   }
