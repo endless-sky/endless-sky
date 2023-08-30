@@ -57,7 +57,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "opengl.h"
 
-#include <SDL_gamecontroller.h>
 #include <algorithm>
 #include <cctype>
 #include <cmath>

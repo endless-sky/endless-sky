@@ -47,7 +47,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "opengl.h"
 #include <SDL2/SDL.h>
 
-#include <SDL_gamecontroller.h>
 #include <algorithm>
 
 using namespace std;
