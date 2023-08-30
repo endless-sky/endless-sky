@@ -8,7 +8,7 @@ First you need a copy of the code (if you intend on working on the game use your
 
 The game's root directory, where your `git clone`d files reside, will be your starting point for compiling the game.
 
-Next you will need to install a couple of dependencies to build the game. There are several different ways to build Endless Sky, depending on your operating system and preference.
+Next, you will need to install a couple of dependencies to build the game. There are several different ways to build Endless Sky, depending on your operating system and preference.
 
 - [Windows](#windows)
 - [MacOS](#macos)
@@ -29,10 +29,10 @@ Please note that it is recommended to use VS 2022 (or higher) for its better CMa
 <details>
 <summary>Step-by-step instructions for Visual Studio</summary>
 
-1. Open the root folder using Visual Studio ("Open Folder")
+1. Open the repository's root folder using Visual Studio ("Open Folder")
 2. Wait while Visual Studio loads everything. This may take a few minutes the first time, but should be relatively fast on subsequent loads.
 3. On the toolbar you're able to choose between Debug and Release.
-4. You might need to select the target to launch in the dropdown of the Run button (it's the one with the green arrow). Select "Endless Sky (build/.../)" (not the one with install).
+4. You might need to select the target to launch in the dropdown menu of the Run button (it's the one with the green arrow). Select "Endless Sky (build/.../)" (not the one with install).
 4. Hit the Run button (F5) to build and run the game.
 5. In the status window it will give a scrolling list of actions being completed. Wait until it states "Build Complete"
 6. You'll find the executables and libraries located inside the build directory in the root folder.
@@ -55,7 +55,7 @@ This will create a Visual Studio 2022 solution. If you are using an older versio
   
 You can download the [MinGW Winlibs](https://winlibs.com/#download-release) build, which also includes various tools you'll need to build the game as well. It is possible to use other MinGW distributions too (like Msys2 for example).
 
-You'll need the MSVCRT runtime version, 64-bit, of MinGW. For the Winlibs distribution mentioned above, the latest version is currently gcc 13 ([direct download link](https://github.com/brechtsanders/winlibs_mingw/releases/download/13.1.0-16.0.5-11.0.0-msvcrt-r5/winlibs-x86_64-posix-seh-gcc-13.1.0-mingw-w64msvcrt-11.0.0-r5.zip)). Download and extract the zip file in a folder whose path doesn't contain a space (C:\ for example) and add the bin\ folder inside to your PATH (Press the Windows key and type "edit environment variables", then click on PATH and add it in the list).
+You'll need the 64-bit MSVCRT runtime version of MinGW. For the Winlibs distribution mentioned above, the latest version is currently gcc 13 ([direct download link](https://github.com/brechtsanders/winlibs_mingw/releases/download/13.1.0-16.0.5-11.0.0-msvcrt-r5/winlibs-x86_64-posix-seh-gcc-13.1.0-mingw-w64msvcrt-11.0.0-r5.zip)). Download and extract the zip file in a folder whose path doesn't contain a space (C:\ for example) and add the bin\ folder inside to your PATH (Press the Windows key and type "edit environment variables", then click on PATH and add it in the list).
 
 You will also need to install [CMake](https://cmake.org/download/) (if you don't already have it).
 
