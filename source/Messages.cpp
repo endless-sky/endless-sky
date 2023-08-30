@@ -98,4 +98,5 @@ void Messages::Reset()
 	lock_guard<mutex> lock(incomingMutex);
 	incoming.clear();
 	list.clear();
+	log.clear();
 }
