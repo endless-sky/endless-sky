@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Panel.h"
 
+#include "Animate.h"
 #include "CategoryList.h"
 #include "ClickZone.h"
 #include "Mission.h"
@@ -179,8 +180,10 @@ protected:
 	double maxMainScroll = 0.;
 	double maxSidebarScroll = 0.;
 	double maxInfobarScroll = 0.;
-	double mainScrollAnimate = 0.;
-	int mainScrollAnimateSteps = 0;
+	Animate<double> mainScrollAnimate;
+	Animate<double> sidebarScrollAnimate;
+	Animate<double> infobarScrollAnimate;
+	
 	ShopPane activePane = ShopPane::Main;
 	int mainDetailHeight = 0;
 	int sideDetailHeight = 0;

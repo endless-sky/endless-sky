@@ -303,16 +303,6 @@ bool Panel::ControllerAxis(SDL_GameControllerAxis axis, int position)
 
 bool Panel::ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive)
 {
-	// By default, convert the right joystick into a scroll event.
-	// for mouse wheel, positive is up, so flip the direction
-	// TODO: This feels a little stilted, because you have to repeatedly flick
-	// the joystick to zoom/scroll more than once. We should make these events
-	// repeat, like keypresses.
-	if(axis == SDL_CONTROLLER_AXIS_RIGHTY)
-		Scroll(0, positive ? -1 : 1);
-	else if(axis == SDL_CONTROLLER_AXIS_RIGHTX)
-		Scroll(positive ? -1 : 1, 0);
-
 	return false;
 }
 

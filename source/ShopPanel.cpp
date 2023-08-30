@@ -93,6 +93,13 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	outfit_disposition.SetPadding(0);
 	outfit_disposition.SetOptions({INSTALL_IN_SHIP, MOVE_TO_CARGO, MOVE_TO_STORAGE});
 	outfit_disposition.SetCallback([this](int, const std::string& value) { this->DispositionChanged(value); });
+
+	// Default pane is main, which does its own higlighting, so disable the
+	// cursor. Set the default button though for when the side pane is set
+	// TODO: need a better way to find this.
+	const Point buyCenter = Screen::BottomRight() - Point(210, 25);
+	GamepadCursor::SetPosition(buyCenter);
+	GamepadCursor::SetEnabled(false);
 }
 
 
@@ -200,27 +207,31 @@ void ShopPanel::DrawShipsSidebar()
 	const Font &font = FontSet::Get(14);
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
+	const Color &bg = *GameData::Colors().Get("panel background");
+	const Color &bgSelected = *GameData::Colors().Get("panel background selected");
 	sideDetailHeight = 0;
 
 	// Fill in the background.
 	FillShader::Fill(
 		Point(Screen::Right() - SIDEBAR_WIDTH / 2, 0.),
 		Point(SIDEBAR_WIDTH, Screen::Height()),
-		*GameData::Colors().Get("panel background"));
+		activePane == ShopPane::Sidebar ? bgSelected : bg);
 	FillShader::Fill(
 		Point(Screen::Right() - SIDEBAR_WIDTH, 0.),
 		Point(1, Screen::Height()),
 		*GameData::Colors().Get("shop side panel background"));
 
+	sidebarScrollAnimate.Step(sidebarScroll);
+
 	// Draw this string, centered in the side panel:
 	static const string YOURS = "Your Ships:";
-	Point yoursPoint(Screen::Right() - SIDEBAR_WIDTH, Screen::Top() + 10 - sidebarScroll);
+	Point yoursPoint(Screen::Right() - SIDEBAR_WIDTH, Screen::Top() + 10 - sidebarScrollAnimate);
 	font.Draw({YOURS, {SIDEBAR_WIDTH, Alignment::CENTER}}, yoursPoint, bright);
 
 	// Start below the "Your Ships" label, and draw them.
 	Point point(
 		Screen::Right() - SIDEBAR_WIDTH / 2 - 93,
-		Screen::Top() + SIDEBAR_WIDTH / 2 - sidebarScroll + 40 - 93);
+		Screen::Top() + SIDEBAR_WIDTH / 2 - sidebarScrollAnimate + 40 - 93);
 
 	const System *here = player.GetSystem();
 	int shipsHere = 0;
@@ -362,6 +373,7 @@ void ShopPanel::DrawDetailsSidebar()
 	// Fill in the background.
 	const Color &line = *GameData::Colors().Get("dim");
 	const Color &back = *GameData::Colors().Get("shop info panel background");
+	const Color &backSelected = *GameData::Colors().Get("shop info panel background selected");
 	FillShader::Fill(
 		Point(Screen::Right() - SIDEBAR_WIDTH - INFOBAR_WIDTH, 0.),
 		Point(1., Screen::Height()),
@@ -369,11 +381,13 @@ void ShopPanel::DrawDetailsSidebar()
 	FillShader::Fill(
 		Point(Screen::Right() - SIDEBAR_WIDTH - INFOBAR_WIDTH / 2, 0.),
 		Point(INFOBAR_WIDTH - 1., Screen::Height()),
-		back);
+		activePane == ShopPane::Info ? backSelected : back);
+
+	infobarScrollAnimate.Step(infobarScroll);
 
 	Point point(
 		Screen::Right() - SIDE_WIDTH + INFOBAR_WIDTH / 2,
-		Screen::Top() + 10 - infobarScroll);
+		Screen::Top() + 10 - infobarScrollAnimate);
 
 	int heightOffset = DrawDetails(point);
 
@@ -390,9 +404,12 @@ void ShopPanel::DrawDetailsSidebar()
 void ShopPanel::DrawButtons()
 {
 	// The last 70 pixels on the end of the side panel are for the buttons:
+	const Color &bg = *GameData::Colors().Get("shop side panel background");
+	const Color &bgSelected = *GameData::Colors().Get("shop side panel background selected");
+
 	Point buttonSize(SIDEBAR_WIDTH, BUTTON_HEIGHT);
 	FillShader::Fill(Screen::BottomRight() - .5 * buttonSize, buttonSize,
-		*GameData::Colors().Get("shop side panel background"));
+		activePane == ShopPane::Sidebar ? bgSelected : bg);
 	FillShader::Fill(
 		Point(Screen::Right() - SIDEBAR_WIDTH / 2, Screen::Bottom() - BUTTON_HEIGHT),
 		Point(SIDEBAR_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
@@ -486,6 +503,8 @@ void ShopPanel::DrawMain()
 	const Font &bigFont = FontSet::Get(18);
 	const Color &dim = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
+	const Color bg = *GameData::Colors().Get("shop main panel background");
+	const Color bgSelected = *GameData::Colors().Get("shop main panel background selected");
 	mainDetailHeight = 0;
 
 	const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
@@ -501,14 +520,10 @@ void ShopPanel::DrawMain()
 	const int columns = mainWidth / TILE_SIZE;
 	const int columnWidth = mainWidth / columns;
 
-	if(mainScrollAnimateSteps > 0)
-	{
-		double d = (mainScroll - mainScrollAnimate) / mainScrollAnimateSteps;
-		mainScrollAnimate += d;
-		--mainScrollAnimateSteps;
-	}
-	else
-		mainScrollAnimate = mainScroll;
+	Rectangle bgArea(Point(Screen::Left() + mainWidth/2.0, 0), Point(mainWidth, Screen::Height()));
+	FillShader::Fill(bgArea.Center(), bgArea.Dimensions(), activePane == ShopPane::Main ? bgSelected : bg);
+
+	mainScrollAnimate.Step(mainScroll);
 
 
 	const Point begin(
@@ -851,22 +866,40 @@ bool ShopPanel::ControllerTriggerPressed(SDL_GameControllerAxis axis, bool posit
 		else if(axis == SDL_CONTROLLER_AXIS_LEFTY)
 			return KeyDown(positive ? SDLK_DOWN : SDLK_UP, 0, Command(), true);
 	}
+	else if(activePane == ShopPane::Info)
+	{
+		if(axis == SDL_CONTROLLER_AXIS_LEFTX ||
+		   axis == SDL_CONTROLLER_AXIS_LEFTY)
+			return true; // prevent event from doing normal button selection logic
+	}
+
 	if(axis == SDL_CONTROLLER_AXIS_RIGHTX)
 	{
 		if(positive && activePane == ShopPane::Main)
 		{
-			activePane = ShopPane::Sidebar;
-			GamepadCursor::SetEnabled(true);
+			activePane = ShopPane::Info;
+			GamepadCursor::SetEnabled(false);
+		}
+		else if(activePane == ShopPane::Info)
+		{
+			if(positive)
+			{
+				activePane = ShopPane::Sidebar;
+				GamepadCursor::SetEnabled(true);
+			}
+			else
+			{
+				activePane = ShopPane::Main;
+				GamepadCursor::SetEnabled(false);
+			}
 		}
 		else if(!positive && activePane == ShopPane::Sidebar)
 		{
-			activePane = ShopPane::Main;
+			activePane = ShopPane::Info;
 			GamepadCursor::SetEnabled(false);
 		}
 		return true;
 	}
-	//else if(axis == SDL_CONTROLLER_AXIS_RIGHTY)
-	//	return KeyDown(positive ? SDLK_PAGEUP : SDLK_PAGEDOWN, 0, Command(), true);
 	return false;
 }
 
@@ -882,7 +915,7 @@ bool ShopPanel::ControllerButtonDown(SDL_GameControllerButton button)
 		{
 			activePane = ShopPane::Sidebar;
 			// switch to the sidebar, and highlight the buy button
-			// TODO: need a butter way to find this.
+			// TODO: need a better way to find this.
 			const Point buyCenter = Screen::BottomRight() - Point(210, 25);
 			GamepadCursor::SetPosition(buyCenter);
 			return true;
@@ -1179,18 +1212,19 @@ bool ShopPanel::DoScroll(double dy)
 	double maximum = maxMainScroll;
 	if(activePane == ShopPane::Info)
 	{
+		infobarScrollAnimate.Set(infobarScroll, 7);
 		scroll = &infobarScroll;
 		maximum = maxInfobarScroll;
 	}
 	else if(activePane == ShopPane::Sidebar)
 	{
+		sidebarScrollAnimate.Set(sidebarScroll, 7);
 		scroll = &sidebarScroll;
 		maximum = maxSidebarScroll;
 	}
 	else
 	{
-		mainScrollAnimate = mainScroll;
-		mainScrollAnimateSteps = 7;
+		mainScrollAnimate.Set(mainScroll, 7);
 	}
 
 	*scroll = max(0., min(maximum, *scroll - dy));
@@ -1355,8 +1389,7 @@ void ShopPanel::MainLeft()
 		return;
 	}
 
-	mainScrollAnimate = mainScroll;
-	mainScrollAnimateSteps = 15;
+	mainScrollAnimate.Set(mainScroll, 15);
 
 	if(it == start)
 	{
@@ -1394,8 +1427,7 @@ void ShopPanel::MainRight()
 		return;
 	}
 
-	mainScrollAnimate = mainScroll;
-	mainScrollAnimateSteps = 15;
+	mainScrollAnimate.Set(mainScroll, 15);
 
 	int previousY = it->Center().Y();
 	++it;
@@ -1435,8 +1467,7 @@ void ShopPanel::MainUp()
 		return;
 	}
 
-	mainScrollAnimate = mainScroll;
-	mainScrollAnimateSteps = 15;
+	mainScrollAnimate.Set(mainScroll, 15);
 
 	int previousX = it->Center().X();
 	int previousY = it->Center().Y();
@@ -1479,8 +1510,7 @@ void ShopPanel::MainDown()
 		return;
 	}
 
-	mainScrollAnimate = mainScroll;
-	mainScrollAnimateSteps = 15;
+	mainScrollAnimate.Set(mainScroll, 15);
 
 	int previousX = it->Center().X();
 	int previousY = it->Center().Y();

@@ -212,6 +212,18 @@ bool UI::Handle(const SDL_Event &event)
 							Command command = Command::FromTrigger(event.caxis.axis, activeAxisIsPositive);
 							handled = (*it)->KeyDown(0, 0, command, true);
 						}
+						if(!handled)
+						{
+							// By default, convert the right joystick into a scroll event.
+							// for mouse wheel, positive is up, so flip the direction
+							// TODO: This feels a little stilted, because you have to repeatedly flick
+							// the joystick to zoom/scroll more than once. We should make these events
+							// repeat, like keypresses.
+							if(activeAxis == SDL_CONTROLLER_AXIS_RIGHTY)
+								handled = (*it)->Scroll(0, activeAxisIsPositive ? -1 : 1);
+							else if(activeAxis == SDL_CONTROLLER_AXIS_RIGHTX)
+								handled = (*it)->Scroll(activeAxisIsPositive ? -1 : 1, 0);
+						}
 						axisTriggered = activeAxis;
 					}
 				}
@@ -609,7 +621,7 @@ bool UI::DefaultControllerButtonUp(SDL_GameControllerButton button)
 			if(zone->Center().X() == GamepadCursor::Position().X() &&
 				zone->Center().Y() == GamepadCursor::Position().Y())
 			{
-				zone->MouseDown();
+				zone->MouseUp();
 				return true;
 			}
 		}
@@ -633,7 +645,7 @@ bool UI::DefaultControllerButtonDown(SDL_GameControllerButton button)
 			if(zone->Center().X() == GamepadCursor::Position().X() &&
 				zone->Center().Y() == GamepadCursor::Position().Y())
 			{
-				zone->MouseUp();
+				zone->MouseDown();
 				return true;
 			}
 		}

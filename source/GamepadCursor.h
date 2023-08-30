@@ -19,7 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class GamepadCursor
 {
 public:
-	static void SetPosition(const Point& pos);
+	static void SetPosition(const Point& pos, bool enable = true);
 	static void SetEnabled(bool enabled);
 	static const Point& Position() { return s_position; }
 	static bool Enabled() { return s_enabled; }

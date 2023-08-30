@@ -34,12 +34,13 @@ bool GamepadCursor::s_enabled = false;
 
 
 
-void GamepadCursor::SetPosition(const Point& pos)
+void GamepadCursor::SetPosition(const Point& pos, bool enable)
 {
 	if(!s_enabled)
 	{
 		g_drawn_position = pos;
-		s_enabled = true;
+		g_move_steps = 0;
+		s_enabled = enable;
 	}
 	else
 	{
@@ -59,6 +60,8 @@ void GamepadCursor::SetPosition(const Point& pos)
 void GamepadCursor::SetEnabled(bool enabled)
 {
 	s_enabled = enabled;
+	g_drawn_position = s_position;
+	g_move_steps = 0;
 }
 
 
