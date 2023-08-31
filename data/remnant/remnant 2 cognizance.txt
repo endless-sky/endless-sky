@@ -303,7 +303,7 @@ mission "Remnant: Cognizance 6"
 
 mission "Remnant: Cognizance 7"
 	name "Take Plume to <planet>"
-	description "Plume wants to witness firsthand what is going on in Nenia."
+	description "Plume wants to witness firsthand what is going on in Nenia, and would like to visit <planet>."
 	source "Caelian"
 	destination "Nasqueron"
 	to offer
