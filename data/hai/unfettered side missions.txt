@@ -404,7 +404,7 @@ mission "Hai Legacy 3"
 		ship "Lightning Bug (Unfettered Shipyards)"
 		personality launching staying surveillance
 		on disable
-			dialog `Mera hails you. "Stop! The duel will not be valid if you destroy us!"`
+			dialog `Mera hails you: "Stop! The duel will not be valid if you destroy us!"`
 		on kill
 			fail "Hai Legacy 3"
 			# This ship is not AI controlled because it's not her style. She wants to see it firsthand, but she will land before you do and pretend nothing happened.
