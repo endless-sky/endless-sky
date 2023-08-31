@@ -246,7 +246,7 @@ void Timer::Step(PlayerInfo &player, UI *ui)
 	}
 	if(proximity > 0.)
 	{
-		Point center = Point(0, 0);
+		Point center;
 		if(proximityCenter)
 		{
 			const StellarObject *proximityObject = system->FindStellar(proximityCenter);
