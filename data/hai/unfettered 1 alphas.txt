@@ -1123,7 +1123,7 @@ mission "<uhai> 8: It's The Alphas"
 				"midas: wronged" > 1
 			`You ask around for this Auxiliary; 'Settler', but no-one will reveal anything about it to you, until, suspecting you will not leave until you have something, someone comes, their face concealed. "You. You have betrayed us by revealing our plan to the governor, you are not to be trusted. That said, those that you are looking for are our enemies as well, so I will reveal you the location you need -if- you agree to give us compensation for your mistake. We demand 10 million credits, in the form of a fine."`
 			choice
-				`	"I will give you your 10 million credits.`
+				`	"I will give you your 10 million credits."`
 				`	"I will give you 10 gold bars."`
 					to display
 						"outfit: Gold Bars" >= 10

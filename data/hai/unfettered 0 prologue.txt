@@ -1016,19 +1016,29 @@ mission "<uhai> 2: Prove Your Strength"
 			label reward
 			action
 				outfit "Heshi"
+			`	Si-Ra does not give you any explanation, instead he proceeds to raise his fist. As you do not react he gestures with his other hand, clearly meaning you ought to do the same.`
+			`	After you rise your fist in response, he bows his head so slightly you barely notice it, and moves away. You wonder what you should do with the creature, but refusing the gift does not seem like an option.`
+			label end
+			action
+				log `Defeated a young Unfettered Captain in a duel, and took part in a surprisingly scary Unfettered martial ceremony.`
 				event "unfettered: JD raid plan ready" 5 15
 				set "unfettered: duel ready"
 				"unfettered: took Si-Ra' gold" = "outfit (all): Gold Bars"
 				"unfettered: took Si-Ra' weapons" = "outfit (all): Ionic Blaster Prototype" + "outfit (all): Ionic Turret Prototype" * 3
-				log `Defeated a young Unfettered Captain in a duel, and took part in a surprisingly scary Unfettered martial ceremony.`
-			`	Si-Ra does not give you any explanation, instead he proceeds to raise his fist. As you do not react he gestures with his other hand, clearly meaning you ought to do the same.`
-			`	After you rise your fist in response, he bows his head so slightly you barely notice it, and moves away. You wonder what you should do with the creature, but refusing the gift does not seem like an option.`
-			`	As he passes near you he quickly speaks, "I'll be a few weeks before I'm ready for more action."`
+			`	As he passes near you he quickly speaks, "It'll be a few weeks before I'm ready for more action."`
 				accept
 			label stay
 			`	You stay there, surely impressing all Hai present! However it also means you get hit by the tail of the monster as it jumps out to hit you, and everything gets dark in a minute.`
-			`	You hear voices around you, someone screaming for help but also Si-Ra speaking calmly, "There is no cure for humans," as you hear this you sink deeper and deeper, almost losing consciousness, "there is nothing to be done." These are the last words you will ever hear.`
-				die
+			`	You hear voices around you, someone screaming for help but also Si-Ra speaking calmly, "There is no cure for humans," as you hear this you sink deeper and deeper, almost losing consciousness, "there is nothing to be done. This is a fight they will have to win on their own."`
+			`	Suddenly the world darkens, and you fall. When you open your eyes again, all is vivid, as if you had never seen before. You see the scorpion that attacked you, clearer than ever in all its might and with the sparks of intelligence in its eyes, before it swiftly moves away.`
+			`	You are taken far away by a beam of pure light. You see collapsed civilisations, fighting to reclaim their forgotten glory as they struggle even to feed their own people. You see a planet, once beautiful, get bombarded until not a single trace of life is left. You see stars, beautiful and seemingly eternal, get blasted away with all surrounding space. You see automated ships, repairing wounds.`
+			`	Until, finally you are brought back by that same beam of light, and it is all you can see.`
+			choice
+				`	(Wake up.)`
+				`	(Give up.)`
+					die
+			`	You wake up in a hospital bed, Si-Ra is there and speaks very quietly, almost gently, "That was not the smartest option, lad, but you showed that you had what it takes to be considered Unfettered." He then moves to the door behind you.`
+				goto end
 			label run
 			action
 				log "Defeated a young Unfettered Captain in a duel, but it seems that was not the whole test. The second part involved a monstruous scorpion from which it felt like a good idea to run at the time. The Unfettered did not see it that way, however."
