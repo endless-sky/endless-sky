@@ -39,7 +39,7 @@ namespace {
 	const string EXPEND_AMMO = "Escorts expend ammo";
 	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 
-	int zoomIndex = 4;
+	size_t zoomIndex = 4;
 	constexpr double VOLUME_SCALE = .25;
 
 	// Default to fullscreen.
