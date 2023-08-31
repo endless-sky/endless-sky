@@ -371,7 +371,7 @@ double Preferences::MaxViewZoom()
 
 const vector<double> &Preferences::Zooms()
 {
-	return ZOOMS;
+	return GameData::Interfaces().Get("hud")->GetList("zooms");
 }
 
 
