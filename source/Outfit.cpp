@@ -168,7 +168,8 @@ namespace {
 		auto oit = find_if(thisFlares.begin(), thisFlares.end(),
 			[&it](const pair<Body, int> &flare)
 			{
-				return it.first.GetSprite() == flare.first.GetSprite();
+				return (it.first.GetSprite() == flare.first.GetSprite()
+					&& it.first.Scale() == flare.first.Scale());
 			}
 		);
 

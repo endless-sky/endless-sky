@@ -63,6 +63,8 @@ private:
 	public:
 		// Get the point's location, given the current screen dimensions.
 		Point Get() const;
+		// Get the point's location, treating the Region within the Information as the screen area.
+		Point Get(const Information &info) const;
 		void Set(const Point &position, const Point &anchor);
 
 	private:
@@ -97,6 +99,8 @@ private:
 
 		// Get the bounding rectangle, given the current screen dimensions.
 		Rectangle Bounds() const;
+		// Get the bounding rectangle, treating the Region within the Information as the screen area.
+		Rectangle Bounds(const Information &info) const;
 
 	protected:
 		// Parse the given data line: one that is not recognized by Element
