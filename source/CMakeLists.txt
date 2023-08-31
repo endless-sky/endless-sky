@@ -46,6 +46,8 @@ target_sources(EndlessSkyLib PRIVATE
 	CaptureOdds.h
 	CargoHold.cpp
 	CargoHold.h
+	CategoryList.cpp
+	CategoryList.h
 	CategoryTypes.h
 	ClickZone.h
 	CollisionSet.cpp
@@ -81,8 +83,12 @@ target_sources(EndlessSkyLib PRIVATE
 	Dialog.h
 	Dictionary.cpp
 	Dictionary.h
+	DistanceCalculationSettings.h
+	DistanceCalculationSettings.cpp
 	DistanceMap.cpp
 	DistanceMap.h
+	Distribution.cpp
+	Distribution.h
 	DrawList.cpp
 	DrawList.h
 	Effect.cpp
@@ -104,6 +110,8 @@ target_sources(EndlessSkyLib PRIVATE
 	FireCommand.h
 	Fleet.cpp
 	Fleet.h
+	FleetCargo.cpp
+	FleetCargo.h
 	Flotsam.cpp
 	Flotsam.h
 	FogShader.cpp
@@ -197,6 +205,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Music.h
 	NPC.cpp
 	NPC.h
+	NPCAction.cpp
+	NPCAction.h
 	News.cpp
 	News.h
 	Outfit.cpp
@@ -268,6 +278,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ShipInfoPanel.h
 	ShipJumpNavigation.cpp
 	ShipJumpNavigation.h
+	ShipManager.cpp
+	ShipManager.h
 	ShipyardPanel.cpp
 	ShipyardPanel.h
 	ShopPanel.cpp
@@ -322,12 +334,14 @@ target_sources(EndlessSkyLib PRIVATE
 	WeightedList.h
 	Wormhole.cpp
 	Wormhole.h
-	comparators/ByGivenOrder.h
-	comparators/ByName.h
+	WormholeStrategy.h
 	opengl.cpp
 	opengl.h
 	pi.h
 	shift.h
+	comparators/ByGivenOrder.h
+	comparators/ByName.h
+	comparators/BySeriesAndIndex.h
 	ship/ShipAICache.cpp
 	ship/ShipAICache.h
 	text/DisplayText.cpp
