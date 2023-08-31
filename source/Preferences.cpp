@@ -39,7 +39,7 @@ namespace {
 	const string EXPEND_AMMO = "Escorts expend ammo";
 	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 
-	double zoom = 1.;
+	int zoomIndex = 4;
 	constexpr double VOLUME_SCALE = .25;
 
 	// Default to fullscreen.
@@ -102,7 +102,7 @@ void Preferences::Load()
 		else if(node.Token(0) == "boarding target")
 			boardingIndex = max<int>(0, min<int>(node.Value(1), BOARDING_SETTINGS.size() - 1));
 		else if(node.Token(0) == "view zoom")
-			zoom = node.Value(1);
+			zoomIndex = max(0., node.Value(1));
 		else if(node.Token(0) == "vsync")
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
 		else if(node.Token(0) == "Automatic aiming")
@@ -141,7 +141,7 @@ void Preferences::Save()
 	out.Write("zoom", Screen::UserZoom());
 	out.Write("scroll speed", scrollSpeed);
 	out.Write("boarding target", boardingIndex);
-	out.Write("view zoom", zoom);
+	out.Write("view zoom", zoomIndex);
 	out.Write("vsync", vsyncIndex);
 	out.Write("Automatic aiming", autoAimIndex);
 	out.Write("Parallax background", parallaxIndex);
@@ -204,43 +204,47 @@ void Preferences::SetScrollSpeed(int speed)
 // View zoom.
 double Preferences::ViewZoom()
 {
-	return zoom;
+	const auto &zooms = GameData::Interfaces().Get("hud")->GetList("zooms");
+	if(zoomIndex >= zooms.size())
+		return zooms.back();
+	return zooms[zoomIndex];
 }
 
 
 
 bool Preferences::ZoomViewIn()
 {
-	const Interface *hudInterface = GameData::Interfaces().Get("hud");
-	double multiplier = hudInterface->GetValue("zoom multiplier");
+	const auto &zooms = GameData::Interfaces().Get("hud")->GetList("zooms");
+	if(zoomIndex == zooms.size() - 1)
+		return false;
 
-	zoom *= multiplier;
-	return CheckZoomBoundaries();
+	++zoomIndex;
+	return true;
 }
 
 
 
 bool Preferences::ZoomViewOut()
 {
-	const Interface *hudInterface = GameData::Interfaces().Get("hud");
-	double multiplier = hudInterface->GetValue("zoom multiplier");
+	if(zoomIndex == 0)
+		return false;
 
-	zoom /= multiplier;
-	return CheckZoomBoundaries();
+	--zoomIndex;
+	return true;
 }
 
 
 
 double Preferences::MinViewZoom()
 {
-	return GameData::Interfaces().Get("hud")->GetValue("min zoom");
+	return GameData::Interfaces().Get("hud")->GetList("zooms").front();
 }
 
 
 
 double Preferences::MaxViewZoom()
 {
-	return GameData::Interfaces().Get("hud")->GetValue("max zoom");
+	return GameData::Interfaces().Get("hud")->GetList("zooms").back();
 }
 
 
@@ -421,24 +425,4 @@ bool Preferences::DoAlertHelper(Preferences::AlertIndicator toDo)
 int Preferences::GetPreviousSaveCount()
 {
 	return previousSaveCount;
-}
-
-
-
-bool Preferences::CheckZoomBoundaries()
-{
-	double minZoom = MinViewZoom();
-	double maxZoom = MaxViewZoom();
-
-	if(zoom >= maxZoom)
-	{
-		zoom = maxZoom;
-		return false;
-	}
-	else if(zoom <= minZoom)
-	{
-		zoom = minZoom;
-		return false;
-	}
-	return true;
 }

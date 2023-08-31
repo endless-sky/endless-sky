@@ -101,6 +101,12 @@ void Interface::Load(const DataNode &node)
 			// This node specifies a named point where custom drawing is done.
 			points[child.Token(1)].Load(child, anchor);
 		}
+		else if(child.Token(0) == "list" && child.Size() >= 2)
+		{
+			auto &list = lists[child.Token(1)];
+			for(const auto &grand : child)
+				list.emplace_back(grand.Value(0));
+		}
 		else if(child.Token(0) == "visible" || child.Token(0) == "active")
 		{
 			// This node alters the visibility or activation of future nodes.
@@ -180,6 +186,16 @@ double Interface::GetValue(const string &name) const
 {
 	auto it = values.find(name);
 	return (it == values.end() ? 0. : it->second);
+}
+
+
+
+// Get a named list.
+const vector<double> &Interface::GetList(const string &name) const
+{
+	static vector<double> EMPTY;
+	auto it = lists.find(name);
+	return (it == lists.end() ? EMPTY : it->second);
 }
 
 
