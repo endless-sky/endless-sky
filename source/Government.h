@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "ExclusiveItem.h"
 #include "LocationFilter.h"
+#include "RaidFleet.h"
 
 #include <limits>
 #include <map>
@@ -46,21 +47,6 @@ class System;
 // color "swizzle." Some government's ships can also be easier or harder to
 // bribe than others.
 class Government {
-public:
-	class RaidFleet {
-		public:
-			RaidFleet(const Fleet *fleet, double minAttraction, double maxAttraction);
-			const Fleet *GetFleet() const;
-			double MinAttraction() const;
-			double MaxAttraction() const;
-
-		private:
-			const Fleet *fleet = nullptr;
-			double minAttraction;
-			double maxAttraction;
-	};
-
-
 public:
 	// Default constructor.
 	Government();
