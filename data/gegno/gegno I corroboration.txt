@@ -430,10 +430,25 @@ mission "Scin Presence on Cyife"
 		has "Gegno Intervention: declined"
 		not "Gegno Genocide Defense: offered"
 	on offer
-		set "visited cyfie"
+		set "visited cyife"
 		conversation
-			# Scin presence on a moon far away from their space.
-			`Nothing is much of interest on a cold, unwelcoming moon.`
+			`Nothing is much of interest on a cold, unwelcoming moon in the middle of nowhere. However, there's something about the surface of Cyife that is a bit peculiar. Some of the light refracted through the surface seeminly dissapates, or reflects back in strange patterns. Although appearing like ice, more detailed inspection reveals that small patches of the terrain seem to be made of some other type of crystalline material. In the distance is something that truly stands out on this world - a large egg-shaped structure with a green hue to it.`
+
+		branch "saw epidote"
+				has "scin: approached epidote"
+
+		branch "boarded epidote"
+				has "scin: entered epidote"
+
+			`	Once you get close enough, the oblong object reveals itself to be some sort of large Gegno ship, and judging by the coloring, belongs to the Scin faction. What it's doing this far away from their home space is a mystery, much like the moon it's stationed on. Or, at least, was stationed on, as after a few seconds, it launches into the atmosphere and leaves the moon. There doesn't seem to be anything left at the place it was parked at, so it's hard to know the Scin were doing here to begin with.`
+				decline
+
+		label "saw epidote"
+			`	Once you get close enough, the oblong object reveals itself to be a large Gegno Scin ship, similar to the one you encountered during an interaction with the Scin a while ago. What it's doing this far away from their home space is a mystery, much like the moon it's stationed on. Or, at least, was stationed on, as after a few seconds, it launches into the atmosphere and leaves the moon. Perhaps it was some sort of warship spying on the nearby Gegno Vi systems.`
+				decline
+
+		label "boarded epidote"
+			`	Once you get close enough, the oblong object reveals itself to be one of the Gegno Scin's large research ships, the same kind that you've been inside of during an interaction with the Scin a while ago. It's possible the Scin found the mysteriousness of Cyife worth traveling so far from their home space to investigate, but you'll never know, as after a few seconds, the ship launches into the atmosphere and leaves the moon. They also didn't seem to leave anything behind, though the site the ship was parked at does appear to be one of the many strange regions of the moon.`
 				decline
 
 
