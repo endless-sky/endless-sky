@@ -31,9 +31,9 @@ public:
 	};
 
 	enum class DateFormat : int {
-		dmy = 0, // Day-first format. (Sat, 4 Oct 1941)
-		mdy,     // Month-first format. (Sat, Oct 4, 1941)
-		ymd      // All-numeric ISO 8601. (1941-10-04)
+		DMY = 0, // Day-first format. (Sat, 4 Oct 1941)
+		MDY,     // Month-first format. (Sat, Oct 4, 1941)
+		YMD      // All-numeric ISO 8601. (1941-10-04)
 	};
 
 	enum class OverlayState : int_fast8_t {
