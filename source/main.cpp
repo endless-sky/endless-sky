@@ -189,7 +189,7 @@ int main(int argc, char *argv[])
 		if(!GameWindow::Init())
 			return 1;
 
-		GameData::LoadShaders(!GameWindow::HasSwizzle());
+		GameData::LoadShaders();
 
 		// Show something other than a blank window.
 		GameWindow::Step();
