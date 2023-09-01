@@ -1328,7 +1328,7 @@ mission "Heliarch Containment 3"
 				`	"Fine. Bring me to somewhere you can tell me."`
 				`	"That seems a bit sketchy, I'll pass."`
 					decline
-			labe license
+			label license
 			`Three Heliarch officers approach you as you're walking around the spaceport. They salute you, and the Saryd speaks. "Greetings, Captain <last>. Sent by Consul Plortub, we were."`
 			`	"A mission for you, he has, but to discuss it in private, he wishes to." The Kimek explains. "Follow us, would you?"`
 			label way
