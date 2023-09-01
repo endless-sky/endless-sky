@@ -65,7 +65,7 @@ mission "Heliarch Investigation 2"
 			choice
 				`	"I don't see why not, lead the way."`
 				`	"Not this time, I'm really busy now."`
-					decline
+					defer
 			`	The three of them escort you through a number of restricted passageways, dotted with armed, statue-like guards at every door and hallway you pass through. Eventually you reach a meeting room of sorts, with about a dozen other Heliarchs seated at the central table. One of them motions for you to join them.`
 			`	As you take a seat, one of the Kimek there speaks. "The honorable Captain, we salute. Make you feel welcome, I, Consul Iekie of the Heliarch council, hope we will."`
 			choice
@@ -1212,15 +1212,26 @@ mission "Heliarch Containment 1"
 					goto accept
 				`	"Terrorists? Can't the Heliarchs on that planet take care of it themselves?"`
 				`	"You'll have to find someone else. I'm not heading there right now."`
-					decline
+					goto decline
 			`	"As I said, hit many government buildings, they have," the Arach explains. "Damaged several garrisons, the attacks did, and crippled the local agents' immediate response capabilities, they have. Not to mention, a very populous and busy world, <planet> is, so a more difficult task, locating and arresting the criminals is."`
 			`	"To keep the peace, our job is," the Kimek adds. "If to assist in achieving that goal, you wish, transport us there, you should."`
 			choice
 				`	"Okay. Bring your colleagues and the cargo to my ship."`
 				`	"You'll have to find someone else. I'm not heading there right now."`
-					decline
+					goto decline
 			label accept
 			`	They thank you for your cooperation, and use a device to call the rest of the agents to your ship. After securing the last of their cargo in your hold, you show them to their bunks and head to the cockpit.`
+				accept
+			label decline
+			branch license
+				has "Heliarch License: done"
+			`	They're clearly disappointed, but thank you for your time anyway, before moving on to the next merchant captain and try to recruit their assistance.`
+				decline
+			label license
+			`	They're confused by your refusal. "Willing are you not to help your fellow troops? A danger to the civilians of the area, the criminals are."`
+			`	"A shame that is," the Arach backs away, disapprovingly. "Find others to help, we will."`
+			`	The two leave, moving to nearby merchant captains to try and recruit their assistance.`
+				decline
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
@@ -1257,10 +1268,20 @@ mission "Heliarch Containment 2"
 			choice
 				`	"I see. Alright, I'll head there to pick them up."`
 				`	"Sorry, but it sounds like you've got a lot of help already, and I'm busy with something else."`
-					decline
+					goto decline
 			label accept
 			`	They thank you, and urge you to move to <stopovers> with haste. Spotting a convoy of Kimek ships landing nearby, the group moves to new potential captains to help with the efforts.`
 				accept
+			label decline
+			branch license
+				has "Heliarch License: done"
+			`	The Saryd frowns. "A shame that is, use we could all the help available." The group leaves, moving to ask the next merchant captain for help.`
+				decline
+			label license
+			`	The group is clearly apalled. "Willing are you not to help your fellow troops?!" One of the Arachi exclaims.`
+			`	"Disgraceful." The Saryd shakes her head. "If injured were you, would you not from your fellow Heliarchs help expect?"`
+			`	The group stomps away, trying to recruit more civilian captains to help.`
+				decline
 	on stopover
 		dialog `You notice dozens of Heliarch warships rapidly surveying the planet. When you land, you see more of the ships that came to help pick up the injured agents. Hundreds of bandaged Saryds, Kimek, and Arachi are being brought to the ships that keep arriving and departing. You pick up your passengers and prepare to head to the medical center on <destination>.`
 	on visit
@@ -1293,6 +1314,8 @@ mission "Heliarch Containment 3"
 	stopover "Secret Sky"
 	on offer
 		conversation
+		branch license
+				has "Heliarch License: done"
 			`Three Heliarch officers approach you as you're walking around the spaceport. "Greetings, Captain <last>. Interested, would you be, in accompanying us? A proposition, we have," the Saryd says.`
 			choice
 				`	"What's it about?"`
@@ -1305,12 +1328,15 @@ mission "Heliarch Containment 3"
 				`	"Fine. Bring me to somewhere you can tell me."`
 				`	"That seems a bit sketchy, I'll pass."`
 					decline
+			labe license
+			`Three Heliarch officers approach you as you're walking around the spaceport. They salute you, and the Saryd speaks. "Greetings, Captain <last>. Sent by Consul Plortub, we were."`
+			`	"A mission for you, he has, but to discuss it in private, he wishes to." The Kimek explains. "Follow us, would you?"`
 			label way
 			`	After a few dozen twists and turns through the restricted sections of the ring, they bring you to a room where an Arach is waiting, alongside a few other Heliarchs who are discussing something while pointing at a map of the Coalition projected over the table.`
-			`	"Agreed to work with us, have you, Captain?" the Arach asks. "The one who asked for you, I am. Call me Consul Plortup, you may."`
+			`	"Ready to work with us, are you, Captain?" the Arach asks. "The one who asked for you, I am. Call me Consul Plortup, you may."`
 			choice
 				`	"<first> <last>. Pleasure to meet you."`
-				`	"I wouldn't call this 'agreeing' to work. Why the secrecy anyway?"`
+				`	"What job did you have for me?"`
 			`	"In need of one such as you, we are. Anonymous reports, we have received, from loyal patriots and colleagues alike. On <stopovers>, a Saryd world, terrible activity may be brewing. Rising in activity there, outlaw groups are, we fear," he says. "Your destination, that is."`
 			`	A couple small boxes are brought inside and set on the table. Upon opening them, Plortup shows you they contain several small drones - drones very similar to those employed by the repair modules used here.`
 			`	"A union of technologies, it is. Of the scanning module, the incredible surveillance capabilities are. Of the repair drones, the versatile mobility and durable shells are." He explains to you that you're to head to <planet stopovers> to pick up <cargo> produced on the planet, but as you're coming in for a landing, you are to jettison the crates with the drones so that they may act as spybots. "Inconspicuous, you must be. Appear to be a simple, regular job, this must. Back to <origin>, you must return, after completed this task, you have. Readily available then, your payment will be. Suffice, <payment> will, surely."`
@@ -1325,7 +1351,7 @@ mission "Heliarch Containment 3"
 			`	"Aided us once more, you have, Captain. To further work with you, I look forward. Search for one of my subordinates in the local spaceport anytime, you should. More work for you soon, I might have." He performs a brief salute, and leaves for some other section of the ring.`
 
 mission "Heliarch Containment 4-A"
-	name "Undercover"
+	name "Undercover Transports"
 	description "Escort three Kimek Spires full of Heliarch agents to <destination>, where they hope the use of civilian ships will give them the element of surprise."
 	to offer
 		has "event: plasma turret available"
@@ -1362,7 +1388,7 @@ mission "Heliarch Containment 4-A"
 		dialog `You've reached <planet>, but the Heliarch transports haven't arrived yet! Best depart and wait for them to get here.`
 
 mission "Heliarch Containment 4-B"
-	name "Undercover: Payment"
+	name "Meet with Plortub"
 	description "Collect your payment for escorting the Heliarch transports."
 	landing
 	to offer
@@ -1373,7 +1399,7 @@ mission "Heliarch Containment 4-B"
 	on offer
 		conversation
 			`Hundreds of Heliarch agents pour out of the three Kimek transports, rushing in groups to separate parts of the city. They march in unison, weapons in hand. From the reactions of the locals, it's clear they were neither expecting such a thing, nor are they happy with the agents going about the city in that manner.`
-			`	When the last of the Heliarchs leave the transports, one of the Kimek captains inform you that you should now head to <destination> to collect your payment of <payment>, and to "avoid getting caught in any potential retaliation."`
+			`	When the last of the Heliarchs leave the transports, one of the Kimek captains inform you that you should now head to <destination> to meet with Consul Plortub collect your payment of <payment>, and to "avoid getting caught in any potential retaliation."`
 				accept
 	on complete
 		payment 495000
@@ -1813,7 +1839,7 @@ mission "Heliarch Drills 3"
 	on offer
 		conversation
 			`Lotuora is speaking with a Kimek Heliarch captain at the entrance to the spaceport. "Ah, there the Captain is," she tells the Kimek. "Captain <last>, your sparring partner, this is," she says, gesturing to the Kimek, who salutes you with a short bow of her head. "Excited to test her ship against an outsider, she is."`
-			`	The Kimek doesn't stay for long, only wishing you a "good fight" and heading to the hangars, where she boards a Punisher and flies away. You look to Lotuora, waiting for her to explain. "Tough ships, our Punishers are, but looked into your encounter records, we have, and experience in fighting, you have," she says. "To avoid any accidents, we want, so swapped out, the ship's Finisher Pods were. A mere drill, this is, so only aim to disable one another, you shall."`
+			`	The Kimek doesn't stay for long, only wishing you a "good fight" and heading to the hangars, where she boards a Punisher and flies away. You look to Lotuora, waiting for her to explain. "Tough ships, our Punishers are, but looked into your encounter records, we have, and experience in fighting, you have," she says. "To avoid any accidents, we want, so swapped out, the ship's Finisher Pods were. A mere drill, this is, so only aim to disable one another, you shall. If succesful, you are, set aside <payment> for your efforts, we have."`
 			`	She stares on for a while, then brings up a map. "Headed to the <waypoints> system, the Punisher is. Wait for you there, it will." She tells you to head to <waypoints> when you're ready to fight the Punisher, and reminds you to only disable the ship, as any harsher action would make you a criminal to the Heliarchs.`
 				accept
 	npc disable save
@@ -1860,7 +1886,7 @@ mission "Heliarch License"
 	on offer
 		conversation
 			`When you land on <origin>, you find a Heliarch delegation waiting for you outside. When you meet them, the Saryd of the group says, "A great ally to our Coalition, you have proven to be."`
-			`	"Discussed your exploits, the consuls have. Much contentment, your contributions brought us," the Kimek continues.`
+			`	"Discussed your exploits, the consuls have. Much satisfaction, your contributions brought us," the Kimek continues.`
 			`	"With you, a meeting they request. To <destination> you must go, if to join our ranks, you so wish," the Arach finishes.`
 				accept
 	on complete
