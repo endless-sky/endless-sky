@@ -1859,16 +1859,12 @@ person "Patrol Team"
 	phrase
 		word
 #		Marksman
-			"If you don't know where to start in helping the game, take a nice look at the files. Sometimes, it helps!"
 			"If you're interested in helping out but don't have time, consider being a proofreader! You can take my job, and I get to laze around doing nothing!"
 			"If you see something, and it shoots at you, cheat your way to victory!"
-			"What did you just say about me?"
 			"The number of times someone breaks the fourth wall, it's mind-boggling!"
 			"Look, we aren't here for your money. We do all this for free and look where that gets us."
-			"If you don't know where to start in helping the game, come and review some missions on GitHub. It helps!"
 			"If you're interested in helping out but don't have time, consider looking through the proposals on GitHub! Sometimes, a new perspective is needed!"
 			"What do you mean you don't have a save file for this pull request!?"
-			"Please, for the love of god, don't make an issue before checking if others have done the same."
 			"This statement is, intentionally wrote wrongly to make point."
 
 #		Roadrunner
@@ -1884,19 +1880,15 @@ person "Patrol Team"
 			"Now there's a lot less detail conflicting with one another."
 
 #		tibetiroka
-			"Lol, we broke master again."
 			"It's just the Steam CI, no need to panic."
-			"DERPY???!!!!!"
 			"Did you check for nullptr?"
 			"		How do we indent after line breaks again?"
 			"Please put the includes in alphabetical order."
-			"Uhh, you sure about this?"
 			"Always keep three empty lines between functions."
-			"aLiEnS DoN'T SpEaK EnGlIsH, nO NeEd tO ChEcK ThE GrAmMaR,"
+			"Why do Aliens speak English?"
 
 #		1010todd
 			"Style check."
-			"Quick pass."
 			"I'll give this a better look later."
 			"What is this for?"
 			"This should be a private member."
@@ -1905,7 +1897,6 @@ person "Patrol Team"
 
 			"Looks good to me."
 			"Is this the best name?"
-			"<reviewer> requested a review from (Amazinite/Tehhowch)"
 			"The standard copyright header was changed recently."
 
 			"Please use the template."
