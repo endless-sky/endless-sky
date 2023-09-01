@@ -34,6 +34,7 @@ namespace {
 		return DAY[day];
 	}
 
+	// Convert an integer to a string where single-digit integers have a leading zero.
 	string ZeroPad(int i)
 	{
 		string s;
@@ -46,11 +47,10 @@ namespace {
 		return s;
 	}
 
-	Preferences::DateFormat dateFormatInUse = Preferences::DateFormat::dmy;
+	Preferences::DateFormat dateFormatInUse = Preferences::DateFormat::DMY;
 
 	// Months contain a variable number of days.
 	const int MDAYS[] = {0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334};
-
 }
 
 
@@ -77,7 +77,7 @@ const string &Date::ToString() const
 	}
 
 	// Because this is a somewhat "costly" operation, cache the result. The
-	// cached value is discarded if the date is changed.
+	// cached value is discarded if the date or date format is changed.
 	if(date && str.empty())
 	{
 		int day = Day();
@@ -90,11 +90,11 @@ const string &Date::ToString() const
 		const string &weekday_str = Weekday(day, month, year);
 		const string &month_str = MONTH[month - 1];
 
-		if(dateFormat == Preferences::DateFormat::ymd)
+		if(dateFormat == Preferences::DateFormat::YMD)
 			str = to_string(year) + "-" + ZeroPad(month) + "-" + ZeroPad(day);
-		else if(dateFormat == Preferences::DateFormat::mdy)
+		else if(dateFormat == Preferences::DateFormat::MDY)
 			str = weekday_str + " " + month_str + " " + to_string(day) + ", " + to_string(year);
-		else if(dateFormat == Preferences::DateFormat::dmy)
+		else if(dateFormat == Preferences::DateFormat::DMY)
 			str = weekday_str + ", " + to_string(day) + " " + month_str + " " + to_string(year);
 	}
 
@@ -106,17 +106,10 @@ const string &Date::ToString() const
 // Convert a date to the format in which it would be stated in conversation.
 string Date::LongString() const
 {
-
-	// yyyy-MM-DD, MM/DD/yyyy: Can you get this done by March 18th?
-	// DD/MM/yyyy: Can you get this done by the 18th of March?
-
 	if(!date)
 		return string();
 
-	string result;
-
 	int day = Day();
-
 	string dayString = to_string(day);
 	// All numbers in the teens add in "th", as do any numbers ending in 0 or in
 	// 4 through 9. Special endings are used for "1st", "2nd", and "3rd."
@@ -147,9 +140,10 @@ string Date::LongString() const
 	string month = MONTH[Month() - 1];
 
 	Preferences::DateFormat dateFormat = Preferences::GetDateFormat();
-	if(dateFormat == Preferences::DateFormat::ymd || dateFormat == Preferences::DateFormat::mdy)
+	string result;
+	if(dateFormat == Preferences::DateFormat::YMD || dateFormat == Preferences::DateFormat::MDY)
 		result += std::move(month) + " " + std::move(dayString);
-	else if(dateFormat == Preferences::DateFormat::dmy)
+	else if(dateFormat == Preferences::DateFormat::DMY)
 		result += std::move(dayString) + " of " + std::move(month);
 
 	return result;

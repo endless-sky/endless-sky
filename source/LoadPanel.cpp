@@ -56,11 +56,11 @@ namespace {
 	{
 		// pair<string, string>: Linux (1st) and Windows (2nd) format strings
 		// size_t: BUF_SIZE
-		if(fmt == Preferences::DateFormat::ymd)
+		if(fmt == Preferences::DateFormat::YMD)
 			return make_pair(make_pair("%F %T", "%F %T"), 26);
-		if(fmt == Preferences::DateFormat::mdy)
+		if(fmt == Preferences::DateFormat::MDY)
 			return make_pair(make_pair("%-I:%M %p on %b %-d, %Y", "%#I:%M %p on %b %#d, %Y"), 25);
-		if(fmt == Preferences::DateFormat::dmy)
+		if(fmt == Preferences::DateFormat::DMY)
 			return make_pair(make_pair("%-I:%M %p on %-d %b %Y", "%#I:%M %p on %#d %b %Y"), 24);
 
 		// Return YYYY-MM-DD by default.
@@ -84,7 +84,6 @@ namespace {
 		std::free(buf);
 		return str;
 	}
-
 
 	// Extract the date from this pilot's most recent save.
 	string FileDate(const string &filename)
