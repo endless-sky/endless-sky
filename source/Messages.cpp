@@ -23,6 +23,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	const int MAX_LOG = 10000;
+
 	mutex incomingMutex;
 
 	vector<pair<string, Messages::Importance>> incoming;
@@ -37,7 +39,9 @@ void Messages::Add(const string &message, Importance importance)
 {
 	lock_guard<mutex> lock(incomingMutex);
 	incoming.emplace_back(message, importance);
-	log.emplace_back(message, importance);
+	log.emplace(log.begin(), message, importance);
+	if(log.size() > MAX_LOG)
+		log.pop_back();
 }
 
 

@@ -82,11 +82,11 @@ void MessageLogPanel::Draw()
 
 	// Draw messages.
 	Point pos = Screen::BottomLeft() + Point(PAD, scroll);
-	for(auto it = messages.rbegin(); it != messages.rend(); ++it)
+	for(const auto &it : messages)
 	{
-		messageLine.Wrap(it->first);
+		messageLine.Wrap(it.first);
 		pos.Y() -= messageLine.Height() + PAD / 2;
-		messageLine.Draw(pos, *Messages::GetColor(it->second));
+		messageLine.Draw(pos, *Messages::GetColor(it.second));
 	}
 	pos.Y() -= PAD / 2;
 
