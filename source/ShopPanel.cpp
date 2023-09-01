@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ShopPanel.h"
 
+#include "GamePad.h"
 #include "GamepadCursor.h"
 #include "Rectangle.h"
 #include "text/alignment.hpp"
@@ -268,7 +269,8 @@ void ShopPanel::DrawShipsSidebar()
 			SpriteShader::Draw(background, point);
 
 		const Sprite *sprite = ship->GetSprite();
-		if(sprite)
+
+		if(sprite && (!isDraggingShip || dragShip != ship.get()))
 		{
 			float scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
 			if(Preferences::Has(SHIP_OUTLINES))
@@ -872,6 +874,34 @@ bool ShopPanel::ControllerTriggerPressed(SDL_GameControllerAxis axis, bool posit
 		   axis == SDL_CONTROLLER_AXIS_LEFTY)
 			return true; // prevent event from doing normal button selection logic
 	}
+	else if(activePane == ShopPane::Sidebar)
+	{
+		if(axis == SDL_CONTROLLER_AXIS_LEFTX ||
+		   axis == SDL_CONTROLLER_AXIS_LEFTY)
+		{
+			// do not rely on default zone-based cursor handling, as this class
+			// uses its own zones (also confusingly named "Zone")
+			std::vector<Point> options = ZonePositions();
+			for(auto& z: zones)
+			{
+				// only add zones in the right side panel that are visible on the
+				// screen
+				Rectangle sidePane(Point(Screen::Right() - SIDEBAR_WIDTH/2.0, 0), Point(SIDEBAR_WIDTH, Screen::Height()));
+				if(sidePane.Contains(z.Center()))
+					options.push_back(z.Center());
+			}
+			Point oldPos = GamepadCursor::Position();
+			GamepadCursor::MoveDir(GamePad::LeftStick(), options);
+
+			if(isDraggingShip)
+			{
+				const Point& dp = GamepadCursor::Position() - oldPos;
+				Drag(dp.X(), dp.Y());
+			}
+
+			return true;
+		}
+	}
 
 	if(axis == SDL_CONTROLLER_AXIS_RIGHTX)
 	{
@@ -919,6 +949,56 @@ bool ShopPanel::ControllerButtonDown(SDL_GameControllerButton button)
 			const Point buyCenter = Screen::BottomRight() - Point(210, 25);
 			GamepadCursor::SetPosition(buyCenter);
 			return true;
+		}
+	}
+	else if(activePane == ShopPane::Sidebar)
+	{
+		if(isDraggingShip)
+		{
+			// Any button ends the dragging operation
+			const Point& p = GamepadCursor::Position();
+			return Release(p.X(), p.Y());
+		}
+
+		if(button == SDL_CONTROLLER_BUTTON_A)
+		{
+			// Act like a short click
+			const Point& p = GamepadCursor::Position();
+			bool ret = Click(p.X(), p.Y(), 1);
+			Release(p.X(), p.Y());
+			return ret;
+		}
+		else if(button == SDL_CONTROLLER_BUTTON_B)
+		{
+			// Act like a long click
+			const Point& p = GamepadCursor::Position();
+			bool ret = Click(p.X(), p.Y(), 1);
+			lastShipClickTime = SDL_GetTicks() - LONG_CLICK_DURATION - 1;
+			Release(p.X(), p.Y());
+			return ret;
+		}
+		else if(button == SDL_CONTROLLER_BUTTON_X)
+		{
+			// Act like a double click
+			const Point& p = GamepadCursor::Position();
+			return Click(p.X(), p.Y(), 2);
+		}
+		else if(button == SDL_CONTROLLER_BUTTON_Y)
+		{
+			// If we have a ship selected, act like the start of a drag and drop
+			const Point& p = GamepadCursor::Position();
+			for(const Zone &zone : zones)
+			{
+				// floating point comparison ok here.
+				if(zone.Center().X() == p.X() && zone.Center().Y() == p.Y())
+				{
+					if(zone.GetShip())
+					{
+						Click(p.X(), p.Y(), 1);
+						return Drag(10, -10);
+					}
+				}
+			}
 		}
 	}
 	return false;
@@ -1005,7 +1085,7 @@ bool ShopPanel::Click(int x, int y, int clicks)
 
 						if(ship.get() == zone.GetShip())
 							foundSelectedShip = true;
-					   if(ship->ModelName() == zone.GetShip()->ModelName())
+						if(ship->ModelName() == zone.GetShip()->ModelName())
 							playerShips.insert(ship.get());
 						else if(!foundSelectedShip) // not the correct range
 							playerShips.clear();

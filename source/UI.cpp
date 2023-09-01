@@ -512,83 +512,15 @@ bool UI::DefaultControllerTriggerPressed(SDL_GameControllerAxis axis, bool posit
 	// By default, treat the left joystick like a zone selector.
 	if(axis == SDL_CONTROLLER_AXIS_LEFTX || axis == SDL_CONTROLLER_AXIS_LEFTY)
 	{
-		std::vector<Panel::Zone*> zones = GetZones();
-		if(!zones.empty())
+		std::vector<Point> options;
+		for (const Panel::Zone* zone: GetZones())
+			options.push_back(zone->Center());
+		if(!options.empty())
 		{
 			if(!GamepadCursor::Enabled())
-				GamepadCursor::SetPosition(zones.front()->Center());
-			else if(zones.size() >= 1)
-			{
-				// Get the joystick angle
-				Point joystick_direction = GamePad::LeftStick().Unit();
-
-				// Find the angles to every button near the cursor.
-				// The zones can move or disappear without warning. Since they
-				// are not indexed and are destroyed and recreated every frame,
-				// we don't have a way to track which zone we had selected.
-				// Instead, if we detect scrolling, snap to the new position.
-				// If it looks like the button disappeared instead, then just
-				// add the current cursor position to the triangulation so that
-				// we can jump to a new zone.
-				DelaunayTriangulation dt;
-				Point best_cursor(-100000.0, -100000.0);
-				double best_distance = 1000000000000.0;
-				for(auto& zone: zones)
-				{
-					dt.AddPoint(zone->Center());
-
-					double distance = GamepadCursor::Position().DistanceSquared(zone->Center());
-					if(distance < best_distance)
-					{
-						best_distance = distance;
-						best_cursor = zone->Center();
-					}
-				}
-
-				// TODO: scrolls are usually around 50 pixels, more than this, so
-				//       we keep hitting the else case.
-				if(best_distance < 24*24) // most buttons are 20x100, with 5px spacing
-					GamepadCursor::SetPosition(best_cursor);
-				else // too far away. probably a missing button, not a scroll event
-					dt.AddPoint(GamepadCursor::Position());
-
-				// We want to be within 45 degrees of any vector, which means
-				// the match has to be better than sqrt(2)/2. (a value of 1 means
-				// a perfect match)
-				float best_result = .70710678;
-				size_t best_idx = zones.size();
-				auto points = dt.Points();
-				for(const auto &edge: dt.Edges())
-				{
-					size_t other = zones.size();
-					// testing for floating point equality is ok here, since we
-					// didn't do any math on these points, just assignments.
-					if(points[edge.first].X() == GamepadCursor::Position().X() &&
-						points[edge.first].Y() == GamepadCursor::Position().Y())
-						other = edge.second;
-					else if(points[edge.second].X() == GamepadCursor::Position().X() &&
-						points[edge.second].Y() == GamepadCursor::Position().Y())
-						other = edge.first;
-
-					if(other < zones.size())
-					{
-						// this edge leads away from the currently selected zone.
-						// compare it to the joystick angle, and pick the closest
-						// one.
-						Point edge_direction = (points[other] - GamepadCursor::Position()).Unit();
-						// dot product gets closer to 1 the more it matches
-						double dot = joystick_direction.Dot(edge_direction);
-						if(dot > best_result)
-						{
-							best_result = dot;
-							best_idx = other;
-						}
-					}
-				}
-
-				if(best_idx < zones.size())
-					GamepadCursor::SetPosition(zones[best_idx]->Center());
-			}
+				GamepadCursor::SetPosition(options.front());
+			else
+				GamepadCursor::MoveDir(GamePad::LeftStick(), options);
 			return true;
 		}
 	}

@@ -126,6 +126,7 @@ protected:
 	// if the message was displayed.
 	bool DoHelp(const std::string &name) const;
 
+	std::vector<Point> ZonePositions() const;
 
 private:
 	class Zone : public Rectangle {

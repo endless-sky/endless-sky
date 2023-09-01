@@ -15,6 +15,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Point.h"
 
+#include <vector>
+
 // Track and draw the gamepad cursor
 class GamepadCursor
 {
@@ -25,6 +27,10 @@ public:
 	static bool Enabled() { return s_enabled; }
 
 	static void Draw();
+
+	// Move the cursor in the given direction, snapping to a point in options.
+	// Return the index of the selected point, or -1 if no good options.
+	static int MoveDir(const Point& dir, const std::vector<Point>& options);
 
 private:
 	static Point s_position;
