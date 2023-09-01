@@ -241,7 +241,7 @@ mission "Lunarium: Smuggling: Grenades"
 	on accept
 		log "Agreed to acquire some grenades for the Lunarium from human space. They've offered to pay quite well."
 	on visit
-		dialog `You've arrived on <planet>, but the ship carrying the grenades hasn't arrived in this system yet. Better depart and wait for it.`
+		dialog `You've arrived on <planet>, but you haven't brought all the grenades you needed to yet. Make sure you have them all in your cargo before you land.`
 	on complete
 		outfit "Fragmentation Grenades" -100
 		payment 3400000
@@ -282,7 +282,7 @@ mission "Lunarium: Smuggling: AM"
 		log "Agreed to smuggle three of the largest human anti-missile turrets to the Lunarium. They hope to reverse-engineer them to defend against Heliarch weaponry, though the effectiveness of human designs here is dubious."
 		log "Given what appears to be some sort of communication device by a Lunarium representative to facilitate easier contact."
 	on visit
-		dialog `You've arrived on <planet>, but the ship carrying the anti-missile turrets hasn't arrived in this system yet. Better depart and wait for it.`
+		dialog `You've arrived on <planet>, but you haven't brought all the anti-missile turrets you needed to yet. Make sure you have them all in cargo before you land.`
 	on complete
 		outfit "Heavy Anti-Missile Turret" -3
 		payment 900000
@@ -320,7 +320,7 @@ mission "Lunarium: Smuggling: Torpedoes"
 	on accept
 		log "Agreed to provide the Lunarium with some Torpedo and Typhoon Launchers. The lack of anti-missile systems on Heliarch ships means missile technology will be highly beneficial for the Lunarium."
 	on visit
-		dialog `You've arrived on <planet>, but the ship carrying the launchers and their ammo hasn't arrived in this system yet. Better depart and wait for it.`
+		dialog `You've arrived on <planet>, but you haven't brought all the launchers and ammo you needed to yet. Make sure you have them all in your cargo before you land.`
 	on complete
 		outfit "Torpedo Launcher" -2
 		outfit "Typhoon Launcher" -2
@@ -376,7 +376,7 @@ mission "Lunarium: Smuggling: Heat"
 	on accept
 		log "Agreed to bring the Lunarium some Plasma Turrets and Flamethrowers. They seem to believe heat damage will be effective against Heliarch ships."
 	on visit
-		dialog `You've arrived on <planet>, but the ship carrying the plasma turret hasn't arrived in this system yet. Better depart and wait for it.`
+		dialog `You've arrived on <planet>, but you haven't brought all the plasma turrets and flamethrowers you needed to yet. Make sure to have them all in your cargo before you land.`
 	on complete
 		outfit "Plasma Turret" -2
 		outfit "Flamethrower" -10
@@ -754,7 +754,7 @@ mission "House Bebliss 5-FW"
 			`	You follow them outside, and see them board the Spindle, heading to <destination>. You board your own ship, and head back to the city docks, preparing to meet them on <planet> when you have a spare jump drive for their ship.`
 				accept
 	on visit
-		dialog `You land on <planet>, but realize your escort bringing the jump drive hasn't arrived in this system yet. Better depart and wait for it to arrive.`
+		dialog `You land on <planet>, but you haven't brought the extra jump drive you needed to yet. Make sure to have it in your cargo before you land.`
 	on complete
 		require "Jump Drive" 2
 		outfit "Jump Drive" -1
