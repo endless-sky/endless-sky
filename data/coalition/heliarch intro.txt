@@ -1314,7 +1314,7 @@ mission "Heliarch Containment 3"
 	stopover "Secret Sky"
 	on offer
 		conversation
-		branch license
+			branch license
 				has "Heliarch License: done"
 			`Three Heliarch officers approach you as you're walking around the spaceport. "Greetings, Captain <last>. Interested, would you be, in accompanying us? A proposition, we have," the Saryd says.`
 			choice
@@ -1839,7 +1839,7 @@ mission "Heliarch Drills 3"
 	on offer
 		conversation
 			`Lotuora is speaking with a Kimek Heliarch captain at the entrance to the spaceport. "Ah, there the Captain is," she tells the Kimek. "Captain <last>, your sparring partner, this is," she says, gesturing to the Kimek, who salutes you with a short bow of her head. "Excited to test her ship against an outsider, she is."`
-			`	The Kimek doesn't stay for long, only wishing you a "good fight" and heading to the hangars, where she boards a Punisher and flies away. You look to Lotuora, waiting for her to explain. "Tough ships, our Punishers are, but looked into your encounter records, we have, and experience in fighting, you have," she says. "To avoid any accidents, we want, so swapped out, the ship's Finisher Pods were. A mere drill, this is, so only aim to disable one another, you shall. If succesful, you are, set aside <payment> for your efforts, we have."`
+			`	The Kimek doesn't stay for long, only wishing you a "good fight" and heading to the hangars, where she boards a Punisher and flies away. You look to Lotuora, waiting for her to explain. "Tough ships, our Punishers are, but looked into your encounter records, we have, and experience in fighting, you have," she says. "To avoid any accidents, we want, so swapped out, the ship's Finisher Pods were. A mere drill, this is, so only aim to disable one another, you shall. If successful, you are, set aside <payment> for your efforts, we have."`
 			`	She stares on for a while, then brings up a map. "Headed to the <waypoints> system, the Punisher is. Wait for you there, it will." She tells you to head to <waypoints> when you're ready to fight the Punisher, and reminds you to only disable the ship, as any harsher action would make you a criminal to the Heliarchs.`
 				accept
 	npc disable save
