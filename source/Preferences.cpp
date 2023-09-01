@@ -388,6 +388,13 @@ double Preferences::MaxViewZoom()
 
 
 
+const vector<double> &Preferences::Zooms()
+{
+	return ZOOMS;
+}
+
+
+
 // Starfield parallax.
 void Preferences::ToggleParallax()
 {
