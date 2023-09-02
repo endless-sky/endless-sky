@@ -376,9 +376,31 @@ mission "Transport high-class tourists"
 	description "Bring <bunks> outrageously wealthy tourists on a fabulous journey to the wild and exotic world of <destination>. They'll only consider thinking about your ship if you have the 'appropriate facilities' for a comfortable journey. Payment is <payment>."
 	job
 	repeat
-	passengers 8 22
+	passengers 5 5 .37
 	to offer
 		random < 10
+	to accept
+		has "outfit (installed): Luxury Accommodations"
+	source
+		attributes "paradise"
+	destination
+		attributes "religious" "quarg" "pirate" "volcanic" "frontier"
+		distance 8 20
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog "Your passengers begin to wander off, some of them sporting puzzled looks as the memories of glossy photos in the brochures give way to reality. You collect your payment of <payment>."
+		payment 25000 250
+
+
+mission "Transport high-class tourist group"
+	description "Bring <bunks> outrageously wealthy tourists on a fabulous journey to the wild and exotic world of <destination>. They'll only consider thinking about your ship if you have the 'appropriate facilities' for a comfortable journey. Payment is <payment>."
+	job
+	repeat
+	passengers 15 5 .15
+	to offer
+		random < 10
+		random < "passenger space" - 35
 	to accept
 		has "outfit (installed): Luxury Accommodations"
 	source
