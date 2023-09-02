@@ -1905,10 +1905,12 @@ person "Patrol Team"
 #		EjoThims
 	phrase
 		word
-			"If you want your pull request to not be merged, "
-			"If you prefer your pull request never be merged, "
-			"If you prefer your pull request sits idle, "
-			"If you want your pull request to be closed, "
+			"If you want your pull request to not be merged"
+			"If you prefer your pull request never be merged"
+			"If you prefer your pull request sits idle"
+			"If you want your pull request to be closed"
+		word
+			", "		
 		word
 			"make sure you keep adding content to it"
 			"always change unrelated things"
@@ -1925,6 +1927,19 @@ person "Patrol Team"
 			"."
 			". Trust me! It works."
 			". You shouldn't do those things, though! I'm just kidding."
+
+	phrase
+		word
+			"Just a syntax review. Hold on, I gotta rewrite this quickly. Can you delay the merge?"
+			"People who complain about HR don't actually appreciate what we folks do. The number of pull requests that went into that baby..."
+			"I was requested for spelling? Oh my goodness, this needs a rewrite..."
+			"One more review. Pretty please?"
+			"Just one more review before merging."
+			"Capitalise that proper noun. Use American English for consistency. For goodness' sake, that needs a comma!"
+			"Comma here. Comma doesn't go there. I think that one needs a comma? Hold on, what was a comma again?"
+			"Unidentified sentence appears to be lacking comma. Very dangerous, highly likely to incite multiple suggestions on where comma should go. Calling backup reviewers."
+			"Commas are your greatest friends."
+			"Commas are your greatest enemies."
 
 	ship "Waverider" "Pain of the Proofreader"
 		"never disabled"
