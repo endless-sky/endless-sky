@@ -6304,6 +6304,7 @@ mission "Blind Man from Martini"
 mission "Care Package to South 1"
 	minor
 	name "Care package to <planet>"
+	description "An activist named Torrey has asked you to take a care package to her friend, an NCO named Irene in the Southern Mutual Defense Pact militia, stationed on <destination>."
 	source
 		government "Republic" "Syndicate"
 		not attributes "rim" "south" "station"
@@ -6351,6 +6352,7 @@ mission "Care Package to South 1"
 				accept
 	on complete
 		payment 7500 750
+		log "Minor People" "Torrey and Irene" `Torrey Dupont, an activist, is friends with SMDP militia NCO Irene Brower. You delivered a package for them.`
 		conversation
 			`You arrive at the militia base on <destination>, and ask at the gate for Gunnery Sergeant Irene Brower. After a few minutes, a compact young woman with close-cropped blonde hair appears and walks over. When she sees the package at your feet, her face splits into a lopsided grin and her steps quicken. "I see you've brought me a package; this must be from Torrey! She said she was sending something."`
 			`	You nod, introduce yourself, and briefly recount your meeting with her friend on <origin>. Irene laughs. "Yep, that's her. Well, thank you so much for bringing this." She hefts the heavy box with no apparent effort, gives you a firm nod, and turns to head back into the base.`
@@ -6426,6 +6428,8 @@ mission "Care Package to South 2b"
 
 mission "Moving House 1"
 	minor
+	name "Moving House"
+	description "An anarchist named Kris has asked you to help them move house from <planet stopovers> to <destination>."
 	source
 		government "Republic" "Syndicate"
 		not attributes "rim" "south"
@@ -6491,6 +6495,7 @@ mission "Moving House 1"
 	on complete
 		payment
 		payment 5000
+		log "Minor People" "Kris Brecht" `An anarchist committed enough to their ideals to move to the South in hopes of finding a less statist community.`
 		conversation
 			`At last you reach <destination>, and Kris enthusiastically unloads their possessions into a waiting transport van. Before they disappear, they press a credit chip for <payment> into your hands and assure you that you are a valuable ally to the "anti-statist movement."`
 
@@ -6508,6 +6513,7 @@ event "kris gets frustrated"
 
 mission "Moving House 2"
 	minor
+	description "Kris is unsatisfied on <origin> and wants your help to move to <destination> instead."
 	landing
 	name "Moving House, Again"
 	source
@@ -6561,6 +6567,8 @@ mission "Moving House 3"
 
 mission "Stranded In Paradise 1"
 	minor
+	name "Stranded In Paradise"
+	description "The Burnbeck family was stranded by the bombings, and needs transport back home to <destination>."
 	source
 		attributes "paradise"
 	destination
@@ -6594,6 +6602,7 @@ mission "Stranded In Paradise 1"
 	on complete
 		payment
 		payment 5000
+		log "Minor People" "Burnbeck family" `Shirley, Darren, Leigh, and Erin Burnbeck were vacationing in the Paradise Worlds when Gemini and Martini were bombed, stranding them. You helped them get back home.`
 		conversation
 			`The trip south with the Burnbecks was mostly quite pleasant, but while they stop short of openly blaming them for the bombings on Geminus and Martini, they are very angry at the Free Worlds for seceding from the Republic. "We were perfectly happy belonging to the Republic," Darren said one evening in the mess. "I mean, seriously, did those people way down in, where is it, Zug? Bourne? Did they even think about the regular people and how this would affect them? Affect us?"`
 			`	While some of their complaints seem a bit selfish, it's hard to argue with the fact that this has disrupted a lot of lives. After touching down on <planet>, Darren, Leigh, and Erin joyfully run into the arms of their friends and family here. Shirley hangs back to hand you a credit chip for <payment> and thank you warmly (and at some length) for your help in getting home, before heading out to join her family in their reunion.`
@@ -6625,6 +6634,7 @@ mission "Stranded In Paradise 2"
 mission "Southern Fiance 1"
 	name "Fiance to <planet>"
 	minor
+	description "Tom, formerly a marketer for the Syndicate, is going to live with his fiance on <destination>."
 	source
 		attributes "core"
 		not government "Pirate"
@@ -6641,7 +6651,7 @@ mission "Southern Fiance 1"
 				`	(Walk towards him.)`
 				`	(Ignore him.)`
 					decline
-			`	He turns a very professional smile on you and introduces himself. "My name is Tom Ardwright. My fiance is the Agriculture Minister on <destination>, down in the Free Worlds. We had planned to get married up here in a few months, but, well..." He gestures around at the general situation. "So I'm trying to get down to him, but I'm having getting transport right now."`
+			`	He turns a very professional smile on you and introduces himself. "My name is Tom Ardwright. My fiance is the Agriculture Minister on <destination>, down in the Free Worlds. We had planned to get married up here in a few months, but, well..." He gestures around at the general situation. "So I'm trying to get down to him, but I'm having trouble getting transport right now."`
 			choice
 				`	"Well, I'm the captain of the <ship>; I can take you."`
 					goto take
@@ -6655,6 +6665,7 @@ mission "Southern Fiance 1"
 	on complete
 		payment
 		payment 10000
+		log "Minor People" "Tom and Carl" `Tom Ardwright was a marketer for the Syndicate, but moved south, with your help, to live with his government minister fiance Carl Chamberlain after war broke out.`
 		event "tom and carl's wedding" 60
 		event "carl elected governor" 150
 		event "tom and carl's child" 1500
