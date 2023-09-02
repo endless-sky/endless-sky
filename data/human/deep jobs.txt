@@ -318,7 +318,7 @@ mission "Mystery Cube Retrieval Job"
 		dialog phrase "deep mystery cube dropoff payment"
 
 
-mission "Transport scientists [0]"
+mission "Transport scientists"
 	job
 	repeat
 	description "A team of <bunks> scientists needs some research notes analyzed at the facility on <stopovers>. Take the scientists there and then return them to <planet> for <payment>."
