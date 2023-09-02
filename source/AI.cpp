@@ -66,17 +66,6 @@ namespace {
 			&& ship.NeedsFuel();
 	}
 
-	bool CanBoard(const Ship &ship, const Ship &target)
-	{
-		if(&ship == &target)
-			return false;
-		if(target.IsDestroyed() || !target.IsTargetable() || target.GetSystem() != ship.GetSystem())
-			return false;
-		if(IsStranded(target) && !ship.GetGovernment()->IsEnemy(target.GetGovernment()))
-			return true;
-		return target.IsDisabled();
-	}
-
 	// Check if the given ship can "swarm" the targeted ship, e.g. to provide anti-missile cover.
 	bool CanSwarm(const Ship &ship, const Ship &target)
 	{
@@ -4664,4 +4653,17 @@ void AI::UpdateOrders(const Ship &ship)
 		// Ensure the system reference is maintained.
 		order.targetSystem = ship.GetSystem();
 	}
+}
+
+
+
+bool AI::CanBoard(const Ship &ship, const Ship &target)
+{
+	if(&ship == &target)
+		return false;
+	if(target.IsDestroyed() || !target.IsTargetable() || target.GetSystem() != ship.GetSystem())
+		return false;
+	if(IsStranded(target) && !ship.GetGovernment()->IsEnemy(target.GetGovernment()))
+		return true;
+	return target.IsDisabled();
 }

@@ -2163,7 +2163,20 @@ void Engine::HandleMouseClicks()
 		{
 			// Left click: has your flagship select or board the target.
 			if(clickTarget == flagship->GetTargetShip())
-				activeCommands |= Command::BOARD;
+			{
+				if(AI::CanBoard(*flagship, *clickTarget))
+					activeCommands |= Command::BOARD;
+				else
+				{
+					// if this is the only selected ship, then deselect it
+					if(player.SelectedShips().size() == 1 &&
+			   	   player.SelectedShips().front().lock() == clickTarget)
+					{
+						player.SelectShip(nullptr, false);
+						flagship->SetTargetShip(nullptr);
+					}
+				}
+			}
 			else
 			{
 				flagship->SetTargetShip(clickTarget);
