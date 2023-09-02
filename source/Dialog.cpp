@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "Conversation.h"
 #include "DataNode.h"
+#include "Preferences.h"
 #include "text/DisplayText.h"
 #include "FillShader.h"
 #include "text/Font.h"
@@ -27,6 +28,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapDetailPanel.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "PointerShader.h"
+#include "Screen.h"
 #include "shift.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
@@ -41,7 +44,6 @@ using namespace std;
 namespace {
 	const int WIDTH = 250;
 	const int WIDE_WIDTH = 450;
-	const int WIDE_NUM_CHARS = 500;
 
 	// Map any conceivable numeric keypad keys to their ASCII values. Most of
 	// these will presumably only exist on special programming keyboards.
@@ -124,9 +126,11 @@ void Dialog::Draw()
 	Point pos(0., (top->Height() + height * middle->Height() + bottom->Height()) * -.5f);
 	Point textPos(Width() * -.5 + 10., pos.Y() + 20.);
 	Point inputPos = Point(0., -70.) - pos;
+	
 
 	// Draw the top section of the dialog box.
 	pos.Y() += top->Height() * .5;
+	Point scrollUpPos(pos.X() + Width()/2.0 - 6, pos.Y() - 9);
 	SpriteShader::Draw(top, pos);
 	pos.Y() += top->Height() * .5;
 
@@ -141,6 +145,7 @@ void Dialog::Draw()
 	// Draw the bottom section.
 	const Font &font = FontSet::Get(14);
 	pos.Y() += bottom->Height() * .5;
+	Point scrollDownPos(pos.X() + Width()/2.0 - 6, pos.Y() - 12);
 	SpriteShader::Draw(bottom, pos);
 	pos.Y() += bottom->Height() * .5 - 25.;
 
@@ -182,6 +187,17 @@ void Dialog::Draw()
 
 		Point barPos(stringPos.X() + font.FormattedWidth(inputText) + 2., inputPos.Y());
 		FillShader::Fill(barPos, Point(1., 16.), dim);
+	}
+
+	bool canScrollUp = text.CanScrollUp();
+	bool canScrollDown = text.CanScrollDown();
+	if(canScrollUp || canScrollDown)
+	{
+		PointerShader::Draw(scrollUpPos, Point(0., -1.), 10.f, 10.f, 5.f, Color(canScrollUp ? .8f : .2f, 0.f));
+		PointerShader::Draw(scrollDownPos, Point(0., 1.), 10.f, 10.f, 5.f, Color(canScrollDown ? .8f : .2f, 0.f));
+
+		AddZone(Rectangle(scrollUpPos, {20.0, 20.0}), [this]() { text.DoScroll(-Preferences::ScrollSpeed()); });
+		AddZone(Rectangle(scrollDownPos, {20.0, 20.0}), [this]() { text.DoScroll(Preferences::ScrollSpeed()); });
 	}
 }
 
@@ -342,6 +358,14 @@ bool Dialog::Click(int x, int y, int clicks)
 
 
 
+bool Dialog::Drag(double dx, double dy)
+{
+	text.DoScroll(-dy);
+	return true;
+}
+
+
+
 // Common code from all three constructors:
 void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool isMission)
 {
@@ -351,11 +375,6 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 	this->canCancel = canCancel;
 	okIsActive = true;
 
-	// kind of an arbitrary cutoff, but this prevents long skinny dialogs, and
-	// helps with high zoom levels where the dialog buttons go off the edge of
-	// the screen.
-	isWide = message.size() > WIDE_NUM_CHARS;
-
 	text.SetAlignment(Alignment::JUSTIFIED);
 	text.SetWrapWidth(Width() - 20);
 	text.SetFont(FontSet::Get(14));
@@ -363,11 +382,32 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 
 	text.Wrap(message);
 
+	// If the dialog is too tall, then switch to wide mode
+	int maxHeight = Screen::Height() * 3/4;
+	if(text.Height() > maxHeight)
+	{
+		isWide = true;
+		// Re-wrap with the new width
+		text.SetWrapWidth(Width() - 20);
+		text.Wrap(message);
+
+		if(text.Width() <= WIDTH)
+		{
+			// text is long and skinny. Not worth a wide dialog
+			isWide = false;
+			text.SetWrapWidth(Width() - 20);
+			text.Wrap(message);
+			text.SetVisibleHeight(maxHeight);
+		}
+		else if(text.Height() > maxHeight)
+			text.SetVisibleHeight(maxHeight); // Still too tall
+	}
+
 	// The dialog with no extenders is 80 pixels tall. 10 pixels at the top and
 	// bottom are "padding," but text.Height() over-reports the height by about
 	// 5 pixels because it includes its own padding at the bottom. If there is a
 	// text input, we need another 20 pixels for it and 10 pixels padding.
-	height = 10 + (text.Height() - 5) + 10 + 30 * (!isMission && (intFun || stringFun));
+	height = 10 + (text.VisibleHeight() - 5) + 10 + 30 * (!isMission && (intFun || stringFun));
 	// Determine how many 40-pixel extension panels we need.
 	if(height <= 80)
 		height = 0;

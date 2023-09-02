@@ -88,6 +88,7 @@ protected:
 	// button is highlighted and the enter key to select it.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool Drag(double dx, double dy) override;
 	virtual bool ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive) override;
 	virtual bool ControllerButtonDown(SDL_GameControllerButton button) override;
 

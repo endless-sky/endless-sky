@@ -156,8 +156,21 @@ void WrappedText::Draw(const Point &topLeft, const Color &color) const
 		return;
 
 	if(truncate == Truncate::NONE)
+	{
+		double maxY = visibleHeight + topLeft.Y();
 		for(const Word &w : words)
-			font->Draw(text.c_str() + w.Index(), w.Pos() + topLeft, color);
+		{
+			Point pos = w.Pos() + topLeft;
+			if(visibleHeight != -1)
+			{
+				pos.Y() -= scrollY;
+				if(pos.Y() < topLeft.Y() || pos.Y() > maxY)
+					continue;
+			}
+			font->Draw(text.c_str() + w.Index(), pos, color);
+		}
+	}
+
 	else
 	{
 		// Currently, we only apply truncation to a line if it contains a single word.
@@ -172,6 +185,37 @@ void WrappedText::Draw(const Point &topLeft, const Color &color) const
 			h = w.y;
 		}
 	}
+}
+
+
+
+void WrappedText::SetVisibleHeight(int height)
+{
+	if(height > Height() || height < 0)
+		visibleHeight = -1;
+	else if(height < font->Height())
+		visibleHeight = font->Height();
+	else
+		visibleHeight = height;
+}
+
+
+
+int WrappedText::VisibleHeight() const
+{
+	return visibleHeight == -1 ? Height() : visibleHeight;
+}
+
+
+
+void WrappedText::SetScroll(int offsetY)
+{
+	if(offsetY < 0)
+		scrollY = 0;
+	else if(offsetY > height - visibleHeight)
+		scrollY = height - visibleHeight;
+	else
+		scrollY = offsetY;
 }
 
 
@@ -205,6 +249,8 @@ void WrappedText::SetText(const char *it, size_t length)
 void WrappedText::Wrap()
 {
 	height = 0;
+	longestWidth = 0;
+
 	if(text.empty() || !font)
 		return;
 
@@ -243,6 +289,8 @@ void WrappedText::Wrap()
 
 				// Adjust the spacing of words in the now-complete line.
 				AdjustLine(lineBegin, lineWidth, false);
+				// This is a full width line, so mark it as such.
+				longestWidth = lineWidth;
 			}
 			// Store this word, then advance the x position to the end of it.
 			words.push_back(word);
@@ -256,6 +304,9 @@ void WrappedText::Wrap()
 		// If that whitespace was a newline, we must handle that, too.
 		if(c == '\n')
 		{
+			if(word.x > longestWidth)
+				longestWidth = word.x;
+
 			// The next word will begin on a new line.
 			word.y += lineHeight + paragraphBreak;
 			word.x = 0;
@@ -279,6 +330,8 @@ void WrappedText::Wrap()
 		int width = font->Width(text.c_str() + word.index);
 		if(word.x + width > wrapWidth)
 		{
+			if(word.x > longestWidth)
+				longestWidth = word.x;
 			// If adding this word would overflow the length of the line, this
 			// final word will be the first (and only) on the next line.
 			word.y += lineHeight;
@@ -294,6 +347,8 @@ void WrappedText::Wrap()
 		word.x += width;
 		lineWidth = word.x;
 	}
+	if(word.x > longestWidth)
+		longestWidth = word.x;
 	// Adjust the spacing of words in the final line of text.
 	AdjustLine(lineBegin, lineWidth, true);
 
