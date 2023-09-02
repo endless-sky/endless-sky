@@ -13,8 +13,8 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_TIMER_H_
-#define ES_TIMER_H_
+#ifndef TIMER_H_
+#define TIMER_H_
 
 #include "MissionAction.h"
 #include "System.h"
@@ -45,19 +45,6 @@ public:
 	// so the time to wait will be saved fully calculated, and with any elapsed time subtracted
 	void Save(DataWriter &out) const;
 
-	// Get the total time to wait, including the random value
-	uint64_t TimeToWait() const;
-	// Get whether the timer requires the player to be idle
-	bool RequireIdle() const;
-	// Get the required proximity radius to a system object or the system center
-	// If 0., no proximity is required
-	double Proximity() const;
-	// Get whether the player needs to be close to or far from the specified center
-	bool CloseTo() const;
-	// Get the system the timer is specified for
-	const System *GetSystem() const;
-	// Get the named system object used for calculating the proximity center
-	const Planet *ProximityCenter() const;
 	// Get whether the timer is currently active
 	bool IsComplete() const;
 
@@ -68,7 +55,12 @@ public:
 	void Step(PlayerInfo &player, UI *ui);
 
 private:
-	enum ResetCondition { NONE, PAUSE, LEAVE_ZONE, LEAVE_SYSTEM };
+	enum class ResetCondition {
+		NONE,
+		PAUSE,
+		LEAVE_ZONE,
+		LEAVE_SYSTEM
+	};
 	void ResetOn(ResetCondition cond);
 
 private:
@@ -80,6 +72,8 @@ private:
 
 	// The system the timer is for
 	const System *system = nullptr;
+	// ...Or the systems it can be for
+	LocationFilter systems;
 
 	// Whether the timer requires the player to be idle
 	bool requireIdle = false;
@@ -87,7 +81,7 @@ private:
 	bool requireUncloaked = false;
 	// What circumstances will reset the timer: leaving the system,
 	// leaving the proximity zone (if applicable), or any circumstance that stops the timer
-	ResetCondition resetCondition = NONE;
+	ResetCondition resetCondition = Timer::ResetCondition::PAUSE;
 	// If proximity is specified, this determines whether the timer will only advance while
 	// close to or far from the specified center; default is close to
 	bool closeTo = true;
@@ -102,7 +96,7 @@ private:
 
 	// Used for holding the calculated time to wait and current timer value when it's actually active
 	int64_t timeToWait = 0;
-	double timeElapsed = 0.;
+	int64_t timeElapsed = 0.;
 	// Set to true once the timer has run to completion so we don't keep trying to save or run it
 	bool isComplete = false;
 	// Set to true when all the conditions are met
