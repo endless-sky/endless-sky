@@ -268,7 +268,7 @@ private:
 	// NPCs:
 	std::list<NPC> npcs;
 	// Timers:
-	std::list<Timer> timers;
+	std::vector<Timer> timers;
 
 	// Actions to perform:
 	std::map<Trigger, MissionAction> actions;
