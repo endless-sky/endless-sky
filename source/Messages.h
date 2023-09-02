@@ -64,7 +64,7 @@ public:
 	static void Reset();
 
 	// Get color that should be used for drawing messages of given importance.
-	static const Color *GetColor(Importance importance);
+	static const Color *GetColor(Importance importance, bool isLog);
 };
 
 

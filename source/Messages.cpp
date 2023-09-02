@@ -111,29 +111,30 @@ void Messages::Reset()
 
 
 // Get color that should be used for drawing messages of given importance.
-const Color *Messages::GetColor(Importance importance)
+const Color *Messages::GetColor(Importance importance, bool isLog)
 {
+	string prefix = (isLog ? "message log importance " : "message importance ");
 	const Color *color;
 	switch(importance)
 	{
 		case Messages::Importance::Highest:
-			color = GameData::Colors().Find("message importance highest");
+			color = GameData::Colors().Find(prefix + "highest");
 			break;
 		case Messages::Importance::High:
-			color = GameData::Colors().Find("message importance high");
+			color = GameData::Colors().Find(prefix + "high");
 			break;
 		case Messages::Importance::Info:
-			color = GameData::Colors().Find("message importance info");
+			color = GameData::Colors().Find(prefix + "info");
 			break;
 		case Messages::Importance::Daily:
-			color = GameData::Colors().Find("message importance daily");
+			color = GameData::Colors().Find(prefix + "daily");
 			break;
 		case Messages::Importance::Low:
-			color = GameData::Colors().Find("message importance low");
+			color = GameData::Colors().Find(prefix + "low");
 			break;
 	}
 	if(!color)
-		color = GameData::Colors().Get("message importance default");
+		color = GameData::Colors().Get(prefix + "default");
 
 	return color;
 }
