@@ -8553,6 +8553,7 @@ system Clepsydra
 	asteroids "medium metal" 3 1.261
 	asteroids "large metal" 1 1.287
 	minables aluminum 3 1.513
+	minables yottrite 9 7
 	object
 		sprite star/a-eater
 		period 10
@@ -25694,6 +25695,7 @@ system "Pedita Pri"
 	asteroids "medium metal" 4 2.55
 	asteroids "large metal" 6 2.67
 	minables iron 15 3.025
+	minables yottrite 9 7
 	object
 		sprite star/l-dwarf
 		distance 148.515
@@ -25756,6 +25758,7 @@ system "Pedita Sec"
 	link Clepsydra
 	link "Pedita Pri"
 	asteroids "large metal" 1 4.638
+	minables yottrite 9 7
 	object
 		sprite star/g0
 		period 10
@@ -31800,6 +31803,7 @@ system "Supra"
 	asteroids "medium metal" 174 2.352
 	asteroids "large metal" 8 1.296
 	minables lead 32 3.752
+	minables yottrite 9 7
 	object
 		sprite star/m8
 		distance 152.482
@@ -31835,9 +31839,13 @@ system "Cura Dic"
 	government "Quarg (Incipias)"
 	attributes ringworld
 	arrival 700
-	habitable 700
-	belt 1245
+	habitable 3459.393
+	belt 1144 4
 	haze _menu/haze-dark-nebula
+	asteroids "small rock" 9 4.576
+	asteroids "medium rock" 25 5.468
+	asteroids "large rock" 27 5.468
+	minables yottrite 9 7
 	link Clepsydra
 	link "Supra"
 	trade Clothing 362
@@ -31852,115 +31860,37 @@ system "Cura Dic"
 	trade Plastic 503
 	fleet Quarg 600
 	object
-		sprite star/g3
-		period 10
-	object "Spec Inci"
-		sprite planet/ringworld
-			scale 0.5
-		distance 812
-		period 349.82
-	object "Spec Inci"
-		sprite planet/ringworld
-			scale 0.5
-		distance 812
-		period 349.82
-		offset 20
-	object "Spec Inci"
-		sprite planet/ringworld
-			scale 0.5
-		distance 812
-		period 349.82
-		offset 40
-	object "Spec Inci"
-		sprite planet/ringworld
-			scale 0.5
-		distance 812
-		period 349.82
-		offset 60
-	object "Spec Inci"
-		sprite planet/ringworld
-			scale 0.5
-		distance 812
-		period 349.82
-		offset 80
-	object "Spec Inci"
-		sprite planet/ringworld
-			scale 0.5
-		distance 812
-		period 349.82
-		offset 100
-	object "Spec Inci"
-		sprite planet/ringworld
-			scale 0.5
-		distance 812
-		period 349.82
-		offset 120
-	object "Spec Inci"
-		sprite planet/ringworld
-			scale 0.5
-		distance 812
-		period 349.82
-		offset 140
-	object "Spec Inci"
-		sprite planet/ringworld
-			scale 0.5
-		distance 812
-		period 349.82
-		offset 160
-	object "Spec Inci"
-		sprite planet/ringworld
-			scale 0.5
-		distance 812
-		period 349.82
+		sprite star/k3
+		distance 130.677
+		period 47.155
+	object
+		sprite star/f5-old
+		distance 34.323
+		period 47.155
 		offset 180
-	object "Spec Inci"
-		sprite planet/ringworld
-			scale 0.5
-		distance 812
-		period 349.82
-		offset 200
-	object "Spec Inci"
-		sprite planet/ringworld
-			scale 0.5
-		distance 812
-		period 349.82
-		offset 220
-	object "Spec Inci"
-		sprite planet/ringworld
-			scale 0.5
-		distance 812
-		period 349.82
-		offset 240
-	object "Spec Inci"
-		sprite planet/ringworld
-			scale 0.5
-		distance 812
-		period 349.82
-		offset 260
-	object "Spec Inci"
-		sprite planet/ringworld
-			scale 0.5
-		distance 812
-		period 349.82
-		offset 280
-	object "Spec Inci"
-		sprite planet/ringworld
-			scale 0.5
-		distance 812
-		period 349.82
-		offset 300
-	object "Spec Inci"
-		sprite planet/ringworld
-			scale 0.5
-		distance 812
-		period 349.82
-		offset 320
-	object "Spec Inci"
-		sprite planet/ringworld
-			scale 0.5
-		distance 812
-		period 349.82
-		offset 340
+	object
+		sprite planet/forest4
+		distance 356
+		period 45.681
+	object
+		sprite planet/rock5-b
+		distance 677
+		period 119.796
+	object
+		sprite planet/rock10-b
+		distance 1108
+		period 250.824
+		object "Spec Inci"
+			sprite planet/rock3
+			distance 176
+			period 88.261
+	object
+		sprite planet/ocean7
+		distance 1638
+		period 450.849
+		object "Ut Divitas"
+			sprite planet/io
+			distance 200
 
 system Tais
 	pos -346 381

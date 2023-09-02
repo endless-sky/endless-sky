@@ -4079,10 +4079,11 @@ planet Sopoyra
 	security 0
 
 planet "Spec Inci"
-	attributes "incipias quarg" quarg station
-	landscape land/station19
-	description `Although you have seen a lot of space stations, you are always impressed by the Quarg ringworlds, constructions that replace all the planets in a system.`
-	spaceport `Despite the size of the ringworld not many Quarg are seen around the spaceport. It seems like they have nothing to do right now, as if they are waiting for something to happen.`
+	attributes "incipias quarg" quarg
+	landscape land/sky7
+	description "This small moon seems to be used as just a shipment point, ships are dropping off large amounts of minables that then get proccessed by large machines. Other ships load the proccessed materials and fly away."
+	spaceport "The spaceport is fully automised, you can see no Quarg that is not part of a ships crew."
+	government "Quarg (Incipias)"
 	bribe 0
 	security 0.9
 
@@ -4483,6 +4484,15 @@ planet "Typhon Station"
 	tribute 500
 		threshold 2000
 		fleet "Large Militia" 8
+
+planet "Ut Divitas"
+	attributes "incipias quarg" quarg
+	landscape land/canyon13
+	description "A few lonely cities sprawl like flowers on the surface of the moon. Elegant and abstract architecture are confusing the eye."
+	spaceport "The spaceport is a small one, consisting of only a few landing pads. The Quarg working there seem to be confused by your presence."
+	government "Quarg (Incipias)"
+	bribe 0
+	security 0.9
 
 planet Vail
 	attributes farming paradise tourism
