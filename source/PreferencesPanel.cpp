@@ -716,18 +716,13 @@ void PreferencesPanel::DrawSettings()
 			text = Preferences::AmmoUsage();
 		else if(setting == DATE_FORMAT)
 		{
+			text = Preferences::DateFormatSetting();
 			isOn = true;
-			Preferences::DateFormat datefmtShortName = Preferences::GetDateFormat();
-			if(datefmtShortName == Preferences::DateFormat::ymd)
-				text = "yyyy-mm-dd";
-			else if(datefmtShortName == Preferences::DateFormat::dmy)
-				text = "dd/mm/yyyy";
-			else if(datefmtShortName == Preferences::DateFormat::mdy)
-				text = "mm/dd/yyyy";
 		}
 		else if(setting == FLOTSAM_SETTING)
 		{
 			text = Preferences::FlotsamSetting();
+			isOn = text != "off";
 		}
 		else if(setting == TURRET_TRACKING)
 		{

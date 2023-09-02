@@ -37,7 +37,7 @@ namespace {
 	const string EXPEND_AMMO = "Escorts expend ammo";
 	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 
-	const vector<string> DATEFMT_OPTIONS = {"dmy", "mdy", "ymd"};
+	const vector<string> DATEFMT_OPTIONS = {"dd/mm/yyyy", "mm/dd/yyyy", "yyyy-mm-dd"};
 	int dateFormatIndex = 0;
 
 	const vector<double> ZOOMS = {.25, .35, .50, .70, 1.00, 1.40, 2.00};
@@ -255,7 +255,7 @@ void Preferences::Save()
 	out.Write("Flotsam collection", flotsamIndex);
 	out.Write("view zoom", zoomIndex);
 	out.Write("vsync", vsyncIndex);
-	out.Write("date format", static_cast<int>(Preferences::GetDateFormat()));
+	out.Write("date format", dateFormatIndex);
 	out.Write("Show all status overlays", statusOverlaySettings[OverlayType::ALL].ToInt());
 	out.Write("Show flagship overlay", statusOverlaySettings[OverlayType::FLAGSHIP].ToInt());
 	out.Write("Show escort overlays", statusOverlaySettings[OverlayType::ESCORT].ToInt());
