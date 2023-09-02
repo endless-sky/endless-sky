@@ -183,7 +183,8 @@ void Timer::ResetOn(ResetCondition cond)
 {
 	bool reset = cond == resetCondition;
 	reset |= (cond == Timer::ResetCondition::LEAVE_ZONE && resetCondition == Timer::ResetCondition::PAUSE);
-	reset |= (cond == Timer::ResetCondition::LEAVE_SYSTEM && (resetCondition == Timer::ResetCondition::PAUSE || resetCondition == Timer::ResetCondition::LEAVE_ZONE));
+	reset |= (cond == Timer::ResetCondition::LEAVE_SYSTEM && (resetCondition == Timer::ResetCondition::PAUSE
+				|| resetCondition == Timer::ResetCondition::LEAVE_ZONE));
 	if(isActive && reset)
 	{
 		timeElapsed = 0;
@@ -196,7 +197,7 @@ void Timer::Step(PlayerInfo &player, UI *ui)
 	if(isComplete)
 		return;
 	if((system && player.Flagship()->GetSystem() != system) ||
-	   (!systems.IsEmpty() && !systems.Matches(player.Flagship()->GetSystem())))
+		(!systems.IsEmpty() && !systems.Matches(player.Flagship()->GetSystem())))
 	{
 		ResetOn(Timer::ResetCondition::LEAVE_SYSTEM);
 		isActive = false;
