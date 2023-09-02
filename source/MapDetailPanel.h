@@ -94,6 +94,8 @@ private:
 	std::vector<MapPlanetCard> planetCards;
 	// Vector offsets from the center of the "orbits" UI.
 	std::map<const Planet *, Point> planets;
+
+	bool descriptionPreviouslyShown = false;
 };
 
 
