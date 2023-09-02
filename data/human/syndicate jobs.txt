@@ -81,7 +81,7 @@ mission "Large Corporate retreat"
 	on stopover
 		dialog "For days your ship has played host to endless discussions about load calculations, tensile strengths, and thermodynamic limits. You're grateful for some peace and quiet as the team of engineers tromps out of the hatch and heads for their exotic corporate retreat. You prepare for the return journey to <origin>."
 	on complete
-		payment 3000 160
+		payment 130000 110
 		dialog "The team's boss thanks you for a smooth trip and authorizes a payment of <payment>."
 
 

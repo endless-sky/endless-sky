@@ -318,7 +318,7 @@ mission "Mystery Cube Retrieval Job"
 		dialog phrase "deep mystery cube dropoff payment"
 
 
-mission "Transport scientists"
+mission "Transport scientists [0]"
 	job
 	repeat
 	description "A team of <bunks> scientists needs some research notes analyzed at the facility on <stopovers>. Take the scientists there and then return them to <planet> for <payment>."
@@ -326,6 +326,7 @@ mission "Transport scientists"
 		attributes "deep"
 	stopover
 		attributes "research"
+		not attributes "uninhabited"
 		distance 2 50
 	passengers 3 4 .43
 	to offer
@@ -348,19 +349,18 @@ mission "Transport science department"
 		attributes "deep"
 	stopover
 		attributes "research"
+		not attributes "uninhabited"
 		distance 2 50
 	passengers 20 4 .1
 	to offer
-		random < 30
-		random < ( "passenger space" - 30 ) * 2
+		random < "passenger space" - 30
 	on stopover
 		dialog "The scientists have been giddily sharing and discussing the results of each of their research teams during the entire trip. You're happy for a bit of peace and quiet as they make tracks for a prominent research lab to have the results analyzed. You prepare for the return journey to <planet>."
 	on visit
 		dialog phrase "generic missing stopover or passengers"
 	on complete
 		dialog "You bid goodbye to the scientists and accept your payment of <payment>."
-		payment
-		payment 60000
+		payment 180000 100
 
 
 mission "Escort science vessel"

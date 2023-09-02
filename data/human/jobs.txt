@@ -2034,7 +2034,7 @@ mission "Wealthy tourists out"
 		payment 10000 200
 		dialog phrase "generic passenger dropoff payment"
 
-mission "Wealthy tourist group out"
+mission "Wealthy tourist group out [0]"
 	name "Wealthy tourist group to <planet>"
 	job
 	repeat
@@ -2042,7 +2042,7 @@ mission "Wealthy tourist group out"
 	passengers 15 5 .09
 	to offer
 		random < 75
-		random < "passenger space" - 35
+		random < ( "passenger space" - 35 ) * 2
 	to accept
 		has "outfit (installed): Luxury Accommodations"
 	source
@@ -2055,7 +2055,31 @@ mission "Wealthy tourist group out"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 10000 200
+		payment 210000 135
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Wealthy tourist group out [1]"
+	name "Wealthy tourist group to <planet>"
+	job
+	repeat
+	description "A group of wealthy tourists, consisting of <bunks> members, want to see <destination>, and wish to travel in a luxurious ship for the journey. They are willing to pay you <payment>."
+	passengers 15 5 .09
+	to offer
+		random < 75
+		random < ( "passenger space" - 35 ) * 2
+	to accept
+		has "outfit (installed): Luxury Accommodations"
+	source
+		attributes "rich" "urban"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		attributes "tourism"
+		distance 4 30
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 210000 135
 		dialog phrase "generic passenger dropoff payment"
 
 mission "Tourists back [0]"
@@ -2101,7 +2125,7 @@ mission "Tourists back [1]"
 		dialog phrase "generic passenger dropoff payment"
 
 mission "Wealthy tourists back"
-	name "Bring wealthy tourists home to <planet>"
+	name "Wealthy tourists home to <planet>"
 	job
 	repeat
 	description "These <bunks> wealthy tourists are headed home to <destination>, and wish to travel in a luxurious ship for the journey. They are willing to pay you <payment>."
@@ -2123,15 +2147,15 @@ mission "Wealthy tourists back"
 		payment 10000 200
 		dialog phrase "generic passenger dropoff payment"
 
-mission "Wealthy tourist group back"
-	name "Wealthy tourist group home to <planet>"
+mission "Wealthy tourist group back [0]"
+	name "Wealthy tourists home to <planet>"
 	job
 	repeat
 	description "A group of wealthy tourists, consisting of <bunks> members, are headed home to <destination>, and wish to travel in a luxurious ship for the journey. They are willing to pay you <payment>."
 	passengers 15 5 .09
 	to offer
 		random < 75
-		random < "passenger space" - 35
+		random < ( "passenger space" - 35 ) * 2
 	to accept
 		has "outfit (installed): Luxury Accommodations"
 	source
@@ -2144,7 +2168,31 @@ mission "Wealthy tourist group back"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 10000 200
+		payment 210000 135
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Wealthy tourist group back [1]"
+	name "Wealthy tourists home to <planet>"
+	job
+	repeat
+	description "A group of wealthy tourists, consisting of <bunks> members, are headed home to <destination>, and wish to travel in a luxurious ship for the journey. They are willing to pay you <payment>."
+	passengers 15 5 .09
+	to offer
+		random < 75
+		random < ( "passenger space" - 35 ) * 2
+	to accept
+		has "outfit (installed): Luxury Accommodations"
+	source
+		attributes "tourism"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		attributes "rich" "urban"
+		distance 4 30
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 210000 135
 		dialog phrase "generic passenger dropoff payment"
 
 mission "Family [0]"
@@ -2260,8 +2308,7 @@ mission "Strike Breakers [large mining]"
 	description "Bring <bunks> strike breakers to <destination>, to take the place of mine workers who are on strike. The company will pay you <payment>."
 	passengers 40 4 .08
 	to offer
-		random < 10
-		random < "passenger space" - 45
+		random < ( "passenger space" - 45 ) / 2
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2271,8 +2318,7 @@ mission "Strike Breakers [large mining]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
-		payment 10000
+		payment 130000 100
 		dialog "You unload the strike breakers amid an angry crowd of protesters held back by police. When you return to your ship, you find that the company has transferred the agreed-upon payment of <payment> into your account."
 
 mission "Strike Breakers [textile]"
@@ -2293,7 +2339,7 @@ mission "Strike Breakers [textile]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
+		payment 
 		payment 10000
 		dialog "You unload the strike breakers amid an angry crowd of protesters held back by police. When you return to your ship, you find that the company has transferred the agreed-upon payment of <payment> into your account."
 
@@ -2304,8 +2350,7 @@ mission "Strike Breakers [large textile]"
 	description "Bring <bunks> strike breakers to <destination>, to take the place of textile workers who are on strike. The company will pay you <payment>."
 	passengers 40 4 .08
 	to offer
-		random < 10
-		random < "passenger space" - 45
+		random < ( "passenger space" - 45 ) / 2
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2315,8 +2360,7 @@ mission "Strike Breakers [large textile]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
-		payment 10000
+		payment 130000 100
 		dialog "You unload the strike breakers amid an angry crowd of protesters held back by police. When you return to your ship, you find that the company has transferred the agreed-upon payment of <payment> into your account."
 
 mission "Strike Breakers [factory]"
@@ -2348,8 +2392,7 @@ mission "Strike Breakers [large factory]"
 	description "Bring <bunks> strike breakers to <destination>, to take the place of factory workers who are on strike. The company will pay you <payment>."
 	passengers 40 4 .08
 	to offer
-		random < 10
-		random < "passenger space" - 45
+		random < ( "passenger space" - 45 ) / 2
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2359,8 +2402,7 @@ mission "Strike Breakers [large factory]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
-		payment 10000
+		payment 130000 100
 		dialog "You unload the strike breakers amid an angry crowd of protesters held back by police. When you return to your ship, you find that the company has transferred the agreed-upon payment of <payment> into your account."
 
 mission "Colonists [0]"
@@ -2370,8 +2412,7 @@ mission "Colonists [0]"
 	description "These <bunks> people are hoping to join a colony on <destination>. They will pay you <payment> to take them there."
 	passengers 10 4 .1
 	to offer
-		random < 30
-		"passenger space" > 30
+		random < ( "passenger space" - 20 ) / 2
 	source
 		attributes "urban" "near earth" "core" "factory"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -2383,8 +2424,7 @@ mission "Colonists [0]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
-		payment 8000
+		payment 70000 100
 		dialog "The colonists depart your ship after paying you <payment>."
 
 mission "Colonists [1]"
@@ -2394,8 +2434,7 @@ mission "Colonists [1]"
 	description "These <bunks> people are hoping to join a colony on <destination>. They will pay you <payment> to take them there."
 	passengers 10 4 .1
 	to offer
-		random < 20
-		"passenger space" > 20
+		random < ( "passenger space" - 20 ) / 2
 	source
 		attributes "urban" "near earth" "core" "factory"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -2407,8 +2446,51 @@ mission "Colonists [1]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
-		payment 10000
+		payment 80000 100
+		dialog "The colonists depart your ship after paying you <payment>."
+
+mission "Colonists [2]"
+	name "Colonists to <planet>"
+	job
+	repeat
+	description "These <bunks> people are hoping to join a colony on <destination>. They will pay you <payment> to take them there."
+	passengers 10 4 .1
+	to offer
+		random < ( "passenger space" - 20 ) / 2
+	source
+		attributes "urban" "near earth" "core" "factory"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest"
+		not attributes "station" "urban"
+		distance 2 20
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 90000 100
+		dialog "The colonists depart your ship after paying you <payment>."
+
+mission "Colonists [3]"
+	name "Colonists to <planet>"
+	job
+	repeat
+	description "These <bunks> people are hoping to join a colony on <destination>. They will pay you <payment> to take them there."
+	passengers 10 4 .1
+	to offer
+		random < ( "passenger space" - 20 ) / 2
+	source
+		attributes "urban" "near earth" "core" "factory"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest"
+		not attributes "station" "urban"
+		distance 4 30
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 100000 100
 		dialog "The colonists depart your ship after paying you <payment>."
 
 mission "Stranded Field Trip"
@@ -2419,8 +2501,7 @@ mission "Stranded Field Trip"
 	passengers 20 4 .1
 	cargo "educational supplies" 2 10 .6
 	to offer
-		random < 10
-		"passenger space" > 30
+		random < ( "passenger space" - 30 ) / 2
 	source
 		attributes "near earth" "deep" "paradise" "tourism"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -2432,8 +2513,7 @@ mission "Stranded Field Trip"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
-		payment 10000
+		payment 100000 120
 		dialog `The students excitedly rush off your ship into the arms of their waiting parents. The adventure was fun, but they're very pleased to be safely home after so long. The school deposits <payment> into your account.`
 
 mission "Prisoners [0]"

@@ -187,8 +187,7 @@ mission "Han Sizer Month [3]"
 		"<on Longjump>" "on Longjump"
 			not "flagship planet: Longjump"
 	to offer
-		random < 20
-		random < ( "passenger space" - 30 ) * 2
+		random < "passenger space" - 30
 		month == 8
 	source
 		attributes "rim"
@@ -205,5 +204,5 @@ mission "Han Sizer Month [3]"
 		attributes "rim"
 		not attributes "station"
 	on complete
-		payment 15000 170
+		payment 150000 110
 		dialog `Your passengers are excited to have completed their journey around the Rim and pay you the agreed fee of <payment>. One is already uploading a travelogue to someone <on Longjump> as they start walking away.`

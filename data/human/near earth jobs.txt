@@ -131,7 +131,7 @@ mission "To Earth Day celebration [2]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 1000 180
+		payment 1000 120
 		dialog "You wish your <passengers> the best of luck on <planet>. After collecting your payment of <payment>, your <passengers> put on their Earth Day hats and leave with their belongings."
 
 
@@ -224,8 +224,7 @@ mission "From Earth Day celebration [2]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
-		payment 1000
+		payment 1000 100
 		dialog `Your passengers thank you for returning them to <planet>, and you collect your payment of <payment>.`
 
 
