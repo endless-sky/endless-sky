@@ -52,6 +52,8 @@ void Timer::Load(const DataNode &node, Mission *mission)
 			requireIdle = true;
 		else if(child.Token(0) == "system" && child.Size() > 1)
 			system = GameData::Systems().Get(child.Token(1));
+		else if(child.Token(0) == "systems")
+			systems.Load(child);
 		else if(child.Token(0) == "proximity")
 		{
 			if(child.Size() > 1)
@@ -77,6 +79,8 @@ void Timer::Load(const DataNode &node, Mission *mission)
 				resetCondition = ResetCondition::LEAVE_SYSTEM;
 			else if(child.Size() > 1 && child.Token(1) == "leave zone")
 				resetCondition = ResetCondition::LEAVE_ZONE;
+			else if(child.Size() > 1 && child.Token(1) == "none")
+				resetCondition = ResetCondition::NONE;
 			else if(child.Size() > 1 && child.Token(1) == "pause")
 				resetCondition = ResetCondition::PAUSE;
 		}
@@ -91,7 +95,7 @@ void Timer::Load(const DataNode &node, Mission *mission)
 // so the time to wait will be saved fully calculated, and with any elapsed time subtracted
 void Timer::Save(DataWriter &out) const
 {
-	// If this NPC should no longer appear in-game, don't serialize it.
+	// If this Timer should no longer appear in-game, don't serialize it.
 	if(isComplete)
 		return;
 
@@ -101,16 +105,21 @@ void Timer::Save(DataWriter &out) const
 	{
 		if(system)
 			out.Write("system", system->Name());
+		else if(!systems.IsEmpty())
+		{
+			out.Write("systems");
+			systems.Save(out);
+		}
 		if(requireIdle)
 			out.Write("idle");
 		if(requireUncloaked)
 			out.Write("uncloaked");
-		if(resetCondition != ResetCondition::NONE)
+		if(resetCondition != ResetCondition::PAUSE)
 		{
 			static const map<ResetCondition, string> resets = {
-				{LEAVE_SYSTEM, "leave system"},
-				{LEAVE_ZONE, "leave zone"},
-				{PAUSE, "pause"}
+				{Timer::ResetCondition::NONE, "none"},
+				{Timer::ResetCondition::LEAVE_SYSTEM, "leave system"},
+				{Timer::ResetCondition::LEAVE_ZONE, "leave zone"}
 			};
 			auto it = resets.find(resetCondition);
 			if(it != resets.end())
@@ -149,6 +158,7 @@ Timer Timer::Instantiate(map<string, string> &subs,
 	result.requireIdle = requireIdle;
 	result.requireUncloaked = requireUncloaked;
 	result.system = system;
+	result.systems = systems;
 	result.proximity = proximity;
 	result.proximityCenter = proximityCenter;
 	result.closeTo = closeTo;
@@ -164,36 +174,6 @@ Timer Timer::Instantiate(map<string, string> &subs,
 	return result;
 }
 
-uint64_t Timer::TimeToWait() const
-{
-	return timeToWait;
-}
-
-bool Timer::RequireIdle() const
-{
-	return requireIdle;
-}
-
-bool Timer::CloseTo() const
-{
-	return closeTo;
-}
-
-const System *Timer::GetSystem() const
-{
-	return system;
-}
-
-double Timer::Proximity() const
-{
-	return proximity;
-}
-
-const Planet *Timer::ProximityCenter() const
-{
-	return proximityCenter;
-}
-
 bool Timer::IsComplete() const
 {
 	return isComplete;
@@ -202,8 +182,8 @@ bool Timer::IsComplete() const
 void Timer::ResetOn(ResetCondition cond)
 {
 	bool reset = cond == resetCondition;
-	reset |= (cond == LEAVE_ZONE && resetCondition == PAUSE);
-	reset |= (cond == LEAVE_SYSTEM && (resetCondition == PAUSE || resetCondition == LEAVE_ZONE));
+	reset |= (cond == Timer::ResetCondition::LEAVE_ZONE && resetCondition == Timer::ResetCondition::PAUSE);
+	reset |= (cond == Timer::ResetCondition::LEAVE_SYSTEM && (resetCondition == Timer::ResetCondition::PAUSE || resetCondition == Timer::ResetCondition::LEAVE_ZONE));
 	if(isActive && reset)
 	{
 		timeElapsed = 0;
@@ -215,9 +195,10 @@ void Timer::Step(PlayerInfo &player, UI *ui)
 {
 	if(isComplete)
 		return;
-	if(system && player.Flagship()->GetSystem() != system)
+	if((system && player.Flagship()->GetSystem() != system) ||
+	   (!systems.IsEmpty() && !systems.Matches(player.Flagship()->GetSystem())))
 	{
-		ResetOn(LEAVE_SYSTEM);
+		ResetOn(Timer::ResetCondition::LEAVE_SYSTEM);
 		isActive = false;
 		return;
 	}
@@ -229,7 +210,7 @@ void Timer::Step(PlayerInfo &player, UI *ui)
 			shipIdle &= !weapon.WasFiring();
 		if(!shipIdle)
 		{
-			ResetOn(PAUSE);
+			ResetOn(Timer::ResetCondition::PAUSE);
 			isActive = false;
 			return;
 		}
@@ -239,7 +220,7 @@ void Timer::Step(PlayerInfo &player, UI *ui)
 		double cloak = player.Flagship()->Cloaking();
 		if(cloak != 0.)
 		{
-			ResetOn(PAUSE);
+			ResetOn(Timer::ResetCondition::PAUSE);
 			isActive = false;
 			return;
 		}
@@ -255,13 +236,13 @@ void Timer::Step(PlayerInfo &player, UI *ui)
 		double dist = (player.Flagship()->Position() - center).Length();
 		if((closeTo && dist > proximity) || (!closeTo && dist < proximity))
 		{
-			ResetOn(LEAVE_ZONE);
+			ResetOn(Timer::ResetCondition::LEAVE_ZONE);
 			isActive = false;
 			return;
 		}
 	}
 	isActive = true;
-	timeElapsed += (1. / 60.);
+	timeElapsed += 1;
 	if(timeElapsed >= timeToWait)
 	{
 		action.Do(player, ui, mission);
