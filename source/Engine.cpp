@@ -659,12 +659,10 @@ void Engine::Step(bool isActive)
 				missileLabels.emplace_back(AlertLabel(pos, projectile, flagship, zoom));
 		}
 
+	// Update the planet label positions.
 	if(isActive)
-	{
-		// Update the planet label positions.
 		for(PlanetLabel &label : labels)
 			label.Update(center, zoom);
-	}
 
 	if(flagship && flagship->IsOverheated())
 		Messages::Add("Your ship has overheated.", Messages::Importance::Highest);
