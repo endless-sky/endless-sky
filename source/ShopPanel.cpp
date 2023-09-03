@@ -1084,7 +1084,10 @@ bool ShopPanel::Click(int x, int y, int clicks)
 							continue;
 
 						if(ship.get() == zone.GetShip())
+						{
 							foundSelectedShip = true;
+							SideSelect(ship.get());
+						}
 						if(ship->ModelName() == zone.GetShip()->ModelName())
 							playerShips.insert(ship.get());
 						else if(!foundSelectedShip) // not the correct range
