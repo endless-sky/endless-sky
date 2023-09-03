@@ -171,12 +171,14 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		if(shipIt->get() != player.Flagship())
 		{
 			map<const Outfit*, int> uniqueOutfits;
-			for(const auto &it : shipIt->get()->Outfits())
-				if(it.first->Attributes().Get("unique") > 0)
-					uniqueOutfits[it.first] = it.second;
-			for(const auto &it : shipIt->get()->Cargo().Outfits())
-				if(it.first->Attributes().Get("unique") > 0)
-					uniqueOutfits[it.first] += it.second;
+			auto AddToUniques = [&] (const std::map<const Outfit *, int> &outfits)
+			{
+				for(const auto &it : outfits)
+					if(it.first->Attributes().Get("unique") > 0)
+						uniqueOutfits[it.first] += it.second;
+			};
+			AddToUniques(shipIt->get()->Outfits());
+			AddToUniques(shipIt->get()->Cargo().Outfits());
 
 			string message = "Are you sure you want to disown \""
 				+ shipIt->get()->Name()
