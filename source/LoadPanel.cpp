@@ -468,7 +468,7 @@ void LoadPanel::UpdateLists()
 
 	for(auto &it : files)
 	{
-		// Don't include the first itme in the sort if this pilot has a non-snapshot save.
+		// Don't include the first item in the sort if this pilot has a non-snapshot save.
 		auto start = it.second.begin();
 		if(notSnapshotOnly.count(it.first))
 			++start;
