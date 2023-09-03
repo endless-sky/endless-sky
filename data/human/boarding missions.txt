@@ -672,7 +672,7 @@ mission "Boarding Derelict"
 			`	With the repairs finished you head to the cockpit to see if the <origin> starts without exploding. Prepared to bolt for the airlock should things go wrong, you start the ship.`
 			branch fail
 				random < 40
-			`	The ship thrums to life, and with bated breath you wait for the sound of some system exploding, but nothing happens. Success! The ship is yours.`
+			`	The ship thrums to life. With bated breath you wait for the sound of some system exploding, but nothing happens. Success! The ship is yours.`
 				goto success
 			label engines
 			branch misfire
@@ -705,7 +705,7 @@ mission "Boarding Derelict"
 			branch fail
 				random < 5
 			action
-			`	The ship thrums to life, and with bated breath you wait for the sound of some system exploding, but nothing happens. Success! The ship is yours.`
+			`	The ship thrums to life. With bated breath you wait for the sound of some system exploding, but nothing happens. Success! The ship is yours.`
 				goto success
 			label power(h)
 			branch powersurge
@@ -733,7 +733,7 @@ mission "Boarding Derelict"
 			branch fail
 				random < 25
 			action
-			`	The ship thrums to life, and with bated breath you wait for the sound of some system exploding, but nothing happens. Success! The ship is yours.`
+			`	The ship thrums to life. With bated breath you wait for the sound of some system exploding, but nothing happens. Success! The ship is yours.`
 				goto success
 			label powersurge
 			`	With a few simple repairs you manage to get the ship's power systems operational. Briefly. The power shuts down again with a violent vibration shuddering through the ship. You quickly run back to your ship before the <origin> breaks apart.`
@@ -817,7 +817,7 @@ mission "Boarding Derelict"
 					not "derelict family investment"
 			action
 				payment 475000
-			`	Hidden away under a panel you find a small box. Opening it reveals a huge amount of credits worth <payment> credits! Before you depart you detonate the ship to prevent any other derelict hunters from scouring the now empty ship.`
+			`	Hidden away under a panel you find a small box. Opening it reveals a huge amount of credits worth <payment> Before you depart you detonate the ship to prevent any other derelict hunters from scouring the now empty ship.`
 				depart
 			label quest
 			branch treasure

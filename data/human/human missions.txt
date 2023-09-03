@@ -6314,7 +6314,7 @@ mission "Derelict Informer"
 	on offer
 		conversation
 			`As you touch down on <origin>, you see that the landing pad next to yours holds a freighter that is practically falling apart. Standing next to it is a man with the grizzled look of an experienced captain.`
-			`	Given the sorry state of the ship he might be in need of assistance.`
+			`	Given the sorry state of his ship he might be in need of assistance.`
 			choice
 				`	(Offer your help.)`
 				`	(Don't help him.)`
@@ -6376,7 +6376,7 @@ mission "Derelict Treasure Map"
 			action
 				payment 386000
 				outfit "Ion Cannon" 2
-			`	You grab the <payment> credits and with the assistance of some machinery you bring the weapons back to your ship.`
+			`	You grab the <payment> credits, and with the assistance of some machinery you bring the weapons back to your ship.`
 
 mission "Derelict Family Investment 1"
 	name "Lost Family Investment"
