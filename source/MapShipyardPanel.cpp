@@ -197,8 +197,8 @@ void MapShipyardPanel::DrawItems()
 		{
 			string price = Format::CreditString(ship->Cost());
 
-			string info = Format::Number(ship->Attributes().Get("shields")) + " shields / ";
-			info += Format::Number(ship->Attributes().Get("hull")) + " hull";
+			string info = Format::Number(ship->MaxShields()) + " shields / ";
+			info += Format::Number(ship->MaxHull()) + " hull";
 
 			bool isForSale = true;
 			if(player.HasVisited(*selectedSystem))
