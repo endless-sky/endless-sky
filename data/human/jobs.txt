@@ -2773,6 +2773,9 @@ mission "Bounty Hunting (Very Tiny)"
 			variant
 				"Wasp (Proton)"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on capture
+			payment 25000
+			fail
 		on kill
 			payment 25000
 			fail
@@ -2828,6 +2831,9 @@ mission "Bounty Hunting (Tiny)"
 			variant
 				"Fury (Bomber)"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on capture
+			payment 50000
+			fail
 		on kill
 			payment 50000
 			fail
@@ -2879,6 +2885,9 @@ mission "Bounty Hunting (Very Small)"
 			variant
 				"Clipper (Speedy)"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on capture
+			payment 95000
+			fail
 		on kill
 			payment 95000
 			fail
@@ -2923,6 +2932,9 @@ mission "Bounty Hunting (Small)"
 			variant
 				"Manta (Proton)"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on capture
+			payment 180000
+			fail
 		on kill
 			payment 180000
 			fail
@@ -2961,6 +2973,9 @@ mission "Bounty Hunting (Medium)"
 			variant
 				"Firebird (Plasma)"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on capture
+			payment 240000
+			fail
 		on kill
 			payment 240000
 			fail
@@ -3003,6 +3018,9 @@ mission "Bounty Hunting (Big)"
 			variant
 				"Vanguard (Particle)"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on capture
+			payment 300000
+			fail
 		on kill
 			payment 300000
 			fail
@@ -3050,8 +3068,11 @@ mission "Bounty Hunting (Small, Hidden)"
 			variant
 				"Manta (Proton)"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on capture
+			payment 720000
+			fail
 		on kill
-			payment 360000
+			payment 720000
 			fail
 
 mission "Bounty Hunting (Medium, Hidden)"
@@ -3091,8 +3112,11 @@ mission "Bounty Hunting (Medium, Hidden)"
 			variant
 				"Firebird (Plasma)"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on capture
+			payment 960000
+			fail
 		on kill
-			payment 480000
+			payment 960000
 			fail
 
 mission "Bounty Hunting (Big, Hidden)"
@@ -3136,8 +3160,11 @@ mission "Bounty Hunting (Big, Hidden)"
 			variant
 				"Vanguard (Particle)"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on capture
+			payment 1200000
+			fail
 		on kill
-			payment 600000
+			payment 1200000
 			fail
 
 mission "Bounty Hunting (Small, Boarding, Entering)"
@@ -3245,6 +3272,9 @@ mission "Bounty Hunting (Solo Marauder I)"
 			distance 1 1
 		fleet "Marauder I"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on capture
+			payment 130000
+			fail
 		on kill
 			payment 130000
 			fail
@@ -3274,6 +3304,9 @@ mission "Bounty Hunting (Solo Marauder II)"
 			distance 1 1
 		fleet "Marauder II"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on capture
+			payment 200000
+			fail
 		on kill
 			payment 200000
 			fail
@@ -3299,6 +3332,9 @@ mission "Bounty Hunting (Solo Marauder III)"
 			distance 1 1
 		fleet "Marauder III"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on capture
+			payment 310000
+			fail
 		on kill
 			payment 310000
 			fail
@@ -3324,6 +3360,9 @@ mission "Bounty Hunting (Solo Marauder IV)"
 			distance 1 1
 		fleet "Marauder IV"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on capture
+			payment 500000
+			fail
 		on kill
 			payment 500000
 			fail
@@ -3352,6 +3391,9 @@ mission "Bounty Hunting (Marauder I)"
 			distance 1 1
 		fleet "Marauder fleet I"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
+		on capture
+			payment 360000
+			fail
 		on kill
 			payment 360000
 			fail
@@ -3380,6 +3422,9 @@ mission "Bounty Hunting (Marauder II)"
 			distance 1 1
 		fleet "Marauder fleet II"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
+		on capture
+			payment 380000
+			fail
 		on kill
 			payment 380000
 			fail
@@ -3408,6 +3453,9 @@ mission "Bounty Hunting (Marauder III)"
 			distance 1 1
 		fleet "Marauder fleet III"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
+		on capture
+			payment 400000
+			fail
 		on kill
 			payment 400000
 			fail
@@ -3436,6 +3484,9 @@ mission "Bounty Hunting (Marauder IV)"
 			distance 1 1
 		fleet "Marauder fleet IV"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
+		on capture
+			payment 480000
+			fail
 		on kill
 			payment 480000
 			fail
@@ -3464,6 +3515,9 @@ mission "Bounty Hunting (Marauder V)"
 			distance 1 1
 		fleet "Marauder fleet V"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
+		on capture
+			payment 500000
+			fail
 		on kill
 			payment 500000
 			fail
@@ -3493,6 +3547,9 @@ mission "Bounty Hunting (Marauder VI)"
 			distance 1 1
 		fleet "Marauder fleet VI"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
+		on capture
+			payment 520000
+			fail
 		on kill
 			payment 520000
 			fail
@@ -3517,6 +3574,9 @@ mission "Bounty Hunting (Marauder VII)"
 			distance 1 1
 		fleet "Marauder fleet VII"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
+		on capture
+			payment 620000
+			fail
 		on kill
 			payment 620000
 			fail
@@ -3541,6 +3601,9 @@ mission "Bounty Hunting (Marauder VIII)"
 			distance 1 1
 		fleet "Marauder fleet VIII"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
+		on capture
+			payment 640000
+			fail
 		on kill
 			payment 640000
 			fail
@@ -3565,6 +3628,9 @@ mission "Bounty Hunting (Marauder IX)"
 			distance 1 1
 		fleet "Marauder fleet IX"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
+		on capture
+			payment 660000
+			fail
 		on kill
 			payment 660000
 			fail
@@ -3589,6 +3655,9 @@ mission "Bounty Hunting (Marauder X)"
 			distance 1 1
 		fleet "Marauder fleet X"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
+		on capture
+			payment 1000000
+			fail
 		on kill
 			payment 1000000
 			fail
