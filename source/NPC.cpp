@@ -753,7 +753,7 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 	// Ships are capable of receiving multiple DESTROY events. Only
 	// handle the first such event, because a ship can't actually be
 	// destroyed multiple times.
-	if(type == ShipEvent::DESTROY && !newEvent)
+	if((type & ShipEvent::DESTROY) && !newEvent)
 		type &= ~ShipEvent::DESTROY;
 
 	// Get the actions for the Triggers that could potentially run.
