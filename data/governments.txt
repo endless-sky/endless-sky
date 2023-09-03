@@ -421,11 +421,13 @@ government "Hai"
 		"Hai Merchant (Sympathizers)" 1
 		"Hai Merchant (Human)" 1
 		"Hai (Governor Escort)" 1
-		"Hai (Unfettered)" -.1
+		"Hai (Unfettered)" -.01
 		"Hai (Friendly Unfettered)" .1
 		"Hai (Unfettered Civilians)" .1
 		"Merchant" .01
 		"Elenctic Commune" .1
+	"penalty for"
+		assist -.15
 	"bribe" .2
 	"friendly hail" "friendly hai"
 	"friendly disabled hail" "friendly disabled hai"
@@ -444,11 +446,13 @@ government "Hai (Wormhole Access)"
 		"Hai Merchant" 1
 		"Hai Merchant (Sympathizers)" 1
 		"Hai Merchant (Human)" 1
-		"Hai (Unfettered)" -.1
+		"Hai (Unfettered)" -.01
 		"Hai (Friendly Unfettered)" .1
 		"Hai (Unfettered Civilians)" .1
 		"Merchant" .01
 		"Elenctic Commune" .1
+	"penalty for"
+		assist -.15
 	"bribe" .2
 	"friendly hail" "friendly hai"
 	"friendly disabled hail" "friendly disabled hai"
@@ -470,6 +474,11 @@ government "Hai Merchant"
 		"Hai (Friendly Unfettered)" .1
 		"Hai (Unfettered Civilians)" .1
 		"Merchant" .01
+	"penalty for"
+		assist -.15
+	"custom penalties for"
+		"Hai (Unfettered)"
+			capture 0
 	"bribe" .02
 	"friendly hail" "friendly hai"
 	"friendly disabled hail" "friendly disabled hai"
@@ -491,6 +500,8 @@ government "Hai Merchant (Sympathizers)"
 		"Hai (Friendly Unfettered)" .5
 		"Hai (Unfettered Civilians)" .5
 		"Merchant" .01
+	"penalty for"
+		assist -.15
 	"bribe" .02
 	"friendly hail" "friendly hai"
 	"friendly disabled hail" "friendly disabled hai"
@@ -549,15 +560,14 @@ government "Hai (Unfettered)"
 		"Kor Efret" -.01
 		"Shadow" 1
 		"Elenctic Commune" .1
-		"Hai (Unfettered Challenger)" 1
 		"Hai (Unfettered Blue Challenger)" 1
 		"Hai (Unfettered Red Challenger)" 1
-	"custom penalties for"
-		"Hai (Unfettered Challenger)"
-			disable -.5
-			board .25
-			capture 5
-			destroy 1
+	"foreign penalties for"
+		"Hai (Friendly Unfettered)"
+		"Hai (Unfettered Wanderer Tribute)"
+		"Hai (Unfettered Civilians)"
+	"penalty for"
+		disable 0
 	"bribe" .02
 	"fine" 0
 	"friendly hail" "friendly unfettered"
@@ -591,6 +601,8 @@ government "Hai (Friendly Unfettered)"
 		"Hai (Wormhole Access)" .01
 		"Hai (Unfettered)" 1
 		"Elenctic Commune" .01
+	"foreign penalties for"
+		"Hai (Unfettered)"
 	"bribe" .02
 	"fine" 0
 	"friendly hail" "friendly unfettered"
