@@ -6308,7 +6308,7 @@ mission "FW Refugees to Humanika"
 	description "Transport a family of <bunks> refugees and <cargo> to <destination>. Payment is <payment>."
 	minor
 	source
-		attributes "dirt belt" rim south
+		attributes "dirt belt" "rim" "south"
 		not government Quarg
 		not near Tarazed 1
 	destination Humanika
@@ -6317,7 +6317,7 @@ mission "FW Refugees to Humanika"
 		not "chosen sides"
 		random < 15
 	to fail
-		has "event: joined the free worlds"
+		has "chosen sides"
 	passengers 3
 	cargo "household goods" 2
 	on offer
