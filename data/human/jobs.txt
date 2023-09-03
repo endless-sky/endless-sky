@@ -3069,10 +3069,10 @@ mission "Bounty Hunting (Small, Hidden)"
 				"Manta (Proton)"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
 		on capture
-			payment 720000
+			payment 360000
 			fail
 		on kill
-			payment 720000
+			payment 360000
 			fail
 
 mission "Bounty Hunting (Medium, Hidden)"
@@ -3113,10 +3113,10 @@ mission "Bounty Hunting (Medium, Hidden)"
 				"Firebird (Plasma)"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
 		on capture
-			payment 960000
+			payment 480000
 			fail
 		on kill
-			payment 960000
+			payment 480000
 			fail
 
 mission "Bounty Hunting (Big, Hidden)"
@@ -3161,10 +3161,10 @@ mission "Bounty Hunting (Big, Hidden)"
 				"Vanguard (Particle)"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
 		on capture
-			payment 1200000
+			payment 600000
 			fail
 		on kill
-			payment 1200000
+			payment 600000
 			fail
 
 mission "Bounty Hunting (Small, Boarding, Entering)"
