@@ -441,6 +441,7 @@ void LoadPanel::UpdateLists()
 	files.clear();
 
 	vector<string> fileList = Files::List(Files::Saves());
+	set<string> notSnapshotOnly;
 	for(const string &path : fileList)
 	{
 		// Skip any files that aren't text files.
@@ -450,20 +451,34 @@ void LoadPanel::UpdateLists()
 		string fileName = Files::Name(path);
 		// The file name is either "Pilot Name.txt" or "Pilot Name~SnapshotTitle.txt".
 		size_t pos = fileName.find('~');
-		if(pos == string::npos)
+		bool isSnapshot = pos != string::npos;
+		if(!isSnapshot)
 			pos = fileName.size() - 4;
 
 		string pilotName = fileName.substr(0, pos);
-		files[pilotName].emplace_back(fileName, Files::Timestamp(path));
+		auto &savesList = files[pilotName];
+		savesList.emplace_back(fileName, Files::Timestamp(path));
+		// Ensure that the main save for this pilot, not a snapshot, is first in the list.
+		if(!isSnapshot)
+		{
+			swap(savesList.front(), savesList.back());
+			notSnapshotOnly.insert(pilotName);
+		}
 	}
 
 	for(auto &it : files)
-		sort(it.second.begin(), it.second.end(),
+	{
+		// Don't include the first itme in the sort if this pilot has a non-snapshot save.
+		auto start = it.second.begin();
+		if(notSnapshotOnly.count(it.first))
+			++start;
+		sort(start, it.second.end(),
 			[](const pair<string, time_t> &a, const pair<string, time_t> &b) -> bool
 			{
 				return a.second > b.second || (a.second == b.second && a.first < b.first);
 			}
 		);
+	}
 
 	if(!files.empty())
 	{
