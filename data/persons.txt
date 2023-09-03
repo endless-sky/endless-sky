@@ -1860,16 +1860,11 @@ person "Patrol Team"
 		word
 #		Marksman
 			"If you're interested in helping out but don't have time, consider being a proofreader! You can take my job, and I get to laze around doing nothing!"
-			"If you see something, and it shoots at you, cheat your way to victory!"
 			"The number of times someone breaks the fourth wall, it's mind-boggling!"
 			"Look, we aren't here for your money. We do all this for free and look where that gets us."
 			"If you're interested in helping out but don't have time, consider looking through the proposals on GitHub! Sometimes, a new perspective is needed!"
 			"What do you mean you don't have a save file for this pull request!?"
 			"This statement is, intentionally wrote wrongly to make point."
-
-#		Roadrunner
-			"Typo detected. Initiating weapons engagement."
-			"Code non-functional. Destroy them."
 
 #		Saugia
 			"Yeah... way too much detail. I can't see the cockpit anymore."
@@ -1902,10 +1897,32 @@ person "Patrol Team"
 			"Please use the template."
 			"The decision to implement fancy quote is one of the worst in computer history."
 			"	This needs another indent."
+
+		#bene-dictator
+			"Just a syntax review. Hold on, I have to rewrite this quickly. Can you delay the merge?"
+			"People who complain about HR don't actually appreciate what we folks do. The number of pull requests that went into that baby..."
+			"I was requested for spelling? Oh my goodness, this needs a rewrite..."
+			"One more review. Pretty please?"
+			"Just one more review before merging."
+			"Capitalise that proper noun. Use American English for consistency. For goodness' sake, that needs a comma!"
+			"Comma here. Comma doesn't go there. I think that one needs a comma. Hold on, what was a comma again?"
+			"Unidentified sentence appears to be lacking a comma. Very dangerous, and highly likely to incite multiple suggestions on where the comma should go. Calling backup reviewers."
+			"Commas are your greatest friends."
+			"Commas are your greatest enemies."
+
+#		roadrunner56
+			"More semicolons!"
+			"... I think I broke something."
+			"Canadian spelling fails me again."
+			"This is my last review, I swear."
+			"Looks like school's starting back up again. See you in a few months."
+			"Typo detected. Initiating weapons engagement."
+			"Code non-functional. Destroy them."
+
 #		EjoThims
 	phrase
 		word
-			"If you want your pull request to not be merged"
+			"If you want your pull request not to be merged"
 			"If you prefer your pull request never be merged"
 			"If you prefer your pull request sits idle"
 			"If you want your pull request to be closed"
@@ -1928,31 +1945,34 @@ person "Patrol Team"
 			". Trust me! It works."
 			". You shouldn't do those things, though! I'm just kidding."
 
-	phrase
-		word
-			"Just a syntax review. Hold on, I gotta rewrite this quickly. Can you delay the merge?"
-			"People who complain about HR don't actually appreciate what we folks do. The number of pull requests that went into that baby..."
-			"I was requested for spelling? Oh my goodness, this needs a rewrite..."
-			"One more review. Pretty please?"
-			"Just one more review before merging."
-			"Capitalise that proper noun. Use American English for consistency. For goodness' sake, that needs a comma!"
-			"Comma here. Comma doesn't go there. I think that one needs a comma? Hold on, what was a comma again?"
-			"Unidentified sentence appears to be lacking comma. Very dangerous, highly likely to incite multiple suggestions on where comma should go. Calling backup reviewers."
-			"Commas are your greatest friends."
-			"Commas are your greatest enemies."
-
-	ship "Waverider" "Pain of the Proofreader"
+	ship "Waverider" "Proofreader's Pain"
 		"never disabled"
-	ship "Waverider" "Regret of the Art Critics"
+		add attributes
+			"bunk" 4
+	ship "Waverider" "Art Critics' Regret"
 		"never disabled"
-	ship "Waverider" "Curse of the Code Herders"
+		add attributes
+			"bunk" 2
+	ship "Waverider" "Code Herders' Curse"
 		"never disabled"
-	ship "Waverider" "Tears of the Choreographers"
+		add attributes
+			"required crew" 2
+	ship "Waverider" "Choreographers' Tears"
 		"never disabled"
-	ship "Waverider" "Blood of the Adjuncators"
+		add outfits
+			"LP576a Battery Pack"
+	ship "Waverider" "Adjuncators' Blood"
 		"never disabled"
-	ship "Waverider" "Madness of the Balancers"
+		add attributes
+			"bunk" 3
+		add outfits
+			"Tears of Skade"
+	ship "Waverider" "Balancers' Madness"
 		"never disabled"
+		add attributes
+			"shields" 12000
+			"hull" 5000
+			"mass" 100
 
 ship "Waverider"
 	sprite "ship/waverider"
@@ -1968,10 +1988,10 @@ ship "Waverider"
 		"drag" 1.5
 		"heat dissipation" 1
 		"fuel capacity" 1000
-		"cargo space" 10000
-		"outfit space" 1000
-		"weapon capacity" 1000
-		"engine capacity" 1000
+		"cargo space" 100
+		"outfit space" 346
+		"weapon capacity" 120
+		"engine capacity" 54
 		weapon
 			"blast radius" 340
 			"shield damage" 3400
