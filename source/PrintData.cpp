@@ -165,7 +165,7 @@ namespace {
 
 				auto mass = attributes.Mass() ? attributes.Mass() : 1.;
 				cout << ship.MaxShields() << ',';
-				cout << attributes.Get("hull") << ',';
+				cout << ship.MaxHull() << ',';
 				cout << mass << ',';
 				cout << attributes.Get("drag") << ',';
 				cout << ship.HeatDissipation() * 1000. << ',';
@@ -221,7 +221,7 @@ namespace {
 
 				auto mass = attributes.Mass() ? attributes.Mass() : 1.;
 				cout << ship.MaxShields() << ',';
-				cout << attributes.Get("hull") << ',';
+				cout << ship.MaxHull() << ',';
 				cout << mass << ',';
 				cout << attributes.Get("required crew") << ',';
 				cout << attributes.Get("bunks") << ',';
