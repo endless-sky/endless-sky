@@ -457,7 +457,6 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, const Mission *
 	// itself so that this class thinks the ship is destroyed.
 	shared_ptr<Ship> ship;
 	int type = event.Type();
-
 	for(shared_ptr<Ship> &ptr : ships)
 		if(ptr == event.Target())
 		{
