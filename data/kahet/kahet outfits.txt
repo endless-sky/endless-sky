@@ -44,8 +44,9 @@ outfit "Ka'het Nullifier"
 		"turn" 73
 		"shield damage" 120
 		"hull damage" 40
-		"ion damage" 150
-		"scrambling damage" 150
+		"energy damage" 3200
+		"ion damage" 220
+		"scrambling damage" 10
 		"hit force" 50
 		"blast radius" 20
 	description "The Nullifier was one of the largest weapons the Builders ever developed, created specifically to be carried in battle by the Vareti. Although it does almost no damage to shields and hull, one shot is capable of disabling most kinds of reactors in a matter of seconds."

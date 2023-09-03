@@ -55,7 +55,7 @@ jobs:
       run: |
         sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
         sudo apt-get update
-        sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libosmesa6 mesa-utils libglvnd-dev
+        sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libosmesa6 mesa-utils libglvnd-dev x11-utils
     - name: Disable VM sound card
       run: |
         sudo sh -c 'echo "pcm.!default { type plug slave.pcm \"null\" }"  >> /etc/asound.conf'
@@ -64,8 +64,7 @@ jobs:
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
-        vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
-        doNotCache: true
+        vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
     - uses: lukka/run-cmake@v10
       with:
         configurePreset: ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
@@ -89,8 +88,7 @@ jobs:
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
-        vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
-        doNotCache: true
+        vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
     - uses: lukka/run-cmake@v10
       with:
         configurePreset: 'mingw-ci'
@@ -124,8 +122,7 @@ jobs:
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
-        vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
-        doNotCache: true
+        vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
     - uses: lukka/run-cmake@v10
       with:
         configurePreset: 'clang-cl-ci'
@@ -151,8 +148,7 @@ jobs:
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
-        vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
-        doNotCache: true
+        vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
     - uses: lukka/run-cmake@v10
       with:
         configurePreset: 'macos-ci'

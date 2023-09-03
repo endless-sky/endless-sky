@@ -1040,7 +1040,7 @@ void ShopPanel::DrawDragShips() const
 
 int ShopPanel::DrawPlayerShipInfo(const Point &point)
 {
-	shipInfo.Update(*shipSelection.Selected(), player, collapsed.count("description"));
+	shipInfo.Update(*shipSelection.Selected(), player, collapsed.count("description"), true);
 	shipInfo.DrawAttributes(point, !isOutfitter);
 	const int attributesHeight = shipInfo.GetAttributesHeight(!isOutfitter);
 	shipInfo.DrawOutfits(Point(point.X(), point.Y() + attributesHeight));
