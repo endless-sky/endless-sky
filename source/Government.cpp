@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Outfit.h"
 #include "Phrase.h"
 #include "Politics.h"
+#include "Ship.h"
 #include "ShipEvent.h"
 
 #include <algorithm>
@@ -73,34 +74,6 @@ namespace {
 	}
 
 	unsigned nextID = 0;
-}
-
-
-
-Government::RaidFleet::RaidFleet(const Fleet *fleet, double minAttraction, double maxAttraction)
-	: fleet(fleet), minAttraction(minAttraction), maxAttraction(maxAttraction)
-{
-}
-
-
-
-const Fleet *Government::RaidFleet::GetFleet() const
-{
-	return fleet;
-}
-
-
-
-double Government::RaidFleet::MinAttraction() const
-{
-	return minAttraction;
-}
-
-
-
-double Government::RaidFleet::MaxAttraction() const
-{
-	return maxAttraction;
 }
 
 
@@ -216,21 +189,7 @@ void Government::Load(const DataNode &node)
 		}
 
 		if(key == "raid")
-		{
-			const Fleet *fleet = GameData::Fleets().Get(child.Token(valueIndex));
-			if(remove)
-			{
-				for(auto it = raidFleets.begin(); it != raidFleets.end(); )
-					if(it->GetFleet() == fleet)
-						it = raidFleets.erase(it);
-					else
-						++it;
-			}
-			else
-				raidFleets.emplace_back(fleet,
-					child.Size() > (valueIndex + 1) ? child.Value(valueIndex + 1) : 2.,
-					child.Size() > (valueIndex + 2) ? child.Value(valueIndex + 2) : 0.);
-		}
+			RaidFleet::Load(raidFleets, child, remove, valueIndex);
 		// Handle the attributes which cannot have a value removed.
 		else if(remove)
 			child.PrintTrace("Cannot \"remove\" a specific value from the given key:");
@@ -590,7 +549,7 @@ bool Government::SendUntranslatedHails() const
 // Pirate raids in this government's systems use these fleet definitions. If
 // it is empty, there are no pirate raids.
 // The second attribute denotes the minimal and maximal attraction required for the fleet to appear.
-const vector<Government::RaidFleet> &Government::RaidFleets() const
+const vector<RaidFleet> &Government::RaidFleets() const
 {
 	return raidFleets;
 }
@@ -669,6 +628,17 @@ int Government::Fines(const Outfit *outfit) const
 		if(it.first == outfit)
 			return it.second;
 	return outfit->Get("illegal");
+}
+
+
+
+bool Government::FinesContents(const Ship *ship) const
+{
+	for(auto &it : ship->Outfits())
+		if(this->Fines(it.first) || this->Condemns(it.first))
+			return true;
+
+	return ship->Cargo().IllegalCargoFine(this);
 }
 
 

@@ -41,19 +41,36 @@ color "shop side panel background" .2 .2 .2 1.
 color "shop side panel footer" .3 .3 .3 1.
 color "shop info panel background" .055 .055 .055 1.
 color "tooltip background" .2 .2 .2 1.
+color "player info hardpoint gun" .5 .375 0. 1.
+color "player info hardpoint gun hover" .8 .6 0. 1.
+color "player info hardpoint turret" 0. .375 .5 1.
+color "player info hardpoint turret hover" 0. .6 .8 1.
 color "logbook sidebar" .09 .09 .09 1.
 color "logbook background" .125 .125 .125 1.
 color "logbook line" .2 .2 .2 1.
 color "item selected" 0. 0. 0. .3
 
 # Colors used to draw certain HUD elements in-flight.
-color "shields" .43 .55 .70 .75
+color "shields" .43 .55 .85 .8
 color "hull" .70 .62 .43 .75
 color "disabled hull" .3 0 0 .3
 color "heat" .70 .43 .43 .75
 color "overheat" .70 .61 .43 .75
 color "energy" .6 .6 .6 .75
 color "fuel" .70 .62 .43 .75
+
+# Colors for the escort HUD status bars.
+color "escort shields" .43 .55 .70 0.
+color "escort hull" .70 .62 .43 0.
+color "escort heat" .70 .43 .43 0.
+color "escort energy" .6 .6 .6 0.
+color "escort fuel" .630 .62 .43 0.
+# These values are half the desired "full color" values.
+color "escort split shields" .215 .275 .35 0.
+color "escort split hull" .35 .31 .215 0.
+color "escort split heat" .35 .215 .215 0.
+color "escort split energy" .3 .3 .3 0.
+color "escort split fuel" .35 .31 .215 0.
 
 color "flagship highlight" .5 .8 .2 0.
 
@@ -72,6 +89,7 @@ color "blocked back" 0. .15 .2 .5
 color "special mission" 1. 1. 1. 1.
 color "waypoint" .1 .2 .9 1.
 color "waypoint back" 0. .3 .7 .5
+color "mission route" .2 .1 0. 0.
 
 # Colors for the Escort HUD that is displayed in-flight.
 color "escort disabled" .4 .4 .4 0.
@@ -83,15 +101,18 @@ color "escort selected" .2 .8 0. 1.
 color "escort hostile" 1. .6 .4 1.
 
 # Colors used when "status overlays" are enabled, and to show scan progress.
+color "overlay flagship shields" 0. .5 0. .25
+color "overlay flagship hull" .45 .5 0. .25
+color "overlay flagship disabled" .5 0. 0. .25
 color "overlay friendly shields" 0. .5 0. .25
 color "overlay friendly hull" .45 .5 0. .25
-color "overlay friendly disabled" .5 0 0 .25
+color "overlay friendly disabled" .5 0. 0. .25
 color "overlay hostile shields" .5 .15 0. .25
 color "overlay hostile hull" .5 .3 0. .25
-color "overlay hostile disabled" .3 .3 0 .25
+color "overlay hostile disabled" .3 .3 0. .25
 color "overlay neutral shields" .43 .55 .70 .75
 color "overlay neutral hull" .45 .5 0. .25
-color "overlay neutral disabled" .5 0 0 .25
+color "overlay neutral disabled" .5 0. 0. .25
 color "overlay outfit scan" .5 .5 .5 .25
 color "overlay cargo scan" .7 .7 .7 .25
 
@@ -144,10 +165,12 @@ color "planet target pointer dominated" 1. 1. 1. 0.
 color "error back" .25 .1 .1 1.
 color "warning back" .21 .18 .08 1.
 color "warning conflict" .315 .27 .12 1.
+color "warning no command" 0.16 0.16 0.13 1.
 
 # Colors used for messages
-color "message importance highest"	1. .5 0. 1.
-color "message importance default"	1. 1. 1. 1.
+color "message importance highest" 1. .5 0. 1.
+color "message importance info" 0. 1. .5 1.
+color "message importance default" 1. 1. 1. 1.
 
 # Colors used when drawing the map (system names, links, and the player's desired route).
 # (The color of the ring that represents a given system is context-sensitive.)
@@ -156,7 +179,6 @@ color "map name" .6 .6 .6 .6
 color "map travel ok fleet" .2 .5 0. 0.
 color "map travel ok flagship" .5 .4 0. 0.
 color "map travel ok none" .55 .1 0. 0.
-color "map travel wormhole" .5 .2 .9 1.
 color "map wormhole" .5 .2 .9 1.
 color "map orbits fleet destination" 1. 1. 1. 1.
 
@@ -427,6 +449,12 @@ interface "controls"
 		dimensions 90 30
 		color medium
 		hover bright
+	label "Press '_x' over keybind to unbind"
+		from -255 200
+		color "bright"
+		align left
+		width 240
+		truncate back
 
 
 
@@ -696,6 +724,135 @@ interface "hud"
 
 
 
+interface "escort element"
+	value "width" 120
+	value "basic height" 30
+	value "system label height" 15
+
+	box "icon click zone"
+		center 20 10
+	anchor top left
+	outline "icon"
+		center 20 10
+		dimensions 20 20
+		colored
+	visible if "selected"
+	pointer
+		center 10 10
+		dimensions 10 10
+		"orientation angle" 90
+		color "escort selected"
+	visible if "other system"
+	string "system"
+		from 10 28
+		width 120
+		size 14
+		align left
+		truncate back
+		color "escort elsewhere"
+
+	visible if "!multiple"
+	bar "shields high"
+		from 35 1.5
+		dimensions 70 0
+		size 1.5
+		reversed
+		color "escort shields"
+	bar "hull high"
+		from 35 5.5
+		dimensions 70 0
+		size 1.5
+		reversed
+		color "escort hull"
+	bar "energy high"
+		from 40 9.5
+		dimensions 65 0
+		size 1.5
+		reversed
+		color "escort energy"
+	bar "heat high"
+		from 40 13.5
+		dimensions 65 0
+		size 1.5
+		reversed
+		color "escort heat"
+	bar "fuel high"
+		from 40 17.5
+		dimensions 65 0
+		size 1.5
+		reversed
+		color "escort fuel"
+
+	visible if "multiple"
+	anchor top right
+	string "count"
+		from -15 3 to -55 17
+		align right
+		color "escort elsewhere"
+	anchor top left
+	bar "shields high"
+		from 35 1.5
+		dimensions 50 0
+		size 1.5
+		reversed
+		color "escort split shields"
+	bar "shields low"
+		from 35 1.5
+		dimensions 50 0
+		size 1.5
+		reversed
+		color "escort split shields"
+	bar "hull high"
+		from 35 5.5
+		dimensions 50 0
+		size 1.5
+		reversed
+		color "escort split hull"
+	bar "hull low"
+		from 35 5.5
+		dimensions 50 0
+		size 1.5
+		reversed
+		color "escort split hull"
+	bar "energy high"
+		from 40 9.5
+		dimensions 45 0
+		size 1.5
+		reversed
+		color "escort split energy"
+	bar "energy low"
+		from 40 9.5
+		dimensions 45 0
+		size 1.5
+		reversed
+		color "escort split energy"
+	bar "heat high"
+		from 40 13.5
+		dimensions 45 0
+		size 1.5
+		reversed
+		color "escort split heat"
+	bar "heat low"
+		from 40 13.5
+		dimensions 45 0
+		size 1.5
+		reversed
+		color "escort split heat"
+	bar "fuel high"
+		from 40 17.5
+		dimensions 45 0
+		size 1.5
+		reversed
+		color "escort split fuel"
+	bar "fuel low"
+		from 40 17.5
+		dimensions 45 0
+		size 1.5
+		reversed
+		color "escort split fuel"
+
+
+
 interface "planet"
 	image "land"
 		center -60 -140
@@ -775,8 +932,9 @@ interface "planet"
 		size 18
 		align left
 		pad 10 0
+	visible
 	
-	visible if "has ship"
+	active if "has ship"
 	sprite "ui/planet dialog button"
 		center 280 270
 	button d "_Depart"
@@ -1128,6 +1286,55 @@ interface "map buttons" bottom right
 	button d "_Done"
 		from -80 -40 to -10 -10
 	
+	active
+	sprite "ui/dialog cancel"
+		from 0 -40 to -90 -90
+	button f "_Find"
+		from -80 -80 to -10 -50
+
+	sprite "ui/zoom"
+		from 0 -80 to -90 -130
+	active if "!max zoom"
+	button + "_+"
+		from -10 -90 to -40 -120
+		size 18
+	active if "!min zoom"
+	button - "_-"
+		from -50 -90 to -80 -120
+		size 18
+
+
+interface "map buttons (small screen)" bottom right
+	active if "!is shipyards"
+	sprite "ui/wide button"
+		from -270 -40 to -160 -90
+	button s "_Shipyards"
+		from -260 -50 to -170 -80
+
+	active if "!is outfitters"
+	sprite "ui/wide button"
+		from -270 -50 to -160 0
+	button o "_Outfitters"
+		from -260 -40 to -170 -10
+
+	active if "!is missions"
+	sprite "ui/dialog cancel"
+		from -170 -40 to -80 -90
+	button i "M_issions"
+		from -160 -80 to -90 -50
+
+	active if "!is ports"
+	sprite "ui/dialog cancel"
+		from -170 -50 to -80 0
+	button p "_Ports"
+		from -160 -40 to -90 -10
+
+	active
+	sprite "ui/dialog cancel"
+		from -90 -50 to 0 0
+	button d "_Done"
+		from -80 -40 to -10 -10
+
 	active
 	sprite "ui/dialog cancel"
 		from 0 -40 to -90 -90

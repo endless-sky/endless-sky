@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cstdint>
 #include <string>
+#include <vector>
 
 
 
@@ -63,6 +64,13 @@ public:
 		MIXED
 	};
 
+	enum class FlotsamCollection : int_fast8_t {
+		OFF = 0,
+		ON,
+		FLAGSHIP,
+		ESCORT
+	};
+
 	enum class BackgroundParallax : int {
 		OFF = 0,
 		FANCY,
@@ -99,6 +107,7 @@ public:
 	static bool ZoomViewOut();
 	static double MinViewZoom();
 	static double MaxViewZoom();
+	static const std::vector<double> &Zooms();
 
 	static void ToggleScreenMode();
 	static const std::string &ScreenModeSetting();
@@ -131,6 +140,11 @@ public:
 	static void ToggleBoarding();
 	static BoardingPriority GetBoardingPriority();
 	static const std::string &BoardingSetting();
+
+	// Flotsam setting, either "off", "on", "flagship only", or "escorts only".
+	static void ToggleFlotsam();
+	static FlotsamCollection GetFlotsamCollection();
+	static const std::string &FlotsamSetting();
 
 	// Red alert siren and symbol
 	static void ToggleAlert();
