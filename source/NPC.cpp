@@ -457,6 +457,7 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, const Mission *
 	// itself so that this class thinks the ship is destroyed.
 	shared_ptr<Ship> ship;
 	int type = event.Type();
+
 	for(shared_ptr<Ship> &ptr : ships)
 		if(ptr == event.Target())
 		{
@@ -753,14 +754,15 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 	// handle the first such event, because a ship can't actually be
 	// destroyed multiple times.
 	if(type == ShipEvent::DESTROY && !newEvent)
-		return;
+		type &= ~ShipEvent::DESTROY;
 
 	// Get the actions for the Triggers that could potentially run.
-	auto triggers = eventTriggers.find(type);
-	if(triggers == eventTriggers.end())
-		return;
+	set<Trigger> triggers;
+	for(const auto &it : eventTriggers)
+		if(type & it.first)
+			triggers.insert(it.second.begin(), it.second.end());
 
-	for(Trigger trigger : triggers->second)
+	for(Trigger trigger : triggers)
 	{
 		auto it = npcActions.find(trigger);
 		if(it == npcActions.end())
