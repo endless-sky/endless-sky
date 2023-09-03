@@ -293,8 +293,8 @@ namespace {
 						if(weapon->Ammo() && !ship.OutfitCount(weapon->Ammo()))
 							continue;
 						double damage = weapon->ShieldDamage() + weapon->HullDamage()
-							+ (weapon->RelativeShieldDamage() * ship.Attributes().Get("shields"))
-							+ (weapon->RelativeHullDamage() * ship.Attributes().Get("hull"));
+							+ (weapon->RelativeShieldDamage() * ship.MaxShields())
+							+ (weapon->RelativeHullDamage() * ship.MaxHull());
 						deterrence += .12 * damage / weapon->Reload();
 					}
 				cout << deterrence << '\n';

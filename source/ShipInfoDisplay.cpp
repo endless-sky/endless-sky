@@ -204,13 +204,13 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	if(hasHullRepair)
 	{
 		attributeLabels.push_back("hull (repair):");
-		attributeValues.push_back(Format::Number(attributes.Get("hull"))
+		attributeValues.push_back(Format::Number(ship.MaxHull())
 			+ " (" + Format::Number(60. * hullRepair) + "/s)");
 	}
 	else
 	{
 		attributeLabels.push_back("hull:");
-		attributeValues.push_back(Format::Number(attributes.Get("hull")));
+		attributeValues.push_back(Format::Number(ship.MaxHull()));
 	}
 	attributesHeight += 20;
 	double emptyMass = attributes.Mass();
