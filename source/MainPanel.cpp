@@ -609,26 +609,11 @@ bool MainPanel::ControllerAxis(SDL_GameControllerAxis axis, int position)
 				Command::InjectSet(Command::MOVETOWARD);
 			
 				flagship->SetMoveToward(p);
-
-				if(p.LengthSquared() > 32500*32500) // make this configurable?
-				{
-					if(!joystickMax)
-					{
-						joystickMax = true;
-						Command::InjectSet(Command::AFTERBURNER);
-					}
-				}
-				else if(joystickMax)
-				{
-					joystickMax = false;
-					Command::InjectUnset(Command::AFTERBURNER);
-				}
 			}
 			else
 			{
 				// joystick has returned to zero position
 				Command::InjectUnset(Command::MOVETOWARD);
-				Command::InjectUnset(Command::AFTERBURNER);
 				joystickMax = false;
 			}
 		}
