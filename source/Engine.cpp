@@ -1124,48 +1124,10 @@ void Engine::Draw() const
 	if (!Preferences::Has("Show buttons on map"))
 	{
 		// Draw ammo status.
-		static const double ICON_SIZE = 30.;
-		static const double AMMO_WIDTH = 80.;
-		Rectangle ammoBox = hud->GetBox("ammo");
-		// Pad the ammo list by the same amount on all four sides.
-		double ammoPad = .5 * (ammoBox.Width() - AMMO_WIDTH);
-		const Sprite *selectedSprite = SpriteSet::Get("ui/ammo selected");
-		const Sprite *unselectedSprite = SpriteSet::Get("ui/ammo unselected");
-		Color selectedColor = *colors.Get("bright");
-		Color unselectedColor = *colors.Get("dim");
-
-		// This is the top left corner of the ammo display.
-		Point pos(ammoBox.Left() + ammoPad, ammoBox.Bottom() - ammoPad);
-		// These offsets are relative to that corner.
-		Point boxOff(AMMO_WIDTH - .5 * selectedSprite->Width(), .5 * ICON_SIZE);
-		Point textOff(AMMO_WIDTH - .5 * ICON_SIZE, .5 * (ICON_SIZE - font.Height()));
-		Point iconOff(.5 * ICON_SIZE, .5 * ICON_SIZE);
-		for(const pair<const Outfit *, int> &it : ammo)
-		{
-			pos.Y() -= ICON_SIZE;
-			if(pos.Y() < ammoBox.Top() + ammoPad)
-				break;
-
-			const auto &playerSelectedWeapons = player.SelectedSecondaryWeapons();
-			bool isSelected = (playerSelectedWeapons.find(it.first) != playerSelectedWeapons.end());
-
-			SpriteShader::Draw(it.first->Icon(), pos + iconOff);
-			SpriteShader::Draw(isSelected ? selectedSprite : unselectedSprite, pos + boxOff);
-
-			// Some secondary weapons may not have limited ammo. In that case, just
-			// show the icon without a number.
-			if(it.second < 0)
-				continue;
-
-			string amount = to_string(it.second);
-			Point textPos = pos + textOff + Point(-font.Width(amount), 0.);
-			font.Draw(amount, textPos, isSelected ? selectedColor : unselectedColor);
-		}
+		double ammoIconWidth = hud->GetValue("ammo icon width");
+		double ammoIconHeight = hud->GetValue("ammo icon height");
+		ammoDisplay.Draw(hud->GetBox("ammo"), Point(ammoIconWidth, ammoIconHeight));
 	}
-	// Draw ammo status.
-	double ammoIconWidth = hud->GetValue("ammo icon width");
-	double ammoIconHeight = hud->GetValue("ammo icon height");
-	ammoDisplay.Draw(hud->GetBox("ammo"), Point(ammoIconWidth, ammoIconHeight));
 
 	// Draw escort status.
 	escorts.Draw(hud->GetBox("escorts"));

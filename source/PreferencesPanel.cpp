@@ -724,6 +724,7 @@ void PreferencesPanel::DrawSettings()
 		"Clickable radar display",
 		ALERT_INDICATOR,
 		"Extra fleet status messages",
+		"Show buttons on map",
 		"\n",
 		"Gameplay",
 		"Control ship with mouse",
