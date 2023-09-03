@@ -285,7 +285,7 @@ void ShopPanel::DrawShipsSidebar()
 			}
 		}
 
-		zones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
+		zones.emplace_back(point, Point(ICON_TILE/2.0, ICON_TILE/2.0), ship.get());
 
 		const auto checkIt = flightChecks.find(ship);
 		if(checkIt != flightChecks.end())
