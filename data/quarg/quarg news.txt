@@ -18,6 +18,7 @@ news "anonymous quarg"
 	name
 		word
 			"Quarg"
+			"wrod"
 	message
 		word
 			`"Are you what is called a 'tourist'?"`
