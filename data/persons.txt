@@ -1959,7 +1959,7 @@ ship "Waverider"
 	thumbnail "thumbnail/waverider"
 	attributes
 		category "Light Warship"
-		"cost" 3,000,000
+		"cost" 3000000
 		"shields" 10000
 		"hull" 7000
 		"required crew" 1
