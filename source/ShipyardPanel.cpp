@@ -360,7 +360,7 @@ void ShipyardPanel::Sell(bool toStorage)
 	for(const auto &ship : playerShips)
 	{
 		for(const auto &it : ship->Outfits())
-			if(it.first->Attributes().Get("unique") > 0)
+			if(it.first->Attributes().Get("unique"))
 				uniqueOutfits[it.first] += it.second;
 		toSell.push_back(ship->shared_from_this());
 	}

@@ -325,7 +325,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 	// Have you left any unique items at the outfitter?
 	bool leftUniques = false;
 	for(const auto &it : player.GetStock())
-		if(it.first->Attributes().Get("unique") > 0)
+		if(it.first->Attributes().Get("unique"))
 		{
 			leftUniques = true;
 			break;
