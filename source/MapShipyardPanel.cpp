@@ -98,10 +98,11 @@ const ItemInfoDisplay &MapShipyardPanel::CompareInfo() const
 
 const string &MapShipyardPanel::KeyLabel(int index) const
 {
-	static const string LABEL[3] = {
+	static const string LABEL[4] = {
 		"Has no shipyard",
 		"Has shipyard",
-		"Sells this ship"
+		"Sells this ship",
+		"Ship parked here"
 	};
 	return LABEL[index];
 }
@@ -137,21 +138,34 @@ void MapShipyardPanel::Compare(int index)
 
 double MapShipyardPanel::SystemValue(const System *system) const
 {
-	if(!system || !player.HasVisited(*system) || !system->IsInhabited(player.Flagship()))
+	if(!system || !player.HasVisited(*system))
 		return numeric_limits<double>::quiet_NaN();
 
-	// Visiting a system is sufficient to know what ports are available on its planets.
-	double value = -1.;
-	for(const StellarObject &object : system->Objects())
-		if(object.HasSprite() && object.HasValidPlanet())
-		{
-			const auto &shipyard = object.GetPlanet()->Shipyard();
-			if(shipyard.Has(selected))
-				return 1.;
-			if(!shipyard.empty())
-				value = 0.;
-		}
-	return value;
+	// If there is a shipyard with parked ships, the order of precendence is
+	// a selected parked ship, the shipyard, parked ships.
+
+	const auto &systemShips = parkedShips.find(system);
+	if(systemShips != parkedShips.end() && systemShips->second.find(selected) != systemShips->second.end())
+		return .5;
+	else if(system->IsInhabited(player.Flagship()))
+	{
+		// Visiting a system is sufficient to know what ports are available on its planets.
+		double value = -1.;
+		for(const StellarObject &object : system->Objects())
+			if(object.HasSprite() && object.HasValidPlanet())
+			{
+				const auto &shipyard = object.GetPlanet()->Shipyard();
+				if(shipyard.Has(selected))
+					return 1.;
+				if(!shipyard.empty())
+					value = 0.;
+			}
+		return value;
+	}
+	else if(systemShips != parkedShips.end() && !selected)
+		return .5;
+	else
+		return numeric_limits<double>::quiet_NaN();
 }
 
 
@@ -201,6 +215,7 @@ void MapShipyardPanel::DrawItems()
 			info += Format::Number(ship->MaxHull()) + " hull";
 
 			bool isForSale = true;
+			unsigned parkedInSystem = 0;
 			if(player.HasVisited(*selectedSystem))
 			{
 				isForSale = false;
@@ -210,15 +225,32 @@ void MapShipyardPanel::DrawItems()
 						isForSale = true;
 						break;
 					}
+
+				const auto parked = parkedShips.find(selectedSystem);
+				if(parked != parkedShips.end())
+				{
+					const auto shipCount = parked->second.find(ship);
+					if(shipCount != parked->second.end())
+						parkedInSystem = shipCount->second;
+				}
 			}
 			if(!isForSale && onlyShowSoldHere)
+				continue;
+			if(!parkedInSystem && onlyShowStorageHere)
 				continue;
 
 			const Sprite *sprite = ship->Thumbnail();
 			if(!sprite)
 				sprite = ship->GetSprite();
+
+			const string parking_details =
+				onlyShowSoldHere || parkedInSystem == 0
+				? ""
+				: parkedInSystem == 1
+				? "1 ship parked"
+				: Format::Number(parkedInSystem) + " ships parked";
 			Draw(corner, sprite, ship->CustomSwizzle(), isForSale, ship == selected,
-					ship->DisplayModelName(), price, info);
+					ship->DisplayModelName(), price, info, parking_details);
 			list.push_back(ship);
 		}
 	}
@@ -239,6 +271,19 @@ void MapShipyardPanel::Init()
 					catalog[ship->Attributes().Category()].push_back(ship);
 					seen.insert(ship);
 				}
+
+	parkedShips.clear();
+	for(const auto &it : player.Ships())
+		if(it->IsParked())
+		{
+			const Ship *model = GameData::Ships().Get(it->TrueModelName());
+			++parkedShips[it->GetSystem()][model];
+			if(!seen.count(model))
+			{
+				catalog[model->Attributes().Category()].push_back(model);
+				seen.insert(model);
+			}
+		}
 
 	for(auto &it : catalog)
 		sort(it.second.begin(), it.second.end(),
