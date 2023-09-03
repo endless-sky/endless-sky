@@ -114,27 +114,18 @@ void Messages::Reset()
 const Color *Messages::GetColor(Importance importance, bool isLog)
 {
 	string prefix = (isLog ? "message log importance " : "message importance ");
-	const Color *color;
 	switch(importance)
 	{
 		case Messages::Importance::Highest:
-			color = GameData::Colors().Find(prefix + "highest");
-			break;
+			return GameData::Colors().Get(prefix + "highest");
 		case Messages::Importance::High:
-			color = GameData::Colors().Find(prefix + "high");
-			break;
+			return GameData::Colors().Get(prefix + "high");
 		case Messages::Importance::Info:
-			color = GameData::Colors().Find(prefix + "info");
-			break;
+			return GameData::Colors().Get(prefix + "info");
 		case Messages::Importance::Daily:
-			color = GameData::Colors().Find(prefix + "daily");
-			break;
+			return GameData::Colors().Get(prefix + "daily");
 		case Messages::Importance::Low:
-			color = GameData::Colors().Find(prefix + "low");
-			break;
+			return GameData::Colors().Get(prefix + "low");
 	}
-	if(!color)
-		color = GameData::Colors().Get(prefix + "default");
-
-	return color;
+	return nullptr;
 }
