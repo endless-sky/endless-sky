@@ -131,25 +131,22 @@ bool MapSalesPanel::Click(int x, int y, int clicks)
 {
 	if(x < Screen::Left() + WIDTH)
 	{
-		Point point(x, y);
+		const Point point(x, y);
+		const auto zone = find_if(zones.begin(), zones.end(),
+			[&](const ClickZone<int> zone){ return zone.Contains(point); });
 
-		bool isCompare = (SDL_GetModState() & KMOD_SHIFT);
-
-		for(const ClickZone<int> &zone : zones)
-			if(zone.Contains(point))
-			{
-				if(isCompare)
-				{
-					if(zone.Value() != selected)
-						Compare(compare = zone.Value());
-				}
-				else
-				{
-					Select(selected = zone.Value());
-					Compare(compare = -1);
-				}
-				break;
-			}
+		if(zone == zones.end())
+		{
+			Select(selected = -1);
+			Compare(compare = -1);
+		}
+		else if((SDL_GetModState() & KMOD_SHIFT) == 0)
+		{
+			Select(selected = zone->Value());
+			Compare(compare = -1);
+		}
+		else if(zone->Value() != selected)
+			Compare(compare = zone->Value());
 	}
 	else if(x >= Screen::Left() + WIDTH + 30 && x < Screen::Left() + WIDTH + 190 && y < Screen::Top() + 90)
 	{

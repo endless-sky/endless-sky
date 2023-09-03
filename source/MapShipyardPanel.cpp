@@ -162,7 +162,7 @@ double MapShipyardPanel::SystemValue(const System *system) const
 			}
 		return value;
 	}
-	else if(systemShips != parkedShips.end())
+	else if(systemShips != parkedShips.end() && !selected)
 		return .5;
 	else
 		return numeric_limits<double>::quiet_NaN();
