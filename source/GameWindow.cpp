@@ -34,7 +34,6 @@ namespace {
 	SDL_GLContext context = nullptr;
 	int width = 0;
 	int height = 0;
-	bool hasSwizzle = false;
 	bool supportsAdaptiveVSync = false;
 
 	// Logs SDL errors and returns true if found
@@ -212,7 +211,6 @@ bool GameWindow::Init()
 	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 
 	// Check for support of various graphical features.
-	hasSwizzle = OpenGL::HasSwizzleSupport();
 	supportsAdaptiveVSync = OpenGL::HasAdaptiveVSyncSupport();
 
 	// Enable the user's preferred VSync state, otherwise update to an available
@@ -404,13 +402,6 @@ void GameWindow::ToggleFullscreen()
 	}
 	else
 		SDL_SetWindowFullscreen(mainWindow, SDL_WINDOW_FULLSCREEN_DESKTOP);
-}
-
-
-
-bool GameWindow::HasSwizzle()
-{
-	return hasSwizzle;
 }
 
 
