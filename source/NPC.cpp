@@ -506,7 +506,7 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, const Mission *
 			shipEvents[bay.ship.get()] |= type;
 
 	// Run any mission actions that trigger on this event.
-	DoActions(event, newEvent, player, ui, caller);
+	DoActions(type, newEvent, player, ui, caller);
 
 	// Check if the success status has changed. If so, display a message.
 	if(isVisible && !alreadyFailed && HasFailed())
@@ -733,7 +733,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 
 
 // Handle any NPC mission actions that may have been triggered by a ShipEvent.
-void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, UI *ui, const Mission *caller)
+void NPC::DoActions(const int type, bool newEvent, PlayerInfo &player, UI *ui, const Mission *caller)
 {
 	// Map the ShipEvent that was received to the Triggers it could flip.
 	static const map<int, vector<Trigger>> eventTriggers = {
@@ -746,8 +746,6 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 		{ShipEvent::CAPTURE, {CAPTURE}},
 		{ShipEvent::PROVOKE, {PROVOKE}},
 	};
-
-	int type = event.Type();
 
 	// Ships are capable of receiving multiple DESTROY events. Only
 	// handle the first such event, because a ship can't actually be
