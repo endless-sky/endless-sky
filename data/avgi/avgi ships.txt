@@ -539,7 +539,7 @@ ship "Phononos"
 		category "Light Freighter"
 		licenses
 			"Avgi Civilian"
-		"cost" 1540000
+		"cost" 144000
 		"shields" 240
 		"hull" 1500
 		"automaton" 1
@@ -983,7 +983,7 @@ ship "Modified Tachytia"
 	swizzle 0
 	attributes
 		category "Utility"
-		"cost" 72000000
+		"cost" 99000000
 		"shields" 6000
 		"hull" 36000
 		"required crew" 300
@@ -1777,7 +1777,7 @@ ship "Akoustiki"
 		category "Fighter"
 		licenses
 			"Avgi Civilian"
-		"cost" 148000
+		"cost" 126000
 		"shields" 180
 		"hull" 1200
 		"required crew" 1
@@ -1911,8 +1911,8 @@ ship "Photikon"
 	explode "tiny explosion" 15
 	"final explode" "final explosion small"
 
-	description "The Photikon Torpedo Bomber is the cornerstone of Avgi antiship carrier doctrine. While it is possible for a swarm of Vibratia and similar interdiction drones to engage capital ships, it is the Phonon that is capable of delivering the nuclear anti-ship munitions necessary to bring down the largest warships. By bringing a nuclear torpedo within close range, the payload has a higher chance of surviving enemy point defense weapons compared with standard missiles."
-	description "Phonons are occasionally used as gun platforms, mounting a Speckle Turret instead of their standard armament of a pair of Equinox Torpedoes."
+	description "The Photikon Torpedo Bomber is the cornerstone of Avgi antiship carrier doctrine. While it is possible for a swarm of Vibratia and similar interdiction drones to engage capital ships, it is the Photikon that is capable of delivering the nuclear anti-ship munitions necessary to bring down the largest warships. By bringing a nuclear torpedo within close range, the payload has a higher chance of surviving enemy point defense weapons compared with standard missiles."
+	description "Photikons are occasionally used as gun platforms, mounting a Speckle Turret instead of their standard armament of a pair of Equinox Torpedoes."
 	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
 
