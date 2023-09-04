@@ -71,6 +71,7 @@ jobs:
         builtin: clear,en-GB_to_en-US
         path: changelog data/
         exclude_file: .codespell.exclude
+        ignore_words_file: .codespell.words.exclude
 
 
   style_check:

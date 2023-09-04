@@ -162,7 +162,7 @@ int ShipyardPanel::DrawDetails(const Point &center)
 
 	if(selectedShip)
 	{
-		shipInfo.Update(*selectedShip, player, collapsed.count(DESCRIPTION));
+		shipInfo.Update(*selectedShip, player, collapsed.count(DESCRIPTION), true);
 		selectedItem = selectedShip->DisplayModelName();
 
 		const Point spriteCenter(center.X(), center.Y() + 20 + TileSize() / 2);
