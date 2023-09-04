@@ -133,7 +133,7 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 		{
 			// Determine what portion of its maximum shields the ship is currently at.
 			// Only do this if there is nonzero permeability involved, otherwise don't.
-			double shieldPortion = shields / attributes.Get("shields");
+			double shieldPortion = shields / ship.MaxShields();
 			permeability = max((highPermeability * shieldPortion) +
 				(lowPermeability * (1. - shieldPortion)), 0.);
 		}
@@ -141,7 +141,7 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 			(1. + ship.DisruptionLevel() * .01);
 
 		damage.shieldDamage = (weapon.ShieldDamage()
-			+ weapon.RelativeShieldDamage() * attributes.Get("shields"))
+			+ weapon.RelativeShieldDamage() * ship.MaxShields())
 			* ScaleType(0., 0., attributes.Get("shield protection"));
 		if(damage.shieldDamage > shields)
 			shieldFraction = min(shieldFraction, shields / damage.shieldDamage);
@@ -153,7 +153,7 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 	// Shield damage is blocked 0%.
 	damage.shieldDamage *= shieldFraction;
 	damage.hullDamage = (weapon.HullDamage()
-		+ weapon.RelativeHullDamage() * attributes.Get("hull"))
+		+ weapon.RelativeHullDamage() * ship.MaxHull())
 		* ScaleType(1., 0., attributes.Get("hull protection"));
 	double hull = ship.HullUntilDisabled();
 	if(damage.hullDamage > hull)
@@ -161,7 +161,7 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 		double hullFraction = hull / damage.hullDamage;
 		damage.hullDamage *= hullFraction;
 		damage.hullDamage += (weapon.DisabledDamage()
-			+ weapon.RelativeDisabledDamage() * attributes.Get("hull"))
+			+ weapon.RelativeDisabledDamage() * ship.MaxHull())
 			* ScaleType(1., 0., attributes.Get("hull protection"))
 			* (1. - hullFraction);
 	}
