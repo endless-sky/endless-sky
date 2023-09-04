@@ -23,6 +23,7 @@ ship "Koryfi"
 		category "Transport"
 		licenses
 			"Avgi Civilian"
+		"cost" 1860000
 		"shields" 600
 		"hull" 1800
 		"required crew" 2
@@ -134,6 +135,7 @@ ship "Melodikos"
 		category "Space Liner"
 		licenses
 			"Avgi Civilian"
+		"cost" 5220000
 		"shields" 1200
 		"hull" 2400
 		"required crew" 6
@@ -282,6 +284,7 @@ ship "Avlaki"
 		category "Light Freighter"
 		licenses
 			"Avgi Civilian"
+		"cost" 1860000
 		"shields" 600
 		"hull" 1800
 		"required crew" 2
@@ -392,6 +395,7 @@ ship "Harmonikos"
 		category "Heavy Freighter"
 		licenses
 			"Avgi Civilian"
+		"cost" 5220000
 		"shields" 1200
 		"hull" 2400
 		"required crew" 6
@@ -535,6 +539,7 @@ ship "Phononos"
 		category "Light Freighter"
 		licenses
 			"Avgi Civilian"
+		"cost" 1540000
 		"shields" 240
 		"hull" 1500
 		"automaton" 1
@@ -600,6 +605,7 @@ ship "Frequentia"
 		category "Utility"
 		licenses
 			"Avgi Civilian"
+		"cost" 1920000
 		"shields" 600
 		"hull"	1800
 		"required crew" 2
@@ -669,6 +675,7 @@ ship "Polari"
 		category "Utility"
 		licenses
 			"Avgi Civilian"
+		"cost" 2160000
 		"shields" 600
 		"hull"	2100
 		"required crew" 6
@@ -751,6 +758,7 @@ ship "Entasi"
 		category "Utility"
 		licenses
 			"Avgi Civilian"
+		"cost" 3360000
 		"shields" 1500
 		"hull" 3600
 		"required crew" 6
@@ -879,6 +887,7 @@ ship "Undsyni"
 		category "Utility"
 		licenses
 			"Avgi Civilian"
+		"cost" 10400000
 		"shields" 2400
 		"hull" 15000
 		"required crew" 12
@@ -974,6 +983,7 @@ ship "Modified Tachytia"
 	swizzle 0
 	attributes
 		category "Utility"
+		"cost" 72000000
 		"shields" 6000
 		"hull" 36000
 		"required crew" 300
@@ -1098,7 +1108,7 @@ ship "Tremoros"
 		category "Interceptor"
 		licenses
 			"Avgi Civilian"
-		"cost" 490000
+		"cost" 780000
 		"shields" 600
 		"hull" 3600
 		"automaton" 1
@@ -1174,7 +1184,7 @@ ship "Prismaios"
 		category "Light Warship"
 		licenses
 			"Avgi Military"
-		"cost" 240000
+		"cost" 2640000
 		"shields" 1440
 		"hull" 7200
 		"required crew" 2
@@ -1258,7 +1268,7 @@ ship "Interferos"
 		category "Light Warship"
 		licenses
 			"Avgi Civilian"
-		"cost" 240000
+		"cost" 1380000
 		"shields" 900
 		"hull" 3600
 		"automaton" 1
@@ -1341,7 +1351,7 @@ ship "Diaspersi"
 		category "Medium Warship"
 		licenses
 			"Avgi Military"
-		"cost" 2400000
+		"cost" 3600000
 		"shields" 2400
 		"hull" 12000
 		"required crew" 15
@@ -1443,7 +1453,7 @@ ship "Difraktos"
 		category "Medium Warship"
 		licenses
 			"Avgi Military"
-		"cost" 3600000
+		"cost" 5400000
 		"shields" 6000
 		"hull" 18600
 		"required crew" 15
@@ -1543,6 +1553,7 @@ ship "Refraktos"
 		category "Medium Warship"
 		licenses
 			"Avgi Military"
+		"cost" 4560000
 		"shields" 3600
 		"hull" 8400
 		"required crew" 12
@@ -1637,6 +1648,7 @@ ship "Atenuatia"
 		category "Heavy Warship"
 		licenses
 			"Avgi Military"
+		"cost" 14400000
 		"shields" 4200
 		"hull" 27600
 		"required crew" 60
@@ -1765,6 +1777,7 @@ ship "Akoustiki"
 		category "Fighter"
 		licenses
 			"Avgi Civilian"
+		"cost" 148000
 		"shields" 180
 		"hull" 1200
 		"required crew" 1
@@ -1835,6 +1848,7 @@ ship "Photikon"
 		category "Fighter"
 		licenses
 			"Avgi Military"
+		"cost" 138000
 		"shields" 240
 		"hull" 1800
 		"automaton" 1
@@ -1911,7 +1925,7 @@ ship "Vibratia"
 		category "Drone"
 		licenses
 			"Avgi Military"
-		"cost" 36000
+		"cost" 96000
 		"hull" 1500
 		"automaton" 1
 		"crew equivalent" 1
@@ -2051,6 +2065,7 @@ ship "Optikon"
 		category "Drone"
 		licenses
 			"Avgi Civilian"
+		"cost" 54000
 		"hull" 600
 		"automaton" 1
 		"crew equivalent" 1
@@ -2096,6 +2111,7 @@ ship "Sonikis"
 		category "Drone"
 		licenses
 			"Avgi Civilian"
+		"cost" 66000
 		"hull" 600
 		"automaton" 1
 		"crew equivalent" 1
