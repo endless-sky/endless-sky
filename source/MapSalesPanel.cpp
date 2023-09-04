@@ -131,30 +131,41 @@ bool MapSalesPanel::Click(int x, int y, int clicks)
 {
 	if(x < Screen::Left() + WIDTH)
 	{
-		Point point(x, y);
+		const Point point(x, y);
+		const auto zone = find_if(zones.begin(), zones.end(),
+			[&](const ClickZone<int> zone){ return zone.Contains(point); });
 
-		bool isCompare = (SDL_GetModState() & KMOD_SHIFT);
-
-		for(const ClickZone<int> &zone : zones)
-			if(zone.Contains(point))
-			{
-				if(isCompare)
-				{
-					if(zone.Value() != selected)
-						Compare(compare = zone.Value());
-				}
-				else
-				{
-					Select(selected = zone.Value());
-					Compare(compare = -1);
-				}
-				break;
-			}
+		if(zone == zones.end())
+		{
+			Select(selected = -1);
+			Compare(compare = -1);
+		}
+		else if((SDL_GetModState() & KMOD_SHIFT) == 0)
+		{
+			Select(selected = zone->Value());
+			Compare(compare = -1);
+		}
+		else if(zone->Value() != selected)
+			Compare(compare = zone->Value());
 	}
-	else if(x >= Screen::Left() + WIDTH + 30 && x < Screen::Left() + WIDTH + 190 && y < Screen::Top() + 70)
+	else if(x >= Screen::Left() + WIDTH + 30 && x < Screen::Left() + WIDTH + 190 && y < Screen::Top() + 90)
 	{
 		// This click was in the map key.
-		onlyShowSoldHere = (!onlyShowSoldHere && y >= Screen::Top() + 42 && y < Screen::Top() + 62);
+		if(y < Screen::Top() + 42 || y >= Screen::Top() + 82)
+		{
+			onlyShowSoldHere = false;
+			onlyShowStorageHere = false;
+		}
+		else if(y < Screen::Top() + 62)
+		{
+			onlyShowSoldHere = !onlyShowSoldHere;
+			onlyShowStorageHere = false;
+		}
+		else
+		{
+			onlyShowSoldHere = false;
+			onlyShowStorageHere = !onlyShowStorageHere;
+		}
 	}
 	else
 		return MapPanel::Click(x, y, clicks);
@@ -227,20 +238,21 @@ void MapSalesPanel::DrawKey() const
 	static const double VALUE[] = {
 		-1.,
 		0.,
-		1.
+		1.,
+		.5
 	};
 
 	double selectedValue = SystemValue(selectedSystem);
-	for(int i = 0; i < 3; ++i)
+	for(int i = 0; i < 4; ++i)
 	{
 		bool isSelected = (VALUE[i] == selectedValue);
 		RingShader::Draw(pos, OUTER, INNER, MapColor(VALUE[i]));
 		font.Draw(KeyLabel(i), pos + textOff, isSelected ? bright : dim);
+		// If we're filtering out items not sold/stored here, draw a pointer.
 		if(onlyShowSoldHere && i == 2)
-		{
-			// If we're filtering out items not sold here, draw a pointer.
 			PointerShader::Draw(pos + Point(-7., 0.), Point(1., 0.), 10.f, 10.f, 0.f, bright);
-		}
+		else if(onlyShowStorageHere && i == 3)
+			PointerShader::Draw(pos + Point(-7., 0.), Point(1., 0.), 10.f, 10.f, 0.f, bright);
 		pos.Y() += 20.;
 	}
 }
