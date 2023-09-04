@@ -56,9 +56,9 @@ template <class Type>
 			const List<Minable> &minables, const List<Flotsam> &flotsam);
 
 	// Fleet commands from the player.
-	void IssueShipTarget(const PlayerInfo &player, const std::shared_ptr<Ship> &target);
-	void IssueAsteroidTarget(const PlayerInfo &player, const std::shared_ptr<Minable> &targetAsteroid);
-	void IssueMoveTarget(const PlayerInfo &player, const Point &target, const System *moveToSystem);
+	void IssueShipTarget(const std::shared_ptr<Ship> &target);
+	void IssueAsteroidTarget(const std::shared_ptr<Minable> &targetAsteroid);
+	void IssueMoveTarget(const Point &target, const System *moveToSystem);
 	// Commands issued via the keyboard (mostly, to the flagship).
 	void UpdateKeys(PlayerInfo &player, Command &clickCommands);
 
@@ -70,7 +70,7 @@ template <class Type>
 	// but not when they jump from one system to another.
 	void ClearOrders();
 	// Issue AI commands to all ships for one game step.
-	void Step(const PlayerInfo &player, Command &activeCommands);
+	void Step(Command &activeCommands);
 
 	// Set the mouse position for turning the player's flagship.
 	void SetMousePosition(Point position);
@@ -158,7 +158,7 @@ private:
 	// projectile. If it cannot hit the target, this returns NaN.
 	static double RendezvousTime(const Point &p, const Point &v, double vp);
 
-	void MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommands);
+	void MovePlayer(Ship &ship, Command &activeCommands);
 
 	// True if found asteroid.
 	bool TargetMinable(Ship &ship) const;
@@ -205,7 +205,7 @@ private:
 
 
 private:
-	void IssueOrders(const PlayerInfo &player, const Orders &newOrders, const std::string &description);
+	void IssueOrders(const Orders &newOrders, const std::string &description);
 	// Convert order types based on fulfillment status.
 	void UpdateOrders(const Ship &ship);
 

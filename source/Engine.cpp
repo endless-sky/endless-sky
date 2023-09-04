@@ -1415,7 +1415,7 @@ void Engine::CalculateStep()
 	// Handle the mouse input of the mouse navigation
 	HandleMouseInput(activeCommands);
 	// Now, all the ships must decide what they are doing next.
-	ai.Step(player, activeCommands);
+	ai.Step(activeCommands);
 
 	// Clear the active players commands, they are all processed at this point.
 	activeCommands.Clear();
@@ -1962,7 +1962,7 @@ void Engine::HandleMouseClicks()
 	if(player.HasEscortDestination())
 	{
 		auto moveTarget = player.GetEscortDestination();
-		ai.IssueMoveTarget(player, moveTarget.second, moveTarget.first);
+		ai.IssueMoveTarget(moveTarget.second, moveTarget.first);
 		player.SetEscortDestination();
 	}
 
@@ -2027,7 +2027,7 @@ void Engine::HandleMouseClicks()
 	if(clickTarget)
 	{
 		if(isRightClick)
-			ai.IssueShipTarget(player, clickTarget);
+			ai.IssueShipTarget(clickTarget);
 		else
 		{
 			// Left click: has your flagship select or board the target.
@@ -2058,12 +2058,12 @@ void Engine::HandleMouseClicks()
 				clickRange = range;
 				flagship->SetTargetAsteroid(minable);
 				if(isRightClick)
-					ai.IssueAsteroidTarget(player, minable);
+					ai.IssueAsteroidTarget(minable);
 			}
 		}
 	}
 	if(isRightClick && !clickTarget && !clickedAsteroid && !isMouseTurningEnabled)
-		ai.IssueMoveTarget(player, clickPoint + center, playerSystem);
+		ai.IssueMoveTarget(clickPoint + center, playerSystem);
 
 	// Treat an "empty" click as a request to clear targets.
 	if(!clickTarget && !isRightClick && !clickedAsteroid && !clickedPlanet)
