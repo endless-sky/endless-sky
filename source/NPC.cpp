@@ -42,22 +42,24 @@ namespace {
 	{
 		switch(trigger)
 		{
-			case NPC::Trigger::KILL:
-				return "on kill";
-			case NPC::Trigger::BOARD:
-				return "on board";
 			case NPC::Trigger::ASSIST:
 				return "on assist";
-			case NPC::Trigger::DISABLE:
-				return "on disable";
 			case NPC::Trigger::SCAN_CARGO:
 				return "on 'scan cargo'";
 			case NPC::Trigger::SCAN_OUTFITS:
 				return "on 'scan outfits'";
-			case NPC::Trigger::CAPTURE:
-				return "on capture";
 			case NPC::Trigger::PROVOKE:
 				return "on provoke";
+			case NPC::Trigger::DISABLE:
+				return "on disable";
+			case NPC::Trigger::BOARD:
+				return "on board";
+			case NPC::Trigger::CAPTURE:
+				return "on capture";
+			case NPC::Trigger::DESTROY:
+				return "on destroy";
+			case NPC::Trigger::KILL:
+				return "on kill";
 			default:
 				return "unknown trigger";
 		}
@@ -188,14 +190,15 @@ void NPC::Load(const DataNode &node)
 		else if(child.Token(0) == "on" && child.Size() >= 2)
 		{
 			static const map<string, Trigger> trigger = {
-				{"kill", KILL},
-				{"board", BOARD},
-				{"assist", ASSIST},
-				{"disable", DISABLE},
-				{"scan cargo", SCAN_CARGO},
-				{"scan outfits", SCAN_OUTFITS},
-				{"capture", CAPTURE},
-				{"provoke", PROVOKE},
+				{"assist", Trigger::ASSIST},
+				{"scan cargo", Trigger::SCAN_CARGO},
+				{"scan outfits", Trigger::SCAN_OUTFITS},
+				{"provoke", Trigger::PROVOKE},
+				{"disable", Trigger::DISABLE},
+				{"board", Trigger::BOARD},
+				{"capture", Trigger::CAPTURE},
+				{"destroy", Trigger::DESTROY},
+				{"kill", Trigger::KILL}
 			};
 			auto it = trigger.find(child.Token(1));
 			if(it != trigger.end())
@@ -737,14 +740,14 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 {
 	// Map the ShipEvent that was received to the Triggers it could flip.
 	static const map<int, vector<Trigger>> eventTriggers = {
-		{ShipEvent::DESTROY, {KILL}},
-		{ShipEvent::BOARD, {BOARD}},
-		{ShipEvent::ASSIST, {ASSIST}},
-		{ShipEvent::DISABLE, {DISABLE}},
-		{ShipEvent::SCAN_CARGO, {SCAN_CARGO}},
-		{ShipEvent::SCAN_OUTFITS, {SCAN_OUTFITS}},
-		{ShipEvent::CAPTURE, {CAPTURE}},
-		{ShipEvent::PROVOKE, {PROVOKE}},
+		{ShipEvent::ASSIST, {Trigger::ASSIST}},
+		{ShipEvent::SCAN_CARGO, {Trigger::SCAN_CARGO}},
+		{ShipEvent::SCAN_OUTFITS, {Trigger::SCAN_OUTFITS}},
+		{ShipEvent::PROVOKE, {Trigger::PROVOKE}},
+		{ShipEvent::DISABLE, {Trigger::DISABLE}},
+		{ShipEvent::BOARD, {Trigger::BOARD}},
+		{ShipEvent::CAPTURE, {Trigger::CAPTURE, Trigger::KILL}},
+		{ShipEvent::DESTROY, {Trigger::DESTROY, Trigger::KILL}},
 	};
 
 	int type = event.Type();
@@ -769,7 +772,7 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 		// The PROVOKE Trigger only requires a single ship to receive the
 		// event in order to run. All other Triggers require that all ships
 		// be affected.
-		if(trigger == PROVOKE || all_of(ships.begin(), ships.end(),
+		if(trigger == Trigger::PROVOKE || all_of(ships.begin(), ships.end(),
 				[&](const shared_ptr<Ship> &ship) -> bool
 				{
 					auto it = shipEvents.find(ship.get());
