@@ -766,6 +766,20 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 		if(it == npcActions.end())
 			continue;
 
+		static const map<Trigger, int> triggerRequirements = {
+			{Trigger::ASSIST, ShipEvent::ASSIST},
+			{Trigger::SCAN_CARGO, ShipEvent::SCAN_CARGO},
+			{Trigger::SCAN_OUTFITS, ShipEvent::SCAN_OUTFITS},
+			{Trigger::PROVOKE, ShipEvent::PROVOKE},
+			{Trigger::DISABLE, ShipEvent::DISABLE},
+			{Trigger::BOARD, ShipEvent::BOARD},
+			{Trigger::CAPTURE, ShipEvent::CAPTURE},
+			{Trigger::DESTROY, ShipEvent::DESTROY},
+			{Trigger::KILL, ShipEvent::CAPTURE | ShipEvent::DESTROY}
+		};
+
+		const auto it = triggerRequirements.find(trigger);
+		const int requiredEvents = it == triggerRequirements.end() ? 0 : it.second;
 		// The PROVOKE Trigger only requires a single ship to receive the
 		// event in order to run. All other Triggers require that all ships
 		// be affected.
@@ -773,7 +787,7 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 				[&](const shared_ptr<Ship> &ship) -> bool
 				{
 					auto it = shipEvents.find(ship.get());
-					return it != shipEvents.end() && it->second & type;
+					return it != shipEvents.end() && it->second & requiredEvents;
 				}))
 		{
 			it->second.Do(player, ui, caller);
