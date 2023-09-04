@@ -764,6 +764,15 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 		if(type & it.first)
 			triggers.insert(it.second.begin(), it.second.end());
 
+	auto matchEvent = [&](int typeMatch) noexcept -> bool {
+		return all_of(ships.begin(), ships.end(),
+				[&](const shared_ptr<Ship> &ship) -> bool
+				{
+					auto it = shipEvents.find(ship.get());
+					return it != shipEvents.end() && it->second & typeMatch;
+				});
+	};
+
 	for(Trigger trigger : triggers)
 	{
 		auto it = npcActions.find(trigger);
@@ -771,14 +780,12 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 			continue;
 
 		// The PROVOKE Trigger only requires a single ship to receive the
-		// event in order to run. All other Triggers require that all ships
-		// be affected.
-		if(trigger == Trigger::PROVOKE || all_of(ships.begin(), ships.end(),
-				[&](const shared_ptr<Ship> &ship) -> bool
-				{
-					auto it = shipEvents.find(ship.get());
-					return it != shipEvents.end() && it->second & type;
-				}))
+		// event in order to run.
+		// The KILL Trigger require that all ships to be either destroyed or captured.
+		// All other Triggers require that all ships be affected by the input event.
+		if(trigger == Trigger::PROVOKE
+				|| (trigger == Trigger::KILL && matchEvent(ShipEvent::DESTROY | ShipEvent::CAPTURE))
+				|| (trigger != Trigger::KILL && matchEvent(type)))
 		{
 			it->second.Do(player, ui, caller);
 		}
