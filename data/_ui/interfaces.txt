@@ -488,6 +488,16 @@ interface "gamepad panel"
 		color medium
 		hover bright
 
+	uirect
+		center 270 -25 bottom left
+		dimensions 140 30
+		color "panel background"
+	button e "R_eset Buttons"
+		center 270 -25 bottom left
+		dimensions 140 30
+		color medium
+		hover bright
+
 	visible if "needs save"
 	uirect
 		center 270 -25 bottom left

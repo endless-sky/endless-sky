@@ -14,6 +14,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "GamepadPanel.h"
+#include "Dialog.h"
 #include "FillShader.h"
 #include "GamePad.h"
 #include "RingShader.h"
@@ -107,6 +108,9 @@ GamepadPanel::GamepadPanel():
 
 void GamepadPanel::Step()
 {
+	if(!GetUI()->IsTop(this))
+		return; // waiting for dialog to quit
+
 	if(reloadGamepad)
 	{
 		auto controller_list = GamePad::GetControllerList();
@@ -124,7 +128,19 @@ void GamepadPanel::Step()
 		reloadGamepad = false;
 	}
 
-	if(remapIdx != -1)
+	if(startRemap)
+	{
+		// this is handled asynchronously so that the event loop will have
+		// drained any spurious joystick events prior to starting the remap
+		// process.
+		GamePad::EndAxisCalibration();
+		startRemap = false;
+		remapIdx = 0; // Enter remap mode.
+		UpdateUserMessage();
+		GamePad::ClearMappings();
+		GamePad::CaptureNextJoystickInput();
+	}
+	else if(remapIdx != -1)
 	{
 		// we are in remapping mode. Check if a button has been pressed.
 		std::string input = GamePad::GetNextJoystickInput();
@@ -354,10 +370,28 @@ bool GamepadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	}
 	else if(key == 'r')
 	{
-		remapIdx = 0; // Enter remap mode.
-		UpdateUserMessage();
-		GamePad::ClearMappings();
-		GamePad::CaptureNextJoystickInput();
+		// Need to enter remap mode. However, if the user used a gamepad button
+		// to trigger this (zone->KeyDown), then this was in response to an
+		// SDL_CONTROLLER event, and the related SDL_JOYSTICK events are already
+		// in the poll queue. We have to ignore these events, or whatever joystick
+		// button the user used to trigger this event will end up being captured
+		// for the first controller button.
+		// Note that we need to do a calibration step anyways, so handle this
+		// asynchronously to kill two birds with one stone.
+
+		GamePad::BeginAxisCalibration();
+		startRemap = true;
+		GetUI()->Push(new Dialog(
+			"Please move do the following:\n\n"
+			"1. Slowly move each joystick to its maximum and minimum position in each axis\n\n"
+			"2. Slowly move each trigger to its maximum and minimum position\n\n"
+			"3. Click ok"
+		));
+	}
+	else if(key == 'e')
+	{
+		// reset mappings back to default
+		GamePad::ResetMappings();
 	}
 	else
 		return false;
@@ -371,6 +405,38 @@ bool GamepadPanel::ControllersChanged()
 {
 	reloadGamepad = true;
 	return true;
+}
+
+
+
+bool GamepadPanel::ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive)
+{
+	// Don't allow default event handling if we are remapping buttons
+	return remapIdx != -1;
+}
+
+
+
+bool GamepadPanel::ControllerTriggerReleased(SDL_GameControllerAxis axis, bool positive)
+{
+	// Don't allow default event handling if we are remapping buttons
+	return remapIdx != -1;
+}
+
+
+
+bool GamepadPanel::ControllerButtonDown(SDL_GameControllerButton button)
+{
+	// Don't allow default event handling if we are remapping buttons
+	return remapIdx != -1;
+}
+
+
+
+bool GamepadPanel::ControllerButtonUp(SDL_GameControllerButton button)
+{
+	// Don't allow default event handling if we are remapping buttons
+	return remapIdx != -1;
 }
 
 

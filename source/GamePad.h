@@ -60,8 +60,10 @@ public:
 	static int CurrentControllerIdx();
 	// Change which controller is active.
 	static void SetControllerIdx(int idx);
-	// Clear all of the Gamepad -> Joystick mappings for the current gamepad
+	// Clear all of the Joystick -> Gamepad mappings for the current gamepad
 	static void ClearMappings();
+	// Reset Joystick -> Gamepad mappings to the default
+	static void ResetMappings();
 	// Capture and save the next Joystick input. This is to facilitate
 	// remapping.
 	static void CaptureNextJoystickInput();
@@ -70,6 +72,11 @@ public:
 	static const std::string& GetNextJoystickInput();
 	// Set a joystick to controller button mapping.
 	static void SetControllerButtonMapping(const std::string& controllerButton, const std::string& joystickButton);
+
+	// Calibrate the joystick axes
+	static void BeginAxisCalibration();
+	// Done calibrating joystick axes
+	static void EndAxisCalibration();
 
 	static const char* AxisDescription(uint8_t axis);
 	static const char* ButtonDescription(uint8_t button);

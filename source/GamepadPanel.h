@@ -50,6 +50,10 @@ protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool ControllersChanged() override;
+	virtual bool ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive) override;
+	virtual bool ControllerTriggerReleased(SDL_GameControllerAxis axis, bool positive) override;
+	virtual bool ControllerButtonDown(SDL_GameControllerButton button) override;
+	virtual bool ControllerButtonUp(SDL_GameControllerButton button) override;
 
 	void UpdateUserMessage();
 
@@ -59,6 +63,7 @@ private:
 	Dropdown triggerThresholdList;
 
 	bool reloadGamepad = true;
+	bool startRemap = false;
 
 	// If this is -1, then we are processing input normally. Otherwise, this
 	// represents the index of the input that we want to change on the

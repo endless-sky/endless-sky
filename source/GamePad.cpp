@@ -12,16 +12,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 */
 
 #include "GamePad.h"
+
 #include "Files.h"
 
 #include <cmath>
-#include <set>
+#include <map>
 #include <memory>
 #include <set>
-
+#include <string>
 
 #include <SDL2/SDL.h>
-#include <string>
 
 // Make sure these match. Note that GamePad.h can't include SDL_gamecontroller.h
 static_assert(GamePad::AXIS_MAX == SDL_CONTROLLER_AXIS_MAX, "AXIS_MAX needs to match SDL_CONTROLLER_AXIS_MAX");
@@ -31,6 +31,13 @@ namespace {
 
 	GamePad::Axes g_axes = {};
 	enum {TRIGGER_NONE, TRIGGER_POSITIVE, TRIGGER_NEGATIVE} g_triggers[SDL_CONTROLLER_AXIS_MAX] = {};
+	struct AxisInfo
+	{
+		int16_t low;
+		int16_t zero;
+		int16_t high;
+	};
+	std::vector<AxisInfo> g_joyAxisInfo;
 	GamePad::Buttons g_held = {};
 
 	SDL_GameController* g_gc = nullptr;
@@ -41,8 +48,9 @@ namespace {
 	SDL_JoystickID g_joystickId = -1; // Id != Idx
 	SDL_JoystickGUID g_guid{};
 	std::vector<std::pair<std::string, std::string>> g_mapping;
-	std::string g_joystick_last_input;
-	bool g_capture_next_button = false;
+	std::string g_joystickLastInput;
+	bool g_captureNextButton = false;
+	bool g_captureAxisRange = false;
 	
 	// Store extra mappings here.
 	const char EXTRA_MAPPINGS_FILE[] = "gamepad_mappings.txt";
@@ -51,7 +59,7 @@ namespace {
 	// If we have marked a joystick axis, we have to wait for it to dip back
 	// below the deadzone before we accept more input (otherwise, it will
 	// repeatedly flag the same joystick events as new inputs)
-	int g_last_axis = -1;
+	int g_lastAxis = -1;
 	int g_DeadZone = 5000;
 	// threshold before we count an axis as a binary input
 	int g_AxisIsButtonThreshold = 24576;
@@ -146,11 +154,66 @@ namespace {
 
 	void AddEventDebugString(const std::string& s)
 	{
+		// SDL_Log("%s", s.c_str());
 		g_event_debug[g_event_debug_idx] = s;
 
 		++g_event_debug_idx;
 		if(g_event_debug_idx == sizeof(g_event_debug) / sizeof(*g_event_debug))
 			g_event_debug_idx = 0;
+	}
+
+	void ConsolidateMappingAxes()
+	{
+		// We will have created mapping axes in pairs, but we can combine them
+		// if the controller and joystick axes match up.
+		std::map<std::string, std::string> axisMap;
+		std::vector<std::string> to_remove;
+		std::vector<std::pair<std::string, std::string>> to_add;
+		auto opposite = [](const std::string& s) {
+			// if we get -rightx, we want +rightx here
+			if(!s.empty())
+			{
+				if(s.front() == '-') return '+' + s.substr(1);
+				if(s.front() == '+') return '-' + s.substr(1);
+			}
+			return std::string();
+		};
+		for(const auto& kv: g_mapping)
+		{
+			if(kv.first == "+rightx" || kv.first == "-rightx" ||
+			   kv.first == "+righty" || kv.first == "-righty" ||
+			   kv.first == "+leftx" || kv.first == "-leftx" ||
+			   kv.first == "+lefty" || kv.first == "-lefty") // don't worry about triggers
+			{
+				std::string o = opposite(kv.first);
+				auto it = axisMap.find(o);
+				if(it != axisMap.end() && it->second == opposite(kv.second))
+				{
+					// we found both halves of the same axis. Combine them.
+					to_remove.push_back(kv.first);
+					to_remove.push_back(o);
+					// some devices have their axes backwards.
+					const std::string flipped = kv.first.front() == kv.second.front() ? "" : "~";
+					to_add.push_back(std::make_pair(kv.first.substr(1), kv.second.substr(1) + flipped));
+				}
+				else
+					axisMap.insert(kv);
+			}
+		}
+		for(const std::string& r: to_remove)
+		{
+			for(auto it = g_mapping.begin(); it != g_mapping.end();)
+			{
+				if(it->first == r)
+					it = g_mapping.erase(it);
+				else
+					++it;
+			}
+		}
+		for(const auto& kv: to_add)
+		{
+			g_mapping.push_back(kv);
+		}
 	}
 }
 
@@ -251,9 +314,12 @@ void GamePad::SaveMapping()
 				SDL_RWwrite(out.get(), "\n", 1, 1);
 			}
 		}
-		std::shared_ptr<char> current_mapping(SDL_GameControllerMapping(g_gc), SDL_free);
-		SDL_RWwrite(out.get(), current_mapping.get(), 1, strlen(current_mapping.get()));
-		SDL_RWwrite(out.get(), ",", 1, 1);
+		if(!g_mapping.empty())
+		{
+			std::shared_ptr<char> current_mapping(SDL_GameControllerMapping(g_gc), SDL_free);
+			SDL_RWwrite(out.get(), current_mapping.get(), 1, strlen(current_mapping.get()));
+			SDL_RWwrite(out.get(), ",", 1, 1);
+		}
 	}
 }
 
@@ -332,27 +398,58 @@ void GamePad::Handle(const SDL_Event &event)
 	// cache joypad events if we are doing remapping
 	case SDL_JOYAXISMOTION:
 		AddEventDebugString("Axis " + std::to_string(static_cast<int>(event.jaxis.axis)) + " " + std::to_string(event.jaxis.value));
-		if(g_last_axis != -1)
+		if(g_captureAxisRange)
 		{
-			if(event.jaxis.axis == g_last_axis && event.jaxis.value < g_DeadZone && event.jaxis.value > -g_DeadZone)
+			if(event.jaxis.axis < g_joyAxisInfo.size())
 			{
-				// axis has returned to center. allow new axis inputs
-				g_last_axis = -1;
+				// I'm not sure this information is useful, but cache it anyways,
+				// just in case. the important info is the zero value, which we
+				// collect when calibration stops.
+				if(event.jaxis.value < g_joyAxisInfo[event.jaxis.axis].low)
+					g_joyAxisInfo[event.jaxis.axis].low = event.jaxis.value;
+				if(event.jaxis.value > g_joyAxisInfo[event.jaxis.axis].high)
+					g_joyAxisInfo[event.jaxis.axis].high = event.jaxis.value;
 			}
 		}
-		else if(g_capture_next_button && g_last_axis == -1)
+		else if(g_lastAxis != -1)
+		{
+			if(event.jaxis.axis == g_lastAxis)
+			{
+				if(event.jaxis.axis < g_joyAxisInfo.size() && g_joyAxisInfo[event.jaxis.axis].zero < -g_DeadZone)
+				{
+					// This is a trigger, not a joystick. its resting zero-value is -32767
+					if(event.jaxis.value < g_joyAxisInfo[event.jaxis.axis].zero + g_DeadZone)
+					{
+						// trigger has returned to center. allow new axis inputs
+						AddEventDebugString("...Released");
+						g_lastAxis = -1;
+					}
+				}
+				else if(event.jaxis.value < g_DeadZone && event.jaxis.value > -g_DeadZone)
+				{
+					// axis has returned to center. allow new axis inputs
+					AddEventDebugString("...Released");
+					g_lastAxis = -1;
+				}
+			}
+		}
+		else if(g_captureNextButton && g_lastAxis == -1)
 		{
 			if(event.jaxis.value > g_AxisIsButtonThreshold)
 			{
-				g_joystick_last_input = "+a" + std::to_string(event.jaxis.axis);
-				g_capture_next_button = false;
-				g_last_axis = event.jaxis.axis;
+				AddEventDebugString("...Triggered");
+				g_joystickLastInput = "+a" + std::to_string(event.jaxis.axis);
+				g_captureNextButton = false;
+				g_lastAxis = event.jaxis.axis;
 			}
-			else if(event.jaxis.value < -g_AxisIsButtonThreshold)
+			else if(event.jaxis.value < -g_AxisIsButtonThreshold &&
+			        event.jaxis.axis < g_joyAxisInfo.size() &&    // only look at negative joysticks
+			        g_joyAxisInfo[event.jaxis.axis].zero == 0)    // not negative trigger values
 			{
-				g_joystick_last_input = "-a" + std::to_string(event.jaxis.axis);
-				g_capture_next_button = false;
-				g_last_axis = event.jaxis.axis;
+				AddEventDebugString("...Triggered");
+				g_joystickLastInput = "-a" + std::to_string(event.jaxis.axis);
+				g_captureNextButton = false;
+				g_lastAxis = event.jaxis.axis;
 			}
 		}
 
@@ -360,10 +457,10 @@ void GamePad::Handle(const SDL_Event &event)
 	case SDL_JOYBUTTONDOWN:
 		AddEventDebugString("Button " + std::to_string(static_cast<int>(event.jbutton.button)) + " Down");
 		// SDL_Log("Joystick button %d down", event.jbutton.button);
-		if(g_capture_next_button)
+		if(g_captureNextButton)
 		{
-			g_joystick_last_input = "b" + std::to_string(event.jbutton.button);
-			g_capture_next_button = false;
+			g_joystickLastInput = "b" + std::to_string(event.jbutton.button);
+			g_captureNextButton = false;
 		}
 		break;
 	case SDL_JOYBUTTONUP:
@@ -374,7 +471,7 @@ void GamePad::Handle(const SDL_Event &event)
 		AddEventDebugString("Hat " + std::to_string(static_cast<int>(event.jhat.hat)) + " mask " + std::to_string(static_cast<int>(event.jhat.value)));
 		// Hats are weird. They are a mask indicating which bits are held, so
 		// we need to know what was *previously* set to know what changed.
-		if(g_capture_next_button)
+		if(g_captureNextButton)
 		{
 			// for buttons, we capture button-up events, but hats, in theory,
 			// can be switches, so allow the user to toggle it and leave it.
@@ -386,9 +483,9 @@ void GamePad::Handle(const SDL_Event &event)
 				//       It probably doesn't matter, since most controller hats are
 				//       actually dpad directional buttons, and the user will only
 				//       press one at a time during mapping operations.
-				g_joystick_last_input = "h" + std::to_string(event.jhat.hat)
+				g_joystickLastInput = "h" + std::to_string(event.jhat.hat)
 				                      + "." + std::to_string(event.jhat.value);
-				g_capture_next_button = false;
+				g_captureNextButton = false;
 			}
 		}
 		break;
@@ -567,17 +664,37 @@ void GamePad::ClearMappings()
 
 
 
+void GamePad::ResetMappings()
+{
+	// SDL doesn't really provide a way to remove a mapping. The only way I know
+	// of to clear it is to remove it from the config file, then restart the
+	// game controller subsystem.
+	if (g_joystickId != -1)
+	{
+		ClearMappings();
+		SaveMapping(); // removes this device from the config file
+
+		// Need to force the game controller subsystem to shutdown and restart
+		RemoveController();
+		SDL_QuitSubSystem(SDL_INIT_GAMECONTROLLER);
+		SDL_InitSubSystem(SDL_INIT_GAMECONTROLLER);
+		Init();
+	}
+}
+
+
+
 void GamePad::CaptureNextJoystickInput()
 {
-	g_capture_next_button = true;
-	g_joystick_last_input.clear();
+	g_captureNextButton = true;
+	g_joystickLastInput.clear();
 }
 
 
 
 const std::string& GamePad::GetNextJoystickInput()
 {
-	return g_joystick_last_input;
+	return g_joystickLastInput;
 }
 
 
@@ -594,6 +711,7 @@ void GamePad::SetControllerButtonMapping(const std::string& controllerButton, co
 
 	
 	g_mapping.emplace_back(controllerButton, joystickButton);
+	ConsolidateMappingAxes();
 
 	// Reconstruct the mapping string
 	char guidStr[64];
@@ -611,8 +729,51 @@ void GamePad::SetControllerButtonMapping(const std::string& controllerButton, co
 	// note that the terminating comma is intentional
 	SDL_GameControllerAddMapping(newMapping.c_str());
 
-	std::shared_ptr<char> mappingStr(SDL_GameControllerMapping(g_gc), SDL_free);
+	//std::shared_ptr<char> mappingStr(SDL_GameControllerMapping(g_gc), SDL_free);
 	//SDL_Log("Updating controller mapping: %s", mappingStr.get());
+}
+
+
+
+// Calibrate the joystick axes
+void GamePad::BeginAxisCalibration()
+{
+	// We need to know the range and zero setting of each axis to determine if
+	// it is a joystick or an analog trigger. Let the user wiggle the axes
+	// around and capture the high and low setting for each one.
+	SDL_Joystick* js = SDL_JoystickFromInstanceID(g_joystickId);
+	g_joyAxisInfo.resize(SDL_JoystickNumAxes(js));
+	for(size_t i = 0; i < g_joyAxisInfo.size(); ++i)
+		g_joyAxisInfo[i] = AxisInfo{};
+
+	g_captureAxisRange = true;
+}
+
+
+
+// Done calibrating joystick axes
+void GamePad::EndAxisCalibration()
+{
+	// Assume that the user followed instructions, and wiggled all of the axes.
+	// SDL should now know what the current value of each axis is (it initially
+	// doesn't, which is why we can't do this automatically).
+	SDL_Joystick* js = SDL_JoystickFromInstanceID(g_joystickId);
+	g_joyAxisInfo.resize(SDL_JoystickNumAxes(js)); // just in case
+	for(size_t i = 0; i < g_joyAxisInfo.size(); ++i)
+	{
+		int16_t value = SDL_JoystickGetAxis(js, i);
+		if(-g_DeadZone < value && value < g_DeadZone)
+		{
+			g_joyAxisInfo[i].zero = 0;
+			AddEventDebugString("Axis " + std::to_string(i) + " is a joystick\n");
+		}
+		else
+		{
+			g_joyAxisInfo[i].zero = value;
+			AddEventDebugString("Axis " + std::to_string(i) + " is a trigger\n");
+		}
+	}
+	g_captureAxisRange = false;
 }
 
 
