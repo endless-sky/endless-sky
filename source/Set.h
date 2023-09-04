@@ -56,7 +56,6 @@ private:
 
 
 
-
 template <class Type>
 const Type *Set<Type>::Find(const std::string &name) const
 {
