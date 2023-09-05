@@ -782,8 +782,8 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 			{Trigger::KILL, ShipEvent::CAPTURE | ShipEvent::DESTROY}
 		};
 
-		const auto it = triggerRequirements.find(trigger);
-		const int requiredEvents = it == triggerRequirements.end() ? 0 : it.second;
+		const auto oit = triggerRequirements.find(trigger);
+		const int requiredEvents = oit == triggerRequirements.end() ? 0 : oit->second;
 		// The PROVOKE Trigger only requires a single ship to receive the
 		// event in order to run. All other Triggers require that all ships
 		// be affected.
