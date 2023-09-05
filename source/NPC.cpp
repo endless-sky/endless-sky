@@ -782,8 +782,16 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 			{Trigger::KILL, ShipEvent::CAPTURE | ShipEvent::DESTROY}
 		};
 
-		const auto oit = triggerRequirements.find(trigger);
-		const int requiredEvents = oit == triggerRequirements.end() ? 0 : oit->second;
+		// Some triggers cannot be met if any of the ships in this NPC have certain events.
+		// If any of the ships were captured, the DESTROY trigger will not run.
+		static const map<Trigger, int> triggerExclusions = {
+			{Trigger::DESTROY, ShipEvent::CAPTURE}
+		};
+
+		const auto requiredIt = triggerRequirements.find(trigger);
+		const int requiredEvents = requiredIt == triggerRequirements.end() ? 0 : requiredIt->second;
+		const auto excludedIt = triggerExclusions.find(trigger);
+		const int excludedEvents = excludedIt == triggerExclusions.end() ? 0 : excludedIt->second;
 		// The PROVOKE Trigger only requires a single ship to receive the
 		// event in order to run. All other Triggers require that all ships
 		// be affected.
@@ -791,7 +799,7 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 				[&](const shared_ptr<Ship> &ship) -> bool
 				{
 					auto it = shipEvents.find(ship.get());
-					return it != shipEvents.end() && it->second & requiredEvents;
+					return it != shipEvents.end() && it->second & requiredEvents && !(it->second & excludedEvents);
 				}))
 		{
 			it->second.Do(player, ui, caller);
