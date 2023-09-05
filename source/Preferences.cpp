@@ -160,12 +160,12 @@ void Preferences::Load()
 	settings["Turrets focus fire"] = true;
 	settings["Ship outlines in shops"] = true;
 	settings["Extra fleet status messages"] = true;
-	settings["Target asteroid based on"] = true;	
+	settings["Target asteroid based on"] = true;
 	settings["Show buttons on map"] = false;
 #ifdef __ANDROID__
 	settings["fullscreen"] = true;
 	settings["Show buttons on map"] = true;
-	settings["Automatic firing"] = true;
+	autoFireIndex = 1; // "on"
 	settings["Onscreen Joystick"] = false;
 	settings["Automatic chase"] = true;
 
