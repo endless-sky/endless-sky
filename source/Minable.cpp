@@ -116,8 +116,6 @@ void Minable::Place(double energy, double beltRadius, double spread)
 
 	// Generate random orbital parameters. Limit eccentricity so that the
 	// objects do not spend too much time far away and moving slowly.
-
-
 	eccentricity = spread * Random::Real() * .6;
 
 	// Since an object is moving slower at apoapsis than at periapsis, it is

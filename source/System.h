@@ -58,6 +58,7 @@ public:
 		double Energy() const;
 		double Spread() const;
 
+
 	private:
 		std::string name;
 		const Minable *type = nullptr;
