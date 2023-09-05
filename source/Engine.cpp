@@ -31,6 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "FrameTimer.h"
 #include "GameData.h"
+#include "GamePad.h"
 #include "Gamerules.h"
 #include "Government.h"
 #include "Hazard.h"
@@ -1497,6 +1498,8 @@ void Engine::CalculateStep()
 
 	// Handle the mouse input of the mouse navigation
 	HandleMouseInput(activeCommands);
+	// Handle gamepad input
+	HandleGamepadInput(activeCommands);
 	// Now, all the ships must decide what they are doing next.
 	ai.Step(player, activeCommands);
 
@@ -2256,6 +2259,42 @@ void Engine::HandleMouseInput(Command &activeCommands)
 	// Activate firing command.
 	if(isMouseTurningEnabled && rightMouseButtonHeld)
 		activeCommands.Set(Command::PRIMARY);
+}
+
+
+
+void Engine::HandleGamepadInput(Command& activeCommands)
+{
+	// TODO: combine this logic with the onscreen joystick logic?
+	Ship* flagship = player.Flagship();
+	Point p = GamePad::LeftStick();
+	if(flagship && p)
+	{
+		const Angle& angle = flagship->Facing();
+		const Angle da = angle - Angle(p);
+		double degrees = da.Degrees();
+		double driftAngle = (angle - Angle(flagship->Velocity())).Degrees();
+
+		bool triggered = p.LengthSquared() > GamePad::AxisIsButtonPressThreshold() * GamePad::AxisIsButtonPressThreshold();
+
+		if((degrees < -155.0 || degrees > 155.0) && fabs(driftAngle) < 25.0 && triggered)
+		{
+			// We are pointing backwards from our direction of motion. Send a
+			// reverse command. If we don't have reverse engines, then it will
+			// start flipping our ship around, which is what we would want
+			// anyways.
+			activeCommands.Set(Command::BACK);
+		}
+		else if(degrees < -2.0)
+			activeCommands.Set(Command::RIGHT);
+		else if(degrees > 2.0)
+			activeCommands.Set(Command::LEFT);
+
+		// If we are pointing in roughly the correct direction, go ahead and
+		// fire the engines if they are past the trigger threshold.
+		if(triggered && -25.0 < degrees && degrees < 25.0)
+			activeCommands.Set(Command::FORWARD);
+	}
 }
 
 

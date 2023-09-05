@@ -241,7 +241,13 @@ bool PreferencesPanel::FingerDown(int x, int y, int fid)
 {
 	if(editing >= 0 && editing < static_cast<ssize_t>(zones.size()))
 	{
-		Command::SetGesture(zones[editing].Value(), Gesture::NONE);
+		if(controlTypeDropdown.GetSelected() == SHOW_GESTURES)
+			Command::SetGesture(zones[editing].Value(), Gesture::NONE);
+		else if(controlTypeDropdown.GetSelected() == SHOW_GAMEPAD)
+		{
+			Command::SetControllerButton(zones[editing].Value(), SDL_CONTROLLER_BUTTON_INVALID);
+			Command::SetControllerTrigger(zones[editing].Value(), SDL_CONTROLLER_AXIS_INVALID, true);
+		}
 	}
 	editingGesture = editing;
 	return true;
@@ -446,8 +452,7 @@ bool PreferencesPanel::ControllerTriggerPressed(SDL_GameControllerAxis axis, boo
 	{
 		// Reserve some axes here for flight/zoom
 		if(axis != SDL_CONTROLLER_AXIS_LEFTX &&
-			axis != SDL_CONTROLLER_AXIS_LEFTY &&
-			axis != SDL_CONTROLLER_AXIS_RIGHTY)
+			axis != SDL_CONTROLLER_AXIS_LEFTY)
 		{
 			Command::SetControllerTrigger(zones[editing].Value(), axis, positive);
 			controlTypeDropdown.SetSelected(SHOW_GAMEPAD);

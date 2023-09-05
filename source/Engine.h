@@ -150,6 +150,7 @@ private:
 	void HandleMouseClicks();
 	void HandleTouchEvents();
 	void HandleMouseInput(Command &activeCommands);
+	void HandleGamepadInput(Command &activeCommands);
 
 	void FillCollisionSets();
 

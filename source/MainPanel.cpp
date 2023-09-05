@@ -598,25 +598,7 @@ bool MainPanel::ControllerAxis(SDL_GameControllerAxis axis, int position)
 {
 	if(axis == SDL_CONTROLLER_AXIS_LEFTX || axis == SDL_CONTROLLER_AXIS_LEFTY)
 	{
-		// TODO: combine this logic with the onscreen joystick logic?
-		Ship* flagship = player.Flagship();
-		if(flagship)
-		{
-			Point p = GamePad::LeftStick();
-
-			if(p)
-			{
-				Command::InjectSet(Command::MOVETOWARD);
-			
-				flagship->SetMoveToward(p);
-			}
-			else
-			{
-				// joystick has returned to zero position
-				Command::InjectUnset(Command::MOVETOWARD);
-				joystickMax = false;
-			}
-		}
+		// Swallow these events. They are handled in Engine::HandleGamepadInput()
 		return true;
 	}
 	return false;
