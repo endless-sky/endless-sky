@@ -71,13 +71,13 @@ private:
 
 
 private:
-	void MergeStacks(int maxHeight) const;
+	void MergeStacks(int columns, int maxHeight) const;
 
 
 private:
 	mutable std::list<Icon> icons;
 	mutable std::vector<std::vector<const Ship *>> stacks;
-	mutable std::vector<Point> zones;
+	mutable std::vector<Rectangle> zones;
 };
 
 

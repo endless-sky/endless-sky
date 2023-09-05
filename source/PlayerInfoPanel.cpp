@@ -557,7 +557,6 @@ bool PlayerInfoPanel::Click(int x, int y, int clicks)
 			
 			// Also, we might start dragging it to reorder it.
 			isDragging = true;
-			SDL_Log("Click() setting isDragging to true");
 		}
 	}
 
@@ -591,7 +590,6 @@ bool PlayerInfoPanel::Release(int x, int y)
 {
 	if(!isDragging)
 		return true;
-	SDL_Log("Release() setting isDragging to false");
 	isDragging = false;
 
 	// Do nothing if the block of ships has not been dragged to a valid new

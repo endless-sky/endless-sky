@@ -917,10 +917,10 @@ interface "hud"
 
 	# Other HUD elements:
 	box "escorts"
-		from 0 460 top left
-		to 120 0 bottom left
+		from 0 442 top left
+		to 160 0 bottom left
 	box "messages"
-		from 120 0 bottom left
+		from 160 0 bottom left
 		to -335 -200 bottom right
 	box "ammo"
 		from -110 450 top right
