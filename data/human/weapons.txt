@@ -754,13 +754,13 @@ outfit "Meteor Missile Launcher"
 		"hit effect" "missile hit"
 		"inaccuracy" 2
 		"velocity" 0
-		"velocity override" 20
-		"lifetime" 56
+		"velocity override" 15
+		"lifetime" 75
 		"range override" 3850
 		"reload" 80
 		"firing energy" 1
 		"firing heat" 20
-		"acceleration" .5
+		"acceleration" .375
 		"drag" .025
 		"missile strength" 10
 	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. Meteors have limited maneuvering capabilities, and their infrared tracking systems only activate after a second of flight. However, Meteor Missiles are able to reach high velocities, leaving targets with little time to react. These qualities make Meteor Missiles effective against distant targets, but they will struggle to lock onto nearby enemies."
@@ -786,15 +786,15 @@ outfit "Meteor Missile Pod"
 		"hit effect" "missile hit"
 		"inaccuracy" 2
 		"velocity" 0
-		"velocity override" 20
-		"lifetime" 56
+		"velocity override" 15
+		"lifetime" 75
 		"range override" 3850
 		"reload" 200
 		"burst count" 7
 		"burst reload" 80
 		"firing energy" 1
 		"firing heat" 20
-		"acceleration" .5
+		"acceleration" .375
 		"drag" .025
 		"missile strength" 10
 	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. Meteors have limited maneuvering capabilities, and their infrared tracking systems only activate after a second of flight. However, Meteor Missiles are able to reach high velocities, leaving targets with little time to react. These qualities make Meteor Missiles effective at a distance, but they will struggle to lock onto nearby enemies."
@@ -808,9 +808,9 @@ outfit "Meteor Homing"
 		"die effect" "missile death"
 		"hit effect" "missile hit"
 		"velocity" 0
-		"lifetime" 136
+		"lifetime" 181
 		"acceleration" 1.6
-		"drag" .08
+		"drag" .11
 		"turn" 1.1
 		"homing" 4
 		"infrared tracking" .65
@@ -892,7 +892,7 @@ outfit "Sidewinder Missile Pod"
 	"outfit space" -4
 	"weapon capacity" -4
 	"gun ports" -1
-	"sidewinder capacity" 4
+	"sidewinder capacity" 6
 	weapon
 		sprite "projectile/sidewinder"
 			"no repeat"
@@ -909,7 +909,7 @@ outfit "Sidewinder Missile Pod"
 		"lifetime" 350
 		"range override" 4900
 		"reload" 150
-		"burst count" 4
+		"burst count" 5
 		"burst reload" 60
 		"firing energy" 1
 		"firing heat" 15
@@ -989,7 +989,7 @@ outfit "Javelin Mini Pod"
 	"outfit space" -3
 	"weapon capacity" -3
 	"gun ports" -1
-	"javelin capacity" 40
+	"javelin capacity" 30
 	weapon
 		sprite "projectile/javelin"
 		sound "javelin"
@@ -1000,7 +1000,7 @@ outfit "Javelin Mini Pod"
 		"velocity" 10
 		"lifetime" 60
 		"reload" 40
-		"burst count" 40
+		"burst count" 30
 		"burst reload" 15
 		"firing energy" .2
 		"firing heat" 12
@@ -1183,7 +1183,7 @@ outfit "Typhoon Pod"
 	"outfit space" -12
 	"weapon capacity" -12
 	"gun ports" -1
-	"typhoon capacity" 2
+	"typhoon capacity" 3
 	weapon
 		sprite "projectile/typhoon"
 			"frame rate" 4
@@ -1200,7 +1200,7 @@ outfit "Typhoon Pod"
 		"lifetime" 1100
 		"range override" 6600
 		"reload" 252
-		"burst count" 2
+		"burst count" 3
 		"burst reload" 120
 		"firing energy" 4
 		"firing heat" 50
@@ -1259,22 +1259,26 @@ outfit "Heavy Rocket Launcher"
 		"hit effect" "heavy rocket hit"
 		"die effect" "small explosion"
 		"inaccuracy" 1
-		"velocity" 0
-		"velocity override" 8
-		"lifetime" 125
+		"velocity" 12
+		"velocity override" 6
+		"lifetime" 250
 		"range override" 1000
 		"reload" 240
 		"firing energy" 1
 		"firing heat" 250
 		"acceleration" .2
-		"drag" .025
+		"drag" .05
+		"turn" .6
+		"homing" 1
+		"infrared tracking" .6
 		"trigger radius" 20
 		"blast radius" 50
 		"shield damage" 1060
 		"hull damage" 900
+		"disabled damage" 150
 		"hit force" 600
-		"missile strength" 16
-	description "Heavy Rockets are the most powerful missile weapon available, but at a price: instead of having a homing system, they simply fire straight forward and rely on a proximity trigger to set them off. Once triggered, however, they damage all ships within their blast radius, making them highly effective against clusters of fighters."
+		"missile strength" 32
+	description "Heavy Rockets are the most powerful missile weapon available, but at a price: their maneuvering and homing systems are rudimentary at best. Instead, they rely on a proximity trigger to set them off. Once triggered, they damage all ships within their blast radius, making them highly effective against clusters of fighters."
 
 outfit "Heavy Rocket Pod"
 	category "Secondary Weapons"
@@ -1295,23 +1299,28 @@ outfit "Heavy Rocket Pod"
 		"die effect" "small explosion"
 		"inaccuracy" 1
 		"velocity" 0
-		"velocity override" 8
-		"lifetime" 125
-		"range override" 1000
+		"velocity override" 3
+		"lifetime" 250
+		"range override" 450
 		"reload" 500
 		"burst count" 2
 		"burst reload" 240
 		"firing energy" 1
 		"firing heat" 250
 		"acceleration" .2
-		"drag" .025
+		"drag" .05
+		"turn" .6
+		"homing" 1
+		"infrared tracking" .6
 		"trigger radius" 20
 		"blast radius" 50
 		"shield damage" 1060
 		"hull damage" 900
+		"disabled damage" 150
 		"hit force" 600
-		"missile strength" 16
-	description "Heavy Rockets are the most powerful missile weapon available, but at a price: instead of having a homing system, they simply fire straight forward and rely on a proximity trigger to set them off. Once triggered, however, they damage all ships within their blast radius, making them highly effective against clusters of fighters."
+		"missile strength" 32
+	description "Heavy Rockets are the most powerful missile weapon available, but at a price: their maneuvering and homing systems are rudimentary at best. Instead, they rely on a proximity trigger to set them off. Once triggered, they damage all ships within their blast radius, making them highly effective against clusters of fighters."
+	description "Heavy Rocket Pods lack the launch boost of their launcher variants, giving them a much shorter effective range."
 	description "	Pods enable fighters and other light craft to carry small quantities of rockets into battle while retaining enough space for other weapons. Large ships are better off with full-size launchers."
 
 effect "heavy rocket hit"
