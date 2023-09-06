@@ -37,14 +37,7 @@ namespace {
 	// Convert an integer to a string where single-digit integers have a leading zero.
 	string ZeroPad(int i)
 	{
-		string s;
-
-		if(i < 10)
-			s += '0';
-
-		s += to_string(i);
-
-		return s;
+		return (i < 10 ? "0" : "") + to_string(i);
 	}
 
 	Preferences::DateFormat dateFormatInUse = Preferences::DateFormat::DMY;
