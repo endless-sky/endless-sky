@@ -130,7 +130,7 @@ string Date::LongString() const
 		"November",
 		"December"
 	};
-	string month = MONTH[Month() - 1];
+	const string &month = MONTH[Month() - 1];
 
 	Preferences::DateFormat dateFormat = Preferences::GetDateFormat();
 	string result;
