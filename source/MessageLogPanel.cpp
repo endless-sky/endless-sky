@@ -96,8 +96,8 @@ void MessageLogPanel::Draw()
 
 bool MessageLogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(command.Has(Command::MESSAGE_LOG)
-			|| key == 'd' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
+	if(command.Has(Command::MESSAGE_LOG) || key == 'd' || key == SDLK_ESCAPE
+			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
 	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
 	{
