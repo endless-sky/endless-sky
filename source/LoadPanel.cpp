@@ -76,7 +76,7 @@ namespace {
 #ifdef _WIN32
 		tm date;
 		localtime_s(&date, &timestamp);
-		auto str = string(buf, strftime(buf, fmt.second, fmt.first.first.c_str(), &date));
+		auto str = string(buf, strftime(buf, fmt.second, fmt.first.second.c_str(), &date));
 #else
 		const tm *date = localtime(&timestamp);
 		auto str = string(buf, strftime(buf, fmt.second, fmt.first.first.c_str(), date));
