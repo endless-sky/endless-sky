@@ -189,7 +189,7 @@ int main(int argc, char *argv[])
 		if(!GameWindow::Init())
 			return 1;
 
-		GameData::LoadShaders(!GameWindow::HasSwizzle());
+		GameData::LoadShaders();
 
 		// Show something other than a blank window.
 		GameWindow::Step();
@@ -206,7 +206,7 @@ int main(int argc, char *argv[])
 	}
 	catch(Test::known_failure_tag)
 	{
-		// This is not an error. Simply exit succesfully.
+		// This is not an error. Simply exit successfully.
 	}
 	catch(const runtime_error &error)
 	{
@@ -307,16 +307,16 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 				// and the OpenGL viewport to match.
 				GameWindow::AdjustViewport();
 			}
-			else if(activeUI.Handle(event))
-			{
-				// The UI handled the event.
-			}
 			else if(event.type == SDL_KEYDOWN && !toggleTimeout
 					&& (Command(event.key.keysym.sym).Has(Command::FULLSCREEN)
 					|| (event.key.keysym.sym == SDLK_RETURN && (event.key.keysym.mod & KMOD_ALT))))
 			{
 				toggleTimeout = 30;
 				Preferences::ToggleScreenMode();
+			}
+			else if(activeUI.Handle(event))
+			{
+				// The UI handled the event.
 			}
 			else if(event.type == SDL_KEYDOWN && !event.key.repeat
 					&& (Command(event.key.keysym.sym).Has(Command::FASTFORWARD)))
