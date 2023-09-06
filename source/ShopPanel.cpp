@@ -1074,10 +1074,10 @@ bool ShopPanel::Click(int x, int y, int clicks)
 			{
 				if(clicks > 1)
 				{
-					playerShips.clear();
 					bool foundSelectedShip = false;
 					// select all contiguous ships that are the same type as the
 					// ship that was double-clicked.
+					std::set<Ship*> playerShipsToSelect;
 					for(const shared_ptr<Ship> &ship : player.Ships())
 					{
 						if(!CanShowInSidebar(*ship, player.GetSystem()))
@@ -1089,11 +1089,16 @@ bool ShopPanel::Click(int x, int y, int clicks)
 							SideSelect(ship.get());
 						}
 						if(ship->ModelName() == zone.GetShip()->ModelName())
-							playerShips.insert(ship.get());
+							playerShipsToSelect.insert(ship.get());
 						else if(!foundSelectedShip) // not the correct range
-							playerShips.clear();
+							playerShipsToSelect.clear();
 						else
 							break; // we hit the end of the correct range.
+					}
+					if(foundSelectedShip)
+					{
+						playerShips = playerShipsToSelect;
+						return true;
 					}
 				}
 				else
@@ -1109,9 +1114,10 @@ bool ShopPanel::Click(int x, int y, int clicks)
 							SideSelect(dragShip);
 							return true;
 						}
-
-					selectedShip = zone.GetShip();
 				}
+				// If we get here, then the selected ship wasn't a player ship. it
+				// must be a ship for sale.
+				selectedShip = zone.GetShip();
 			}
 			else
 				selectedOutfit = zone.GetOutfit();
@@ -1188,29 +1194,37 @@ bool ShopPanel::Release(int x, int y)
 	}
 	else if (lastShipClickTime != static_cast<unsigned int>(-1))
 	{
-		if (SDL_GetTicks() - lastShipClickTime < LONG_CLICK_DURATION)
+		// what ship did we unclick on?
+		for(const Zone &zone : zones)
 		{
-			// normal click. Remove everything but the current ship
-			if (playerShip)
+			if(zone.Contains(Point(x, y)) && zone.GetShip() == playerShip)
 			{
-				playerShips.clear();
-				playerShips.insert(playerShip);
-				outfit_disposition.SetSelected(INSTALL_IN_SHIP);
-			}
-		}
-		else
-		{
-			// long click. if the ship was already there, remove it
-			if (shipToRemoveIfLongClick)
-			{
-				playerShips.erase(shipToRemoveIfLongClick);
-				if (shipToRemoveIfLongClick == playerShip)
+				if (SDL_GetTicks() - lastShipClickTime < LONG_CLICK_DURATION)
 				{
-					if (!playerShips.empty())
-						playerShip = *playerShips.begin();
-					else
-						playerShip = nullptr;
+					// normal click. Remove everything but the current ship
+					if (playerShip)
+					{
+						playerShips.clear();
+						playerShips.insert(playerShip);
+						outfit_disposition.SetSelected(INSTALL_IN_SHIP);
+					}
 				}
+				else
+				{
+					// long click. if the ship was already there, remove it
+					if (shipToRemoveIfLongClick)
+					{
+						playerShips.erase(shipToRemoveIfLongClick);
+						if (shipToRemoveIfLongClick == playerShip)
+						{
+							if (!playerShips.empty())
+								playerShip = *playerShips.begin();
+							else
+								playerShip = nullptr;
+						}
+					}
+				}
+				break;
 			}
 		}
 	}
