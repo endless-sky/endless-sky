@@ -909,7 +909,7 @@ outfit "Sidewinder Missile Pod"
 		"lifetime" 350
 		"range override" 4900
 		"reload" 150
-		"burst count" 5
+		"burst count" 6
 		"burst reload" 60
 		"firing energy" 1
 		"firing heat" 15
