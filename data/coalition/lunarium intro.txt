@@ -450,7 +450,7 @@ mission "Lunarium: Smuggling: Reactors"
 
 
 mission "House Bebliss 1-A"
-	name "Eight-Legged Hosts"
+	name "Meet with House Bebliss"
 	description "Head to <destination>, where members of House Bebliss wish to discuss a job offer."
 	minor
 	to offer
@@ -497,7 +497,7 @@ mission "House Bebliss 1-A"
 				accept
 
 mission "House Bebliss 1-B"
-	name "Eight-Legged Hosts"
+	name "Meet with House Bebliss"
 	description "Head to <destination>, where representatives from an Arach House that supports the Lunarium wish to discuss a job offer."
 	to offer
 		random < 40
@@ -537,7 +537,7 @@ mission "House Bebliss 1-B"
 				decline
 
 mission "House Bebliss 2-FW"
-	name "Old Friends"
+	name "Find Freya"
 	description "Go to <destination> and look for Freya to see if she is willing to let the members of House Bebliss study the Pug artifacts with her."
 	landing
 	to offer
@@ -627,12 +627,14 @@ mission "House Bebliss 2-FW"
 
 mission "House Bebliss 3-FW"
 	name "Tell the Free Worlds about the Coalition"
-	description "Go to <destination> and tell Alondo and the others all you've learned about the Coalition."
+	description "Go to <destination> with Freya and tell JJ all you've learned about the Coalition."
 	landing
 	to offer
 		has "House Bebliss 2-FW: done"
 	source "Pugglemug"
 	destination "Bourne"
+	passengers 1
+	blocked `You have reached <origin>, but you need <capacity> in order to take on the next mission. Return here when you have the required space free.`
 	on offer
 		conversation
 			`You look around for Freya, asking the local dock workers where the people researching the Pug tech left on the planet are. They direct you to a quieter, less crowded place, where some warehouse complexes have been set up. Some are painted in the usual Syndicate colors, some are guarded by a few Navy troops, and a Free Worlds flag flies by the entrance of the one you enter. Inside, you see groups of people surrounding the various artifacts the Pug left behind. Some of them are running complicated looking tests, but it seems that they are mostly discussing what to do with the artifacts next. One of the graviton transmitters sits opposite to the entrance, half intact, half dismantled, with an array of scientists poking and prodding the inside machinery.`
@@ -647,7 +649,7 @@ mission "House Bebliss 3-FW"
 				`	(Tell her everything, including the Lunarium.)`
 				`	(Don't mention the Lunarium.)`
 					goto "don't tell"
-			`	You give her a rundown of the Coalition, explaining about the three species, the Heliarchs and their fight against the Quarg, the Lunarium Redoubt and their intentions to overthrow the Heliarchy, and the part House Bebliss plays in that, handing her the suitcase when you're done.`
+			`	You give her a quick rundown of the Coalition, explaining about the three species, the Heliarchs and their fight against the Quarg, the Lunarium Redoubt and their intentions to overthrow the Heliarchy, and the part House Bebliss plays in that, handing her the suitcase when you're done.`
 			label suitcase
 			`	"Well, at least these ones are asking if they can come invade us," she jokes as she lays the suitcase on a table, opening it. "Three alien species, huh? We were picking up some degraded radio signals from these systems, before the war even, so I figured there was someone out there." She begins to read the message House Bebliss prepared for her, frowning right at the start. "You didn't write this, did you?" You shake your head. "Thought so. The words are... jumbled?"`
 			choice
@@ -657,9 +659,12 @@ mission "House Bebliss 3-FW"
 			choice
 				`	"So you're fine with letting them study the Pug artifacts with you?"`
 				`	"I can go back and tell them you've agreed then?"`
-			`	"Have you told the others about this?" Freya asks, and you tell her you haven't. "Alondo, Katya... they need to know about this 'Coalition,'" continues Freya, "even if they've no intention of invading us. I'll send word to them that you'll be heading to <planet>. You can tell them all the details there. However, I'm sure they'll have lots of questions and some inevitable suggestions. When you're done, you can go pick up these Arachi and bring them here. It'll give me some more time to look at what they've sent me." She finishes her instructions by grabbing some sort of schematic from the suitcase you brought.`
-			`	You say your goodbyes, and you head back to your ship.`
+			`	"Have you told the others about this?" Freya asks, and you tell her you haven't. "Alondo, JJ... they need to know about this 'Coalition,'" continues Freya, "even if they've no intention of invading us. JJ is stationed on <planet> currently, so I'll send word to him that we'll be heading there to meet with him. You can give us the whole situation, all details you've found out, there."` 
+			`	You follow her back out of the room, and she tells the workers there she'll be heading away with you to <planet> to discuss some matters with JJ. They wish you a good trip, and you head out of the building and into a small residential area near the warehouse, built for the workers during their stay here. You help Freya pack her things while she messages JJ, and you two head to your ship. "When you're done, you can go pick up these Arachi and bring them here. On our way to <planet>, and while you're away getting them, I'll have some time to look at what they've sent me."`
+			`	You show her to her bunk once you're inside your ship, and plot a course for <destination>.`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Freya hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 mission "House Bebliss 4-FW"
 	name "An Answer to House Bebliss"
@@ -671,18 +676,15 @@ mission "House Bebliss 4-FW"
 	destination "Factory of Eblumab"
 	on offer
 		conversation
-			`JJ is waiting for you when you land, wearing a uniform with various medals and honors on his chest. "It was nice to hear from Freya that you'd be stopping to pay us a visit. Well, until she started going on about how you had some 'critical' information, that is," he says as he shakes your hand, sighing gently. "So much for taking a break from managing fleets."`
+			`JJ is waiting for you two when you land, wearing a uniform with various medals and honors on his chest. He greets Freya with a handshake, then turns to you. "It was nice to hear from Freya that you'd be stopping to pay us a visit. Well, until she started going on about how you had some 'critical' information, that is," he says as he shakes your hand, sighing gently. "So much for taking a break from managing fleets."`
 			choice
-				`	"Sorry about that. It's nice to see you too, JJ. Are the others here yet?"`
-					goto others
+				`	"Sorry about that. It's nice to see you too, JJ."`
+					goto nice
 				`	"Well, you won't need to worry about anything being 'critical' too much when it comes to these aliens. Hopefully."`
-			`	"Hopefully? Wait, aliens?!" He gives you a mix between a worried look and a stern face. "Let's just go meet up with the others. That way you don't need to repeat what I'm guessing is a long story."`
-			label others
-			`	He beckons you to follow him to a traffic shuttle. "I brought Katya and Ijs here once we got Freya's message. They were visiting Zug for a presentation about the Conservatory, and that's where I happened to be during my break. Alondo's made some time for us, so I'll bring you to his office. You can tell us the details there."`
-			`	You get in the shuttle, which eventually brings you to a towering government building. As you get closer, you notice the main courtyard is home to a multitude of different colored flags, all of them situated around the Free Worlds' own. "Planetary flags," JJ says as you both get out of the shuttle. "Some of our planets created their own recently, and some of the more diplomatic folks decided to set them up around the major government buildings." Leaving the flags waving in the breeze, the two of you head inside the building and go up an elevator, arriving on a floor with a couple rooms to the side and a larger one opposite the elevator. You enter the larger room and see Alondo seated behind a nice wooden desk, Ijs walking around, and Katya sitting on a sofa.`
-			`	"How are you, <first>?" Katya gets up to greet you. "We came as soon as we got Freya's message, but I was still a bit surprised to get here before you, given the new toys you must have by now. You and Freya have gotten Ijs all worried and theorizing there," she says as she points to him.`
-			`	"Well, one minute I'm speaking on a panel, the other I get word we need to come to <origin> because <first> has something 'critical' to tell all of us. Of course I'll be worried." He stops, and comes to greet you. "Sorry. It's good to see you again <first>, I just... got a bit carried away thinking about Freya's message."`
-			`	Alondo also stands up and comes to greet you. "Maybe you worry too much, maybe we don't worry enough. Let's decide after <first> tells us all about... well, whatever it is you're telling us."`
+			`	"Hopefully? Wait, aliens?!" He gives you a mix between a worried look and a stern face. "Let's just go talk in my office. I'm guessing this is going to be a long story."`
+			label nice
+			`	He beckons you to follow him to a traffic shuttle, which eventually brings you to a towering government building. As you get closer, you notice the main courtyard is home to a multitude of different colored flags, all of them situated around the Free Worlds' own. "Planetary flags," JJ says as you both get out of the shuttle. "Some of our planets created their own recently, and some of the more diplomatic folks decided to set them up around the major government buildings." Leaving the flags waving in the breeze, the three of you head inside the building and go up an elevator, arriving on a floor with a couple rooms to the side and a larger one opposite the elevator. You enter the larger room and see a nice wooden desk, which JJ heads to, sitting behind it, as Freya takes a seat on the sofa.`
+			`	"Well, here we are. What is this 'critical information' you've found, Captain <last>?"`
 			branch lunarium
 				has "Lunarium: Questions: done"
 			choice
@@ -696,32 +698,33 @@ mission "House Bebliss 4-FW"
 					goto tell
 				`	(Don't mention the Lunarium.)`
 			label standard
-			`	Everyone quietly listens as you explain to them all you've learned about the Coalition. You bring up a map of the Free Worlds and show them the rough area of Coalition space and where it borders Free Worlds territory. As you gesture towards the map, you tell them of the three species, about the Heliarchs and how they've taken the three Quarg rings. Eventually you get to the Arach Houses, explaining that House Bebliss are the ones who wish to go study the Pug artifacts with Freya.`
-			`	When you're done, Alondo is the first to speak up. "So far, we seem to be getting along better with these aliens than we did with the Pug. It's good that they're trying to be diplomatic, though I'm not sure it'd be a good idea for the general public to know of them, given past experiences. At least for right now."`
-			`	"Do they have jump drives?" Katya asks. You nod, but say that they can't make their own. "Well, as long as what stockpile they have isn't too large, we shouldn't be in too much trouble."`
+			`	JJ quietly listens as you explain to him all you've learned about the Coalition. You bring up a map of the Free Worlds and show him and Freya the rough area of Coalition space and where it borders Free Worlds territory. As you gesture towards the map, you tell them of the three species, about the Heliarchs and how they've taken the three Quarg rings. Eventually you get to the Arach Houses, explaining that House Bebliss are the ones who wish to go study the Pug artifacts with Freya.`
+			`	When you're done, JJ is the first to speak up. "So far, we seem to be getting along better with these aliens than we did with the Pug. It's good that they're trying to be diplomatic, though I'm not sure it'd be a good idea for the general public to know of them, given past experiences. At least for right now."`
+			`	"Do they have jump drives?" Freya asks. You nod, but say that they can't make their own. "Well, as long as what stockpile they have isn't too large, we shouldn't be in too much trouble."`
 			`	"Except they took three Quarg rings," JJ chimes in. "They've beaten the Quarg? So they're stronger than the Quarg? More advanced?" He asks.`
 			choice
 				`	"No, but their ships are still a lot tougher than human ones."`
 				`	"No, but they do outnumber humans - all humans."`
-			`	"The Quarg would never just abandon their rings, and do you know how many Quarg are in one ring alone? There's no way they would have lost three of them like that," Ijs says. "They'll want those rings back, that's certain."`
+			`	"The Quarg would never just abandon their rings, and do you know how many Quarg are in one ring alone? There's no way they would have lost three of them like that," Freya says. "They'll want those rings back, that's certain."`
 			`	"And we're right between this 'Coalition' and the Quarg near Tarazed." JJ points at the map. "If they decide to go get their rings back, and our neighbors decide to use their jump drives to create a buffer before the Quarg hit them on their home turf..."`
-			`	They stay silent for a while, then Alondo picks up the talk again. "If the Quarg have waited six thousand years, then they might wait a few thousand more. What matters now is that we know of these aliens, meaning we must start thinking about possible outcomes to all of this and what they mean for the Free Worlds. If we start preparations now, perhaps we'll get lucky and we won't get caught up in any other wars; especially wars involving the Quarg."`
+			`	They stay silent for a while, then JJ picks up the talk again. "If the Quarg have waited six thousand years, then they might wait a few thousand more. What matters now is that we know of these aliens, meaning we must start thinking about possible outcomes to all of this and what they mean for the Free Worlds. If we start preparations now, perhaps we'll get lucky and we won't get caught up in any other wars; especially wars involving the Quarg."`
 				goto accept
 			label tell
-			`	Everyone quietly listens as you explain to them all you've learned about the Coalition. You bring up a map of the Free Worlds and show them the rough area of Coalition space and where it borders Free Worlds territory. As you gesture towards the map, you tell them of the three species, about the Heliarchs and how they've taken the three Quarg rings. Eventually you get to the Arach Houses, explaining that House Bebliss are the ones who wish to go study the Pug artifacts with Freya. You also tell them about the Lunarium, explaining the group's actions and their wish to take down the Heliarch government, and what role House Bebliss has in helping them.`
-			`	When you're done, Alondo is the first to speak up. "So far, we seem to be getting along better with these aliens than we did with the Pug. It's good that they're trying to be diplomatic, though I'm not sure it'd be a good idea for the general public to know of them, given past experiences. At least for right now." He pauses, then addresses you directly. "It's... bold of you to want to help this resistance group of theirs. There's some sympathy given the Free Worlds' own history, but they sound like they have an even worse shot than what we had."`
-			`	"Whatever their government is, or whether it's overthrown or not, it doesn't change that they're right at our doorstep," Katya says. "Do they have jump drives?" she asks. You nod, but say that they can't make their own. "Well, as long as what stockpile they have isn't too large, we shouldn't be in too much trouble."`
+			`	JJ quietly listens as you explain to him all you've learned about the Coalition. You bring up a map of the Free Worlds and show him and Freya the rough area of Coalition space and where it borders Free Worlds territory. As you gesture towards the map, you tell them of the three species, about the Heliarchs and how they've taken the three Quarg rings. Eventually you get to the Arach Houses, explaining that House Bebliss are the ones who wish to go study the Pug artifacts with Freya. You also tell them about the Lunarium, explaining the group's actions and their wish to take down the Heliarch government, and what role House Bebliss has in helping them.`
+			`	When you're done, JJ is the first to speak up. "So far, we seem to be getting along better with these aliens than we did with the Pug. It's good that they're trying to be diplomatic, though I'm not sure it'd be a good idea for the general public to know of them, given past experiences. At least for right now." He pauses, then addresses you directly. "It's... bold of you to want to help this resistance group of theirs. There's some sympathy given the Free Worlds' own history, but they sound like they have an even worse shot than what we had."`
+			`	"Whatever their government is, or whether it's overthrown or not, it doesn't change that they're right at our doorstep," Freya says. "Do they have jump drives?" she asks. You nod, but say that they can't make their own. "Well, as long as what stockpile they have isn't too large, we shouldn't be in too much trouble."`
 			`	"Except they took three Quarg rings," JJ chimes in. "They've beaten the Quarg? So they're stronger than the Quarg? More advanced?" He asks.`
 			choice
 				`	"No, but their ships are still a lot tougher than human ones."`
 				`	"No, but they do outnumber humans - all humans."`
-			`	"The Quarg would never just abandon their rings, and do you know how many Quarg are in one ring alone? There's no way they would have lost three of them like that," Ijs says. "They'll want those rings back, no matter what faction is holding them."`
+			`	"The Quarg would never just abandon their rings, and do you know how many Quarg are in one ring alone? There's no way they would have lost three of them like that," Freya says. "They'll want those rings back, no matter what faction is holding them."`
 			`	"And we're right between this 'Coalition' and the Quarg near Tarazed." JJ points at the map. "If they decide to go get their rings back, and our neighbors decide to use their jump drives to create a buffer before the Quarg hit them on their home turf..."`
-			`	"Well, if <first> and this 'Lunarium Redoubt' succeed, it probably won't come to that, from what I've gathered," Alondo says.`
+			`	"Well, if <first> and this 'Lunarium Redoubt' succeed, it probably won't come to that, from what I've gathered," Freya says.`
 			`	"And if they don't? Then a human tried to help the rebels in their space overthrow them. A human that worked for the Free Worlds," JJ responds. "I'm not blaming you, <first>, but we don't know what these 'Heliarchs' will do if you fail. If they figure out how to make their own jump drives, or worse, learn how to cut off our systems like the Pug did..."`
-			`	They stay silent for a while, then Alondo picks up the talk again. "If this rebel group never came to be, we could eventually be caught up in a war between the Heliarchs and the Quarg. If they succeed, we won't need to worry about that, at least. If they fail, and the Heliarchs retaliate against humanity, we ask the Quarg for help. At least, with <first> helping these rebels, there's a chance we won't get caught up in a war between the Heliarchs and the Quarg."`
+			`	They stay silent for a while, then Freya picks up the talk again. "If this rebel group never came to be, we could eventually be caught up in a war between the Heliarchs and the Quarg. If they succeed, we won't need to worry about that, at least. If they fail, and the Heliarchs retaliate against humanity, we ask the Quarg for help. At least, with <first> helping these rebels, there's a chance we won't get caught up in a war between the Heliarchs and the Quarg."`
+			`	JJ thinks for a bit. "Fair enough, but it's still worrying."`
 			label accept
-			`	Alondo makes a few calls, arranging some meetings to inform Free Worlds officials of what you've told him, then heads out with you and the others. You go to a cozy restaurant near the center of town, where Ijs and Katya tell you a bit of their recent work in the Conservatory, and JJ laments about some trouble he's been having with handling patrol fleets. Alondo keeps asking you to tell more of your travels with the jump drive, and what you've seen of the galaxy. You do your best to describe the stars you've seen and planets you've been to, as well as the alien wildlife you've encountered. You worry at first that the stories might draw some attention to your table, but the waiters and other customers don't seem to pay much mind; either they ignored you or simply brushed it off as you having had too many drinks. You leave at dusk, say your goodbyes to everyone, and head back to your ship. You should head back to <planet> now and tell House Bebliss that Freya's agreed to their proposal.`
+			`	JJ makes a few calls, arranging some meetings to inform Free Worlds officials of what you've told him, then heads out with you and Freya. You go to a cozy restaurant near the center of town, where Freya tells you a bit more of her recent work in Deneb, and JJ laments about some trouble he's been having with handling patrol fleets. He also comments on having visited Katya and Ijs in the Conservatory somewhat recently. They both keep asking you to tell more of your travels with the jump drive, and what you've seen of the galaxy. You do your best to describe the stars you've seen and planets you've been to, as well as the alien wildlife you've encountered. You worry at first that the stories might draw some attention to your table, but the waiters and other customers don't seem to pay much mind; either they ignored you or simply brushed it off as you having had too many drinks. You leave at dusk, and Freya says she'll help JJ in some of the talks with the Free Worlds officials, and will later find her own way back to Deneb. You say your goodbyes to them, and head back to your ship. You should return to <planet> now and tell House Bebliss that Freya's agreed to their proposal.`
 				accept
 
 mission "House Bebliss 5-FW"
@@ -764,7 +767,7 @@ mission "House Bebliss 5-FW"
 			`	"Once ready to leave, you are, meet us in the main spaceport, you should," one of them says.`
 
 mission "House Bebliss 6-FW"
-	name "Far From Home"
+	name "Escort House Bebliss"
 	description "Escort the ship with House Bebliss' representatives to <destination>, where they intend to join Freya in her studies on hyperspace links."
 	to offer
 		has "House Bebliss 5-FW: done"
@@ -802,10 +805,15 @@ mission "House Bebliss 6-FW"
 				`	"You think they'll be well hidden here?"`
 				`	"You think they'll be safe here?"`
 					goto safe
+				`	"What about the Republic and the Syndicate? Will you tell the teams here about the Arachi?"`
+					goto tell
 			`	"Well, <planet> has surged in population, for sure, but it's far from a tourist hotspot for now," she answers. "As long as they stick to that ship, no one should know they're here."`
 				goto end
 			label safe
 			`	"<planet> is close enough to Sol that we get Navy fleets flying by here pretty often, and it's far away enough from the pirate strongholds that we rarely get any of them raiding here. They'll be fine."`
+				goto end
+			label tell
+			`	"That's more up to JJ, Alondo and others more involved with Bourne and the Senate to decide. I imagine once they've put together a report of all you've told us, we'll be sharing that with the Republic and Syndicate. Probably best to avoid letting it out to the public right away though, there's still a lot of tension about aliens due to the Pug invasion."`
 			label end
 			`	She moves away from the ship, and you both leisurely walk back to the Free Worlds' warehouse, chatting as you go. "I need to go tell my team that we're moving some of the load to Southbound's new experimental freighter. I'd prefer to tell them what's going on myself - it makes things so much easier - but I think I'll wait a little longer before doing that. I want to see if I can get a good reading on these aliens first. Perhaps another scientific conversation would help. I'll be in contact if something happens. Safe travels, <first>."`
 			`	You say goodbye, and head to your ship. From the looks of it, it might take some months, if not years, before House Bebliss gets what information they wanted out of this trip.`
@@ -1147,6 +1155,7 @@ mission "Lunarium: Evacuation 6"
 	on visit
 		dialog `You land on <planet>, but realize that your escort with the <bunks> immigrants hasn't arrived in the system yet. Better depart and wait for it.`
 	on complete
+		set "Lunarium introduced"
 		"assisted lunarium" ++
 		payment 7149832
 		conversation
@@ -1415,6 +1424,7 @@ mission "Lunarium: Propaganda 4"
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Tummug, his colleagues and the posters hasn't arrived in the system yet. Better depart and wait for it.`
 	on complete
+		set "Lunarium introduced"
 		"assisted lunarium" ++
 		payment 894000
 		conversation
@@ -1653,7 +1663,7 @@ mission "Lunarium: Combat Training 4"
 	on offer
 		payment 3000000
 		conversation
-			`Pyakri's fleet lands on the pads around the <ship>, and they message you saying they will wait for nightfall to board your ship. Once the sun sets you notice them opening their hatches, so you open your own and help them quickly and quietly sneak into your ship. Perhaps because they'd grown used to human space, or maybe they simply did not care since they were going home for good, they proved a lot less cautious this time around, though you still don't imagine anyone saw them.`
+			`Pyakri's fleet lands on the pads around the <ship>, and they message you saying they will wait for nightfall to board your ship. In the meantime, they focus on removing objects and tools and undoing adaptations to the ships that could give away their presence. Once the sun sets you notice them opening their hatches, so you open your own and help them quickly and quietly sneak into your ship. Perhaps because they'd grown used to human space, or maybe they simply did not care since they were going home for good, they proved a lot less cautious this time around, though you still don't imagine anyone saw them.`
 			`	Once everyone is in your ship, Pyakri approaches you and hands you some credit chips worth <payment> in total. "Tried splitting the fleet into smaller ones for a while, we did, so taken some simpler, less rewarding bounties, we also have," she explains. "But, hopefully made enough to pay you for your services, we have."`
 			choice
 				`	"Did you manage to fight the pirates well enough?"`
@@ -1664,7 +1674,7 @@ mission "Lunarium: Combat Training 4"
 			label pirates
 			`	"Lie I will not, difficult the first few months were. Very used to the Coalition, to our equipment, we were, so forget that the ships had no hull repair capabilities of their own, we many times did," she passes her two front legs over her head a few times, as if brushing it in some shame. "Lucky we were, that no casualties we had. At least, a good way to improvise mid-battle rescues, it all was." she finishes, perking up her head.`
 			label accept
-			`	She tells you that they're ready to head back to the Coalition, to <destination>, from where they'll head back to their respective bases and share their newfound experience with Lunarium recruits. You help Pyakri and the rest to their bunks, and set a course for <planet>.`
+			`	You once again help them contact the local, and arrange for the selling of their fleet. After the process is done and the workers have finished taking away the ships, Pyakri tells you that they're ready to head back to the Coalition, to <destination>, from where they'll head back to their respective bases and share their newfound experience with Lunarium recruits. You help Pyakri and the rest to their bunks, and set a course for <planet>.`
 				accept
 	on visit
 		dialog `You've reached <planet>, but your escort bringing Pyakri and the other Lunarium members hasn't entered the system yet. Better depart and wait for them.`
@@ -1723,6 +1733,8 @@ mission "Lunarium: Questions"
 			has "Heliarch Investigation 2: active"
 			has "Heliarch License: done"
 			"reputation: Quarg" < 0
+	to complete
+		has "Lunarium: Quarg Interview: accepted"
 	on offer
 		require "Jump Drive"
 		conversation
@@ -1742,7 +1754,12 @@ mission "Lunarium: Quarg Interview"
 		has "Lunarium: Questions: done"
 	on offer
 		conversation
-			`You leave your ship to find a pair of Kimek waiting for you. "Follow us to the meeting point, you will," one of them says, and you oblige, trying to keep a low profile as you go with them across the city. You reach a district near the center of town, with modest blocks and few skyscrapers, and head into what seems to be a Kimek restaurant. You continue following the two Kimek past busy tables and Kimek patrons who all have eyes on you as you head to the back.`
+			`Here on <origin>, the Lunarium leaders are waiting for you. Would you like to meet with them and officially join the Lunarium? Given their cause against the Heliarchs, this would no doubt set you on path to conflict with the Heliarchy.`
+			choice
+				`	(Yes.)`
+				`	(Not yet.)`
+					defer
+			`	You leave your ship to find a pair of Kimek waiting for you. "Follow us to the meeting point, you will," one of them says, and you oblige, trying to keep a low profile as you go with them across the city. You reach a district near the center of town, with modest blocks and few skyscrapers, and head into what seems to be a Kimek restaurant. You continue following the two Kimek past busy tables and Kimek patrons who all have eyes on you as you head to the back.`
 			`	Taking an elevator, you move down a few levels. You arrive at some doors that open to an Arach delegation, with half a dozen bulky Arachi surrounding a young, fine-dressed lady in a blue "dress" with white lines wrapping around it. "Oh, finally arrived, have they?" she says as you step off the elevator, coming to meet you. "<first> <last>, is it? So intrigued by our most recent recruit, I was, that decided I did to come to this meeting for once. Lady Lobmab Bebliss, I am, head of our great house, and benefactor to the Lunarium." She steps one leg forward, to you, as if in some archaic Arach gesture. Unsure on how to respond, you do your best extravagant bow, which seems to satisfy her as she pulls her leg back closer to her body. "Confess I must, however, that most inconvenient it is, to come so far away while maintaining a low profile. Difficult to just disappear, it is, when the head of the greatest Arach House, you are. Hope I do that worth it, your contributions are."`
 			choice
 				`	"I'll do what I can to help."`
