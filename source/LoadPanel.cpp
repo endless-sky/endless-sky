@@ -172,6 +172,7 @@ void LoadPanel::Draw()
 			FillShader::Fill(zone.Center(), zone.Dimensions(), Color(.1 * alpha, 0.));
 		font.Draw({it.first, {220, Truncate::BACK}}, point, Color((isHighlighted ? .7 : .5) * alpha, 0.));
 		point += Point(0., 20.);
+		AddZone(zone, [this, zone]() { Click(zone.Center().X(), zone.Center().Y(), 1); });
 	}
 
 	// The hover count "decays" over time if not hovering over a saved game.
@@ -202,6 +203,8 @@ void LoadPanel::Draw()
 			const string name = file.substr(pos, file.size() - 4 - pos);
 			font.Draw({name, {220, Truncate::BACK}}, point, Color((isHighlighted ? .7 : .5) * alpha, 0.));
 			point += Point(0., 20.);
+
+			AddZone(zone, [this, zone]() { Click(zone.Center().X(), zone.Center().Y(), 1); });
 		}
 	}
 	if(!hoverText.empty())
