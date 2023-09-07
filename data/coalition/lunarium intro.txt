@@ -659,7 +659,7 @@ mission "House Bebliss 3-FW"
 			choice
 				`	"So you're fine with letting them study the Pug artifacts with you?"`
 				`	"I can go back and tell them you've agreed then?"`
-			`	"Have you told the others about this?" Freya asks, and you tell her you haven't. "Alondo, JJ... they need to know about this 'Coalition,'" continues Freya, "even if they've no intention of invading us. JJ is stationed on <planet> currently, so I'll send word to him that we'll be heading there to meet with him. You can give us the whole situation, all details you've found out, there."` 
+			`	"Have you told the others about this?" Freya asks, and you tell her you haven't. "Alondo, JJ... they need to know about this 'Coalition,'" continues Freya, "even if they've no intention of invading us. JJ is stationed on <planet> currently, so I'll send word to him that we'll be heading there to meet with him. You can give us the whole situation, all details you've found out, there."`
 			`	You follow her back out of the room, and she tells the workers there she'll be heading away with you to <planet> to discuss some matters with JJ. They wish you a good trip, and you head out of the building and into a small residential area near the warehouse, built for the workers during their stay here. You help Freya pack her things while she messages JJ, and you two head to your ship. "When you're done, you can go pick up these Arachi and bring them here. On our way to <planet>, and while you're away getting them, I'll have some time to look at what they've sent me."`
 			`	You show her to her bunk once you're inside your ship, and plot a course for <destination>.`
 				accept
