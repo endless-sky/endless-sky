@@ -65,6 +65,8 @@ public:
 	bool Contains(const Rectangle &other) const;
 	// Check if the given rectangle overlaps with this one.
 	bool Overlaps(const Rectangle &other) const;
+	// Check if the given circle overlaps with this rectangle.
+	bool Overlaps(const Point &center, double radius) const;
 
 
 private:
