@@ -410,13 +410,3 @@ void Panel::SetUI(UI *ui)
 {
 	this->ui = ui;
 }
-
-
-
-std::vector<Point> Panel::ZonePositions() const
-{
-	std::vector<Point> ret;
-	for(const Zone& z: zones)
-		ret.push_back(z.Center());
-	return ret;
-}

@@ -311,20 +311,6 @@ void UI::DrawAll()
 	for( ; it != stack.end(); ++it)
 		(*it)->Draw();
 
-	// TODO: troubleshooting code. we don't want this.
-	//DelaunayTriangulation dt;
-	//for(auto* zone: GetZones())
-	//{
-	//	dt.AddPoint(zone->Center());
-	//}
-	//auto points = dt.Points();
-	//for(auto& e: dt.Edges())
-	//{
-	//	LineShader::Draw(points[e.first], points[e.second], 3, Color(0));
-	//	LineShader::Draw(points[e.first], points[e.second], 1, Color());
-	//}
-	// End troubleshooting code
-
 	// If the panel has a valid ui element selected, draw a rotating indicator
 	// around it
 	GamepadCursor::Draw();
@@ -476,6 +462,17 @@ Point UI::GetMouse()
 
 
 
+// Return the positions of every active zone. Used for joystick navigation.
+std::vector<Point> UI::ZonePositions() const
+{
+	std::vector<Point> options;
+	for (const Panel::Zone* zone: GetZones())
+		options.push_back(zone->Center());
+	return options;
+}
+
+
+
 // If a push or pop is queued, apply it.
 void UI::PushOrPop()
 {
@@ -589,7 +586,7 @@ bool UI::DefaultControllerButtonDown(SDL_GameControllerButton button)
 
 
 // Get all the zones from currently active panels
-std::vector<Panel::Zone*> UI::GetZones()
+std::vector<Panel::Zone*> UI::GetZones() const
 {
 	std::vector<Panel::Zone*> zones;
 	for(auto it = stack.rbegin(); it != stack.rend(); ++it)

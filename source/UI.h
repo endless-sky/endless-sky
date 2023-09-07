@@ -79,6 +79,7 @@ public:
 	// Get the current mouse position.
 	static Point GetMouse();
 
+	std::vector<Point> ZonePositions() const;
 
 private:
 	// If a push or pop is queued, apply it.
@@ -89,7 +90,7 @@ private:
 	bool DefaultControllerTriggerReleased(SDL_GameControllerAxis axis, bool positive);
 	bool DefaultControllerButtonUp(SDL_GameControllerButton button);
 	bool DefaultControllerButtonDown(SDL_GameControllerButton button);
-	std::vector<Panel::Zone*> GetZones();
+	std::vector<Panel::Zone*> GetZones() const;
 
 private:
 	// Whether the player has taken actions that enable us to save the game.

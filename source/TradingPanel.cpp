@@ -138,9 +138,9 @@ void TradingPanel::Draw()
 	}
 
 	buyMultiplier.SetPosition(Rectangle::FromCorner(Point(MIN_X + BUY_X, y), Point(58, 16)));
+	buyMultiplier.Draw(this);
 	sellMultiplier.SetPosition(Rectangle::FromCorner(Point(MIN_X + SELL_X, y), Point(58, 16)));
-	// draw buy/sellMultiplier later, so that their dropdowns appear on top of
-	// other stuff
+	sellMultiplier.Draw(this);
 	
 	font.Draw("In Hold", Point(MIN_X + HOLD_X, y), selected);
 
@@ -217,6 +217,11 @@ void TradingPanel::Draw()
 
 			font.Draw("[buy]", Point(MIN_X + BUY_X, y), color);
 			font.Draw("[sell]", Point(MIN_X + SELL_X, y), color);
+
+			Rectangle buyRect = Rectangle::FromCorner(Point(MIN_X + BUY_X, y), Point(SELL_X - BUY_X, 20));
+			Rectangle sellRect = Rectangle::FromCorner(Point(MIN_X + SELL_X, y), Point(HOLD_X - SELL_X, 20));
+			AddZone(buyRect, [this, buyRect]() { Click(buyRect.Center().X(), buyRect.Center().Y(), 1); });
+			AddZone(sellRect, [this, sellRect]() { Click(sellRect.Center().X(), sellRect.Center().Y(), 1); });
 		}
 		else
 		{
@@ -243,10 +248,6 @@ void TradingPanel::Draw()
 	if(player.Cargo().Free() > 0 && canBuy)
 		info.SetCondition("can buy");
 	tradeUi->Draw(info, this);
-
-
-	buyMultiplier.Draw(this);
-	sellMultiplier.Draw(this);
 }
 
 
@@ -327,6 +328,27 @@ bool TradingPanel::Click(int x, int y, int clicks)
 		return false;
 
 	return true;
+}
+
+
+
+bool TradingPanel::ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive)
+{
+	if(axis == SDL_CONTROLLER_AXIS_RIGHTY)
+	{
+		int selectedRow = player.MapColoring();
+		selectedRow += positive ? 1 : -1;
+		if(selectedRow < 0) selectedRow = 0;
+		else if(selectedRow >= COMMODITY_COUNT) selectedRow = COMMODITY_COUNT -1;
+		player.SetMapColoring(selectedRow);
+		return true;
+	}
+	if(axis == SDL_CONTROLLER_AXIS_RIGHTX)
+	{
+		Buy(positive ? -1 : 1);
+		return true;
+	}
+	return false;
 }
 
 
