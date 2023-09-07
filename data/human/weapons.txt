@@ -1268,9 +1268,6 @@ outfit "Heavy Rocket Launcher"
 		"firing heat" 250
 		"acceleration" .2
 		"drag" .05
-		"turn" .6
-		"homing" 1
-		"infrared tracking" .6
 		"trigger radius" 20
 		"blast radius" 50
 		"shield damage" 1060
@@ -1299,7 +1296,7 @@ outfit "Heavy Rocket Pod"
 		"die effect" "small explosion"
 		"inaccuracy" 1
 		"velocity" 0
-		"velocity override" 3
+		"velocity override" 4
 		"lifetime" 250
 		"range override" 450
 		"reload" 500
@@ -1309,9 +1306,6 @@ outfit "Heavy Rocket Pod"
 		"firing heat" 250
 		"acceleration" .2
 		"drag" .05
-		"turn" .6
-		"homing" 1
-		"infrared tracking" .6
 		"trigger radius" 20
 		"blast radius" 50
 		"shield damage" 1060
