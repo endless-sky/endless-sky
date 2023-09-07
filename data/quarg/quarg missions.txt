@@ -222,7 +222,7 @@ mission "Lagrange Ring: Cargo"
 		payment 953000
 		conversation
 			`Much like your own ship, several other human freighters and convoys are arriving, and the cargo being meticulously checked by the Quarg, as they use their own machinery to unload what must be tens of thousands of tons from all the ships.`
-			`	About halfway through the unload of your own cargo, a Quarg comes up to you and hands you <payment>.`
+			`	About halfway through the unloading of your own cargo, a Quarg comes up to you and hands you <payment>.`
 
 
 
