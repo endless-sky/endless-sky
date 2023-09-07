@@ -1275,7 +1275,7 @@ outfit "Heavy Rocket Launcher"
 		"disabled damage" 150
 		"hit force" 600
 		"missile strength" 32
-	description "Heavy Rockets are the most powerful missile weapon available, but at a price: their maneuvering and homing systems are rudimentary at best. Instead, they rely on a proximity trigger to set them off. Once triggered, they damage all ships within their blast radius, making them highly effective against clusters of fighters."
+	description "Heavy Rockets are the most powerful missile weapon available, but at a price: instead of having a homing system, they simply fire straight forward and rely on a proximity trigger to set them off. Once triggered, however, they damage all ships within their blast radius, making them highly effective against clusters of fighters."
 
 outfit "Heavy Rocket Pod"
 	category "Secondary Weapons"
@@ -1313,7 +1313,7 @@ outfit "Heavy Rocket Pod"
 		"disabled damage" 150
 		"hit force" 600
 		"missile strength" 32
-	description "Heavy Rockets are the most powerful missile weapon available, but at a price: their maneuvering and homing systems are rudimentary at best. Instead, they rely on a proximity trigger to set them off. Once triggered, they damage all ships within their blast radius, making them highly effective against clusters of fighters."
+	description "Heavy Rockets are the most powerful missile weapon available, but at a price: instead of having a homing system, they simply fire straight forward and rely on a proximity trigger to set them off. Once triggered, however, they damage all ships within their blast radius, making them highly effective against clusters of fighters."
 	description "Heavy Rocket Pods lack the launch boost of their launcher variants, giving them a much shorter effective range."
 	description "	Pods enable fighters and other light craft to carry small quantities of rockets into battle while retaining enough space for other weapons. Large ships are better off with full-size launchers."
 
