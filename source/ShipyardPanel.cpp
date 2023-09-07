@@ -63,8 +63,10 @@ namespace {
 
 			const Font &font = FontSet::Get(14);
 			static const string label = "Random";
-			Point labelPos = randomPos - .5 * Point(font.Width(label), font.Height());
+			Point labelSize(font.Width(label), font.Height());
+			Point labelPos = randomPos - .5 * labelSize;
 			font.Draw(label, labelPos, *GameData::Colors().Get("medium"));
+			AddZone(Rectangle(randomPos, labelSize), [this]() { Click(randomPos.X(), randomPos.Y(), 1); });
 		}
 
 	protected:

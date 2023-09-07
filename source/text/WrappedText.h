@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define ES_TEXT_WRAPPEDTEXT_H_
 
 #include "alignment.hpp"
+#include "../Animate.h"
 #include "DisplayText.h"
 #include "../Point.h"
 #include "truncate.hpp"
@@ -127,6 +128,8 @@ private:
 	int height = 0;
 	int visibleHeight = -1;
 	int scrollY = 0;
+	mutable Animate<int> animateScrollY;
+	
 	int longestWidth = 0;
 };
 

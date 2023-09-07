@@ -154,16 +154,18 @@ void WrappedText::Draw(const Point &topLeft, const Color &color) const
 {
 	if(words.empty())
 		return;
+	
+	animateScrollY.Step(scrollY);
 
 	if(truncate == Truncate::NONE)
 	{
-		double maxY = visibleHeight + topLeft.Y();
+		double maxY = visibleHeight + topLeft.Y() - font->Height();
 		for(const Word &w : words)
 		{
 			Point pos = w.Pos() + topLeft;
 			if(visibleHeight != -1)
 			{
-				pos.Y() -= scrollY;
+				pos.Y() -= animateScrollY;
 				if(pos.Y() < topLeft.Y() || pos.Y() > maxY)
 					continue;
 			}
@@ -210,6 +212,7 @@ int WrappedText::VisibleHeight() const
 
 void WrappedText::SetScroll(int offsetY)
 {
+	animateScrollY.Set(scrollY, 7);
 	if(offsetY < 0)
 		scrollY = 0;
 	else if(offsetY > height - visibleHeight)

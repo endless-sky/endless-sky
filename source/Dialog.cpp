@@ -159,17 +159,17 @@ void Dialog::Draw()
 		string cancelText = isMission ? "Decline" : "Cancel";
 		cancelPos = pos + Point(isWide ? 110. : 10., 0.);
 		SpriteShader::Draw(cancel, cancelPos);
-		Point labelPos(
-			cancelPos.X() - .5 * font.Width(cancelText),
-			cancelPos.Y() - .5 * font.Height());
+		Point labelSize(font.Width(cancelText), font.Height());
+		Point labelPos = cancelPos - (labelSize / 2);
 		font.Draw(cancelText, labelPos, !okIsActive ? bright : dim);
+		AddZone(Rectangle(cancelPos, labelSize), [this]() { Click(cancelPos.X(), cancelPos.Y(), 1); });
 	}
 	string okText = isMission ? "Accept" : "OK";
 	okPos = pos + Point(isWide ? 190. : 90., 0.);
-	Point labelPos(
-		okPos.X() - .5 * font.Width(okText),
-		okPos.Y() - .5 * font.Height());
+	Point labelSize(font.Width(okText), font.Height());
+	Point labelPos = okPos - (labelSize / 2);
 	font.Draw(okText, labelPos, isOkDisabled ? inactive : (okIsActive ? bright : dim));
+	AddZone(Rectangle(okPos, labelSize), [this]() { Click(okPos.X(), okPos.Y(), 1); });
 
 	// Draw the text.
 	text.Draw(textPos, dim);
@@ -177,7 +177,9 @@ void Dialog::Draw()
 	// Draw the input, if any.
 	if(!isMission && (intFun || stringFun))
 	{
-		FillShader::Fill(inputPos, Point(Width() - 20., 20.), back);
+		Point inputSize = Point(Width() - 20., 20.);
+		FillShader::Fill(inputPos, inputSize, back);
+		AddZone(Rectangle(inputPos, inputSize), [this, inputPos]() { Click(inputPos.X(), inputPos.Y(), 1); });
 
 		Point stringPos(
 			inputPos.X() - (Width() - 20) * .5 + 5.,
@@ -265,6 +267,10 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 		okIsActive = !canCancel;
 	else if(key == SDLK_RIGHT)
 		okIsActive = true;
+	else if(key == SDLK_UP)
+		text.DoScroll(-Preferences::ScrollSpeed());
+	else if(key == SDLK_DOWN)
+		text.DoScroll(Preferences::ScrollSpeed());
 	else if(key == SDLK_RETURN || key == SDLK_KP_ENTER || isCloseRequest
 			|| (isMission && (key == 'a' || key == 'd')))
 	{
@@ -306,21 +312,9 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 
 
 
-bool Dialog::ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive)
+bool Dialog::Scroll(double dx, double dy)
 {
-	// Treat all axis inputs as left and right buttons
-	KeyDown(positive ? SDLK_RIGHT : SDLK_LEFT, 0, Command(), true);
-	return true;
-}
-
-
-
-bool Dialog::ControllerButtonDown(SDL_GameControllerButton button)
-{
-	if(button == SDL_CONTROLLER_BUTTON_A)
-		return KeyDown(SDLK_RETURN, 0, Command(), true);
-	else if(button == SDL_CONTROLLER_BUTTON_GUIDE)
-		return KeyDown(SDLK_ESCAPE, 0, Command(), true);
+	text.DoScroll(-dy * Preferences::ScrollSpeed());
 	return true;
 }
 
