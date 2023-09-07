@@ -4081,8 +4081,8 @@ planet Sopoyra
 planet "Spec Inci"
 	attributes "incipias quarg" quarg
 	landscape land/sky7
-	description "This small moon seems to be used as just a shipment point, ships are dropping off large amounts of minables that then get proccessed by large machines. Other ships load the proccessed materials and fly away."
-	spaceport "The spaceport is fully automised, you can see no Quarg that is not part of a ships crew."
+	description "This small moon seems to be used as just a shipment and processing base, ships are dropping off large amounts of minables that then get proccessed by large machines that do their work surprisingly very silent. Other ships load the proccessed materials and fly away."
+	spaceport "The spaceport is fully automised, you can see no Quarg that is not part of a ships crew. When a ship lands on one of the landing pads on the surface an elevator moves it underground into one of the many hangars. One section of the ship is restricted and a large amount of military ships can be seen."
 	government "Quarg (Incipias)"
 	bribe 0
 	security 0.9
@@ -4488,8 +4488,8 @@ planet "Typhon Station"
 planet "Ut Divitas"
 	attributes "incipias quarg" quarg
 	landscape land/canyon13
-	description "A few lonely cities sprawl like flowers on the surface of the moon. Elegant and abstract architecture are confusing the eye."
-	spaceport "The spaceport is a small one, consisting of only a few landing pads. The Quarg working there seem to be confused by your presence."
+	description "The surface is bare and there is no sign of life to be seen anywhere. A few lonely but giant cities sprawl like flowers on the surface of the moon, the architecture is abstract and elegant like nothing humans ever build."
+	spaceport "The spaceport is a small one, consisting of only a few landing pads. Ships that are landed here are mostly civilian. The Quarg working there seem to be confused by your presence."
 	government "Quarg (Incipias)"
 	bribe 0
 	security 0.9

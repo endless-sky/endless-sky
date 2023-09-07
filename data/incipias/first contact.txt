@@ -19,7 +19,7 @@ mission "Incipias: First Contact I"
 	on enter Dom'us
 		set "saw the Incipias"
 		conversation
-			`As you enter the system, you notice ships of a type you have never seen before. You try to hail them but all that comes back is static. After some more unsuccessful attempts, you give up. Maybe you can find some more information in nearby systems.`
+			`As you enter the system, you notice ships of a type you have never seen before. Hailing them only gives you static. After some more unsuccessful attempts, you give up. Maybe you can find some more information in nearby systems.`
 
 mission "Incipias: Meet the Quarg"
 	invisible
@@ -29,4 +29,78 @@ mission "Incipias: Meet the Quarg"
 	to complete
 		never
 	on offer
-		``
+		conversation
+			branch "ut divitas" "spec inci"
+				"flagship planet: Ut Divitas"
+			label "ut divitas"
+			`With a soft jolt your spaceship lands. A small group of Quarg quickly gathers around your ship, they make some simple but clear gestures to tell you to wait. After they noticed that you understood them. One of them walks away in a hurrily manner.`
+			`   Only a moment later the Quarg returns with another Quarg. The new one starts talking with a very strange accent.`
+				goto "both planets"
+			label "spec inci"
+			`You land on one of the automised landing pads. As soons as you shut your engines off it starts to move into a hangar slot. The gates of the hangar close. You leave your ship and notice a door on the side of the hangar, a sign there is showing something in a foreign language, but as you get closer it turns white for a moment, before the words "HUMAN DETECTED, PLEASE WAIT WHILE ASSISTANCE IS ON THE WAY" appear. Left with no other choice you have to stay where you are.`
+			`    Luckily it only takes a few minutes until the doors open and three Quarg appear behind it. The one in the middle is wearing clothing that makes clear that it is a military official. The two in the back are wearing full combat gear but do not seem to expect a fight. The one in the middle starts talking in a very strange accent.`
+			label "both planets"
+			`    "Welcome human, long ways came you. Kind of yours never here have been, your mission?"`
+			choice
+				`"I am just exploring the galaxy."`
+					goto "explorer"
+				`"I am looking for new species."`
+					goto "new species"
+			label "explorer"
+			`    "An obvious pursuit for the young that is," it nods, "if advice you I may, to not walk this way in a careless maner, the galaxy holds many dangers that your kind has yet to discover or even to understand." It straightens up to its full height, towering over you, "but in the end worth the trouble it will be."`
+				goto "end"
+			label "new species"
+			`    "What a peculiar task that is," it looks confused and tilts its head, "what to achieve by this you hope? That an incredible amount of dangers come with meeting other species you not know? For a reason invisble borders in space there are. To be careful and consider every last step I advice."`
+			label "end"
+			`    After a short pause it continues talking, "Your presence here our kind accepts, although not very happy we are. Allowed to travel here you are, but conditions there are. Not too far from here another kind just starts growing, great plans for them our leaders have. Do not interrupt them, hostile actions against them we will revenge."`
+			`    With these words the Quarg turns around and leaves. It seems like you are free to use the local facilities now.`
+
+ship "Nimbus" "Nimbus FTL"
+	add attributes
+		"bunks" -25
+	outfits
+		"Liquid-Class Shield"
+		"Liquid Hydrogen Cell"
+		"Heavy Machine Gun" 20
+
+		"MH Red-Class Engine"
+		"MH Red-Class Steering"
+
+mission "Incipias: The derelict"
+	landing
+	invisible
+	to offer
+		has "Incipias: Meet the Quarg: offered"
+	npc board
+		government "Hicemus"
+		ship "Nimbus FTL" "HIC Veni #000001"
+		system "Hui'uc"
+		on board
+			conversation
+				`When you approach the ship you get hailed and as you accept the hail color gradients start moving over your screen but your speakers stay silent. It seems like communication over these channels is doomed to fail, you continue your boarding maneuver.`
+				scene "scene/incipias message"
+				`    You manage to dock to the disabled ship quite easily. The lock opens and a hallway opens up before you, obviously not built for humans, the walls are strangely curved and the floor has nearly no grip at all. But your view gets caught by the five giant aliens half octopode, half jellyfish, they are pulsating in bright colors, similar to the gradients that appeared on your screen earlier. One of them is floating behind a giant mounted gun, the two barrels are pointed right at you. The gunner flashes in an orange light, and you can feel the tension in the room rising.`
+				choice
+					"Try to convey that you intend no harm."
+						goto peace
+					"Drop the repair equipment and run back into your ship."
+						goto flee
+					"Try to make a non lethal shot at the one behind the turret and run!"
+				`    You hit the creature manning the turret, causing it to explode with a strident sound. Before you can enjoy your short-lived victory, the other turret aims your way. Turning your head you see the gunner flashing in a deep red, before shooting you down, avenging their fallen comrade.`
+					die
+				label peace
+				`    Feeling that the situation could escalate every moment, you slowly place the crate with the repair equipment on the ground, careful to not make any hasty movements and walk back a few steps. No side moves for a moment until one of the aliens slowly moves forward, tones of yellow are now mixing into the orange. Two of their tentacles wrap around the crate, the other four are backing of a little bit. The front one succeeds in finding the opening mechanism, right after it got a look inside, its colors shift to a weak green. The other four also seem to relax as they take on the same color.`
+				`    With the repair equipment delivered there is nothing else you can do and communication is not working so you turn around and leave. Just as you leave you can see how the aliens start pulsating in all colors of the spectrum, gradients are moving over their skin so fast that it almost looks white.`
+					goto end
+				label flee
+				`    As the tension starts raising even further, you just drop the repair equipment and run back into your ship, you smash the button that closes the lock. You get a last look on the alien, blue and yellow tones are mixing on their skin, but they are not taking any action.`
+				label end
+				`    Apparently they figured how to use the repair equipment, as you fly away the engines of the ship are booting back up.`
+				
+		personality
+			confusion 50
+			derelict uninterested
+	on enter "Hui'uc"
+		conversation
+			`On entering the system you find an alien space ship disabled and badly damaged. You remember your training as a captain when your teacher told you about something about a codex of captains, "A captain never leaves a ship in need behind."`
+

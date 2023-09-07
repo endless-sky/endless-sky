@@ -638,7 +638,7 @@ government "Hicemus"
 	language "Incups"
 	"player reputation" 0
 	"attitude toward"
-		"Incipias" 0.1
+		"Incipias" 1
 		"Incipias Civilian" 1
 
 government "Incipias"
@@ -649,7 +649,7 @@ government "Incipias"
 	language "Incups"
 	"player reputation" 0
 	"attitude toward"
-		"Hicemus" 0.1
+		"Hicemus" 1
 		"Incipias Civilian" 1
 
 government "Incipias Civilian"
@@ -1167,6 +1167,22 @@ government "Quarg (Incipias)"
 		"Hai (Wormhole Access)" .01
 		"Pirate" -.01
 		"Pirate (Devil-Run Gang)" -.01
+	"custom penalties for"
+		"Incipias"
+			disable -10.
+			board -10.
+			capture -20.
+			destroy -40.
+		"Incipias Civillian"
+			disable -10.
+			board -10.
+			capture -20.
+			destroy -40.
+		"Hicemus"
+			disable -10.
+			board -10.
+			capture -20.
+			destroy -40.
 	"death sentence" "quarg imprisonment"
 	"hostile hail" "hostile quarg"
 	"hostile disabled hail" "hostile quarg"
