@@ -184,12 +184,12 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 
 		if(outline)
 		{
-			const static GLfloat shifts[4][2] = 
+			const static GLfloat shifts[4][2] =
 			{
 				{-0.2f, -0.2f},
-				{-0.2f, +0.2f},
-				{+0.2f, -0.2f},
-				{+0.2f, +0.2f},
+				{-0.2f,  0.2f},
+				{ 0.2f, -0.2f},
+				{ 0.2f,  0.2f},
 			};
 			glUniform1i(darkI, 2);
 			for(int x = 0; x < 4; x++)
