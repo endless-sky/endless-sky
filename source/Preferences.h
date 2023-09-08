@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cstdint>
 #include <string>
+#include <vector>
 
 
 
@@ -106,6 +107,7 @@ public:
 	static bool ZoomViewOut();
 	static double MinViewZoom();
 	static double MaxViewZoom();
+	static const std::vector<double> &Zooms();
 
 	static void ToggleScreenMode();
 	static const std::string &ScreenModeSetting();
