@@ -6319,26 +6319,23 @@ mission "Care Package to South 1"
 	cargo "care package" 1
 	on offer
 		conversation
-			`Among the bustle of the spaceport, one figure catches your attention. A woman stands alone on one side of the passageway with a bubble of space around her that seems to be maintained by sheer force of personality. She doesn't seem to be saying anything, at least. As you get closer to her, you notice a large package at her feet. Something about you catches her attention, and she looks you straight in the eye and beckons.`
+			`Among the bustle of the spaceport, one figure catches your attention. A woman stands alone on one side of the passageway with a bubble of space around her that is maintained by sheer force of personality. She doesn't seem to be saying anything, at least. As you get closer, you notice a large package at her feet. Something about you catches her attention, and she looks you in the eye and beckons.`
 			choice
 				`	(Go over to her and find out what this is about.)`
-					goto interested
-				`	(Ignore her, I don't have time for this.)`
+				`	(Ignore her.)`
 					decline
-			label interested
 			`	You make your way through the crowd to the edge of her bubble. As soon as you do, she extends her hand. "I'm Torrey. Torrey Dupont."`
-			`	You take the hand and shake it. "<first> <last>. I'm a-"`
-			`	"An independent captain, yes. I could tell. I would like to hire you to transport a package." Torrey indicates the box beside her with a nudge of her toe.`
+			`	You take the hand and shake it. "<first> <last>."`
+			`	"I can tell you're independent captain. I would like to hire you to transport a package." Torrey indicates the box beside her with a nudge of her toe.`
 			choice
 				`	"What's in the box?"`
-				`	"Wouldn't it be easier and cheaper to send it via the commercial courier services?"`
+				`	"Wouldn't it be easier and cheaper to send it via a courier service?"`
 					goto commercial
 			`	She glances down at it. "It's nothing too special - some local stuff from around here. Mostly foods and things that you just can't get made the same anywhere else."`
-			`	"Wouldn't it be easier and cheaper to send it via the commercial courier services?"`
+			`	"Wouldn't it be easier and cheaper to send it via a courier service?" you ask.`
 			label commercial
 			`	Torrey gives a sardonic smile. "Well, yes; the thing is, I'm sending it to a friend who's an NCO in the militia for the Southern Mutual Defense Pact. Normally, of course, that would be fine, but... then there's who I am." She reaches into a pocket and pulls out a piece of paper - a printout of a news headline. "Protests Block Access To Council Chambers For Fourth Straight Day." Underneath the headline is a picture of Torrey holding up a sign decrying recent actions by the government.`
-			`	"So you see," she continues, "I'm already being somewhat watched by the Republic government. What with the rumors lately, I really don't want to do anything that would throw any suspicion onto Irene, but..." she glances down at the box. "She's really been missing some of the stuff from home, and I don't want to make her life less pleasant just because I do things that draw negative attention from high places."`
-			`	She falls silent, waiting impassively for your response.`
+			`	"So you see," she continues, "I'm already being watched by the Republic government. What with the rumors lately, I really don't want to do anything that would throw any suspicion onto Irene, but..." She glances down at the box. "She's really been missing some of the stuff from home, and I don't want to make her life less pleasant because of what I've been doing."`
 			choice
 				`	"All right; I'll deliver the package."`
 					goto deliver
@@ -6384,10 +6381,8 @@ mission "Care Package to South 3a"
 			`Now that you have a minute to breathe, you stop to check your non-urgent messages. Among them you see the casualty lists from the Battle of Greenrock.`
 			choice
 				`	(Open the message.)`
-					goto read
 				`	(Delete it unread.)`
-			decline
-			label read
+					decline
 			`You only have to scroll through the lists for a few seconds before you see:`
 			`	`
 			`		MSGT BROWER, IRENE`
@@ -6406,8 +6401,8 @@ mission "Care Package to South 2b"
 		has "FW Pirates: Diplomacy 4: done"
 	on offer
 		conversation
-			`As you leave the quartermaster's building, you spot a familiar face coming in the other direction: Irene Brower, the gunnery sergeant you delivered a care package to before the war, though she seems to have master sergeant insignia now. She's on crutches, with what looks like a brand-new prosthetic leg. She spots you at about the same time, and her face, though lined with pain, brightens. She limps over. "Hey, I know you! You brought me that package from Tor, before - thanks!" She shifts her weight, and something evidently twinges, for she winces and shifts it back.`
-			`	You open your mouth, then shut it again, feeling a little awkward and unsure what to say about Irene's condition. She immediately notices your embarrassment, and grins lopsidedly. "Yeah, I was a casualty of the Battle of Greenrock. My CO thought it was a good idea to follow Councilor Voigt's plan to suppress the pirates there - to be honest, I agreed with him at the time." She pauses a moment. "Now, not so sure, and not just because a blown-out shield capacitor lost me a leg. I heard what happened on Thule, both the good and the bad of it. I'm not sure I can really say I think force was the best answer now."`
+			`As you leave the quartermaster's building, you spot a familiar face coming in the other direction: Irene Brower, the gunnery sergeant you delivered a care package to before the war, though she seems to have master sergeant insignia now. She's on crutches, with what looks like a brand-new prosthetic leg. When she spots you, her pained face brightens. "Hey, I know you! You brought me that package from Tor before. Thanks!" She shifts her weight, then winces and shifts it back.`
+			`	She notices you looking at her leg, and grins lopsidedly. "Yeah, I was a casualty of the Battle of Greenrock. My CO thought it was a good idea to follow Voigt's plan to suppress the pirates there. To be honest, I agreed with him at the time." She pauses a moment. "Now, not so sure, and not just because a blown-out shield capacitor lost me a leg. I heard what happened on Thule, both the good and the bad of it. I'm not sure force was the best answer now."`
 			choice
 				`	"I'm so sorry for your loss."`
 					goto sorry
@@ -6478,35 +6473,35 @@ mission "Moving House 1"
 
 			label establishment
 			choice
-				`	"The...establishment?"`
+				`	"The... establishment?"`
 				`	(Just let it pass.)`
 					goto pass
-			`	Kris nods again. "Yeah, y'know, The Man!"`
+			`	Kris nods again. "Yeah, y'know, The Man!`
 			label pass
 			`	"I don't support government or any of its tools, and I've heard that the South is more open to this kind of philosophy and lifestyle."`
-			`	Before you can say more, they walk past you into the <ship>. "Which did you say my berth was again...?"`
+			`	Before you can say more, they walk past you onto the <ship>. "Which did you say my berth was again...?"`
 				accept
 			
 	on stopover
 		conversation
 			`As you traveled to <planet stopovers>, you found yourself frequently listening to Kris' opinions on the subject of governments. While they had some very good points, other times they would spend hours ranting about things that seem completely impractical and without a solid foundation. If it weren't for the fact that they were unfailingly polite otherwise, and eager to help with chores around the ship, you would've declared the cockpit off-limits.`
 			`	Still, you are somewhat relieved that when you arrive, both of you are too out of breath from moving furniture to talk more.`
-			`	You soon have it loaded up, though, and start the trip south to <destination>.`
+			`	You soon have it loaded up, though, and start the trip south to <planet>.`
 	on complete
 		payment
 		payment 5000
 		log "Minor People" "Kris Brecht" `An anarchist committed enough to their ideals to move to the South in hopes of finding a less statist community.`
 		conversation
-			`At last you reach <destination>, and Kris enthusiastically unloads their possessions into a waiting transport van. Before they disappear, they press a credit chip for <payment> into your hands and assure you that you are a valuable ally to the "anti-statist movement."`
+			`At last, you reach <planet>, and Kris enthusiastically unloads their possessions into a waiting transport van. Before they disappear, they press a credit chip for <payment> into your hands and assure you that you are a valuable ally to the "anti-statist movement."`
 
 mission "Moving House Timer"
 	invisible
 	landing
 	to offer
 		has "Moving House 1: done"
-		has "event: war begins"
+		has "event: Thule becomes independent"
 	on offer
-		event "kris gets frustrated" 120 365
+		event "kris gets frustrated" 20 60
 		fail
 		
 event "kris gets frustrated"
@@ -6525,7 +6520,7 @@ mission "Moving House 2"
 	on offer
 		conversation
 			`When you check your messages upon landing, you notice one from an unfamiliar source. At first, you think it's a scam, because it tries to redirect you through three different servers, but then you see it calls you "ally of the anti-statist movement."`
-			`	Sure enough, it's from Kris. "You have to come and get me. I can't stand living here any longer!" It includes directions to a home somewhere on <planet> where you last saw Kris, but nothing more.`
+			`	Sure enough, it's from Kris Brecht, the anarchist. "You have to come and get me. I can't stand living here any longer!" It includes directions to a home somewhere on <planet> where you last saw Kris, but nothing more.`
 				accept
 	on complete
 		conversation
@@ -6551,7 +6546,7 @@ mission "Moving House 3"
 				goto fire
 			
 			label weather
-			`	"So, what is it about <origin> you can't stand? Is it the damp weather?"`
+			`	You ask, "So, what is it about <origin> you can't stand? Is it the damp weather?"`
 			
 			label fire
 			`	A fire kindles in Kris' eyes, and a righteous fury seems to possess them. "I thought when I came here that I'd be among like-minded souls. There's barely any government to speak of here! But then when the war started, they were aaaaall sooooo delighted with the so-called Free Worlds! 'Free!' They're just another state!"`
