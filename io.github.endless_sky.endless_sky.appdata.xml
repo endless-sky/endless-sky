@@ -7,7 +7,7 @@
   <summary xml:lang="de">Weltraumhandels und Kampfsimulator</summary>
   <summary xml:lang="fr">Jeu d'exploration et de combat dans l'espace</summary>
   <developer_name>Michael Zahniser</developer_name>
-  <project_license>GPL-3.0 AND GPL-2.0 AND CC-BY-SA-4.0 AND CC-BY-SA-3.0 AND CC-BY-4.0 AND CC-BY-3.0 AND CC-BY-2.0 AND CC0-1.0</project_license>
+  <project_license>GPL-3.0-or-later</project_license>
   <metadata_license>CC0-1.0</metadata_license>
   <description>
     <p>Explore other star systems. Earn money by trading, carrying passengers, or completing missions. Use your earnings to buy a better ship or to upgrade the weapons and engines on your current one. Blow up pirates. Take sides in a civil war. Or leave human space behind and hope to find some friendly aliens whose culture is more civilized than your own...</p>

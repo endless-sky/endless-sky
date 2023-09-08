@@ -286,6 +286,13 @@ void Body::SetSwizzle(int swizzle)
 
 
 
+double Body::Alpha() const
+{
+	return alpha;
+}
+
+
+
 // Set the frame rate of the sprite. This is used for objects that just specify
 // a sprite instead of a full animation data structure.
 void Body::SetFrameRate(float framesPerSecond)
