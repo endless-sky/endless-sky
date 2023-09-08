@@ -35,6 +35,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Plugins.h"
 #include "Politics.h"
 #include "Preferences.h"
+#include "RaidFleet.h"
 #include "Random.h"
 #include "SavedGame.h"
 #include "Ship.h"
@@ -103,6 +104,15 @@ namespace {
 		else if(entry == "wormhole")
 			return SystemEntry::WORMHOLE;
 		return SystemEntry::TAKE_OFF;
+	}
+
+	bool HasClearance(const PlayerInfo &player, const Planet *planet)
+	{
+		auto CheckClearance = [&planet](const Mission &mission) -> bool
+		{
+			return mission.HasClearance(planet);
+		};
+		return any_of(player.Missions().begin(), player.Missions().end(), CheckClearance);
 	}
 }
 
@@ -989,13 +999,26 @@ Ship *PlayerInfo::Flagship()
 const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 {
 	if(!flagship)
+	{
+		bool clearance = false;
+		if(planet)
+			clearance = planet->CanLand() || HasClearance(*this, planet);
 		for(const shared_ptr<Ship> &it : ships)
-			if(!it->IsParked() && it->GetSystem() == system && it->CanBeFlagship()
-					&& (!planet || planet->CanLand(*it)))
+		{
+			if(it->IsParked())
+				continue;
+			if(it->GetSystem() != system)
+				continue;
+			if(!it->CanBeFlagship())
+				continue;
+			const bool sameLocation = !planet || it->GetPlanet() == planet;
+			if(sameLocation || (clearance && !it->GetPlanet() && planet->IsAccessible(it.get())))
 			{
 				flagship = it;
 				break;
 			}
+		}
+	}
 
 	static const shared_ptr<Ship> empty;
 	return (flagship && flagship->IsYours()) ? flagship : empty;
@@ -1333,7 +1356,7 @@ pair<double, double> PlayerInfo::RaidFleetFactors() const
 
 
 
-double PlayerInfo::RaidFleetAttraction(const Government::RaidFleet &raid, const System *system) const
+double PlayerInfo::RaidFleetAttraction(const RaidFleet &raid, const System *system) const
 {
 	double attraction = 0.;
 	const Fleet *raidFleet = raid.GetFleet();
@@ -1484,13 +1507,15 @@ void PlayerInfo::Land(UI *ui)
 
 	// Ships that are landed with you on the planet should fully recharge.
 	// Those in remote systems restore what they can without landing.
-	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();
+	bool clearance = HasClearance(*this, planet);
+	bool hasSpaceport = planet->HasSpaceport() && (clearance || planet->CanUseServices());
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsParked() && !ship->IsDisabled())
 		{
 			if(ship->GetSystem() == system)
 			{
-				if(planet->CanLand(*ship))
+				const bool alreadyLanded = ship->GetPlanet() == planet;
+				if(alreadyLanded || planet->CanLand(*ship) || (clearance && planet->IsAccessible(ship.get())))
 				{
 					ship->Recharge(hasSpaceport);
 					if(!ship->GetPlanet())
@@ -3233,6 +3258,17 @@ void PlayerInfo::RegisterDerivedConditions()
 	flagshipAttributeProvider.SetGetFunction(flagshipAttributeFun);
 	flagshipAttributeProvider.SetHasFunction(flagshipAttributeFun);
 
+	auto &&flagshipBaysProvider = conditions.GetProviderPrefixed("flagship bays: ");
+	auto flagshipBaysFun = [this](const string &name) -> int64_t
+	{
+		if(!flagship)
+			return 0;
+
+		return flagship->BaysTotal(name.substr(strlen("flagship bays: ")));
+	};
+	flagshipBaysProvider.SetGetFunction(flagshipBaysFun);
+	flagshipBaysProvider.SetHasFunction(flagshipBaysFun);
+
 	auto &&playerNameProvider = conditions.GetProviderPrefixed("name: ");
 	auto playerNameFun = [this](const string &name) -> bool
 	{
@@ -3283,7 +3319,7 @@ void PlayerInfo::RegisterDerivedConditions()
 
 		// This variable represents the probability of no raid fleets spawning.
 		double safeChance = 1.;
-		for(const auto &raidFleet : system->GetGovernment()->RaidFleets())
+		for(const auto &raidFleet : system->RaidFleets())
 		{
 			// The attraction is the % chance for a single instance of this fleet to appear.
 			double attraction = RaidFleetAttraction(raidFleet, system);

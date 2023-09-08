@@ -25,8 +25,10 @@ set(CMAKE_BUILD_RPATH_USE_ORIGIN ON)
 
 # Setup vcpkg.
 if(ES_USE_VCPKG)
+	set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake"
+		CACHE STRING "Vcpkg toolchain file")
 	# No need to bootstrap vcpkg if the toolchain file is explictly provided.
-	if(NOT CMAKE_TOOLCHAIN_FILE)
+	if(CMAKE_TOOLCHAIN_FILE STREQUAL "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake")
 		include(utils/vcpkg_bootstrap.cmake)
 		x_vcpkg_bootstrap()
 	endif()
@@ -35,8 +37,6 @@ if(ES_USE_VCPKG)
 	set(VCPKG_INSTALL_OPTIONS "--no-print-usage")
 	set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
 	set(X_VCPKG_APPLOCAL_DEPS_INSTALL ON)
-	set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake"
-		CACHE STRING "Vcpkg toolchain file")
 endif()
 
 if(NOT ES_USE_SYSTEM_LIBRARIES)
@@ -44,11 +44,13 @@ if(NOT ES_USE_SYSTEM_LIBRARIES)
 	list(APPEND VCPKG_MANIFEST_FEATURES "system-libs")
 endif()
 
-# Tell vcpkg to use system libraries that are missing in the Flatpak or Steam runtime if necessary.
+# Tell vcpkg to use system libraries that are missing on the respective platform.
 if(ES_FLATPAK)
 	list(APPEND VCPKG_MANIFEST_FEATURES "flatpak-libs")
 elseif(ES_STEAM)
 	list(APPEND VCPKG_MANIFEST_FEATURES "steam-libs")
+elseif(APPLE)
+	list(APPEND VCPKG_MANIFEST_FEATURES "macos-libs")
 endif()
 
 # Various helpful options for IDEs.

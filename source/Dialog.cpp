@@ -85,6 +85,14 @@ namespace {
 }
 
 
+Dialog::Dialog(function<void()> okFunction, const string &message, Truncate truncate, bool canCancel, bool okIsActive)
+	: voidFun(okFunction)
+{
+	Init(message, truncate, canCancel, false);
+	this->okIsActive = okIsActive;
+}
+
+
 
 // Dialog that has no callback (information only). In this form, there is
 // only an "ok" button, not a "cancel" button.

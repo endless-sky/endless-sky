@@ -6301,3 +6301,71 @@ mission "Blind Man from Martini"
 				clear "Blind Man from Martini: label looking"
 			`	With that, he grabs his cane and his luggage, and follows a hospital attendant toward his daughter's room, leaving you in the reception.`
 
+
+
+mission "FW Refugees to Humanika"
+	name "Transport Refugee Family"
+	description "Transport a family of <bunks> refugees and <cargo> to <destination>. Payment is <payment>."
+	minor
+	source
+		attributes "dirt belt" "rim" "south"
+		not government Quarg
+		not near Tarazed 1
+	destination Humanika
+	to offer
+		has "event: war begins"
+		not "chosen sides"
+		random < 15
+	to fail
+		has "chosen sides"
+	passengers 3
+	cargo "household goods" 2
+	on offer
+		conversation
+			`A young family of three is walking around the spaceport talking to merchant captains. From the looks of it, they're not having much luck.`
+			choice
+				`	(Approach them.)`
+				`	(Ignore them.)`
+					defer
+			`	The parents introduce themselves as Penny Little and Rosa Perkins. Their young child is named Eduardo. Penny asks, "any chance you're willing to take us and <tons> of our belongings to <destination>? We're concerned that the war between the Republic and the Free Worlds is going to get dangerous, so we want to raise Eduardo on a Quarg planet instead. We can pay <payment>."`
+			label "main choice"
+			choice
+				`	"Why were all those other captains refusing to take you?"`
+					to display
+						not "FW Refugees to Humanika: other captains"
+					goto "other captains"
+				`	"What do you mean, 'Quarg planet'?"`
+					to display
+						not "FW Refugees to Humanika: quarg"
+						not "First Contact: Quarg: offered"
+					goto quarg
+				`	"The Quarg let humans live on one of their planets?"`
+					to display
+						not "FW Refugees to Humanika: quarg"
+						has "First Contact: Quarg: offered"
+						not "visited planet: Humanika"
+					goto quarg
+				`	"Sure, I can take you."`
+					accept
+				`	"Sorry, I'm not headed that way."`
+					decline
+			label "other captains"
+			action
+				set "FW Refugees to Humanika: other captains"
+			`	"I think many of them are a bit distrustful of the Quarg. Plus, people are just generally more on edge these days with the tensions between the Free Worlds and the Republic, so they're less interested in flying somewhere unfamiliar. While I do understand those feelings, it seems to me that humans have done much worse to each other than the Quarg have ever done to us."`
+				goto "main choice"
+			label "quarg"
+			action
+				set "FW Refugees to Humanika: quarg"
+			`	She looks a bit surprised that you don't already know. "The Quarg are an advanced alien species that live in a corner of human space, near Tarazed. I honestly don't know that much else about them, but I've heard that they prefer to stay out of human matters. You could try talking to them if you want to know more."`
+				to display
+					not "First Contact: Quarg: offered"
+			`	"There's a planet they control that has too much gravity for them, but is just right for humans, so they let humans settle there under their protection. Or at least that's what I've heard."`
+				goto "main choice"
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment
+		payment 20000
+		dialog "Penny and Rosa thank you for getting them safely to <destination>, handing you <payment> for your troubles. You wish them and Eduardo the best of luck starting their new life away from a potential war in human space."
+		log "Minor People" "Penny Little, Rosa Perkins, and Eduardo" `A young family who wanted to escape a potential war in human space. Took them to the planet Humanika, where the Quarg let humans settle.`

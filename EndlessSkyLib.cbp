@@ -299,6 +299,8 @@
 		<Unit filename="source/Projectile.h" />
 		<Unit filename="source/Radar.cpp" />
 		<Unit filename="source/Radar.h" />
+		<Unit filename="source/RaidFleet.cpp" />
+		<Unit filename="source/RaidFleet.h" />
 		<Unit filename="source/Random.cpp" />
 		<Unit filename="source/Random.h" />
 		<Unit filename="source/RandomEvent.h" />
