@@ -23,7 +23,7 @@ jobs:
     if: ${{ needs.changed.outputs.codeblocks_files == 'true' || needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         fetch-depth: 1
     - name: Validate Code::Blocks project files
@@ -36,7 +36,7 @@ jobs:
     if: ${{ needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Validate CMake project files
       run: ./utils/check_cmake.sh
 
@@ -48,7 +48,7 @@ jobs:
     if: ${{ needs.changed.outputs.copyright == 'true' }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         fetch-depth: 1
     - name: Install dependencies
@@ -63,7 +63,7 @@ jobs:
     if: ${{ needs.changed.outputs.data == 'true' || needs.changed.outputs.codespell == 'true' || needs.changed.outputs.changelog == 'true' }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         ref: ${{ github.event.pull_request.head.sha }}
     - uses: codespell-project/actions-codespell@master
@@ -80,7 +80,7 @@ jobs:
     if: ${{ needs.changed.outputs.editorconfig_files == 'true' }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - uses: editorconfig-checker/action-editorconfig-checker@main
     - run: editorconfig-checker
 
@@ -91,7 +91,7 @@ jobs:
     if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.code_style_check == 'true' }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - uses: actions/setup-python@v4
       with:
         python-version: '3.x'
@@ -107,7 +107,7 @@ jobs:
     if: ${{ needs.changed.outputs.data == 'true' || needs.changed.outputs.content_style_check == 'true' || needs.changed.outputs.integration_tests == 'true' || needs.changed.outputs.content_style_script == 'true' }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - uses: actions/setup-python@v4
       with:
         python-version: '3.x'
