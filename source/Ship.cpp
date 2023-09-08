@@ -1786,7 +1786,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 		SetShipToAssist(shared_ptr<Ship>());
 		SetTargetShip(shared_ptr<Ship>());
 		bool helped = victim->isDisabled;
-		victim->hull = min(max(victim->hull, victim->MinimumHull() * 1.5), victim->attributes.Get("hull"));
+		victim->hull = min(max(victim->hull, victim->MinimumHull() * 1.5), victim->MaxHull());
 		victim->isDisabled = false;
 		// Transfer some fuel if needed.
 		if(victim->NeedsFuel() && CanRefuel(*victim))
@@ -2369,7 +2369,7 @@ void Ship::Restore()
 bool Ship::IsDamaged() const
 {
 	// Account for ships with no shields when determining if they're damaged.
-	return (attributes.Get("shields") != 0 && Shields() != 1.) || Hull() != 1.;
+	return (MaxShields() != 0 && Shields() != 1.) || Hull() != 1.;
 }
 
 
@@ -2394,9 +2394,9 @@ void Ship::Recharge(bool atSpaceport)
 	pilotOkay = 0;
 
 	if(atSpaceport || attributes.Get("shield generation"))
-		shields = attributes.Get("shields");
+		shields = MaxShields();
 	if(atSpaceport || attributes.Get("hull repair rate"))
-		hull = attributes.Get("hull");
+		hull = MaxHull();
 	if(atSpaceport || attributes.Get("energy generation"))
 		energy = attributes.Get("energy capacity");
 	if(atSpaceport || attributes.Get("fuel generation"))
@@ -2444,7 +2444,7 @@ double Ship::TransferFuel(double amount, Ship *to)
 int Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 {
 	// Repair up to the point where this ship is just barely not disabled.
-	hull = min(max(hull, MinimumHull() * 1.5), attributes.Get("hull"));
+	hull = min(max(hull, MinimumHull() * 1.5), MaxHull());
 	isDisabled = false;
 
 	// Set the new government.
@@ -2512,7 +2512,7 @@ void Ship::ClearTargetsAndOrders()
 // Get characteristics of this ship, as a fraction between 0 and 1.
 double Ship::Shields() const
 {
-	double maximum = attributes.Get("shields");
+	double maximum = MaxShields();
 	return maximum ? min(1., shields / maximum) : 0.;
 }
 
@@ -2520,7 +2520,7 @@ double Ship::Shields() const
 
 double Ship::Hull() const
 {
-	double maximum = attributes.Get("hull");
+	double maximum = MaxHull();
 	return maximum ? min(1., hull / maximum) : 1.;
 }
 
@@ -2597,8 +2597,8 @@ double Ship::Heat() const
 double Ship::Health() const
 {
 	double minimumHull = MinimumHull();
-	double hullDivisor = attributes.Get("hull") - minimumHull;
-	double divisor = attributes.Get("shields") + hullDivisor;
+	double hullDivisor = MaxHull() - minimumHull;
+	double divisor = MaxShields() + hullDivisor;
 	// This should not happen, but just in case.
 	if(divisor <= 0. || hullDivisor <= 0.)
 		return 0.;
@@ -2613,10 +2613,24 @@ double Ship::Health() const
 // Get the hull fraction at which this ship is disabled.
 double Ship::DisabledHull() const
 {
-	double hull = attributes.Get("hull");
+	double hull = MaxHull();
 	double minimumHull = MinimumHull();
 
 	return (hull > 0. ? minimumHull / hull : 0.);
+}
+
+
+
+// Get the maximum shield and hull values of the ship, accounting for multipliers.
+double Ship::MaxShields() const
+{
+	return attributes.Get("shields") * (1 + attributes.Get("shield multiplier"));
+}
+
+
+double Ship::MaxHull() const
+{
+	return attributes.Get("hull") * (1 + attributes.Get("hull multiplier"));
 }
 
 
@@ -2918,8 +2932,8 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 		ApplyForce(damage.HitForce(), damage.GetWeapon().IsGravitational());
 
 	// Prevent various stats from reaching unallowable values.
-	hull = min(hull, attributes.Get("hull"));
-	shields = min(shields, attributes.Get("shields"));
+	hull = min(hull, MaxHull());
+	shields = min(shields, MaxShields());
 	// Weapons are allowed to overcharge a ship's energy or fuel, but code in Ship::DoGeneration()
 	// will clamp it to a maximum value at the beginning of the next frame.
 	energy = max(0., energy);
@@ -3342,7 +3356,7 @@ bool Ship::CanFire(const Weapon *weapon) const
 		return false;
 	// We do check hull, but we don't check shields. Ships can survive with all shields depleted.
 	// Ships should not disable themselves, so we check if we stay above minimumHull.
-	if(hull - MinimumHull() < weapon->FiringHull() + weapon->RelativeFiringHull() * attributes.Get("hull"))
+	if(hull - MinimumHull() < weapon->FiringHull() + weapon->RelativeFiringHull() * MaxHull())
 		return false;
 
 	// If a weapon requires heat to fire, (rather than generating heat), we must
@@ -3373,8 +3387,8 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 	const double relativeEnergyChange = weapon.RelativeFiringEnergy() * attributes.Get("energy capacity");
 	const double relativeFuelChange = weapon.RelativeFiringFuel() * attributes.Get("fuel capacity");
 	const double relativeHeatChange = !weapon.RelativeFiringHeat() ? 0. : weapon.RelativeFiringHeat() * MaximumHeat();
-	const double relativeHullChange = weapon.RelativeFiringHull() * attributes.Get("hull");
-	const double relativeShieldChange = weapon.RelativeFiringShields() * attributes.Get("shields");
+	const double relativeHullChange = weapon.RelativeFiringHull() * MaxHull();
+	const double relativeShieldChange = weapon.RelativeFiringShields() * MaxShields();
 
 	if(const Outfit *ammo = weapon.Ammo())
 	{
@@ -3732,7 +3746,8 @@ void Ship::DoGeneration()
 			* (1. + attributes.Get("hull heat multiplier"))) / hullAvailable;
 		double hullRemaining = hullAvailable;
 		if(!hullDelay)
-			DoRepair(hull, hullRemaining, attributes.Get("hull"), energy, hullEnergy, fuel, hullFuel, heat, hullHeat);
+			DoRepair(hull, hullRemaining, MaxHull(),
+				energy, hullEnergy, fuel, hullFuel, heat, hullHeat);
 
 		const double shieldsAvailable = attributes.Get("shield generation")
 			* (1. + attributes.Get("shield generation multiplier"));
@@ -3744,7 +3759,7 @@ void Ship::DoGeneration()
 			* (1. + attributes.Get("shield heat multiplier"))) / shieldsAvailable;
 		double shieldsRemaining = shieldsAvailable;
 		if(!shieldDelay)
-			DoRepair(shields, shieldsRemaining, attributes.Get("shields"),
+			DoRepair(shields, shieldsRemaining, MaxShields(),
 				energy, shieldsEnergy, fuel, shieldsFuel, heat, shieldsHeat);
 
 		if(!bays.empty())
@@ -3769,10 +3784,10 @@ void Ship::DoGeneration()
 			{
 				Ship &ship = *it.second;
 				if(!hullDelay)
-					DoRepair(ship.hull, hullRemaining, ship.attributes.Get("hull"),
+					DoRepair(ship.hull, hullRemaining, ship.MaxHull(),
 						energy, hullEnergy, heat, hullHeat, fuel, hullFuel);
 				if(!shieldDelay)
-					DoRepair(ship.shields, shieldsRemaining, ship.attributes.Get("shields"),
+					DoRepair(ship.shields, shieldsRemaining, ship.MaxShields(),
 						energy, shieldsEnergy, heat, shieldsHeat, fuel, shieldsFuel);
 			}
 
@@ -3909,12 +3924,39 @@ void Ship::DoGeneration()
 	else if(heat < .9 * MaximumHeat())
 		isOverheated = false;
 
-	double maxShields = attributes.Get("shields");
+	double maxShields = MaxShields();
 	shields = min(shields, maxShields);
-	double maxHull = attributes.Get("hull");
+	double maxHull = MaxHull();
 	hull = min(hull, maxHull);
 
-	isDisabled = isOverheated || hull < MinimumHull() || (!crew && RequiredCrew());
+	bool isIncapacitated = hull < MinimumHull() || (!crew && RequiredCrew());
+	isDisabled = isOverheated || isIncapacitated;
+
+	if(!isIncapacitated)
+	{
+		double coolingEfficiency = CoolingEfficiency();
+		heat -= coolingEfficiency * attributes.Get("cooling");
+		double activeCooling = coolingEfficiency * attributes.Get("active cooling");
+		// Apply active cooling. The fraction of full cooling to apply equals
+		// your ship's current fraction of its maximum temperature.
+		if(activeCooling > 0. && heat > 0. && energy >= 0.)
+		{
+			// Active cooling always runs at 100% power if overheated
+			// even if below 100% heat.
+			double heatFraction = (isOverheated ? 1. : Heat());
+			// Handle the case where "active cooling"
+			// does not require any energy.
+			double coolingEnergy = attributes.Get("cooling energy");
+			if(coolingEnergy)
+			{
+				double spentEnergy = min(energy, coolingEnergy * heatFraction);
+				heat -= activeCooling * spentEnergy / coolingEnergy;
+				energy -= spentEnergy;
+			}
+			else
+				heat -= activeCooling * heatFraction;
+		}
+	}
 
 	// Update ship supply levels.
 	if(isDisabled)
@@ -3933,11 +3975,9 @@ void Ship::DoGeneration()
 			heat += solarScaling * attributes.Get("solar heat");
 		}
 
-		double coolingEfficiency = CoolingEfficiency();
 		energy += attributes.Get("energy generation") - attributes.Get("energy consumption");
 		fuel += attributes.Get("fuel generation");
 		heat += attributes.Get("heat generation");
-		heat -= coolingEfficiency * attributes.Get("cooling");
 
 		// Convert fuel into energy and heat only when the required amount of fuel is available.
 		if(attributes.Get("fuel consumption") <= fuel)
@@ -3947,23 +3987,6 @@ void Ship::DoGeneration()
 			heat += attributes.Get("fuel heat");
 		}
 
-		// Apply active cooling. The fraction of full cooling to apply equals
-		// your ship's current fraction of its maximum temperature.
-		double activeCooling = coolingEfficiency * attributes.Get("active cooling");
-		if(activeCooling > 0. && heat > 0. && energy >= 0.)
-		{
-			// Handle the case where "active cooling"
-			// does not require any energy.
-			double coolingEnergy = attributes.Get("cooling energy");
-			if(coolingEnergy)
-			{
-				double spentEnergy = min(energy, coolingEnergy * min(1., Heat()));
-				heat -= activeCooling * spentEnergy / coolingEnergy;
-				energy -= spentEnergy;
-			}
-			else
-				heat -= activeCooling * min(1., Heat());
-		}
 	}
 
 	// Don't allow any levels to drop below zero.
@@ -4683,7 +4706,7 @@ double Ship::MinimumHull() const
 	if(neverDisabled)
 		return 0.;
 
-	double maximumHull = attributes.Get("hull");
+	double maximumHull = MaxHull();
 	double absoluteThreshold = attributes.Get("absolute threshold");
 	if(absoluteThreshold > 0.)
 		return absoluteThreshold;
@@ -4782,8 +4805,8 @@ double Ship::CalculateDeterrence() const
 		{
 			const Outfit *weapon = hardpoint.GetOutfit();
 			double strength = weapon->ShieldDamage() + weapon->HullDamage()
-				+ (weapon->RelativeShieldDamage() * attributes.Get("shields"))
-				+ (weapon->RelativeHullDamage() * attributes.Get("hull"));
+				+ (weapon->RelativeShieldDamage() * MaxShields())
+				+ (weapon->RelativeHullDamage() * MaxHull());
 			tempDeterrence += .12 * strength / weapon->Reload();
 		}
 	return tempDeterrence;

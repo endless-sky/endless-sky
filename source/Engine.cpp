@@ -351,6 +351,7 @@ void Engine::Place()
 		Place(mission.NPCs(), flagship);
 
 	// Get the coordinates of the planet the player is leaving.
+	const System *system = player.GetSystem();
 	const Planet *planet = player.GetPlanet();
 	Point planetPos;
 	double planetRadius = 0.;
@@ -369,7 +370,7 @@ void Engine::Place()
 		Angle angle = Angle::Random();
 		// Any ships in the same system as the player should be either
 		// taking off from a specific planet or nearby.
-		if(ship->GetSystem() == player.GetSystem() && !ship->IsDisabled())
+		if(ship->GetSystem() == system && !ship->IsDisabled())
 		{
 			const Personality &person = ship->GetPersonality();
 			bool hasOwnPlanet = ship->GetPlanet();
@@ -393,7 +394,7 @@ void Engine::Place()
 		{
 			// Log this error.
 			Logger::LogError("Engine::Place: Set fallback system for the NPC \"" + ship->Name() + "\" as it had no system");
-			ship->SetSystem(player.GetSystem());
+			ship->SetSystem(system);
 		}
 
 		// If the position is still (0, 0), the special ship is in a different
@@ -663,35 +664,24 @@ void Engine::Step(bool isActive)
 			escorts.Add(*escort, escort->GetSystem() == currentSystem, fleetIsJumping, isSelected);
 		}
 
-	// Create the status overlays.
 	statuses.clear();
-	if(isActive)
-		CreateStatusOverlays();
-
-	// Create missile overlays.
 	missileLabels.clear();
-	if(Preferences::Has("Show missile overlays"))
-		for(const Projectile &projectile : projectiles)
-		{
-			Point pos = projectile.Position() - center;
-			if(projectile.MissileStrength() && projectile.GetGovernment()->IsEnemy()
-					&& (pos.Length() < max(Screen::Width(), Screen::Height()) * .5 / zoom))
-				missileLabels.emplace_back(AlertLabel(pos, projectile, flagship, zoom));
-		}
-
-	// Create the planet labels.
-	labels.clear();
-	if(currentSystem && Preferences::Has("Show planet labels"))
+	if(isActive)
 	{
-		for(const StellarObject &object : currentSystem->Objects())
-		{
-			if(!object.HasSprite() || !object.HasValidPlanet() || !object.GetPlanet()->IsAccessible(flagship.get()))
-				continue;
-
-			Point pos = object.Position() - center;
-			if(pos.Length() - object.Radius() < 600. / zoom)
-				labels.emplace_back(pos, object, currentSystem, zoom);
-		}
+		// Create the status overlays.
+		CreateStatusOverlays();
+		// Create missile overlays.
+		if(Preferences::Has("Show missile overlays"))
+			for(const Projectile &projectile : projectiles)
+			{
+				Point pos = projectile.Position() - center;
+				if(projectile.MissileStrength() && projectile.GetGovernment()->IsEnemy()
+						&& (pos.Length() < max(Screen::Width(), Screen::Height()) * .5 / zoom))
+					missileLabels.emplace_back(AlertLabel(pos, projectile, flagship, zoom));
+			}
+		// Update the planet label positions.
+		for(PlanetLabel &label : labels)
+			label.Update(center, zoom);
 	}
 
 	if(flagship && flagship->IsOverheated())
@@ -1138,8 +1128,9 @@ void Engine::Draw() const
 	const Interface *hud = GameData::Interfaces().Get("hud");
 
 	// Draw any active planet labels.
-	for(const PlanetLabel &label : labels)
-		label.Draw();
+	if(Preferences::Has("Show planet labels"))
+		for(const PlanetLabel &label : labels)
+			label.Draw();
 
 	draw[drawTickTock].Draw();
 	batchDraw[drawTickTock].Draw();
@@ -1493,7 +1484,7 @@ void Engine::EnterSystem()
 				CreateWeather(hazard, stellar.Position());
 	}
 
-	for(const auto &raidFleet : system->GetGovernment()->RaidFleets())
+	for(const auto &raidFleet : system->RaidFleets())
 	{
 		double attraction = player.RaidFleetAttraction(raidFleet, system);
 		if(attraction > 0.)
@@ -1524,6 +1515,13 @@ void Engine::EnterSystem()
 		Messages::Add(GameData::HelpMessage("basics 1"), Messages::Importance::High);
 		Messages::Add(GameData::HelpMessage("basics 2"), Messages::Importance::High);
 	}
+
+	// Create the planet labels.
+	labels.clear();
+	if(system)
+		for(const StellarObject &object : system->Objects())
+			if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsAccessible(flagship))
+				labels.emplace_back(labels, *system, object);
 }
 
 

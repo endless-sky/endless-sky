@@ -154,10 +154,12 @@ namespace {
 		{"slowing protection", -0.99},
 
 		// "Multiplier" attributes appear in numerators and are incremented by 1.
+		{"hull multiplier", -1. },
 		{"hull repair multiplier", -1.},
 		{"hull energy multiplier", -1.},
 		{"hull fuel multiplier", -1.},
 		{"hull heat multiplier", -1.},
+		{"shield multiplier", -1. },
 		{"shield generation multiplier", -1.},
 		{"shield energy multiplier", -1.},
 		{"shield fuel multiplier", -1.},
@@ -169,7 +171,8 @@ namespace {
 		auto oit = find_if(thisFlares.begin(), thisFlares.end(),
 			[&it](const pair<Body, int> &flare)
 			{
-				return it.first.GetSprite() == flare.first.GetSprite();
+				return (it.first.GetSprite() == flare.first.GetSprite()
+					&& it.first.Scale() == flare.first.Scale());
 			}
 		);
 
