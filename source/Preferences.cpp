@@ -195,8 +195,6 @@ void Preferences::Load()
 			parallaxIndex = max<int>(0, min<int>(node.Value(1), PARALLAX_SETTINGS.size() - 1));
 		else if(node.Token(0) == "fullscreen")
 			screenModeIndex = max<int>(0, min<int>(node.Value(1), SCREEN_MODE_SETTINGS.size() - 1));
-		else if(node.Token(0) == "camera acceleration")
-			cameraAccelerationIndex = max<int>(0, min<int>(node.Value(1), CAMERA_ACCELERATION_SETTINGS.size() - 1));
 		else if(node.Token(0) == "alert indicator")
 			alertIndicatorIndex = max<int>(0, min<int>(node.Value(1), ALERT_INDICATOR_SETTING.size() - 1));
 		else if(node.Token(0) == "previous saves" && node.Size() >= 2)
@@ -535,13 +533,6 @@ void Preferences::ToggleBoarding()
 	if(targetIndex == static_cast<int>(BOARDING_SETTINGS.size()))
 		targetIndex = 0;
 	boardingIndex = targetIndex;
-}
-
-
-
-const string &Preferences::CameraAcceleration()
-{
-	return CAMERA_ACCELERATION_SETTINGS[cameraAccelerationIndex];
 }
 
 

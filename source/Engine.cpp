@@ -237,7 +237,6 @@ namespace {
 
 	const double RADAR_SCALE = .025;
 	const double MAX_FUEL_DISPLAY = 5000.;
-	constexpr static double OFFSET_CHANGE = 0.01;
 }
 
 
@@ -503,7 +502,7 @@ void Engine::Step(bool isActive)
 	}
 	else if(flagship)
 	{
-		center = newCenter;
+		center = flagship->Position();
 		centerVelocity = flagship->Velocity();
 		if(flagship->IsHyperspacing() && Preferences::Has("Extended jump effects"))
 			centerVelocity *= 1. + pow(flagship->GetHyperspacePercentage() / 20., 2);
@@ -1542,36 +1541,11 @@ void Engine::CalculateStep()
 		DoScanning(it);
 
 	// Draw the objects. Start by figuring out where the view should be centered:
-	newCenter = center;
+	Point newCenter = center;
 	Point newCenterVelocity;
 	if(flagship)
 	{
-		// Code block to calculate the center of the viewport.
-		// If Camera Acceleration is enabled an offset calculated through the
-		// flagship's velocity will be added to the center
-
-		// If the flagship isn't thrusting, because no drag is experienced,
-		// gently slide the flagship back to the center of the screen.
-		if(flagship->IsThrusting())
-			offsetMultiplier = offsetMultiplier >= 1. ? 1.
-				: offsetMultiplier + OFFSET_CHANGE;
-		else
-			offsetMultiplier = offsetMultiplier <= 0. ? 0.
-				: offsetMultiplier - OFFSET_CHANGE;
-
-		// This makes the sliding smooth and gentle.
-		double smoothStep = offsetMultiplier < 0.5 ? 4 * pow(offsetMultiplier, 3)
-			: 1 - pow((-2 * offsetMultiplier) + 2, 3) / 2;
-
-		// If this effect is disabled in the preferences, multiply the end product by 0.
-		double prefMul = Preferences::CameraAcceleration() == "on" ? 1.
-			: (Preferences::CameraAcceleration() == "reversed" ? -1. : 0.);
-
-		offset = prefMul * flagship->Velocity() * 2.5 * zoom * smoothStep;
-
-		newCenter = !flagship->IsHyperspacing() ?
-			flagship->Position() + offset : flagship->Position();
-
+		newCenter = flagship->Position();
 		newCenterVelocity = flagship->Velocity();
 		zoomMod = 2. - flagship->Zoom();
 	}
