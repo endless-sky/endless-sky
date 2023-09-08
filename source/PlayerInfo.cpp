@@ -339,7 +339,7 @@ void PlayerInfo::Load(const string &path)
 			conditions.Load(child);
 		else if(child.Token(0) == "raid attraction")
 			for(const DataNode &grand : child)
-				raidAttraction[GameData::Governments().Find(grand.Token(0))] = grand.Value(1);
+				raidAttraction[GameData::Governments().Get(grand.Token(0))] = grand.Value(1);
 		else if(child.Token(0) == "gifted ships" && child.HasChildren())
 		{
 			for(const DataNode &grand : child)
