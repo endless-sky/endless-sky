@@ -3652,25 +3652,6 @@ void Ship::DoGeneration()
 	fuel -= leakage;
 	heat += burning;
 
-	if(stackJumpDamage || stackJumpHullDamage || stackJumpShieldDamage)
-	{
-		double totalDamageShields = stackJumpShieldDamage > shields ? shields : stackJumpShieldDamage;
-		if(totalDamageShields < shields)
-		{
-			totalDamageShields += stackJumpDamage > shields - totalDamageShields ?
-				shields - totalDamageShields : stackJumpDamage;
-			stackJumpDamage -= stackJumpDamage > shields - totalDamageShields ?
-				shields - totalDamageShields : stackJumpDamage;
-		}
-		double totalDamageHull = stackJumpDamage + stackJumpHullDamage;
-		shields -= totalDamageShields;
-		hull -= totalDamageHull;
-
-		stackJumpDamage = 0;
-		stackJumpHullDamage = 0;
-		stackJumpShieldDamage = 0;
-	}
-
 	// TODO: Mothership gives status resistance to carried ships?
 	if(ionization)
 	{
@@ -3974,13 +3955,26 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 		}
 		direction = -1;
 
-		// Add damage dealt by this jump to stack.
-		stackJumpDamage += isUsingJumpDrive ?
-			attributes.Get("jumpdrive damage") : attributes.Get("hyperdrive damage");
-		stackJumpHullDamage += isUsingJumpDrive ?
-			attributes.Get("jumpdrive hull damage") : attributes.Get("hyperdrive hull damage");
-		stackJumpShieldDamage += isUsingJumpDrive ?
-			attributes.Get("jumpdrive shield damage") : attributes.Get("hyperdrive shield damage");
+		double jumpDamage = isUsingJumpDrive ?
+			attributes.Get("jump damage") : attributes.Get("hyperdrive damage");
+		double jumpHullDamage = isUsingJumpDrive ?
+			attributes.Get("jump hull damage") : attributes.Get("hyperdrive hull damage");
+		double jumpShieldDamage = isUsingJumpDrive ?
+			attributes.Get("jump shield damage") : attributes.Get("hyperdrive shield damage");	
+		if(jumpDamage || jumpHullDamage || jumpShieldDamage)
+		{
+			double totalDamageShields = jumpShieldDamage > shields ? shields : jumpShieldDamage;
+			if(totalDamageShields < shields)
+			{
+				totalDamageShields += jumpDamage > shields - totalDamageShields ?
+					shields - totalDamageShields : jumpDamage;
+				jumpDamage -= jumpDamage > shields - totalDamageShields ?
+					shields - totalDamageShields : jumpDamage;
+			}
+			double totalDamageHull = jumpDamage + jumpHullDamage;
+			shields -= totalDamageShields;
+			hull -= totalDamageHull;
+		}
 
 		// If you have a target planet in the destination system, exit
 		// hyperspace aimed at it. Otherwise, target the first planet that

@@ -360,23 +360,23 @@ tip "jump mass cost:"
 tip "jump base mass:"
 	`Modifies the impact your ship's mass has on the jump mass cost. Ships below this mass will have a cheaper jump cost than the base jump fuel cost, while ships above this mass will have more expensive jumps.`
 
-tip "jumpdrive damage:"
-	`Damage received when using a Jump Drive. Damage is applied regardless of resistance.`
+tip "jump damage:"
+	`Damage dealt to your ship when using a jump drive. Protection will be ignored.`
 
 tip "hyperdrive damage:"
-	`Damage received when using a Hyperdrive. Damage is applied regardless of resistance.`
+	`Damage dealt to your ship when using a hyperdrive. Protection will be ignored.`
 
-tip "jumpdrive shield damage:"
-	`Shield damage received when using a Jump Drive. Damage is applied regardless of resistance.`
+tip "jump shield damage:"
+	`Shield damage dealt to your ship when using a jump drive. Protection will be ignored.`
 
 tip "hyperdrive shield damage:"
-	`Shield damage received when using a Hyperdrive. Damage is applied regardless of resistance.`
+	`Shield damage dealt to your ship when using a hyperdrive. Protection will be ignored.`
 
-tip "jumpdrive hull damage:"
-	`Hull damage received when using a Jump Drive. Damage is applied regardless of resistance.`
+tip "jump hull damage:"
+	`Hull damage dealt to your ship when using a jump drive. Protection will be ignored.`
 
 tip "hyperdrive hull damage:"
-	`Hull damage received when using a Hyperdrive. Damage is applied regardless of resistance.`
+	`Hull damage dealt to your ship when using a hyperdrive. Protection will be ignored.`
 
 tip "leak protection:"
 	`Protection provided against leak damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in leak damage, while a total value of 11 only results in a 10 percent reduction.`
