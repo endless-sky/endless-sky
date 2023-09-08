@@ -25,7 +25,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        fetch-depth: 1
         show-progress: false
     - name: Validate Code::Blocks project files
       run: ./utils/check_codeblocks.sh
@@ -53,7 +52,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        fetch-depth: 1
         show-progress: false
     - name: Install dependencies
       run: python3 -m pip install --user python-debian
