@@ -3960,7 +3960,7 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 		double jumpHullDamage = isUsingJumpDrive ?
 			attributes.Get("jump hull damage") : attributes.Get("hyperdrive hull damage");
 		double jumpShieldDamage = isUsingJumpDrive ?
-			attributes.Get("jump shield damage") : attributes.Get("hyperdrive shield damage");	
+			attributes.Get("jump shield damage") : attributes.Get("hyperdrive shield damage");
 		if(jumpDamage || jumpHullDamage || jumpShieldDamage)
 		{
 			double totalDamageShields = jumpShieldDamage > shields ? shields : jumpShieldDamage;
