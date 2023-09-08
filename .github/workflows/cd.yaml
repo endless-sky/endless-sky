@@ -23,6 +23,8 @@ jobs:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          show-progress: false
       - name: Install dependencies
         run: |
           sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
@@ -58,6 +60,8 @@ jobs:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          show-progress: false
       - name: Setup sccache
         uses: ./.github/sccache
         with:
@@ -91,6 +95,8 @@ jobs:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          show-progress: false
       - name: Setup sccache
         uses: ./.github/sccache
         with:
@@ -130,6 +136,8 @@ jobs:
       OUTPUT_MACOS: EndlessSky-macOS-continuous.zip
     steps:
       - uses: actions/checkout@v4
+        with:
+          show-progress: false
       - name: Install github-release
         run: |
           go install github.com/github-release/github-release@latest

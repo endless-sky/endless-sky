@@ -25,6 +25,8 @@ jobs:
       platform: com.valvesoftware.SteamRuntime.Platform-amd64,i386-sniper-runtime.tar.gz
     steps:
     - uses: actions/checkout@v4
+      with:
+        show-progress: false
 
     # Build the binary
     - name: Save Steam runtime version
