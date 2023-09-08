@@ -1616,7 +1616,7 @@ bool PlayerInfo::EnterPlanet(UI *ui)
 // which case a message will be returned.
 bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 {
-	if(!LeavePlanet())
+	if(!LeavePlanet(distributeCargo))
 		return false;
 
 	flagship = FlagshipPtr();
@@ -1635,29 +1635,6 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 	// Store the total cargo counts in case we need to adjust cost bases below.
 	map<string, int> originalTotals = cargo.Commodities();
 
-
-	// Move the flagship to the start of the list of ships and ensure that all
-	// escorts know which ship is acting as flagship.
-	SetFlagship(*flagship);
-
-	// Recharge any ships that can be recharged, and load available cargo.
-	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();
-	for(const shared_ptr<Ship> &ship : ships)
-		if(!ship->IsParked() && !ship->IsDisabled())
-		{
-			// Recalculate the weapon cache in case a mass-less change had an effect.
-			ship->GetAICache().Calibrate(*ship.get());
-			if(ship->GetSystem() != system)
-			{
-				ship->Recharge(false);
-				continue;
-			}
-			else
-				ship->Recharge(hasSpaceport);
-		}
-
-	if(distributeCargo)
-		DistributeCargo();
 
 	if(cargo.Passengers())
 	{
@@ -1862,7 +1839,7 @@ const CargoHold &PlayerInfo::DistributeCargo()
 
 
 
-bool PlayerInfo::LeavePlanet()
+bool PlayerInfo::LeavePlanet(bool distributeCargo)
 {
 	// This can only be done while landed.
 	if(!system || !planet)
@@ -1890,7 +1867,8 @@ bool PlayerInfo::LeavePlanet()
 				ship->Recharge(hasSpaceport);
 		}
 	
-	DistributeCargo();
+	if(distributeCargo)
+		DistributeCargo();
 
 	return true;
 }
@@ -2623,7 +2601,7 @@ void PlayerInfo::DoQueuedRelocation()
 
 void PlayerInfo::Relocate(UI *ui)
 {
-	LeavePlanet();
+	LeavePlanet(true);
 	EnterPlanet(ui);
 }
 

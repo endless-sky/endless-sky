@@ -220,8 +220,7 @@ public:
 	void PoolCargo();
 	// Distribute cargo to local ships. Returns a reference to the player's cargo.
 	const CargoHold &DistributeCargo();
-
-	bool LeavePlanet();
+	bool LeavePlanet(bool distributeCargo);
 
 	// Get or add to pilot's playtime.
 	double GetPlayTime() const noexcept;
