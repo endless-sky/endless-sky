@@ -288,7 +288,7 @@ mission "Mystery Cube Delivery Job Station"
 mission "Mystery Cube Retrieval Job"
 	job
 	repeat
-	name "Mystery retrieval"
+	name "Mystery retrieval from <planet stopovers>"
 	description "Retrieve a package from <stopovers>, then return to <destination>. Payment is <payment>."
 	source
 		attributes "deep"
@@ -820,7 +820,7 @@ mission "Secure Transport Job (Deep Security) [1]"
 mission "Deep Consultants"
 	minor
 	name "Transport consultants to <planet>"
-	description "Julie and her assistant missed their transport and need to reach <destination> by <date> in order to make several important business meetings.."
+	description "Julie and her assistant missed their transport and need to reach <destination> by <date> in order to make several important business meetings."
 	source
 		attributes "deep"
 		attributes "urban"

@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class Interface;
 class Rectangle;
 class Ship;
 class Sprite;
@@ -47,7 +48,8 @@ public:
 private:
 	class Icon {
 	public:
-		Icon(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected);
+		Icon(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected,
+				int basicHeight, int systemLabelHeight);
 
 		// Sorting operator.
 		bool operator<(const Icon &other) const;
@@ -56,6 +58,7 @@ private:
 		void Merge(const Icon &other);
 
 		const Sprite *sprite;
+		bool isDisabled;
 		bool isHere;
 		bool isHostile;
 		bool notReadyToJump;
@@ -66,6 +69,7 @@ private:
 		std::vector<double> low;
 		std::vector<double> high;
 		std::vector<const Ship *> ships;
+		int height = 0;
 	};
 
 
@@ -77,6 +81,10 @@ private:
 	mutable std::list<Icon> icons;
 	mutable std::vector<std::vector<const Ship *>> stacks;
 	mutable std::vector<Point> zones;
+
+	const Interface *element = nullptr;
+	int basicHeight = 0;
+	int systemLabelHeight = 0;
 };
 
 

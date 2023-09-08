@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ConditionSet.h"
 #include "LocationFilter.h"
+#include "ShipManager.h"
 
 #include <cstdint>
 #include <map>
@@ -29,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class DataNode;
 class DataWriter;
 class GameEvent;
+class Mission;
 class Outfit;
 class Planet;
 class PlayerInfo;
@@ -55,11 +57,11 @@ private:
 public:
 	GameAction() = default;
 	// Construct and Load() at the same time.
-	GameAction(const DataNode &node, const std::string &missionName);
+	GameAction(const DataNode &node);
 
-	void Load(const DataNode &node, const std::string &missionName);
+	void Load(const DataNode &node);
 	// Process a single sibling node.
-	void LoadSingle(const DataNode &child, const std::string &missionName);
+	void LoadSingle(const DataNode &child);
 	void Save(DataWriter &out) const;
 
 	// Determine if this GameAction references content that is not fully defined.
@@ -73,8 +75,9 @@ public:
 	const std::map<const Outfit *, int> &Outfits() const noexcept;
 	bool HasRelocation() const;
 
-	// Perform this action.
-	void Do(PlayerInfo &player, UI *ui, bool conversationEmpty = false) const;
+	const std::vector<ShipManager> &Ships() const noexcept;
+
+	void Do(PlayerInfo &player, UI *ui, const Mission *caller, bool conversationEmpty = false) const;
 
 	// "Instantiate" this action by filling in the wildcard data for the actual
 	// payment, event delay, etc.
@@ -87,7 +90,7 @@ private:
 	std::map<std::string, std::map<std::string, std::string>> specialLogText;
 
 	std::map<const GameEvent *, std::pair<int, int>> events;
-	std::vector<std::pair<const Ship *, std::string>> giftShips;
+	std::vector<ShipManager> giftShips;
 	std::map<const Outfit *, int> giftOutfits;
 
 	int64_t payment = 0;
@@ -96,6 +99,8 @@ private:
 
 	// When this action is performed, the missions with these names fail.
 	std::set<std::string> fail;
+	// When this action is performed, the mission that called this action is failed.
+	bool failCaller = false;
 
 	RelocateAction relocateAction;
 
