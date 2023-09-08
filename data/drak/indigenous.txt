@@ -292,7 +292,7 @@ ship "Embersylph"
 		"gaslining" 1
 		"inscrutable" 1
 		"atmospheric scan" 1000
-		"shield resistance" 1
+		"ion resistance" 1
 	outfits
 		"Absorption Organ" 1
 	turret 0 0 "Absorption Organ"
