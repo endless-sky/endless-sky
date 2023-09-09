@@ -1883,7 +1883,7 @@ person "Patrol Team"
 			"Why do aliens speak English?"
 
 #		bene-dictator
-			"Just a syntax review. Hold on, I have to rewrite this whole paragraph for you quickly. Delay the merge!" 
+			"Just a syntax review. Hold on, I have to rewrite this whole paragraph for you quickly. Delay the merge!"
 			"I was requested for spelling? Oh my goodness, this needs a rewrite..."
 			"One more review. Pretty please?"
 			"Just one more review before merging."
