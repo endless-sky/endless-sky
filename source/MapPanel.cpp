@@ -508,15 +508,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 	Color bright(2.f * alpha, 0.f);
 	// Non-hyperspace jumps are drawn with a dashed directional arrow.
 	if(!isLink)
-	{
-		double length = (to - from).Length();
-		int segments = static_cast<int>(length / 15.);
-		for(int i = 0; i < segments; ++i)
-			LineShader::Draw(
-				from + unit * ((i * length) / segments + 2.),
-				from + unit * (((i + 1) * length) / segments - 2.),
-				LINK_WIDTH, bright);
-	}
+		LineShader::DrawDashed(from, to, unit, LINK_WIDTH, bright, 11., 4.);
 	LineShader::Draw(to, to + Angle(-30.).Rotate(unit) * -10., LINK_WIDTH, bright);
 	LineShader::Draw(to, to + Angle(30.).Rotate(unit) * -10., LINK_WIDTH, bright);
 }
@@ -878,6 +870,36 @@ int MapPanel::Search(const string &str, const string &sub)
 
 
 
+bool MapPanel::GetTravelInfo(const System *previous, const System *next, const double jumpRange,
+	bool &isJump, bool &isWormhole, bool &isMappable, Color *wormholeColor) const
+{
+	const bool isHyper = previous->Links().count(next);
+	isWormhole = false;
+	isMappable = false;
+	// Short-circuit the loop for MissionPanel, which draws hyperlinks and wormholes the same.
+	if(!isHyper || wormholeColor)
+		for(const StellarObject &object : previous->Objects())
+			if(object.HasSprite() && object.HasValidPlanet()
+				&& object.GetPlanet()->IsWormhole()
+				&& player.HasVisited(*object.GetPlanet())
+				&& player.HasVisited(*previous) && player.HasVisited(*next)
+				&& &object.GetPlanet()->GetWormhole()->WormholeDestination(*previous) == next)
+			{
+				isWormhole = true;
+				if(object.GetPlanet()->GetWormhole()->IsMappable())
+				{
+					isMappable = true;
+					if(wormholeColor)
+						*wormholeColor = *object.GetPlanet()->GetWormhole()->GetLinkColor();
+					break;
+				}
+			}
+	isJump = !isHyper && !isWormhole && previous->JumpNeighbors(jumpRange).count(next);
+	return isHyper || isWormhole || isJump;
+}
+
+
+
 void MapPanel::CenterOnSystem(const System *system, bool immediate)
 {
 	if(immediate)
@@ -1048,7 +1070,6 @@ void MapPanel::DrawTravelPlan()
 	const Color &defaultColor = *colors.Get("map travel ok flagship");
 	const Color &outOfFlagshipFuelRangeColor = *colors.Get("map travel ok none");
 	const Color &withinFleetFuelRangeColor = *colors.Get("map travel ok fleet");
-	Color wormholeColor;
 
 	// At each point in the path, keep track of how many ships in the
 	// fleet are able to make it this far.
@@ -1073,40 +1094,19 @@ void MapPanel::DrawTravelPlan()
 		}
 	stranded |= !hasEscort;
 
+	const double jumpRange = flagship->JumpNavigation().JumpRange();
 	const System *previous = &playerSystem;
 	const System *next = nullptr;
-	double jumpRange = flagship->JumpNavigation().JumpRange();
 	for(int i = player.TravelPlan().size() - 1; i >= 0; --i, previous = next)
 	{
 		next = player.TravelPlan()[i];
-		bool isHyper = previous->Links().count(next);
-		bool isJump = !isHyper && previous->JumpNeighbors(jumpRange).count(next);
-		bool isWormhole = false;
-		bool skip = true;
-		for(const StellarObject &object : previous->Objects())
-		{
-			// Determine if this step of the travel plan can be completed by traversing a wormhole.
-			bool wormholeConnection = object.HasSprite()
-				&& object.HasValidPlanet()
-				&& object.GetPlanet()->IsWormhole()
-				&& player.HasVisited(*object.GetPlanet())
-				&& player.HasVisited(*previous) && player.HasVisited(*next)
-				&& (&object.GetPlanet()->GetWormhole()->WormholeDestination(*previous) == next);
-			if(wormholeConnection)
-			{
-				isWormhole = true;
-				// If this wormhole is not mappable, don't draw the link for this step of the travel plan.
-				const bool mappable = object.GetPlanet()->GetWormhole()->IsMappable();
-				skip &= !mappable;
-				if(mappable)
-					wormholeColor = *object.GetPlanet()->GetWormhole()->GetLinkColor();
-			}
-		}
-		if(isWormhole && skip)
-			continue;
 
-		if(!isHyper && !isJump && !isWormhole)
+		bool isJump, isWormhole, isMappable;
+		Color wormholeColor;
+		if(!GetTravelInfo(previous, next, jumpRange, isJump, isWormhole, isMappable, &wormholeColor))
 			break;
+		if(isWormhole && !isMappable)
+			continue;
 
 		// Wormholes cost nothing to go through. If this is not a wormhole,
 		// check how much fuel every ship will expend to go through it.
@@ -1134,10 +1134,17 @@ void MapPanel::DrawTravelPlan()
 		else if(fuel[flagship] >= 0.)
 			drawColor = defaultColor;
 
-		Point from = Zoom() * (next->Position() + center);
-		Point to = Zoom() * (previous->Position() + center);
-		Point unit = (from - to).Unit() * LINK_OFFSET;
-		LineShader::Draw(from - unit, to + unit, 3.f, drawColor);
+		Point from = Zoom() * (previous->Position() + center);
+		Point to = Zoom() * (next->Position() + center);
+		const Point unit = (to - from).Unit();
+		from += LINK_OFFSET * unit;
+		to -= LINK_OFFSET * unit;
+
+		// Non-hyperspace jumps are drawn with a dashed line.
+		if(isJump)
+			LineShader::DrawDashed(from, to, unit, 3.f, drawColor, 11., 4.);
+		else
+			LineShader::Draw(from, to, 3.f, drawColor);
 	}
 }
 

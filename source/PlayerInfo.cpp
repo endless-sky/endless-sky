@@ -36,6 +36,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Politics.h"
 #include "Port.h"
 #include "Preferences.h"
+#include "RaidFleet.h"
 #include "Random.h"
 #include "SavedGame.h"
 #include "Ship.h"
@@ -1356,7 +1357,7 @@ pair<double, double> PlayerInfo::RaidFleetFactors() const
 
 
 
-double PlayerInfo::RaidFleetAttraction(const Government::RaidFleet &raid, const System *system) const
+double PlayerInfo::RaidFleetAttraction(const RaidFleet &raid, const System *system) const
 {
 	double attraction = 0.;
 	const Fleet *raidFleet = raid.GetFleet();
@@ -3322,7 +3323,7 @@ void PlayerInfo::RegisterDerivedConditions()
 
 		// This variable represents the probability of no raid fleets spawning.
 		double safeChance = 1.;
-		for(const auto &raidFleet : system->GetGovernment()->RaidFleets())
+		for(const auto &raidFleet : system->RaidFleets())
 		{
 			// The attraction is the % chance for a single instance of this fleet to appear.
 			double attraction = RaidFleetAttraction(raidFleet, system);
