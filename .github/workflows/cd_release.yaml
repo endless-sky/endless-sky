@@ -12,7 +12,9 @@ jobs:
       OUTPUT: Endless_Sky-${{ github.ref_name }}-x86_64.AppImage
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          show-progress: false
       - name: Install dependencies
         run: |
           sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
@@ -25,7 +27,7 @@ jobs:
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
+          vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'linux-release'
@@ -45,13 +47,15 @@ jobs:
       OUTPUT: EndlessSky-win32-${{ github.ref_name }}.zip
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          show-progress: false
       - name: Install x86 MinGW
         run: choco install mingw --forcex86 --force
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
+          vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'mingw32-release'
@@ -81,7 +85,9 @@ jobs:
       OUTPUT: EndlessSky-win64-${{ github.ref_name }}.zip
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          show-progress: false
       - name: Setup sccache
         uses: ./.github/sccache
         with:
@@ -89,7 +95,7 @@ jobs:
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
+          vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'mingw-release'
@@ -119,7 +125,9 @@ jobs:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       OUTPUT: Endless-Sky-${{ github.ref_name }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          show-progress: false
       - name: Setup sccache
         uses: ./.github/sccache
         with:
@@ -129,7 +137,7 @@ jobs:
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
+          vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'macos-arm-release'
@@ -181,7 +189,9 @@ jobs:
       matrix:
         arch: [x64, x86]
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
+      with:
+        show-progress: false
     - name: Build Endless Sky
       run: |
         cd steam
@@ -208,7 +218,9 @@ jobs:
       win64: steam-win64
       macos: steam-macos
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
+      with:
+        show-progress: false
     - name: Upload Steam Data Depot
       uses: actions/upload-artifact@v3
       with:
