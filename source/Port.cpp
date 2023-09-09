@@ -52,47 +52,49 @@ void Port::Load(const DataNode &node)
 	{
 		const string &key = child.Token(0);
 
-		if(key == "recharges" && child.HasChildren())
+		if(key == "recharges" && (child.HasChildren() || child.Size() >= 2))
 		{
-			for(const DataNode &grand : child)
-			{
-				const string &grandKey = grand.Token(0);
-
-				if(grandKey == "all")
+			auto setRecharge = [&](const DataNode &valueNode, const string &value) noexcept -> void {
+				if(value == "all")
 					recharge |= RechargeType::All;
-				else if(grandKey == "shields")
+				else if(value == "shields")
 					recharge |= RechargeType::Shields;
-				else if(grandKey == "hull")
+				else if(value == "hull")
 					recharge |= RechargeType::Hull;
-				else if(grandKey == "energy")
+				else if(value == "energy")
 					recharge |= RechargeType::Energy;
-				else if(grandKey == "fuel")
+				else if(value == "fuel")
 					recharge |= RechargeType::Fuel;
 				else
-					grand.PrintTrace("Skipping unrecognized attribute:");
-			}
-		}
-		else if(key == "services" && child.HasChildren())
-		{
+					valueNode.PrintTrace("Skipping unrecognized attribute:");
+			};
+			for(int i = 1; i < child.Size(); ++i)
+				setRecharge(child, child.Token(i));
 			for(const DataNode &grand : child)
-			{
-				const string &grandKey = grand.Token(0);
-
-				if(grandKey == "all")
+				setRecharge(grand, grand.Token(0));
+		}
+		else if(key == "services" && (child.HasChildren() || child.Size() >= 2))
+		{
+			auto setServices = [&](const DataNode &valueNode, const string &value) noexcept -> void {
+				if(value == "all")
 					services |= ServicesType::All;
-				else if(grandKey == "trading")
+				else if(value == "trading")
 					services |= ServicesType::Trading;
-				else if(grandKey == "job board")
+				else if(value == "job board")
 					services |= ServicesType::JobBoard;
-				else if(grandKey == "bank")
+				else if(value == "bank")
 					services |= ServicesType::Bank;
-				else if(grandKey == "hire crew")
+				else if(value == "hire crew")
 					services |= ServicesType::HireCrew;
-				else if(grandKey == "offers missions")
+				else if(value == "offers missions")
 					services |= ServicesType::OffersMissions;
 				else
-					grand.PrintTrace("Skipping unrecognized attribute:");
-			}
+					valueNode.PrintTrace("Skipping unrecognized attribute:");
+			};
+			for(int i = 1; i < child.Size(); ++i)
+				setServices(child, child.Token(i));
+			for(const DataNode &grand : child)
+				setServices(grand, grand.Token(0));
 		}
 		else if(key == "news")
 			hasNews = true;
