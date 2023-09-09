@@ -268,7 +268,7 @@ void MapPlanetCard::Select(bool select)
 double MapPlanetCard::Height()
 {
 	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
-	return planetCardInterface->GetValue("extra height") +
+	return planetCardInterface->GetValue("height padding") +
 		(planetCardInterface->GetValue("categories") + hasGovernments) *
 		planetCardInterface->GetValue("category size");
 }

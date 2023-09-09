@@ -186,7 +186,7 @@ interface "map planet card"
 	value "text start" 13
 	value "category size" 20
 	value "categories" 5
-	value "extra height" 30
+	value "height padding" 30
 	value "width" 235
 	value "planet icon max size" 100
 
