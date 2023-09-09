@@ -128,7 +128,8 @@ void Plugins::Save()
 	out.BeginChild();
 	{
 		for(const auto &it : plugins)
-			out.Write(it.first, it.second.currentState);
+			if(it.second.IsValid())
+				out.Write(it.first, it.second.currentState);
 	}
 	out.EndChild();
 }
