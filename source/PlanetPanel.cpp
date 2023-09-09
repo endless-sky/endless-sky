@@ -111,7 +111,7 @@ void PlanetPanel::Draw()
 
 	if(planet.CanUseServices())
 	{
-		const auto &port = planet.GetPort();
+		const Port &port = planet.GetPort();
 
 		if(port.HasService(Port::ServicesType::Bank))
 			info.SetCondition("has bank");
