@@ -1869,7 +1869,7 @@ person "Patrol Team"
 #		Saugia
 			"Yeah... way too much detail. I can't see the cockpit anymore."
 			"Just don't go ham on details."
-			"These areas are looking much better, though. The contrast of the lesser details here and the more detailed areas elsewhere is a lot nicer."
+			"These areas are looking much better, though. The contrast between the less detailed area here and the more detailed areas elsewhere is a lot nicer."
 			"I'm just trying to see this half that size and I'm losing a lot of detail."
 			"It's awesome, but far too detailed."
 			"Now there's a lot less detail conflicting with one another."
@@ -1927,7 +1927,7 @@ person "Patrol Team"
 			"If you prefer your pull request sits idle"
 			"If you want your pull request to be closed"
 		word
-			", "		
+			", "
 		word
 			"make sure you keep adding content to it"
 			"always change unrelated things"
