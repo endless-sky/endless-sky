@@ -93,7 +93,8 @@ const Plugin *Plugins::Load(const string &path)
 	if(plugin && plugin->IsValid())
 	{
 		Logger::LogError("Warning: Skipping plugin located at \"" + path
-			+ "\" because another plugin with the same name has already been loaded");
+			+ "\" because another plugin with the same name has already been loaded from: \""
+			+ plugin->path + "\".");
 		return nullptr;
 	}
 
