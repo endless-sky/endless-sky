@@ -347,7 +347,7 @@ mission "<uhai> 5: Auxiliary Scans"
 		event "unfettered: analyzed the scans" 15 30
 		conversation
 			`You send your logs as you land and receive a very generous payment of <payment>.`
-			`	Moments later, on your bridge, you hear a familiar voice from the coms. "Oh, you're back! Good!" You are a bit surprised by the interruption, but quickly recognize Mera. "Hey, I have received the scans, it will take me a few weeks to analyze them but in the meantime can I speak to you about the ship? I really am intrigued about that 'Auxiliary'." The excitment in her voice is hard to miss.`
+			`	Moments later, on your bridge, you hear a familiar voice from the coms. "Oh, you're back! Good!" You are a bit surprised by the interruption, but quickly recognize Mera. "Hey, I have received the scans, it will take me a few weeks to analyze them but in the meantime can I speak to you about the ship? I really am intrigued about that 'Auxiliary'." The excitement in her voice is hard to miss.`
 			choice
 				`	"Sorry, but I'm no engineer. I have no idea about how those work."`
 				`	"Sure. What is it you want to know about them?"`
@@ -1372,7 +1372,7 @@ mission "<uhai> 9: Capture The Alpha Auxiliary"
 			`	The crowd leads you to the stadium.`
 			`	The council seems surprised to see you return, especially the Unfettered warlord that annoyed you earlier, but they address you with a deeper respect than before. "You have proven yourself. Now we have almost enough jump drives for the next phase..." You look at them intensely, and after a few moments they realize, "Oh right, your payment! Here it is: <payment>! From now on, you will be referred to as Herald."`
 			choice
-				`	"I have found Korath prisoners on the Alpha ship."`
+				`	"I have found Korath prisonners on the Alpha ship."`
 			`	This seems to trouble them deeply. They are split between those who want to interrogate the Korath for their technological secrets, and those who still remember too freshly the horrors of the Korath raids. The Chiefs are now the most active ones - some show scars or speak of lost family, others insult the Korath. A few, however, keep their calm.`
 			`	Then, finally, one of them speaks up. He had remained quiet through the argument, probably thinking. You see many scars on his arms as he stands, and can only guess at what he has been through. He speaks calmly, yet firmly, strongly enough to make everyone listen.`
 			`	You recognize Choot'k, he looks different without his armor but there can be no doubts that it's him.`
@@ -1447,7 +1447,7 @@ mission "<uhai> 9: Alpha Base"
 		conversation
 			`You do a detailed scan of the Alpha base to see if there are any more jump drives, or anyone who could have witnessed the fight. You cannot retrieve any information: it seems to either be too deep or shielded from scans in some way. You will have to go in blind.`
 			`	Surprisingly, the doors of the hangar open to let you in. Maybe it is an automated response to this ship, or whoever is down here assumed the Alphas won the fight. That said, if there is anyone here, it's probably a skeleton crew.`
-			`	You and your crew carefully exit your ship, but you see no signs of life here. They could be hidden, so you proceed cautiously, looking for the jump drive vault. On the way you hear sounds - sounds that definitely did not originate from humans. Heading that way, you find a brig full of Korath slaves, with a lizard head displayed above the cells. They seem to have been prisoners of the Alphas, and you find what appears to be a crudely rigged translation device next to their cell.`
+			`	You and your crew carefully exit your ship, but you see no signs of life here. They could be hidden, so you proceed cautiously, looking for the jump drive vault. On the way you hear sounds - sounds that definitely did not originate from humans. Heading that way, you find a brig full of prisoners, with a lizard head displayed above the cells. They seem to have been mistreated by the Alphas, and you find what appears to be a crudely rigged translation device next to their cell, with information regarding these Korath, an alien specie located north-east of human space that sometimes engages in raiding. They apparently used to control the territories nearby that are now owned by automatas.`
 			`	The captives themselves must have endured a lot, you should take them to Darkcloak and ask the Chiefs for help. You notice one of them has a very serious injury to their leg, it seems that it has been partially replaced by a crude prosthetic. He may not survive the transport.`
 			`	You find the jump drives easily enough, close to the hangar. There are ten here, and you load them all onto your ship. It seems the base was abandoned for some reason, but you can find no bodies or signs of an attack. Deciding to not overstay your welcome, you head back to the Auxiliary.`
 			choice
@@ -1463,7 +1463,7 @@ mission "<uhai> 9: Alpha Base"
 			`	You find a few squirrel symbols, and a fist that could indicate they were coerced. The Alphas seem to often communicate using simple symbols for their logs as a primitive code, on top of the more serious encryptions used for sensitive information. Going deeper into these recent logs of activities, you find a monkey symbol, with an eye next to it. But it is not all, there is a symbol of a crossed portal, with a red skull icon.`
 			`	There are also multiple flight logs. It seems they had been using this Auxiliary as a mobile base and for bringing jump drives to the Unfettered. These logs probably contain indications of where they have been getting the jump drives, but analyzing all of them will take more time. It doesn't take much, though, to notice they have spent significant time near Korath Exile territory. It is now time to leave the planet and go see the Chiefs.`
 			label warning
-			`	"Before leaving, you remember that the Unfettered want you to show them the Auxiliary, and they probably expect you to land with it as flagship. Make sure you bring all 10 jump drives back in your cargo or on the flagship, and that you keep this ship alive at all cost. It may be wise to wait a bit and replenish your fuel in this system."`
+			`	"Before leaving, you remember that the Unfettered want you to show them the Auxiliary, and they probably expect you to land with it as flagship. Make sure you bring all ten jump drives back in your cargo or on the flagship, and that you keep this ship alive at all cost. It may be wise to wait a bit and replenish your fuel in this system."`
 			# She will warn you if she likes you.
 			branch accept
 				has "unfettered rep: Mera"
