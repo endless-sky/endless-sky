@@ -114,8 +114,6 @@ mission "Deep Archaeology 3"
 		ship "Raven (Afterburner)" "D.P.S. Wyrd"
 		on kill
 			set "dps wyrd dead"
-		on capture
-			set "dps wyrd dead"
 	
 	npc
 		personality waiting
@@ -124,8 +122,6 @@ mission "Deep Archaeology 3"
 		ship "Raven (Afterburner)" "D.P.S. Skuld"
 		on kill
 			set "dps skuld dead"
-		on capture
-			set "dps skuld dead"
 	
 	npc
 		personality waiting
@@ -133,8 +129,6 @@ mission "Deep Archaeology 3"
 		government "Deep Security"
 		ship "Raven (Afterburner)" "D.P.S. Verthandi"
 		on kill
-			set "dps verthandi dead"
-		on capture
 			set "dps verthandi dead"
 	
 	on complete

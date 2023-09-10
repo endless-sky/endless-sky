@@ -37,6 +37,9 @@ namespace {
 	const string EXPEND_AMMO = "Escorts expend ammo";
 	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 
+	const vector<string> DATEFMT_OPTIONS = {"dd/mm/yyyy", "mm/dd/yyyy", "yyyy-mm-dd"};
+	int dateFormatIndex = 0;
+
 	const vector<double> ZOOMS = {.25, .35, .50, .70, 1.00, 1.40, 2.00};
 	int zoomIndex = 4;
 	constexpr double VOLUME_SCALE = .25;
@@ -119,6 +122,9 @@ namespace {
 	const vector<string> BOARDING_SETTINGS = {"proximity", "value", "mixed"};
 	int boardingIndex = 0;
 
+	const vector<string> FLOTSAM_SETTINGS = {"off", "on", "flagship only", "escorts only"};
+	int flotsamIndex = 1;
+
 	// Enable "fast" parallax by default. "fancy" is too GPU heavy, especially for low-end hardware.
 	const vector<string> PARALLAX_SETTINGS = {"off", "fancy", "fast"};
 	int parallaxIndex = 2;
@@ -135,8 +141,8 @@ void Preferences::Load()
 {
 	// These settings should be on by default. There is no need to specify
 	// values for settings that are off by default.
+	settings["Landing zoom"] = true;
 	settings["Render motion blur"] = true;
-	settings["Flagship flotsam collection"] = true;
 	settings[FRUGAL_ESCORTS] = true;
 	settings[EXPEND_AMMO] = true;
 	settings["Damaged fighters retreat"] = true;
@@ -146,6 +152,7 @@ void Preferences::Load()
 	settings["Show planet labels"] = true;
 	settings["Show asteroid scanner overlay"] = true;
 	settings["Show hyperspace flash"] = true;
+	settings["Extended jump effects"] = true;
 	settings["Draw background haze"] = true;
 	settings["Draw starfield"] = true;
 	settings["Hide unexplored map regions"] = true;
@@ -167,6 +174,8 @@ void Preferences::Load()
 			scrollSpeed = node.Value(1);
 		else if(node.Token(0) == "boarding target")
 			boardingIndex = max<int>(0, min<int>(node.Value(1), BOARDING_SETTINGS.size() - 1));
+		else if(node.Token(0) == "Flotsam collection")
+			flotsamIndex = max<int>(0, min<int>(node.Value(1), FLOTSAM_SETTINGS.size() - 1));
 		else if(node.Token(0) == "view zoom")
 			zoomIndex = max<int>(0, min<int>(node.Value(1), ZOOMS.size() - 1));
 		else if(node.Token(0) == "vsync")
@@ -189,6 +198,8 @@ void Preferences::Load()
 			parallaxIndex = max<int>(0, min<int>(node.Value(1), PARALLAX_SETTINGS.size() - 1));
 		else if(node.Token(0) == "fullscreen")
 			screenModeIndex = max<int>(0, min<int>(node.Value(1), SCREEN_MODE_SETTINGS.size() - 1));
+		else if(node.Token(0) == "date format")
+			dateFormatIndex = max<int>(0, min<int>(node.Value(1), DATEFMT_OPTIONS.size() - 1));
 		else if(node.Token(0) == "alert indicator")
 			alertIndicatorIndex = max<int>(0, min<int>(node.Value(1), ALERT_INDICATOR_SETTING.size() - 1));
 		else if(node.Token(0) == "previous saves" && node.Size() >= 2)
@@ -218,6 +229,16 @@ void Preferences::Load()
 			statusOverlaySettings[OverlayType::ALL] = OverlayState::DISABLED;
 		settings.erase(it);
 	}
+
+	// For people updating from a version after 0.10.1 (where "Flagship flotsam collection" was added),
+	// but before 0.10.3 (when it was replaaced with "Flotsam Collection").
+	it = settings.find("Flagship flotsam collection");
+	if(it != settings.end())
+	{
+		if(!it->second)
+			flotsamIndex = static_cast<int>(FlotsamCollection::ESCORT);
+		settings.erase(it);
+	}
 }
 
 
@@ -231,8 +252,10 @@ void Preferences::Save()
 	out.Write("zoom", Screen::UserZoom());
 	out.Write("scroll speed", scrollSpeed);
 	out.Write("boarding target", boardingIndex);
+	out.Write("Flotsam collection", flotsamIndex);
 	out.Write("view zoom", zoomIndex);
 	out.Write("vsync", vsyncIndex);
+	out.Write("date format", dateFormatIndex);
 	out.Write("Show all status overlays", statusOverlaySettings[OverlayType::ALL].ToInt());
 	out.Write("Show flagship overlay", statusOverlaySettings[OverlayType::FLAGSHIP].ToInt());
 	out.Write("Show escort overlays", statusOverlaySettings[OverlayType::ESCORT].ToInt());
@@ -278,6 +301,30 @@ void Preferences::ToggleAmmoUsage()
 string Preferences::AmmoUsage()
 {
 	return Has(EXPEND_AMMO) ? Has(FRUGAL_ESCORTS) ? "frugally" : "always" : "never";
+}
+
+
+
+void Preferences::ToggleDateFormat()
+{
+	if(dateFormatIndex == static_cast<int>(DATEFMT_OPTIONS.size() - 1))
+		dateFormatIndex = 0;
+	else
+		++dateFormatIndex;
+}
+
+
+
+Preferences::DateFormat Preferences::GetDateFormat()
+{
+	return static_cast<DateFormat>(dateFormatIndex);
+}
+
+
+
+const string &Preferences::DateFormatSetting()
+{
+	return DATEFMT_OPTIONS[dateFormatIndex];
 }
 
 
@@ -337,6 +384,13 @@ double Preferences::MinViewZoom()
 double Preferences::MaxViewZoom()
 {
 	return ZOOMS[ZOOMS.size() - 1];
+}
+
+
+
+const vector<double> &Preferences::Zooms()
+{
+	return ZOOMS;
 }
 
 
@@ -523,6 +577,27 @@ Preferences::BoardingPriority Preferences::GetBoardingPriority()
 const string &Preferences::BoardingSetting()
 {
 	return BOARDING_SETTINGS[boardingIndex];
+}
+
+
+
+void Preferences::ToggleFlotsam()
+{
+	flotsamIndex = (flotsamIndex + 1) % FLOTSAM_SETTINGS.size();
+}
+
+
+
+Preferences::FlotsamCollection Preferences::GetFlotsamCollection()
+{
+	return static_cast<FlotsamCollection>(flotsamIndex);
+}
+
+
+
+const string &Preferences::FlotsamSetting()
+{
+	return FLOTSAM_SETTINGS[flotsamIndex];
 }
 
 
