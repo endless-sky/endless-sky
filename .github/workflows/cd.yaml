@@ -22,7 +22,9 @@ jobs:
       OUTPUT: Endless_Sky-continuous-x86_64.AppImage
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          show-progress: false
       - name: Install dependencies
         run: |
           sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
@@ -57,7 +59,9 @@ jobs:
       OUTPUT: EndlessSky-win64-continuous.zip
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          show-progress: false
       - name: Setup sccache
         uses: ./.github/sccache
         with:
@@ -90,7 +94,9 @@ jobs:
       OUTPUT: EndlessSky-macOS-continuous.zip
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          show-progress: false
       - name: Setup sccache
         uses: ./.github/sccache
         with:
@@ -129,7 +135,9 @@ jobs:
       OUTPUT_WINDOWS: EndlessSky-win64-continuous.zip
       OUTPUT_MACOS: EndlessSky-macOS-continuous.zip
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          show-progress: false
       - name: Install github-release
         run: |
           go install github.com/github-release/github-release@latest
