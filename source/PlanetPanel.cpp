@@ -371,8 +371,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 		// Warn about commodities you will have to sell.
 		if(commoditiesToSell > 0)
 		{
-			out << "\n- have to sell ";
-			out << Format::CargoString(commoditiesToSell, "cargo");
+			out << "\n- sell " << Format::CargoString(commoditiesToSell, "cargo");
 			out << " that you do not have space for.";
 		}
 		out << "\nAre you sure you want to continue?";
