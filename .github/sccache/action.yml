@@ -30,7 +30,7 @@ runs:
       run: (Get-Item .).FullName >> $env:GITHUB_PATH
       shell: pwsh
     - name: Enable sccache
-      run: echo "SSCACHE_GHA_ENABLED=true" >> $GITHUB_ENV
+      run: echo "SCCACHE_GHA_ENABLED=true" >> $GITHUB_ENV
       shell: bash
     - name: Configure sccache
       uses: actions/github-script@v6
