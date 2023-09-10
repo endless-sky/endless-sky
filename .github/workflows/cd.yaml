@@ -32,8 +32,6 @@ jobs:
           sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev
       - name: Setup sccache
         uses: ./.github/sccache
-        with:
-          read-only: 'true'
       - name: Adjust version strings
         run: ./utils/cd_update_versions.sh
       - uses: lukka/get-cmake@latest
@@ -64,8 +62,6 @@ jobs:
           show-progress: false
       - name: Setup sccache
         uses: ./.github/sccache
-        with:
-          read-only: 'true'
       - name: Adjust version strings
         run: ./utils/cd_update_versions.sh
         shell: bash
@@ -99,8 +95,6 @@ jobs:
           show-progress: false
       - name: Setup sccache
         uses: ./.github/sccache
-        with:
-          read-only: 'true'
       - name: Install pkg-config
         run: type -P pkg-config || brew install pkg-config
       - uses: lukka/get-cmake@latest
