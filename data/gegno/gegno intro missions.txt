@@ -118,7 +118,7 @@ mission "First Contact: Gegno Vi"
 					goto observe
 				`	(Assist the Vi in defeating the beast.)`
 			label assist
-			`	You bring your sidearm up to a firing position and wait for the beast. Once again, it jumps out of the sand in an incredible display, but instead of digging back under the surface, the beast continues to thrash about where it is while the Vi batters it down with their spear weapon. Making sure you don't accidentally hit them, you hold your breath and wait until the right moment comes, aiming for the creature's head. The flailing creature begins to gets closer, and your pulse begins to race. A gust of sand blasts directly towards you, and once it clears you fire your weapon. A laser shot flies directly into the face of the beast.`
+			`	You bring your sidearm up to a firing position and wait for the beast. Once again, it jumps out of the sand in an incredible display, but instead of digging back under the surface, the beast continues to thrash about where it is while the Vi batters it down with their spear weapon. Making sure you don't accidentally hit them, you hold your breath and wait until the right moment comes, aiming for the creature's head. The flailing creature begins to get closer, and your pulse begins to race. A gust of sand blasts directly towards you, and once it clears you fire your weapon. A laser shot flies directly into the face of the beast.`
 			`	Much to your dismay, the shot almost immediately ricochets off of it. You watch as the massive monster tumbles over you, just barely leaping into the air above. The monster plunges into the earth behind you, and you fall to your back with the wind knocked out of you. You raise your sidearm once more. The creature explodes out of the ground with its gaping mouth pointed upward to the sky. With shaking hands, you take aim once again and pull the trigger.`
 			`	A loud, cannon-like bang follows, but it most certainly did not come from your weapon. The beast before you falls downward in a cloud of black smoke, blasting sand and rubble everywhere with a thud. Once you come to your senses, you see the Vi marching out of the creature's mouth.`
 			choice
@@ -143,7 +143,7 @@ mission "First Contact: Gegno Vi"
 				accept
 			
 			label observe
-			`	Cautiously retreating to a safer distance, you keep your eyes and ears peeled for the creature, wondering if and where it might appear again. As if to answer your inquiry, the ground begins to rumble, and off to your left, sand and rubble erupt into the air as the beast twists and turns across the surface. Following a loud bellow, the creature screeches in short bursts, almost like chirps, except much more deeper than that of a bird. As some of the dust clears, you see the Vi breathing intensely as they continue to battle the beast.`
+			`	Cautiously retreating to a safer distance, you keep your eyes and ears peeled for the creature, wondering if and where it might appear again. As if to answer your inquiry, the ground begins to rumble, and off to your left, sand and rubble erupt into the air as the beast twists and turns across the surface. Following a loud bellow, the creature screeches in short bursts, almost like chirps, except much deeper than that of a bird. As some of the dust clears, you see the Vi breathing intensely as they continue to battle the beast.`
 			choice
 				`	(Assist the Vi.)`
 					goto assist
