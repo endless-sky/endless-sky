@@ -529,9 +529,9 @@ phrase "Essential Unfettered Mission Fail If Killed"
 
 # using <, > so we can have an empty name
 # could add some depending on the kind of warlord you are (and SB you choose):
-# Heshi: sneaky, deadly
-# Mem'he: fast
-# Toor: enduring
+# He-Shi: sneaky, deadly
+# Mem-He: fast, ?
+# To-or: enduring, honest
 substitutions
 	"<uhai>" "Triumph of the True Hai"
 	"<, unfettered title>" ", monkey"
@@ -740,7 +740,7 @@ mission "<uhai> 1: Bring Medicine"
 			has "language: Hai"
 	on offer
 		conversation
-			`When you land, there is a message repeating on priority channels in Hai standard and tagged with the information for one of the hospitals nearby. <prioritymessage> Unsure whether they would accept your assistance as an outsider, especially given the message is in Hai, you decide to first look for more information planet-side. After all, it is unlikely that a Hai disease would be of any risk to you.`
+			`There is a message repeating on priority channels in Hai standard, tagged with the information for one of the hospitals nearby. <prioritymessage> Unsure whether they would accept your assistance as an outsider, especially given the message is in Hai, you decide to first look for more information planet-side. After all, it is unlikely that a Hai disease would be of any risk to you.`
 			`	When landing on an Unfettered planet, even after having brought them a jump drive, there is always some lingering tension. Now you feel the tension much more than usual, probably because of the medical emergency. Unfettered rush around, and various vehicles are frequently coming and going, bringing both supplies and the infected to the hospital. The hospital itself looks different than the rest of the Unfettered structures: it seems more organized, proper. It is probably amongst the best maintained ones here, alongside the shipyards - or at least it has that appearance. One part of it looks to have been grafted onto the rest though, and seems to be a recent addition. Not even their critical buildings appear to be totally safe from the Unfettered's propensity for haphazard building extensions.`
 			`	Many pilots seem to have taken up the call, but it appears the organizers here are still interested in all the volunteers they can get. Now that you're here, you're not sure you'll be able to leave without at least being accosted for your assistance with this.`
 			choice
@@ -802,7 +802,7 @@ mission "<uhai> 1: Bring Medicine"
 					decline
 			`	You can see the confusion on his face when you show him a picture of the Heshi you won from fighting the Captain, "So you have proven yourself already, impressive. You show great potential! The next time you fight this Captain you will gain his position as per the rules of the duels!`
 			label explainheshi
-			`	"The Heshi is a great predator which rules the seas on our homeworld. It is swift and nimble, so you do not see it coming, and when you do, it is already too late. Most are not very big, however, so they often hunt in groups. Your people have described it as looking like a 'sea scorpion', I believe, and rumour has it Si-Ra possesses one of monstruous size."`
+			`	"The Heshi is a great predator which rules the seas on our homeworld. It is swift and nimble, so you do not see it coming, and when you do, it is already too late. Most are not very big, however, so they often hunt in groups. Your people have described it as looking like a 'sea scorpion', I believe, and rumour has it one Captain possesses one of monstrous size."`
 				decline
 			label soldiers
 			`	He looks around him, before answering, "Do I look like a soldier to you? Does this medic look like one? No, we Unfettered only dare to think in another way. In truth, quite a few of us would like to be artists! It is the principle of the matter which drives us though, and it is a shame we must help fight for our right to live by another philosophy than the Hai one of stagnation, to break out of the prison they have cast for all of us! Our soldiers indeed suffer the most from that fight.`
@@ -886,7 +886,7 @@ mission "<uhai> 2: Prove Your Strength"
 			`	"Sink me! That flotsam really be your ship? Given the hornswoggle of your reputation, I pegged you for a fancier type. Your prowess is no lie, indeed then, if you land in such a scow, but can ye truly fight in it?" he says, and then he turns to address the crowd once again. "I wonder if it can even launch again. Perhaps we should scuttle it right here."`
 				goto lesson
 			label provoke
-			`	"So the <, unfettered title> can speak? Let us see if it can fight as well," he says with a provocative tone.`
+			`	"So the space-monkey can speak? Let us see if it can fight as well," he says with a provocative tone.`
 			label lesson
 			`	Time for him to learn a lesson. The thought that you may be in over your head briefly crosses your mind, but you brush it aside.`
 			`	After a cheering from his crowd, the arrogant Hai then speaks to you directly. "Ye and me then, a battle of flagships. Face me far above the tallest trees, whenever ye find the courage. But rest assured, monkey, I have the skill to humiliate ye without feeding ye to the fishes!"`
@@ -1032,12 +1032,15 @@ mission "<uhai> 2: Prove Your Strength"
 			`	You hear voices around you, someone screaming for help but also Si-Ra speaking calmly, "There is no cure for humans," as you hear this you sink deeper and deeper, almost losing consciousness, "there is nothing to be done. This is a fight they will have to win on their own."`
 			`	Suddenly the world darkens, and you fall. When you open your eyes again, all is vivid, as if you had never seen before. You see the scorpion that attacked you, clearer than ever in all its might and with the sparks of intelligence in its eyes, before it swiftly moves away.`
 			`	You are taken far away by a beam of pure light. You see collapsed civilisations, fighting to reclaim their forgotten glory as they struggle even to feed their own people. You see a planet, once beautiful, get bombarded until not a single trace of life is left. You see stars, beautiful and seemingly eternal, get blasted away with all surrounding space. You see automated ships, repairing wounds.`
+			action
+				set "unfettered: heshi trip"
+				"unfettered rep: Si-Ra" ++
 			`	Until, finally you are brought back by that same beam of light, and it is all you can see.`
 			choice
 				`	(Wake up.)`
 				`	(Give up.)`
 					die
-			`	You wake up in a hospital bed, Si-Ra is there and speaks very quietly, almost gently, "That was not the smartest option, lad, but you showed that you had what it takes to be considered Unfettered." He then moves to the door behind you.`
+			`	You wake up in a hospital bed, Si-Ra is there and speaks very quietly, almost gently, "That was maybe not smart, lad, but it sure was brave! You have what it takes to be one of us, just make sure you don't get killed next time." He then moves to the door behind you.`
 				goto end
 			label run
 			action

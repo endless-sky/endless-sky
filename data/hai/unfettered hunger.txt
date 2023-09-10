@@ -44,7 +44,7 @@ mission "Unfettered: Hunger!"
 			label "not first time"
 			`The local Unfettered authorities hail you. In fact, they are hailing all ships, in human and hai. This is not the first time they do this, and it probably means that, like last time, another famine is happening. If that were to be the case, they most likely did not manage their food issue in a permanent manner.`
 			label message
-			`	"Attention, to all that are sympathetic to our cause, or simply want to help a people survive, we are in great need of food. As such, we have negotiated an increase of tributes from the Hai, and they have offered some food supplies, as well as specialists to help us stabilize our food supplies. That is what we need all of you for, captains, all over our worlds parents are starving because they give what little they have to their children, to their future.`
+			`	"Attention, to all that are sympathetic to our cause, or simply want to help a people survive, we are in great need of food. As such, we have negotiated an increase of tributes from the Hai, and they have offered some food supplies, as well as specialists to help us stabilize our food production. That is what we need all of you for, captains, all over our worlds parents are starving because they give what little they have to their children, to their future.`
 			`	You can almost feel them laying low their pride to say the next part, "We are not used to nor comfortable with begging, but please, help us! Spread the word, bring food, we will reward you handsomely as ever! Do it for the money if you must, or do it because you care."`
 	on daily
 		"unfettered: hunger stops" += random

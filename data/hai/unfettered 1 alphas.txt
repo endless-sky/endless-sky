@@ -347,7 +347,7 @@ mission "<uhai> 5: Auxiliary Scans"
 		event "unfettered: analyzed the scans" 15 30
 		conversation
 			`You send your logs as you land and receive a very generous payment of <payment>.`
-			`	Moments later, on your bridge, you hear a familiar voice from the coms. "Oh, you're back! Good!" You are a bit surprised by the interruption, but quickly recognize Mera. "Hey, I have received the scans, it will take me a few weeks to analyze them but in the meantime can I speak to you about the ship? I really am intrigued about that 'Auxiliary'." The excitation in her voice is hard to miss.`
+			`	Moments later, on your bridge, you hear a familiar voice from the coms. "Oh, you're back! Good!" You are a bit surprised by the interruption, but quickly recognize Mera. "Hey, I have received the scans, it will take me a few weeks to analyze them but in the meantime can I speak to you about the ship? I really am intrigued about that 'Auxiliary'." The excitment in her voice is hard to miss.`
 			choice
 				`	"Sorry, but I'm no engineer. I have no idea about how those work."`
 				`	"Sure. What is it you want to know about them?"`
@@ -517,6 +517,8 @@ mission "<uhai> 6 A: Loyal Escort"
 		system "Ya Hai"
 		personality disables plunders vindictive
 		fleet "Marauders" 2
+	on visit
+		dialog "You have arrived at the destination, but either all ships are not presents, or there are dangerous enemies still in orbit."
 	on fail
 		# The shipment gets lost faster, because if this fails Midas are busy shipping supplies to Unfettered space and can't dedicate as much resources to stealing Alpha supplies.
 		event "unfettered: shipment lost" 20
@@ -775,9 +777,9 @@ mission "<uhai> 7: Stolen Cargo"
 				to display
 					has "unfettered: hunger"
 					credits < 32000000
-			`	"I would advise you to lead this mission with a Shield Beetle, like a true warrior. You deserve it, and it could prove useful.`
+			`	"I would advise you to lead this mission with a Shield Beetle, like a true warrior. You deserve it, and it could prove useful."`
 			label nvm
-			`	"It would also probably be best to limit yourself to say 2 heavy warships so you don't attract too much attention.`
+			`	"It would also probably be best to limit yourself to say 2 heavy warships so you don't attract too much attention."`
 			# no need to accept because this is a job; it was already accepted.
 	on enter "Misam"
 		conversation
