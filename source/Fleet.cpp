@@ -266,8 +266,8 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 				if(object.HasValidPlanet()
 						&& (unrestricted || !government->IsRestrictedFrom(*object.GetPlanet()))
 						&& !object.GetPlanet()->GetGovernment()->IsEnemy(government))
-					linkVector.push_back(&object);
-			options = linkVector.size();
+					stellarVector.push_back(&object);
+			options = stellarVector.size();
 			if(!options)
 				return;
 		}
