@@ -158,9 +158,9 @@ private:
 	double reputationMin = std::numeric_limits<double>::lowest();
 	std::map<int, double> penaltyFor;
 	std::map<const Outfit*, int> illegalOutfits;
-	std::map<const std::string, int> illegalShips;
+	std::map<std::string, int> illegalShips;
 	std::map<const Outfit*, bool> atrocityOutfits;
-	std::map<const std::string, bool> atrocityShips;
+	std::map<std::string, bool> atrocityShips;
 	double bribe = 0.;
 	double fine = 1.;
 	std::vector<LocationFilter> enforcementZones;
