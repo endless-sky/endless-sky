@@ -51,7 +51,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cmath>
 #include <limits>
 #include <sstream>
-#include <iostream>
 
 using namespace std;
 
@@ -288,10 +287,7 @@ void Ship::Load(const DataNode &node)
 			}
 		}
 		else if(key == "center" && child.Size() >= 3)
-		{
 			center = Point(child.Value(1), child.Value(2));
-			std::cout<<"Center: "<<center.X()<<" "<<center.Y()<<std::endl;
-		}
 		else if((key == "engine" || key == "reverse engine" || key == "steering engine") && child.Size() >= 3)
 		{
 			if(!hasEngine)
