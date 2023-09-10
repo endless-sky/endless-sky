@@ -71,6 +71,7 @@ namespace {
 	const string SCROLL_SPEED = "Scroll speed";
 	const string FIGHTER_REPAIR = "Repair fighters in";
 	const string SHIP_OUTLINES = "Ship outlines in shops";
+	const string DATE_FORMAT = "Date format";
 	const string BOARDING_PRIORITY = "Boarding target priority";
 	const string TARGET_ASTEROIDS_BASED_ON = "Target asteroid based on";
 	const string BACKGROUND_PARALLAX = "Parallax background";
@@ -279,6 +280,8 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 					speed = 20;
 				Preferences::SetScrollSpeed(speed);
 			}
+			else if(zone.Value() == DATE_FORMAT)
+				Preferences::ToggleDateFormat();
 			else if(zone.Value() == ALERT_INDICATOR)
 				Preferences::ToggleAlert();
 			else if(zone.Value() == FLAGSHIP_VELOCITY_INDICATOR)
@@ -614,7 +617,8 @@ void PreferencesPanel::DrawSettings()
 		REACTIVATE_HELP,
 		"Interrupt fast-forward",
 		"Landing zoom",
-		SCROLL_SPEED
+		SCROLL_SPEED,
+		DATE_FORMAT
 	};
 
 	bool isCategory = true;
@@ -720,6 +724,11 @@ void PreferencesPanel::DrawSettings()
 		}
 		else if(setting == EXPEND_AMMO)
 			text = Preferences::AmmoUsage();
+		else if(setting == DATE_FORMAT)
+		{
+			text = Preferences::DateFormatSetting();
+			isOn = true;
+		}
 		else if(setting == FLOTSAM_SETTING)
 		{
 			text = Preferences::FlotsamSetting();
