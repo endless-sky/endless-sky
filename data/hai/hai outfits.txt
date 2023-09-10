@@ -204,7 +204,7 @@ outfit "Railgun Slug"
 	description "Skipper Railgun Slugs incorporate energy-discharging capacitors that deal a small amount of ion damage to their target. Although not terribly damaging, this ion damage combined with the significant recoil that each shot has turns Flea drones into effective long-range support ships."
 
 outfit "Railgun Slug Rack"
-	"display name" "Skipper Railgun Slug Rack"
+	"display name" "Skipper Slug Rack"
 	category "Ammunition"
 	cost 15000
 	thumbnail "outfit/railslug rack"
@@ -212,7 +212,7 @@ outfit "Railgun Slug Rack"
 	"outfit space" -3
 	"railgun slug capacity" 500
 	ammo "Railgun Slug"
-	description "This railgun slug rack is used to store and load extra Skipper railgun ammunition."
+	description "This railgun slug rack is used to store and load extra Skipper Railgun ammunition."
 
 outfit "Railgun"
 	"display name" "Skipper Railgun"
