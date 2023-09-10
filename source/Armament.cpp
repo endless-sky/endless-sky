@@ -183,6 +183,13 @@ const vector<Hardpoint> &Armament::Get() const
 
 
 
+vector<Hardpoint> &Armament::GetEditable()
+{
+	return hardpoints;
+}
+
+
+
 // Determine how many fixed gun hardpoints are on this ship.
 int Armament::GunCount() const
 {

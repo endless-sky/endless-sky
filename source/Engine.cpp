@@ -161,7 +161,7 @@ namespace {
 	{
 		for(const Ship::EnginePoint &point : enginePoints)
 		{
-			Point pos = ship.Facing().Rotate(point) * ship.Zoom() + ship.Position();
+			Point pos = ship.Facing().Rotate(point + ship.Center()) * ship.Zoom() + ship.Position();
 			// If multiple engines with the same flare are installed, draw up to
 			// three copies of the flare sprite.
 			for(const auto &it : flareSprites)

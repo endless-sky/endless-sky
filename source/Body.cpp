@@ -180,6 +180,13 @@ double Body::Scale() const
 
 
 
+Point Body::Center() const
+{
+	return center;
+}
+
+
+
 // Check if this object is marked for removal from the game.
 bool Body::ShouldBeRemoved() const
 {

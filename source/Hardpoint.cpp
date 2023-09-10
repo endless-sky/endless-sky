@@ -349,6 +349,13 @@ void Hardpoint::Uninstall()
 
 
 
+void Hardpoint::AddOffset(Point offset)
+{
+	point += offset;
+}
+
+
+
 // Update any counters that change when this projectile fires.
 void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 {

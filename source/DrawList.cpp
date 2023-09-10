@@ -140,8 +140,9 @@ void DrawList::Push(const Body &body, Point pos, Point blur, double cloak, int s
 	item.frame = body.GetFrame(step);
 	item.frameCount = body.GetSprite()->Frames();
 
-	item.position[0] = static_cast<float>(pos.X() * zoom);
-	item.position[1] = static_cast<float>(pos.Y() * zoom);
+	Point position = pos + body.Zoom() * body.Facing().Rotate(body.Center());
+	item.position[0] = static_cast<float>(position.X() * zoom);
+	item.position[1] = static_cast<float>(position.Y() * zoom);
 
 	// Get unit vectors in the direction of the object's width and height.
 	double width = body.Width();

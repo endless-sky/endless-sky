@@ -51,6 +51,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cmath>
 #include <limits>
 #include <sstream>
+#include <iostream>
 
 using namespace std;
 
@@ -285,6 +286,11 @@ void Ship::Load(const DataNode &node)
 				addAttributes = true;
 				attributes.Load(child);
 			}
+		}
+		else if(key == "center" && child.Size() >= 3)
+		{
+			center = Point(child.Value(1), child.Value(2));
+			std::cout<<"Center: "<<center.X()<<" "<<center.Y()<<std::endl;
 		}
 		else if((key == "engine" || key == "reverse engine" || key == "steering engine") && child.Size() >= 3)
 		{
@@ -581,6 +587,11 @@ void Ship::FinishLoading(bool isNewInstance)
 			noun = model->noun;
 		if(!thumbnail)
 			thumbnail = model->thumbnail;
+	}
+
+	for(auto &hardpoint : armament.GetEditable())
+	{
+		hardpoint.AddOffset(center);
 	}
 
 	// If this ship has a base class, copy any attributes not defined here.
@@ -976,6 +987,8 @@ void Ship::Save(DataWriter &out) const
 		}
 		out.EndChild();
 
+		out.Write("center", center.X(), center.Y());
+
 		cargo.Save(out);
 		out.Write("crew", crew);
 		out.Write("fuel", fuel);
@@ -1016,10 +1029,10 @@ void Ship::Save(DataWriter &out) const
 		{
 			const char *type = (hardpoint.IsTurret() ? "turret" : "gun");
 			if(hardpoint.GetOutfit())
-				out.Write(type, 2. * hardpoint.GetPoint().X(), 2. * hardpoint.GetPoint().Y(),
+				out.Write(type, 2. * (hardpoint.GetPoint().X() - center.X()), 2. * (hardpoint.GetPoint().Y() - center.Y()),
 					hardpoint.GetOutfit()->TrueName());
 			else
-				out.Write(type, 2. * hardpoint.GetPoint().X(), 2. * hardpoint.GetPoint().Y());
+				out.Write(type, 2. * (hardpoint.GetPoint().X() - center.X()), 2. * (hardpoint.GetPoint().Y() - center.Y()));
 			double hardpointAngle = hardpoint.GetBaseAngle().Degrees();
 			out.BeginChild();
 			{

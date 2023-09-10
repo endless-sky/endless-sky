@@ -85,6 +85,8 @@ public:
 	// Uninstall the outfit from this port (if it has one).
 	void Uninstall();
 
+	void AddOffset(Point offset);
+
 
 private:
 	// Reset the reload counters and expend ammunition, if any.

@@ -62,6 +62,8 @@ public:
 	double Zoom() const;
 	double Scale() const;
 
+	Point Center() const;
+
 	// Check if this object is marked for removal from the game.
 	bool ShouldBeRemoved() const;
 
@@ -104,6 +106,8 @@ protected:
 
 	// Government, for use in collision checks.
 	const Government *government = nullptr;
+
+	Point center = Point(0., 0.);
 
 
 private:
