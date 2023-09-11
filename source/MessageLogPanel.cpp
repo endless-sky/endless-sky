@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
+#include "Interface.h"
 #include "Preferences.h"
 #include "Screen.h"
 #include "Sprite.h"
@@ -53,7 +54,7 @@ void MessageLogPanel::Draw()
 	DrawBackdrop();
 
 	// Draw the panel.
-	width = Screen::Width() - 300;
+	width = Screen::Width() - GameData::Interfaces().Get("message log")->GetValue("margin");
 	const Color &backColor = *GameData::Colors().Get("message log background");
 	FillShader::Fill(
 		Point(Screen::Left() + .5 * width, 0.),

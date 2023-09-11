@@ -1503,6 +1503,11 @@ interface "info panel"
 
 
 
+interface "message log"
+	value "margin" 300
+
+
+
 interface "hail panel"
 	sprite "ui/hail panel"
 	string "header"
