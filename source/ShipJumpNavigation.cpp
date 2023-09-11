@@ -165,9 +165,13 @@ bool ShipJumpNavigation::CanJump(const System *from, const System *to) const
 	if(from->Links().count(to) && (hasHyperdrive || hasJumpDrive))
 		return true;
 
+	if(!hasJumpDrive)
+		return false;
+
 	const double distanceSquared = from->Position().DistanceSquared(to->Position());
 	if(from->JumpRange() && from->JumpRange() * from->JumpRange() < distanceSquared)
 		return false;
+
 	const double maxRange = jumpDriveCosts.rbegin()->first;
 	return maxRange * maxRange >= distanceSquared;
 }
