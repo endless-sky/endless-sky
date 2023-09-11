@@ -951,7 +951,7 @@ outfit "Electrostatic Ramscoop"
 	category "Systems"
 	licenses
 		"Avgi Civilian"
-	cost 60000
+	cost 720000
 	thumbnail "outfit/unknown"
 	"mass" 12
 	"outfit space" -12
@@ -1011,7 +1011,7 @@ outfit "Thermal Sink Partition"
 	category "Systems"
 	licenses
 		"Avgi Civilian"
-	cost 30000
+	cost 84000
 	thumbnail "outfit/densified fuel tank"
 	"mass" 9
 	"outfit space" -3
@@ -1105,7 +1105,7 @@ outfit "Concentrating Solar Cell"
 	category "Power"
 	licenses
 		"Avgi Civilian"
-	cost 200000
+	cost 12600
 	thumbnail "outfit/unknown"
 	"mass" 1
 	"outfit space" -3
@@ -1118,7 +1118,7 @@ outfit "Concentrating Solar Array"
 	category "Power"
 	licenses
 		"Avgi Civilian"
-	cost 200000
+	cost 114000
 	thumbnail "outfit/unknown"
 	"mass" 3
 	"outfit space" -18
@@ -1133,7 +1133,7 @@ outfit "Photoelectric Scales"
 	category "Power"
 	licenses
 		"Avgi Civilian"
-	cost 200000
+	cost 294000
 	thumbnail "outfit/photoelectric scales"
 	"mass" 24
 	"anchor point" -1
@@ -1160,7 +1160,7 @@ outfit "Luminous Fusion Core"
 	category "Power"
 	licenses
 		"Avgi Civilian"
-	cost 20460000
+	cost 3420000
 	thumbnail "outfit/fusion core small"
 	"mass" 36
 	"outfit space" -36
@@ -1174,7 +1174,7 @@ outfit "Brilliant Fusion Core"
 	category "Power"
 	licenses
 		"Avgi Military"
-	cost 20460000
+	cost 5760000
 	thumbnail "outfit/unknown"
 	"mass" 72
 	"outfit space" -72
@@ -1188,7 +1188,7 @@ outfit "Radiant Fusion Core"
 	category "Power"
 	licenses
 		"Avgi Military"
-	cost 20460000
+	cost 14460000
 	thumbnail "outfit/unknown"
 	"mass" 120
 	"outfit space" -120
@@ -1216,7 +1216,7 @@ outfit "Ultracapacitor Cell"
 	category "Power"
 	licenses
 		"Avgi Civilian"
-	cost 200000
+	cost 20400
 	thumbnail "outfit/unknown"
 	"mass" 1
 	"outfit space" -3
@@ -1279,7 +1279,7 @@ outfit "Z-360 Fusion Torch"
 	category "Engines"
 	licenses
 		"Avgi Military"
-	"cost" 100000
+	"cost" 660000
 	thumbnail "outfit/fusion engine small"
 	"mass" 36
 	"outfit space" -36
@@ -1305,7 +1305,7 @@ outfit "Z-600 Fusion Torch"
 	category "Engines"
 	licenses
 		"Avgi Military"
-	"cost" 100000
+	"cost" 1440000
 	thumbnail "outfit/fusion engine medium"
 	"mass" 60
 	"outfit space" -60
@@ -1330,7 +1330,7 @@ outfit "Z-960 Fusion Torch"
 	category "Engines"
 	licenses
 		"Avgi Military"
-	"cost" 100000
+	"cost" 2760000
 	thumbnail "outfit/fusion engine large"
 	"mass" 96
 	"outfit space" -96
