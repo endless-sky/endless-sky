@@ -721,7 +721,9 @@ interface "hud"
 	anchor top
 	point "mini-map"
 		center 0 100
-	
+
+
+interface "main view"
 	list "zooms"
 		.25
 		.35

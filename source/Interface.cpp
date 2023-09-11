@@ -85,6 +85,7 @@ void Interface::Load(const DataNode &node)
 	elements.clear();
 	points.clear();
 	values.clear();
+	lists.clear();
 
 	// First, figure out the anchor point of this interface.
 	Point anchor = ParseAlignment(node, 2);

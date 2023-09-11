@@ -318,9 +318,9 @@ void Preferences::SetScrollSpeed(int speed)
 // View zoom.
 double Preferences::ViewZoom()
 {
-	const auto &zooms = GameData::Interfaces().Get("hud")->GetList("zooms");
+	const auto &zooms = GameData::Interfaces().Get("main view")->GetList("zooms");
 	if(zoomIndex >= zooms.size())
-		return zooms.back();
+		return zooms.empty() ? 1. : zooms.back();
 	return zooms[zoomIndex];
 }
 
@@ -328,7 +328,7 @@ double Preferences::ViewZoom()
 
 bool Preferences::ZoomViewIn()
 {
-	const auto &zooms = GameData::Interfaces().Get("hud")->GetList("zooms");
+	const auto &zooms = GameData::Interfaces().Get("main view")->GetList("zooms");
 	if(zoomIndex >= zooms.size() - 1)
 		return false;
 
@@ -343,7 +343,7 @@ bool Preferences::ZoomViewOut()
 	if(zoomIndex == 0)
 		return false;
 
-	const auto &zooms = GameData::Interfaces().Get("hud")->GetList("zooms");
+	const auto &zooms = GameData::Interfaces().Get("main view")->GetList("zooms");
 	// Make sure that we're actually zooming out. This can happen if the zoom index
 	// is out of range.
 	if(zoomIndex >= zooms.size())
@@ -357,21 +357,23 @@ bool Preferences::ZoomViewOut()
 
 double Preferences::MinViewZoom()
 {
-	return GameData::Interfaces().Get("hud")->GetList("zooms").front();
+	const auto &zooms = GameData::Interfaces().Get("main view")->GetList("zooms");
+	return zooms.empty() ? 1. : zooms.front();
 }
 
 
 
 double Preferences::MaxViewZoom()
 {
-	return GameData::Interfaces().Get("hud")->GetList("zooms").back();
+	const auto &zooms = GameData::Interfaces().Get("main view")->GetList("zooms");
+	return zooms.empty() ? 1. : zooms.back();
 }
 
 
 
 const vector<double> &Preferences::Zooms()
 {
-	return GameData::Interfaces().Get("hud")->GetList("zooms");
+	return GameData::Interfaces().Get("main view")->GetList("zooms");
 }
 
 
