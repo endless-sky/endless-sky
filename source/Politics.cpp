@@ -166,13 +166,11 @@ bool Politics::CanLand(const Ship &ship, const Planet *planet) const
 {
 	if(!planet || !planet->GetSystem())
 		return false;
-	if(!planet->IsInhabited())
-		return true;
 
 	const Government *gov = ship.GetGovernment();
 	if(!gov->IsPlayer())
-		return !IsEnemy(gov, planet->GetGovernment()) &&
-			(ship.GetPersonality().IsUnrestricted() || !gov->IsRestrictedFrom(*planet));
+		return !IsEnemy(gov, planet->GetGovernment()) && (planet->IsInhabited() ||
+			(ship.GetPersonality().IsUnrestricted() || !gov->IsRestrictedFrom(*planet)));
 
 	return CanLand(planet);
 }
