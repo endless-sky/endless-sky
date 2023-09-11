@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Screen.h"
 
 #include <algorithm>
+#include <cstddef>
 #include <map>
 
 using namespace std;
@@ -42,7 +43,7 @@ namespace {
 	const vector<string> DATEFMT_OPTIONS = {"dd/mm/yyyy", "mm/dd/yyyy", "yyyy-mm-dd"};
 	int dateFormatIndex = 0;
 
-	int zoomIndex = 4;
+	size_t zoomIndex = 4;
 	constexpr double VOLUME_SCALE = .25;
 
 	// Default to fullscreen.
