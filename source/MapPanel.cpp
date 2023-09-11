@@ -793,7 +793,7 @@ void MapPanel::Select(const System *system)
 	}
 
 	// Reset the travel destination if the final system in the travel plan has changed.
-	if(!plan.empty() && plan.front() != previousFinalSystem)
+	if(!plan.empty())
 		player.SetTravelDestination(nullptr);
 }
 
