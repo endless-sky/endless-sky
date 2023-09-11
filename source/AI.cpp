@@ -1694,9 +1694,10 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 			? origin->JumpNeighbors(ship.JumpNavigation().JumpRange()) : origin->Links();
 		if(jumps)
 		{
+			bool unrestricted = ship.GetPersonality().IsUnrestricted();
 			for(const System *link : links)
 			{
-				if(!ship.GetPersonality().IsUnrestricted() && gov->IsRestrictedFrom(*link))
+				if(!unrestricted && gov->IsRestrictedFrom(*link))
 				{
 					systemWeights.push_back(0);
 					continue;

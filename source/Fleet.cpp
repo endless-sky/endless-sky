@@ -444,8 +444,9 @@ const System *Fleet::Enter(const System &system, Ship &ship, const System *sourc
 	if(!source)
 	{
 		vector<const System*> validSystems;
+		const Government *gov = ship.GetGovernment();
 		for(const System *link : system.Links())
-			if(unrestricted || ship.GetGovernment()->IsRestrictedFrom(*link))
+			if(unrestricted || gov->IsRestrictedFrom(*link))
 				validSystems.emplace_back(link);
 		auto it = validSystems.cbegin();
 		advance(it, Random::Int(validSystems.size()));
