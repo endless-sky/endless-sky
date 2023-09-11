@@ -27,7 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	// The maximum amount of loded images in the queue that are
+	// The maximum number of loaded images in the queue that are
 	// waiting to be uploaded to the GPU.
 	constexpr int MAX_QUEUE = 100;
 }
