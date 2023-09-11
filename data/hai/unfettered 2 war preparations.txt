@@ -1006,7 +1006,7 @@ mission "<uhai> 15: Modified Beetle"
 		personality
 			confusion 50
 			disables staying heroic target waiting
-		ship "Modified Shield Beetle" "Hera-Ti"
+		ship "Modified Shield Beetle" "Hera"
 		on kill
 			event "unfettered: outcast"
 		to spawn
@@ -1057,8 +1057,11 @@ mission "<uhai> 15: Modified Beetle"
 			branch normal
 				not "unfettered rep: Mera"
 			`	"Since this was partly a test-run, what suggestions would you make to improve the ship, so I can make changes to its outfits, before I finally give this ship to you?"`
+			label suggestions
 			choice
 				`	"The ship is fine, but I could use an extra outfit to modify the loadout myself."`
+				`	"Can you explain to me why you named the ship Hera?"`
+					goto hera
 				`	"I feel like it is lacking in raw firepower, missiles will just get intercepted before they can hit."`
 					goto dakka
 				`	"I was expecting even more ionic damage out of it."`
@@ -1095,6 +1098,9 @@ mission "<uhai> 15: Modified Beetle"
 				set "unfettered: prize right away"
 			`	"You can go claim the ship itself tomorrow, on Darkcloak, once I am done with the repairs. It should not take long!"`
 				accept
+			label hera
+			`	She almost jumps of excitement, "I was hoping you would ask that! Listening to the Alphas, I gathered Hera is the goddess of protection. That is the best way to describe this ship: it has significantly improved shielding compared to a standard Shield Beetle, and its equipement is mostly defense focused, using ionic prototypes to scramble enemy weapons and even disable their reactor, after some time. It is also my hope that this ship will be used sparingly, avoiding casualties if possible. But let us go back to the outfit upgrades I mentionned," she says whilst looking around, distracted.`
+				goto suggestions
 			label dakka
 			action
 				event "unfettered: more dakka" 14
@@ -1270,7 +1276,7 @@ mission "<uhai> 16: Strength Of A Leader: Si-Ra"
 	npc
 		to spawn
 			has "unfettered: mad Si-Ra"
-			"armament deterrence" > 12
+			"armament deterrence" >= 12
 		to despawn
 			has "unfettered: defeated Si-Ra"
 		government "Hai (Unfettered Challenger)"
