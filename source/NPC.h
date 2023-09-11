@@ -50,6 +50,22 @@ class UI;
 // staying in the system they started in, or attacking only the player's ships.
 class NPC {
 public:
+	enum class Trigger : int_fast8_t {
+		// Triggers corresponding directly to ShipEvents.
+		ASSIST,
+		SCAN_CARGO,
+		SCAN_OUTFITS,
+		PROVOKE,
+		DISABLE,
+		BOARD,
+		CAPTURE,
+		DESTROY,
+		// Can be triggered by either the CAPTURE or DESTROY events.
+		KILL
+	};
+
+
+public:
 	NPC() = default;
 	// Copying an NPC instance isn't allowed.
 	NPC(const NPC &) = delete;
@@ -80,7 +96,6 @@ public:
 	const std::list<std::shared_ptr<Ship>> Ships() const;
 
 	// Handle the given ShipEvent.
-	enum Trigger {KILL, BOARD, ASSIST, DISABLE, SCAN_CARGO, SCAN_OUTFITS, CAPTURE, PROVOKE};
 	void Do(const ShipEvent &event, PlayerInfo &player, UI *ui = nullptr,
 		const Mission *caller = nullptr, bool isVisible = true);
 	// Determine if the NPC is in a successful state, assuming the player is in the given system.
