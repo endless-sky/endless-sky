@@ -105,6 +105,9 @@ namespace {
 	void LoadPlugin(const string &path)
 	{
 		const auto *plugin = Plugins::Load(path);
+		if(!plugin)
+			return;
+
 		if(plugin->enabled)
 			sources.push_back(path);
 
@@ -195,7 +198,7 @@ void GameData::CheckReferences()
 
 
 
-void GameData::LoadShaders(bool useShaderSwizzle)
+void GameData::LoadShaders()
 {
 	FontSet::Add(Files::Images() + "font/ubuntu14r.png", 14);
 	FontSet::Add(Files::Images() + "font/ubuntu18r.png", 18);
@@ -210,7 +213,7 @@ void GameData::LoadShaders(bool useShaderSwizzle)
 	OutlineShader::Init();
 	PointerShader::Init();
 	RingShader::Init();
-	SpriteShader::Init(useShaderSwizzle);
+	SpriteShader::Init();
 	BatchShader::Init();
 
 	background.Init(16384, 4096);
