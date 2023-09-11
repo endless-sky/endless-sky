@@ -816,7 +816,7 @@ void PreferencesPanel::DrawPlugins()
 
 	const Sprite *box[2] = { SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked") };
 
-	const int MAX_TEXT_WIDTH = 230;
+	const int MAX_TEXT_WIDTH = 210;
 	Table table;
 	table.AddColumn(-115, {MAX_TEXT_WIDTH, Truncate::MIDDLE});
 	table.SetUnderline(-120, 100);
