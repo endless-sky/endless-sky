@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
+#include "Government.h"
 #include "Interface.h"
 #include "MapDetailPanel.h"
 #include "Planet.h"
