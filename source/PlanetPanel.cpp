@@ -333,48 +333,48 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 	if(nonJumpCount > 0 || missionCargoToSell > 0 || outfitsToSell > 0 || commoditiesToSell > 0 || overbooked > 0)
 	{
 		ostringstream out;
+		out << "If you take off now, you will:";
+
 		// Warn about missions that will fail on takeoff.
 		if(missionCargoToSell > 0 || overbooked > 0)
 		{
-			const bool both = (missionCargoToSell > 0 && overbooked > 0);
-			out << "If you take off now, you will abort a mission due to not having enough ";
+			out << "\n- abort a mission due to not having enough ";
 
 			if(overbooked > 0)
 			{
 				out << "bunks available for " << overbooked;
 				out << (overbooked > 1 ? " of the passengers" : " passenger");
-				out << (both ? " and not having enough " : ".");
+				out << (missionCargoToSell > 0 ? " and not having enough " : ".");
 			}
 
 			if(missionCargoToSell > 0)
-				out << "cargo space to hold " << Format::CargoString(missionCargoToSell, "your mission cargo") << ".";
+				out << "cargo space to hold " << Format::CargoString(missionCargoToSell, "mission cargo.");
 		}
 		// Warn about outfits that can't be carried.
-		else if(outfitsToSell > 0)
+		if(outfitsToSell > 0)
 		{
-			out << "If you take off now, you will ";
+			out << "\n- ";
 			out << (planet.HasOutfitter() ? "store " : "sell ") << outfitsToSell << " outfit";
 			out << (outfitsToSell > 1 ? "s" : "");
 			out << " that none of your ships can hold.";
 		}
 		// Warn about ships that won't travel with you.
-		else if(nonJumpCount > 0)
+		if(nonJumpCount > 0)
 		{
-			out << "If you take off now you will launch with ";
+			out << "\n- launch with ";
 			if(nonJumpCount == 1)
 				out << "a ship";
 			else
 				out << nonJumpCount << " ships";
 			out << " that will not be able to leave the system.";
 		}
-		// Warn about non-commodity cargo you will have to sell.
-		else
+		// Warn about commodities you will have to sell.
+		if(commoditiesToSell > 0)
 		{
-			out << "If you take off now you will have to sell ";
-			out << Format::CargoString(commoditiesToSell, "cargo");
+			out << "\n- sell " << Format::CargoString(commoditiesToSell, "cargo");
 			out << " that you do not have space for.";
 		}
-		out << " Are you sure you want to continue?";
+		out << "\nAre you sure you want to continue?";
 		GetUI()->Push(new Dialog(this, &PlanetPanel::WarningsDialogCallback, out.str()));
 		return;
 	}
