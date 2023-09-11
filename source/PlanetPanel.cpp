@@ -310,16 +310,18 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 	// Will you have to sell something other than regular cargo?
 	const int commoditiesToSell = cargo.CommoditiesSize();
 	int outfitsToSell = 0;
+	map<const Outfit *, int> uniquesToSell;
 	for(auto &it : cargo.Outfits())
+	{
 		outfitsToSell += it.second;
+		if(it.first->Attributes().Get("unique"))
+			uniquesToSell[it.first] = it.second;
+	}
 	// Have you left any unique items at the outfitter?
-	bool leftUniques = false;
+	map<const Outfit *, int> leftUniques;
 	for(const auto &it : player.GetStock())
 		if(it.first->Attributes().Get("unique"))
-		{
-			leftUniques = true;
-			break;
-		}
+			leftUniques[it.first] = it.second;
 	// Count how many active ships we have that cannot make the jump (e.g. due to lack of fuel,
 	// drive, or carrier). All such ships will have been logged in the player's flightcheck.
 	size_t nonJumpCount = 0;
@@ -339,9 +341,28 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 	}
 
 	if(nonJumpCount > 0 || missionCargoToSell > 0 || outfitsToSell > 0 || commoditiesToSell > 0 || overbooked > 0
-		|| leftUniques)
+		|| !leftUniques.empty())
 	{
 		ostringstream out;
+		auto ListUniques = [&] (const map<const Outfit *, int> uniques)
+		{
+			auto it = uniques.begin();
+			for(int i = 0; i < 5; ++i)
+			{
+				out << "\n" + to_string(it->second) + " "
+					+ (it->second == 1 ? it->first->DisplayName() : it->first->PluralName());
+				++it;
+			}
+			int otherUniquesCount = 0;
+			if(it != uniques.end())
+			{
+				while(it != uniques.end())
+					otherUniquesCount += (it++)->second;
+				out << "\nand " + to_string(otherUniquesCount) + " other unique outfits.";
+			}
+			else
+				out << ".";
+		};
 		out << "If you take off now, you will:";
 
 		// Warn about missions that will fail on takeoff.
@@ -366,11 +387,17 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 			out << (planet.HasOutfitter() ? "store " : "sell ") << outfitsToSell << " outfit";
 			out << (outfitsToSell > 1 ? "s" : "");
 			out << " that none of your ships can hold.";
+			if(!uniquesToSell.empty())
+			{
+				out << " Some of the outfits are unique:";
+				ListUniques(uniquesToSell);
+			}
 		}
 		// Warn about unique items you sold.
-		else if(leftUniques)
+		if(!leftUniques.empty())
 		{
-			out << "If you take off now you won't be able to re-purchase unique outfits you sold at the outfitter.";
+			out << "\n- not be able to re-purchase unique outfits you sold at the outfitter:";
+			ListUniques(leftUniques);
 		}
 		// Warn about ships that won't travel with you.
 		if(nonJumpCount > 0)
