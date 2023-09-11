@@ -403,7 +403,9 @@ double Preferences::MaxViewZoom()
 
 const vector<double> &Preferences::Zooms()
 {
-	return GameData::Interfaces().Get("main view")->GetList("zooms");
+	static vector<double> DEFAULT_ZOOMS{1.};
+	const auto &zooms = GameData::Interfaces().Get("main view")->GetList("zooms");
+	return zooms.empty() ? DEFAULT_ZOOMS : zooms;
 }
 
 
