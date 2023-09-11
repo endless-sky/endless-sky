@@ -96,6 +96,17 @@ private:
 		// Get the bounding rectangle, given the current screen dimensions.
 		Rectangle Bounds() const;
 
+		// copy position and alignment from another element
+		void SetBounds(const Element& o)
+		{
+			from = o.from;
+			to = o.to;
+			alignment = o.alignment;
+			padding = o.padding;
+			visibleIf = o.visibleIf;
+			activeIf = o.activeIf;
+		}
+
 	protected:
 		// Parse the given data line: one that is not recognized by Element
 		// itself. This returns false if it does not recognize the line, either.
@@ -150,6 +161,7 @@ private:
 	class TextElement : public Element {
 	public:
 		TextElement(const DataNode &node, const Point &globalAnchor);
+		const std::string& Text() const { return str; }
 
 	protected:
 		// Parse the given data line: one that is not recognized by Element

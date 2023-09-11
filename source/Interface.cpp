@@ -119,7 +119,15 @@ void Interface::Load(const DataNode &node)
 			if(child.Token(0) == "sprite" || child.Token(0) == "image" || child.Token(0) == "outline")
 				elements.push_back(new ImageElement(child, anchor));
 			else if(child.Token(0) == "label" || child.Token(0) == "string" || child.Token(0) == "button")
-				elements.push_back(new TextElement(child, anchor));
+			{
+				TextElement* te = new TextElement(child, anchor);
+				elements.push_back(te);
+				// If we already have a value of the same name, let it take
+				// precedence.
+				auto it = points.find(te->Text());
+				if(it == points.end())
+					points[te->Text()].SetBounds(*te);
+			}
 			else if(child.Token(0) == "bar" || child.Token(0) == "ring")
 				elements.push_back(new BarElement(child, anchor));
 			else if(child.Token(0) == "line")

@@ -218,6 +218,7 @@ void MapPanel::Step()
 		center += recenterVector * (step * (1. - step) * (6. / RECENTER_TIME));
 		--recentering;
 	}
+	mapZoomAnimate.Step(mapZoom);
 
 	if(controllerFocus == FOCUS_MAP)
 	{
@@ -225,32 +226,7 @@ void MapPanel::Step()
 		if(joyDir.LengthSquared() > GamePad::DeadZone() * GamePad::DeadZone())
 		{
 			center -= joyDir / 4000;
-
-			// Have the cursor jump to the closest system to the center of the
-			// screen, if its close enough.
-			Point best(-100000.0, -100000.0);
-			double best_distance = 1000000000000.0;
-			size_t idx = 0;
-			for(const Node &node : nodes)
-			{
-				Point pos = Zoom() * (node.position + center);
-				double distance = pos.LengthSquared();
-				if(distance < best_distance)
-				{
-					best = pos;
-					best_distance = distance;
-					controllerSelected = idx;
-				}
-				++idx;
-			}
-
-			if(best_distance < 10000) // 100^2 units
-				GamepadCursor::SetPosition(best);
-			else
-			{
-				GamepadCursor::SetPosition(Point(0, 0));
-				controllerSelected = -1;
-			}
+			UpdateGamepadMapCursor();
 		}
 	}
 }
@@ -562,11 +538,13 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 	else if(key == SDLK_PLUS || key == SDLK_KP_PLUS || key == SDLK_EQUALS)
 	{
 		player.SetMapZoom(min(static_cast<int>(mapInterface->GetValue("max zoom")), player.MapZoom() + 1));
+		mapZoomAnimate.Set(mapZoom, 7);
 		mapZoom = pow(1.5, player.MapZoom());
 	}
 	else if(key == SDLK_MINUS || key == SDLK_KP_MINUS)
 	{
 		player.SetMapZoom(max(static_cast<int>(mapInterface->GetValue("min zoom")), player.MapZoom() - 1));
+		mapZoomAnimate.Set(mapZoom, 7);
 		mapZoom = pow(1.5, player.MapZoom());
 	}
 	else
@@ -655,6 +633,7 @@ bool MapPanel::Scroll(double dx, double dy)
 		player.SetMapZoom(min(static_cast<int>(mapInterface->GetValue("max zoom")), player.MapZoom() + 1));
 	else if(dy < 0.)
 		player.SetMapZoom(max(static_cast<int>(mapInterface->GetValue("min zoom")), player.MapZoom() - 1));
+	mapZoomAnimate.Set(mapZoom, 7);
 	mapZoom = pow(1.5, player.MapZoom());
 
 	// Now, Zoom() has changed (unless at one of the limits). But, we still want
@@ -736,14 +715,23 @@ bool MapPanel::ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positi
 		if(positive)
 		{
 			if(controllerFocus == FOCUS_DETAIL)
+			{
 				controllerFocus = FOCUS_MAP;
-			else
+				UpdateGamepadMapCursor();
+			}
+			else if(controllerFocus == FOCUS_MAP)
+			{
 				controllerFocus = FOCUS_BUTTONS;
+				GamepadCursor::MoveDir(Point(1, 0), GetUI()->ZonePositions());
+			}
 		}
 		else
 		{
 			if(controllerFocus == FOCUS_BUTTONS)
+			{
 				controllerFocus = FOCUS_MAP;
+				UpdateGamepadMapCursor();
+			}
 			else
 				controllerFocus = FOCUS_DETAIL;
 		}
@@ -966,7 +954,7 @@ void MapPanel::Find(const string &name)
 
 double MapPanel::Zoom() const
 {
-	return mapZoom;
+	return mapZoomAnimate;
 }
 
 
@@ -1507,4 +1495,35 @@ void MapPanel::DrawPointer(Point position, unsigned &systemCount, const Color &c
 	if(drawBack)
 		PointerShader::Draw(position, angle.Unit(), 14.f + bigger, 19.f + 2 * bigger, -4.f, black);
 	PointerShader::Draw(position, angle.Unit(), 8.f + bigger, 15.f + 2 * bigger, -6.f, color);
+}
+
+
+
+void MapPanel::UpdateGamepadMapCursor()
+{
+	// Have the cursor jump to the closest system to the center of the
+	// screen, if its close enough.
+	Point best(-100000.0, -100000.0);
+	double best_distance = 1000000000000.0;
+	size_t idx = 0;
+	for(const Node &node : nodes)
+	{
+		Point pos = Zoom() * (node.position + center);
+		double distance = pos.LengthSquared();
+		if(distance < best_distance)
+		{
+			best = pos;
+			best_distance = distance;
+			controllerSelected = idx;
+		}
+		++idx;
+	}
+
+	if(best_distance < 10000) // 100^2 units
+		GamepadCursor::SetPosition(best);
+	else
+	{
+		GamepadCursor::SetPosition(Point(0, 0));
+		controllerSelected = -1;
+	}
 }

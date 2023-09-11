@@ -48,6 +48,8 @@ protected:
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Scroll(double dx, double dy) override;
+	virtual bool ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive) override;
+	virtual bool ControllerButtonDown(SDL_GameControllerButton button) override;
 
 
 private:
@@ -97,6 +99,8 @@ private:
 	int hoverSortCount = 0;
 	int hoverSort = -1; // 0 to 3 for each UI element
 	WrappedText wrap;
+
+	bool returnGamepadCursorToAvailableMissions = false;
 };
 
 

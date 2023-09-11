@@ -163,6 +163,8 @@ protected:
 	std::string tooltip;
 	WrappedText hoverText;
 
+	enum {FOCUS_DETAIL, FOCUS_MAP, FOCUS_BUTTONS} controllerFocus = FOCUS_MAP;
+
 
 private:
 	void DrawTravelPlan();
@@ -178,6 +180,7 @@ private:
 	static void DrawPointer(Point position, unsigned &systemCount, const Color &color,
 		bool drawBack = true, bool bigger = false);
 
+	void UpdateGamepadMapCursor();
 
 private:
 	// This is the coloring mode currently used in the cache.
@@ -209,9 +212,9 @@ private:
 	std::vector<Link> links;
 
 	double mapZoom = 1.0;
+	Animate<double> mapZoomAnimate;
 	ZoomGesture zoomGesture;
 
-	enum {FOCUS_DETAIL, FOCUS_MAP, FOCUS_BUTTONS} controllerFocus = FOCUS_MAP;
 	size_t controllerSelected = -1;
 };
 
