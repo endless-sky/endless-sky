@@ -248,8 +248,8 @@ void LoadPanel::Draw()
 					hoverText = TimestampString(it.second);
 			}
 
-			double alpha = min((textPoint.Y() - (top - fadeOut)) * .1,
-					(bottom - fadeOut - textPoint.Y()) * .1);
+			double alpha = min((drawPoint.Y() - (top - fadeOut)) * .1,
+					(bottom - fadeOut - drawPoint.Y()) * .1);
 			alpha = max(alpha, 0.);
 			alpha = min(alpha, 1.);
 
