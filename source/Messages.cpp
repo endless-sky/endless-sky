@@ -18,7 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "GameData.h"
 
-#include <cassert>
 #include <mutex>
 
 using namespace std;
@@ -126,7 +125,7 @@ const Color *Messages::GetColor(Importance importance, bool isLog)
 		case Messages::Importance::Daily:
 			return GameData::Colors().Get(prefix + "daily");
 		case Messages::Importance::Low:
+		default:
 			return GameData::Colors().Get(prefix + "low");
 	}
-	assert(false && "invalid message importance");
 }
