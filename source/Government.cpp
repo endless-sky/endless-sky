@@ -137,7 +137,7 @@ void Government::Load(const DataNode &node)
 		{
 			if(key == "provoked on scan")
 				provokedOnScan = false;
-			else if(key == "restricted")
+			else if(key == "travel restrictions")
 				travelRestrictions = LocationFilter{};
 			else if(key == "reputation")
 			{

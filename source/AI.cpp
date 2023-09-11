@@ -2768,8 +2768,9 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		{
 			const auto &links = ship.JumpNavigation().HasJumpDrive() ?
 				system->JumpNeighbors(ship.JumpNavigation().JumpRange()) : system->Links();
-			for(const auto &link : links)
-				if(ship.GetPersonality().IsUnrestricted() || !ship.GetGovernment()->IsRestrictedFrom(*link))
+			bool unrestricted = ship.GetPersonality().IsUnrestricted();
+			for(const System *link : links)
+				if(unrestricted || !gov->IsRestrictedFrom(*link))
 					targetSystems.push_back(link);
 		}
 

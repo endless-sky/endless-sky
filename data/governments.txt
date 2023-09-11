@@ -427,7 +427,7 @@ government "Hai"
 		"Elenctic Commune" .1
 	"penalty for"
 		assist -.15
-	restricted
+	"travel restrictions"
 		system "Wah Yoot"
 	"bribe" .2
 	"friendly hail" "friendly hai"
@@ -480,7 +480,7 @@ government "Hai Merchant"
 	"custom penalties for"
 		"Hai (Unfettered)"
 			capture 0
-	restricted
+	"travel restrictions"
 		system "Wah Yoot"
 	"bribe" .02
 	"friendly hail" "friendly hai"
@@ -526,7 +526,7 @@ government "Hai Merchant (Human)"
 		"Hai (Friendly Unfettered)" .1
 		"Hai (Unfettered Civilians)" .1
 		"Merchant" .01
-	restricted
+	"travel restrictions"
 		system "Wah Yoot"
 	"bribe" .02
 	"friendly hail" "friendly civilian"
