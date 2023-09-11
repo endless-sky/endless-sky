@@ -54,8 +54,8 @@ void ShipAICache::Calibrate(const Ship &ship)
 			// Calculate the damage per second,
 			// ignoring any special effects. (could be improved to account for those, maybe be based on cost instead)
 			double DPS = (weapon->ShieldDamage() + weapon->HullDamage()
-				+ (weapon->RelativeShieldDamage() * ship.Attributes().Get("shields"))
-				+ (weapon->RelativeHullDamage() * ship.Attributes().Get("hull")))
+				+ (weapon->RelativeShieldDamage() * ship.MaxShields())
+				+ (weapon->RelativeHullDamage() * ship.MaxHull()))
 				/ weapon->Reload();
 			totalDPS += DPS;
 
