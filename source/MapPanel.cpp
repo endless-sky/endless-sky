@@ -748,6 +748,8 @@ void MapPanel::Select(const System *system)
 	bool isJumping = flagship->IsEnteringHyperspace();
 	const System *source = isJumping ? flagship->GetTargetSystem() : &playerSystem;
 
+	const System const *previousFinalSystem = plan.empty() ? source : plan.front();
+
 	auto mod = SDL_GetModState();
 	// TODO: Whoever called Select should tell us what to do with this system vis-a-vis the travel plan, rather than
 	// possibly manipulating it both here and there. Or, we entirely separate Select from travel plan modifications.
@@ -789,6 +791,10 @@ void MapPanel::Select(const System *system)
 		if(isJumping)
 			plan.push_back(source);
 	}
+
+	// Reset the travel destination if the final system in the travel plan has changed.
+	if(!plan.empty() && plan.front() != previousFinalSystem)
+		player.SetTravelDestination(nullptr);
 }
 
 
