@@ -1679,7 +1679,6 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	// Ships should choose a random system/planet for travel if they do not
 	// already have a system/planet in mind, and are free to move about.
 	const System *origin = ship.GetSystem();
-	const bool unrestricted = ship.GetPersonality().IsUnrestricted();
 	if(!ship.GetTargetSystem() && !ship.GetTargetStellar() && !shouldStay)
 	{
 		// TODO: This should problably be changed, because JumpsRemaining
@@ -1697,7 +1696,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		{
 			for(const System *link : links)
 			{
-				if(!unrestricted && gov->IsRestrictedFrom(*link))
+				if(!ship.GetPersonality().IsUnrestricted() && gov->IsRestrictedFrom(*link))
 				{
 					systemWeights.push_back(0);
 					continue;
@@ -1718,8 +1717,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		vector<const StellarObject *> planets;
 		for(const StellarObject &object : origin->Objects())
 			if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->HasSpaceport()
-					&& object.GetPlanet()->CanLand(ship) &&
-					(unrestricted || !gov->IsRestrictedFrom(*object.GetPlanet())))
+					&& object.GetPlanet()->CanLand(ship))
 			{
 				planets.push_back(&object);
 				totalWeight += planetWeight;
@@ -1728,8 +1726,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		// landing on uninhabited planets.
 		if(!totalWeight)
 			for(const StellarObject &object : origin->Objects())
-				if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->CanLand(ship)
-					&& (unrestricted || !gov->IsRestrictedFrom(*object.GetPlanet())))
+				if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->CanLand(ship))
 				{
 					planets.push_back(&object);
 					totalWeight += planetWeight;
