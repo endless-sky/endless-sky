@@ -47,7 +47,6 @@ MessageLogPanel::MessageLogPanel(const vector<pair<string, Messages::Importance>
 
 
 
-// Draw this panel.
 void MessageLogPanel::Draw()
 {
 	// Dim out everything outside this panel.

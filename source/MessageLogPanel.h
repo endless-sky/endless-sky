@@ -27,7 +27,6 @@ class MessageLogPanel : public Panel {
 public:
 	MessageLogPanel(const std::vector<std::pair<std::string, Messages::Importance>> &messages);
 
-	// Draw this panel.
 	virtual void Draw() override;
 
 
