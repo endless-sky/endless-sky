@@ -147,7 +147,7 @@ mission "<uhai> 11: Shipyard Intel"
 				`	"Why do you call me monkey? Have I not earned your respect yet?"`
 					goto monkey
 			`	"Not at all. They're something much more powerful, something so strong it would [contend with, beat] even your Carriers with full carried ships complement! We were producing Shield Beetles here for quite some time already, long before your pitiful [existence, coming here]." He actually seems to be believing what he just said, but it's a bit difficult to imagine something that much stronger than a Carrier developed by the Unfettered.`
-			`	"That said if you're willing I would [pay, reward] you well for you to bring a Shield Beetle over from Hai space." Someone comes to him for his attention but he quickly discards them.`
+			`	"That said if you're willing I would [pay, reward] you well for you to bring a Shield Beetle over from Hai space, although it should not be from an [official, governmental] source, naturally." Someone comes to him for his attention but he quickly discards them.`
 			choice
 				`	"How well would you pay me for that service, exactly?"`
 					goto sbprice
@@ -690,7 +690,7 @@ mission "<uhai> 14: Ion Materials"
 				`	(I don't have time for this now.)`
 					defer
 			`	The bar almost feels familiar. There are of course weird beverages, and the general architecture of it is simple to say the least, like all Unfettered buildings. But, in a way, it looks similar to pirate bars. Maybe some things are common between alien species...`
-			`	As you enter, you notice he's speaking in your language to the other Hai, probably to make fun of humans. What he says does not seem to have much sense to it - he's probably had one too many drinks, or consumed too much of whatever that weird smell comes from. When he sees you, he starts shouting. "This is my friend<, unfettered title> <last>, folks! He doesn't mess around - the holes in my old ship can attest to that!"`
+			`	As you enter, you notice he's speaking in your language to the other Hai, probably to make fun of humans. What he says does not seem to have much sense to it - he's probably had one too many drinks, or consumed too much of whatever that weird smell comes from. When he sees you, he starts shouting. "This is my friend<, unfettered title> <last>, folks! They don't mess around - the holes in my old ship can attest to that!"`
 			choice
 				`	"Old ship? You don't have it any more?"`
 					goto ship
@@ -1006,7 +1006,7 @@ mission "<uhai> 15: Modified Beetle"
 		personality
 			confusion 50
 			disables staying heroic target waiting
-		ship "Modified Shield Beetle" "Basiliscus"
+		ship "Modified Shield Beetle" "Hera-Ti"
 		on kill
 			event "unfettered: outcast"
 		to spawn
@@ -1056,7 +1056,7 @@ mission "<uhai> 15: Modified Beetle"
 					"outfit (all): Ionic Turret Prototype" > "turrets owned"
 			branch normal
 				not "unfettered rep: Mera"
-			`	"Since this was partly a test-run, what suggestions would you make to improve the design, before I finally give this ship to you?"`
+			`	"Since this was partly a test-run, what suggestions would you make to improve the ship, so I can make changes to its outfits, before I finally give this ship to you?"`
 			choice
 				`	"The ship is fine, but I could use an extra outfit to modify the loadout myself."`
 				`	"I feel like it is lacking in raw firepower, missiles will just get intercepted before they can hit."`
