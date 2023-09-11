@@ -443,25 +443,13 @@ const System *Fleet::Enter(const System &system, Ship &ship, const System *sourc
 	// Choose which system this ship is coming from.
 	if(!source)
 	{
-		vector<int> systemWeights;
-		int totalWeight = 0;
+		vector<const System*> validSystems;
 		for(const System *link : system.Links())
-		{
-			bool access = unrestricted || ship.GetGovernment()->IsRestrictedFrom(*link);
-			systemWeights.emplace_back(access);
-			totalWeight += access;
-		}
-		auto it = system.Links().cbegin();
-		int choice = Random::Int(totalWeight);
-		for(unsigned i = 0; i < systemWeights.size(); ++i, ++it)
-		{
-			choice -= systemWeights[i];
-			if(choice < 0)
-			{
-				source = *it;
-				break;
-			}
-		}
+			if(unrestricted || ship.GetGovernment()->IsRestrictedFrom(*link))
+				validSystems.emplace_back(link);
+		auto it = validSystems.cbegin();
+		advance(it, Random::Int(validSystems.size()));
+		source = *it;
 	}
 
 	Angle angle = Angle::Random();
