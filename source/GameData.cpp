@@ -103,6 +103,9 @@ namespace {
 	void LoadPlugin(const string &path)
 	{
 		const auto *plugin = Plugins::Load(path);
+		if(!plugin)
+			return;
+
 		if(plugin->enabled)
 			sources.push_back(path);
 
