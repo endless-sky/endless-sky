@@ -306,7 +306,7 @@ void Government::Load(const DataNode &node)
 			enforcementZones.emplace_back(child);
 		else if(key == "provoked on scan")
 			provokedOnScan = true;
-		else if(key == "restricted" && child.HasChildren())
+		else if(key == "travel restrictions" && child.HasChildren())
 		{
 			if(add)
 				travelRestrictions.Load(child);
