@@ -599,34 +599,6 @@ void Engine::Step(bool isActive)
 		player.SetPlanet(flagship->GetPlanet());
 
 	const System *currentSystem = player.GetSystem();
-	// Update this here, for thread safety.
-	if(player.HasTravelPlan() && currentSystem == player.TravelPlan().back())
-		player.PopTravel();
-	// Check if the first step of the travel plan is valid.
-	if(flagship && player.HasTravelPlan())
-	{
-		bool travelPlanIsValid = false;
-		const System *system = player.TravelPlan().back();
-		for(const StellarObject &object : flagship->GetSystem()->Objects())
-			if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsWormhole()
-				&& object.GetPlanet()->IsAccessible(flagship.get()) && player.HasVisited(*object.GetPlanet())
-				&& player.HasVisited(*system))
-			{
-				const auto *wormhole = object.GetPlanet()->GetWormhole();
-				if(&wormhole->WormholeDestination(*flagship->GetSystem()) != system)
-					continue;
-
-				travelPlanIsValid = true;
-				break;
-			}
-		travelPlanIsValid |= flagship->JumpNavigation().CanJump(flagship->GetSystem(), system);
-		if(!travelPlanIsValid)
-		{
-			if(flagship->GetTargetSystem() == player.TravelPlan().back())
-				flagship->SetTargetSystem(nullptr);
-			player.TravelPlan().clear();
-		}
-	}
 	if(doFlash)
 	{
 		flash = .4;
@@ -1260,6 +1232,35 @@ void Engine::EnterSystem()
 	doEnter = true;
 	player.IncrementDate();
 	const Date &today = player.GetDate();
+
+	if(player.HasTravelPlan() && player.GetSystem() == player.TravelPlan().back())
+		player.PopTravel();
+	// Check if the first step of the travel plan is valid.
+	if(player.HasTravelPlan())
+	{
+		bool travelPlanIsValid = false;
+		const System *system = player.TravelPlan().back();
+		for(const StellarObject &object : flagship->GetSystem()->Objects())
+			if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsWormhole()
+				&& object.GetPlanet()->IsAccessible(flagship) && player.HasVisited(*object.GetPlanet())
+				&& player.HasVisited(*system))
+			{
+				const auto *wormhole = object.GetPlanet()->GetWormhole();
+				if(&wormhole->WormholeDestination(*flagship->GetSystem()) != system)
+					continue;
+
+				travelPlanIsValid = true;
+				break;
+			}
+		travelPlanIsValid |= flagship->JumpNavigation().CanJump(flagship->GetSystem(), system);
+		if(!travelPlanIsValid)
+		{
+			if(flagship->GetTargetSystem() == player.TravelPlan().back())
+				flagship->SetTargetSystem(nullptr);
+			player.TravelPlan().clear();
+		}
+	}
+
 
 	const System *system = flagship->GetSystem();
 	Audio::PlayMusic(system->MusicName());
