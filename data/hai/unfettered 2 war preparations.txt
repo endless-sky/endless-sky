@@ -1099,7 +1099,7 @@ mission "<uhai> 15: Modified Beetle"
 			`	"You can go claim the ship itself tomorrow, on Darkcloak, once I am done with the repairs. It should not take long!"`
 				accept
 			label hera
-			`	She almost jumps of excitement, "I was hoping you would ask that! Listening to the Alphas, I gathered Hera is the goddess of protection. That is the best way to describe this ship: it has significantly improved shielding compared to a standard Shield Beetle, and its equipement is mostly defense focused, using ionic prototypes to scramble enemy weapons and even disable their reactor, after some time. It is also my hope that this ship will be used sparingly, avoiding casualties if possible. But let us go back to the outfit upgrades I mentionned," she says whilst looking around, distracted.`
+			`	She almost jumps of excitement, "I was hoping you would ask that! Listening to the Alphas, I gathered Hera is the goddess of protection. That is the best way to describe this ship: it has significantly improved shielding compared to a standard Shield Beetle, and its equipement is mostly defense focused, using ionic prototypes to scramble enemy weapons and even disable their reactor, after some time. It is also my hope that this ship will be used sparingly, avoiding casualties if possible. But let us go back to the outfit upgrades I mentioned," she says whilst looking around, distracted.`
 				goto suggestions
 			label dakka
 			action
