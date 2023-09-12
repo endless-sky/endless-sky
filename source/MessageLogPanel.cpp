@@ -86,7 +86,8 @@ void MessageLogPanel::Draw()
 	{
 		messageLine.Wrap(it.first);
 		pos.Y() -= messageLine.Height();
-		messageLine.Draw(pos, *Messages::GetColor(it.second, true));
+		if(pos.Y() >= Screen::Top() - 3 * font.Height())
+			messageLine.Draw(pos, *Messages::GetColor(it.second, true));
 	}
 
 	maxScroll = max(0., scroll - pos.Y() + Screen::Top());
