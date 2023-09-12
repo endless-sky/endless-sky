@@ -567,7 +567,9 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 				attributeLabels.emplace_back(VALUE_NAMES[i].first + PER_SECOND);
 				attributeValues.emplace_back(Format::Number(60. * values[i] / reload) + VALUE_NAMES[i].second);
 				if(fullDropoff != 1. && VALUE_NAMES[i].first.find("damage") != string::npos)
-					attributeValues.back() += " - " + Format::Number(60. * fullDropoff * values[i] / reload) + VALUE_NAMES[i].second;
+					attributeLabels.emplace_back("At maximum range:");
+					attributeValues.emplace_back(Format::Number(60. * fullDropoff * values[i] / reload) + VALUE_NAMES[i].second);
+					attributesHeight += 20;
 				attributesHeight += 20;
 			}
 	}
@@ -644,7 +646,9 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 				attributeLabels.emplace_back(VALUE_NAMES[i].first + PER_SHOT);
 				attributeValues.emplace_back(Format::Number(values[i]) + VALUE_NAMES[i].second);
 				if(fullDropoff != 1. && VALUE_NAMES[i].first.find("damage") != string::npos)
-					attributeValues.back() += " - " + Format::Number(fullDropoff * values[i]) + VALUE_NAMES[i].second;
+					attributeLabels.emplace_back("At maximum range:");
+					attributeValues.emplace_back(Format::Number(fullDropoff * values[i]) + VALUE_NAMES[i].second);
+					attributesHeight += 20;
 				attributesHeight += 20;
 			}
 	}
