@@ -443,7 +443,7 @@ const System *Fleet::Enter(const System &system, Ship &ship, const System *sourc
 	// Choose which system this ship is coming from.
 	if(!source)
 	{
-		vector<const System*> validSystems;
+		vector<const System *> validSystems;
 		const Government *gov = ship.GetGovernment();
 		for(const System *link : system.Links())
 			if(unrestricted || !gov->IsRestrictedFrom(*link))
