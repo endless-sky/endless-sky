@@ -89,7 +89,7 @@ protected:
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, int clicks) override;
 	virtual bool Drag(double dx, double dy) override;
-	virtual bool Scroll(double dx, double dy);
+	virtual bool Scroll(double dx, double dy) override;
 
 
 private:

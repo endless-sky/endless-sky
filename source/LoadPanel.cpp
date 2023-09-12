@@ -311,6 +311,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				{
 					path = Files::Saves() + pilot_name + "~imported-"
 												+ std::to_string(idx) + ".txt";
+					++idx;
 				}
 				Files::Write(path, data);
 				UpdateLists();
