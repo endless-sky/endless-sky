@@ -346,8 +346,9 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 		ostringstream out;
 		auto ListUniques = [&] (const map<const Outfit *, int> uniques)
 		{
+			const int detailedSize = (uniques.size() > 5 ? 4 : uniques.size());
 			auto it = uniques.begin();
-			for(int i = 0; i < 5; ++i)
+			for(int i = 0; i < detailedSize; ++i)
 			{
 				out << "\n" + to_string(it->second) + " "
 					+ (it->second == 1 ? it->first->DisplayName() : it->first->PluralName());
