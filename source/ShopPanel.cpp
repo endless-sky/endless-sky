@@ -555,6 +555,15 @@ bool ShopPanel::Release(int x, int y)
 	if(ship == player.Ships().end())
 		return true;
 
+	// Add drop point if after dragged ship.
+	if(&**ship == dropShip && (dragStart.Y() < zone->Top() || (dragStart.Y() <= zone->Bottom()
+			&& dragStart.X() < zone->Left())))
+	{
+		if(!shipSelection.Has(&**ship))
+			newOrder.push_back(*ship);
+		++ship;
+	}
+
 	// Add selected ships in same order as in player list.
 	for(auto &it : player.Ships())
 		if(shipSelection.Has(&*it))
