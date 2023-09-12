@@ -379,7 +379,7 @@ void ShipyardPanel::BuyShip(const string &name)
 		player.BuyShip(selectedShip, shipName);
 	}
 
-	shipSelection.Set(&*player.Ships().back());
+	shipSelection.Set(player.Ships().back().get());
 }
 
 

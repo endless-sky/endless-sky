@@ -533,7 +533,7 @@ bool ShopPanel::Drag(double dx, double dy)
 					int dropIndex = -1;
 					for(unsigned i = 0; i < player.Ships().size(); ++i)
 					{
-						const Ship *ship = &*player.Ships()[i];
+						const Ship *ship = player.Ships()[i].get();
 						if(ship == dragShip)
 							dragIndex = i;
 						if(ship == zone.GetShip())
