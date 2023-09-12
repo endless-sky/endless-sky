@@ -2701,7 +2701,7 @@ double Ship::InertialMass() const
 double Ship::TurnRate() const
 {
 	return (attributes.Get("turn") / InertialMass())
-		* 1 + attributes.Get("turn multiplier");
+		* (1 + attributes.Get("turn multiplier"));
 }
 
 
@@ -2710,7 +2710,7 @@ double Ship::Acceleration() const
 {
 	double thrust = attributes.Get("thrust");
 	return ((thrust ? thrust : attributes.Get("afterburner thrust")) / InertialMass())
-		* 1 + attributes.Get("acceleration multiplier");
+		* (1 + attributes.Get("acceleration multiplier"));
 }
 
 
@@ -2729,7 +2729,7 @@ double Ship::MaxVelocity() const
 double Ship::ReverseAcceleration() const
 {
 	return attributes.Get("reverse thrust")
-		* 1 + attributes.Get("acceleration multiplier");
+		* (1 + attributes.Get("acceleration multiplier"));
 }
 
 
