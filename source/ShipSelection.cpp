@@ -106,7 +106,7 @@ Ship *ShipSelection::Find(int count)
 		}
 	}
 
-	return &**it;
+	return it->get();
 }
 
 
@@ -190,7 +190,7 @@ void ShipSelection::Reset()
 	for(const shared_ptr<Ship> &ship : player.Ships())
 		if(CanShowInSidebar(*ship, here))
 		{
-			newShip = &*ship;
+			newShip = ship.get();
 			break;
 		}
 	Set(newShip);

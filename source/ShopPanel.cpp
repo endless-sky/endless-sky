@@ -548,30 +548,30 @@ bool ShopPanel::Release(int x, int y)
 	vector<shared_ptr<Ship>>::const_iterator ship = player.Ships().begin();
 
 	// Add non-selected ships up to drop point.
-	for( ; &**ship != dropShip && ship != player.Ships().end(); ++ship)
-		if(!shipSelection.Has(&**ship))
+	for( ; ship->get() != dropShip && ship != player.Ships().end(); ++ship)
+		if(!shipSelection.Has(ship->get()))
 			newOrder.push_back(*ship);
 
 	if(ship == player.Ships().end())
 		return true;
 
 	// Add drop point if after dragged ship.
-	if(&**ship == dropShip && (dragStart.Y() < zone->Top() || (dragStart.Y() <= zone->Bottom()
+	if(ship->get() == dropShip && (dragStart.Y() < zone->Top() || (dragStart.Y() <= zone->Bottom()
 			&& dragStart.X() < zone->Left())))
 	{
-		if(!shipSelection.Has(&**ship))
+		if(!shipSelection.Has(ship->get()))
 			newOrder.push_back(*ship);
 		++ship;
 	}
 
 	// Add selected ships in same order as in player list.
 	for(auto &it : player.Ships())
-		if(shipSelection.Has(&*it))
+		if(shipSelection.Has(it.get()))
 			newOrder.push_back(it);
 
 	// Add non-selected ships past drop point.
 	for( ; ship != player.Ships().end(); ++ship)
-		if(!shipSelection.Has(&**ship))
+		if(!shipSelection.Has(ship->get()))
 			newOrder.push_back(*ship);
 
 	player.SetShipOrder(newOrder);
