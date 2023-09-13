@@ -68,7 +68,7 @@ public:
 	static std::string Read(FILE *file);
 	static void Write(const std::string &path, const std::string &data);
 	static void Write(FILE *file, const std::string &data);
-	static void CreateDirectory(const std::string &path);
+	static void CreateFolder(const std::string &path);
 
 	// Open this user's plugins directory in their native file explorer.
 	static void OpenUserPluginFolder();

@@ -155,11 +155,11 @@ void Files::Init(const char * const *argv)
 		config += '/';
 
 	savePath = config + "saves/";
-	CreateDirectory(savePath);
+	CreateFolder(savePath);
 
 	// Create the "plugins" directory if it does not yet exist, so that it is
 	// clear to the user where plugins should go.
-	CreateDirectory(config + "plugins/");
+	CreateFolder(config + "plugins/");
 
 	// Check that all the directories exist.
 	if(!Exists(dataPath) || !Exists(imagePath) || !Exists(soundPath))
@@ -549,7 +549,7 @@ void Files::Write(FILE *file, const string &data)
 
 
 
-void Files::CreateDirectory(const std::string &path)
+void Files::CreateFolder(const std::string &path)
 {
 	if(Files::Exists(path))
 		return;
