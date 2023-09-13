@@ -64,6 +64,8 @@ color "flagship highlight" .5 .8 .2 0.
 
 color "drag select" .2 1. 0. 0.
 
+color "black" 0. 0. 0. 1.
+
 # Colors used for drawing mission or job pointers on the map,
 # to indicate where the player should go.
 color "available job" .9 .6 0. 1.
@@ -711,6 +713,11 @@ interface "plugins"
 		dimensions 90 30
 		color bright
 	visible if "plugin import"
+	# hide the "open plugin folder button" under the import/remove button
+	line
+		center -180 210
+		dimensions 20 40
+		color black
 	sprite "ui/dialog cancel"
 		center -220 210
 	button i "_Import"
