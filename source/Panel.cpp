@@ -115,14 +115,9 @@ void Panel::AddZone(const Rectangle &rect, Command command)
 	zones.emplace_front(
 		rect,
 		[command, this](){
-			// Handle a command click as both a keypress and a command, since that
-			// is what it would do if the user pressed the physical key. The
-			// UI logic will only do one or the other. This makes it so that
-			// commands that register each step of the game logic (jump, fire) can
-			// coexist with commands that toggle once (map, info)
+			// InjectSet will handle command as both an event and a keypress
 			Command::InjectSet(command);
 			cached_zone_commands.Set(command);
-		   KeyDown(0, 0, command, true);
 		},
 		[command, this](){
 			Command::InjectUnset(command);
