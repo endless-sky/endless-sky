@@ -555,7 +555,7 @@ void Files::CreateFolder(const std::string &path)
 		return;
 
 #ifdef _WIN32
-	CreateDirectoryW(Utf8::ToUtf16(path).c_str(), nullptr);
+	CreateDirectoryW(Utf8::ToUTF16(path).c_str(), nullptr);
 #else
 	mkdir(path.c_str(), 0700);
 #endif
