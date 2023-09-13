@@ -65,22 +65,37 @@ mission "Unfettered: Challengers Arrive"
 		has "unfettered: duel ready"
 	on offer
 		conversation
+			branch fixing
+				not "Unfettered: Challengers Arrive: deferred"
+			`Do you want to go see the Captain in the spaceport now?`
+			choice
+				`	(Yes.)`
+					goto explain
+				`	(Maybe another time.)`
+					defer
+			label fixing
 			`The Captain meets you in the spaceport now that his crew is done patching up his ship. "She be space worthy again, alright. I got lots to explain to you, if ye're ready to listen, mate!"`
 			choice
 				`	"Go ahead."`
 				`	"Maybe another time."`
 					defer
-			`	"Now that ye savvy how a duel rolls, many Unfettered will want to challenge ye. If ye agree, they won't think twice about engaging you once you get too close and will be marked on yer map, because they be wanting ta make sure ye see them! But best be careful not to run around with too big an armada while taking challenges, or yer hearties may wind up feeding the fishes for carrying yer flag. We wouldn't want that now, would we?`
+			label explain
+			`	"Now that ye savvy how a duel rolls, many Unfettered will want to challenge ye, interested in the exotic tactics and weaponry you may bring - they may even buy some of it if they be liking what they see! If ye agree, they won't think twice about engaging you once you get too close and will be marked on yer map, because they be wanting ta make sure ye see them! But best be careful not to run around with too big an armada while taking challenges, or yer hearties may wind up feeding the fishes for carrying yer flag. We wouldn't want that now, would we?`
 			`	"If ye be still too much a scallywag to face the challenge now, ye can always mark yerself ready for action from the job board later but only in port here on Darkcloak. The opposite holds true too, if ye lose the stomach for fighting a while, ye can mark yerself as not ready for such challenge! If ye say yes, challengers will come for you in space, whether ye want it or not, until you go to the job board here on Darkcloak to stop it! You can always bribe them, naturally.`
 			`	"Finally, and this part is very important, you need to board the ships in order to claim yer boonty. In these improvised duels ye be expected to choose between plundering those you defeat or claiming a bounty for their loss.`
 			`	"So, what say ye? Be ye ready for action? Be ye ready for the challenge?"`
 			choice
 				`	"I was born ready."`
-					accept
+					goto ok
 				`	"Maybe later, from the job board."`
-			`	"Scared to jump in the water, are ya? Whenever you recon you can swim, go do that. You can even mark yourself ready for a bigger and bigger challenge at any time, or stop it all  in the Darkcloak job board."`
-	on accept
-		event "unfettered: challengers arrive"
+			`	"Scared to jump in the water, are ya? Whenever you recon you can swim, go do that. You can even mark yourself ready for a bigger and bigger challenge at any time, or stop it all in the Darkcloak job board."`
+				decline
+			label ok
+			`	"And may you die ready as well," he responds in the blink of an eye.`
+			action
+				event "unfettered: challengers arrive"
+	on defer
+		set "Unfettered: Challengers Arrive: deferred"
 
 mission "Unfettered: Trigger The Challengers"
 	job
