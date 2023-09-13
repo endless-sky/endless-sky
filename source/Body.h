@@ -107,7 +107,7 @@ protected:
 	// Government, for use in collision checks.
 	const Government *government = nullptr;
 
-	Point center = Point(0., 0.);
+	Point center;
 
 
 private:
