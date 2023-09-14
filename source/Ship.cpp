@@ -2700,8 +2700,8 @@ double Ship::InertialMass() const
 
 double Ship::TurnRate() const
 {
-	return (attributes.Get("turn") / InertialMass()
-		* (1 + attributes.Get("turn multiplier")));
+	return attributes.Get("turn") / InertialMass()
+		* (1 + attributes.Get("turn multiplier"));
 }
 
 
@@ -2709,8 +2709,8 @@ double Ship::TurnRate() const
 double Ship::Acceleration() const
 {
 	double thrust = attributes.Get("thrust");
-	return ((thrust ? thrust : attributes.Get("afterburner thrust")) / InertialMass()
-		* (1 + attributes.Get("acceleration multiplier")));
+	return (thrust ? thrust : attributes.Get("afterburner thrust")) / InertialMass()
+		* (1 + attributes.Get("acceleration multiplier"));
 }
 
 
@@ -4296,7 +4296,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 					slowness += scale * attributes.Get(isThrusting ? "thrusting slowing" : "reverse thrusting slowing");
 					disruption += scale * attributes.Get(isThrusting ? "thrusting disruption" : "reverse thrusting disruption");
 
-					acceleration += angle.Unit() * (thrustCommand * (isThrusting ? Acceleration() : ReverseAcceleration()));
+					acceleration += angle.Unit() * thrustCommand * (isThrusting ? Acceleration() : ReverseAcceleration());
 				}
 			}
 		}
@@ -4351,7 +4351,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 	{
 		acceleration *= slowMultiplier;
 		// Acceleration multiplier needs to modify effective drag, otherwise it changes top speeds.
-		Point dragAcceleration = acceleration - velocity * (Drag() * (1 + attributes.Get("acceleration multiplier")) / mass);
+		Point dragAcceleration = acceleration - velocity * Drag() * (1 + attributes.Get("acceleration multiplier")) / mass;
 		// Make sure dragAcceleration has nonzero length, to avoid divide by zero.
 		if(dragAcceleration)
 		{
