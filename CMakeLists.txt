@@ -23,6 +23,16 @@ set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELEASE TRUE)
 # On Linux use relative RPATH.
 set(CMAKE_BUILD_RPATH_USE_ORIGIN ON)
 
+# Generate a version string
+execute_process(COMMAND git describe --tags --match "v*.*.*" --abbrev=0
+                OUTPUT_VARIABLE ENDLESS_SKY_VERSION
+					 OUTPUT_STRIP_TRAILING_WHITESPACE)
+execute_process(COMMAND git describe --tags
+                OUTPUT_VARIABLE ENDLESS_MOBILE_VERSION
+					 OUTPUT_STRIP_TRAILING_WHITESPACE)
+set(ENDLESS_SKY_VERSION "${ENDLESS_SKY_VERSION}-${ENDLESS_MOBILE_VERSION}")
+add_definitions(-DENDLESS_SKY_VERSION="${ENDLESS_SKY_VERSION}")
+
 # Setup vcpkg.
 if(ES_USE_VCPKG)
 	# No need to bootstrap vcpkg if the toolchain file is explictly provided.

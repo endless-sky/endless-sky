@@ -49,6 +49,17 @@ include_directories(
 )
 
 add_definitions("-DES_GLES")
+
+# Generate a version stringp
+execute_process(COMMAND git describe --tags --match "v*.*.*" --abbrev=0
+                OUTPUT_VARIABLE ENDLESS_SKY_VERSION
+                OUTPUT_STRIP_TRAILING_WHITESPACE)
+execute_process(COMMAND git describe --tags
+                OUTPUT_VARIABLE ENDLESS_MOBILE_VERSION
+                OUTPUT_STRIP_TRAILING_WHITESPACE)
+set(ENDLESS_SKY_VERSION "${ENDLESS_SKY_VERSION}-${ENDLESS_MOBILE_VERSION}")
+add_definitions(-DENDLESS_SKY_VERSION="${ENDLESS_SKY_VERSION}")
+
 add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/Account.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/AI.cpp

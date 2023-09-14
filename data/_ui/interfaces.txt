@@ -211,6 +211,44 @@ interface "menu background"
 	sprite "_menu/title"
 		center 0 -200
 
+	anchor bottom right
+	# draw the text in black offset by one pixel in every direction,
+	# then draw the real text on top of it. This makes it so that you
+	# can read it, even with the stars in the background.
+	string "game version"
+		center -159 -14
+		dimensions 300 30
+		align right
+		color black
+		size 18
+	string "game version"
+		center -161 -14
+		dimensions 300 30
+		align right
+		color black
+		size 18
+	string "game version"
+		center -159 -16
+		dimensions 300 30
+		align right
+		color black
+		size 18
+	string "game version"
+		center -161 -16
+		dimensions 300 30
+		align right
+		color black
+		size 18
+	string "game version"
+		center -160 -15
+		dimensions 300 30
+		align right
+		color medium
+		size 18
+	# should make this a button, but want to support double-click
+	box "version box"
+		center -160 -15
+		dimensions 300 30
 
 
 interface "main menu"
