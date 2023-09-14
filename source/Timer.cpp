@@ -243,7 +243,7 @@ void Timer::Step(PlayerInfo &player, UI *ui)
 		}
 	}
 	isActive = true;
-	timeElapsed += 1;
+	++timeElapsed;
 	if(timeElapsed >= timeToWait)
 	{
 		action.Do(player, ui, mission);
