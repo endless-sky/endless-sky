@@ -14,6 +14,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Date.h"
+
 #include "Preferences.h"
 
 using namespace std;
