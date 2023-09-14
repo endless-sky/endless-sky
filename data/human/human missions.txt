@@ -6581,7 +6581,7 @@ mission "Stranded In Paradise 1"
 			`No sooner have you entered the spaceport than you are bowled over by a trio of adults, two women and a man, with a child trailing close behind them.`
 			`	"Oh - sorry!" the older of the two women exclaims. She puts out a hand to help you up, then gets a better look at you as you take it, stand, and dust yourself off. "Wait; are you a ship captain?" she says after a moment.`
 			`	"<first> <last>, captain of the <ship>," you reply. "Why?"`
-			`	"Oh! You may be the answer to our prayers, dearie!" She and the others have now gotten themselves a bit more organized, and you can tell that they must be a family; the other woman looks to be their young adult daughter, and the child is actually their slightly-built teenage son. Confirming this, the woman says, "We're the Burnbecks; I'm Shirley, this is my husband Darren, and these are our dau - our kids, Leigh and Erin." She indicates them each in turn, with the daughter last. "We were on vacation here on <origin> when news of the war and those awful bombings came out. Well, I don't need to tell you, it's caused us some trouble! Or, well, maybe I do, since I didn't say where we're from: <destination>, down in what they're now calling the Free Worlds!"`
+			`	"Oh! You may be the answer to our prayers, dearie!" She and the others have now gotten themselves a bit more organized, and you can tell that they must be a family. Confirming this, the woman says, "We're the Burnbecks; I'm Shirley, and this is my husband Darren." She gestures towards the other, younger woman, then the child. "These are our kids, Erin and Leigh" Leigh's features are softer than you'd expect a boy of his age would have. "We were on vacation here on <origin> when news of the war and those awful bombings came out. Well, I don't need to tell you, it's caused us some trouble! Or, well, maybe I do, since I didn't say where we're from: <destination>, down in what they're now calling the Free Worlds!"`
 			`	Her husband cuts in, "Anyway, the short of it is that we really need to get home, and right now, none of the regular services are running from here to <destination> because of the war. Could you possibly take the four of us back home? We...can't pay a lot, right now, but we can pay."`
 			choice
 				`	"Of course. I wouldn't leave people stranded like this."`
@@ -6597,7 +6597,7 @@ mission "Stranded In Paradise 1"
 	on complete
 		payment
 		payment 5000
-		log "Minor People" "Burnbeck family" `Shirley, Darren, Leigh, and Erin Burnbeck were vacationing in the Paradise Worlds when Gemini and Martini were bombed, stranding them. You helped them get back home.`
+		log "Minor People" "The Burnbecks" `Shirley, Darren, Leigh, and Erin Burnbeck were vacationing in the Paradise Worlds when Gemini and Martini were bombed, stranding them. You helped them get back home.`
 		conversation
 			`The trip south with the Burnbecks was mostly quite pleasant, but while they stop short of openly blaming them for the bombings on Geminus and Martini, they are very angry at the Free Worlds for seceding from the Republic. "We were perfectly happy belonging to the Republic," Darren said one evening in the mess. "I mean, seriously, did those people way down in, where is it, Zug? Bourne? Did they even think about the regular people and how this would affect them? Affect us?"`
 			`	While some of their complaints seem a bit selfish, it's hard to argue with the fact that this has disrupted a lot of lives. After touching down on <planet>, Darren, Leigh, and Erin joyfully run into the arms of their friends and family here. Shirley hangs back to hand you a credit chip for <payment> and thank you warmly (and at some length) for your help in getting home, before heading out to join her family in their reunion.`
@@ -6612,7 +6612,7 @@ mission "Stranded In Paradise 2"
 		has "FW Embassy 1B: done"
 	on offer
 		conversation
-			`While walking through the spaceport, you are surprised to see Shirley and Darren Burnbeck, with their son Leigh trailing behind them. They greet you warmly, reassure you that Erin is just off to university on Zug, and so couldn't join them on this vacation, and invite you to have dinner with them at the spaceport cafe.`
+			`While walking through the spaceport, you are surprised to see Shirley and Darren Burnbeck, along with a young man, who you recognize as Leigh after a few seconds. They greet you warmly, reassure you that Erin is just off to university on Zug, and so couldn't join them on this vacation, and invite you to have dinner with them at the spaceport cafe.`
 			choice
 				`	(Accept.)`
 					goto cafe
@@ -6731,14 +6731,14 @@ mission "Southern Fiance 5"
 		conversation
 			branch already
 				has "visited tom and carl"
-			`When you're making your approach for landing, doing your normal back and forth with the controller at the spaceport, you're surprised to hear them ask you to divert to a special pad. You do so, and when you land, you find Tom, the man you brought south from the Core, and his husband Carl, the new Governor of Cornucopia, waiting for you.`
-			`	They greet you like an old friend (though you didn't speak two words to Carl when you were here), and insist on serving you dinner at their house. The Cornucopia governor's mansion is an impressive sight, and Tom takes you on a tour while Carl fields some important phone calls. When you sit down to dinner, you're blown away: it's probably the best food you've had, which shouldn't be a surprise from a planet that's almost entirely covered in farms. You swap stories for a while - you telling about your "thrilling adventures in space", as Tom describes them, and them telling both about some of their ordinary times here on Cornucopia, and about some of the challenges and highlights of the campaign for Governor. They also hint about something big still to come, sharing a knowing look but saying no more.`
+			`As you approach for a landing, you are surprised when the spaceport controller diverts you to a special pad. When you land, you find Tom, the man you brought south from the Core, and his husband Carl, the new Governor of Cornucopia, waiting for you.`
+			`	They greet you like an old friend (despite never having talked with Carl before), and insist on serving you dinner. The Cornucopia governor's mansion is certainly befitting of the title, and Tom takes you on a tour through the premises while Carl fields some important phone calls. The meal is similarly grand: there are plates of kebabs, pastas, stir fries, and cakes, made from ingredients sourced from all over the planet. You swap stories for a while - you with your "thrilling adventures in space", as Tom describes them, and them with their much more ordinary, but no less interesting, times here on Cornucopia, including some of the challenges and highlights of their campaign. They also hint at something big coming, but reveal nothing more than a knowing look.`
 				goto end
 			
 			label already
-			`During your approach, you're not surprised, this time, to see that you've been diverted to the Governor's own landing pad. Tom and Carl are waiting for you once more, and they greet you warmly. They take you in an official government vehicle to the governor's mansion, with a trying-to-be-subtle security detail always following just on the periphery.`
+			`Like last time, the spaceport controller diverts you to the Governor's personal landing pad. Tom and Carl are waiting for you once more, and they greet you warmly. They take you in an official government vehicle to the governor's mansion, with a trying-to-be-subtle security detail always following just on the periphery.`
 			`	The official mansion is much more impressive than Carl's house as Agricultural Minister was, and Tom gives you a tour while Carl has to field some official phone calls. You're already looking forward to the food well before you sit down to dinner, and you are not disappointed: if anything, it's better than the last time you visited them. Carl confides that he's planning on pushing to open a government-sponsored culinary school in the capital, but he'll be sad to see his cook go: he knows it's been the woman's dream for ages to teach others to make food as amazing as this, too.`
-			`	After dinner, as before, you catch each other up on what you've been doing since your last visit, and once you've both shared most of what you can think of to tell, Tom and Carl once again hint that there's still something big in their plans, but will not elaborate.`
+			`	After dinner, as before, you catch each other up on what you've been doing since your last visit, and once you've both shared most of what you can think of to tell, Tom and Carl once again hint that there's still something big in their plans.`
 			
 			label end
 			`	After a while, you bid them farewell, and they promise once again that if you ever visit you'll be welcome.`
@@ -6753,13 +6753,13 @@ mission "Southern Fiance 6"
 		conversation
 			branch already
 				has "visited tom and carl"
-			`When you're making your approach for landing, doing your normal back and forth with the controller at the spaceport, you're surprised to hear them ask you to divert to a special pad. You do so, and when you land, you find Tom, the man you brought south from the Core, and his husband Carl, the Governor of Cornucopia, waiting for you.`
-			`	They greet you like an old friend (though you didn't speak two words to Carl when you were here), and insist on serving you dinner at their house. The Cornucopia governor's mansion is an impressive sight, and Tom takes you on a tour while Carl fields some important phone calls. Partway through the tour, Tom gets a mischievous grin, and when he opens the next door, a very small child races out and cannons into his legs, gripping them tightly with a glad cry of "Daddy!" Tom proudly introduces Nita, his and Carl's three-year-old daughter, who giggles and tries to run off with your communicator.`
-			`	When you sit down to dinner with the three of them, you're blown away: it's probably the best food you've had, which shouldn't be a surprise from a planet that's almost entirely covered in farms. Afterward, you swap stories for a while - you telling about your "thrilling adventures in space", as Tom describes them, and them telling, in between bouts of corralling their exuberant daughter, both about the challenges and highlights of the campaign for Governor, and about the joys and fears of fatherhood.`
+			`As you approach for a landing, you are surprised when the spaceport controller diverts you to a special pad. When you land, you find Tom, the man you brought south from the Core, and his husband Carl, the new Governor of Cornucopia, waiting for you.`
+			`	They greet you like an old friend (despite never having talked with Carl before), and insist on serving you dinner. The Cornucopia governor's mansion is certainly befitting of the title, and Tom takes you on a tour through the premises while Carl fields some important phone calls. Partway through the tour, Tom gets a mischievous grin, and when he opens the next door, a small child races out and cannons into his legs, gripping them tightly with a glad cry of "Daddy!" Tom proudly introduces Nita, his and Carl's three-year-old daughter, who giggles and tries to run off with your communicator.`
+			`	When you sit down to dinner with the three of them, you're blown away: there are plates of kebabs, pastas, stir fries, and cakes, made from ingredients sourced from all over the planet. You swap stories for a while - you with your "thrilling adventures in space", as Tom describes them, and them with their much more ordinary, but no less interesting, times here on Cornucopia, including some of the challenges and highlights of their campaign and the joys and fears of fatherhood.`
 				goto end
 			
 			label already
-			`During your approach, it's no surprise to see that you've been diverted to the Governor's own landing pad. Tom and Carl are waiting for you once more, and they greet you warmly. They take you in an official government vehicle to the governor's mansion, with a trying-to-be-subtle security detail always following just on the periphery.`
+			`Like last time, the spaceport controller diverts you to the Governor's personal landing pad. Tom and Carl are waiting for you once more, and they greet you warmly. They take you in an official government vehicle to the governor's mansion, with a trying-to-be-subtle security detail always following just on the periphery.`
 			branch already2
 				has "Take Me To The South D: Followup 2A: declined"
 				
