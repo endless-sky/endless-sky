@@ -235,7 +235,6 @@ void Timer::Step(PlayerInfo &player, UI *ui)
 			for(const StellarObject &proximityObject : system->Objects())
 				if(proximityObject.HasValidPlanet())
 					centers.push_back(proximityObject.Position());
-			
 		}
 		for(Point &center : centers)
 		{
