@@ -75,6 +75,10 @@ bool GameWindow::Init()
 	// Tell Windows this process is high dpi aware and doesn't need to get scaled.
 	SDL_SetHint(SDL_HINT_WINDOWS_DPI_AWARENESS, "permonitorv2");
 #endif
+#ifdef __linux__
+	// Default to Wayland under Linux
+	SDL_SetHint(SDL_HINT_VIDEODRIVER, "wayland,x11");
+#endif
 
 	// This needs to be called before any other SDL commands.
 	if(SDL_Init(SDL_INIT_VIDEO) != 0)
