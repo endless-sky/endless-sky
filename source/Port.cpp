@@ -132,7 +132,7 @@ void Port::LoadUninhabitedSpaceport()
 	name = SPACEPORT;
 	recharge = RechargeType::All;
 	services = ServicesType::OffersMissions;
-	hasNews = false;
+	hasNews = true;
 }
 
 
