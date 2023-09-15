@@ -28,12 +28,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
-Timer::Timer(const DataNode &node, Mission *mission)
+Timer::Timer(const DataNode &node, const Mission *mission)
 {
 	Load(node, mission);
 }
 
-void Timer::Load(const DataNode &node, Mission *mission)
+void Timer::Load(const DataNode &node, const Mission *mission)
 {
 	if(node.Size() > 1)
 		name = node.Token(1);
@@ -52,7 +52,7 @@ void Timer::Load(const DataNode &node, Mission *mission)
 			requireIdle = true;
 		else if(child.Token(0) == "system" && child.Size() > 1)
 			system = GameData::Systems().Get(child.Token(1));
-		else if(child.Token(0) == "systems")
+		else if(child.Token(0) == "system")
 			systems.Load(child);
 		else if(child.Token(0) == "proximity")
 		{
@@ -107,7 +107,7 @@ void Timer::Save(DataWriter &out) const
 			out.Write("system", system->Name());
 		else if(!systems.IsEmpty())
 		{
-			out.Write("systems");
+			out.Write("system");
 			systems.Save(out);
 		}
 		if(requireIdle)
@@ -228,14 +228,25 @@ void Timer::Step(PlayerInfo &player, UI *ui)
 	}
 	if(proximity > 0.)
 	{
-		Point center;
+		bool inProximity = false;
+		vector<Point> centers;
 		if(proximityCenter)
 		{
-			const StellarObject *proximityObject = system->FindStellar(proximityCenter);
-			center = proximityObject->Position();
+			for(const StellarObject &proximityObject : system->Objects())
+				if(proximityObject.HasValidPlanet())
+					centers.push_back(proximityObject.Position());
+			
 		}
-		double dist = (player.Flagship()->Position() - center).Length();
-		if((closeTo && dist > proximity) || (!closeTo && dist < proximity))
+		for(Point &center : centers)
+		{
+			double dist = (player.Flagship()->Position() - center).Length();
+			if((closeTo && dist <= proximity) || (!closeTo && dist >= proximity))
+			{
+				inProximity = true;
+				break;
+			}
+		}
+		if(!inProximity)
 		{
 			ResetOn(Timer::ResetCondition::LEAVE_ZONE);
 			isActive = false;
