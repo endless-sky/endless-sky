@@ -28,6 +28,7 @@
       },
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
         "CMAKE_COMPILE_WARNING_AS_ERROR": "ON",
         "ES_USE_SYSTEM_LIBRARIES": "OFF"
       },
@@ -49,6 +50,7 @@
       },
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_COMPILE_WARNING_AS_ERROR": "ON",
         "ES_USE_SYSTEM_LIBRARIES": "OFF",
         "BUILD_TESTING": "OFF"
       },
@@ -182,7 +184,6 @@
       "description": "Builds for Linux for CI purposes",
       "inherits": "ci",
       "cacheVariables": {
-        "CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
         "VCPKG_HOST_TRIPLET": "linux64-release",
         "VCPKG_TARGET_TRIPLET": "linux64-release",
         "ES_USE_OFFSCREEN": "ON"
@@ -194,7 +195,6 @@
       "description": "Builds for Linux GLES for CI purposes",
       "inherits": "ci",
       "cacheVariables": {
-        "CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
         "VCPKG_HOST_TRIPLET": "linux64-release",
         "VCPKG_TARGET_TRIPLET": "linux64-release",
         "ES_GLES": "ON",
@@ -207,7 +207,6 @@
       "description": "Builds for MacOS for CI purposes",
       "inherits": "ci",
       "cacheVariables": {
-        "CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
         "VCPKG_HOST_TRIPLET": "macos64-release",
         "VCPKG_TARGET_TRIPLET": "macos64-release",
         "CMAKE_OSX_ARCHITECTURES": "x86_64",
@@ -220,7 +219,6 @@
       "description": "Builds with clang-cl for CI purposes",
       "inherits": "ci",
       "cacheVariables": {
-        "CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
         "VCPKG_HOST_TRIPLET": "x64-windows-release",
         "VCPKG_TARGET_TRIPLET": "x64-windows-release",
         "CMAKE_CXX_COMPILER": "clang-cl.exe"
@@ -232,7 +230,6 @@
       "description": "Builds with MinGW for CI purposes",
       "inherits": "ci",
       "cacheVariables": {
-        "CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
         "CMAKE_CXX_COMPILER": "x86_64-w64-mingw32-g++",
         "CMAKE_RC_COMPILER": "windres",
         "VCPKG_HOST_TRIPLET": "win64-release",
