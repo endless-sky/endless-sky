@@ -482,7 +482,7 @@ mission "Intro [3 Interceptor]"
 					goto more
 			
 			label shipmods
-			`	James gives you a knowing smile as he answers, "Not in a factory build, you won't. But you'd be surprised how much space you can free up even in a Sparrow if you're willing to flexible about health and safety. Do you really need that much power? If you've got an outfitter on the planet where you're mining, do you need a hyperdrive, or even a shield regenerator? Maybe a cargo expansion would be more use." He pauses briefly, perhaps considering what liability he's opened himself up for, then adds, "I'm not saying you should, of course, but you have options.`
+			`	James gives you a knowing smile as he answers, "Not in a factory build, you won't. But you'd be surprised how much space you can free up even in a Sparrow if you're willing to flexible about health and safety. Do you really need that much power? If you've got an outfitter on the planet where you're mining, do you need a hyperdrive, or even a shield generator? Maybe a cargo expansion would be more use." He pauses briefly, perhaps considering what liability he's opened himself up for, then adds, "I'm not saying you should, of course, but you have options.`
 				goto more
 
 			label fleet
