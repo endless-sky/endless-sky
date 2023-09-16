@@ -1895,7 +1895,7 @@ person "Patrol Team"
 
 #		roadrunner56
 			"More semicolons!"
-			"... I think I broke something."
+			"...I think I broke something."
 			"Canadian spelling fails me again."
 			"This is my last review, I swear."
 			"Looks like school's starting back up again. See you in a few months."
