@@ -417,7 +417,7 @@ mission "Intro [2 Interceptor]"
 
 
 
-mission "Intro [3 Interceptor]"
+mission "Intro [2.1 Interceptor]"
 	priority
 	name "Mine at <planet>"
 	description "Mine asteroids at <destination>."
@@ -442,7 +442,7 @@ mission "Intro [3 Interceptor]"
 			`	"That's good to hear," Captain Marshall says with a smile. "Mining without an asteroid scanner is a test of your piloting skills, but one that pays well."`
 			`	"The first challenge," he continues, "will be finding which asteroids are valuable. The worthless asteroids are either brown and smooth or gray and spiky with no apparent orbit. It doesn't matter how long you shoot them, they won't be destroyed. Valuable asteroids will always orbit the star and have a range of colors and surface textures. Titanium tends to be a bit larger, with a pitted surface. Lead is light gray and has a boxy shape. Silicon has a bit of a greenish cast and looks like it's been melted in places. I increase the resolution on my control displays to make identification and targeting easier.`
 			`	"Also remember that the more valuable the mineral the longer it takes to mine. Silicon breaks up quickly and you'll fill your hold in a hurry. Titanium is more work, but you make several times the number of credits for the effort."`
-			`	Captain Marshall wishes you luck and heads out into the spaceport. You and James spend a few minutes going over the plan as you finish your drinks. "Leave your hold empty and fill it up before you land at <destination>. You can sell what you mine when we land. Remember there's no guaranteed payment in this kind of work. How much you make is based on the value of the minerals in your hold."`
+			`	Captain Marshall wishes you luck and heads out into the spaceport. You and James spend a few minutes going over the plan as you finish your drinks. "You should start off easy and mine five tons of silicon. If you've got the hang of it, you can fill your hold with more valuable minerals. Remember there's no guaranteed payment in this kind of work. How much you make is based on the value of the minerals in your hold."`
 				accept
 	
 	on visit
@@ -455,8 +455,8 @@ mission "Intro [3 Interceptor]"
 			choice
 				`	"I can't believe anyone would do that much work."`
 				`	"I love flying like that."`
-			`	James nods and says, "When you're starting off, mining can be a fast way to build cash for your next ship. It's also a great way to explore the galaxy. Jobs always follow the trade routes and settled areas. Mining makes it profitable to explore the nooks and crannies of the hyperlanes. If the place you end up landing has an economy, they'll buy the minerals in your hold. Mainly though, it's about how you like to spend your time. Some captains like managing a trading fleet while others like to strike out on their own and fly their ship directly.`
-			`	"Mining can be complex compared to running jobs or trading commodities. Are there any questions you'd like to ask?"`
+			`	James nods and says, "Chasing asteroids is always a challenge. But When you're starting off, mining can be a fast way to build cash for your next ship. It's also a great way to explore the galaxy. Jobs always follow the trade routes and settled areas. Mining makes it profitable to explore the nooks and crannies of the hyperlanes. If the place you end up landing has an economy, they'll buy the minerals in your hold. Mainly though, it's about how you like to spend your time. Some captains like managing a trading fleet while others like to strike out on their own and fly their ship directly.`
+			`	"Mining can be complex compared to running jobs or trading commodities. I learned that first hand as crew on a mining ship when I first started out. Are there any questions you'd like to ask?"`
 
 			label choices
 			choice
@@ -470,11 +470,11 @@ mission "Intro [3 Interceptor]"
 					goto pirates
 				`	"How can I check the value of minerals?"`
 					goto value
-				`	"I don't have any more questions."`
+				`	"I think I have enough information."`
 					goto end
 
 			label equipment
-			`	"Well, you need a weapon that does hull damage," James says. "A beam laser will get the job done, but it will take awhile. The most valuable tool is an asteroid scanner. They're expensive, but they connect into your navigation and targeting systems to point you towards minable asteroids. You can also set them to find the most valuable asteroids which increases your profitability per run. After that, a tactical scanner will give you range to target and show how much damage you're doing. An afterburner is good for chasing down fast moving asteroids or getting away from pirates without leaving the system. A ramscoop will let you refuel while mining. You can extend your range and be ready for a quick escape."`
+			`	"Well, you need a weapon that does hull damage," James says. "A beam laser will get the job done, but it will take awhile. The most valuable tool is an asteroid scanner. They're expensive, but they connect into your navigation and targeting systems to point you towards minable asteroids. You can also set them to find the most valuable asteroids which increases your profitability per run. After that, a tactical scanner will give you range to target and show how much damage you're doing. An afterburner is good for chasing down fast moving asteroids or getting away from pirates without leaving the system. A ramscoop will let you refuel while mining. You can extend your range and be ready for a quick escape.`
 			choice
 				`	"I can't fit all that on my ship!"`
 					goto shipmods
@@ -498,7 +498,7 @@ mission "Intro [3 Interceptor]"
 				goto more
 			
 			label value
-			`	"If you check the outfitter section of your star map you will find minerals listed at the very bottom. Selecting a mineral will show you systems where your asteroid scanner has detected them.`
+			`	"You will learn this by experience, but if the planet has an outfitter, you can check the price there before you sell.`
 				goto more
 
 			label more
@@ -510,7 +510,7 @@ mission "Intro [3 Interceptor]"
 
 
 
-mission "Intro [4 Interceptor]"
+mission "Intro [3 Interceptor]"
 	priority
 	name "Bring James to <planet>"
 	description "Drop James off on <destination>, where he has a spot reserved in a retirement home."
@@ -519,7 +519,7 @@ mission "Intro [4 Interceptor]"
 	source "New Sahara"
 	destination "Hestia"
 	to offer
-		has "Intro [3 Interceptor]: done"
+		has "Intro [2.1 Interceptor]: done"
 	
 	on offer
 		conversation
