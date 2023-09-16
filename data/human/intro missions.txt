@@ -445,7 +445,11 @@ mission "Intro [3 Interceptor]"
 			`	Captain Marshall wishes you luck and heads out into the spaceport. You and James spend a few minutes going over the plan as you finish your drinks. "Leave your hold empty and fill it up before you land at <destination>. You can sell what you mine when we land. Remember there's no guaranteed payment in this kind of work. How much you make is based on the value of the minerals in your hold."`
 				accept
 	
+	on visit
+		dialog `You've reached <destination>, but you don't have at least five tons of silicon in your cargo hold. Locate and mine silicon asteroids in this system before returning.`
+	
 	on complete
+		require "Silicon" 5
 		conversation
 			`Once you've landed, you meet up with James and he asks you, "What did you think of mining?"`
 			choice
