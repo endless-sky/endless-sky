@@ -1906,7 +1906,7 @@ person "Patrol Team"
 	phrase
 		word
 			"If you want your pull request not to be merged"
-			"If you prefer your pull request never be merged"
+			"If you prefer that your pull request never be merged"
 			"If you prefer that your pull request sits idle"
 			"If you want your pull request to be closed"
 		word
