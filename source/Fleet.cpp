@@ -227,6 +227,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			if(ship->JumpNavigation().HasHyperdrive())
 				hasHyper = true;
 		}
+		const bool unrestricted = personality.IsUnrestricted();
 		// Don't try to make a fleet "enter" from another system if none of the
 		// ships have jump drives.
 		if(hasJump || hasHyper)
@@ -234,6 +235,8 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			bool isWelcomeHere = !system.GetGovernment()->IsEnemy(government);
 			for(const System *neighbor : (hasJump ? system.JumpNeighbors(jumpDistance) : system.Links()))
 			{
+				if(!unrestricted && government->IsRestrictedFrom(*neighbor))
+					continue;
 				// If this ship is not "welcome" in the current system, prefer to have
 				// it enter from a system that is friendly to it. (This is for realism,
 				// so attack fleets don't come from what ought to be a safe direction.)
@@ -249,6 +252,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		if(!personality.IsSurveillance())
 			for(const StellarObject &object : system.Objects())
 				if(object.HasValidPlanet() && object.GetPlanet()->HasSpaceport()
+						&& (unrestricted || !government->IsRestrictedFrom(*object.GetPlanet()))
 						&& !object.GetPlanet()->GetGovernment()->IsEnemy(government))
 					stellarVector.push_back(&object);
 
@@ -259,7 +263,9 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			// Prefer to launch from inhabited planets, but launch from
 			// uninhabited ones if there is no other option.
 			for(const StellarObject &object : system.Objects())
-				if(object.HasValidPlanet() && !object.GetPlanet()->GetGovernment()->IsEnemy(government))
+				if(object.HasValidPlanet()
+						&& (unrestricted || !government->IsRestrictedFrom(*object.GetPlanet()))
+						&& !object.GetPlanet()->GetGovernment()->IsEnemy(government))
 					stellarVector.push_back(&object);
 			options = stellarVector.size();
 			if(!options)
@@ -420,7 +426,15 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 // Do the randomization to make a ship enter or be in the given system.
 const System *Fleet::Enter(const System &system, Ship &ship, const System *source)
 {
-	if(system.Links().empty() || (source && !system.Links().count(source)))
+	bool unrestricted = ship.GetPersonality().IsUnrestricted();
+	bool canEnter = (source != nullptr || unrestricted || any_of(system.Links().begin(), system.Links().end(),
+		[&ship](const System *link) noexcept -> bool
+		{
+			return !ship.GetGovernment()->IsRestrictedFrom(*link);
+		}
+	));
+
+	if(!canEnter || system.Links().empty() || (source && !system.Links().count(source)))
 	{
 		Place(system, ship);
 		return &system;
@@ -429,8 +443,13 @@ const System *Fleet::Enter(const System &system, Ship &ship, const System *sourc
 	// Choose which system this ship is coming from.
 	if(!source)
 	{
-		auto it = system.Links().cbegin();
-		advance(it, Random::Int(system.Links().size()));
+		vector<const System *> validSystems;
+		const Government *gov = ship.GetGovernment();
+		for(const System *link : system.Links())
+			if(unrestricted || !gov->IsRestrictedFrom(*link))
+				validSystems.emplace_back(link);
+		auto it = validSystems.cbegin();
+		advance(it, Random::Int(validSystems.size()));
 		source = *it;
 	}
 
