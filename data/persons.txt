@@ -1942,13 +1942,13 @@ person "Patrol Team"
 			"required crew" 2
 	ship "Waverider" "Choreographers' Tears"
 		"never disabled"
-		add outfits
+		outfits
 			"LP576a Battery Pack"
 	ship "Waverider" "Adjuncators' Blood"
 		"never disabled"
 		add attributes
 			"bunk" 3
-		add outfits
+		outfits
 			"Tears of Skade"
 	ship "Waverider" "Balancers' Madness"
 		"never disabled"
