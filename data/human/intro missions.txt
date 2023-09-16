@@ -421,6 +421,7 @@ mission "Intro [3 Interceptor]"
 	priority
 	name "Mine at <planet>"
 	description "Mine asteroids at <destination>."
+	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 1
 	source "Ingot"
 	destination "New Sahara"
