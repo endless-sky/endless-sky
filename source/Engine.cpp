@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "FillShader.h"
 #include "Fleet.h"
 #include "Flotsam.h"
+#include "TouchScreen.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -1137,6 +1138,25 @@ void Engine::Draw() const
 	// filling the entire backlog of sprites before landing on a planet.
 	GameData::ProcessSprites();
 
+	// Draw a onscreen joystick in the bottom left corner, if enabled
+	if(Preferences::Has("Onscreen Joystick"))
+	{
+		const Interface *mapButtonUi = GameData::Interfaces().Get("main buttons");
+		Rectangle bounds = mapButtonUi->GetBox("onscreen joystick");
+		const char* colorStr = "faint";
+		bool joystickMax = touchMoveVector.LengthSquared() > 1;
+		Point jsPos = joystickMax ? touchMoveVector.Unit() : touchMoveVector;
+		if(touchMoveActive)
+			colorStr = joystickMax ? "dim" : "dimmer";
+		const Color &color = *GameData::Colors().Get(colorStr);
+		RingShader::Draw(bounds.Center(), bounds.Width()/2, joystickMax ? 4.0 : 2.0, 1.0, color);
+
+		if(touchMoveActive)
+		{
+			RingShader::Draw(jsPos * bounds.Width() / 2 + bounds.Center(), 50, 0, color);
+		}
+	}
+
 	if(Preferences::Has("Show CPU / GPU load"))
 	{
 		string loadString = to_string(lround(load * 100.)) + "% CPU";
@@ -1981,7 +2001,7 @@ void Engine::HandleKeyboardInputs()
 
 	// Certain commands are always sent when the corresponding key is depressed.
 	static const Command maneuveringCommands = Command::AFTERBURNER | Command::BACK |
-		Command::FORWARD | Command::LEFT | Command::RIGHT | Command::MOVETOWARD;
+		Command::FORWARD | Command::LEFT | Command::RIGHT;
 
 	// Transfer all commands that need to be active as long as the corresponding key is pressed.
 	activeCommands |= keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN |
@@ -2190,7 +2210,7 @@ void Engine::HandleMouseClicks()
 			}
 			else
 			{
-				moveTowardActive = true;
+				touchMoveActive = true;
 			}
 		}
 		else
@@ -2205,30 +2225,46 @@ void Engine::HandleMouseClicks()
 
 void Engine::HandleTouchEvents()
 {
-	if(!isTouch)
+	if(Preferences::Has("Onscreen Joystick"))
 	{
-		return;
-	}
+		const Interface *mapButtonUi = GameData::Interfaces().Get("main buttons");
+		Rectangle bounds = mapButtonUi->GetBox("onscreen joystick");
 
-	Ship *flagship = player.Flagship();
-	if(!flagship)
-		return;
-
-	if(isFingerDown != -1)
-	{
-		if(moveTowardActive && !Preferences::Has("Onscreen Joystick"))
+		bool doubleRadius = touchMoveActive;
+		touchMoveActive = false;
+		touchMoveVector = Point();
+		for(const Point& p: TouchScreen::Points())
 		{
-			activeCommands |= Command::MOVETOWARD;
-			if(isDoubleTap)
+			// We want the initial touch event to be strictly within the
+			// bounds of the joystick ring, but afterwards, allow it to
+			// go up to 2x radius outside the ring before dropping it.
+			// Don't let the point leave the bounds of the ring
+			Point jspos = p - bounds.Center();
+			double radius = bounds.Width() / 2;
+			if(jspos.LengthSquared() < (doubleRadius ? radius * radius * 4 : radius * radius))
 			{
-				activeCommands |= Command::AFTERBURNER;
+				touchMoveVector = jspos / radius;
+				touchMoveActive = true;
+				HandleJoystickMovement(touchMoveVector * 32767);
+
+				// If we are outside the ring bounds, activate the afterburner
+				if(touchMoveVector.LengthSquared() > 1)
+					activeCommands |= Command::AFTERBURNER;
+
+				break; // only consider the first point we find
 			}
-			flagship->SetMoveToward(clickPoint);
 		}
 	}
-	else
+	else if(isTouch)
 	{
-		moveTowardActive = false;
+		if(isFingerDown == -1)
+			touchMoveActive = false;
+		else if(touchMoveActive)
+		{
+			if(isDoubleTap)
+				activeCommands |= Command::AFTERBURNER;
+			HandleJoystickMovement(clickPoint.Unit() * 32767);
+		}
 	}
 }
 
@@ -2265,9 +2301,16 @@ void Engine::HandleMouseInput(Command &activeCommands)
 
 void Engine::HandleGamepadInput(Command& activeCommands)
 {
-	// TODO: combine this logic with the onscreen joystick logic?
-	Ship* flagship = player.Flagship();
 	Point p = GamePad::LeftStick();
+	HandleJoystickMovement(p);
+}
+
+
+
+// Convert a joystick movement vector into actual flagship commands
+void Engine::HandleJoystickMovement(const Point& p)
+{
+	Ship* flagship = player.Flagship();
 	if(flagship && p)
 	{
 		const Angle& angle = flagship->Facing();

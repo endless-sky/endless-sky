@@ -55,7 +55,7 @@ namespace {
 	{
 		static const Command cancelers(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD
 			| Command::AFTERBURNER | Command::BACK | Command::FORWARD | Command::LEFT | Command::RIGHT
-			| Command::AUTOSTEER | Command::STOP | Command::MOVETOWARD);
+			| Command::AUTOSTEER | Command::STOP);
 
 		return cancelers;
 	}
@@ -4048,7 +4048,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	else if(activeCommands.Has(Command::SCAN))
 	{
 		command |= Command::SCAN;
-		if(Preferences::Has("Automatic chase") && !activeCommands.Has(Command::MOVETOWARD))
+		if(Preferences::Has("Automatic chase"))
 		{
 			// On android, chase the target if they get too far away while the
 			// user is holding the scan button.
@@ -4090,7 +4090,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	{
 		TargetMinable(ship);
 
-		if(Preferences::Has("Automatic chase") && !activeCommands.Has(Command::MOVETOWARD))
+		if(Preferences::Has("Automatic chase"))
 		{
 			// On android, chase the target if they get too far away while the
 			// user is holding the scan button.
@@ -4121,11 +4121,6 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				}
 			}
 		}
-	}
-	if(activeCommands.Has(Command::MOVETOWARD))
-	{
-		command |= Command::MOVETOWARD;
-		MoveTo(ship, command, ship.GetMoveTowardPos() + ship.Position(), ship.Velocity(), 40.0, 0.8);
 	}
 
 	const shared_ptr<const Ship> target = ship.GetTargetShip();
@@ -4187,7 +4182,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				}
 				++index;
 			}
-			if(Preferences::Has("Automatic chase") && !activeCommands.Has(Command::MOVETOWARD))
+			if(Preferences::Has("Automatic chase"))
 			{
 				// On android, chase the target if they get too far away while the
 				// user is holding the fire button.

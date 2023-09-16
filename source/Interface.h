@@ -126,6 +126,7 @@ private:
 		Point padding;
 		std::string visibleIf;
 		std::string activeIf;
+		float radius = 0;
 	};
 
 	// This class handles "sprite", "image", and "outline" elements.

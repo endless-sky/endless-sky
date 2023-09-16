@@ -102,8 +102,6 @@ private:
 	bool canClick = false;
 	bool canDrag = false;
 
-	Point osJoystick;	// onscreen joystick
-	bool joystickMax = false;
 	int osJoystickFinger = -1;
 
 	// track zoom gestures

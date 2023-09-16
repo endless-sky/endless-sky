@@ -64,6 +64,9 @@ public:
 	void AddZone(const Rectangle &rect, const std::function<void()> &fun);
 	void AddZone(const Rectangle &rect, SDL_Keycode key);
 	void AddZone(const Rectangle &rect, Command command);
+	void AddZone(const Point& pos, float radius, const std::function<void()> &fun);
+	void AddZone(const Point& pos, float radius, SDL_Keycode key);
+	void AddZone(const Point& pos, float radius, Command command);
 	// Check if a click at the given coordinates triggers a clickable zone. If
 	// so, forward the event and return true.
 	bool ZoneMouseDown(const Point &point);
@@ -132,15 +135,31 @@ private:
 		Zone(const Rectangle &rect, const std::function<void()> &fun_down, const std::function<void()> &fun_up = nullptr):
 			Rectangle(rect),
 			fun_down(fun_down),
-			fun_up(fun_up)
+			fun_up(fun_up),
+			radius(0)
+		{}
+		Zone(const Point &pos, float radius, const std::function<void()> &fun_down, const std::function<void()> &fun_up = nullptr):
+			Rectangle(pos, Point()),
+			fun_down(fun_down),
+			fun_up(fun_up),
+			radius(radius)
 		{}
 
 		void MouseDown() const { fun_down(); }
 		void MouseUp() const { if (fun_up) fun_up(); }
 
+		bool Contains(const Point& p) const
+		{
+			if(radius)
+				return Center().DistanceSquared(p) < radius * radius;
+			else
+				return Rectangle::Contains(p);
+		}
+
 	private:
 		std::function<void()> fun_down;
 		std::function<void()> fun_up;
+		float radius = 0;
 	};
 
 

@@ -329,6 +329,8 @@ target_sources(EndlessSkyLib PRIVATE
 	TestData.h
 	TextReplacements.cpp
 	TextReplacements.h
+	TouchScreen.cpp
+	TouchScreen.h
 	Trade.cpp
 	Trade.h
 	TradingPanel.cpp

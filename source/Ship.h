@@ -458,12 +458,6 @@ public:
 	// The AI wants the ship to linger for one AI step.
 	void Linger();
 
-
-	// Direction to move toward if MOVETOWARD is active. These are relative to
-	// Position()
-	void SetMoveToward(const Point& p) { moveToward = p; }
-	const Point& GetMoveTowardPos() const { return moveToward; }
-
 	// use a common target angle for jump drives, so that fleets don't just
 	// scatter all around the solar system
 	void SetJumpDriveTargetAngle(const Angle& a) { jumpDriveTargetAngle = a; }
@@ -676,8 +670,6 @@ private:
 	std::vector<std::weak_ptr<Ship>> escorts;
 	std::weak_ptr<Ship> parent;
 
-	// Direction to move toward for MOVETOWARD command
-	Point moveToward;
 	bool removeBays = false;
 
 	// Angle from target location where a ship should jump to

@@ -216,6 +216,7 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/Test.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/TestContext.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/TestData.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/TouchScreen.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/text/DisplayText.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/text/Font.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/text/FontSet.cpp

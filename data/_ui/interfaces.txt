@@ -1724,7 +1724,7 @@ interface "main buttons" bottom right
 	anchor top left
 	button "Select next ship"
 		center 75 315
-		dimensions 50 50
+		radius 80
 
 	# Overlayed on the navigational panel, which displays something like
 	# "Can land on: Earth"
@@ -1740,9 +1740,15 @@ interface "main buttons" bottom right
 	button "Toggle fast-forward"
 		from 0 0 to 48 48
 
+
 	# box in bottom left corner that defines a location for the onscreen joystick
 	anchor bottom left
+	active if "onscreen joystick"
 	box "onscreen joystick"
 		center 128 -128
 		dimensions 192 192
-		
+	# This button doesn't do anything. It is here to swallow any clicks on the
+	# onscreen joystick, in case some of these controls overlap
+	button ^ ""
+		center 128 -128
+		radius 96

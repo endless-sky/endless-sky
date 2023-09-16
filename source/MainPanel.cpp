@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "BoardingPanel.h"
 #include "Command.h"
-#include "GamePad.h"
 #include "RadialSelectionPanel.h"
 #include "RingShader.h"
 #include "comparators/ByGivenOrder.h"
@@ -305,24 +304,9 @@ void MainPanel::Draw()
 				}
 			}
 		}
-
-		mapButtonUi->Draw(info, this);
-
-		// Draw a onscreen joystick in the bottom left corner, if enabled
 		if(Preferences::Has("Onscreen Joystick"))
-		{
-			Rectangle scBounds = mapButtonUi->GetBox("onscreen joystick");
-			const char* colorStr = "faint";
-			if(osJoystick)
-				colorStr = joystickMax ? "dim" : "dimmer";
-			const Color &color = *GameData::Colors().Get(colorStr);
-			RingShader::Draw(scBounds.Center(), scBounds.Width()/2, joystickMax ? 4.0 : 2.0, 1.0, color);
-
-			if(osJoystick)
-			{
-				RingShader::Draw(osJoystick, 50, 0, color);
-			}
-		}
+			info.SetCondition("onscreen joystick");
+		mapButtonUi->Draw(info, this);
 	}
 }
 
@@ -475,35 +459,6 @@ bool MainPanel::FingerDown(int x, int y, int fid)
 	bool isActive = (GetUI()->Top().get() == this);
 	if (isActive)
 	{
-		// Check for onscreen joystick
-		if(Preferences::Has("Onscreen Joystick") && osJoystickFinger == -1)
-		{
-			const Interface *mapButtonUi = GameData::Interfaces().Get("main buttons");
-
-			Rectangle scBounds = mapButtonUi->GetBox("onscreen joystick");
-			Point pring(
-				x - scBounds.Center().X(),
-				y - scBounds.Center().Y()
-			);
-			int radius = scBounds.Width()/2;
-
-			// Are we within the ring?
-			if(pring.LengthSquared() < radius * radius)
-			{
-				osJoystick = Point(x, y);
-				joystickMax = false;
-				osJoystickFinger = fid;
-
-				Ship* flagship = player.Flagship();
-				if(flagship)
-				{
-					flagship->SetMoveToward(pring * 5);
-					Command::InjectSet(Command::MOVETOWARD);
-				}
-				return true;
-			}
-		}
-
 		// Check for zoom events
 		if(zoomGesture.FingerDown(Point(x, y), fid))
 		{
@@ -522,48 +477,7 @@ bool MainPanel::FingerMove(int x, int y, int fid)
 	if (!canClick)
 		return false;
 
-	if(osJoystick && fid == osJoystickFinger)
-	{
-		const Interface *mapButtonUi = GameData::Interfaces().Get("main buttons");
-		Rectangle scBounds = mapButtonUi->GetBox("onscreen joystick");
-
-		// Don't let the point leave the bounds of the ring
-		Point pring(
-			x - scBounds.Center().X(),
-			y - scBounds.Center().Y()
-		);
-		int radius = scBounds.Width()/2;
-
-		// Are we outside the ring?
-		float distance = pring.Length();
-		if(distance > radius)
-		{
-			osJoystick = scBounds.Center() + pring * (radius / distance);
-			if(!joystickMax)
-			{
-				joystickMax = true;
-				Command::InjectSet(Command::AFTERBURNER);
-			}
-		}
-		else
-		{
-			osJoystick = Point(x, y);
-			if(joystickMax)
-			{
-				joystickMax = false;
-				Command::InjectUnset(Command::AFTERBURNER);
-			}
-		}
-
-		Ship* flagship = player.Flagship();
-		if(flagship)
-		{
-			flagship->SetMoveToward(pring * 5);
-		}
-
-		return true;
-	}
-	else if(zoomGesture.FingerMove(Point(x, y), fid))
+	if(zoomGesture.FingerMove(Point(x, y), fid))
 	{
 		Preferences::ZoomView(zoomGesture.Zoom());
 		return true;
@@ -576,13 +490,9 @@ bool MainPanel::FingerMove(int x, int y, int fid)
 
 bool MainPanel::FingerUp(int x, int y, int fid)
 {
-	if(osJoystick && fid == osJoystickFinger)
+	if(fid == osJoystickFinger)
 	{
-		osJoystick = Point();
-		joystickMax = false;
 		osJoystickFinger = -1;
-		Command::InjectUnset(Command::MOVETOWARD);
-		Command::InjectUnset(Command::AFTERBURNER);
 		return true;
 	}
 	else if(zoomGesture.FingerUp(Point(x, y), fid))

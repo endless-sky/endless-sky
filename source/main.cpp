@@ -31,7 +31,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "GameLoadingPanel.h"
 #include "GameWindow.h"
-#include "Gesture.h"
 #include "Hardpoint.h"
 #include "Logger.h"
 #include "MenuPanel.h"
@@ -45,6 +44,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SpriteShader.h"
 #include "Test.h"
 #include "TestContext.h"
+#include "TouchScreen.h"
 #include "UI.h"
 #include "text/FontSet.h"
 
@@ -326,8 +326,6 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	if(!testToRunName.empty())
 		testContext = TestContext(GameData::Tests().Get(testToRunName));
 
-	Gesture gesture;
-
 	// IsDone becomes true when the game is quit.
 	while(!menuPanels.IsDone())
 	{
@@ -358,7 +356,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			
 				event = fingerEvent;
 			}
-			else if(event.type == SDL_MOUSEMOTION)
+			else if(event.type == SDL_MOUSEMOTION && event.motion.state != 0)
 			{
 				SDL_Event fingerEvent{};
 				fingerEvent.type = SDL_FINGERMOTION;
@@ -385,36 +383,15 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			}
 #endif
 
-			// Filter these through the gamepad handler before checking if the
-			// UI needs the event
-			if(event.type == SDL_CONTROLLERAXISMOTION ||  // these are the inputs
-			   event.type == SDL_CONTROLLERBUTTONDOWN ||
-			   event.type == SDL_CONTROLLERBUTTONUP ||
-			   event.type == SDL_CONTROLLERDEVICEADDED ||   // controller presence
-			   event.type == SDL_CONTROLLERDEVICEREMOVED ||
-				event.type == SDL_JOYAXISMOTION || // These events are for
-				event.type == SDL_JOYHATMOTION ||  // configuring new gamepads
-				event.type == SDL_JOYBUTTONDOWN ||
-				event.type == SDL_JOYBUTTONUP)
-			{
-				GamePad::Handle(event);
-			}
+			// Filter events the gamepad handler before checking if the
+			// UI needs the event. This handles state for polling, but
+			// does not generate button events, which are handled through
+			// the event system normally.
+			GamePad::Handle(event);
 
-			// Filter touch events through the gesture manager. It will create
-			// user gesture events we can use for input.
-			if(event.type == SDL_FINGERDOWN)
-			{
-				gesture.Start(event.tfinger.x * Screen::Width(), event.tfinger.y * Screen::Height(), event.tfinger.fingerId);
-			}
-			else if(event.type == SDL_FINGERMOTION)
-			{
-				gesture.Add(event.tfinger.x* Screen::Width(), event.tfinger.y * Screen::Height(), event.tfinger.fingerId);
-			}
-			else if(event.type == SDL_FINGERUP)
-			{
-				gesture.Add(event.tfinger.x* Screen::Width(), event.tfinger.y * Screen::Height(), event.tfinger.fingerId);
-				gesture.End();
-			}
+			// Filter the events through the touch manager. It will cache
+			// the set of fingers for polling, and generate gesture events.
+			TouchScreen::Handle(event);
 
 			if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKQUOTE)
 			{

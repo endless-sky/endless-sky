@@ -87,7 +87,6 @@ const Command Command::AUTOSTEER(ONE << 30, "Auto steer");
 const Command Command::WAIT(ONE << 31, "");
 const Command Command::STOP(ONE << 32, "Stop");
 const Command Command::SHIFT(ONE << 33, "");
-const Command Command::MOVETOWARD(ONE << 34, "");
 
 std::atomic<uint64_t> Command::simulated_command{};
 std::atomic<uint64_t> Command::simulated_command_once{};

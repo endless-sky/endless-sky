@@ -128,6 +128,41 @@ void Panel::AddZone(const Rectangle &rect, Command command)
 
 
 
+// Add a clickable zone to the panel.
+void Panel::AddZone(const Point &center, float radius, const function<void()> &fun)
+{
+	// The most recently added zone will typically correspond to what was drawn
+	// most recently, so it should be on top.
+	zones.emplace_front(center, radius, fun);
+}
+
+
+
+void Panel::AddZone(const Point &center, float radius, SDL_Keycode key)
+{
+	AddZone(center, radius, [this, key](){ this->KeyDown(key, 0, Command(), true); });
+}
+
+
+
+void Panel::AddZone(const Point &center, float radius, Command command)
+{
+	zones.emplace_front(
+		center, radius,
+		[command, this](){
+			// InjectSet will handle command as both an event and a keypress
+			Command::InjectSet(command);
+			cached_zone_commands.Set(command);
+		},
+		[command, this](){
+			Command::InjectUnset(command);
+			cached_zone_commands.Clear(command);
+		}
+	);
+}
+
+
+
 // Check if a click at the given coordinates triggers a clickable zone. If
 // so, apply that zone's action and return true.
 bool Panel::ZoneMouseDown(const Point &point)

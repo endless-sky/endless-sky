@@ -243,6 +243,11 @@ void Interface::Element::Load(const DataNode &node, const Point &globalAnchor)
 			alignment = ParseAlignment(child);
 		else if(key == "dimensions" && child.Size() >= 3)
 			dimensions = Point(child.Value(1), child.Value(2));
+		else if(key == "radius" && child.Size() >= 2)
+		{
+			dimensions = Point(child.Value(1) * 2, child.Value(1) * 2);
+			radius = child.Value(1);
+		}
 		else if(key == "width" && child.Size() >= 2)
 			dimensions.X() = child.Value(1);
 		else if(key == "height" && child.Size() >= 2)
@@ -620,10 +625,20 @@ void Interface::TextElement::Place(const Rectangle &bounds, Panel *panel) const
 {
 	if(!panel)
 		return;
-	if(buttonKey)
-		panel->AddZone(bounds, buttonKey);
-	else if(!(command == Command::NONE))
-		panel->AddZone(bounds, command);
+	if(radius)
+	{
+		if(buttonKey)
+			panel->AddZone(bounds.Center(), radius, buttonKey);
+		else if(!(command == Command::NONE))
+			panel->AddZone(bounds.Center(), radius, command);
+	}
+	else
+	{
+		if(buttonKey)
+			panel->AddZone(bounds, buttonKey);
+		else if(!(command == Command::NONE))
+			panel->AddZone(bounds, command);
+	}
 }
 
 

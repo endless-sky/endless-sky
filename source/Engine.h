@@ -168,6 +168,7 @@ private:
 	void CreateStatusOverlays();
 	void EmplaceStatusOverlay(const std::shared_ptr<Ship> &ship, Preferences::OverlayState overlaySetting, int value);
 
+	void HandleJoystickMovement(const Point& p);
 
 private:
 	PlayerInfo &player;
@@ -258,13 +259,14 @@ private:
 	bool isRadarClick = false;
 	bool isTouch = false;
 	int isFingerDown = -1;
-	bool moveTowardActive = false;
 	bool isDoubleTap = false;
 	Point clickPoint;
 	Rectangle uiClickBox;
 	Rectangle clickBox;
 	int groupSelect = -1;
 	std::chrono::steady_clock::time_point last_tap_stamp;
+	bool touchMoveActive = false;
+	Point touchMoveVector;
 
 	// Set of asteroids scanned in the current system.
 	std::set<std::string> asteroidsScanned;
