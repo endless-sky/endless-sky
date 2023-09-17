@@ -434,39 +434,38 @@ mission "Scin Presence on Cyife"
 		conversation
 			`Nothing is much of interest on a cold, unwelcoming moon in the middle of nowhere. However, there's something about the surface of Cyife that is a bit peculiar. Some of the light refracted through the surface seeminly dissapates, or reflects back in strange patterns. Although appearing like ice, more detailed inspection reveals that small patches of the terrain seem to be made of some other type of crystalline material. In the distance is something that truly stands out on this world - a large egg-shaped structure with a green hue to it.`
 
-		branch "saw epidote"
+			branch "saw epidote"
 				has "scin: approached epidote"
 
-		branch "boarded epidote"
+			branch "boarded epidote"
 				has "scin: entered epidote"
 
 			`	Once you get close enough, the oblong object reveals itself to be some sort of large Gegno ship, and judging by the coloring, belongs to the Scin faction. What it's doing this far away from their home space is a mystery, much like the moon it's stationed on. Or, at least, was stationed on, as after a few seconds, it launches into the atmosphere and leaves the moon. There doesn't seem to be anything left at the place it was parked at, so it's hard to know the Scin were doing here to begin with.`
 				decline
 
-		label "saw epidote"
+			label "saw epidote"
 			`	Once you get close enough, the oblong object reveals itself to be a large Gegno Scin ship, similar to the one you encountered during an interaction with the Scin a while ago. What it's doing this far away from their home space is a mystery, much like the moon it's stationed on. Or, at least, was stationed on, as after a few seconds, it launches into the atmosphere and leaves the moon. Perhaps it was some sort of warship spying on the nearby Gegno Vi systems.`
 				decline
 
-		label "boarded epidote"
+			label "boarded epidote"
 			`	Once you get close enough, the oblong object reveals itself to be one of the Gegno Scin's large research ships, the same kind that you've been inside of during an interaction with the Scin a while ago. It's possible the Scin found the mysteriousness of Cyife worth traveling so far from their home space to investigate, but you'll never know, as after a few seconds, the ship launches into the atmosphere and leaves the moon. They also didn't seem to leave anything behind, though the site the ship was parked at does appear to be one of the many strange regions of the moon.`
 				decline
 
 
 mission "Battle over Zydee"
-	# invisible
+#	invisible
 	landing
 	to offer
-		random < 30
+#		random < 30
 		has "Gegno Intervention: declined"
 		not "Gegno Genocide Defense: offered"
 	source "Zydee"
-	to complete
-		never
+#	to complete
+#		never
 	on offer
 		set "zydee appearance"
-		conversation
+#		conversation
 			`Background simulator - Gegno Vi attack on the Scin world of Zydee.`
-
 	on enter "Kneirc"
 		fail
 
@@ -474,23 +473,67 @@ mission "Battle over Zydee"
 		on provoke
 			set "zydee interference"
 		government "Gegno Vi"
-		personality heroic entering
+		personality heroic staying
 		system "Kneirc"
-
+		fleet
+			variant
+				"Diorite"
+				"Eclogite" 
 	npc
 		on provoke
 			set "zydee interference"
 		government "Gegno Scin"
 		personality heroic staying
 		system "Kneirc"
-
-	npc
+		fleet
+			variant
+				"Epidote"
+				"Coesite" 2
+				"Halite"
+	npc evade
+		on provoke
+			set "zydee interference"
+		government "Gegno Vi"
+		personality heroic
+		system "Eogho"
+		fleet
+			variant
+				"Gneiss"
+				"Hornfel" 3
+				"Diorite"
+				"Schist" 2
+				"Eclogite" 4
+	npc evade
 		on provoke
 			set "zydee interference"
 		government "Gegno Scin"
-		personality heroic entering
-		system "Kneirc"
-
+		personality heroic
+		system "Erba Yle"
+		fleet
+			variant
+				"Felsic" 2
+				"Coesite" 3
+	npc evade
+		on provoke
+			set "zydee interference"
+		government "Gegno Scin"
+		personality heroic
+		system "Auhru"
+		fleet
+			variant
+				"Feldspar"
+				"Felsic"
+				"Coesite" 2
+				"Halite" 6
+	npc evade
+		on provoke
+			set "zydee interference"
+		government "Gegno Scin"
+		personality heroic
+		system "Zeinar"
+		fleet
+			variant
+				"Coesite" 2
 
 
 # mission "Quarg Reach Understanding" (Quarg follow player to Dueyu Eitch and find grounds with the Gegno"
@@ -523,6 +566,7 @@ mission "Battle over Zydee"
 # Don't forget edits based on rep:
 # 	Vi more angry at you if hostile to them during Passive-Aggressive
 #	Interruption Consequence for Eogho Duel (set a condition)
+#	If Quarg are hostile to begin with
 #	Fleet size difference for level of hostility for either faction in Aquiescence
 #	Cap of hostility with either/both war factions prevents further story content
 # 	Etc..
