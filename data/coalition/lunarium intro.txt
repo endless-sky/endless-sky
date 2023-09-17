@@ -33,8 +33,8 @@ mission "Lunarium: Smuggling: Charity 1"
 		random < 40
 		has "Coalition: First Contact: done"
 		not "Heliarch License: done"
-		not "Heliarch Investigation 2: active"
 		not "Lunarium: Questions: active"
+		not "assisting heliarchy"
 	on offer
 		conversation
 			branch chiree
@@ -69,10 +69,12 @@ mission "Lunarium: Smuggling: Charity 1"
 			`	Her mouth produces something of a chirping, clicking sound. "Good. Very good. Have the goods brought in shortly, I will." She leaves your ship, signals to some workers with similar uniforms, and in a few minutes they bring the cargo crates to your ship. She explains that more of her colleagues are already on <planet> working with more captains and suggests you look for them when you arrive. She thanks you again, and wishes you a good trip to <planet>.`
 				accept
 	on accept
+		"assisting lunarium" ++
 		log "Agreed to help a Kimek charity by transporting some supplies to one of their poorer worlds."
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying the charity supplies hasn't entered this system yet. Better depart and wait for it.`
 	on complete
+		"assisting lunarium" --
 		payment 44000
 		conversation
 			branch chiree
@@ -83,6 +85,8 @@ mission "Lunarium: Smuggling: Charity 1"
 			label chiree
 			`You find the local charity workers, and they begin unloading the supplies from your ship. When they're about done, you receive a transmission from Chiree.`
 			`	"A simple job it was, Captain, but important nonetheless. More work for you, we'll have, so ask that you keep watch for more members in Kimek space, I do." Once the workers are done, they hand you <payment>, and move the crates to a building where Kimek are lining up to receive the supplies. Other workers continue to unload more cargo from arriving ships.`
+	on fail
+		"assisting lunarium" --
 
 mission "Lunarium: Smuggling: Charity 2"
 	name "Charity Delivery"
@@ -95,9 +99,9 @@ mission "Lunarium: Smuggling: Charity 2"
 	to offer
 		random < 50
 		has "Lunarium: Smuggling: Charity 1: done"
-		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
 		not "Lunarium: Questions: active"
+		not "assisting heliarcy"
 	on offer
 		conversation
 			branch chiree
@@ -126,9 +130,12 @@ mission "Lunarium: Smuggling: Charity 2"
 			`	She leaves your ship, and meets with a nearby group of <bunks> other Kimek - your passengers, you imagine - before having some workers load up the cargo into your ship. The Kimek greet you briefly with nods and some leg movement as you meet them, and after the cargo is ready, you show them to their bunks.`
 			`	"Paid <payment> for this job, you will be. Have a safe trip, Captain," Chiree says before leaving.`
 				accept
+	on accept
+		"assisting lunarium" ++
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying the charity supplies and Kimek doctors hasn't entered this system yet. Better depart and wait for it.`
 	on complete
+		"assisting lunarium" --
 		payment 132000
 		conversation
 			branch chiree
@@ -137,6 +144,8 @@ mission "Lunarium: Smuggling: Charity 2"
 				decline
 			label chiree
 			`More blue-uniformed workers are waiting when you land, though these uniforms consist of incredibly thick, bulky coats. They take the crates out of your ship while the "doctors" are directed to a hospital building, and <payment> are transferred to you when the workers are done. They thank you for your help, and come in close as they're about to leave, quietly asking that you look for more members on worlds in northern Kimek space.`
+	on fail
+		"assisting lunarium" --
 
 mission "Lunarium: Smuggling: Charity 3"
 	name "Charity Delivery"
@@ -148,9 +157,9 @@ mission "Lunarium: Smuggling: Charity 3"
 	to offer
 		random < 70
 		has "Lunarium: Smuggling: Charity 2: done"
-		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
 		not "Lunarium: Questions: active"
+		not "assisting heliarchy"
 	on offer
 		conversation
 			branch chiree
@@ -171,8 +180,13 @@ mission "Lunarium: Smuggling: Charity 3"
 					decline
 			`	They nod, and you all leave your ship. They show you a pile of containers and crates near the hangars, and load them in your cargo hold.`
 				accept
+	on accept
+		"assisting lunarium" ++
 	on complete
+		"assisting lunarium" --
 		payment 261000
+	on fail
+		"assisting lunarium" --
 
 mission "Lunarium: Smuggling: Grenades"
 	name "Grenade Smuggling"
@@ -183,6 +197,7 @@ mission "Lunarium: Smuggling: Grenades"
 	to offer
 		has "Lunarium: Smuggling: Charity 3: done"
 		not "Heliarch License: done"
+		not "assisting heliarchy"
 	on offer
 		log "Been providing transport services for a charity that is actually the Lunarium, a resistance group within the Coalition aiming to free it from the Heliarchs' rule. Some of the work was genuinely charity, apparently, but some was to support the resistance."
 		set "Lunarium introduced"
@@ -239,15 +254,19 @@ mission "Lunarium: Smuggling: Grenades"
 			`	A communicator on her beeps, and she gets word that the workers have finished unloading the smuggled guns. She tells you you'll receive coordinates for delivering the grenades once you arrive at <planet>, and wishes you good luck.`
 				accept
 	on accept
+		"assisting lunarium" ++
 		log "Agreed to acquire some grenades for the Lunarium from human space. They've offered to pay quite well."
 	on visit
 		dialog `You've arrived on <planet>, but you haven't brought all the grenades you needed to yet. Make sure you have them all in your cargo before you land.`
 	on complete
+		"assisting lunarium" --
 		outfit "Fragmentation Grenades" -100
 		payment 3400000
 		conversation
 			`As you approach the standard docking bay, a message pops up on your monitor telling you to go to the edge of the city. You follow the instructions and find yourself in the middle of several dozen warehouses. Another message arrives and asks that you unload the grenades and bring them to a specific warehouse. As this information comes in, you notice that a few Arachi have arrived just outside your ship with some cargo loaders, seemingly waiting for you to begin moving the smuggled weapons. You open up your hatch, and help them get the grenade crates out of your ship and into the designated warehouse as fast as you can, worried that someone might see you. The door is open, with a few more Arachi waiting inside by a staircase. They say nothing to you and simply take the grenade crates, lifting them off of the cargo loader and bringing them down the stairs, crate by crate.`
 			`	When you're done with the last one, one of the Arachi hands you several credit chips, worth <payment> in total. "Contact you for more deliveries of this kind, we will," they say as they head down with the final grenade box. You head back to your ship, and leave for the usual hangars.`
+	on fail
+		"assisting lunarium" --
 
 mission "Lunarium: Smuggling: AM"
 	name "Anti-Missile Smuggling"
@@ -260,10 +279,8 @@ mission "Lunarium: Smuggling: AM"
 	to offer
 		has "Lunarium: Smuggling: Grenades: done"
 		random < 15 + 3 * "assisted lunarium" * "assisted lunarium"
-		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
-	to fail
-		has "Heliarch Investigation 2: active"
+		not "assisting heliarchy"
 	on offer
 		conversation
 			`Shortly after you land, an Arach approaches your ship, waiting for you to come out. When you do, she pulls out a Heliarch badge. "Forgive me for this intrusion, you must, Captain <last>, but orders to inspect your ship, I have." She heads inside your ship and rushes to the cockpit before you can say anything, and asks you to close the door once you get there too. Her eyes trail the interior for a while, then she approaches you. "Helped the Lunarium with supplies before, you have," she whispers. "In need of more such services, we are. Means to defend ourselves against the Heliarch missiles, we require, so sent to ask you for three of the largest human anti-missile turrets, I was."`
@@ -279,16 +296,20 @@ mission "Lunarium: Smuggling: AM"
 			`	She asks for your monitor, and, after tinkering with the controls for a minute, plugs a small, round device into it. "Allow us to more easily contact you, this will. Accessed by a separate network entirely, the device is. Simply a means to receive our messages, it is. Leave traces on its hardware, communications will not, and gain access to the network on its own, it cannot. Traced back to us, you won't be, unless caught by the Heliarchs during our communications, you are," she explains. "After delivered the goods to <planet>, you have, message you for more missions, we shall. Good luck I wish you, and my thanks you have, Captain." Once the "inspection" is done, she leaves your ship and scurries off.`
 				accept
 	on accept
+		"assisting lunarium" ++
 		log "Agreed to smuggle three of the largest human anti-missile turrets to the Lunarium. They hope to reverse-engineer them to defend against Heliarch weaponry, though the effectiveness of human designs here is dubious."
 		log "Given what appears to be some sort of communication device by a Lunarium representative to facilitate easier contact."
 	on visit
 		dialog `You've arrived on <planet>, but you haven't brought all the anti-missile turrets you needed to yet. Make sure you have them all in cargo before you land.`
 	on complete
+		"assisting lunarium" --
 		outfit "Heavy Anti-Missile Turret" -3
 		payment 900000
 		conversation
 			`Your monitor beeps loudly as you prepare for your descent onto <planet>, indicating that you have a message. The message details instructions on how to complete your delivery. Under the guise that you're transporting heavy factory equipment, you stop on a landing pad adjacent to a massive automated compound. A gantry crane moves the turrets down to ground levels, setting them on cargo platforms, which are then pulled into a large warehouse. Once all is done, you see that <payment> have been added to your account.`
 			`	You look to your monitor again, and see a message explaining the Lunarium would happily take more copies of smuggled equipment, if you wish to help further. The message details that they've prepared a method of integrating their missions into your job board. The device installed in your ship will include them in your list of regular jobs whenever they're available.`
+	on fail
+		"assisting lunarium" --
 
 mission "Lunarium: Smuggling: Torpedoes"
 	landing
@@ -303,10 +324,8 @@ mission "Lunarium: Smuggling: Torpedoes"
 		has "Lunarium: Smuggling: AM: done"
 		has "event: deep sky tech available"
 		random < 20 + 3 * "assisted lunarium" * "assisted lunarium"
-		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
-	to fail
-		has "Heliarch Investigation 2: active"
+		not "assisting heliarchy"
 	on offer
 		conversation
 			`Once you land on <origin>, the little round drive the Lunarium member plugged into your ship beeps quietly. Your monitor begins to flicker, eventually changing to some sort of messaging interface. A few seconds pass, and some text pops up. "Greetings Captain! Chiree, it is. In need of your 'delivery services' again, we are. Told, we have been, that developed some torpedoes of their own, humans have, and while not as dangerous as Finishers, still provide us much needed offensive power against Heliarch ships, they would. Issued anti-missile defenses, they are not, so a great boon to us, these weapons would be."`
@@ -318,10 +337,12 @@ mission "Lunarium: Smuggling: Torpedoes"
 			`	The interface blinks off, and the round drive stops beeping as your monitor returns to normal.`
 				accept
 	on accept
+		"assisting lunarium" ++
 		log "Agreed to provide the Lunarium with some Torpedo and Typhoon Launchers. The lack of anti-missile systems on Heliarch ships means missile technology will be highly beneficial for the Lunarium."
 	on visit
 		dialog `You've arrived on <planet>, but you haven't brought all the launchers and ammo you needed to yet. Make sure you have them all in your cargo before you land.`
 	on complete
+		"assisting lunarium" --
 		outfit "Torpedo Launcher" -2
 		outfit "Typhoon Launcher" -2
 		outfit "Torpedo" -60
@@ -339,6 +360,8 @@ mission "Lunarium: Smuggling: Torpedoes"
 			`	"A calm world, this is, and many Heliarch patrols, it does not get," she explains. "Hidden many things here for long, we have. Continue to remain hidden, I hope we can."`
 			label end
 			`	The final torpedo is brought out of your ship, and the Saryds start bringing them inside a cave leading into the mountain. The Saryd who paid you thanks you again, and follows after the others. You head back to your ship and fly it to the hangars, hoping to find something warm to drink.`
+	on fail
+		"assisting lunarium" --
 
 mission "Lunarium: Smuggling: Heat"
 	landing
@@ -352,10 +375,8 @@ mission "Lunarium: Smuggling: Heat"
 		has "Lunarium: Smuggling: Torpedoes: done"
 		has "event: flamethrower available"
 		random < 25 + 3 * "assisted lunarium" * "assisted lunarium"
-		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
-	to fail
-		has "Heliarch Investigation 2: active"
+		not "assisting heliarchy"
 	on offer
 		conversation
 			`Once again, the Lunarium's device starts beeping as you land, and your monitor flickers to the same messaging screen as last time. "Hello again Captain. Chiree, it is. Thank you for the torpedoes, I must, already at work on producing more like them, we are. Win us battles, however, they alone will not, so asking you to help us once again, I am. Received word, we have, of some more weapons developed by humans. Quickly heat up ships, they can, and so a great help against Heliarch attacks, they would be."`
@@ -374,10 +395,12 @@ mission "Lunarium: Smuggling: Heat"
 			`	The beeping stops and your monitor screen goes back to normal.`
 				accept
 	on accept
+		"assisting lunarium" ++
 		log "Agreed to bring the Lunarium some Plasma Turrets and Flamethrowers. They seem to believe heat damage will be effective against Heliarch ships."
 	on visit
 		dialog `You've arrived on <planet>, but you haven't brought all the Plasma Turrets and Flamethrowers you needed to yet. Make sure to have them all in your cargo before you land.`
 	on complete
+		"assisting lunarium" --
 		outfit "Plasma Turret" -2
 		outfit "Flamethrower" -10
 		payment 5880000
@@ -394,6 +417,8 @@ mission "Lunarium: Smuggling: Heat"
 			`	"If to fight the Heliarchs, we are, an advantage against their mighty vessels, we need," he explains. "When long in combat, close to their heat limit, their ships are. Greatly cripple them, we hope that these weapons will."`
 			label end
 			`	He bids you farewell once the last Flamethrower is loaded onto the barge, and gets on it with the others to sail away. The barge is fully encompassed by the planet's ever-present fog within minutes of raising the anchor. You get inside your ship, and head to the usual hangars.`
+	on fail
+		"assisting lunarium" --
 
 mission "Lunarium: Smuggling: Reactors"
 	landing
@@ -406,10 +431,8 @@ mission "Lunarium: Smuggling: Reactors"
 	to offer
 		has "Lunarium: Smuggling: Heat: done"
 		random < 40 + 3 * "assisted lunarium" * "assisted lunarium"
-		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
-	to fail
-		has "Heliarch Investigation 2: active"
+		not "assisting heliarchy"
 	on offer
 		conversation
 			`Landing on <origin>, the Lunarium's device starts beeping once again. Your monitor's screen shifts as you receive Chiree's message. "Captain <last>, a more complicated task for you, I have. Some better power generation, our ships will need, if to fight Heliarch warships, we are. Simpler to mass-produce, human ones should be, but only on <planet>, large enough facilities exist."`
@@ -420,12 +443,14 @@ mission "Lunarium: Smuggling: Reactors"
 			`	She signs off, the beeping stops, and your monitor screen returns to normal.`
 				accept
 	on accept
+		"assisting lunarium" ++
 		log "The Lunarium will need more power than the Coalition solar panels and fuel cells can provide to take on the Heliarchs. Agreed to provide them samples of human shipboard nuclear reactors to reproduce to this end."
 	on visit
 		dialog `You land on <planet>, but don't receive any instructions from the local Lunarium members. Either one or more of the reactors aren't with you in the system, or you're past the delivery window. You should prepare to bring in the three reactors before the fifth day of the month, and try again.`
 	to complete
 		day < 5
 	on complete
+		"assisting lunarium" --
 		outfit "Armageddon Core" -1
 		outfit "Fusion Reactor" -1
 		outfit "Breeder Reactor" -1
@@ -446,6 +471,8 @@ mission "Lunarium: Smuggling: Reactors"
 			`	"Fit for battle, solar panels and fuel cells are not. Come to fight the Heliarchs, we eventually will, so better power generation for our weapons, we'll need," he says, and then points in the direction of the spaceport. "More efficient, Heliarch reactors are, but too difficult to steal them, it is. Too risky. Only provide energy for our facilities, they do. Studied and reproduced for use in our ships, the reactors you brought us will be."`
 			label end
 			`	They bid you farewell and head into the cave, and you get back inside your ship. Once you land back at the city hangars, the device installed in your monitor beeps again with a message from Chiree. "Helped us a great deal you have, Captain <last>. Contact you like this again, I may not, but find more offers for smuggling jobs, you will. Appreciated, any more equipment you bring us will be, and of course, pay well we would." She signs off, and the beeps stop.`
+	on fail
+		"assisting lunarium" --
 
 
 
@@ -457,7 +484,7 @@ mission "House Bebliss 1-A"
 		random < 10
 		has "Coalition: Contributor: done"
 		not "Heliarch License: done"
-		not "Heliarch Investigation 2: active"
+		not "assisting heliarchy"
 		# This mission is to offer when the player has the Epilogue for whatever character of FW, Navy or Syndicate stays in Deneb.
 		# When the Navy and Syndicate campaigns get in, they'll need their own versions of missions 2 through 7 written.
 		or
@@ -495,6 +522,12 @@ mission "House Bebliss 1-A"
 					decline
 			`	He nods in some quick gesture, and gives you some coordinates. "To an estate, these will bring you. Thankful for your understanding, House Bebliss is." He finishes up his drink quickly, and leaves the bar to inform his superiors that you'll be on your way to <planet>.`
 				accept
+	on accept
+		"assisting lunarium" ++
+	on complete
+		"assisting lunarium" --
+	on fail
+		"assisting lunarium" --
 
 mission "House Bebliss 1-B"
 	name "Meet with House Bebliss"
@@ -503,7 +536,7 @@ mission "House Bebliss 1-B"
 		random < 40
 		has "House Bebliss 1-A: declined"
 		not "Heliarch License: done"
-		not "Heliarch Investigation 2: active"
+		not "assisting heliarchy"
 	source
 		attributes arach
 		not planet "Factory of Eblumab"
@@ -535,6 +568,12 @@ mission "House Bebliss 1-B"
 			label decline
 			`	The two of them eye you up for a very uncomfortable minute, but never provide some response or acknoweldgement. You try and move away and leave the restaurant, but their bodyguards block you. One of the two Arachi from the table appears to grunt, then signals for the guards to let you pass through. You leave the restaurant, and return to your ship.`
 				decline
+	on accept
+		"assisting lunarium" ++
+	on complete
+		"assisting lunarium" --
+	on fail
+		"assisting lunarium" --
 
 mission "House Bebliss 2-FW"
 	name "Find Freya"
@@ -542,7 +581,7 @@ mission "House Bebliss 2-FW"
 	landing
 	to offer
 		not "Heliarch License: done"
-		not "Heliarch Investigation 2: active"
+		not "assisting heliarchy"
 		or
 			has "House Bebliss 1-A: done"
 			has "House Bebliss 1-B: done"
@@ -624,6 +663,12 @@ mission "House Bebliss 2-FW"
 			label decline
 			`	They stare at you in surprise for a bit, glancing at one another a few times. They sigh. "Very well, understandable, that is," one of them says. They ask for some more drinks, and have some servants escort you back to your ship.`
 				decline
+	on accept
+		"assisting lunarium" ++
+	on complete
+		"assisting lunarium" --
+	on fail
+		"assisting lunarium" --
 
 mission "House Bebliss 3-FW"
 	name "Tell the Free Worlds about the Coalition"
@@ -631,6 +676,7 @@ mission "House Bebliss 3-FW"
 	landing
 	to offer
 		has "House Bebliss 2-FW: done"
+		not "assisting heliarchy"
 	source "Pugglemug"
 	destination "Bourne"
 	passengers 1
@@ -663,8 +709,14 @@ mission "House Bebliss 3-FW"
 			`	You follow her back out of the room, and she tells the workers there she'll be heading away with you to <planet> to discuss some matters with JJ. They wish you a good trip, and you head out of the building and into a small residential area near the warehouse, built for the workers during their stay here. You help Freya pack her things while she messages JJ, and you two head to your ship. "When you're done, you can go pick up these Arachi and bring them here. On our way to <planet>, and while you're away getting them, I'll have some time to look at what they've sent me."`
 			`	You show her to her bunk once you're inside your ship, and plot a course for <destination>.`
 				accept
+	on accept
+		"assisting lunarium" ++
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Freya hasn't entered the system yet. Better depart and wait for it to arrive.`
+	on complete
+		"assisting lunarium" --
+	on fail
+		"assisting lunarium" --
 
 mission "House Bebliss 4-FW"
 	name "An Answer to House Bebliss"
@@ -672,6 +724,7 @@ mission "House Bebliss 4-FW"
 	landing
 	to offer
 		has "House Bebliss 3-FW: done"
+		not "assisting heliarchy"
 	source "Bourne"
 	destination "Factory of Eblumab"
 	on offer
@@ -726,6 +779,12 @@ mission "House Bebliss 4-FW"
 			label accept
 			`	JJ makes a few calls, arranging some meetings to inform Free Worlds officials of what you've told him, then heads out with you and Freya. You go to a cozy restaurant near the center of town, where Freya tells you a bit more of her recent work in Deneb, and JJ laments about some trouble he's been having with handling patrol fleets. He also comments on having visited Katya and Ijs in the Conservatory somewhat recently. They both keep asking you to tell more of your travels with the jump drive, and what you've seen of the galaxy. You do your best to describe the stars you've seen and planets you've been to, as well as the alien wildlife you've encountered. You worry at first that the stories might draw some attention to your table, but the waiters and other customers don't seem to pay much mind; either they ignored you or simply brushed it off as you having had too many drinks. You leave at dusk, and Freya says she'll help JJ in some of the talks with the Free Worlds officials, and will later find her own way back to Deneb. You say your goodbyes to them, and head back to your ship. You should return to <planet> now and tell House Bebliss that Freya's agreed to their proposal.`
 				accept
+	on accept
+		"assisting lunarium" ++
+	on complete
+		"assisting lunarium" --
+	on fail
+		"assisting lunarium" --
 
 mission "House Bebliss 5-FW"
 	name "Jumping Spiders"
@@ -733,6 +792,7 @@ mission "House Bebliss 5-FW"
 	landing
 	to offer
 		has "House Bebliss 4-FW: done"
+		not "assisting heliarchy"
 	source "Factory of Eblumab"
 	destination "Ablub's Invention"
 	on offer
@@ -756,21 +816,27 @@ mission "House Bebliss 5-FW"
 			label accept
 			`	You follow them outside, and see them board the Spindle, heading to <destination>. You board your own ship, and head back to the city docks, preparing to meet them on <planet> when you have a spare jump drive for their ship.`
 				accept
+	on accept
+		"assisting lunarium" ++
 	on visit
 		dialog `You land on <planet>, but you haven't brought the extra jump drive you needed to yet. Make sure to have it in your cargo before you land.`
 	on complete
+		"assisting lunarium" --
 		require "Jump Drive" 2
 		outfit "Jump Drive" -1
 		payment 1500000
 		conversation
 			`Some coordinates are automatically selected when you approach the surface of <planet>. You follow them to reach another private area of sorts, though it looks much more like a factory or a warehouse than an estate. On the corners, several flags and banners of House Idriss are in full display. House Bebliss' Spindle is landed there, and the members who will be following you to Deneb come to your ship when you land beside it. Some workers remove the jump drive from your ship and begin installing it on the Spindle. The House Bebliss members crewing the ship hand you <payment> when the drive is ready.`
 			`	"Once ready to leave, you are, meet us in the main spaceport, you should," one of them says.`
+	on fail
+		"assisting lunarium" --
 
 mission "House Bebliss 6-FW"
 	name "Escort House Bebliss"
 	description "Escort the ship with House Bebliss' representatives to <destination>, where they intend to join Freya in her studies on hyperspace links."
 	to offer
 		has "House Bebliss 5-FW: done"
+		not "assisting heliarchy"
 	source "Ablub's Invention"
 	destination "Pugglemug"
 	on offer
@@ -780,6 +846,8 @@ mission "House Bebliss 6-FW"
 			`	Another one bites into something that looks like a goat's leg, albeit much bonier, before saying, "Prepared for concealing our presence, we and the crew are. Worry about that, you need not."`
 			`	"Extra fuel, the ship has. Enough to reach the planet, it should be," the last of them tells you. You stay at the restaurant for a surprisingly short while, as the Arachi devour the full-course meals in only a few minutes. You leave together, accompanying them to the hangars, where you see their Spindle landing next to the <ship>. They board it, saying they will follow your ship once you depart, and that you may take off at your earliest convenience.`
 				accept
+	on accept
+		"assisting lunarium" ++
 	npc accompany save
 		personality escort timid
 		government "Coalition"
@@ -787,6 +855,7 @@ mission "House Bebliss 6-FW"
 	on visit
 		dialog `You've reached <planet>, but left House Bebliss' ship behind! Best depart and wait for them to get here.`
 	on complete
+		"assisting lunarium" --
 		event "bebliss research fw" 80 100
 		payment 930000
 		conversation
@@ -817,6 +886,8 @@ mission "House Bebliss 6-FW"
 			label end
 			`	She moves away from the ship, and you both leisurely walk back to the Free Worlds' warehouse, chatting as you go. "I need to go tell my team that we're moving some of the load to Southbound's new experimental freighter. I'd prefer to tell them what's going on myself - it makes things so much easier - but I think I'll wait a little longer before doing that. I want to see if I can get a good reading on these aliens first. Perhaps another scientific conversation would help. I'll be in contact if something happens. Safe travels, <first>."`
 			`	You say goodbye, and head to your ship. From the looks of it, it might take some months, if not years, before House Bebliss gets what information they wanted out of this trip.`
+	on fail
+		"assisting lunarium" --
 
 event "bebliss research fw"
 
@@ -826,6 +897,7 @@ mission "House Bebliss 7-FW"
 	landing
 	to offer
 		has "event: bebliss research fw"
+		not "assisting heliarchy"
 	source
 		near "Sol" 100
 		not planet "Pugglemug"
@@ -835,14 +907,18 @@ mission "House Bebliss 7-FW"
 			`You receive a message from Freya as you land on <origin>. "Hello <first>! I hope this finds you well. The past few months here have been... interesting, to say the least. Working with the Arachi has helped us find answers to the questions we had about the Pug artifacts, which invariably has led to more questions. The Arachi are a bit odd, but it's been fun working with them. I figured they would stay here for at least a year, given how many containers and large crates of supplies they brought in that freighter of theirs, but it looks like they've grown homesick, so we said our goodbyes today. They asked me to contact you and say they'll be waiting in a system called '<system>' to pay you and return the jump drive they borrowed. Have a safe trip there, Captain."`
 			`	When you finish reading the message, you plot a course to <destination>.`
 				accept
+	on accept
+		"assisting lunarium" ++
 	on complete
-		"assisted lunarium" ++
+		"assisted lunarium" --
 		outfit "Jump Drive" 1
 		payment 2000000
 		conversation
 			`Once again, coordinates appear on your screen as you come in to land on <planet>, leading you to the same building where you delivered the jump drive to House Bebliss. Their Arach Spindle is docked there, and the members who were working with Freya come to your ship. "Captain <last>!" One of them greets you as you come down the hatch. "Received the message from Miss Freya, I trust you have? Very fruitful, our conjoined efforts have been."`
 			`	"Unfortunate, it is, that stay there longer we could not," another one interjects. "But away for much longer, we could not be. Need us here, House Bebliss does."`
 			`	They hand you <payment> as thanks for all your help, while the workers remove the jump drive from their Spindle and put it in your ship. The Arachi thank you once more and say goodbye one final time, boarding their Spindle and leaving the planet.`
+	on fail
+		"assisting lunarium" --
 
 
 
@@ -859,10 +935,8 @@ mission "Lunarium: Evacuation 1"
 	to offer
 		random < 40
 		has "Coalition: First Contact: done"
-		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
-	to fail
-		has "Heliarch Investigation 2: active"
+		not "assisting heliarchy"
 	on offer
 		conversation
 			`A few Kimek flag you down by the spaceport entrance. "Greetings, Captain. Work for a tourism company employing dozens of ships across the Coalition we do. Interested in employing your services, our captain is. You see, run into some trouble with the deadline, one of our ships has, and pay you handsomely for aiding the company, she would. Waiting inside that Spire, she is," they say, as they point to a ship parked not too far from your own.`
@@ -899,8 +973,14 @@ mission "Lunarium: Evacuation 1"
 			label accept
 			`	He has one of the Kimek come back to escort you out, but before you leave the room, he adds, "Students and their teachers, they are. Picking them up from a school trip, after canceled on them, the original transport did, you are. Bring them back home to Second Viridian for their tests, you will. Asked to do so by the captain of the original transport ship, you were." He urges you to go there as soon as possible to pick them up, and the Kimek take you back out, repeating the same security search in the hallway before opening the hatch for you. They wish you good luck, and close up the hatch again immediately after you've left.`
 				accept
+	on accept
+		"assisting lunarium" ++
 	on visit
 		dialog `You land on <planet>, but realize that your escort with the <bunks> bunks for the students hasn't arrived in the system yet. Better depart and wait for it.`
+	on complete
+		"assisting lunarium" --
+	on fail
+		"assisting lunarium" --
 
 mission "Lunarium: Evacuation 2"
 	name "Transport The Students"
@@ -911,10 +991,8 @@ mission "Lunarium: Evacuation 2"
 	destination "Second Viridian"
 	to offer
 		has "Lunarium: Evacuation 1: done"
-		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
-	to fail
-		has "Heliarch Investigation 2: active"
+		not "assisting heliarchy"
 	on offer
 		conversation
 			`A line of Kimek, with some Saryds and Arachi in their midst, approach your ship shortly after you've finished landing. These must be the students. They are carrying very little luggage, and board your ship once you open the hatch. Given the young appearance of all of them, you struggle to guess which ones are the teachers. After the last of them comes in, you look outside for a while, confused. Only <bunks> came in, not the 35 that Elirom mentioned.`
@@ -935,9 +1013,12 @@ mission "Lunarium: Evacuation 2"
 			label accept
 			`	They tell you that they're ready to leave, and ask that you depart for <destination> as soon as possible.`
 				accept
+	on accept
+		"assisting lunarium" ++
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying the <bunks> students hasn't entered this system yet. Better depart and wait for it.`
 	on complete
+		"assisting lunarium" --
 		payment 386730
 		conversation
 			`Some of the local Kimek are waiting with transport vehicles for the students. They hand you <payment> once you step off your ship, and one of them appears to tick away at a list with each student that steps off your ship. After the last one leaves, he continues to look at your ship for a few seconds, then to the students, entering the vehicles. He strikes two lines, and thanks you for helping. Back inside your ship, you receive a call from Elirom.`
@@ -960,6 +1041,8 @@ mission "Lunarium: Evacuation 2"
 				accept
 			label end
 			`	"Appreciate your willingness to assist us, I do, Captain. Until we meet again." He thanks you once more and ends the call.`
+	on fail
+		"assisting lunarium" --
 
 mission "Lunarium: Evacuation 3"
 	name "Pick Up Desert Ranchers"
@@ -974,10 +1057,8 @@ mission "Lunarium: Evacuation 3"
 	to offer
 		random < 50
 		has "Lunarium: Evacuation 2: done"
-		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
-	to fail
-		has "Heliarch Investigation 2: active"
+		not "assisting heliarchy"
 	on offer
 		conversation
 			branch lunarium
@@ -1008,8 +1089,14 @@ mission "Lunarium: Evacuation 3"
 			label end
 			`	"Attempting to pass as ranchers, the members are. On a trip to <planet>, but an argument with their original transport, they had. If stopped, you are, tell them that, you should. Remember, <date>. Hopefully still there when you arrive, all <bunks> of them are." He wishes you good luck, and you're brought out of the ship, with the Saryds that found you staying inside. Not long after you've left it, you see the Spire take off and leave the planet.`
 				accept
+	on accept
+		"assisting lunarium" ++
 	on visit
 		dialog `You land on <planet>, but realize that your escort with the <bunks> bunks for the ranchers hasn't arrived in the system yet. Better depart and wait for it.`
+	on complete
+		"assisting lunarium" --
+	on fail
+		"assisting lunarium" --
 
 mission "Lunarium: Evacuation 4"
 	name "Transport The Ranchers"
@@ -1020,10 +1107,8 @@ mission "Lunarium: Evacuation 4"
 	destination "Shifting Sand"
 	to offer
 		has "Lunarium: Evacuation 3: done"
-		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
-	to fail
-		has "Heliarch Investigation 2: active"
+		not "assisting heliarchy"
 	on offer
 		conversation
 			`The ranchers arrive to the hangars shortly after you land, most of them Arachi, with a few Saryds and Kimek in their midst. They come into your ship, all <bunks> of them present.`
@@ -1051,9 +1136,12 @@ mission "Lunarium: Evacuation 4"
 			label accept
 			`	They all move to their bunks, and you set a course for <destination>.`
 				accept
+	on accept
+		"assisting lunarium" ++
 	on visit
 		dialog `You land on <planet>, but realize that your escort with the <bunks> ranchers hasn't arrived in the system yet. Better depart and wait for it.`
 	on complete
+		"assisting lunarium" --
 		payment 748300
 		conversation
 			`The Arachi, along with the scattered few Saryds and Kimek, are ready to leave your ship right as you land, thanking you briefly as each one leaves. The Arachi who seemed to be leading the group give you more of a farewell, chatting a bit, until they see a Kimek Spire - that you all guess to be Elirom's ship - approaching. They grunt, and leave with the rest. You head into the Spire and meet Elirom, who hands you <payment> while watching the group leave in transports via one of the cameras on the outside of the ship.`
@@ -1079,6 +1167,8 @@ mission "Lunarium: Evacuation 4"
 			`	"No, they were not." He sighs. "A Heliarch, I once was. Arbiter. High rank. Thought of as untrustworthy by many of the Redoubt, I still am. Think, some of them do, that responsible for tragedies that came to their families, I was." He continues watching the group dwindle as more transports come, until the last of them disappears into the spaceport village. "That they are wrong, I hope."`
 			label end
 			`	He thanks you for helping out again, and says he'll be in contact if he needs any more of your help.`
+	on fail
+		"assisting lunarium" --
 
 mission "Lunarium: Evacuation 5"
 	name "Pick Up Immigrants"
@@ -1092,10 +1182,8 @@ mission "Lunarium: Evacuation 5"
 	to offer
 		random < 80
 		has "Lunarium: Evacuation 4: done"
-		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
-	to fail
-		has "Heliarch Investigation 2: active"
+		not "assisting heliarchy"
 	on offer
 		require "Jump Drive"
 		payment 1387562
@@ -1116,9 +1204,14 @@ mission "Lunarium: Evacuation 5"
 			label lunarium
 			`You receive a call seconds after you've touched down on <origin>. It's from Elirom, and he wastes no time giving you your next mission. "A particularly urgent matter, this is. Looking for our members on <planet>, the Heliarchs are. Found, dozens have already been, and even more Heliarchs by <date> will there arrive. Make it in time, none of our ships can, too far away it is. You, however, a jump drive possess. Rescue the <bunks> remaining, you must." He types away at something on his end for a bit, and you see <payment> have been transferred to your account. "Much more I will give you, once safely back on Ablub's Invention you are. If stopped by the Heliarchs you are..." He trails off for a while, and you can hear the increasingly hurried, repeated tapping of hooves on the floor. "If stopped you are, tell them that transporting immigrants to their new homes on Ablub's Invention, you will. Hired by House Idriss, they have been." He urges you to go to <destination> immediately, wishing you good luck, and logging off.`
 				accept
+	on accept
+		"assisting lunarium" ++
 	on visit
 		dialog `You land on <planet>, but realize that your escort with the <bunks> bunks for the immigrants hasn't arrived in the system yet. Better depart and wait for it.`
+	on complete
+		"assisting lunarium" --
 	on fail
+		"assisting lunarium" --
 		conversation
 			`You're contacted by Elirom upon landing.`
 			branch lunarium
@@ -1140,10 +1233,8 @@ mission "Lunarium: Evacuation 6"
 	destination "Ablub's Invention"
 	to offer
 		has "Lunarium: Evacuation 5: done"
-		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
-	to fail
-		has "Heliarch Investigation 2: active"
+		not "assisting heliarchy"
 	on offer
 		conversation
 			`The moment your ship touches down on the hangar you can already see a very large group of Saryds waiting. When you open your hatch, they rush in dozens at a time, and you catch some Kimek and Arachi in the middle, struggling to keep with the galloping mass. Once everyone is inside, you run a passenger count: only <bunks> of the 116 are on board. You look out, and see nobody else coming to your ship. One of the older Saryds approaches you, pressing the button to close the hatch. "Leave we must," he says. Looking back to the Saryd crowd, many of the adults are comforting their children. The sobs of one Saryd girl in particular drown out the others.`
@@ -1164,9 +1255,12 @@ mission "Lunarium: Evacuation 6"
 			label launch
 			`	You help everyone settle into their bunks, departing for <destination> when you're done.`
 				launch
+	on accept
+		"assisting lunarium" ++
 	on visit
 		dialog `You land on <planet>, but realize that your escort with the <bunks> immigrants hasn't arrived in the system yet. Better depart and wait for it.`
 	on complete
+		"assisting lunarium" --
 		set "Lunarium introduced"
 		"assisted lunarium" ++
 		payment 7149832
@@ -1215,6 +1309,8 @@ mission "Lunarium: Evacuation 6"
 			`	"That he is. A difficult thing to go through, it is. Used to such rough talk, I've grown."`
 			label end
 			`	He comes closer to you, slouching down and speaking quietly. "Come ask for your help directly again, for a long time I may not, but still in need of help saving our members, we always are. Very grateful, we would be, if help us again when we need it, you would." He pulls back, and extends his arm to shake your hand. He looks at the sky just before he leaves. "Steer clear from the sun you should, <last>." He thanks you again, and leaves to accompany the rescued members into the central building.`
+	on fail
+		"assisting lunarium" --
 
 
 
@@ -1229,10 +1325,8 @@ mission "Lunarium: Propaganda 1"
 	destination "Bright Echo"
 	to offer
 		random < 25
-		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
-	to fail
-		has "Heliarch Investigation 2: active"
+		not "assisting heliarchy"
 	on offer
 		conversation
 			branch lunarium
@@ -1259,9 +1353,12 @@ mission "Lunarium: Propaganda 1"
 					decline
 			`	"First, get the merchandise, I must," he says as he leaves your ship. He comes back a few minutes later, pushing a small crate "filled to the brim with the posters," he explains as you help him load it into your cargo. When you're done, you show him to his bunk, and prepare for the mission.`
 				accept
+	on accept
+		"assisting lunarium" ++
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Tummug and the posters hasn't arrived in the system yet. Better depart and wait for it.`
 	on complete
+		"assisting lunarium" --
 		payment 288000
 		conversation
 			`As you're still handling landing procedures, Tummug is organizing the posters in several smaller piles. "Make sure everyone has the same amount of posters, I must. Let any of them slack off, I will not," he banters. Your ship touches down on the hangar, and Tummug hands you <payment>. He makes a call, and minute after minute some Saryds start coming to your ship. You open the hatch, and he starts handing out a pile of posters to each one who comes in. The posters aren't all identical, though the imagery is pretty much the same in all of them: a dark, nine-pointed star, crumbling to pieces.`
@@ -1284,6 +1381,8 @@ mission "Lunarium: Propaganda 1"
 			`	"One of the more populous Saryd planets, this is," he responds. "Sure, on the smaller side, the city may be, by Arach or Kimek standards, but still large enough to warrant many posters, it is."`
 			label end
 			`	He hands out one of the final two piles to the last Saryd, and grabs the last one for himself. "Now, help them with the posters, I will. If interested in helping us further, meet you in the spaceport, I will. Have some dozen extra bunks available, you must make sure," he says as he leaves your ship.`
+	on fail
+		"assisting lunarium" --
 
 mission "Lunarium: Propaganda 2"
 	name "Promoting Culture"
@@ -1295,10 +1394,8 @@ mission "Lunarium: Propaganda 2"
 	destination "Factory of Eblumab"
 	to offer
 		has "Lunarium: Propaganda 1: done"
-		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
-	to fail
-		has "Heliarch Investigation 2: active"
+		not "assisting heliarchy"
 	on offer
 		conversation
 			`As before, you find the local spaceport decorated with Tummug's various posters, with some all over the walls and a few on the floor already. Either they were taken down or simply failed to stick to the wall properly. Most of the locals just glance at them, then continue on with their business; only a few pockets of people have formed near some of the posters, perhaps discussing the imagery. Some of the spaceport cleaning workers, on the other hand, take them down nonchalantly, though they don't seem to care too much about getting all the posters.`
@@ -1324,9 +1421,12 @@ mission "Lunarium: Propaganda 2"
 			label back
 			`	The Saryds return a few minutes later with <cargo>. Once it's safely in your cargo hold, you show Tummug and the others to their bunks.`
 				accept
+	on accept
+		"assisting lunarium" ++
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Tummug, his colleagues, and the banners hasn't arrived in the system yet. Better depart and wait for it.`
 	on complete
+		"assisting lunarium" --
 		payment 576000
 		conversation
 			`As before, Tummug separates the banners into small piles as you're finishing your landing procedures. He hands you <payment> right before the first few Saryds leave with their piles, and a few local Arachi join them in picking up banners to distribute around their local neighborhoods. "Meet you in the spaceport again, we will," Tummug says as he finishes distributing the banners. Looking at his own pile, you see an image split with a sharp line running from top to bottom, with the drawing of an Arach collapsing under a scorching sun on the left side contrasted with one having a happy dinner under the moonlight on the right side. Some message in the Arach language is written out at the bottom, below the two images.`
@@ -1346,6 +1446,8 @@ mission "Lunarium: Propaganda 2"
 			`	"Read 'Down with the Tyrant House!' it does." He says. Once he notices you have no idea what that means, he continues, "An Arach nickname for the Heliarchy, it is. First used thousands of years ago it was, when more restrictive, and much less lenient, the Heliarchs were becoming. Prohibited, the expression was, but still known, its meaning is."`
 			label end
 			`	He prepares to leave, and tells you to free up some ten tons of cargo space and keep five bunks available before meeting with him in the spaceport. He then heads down the hatch and disappears into the city.`
+	on fail
+		"assisting lunarium" --
 
 mission "Lunarium: Propaganda 3"
 	name "Promoting Culture"
@@ -1357,10 +1459,8 @@ mission "Lunarium: Propaganda 3"
 	destination "Sandy Two"
 	to offer
 		has "Lunarium: Propaganda 2: done"
-		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
-	to fail
-		has "Heliarch Investigation 2: active"
+		not "assisting heliarchy"
 	on offer
 		conversation
 			`The spaceport on <origin> shows fewer of the banners than you expected, with only a few scattered about the walls. One Arach leaves their work building and gasps at the first banner they see, taking it down and throwing it in a bin. They seem stunned for a second, and look around in a hurry, right before scurrying off. Another Arach has a similar reaction to a different banner, but after pondering for a bit, leaves it alone and walks away.`
@@ -1390,9 +1490,12 @@ mission "Lunarium: Propaganda 3"
 			label accept
 			`	Tummug tells the other Arachi to pack up the rest of the robots and flyers, and accompanies you to your ship. In a few minutes the Arachi come dragging carts with crates filled with the drones, flyers, and canisters of the red smoke for the skywriting. The Saryds you brought here follow after them, bringing along more and more carts. Tummug says you'll get <payment> once they get to <planet>, and moves to his bunk, with the other Arachi following suit.`
 				accept
+	on accept
+		"assisting lunarium" ++
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Tummug, his colleagues and the skywriting material hasn't arrived in the system yet. Better depart and wait for it.`
 	on complete
+		"assisting lunarium" --
 		payment 491000
 		conversation
 			`This time Tummug doesn't go on to split the flyers into various piles as you're landing. "Already arranged them in the boxes, we have," he says. He directs you to land in a lone hangar on one of the factories far from the city. Upon landing, several Kimek enter the hangar and start crating off the flyers and skywriting drones back to the factory, presumably to make sure they're all in working order. Tummug hands you <payment>, thanking you for bringing them here.`
@@ -1406,6 +1509,8 @@ mission "Lunarium: Propaganda 3"
 			`	Almost half an hour goes by with you watching the skies of <planet> before the first signs of the drones show: they're too small for you to see from where you are, but you make out the piles of red smoke swiftly growing into Kimek letters in the sky, appearing in spiraling columns and arcs, with small, spread out dots separating the letters. Crowds clog the streets, Kimek look out the windows and some even gather atop apartment buildings to gaze at the messages. When the drones are done, the messages Tummug had shown you on the flyer are fully formed, and the drones take a short break. When they return, they get to work on another set of messages as the first one begins dissipating. After a few repetitions, and another pause, flyers begin raining down the city streets, the local Kimek picking them up in curiosity and discussing among themselves. The "rain" goes on for several minutes, before the drones start heading to other portions of the city and you lose sight of them.`
 			`	Focusing now on the crowds and their reception, you see the Kimek are split: nearly everywhere they are in heated discussion, with many on one side seemingly approving of the display, while others yell and gesture for the messages to be put out, throwing the flyers to the ground and stomping on them. The Heliarch agents present on the ground do their best to separate the crowds and keep the order, but struggle against the sheer number of Kimek. Not long after the drones disappeared, however, Heliarch warships fly through the atmosphere in a fury, speedily undoing the skywriting as they head in the direction of the factory. Some ships leave more agents on the ground, and with increased personnel the Heliarchs now manage to stop the crowd infighting, and start clearing out the streets.`
 				decline
+	on fail
+		"assisting lunarium" --
 
 mission "Lunarium: Propaganda 4"
 	name "Promoting Culture"
@@ -1417,10 +1522,8 @@ mission "Lunarium: Propaganda 4"
 	destination "Warm Slope"
 	to offer
 		has "Lunarium: Propaganda 3: done"
-		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
-	to fail
-		has "Heliarch Investigation 2: active"
+		not "assisting heliarchy"
 	on offer
 		conversation
 			`Tummug is quick to find you in the spaceport. He approaches you with the Arachi who helped him with the drones, as well as some Saryds and Kimek, all following behind him in a dash. "Delay you long this time I will not, Captain <last>," he says. "Headed to <destination> we are. Already arranged for what we'll need to be brought to your ship, I have."`
@@ -1433,9 +1536,12 @@ mission "Lunarium: Propaganda 4"
 			`	He briefly glances around, then says, "A busy day it is, so hurry back to your ship we should. Otherwise, difficult to find, available cargo loaders will be."`
 			`	Running back to your ship, you notice a total lack of the flyers that rained down the city earlier, or any replay of the skywriting on any of the screens around the spaceport. Tummug and the Arachi who worked on the drones are all with the group, but their rush to get to your ship leaves you uneasy. You all help some more members get boxes and crates of posters into your ship, and head inside with Tummug and the others once you're done. "Leave now, we must. Too much attention, the drone show seems to have gained us," he tells you. "Pay you <payment> once on <planet> we are, I will. Go." They all head to their bunks, and you move to the cockpit, firing up your engines.`
 				launch
+	on accept
+		"assisting lunarium" ++
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Tummug, his colleagues and the posters hasn't arrived in the system yet. Better depart and wait for it.`
 	on complete
+		"assisting lunarium" --
 		set "Lunarium introduced"
 		"assisted lunarium" ++
 		payment 894000
@@ -1472,6 +1578,8 @@ mission "Lunarium: Propaganda 4"
 			`	"Documents, recorded data of the fates or whereabouts of many who 'disappeared,' we stole. A common thing it is, on Kimek factory worlds, for Heliarchs to write them off as work accidents. Investigate the data thoroughly we will, and maybe uncover the coordinates of their prison - or morgue - we finally can."`
 			label end
 			`	He thanks you for helping, and leaves your ship with the remaining posters. You go to check the spaceport and portions of the city later, but find neither Tummug, his colleagues, or any of the posters.`
+	on fail
+		"assisting lunarium" --
 
 
 
@@ -1494,10 +1602,8 @@ mission "Lunarium: Combat Training 1"
 			or
 				not "event: fw suppressed Greenrock"
 				has "event: fw abandoned Greenrock"
-			not "Heliarch Investigation 2: active"
 			not "Heliarch License: done"
-	to fail
-		has "Heliarch Investigation 2: active"
+			not "assisting heliarchy"
 	on offer
 		require "Jump Drive"
 		conversation
@@ -1546,8 +1652,14 @@ mission "Lunarium: Combat Training 1"
 			label accept
 			`	She asks you to open the hatch, and she has a few more members from the crowd come in. They ask for your map, and then for the nearest hub of pirate activity. You point to Greenrock in Shaula, the biggest pirate world in southern human space, telling them it's one of the most dangerous ones. They then ask if there are any major shipyards in the South, and you point them to Southbound Shipyards, on <planet>, and the Tarazed Corporation, on Wayfarer. After some debate, they decide that <planet>'s proximity to the Coalition makes it a better pick in case they need to return quickly, and settle on that as the destination. "Bringing along enough credits to purchase a few warships, I hope we are," Pyakri comments. They have their <cargo> brought to your ship, and you show them to their bunks.`
 				accept
+	on accept
+		"assisting lunarium" ++
 	on visit
 		dialog `You've reached <planet>, but your escort bringing Pyakri and the other Lunarium members and their supplies hasn't entered the system yet. Better depart and wait for them.`
+	on complete
+		"assisting lunarium" --
+	on fail
+		"assisting lunarium" --
 
 mission "Lunarium: Combat Training 2"
 	name "Combat Test"
@@ -1557,10 +1669,8 @@ mission "Lunarium: Combat Training 2"
 	waypoint "Shaula"
 	to offer
 		has "Lunarium: Combat Training 1: done"
-		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
-	to fail
-		has "Heliarch Investigation 2: active"
+		not "assisting heliarchy"
 	on offer
 		conversation
 			`Once you've landed, Pyakri and some other Lunarium members come to your cockpit, where you show them a monitor with the list of ships for sale at the local shipyard. You answer their questions about the ships' abilities, strengths, and failings to the best of your knowledge. You also show them the outfits available on <origin>, in case they want to change any of the ship loadouts. After discussing with the others for a few minutes, and going back to check the pages of some ships, Pyakri asks you to help her purchase 1 Bastion, 3 Argosies and 4 Clippers.`
@@ -1589,6 +1699,7 @@ mission "Lunarium: Combat Training 2"
 			`	You find the ship's interior already undergoing modifications, with many of the Arachi using various legs to hold wires in place as they replace the human control pads and keys to versions they are more accustomed to. Pyakri is inside the cockpit, testing many of the controls as she looks at a manual on one screen, already translated to the Kimek language. "Ah, hello again Captain. Worked well, the plan has, and seen we were not. At least hope that, I do." She opens up a map, pointing to a star you recognize as <waypoints>. "Taken our first job, we have. Since far more experienced in fighting human pirates, you are, ask for your help in this first fight, I must. Informed me the job offer has, that in this system the bounties are. Head there quickly to face them, we should, before time to flee, they have. Follow your ship there, we will." You go ship by ship, reminding each of the captains to be careful in the coming fight, and then enter your own. With the purpose of this training being to grow the Lunarium's combat experience and tactics, things certainly wouldn't work well if some of them died right in their first fight, so you should try and keep them all alive.`
 				accept
 	on accept
+		"assisting lunarium" ++
 		event "lunarium training: shaula empty"
 	on visit
 		dialog `You land on <planet>, but you're not done with the mission yet. Either some of the Lunarium's ships haven't entered the system yet, or some of the pirate ships in <waypoints> haven't been defeated. Return once everything is in order.`
@@ -1616,6 +1727,10 @@ mission "Lunarium: Combat Training 2"
 		event "lunarium training done" 96 148
 		conversation
 			`Pyakri contacts you right as you land, by a text message in your monitor. "A great help you were, Captain! More... veteran members, if you could call them that, the crew I brought are, so much trouble with their morale, I had not, but still worried, the pirates had me. Used to human ships, we are not, so fly them well enough to combat such fleets, we cannot. Not yet. Now that guided us through this first fight, you have, work on our own for a while - taking smaller, simpler bounties - we will. Contact you again, I shall, once done with our training, we are."`
+	on complete
+		"assisting lunarium" --
+	on fail
+		"assisting lunarium" --
 
 event "lunarium training: shaula empty"
 	system "Shaula"
@@ -1649,14 +1764,18 @@ mission "Lunarium: Combat Training 3"
 	destination "Glaze"
 	to offer
 		has "event: lunarium training done"
-		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
-	to fail
-		has "Heliarch Investigation 2: active"
+		not "assisting heliarchy"
 	on offer
 		conversation
 			`Your monitor shifts into a messaging interface as you're landing, and some text quickly pours in. "Captain, hello. Pyakri, it is. In the last few months, fought many human pirates, and managed to practice and hone fleet movements, we have. Return to the others in the Coalition, we now must, so need your help again, we will. Waiting on <planet>, we will be." The message ends and your monitor returns to normal. You set a marker on <destination> to head there later and pick up the Lunarium members.`
 				accept
+	on accept
+		"assisting lunarium" ++
+	on complete
+		"assisting lunarium" --
+	on fail
+		"assisting lunarium" --
 
 mission "Lunarium: Combat Training 4"
 	name "Homecoming"
@@ -1668,10 +1787,8 @@ mission "Lunarium: Combat Training 4"
 	destination "Factory of Eblumab"
 	to offer
 		has "Lunarium: Combat Training 3: done"
-		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
-	to fail
-		has "Heliarch Investigation 2: active"
+		not "assisting heliarchy"
 	on offer
 		payment 3000000
 		conversation
@@ -1688,9 +1805,12 @@ mission "Lunarium: Combat Training 4"
 			label accept
 			`	You once again help them contact the local, and arrange for the selling of their fleet. After the process is done and the workers have finished taking away the ships, Pyakri tells you that they're ready to head back to the Coalition, to <destination>, from where they'll head back to their respective bases and share their newfound experience with Lunarium recruits. You help Pyakri and the rest to their bunks, and set a course for <planet>.`
 				accept
+	on accept
+		"assisting lunarium" ++
 	on visit
 		dialog `You've reached <planet>, but your escort bringing Pyakri and the other Lunarium members hasn't entered the system yet. Better depart and wait for them.`
 	on complete
+		"assisting lunarium" --
 		"assisted lunarium" ++
 		conversation
 			`Shortly after you land, several groups come to meet some of the Lunarium members and escort them to their ships. They depart right away, while any remaining members leave straight for the city. "Gotten word of our return, the others have not yet, so wait here for more ships to bring them to the planet they normally operate from, they will," Pyakri explains.`
@@ -1700,6 +1820,8 @@ mission "Lunarium: Combat Training 4"
 				accept
 			label lunarium
 			`	"Lucky we are that joined us, you have, Captain <last>. Wanted for years to try some tactics in real combat, I had, but of course, do it here without risking our whole operation, we could not. Hope I do that boost the confidence of our lower ranks, the recent experience we gained will." She asks you to be careful in your travels, and says goodbye, following the others into the city.`
+	on fail
+		"assisting lunarium" --
 
 
 
@@ -1722,27 +1844,11 @@ mission "Lunarium: Questions"
 				"coalition jobs" >= 110
 				"assisted lunarium" == 3
 		"reputation: Quarg" >= 0
-		not "Heliarch Investigation 2: active"
 		not "Heliarch License: done"
-		not "Lunarium: Smuggling: Charity 1: active"
-		not "Lunarium: Smuggling: Charity 2: active"
-		not "Lunarium: Smuggling: Charity 3: active"
-		not "Lunarium: Evacuation 1: active"
-		not "Lunarium: Evacuation 2: active"
-		not "Lunarium: Evacuation 3: active"
-		not "Lunarium: Evacuation 4: active"
-		not "Lunarium: Evacuation 5: active"
-		not "Lunarium: Evacuation 6: active"
-		not "Lunarium: Propaganda 1: active"
-		not "Lunarium: Propaganda 2: active"
-		not "Lunarium: Propaganda 3: active"
-		not "Lunarium: Propaganda 4: active"
-		or
-			not "Lunarium: Combat Training 1: done"
-			has "Lunarium: Combat Training 4: done"
+		not "assisting heliarchy"
+		not "assisting lunarium"
 	to fail
 		or
-			has "Heliarch Investigation 2: active"
 			has "Heliarch License: done"
 			"reputation: Quarg" < 0
 	to complete
@@ -1763,7 +1869,7 @@ mission "Lunarium: Quarg Interview"
 	source "Remote Blue"
 	destination "Lagrange"
 	to offer
-		has "Lunarium: Questions: done"
+		has "Lunarium: Questions: active"
 	on offer
 		conversation
 			`Here on <origin>, the Lunarium leaders are waiting for you. Would you like to meet with them and officially join the Lunarium? Given their cause against the Heliarchs, this would no doubt set you on path to conflict with the Heliarchy.`
