@@ -26,7 +26,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
-#include "Hardpoint.h"
 #include "Logger.h"
 #include "Messages.h"
 #include "Outfit.h"
@@ -3815,7 +3814,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto pluginFun = [](const string &name) -> bool
 	{
 		const Plugin *plugin = Plugins::Get().Find(name.substr(strlen("installed plugin: ")));
-		return plugin ? plugin->enabled : false;
+		return plugin ? plugin->IsValid() && plugin->enabled : false;
 	};
 	pluginProvider.SetHasFunction(pluginFun);
 	pluginProvider.SetGetFunction(pluginFun);

@@ -37,7 +37,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "PlayerInfoPanel.h"
 #include "Preferences.h"
-#include "Random.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "ShipEvent.h"

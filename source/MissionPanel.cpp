@@ -45,7 +45,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "System.h"
 #include "text/truncate.hpp"
 #include "UI.h"
-#include "Wormhole.h"
 
 #include <algorithm>
 #include <cmath>
