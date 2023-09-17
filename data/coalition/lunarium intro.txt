@@ -1118,6 +1118,18 @@ mission "Lunarium: Evacuation 5"
 				accept
 	on visit
 		dialog `You land on <planet>, but realize that your escort with the <bunks> bunks for the immigrants hasn't arrived in the system yet. Better depart and wait for it.`
+	on fail
+		conversation
+			`You're contacted by Elirom upon landing.`
+			branch lunarium
+				has "Lunarium: Questions: done"
+			`	"Informed I was that manage to make it in time for the transport, you did not, Captain," he speaks in a much sterner tone than what you'd grown accustomed to. "Truly important for us, this job was. Helped us much, you have, but afraid I am that work together any longer, we will not. Goodbye."`
+			`	He signs off before you're able to explain your delay.`
+				decline
+			label lunarium
+			`	"Why there were you not, <last>? Lost to the Heliarchs, all of them now are!" He punches the table, shaking up the camera on his end. "Supposed to arrive on time, you were. To rescue them, you were meant to. Abandon them like that, how could you?" He appears to swear in the Saryd tongue.`
+			`	He spends a few minutes to calm down, then speaks up again. "Forgive me, Captain. Helped us much, you have, and appreciated your previous heroic actions are, but wrong to rely on you this time, I was."`
+			`	He signs off before you're able to inquire on other ways to save them.`
 
 mission "Lunarium: Evacuation 6"
 	name "Transport The Immigrants"
