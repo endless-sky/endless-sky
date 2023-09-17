@@ -52,7 +52,7 @@ public:
 	int Add(const Outfit *outfit, int count = 1);
 	// Call this once all the outfits have been loaded to make sure they are all
 	// set up properly (even the ones that were pre-assigned to a hardpoint).
-	void FinishLoading();
+	void FinishLoading(Point center);
 	// Reload all weapons (because a day passed in-game).
 	void ReloadAll();
 	// Uninstall all weapons (because the weapon outfits have potentially changed).
@@ -63,7 +63,6 @@ public:
 
 	// Access the array of weapon hardpoints.
 	const std::vector<Hardpoint> &Get() const;
-	std::vector<Hardpoint> &GetEditable();
 	int GunCount() const;
 	int TurretCount() const;
 	// Determine the ammunition used by this armament that can be resupplied (i.e. is not self-uninstalling).

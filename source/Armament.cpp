@@ -117,11 +117,14 @@ int Armament::Add(const Outfit *outfit, int count)
 
 // Call this once all the outfits have been loaded to make sure they are all
 // set up properly (even the ones that were pre-assigned to a hardpoint).
-void Armament::FinishLoading()
+void Armament::FinishLoading(Point center)
 {
 	for(Hardpoint &hardpoint : hardpoints)
+	{
+		hardpoint.AddOffset(center);
 		if(hardpoint.GetOutfit())
 			hardpoint.Install(hardpoint.GetOutfit());
+	}
 
 	ReloadAll();
 }
@@ -177,13 +180,6 @@ void Armament::Swap(int first, int second)
 
 // Access the array of weapon hardpoints.
 const vector<Hardpoint> &Armament::Get() const
-{
-	return hardpoints;
-}
-
-
-
-vector<Hardpoint> &Armament::GetEditable()
 {
 	return hardpoints;
 }

@@ -585,11 +585,6 @@ void Ship::FinishLoading(bool isNewInstance)
 			thumbnail = model->thumbnail;
 	}
 
-	for(auto &hardpoint : armament.GetEditable())
-	{
-		hardpoint.AddOffset(center);
-	}
-
 	// If this ship has a base class, copy any attributes not defined here.
 	// Exception: uncapturable and "never disabled" flags don't carry over.
 	if(base && base != this)
@@ -775,7 +770,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		}
 	}
 	cargo.SetSize(attributes.Get("cargo space"));
-	armament.FinishLoading();
+	armament.FinishLoading(center);
 
 	// Figure out how far from center the farthest hardpoint is.
 	weaponRadius = 0.;
