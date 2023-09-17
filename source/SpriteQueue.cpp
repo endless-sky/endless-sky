@@ -15,9 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "SpriteQueue.h"
 
-#include "ImageBuffer.h"
 #include "ImageSet.h"
-#include "Mask.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 

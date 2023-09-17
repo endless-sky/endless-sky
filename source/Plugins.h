@@ -51,6 +51,7 @@ struct Plugin {
 // This object is updated by toggling plugins in the Preferences UI.
 class Plugins {
 public:
+
 	struct InstallData
 	{
 		std::string name;
@@ -67,7 +68,7 @@ public:
 
 
 public:
-	// Load a plugin at the given path.
+	// Attempt to load a plugin at the given path.
 	static const Plugin *Load(const std::string &path);
 
 	static void LoadSettings();

@@ -12,7 +12,9 @@ jobs:
       OUTPUT: Endless_Sky-${{ github.ref_name }}-x86_64.AppImage
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          show-progress: false
       - name: Install dependencies
         run: |
           sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
@@ -20,8 +22,6 @@ jobs:
           sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev
       - name: Setup sccache
         uses: ./.github/sccache
-        with:
-          read-only: 'true'
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
@@ -45,7 +45,9 @@ jobs:
       OUTPUT: EndlessSky-win32-${{ github.ref_name }}.zip
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          show-progress: false
       - name: Install x86 MinGW
         run: choco install mingw --forcex86 --force
       - uses: lukka/get-cmake@latest
@@ -81,11 +83,11 @@ jobs:
       OUTPUT: EndlessSky-win64-${{ github.ref_name }}.zip
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          show-progress: false
       - name: Setup sccache
         uses: ./.github/sccache
-        with:
-          read-only: 'true'
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
@@ -119,11 +121,11 @@ jobs:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       OUTPUT: Endless-Sky-${{ github.ref_name }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          show-progress: false
       - name: Setup sccache
         uses: ./.github/sccache
-        with:
-          read-only: 'true'
       - name: Install pkg-config
         run: type -P pkg-config || brew install pkg-config
       - uses: lukka/get-cmake@latest
@@ -181,7 +183,9 @@ jobs:
       matrix:
         arch: [x64, x86]
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
+      with:
+        show-progress: false
     - name: Build Endless Sky
       run: |
         cd steam
@@ -208,7 +212,9 @@ jobs:
       win64: steam-win64
       macos: steam-macos
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
+      with:
+        show-progress: false
     - name: Upload Steam Data Depot
       uses: actions/upload-artifact@v3
       with:
