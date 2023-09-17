@@ -27,7 +27,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Information.h"
 #include "Interface.h"
 #include "text/layout.hpp"
-#include "PluginHelper.h"
 #include "Preferences.h"
 #include "Screen.h"
 #include "Sprite.h"
@@ -43,6 +42,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <SDL2/SDL.h>
 
 #include <algorithm>
+#include <cstdio>
 #include <fstream>
 #include <utility>
 
@@ -205,7 +205,8 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		page = 'i';
 		if(!downloadedInfo)
 		{
-			PluginHelper::Download(PLUGIN_LIST_URL, Files::Config() + "plugins.json");
+			if(!Plugins::Download(PLUGIN_LIST_URL, Files::Config() + "plugins.json"))
+				printf("Failed to download Plugin-List from %s\n", PLUGIN_LIST_URL.c_str());
 			ifstream pluginlistFile(Files::Config() + "plugins.json");
 			pluginInstallList = nlohmann::json::parse(pluginlistFile);
 			pluginInstallPages = ((pluginInstallList.size() - (pluginInstallList.size() % MAX_PLUGIN_INSTALLS_PER_PAGE))
@@ -945,9 +946,8 @@ void PreferencesPanel::DrawPluginInstalls()
 
 	const Font &font = FontSet::Get(14);
 
-	const int currentPageIndex = MAX_PLUGIN_INSTALLS_PER_PAGE * currentPluginInstallPage;
-	const int maxIndex = currentPageIndex + MAX_PLUGIN_INSTALLS_PER_PAGE > pluginInstallList.size() ?
-		pluginInstallList.size() : currentPageIndex + MAX_PLUGIN_INSTALLS_PER_PAGE;
+	const size_t currentPageIndex = MAX_PLUGIN_INSTALLS_PER_PAGE * currentPluginInstallPage;
+	const int maxIndex = min(currentPageIndex + MAX_PLUGIN_INSTALLS_PER_PAGE, pluginInstallList.size());
 	for(int x = currentPageIndex; x < maxIndex; x++)
 	{
 		const auto &plugin = pluginInstallList.at(x);

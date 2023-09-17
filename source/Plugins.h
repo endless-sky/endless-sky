@@ -34,14 +34,14 @@ struct Plugin {
 	std::string path;
 	// The about text, if any, of this plugin.
 	std::string aboutText;
-
-	std::string version;
+	// The version of this plugin, importanted if it has been installed over ES.
+	std::string version = "1.0";
 
 	// Whether this plugin was enabled, i.e. if it was loaded by the game.
 	bool enabled = true;
 	// The current state state of the plugin.
 	bool currentState = true;
-
+	// If this plugin has been deleted.
 	bool removed = false;
 };
 
@@ -91,6 +91,11 @@ public:
 	static std::future<void> Install(const InstallData &installData, bool guarded = false);
 	static std::future<void> Update(const InstallData &installData);
 	static void DeletePlugin(const InstallData &installData);
+
+	static bool Download(std::string url, std::string location);
+
+private:
+	static bool ExtractZIP(std::string filename, std::string destination, std::string expectedName);
 };
 
 

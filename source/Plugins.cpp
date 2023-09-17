@@ -20,21 +20,39 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataWriter.h"
 #include "Files.h"
 #include "Logger.h"
-#include "PluginHelper.h"
+
+#ifdef _WIN32
+#define WIN32_LEAN_AND_MEAN
+#endif
 
 #include <algorithm>
+#include <archive.h>
+#include <archive_entry.h>
 #include <atomic>
 #include <cassert>
+#include <cstdio>
+#include <cstring>
+#include <curl/curl.h>
 #include <future>
 #include <map>
 #include <mutex>
 #include <set>
+#include <sys/stat.h>
 #include <string>
 #include <vector>
+
+#ifdef _WIN32
+#include "text/Utf8.h"
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#else
+#include <unistd.h>
+#endif
 
 using namespace std;
 
 namespace {
+	mutex pluginsMutex;
 	Set<Plugin> plugins;
 
 	void LoadSettingsFromFile(const string &path)
@@ -46,11 +64,13 @@ namespace {
 				continue;
 
 			for(const DataNode &child : node)
-				if(child.Size() == 2)
+				if(child.Size() == 3)
 				{
+					lock_guard<mutex> guard(pluginsMutex);
 					auto *plugin = plugins.Get(child.Token(0));
 					plugin->enabled = child.Value(1);
 					plugin->currentState = child.Value(1);
+					plugin->version = child.Token(2);
 				}
 		}
 	}
@@ -59,6 +79,29 @@ namespace {
 
 	mutex activePluginsMutex;
 	set<string> activePlugins;
+
+	// The maximum size of a plugin in bytes, this will be 1 GB.
+	const int MAX_DOWNLOAD_SIZE = 1000000000;
+
+	// Copy an entry from one archive to the other
+	void CopyData(struct archive *ar, struct archive *aw)
+	{
+		int retVal;
+		const void *buff;
+		size_t size;
+		int64_t offset;
+
+		while(true)
+		{
+			retVal = archive_read_data_block(ar, &buff, &size, &offset);
+			if(retVal == ARCHIVE_EOF)
+				return;
+			if(retVal != ARCHIVE_OK)
+				return;
+			if(archive_write_data_block(aw, buff, size, offset) != ARCHIVE_OK)
+				return;
+		}
+	}
 }
 
 
@@ -78,7 +121,11 @@ const Plugin *Plugins::Load(const string &path)
 	size_t pos = path.rfind('/', path.length() - 2) + 1;
 	string name = path.substr(pos, path.length() - 1 - pos);
 
-	auto *plugin = plugins.Get(name);
+	Plugin *plugin;
+	{
+		lock_guard<mutex> guard(pluginsMutex);
+		plugin = plugins.Get(name);
+	}
 
 	string pluginFile = path + "plugin.txt";
 
@@ -108,8 +155,6 @@ const Plugin *Plugins::Load(const string &path)
 
 	plugin->path = path;
 
-	plugin->version = Files::Read(path + "version.txt");
-
 	return plugin;
 }
 
@@ -127,8 +172,10 @@ void Plugins::LoadSettings()
 
 void Plugins::Save()
 {
+	lock_guard<mutex> guard(pluginsMutex);
 	if(plugins.empty())
 		return;
+
 	DataWriter out(Files::Config() + "plugins.txt");
 
 	out.Write("state");
@@ -136,7 +183,7 @@ void Plugins::Save()
 	{
 		for(const auto &it : plugins)
 			if(!it.second.removed)
-				out.Write(it.first, it.second.currentState);
+				out.Write(it.first, it.second.currentState, it.second.version);
 	}
 	out.EndChild();
 }
@@ -157,6 +204,7 @@ bool Plugins::IsPlugin(const string &path)
 // launched via user preferences.
 bool Plugins::HasChanged()
 {
+	lock_guard<mutex> guard(pluginsMutex);
 	for(const auto &it : plugins)
 		if(it.second.enabled != it.second.currentState)
 			return true;
@@ -184,6 +232,7 @@ const Set<Plugin> &Plugins::Get()
 // Toggles enabling or disabling a plugin for the next game restart.
 void Plugins::TogglePlugin(const string &name)
 {
+	lock_guard<mutex> guard(pluginsMutex);
 	auto *plugin = plugins.Get(name);
 	plugin->currentState = !plugin->currentState;
 }
@@ -198,27 +247,32 @@ future<void> Plugins::Install(const InstallData &installData, bool guarded)
 		lock_guard<mutex> guard(activePluginsMutex);
 		if(!activePlugins.insert(installData.name).second)
 			return future<void>();
-
-		// Create a new entry for the plugin.
-		Plugin *newPlugin = plugins.Get(installData.name);
-		newPlugin->name = installData.name;
-		newPlugin->aboutText = installData.aboutText;
-		newPlugin->path = Files::Plugins() + installData.name + "/";
-		newPlugin->version = installData.version;
-		newPlugin->enabled = false;
-		newPlugin->currentState = true;
 	}
+
 	return async(launch::async, [installData]() noexcept -> void
 		{
 			string zipLocation = Files::Plugins() + installData.name + ".zip";
-			bool success = PluginHelper::Download(installData.url, zipLocation);
+			bool success = Download(installData.url, zipLocation);
 			if(success)
 			{
-				success = PluginHelper::ExtractZIP(
+				success = ExtractZIP(
 					zipLocation,
 					Files::Plugins(), installData.name + "/");
 				if(success)
-					Files::Write(Files::Plugins() + installData.name + "/version.txt", installData.version);
+				{
+					// Create a new entry for the plugin.
+					Plugin *newPlugin;
+					{
+						lock_guard<mutex> guard(pluginsMutex);
+						newPlugin = plugins.Get(installData.name);
+					}
+					newPlugin->name = installData.name;
+					newPlugin->aboutText = installData.aboutText;
+					newPlugin->path = Files::Plugins() + installData.name + "/";
+					newPlugin->version = installData.version;
+					newPlugin->enabled = false;
+					newPlugin->currentState = true;
+				}
 				else
 					Files::DeleteDir(Files::Plugins() + installData.name);
 			}
@@ -240,7 +294,10 @@ future<void> Plugins::Update(const InstallData &installData)
 			return future<void>();
 	}
 
-	plugins.Get(installData.name)->version = installData.version;
+	{
+		lock_guard<mutex> guard(pluginsMutex);
+		plugins.Get(installData.name)->version = installData.version;
+	}
 
 	Files::DeleteDir(Files::Plugins() + installData.name);
 	return Install(installData, true);
@@ -256,8 +313,139 @@ void Plugins::DeletePlugin(const InstallData &installData)
 			return;
 	}
 
-
-	plugins.Get(installData.name)->removed = true;
+	{
+		lock_guard<mutex> guard(pluginsMutex);
+		plugins.Get(installData.name)->removed = true;
+	}
 
 	Files::DeleteDir(Files::Plugins() + installData.name);
+}
+
+
+
+bool Plugins::Download(std::string url, std::string location)
+{
+	CURL *curl = curl_easy_init();
+	if(!curl)
+		return false;
+#if defined _WIN32
+	FILE *out = nullptr;
+	_wfopen_s(&out, Utf8::ToUTF16(location).c_str(), L"wb");
+#else
+	FILE *out = fopen(location.c_str(), "wb");
+#endif
+	if(!out)
+		return false;
+
+	// Set the url that gets downloaded
+	curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+	// Follow redirects
+	curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1l);
+	// How long we will wait
+	curl_easy_setopt(curl, CURLOPT_CA_CACHE_TIMEOUT, 604800L);
+	// What is the maximum filesize in bytes.
+	curl_easy_setopt(curl, CURLOPT_MAXFILESIZE, MAX_DOWNLOAD_SIZE);
+	// Set the write function and the output file used in the write function
+	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, fwrite);
+	curl_easy_setopt(curl, CURLOPT_WRITEDATA, out);
+
+	CURLcode res = curl_easy_perform(curl);
+	if(res != CURLE_OK)
+		fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(res));
+
+	curl_easy_cleanup(curl);
+	fclose(out);
+	return res == CURLE_OK;
+}
+
+
+
+bool Plugins::ExtractZIP(std::string filename, std::string destination, std::string expectedName)
+{
+	int flags = ARCHIVE_EXTRACT_TIME;
+	flags |= ARCHIVE_EXTRACT_PERM;
+	flags |= ARCHIVE_EXTRACT_ACL;
+	flags |= ARCHIVE_EXTRACT_FFLAGS;
+
+	// Create the handles for reading/writing
+	archive *read = archive_read_new();
+	archive *ext = archive_write_disk_new();
+	archive_write_disk_set_options(ext, flags);
+	archive_read_support_format_all(read);
+	if(!filename.empty() && filename.front() == '-')
+		filename.clear();
+	if(archive_read_open_filename(read, filename.c_str(), 10240))
+		return false;
+
+	// Check if this plugin has the right head folder name
+	archive_entry *entry;
+	archive_read_next_header(read, &entry);
+	string firstEntry = archive_entry_pathname(entry);
+	firstEntry = firstEntry.substr(0, firstEntry.find("/")) + "/";
+	bool fitsExpected = firstEntry == (expectedName);
+	archive_read_data_skip(read);
+
+	// Check if this plugin has a head folder, if not create one in the destination
+	archive_read_next_header(read, &entry);
+	string secondEntry = archive_entry_pathname(entry);
+	bool hasHeadFolder = secondEntry.find(firstEntry) != std::string::npos;
+	if(!hasHeadFolder)
+#if defined(_WIN32)
+		_wmkdir(Utf8::ToUTF16(destination + expectedName).c_str());
+#else
+		mkdir((destination + expectedName).c_str(), 0777);
+#endif
+
+	// Close the archive so we can start again from the beginning
+	archive_read_close(read);
+	archive_read_free(read);
+
+	// Read another time, this time for writing.
+	read = archive_read_new();
+	archive_read_support_format_all(read);
+	archive_read_open_filename(read, filename.c_str(), 10240);
+
+	int size = 0;
+	while (true)
+	{
+		int retVal = archive_read_next_header(read, &entry);
+		if(retVal == ARCHIVE_EOF)
+			break;
+		if(retVal != ARCHIVE_OK)
+			return false;
+
+		size += archive_entry_size(entry);
+		if(size > MAX_DOWNLOAD_SIZE)
+			return false;
+
+		// Adjust root folder name if neccessary.
+		if(!fitsExpected && hasHeadFolder)
+		{
+			string thisEntryName = archive_entry_pathname(entry);
+			size_t start_pos = thisEntryName.find(firstEntry);
+			if(start_pos != std::string::npos)
+				thisEntryName.replace(start_pos, firstEntry.length(), expectedName);
+
+			archive_entry_set_pathname(entry, thisEntryName.c_str());
+		}
+
+		// Add root folder to path if neccessary.
+		string dest_file = (destination + (hasHeadFolder ? "" : expectedName)) + archive_entry_pathname(entry);
+		archive_entry_set_pathname(entry, dest_file.c_str());
+
+		// Write files.
+		if(archive_write_header(ext, entry) == ARCHIVE_OK)
+		{
+			CopyData(read, ext);
+			if(archive_write_finish_entry(ext) != ARCHIVE_OK)
+				return false;
+		}
+	}
+
+	// Free all data.
+	archive_read_close(read);
+	archive_read_free(read);
+	archive_write_close(ext);
+	archive_write_free(ext);
+	return true;
 }

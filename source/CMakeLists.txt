@@ -235,8 +235,6 @@ target_sources(EndlessSkyLib PRIVATE
 	PlayerInfo.h
 	PlayerInfoPanel.cpp
 	PlayerInfoPanel.h
-	PluginHelper.cpp
-	PluginHelper.h
 	Plugins.cpp
 	Plugins.h
 	Point.cpp
