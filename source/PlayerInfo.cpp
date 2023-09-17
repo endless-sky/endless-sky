@@ -1866,7 +1866,7 @@ bool PlayerInfo::LeavePlanet(bool distributeCargo)
 			else
 				ship->Recharge(hasSpaceport);
 		}
-	
+
 	if(distributeCargo)
 		DistributeCargo();
 
