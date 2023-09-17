@@ -455,7 +455,7 @@ mission "Intro [2.1 Interceptor]"
 			choice
 				`	"I can't believe anyone would do that much work."`
 				`	"I love flying like that."`
-			`	James nods and says, "Chasing asteroids is always a challenge. But When you're starting off, mining can be a fast way to build cash for your next ship. It's also a great way to explore the galaxy. Jobs always follow the trade routes and settled areas. Mining makes it profitable to explore the nooks and crannies of the hyperlanes. If the place you end up landing has an economy, they'll buy the minerals in your hold. Mainly though, it's about how you like to spend your time. Some captains like managing a trading fleet while others like to strike out on their own and fly their ship directly.`
+			`	James nods and says, "Chasing asteroids is always a challenge. But when you're starting off, mining can be a fast way to build cash for your next ship. It's also a great way to explore the galaxy. Jobs always follow the trade routes and settled areas. Mining makes it profitable to explore the nooks and crannies of the hyperlanes. If the place you end up landing has an economy, they'll buy the minerals in your hold. Mainly though, it's about how you like to spend your time. Some captains like managing a trading fleet while others like to strike out on their own and fly their ship directly.`
 			`	"Mining can be complex compared to running jobs or trading commodities. I learned that first hand as crew on a mining ship when I first started out. Are there any questions you'd like to ask?"`
 
 			label choices
