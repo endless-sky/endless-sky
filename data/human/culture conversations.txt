@@ -628,7 +628,7 @@ mission "Sol-Bound Shuttle"
 # of blackout around cities worldwide, also to bring awareness to climate change, and it's observed on the last Saturday
 # of March.
 
-# Since Earth Day has become a quasi-'national day' for Earthlings in Endless Sky, it would be interesting to have Earth 
+# Since Earth Day has become a quasi-'national day' for Earthlings in Endless Sky, it would be interesting to have Earth
 # Hour be conflated with Earth Day as well, to demonstrate how people in a thousand years' time observe what we observe
 # today and how its meaning has changed.
 mission "Earth Day Blackout"
