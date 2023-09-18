@@ -6777,7 +6777,6 @@ mission "Southern Fiance 6"
 				"visited tom and carl" ++
 			`	At length, you reluctantly say you have to get going, and you bid each other fond farewells (and reclaim your communicator from Nita), with a promise once again that if you ever visit you'll be welcome.`
 				decline
-=======
 
 
 mission "FW Refugees to Humanika"
