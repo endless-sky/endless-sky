@@ -2448,7 +2448,7 @@ system "Ae Il A-3"
 			period 60
 			offset 20
 	object
-		sprite planet/browndwarf-l-rouge
+		sprite planet/browndwarf-l
 		distance 9784.96
 		period 1100
 		offset 270
