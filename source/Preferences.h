@@ -30,6 +30,12 @@ public:
 		adaptive,
 	};
 
+	enum class DateFormat : int_fast8_t {
+		DMY = 0, // Day-first format. (Sat, 4 Oct 1941)
+		MDY,     // Month-first format. (Sat, Oct 4, 1941)
+		YMD      // All-numeric ISO 8601. (1941-10-04)
+	};
+
 	enum class OverlayState : int_fast8_t {
 		OFF = 0,
 		ON,
@@ -96,6 +102,11 @@ public:
 	// and "always."
 	static void ToggleAmmoUsage();
 	static std::string AmmoUsage();
+
+	// Date format preferences.
+	static void ToggleDateFormat();
+	static DateFormat GetDateFormat();
+	static const std::string &DateFormatSetting();
 
 	// Scroll speed preference.
 	static int ScrollSpeed();

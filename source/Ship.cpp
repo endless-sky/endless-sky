@@ -42,7 +42,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SpriteSet.h"
 #include "StellarObject.h"
 #include "System.h"
-#include "TextReplacements.h"
 #include "Visual.h"
 #include "Wormhole.h"
 
