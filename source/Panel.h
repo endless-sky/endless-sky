@@ -147,14 +147,14 @@ private:
 			command(command),
 			radius(0)
 		{
-			fun_down = [command]() { Command::InjectOnce(command, true); };
+			fun_down = [command]() { Command::InjectOnce(command); };
 		}
 		Zone(const Point &pos, float radius, Command command):
 			Rectangle(pos, Point()),
 			command(command),
 			radius(radius)
 		{
-			fun_down = [command]() { Command::InjectOnce(command, true); };
+			fun_down = [command]() { Command::InjectOnce(command); };
 		}
 
 		void MouseDown() const { fun_down(); }

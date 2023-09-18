@@ -153,7 +153,7 @@ void MainPanel::Step()
 	// Poll zones for any commands that should also be active.
 	Command zoneCommands = GetUI()->ZoneCommands();
 	if(!(zoneCommands == Command()))
-		Command::InjectOnce(zoneCommands);
+		Command::InjectOnceNoEvent(zoneCommands);
 
 	engine.Step(isActive);
 

@@ -578,7 +578,6 @@ bool PlayerInfoPanel::Drag(double dx, double dy)
 		// scroll the ship list
  		// Scroll units are in rows, which are 20 px high
  		int dragTotalHeight = dragPoint.Y() - scrollPos.Y();
-		SDL_Log("Scroll: %d %d", scrollStart, dragTotalHeight);
  		ScrollAbsolute(scrollStart - dragTotalHeight/20);
 	}
 	return true;

@@ -155,6 +155,7 @@ public:
 
 	// Allow UI's to simulate keyboard input
 	static void InjectOnce(const Command& command, bool next = false);
+	static void InjectOnceNoEvent(const Command& command);
 	static void InjectSet(const Command& command);
 	static void InjectClear();
 	static void InjectUnset(const Command& command);

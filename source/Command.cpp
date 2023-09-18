@@ -756,6 +756,14 @@ void Command::InjectOnce(const Command& command, bool next)
 
 
 
+// Simulate key held, without pushing the associated event
+void Command::InjectOnceNoEvent(const Command& command)
+{
+	simulated_command_once.fetch_or(command.state, std::memory_order_relaxed);
+}
+
+
+
 // Clear any set commands
 void Command::InjectClear()
 {
