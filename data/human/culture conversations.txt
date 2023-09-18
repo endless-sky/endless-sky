@@ -624,15 +624,15 @@ mission "Sol-Bound Shuttle"
 				decline
 
 # Note about Earth Day and Earth Hour:
-# Earth Day (in 2023) is a day of awareness about climate change and occurs every 22nd of April. Earth Hour is an hour 
+# Earth Day (in 2023) is a day of awareness about climate change and occurs every 22nd of April. Earth Hour is an hour
 # of blackout around cities worldwide, also to bring awareness to climate change, and it's observed on the last Saturday
 # of March.
 
 # Since Earth Day has become a quasi-'national day' for Earthlings in Endless Sky, it would be interesting to have Earth 
-# Hour be conflated with Earth Day as well, to demonstrate how people in a thousand years' time observe what we observe 
+# Hour be conflated with Earth Day as well, to demonstrate how people in a thousand years' time observe what we observe
 # today and how its meaning has changed.
 mission "Earth Day Blackout"
-	# minor
+	minor
 	landing
 	source Earth
 	to offer
@@ -680,7 +680,7 @@ mission "Earth Day Blackout"
 			`	"Yes, I suppose you must have seen what's happening outside on your way in. It's something to do with Earth Day. Back in those old days before humans were able to get off this planet, they were stuck in a chain of issues and disputes over energy. You know, they didn't have fusion reactors back then, awfully primitive times.`
 
 			label decided
-			`	"So they decided that, on the 22nd of April each year, the whole of the Earth would go into total blackout to symbolise that they didn't have enough energy to sustain themselves, and to remind them that the only way to advance from this unspectacular position was to keep pushing themselves forward, find new pathways to power, unless the day of the blackout became longer. Fascinating, huh?"`
+			`	"So they decided that, on the 22nd of April each year, the whole of the Earth would go into total blackout to symbolize that they didn't have enough energy to sustain themselves, and to remind them that the only way to advance from this unspectacular position was to keep pushing themselves forward, find new pathways to power, unless the day of the blackout became longer. Fascinating, huh?"`
 			choice
 				`	"It seems a bit backwards."`
 				`	"Yeah, it is. (Walk away.)"`
