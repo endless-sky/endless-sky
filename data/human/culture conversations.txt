@@ -659,7 +659,7 @@ mission "Earth Day Blackout"
 				`	"When did this tradition start?"`
 				`	"Thank you for telling me. (Walk away.)"`
 					goto pass
-			`	"Well, my old history class tells me that the first Earth Day was in or around the 1970s, a few years after we landed on the Moon for the first time. Back then, there were a bunch of conflicts and disputes over resources and how we were fighting all over and and digging it all up to power all those dirty, primitive cars and factories and we had back then. So as a show of unity against that people started celebrating the Earth's beauty and unity by reminding us of our past."`
+			`	"Well, my old history class tells me that the first Earth Day was in or around the 1970s, a few years after we landed on the Moon for the first time. Back then, there were a bunch of conflicts and disputes over resources and how we were fighting all over and and digging it all up to power all those dirty, primitive cars and factories we had back then. So as a show of unity against that people started celebrating Earth's beauty and unity by reminding us of our past."`
 			`	As he finishes, the ceiling lights flash back on. "Ah, well, there you go. Too bad I missed the celebrations, but that's the end of Earth Day, and my long shift. I hope you had a good Earth Day, and have a good night!"`
 				decline
 
@@ -685,7 +685,7 @@ mission "Earth Day Blackout"
 				`	"It seems a bit backwards."`
 				`	"Yeah, it is. (Walk away.)"`
 					goto pass
-			`	"Well, perhaps. But Earth is like that way, sometimes. It's survived through so much, and without Earth Day to remind our ancestors that we must keep looking forward, maybe you wouldn't be in your fancy little spaceship, would you?" The lights in the spaceport turn back on as she says that, and she turns to look at her data pad again. "Oh, it's twelve o'clock, I've got to go now and see if the metro's opened so I can get to my accommodation. Safe travels!"`
+			`	"Well, perhaps. But Earth is like that sometimes. It's survived through so much, and without Earth Day to remind our ancestors that we must keep looking forward, maybe you wouldn't be in your fancy little spaceship, would you?" The lights in the spaceport turn back on as she says that, and she turns to look at her data pad again. "Oh, it's twelve o'clock, I've got to go now and see if the metro's opened so I can get to my accommodation. Safe travels!"`
 				decline
 			
 			label pass
