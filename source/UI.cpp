@@ -212,7 +212,7 @@ bool UI::Handle(const SDL_Event &event)
 							Command command = Command::FromTrigger(event.caxis.axis, activeAxisIsPositive);
 							if(!(command == Command()))
 								handled = (*it)->KeyDown(0, 0, command, true);
-							else
+							if(!handled)
 							{
 								// By default, convert the right joystick into a scroll event.
 								// for mouse wheel, positive is up, so flip the direction
