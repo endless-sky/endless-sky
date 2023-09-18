@@ -882,7 +882,7 @@ mission "House Bebliss 6-FW"
 			`	"<planet> is close enough to Sol that we get Navy fleets flying by here pretty often, and it's far away enough from the pirate strongholds that we rarely get any of them raiding here. They'll be fine."`
 				goto end
 			label tell
-			`	"That's more up to JJ, Alondo and others more involved with Bourne and the Senate to decide. I imagine once they've put together a report of all you've told us, we'll be sharing that with the Republic and Syndicate. Probably best to avoid letting it out to the public right away though, there's still a lot of tension about aliens due to the Pug invasion."`
+			`	"That's up to JJ, Alondo, and others more involved with Bourne and the Senate to decide. I imagine once they've put together a report of all you've told us, we'll be sharing that with the Republic and Syndicate. Probably best to avoid letting it out to the public right away though; there's still a lot of tension about aliens due to the Pug invasion."`
 			label end
 			`	She moves away from the ship, and you both leisurely walk back to the Free Worlds' warehouse, chatting as you go. "I need to go tell my team that we're moving some of the load to Southbound's new experimental freighter. I'd prefer to tell them what's going on myself - it makes things so much easier - but I think I'll wait a little longer before doing that. I want to see if I can get a good reading on these aliens first. Perhaps another scientific conversation would help. I'll be in contact if something happens. Safe travels, <first>."`
 			`	You say goodbye, and head to your ship. From the looks of it, it might take some months, if not years, before House Bebliss gets what information they wanted out of this trip.`
@@ -910,7 +910,8 @@ mission "House Bebliss 7-FW"
 	on accept
 		"assisting lunarium" ++
 	on complete
-		"assisted lunarium" --
+		"assisting lunarium" --
+		"assisted lunarium" ++
 		outfit "Jump Drive" 1
 		payment 2000000
 		conversation
@@ -1220,7 +1221,7 @@ mission "Lunarium: Evacuation 5"
 			`	He signs off before you're able to explain your delay.`
 				decline
 			label lunarium
-			`	"Why there were you not, <last>? Lost to the Heliarchs, all of them now are!" He punches the table, shaking up the camera on his end. "Supposed to arrive on time, you were. To rescue them, you were meant to. Abandon them like that, how could you?" He appears to swear in the Saryd tongue.`
+			`	"Why there were you not, <last>? Lost to the Heliarchs, all of them now are!" He punches the table, shaking the camera on his end. "Supposed to arrive on time, you were. To rescue them, you were meant to. Abandon them like that, how could you?" He appears to swear in the Saryd tongue.`
 			`	He spends a few minutes to calm down, then speaks up again. "Forgive me, Captain. Helped us much, you have, and appreciated your previous heroic actions are, but wrong to rely on you this time, I was."`
 			`	He signs off before you're able to inquire on other ways to save them.`
 
@@ -1803,7 +1804,7 @@ mission "Lunarium: Combat Training 4"
 			label pirates
 			`	"Lie I will not, difficult the first few months were. Very used to the Coalition, to our equipment, we were, so forget that the ships had no hull repair capabilities of their own, we many times did," she passes her two front legs over her head a few times, as if brushing it in some shame. "Lucky we were, that no casualties we had. At least, a good way to improvise mid-battle rescues, it all was." she finishes, perking up her head.`
 			label accept
-			`	You once again help them contact the local, and arrange for the selling of their fleet. After the process is done and the workers have finished taking away the ships, Pyakri tells you that they're ready to head back to the Coalition, to <destination>, from where they'll head back to their respective bases and share their newfound experience with Lunarium recruits. You help Pyakri and the rest to their bunks, and set a course for <planet>.`
+			`	You once again help them contact the local shipyard and arrange for the selling of their fleet. After the process is done and the workers have finished taking away the ships, Pyakri tells you that they're ready to head back to the Coalition, to <destination>, from where they'll head back to their respective bases and share their newfound experience with Lunarium recruits. You help Pyakri and the rest to their bunks, and set a course for <planet>.`
 				accept
 	on accept
 		"assisting lunarium" ++
@@ -1877,6 +1878,7 @@ mission "Lunarium: Quarg Interview"
 				`	(Yes.)`
 				`	(Not yet.)`
 					defer
+				`	(No. I don't want to support the Lunarium at all.)`
 			`	You leave your ship to find a pair of Kimek waiting for you. "Follow us to the meeting point, you will," one of them says, and you oblige, trying to keep a low profile as you go with them across the city. You reach a district near the center of town, with modest blocks and few skyscrapers, and head into what seems to be a Kimek restaurant. You continue following the two Kimek past busy tables and Kimek patrons who all have eyes on you as you head to the back.`
 			`	Taking an elevator, you move down a few levels. You arrive at some doors that open to an Arach delegation, with half a dozen bulky Arachi surrounding a young, fine-dressed lady in a blue "dress" with white lines wrapping around it. "Oh, finally arrived, have they?" she says as you step off the elevator, coming to meet you. "<first> <last>, is it? So intrigued by our most recent recruit, I was, that decided I did to come to this meeting for once. Lady Lobmab Bebliss, I am, head of our great house, and benefactor to the Lunarium." She steps one leg forward, to you, as if in some archaic Arach gesture. Unsure on how to respond, you do your best extravagant bow, which seems to satisfy her as she pulls her leg back closer to her body. "Confess I must, however, that most inconvenient it is, to come so far away while maintaining a low profile. Difficult to just disappear, it is, when the head of the greatest Arach House, you are. Hope I do that worth it, your contributions are."`
 			choice
