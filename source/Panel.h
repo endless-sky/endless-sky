@@ -132,21 +132,32 @@ protected:
 private:
 	class Zone : public Rectangle {
 	public:
-		Zone(const Rectangle &rect, const std::function<void()> &fun_down, const std::function<void()> &fun_up = nullptr):
+		Zone(const Rectangle &rect, const std::function<void()> &fun_down):
 			Rectangle(rect),
 			fun_down(fun_down),
-			fun_up(fun_up),
 			radius(0)
 		{}
-		Zone(const Point &pos, float radius, const std::function<void()> &fun_down, const std::function<void()> &fun_up = nullptr):
+		Zone(const Point &pos, float radius, const std::function<void()> &fun_down):
 			Rectangle(pos, Point()),
 			fun_down(fun_down),
-			fun_up(fun_up),
 			radius(radius)
 		{}
+		Zone(const Rectangle &rect, Command command):
+			Rectangle(rect),
+			command(command),
+			radius(0)
+		{
+			fun_down = [command]() { Command::InjectOnce(command, true); };
+		}
+		Zone(const Point &pos, float radius, Command command):
+			Rectangle(pos, Point()),
+			command(command),
+			radius(radius)
+		{
+			fun_down = [command]() { Command::InjectOnce(command, true); };
+		}
 
 		void MouseDown() const { fun_down(); }
-		void MouseUp() const { if (fun_up) fun_up(); }
 
 		bool Contains(const Point& p) const
 		{
@@ -156,9 +167,11 @@ private:
 				return Rectangle::Contains(p);
 		}
 
+		const Command& ZoneCommand() const { return command; }
+
 	private:
 		std::function<void()> fun_down;
-		std::function<void()> fun_up;
+		Command command;
 		float radius = 0;
 	};
 
@@ -175,8 +188,6 @@ private:
 	bool isInterruptible = true;
 
 	std::list<Zone> zones;
-
-	Command cached_zone_commands;
 
 	Point zoneMousePos;
 

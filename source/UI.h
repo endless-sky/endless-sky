@@ -80,6 +80,7 @@ public:
 	static Point GetMouse();
 
 	std::vector<Point> ZonePositions() const;
+	Command ZoneCommands() const;
 
 private:
 	// If a push or pop is queued, apply it.

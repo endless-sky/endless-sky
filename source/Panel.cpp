@@ -42,11 +42,8 @@ Panel::Panel() noexcept
 
 
 
-// Clean up any stale injected commands
 Panel::~Panel()
 {
-	if (cached_zone_commands)
-		Command::InjectUnset(cached_zone_commands);
 }
 
 
@@ -112,18 +109,7 @@ void Panel::AddZone(const Rectangle &rect, SDL_Keycode key)
 
 void Panel::AddZone(const Rectangle &rect, Command command)
 {
-	zones.emplace_front(
-		rect,
-		[command, this](){
-			// InjectSet will handle command as both an event and a keypress
-			Command::InjectSet(command);
-			cached_zone_commands.Set(command);
-		},
-		[command, this](){
-			Command::InjectUnset(command);
-			cached_zone_commands.Clear(command);
-		}
-	);
+	zones.emplace_front(rect, command);
 }
 
 
@@ -147,18 +133,7 @@ void Panel::AddZone(const Point &center, float radius, SDL_Keycode key)
 
 void Panel::AddZone(const Point &center, float radius, Command command)
 {
-	zones.emplace_front(
-		center, radius,
-		[command, this](){
-			// InjectSet will handle command as both an event and a keypress
-			Command::InjectSet(command);
-			cached_zone_commands.Set(command);
-		},
-		[command, this](){
-			Command::InjectUnset(command);
-			cached_zone_commands.Clear(command);
-		}
-	);
+	zones.emplace_front(center, radius, command);
 }
 
 
@@ -193,17 +168,9 @@ bool Panel::ZoneMouseUp(const Point &point)
 	{
 		if(zone.Contains(point))
 		{
-			zone.MouseUp();
 			return true;
 		}
 	}
-	// It is possible that a zone could trigger a MouseDown, and then get
-	// Destroyed before the MouseUp event (i.e. holding down attack until
-	// the target gets destroyed, so the attack button goes away when the
-	// currently selected target gets cleared). If we got a mouse up, then
-	// clear all injected events triggered by our zones.
-	if (cached_zone_commands)
-		Command::InjectUnset(cached_zone_commands);
 	return false;
 }
 

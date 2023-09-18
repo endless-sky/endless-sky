@@ -150,6 +150,11 @@ void MainPanel::Step()
 		}
 	}
 
+	// Poll zones for any commands that should also be active.
+	Command zoneCommands = GetUI()->ZoneCommands();
+	if(!(zoneCommands == Command()))
+		Command::InjectOnce(zoneCommands);
+
 	engine.Step(isActive);
 
 	// Splice new events onto the eventQueue for (eventual) handling. No
@@ -490,12 +495,7 @@ bool MainPanel::FingerMove(int x, int y, int fid)
 
 bool MainPanel::FingerUp(int x, int y, int fid)
 {
-	if(fid == osJoystickFinger)
-	{
-		osJoystickFinger = -1;
-		return true;
-	}
-	else if(zoomGesture.FingerUp(Point(x, y), fid))
+	if(zoomGesture.FingerUp(Point(x, y), fid))
 	{
 		return true;
 	}

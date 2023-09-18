@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 #include "PointerShader.h"
 #include "Screen.h"
+#include "TouchScreen.h"
 
 #include <SDL2/SDL.h>
 
@@ -216,9 +217,6 @@ bool UI::Handle(const SDL_Event &event)
 							{
 								// By default, convert the right joystick into a scroll event.
 								// for mouse wheel, positive is up, so flip the direction
-								// TODO: This feels a little stilted, because you have to repeatedly flick
-								// the joystick to zoom/scroll more than once. We should make these events
-								// repeat, like keypresses.
 								if(activeAxis == SDL_CONTROLLER_AXIS_RIGHTY)
 									handled = (*it)->Scroll(0, activeAxisIsPositive ? -1 : 1);
 								else if(activeAxis == SDL_CONTROLLER_AXIS_RIGHTX)
@@ -473,6 +471,45 @@ std::vector<Point> UI::ZonePositions() const
 
 
 
+// Return the commands for every activated zone. This function will get polled
+// as part of the engine processing
+Command UI::ZoneCommands() const
+{
+	Command ret;
+	// include touchscreen and mouse pointers when considering zones
+	auto pointers = TouchScreen::Points();
+	int mousePosX;
+	int mousePosY;
+	if((SDL_GetMouseState(&mousePosX, &mousePosY) & SDL_BUTTON_LMASK) != 0)
+	{
+		// Convert from window to game screen coordinates
+		double relX = mousePosX / static_cast<double>(Screen::RawWidth()) - .5;
+		double relY = mousePosY / static_cast<double>(Screen::RawHeight()) - .5;
+		pointers.push_back(Point(relX * Screen::Width(), relY * Screen::Height()));
+	}
+
+	auto zones = GetZones();
+	for(const Point& p: pointers)
+	{
+		for(const Panel::Zone* zone: zones)
+		{
+			if(zone->Contains(p))
+			{
+				if(!(zone->ZoneCommand() == Command()))
+					ret.Set(zone->ZoneCommand());
+				// even if this zone isn't associated with a command, don't
+				// consider any other zones (this one is being drawn on top of
+				// them)
+				break;
+			}
+		}
+	}
+	return ret;
+}
+
+
+
+
 // If a push or pop is queued, apply it.
 void UI::PushOrPop()
 {
@@ -551,7 +588,6 @@ bool UI::DefaultControllerButtonUp(SDL_GameControllerButton button)
 			if(zone->Center().X() == GamepadCursor::Position().X() &&
 				zone->Center().Y() == GamepadCursor::Position().Y())
 			{
-				zone->MouseUp();
 				return true;
 			}
 		}
