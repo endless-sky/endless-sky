@@ -611,7 +611,7 @@ mission "Avgi: Scout Rescue"
 			`	"But, to the point. A scout team, aboard the Polari-class scout 'Silver Albedo' was sent to survey the Twirl system two weeks ago, but has missed its check in by multiple days. To reach that star cluster and return would normally require a trip of weeks, all thorough perilous territory, and I am ashamed to say that we could be forced to consider writing off the scouts as lost. But I have heard that the visiting human, Captain <last>, is in possession of a new kind of faster-than-light drive, one that can travel without the need for starways. Tell me, is this true, question?"`
 			choice
 				`	"Yes, I have a Jump Drive. It can bypass hyperlanes entirely."`
-			`	"Excitement. Then, the trip could be shortened to mere days, giving us the possibility of mountin a rescue. Are you willing to assist us with this, Captain <last>, question?"`
+			`	"Excitement. Then, the trip could be shortened to mere days, giving us the possibility of mounting a rescue. Are you willing to assist us with this, Captain <last>, question?"`
 			choice
 				`	"Yes."`
 				`	"I'd rather not risk it."`
