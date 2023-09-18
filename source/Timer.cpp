@@ -84,9 +84,15 @@ void Timer::Load(const DataNode &node, const Mission *mission)
 			else if(child.Size() > 1 && child.Token(1) == "pause")
 				resetCondition = ResetCondition::PAUSE;
 		}
+		else if(child.Token(0) == "repeat reset")
+			repeatReset = true;
+		else if(child.Token(0) == "reset fired")
+			resetFired = true;
 		// We keep "on timeup" as separate tokens so that it's compatible with MissionAction syntax
 		else if(child.Token(0) == "on" && child.Size() > 1 && child.Token(1) == "timeup")
 			action.Load(child);
+		else if(child.Token(0) == "on" && child.Size() > 1 && child.Token(1) == "reset")
+			resetAction.Load(child);
 
 	}
 }
@@ -114,6 +120,10 @@ void Timer::Save(DataWriter &out) const
 			out.Write("idle");
 		if(requireUncloaked)
 			out.Write("uncloaked");
+		if(repeatReset)
+			out.Write("repeat reset");
+		if(resetFired)
+			out.Write("reset fired");
 		if(resetCondition != ResetCondition::PAUSE)
 		{
 			static const map<ResetCondition, string> resets = {
@@ -142,6 +152,8 @@ void Timer::Save(DataWriter &out) const
 		}
 
 		action.Save(out);
+		resetAction.Save(out);
+
 	}
 	out.EndChild();
 }
@@ -163,6 +175,8 @@ Timer Timer::Instantiate(map<string, string> &subs,
 	result.proximityCenter = proximityCenter;
 	result.closeTo = closeTo;
 	result.resetCondition = resetCondition;
+	result.repeatReset = repeatReset;
+	result.resetFired = resetFired;
 
 	result.timeToWait = timeToWait;
 	result.timeElapsed = timeElapsed;
@@ -170,6 +184,7 @@ Timer Timer::Instantiate(map<string, string> &subs,
 	result.isActive = isActive;
 
 	result.action = action.Instantiate(subs, origin, jumps, payload);
+	result.resetAction = resetAction.Instantiate(subs, origin, jumps, payload);
 
 	return result;
 }
@@ -179,7 +194,7 @@ bool Timer::IsComplete() const
 	return isComplete;
 }
 
-void Timer::ResetOn(ResetCondition cond)
+bool Timer::ResetOn(ResetCondition cond)
 {
 	bool reset = cond == resetCondition;
 	reset |= (cond == Timer::ResetCondition::LEAVE_ZONE && resetCondition == Timer::ResetCondition::PAUSE);
@@ -189,7 +204,9 @@ void Timer::ResetOn(ResetCondition cond)
 	{
 		timeElapsed = 0;
 		timeToWait = base + Random::Int(rand);
+		return true;
 	}
+	return false;
 }
 
 void Timer::Step(PlayerInfo &player, UI *ui)
@@ -199,7 +216,12 @@ void Timer::Step(PlayerInfo &player, UI *ui)
 	if((system && player.Flagship()->GetSystem() != system) ||
 		(!systems.IsEmpty() && !systems.Matches(player.Flagship()->GetSystem())))
 	{
-		ResetOn(Timer::ResetCondition::LEAVE_SYSTEM);
+		bool didReset = ResetOn(Timer::ResetCondition::LEAVE_SYSTEM);
+		if (didReset && (repeatReset || !resetFired))
+		{
+			resetAction.Do(player, ui, mission);
+			resetFired = true;
+		}
 		isActive = false;
 		return;
 	}
@@ -211,7 +233,12 @@ void Timer::Step(PlayerInfo &player, UI *ui)
 			shipIdle &= !weapon.WasFiring();
 		if(!shipIdle)
 		{
-			ResetOn(Timer::ResetCondition::PAUSE);
+			bool didReset = ResetOn(Timer::ResetCondition::PAUSE);
+			if (didReset && (repeatReset || !resetFired))
+			{
+				resetAction.Do(player, ui, mission);
+				resetFired = true;
+			}
 			isActive = false;
 			return;
 		}
@@ -221,7 +248,12 @@ void Timer::Step(PlayerInfo &player, UI *ui)
 		double cloak = player.Flagship()->Cloaking();
 		if(cloak != 0.)
 		{
-			ResetOn(Timer::ResetCondition::PAUSE);
+			bool didReset = ResetOn(Timer::ResetCondition::PAUSE);
+			if (didReset && (repeatReset || !resetFired))
+			{
+				resetAction.Do(player, ui, mission);
+				resetFired = true;
+			}
 			isActive = false;
 			return;
 		}
@@ -229,25 +261,26 @@ void Timer::Step(PlayerInfo &player, UI *ui)
 	if(proximity > 0.)
 	{
 		bool inProximity = false;
-		vector<Point> centers;
 		if(proximityCenter)
 		{
 			for(const StellarObject &proximityObject : system->Objects())
-				if(proximityObject.HasValidPlanet())
-					centers.push_back(proximityObject.Position());
-		}
-		for(Point &center : centers)
-		{
-			double dist = (player.Flagship()->Position() - center).Length();
-			if((closeTo && dist <= proximity) || (!closeTo && dist >= proximity))
-			{
-				inProximity = true;
-				break;
-			}
+				if(proximityObject.HasValidPlanet()) {
+					double dist = (player.Flagship()->Position() - proximityObject.Position()).Length();
+					if((closeTo && dist <= proximity) || (!closeTo && dist >= proximity))
+					{
+						inProximity = true;
+						break;
+					}
+				}
 		}
 		if(!inProximity)
 		{
-			ResetOn(Timer::ResetCondition::LEAVE_ZONE);
+			bool didReset = ResetOn(Timer::ResetCondition::LEAVE_ZONE);
+			if (didReset && (repeatReset || !resetFired))
+			{
+				resetAction.Do(player, ui, mission);
+				resetFired = true;
+			}
 			isActive = false;
 			return;
 		}

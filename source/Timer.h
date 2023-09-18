@@ -61,7 +61,7 @@ private:
 		LEAVE_ZONE,
 		LEAVE_SYSTEM
 	};
-	void ResetOn(ResetCondition cond);
+	bool ResetOn(ResetCondition cond);
 
 private:
 	// The name of the timer
@@ -93,6 +93,11 @@ private:
 
 	// The action to be performed when the timer elapses
 	MissionAction action;
+	// The action to be performed when the timer resets
+	MissionAction resetAction;
+	// Should the reset action be performed every time, or just the first?
+	bool repeatReset = false;
+	bool resetFired = false;
 
 	// Used for holding the calculated time to wait and current timer value when it's actually active
 	int64_t timeToWait = 0;
