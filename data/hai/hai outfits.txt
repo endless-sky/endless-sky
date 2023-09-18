@@ -118,8 +118,8 @@ outfit "Ion Cannon"
 		"hit force" 120
 		"shield damage" 168
 		"hull damage" 60
-		"ion damage" 5
-		"scrambling damage" 5
+		"ion damage" 6
+		"scrambling damage" 6
 	description "Ion cannons do not inflict as much damage as some other weapons, but they disrupt the electrical systems on any ship they hit, draining its energy and causing its weapons to jam. If a ship has sizable battery reserves, this may have little effect, but for a ship running at near its energy generation capacity an ion strike can take it out of the battle for a few seconds while it recovers, or otherwise cause it to have difficulty firing its weapons."
 
 effect "ion impact"
@@ -195,14 +195,16 @@ outfit "Ionic Turret Prototype"
 
 
 outfit "Railgun Slug"
+	"display name" "Skipper Railgun Slug"
 	category "Ammunition"
 	cost 13
 	thumbnail "outfit/railslug"
 	"mass" 0.003
 	"railgun slug capacity" -1
-	description "These Railgun Slugs incorporate energy-discharging capacitors that deal a small amount of ion damage to their target. Although not terribly damaging, this ion damage combined with the significant recoil that each shot has turns Flea drones into effective long-range support ships."
+	description "Skipper Railgun Slugs incorporate energy-discharging capacitors that deal a small amount of ion damage to their target. Although not terribly damaging, this ion damage combined with the significant recoil that each shot has turns Flea drones into effective long-range support ships."
 
 outfit "Railgun Slug Rack"
+	"display name" "Skipper Slug Rack"
 	category "Ammunition"
 	cost 15000
 	thumbnail "outfit/railslug rack"
@@ -210,9 +212,10 @@ outfit "Railgun Slug Rack"
 	"outfit space" -3
 	"railgun slug capacity" 500
 	ammo "Railgun Slug"
-	description "The railgun slug rack is used to store and load extra railgun ammunition."
+	description "This railgun slug rack is used to store and load extra Skipper Railgun ammunition."
 
 outfit "Railgun"
+	"display name" "Skipper Railgun"
 	category "Secondary Weapons"
 	cost 20000
 	thumbnail "outfit/railgun"
@@ -239,7 +242,7 @@ outfit "Railgun"
 		"firing force" 70
 		"stream"
 		"submunition" "rslug" 1
-	description "The Hai designed this weapon to best complement their Flea drones. Each Railgun provides a significant amount of force upon firing, pushing the Flea drone backwards and therefore forcing it to keep its distance from its target."
+	description "The Hai designed this weapon to best complement their Flea drones. Each Skipper Railgun provides a significant amount of force upon firing, pushing the Flea drone backwards and therefore forcing it to keep its distance from its target."
 	description "	Flea drone pilots joke that they provide more thrust than engines of similar size, so Unfettered should be using them at the back of their ships. There's probably a cultural component to the joke that many miss, because it's told quite often and the Hai laugh hysterically about it - every time."
 
 outfit "rslug"
@@ -579,7 +582,7 @@ outfit `"Baellie" Atomic Engines`
 	"mass" 22
 	"outfit space" -22
 	"engine capacity" -22
-	"thrust" 7.3
+	"thrust" 9.8
 	"thrusting energy" .87
 	"thrusting heat" 1.7
 	"turn" 244
@@ -600,7 +603,7 @@ outfit `"Basrem" Atomic Thruster`
 	"mass" 18
 	"outfit space" -18
 	"engine capacity" -18
-	"thrust" 12.5
+	"thrust" 15.22
 	"thrusting energy" 1.4
 	"thrusting heat" 2.8
 	"flare sprite" "effect/atomic flare/tiny"
@@ -615,7 +618,7 @@ outfit `"Benga" Atomic Thruster`
 	"mass" 28
 	"outfit space" -28
 	"engine capacity" -28
-	"thrust" 22.4
+	"thrust" 25.15
 	"thrusting energy" 2.5
 	"thrusting heat" 4.8
 	"flare sprite" "effect/atomic flare/tiny"
@@ -630,7 +633,7 @@ outfit `"Biroo" Atomic Thruster`
 	"mass" 44
 	"outfit space" -44
 	"engine capacity" -44
-	"thrust" 39.4
+	"thrust" 41.65
 	"thrusting energy" 4
 	"thrusting heat" 8.2
 	"flare sprite" "effect/atomic flare/small"
@@ -660,7 +663,7 @@ outfit `"Bufaer" Atomic Thruster`
 	"mass" 104
 	"outfit space" -104
 	"engine capacity" -104
-	"thrust" 114.1
+	"thrust" 108.85
 	"thrusting energy" 10.4
 	"thrusting heat" 22.6
 	"flare sprite" "effect/atomic flare/large"
@@ -675,7 +678,7 @@ outfit `"Basrem" Reverse Thruster`
 	"mass" 18
 	"outfit space" -18
 	"weapon capacity" -18
-	"reverse thrust" 12.5
+	"reverse thrust" 15.22
 	"reverse thrusting energy" 1.4
 	"reverse thrusting heat" 2.8
 	"reverse flare sprite" "effect/atomic flare/tiny"
@@ -690,7 +693,7 @@ outfit `"Benga" Reverse Thruster`
 	"mass" 28
 	"outfit space" -28
 	"weapon capacity" -28
-	"reverse thrust" 22.4
+	"reverse thrust" 25.15
 	"reverse thrusting energy" 2.5
 	"reverse thrusting heat" 4.8
 	"reverse flare sprite" "effect/atomic flare/tiny"
@@ -705,7 +708,7 @@ outfit `"Biroo" Reverse Thruster`
 	"mass" 44
 	"outfit space" -44
 	"weapon capacity" -44
-	"reverse thrust" 39.4
+	"reverse thrust" 41.65
 	"reverse thrusting energy" 4
 	"reverse thrusting heat" 8.2
 	"reverse flare sprite" "effect/atomic flare/small"
