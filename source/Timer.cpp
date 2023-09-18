@@ -217,7 +217,7 @@ void Timer::Step(PlayerInfo &player, UI *ui)
 		(!systems.IsEmpty() && !systems.Matches(player.Flagship()->GetSystem())))
 	{
 		bool didReset = ResetOn(Timer::ResetCondition::LEAVE_SYSTEM);
-		if (didReset && (repeatReset || !resetFired))
+		if(didReset && (repeatReset || !resetFired))
 		{
 			resetAction.Do(player, ui, mission);
 			resetFired = true;
@@ -234,7 +234,7 @@ void Timer::Step(PlayerInfo &player, UI *ui)
 		if(!shipIdle)
 		{
 			bool didReset = ResetOn(Timer::ResetCondition::PAUSE);
-			if (didReset && (repeatReset || !resetFired))
+			if(didReset && (repeatReset || !resetFired))
 			{
 				resetAction.Do(player, ui, mission);
 				resetFired = true;
@@ -249,7 +249,7 @@ void Timer::Step(PlayerInfo &player, UI *ui)
 		if(cloak != 0.)
 		{
 			bool didReset = ResetOn(Timer::ResetCondition::PAUSE);
-			if (didReset && (repeatReset || !resetFired))
+			if(didReset && (repeatReset || !resetFired))
 			{
 				resetAction.Do(player, ui, mission);
 				resetFired = true;
@@ -264,7 +264,8 @@ void Timer::Step(PlayerInfo &player, UI *ui)
 		if(proximityCenter)
 		{
 			for(const StellarObject &proximityObject : system->Objects())
-				if(proximityObject.HasValidPlanet()) {
+				if(proximityObject.HasValidPlanet()) 
+				{
 					double dist = (player.Flagship()->Position() - proximityObject.Position()).Length();
 					if((closeTo && dist <= proximity) || (!closeTo && dist >= proximity))
 					{
@@ -276,7 +277,7 @@ void Timer::Step(PlayerInfo &player, UI *ui)
 		if(!inProximity)
 		{
 			bool didReset = ResetOn(Timer::ResetCondition::LEAVE_ZONE);
-			if (didReset && (repeatReset || !resetFired))
+			if(didReset && (repeatReset || !resetFired))
 			{
 				resetAction.Do(player, ui, mission);
 				resetFired = true;
