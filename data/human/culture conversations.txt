@@ -636,8 +636,8 @@ mission "Earth Day Blackout"
 	landing
 	source Earth
 	to offer
-		# day = 22
-		# month = 5
+		day = 22
+		month = 5
 	on offer
 		conversation
 			`As you follow the tracking beacons towards Earth's central spaceport, you realize there's something very off; what was the bustling spaceport city is now completely still, and even though it is near midnight, the supertall buildings and skyscrapers are curiously dark - not a light is on.`
