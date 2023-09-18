@@ -789,6 +789,10 @@ void MapPanel::Select(const System *system)
 		if(isJumping)
 			plan.push_back(source);
 	}
+
+	// Reset the travel destination if the final system in the travel plan has changed.
+	if(!plan.empty())
+		player.SetTravelDestination(nullptr);
 }
 
 

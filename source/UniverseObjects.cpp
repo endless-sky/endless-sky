@@ -18,19 +18,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "Files.h"
-#include "text/FontSet.h"
-#include "ImageSet.h"
 #include "Information.h"
 #include "Logger.h"
-#include "MaskManager.h"
-#include "Music.h"
-#include "PlayerInfo.h"
-#include "Politics.h"
-#include "Random.h"
 #include "Sprite.h"
-#include "SpriteQueue.h"
 #include "SpriteSet.h"
-#include "StarField.h"
 
 #include <algorithm>
 #include <iterator>
