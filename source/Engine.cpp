@@ -610,17 +610,6 @@ void Engine::Step(bool isActive)
 
 	const System *currentSystem = player.GetSystem();
 
-	// Check through the list of NPC ships from active missions
-	// to hit their "on encounter" triggers
-	// You can only encounter an NPC if you're not cloaked
-	if(flagship && currentSystem && flagship->Cloaking() == 0)
-		for(const Mission &mission : player.Missions())
-			for(const NPC &npc : mission.NPCs())
-				for(const shared_ptr<Ship> &npcShip : npc.Ships())
-					// You can only encounter an NPC if *they're* not cloaked
-					if(npcShip->GetSystem() == currentSystem && npcShip->Cloaking() == 0)
-						eventQueue.emplace_back(flagship, npcShip, ShipEvent::ENCOUNTER);
-
 	// Update this here, for thread safety.
 	if(player.HasTravelPlan() && currentSystem == player.TravelPlan().back())
 		player.PopTravel();
@@ -1406,6 +1395,17 @@ void Engine::EnterSystem()
 		Messages::Add(GameData::HelpMessage("basics 1"), Messages::Importance::High);
 		Messages::Add(GameData::HelpMessage("basics 2"), Messages::Importance::High);
 	}
+
+	// Create the planet labels.
+	labels.clear();
+	if(system)
+		for(const StellarObject &object : system->Objects())
+			if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsAccessible(flagship))
+				labels.emplace_back(labels, *system, object);
+	if(flagship->Cloaking() == 0)
+		for(const shared_ptr<Ship> &ship : ships)
+			if(ship->GetSystem() == system && ship->Cloaking() == 0)
+				eventQueue.emplace_back(flagship, ship, ShipEvent::ENCOUNTER);
 }
 
 
@@ -1473,10 +1473,22 @@ void Engine::CalculateStep()
 
 	// Keep track of the flagship to see if it jumps or enters a wormhole this turn.
 	const Ship *flagship = player.Flagship();
+	bool flagshipWasCloaked = (flagship && flagship->Cloaking() != 0);
 	bool wasHyperspacing = (flagship && flagship->IsEnteringHyperspace());
 	// Move all the ships.
 	for(const shared_ptr<Ship> &it : ships)
+	{
+		bool wasCloaked = it->Cloaking() != 0;
 		MoveShip(it);
+		// If we decloaked, and we're in the same system as the player, they Encounter us
+		if(wasCloaked && it->Cloaking() == 0 && flagship->GetSystem() == it->GetSystem() && flagship->Cloaking() == 0 && it != flagship)
+				eventQueue.emplace_back(flagship, it, ShipEvent::ENCOUNTER);
+	}
+	// If we *are* the player, and we decloaked, we encounter everyone
+	if (flagshipWasCloaked && flagship->Cloaking() == 0)
+		for(const shared_ptr<Ship> &ship : ships)
+			if(ship->GetSystem() == playerSystem && ship->Cloaking() == 0)
+				eventQueue.emplace_back(flagship, ship, ShipEvent::ENCOUNTER);
 	// If the flagship just began jumping, play the appropriate sound.
 	if(!wasHyperspacing && flagship && flagship->IsEnteringHyperspace())
 	{
@@ -1741,6 +1753,9 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 			else
 				for(const auto &sound : jumpSounds)
 					Audio::Play(sound.first, position);
+
+			if(flagship->Cloaking() == 0 && ship->Cloaking() == 0)
+				eventQueue.emplace_back(flagship, ship, ShipEvent::ENCOUNTER);
 		}
 	}
 
