@@ -1334,7 +1334,6 @@ phrase "hostile disabled coalition"
 	word
 		" "
 	word
-		"Your translation device must be programmed to not translate profanity"
 		"You can only wonder what they're saying"
 	word
 		".)"
