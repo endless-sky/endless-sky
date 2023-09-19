@@ -19,8 +19,9 @@ mission "Heliarch Investigation 1"
 	to offer
 		random < 65
 		"coalition jobs" >= 70
-		has "Coalition: Contributor: done"
+		has "license: Coalition"
 		not "Lunarium: Questions: done"
+		not "assisting lunarium"
 	source
 		near "Quaru" 4 10
 	destination "Ring of Friendship"
@@ -36,11 +37,16 @@ mission "Heliarch Investigation 1"
 					defer
 			`	They thank you for agreeing to deliver them to the <planet>, and introduce themselves; the Saryd is called Iplora, the Kimek is Kirrie, and the Arach is known as Tugroob. You help them settle in their bunks, wondering why they seemed so rushed.`
 				accept
+	on accept
+		"assisting heliarchy" ++
 	on complete
+		"assisting heliarchy" --
 		"coalition jobs" ++
 		payment 90000
 		conversation
 			`The three Heliarchs disembark and head immediately towards the spaceport, but not before Iplora hands you <payment>. "Speak with our superior, we must. Need your services again, we likely will, so if interested in further work, you are, look for us in the spaceport, you should." She bows her head lightly, and follows her colleagues into one of the Heliarch-only sections of the ring.`
+	on fail
+		"assisting heliarchy" --
 
 mission "Heliarch Investigation 2"
 	name "Heliarch Investigation"
@@ -49,6 +55,7 @@ mission "Heliarch Investigation 2"
 	to offer
 		has "Heliarch Investigation 1: done"
 		not "Lunarium: Questions: done"
+		not "assisting lunarium"
 	source "Ring of Friendship"
 	destination "Ring of Friendship"
 	to complete
@@ -85,7 +92,10 @@ mission "Heliarch Investigation 2"
 			`	Some of the others brief you on the worlds where suspicious activity has been reported: Shifting Sand, in Saryd space, Into White, Fourth Shadow and Remote Blue, in Kimek space, and Mebla's Portion and Stronghold of Flugbu, in Arach space.`
 			`	They wish the four of you good luck, and have you escorted back to the spaceport. The Heliarch trio arrives at your ship a few minutes later, out of uniform and with heavy luggage. You show the <bunks> 'tourists' to their bunks, and head to your cockpit to decide which of the six worlds you'll head to first.`
 				accept
+	on accept
+		"assisting heliarchy" ++
 	on complete
+		"assisting heliarchy" --
 		"assisted heliarch" ++
 		log "Assisted the Heliarch in investigating several worlds around Coalition space, bringing their agents to each world to look for any signs of criminal activity."
 		payment 900000
@@ -111,6 +121,8 @@ mission "Heliarch Investigation 2"
 			label evidence3
 			`	The agents then get closer to her, and Kirrie whispers something to the consul, handing her three more reports. Iekie turns to you once more, saying, "Enviable, your prowess at investigation is, <last>. Outstanding work, Captain."`
 				goto finalthanks
+	on fail
+		"assisting heliarchy" --
 
 mission "Heliarch Investigation 2 - Bonus 1"
 	invisible
@@ -544,8 +556,9 @@ mission "Heliarch Recon 1"
 		has "visited planet: Alta Hai"
 		has "visited planet: Kuwaru Efreti"
 		has "First Contact: Hai: offered"
-		has "Coalition: Contributor: done"
+		has "license: Coalition"
 		not "Lunarium: Questions: done"
+		not "assisting lunarium"
 	on offer
 		require "Jump Drive"
 		conversation
@@ -574,9 +587,12 @@ mission "Heliarch Recon 1"
 			`	He points to some of the worlds, and you list the places you need to land: <stopovers>.`
 			`	They call for some engineers to come work on your ship's sensors, the whole thing taking just a few minutes. When they're done, the Heliarch agents thank you for your cooperation, and tell you to head for the <destination> when you've collected all the data.`
 				accept
+	on accept
+		"assisting heliarchy" ++
 	to fail
 		"reputation: Quarg" < 0
 	on complete
+		"assisting heliarchy" --
 		event "heliarch recon break" 10 21
 		"coalition jobs" ++
 		payment 165000
@@ -586,6 +602,8 @@ mission "Heliarch Recon 1"
 			`	You nod, and the Kimek hits your control panel lightly with one of his legs. "No data on the rings, the sensors collected! Gone wrong, something must have."`
 			`	They have engineers return your sensors to normal, while you explain how your ship behaved while landing on them. They speak among themselves for a while, then the Arach says, "Too straightforward an approach, we might have taken. Captain <last>, contact you again soon, we will."`
 			`	They hand you <payment>, and leave to one of the Heliarch sections of the ring.`
+	on fail
+		"assisting heliarchy" --
 
 mission "Heliarch Recon Alta Hai"
 	invisible
@@ -659,6 +677,7 @@ mission "Heliarch Recon 2-A"
 	to offer
 		has "event: heliarch recon break"
 		not "Lunarium: Questions: done"
+		not "assisting lunarium"
 	on offer
 		conversation
 			`When you land, you're contacted by the Heliarch agents who had you land on some Quarg worlds and rings to collect data. "Captain <last>, a new task for you, we have," the Kimek says.`
@@ -674,8 +693,13 @@ mission "Heliarch Recon 2-A"
 					decline
 			`	They thank you for your willingness to help, and tell you they will be waiting on the <destination>.`
 				accept
+	on accept
+		"assisting heliarchy" ++
 	on complete
+		"assisting heliarchy" --
 		require "Outfit Scanner"
+	on fail
+		"assisting heliarchy" --
 
 mission "Heliarch Recon 2-B"
 	name "Silent Scan"
@@ -686,6 +710,7 @@ mission "Heliarch Recon 2-B"
 	to offer
 		has "Heliarch Recon 2-A: done"
 		not "Lunarium: Questions: done"
+		not "assisting lunarium"
 	on offer
 		conversation
 			`The Heliarch agents who spoke to you are ready with a team of engineers once you land. They remove the outfit scanner from your ship and take it to a restricted area. After about an hour, they come back, and while you can't see any visible changes to the outfit, they assure you it is better suited for scanning Quarg ships now.`
@@ -700,13 +725,18 @@ mission "Heliarch Recon 2-B"
 			variant
 				"Quarg Skylark"
 				"Quarg Wardragon"
+	on accept
+		"assisting heliarchy" ++
 	on complete
+		"assisting heliarchy" --
 		"coalition jobs" ++
 		payment 200000
 		conversation
 			`Once again the engineers remove your outfit scanner, take a copy of the scan logs, and hand it to the Heliarch agents, who give you <payment>. "Grateful to you, we are, Captain <last>," the Saryd says. "Remember your assistance, the consul will."`
 			`	When the engineers return, they put your outfit scanner back in place. The Heliarch agents say their goodbyes, reassuring you that the Quarg shouldn't attack you for this. "If interested in doing some investigation of your own, you wish, maybe land on their rings again, you could," the Kimek suggests. "Maybe find out something of interest for us, you will."`
 			`	He wishes you safe travels and leaves with his colleagues.`
+	on fail
+		"assisting heliarchy" --
 
 mission "Quarg Interrogation"
 	invisible
@@ -771,6 +801,7 @@ mission "Heliarch Recon 3-A"
 		has "Rim Archaeology 5B: active"
 		has "event: rim archaeology results"
 		not "Lunarium: Questions: done"
+		not "assisting lunarium"
 		"coalition jobs" >= 65
 	on offer
 		conversation
@@ -821,8 +852,13 @@ mission "Heliarch Recon 3-A"
 			`	"Lose your rank, you could, if to disobey such an order you were. For the best it is that continue aiding us and the consul, you do," the Kimek continues.`
 			`	"Continue, you will. Inform the consul of that we shall." The Arach says, bringing out a device and seemingly confirming you'll be heading to <destination>. Without giving you much window to protest, the three thank you for your compliance and board a Heliarch ship.`
 				accept
+	on accept
+		"assisting heliarchy" ++
 	on complete
+		"assisting heliarchy" --
 		fail "Rim Archaeology 5B"
+	on fail
+		"assisting heliarchy" --
 
 mission "Heliarch Recon 3-B"
 	name "Not So Silent Scan"
@@ -836,6 +872,7 @@ mission "Heliarch Recon 3-B"
 		has "Heliarch Recon 3-A: done"
 		not "Lunarium: Questions: done"
 		not "Heliarch License: done"
+		not "assisting lunarium"
 	on offer
 		conversation
 			`The Heliarch agents and engineers are waiting for you when you land, immediately getting to work on installing the Scanning Module in your ship.`
@@ -851,14 +888,16 @@ mission "Heliarch Recon 3-B"
 			`	You're warned not to disable or destroy the Wardragon should it attack you, as that would no doubt permanently damage your standing with the Quarg.`
 			`	When the engineers are done, the agents wish you good luck, and you head back inside your ship.`
 				accept
-	on accept
-		outfit "Scanning Module" 1
 	npc save "scan outfits"
 		government "Quarg"
 		personality heroic staying uninterested
 		system "Zubeneschamali"
 		ship "Quarg Wardragon" "Gloref Esa Kurayi"
+	on accept
+		"assisting heliarchy" ++
+		outfit "Scanning Module" 1
 	on complete
+		"assisting heliarchy" --
 		"coalition jobs" ++
 		"assisted heliarch" ++
 		log "Scanned the Quarg Wardragon flying around the Zubeneschamali system, and delivered the scan logs to the Heliarchs."
@@ -871,6 +910,7 @@ mission "Heliarch Recon 3-B"
 			`	"Much more detailed, these scans are. Certain, I am, that pleased with the results, Consul Aulori will be," the Kimek tells you. "Assisted us greatly you have, Captain."`
 			`	They pass along a message from the consul, who thanks you for all your efforts, and asks that you seek out his agents on <planet>, should you acquire any significant information on Quarg ships or ringworlds. The Heliarchs say their goodbyes and head on their way.`
 	on fail
+		"assisting heliarchy" --
 		"reputation: Heliarch" = -1000
 		"reputation: Coalition" = -1000
 
@@ -884,6 +924,7 @@ mission "Heliarch Recon 3-C"
 	to offer
 		has "Heliarch Recon 3-A: done"
 		has "Heliarch License: done"
+		not "assisting lunarium"
 	on offer
 		require "Scanning Module" 1
 		conversation
@@ -904,7 +945,10 @@ mission "Heliarch Recon 3-C"
 		personality heroic staying uninterested
 		system "Zubeneschamali"
 		ship "Quarg Wardragon" "Gloref Esa Kurayi"
+	on accept
+		"assisting heliarchy" ++
 	on complete
+		"assisting heliarchy" --
 		"coalition jobs" ++
 		"assisted heliarch" ++
 		log "Scanned the Quarg Wardragon flying around the Zubeneschamali system, and delivered the scan logs to the Heliarchs."
@@ -915,6 +959,8 @@ mission "Heliarch Recon 3-C"
 			`	"Odd, it is, that attack the Captain, the Wardragon did not..." the Arach thinks out loud, looking at the scan data. "A fortunate thing, no doubt, but very odd of them."`
 			`	"Much more detailed, these scans are. Certain, I am, that pleased with the results, Consul Aulori will be," the Kimek tells you. "Assisted us greatly you have, Captain."`
 			`	They pass along a message from the consul, who thanks you for all your efforts, and asks that you seek out his agents on <planet> should you acquire any significant information on the Quarg ships or ringworlds. The Heliarchs say their goodbyes and head on their way.`
+	on fail
+		"assisting heliarchy" --
 
 mission "Keep Zug Wardragon"
 	landing
@@ -945,6 +991,7 @@ mission "Heliarch Expedition 1"
 		or
 			has "Heliarch Recon 3-B: done"
 			has "Heliarch Recon 3-C: done"
+		not "assisting lunarium"
 	on offer
 		conversation
 			`As you land on the <origin>, you remember that the Heliarchs have asked you to share with them any information you get on Quarg ships and ringworlds. Would you like to tell them about the destroyed ring you saw on the other side of the wormhole in Deneb?`
@@ -985,11 +1032,14 @@ mission "Heliarch Expedition 1"
 			`	It all grows quiet for a while, and then the door opens again. Some of the other Heliarchs leave in a haste, and you're asked to head inside again. Consul Aulori is standing up still, giving you a nod as you come in.`
 			`	"Adjusted, your ship's sensors will be. Better suited, they will become, for detailed tridimensional projections," he says. He has a pair of Heliarch guards bring you back to your ship, where some engineers go inside your ship and spend some time tinkering with it. After they're done, one of the Heliarchs that was in the room approaches you, telling you they need you to land on the planet you described, <stopovers>, and to travel to <waypoints> to scan the ringworld. He wishes you luck, then hurries back to the restricted areas.`
 				accept
+	on accept
+		"assisting heliarchy" ++
 	on stopover
 		dialog `You fly around the mysterious world for a while, until your sensors beep in an odd way, in what you guess is the signal that the Heliarch's modifications are done doing their read on the planet.`
 	on enter "World's End"
 		dialog `You fire up your ship's sensors, letting it collect the data the Heliarch want for hours on end. Eventually you hear a series of beeps in a dull rhythm, and look to see that their performance is back to normal.`
 	on complete
+		"assisting heliarchy" --
 		event "heliarch expedition break 1" 22 34
 		payment 3000000
 		conversation
@@ -1006,6 +1056,8 @@ mission "Heliarch Expedition 1"
 			`	"Dangerous?" Aulori scoffs, interrupting the Heliarch once again. "Plagued by the council's cowardice, your mind is. Make it back, Arbiter Sedlitaris did. Alive and well she is, and helped by this very human in her expedition, she was," he says as he nods your way. "Living proof she is that unfounded, the council's archaic paranoia is. Now, find someone willing quickly, you must, before learn of this and meddle with our work again, they do."`
 			label end
 			`	The Heliarch leaves the room, and Aulori hands you a chip worth <payment>. He has you escorted out of the room and back to your ship, promising to have more work for you soon.`
+	on fail
+		"assisting heliarchy" --
 
 event "heliarch expedition break 1"
 
@@ -1018,11 +1070,18 @@ mission "Heliarch Expedition 2"
 	destination "Ring of Wisdom"
 	to offer
 		has "event: heliarch expedition break 1"
+		not "assisting lunarium"
 	on offer
 		conversation
 			`A Heliarch delegation contacts you as you land on <origin>. "Greetings, Captain. Sent by Consul Aulori, we were," one of them says. "Requested, your presence is, at the <destination>."`
 			`	They tell you they weren't informed as to what the consul needs of you, but ask that you head to the <planet> when possible.`
 				accept
+	on accept
+		"assisting heliarchy" ++
+	on complete
+		"assisting heliarchy" --
+	on fail
+		"assisting heliarchy" --
 
 mission "Heliarch Expedition 3"
 	name "Extraterritorial Venture"
@@ -1032,6 +1091,7 @@ mission "Heliarch Expedition 3"
 	destination "Ablub's Invention"
 	to offer
 		has "Heliarch Expedition 2: done"
+		not "assisting lunarium"
 	on offer
 		conversation
 			`When you arrive, you find the landing bays empty of ships save for one Heliarch Punisher close to your own ship. What must be hundreds of armed Heliarchs patrol the area. Consul Aulori meets you as you're coming down the ramp. "Carefully analyzing your findings, we have been, Captain. Much insight, they have brought us," he says. "Only so much can be gained from second hand observation, unfortunately. For that reason, escort one of our own ships there, you must."`
@@ -1066,7 +1126,12 @@ mission "Heliarch Expedition 3"
 		personality escort heroic opportunistic
 		government "Heliarch"
 		ship "Heliarch Punisher (Fuel)" "Eldest Inspector"
+	on accept
+		"assisting heliarchy" ++
+	on complete
+		"assisting heliarchy" --
 	on fail
+		"assisting heliarchy" --
 		"reputation: Heliarch" = -1000
 		"reputation: Coalition" = -1000
 
@@ -1078,6 +1143,7 @@ mission "Heliarch Expedition 4"
 	destination "Ruin"
 	to offer
 		has "Heliarch Expedition 3: done"
+		not "assisting lunarium"
 	on offer
 		conversation
 			`The Punisher's captain has some equipment loaded onto the ship, and the mechanics do one last maintenance check on the ship before it leaves Coalition space. The captain tells you they will follow your lead when you launch. Every other minute, he looks nervously at the sky.`
@@ -1086,9 +1152,12 @@ mission "Heliarch Expedition 4"
 		personality escort heroic opportunistic
 		government "Heliarch"
 		ship "Heliarch Punisher (Fuel)" "Eldest Inspector"
+	on accept
+		"assisting heliarchy" ++
 	on visit
 		dialog `You've reached <planet> but left the Heliarch ship behind. Best depart and wait for them to arrive.`
 	on complete
+		"assisting heliarchy" --
 		event "heliarch expedition break 2" 275 496
 		conversation
 			`The Punisher's captain had you follow his ship all over the planet after they refueled in <planet>'s odd facilities. Apparently they want an isolated place to set up their camp here, somewhere they wouldn't be easily spotted.`
@@ -1115,6 +1184,7 @@ mission "Heliarch Expedition 4"
 			label end
 			`	He thanks you again for your help, and with a salute bids you farewell, heading to help the Punisher's crew establish their base of operations inside the caverns. You get back in your ship and fly back to the empty docks of <planet>. Now it's a matter of waiting for the Heliarch teams here to do their job and return to the Coalition.`
 	on fail
+		"assisting heliarchy" --
 		"reputation: Heliarch" = -1000
 		"reputation: Coalition" = -1000
 
@@ -1129,11 +1199,15 @@ mission "Heliarch Expedition 5"
 	destination "Ring of Wisdom"
 	to offer
 		has "event: heliarch expedition break 2"
+		not "assisting lunarium"
 	on offer
 		conversation
 			`When you've touched down on the landing pads, you see you've received a message from the Heliarchs you brought to Ruin, the mysterious world on the other side of the wormhole the Pug left in Deneb. "Captain <last>, finished what research we could do on the broken ring, we have. About to jump back into the Coalition, we are. Imagine I do that like to speak with you after receiving our report, Consul Aulori will, so head you should to the <planet> as soon as possible."`
 				accept
 	on complete
+		"assisting heliarchy" ++
+	on complete
+		"assisting heliarchy" --
 		"assisted heliarch" ++
 		payment 20000000
 		conversation
@@ -1184,6 +1258,8 @@ mission "Heliarch Expedition 5"
 				`	"They didn't seem too happy with you."`
 			`	He grunts. "Cowards, the lot of them. True, it is, that something of a gamble I took, risking one of our jump drives beyond an unknown wormhole. But, necessary it was. Necessary for our understanding. For our survival."`
 				goto beckon
+	on fail
+		"assisting heliarchy" --
 
 
 
@@ -1195,8 +1271,10 @@ mission "Heliarch Containment 1"
 	passengers 33
 	cargo "military supplies" 25
 	to offer
-		has "Coalition: Contributor: done"
+		has "license: Coalition"
 		has "main plot completed"
+		not "Lunarium: Questions: done"
+		not "assisting lunarium"
 		"coalition jobs" >= 60
 		random > 25
 	source
@@ -1232,11 +1310,16 @@ mission "Heliarch Containment 1"
 			`	"A shame that is," the Arach backs away, disapprovingly. "Find others to help, we will."`
 			`	The two leave, moving to nearby merchant captains to try and recruit their assistance.`
 				decline
+	on accept
+		"assisting heliarchy" ++
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
+		"assisting heliarchy" --
 		payment 420000
 		dialog `You're told to open your hatch as soon as you land, and when you do, the Heliarch agents storm out of your ship while a separate group that was waiting for you unloads the cargo. A few seconds later you see that <payment> have been added to your account.`
+	on fail
+		"assisting heliarchy" --
 
 mission "Heliarch Containment 2"
 	name "Pick Up Injured Soldiers"
@@ -1245,6 +1328,8 @@ mission "Heliarch Containment 2"
 	passengers 21
 	to offer
 		has "Heliarch Containment 1: done"
+		not "Lunarium: Questions: done"
+		not "assisting lunarium"
 		random > 35
 	source
 		near "Bloptab" 1 3
@@ -1282,11 +1367,14 @@ mission "Heliarch Containment 2"
 			`	"Disgraceful." The Saryd shakes her head. "If injured were you, would you not from your fellow Heliarchs help expect?"`
 			`	The group stomps away, trying to recruit more civilian captains to help.`
 				decline
+	on accept
+		"assisting heliarchy" ++
 	on stopover
 		dialog `You notice dozens of Heliarch warships rapidly surveying the planet. When you land, you see more of the ships that came to help pick up the injured agents. Hundreds of bandaged Saryds, Kimek, and Arachi are being brought to the ships that keep arriving and departing. You pick up your passengers and prepare to head to the medical center on <destination>.`
 	on visit
 		dialog phrase "generic missing stopover or passengers"
 	on complete
+		"assisting heliarchy" --
 		payment 360000
 		conversation
 			`You help the medical workers get the agents on transport vehicles, and one of the Arach Heliarchs supervising the operation hands you <payment>.`
@@ -1302,6 +1390,8 @@ mission "Heliarch Containment 2"
 			label end
 			`	She bids you farewell and goes back to making sure the injured agents find their way to hospitals.`
 				accept
+	on fail
+		"assisting heliarchy" --
 
 mission "Heliarch Containment 3"
 	name "Informational Medicine"
@@ -1310,6 +1400,7 @@ mission "Heliarch Containment 3"
 	to offer
 		has "Heliarch Containment 2: done"
 		not "Lunarium: Questions: done"
+		not "assisting lunarium"
 	source "Ring of Power"
 	stopover "Secret Sky"
 	on offer
@@ -1342,13 +1433,18 @@ mission "Heliarch Containment 3"
 			`	"A union of technologies, it is. Of the scanning module, the incredible surveillance capabilities are. Of the repair drones, the versatile mobility and durable shells are." He explains to you that you're to head to <planet stopovers> to pick up <cargo> produced on the planet, but as you're coming in for a landing, you are to jettison the crates with the drones so that they may act as spybots. "Inconspicuous, you must be. Appear to be a simple, regular job, this must. Back to <origin>, you must return, after completed this task, you have. Readily available then, your payment will be. Suffice, <payment> will, surely."`
 			`	He wishes you good luck, and the trio from earlier escorts you back to your ship.`
 				accept
+	on accept
+		"assisting heliarchy" ++
 	on stopover
 		dialog `As instructed, you release the drones as you come in for a landing. Judging by the normal conditions of the spaceport, no one seems to have noticed anything as you pick up the cargo.`
 	on complete
+		"assisting heliarchy" --
 		payment 330000
 		conversation
 			`Landing back on <planet>, you're met by a squad of armed Heliarchs, who are escorting Consul Plortup. He hands you your payment of <payment> with an approving nod.`
 			`	"Aided us once more, you have, Captain. To further work with you, I look forward. Search for one of my subordinates in the local spaceport anytime, you should. More work for you soon, I might have." He performs a brief salute, and leaves for some other section of the ring.`
+	on fail
+		"assisting heliarchy" --
 
 mission "Heliarch Containment 4-A"
 	name "Undercover Transports"
@@ -1358,6 +1454,7 @@ mission "Heliarch Containment 4-A"
 		has "Heliarch Containment 2: done"
 		has "Heliarch Containment 3: done"
 		not "Lunarium: Questions: done"
+		not "assisting lunarium"
 	source "Ring of Power"
 	destination "Remote Blue"
 	on offer
@@ -1384,8 +1481,14 @@ mission "Heliarch Containment 4-A"
 		ship "Kimek Spire" "Kiry Paichee"
 		ship "Kimek Spire" "Achipa Kyrri"
 		ship "Kimek Spire" "Pakee Pikary"
+	on accept
+		"assisting heliarchy" ++
 	on visit
 		dialog `You've reached <planet>, but the Heliarch transports haven't arrived yet! Best depart and wait for them to get here.`
+	on complete
+		"assisting heliarchy" --
+	on fail
+		"assisting heliarchy" --
 
 mission "Heliarch Containment 4-B"
 	name "Meet with Plortub"
@@ -1394,6 +1497,7 @@ mission "Heliarch Containment 4-B"
 	to offer
 		has "Heliarch Containment 4-A: done"
 		not "Lunarium: Questions: done"
+		not "assisting lunarium"
 	source "Remote Blue"
 	destination "Station Cian"
 	on offer
@@ -1401,11 +1505,16 @@ mission "Heliarch Containment 4-B"
 			`Hundreds of Heliarch agents pour out of the three Kimek transports, rushing in groups to separate parts of the city. They march in unison, weapons in hand. From the reactions of the locals, it's clear they were neither expecting such a thing, nor are they happy with the agents going about the city in that manner.`
 			`	When the last of the Heliarchs leave the transports, one of the Kimek captains inform you that you should now head to <destination> to meet with Consul Plortub collect your payment of <payment>, and to "avoid getting caught in any potential retaliation."`
 				accept
+	on accept
+		"assisting heliarchy" ++
 	on complete
+		"assisting heliarchy" --
 		payment 495000
 		conversation
 			`You land in the station to find that <payment> have been transferred to you. Along with the credits comes a transmission from Plortup. "For my absence, forgive me you must, Captain. Hit Fourth Shadow again, criminals have, so organizing some ships from within the Ring of Power, I am."`
 			`	He goes on to explain that the attack was quite a large one, and much of the fleet stationed here was sent there to help contain it. What remained is helping with the <origin> operation, so the station is fairly devoid of a military presence at the moment. "A troubled week, this will be, but bother you with that, I will not. Very useful to us your support has been, Captain."`
+	on fail
+		"assisting heliarchy" --
 
 mission "Heliarch Containment 5"
 	name "Stop The Fleeing Ships"
@@ -1414,6 +1523,7 @@ mission "Heliarch Containment 5"
 	to offer
 		has "Heliarch Containment 4-B: done"
 		not "Lunarium: Questions: done"
+		not "assisting lunarium"
 	source "Station Cian"
 	on offer
 		"reputation: Lunarium" = -1000
@@ -1450,7 +1560,10 @@ mission "Heliarch Containment 5"
 		conversation
 			`This ship is equipped with Torpedo Launchers. Somehow, the criminals have acquired human outfits. You're about to enter the ship and look for any hostages that might have been there, but you rush back when you notice its self destruction sequence start.`
 				launch
+	on accept
+		"assisting heliarchy" ++
 	on complete
+		"assisting heliarchy" --
 		"reputation: Lunarium" = 1
 		event "lunarium detained rb"
 		"assisted heliarch" ++
@@ -1460,6 +1573,8 @@ mission "Heliarch Containment 5"
 			`	As soon as the commlinks are back, the Heliarchs contact Consul Plortup and inform him of what happened. Shortly after, <payment> are added to your account, and you're put on a call with the consul.`
 			`	"Humiliating, it would be, had under such circumstances, the criminal ships escaped. Done well, you have, Captain." He discusses with you the outfits that the ships were using and is alarmed to learn that they had not only Heliarch equipment, but had also acquired human weapons. He lets out something you can't quite put, resembling a gasp or a roar; you only know that your ears don't want to hear it again.`
 			`	"Bring this report to the other consuls, at once I will. Further tasks, of you we may ask, but for now, done your work is, Captain." He ends the transmission after a short salute. Heliarch ships rush back in as the local garrison returns from Remote Blue. Many of the ship captains come to personally congratulate you for stopping the fleeing ships.`
+	on fail
+		"assisting heliarchy" --
 
 event "lunarium fleeing rb"
 	system "12 Autumn Above"
@@ -1479,8 +1594,9 @@ mission "Heliarch Drills 1"
 		near "Belug" 6 100
 	destination "Belug's Plunge"
 	to offer
-		has "Coalition: Contributor: done"
+		has "license: Coalition"
 		not "Lunarium: Questions: done"
+		not "assisting lunarium"
 		random < 8
 		"combat rating" >= 8104
 	on offer
@@ -1523,13 +1639,18 @@ mission "Heliarch Drills 1"
 				"Heliarch Pursuer" 4
 				"Heliarch Rover" 4
 				"Heliarch Stalker" 4
+	on accept
+		"assisting heliarchy" ++
 	on visit
 		dialog `You have reached <planet>, but you left some of the Heliarch escorts behind. Better depart and wait for them to get here.`
 	on complete
+		"assisting heliarchy" --
 		"coalition jobs" ++
 		payment 150000
 		conversation
 			`Lotuora pays you <payment> when you land. "An idea for the next drill, I've had," she says. "Need to arrange some more ships, I will, so some hours, I will need. Meet me in the spaceport when I'm done, you should."`
+	on fail
+		"assisting heliarchy" --
 
 mission "Heliarch Drills 2-A"
 	name "Pursuit Drill"
@@ -1540,6 +1661,7 @@ mission "Heliarch Drills 2-A"
 	to offer
 		has "Heliarch Drills 1: done"
 		not "Lunarium: Questions: done"
+		not "assisting lunarium"
 	on offer
 		conversation
 			`When you find Magister Lotuora in the spaceport, she shows you to a map of the Coalition. Pointing to two systems, she indicates one in Kimek and one in Saryd space. "Made many calls, I have, and to assemble many ships for this drill, I've managed. How fit for their job, our Hunters are, we shall see."`
@@ -1605,8 +1727,14 @@ mission "Heliarch Drills 2-A"
 			variant
 				"Heliarch Hunter"
 		system "Good Omen"
+	on accept
+		"assisting heliarchy" ++
 	on visit
 		dialog `After you land, one of the Heliarch Hunters who was pursuing you lands beside you. You'll need to shake it off before landing here to succeed.`
+	on complete
+		"assisting heliarchy" --
+	on fail
+		"assisting heliarchy" --
 
 mission "Heliarch Drills 2-B"
 	landing
@@ -1617,6 +1745,7 @@ mission "Heliarch Drills 2-B"
 	to offer
 		has "Heliarch Drills 2-A: done"
 		not "Lunarium: Questions: done"
+		not "assisting lunarium"
 	on offer
 		conversation
 			`You land without any of the Hunters tailing you, and a Heliarch on the ground speaks into a communicator while looking at your ship. Minutes later, Magister Lotuora contacts you. "Well done, Captain! Onto the next target, <planet>, you may move." She wishes you good luck again and signs off.`
@@ -1676,8 +1805,14 @@ mission "Heliarch Drills 2-B"
 			variant
 				"Heliarch Hunter"
 		system "12 Autumn Above"
+	on accept
+		"assisting heliarchy" ++
 	on visit
 		dialog `After you land, one of the Heliarch Hunters who was pursuing you lands beside you. You'll need to shake it off before landing here to succeed.`
+	on complete
+		"assisting heliarchy" --
+	on fail
+		"assisting heliarchy" --
 
 mission "Heliarch Drills 2-C"
 	landing
@@ -1688,6 +1823,7 @@ mission "Heliarch Drills 2-C"
 	to offer
 		has "Heliarch Drills 2-B: done"
 		not "Lunarium: Questions: done"
+		not "assisting lunarium"
 	on offer
 		conversation
 			`Once again, you managed to avoid the Hunters while landing on <origin>, and a local Heliarch agent informs Magister Lotuora of your success. "Excellent work, Captain <last>," she says when she contacts you. "Now, talked with some contacts I have, and one more drill for you to help with, I have arranged. Return to <planet> at your earliest convenience, you may." She signs off, but calls back seconds after. "Ah, forgive me Captain. Forgotten something, I had. Heard of the recent drills, some colleagues did, and readied their own Hunters to participate, they now have. Avoid them on your return to <planet>, as per usual, you should."`
@@ -1820,13 +1956,18 @@ mission "Heliarch Drills 2-C"
 			variant
 				"Heliarch Hunter"
 		system "Debrugt"
+	on accept
+		"assisting heliarchy" ++
 	on visit
 		dialog `After you land, one of the Heliarch Hunters who was pursuing you lands beside you. You'll need to shake it off before landing here to succeed.`
 	on complete
+		"assisting heliarchy" --
 		"coalition jobs" ++
 		payment 470000
 		conversation
 			`Magister Lotuora meets you when you land, handing you your payment of <payment>, and congratulating you for managing to evade the pursuing ships. "Frustrated many of the Hunter pilots, I heard you have," she says with a laugh. "Good training for them, I hope this was. Finishing up the arrangements for one more drill, I am. When ready, you are, meet me in the spaceport, you must."`
+	on fail
+		"assisting heliarchy" --
 
 mission "Heliarch Drills 3"
 	name "Combat Drill"
@@ -1836,6 +1977,7 @@ mission "Heliarch Drills 3"
 	to offer
 		has "Heliarch Drills 2-C: done"
 		not "Lunarium: Questions: done"
+		not "assisting lunarium"
 	on offer
 		conversation
 			`Lotuora is speaking with a Kimek Heliarch captain at the entrance to the spaceport. "Ah, there the Captain is," she tells the Kimek. "Captain <last>, your sparring partner, this is," she says, gesturing to the Kimek, who salutes you with a short bow of her head. "Excited to test her ship against an outsider, she is."`
@@ -1850,16 +1992,21 @@ mission "Heliarch Drills 3"
 			names "heliarch"
 			variant
 				"Heliarch Punisher (Scrappy)"
+	on accept
+		"assisting heliarchy" ++
 	on fail
 		"reputation: Heliarch" = -1000
 		"reputation: Coalition" = -1000
 	on complete
+		"assisting heliarchy" --
 		"coalition jobs" ++
 		"assisted heliarch" ++
 		payment 800000
 		conversation
 			`Magister Lotuora greets you when you return. "Prevailed over one of our Punishers, you have! Perhaps the real threat, you are, not the Quarg," she says, looking at you for a few seconds as if expecting you to laugh. She hands you <payment>, and continues, "Sent a recording of the fight, I was. Learn much from it, I hope we can."`
 			`	She thanks you for helping her with the drills, saying it will be a great help in training the cadets at the local academy. She concludes by wishing you safe travels, and then heads to a Heliarch building.`
+	on fail
+		"assisting heliarchy" --
 
 
 
@@ -1881,6 +2028,7 @@ mission "Heliarch License"
 				"coalition jobs" >= 120
 				"assisted heliarch" == 3
 		not "Lunarium: Questions: done"
+		not "assisting lunarium"
 	to fail
 		has "Lunarium: Questions: done"
 	on offer
