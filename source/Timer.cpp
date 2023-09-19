@@ -264,7 +264,7 @@ void Timer::Step(PlayerInfo &player, UI *ui)
 		if(proximityCenter)
 		{
 			for(const StellarObject &proximityObject : system->Objects())
-				if(proximityObject.HasValidPlanet()) 
+				if(proximityObject.HasValidPlanet())
 				{
 					double dist = (player.Flagship()->Position() - proximityObject.Position()).Length();
 					if((closeTo && dist <= proximity) || (!closeTo && dist >= proximity))
