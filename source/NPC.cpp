@@ -199,7 +199,7 @@ void NPC::Load(const DataNode &node)
 				{"board", Trigger::BOARD},
 				{"capture", Trigger::CAPTURE},
 				{"destroy", Trigger::DESTROY},
-				{"kill", Trigger::KILL}
+				{"kill", Trigger::KILL},
 				{"encounter", Trigger::ENCOUNTER},
 			};
 			auto it = trigger.find(child.Token(1));

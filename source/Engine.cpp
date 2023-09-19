@@ -1405,7 +1405,7 @@ void Engine::EnterSystem()
 	if(flagship->Cloaking() == 0)
 		for(const shared_ptr<Ship> &ship : ships)
 			if(ship->GetSystem() == system && ship->Cloaking() == 0)
-				eventQueue.emplace_back(flagship, ship, ShipEvent::ENCOUNTER);
+				eventQueue.emplace_back(player.Flagship()->shared_from_this(), ship->shared_from_this(), ShipEvent::ENCOUNTER);
 }
 
 
@@ -1481,14 +1481,14 @@ void Engine::CalculateStep()
 		bool wasCloaked = it->Cloaking() != 0;
 		MoveShip(it);
 		// If we decloaked, and we're in the same system as the player, they Encounter us
-		if(wasCloaked && it->Cloaking() == 0 && flagship->GetSystem() == it->GetSystem() && flagship->Cloaking() == 0 && it != flagship)
-				eventQueue.emplace_back(flagship, it, ShipEvent::ENCOUNTER);
+		if(wasCloaked && it->Cloaking() == 0 && flagship->GetSystem() == it->GetSystem() && flagship->Cloaking() == 0 && it.get() != flagship)
+				eventQueue.emplace_back(player.Flagship()->shared_from_this(), it, ShipEvent::ENCOUNTER);
 	}
 	// If we *are* the player, and we decloaked, we encounter everyone
 	if (flagshipWasCloaked && flagship->Cloaking() == 0)
 		for(const shared_ptr<Ship> &ship : ships)
 			if(ship->GetSystem() == playerSystem && ship->Cloaking() == 0)
-				eventQueue.emplace_back(flagship, ship, ShipEvent::ENCOUNTER);
+				eventQueue.emplace_back(player.Flagship()->shared_from_this(), ship, ShipEvent::ENCOUNTER);
 	// If the flagship just began jumping, play the appropriate sound.
 	if(!wasHyperspacing && flagship && flagship->IsEnteringHyperspace())
 	{
@@ -1755,7 +1755,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 					Audio::Play(sound.first, position);
 
 			if(flagship->Cloaking() == 0 && ship->Cloaking() == 0)
-				eventQueue.emplace_back(flagship, ship, ShipEvent::ENCOUNTER);
+				eventQueue.emplace_back(player.Flagship()->shared_from_this(), ship->shared_from_this(), ShipEvent::ENCOUNTER);
 		}
 	}
 
