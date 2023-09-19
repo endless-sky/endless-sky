@@ -1214,7 +1214,7 @@ mission "Lunarium: Evacuation 5"
 	on fail
 		"assisting lunarium" --
 		conversation
-			`You're contacted by Elirom upon landing.`
+			`You are contacted by Elirom upon landing.`
 			branch lunarium
 				has "Lunarium: Questions: done"
 			`	"Informed I was that manage to make it in time for the transport, you did not, Captain," he speaks in a much sterner tone than what you'd grown accustomed to. "Truly important for us, this job was. Helped us much, you have, but afraid I am that work together any longer, we will not. Goodbye."`
