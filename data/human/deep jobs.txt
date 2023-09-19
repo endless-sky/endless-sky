@@ -1094,7 +1094,7 @@ mission "Lionheart Shipment [0]"
 mission "Lionheart Shipment [1]"
 	name "Shipment to <planet>"
 	description "Deliver <cargo> to <destination>, the home of Lionheart Industries, the main shipyard of the Deep that is known for its advanced and experimental designs. Payment is <payment>."
-	cargo "lightweight alloys" 5 2 .1
+	cargo "ship alloys" 5 2 .1
 	job
 	repeat
 	to offer
@@ -1112,7 +1112,7 @@ mission "Lionheart Shipment [1]"
 mission "Lionheart Shipment [2]"
 	name "Shipment to <planet>"
 	description "Deliver <cargo> to <destination>, the home of Lionheart Industries, the main shipyard of the Deep that is known for its advanced and experimental designs. Payment is <payment>."
-	cargo "ship alloys" 5 2 .1
+	cargo "ship systems" 5 2 .1
 	job
 	repeat
 	to offer

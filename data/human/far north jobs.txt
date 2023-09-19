@@ -86,13 +86,14 @@ mission "Navy resupply [0]"
 	cargo Military 5 2 .1
 	job
 	repeat
+	clearance
 	to offer
 		random < 2
 	source 
 		not government Pirate
 		attributes outfitter factory
 	destination
-		attributes "far north"
+		attributes north military
 		attributes outfitter
 	on visit
 		dialog phrase "generic cargo on visit"

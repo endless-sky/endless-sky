@@ -247,3 +247,21 @@ mission "Tycho Crater Shipyards Shipment [1]"
 	on complete
 		payment 0 160
 		dialog phrase "generic cargo delivery payment"
+
+mission "Tycho Crater Shipyards Shipment [2]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <destination>, the home of Tycho Crater Shipyards, a constituent shipbuilding company of the Republic Navy Yard and the main shipyard of Sol. Payment is <payment>."
+	cargo "ship systems" 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near Sol 2 10
+		attributes factory
+	destination Luna
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
