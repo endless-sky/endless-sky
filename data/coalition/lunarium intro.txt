@@ -482,7 +482,7 @@ mission "House Bebliss 1-A"
 	minor
 	to offer
 		random < 10
-		has "Coalition: Contributor: done"
+		has "license: Coalition"
 		not "Heliarch License: done"
 		not "assisting heliarchy"
 		# This mission is to offer when the player has the Epilogue for whatever character of FW, Navy or Syndicate stays in Deneb.
