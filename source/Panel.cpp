@@ -247,10 +247,10 @@ int Panel::Modifier()
 
 // Display the given help message if it has not yet been shown. Return true
 // if the message was displayed.
-bool Panel::DoHelp(const string &name) const
+bool Panel::DoHelp(const string &name, bool force) const
 {
 	string preference = "help: " + name;
-	if(Preferences::Has(preference))
+	if(!force && Preferences::Has(preference))
 		return false;
 
 	const string &message = GameData::HelpMessage(name);

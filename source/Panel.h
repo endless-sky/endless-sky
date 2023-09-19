@@ -105,7 +105,7 @@ protected:
 	static int Modifier();
 	// Display the given help message if it has not yet been shown. Return true
 	// if the message was displayed.
-	bool DoHelp(const std::string &name) const;
+	bool DoHelp(const std::string &name, bool force = false) const;
 
 
 private:

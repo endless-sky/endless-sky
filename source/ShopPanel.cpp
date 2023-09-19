@@ -300,6 +300,17 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		player.UpdateCargoCapacities();
 		GetUI()->Pop(this);
 	}
+	else if(command.Has(Command::HELP))
+	{
+		if(player.Ships().size() > 1)
+			DoHelp("multiple ships", true);
+		if(isOutfitter)
+		{
+			DoHelp("uninstalling and storage", true);
+			DoHelp("cargo management", true);
+			DoHelp("outfitter", true);
+		}
+	}
 	else if(command.Has(Command::MAP))
 	{
 		if(isOutfitter)

@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "HiringPanel.h"
 
+#include "Command.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
@@ -108,7 +109,9 @@ void HiringPanel::Draw()
 
 bool HiringPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(!player.Flagship())
+	if(command.Has(Command::HELP))
+		DoHelp("hiring", true);
+	else if(!player.Flagship())
 		return false;
 
 	if(key == 'h' || key == SDLK_EQUALS || key == SDLK_KP_PLUS || key == SDLK_PLUS

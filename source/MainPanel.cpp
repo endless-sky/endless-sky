@@ -83,6 +83,8 @@ void MainPanel::Step()
 	}
 	else if(show.Has(Command::HAIL))
 		isActive = !ShowHailPanel();
+	else if(show.Has(Command::HELP))
+		isActive = !ShowHelp(true);
 	show = Command::NONE;
 
 	// If the player just landed, pop up the planet panel. When it closes, it
@@ -95,51 +97,8 @@ void MainPanel::Step()
 	}
 
 	// Display any relevant help/tutorial messages.
-	const Ship *flagship = player.Flagship();
-	if(flagship)
-	{
-		// Check if any help messages should be shown.
-		if(isActive && Preferences::Has("Control ship with mouse"))
-			isActive = !DoHelp("control ship with mouse");
-		if(isActive && flagship->IsTargetable())
-			isActive = !DoHelp("navigation");
-		if(isActive && flagship->IsDestroyed())
-			isActive = !DoHelp("dead");
-		if(isActive && flagship->IsDisabled() && !flagship->IsDestroyed())
-			isActive = !DoHelp("disabled");
-		bool canRefuel = player.GetSystem()->HasFuelFor(*flagship);
-		if(isActive && !flagship->IsHyperspacing() && !flagship->JumpsRemaining() && !canRefuel)
-			isActive = !DoHelp("stranded");
-		shared_ptr<Ship> target = flagship->GetTargetShip();
-		if(isActive && target && target->IsDisabled() && !target->GetGovernment()->IsEnemy())
-			isActive = !DoHelp("friendly disabled");
-		if(isActive && player.Ships().size() > 1)
-			isActive = !DoHelp("multiple ship controls");
-		if(isActive && flagship->IsTargetable() && player.Ships().size() > 1)
-			isActive = !DoHelp("fleet harvest tutorial");
-		if(isActive && flagship->IsTargetable() &&
-				flagship->Attributes().Get("asteroid scan power") &&
-				player.Ships().size() > 1)
-			isActive = !DoHelp("fleet asteroid mining") && !DoHelp("fleet asteroid mining shortcuts");
-		if(isActive && player.DisplayCarrierHelp())
-			isActive = !DoHelp("try out fighters transfer cargo");
-		if(isActive && Preferences::Has("Fighters transfer cargo"))
-			isActive = !DoHelp("fighters transfer cargo");
-		if(isActive && !flagship->IsHyperspacing() && flagship->Position().Length() > 10000.
-				&& player.GetDate() <= player.StartData().GetDate() + 4)
-		{
-			++lostness;
-			int count = 1 + lostness / 3600;
-			if(count > lostCount && count <= 7)
-			{
-				string message = "lost 1";
-				message.back() += lostCount;
-				++lostCount;
-
-				isActive = !DoHelp(message);
-			}
-		}
-	}
+	if(isActive)
+		isActive = !ShowHelp(false);
 
 	engine.Step(isActive);
 
@@ -231,7 +190,7 @@ bool MainPanel::AllowsFastForward() const noexcept
 // Only override the ones you need; the default action is to return false.
 bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(command.Has(Command::MAP | Command::INFO | Command::HAIL))
+	if(command.Has(Command::MAP | Command::INFO | Command::HAIL | Command::HELP))
 		show = command;
 	else if(command.Has(Command::AMMO))
 	{
@@ -495,6 +454,58 @@ bool MainPanel::ShowHailPanel()
 	else
 		Messages::Add("Unable to send hail: no target selected.", Messages::Importance::High);
 
+	return false;
+}
+
+
+
+bool MainPanel::ShowHelp(bool force)
+{
+	const Ship *flagship = player.Flagship();
+	if(flagship)
+	{
+		// Check if any help messages should be shown.
+		if(Preferences::Has("Control ship with mouse"))
+			return DoHelp("control ship with mouse", force);
+		if(flagship->IsTargetable())
+			return DoHelp("navigation", force);
+		if(flagship->IsDestroyed())
+			return DoHelp("dead", force);
+		if(flagship->IsDisabled() && !flagship->IsDestroyed())
+			return DoHelp("disabled", force);
+		bool canRefuel = player.GetSystem()->HasFuelFor(*flagship);
+		if(!flagship->IsHyperspacing() && !flagship->JumpsRemaining() && !canRefuel)
+			return DoHelp("stranded", force);
+		shared_ptr<Ship> target = flagship->GetTargetShip();
+		if(target && target->IsDisabled() && !target->GetGovernment()->IsEnemy())
+			return DoHelp("friendly disabled", force);
+		if(player.Ships().size() > 1)
+			return DoHelp("multiple ship controls", force);
+		if(flagship->IsTargetable() && player.Ships().size() > 1)
+			return DoHelp("fleet harvest tutorial", force);
+		if(flagship->IsTargetable() &&
+				flagship->Attributes().Get("asteroid scan power") &&
+				player.Ships().size() > 1)
+			return DoHelp("fleet asteroid mining", force) && DoHelp("fleet asteroid mining shortcuts", force);
+		if(player.DisplayCarrierHelp())
+			return DoHelp("try out fighters transfer cargo", force);
+		if(Preferences::Has("Fighters transfer cargo"))
+			return DoHelp("fighters transfer cargo", force);
+		if(!flagship->IsHyperspacing() && flagship->Position().Length() > 10000.
+				&& player.GetDate() <= player.StartData().GetDate() + 4)
+		{
+			++lostness;
+			int count = 1 + lostness / 3600;
+			if(count > lostCount && count <= 7)
+			{
+				string message = "lost 1";
+				message.back() += lostCount;
+				++lostCount;
+
+				return DoHelp(message, force);
+			}
+		}
+	}
 	return false;
 }
 

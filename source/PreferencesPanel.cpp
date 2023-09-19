@@ -443,6 +443,7 @@ void PreferencesPanel::DrawControls()
 		Command::MENU,
 		Command::FULLSCREEN,
 		Command::FASTFORWARD,
+		Command::HELP,
 		Command::NONE,
 		Command::DEPLOY,
 		Command::FIGHT,

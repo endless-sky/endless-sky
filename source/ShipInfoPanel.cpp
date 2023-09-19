@@ -140,6 +140,8 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 	bool shift = (mod & KMOD_SHIFT);
 	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && control))
 		GetUI()->Pop(this);
+	else if(command.Has(Command::HELP))
+		DoHelp("ship info", true);
 	else if(!player.Ships().empty() && ((key == 'p' && !shift) || key == SDLK_LEFT || key == SDLK_UP))
 	{
 		if(shipIt == panelState.Ships().begin())
