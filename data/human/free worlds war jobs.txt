@@ -364,7 +364,7 @@ mission "FW Outfitter Resupply [0]"
 	name `Resupply <planet>`
 	description `The outfitter on <planet> is running low on supplies and needs to be restocked immediately. Deliver <cargo> to <destination> by <date>. Payment is <payment>.`
 	deadline 2 1
-	cargo random 5 2 .1
+	cargo "FW Security" 5 2 .1
 	to offer
 		random < 50
 		has "salary: Free Worlds"
@@ -387,7 +387,7 @@ mission "FW Outfitter Resupply [1]"
 	name `Resupply <planet>`
 	description `The outfitter on <planet> is running low on supplies and needs to be restocked immediately. Deliver <cargo> to <destination> by <date>. Payment is <payment>.`
 	deadline 2 1
-	cargo random 5 2 .1
+	cargo "FW Security" 5 2 .1
 	to offer
 		random < 40
 		has "salary: Free Worlds"
@@ -410,7 +410,7 @@ mission "FW Outfitter Resupply [2]"
 	name `Resupply <planet>`
 	description `The outfitter on <planet> is running low on supplies and needs to be restocked immediately. Deliver <cargo> to <destination> by <date>. Payment is <payment>.`
 	deadline 2 1
-	cargo random 5 2 .1
+	cargo "FW Security" 5 2 .1
 	to offer
 		random < 30
 		has "salary: Free Worlds"
@@ -433,7 +433,7 @@ mission "FW Bulk Outfitter Resupply [0]"
 	name `Resupply <planet>`
 	description `The outfitter on <planet> is running low on supplies and needs to be restocked immediately. Deliver <cargo> to <destination> by <date>. Payment is <payment>.`
 	deadline 2 1
-	cargo random 25 2 .05
+	cargo "FW Security" 25 2 .05
 	to offer
 		random < 30
 		has "salary: Free Worlds"
@@ -456,7 +456,7 @@ mission "FW Bulk Outfitter Resupply [1]"
 	name `Resupply <planet>`
 	description `The outfitter on <planet> is running low on supplies and needs to be restocked immediately. Deliver <cargo> to <destination> by <date>. Payment is <payment>.`
 	deadline 2 1
-	cargo random 25 2 .05
+	cargo "FW Security" 25 2 .05
 	to offer
 		random < 25
 		has "salary: Free Worlds"
@@ -479,7 +479,7 @@ mission "FW Bulk Outfitter Resupply [2]"
 	name `Resupply <planet>`
 	description `The outfitter on <planet> is running low on supplies and needs to be restocked immediately. Deliver <cargo> to <destination> by <date>. Payment is <payment>.`
 	deadline 2 1
-	cargo random 25 2 .05
+	cargo "FW Security" 25 2 .05
 	to offer
 		random < 20
 		has "salary: Free Worlds"
