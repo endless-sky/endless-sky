@@ -89,7 +89,7 @@ mission "Navy resupply [0]"
 	clearance
 	to offer
 		random < 2
-	source 
+	source
 		not government Pirate
 		attributes outfitter factory
 	destination
