@@ -70,11 +70,11 @@ mission "Heliarch Investigation 2"
 			`Despite the immense traffic in <origin>'s spaceport, the Heliarch trio you brought here is quick to find you after you enter. Kirrie is the first to greet you. "Captain <last>! Glad I am, that still around, you are."`
 			`	"Accompany us, would you? A job in mind for you, our superior has." Iplora says.`
 			choice
-				`	"I don't see why not, lead the way."`
+				`	"I don't see why not. Lead the way."`
 				`	"Not this time, I'm really busy now."`
 					defer
-			`	The three of them escort you through a number of restricted passageways, dotted with armed, statue-like guards at every door and hallway you pass through. Eventually you reach a meeting room of sorts, with about a dozen other Heliarchs seated at the central table. One of them motions for you to join them.`
-			`	As you take a seat, one of the Kimek there speaks. "The honorable Captain, we salute. Make you feel welcome, I, Consul Iekie of the Heliarch council, hope we will."`
+			`	The three of them escort you through a number of restricted passageways dotted with armed, statue-like guards at every door and hallway you pass through. Eventually you reach a meeting room of sorts, with about a dozen other Heliarchs seated at the central table. One of them motions for you to join them.`
+			`	As you take a seat, one of the Kimek speaks. "The honorable Captain, we salute. Make you feel welcome, I, Consul Iekie of the Heliarch council, hope we will."`
 			choice
 				`	"Thank you. The honor's all mine."`
 				`	"Are you the one that has a job for me?"`
@@ -89,7 +89,7 @@ mission "Heliarch Investigation 2"
 				`	"Whether they go undercover or not, this seems a bit risky for me. Sorry, you'll have to find someone else."`
 					decline
 			`	"Decide the order of your visits, you will, Captain," Iekie responds. "Shameful to admit this, it is, but known to these outlaws, many of our methods are. Failed in similar operations before, we have, so fear I do, that easily predicted, our own ordering would be."`
-			`	Some of the others brief you on the worlds where suspicious activity has been reported: Shifting Sand, in Saryd space, Into White, Fourth Shadow and Remote Blue, in Kimek space, and Mebla's Portion and Stronghold of Flugbu, in Arach space.`
+			`	Some of the others brief you on the worlds where suspicious activity has been reported: Shifting Sand in Saryd space, Into White, Fourth Shadow and Remote Blue in Kimek space, and Mebla's Portion and Stronghold of Flugbu in Arach space.`
 			`	They wish the four of you good luck, and have you escorted back to the spaceport. The Heliarch trio arrives at your ship a few minutes later, out of uniform and with heavy luggage. You show the <bunks> 'tourists' to their bunks, and head to your cockpit to decide which of the six worlds you'll head to first.`
 				accept
 	on accept
@@ -209,7 +209,7 @@ mission "Heliarch Investigation 2 - Mebla's Portion"
 					goto reactor
 				`	(Go further out and check the trees and bushes.)`
 					goto trees
-			`	Kirrie approaches the door, and it opens without him as much as touching it. Unfortunately the warehouse turns out to contain nothing of any significance. It's storage for what Kirrie says are toy parts: just mountains of plastic stacked together. You check a few more like this, but none turn out to have anything. The rain is starting to get heavier.`
+			`	Kirrie approaches the door, and it opens without him so much as touching it. Unfortunately the warehouse turns out to contain nothing of any significance. It's storage for what Kirrie says are toy parts: just mountains of plastic stacked together. You check a few more warehouses like this, but none turn out to have anything. The rain is starting to get heavier.`
 			choice
 				`	(Check the warehouse with the leaky roof now.)`
 					goto reactor
@@ -217,8 +217,8 @@ mission "Heliarch Investigation 2 - Mebla's Portion"
 					goto trees2
 				`	(Leave the rest of this to Kirrie.)`
 			`	You apologize and tell Kirrie that you don't know what to do next. While he does agree to do it himself, he never stops asking for your opinion on his choices.`
-			`	You spend a few more hours checking the warehouses until the rain and the wind get too dangerous for you to be moving from warehouse to warehouse, so you take shelter in one of them until the weather settles. Once it does, it is nearly nightfall, and Kirrie is notified by Iplora that she and Tugroob are already back at the ship. You two decide to head back as well.`
-			`	It seems Tugroob found some evidence of some smuggled weapons passing through here, but nothing major. Exhausted, they get back in their bunks, asking you to depart the planet.`
+			`	You spend a few more hours looking around until the rain and the wind get too dangerous for you to be moving from warehouse to warehouse. You both take shelter in one of them until the weather settles. Once it does, it is nearly nightfall, and Kirrie is notified by Iplora that she and Tugroob are already back at the ship. You two decide to head back as well.`
+			`	It seems Tugroob found some evidence of some smuggled weapons passing through here, but nothing major. Exhausted, the Heliarchs get back in their bunks, asking you to depart the planet.`
 				accept
 			label reactor
 			action
@@ -283,7 +283,7 @@ mission "Heliarch Investigation 2 - Stronghold of Flugbu"
 	on complete
 		conversation
 			`While you doubt anyone opposing the Heliarchs would find much success operating in this massive compound, it seems the strategic location held by the planet, the volume of resources invested, the fortifications available, and the sheer number of ships stationed here had it marked for investigation anyway.`
-			`	The three agents inform you that you're not allowed to enter most parts of the compound they will be headed to, so you stay inside your ship. They return right at sunset, telling you they found nothing worthwhile "as expected," Kirrie comments with a sigh. They tell you they're ready to leave, and head to their bunks.`
+			`	The three agents inform you that you're not allowed to enter most parts of the compound they will be headed to, so you stay inside your ship. They return right at sunset, telling you they found nothing worthwhile. "As expected," Kirrie comments with a sigh. They tell you they're ready to leave, and head to their bunks.`
 
 mission "Heliarch Investigation 2 - Shifting Sand"
 	name "Investigate <planet>"
@@ -307,13 +307,13 @@ mission "Heliarch Investigation 2 - Shifting Sand"
 				`	"Sorry, I'll have to refuse this time."`
 					goto decline
 			`	"An abandoned mining operation, our target is. Received we have reports of suspicious activity near the complex - recently headed there some ships were, even though shut down for years the mine has been," he explains. You input the coordinates he gives you into your navigator.`
-			`	You come to the remains of a gargantuan mining operation, an enormous hole torn into the planet's crust, spiralling down to what must be nearly a kilometer below the otherwise relatively untouched surface. Near the edge, you spot a medium-sized building, made up of a few interconnected blocks and dirtied up by the planet's sand. Tugroob tells you it must have been the base for the mining workers and managing team when the mine was active.`
+			`	You come to the remains of a gargantuan mining operation, an enormous hole torn into the planet's crust, spiralling down to what must be nearly a kilometer below the otherwise relatively untouched surface. Near the edge, you spot a medium-sized building, made up of a few interconnected blocks and dirtied up by the planet's sand. Tugroob tells you it must have been the base for the mine workers and managing team when the mine was active.`
 			`	Close to the building, farther out from the digging hole, you see a few landing pads of large enough size for even the bulkiest of freighters, likely once used by spacecraft that would ship the raw ore off to smelting facilities. You land on one of them, and you and Tugroob leave your ship. As you step off the landing pad, Tugroob calls your attention to a desert storm brewing in the distance, and says you two should get started before it reaches here.`
 			choice
 				`	"Let's check out the building."`
 				`	"Maybe we should try heading down the mining hole."`
 					goto hole
-			`	Having been left alone for years, the base for the mining operation no longer has any power, so Tugroob has to force the door, gripping the walls and pulling hard with his front legs until it slides open.`
+			`	Having been left alone for years, the base for the mining operation no longer has any power. Tugroob has to force the door, gripping the walls and pulling hard with his front legs until it slides open.`
 			`	The place is surprisingly tidy, if dusty near the door with what sand has been let in. Despite the relative cleanliness, it's evident that the previous owners didn't bother cleaning out before packing up and leaving. Various cabinets, archives and work stations dominate the initial room, and you can see it connects to a collective bedroom, filled with bunks and a storage area.`
 			`	"No other entrances there seem to be. If hiding anything here, others were, force their way in they had to, just like us," Tugroob says.`
 			choice
@@ -334,7 +334,7 @@ mission "Heliarch Investigation 2 - Shifting Sand"
 				goto fail
 			label hole
 			`	You two approach the hole, and finding one of the many ramps leading down the spiral, carefully make your way down. You pass by some large mining vehicles, akin to very large trucks with thick tracks instead of wheels, and many bores and drills at the front. Tugroob explains they are used to open up tunnels that extend outwards from the main dig hole, to reach lesser mineral deposits without needing to excavate needlessly.`
-			`	Continuing on your way down, he points to some of the holes made by the machines, and to many more vehicles deep down, near the bottom.`
+			`	Continuing on your way down, he points to some of the holes made by the machines, and to many more vehicles near the bottom.`
 			choice
 				`	(Keep going down.)`
 				`	(Investigate the nearby vehicles and tunnels.)`
@@ -346,7 +346,7 @@ mission "Heliarch Investigation 2 - Shifting Sand"
 					goto tunnel
 				`	(Head back up and investigate the building.)`
 			`	You two rush back up. Tugroob helps you save some time by climbing one of the walls straight up as you cling to him, rather than following the spiraling ramps. You reach the building a few minutes before the storm engulfs it and covers the dig hole completely. As it has no power, Tugroob has to force the door open, gripping to the walls and pulling hard with his front legs until it slides open.`
-			`	The place is surprisingly tidy, if dusty near the door with what sand's been let in. Despite the relative cleanliness, it's evident that the previous owners didn't bother cleaning out before packing up and leaving. Various cabinets, archives and work stations dominate the initial room, and you can see it connects to a collective bedroom, filled with bunks and a storage area.`
+			`	The place is surprisingly tidy, if dusty near the door with what sand has been let in. Despite the relative cleanliness, it's evident that the previous owners didn't bother cleaning out before packing up and leaving. Various cabinets, archives and work stations dominate the initial room, and you can see it connects to a collective bedroom, filled with bunks and a storage area.`
 			`	"No other entrances there seem to be. If hiding anything here, others were, force their way in they had to, just like us," Tugroob says.`
 			`	Given the storm's trapped you in, you two turn over every drawer, archive and box, look over everything in the storage area, try and get the computers to work, and even check the bedroom and its connecting dining area and restrooms, all to no avail. Your search doesn't bear fruit, and so you're left waiting inside as the storm rages around the building.`
 				goto fail
@@ -753,7 +753,7 @@ mission "Quarg Interrogation"
 			`As you land on <origin>, a Quarg is patiently waiting right outside your ship, as if expecting you to open the hatch. You think nothing of it at first, but when you try and access the local news feed, you notice your monitors' interfaces aren't showing any of the local services and facilities. A few more minutes go by until you realize your ship hasn't been refueled either. You look out to see some more Quarg standing by the refueling machines of the landing pad you landed on, simply looking at your ship. Seeing that the other Quarg is still waiting by your hatch, you head outside to speak with it.`
 			`	"Hello, <first> <last>," it says.`
 			choice
-				`	"Hi, can I help you?"`
+				`	"Hello, can I help you?"`
 				`	"Is there some sort of problem?"`
 			`	It blinks, then slowly looks to a Wardragon parked farther away. "You were seen landing on some of our worlds and rings, bringing about strange scanning mechanisms, and were also found to be scanning some of our ships. Why is that?"`
 			choice
@@ -766,7 +766,7 @@ mission "Quarg Interrogation"
 				`	"The Heliarchs asked me to do it."`
 					goto truth
 			label lie
-			`	Around ten seconds pass without it saying anything, simply staring at your eyes and blinking slowly. "I see." Without another word, it walks away, headed to the Wardragon.`
+			`	Around ten seconds pass without it saying anything, simply staring at your eyes and blinking slowly. "I see." Without another word, it walks away, heading towards the Wardragon.`
 				accept
 			label truth
 			`	"And why did you agree? Do you wish to join their ranks, perhaps?" it asks.`
@@ -774,7 +774,7 @@ mission "Quarg Interrogation"
 				`	"I just wanted to help. It's not like I destroyed your ships or something."`
 				`	"They told me that the Quarg keep others in 'separate boxes', and that you hinder their development."`
 					goto hinder
-			`	"Perhaps not, but you agreed to collect information on us and our worlds, which hold countless civilians, and deliver the findings to a group that hates us."`
+			`	"Perhaps not, but you agreed to collect information on us and our worlds, which hold countless civilians, and deliver the findings to a group that despises us."`
 				goto end
 			label hinder
 			`	"And you believe that? Have we restricted your movement? Chastised you for interacting with the Hai or Korath? Even after you agreed to help those foolish, tyrannical Heliarchs, are you not here, in one of our worlds, peacefully conversing with a Quarg?"`
@@ -1511,7 +1511,7 @@ mission "Heliarch Containment 4-B"
 		"assisting heliarchy" --
 		payment 495000
 		conversation
-			`You land in the station to find that <payment> have been transferred to you. Along with the credits comes a transmission from Plortup. "For my absence, forgive me you must, Captain. Hit Fourth Shadow again, criminals have, so organizing some ships from within the Ring of Power, I am."`
+			`You land in the station to find that <payment> have been transferred to you. Along with the credits comes a transmission from Plortub. "For my absence, forgive me you must, Captain. Hit Fourth Shadow again, criminals have, so organizing some ships from within the Ring of Power, I am."`
 			`	He goes on to explain that the attack was quite a large one, and much of the fleet stationed here was sent there to help contain it. What remained is helping with the <origin> operation, so the station is fairly devoid of a military presence at the moment. "A troubled week, this will be, but bother you with that, I will not. Very useful to us your support has been, Captain."`
 	on fail
 		"assisting heliarchy" --

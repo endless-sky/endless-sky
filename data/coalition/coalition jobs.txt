@@ -1511,4 +1511,4 @@ mission "Heliarch Investigate"
 	on complete
 		payment
 		payment 40000
-		dialog `The agents thank you for transporting them in your ship, wishing you safe travels and head off to deliver the findings to their superiors. You're transferred <payment> a few moments later.`
+		dialog `The agents thank you for transporting them in your ship, wish you safe travels, and head off to deliver the findings to their superiors. You're transferred <payment> a few moments later.`
