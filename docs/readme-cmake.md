@@ -35,7 +35,7 @@ You can download the [MinGW Winlibs](https://winlibs.com/#download-release) buil
 
 You'll need the POSIX version of MinGW. For the Winlibs distribution mentioned above, the latest version is currently gcc 13 ([direct download link](https://github.com/brechtsanders/winlibs_mingw/releases/download/13.2.0-16.0.6-11.0.0-ucrt-r1/winlibs-x86_64-posix-seh-gcc-13.2.0-mingw-w64ucrt-11.0.0-r1.zip)). Download and extract the zip file in a folder whose path doesn't contain a space (C:\ for example) and add the bin\ folder inside to your PATH (Press the Windows key and type "edit environment variables", then click on PATH and add it to the list).
 
-You will also need to install a recent version of [CMake](https://cmake.org/download/). You can check if you have CMake already installed by running `cmake -v` in command line window.
+You will also need at least [CMake](https://cmake.org/download/) 3.21. You can check if you have CMake already installed by running `cmake -v` in command line window.
 
 ### MacOS
 
@@ -148,7 +148,7 @@ If you want to use the [Code::Blocks](https://www.codeblocks.org/downloads/) IDE
 > cmake -G"CodeBlocks - Ninja" --preset <preset>
 ```
 
-With `<preset>` being one of the available presets (see above for a list). For Windows for example you'd want `clang-cl` or `mingw`. Now there will be a Code::Blocks project inside `build\mingw`.
+With `<preset>` being one of the available presets (see above for a list). For Windows for example you'd want `clang-cl` or `mingw`. Now there will be a Code::Blocks project inside `build\`.
 
 #### XCode
 
