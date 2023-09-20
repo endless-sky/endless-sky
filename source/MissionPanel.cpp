@@ -208,24 +208,36 @@ void MissionPanel::Draw()
 	// Update the tooltip timer [0-60].
 	hoverSortCount += hoverSort >= 0 ? (hoverSortCount < HOVER_TIME) : (hoverSortCount ? -1 : 0);
 
-	Color routeColor(.2f, .1f, 0.f, 0.f);
-	const System *system = selectedSystem;
-	while(distance.Days(system) > 0)
+	const Set<Color> &colors = GameData::Colors();
+
+	const Color &routeColor = *colors.Get("mission route");
+	const Ship *flagship = player.Flagship();
+	const double jumpRange = flagship ? flagship->JumpNavigation().JumpRange() : 0.;
+	const System *previous = nullptr;
+	const System *next = selectedSystem;
+	for(; distance.Days(next) > 0; next = previous)
 	{
-		const System *next = distance.Route(system);
+		previous = distance.Route(next);
 
-		Point from = Zoom() * (next->Position() + center);
-		Point to = Zoom() * (system->Position() + center);
-		Point unit = (from - to).Unit() * 7.;
-		from -= unit;
-		to += unit;
+		bool isJump, isWormhole, isMappable;
+		if(!GetTravelInfo(previous, next, jumpRange, isJump, isWormhole, isMappable, nullptr))
+			break;
+		if(isWormhole && !isMappable)
+			continue;
 
-		LineShader::Draw(from, to, 5.f, routeColor);
+		Point from = Zoom() * (previous->Position() + center);
+		Point to = Zoom() * (next->Position() + center);
+		const Point unit = (to - from).Unit();
+		from += LINK_OFFSET * unit;
+		to -= LINK_OFFSET * unit;
 
-		system = next;
+		// Non-hyperspace jumps are drawn with a dashed line.
+		if(isJump)
+			LineShader::DrawDashed(from, to, unit, 5.f, routeColor, 11., 4.);
+		else
+			LineShader::Draw(from, to, 5.f, routeColor);
 	}
 
-	const Set<Color> &colors = GameData::Colors();
 	const Color &availableColor = *colors.Get("available back");
 	const Color &unavailableColor = *colors.Get("unavailable back");
 	const Color &currentColor = *colors.Get("active back");
@@ -968,7 +980,13 @@ void MissionPanel::Accept(bool force)
 
 	++availableIt;
 	player.AcceptJob(toAccept, GetUI());
-	if(availableIt == available.end() && !available.empty())
+
+	cycleInvolvedIndex = 0;
+
+	if(available.empty())
+		return;
+
+	if(availableIt == available.end())
 		--availableIt;
 
 	// Check if any other jobs are available with the same destination. Prefer
@@ -977,16 +995,35 @@ void MissionPanel::Accept(bool force)
 	{
 		const Planet *planet = toAccept.Destination();
 		const System *system = planet->GetSystem();
-		for(auto it = available.begin(); it != available.end(); ++it)
+		bool stillLooking = true;
+
+		// Updates availableIt if matching system found, returns true if planet also matches.
+		auto SelectNext = [this, planet, system, &stillLooking](list<Mission>::const_iterator &it) -> bool
+		{
 			if(it->Destination() && it->Destination()->IsInSystem(system))
 			{
-				availableIt = it;
 				if(it->Destination() == planet)
-					break;
+				{
+					availableIt = it;
+					return true;
+				}
+				else if(stillLooking)
+				{
+					stillLooking = false;
+					availableIt = it;
+				}
 			}
-	}
+			return false;
+		};
 
-	cycleInvolvedIndex = 0;
+		const list<Mission>::const_iterator startHere = availableIt;
+		for(auto it = startHere; it != available.end(); ++it)
+			if(SelectNext(it))
+				return;
+		for(auto it = startHere; it != available.begin(); )
+			if(SelectNext(--it))
+				return;
+	}
 }
 
 

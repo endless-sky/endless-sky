@@ -22,7 +22,9 @@ jobs:
       OUTPUT: Endless_Sky-continuous-x86_64.AppImage
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          show-progress: false
       - name: Install dependencies
         run: |
           sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
@@ -30,15 +32,12 @@ jobs:
           sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev
       - name: Setup sccache
         uses: ./.github/sccache
-        with:
-          read-only: 'true'
       - name: Adjust version strings
         run: ./utils/cd_update_versions.sh
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
-          doNotCache: true
+          vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'linux-release'
@@ -58,19 +57,18 @@ jobs:
       OUTPUT: EndlessSky-win64-continuous.zip
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          show-progress: false
       - name: Setup sccache
         uses: ./.github/sccache
-        with:
-          read-only: 'true'
       - name: Adjust version strings
         run: ./utils/cd_update_versions.sh
         shell: bash
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
-          doNotCache: true
+          vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'mingw-release'
@@ -92,18 +90,17 @@ jobs:
       OUTPUT: EndlessSky-macOS-continuous.zip
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          show-progress: false
       - name: Setup sccache
         uses: ./.github/sccache
-        with:
-          read-only: 'true'
       - name: Install pkg-config
         run: type -P pkg-config || brew install pkg-config
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
-          doNotCache: true
+          vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'macos-release'
@@ -132,7 +129,9 @@ jobs:
       OUTPUT_WINDOWS: EndlessSky-win64-continuous.zip
       OUTPUT_MACOS: EndlessSky-macOS-continuous.zip
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          show-progress: false
       - name: Install github-release
         run: |
           go install github.com/github-release/github-release@latest
@@ -171,6 +170,7 @@ jobs:
         with:
           path: ${{ github.workspace }} # This will download all files to e.g `./EndlessSky-win64.zip/EndlessSky-win64.zip`
       - name: Add ${{ env.OUTPUT_APPIMAGE }} to release tag
+        continue-on-error: true
         run: |
           github-release upload \
             --tag continuous \
@@ -178,6 +178,7 @@ jobs:
             --name ${{ env.OUTPUT_APPIMAGE }} \
             --file ${{ env.OUTPUT_APPIMAGE }}/${{ env.OUTPUT_APPIMAGE }}
       - name: Add ${{ env.OUTPUT_WINDOWS }} to release tag
+        continue-on-error: true
         run: |
           github-release upload \
             --tag continuous \

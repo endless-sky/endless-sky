@@ -31,6 +31,7 @@ class StellarObject;
 class MapPlanetCard {
 public:
 	enum class ClickAction : int {
+		SHOW_GOVERNMENT = MapPanel::SHOW_GOVERNMENT,
 		SHOW_REPUTATION = MapPanel::SHOW_REPUTATION,
 		SHOW_SHIPYARD = MapPanel::SHOW_SHIPYARD,
 		SHOW_OUTFITTER = MapPanel::SHOW_OUTFITTER,
@@ -60,6 +61,10 @@ public:
 
 	void Select(bool select = true);
 
+	static double Height();
+
+	static void ResetSize();
+
 
 protected:
 	// Highlight this card; this is to be called when it is selected.
@@ -86,6 +91,7 @@ private:
 	const Sprite *sprite;
 	float spriteScale;
 
+	std::string governmentName;
 	std::string reputationLabel;
 	const std::string &planetName;
 	// The currently select category (outfitter, shipyard, ...)

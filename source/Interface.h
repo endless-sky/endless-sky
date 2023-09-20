@@ -60,6 +60,8 @@ private:
 	public:
 		// Get the point's location, given the current screen dimensions.
 		Point Get() const;
+		// Get the point's location, treating the Region within the Information as the screen area.
+		Point Get(const Information &info) const;
 		void Set(const Point &position, const Point &anchor);
 
 	private:
@@ -94,6 +96,8 @@ private:
 
 		// Get the bounding rectangle, given the current screen dimensions.
 		Rectangle Bounds() const;
+		// Get the bounding rectangle, treating the Region within the Information as the screen area.
+		Rectangle Bounds(const Information &info) const;
 
 	protected:
 		// Parse the given data line: one that is not recognized by Element
@@ -192,7 +196,28 @@ private:
 		std::string name;
 		const Color *color = nullptr;
 		float width = 2.f;
+		bool reversed = false;
 		bool isRing = false;
+		double spanAngle = 360.;
+		double startAngle = 0.;
+	};
+
+
+	// This class handles "pointer" elements.
+	class PointerElement : public Element {
+	public:
+		PointerElement(const DataNode &node, const Point &globalAnchor);
+
+	protected:
+		// Parse the given data line: one that is not recognized by Element
+		// itself. This returns false if it does not recognize the line, either.
+		virtual bool ParseLine(const DataNode &node) override;
+		// Draw this element in the given rectangle.
+		virtual void Draw(const Rectangle &rect, const Information &info, int state) const override;
+
+	private:
+		const Color *color = nullptr;
+		Point orientation;
 	};
 
 
