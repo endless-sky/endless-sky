@@ -20,7 +20,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Government.h"
 #include "Logger.h"
 #include "Phrase.h"
-#include "pi.h"
 #include "Planet.h"
 #include "Random.h"
 #include "Ship.h"
