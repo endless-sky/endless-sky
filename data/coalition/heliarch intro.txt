@@ -1424,12 +1424,12 @@ mission "Heliarch Containment 3"
 			`	"A mission for you, he has, but to discuss it in private, he wishes to." The Kimek explains. "Follow us, would you?"`
 			label way
 			`	After a few dozen twists and turns through the restricted sections of the ring, they bring you to a room where an Arach is waiting, alongside a few other Heliarchs who are discussing something while pointing at a map of the Coalition projected over the table.`
-			`	"Ready to work with us, are you, Captain?" the Arach asks. "The one who asked for you, I am. Call me Consul Plortup, you may."`
+			`	"Ready to work with us, are you, Captain?" the Arach asks. "The one who asked for you, I am. Call me Consul Plortub, you may."`
 			choice
 				`	"<first> <last>. Pleasure to meet you."`
 				`	"What job did you have for me?"`
 			`	"In need of one such as you, we are. Anonymous reports, we have received, from loyal patriots and colleagues alike. On <stopovers>, a Saryd world, terrible activity may be brewing. Rising in activity there, outlaw groups are, we fear," he says. "Your destination, that is."`
-			`	A couple small boxes are brought inside and set on the table. Upon opening them, Plortup shows you they contain several small drones - drones very similar to those employed by the repair modules used here.`
+			`	A couple small boxes are brought inside and set on the table. Upon opening them, Plortub shows you they contain several small drones - drones very similar to those employed by the repair modules used here.`
 			`	"A union of technologies, it is. Of the scanning module, the incredible surveillance capabilities are. Of the repair drones, the versatile mobility and durable shells are." He explains to you that you're to head to <planet stopovers> to pick up <cargo> produced on the planet, but as you're coming in for a landing, you are to jettison the crates with the drones so that they may act as spybots. "Inconspicuous, you must be. Appear to be a simple, regular job, this must. Back to <origin>, you must return, after completed this task, you have. Readily available then, your payment will be. Suffice, <payment> will, surely."`
 			`	He wishes you good luck, and the trio from earlier escorts you back to your ship.`
 				accept
@@ -1441,7 +1441,7 @@ mission "Heliarch Containment 3"
 		"assisting heliarchy" --
 		payment 330000
 		conversation
-			`Landing back on <planet>, you're met by a squad of armed Heliarchs, who are escorting Consul Plortup. He hands you your payment of <payment> with an approving nod.`
+			`Landing back on <planet>, you're met by a squad of armed Heliarchs, who are escorting Consul Plortub. He hands you your payment of <payment> with an approving nod.`
 			`	"Aided us once more, you have, Captain. To further work with you, I look forward. Search for one of my subordinates in the local spaceport anytime, you should. More work for you soon, I might have." He performs a brief salute, and leaves for some other section of the ring.`
 	on fail
 		"assisting heliarchy" --
@@ -1459,7 +1459,7 @@ mission "Heliarch Containment 4-A"
 	destination "Remote Blue"
 	on offer
 		conversation
-			`You're stopped by one of the many armed Heliarchs in the spaceport, and are asked to follow him into the restricted sections. You comply and are led through the corridors until you're brought before Consul Plortup, in a smaller room than last time. Three Kimek Heliarchs are with him.`
+			`You're stopped by one of the many armed Heliarchs in the spaceport, and are asked to follow him into the restricted sections. You comply and are led through the corridors until you're brought before Consul Plortub, in a smaller room than last time. Three Kimek Heliarchs are with him.`
 			`	"Ask for your assistance, once again, I must, Captain <last>," he begins. "Long been a difficult world for the Heliarchy, <destination> has. Admit I must, that known and, to my shame, ignored, lawless behavior there has been. Your continued support, we hope you'll once more provide, Captain."`
 			choice
 				`	"What do you have in mind?"`
@@ -1473,7 +1473,7 @@ mission "Heliarch Containment 4-A"
 			`	He stares at you for a few seconds, almost like a statue. "Afraid I am that orders, these are. Received them directly from the Ring of Friendship, from Consul Iekie, I have. A great asset for this task, you would be, Captain, so insist upon your involvement, I must."`
 			label plan
 			`	He introduces you to the three Kimek, and goes to explain the plan. "Granted access to our civilian ships, you have been. Three new Kimek Spires, you have very recently bought. Many passengers to <destination>, in them you are carrying. A very lucrative job, it is." He pauses, and gives the Kimek permission to head out. "Pose as civilians, working in your ships, they will. Armed and ready to investigate <planet> thoroughly, the soldiers in those Spires are. Instructed to follow your ship there, these three were."`
-			`	Plortup wishes you all good luck, and you're escorted back to your ship. You see the three aforementioned Kimek Spires parked near the <ship>, and one of the Kimek Heliarchs hails you, saying they're ready to depart when you are.`
+			`	Plortub wishes you all good luck, and you're escorted back to your ship. You see the three aforementioned Kimek Spires parked near the <ship>, and one of the Kimek Heliarchs hails you, saying they're ready to depart when you are.`
 				accept
 	npc accompany save
 		personality escort heroic opportunistic
@@ -1529,7 +1529,7 @@ mission "Heliarch Containment 5"
 		"reputation: Lunarium" = -1000
 		event "lunarium fleeing rb"
 		conversation
-			`After the transmission with Plortup ends, the station is awfully quiet for a few hours. You head outside your ship to see if you can find something interesting to do, but you don't find anything particularly eye-catching, as the station holds few shops. You move to the job board, but find it completely empty. You also notice that the market's trade values are not updating, and any news system is non-functional.`
+			`After the transmission with Plortub ends, the station is awfully quiet for a few hours. You head outside your ship to see if you can find something interesting to do, but you don't find anything particularly eye-catching, as the station holds few shops. You move to the job board, but find it completely empty. You also notice that the market's trade values are not updating, and any news system is non-functional.`
 			`	Suddenly, some of the few Heliarchs still stationed here rush past you heading for an office. They quickly reemerge and approach you.`
 			`	"Captain! Helped us, you have, yes? Aiding in the Remote Blue operation?" You nod. "Think you trustworthy, the consul does, and in dire need of a combat-ready ship, we are. Aid us, you must!"`
 			choice
@@ -1570,7 +1570,7 @@ mission "Heliarch Containment 5"
 		payment 1320000
 		conversation
 			`Though you never managed to find out if there were any hostages on board, the Heliarchs stationed at <planet> still herald you as a hero for "detaining the bandits". They immediately set to repair your ship. You're still on alert for a few hours in case any more ships come through, but nothing appears to be out of the ordinary. Near the end of the day, the station returns to normal as well; communications and other functions are restored.`
-			`	As soon as the commlinks are back, the Heliarchs contact Consul Plortup and inform him of what happened. Shortly after, <payment> are added to your account, and you're put on a call with the consul.`
+			`	As soon as the commlinks are back, the Heliarchs contact Consul Plortub and inform him of what happened. Shortly after, <payment> are added to your account, and you're put on a call with the consul.`
 			`	"Humiliating, it would be, had under such circumstances, the criminal ships escaped. Done well, you have, Captain." He discusses with you the outfits that the ships were using and is alarmed to learn that they had not only Heliarch equipment, but had also acquired human weapons. He lets out something you can't quite put, resembling a gasp or a roar; you only know that your ears don't want to hear it again.`
 			`	"Bring this report to the other consuls, at once I will. Further tasks, of you we may ask, but for now, done your work is, Captain." He ends the transmission after a short salute. Heliarch ships rush back in as the local garrison returns from Remote Blue. Many of the ship captains come to personally congratulate you for stopping the fleeing ships.`
 	on fail
