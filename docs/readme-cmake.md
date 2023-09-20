@@ -77,8 +77,6 @@ gcc-c++ cmake ninja-build SDL2-devel libpng-devel libjpeg-turbo-devel mesa-libGL
 
 ## Building the game
 
-Most IDEs have CMake support, and can be used to build the game. We recommend using [Visual Studio Code](#visual-studio-code).
-
 ### Building from the command line
 
 Here's a summary of every command you will need for development:
@@ -109,6 +107,8 @@ Replace `<preset>` with one of the following presets:
 
 ### Using an IDE
 
+Most IDEs have CMake support, and can be used to build the game. We recommend using [Visual Studio Code](#visual-studio-code).
+
 #### Visual Studio Code
 
 After installing VS Code, install the [C/C++](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools) and [CMake Tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools) extensions, and open the project folder under File -> Open Folder.
@@ -120,7 +120,7 @@ You'll be asked to select a preset. Select the one you want (see the list above 
 It is recommened to use [Visual Studio 2022](https://visualstudio.microsoft.com/downloads/#visual-studio-community-2022), because of its better CMake integration. Once you have installed Visual Studio, you can simply open the root folder.
 
 <details>
-<summary>Step-by-step instructions for Visual Studio 2022+</summary>
+<summary>Step-by-step instructions for Visual Studio 2022 or later</summary>
 
 1. Open the repository's root folder using Visual Studio ("Open Folder")
 2. Wait while Visual Studio loads everything. This may take a few minutes the first time, but should be relatively fast on subsequent loads.
