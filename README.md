@@ -24,7 +24,7 @@ Endless Sky has very minimal system requirements, meaning most systems should be
 
 ## Building from source
 
-ES uses CMake as its build system, which makes it easy to develop for Windows, macOS and Linux. See the [Build Instructions](docs/CONTRIBUTING.md) page for detailed instructions.
+Endless Sky uses CMake as its build system, which makes it easy to develop for Windows, macOS and Linux. See the [Build Instructions](docs/readme-developer.md) page for detailed instructions.
 
 ## Contributing
 
