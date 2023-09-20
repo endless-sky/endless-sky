@@ -820,7 +820,7 @@ mission "Secure Transport Job (Deep Security) [1]"
 mission "Deep Consultants"
 	minor
 	name "Transport consultants to <planet>"
-	description "Julie and her assistant missed their transport and need to reach <destination> by <date> in order to make several important business meetings.."
+	description "Julie and her assistant missed their transport and need to reach <destination> by <date> in order to make several important business meetings."
 	source
 		attributes "deep"
 		attributes "urban"
