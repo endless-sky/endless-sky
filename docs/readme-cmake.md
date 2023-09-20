@@ -19,7 +19,7 @@ Next, you will need to install a couple of dependencies to build the game. There
 
 ### Windows
 
-We recommend to use the toolchain from Visual Studio to build the game (regardless of the IDE you wish to use).
+We recommend using the toolchain from Visual Studio to build the game (regardless of the IDE you wish to use).
 
 Download [Visual Studio](https://visualstudio.microsoft.com/downloads/#visual-studio-community-2022) (if you do not want to install Visual Studio, you can alternatively download the [VS Build Tools](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022)), and make sure to install the following components:
 
@@ -27,7 +27,7 @@ Download [Visual Studio](https://visualstudio.microsoft.com/downloads/#visual-st
 - "C++ Clang Compiler for Windows",
 - "C++ CMake tools for Windows".
 
-We recommend to use at least the version from 2022. If you're unsure which edition to use, use the Community edition.
+We recommend using Visual Studio 2022 or newer. If you are unsure of which edition to use, choose Visual Studio Community.
 
 ### Windows (MinGW)
   
@@ -117,7 +117,7 @@ You'll be asked to select a preset. Select the one you want (see the list above 
 
 #### Visual Studio
 
-We recommend to use [Visual Studio 2022](https://visualstudio.microsoft.com/downloads/#visual-studio-community-2022), because of its better CMake integration. Once you have installed Visual Studio, you can simply open the root folder.
+We recommend using [Visual Studio 2022](https://visualstudio.microsoft.com/downloads/#visual-studio-community-2022) or newer, because of its better CMake integration. Once you have installed Visual Studio, you can simply open the root folder.
 
 <details>
 <summary>Step-by-step instructions for Visual Studio 2022 or later</summary>
