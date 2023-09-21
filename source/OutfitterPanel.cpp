@@ -147,10 +147,10 @@ bool OutfitterPanel::HasItem(const string &name) const
 
 
 
-void OutfitterPanel::DrawItem(const string &name, const Point &point, int scrollY)
+void OutfitterPanel::DrawItem(const string &name, const Point &point)
 {
 	const Outfit *outfit = GameData::Outfits().Get(name);
-	zones.emplace_back(point, Point(OUTFIT_SIZE, OUTFIT_SIZE), outfit, scrollY);
+	zones.emplace_back(point, Point(OUTFIT_SIZE, OUTFIT_SIZE), outfit);
 	if(point.Y() + OUTFIT_SIZE / 2 < Screen::Top() || point.Y() - OUTFIT_SIZE / 2 > Screen::Bottom())
 		return;
 
@@ -768,12 +768,6 @@ void OutfitterPanel::DrawKey()
 void OutfitterPanel::ToggleForSale()
 {
 	showForSale = !showForSale;
-
-	if(selectedOutfit && !HasItem(selectedOutfit->TrueName()))
-	{
-		selectedOutfit = nullptr;
-	}
-
 	ShopPanel::ToggleForSale();
 }
 
@@ -782,12 +776,6 @@ void OutfitterPanel::ToggleForSale()
 void OutfitterPanel::ToggleStorage()
 {
 	showStorage = !showStorage;
-
-	if(selectedOutfit && !HasItem(selectedOutfit->TrueName()))
-	{
-		selectedOutfit = nullptr;
-	}
-
 	ShopPanel::ToggleStorage();
 }
 
