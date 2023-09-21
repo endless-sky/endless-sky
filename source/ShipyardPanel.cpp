@@ -31,7 +31,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
-#include "PointerShader.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "Sprite.h"
@@ -162,7 +161,7 @@ int ShipyardPanel::DrawDetails(const Point &center)
 
 	if(selectedShip)
 	{
-		shipInfo.Update(*selectedShip, player, collapsed.count(DESCRIPTION));
+		shipInfo.Update(*selectedShip, player, collapsed.count(DESCRIPTION), true);
 		selectedItem = selectedShip->DisplayModelName();
 
 		const Point spriteCenter(center.X(), center.Y() + 20 + TileSize() / 2);
