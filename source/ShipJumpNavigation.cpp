@@ -20,7 +20,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "System.h"
 
 #include <algorithm>
-#include <cassert>
 #include <iterator>
 
 using namespace std;

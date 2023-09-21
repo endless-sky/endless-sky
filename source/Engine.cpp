@@ -44,12 +44,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "NPC.h"
 #include "OutlineShader.h"
 #include "Person.h"
-#include "pi.h"
 #include "Planet.h"
 #include "PlanetLabel.h"
 #include "PlayerInfo.h"
 #include "PointerShader.h"
-#include "Politics.h"
 #include "Preferences.h"
 #include "Projectile.h"
 #include "Random.h"
@@ -643,25 +641,25 @@ void Engine::Step(bool isActive)
 			escorts.Add(*escort, escort->GetSystem() == currentSystem, fleetIsJumping, isSelected);
 		}
 
-	// Create the status overlays.
 	statuses.clear();
-	if(isActive)
-		CreateStatusOverlays();
-
-	// Create missile overlays.
 	missileLabels.clear();
-	if(Preferences::Has("Show missile overlays"))
-		for(const Projectile &projectile : projectiles)
-		{
-			Point pos = projectile.Position() - center;
-			if(projectile.MissileStrength() && projectile.GetGovernment()->IsEnemy()
-					&& (pos.Length() < max(Screen::Width(), Screen::Height()) * .5 / zoom))
-				missileLabels.emplace_back(AlertLabel(pos, projectile, flagship, zoom));
-		}
-
-	// Update the planet label positions.
-	for(PlanetLabel &label : labels)
-		label.Update(center, zoom);
+	if(isActive)
+	{
+		// Create the status overlays.
+		CreateStatusOverlays();
+		// Create missile overlays.
+		if(Preferences::Has("Show missile overlays"))
+			for(const Projectile &projectile : projectiles)
+			{
+				Point pos = projectile.Position() - center;
+				if(projectile.MissileStrength() && projectile.GetGovernment()->IsEnemy()
+						&& (pos.Length() < max(Screen::Width(), Screen::Height()) * .5 / zoom))
+					missileLabels.emplace_back(AlertLabel(pos, projectile, flagship, zoom));
+			}
+		// Update the planet label positions.
+		for(PlanetLabel &label : labels)
+			label.Update(center, zoom);
+	}
 
 	if(flagship && flagship->IsOverheated())
 		Messages::Add("Your ship has overheated.", Messages::Importance::Highest);

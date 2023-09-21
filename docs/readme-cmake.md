@@ -1,76 +1,47 @@
-First you need a copy of the code (if you intend on working on the game use your fork's URL here):
+# Build instructions
+
+First you need a copy of the code (if you intend on working on the game, use your fork's URL here):
 
 ```powershell
 > git clone https://github.com/endless-sky/endless-sky
 ```
 
-The game's root directory, where your `git clone`d files reside, will be your starting point for compiling the game.
+The game's root directory, where your `git clone`d files reside, will be your starting point for compiling the game. You can use `cd endless-sky` to enter the game's directory.
 
-Next you will need to install a couple of dependencies to build the game.
+Next, you will need to install a couple of dependencies to build the game. There are several different ways to build Endless Sky, depending on your operating system and preference.
 
-## Build Environment
+- [Windows](#windows)
+- [Windows (MinGW)](#windows-mingw)
+- [MacOS](#macos)
+- [Linux](#linux)
 
-There are several different ways to build Endless Sky, depending on your operating system and preference.
-- [Windows](#Windows)
-- [MacOS](#MacOS)
-- [Linux](#Linux)
+## Installing build dependencies
 
-## Windows (Visual Studio) <Windows>
-We are currently switching to using VS with cmake. If you wish the older MingW build instructions, they are located at the end of the Windows section.
+### Windows
 
-Download Visual Studio, and make sure to install the following features: 
-- "Desktop Development with C++", 
-- "C++ Clang Compiler for Windows", 
-- "C++ clang-cl for vXXX build tools", and 
+We recommend using the toolchain from Visual Studio to build the game (regardless of the IDE you wish to use).
+
+Download [Visual Studio](https://visualstudio.microsoft.com/downloads/#visual-studio-community-2022) (if you do not want to install Visual Studio, you can alternatively download the [VS Build Tools](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022)), and make sure to install the following components:
+
+- "Desktop Development with C++",
+- "C++ Clang Compiler for Windows",
 - "C++ CMake tools for Windows".
 
-Please note that it is recommened to use VS 2022 (or higher) for its better CMake integration.
+We recommend using Visual Studio 2022 or newer. If you are unsure of which edition to use, choose Visual Studio Community.
 
-### Windows Build Process
-
-1. Open the endless-sky folder that you cloned in the initial step.
-2. Wait while Visual Studio loads everything. This may take a few minutes the first time, but should be relatively fast on subsequent loads.
-3. On your toolbar there should be a pulldown menu that says "debug" or "release." Select the version you want to build.
-4. Hit the "build" button, or find the "Build" menu and select "Build All"
-5. In the status window it will give a scrolling list of actions being completed. Wait until it states "Build Complete"
-6. At this point you should be able to launch the recently completed build by hitting the F5 key or the run button. The recently build executable and essential libraries can be found in your Endless-Sky folder, nested within a subfolder created by Visual Studio during the build process
-
-#### Notes
-
-##### Earlier versions of Visual Studio
-
-If you are on an earlier version of Visual Studio, or would like to use an actual VS solution, you will need to generate the solution manually as follows:
-
-```powershell
-> cmake --preset clang-cl -G"Visual Studio 17 2022"
-```
-
-This will create a Visual Studio 2022 solution. If you are using an older version of VS, you will need to adjust the version. Now you will find a complete solution in the `build/` folder. Find the solution and open it and you're good to go!
-
-#### Using Microsoft Visual C++
-
-Using MSVC to compile Endless Sky is not supported. If you try, you will get a ton of warnings (and maybe even a couple of errors) during compilation.
-
-<details>
-
-<summary>Building on Windows using MinGW</summary>
-
+### Windows (MinGW)
   
-You can download the [MinGW Winlibs](https://winlibs.com/#download-release) build, which also includes various tools you'll need to build the game as well. It is possible to use other MinGW builds as well.
+You can download the [MinGW Winlibs](https://winlibs.com/#download-release) build, which also includes various tools you'll need to build the game as well. It is possible to use other MinGW distributions too (like Msys2 for example).
 
-You'll need the MSVCRT runtime version, 64-bit. The latest version is currently gcc 12 ([direct download link](https://github.com/brechtsanders/winlibs_mingw/releases/download/12.1.0-14.0.4-10.0.0-msvcrt-r2/winlibs-x86_64-posix-seh-gcc-12.1.0-mingw-w64msvcrt-10.0.0-r2.zip)).
+You'll need the POSIX version of MinGW. For the Winlibs distribution mentioned above, the latest version is currently gcc 13 ([direct download link](https://github.com/brechtsanders/winlibs_mingw/releases/download/13.2.0-16.0.6-11.0.0-ucrt-r1/winlibs-x86_64-posix-seh-gcc-13.2.0-mingw-w64ucrt-11.0.0-r1.zip)). Download and extract the zip file in a folder whose path doesn't contain a space (C:\ for example) and add the bin\ folder inside to your PATH (Press the Windows key and type "edit environment variables", then click on PATH and add it to the list).
 
-Extract the zip file in a folder whose path doesn't contain a space (C:\ for example) and add the bin\ folder inside to your PATH (Press the Windows key and type "edit environment variables", then click on PATH and add it in the list).
+You will also need at least [CMake](https://cmake.org/download/) 3.21. You can check if you have CMake already installed by running `cmake -v` in command line window.
 
-You will also need to install [CMake](https://cmake.org) (if you don't already have it).
-
-</details>
-
-## MacOS <MacOS>
+### MacOS
 
 Install [Homebrew](https://brew.sh). Once it is installed, use it to install the tools and libraries you will need:
 
-```
+```bash
 $ brew install cmake ninja mad libpng jpeg-turbo sdl2
 ```
 
@@ -78,11 +49,11 @@ $ brew install cmake ninja mad libpng jpeg-turbo sdl2
 
 If you want to build the libraries from source instead of using Homebrew, you can pass `-DES_USE_SYSTEM_LIBRARIES=OFF` to CMake when configuring.
 
-## Linux <Linux>
+### Linux
 
 You will need at least CMake 3.21. You can get the latest version from the [offical website](https://cmake.org/download/).
 
-**Note**: If your distro does not provide up-to-date version of the needed libraries, you will need to tell CMake to build the libraries from source by passing `-DES_USE_SYSTEM_LIBRARIES=OFF` to the first cmake command under the command line build instructions.
+**Note**: If your distro does not provide up-to-date version of the needed libraries, you will need to tell CMake to build the libraries from source by passing `-DES_USE_SYSTEM_LIBRARIES=OFF` while configuring.
 
 If you use a reasonably up-to-date distro, then you can use your favorite package manager to install the needed dependencies.
 
@@ -104,20 +75,21 @@ gcc-c++ cmake ninja-build SDL2-devel libpng-devel libjpeg-turbo-devel mesa-libGL
 
 </details>
 
-# Building from the command line
+## Building the game
+
+### Building from the command line
 
 Here's a summary of every command you will need for development:
 
 ```bash
 $ cmake --preset <preset>                     # configure project (only needs to be done once)
-$ cmake --build --preset <preset>-debug       # actually build Endless Sky (as well as any tests)
-$ ./build/<preset>/Debug/endless-sky          # run the game
+$ cmake --build --preset <preset>-debug       # build Endless Sky (as well as any tests)
 $ ctest --preset <preset>-test                # run the unit tests
 $ ctest --preset <preset>-benchmark           # run the benchmarks
 $ ctest --preset <preset>-integration         # run the integration tests (Linux only)
 ```
 
-If you'd like to debug a specific integration test (on any OS), you can do so as follows:
+The executable will be located in `build/<preset>/Debug/`. If you'd like to debug a specific integration test (on any OS), you can do so as follows:
 
 ```bash
 $ ctest --preset <preset>-integration-debug -R <name>
@@ -129,37 +101,61 @@ You can get a list of integration tests with `ctest --preset <preset>-integratio
 
 Replace `<preset>` with one of the following presets:
 
-- Windows: `clang-cl` (builds with Clang for Windows), `mingw` (builds with MinGW)
-- MacOS: `macos` or `macos-arm` (builds with the default compiler), `xcode` or `xcode-arm` (builds using the XCode toolchain)
+- Windows: `clang-cl` (builds with Clang for Windows), `mingw` (builds with MinGW), `mingw32` (builds with x86 MinGW)
+- MacOS: `macos` or `macos-arm` (builds with the default compiler, for x64 and ARM64 respectively)
 - Linux: `linux` (builds with the default compiler)
 
-# Building with other IDEs
+### Using an IDE
 
-## Building with Visual Studio Code
+Most IDEs have CMake support, and can be used to build the game. We recommend using [Visual Studio Code](#visual-studio-code).
 
-Install the [C/C++](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools), [CMake Tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools), [CMake Test explorer](https://marketplace.visualstudio.com/items?itemName=fredericbonnet.cmake-test-adapter) extensions and open the project folder under File -> Open Folder.
+#### Visual Studio Code
 
-You'll be asked to select a preset. Select the one you want (see the table above). If you get asked to configure the project, click on Yes. You can use the bar at the very bottom to select between different configurations (Debug/Release), build, start the game, and execute the unit tests. On the left you can click on the test icon to run individual integration tests.
+After installing VS Code, install the [C/C++](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools) and [CMake Tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools) extensions, and open the project folder under File -> Open Folder.
 
-## Building with Code::Blocks
+You'll be asked to select a preset. Select the one you want (see the list above in the previous section for help). If you get asked to configure the project, click on Yes. You can use the bar at the very bottom to select between different configurations (Debug/Release), build, start the game, and execute the unit tests. On the left you can click on the test icon to run individual integration tests.
 
-If you want to use the Code::Blocks IDE, from the root of the project folder execute:
+#### Visual Studio
+
+We recommend using [Visual Studio 2022](https://visualstudio.microsoft.com/downloads/#visual-studio-community-2022) or newer, because of its better CMake integration. Once you have installed Visual Studio, you can simply open the root folder.
+
+<details>
+<summary>Step-by-step instructions for Visual Studio 2022 or later</summary>
+
+1. Open the repository's root folder using Visual Studio ("Open Folder")
+2. Wait while Visual Studio loads everything. This may take a few minutes the first time, but should be relatively fast on subsequent loads.
+3. On the toolbar you're able to choose between Debug and Release.
+4. You might need to select the target to launch in the dropdown menu of the Run button (it's the one with the green arrow). Select "Endless Sky (build/.../)" (not the one with install).
+5. Hit the Run button (F5) to build and run the game.
+6. In the status window it will give a scrolling list of actions being completed. Wait until it states "Build Complete"
+7. You'll find the executables and libraries located inside the build directory in the root folder.
+
+</details>
+
+If you are on an earlier version of Visual Studio, or would like to use an actual VS solution, you will need to generate the solution manually as follows:
+
+```powershell
+> cmake --preset clang-cl -G"Visual Studio 17 2022"
+```
+
+This will create a Visual Studio 2022 solution. If you are using an older version of VS, you will need to adjust the version. Now you will find a complete solution in the `build/` folder. Find the solution and open it and you're good to go!
+
+#### Code::Blocks
+
+If you want to use the [Code::Blocks](https://www.codeblocks.org/downloads/) IDE, from the root of the project folder execute:
 
 ```powershell
 > cmake -G"CodeBlocks - Ninja" --preset <preset>
 ```
 
-With `<preset>` being one of the available presets (see above for a list). For Windows for example you'd want `mingw`. Now there will be a Code::Blocks project inside `build\mingw`.
+With `<preset>` being one of the available presets (see above for a list). For Windows for example you'd want `clang-cl` or `mingw`. Now there will be a Code::Blocks project inside `build\`.
 
-
-
-## Building with XCode
+#### XCode
 
 If you want to use the XCode IDE, from the root of the project folder execute:
 
 ```bash
-$ cmake --preset macos -G Xcode # macos-arm for Apple Silicon
+$ cmake -G Xcode --preset macos # macos-arm for Apple Silicon
 ```
 
 The XCode project is located in the `build/` directory.
-

@@ -1694,8 +1694,14 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 			? origin->JumpNeighbors(ship.JumpNavigation().JumpRange()) : origin->Links();
 		if(jumps)
 		{
+			bool unrestricted = ship.GetPersonality().IsUnrestricted();
 			for(const System *link : links)
 			{
+				if(!unrestricted && gov->IsRestrictedFrom(*link))
+				{
+					systemWeights.push_back(0);
+					continue;
+				}
 				// Prefer systems in the direction we're facing.
 				Point direction = link->Position() - origin->Position();
 				int weight = static_cast<int>(
@@ -2760,7 +2766,10 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		{
 			const auto &links = ship.JumpNavigation().HasJumpDrive() ?
 				system->JumpNeighbors(ship.JumpNavigation().JumpRange()) : system->Links();
-			targetSystems.insert(targetSystems.end(), links.begin(), links.end());
+			bool unrestricted = ship.GetPersonality().IsUnrestricted();
+			for(const System *link : links)
+				if(unrestricted || !gov->IsRestrictedFrom(*link))
+					targetSystems.push_back(link);
 		}
 
 		unsigned total = targetShips.size() + targetPlanets.size() + targetSystems.size();
