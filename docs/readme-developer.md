@@ -1,6 +1,6 @@
 # Build instructions
 
-First you need a copy of the code (if you intend on working on the game, use your fork's URL here):
+First, you need a copy of the code (if you intend on working on the game, use your fork's URL here):
 
 ```powershell
 > git clone https://github.com/endless-sky/endless-sky
