@@ -533,7 +533,7 @@ mission "Return Syndicate Prisoners [2]"
 
 mission "Syndicated Shipyards Shipment [0]"
 	name "Shipment to <planet>"
-	description "Syndicated Shipyards, one of the largest shipyards in human space, requests an itinerant captain to deliver <cargo> to <destination> to ensure sufficient stocks. Payment is <payment>."
+	description "Syndicated Shipyards, one of the largest shipyards in human space, requests an independent captain to deliver <cargo> to <destination> to ensure sufficient stocks. Payment is <payment>."
 	cargo "weapons" 5 2 .1
 	job
 	repeat
@@ -551,7 +551,7 @@ mission "Syndicated Shipyards Shipment [0]"
 
 mission "Syndicated Shipyards Shipment [1]"
 	name "Shipment to <planet>"
-	description "Syndicated Shipyards, one of the largest shipyards in human space, requests an itinerant captain to deliver <cargo> to <destination> to ensure sufficient stocks. Payment is <payment>."
+	description "Syndicated Shipyards, one of the largest shipyards in human space, requests an independent captain to deliver <cargo> to <destination> to ensure sufficient stocks. Payment is <payment>."
 	cargo "ship alloys" 5 2 .1
 	job
 	repeat
@@ -569,7 +569,7 @@ mission "Syndicated Shipyards Shipment [1]"
 
 mission "Syndicated Shipyards Shipment [2]"
 	name "Shipment to <planet>"
-	description "Syndicated Shipyards, one of the largest shipyards in human space, requests an itinerant captain to deliver <cargo> to <destination> to ensure sufficient stocks. Payment is <payment>."
+	description "Syndicated Shipyards, one of the largest shipyards in human space, requests an independent captain to deliver <cargo> to <destination> to ensure sufficient stocks. Payment is <payment>."
 	cargo "ship systems" 5 2 .1
 	job
 	repeat
