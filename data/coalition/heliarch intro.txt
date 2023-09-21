@@ -2049,16 +2049,16 @@ mission "Heliarch License 2"
 	to offer
 		has "Heliarch License 1: active"
 		not "Lunarium: Questions: done"
-		not "assisting lunarium
+		not "assisting lunarium"
 	on offer
 		conversation
 			`The Heliarch authorities of the <origin> have offered you a position in the ranks of the Heliarchs. Would you like to meet with them and officially join the Heliarchy? Given their history with the Quarg, and the rumors of rebellion stirring in Coalition space, this would no doubt set you on path to conflict with the Quarg and the resistance forces.`
-		choice
-		`	(Yes.)`
-		`	(Not yet.)`
-			defer
-		`	(No. I don't want to support the Heliarchs at all.)`
-			decline
+			choice
+			`	(Yes.)`
+			`	(Not yet.)`
+				defer
+			`	(No. I don't want to support the Heliarchs at all.)`
+				decline
 		log "Was given a special circlet by the Heliarchs, which grants access to some of their technology. Was also given a translation device to freely converse with the Coalition species."
 		set "language: Coalition"
 		event "first heliarch unlock"
