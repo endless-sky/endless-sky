@@ -110,8 +110,12 @@ void HiringPanel::Draw()
 bool HiringPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(command.Has(Command::HELP))
+	{
 		DoHelp("hiring", true);
-	else if(!player.Flagship())
+		return true;
+	}
+
+	if(!player.Flagship())
 		return false;
 
 	if(key == 'h' || key == SDLK_EQUALS || key == SDLK_KP_PLUS || key == SDLK_PLUS
@@ -125,6 +129,8 @@ bool HiringPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		player.Flagship()->AddCrew(-min(maxFire, Modifier()));
 		player.UpdateCargoCapacities();
 	}
+	else
+		return false;
 
-	return false;
+	return true;
 }
