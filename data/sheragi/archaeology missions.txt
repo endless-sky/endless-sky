@@ -339,7 +339,8 @@ mission "Sad Archie"
 		has "There Might Be Riots part 3B: done"
 	destination "Zug"
 	
-	timer "Sad Archie Timer" 7200 3600
+	timer "Sad Archie Timer"
+		time 7200 3600
 		system Ildaria
 		idle
 		uncloaked
