@@ -572,7 +572,7 @@ bool MainPanel::ShowHelp(bool force)
 
 	if(!force || forced.empty())
 		return false;
-	
+
 	// Reverse-iterate so that the player will see the basic messages first.
 	for(auto it = forced.rbegin(); it != forced.rend(); ++it)
 		DoHelp(*it, true);
