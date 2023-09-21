@@ -930,7 +930,7 @@ bool Mission::IsSatisfied(const PlayerInfo &player) const
 			return false;
 	// All timers must be complete
 	for(const Timer &timer : timers)
-		if(!timer.IsComplete())
+		if(!timer.IsOptional() && !timer.IsComplete())
 			return false;
 
 	// If any of the cargo for this mission is being carried by a ship that is

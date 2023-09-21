@@ -45,6 +45,8 @@ public:
 	// so the time to wait will be saved fully calculated, and with any elapsed time subtracted
 	void Save(DataWriter &out) const;
 
+	// Get whether the timer is optional to complete
+	bool IsOptional() const;
 	// Get whether the timer is currently active
 	bool IsComplete() const;
 
@@ -75,6 +77,8 @@ private:
 	// ...Or the systems it can be for
 	LocationFilter systems;
 
+	// If set, the mission the timer is attached to can be completed even without it
+	bool optional = false;
 	// Whether the timer requires the player to be idle
 	bool requireIdle = false;
 	// Whether the timer requires the player to be uncloaked to advance

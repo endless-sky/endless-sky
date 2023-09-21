@@ -54,6 +54,8 @@ void Timer::Load(const DataNode &node, const Mission *mission)
 		}
 		else if(child.Token(0) == "idle")
 			requireIdle = true;
+		else if(child.Token(0) == "optional")
+			optional = true;
 		else if(child.Token(0) == "system" && child.Size() > 1)
 			system = GameData::Systems().Get(child.Token(1));
 		else if(child.Token(0) == "system")
@@ -128,6 +130,8 @@ void Timer::Save(DataWriter &out) const
 		}
 		if(requireIdle)
 			out.Write("idle");
+		if(optional)
+			out.Write("optional");
 		if(requireUncloaked)
 			out.Write("uncloaked");
 		if(repeatReset)
@@ -206,6 +210,13 @@ Timer Timer::Instantiate(map<string, string> &subs,
 bool Timer::IsComplete() const
 {
 	return isComplete;
+}
+
+
+
+bool Timer::IsOptional() const
+{
+	return optional;
 }
 
 
