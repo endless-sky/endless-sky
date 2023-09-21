@@ -472,7 +472,8 @@ bool ShopPanel::Click(int x, int y, int /* clicks */)
 			for(const shared_ptr<Ship> &ship : player.Ships())
 				if(ship.get() == clickedShip)
 				{
-					if (SideSelect(ship.get())) {
+					if(SideSelect(ship.get()))
+					{
 						dragStart = clickPoint;
 						dragPoint = clickPoint;
 						isDraggingShips = true;
