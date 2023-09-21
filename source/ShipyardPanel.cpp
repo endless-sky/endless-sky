@@ -372,8 +372,8 @@ void ShipyardPanel::Sell(bool toStorage)
 		if(it != uniqueOutfits.end())
 		{
 			int otherUniquesCount = 0;
-			while(it != uniqueOutfits.end())
-				otherUniquesCount += (it++)->second;
+			for( ; it != uniqueOutfits.end(); ++it)
+				otherUniquesCount += it->second;
 			message += "\nand " + to_string(otherUniquesCount) + " other unique outfits";
 		}
 	}

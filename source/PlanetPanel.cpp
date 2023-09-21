@@ -357,8 +357,8 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 			int otherUniquesCount = 0;
 			if(it != uniques.end())
 			{
-				while(it != uniques.end())
-					otherUniquesCount += (it++)->second;
+				for( ; it != uniques.end(); ++it)
+					otherUniquesCount += it->second;
 				out << "\nand " + to_string(otherUniquesCount) + " other unique outfits.";
 			}
 			else
