@@ -1850,7 +1850,7 @@ mission "Lunarium: Questions"
 		not "assisting lunarium"
 	to fail
 		or
-			has "Heliarch License: done"
+			has "Heliarch License 1: done"
 			"reputation: Quarg" < 0
 	to complete
 		has "Lunarium: Quarg Interview: accepted"
@@ -1871,6 +1871,8 @@ mission "Lunarium: Quarg Interview"
 	destination "Lagrange"
 	to offer
 		has "Lunarium: Questions: active"
+		not "Heliarch License 1: done"
+		not "assisting heliarchy"
 	on offer
 		conversation
 			`Here on <origin>, the Lunarium leaders are waiting for you. Would you like to meet with them and officially join the Lunarium? Given their cause against the Heliarchs, this would no doubt set you on path to conflict with the Heliarchy.`
