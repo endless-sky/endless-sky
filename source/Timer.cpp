@@ -37,10 +37,6 @@ void Timer::Load(const DataNode &node, const Mission *mission)
 {
 	if(node.Size() > 1)
 		name = node.Token(1);
-	if(node.Size() > 2)
-		base = static_cast<int64_t>(node.Value(2));
-	if(node.Size() > 3)
-		rand = static_cast<uint32_t>(node.Value(3));
 
 	this->mission = mission;
 
@@ -48,7 +44,13 @@ void Timer::Load(const DataNode &node, const Mission *mission)
 
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "idle")
+		if(child.Token(0) == "time" && child.Size() > 1)
+		{
+			base = static_cast<int64_t>(child.Value(1));
+			if(child.Size() > 2)
+				rand = static_cast<uint32_t>(child.Value(2));
+		}
+		else if(child.Token(0) == "idle")
 			requireIdle = true;
 		else if(child.Token(0) == "system" && child.Size() > 1)
 			system = GameData::Systems().Get(child.Token(1));
@@ -106,9 +108,13 @@ void Timer::Save(DataWriter &out) const
 		return;
 
 	int64_t timeRemaining = timeToWait - timeElapsed;
-	out.Write("timer", name, timeRemaining);
+	if(!name.empty())
+		out.Write("timer", name);
+	else
+		out.Write("timer");
 	out.BeginChild();
 	{
+		out.Write("time", timeRemaining);
 		if(system)
 			out.Write("system", system->Name());
 		else if(!systems.IsEmpty())
@@ -291,7 +297,8 @@ void Timer::Step(PlayerInfo &player, UI *ui)
 	if(timeElapsed >= timeToWait)
 	{
 		action.Do(player, ui, mission);
-		player.Conditions().Add("timer: " + name + ": complete", 1);
+		if(!name.empty())
+			player.Conditions().Add("timer: " + name + ": complete", 1);
 		isComplete = true;
 	}
 }
