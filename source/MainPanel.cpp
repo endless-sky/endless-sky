@@ -462,51 +462,121 @@ bool MainPanel::ShowHailPanel()
 bool MainPanel::ShowHelp(bool force)
 {
 	const Ship *flagship = player.Flagship();
-	if(flagship)
-	{
-		// Check if any help messages should be shown.
-		if(Preferences::Has("Control ship with mouse"))
-			return DoHelp("control ship with mouse", force);
-		if(flagship->IsTargetable())
-			return DoHelp("navigation", force);
-		if(flagship->IsDestroyed())
-			return DoHelp("dead", force);
-		if(flagship->IsDisabled() && !flagship->IsDestroyed())
-			return DoHelp("disabled", force);
-		bool canRefuel = player.GetSystem()->HasFuelFor(*flagship);
-		if(!flagship->IsHyperspacing() && !flagship->JumpsRemaining() && !canRefuel)
-			return DoHelp("stranded", force);
-		shared_ptr<Ship> target = flagship->GetTargetShip();
-		if(target && target->IsDisabled() && !target->GetGovernment()->IsEnemy())
-			return DoHelp("friendly disabled", force);
-		if(player.Ships().size() > 1)
-			return DoHelp("multiple ship controls", force);
-		if(flagship->IsTargetable() && player.Ships().size() > 1)
-			return DoHelp("fleet harvest tutorial", force);
-		if(flagship->IsTargetable() &&
-				flagship->Attributes().Get("asteroid scan power") &&
-				player.Ships().size() > 1)
-			return DoHelp("fleet asteroid mining", force) && DoHelp("fleet asteroid mining shortcuts", force);
-		if(player.DisplayCarrierHelp())
-			return DoHelp("try out fighters transfer cargo", force);
-		if(Preferences::Has("Fighters transfer cargo"))
-			return DoHelp("fighters transfer cargo", force);
-		if(!flagship->IsHyperspacing() && flagship->Position().Length() > 10000.
-				&& player.GetDate() <= player.StartData().GetDate() + 4)
-		{
-			++lostness;
-			int count = 1 + lostness / 3600;
-			if(count > lostCount && count <= 7)
-			{
-				string message = "lost 1";
-				message.back() += lostCount;
-				++lostCount;
+	if(!flagship)
+		return false;
 
-				return DoHelp(message, force);
-			}
+	vector<string> forced;
+	// Check if any help messages should be shown.
+	if(Preferences::Has("Control ship with mouse"))
+	{
+		if(force)
+			forced.push_back("control ship with mouse");
+		else
+			return DoHelp("control ship with mouse");
+	}
+	if(flagship->IsTargetable())
+	{
+		if(force)
+			forced.push_back("navigation");
+		else
+			return DoHelp("navigation");
+	}
+	if(flagship->IsDestroyed())
+	{
+		if(force)
+			forced.push_back("dead");
+		else
+			return DoHelp("dead");
+	}
+	else if(flagship->IsDisabled())
+	{
+		if(force)
+			forced.push_back("disabled");
+		else
+			return DoHelp("disabled");
+	}
+	bool canRefuel = player.GetSystem()->HasFuelFor(*flagship);
+	if(!flagship->IsHyperspacing() && !flagship->JumpsRemaining() && !canRefuel)
+	{
+		if(force)
+			forced.push_back("stranded");
+		else
+			return DoHelp("stranded");
+	}
+	shared_ptr<Ship> target = flagship->GetTargetShip();
+	if(target && target->IsDisabled() && !target->GetGovernment()->IsEnemy())
+	{
+		if(force)
+			forced.push_back("friendly disabled");
+		else
+			return DoHelp("friendly disabled");
+	}
+	if(player.Ships().size() > 1)
+	{
+		if(force)
+			forced.push_back("multiple ship controls");
+		else
+			return DoHelp("multiple ship controls");
+	}
+	if(flagship->IsTargetable() && player.Ships().size() > 1)
+	{
+		if(force)
+			forced.push_back("fleet harvest tutorial");
+		else
+			return DoHelp("fleet harvest tutorial");
+	}
+	if(flagship->IsTargetable() &&
+			flagship->Attributes().Get("asteroid scan power") &&
+			player.Ships().size() > 1)
+	{
+		// Different order of these messages is intentional,
+		// because we're displaying the forced messages in reverse order.
+		if(force)
+		{
+			forced.push_back("fleet asteroid mining");
+			forced.push_back("fleet asteroid mining shortcuts");
+		}
+		else
+			return DoHelp("fleet asteroid mining shortcuts") && DoHelp("fleet asteroid mining");
+	}
+	if(player.DisplayCarrierHelp())
+	{
+		if(force)
+			forced.push_back("try out fighters transfer cargo");
+		else
+			return DoHelp("try out fighters transfer cargo");
+	}
+	if(Preferences::Has("Fighters transfer cargo"))
+	{
+		if(force)
+			forced.push_back("fighters transfer cargo");
+		else
+			return DoHelp("fighters transfer cargo");
+	}
+	if(!flagship->IsHyperspacing() && flagship->Position().Length() > 10000.
+			&& player.GetDate() <= player.StartData().GetDate() + 4)
+	{
+		++lostness;
+		int count = 1 + lostness / 3600;
+		if(count > lostCount && count <= 7)
+		{
+			string message = "lost 1";
+			message.back() += lostCount;
+			++lostCount;
+			if(force)
+				forced.push_back(message);
+			else
+				return DoHelp(message);
 		}
 	}
-	return false;
+
+	if(!force || forced.empty())
+		return false;
+	
+	// Reverse-iterate so that the player will see the basic messages first.
+	for(auto it = forced.rbegin(); it != forced.rend(); ++it)
+		DoHelp(*it, true);
+	return true;
 }
 
 
