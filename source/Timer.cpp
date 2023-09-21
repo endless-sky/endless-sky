@@ -33,6 +33,8 @@ Timer::Timer(const DataNode &node, const Mission *mission)
 	Load(node, mission);
 }
 
+
+
 void Timer::Load(const DataNode &node, const Mission *mission)
 {
 	if(node.Size() > 1)
@@ -99,6 +101,8 @@ void Timer::Load(const DataNode &node, const Mission *mission)
 	}
 }
 
+
+
 // Note: the Save() function can assume this is an instantiated Timer, not a template,
 // so the time to wait will be saved fully calculated, and with any elapsed time subtracted
 void Timer::Save(DataWriter &out) const
@@ -164,6 +168,8 @@ void Timer::Save(DataWriter &out) const
 	out.EndChild();
 }
 
+
+
 // Calculate the total time to wait, including any random value,
 // and instantiate the triggered action
 Timer Timer::Instantiate(map<string, string> &subs,
@@ -195,10 +201,14 @@ Timer Timer::Instantiate(map<string, string> &subs,
 	return result;
 }
 
+
+
 bool Timer::IsComplete() const
 {
 	return isComplete;
 }
+
+
 
 bool Timer::ResetOn(ResetCondition cond)
 {
@@ -214,6 +224,8 @@ bool Timer::ResetOn(ResetCondition cond)
 	}
 	return false;
 }
+
+
 
 void Timer::Step(PlayerInfo &player, UI *ui)
 {
