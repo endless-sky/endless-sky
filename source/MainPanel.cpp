@@ -471,59 +471,59 @@ bool MainPanel::ShowHelp(bool force)
 	{
 		if(force)
 			forced.push_back("control ship with mouse");
-		else
-			return DoHelp("control ship with mouse");
+		else if(DoHelp("control ship with mouse"))
+			return true;
 	}
 	if(flagship->IsTargetable())
 	{
 		if(force)
 			forced.push_back("navigation");
-		else
-			return DoHelp("navigation");
+		else if(DoHelp("navigation"))
+			return true;
 	}
 	if(flagship->IsDestroyed())
 	{
 		if(force)
 			forced.push_back("dead");
-		else
-			return DoHelp("dead");
+		else if(DoHelp("dead"))
+			return true;
 	}
 	else if(flagship->IsDisabled())
 	{
 		if(force)
 			forced.push_back("disabled");
-		else
-			return DoHelp("disabled");
+		else if(DoHelp("disabled"))
+			return true;
 	}
 	bool canRefuel = player.GetSystem()->HasFuelFor(*flagship);
 	if(!flagship->IsHyperspacing() && !flagship->JumpsRemaining() && !canRefuel)
 	{
 		if(force)
 			forced.push_back("stranded");
-		else
-			return DoHelp("stranded");
+		else if(DoHelp("stranded"))
+			return true;
 	}
 	shared_ptr<Ship> target = flagship->GetTargetShip();
 	if(target && target->IsDisabled() && !target->GetGovernment()->IsEnemy())
 	{
 		if(force)
 			forced.push_back("friendly disabled");
-		else
-			return DoHelp("friendly disabled");
+		else if(DoHelp("friendly disabled"))
+			return true;
 	}
 	if(player.Ships().size() > 1)
 	{
 		if(force)
 			forced.push_back("multiple ship controls");
-		else
-			return DoHelp("multiple ship controls");
+		else if(DoHelp("multiple ship controls"))
+			return true;
 	}
 	if(flagship->IsTargetable() && player.Ships().size() > 1)
 	{
 		if(force)
 			forced.push_back("fleet harvest tutorial");
-		else
-			return DoHelp("fleet harvest tutorial");
+		else if(DoHelp("fleet harvest tutorial"))
+			return true;
 	}
 	if(flagship->IsTargetable() &&
 			flagship->Attributes().Get("asteroid scan power") &&
@@ -536,22 +536,22 @@ bool MainPanel::ShowHelp(bool force)
 			forced.push_back("fleet asteroid mining");
 			forced.push_back("fleet asteroid mining shortcuts");
 		}
-		else
-			return DoHelp("fleet asteroid mining shortcuts") && DoHelp("fleet asteroid mining");
+		else if(DoHelp("fleet asteroid mining shortcuts") && DoHelp("fleet asteroid mining"))
+			return true;
 	}
 	if(player.DisplayCarrierHelp())
 	{
 		if(force)
 			forced.push_back("try out fighters transfer cargo");
-		else
-			return DoHelp("try out fighters transfer cargo");
+		else if(DoHelp("try out fighters transfer cargo"))
+			return true;
 	}
 	if(Preferences::Has("Fighters transfer cargo"))
 	{
 		if(force)
 			forced.push_back("fighters transfer cargo");
-		else
-			return DoHelp("fighters transfer cargo");
+		else if(DoHelp("fighters transfer cargo"))
+			return true;
 	}
 	if(!flagship->IsHyperspacing() && flagship->Position().Length() > 10000.
 			&& player.GetDate() <= player.StartData().GetDate() + 4)
@@ -565,18 +565,19 @@ bool MainPanel::ShowHelp(bool force)
 			++lostCount;
 			if(force)
 				forced.push_back(message);
-			else
-				return DoHelp(message);
+			else if(DoHelp(message))
+				return true;
 		}
 	}
 
 	if(!force || forced.empty())
 		return false;
 
+	bool hasValidHelp = false;
 	// Reverse-iterate so that the player will see the basic messages first.
 	for(auto it = forced.rbegin(); it != forced.rend(); ++it)
-		DoHelp(*it, true);
-	return true;
+		hasValidHelp |= DoHelp(*it, true);
+	return hasValidHelp;
 }
 
 
