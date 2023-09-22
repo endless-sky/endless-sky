@@ -1423,9 +1423,11 @@ mission "Heliarch Contain Fail"
 	job
 	repeat
 	name `Contain Criminals`
-	description `Fly to <destination> by <date> so that you and <bunks> other Heliarch agents can combat criminals on site.`
+	description `Fly to <destination> by <date> so that you and <bunks> other Heliarch agents can combat criminals on site. Payment is <payment>.`
 	deadline
 	passengers 16 58
+	"apparent payment"
+	"apparent payment" 70000
 	to offer
 		random < 15
 		has "license: Heliarch"
@@ -1445,7 +1447,7 @@ mission "Heliarch Contain Fake"
 	job
 	repeat
 	name `Contain Criminals`
-	description `Fly to <destination> by <date> so that you and <bunks> other Heliarch agents can combat criminals on the site.`
+	description `Fly to <destination> by <date> so that you and <bunks> other Heliarch agents can combat criminals on the site. Payment is <payment>.`
 	deadline
 	passengers 16 58
 	to offer
