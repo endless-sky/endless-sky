@@ -1426,7 +1426,6 @@ mission "Heliarch Contain Fail"
 	description `Fly to <destination> by <date> so that you and <bunks> other Heliarch agents can combat criminals on site. Payment is <payment>.`
 	deadline
 	passengers 16 58
-	"apparent payment"
 	"apparent payment" 70000
 	to offer
 		random < 15
