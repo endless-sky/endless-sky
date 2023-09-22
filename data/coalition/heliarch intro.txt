@@ -67,8 +67,7 @@ mission "Heliarch Investigation 2"
 		has "Heliarch Investigation 2 - Remote Blue: done"
 	on offer
 		conversation
-			`Despite the immense traffic in <origin>'s spaceport, the Heliarch trio you brought here is quick to find you after you enter. Kirrie is the first to greet you. "Captain <last>! Glad I am, that still around, you are."`
-			`	"Accompany us, would you? A job in mind for you, our superior has." Iplora says.`
+			`You find the trio of Heliarch agents, Iplora, Kirrie and Tugroob, waiting for you in the spaceport. They greet you, and Iplora speaks for the trio. "Accompany us now, could you? A job in mind for you, our superior has."`
 			choice
 				`	"I don't see why not. Lead the way."`
 				`	"Not this time, I'm really busy now."`
@@ -81,8 +80,17 @@ mission "Heliarch Investigation 2"
 			`	"Stable and safe, our great Coalition is. Sadly, there are some who ideas of revolt and rebellion spread," she says. "To combat these thoughts of disunion, we swore. Correct such behavior, we must," she says as she points to the three agents beside you. "Dedicated to that, our agents are, but oftentimes slow and predictable, their tactics are. A different approach might be due, so an outsider's help, and their way of thinking, we'd like to ask for."`
 			choice
 				`	"What exactly would I have to do?"`
+					goto what
+				`	"Revolt? Rebellion? What are you talking about?"`
 				`	"In that case, I'm not interested. I thought this was some simple job, not a political matter."`
 					decline
+			`	"Though to guard our Coalition from the Quarg and all who would see it harmed, steadfast and ever-ready we for millennia have remained, not as disciplined and understanding of the situation, our civilians are," Iekie explains. "For a few centuries now, plagued our Coalition with increasing violence and threats to our people, bands of thieves and terrorist groups have. Stealing Heliarch equipment, promoting rebellious propaganda, attacking Heliarch officials and sites, disrupting our peace with bombings and attacks, intensified all their activities as of late, they have."`
+			choice
+				`	"Well, what do you think I can do to help?"`
+					goto what
+				`	"Why are they doing all that?"`
+			`	"Uncertain to us, that still remains. Those that arrested and interrogated, we have, no more than simple pawns in the outlaw organizations appear to be," she considers her words for a few seconds. "Warning our civilians about the thugs' actions, we have been, and asking them for support with any information of suspicious activity. Investigate reports of such activity, what you can help us with is."`
+			label what
 			`	"Six worlds, we have marked. Each, we'd like you to 'visit'. Those three tourists, you will be transporting," an Arach says as they point to Iplora, Kirrie and Tugroob.`
 			choice
 				`	"Sounds easy enough. Where should I start?"`
@@ -223,8 +231,8 @@ mission "Heliarch Investigation 2 - Mebla's Portion"
 			label reactor
 			action
 				"lunarium evidence" ++
-			`	Kirrie approaches the door and waits for a few seconds, as if expecting it to open. When it doesn't, he picks his headpiece off and fiddles with it briefly. He puts it on again and waits some more, again to no avail. "To all of these warehouses I should have access. Damaged, the door's electronics don't seem to be," he comments. He then grabs a small sidearm, busting the door open with a couple shots.`
-			`	At first glance there is nothing inside, but after he furiously crawls all over the place, he puts his head to a large metal panel on the opposite end of the room, before shooting that too. You approach him to find a hidden staircase leading underground.`
+			`	Kirrie approaches the door and waits for a few seconds, as if expecting it to open. When it doesn't, he picks his headpiece off and fiddles with it briefly. He puts it on again and waits some more, again to no avail. "To all of these warehouses I should have access. Damaged, the door's electronics don't seem to be," he comments. He then asks you for help, looking for any manner of tools nearby so that you can force the door, while he tries to tinker with the lock. You find something akin to a crowbar, or perhaps a shovel, and bring it to him, and with some effort you two manage to angle it and pull it to pop the door open.`
+			`	At first glance there is nothing inside, but after he thoroughly crawls all over the place, he puts his head to a large metal panel on the opposite end of the room. You approach him, and again you two use the tool to bust the lock open, finding a hidden staircase leading underground.`
 			`	On your way down, Kirrie yells for you to take cover, and you barely escape a barrage of shots as you head back up. Kirrie isn't as lucky, as a shot hit one of his back legs just before he gets to the stairs. You go to help him up before any more shots come, but he seems to make do with five good legs well enough.`
 			`	You two rush back up. Kirrie tells you to be alert and watch the staircase, as he reaches for a small radio-like device to call for support. A few minutes later, a pair of Heliarch Punishers land nearby. Dozens of armed agents enter the warehouse, while you head to one of the ships with Kirrie and wait as his wound is treated.`
 			`	The agents return hours later, reporting they shot down the turrets and found the place deserted. "Many automated production lines, we found," one of them tells Kirrie. "Powering them, one of our Reactor Modules is."`
@@ -743,7 +751,7 @@ mission "Quarg Interrogation"
 	landing
 	deadline 1
 	source
-		government "Quarg"
+		attributes "quarg"
 		not planet "Humanika"
 	destination "Earth"
 	to offer
@@ -1265,7 +1273,7 @@ mission "Heliarch Expedition 5"
 
 mission "Heliarch Containment 1"
 	name "Transport Heliarch Soldiers"
-	description "Bring these <bunks> Heliarch soldiers, along with <cargo>, to <destination> so they can combat a terrorist group."
+	description "Bring these <bunks> Heliarch soldiers, along with <cargo>, to <destination> by <date> so they can combat a terrorist group."
 	minor
 	deadline
 	passengers 33
@@ -1320,6 +1328,10 @@ mission "Heliarch Containment 1"
 		dialog `You're told to open your hatch as soon as you land, and when you do, the Heliarch agents storm out of your ship while a separate group that was waiting for you unloads the cargo. A few seconds later you see that <payment> have been added to your account.`
 	on fail
 		"assisting heliarchy" --
+		conversation
+			`Having failed to deliver the Heliarch agents on time, they leave your ship with sour looks on their faces. You're contacted by the Heliarchs who had enlisted your help.`
+			`	"Thanks to your lack of discipline, lost we have a prime opportunity to capture dangerous criminals. Unreliable you have proven, <last>."`
+			`	They sign off. It seems you'll not be getting more offers to help the Heliarchs with this particular type of work again.`
 
 mission "Heliarch Containment 2"
 	name "Pick Up Injured Soldiers"
@@ -1392,6 +1404,10 @@ mission "Heliarch Containment 2"
 				accept
 	on fail
 		"assisting heliarchy" --
+		conversation
+			`Having failed to pick up and deliver the injured Heliarch agents to the healthcare facilities on time, some have succumbed to their wonds, and those who are still alive leave your ship while angrily throwing insults and complaints your way. You're contacted by the Heliarchs who had enlisted your help.`
+			`	"Unbelievable. Cost us the lives of valuable soldiers, your lack of discipline has. Unreliable and apathetic to the woes of our troops you have proven, <last>."`
+			`	They sign off. It seems you'll not be getting more offers to help the Heliarchs with this particular type of work again.`
 
 mission "Heliarch Containment 3"
 	name "Informational Medicine"
@@ -1429,7 +1445,7 @@ mission "Heliarch Containment 3"
 				`	"<first> <last>. Pleasure to meet you."`
 				`	"What job did you have for me?"`
 			`	"In need of one such as you, we are. Anonymous reports, we have received, from loyal patriots and colleagues alike. On <stopovers>, a Saryd world, terrible activity may be brewing. Rising in activity there, outlaw groups are, we fear," he says. "Your destination, that is."`
-			`	A couple small boxes are brought inside and set on the table. Upon opening them, Plortub shows you they contain several small drones - drones very similar to those employed by the repair modules used here.`
+			`	A couple small boxes are brought inside and set on the table. Upon opening them, Plortub shows you they contain several small drones - drones very similar to those employed by the hull repair modules used in Coalition ships.`
 			`	"A union of technologies, it is. Of the scanning module, the incredible surveillance capabilities are. Of the repair drones, the versatile mobility and durable shells are." He explains to you that you're to head to <planet stopovers> to pick up <cargo> produced on the planet, but as you're coming in for a landing, you are to jettison the crates with the drones so that they may act as spybots. "Inconspicuous, you must be. Appear to be a simple, regular job, this must. Back to <origin>, you must return, after completed this task, you have. Readily available then, your payment will be. Suffice, <payment> will, surely."`
 			`	He wishes you good luck, and the trio from earlier escorts you back to your ship.`
 				accept
@@ -1534,7 +1550,7 @@ mission "Heliarch Containment 5"
 			`	"Captain! Helped us, you have, yes? Aiding in the Remote Blue operation?" You nod. "Think you trustworthy, the consul does, and in dire need of a combat-ready ship, we are. Aid us, you must!"`
 			choice
 				`	"What's going on?"`
-				`	"My ship isn't exactly combat-ready to fight your own warships."`
+				`	"What do you mean combat-ready? Are we being attacked?"`
 			`	They explain that it's not simply the station's mercantile and news systems that haven't been functioning properly - they haven't been able to contact the group on Remote Blue, nor the fleet that left for Fourth Shadow, nor get in any sort of contact with anywhere else in the Coalition.`
 			`	"Only readings of the local systems, we can get, and alerted us, they have, of incoming ships! Armed, civilian ships! Criminals, no doubt, and fleeing Remote Blue, they are!"`
 			`	You can't say much before they've practically pushed you back into your ship. They promise you'll be greatly compensated for this, and ask that you only disable the ships so you can board and check for hostages, or possibly allow for capture and questioning of the outlaws.`
@@ -1982,6 +1998,17 @@ mission "Heliarch Drills 3"
 		conversation
 			`Lotuora is speaking with a Kimek Heliarch captain at the entrance to the spaceport. "Ah, there the Captain is," she tells the Kimek. "Captain <last>, your sparring partner, this is," she says, gesturing to the Kimek, who salutes you with a short bow of her head. "Excited to test her ship against an outsider, she is."`
 			`	The Kimek doesn't stay for long, only wishing you a "good fight" and heading to the hangars, where she boards a Punisher and flies away. You look to Lotuora, waiting for her to explain. "Tough ships, our Punishers are, but looked into your encounter records, we have, and experience in fighting, you have," she says. "To avoid any accidents, we want, so swapped out, the ship's Finisher Pods were. A mere drill, this is, so only aim to disable one another, you shall. If successful, you are, set aside <payment> for your efforts, we have."`
+			choice
+				`	"Great. I'm excited to test my skills against one of your warships."`
+					goto accept
+				`	"Actually, I'm not sure I'm up for this. I don't think my ship can make it against a Punisher."`
+			`	For the first time you see Lotuora drop her smile, seemingly confused and saddened by the prospect of having to call off the match. "What? Come now, Captain, sure I am that do fine you will. If well equipped, your ship is not, free to arm yourself however you wish and return to duel the Punisher at a later time, you are." She takes on a softer tone, and continues. "If really not agreeable to you, this is, cancel the duel I can, but get an opportunity like this, we often do not. Really appreciated, your cooperation with this last drill would be."`
+			choice
+				`	"Well, alright, I suppose I can look for ways to prepare myself for the fight."`
+				`	"I'm sorry, but I'm just not comfortable taking on a warship of yours like that."`
+					decline
+			`	She nearly jumps, and her jolly demeanor returns as if flipped by a switch. "Thank you Captain <last>, truly an unique experience, this shall be."`
+			label accept
 			`	She stares on for a while, then brings up a map. "Headed to the <waypoints> system, the Punisher is. Wait for you there, it will." She tells you to head to <waypoints> when you're ready to fight the Punisher, and reminds you to only disable the ship, as any harsher action would make you a criminal to the Heliarchs.`
 				accept
 	npc disable save
@@ -1995,8 +2022,11 @@ mission "Heliarch Drills 3"
 	on accept
 		"assisting heliarchy" ++
 	on fail
+		"assisting heliarchy" --
 		"reputation: Heliarch" = -1000
 		"reputation: Coalition" = -1000
+	on visit
+		dialog `You've landed on <planet>, but you have not disabled the <npc> yet. Disable it before returning.`
 	on complete
 		"assisting heliarchy" --
 		"coalition jobs" ++
@@ -2005,8 +2035,7 @@ mission "Heliarch Drills 3"
 		conversation
 			`Magister Lotuora greets you when you return. "Prevailed over one of our Punishers, you have! Perhaps the real threat, you are, not the Quarg," she says, looking at you for a few seconds as if expecting you to laugh. She hands you <payment>, and continues, "Sent a recording of the fight, I was. Learn much from it, I hope we can."`
 			`	She thanks you for helping her with the drills, saying it will be a great help in training the cadets at the local academy. She concludes by wishing you safe travels, and then heads to a Heliarch building.`
-	on fail
-		"assisting heliarchy" --
+		
 
 
 
