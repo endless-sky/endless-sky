@@ -89,7 +89,7 @@ mission "Heliarch Investigation 2"
 				`	"Well, what do you think I can do to help?"`
 					goto what
 				`	"Why are they doing all that?"`
-			`	"Uncertain to us, that still remains. Those that arrested and interrogated, we have, no more than simple pawns in the outlaw organizations appear to be," she considers her words for a few seconds. "Warning our civilians about the thugs' actions, we have been, and asking them for support with any information of suspicious activity. Investigate reports of such activity, what you can help us with is."`
+			`	"Uncertain to us, that still remains. Those that arrested and interrogated, we have, no more than simple pawns in the outlaw organizations appear to be." she considers her words for a few seconds. "Warning our civilians about the thugs' actions, we have been, and asking them for support with any information of suspicious activity. Investigate reports of such activity, what you can help us with is."`
 			label what
 			`	"Six worlds, we have marked. Each, we'd like you to 'visit'. Those three tourists, you will be transporting," an Arach says as they point to Iplora, Kirrie and Tugroob.`
 			choice
@@ -1405,7 +1405,7 @@ mission "Heliarch Containment 2"
 	on fail
 		"assisting heliarchy" --
 		conversation
-			`Having failed to pick up and deliver the injured Heliarch agents to the healthcare facilities on time, some have succumbed to their wonds, and those who are still alive leave your ship while angrily throwing insults and complaints your way. You're contacted by the Heliarchs who had enlisted your help.`
+			`Having failed to pick up and deliver the injured Heliarch agents to the healthcare facilities on time, some have succumbed to their wounds, and those who are still alive leave your ship while angrily throwing insults and complaints your way. You're contacted by the Heliarchs who had enlisted your help.`
 			`	"Unbelievable. Cost us the lives of valuable soldiers, your lack of discipline has. Unreliable and apathetic to the woes of our troops you have proven, <last>."`
 			`	They sign off. It seems you'll not be getting more offers to help the Heliarchs with this particular type of work again.`
 
@@ -2007,7 +2007,7 @@ mission "Heliarch Drills 3"
 				`	"Well, alright, I suppose I can look for ways to prepare myself for the fight."`
 				`	"I'm sorry, but I'm just not comfortable taking on a warship of yours like that."`
 					decline
-			`	She nearly jumps, and her jolly demeanor returns as if flipped by a switch. "Thank you Captain <last>, truly an unique experience, this shall be."`
+			`	She nearly jumps, and her jolly demeanor returns as if flipped by a switch. "Thank you Captain <last>! Truly an unique experience, this shall be."`
 			label accept
 			`	She stares on for a while, then brings up a map. "Headed to the <waypoints> system, the Punisher is. Wait for you there, it will." She tells you to head to <waypoints> when you're ready to fight the Punisher, and reminds you to only disable the ship, as any harsher action would make you a criminal to the Heliarchs.`
 				accept
