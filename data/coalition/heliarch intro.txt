@@ -70,8 +70,8 @@ mission "Heliarch Investigation 2"
 			`You find the trio of Heliarch agents, Iplora, Kirrie and Tugroob, waiting for you in the spaceport. They greet you, and Iplora speaks for the trio. "Accompany us now, could you? A job in mind for you, our superior has."`
 			choice
 				`	"I don't see why not. Lead the way."`
-				`	"Not this time, I'm really busy now."`
-					defer
+				`	"Sorry, but I'm not interested in helping any more."`
+					decline
 			`	The three of them escort you through a number of restricted passageways dotted with armed, statue-like guards at every door and hallway you pass through. Eventually you reach a meeting room of sorts, with about a dozen other Heliarchs seated at the central table. One of them motions for you to join them.`
 			`	As you take a seat, one of the Kimek speaks. "The honorable Captain, we salute. Make you feel welcome, I, Consul Iekie of the Heliarch council, hope we will."`
 			choice
