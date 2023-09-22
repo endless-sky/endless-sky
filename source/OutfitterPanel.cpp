@@ -891,7 +891,7 @@ void OutfitterPanel::CheckRefill()
 		for(const Outfit *outfit : toRefill)
 		{
 			int amount = ship->Attributes().CanAdd(*outfit, numeric_limits<int>::max());
-			if(amount > 0 && (outfitter.Has(outfit) || player.Stock(outfit) > 0 || player.Cargo().Get(outfit)))
+			if(amount > 0 && (outfitter.Has(outfit) || player.Stock(outfit) > 0 || player.Cargo().Get(outfit) || player.Storage()->Get(outfit)))
 				needed[outfit] += amount;
 		}
 	}
@@ -899,8 +899,8 @@ void OutfitterPanel::CheckRefill()
 	int64_t cost = 0;
 	for(auto &it : needed)
 	{
-		// Don't count cost of anything installed from cargo.
-		it.second = max(0, it.second - player.Cargo().Get(it.first));
+		// Don't count cost of anything installed from cargo or storage.
+		it.second = max(0, it.second - player.Cargo().Get(it.first) - player.Storage()->Get(it.first));
 		if(!outfitter.Has(it.first))
 			it.second = min(it.second, max(0, player.Stock(it.first)));
 		cost += player.StockDepreciation().Value(it.first, day, it.second);
@@ -931,8 +931,11 @@ void OutfitterPanel::Refill()
 			int neededAmmo = ship->Attributes().CanAdd(*outfit, numeric_limits<int>::max());
 			if(neededAmmo > 0)
 			{
-				// Fill first from any stockpiles in cargo.
-				int fromCargo = player.Cargo().Remove(outfit, neededAmmo);
+				// Fill first from any stockpiles in storage.
+				const int fromStorage = player.Storage()->Remove(outfit, neededAmmo);
+				neededAmmo -= fromStorage;
+				// Then from cargo.
+				const int fromCargo = player.Cargo().Remove(outfit, neededAmmo);
 				neededAmmo -= fromCargo;
 				// Then, buy at reduced (or full) price.
 				int available = outfitter.Has(outfit) ? neededAmmo : min<int>(neededAmmo, max<int>(0, player.Stock(outfit)));
@@ -942,7 +945,7 @@ void OutfitterPanel::Refill()
 					player.Accounts().AddCredits(-price);
 					player.AddStock(outfit, -available);
 				}
-				ship->AddOutfit(outfit, available + fromCargo);
+				ship->AddOutfit(outfit, available + fromStorage + fromCargo);
 			}
 		}
 	}
