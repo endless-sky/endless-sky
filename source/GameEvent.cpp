@@ -218,16 +218,15 @@ void GameEvent::SetDate(const Date &date)
 
 
 
-void GameEvent::Apply(PlayerInfo &player)
+// Apply this event's changes to the player. Returns a list
+// of data changes that need to be applied separately.
+list<DataNode> GameEvent::Apply(PlayerInfo &player)
 {
 	if(isDisabled)
-		return;
+		return {};
 
 	// Apply this event's ConditionSet to the player's conditions.
 	conditionsToApply.Apply(player.Conditions());
-	// Apply (and store a record of applying) this event's other general
-	// changes (e.g. updating an outfitter's inventory).
-	player.AddChanges(changes);
 
 	for(const System *system : systemsToUnvisit)
 		player.Unvisit(*system);
@@ -240,6 +239,10 @@ void GameEvent::Apply(PlayerInfo &player)
 		player.Visit(*system);
 	for(const Planet *planet : planetsToVisit)
 		player.Visit(*planet);
+
+	// Don't apply this event's data changes for optimization
+	// purposes.
+	return std::move(changes);
 }
 
 
