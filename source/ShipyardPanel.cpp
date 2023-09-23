@@ -349,17 +349,9 @@ void ShipyardPanel::Sell(bool toStorage)
 	if(hasUniques)
 	{
 		const int uniquesSize = uniqueOutfits.size();
-		int detailedOutfitList = 5;
-		if(detailedOutfitList > uniquesSize)
-			detailedOutfitList = uniquesSize;
-		else
-		{
-			// The less ships we list, the more place we have for unique outfits.
-			if(initialCount < MAX_SHIP_LIST)
-				detailedOutfitList += MAX_SHIP_LIST - initialCount;
-			if(detailedOutfitList < uniquesSize)
-				--detailedOutfitList;
-		}
+		const int additionalSpace = MAX_SHIP_LIST - initialCount;
+		const int detailedOutfitList = (uniquesSize > 5 + additionalSpace ? 4 + additionalSpace : uniquesSize);
+
 		message += string((initialCount > 2) ? "\n" : " ") + "with the following unique outfits installed:";
 		auto it = uniqueOutfits.begin();
 		for(int i = 0; i < detailedOutfitList; ++i)
