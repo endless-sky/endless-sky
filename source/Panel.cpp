@@ -245,8 +245,8 @@ int Panel::Modifier()
 
 
 
-// Display the given help message if it has not yet been shown. Return true
-// if the message was displayed.
+// Display the given help message if it has not yet been shown
+// (or if force is set to true). Return true if the message was displayed.
 bool Panel::DoHelp(const string &name, bool force) const
 {
 	string preference = "help: " + name;
