@@ -154,6 +154,9 @@ void Files::Init(const char * const *argv)
 	if(config.back() != '/')
 		config += '/';
 
+	if(!Exists(config))
+		throw runtime_error("Unable to create config directory!");
+
 	savePath = config + "saves/";
 	CreateFolder(savePath);
 
@@ -165,7 +168,9 @@ void Files::Init(const char * const *argv)
 	if(!Exists(dataPath) || !Exists(imagePath) || !Exists(soundPath))
 		throw runtime_error("Unable to find the resource directories!");
 	if(!Exists(savePath))
-		throw runtime_error("Unable to create config directory!");
+		throw runtime_error("Unable to create save directory!");
+	if(!Exists(config + "plugins/"))
+		throw runtime_error("Unable to create plugins directory!");
 }
 
 
