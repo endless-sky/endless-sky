@@ -891,8 +891,13 @@ void OutfitterPanel::CheckRefill()
 		for(const Outfit *outfit : toRefill)
 		{
 			int amount = ship->Attributes().CanAdd(*outfit, numeric_limits<int>::max());
-			if(amount > 0 && (outfitter.Has(outfit) || player.Stock(outfit) > 0 || player.Cargo().Get(outfit) || player.Storage()->Get(outfit)))
-				needed[outfit] += amount;
+			if(amount > 0)
+			{
+				bool available = outfitter.Has(outfit) || player.Stock(outfit) > 0;
+				available = available || player.Cargo().Get(outfit) || player.Storage()->Get(outfit);
+				if(available)
+					needed[outfit] += amount;
+			}
 		}
 	}
 
