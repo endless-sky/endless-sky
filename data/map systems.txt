@@ -13728,7 +13728,7 @@ system Feraticus
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite planet/browndwarf-l-rouge
+		sprite planet/browndwarf-l-rogue
 		period 10
 	object
 		sprite planet/rock0-b
@@ -24879,7 +24879,7 @@ system Paeli
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite planet/browndwarf-t-rouge
+		sprite planet/browndwarf-t-rogue
 		period 10
 	object
 		sprite planet/desert4-b
@@ -25556,7 +25556,7 @@ system Perfica
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite planet/browndwarf-y-rouge
+		sprite planet/browndwarf-y-rogue
 		period 10
 	object
 		sprite planet/ice5
