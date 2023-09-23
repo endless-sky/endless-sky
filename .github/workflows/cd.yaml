@@ -170,6 +170,7 @@ jobs:
         with:
           path: ${{ github.workspace }} # This will download all files to e.g `./EndlessSky-win64.zip/EndlessSky-win64.zip`
       - name: Add ${{ env.OUTPUT_APPIMAGE }} to release tag
+        continue-on-error: true
         run: |
           github-release upload \
             --tag continuous \
@@ -177,6 +178,7 @@ jobs:
             --name ${{ env.OUTPUT_APPIMAGE }} \
             --file ${{ env.OUTPUT_APPIMAGE }}/${{ env.OUTPUT_APPIMAGE }}
       - name: Add ${{ env.OUTPUT_WINDOWS }} to release tag
+        continue-on-error: true
         run: |
           github-release upload \
             --tag continuous \

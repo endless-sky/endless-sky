@@ -1239,9 +1239,9 @@ Files:
  images/_menu/haze-blackbody+*
  images/_menu/haze-full+*
  images/_menu/haze-yellow+*
- images/planet/browndwarf-l-rouge*
+ images/planet/browndwarf-l-rogue*
  images/planet/browndwarf-l*
- images/planet/browndwarf-y-rouge*
+ images/planet/browndwarf-y-rogue*
  images/planet/browndwarf-y*
 Copyright: Lia Gerty (https://github.com/ravenshining)
 License: CC-BY-SA-4.0
@@ -1253,7 +1253,7 @@ License: CC-BY-SA-4.0
 Comment: Derived from public domain work previously submitted to Endless Sky.
 
 Files:
- images/planet/browndwarf-t-rouge*
+ images/planet/browndwarf-t-rogue*
  images/planet/browndwarf-t*
  images/planet/saturn*
 Copyright: Lia Gerty (https://github.com/ravenshining)
