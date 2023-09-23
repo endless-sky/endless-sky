@@ -66,12 +66,18 @@ namespace {
 			return OVERLAY_SETTINGS[max<int>(0, min<int>(OVERLAY_SETTINGS.size() - 1, static_cast<int>(state)))];
 		}
 
-		const int ToInt() const { return static_cast<int>(state); }
+		const int ToInt() const { return state == Preferences::OverlayState::DISABLED ? -1 : static_cast<int>(state); }
 
 		void SetState(int value)
 		{
+			if(value == -1)
+			{
+				state = Preferences::OverlayState::DISABLED;
+				return;
+			}
+
 			value = max<int>(value, 0);
-			value = min<int>(value, OVERLAY_SETTINGS.size() - 1);
+			value = min<int>(value, OVERLAY_SETTINGS.size() - 2);
 			state = static_cast<Preferences::OverlayState>(value);
 		}
 
@@ -480,7 +486,7 @@ const string &Preferences::VSyncSetting()
 
 void Preferences::CycleStatusOverlays(Preferences::OverlayType type)
 {
-	// Calling OverlaySetting::Increment when the state is DAMAGED will cycle to off.
+	// Calling OverlaySetting::Increment when the state is ON_HIT will cycle to off.
 	// But, for the ALL overlay type, allow it to cycle to DISABLED.
 	if(type == OverlayType::ALL && statusOverlaySettings[OverlayType::ALL] == OverlayState::ON_HIT)
 		statusOverlaySettings[OverlayType::ALL] = OverlayState::DISABLED;
