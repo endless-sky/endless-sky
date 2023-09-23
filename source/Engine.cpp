@@ -2643,19 +2643,14 @@ void Engine::EmplaceStatusOverlay(const shared_ptr<Ship> &it, Preferences::Overl
 	float alpha = 1.f;
 	if(overlaySetting == Preferences::OverlayState::ON_HIT)
 	{
-		// Where t is the number of steps since this ship was last hit, t > 0:
-		// For t <= 30, alpha = 1.
-		// For 30 < t <= 40, alpha = (40 - t) / 10.
-		// For t > 40, alpha = 0.
-		static const int FADE_STEPS = 10;
-		static const int STEPS_BEFORE_FADE = 30;
-		static const int LIMIT = FADE_STEPS + STEPS_BEFORE_FADE;
+		// The amount of frames left where we start fading the overlay.
+		static constexpr int FADE_STEPS = 10;
 
-		const int t = it->StepsSinceLastHit();
-		if(t <= STEPS_BEFORE_FADE)
+		const int t = it->DamageOverlayTimer();
+		if(t > FADE_STEPS)
 			alpha = 1.f;
-		else if(t < LIMIT)
-			alpha = static_cast<float>(LIMIT - t) / static_cast<float>(FADE_STEPS);
+		else if(t > 0)
+			alpha = static_cast<float>(t) / FADE_STEPS;
 		else
 			alpha = 0.f;
 	}
