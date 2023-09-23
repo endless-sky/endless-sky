@@ -75,7 +75,7 @@ const Command Command::FASTFORWARD(ONE << 24, "Toggle fast-forward");
 const Command Command::FIGHT(ONE << 25, "Fleet: Fight my target");
 const Command Command::GATHER(ONE << 26, "Fleet: Gather around me");
 const Command Command::HOLD(ONE << 27, "Fleet: Hold position");
-const Command Command::HARVEST(ONE << 28, "Fleet: Harvest Flotsam");
+const Command Command::HARVEST(ONE << 28, "Fleet: Harvest flotsam");
 const Command Command::AMMO(ONE << 29, "Fleet: Toggle ammo usage");
 const Command Command::AUTOSTEER(ONE << 30, "Auto steer");
 const Command Command::WAIT(ONE << 31, "");
@@ -213,9 +213,24 @@ const string &Command::Description() const
 // a combination of more than one command, an empty string is returned.
 const string &Command::KeyName() const
 {
-	static const string empty;
+	static const string empty = "(none)";
 	auto it = keyName.find(*this);
-	return (it == keyName.end() ? empty : it->second);
+
+	return (!HasBinding() ? empty : it->second);
+}
+
+
+
+// Check if the key has no binding.
+bool Command::HasBinding() const
+{
+	auto it = keyName.find(*this);
+
+	if(it == keyName.end())
+		return false;
+	if(it->second.empty())
+		return false;
+	return true;
 }
 
 

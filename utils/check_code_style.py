@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# check_coding_style.py
+# check_code_style.py
 # Copyright (c) 2022 by tibetiroka
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -560,7 +560,7 @@ def check_include(sanitized_lines, original_lines, file):
 				group_lines[i] = line
 		for i in range(len(group) - 1):
 			if group_lines[i].lower() > group_lines[i + 1].lower():
-				warnings.append(Warning(group_lines[i], group[i] + 1, "includes are not in alphabetical order"))
+				errors.append(Error(group_lines[i], group[i] + 1, "includes are not in alphabetical order"))
 	return errors, warnings
 
 
@@ -573,7 +573,7 @@ if __name__ == '__main__':
 		for pattern in sys.argv[1:]:
 			files += glob.glob(pattern, recursive=True)
 	else:
-		files = glob.glob('**/*.cpp', recursive=True) + glob.glob('**/*.h', recursive=True)
+		files = glob.glob('source/**/*.cpp', recursive=True) + glob.glob('source/**/*.h', recursive=True) + glob.glob('tests/**/*.cpp', recursive=True) + glob.glob('tests/**/*.h', recursive=True)
 	files.sort()
 
 	for file in files:

@@ -57,9 +57,12 @@ namespace {
 		TARGET,
 		MARKED,
 		LAUNCHING,
+		LINGERING,
 		DARING,
 		SECRETIVE,
 		RAMMING,
+		UNRESTRICTED,
+		DECLOAKED,
 
 		// This must be last so it can be used for bounds checking.
 		LAST_ITEM_IN_PERSONALITY_TRAIT_ENUM
@@ -95,9 +98,12 @@ namespace {
 		{"target", TARGET},
 		{"marked", MARKED},
 		{"launching", LAUNCHING},
+		{"lingering", LINGERING},
 		{"daring", DARING},
 		{"secretive", SECRETIVE},
-		{"ramming", RAMMING}
+		{"ramming", RAMMING},
+		{"unrestricted", UNRESTRICTED},
+		{"decloaked", DECLOAKED}
 	};
 
 	// Tokens that combine two or more flags.
@@ -251,6 +257,13 @@ bool Personality::IsUnconstrained() const
 
 
 
+bool Personality::IsUnrestricted() const
+{
+	return flags.test(UNRESTRICTED);
+}
+
+
+
 bool Personality::IsCoward() const
 {
 	return flags.test(COWARD);
@@ -363,6 +376,13 @@ bool Personality::IsSwarming() const
 
 
 
+bool Personality::IsLingering() const
+{
+	return flags.test(LINGERING);
+}
+
+
+
 bool Personality::IsSecretive() const
 {
 	return flags.test(SECRETIVE);
@@ -394,6 +414,13 @@ bool Personality::IsMarked() const
 bool Personality::IsMute() const
 {
 	return flags.test(MUTE);
+}
+
+
+
+bool Personality::IsDecloaked() const
+{
+	return flags.test(DECLOAKED);
 }
 
 

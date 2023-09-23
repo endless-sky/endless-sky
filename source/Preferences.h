@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cstdint>
 #include <string>
+#include <vector>
 
 
 
@@ -27,6 +28,12 @@ public:
 		off = 0,
 		on,
 		adaptive,
+	};
+
+	enum class DateFormat : int_fast8_t {
+		DMY = 0, // Day-first format. (Sat, 4 Oct 1941)
+		MDY,     // Month-first format. (Sat, Oct 4, 1941)
+		YMD      // All-numeric ISO 8601. (1941-10-04)
 	};
 
 	enum class OverlayState : int_fast8_t {
@@ -64,6 +71,13 @@ public:
 		MIXED
 	};
 
+	enum class FlotsamCollection : int_fast8_t {
+		OFF = 0,
+		ON,
+		FLAGSHIP,
+		ESCORT
+	};
+
 	enum class BackgroundParallax : int {
 		OFF = 0,
 		FANCY,
@@ -90,6 +104,11 @@ public:
 	static void ToggleAmmoUsage();
 	static std::string AmmoUsage();
 
+	// Date format preferences.
+	static void ToggleDateFormat();
+	static DateFormat GetDateFormat();
+	static const std::string &DateFormatSetting();
+
 	// Scroll speed preference.
 	static int ScrollSpeed();
 	static void SetScrollSpeed(int speed);
@@ -100,6 +119,7 @@ public:
 	static bool ZoomViewOut();
 	static double MinViewZoom();
 	static double MaxViewZoom();
+	static const std::vector<double> &Zooms();
 
 	static void ToggleScreenMode();
 	static const std::string &ScreenModeSetting();
@@ -132,6 +152,11 @@ public:
 	static void ToggleBoarding();
 	static BoardingPriority GetBoardingPriority();
 	static const std::string &BoardingSetting();
+
+	// Flotsam setting, either "off", "on", "flagship only", or "escorts only".
+	static void ToggleFlotsam();
+	static FlotsamCollection GetFlotsamCollection();
+	static const std::string &FlotsamSetting();
 
 	// Red alert siren and symbol
 	static void ToggleAlert();

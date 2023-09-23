@@ -104,6 +104,7 @@ public:
 	// a combination of more than one command, an empty string is returned.
 	const std::string &Description() const;
 	const std::string &KeyName() const;
+	bool HasBinding() const;
 	bool HasConflict() const;
 
 	// Load this command from an input file (for testing or scripted missions).

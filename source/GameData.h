@@ -79,7 +79,7 @@ public:
 	static void FinishLoading();
 	// Check for objects that are referred to but never defined.
 	static void CheckReferences();
-	static void LoadShaders(bool useShaderSwizzle);
+	static void LoadShaders();
 	static double GetProgress();
 	// Whether initial game loading is complete (data, sprites and audio are loaded).
 	static bool IsLoaded();
