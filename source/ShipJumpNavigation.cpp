@@ -140,14 +140,38 @@ pair<JumpType, double> ShipJumpNavigation::GetCheapestJumpType(const System *fro
 	double hyperFuelNeeded = HyperdriveFuel();
 	// If these two systems are linked, or if the system we're jumping from has its own jump range,
 	// then use the cheapest jump drive available, which is mapped to a distance of 0.
+	const double distance = from->Position().Distance(to->Position());
 	double jumpFuelNeeded = JumpDriveFuel((linked || from->JumpRange())
-			? 0. : from->Position().Distance(to->Position()));
-	if(linked && hasHyperdrive && (!jumpFuelNeeded || hyperFuelNeeded <= jumpFuelNeeded))
+			? 0. : distance);
+	bool canJump = jumpFuelNeeded && (!from->JumpRange() || from->JumpRange() >= distance);
+	if(linked && hasHyperdrive && (!canJump || hyperFuelNeeded <= jumpFuelNeeded))
 		return make_pair(JumpType::HYPERDRIVE, hyperFuelNeeded);
-	else if(hasJumpDrive)
+	else if(hasJumpDrive && canJump)
 		return make_pair(JumpType::JUMP_DRIVE, jumpFuelNeeded);
 	else
 		return make_pair(JumpType::NONE, 0.);
+}
+
+
+
+// Get if this ship can make a hyperspace or jump drive jump directly from one system to the other.
+bool ShipJumpNavigation::CanJump(const System *from, const System *to) const
+{
+	if(!from || !to)
+		return false;
+
+	if(from->Links().count(to) && (hasHyperdrive || hasJumpDrive))
+		return true;
+
+	if(!hasJumpDrive)
+		return false;
+
+	const double distanceSquared = from->Position().DistanceSquared(to->Position());
+	if(from->JumpRange() && from->JumpRange() * from->JumpRange() < distanceSquared)
+		return false;
+
+	const double maxRange = jumpDriveCosts.rbegin()->first;
+	return maxRange * maxRange >= distanceSquared;
 }
 
 
