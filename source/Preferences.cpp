@@ -66,18 +66,12 @@ namespace {
 			return OVERLAY_SETTINGS[max<int>(0, min<int>(OVERLAY_SETTINGS.size() - 1, static_cast<int>(state)))];
 		}
 
-		const int ToInt() const { return state == Preferences::OverlayState::DISABLED ? -1 : static_cast<int>(state); }
+		const int ToInt() const { return static_cast<int>(state); }
 
 		void SetState(int value)
 		{
-			if(value == -1)
-			{
-				state = Preferences::OverlayState::DISABLED;
-				return;
-			}
-
 			value = max<int>(value, 0);
-			value = min<int>(value, OVERLAY_SETTINGS.size() - 2);
+			value = min<int>(value, OVERLAY_SETTINGS.size() - 1);
 			state = static_cast<Preferences::OverlayState>(value);
 		}
 

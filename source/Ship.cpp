@@ -90,7 +90,7 @@ namespace {
 	// Formula for the scan outfit or cargo factor is:
 	// factor = pow(sqrt(scanEfficiency) * framesToFullScan / SCAN_TIME, 1.5) / referenceSize
 
-	// Total amount of frames the damaged overlay is show, if any.
+	// Total number of frames the damaged overlay is show, if any.
 	constexpr int TOTAL_DAMAGE_FRAMES = 40;
 
 	// Helper function to transfer energy to a given stat if it is less than the
