@@ -1093,6 +1093,9 @@ void Engine::Draw() const
 			case Messages::Importance::Info:
 				color = GameData::Colors().Find("message importance info");
 				break;
+			case Messages::Importance::Error:
+				color = GameData::Colors().Find("message importance error");
+				break;
 			case Messages::Importance::Low:
 				color = GameData::Colors().Find("message importance low");
 				break;
