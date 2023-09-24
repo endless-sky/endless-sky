@@ -44,12 +44,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "NPC.h"
 #include "OutlineShader.h"
 #include "Person.h"
-#include "pi.h"
 #include "Planet.h"
 #include "PlanetLabel.h"
 #include "PlayerInfo.h"
 #include "PointerShader.h"
-#include "Politics.h"
 #include "Preferences.h"
 #include "Projectile.h"
 #include "Random.h"
@@ -603,6 +601,31 @@ void Engine::Step(bool isActive)
 	// Update this here, for thread safety.
 	if(player.HasTravelPlan() && currentSystem == player.TravelPlan().back())
 		player.PopTravel();
+	// Check if the first step of the travel plan is valid.
+	if(flagship && player.HasTravelPlan())
+	{
+		bool travelPlanIsValid = false;
+		const System *system = player.TravelPlan().back();
+		for(const StellarObject &object : flagship->GetSystem()->Objects())
+			if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsWormhole()
+				&& object.GetPlanet()->IsAccessible(flagship.get()) && player.HasVisited(*object.GetPlanet())
+				&& player.HasVisited(*system))
+			{
+				const auto *wormhole = object.GetPlanet()->GetWormhole();
+				if(&wormhole->WormholeDestination(*flagship->GetSystem()) != system)
+					continue;
+
+				travelPlanIsValid = true;
+				break;
+			}
+		travelPlanIsValid |= flagship->JumpNavigation().CanJump(flagship->GetSystem(), system);
+		if(!travelPlanIsValid)
+		{
+			if(flagship->GetTargetSystem() == player.TravelPlan().back())
+				flagship->SetTargetSystem(nullptr);
+			player.TravelPlan().clear();
+		}
+	}
 	if(doFlash)
 	{
 		flash = .4;
