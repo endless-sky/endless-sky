@@ -168,6 +168,10 @@ government "Coalition"
 	"player reputation" 1
 	"attitude toward"
 		"Heliarch" 1
+	"friendly hail" "friendly coalition"
+	"friendly disabled hail" "friendly disabled heliarch"
+	"hostile hail" "hostile coalition"
+	"hostile disabled hail" "hostile disabled coalition"
 
 government "Deep"
 	swizzle 0
@@ -738,6 +742,8 @@ government "Ka'het"
 		"Free Worlds" -.01
 		"Hai (Unfettered)" -.01
 		"Wanderer" -.01
+		"Coalition" -.01
+		"Heliarch" -.01
 	
 	"player reputation" -1
 
@@ -760,6 +766,8 @@ government "Ka'het (Infighting)"
 		"Free Worlds" -.01
 		"Hai (Unfettered)" -.01
 		"Wanderer" -.01
+		"Coalition" -.01
+		"Heliarch" -.01
 	
 	"player reputation" -1
 
@@ -879,6 +887,10 @@ government "Lunarium"
 	"crew defense" 2.7
 	language "Coalition"
 	"player reputation" 1
+	"friendly hail" "friendly lunarium"
+	"friendly disabled hail" "friendly disabled lunarium"
+	"hostile hail" "hostile lunarium"
+	"hostile disabled hail" "hostile disabled lunarium"
 	"attitude toward"
 		"Quarg" .01
 		"Heliarch" -.01
