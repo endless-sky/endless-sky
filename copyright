@@ -1124,6 +1124,7 @@ Files:
  images/outfit/swatter*
  images/outfit/thorax?cannon*
  images/outfit/*rift*
+ images/outfit/decoy?plating*
  images/planet/dyson1*
  images/planet/dyson2*
  images/planet/dyson3*
@@ -1448,6 +1449,12 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Nate Graham (under the same license).
 
 Files:
+ images/outfit/refuelling?module*
+Copyright: Becca Tommaso
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
  images/outfit/tripulse?shredder*
  images/outfit/value?detector*
 Copyright: Ejo Thims
@@ -1655,6 +1662,7 @@ License: CC-BY-SA-3.0
 Comment: Derived from works by Becca Tommaso (under the same license).
 
 Files:
+ images/outfit/shield?refactor?module*
  images/ship/carrier*
  images/ship/combat?drone*
  images/ship/cruiser*
@@ -2050,6 +2058,18 @@ Files: images/land/asteroid0*
 Copyright: Becca Tommaso
 License: CC0
 Comment: Derived from works by ESA/Rosetta spacecraft (under the same license).
+
+
+Files:
+ images/outfit/small?recovery?module*
+Copyright: 1010todd
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/outfit/anti-materiel?gun*
+Copyright: 1010todd
+License: CC-BY-SA-4.0
 
 Files:
  images/outfit/android*

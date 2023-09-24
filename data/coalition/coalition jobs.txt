@@ -385,7 +385,7 @@ mission "Coalition: Peacekeepers 1"
 	job
 	repeat
 	name "Peacekeepers to <planet>"
-	description "Transport this corps of <bunks> peacekeepers to <destination> to investigate reports of Resistance activity. Payment is <payment>."
+	description "Transport this corps of <bunks> peacekeepers to <destination> to investigate reports of Lunarium activity. Payment is <payment>."
 	passengers 10 10 .2
 	to offer
 		has "known to the heliarchs"
@@ -406,7 +406,7 @@ mission "Coalition: Peacekeepers 2"
 	job
 	repeat
 	name "Peacekeepers to <planet>"
-	description "Transport this corps of <bunks> peacekeepers to <destination> to investigate reports of Resistance activity. Payment is <payment>."
+	description "Transport this corps of <bunks> peacekeepers to <destination> to investigate reports of Lunarium activity. Payment is <payment>."
 	passengers 10 5 .1
 	to offer
 		has "known to the heliarchs"
@@ -1393,3 +1393,293 @@ mission "Heliarchs Buy Jump Drive Job 2"
 		outfit "Jump Drive" -1
 		payment 5000000
 		fail
+
+
+mission "Evacuate Lunarium True"
+	job
+	repeat
+	name "Rescue Lunarium Members"
+	description "Pick up <bunks> Lunarium members on <stopovers>, then bring them to <destination> by <date>."
+	deadline
+	to offer
+		random < 10
+		has "Lunarium Evacuation 6: done"
+		not "Heliarch Investigation 2: active"
+		not "Heliarch License: done"
+	to fail
+		has "Heliarch Investigation 2: active"
+		has "Heliarch License: done"
+	passengers 24 65
+	source
+		government "Coalition"
+	stopover
+		government "Coalition"
+		distance 2 6
+	destination
+		government "Coalition"
+		distance 3 5
+	on stopover
+		dialog `The Lunarium members rush to your ship once it touches down on the hangars, and you swiftly open your hatch for them to come in. One of the calmer members asks that you head to <destination> as soon as possible.`
+	on visit
+		dialog phrase "generic missing stopover or passengers"
+	on complete
+		payment
+		payment 33000
+		dialog `Each of the Lunarium members comes to thank you before they leave your ship, expressing their gratitude. The last one hands you <payment>, and heads off with the others.`
+
+mission "Evacuate Lunarium Fail"
+	job
+	repeat
+	name "Rescue Lunarium Members"
+	description "Pick up the <bunks> Lunarium members on <stopovers>, then bring them to <destination> by <date>."
+	deadline
+	to offer
+		random < 5
+		has "Lunarium Evacuation 6: done"
+		not "Heliarch Investigation 2: active"
+		not "Heliarch License: done"
+	to fail
+		has "Heliarch Investigation 2: active"
+		has "Heliarch License: done"
+	passengers 24 65
+	source
+		government "Coalition"
+	stopover
+		government "Coalition"
+		distance 2 6
+	destination
+		government "Coalition"
+		distance 3 5
+	on stopover
+		dialog `You touch down on the hangars, and wait for a few minutes for the Lunarium members. Many minutes pass, however, and none arrive. Instead the docks become increasingly filled with Heliarch agents. A message appears on your monitor, saying that the Heliarchs got to the members here first, but thanking you for your efforts anyway.`
+		fail
+
+
+mission "Lunarium: Armageddon Core Delivery"
+	job
+	repeat
+	name "Armageddon Core Delivery"
+	description "The Lunarium is offering <payment> for you to deliver an Armageddon Core to <destination>."
+	to offer
+		random < 4
+		has "Lunarium: Reactors: done"
+		not "Lunarium: Armageddon Core Delivery: active"
+		not "Heliarch Investigation 2: active"
+		not "Heliarch License: done"
+	to fail
+		has "Heliarch Investigation 2: active"
+		has "Heliarch License: done"
+	source
+		government "Coalition"
+	destination
+		distance 5 12
+		not government "Heliarch"
+		not attributes "coalition station"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		outfit "Armageddon Core" -1
+		payment 13500000
+		dialog `Some Lunarium members unload the Armageddon Core after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the reactor away.`
+
+mission "Lunarium: Fusion Reactor Delivery"
+	job
+	repeat
+	name "Fusion Reactor Delivery"
+	description "The Lunarium is offering <payment> for you to deliver a Fusion Reactor to <destination>."
+	to offer
+		random < 7
+		has "Lunarium: Reactors: done"
+		not "Lunarium: Fusion Reactor Delivery: active"
+		not "Heliarch Investigation 2: active"
+		not "Heliarch License: done"
+	to fail
+		has "Heliarch Investigation 2: active"
+		has "Heliarch License: done"
+	source
+		government "Coalition"
+	destination
+		distance 3 8
+		not government "Heliarch"
+		not attributes "coalition station"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		outfit "Fusion Reactor" -1
+		payment 7500000
+		dialog `Some Lunarium members unload the Fusion Reactor after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the reactor away.`
+
+mission "Lunarium: Breeder Reactor Delivery"
+	job
+	repeat
+	name "Breeder Reactor Delivery"
+	description "The Lunarium is offering <payment> for you to deliver a Breeder Reactor to <destination>."
+	to offer
+		random < 10
+		has "Lunarium: Reactors: done"
+		not "Lunarium: Breeder Reactor Delivery: active"
+		not "Heliarch Investigation 2: active"
+		not "Heliarch License: done"
+	to fail
+		has "Heliarch Investigation 2: active"
+		has "Heliarch License: done"
+	source
+		government "Coalition"
+	destination
+		distance 3 6
+		not government "Heliarch"
+		not attributes "coalition station"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		outfit "Breeder Reactor" -1
+		payment 3250000
+		dialog `Some Lunarium members unload the Breeder Reactor after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the reactor away.`
+
+mission "Lunarium: Torpedo Delivery"
+	job
+	repeat
+	name "Torpedo Delivery"
+	description "The Lunarium is offering <payment> for you to deliver a Torpedo Launcher, complete with 30 torpedoes, to <destination>."
+	to offer
+		random < 12
+		has "Lunarium: Torpedoes: done"
+		not "Lunarium: Torpedo Delivery: active"
+		not "Heliarch Investigation 2: active"
+		not "Heliarch License: done"
+	to fail
+		has "Heliarch Investigation 2: active"
+		has "Heliarch License: done"
+	source
+		government "Coalition"
+	destination
+		distance 6 12
+		not government "Heliarch"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		outfit "Torpedo Launcher" -1
+		outfit "Torpedo" -30
+		payment 183000
+		dialog `Some Lunarium members unload the Torpedo Launcher and its ammunition after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the cargo away.`
+
+mission "Lunarium: Typhoon Delivery"
+	job
+	repeat
+	name "Typhoon Delivery"
+	description "The Lunarium is offering <payment> for you to deliver a Typhoon Launcher, complete with 30 Typhoon Torpedoes, to <destination>."
+	to offer
+		random < 7
+		has "Lunarium: Torpedoes: done"
+		not "Lunarium: Typhoon Delivery: active"
+		not "Heliarch Investigation 2: active"
+		not "Heliarch License: done"
+	to fail
+		has "Heliarch Investigation 2: active"
+		has "Heliarch License: done"
+	source
+		government "Coalition"
+	destination
+		distance 6 12
+		not government "Heliarch"
+	on complete
+		outfit "Typhoon Launcher" -1
+		outfit "Typhoon Torpedo" -30
+		payment 511500
+		dialog `Some Lunarium members unload the Typhoon Launcher and its ammunition after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the cargo away.`
+
+mission "Lunarium: Plasma Delivery"
+	job
+	repeat
+	name "Plasma Turret Delivery"
+	description "The Lunarium is offering <payment> for you to deliver a Plasma Turret to <destination>."
+	to offer
+		random < 6
+		has "Lunarium: Heat: done"
+		not "Lunarium: Plasma Delivery: active"
+		not "Heliarch Investigation 2: active"
+		not "Heliarch License: done"
+	to fail
+		has "Heliarch Investigation 2: active"
+		has "Heliarch License: done"
+	source
+		government "Coalition"
+	destination
+		distance 4 9
+		not government "Heliarch"
+	on complete
+		outfit "Plasma Turret" -1
+		payment 780000
+		dialog `Some Lunarium members unload the Plasma Turret after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the turret away.`
+
+mission "Lunarium: Flamethrower Delivery"
+	job
+	repeat
+	name "Flamethrower Delivery"
+	description "The Lunarium is offering <payment> for you to deliver a pair of Flamethrowers to <destination>."
+	to offer
+		random < 8
+		has "Lunarium: Heat: done"
+		not "Lunarium: Flamethrower Delivery: active"
+		not "Heliarch Investigation 2: active"
+		not "Heliarch License: done"
+	to fail
+		has "Heliarch Investigation 2: active"
+		has "Heliarch License: done"
+	source
+		government "Coalition"
+	destination
+		distance 2 6
+		not government "Heliarch"
+	on complete
+		outfit "Flamethrower" -2
+		payment 570000
+		dialog `Some Lunarium members unload the Flamethrowers after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the Flamethrowers away.`
+
+mission "Lunarium: Grenade Delivery"
+	job
+	repeat
+	name "Grenade Delivery"
+	description "The Lunarium is offering <payment> for you to deliver a dozen Fragmentation Grenades to <destination>."
+	to offer
+		random < 11
+		has "Lunarium: Grenades: done"
+		not "Lunarium: Grenade Delivery: active"
+		not "Heliarch Investigation 2: active"
+		not "Heliarch License: done"
+	to fail
+		has "Heliarch Investigation 2: active"
+		has "Heliarch License: done"
+	source
+		government "Coalition"
+	destination
+		distance 7 13
+		not government "Heliarch"
+	on complete
+		outfit "Fragmentation Grenades" -12
+		payment 306000
+		dialog `Some Lunarium members unload the Fragmentation Grenades after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the grenades away.`
+
+mission "Lunarium: Anti-Missile Delivery"
+	job
+	repeat
+	name "Anti-Missile Delivery"
+	description "The Lunarium is are offering <payment> for you to deliver a Heavy Anti-Missile Turret to <destination>."
+	to offer
+		random < 10
+		has "Lunarium: AM: done"
+		not "Lunarium: Anti-Missile Delivery: active"
+		not "Heliarch Investigation 2: active"
+		not "Heliarch License: done"
+	to fail
+		has "Heliarch Investigation 2: active"
+		has "Heliarch License: done"
+	source
+		government "Coalition"
+	destination
+		distance 9 14
+		not government "Heliarch"
+	on complete
+		outfit "Heavy Anti-Missile Turret" -1
+		payment 225000
+		dialog `Some Lunarium members unload the Heavy Anti-Missile Turret after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the turret away.`
