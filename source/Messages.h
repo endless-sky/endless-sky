@@ -33,7 +33,6 @@ public:
 		Highest,
 		High,
 		Info,
-		Error,
 		Low
 	};
 
