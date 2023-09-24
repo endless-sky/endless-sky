@@ -1124,6 +1124,7 @@ Files:
  images/outfit/swatter*
  images/outfit/thorax?cannon*
  images/outfit/*rift*
+ images/outfit/decoy?plating*
  images/planet/dyson1*
  images/planet/dyson2*
  images/planet/dyson3*
@@ -1239,9 +1240,9 @@ Files:
  images/_menu/haze-blackbody+*
  images/_menu/haze-full+*
  images/_menu/haze-yellow+*
- images/planet/browndwarf-l-rouge*
+ images/planet/browndwarf-l-rogue*
  images/planet/browndwarf-l*
- images/planet/browndwarf-y-rouge*
+ images/planet/browndwarf-y-rogue*
  images/planet/browndwarf-y*
 Copyright: Lia Gerty (https://github.com/ravenshining)
 License: CC-BY-SA-4.0
@@ -1253,7 +1254,7 @@ License: CC-BY-SA-4.0
 Comment: Derived from public domain work previously submitted to Endless Sky.
 
 Files:
- images/planet/browndwarf-t-rouge*
+ images/planet/browndwarf-t-rogue*
  images/planet/browndwarf-t*
  images/planet/saturn*
 Copyright: Lia Gerty (https://github.com/ravenshining)
@@ -1448,11 +1449,22 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Nate Graham (under the same license).
 
 Files:
+ images/outfit/refuelling?module*
+Copyright: Becca Tommaso
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
  images/outfit/tripulse?shredder*
  images/outfit/value?detector*
 Copyright: Ejo Thims
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/outfit/heliarch?license*
+Copyright: Becca Tommaso
+License: CC-BY-SA-4.0
 
 Files:
  images/star/a-dwarf*
@@ -1655,6 +1667,7 @@ License: CC-BY-SA-3.0
 Comment: Derived from works by Becca Tommaso (under the same license).
 
 Files:
+ images/outfit/shield?refactor?module*
  images/ship/carrier*
  images/ship/combat?drone*
  images/ship/cruiser*
@@ -2050,6 +2063,18 @@ Files: images/land/asteroid0*
 Copyright: Becca Tommaso
 License: CC0
 Comment: Derived from works by ESA/Rosetta spacecraft (under the same license).
+
+
+Files:
+ images/outfit/small?recovery?module*
+Copyright: 1010todd
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/outfit/anti-materiel?gun*
+Copyright: 1010todd
+License: CC-BY-SA-4.0
 
 Files:
  images/outfit/android*
