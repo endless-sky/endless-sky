@@ -430,3 +430,8 @@ outfit "Coalition License"
 	category "Licenses"
 	thumbnail "outfit/coalition license"
 	description "Completed a lot of Coalition jobs and received permission to purchase civilian technology and ships."
+
+outfit "Heliarch License"
+	category "Special"
+	thumbnail "outfit/heliarch license"
+	description "An ornate circlet of gold and platinum, it serves as both a symbol of rank and as a license to access exclusive Heliarch facilities. Custom-made to fit a human's head, it's surprisingly light and comfortable."

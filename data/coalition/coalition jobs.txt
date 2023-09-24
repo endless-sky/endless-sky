@@ -1395,6 +1395,126 @@ mission "Heliarchs Buy Jump Drive Job 2"
 		fail
 
 
+mission "Heliarch Contain True"
+	job
+	repeat
+	name `Contain Criminals`
+	description `Fly to <destination> by <date> so that you and <bunks> other Heliarch agents can combat criminals on site. Payment is <payment>.`
+	deadline
+	passengers 16 58
+	to offer
+		random < 3
+		has "license: Heliarch"
+	source
+		government "Heliarch"
+	destination
+		distance 2 10
+		not attributes "coalition station"
+	on offer
+		require "Enforcer Confrontation Gear"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 70000
+		dialog `You and the other agents converge on the marked area and quickly move to cut off any exits. After a brief firefight, the criminals surrender and a Heliarch ship swoops in to pick them up. You bid your Heliarch colleagues farewell and return to your ship, where you are happy to see that <payment> has already been transferred to your account.`
+
+mission "Heliarch Contain Fail"
+	job
+	repeat
+	name `Contain Criminals`
+	description `Fly to <destination> by <date> so that you and <bunks> other Heliarch agents can combat criminals on site. Payment is <payment>.`
+	deadline
+	passengers 16 58
+	"apparent payment" 70000
+	to offer
+		random < 15
+		has "license: Heliarch"
+	source
+		government "Heliarch"
+	destination
+		distance 2 10
+		not attributes "coalition station"
+	on offer
+		require "Enforcer Confrontation Gear"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog `You and the other agents head to the marked area, but when you arrive it becomes evident that whoever occupied the place has managed to escape. You bring the other agents to the spaceport as they lament the failed job.`
+
+mission "Heliarch Contain Fake"
+	job
+	repeat
+	name `Contain Criminals`
+	description `Fly to <destination> by <date> so that you and <bunks> other Heliarch agents can combat criminals on the site. Payment is <payment>.`
+	deadline
+	passengers 16 58
+	to offer
+		random < 45
+		has "license: Heliarch"
+	source
+		government "Heliarch"
+	destination
+		distance 2 10
+		not attributes "coalition station"
+	on offer
+		require "Enforcer Confrontation Gear"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 55000
+		dialog `Your team pounces and catches the targets entirely by surprise. They offer no resistance, relinquishing their weapons immediately. You call for a Heliarch ship to pick them up and then bid the other agents farewell as you leave. An extra <payment> is already waiting in your account when you return to your ship.`
+
+
+mission "Heliarch Prisoner Transport"
+	job
+	repeat
+	name `Transport Prisoners`
+	description `Bring <bunks> criminals, who were arrested on <origin>, to <destination>. Payment is <payment>.`
+	passengers 3 11
+	to offer
+		random < 15
+		has "license: Heliarch"
+	source
+		government "Coalition"
+	destination
+		government "Heliarch"
+	on offer
+		require "Enforcer Riot Staff"
+		require "Brig"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 45000
+		dialog `When you land on <destination>, Heliarch agents help you move the prisoners out of your ship. Once the last prisoner leaves you're handed <payment>.`
+
+
+mission "Heliarch Investigate"
+	job
+	repeat
+	name `Investigate signs of criminal activity`
+	description `Land on <stopovers>, where you and <bunks> other Heliarch agents will investigate an area where suspicious activity was reported. Payment is <payment>.`
+	passengers 6 11
+	to offer
+		random < 60
+		has "license: Heliarch"
+	source
+		government "Heliarch"
+	stopover
+		distance 5 10
+		not attributes "coalition station"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on stopover
+		dialog `You and the other agents head to the reported area looking for anything out of place. You don't find anything prominent, but there are clear signs that the place was recently used. You spend a few hours collecting evidence before heading back to your ship.`
+	on complete
+		payment
+		payment 40000
+		dialog `The agents thank you for transporting them in your ship, wish you safe travels, and head off to deliver the findings to their superiors. You're transferred <payment> a few moments later.`
+
+
 mission "Evacuate Lunarium True"
 	job
 	repeat

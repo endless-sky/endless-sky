@@ -270,7 +270,6 @@ ship "Arach Spindle"
 	"final explode" "final explosion large"
 	description `The Arach Hulk is an ungainly, lumbering behemoth of a ship, but with its side pods removed it becomes the much more maneuverable Spindle. Because of its much lower cargo space, usually the only reason a fleet would include a Spindle is if they are planning on picking up new cargo pods at their destination.`
 
-
 ship "Arach Spindle" "Arach Spindle (Miner)"
 	outfits
 		"MCS Extractor" 2
@@ -291,6 +290,23 @@ ship "Arach Spindle" "Arach Spindle (Miner)"
 		"Small Reverse Module" 3
 		"Small Steering Module"
 		"Hyperdrive"
+
+ship "Arach Spindle" "Arach Spindle (Plasma)"
+	outfits
+		"Hyperdrive"
+		"Outfits Expansion" 3
+		"Small Shield Module"
+		"Small Repair Module" 2
+		"Large Repair Module"
+		"Cooling Module" 5
+		"Small Thrust Module" 3
+		"Large Thrust Module" 2
+		"Small Steering Module"
+		"Small Battery Module"
+		"Large Battery Module"
+		"Large Steering Module" 2
+		"Fusion Reactor"
+		"Plasma Turret" 2
 
 ship "Arach Spindle" "Arach Spindle (Jump Drive)"
 	outfits
@@ -1258,6 +1274,28 @@ ship "Heliarch Punisher" "Heliarch Punisher (Burst Fire)"
 	gun "Finisher Maegrolain"
 	gun "Finisher Maegrolain"
 
+ship "Heliarch Punisher" "Heliarch Punisher (Fuel)"
+	outfits
+		"Finisher Pod" 2
+		"Finisher Torpedo" 80
+		"Bombardment Turret" 4
+		
+		"Large Reactor Module" 2
+		"Large Battery Module"
+		"Overcharged Shield Module" 2
+		"Overclocked Repair Module" 2
+		"Cooling Module" 4
+		"Scanning Module" 4
+		"Fuel Module" 4
+		"Enforcer Riot Staff" 160
+		"Enforcer Confrontation Gear" 150
+	
+		"Large Thrust Module" 2
+		"Small Thrust Module" 2
+		"Large Steering Module" 2
+		"Small Steering Module" 2
+		"Jump Drive"
+
 ship "Heliarch Punisher" "Heliarch Punisher (Interdicting)"
 	outfits
 		"Bombardment Cannon" 4
@@ -1758,6 +1796,22 @@ ship "Kimek Thistle" "Kimek Thistle (Miner)"
 		"Small Steering Module"
 		"Hyperdrive"
 
+ship "Kimek Thistle" "Kimek Thistle (Torpedoes)"
+	outfits
+		"Hyperdrive"
+		"Small Shield Module" 2
+		"Small Repair Module" 2
+		"Cooling Module" 2
+		"Small Thrust Module" 2
+		"Small Steering Module"
+		"Large Thrust Module"
+		"Small Battery Module"
+		"Large Steering Module"
+		"Heavy Anti-Missile Turret"
+		"Torpedo Launcher" 2
+		Torpedo 60
+		"Breeder Reactor"
+
 ship "Kimek Thorn"
 	sprite "ship/kimek thorn"
 	thumbnail "thumbnail/kimek thorn"
@@ -1951,6 +2005,22 @@ ship "Saryd Sojourner" "Saryd Sojourner (Miner)"
 		"Small Reverse Module" 3
 		"Small Steering Module"
 		"Hyperdrive"
+
+ship "Saryd Sojourner" "Saryd Sojourner (Bombardments)"
+	outfits
+		"Hyperdrive"
+		"Bombardment Turret" 3
+		"Ion Rain Gun" 2
+		"Large Reactor Module"
+		"Small Battery Module"
+		"Large Battery Module" 2
+		"Cooling Module" 3
+		"Small Thrust Module" 3
+		"Large Thrust Module" 2
+		"Small Steering Module" 2
+		"Large Steering Module" 2
+		"Overclocked Repair Module"
+		"Overcharged Shield Module"
 
 ship "Saryd Traveler"
 	sprite "ship/saryd traveler"
