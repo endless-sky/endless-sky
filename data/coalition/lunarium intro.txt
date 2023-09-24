@@ -1326,6 +1326,7 @@ mission "Lunarium: Propaganda 1"
 	destination "Bright Echo"
 	to offer
 		random < 25
+		has "Coalition: First Contact: done"
 		not "Heliarch License: done"
 		not "assisting heliarchy"
 	on offer

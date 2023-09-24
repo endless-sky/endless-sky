@@ -1467,7 +1467,6 @@ mission "Heliarch Containment 4-A"
 	description "Escort three Kimek Spires full of Heliarch agents to <destination>, where they hope the use of civilian ships will give them the element of surprise."
 	to offer
 		has "event: plasma turret available"
-		has "Heliarch Containment 2: done"
 		has "Heliarch Containment 3: done"
 		not "Lunarium: Questions: done"
 		not "assisting lunarium"
