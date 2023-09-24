@@ -26,7 +26,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
-#include "Hardpoint.h"
 #include "Logger.h"
 #include "Messages.h"
 #include "Outfit.h"
@@ -1411,16 +1410,11 @@ const CargoHold &PlayerInfo::Cargo() const
 
 
 
-// Get planetary storage information for current planet. Returns a pointer,
-// since we might not be on a planet, or since the storage might be empty.
-CargoHold *PlayerInfo::Storage(bool forceCreate)
+// Get items stored on the player's current planet.
+CargoHold &PlayerInfo::Storage()
 {
-	if(planet && (forceCreate || planetaryStorage.count(planet)))
-		return &(planetaryStorage[planet]);
-
-	// Nullptr can be returned when forceCreate is true if there is no
-	// planet; nullptr is the best we can offer in such cases.
-	return nullptr;
+	assert(planet && "can't get planetary storage in-flight");
+	return planetaryStorage[planet];
 }
 
 
@@ -1793,7 +1787,7 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 				// Transfer the outfits from cargo to the storage on this planet.
 				if(!outfit.second)
 					continue;
-				cargo.Transfer(outfit.first, outfit.second, *Storage(true));
+				cargo.Transfer(outfit.first, outfit.second, Storage());
 			}
 	}
 	accounts.AddCredits(income);
@@ -3727,7 +3721,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto pluginFun = [](const string &name) -> bool
 	{
 		const Plugin *plugin = Plugins::Get().Find(name.substr(strlen("installed plugin: ")));
-		return plugin ? plugin->enabled : false;
+		return plugin ? plugin->IsValid() && plugin->enabled : false;
 	};
 	pluginProvider.SetHasFunction(pluginFun);
 	pluginProvider.SetGetFunction(pluginFun);

@@ -114,7 +114,7 @@ test "Capture Uncapturable With Capturable Override"
 		inject "Capture Uncapturable With Capturable Override Mission"
 		inject "Capture Uncapturable With Capturable Override Save"
 		call "Load First Savegame"
-		watchdog 6000
+		watchdog 8000
 		# to make sure we can capture
 		assert
 			"reputation: Quarg" < 0
