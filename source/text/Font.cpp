@@ -492,6 +492,9 @@ string Font::TruncateFront(const string &str, int &width) const
 		bool prevWorks = (prevWidth <= width);
 		nextChars += (prevWorks ? isSame : -isSame);
 
+		// Don't exceed the length of the string.
+		nextChars = nextChars > static_cast<int>(str.length()) ? str.length() : nextChars;
+
 		int nextWidth = WidthRawString(str.substr(str.size() - nextChars).c_str());
 		bool nextWorks = (nextWidth <= width);
 		if(prevWorks != nextWorks && abs(nextChars - prevChars) == 1)
