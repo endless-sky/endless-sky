@@ -504,6 +504,14 @@ void Engine::Step(bool isActive)
 		centerVelocity = flagship->Velocity();
 		if(flagship->IsHyperspacing() && Preferences::Has("Extended jump effects"))
 			centerVelocity *= 1. + pow(flagship->GetHyperspacePercentage() / 20., 2);
+		if(doEnter)
+		{
+			// Create the planet labels as soon as we entered a new system.
+			labels.clear();
+			for(const StellarObject &object : player.GetSystem()->Objects())
+				if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsAccessible(flagship.get()))
+					labels.emplace_back(labels, *player.GetSystem(), object);
+		}
 		if(doEnter && flagship->Zoom() == 1. && !flagship->IsHyperspacing())
 		{
 			doEnter = false;
@@ -1381,13 +1389,6 @@ void Engine::EnterSystem()
 		Messages::Add(GameData::HelpMessage("basics 1"), Messages::Importance::High);
 		Messages::Add(GameData::HelpMessage("basics 2"), Messages::Importance::High);
 	}
-
-	// Create the planet labels.
-	labels.clear();
-	if(system)
-		for(const StellarObject &object : system->Objects())
-			if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsAccessible(flagship))
-				labels.emplace_back(labels, *system, object);
 }
 
 
