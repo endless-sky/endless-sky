@@ -2015,7 +2015,7 @@ void Engine::HandleMouseClicks()
 					{
 						if(!planet->CanLand(*flagship))
 							Messages::Add("The authorities on " + planet->Name()
-									+ " refuse to let you land.", Messages::Importance::High);
+									+ " refuse to let you land.", Messages::Importance::Highest);
 						else
 						{
 							activeCommands |= Command::LAND;
