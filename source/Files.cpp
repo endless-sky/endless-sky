@@ -556,7 +556,7 @@ void Files::Write(FILE *file, const string &data)
 
 void Files::CreateFolder(const std::string &path)
 {
-	if(Files::Exists(path))
+	if(Exists(path))
 		return;
 
 #ifdef _WIN32
