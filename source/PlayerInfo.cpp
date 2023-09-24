@@ -706,16 +706,19 @@ void PlayerInfo::IncrementDate()
 
 	// Check if any special events should happen today.
 	auto it = gameEvents.begin();
+	list<DataNode> eventChanges;
 	while(it != gameEvents.end())
 	{
 		if(date < it->GetDate())
 			++it;
 		else
 		{
-			it->Apply(*this);
+			eventChanges.splice(eventChanges.end(), it->Apply(*this));
 			it = gameEvents.erase(it);
 		}
 	}
+	if(!eventChanges.empty())
+		AddChanges(eventChanges);
 
 	// Check if any missions have failed because of deadlines and
 	// do any daily mission actions for those that have not failed.
