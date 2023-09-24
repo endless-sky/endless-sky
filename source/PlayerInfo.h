@@ -185,7 +185,7 @@ public:
 	CargoHold &Cargo();
 	const CargoHold &Cargo() const;
 	// Get items stored on the player's current planet.
-	CargoHold *Storage(bool forceCreate = false);
+	CargoHold &Storage();
 	// Get items stored on all planets (for map display).
 	const std::map<const Planet *, CargoHold> &PlanetaryStorage() const;
 	// Get cost basis for commodities.
