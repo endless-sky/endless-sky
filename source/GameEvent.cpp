@@ -218,8 +218,8 @@ void GameEvent::SetDate(const Date &date)
 
 
 
-// Apply this event's changes to the player. Returns a list
-// of data changes that need to be applied separately.
+// Apply this event's changes to the player. Returns a list of data changes that need to
+// be applied in a batch with other events that are applied at the same time.
 list<DataNode> GameEvent::Apply(PlayerInfo &player)
 {
 	if(isDisabled)
@@ -240,8 +240,8 @@ list<DataNode> GameEvent::Apply(PlayerInfo &player)
 	for(const Planet *planet : planetsToVisit)
 		player.Visit(*planet);
 
-	// Don't apply this event's data changes for optimization
-	// purposes.
+	// Return this event's data changes so that they can be batch applied
+	// with the changes from other events.
 	return std::move(changes);
 }
 
