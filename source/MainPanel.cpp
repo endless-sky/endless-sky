@@ -364,7 +364,7 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		Preferences::ZoomViewIn();
 	else if(key >= '0' && key <= '9' && !command)
 		engine.SelectGroup(key - '0', mod & KMOD_SHIFT, mod & (KMOD_CTRL | KMOD_GUI));
-	else if(!(command == Command()))
+	else if(key == 0 && !(command == Command()) && !(command == Command::FASTFORWARD))
 		return true; // any other command will be handled in the engine
 	else
 		return false;
