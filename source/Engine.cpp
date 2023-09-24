@@ -505,8 +505,9 @@ void Engine::Step(bool isActive)
 		centerVelocity = flagship->Velocity();
 		if(flagship->IsHyperspacing() && Preferences::Has("Extended jump effects"))
 			centerVelocity *= 1. + pow(flagship->GetHyperspacePercentage() / 20., 2);
-		if(doEnter)
+		if(doEnterLabels)
 		{
+			doEnterLabels = false;
 			// Create the planet labels as soon as we entered a new system.
 			labels.clear();
 			for(const StellarObject &object : player.GetSystem()->Objects())
@@ -1265,6 +1266,7 @@ void Engine::EnterSystem()
 		return;
 
 	doEnter = true;
+	doEnterLabels = true;
 	player.IncrementDate();
 	const Date &today = player.GetDate();
 
