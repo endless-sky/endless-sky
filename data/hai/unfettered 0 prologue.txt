@@ -340,6 +340,8 @@ mission "Unfettered Jump Drive Trading"
 		has "Unfettered Jump Drive 3: offered"
 		not "Wanderers: Jump Drive Source: active"
 		not "Wanderers: Jump Drive Source: done"
+		# This blocks the mission behind having beaten the Auxiliary (should be moved to the side missions in another PR)
+		has "salary: Unfettered"
 		# There is no minimum amount of JD to sell (other than the first 3), except if you failed to prove yourself the first time.
 		# "Unfettered Jump Drive 4: failed" represents the amount of JD sold.
 		"unfettered: jd to sell" <= "Unfettered Jump Drive 4: failed"
