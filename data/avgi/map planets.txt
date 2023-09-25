@@ -24,7 +24,7 @@ planet Omanet
 	attributes avgi mining uninhabited
 	landscape land/mars0
 	description "Omanet is thought to be a chthonian world, a former gas giant whose atmosphere was stripped away until the rocky core was left bare. For whatever reason, Omanet went a step further, and its silicate crust and mantle were also boiled off, leaving behind an extraordinarily dense planet made almost entirely out of metal."
-	description "Despite its unfavorable position deep in Anax's gravity well, Omanet was heavily industrialized, with autofabs building enormous discs of nickel-iron, anodized with silver. These orbital mirrors are then launched via mass driver, collecting sunlight for uses from industrial asteroid smelting to remote beamed power. Avgi futurists saw this as first steps of a Dyson swarm, but the current rate of mirror assembly will take millennia to exploit a meaningful fraction of Anax's output."
+	description "Despite its unfavorable position deep in Anax's gravity well, Omanet was heavily industrialized, with autofabs building enormous discs of nickel-iron anodized with silver. These orbital mirrors are then launched via mass driver, collecting sunlight for uses from industrial asteroid smelting to remote beamed power. Avgi futurists saw this as first steps of a Dyson swarm, but the current rate of mirror assembly will take millennia to exploit a meaningful fraction of Anax's output."
 	government Uninhabited
 	
 
@@ -105,7 +105,7 @@ planet Anitlos
 planet "Nisos Cylinder"
 	attributes avgi station urban uninhabited
 	landscape land/station47
-	description "The Nisos Cylinder was once a huge habitat station, of the same type as the O'Neil Cylinder concept from Earth. Nisos was one of the few cylinders to be completely evacuated before the Aberrant took the Anax system, and compared to its neighbors is relatively intact."
+	description "The Nisos Cylinder was once a huge habitat station, of the same type as the O'Neil Cylinder concept from Earth. Nisos was one of the few cylinders to be completely evacuated before the Aberrant took the Anax system, and compared to its neighbors it is relatively intact."
 	government Uninhabited
 
 
@@ -242,7 +242,7 @@ planet Elthe
 	attributes avgi frontier mining shipping moon
 	landscape land/mars2
 	description "Elthe's parent gas giant, Sef, hosts a rich system of rings and moons chock full of valuable minerals. Lucrative returns made by independent miners attracted many settlers from Araio who became discontented with planetary life, leading to the rings of Sef becoming a wild frontier, one with orbital tether robberies and mass driver shootouts."
-	description `	By unspoken agreement, the airless moon Elthe, which was found to contain the only significant deposits of fissiles around Sef, became something of a neutral ground. Settling old scores or resolving disputed claims the "usual" way is heavily frowned upon here, and as such offworld companies felt safe enough to establish trading posts to ship out the vast quantities of minerals mined around Sef.`
+	description `	By unspoken agreement, the airless moon Elthe, which was found to contain the only significant deposits of fissiles around Sef, became something of a neutral ground. Settling old scores or resolving disputed claims the "usual" way is heavily frowned upon here, and as such offworld companies felt safe enough to establish trading posts here to ship out the vast quantities of minerals mined around Sef.`
 	government Uninhabited
 	security 0
 
