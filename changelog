@@ -8,9 +8,9 @@ Version 0.10.3
 	  * Added the "unplunderable" attribute to the Lasher Pistol. (@Quantumshark)
 	  * Changed the Marauder Manta weapons-variant ship description to properly describe what new features the variant has. (@warp-core)
 	  * Adjusted a conversation branch in "Remnant: Shattered Light 4" that was preventing most ships from getting the full conversation. (@justinnhli)
-	  * "Expedition to Hope 2" now give clearance to the destination, allowing it to offer if you are hostile with the destination instead of not offering without explanation. (@warp-core)
+	  * "Expedition to Hope 2" now gives clearance to the destination, allowing it to offer if you are hostile with the destination instead of not offering without explanation. (@warp-core)
 	  * Old pilots who completed part of the Wanderer campaign will now be properly retroactively granted the Wanderer outfit license. (@warp-core)
-	  * The "Remnant; Expanded Horizons Astral" job can no longer choose the Deep Space systems as waypoints. (@Quantumshark)
+	  * The "Remnant: Expanded Horizons Astral" job can no longer choose the Deep Space systems as waypoints. (@Quantumshark)
 	  * Ssil Vida station no longer loses one of its planet attributes after an event. (@danaris)
 	  * Spaceport news intended for occupied Pug worlds no longer appears on uninhabited worlds. (@Anarchist2)
 	  * Added the "minor" mission tag to a Free Worlds side plot storyline to prevent it from offering at the same time as major storyline missions. (@Anarchist2)
@@ -30,7 +30,7 @@ Version 0.10.3
 	  * Escorts now properly offload their cargo on every landing. (@flowers9)
 	  * Map buttons no longer overlap on smaller screens. (@TomGoodIdea)
 	  * Empty strings are now saved as "" so that they don't disappear on subsequent loads. (@warp-core)
-	  * Bribe can no longer have negative values. (@Hurleveur)
+	  * Bribes can no longer have negative values. (@Hurleveur)
 	  * The scroll buttons on the shop detail panel can now be clicked. (@flowers9)
 	  * Improved the rounding used for mortgage calculations to result in the proper payment amount. (@flowers9)
 	  * The shipyard and outfitter mission offer location tags will now properly write to the save file. (@flowers9)
@@ -56,7 +56,7 @@ Version 0.10.3
 	  * Added a warning for when you've upset Unfettered sympathizers. (@MasterOfGrey)
 	* Mission changes:
 	  * Mentioned in the conversation and description of "Deal Change 2" that you need to hail the destination planet in order to land. (@bene-dictator)
-	  * The player can not ask Tomek for combat advice prior to the first major Free Worlds battle. (@warp-core)
+	  * The player can now ask Tomek for combat advice prior to the first major Free Worlds battle. (@warp-core)
 	  * Revised the smuggler arc of the Hai Reveal storyline. (@UnorderedSigh)
 	  * Bounty jobs now provide their payment the moment the bounty fleet is destroyed, instead of requiring that the player return to the offer location of the job to receive pay. (@Anarchist2)
 	  * Improved the wording in the description of "FW Bounty 1". (@m0ctave, @EjoThims)
@@ -76,7 +76,7 @@ Version 0.10.3
 		  * Large: +0.0%
 		  * Huge: -5.1%
 		* Put in words, small engines have been made stronger while large engines have been made slightly weaker. The result of this is that smaller ships should be generally quicker than they were before while larger ships should either see no change or should be slightly slower.
-		* Afterburners have been unchanged.
+		* Afterburners are unchanged.
 	  * Reduced the cost of the supercapacitor from 9,000 credits to 1,500, to bring it closer in line with other human batteries while still having a slight "premium" for its tiny size. (@Zitchas)
 	  * Removed a few ship variants from the pirate raid fleet that had high damage weapons not conducive to disabling their target. (@Zitchas)
 	  * The Ka'het Nullifier has been rebalanced to more effective disable targets by draining their energy. (@beccabunny)
@@ -91,9 +91,9 @@ Version 0.10.3
 	  * Tweaked the wording of the description of the Vivid Aether planet. (@Zitchas)
 	  * Ringworld planets now have a "ringworld" attribute for missions to use. (@Quantumshark)
 	  * Added a "frozen" attribute to various cold and frozen worlds for missions and spaceport news to use. (@dorbarker, @Anarchist2)
-	  * The Unfettered Solifuge and Violin Spider are now added the Unfettered shipyards at the same time that the ships are added to Unfettered fleets. (@Hurleveur)
+	  * The Unfettered Solifuge and Violin Spider are now added to the Unfettered shipyards at the same time as they are added to Unfettered fleets. (@Hurleveur)
 	  * Added the "forest" attribute to Stormhold and changed its planet sprite in order to better match the planet's description. (@bene-dictator)
-	  * Various Free Worlds missions which state that mission NPC ships cargo on them now actually have the cargo you're told they have. (@bene-dictator)
+	  * Various NPC ships in Free Worlds missions which state that they carry cargo now actually have the cargo you're told they have. (@bene-dictator)
 	  * Changed the attitude of various Hai governments toward certain actions that the player takes to better reflect the story. (@Hurleveur)
 	    * You no longer gain reputation with the Hai for attacking or destroying Unfettered ships.
 	    * You no longer lose reputation with the Unfettered for disabling Unfettered ships.
@@ -110,7 +110,7 @@ Version 0.10.3
 	  * Plugins can now have a "plugin.txt" metadata file in their root folder that specifies the name of the plugin and its description as shown in the plugins menu in game. (@Beed-git)
 	  * New autoconditions:
 	    * "flagship disabled" returns 1 if the player's flagship is disabled, 0 otherwise. (@TomGoodIdea)
-		* "installed plugins: <name>" returns 1 if a plugin of the given name is installed, 0 otherwise. (@1010Todd, @Hurleveur)
+		* "installed plugin: <name>" returns 1 if a plugin of the given name is installed, 0 otherwise. (@1010Todd, @Hurleveur)
 		* "roll: <number or condition>" returns a random number between 0 and the specified number, or between 0 and the value of the given condition if a condition name is provided. (@Amazinite)
 		* "person destroyed: <name>" returns 1 if the person ship with the given name has been destroyed, 0 otherwise. (@Hurleveur)
 		* "flagship bays: <type>" returns the number of bays of the given type that the player's flagship has. (@TomGoodIdea)
@@ -135,14 +135,14 @@ Version 0.10.3
 	* Added a new setting that determines which ships in your fleet will pick up flotsams, if at all. (@OcelotWalrus)
 	* The outfits installed on player ships are now displayed in a list format under all the other ship stats in the shipyard and outfitter, similar to how they're displayed for ships that are sold in the shipyard. (@flowers9)
 	* Changed the "has no shipyard/outfitter" color on the shipyard and outfitter map keys to a darker shade of blue to better differentiate it from the "has shipyard/outfitter" color. (@flowers9)
-	* Added a "landing zoom" UI setting that zooms the camera in or out when landing on our launching from a planet. (@flowers9)
+	* Added a "landing zoom" UI setting that zooms the camera in or out when landing on or launching from a planet. (@flowers9)
 	* Human engines in the outfitter are now ordered according to the engine set that they come from, from smallest to largest, and listed with steering before thrusters, instead of purely alphabetically. (@warp-core)
 	* The color of a wormhole's link on the map is now also used when that wormhole is a part of the travel plan. (@RisingLeaf, @warp-core)
 	* Increased the amount of motion blur that occurs to the background while hyperspacing. This can be toggled in the settings under the "extended jump effects" preference. (@Koranir)
 	* The map can now be opened from the shipyard or outfitter. (@TomGoodIdea)
 	* Externally docked fighters are now drawn in the hail panel when hailing a carrier. (@TomGoodIdea)
 	* The auto-selection of available jobs when you accept one job now moves to the next available job for the destination instead of reseting back to the top of the list of jobs for that destination. (@flowers9)
-	* Added a preference to blink the map mission marker for missions with a deadline more quickly if you have less extra days to reach the destination compared to the minimum number of days necessary to reach it. The default behavior is to simply blink based on the number of days until the deadline. (@TomGoodIdea)
+	* Added a preference to blink the map mission marker for missions with a deadline more quickly if you have fewer extra days to reach the destination compared to the minimum number of days necessary to reach it. The default behavior is to simply blink based on the number of days until the deadline. (@TomGoodIdea)
 	* The player will now be warned when taking off if they don't have enough cargo space for outfits that are marked as in cargo. (@flowers9, @warp-core)
 	* Buttons on the planet panel when you are landed no longer disappear if you don't have a flagship. (@flowers9)
 	* Mission destination reminder messages are now colored in a new green "info" message level. (@RisingLeaf)
@@ -158,7 +158,7 @@ Version 0.10.3
 	* Reordered the hardpoint definitions on various ships to match the expected style. (@warp-core)
 	* Updated a code comment to match the actual code below it. (@ashdnazg)
 	* Updated the project license field in the appdata file to list only the primary code license of the game instead of the licenses for all assets. (@salarua)
-	* The caching of Angles is now done when the game launches instead of the first time Angle is called. (@flowers9)
+	* The caching of Angles is now done when the game launches instead of the first time Angle::Unit is called. (@flowers9)
 	* Fixed incorrectly ordered includes in source files. (@tibetiroka)
 	* Created a new type of dialog that always runs its callback function regardless of the user's choice. (@flowers9)
 	* Added null pointer checks to functions in Politics. (@warp-core)
