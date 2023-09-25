@@ -48,6 +48,7 @@ Version 0.10.3
 	  * Ships and outfits without descriptions in the shop will no longer display description clikc zones. (@warp-core)
 	  * Fixed an issue where scanning a ship's cargo or outfits could cause the scan dialog to appear twice. (@warp-core)
 	  * Selecting a new system on the map now always clears the system orbit data, instead of only doing so when the newly selected system has been visited. (@TomGoodIdea)
+	  * Switching between two engines that use the same engine flare sprite but at different scales will now properly update the engine sprite scale. (@TomGoodIdea)
   * Game content:
 	* New content:
 	  * New mission where you answer a distress call in Korath space. (@UnorderedSigh, @williaji)
@@ -60,6 +61,7 @@ Version 0.10.3
 	  * Revised the smuggler arc of the Hai Reveal storyline. (@UnorderedSigh)
 	  * Bounty jobs now provide their payment the moment the bounty fleet is destroyed, instead of requiring that the player return to the offer location of the job to receive pay. (@Anarchist2)
 	  * Improved the wording in the description of "FW Bounty 1". (@m0ctave, @EjoThims)
+	  * Added the mission destination to the description of "Remnant: Cognizance 7". (@lumbar527)
 	* Balance:
 	  * Added weaponry to some human fighters to fit in the additional hardpoints that they were recently given. (@AvianGeneticist)
 	  * Increased the reputation gains with Unfettered sympathizers when doing Unfettered jobs. (@Hurleveur)
@@ -86,6 +88,9 @@ Version 0.10.3
 	  * Buffed the Ion Cannon's ion and scrambling damage by 20%, from 5 to 6 for each in order to make it a bit more competitive with other weaponry. (@Hurleveur)
 	  * Reduced the profitability of commodity trading in Hai space by about 40% by bringing trade prices closer together, as the lack of piracy in Hai space makes it an easy place for trading. (@Anarchist2)
 	  * Combined the two Barb variants into a single ship. This effectively just means that the turreted variant of the ship has gained +4 weapon space, and the Proton Gun variant of the ship is no longer sold. These two ships weren't sufficiently differentiated from one another to justify keeping both around. (@Quantumshark)
+	  * Reduced the buff to engine space provided to the Marauder Leviathan and Falcon engine variants. (@Quantumshark)
+	    * Falcon: +55 to +25 (total of 220 to 190)
+		* Leviathan: +80 to +40 (total of 220 to 180)
 	* Graphics:
 	* Other:
 	  * Tweaked the wording of the description of the Vivid Aether planet. (@Zitchas)
@@ -98,6 +103,7 @@ Version 0.10.3
 	    * You no longer gain reputation with the Hai for attacking or destroying Unfettered ships.
 	    * You no longer lose reputation with the Unfettered for disabling Unfettered ships.
 		* You now gain 50% more reputation for assisting Hai ships.
+	  * Standardized the language used for attribute tooltips.
   * Game mechanics:
     * New mechanics:
 	  * Fighters will now grab a chunk of energy from their carrier's batteries when they deploy if the fighter's energy reserves are not full. Useful for battery-only fighters. (@tibetiroka)
@@ -108,6 +114,9 @@ Version 0.10.3
 	  * Fighters in fleets can now be given different personalities than the rest of the fleet. (@Quantumshark)
 	  * Using the "fail" action with no named mission now only fails the mission that called the action instead of failing every mission with the same name. Explicitly listing the name of the mission will still fail every mission with the same name. (@Amazinite)
 	  * Plugins can now have a "plugin.txt" metadata file in their root folder that specifies the name of the plugin and its description as shown in the plugins menu in game. (@Beed-git)
+	  * Systems can now define the raid fleets that spawn in them or disable all raid fleet spawning, instead of raid fleets only being able to be defined for the government of the system. (@Hurleveur)
+	  * Ship images can now be given "@sw" sprites that apply a swizzle mask to the ship in game, allowing certain parts of a ship to remain unswizzled while other parts are. (@RisingLeaf)
+	  * Weapons can be given a "fade out" attribute which causes their projectiles to become more transparent until disappearing at the end of their lifetime. (@RisingLeaf)
 	  * New autoconditions:
 	    * "flagship disabled" returns 1 if the player's flagship is disabled, 0 otherwise. (@TomGoodIdea)
 		* "installed plugin: <name>" returns 1 if a plugin of the given name is installed, 0 otherwise. (@1010Todd, @Hurleveur)
@@ -121,6 +130,8 @@ Version 0.10.3
 		* Scan speed now follows a gaussian decay as distance increases.
 		* Scan time increases with cargo hold or outfit space size with the 2/3rd power of the size instead of linearly.
 	  * Pirate raid deterence no longer looks at whether you have ammo in your launchers. (@TomGoodIdea)
+	  * Fleets can now spawn from any section of a ringworld instead of only ever spawning from the same section. (@quyykk)
+	  * Cooling is no longer disabled when a ship becomes overheated. (@QuantumShark)
     * AI:
 	  * Ships with only secondary weapons that run out of ammo will now attempt to flee instead of flying straight at their target without any weapons. (@TomGoodIdea)
 	  * Escorts that are capable of cloaking can now cloak on their own without input from the player if they are low on health. (@TomGoodIdea)
@@ -148,6 +159,10 @@ Version 0.10.3
 	* Mission destination reminder messages are now colored in a new green "info" message level. (@RisingLeaf)
 	* Interface bars can now be defined to draw from the top left corner instead of only drawing from the bottom right. (@warp-core)
 	* Added a confirmation dialog to demanding tribute from a planet, to prevent the player accidentally demanding tribute from a planet and ruining their reputation. (@UnorderedSigh)
+	* Non-hyperdrive jumps on the map travel path are now drawn with dashed lines instead of solid lines. (@flowars9)
+	* The save file load panel now scrolls when you use arrow keys to select your pilot and save. (@warp-core)
+	* Planet labels are now much less likely to overlap with one another or with other objects in the system. (@flowers9)
+	* The escort HUD display is now defined by the interfaces file so that it can be modified without recompiling. (@warp-core)
   * Under the hood:
     * Refactored part of PlayerInfo::Land to reduce code duplication. (@warp-core)
 	* Selling all your commodities in the trade panel now loops over the commodities that the player owns instead of looping through all commodities in the game and seeing if the player owns them. (@flowers9)
@@ -172,6 +187,9 @@ Version 0.10.3
 	* Incorrectly ordered includes in source files now causes a style check error instead of a warning. (@tibetiroka)
 	* The content style checker now also runs on integration test data. (@warp-core)
 	* Fixed an indefinite article issue false positive in the style checker that had to do with abbreviations. (@tibetiroka)
+	* Always use vcpkg's OpenAL Soft on MacOS CI jobs. (@quyykk)
+	* Miscellaneous GitHub Actions tweaks and improvements. (@quyykk)
+	* Updated dependencies. (@quyykk)
 
 Version 0.10.2
   * Bug fixes:
