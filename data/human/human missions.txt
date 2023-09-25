@@ -1313,6 +1313,7 @@ outfit "Imaginary Weapon"
 		"tracking" 1.
 
 ship "Hallucination"
+	noun "flower"
 	sprite "ship/hallucination"
 		"frame rate" 1
 		"random start frame"
