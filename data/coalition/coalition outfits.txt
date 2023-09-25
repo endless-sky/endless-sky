@@ -232,8 +232,8 @@ outfit "Refuelling Module"
 	"mass" 10
 	"outfit space" -10
 	"fuel capacity" -100
-	"fuel generation" .1
-	"energy consumption" .02
+	"fuel generation" .05
+	"energy consumption" .11
 	description "To avoid the risk of being inspected by the Heliarchs as they refuel on planets, Lunarium captains employ this outfit when carrying supplies or stolen outfits."
 	description "	The outfit's mechanisms need a partitioned amount of fuel set aside to allow it to work properly, so a ship can only install so many of these before becoming incapable of jumping to another system."
 
