@@ -2014,10 +2014,9 @@ mission "Heliarch Drills 3"
 		government "Heliarch Test Dummy"
 		personality disables staying nemesis heroic
 		system "Torbab"
-		fleet
-			names "heliarch"
-			variant
-				"Heliarch Punisher (Scrappy)"
+		ship "Heliarch Punisher (Scrappy)" "Awaiting Adversary"
+		on kill
+			dialog `The Punisher's captain tries to hail you as the ship collapses around them, but you never get to hear their final cries. You have failed to simply disable the ship, and doomed the entire crew. It seems that you will not be welcome in Coalition space any longer.`
 	on accept
 		"assisting heliarchy" ++
 	on fail
