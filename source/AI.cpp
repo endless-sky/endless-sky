@@ -4053,29 +4053,32 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			// On android, chase the target if they get too far away while the
 			// user is holding the scan button.
 			auto target = ship.GetTargetShip();
-			double cargoDistanceSquared = ship.Attributes().Get("cargo scan power");
-			double outfitDistanceSquared = ship.Attributes().Get("outfit scan power");
-			double distance = cargoDistanceSquared;
-			if(cargoDistanceSquared > 0 && outfitDistanceSquared > 0)
-				distance = min(cargoDistanceSquared, outfitDistanceSquared);
-			else if(outfitDistanceSquared > 0)
-				distance = outfitDistanceSquared;
-			if(distance > 0 && target)
+			if (target && target->GetSystem() == ship.GetSystem())
 			{
-				// 1 scan power == 100 px
-				double targetDistance = target->Position().DistanceSquared(ship.Position());
-				// convert from pixels to scan units. remember, this is a squared
-				// distance, so the conversion ratio has to be squared as well
-				targetDistance /= (100*100);
-				// try to stay close to the target
-				if(targetDistance > distance * .5)
+				double cargoDistanceSquared = ship.Attributes().Get("cargo scan power");
+				double outfitDistanceSquared = ship.Attributes().Get("outfit scan power");
+				double distance = cargoDistanceSquared;
+				if(cargoDistanceSquared > 0 && outfitDistanceSquared > 0)
+					distance = min(cargoDistanceSquared, outfitDistanceSquared);
+				else if(outfitDistanceSquared > 0)
+					distance = outfitDistanceSquared;
+				if(distance > 0 && target)
 				{
-					// This code has an annoying side-effect that I'm not sure how
-					// to counter. if somebody in your fleet is being followed by
-					// the scan target, then everybody ends up moving after a point
-					// in front of your fleet, and you all just wander off together
-					// without being able to complete a scan
-					MoveTo(ship, command, target->Position(), target->Velocity(), 5.0, 0.8);
+					// 1 scan power == 100 px
+					double targetDistance = target->Position().DistanceSquared(ship.Position());
+					// convert from pixels to scan units. remember, this is a squared
+					// distance, so the conversion ratio has to be squared as well
+					targetDistance /= (100*100);
+					// try to stay close to the target
+					if(targetDistance > distance * .5)
+					{
+						// This code has an annoying side-effect that I'm not sure how
+						// to counter. if somebody in your fleet is being followed by
+						// the scan target, then everybody ends up moving after a point
+						// in front of your fleet, and you all just wander off together
+						// without being able to complete a scan
+						MoveTo(ship, command, target->Position(), target->Velocity(), 5.0, 0.8);
+					}
 				}
 			}
 		}
@@ -4089,38 +4092,6 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 	else if(activeCommands.Has(Command::NEAREST_ASTEROID))
 	{
 		TargetMinable(ship);
-
-		if(Preferences::Has("Automatic chase"))
-		{
-			// On android, chase the target if they get too far away while the
-			// user is holding the scan button.
-			auto target = ship.GetTargetShip();
-			double cargoDistanceSquared = ship.Attributes().Get("cargo scan power");
-			double outfitDistanceSquared = ship.Attributes().Get("outfit scan power");
-			double distance = cargoDistanceSquared;
-			if(cargoDistanceSquared > 0 && outfitDistanceSquared > 0)
-				distance = min(cargoDistanceSquared, outfitDistanceSquared);
-			else if(outfitDistanceSquared > 0)
-				distance = outfitDistanceSquared;
-			if(distance > 0 && target)
-			{
-				// 1 scan power == 100 px
-				double targetDistance = target->Position().DistanceSquared(ship.Position());
-				// convert from pixels to scan units. remember, this is a squared
-				// distance, so the conversion ratio has to be squared as well
-				targetDistance /= (100*100);
-				// try to stay close to the target
-				if(targetDistance > distance * .5)
-				{
-					// This code has an annoying side-effect that I'm not sure how
-					// to counter. if somebody in your fleet is being followed by
-					// the scan target, then everybody ends up moving after a point
-					// in front of your fleet, and you all just wander off together
-					// without being able to complete a scan
-					MoveTo(ship, command, target->Position(), target->Velocity(), 5.0, 0.8);
-				}
-			}
-		}
 	}
 
 	const shared_ptr<const Ship> target = ship.GetTargetShip();
@@ -4154,8 +4125,16 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			auto targetShip = ship.GetTargetShip();
 			auto targetAsteroid = ship.GetTargetAsteroid();
 			Body* targetBody = targetShip.get();
+			const System* targetSystem = nullptr;
 			if (!targetBody)
+			{
 				targetBody = targetAsteroid.get();
+				targetSystem = ship.GetSystem();
+			}
+			else
+			{
+				targetSystem = targetShip->GetSystem();
+			}
 			int index = 0;
 			double maxRange = -1;
 			for(const Hardpoint &hardpoint : ship.Weapons())
@@ -4167,7 +4146,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 					{
 						// don't actually fire if we have a target selected, and its
 						// out of range.
-						if (!targetBody || targetBody->Position().DistanceSquared(ship.Position()) < range * range * 1.5)
+						if (!targetBody || (targetSystem == ship.GetSystem() && targetBody->Position().DistanceSquared(ship.Position()) < range * range * 1.5))
 						{
 							firingCommands.SetFire(index);
 						}
@@ -4188,7 +4167,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				// user is holding the fire button.
 				maxRange *= .5;
 
-				if(targetBody && targetBody->Position().DistanceSquared(ship.Position()) > maxRange * maxRange)
+				if(targetSystem == ship.GetSystem() && targetBody &&
+					targetBody->Position().DistanceSquared(ship.Position()) > maxRange * maxRange)
 				{
 					// target is too far away. lets chase it
 					MoveToAttack(ship, command, *targetBody);
