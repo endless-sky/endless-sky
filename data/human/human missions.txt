@@ -6374,7 +6374,7 @@ mission "Care Package to South 3a"
 	landing
 	invisible
 	to offer
-		has "Care Package to South 3a: offered"
+		has "Care Package to South 2a: offered"
 		has "FW Pirates: Attack 3: done"
 	on offer
 		conversation
