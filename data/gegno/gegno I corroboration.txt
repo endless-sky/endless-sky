@@ -13,11 +13,11 @@
 
 
 mission "Passive-Aggressive Observations"
-	invisible
+#	invisible
 	landing
 	destination "Vigales"
 	to offer
-		random < 30
+#		random < 30
 		has "First Contact: Gegno Scin: offered"
 		not "Gegno Genocide Defense: offered"
 	on complete
@@ -70,7 +70,7 @@ mission "Passive-Aggressive Observations"
 		ship "Schist" "Ess Ouec"
 
 mission "Vi Military Group"
-	# invisible
+#	invisible
 	landing
 	to offer
 		has "Passive-Aggressive Observations: done"
@@ -118,10 +118,10 @@ mission "Vi Military Group"
 
 
 mission "Foreign Spectator I"
-	# invisible
+#	invisible
 	landing
 	to offer
-		random < 30
+#		random < 30
 		has "First Contact: Gegno Scin: offered"
 		not "Gegno Genocide Defense: offered"
 	to complete
@@ -170,8 +170,8 @@ mission "Foreign Spectator I"
 
 
 mission "Scin Suspicion"
+#	invisible
 	repeat
-	# invisible
 	landing
 	deadline 11
 	source
@@ -195,7 +195,7 @@ mission "Scin Suspicion"
 
 
 mission "Curious Civilians"
-	# invisible
+#	invisible
 	landing
 	to offer
 		has "First Contact: Gegno Scin: offered"
@@ -210,7 +210,7 @@ mission "Curious Civilians"
 
 
 mission "Esstch Visit Tracker"
-	# invisible
+#	invisible
 	landing
 	repeat 1
 	source "Esstch"
@@ -223,7 +223,7 @@ mission "Esstch Visit Tracker"
 
 
 mission "Brief Bystander"
-	# invisible
+#	invisible
 	landing
 	destination "Esstch"
 	to offer
@@ -248,8 +248,8 @@ mission "Brief Bystander"
 				decline
 
 
-mission "Gegno Intervention"
-	# invisible
+mission "Gegno Suspicions"
+#	invisible
 	landing
 	source "Giaru Gegno"
 	to offer
@@ -341,12 +341,13 @@ mission "Gegno Intervention"
 
 
 mission "Under the Nose"
-	# invisible
+#	invisible
 	landing
 	source "Giaru Gegno"
 	to offer
 		has "event: recurring rumors"
 		not "Gegno Genocide Defense: offered"
+		not "yvx killed"
 	to complete
 		never
 	on enter "Aleit"
@@ -363,11 +364,11 @@ mission "Under the Nose"
 
 mission "Veering Vi A"
 	repeat
-	# invisible
+#	invisible
 	landing
 	deadline 7
 	to offer
-		random < 30
+#		random < 30
 		has "Gegno Intervention: declined"
 		not "Vi Backlash A: active"
 		not "Gegno Genocide Defense: offered"
@@ -388,10 +389,10 @@ mission "Veering Vi A"
 
 mission "Veering Vi B"
 	repeat
-	# invisible
+#	invisible
 	landing
 	deadline 7
-	to offer
+#	to offer
 		random < 30
 		has "Gegno Intervention: declined"
 		not "Vi Backlash B: active"
@@ -411,7 +412,7 @@ mission "Veering Vi B"
 
 
 mission "Vi Backlash"
-	# invisible
+#	invisible
 	landing
 	to offer
 		"vi backlash" >= 5
@@ -422,11 +423,11 @@ mission "Vi Backlash"
 
 
 mission "Scin Presence on Cyife"
-	# invisible
+#	invisible
 	landing
 	source "Cyife"
 	to offer
-		random < 30
+#		random < 30
 		has "Gegno Intervention: declined"
 		not "Gegno Genocide Defense: offered"
 	on offer
@@ -452,7 +453,6 @@ mission "Scin Presence on Cyife"
 				decline
 
 
-# Need the ability to define where an NPC fleet goes separate from the player.
 mission "Battle over Zydee"
 #	invisible
 	landing
@@ -460,26 +460,48 @@ mission "Battle over Zydee"
 #		random < 30
 		has "Gegno Intervention: declined"
 		not "Gegno Genocide Defense: offered"
+	to complete
+		never
 	source "Zydee"
-#	to complete
-#		never
 	on offer
 		set "zydee appearance"
-#		conversation
-			`Background simulator - Gegno Vi attack on the Scin world of Zydee.`
+		conversation
+			`Although this planet is uninhabited, there are more than a few Gegno Scin ships currently parked across the surface. It seems like there's an ongoing operation to continue constructing what infrastructure has been built in past, and the hard working Scin pay little to no attention to your visit.`
+			`	However, a few moments later, the Scin suddenly start scurrying to their ships. You haven't gotten close enough to alarm them, at least from your experiences with them so far. They begin taking off one by one in a hurried fasion, but not towards you - the <>'s sensors suddenly begin picking up a large Gegno Vi fleet entering the system. It appears that this place is turning into a battlefield, and getting caught up in the middle of it is likely something you should avoid.`
+				accept
 	on enter "Kneirc"
 		fail
+
 
 	npc
 		on provoke
 			set "zydee interference"
+		government "Gegno Scin"
+		personality timid launching uninterested
+		system "Kneirc"
+		fleet
+			names "gegno scin'
+			variant
+				"Epidote"
+				"Coesite"
+				"Tridymite"
+				"Halite"
+	npc
+		on provoke
+			set "zydee interference"
 		government "Gegno Vi"
 		personality heroic staying
 		system "Kneirc"
 		fleet
+			names "gegno vi"
 			variant
+				"Gneiss"
+				"Hornfel (Heavy Weapons)"
+				"Hornfel (Heavy Load)
 				"Diorite"
-				"Eclogite"
+				"Schist (Heavy Load)"
+				"Schist (Light Load)"
+				"Eclogite" 3
 	npc
 		on provoke
 			set "zydee interference"
@@ -487,61 +509,28 @@ mission "Battle over Zydee"
 		personality heroic staying
 		system "Kneirc"
 		fleet
+			names "gegno scin"
 			variant
-				"Epidote"
-				"Coesite" 2
-				"Halite"
-	npc evade
-		on provoke
-			set "zydee interference"
-		government "Gegno Vi"
-		personality heroic
-		system "Eogho"
-		fleet
-			variant
-				"Gneiss"
-				"Hornfel" 3
-				"Diorite"
-				"Schist" 2
-				"Eclogite" 4
-	npc evade
-		on provoke
-			set "zydee interference"
-		government "Gegno Scin"
-		personality heroic
-		system "Erba Yle"
-		fleet
-			variant
-				"Felsic" 2
 				"Coesite" 3
-	npc evade
+	npc
 		on provoke
 			set "zydee interference"
 		government "Gegno Scin"
-		personality heroic
-		system "Auhru"
+		personality heroic entering
+		system "Kneirc"
 		fleet
+			names "gegno scin"
 			variant
 				"Feldspar"
-				"Felsic"
-				"Coesite" 2
+				"Felsic" 2
+				"Coesite" 3
 				"Halite" 6
-	npc evade
-		on provoke
-			set "zydee interference"
-		government "Gegno Scin"
-		personality heroic
-		system "Zeinar"
-		fleet
-			variant
-				"Coesite" 2
 
 
 # mission "Quarg Reach Understanding" (Quarg follow player to Dueyu Eitch and find grounds with the Gegno"
 
 
-# Need the ability to relocate the player.
-# mission "Too far" (The player continues to be nosy with the Gegno and conseqences occur"
+# mission "Gegno Intervention" (The player continues to be nosy with the Gegno and conseqences occur"
 
 
 # mission "Acquiescence"
