@@ -1433,6 +1433,7 @@ mission "Heliarch Containment 3"
 			`	"Inform you of that, we cannot," the Kimek says. "Not until accepted our offer, you have."`
 			choice
 				`	"Fine. Bring me to somewhere you can tell me."`
+					goto way
 				`	"That seems a bit sketchy, I'll pass."`
 					decline
 			label license
