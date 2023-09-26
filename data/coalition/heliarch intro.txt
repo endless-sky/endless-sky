@@ -44,7 +44,7 @@ mission "Heliarch Investigation 1"
 		"coalition jobs" ++
 		payment 90000
 		conversation
-			`The three Heliarchs disembark and head immediately towards the spaceport, but not before Iplora hands you <payment>. "Speak with our superior, we must. Need your services again, we likely will, so if interested in further work, you are, look for us in the spaceport, you should." She bows her head lightly, and follows her colleagues into one of the Heliarch-only sections of the ring.`
+			`The three Heliarchs disembark and head immediately toward the spaceport, but not before Iplora hands you <payment>. "Speak with our superior, we must. Need your services again, we likely will, so if interested in further work, you are, look for us in the spaceport, you should." She bows her head lightly, and follows her colleagues into one of the Heliarch-only sections of the ring.`
 	on fail
 		"assisting heliarchy" --
 
@@ -774,7 +774,7 @@ mission "Quarg Interrogation"
 				`	"The Heliarchs asked me to do it."`
 					goto truth
 			label lie
-			`	Around ten seconds pass without it saying anything, simply staring at your eyes and blinking slowly. "I see." Without another word, it walks away, heading towards the Wardragon.`
+			`	Around ten seconds pass without it saying anything, simply staring at your eyes and blinking slowly. "I see." Without another word, it walks away, heading toward the Wardragon.`
 				accept
 			label truth
 			`	"And why did you agree? Do you wish to join their ranks, perhaps?" it asks.`
