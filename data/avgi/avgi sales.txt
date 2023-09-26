@@ -75,6 +75,7 @@ shipyard "Avgi Spaceguard Heavy"
 	"Refraktos"
 	"Difraktos"
 	"Atenuatia"
+	"Modified Tachytia"
 
 
 outfitter "Avgi Basic Systems"

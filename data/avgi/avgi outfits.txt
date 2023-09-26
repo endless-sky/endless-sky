@@ -169,7 +169,7 @@ outfit "Fleck Coilgun"
 		"hit effect" "bombardment impact"
 		"inaccuracy" 0.6
 		"velocity" 60
-		"range override" 3600
+		"range override" 2400
 		"lifetime" 1
 		"reload" 20
 		"firing energy" 60
@@ -199,7 +199,7 @@ outfit "Fleck Turret"
 		"hit effect" "bombardment impact"
 		"inaccuracy" 0.3
 		"velocity" 60
-		"range override" 3600
+		"range override" 2400
 		"lifetime" 1
 		"reload" 10
 		"turret turn" 3.6
@@ -1066,7 +1066,7 @@ outfit "Diffuse Deflector"
 	"shield energy" 1.8
 	"shield heat" 4.8
 	"shield delay" 3
-	description "For its size, you would expect this shield generator to be far more powerful than it actually is. While it is nearly as large as the heaviest human shield generators, it is only about three quarters as strong, while also consuming much more power. Much of this power ends up being shed as waste heat instead of being used to efficiently regenerate a shield."
+	description "For its size, you would expect this shield generator to be far more powerful than it actually is. While it is nearly as large as the heaviest human shield generators, it is only about half as strong, while also consuming much more power. Much of this power ends up being shed as waste heat instead of being used to efficiently regenerate a shield."
 
 
 outfit "Specular Deflector"

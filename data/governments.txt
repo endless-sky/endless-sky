@@ -47,7 +47,7 @@ government "Author"
 color "governments: Avgi" 0 0.72 0.84
 
 government "Avgi"
-	swizzle 5
+	swizzle 15
 	language Avgi
 	color "governments: Avgi"
 
@@ -66,7 +66,7 @@ government "Avgi"
 
 government "Avgi (Consonance)"
 	"display name" "Consonance"
-	swizzle 3
+	swizzle 15
 	language Avgi
 	color "governments: Avgi"
 
@@ -89,7 +89,7 @@ government "Avgi (Consonance)"
 
 government "Avgi (Twilight Guard)"
 	"display name" "Twilight Guard"
-	swizzle 3
+	swizzle 12
 	language Avgi
 	color "governments: Avgi"
 
@@ -164,7 +164,7 @@ government "Avgi (Angry Dissonance)"
 
 government "Avgi (Wandering Fleet)"
 	"display name" "Wandering Fleet"
-	swizzle 3
+	swizzle 6
 	language Avgi
 	color "governments: Avgi"
 
