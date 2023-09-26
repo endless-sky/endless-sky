@@ -1104,7 +1104,7 @@ ship "Tremoros"
 		"automaton" 1
 		"crew equivalent" 1
 		"mass" 45
-		"drag" .3
+		"drag" 0.9
 		"heat dissipation" 0.9
 		"fuel capacity" 900
 		"cargo space" 12
@@ -1262,7 +1262,7 @@ ship "Interferos"
 		"automaton" 1
 		"crew equivalent" 3
 		"mass" 90
-		"drag" 1.5
+		"drag" 2.4
 		"heat dissipation" 1.5
 		"fuel capacity" 600
 		"cargo space" 12
@@ -1344,7 +1344,7 @@ ship "Diaspersi"
 		"required crew" 15
 		"bunks" 36
 		"mass" 270
-		"drag" 1.8
+		"drag" 3.6
 		"heat dissipation" 1.8
 		"fuel capacity" 2400
 		"cargo space" 120
@@ -1446,7 +1446,7 @@ ship "Difraktos"
 		"required crew" 15
 		"bunks" 42
 		"mass" 270
-		"drag" 1.8
+		"drag" 4.2
 		"heat dissipation" 2.1
 		"fuel capacity" 1800
 		"cargo space" 60
@@ -1545,7 +1545,7 @@ ship "Refraktos"
 		"required crew" 12
 		"bunks" 24
 		"mass" 180
-		"drag" 3.6
+		"drag" 3
 		"heat dissipation" 2.4
 		"fuel capacity" 1800
 		"cargo space" 60
