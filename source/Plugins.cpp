@@ -102,6 +102,96 @@ namespace {
 				return;
 		}
 	}
+
+	bool ExtractZIP(std::string filename, std::string destination, std::string expectedName)
+	{
+		int flags = ARCHIVE_EXTRACT_TIME;
+		flags |= ARCHIVE_EXTRACT_PERM;
+		flags |= ARCHIVE_EXTRACT_ACL;
+		flags |= ARCHIVE_EXTRACT_FFLAGS;
+
+		// Create the handles for reading/writing
+		archive *read = archive_read_new();
+		archive *ext = archive_write_disk_new();
+		archive_write_disk_set_options(ext, flags);
+		archive_read_support_format_all(read);
+		if(!filename.empty() && filename.front() == '-')
+			filename.clear();
+		if(archive_read_open_filename(read, filename.c_str(), 10240))
+			return false;
+
+		// Check if this plugin has the right head folder name
+		archive_entry *entry;
+		archive_read_next_header(read, &entry);
+		string firstEntry = archive_entry_pathname(entry);
+		firstEntry = firstEntry.substr(0, firstEntry.find("/")) + "/";
+		bool fitsExpected = firstEntry == (expectedName);
+		archive_read_data_skip(read);
+
+		// Check if this plugin has a head folder, if not create one in the destination
+		archive_read_next_header(read, &entry);
+		string secondEntry = archive_entry_pathname(entry);
+		bool hasHeadFolder = secondEntry.find(firstEntry) != std::string::npos;
+		if(!hasHeadFolder)
+#if defined(_WIN32)
+			_wmkdir(Utf8::ToUTF16(destination + expectedName).c_str());
+#else
+			mkdir((destination + expectedName).c_str(), 0777);
+#endif
+
+		// Close the archive so we can start again from the beginning
+		archive_read_close(read);
+		archive_read_free(read);
+
+		// Read another time, this time for writing.
+		read = archive_read_new();
+		archive_read_support_format_all(read);
+		archive_read_open_filename(read, filename.c_str(), 10240);
+
+		int size = 0;
+		while (true)
+		{
+			int retVal = archive_read_next_header(read, &entry);
+			if(retVal == ARCHIVE_EOF)
+				break;
+			if(retVal != ARCHIVE_OK)
+				return false;
+
+			size += archive_entry_size(entry);
+			if(size > MAX_DOWNLOAD_SIZE)
+				return false;
+
+			// Adjust root folder name if neccessary.
+			if(!fitsExpected && hasHeadFolder)
+			{
+				string thisEntryName = archive_entry_pathname(entry);
+				size_t start_pos = thisEntryName.find(firstEntry);
+				if(start_pos != std::string::npos)
+					thisEntryName.replace(start_pos, firstEntry.length(), expectedName);
+
+				archive_entry_set_pathname(entry, thisEntryName.c_str());
+			}
+
+			// Add root folder to path if neccessary.
+			string dest_file = (destination + (hasHeadFolder ? "" : expectedName)) + archive_entry_pathname(entry);
+			archive_entry_set_pathname(entry, dest_file.c_str());
+
+			// Write files.
+			if(archive_write_header(ext, entry) == ARCHIVE_OK)
+			{
+				CopyData(read, ext);
+				if(archive_write_finish_entry(ext) != ARCHIVE_OK)
+					return false;
+			}
+		}
+
+		// Free all data.
+		archive_read_close(read);
+		archive_read_free(read);
+		archive_write_close(ext);
+		archive_write_free(ext);
+		return true;
+	}
 }
 
 
@@ -312,20 +402,20 @@ future<void> Plugins::Update(const InstallData &installData)
 
 
 
-void Plugins::DeletePlugin(const InstallData &installData)
+void Plugins::DeletePlugin(const std::string &pluginName)
 {
 	{
 		lock_guard<mutex> guard(activePluginsMutex);
-		if(activePlugins.count(installData.name))
+		if(activePlugins.count(pluginName))
 			return;
 	}
 
 	{
 		lock_guard<mutex> guard(pluginsMutex);
-		plugins.Get(installData.name)->removed = true;
+		plugins.Get(pluginName)->removed = true;
 	}
 
-	Files::DeleteDir(Files::Plugins() + installData.name);
+	Files::DeleteDir(Files::Plugins() + pluginName);
 }
 
 
@@ -363,96 +453,4 @@ bool Plugins::Download(std::string url, std::string location)
 	curl_easy_cleanup(curl);
 	fclose(out);
 	return res == CURLE_OK;
-}
-
-
-
-bool Plugins::ExtractZIP(std::string filename, std::string destination, std::string expectedName)
-{
-	int flags = ARCHIVE_EXTRACT_TIME;
-	flags |= ARCHIVE_EXTRACT_PERM;
-	flags |= ARCHIVE_EXTRACT_ACL;
-	flags |= ARCHIVE_EXTRACT_FFLAGS;
-
-	// Create the handles for reading/writing
-	archive *read = archive_read_new();
-	archive *ext = archive_write_disk_new();
-	archive_write_disk_set_options(ext, flags);
-	archive_read_support_format_all(read);
-	if(!filename.empty() && filename.front() == '-')
-		filename.clear();
-	if(archive_read_open_filename(read, filename.c_str(), 10240))
-		return false;
-
-	// Check if this plugin has the right head folder name
-	archive_entry *entry;
-	archive_read_next_header(read, &entry);
-	string firstEntry = archive_entry_pathname(entry);
-	firstEntry = firstEntry.substr(0, firstEntry.find("/")) + "/";
-	bool fitsExpected = firstEntry == (expectedName);
-	archive_read_data_skip(read);
-
-	// Check if this plugin has a head folder, if not create one in the destination
-	archive_read_next_header(read, &entry);
-	string secondEntry = archive_entry_pathname(entry);
-	bool hasHeadFolder = secondEntry.find(firstEntry) != std::string::npos;
-	if(!hasHeadFolder)
-#if defined(_WIN32)
-		_wmkdir(Utf8::ToUTF16(destination + expectedName).c_str());
-#else
-		mkdir((destination + expectedName).c_str(), 0777);
-#endif
-
-	// Close the archive so we can start again from the beginning
-	archive_read_close(read);
-	archive_read_free(read);
-
-	// Read another time, this time for writing.
-	read = archive_read_new();
-	archive_read_support_format_all(read);
-	archive_read_open_filename(read, filename.c_str(), 10240);
-
-	int size = 0;
-	while (true)
-	{
-		int retVal = archive_read_next_header(read, &entry);
-		if(retVal == ARCHIVE_EOF)
-			break;
-		if(retVal != ARCHIVE_OK)
-			return false;
-
-		size += archive_entry_size(entry);
-		if(size > MAX_DOWNLOAD_SIZE)
-			return false;
-
-		// Adjust root folder name if neccessary.
-		if(!fitsExpected && hasHeadFolder)
-		{
-			string thisEntryName = archive_entry_pathname(entry);
-			size_t start_pos = thisEntryName.find(firstEntry);
-			if(start_pos != std::string::npos)
-				thisEntryName.replace(start_pos, firstEntry.length(), expectedName);
-
-			archive_entry_set_pathname(entry, thisEntryName.c_str());
-		}
-
-		// Add root folder to path if neccessary.
-		string dest_file = (destination + (hasHeadFolder ? "" : expectedName)) + archive_entry_pathname(entry);
-		archive_entry_set_pathname(entry, dest_file.c_str());
-
-		// Write files.
-		if(archive_write_header(ext, entry) == ARCHIVE_OK)
-		{
-			CopyData(read, ext);
-			if(archive_write_finish_entry(ext) != ARCHIVE_OK)
-				return false;
-		}
-	}
-
-	// Free all data.
-	archive_read_close(read);
-	archive_read_free(read);
-	archive_write_close(ext);
-	archive_write_free(ext);
-	return true;
 }

@@ -132,8 +132,10 @@ void PreferencesPanel::Draw()
 		info.SetCondition("show next");
 	if(selectedPluginInstall.installed)
 		info.SetCondition("installed plugin");
-	if(selectedPluginInstall.outdated || !selectedPluginInstall.installed)
-		info.SetCondition("can install/update");
+	if(!selectedPluginInstall.installed)
+		info.SetCondition("can install");
+	if(selectedPluginInstall.outdated && selectedPluginInstall.installed)
+		info.SetCondition("can update");
 	if(currentPluginInstallPage > 0)
 		info.SetCondition("previous install plugin");
 	if(currentPluginInstallPage < pluginInstallPages - 1)
@@ -192,6 +194,8 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	}
 	else if(key == 'o' && page == 'p')
 		Files::OpenUserPluginFolder();
+	else if(key == 'u' && page == 'p')
+		Plugins::DeletePlugin(selectedPlugin);
 	else if((key == 'n' || key == SDLK_PAGEUP) && currentSettingsPage < SETTINGS_PAGE_COUNT - 1)
 		++currentSettingsPage;
 	else if((key == 'r' || key == SDLK_PAGEDOWN) && currentSettingsPage > 0)
@@ -201,7 +205,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		if(zones[latest].Value().KeyName() != Command::MENU.KeyName())
 			Command::SetKey(zones[latest].Value(), 0);
 	}
-	else if(key == 'i' && page == 'p')
+	else if(key == 'd')
 	{
 		page = 'i';
 		if(!downloadedInfo)
@@ -217,10 +221,10 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	}
 	else if(key == 'i' && page == 'i' && selectedPluginInstall.url.size() && !selectedPluginInstall.installed)
 		installFeedbacks.emplace_back(Plugins::Install(selectedPluginInstall));
-	else if(key == 'i' && page == 'i' && selectedPluginInstall.url.size() && selectedPluginInstall.outdated)
+	else if(key == 'u' && page == 'i' && selectedPluginInstall.url.size() && selectedPluginInstall.outdated)
 		installFeedbacks.emplace_back(Plugins::Update(selectedPluginInstall));
-	else if(key == 'd' && page == 'i' && selectedPluginInstall.url.size() && selectedPluginInstall.installed)
-		Plugins::DeletePlugin(selectedPluginInstall);
+	else if(key == 'u' && page == 'i' && selectedPluginInstall.url.size() && selectedPluginInstall.installed)
+		Plugins::DeletePlugin(selectedPluginInstall.name);
 	else if(key == 'r' && page == 'i')
 		currentPluginInstallPage = currentPluginInstallPage > 0 ? currentPluginInstallPage - 1 : 0;
 	else if(key == 'e' && page == 'i')

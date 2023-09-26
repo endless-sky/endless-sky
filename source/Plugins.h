@@ -91,12 +91,9 @@ public:
 	// Install or update or delete a plugin.
 	static std::future<void> Install(const InstallData &installData, bool guarded = false);
 	static std::future<void> Update(const InstallData &installData);
-	static void DeletePlugin(const InstallData &installData);
+	static void DeletePlugin(const std::string &pluginName);
 
 	static bool Download(std::string url, std::string location);
-
-private:
-	static bool ExtractZIP(std::string filename, std::string destination, std::string expectedName);
 };
 
 

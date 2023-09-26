@@ -451,6 +451,11 @@ interface "controls"
 		dimensions 90 30
 		color medium
 		hover bright
+	button d "_Download"
+		center -300 -110
+		dimensions 90 30
+		color medium
+		hover bright
 	label "Press '_x' over keybind to unbind"
 		from -255 200
 		color "bright"
@@ -474,6 +479,11 @@ interface "settings"
 		color bright
 	button p "_Plugins"
 		center -300 -150
+		dimensions 90 30
+		color medium
+		hover bright
+	button d "_Download"
+		center -300 -110
 		dimensions 90 30
 		color medium
 		hover bright
@@ -510,10 +520,15 @@ interface "plugins"
 		center -300 -150
 		dimensions 90 30
 		color bright
+	button d "_Download"
+		center -300 -110
+		dimensions 90 30
+		color medium
+		hover bright
 	button o "_Open Plugins"
 		center -195 210
 		dimensions 120 30
-	button i "_Install Plugins"
+	button u "_Uninstall"
 		center -65 210
 		dimensions 120 30
 	visible if "show plugins changed"
@@ -530,7 +545,7 @@ interface "plugins"
 
 
 interface "install plugins"
-	sprite "ui/plugins panel"
+	sprite "ui/install plugins panel"
 		center -20 -20
 	button c "_Controls"
 		center -300 -230
@@ -545,15 +560,23 @@ interface "install plugins"
 	button p "_Plugins"
 		center -300 -150
 		dimensions 90 30
+		color medium
+		hover bright
+	button d "_Download"
+		center -300 -110
+		dimensions 90 30
 		color bright
 
-	active if "can install/update"
-	button i "_Install/Update"
+	visible if "!can update"
+	active if "can install"
+	button i "_Install"
 		center -195 210
 		dimensions 120 30
-	active if "installed plugin"
-	button d "_Delete"
-		center -65 210
+
+	visible if "can update"
+	active if "can update"
+	button u "_Update"
+		center -195 210
 		dimensions 120 30
 
 	active if "next install plugin"
