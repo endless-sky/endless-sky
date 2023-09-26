@@ -40,7 +40,7 @@ mission "Corporate retreat to <planet stopovers>"
 	repeat
 	deadline
 	description "A team of <bunks> engineers needs transport to a corporate retreat on <stopovers>, after which they must return back to <origin> by <date>. They want a comfortable journey, so your ship must be outfitted suitably. Payment is <payment>."
-	passengers 7 18
+	passengers 3 10 .56
 	to offer
 		random < 20
 	to accept
@@ -56,6 +56,32 @@ mission "Corporate retreat to <planet stopovers>"
 		dialog "For days your ship has played host to endless discussions about load calculations, tensile strengths, and thermodynamic limits. You're grateful for some peace and quiet as the team of engineers tromps out of the hatch and heads for their exotic corporate retreat. You prepare for the return journey to <origin>."
 	on complete
 		payment 3000 160
+		dialog "The team's boss thanks you for a smooth trip and authorizes a payment of <payment>."
+
+
+mission "Large Corporate retreat"
+	name "Corporate retreat to <planet stopovers>"
+	job
+	repeat
+	deadline
+	description "A team of <bunks> engineers needs transport to a corporate retreat on <stopovers>, after which they must return back to <origin> by <date>. They want a comfortable journey, so your ship must be outfitted suitably. Payment is <payment>."
+	passengers 20 6 .15
+	to offer
+		random < 20
+		random < ( "passenger space" - 25 ) * 2
+	to accept
+		has "outfit (installed): Luxury Accommodations"
+	source
+		government "Syndicate"
+	stopover
+		attributes "quarg" "volcanic" "frontier" "north" "south"
+		not attributes "station" "military"
+		distance 3 12
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg"
+	on stopover
+		dialog "For days your ship has played host to endless discussions about load calculations, tensile strengths, and thermodynamic limits. You're grateful for some peace and quiet as the team of engineers tromps out of the hatch and heads for their exotic corporate retreat. You prepare for the return journey to <origin>."
+	on complete
+		payment 130000 110
 		dialog "The team's boss thanks you for a smooth trip and authorizes a payment of <payment>."
 
 
@@ -439,7 +465,7 @@ mission "Syndicate Prisoner Transport [4]"
 	job
 	repeat
 	description `Transport a group of detained labor organizers to <planet> for "processing" as suspected terrorists. They must be held in suitable facilities made for the transfer of criminals. Payment is <payment>.`
-	passengers 3 15
+	passengers 3 10 .56
 	source
 		government "Syndicate"
 		attributes "factory" "farming" "mining"
@@ -465,7 +491,7 @@ mission "Return Syndicate Prisoners [0]"
 	repeat
 	description `Transport an acquitted white-collar criminal with his assistants, lawyers, and collection of <cargo> home to <planet>. He requires a suitably comfortable ship for the journey. Payment is <payment>.`
 	cargo "Luxury Goods" 1 10
-	passengers 5 12
+	passengers 3 10 .56
 	source
 		government "Syndicate"
 		attributes "rich"

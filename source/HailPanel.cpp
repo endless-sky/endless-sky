@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "HailPanel.h"
 
 #include "text/alignment.hpp"
+#include "Dialog.h"
 #include "DrawList.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -25,7 +26,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Information.h"
 #include "Interface.h"
 #include "Messages.h"
-#include "Phrase.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Politics.h"
@@ -214,14 +214,12 @@ void HailPanel::Draw()
 
 	DrawList draw;
 	// If this is a ship, copy its swizzle, animation settings, etc.
+	// Also draw its fighters and weapon hardpoints.
 	if(ship)
-		draw.Add(Body(*ship, center, Point(), facing, zoom));
-	else
-		draw.Add(Body(sprite, center, Point(), facing, zoom));
-
-	// If hailing a ship, draw its turret sprites.
-	if(ship)
-		for(const Hardpoint &hardpoint : ship->Weapons())
+	{
+		bool hasFighters = ship->PositionFighters();
+		auto addHardpoint = [this, &draw, &center, zoom](const Hardpoint &hardpoint) -> void
+		{
 			if(hardpoint.GetOutfit() && hardpoint.GetOutfit()->HardpointSprite().HasSprite())
 			{
 				Body body(
@@ -232,6 +230,40 @@ void HailPanel::Draw()
 					zoom);
 				draw.Add(body);
 			}
+		};
+		auto addFighter = [this, &draw, &center, zoom](const Ship::Bay &bay) -> void
+		{
+			if(bay.ship)
+			{
+				Body body(
+					*bay.ship,
+					center + zoom * facing.Rotate(bay.point),
+					Point(),
+					facing + bay.facing,
+					zoom);
+				draw.Add(body);
+			}
+		};
+
+		if(hasFighters)
+			for(const Ship::Bay &bay : ship->Bays())
+				if(bay.side == Ship::Bay::UNDER)
+					addFighter(bay);
+		for(const Hardpoint &hardpoint : ship->Weapons())
+			if(hardpoint.IsUnder())
+				addHardpoint(hardpoint);
+		draw.Add(Body(*ship, center, Point(), facing, zoom));
+		for(const Hardpoint &hardpoint : ship->Weapons())
+			if(!hardpoint.IsUnder())
+				addHardpoint(hardpoint);
+		if(hasFighters)
+			for(const Ship::Bay &bay : ship->Bays())
+				if(bay.side == Ship::Bay::OVER)
+					addFighter(bay);
+	}
+	else
+		draw.Add(Body(sprite, center, Point(), facing, zoom));
+
 	draw.Draw();
 
 	// Draw the current message.
@@ -264,6 +296,12 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			player.SetTribute(planet, 0);
 			message = "Thank you for granting us our freedom!";
 		}
+		else if(!planet->IsDefending())
+			GetUI()->Push(new Dialog([this]() { message = planet->DemandTribute(player); },
+				"Demanding tribute may cause this planet to launch defense fleets to fight you. "
+				"After battling the fleets, you can demand tribute again for the planet to relent.\n"
+				"This act may hurt your reputation severely. Do you want to proceed?",
+				Truncate::NONE, true, false));
 		else
 			message = planet->DemandTribute(player);
 		return true;
