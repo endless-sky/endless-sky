@@ -283,9 +283,9 @@ void ImageSet::Load() noexcept(false)
 		}
 	}
 
-	auto FillSwizzleMasks = [&](vector<string> &toFill, int intendedSize) {
+	auto FillSwizzleMasks = [&](vector<string> &toFill, unsigned int intendedSize) {
 		if(toFill.size() < intendedSize && !toFill.empty())
-			for(int i = toFill.size(); i < intendedSize; i++)
+			for(unsigned int i = toFill.size(); i < intendedSize; i++)
 				toFill.emplace_back(toFill.back());
 	};
 	// If there are less swizzle-masks then frames fill up the swizzle masks
