@@ -227,7 +227,7 @@ bool ShopPanel::CanSellMultiple() const
 bool ShopPanel::IsAlreadyOwned() const
 {
 	return (shipSelection.Selected() && selectedOutfit && player.Cargo().Get(selectedOutfit))
-		|| (player.Storage() && player.Storage()->Get(selectedOutfit));
+		|| (player.Storage().Get(selectedOutfit));
 }
 
 
@@ -594,7 +594,7 @@ int64_t ShopPanel::LicenseCost(const Outfit *outfit, bool onlyOwned) const
 	// sold to the shop, then ignore its license requirement, if any. (Otherwise there
 	// would be no way to use or transfer license-restricted outfits between ships.)
 	bool owned = (player.Cargo().Get(outfit) && shipSelection.Selected()) ||
-		(player.Storage() && player.Storage()->Get(outfit));
+		(player.Storage().Get(outfit));
 
 	if((owned && onlyOwned) || player.Stock(outfit) > 0)
 		return 0;
