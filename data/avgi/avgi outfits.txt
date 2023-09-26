@@ -776,17 +776,12 @@ outfit "Equinox Torpedo Pylon"
 		"fire effect" "torpedo fire"
 		"firing energy" 30
 		"reload" 360
-		"lifetime" 30
-		"drag" 60
-		"velocity" 3
-		"turn" 12
-		"homing" 2
-		"optical tracking" 0.9
-		"radar tracking" 0.6
-		"range override" 720
+		"lifetime" 3
+		"velocity" 12
+		"range override" 600
 		"hit effect" "thermonuclear flash"
-		"hit effect" "prompt radiation" 24
-		"hit effect" "fission fragments" 860
+		"hit effect" "prompt radiation" 30
+		"hit effect" "fission fragments" 900
 		"die effect" "missile death"
 		"missile strength" 24
 		"submunition" "Equinox Active"
@@ -800,16 +795,9 @@ outfit "Equinox Active"
 		sprite "projectile/emp torpedo"
 			"frame rate" 3
 		"lifetime" 600
-		"velocity" 3
-		"acceleration" 0.09
-		"drag" 0.03
-		"turn" 0.06
-		"homing" 4
-		"optical tracking" .9
-		"radar tracking" .6
-		"hit effect" "nuke explosion"
-		"hit effect" "mhd explosion"
-		"hit effect" "mhd spark" 860
+		"hit effect" "thermonuclear flash"
+		"hit effect" "prompt radiation" 30
+		"hit effect" "fission fragments" 900
 		"die effect" "missile death"
 		"shield damage" 14400
 		"hull damage" 9000
