@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cassert>
+#include <cstddef>
 #include <iterator>
 
 using namespace std;
@@ -282,6 +283,17 @@ void ImageSet::Load() noexcept(false)
 				Logger::LogError("Failed to create collision mask for \"" + name + "\" frame #" + to_string(i));
 		}
 	}
+
+	auto FillSwizzleMasks = [&](vector<string> &toFill, int intendedSize) {
+		if(toFill.size() < intendedSize && !toFill.empty())
+			for(int i = toFill.size(); i < intendedSize; i++)
+				toFill.emplace_back(toFill.back());
+	};
+	// If there are less swizzle-masks then frames fill up the swizzle masks
+	// with the last given mask (only if there are swizzle-masks given).
+	FillSwizzleMasks(paths[2], paths[0].size());
+	FillSwizzleMasks(paths[3], paths[0].size());
+
 
 	auto LoadSprites = [&](vector<string> &toLoad, ImageBuffer &buffer, const string &specifier) {
 		for(size_t i = 0; i < frames && i < toLoad.size(); ++i)
