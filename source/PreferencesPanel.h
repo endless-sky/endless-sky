@@ -60,6 +60,7 @@ private:
 
 	void Exit();
 
+
 private:
 	int editing;
 	int selected;
