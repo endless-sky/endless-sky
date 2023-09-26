@@ -2086,10 +2086,11 @@ mission "Heliarch License 2"
 					defer
 				`	(No. I don't want to support the Heliarchs at all.)`
 					decline
-		log "Was given a special circlet by the Heliarchs, which grants access to some of their technology. Was also given a translation device to freely converse with the Coalition species."
-		set "language: Coalition"
-		event "first heliarch unlock"
-		set "license: Heliarch"
+			action
+				log "Was given a special circlet by the Heliarchs, which grants access to some of their technology. Was also given a translation device to freely converse with the Coalition species."
+				set "license: Heliarch"
+				set "language: Coalition"
+				event "first heliarch unlock"
 			`	When you land, you're met with a bit of ceremony. A trio of Heliarch consuls welcomes you, each carrying a gemstone: an emerald for the Saryd, a ruby for the Kimek, and a sapphire for the Arach. They each pass the precious stones to you, starting with the Saryd, then the Kimek, and lastly the Arach. Cameras and photographers surround the scene, kept at bay by lines of Heliarch guards. It seems your joining the ranks has turned into something of an event.`
 			`	When the consuls are done, they have you follow them into the restricted sections of the ring, bringing you to a very large, circular room, somewhat like a colosseum or an auditorium, with hundreds of Heliarch consuls seated. There are also many more camera workers and photographers, though all of them are Heliarch members this time. You're instructed to head to the center.`
 			`	The consuls who brought you here speak, and once again you're reminded of your "contributions and loyalty" to the Coalition. "Truly special, this ceremony is," the Arach says. "Join our ranks, for the first time, an outsider does. Contributed much and shown devotion to our Coalition, this outsider has."`
