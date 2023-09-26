@@ -24,7 +24,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cassert>
-#include <cstddef>
 #include <iterator>
 
 using namespace std;
