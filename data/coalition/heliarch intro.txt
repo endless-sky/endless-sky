@@ -2087,10 +2087,11 @@ mission "Heliarch License 2"
 					defer
 				`	(No. I don't want to support the Heliarchs at all.)`
 					decline
-		log "Was given a special circlet by the Heliarchs, which grants access to some of their technology. Was also given a translation device to freely converse with the Coalition species."
-		set "language: Coalition"
-		event "first heliarch unlock"
-		set "license: Heliarch"
+			action
+				log "Was given a special circlet by the Heliarchs, which grants access to some of their technology. Was also given a translation device to freely converse with the Coalition species."
+				set "license: Heliarch"
+				set "language: Coalition"
+				event "first heliarch unlock"
 			`	When you land, you're met with a bit of ceremony. A trio of Heliarch consuls welcomes you, each carrying a gemstone: an emerald for the Saryd, a ruby for the Kimek, and a sapphire for the Arach. They each pass the precious stones to you, starting with the Saryd, then the Kimek, and lastly the Arach. Cameras and photographers surround the scene, kept at bay by lines of Heliarch guards. It seems your joining the ranks has turned into something of an event.`
 			`	When the consuls are done, they have you follow them into the restricted sections of the ring, bringing you to a very large, circular room, somewhat like a colosseum or an auditorium, with hundreds of Heliarch consuls seated. There are also many more camera workers and photographers, though all of them are Heliarch members this time. You're instructed to head to the center.`
 			`	The consuls who brought you here speak, and once again you're reminded of your "contributions and loyalty" to the Coalition. "Truly special, this ceremony is," the Arach says. "Join our ranks, for the first time, an outsider does. Contributed much and shown devotion to our Coalition, this outsider has."`
@@ -2115,7 +2116,7 @@ mission "Heliarch License 2"
 			`	When you're done, the two Heliarchs explain some more. "As of a lower rank you are, permit you access to everything and everywhere, your circlet will not. Not yet, at least. But, as mentioned, come to some of the restricted sections, you now many. On many of our worlds, find you will Heliarch outfitters, where now available some of our equipment will be. Permit you to take on some jobs we put up for Heliarch agents here in the restricted sections, the circlet also will."`
 			`	They commend you for having joined up, and bid you farewell, having the guards now bring you back to your ship. The three Heliarch consuls who greeted you are waiting for you when you arrive, and hand you a small box which you soon realize is a translation device. "One of us you now are, Captain," the Saryd says. "Trust you we do to uphold the Coalition's values and laws."`
 			`	The trio congratulates you once again and wishes you safe travels.`
-				accept
+				decline
 
 event "first heliarch unlock"
 	planet "Ring of Friendship"
