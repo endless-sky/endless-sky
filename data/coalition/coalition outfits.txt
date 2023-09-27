@@ -228,7 +228,7 @@ outfit "Decoy Plating"
 outfit "Refueling Module"
 	category "Systems"
 	cost 822000
-	thumbnail "outfit/refuelling module"
+	thumbnail "outfit/refueling module"
 	"mass" 10
 	"outfit space" -10
 	"fuel capacity" -100
