@@ -32,7 +32,7 @@ mission "Lunarium: Smuggling: Charity 1"
 	to offer
 		random < 40
 		has "Coalition: First Contact: done"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 		not "Lunarium: Questions: active"
 		not "assisting heliarchy"
 	on offer
@@ -99,7 +99,7 @@ mission "Lunarium: Smuggling: Charity 2"
 	to offer
 		random < 50
 		has "Lunarium: Smuggling: Charity 1: done"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 		not "Lunarium: Questions: active"
 		not "assisting heliarcy"
 	on offer
@@ -157,7 +157,7 @@ mission "Lunarium: Smuggling: Charity 3"
 	to offer
 		random < 70
 		has "Lunarium: Smuggling: Charity 2: done"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 		not "Lunarium: Questions: active"
 		not "assisting heliarchy"
 	on offer
@@ -196,7 +196,7 @@ mission "Lunarium: Smuggling: Grenades"
 	destination "Mebla's Portion"
 	to offer
 		has "Lunarium: Smuggling: Charity 3: done"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 		not "assisting heliarchy"
 	on offer
 		log "Been providing transport services for a charity that is actually the Lunarium, a resistance group within the Coalition aiming to free it from the Heliarchs' rule. Some of the work was genuinely charity, apparently, but some was to support the resistance."
@@ -279,7 +279,7 @@ mission "Lunarium: Smuggling: AM"
 	to offer
 		has "Lunarium: Smuggling: Grenades: done"
 		random < 15 + 3 * "assisted lunarium" * "assisted lunarium"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 		not "assisting heliarchy"
 	on offer
 		conversation
@@ -324,7 +324,7 @@ mission "Lunarium: Smuggling: Torpedoes"
 		has "Lunarium: Smuggling: AM: done"
 		has "event: deep sky tech available"
 		random < 20 + 3 * "assisted lunarium" * "assisted lunarium"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 		not "assisting heliarchy"
 	on offer
 		conversation
@@ -375,7 +375,7 @@ mission "Lunarium: Smuggling: Heat"
 		has "Lunarium: Smuggling: Torpedoes: done"
 		has "event: flamethrower available"
 		random < 25 + 3 * "assisted lunarium" * "assisted lunarium"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 		not "assisting heliarchy"
 	on offer
 		conversation
@@ -431,7 +431,7 @@ mission "Lunarium: Smuggling: Reactors"
 	to offer
 		has "Lunarium: Smuggling: Heat: done"
 		random < 40 + 3 * "assisted lunarium" * "assisted lunarium"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 		not "assisting heliarchy"
 	on offer
 		conversation
@@ -483,7 +483,7 @@ mission "House Bebliss 1-A"
 	to offer
 		random < 10
 		has "license: Coalition"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 		not "assisting heliarchy"
 		# This mission is to offer when the player has the Epilogue for whatever character of FW, Navy or Syndicate stays in Deneb.
 		# When the Navy and Syndicate campaigns get in, they'll need their own versions of missions 2 through 7 written.
@@ -535,7 +535,7 @@ mission "House Bebliss 1-B"
 	to offer
 		random < 40
 		has "House Bebliss 1-A: declined"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 		not "assisting heliarchy"
 	source
 		attributes arach
@@ -580,7 +580,7 @@ mission "House Bebliss 2-FW"
 	description "Go to <destination> and look for Freya to see if she is willing to let the members of House Bebliss study the Pug artifacts with her."
 	landing
 	to offer
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 		not "assisting heliarchy"
 		or
 			has "House Bebliss 1-A: done"
@@ -936,7 +936,7 @@ mission "Lunarium: Evacuation 1"
 	to offer
 		random < 40
 		has "Coalition: First Contact: done"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 		not "assisting heliarchy"
 	on offer
 		conversation
@@ -992,7 +992,7 @@ mission "Lunarium: Evacuation 2"
 	destination "Second Viridian"
 	to offer
 		has "Lunarium: Evacuation 1: done"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 		not "assisting heliarchy"
 	on offer
 		conversation
@@ -1058,7 +1058,7 @@ mission "Lunarium: Evacuation 3"
 	to offer
 		random < 50
 		has "Lunarium: Evacuation 2: done"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 		not "assisting heliarchy"
 	on offer
 		conversation
@@ -1108,7 +1108,7 @@ mission "Lunarium: Evacuation 4"
 	destination "Shifting Sand"
 	to offer
 		has "Lunarium: Evacuation 3: done"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 		not "assisting heliarchy"
 	on offer
 		conversation
@@ -1183,7 +1183,7 @@ mission "Lunarium: Evacuation 5"
 	to offer
 		random < 80
 		has "Lunarium: Evacuation 4: done"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 		not "assisting heliarchy"
 	on offer
 		require "Jump Drive"
@@ -1234,7 +1234,7 @@ mission "Lunarium: Evacuation 6"
 	destination "Ablub's Invention"
 	to offer
 		has "Lunarium: Evacuation 5: done"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 		not "assisting heliarchy"
 	on offer
 		conversation
@@ -1327,7 +1327,7 @@ mission "Lunarium: Propaganda 1"
 	to offer
 		random < 25
 		has "Coalition: First Contact: done"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 		not "assisting heliarchy"
 	on offer
 		conversation
@@ -1396,7 +1396,7 @@ mission "Lunarium: Propaganda 2"
 	destination "Factory of Eblumab"
 	to offer
 		has "Lunarium: Propaganda 1: done"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 		not "assisting heliarchy"
 	on offer
 		conversation
@@ -1461,7 +1461,7 @@ mission "Lunarium: Propaganda 3"
 	destination "Sandy Two"
 	to offer
 		has "Lunarium: Propaganda 2: done"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 		not "assisting heliarchy"
 	on offer
 		conversation
@@ -1524,7 +1524,7 @@ mission "Lunarium: Propaganda 4"
 	destination "Warm Slope"
 	to offer
 		has "Lunarium: Propaganda 3: done"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 		not "assisting heliarchy"
 	on offer
 		conversation
@@ -1604,7 +1604,7 @@ mission "Lunarium: Combat Training 1"
 			or
 				not "event: fw suppressed Greenrock"
 				has "event: fw abandoned Greenrock"
-			not "Heliarch License: done"
+			not "joined the heliarchs"
 			not "assisting heliarchy"
 	on offer
 		require "Jump Drive"
@@ -1671,7 +1671,7 @@ mission "Lunarium: Combat Training 2"
 	waypoint "Shaula"
 	to offer
 		has "Lunarium: Combat Training 1: done"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 		not "assisting heliarchy"
 	on offer
 		conversation
@@ -1766,7 +1766,7 @@ mission "Lunarium: Combat Training 3"
 	destination "Glaze"
 	to offer
 		has "event: lunarium training done"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 		not "assisting heliarchy"
 	on offer
 		conversation
@@ -1789,7 +1789,7 @@ mission "Lunarium: Combat Training 4"
 	destination "Factory of Eblumab"
 	to offer
 		has "Lunarium: Combat Training 3: done"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 		not "assisting heliarchy"
 	on offer
 		payment 3000000
@@ -1846,7 +1846,7 @@ mission "Lunarium: Questions"
 				"coalition jobs" >= 110
 				"assisted lunarium" == 3
 		"reputation: Quarg" >= 0
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 		not "assisting heliarchy"
 		not "assisting lunarium"
 	to fail
