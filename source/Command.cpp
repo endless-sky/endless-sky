@@ -221,6 +221,10 @@ void Command::LoadSettings(const string &path)
 	for(const auto &it : description)
 		commands[it.second] = it.first;
 
+	bool file_has_buttons = false;
+	bool file_has_triggers = false;
+	bool file_has_gestures = false;
+
 	// Each command can only have one keycode, one keycode can be assigned
 	// to multiple commands.
 	for(const DataNode &node : file)
@@ -231,10 +235,20 @@ void Command::LoadSettings(const string &path)
 			Command command = it->second;
 			if(node.Token(1) == "gesture" && node.Size() >= 3)
 			{
+				if(!file_has_gestures)
+				{
+					commandForGesture.clear();
+					file_has_gestures = true;
+				}
 				SetGesture(command, static_cast<Gesture::GestureEnum>(node.Value(2)));
 			}
 			else if(node.Token(1) == "controller_button" && node.Size() >= 3)
 			{
+				if(!file_has_buttons)
+				{
+					commandForControllerButton.clear();
+					file_has_buttons = true;
+				}
 				auto button = static_cast<SDL_GameControllerButton>(node.Value(2));
 				if(button >= 0 && button < SDL_CONTROLLER_BUTTON_MAX)
 				{
@@ -243,6 +257,11 @@ void Command::LoadSettings(const string &path)
 			}
 			else if(node.Token(1) == "controller_trigger" && node.Size() >= 4)
 			{
+				if(!file_has_triggers)
+				{
+					commandForControllerTrigger.clear();
+					file_has_triggers = true;
+				}
 				auto axis = static_cast<SDL_GameControllerAxis>(node.Value(2));
 				bool positive = node.BoolValue(3);
 				if(axis >= 0 && axis < SDL_CONTROLLER_AXIS_MAX)
@@ -282,6 +301,7 @@ void Command::SaveSettings(const string &path)
 		if(dit != description.end())
 			out.Write(dit->second, it.second);
 	}
+
 	for(const auto& kv : commandForGesture)
 	{
 		auto dit = description.find(kv.second);

@@ -203,7 +203,7 @@ void GameData::LoadShaders(bool useShaderSwizzle)
 	FontSet::Add(Files::Images() + "font/ubuntu14r", 14); // extension auto-detected
 	FontSet::Add(Files::Images() + "font/ubuntu18r", 18); // extension auto-detected
 
-	// Load the key settings, but set some defaults first
+	// If there is no user-defined config, then set some defaults
 	Command::SetGesture(Command::STOP, Gesture::CARET_DOWN);
 	Command::SetGesture(Command::BOARD, Gesture::CARET_UP);
 	Command::SetGesture(Command::GATHER, Gesture::CIRCLE);
