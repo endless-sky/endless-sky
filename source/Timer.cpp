@@ -295,7 +295,7 @@ void Timer::Step(PlayerInfo &player, UI *ui)
 			for(const StellarObject &proximityObject : system->Objects())
 				if(proximityObject.HasValidPlanet())
 				{
-					double dist = (player.Flagship()->Position() - proximityObject.Position()).Length();
+					double dist = player.Flagship()->Position().Distance(proximityObject.Position());
 					if((closeTo && dist <= proximity) || (!closeTo && dist >= proximity))
 					{
 						inProximity = true;
@@ -319,9 +319,9 @@ void Timer::Step(PlayerInfo &player, UI *ui)
 	++timeElapsed;
 	if(timeElapsed >= timeToWait)
 	{
-		action.Do(player, ui, mission);
 		if(!name.empty())
 			player.Conditions().Add("timer: " + name + ": complete", 1);
+		action.Do(player, ui, mission);
 		isComplete = true;
 	}
 }
