@@ -558,6 +558,7 @@ mission "Heliarch Recon 1"
 	to offer
 		"reputation: Quarg" >= 0
 		"coalition jobs" >= 55
+		has "outfit: Jump Drive"
 		has "visited planet: Lagrange"
 		has "visited planet: Alta Hai"
 		has "visited planet: Kuwaru Efreti"
@@ -568,7 +569,6 @@ mission "Heliarch Recon 1"
 	to fail
 		"reputation: Quarg" < 0
 	on offer
-		require "Jump Drive"
 		conversation
 			`Three Heliarch agents are waiting for you when you land. "The human visitor who so much to our society has contributed, we greet," the Saryd says as they all salute you.`
 			`	"Sent by Consul Aulori, we were," the Kimek says proudly, as if you were supposed to know who that is. "An important task for you, he has in mind."`
@@ -684,6 +684,8 @@ mission "Heliarch Recon 2-A"
 		has "event: heliarch recon break"
 		not "Lunarium: Questions: done"
 		not "assisting lunarium"
+	to complete
+		has "outfit: Outfit Scanner"
 	on offer
 		conversation
 			`When you land, you're contacted by the Heliarch agents who had you land on some Quarg worlds and rings to collect data. "Captain <last>, a new task for you, we have," the Kimek says.`
@@ -705,7 +707,6 @@ mission "Heliarch Recon 2-A"
 		"assisting heliarchy" --
 	on complete
 		"assisting heliarchy" --
-		require "Outfit Scanner"
 
 mission "Heliarch Recon 2-B"
 	name "Silent Scan"
@@ -930,9 +931,9 @@ mission "Heliarch Recon 3-C"
 	to offer
 		has "Heliarch Recon 3-A: done"
 		has "Heliarch License: done"
+		has "outfit: Scanning Module"
 		not "assisting lunarium"
 	on offer
-		require "Scanning Module" 1
 		conversation
 			`The Heliarch agents are waiting for you when you land with a team of engineers. They have them perform some quick tests on your Scanning Module.`
 			`	"Take your time with this task, you of course can, Captain, but told us to ask you to be hasty, Consul Aulori has," the Arach says. "Unsure about how long this window of opportunity will last, all of us are."`
