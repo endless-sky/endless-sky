@@ -453,7 +453,7 @@ news "lunarium charity"
 
 news "lunarium charity worker"
 	to show
-		not "Heliarch License: offered"
+		not "Heliarch License 1: offered"
 	location
 		government "Coalition"
 	name
