@@ -1402,10 +1402,10 @@ void Engine::EnterSystem()
 		for(const StellarObject &object : system->Objects())
 			if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsAccessible(flagship))
 				labels.emplace_back(labels, *system, object);
-	if(flagship->Cloaking() == 0)
+	if(flagship->Cloaking() < 1)
 		for(const shared_ptr<Ship> &ship : ships)
-			if(ship->GetSystem() == system && ship->Cloaking() == 0)
-				eventQueue.emplace_back(player.Flagship()->shared_from_this(), ship->shared_from_this(), ShipEvent::ENCOUNTER);
+			if(ship->GetSystem() == system && ship->Cloaking() < 1)
+				eventQueue.emplace_back(player.FlagshipPtr(), ship, ShipEvent::ENCOUNTER);
 }
 
 
@@ -1473,22 +1473,22 @@ void Engine::CalculateStep()
 
 	// Keep track of the flagship to see if it jumps or enters a wormhole this turn.
 	const Ship *flagship = player.Flagship();
-	bool flagshipWasCloaked = (flagship && flagship->Cloaking() != 0);
+	bool flagshipWasCloaked = (flagship && flagship->Cloaking() == 1);
 	bool wasHyperspacing = (flagship && flagship->IsEnteringHyperspace());
 	// Move all the ships.
 	for(const shared_ptr<Ship> &it : ships)
 	{
-		bool wasCloaked = it->Cloaking() != 0;
+		bool wasCloaked = it->Cloaking() == 1;
 		MoveShip(it);
 		// If we decloaked, and we're in the same system as the player, they Encounter us
-		if(wasCloaked && it->Cloaking() == 0 && flagship->GetSystem() == it->GetSystem()
-			&& flagship->Cloaking() == 0 && it.get() != flagship)
+		if(wasCloaked && it->Cloaking() < 1 && flagship->GetSystem() == it->GetSystem()
+			&& flagship->Cloaking() < 1 && it.get() != flagship)
 				eventQueue.emplace_back(player.FlagshipPtr(), it, ShipEvent::ENCOUNTER);
 	}
 	// If we *are* the player, and we decloaked, we encounter everyone
-	if(flagshipWasCloaked && flagship->Cloaking() == 0)
+	if(flagshipWasCloaked && flagship->Cloaking() < 1)
 		for(const shared_ptr<Ship> &ship : ships)
-			if(ship->GetSystem() == playerSystem && ship->Cloaking() == 0)
+			if(ship->GetSystem() == playerSystem && ship->Cloaking() < 1)
 				eventQueue.emplace_back(player.FlagshipPtr(), ship, ShipEvent::ENCOUNTER);
 	// If the flagship just began jumping, play the appropriate sound.
 	if(!wasHyperspacing && flagship && flagship->IsEnteringHyperspace())
@@ -1755,7 +1755,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 				for(const auto &sound : jumpSounds)
 					Audio::Play(sound.first, position);
 
-			if(flagship->Cloaking() == 0 && ship->Cloaking() == 0)
+			if(flagship->Cloaking() < 1 && ship->Cloaking() < 1)
 				eventQueue.emplace_back(player.FlagshipPtr(), ship, ShipEvent::ENCOUNTER);
 		}
 	}
