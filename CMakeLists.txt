@@ -263,7 +263,7 @@ elseif(UNIX)
 	install(TARGETS EndlessSky CONFIGURATIONS Release RUNTIME DESTINATION games)
 
 	# Install the desktop file.
-	install(FILES endless-sky.desktop DESTINATION share/applications)
+	install(FILES io.github.endless_sky.endless_sky.desktop DESTINATION share/applications)
 
 	# Install app center metadata.
 	install(FILES io.github.endless_sky.endless_sky.appdata.xml DESTINATION share/metainfo)
