@@ -137,8 +137,7 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 	// to bypass language barriers.
 	if(planet && player.Flagship())
 		for(const Mission &mission : player.Missions())
-			if(mission.HasClearance(planet) && mission.ClearanceMessage() != "auto"
-					&& mission.HasFullClearance())
+			if(mission.HasClearance(planet) && mission.ClearanceMessage() != "auto")
 			{
 				planet->Bribe();
 				message = mission.ClearanceMessage();
