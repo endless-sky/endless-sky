@@ -1525,10 +1525,10 @@ mission "Evacuate Lunarium True"
 		random < 10
 		has "Lunarium Evacuation 6: done"
 		not "Heliarch Investigation 2: active"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 	to fail
 		has "Heliarch Investigation 2: active"
-		has "Heliarch License: done"
+		has "joined the heliarchs"
 	passengers 24 65
 	source
 		government "Coalition"
@@ -1557,10 +1557,10 @@ mission "Evacuate Lunarium Fail"
 		random < 5
 		has "Lunarium Evacuation 6: done"
 		not "Heliarch Investigation 2: active"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 	to fail
 		has "Heliarch Investigation 2: active"
-		has "Heliarch License: done"
+		has "joined the heliarchs"
 	passengers 24 65
 	source
 		government "Coalition"
@@ -1585,10 +1585,10 @@ mission "Lunarium: Armageddon Core Delivery"
 		has "Lunarium: Reactors: done"
 		not "Lunarium: Armageddon Core Delivery: active"
 		not "Heliarch Investigation 2: active"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 	to fail
 		has "Heliarch Investigation 2: active"
-		has "Heliarch License: done"
+		has "joined the heliarchs"
 	source
 		government "Coalition"
 	destination
@@ -1612,10 +1612,10 @@ mission "Lunarium: Fusion Reactor Delivery"
 		has "Lunarium: Reactors: done"
 		not "Lunarium: Fusion Reactor Delivery: active"
 		not "Heliarch Investigation 2: active"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 	to fail
 		has "Heliarch Investigation 2: active"
-		has "Heliarch License: done"
+		has "joined the heliarchs"
 	source
 		government "Coalition"
 	destination
@@ -1639,10 +1639,10 @@ mission "Lunarium: Breeder Reactor Delivery"
 		has "Lunarium: Reactors: done"
 		not "Lunarium: Breeder Reactor Delivery: active"
 		not "Heliarch Investigation 2: active"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 	to fail
 		has "Heliarch Investigation 2: active"
-		has "Heliarch License: done"
+		has "joined the heliarchs"
 	source
 		government "Coalition"
 	destination
@@ -1666,10 +1666,10 @@ mission "Lunarium: Torpedo Delivery"
 		has "Lunarium: Torpedoes: done"
 		not "Lunarium: Torpedo Delivery: active"
 		not "Heliarch Investigation 2: active"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 	to fail
 		has "Heliarch Investigation 2: active"
-		has "Heliarch License: done"
+		has "joined the heliarchs"
 	source
 		government "Coalition"
 	destination
@@ -1693,10 +1693,10 @@ mission "Lunarium: Typhoon Delivery"
 		has "Lunarium: Torpedoes: done"
 		not "Lunarium: Typhoon Delivery: active"
 		not "Heliarch Investigation 2: active"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 	to fail
 		has "Heliarch Investigation 2: active"
-		has "Heliarch License: done"
+		has "joined the heliarchs"
 	source
 		government "Coalition"
 	destination
@@ -1718,10 +1718,10 @@ mission "Lunarium: Plasma Delivery"
 		has "Lunarium: Heat: done"
 		not "Lunarium: Plasma Delivery: active"
 		not "Heliarch Investigation 2: active"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 	to fail
 		has "Heliarch Investigation 2: active"
-		has "Heliarch License: done"
+		has "joined the heliarchs"
 	source
 		government "Coalition"
 	destination
@@ -1742,10 +1742,10 @@ mission "Lunarium: Flamethrower Delivery"
 		has "Lunarium: Heat: done"
 		not "Lunarium: Flamethrower Delivery: active"
 		not "Heliarch Investigation 2: active"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 	to fail
 		has "Heliarch Investigation 2: active"
-		has "Heliarch License: done"
+		has "joined the heliarchs"
 	source
 		government "Coalition"
 	destination
@@ -1766,10 +1766,10 @@ mission "Lunarium: Grenade Delivery"
 		has "Lunarium: Grenades: done"
 		not "Lunarium: Grenade Delivery: active"
 		not "Heliarch Investigation 2: active"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 	to fail
 		has "Heliarch Investigation 2: active"
-		has "Heliarch License: done"
+		has "joined the heliarchs"
 	source
 		government "Coalition"
 	destination
@@ -1790,10 +1790,10 @@ mission "Lunarium: Anti-Missile Delivery"
 		has "Lunarium: AM: done"
 		not "Lunarium: Anti-Missile Delivery: active"
 		not "Heliarch Investigation 2: active"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 	to fail
 		has "Heliarch Investigation 2: active"
-		has "Heliarch License: done"
+		has "joined the heliarchs"
 	source
 		government "Coalition"
 	destination

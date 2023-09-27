@@ -815,7 +815,7 @@ mission "Heliarch Recon 3-A"
 			`Upon landing, you're contacted by the Heliarch agents who have had you scan Quarg worlds and ships. "Hello again, Captain <last>!" the Kimek greets you. "Thank you again, we must, for your latest service. Much more detailed than what we had, your scans are."`
 			`	The Saryd interrupts him. "Not... satisfied with them, Consul Aulori was, however. Tasked with acquiring your help again, we were."`
 			branch license
-				has "Heliarch License: done"
+				has "joined the heliarchs"
 			`	"An exception, the council has decided to make," the Arach explains. "Granted one of our Scanning Modules, you will be. Just for the mission, it is, so return it once it's over, you must. Install it on your ship, a team on the <planet> will."`
 				goto choice
 			label license
@@ -828,7 +828,7 @@ mission "Heliarch Recon 3-A"
 					goto decline
 				`	"Why didn't you just have me do that last time?"`
 			branch license2
-				has "Heliarch License: done"
+				has "joined the heliarchs"
 			`	"Restricted technology, it is. For Heliarch use only," the Arach tells you.`
 			`	"Dangerous for you, it also was," the Saryd adds. "Provoked into attacking you, the Quarg might have been, if our technology, on your ship they noticed."`
 			choice
@@ -850,7 +850,7 @@ mission "Heliarch Recon 3-A"
 				`	"Sorry, I don't like the sound of this."`
 			label decline
 			branch license3
-				has "Heliarch License: done"
+				has "joined the heliarchs"
 			`	They are both surprised and distraught by your refusal, clearly not having expected it. They insist a bit further, but eventually give up on trying to convince you to help. Disappointed, they leave for a Heliarch office.`
 				decline
 			label license3
@@ -878,7 +878,7 @@ mission "Heliarch Recon 3-B"
 	to offer
 		has "Heliarch Recon 3-A: done"
 		not "Lunarium: Questions: done"
-		not "Heliarch License: done"
+		not "joined the heliarchs"
 		not "assisting lunarium"
 	on offer
 		conversation
@@ -930,7 +930,7 @@ mission "Heliarch Recon 3-C"
 	waypoint "Zubeneschamali"
 	to offer
 		has "Heliarch Recon 3-A: done"
-		has "Heliarch License: done"
+		has "joined the heliarchs"
 		has "outfit: Scanning Module"
 		not "assisting lunarium"
 	on offer
@@ -1026,7 +1026,7 @@ mission "Heliarch Expedition 1"
 				`	"I didn't say incomplete, I said broken. I know the difference."`
 			`	The other Heliarchs freeze at your tone, and all keep staring at you, as if afraid to look toward Aulori for his reaction.`
 			branch license
-				has "Heliarch License: done"
+				has "joined the heliarchs"
 			`	He stares intently at you for a few seconds, then at the agents guarding the entry door. They open it, and call for some more Heliarchs. They come in and position themselves to your sides, and behind you. "Afraid I am that once again, failed to understand it I have, <first> <last>. Now, one final time, repeat it, would you?" Reading the room, you carefully repeat the information, taking care to not come off as impolite again.`
 				goto how
 			label license
@@ -1111,7 +1111,7 @@ mission "Heliarch Expedition 3"
 				`	"Well, I think they're probably good to get there on their own. Sorry, but I'm not interested."`
 			label decline
 			branch license
-				has "Heliarch License: done"
+				has "joined the heliarchs"
 			`	He grimaces lightly. "Afraid I am, Captain, that an option, that is not. Very unfamiliar with navigating human space as is, we are, and in a truly exceptional location, this ring is. Remind you, I must, that bring us to our attention in the first place, you did, abandon this work now, you cannot. On behalf of our Coalition, insist I must that aid us in this effort, you do." Pausing for just a second, he continues in a lower tone. "Very... unwelcoming to you, the Coalition would become, if drop this now, you did. A few last scanners, the scientists have requested, so after quick stop at <destination>, to the ringworld, you will bring them."`
 				goto end
 			label license
@@ -1229,7 +1229,7 @@ mission "Heliarch Expedition 5"
 			`	Once again you're led through the inscrutable, guard-crowded halls of the <origin>, being brought to a long corridor with dozens of closed doors. The one at the very end is apparently your goal. From there, however, two more guards arrive, and they explain to those escorting you that "received word, the Ring of Friendship has." They apologize to you, saying Aulori might be busy for some time more. You are brought to just outside the room, so that you're received as soon as his "meeting" ends.`
 			`	From another room, a Heliarch arbiter waves for the guards waiting with you, and passes some other task to them. Three of them leave, and you're left with the one who fetched you from your ship, a Saryd. Despite the door to Aulori's room being locked, you two can still clearly hear intense shouting from within - not just his, but from many others who you assume to be consuls as well. After a particularly long - and heated - debate segment from what seems to be Aulori's voice, the Heliarch guard waiting with you declares they'll be coming back soon and hastily moves away, turning the corner.`
 			branch license
-				has "Heliarch License: done"
+				has "joined the heliarchs"
 			label waited
 			`	A few more minutes pass, and you hear some more of the heated discussion from within. After a while it stops and the door opens, with Aulori on the other side, alone. "I see that arrived you have, Captain. Forgive me for the wait you must. Just going over the findings of the expedition, some more consuls and I were."`
 			choice
@@ -1313,7 +1313,7 @@ mission "Heliarch Containment 1"
 				accept
 			label decline
 			branch license
-				has "Heliarch License: done"
+				has "joined the heliarchs"
 			`	They're clearly disappointed, but thank you for your time anyway, before moving on to the next merchant captain and try to recruit their assistance.`
 				decline
 			label license
@@ -1374,7 +1374,7 @@ mission "Heliarch Containment 2"
 				accept
 			label decline
 			branch license
-				has "Heliarch License: done"
+				has "joined the heliarchs"
 			`	The Saryd frowns. "A shame that is, use we could all the help available." The group leaves, moving to ask the next merchant captain for help.`
 				decline
 			label license
@@ -1425,7 +1425,7 @@ mission "Heliarch Containment 3"
 	on offer
 		conversation
 			branch license
-				has "Heliarch License: done"
+				has "joined the heliarchs"
 			`Three Heliarch officers approach you as you're walking around the spaceport. "Greetings, Captain <last>. Interested, would you be, in accompanying us? A proposition, we have," the Saryd says.`
 			choice
 				`	"What's it about?"`
@@ -1441,7 +1441,7 @@ mission "Heliarch Containment 3"
 					decline
 			label license
 			`Three Heliarch officers approach you as you're walking around the spaceport. They salute you, and the Saryd speaks. "Greetings, Captain <last>. Sent by Consul Plortub, we were."`
-			`	"A mission for you, he has, but to discuss it in private, he wishes to." The Kimek explains. "Follow us, would you?"`
+			`	"A mission for you, he has, but to discuss it in private, he wishes." The Kimek explains. "Follow us, would you?"`
 			label way
 			`	After a few dozen twists and turns through the restricted sections of the ring, they bring you to a room where an Arach is waiting, alongside a few other Heliarchs who are discussing something while pointing at a map of the Coalition projected over the table.`
 			`	"Ready to work with us, are you, Captain?" the Arach asks. "The one who asked for you, I am. Call me Consul Plortub, you may."`
@@ -1485,7 +1485,7 @@ mission "Heliarch Containment 4-A"
 					goto plan
 				`	"I'm not really comfortable in helping with these. Can you let me go?"`
 			branch license
-				has "Heliarch License: done"
+				has "joined the heliarchs"
 			`	He perks his head up a bit, then mumbles something in his own language, momentarily turning off the translator. He gives in, and has someone bring you back to your ship in a quick march.`
 				decline
 			label license
@@ -2067,7 +2067,7 @@ mission "Heliarch License 1"
 	to fail
 		has "Lunarium: Questions: done"
 	to complete
-		has "Heliarch License 2: accepted"
+		has "Heliarch License 2: declined"
 	on offer
 		conversation
 			`When you land on <origin>, you find a Heliarch delegation waiting for you outside. When you meet them, the Saryd of the group says, "A great ally to our Coalition, you have proven to be."`
@@ -2096,6 +2096,7 @@ mission "Heliarch License 2"
 				log "Was given a special circlet by the Heliarchs, which grants access to some of their technology. Was also given a translation device to freely converse with the Coalition species."
 				set "license: Heliarch"
 				set "language: Coalition"
+				set "joined the heliarchs"
 				event "first heliarch unlock"
 			`	When you land, you're met with a bit of ceremony. A trio of Heliarch consuls welcomes you, each carrying a gemstone: an emerald for the Saryd, a ruby for the Kimek, and a sapphire for the Arach. They each pass the precious stones to you, starting with the Saryd, then the Kimek, and lastly the Arach. Cameras and photographers surround the scene, kept at bay by lines of Heliarch guards. It seems your joining the ranks has turned into something of an event.`
 			`	When the consuls are done, they have you follow them into the restricted sections of the ring, bringing you to a very large, circular room, somewhat like a colosseum or an auditorium, with hundreds of Heliarch consuls seated. There are also many more camera workers and photographers, though all of them are Heliarch members this time. You're instructed to head to the center.`
