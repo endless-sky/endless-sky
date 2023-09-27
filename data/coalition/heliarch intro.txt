@@ -1138,6 +1138,9 @@ mission "Heliarch Expedition 3"
 		"assisting heliarchy" ++
 	on complete
 		"assisting heliarchy" --
+	# No reputation penalty for aborting this mission.
+	on abort
+		"assisting heliarchy" --
 	on fail
 		"assisting heliarchy" --
 		"reputation: Heliarch" = -1000
@@ -1191,6 +1194,9 @@ mission "Heliarch Expedition 4"
 			`	"True that is, but repealed, the measure that prohibits everyone leaving was not. Spoken with Arbiter Sedlitaris myself I did, and admit I must that much more at ease I now am. But, still, remain vigilant for the crew's sake, I must. Changed their opinions like me, not many of them have."`
 			label end
 			`	He thanks you again for your help, and with a salute bids you farewell, heading to help the Punisher's crew establish their base of operations inside the caverns. You get back in your ship and fly back to the empty docks of <planet>. Now it's a matter of waiting for the Heliarch teams here to do their job and return to the Coalition.`
+	# No reputation penalty for aborting this mission.
+	on abort
+		"assisting heliarchy" --
 	on fail
 		"assisting heliarchy" --
 		"reputation: Heliarch" = -1000
@@ -2020,6 +2026,9 @@ mission "Heliarch Drills 3"
 			dialog `The Punisher's captain tries to hail you as the ship collapses around them, but you never get to hear their final cries. You have failed to simply disable the ship, and doomed the entire crew. It seems that you will not be welcome in Coalition space any longer.`
 	on accept
 		"assisting heliarchy" ++
+	# No reputation penalty for aborting this mission.
+	on abort
+		"assisting heliarchy" --
 	on fail
 		"assisting heliarchy" --
 		"reputation: Heliarch" = -1000
