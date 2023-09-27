@@ -225,15 +225,15 @@ outfit "Decoy Plating"
 	description "This plating takes advantage of a ship's scan logs and reproduces the data of other ships nearby, effectively deflecting attempts to scan a ship's true cargo and equipment."
 	description "	Out of a need to protect themselves against destructive Heliarch torpedoes, the Lunarium incorporated small, independent radar jamming systems in each section of the plating, if only to act as a last line of defense."
 
-outfit "Refuelling Module"
+outfit "Refueling Module"
 	category "Systems"
 	cost 822000
-	thumbnail "outfit/refuelling module"
+	thumbnail "outfit/refueling module"
 	"mass" 10
 	"outfit space" -10
 	"fuel capacity" -100
-	"fuel generation" .1
-	"energy consumption" .02
+	"fuel generation" .05
+	"energy consumption" .11
 	description "To avoid the risk of being inspected by the Heliarchs as they refuel on planets, Lunarium captains employ this outfit when carrying supplies or stolen outfits."
 	description "	The outfit's mechanisms need a partitioned amount of fuel set aside to allow it to work properly, so a ship can only install so many of these before becoming incapable of jumping to another system."
 
