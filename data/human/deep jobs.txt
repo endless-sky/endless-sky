@@ -326,8 +326,9 @@ mission "Transport scientists"
 		attributes "deep"
 	stopover
 		attributes "research"
+		not attributes "uninhabited"
 		distance 2 50
-	passengers 5 16
+	passengers 3 4 .43
 	to offer
 		random < 15
 	on stopover
@@ -338,6 +339,28 @@ mission "Transport scientists"
 		dialog "You bid goodbye to the scientists and accept your payment of <payment>."
 		payment
 		payment 30000
+
+
+mission "Transport science department"
+	job
+	repeat
+	description "A department of <bunks> scientists needs some research notes analyzed at the facility on <stopovers>. Take the scientists there and then return them to <planet> for <payment>."
+	source
+		attributes "deep"
+	stopover
+		attributes "research"
+		not attributes "uninhabited"
+		distance 2 50
+	passengers 20 4 .1
+	to offer
+		random < "passenger space" - 30
+	on stopover
+		dialog "The scientists have been giddily sharing and discussing the results of each of their research teams during the entire trip. You're happy for a bit of peace and quiet as they make tracks for a prominent research lab to have the results analyzed. You prepare for the return journey to <planet>."
+	on visit
+		dialog phrase "generic missing stopover or passengers"
+	on complete
+		dialog "You bid goodbye to the scientists and accept your payment of <payment>."
+		payment 180000 100
 
 
 mission "Escort science vessel"

@@ -51,9 +51,10 @@ jobs:
       parse_script: ${{ steps.filter.outputs.parse_script }}
       content_style_script: ${{ steps.filter.outputs.content_style_script }}
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         fetch-depth: 2
+        show-progress: false
     - uses: dorny/paths-filter@v2
       id: filter
       with:
