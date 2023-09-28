@@ -792,7 +792,7 @@ mission "House Bebliss 5-FW"
 	landing
 	to offer
 		has "House Bebliss 4-FW: done"
-		has "outfit: Jump Drive" 2
+		"outfit: Jump Drive" >= 2 
 		not "assisting heliarchy"
 	source "Factory of Eblumab"
 	destination "Ablub's Invention"
