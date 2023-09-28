@@ -33,6 +33,7 @@ public:
 
     static void Shutdown();
 
+    // Add more overloads as needed
     static bool ScalarSlider(const char *label, double *value, double min, double max);
 
     static void SetDebugMode(bool mode);

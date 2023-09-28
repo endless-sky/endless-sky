@@ -106,15 +106,17 @@ void Debug::Shutdown()
 
 
 
-bool Debug::ScalarSlider(const char *label, double *value, double min, double max) {
-    return ImGui::SliderScalar(
-        label,
-        ImGuiDataType_Double,
-        value,
-        &min,
-        &max
-    );
+#define ScalarSliderDef(type, igtype) bool Debug::ScalarSlider(const char *label, type *value, type min, type max) { \
+    return ImGui::SliderScalar(\
+        label,\
+        ImGuiDataType_##igtype ,\
+        value,\
+        &min,\
+        &max\
+    );\
 }
+
+ScalarSliderDef(double, Double)
 
 
 
