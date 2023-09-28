@@ -55,6 +55,9 @@ event "gegno suspicions"
 		"friendly hail" "gegno untranslated"
 
 
+event "gegno quarg talks"
+
+
 # Will be defined in the future.
 
 event "Vesvii War"

@@ -338,7 +338,8 @@ mission "Gegno Suspicions"
 			`	"Our best of recommendations to you is to avoid further contact in the coming future. Meanwhile, we shall attempt a most careful negotiation with their hierarchy to come to terms of a ground of acceptance for your presence. Should we find commonality, you will receive communication from one of the title 'Adrauni', as has been bestowed upon me."`
 			`	The rest of the Quarg, who have been listening to the conversation attentively the whole time, begin to escort you out of the room. If the Gegno are willing to go as far as to contact the Quarg about your appearances, then this is truly an important matter to them. For the time being, it's probably best to allow the Quarg to find some kind of resolution with the Gegno while you keep your distance.`
 				decline
-
+		on decline
+			event "quarg gegno talks" 14
 
 mission "Under the Nose"
 #	invisible
@@ -467,7 +468,7 @@ mission "Battle over Zydee"
 		set "zydee appearance"
 		conversation
 			`Although this planet is uninhabited, there are more than a few Gegno Scin ships currently parked across the surface. It seems like there's an ongoing operation to continue constructing what infrastructure has been built in past, and the hard working Scin pay little to no attention to your visit.`
-			`	However, a few moments later, the Scin suddenly start scurrying to their ships. You haven't gotten close enough to alarm them, at least from your experiences with them so far. They begin taking off one by one in a hurried fasion, but not towards you - the <>'s sensors suddenly begin picking up a large Gegno Vi fleet entering the system. It appears that this place is turning into a battlefield, and getting caught up in the middle of it is likely something you should avoid.`
+			`	However, a few moments later, the Scin suddenly start scurrying to their ships. You haven't gotten close enough to alarm them, at least from your experiences with them so far. They begin taking off one by one in a hurried fashion, but not towards you - the <>'s sensors suddenly begin picking up a large Gegno Vi fleet entering the system. It appears that this place is turning into a battlefield, and getting caught up in the middle of it is likely something you should avoid.`
 				accept
 	on enter "Kneirc"
 		fail
@@ -480,7 +481,7 @@ mission "Battle over Zydee"
 		personality timid launching uninterested
 		system "Kneirc"
 		fleet
-			names "gegno scin'
+			names "gegno scin"
 			variant
 				"Epidote"
 				"Coesite"
@@ -497,7 +498,7 @@ mission "Battle over Zydee"
 			variant
 				"Gneiss"
 				"Hornfel (Heavy Weapons)"
-				"Hornfel (Heavy Load)
+				"Hornfel (Heavy Load)"
 				"Diorite"
 				"Schist (Heavy Load)"
 				"Schist (Light Load)"
@@ -527,13 +528,58 @@ mission "Battle over Zydee"
 				"Halite" 6
 
 
-# mission "Quarg Reach Understanding" (Quarg follow player to Dueyu Eitch and find grounds with the Gegno"
+mission "Return to Giaru Gegno"
+	landing
+	destination "Giaru Gegno"
+	to offer
+		has "event: quarg gegno talks"
+		not "Gegno: Genocide Defense: offered"
+	on enter
+		dialog `Quarg want to talk to you NOW.`
+			accept
 
 
-# mission "Gegno Intervention" (The player continues to be nosy with the Gegno and conseqences occur"
+mission "Gegno Anticipation" 
+	landing
+	destination "Dueyu Eitch"
+	to offer
+		has "Return to Giaru Gegno: offered"
+		not "Gegno: Genocide Defense: offererd"
+	on offer
+		conversation `Quarg want you to go to Eitch NOW.`
+			accept
 
 
-# mission "Acquiescence"
+mission "Gegno Intervention"
+	landing
+	destination "Dueyu Eitch"
+	deadline 8
+	to offer
+#		has "event: gegno apprehension"
+		not "Gegno: Genocide Defense: offererd"
+	on offer 
+		conversation `Gegno want you to go to Eitch NOW.`
+			accept
+
+
+mission "Acquiescence"
+	landing
+	source "Dueyu Eitch"
+	to offer
+		has
+			or
+				"Gegno Anticipation: offered"
+				"Gegno Intervention: offered"
+	on offer
+		conversation
+			branch "anticipation"
+				has "Gegno Anticipation: offered"
+			branch "intervention"
+				has "Gegno Intervention: offered"
+			`Test.`
+				decline
+
+
 
 
 # jobs (mining)
