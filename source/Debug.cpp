@@ -24,7 +24,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-    bool state = true;
+    bool state = false;
+#if NDEBUG
+    bool debugMode = false;
+#else
+    bool debugMode = true;
+#endif
 }
 
 
@@ -67,7 +72,7 @@ bool Debug::Process(SDL_Event *event)
 
 
 void Debug::StartCapture() {
-    if(state) {
+    if(!state && debugMode) {
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplSDL2_NewFrame();
         ImGui::NewFrame();
@@ -83,7 +88,7 @@ void Debug::StartCapture() {
 
 
 void Debug::Render() {
-    if(!state) {
+    if(state && debugMode) {
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
         state = !state;
@@ -97,4 +102,16 @@ void Debug::Shutdown()
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplSDL2_Shutdown();
     ImGui::DestroyContext();
+}
+
+
+
+void Debug::SetDebugMode(bool mode) {
+    debugMode = mode;
+}
+
+
+
+bool Debug::GetDebugMode() {
+    return debugMode;
 }

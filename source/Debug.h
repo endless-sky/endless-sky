@@ -42,6 +42,9 @@ public:
             &max
         );
     }
+
+    static void SetDebugMode(bool mode);
+    static bool GetDebugMode();
 };
 
 

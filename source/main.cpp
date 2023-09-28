@@ -86,7 +86,6 @@ int main(int argc, char *argv[])
 		InitConsole();
 #endif
 	Conversation conversation;
-	bool debugMode = false;
 	bool loadOnly = false;
 	bool printTests = false;
 	bool printData = false;
@@ -112,7 +111,7 @@ int main(int argc, char *argv[])
 		else if(arg == "-t" || arg == "--talk")
 			conversation = LoadConversation();
 		else if(arg == "-d" || arg == "--debug")
-			debugMode = true;
+			Debug::SetDebugMode(true);
 		else if(arg == "-p" || arg == "--parse-save")
 			loadOnly = true;
 		else if(arg == "--test" && *++it)
@@ -124,6 +123,8 @@ int main(int argc, char *argv[])
 	}
 	printData = PrintData::IsPrintDataArgument(argv);
 	Files::Init(argv);
+
+	bool debugMode = Debug::GetDebugMode();
 
 	try {
 		// Load plugin preferences before game data if any.
