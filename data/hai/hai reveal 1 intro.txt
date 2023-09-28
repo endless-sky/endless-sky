@@ -150,7 +150,11 @@ mission "Hai Reveal Exploration Period: Local Human Merchants Speak Up"
 		random < 20
 	on offer
 		conversation
-			`Merchants are conflicted about unscrupulous visitors.`
+			`Some human merchants express conflicted views about unscrupulous visitors.`
+			Can ignore. If listening - leave option at each or loop?
+			Old Greenwater merchant feeling threatened by increase in traffic in general.
+			Young explorer running freight and passengers in and out before leak concerned by the increase in shady types, not just attack in tranist, but at arrival too.
+			Suspicious type talking about how lucrative it's been running Hai tourists and cosplayers back and forth. Subtle, subtle hint about kidnapping with the "prisoners" fantasy?
 				decline
 
 
@@ -489,7 +493,22 @@ mission "Hai Reveal Concern Period: Reactivating Sandsnap"
 		has "hr: allhome raided"
 	on offer
 		conversation
-			`	Some Hai would like to reopen the Sandsnap station in Heia Due as a better place for coordinating security efforts from after the raid on Allhome. The first mission is to go there with the motley hired guns and the Stationkeeper to reactivate it and make sure it's in working order.`
+			`	Upon entering the spaceport you are immediately greeted by a worried hai, "You must be here for the project," he says, not giving you time to respond. He starts walking at a quick pace, with a gesture encouraging you to follow him. "Times are dire, it has been at least a hundred years since we have had such a threat to our way of life! You must have noticed the increased activity. Perhaps our brethren north were right in assuming evil intents."`
+			`	He stops himself, "I must be boring you with politics, let us cut to the matter at hand, shall we?"`
+			choice
+				`	(Nod.)`
+					goto border
+				`	"Not at all, I love politics."`
+			`	He seems surprised, "Oh. Well in that case, the Unfettered have been militarizing a lot in the last 20 years, forcing us to do the same in order to protect merchants from their raids. They may be right that we have grown weak, demonstrated by how easy those pirate raids were; we were simply not ready for them. But I will do everything to ensure this will not happen again. Mark my words, captain <last>, the Hai will wake up.`
+			label border
+			`	"The raids have proven that we are not prepared for an offensive on our borders. In order to address this, we want to repair the abandoned station of <destination>. We have already hired a few mercenaries to help with the defense of our station, most of them posing as human merchants. Once operational, the station should be a major strategic advantage for us, allowing fast resupply and repairs of ships." He stops in front of a very distinguished house, "This is the residence of our esteemed Stationkeeper. You will need to escort him to the station so he may make the necessary adjustments and assess exactly what kind of supplies are required. I'll leave you in her company," he says, heading of at a quick pace.`
+			choice
+				`	(Greet the Stationkeeper.)`
+					goto greet
+				`	(Bow before the Stationkeeper.`
+			`	She seems flattered, "There is no need, Captain, my station is not operational, and the same goes for the honor that was due to me. For now, anyway."`
+			label greet
+			`	You introduce yourself, "You may refer to me simply as the Stationkeeper. Now, if you don't mind, I have been waiting for this opportunity all my life, so I would really like to get going!" You show her to her bunks. She does not seem to be the talkative kind.`
 				accept
 	on accept
 		set "hr: sandsnap project"
@@ -536,9 +555,16 @@ mission "Hai Reveal Concern Period: Securing Sandsnap"
 		event "hr: sandsnap awoken" 5
 		conversation
 			`Peeps are all set up, Sandsnap will help out a little.`
+			While suiting up, receive message to not bother. Thanks (and payment?) but still no time for answers.
 
 
 event "hr: sandsnap awoken"
+	planet Sandsnap
+		government "Hai"
+		bribe 0.5
+		security 1
+		music ambient/machinery
+		description "This station was recently repowered and is now used as a military base where Hai warships can resupply and repair. There is a constant presence here ever since the pirate raids on Allhome."
 
 
 
