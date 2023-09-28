@@ -2034,8 +2034,8 @@ mission "Heliarch Drills 3"
 		on capture
 			fail
 			"assisting heliarchy" --
-			"reputation: Heliarch" <?= -10
-			"reputation: Coalition" <?= -10
+			"reputation: Heliarch" = -1000
+			"reputation: Coalition" = -1000
 			dialog `You kill them and steal it. Nice.`
 	on accept
 		"assisting heliarchy" ++
