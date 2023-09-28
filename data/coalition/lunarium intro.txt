@@ -792,7 +792,6 @@ mission "House Bebliss 5-FW"
 	landing
 	to offer
 		has "House Bebliss 4-FW: done"
-		"outfit: Jump Drive" >= 2 
 		not "assisting heliarchy"
 	source "Factory of Eblumab"
 	destination "Ablub's Invention"
@@ -821,6 +820,8 @@ mission "House Bebliss 5-FW"
 		"assisting lunarium" ++
 	on visit
 		dialog `You land on <planet>, but you haven't brought the extra jump drive you needed to yet. Make sure to have it in your cargo before you land.`
+	to complete
+		"outfit: Jump Drive" >= 2 
 	on complete
 		"assisting lunarium" --
 		outfit "Jump Drive" -1
