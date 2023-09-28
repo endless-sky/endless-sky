@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ConversationPanel.h"
 #include "DataFile.h"
 #include "DataNode.h"
+#include "Debug.h"
 #include "Files.h"
 #include "text/Font.h"
 #include "FrameTimer.h"
@@ -189,6 +190,7 @@ int main(int argc, char *argv[])
 		GameData::LoadShaders();
 
 		// Show something other than a blank window.
+		Debug::StartCapture();
 		GameWindow::Step();
 
 		Audio::Init(GameData::Sources());
@@ -272,6 +274,8 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			--toggleTimeout;
 		chrono::steady_clock::time_point start = chrono::steady_clock::now();
 
+		Debug::StartCapture();
+
 		// Handle any events that occurred in this frame.
 		SDL_Event event;
 		while(SDL_PollEvent(&event))
@@ -281,6 +285,9 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 			// If the mouse moves, reset the cursor movement timeout.
 			if(event.type == SDL_MOUSEMOTION)
 				cursorTime = 0;
+
+			if(Debug::Process(&event))
+				continue;
 
 			if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKQUOTE)
 			{

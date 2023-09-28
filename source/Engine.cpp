@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "CoreStartData.h"
 #include "DamageDealt.h"
 #include "DamageProfile.h"
+#include "Debug.h"
 #include "Effect.h"
 #include "FillShader.h"
 #include "Fleet.h"
@@ -590,6 +591,7 @@ void Engine::Step(bool isActive)
 		}
 	}
 	zoom = Preferences::Has("Landing zoom") ? baseZoom * (1 + pow(zoomMod - 1, 2)) : baseZoom;
+	Debug::ScalarSlider("Zoom", &zoom, 0.1, 10.);
 
 	// Draw a highlight to distinguish the flagship from other ships.
 	if(flagship && !flagship->IsDestroyed() && Preferences::Has("Highlight player's flagship"))

@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "GameWindow.h"
 
+#include "Debug.h"
 #include "Files.h"
 #include "ImageBuffer.h"
 #include "Logger.h"
@@ -228,6 +229,8 @@ bool GameWindow::Init()
 	SetIcon();
 #endif
 
+	Debug::Init(mainWindow, &context);
+
 	return true;
 }
 
@@ -236,6 +239,8 @@ bool GameWindow::Init()
 // Clean up the SDL context, window, and shut down SDL.
 void GameWindow::Quit()
 {
+	Debug::Shutdown();
+
 	// Make sure the cursor is visible.
 	SDL_ShowCursor(true);
 
@@ -256,6 +261,8 @@ void GameWindow::Quit()
 
 void GameWindow::Step()
 {
+	Debug::Render();
+
 	SDL_GL_SwapWindow(mainWindow);
 }
 

@@ -1,5 +1,13 @@
 {
-  "dependencies": [],
+  "dependencies": [
+    {
+      "name": "imgui",
+      "features": [
+          "opengl3-binding",
+          "sdl2-binding"
+      ]
+    }
+  ],
   "features": {
     "system-libs": {
       "description": "System libraries required to build ES.",

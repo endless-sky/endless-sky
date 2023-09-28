@@ -77,6 +77,8 @@ target_sources(EndlessSkyLib PRIVATE
 	DataWriter.h
 	Date.cpp
 	Date.h
+	Debug.cpp
+	Debug.h
 	Depreciation.cpp
 	Depreciation.h
 	Dialog.cpp
