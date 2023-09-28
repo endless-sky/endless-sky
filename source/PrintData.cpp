@@ -164,8 +164,8 @@ namespace {
 				cout << ship.Cost() << ',';
 
 				auto mass = attributes.Mass() ? attributes.Mass() : 1.;
-				cout << attributes.Get("shields") << ',';
-				cout << attributes.Get("hull") << ',';
+				cout << ship.MaxShields() << ',';
+				cout << ship.MaxHull() << ',';
 				cout << mass << ',';
 				cout << attributes.Get("drag") << ',';
 				cout << ship.HeatDissipation() * 1000. << ',';
@@ -220,8 +220,8 @@ namespace {
 				cout << ship.Cost() << ',';
 
 				auto mass = attributes.Mass() ? attributes.Mass() : 1.;
-				cout << attributes.Get("shields") << ',';
-				cout << attributes.Get("hull") << ',';
+				cout << ship.MaxShields() << ',';
+				cout << ship.MaxHull() << ',';
 				cout << mass << ',';
 				cout << attributes.Get("required crew") << ',';
 				cout << attributes.Get("bunks") << ',';
@@ -293,8 +293,8 @@ namespace {
 						if(weapon->Ammo() && !ship.OutfitCount(weapon->Ammo()))
 							continue;
 						double damage = weapon->ShieldDamage() + weapon->HullDamage()
-							+ (weapon->RelativeShieldDamage() * ship.Attributes().Get("shields"))
-							+ (weapon->RelativeHullDamage() * ship.Attributes().Get("hull"));
+							+ (weapon->RelativeShieldDamage() * ship.MaxShields())
+							+ (weapon->RelativeHullDamage() * ship.MaxHull());
 						deterrence += .12 * damage / weapon->Reload();
 					}
 				cout << deterrence << '\n';

@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameEvent.h"
 #include "Government.h"
 #include "Mission.h"
+#include "RaidFleet.h"
 #include "SystemEntry.h"
 
 #include <chrono>
@@ -178,13 +179,13 @@ public:
 	void SetShipOrder(const std::vector<std::shared_ptr<Ship>> &newOrder);
 	// Get the attraction factors of the player's fleet to raid fleets.
 	std::pair<double, double> RaidFleetFactors() const;
-	double RaidFleetAttraction(const Government::RaidFleet &raidFleet, const System *system) const;
+	double RaidFleetAttraction(const RaidFleet &raidFleet, const System *system) const;
 
 	// Get cargo information.
 	CargoHold &Cargo();
 	const CargoHold &Cargo() const;
 	// Get items stored on the player's current planet.
-	CargoHold *Storage(bool forceCreate = false);
+	CargoHold &Storage();
 	// Get items stored on all planets (for map display).
 	const std::map<const Planet *, CargoHold> &PlanetaryStorage() const;
 	// Get cost basis for commodities.
@@ -194,8 +195,12 @@ public:
 	void UpdateCargoCapacities();
 	// Switch cargo from being stored in ships to being stored here.
 	void Land(UI *ui);
-	// Load the cargo back into your ships. This may require selling excess.
-	bool TakeOff(UI *ui);
+	// Make ships ready for take off. This may require selling excess cargo.
+	bool TakeOff(UI *ui, bool distributeCargo);
+	// Pool cargo from local ships.
+	void PoolCargo();
+	// Distribute cargo to local ships. Returns a reference to the player's cargo.
+	const CargoHold &DistributeCargo();
 
 	// Get or add to pilot's playtime.
 	double GetPlayTime() const noexcept;

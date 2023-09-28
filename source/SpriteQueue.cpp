@@ -15,9 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "SpriteQueue.h"
 
-#include "ImageBuffer.h"
 #include "ImageSet.h"
-#include "Mask.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 
@@ -25,6 +23,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <functional>
 
 using namespace std;
+
+namespace {
+	// The maximum number of loaded images in the queue that are
+	// waiting to be uploaded to the GPU.
+	constexpr int MAX_QUEUE = 100;
+}
 
 
 
@@ -135,6 +139,12 @@ void SpriteQueue::operator()()
 				return;
 			if(toRead.empty())
 				break;
+			{
+				// Stop loading images so that the main thread can keep up.
+				unique_lock<mutex> lock(loadMutex);
+				if(toLoad.size() > MAX_QUEUE)
+					break;
+			}
 
 			// Extract the one item we should work on reading right now.
 			shared_ptr<ImageSet> imageSet = toRead.front();
@@ -176,7 +186,7 @@ void SpriteQueue::DoLoad(unique_lock<mutex> &lock)
 		lock.lock();
 	}
 
-	for(int i = 0; !toLoad.empty() && i < 100; ++i)
+	for(int i = 0; !toLoad.empty() && i < MAX_QUEUE; ++i)
 	{
 		// Extract the one item we should work on uploading right now.
 		shared_ptr<ImageSet> imageSet = toLoad.front();
@@ -185,6 +195,7 @@ void SpriteQueue::DoLoad(unique_lock<mutex> &lock)
 		// It's now safe to modify the lists.
 		lock.unlock();
 
+		readCondition.notify_one();
 		imageSet->Upload(SpriteSet::Modify(imageSet->Name()));
 
 		lock.lock();
