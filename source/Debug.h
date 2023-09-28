@@ -23,7 +23,8 @@ union SDL_Event;
 
 
 
-class Debug {
+class Debug
+{
 public:
     static bool Init(SDL_Window *window, void *glContext);
 

@@ -36,23 +36,27 @@ namespace {
 
 bool Debug::Init(SDL_Window *window, SDL_GLContext glContext)
 {
-    if (!IMGUI_CHECKVERSION()) {
+    if (!IMGUI_CHECKVERSION())
+    {
         Logger::LogError("Failed to verify ImGui.");
         return false;
     }
 
-    if(!ImGui::CreateContext()) {
+    if (!ImGui::CreateContext())
+    {
         Logger::LogError("Failed to Create ImGui Context.");
         return false;
     }
     ImGuiIO &io = ImGui::GetIO();
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
 
-    if(!ImGui_ImplSDL2_InitForOpenGL(window, glContext)) {
+    if (!ImGui_ImplSDL2_InitForOpenGL(window, glContext))
+    {
         Logger::LogError("Failed to Initialize Imgui SDL2 for OpenGL.");
         return false;
     }
-    if(!ImGui_ImplOpenGL3_Init()) {
+    if (!ImGui_ImplOpenGL3_Init())
+    {
         Logger::LogError("Failed to Initialize Imgui OpenGL.");
         return false;
     }
@@ -71,14 +75,17 @@ bool Debug::Process(SDL_Event *event)
 
 
 
-void Debug::StartCapture() {
-    if(!state && debugMode) {
+void Debug::StartCapture()
+{
+    if (!state && debugMode)
+    {
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplSDL2_NewFrame();
         ImGui::NewFrame();
 
         static float UIScale;
-        if(ImGui::SliderFloat("UI Scale", &UIScale, 1., 10.)) {
+        if (ImGui::SliderFloat("UI Scale", &UIScale, 1., 10.))
+        {
             ImGui::SetWindowFontScale(UIScale);
         }
         state = !state;
@@ -87,8 +94,10 @@ void Debug::StartCapture() {
 
 
 
-void Debug::Render() {
-    if(state && debugMode) {
+void Debug::Render()
+{
+    if (state && debugMode)
+    {
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
         state = !state;
@@ -106,26 +115,28 @@ void Debug::Shutdown()
 
 
 
-#define ScalarSliderDef(type, igtype) bool Debug::ScalarSlider(const char *label, type *value, type min, type max) { \
-    return ImGui::SliderScalar(\
-        label,\
-        ImGuiDataType_##igtype ,\
-        value,\
-        &min,\
-        &max\
-    );\
-}
-
+#define ScalarSliderDef(type, igtype)                                            \
+    bool Debug::ScalarSlider(const char *label, type *value, type min, type max) \
+    {                                                                            \
+        return ImGui::SliderScalar(                                              \
+            label,                                                               \
+            ImGuiDataType_##igtype,                                              \
+            value,                                                               \
+            &min,                                                                \
+            &max);                                                               \
+    }
 ScalarSliderDef(double, Double)
 
 
 
-void Debug::SetDebugMode(bool mode) {
+void Debug::SetDebugMode(bool mode)
+{
     debugMode = mode;
 }
 
 
 
-bool Debug::GetDebugMode() {
+bool Debug::GetDebugMode()
+{
     return debugMode;
 }
