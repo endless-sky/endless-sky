@@ -26,19 +26,19 @@ union SDL_Event;
 class Debug
 {
 public:
-    static bool Init(SDL_Window *window, void *glContext);
+	static bool Init(SDL_Window *window, void *glContext);
 
-    static bool Process(SDL_Event *event);
-    static void StartCapture();
-    static void Render();
+	static bool Process(SDL_Event *event);
+	static void StartCapture();
+	static void Render();
 
-    static void Shutdown();
+	static void Shutdown();
 
-    // Add more overloads as needed
-    static bool ScalarSlider(const char *label, double *value, double min, double max);
+	// Add more overloads as needed
+	static bool ScalarSlider(const char *label, double *value, double min, double max);
 
-    static void SetDebugMode(bool mode);
-    static bool GetDebugMode();
+	static void SetDebugMode(bool mode);
+	static bool GetDebugMode();
 };
 
 
