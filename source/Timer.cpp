@@ -221,7 +221,7 @@ bool Timer::IsOptional() const
 
 
 
-bool Timer::ResetOn(ResetCondition cond)
+void Timer::ResetOn(ResetCondition cond, PlayerInfo &player, UI *ui)
 {
 	bool reset = cond == resetCondition;
 	reset |= (cond == Timer::ResetCondition::LEAVE_ZONE && resetCondition == Timer::ResetCondition::PAUSE);
@@ -231,9 +231,13 @@ bool Timer::ResetOn(ResetCondition cond)
 	{
 		timeElapsed = 0;
 		timeToWait = base + Random::Int(rand);
-		return true;
+		if(repeatReset || !resetFired)
+			{
+				resetAction.Do(player, ui, mission);
+				resetFired = true;
+			}
+			isActive = false;
 	}
-	return false;
 }
 
 
@@ -245,13 +249,7 @@ void Timer::Step(PlayerInfo &player, UI *ui)
 	if((system && player.Flagship()->GetSystem() != system) ||
 		(!systems.IsEmpty() && !systems.Matches(player.Flagship()->GetSystem())))
 	{
-		bool didReset = ResetOn(Timer::ResetCondition::LEAVE_SYSTEM);
-		if(didReset && (repeatReset || !resetFired))
-		{
-			resetAction.Do(player, ui, mission);
-			resetFired = true;
-		}
-		isActive = false;
+		ResetOn(Timer::ResetCondition::LEAVE_SYSTEM, player, ui);
 		return;
 	}
 	if(requireIdle)
@@ -262,13 +260,7 @@ void Timer::Step(PlayerInfo &player, UI *ui)
 			shipIdle &= !weapon.WasFiring();
 		if(!shipIdle)
 		{
-			bool didReset = ResetOn(Timer::ResetCondition::PAUSE);
-			if(didReset && (repeatReset || !resetFired))
-			{
-				resetAction.Do(player, ui, mission);
-				resetFired = true;
-			}
-			isActive = false;
+			ResetOn(Timer::ResetCondition::PAUSE, player, ui);
 			return;
 		}
 	}
@@ -277,13 +269,7 @@ void Timer::Step(PlayerInfo &player, UI *ui)
 		double cloak = player.Flagship()->Cloaking();
 		if(cloak != 0.)
 		{
-			bool didReset = ResetOn(Timer::ResetCondition::PAUSE);
-			if(didReset && (repeatReset || !resetFired))
-			{
-				resetAction.Do(player, ui, mission);
-				resetFired = true;
-			}
-			isActive = false;
+			ResetOn(Timer::ResetCondition::PAUSE, player, ui);
 			return;
 		}
 	}
@@ -305,13 +291,7 @@ void Timer::Step(PlayerInfo &player, UI *ui)
 		}
 		if(!inProximity)
 		{
-			bool didReset = ResetOn(Timer::ResetCondition::LEAVE_ZONE);
-			if(didReset && (repeatReset || !resetFired))
-			{
-				resetAction.Do(player, ui, mission);
-				resetFired = true;
-			}
-			isActive = false;
+			ResetOn(Timer::ResetCondition::LEAVE_ZONE, player, ui);
 			return;
 		}
 	}
