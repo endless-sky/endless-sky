@@ -63,7 +63,7 @@ private:
 		LEAVE_ZONE,
 		LEAVE_SYSTEM
 	};
-	bool ResetOn(ResetCondition cond);
+	void ResetOn(ResetCondition cond, PlayerInfo &player, UI *ui);
 
 private:
 	// The name of the timer
