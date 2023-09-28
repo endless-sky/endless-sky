@@ -299,7 +299,7 @@ mission "Hai Reveal Concern Period: Humans Going Home"
 				`	"Sorry, I'm not going that way."`
 					goto "not ever"
 			`	As it turns out, it is almost impossible to miss these humans, as their camp is located directly in the crossroads of the spaceport's major thoroughfares. Judging by their expensive clothing and somewhat impatient attitude they are people of means, which makes this even more odd.`
-			`	As soon as it becomes apparent that you're approaching them, one comes forward to greet you. "Ah, I trust you are here because you've been encouraged to help us. I am Brin." You introduce yourself in response, and they continue, "We have run an import services business here for some time, but with the recent events suspicion of human Captains has arisen. Some Hai seem to believe any human captain is potentially someone who will abduct them." They say with a chuckle. "As you can imagine, we've been here a long time, so when we were asked to vet a few arrivals first we were happy enough to do so. It's gotten out of hand though. The other day we even had the Portmaster insisting that we vet every human captain to arrive, but we don't have time for that, and we don't have access to any services that would really let us do that reliably. So we had to put our foot down and refuse.`
+			`	As soon as it becomes apparent that you're approaching them, one comes forward to greet you. "Ah, I trust you are here because you've been encouraged to help us. I am Brin." You introduce yourself in response, and they continue, "We have run an import services business here for some time, but with the recent events suspicion of human captains has arisen. Some Hai seem to believe any human captain is potentially someone who will abduct them." They say with a chuckle. "As you can imagine, we've been here a long time, so when we were asked to vet a few arrivals first we were happy enough to do so. It's gotten out of hand, though. The other day we even had the Portmaster insisting that we vet every human captain to arrive, but we don't have time for that, and we don't have access to any services that would really let us do that reliably. So we had to put our foot down and refuse.`
 			`	"Naturally, business immediately suffered, and we got enough flak for it that we decided it was time to shut up shop and go elsewhere until this all blows over. This offended someone and then several Hai captains refused to take us. Now, well, they've relented since we started camping out, but I can't honestly say we trust them either right now. We will be more than happy to give you a just compensation of <payment> to take us somewhere we won't be nearly the only humans in town."`
 			`	Another one steps forward, "We were hoping that the small amount of humans was a good business opportunity, which was true... until recently. Indeed, my colleagues and I will return to a location where we used to do business in the past, but you understand we cannot just ask any captain to take us, even if we are willing to make do without proper accommodations due to the relative urgency of the situation."`
 			choice
@@ -501,14 +501,13 @@ mission "Hai Reveal Concern Period: Securing Sandsnap"
 	description "Keep <system> secure against pirates for the supply convoy so that they can reach <planet> safely."
 	landing
 	source "Sandsnap"
-	passengers 1
 	to offer
-		has "hr: allhome raided"
+		has "hr: sandsnap project"
 	on offer
 		conversation
 			`	As you arrive you are greeted by a message requesting that you report to the operations center inside the main promenade. You proceed to equip your suit and exit your ship. The station itself is well preserved, except for the lack of atmosphere. Nothing seems to have vented it, no big hole in the ceiling, and the expansive ceiling windows of the main promenade provide a crystal clear view of the station's many decks towering above you. Exterior navigation lights are gradually flicking on up the height of the station, so that walking through feels like watching a ghost city slowly come to glittering life. Emergency floor lighting has been activated, showing you the way.`
 			`	Once through the operation center's security airlock you are able to remove your helmet. One Hai who appears to be in charge swiftly approaches from the other side. "Captain <last>! It is splendid you could make it here so quickly. We have begun the re-powering process, but it will take time and supplies to re-pressurize more than the docking and operations areas. These stations are not small."`
-			`	He chuckles as if having made a joke, and as if you hadn't just walked beneath the open view of over three hundred decks above you. He seems oblivious to the strangeness of this, so perhaps it is a Hai thing.`
+			`	He chuckles as if having made a joke, as if you hadn't just walked beneath the open view of over three hundred decks above you. He seems oblivious to the strangeness of this, so perhaps it is a Hai thing.`
 			`	"I am sure you have questions but they will have to wait until we're more established. We have supplies coming and they will be vulnerable to any pirates that may poke their noses in. We need you to get out there and ensure the supplies can all arrive here safely. Local security is still about, so it shouldn't be too problematic."`
 			choice
 				`	(Go immediately.)`
@@ -534,7 +533,7 @@ mission "Hai Reveal Concern Period: Securing Sandsnap"
 		"reputation: Hai Merchant" += 200
 		"reputation: Hai Merchant (Human)" += 200
 		"reputation: Hai Merchant (Sympathizers)" += 200
-		event "hr: sandsnap awoken"
+		event "hr: sandsnap awoken" 5
 		conversation
 			`Peeps are all set up, Sandsnap will help out a little.`
 
