@@ -2030,13 +2030,13 @@ mission "Heliarch Drills 3"
 			"assisting heliarchy" --
 			"reputation: Heliarch" = -1000
 			"reputation: Coalition" = -1000
-			dialog `You begin salvaging. Nice.`
+			dialog `Although you've disabled the Punisher, you decide to move in and board the ship in order to salvage it, breaking any trust the Heliarchs had in you. It seems that you will not be welcome in Coalition space any longer.`
 		on capture
 			fail
 			"assisting heliarchy" --
 			"reputation: Heliarch" = -1000
 			"reputation: Coalition" = -1000
-			dialog `You kill them and steal it. Nice.`
+			dialog `After a long, exhausting battle, you and your crew successfully capture the Punisher. With their lives on your hands, the Coalition most certainly won't welcome you anymore in their space.`
 	on accept
 		"assisting heliarchy" ++
 	# No reputation penalty for aborting this mission.
