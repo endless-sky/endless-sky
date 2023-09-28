@@ -2020,12 +2020,16 @@ mission "Heliarch Drills 3"
 		system "Torbab"
 		ship "Heliarch Punisher (Scrappy)" "Awaiting Adversary"
 		on kill
+			fail
+			"assisting heliarchy" --
+			"reputation: Heliarch" = -1000
+			"reputation: Coalition" = -1000
 			dialog `The Punisher's captain tries to hail you as the ship collapses around them, but you never get to hear their final cries. You have failed to simply disable the ship, and doomed the entire crew. It seems that you will not be welcome in Coalition space any longer.`
 		on board
 			fail
 			"assisting heliarchy" --
-			"reputation: Heliarch" <?= -1000
-			"reputation: Coalition" <?= -1000
+			"reputation: Heliarch" = -1000
+			"reputation: Coalition" = -1000
 			dialog `You begin salvaging. Nice.`
 		on capture
 			fail
