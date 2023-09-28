@@ -23,6 +23,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
+namespace {
+    bool state = true;
+}
+
 
 
 bool Debug::Init(SDL_Window *window, SDL_GLContext glContext)
@@ -63,21 +67,27 @@ bool Debug::Process(SDL_Event *event)
 
 
 void Debug::StartCapture() {
-    ImGui_ImplOpenGL3_NewFrame();
-    ImGui_ImplSDL2_NewFrame();
-    ImGui::NewFrame();
+    if(state) {
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplSDL2_NewFrame();
+        ImGui::NewFrame();
 
-    static float UIScale;
-    if(ImGui::SliderFloat("UI Scale", &UIScale, 1., 10.)) {
-        ImGui::SetWindowFontScale(UIScale);
+        static float UIScale;
+        if(ImGui::SliderFloat("UI Scale", &UIScale, 1., 10.)) {
+            ImGui::SetWindowFontScale(UIScale);
+        }
+        state = !state;
     }
 }
 
 
 
 void Debug::Render() {
-    ImGui::Render();
-    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+    if(!state) {
+        ImGui::Render();
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+        state = !state;
+    }
 }
 
 
