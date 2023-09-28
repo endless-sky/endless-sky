@@ -17,8 +17,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Logger.h"
 
-#include <imgui_impl_sdl2.h>
 #include <imgui_impl_opengl3.h>
+#include <imgui_impl_sdl2.h>
 #include <SDL2/SDL.h>
 
 using namespace std;
