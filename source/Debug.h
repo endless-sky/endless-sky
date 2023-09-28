@@ -33,15 +33,7 @@ public:
 
     static void Shutdown();
 
-    static inline bool ScalarSlider(const char *label, double *value, double min, double max) {
-        return ImGui::SliderScalar(
-            label,
-            ImGuiDataType_Double,
-            value,
-            &min,
-            &max
-        );
-    }
+    static bool ScalarSlider(const char *label, double *value, double min, double max);
 
     static void SetDebugMode(bool mode);
     static bool GetDebugMode();

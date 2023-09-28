@@ -106,6 +106,18 @@ void Debug::Shutdown()
 
 
 
+bool Debug::ScalarSlider(const char *label, double *value, double min, double max) {
+    return ImGui::SliderScalar(
+        label,
+        ImGuiDataType_Double,
+        value,
+        &min,
+        &max
+    );
+}
+
+
+
 void Debug::SetDebugMode(bool mode) {
     debugMode = mode;
 }
