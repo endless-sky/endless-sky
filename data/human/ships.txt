@@ -3513,7 +3513,7 @@ ship "Star Barge"
 		"fuel capacity" 300
 		"cargo space" 50
 		"outfit space" 130
-		"weapon capacity" 20
+		"weapon capacity" 22
 		"engine capacity" 40
 		weapon
 			"blast radius" 16
