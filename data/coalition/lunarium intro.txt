@@ -820,9 +820,10 @@ mission "House Bebliss 5-FW"
 		"assisting lunarium" ++
 	on visit
 		dialog `You land on <planet>, but you haven't brought the extra jump drive you needed to yet. Make sure to have it in your cargo before you land.`
+	to complete
+		"outfit: Jump Drive" >= 2
 	on complete
 		"assisting lunarium" --
-		require "Jump Drive" 2
 		outfit "Jump Drive" -1
 		payment 1500000
 		conversation
@@ -1183,10 +1184,10 @@ mission "Lunarium: Evacuation 5"
 	to offer
 		random < 80
 		has "Lunarium: Evacuation 4: done"
+		has "outfit: Jump Drive"
 		not "joined the heliarchs"
 		not "assisting heliarchy"
 	on offer
-		require "Jump Drive"
 		payment 1387562
 		conversation
 			branch lunarium
@@ -1596,6 +1597,7 @@ mission "Lunarium: Combat Training 1"
 	destination "Zug"
 	to offer
 		random < 20
+		has "outfit: Jump Drive"
 		or
 			has "Lunarium: Propaganda 4: done"
 			has "Lunarium: Evacuation 6: done"
@@ -1607,7 +1609,6 @@ mission "Lunarium: Combat Training 1"
 			not "joined the heliarchs"
 			not "assisting heliarchy"
 	on offer
-		require "Jump Drive"
 		conversation
 			`After wandering the spaceport for a while, you notice a crowd of dozens of individuals heading to the hangars, specifically in what looks like the direction of your ship. A roughly equal number of Kimek and Arachi, with some Saryds as well, they stand in front of the <ship>, looking around as if searching for its captain. You approach them, and one of the Kimek, whose thorax and abdomen are slimmer than the usual for her species, meets you to speak for their group.`
 			branch lunarium
@@ -1837,6 +1838,7 @@ mission "Lunarium: Questions"
 		not planet "Remote Blue"
 	destination "Remote Blue"
 	to offer
+		has "outfit: Jump Drive"
 		or
 			"assisted lunarium" == 5
 			and
@@ -1856,7 +1858,6 @@ mission "Lunarium: Questions"
 	to complete
 		has "Lunarium: Quarg Interview: accepted"
 	on offer
-		require "Jump Drive"
 		conversation
 			`As you prepare to land on <origin>, your monitor starts producing a low hum, stops, then starts again. This keeps up for nearly a minute until a message pops up. "Captain <last>, come to trust you our comrades have, thanks to your consistent help to our cause. Interested we are in your continuous support, so that free the Coalition, together we can. To <destination> you must come, meet with you, our leaders will, so that discuss an important task with them, you may. An available bunk in your ship, you should have."`
 			`	The message cuts off shortly after you finish reading it. Your monitor is back to normal, and no humming sound can be heard. You mark <planet> on your map.`
