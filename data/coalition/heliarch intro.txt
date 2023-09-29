@@ -2033,9 +2033,6 @@ mission "Heliarch Drills 3"
 			dialog `After a long, exhausting battle, you and your crew successfully capture the Punisher. With the captain's life on your hands, as well as most of her crew, the Coalition most certainly won't be welcoming you anymore.`
 	on accept
 		"assisting heliarchy" ++
-	# No reputation penalty for aborting this mission.
-	on abort
-		"assisting heliarchy" --
 	on fail
 		"assisting heliarchy" --
 	on visit
