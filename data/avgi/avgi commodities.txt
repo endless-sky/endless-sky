@@ -28,7 +28,7 @@ trade
 		"fish"
 		"foiegrass"
 		"fortunas"
-		"Fresh fruits"
+		"fresh fruits"
 		"frondresin"
 		"fruit nectar"
 		"fruits"
