@@ -699,6 +699,7 @@ ship "Modified Osprey"
 	"final explode" "final explosion large" 1
 
 
+
 person "Local God"
 	government "Author"
 	frequency 200
@@ -1851,6 +1852,7 @@ ship "Modified Ladybug"
 	description `This is an old war-torn Hai Ladybug with numerous modifications done on the hull. Apart from the additional turret mounts, the main adjustments on the vessel are three huge engine cells - two in the back replacing the old engine pods, and one in the front replacing the gun mounts. These push the Modified Ladybug to speeds only an insane captain would enjoy.`
 
 
+
 person "Patrol Team"
 	government "Author"
 	frequency 300
@@ -1867,12 +1869,12 @@ person "Patrol Team"
 			"This statement is, intentionally wrote wrongly to make point."
 
 #		Saugia
-			"Yeah... way too much detail. I can't see the cockpit anymore."
-			"Just don't go ham on details."
-			"These areas are looking much better, though. The contrast between the less detailed area here and the more detailed areas elsewhere is a lot nicer."
-			"I'm just trying to see this half that size and I'm losing a lot of detail."
-			"It's awesome, but far too detailed."
-			"Now there's a lot less detail conflicting with one another."
+			"Sometimes, a large amount of detail on a model can look less appealing."
+			"Sometimes, a small amount of detail on a model can look more appealing."
+			"Make sure to look at an image from a few steps back as well."
+			"Down with tangents, up with overlaps."
+			"Don't be afraid of adding more contrast."
+			"If you want to learn how to create artwork, start with a donut."
 
 #		tibetiroka
 			"It's just the Steam CI, no need to panic."
@@ -1982,7 +1984,7 @@ person "Patrol Team"
 			"Scram Drive"
 
 			"Emotional Baggage"
-			"Tears of Skade"
+			"Tear of Skade" 2
 	ship "Waverider" "Balancers' Madness"
 		"never disabled"
 		add attributes
