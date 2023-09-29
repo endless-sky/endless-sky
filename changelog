@@ -45,13 +45,13 @@ Version 0.10.3
       * The player info UI now only accepts double clicking to open a ship's info if both clicks were on the same ship, instead of allowing clicking on one ship and then clicking on another ship shortly afterward to count as double clicking the second ship. (@TomGoodIdea)
       * Trailing whitespace in hails no longer causes hails to overlap with one another. (@flowers9)
       * The selected ship UI now has the ship name centered with the ship image, and the maximum ship image size has been shrunk so that it doesn't overlap with the ship's name. (@TomGoodIdea)
-      * If the player's flagship is a fighter, the travel path will now be properly drawn with how far the flagship can jump. (@flowers9)
+      * If the player's flagship is a fighter, the travel plan will now be properly drawn with how far the flagship can jump. (@flowers9)
       * Fixed the new "fail" action behavior not working with the "on enter" action (@Hurleveur)
       * Fixed a logic error when checking if a ship is ready to jump that prevented some ships from jumping. (@flowers9)
       * The amount of thrust provided by engines when you have insufficient resources (e.g. energy, fuel) available to fire them at 100% now correctly scales down the thrust provided by the amount of resources you have. (@flowers9)
       * Planets no longer launch defense fleets from invalid definitions, which could cause the game to crash. (@TomGoodIdea)
       * The click zones for the descriptions of ships and outfits in the shop are now properly aligned with the description text. (@flowers9)
-      * Ships and outfits without descriptions in the shop will no longer display description clikc zones. (@warp-core)
+      * Ships and outfits without descriptions in the shop will no longer display description click zones. (@warp-core)
       * Fixed an issue where scanning a ship's cargo or outfits could cause the scan dialog to appear twice. (@warp-core)
       * Selecting a new system on the map now always clears the system orbit data, instead of only doing so when the newly selected system has been visited. (@TomGoodIdea)
       * Switching between two engines that use the same engine flare sprite but at different scales will now properly update the engine sprite scale. (@TomGoodIdea)
@@ -59,7 +59,7 @@ Version 0.10.3
       * NPC actions now properly trigger if a ship receives two simultaneous events. (@warp-core)
       * Disabling and enabling plugins is now properly handled with the new plugin metadata file. (@quyykk)
       * Long plugin names are now truncated to the appropriate length in the plugins preferences panel. (@warp-core)
-      * Travel panels that become invalid due to any reason (such as by system changes caused by events) are now cleared. (@warp-core)
+      * Travel plans that become invalid due to any reason (such as by system changes caused by events) are now cleared. (@warp-core)
       * A valid CargoHold is now always returned when getting planetary storage, preventing segfaults. (@quyykk)
       * Fixed a race condition that could occur when drawing planet labels, causing them to flicker. (@quyykk)
       * Corrected the use of SDL_GetPrefPath in Files.cpp. (@quyykk)
@@ -70,8 +70,8 @@ Version 0.10.3
       * Added new humanitarion aid jobs to human space. (@dorbarker)
       * Added a warning for when you've upset Unfettered sympathizers. (@MasterOfGrey)
       * New mission where you take war refugees to Humanika. (@dseomn)
-      * New pre-war missions that help lead peoples to the start of the Free Worlds campaign if they're traveling elsewhere in the galaxy. (@danaris)
-      * Added more high-end passenger mission to human space. (@Anarchist2)
+      * New pre-war missions that help lead people to the start of the Free Worlds campaign if they're traveling elsewhere in the galaxy. (@danaris)
+      * Added more high-end passenger missions to human space. (@Anarchist2)
     * Mission changes:
       * Mentioned in the conversation and description of "Deal Change 2" that you need to hail the destination planet in order to land. (@bene-dictator)
       * The player can now ask Tomek for combat advice prior to the first major Free Worlds battle. (@warp-core)
@@ -79,7 +79,7 @@ Version 0.10.3
       * Bounty jobs now provide their payment the moment the bounty fleet is destroyed, instead of requiring that the player return to the offer location of the job to receive pay. (@Anarchist2)
       * Improved the wording in the description of "FW Bounty 1". (@m0ctave, @EjoThims)
       * Added the mission destination to the description of "Remnant: Cognizance 7". (@lumbar527)
-      * The Heliarch jump drive jobs now use the <payment> text replacement instead of spelling out the payment. (@Arachi-Lover)
+      * The Heliarch jump drive jobs now use the <payment> text replacement instead of spelling out the payment. (@Arachi-Lover, @tibetiroka )
     * Balance:
       * Added weaponry to some human fighters to fit in the additional hardpoints that they were recently given. (@AvianGeneticist)
       * Increased the reputation gains with Unfettered sympathizers when doing Unfettered jobs. (@Hurleveur)
@@ -95,7 +95,7 @@ Version 0.10.3
           * Medium: +5.5%
           * Large: +0.0%
           * Huge: -5.1%
-        * Put in words, small engines have been made stronger while large engines have been made slightly weaker. The result of this is that smaller ships should be generally quicker than they were before while larger ships should either see no change or should be slightly slower.
+        * In other words: small engines have been made stronger while large engines have been made slightly weaker. The result of this is that smaller ships should be generally quicker than they were before while larger ships should either see no change or should be slightly slower.
         * Afterburners are unchanged.
       * Reduced the cost of the supercapacitor from 9,000 credits to 1,500, to bring it closer in line with other human batteries while still having a slight "premium" for its tiny size. (@Zitchas)
       * Removed a few ship variants from the pirate raid fleet that had high damage weapons not conducive to disabling their target. (@Zitchas)
@@ -121,7 +121,7 @@ Version 0.10.3
         * You no longer gain reputation with the Hai for attacking or destroying Unfettered ships.
         * You no longer lose reputation with the Unfettered for disabling Unfettered ships.
         * You now gain 50% more reputation for assisting Hai ships.
-      * Standardized the language used for attribute tooltips.
+      * Standardized the language used for attribute tooltips. (@tibetiroka)
       * Renamed the Hai's Railgun to the Skipper Railgun. (@Saugia)
   * Game mechanics:
     * New mechanics:
@@ -138,7 +138,7 @@ Version 0.10.3
       * Weapons can be given a "fade out" attribute which causes their projectiles to become more transparent until disappearing at the end of their lifetime. (@RisingLeaf)
       * New multiplier attributes for a ship's base shields and hull. (@Azure3141)
       * Created a new "on destroy" NPC action that triggers when every ship in the fleet has been destroyed but not captured. This was the behavior of the "on kill" action, which has been changed to allow every ship in the fleet to be either destroyed or captured, matching the "kill" NPC objective. (@warp-core)
-      * Governments can now fine the player for having an illegal ship. If the a ship is illegal, it may be discovered by an outfit scan. (@TomGoodIdea)
+      * Governments can now fine the player for having an illegal ship. If a ship is illegal, it may be discovered by an outfit scan. (@TomGoodIdea)
       * Governments can now define travel restrictions that prevent their fleets from traveling to or from systems or planets that match the restrictions. (@Hurleveur)
       * Going to the outfitter when you're able to refill your ammo now auto-refills ammo from planetary storage if you have stored ammo on the planet. (@warp-core)
       * New autoconditions:
@@ -184,22 +184,22 @@ Version 0.10.3
     * Mission destination reminder messages are now colored in a new green "info" message level. (@RisingLeaf)
     * Interface bars can now be defined to draw from the top left corner instead of only drawing from the bottom right. (@warp-core)
     * Added a confirmation dialog to demanding tribute from a planet, to prevent the player accidentally demanding tribute from a planet and ruining their reputation. (@UnorderedSigh)
-    * Non-hyperdrive jumps on the map travel path are now drawn with dashed lines instead of solid lines. (@flowars9)
+    * Non-hyperdrive jumps in the travel plan are now drawn with dashed lines instead of solid ones in the map. (@flowers9)
     * The save file load panel now scrolls when you use arrow keys to select your pilot and save. (@warp-core)
     * Planet labels are now much less likely to overlap with one another or with other objects in the system. (@flowers9)
     * The escort HUD display is now defined by the interfaces file so that it can be modified without recompiling. (@warp-core)
     * Fullscreen can now be toggled in all panels. (@TomGoodIdea)
     * The net change in energy and heat when all systems are active is now visible on the energy/heat table for ships when viewed in the outfitter and shipyard. (@mOctave)
     * The shipyard and outfitter map keys now have a color for denoting systems with parked ships or stored outfits. (@flowers9)
-    * If a planet has a different government from the system it is in, that is now displayed on the planet's detail card in the map. (@TomGoodIdea)
+    * If a planet has a different government from the system it is in, that is now displayed on the planet's detail card in the map. (@TomGoodIdea, @Hurleveur)
     * Created a new preference to change the format that dates are displayed in. (@a-random-lemurian)
-    * All applicable takeoff warnings are now displayed at the same time instead of only displaying one warning. (@TomGoodIdea)
+    * All applicable takeoff warnings are now displayed at the same time instead of only displaying one warning. (@TomGoodIdea, @quyykk)
     * Improved the behavior of scrolling in the outfitter and shipyard to be smoother and better handle movement with the arrow keys. (@flowers9)
-    * Messages about being onable to land on the target planet now use the "Highest" message importance, causing them to be displayed in orange. (@AmbushedRaccoon)
+    * Messages about being unable to land on the target planet now use the "Highest" message importance, causing them to be displayed in orange. (@AmbushedRaccoon)
   * Under the hood:
     * Refactored part of PlayerInfo::Land to reduce code duplication. (@warp-core)
     * Selling all your commodities in the trade panel now loops over the commodities that the player owns instead of looping through all commodities in the game and seeing if the player owns them. (@flowers9)
-    * Separated the pug.txt file into separate, more specific files. (@tibetiroka)
+    * Separated the "pug.txt" file into separate, more specific files. (@tibetiroka)
     * Combined the Remnant keystone missions using new mission syntax to reduce data duplication. (@warp-core)
     * Relocated pirate raid and bounty hunter warning missions to a more sensible file. (@MasterOfGrey)
     * Updated fleet definitions to use the new fighter naming syntax. (@flowers9)
@@ -213,7 +213,7 @@ Version 0.10.3
     * Refactored ShipyardPanel and OutfitterPanel code into the ShopPanel base class. (@flowers9)
     * Removed a redundant check in the ShipyardPanel and OutfitterPanel code. (@flowers9)
     * Removed NPC actions from the Deep Archaeology missions that were made redundant by the change to the "on kill" action. (@ziproot)
-    * The destination planet is now cleared if the player's travel path is changed. (@warp-core)
+    * The destination planet is now cleared if the player's travel plan is changed. (@warp-core)
     * Removed unnecessary and added missing #includes. (@quyykk)
     * Data changes from multiple events that occur on the same day are now batch-applied for performance purposes. (@quyykk)
   * CI/CD and development environment:
