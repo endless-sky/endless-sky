@@ -675,7 +675,7 @@ ship "Polari"
 		"bunks" 12
 		"mass" 120
 		"drag" 1.5
-		"heat dissipation" 0.9
+		"heat dissipation" 1.2
 		"fuel capacity" 1800
 		"cargo space" 42
 		"outfit space" 294
@@ -757,7 +757,7 @@ ship "Entasi"
 		"bunks" 12
 		"mass" 210
 		"drag" 0.6
-		"heat dissipation" 1.2
+		"heat dissipation" 0.9
 		"fuel capacity" 1200
 		"cargo space" 240
 		"outfit space" 420
@@ -1085,7 +1085,6 @@ ship "Modified Tachytia"
 
 	description "This was once an Avgi sublight starship, one of the last models built before the discovery of the hyperdrive. Most starships around this period used ram augmented fusion drives to reach cruising speeds of up to 0.25c, but the Tachytia class was designed to reach a velocity of 0.4c with an antimatter fuel source to ignite propellant gathered with its huge ramscoop."
 	description "This particular ship was never launched on its mission, commissioned just before the hyperdrive made it obsolete. Now, it has been extensively modified by removing many of its propellant tanks, replacing them with a hyperdrive, additional equipment spaces, and several docking bays. The cryosleep bay has also been substituted for spacious habitatation cylinders, making this a true city ship."
-
 
 
 # Interceptors
@@ -1527,8 +1526,6 @@ ship "Difraktos"
 	"final explode" "final explosion large"
 
 	description "The Difraktos-class Cruiser is a versatile platform capable of serving in configurations from a high-performance kinetic weapon battlecruiser to a guided missile cruiser, or anything in between. Its powerful torch drive is used to push its heavily armored hull, rather than for speed, giving the Difraktos good survivability even in close range brawls."
-
-
 
 
 ship "Refraktos"

@@ -294,7 +294,7 @@ outfit "Phased Array Laser (Blue)"
 		"shield damage" 3.6
 		"hull damage" 4.2
 		"heat damage" 6
-		"damage dropoff" 0 2400
+		"damage dropoff" 0 3600
 		"dropoff modifier" 0.15
 	description "This phased array laser, or phaser, binds thousands of individual optical fibers together to create a single collimated beam precise enough to target projectiles in flight. An azure glow strong enough to blind the naked eye is the only indication of this weapon firing."
 	description "The turret itself only contains the optics needed to synthesize and target the beam, allowing the laser light to be produced elsewhere. Because of this, an Optical Lasing Generator is needed to run this turret, providing enough power to support two Blue Phasers."
@@ -1277,9 +1277,9 @@ outfit "Z-360 Fusion Torch"
 	"thrusting heat" 15
 	"thrusting fuel" 0.06
 	"drag reduction" 1
-	"flare sprite" "effect/avgi fusion flare/medium"
-		"frame rate" 30
-		"scale" 0.75
+	"flare sprite" "effect/avgi flare/fusion"
+		"frame rate" 15
+		"scale" 0.5
 	"flare sound" "remnant afterburner"
 
 	"afterburner thrust" 30
@@ -1303,8 +1303,8 @@ outfit "Z-600 Fusion Torch"
 	"thrusting heat" 27
 	"thrusting fuel" 0.06
 	"drag reduction" 1.2
-	"flare sprite" "effect/avgi fusion flare/large"
-		"frame rate" 30
+	"flare sprite" "effect/avgi flare/fusion"
+		"frame rate" 15
 	"flare sound" "remnant afterburner"
 
 	"afterburner thrust" 60
@@ -1328,8 +1328,9 @@ outfit "Z-960 Fusion Torch"
 	"thrusting heat" 54
 	"thrusting fuel" 0.12
 	"drag reduction" 1.8
-	"flare sprite" "effect/avgi fusion flare/large"
+	"flare sprite" "effect/avgi flare/fusion"
 		"frame rate" 30
+		"scale" 2
 	"flare sound" "remnant afterburner"
 
 	"afterburner thrust" 90
@@ -1355,19 +1356,22 @@ outfit "XY-180 Radial Thrusters"
 	"mass" 18
 	"outfit space" -18
 	"engine capacity" -18
+	"thrust" 9
+	"thrusting energy" 0.3
+	"thrusting heat" 0.3
 	"turn" 540
 	"turning energy" 0.9
 	"turning heat" 0.6
 	"reverse thrust" 9
 	"reverse thrusting energy" 0.3
 	"reverse thrusting heat" 0.3
-	"steering flare sprite" "effect/avgi fusion flare/medium"
+	"steering flare sprite" "effect/avgi flare/fusion"
 		"frame rate" 30
-		scale 0.125
+		"scale" 0.0625
 	"steering flare sound" "plasma small"
-	"reverse flare sprite" "effect/avgi fusion flare/medium"
+	"reverse flare sprite" "effect/avgi flare/fusion"
 		"frame rate" 30
-		scale 0.25
+		"scale" 0.125
 	"reverse flare sound" "plasma small"
 	description "Balance TBD"
 
@@ -1382,19 +1386,22 @@ outfit "XY-420 Radial Thrusters"
 	"mass" 42
 	"outfit space" -42
 	"engine capacity" -42
+	"thrust" 21
+	"thrusting energy" 0.15
+	"thrusting heat" 0.15
 	"turn" 1560
 	"turning energy" 2.1
 	"turning heat" 1.5
 	"reverse thrust" 21
 	"reverse thrusting energy" 0.15
 	"reverse thrusting heat" 0.15
-	"steering flare sprite" "effect/avgi fusion flare/large"
+	"steering flare sprite" "effect/avgi flare/fusion"
 		"frame rate" 30
-		scale 0.25
+		"scale" 0.125
 	"steering flare sound" "plasma small"
-	"reverse flare sprite" "effect/avgi fusion flare/large"
+	"reverse flare sprite" "effect/avgi flare/fusion"
 		"frame rate" 30
-		scale 0.5
+		"scale" 0.25
 	"reverse flare sound" "plasma small"
 	description "Balance TBD"
 
@@ -1409,6 +1416,9 @@ outfit "XY-720 Radial Thrusters"
 	"mass" 72
 	"outfit space" -72
 	"engine capacity" -72
+	"thrust" 36
+	"thrusting energy" 1.2
+	"thrusting heat" 1.2
 	"turn" 2790
 	"turning energy" 3.6
 	"turning heat" 2.4
@@ -1417,11 +1427,11 @@ outfit "XY-720 Radial Thrusters"
 	"reverse thrusting heat" 1.2
 	"steering flare sprite" "effect/avgi fusion flare/large"
 		"frame rate" 30
-		scale 0.5
+		"scale" 0.25
 	"steering flare sound" "plasma small"
 	"reverse flare sprite" "effect/avgi fusion flare/large"
 		"frame rate" 30
-		scale 0.75
+		scale 0.5
 	"reverse flare sound" "plasma small"
 	description "Balance TBD"
 
@@ -1438,14 +1448,15 @@ outfit "Beam Core Antimatter Torch"
 	"thrusting heat" 90
 	"thrusting fuel" 0.24
 	"drag reduction" 9
-	"flare sprite" "effect/avgi fusion flare/long"
+	"flare sprite" "effect/avgi flare/antimatter"
 		"frame rate" 30
 	"flare sound" "remnant afterburner"
 	"turn" 2790
 	"turning energy" 3.6
 	"turning heat" 2.4
-	"steering flare sprite" "effect/avgi fusion flare/long"
+	"steering flare sprite" "effect/avgi flare/antimatter"
 		"frame rate" 30
+		"scale" 0.125
 	"steering flare sound" "remnant afterburner"
 	description "Balance TBD"
 
