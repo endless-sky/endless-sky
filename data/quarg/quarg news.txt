@@ -472,7 +472,7 @@ news "ringworld quarg"
 			"Quarg"
 	message
 		phrase
-			"ringworld quarg phrases" 5
+			"ringworld quarg phrases" 8
 			"quarg poems on species" 1
 
 phrase "ringworld quarg phrases"
