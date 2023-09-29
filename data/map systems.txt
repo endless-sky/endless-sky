@@ -16806,7 +16806,7 @@ system Iigen
 	arrival 500
 	habitable 230
 	belt 1699
-	"jump range" 60
+	"jump range" 70
 	haze _menu/haze-brown
 	link Heutesl
 	link Oosuoro
@@ -19324,7 +19324,6 @@ system Kiluit
 	arrival 2430
 	habitable 2430
 	belt 1258
-	"jump range" 70
 	haze _menu/haze
 	link Jied
 	link Nnaug
