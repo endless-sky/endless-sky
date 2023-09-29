@@ -20438,7 +20438,7 @@ system L-118
 	arrival 3000
 	habitable 3000
 	belt 1724
-	"jump range" 80
+	"jump range" 70
 	haze _menu/haze-coal
 	link H-9187
 	asteroids "small rock" 12 3.3
