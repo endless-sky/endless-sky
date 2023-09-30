@@ -479,7 +479,7 @@ phrase "ringworld quarg phrases"
 	word
 		`You see a shorter, younger Quarg, likely a child in Quarg years, being shown around the ringworld by an adult. From the looks of it the parent is teaching it about the ring.`
 		`A Quarg is standing uncomfortably close to the walls, tapping it slowly with both palms. You observe it for a few minutes, until it stops abruptly and goes about its business like the others.`
-		`Standard activity in the ringworld is stopped by a few dozen Quarg in heavily armored suits, moving in a quick pace and escorting a large, tube-like container which floats to accompany them. Other Quarg are quick to make way for the group, steering a great distance from them.`
+		`Usual activity in the ringworld is stopped by a few dozen Quarg in heavily armored suits moving at a quick pace and escorting a large, tube-like container which floats to accompany them. Other Quarg are quick to make way for the group, allowing themselves a great distance from the armored Quarg.`
 		`Some Quarg scientists are dragging along a whole train of linked lab carts, packed fully with utensils, chemicals, components and reagents. It takes nearly half an hour before you see the last of the carts pass by.`
 		`Hundreds of Quarg are blocking most of one of the largest, widest corridors in the ring. They're all sitting down on the floor, staring down blankly in complete silence, with a scarce few seldom glancing up to the ceiling only to move their gaze downwards once again. You notice that Quarg who witness the scene stop all conversation and move elsewhere.`
 		`One Quarg walks up to you, and stares down into your eyes. It stays there in silence, just looking at you, before finally blinking once and moving along, disappearing into the ring's hallways.`
