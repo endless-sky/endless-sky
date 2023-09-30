@@ -877,6 +877,7 @@ mission "Heliarch Recon 3-B"
 	deadline 15
 	to offer
 		has "Heliarch Recon 3-A: done"
+		not "Heliarch Recon 3-C: offered"
 		not "Lunarium: Questions: done"
 		not "joined the heliarchs"
 		not "assisting lunarium"
@@ -930,6 +931,7 @@ mission "Heliarch Recon 3-C"
 	waypoint "Zubeneschamali"
 	to offer
 		has "Heliarch Recon 3-A: done"
+		not "Heliarch Recon 3-B: offered"
 		has "joined the heliarchs"
 		has "outfit: Scanning Module"
 		not "assisting lunarium"
