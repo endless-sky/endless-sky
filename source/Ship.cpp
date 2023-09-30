@@ -3759,7 +3759,8 @@ void Ship::DoGeneration()
 		double excessEnergy = energy - attributes.Get("energy capacity");
 		double fuelEnergy = -attributes.Get("fuel energy");
 		double fuelHeat = -attributes.Get("fuel heat");
-		DoRepair(fuel, excessEnergy, attributes.Get("fuel consumption"), energy, fuelEnergy, 0., 0., heat, fuelHeat);
+
+		DoRepair(fuel, excessEnergy, attributes.Get("fuel consumption"), energy, fuelEnergy, fuel, 0., heat, fuelHeat);
 	}
 
 	// However, this is no excuse to not explicitly cap the variables.
