@@ -42,7 +42,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SpriteSet.h"
 #include "StellarObject.h"
 #include "System.h"
-#include "TextReplacements.h"
 #include "Visual.h"
 #include "Wormhole.h"
 
@@ -65,7 +64,31 @@ namespace {
 
 	const double MAXIMUM_TEMPERATURE = 100.;
 
+	// Scanning takes between 2 and 10 seconds (SCAN_TIME / MAX_SCAN_STEPS and SCAN_TIME / MIN_SCAN_STEPS)
+	// dependent on the range from the ship (among other factors).
+	// The scan speed uses a gaussian drop-off with the reported scan radius as the standard deviation.
 	const double SCAN_TIME = 600.;
+	// Always gain at least 1 step of scan progress for every frame spent scanning while in range.
+	// This ensures every scan completes within 600 frames (10 seconds) of being in range.
+	const double MIN_SCAN_STEPS = 1;
+	// Gain no more than 5 steps of scan progress for every frame spent scanning while in range.
+	// This ensures no scan takes fewer than 120 frames (2 seconds.)
+	const double MAX_SCAN_STEPS = 5; // minimum of 2 seconds to scan
+
+	// These numbers ensure it takes 10 seconds for a Cargo Scanner to scan
+	// a Bulk Freighter at point blank range. Any ship with less than 40
+	// cargo space takes as long as a ship with 40 cargo space.
+	const double SCAN_MIN_CARGO_SPACE = 40;
+	const double SCAN_CARGO_FACTOR = 3;
+
+	// This ensures it takes 10 seconds for an Outfit Scanner to scan a
+	// Bactrian at point blank range. Any ship with less than 200 outfit
+	// space takes as long as a ship with 200 outfit space.
+	const double SCAN_MIN_OUTFIT_SPACE = 200;
+	const double SCAN_OUTFIT_FACTOR = 10;
+
+	// Formula for the scan outfit or cargo factor is:
+	// factor = pow(sqrt(scanEfficiency) * framesToFullScan / SCAN_TIME, 1.5) / referenceSize
 
 	// Helper function to transfer energy to a given stat if it is less than the
 	// given maximum value.
@@ -1696,7 +1719,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 		SetShipToAssist(shared_ptr<Ship>());
 		SetTargetShip(shared_ptr<Ship>());
 		bool helped = victim->isDisabled;
-		victim->hull = min(max(victim->hull, victim->MinimumHull() * 1.5), victim->attributes.Get("hull"));
+		victim->hull = min(max(victim->hull, victim->MinimumHull() * 1.5), victim->MaxHull());
 		victim->isDisabled = false;
 		// Transfer some fuel if needed.
 		if(victim->NeedsFuel() && CanRefuel(*victim))
@@ -1767,52 +1790,56 @@ int Ship::Scan(const PlayerInfo &player)
 	// Because this uses distance squared, to reach 200 pixels away you need 4 "scan power".
 	double distanceSquared = target->position.DistanceSquared(position) * .0001;
 
-	// Check the target's outfit and cargo space. A larger ship takes longer to scan.
-	// Normalized around 200 tons of cargo/outfit space.
-	// A ship with less than 10 tons of outfit space or cargo space takes as long to
-	// scan as one with 10 tons. This avoids small sizes being scanned instantly, or
-	// causing a divide by zero error at sizes of 0.
+	// Check the target's outfit and cargo space. A larger ship takes
+	// longer to scan.  There's a minimum size below which a smaller ship
+	// takes the same amount of time to scan. This avoids small sizes
+	// being scanned instantly, or causing a divide by zero error at sizes
+	// of 0.
 	// If instantly scanning very small ships is desirable, this can be removed.
 	// One point of scan opacity is the equivalent of an additional ton of cargo / outfit space
-	double outfits = max(10., (target->baseAttributes.Get("outfit space")
-		+ target->attributes.Get("outfit scan opacity"))) * .005;
-	double cargo = max(10., (target->attributes.Get("cargo space")
-		+ target->attributes.Get("cargo scan opacity"))) * .005;
+	const double outfitsSize = target->baseAttributes.Get("outfit space") + target->attributes.Get("outfit scan opacity");
+	const double cargoSize = target->attributes.Get("cargo space") + target->attributes.Get("cargo scan opacity");
+	double outfits = max(SCAN_MIN_OUTFIT_SPACE, outfitsSize) * SCAN_OUTFIT_FACTOR;
+	double cargo = max(SCAN_MIN_CARGO_SPACE, cargoSize) * SCAN_CARGO_FACTOR;
 
 	// Check if either scanner has finished scanning.
 	bool startedScanning = false;
 	bool activeScanning = false;
 	int result = 0;
 	auto doScan = [&distanceSquared, &startedScanning, &activeScanning, &result]
-			(double &elapsed, const double speed, const double scannerRange,
+			(double &elapsed, const double speed, const double scannerRangeSquared,
 					const double depth, const int event)
 	-> void
 	{
-		if(elapsed < SCAN_TIME && distanceSquared < scannerRange)
-		{
-			startedScanning |= !elapsed;
-			activeScanning = true;
+		if(elapsed >= SCAN_TIME)
+			return;
+		if(distanceSquared > scannerRangeSquared)
+			return;
 
-			// Division is more expensive to calculate than multiplication,
-			// so rearrange the formula to minimize divisions.
+		startedScanning |= !elapsed;
+		activeScanning = true;
 
-			// "(scannerRange - 0.5 * distance) / scannerRange"
-			// This line hits 1 at distace = 0, and 0.5 at distance = scannerRange.
-			// There is also a hard cap on scanning range.
+		// Total scan time is:
+		// Proportional to e^(0.5 * (distance / range)^2),
+		// which gives a guassian relation between scan speed and distance.
+		// And proportional to: depth^(2 / 3),
+		// which means 8 times the cargo or outfit space takes 4 times as long to scan.
+		// Therefore, scan progress each step is proportional to the reciprocals of these values.
+		// This can be calculated by multiplying the exponents by -1.
+		// Progress = (e^(-0.5 * (distance / range)^2))*deptch^(-2 / 3).
 
-			// "speed / (sqrt(speed) + distance)"
-			// This gives a modest speed boost at no distance, and
-			// the boost tapers off to 0 at arbitrarily large distances.
+		// Set a minimum scan range to avoid extreme values.
+		const double distanceExponent = -distanceSquared / max<double>(1e-3, 2. * scannerRangeSquared);
 
-			// "1 / depth"
-			// This makes scan time proportional to cargo or outfit space.
+		const double depthFactor = pow(depth, -2. / 3.);
 
-			elapsed += ((scannerRange - .5 * distanceSquared) * speed)
-				/ (scannerRange * (sqrt(speed) + distanceSquared) * depth);
+		const double progress = exp(distanceExponent) * sqrt(speed) * depthFactor;
 
-			if(elapsed >= SCAN_TIME)
-				result |= event;
-		}
+		// Bound progress each step to limit minimum and maximum scan times.
+		elapsed += max<double>(MIN_SCAN_STEPS, min<double>(MAX_SCAN_STEPS, progress));
+
+		if(elapsed >= SCAN_TIME)
+			result |= event;
 	};
 	doScan(cargoScan, cargoSpeed, cargoDistanceSquared, cargo, ShipEvent::SCAN_CARGO);
 	doScan(outfitScan, outfitSpeed, outfitDistanceSquared, outfits, ShipEvent::SCAN_OUTFITS);
@@ -2124,7 +2151,7 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 	// and pointed in the right direction.
 	if(!isJump && scramThreshold)
 	{
-		double deviation = fabs(direction.Unit().Cross(velocity));
+		const double deviation = fabs(direction.Unit().Cross(velocity));
 		if(deviation > scramThreshold)
 			return false;
 	}
@@ -2134,11 +2161,11 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 	if(!isJump)
 	{
 		// Figure out if we're within one turn step of facing this system.
-		bool left = direction.Cross(angle.Unit()) < 0.;
-		Angle turned = angle + TurnRate() * (left - !left);
-		bool stillLeft = direction.Cross(turned.Unit()) < 0.;
+		const bool left = direction.Cross(angle.Unit()) < 0.;
+		const Angle turned = angle + TurnRate() * (left - !left);
+		const bool stillLeft = direction.Cross(turned.Unit()) < 0.;
 
-		if(left == stillLeft)
+		if(left == stillLeft && turned != Angle(direction))
 			return false;
 	}
 
@@ -2247,7 +2274,7 @@ void Ship::Restore()
 bool Ship::IsDamaged() const
 {
 	// Account for ships with no shields when determining if they're damaged.
-	return (attributes.Get("shields") != 0 && Shields() != 1.) || Hull() != 1.;
+	return (MaxShields() != 0 && Shields() != 1.) || Hull() != 1.;
 }
 
 
@@ -2272,9 +2299,9 @@ void Ship::Recharge(bool atSpaceport)
 	pilotOkay = 0;
 
 	if(atSpaceport || attributes.Get("shield generation"))
-		shields = attributes.Get("shields");
+		shields = MaxShields();
 	if(atSpaceport || attributes.Get("hull repair rate"))
-		hull = attributes.Get("hull");
+		hull = MaxHull();
 	if(atSpaceport || attributes.Get("energy generation"))
 		energy = attributes.Get("energy capacity");
 	if(atSpaceport || attributes.Get("fuel generation"))
@@ -2322,7 +2349,7 @@ double Ship::TransferFuel(double amount, Ship *to)
 int Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 {
 	// Repair up to the point where this ship is just barely not disabled.
-	hull = min(max(hull, MinimumHull() * 1.5), attributes.Get("hull"));
+	hull = min(max(hull, MinimumHull() * 1.5), MaxHull());
 	isDisabled = false;
 
 	// Set the new government.
@@ -2390,7 +2417,7 @@ void Ship::ClearTargetsAndOrders()
 // Get characteristics of this ship, as a fraction between 0 and 1.
 double Ship::Shields() const
 {
-	double maximum = attributes.Get("shields");
+	double maximum = MaxShields();
 	return maximum ? min(1., shields / maximum) : 0.;
 }
 
@@ -2398,7 +2425,7 @@ double Ship::Shields() const
 
 double Ship::Hull() const
 {
-	double maximum = attributes.Get("hull");
+	double maximum = MaxHull();
 	return maximum ? min(1., hull / maximum) : 1.;
 }
 
@@ -2434,8 +2461,8 @@ double Ship::Heat() const
 double Ship::Health() const
 {
 	double minimumHull = MinimumHull();
-	double hullDivisor = attributes.Get("hull") - minimumHull;
-	double divisor = attributes.Get("shields") + hullDivisor;
+	double hullDivisor = MaxHull() - minimumHull;
+	double divisor = MaxShields() + hullDivisor;
 	// This should not happen, but just in case.
 	if(divisor <= 0. || hullDivisor <= 0.)
 		return 0.;
@@ -2450,10 +2477,24 @@ double Ship::Health() const
 // Get the hull fraction at which this ship is disabled.
 double Ship::DisabledHull() const
 {
-	double hull = attributes.Get("hull");
+	double hull = MaxHull();
 	double minimumHull = MinimumHull();
 
 	return (hull > 0. ? minimumHull / hull : 0.);
+}
+
+
+
+// Get the maximum shield and hull values of the ship, accounting for multipliers.
+double Ship::MaxShields() const
+{
+	return attributes.Get("shields") * (1 + attributes.Get("shield multiplier"));
+}
+
+
+double Ship::MaxHull() const
+{
+	return attributes.Get("hull") * (1 + attributes.Get("hull multiplier"));
 }
 
 
@@ -2734,8 +2775,8 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 		ApplyForce(damage.HitForce(), damage.GetWeapon().IsGravitational());
 
 	// Prevent various stats from reaching unallowable values.
-	hull = min(hull, attributes.Get("hull"));
-	shields = min(shields, attributes.Get("shields"));
+	hull = min(hull, MaxHull());
+	shields = min(shields, MaxShields());
 	// Weapons are allowed to overcharge a ship's energy or fuel, but code in Ship::DoGeneration()
 	// will clamp it to a maximum value at the beginning of the next frame.
 	energy = max(0., energy);
@@ -3157,7 +3198,7 @@ bool Ship::CanFire(const Weapon *weapon) const
 		return false;
 	// We do check hull, but we don't check shields. Ships can survive with all shields depleted.
 	// Ships should not disable themselves, so we check if we stay above minimumHull.
-	if(hull - MinimumHull() < weapon->FiringHull() + weapon->RelativeFiringHull() * attributes.Get("hull"))
+	if(hull - MinimumHull() < weapon->FiringHull() + weapon->RelativeFiringHull() * MaxHull())
 		return false;
 
 	// If a weapon requires heat to fire, (rather than generating heat), we must
@@ -3188,8 +3229,8 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 	const double relativeEnergyChange = weapon.RelativeFiringEnergy() * attributes.Get("energy capacity");
 	const double relativeFuelChange = weapon.RelativeFiringFuel() * attributes.Get("fuel capacity");
 	const double relativeHeatChange = !weapon.RelativeFiringHeat() ? 0. : weapon.RelativeFiringHeat() * MaximumHeat();
-	const double relativeHullChange = weapon.RelativeFiringHull() * attributes.Get("hull");
-	const double relativeShieldChange = weapon.RelativeFiringShields() * attributes.Get("shields");
+	const double relativeHullChange = weapon.RelativeFiringHull() * MaxHull();
+	const double relativeShieldChange = weapon.RelativeFiringShields() * MaxShields();
 
 	if(const Outfit *ammo = weapon.Ammo())
 	{
@@ -3197,13 +3238,9 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 		// A realistic fraction applicable to all cases cannot be computed, so assume 50%.
 		heat -= weapon.AmmoUsage() * .5 * ammo->Mass() * MAXIMUM_TEMPERATURE * Heat();
 		AddOutfit(ammo, -weapon.AmmoUsage());
-		// Only the player's ships make use of attraction and deterrence.
-		if(isYours && !OutfitCount(ammo) && ammo->AmmoUsage())
-		{
-			// Recalculate the AI to account for the loss of this weapon.
+		// Recalculate the AI to account for the loss of this weapon.
+		if(!OutfitCount(ammo) && ammo->AmmoUsage())
 			aiCache.Calibrate(*this);
-			deterrence = CalculateDeterrence();
-		}
 	}
 
 	energy -= weapon.FiringEnergy() + relativeEnergyChange;
@@ -3549,7 +3586,8 @@ void Ship::DoGeneration()
 			* (1. + attributes.Get("hull heat multiplier"))) / hullAvailable;
 		double hullRemaining = hullAvailable;
 		if(!hullDelay)
-			DoRepair(hull, hullRemaining, attributes.Get("hull"), energy, hullEnergy, fuel, hullFuel, heat, hullHeat);
+			DoRepair(hull, hullRemaining, MaxHull(),
+				energy, hullEnergy, fuel, hullFuel, heat, hullHeat);
 
 		const double shieldsAvailable = attributes.Get("shield generation")
 			* (1. + attributes.Get("shield generation multiplier"));
@@ -3561,7 +3599,7 @@ void Ship::DoGeneration()
 			* (1. + attributes.Get("shield heat multiplier"))) / shieldsAvailable;
 		double shieldsRemaining = shieldsAvailable;
 		if(!shieldDelay)
-			DoRepair(shields, shieldsRemaining, attributes.Get("shields"),
+			DoRepair(shields, shieldsRemaining, MaxShields(),
 				energy, shieldsEnergy, fuel, shieldsFuel, heat, shieldsHeat);
 
 		if(!bays.empty())
@@ -3586,10 +3624,10 @@ void Ship::DoGeneration()
 			{
 				Ship &ship = *it.second;
 				if(!hullDelay)
-					DoRepair(ship.hull, hullRemaining, ship.attributes.Get("hull"),
+					DoRepair(ship.hull, hullRemaining, ship.MaxHull(),
 						energy, hullEnergy, heat, hullHeat, fuel, hullFuel);
 				if(!shieldDelay)
-					DoRepair(ship.shields, shieldsRemaining, ship.attributes.Get("shields"),
+					DoRepair(ship.shields, shieldsRemaining, ship.MaxShields(),
 						energy, shieldsEnergy, heat, shieldsHeat, fuel, shieldsFuel);
 			}
 
@@ -3607,15 +3645,12 @@ void Ship::DoGeneration()
 			}
 
 			// Carried ships can recharge energy from their parent's batteries,
-			// if they are preparing for deployment. Otherwise, they replenish the
-			// parent's batteries.
+			// if they are preparing for deployment.
 			for(const pair<double, Ship *> &it : carried)
 			{
 				Ship &ship = *it.second;
 				if(ship.HasDeployOrder())
 					DoRepair(ship.energy, energy, ship.attributes.Get("energy capacity"));
-				else
-					DoRepair(energy, ship.energy, attributes.Get("energy capacity"));
 			}
 		}
 		// Decrease the shield and hull delays by 1 now that shield generation
@@ -3729,12 +3764,39 @@ void Ship::DoGeneration()
 	else if(heat < .9 * MaximumHeat())
 		isOverheated = false;
 
-	double maxShields = attributes.Get("shields");
+	double maxShields = MaxShields();
 	shields = min(shields, maxShields);
-	double maxHull = attributes.Get("hull");
+	double maxHull = MaxHull();
 	hull = min(hull, maxHull);
 
-	isDisabled = isOverheated || hull < MinimumHull() || (!crew && RequiredCrew());
+	bool isIncapacitated = hull < MinimumHull() || (!crew && RequiredCrew());
+	isDisabled = isOverheated || isIncapacitated;
+
+	if(!isIncapacitated)
+	{
+		double coolingEfficiency = CoolingEfficiency();
+		heat -= coolingEfficiency * attributes.Get("cooling");
+		double activeCooling = coolingEfficiency * attributes.Get("active cooling");
+		// Apply active cooling. The fraction of full cooling to apply equals
+		// your ship's current fraction of its maximum temperature.
+		if(activeCooling > 0. && heat > 0. && energy >= 0.)
+		{
+			// Active cooling always runs at 100% power if overheated
+			// even if below 100% heat.
+			double heatFraction = (isOverheated ? 1. : Heat());
+			// Handle the case where "active cooling"
+			// does not require any energy.
+			double coolingEnergy = attributes.Get("cooling energy");
+			if(coolingEnergy)
+			{
+				double spentEnergy = min(energy, coolingEnergy * heatFraction);
+				heat -= activeCooling * spentEnergy / coolingEnergy;
+				energy -= spentEnergy;
+			}
+			else
+				heat -= activeCooling * heatFraction;
+		}
+	}
 
 	// Update ship supply levels.
 	if(isDisabled)
@@ -3753,11 +3815,9 @@ void Ship::DoGeneration()
 			heat += solarScaling * attributes.Get("solar heat");
 		}
 
-		double coolingEfficiency = CoolingEfficiency();
 		energy += attributes.Get("energy generation") - attributes.Get("energy consumption");
 		fuel += attributes.Get("fuel generation");
 		heat += attributes.Get("heat generation");
-		heat -= coolingEfficiency * attributes.Get("cooling");
 
 		// Convert fuel into energy and heat only when the required amount of fuel is available.
 		if(attributes.Get("fuel consumption") <= fuel)
@@ -3767,23 +3827,6 @@ void Ship::DoGeneration()
 			heat += attributes.Get("fuel heat");
 		}
 
-		// Apply active cooling. The fraction of full cooling to apply equals
-		// your ship's current fraction of its maximum temperature.
-		double activeCooling = coolingEfficiency * attributes.Get("active cooling");
-		if(activeCooling > 0. && heat > 0. && energy >= 0.)
-		{
-			// Handle the case where "active cooling"
-			// does not require any energy.
-			double coolingEnergy = attributes.Get("cooling energy");
-			if(coolingEnergy)
-			{
-				double spentEnergy = min(energy, coolingEnergy * min(1., Heat()));
-				heat -= activeCooling * spentEnergy / coolingEnergy;
-				energy -= spentEnergy;
-			}
-			else
-				heat -= activeCooling * min(1., Heat());
-		}
 	}
 
 	// Don't allow any levels to drop below zero.
@@ -4149,23 +4192,23 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 			// Check if we are able to turn.
 			double cost = attributes.Get("turning energy");
 			if(cost > 0. && energy < cost * fabs(commands.Turn()))
-				commands.SetTurn(commands.Turn() * energy / (cost * fabs(commands.Turn())));
+				commands.SetTurn(copysign(energy / cost, commands.Turn()));
 
 			cost = attributes.Get("turning shields");
 			if(cost > 0. && shields < cost * fabs(commands.Turn()))
-				commands.SetTurn(commands.Turn() * shields / (cost * fabs(commands.Turn())));
+				commands.SetTurn(copysign(shields / cost, commands.Turn()));
 
 			cost = attributes.Get("turning hull");
 			if(cost > 0. && hull < cost * fabs(commands.Turn()))
-				commands.SetTurn(commands.Turn() * hull / (cost * fabs(commands.Turn())));
+				commands.SetTurn(copysign(hull / cost, commands.Turn()));
 
 			cost = attributes.Get("turning fuel");
 			if(cost > 0. && fuel < cost * fabs(commands.Turn()))
-				commands.SetTurn(commands.Turn() * fuel / (cost * fabs(commands.Turn())));
+				commands.SetTurn(copysign(fuel / cost, commands.Turn()));
 
 			cost = -attributes.Get("turning heat");
 			if(cost > 0. && heat < cost * fabs(commands.Turn()))
-				commands.SetTurn(commands.Turn() * heat / (cost * fabs(commands.Turn())));
+				commands.SetTurn(copysign(heat / cost, commands.Turn()));
 
 			if(commands.Turn())
 			{
@@ -4200,28 +4243,28 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 			// Check if we are able to apply this thrust.
 			double cost = attributes.Get((thrustCommand > 0.) ?
 				"thrusting energy" : "reverse thrusting energy");
-			if(cost > 0. && energy < cost)
-				thrustCommand *= energy / cost;
+			if(cost > 0. && energy < cost * fabs(thrustCommand))
+				thrustCommand = copysign(energy / cost, thrustCommand);
 
 			cost = attributes.Get((thrustCommand > 0.) ?
 				"thrusting shields" : "reverse thrusting shields");
-			if(cost > 0. && shields < cost)
-				thrustCommand *= shields / cost;
+			if(cost > 0. && shields < cost * fabs(thrustCommand))
+				thrustCommand = copysign(shields / cost, thrustCommand);
 
 			cost = attributes.Get((thrustCommand > 0.) ?
 				"thrusting hull" : "reverse thrusting hull");
-			if(cost > 0. && hull < cost)
-				thrustCommand *= hull / cost;
+			if(cost > 0. && hull < cost * fabs(thrustCommand))
+				thrustCommand = copysign(hull / cost, thrustCommand);
 
 			cost = attributes.Get((thrustCommand > 0.) ?
 				"thrusting fuel" : "reverse thrusting fuel");
-			if(cost > 0. && fuel < cost)
-				thrustCommand *= fuel / cost;
+			if(cost > 0. && fuel < cost * fabs(thrustCommand))
+				thrustCommand = copysign(fuel / cost, thrustCommand);
 
 			cost = -attributes.Get((thrustCommand > 0.) ?
 				"thrusting heat" : "reverse thrusting heat");
-			if(cost > 0. && heat < cost)
-				thrustCommand *= heat / cost;
+			if(cost > 0. && heat < cost * fabs(thrustCommand))
+				thrustCommand = copysign(heat / cost, thrustCommand);
 
 			if(thrustCommand)
 			{
@@ -4455,7 +4498,7 @@ double Ship::MinimumHull() const
 	if(neverDisabled)
 		return 0.;
 
-	double maximumHull = attributes.Get("hull");
+	double maximumHull = MaxHull();
 	double absoluteThreshold = attributes.Get("absolute threshold");
 	if(absoluteThreshold > 0.)
 		return absoluteThreshold;
@@ -4553,11 +4596,9 @@ double Ship::CalculateDeterrence() const
 		if(hardpoint.GetOutfit())
 		{
 			const Outfit *weapon = hardpoint.GetOutfit();
-			if(weapon->Ammo() && weapon->AmmoUsage() && !OutfitCount(weapon->Ammo()))
-				continue;
 			double strength = weapon->ShieldDamage() + weapon->HullDamage()
-				+ (weapon->RelativeShieldDamage() * attributes.Get("shields"))
-				+ (weapon->RelativeHullDamage() * attributes.Get("hull"));
+				+ (weapon->RelativeShieldDamage() * MaxShields())
+				+ (weapon->RelativeHullDamage() * MaxHull());
 			tempDeterrence += .12 * strength / weapon->Reload();
 		}
 	return tempDeterrence;

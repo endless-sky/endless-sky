@@ -1489,7 +1489,7 @@ mission "FW Pirates: Attack 3"
 			`	"Well maybe you'll be willing to explain yourself to the Senate," Alondo responds angrily. "Your orders were to escort me to Thule for a diplomatic mission, but now that I'm late and word of this has spread quickly, the people of Thule are not interested in negotiating. You know full well that you should not have come here, yet you did. You, Tomek, and every other captain who took part in this attack will be answering to the Senate shortly."`
 			
 			label emergency
-			`	Before anyone can continue arguing, JJ rushes into the tent. "Sorry to interrupt, but this little spat is going to need to wait. I just got word that our sensors on Hope have detected increased Naval fleet movements. It seems like they're getting ready for an assault."`
+			`	Before anyone can continue arguing, JJ rushes into the tent. "Sorry to interrupt, but this little spat is going to need to wait. I just got word that our sensors on Hope have detected increased Navy fleet movements. It seems like they're getting ready for an assault."`
 			`	"Have they entered our space?" Alondo asks.`
 			`	"No, not yet. Not even a single scout," says JJ.`
 			`	"Leave a small fleet here to maintain our occupation, but move the rest of our available forces to <system>," Tomek says, taking charge of the situation. "Recall the eastern patrols. They might arrive late to any battle, but they can at least act as reinforcements if necessary."`
@@ -1681,7 +1681,7 @@ mission "FW Pirates: Diplomacy 4"
 			label next
 			`	"So, what will happen to Tomek?" you ask.`
 			`	"That's for the Senate to decide," says JJ. "But he's a tactical genius. We'll need his advice, if this war turns worse."`
-			`	Just then, Alondo comes running onto your ship, looking particularly worried. "I hope I'm not interrupting anything too important, but I just received word that our sensors on Hope have detected increased Naval fleet movements. It seems like they're getting ready for an assault."`
+			`	Just then, Alondo comes running onto your ship, looking particularly worried. "I hope I'm not interrupting anything too important, but I just received word that our sensors on Hope have detected increased Navy fleet movements. It seems like they're getting ready for an assault."`
 			`	"Have they entered our space?" JJ asks.`
 			`	"No, not yet. Not even a single scout," says Alondo.`
 			`	"We should head to <planet> before deciding our next move," says Freya.`
