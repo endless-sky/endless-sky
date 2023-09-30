@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "UniverseObjects.h"
 
+#include "ConditionsStore.h"
 #include "DataFile.h"
 #include "DataNode.h"
 #include "Files.h"
@@ -498,9 +499,12 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 		}
 		else if(key == "?IF" && node.Size() >= 3)
 		{
-			if(node.Token(1) == "INSTALLED")
-				if(!Plugins::Get().Find(node.Token(2)))
+			if(node.Token(1) == "LOADED")
+			{
+				auto *plugin = Plugins::Get().Find(node.Token(2));
+				if(!plugin || !plugin->enabled)
 					return;
+			}
 		}
 		else
 			node.PrintTrace("Skipping unrecognized root object:");
