@@ -23,7 +23,7 @@ mission "Heliarch Investigation 1"
 		random < 65
 		"coalition jobs" >= 70
 		has "license: Coalition"
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting lunarium"
 	on offer
 		conversation
@@ -56,7 +56,7 @@ mission "Heliarch Investigation 2"
 	passengers 3
 	to offer
 		has "Heliarch Investigation 1: done"
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting lunarium"
 	to complete
 		has "Heliarch Investigation 2 - Mebla's Portion: done"
@@ -564,7 +564,7 @@ mission "Heliarch Recon 1"
 		has "visited planet: Kuwaru Efreti"
 		has "First Contact: Hai: offered"
 		has "license: Coalition"
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting lunarium"
 	to fail
 		"reputation: Quarg" < 0
@@ -682,7 +682,7 @@ mission "Heliarch Recon 2-A"
 	destination "Ring of Wisdom"
 	to offer
 		has "event: heliarch recon break"
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting lunarium"
 	to complete
 		has "outfit: Outfit Scanner"
@@ -716,7 +716,7 @@ mission "Heliarch Recon 2-B"
 	waypoint "Enif"
 	to offer
 		has "Heliarch Recon 2-A: done"
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting lunarium"
 	on offer
 		conversation
@@ -807,7 +807,7 @@ mission "Heliarch Recon 3-A"
 		has "Quarg Interrogation: offered"
 		has "Rim Archaeology 5B: active"
 		has "event: rim archaeology results"
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting lunarium"
 		"coalition jobs" >= 65
 	on offer
@@ -878,7 +878,7 @@ mission "Heliarch Recon 3-B"
 	to offer
 		has "Heliarch Recon 3-A: done"
 		not "Heliarch Recon 3-C: offered"
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "joined the heliarchs"
 		not "assisting lunarium"
 	on offer
@@ -1289,7 +1289,7 @@ mission "Heliarch Containment 1"
 	to offer
 		has "license: Coalition"
 		has "main plot completed"
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting lunarium"
 		"coalition jobs" >= 60
 		random > 25
@@ -1349,7 +1349,7 @@ mission "Heliarch Containment 2"
 	deadline
 	to offer
 		has "Heliarch Containment 1: done"
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting lunarium"
 		random > 35
 	on offer
@@ -1422,7 +1422,7 @@ mission "Heliarch Containment 3"
 	cargo "medication" 15
 	to offer
 		has "Heliarch Containment 2: done"
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting lunarium"
 	on offer
 		conversation
@@ -1476,7 +1476,7 @@ mission "Heliarch Containment 4-A"
 	to offer
 		has "event: plasma turret available"
 		has "Heliarch Containment 3: done"
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting lunarium"
 	on offer
 		conversation
@@ -1519,7 +1519,7 @@ mission "Heliarch Containment 4-B"
 	destination "Station Cian"
 	to offer
 		has "Heliarch Containment 4-A: done"
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting lunarium"
 	on offer
 		conversation
@@ -1544,7 +1544,7 @@ mission "Heliarch Containment 5"
 	source "Station Cian"
 	to offer
 		has "Heliarch Containment 4-B: done"
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting lunarium"
 	on offer
 		"reputation: Lunarium" = -1000
@@ -1616,7 +1616,7 @@ mission "Heliarch Drills 1"
 	destination "Belug's Plunge"
 	to offer
 		has "license: Coalition"
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting lunarium"
 		random < 8
 		"combat rating" >= 8104
@@ -1681,7 +1681,7 @@ mission "Heliarch Drills 2-A"
 	"apparent payment" 300000
 	to offer
 		has "Heliarch Drills 1: done"
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting lunarium"
 	on offer
 		conversation
@@ -1765,7 +1765,7 @@ mission "Heliarch Drills 2-B"
 	destination "Ashy Reach"
 	to offer
 		has "Heliarch Drills 2-A: done"
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting lunarium"
 	on offer
 		conversation
@@ -1843,7 +1843,7 @@ mission "Heliarch Drills 2-C"
 	destination "Belug's Plunge"
 	to offer
 		has "Heliarch Drills 2-B: done"
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting lunarium"
 	on offer
 		conversation
@@ -1997,7 +1997,7 @@ mission "Heliarch Drills 3"
 	waypoint "Torbab"
 	to offer
 		has "Heliarch Drills 2-C: done"
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting lunarium"
 	on offer
 		conversation
@@ -2065,13 +2065,11 @@ mission "Heliarch License 1"
 			and
 				"coalition jobs" >= 120
 				"assisted heliarch" == 3
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting heliarchy"
 		not "assisting lunarium"
 	to fail
-		has "Lunarium: Questions: done"
-	to complete
-		has "Heliarch License 2: declined"
+		has "joined the lunarium"
 	on offer
 		conversation
 			`When you land on <origin>, you find a Heliarch delegation waiting for you outside. When you meet them, the Saryd of the group says, "A great ally to our Coalition, you have proven to be."`
@@ -2085,7 +2083,7 @@ mission "Heliarch License 2"
 	source "Ring of Friendship"
 	to offer
 		has "Heliarch License 1: active"
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting lunarium"
 	on offer
 		conversation
