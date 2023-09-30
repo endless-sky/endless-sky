@@ -1049,7 +1049,8 @@ void PreferencesPanel::ProcessPluginIndex()
 		if(!Plugins::Download(PLUGIN_LIST_URL, Files::Config() + "plugins.json"))
 		{
 			GetUI()->Pop(GetUI()->Top().get());
-			GetUI()->Push(new Dialog(this, &PreferencesPanel::ProcessPluginIndex, "Failed to download plugin index, try again?"));
+			GetUI()->Push(new Dialog(this, &PreferencesPanel::ProcessPluginIndex,
+				"Failed to download plugin index, try again?"));
 			return;
 		}
 		ifstream pluginlistFile(Files::Config() + "plugins.json");
