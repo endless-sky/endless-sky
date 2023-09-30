@@ -2058,7 +2058,7 @@ mission "Heliarch License 1"
 	destination "Ring of Friendship"
 	to offer
 		or
-			"assisted heliarch" == 5
+			"assisted heliarch" >= 5
 			and
 				"coalition jobs" >= 90
 				"assisted heliarch" == 4
