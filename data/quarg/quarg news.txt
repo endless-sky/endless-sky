@@ -459,9 +459,9 @@ news "quarg anywhere"
 			`"If you ever observe some piece of our technology in the possession of someone else, please report it to us. We cannot allow our equipment to be in the wrong hands."`
 			`"You are welcome to be amongst us here, provided you seek no conflict with anyone on our worlds."`
 			`There's an eerie silence as a particularly large crowd of Quarg walks by you.`
-			`A group of Quarg is enthralled in what seems an engaging discussion, until one more Quarg comes to them. They all turn to it, after it says a quick sentences, they all get up in unison and move out to somewhere in the hangars.`
+			`A group of Quarg is enthralled in what seems an engaging discussion, until one more Quarg comes to them. They all turn to it, and after it says something quickly they all get up in unison and move to somewhere else in the hangars.`
 			`An older Quarg is playing with a much younger Quarg, young enough that it's still shorter than yourself. The strange game consists of passing to one another a jar with some slimy, metallic substance inside. Every time the jar is passed, the substance meshes itself into a different shape, sometimes into shapes you know not the meaning of.`
-			`Dozens of Quarg children are being led around by a handful of adults, like if in a school trip. When they notice you, they continue taking glances and talking among themselves. It seems they've never seen a human before.`
+			`Dozens of Quarg children are being led around by a handful of adults, like if on a school trip. When they notice you, they continue taking glances and talking among themselves. It seems they've never seen a human before.`
 
 news "ringworld quarg"
 	location
@@ -478,13 +478,13 @@ news "ringworld quarg"
 phrase "ringworld quarg phrases"
 	word
 		`You see a shorter, younger Quarg, likely a child in Quarg years, being shown around the ringworld by an adult. From the looks of it the parent is teaching it about the ring.`
-		`A Quarg is standing uncomfortably close to the walls, tapping it slowly with both palms. You observe it for a few minutes, until it stops abruptly, and goes about its business like the others.`
+		`A Quarg is standing uncomfortably close to the walls, tapping it slowly with both palms. You observe it for a few minutes, until it stops abruptly and goes about its business like the others.`
 		`Standard activity in the ringworld is stopped by a few dozen Quarg in heavily armored suits, moving in a quick pace and escorting a large, tube-like container which floats to accompany them. Other Quarg are quick to make way for the group, steering a great distance from them.`
 		`Some Quarg scientists are dragging along a whole train of linked lab carts, packed fully with utensils, chemicals, components and reagents. It takes nearly half an hour before you see the last of the carts pass by.`
-		`Hundreds of Quarg are blocking most of one of the largest, widest corridors in the ring. They're all sitting down on the floor, staring down blankly in complete silence, with a scarce few seldom glancing up to the ceiling, only to move their gaze downwards once again. Quarg who witness the scene stop any and all conversation, moving elsewhere.`
+		`Hundreds of Quarg are blocking most of one of the largest, widest corridors in the ring. They're all sitting down on the floor, staring down blankly in complete silence, with a scarce few seldom glancing up to the ceiling only to move their gaze downwards once again. You notice that Quarg who witness the scene stop all conversation and move elsewhere.`
 		`One Quarg walks up to you, and stares down into your eyes. It stays there in silence, just looking at you, before finally blinking once and moving along, disappearing into the ring's hallways.`
-		`A Quarg is overseeing the unloading of dozens of ship-sized cargo containers that have arrived in the ring. It seems to mentally count the cargo as it's moved out in perfectly identical sets. After what must've been thousands of cargo tons, it clicks off one of dozens of small dots on a data pad, and begins counting again.`
-		`Two Quarg ships land at the same time a few hangar bays away from one another. They open their hatches, and what must be the ships' entire crews come out. The crew of one ship heads to the other, and vice-versa. The crews each board the other's ship, and depart.`
+		`A Quarg is overseeing the unloading of dozens of ship-sized cargo containers that have arrived in the ring. It seems to mentally count the cargo as it's moved out in perfectly identical sets. After what must've been thousands of cargo tons, it clicks off one of dozens of small dots on a data pad and begins counting again.`
+		`Two Quarg ships land at the same time a few hangar bays away from one another. They open their hatches, and what must be the ships' entire crews come out. Without a hitch the crew of each ship boards the other's ship and depart.`
 		`The Quarg seem to have set up some form of festival in the ring: endless stands stretch out as far as you can see, all displaying variations of the same orange-like fruit, ranging from impossibly smooth to unbelievably wrinkled, and also from sizes as small as a pea to as large as a watermelon. You can't figure what quality they like best.`
 		`You see one Quarg turn a sharp corner in what's a haste by their standards. When you look into the corridor it went to, you see it's a dead end, with the Quarg having inexplicably vanished.`
 
