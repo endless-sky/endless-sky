@@ -34,11 +34,13 @@ mission "Lunarium: Smuggling: Charity 1"
 		has "Coalition: First Contact: done"
 		not "joined the heliarchs"
 		not "Lunarium: Questions: active"
+		not "Lunarium: Quarg Interview: active"
+		not "Lunarium: Join: active"
 		not "assisting heliarchy"
 	on offer
 		conversation
 			branch chiree
-				has "Lunarium: Questions: done"
+				has "joined the lunarium"
 			`A Kimek in a blue uniform approaches you. "Good day, Captain. Interested in helping with some charity work, would you be?" she asks.`
 			choice
 				`	"What sort of charity work?"`
@@ -78,7 +80,7 @@ mission "Lunarium: Smuggling: Charity 1"
 		payment 44000
 		conversation
 			branch chiree
-				has "Lunarium: Questions: done"
+				has "joined the lunarium"
 			`You find the local charity workers, and they begin unloading the supplies from your ship. When they're about done, you receive a transmission from the Kimek who gave you the job.`
 			`	"Grateful for your services I am, Captain. As simple as the job may seem to you, a great help for those in need, these deliveries are. Contact you again, we shall, if interested in helping more, you are," she says. Once the workers are done, they hand you <payment> and move the crates to a building where Kimek are lining up to receive the supplies. Other workers continue to unload more cargo from arriving ships.`
 				decline
@@ -101,11 +103,13 @@ mission "Lunarium: Smuggling: Charity 2"
 		has "Lunarium: Smuggling: Charity 1: done"
 		not "joined the heliarchs"
 		not "Lunarium: Questions: active"
+		not "Lunarium: Quarg Interview: active"
+		not "Lunarium: Join: active"
 		not "assisting heliarcy"
 	on offer
 		conversation
 			branch chiree
-				has "Lunarium: Questions: done"
+				has "joined the lunarium"
 			`As you make your way through the spaceport on <origin>, a Kimek in a blue uniform sees you and approaches. You recognize her as the charity worker who had you deliver some supplies to the poor Kimek world of Fourth Shadow.`
 			`	"Again we meet, Captain <last>! In some more charity work, are you interested?"`
 			choice
@@ -139,7 +143,7 @@ mission "Lunarium: Smuggling: Charity 2"
 		payment 132000
 		conversation
 			branch chiree
-				has "Lunarium: Questions: done"
+				has "joined the lunarium"
 			`More blue-uniformed workers are waiting when you land, though these uniforms consist of incredibly thick, bulky coats. They take the crates out of your ship while the doctors are directed to a hospital building, and <payment> are transferred to you when the workers are done. They thank you for your help and ask that you look for them in Kimek worlds if you wish to continue helping.`
 				decline
 			label chiree
@@ -159,11 +163,13 @@ mission "Lunarium: Smuggling: Charity 3"
 		has "Lunarium: Smuggling: Charity 2: done"
 		not "joined the heliarchs"
 		not "Lunarium: Questions: active"
+		not "Lunarium: Quarg Interview: active"
+		not "Lunarium: Join: active"
 		not "assisting heliarchy"
 	on offer
 		conversation
 			branch chiree
-				has "Lunarium: Questions: done"
+				has "joined the lunarium"
 			`A group of Kimek approach you in the spaceport. They are all in the blue uniforms of the charity you have been helping by transporting supplies and people. "Greetings, Captain <last>," one of them says. "Helped our charity before, you have. Interested in more work, are you?"`
 			choice
 				`	"What do you need me to do?"`
@@ -204,7 +210,7 @@ mission "Lunarium: Smuggling: Grenades"
 		conversation
 			`You drop off the crates full of charity goods, and the spaceport workers start getting them up on vehicles to transport them to the poor. One of the workers transfers 261,000 credits to your account, thanking you for the help.`
 			branch chiree
-				has "Lunarium: Questions: done"
+				has "joined the lunarium"
 			`	As they move the last few crates, you hear a rapid tapping approaching from behind, and as you turn to investigate a Kimek tackles you. Some more join in, covering your head with some dark sack, and start shoving you around once they restrain you. You call out for help, but nobody comes. The Kimek keep pushing and tugging at you as they bring you around the city. After many minutes, you hear some doors close behind you, and your captors force you into some cramped room or compartment. You try to stand up straight, but hit your head against the ceiling. It soon becomes clear you're in a descending elevator, and when it stops, you're walked around for a while longer. Finally, the Kimek seat you and remove the sack from your head.`
 			`	The insides remind you of an office building or call center; several Kimek are working in cubicles, most examining computer screens while others speak into communicators. You look back to where you reckon you came from, seeing the entrance to a short elevator by the end of a hallway. Coming around the corner, a Kimek you recognize approaches to sit opposite to you - the Kimek who first contacted you about the charity missions. A group of the blue uniformed Kimek follow after her as they bring a crate: one of the crates you transported here. "Forgive us for the discomfort you must, Captain," she says, as the workers open up the crate, revealing several Heliarch guns stuffed inside. "Wished to speak away from prying eyes, I did. Rest easy, you may, harm you, we will not."`
 			choice
@@ -597,7 +603,7 @@ mission "House Bebliss 2-FW"
 				`	"Thank you, but why exactly did you want to talk to me so badly?"`
 				`	"You asked me to come here for a job. What is the job?"`
 			branch lunarium
-				has "Lunarium: Questions: done"
+				has "joined the lunarium"
 			`	"The great House Bebliss, we represent. Maintain the local hyperspace communication network, our House does," he says as he swirls the drink in his cup before taking a sip.`
 			`	The other one jumps in. "Studied hyperspace links, for millennia we have. More recently, an application of such phenomena that would help the Coalition, we have searched for."`
 				goto choice
@@ -616,7 +622,7 @@ mission "House Bebliss 2-FW"
 					goto pug
 				`	"And how did the Heliarchy know?"`
 			branch "lunarium 2"
-				has "Lunarium: Questions: done"
+				has "joined the lunarium"
 			`	"In 'their' space, are you not? Scanned by their ships, you were. Subtly amassed, your flight records, your charted map of the galaxy, were," she finishes, and her and the other two look to you, waiting for your answer.`
 				goto "pug reveal"
 			label "lunarium 2"
@@ -652,7 +658,7 @@ mission "House Bebliss 2-FW"
 			label accept
 			`	When your hosts return, they hand you a small suitcase of sorts. "Translated our proposal into your language, we have," one of them says. "Bring that to Miss Freya, you must. Hopeful, we are, that willing to share the research material with us, she is."`
 			branch "lunarium 3"
-				has "Lunarium: Questions: done"
+				has "joined the lunarium"
 			`	"Also inside, certain... research papers are. A gift, she may consider it," the other adds.`
 				goto end
 			label "lunarium 3"
@@ -686,7 +692,7 @@ mission "House Bebliss 3-FW"
 			`You look around for Freya, asking the local dock workers where the people researching the Pug tech left on the planet are. They direct you to a quieter, less crowded place, where some warehouse complexes have been set up. Some are painted in the usual Syndicate colors, some are guarded by a few Navy troops, and a Free Worlds flag flies by the entrance of the one you enter. Inside, you see groups of people surrounding the various artifacts the Pug left behind. Some of them are running complicated looking tests, but it seems that they are mostly discussing what to do with the artifacts next. One of the graviton transmitters sits opposite to the entrance, half intact, half dismantled, with an array of scientists poking and prodding the inside machinery.`
 			`	Freya is atop a ladder near the transmitter when she sees you. She quickly hops down from her perch and runs toward you. "<first>! It's nice to see you again. What brings you here?" You tell her you have some important matters to discuss, and she has you follow her to an office-like room packed with tools and components.`
 			branch lunarium
-				has "Lunarium: Questions: done"
+				has "joined the lunarium"
 			label "don't tell"
 			`	You give her a rundown of the Coalition, explaining about the three species, the Heliarchs and their fight against the Quarg, and about who House Bebliss is, handing her the suitcase when you're done.`
 				goto suitcase
@@ -739,7 +745,7 @@ mission "House Bebliss 4-FW"
 			`	He beckons you to follow him to a traffic shuttle, which eventually brings you to a towering government building. As you get closer, you notice the main courtyard is home to a multitude of different colored flags, all of them situated around the Free Worlds' own. "Planetary flags," JJ says as you both get out of the shuttle. "Some of our planets created their own recently, and some of the more diplomatic folks decided to set them up around the major government buildings." Leaving the flags waving in the breeze, the three of you head inside the building and go up an elevator, arriving on a floor with a couple rooms to the side and a larger one opposite the elevator. You enter the larger room and see a nice wooden desk, which JJ heads to, sitting behind it, as Freya takes a seat on the sofa.`
 			`	"Well, here we are. What is this 'critical information' you've found, Captain <last>?"`
 			branch lunarium
-				has "Lunarium: Questions: done"
+				has "joined the lunarium"
 			choice
 				`	"Some more aliens."`
 					goto standard
@@ -957,7 +963,7 @@ mission "Lunarium: Evacuation 1"
 			label alright
 			`	One of them brings you to the Spire, sending a message as you two head there, and the hatch is opened right as you arrive. They thank you for helping, and rush to board their own ship and depart. You go up the Spire's ramp and meet some more Kimek from the company, who greet you and guide you through the ship. Halfway through a corridor, they stop and ask that you wait there. A different Kimek carring nearly a dozen different devices emerges from a side corridor, and the group begins patting and circling your body with the devices. You ask them what they're doing, but they don't respond. After every single one of the machines has finished its beeps and chirps around you, and the Kimek seem satisfied, they continue on. Surprisingly, they bring you not to the cockpit, but to one of the bunks, where a Kimek is talking with a Saryd man. Once she sees you're there, the Kimek gives a glance to the Saryd, and leaves with the others, leaving you two alone.`
 			branch lunarium
-				has "Lunarium: Questions: done"
+				has "joined the lunarium"
 			`	Middle-aged, the Saryd has little hair on his head and a dense beard. "Greetings, human friend. <first> <last> your name is, correct?" You nod. "Apologize I do, for the safety measures experienced, you must have. You see, rather sickly lately, I have been, and while usually fine around Kimek or Arach employees and passengers, wish to try my health against a Saryd or human disease, I did not. But, come to listen of my woes, you have not. Called Elirom, and owner of this company, I am. For those wishing to travel in leisure or for work, provide comfortable ships we do," he explains. "Run into some trouble, one of our ships has. Supposed to transport <bunks> students and teachers back to Second Viridian after their school trip was done, but now waiting for repairs for the ship's malfunctioning outfits, they are. Picked up by <date>, the students must be, so as to not miss their tests, but elsewhere busy, our other ships are. Pick them up in our stead, would you? <payment> from our company, you will receive."`
 			choice
 				`	"Sure, where am I picking them up from?"`
@@ -999,7 +1005,7 @@ mission "Lunarium: Evacuation 2"
 		conversation
 			`A line of Kimek, with some Saryds and Arachi in their midst, approach your ship shortly after you've finished landing. These must be the students. They are carrying very little luggage, and board your ship once you open the hatch. Given the young appearance of all of them, you struggle to guess which ones are the teachers. After the last of them comes in, you look outside for a while, confused. Only <bunks> came in, not the 35 that Elirom mentioned.`
 			branch lunarium
-				has "Lunarium: Questions: done"
+				has "joined the lunarium"
 			choice
 				`	"Weren't there 35 of you?"`
 				`	(Say nothing.)`
@@ -1025,7 +1031,7 @@ mission "Lunarium: Evacuation 2"
 		conversation
 			`Some of the local Kimek are waiting with transport vehicles for the students. They hand you <payment> once you step off your ship, and one of them appears to tick away at a list with each student that steps off your ship. After the last one leaves, he continues to look at your ship for a few seconds, then to the students, entering the vehicles. He strikes two lines, and thanks you for helping. Back inside your ship, you receive a call from Elirom.`
 			branch lunarium
-				has "Lunarium: Questions: done"
+				has "joined the lunarium"
 			`	"<last>! Thank you for helping, I must," he says. "Difficult it can be, when relying on contractors we are. Prefer to travel in ships of my company, our clients usually do. Glad I am, that no issues with the 35 of them, you had. If any more trouble with our usual transports, I have, ask for your services again I may."`
 			choice
 				`	"Sure thing, it's no problem helping with this."`
@@ -1064,7 +1070,7 @@ mission "Lunarium: Evacuation 3"
 	on offer
 		conversation
 			branch lunarium
-				has "Lunarium: Questions: done"
+				has "joined the lunarium"
 			`Walking around the spaceport for a few minutes, you're met by a pair of Saryds. "Captain <last>? Worked with our company before, you have. Helped with transporting a group of students, you had." You nod. "Another troubling situation, we have. Help us again, would you?" They point to a Kimek Spire, presumably the very same you boarded last time, parked at the edge of the local docks.`
 			choice
 				`	"Sure, lead the way."`
@@ -1115,7 +1121,7 @@ mission "Lunarium: Evacuation 4"
 		conversation
 			`The ranchers arrive to the hangars shortly after you land, most of them Arachi, with a few Saryds and Kimek in their midst. They come into your ship, all <bunks> of them present.`
 			branch lunarium
-				has "Lunarium: Questions: done"
+				has "joined the lunarium"
 			`	"All ready to leave, we are," one Arach tells you as most of the others head to find their bunks.`
 			choice
 				`	"Got it, we'll leave soon."`
@@ -1148,7 +1154,7 @@ mission "Lunarium: Evacuation 4"
 		conversation
 			`The Arachi, along with the scattered few Saryds and Kimek, are ready to leave your ship right as you land, thanking you briefly as each one leaves. The Arachi who seemed to be leading the group give you more of a farewell, chatting a bit, until they see a Kimek Spire - that you all guess to be Elirom's ship - approaching. They grunt, and leave with the rest. You head into the Spire and meet Elirom, who hands you <payment> while watching the group leave in transports via one of the cameras on the outside of the ship.`
 			branch lunarium
-				has "Lunarium: Questions: done"
+				has "joined the lunarium"
 			choice
 				`	"They didn't seem very happy to see you."`
 					goto happy1
@@ -1191,7 +1197,7 @@ mission "Lunarium: Evacuation 5"
 		payment 1387562
 		conversation
 			branch lunarium
-				has "Lunarium: Questions: done"
+				has "joined the lunarium"
 			`You receive a call seconds after you've touched down on <origin>. It's from Elirom, the Saryd who had you help transport some of his company's clients. "Captain <last>! Your help again, we need," he begins. "Hired us to bring them to their new home on Ablub's Invention, some immigrants from <destination> did. <bunks> in total. Only..." he looks down, his mouth struggling for words. "Fallen ill, the captain of the ship we had arranged for them has. Supposed to leave by <date>, they were, but get to <planet> in time, we cannot. You, however, a jump drive possess. Help us now, only you can, Captain."`
 			choice
 				`	"I'd be glad to help. I'll head there as quick as I can."`
@@ -1217,7 +1223,7 @@ mission "Lunarium: Evacuation 5"
 		conversation
 			`You are contacted by Elirom upon landing.`
 			branch lunarium
-				has "Lunarium: Questions: done"
+				has "joined the lunarium"
 			`	"Informed I was that manage to make it in time for the transport, you did not, Captain," he speaks in a much sterner tone than what you'd grown accustomed to. "Truly important for us, this job was. Helped us much, you have, but afraid I am that work together any longer, we will not. Goodbye."`
 			`	He signs off before you're able to explain your delay.`
 				decline
@@ -1241,7 +1247,7 @@ mission "Lunarium: Evacuation 6"
 		conversation
 			`The moment your ship touches down on the hangar you can already see a very large group of Saryds waiting. When you open your hatch, they rush in dozens at a time, and you catch some Kimek and Arachi in the middle, struggling to keep with the galloping mass. Once everyone is inside, you run a passenger count: only <bunks> of the 116 are on board. You look out, and see nobody else coming to your ship. One of the older Saryds approaches you, pressing the button to close the hatch. "Leave we must," he says. Looking back to the Saryd crowd, many of the adults are comforting their children. The sobs of one Saryd girl in particular drown out the others.`
 			branch lunarium
-				has "Lunarium: Questions: done"
+				has "joined the lunarium"
 			choice
 				`	"I was told there were 116 of you for me to pick up. We only have <bunks>."`
 				`	"Alright, we'll leave in a few minutes."`
@@ -1270,7 +1276,7 @@ mission "Lunarium: Evacuation 6"
 			`You receive a message from Elirom as you enter the planet's airspace, passing you some coordinates and instructing you to land there instead of the usual ports here. You come to a complex in the middle of a prairie, with a blue-ish metal building at its center. As you come down for a landing, you see Elirom's own ship is landed there.`
 			`	Just as quickly as they entered it, your passengers rush out of your ship, greeting and hugging some of the people waiting for them. One of them, Elirom, shyly watches from the Spire, not having come down the ramp yet. The older Saryd who was accompanying the crying Saryd girl leaves her side briefly once he sees him, walking at a quick pace toward Elirom. He grabs him by the shoulders and shouts something in the Saryd language, though no translators pick it up. When he lets go of his shoulders, he goes back to accompanying the girl, and Elirom stays put. You go to him, which prompts him to reach in a pocket and grab a bunch of credit chips, handing them to you. <payment>, in total. "Told you I did, that well paid you would be."`
 			branch lunarium
-				has "Lunarium: Questions: done"
+				has "joined the lunarium"
 			choice
 				`	"What were all of them so worked up about?"`
 				`	"What's really going on with you and your company?"`
@@ -1333,7 +1339,7 @@ mission "Lunarium: Propaganda 1"
 	on offer
 		conversation
 			branch lunarium
-				has "Lunarium: Questions: done"
+				has "joined the lunarium"
 			`The spaceport of <origin> looks different than the usual Saryd ports: several large posters with some form of badge or logo are scattered about, some fallen to the ground, others still sticking to the walls. As you pick one up to get a better look, an Arach approaches you. "Captain <last> you are, yes?" You nod. "Tummug, I am called. Caught your eye, I see that our posters have. Part of a group promoting new cultural festivals and movies, I am. A tiresome task at times, repetitive even, but always worth it, in the end, helping spread word of new art pieces is."`
 			choice
 				`	"What are these ones for?"`
@@ -1366,7 +1372,7 @@ mission "Lunarium: Propaganda 1"
 		conversation
 			`As you're still handling landing procedures, Tummug is organizing the posters in several smaller piles. "Make sure everyone has the same amount of posters, I must. Let any of them slack off, I will not," he banters. Your ship touches down on the hangar, and Tummug hands you <payment>. He makes a call, and minute after minute some Saryds start coming to your ship. You open the hatch, and he starts handing out a pile of posters to each one who comes in. The posters aren't all identical, though the imagery is pretty much the same in all of them: a dark, nine-pointed star, crumbling to pieces.`
 			branch lunarium
-				has "Lunarium: Questions: done"
+				has "joined the lunarium"
 			choice
 				`	"So what are these posters for?"`
 				`	"Do you really need that many posters?"`
@@ -1403,7 +1409,7 @@ mission "Lunarium: Propaganda 2"
 		conversation
 			`As before, you find the local spaceport decorated with Tummug's various posters, with some all over the walls and a few on the floor already. Either they were taken down or simply failed to stick to the wall properly. Most of the locals just glance at them, then continue on with their business; only a few pockets of people have formed near some of the posters, perhaps discussing the imagery. Some of the spaceport cleaning workers, on the other hand, take them down nonchalantly, though they don't seem to care too much about getting all the posters.`
 			branch lunarium
-				has "Lunarium: Questions: done"
+				has "joined the lunarium"
 			`	You find Tummug waiting for you in a cafe with some Saryds. "Ready to help us again are you, Captain?" he asks as you sit down.`
 			choice
 				`	"Where are we going now?"`
@@ -1434,7 +1440,7 @@ mission "Lunarium: Propaganda 2"
 		conversation
 			`As before, Tummug separates the banners into small piles as you're finishing your landing procedures. He hands you <payment> right before the first few Saryds leave with their piles, and a few local Arachi join them in picking up banners to distribute around their local neighborhoods. "Meet you in the spaceport again, we will," Tummug says as he finishes distributing the banners. Looking at his own pile, you see an image split with a sharp line running from top to bottom, with the drawing of an Arach collapsing under a scorching sun on the left side contrasted with one having a happy dinner under the moonlight on the right side. Some message in the Arach language is written out at the bottom, below the two images.`
 			branch lunarium
-				has "Lunarium: Questions: done"
+				has "joined the lunarium"
 			choice
 				`	"What does that say?"`
 				`	"Alright, I'll meet you at the spaceport in a few hours."`
@@ -1469,7 +1475,7 @@ mission "Lunarium: Propaganda 3"
 			`The spaceport on <origin> shows fewer of the banners than you expected, with only a few scattered about the walls. One Arach leaves their work building and gasps at the first banner they see, taking it down and throwing it in a bin. They seem stunned for a second, and look around in a hurry, right before scurrying off. Another Arach has a similar reaction to a different banner, but after pondering for a bit, leaves it alone and walks away.`
 			`	When you're done gauging the local reception to Tummug's banners, you go look for him. Eventually you arrive at a workshop, where he's talking with four other Arachi as they work on some small robots not too different from those employed in Arach hull repair systems. The only difference appears to be "wings" that the Arachi are testing by controlling them remotely. "Captain <last>!" Tummug exclaims when he notices you. "Apologize, I must, for not waiting for you in the spaceport. Caught up in testing the prototypes, we were."`
 			branch lunarium
-				has "Lunarium: Questions: done"
+				has "joined the lunarium"
 			choice
 				`	"What were you testing?"`
 				`	"What are those robots for?"`
@@ -1503,7 +1509,7 @@ mission "Lunarium: Propaganda 3"
 		conversation
 			`This time Tummug doesn't go on to split the flyers into various piles as you're landing. "Already arranged them in the boxes, we have," he says. He directs you to land in a lone hangar on one of the factories far from the city. Upon landing, several Kimek enter the hangar and start crating off the flyers and skywriting drones back to the factory, presumably to make sure they're all in working order. Tummug hands you <payment>, thanking you for bringing them here.`
 			branch lunarium
-				has "Lunarium: Questions: done"
+				has "joined the lunarium"
 			`	"Now Captain, fly the drones over the city we will. Only here to keep an eye on any issues they might have, and repair them, we are," he explains. "To better enjoy the show, head back to the main hangars closer to the city, you should. Once finished, we are, meet you in the spaceport I will. Some more cargo space and bunks, we'll need." You head to your ship, and fly it back to the city.`
 				goto end
 			label lunarium
@@ -1531,7 +1537,7 @@ mission "Lunarium: Propaganda 4"
 		conversation
 			`Tummug is quick to find you in the spaceport. He approaches you with the Arachi who helped him with the drones, as well as some Saryds and Kimek, all following behind him in a dash. "Delay you long this time I will not, Captain <last>," he says. "Headed to <destination> we are. Already arranged for what we'll need to be brought to your ship, I have."`
 			branch lunarium
-				has "Lunarium: Questions: done"
+				has "joined the lunarium"
 			`	He then tugs on your clothing as if asking you to bow down a bit, as he himself stretches up. "Leave at once, we must!" he whispers.`
 			`	You do your best to keep up as you run with them back to your ship, where they help some others load boxes and crates of promotional posters into your cargo hold. Strangely enough, you don't see any of the flyers that the drones rained from above earlier, or any sort of video displaying the skywriting on screens around the spaceport. Once the cargo is all in your ship, Tummug comes to say you'll receive <payment> for the job, and rushes inside your ship with the others.`
 				accept
@@ -1551,7 +1557,7 @@ mission "Lunarium: Propaganda 4"
 		conversation
 			`Tummug gives you the <payment> and starts working on opening up the crates and boxes with the others. By the time you open the hatch, they've only managed to open some of the crates, but it seems like they've called in several Saryds from the hangar to help unload the remaining boxes and move them elsewhere. You approach Tummug, who's still picking through the posters. The posters are emblazoned with images of Saryds, Kimek and Arachi jailed and imprisoned in cages made out of chains. Looking closely, you realize the "chains" are made out of circlets like those used by the Heliarchs. Your eyes go to Tummug, who's looking back at you.`
 			branch lunarium
-				has "Lunarium: Questions: done"
+				has "joined the lunarium"
 			choice
 				`	"What exactly are these for?"`
 					goto for
@@ -1612,7 +1618,7 @@ mission "Lunarium: Combat Training 1"
 		conversation
 			`After wandering the spaceport for a while, you notice a crowd of dozens of individuals heading to the hangars, specifically in what looks like the direction of your ship. A roughly equal number of Kimek and Arachi, with some Saryds as well, they stand in front of the <ship>, looking around as if searching for its captain. You approach them, and one of the Kimek, whose thorax and abdomen are slimmer than the usual for her species, meets you to speak for their group.`
 			branch lunarium
-				has "Lunarium: Questions: done"
+				has "joined the lunarium"
 			`	"There you are, Captain <last>," she greets you. "Pyakri, my name is, and looking for your transport services, me and my friends are. Talk in your ship, could we? Wish to discuss the details there, I do."`
 			choice
 				`	"Sure, let me get the hatch."`
@@ -1818,7 +1824,7 @@ mission "Lunarium: Combat Training 4"
 		conversation
 			`Shortly after you land, several groups come to meet some of the Lunarium members and escort them to their ships. They depart right away, while any remaining members leave straight for the city. "Gotten word of our return, the others have not yet, so wait here for more ships to bring them to the planet they normally operate from, they will," Pyakri explains.`
 			branch lunarium
-				has "Lunarium: Questions: done"
+				has "joined the lunarium"
 			`	"A great help you were, Captain. Train normally, against each other as in drills, we cannot, as risk the Heliarchs finding us, it would. Not very useful either, since fighting ships weak like our own, we will not be." She looks out to the others, preparing to head into the city herself. "Aware I am that joined up with us, you have not, Captain. Your choice, it is, whether you do help us further, help the Heliarchs, or just leave and never return. Just, ask you I do, that think well about it before deciding, you must." With that, she says goodbye, and follows the others into the city.`
 				accept
 			label lunarium
@@ -1840,7 +1846,7 @@ mission "Lunarium: Questions"
 	to offer
 		has "outfit: Jump Drive"
 		or
-			"assisted lunarium" == 5
+			"assisted lunarium" >= 5
 			and
 				"coalition jobs" >= 80
 				"assisted lunarium" == 4
@@ -1853,10 +1859,8 @@ mission "Lunarium: Questions"
 		not "assisting lunarium"
 	to fail
 		or
-			has "Heliarch License 1: done"
+			has "joined the heliarchs"
 			"reputation: Quarg" < 0
-	to complete
-		has "Lunarium: Quarg Interview: accepted"
 	on offer
 		conversation
 			`As you prepare to land on <origin>, your monitor starts producing a low hum, stops, then starts again. This keeps up for nearly a minute until a message pops up. "Captain <last>, come to trust you our comrades have, thanks to your consistent help to our cause. Interested we are in your continuous support, so that free the Coalition, together we can. To <destination> you must come, meet with you, our leaders will, so that discuss an important task with them, you may. An available bunk in your ship, you should have."`
@@ -1873,7 +1877,7 @@ mission "Lunarium: Quarg Interview"
 	destination "Lagrange"
 	to offer
 		has "Lunarium: Questions: active"
-		not "Heliarch License 1: done"
+		not "joined the heliarchs"
 		not "assisting heliarchy"
 	on offer
 		conversation
@@ -1958,6 +1962,7 @@ mission "Lunarium: Join"
 	landing
 	source "Lagrange"
 	destination "Remote Blue"
+	passengers 1
 	to offer
 		has "Lunarium: Quarg Interview: done"
 	on offer
@@ -1994,6 +1999,7 @@ mission "Lunarium: Join"
 	on visit
 		dialog `You've reached <planet>, but your escort bringing Oobat hasn't entered the system yet. Better depart and wait for it.`
 	on complete
+		set "joined the lunarium"
 		set "language: Coalition"
 		event "first lunarium unlock"
 		conversation
