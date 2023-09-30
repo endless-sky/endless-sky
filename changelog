@@ -4,7 +4,7 @@ Version 0.10.3
     * Loads of UI/UX changes and improvements. See the user interface section for more details.
   * Bug fixes:
     * Content bugs:
-      * Typo fixes. (@AlexSeaLion, @Arachi-Lover, @aradapilot, @ashdnazg, @bene-dictator, @justinnhli, @lumbar527, @Pshy0, @real-dam, @Saugia, @tibetiroka, @warp-core, @Wedge009)
+      * Typo fixes. (@AlexSeaLion, @Arachi-Lover, @aradapilot, @ashdnazg, @bene-dictator, @justinnhli, @lumbar527, @Pshy0, @real-dam, @roadrunner, @Saugia, @tibetiroka, @warp-core, @Wedge009)
       * Re-added the planet Eavine to the map, as it was accidentally removed in a previous release. (@warp-core)
       * Added the "inscrutable" attribute to a space creature that was missing it. (@Saugia)
       * Added the "unplunderable" attribute to the Lasher Pistol. (@Quantumshark)
@@ -28,6 +28,8 @@ Version 0.10.3
       * Fixed the source filter of the "Trash Fire Crops" mission to properly offer only on planets that are both farming and from the Dirt Belt. (warp-core)
       * Corrected the brown dwarf sprite in the system "Ae Il A-3" to the non-rogue variant. (@warp-core)
       * Recategorized the Heliarch license to the "License" category. (@DarcyManoel)
+      * Corrected the offer conditions of "Care Package to South 3a" so that it now properly offers. (@ziproot)
+      * Various fixes and improvements to the new Coalition storylines. (@Saugia, @warp-core)
     * Engine bugs:
       * Using hotkeys to search for the nearest asteroid no longer crashes the game. (@RisingLeaf)
       * Player escorts no longer appear as landed on the planet that the player landed on if they themselves could not land on that planet. (@TomGoodIdea)
@@ -63,6 +65,7 @@ Version 0.10.3
       * A valid CargoHold is now always returned when getting planetary storage, preventing segfaults. (@quyykk)
       * Fixed a race condition that could occur when drawing planet labels, causing them to flicker. (@quyykk)
       * Corrected the use of SDL_GetPrefPath in Files.cpp. (@quyykk)
+      * Fixed a lambda function that was unnecessarily copying the list of every active ship every frame instead of getting a reference to it. (@tibetiroka, @quyykk)
   * Game content:
     * New content:
       * New mission where you answer a distress call in Korath space. (@UnorderedSigh, @williaji)
@@ -79,7 +82,8 @@ Version 0.10.3
       * Bounty jobs now provide their payment the moment the bounty fleet is destroyed, instead of requiring that the player return to the offer location of the job to receive pay. (@Anarchist2)
       * Improved the wording in the description of "FW Bounty 1". (@m0ctave, @EjoThims)
       * Added the mission destination to the description of "Remnant: Cognizance 7". (@lumbar527)
-      * The Heliarch jump drive jobs now use the <payment> text replacement instead of spelling out the payment. (@Arachi-Lover, @tibetiroka )
+      * The Heliarch jump drive jobs now use the <payment> text replacement instead of spelling out the payment. (@Arachi-Lover, @tibetiroka)
+      * Removed a sentence that didn't make sense from the description of the secure package delivery job completion dialog. (@ziproot)
     * Balance:
       * Added weaponry to some human fighters to fit in the additional hardpoints that they were recently given. (@AvianGeneticist)
       * Increased the reputation gains with Unfettered sympathizers when doing Unfettered jobs. (@Hurleveur)
@@ -109,7 +113,6 @@ Version 0.10.3
       * Reduced the buff to engine space provided to the Marauder Leviathan and Falcon engine variants. (@Quantumshark)
         * Falcon: +55 to +25 (total of 220 to 190)
         * Leviathan: +80 to +40 (total of 220 to 180)
-    * Graphics:
     * Other:
       * Tweaked the wording of the description of the Vivid Aether planet. (@Zitchas)
       * Ringworld planets now have a "ringworld" attribute for missions to use. (@Quantumshark)
@@ -123,6 +126,7 @@ Version 0.10.3
         * You now gain 50% more reputation for assisting Hai ships.
       * Standardized the language used for attribute tooltips. (@tibetiroka)
       * Renamed the Hai's Railgun to the Skipper Railgun. (@Saugia)
+      * Gave a "noun" to the hallucination for use when the ship is scanned. (@warp-core)
   * Game mechanics:
     * New mechanics:
       * Fighters will now grab a chunk of energy from their carrier's batteries when they deploy if the fighter's energy reserves are not full. Useful for battery-only fighters. (@tibetiroka)
@@ -217,7 +221,7 @@ Version 0.10.3
     * Removed unnecessary and added missing #includes. (@quyykk)
     * Data changes from multiple events that occur on the same day are now batch-applied for performance purposes. (@quyykk)
   * CI/CD and development environment:
-    * Added some rudamentary checks for proper use of indefinite articles to the content style checker. (@tibetiroka)
+    * Added some rudimentary checks for proper use of indefinite articles to the content style checker. (@tibetiroka)
     * Added a link to the mobile port when creating new issues on Github. (@m0ctave)
     * Improved checking of quote style issues in the style checker. (@flowers9, @tibetiroka)
     * apt-get update is now run before apt-get install in CI jobs. (@MCOfficer)
