@@ -1932,15 +1932,16 @@ person "Patrol Team"
 
 	phrase
 		word
-			"You don't have to be a reviewer to review pull requests"
-			"Anyone can review a pull request"
-			"If you don't know how to help, try reviewing some pull requests"
-			"Suggestions are welcome on pull requests even if you aren't a reviewer"
-			"Oh! I found a typo here, so I'll review"
-			"Oh! I have an idea on how to rewrite this paragraph, so I'll review"
+			"You don't have to be a Reviewer to review pull requests"
+			"Anyone can review a pull request, even you"
+			"If you're unsure of how to help, try reviewing some pull requests"
+			"We welcome an alternative view to the reviews on the pull requests"
+			"If you spot a typo, do start a review"
+			"If you have an idea to make something better, do start a review"
 		word
 			"."
 			"!"
+
 	ship "Waverider" "Proofreader's Pain"
 		"never disabled"
 		add attributes
