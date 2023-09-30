@@ -168,6 +168,10 @@ government "Coalition"
 	"player reputation" 1
 	"attitude toward"
 		"Heliarch" 1
+	"friendly hail" "friendly coalition"
+	"friendly disabled hail" "friendly disabled heliarch"
+	"hostile hail" "hostile coalition"
+	"hostile disabled hail" "hostile disabled coalition"
 
 government "Deep"
 	swizzle 0
@@ -636,6 +640,16 @@ government "Heliarch"
 		"Quarg (Gegno)" -.01
 		"Coalition" 1
 
+government "Heliarch Test Dummy"
+	"display name" "Heliarch"
+	swizzle 0
+	color 1 .8 .5
+	"player reputation" -1000
+	"hostile hail" "heliarch test dummy"
+	"hostile disabled hail" "disabled heliarch test dummy"
+	"bribe" 0
+	"fine" 0
+
 color "governments: Independent" .78 .36 .36
 
 government "Independent"
@@ -728,6 +742,8 @@ government "Ka'het"
 		"Free Worlds" -.01
 		"Hai (Unfettered)" -.01
 		"Wanderer" -.01
+		"Coalition" -.01
+		"Heliarch" -.01
 	
 	"player reputation" -1
 
@@ -750,6 +766,8 @@ government "Ka'het (Infighting)"
 		"Free Worlds" -.01
 		"Hai (Unfettered)" -.01
 		"Wanderer" -.01
+		"Coalition" -.01
+		"Heliarch" -.01
 	
 	"player reputation" -1
 
@@ -862,6 +880,21 @@ government "Kor Sestor"
 		"Syndicate" -.01
 	
 	"player reputation" -1000
+
+government "Lunarium"
+	swizzle 2
+	"crew attack" 1.2
+	"crew defense" 2.7
+	language "Coalition"
+	"player reputation" 1
+	"friendly hail" "friendly lunarium"
+	"friendly disabled hail" "friendly disabled lunarium"
+	"hostile hail" "hostile lunarium"
+	"hostile disabled hail" "hostile disabled lunarium"
+	"attitude toward"
+		"Quarg" .01
+		"Heliarch" -.01
+		"Pirate" -.01
 
 government "Marauder"
 	swizzle 6
