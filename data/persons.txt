@@ -1930,6 +1930,17 @@ person "Patrol Team"
 			". Trust me! It works."
 			". You shouldn't do those things, though! I'm just kidding."
 
+	phrase
+		word
+			"You don't have to be a reviewer to review pull requests"
+			"Anyone can review a pull request"
+			"If you don't know how to help, try reviewing some pull requests"
+			"Suggestions are welcome on pull requests even if you aren't a reviewer"
+			"Oh! I found a typo here, so I'll review"
+			"Oh! I have an idea on how to rewrite this paragraph, so I'll review"
+		word
+			"."
+			"!"
 	ship "Waverider" "Proofreader's Pain"
 		"never disabled"
 		add attributes
