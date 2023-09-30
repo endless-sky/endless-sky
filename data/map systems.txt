@@ -34402,7 +34402,7 @@ system Yranjiu
 	arrival 5000
 	habitable 10550
 	belt 1478
-	"jump range" 70
+	"jump range" 30
 	haze _menu/haze-none
 	link Aierena
 	link Gaungu
