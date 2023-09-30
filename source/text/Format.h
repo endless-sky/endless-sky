@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef ES_TEXT_FORMAT_H_
 #define ES_TEXT_FORMAT_H_
 
+#include <cstdint>
 #include <functional>
 #include <map>
 #include <string>
