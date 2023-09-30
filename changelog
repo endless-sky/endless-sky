@@ -33,7 +33,7 @@ Version 0.10.3
     * Engine bugs:
       * Using hotkeys to search for the nearest asteroid no longer crashes the game. (@RisingLeaf)
       * Player escorts no longer appear as landed on the planet that the player landed on if they themselves could not land on that planet. (@TomGoodIdea)
-        * Fixed an error with this where landing on planets under certain circumstances, such as when losing mission clearance after landing, could cause no ship to be chosen as the player's flagship, stranding you on the planet. (@danaris, @warp-core)
+      * Fixed an error with this where landing on planets under certain circumstances, such as when losing mission clearance after landing, could cause no ship to be chosen as the player's flagship, stranding you on the planet. (@danaris, @warp-core)
       * The autopilot AI no longer attempts to make pointless turn commands when already in the process of jumping. (@Zitchas)
       * Escorts now properly offload their cargo on every landing. (@flowers9)
       * Map buttons no longer overlap on smaller screens. (@TomGoodIdea)
@@ -127,6 +127,7 @@ Version 0.10.3
       * Standardized the language used for attribute tooltips. (@tibetiroka)
       * Renamed the Hai's Railgun to the Skipper Railgun. (@Saugia)
       * Gave a "noun" to the hallucination for use when the ship is scanned. (@warp-core)
+      * Tweaked the limited jump ranges of some systems in Gegno and Rulei space. (@Saugia)
   * Game mechanics:
     * New mechanics:
       * Fighters will now grab a chunk of energy from their carrier's batteries when they deploy if the fighter's energy reserves are not full. Useful for battery-only fighters. (@tibetiroka)
