@@ -468,9 +468,10 @@ mission "HR: Call for Aid with Sandsnap"
 	name "Join an effort on <planet>"
 	job
 	repeat
-	description "Experienced combat pilots are requested to apply at the spaceport on <destination> for a project."
+	description "Experienced combat pilots are requested to apply at the spaceport on <destination> for a project to reactivate the Sandsnap station."
 	to offer
 		not "hr: sandsnap project"
+		not "Hai Reveal Concern Period: Reactivating Sandsnap: declined"
 	source
 		government "Hai"
 		not planet "Makerplace"
@@ -490,33 +491,77 @@ mission "Hai Reveal Concern Period: Reactivating Sandsnap"
 	destination "Sandsnap"
 	passengers 1
 	to offer
-		has "hr: allhome raided"
+		has "HR: Call for Aid with Sandsnap: accepted"
+	blocked `You are advised that participation in the Sandsnap Project will require at least 1 bunk free for passengers.`
 	on offer
 		conversation
-			`	Upon entering the spaceport you are immediately greeted by a worried hai, "You must be here for the project," he says, not giving you time to respond. He starts walking at a quick pace, with a gesture encouraging you to follow him. "Times are dire, it has been at least a hundred years since we have had such a threat to our way of life! You must have noticed the increased activity. Perhaps our brethren north were right in assuming evil intents."`
-			`	He stops himself, "I must be boring you with politics, let us cut to the matter at hand, shall we?"`
+			`	Entering the spaceport requires one to walk around a very large holosign giving directions to the Sandsnap Project's office.`
+			choice
+				`	(Check out the project.)`
+				`	(Come back later.)`
+					defer
+				`	(Ignore it, you've changed your mind.)`
+					decline
+			`	There is a greeter, or perhaps a security guard, at the door who appraises you as you approach. "You must be here for the project," he says, "Identification please."`
+			`	After a quick check of your ID  he gives you a very professional Hai smile. "Welcome to the Sandsnap project, your credentials are sufficient to apply so please, do come in. We hope you'll find the project interesting and the effort rewarding."`
+			`	As you enter a harried Hai gestures you over with enthusiasm. "Greetings," he checks his tablet. "Captain <last>! Your presence in these dire times is greatly appreciated, it has been at least a hundred years since we have had such a threat to our way of life! You must have noticed the spike in pirate activity. Perhaps our northern brethren have had a point all these years."`
+			`	He stops himself. "Not that our politics probably concern you, let us cut to the matter at hand, shall we?"`
 			choice
 				`	(Nod.)`
 					goto border
+				`	"What are you talking about?"`
 				`	"Not at all, I love politics."`
-			`	He seems surprised, "Oh. Well in that case, the Unfettered have been militarizing a lot in the last 20 years, forcing us to do the same in order to protect merchants from their raids. They may be right that we have grown weak, demonstrated by how easy those pirate raids were; we were simply not ready for them. But I will do everything to ensure this will not happen again. Mark my words, captain <last>, the Hai will wake up.`
+			`	He seems surprised, "Oh. Well in that case, the Unfettered have been militarizing a lot in the last 20 years, forcing us to do the same in order to protect merchants from their raids. They may be right that we have grown weak, if the success of those pirate raids is any indication; security forces were simply not ready for them. We here are in the business of ensuring this will not happen again. Mark my words, nothing like an arms manufacturer setting up a support base to really wake a few people up.`
 			label border
-			`	"The raids have proven that we are not prepared for an offensive on our borders. In order to address this, we want to repair the abandoned station of <destination>. We have already hired a few mercenaries to help with the defense of our station, most of them posing as human merchants. Once operational, the station should be a major strategic advantage for us, allowing fast resupply and repairs of ships." He stops in front of a very distinguished house, "This is the residence of our esteemed Stationkeeper. You will need to escort him to the station so he may make the necessary adjustments and assess exactly what kind of supplies are required. I'll leave you in her company," he says, heading of at a quick pace.`
+			`	"The raids have proven that we are not prepared to ensure true security on our borders. In order to address this we want to reactivate the mothballed station of <destination>, for which we have acquired the relevant paperwork and access codes. We have already hired a few mercenaries to help with the defense of our station, mostly local humans with experienced pasts. Once operational, the station should be a major strategic advantage for us, allowing resupply and repairs of ships at a location suitable for facilitating rapid response to detected threats."`
+			`	He indicates a door to another room, "The Stationkeeper will be out shortly. We're almost complete our final preparations, but we've been held up trying to make do with the firepower that's signed up so far. Judging by your credentials, I suspect the Stationkeeper will want to travel with you. You will need to escort them to the station and dock so they can confirm access codes function and there are no critical errors in the initial restoration process, as well as assess if any additional supplies are required."`
+			`	As soon as he finishes, the door opens and a number of people file out, including a well-dressed Hai who immediately stops next to you.`
 			choice
 				`	(Greet the Stationkeeper.)`
 					goto greet
-				`	(Bow before the Stationkeeper.`
-			`	She seems flattered, "There is no need, Captain, my station is not operational, and the same goes for the honor that was due to me. For now, anyway."`
+				`	(Bow to the Stationkeeper.`
+			`	She appears flattered in a Hai sort-of way. "There is no need, Captain, my station is not operational, and this is a business operation, not an appointed position. For now, anyway."`
 			label greet
-			`	You introduce yourself, "You may refer to me simply as the Stationkeeper. Now, if you don't mind, I have been waiting for this opportunity all my life, so I would really like to get going!" You show her to her bunks. She does not seem to be the talkative kind.`
+			`	You introduce yourself. "I am Kelamursh, but you should refer to me as Stationkeeper," she says in response. "Now, if you don't mind, I believe your arrival has solved our last remaining problems, putting us in good stead to depart momentarily. If I may see your ship's accommodation we'll make final preparations and depart in an hour or so."`
+			choice
+				`	"Let's go."`
+					goto depart
+				`	"We were getting paid for this right?"`
+			`	She blinks in surprise. "Of course, didn't they tell you? Nevermind, you can confirm the details with Heyru after I've checked your vessel."`
+			label depart
+			`	You show her to her bunks. She seems satisfied, and immediately begins calling people to get things sorted. She does not seem to be the kind for casual conversation.`
 				accept
 	on accept
 		set "hr: sandsnap project"
+		log "People" "Stationkeeper Kelamursh" `Kelamursh is a high-ranking employee in an arms manufacturing company. After the raids on Allhome she was entrusted with the responsibility of reactivating Sandsnap Station and taking on the role of Stationkeeper.`
 
+
+mission "HRCP: Sandsnap Mercenaries"
+	landing
+	invisible
+	source "Makerplace"
+	to offer
+		has "Hai Reveal Concern Period: Reactivating Sandsnap: accepted"
+	to complete
+		never
+	npc
+		government "Hai Merchant (Human)"
+		personality escort coward opportunistic vindictive
+		fleet
+			names "hai (human)"
+			variant
+				"Grasshopper (Ion)"
+				"Grasshopper (Tracker)"
+				"Headhunter (Hai)" 2
+				"Firebird (Hai Shields)"
+				"Firebird (Hai Weapons)"
+				"Lightning Bug (Pulse)"
+				"Corvette (Hai)"
+				"Leviathan (Hai Weapons)"
 
 
 mission "Hai Reveal Concern Period: Securing Sandsnap"
-	name "Defend the supply convoy on arrival."
+	name "Defend convoy arriving in <system>."
 	description "Keep <system> secure against pirates for the supply convoy so that they can reach <planet> safely."
 	landing
 	source "Sandsnap"
@@ -524,14 +569,21 @@ mission "Hai Reveal Concern Period: Securing Sandsnap"
 		has "hr: sandsnap project"
 	on offer
 		conversation
-			`	As you arrive you are greeted by a message requesting that you report to the operations center inside the main promenade. You proceed to equip your suit and exit your ship. The station itself is well preserved, except for the lack of atmosphere. Nothing seems to have vented it, no big hole in the ceiling, and the expansive ceiling windows of the main promenade provide a crystal clear view of the station's many decks towering above you. Exterior navigation lights are gradually flicking on up the height of the station, so that walking through feels like watching a ghost city slowly come to glittering life. Emergency floor lighting has been activated, showing you the way.`
-			`	Once through the operation center's security airlock you are able to remove your helmet. One Hai who appears to be in charge swiftly approaches from the other side. "Captain <last>! It is splendid you could make it here so quickly. We have begun the re-powering process, but it will take time and supplies to re-pressurize more than the docking and operations areas. These stations are not small."`
+			`	Upon arrival the Stationkeeper requests that you stay aboard your ship in case hostiles approach the station, while she suits up and goes aboard to run the access codes and start things up. You can see a selection of other Hai with various tools and equipment disembarking a few other ships in the process. Before long, main lighting comes on in the docking section and the team disappears inside.`
+			`	After a short while you receive a message requesting that you report to the operations center inside the main promenade. You proceed to equip your own suit and exit your ship. The station itself is well preserved, except for the lack of atmosphere. Nothing seems to have vented it, no big hole in the ceiling, and the expansive ceiling windows of the main promenade provide a crystal clear view of the station's many decks towering above you. Exterior navigation lights are gradually flicking on up the height of the station, so that walking through feels like watching a ghost city slowly come to glittering life. Emergency floor lighting has been activated, showing you the way.`
+			`	Once through the operation center's security airlock you are able to remove your helmet. Kelamursh's subordinate, who briefed you in the offices and appears to be in charge in this area, swiftly approaches from the other side. "Captain <last>! It is splendid you could make it here so quickly. We have begun the re-powering process, but it will take time and supplies to re-pressurize more than the docking and operations areas. These stations are not small."`
 			`	He chuckles as if having made a joke, as if you hadn't just walked beneath the open view of over three hundred decks above you. He seems oblivious to the strangeness of this, so perhaps it is a Hai thing.`
 			`	"I am sure you have questions but they will have to wait until we're more established. We have supplies coming and they will be vulnerable to any pirates that may poke their noses in. We need you to get out there and ensure the supplies can all arrive here safely. Local security is still about, so it shouldn't be too problematic."`
+			`	He collects a device from a carry crate and hands it to you. "Now that we've got the basics up and running, the station is in safe mode. You'll need to plug this into your communications system to re-dock safely. The supply convoy has them pre-installed."` 
 			choice
 				`	(Go immediately.)`
 					accept
 				`	(Loiter to find out more.)`
+					goto loiter
+				`	"What were we getting paid for this?"`
+			`	He frowns. "It was based on your ship's combat quality. I don't have that tablet with me right now though. Once the supply ships have arrived I should have access to that again. Now go on, you won't get paid at all if the supply ships don't make it."`
+				accept
+			label loiter
 			`	He blinks at you. "Well, what are you waiting for? Go! Come back when all the supply ships have arrived safely."`
 			`	You are left with little choice other than to nod and get on your way.`
 				accept
@@ -546,6 +598,11 @@ mission "Hai Reveal Concern Period: Securing Sandsnap"
 		personality escort timid
 		system "Ula Mon"
 		fleet "Large Hai Merchant" 3
+	npc
+		government "Pirate"
+		personality coward opportunistic vindictive
+		system "Waypoint"
+		fleet "Marauder fleet IX" 2
 	on complete
 		"reputation: Hai" += 200
 		"reputation: Hai (Wormhole Access)" += 200
@@ -553,9 +610,11 @@ mission "Hai Reveal Concern Period: Securing Sandsnap"
 		"reputation: Hai Merchant (Human)" += 200
 		"reputation: Hai Merchant (Sympathizers)" += 200
 		event "hr: sandsnap awoken" 5
+		fail "HRCP: Sandsnap Mercenaries"
+		payment ( "armament deterrence" * 18000 - "cargo attractiveness" * 3000 )
 		conversation
-			`Peeps are all set up, Sandsnap will help out a little.`
-			While suiting up, receive message to not bother. Thanks (and payment?) but still no time for answers.
+			`As you're re-docking behind the supply convoy, a message pings on your console. It contains a short text from "Heyru" thanking you for your assistance and advising that you've been sent a payment of <payment> for your efforts.`
+			`	It seems that the security mechanisms in the docking section have been reactivated, so they no longer need their mercenaries to hang around.`
 
 
 event "hr: sandsnap awoken"
@@ -564,7 +623,7 @@ event "hr: sandsnap awoken"
 		attributes hai station
 		landscape land/station35
 		music ambient/machinery
-		description `This station was recently repowered by a private military contractor to serve as a resupply and repair base that Hai warships can be stationed at to respond more rapidly to pirates entering the system. There has been a constant presence here since it was set up shortly after the pirate raids on Allhome.`
+		description `This station was recently re-powered by a private military contractor to serve as a resupply and repair base that Hai warships can be stationed at to respond more rapidly to pirates entering the system. There has been a constant presence here since it was set up shortly after the pirate raids on Allhome.`
 		spaceport `The operating model for the spaceport is evidently based on the military base at Everhope, but the station layout makes restricting portions of the promenade unfeasible. This leaves the dual-level promenade fully open to civilian access, with security restrictions in place at all access points to the higher levels. The floor has had new texturing laid down to prevent slipping, but nearly every other surface appears to be coated in a fine, sticky, metallic powder. Frequently touched surfaces have been polished clean, but any accidental contact with the powder results in leaving fingerprints on any non-metallic surface until thoroughly wiped off.`
 		bribe 0.8
 		security 0.8

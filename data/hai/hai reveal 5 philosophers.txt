@@ -114,7 +114,7 @@ mission "Hai Reveal [B02] Join the Fleet"
 			label prepare
 			`	She nods. "Very well, but don't take too long. We'll be waiting here for as long as we're able."`
 				defer
-	npc
+	npc accompany
 		government "Syndicate"
 		personality escort coward opportunistic vindictive
 		fleet
