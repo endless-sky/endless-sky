@@ -3750,6 +3750,19 @@ void Ship::DoGeneration()
 	// maximum capacity for the rest of the turn, but must be clamped to the
 	// maximum here before they gain more. This is so that, for example, a ship
 	// with no batteries but a good generator can still move.
+
+	// If some or all excess energy is due to "fuel energy", then run
+	// "fuel consumption" in reverse to "retcon" the energy generation.
+
+	if(attributes.Get("fuel consumption") > 0. && attributes.Get("fuel energy") > 0.)
+	{
+		double excessEnergy = energy - attributes.Get("energy capacity");
+		double fuelEnergy = -attributes.Get("fuel energy");
+		double fuelHeat = -attributes.Get("fuel heat");
+		doRepair(fuel, excessEnergy, attributes.Get("fuel consumption"), energy, fuelEnergy, 0., 0., heat, fuelHeat)
+	}
+
+	// However, this is no excuse to not explicitly cap the variables.
 	energy = min(energy, attributes.Get("energy capacity"));
 	fuel = min(fuel, attributes.Get("fuel capacity"));
 
