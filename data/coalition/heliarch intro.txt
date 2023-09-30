@@ -2087,7 +2087,7 @@ mission "Heliarch License 2"
 		not "assisting lunarium"
 	on offer
 		conversation
-			`The Heliarch authorities of the <origin> have offered you a position in the ranks of the Heliarchs. Would you like to meet with them and officially join the Heliarchy? Given their history with the Quarg, and the rumors of rebellion stirring in Coalition space, this would no doubt set you on path to conflict with the Quarg and the resistance forces.`
+			`The Heliarch authorities of the <origin> have offered you a position in the ranks of the Heliarchs. Would you like to meet with them and officially join the Heliarchy? Given their history with the Quarg, and the rumors of rebellion stirring in Coalition space, this would no doubt set you on a path to conflict with the Quarg and the resistance forces.`
 			choice
 				`	(Yes.)`
 				`	(Not yet.)`
