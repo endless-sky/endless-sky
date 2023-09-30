@@ -34,6 +34,8 @@ mission "Lunarium: Smuggling: Charity 1"
 		has "Coalition: First Contact: done"
 		not "joined the heliarchs"
 		not "Lunarium: Questions: active"
+		not "Lunarium: Quarg Interview: active"
+		not "Lunarium: Join: active"
 		not "assisting heliarchy"
 	on offer
 		conversation
@@ -101,6 +103,8 @@ mission "Lunarium: Smuggling: Charity 2"
 		has "Lunarium: Smuggling: Charity 1: done"
 		not "joined the heliarchs"
 		not "Lunarium: Questions: active"
+		not "Lunarium: Quarg Interview: active"
+		not "Lunarium: Join: active"
 		not "assisting heliarcy"
 	on offer
 		conversation
@@ -159,6 +163,8 @@ mission "Lunarium: Smuggling: Charity 3"
 		has "Lunarium: Smuggling: Charity 2: done"
 		not "joined the heliarchs"
 		not "Lunarium: Questions: active"
+		not "Lunarium: Quarg Interview: active"
+		not "Lunarium: Join: active"
 		not "assisting heliarchy"
 	on offer
 		conversation
