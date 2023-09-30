@@ -2082,7 +2082,7 @@ mission "Heliarch License 2"
 	invisible
 	source "Ring of Friendship"
 	to offer
-		has "Heliarch License 1: active"
+		has "Heliarch License 1: done"
 		not "joined the lunarium"
 		not "assisting lunarium"
 	on offer
