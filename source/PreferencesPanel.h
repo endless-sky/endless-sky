@@ -60,6 +60,7 @@ private:
 
 	void Exit();
 
+	void ProcessPluginIndex();
 
 private:
 	int editing;
@@ -81,12 +82,12 @@ private:
 
 	std::string selectedPlugin;
 
-	nlohmann::json pluginInstallList;
 	Plugins::InstallData selectedPluginInstall;
 	unsigned int pluginInstallPages = 1;
 	unsigned int currentPluginInstallPage = 0;
 	bool downloadedInfo = false;
 	std::vector<std::future<void>> installFeedbacks;
+	std::vector<Plugins::InstallData> pluginInstallData;
 
 	std::vector<ClickZone<Command>> zones;
 	std::vector<ClickZone<std::string>> prefZones;

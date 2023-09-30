@@ -210,13 +210,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		page = 'i';
 		if(!downloadedInfo)
 		{
-			if(!Plugins::Download(PLUGIN_LIST_URL, Files::Config() + "plugins.json"))
-				printf("Failed to download Plugin-List from %s\n", PLUGIN_LIST_URL.c_str());
-			ifstream pluginlistFile(Files::Config() + "plugins.json");
-			pluginInstallList = nlohmann::json::parse(pluginlistFile);
-			pluginInstallPages = ((pluginInstallList.size() - (pluginInstallList.size() % MAX_PLUGIN_INSTALLS_PER_PAGE))
-				/ MAX_PLUGIN_INSTALLS_PER_PAGE) + (pluginInstallList.size() % MAX_PLUGIN_INSTALLS_PER_PAGE > 0);
-			downloadedInfo = true;
+			ProcessPluginIndex();
 		}
 	}
 	else if(key == 'i' && page == 'i' && selectedPluginInstall.url.size() && !selectedPluginInstall.installed)
@@ -960,20 +954,10 @@ void PreferencesPanel::DrawPluginInstalls()
 	const Font &font = FontSet::Get(14);
 
 	const size_t currentPageIndex = MAX_PLUGIN_INSTALLS_PER_PAGE * currentPluginInstallPage;
-	const int maxIndex = min(currentPageIndex + MAX_PLUGIN_INSTALLS_PER_PAGE, pluginInstallList.size());
+	const int maxIndex = min(currentPageIndex + MAX_PLUGIN_INSTALLS_PER_PAGE, pluginInstallData.size());
 	for(int x = currentPageIndex; x < maxIndex; x++)
 	{
-		const auto &plugin = pluginInstallList.at(x);
-		const Plugin *installedVersion = Plugins::Get().Find(plugin["name"]);
-		bool isInstalled = installedVersion && !installedVersion->removed;
-		Plugins::InstallData installData(
-			plugin["name"],
-			plugin["url"],
-			plugin["version"],
-			plugin["description"],
-			isInstalled,
-			isInstalled && installedVersion->version != plugin["version"]
-		);
+		const Plugins::InstallData &installData = pluginInstallData.at(x);
 		if(!installData.name.size())
 			continue;
 		pluginInstallZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), installData);
@@ -981,9 +965,9 @@ void PreferencesPanel::DrawPluginInstalls()
 		bool isSelected = (installData.url == selectedPluginInstall.url);
 		if(isSelected)
 			table.DrawHighlight(back);
-		if(isInstalled && installedVersion->version != installData.version)
+		if(installData.installed && installData.outdated)
 			table.Draw(installData.name, outdated);
-		else if(isInstalled)
+		else if(installData.installed)
 			table.Draw(installData.name, dim);
 		else if(isSelected)
 			table.Draw(installData.name, bright);
@@ -1001,7 +985,7 @@ void PreferencesPanel::DrawPluginInstalls()
 			}
 			WrappedText wrap(font);
 			wrap.SetWrapWidth(MAX_TEXT_WIDTH);
-			wrap.Wrap(plugin["description"]);
+			wrap.Wrap(installData.aboutText);
 			wrap.Draw(top, medium);
 		}
 	}
@@ -1054,4 +1038,39 @@ void PreferencesPanel::Exit()
 	Command::SaveSettings(Files::Config() + "keys.txt");
 
 	GetUI()->Pop(this);
+}
+
+
+
+void PreferencesPanel::ProcessPluginIndex()
+{
+	installFeedbacks.emplace_back(async(launch::async, [&]() noexcept -> void {
+		GetUI()->Push(new Dialog("Downloading plugin index, please wait."));
+		if(!Plugins::Download(PLUGIN_LIST_URL, Files::Config() + "plugins.json"))
+		{
+			GetUI()->Pop(GetUI()->Top().get());
+			GetUI()->Push(new Dialog(this, &PreferencesPanel::ProcessPluginIndex, "Failed to download plugin index, try again?"));
+			return;
+		}
+		ifstream pluginlistFile(Files::Config() + "plugins.json");
+		nlohmann::json pluginInstallList = nlohmann::json::parse(pluginlistFile);
+		pluginInstallPages = ((pluginInstallList.size() - (pluginInstallList.size() % MAX_PLUGIN_INSTALLS_PER_PAGE))
+			/ MAX_PLUGIN_INSTALLS_PER_PAGE) + (pluginInstallList.size() % MAX_PLUGIN_INSTALLS_PER_PAGE > 0);
+		for(const auto &pluginInstall : pluginInstallList)
+		{
+			const Plugin *installedVersion = Plugins::Get().Find(pluginInstall["name"]);
+			bool isInstalled = installedVersion && !installedVersion->removed;
+			Plugins::InstallData installData(
+				pluginInstall["name"],
+				pluginInstall["url"],
+				pluginInstall["version"],
+				pluginInstall["description"],
+				isInstalled,
+				isInstalled && installedVersion->version != pluginInstall["version"]
+			);
+			pluginInstallData.emplace_back(installData);
+		}
+		downloadedInfo = true;
+		GetUI()->Pop(GetUI()->Top().get());
+	}));
 }
