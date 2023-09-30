@@ -1944,12 +1944,8 @@ person "Patrol Team"
 
 	ship "Waverider" "Proofreader's Pain"
 		"never disabled"
-		add attributes
-			"bunk" 4
 	ship "Waverider" "Art Critics' Regret"
 		"never disabled"
-		add attributes
-			"bunk" 2
 	ship "Waverider" "Code Herders' Curse"
 		"never disabled"
 		add attributes
@@ -1969,15 +1965,12 @@ person "Patrol Team"
 			"Asteroid Scanner"
 
 			"A120 Atomic Thruster"
-			"A125 Atomic Steering"
-			"A125 Atomic Steering"
+			"A125 Atomic Steering" 2
 			"Scram Drive"
 
 			"Emotional Baggage"
 	ship "Waverider" "Adjuncators' Blood"
 		"never disabled"
-		add attributes
-			"bunk" 3
 		outfits
 			"Particle Cannon" 4
 			"S-970 Regenerator"
@@ -1991,8 +1984,7 @@ person "Patrol Team"
 			"Asteroid Scanner"
 
 			"A120 Atomic Thruster"
-			"A125 Atomic Steering"
-			"A125 Atomic Steering"
+			"A125 Atomic Steering" 2
 			"Scram Drive"
 
 			"Emotional Baggage"
