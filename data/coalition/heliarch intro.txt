@@ -2019,17 +2019,22 @@ mission "Heliarch Drills 3"
 		personality disables staying nemesis heroic
 		system "Torbab"
 		ship "Heliarch Punisher (Scrappy)" "Awaiting Adversary"
-		on kill
+		on destroy
+			fail
+			"reputation: Heliarch" = -1000
+			"reputation: Coalition" = -1000
 			dialog `The Punisher's captain tries to hail you as the ship collapses around them, but you never get to hear their final cries. You have failed to simply disable the ship, and doomed the entire crew. It seems that you will not be welcome in Coalition space any longer.`
+		on board
+			fail
+			"reputation: Heliarch" = -1000
+			"reputation: Coalition" = -1000
+			dialog `Although you've disabled the Punisher, you decide to move in and board the ship in order to salvage it, breaking any trust the Heliarchs had in you. They, and the rest of the Coalition, will not be pleased with this.`
+		on capture
+			dialog `After a long, exhausting battle, you and your crew successfully capture the Punisher. With the captain's life on your hands, as well as most of her crew, the Coalition most certainly won't be welcoming you anymore.`
 	on accept
 		"assisting heliarchy" ++
-	# No reputation penalty for aborting this mission.
-	on abort
-		"assisting heliarchy" --
 	on fail
 		"assisting heliarchy" --
-		"reputation: Heliarch" = -1000
-		"reputation: Coalition" = -1000
 	on visit
 		dialog `You've landed on <planet>, but you have not disabled the <npc> yet. Disable it before returning.`
 	on complete
@@ -2040,9 +2045,6 @@ mission "Heliarch Drills 3"
 		conversation
 			`Magister Lotuora greets you when you return. "Prevailed over one of our Punishers, you have! Perhaps the real threat, you are, not the Quarg," she says, looking at you for a few seconds as if expecting you to laugh. She hands you <payment>, and continues, "Sent a recording of the fight, I was. Learn much from it, I hope we can."`
 			`	She thanks you for helping her with the drills, saying it will be a great help in training the cadets at the local academy. She concludes by wishing you safe travels, and then heads to a Heliarch building.`
-		
-
-
 
 mission "Heliarch License 1"
 	minor
