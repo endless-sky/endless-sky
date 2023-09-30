@@ -155,7 +155,7 @@ mission "Hai Reveal Exploration Period: Local Human Merchants Speak Up"
 		conversation
 			branch "last go"
 				"HREP: Local Human Merchants (defer count)" = 2
-			` While organizing your ship to be refueled, a distinctly not-Hai conversation that the captain of the ship parked in the next bay is having with one of his crew can be heard.`
+			`While organizing your ship to be refueled, a distinctly not-Hai conversation that the captain of the ship parked in the next bay is having with one of his crew can be heard.`
 			`	They look like they're almost ready to depart.`
 			choice
 				`	(Approach them.)`
@@ -189,7 +189,7 @@ mission "Hai Reveal Exploration Period: Local Human Merchants Speak Up"
 			`	As he stomps off he points at you. "Just remember, your lot are making our lives harder. Keep it up and something's gonna go wrong." He seals the airlock behind himself before giving you a chance to respond.`
 				decline
 			label "not new"
-			`	 "Ahah, you'll know what I'm talking about then, Captain." He glances back at his crewman. "All these new folks in their clunkers from Lionheart and whatnot. Filling up the space lanes and splitting the already meager profits."`
+			`	"Ahah, you'll know what I'm talking about then, Captain." He glances back at his crewman. "All these new folks in their clunkers from Lionheart and whatnot. Filling up the space lanes and splitting the already meager profits."`
 			choice
 				`	"I suppose..."`
 					goto "no callout"
@@ -555,7 +555,7 @@ mission "Hai Reveal Concern Period: Reactivating Sandsnap"
 				`	(Ignore it, you've changed your mind.)`
 					decline
 			`	There is a greeter, or perhaps a security guard, at the door who appraises you as you approach. "You must be here for the project," he says, "Identification please."`
-			`	After a quick check of your ID  he gives you a very professional Hai smile. "Welcome to the Sandsnap project, your credentials are sufficient to apply so please, do come in. We hope you'll find the project interesting and the effort rewarding."`
+			`	After a quick check of your ID he gives you a very professional Hai smile. "Welcome to the Sandsnap project, your credentials are sufficient to apply so please, do come in. We hope you'll find the project interesting and the effort rewarding."`
 			`	As you enter a harried Hai gestures you over with enthusiasm. "Greetings," he checks his tablet. "Captain <last>! Your presence in these dire times is greatly appreciated, it has been at least a hundred years since we have had such a threat to our way of life! You must have noticed the spike in pirate activity. Perhaps our northern brethren have had a point all these years."`
 			`	He stops himself. "Not that our politics probably concern you, let us cut to the matter at hand, shall we?"`
 			choice
@@ -626,7 +626,7 @@ mission "Hai Reveal Concern Period: Securing Sandsnap"
 			`	Once through the operation center's security airlock you are able to remove your helmet. Kelamursh's subordinate, who briefed you in the offices and appears to be in charge in this area, swiftly approaches from the other side. "Captain <last>! It is splendid you could make it here so quickly. We have begun the re-powering process, but it will take time and supplies to re-pressurize more than the docking and operations areas. These stations are not small."`
 			`	He chuckles as if having made a joke, as if you hadn't just walked beneath the open view of over three hundred decks above you. He seems oblivious to the strangeness of this, so perhaps it is a Hai thing.`
 			`	"I am sure you have questions but they will have to wait until we're more established. We have supplies coming and they will be vulnerable to any pirates that may poke their noses in. We need you to get out there and ensure the supplies can all arrive here safely. Local security is still about, so it shouldn't be too problematic."`
-			`	He collects a device from a carry crate and hands it to you. "Now that we've got the basics up and running, the station is in safe mode. You'll need to plug this into your communications system to re-dock safely. The supply convoy has them pre-installed."` 
+			`	He collects a device from a carry crate and hands it to you. "Now that we've got the basics up and running, the station is in safe mode. You'll need to plug this into your communications system to re-dock safely. The supply convoy has them pre-installed."`
 			choice
 				`	(Go immediately.)`
 					accept
