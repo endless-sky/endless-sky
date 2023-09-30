@@ -47,7 +47,7 @@
     </screenshot>
   </screenshots>
   <releases>
-    <release version="0.10.3" date="2023-9-30" type="development" urgency="low">
+    <release version="0.10.3" date="2023-09-30" type="development" urgency="low">
       <description>
         <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
         <p>The biggest change is the addition of over 50 new missions in the Coalition as part of the introductions to the Heliarch and Lunarium campaigns. Through these, you can unlock access to either some of the Heliarch weapons, or some new outfits for the Lunarium to aid in their subversive efforts.</p>
