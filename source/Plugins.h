@@ -89,11 +89,11 @@ public:
 	static void TogglePlugin(const std::string &name);
 
 	// Install or update or delete a plugin.
-	static std::future<void> Install(const InstallData &installData, bool guarded = false);
+	static std::future<void> Install(const InstallData &installData, bool update = false);
 	static std::future<void> Update(const InstallData &installData);
 	static void DeletePlugin(const std::string &pluginName);
 
-	static bool Download(std::string url, std::string location);
+	static bool Download(const std::string &url, const std::string &location);
 };
 
 

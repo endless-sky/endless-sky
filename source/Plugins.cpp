@@ -102,7 +102,7 @@ namespace {
 		}
 	}
 
-	bool ExtractZIP(std::string filename, std::string destination, std::string expectedName)
+	bool ExtractZIP(std::string &filename, const std::string &destination, const std::string &expectedName)
 	{
 		int flags = ARCHIVE_EXTRACT_TIME;
 		flags |= ARCHIVE_EXTRACT_PERM;
@@ -335,17 +335,17 @@ void Plugins::TogglePlugin(const string &name)
 
 
 
-future<void> Plugins::Install(const InstallData &installData, bool guarded)
+future<void> Plugins::Install(const InstallData &installData, bool update)
 {
 	oldNetworkActivity = true;
-	if(!guarded)
+	if(!update)
 	{
 		lock_guard<mutex> guard(activePluginsMutex);
 		if(!activePlugins.insert(installData.name).second)
 			return future<void>();
 	}
 
-	return async(launch::async, [installData]() noexcept -> void
+	return async(launch::async, [installData, update]() noexcept -> void
 		{
 			string zipLocation = Files::Plugins() + installData.name + ".zip";
 			bool success = Download(installData.url, zipLocation);
@@ -356,6 +356,8 @@ future<void> Plugins::Install(const InstallData &installData, bool guarded)
 					Files::Plugins(), installData.name + "/");
 				if(success)
 				{
+					if(update)
+						Files::DeleteDir(Files::Plugins() + installData.name);
 					// Create a new entry for the plugin.
 					Plugin *newPlugin;
 					{
@@ -395,7 +397,6 @@ future<void> Plugins::Update(const InstallData &installData)
 		plugins.Get(installData.name)->version = installData.version;
 	}
 
-	Files::DeleteDir(Files::Plugins() + installData.name);
 	return Install(installData, true);
 }
 
@@ -419,7 +420,7 @@ void Plugins::DeletePlugin(const std::string &pluginName)
 
 
 
-bool Plugins::Download(std::string url, std::string location)
+bool Plugins::Download(const std::string &url, const std::string &location)
 {
 	CURL *curl = curl_easy_init();
 	if(!curl)
