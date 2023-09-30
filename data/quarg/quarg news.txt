@@ -445,7 +445,8 @@ news "student on quarg planets"
 
 news "quarg anywhere"
 	location
-		government "Quarg"
+		attributes "quarg" "human quarg" "hai quarg"
+		not attributes "korath quarg" "gegno quarg"
 	name
 		word
 			"Quarg"
@@ -465,8 +466,9 @@ news "quarg anywhere"
 
 news "ringworld quarg"
 	location
-		government "Quarg"
+		attributes "quarg"
 		attributes "station"
+		not planet "Lagrange"
 	name
 		word
 			"Quarg"
