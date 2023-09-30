@@ -537,8 +537,8 @@ mission "HR: Call for Aid with Sandsnap"
 
 mission "Hai Reveal Concern Period: Reactivating Sandsnap"
 	priority
-	name "Transport the Stationkeeper to Sandsnap."
-	description "Travel to <destination> and safely deliver the Stationkeeper to reactivate the station."
+	name "Transport the Stationkeeper to <planet>."
+	description "Safely bring the Stationkeeper to <destination> to reactivate the station."
 	source "Makerplace"
 	destination "Sandsnap"
 	passengers 1
