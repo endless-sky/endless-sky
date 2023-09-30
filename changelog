@@ -1,6 +1,6 @@
 Version 0.10.3
   * Big changes:
-    * The introdutory chapters for TWO storylines in Coalition space are now available, allowing the player to either gain the favor of the Heliarchy or become entangled with the underground Lunarium faction. (@Arachi-Lover)
+    * The introductory chapters for TWO storylines in Coalition space are now available, allowing the player to either gain the favor of the Heliarchy or become entangled with the underground Lunarium faction. (@Arachi-Lover)
     * Loads of UI/UX changes and improvements. See the user interface section for more details.
   * Bug fixes:
     * Content bugs:
@@ -67,7 +67,7 @@ Version 0.10.3
     * New content:
       * New mission where you answer a distress call in Korath space. (@UnorderedSigh, @williaji)
       * More human spaceport news. (@dorbarker, @tibetiroka)
-      * Added new humanitarion aid jobs to human space. (@dorbarker)
+      * Added new humanitarian aid jobs to human space. (@dorbarker)
       * Added a warning for when you've upset Unfettered sympathizers. (@MasterOfGrey)
       * New mission where you take war refugees to Humanika. (@dseomn)
       * New pre-war missions that help lead people to the start of the Free Worlds campaign if they're traveling elsewhere in the galaxy. (@danaris)
@@ -99,7 +99,7 @@ Version 0.10.3
         * Afterburners are unchanged.
       * Reduced the cost of the supercapacitor from 9,000 credits to 1,500, to bring it closer in line with other human batteries while still having a slight "premium" for its tiny size. (@Zitchas)
       * Removed a few ship variants from the pirate raid fleet that had high damage weapons not conducive to disabling their target. (@Zitchas)
-      * The Ka'het Nullifier has been rebalanced to more effective disable targets by draining their energy. (@beccabunny)
+      * The Ka'het Nullifier has been rebalanced to more effectively disable targets by draining their energy. (@beccabunny)
         * Energy damage from 0 to 3200. This is energy which is immediately removed from the target's batteries on impact.
         * Ion damage from 150 to 220. This is lingering energy loss that results in about 22,000 energy lost over the course of the next ten seconds after impact.
         * Scrambling damage from 150 to 10. This causes the Nullifier to have much less of an effect on the target's weapons, instead relying on its much greater energy and ion damage.
@@ -153,7 +153,7 @@ Version 0.10.3
         * The scan time is now always 2 seconds at the best and 10 seconds at the worst.
         * Scan speed now follows a gaussian decay as distance increases.
         * Scan time increases with cargo hold or outfit space size with the 2/3rd power of the size instead of linearly.
-      * Pirate raid deterence no longer looks at whether you have ammo in your launchers. (@TomGoodIdea)
+      * Pirate raid deterrence no longer looks at whether you have ammo in your launchers. (@TomGoodIdea)
       * Fleets can now spawn from any section of a ringworld instead of only ever spawning from the same section. (@quyykk)
       * Cooling is no longer disabled when a ship becomes overheated. (@QuantumShark)
       * The player now always launches from the same section of the ringworld that they landed on instead of only ever departing from the same section. (@quyykk)
@@ -174,10 +174,10 @@ Version 0.10.3
     * Added a "landing zoom" UI setting that zooms the camera in or out when landing on or launching from a planet. (@flowers9)
     * Human engines in the outfitter are now ordered according to the engine set that they come from, from smallest to largest, and listed with steering before thrusters, instead of purely alphabetically. (@warp-core)
     * The color of a wormhole's link on the map is now also used when that wormhole is a part of the travel plan. (@RisingLeaf, @warp-core)
-    * Increased the amount of motion blur that occurs to the background while hyperspacing. This can be toggled in the settings under the "extended jump effects" preference. (@Koranir)
+    * Increased the amount of motion blur that occurs in the background while hyperspacing. This can be toggled in the settings under the "extended jump effects" preference. (@Koranir)
     * The map can now be opened from the shipyard or outfitter. (@TomGoodIdea)
     * Externally docked fighters are now drawn in the hail panel when hailing a carrier. (@TomGoodIdea)
-    * The auto-selection of available jobs when you accept one job now moves to the next available job for the destination instead of reseting back to the top of the list of jobs for that destination. (@flowers9)
+    * The auto-selection of available jobs when you accept one job now moves to the next available job for the destination instead of resetting back to the top of the list of jobs for that destination. (@flowers9)
     * Added a preference to blink the map mission marker for missions with a deadline more quickly if you have fewer extra days to reach the destination compared to the minimum number of days necessary to reach it. The default behavior is to simply blink based on the number of days until the deadline. (@TomGoodIdea)
     * The player will now be warned when taking off if they don't have enough cargo space for outfits that are marked as in cargo. (@flowers9, @warp-core)
     * Buttons on the planet panel when you are landed no longer disappear if you don't have a flagship. (@flowers9)
