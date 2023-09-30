@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Files.h"
 #include "Information.h"
 #include "Logger.h"
+#include "Plugins.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 
@@ -494,6 +495,12 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 			}
 			else
 				node.PrintTrace("Invalid use of keyword \"disable\" for class \"" + category + "\"");
+		}
+		else if(key == "?IF" && node.Size() >= 3)
+		{
+			if(node.Token(1) == "INSTALLED")
+				if(!Plugins::Get().Find(node.Token(2)))
+					return;
 		}
 		else
 			node.PrintTrace("Skipping unrecognized root object:");
