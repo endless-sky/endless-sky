@@ -35,7 +35,7 @@ struct Plugin {
 	// The about text, if any, of this plugin.
 	std::string aboutText;
 	// The version of this plugin, importanted if it has been installed over ES.
-	std::string version = "1.0";
+	std::string version = "???";
 
 	// Whether this plugin was enabled, i.e. if it was loaded by the game.
 	bool enabled = true;
