@@ -1962,6 +1962,7 @@ mission "Lunarium: Join"
 	landing
 	source "Lagrange"
 	destination "Remote Blue"
+	passengers 1
 	to offer
 		has "Lunarium: Quarg Interview: done"
 	on offer
