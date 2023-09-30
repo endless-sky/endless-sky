@@ -1607,7 +1607,7 @@ mission "Lunarium: Combat Training 1"
 		or
 			has "Lunarium: Propaganda 4: done"
 			has "Lunarium: Evacuation 6: done"
-			has "Lunarium: Reactors: done"
+			has "Lunarium: Smuggling: Reactors: done"
 		and
 			or
 				not "event: fw suppressed Greenrock"
