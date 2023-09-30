@@ -1840,7 +1840,7 @@ mission "Lunarium: Questions"
 	to offer
 		has "outfit: Jump Drive"
 		or
-			"assisted lunarium" == 5
+			"assisted lunarium" >= 5
 			and
 				"coalition jobs" >= 80
 				"assisted lunarium" == 4
