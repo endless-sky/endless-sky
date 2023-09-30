@@ -1876,7 +1876,7 @@ mission "Lunarium: Quarg Interview"
 	source "Remote Blue"
 	destination "Lagrange"
 	to offer
-		has "Lunarium: Questions: active"
+		has "Lunarium: Questions: done"
 		not "joined the heliarchs"
 		not "assisting heliarchy"
 	on offer
