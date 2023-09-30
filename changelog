@@ -29,7 +29,7 @@ Version 0.10.3
       * Corrected the brown dwarf sprite in the system "Ae Il A-3" to the non-rogue variant. (@warp-core)
       * Recategorized the Heliarch license to the "License" category. (@DarcyManoel)
       * Corrected the offer conditions of "Care Package to South 3a" so that it now properly offers. (@ziproot)
-      * Various fixes and improvements to the new Coalition storylines. (@Saugia, @warp-core)
+      * Various fixes and improvements to the new Coalition storylines. (@quyykk, @Saugia, @warp-core)
     * Engine bugs:
       * Using hotkeys to search for the nearest asteroid no longer crashes the game. (@RisingLeaf)
       * Player escorts no longer appear as landed on the planet that the player landed on if they themselves could not land on that planet. (@TomGoodIdea)
