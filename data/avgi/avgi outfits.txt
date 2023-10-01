@@ -30,7 +30,7 @@ outfit "Ultrarelativistic Electron Beam"
 		sprite "projectile/ion rain"
 			"frame rate" 30
 			"no repeat"
-		sound "speckle"
+		sound "dragonflame"
 		"fire effect" "speck fire"
 		"inaccuracy" 0.6
 		"reload" 60
@@ -1357,7 +1357,7 @@ outfit "Z-600 Fusion Torch"
 	"drag reduction" 2
 	"flare sprite" "effect/avgi flare/fusion"
 		"frame rate" 15
-	"flare sound" "flamethrower"
+	"flare sound" "remnant afterburner"
 
 	"afterburner thrust" 198
 	"afterburner fuel" 0.3
@@ -1395,17 +1395,17 @@ outfit "Z-960 Fusion Torch"
 effect "small remass injection"
 	sprite "effect/avgi flare/afterburner"
 		"frame rate" 30
-	sound "remnant afterburner"
+	sound "flamethrower"
 
 effect "medium remass injection"
 	sprite "effect/avgi flare/afterburner"
 		"frame rate" 30
-	sound "remnant afterburner"
+	sound "flamethrower"
 
 effect "large remass injection"
 	sprite "effect/avgi flare/afterburner"
 		"frame rate" 30
-	sound "remnant afterburner"
+	sound "flamethrower"
 
 
 outfit "XY-180 Radial Thrusters"
