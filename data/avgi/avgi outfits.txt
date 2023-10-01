@@ -1395,6 +1395,7 @@ outfit "Z-960 Fusion Torch"
 effect "small remass injection"
 	sprite "effect/avgi flare/afterburner"
 		"frame rate" 30
+		"scale" 0.75
 	sound "flamethrower"
 
 effect "medium remass injection"
@@ -1405,6 +1406,7 @@ effect "medium remass injection"
 effect "large remass injection"
 	sprite "effect/avgi flare/afterburner"
 		"frame rate" 30
+		"scale" 2
 	sound "flamethrower"
 
 
