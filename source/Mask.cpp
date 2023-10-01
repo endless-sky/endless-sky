@@ -28,7 +28,8 @@ namespace {
 	// Trace out outlines from an image frame.
 	void Trace(const ImageBuffer &image, int frame, vector<vector<Point>> &raw)
 	{
-		const uint32_t on = 0xFF000000;
+		// Threshold for a pixel to count as transparent for outlining purposes. Defaults to 50%.
+		const uint32_t on = 0x80000000;
 		const int width = image.Width();
 		const int height = image.Height();
 		const int numPixels = width * height;
@@ -52,7 +53,7 @@ namespace {
 			// Find a pixel with some renderable color data (i.e. a non-zero alpha component).
 			for( ; start < numPixels; ++start)
 			{
-				if(begin[start] & on)
+				if(begin[start] && begin[start] >= on)
 				{
 					// If this pixel is not part of an existing outline, trace it.
 					if(!hasOutline[start])
@@ -60,7 +61,7 @@ namespace {
 					// Otherwise, advance to the next transparent pixel.
 					// (any non-transparent pixels will belong to the existing outline).
 					for(++start; start < numPixels; ++start)
-						if(!(begin[start] & on))
+						if(!(begin[start] && begin[start] >= on))
 							break;
 				}
 			}
@@ -103,7 +104,7 @@ namespace {
 					// First, ensure an offset in this direction would access a valid pixel index.
 					if(next[0] >= 0 && next[0] < width && next[1] >= 0 && next[1] < height)
 						// If that pixel has color data, then add it to the outline.
-						if(begin[pos + off[d]] & on)
+						if(begin[pos + off[d]] && begin[pos + off[d]] >= on)
 							break;
 
 					// Otherwise, advance to the next direction.
@@ -154,7 +155,7 @@ namespace {
 				Point shift = Point(
 					step[out0][0] * scale[out0 & 1] + step[out1][0] * scale[out1 & 1],
 					step[out0][1] * scale[out0 & 1] + step[out1][1] * scale[out1 & 1]).Unit();
-				shift *= ((begin[pos] & on) >> 24) * (1. / 255.) - .5;
+				shift *= ((begin[pos] && begin[pos] >= on) >> 24) * (1. / 255.) - .5;
 				points.push_back(shift + Point(p[0], p[1]));
 
 				p[0] += step[next][0];
