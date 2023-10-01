@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
   <id>io.github.endless_sky.endless_sky</id>
-  <launchable type="desktop-id">endless-sky.desktop</launchable>
+  <launchable type="desktop-id">io.github.endless_sky.endless_sky.desktop</launchable>
   <name>Endless Sky</name>
   <summary>Space exploration and combat game</summary>
   <summary xml:lang="de">Weltraumhandels und Kampfsimulator</summary>
