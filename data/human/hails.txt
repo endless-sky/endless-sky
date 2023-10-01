@@ -6030,7 +6030,7 @@ phrase "friendly deep"
 		"Our planets work towards three virtues: peace, prosperity, progress"
 		"Peace, prosperity, and progress among the stars"
 		"The Deep has been the guiding light of human civilization for centuries"
-		"Please contact Deep Security if you witness the unlawful posession of sanctioned ships"
+		"Please contact Deep Security if you witness the unlawful possession of sanctioned ships"
 	word
 		"."
 
