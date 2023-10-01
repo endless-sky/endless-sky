@@ -5951,7 +5951,6 @@ phrase "friendly deep"
 phrase "friendly deep"
 	word
 		"The Deep"
-		"The Deep Security Bureau"
 	word
 		" "
 	word
@@ -5965,11 +5964,11 @@ phrase "friendly deep"
 	word
 		"you"
 		"your ship"
+		"your vessel"
 		"your enterprise"
 	word
 		" "
 	word
-		"safe travels"
 		"peace, prosperity, and progress"
 		"peace"
 		"prosperity"
@@ -6004,11 +6003,11 @@ phrase "friendly deep"
 	word
 		"you"
 		"your ship"
+		"your vessel"
 		"your enterprise"
 	word
 		" "
 	word
-		"safe travels"
 		"peace, prosperity, and progress"
 		"peace"
 		"prosperity"
