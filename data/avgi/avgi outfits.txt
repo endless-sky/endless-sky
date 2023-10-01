@@ -273,7 +273,7 @@ outfit "Fleck"
 		"random lifetime" 6
 		"inaccuracy" 0.3
 		"shield damage" 60
-		"hull damage" 48
+		"hull damage" 72
 		"hit force" 60
 		"missile strength" 3
 
@@ -1491,7 +1491,7 @@ outfit "XY-720 Radial Thrusters"
 	"reverse thrusting heat" 1.2
 	"steering flare sprite" "effect/avgi flare/fusion"
 		"frame rate" 30
-		"scale" 0.25
+		"scale" 0.5
 	"steering flare sound" "plasma small"
 	"reverse flare sprite" "effect/avgi flare/fusion"
 		"frame rate" 30

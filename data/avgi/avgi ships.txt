@@ -1675,17 +1675,17 @@ ship "Atenuatia"
 		angle -30
 	"reverse engine" 9 234
 		angle 30
-	"steering engine" -12 -258
-		angle 90
+	"steering engine" -90 -252
+		angle 60
 		right
-	"steering engine" 12 -258
-		angle -90
+	"steering engine" 90 -252
+		angle -60
 		left
 	"steering engine" -9 234
-		angle 90
+		angle 120
 		left
 	"steering engine" 9 234
-		angle -90
+		angle -120
 		right
 
 	gun -18 -126
