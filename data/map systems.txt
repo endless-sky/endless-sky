@@ -2448,7 +2448,7 @@ system "Ae Il A-3"
 			period 60
 			offset 20
 	object
-		sprite planet/browndwarf-l-rouge
+		sprite planet/browndwarf-l
 		distance 9784.96
 		period 1100
 		offset 270
@@ -2850,7 +2850,7 @@ system Aescolanus
 		period 2870.08
 
 system Aierena
-	pos 1048.06 -348.956
+	pos 1045.838 -347.623
 	government Uninhabited
 	attributes "bright star" "notable star"
 	arrival 3000
@@ -13728,7 +13728,7 @@ system Feraticus
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite planet/browndwarf-l-rouge
+		sprite planet/browndwarf-l-rogue
 		period 10
 	object
 		sprite planet/rock0-b
@@ -14749,13 +14749,13 @@ system "Gamma Corvi"
 		period 2076.63
 
 system Gaungu
-	pos 1097.72 -321.899
+	pos 1096.979 -320.418
 	government Uninhabited
 	arrival 500
 	habitable 400
 	belt 1072
 	"jump range" 80
-	haze _menu/haze-none
+	haze _menu/haze-brown
 	link Yranjiu
 	asteroids "small rock" 13 4.35
 	asteroids "medium rock" 19 3.9
@@ -16810,7 +16810,7 @@ system Iigen
 	arrival 500
 	habitable 230
 	belt 1699
-	"jump range" 60
+	"jump range" 70
 	haze _menu/haze-brown
 	link Heutesl
 	link Oosuoro
@@ -18591,7 +18591,7 @@ system Kaliptari
 			period 29.5684
 
 system Kanguwa
-	pos 990.137 -331.456
+	pos 995.47 -329.975
 	government Uninhabited
 	attributes "neutron" "notable star" "rulei"
 	music "ambient/rulei space"
@@ -19278,11 +19278,12 @@ system "Kifrana Terberah"
 		period 3488.63
 
 system Kilema
-	pos 1043.5 -472.08
+	pos 1039.944 -479.191
 	government Uninhabited
 	arrival 500
 	habitable 150
 	belt 612
+	"jump range" 70
 	haze _menu/haze-brown
 	link "Erba Yle"
 	asteroids "small rock" 4 1.9
@@ -19327,7 +19328,6 @@ system Kiluit
 	arrival 2430
 	habitable 2430
 	belt 1258
-	"jump range" 70
 	haze _menu/haze
 	link Jied
 	link Nnaug
@@ -20436,12 +20436,13 @@ system Kursa
 		period 1517.13
 
 system L-118
-	pos 1085.78 -416.75
+	pos 1088.891 -408.306
 	government Uninhabited
 	attributes "bright star" "notable star" "umbral reach"
 	arrival 3000
 	habitable 3000
 	belt 1724
+	"jump range" 70
 	haze _menu/haze-coal
 	link H-9187
 	asteroids "small rock" 12 3.3
@@ -23542,7 +23543,7 @@ system Mora
 			period 24.168
 
 system Msalbit
-	pos 978.348 -274.767
+	pos 986.052 -277.73
 	government Uninhabited
 	attributes "bright star" "notable star"
 	arrival 5000
@@ -24883,7 +24884,7 @@ system Paeli
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite planet/browndwarf-t-rouge
+		sprite planet/browndwarf-t-rogue
 		period 10
 	object
 		sprite planet/desert4-b
@@ -25560,7 +25561,7 @@ system Perfica
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite planet/browndwarf-y-rouge
+		sprite planet/browndwarf-y-rogue
 		period 10
 	object
 		sprite planet/ice5
@@ -32857,7 +32858,7 @@ system Vaiov
 		offset 180
 
 system Vanguwo
-	pos 978.189 -237.686
+	pos 965.152 -237.39
 	government Uninhabited
 	attributes "giant star" "notable star"
 	arrival 4050
@@ -33256,13 +33257,13 @@ system Vorsuke
 			period 320
 
 system Vulcuja
-	pos 1071.75 -263.767
+	pos 1072.046 -264.656
 	government Uninhabited
 	attributes "carbon" "notable star"
 	arrival 3000
 	habitable 3000
 	belt 1972
-	haze _menu/haze-coal
+	haze _menu/haze-33
 	link Yranjiu
 	asteroids "large rock" 1 1
 	asteroids "large metal" 1 1
@@ -34399,7 +34400,7 @@ system Yllke
 			period 242.1
 
 system Yranjiu
-	pos 1054.27 -298.942
+	pos 1056.344 -303.683
 	government Uninhabited
 	attributes "black hole" "notable star"
 	arrival 5000

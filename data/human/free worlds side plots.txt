@@ -357,7 +357,7 @@ mission "FW Flamethrower 2"
 		ship "Doombat" "Doombat"
 	
 	on visit
-		dialog `You've landed on <planet>, but you have not disabled the <npc> yet. Disable it and before returning.`
+		dialog `You've landed on <planet>, but you have not disabled the <npc> yet. Disable it before returning.`
 	on complete
 		event "flamethrower available" 30
 		log "Assisted Barmy Edward with another weapon test: this time, a flamethrower weapon that works by overheating and disabling its target rather than dealing lots of damage to it. It may or may not be useful in actual combat."

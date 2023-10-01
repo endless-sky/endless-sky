@@ -30,6 +30,12 @@ public:
 		adaptive,
 	};
 
+	enum class DateFormat : int_fast8_t {
+		DMY = 0, // Day-first format. (Sat, 4 Oct 1941)
+		MDY,     // Month-first format. (Sat, Oct 4, 1941)
+		YMD      // All-numeric ISO 8601. (1941-10-04)
+	};
+
 	enum class OverlayState : int_fast8_t {
 		OFF = 0,
 		ON,
@@ -77,6 +83,12 @@ public:
 		FAST
 	};
 
+	enum class ExtendedJumpEffects : int {
+		OFF = 0,
+		MEDIUM,
+		HEAVY
+	};
+
 	enum class AlertIndicator : int_fast8_t {
 		NONE = 0,
 		AUDIO,
@@ -96,6 +108,11 @@ public:
 	// and "always."
 	static void ToggleAmmoUsage();
 	static std::string AmmoUsage();
+
+	// Date format preferences.
+	static void ToggleDateFormat();
+	static DateFormat GetDateFormat();
+	static const std::string &DateFormatSetting();
 
 	// Scroll speed preference.
 	static int ScrollSpeed();
@@ -135,6 +152,11 @@ public:
 	static void ToggleParallax();
 	static BackgroundParallax GetBackgroundParallax();
 	static const std::string &ParallaxSetting();
+
+	// Extended jump effects setting, either "off", "medium", or "heavy".
+	static void ToggleExtendedJumpEffects();
+	static ExtendedJumpEffects GetExtendedJumpEffects();
+	static const std::string &ExtendedJumpEffectsSetting();
 
 	// Boarding target setting, either "proximity", "value" or "mixed".
 	static void ToggleBoarding();
