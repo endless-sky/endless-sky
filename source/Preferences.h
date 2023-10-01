@@ -153,7 +153,7 @@ public:
 	static BackgroundParallax GetBackgroundParallax();
 	static const std::string &ParallaxSetting();
 
-	// Extended jump effects setting, either "medium", "heavy", or "off".
+	// Extended jump effects setting, either "off", "medium", or "heavy".
 	static void ToggleExtendedJumpEffects();
 	static ExtendedJumpEffects GetExtendedJumpEffects();
 	static const std::string &ExtendedJumpEffectsSetting();
