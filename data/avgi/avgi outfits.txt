@@ -15,6 +15,58 @@
 # Weapons:
 
 
+outfit "Ultrarelativistic Electron Beam"
+	category "Guns"
+	licenses
+		"Avgi Civilian"
+	cost 40000
+	thumbnail "outfit/speckle gun"
+	"mass" 3.6
+	"outfit space" -9
+	"weapon capacity" -9
+	"energy capacity" 90
+	"gun ports" -1
+	weapon
+		sprite "projectile/ion rain"
+			"frame rate" 30
+			"no repeat"
+		sound "speckle"
+		"fire effect" "speck fire"
+		"inaccuracy" 0.6
+		"reload" 60
+		"firing energy" 3600
+		"firing heat" 3000
+		"firing force" 1
+		"velocity override" 240
+		"submunition" "Electron Packet" 600
+
+outfit "Electron Packet"
+	weapon
+		sprite "projectile/ion rain"
+			"frame rate" 30
+			"no repeat"
+		"hit effect" "bremsstrahlung"
+		"velocity" 360
+		"random velocity" -180
+		"inaccuracy" 0.3
+		"lifetime" 9
+		"random lifetime" 3
+		"shield damage" 12
+		"hull damage" 12
+		"ion damage" 0.06
+		"piercing" 0.3
+
+effect "bremsstrahlung"
+	sprite "effect/piercer impact"
+		"frame rate" 30
+		"no repeat"
+		scale 0.25
+	"random lifetime" 12
+	"random angle" 90
+	"random velocity" -15
+	"velocity scale" 0
+
+
 outfit "Speck Round"
 	category "Ammunition"
 	licenses
@@ -944,7 +996,7 @@ outfit "Electrostatic Ramscoop"
 	"mass" 12
 	"outfit space" -12
 	"ramscoop" 6
-	"fuel generation" 0.06
+	"fuel generation" 0.03
 	"energy consumption" 1.2
 	description "A powerful bank of lasers ionizes the interstellar medium around ships equipped with these ramscoops, allowing electromagnets to collect extra material on top of the naturally charged solar wind. This results in a predictable supply of fuel, even around stars with solar winds poor in deuterium."
 	description "Ramscoops like these were used in Avgi ram-augmented torchships, allowing them to sustain constant burns during their sublight interstellar journeys."
@@ -961,7 +1013,7 @@ outfit "Dipole Ramscoop"
 	"gun ports" -1
 	"spinal mount" -1
 	"ramscoop" 90
-	"fuel generation" 0.3
+	"fuel generation" 0.6
 	"energy consumption" 9
 	weapon
 		"hardpoint sprite" "hardpoint/dipole ramscoop"
@@ -1150,11 +1202,11 @@ outfit "Luminous Fusion Core"
 		"Avgi Civilian"
 	cost 3420000
 	thumbnail "outfit/fusion core small"
-	"mass" 36
-	"outfit space" -36
-	"energy generation" 12
-	"heat generation" 30
-	"fuel consumption" 0.0033
+	"mass" 42
+	"outfit space" -42
+	"fuel energy" 12
+	"fuel heat" 30
+	"fuel consumption" 0.09
 	description "Balance TBD"
 	
 
@@ -1166,9 +1218,9 @@ outfit "Brilliant Fusion Core"
 	thumbnail "outfit/unknown"
 	"mass" 72
 	"outfit space" -72
-	"energy generation" 21
-	"heat generation" 54
-	"fuel consumption" 0.0042
+	"fuel energy" 21
+	"fuel heat" 48
+	"fuel consumption" 0.12
 	description "Balance TBD"
 
 
@@ -1178,11 +1230,11 @@ outfit "Radiant Fusion Core"
 		"Avgi Military"
 	cost 14460000
 	thumbnail "outfit/unknown"
-	"mass" 120
-	"outfit space" -120
-	"energy generation" 36
-	"heat generation" 96
-	"fuel consumption" 0.0066
+	"mass" 105
+	"outfit space" -105
+	"fuel energy" 33
+	"fuel heat" 72
+	"fuel consumption" 0.15
 	description "Balance TBD"
 
 
@@ -1194,9 +1246,9 @@ outfit "Stellar Fusion Core"
 	thumbnail "outfit/unknown"
 	"mass" 144
 	"outfit space" -144
-	"energy generation" 54
-	"heat generation" 156
-	"fuel consumption" 0.009
+	"fuel energy" 48
+	"fuel heat" 102
+	"fuel consumption" 0.18
 	description "Balance TBD"
 
 
@@ -1249,7 +1301,7 @@ outfit "Magnetoplasma Drive"
 	"turn" 210
 	"turning energy" 0.6
 	"turning heat" 0.3
-	"drag reduction" 0.6
+	"drag reduction" 1
 	"flare sprite" "effect/ion flare/tiny"
 		"frame rate" 5
 	"flare sound" "plasma tiny"
@@ -1272,20 +1324,20 @@ outfit "Z-360 Fusion Torch"
 	"mass" 36
 	"outfit space" -36
 	"engine capacity" -36
-	"thrust" 54
-	"thrusting energy" 2.1
+	"thrust" 48
+	"thrusting energy" 3
 	"thrusting heat" 15
-	"thrusting fuel" 0.06
-	"drag reduction" 1
+	"thrusting fuel" 0.03
+	"drag reduction" 2
 	"flare sprite" "effect/avgi flare/fusion"
 		"frame rate" 15
-		"scale" 0.5
+		"scale" 0.75
 	"flare sound" "remnant afterburner"
 
-	"afterburner thrust" 30
-	"afterburner fuel" 0.24
+	"afterburner thrust" 96
+	"afterburner fuel" 0.15
 	"afterburner heat" -9
-	"afterburner effect" "fusion afterburner"
+	"afterburner effect" "small remass injection"
 	description "Balance TBD"
 
 
@@ -1299,18 +1351,18 @@ outfit "Z-600 Fusion Torch"
 	"outfit space" -60
 	"engine capacity" -60
 	"thrust" 99
-	"thrusting energy" 3.66
+	"thrusting energy" 6
 	"thrusting heat" 27
 	"thrusting fuel" 0.06
-	"drag reduction" 1.2
+	"drag reduction" 2
 	"flare sprite" "effect/avgi flare/fusion"
 		"frame rate" 15
-	"flare sound" "remnant afterburner"
+	"flare sound" "flamethrower"
 
-	"afterburner thrust" 60
-	"afterburner fuel" 0.24
-	"afterburner heat" -9
-	"afterburner effect" "fusion afterburner"
+	"afterburner thrust" 198
+	"afterburner fuel" 0.3
+	"afterburner heat" -18
+	"afterburner effect" "medium remass injection"
 	description "Balance TBD"
 
 
@@ -1324,24 +1376,34 @@ outfit "Z-960 Fusion Torch"
 	"outfit space" -96
 	"engine capacity" -96
 	"thrust" 180
-	"thrusting energy" 6
+	"thrusting energy" 9
 	"thrusting heat" 54
-	"thrusting fuel" 0.12
-	"drag reduction" 1.8
+	"thrusting fuel" 0.09
+	"drag reduction" 2
 	"flare sprite" "effect/avgi flare/fusion"
 		"frame rate" 30
 		"scale" 2
 	"flare sound" "remnant afterburner"
 
-	"afterburner thrust" 90
-	"afterburner fuel" 0.24
-	"afterburner heat" -9
-	"afterburner effect" "fusion afterburner"
+	"afterburner thrust" 360
+	"afterburner fuel" 0.45
+	"afterburner heat" -21
+	"afterburner effect" "large remass injection"
 	description "Balance TBD"
 
 
-effect "fusion afterburner"
-	sprite "effect/avgi fusion afterburner/large"
+effect "small remass injection"
+	sprite "effect/avgi flare/afterburner"
+		"frame rate" 30
+	sound "remnant afterburner"
+
+effect "medium remass injection"
+	sprite "effect/avgi flare/afterburner"
+		"frame rate" 30
+	sound "remnant afterburner"
+
+effect "large remass injection"
+	sprite "effect/avgi flare/afterburner"
 		"frame rate" 30
 	sound "remnant afterburner"
 
@@ -1376,16 +1438,16 @@ outfit "XY-180 Radial Thrusters"
 	description "Balance TBD"
 
 
-outfit "XY-420 Radial Thrusters"
+outfit "XY-360 Radial Thrusters"
 	plural "XY-360 Radial Thrusters"
 	category "Engines"
 	licenses
 		"Avgi Military"
 	"cost" 473000
 	thumbnail "outfit/rcs large"
-	"mass" 42
-	"outfit space" -42
-	"engine capacity" -42
+	"mass" 36
+	"outfit space" -36
+	"engine capacity" -36
 	"thrust" 21
 	"thrusting energy" 0.15
 	"thrusting heat" 0.15

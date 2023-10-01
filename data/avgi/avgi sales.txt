@@ -37,10 +37,6 @@ shipyard "Avgi Developer"
 	"Undulon"
 	"Vibratia"
 
-
-
-
-
 shipyard "Avgi Civilian Basics"
 	"Koryfi"
 	"Avlaki"
@@ -96,6 +92,7 @@ outfitter "Avgi Basic Systems"
 	"Small Bunk Room"
 	"Bunk Room"
 	"Luxury Accommodations"
+	"Ultrarelativistic Electron Beam"
 
 outfitter "Avgi Advanced Systems"
 	"Radiant Fusion Core"
@@ -112,7 +109,7 @@ outfitter "Avgi Basic Drives"
 	"Z-360 Fusion Torch"
 	"Z-600 Fusion Torch"
 	"XY-180 Radial Thrusters"
-	"XY-420 Radial Thrusters"
+	"XY-360 Radial Thrusters"
 
 outfitter "Avgi Advanced Drives"
 	"Z-960 Fusion Torch"

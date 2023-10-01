@@ -914,7 +914,7 @@ ship "Undsyni"
 		"Spectrometer Array"
 
 		"Z-360 Fusion Torch"
-		"XY-420 Radial Thrusters"
+		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
 	gun 0 -213
@@ -1207,7 +1207,7 @@ ship "Prismaios"
 		"Electrostatic Ramscoop"
 		
 		"Z-360 Fusion Torch"
-		"XY-420 Radial Thrusters"
+		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
 	engine 0 108
@@ -1376,7 +1376,7 @@ ship "Diaspersi"
 		"Electromotive Rifle" 36
 		
 		"Z-600 Fusion Torch"
-		"XY-420 Radial Thrusters"
+		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
 	gun 0 -156
@@ -1478,7 +1478,7 @@ ship "Difraktos"
 		"Electromotive Rifle" 42
 
 		"Z-600 Fusion Torch"
-		"XY-420 Radial Thrusters"
+		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
 	gun -21 -63
@@ -1570,7 +1570,7 @@ ship "Refraktos"
 		"Electromotive Rifle" 24
 		
 		"Z-360 Fusion Torch"
-		"XY-420 Radial Thrusters"
+		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
 	gun -24 -33
@@ -1668,7 +1668,7 @@ ship "Atenuatia"
 		"Electromotive Rifle" 90
 		
 		"Z-600 Fusion Torch"
-		"XY-420 Radial Thrusters"
+		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
 	engine 0 250

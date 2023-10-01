@@ -36,7 +36,7 @@ ship "Undsyni" "Undsyni (Tanker)"
 		"Dipole Ramscoop"
 
 		"Z-360 Fusion Torch"
-		"XY-420 Radial Thrusters"
+		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
 
@@ -103,7 +103,7 @@ ship "Diaspersi" "Diaspersi (Atomic)"
 		"Electrostatic Ramscoop"
 		
 		"Z-600 Fusion Torch"
-		"XY-420 Radial Thrusters"
+		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
 
@@ -121,7 +121,7 @@ ship "Difraktos" "Difraktos (Missile)"
 		"Electrostatic Ramscoop"
 		
 		"Z-360 Fusion Torch"
-		"XY-420 Radial Thrusters"
+		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
 
@@ -141,7 +141,7 @@ ship "Difraktos" "Difraktos (Kinetic)"
 		"Electrostatic Ramscoop"
 		
 		"Z-360 Fusion Torch"
-		"XY-420 Radial Thrusters"
+		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
 
@@ -163,7 +163,7 @@ ship "Difraktos" "Difraktos (Atomic)"
 		"Electrostatic Ramscoop"
 		
 		"Z-600 Fusion Torch"
-		"XY-420 Radial Thrusters"
+		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
 
@@ -188,7 +188,7 @@ ship "Atenuatia" "Atenuatia (Atomic)"
 		"Multispectral Scanner" 9
 		
 		"Z-600 Fusion Torch"
-		"XY-420 Radial Thrusters"
+		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
 
