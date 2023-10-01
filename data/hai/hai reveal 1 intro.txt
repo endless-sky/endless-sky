@@ -177,7 +177,7 @@ mission "Hai Reveal Exploration Period: Local Human Merchants Speak Up"
 			`	He glances back at his crewman. "See, this is exactly what I was talking about. All these new folks in their clunkers from Lionheart and whatnot. Filling up the space lanes and splitting the profits."`
 			choice
 				`	"You know I can hear you, right?"`
-				`	"Hai space isn't even that profitable?"`
+				`	"But Hai space isn't even that profitable?"`
 					goto "not profitable"
 			`	"'Course I do, just don't care. This place ain't that profitable to start with. I'm here cause Greenwater's a nice place to live for three months of the year. Now all these new folks like yourself are just making it harder to earn a living and increasing the number of hazards I gotta pay to deal with."`
 				goto "stinkeye"
@@ -537,7 +537,7 @@ mission "HR: Call for Aid with Sandsnap"
 
 mission "Hai Reveal Concern Period: Reactivating Sandsnap"
 	priority
-	name "Transport the Stationkeeper to <planet>."
+	name "Transport the Stationkeeper to <planet>"
 	description "Safely bring the Stationkeeper to <destination> to reactivate the station."
 	source "Makerplace"
 	destination "Sandsnap"
@@ -554,8 +554,8 @@ mission "Hai Reveal Concern Period: Reactivating Sandsnap"
 					defer
 				`	(Ignore it, you've changed your mind.)`
 					decline
-			`	There is a greeter, or perhaps a security guard, at the door who appraises you as you approach. "You must be here for the project," he says, "Identification please."`
-			`	After a quick check of your ID he gives you a very professional Hai smile. "Welcome to the Sandsnap project, your credentials are sufficient to apply so please, do come in. We hope you'll find the project interesting and the effort rewarding."`
+			`	There is a greeter, or perhaps a security guard, at the door who appraises you as you approach. "You must be here for the project," he says. "Identification please."`
+			`	After a quick check of your ID he gives you a very professional Hai smile. "Welcome to the Sandsnap Project. Your credentials are sufficient to apply so please, do come in. We hope you'll find the project interesting and the effort rewarding."`
 			`	As you enter a harried Hai gestures you over with enthusiasm. "Greetings," he checks his tablet. "Captain <last>! Your presence in these dire times is greatly appreciated, it has been at least a hundred years since we have had such a threat to our way of life! You must have noticed the spike in pirate activity. Perhaps our northern brethren have had a point all these years."`
 			`	He stops himself. "Not that our politics probably concern you, let us cut to the matter at hand, shall we?"`
 			choice
@@ -571,7 +571,7 @@ mission "Hai Reveal Concern Period: Reactivating Sandsnap"
 			choice
 				`	(Greet the Stationkeeper.)`
 					goto greet
-				`	(Bow to the Stationkeeper.`
+				`	(Bow to the Stationkeeper.)`
 			`	She appears flattered in a Hai sort-of way. "There is no need, Captain, my station is not operational, and this is a business operation, not an appointed position. For now, anyway."`
 			label greet
 			`	You introduce yourself. "I am Kelamursh, but you should refer to me as Stationkeeper," she says in response. "Now, if you don't mind, I believe your arrival has solved our last remaining problems, putting us in good stead to depart momentarily. If I may see your ship's accommodation we'll make final preparations and depart in an hour or so."`
@@ -613,7 +613,7 @@ mission "HRCP: Sandsnap Mercenaries"
 
 
 mission "Hai Reveal Concern Period: Securing Sandsnap"
-	name "Defend convoy arriving in <system>."
+	name "Defend convoy arriving in <system>"
 	description "Keep <system> secure against pirates for the supply convoy so that they can reach <planet> safely."
 	landing
 	source "Sandsnap"
@@ -621,7 +621,7 @@ mission "Hai Reveal Concern Period: Securing Sandsnap"
 		has "hr: sandsnap project"
 	on offer
 		conversation
-			`	Upon arrival the Stationkeeper requests that you stay aboard your ship in case hostiles approach the station, while she suits up and goes aboard to run the access codes and start things up. You can see a selection of other Hai with various tools and equipment disembarking a few other ships in the process. Before long, main lighting comes on in the docking section and the team disappears inside.`
+			`Upon arrival the Stationkeeper requests that you stay aboard your ship in case hostiles approach the station, while she suits up and goes aboard to run the access codes and start things up. You can see a selection of other Hai with various tools and equipment disembarking a few other ships in the process. Before long, the main lighting comes on in the docking section and the team disappears inside.`
 			`	After a short while you receive a message requesting that you report to the operations center inside the main promenade. You proceed to equip your own suit and exit your ship. The station itself is well preserved, except for the lack of atmosphere. Nothing seems to have vented it, no big hole in the ceiling, and the expansive ceiling windows of the main promenade provide a crystal clear view of the station's many decks towering above you. Exterior navigation lights are gradually flicking on up the height of the station, so that walking through feels like watching a ghost city slowly come to glittering life. Emergency floor lighting has been activated, showing you the way.`
 			`	Once through the operation center's security airlock you are able to remove your helmet. Kelamursh's subordinate, who briefed you in the offices and appears to be in charge in this area, swiftly approaches from the other side. "Captain <last>! It is splendid you could make it here so quickly. We have begun the re-powering process, but it will take time and supplies to re-pressurize more than the docking and operations areas. These stations are not small."`
 			`	He chuckles as if having made a joke, as if you hadn't just walked beneath the open view of over three hundred decks above you. He seems oblivious to the strangeness of this, so perhaps it is a Hai thing.`
