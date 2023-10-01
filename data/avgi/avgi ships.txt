@@ -1182,7 +1182,7 @@ ship "Prismaios"
 		"heat dissipation" 1.8
 		"fuel capacity" 1200
 		"cargo space" 36
-		"outfit space" 330
+		"outfit space" 333
 		"weapon capacity" 96
 		"engine capacity" 96
 		"anchor point" 2
