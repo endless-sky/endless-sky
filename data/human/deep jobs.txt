@@ -469,7 +469,7 @@ phrase "secure package dropoff payment"
 	word
 		` `
 	word
-		`Your bank account immediately notifies you that the agreed-upon payment of <payment> has been deposited. You wonder how they knew.`
+		`Your bank account immediately notifies you that the agreed-upon payment of <payment> has been deposited.`
 
 
 mission "Secure Transport Job (Secret) [0]"

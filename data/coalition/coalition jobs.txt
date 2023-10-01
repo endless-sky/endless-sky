@@ -1523,7 +1523,7 @@ mission "Evacuate Lunarium True"
 	deadline
 	to offer
 		random < 10
-		has "Lunarium Evacuation 6: done"
+		has "Lunarium: Evacuation 6: done"
 		not "Heliarch Investigation 2: active"
 		not "joined the heliarchs"
 	to fail
@@ -1555,7 +1555,7 @@ mission "Evacuate Lunarium Fail"
 	deadline
 	to offer
 		random < 5
-		has "Lunarium Evacuation 6: done"
+		has "Lunarium: Evacuation 6: done"
 		not "Heliarch Investigation 2: active"
 		not "joined the heliarchs"
 	to fail
@@ -1582,7 +1582,7 @@ mission "Lunarium: Armageddon Core Delivery"
 	description "The Lunarium is offering <payment> for you to deliver an Armageddon Core to <destination>."
 	to offer
 		random < 4
-		has "Lunarium: Reactors: done"
+		has "Lunarium: Smuggling: Reactors: done"
 		not "Lunarium: Armageddon Core Delivery: active"
 		not "Heliarch Investigation 2: active"
 		not "joined the heliarchs"
@@ -1609,7 +1609,7 @@ mission "Lunarium: Fusion Reactor Delivery"
 	description "The Lunarium is offering <payment> for you to deliver a Fusion Reactor to <destination>."
 	to offer
 		random < 7
-		has "Lunarium: Reactors: done"
+		has "Lunarium: Smuggling: Reactors: done"
 		not "Lunarium: Fusion Reactor Delivery: active"
 		not "Heliarch Investigation 2: active"
 		not "joined the heliarchs"
@@ -1636,7 +1636,7 @@ mission "Lunarium: Breeder Reactor Delivery"
 	description "The Lunarium is offering <payment> for you to deliver a Breeder Reactor to <destination>."
 	to offer
 		random < 10
-		has "Lunarium: Reactors: done"
+		has "Lunarium: Smuggling: Reactors: done"
 		not "Lunarium: Breeder Reactor Delivery: active"
 		not "Heliarch Investigation 2: active"
 		not "joined the heliarchs"
@@ -1663,7 +1663,7 @@ mission "Lunarium: Torpedo Delivery"
 	description "The Lunarium is offering <payment> for you to deliver a Torpedo Launcher, complete with 30 torpedoes, to <destination>."
 	to offer
 		random < 12
-		has "Lunarium: Torpedoes: done"
+		has "Lunarium: Smuggling: Torpedoes: done"
 		not "Lunarium: Torpedo Delivery: active"
 		not "Heliarch Investigation 2: active"
 		not "joined the heliarchs"
@@ -1690,7 +1690,7 @@ mission "Lunarium: Typhoon Delivery"
 	description "The Lunarium is offering <payment> for you to deliver a Typhoon Launcher, complete with 30 Typhoon Torpedoes, to <destination>."
 	to offer
 		random < 7
-		has "Lunarium: Torpedoes: done"
+		has "Lunarium: Smuggling: Torpedoes: done"
 		not "Lunarium: Typhoon Delivery: active"
 		not "Heliarch Investigation 2: active"
 		not "joined the heliarchs"
@@ -1715,7 +1715,7 @@ mission "Lunarium: Plasma Delivery"
 	description "The Lunarium is offering <payment> for you to deliver a Plasma Turret to <destination>."
 	to offer
 		random < 6
-		has "Lunarium: Heat: done"
+		has "Lunarium: Smuggling: Heat: done"
 		not "Lunarium: Plasma Delivery: active"
 		not "Heliarch Investigation 2: active"
 		not "joined the heliarchs"
@@ -1739,7 +1739,7 @@ mission "Lunarium: Flamethrower Delivery"
 	description "The Lunarium is offering <payment> for you to deliver a pair of Flamethrowers to <destination>."
 	to offer
 		random < 8
-		has "Lunarium: Heat: done"
+		has "Lunarium: Smuggling: Heat: done"
 		not "Lunarium: Flamethrower Delivery: active"
 		not "Heliarch Investigation 2: active"
 		not "joined the heliarchs"
@@ -1763,7 +1763,7 @@ mission "Lunarium: Grenade Delivery"
 	description "The Lunarium is offering <payment> for you to deliver a dozen Fragmentation Grenades to <destination>."
 	to offer
 		random < 11
-		has "Lunarium: Grenades: done"
+		has "Lunarium: Smuggling: Grenades: done"
 		not "Lunarium: Grenade Delivery: active"
 		not "Heliarch Investigation 2: active"
 		not "joined the heliarchs"
@@ -1787,7 +1787,7 @@ mission "Lunarium: Anti-Missile Delivery"
 	description "The Lunarium is are offering <payment> for you to deliver a Heavy Anti-Missile Turret to <destination>."
 	to offer
 		random < 10
-		has "Lunarium: AM: done"
+		has "Lunarium: Smuggling: AM: done"
 		not "Lunarium: Anti-Missile Delivery: active"
 		not "Heliarch Investigation 2: active"
 		not "joined the heliarchs"
