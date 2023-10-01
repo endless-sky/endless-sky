@@ -360,7 +360,7 @@ double Preferences::ViewZoom()
 bool Preferences::ZoomViewIn()
 {
 	const auto &zooms = GameData::Interfaces().Get("main view")->GetList("zooms");
-	if(zoomIndex >= zooms.size() - 1)
+	if(zooms.empty() || zoomIndex >= zooms.size() - 1)
 		return false;
 
 	++zoomIndex;
@@ -371,10 +371,10 @@ bool Preferences::ZoomViewIn()
 
 bool Preferences::ZoomViewOut()
 {
-	if(zoomIndex == 0)
+	const auto &zooms = GameData::Interfaces().Get("main view")->GetList("zooms");
+	if(!zoomIndex || zooms.size() <= 1)
 		return false;
 
-	const auto &zooms = GameData::Interfaces().Get("main view")->GetList("zooms");
 	// Make sure that we're actually zooming out. This can happen if the zoom index
 	// is out of range.
 	if(zoomIndex >= zooms.size())
