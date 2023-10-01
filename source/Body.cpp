@@ -15,14 +15,17 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Body.h"
 
+#include "Angle.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "GameData.h"
 #include "Mask.h"
 #include "MaskManager.h"
+#include "Point.h"
 #include "Random.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
+#include "pi.h"
 
 #include <algorithm>
 #include <cmath>
@@ -328,6 +331,32 @@ void Body::MarkForRemoval()
 void Body::UnmarkForRemoval()
 {
 	shouldBeRemoved = false;
+}
+
+
+
+// Turn object around center of roation.
+void Body::Turn(double amount)
+{
+	angle += amount;
+	if(center.X() == 0. && center.Y() == 0.)
+		return;
+
+	auto RotatePointAroundOrigin = [](Point &toRotate, double radians) -> Point {
+		float si = sin(radians);
+		float co = cos(radians);
+		float newX = toRotate.X() * co - toRotate.Y() * si;
+		float newY = toRotate.X() * si + toRotate.Y() * co;
+		return Point(newX, newY);
+	};
+
+	Point tmpposition = RotatePointAroundOrigin(center, (-angle).Degrees() * TO_RAD);
+
+	position -= tmpposition;
+
+	tmpposition = RotatePointAroundOrigin(tmpposition, (angle + amount).Degrees() * TO_RAD);
+
+	position += tmpposition;
 }
 
 

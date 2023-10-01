@@ -88,6 +88,8 @@ protected:
 	void MarkForRemoval();
 	// Mark that this object should not be removed (e.g. a launched fighter).
 	void UnmarkForRemoval();
+	// Turn object around center of roation.
+	void Turn(double amount);
 
 
 protected:
@@ -95,6 +97,7 @@ protected:
 	Point position;
 	Point velocity;
 	Angle angle;
+	Point center;
 	// A zoom of 1 means the sprite should be drawn at half size. For objects
 	// whose sprites should be full size, use zoom = 2.
 	float zoom = 1.f;
