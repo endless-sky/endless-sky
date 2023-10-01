@@ -5794,6 +5794,9 @@ phrase "friendly deep"
 	word
 		"" 3
 		"are called to "
+		"have a duty to "
+		"work in conjunction with the Navy to "
+		"work with the Republic to "
 		"are diligent to "
 		"must constantly "
 		"diligently "
@@ -5824,6 +5827,283 @@ phrase "friendly deep"
 		"piracy"
 		"social regression"
 		"corruption"
+		"hostility and war"
+		"instability"
+		"anarchism"
+		"hostility"
+		"base values"
+	word
+		"."
+
+phrase "friendly deep"
+	word
+		"We"
+		"Our ships"
+		"Our security forces"
+		"Our fleets"
+		"Our forces"
+	word
+		" "
+	word
+		"" 3
+		"are called to "
+		"are diligent to "
+		"must constantly "
+		"diligently "
+		"always "
+		"must "
+		"shall "
+	word
+		"safeguard"
+		"defend"
+		"protect"
+		"guard"
+		"shield"
+		"advance"
+		"work in advancing"
+	word
+		" "
+	word
+		"" 3
+		"the Deep's "
+		"those who advance of "
+		"those who bring "
+		"the ones who serve "
+		"agents of "
+		"our shared "
+		"our values of "
+	word
+		""
+		"valued "
+		"invaluable "
+		"hard-fought "
+		"hard-gained "
+	word
+		"democracy"
+		"commonwealth"
+		"sovereignty"
+		"autonomy"
+		"prosperity"
+		"peace"
+		"economic prosperity"
+		"economic progress"
+		"progress"
+		"scientific progress"
+		"social cohesion"
+		"peace, prosperity, and progress"
+		"peace among the stars"
+	word
+		"."
+
+phrase "friendly deep"
+	word
+		"Please"
+		"We advise you to"
+		"Do not hesitate to"
+	word
+		" "
+	word
+		"contact"
+		"give evidence to"
+		"liase with"
+		"provide information to"
+	word
+		" "
+	word
+		"a Deep Security official"
+		"a Deep Security officer"
+		"a Deep Security office"
+		"a Deep Security ship"
+		"a Deep Security branch office"
+		"a Deep Security agent"
+		"a local Deep Security official"
+		"a local Deep Security officer"
+		"a local Deep Security office"
+		"a local Deep Security ship"
+		"a local Deep Security branch office"
+		"a local Deep Security agent"
+		"the Deep's autonomous security forces" 6
+		"our security forces" 6
+		"our officials" 6
+		"our agents" 6
+		"our officers" 6
+		"Deep authorities" 6
+	word
+		" "
+	word
+		"in the event of"
+		"if you witness"
+		"if you have been the target of"
+		"if you have been affected by"
+	word
+		" "
+	word
+		"piracy"
+		"anti-Deep forces"
+		"anti-Republic forces"
+		"an unlawful attack by pirates"
+		"an unlawful attack by anarchists"
+		"illegal attacks by pirates"
+		"illegal attacks by anarchists"
+	word
+		"."
+
+phrase "friendly deep"
+	word
+		"The Deep"
+		"The Deep Security Bureau"
+	word
+		" "
+	word
+		"bids"
+		"wishes"
+		"offers"
+		"works to give"
+		"ensures"
+	word
+		" "
+	word
+		"you"
+		"your ship"
+		"your enterprise"
+	word
+		" "
+	word
+		"safe travels"
+		"peace, prosperity, and progress"
+		"peace"
+		"prosperity"
+		"progress"
+		"success"
+		"wealth"
+	word
+		" "
+	word
+		"in these times"
+		"in our space"
+		"throughout our space"
+		"throughout the commonwealth"
+	word
+		"."
+
+phrase "friendly deep"
+	word
+		"Our security forces"
+		"We"
+		"The citizens of the Deep"
+		"The ships of the Deep"
+	word
+		" "
+	word
+		"bid"
+		"wish"
+		"offer"
+		"work to give"
+	word
+		" "
+	word
+		"you"
+		"your ship"
+		"your enterprise"
+	word
+		" "
+	word
+		"safe travels"
+		"peace, prosperity, and progress"
+		"peace"
+		"prosperity"
+		"progress"
+		"success"
+		"wealth"
+	word
+		" "
+	word
+		"in these times"
+		"in our space"
+		"throughout our space"
+		"throughout the commonwealth"
+	word
+		"."
+
+phrase "friendly deep"
+	word
+		"Peace, prosperity, progress"
+		"Our planets work towards three virtues: peace, prosperity, progress"
+		"Peace, prosperity, and progress among the stars"
+		"The Deep has been the guiding light of human civilization for centuries"
+		"Please contact Deep Security if you witness the unlawful posession of sanctioned ships"
+	word
+		"."
+
+phrase "hostile deep"
+	word
+		"You are"
+		"Your actions are"
+		"Your hostile actions are"
+		"The actions of your ship are"
+		"We cannot allow you to continue"
+		"We must stop you from"
+	word
+		" "
+	word
+		"threatening"
+		"disrupting"
+		"working against"
+		"undoing"
+		"destroying"
+		"breaking"
+		"weakening"
+		"tearing at"
+		"harming"
+		"unsettling"
+	word
+		" the "
+	word
+		"fabric"
+		"balance"
+		"common good"
+		"cohesion"
+		"unity"
+		"health"
+	word
+		" of "
+	word
+		"our society"
+		"civilization"
+		"the commonwealth"
+		"society"
+		"our civilization"
+		"human society"
+	word
+		"."
+
+phrase "hostile deep"
+	word
+		"You have found yourself"
+		"You are"
+		"Your actions are"
+		"The actions of your ship are"
+	word
+		" "
+	word
+		"in breach of"
+		"in violation"
+		"in transgression"
+		"breaking"
+		"breaching"
+		"violating"
+		"transgressing"
+		"infracting upon"
+	word
+		" "
+	word
+		"the laws of the Deep"
+		"the laws of the Republic"
+		"the laws of Parliament"
+		"the statutes of the Deep"
+		"the statutes of the Republic"
+		"the statutes of Parliament"
+		"interstellar law"
 	word
 		"."
 
