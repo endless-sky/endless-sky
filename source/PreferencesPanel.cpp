@@ -75,6 +75,7 @@ namespace {
 	const string BOARDING_PRIORITY = "Boarding target priority";
 	const string TARGET_ASTEROIDS_BASED_ON = "Target asteroid based on";
 	const string BACKGROUND_PARALLAX = "Parallax background";
+	const string EXTENDED_JUMP_EFFECTS = "Extended jump effects";
 	const string ALERT_INDICATOR = "Alert indicator";
 
 	// How many pages of settings there are.
@@ -231,6 +232,8 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 				Preferences::ToggleBoarding();
 			else if(zone.Value() == BACKGROUND_PARALLAX)
 				Preferences::ToggleParallax();
+			else if(zone.Value() == EXTENDED_JUMP_EFFECTS)
+				Preferences::ToggleExtendedJumpEffects();
 			else if(zone.Value() == VIEW_ZOOM_FACTOR)
 			{
 				// Increase the zoom factor unless it is at the maximum. In that
@@ -563,7 +566,7 @@ void PreferencesPanel::DrawSettings()
 		"Draw starfield",
 		BACKGROUND_PARALLAX,
 		"Show hyperspace flash",
-		"Extended jump effects",
+		EXTENDED_JUMP_EFFECTS,
 		SHIP_OUTLINES,
 		"\t",
 		"HUD",
@@ -752,6 +755,11 @@ void PreferencesPanel::DrawSettings()
 		else if(setting == BACKGROUND_PARALLAX)
 		{
 			text = Preferences::ParallaxSetting();
+			isOn = text != "off";
+		}
+		else if(setting == EXTENDED_JUMP_EFFECTS)
+		{
+			text = Preferences::ExtendedJumpEffectsSetting();
 			isOn = text != "off";
 		}
 		else if(setting == REACTIVATE_HELP)

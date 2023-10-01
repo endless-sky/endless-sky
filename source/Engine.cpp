@@ -503,8 +503,10 @@ void Engine::Step(bool isActive)
 	{
 		center = flagship->Position();
 		centerVelocity = flagship->Velocity();
-		if(flagship->IsHyperspacing() && Preferences::Has("Extended jump effects"))
-			centerVelocity *= 1. + pow(flagship->GetHyperspacePercentage() / 20., 2);
+		Preferences::ExtendedJumpEffects jumpEffectState = Preferences::GetExtendedJumpEffects();
+		if(flagship->IsHyperspacing() && jumpEffectState != Preferences::ExtendedJumpEffects::OFF)
+			centerVelocity *= 1. + pow(flagship->GetHyperspacePercentage() /
+				(jumpEffectState == Preferences::ExtendedJumpEffects::MEDIUM ? 40. : 20.), 2);
 		if(doEnterLabels)
 		{
 			doEnterLabels = false;
