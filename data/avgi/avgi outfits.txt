@@ -110,11 +110,11 @@ outfit "Speckle Railgun"
 		"inaccuracy" 1.5
 		"velocity" 54
 		"lifetime" 1
-		"range override" 1800
+		"range override" 1500
 		"reload" 12
 		"burst reload" 2
 		"burst count" 15
-		"firing energy" 6
+		"firing energy" 30
 		"firing heat" 12
 		"firing force" 12
 		"submunition" "Speck"
@@ -143,10 +143,10 @@ outfit "Speckle Turret"
 		"inaccuracy" 1.2
 		"velocity" 54
 		"lifetime" 1
-		"range override" 1800
+		"range override" 1500
 		"reload" 12
 		"turret turn" 6
-		"firing energy" 12
+		"firing energy" 60
 		"firing heat" 24
 		"firing force" 24
 		"submunition" "Speck"
@@ -163,10 +163,10 @@ outfit "Speck"
 			"frame rate" 12
 			"no repeat"
 		"hit effect" "bullet impact"
-		"lifetime" 42
-		"random lifetime" 15
-		"shield damage" 18
-		"hull damage" 30
+		"lifetime" 30
+		"random lifetime" 9
+		"shield damage" 12
+		"hull damage" 24
 		"hit force" 12
 
 
@@ -221,10 +221,10 @@ outfit "Fleck Coilgun"
 		"hit effect" "bombardment impact"
 		"inaccuracy" 0.6
 		"velocity" 60
-		"range override" 2400
+		"range override" 1800
 		"lifetime" 1
 		"reload" 20
-		"firing energy" 60
+		"firing energy" 120
 		"firing heat" 15
 		"firing force" 60
 		"submunition" "Fleck"
@@ -251,11 +251,11 @@ outfit "Fleck Turret"
 		"hit effect" "bombardment impact"
 		"inaccuracy" 0.3
 		"velocity" 60
-		"range override" 2400
+		"range override" 1800
 		"lifetime" 1
 		"reload" 10
 		"turret turn" 3.6
-		"firing energy" 45
+		"firing energy" 120
 		"firing heat" 12
 		"firing force" 60
 		"submunition" "Fleck"
@@ -269,11 +269,11 @@ outfit "Fleck"
 			"random start frame"
 			"rewind"
 		"hit effect" "bombardment impact"
-		"lifetime" 48
-		"random lifetime" 9
+		"lifetime" 30
+		"random lifetime" 6
 		"inaccuracy" 0.3
-		"shield damage" 72
-		"hull damage" 90
+		"shield damage" 60
+		"hull damage" 48
 		"hit force" 60
 		"missile strength" 3
 
@@ -1489,13 +1489,13 @@ outfit "XY-720 Radial Thrusters"
 	"reverse thrust" 36
 	"reverse thrusting energy" 1.2
 	"reverse thrusting heat" 1.2
-	"steering flare sprite" "effect/avgi fusion flare/large"
+	"steering flare sprite" "effect/avgi flare/fusion"
 		"frame rate" 30
 		"scale" 0.25
 	"steering flare sound" "plasma small"
-	"reverse flare sprite" "effect/avgi fusion flare/large"
+	"reverse flare sprite" "effect/avgi flare/fusion"
 		"frame rate" 30
-		scale 0.5
+		"scale" 0.75
 	"reverse flare sound" "plasma small"
 	description "Balance TBD"
 

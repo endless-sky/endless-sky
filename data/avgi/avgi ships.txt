@@ -1265,7 +1265,7 @@ ship "Interferos"
 		"heat dissipation" 1.5
 		"fuel capacity" 600
 		"cargo space" 12
-		"outfit space" 282
+		"outfit space" 288
 		"weapon capacity" 84
 		"engine capacity" 60
 		"anchor point" 1
@@ -1497,8 +1497,7 @@ ship "Difraktos"
 	bay "Drone" -21 -21
 	bay "Drone" 21 -21
 
-	engine -3 135
-	engine 3 135
+	engine 0 135
 	"reverse engine" -9 138
 		angle -35
 	"reverse engine" 9 138
