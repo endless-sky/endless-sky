@@ -1121,9 +1121,10 @@ ship "Tremoros"
 		"Speck Round" 14400
 		
 		"Lantern Fission Core"
-		"Ultracapacitor Cell" 3
+		"Ultracapacitor Cell" 4
 		"Diffuse Deflector"
 		"Multispectral Scanner"
+		"Electrostatic Ramscoop"
 		
 		"Z-330 Fusion Torch"
 		"XY-180 Radial Thrusters"
@@ -1158,7 +1159,7 @@ ship "Tremoros"
 	explode "small explosion" 9
 	"final explode" "final explosion small"
 
-	description "The Tremoros-class Interceptor is a small autonomous ship designed to support patrol and interdiction missions. With an emphasis on speed, it can rocket past most adversaries even as it brings its guns to bear, making it exceedingly difficult to hit."
+	description "The Tremoros-class Interceptor is a small autonomous ship designed to support patrol and interdiction missions. With an emphasis on raw acceleration, it can rocket past any adversary even as it brings its guns to bear, making it exceedingly difficult to hit."
 	description "The Tremoros has also seen use as an escort for smaller merchant convoys, with the ability to intercept any enemies that might pose a threat before they can come within range of vulnerable civilian ships."
 
 
@@ -1672,9 +1673,9 @@ ship "Atenuatia"
 		"Hyperdrive"
 
 	engine 0 250
-	"reverse engine" -9 234
+	"reverse engine" -9 264
 		angle -30
-	"reverse engine" 9 234
+	"reverse engine" 9 264
 		angle 30
 	"steering engine" -90 -252
 		angle 60
@@ -1682,10 +1683,10 @@ ship "Atenuatia"
 	"steering engine" 90 -252
 		angle -60
 		left
-	"steering engine" -9 234
+	"steering engine" -9 264
 		angle 120
 		left
-	"steering engine" 9 234
+	"steering engine" 9 264
 		angle -120
 		right
 

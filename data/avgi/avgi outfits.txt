@@ -108,9 +108,9 @@ outfit "Speckle Railgun"
 		ammo "Speck Round"
 		"fire effect" "speck fire"
 		"inaccuracy" 1.5
-		"velocity" 54
+		"velocity" 48
 		"lifetime" 1
-		"range override" 1500
+		"range override" 1200
 		"reload" 12
 		"burst reload" 2
 		"burst count" 15
@@ -141,9 +141,9 @@ outfit "Speckle Turret"
 		"hardpoint offset" 6
 		"fire effect" "speck fire"
 		"inaccuracy" 1.2
-		"velocity" 54
+		"velocity" 48
 		"lifetime" 1
-		"range override" 1500
+		"range override" 1200
 		"reload" 12
 		"turret turn" 6
 		"firing energy" 60
@@ -166,7 +166,7 @@ outfit "Speck"
 		"lifetime" 30
 		"random lifetime" 9
 		"shield damage" 12
-		"hull damage" 24
+		"hull damage" 18
 		"hit force" 12
 
 
@@ -221,11 +221,11 @@ outfit "Fleck Coilgun"
 		"hit effect" "bombardment impact"
 		"inaccuracy" 0.6
 		"velocity" 60
-		"range override" 1800
+		"range override" 1440
 		"lifetime" 1
-		"reload" 20
-		"firing energy" 120
-		"firing heat" 15
+		"reload" 60
+		"firing energy" 150
+		"firing heat" 18
 		"firing force" 60
 		"submunition" "Fleck"
 	description "A powerful row of superconducting coils can accelerate a conductive metal projectile to impressive velocities while avoiding the friction associated with railguns. This fixed gun enables even modestly sized ships to provide precision artillery support at range, or bring to bear a powerful kinetic weapon for close quarter combat."
@@ -251,9 +251,9 @@ outfit "Fleck Turret"
 		"hit effect" "bombardment impact"
 		"inaccuracy" 0.3
 		"velocity" 60
-		"range override" 1800
+		"range override" 1440
 		"lifetime" 1
-		"reload" 10
+		"reload" 30
 		"turret turn" 3.6
 		"firing energy" 120
 		"firing heat" 12
@@ -272,8 +272,8 @@ outfit "Fleck"
 		"lifetime" 30
 		"random lifetime" 6
 		"inaccuracy" 0.3
-		"shield damage" 60
-		"hull damage" 72
+		"shield damage" 72
+		"hull damage" 105
 		"hit force" 60
 		"missile strength" 3
 
@@ -307,7 +307,7 @@ outfit "Phased Array Laser (Green)"
 		"die effect" "green phaser scattering"
 		"fire effect" "green phaser fire"
 		"anti-missile" 3
-		"velocity" 1200
+		"velocity" 1800
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 12
@@ -444,12 +444,12 @@ outfit "Sidereal Launcher"
 		"velocity" 9
 		"lifetime" 15
 		"reload" 45
-		"firing energy" 12
-		"firing heat" 6
+		"firing energy" 3
+		"firing heat" 3
 		"turn" 180
 		"homing" 2
-		"radar tracking" .9
-		"optical tracking" .6
+		"radar tracking" 0.6
+		"infrared tracking" 0.9
 		"missile strength" 9
 		"submunition" "Sidereal Active"
 	description "Sidereal missiles are minimalist kinetic kill vehicles designed for use in situations where nuclear weapons are considered unnecessary. Little more than a payload of tungsten rods, a thruster package, and a nose mounted sensor array, they can be manufactured in bulk at minimal cost."
@@ -513,7 +513,6 @@ outfit "Sidereal VLS Array"
 		ammo "Sidereal Missile"
 		icon "icon/finisher"
 		"fire effect" "sidewinder fire"
-		"die effect" "finisher fragment" 6
 		"inaccuracy" 2.4
 		"velocity" 9
 		"lifetime" 15
@@ -521,8 +520,8 @@ outfit "Sidereal VLS Array"
 		"burst reload" 12
 		"burst count" 6
 		"turret turn" 9
-		"firing energy" 12
-		"firing heat" 6
+		"firing energy" 3
+		"firing heat" 3
 		"turn" 180
 		"homing" 2
 		"radar tracking" 0.6
@@ -542,16 +541,16 @@ outfit "Sidereal Active"
 			"frame rate" .25
 		"die effect" "tiny explosion"
 		"hit effect" "missile hit"
-		"lifetime" 450
-		"split range" 420
+		"live effect" "sidereal exhaust" 3600
+		"live effect" "sidereal trail" 3600
+		"lifetime" 600
+		"split range" 450
 		"acceleration" 1.8
 		"drag" .09
 		"turn" 12
 		"homing" 4
 		"radar tracking" 0.6
 		"infrared tracking" 0.9
-		"shield damage" 360
-		"hull damage" 480
 		"hit force" 210
 		"missile strength" 12
 		"submunition" "Sidereal Flack" 18
@@ -560,20 +559,40 @@ outfit "Sidereal Active"
 outfit "Sidereal Flack"
 	weapon
 		sprite "projectile/speck"
-			"frame rate" 36
+			"frame rate" 30
 			"no repeat"
 		"die effect" "missile death"
 		"hit effect" "bombardment impact"
-		"inaccuracy" 12
+		"inaccuracy" 15
 			narrow
-		"random velocity" 12
 		"lifetime" 30
 		"random lifetime" 30
-		"shield damage" 18
-		"hull damage" 30
+		"shield damage" 9
+		"hull damage" 12
 		"hit force" 36
 		"missile strength" 3
 
+effect "sidereal exhaust"
+	sprite "effect/static"
+		"no repeat"
+		"frame rate" 6
+		"scale" 2
+	"lifetime" 3
+	"random angle" 180
+	"random spin" 360
+	"random velocity" -3
+	"velocity scale" 0.6
+
+effect "sidereal trail"
+	sprite "effect/burning spark"
+		"no repeat"
+		"frame rate" 6
+		"scale" 0.75
+	"lifetime" 90
+	"random angle" 15
+	"random spin" 360
+	"random velocity" -3
+	"velocity scale" 0
 
 outfit "Sidereal Magazine"
 	category "Ammunition"
@@ -1191,9 +1210,9 @@ outfit "Lantern Fission Core"
 	thumbnail "outfit/lantern fission core"
 	"mass" 24
 	"outfit space" -24
-	"energy generation" 3.6
+	"energy generation" 4.2
 	"heat generation" 5.4
-	description "The Lantern is an extremely compact dusty plasma fission reactor designed to fit even on large fighters or interceptors. By suspending uranium dust in a hydrogen plasma, which is in turn contained by a magnetic field, the reactor can achieve core temperatures high enough to make it efficient for its size."
+	description "The Lantern is a compact dusty plasma fission reactor designed to fit even on large fighters or interceptors. By suspending uranium dust in a hydrogen plasma, which is in turn contained by a magnetic field, the reactor can achieve incredible core temperatures high enough to make it efficient for its size."
 
 
 outfit "Luminous Fusion Core"
@@ -1417,9 +1436,6 @@ outfit "XY-180 Radial Thrusters"
 	"mass" 18
 	"outfit space" -18
 	"engine capacity" -18
-	"thrust" 6
-	"thrusting energy" 1.5
-	"thrusting heat" -3
 	"turn" 540
 	"turning energy" 1.5
 	"turning heat" -3
@@ -1447,9 +1463,6 @@ outfit "XY-360 Radial Thrusters"
 	"mass" 36
 	"outfit space" -36
 	"engine capacity" -36
-	"thrust" 12
-	"thrusting energy" 3
-	"thrusting heat" -6
 	"turn" 1140
 	"turning energy" 3
 	"turning heat" -6
@@ -1477,9 +1490,6 @@ outfit "XY-720 Radial Thrusters"
 	"mass" 72
 	"outfit space" -72
 	"engine capacity" -72
-	"thrust" 24
-	"thrusting energy" 6
-	"thrusting heat" -9
 	"turn" 2400
 	"turning energy" 6
 	"turning heat" -9
