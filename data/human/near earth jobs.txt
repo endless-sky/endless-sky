@@ -242,7 +242,7 @@ mission "Transport farmers to Mars"
 	on complete
 		payment
 		payment 2000
-		dialog "You wish the workers the best of luck on <planet>, and collect your payment of <payment>."
+		dialog "You wish the farmers the best of luck on <planet>, and collect your payment of <payment>."
 
 
 mission "Transport tourists to Luna"
@@ -259,7 +259,7 @@ mission "Transport tourists to Luna"
 	on complete
 		payment
 		payment 2000
-		dialog "You wish the workers the best of luck on <planet>, and collect your payment of <payment>."
+		dialog "You wish the tourists the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Transport seasonal workers to Earth"
 	job

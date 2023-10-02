@@ -1313,6 +1313,7 @@ outfit "Imaginary Weapon"
 		"tracking" 1.
 
 ship "Hallucination"
+	noun "flower"
 	sprite "ship/hallucination"
 		"frame rate" 1
 		"random start frame"
@@ -6374,7 +6375,7 @@ mission "Care Package to South 3a"
 	landing
 	invisible
 	to offer
-		has "Care Package to South 3a: offered"
+		has "Care Package to South 2a: offered"
 		has "FW Pirates: Attack 3: done"
 	on offer
 		conversation

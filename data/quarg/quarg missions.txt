@@ -231,9 +231,8 @@ mission "Ask Quarg About Coalition Early"
 	to offer
 		has "First Contact: Quarg: offered"
 		has "Coalition: First Contact: done"
-		not "assisted heliarch"
-		not "Heliarch Recon 1: offered"
-		not "Lunarium: Introductions: offered"
+		not "joined the lunarium"
+		not "joined the heliarchs"
 	source
 		attributes "quarg"
 		attributes "station"
