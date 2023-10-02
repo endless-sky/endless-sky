@@ -572,7 +572,7 @@ mission "House Bebliss 1-B"
 			`	The waiter arrives, and they suggest some dishes, seeing as you didn't pick anything from the menu. The smell coming from the other tables, however, tells you to decline, so you politely leave the establishment. It seems the only way to find out what these Arachi want is to head to <destination>.`
 				accept
 			label decline
-			`	The two of them eye you up for a very uncomfortable minute, but never provide some response or acknoweldgement. You try and move away and leave the restaurant, but their bodyguards block you. One of the two Arachi from the table appears to grunt, then signals for the guards to let you pass through. You leave the restaurant, and return to your ship.`
+			`	The two of them eye you up for a very uncomfortable minute, but never provide some response or acknowledgement. You try and move away and leave the restaurant, but their bodyguards block you. One of the two Arachi from the table appears to grunt, then signals for the guards to let you pass through. You leave the restaurant, and return to your ship.`
 				decline
 	on accept
 		"assisting lunarium" ++
