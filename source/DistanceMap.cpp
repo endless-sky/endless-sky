@@ -246,14 +246,14 @@ void DistanceMap::Init(const Ship *ship)
 
 					// In order to plan travel through a wormhole, it must be
 					// "accessible" to your flagship, and you must have visited
-					// the wormhole and both endpoint systems. (If this is a
-					// multi-stop wormhole, you may know about some paths that
-					// it takes but not others.)
+					// the wormhole and both endpoint systems must be viewable.
+					// (If this is a multi-stop wormhole, you may know about
+					// some paths that it takes but not others.)
 					if(ship && !object.GetPlanet()->IsAccessible(ship))
 						continue;
 					if(player && !player->HasVisited(*object.GetPlanet()))
 						continue;
-					if(player && !(player->HasVisited(*top.next) && player->HasVisited(link)))
+					if(player && !(player->CanView(*top.next) && player->CanView(link)))
 						continue;
 
 					Add(link, top);

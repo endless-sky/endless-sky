@@ -2363,6 +2363,24 @@ int64_t PlayerInfo::GetTributeTotal() const
 // they have actually visited it).
 bool PlayerInfo::HasSeen(const System &system) const
 {
+	if(&system == this->system)
+		return true;
+	
+	if(system.Shrouded())
+	{
+		// If a shrouded system isn't in visible range then there's no chance of seeing it.
+		if(!system.VisibleNeighbors().count(this->system))
+			return false;
+		if(!system.Hidden())
+			return true;
+		// Shrouded and hidden systems must be linked to a system that can be viewed.
+		if(any_of(system.Links().begin(), system.Links().end(), 
+				[&](const System *s) noexcept -> bool { return CanView(*s); }))
+			return true;
+		
+		return false;
+	}
+	
 	if(seen.count(&system))
 		return true;
 
@@ -2383,6 +2401,16 @@ bool PlayerInfo::HasSeen(const System &system) const
 		return true;
 
 	return KnowsName(system);
+}
+
+
+
+// Check if the player can view the contents of the given system.
+bool PlayerInfo::CanView(const System &system) const
+{
+	// A player can always view the contents of the system they are in. Otherwise,
+	// the system must have been visited before and not be shrouded.
+	return (visitedSystems.count(&system) && !system.Shrouded()) || &system == this->system;
 }
 
 
