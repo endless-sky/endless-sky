@@ -216,7 +216,6 @@ mission "Hai Reveal [A03a] Symbol Identification"
 		log `Alondo asked me to check out the Hai spaceports in various systems near the wormhole, to see if anything unexpected is happening.`
 		conversation
 			`You make what is beginning to feel like a standard request to land at the secure spaceport and disembark with relevant copies of files on a data stick in hand. It doesn't take long to track down Alondo, though you do have to wait nearly half an hour while he finishes a meeting with a Hai official. When he's done, Alondo waves you into the room and asks you to take a seat. The seat you choose is clearly designed to be comfortable for a Hai, making for a rather strange experience for a human.`
-			# TODO: Replace this paragraph with actual content. Include something about him working at Remington lately.
 			`	You show Alondo the cat symbol you found. He says, "There's a research institute on Earth that specializes in the history of politics during the early hyperspace travel era. If anyone would recognize this symbol, it's them. I'll pass it on and let you know what they say.`
 			`	"In the meantime, could you stop by some of the Hai worlds near the wormhole? They've obviously ramped up security on Allhome, but I'd like to have a pair of friendly eyes check it out. The Hai may be using this as a cover to put their military into a threatening position... not that I think they'd do that, but we've just been through one war. We have concerns, and I may be getting paranoid sitting here in the most Hai place that there is.`
 			`	"Plus," he pauses, visibly softening. "It'd be nice to know how they're handling things. It seems to have been quite a shock to them, and civilian populations don't always react well to suddenly heightened security. There's a lot of very high-level stuff going on, and I'd personally feel better if someone could tell me the regular people were handling things alright. No need to do anything special, just have a look around and see how things are going."`
@@ -939,7 +938,6 @@ mission "Hai Reveal [A06a] The Calm"
 		
 		
 mission "Hai Reveal [A07] Deliver the Relays"
-	# TODO: The relays should vanish from your cargo bay when deployed if it ever becomes possible.
 	autosave
 	landing
 	name "Preparation & Investigation"
