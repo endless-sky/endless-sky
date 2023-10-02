@@ -625,7 +625,7 @@ ship "Frequentia"
 		"Electrostatic Ramscoop"
 		"Electromotive Rifle" 2
 
-		"Z-360 Fusion Torch"
+		"Z-330 Fusion Torch"
 		"XY-180 Radial Thrusters"
 		"Hyperdrive"
 
@@ -704,7 +704,7 @@ ship "Polari"
 		"Electrostatic Ramscoop"
 		"Electromotive Rifle" 9
 
-		"Z-360 Fusion Torch"
+		"Z-330 Fusion Torch"
 		"XY-180 Radial Thrusters"
 		"Hyperdrive"
 
@@ -913,7 +913,7 @@ ship "Undsyni"
 		"Multispectral Scanner"
 		"Spectrometer Array"
 
-		"Z-360 Fusion Torch"
+		"Z-330 Fusion Torch"
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
@@ -1125,7 +1125,7 @@ ship "Tremoros"
 		"Diffuse Deflector"
 		"Multispectral Scanner"
 		
-		"Z-360 Fusion Torch"
+		"Z-330 Fusion Torch"
 		"XY-180 Radial Thrusters"
 		"Hyperdrive"
 
@@ -1206,7 +1206,7 @@ ship "Prismaios"
 		"Multispectral Scanner"
 		"Electrostatic Ramscoop"
 		
-		"Z-360 Fusion Torch"
+		"Z-330 Fusion Torch"
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
@@ -1285,7 +1285,7 @@ ship "Interferos"
 		"Optical Lasing Generator"
 		"Electrostatic Ramscoop"
 		
-		"Z-360 Fusion Torch"
+		"Z-330 Fusion Torch"
 		"XY-180 Radial Thrusters"
 		"Hyperdrive"
 
@@ -1342,8 +1342,8 @@ ship "Diaspersi"
 		"hull" 12000
 		"required crew" 15
 		"bunks" 36
-		"mass" 270
-		"drag" 3.6
+		"mass" 240
+		"drag" 3
 		"heat dissipation" 1.8
 		"fuel capacity" 2400
 		"cargo space" 120
@@ -1361,9 +1361,10 @@ ship "Diaspersi"
 		"Fleck Turret"
 		"Fleck Round" 2400
 		"Sidereal Launcher" 2
-		"Sidereal Missile" 84
+		"Sidereal Magazine" 2
 		"Equinox Torpedo Stockpile" 2
 		"Equinox Torpedo" 24
+		"Sidereal Missile" 156
 		
 		"Luminous Fusion Core"
 		"Ultracapacitor Bank"
@@ -1375,7 +1376,7 @@ ship "Diaspersi"
 		"Electrostatic Ramscoop"
 		"Electromotive Rifle" 36
 		
-		"Z-600 Fusion Torch"
+		"Z-330 Fusion Torch"
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
@@ -1445,7 +1446,7 @@ ship "Difraktos"
 		"required crew" 15
 		"bunks" 42
 		"mass" 270
-		"drag" 4.2
+		"drag" 4.5
 		"heat dissipation" 2.1
 		"fuel capacity" 1800
 		"cargo space" 60
@@ -1477,7 +1478,7 @@ ship "Difraktos"
 		"Electrostatic Ramscoop"
 		"Electromotive Rifle" 42
 
-		"Z-600 Fusion Torch"
+		"Z-660 Fusion Torch"
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
@@ -1541,7 +1542,7 @@ ship "Refraktos"
 		"required crew" 12
 		"bunks" 24
 		"mass" 180
-		"drag" 3
+		"drag" 2.4
 		"heat dissipation" 2.4
 		"fuel capacity" 1800
 		"cargo space" 60
@@ -1568,7 +1569,7 @@ ship "Refraktos"
 		"Thermal Sink Partition" 3
 		"Electromotive Rifle" 24
 		
-		"Z-360 Fusion Torch"
+		"Z-330 Fusion Torch"
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
@@ -1634,8 +1635,8 @@ ship "Atenuatia"
 		"hull" 27600
 		"required crew" 60
 		"bunks" 90
-		"mass" 450
-		"drag" 3.6
+		"mass" 600
+		"drag" 4.5
 		"heat dissipation" 1.8
 		"fuel capacity" 2400
 		"cargo space" 90
@@ -1666,7 +1667,7 @@ ship "Atenuatia"
 		"Multispectral Scanner" 9
 		"Electromotive Rifle" 90
 		
-		"Z-600 Fusion Torch"
+		"Z-660 Fusion Torch"
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 

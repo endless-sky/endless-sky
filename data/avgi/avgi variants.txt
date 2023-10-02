@@ -35,7 +35,7 @@ ship "Undsyni" "Undsyni (Tanker)"
 		"Cryogenic Deuterium Tank" 18
 		"Dipole Ramscoop"
 
-		"Z-360 Fusion Torch"
+		"Z-330 Fusion Torch"
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
@@ -55,7 +55,7 @@ ship "Prismaios" "Prismaios (Coilgun)"
 		"Multispectral Scanner"
 		"Electrostatic Ramscoop"
 		
-		"Z-360 Fusion Torch"
+		"Z-330 Fusion Torch"
 		"XY-180 Radial Thrusters"
 		"Hyperdrive"
 
@@ -76,7 +76,7 @@ ship "Prismaios" "Prismaios (Atomic)"
 		"Multispectral Scanner"
 		"Electrostatic Ramscoop"
 		
-		"Z-360 Fusion Torch"
+		"Z-330 Fusion Torch"
 		"XY-180 Radial Thrusters"
 		"Hyperdrive"
 
@@ -102,7 +102,7 @@ ship "Diaspersi" "Diaspersi (Atomic)"
 		"Deuterium Slush Tank"
 		"Electrostatic Ramscoop"
 		
-		"Z-600 Fusion Torch"
+		"Z-660 Fusion Torch"
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
@@ -120,7 +120,7 @@ ship "Difraktos" "Difraktos (Missile)"
 		"Concealment Scales"
 		"Electrostatic Ramscoop"
 		
-		"Z-360 Fusion Torch"
+		"Z-330 Fusion Torch"
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
@@ -140,7 +140,7 @@ ship "Difraktos" "Difraktos (Kinetic)"
 		"Concealment Scales"
 		"Electrostatic Ramscoop"
 		
-		"Z-360 Fusion Torch"
+		"Z-330 Fusion Torch"
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
@@ -162,7 +162,7 @@ ship "Difraktos" "Difraktos (Atomic)"
 		"Concealment Scales"
 		"Electrostatic Ramscoop"
 		
-		"Z-600 Fusion Torch"
+		"Z-660 Fusion Torch"
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 
@@ -187,7 +187,7 @@ ship "Atenuatia" "Atenuatia (Atomic)"
 		"Electrostatic Ramscoop" 2
 		"Multispectral Scanner" 9
 		
-		"Z-600 Fusion Torch"
+		"Z-660 Fusion Torch"
 		"XY-360 Radial Thrusters"
 		"Hyperdrive"
 

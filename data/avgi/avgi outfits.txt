@@ -1295,9 +1295,9 @@ outfit "Magnetoplasma Drive"
 	"thrust" 9
 	"thrusting energy" 1.2
 	"thrusting heat" 0.3
-	"reverse thrust" 3
-	"reverse thrusting energy" 0.6
-	"reverse thrusting heat" 0.15
+	"reverse thrust" 9
+	"reverse thrusting energy" 1.2
+	"reverse thrusting heat" 0.3
 	"turn" 210
 	"turning energy" 0.6
 	"turning heat" 0.3
@@ -1315,16 +1315,16 @@ outfit "Magnetoplasma Drive"
 	description "Designed to be clustered, this design is capable of full six-axis control."
 
 
-outfit "Z-360 Fusion Torch"
+outfit "Z-330 Fusion Torch"
 	category "Engines"
 	licenses
 		"Avgi Military"
 	"cost" 660000
 	thumbnail "outfit/fusion engine small"
-	"mass" 36
-	"outfit space" -36
-	"engine capacity" -36
-	"thrust" 48
+	"mass" 33
+	"outfit space" -33
+	"engine capacity" -33
+	"thrust" 45
 	"thrusting energy" 3
 	"thrusting heat" 15
 	"thrusting fuel" 0.03
@@ -1333,61 +1333,58 @@ outfit "Z-360 Fusion Torch"
 		"frame rate" 15
 		"scale" 0.75
 	"flare sound" "remnant afterburner"
-
-	"afterburner thrust" 96
-	"afterburner fuel" 0.15
-	"afterburner heat" -9
+	"afterburner thrust" 90
+	"afterburner fuel" 0.24
+	"afterburner heat" -12
 	"afterburner effect" "small remass injection"
 	description "Balance TBD"
 
 
-outfit "Z-600 Fusion Torch"
+outfit "Z-660 Fusion Torch"
 	category "Engines"
 	licenses
 		"Avgi Military"
 	"cost" 1440000
 	thumbnail "outfit/fusion engine medium"
-	"mass" 60
-	"outfit space" -60
-	"engine capacity" -60
-	"thrust" 99
+	"mass" 66
+	"outfit space" -66
+	"engine capacity" -66
+	"thrust" 93
 	"thrusting energy" 6
-	"thrusting heat" 27
+	"thrusting heat" 30
 	"thrusting fuel" 0.06
 	"drag reduction" 2
 	"flare sprite" "effect/avgi flare/fusion"
 		"frame rate" 15
 	"flare sound" "remnant afterburner"
-
-	"afterburner thrust" 198
-	"afterburner fuel" 0.3
-	"afterburner heat" -18
+	"afterburner thrust" 186
+	"afterburner fuel" 0.48
+	"afterburner heat" -21
 	"afterburner effect" "medium remass injection"
 	description "Balance TBD"
 
 
-outfit "Z-960 Fusion Torch"
+outfit "Z-990 Fusion Torch"
 	category "Engines"
 	licenses
 		"Avgi Military"
 	"cost" 2760000
 	thumbnail "outfit/fusion engine large"
-	"mass" 96
-	"outfit space" -96
-	"engine capacity" -96
-	"thrust" 180
+	"mass" 99
+	"outfit space" -99
+	"engine capacity" -99
+	"thrust" 144
 	"thrusting energy" 9
-	"thrusting heat" 54
+	"thrusting heat" 45
 	"thrusting fuel" 0.09
 	"drag reduction" 2
 	"flare sprite" "effect/avgi flare/fusion"
 		"frame rate" 30
 		"scale" 2
 	"flare sound" "remnant afterburner"
-
-	"afterburner thrust" 360
-	"afterburner fuel" 0.45
-	"afterburner heat" -21
+	"afterburner thrust" 288
+	"afterburner fuel" 0.72
+	"afterburner heat" -27
 	"afterburner effect" "large remass injection"
 	description "Balance TBD"
 
@@ -1420,20 +1417,20 @@ outfit "XY-180 Radial Thrusters"
 	"mass" 18
 	"outfit space" -18
 	"engine capacity" -18
-	"thrust" 9
-	"thrusting energy" 0.3
-	"thrusting heat" 0.3
+	"thrust" 6
+	"thrusting energy" 1.5
+	"thrusting heat" -3
 	"turn" 540
-	"turning energy" 0.9
-	"turning heat" 0.6
-	"reverse thrust" 9
-	"reverse thrusting energy" 0.3
-	"reverse thrusting heat" 0.3
-	"steering flare sprite" "effect/avgi flare/fusion"
+	"turning energy" 1.5
+	"turning heat" -3
+	"reverse thrust" 6
+	"reverse thrusting energy" 1.5
+	"reverse thrusting heat" -3
+	"steering flare sprite" "effect/avgi flare/rcs"
 		"frame rate" 30
 		"scale" 0.0625
 	"steering flare sound" "plasma small"
-	"reverse flare sprite" "effect/avgi flare/fusion"
+	"reverse flare sprite" "effect/avgi flare/rcs"
 		"frame rate" 30
 		"scale" 0.125
 	"reverse flare sound" "plasma small"
@@ -1450,20 +1447,20 @@ outfit "XY-360 Radial Thrusters"
 	"mass" 36
 	"outfit space" -36
 	"engine capacity" -36
-	"thrust" 21
-	"thrusting energy" 0.15
-	"thrusting heat" 0.15
-	"turn" 1560
-	"turning energy" 2.1
-	"turning heat" 1.5
-	"reverse thrust" 21
-	"reverse thrusting energy" 0.15
-	"reverse thrusting heat" 0.15
-	"steering flare sprite" "effect/avgi flare/fusion"
+	"thrust" 12
+	"thrusting energy" 3
+	"thrusting heat" -6
+	"turn" 1140
+	"turning energy" 3
+	"turning heat" -6
+	"reverse thrust" 12
+	"reverse thrusting energy" 3
+	"reverse thrusting heat" -6
+	"steering flare sprite" "effect/avgi flare/rcs"
 		"frame rate" 30
 		"scale" 0.125
 	"steering flare sound" "plasma small"
-	"reverse flare sprite" "effect/avgi flare/fusion"
+	"reverse flare sprite" "effect/avgi flare/rcs"
 		"frame rate" 30
 		"scale" 0.25
 	"reverse flare sound" "plasma small"
@@ -1480,20 +1477,20 @@ outfit "XY-720 Radial Thrusters"
 	"mass" 72
 	"outfit space" -72
 	"engine capacity" -72
-	"thrust" 36
-	"thrusting energy" 1.2
-	"thrusting heat" 1.2
-	"turn" 2790
-	"turning energy" 3.6
-	"turning heat" 2.4
-	"reverse thrust" 36
-	"reverse thrusting energy" 1.2
-	"reverse thrusting heat" 1.2
-	"steering flare sprite" "effect/avgi flare/fusion"
+	"thrust" 24
+	"thrusting energy" 6
+	"thrusting heat" -9
+	"turn" 2400
+	"turning energy" 6
+	"turning heat" -9
+	"reverse thrust" 24
+	"reverse thrusting energy" 6
+	"reverse thrusting heat" -9
+	"steering flare sprite" "effect/avgi flare/rcs"
 		"frame rate" 30
 		"scale" 0.5
 	"steering flare sound" "plasma small"
-	"reverse flare sprite" "effect/avgi flare/fusion"
+	"reverse flare sprite" "effect/avgi flare/rcs"
 		"frame rate" 30
 		"scale" 0.75
 	"reverse flare sound" "plasma small"

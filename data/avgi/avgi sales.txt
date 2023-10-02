@@ -106,8 +106,8 @@ outfitter "Avgi Advanced Systems"
 
 outfitter "Avgi Basic Drives"
 	"Magnetoplasma Drive"
-	"Z-360 Fusion Torch"
-	"Z-600 Fusion Torch"
+	"Z-330 Fusion Torch"
+	"Z-660 Fusion Torch"
 	"XY-180 Radial Thrusters"
 	"XY-360 Radial Thrusters"
 

@@ -355,6 +355,7 @@ phrase "avgi warnings"
 		"Important"
 		"Insight"
 		"Serious"
+		"Vigilance"
 	word
 		". "
 		"; "
