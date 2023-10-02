@@ -118,6 +118,21 @@ void Flotsam::Move(vector<Visual> &visuals)
 
 
 
+// Pull the object's velocity towards a tractor beam.
+void Flotsam::Pull(Point pull)
+{
+	// Dampen perpendicular motion, decaying the orbits of any flotsams
+	// so that they fall into the direction of pull.
+	Point perpendicular = Angle(90.).Rotate(pull);
+	Point projection = (perpendicular.Dot(velocity) / perpendicular.Dot(perpendicular)) * perpendicular;
+	velocity -= 0.01 * projection;
+	
+	// Pull the object toward the tractor beam.
+	velocity += pull;
+}
+
+
+
 // This is the one ship that cannot pick up this flotsam.
 const Ship *Flotsam::Source() const
 {

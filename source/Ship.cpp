@@ -1919,10 +1919,11 @@ double Ship::OutfitScanFraction() const
 
 
 
-// Fire any weapons that are ready to fire. If an anti-missile is ready,
-// instead of firing here this function returns true and it can be fired if
-// collision detection finds a missile in range.
-bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
+// Fire any weapons that are ready to fire. If an anti-missile or tractor beam
+// is ready, instead of firing here this function updates the anti-missile and
+// tractor beam ranges and they can be fired if collision detection finds a
+// missile or flotsam in range.
+void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 {
 	isInSystem = true;
 	forget = 0;
@@ -1933,9 +1934,10 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 		projectiles.emplace_back(position, explosionWeapon);
 
 	if(CannotAct())
-		return false;
-
+		return;
+	
 	antiMissileRange = 0.;
+	tractorBeamRange = 0.;
 
 	double jamChance = CalculateJamChance(Energy(), scrambling);
 
@@ -1947,14 +1949,30 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 		{
 			if(weapon->AntiMissile())
 				antiMissileRange = max(antiMissileRange, weapon->Velocity() + weaponRadius);
+			else if(weapon->TractorBeam())
+				tractorBeamRange = max(tractorBeamRange, weapon->Velocity() + weaponRadius);
 			else if(firingCommands.HasFire(i))
 				armament.Fire(i, *this, projectiles, visuals, Random::Real() < jamChance);
 		}
 	}
 
 	armament.Step(*this);
+}
 
+
+
+bool Ship::HasAntiMissile() const
+{
 	return antiMissileRange;
+}
+
+
+
+bool Ship::HasTractorBeam() const
+{
+	// If this ship has no spare cargo space then don't even bother
+	// looking for flotsams.
+	return tractorBeamRange && cargo.Free();
 }
 
 
@@ -1979,6 +1997,42 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 	}
 
 	return false;
+}
+
+
+
+// Fire tractor beams at the given flotsam and update the map of hardpoints that
+// have fired upon it.
+void Ship::FireTractorBeam(const Flotsam &flotsam, map<const Weapon *, Point> &tractorBeams, vector<Visual> &visuals)
+{
+	if(flotsam.Position().Distance(position) > tractorBeamRange)
+		return;
+	if(CannotAct())
+		return;
+	// Don't fire on flotsams that you can't pick up (i.e. your own dumped cargo).
+	if(flotsam.Source() == this)
+		return;
+	// Don't waste energy on flotsams that you don't have cargo space for.
+	if(flotsam.OutfitType() && flotsam.OutfitType()->Mass() > cargo.Free())
+		return;
+
+	double jamChance = CalculateJamChance(Energy(), scrambling);
+
+	bool opportunisticEscorts = !Preferences::Has("Turrets focus fire");
+	const vector<Hardpoint> &hardpoints = armament.Get();
+	for(unsigned i = 0; i < hardpoints.size(); ++i)
+	{
+		const Weapon *weapon = hardpoints[i].GetOutfit();
+		if(weapon && CanFire(weapon))
+			if(armament.FireTractorBeam(i, *this, flotsam, visuals, Random::Real() < jamChance))
+			{
+				Point hardpointPos = Position() + Zoom() * Facing().Rotate(hardpoints[i].GetPoint());
+				tractorBeams[weapon] = hardpointPos;
+				// If this ship is opportunistic, then only fire one tractor beam at each flostam.
+				if(personality.IsOpportunistic() || (isYours && opportunisticEscorts))
+					return;
+			}
+	}
 }
 
 
