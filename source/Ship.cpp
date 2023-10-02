@@ -3754,7 +3754,12 @@ void Ship::DoGeneration()
 	// If some or all excess energy is due to "fuel energy", then run
 	// "fuel consumption" in reverse to "retcon" the energy generation.
 
-	if(attributes.Get("fuel consumption") > 0. && attributes.Get("fuel energy") > 0.)
+	// Of future note: The assumption that fuel was, in fact, burned last frame,
+	// is not always true. If a ship runs out of fuel, but still has an energy
+	// surplus, it will actually backfill its fuel with excess energy, until it
+	// has enough to burn again.
+
+	if(!isDisabled && attributes.Get("fuel consumption") > 0. && attributes.Get("fuel energy") > 0.)
 	{
 		double excessEnergy = energy - attributes.Get("energy capacity");
 		double fuelEnergy = -attributes.Get("fuel energy");
@@ -3763,7 +3768,7 @@ void Ship::DoGeneration()
 		DoRepair(fuel, excessEnergy, attributes.Get("fuel consumption"), energy, fuelEnergy, fuel, 0., heat, fuelHeat);
 	}
 
-	// However, this is no excuse to not explicitly cap the variables.
+	// However, this is no excuse to not explicitly clamp the variables.
 	energy = min(energy, attributes.Get("energy capacity"));
 	fuel = min(fuel, attributes.Get("fuel capacity"));
 
