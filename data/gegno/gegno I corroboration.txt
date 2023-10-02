@@ -338,8 +338,8 @@ mission "Gegno Suspicions"
 			`	"Our best of recommendations to you is to avoid further contact in the coming future. Meanwhile, we shall attempt a most careful negotiation with their hierarchy to come to terms of a ground of acceptance for your presence. Should we find commonality, you will receive communication from one of the title 'Adrauni', as has been bestowed upon me."`
 			`	The rest of the Quarg, who have been listening to the conversation attentively the whole time, begin to escort you out of the room. If the Gegno are willing to go as far as to contact the Quarg about your appearances, then this is truly an important matter to them. For the time being, it's probably best to allow the Quarg to find some kind of resolution with the Gegno while you keep your distance.`
 				decline
-	on decline
-		event "quarg gegno talks" 14
+#	on decline
+#		event "quarg gegno talks" 14
 
 
 mission "Under the Nose"
@@ -536,11 +536,11 @@ mission "Return to Giaru Gegno"
 		has "event: quarg gegno talks"
 		not "Gegno: Genocide Defense: offered"
 	on enter
-		dialog `Quarg want to talk to you NOW.`
+		dialog `Greetings <firstlast>. `
 			accept
 
 
-mission "Gegno Anticipation" 
+mission "Gegno Anticipation"
 	landing
 	destination "Dueyu Eitch"
 	to offer
@@ -558,7 +558,7 @@ mission "Gegno Intervention"
 	to offer
 #		has "event: gegno apprehension"
 		not "Gegno: Genocide Defense: offererd"
-	on offer 
+	on offer
 		conversation `Gegno want you to go to Eitch NOW.`
 			accept
 
