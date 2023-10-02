@@ -47,6 +47,32 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="0.10.3" date="2023-09-30" type="development" urgency="low">
+      <description>
+        <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
+        <p>The biggest change is the addition of over 50 new missions in the Coalition as part of the introductions to the Heliarch and Lunarium campaigns. Through these, you can unlock access to either some of the Heliarch weapons, or some new outfits for the Lunarium to aid in their subversive efforts.</p>
+        <p>Some other major new changes are:</p>
+        <ul>
+          <li>Flattened the thrust scaling of sets of engines as you get bigger engines in a set. Smaller ships have received a significant max speed and acceleration buff, while larger ships have been unchanged or slightly nerfed.</li>
+          <li>The Unfettered Solifuge and Violin Spider are now added to the Unfettered shipyards.</li>
+          <li>Ships can now be given display names for their model name.</li>
+          <li>Plugins can now have a "plugin.txt" metadata file in their root folder that specifies the name of the plugin and its description as shown in the plugins menu in game.</li>
+          <li>Governments can now define travel restrictions that prevent their fleets from traveling to or from systems or planets that match the restrictions.</li>
+          <li>Various UI/UX improvements.</li>
+        </ul>
+        <p>Some notable bug fixes include:</p>
+        <ul>
+          <li>Contacting the Korath Exiles during the Wanderer campaign can now properly be deferred and reoffered instead of deferring the mission effectively declining it and locking you out of the rest of the campaign.</li>
+          <li>Using hotkeys to search for the nearest asteroid no longer crashes the game.</li>
+          <li>The shipyard and outfitter mission offer location tags will now properly write to the save file.</li>
+          <li>Trailing whitespace in hails no longer causes hails to overlap with one another.</li>
+          <li>The "Remnant: Expanded Horizons Astral job" job will no longer select the "Deep Space" systems, which are unreachable, as waypoints.</li>
+        </ul>
+        <p>There's much more in the changelog!</p>
+        <p>Special thanks to the 42 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.3/changelog</url>
+    </release>
     <release version="0.10.2" date="2023-6-18">
       <description>
         <p>This is a stable release, focused on fixing bugs and making some other small improvements.</p>

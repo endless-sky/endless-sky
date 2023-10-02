@@ -1,5 +1,5 @@
 Welcome to Endless Sky!
-version 0.10.3-alpha
+version 0.10.3
 
 The player's manual and other
 resources are available at:
@@ -138,12 +138,14 @@ contributed to Endless Sky:
   AdamKauffman
   akien-mga
   AlbertNewton
+  AlekSeaLion
   alex116
   AlexBassett
   alextd
   Alkallid
   Amacita
   Amazinite
+  AmbushedRaccoon
   AMDmi3
   anarcat
   Anarchist2
@@ -160,6 +162,7 @@ contributed to Endless Sky:
   Azure3141
   barthalion
   beccabunny
+  Beed-git
   bene-dictator
   benflodge
   BlackVegetable
@@ -168,7 +171,7 @@ contributed to Endless Sky:
   bobrobbow
   bojidar-bg
   Brick63
-  CAPTAIN1947
+  captain1947
   ChamEV
   comnom
   corecontingency
@@ -177,6 +180,7 @@ contributed to Endless Sky:
   czartrak
   Daeridanii1
   daggs1
+  danaris
   DarcyManoel
   dashkal16
   davidarcher
@@ -197,6 +201,7 @@ contributed to Endless Sky:
   DrBlight
   dreness
   Dschiltt
+  dseomn
   dufferzafar
   dzhu
   eflyon
@@ -215,6 +220,7 @@ contributed to Endless Sky:
   FixItYondu
   flaviojs
   Floppa-Priest
+  flowers9
   FoxSylv
   FranchuFranchu
   Fzzr
@@ -249,6 +255,7 @@ contributed to Endless Sky:
   jozef-mitro
   Jugosloven1612
   Just-Existing
+  justinnhli
   justinw1320
   kaol
   Karirawri
@@ -259,6 +266,7 @@ contributed to Endless Sky:
   Koranir
   kozbot
   Kryes-Omega
+  LazerLit
   leklachu
   LepRyot
   lheckemann
@@ -278,6 +286,7 @@ contributed to Endless Sky:
   Mailaender
   MarcelineVQ
   MasterOfGrey
+  Matteo Mazzitti
   mattsoulanille
   maxrd2
   McloughlinGuy
@@ -299,6 +308,7 @@ contributed to Endless Sky:
   nothing-but-the-rain
   NRK4
   ntabris
+  OcelotWalrus
   oo13
   opusforlife2
   Ornok
@@ -319,6 +329,7 @@ contributed to Endless Sky:
   Pointedstick
   prophile
   pscamman
+  Pshy0
   Quantumshark
   quyykk
   Rakete1111
@@ -342,6 +353,7 @@ contributed to Endless Sky:
   rrigby
   rugk
   rzahniser
+  salarua
   salqadri
   samoja12
   samrocketman
