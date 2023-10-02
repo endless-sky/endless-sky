@@ -109,15 +109,15 @@ void Files::Init(const char * const *argv)
 		// operating system, and can be overridden by a command line argument.
 		char *str = SDL_GetBasePath();
 		if(str)
-      {
-		   resources = str;
-		   SDL_free(str);
-      }
-      // This is ok on android. we will read the resources from the assets
+		{
+			resources = str;
+			SDL_free(str);
+		}
+		// This is ok on android. we will read the resources from the assets
 #if not defined __ANDROID__
 		else throw runtime_error("Unable to get path to resource directory!");
 #else
-      else resources = "endless-sky-data"; // within assets directory
+		else resources = "endless-sky-data"; // within assets directory
 #endif
 	}
 #if defined _WIN32
@@ -149,45 +149,40 @@ void Files::Init(const char * const *argv)
 	dataPath = resources + "data/";
 	imagePath = resources + "images/";
 	soundPath = resources + "sounds/";
+
 	if(config.empty())
 	{
-		// Find the path to the directory for saved games (and create it if it does
-		// not already exist). This can also be overridden in the command line.
-      char *str = SDL_GetPrefPath("endless-sky", "saves");
+		// Create the directory for the saved games, preferences, etc., if necessary.
+		char *str = SDL_GetPrefPath(nullptr, "endless-sky");
 		if(!str)
-			throw runtime_error("Unable to get path to saves directory!");
-		savePath = str;
+			throw runtime_error("Unable to get path to config directory!");
+		config = str;
 		SDL_free(str);
-#if defined _WIN32
-		FixWindowsSlashes(savePath);
-#endif
-		if(savePath.back() != '/')
-			savePath += '/';
-		config = savePath.substr(0, savePath.rfind('/', savePath.length() - 2) + 1);
 	}
-	else
-	{
-#if defined _WIN32
-		FixWindowsSlashes(config);
+
+#ifdef _WIN32
+	FixWindowsSlashes(config);
 #endif
-		if(config.back() != '/')
-			config += '/';
-		savePath = config + "saves/";
-	}
+	if(config.back() != '/')
+		config += '/';
+
+	if(!Exists(config))
+		throw runtime_error("Unable to create config directory!");
+
+	savePath = config + "saves/";
+	CreateFolder(savePath);
 
 	// Create the "plugins" directory if it does not yet exist, so that it is
 	// clear to the user where plugins should go.
-	{
-		char *str = SDL_GetPrefPath("endless-sky", "plugins");
-		if(str != nullptr)
-			SDL_free(str);
-	}
+	CreateFolder(config + "plugins/");
 
-	// Check that all the directories exist. Allow the sound path to be missing
-	if(!Exists(dataPath) || !Exists(imagePath))
+	// Check that all the directories exist.
+	if(!Exists(dataPath) || !Exists(imagePath) || !Exists(soundPath))
 		throw runtime_error("Unable to find the resource directories!");
 	if(!Exists(savePath))
-		throw runtime_error("Unable to create config directory!");
+		throw runtime_error("Unable to create save directory!");
+	if(!Exists(config + "plugins/"))
+		throw runtime_error("Unable to create plugins directory!");
 }
 
 
@@ -268,22 +263,22 @@ vector<string> Files::List(string directory)
 	if(!dir)
 	{
 #if defined __ANDROID__
-      // try the asset system instead
-      AndroidAsset aa;
-      for (std::string entry: aa.DirectoryList(directory))
-      {
-         // Asset api doesn't have a stat or entry properties. the only
-         // way to tell if its a folder is to fail to open it. Depending
-         // on how slow this is, it may be worth checking for a file
-         // extension instead.
-         if (File(directory + entry))
-         {
-            list.push_back(directory + entry);
-         }
-      }
+		// try the asset system instead
+		AndroidAsset aa;
+		for (std::string entry: aa.DirectoryList(directory))
+		{
+			// Asset api doesn't have a stat or entry properties. the only
+			// way to tell if its a folder is to fail to open it. Depending
+			// on how slow this is, it may be worth checking for a file
+			// extension instead.
+			if (File(directory + entry))
+			{
+				list.push_back(directory + entry);
+			}
+		}
 #endif
 		return list;
-   }
+	}
 
 	while(true)
 	{
@@ -342,22 +337,22 @@ vector<string> Files::ListDirectories(string directory)
 	if(!dir)
 	{
 #if defined __ANDROID__
-      // try the asset system
-      AndroidAsset aa;
-      for (std::string entry: aa.DirectoryList(directory))
-      {
-         // Asset api doesn't have a stat or entry properties. the only
-         // way to tell if its a folder is to fail to open it. Depending
-         // on how slow this is, it may be worth checking for a file
-         // extension instead.
-         if (!File(directory + entry))
-         {
-            list.push_back(directory + entry + "/");
-         }
-      }
+		// try the asset system
+		AndroidAsset aa;
+		for (std::string entry: aa.DirectoryList(directory))
+		{
+			// Asset api doesn't have a stat or entry properties. the only
+			// way to tell if its a folder is to fail to open it. Depending
+			// on how slow this is, it may be worth checking for a file
+			// extension instead.
+			if (!File(directory + entry))
+			{
+				list.push_back(directory + entry + "/");
+			}
+		}
 #endif
 		return list;
-   }
+	}
 
 	while(true)
 	{
@@ -651,6 +646,21 @@ void Files::Write(struct SDL_RWops *file, const string &data)
 
 
 
+void Files::CreateFolder(const std::string &path)
+{
+	if(Exists(path))
+		return;
+
+#ifdef _WIN32
+	CreateDirectoryW(Utf8::ToUTF16(path).c_str(), nullptr);
+#else
+	mkdir(path.c_str(), 0700);
+#endif
+}
+
+
+
+
 // Open this user's plugins directory in their native file explorer.
 void Files::OpenUserPluginFolder()
 {
@@ -663,9 +673,7 @@ void Files::LogErrorToFile(const string &message)
 {
 	if(!errorLog)
 	{
-		std::string path = config + "errors.txt";
-		errorLog = File(path, true);
-
+		errorLog = File(config + "errors.txt", true);
 		if(!errorLog)
 		{
 			cerr << "Unable to create \"errors.txt\" " << (config.empty()
@@ -694,10 +702,10 @@ bool Files::MakeDir(const std::string &path)
 	size_t next = path.find_first_of("/\\");
 	size_t pos = 0;
 	std::string built_path;
-   if (!path.empty() && path.front() != '/')
-   {
-      built_path = '.';
-   }
+	if (!path.empty() && path.front() != '/')
+	{
+		built_path = '.';
+	}
 	std::vector<std::string> to_create;
 	for(;;)
 	{
@@ -731,7 +739,7 @@ bool Files::MakeDir(const std::string &path)
 			break;
 		}
 		pos = next + 1; //discard slash
-	   next = path.find_first_of("/\\", pos);
+		next = path.find_first_of("/\\", pos);
 	}
 	for (const std::string& component: to_create)
 	{

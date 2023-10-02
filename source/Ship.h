@@ -145,8 +145,9 @@ public:
 	const std::string &Name() const;
 
 	// Set / Get the name of this model of ship.
-	void SetModelName(const std::string &model);
-	const std::string &ModelName() const;
+	void SetTrueModelName(const std::string &model);
+	const std::string &TrueModelName() const;
+	const std::string &DisplayModelName() const;
 	const std::string &PluralModelName() const;
 	// Get the name of this ship as a variant.
 	const std::string &VariantName() const;
@@ -259,6 +260,7 @@ public:
 	bool IsEnteringHyperspace() const;
 	// Check if this ship is entering or leaving hyperspace.
 	bool IsHyperspacing() const;
+	int GetHyperspacePercentage() const;
 	// Check if this ship is hyperspacing, specifically via a jump drive.
 	bool IsUsingJumpDrive() const;
 	// Check if this ship is currently able to enter hyperspace to it target.
@@ -309,6 +311,9 @@ public:
 	double Health() const;
 	// Get the hull fraction at which this ship is disabled.
 	double DisabledHull() const;
+	// Get the maximum shield and hull values of the ship, accounting for multipliers.
+	double MaxShields() const;
+	double MaxHull() const;
 	// Get the actual shield level of the ship.
 	double ShieldLevel() const;
 	// Get how disrupted this ship's shields are.
@@ -519,7 +524,8 @@ private:
 	// Characteristics of the chassis:
 	bool isDefined = false;
 	const Ship *base = nullptr;
-	std::string modelName;
+	std::string trueModelName;
+	std::string displayModelName;
 	std::string pluralModelName;
 	std::string variantName;
 	std::string noun;

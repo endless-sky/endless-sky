@@ -23,7 +23,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ConditionsStore.h"
 #include "Conversation.h"
 #include "CrashState.h"
-#include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Effect.h"
@@ -54,7 +53,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Plugins.h"
 #include "PointerShader.h"
 #include "Politics.h"
-#include "Random.h"
 #include "RingShader.h"
 #include "Ship.h"
 #include "Sprite.h"
@@ -108,6 +106,9 @@ namespace {
 	void LoadPlugin(const string &path)
 	{
 		const auto *plugin = Plugins::Load(path);
+		if(!plugin)
+			return;
+
 		if(plugin->enabled)
 			sources.push_back(path);
 
@@ -198,7 +199,7 @@ void GameData::CheckReferences()
 
 
 
-void GameData::LoadShaders(bool useShaderSwizzle)
+void GameData::LoadShaders()
 {
 	FontSet::Add(Files::Images() + "font/ubuntu14r", 14); // extension auto-detected
 	FontSet::Add(Files::Images() + "font/ubuntu18r", 18); // extension auto-detected
@@ -239,7 +240,7 @@ void GameData::LoadShaders(bool useShaderSwizzle)
 	OutlineShader::Init();
 	PointerShader::Init();
 	RingShader::Init();
-	SpriteShader::Init(useShaderSwizzle);
+	SpriteShader::Init();
 	BatchShader::Init();
 	
 	UiRectShader::Init(

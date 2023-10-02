@@ -71,6 +71,7 @@ public:
 	static std::string Read(struct SDL_RWops *file);
 	static void Write(const std::string &path, const std::string &data);
 	static void Write(struct SDL_RWops *file, const std::string &data);
+	static void CreateFolder(const std::string &path);
 
 	// Open this user's plugins directory in their native file explorer.
 	static void OpenUserPluginFolder();

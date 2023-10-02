@@ -60,6 +60,9 @@ public:
 	// Get the cheapest jump method between the two given systems.
 	std::pair<JumpType, double> GetCheapestJumpType(const System *from, const System *to) const;
 
+	// Get if this ship can make a hyperspace or jump drive jump directly from one system to the other.
+	bool CanJump(const System *from, const System *to) const;
+
 	// Check what jump methods this ship has.
 	bool HasHyperdrive() const;
 	bool HasScramDrive() const;

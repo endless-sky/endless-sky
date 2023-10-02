@@ -26,6 +26,56 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
+namespace {
+	void AddBuffer(ImageBuffer &buffer, uint32_t *target, bool isui = false)
+	{
+		if (!buffer.CompressedFormat())
+		{
+			// Reduce the size of the textures (and the GPU memory load) if we are in
+			// "Reduced graphics" mode.
+			if(Preferences::Has("Reduced graphics") && !isui)
+			{
+				do
+				{
+					buffer.ShrinkToHalfSize();
+				}
+				while (buffer.Width() * buffer.Height() >= 250000);
+			}
+		} // else can't edit pre-compressed data like this
+	
+		// Upload the images as a single array texture.
+		glGenTextures(1, target);
+		glBindTexture(GL_TEXTURE_2D_ARRAY, *target);
+
+		// Use linear interpolation and no wrapping.
+		glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+		if (!buffer.CompressedFormat())
+		{
+			// Upload the image data.
+			glTexImage3D(GL_TEXTURE_2D_ARRAY, 0, GL_RGBA8, // target, mipmap level, internal format,
+				buffer.Width(), buffer.Height(), buffer.Frames(), // width, height, depth,
+				0, GL_RGBA, GL_UNSIGNED_BYTE, buffer.Pixels()); // border, input format, data type, data.
+		}
+		else
+		{
+			// Upload the image data.
+			glCompressedTexImage3D(GL_TEXTURE_2D_ARRAY, 0, buffer.CompressedFormat(), // target, mipmap level, internal format,
+				buffer.Width(), buffer.Height(), buffer.Frames(), // width, height, depth,
+				0, buffer.CompressedSize(), buffer.Pixels()); // border, input format, data type, data.
+		}
+
+		// Unbind the texture.
+		glBindTexture(GL_TEXTURE_2D_ARRAY, 0);
+
+		// Free the ImageBuffer memory.
+		buffer.Clear();
+	}
+}
+
 
 
 Sprite::Sprite(const string &name)
@@ -57,50 +107,19 @@ void Sprite::AddFrames(ImageBuffer &buffer, bool is2x)
 		frames = buffer.Frames();
 	}
 
-	if (!buffer.CompressedFormat())
-	{
-		// Reduce the size of the textures (and the GPU memory load) if we are in
-		// "Reduced graphics" mode.
-		if(Preferences::Has("Reduced graphics") && name.substr(0, 3) != "ui/")
-		{
-			do
-			{
-				buffer.ShrinkToHalfSize();
-			}
-			while (buffer.Width() * buffer.Height() >= 250000);
-		}
-	} // else can't edit pre-compressed data like this
+	AddBuffer(buffer, &texture[is2x], name.substr(0, 3) == "ui/");
+}
 
-	// Upload the images as a single array texture.
-	glGenTextures(1, &texture[is2x]);
-	glBindTexture(GL_TEXTURE_2D_ARRAY, texture[is2x]);
 
-	// Use linear interpolation and no wrapping.
-	glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-	if (!buffer.CompressedFormat())
-	{
-		// Upload the image data.
-		glTexImage3D(GL_TEXTURE_2D_ARRAY, 0, GL_RGBA8, // target, mipmap level, internal format,
-			buffer.Width(), buffer.Height(), buffer.Frames(), // width, height, depth,
-			0, GL_RGBA, GL_UNSIGNED_BYTE, buffer.Pixels()); // border, input format, data type, data.
-	}
-	else
-	{
-		// Upload the image data.
-		glCompressedTexImage3D(GL_TEXTURE_2D_ARRAY, 0, buffer.CompressedFormat(), // target, mipmap level, internal format,
-			buffer.Width(), buffer.Height(), buffer.Frames(), // width, height, depth,
-			0, buffer.CompressedSize(), buffer.Pixels()); // border, input format, data type, data.
-	}
+// Upload the given frames. The given buffer will be cleared afterwards.
+void Sprite::AddSwizzleMaskFrames(ImageBuffer &buffer, bool is2x)
+{
+	// Do nothing if the buffer is empty.
+	if(!buffer.Pixels())
+		return;
 
-	// Unbind the texture.
-	glBindTexture(GL_TEXTURE_2D_ARRAY, 0);
-
-	// Free the ImageBuffer memory.
-	buffer.Clear();
+	AddBuffer(buffer, &swizzleMask[is2x]);
 }
 
 
@@ -110,6 +129,9 @@ void Sprite::Unload()
 {
 	glDeleteTextures(2, texture);
 	texture[0] = texture[1] = 0;
+
+	glDeleteTextures(2, swizzleMask);
+	swizzleMask[0] = swizzleMask[1] = 0;
 
 	width = 0.f;
 	height = 0.f;
@@ -163,4 +185,20 @@ uint32_t Sprite::Texture() const
 uint32_t Sprite::Texture(bool isHighDPI) const
 {
 	return (isHighDPI && texture[1]) ? texture[1] : texture[0];
+}
+
+
+
+// Get the texture index, based on whether the screen is high DPI or not.
+uint32_t Sprite::SwizzleMask() const
+{
+	return SwizzleMask(Screen::IsHighResolution());
+}
+
+
+
+// Get the index of the texture for the given high DPI mode.
+uint32_t Sprite::SwizzleMask(bool isHighDPI) const
+{
+	return (isHighDPI && swizzleMask[1]) ? swizzleMask[1] : swizzleMask[0];
 }
