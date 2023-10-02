@@ -62,7 +62,6 @@ mission "Hai Reveal Exploration Period: Concerned Hai"
 				decline
 			
 			label "query an onlooker"
-			
 			`	Before the crowd disperses fully you spot a Hai waving goodbye to a human walking away from you, and quickly make your way over to him.`
 			`	"Ah, hello uh, Captain? Were you looking for me?"`
 			choice
@@ -290,7 +289,8 @@ mission "Hai Reveal: Media Retraction (Human)"
 		not "Hai Reveal: Media Retraction (Hai): offered"
 	on offer
 		conversation
-			`News report that says that the guy who showed the video of the Hai ships five months prior was just a viral marketing stunt for an upcoming movie.`
+			`One of the usual short news segments between programming, typically present in most significant spaceports, brings up a familiar-looking broadcast. The logo on the bottom is the same program that originally broadcast the news of the Hai. In the short snippet the speaker is issuing a sincere apology for their promotion of a hoax, advising that the video of the Hai ships released five months prior was in fact nothing more than a viral marketing stunt for an upcoming movie.`
+			`	Afterwards, the snippet gives way to a teaser trailer that has a number of pretty combat scenes and says absolutely nothing.`
 				decline
 
 
@@ -306,7 +306,9 @@ mission "Hai Reveal: Media Retraction (Hai)"
 		event "hr: pirates respond to leaks" 1
 		event "hr: concern period" 35
 		conversation
-			`News report that says that the guy who showed the video of the Hai ships five months prior was just a viral marketing stunt for an upcoming movie. With additional advisory warning for Hai merchants.`
+			`One of the usual short news segments between programming, typically present in most significant spaceports, brings up a Hai reporting on a familiar-looking human broadcast. The logo on the bottom is the same program that originally broadcast the news of the Hai. In the short snippet the speaker is issuing a sincere apology for their promotion of a hoax, advising that the video of the Hai ships released five months prior was in fact nothing more than a viral marketing stunt for an upcoming movie.`
+			`	Afterwards, the snippet gives way to a teaser trailer that has a number of pretty combat scenes and says absolutely nothing.`
+			`	Immediately after this, a safety advisory plays advising all Hai to stay away from human space, and for human captains to avoid traveling beyond the wormhole with any Hai tech installed. As a final note, the safety advisory indicates that pirate activity has been increasing in the vicinity of the wormhole, and all pilots are advised to take care.`
 				decline
 
 
