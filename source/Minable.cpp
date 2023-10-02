@@ -55,6 +55,8 @@ void Minable::Load(const DataNode &node)
 			hull = child.Value(1);
 		else if(child.Token(0) == "random hull" && child.Size() >= 2)
 			randomHull = max(0., child.Value(1));
+		else if(child.Token(0) == "toughness" && child.Size() >= 2)
+			toughness = max(0., child.Value(1));
 		else if((child.Token(0) == "payload" || child.Token(0) == "explode") && child.Size() >= 2)
 		{
 			int count = (child.Size() == 2 ? 1 : child.Value(2));
@@ -190,9 +192,14 @@ bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 			if(it.second < 1)
 				continue;
 
-			// Each payload object has a 25% chance of surviving. This creates
-			// a distribution with occasional very good payoffs.
-			for(int amount = Random::Binomial(it.second, .25); amount > 0; amount -= Flotsam::TONS_PER_BOX)
+			// Each payload object has a default 25% chance of surviving. This
+			// creates a distribution with occasional very good payoffs.
+			double dropRate = 0.25;
+			// Special weapons are capable of increasing this drop rate through
+			// prospecting.
+			if(prospecting > 0.)
+				dropRate += 0.75 / (1 + toughness / prospecting);
+			for(int amount = Random::Binomial(it.second, dropRate); amount > 0; amount -= Flotsam::TONS_PER_BOX)
 			{
 				flotsam.emplace_back(new Flotsam(it.first, min(amount, Flotsam::TONS_PER_BOX)));
 				flotsam.back()->Place(*this);
@@ -224,6 +231,7 @@ bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 void Minable::TakeDamage(const Projectile &projectile)
 {
 	hull -= projectile.GetWeapon().MinableDamage() + projectile.GetWeapon().RelativeMinableDamage() * maxHull;
+	prospecting += projectile.GetWeapon().Prospecting();
 }
 
 
