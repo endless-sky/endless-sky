@@ -187,6 +187,7 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/PrintData.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Projectile.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Radar.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/RaidFleet.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/RadialSelectionPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Random.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Rectangle.cpp
@@ -199,6 +200,7 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/ShipInfoDisplay.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/ShipInfoPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/ShipJumpNavigation.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/ShipManager.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/ShipyardPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/ship/ShipAICache.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/ShopPanel.cpp
