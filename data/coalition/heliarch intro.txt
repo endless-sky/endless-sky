@@ -1561,21 +1561,21 @@ mission "Heliarch Containment 5"
 			`	You can't say much before they've practically pushed you back into your ship. They promise you'll be greatly compensated for this, and ask that you only disable the ships so you can board and check for hostages, or possibly allow for capture and questioning of the outlaws.`
 				launch
 	npc board
-		personality timid plunders entering target
+		personality timid plunders entering target unconstrained
 		government "Lunarium"
 		ship "Saryd Sojourner (Bombardments)" "Hodoviah"
 		conversation
 			`As you suspected from when you were fighting it, this ship is equipped with Heliarch weaponry. Unfortunately you can neither verify the equipment it is using nor check for hostages, as a self destruction sequence starts when you're about to enter it.`
 				launch
 	npc board
-		personality timid plunders entering target
+		personality timid plunders entering target unconstrained
 		government "Lunarium"
 		ship "Arach Spindle (Plasma)" "Aramitess"
 		conversation
 			`This ship is equipped with Plasma Turrets from human space, the very weapons the Free Worlds developed. Unfortunately, it initiates a self destruction sequence as you're about to board it, so you cannot verify if it had any hostages.`
 				launch
 	npc board
-		personality timid plunders entering target
+		personality timid plunders entering target unconstrained
 		government "Lunarium"
 		ship "Kimek Thistle (Torpedoes)" "Resheph"
 		conversation
@@ -2018,7 +2018,7 @@ mission "Heliarch Drills 3"
 				accept
 	npc disable save
 		government "Heliarch Test Dummy"
-		personality disables staying nemesis heroic
+		personality disables staying nemesis heroic unconstrained
 		system "Torbab"
 		ship "Heliarch Punisher (Scrappy)" "Awaiting Adversary"
 		on destroy
