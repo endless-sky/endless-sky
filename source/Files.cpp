@@ -85,6 +85,77 @@ namespace {
 		Logger::LogError("Warning: No handler found to open \"" + path + "\" in a new window.");
 #endif
 	}
+
+
+
+	void CheckBug_96()
+	{
+		// Old code used `SDL_GetPrefPath("endless-sky", "saves")`, which on
+		// linux and other operating systems would return "path/endless-sky/saves".
+		// Then other code would go up a directory to create the plugin folder.
+		// This does not produce the expected result on android, and android
+		// always returns "path/files", and expects you to create your own
+		// subdirectories there.
+		//
+		// This means that for android, we need to check for the "path/files/../*.txt"
+		// files, and they exist, they all need moved into the files directory.
+		// See https://github.com/thewierdnut/endless-mobile/issues/96
+
+#ifndef __ANDROID__
+		return;
+#endif
+
+		// Does this bug need fixed?
+		char* pref_path = SDL_GetPrefPath(nullptr, "endless-sky");
+		std::string path = pref_path;
+		SDL_free(pref_path);
+		if(path.empty())
+			return;
+		if(path.back() == '/')
+			path.pop_back();
+		
+		auto EndsWith = [](const std::string& haystack, const std::string& needle)
+		{
+			if(needle.size() > haystack.size())
+				return false;
+			return haystack.substr(haystack.size() - needle.size()) == needle;
+		};
+
+		// Get the parent directory. This may not be a safe operation in the
+		// future, but for now it should be ok.
+		std::string parent = path.substr(0, path.rfind('/'));
+
+		if(Files::Exists(parent + "/preferences.txt"))
+		{
+			// Yes, this needs fixed.
+			// files/*.txt needs moved to files/saves
+			Files::CreateFolder(path + "/saves");
+			for(const std::string& f: Files::List(path))
+			{
+				if(EndsWith(f, ".txt"))
+				{
+					std::string path = f.substr(0, f.rfind('/'));
+					std::string filename = f.substr(f.rfind('/') + 1);
+
+					Files::Move(f, path + "/saves/" + filename);
+				}
+			}
+
+			// *.txt  needs moved into files/
+			for(const std::string& f: Files::List(parent))
+			{
+				if(EndsWith(f, ".txt"))
+				{
+					std::string filename = f.substr(f.rfind('/') + 1);
+					Files::Move(f, path + "/" + filename);
+				}
+			}
+
+			// the plugin directory needs moved into files/
+			// Don't care if this fails
+			Files::Move(parent + "/plugins", path + "/plugins");
+		}
+	}
 }
 
 
@@ -158,6 +229,8 @@ void Files::Init(const char * const *argv)
 			throw runtime_error("Unable to get path to config directory!");
 		config = str;
 		SDL_free(str);
+
+		CheckBug_96();
 	}
 
 #ifdef _WIN32
