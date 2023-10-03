@@ -26,7 +26,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "Point.h"
 #include "PointerShader.h"
-#include "Politics.h"
 #include "Screen.h"
 #include "SpriteShader.h"
 #include "StellarObject.h"
