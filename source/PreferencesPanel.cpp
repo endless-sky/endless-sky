@@ -150,6 +150,11 @@ void PreferencesPanel::Draw()
 		info.SetCondition("show previous");
 	if(currentSettingsPage + 1 < SETTINGS_PAGE_COUNT)
 		info.SetCondition("show next");
+#ifdef ENDLESS_SKY_VERSION
+	info.SetString("game version", ENDLESS_SKY_VERSION);
+#else
+	info.SetString("game version", "engineering build");
+#endif
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	string pageName = (page == 'c' ? "controls" : page == 's' ? "settings" : "plugins");
 	GameData::Interfaces().Get(pageName)->Draw(info, this);

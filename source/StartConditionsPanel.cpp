@@ -84,6 +84,12 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels,
 	description.SetWrapWidth(descriptionBox.Width());
 
 	Select(startIt);
+
+#ifdef ENDLESS_SKY_VERSION
+	info.SetString("game version", ENDLESS_SKY_VERSION);
+#else
+	info.SetString("game version", "engineering build");
+#endif
 }
 
 

@@ -169,6 +169,12 @@ void LoadPanel::Draw()
 	if(loadedInfo.IsLoaded())
 		info.SetCondition("pilot loaded");
 
+#ifdef ENDLESS_SKY_VERSION
+	info.SetString("game version", ENDLESS_SKY_VERSION);
+#else
+	info.SetString("game version", "engineering build");
+#endif
+
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	GameData::Interfaces().Get("load menu")->Draw(info, this);
 	GameData::Interfaces().Get("menu player info")->Draw(info, this);
