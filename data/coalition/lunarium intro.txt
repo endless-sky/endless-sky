@@ -572,7 +572,7 @@ mission "House Bebliss 1-B"
 			`	The waiter arrives, and they suggest some dishes, seeing as you didn't pick anything from the menu. The smell coming from the other tables, however, tells you to decline, so you politely leave the establishment. It seems the only way to find out what these Arachi want is to head to <destination>.`
 				accept
 			label decline
-			`	The two of them eye you up for a very uncomfortable minute, but never provide some response or acknoweldgement. You try and move away and leave the restaurant, but their bodyguards block you. One of the two Arachi from the table appears to grunt, then signals for the guards to let you pass through. You leave the restaurant, and return to your ship.`
+			`	The two of them eye you up for a very uncomfortable minute, but never provide some response or acknowledgment. You try and move away and leave the restaurant, but their bodyguards block you. One of the two Arachi from the table appears to grunt, then signals for the guards to let you pass through. You leave the restaurant, and return to your ship.`
 				decline
 	on accept
 		"assisting lunarium" ++
@@ -1898,7 +1898,7 @@ mission "Lunarium: Quarg Interview"
 			label leaders
 			`	The Kimek who accompanied you here ask that you continue on. Lobmab and her bodyguards lead the way through busy cubicles and hallways, where dozens of Kimek work at computers and screens, as if monitoring the whole city. At the end of what seems to be the main passage of the complex, you pass through a doorway to find the Lunarium leaders seated around a table. You're shown to a seat, and as Lobmab comes in at the end, one of the bodyguards announces, "Lady Lobmab Bebliss, head of our great House."`
 			`	Some of the others at the table look to one another, and one of the Kimek who accompanied you all the way from your ship sighs quietly before coming to Lobmab. "Most welcome you are, Lady Lobmab," he says, as he begins pointing to the leaders one by one, starting from your left with a Kimek. "Your host, Chiree is, the head of our local forces and organizer of many of our operations. Fought the Heliarchs since a young age, she has." He continues pointing to them in a clockwise pattern, now to the left of Chiree. "Likewise, helping us for decades now, Tummug has, in spreading word of our group, and bringing to the people the truth about the Heliarchy. Another prominent Arach, and vital to the task soon to be discussed, Oobat is. A studious linguist, and aspiring diplomat, she is. Already worked together, I believe you and Pyakri have? One of our most senior militia officers, she is." He takes a pause, looking at Lobmab, almost as if waiting for some approval regarding his introductions of the others. She simply nods, and he moves on. "And... Elirom. A prominent Saryd Heliarch Arbiter who defected over a century ago. Advising us since, he has." He waits for her to say something, before looking back at the table again and pointing to you. "Oh, of course. <first> <last>, the human who's helped us greatly, and who joining us today, is."`
-			`	Satisfied with the introductions, Lobmab takes her seat, much to the Kimek's relief. "Very grateful we are, that made the time for this meeting you have, Lady Lobmab," Chiree says. "An special task for Captain <last>, we have, and wished to have all leaders present to discuss it, we did. But, first, welcome our newest member, we must," she says, looking at you. "Any questions for us have you, Captain?"`
+			`	Satisfied with the introductions, Lobmab takes her seat, much to the Kimek's relief. "Very grateful we are, that made the time for this meeting you have, Lady Lobmab," Chiree says. "A special task for Captain <last>, we have, and wished to have all leaders present to discuss it, we did. But, first, welcome our newest member, we must," she says, looking at you. "Any questions for us have you, Captain?"`
 			label questions
 			choice
 				`	"What are you all going to do if you do manage to take down the Heliarchs?"`
@@ -1951,10 +1951,16 @@ mission "Lunarium: Quarg Interview"
 			`	The Lunarium leaders spend an hour or so going over the questions proposed for the interview, deciding to ditch some, and add a few new ones. All the while, Elirom asks in a worried manner if Oobat is sure of this idea. "Forgive me if sounding like a Heliarch, I am, but dangerous to leave, it is. How the Quarg would react to seeing someone from the Coalition in their territory, we do not know."`
 			`	"Understand that, I do, but fine I will be. Unlike the Quarg it is, to attack unprovoked," she answers. "And, if worse comes to worse, trust I do in Captain <last>'s abilities to ensure we escape." The leaders go over the interview questions a while longer, until they've reached a consensus as to its completeness. They wish you and Oobat good luck, and you two are escorted back out of the complex to your ship. There, Oobat asks you for the best place for such an interview in human space, and you point to <destination>, where the Quarg are constructing their ringworld. "Then head there, we must. In your care I will be, Captain." You show her to her bunk, and plot a course to <planet>.`
 				accept
+	on accept
+		"assisting lunarium" ++
 	to fail
 		"reputation: Quarg" < 0
 	on visit
 		dialog `You've reached <planet>, but your escort bringing Oobat hasn't entered the system yet. Better depart and wait for it.`
+	on complete
+		"assisting lunarium" --
+	on fail
+		"assisting lunarium" --
 
 mission "Lunarium: Join"
 	name "Report Back"
@@ -1996,9 +2002,12 @@ mission "Lunarium: Join"
 			`	She nods, and gives a quick "thank you" to the Quarg again, turning to go back inside your ship. The Quarg stops her though, reaching out one arm quickly to grab one of her legs. Slowly, its skin turns back to the grayish blue from before, as it calms down. "Should you succeed, please, permit my return home." The Quarg around you disperse, and the one who was interviewed stands up again and moves back to other sections of the station.`
 			`	You board your ship with Oobat, and hand her back the camera. "Mostly well, it went," she says, looking through the sped up footage and pausing at certain moments where the Quarg is responding. "Not what we expected from that last question, it was, however. Disappointed, I imagine Elirom will be." She tells you she'll be working on some basic edits to the footage, and says you may return to <planet>.`
 				accept
+	on accept
+		"assisting lunarium" ++
 	on visit
 		dialog `You've reached <planet>, but your escort bringing Oobat hasn't entered the system yet. Better depart and wait for it.`
 	on complete
+		"assisting lunarium" --
 		set "joined the lunarium"
 		set "language: Coalition"
 		event "first lunarium unlock"
@@ -2023,6 +2032,8 @@ mission "Lunarium: Join"
 			`	You say your goodbyes, and you're escorted out of the complex and back to your ship. The Kimek who brought you there enter the ship with you briefly, and inform you that they've sent word across their major bases in the Coalition about your joining up. You're told that you'll find some new outfits available in their secretive outfitters. "In separate portions of the cities, sometimes in other cities entirely, our shops are, but safe from Heliarch patrols, they so far have proven." They give you a short list with the planets where you'll find their outfitters, and coordinates and instructions as to how to get to and access each of them.`
 			`	When they leave, you start tinkering with the translation device, figuring out how to configure it to translate from each of the languages. After testing it with local transmissions and broadcasts for half an hour or so, you're decently fast with it, to the point where you can change what language it translates to or from a few times in a second.`
 			`	It may be a long time still before the Lunarium is ready to take up arms against the Heliarchs, so for now you figure you could help by looking into what minor jobs they may have for you.`
+	on fail
+		"assisting lunarium" --
 
 event "first lunarium unlock"
 	planet "Remote Blue"
