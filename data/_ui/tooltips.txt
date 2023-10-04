@@ -1153,7 +1153,7 @@ tip "Toggle cloaking device"
 	`Activate or deactivate your fleet's cloaking devices, if any are installed.`
 
 tip "Mouse turning (hold)"
-	`Cause your flagship to turn torward your mouse if this key is held. To have mouse turning always active, activate the "Control ship with mouse" setting. If that setting is active, hold this key deactivates mouse turning.`
+	`Cause your flagship to turn toward your mouse if this key is held. To have mouse turning always active, activate the "Control ship with mouse" setting. If that setting is active, hold this key deactivates mouse turning.`
 
 tip "Show main menu"
 	`Open the main menu.`
@@ -1267,7 +1267,7 @@ tip "Extra fleet status messages"
 	`Display extra status messages about escorts in your fleet, such as when they are destroyed or scanned.`
 
 tip "Control ship with mouse"
-	`If active, your flagship will always turn torward your mouse. For activating mouse turning on a key press, see the "Mouse turning (hold)" control.`
+	`If active, your flagship will always turn toward your mouse. For activating mouse turning on a key press, see the "Mouse turning (hold)" control.`
 
 tip "Automatic aiming"
 	`Automatically turn your ship towards your target to aim fixed weapons.`
@@ -1282,7 +1282,7 @@ tip "Target asteroid based on"
 	`The strategy that the "Select nearest asteroid" control uses for selecting asteroids. Proximity selects the nearest asteroid. Value selects the highest value asteroid.`
 
 tip "Boarding target priority"
-	`The strategy that the "Board selected ship" control uses for selecting ships when you have none targetted. Proximity selects the nearest ship. Value selects the highest value ship (with the value being estimated if you haven't scanned the outfits of the ship). Mixed accounts for the value divided by the distance to the ship.`
+	`The strategy that the "Board selected ship" control uses for selecting ships when you have none targeted. Proximity selects the nearest ship. Value selects the highest value ship (with the value being estimated if you haven't scanned the outfits of the ship). Mixed accounts for the value divided by the distance to the ship.`
 
 tip "Escorts expend ammo"
 	`The strategy that your escorts use for determining when to fire their secondary weapons. Able to be toggled by the "Fleet: Toggle ammo usage" control. The frugal setting only fires secondary weapons when your escort's HP is low or the hostiles in the system are stronger than your fleet and friendlies.`
