@@ -739,6 +739,16 @@ bool ShopPanel::Hover(int x, int y)
 	Point point(x, y);
 	// Check that the point is not in the button area.
 	hoverButton = CheckButton(x, y);
+	if(hoverButton)
+	{
+		shipInfo.ClearHover();
+		outfitInfo.ClearHover();
+	}
+	else
+	{
+		shipInfo.Hover(point);
+		outfitInfo.Hover(point);
+	}
 
 	activePane = ShopPane::Main;
 	if(x > Screen::Right() - SIDEBAR_WIDTH)
