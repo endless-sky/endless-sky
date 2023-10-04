@@ -456,7 +456,6 @@ void LoadPanel::UpdateLists()
 	files.clear();
 
 	vector<string> fileList = Files::List(Files::Saves());
-	set<string> notSnapshotOnly;
 	for(const string &path : fileList)
 	{
 		// Skip any files that aren't text files.
@@ -475,17 +474,14 @@ void LoadPanel::UpdateLists()
 		savesList.emplace_back(fileName, Files::Timestamp(path));
 		// Ensure that the main save for this pilot, not a snapshot, is first in the list.
 		if(!isSnapshot)
-		{
 			swap(savesList.front(), savesList.back());
-			notSnapshotOnly.insert(pilotName);
-		}
 	}
 
 	for(auto &it : files)
 	{
 		// Don't include the first item in the sort if this pilot has a non-snapshot save.
 		auto start = it.second.begin();
-		if(notSnapshotOnly.count(it.first))
+		if(start->first.find('~') == string::npos)
 			++start;
 		sort(start, it.second.end(),
 			[](const pair<string, time_t> &a, const pair<string, time_t> &b) -> bool
