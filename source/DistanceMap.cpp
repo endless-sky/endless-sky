@@ -173,7 +173,7 @@ bool DistanceMap::Edge::operator<(const Edge &other) const
 // source system or the maximum count is reached.
 void DistanceMap::Init(const Ship *ship)
 {
-	if(!center)
+	if(!center || (ship && !ship->GetPersonality().IsUnrestricted() && ship->GetGovernment()->IsRestrictedFrom(*center)))
 		return;
 
 	route[center] = Edge();
@@ -249,7 +249,7 @@ void DistanceMap::Init(const Ship *ship)
 					// the wormhole and both endpoint systems. (If this is a
 					// multi-stop wormhole, you may know about some paths that
 					// it takes but not others.)
-					if(ship && !object.GetPlanet()->IsAccessible(ship))
+					if(!ship || (!object.GetPlanet()->IsAccessible(ship) || (!ship->GetPersonality().IsUnrestricted() && ship->GetGovernment()->IsRestrictedFrom(*object.GetPlanet()))))
 						continue;
 					if(player && !player->HasVisited(*object.GetPlanet()))
 						continue;
@@ -260,9 +260,9 @@ void DistanceMap::Init(const Ship *ship)
 				}
 
 		// Bail out if the maximum number of systems is reached.
-		if(hyperspaceFuel && !Propagate(top, false))
+		if(hyperspaceFuel && !Propagate(top, false, ship))
 			break;
-		if(jumpFuel && !Propagate(top, true))
+		if(jumpFuel && !Propagate(top, true, ship))
 			break;
 	}
 }
@@ -270,7 +270,7 @@ void DistanceMap::Init(const Ship *ship)
 
 
 // Add the given links to the map. Return false if an end condition is hit.
-bool DistanceMap::Propagate(Edge edge, bool useJump)
+bool DistanceMap::Propagate(Edge edge, bool useJump, const Ship *ship)
 {
 	edge.fuel += (useJump ? jumpFuel : hyperspaceFuel);
 	for(const System *link : (useJump ? edge.next->JumpNeighbors(jumpRange) : edge.next->Links()))
@@ -278,7 +278,7 @@ bool DistanceMap::Propagate(Edge edge, bool useJump)
 		// Find out whether we already have a better path to this system, and
 		// check whether this link can be traveled. If this route is being
 		// selected by the player, they are constrained to known routes.
-		if(HasBetter(*link, edge) || !CheckLink(*edge.next, *link, useJump))
+		if((ship && !ship->GetPersonality().IsUnrestricted() && ship->GetGovernment()->IsRestrictedFrom (*link)) || HasBetter(*link, edge) || !CheckLink(*edge.next, *link, useJump))
 			continue;
 
 		Add(*link, edge);

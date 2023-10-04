@@ -93,7 +93,8 @@ private:
 	// source system or the maximum count is reached.
 	void Init(const Ship *ship = nullptr);
 	// Add the given links to the map. Return false if an end condition is hit.
-	bool Propagate(Edge edge, bool useJump);
+	// If a ship is given account for its system restrictions.
+	bool Propagate(Edge edge, bool useJump, const Ship *ship = nullptr);
 	// Check if we already have a better path to the given system.
 	bool HasBetter(const System &to, const Edge &edge);
 	// Add the given path to the record.

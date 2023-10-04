@@ -235,19 +235,10 @@ namespace {
 		const bool needsRefuel = ShouldRefuel(ship, route);
 		const System *to = route.Route(from);
 
-		if(needsRefuel)
-		{
-			// There is at least one planet that can refuel the ship.
-			ship.SetTargetStellar(AI::FindLandingLocation(ship));
-			return;
-		}
-		// If the destination is not an allowed system only consider refueling.
-		else if(!ship.GetPersonality().IsUnrestricted() && ship.GetGovernment()->IsRestrictedFrom(*to))
-			return;
 		// The destination may be accessible by both jump and wormhole.
 		// Prefer wormhole travel in these cases, to conserve fuel. Must
 		// check accessibility as DistanceMap may only see the jump path.
-		else if(to && !needsRefuel)
+		if(to && !needsRefuel)
 			for(const StellarObject &object : from->Objects())
 			{
 				if(!object.HasSprite() || !object.HasValidPlanet())
@@ -262,6 +253,12 @@ namespace {
 					return;
 				}
 			}
+		else if(needsRefuel)
+		{
+			// There is at least one planet that can refuel the ship.
+			ship.SetTargetStellar(AI::FindLandingLocation(ship));
+			return;
+		}
 		// Either there is no viable wormhole route to this system, or
 		// the target system cannot be reached.
 		ship.SetTargetSystem(to);
