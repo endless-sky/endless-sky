@@ -173,7 +173,8 @@ bool DistanceMap::Edge::operator<(const Edge &other) const
 // source system or the maximum count is reached.
 void DistanceMap::Init(const Ship *ship)
 {
-	if(!center || (ship && !ship->GetPersonality().IsUnrestricted() && ship->GetGovernment()->IsRestrictedFrom(*center)))
+	if(!center || (ship && !ship->GetPersonality().IsUnrestricted() &&
+			ship->GetGovernment()->IsRestrictedFrom(*center)))
 		return;
 
 	route[center] = Edge();
