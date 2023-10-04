@@ -1073,6 +1073,9 @@ event "wanderers: kor mereti friendly"
 	government "Quarg (Kor Efret)"
 		"attitude toward"
 			"Kor Mereti" 0
+	government "Quarg"
+		"attitude toward"
+			"Kor Mereti" 0
 	government "Kor Efret"
 		"attitude toward"
 			"Kor Mereti" 0
@@ -1109,6 +1112,7 @@ mission "Wanderers: Mind 6"
 		has "Wanderers: Mind 5: done"
 	on offer
 		event "wanderers: kor mereti friendly"
+		fail "Wanderers: Kor Mereti Quarg Attitude Patch"
 		conversation
 			`With the Wanderer fleet keeping the automata off your back, you carefully pilot your ship into an abandoned docking bay. The Wanderers install the Mind in a niche near the back of the bay and then begin welding sheets of metal over the opening to prevent the Mereti drones from gaining easy access to the Mind to shut it down or destroy it. Meanwhile, every few seconds the bay is lit by a bright flash of weapons fire or exploding ships outside. Hopefully the Wanderer fleet is managing to hold its own against the drones.`
 			`	Soon the engineers are done, and you return to your ship to take off. As soon as you depart, the bay doors, which seemed inactive when you first entered, slam shut, and your ship's sensors detect Korath hull repair drones swarming over the doors, welding them in place and piling new layers of hull material on top of them. There is no longer any possibility of returning to the bay to retrieve the Mind. And meanwhile, it is time to rejoin the battle...`
@@ -1141,6 +1145,17 @@ mission "Wanderers: Mind 6"
 				"Model 16" 8
 	on visit
 		dialog `You've landed on <planet>, but there are still hostile Kor Mereti drones in the Chimitarp system. Better depart and make sure they've been taken care of.`
+
+# For compatibility with saves that got the "wanderers: kor mereti peaceful" event
+# before the introduction of the "Quarg (Kor Efret)" government."
+mission "Wanderers: Kor Mereti Quarg Attitude Patch"
+	landing
+	invisible
+	to offer
+		has "event: wanderers: kor mereti friendly"
+	on offer
+		event "wanderers: kor mereti friendly"
+		fail
 
 
 
