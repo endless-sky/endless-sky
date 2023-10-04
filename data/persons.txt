@@ -1952,23 +1952,6 @@ person "Patrol Team"
 			"required crew" 2
 	ship "Waverider" "Choreographers' Tears"
 		"never disabled"
-		outfits
-			"Particle Cannon" 4
-			"S-970 Regenerator"
-			"Dwarf Core"
-			"LP072a Battery Pack"
-			"Liquid Nitrogen Cooler"
-			"Catalytic Ramscoop"
-			"Tactical Scanner"
-			"Cargo Scanner"
-			"Outfit Scanner"
-			"Asteroid Scanner"
-
-			"A120 Atomic Thruster"
-			"A125 Atomic Steering" 2
-			"Scram Drive"
-
-			"Emotional Baggage"
 	ship "Waverider" "Adjuncators' Blood"
 		"never disabled"
 		outfits
