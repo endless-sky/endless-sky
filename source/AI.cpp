@@ -234,7 +234,6 @@ namespace {
 		const DistanceMap route(ship, targetSystem);
 		const bool needsRefuel = ShouldRefuel(ship, route);
 		const System *to = route.Route(from);
-
 		// The destination may be accessible by both jump and wormhole.
 		// Prefer wormhole travel in these cases, to conserve fuel. Must
 		// check accessibility as DistanceMap may only see the jump path.
