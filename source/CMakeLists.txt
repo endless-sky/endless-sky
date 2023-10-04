@@ -12,7 +12,7 @@ else()
 endif()
 
 if(ES_STEAM)
-	target_compile_definitions(EndlessSkyLib PRIVATE ES_STEAM)
+	target_compile_definitions(EndlessSkyLib PUBLIC ES_STEAM)
 endif()
 
 # Every source file (and header file) should be listed here, except main.cpp.
