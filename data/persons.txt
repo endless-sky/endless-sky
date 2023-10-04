@@ -1956,7 +1956,7 @@ person "Patrol Team"
 			"Particle Cannon" 4
 			"S-970 Regenerator"
 			"Dwarf Core"
-			"LP576a Battery Pack"
+			"LP072a Battery Pack"
 			"Liquid Nitrogen Cooler"
 			"Catalytic Ramscoop"
 			"Tactical Scanner"
