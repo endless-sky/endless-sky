@@ -23,7 +23,7 @@ mission "Heliarch Investigation 1"
 		random < 65
 		"coalition jobs" >= 70
 		has "license: Coalition"
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting lunarium"
 	on offer
 		conversation
@@ -56,7 +56,7 @@ mission "Heliarch Investigation 2"
 	passengers 3
 	to offer
 		has "Heliarch Investigation 1: done"
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting lunarium"
 	to complete
 		has "Heliarch Investigation 2 - Mebla's Portion: done"
@@ -564,7 +564,7 @@ mission "Heliarch Recon 1"
 		has "visited planet: Kuwaru Efreti"
 		has "First Contact: Hai: offered"
 		has "license: Coalition"
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting lunarium"
 	to fail
 		"reputation: Quarg" < 0
@@ -682,7 +682,7 @@ mission "Heliarch Recon 2-A"
 	destination "Ring of Wisdom"
 	to offer
 		has "event: heliarch recon break"
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting lunarium"
 	to complete
 		has "outfit: Outfit Scanner"
@@ -716,7 +716,7 @@ mission "Heliarch Recon 2-B"
 	waypoint "Enif"
 	to offer
 		has "Heliarch Recon 2-A: done"
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting lunarium"
 	on offer
 		conversation
@@ -807,7 +807,7 @@ mission "Heliarch Recon 3-A"
 		has "Quarg Interrogation: offered"
 		has "Rim Archaeology 5B: active"
 		has "event: rim archaeology results"
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting lunarium"
 		"coalition jobs" >= 65
 	on offer
@@ -877,7 +877,8 @@ mission "Heliarch Recon 3-B"
 	deadline 15
 	to offer
 		has "Heliarch Recon 3-A: done"
-		not "Lunarium: Questions: done"
+		not "Heliarch Recon 3-C: offered"
+		not "joined the lunarium"
 		not "joined the heliarchs"
 		not "assisting lunarium"
 	on offer
@@ -930,6 +931,7 @@ mission "Heliarch Recon 3-C"
 	waypoint "Zubeneschamali"
 	to offer
 		has "Heliarch Recon 3-A: done"
+		not "Heliarch Recon 3-B: offered"
 		has "joined the heliarchs"
 		has "outfit: Scanning Module"
 		not "assisting lunarium"
@@ -1226,7 +1228,7 @@ mission "Heliarch Expedition 5"
 		conversation
 			`To your surprise, your arrival to the <planet> sees no reception party waiting for you, or so much as a payment message from Aulori. You leave your ship, and mention to the nearest Heliarch that you were asked to see Consul Aulori here. They brush you off, saying there has been no such request by the consul. You try and explain that the Heliarch leading the expedition to Ruin mentioned you should come, but they again dismiss you, seemingly unaware of what you're talking about and going on about their business.`
 			`	You try a few more times to no avail, and decide to head back to your ship for the time being. It's not until the day is about to turn that a pair of Heliarch guards come to your ship, asking that you step outside. You comply, and they tell you to follow, "for ready to see you, the consul is."`
-			`	Once again you're led through the inscrutable, guard-crowded halls of the <origin>, being brought to a long corridor with dozens of closed doors. The one at the very end is apparently your goal. From there, however, two more guards arrive, and they explain to those escorting you that "received word, the Ring of Friendship has." They apologize to you, saying Aulori might be busy for some time more. You are brought to just outside the room, so that you're received as soon as his "meeting" ends.`
+			`	Once again you're led through the inscrutable, guard-crowded halls of the <planet>, being brought to a long corridor with dozens of closed doors. The one at the very end is apparently your goal. From there, however, two more guards arrive, and they explain to those escorting you that "received word, the Ring of Friendship has." They apologize to you, saying Aulori might be busy for some time more. You are brought to just outside the room, so that you're received as soon as his "meeting" ends.`
 			`	From another room, a Heliarch arbiter waves for the guards waiting with you, and passes some other task to them. Three of them leave, and you're left with the one who fetched you from your ship, a Saryd. Despite the door to Aulori's room being locked, you two can still clearly hear intense shouting from within - not just his, but from many others who you assume to be consuls as well. After a particularly long - and heated - debate segment from what seems to be Aulori's voice, the Heliarch guard waiting with you declares they'll be coming back soon and hastily moves away, turning the corner.`
 			branch license
 				has "joined the heliarchs"
@@ -1287,7 +1289,7 @@ mission "Heliarch Containment 1"
 	to offer
 		has "license: Coalition"
 		has "main plot completed"
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting lunarium"
 		"coalition jobs" >= 60
 		random > 25
@@ -1347,7 +1349,7 @@ mission "Heliarch Containment 2"
 	deadline
 	to offer
 		has "Heliarch Containment 1: done"
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting lunarium"
 		random > 35
 	on offer
@@ -1420,7 +1422,7 @@ mission "Heliarch Containment 3"
 	cargo "medication" 15
 	to offer
 		has "Heliarch Containment 2: done"
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting lunarium"
 	on offer
 		conversation
@@ -1474,7 +1476,7 @@ mission "Heliarch Containment 4-A"
 	to offer
 		has "event: plasma turret available"
 		has "Heliarch Containment 3: done"
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting lunarium"
 	on offer
 		conversation
@@ -1517,7 +1519,7 @@ mission "Heliarch Containment 4-B"
 	destination "Station Cian"
 	to offer
 		has "Heliarch Containment 4-A: done"
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting lunarium"
 	on offer
 		conversation
@@ -1542,7 +1544,7 @@ mission "Heliarch Containment 5"
 	source "Station Cian"
 	to offer
 		has "Heliarch Containment 4-B: done"
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting lunarium"
 	on offer
 		"reputation: Lunarium" = -1000
@@ -1614,7 +1616,7 @@ mission "Heliarch Drills 1"
 	destination "Belug's Plunge"
 	to offer
 		has "license: Coalition"
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting lunarium"
 		random < 8
 		"combat rating" >= 8104
@@ -1679,7 +1681,7 @@ mission "Heliarch Drills 2-A"
 	"apparent payment" 300000
 	to offer
 		has "Heliarch Drills 1: done"
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting lunarium"
 	on offer
 		conversation
@@ -1763,7 +1765,7 @@ mission "Heliarch Drills 2-B"
 	destination "Ashy Reach"
 	to offer
 		has "Heliarch Drills 2-A: done"
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting lunarium"
 	on offer
 		conversation
@@ -1841,7 +1843,7 @@ mission "Heliarch Drills 2-C"
 	destination "Belug's Plunge"
 	to offer
 		has "Heliarch Drills 2-B: done"
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting lunarium"
 	on offer
 		conversation
@@ -1995,7 +1997,7 @@ mission "Heliarch Drills 3"
 	waypoint "Torbab"
 	to offer
 		has "Heliarch Drills 2-C: done"
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting lunarium"
 	on offer
 		conversation
@@ -2056,20 +2058,18 @@ mission "Heliarch License 1"
 	destination "Ring of Friendship"
 	to offer
 		or
-			"assisted heliarch" == 5
+			"assisted heliarch" >= 5
 			and
 				"coalition jobs" >= 90
 				"assisted heliarch" == 4
 			and
 				"coalition jobs" >= 120
 				"assisted heliarch" == 3
-		not "Lunarium: Questions: done"
+		not "joined the lunarium"
 		not "assisting heliarchy"
 		not "assisting lunarium"
 	to fail
-		has "Lunarium: Questions: done"
-	to complete
-		has "Heliarch License 2: declined"
+		has "joined the lunarium"
 	on offer
 		conversation
 			`When you land on <origin>, you find a Heliarch delegation waiting for you outside. When you meet them, the Saryd of the group says, "A great ally to our Coalition, you have proven to be."`
@@ -2082,12 +2082,12 @@ mission "Heliarch License 2"
 	invisible
 	source "Ring of Friendship"
 	to offer
-		has "Heliarch License 1: active"
-		not "Lunarium: Questions: done"
+		has "Heliarch License 1: done"
+		not "joined the lunarium"
 		not "assisting lunarium"
 	on offer
 		conversation
-			`The Heliarch authorities of the <origin> have offered you a position in the ranks of the Heliarchs. Would you like to meet with them and officially join the Heliarchy? Given their history with the Quarg, and the rumors of rebellion stirring in Coalition space, this would no doubt set you on path to conflict with the Quarg and the resistance forces.`
+			`The Heliarch authorities of the <origin> have offered you a position in the ranks of the Heliarchs. Would you like to meet with them and officially join the Heliarchy? Given their history with the Quarg, and the rumors of rebellion stirring in Coalition space, this would no doubt set you on a path to conflict with the Quarg and the resistance forces.`
 			choice
 				`	(Yes.)`
 				`	(Not yet.)`
