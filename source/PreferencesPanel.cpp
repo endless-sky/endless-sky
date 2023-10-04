@@ -101,7 +101,7 @@ PreferencesPanel::PreferencesPanel()
 
 	// Initialize a centered tooltip.
 	hoverText.SetFont(FontSet::Get(14));
-	hoverText.SetWrapWidth(150);
+	hoverText.SetWrapWidth(250);
 	hoverText.SetAlignment(Alignment::LEFT);
 }
 
