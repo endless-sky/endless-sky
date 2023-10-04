@@ -250,7 +250,8 @@ void DistanceMap::Init(const Ship *ship)
 					// the wormhole and both endpoint systems. (If this is a
 					// multi-stop wormhole, you may know about some paths that
 					// it takes but not others.)
-					if(!ship || (!object.GetPlanet()->IsAccessible(ship) || (!ship->GetPersonality().IsUnrestricted() && ship->GetGovernment()->IsRestrictedFrom(*object.GetPlanet()))))
+					if(!ship || (!object.GetPlanet()->IsAccessible(ship) || (!ship->GetPersonality().IsUnrestricted()
+							&& ship->GetGovernment()->IsRestrictedFrom(*object.GetPlanet()))))
 						continue;
 					if(player && !player->HasVisited(*object.GetPlanet()))
 						continue;
@@ -279,7 +280,8 @@ bool DistanceMap::Propagate(Edge edge, bool useJump, const Ship *ship)
 		// Find out whether we already have a better path to this system, and
 		// check whether this link can be traveled. If this route is being
 		// selected by the player, they are constrained to known routes.
-		if((ship && !ship->GetPersonality().IsUnrestricted() && ship->GetGovernment()->IsRestrictedFrom (*link)) || HasBetter(*link, edge) || !CheckLink(*edge.next, *link, useJump))
+		if((ship && !ship->GetPersonality().IsUnrestricted() && ship->GetGovernment()->IsRestrictedFrom (*link))
+				|| HasBetter(*link, edge) || !CheckLink(*edge.next, *link, useJump))
 			continue;
 
 		Add(*link, edge);
