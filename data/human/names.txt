@@ -3430,7 +3430,7 @@ phrase "deep planets"
 		"Fenrir"
 		"Alexandria"
 		"Leviathan"
-		"Pheonix"
+		"Phoenix"
 
 phrase "deep systems"
 	word
