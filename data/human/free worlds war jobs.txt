@@ -21,7 +21,6 @@ trade
 		"plasma engines"
 		"cooling systems"
 		"fission reactors"
-		"breeder reactors"
 		"thermionic reactors"
 		"battery packs"
 		"fuel cells"

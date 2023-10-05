@@ -922,7 +922,7 @@ trade
 		"cryogenic sleep systems"
 		"engine mounting systems"
 		"shipboard cargo handling equipment"
-		"refuelling systems"
+		"refueling systems"
 		"shipboard defense mechanisms"
 		"cargo scoops"
 		"internal crew quarter fittings"
