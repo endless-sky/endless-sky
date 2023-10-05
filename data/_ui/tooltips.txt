@@ -1108,13 +1108,13 @@ tip "Fire afterburner"
 	`Fire your flagship's afterburner, if one is installed.`
 
 tip "Auto steer"
-	`If the "Automatic aiming" setting is off, active automatic aiming when this key is pressed.`
+	`If the "Automatic aiming" setting is off, activate automatic aiming when this key is held.`
 
 tip "Land on planet / station"
-	`Land on the selected planet. If no planet is selected, automatically selects a planet to land on.`
+	`Land on the selected planet. If no planet is selected, automatically selects a planet to land on, or attempts to land on the planet you are directly on top of if traveling at low speeds. If a planet is already selected, double tapping will cycle to the next planet.`
 
 tip "Initiate hyperspace jump"
-	`Initiate a hyperspace jump to follow your current travel plan. If you have no travel plan, initiates a jump nearest to your current facing angle.`
+	`Initiate a hyperspace jump to follow your current travel plan. If you have no travel plan, initiates a jump nearest to your current facing angle. When held, commands your escorts to get ready to jump and only initiates the jump when released. With <shift>, your fleet will not jump until every ship in the fleet is ready for every system in the travel plan instead of needing to hold the key at each system.`
 
 tip "View star map"
 	`Open the star map panel.`
@@ -1135,7 +1135,7 @@ tip "Board selected ship"
 	`Board the selected ship. If no boardable ship is selected, selects a ship to board based on the "Boarding target priority" setting. With <shift>, selects an escort to board.`
 
 tip "Select nearest asteroid"
-	`Select the nearest asteroid. Which asteroid is selected can be changed by the "Target asteroid based on" setting.`
+	`Select the nearest asteroid based on the "Target asteroid based on" setting.`
 
 tip "Scan selected ship"
 	`Scan the selected ship, if you have outfit or cargo scanners installed.`
@@ -1153,7 +1153,7 @@ tip "Toggle cloaking device"
 	`Activate or deactivate your fleet's cloaking devices, if any are installed.`
 
 tip "Mouse turning (hold)"
-	`Cause your flagship to turn toward your mouse if this key is held. To have mouse turning always active, activate the "Control ship with mouse" setting. If that setting is active, hold this key deactivates mouse turning.`
+	`Cause your flagship to turn toward your mouse if this key is held. To have mouse turning always active, activate the "Control ship with mouse" setting. If that setting is active, holding this key deactivates mouse turning.`
 
 tip "Show main menu"
 	`Open the main menu.`
