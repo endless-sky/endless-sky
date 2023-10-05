@@ -238,7 +238,8 @@ public:
 	bool FireAntiMissile(const Projectile &projectile, std::vector<Visual> &visuals);
 	// Fire tractor beams at the given flotsam and update the map of hardpoints that
 	// have fired upon it.
-	void FireTractorBeam(const Flotsam &flotsam, std::map<const Weapon *, Point> &tractorBeams, std::vector<Visual> &visuals);
+	void FireTractorBeam(const Flotsam &flotsam, std::map<const Weapon *, Point> &tractorBeams,
+		std::vector<Visual> &visuals);
 
 	// Get the system this ship is in. Set to nullptr if the ship is being carried.
 	const System *GetSystem() const;

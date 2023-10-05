@@ -1935,7 +1935,7 @@ void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 
 	if(CannotAct())
 		return;
-	
+
 	antiMissileRange = 0.;
 	tractorBeamRange = 0.;
 

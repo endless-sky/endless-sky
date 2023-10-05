@@ -276,11 +276,11 @@ bool Hardpoint::FireTractorBeam(Ship &ship, const Flotsam &flotsam, std::vector<
 	double strength = outfit->TractorBeam();
 	if(!strength)
 		return false;
-	
+
 	// Check whether the flotsam is within range and create any visuals.
 	if(!FireSpecialSystem(ship, flotsam, visuals))
 		return false;
-	
+
 	return true;
 }
 

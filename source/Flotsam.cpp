@@ -126,7 +126,7 @@ void Flotsam::Pull(Point pull)
 	Point perpendicular = Angle(90.).Rotate(pull);
 	Point projection = (perpendicular.Dot(velocity) / perpendicular.Dot(perpendicular)) * perpendicular;
 	velocity -= 0.01 * projection;
-	
+
 	// Pull the object toward the tractor beam.
 	velocity += pull;
 }

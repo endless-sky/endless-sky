@@ -2312,7 +2312,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 		map<const Weapon *, Point> tractorBeams;
 		for(Ship *ship : hasTractorBeam)
 			ship->FireTractorBeam(flotsam, tractorBeams, visuals);
-		
+
 		// Find the net effect of all the tractor beams pulling on
 		// this flotsam.
 		Point pullVector;
@@ -2322,7 +2322,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 			double magnitude = weapon.first->TractorBeam() / 60.;
 			pullVector += direction * magnitude;
 		}
-		
+
 		if(pullVector)
 			flotsam.Pull(pullVector);
 		return;

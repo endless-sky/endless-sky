@@ -285,7 +285,7 @@ bool Armament::FireTractorBeam(int index, Ship &ship, const Flotsam &flotsam,
 		hardpoints[index].Jam();
 		return false;
 	}
-	
+
 	return hardpoints[index].FireTractorBeam(ship, flotsam, visuals);
 }
 
