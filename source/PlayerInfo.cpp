@@ -26,7 +26,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
-#include "Hardpoint.h"
 #include "Logger.h"
 #include "Messages.h"
 #include "Outfit.h"
@@ -35,6 +34,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Plugins.h"
 #include "Politics.h"
 #include "Preferences.h"
+#include "RaidFleet.h"
 #include "Random.h"
 #include "SavedGame.h"
 #include "Ship.h"
@@ -103,6 +103,15 @@ namespace {
 		else if(entry == "wormhole")
 			return SystemEntry::WORMHOLE;
 		return SystemEntry::TAKE_OFF;
+	}
+
+	bool HasClearance(const PlayerInfo &player, const Planet *planet)
+	{
+		auto CheckClearance = [&planet](const Mission &mission) -> bool
+		{
+			return mission.HasClearance(planet);
+		};
+		return any_of(player.Missions().begin(), player.Missions().end(), CheckClearance);
 	}
 }
 
@@ -697,16 +706,19 @@ void PlayerInfo::IncrementDate()
 
 	// Check if any special events should happen today.
 	auto it = gameEvents.begin();
+	list<DataNode> eventChanges;
 	while(it != gameEvents.end())
 	{
 		if(date < it->GetDate())
 			++it;
 		else
 		{
-			it->Apply(*this);
+			eventChanges.splice(eventChanges.end(), it->Apply(*this));
 			it = gameEvents.erase(it);
 		}
 	}
+	if(!eventChanges.empty())
+		AddChanges(eventChanges);
 
 	// Check if any missions have failed because of deadlines and
 	// do any daily mission actions for those that have not failed.
@@ -989,13 +1001,26 @@ Ship *PlayerInfo::Flagship()
 const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 {
 	if(!flagship)
+	{
+		bool clearance = false;
+		if(planet)
+			clearance = planet->CanLand() || HasClearance(*this, planet);
 		for(const shared_ptr<Ship> &it : ships)
-			if(!it->IsParked() && it->GetSystem() == system && it->CanBeFlagship()
-					&& (!planet || planet->CanLand(*it)))
+		{
+			if(it->IsParked())
+				continue;
+			if(it->GetSystem() != system)
+				continue;
+			if(!it->CanBeFlagship())
+				continue;
+			const bool sameLocation = !planet || it->GetPlanet() == planet;
+			if(sameLocation || (clearance && !it->GetPlanet() && planet->IsAccessible(it.get())))
 			{
 				flagship = it;
 				break;
 			}
+		}
+	}
 
 	static const shared_ptr<Ship> empty;
 	return (flagship && flagship->IsYours()) ? flagship : empty;
@@ -1333,7 +1358,7 @@ pair<double, double> PlayerInfo::RaidFleetFactors() const
 
 
 
-double PlayerInfo::RaidFleetAttraction(const Government::RaidFleet &raid, const System *system) const
+double PlayerInfo::RaidFleetAttraction(const RaidFleet &raid, const System *system) const
 {
 	double attraction = 0.;
 	const Fleet *raidFleet = raid.GetFleet();
@@ -1388,16 +1413,11 @@ const CargoHold &PlayerInfo::Cargo() const
 
 
 
-// Get planetary storage information for current planet. Returns a pointer,
-// since we might not be on a planet, or since the storage might be empty.
-CargoHold *PlayerInfo::Storage(bool forceCreate)
+// Get items stored on the player's current planet.
+CargoHold &PlayerInfo::Storage()
 {
-	if(planet && (forceCreate || planetaryStorage.count(planet)))
-		return &(planetaryStorage[planet]);
-
-	// Nullptr can be returned when forceCreate is true if there is no
-	// planet; nullptr is the best we can offer in such cases.
-	return nullptr;
+	assert(planet && "can't get planetary storage in-flight");
+	return planetaryStorage[planet];
 }
 
 
@@ -1484,13 +1504,15 @@ void PlayerInfo::Land(UI *ui)
 
 	// Ships that are landed with you on the planet should fully recharge.
 	// Those in remote systems restore what they can without landing.
-	bool hasSpaceport = planet->HasSpaceport() && planet->CanUseServices();
+	bool clearance = HasClearance(*this, planet);
+	bool hasSpaceport = planet->HasSpaceport() && (clearance || planet->CanUseServices());
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsParked() && !ship->IsDisabled())
 		{
 			if(ship->GetSystem() == system)
 			{
-				if(planet->CanLand(*ship))
+				const bool alreadyLanded = ship->GetPlanet() == planet;
+				if(alreadyLanded || planet->CanLand(*ship) || (clearance && planet->IsAccessible(ship.get())))
 				{
 					ship->Recharge(hasSpaceport);
 					if(!ship->GetPlanet())
@@ -1516,9 +1538,7 @@ void PlayerInfo::Land(UI *ui)
 	// Cargo management needs to be done after updating ship locations (above).
 	UpdateCargoCapacities();
 	// Ships that are landed with you on the planet should pool all their cargo together.
-	for(const shared_ptr<Ship> &ship : ships)
-		if(ship->GetPlanet() == planet && !ship->IsParked())
-			ship->Cargo().TransferAll(cargo);
+	PoolCargo();
 	// Adjust cargo cost basis for any cargo lost due to a ship being destroyed.
 	for(const auto &it : lostCargo)
 		AdjustBasis(it.first, -(costBasis[it.first] * it.second) / (cargo.Get(it.first) + it.second));
@@ -1581,7 +1601,7 @@ void PlayerInfo::Land(UI *ui)
 
 // Load the cargo back into your ships. This may require selling excess, in
 // which case a message will be returned.
-bool PlayerInfo::TakeOff(UI *ui)
+bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 {
 	// This can only be done while landed.
 	if(!system || !planet)
@@ -1624,24 +1644,10 @@ bool PlayerInfo::TakeOff(UI *ui)
 			}
 			else
 				ship->Recharge(hasSpaceport);
-
-			if(ship != flagship)
-			{
-				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->RequiredCrew());
-				cargo.TransferAll(ship->Cargo());
-			}
-			else
-			{
-				// Your flagship takes first priority for passengers but last for cargo.
-				desiredCrew = ship->Crew();
-				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - desiredCrew);
-				for(const auto &it : cargo.PassengerList())
-					cargo.TransferPassengers(it.first, it.second, ship->Cargo());
-			}
 		}
-	// Load up your flagship last, so that it will have space free for any
-	// plunder that you happen to acquire.
-	cargo.TransferAll(flagship->Cargo());
+
+	if(distributeCargo)
+		DistributeCargo();
 
 	if(cargo.Passengers())
 	{
@@ -1784,7 +1790,7 @@ bool PlayerInfo::TakeOff(UI *ui)
 				// Transfer the outfits from cargo to the storage on this planet.
 				if(!outfit.second)
 					continue;
-				cargo.Transfer(outfit.first, outfit.second, *Storage(true));
+				cargo.Transfer(outfit.first, outfit.second, Storage());
 			}
 	}
 	accounts.AddCredits(income);
@@ -1803,6 +1809,46 @@ bool PlayerInfo::TakeOff(UI *ui)
 	}
 
 	return true;
+}
+
+
+
+void PlayerInfo::PoolCargo()
+{
+	// This can only be done while landed.
+	if(!planet)
+		return;
+	for(const shared_ptr<Ship> &ship : ships)
+		if(ship->GetPlanet() == planet && !ship->IsParked())
+			ship->Cargo().TransferAll(cargo);
+}
+
+
+
+const CargoHold &PlayerInfo::DistributeCargo()
+{
+	for(const shared_ptr<Ship> &ship : ships)
+		if(!ship->IsParked() && !ship->IsDisabled() && ship->GetPlanet() == planet)
+		{
+			if(ship != flagship)
+			{
+				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->RequiredCrew());
+				cargo.TransferAll(ship->Cargo());
+			}
+			else
+			{
+				// Your flagship takes first priority for passengers but last for cargo.
+				desiredCrew = ship->Crew();
+				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - desiredCrew);
+				for(const auto &it : cargo.PassengerList())
+					cargo.TransferPassengers(it.first, it.second, ship->Cargo());
+			}
+		}
+	// Load up your flagship last, so that it will have space free for any
+	// plunder that you happen to acquire.
+	cargo.TransferAll(flagship->Cargo());
+
+	return cargo;
 }
 
 
@@ -3209,6 +3255,17 @@ void PlayerInfo::RegisterDerivedConditions()
 	flagshipAttributeProvider.SetGetFunction(flagshipAttributeFun);
 	flagshipAttributeProvider.SetHasFunction(flagshipAttributeFun);
 
+	auto &&flagshipBaysProvider = conditions.GetProviderPrefixed("flagship bays: ");
+	auto flagshipBaysFun = [this](const string &name) -> int64_t
+	{
+		if(!flagship)
+			return 0;
+
+		return flagship->BaysTotal(name.substr(strlen("flagship bays: ")));
+	};
+	flagshipBaysProvider.SetGetFunction(flagshipBaysFun);
+	flagshipBaysProvider.SetHasFunction(flagshipBaysFun);
+
 	auto &&playerNameProvider = conditions.GetProviderPrefixed("name: ");
 	auto playerNameFun = [this](const string &name) -> bool
 	{
@@ -3259,7 +3316,7 @@ void PlayerInfo::RegisterDerivedConditions()
 
 		// This variable represents the probability of no raid fleets spawning.
 		double safeChance = 1.;
-		for(const auto &raidFleet : system->GetGovernment()->RaidFleets())
+		for(const auto &raidFleet : system->RaidFleets())
 		{
 			// The attraction is the % chance for a single instance of this fleet to appear.
 			double attraction = RaidFleetAttraction(raidFleet, system);
@@ -3667,10 +3724,19 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto pluginFun = [](const string &name) -> bool
 	{
 		const Plugin *plugin = Plugins::Get().Find(name.substr(strlen("installed plugin: ")));
-		return plugin ? plugin->enabled : false;
+		return plugin ? plugin->IsValid() && plugin->enabled : false;
 	};
 	pluginProvider.SetHasFunction(pluginFun);
 	pluginProvider.SetGetFunction(pluginFun);
+
+	auto &&destroyedPersonProvider = conditions.GetProviderPrefixed("person destroyed: ");
+	auto destroyedPersonFun = [](const string &name) -> bool
+	{
+		const Person *person = GameData::Persons().Find(name.substr(strlen("person destroyed: ")));
+		return person ? person->IsDestroyed() : false;
+	};
+	destroyedPersonProvider.SetGetFunction(destroyedPersonFun);
+	destroyedPersonProvider.SetHasFunction(destroyedPersonFun);
 
 	// Read-only navigation conditions.
 	auto HyperspaceTravelDays = [](const System *origin, const System *destination) -> int
@@ -3746,6 +3812,27 @@ void PlayerInfo::RegisterDerivedConditions()
 		gov->SetReputation(value);
 		return true;
 	});
+
+	// A condition for returning a random integer in the range [0, input). Input may be a number,
+	// or it may be the name of a condition. For example, "roll: 100" would roll a random
+	// integer in the range [0, 100), but if you had a condition "max roll" with a value of 100,
+	// calling "roll: max roll" would provide a value from the same range.
+	// Returns 0 if the input condition's value is <= 1.
+	auto &&randomRollProvider = conditions.GetProviderPrefixed("roll: ");
+	auto randomRollFun = [this](const string &name) -> int64_t
+	{
+		string input = name.substr(strlen("roll: "));
+		int64_t value = 0;
+		if(DataNode::IsNumber(input))
+			value = static_cast<int64_t>(DataNode::Value(input));
+		else
+			value = conditions.Get(input);
+		if(value <= 1)
+			return 0;
+		return Random::Int(value);
+	};
+	randomRollProvider.SetHasFunction(randomRollFun);
+	randomRollProvider.SetGetFunction(randomRollFun);
 
 	// Global conditions setters and getters:
 	auto &&globalProvider = conditions.GetProviderPrefixed("global: ");
