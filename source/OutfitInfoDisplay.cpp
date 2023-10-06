@@ -654,7 +654,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		outfit.BlastRadius(),
 		static_cast<double>(outfit.MissileStrength()),
 		static_cast<double>(outfit.AntiMissile()),
-		outfit.TractorBeam() * 60. / reload
+		outfit.TractorBeam() * 60.
 	};
 
 	for(unsigned i = 0; i < OTHER_NAMES.size(); ++i)

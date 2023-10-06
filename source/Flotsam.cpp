@@ -118,16 +118,10 @@ void Flotsam::Move(vector<Visual> &visuals)
 
 
 
-// Apply a pulling force to this flotsam, changing its velocity.
-void Flotsam::Pull(Point pull)
+// Pull this flotsam toward a tractor beam.
+void Flotsam::Tractor(Point pull)
 {
-	// Dampen perpendicular motion, decaying the orbits of any flotsams
-	// so that they fall into the direction of pull.
-	Point perpendicular = Angle(90.).Rotate(pull);
-	Point projection = (perpendicular.Dot(velocity) / perpendicular.Dot(perpendicular)) * perpendicular;
-	velocity -= 0.01 * projection;
-
-	velocity += pull;
+	velocity = pull;
 }
 
 

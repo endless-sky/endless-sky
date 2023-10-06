@@ -2320,12 +2320,12 @@ void Engine::DoCollection(Flotsam &flotsam)
 		for(auto &weapon : tractorBeams)
 		{
 			Point direction = (weapon.first - flotsam.Position()).Unit();
-			double magnitude = weapon.second / 60.;
+			double magnitude = weapon.second;
 			pullVector += direction * magnitude;
 		}
 
 		if(pullVector)
-			flotsam.Pull(pullVector);
+			flotsam.Tractor(pullVector);
 		return;
 	}
 
