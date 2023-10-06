@@ -32,7 +32,7 @@ mission "FW Epilogue: Ijs and Katya"
 					goto excitement
 				`	"It's kind of hard to adjust to civilian life."`
 					goto adjust
-				`	"I want to expand the game. Maybe add more missions or ships or alien species."`
+				`	"I want to explore the rest of the galaxy, but apparently not all of it has been implemented yet."`
 					goto game
 			
 			label excitement
