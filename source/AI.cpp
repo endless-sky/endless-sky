@@ -4638,21 +4638,21 @@ void AI::UpdateOrders(const Ship &ship)
 }
 
 // Job / Mission NPC blocks may use keywords (waypoint, visit, land) to define travel plans.
-void AI::IssueNPCOrders(Ship &ship, const System *waypoint, const std::map<const Planet *, bool> stopovers)
+void AI::IssueNPCOrders(Ship &ship, const System *targetSystem, const std::map<const Planet *, bool> stopovers)
 {
 	Orders newOrders;
 	const bool isSurveying = ship.IsSurveying();
 	const System *from = ship.GetSystem();
-	if(waypoint)
+	if(targetSystem)
 	{
-		DistanceMap distance(ship, waypoint);
-		if(!distance.HasRoute(waypoint))
-			ship.EraseWaypoint(waypoint);
+		DistanceMap distance(ship, targetSystem);
+		if(!distance.HasRoute(targetSystem))
+			ship.EraseWaypoint(targetSystem);
 		else
 		{
 			newOrders.type = Orders::TRAVEL_TO;
-			newOrders.targetSystem = waypoint;
-			if(from == waypoint)
+			newOrders.targetSystem = targetSystem;
+			if(from == targetSystem)
 			{
 				// Travel to the next destination, if it exists.
 				ship.SetTargetStellar(nullptr);
