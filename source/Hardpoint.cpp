@@ -137,18 +137,11 @@ bool Hardpoint::IsHoming() const
 
 
 
-// Find out if this hardpoint has an anti-missile installed.
-bool Hardpoint::IsAntiMissile() const
+// Find out if this hardpoint has a special weapon installed
+// (e.g. anti-missile, tractor beam).
+bool Hardpoint::IsSpecial() const
 {
-	return outfit && outfit->AntiMissile() > 0;
-}
-
-
-
-// Find out if this hardpoint has a tractor beam installed.
-bool Hardpoint::IsTractorBeam() const
-{
-	return outfit && outfit->TractorBeam() > 0.;
+	return outfit && (outfit->AntiMissile() > 0 || outfit->TractorBeam() > 0.);
 }
 
 

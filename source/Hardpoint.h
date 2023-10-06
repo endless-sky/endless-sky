@@ -55,8 +55,7 @@ public:
 	bool IsParallel() const;
 	bool IsUnder() const;
 	bool IsHoming() const;
-	bool IsAntiMissile() const;
-	bool IsTractorBeam() const;
+	bool IsSpecial() const;
 	bool CanAim() const;
 
 	// Check if this weapon is ready to fire.

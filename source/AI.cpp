@@ -122,7 +122,7 @@ namespace {
 		for(const Hardpoint &hardpoint : ship.Weapons())
 		{
 			const Weapon *weapon = hardpoint.GetOutfit();
-			if(weapon && !hardpoint.IsAntiMissile())
+			if(weapon && !hardpoint.IsSpecial())
 			{
 				if(weapon->Ammo() && !ship.OutfitCount(weapon->Ammo()))
 					continue;
@@ -1295,7 +1295,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	double minRange = numeric_limits<double>::infinity();
 	double maxRange = 0.;
 	for(const Hardpoint &weapon : ship.Weapons())
-		if(weapon.GetOutfit() && !weapon.IsAntiMissile())
+		if(weapon.GetOutfit() && !weapon.IsSpecial())
 		{
 			minRange = min(minRange, weapon.GetOutfit()->Range());
 			maxRange = max(maxRange, weapon.GetOutfit()->Range());
@@ -2017,7 +2017,7 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
 		const Weapon *weapon = hardpoint.GetOutfit();
-		if(weapon && !hardpoint.IsAntiMissile())
+		if(weapon && !hardpoint.IsSpecial())
 		{
 			const Outfit *ammo = weapon->Ammo();
 			if(!ammo || ship.OutfitCount(ammo))
