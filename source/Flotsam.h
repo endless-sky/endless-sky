@@ -55,7 +55,7 @@ public:
 
 	// Move the object one time-step forward.
 	void Move(std::vector<Visual> &visuals);
-	// Pull the object's velocity torward a tractor beam.
+	// Apply a pulling force to this flotsam, changing its velocity.
 	void Pull(Point pull);
 
 	// This is the one ship that cannot pick up this flotsam.

@@ -337,9 +337,9 @@ void Weapon::LoadWeapon(const DataNode &node)
 	if(damageDropoffRange.first > damageDropoffRange.second)
 		damageDropoffRange.second = Range();
 
-	// Weapons of the same type will alternate firing (streaming) rather than
-	// firing all at once (clustering) if the weapon is not an anti-missile and
-	// is not vulnerable to anti-missile, or has the "stream" attribute.
+	// Weapons of the same type will alternate firing (streaming) rather than firing all
+	// at once (clustering) if the weapon is not a special weapon type (e.g. anti-missile,
+	// tractor beam) and is not vulnerable to anti-missile, or has the "stream" attribute.
 	isStreamed |= !(MissileStrength() || AntiMissile() || TractorBeam());
 	isStreamed &= !isClustered;
 

@@ -1919,10 +1919,9 @@ double Ship::OutfitScanFraction() const
 
 
 
-// Fire any weapons that are ready to fire. If an anti-missile or tractor beam
-// is ready, instead of firing here this function updates the anti-missile and
-// tractor beam ranges and they can be fired if collision detection finds a
-// missile or flotsam in range.
+// Fire any primary or secondary weapons that are ready to fire. Determines
+// if any special weapons (e.g. anti-missile, tractor beam) are ready to fire.
+// The firing of special weapons is handled separately.
 void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 {
 	isInSystem = true;
@@ -2001,9 +2000,10 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 
 
 
-// Fire tractor beams at the given flotsam and update the map of hardpoints that
-// have fired upon it.
-void Ship::FireTractorBeam(const Flotsam &flotsam, vector<pair<Point, double>> &tractorBeams, vector<Visual> &visuals)
+// Fire tractor beams at the given flotsam. Adds to the vector of the origin and magnitude
+// of any tractor beams pulling on the flotsam.
+void Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals,
+	vector<pair<Point, double>> &tractorBeams)
 {
 	if(flotsam.Position().Distance(position) > tractorBeamRange)
 		return;

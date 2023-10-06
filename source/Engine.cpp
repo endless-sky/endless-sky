@@ -2312,7 +2312,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 		// has on this flotsam.
 		vector<pair<Point, double>> tractorBeams;
 		for(Ship *ship : hasTractorBeam)
-			ship->FireTractorBeam(flotsam, tractorBeams, visuals);
+			ship->FireTractorBeam(flotsam, visuals, tractorBeams);
 
 		// Find the net effect of all the tractor beams pulling on
 		// this flotsam.

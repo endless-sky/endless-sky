@@ -226,20 +226,19 @@ public:
 	double CargoScanFraction() const;
 	double OutfitScanFraction() const;
 
-	// Fire any weapons that are ready to fire. If an anti-missile or tractor beam
-	// is ready, instead of firing here this function updates the anti-missile and
-	// tractor beam ranges and they can be fired if collision detection finds a
-	// missile or flotsam in range.
+	// Fire any primary or secondary weapons that are ready to fire. Determines
+	// if any special weapons (e.g. anti-missile, tractor beam) are ready to fire.
+	// The firing of special weapons is handled separately.
 	void Fire(std::vector<Projectile> &projectiles, std::vector<Visual> &visuals);
 	// Return true if any anti-missile or tractor beam systems are ready to fire.
 	bool HasAntiMissile() const;
 	bool HasTractorBeam() const;
-	// Fire an anti-missile. Returns true if the missile was killed.
+	// Fire an anti-missile at the given missile. Returns true if the missile was killed.
 	bool FireAntiMissile(const Projectile &projectile, std::vector<Visual> &visuals);
-	// Fire tractor beams at the given flotsam and update the map of hardpoints that
-	// have fired upon it.
-	void FireTractorBeam(const Flotsam &flotsam, std::vector<std::pair<Point, double>> &tractorBeams,
-		std::vector<Visual> &visuals);
+	// Fire tractor beams at the given flotsam. Adds to the vector of the origin and magnitude
+	// of any tractor beams pulling on the flotsam.
+	void FireTractorBeam(const Flotsam &flotsam, std::vector<Visual> &visuals,
+		std::vector<std::pair<Point, double>> &tractorBeams);
 
 	// Get the system this ship is in. Set to nullptr if the ship is being carried.
 	const System *GetSystem() const;

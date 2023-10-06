@@ -262,7 +262,7 @@ bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, vector
 
 
 
-// Fire a tractor beam. Returns true if a flotsam was hit.
+// Fire a tractor beam. Returns true if the flotsam was hit.
 bool Hardpoint::FireTractorBeam(Ship &ship, const Flotsam &flotsam, std::vector<Visual> &visuals)
 {
 	// Make sure this hardpoint really is a tractor beam.
@@ -348,7 +348,7 @@ void Hardpoint::Uninstall()
 bool Hardpoint::FireSpecialSystem(Ship &ship, const Body &body, std::vector<Visual> &visuals)
 {
 	// Get the weapon range. Anti-missile and tractor beam shots always last a
-	//  single frame,so their range is equal to their velocity.
+	// single frame, so their range is equal to their velocity.
 	double range = outfit->Velocity();
 
 	// Check if the body is within range of this hardpoint.
@@ -367,7 +367,7 @@ bool Hardpoint::FireSpecialSystem(Ship &ship, const Body &body, std::vector<Visu
 	start += aim.Rotate(outfit->HardpointOffset());
 	CreateEffects(outfit->FireEffects(), start, ship.Velocity(), aim, visuals);
 
-	// Figure out where the effect should be placed. Anti-missile and tractor
+	// Figure out where the hit effect should be placed. Anti-missile and tractor
 	// beam systems do not create projectiles; they just create a blast animation.
 	CreateEffects(outfit->HitEffects(), start + (.5 * range) * aim.Unit(), ship.Velocity(), aim, visuals);
 

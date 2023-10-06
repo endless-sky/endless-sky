@@ -22,7 +22,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <set>
 #include <vector>
 
-class Command;
 class FireCommand;
 class Flotsam;
 class Outfit;
