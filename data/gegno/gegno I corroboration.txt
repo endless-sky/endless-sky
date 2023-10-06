@@ -250,8 +250,8 @@ mission "Gegno Suspicions"
 	source "Giaru Gegno"
 	to offer
 		has "event: gegno suspicions"
-		has "Passive-Aggressive Observations: declined"
-		has "Brief Bystander: declined"
+		has "Passive-Aggressive Observations: done"
+		has "Brief Bystander: done"
 		has "Foreign Spectator I: failed"
 		not "Gegno Genocide Defense: offered"
 	on offer
@@ -548,7 +548,7 @@ mission "Gegno Anticipation"
 	on offer
 		conversation
 			`After you land on <planet>, you are greeted by a few Quarg who motion you to follow them. As they escort you through the halls of the ring, you notice that the lack of Gegno presence hasn't changed since your last visit. Down at the end of the next corridor you see Adrauni waiting for you, however beside him is a Gegno in some form of strange attire. Once you meet up with them, the other Quarg head off into a different direction, and Adrauni begins walking down another hallway. "Please, indulge in accompanying us."`
-			`	As you follow them, Adrauni begins to speak while holding out one arm. "If you may, as I believe humans strangely call it, humor me, what do you suspect was the result of my negotations with the Gegno?"`
+			`	As you follow them, Adrauni begins to speak while holding out one arm. "If you may, as I believe humans strangely call it, humor me, what do you suspect was the result of my negotiations with the Gegno?"`
 			choice
 				`	"That they will accept me?"`
 				`	"That they want nothing to do with me?"`
@@ -626,7 +626,7 @@ mission "Gegno Anticipation"
 
 
 
-#mission "Gegno Intervention"
+# mission "Gegno Intervention"
 #	landing
 #	destination "Dueyu Eitch"
 #	deadline 8
@@ -680,11 +680,11 @@ mission "Gegno Anticipation"
 #
 #			label "Veiuye"
 #
-#			`After you land on <planet>, you are greeted by a few Quarg who motion you to follow them. As they escort you through the halls of the ring, you notice that the lack of Gegno presence hasn't changed since your last visit. Down at the end of the next #corridor you see Adrauni waiting for you, however beside him is a Gegno in some form of strange attire. Once you meet up with them, the other Quarg head off into a different direction, and Adrauni begins walking down another hallway. "Please, indulge in #accompanying us."
-#			`	As you follow them, Adrauni begins to speak. "Do you recall what I intently spoke of during our previous meeting? 
+#			`After you land on <planet>, you are greeted by a few Quarg who motion you to follow them. As they escort you through the halls of the ring, you notice that the lack of Gegno presence hasn't changed since your last visit. Down at the end of the next # corridor you see Adrauni waiting for you, however beside him is a Gegno in some form of strange attire. Once you meet up with them, the other Quarg head off into a different direction, and Adrauni begins walking down another hallway. "Please, indulge in # accompanying us."
+#			`	As you follow them, Adrauni begins to speak. "Do you recall what I intently spoke of during our previous meeting?
 
 
-#mission "Acquiescence"
+# mission "Acquiescence"
 #	landing
 #	source "Dueyu Eitch"
 #	to offer
