@@ -302,14 +302,14 @@ bool ShipyardPanel::CanSell(bool toStorage) const
 
 void ShipyardPanel::Sell(bool toStorage)
 {
-	static const int MAX_SHIP_LIST = 20;
+	static const int MAX_LIST = 20;
 
 	int count = playerShips.size();
 	int initialCount = count;
 	string message = "Sell the ";
 	if(count == 1)
 		message += playerShip->Name();
-	else if(count <= MAX_SHIP_LIST)
+	else if(count <= MAX_LIST)
 	{
 		auto it = playerShips.begin();
 		message += (*it++)->Name();
@@ -329,48 +329,19 @@ void ShipyardPanel::Sell(bool toStorage)
 	{
 		auto it = playerShips.begin();
 		message += (*it++)->Name() + ",\n";
-		for(int i = 1; i < MAX_SHIP_LIST - 1; ++i)
+		for(int i = 1; i < MAX_LIST - 1; ++i)
 			message += (*it++)->Name() + ",\n";
 
-		message += "and " + to_string(count - (MAX_SHIP_LIST - 1)) + " other ships";
+		message += "and " + to_string(count - (MAX_LIST - 1)) + " other ships";
 	}
-	map<const Outfit*, int> uniqueOutfits;
 	// To allow calculating the sale price of all the ships in the list,
 	// temporarily copy into a shared_ptr vector:
 	vector<shared_ptr<Ship>> toSell;
-	for(const auto &ship : playerShips)
-	{
-		for(const auto &it : ship->Outfits())
-			if(it.first->Attributes().Get("unique"))
-				uniqueOutfits[it.first] += it.second;
-		toSell.push_back(ship->shared_from_this());
-	}
-	bool hasUniques = !uniqueOutfits.empty();
-	if(hasUniques)
-	{
-		const int uniquesSize = uniqueOutfits.size();
-		const int additionalSpace = MAX_SHIP_LIST - initialCount;
-		const int detailedOutfitList = (uniquesSize > 5 + additionalSpace ? 4 + additionalSpace : uniquesSize);
-
-		message += string((initialCount > 2) ? "\n" : " ") + "with the following unique outfits installed:";
-		auto it = uniqueOutfits.begin();
-		for(int i = 0; i < detailedOutfitList; ++i)
-		{
-			message += "\n" + to_string(it->second) + " "
-				+ (it->second == 1 ? it->first->DisplayName() : it->first->PluralName());
-			++it;
-		}
-		if(it != uniqueOutfits.end())
-		{
-			int otherUniquesCount = 0;
-			for( ; it != uniqueOutfits.end(); ++it)
-				otherUniquesCount += it->second;
-			message += "\nand " + to_string(otherUniquesCount) + " other unique outfits";
-		}
-	}
+	for(const auto &it : playerShips)
+		toSell.push_back(it->shared_from_this());
 	int64_t total = player.FleetDepreciation().Value(toSell, day);
-	message += ((initialCount > 2 || hasUniques) ? "\nfor " : " for ") + Format::CreditString(total) + "?";
 
+	message += ((initialCount > 2) ? "\nfor " : " for ") + Format::CreditString(total) + "?";
 	GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShip, message, Truncate::MIDDLE));
 }
 
