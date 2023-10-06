@@ -395,6 +395,15 @@ outfit "Nerve Gas"
 	"unplunderable" 1
 	description "This is a highly illegal weapon for hand-to-hand combat when boarding an enemy ship. Because chemical weapons are banned by interstellar law, you can be severely fined for getting caught in possession of nerve gas canisters. But, they do clear out an enemy ship quicker than just about anything else..."
 
+outfit "Mug"
+	category "Hand to Hand"
+	cost 50
+	thumbnail "outfit/unknown"
+	"capture attack" .1
+	"unique" 1
+	"unplunderable" 1
+	description "You can throw it in a pinch, you guess."
+
 
 outfit "Puny"
 	category "Unique"
