@@ -218,10 +218,6 @@ mission "Esstch Visit Tracker"
 		fail
 
 
-# mission "Transmission"
-# A brief mission that pops up in Heutesl where a Gegno ship attempts to contact the player, or something.
-
-
 mission "Brief Bystander"
 #	invisible
 	landing
@@ -254,9 +250,9 @@ mission "Gegno Suspicions"
 	source "Giaru Gegno"
 	to offer
 		has "event: gegno suspicions"
-		has "Brief Bystander: done"
+		has "Passive-Aggressive Observations: declined"
+		has "Brief Bystander: declined"
 		has "Foreign Spectator I: failed"
-		has "Passive-Aggressive Observations: done"
 		not "Gegno Genocide Defense: offered"
 	on offer
 		conversation
@@ -338,8 +334,8 @@ mission "Gegno Suspicions"
 			`	"Our best of recommendations to you is to avoid further contact in the coming future. Meanwhile, we shall attempt a most careful negotiation with their hierarchy to come to terms of a ground of acceptance for your presence. Should we find commonality, you will receive communication from one of the title 'Adrauni', as has been bestowed upon me."`
 			`	The rest of the Quarg, who have been listening to the conversation attentively the whole time, begin to escort you out of the room. If the Gegno are willing to go as far as to contact the Quarg about your appearances, then this is truly an important matter to them. For the time being, it's probably best to allow the Quarg to find some kind of resolution with the Gegno while you keep your distance.`
 				decline
-#	on decline
-#		event "quarg gegno talks" 14
+	on decline
+		event "gegno quarg talks"
 
 
 mission "Under the Nose"
@@ -531,53 +527,178 @@ mission "Battle over Zydee"
 
 mission "Return to Giaru Gegno"
 	landing
+	description `The Quarg known as Adrauni has summoned you back to <destination> to discuss your future with the Gegno.`
 	destination "Giaru Gegno"
 	to offer
-		has "event: quarg gegno talks"
+		has "event: gegno quarg talks"
 		not "Gegno: Genocide Defense: offered"
 	on enter
-		dialog `Greetings <firstlast>. `
+		dialog `Upon departure of <origin>, you receive an incoming message on your communications device. "Greetings, <firslas>. This message is from Adrauni. Please return to our ringworld at your earliest convenience, as there is some to discuss."`
 			accept
 
 
 mission "Gegno Anticipation"
 	landing
+	description "Visit <destination>."
+	source "Giaru Gegno"
 	destination "Dueyu Eitch"
 	to offer
 		has "Return to Giaru Gegno: offered"
 		not "Gegno: Genocide Defense: offererd"
 	on offer
-		conversation `Quarg want you to go to Eitch NOW.`
-			accept
-
-
-mission "Gegno Intervention"
-	landing
-	destination "Dueyu Eitch"
-	deadline 8
-	to offer
-#		has "event: gegno apprehension"
-		not "Gegno: Genocide Defense: offererd"
-	on offer
-		conversation `Gegno want you to go to Eitch NOW.`
-			accept
-
-
-mission "Acquiescence"
-	landing
-	source "Dueyu Eitch"
-	to offer
-		or
-			has "Gegno Anticipation: offered"
-			has "Gegno Intervention: offered"
-	on offer
 		conversation
+			`After you land on <planet>, you are greeted by a few Quarg who motion you to follow them. As they escort you through the halls of the ring, you notice that the lack of Gegno presence hasn't changed since your last visit. Down at the end of the next corridor you see Adrauni waiting for you, however beside him is a Gegno in some form of strange attire. Once you meet up with them, the other Quarg head off into a different direction, and Adrauni begins walking down another hallway. "Please, indulge in accompanying us."`
+			`	As you follow them, Adrauni begins to speak while holding out one arm. "If you may, as I believe humans strangely call it, humor me, what do you suspect was the result of my negotations with the Gegno?"`
+			choice
+				`	"That they will accept me?"`
+				`	"That they want nothing to do with me?"`
+					goto "deny me"
+				`	"I don't know."`
+					goto "unsure"
+
+
+
+			`	After a brief delay, Adrauni turns to the Gegno, mutters something in their language, then responds to you. "I see. And what do you propose is the reasoning for that?"`
+			choice
+				`	"I assisted them before, and I could help them now."`
+				`	"I figured you could convince them."`
+					goto "convince"
+				`	"I don't know."`
+					goto "indecisive"
+
+			`	"That is a rather human response. However, do not conflate your value in assistance with theirs. Even should you provide aids beneficial to the Gegno, a beneficiary response in return is not necessitated. Although you heeded my warnings at this juncture, you simply are doing what the Gegno desired from the beginning, and that is to be left alone."`
+			choice
+				`	"Maybe it's better I do leave them alone."`
+				`	"There must be something I can do."`
+
+			label "convince"
+			`	"Did I not mention before that we Quarg have attempted such persuasions? It is not within our realm to convince the Gegno of anything. They are devoted to their own, and will go beyond any boundary to oppose counsel, even by us Quarg."`
+			choice
+				`	"Maybe it's better I do leave them alone."`
+				`	"There must be something I can do."`
+
+			label "before"
+			`	"It is wise that you follow my instruction. If it weren't as such, I may not be the one speaking to you at this momemnt. Or perhaps it would be no one. Unfortunately, we cannot do anything further for you here."`
+			choice
+				`	"Maybe it's better I do leave them alone."`
+				`	"There must be something I can do."`
+
+			`	You walk in silence for a short but awkward period of time. A few moments later, Adrauni replies. "It would appear you now understand your circumstance. It is no longer what what I, nor the Quarg, can do for you. It is what you can do for yourself."`
+				goto "visit"
+
+
+
+			label "deny me"
+			`	After a brief delay, Adrauni turns to the Gegno, mutters something in their language, then responds to you. "I see. And what do you propose is the reasoning for that?"`
+			choice
+				`	"The way they respond to my presence."`
+				`	"From what you've told me before."`
+					goto "before"
+				`	"I don't know."`
+					goto "indecisive"
+
+			`	"I see. Indeed, the Gegno are wary of you." Adrauni then gives a strange look towards the Gegno. You aren't sure what it's thinking, but you could have sworn you saw a very brief hint of purple appear on it's skin. "However, you have found yourself in situations we have not. Perhaps that could continue to be the case."`
+			choice
+				`	"Are you saying there's something that I can do?"`
+				`	"I'm not sure I understand."`
+
+			label "visit"
+			`	Visit <destination>.`
+				accept
+
+
+
+			label "unsure"
+			`	Adrauni turns to you briefly, staring at you blankly, then turns to the Gegno and mutters something in their language before responding to you. "What leads you to a lack of conclusion?"`
+			`	Test, this isn't finished. Accepting.`
+				accept
+
+			label "indecisive"
+			`	Test.`
+				accept
+
+
+
+
+
+
+
+
+
+
+#mission "Gegno Intervention"
+#	landing
+#	destination "Dueyu Eitch"
+#	deadline 8
+#	to offer
+#		has "event: gegno apprehension"
+#		not "Gegno: Genocide Defense: offererd"
+#	on offer
+#		conversation
+#			branch "Nssyros"
+#				"flagship planet: Nssyros"
+#
+#			branch "Vigales"
+#				"flagship planet: Vigales"
+#
+#			branch "Dlia Jzaur"
+#				"flagship planet: Dlia Jzaur"
+#
+#			branch "Ilirco"
+#				"flagship planet: Ilirco"
+#
+#			branch "Ghneoe"
+#				"flagship planet: Ghneoe"
+#
+#			branch "Zydee"
+#				"flagship planet: Zydee"
+#
+#			branch "Veiuye"
+#				"flagship planet: Veiuye"
+#
+#
+#			`Giaru Gegno default convo."
+#				accept
+#
+#			label "Nssyros"
+#
+#
+#			label "Vigales"
+#
+#
+#			label "Dlia Jzaur"
+#
+#
+#			label "Ilirco"
+#
+#
+#			label "Ghneoe"
+#
+#
+#			label "Zydee"
+#
+#
+#			label "Veiuye"
+#
+#			`After you land on <planet>, you are greeted by a few Quarg who motion you to follow them. As they escort you through the halls of the ring, you notice that the lack of Gegno presence hasn't changed since your last visit. Down at the end of the next #corridor you see Adrauni waiting for you, however beside him is a Gegno in some form of strange attire. Once you meet up with them, the other Quarg head off into a different direction, and Adrauni begins walking down another hallway. "Please, indulge in #accompanying us."
+#			`	As you follow them, Adrauni begins to speak. "Do you recall what I intently spoke of during our previous meeting? 
+
+
+#mission "Acquiescence"
+#	landing
+#	source "Dueyu Eitch"
+#	to offer
+#		or
+#			has "Gegno Anticipation: offered"
+#			has "Gegno Intervention: offered"
+#	on offer
+#		conversation
 #			branch "anticipation"
 #				has "Gegno Anticipation: offered"
 #			branch "intervention"
 #				has "Gegno Intervention: offered"
-			`Test.`
-				decline
+#			`Test.`
+#				decline
 
 
 
