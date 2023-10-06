@@ -348,7 +348,7 @@ void SpriteShader::Add(const Item &item, bool withBlur)
 
 	glUniform1i(swizzleMaskI, 1);
 	// Don't mask full color swizzles that always apply to the whole ship sprite.
-	glUniform1i(useSwizzleMaskI, item.swizzle == 27 || item.swizzleMask == 28 ? 0 : item.swizzleMask);
+	glUniform1i(useSwizzleMaskI, item.swizzle >= 27 ? 0 : item.swizzleMask);
 	glActiveTexture(GL_TEXTURE1);
 	glBindTexture(GL_TEXTURE_2D_ARRAY, item.swizzleMask);
 	glActiveTexture(GL_TEXTURE0);
