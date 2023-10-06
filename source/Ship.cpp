@@ -4213,7 +4213,7 @@ bool Ship::DoLandingLogic()
 				if(it != travelDestinations.end())
 				{
 					if(doVisit)
-					it->second = true;
+						it->second = true;
 					else
 					{
 						MarkForRemoval();

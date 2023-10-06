@@ -788,7 +788,6 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				continue;
 			}
 		}
-
 		// Update any orders NPCs may have been given by their associated mission.
 		else if(it->IsSpecial() && !it->IsYours() && it->HasTravelDirective())
 			IssueNPCOrders(*it, it->GetDestinationSystem(), it->GetStopovers());
@@ -1509,12 +1508,12 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 		return false;
 
 	int type = it->second.type;
-	const bool isTravelOrder = (type == Orders::MOVE_TO || type == Orders::TRAVEL_TO || type == Orders::LAND_ON);
+	const bool hasTravelOrder = (type == Orders::MOVE_TO || type == Orders::TRAVEL_TO || type == Orders::LAND_ON);
 
 	// If your parent is jumping or absent, that overrides your orders unless
 	// your orders are to hold position, or a travel directive.
 	shared_ptr<Ship> parent = ship.GetParent();
-	if(parent && type != Orders::HOLD_POSITION && type != Orders::HOLD_ACTIVE && !isTravelOrder)
+	if(parent && type != Orders::HOLD_POSITION && type != Orders::HOLD_ACTIVE && !hasTravelOrder)
 	{
 		if(parent->GetSystem() != ship.GetSystem())
 			return false;
@@ -1537,7 +1536,7 @@ bool AI::FollowOrders(Ship &ship, Command &command) const
 		command |= Command::LAND;
 		MoveIndependent(ship, command);
 	}
-	else if(isTravelOrder && it->second.targetSystem && ship.GetSystem() != it->second.targetSystem)
+	else if(hasTravelOrder && it->second.targetSystem && ship.GetSystem() != it->second.targetSystem)
 	{
 		// The desired position is in a different system. Find the best
 		// way to reach that system (via wormhole or jumping). This may
