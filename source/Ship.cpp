@@ -1969,9 +1969,7 @@ bool Ship::HasAntiMissile() const
 
 bool Ship::HasTractorBeam() const
 {
-	// If this ship has no spare cargo space then don't even bother
-	// looking for flotsams.
-	return tractorBeamRange && cargo.Free();
+	return tractorBeamRange;
 }
 
 
@@ -2009,12 +2007,19 @@ void Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals,
 		return;
 	if(CannotAct())
 		return;
-	// Don't fire on flotsams that you can't pick up (i.e. your own dumped cargo).
-	if(flotsam.Source() == this)
+	// Don't waste energy on flotsams that you can't pick up.
+	if(!CanPickUp(flotsam))
 		return;
-	// Don't waste energy on flotsams that you don't have cargo space for.
-	if(flotsam.OutfitType() && flotsam.OutfitType()->Mass() > cargo.Free())
-		return;
+	if(IsYours())
+	{
+		const auto flotsamSetting = Preferences::GetFlotsamCollection();
+		if(flotsamSetting == Preferences::FlotsamCollection::OFF)
+			return;
+		if(!GetParent() && flotsamSetting == Preferences::FlotsamCollection::ESCORT)
+			return;
+		if(flotsamSetting == Preferences::FlotsamCollection::FLAGSHIP)
+			return;
+	}
 
 	double jamChance = CalculateJamChance(Energy(), scrambling);
 

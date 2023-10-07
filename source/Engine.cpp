@@ -2335,12 +2335,9 @@ void Engine::DoCollection(Flotsam &flotsam)
 		const auto flotsamSetting = Preferences::GetFlotsamCollection();
 		if(flotsamSetting == Preferences::FlotsamCollection::OFF)
 			return;
-		if(collector == player.Flagship())
-		{
-			if(flotsamSetting == Preferences::FlotsamCollection::ESCORT)
-				return;
-		}
-		else if(flotsamSetting == Preferences::FlotsamCollection::FLAGSHIP)
+		if(collector == player.Flagship() && flotsamSetting == Preferences::FlotsamCollection::ESCORT)
+			return;
+		if(flotsamSetting == Preferences::FlotsamCollection::FLAGSHIP)
 			return;
 	}
 
