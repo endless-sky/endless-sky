@@ -6511,7 +6511,7 @@ mission "Moving House 2"
 	minor
 	description "Kris is unsatisfied with life on <destination> and wants your help to move."
 	landing
-	name "Moving House, again"
+	name "Moving House, Again"
 	source
 		near "Atria" 1 100
 	destination "Lichen"
@@ -6529,7 +6529,7 @@ mission "Moving House 2"
 			`	It takes much less time to load everything this time than the last time you helped Kris move, and soon they hop in the driver's seat of the van, calling to you, "I'll meet you at the spaceport in an hour or two!"`
 
 mission "Moving House 3"
-	name "Moving House, again"
+	name "Moving House, Again"
 	description "Kris is unsatisfied on <origin> and wants your help to move to <destination> instead. Payment is <payment>."
 	source "Lichen"
 	destination "Thule"
