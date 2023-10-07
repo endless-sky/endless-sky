@@ -2064,7 +2064,7 @@ mission "Coalition Intro Join Patch"
 				"joined the heliarchs"
 	on offer
 		conversation
-			`(Currently, you have joined both the Coalition's Lunarium and Heliarch factions due to an unintended bug. Please choose which you prefer to be sided with.")
+			`(Currently, you have joined both the Coalition's Lunarium and Heliarch factions due to an unintended bug. Please choose which side you prefer to be with.")
 			choice
 				`	(Side with the Heliarchs.)`
 					goto "heliarch"
