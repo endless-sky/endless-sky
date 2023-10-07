@@ -10,7 +10,7 @@
 #
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
-
+f
 phrase "band"
 	word
 		"There Might Be Riots"
@@ -5866,7 +5866,6 @@ phrase "friendly deep"
 	word
 		"" 3
 		"the Deep's "
-		"those who advance of "
 		"those who bring "
 		"the ones who serve "
 		"agents of "
