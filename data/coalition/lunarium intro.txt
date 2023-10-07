@@ -2073,8 +2073,8 @@ mission "Coalition Intro Join Patch"
 
 			action
 				clear "license: Heliarch"
-				clear "joined the heliarchy"
-				event "fix: chose heliarchy"
+				clear "joined the heliarchs"
+				event "fix: chose heliarchs"
 				fail
 
 			label "heliarch"
