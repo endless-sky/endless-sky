@@ -5904,7 +5904,7 @@ phrase "friendly deep"
 	word
 		"contact"
 		"give evidence to"
-		"liase with"
+		"liaise with"
 		"provide information to"
 	word
 		" "
