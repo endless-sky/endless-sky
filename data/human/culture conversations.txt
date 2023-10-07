@@ -689,5 +689,5 @@ mission "Earth Day Blackout"
 				decline
 
 			label pass
-			`	After the clock passes midnight, the lights in the spaceport come back on, followed by the signage and lights of the city surrounding it. A few workers come and snuff out the candles before putting them away in unseen closets in maintenance corridors.`
+			`	After the clock passes midnight, the lights in the spaceport come back on, followed by the signage and lights of the city surrounding it. A few workers come and snuff out the candles before putting them away in unseen closets.`
 				decline
