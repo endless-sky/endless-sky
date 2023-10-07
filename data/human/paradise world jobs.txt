@@ -376,7 +376,7 @@ mission "Transport high-class tourists"
 	description "Bring <bunks> outrageously wealthy tourists on a fabulous journey to the wild and exotic world of <destination>. They'll only consider thinking about your ship if you have the 'appropriate facilities' for a comfortable journey. Payment is <payment>."
 	job
 	repeat
-	passengers 8 22
+	passengers 5 5 .37
 	to offer
 		random < 10
 	to accept
@@ -391,6 +391,28 @@ mission "Transport high-class tourists"
 	on complete
 		dialog "Your passengers begin to wander off, some of them sporting puzzled looks as the memories of glossy photos in the brochures give way to reality. You collect your payment of <payment>."
 		payment 25000 250
+
+
+mission "Transport high-class tourist group"
+	description "Bring <bunks> outrageously wealthy tourists on a fabulous journey to the wild and exotic world of <destination>. They'll only consider thinking about your ship if you have the 'appropriate facilities' for a comfortable journey. Payment is <payment>."
+	job
+	repeat
+	passengers 15 5 .15
+	to offer
+		random < 30
+		random < "passenger space" - 35
+	to accept
+		has "outfit (installed): Luxury Accommodations"
+	source
+		attributes "paradise"
+	destination
+		attributes "religious" "quarg" "pirate" "volcanic" "frontier"
+		distance 8 20
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog "Your passengers begin to wander off, some of them sporting puzzled looks as the memories of glossy photos in the brochures give way to reality. You collect your payment of <payment>."
+		payment 25000 170
 
 
 mission "Pleasure cruise security"
@@ -447,8 +469,7 @@ mission "Paradise Job: Parolees"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
-		payment 10000
+		payment 170000 110
 		dialog "The passengers shuffle unhappily out of the ship under the watchful eye of a local security force as they prepare to repay their debts to society. A clerk on <planet> checks their condition as they're led off. He seems mostly pleased and hands you your payment of <payment>."
 
 
@@ -471,8 +492,7 @@ mission "Paradise Job: Debtors"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
-		payment 10000
+		payment 170000 110
 		dialog "The passengers shuffle unhappily out of the ship under the watchful eye of immigration officials. A grinning job service provider is on hand to pay you the <payment> you are owed."
 
 
