@@ -167,11 +167,13 @@ void Timer::Save(DataWriter &out) const
 				out.EndChild();
 			}
 			else if(!proximityCenters.IsEmpty())
+			{
 				out.BeginChild();
 				{
 					proximityCenters.Save(out);
 				}
 				out.EndChild();
+			}
 		}
 
 		action.Save(out);
