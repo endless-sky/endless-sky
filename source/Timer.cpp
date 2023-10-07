@@ -42,8 +42,6 @@ void Timer::Load(const DataNode &node, const Mission *mission)
 
 	this->mission = mission;
 
-	timeToWait = base + Random::Int(rand);
-
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "time" && child.Size() > 1)
@@ -51,6 +49,8 @@ void Timer::Load(const DataNode &node, const Mission *mission)
 			base = static_cast<int64_t>(child.Value(1));
 			if(child.Size() > 2)
 				rand = static_cast<uint32_t>(child.Value(2));
+
+			timeToWait = base + Random::Int(rand);
 		}
 		else if(child.Token(0) == "idle")
 			requireIdle = true;
@@ -74,7 +74,10 @@ void Timer::Load(const DataNode &node, const Mission *mission)
 			if(child.HasChildren())
 			{
 				const DataNode &firstGrand = (*child.begin());
-				proximityCenter = GameData::Planets().Get(firstGrand.Token(0));
+				proximityCenter = GameData::Planets().Find(firstGrand.Token(0));
+				// If this is null, then it's not a planet by name, it's a LocationFiler
+				if(proximityCenter == nullptr)
+					proximityCenters.Load(firstGrand);
 			}
 		}
 		else if(child.Token(0) == "uncloaked")
@@ -163,6 +166,12 @@ void Timer::Save(DataWriter &out) const
 				}
 				out.EndChild();
 			}
+			else if(!proximityCenters.IsEmpty())
+				out.BeginChild();
+				{
+					proximityCenters.Save(out);
+				}
+				out.EndChild();
 		}
 
 		action.Save(out);
@@ -189,6 +198,7 @@ Timer Timer::Instantiate(map<string, string> &subs,
 	result.systems = systems;
 	result.proximity = proximity;
 	result.proximityCenter = proximityCenter;
+	result.proximityCenters = proximityCenters;
 	result.closeTo = closeTo;
 	result.resetCondition = resetCondition;
 	result.repeatReset = repeatReset;
@@ -276,10 +286,10 @@ void Timer::Step(PlayerInfo &player, UI *ui)
 	if(proximity > 0.)
 	{
 		bool inProximity = false;
-		if(proximityCenter)
+		if(proximityCenter || !proximityCenters.IsEmpty())
 		{
 			for(const StellarObject &proximityObject : system->Objects())
-				if(proximityObject.HasValidPlanet())
+				if(proximityObject.HasValidPlanet() && (proximityCenter == proximityObject.GetPlanet() || proximityCenters.Matches(proximityObject.GetPlanet())))
 				{
 					double dist = player.Flagship()->Position().Distance(proximityObject.Position());
 					if((closeTo && dist <= proximity) || (!closeTo && dist >= proximity))
