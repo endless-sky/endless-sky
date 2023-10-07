@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef CONDITIONS_STORE_H_
 #define CONDITIONS_STORE_H_
 
+#include <cstdint>
 #include <functional>
 #include <initializer_list>
 #include <map>

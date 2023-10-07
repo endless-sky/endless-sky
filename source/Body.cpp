@@ -21,7 +21,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Mask.h"
 #include "MaskManager.h"
 #include "Random.h"
-#include "Screen.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 
@@ -282,6 +281,13 @@ void Body::SetSprite(const Sprite *sprite)
 void Body::SetSwizzle(int swizzle)
 {
 	this->swizzle = swizzle;
+}
+
+
+
+double Body::Alpha() const
+{
+	return alpha;
 }
 
 

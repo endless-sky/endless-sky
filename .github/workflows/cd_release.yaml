@@ -1,9 +1,7 @@
 name: Release CD
 
 on:
-  push:
-    tags:
-      - v*
+  workflow_dispatch:
 
 jobs:
   release_appimage_x64:
@@ -14,7 +12,9 @@ jobs:
       OUTPUT: Endless_Sky-${{ github.ref_name }}-x86_64.AppImage
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          show-progress: false
       - name: Install dependencies
         run: |
           sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
@@ -22,25 +22,21 @@ jobs:
           sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev
       - name: Setup sccache
         uses: ./.github/sccache
-        with:
-          read-only: 'true'
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
-          doNotCache: true
+          vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'linux-release'
           buildPreset: 'linux-ci-release'
       - name: Package Application
         run: ./utils/build_appimage.sh build/release
-      - name: Upload Release
-        uses: softprops/action-gh-release@v1
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
         with:
-          draft: true
-          files: ${{ env.OUTPUT }}
-
+          name: ${{ env.OUTPUT }}
+          path: ${{ env.OUTPUT }}
 
   release_windows_x86:
     name: Windows x86
@@ -49,14 +45,15 @@ jobs:
       OUTPUT: EndlessSky-win32-${{ github.ref_name }}.zip
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          show-progress: false
       - name: Install x86 MinGW
         run: choco install mingw --forcex86 --force
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
-          doNotCache: true
+          vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'mingw32-release'
@@ -65,11 +62,11 @@ jobs:
         run: |
           cmake --install build/release
           7z a ${{ env.OUTPUT }} "./install/release/*"
-      - name: Upload Release
-        uses: softprops/action-gh-release@v1
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
         with:
-          draft: true
-          files: ${{ env.OUTPUT }}
+          name: ${{ env.OUTPUT }}
+          path: ${{ env.OUTPUT }}
       - name: Upload Steam Depot
         uses: actions/upload-artifact@v3
         with:
@@ -86,16 +83,15 @@ jobs:
       OUTPUT: EndlessSky-win64-${{ github.ref_name }}.zip
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          show-progress: false
       - name: Setup sccache
         uses: ./.github/sccache
-        with:
-          read-only: 'true'
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
-          doNotCache: true
+          vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'mingw-release'
@@ -104,11 +100,11 @@ jobs:
         run: |
           cmake --install build/release
           7z a ${{ env.OUTPUT }} "./install/release/*"
-      - name: Upload Release
-        uses: softprops/action-gh-release@v1
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
         with:
-          draft: true
-          files: ${{ env.OUTPUT }}
+          name: ${{ env.OUTPUT }}
+          path: ${{ env.OUTPUT }}
       - name: Upload Steam Depot
         uses: actions/upload-artifact@v3
         with:
@@ -125,22 +121,21 @@ jobs:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       OUTPUT: Endless-Sky-${{ github.ref_name }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          show-progress: false
       - name: Setup sccache
         uses: ./.github/sccache
-        with:
-          read-only: 'true'
       - name: Install pkg-config
         run: type -P pkg-config || brew install pkg-config
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
-          doNotCache: true
+          vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'macos-arm-release'
-          buildPreset: 'macos-ci-release'
+          buildPreset: 'macos-arm-ci-release'
       - name: Prepare for x64 app bundle
         run: |
           mv "build/release/Endless Sky.app" "Endless Sky.app.arm"
@@ -161,11 +156,11 @@ jobs:
           cp -r "Endless Sky.app" "${{ env.OUTPUT }}"
           ln -s /Applications "${{ env.OUTPUT }}"
           hdiutil create -ov -fs HFS+ -format UDZO -imagekey zlib-level=9 -srcfolder "${{ env.OUTPUT }}" "${{ github.workspace }}/${{ env.OUTPUT }}.dmg"
-      - name: Upload Release
-        uses: softprops/action-gh-release@v1
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
         with:
-          draft: true
-          files: ${{ env.OUTPUT }}.dmg
+          name: ${{ env.OUTPUT }}.dmg
+          path: ${{ env.OUTPUT }}.dmg
       - name: Prepare Steam Depot
         run: |
           mv "Endless Sky.app/Contents/Resources/endless-sky.icns" .
@@ -188,7 +183,9 @@ jobs:
       matrix:
         arch: [x64, x86]
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
+      with:
+        show-progress: false
     - name: Build Endless Sky
       run: |
         cd steam
@@ -215,7 +212,9 @@ jobs:
       win64: steam-win64
       macos: steam-macos
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
+      with:
+        show-progress: false
     - name: Upload Steam Data Depot
       uses: actions/upload-artifact@v3
       with:
