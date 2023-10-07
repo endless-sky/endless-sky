@@ -2074,13 +2074,16 @@ mission "Coalition Intro Join Patch"
 			action
 				clear "license: Heliarch"
 				clear "joined the heliarchs"
-				event "fix: chose heliarchs"
-				fail
+				event "fix: chose lunarium"
+			`	(You've sided with the Lunarium.)`
+				decline
 
 			label "heliarch"
+			action
 				clear "joined the lunarium"
-				event "fix: chose lunarium"
-				fail
+				event "fix: chose heliarchs"
+			`	(You've sided with the Heliarchs.)`
+				decline
 
 event "fix: chose heliarchs"
 	planet "Remote Blue"
