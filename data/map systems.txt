@@ -10244,6 +10244,21 @@ system Deneb
 		distance 1788.4
 		period 1210.08
 
+system "Deneb PD 1"
+	hidden
+	pos -348 225
+	government Pug
+
+system "Deneb PD 2"
+	hidden
+	pos -348 225
+	government Pug
+
+system "Deneb PD 3"
+	hidden
+	pos -348 225
+	government Pug
+
 system Denebola
 	pos -478 70
 	government Republic
@@ -26742,6 +26757,22 @@ system "Pug Iyik"
 			sprite planet/desert4
 			distance 365
 			period 36.706
+
+system "Pug Iyik PD 1"
+	hidden
+	pos -361.149 -883.233
+	government "Pug (Wanderer)"
+
+system "Pug Iyik PD 2"
+	hidden
+	pos -361.149 -883.233
+	government "Pug (Wanderer)"
+
+system "Pug Iyik PD 3"
+	hidden
+	pos -361.149 -883.233
+	government "Pug (Wanderer)"
+
 
 system Pukako
 	pos 618.64 -440.28
