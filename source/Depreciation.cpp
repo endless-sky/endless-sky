@@ -46,7 +46,7 @@ namespace {
 
 	int MaxAge()
 	{
-		return GameData::GetGamerules().DepreciationMaxAge();
+		return GameData::GetGamerules().DepreciationMaxAge() + GracePeriod();
 	}
 
 	// Names for the two kinds of depreciation records.

@@ -49,7 +49,7 @@ private:
 	double depreciationMin = 0.25;
 	double depreciationDaily = 0.997;
 	int depreciationGracePeriod = 7;
-	int depreciationMaxAge = 1000 + depreciationGracePeriod;
+	int depreciationMaxAge = 1000;
 };
 
 
