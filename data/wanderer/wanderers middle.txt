@@ -2141,7 +2141,7 @@ mission "Wanderers: Sestor: Quarg Help 2"
 	on accept
 		log "Recruited some Quarg warships to help defend human space from the Kor Sestor drones, which are now presumably under Alpha control."
 	npc accompany save
-		government "Quarg"
+		government "Quarg (Hai)"
 		personality heroic waiting escort
 		ship "Quarg Wardragon" "Leukos-nikeseh"
 		ship "Quarg Wardragon" "Purros-machaira"
@@ -2232,7 +2232,7 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 	on visit
 		dialog `Danforth notices your ship land as the sky lights up with the explosions of Navy ships. "Did you use the bomb?" he asks. The stress in his voice is palpable. You shake your head. "Then what the hell are you doing here? Get up there and drop the bomb already!"`
 	npc
-		government "Quarg"
+		government "Quarg (Hai)"
 		personality heroic staying
 		ship "Quarg Wardragon" "Leukos-nikeseh"
 		ship "Quarg Wardragon" "Purros-machaira"
