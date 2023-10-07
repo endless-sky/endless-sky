@@ -6425,7 +6425,7 @@ mission "Care Package to South 2b"
 mission "Moving House 1"
 	minor
 	name "Moving House"
-	description "An anarchist named Kris has asked you to help them and <cargo> move house from <planet stopovers> to <destination>. Payment is <payment>."
+	description "An anarchist named Kris has asked you to help move them and <cargo> from <planet stopovers> to <destination>. Payment is <payment>."
 	source
 		government "Republic" "Syndicate"
 		not attributes "rim" "south"
@@ -6509,7 +6509,7 @@ event "kris gets frustrated"
 
 mission "Moving House 2"
 	minor
-	description "Kris is unsatisfied with life on on <destination> and wants your help to move."
+	description "Kris is unsatisfied with life on <destination> and wants your help to move."
 	landing
 	name "Moving House, again"
 	source
