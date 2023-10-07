@@ -730,7 +730,7 @@ mission "Wanderers: Unfettered Diplomacy 1A"
 		dialog `You've landed on <planet>, but you're missing something! Either the <npc> hasn't entered the system yet, or Iktat Rek is on one of your escorts that hasn't entered the system yet. Better depart and wait for it.`
 	npc accompany save
 		government "Wanderer"
-		personality timid escort unrestricted
+		personality timid escort
 		ship "Deep River (Jump, Unarmed)" "Ayi'i Ki'ak'var"
 
 
@@ -764,7 +764,7 @@ mission "Wanderers: Unfettered Diplomacy 1B"
 		dialog `You've landed on <planet>, but you're missing something! Either the <npc> hasn't entered the system yet, or Iktat Rek is on one of your escorts that hasn't entered the system yet. Better depart and wait for it.`
 	npc accompany save
 		government "Wanderer"
-		personality timid escort unrestricted
+		personality timid escort
 		ship "Deep River (Jump, Unarmed)" "Ayi'i Ki'ak'var"
 
 fleet "Unfettered Tribute"
@@ -2489,7 +2489,7 @@ mission "Wanderers Rescue 1"
 			`	You agree to join the expedition, and he introduces you to the captains of the two ships that will travel with you.`
 				accept
 	npc accompany save
-		personality escort heroic unrestricted
+		personality escort heroic
 		government "Wanderer"
 		ship "Tempest (Heavy)" "Ka'asildi"
 		ship "Tempest" "Eska'ata'ka"
@@ -2521,7 +2521,7 @@ mission "Wanderers Rescue 1B"
 			`The Wanderer warships come to a stop hovering above one of the largest forests on the planet. You see the flash of many different colors of wings as the Wanderer warriors who were hiding in the trees fly up to meet the ships, which open their airlocks to receive them. After less than five minutes, the Wanderer captains signal you that everyone is aboard, and you can return to <planet>.`
 				launch
 	npc accompany save
-		personality escort heroic unrestricted
+		personality escort heroic
 		government "Wanderer"
 		ship "Tempest (Heavy)" "Ka'asildi"
 		ship "Tempest" "Eska'ata'ka"
