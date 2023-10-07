@@ -289,7 +289,8 @@ void Timer::Step(PlayerInfo &player, UI *ui)
 		if(proximityCenter || !proximityCenters.IsEmpty())
 		{
 			for(const StellarObject &proximityObject : system->Objects())
-				if(proximityObject.HasValidPlanet() && (proximityCenter == proximityObject.GetPlanet() || proximityCenters.Matches(proximityObject.GetPlanet())))
+				if(proximityObject.HasValidPlanet() && (proximityCenter == proximityObject.GetPlanet() || 
+					proximityCenters.Matches(proximityObject.GetPlanet())))
 				{
 					double dist = player.Flagship()->Position().Distance(proximityObject.Position());
 					if((closeTo && dist <= proximity) || (!closeTo && dist >= proximity))

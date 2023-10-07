@@ -91,7 +91,7 @@ private:
 	bool closeTo = true;
 	// This specifies the radius around the proximity center to be checked
 	double proximity = 0.;
-	// This specifies the system object to be the center; if this is nullptr and the filter is empty, 
+	// This specifies the system object to be the center; if this is nullptr and the filter is empty,
 	// but proximity is positive, then the system center is used instead
 	const Planet *proximityCenter = nullptr;
 	// The filter to use for which planet(s) to hang out near if a single planet isn't set
