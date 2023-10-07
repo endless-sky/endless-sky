@@ -51,6 +51,18 @@ gamerules
 	# ALLOWABLE VALUES: any value between 0. and 1.
 	"universal frugal threshold" 0.75
 
+	# Depreciation related game rules:
+
+	# The depreciated value of an item that is age days old is calculated with the following equation:
+	# Where: "base value" is the undepreciated value of the item;
+	# min is "depreciation min";
+	# "grace period" is "depreciation grace period";
+	# daily is "depreciation daily"; and
+	# "max age" is "depreciation max age", and
+	# age is at greater than "grace period" and less than "max age".
+	# "depreciated value" = "base value" *
+	#   (min + (1 - min) * (daily ^ (age - "grace period")) * ("max age" + "grace period" - age) / "max age")
+
 	# The lowest proportion of it's full price the value of a ship or outfit can depreciate to.
 	# By default, a fully depreciated outfit normally worth 1000 credits will sell for 250 credits.
 	# DEFAULT: 0.25
@@ -62,26 +74,11 @@ gamerules
 	# ALLOWABLE VALUES: any integer >= 0.
 	"depreciation grace period" 7
 
-	# First factor of depreciation calculation. The second factor is "depreciation max age" below
-	# This is the proportion of a ship or outfit's value that remains per day after the grace period.
-	# The value is then multiplied by previous value on the next day, and repeat.
-	# So this can be calculated by "remaining daily proportion" = "daily proportion" ^ (age - "grace period")
-	# where age is in days. "remaining daily percent" is then multiplied by result from next factor.
 	# DEFAULT: .997 (99.7 percent)
 	# ALLOWABLE VALUES: any value between 0. and 1.
 	"depreciation daily" 0.997
 
-	# Second factor of depreciation calculation.
-	# Maximum day for fully depreciated ship or outfit.
-	# This value will automatically include grace period so 1000 days actually means
-	# 1000 days + 7 days where 7 days is the grace period. After addition of grace period
-	# this value is then subtracted by current age of the outfit and divided by max age without grace period
-	# or in equation: "current age percent" = ("max age" - age) / ("max age" - "grace period")
-	# where "max age" is the value below added with grace period.
-	# The final value for current depreciation percentage is:
-	# "min percent" + (1 - "min percent") * "remaining percent" * "current age percent"
-	# where "remaining percent" is what calculated from "depreciation daily percent" in gamerule above and
-	# "min percent" is directly from "depreciation min percent" gamerule
+	# The age (in days), after the end of the grace period, at which an item will become fully depreciated.
 	# DEFAULT: 1000 (1000 days)
 	# ALLOWABLE VALUES: any integer >= 1.
 	"depreciation max age" 1000
