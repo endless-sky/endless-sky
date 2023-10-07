@@ -2058,10 +2058,11 @@ mission "Coalition Intro Join Patch"
 	landing
 	invisible
 	to offer
-		has
-			and
-				"joined the lunarium"
-				"joined the heliarchs"
+		has "joined the lunarium"
+		has "joined the heliarchs"
+		has "event: first lunarium unlock"
+		has "event: first heliarch unlock"
+		has "license: Heliarch"
 	on offer
 		conversation
 			`(Currently, you have joined both the Coalition's Lunarium and Heliarch factions due to an unintended bug. Please choose which side you prefer to be with.")
@@ -2073,12 +2074,12 @@ mission "Coalition Intro Join Patch"
 			action
 				clear "license: Heliarch"
 				clear "joined the heliarchy"
-				event "fix: joined heliarchy"
+				event "fix: chose heliarchy"
 				fail
 
 			label "heliarch"
 				clear "joined the lunarium"
-				event "fix: joined lunarium"
+				event "fix: chose lunarium"
 				fail
 
 event "fix: chose heliarchs"
