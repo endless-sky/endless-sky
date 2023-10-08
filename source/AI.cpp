@@ -904,7 +904,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				// Find the possible parents for orphaned fighters and drones.
 				auto parentChoices = vector<shared_ptr<Ship>>{};
 				parentChoices.reserve(ships.size() * .1);
-				auto getParentFrom = [&it, &gov, &parentChoices](const list<shared_ptr<Ship>> otherShips) -> shared_ptr<Ship>
+				auto getParentFrom = [&it, &gov, &parentChoices](const list<shared_ptr<Ship>> &otherShips) -> shared_ptr<Ship>
 				{
 					for(const auto &other : otherShips)
 						if(other->GetGovernment() == gov && other->GetSystem() == it->GetSystem() && !other->CanBeCarried())
@@ -4029,6 +4029,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		if(landIt == landables.cend())
 			target = nullptr;
 
+		Messages::Importance messageImportance = Messages::Importance::High;
+
 		if(target && (ship.Zoom() < 1. || ship.Position().Distance(target->Position()) < target->Radius()))
 		{
 			// Special case: if there are two planets in system and you have one
@@ -4047,6 +4049,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			{
 				message = "The authorities on this " + next->GetPlanet()->Noun() +
 					" refuse to clear you to land here.";
+				messageImportance = Messages::Importance::Highest;
 				Audio::Play(Audio::Get("fail"));
 			}
 			else if(next != target)
@@ -4085,12 +4088,14 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			if(!target)
 			{
 				message = "There are no planets in this system that you can land on.";
+				messageImportance = Messages::Importance::Highest;
 				Audio::Play(Audio::Get("fail"));
 			}
 			else if(!target->GetPlanet()->CanLand())
 			{
 				message = "The authorities on this " + target->GetPlanet()->Noun() +
 					" refuse to clear you to land here.";
+				messageImportance = Messages::Importance::Highest;
 				Audio::Play(Audio::Get("fail"));
 			}
 			else if(!types.empty())
@@ -4113,7 +4118,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				message = "Landing on " + target->Name() + ".";
 		}
 		if(!message.empty())
-			Messages::Add(message, Messages::Importance::High);
+			Messages::Add(message, messageImportance);
 	}
 	else if(activeCommands.Has(Command::JUMP | Command::FLEET_JUMP))
 	{
