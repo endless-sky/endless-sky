@@ -37,6 +37,9 @@ namespace {
 	const string EXPEND_AMMO = "Escorts expend ammo";
 	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 
+	const vector<string> DATEFMT_OPTIONS = {"dd/mm/yyyy", "mm/dd/yyyy", "yyyy-mm-dd"};
+	int dateFormatIndex = 0;
+
 	const vector<double> ZOOMS = {.25, .35, .50, .70, 1.00, 1.40, 2.00};
 	int zoomIndex = 4;
 	constexpr double VOLUME_SCALE = .25;
@@ -126,6 +129,9 @@ namespace {
 	const vector<string> PARALLAX_SETTINGS = {"off", "fancy", "fast"};
 	int parallaxIndex = 2;
 
+	const vector<string> EXTENDED_JUMP_EFFECT_SETTINGS = {"off", "medium", "heavy"};
+	int extendedJumpEffectIndex = 0;
+
 	const vector<string> ALERT_INDICATOR_SETTING = {"off", "audio", "visual", "both"};
 	int alertIndicatorIndex = 3;
 
@@ -193,8 +199,12 @@ void Preferences::Load()
 			autoFireIndex = max<int>(0, min<int>(node.Value(1), AUTO_FIRE_SETTINGS.size() - 1));
 		else if(node.Token(0) == "Parallax background")
 			parallaxIndex = max<int>(0, min<int>(node.Value(1), PARALLAX_SETTINGS.size() - 1));
+		else if(node.Token(0) == "Extended jump effects")
+			extendedJumpEffectIndex = max<int>(0, min<int>(node.Value(1), EXTENDED_JUMP_EFFECT_SETTINGS.size() - 1));
 		else if(node.Token(0) == "fullscreen")
 			screenModeIndex = max<int>(0, min<int>(node.Value(1), SCREEN_MODE_SETTINGS.size() - 1));
+		else if(node.Token(0) == "date format")
+			dateFormatIndex = max<int>(0, min<int>(node.Value(1), DATEFMT_OPTIONS.size() - 1));
 		else if(node.Token(0) == "alert indicator")
 			alertIndicatorIndex = max<int>(0, min<int>(node.Value(1), ALERT_INDICATOR_SETTING.size() - 1));
 		else if(node.Token(0) == "previous saves" && node.Size() >= 2)
@@ -250,6 +260,7 @@ void Preferences::Save()
 	out.Write("Flotsam collection", flotsamIndex);
 	out.Write("view zoom", zoomIndex);
 	out.Write("vsync", vsyncIndex);
+	out.Write("date format", dateFormatIndex);
 	out.Write("Show all status overlays", statusOverlaySettings[OverlayType::ALL].ToInt());
 	out.Write("Show flagship overlay", statusOverlaySettings[OverlayType::FLAGSHIP].ToInt());
 	out.Write("Show escort overlays", statusOverlaySettings[OverlayType::ESCORT].ToInt());
@@ -258,6 +269,7 @@ void Preferences::Save()
 	out.Write("Automatic aiming", autoAimIndex);
 	out.Write("Automatic firing", autoFireIndex);
 	out.Write("Parallax background", parallaxIndex);
+	out.Write("Extended jump effects", extendedJumpEffectIndex);
 	out.Write("alert indicator", alertIndicatorIndex);
 	out.Write("previous saves", previousSaveCount);
 
@@ -295,6 +307,30 @@ void Preferences::ToggleAmmoUsage()
 string Preferences::AmmoUsage()
 {
 	return Has(EXPEND_AMMO) ? Has(FRUGAL_ESCORTS) ? "frugally" : "always" : "never";
+}
+
+
+
+void Preferences::ToggleDateFormat()
+{
+	if(dateFormatIndex == static_cast<int>(DATEFMT_OPTIONS.size() - 1))
+		dateFormatIndex = 0;
+	else
+		++dateFormatIndex;
+}
+
+
+
+Preferences::DateFormat Preferences::GetDateFormat()
+{
+	return static_cast<DateFormat>(dateFormatIndex);
+}
+
+
+
+const string &Preferences::DateFormatSetting()
+{
+	return DATEFMT_OPTIONS[dateFormatIndex];
 }
 
 
@@ -358,6 +394,13 @@ double Preferences::MaxViewZoom()
 
 
 
+const vector<double> &Preferences::Zooms()
+{
+	return ZOOMS;
+}
+
+
+
 // Starfield parallax.
 void Preferences::ToggleParallax()
 {
@@ -379,6 +422,30 @@ Preferences::BackgroundParallax Preferences::GetBackgroundParallax()
 const string &Preferences::ParallaxSetting()
 {
 	return PARALLAX_SETTINGS[parallaxIndex];
+}
+
+
+
+void Preferences::ToggleExtendedJumpEffects()
+{
+	int targetIndex = extendedJumpEffectIndex + 1;
+	if(targetIndex == static_cast<int>(EXTENDED_JUMP_EFFECT_SETTINGS.size()))
+		targetIndex = 0;
+	extendedJumpEffectIndex = targetIndex;
+}
+
+
+
+Preferences::ExtendedJumpEffects Preferences::GetExtendedJumpEffects()
+{
+	return static_cast<ExtendedJumpEffects>(extendedJumpEffectIndex);
+}
+
+
+
+const string &Preferences::ExtendedJumpEffectsSetting()
+{
+	return EXTENDED_JUMP_EFFECT_SETTINGS[extendedJumpEffectIndex];
 }
 
 
