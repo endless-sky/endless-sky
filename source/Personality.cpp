@@ -61,6 +61,7 @@ namespace {
 		DARING,
 		SECRETIVE,
 		RAMMING,
+		UNRESTRICTED,
 		DECLOAKED,
 
 		// This must be last so it can be used for bounds checking.
@@ -101,6 +102,7 @@ namespace {
 		{"daring", DARING},
 		{"secretive", SECRETIVE},
 		{"ramming", RAMMING},
+		{"unrestricted", UNRESTRICTED},
 		{"decloaked", DECLOAKED}
 	};
 
@@ -251,6 +253,13 @@ bool Personality::IsVindictive() const
 bool Personality::IsUnconstrained() const
 {
 	return flags.test(UNCONSTRAINED);
+}
+
+
+
+bool Personality::IsUnrestricted() const
+{
+	return flags.test(UNRESTRICTED);
 }
 
 

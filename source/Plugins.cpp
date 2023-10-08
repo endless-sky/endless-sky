@@ -22,7 +22,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Logger.h"
 
 #include <algorithm>
-#include <cassert>
 #include <map>
 
 using namespace std;

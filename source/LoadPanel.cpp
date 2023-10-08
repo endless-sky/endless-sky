@@ -25,17 +25,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
-#include "text/Format.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
 #include "text/layout.hpp"
 #include "MainPanel.h"
-#include "Messages.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Rectangle.h"
-#include "ShipyardPanel.h"
 #include "StarField.h"
 #include "StartConditionsPanel.h"
 #include "text/truncate.hpp"
@@ -310,7 +307,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				if(it == files.begin())
 				{
 					it = files.end();
-					sideScroll = 20. * files.size() - 280.;
+					sideScroll = max(0., 20. * files.size() - 280.);
 				}
 				--it;
 			}
@@ -346,7 +343,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				if(it == pit->second.begin())
 				{
 					it = pit->second.end();
-					centerScroll = 20. * pit->second.size() - 280.;
+					centerScroll = max(0., 20. * pit->second.size() - 280.);
 				}
 				--it;
 			}

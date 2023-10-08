@@ -965,7 +965,7 @@ mission "Mammon Payment"
 	to offer
 		random < 10
 		or
-			has "Sheragi Archaeology: Emerald Sword Epilogue: done"
+			has "Sheragi Archaeology: Epilogue: done"
 			has "event: mammon impatient"
 		has "paid mammon"
 		"credits" >= 12000000
