@@ -783,8 +783,8 @@ void Engine::Step(bool isActive)
 		targetAsteroid = flagship->GetTargetAsteroid();
 		// Record that the player knows this type of asteroid is available here.
 		if(targetAsteroid)
-			for(const auto &it : targetAsteroid->Payload())
-				player.Harvest(it.first);
+			for(const auto &payload : targetAsteroid->GetPayload())
+				player.Harvest(payload.outfit);
 	}
 	if(!target)
 		targetSwizzle = -1;
@@ -952,8 +952,8 @@ void Engine::Step(bool isActive)
 					if(!Random::Int(10) && inRange)
 					{
 						asteroidsScanned.insert(minable->DisplayName());
-						for(const auto &it : minable->Payload())
-							player.Harvest(it.first);
+						for(const auto &payload : minable->GetPayload())
+							player.Harvest(payload.outfit);
 					}
 				}
 
