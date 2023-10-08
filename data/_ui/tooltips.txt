@@ -279,6 +279,9 @@ tip "hull heat:"
 tip "hull heat multiplier:"
 	`Modifies the heat produced when repairing the hull by the given factor.`
 
+tip "hull multiplier:"
+	`Modifies the ship's total hull strength by the given factor.`
+
 tip "hull repair rate:"
 	`Amount of hull strength that can be repaired per second. Repairs usually consume energy and may generate heat as well.`
 
@@ -546,6 +549,9 @@ tip "shields (charge):"
 tip "shields:"
 	`Total shield strength. Most weapons cannot damage your hull until your shields are depleted. Some weapon effects, such as heat damage, become more severe once shields are down.`
 
+tip "shield multiplier:"
+	`Modifies the ship's total shield strength by the given factor.`
+
 tip "shield delay:"
 	`The number of seconds it takes for shield generation to begin after taking shield damage.`
 
@@ -713,6 +719,9 @@ tip "repairing hull:"
 
 tip "charging shields:"
 	`Energy consumed and heat generated when this ship is recharging its shields. This is in addition to the "idle" amount.`
+
+tip "net change:"
+	`The sum of the energy consumed and heat generated from the above energy and heat values. Represents the worst case scenario when all systems are active at once.`
 
 tip "max:"
 	`Energy storage capacity and maximum safe level for heat generation. Energy capacity allows a ship to temporarily draw more energy than it produces. The heat maximum is the highest your heat generation can be without eventually causing your ship to overheat.`
@@ -886,7 +895,7 @@ tip "tracking:"
 	`This projectile's ability to maintain its target lock.`
 
 tip "optical tracking:"
-	`This projectile's ability to maintain an optical target lock, which depends on the size of the target; negatively affected by any potential optical jamming equipement.`
+	`This projectile's ability to maintain an optical target lock, which depends on the size of the target; negatively affected by any potential optical jamming equipment.`
 
 tip "infrared tracking:"
 	`This projectile's ability to maintain an infrared target lock, which depends on the target ship's heat level and distance from the missile; IR-guided missiles become more accurate the closer they are to their targets.`
