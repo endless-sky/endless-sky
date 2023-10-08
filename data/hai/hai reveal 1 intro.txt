@@ -144,7 +144,7 @@ mission "Hai Reveal Exploration Period: Local Human Merchants Speak Up"
 		government "Hai"
 		not attributes "uninhabited" "retirement"
 		attributes "hai: human presence"
-		not "Hai-home"
+		not planet "Hai-home"
 	to offer
 		has "Hai Reveal: Meet the Team: Sayari 2: done"
 		not "event: hr: exploration period"
@@ -207,6 +207,7 @@ mission "Hai Reveal Exploration Period: Local Human Merchants Speak Up"
 			
 			label "second" # Second option start.
 			`	The captain turns out to be a younger guy with a sleek, shiny and somewhat new-looking Clipper. He clasps your hand enthusiastically in greeting. "Hail, you're not a familiar face around here. You new in these parts?"`
+			choice
 				`	"Yes, I arrived recently after hearing the news."`
 				`	"No, I've been familiar with Hai space for quite some time."`
 					goto "not new 2"
@@ -249,7 +250,58 @@ mission "Hai Reveal Exploration Period: Local Human Merchants Speak Up"
 			
 			label "last go" # Third option start.
 			# If the dice did not see fit to give you an encounter the first two times, the third time will trigger this.
-			`You encounter a suspicious type talking about how lucrative it's been running Hai tourists and cosplayers back and forth. Optional: Subtle, subtle hint about kidnapping with the "prisoners" fantasy?`
+			`While briefly reviewing the job board, a woman sidles up next you and scans it with clear purpose. "Ahhah!" she says, tapping on her pad, and a moment later a passenger transport job that didn't pay particularly well changes status to 'claimed'.`
+			choice
+				`	"You seem very focused?"`
+				`	(Say nothing.)`
+					goto "bragging"
+			`	She turns to face you. "A girl gotta know both what she wants and how to make a good profit in this economy. Can't be lagging."`
+			choice
+				`	"Sure, good luck to you.`
+					goto "bragging"
+				`	"What business model makes that a good job?"`
+			`	With a certain swagger she leans in and taps her nose. "Let's just say that when you transport the oddballs around here, the trip tends to be more rewarding than is advertised up front. It all depends on who you know, if you know what I mean."`
+			choice
+				`	"Who do you need to know?"`
+					goto "need to know"
+				`	"I'm not interested in anything illegal."`
+				`	"Aren't Hai all a bit odd?"`
+					goto "oddballs"
+			`	"Bah," she scoffs. Illegal depends on what jurisdiction you answer to, profit is universal."`
+				goto "third end"
+			label "need to know"
+			`	"Let's just say that these groups tend to be pretty happy no matter where you take them along the way." She chuckles. "There are... opportunities... for unusual visitors in the right places."`
+				goto "third end"
+			label "oddballs"
+			`	"Nah, nah, the really odd ones. The cosplay spies and the danger tourists. That sort of thing." She rolls her eyes. "That lot are happy no matter where you take them along the way."`
+				goto "third end"
+			
+			label "bragging"
+			`	She winks at you. "More profit in those than you might think ya know, but hey, more for me."`
+			choice
+				`	"What are you on about?"`
+					goto "on about"
+				`	(Ignore her.)`
+			`	She leans in uncomfortably close to you. "You can take them anywhere," she breathes, barely audible but with distinct emphasis on 'anywhere'.`
+				goto "slip"
+			label "on about"
+			`	"Ahah, wouldn't you like to know? But you'll have to take one to find out!"`
+			label slip
+			`	She immediately slips away, and you have a sudden compulsion to check all of your pockets for your belongings.`
+				goto "gone"
+			
+			label "third end"
+			`	She tips an imaginary hat towards you departs with an unhurried swiftness that puts her out of your line of sight in an almost blink-and-you'd-miss-it moment that would most certainly deter any pursuit.`
+			label "gone"
+			choice
+				`	(Report this occurrence.)`
+				`	(Return to your ship.)`
+					goto "return to ship"
+			`	The local authorities thank you for the report and advise that they'll warn those who posted the job and look into the pilot who claimed it.`
+			`	The security person you're speaking to also mentions that some human pilots have been known to leverage the Hai rumor mill with 'psyops', by preying on outside captains like yourself. Supposedly, they drop enough hints at something to spur their target into making noise about a tip in just the right place that it'll get picked up by the curiosity seekers; thus leaving open other opportunities that they can subsequently profit from.`
+			`	It's unclear whether that's a genuine problem or an excuse for when security can't solve something.`
+			label "return to ship"
+			`	At length, you finish your business and return to your ship.`
 				decline
 
 
