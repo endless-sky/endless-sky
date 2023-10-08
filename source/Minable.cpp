@@ -262,12 +262,12 @@ Minable::Payload::Payload(const DataNode& node)
 {
 	outfit = GameData::Outfits().Get(node.Token(1));
 	dropSize = (node.Size() == 2 ? 1 : max<int>(1, node.Value(2)));
-	
+
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
 		bool hasValue = child.Size() >= 2;
-		
+
 		if(key == "drop size" && hasValue)
 			dropSize = max<int>(1, child.Value(1));
 		else if(key == "drop rate" && hasValue)
