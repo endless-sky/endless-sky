@@ -32,7 +32,7 @@ mission "Hai Reveal Exploration Period: Concerned Hai"
 				`	(Ask someone what's going on.)`
 					goto "query an onlooker"
 				`	(Talk to the shopkeeper.)`
-			`	Stepping into the store, the Hai has only just returned to behind the counter where he's carefully putting back another pack of the haycorn snus. Now getting a closer look at him, his fur is mussed up and it seems that he might have had to wrestle the second pack away from the captain. He's certainly on edge, for he jumps with a little start as he hears you enter.`
+			`	Stepping into the store, the Hai has only just returned to behind the counter where he's carefully putting back another pack of the Haycorn Snus. Now getting a closer look at him, his fur is mussed, and it seems that he might have had to wrestle the second pack away from the captain. He's certainly on edge, for he jumps with a little start as he hears you enter.`
 			`	"Ah, Captain, sorry about all that. What can I do for you?"`
 			choice
 				`	"Did you have to fight that man?"`
@@ -66,14 +66,14 @@ mission "Hai Reveal Exploration Period: Concerned Hai"
 			`	"Ah, hello uh, Captain? Were you looking for me?"`
 			choice
 				`	"Could I ask you a question?"`
-				`	"What's was all that about?"`
+				`	"What was all that about?"`
 					goto "crowd sign"
 			`	He smiles. "Oh, about what just happened? Sure, I've got time."`
 				goto "was polite"
 			label "crowd sign"
 			`	He seems a little affronted but, after squinting at you, evidently decides to humor you.`
 			label "was polite"
-			`	Gesturing to the sign he says, "Haycorn snus is a tobacco product. All tobacco is imported from human space. Since more of you lot have been appearing and disrupting things, some of the merchants aren't doing the usual supply runs as much. It's got some Hai all in a panic, stockpiling in case the supply shuts off entirely.`
+			`	Gesturing to the sign he says, "Haycorn Snus is a tobacco product. All tobacco is imported from human space. Since more of you lot have been appearing and disrupting things, some of the merchants aren't doing the usual supply runs as much. It's got some Hai all in a panic, stockpiling in case the supply shuts off entirely.`
 			`	"The captain there," he says, gesturing to the now empty space where the argument took place, "was particularly upset over the restriction, and tried to get away with two packs. Turns out the clerk was actually pretty fit, took them both right back off him after a bit of a scuffle. Kinda hot actually."`
 			choice
 				`	"Sounds like the supply is short."`
@@ -117,7 +117,7 @@ mission "Hai Reveal Exploration Period: Human Population Feeling Pressured"
 			`	Glancing back over his shoulder he calls out. "Hurry up Sebastian, what do you make of this one then?"`
 			`	An older gentleman, who looks quite harried, hurriedly limps over to the both of you. In his hand is a pad which he briefly consults before holding it up, apparently comparing your face to an image. With a long-suffering sigh he says, "I told you this one is fine. It was the ship coming in through 5B that was new."`
 			`	The Portmaster squints at the tablet himself for a moment before giving out a huff. "Well, this one was on the way. You two, go make sure no one comes through 5B until they've been examined."`
-			`	Two Hai in security uniforms immediately dash off in the direction of the offending berth and the Portmaster gives you a brief nod and a, "Captain," before toddling off in pursuit with remarkable speed.`
+			`	Two Hai in security uniforms immediately dash off in the direction of the offending berth, and the Portmaster gives you a brief nod and a, "Captain," before toddling off in pursuit with remarkable speed.`
 			`	The human gentleman seems to be taking a second to catch his breath.`
 			choice
 				`	"Well, uh, good luck?"`
@@ -226,7 +226,7 @@ mission "Hai Reveal Exploration Period: Local Human Merchants Speak Up"
 					goto "not seen"
 			`	"If you're not sure, you probably haven't really seen it yet."`
 			label "not seen"
-			`	The young captain sighs and shakes his head. "I suppose it's not obvious yet, maybe it's because I mostly transport passengers. Still, there are a lot more questionable characters in Hai space these days. Folks like you who've found the place following the news, and come back for less savory reasons. It's causing people some concerns, to say the least."`
+			`	The young captain sighs and shakes his head. "I suppose it's not obvious yet, maybe it's because I mostly transport passengers. Still, there are a lot more questionable characters in Hai space these days. Folks who've found the place following the news, and come back for less savory reasons. It's causing people some concerns, to say the least."`
 			choice
 				`	"It's causing problems then?"`
 				`	"I appreciate the heads-up."`
@@ -291,7 +291,7 @@ mission "Hai Reveal Exploration Period: Local Human Merchants Speak Up"
 				goto "gone"
 			
 			label "third end"
-			`	She tips an imaginary hat towards you departs with an unhurried swiftness that puts her out of your line of sight in an almost blink-and-you'd-miss-it moment that would most certainly deter any pursuit.`
+			`	She tips an imaginary hat towards you and departs with an unhurried swiftness that puts her out of your line of sight in an almost blink-and-you'd-miss-it moment that would most certainly deter any pursuit.`
 			label "gone"
 			choice
 				`	(Report this occurrence.)`
@@ -469,7 +469,7 @@ mission "Hai Reveal Concern Period: Humans Going Home"
 			`	"Very well Captain, enjoy your stay." The Hai tuts before disconnecting the call.`
 				decline
 			label "rejected"
-			`	You leave Brin spluttering in shock, and manage to draw a number of very dark looks from nearby Hai.`
+			`	You leave Brin spluttering in shock and manage to draw a number of very dark looks from nearby Hai.`
 				decline
 	on complete
 		payment 100000
@@ -579,7 +579,7 @@ mission "Hai Reveal Concern Period: Raid on Allhome (away)"
 			`	"And now with all this," he says, gesturing to the screen. "It feels much the same now, and the Hai seem no better prepared for it than we were. Ever since the retraction and that advisory, it feels like pirates are the only ones showing up through the wormhole anymore. We came here to be safe, but now it feels like all the government has managed to do is make sure that no one friendly is willing to risk the journey..."`
 			
 			label resolve
-			`	His lip quivers and she takes his hand firmly in her own. "You are safe with your uncle and I," she says, forcefully emphasizing the word 'are', "it will take far more than some pressure from a few pirates to threaten the peace here."`
+			`	His lip quivers, and she takes his hand firmly in her own. "You are safe with your uncle and I," she says, forcefully emphasizing the word 'are', "it will take far more than some pressure from a few pirates to threaten the peace here."`
 			`	He nods and stands up, heading towards the restroom. "Excuse me Auntie, I need a minute."`
 			
 			choice
@@ -664,7 +664,7 @@ mission "Hai Reveal Concern Period: Reactivating Sandsnap"
 			`	He seems surprised, "Oh. Well in that case, the Unfettered have been militarizing a lot in the last 20 years, forcing us to do the same in order to protect merchants from their raids. They may be right that we have grown weak, if the success of those pirate raids is any indication; security forces were simply not ready for them. We here are in the business of ensuring this will not happen again. Mark my words, nothing like an arms manufacturer setting up a support base to really wake a few people up.`
 			label border
 			`	"The raids have proven that we are not prepared to ensure true security on our borders. In order to address this we want to reactivate the mothballed station of <destination>, for which we have acquired the relevant paperwork and access codes. We have already hired a few mercenaries to help with the defense of our station, mostly local humans with experienced pasts. Once operational, the station should be a major strategic advantage for us, allowing resupply and repairs of ships at a location suitable for facilitating rapid response to detected threats."`
-			`	He indicates a door to another room, "The Stationkeeper will be out shortly. We're almost complete our final preparations, but we've been held up trying to make do with the firepower that's signed up so far. Judging by your credentials, I suspect the Stationkeeper will want to travel with you. You will need to escort them to the station and dock so they can confirm access codes function and there are no critical errors in the initial restoration process, as well as assess if any additional supplies are required."`
+			`	He indicates a door to another room, "The Stationkeeper will be out shortly. We've almost completed our final preparations, but we've been held up trying to make do with the firepower that's signed up so far. Judging by your credentials, I suspect that Kelamursh will want to travel with you. You will need to escort them to the station and dock, so they can confirm the access codes function and that there are no critical errors in the initial restoration process, as well as assess if any additional supplies are required."`
 			`	As soon as he finishes, the door opens and a number of people file out, including a well-dressed Hai who immediately stops next to you.`
 			choice
 				`	(Greet the Stationkeeper.)`
@@ -719,7 +719,7 @@ mission "Hai Reveal Concern Period: Securing Sandsnap"
 		has "hr: sandsnap project"
 	on offer
 		conversation
-			`Upon arrival the Stationkeeper requests that you stay aboard your ship in case hostiles approach the station, while she suits up and goes aboard to run the access codes and start things up. You can see a selection of other Hai with various tools and equipment disembarking a few other ships in the process. Before long, the main lighting comes on in the docking section and the team disappears inside.`
+			`Upon arrival the Stationkeeper requests that you stay aboard your ship in case hostiles approach the station, while she suits up and goes aboard to run the access codes and start things up. You can see a selection of other Hai with various tools and equipment disembarking a few other ships in the process. Before long, the main lighting comes on in the docking section, and the team disappears inside.`
 			`	After a short while you receive a message requesting that you report to the operations center inside the main promenade. You proceed to equip your own suit and exit your ship. The station itself is well preserved, except for the lack of atmosphere. Nothing seems to have vented it, no big hole in the ceiling, and the expansive ceiling windows of the main promenade provide a crystal clear view of the station's many decks towering above you. Exterior navigation lights are gradually flicking on up the height of the station, so that walking through feels like watching a ghost city slowly come to glittering life. Emergency floor lighting has been activated, showing you the way.`
 			`	Once through the operation center's security airlock you are able to remove your helmet. Kelamursh's subordinate, who briefed you in the offices and appears to be in charge in this area, swiftly approaches from the other side. "Captain <last>! It is splendid you could make it here so quickly. We have begun the re-powering process, but it will take time and supplies to re-pressurize more than the docking and operations areas. These stations are not small."`
 			`	He chuckles as if having made a joke, as if you hadn't just walked beneath the open view of over three hundred decks above you. He seems oblivious to the strangeness of this, so perhaps it is a Hai thing.`

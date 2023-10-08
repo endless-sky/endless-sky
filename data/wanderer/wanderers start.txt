@@ -994,7 +994,7 @@ mission "Wanderers: Alpha Surveillance A"
 		log "People" "Hiyamaharu" `Hiyamaharu is an aged Hai ambassador. He appears to have taken of Sayari's role in dealing with humans since her departure from Hai space.`
 		event "wanderers: alpha surveillance done" 30
 		conversation
-			`The surveillance cubes have all been deployed. While you wait for them to collect their recordings of the ship traffic in the Unfettered systems, you stop by the Hai center of government and ask for the human ambassador. With the combination of your reputation, and the more recent discovery of the Wanderers, they quickly give you an appointment.`
+			`The surveillance cubes have all been deployed. While you wait for them to collect their recordings of the ship traffic in the Unfettered systems, you stop by the Hai center of government and ask for the human ambassador. With the combination of your reputation and the more recent discovery of the Wanderers, they quickly give you an appointment.`
 			`	The ambassador is an old, male Hai named Hiyamaharu. "Honored human," he says, "It is a pleasure to meet you. If I may assist you in any way, I shall do so."`
 			choice
 				`	"Thank you." (Explain about the Alphas.)`
@@ -2000,7 +2000,7 @@ mission "Wanderers Hai Assistance 2"
 				goto threaten
 			label attack
 			`	"I will not authorize preemptive violence against our own flesh and blood," says one of the elders. "We only defend ourselves against them, never willingly initiate an attack."`
-			`	Teeneep and another Elder who seems to be in her corner both chitter the Hai equivalent of "Hear Hear" to this, though she is being very careful with her contributions.`
+			`	Teeneep and another Elder who seems to be in her corner both chitter the Hai equivalent of "Hear, Hear" to this, though she is being very careful with her contributions.`
 			label threaten
 			`	"Perhaps Teeneep is right and it would be enough merely to threaten them," says another of the elders. "We could gather a massive war fleet above Cloudfire. The Unfettered would need to muster a matching fleet above Darkcloak. It would draw many of their warships away from the alien territory."`
 			`	After well over an hour of further discussion, and with calculated backing from Teeneep, they reach the consensus that this is their best option. As you leave the meeting, Sayari exchanges a few words with Teeneep before approaching you, "And now, I would like to visit the Unfettered themselves. They will probably not listen, but perhaps we can talk sense into them. In any event, it is my job to try."`
