@@ -218,15 +218,19 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	else if (page == 'p' && key == 'r')
 	{
 		// remove plugin
-		const std::string plugin_path = Files::Config() + "/plugins/" + selectedPlugin;
-		SDL_Log("Removing plugin %s", selectedPlugin.c_str());
-		if (Files::RmDir(plugin_path))
+		auto plugin = Plugins::Get().Find(selectedPlugin);
+		if(plugin)
 		{
-			GetUI()->Push(new Dialog(GetUI(), &UI::Quit, "Plugin removed. Endless Sky needs to be restarted."));
-		}
-		else
-		{
-			GetUI()->Push(new Dialog("Failed to remove plugin."));
+			const std::string plugin_path = plugin->path;
+			SDL_Log("Removing plugin %s", plugin->path.c_str());
+			if (Files::RmDir(plugin_path))
+			{
+				GetUI()->Push(new Dialog(GetUI(), &UI::Quit, "Plugin removed. Endless Sky needs to be restarted."));
+			}
+			else
+			{
+				GetUI()->Push(new Dialog("Failed to remove plugin."));
+			}
 		}
 	}
 #else
