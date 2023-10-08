@@ -2120,6 +2120,8 @@ bool Ship::IsUsingJumpDrive() const
 
 
 
+
+// Check if this ship is allowed to land on this planet, accounting for its personality.
 bool Ship::IsRestrictedFrom(const Planet &planet) const
 {
 	// The player's ships have no travel restrictions.
@@ -2136,6 +2138,8 @@ bool Ship::IsRestrictedFrom(const Planet &planet) const
 
 
 
+
+// Check if this ship is allowed to enter this system, accounting for its personality.
 bool Ship::IsRestrictedFrom(const System &system) const
 {
 	// The player's ships have no travel restrictions.
