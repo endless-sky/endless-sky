@@ -265,6 +265,8 @@ public:
 	bool IsUsingJumpDrive() const;
 	// Check if this ship is currently able to enter hyperspace to it target.
 	bool IsReadyToJump(bool waitingIsReady = false) const;
+	bool IsRestrictedFrom(const Planet &planet) const;
+	bool IsRestrictedFrom(const System &system) const;
 	// Get this ship's custom swizzle.
 	int CustomSwizzle() const;
 
