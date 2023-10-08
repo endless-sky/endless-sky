@@ -543,6 +543,10 @@ mission "Syndicated Shipyards Shipment [0]"
 		near Achernar 2 10
 		attributes core factory
 	destination Foundry
+	npc
+		government Pirate
+		personality heroic harvests plunders
+		fleet "Small Core Pirates"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -561,6 +565,10 @@ mission "Syndicated Shipyards Shipment [1]"
 		near Achernar 2 10
 		attributes core mining
 	destination Foundry
+	npc
+		government Pirate
+		personality heroic harvests plunders
+		fleet "Small Core Pirates"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -579,6 +587,10 @@ mission "Syndicated Shipyards Shipment [2]"
 		near Achernar 2 10
 		attributes core factory
 	destination Foundry
+	npc
+		government Pirate
+		personality heroic harvests plunders
+		fleet "Small Core Pirates"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -597,6 +609,10 @@ mission "Syndicated Shipyards Shipment [3]"
 		near Achernar 2 10
 		attributes core factory
 	destination Foundry
+	npc
+		government Pirate
+		personality heroic harvests plunders
+		fleet "Small Core Pirates"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -615,6 +631,10 @@ mission "Syndicated Systems Shipment [0]"
 		near Markab 2 10
 		attributes core factory
 	destination Hephaestus
+	npc
+		government Pirate
+		personality heroic harvests plunders
+		fleet "Small Core Pirates"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -633,6 +653,10 @@ mission "Syndicated Systems Shipment [1]"
 		near Markab 2 10
 		attributes core mining factory
 	destination Hephaestus
+	npc
+		government Pirate
+		personality heroic harvests plunders
+		fleet "Small Core Pirates"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -651,6 +675,10 @@ mission "Megaparsec Shipment [0]"
 		near Mirfak 2 10
 		attributes core factory
 	destination Sunracer
+	npc
+		government Pirate
+		personality heroic harvests plunders
+		fleet "Small Core Pirates"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -669,6 +697,10 @@ mission "Megaparsec Shipment [1]"
 		near Mirfak 2 10
 		attributes core mining factory
 	destination Sunracer
+	npc
+		government Pirate
+		personality heroic harvests plunders
+		fleet "Small Core Pirates"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -687,6 +719,10 @@ mission "Megaparsec Shipment [2]"
 		near Mirfak 2 10
 		attributes core mining factory
 	destination Sunracer
+	npc
+		government Pirate
+		personality heroic harvests plunders
+		fleet "Small Core Pirates"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
