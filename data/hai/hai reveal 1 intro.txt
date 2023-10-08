@@ -143,10 +143,12 @@ mission "Hai Reveal Exploration Period: Local Human Merchants Speak Up"
 	source
 		government "Hai"
 		not attributes "uninhabited" "retirement"
+		attributes "hai: human presence"
+		not "Hai-home"
 	to offer
 		has "Hai Reveal: Meet the Team: Sayari 2: done"
 		not "event: hr: exploration period"
-		random < 20
+		random < 30
 		"HREP: Local Human Merchants (defer count)" < 2
 	on defer
 		"HREP: Local Human Merchants (defer count)" ++
@@ -165,14 +167,16 @@ mission "Hai Reveal Exploration Period: Local Human Merchants Speak Up"
 				random < 50
 			`	They notice you but just wave you off and board their ship. Clearly not in the mood for chatting this time.`
 				defer
+			
 			label "roll the dice"
 			branch "second"
 				"HREP: Local Human Merchants (defer count)" = 2
+			# First option on first encounter if the dice decide it is so, second encounter goes to second option.
 			`	The captain, who turns out to be an older guy, greets you, "Good day, Captain. You new in these parts?"`
 			choice
 				`	"Yes, came after the news broke."`
 				`	"No, I've known about the Hai for ages."`
-					goto "not new"
+					goto "not new 1"
 			`	He glances back at his crewman. "See, this is exactly what I was talking about. All these new folks in their clunkers from Lionheart and whatnot. Filling up the space lanes and splitting the profits."`
 			choice
 				`	"You know I can hear you, right?"`
@@ -187,7 +191,8 @@ mission "Hai Reveal Exploration Period: Local Human Merchants Speak Up"
 			`	The captain gives you both the stinkeye and harrumphs. "Get back on board, we're late."`
 			`	As he stomps off he points at you. "Just remember, your lot are making our lives harder. Keep it up and something's gonna go wrong." He seals the airlock behind himself before giving you a chance to respond.`
 				decline
-			label "not new"
+			
+			label "not new 1"
 			`	"Ahah, you'll know what I'm talking about then, Captain." He glances back at his crewman. "All these new folks in their clunkers from Lionheart and whatnot. Filling up the space lanes and splitting the already meager profits."`
 			choice
 				`	"I suppose..."`
@@ -200,11 +205,50 @@ mission "Hai Reveal Exploration Period: Local Human Merchants Speak Up"
 			`	As the other captain stomps off back to his ship his second in command just shrugs. "Guess we'll see eventually." They leave you there to your own thoughts.`
 				decline
 			
-			label "second"
-			`You encounter a young explorer running freight and passengers in and out before leak concerned by the increase in shady types, not just attack in transit, but at arrival too.`
+			label "second" # Second option start.
+			`	The captain turns out to be a younger guy with a sleek, shiny and somewhat new-looking Clipper. He clasps your hand enthusiastically in greeting. "Hail, you're not a familiar face around here. You new in these parts?"`
+				`	"Yes, I arrived recently after hearing the news."`
+				`	"No, I've been familiar with Hai space for quite some time."`
+					goto "not new 2"
+			`	The young captain nods. "Ah yeah, you look the part for a newcomer. I imagine you'll have noticed the pirates on the way here are a little bit more keen than most, but you should be aware that it's not just attacks on those in transit that are causing concerns at the moment. There are a lot more questionable characters in Hai space these days. Folks like you who've found the place following the news, and come back for less savory reasons. It's causing people some concerns, to say the least."`
+			choice
+				`	"I've seen; it's been getting worse lately."`
+				`	"I appreciate the heads-up."`
+			`	The young captain's tone takes on a more pressing note as he further explains, "It's not just the usual reaction though, it's more unsettling to the Hai than you might expect. It's not just a few humans that aren't great making us look bad to some of the more conservative Hai. Their attitudes are more group-oriented than we are. Humans might notice unusual or negative things more and assume that everyone in the group acts the same way, even if it's not true. We know that's not how it actually works though. For us that's just personal bias. Recognizable groups of Hai do actually tend to all act in similar ways. So, if they're not experienced with humans, it's hard for them to see the differences."`
+				goto "suspicion explained"
+			
+			label "not new 2"
+			`	"Ah, have you noticed it then?" He glances out at the broader docking area. "The suspicion? The uncertainty?"`
+			choice
+				`	"I suppose..."`
+				`	"Not really, no."`
+					goto "not seen"
+			`	"If you're not sure, you probably haven't really seen it yet."`
+			label "not seen"
+			`	The young captain sighs and shakes his head. "I suppose it's not obvious yet, maybe it's because I mostly transport passengers. Still, there are a lot more questionable characters in Hai space these days. Folks like you who've found the place following the news, and come back for less savory reasons. It's causing people some concerns, to say the least."`
+			choice
+				`	"It's causing problems then?"`
+				`	"I appreciate the heads-up."`
+			`	The young captain's tone takes on a more pressing note as he further explains, "It's not just the usual reaction though, it's more unsettling to the Hai than you might expect. It's not just a few humans that aren't great making us look bad to some of the more conservative Hai."`
+			`	He pauses. "Maybe you've seen, maybe not, but their attitudes are more group-oriented than we are. Humans might notice unusual or negative things more and assume that everyone in the group acts the same way, but it's usually not true. Recognizable groups of Hai do actually tend to all act in similar ways. So, those who aren't experienced with humans find it hard to see the differences."`
+			
+			label "suspicion explained"
+			choice
+				`	"I'll keep an eye out for any suspicious activity."`
+				`	"So it's up to us to find solutions?"`
+					goto "solutions"
+			`	He nods. "Good, and if you want my recommendation; either report it, or distance yourself from it. There's trouble brewing and I, for one, intend on staying on their good side."`
+				goto "second end"
+			label "solutions"
+			`	He offers you a warm smile before saying, "Well, at a minimum, to be visibly separate from the problem. Maybe that's a partial solution all by itself."`
+				goto "second end"
+			label "second end"
+			`	His crewperson finishes securing a crate and calls out, "Come on Captain, we're running late."`
+			`	"Well Captain, fly safe out there. Keep your eyes open." He departs with a friendly wave.`
 				decline
 			
-			label "last go"
+			label "last go" # Third option start.
+			# If the dice did not see fit to give you an encounter the first two times, the third time will trigger this.
 			`You encounter a suspicious type talking about how lucrative it's been running Hai tourists and cosplayers back and forth. Optional: Subtle, subtle hint about kidnapping with the "prisoners" fantasy?`
 				decline
 
