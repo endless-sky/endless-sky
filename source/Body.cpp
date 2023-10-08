@@ -21,11 +21,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Mask.h"
 #include "MaskManager.h"
+#include "pi.h"
 #include "Point.h"
 #include "Random.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
-#include "pi.h"
 
 #include <algorithm>
 #include <cmath>
