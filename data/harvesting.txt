@@ -15,7 +15,6 @@ minable "aluminum"
 	sprite "asteroid/silicon/spin"
 	hull 900
 	"random hull" 200
-	toughness 130
 	payload "Aluminum" 40
 	explode "smoke" 40
 	explode "bolide" 40
@@ -37,7 +36,6 @@ minable "copper"
 	sprite "asteroid/gold/spin"
 	hull 1080
 	"random hull" 240
-	toughness 144
 	payload "Copper" 20
 	explode "smoke" 20
 	explode "bolide" 20
@@ -59,7 +57,6 @@ minable "gold"
 	sprite "asteroid/gold/spin"
 	hull 2520
 	"random hull" 560
-	toughness 864
 	payload "Gold" 16
 	explode "smoke" 20
 	explode "bolide" 20
@@ -81,7 +78,6 @@ minable "iron"
 	sprite "asteroid/iron/spin"
 	hull 1440
 	"random hull" 320
-	toughness 192
 	payload "Iron" 50
 	explode "smoke" 40
 	explode "bolide" 40
@@ -103,7 +99,6 @@ minable "lead"
 	sprite "asteroid/lead/spin"
 	hull 720
 	"random hull" 160
-	toughness 88
 	payload "Lead" 32
 	explode "smoke" 30
 	explode "bolide" 30
@@ -125,7 +120,6 @@ minable "neodymium"
 	sprite "asteroid/iron/spin"
 	hull 3240
 	"random hull" 720
-	toughness 1540
 	payload "Neodymium" 40
 	explode "smoke" 40
 	explode "bolide" 40
@@ -147,7 +141,6 @@ minable "platinum"
 	sprite "asteroid/silver/spin"
 	hull 3600
 	"random hull" 800
-	toughness 2660
 	payload "Platinum" 16
 	explode "smoke" 20
 	explode "bolide" 20
@@ -169,7 +162,6 @@ minable "silicon"
 	sprite "asteroid/silicon/spin"
 	hull 360
 	"random hull" 80
-	toughness 38
 	payload "Silicon" 50
 	explode "smoke" 40
 	explode "bolide" 40
@@ -191,7 +183,6 @@ minable "silver"
 	sprite "asteroid/silver/spin"
 	hull 1800
 	"random hull" 400
-	toughness 617
 	payload "Silver" 20
 	explode "smoke" 20
 	explode "bolide" 20
@@ -213,7 +204,6 @@ minable "titanium"
 	sprite "asteroid/titanium/spin"
 	hull 2160
 	"random hull" 480
-	toughness 456
 	payload "Titanium" 32
 	explode "smoke" 30
 	explode "bolide" 30
@@ -235,7 +225,6 @@ minable "tungsten"
 	sprite "asteroid/titanium/spin"
 	hull 4320
 	"random hull" 960
-	toughness 1140
 	payload "Tungsten" 24
 	explode "smoke" 30
 	explode "bolide" 30
@@ -257,7 +246,6 @@ minable "uranium"
 	sprite "asteroid/lead/spin"
 	hull 2880
 	"random hull" 640
-	toughness 988
 	payload "Uranium" 24
 	explode "smoke" 30
 	explode "bolide" 30
@@ -279,7 +267,6 @@ minable "yottrite"
 	sprite "asteroid/yottrite/spin"
 	hull 18000
 	"random hull" 4000
-	toughness 27550
 	payload "Yottrite" 7
 	explode "smoke" 30
 	explode "bolide" 30
@@ -305,7 +292,6 @@ minable "plant"
 	sprite "asteroid/plant/plant"
 	hull 2520
 	"random hull" 560
-	toughness 1195
 	payload "Void Orchid" 21
 	explode "smoke" 30
 	explode "bolide" 30
@@ -316,7 +302,6 @@ minable "plant2"
 	sprite "asteroid/plant2/plant2"
 	hull 2340
 	"random hull" 520
-	toughness 1110
 	payload "Void Orchid" 20
 	explode "smoke" 30
 	explode "bolide" 30
@@ -326,7 +311,6 @@ minable "plant cluster"
 	sprite "asteroid/plant cluster/plant cluster"
 	hull 1080
 	"random hull" 240
-	toughness 513
 	payload "Void Orchid" 11
 	explode "smoke" 20
 	explode "bolide" 20
@@ -336,7 +320,6 @@ minable "large plant"
 	sprite "asteroid/large plant/large plant"
 	hull 3420
 	"random hull" 760
-	toughness 1624
 	payload "Void Orchid" 41
 	explode "smoke" 30
 	explode "bolide" 40
@@ -347,7 +330,6 @@ minable "large plant2"
 	sprite "asteroid/large plant2/large plant2"
 	hull 3240
 	"random hull" 720
-	toughness 1539
 	payload "Void Orchid" 41
 	explode "smoke" 30
 	explode "bolide" 40
@@ -357,7 +339,6 @@ minable "large plant cluster"
 	sprite "asteroid/large plant cluster/large plant cluster"
 	hull 1980
 	"random hull" 440
-	toughness 940
 	payload "Void Orchid" 22
 	explode "smoke" 30
 	explode "bolide" 40
@@ -367,7 +348,6 @@ minable "live crystal"
 	sprite "asteroid/livecrystal/livecrystal"
 	hull 900
 	"random hull" 200
-	toughness 428
 	payload "Void Orchid" 8
 	explode "smoke" 15
 	explode "bolide" 10
@@ -377,7 +357,6 @@ minable "space flora"
 	sprite "asteroid/space flora/space flora"
 	hull 900
 	"random hull" 200
-	toughness 428
 	payload "Void Orchid" 8
 	explode "smoke" 15
 	explode "bolide" 10
@@ -387,7 +366,6 @@ minable "large space flora"
 	sprite "asteroid/large space flora/large space flora"
 	hull 1800
 	"random hull" 400
-	toughness 855
 	payload "Void Orchid" 16
 	explode "smoke" 25
 	explode "bolide" 20
