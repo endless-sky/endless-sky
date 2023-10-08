@@ -23,8 +23,8 @@ ship "Arach Courier"
 		"hull" 2000
 		"required crew" 1
 		"bunks" 1
-		"mass" 100
-		"drag" 2.9
+		"mass" 150
+		"drag" 3.5
 		"heat dissipation" .65
 		"fuel capacity" 300
 		"cargo space" 94
@@ -82,8 +82,8 @@ ship "Arach Freighter"
 		"hull" 8500
 		"required crew" 3
 		"bunks" 10
-		"mass" 380
-		"drag" 10.6
+		"mass" 1312
+		"drag" 19.1
 		"heat dissipation" .55
 		"fuel capacity" 500
 		"cargo space" 372
@@ -152,8 +152,8 @@ ship "Arach Hulk"
 		"hull" 13800
 		"required crew" 8
 		"bunks" 14
-		"mass" 670
-		"drag" 18.9
+		"mass" 1980
+		"drag" 39.7
 		"heat dissipation" .50
 		"fuel capacity" 500
 		"cargo space" 688
@@ -228,8 +228,8 @@ ship "Arach Spindle"
 		"hull" 9700
 		"required crew" 4
 		"bunks" 14
-		"mass" 340
-		"drag" 10.8
+		"mass" 1190
+		"drag" 22.7
 		"heat dissipation" .55
 		"fuel capacity" 500
 		"cargo space" 392
@@ -339,8 +339,8 @@ ship "Arach Transport"
 		"hull" 4800
 		"required crew" 2
 		"bunks" 5
-		"mass" 280
-		"drag" 7.2
+		"mass" 560
+		"drag" 10.8
 		"heat dissipation" .60
 		"fuel capacity" 400
 		"cargo space" 228
@@ -406,8 +406,8 @@ ship "Heliarch Breacher"
 		"hull" 21500
 		"required crew" 11
 		"bunks" 15
-		"mass" 200
-		"drag" 3.2
+		"mass" 543
+		"drag" 5.12
 		"heat dissipation" .77
 		"ion protection" .1
 		"scramble protection" .1
@@ -524,8 +524,8 @@ ship "Heliarch Hunter"
 		"hull" 45300
 		"required crew" 26
 		"bunks" 41
-		"mass" 420
-		"drag" 5.3
+		"mass" 1295
+		"drag" 10.1
 		"heat dissipation" .71
 		"ion protection" .2
 		"scramble protection" .2
@@ -710,8 +710,8 @@ ship "Heliarch Interdictor"
 		"hull" 54600
 		"required crew" 42
 		"bunks" 70
-		"mass" 520
-		"drag" 7.4
+		"mass" 1584
+		"drag" 14.8
 		"heat dissipation" .70
 		"ion protection" .2
 		"scramble protection" .2
@@ -883,8 +883,8 @@ ship "Heliarch Judicator"
 		"hull" 41900
 		"required crew" 31
 		"bunks" 110
-		"mass" 480
-		"drag" 7.9
+		"mass" 1484
+		"drag" 15.8
 		"heat dissipation" .67
 		"ion protection" .2
 		"scramble protection" .2
@@ -1067,8 +1067,8 @@ ship "Heliarch Neutralizer"
 		"hull" 32800
 		"required crew" 17
 		"bunks" 24
-		"mass" 270
-		"drag" 4.1
+		"mass" 652
+		"drag" 6.6
 		"heat dissipation" .75
 		"ion protection" .1
 		"scramble protection" .1
@@ -1188,8 +1188,8 @@ ship "Heliarch Punisher"
 		"hull" 85000
 		"required crew" 96
 		"bunks" 145
-		"mass" 780
-		"drag" 12.2
+		"mass" 3278
+		"drag" 30.5
 		"heat dissipation" .60
 		"ion protection" .3
 		"scramble protection" .3
@@ -1550,8 +1550,8 @@ ship "Heliarch Stalker"
 		"hull" 5200
 		"required crew" 1
 		"bunks" 2
-		"mass" 80
-		"drag" 2.1
+		"mass" 100
+		"drag" 2.3
 		"heat dissipation" 0.64
 		"outfit space" 133
 		"weapon capacity" 43
@@ -1606,8 +1606,8 @@ ship "Kimek Briar"
 		"hull" 1700
 		"required crew" 3
 		"bunks" 38
-		"mass" 180
-		"drag" 3.8
+		"mass" 392
+		"drag" 5.7
 		"heat dissipation" .75
 		"fuel capacity" 700
 		"cargo space" 23
@@ -1667,8 +1667,8 @@ ship "Kimek Spire"
 		"hull" 4900
 		"required crew" 19
 		"bunks" 296
-		"mass" 570
-		"drag" 8.4
+		"mass" 1735
+		"drag" 17.6
 		"heat dissipation" .60
 		"fuel capacity" 800
 		"cargo space" 70
@@ -1739,8 +1739,8 @@ ship "Kimek Thistle"
 		"hull" 2800
 		"required crew" 7
 		"bunks" 78
-		"mass" 270
-		"drag" 5.8
+		"mass" 743
+		"drag" 10.4
 		"heat dissipation" .70
 		"fuel capacity" 700
 		"cargo space" 32
@@ -1824,8 +1824,8 @@ ship "Kimek Thorn"
 		"hull" 800
 		"required crew" 1
 		"bunks" 10
-		"mass" 80
-		"drag" 1.8
+		"mass" 100
+		"drag" 2
 		"heat dissipation" .80
 		"fuel capacity" 600
 		"cargo space" 13
@@ -1883,8 +1883,8 @@ ship "Saryd Runabout"
 		"hull" 1400
 		"required crew" 2
 		"bunks" 14
-		"mass" 140
-		"drag" 2.8
+		"mass" 234
+		"drag" 3.6
 		"heat dissipation" .70
 		"fuel capacity" 400
 		"cargo space" 46
@@ -1940,8 +1940,8 @@ ship "Saryd Sojourner"
 		"hull" 7700
 		"required crew" 17
 		"bunks" 101
-		"mass" 640
-		"drag" 12.9
+		"mass" 1970
+		"drag" 27.1
 		"heat dissipation" .50
 		"fuel capacity" 800
 		"cargo space" 312
@@ -2034,7 +2034,7 @@ ship "Saryd Traveler"
 		"hull" 4000
 		"required crew" 10
 		"bunks" 54
-		"mass" 350
+		"mass" 1000
 		"drag" 5.5
 		"heat dissipation" .60
 		"fuel capacity" 600
@@ -2109,7 +2109,7 @@ ship "Saryd Visitor"
 		"hull" 2400
 		"required crew" 5
 		"bunks" 32
-		"mass" 270
+		"mass" 565
 		"drag" 4.4
 		"heat dissipation" .65
 		"fuel capacity" 400
