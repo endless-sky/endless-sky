@@ -654,7 +654,7 @@ mission "Earth Day Blackout"
 			choice
 				`	"What's with the blackout?"`
 				`	"When is the blackout going to be fixed?"`
-			`	The attendant chuckles to himself. "I should have expected that question from your accent. Today's Earth Day, when all the cities of Earth - and I mean all of them - participate in a total blackout. Even the Parliament complex was out today. It makes us think about our origins; that we once lived on the soil without electricity, all confined to just this one planet here, divided and uncertain. Of course, people like me still have to keep working, but for other people it's a day off to enjoy what little wildlife and earth us Earthlings have left, ironically. Do you have any other questions?`
+			`	The attendant chuckles to himself. "I should have expected that question from your accent. Today's Earth Day, when all the cities of Earth - and I mean all of them - participate in a total blackout. Even the Parliament complex was out today. It makes us think about our origins; that we once lived on the soil without electricity, all confined to just this one planet here, divided and uncertain. Of course, people like me still have to keep working, but for other people it's a day off to enjoy what little wildlife and Earth us Earthlings have left, ironically. Do you have any other questions?`
 			choice
 				`	"When did this tradition start?"`
 				`	"Thank you for telling me. (Walk away.)"`
