@@ -80,8 +80,8 @@ void Minable::Load(const DataNode &node)
 // Calculate the expected payload value of this Minable after all outfits have been fully loaded.
 void Minable::FinishLoading()
 {
-	for(const auto &payload : payload)
-		value += payload.outfit->Cost() * payload.dropSize * payload.dropRate;
+	for(const auto &it : payload)
+		value += it.outfit->Cost() * it.dropSize * it.dropRate;
 }
 
 
