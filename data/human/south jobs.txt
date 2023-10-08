@@ -262,7 +262,7 @@ mission "Delta V Shipment [1]"
 
 mission "Tarazed Shipyards Shipment [0]"
 	name "Shipment to <planet>"
-	description "Deliver <cargo> to <planet>, the home of Tarazed Shipyards, one of the largest shipbuilding firms in southern human space. Payment is <payment>."
+	description "Deliver <cargo> to <planet>, the home of Tarazed Shipyards, one of the largest shipbuilding firms in the South. Payment is <payment>."
 	cargo "weapons" 5 2 .1
 	job
 	repeat
@@ -280,8 +280,8 @@ mission "Tarazed Shipyards Shipment [0]"
 
 mission "Tarazed Shipyards Shipment [1]"
 	name "Shipment to <planet>"
-	description "Deliver <cargo> to <planet>, the home of Tarazed Shipyards, one of the largest shipbuilding firms in southern human space. Payment is <payment>."
-	cargo "ship alloys" 5 2 .1
+	description "Deliver <cargo> to <planet>, the home of Tarazed Shipyards, one of the largest shipbuilding firms in the South. Payment is <payment>."
+	cargo "Ship Alloys" 5 2 .1
 	job
 	repeat
 	to offer
@@ -298,8 +298,8 @@ mission "Tarazed Shipyards Shipment [1]"
 
 mission "Tarazed Shipyards Shipment [2]"
 	name "Shipment to <planet>"
-	description "Deliver <cargo> to <planet>, the home of Tarazed Shipyards, one of the largest shipbuilding firms in southern human space. Payment is <payment>."
-	cargo "ship systems" 5 2 .1
+	description "Deliver <cargo> to <planet>, the home of Tarazed Shipyards, one of the largest shipbuilding firms in the South. Payment is <payment>."
+	cargo "Ship Systems" 5 2 .1
 	job
 	repeat
 	to offer

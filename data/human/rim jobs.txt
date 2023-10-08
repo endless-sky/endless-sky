@@ -39,7 +39,7 @@ mission "Southbound Shipment [1]"
 	job
 	repeat
 	description "Deliver <cargo> to <destination>, the home of Southbound Shipyards, the largest ship foundry in the Rim. Payment is <payment>."
-	cargo "ship alloys" 5 2 .1
+	cargo "Ship Alloys" 5 2 .1
 	to offer
 		random < 10
 	source
