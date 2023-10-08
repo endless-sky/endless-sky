@@ -40,7 +40,6 @@ namespace {
 		{"shield energy", 0.},
 		{"shield fuel", 0.},
 		{"shield heat", 0.},
-		{"hull repair rate", 0.},
 		{"hull energy", 0.},
 		{"hull fuel", 0.},
 		{"hull heat", 0.},
