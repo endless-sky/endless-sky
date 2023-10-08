@@ -61,7 +61,7 @@ outfit "Korath Ark'torbal Thruster"
 	"mass" 17
 	"outfit space" -17
 	"engine capacity" -17
-	"thrust" 8.9
+	"thrust" 17.8
 	"thrusting energy" 1.1
 	"thrusting heat" 1.0
 	"flare sprite" "effect/plasma flare/tiny"
@@ -76,7 +76,7 @@ outfit "Korath Ark'parat Steering"
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
-	"turn" 240
+	"turn" 480
 	"turning energy" .6
 	"turning heat" .7
 	description "This engine is used by Korath fighters."
@@ -88,7 +88,7 @@ outfit "Korath Jak'torbal Thruster"
 	"mass" 89
 	"outfit space" -89
 	"engine capacity" -89
-	"thrust" 63.1
+	"thrust" 126.2
 	"thrusting energy" 5.9
 	"thrusting heat" 14.3
 	"flare sprite" "effect/plasma flare/large"
@@ -103,7 +103,7 @@ outfit "Korath Jak'parat Steering"
 	"mass" 67
 	"outfit space" -67
 	"engine capacity" -67
-	"turn" 1680
+	"turn" 3360
 	"turning energy" 3.1
 	"turning heat" 7.9
 	description "This engine is used in the Korath capital ships."
@@ -129,7 +129,7 @@ outfit "Reverse Thruster"
 	"mass" 22
 	"outfit space" -22
 	"weapon capacity" -22
-	"reverse thrust" 18.68
+	"reverse thrust" 37.36
 	"reverse thrusting energy" 1.8
 	"reverse thrusting heat" 3.5
 
@@ -226,7 +226,7 @@ outfit "Afterburner"
 	"mass" 10
 	"outfit space" -10
 	"engine capacity" -10
-	"afterburner thrust" 37.5
+	"afterburner thrust" 75
 	"afterburner fuel" .1
 	"afterburner heat" 10.0
 	"afterburner effect" "afterburner"

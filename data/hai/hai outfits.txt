@@ -582,10 +582,10 @@ outfit `"Baellie" Atomic Engines`
 	"mass" 22
 	"outfit space" -22
 	"engine capacity" -22
-	"thrust" 9.8
+	"thrust" 19.6
 	"thrusting energy" .87
 	"thrusting heat" 1.7
-	"turn" 244
+	"turn" 488
 	"turning energy" .64
 	"turning heat" 1.28
 	"flare sprite" "effect/atomic flare/tiny"
@@ -603,7 +603,7 @@ outfit `"Basrem" Atomic Thruster`
 	"mass" 18
 	"outfit space" -18
 	"engine capacity" -18
-	"thrust" 15.22
+	"thrust" 30.44
 	"thrusting energy" 1.4
 	"thrusting heat" 2.8
 	"flare sprite" "effect/atomic flare/tiny"
@@ -618,7 +618,7 @@ outfit `"Benga" Atomic Thruster`
 	"mass" 28
 	"outfit space" -28
 	"engine capacity" -28
-	"thrust" 25.15
+	"thrust" 50.3
 	"thrusting energy" 2.5
 	"thrusting heat" 4.8
 	"flare sprite" "effect/atomic flare/tiny"
@@ -633,7 +633,7 @@ outfit `"Biroo" Atomic Thruster`
 	"mass" 44
 	"outfit space" -44
 	"engine capacity" -44
-	"thrust" 41.65
+	"thrust" 83.3
 	"thrusting energy" 4
 	"thrusting heat" 8.2
 	"flare sprite" "effect/atomic flare/small"
@@ -648,7 +648,7 @@ outfit `"Bondir" Atomic Thruster`
 	"mass" 63
 	"outfit space" -63
 	"engine capacity" -63
-	"thrust" 62.8
+	"thrust" 125.6
 	"thrusting energy" 6.1
 	"thrusting heat" 12.7
 	"flare sprite" "effect/atomic flare/medium"
@@ -663,7 +663,7 @@ outfit `"Bufaer" Atomic Thruster`
 	"mass" 104
 	"outfit space" -104
 	"engine capacity" -104
-	"thrust" 108.85
+	"thrust" 217.7
 	"thrusting energy" 10.4
 	"thrusting heat" 22.6
 	"flare sprite" "effect/atomic flare/large"
@@ -678,7 +678,7 @@ outfit `"Basrem" Reverse Thruster`
 	"mass" 18
 	"outfit space" -18
 	"weapon capacity" -18
-	"reverse thrust" 15.22
+	"reverse thrust" 30.44
 	"reverse thrusting energy" 1.4
 	"reverse thrusting heat" 2.8
 	"reverse flare sprite" "effect/atomic flare/tiny"
@@ -693,7 +693,7 @@ outfit `"Benga" Reverse Thruster`
 	"mass" 28
 	"outfit space" -28
 	"weapon capacity" -28
-	"reverse thrust" 25.15
+	"reverse thrust" 50.3
 	"reverse thrusting energy" 2.5
 	"reverse thrusting heat" 4.8
 	"reverse flare sprite" "effect/atomic flare/tiny"
@@ -708,7 +708,7 @@ outfit `"Biroo" Reverse Thruster`
 	"mass" 44
 	"outfit space" -44
 	"weapon capacity" -44
-	"reverse thrust" 41.65
+	"reverse thrust" 83.3
 	"reverse thrusting energy" 4
 	"reverse thrusting heat" 8.2
 	"reverse flare sprite" "effect/atomic flare/small"
@@ -723,7 +723,7 @@ outfit `"Basrem" Atomic Steering`
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
-	"turn" 301
+	"turn" 602
 	"turning energy" .7
 	"turning heat" 1.5
 	"steering flare sprite" "effect/atomic flare/tiny"
@@ -738,7 +738,7 @@ outfit `"Benga" Atomic Steering`
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
-	"turn" 563
+	"turn" 1126
 	"turning energy" 1.1
 	"turning heat" 2.85
 	"steering flare sprite" "effect/atomic flare/tiny"
@@ -753,7 +753,7 @@ outfit `"Biroo" Atomic Steering`
 	"mass" 32
 	"outfit space" -32
 	"engine capacity" -32
-	"turn" 1028
+	"turn" 2056
 	"turning energy" 2.0
 	"turning heat" 5.1
 	"steering flare sprite" "effect/atomic flare/small"
@@ -768,7 +768,7 @@ outfit `"Bondir" Atomic Steering`
 	"mass" 49
 	"outfit space" -49
 	"engine capacity" -49
-	"turn" 1714
+	"turn" 3428
 	"turning energy" 3.2
 	"turning heat" 8.2
 	"steering flare sprite" "effect/atomic flare/medium"
@@ -783,7 +783,7 @@ outfit `"Bufaer" Atomic Steering`
 	"mass" 76
 	"outfit space" -76
 	"engine capacity" -76
-	"turn" 2967
+	"turn" 5934
 	"turning energy" 5.2
 	"turning heat" 13.8
 	"steering flare sprite" "effect/atomic flare/large"

@@ -300,7 +300,7 @@ outfit "Small Thrust Module"
 	"mass" 9
 	"outfit space" -9
 	"engine capacity" -9
-	"thrust" 8.3
+	"thrust" 16.6
 	"thrusting energy" 0.46
 	"thrusting heat" 3
 	"flare sprite" "effect/coalition flare/small"
@@ -317,7 +317,7 @@ outfit "Large Thrust Module"
 	"mass" 32
 	"outfit space" -32
 	"engine capacity" -32
-	"thrust" 30.6
+	"thrust" 61.2
 	"thrusting energy" 1.7
 	"thrusting heat" 11
 	"flare sprite" "effect/coalition flare/large"
@@ -334,7 +334,7 @@ outfit "Small Reverse Module"
 	"mass" 9
 	"outfit space" -9
 	"weapon capacity" -9
-	"reverse thrust" 8.3
+	"reverse thrust" 16.6
 	"reverse thrusting energy" 0.46
 	"reverse thrusting heat" 3
 	"reverse flare sprite" "effect/coalition flare/small"
@@ -352,7 +352,7 @@ outfit "Large Reverse Module"
 	"mass" 32
 	"outfit space" -32
 	"weapon capacity" -32
-	"reverse thrust" 30.6
+	"reverse thrust" 61.2
 	"reverse thrusting energy" 1.7
 	"reverse thrusting heat" 11
 	"reverse flare sprite" "effect/coalition flare/large"
@@ -370,7 +370,7 @@ outfit "Small Steering Module"
 	"mass" 7
 	"outfit space" -7
 	"engine capacity" -7
-	"turn" 178.8
+	"turn" 357.6
 	"turning energy" 0.26
 	"turning heat" 1.8
 	"steering flare sprite" "effect/coalition flare/small"
@@ -387,7 +387,7 @@ outfit "Large Steering Module"
 	"mass" 25
 	"outfit space" -25
 	"engine capacity" -25
-	"turn" 747
+	"turn" 1494
 	"turning energy" 1.0
 	"turning heat" 6.5
 	"steering flare sprite" "effect/coalition flare/large"
