@@ -26773,7 +26773,6 @@ system "Pug Iyik PD 3"
 	pos -361.149 -883.233
 	government "Pug (Wanderer)"
 
-
 system Pukako
 	pos 618.64 -440.28
 	government Uninhabited
