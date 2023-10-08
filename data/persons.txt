@@ -2032,5 +2032,5 @@ ship "Waverider"
 outfit "Emotional Baggage"
 	category "Unique"
 	thumbnail "outfit/unknown"
-	description `The physical embodiment of everything that made the Reviewers who they are today.`
+	description `The physical embodiment of everything that makes the Reviewers who they are today.`
 	description `	Unfortunately, it's not for sale.`
