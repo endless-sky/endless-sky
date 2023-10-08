@@ -187,7 +187,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			{
 				const int uniquesSize = uniqueOutfits.size();
 				const int detailedOutfitSize = (uniquesSize > 20 ? 19 : uniquesSize);
-				message += "\nAdditionally, this ship is carrying the following unique items:";
+				message += "\nThe following unique items carried by the ship will be lost:";
 				auto it = uniqueOutfits.begin();
 				for(int i = 0; i < detailedOutfitSize; ++i)
 				{
