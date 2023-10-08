@@ -23,7 +23,7 @@ trade
 		"fission reactors"
 		"thermionic reactors"
 		"battery packs"
-		"fuel cells"
+		"fuel cell units"
 		"heavy rocket systems"
 		"meteor rocket systems"
 		"javelin rocket systems"
@@ -38,8 +38,6 @@ trade
 		"plasma turrets"
 		"radar jammers"
 		"tactical scanners"
-		"laser rifles"
-		"fragmentation grenades"
 		"anti-missile turrets"
 		"proton guns"
 		"proton turrets"
@@ -398,7 +396,7 @@ mission "FW Outfitter Resupply [0]"
 	job
 	repeat
 	name `Resupply <planet>`
-	description `The outfitter on <planet> is running low on supplies and needs to be restocked immediately. Deliver <cargo> to <destination> by <date>. Payment is <payment>.`
+	description `The outfitter on <planet> is running low on supplies and needs to be restocked immediately. Deliver <tons> of disassembled <commodity> to <destination> by <date>. Payment is <payment>.`
 	deadline 2 1
 	cargo "Free Worlds Outfits" 5 2 .1
 	to offer
@@ -421,7 +419,7 @@ mission "FW Outfitter Resupply [1]"
 	job
 	repeat
 	name `Resupply <planet>`
-	description `The outfitter on <planet> is running low on supplies and needs to be restocked immediately. Deliver <cargo> to <destination> by <date>. Payment is <payment>.`
+	description `The outfitter on <planet> is running low on supplies and needs to be restocked immediately. Deliver <tons> of disassembled <commodity> by <date>. Payment is <payment>.`
 	deadline 2 1
 	cargo "Free Worlds Outfits" 5 2 .1
 	to offer
@@ -444,7 +442,7 @@ mission "FW Outfitter Resupply [2]"
 	job
 	repeat
 	name `Resupply <planet>`
-	description `The outfitter on <planet> is running low on supplies and needs to be restocked immediately. Deliver <cargo> to <destination> by <date>. Payment is <payment>.`
+	description `The outfitter on <planet> is running low on supplies and needs to be restocked immediately. Deliver <tons> of disassembled <commodity> to <destination> by <date>. Payment is <payment>.`
 	deadline 2 1
 	cargo "Free Worlds Outfits" 5 2 .1
 	to offer
@@ -467,7 +465,7 @@ mission "FW Bulk Outfitter Resupply [0]"
 	job
 	repeat
 	name `Resupply <planet>`
-	description `The outfitter on <planet> is running low on supplies and needs to be restocked immediately. Deliver <cargo> to <destination> by <date>. Payment is <payment>.`
+	description `The outfitter on <planet> is running low on supplies and needs to be restocked immediately. Deliver <tons> of disassembled <commodity> to <destination> by <date>. Payment is <payment>.`
 	deadline 2 1
 	cargo "Free Worlds Outfits" 25 2 .05
 	to offer
@@ -490,7 +488,7 @@ mission "FW Bulk Outfitter Resupply [1]"
 	job
 	repeat
 	name `Resupply <planet>`
-	description `The outfitter on <planet> is running low on supplies and needs to be restocked immediately. Deliver <cargo> to <destination> by <date>. Payment is <payment>.`
+	description `The outfitter on <planet> is running low on supplies and needs to be restocked immediately. Deliver <tons> of disassembled <commodity> to <destination> by <date>. Payment is <payment>.`
 	deadline 2 1
 	cargo "Free Worlds Outfits" 25 2 .05
 	to offer
@@ -513,7 +511,7 @@ mission "FW Bulk Outfitter Resupply [2]"
 	job
 	repeat
 	name `Resupply <planet>`
-	description `The outfitter on <planet> is running low on supplies and needs to be restocked immediately. Deliver <cargo> to <destination> by <date>. Payment is <payment>.`
+	description `The outfitter on <planet> is running low on supplies and needs to be restocked immediately. Deliver <tons> of disassembled <commodity> to <destination> by <date>. Payment is <payment>.`
 	deadline 2 1
 	cargo "Free Worlds Outfits" 25 2 .05
 	to offer
