@@ -37,7 +37,7 @@ mission "Betelgeuse Shipment [0]"
 mission "Betelgeuse Shipment [1]"
 	name "Shipment to <planet>"
 	description "Deliver <cargo> to <planet>, the home of Betelgeuse Shipyards, a well-respected ship manufacturer in the region. Payment is <payment>."
-	cargo "ship alloys" 5 2 .1
+	cargo "Ship Alloys" 5 2 .1
 	job
 	repeat
 	to offer
@@ -82,7 +82,7 @@ mission "Betelgeuse Shipment [2]"
 
 mission "Navy resupply [0]"
 	name "Resupply Navy base on <planet>"
-	description "The Navy base on <destination> is running low on equipment, but Navy supply ships are currently held up elsewhere and cannot assist. Deliver <cargo> to <planet> by <date>. Payment is <payment>."
+	description "The Navy base on <destination> is running low on equipment, but Navy supply ships are currently held up elsewhere and cannot assist. Deliver <cargo> to <planet> by <date>, for <payment>."
 	cargo Military 5 2 .1
 	job
 	repeat

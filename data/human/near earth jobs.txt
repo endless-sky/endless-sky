@@ -214,7 +214,7 @@ mission "Transport seasonal workers to Earth"
 
 mission "Tycho Crater Shipyards Shipment [0]"
 	name "Shipment to <planet>"
-	description "Deliver <cargo> to <destination>, the home of Tycho Crater Shipyards, a constituent shipbuilding company of the Republic Navy Yard and the main shipyard of Sol. Payment is <payment>."
+	description "Deliver <cargo> to <destination>, the home of Tycho Crater Shipyards, a constituent of the Republic Navy Yard. Payment is <payment>."
 	cargo "weapons" 5 2 .1
 	job
 	repeat
@@ -233,7 +233,7 @@ mission "Tycho Crater Shipyards Shipment [0]"
 mission "Tycho Crater Shipyards Shipment [1]"
 	name "Shipment to <planet>"
 	description "Deliver <cargo> to <destination>, the home of Tycho Crater Shipyards, a constituent shipbuilding company of the Republic Navy Yard and the main shipyard of Sol. Payment is <payment>."
-	cargo "ship alloys" 5 2 .1
+	cargo "Ship Alloys" 5 2 .1
 	job
 	repeat
 	to offer
@@ -250,8 +250,8 @@ mission "Tycho Crater Shipyards Shipment [1]"
 
 mission "Tycho Crater Shipyards Shipment [2]"
 	name "Shipment to <planet>"
-	description "Deliver <cargo> to <destination>, the home of Tycho Crater Shipyards, a constituent shipbuilding company of the Republic Navy Yard and the main shipyard of Sol. Payment is <payment>."
-	cargo "ship systems" 5 2 .1
+	description "Deliver <cargo> to <destination>, the home of Tycho Crater Shipyards, a constituent of the Republic Navy Yard. Payment is <payment>."
+	cargo "Ship Systems" 5 2 .1
 	job
 	repeat
 	to offer

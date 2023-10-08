@@ -1075,7 +1075,7 @@ mission "Urgent Deep Sec Consultants [1]"
 
 mission "Lionheart Shipment [0]"
 	name "Shipment to <planet>"
-	description "Deliver <cargo> to <destination>, the home of Lionheart Industries, the main shipyard of the Deep that is known for its advanced and experimental designs. Payment is <payment>."
+	description "Deliver <cargo> to <destination>, the home of Lionheart Industries, known for its advanced and experimental designs. Payment is <payment>."
 	cargo "weapons" 5 2 .1
 	job
 	repeat
@@ -1093,8 +1093,8 @@ mission "Lionheart Shipment [0]"
 
 mission "Lionheart Shipment [1]"
 	name "Shipment to <planet>"
-	description "Deliver <cargo> to <destination>, the home of Lionheart Industries, the main shipyard of the Deep that is known for its advanced and experimental designs. Payment is <payment>."
-	cargo "ship alloys" 5 2 .1
+	description "Deliver <cargo> to <destination>, the home of Lionheart Industries, known for its advanced and experimental designs. Payment is <payment>."
+	cargo "Ship Alloys" 5 2 .1
 	job
 	repeat
 	to offer
@@ -1111,8 +1111,8 @@ mission "Lionheart Shipment [1]"
 
 mission "Lionheart Shipment [2]"
 	name "Shipment to <planet>"
-	description "Deliver <cargo> to <destination>, the home of Lionheart Industries, the main shipyard of the Deep that is known for its advanced and experimental designs. Payment is <payment>."
-	cargo "ship systems" 5 2 .1
+	description "Deliver <cargo> to <destination>, the home of Lionheart Industries, known for its advanced and experimental designs. Payment is <payment>."
+	cargo "Ship Systems" 5 2 .1
 	job
 	repeat
 	to offer
@@ -1129,7 +1129,7 @@ mission "Lionheart Shipment [2]"
 
 mission "Deep Sky Shipment [0]"
 	name "Shipment to <planet>"
-	description "Deliver <cargo> to <destination>, the home of Deep Sky, a research and manufacturing company that produces cutting-edge cybernetics, weapons, and starship equipment. Payment is <payment>."
+	description "Deliver <cargo> to <destination>, the home of Deep Sky, manufacturer of cutting-edge cybernetics, weapons, and starship equipment. Payment is <payment>."
 	cargo Metal 5 2 .1
 	job
 	repeat
@@ -1147,7 +1147,7 @@ mission "Deep Sky Shipment [0]"
 
 mission "Deep Sky Shipment [1]"
 	name "Shipment to <planet>"
-	description "Deliver <cargo> to <destination>, the home of Deep Sky, a research and manufacturing company that produces cutting-edge cybernetics, weapons, and starship equipment. Payment is <payment>."
+	description "Deliver <cargo> to <destination>, the home of Deep Sky, manufacturer of cutting-edge cybernetics, weapons, and starship equipment. Payment is <payment>."
 	cargo Electronics 5 2 .1
 	job
 	repeat

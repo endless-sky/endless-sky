@@ -580,7 +580,7 @@ mission "Paradise Job: Wilderness Retreat"
 
 mission "Gemini Shipyards Shipment [0]"
 	name "Shipment to <planet>"
-	description "Deliver <cargo> to <destination>, the home of Gemini Shipyards, a constituent shipbuilding company of the Republic Navy Yard and one of the most advanced shipyards in human space. Payment is <payment>."
+	description "Deliver <cargo> to <destination>, the home of Gemini Shipyards, a constituent of the Republic Navy Yard and one of the most advanced shipyards in human space. Payment is <payment>."
 	cargo "weapons" 5 2 .1
 	job
 	repeat
@@ -607,8 +607,8 @@ mission "Gemini Shipyards Shipment [0]"
 
 mission "Gemini Shipyards Shipment [1]"
 	name "Shipment to <planet>"
-	description "Deliver <cargo> to <destination>, the home of Gemini Shipyards, a constituent shipbuilding company of the Republic Navy Yard and one of the most advanced shipyards in human space. Payment is <payment>."
-	cargo "ship systems" 5 2 .1
+	description "Deliver <cargo> to <destination>, the home of Gemini Shipyards, a constituent of the Republic Navy Yard and one of the most advanced shipyards in human space. Payment is <payment>."
+	cargo "Ship Systems" 5 2 .1
 	job
 	repeat
 	to offer
