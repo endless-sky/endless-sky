@@ -72,7 +72,7 @@ ship "Anomalocaris"
 	explode "medium explosion" 30
 	explode "large explosion" 14
 	"final explode" "final explosion medium"
-	description "First created during the Hai's initial conflicts with the Sheragi, the Anomalocaris was supposedly one of the most agile Hai warships of its time. Its high cargo capacity and low engine space suggest the first designs of the ship were intended for mining or freighting, but this also made it useful for looting enemy ships and carrying ammunition. Vessels from that time used a more expensive material, allowing this ship to take quite a pounding, especially from big impacts."
+	description "First created during the Hai's initial conflicts with the Sheragi, the Anomalocaris was supposedly one of the most agile Hai warships of its time. Its high cargo capacity and low engine space suggest the first designs of the ship were intended for mining or freighting, but also made it useful for looting enemy ships and carrying ammunition. Vessels from that time used a more expensive material, allowing this ship to take quite a pounding, especially from larger impacts."
 
 ship "Anomalocaris" "Anomalocaris (Venerable)"
 	add attributes
@@ -91,7 +91,7 @@ ship "Anomalocaris" "Anomalocaris (Venerable)"
 		`"Bondir" Atomic Steering`
 		"Hyperdrive"
 		"Pulse Rifle" 20
-	description "First created during the Hai's initial conflicts with the Sheragi, the Anomalocaris was supposedly one of the most agile Hai warships of its time. Its high cargo capacity and low engine space suggest the first designs of the ship were intended for mining or freighting, but this also made it useful for looting enemy ships and carrying ammunition. Vessels from that time used a more expensive material, allowing this ship to take quite a pounding, especially from big impacts, although its time under water may have damaged it."
+	description "First created during the Hai's initial conflicts with the Sheragi, the Anomalocaris was supposedly one of the most agile Hai warships of its time. Its high cargo capacity and low engine space suggest the first designs of the ship were intended for mining or freighting, but also made it useful for looting enemy ships and carrying ammunition. Vessels from that time used a more expensive material, allowing this ship to take quite a pounding, especially from larger impacts, although its time under water may have damaged it."
 
 ship "Aphid"
 	sprite "ship/hai aphid"
@@ -1064,7 +1064,7 @@ ship "Sea Scorpion" "Sea Scorpion (Ion)"
 		"Pulse Rifle" 15
 
 # These are prototype equipped ship that do not spawn normally, as such they are guarded against boarding,
-# although part of the crew on the ship are engineers monitering the success of the weapons.
+# although part of the crew on the ship are engineers monitoring the success of the weapons.
 ship "Sea Scorpion" "Sea Scorpion (Ionic)"
 	crew 30
 	outfits

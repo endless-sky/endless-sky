@@ -96,8 +96,8 @@ mission "Hai Legacy 1"
 				`	(Never.)`
 					decline
 			label first
-			`As you're browsing the shipyard, you are discreetly approached by a hooded figure. When you stop to see what they want to say, they grab and pull your arm to follow them. "Keep walking," the stranger hisses. After pointing at and commenting on random ship, as if to mimic the actions of regular passerby, they address you again. "My associates and I have a lucrative business proposition for you. If you are interested, come find us at these coordinates." Without waiting for a response, they fold a piece of paper into your hand before quickly fading into the crowd. It lists only a location, that you cross-reference with the local maps: a beach on the other side of the planet.`
-			`	However, it also mentions you need to have at least 10 million in cash! It may be a good idea to save up or take a debt and then come back another day to head to the location.`
+			`As you're browsing the shipyard, you are discreetly approached by a hooded figure. When you stop to see what they want to say, they grab and pull your arm to follow them. "Keep walking," the stranger hisses. After pointing at and commenting on random ships, as if to mimic the actions of regular a passerby, they address you again. "My associates and I have a lucrative business proposition for you. If you are interested, come find us at these coordinates." Without waiting for a response, they fold a piece of paper into your hand before quickly fading into the crowd. It lists only a location, that you cross-reference with the local maps: a beach on the other side of the planet.`
+			`	However, it also mentions you need to have at least 10 million in cash! It may be a good idea to save up or take a debt and then come back another day to head to the specified location.`
 				to display
 					"credits" < 10000000
 				defer
@@ -107,7 +107,7 @@ mission "Hai Legacy 1"
 				`	(Maybe another time.)`
 					defer
 			label go
-			`	While you're pondering whether there will be enough space to land your ship at the destination, you notice a train ticket was placed in your pocket, with instructions written on the back. You proceed to take the train and hike a few hours to get the rest of the way there.`
+			`	While you're pondering whether there will be enough space to land your ship at the destination, you notice a train ticket has been placed in your pocket, with instructions written on the back. You proceed to take the train and hike a few hours to get the rest of the way there.`
 			`	Upon arriving, you take a look around, looking for the stranger. Except for a cave, some sparse vegetation, and of course the beach itself, you cannot see much of interest in the vicinity. You double check that these are the right coordinates and look around some more.`
 			`	After waiting for some time, you spot two hooded figures further down the beach making their way toward you. You start to doubt whether or not this was a good idea, but it's too late to back out now. Even when they're close enough to speak, their faces somehow remain impossible to glimpse beneath the hoods. "Hello, <last>," one says to you. "We are sorry for all the complications, but the truth is, we cannot afford to take risks. It is best for all if you do not know who we are, and we needed a secluded area to speak to you."`
 			choice
@@ -166,7 +166,7 @@ mission "Hai Legacy 1"
 					to display
 						not "unfettered: ocean dialog"
 					goto ocean
-				`	"No thanks. I'm not looking to add another ship to my fleet."`
+				`	"No, thanks. I'm not looking to add another ship to my fleet."`
 			`	"A shame. We will probably not meet again. Farewell," one says. They signal the ship to submerge into the ocean again and walk off along the beach.`
 				goto "train back"
 			label pilot
@@ -244,7 +244,7 @@ mission "Hai Legacy 2"
 		has "ship model: Anomalocaris"
 	on offer
 		conversation
-			`Upon returning to the spaceport, one could say the cargo finds you more than you find it. A worker immediately greets you while others begin to fill your ship with crates, which a quick check shows have already been allocated for this ship in your name. All that is left to do is to bring it to <destination> by <day> for the promised sum of <payment>.`
+			`Upon returning to the spaceport, one could say the cargo finds you more than you find it. A worker immediately greets you while others begin to fill your ship with crates, which a quick check shows have already been allocated for this ship in your name. All that is left to do is to bring it to <destination> by <date> for the promised sum of <payment>.`
 			choice
 				`(Prepare for takeoff.)`
 			`	As you head to the bridge, preparing to take off from the planet, you notice a message on the command panel, probably from your "associates:"`
@@ -328,8 +328,8 @@ mission "Hai Legacy 3"
 					goto scare
 			`	"I guess we'll find out." says a third.`
 			label scare
-			`	The leader of the group gets closer and addresses you in a more serious tone. "You should be aware that this is not a friendly competition. This is a fight for you to truly earn your place with this ship. As far as I'm concerned, you are an enemy. Make no mistakes about that. This fight has a few... implicit rules. We would assume everyone know them, but since you are an outsider I will explain them to you: naturally since this is a duel nobody other than us here may interfere, but also know that being disabled counts as a loss. Don't even think about tricking us by switching to something other than this Anomalocaris, or we will not bother showing up! You must prove you deserve this ship, after all.`
-			`	"Furthermore we can understand some may die in glorious battle, and to the victor go the spoils, so looting as allowed. Capturing, however, is off limits. Do so, and all the Unfettered will be against you."`
+			`	The leader of the group gets closer and addresses you in a more serious tone. "You should be aware that this is not a friendly competition. This is a fight for you to truly earn your place with this ship. As far as I'm concerned, you are an enemy. Make no mistakes about that. This fight has a few... implicit rules. We would assume everyone know them, but since you are an outsider I will explain them to you. Naturally, since this is a duel nobody other than us here may interfere, but also know that being disabled counts as a loss. Don't even think about tricking us by switching to something other than this Anomalocaris, or we will not bother showing up! You must prove you deserve this ship, after all.`
+			`	"Furthermore, we can understand some may die in glorious battle, and to the victor go the spoils, so looting as allowed. Capturing, however, is off limits. Do so, and all the Unfettered will be against you."`
 			# This is a "warning" for the incoming extra ship that happens because you killed/captured 10 Shield Beetles or so.
 			`	He suddenly look at you intensively, straight in the eyes, "We sometimes bend the rules for our friends, but that is not your case," he says with a sudden change of tone, before leaving.`
 				to display
@@ -350,7 +350,7 @@ mission "Hai Legacy 3"
 		dialog
 			`The enemy ships hail you. "You have failed the challenge. We will take the ship from you when we see fit. I'll fix your ship and leave you alone for a bribe, but I suggest you land on an Unfettered world and return the ship to us, with a most generous compensation. If you try to keep it from us, we'll do things the hard way."`
 			`	"Be warned, however, that your truce with us ends as soon as you land. This is not necessarily the end, <last>, you will simply have to prove yourself another way."`
-			`	"Oh and a word of advise: maybe you should have outfitted your ship differently, or used your range advantage by moving away at full thrust, before turning back to fire on us."`
+			`	"Oh and a word of advice: maybe you should have outfitted your ship differently, or used your range advantage by moving away at full thrust, before turning back to fire on us."`
 	on fail
 		"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 		# I would deduce the reputation here but being on a planet that becomes hostile as you land seem to cause issues for the game.
@@ -363,7 +363,7 @@ mission "Hai Legacy 3"
 			not "unfettered: refused to sell the bug"
 		to despawn
 			"total ships" != 1
-		personality unconstrained launching plunders staying target heroic disables
+		personality unconstrained launching plunders staying target heroic disables marked
 		ship "Lightning Bug (Ionic)" "Eraser"
 		ship "Lightning Bug" "Thunder"
 		ship "Lightning Bug (Unfettered Shipyards)" "Lighting"
@@ -387,7 +387,7 @@ mission "Hai Legacy 3"
 			"total ships" == 1
 		to despawn
 			"total ships" != 1
-		personality unconstrained entering plunders target heroic mute
+		personality unconstrained entering plunders target heroic mute marked
 		ship "Sea Scorpion (Shredder)" "Requiem"
 		system "Hi Yahr"
 		conversation
@@ -405,7 +405,7 @@ mission "Hai Legacy 3"
 		to spawn
 			not "unfettered: refused to sell the bug"
 		ship "Lightning Bug (Unfettered Shipyards)"
-		personality launching staying surveillance
+		personality launching staying surveillance marked
 		on disable
 			dialog `Mera hails you: "Stop! The duel will not be valid if you destroy us!"`
 		on kill
