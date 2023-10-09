@@ -507,7 +507,7 @@ outfit "Proton Gun"
 		"firing energy" 15
 		"firing force" 2
 		"firing heat" 60
-	description "The Proton Gun started out as the Syndicate's attempt to reverse engineer and mass produce a cheap competitor for the Particle Cannon. Unfortunately, they were unable to find a reliable way to keep the beam coherent, but the resulting weapon is still popular with some captains, particularly as an anti-fighter gun."
+	description "The Proton Gun started out as the Syndicate's attempt to reverse engineer and mass-produce a cheap competitor for the Particle Cannon. Unfortunately, they were unable to find a reliable way to keep the beam coherent, but the resulting weapon is still popular with some captains, particularly as an anti-fighter gun."
 
 outfit "Proton Fragment"
 	weapon
@@ -681,7 +681,8 @@ outfit "Flamethrower Projectile"
 		"hit effect" "flamethrower hit"
 		"die effect" "flamethrower die"
 		"inaccuracy" 20
-		"lifetime" 22
+		"lifetime" 18
+		"random lifetime" 8
 		"damage dropoff" 0 198
 		"dropoff modifier" .5
 		"shield damage" .8
@@ -991,7 +992,6 @@ outfit "Javelin Mini Pod"
 		"inaccuracy" 1
 		"velocity" 10
 		"lifetime" 60
-		"range override" 300
 		"reload" 40
 		"burst count" 40
 		"burst reload" 15
@@ -1292,7 +1292,6 @@ outfit "Heavy Rocket Pod"
 		"lifetime" 125
 		"range override" 1000
 		"reload" 500
-		"range override" 500
 		"burst count" 2
 		"burst reload" 240
 		"firing energy" 1

@@ -208,11 +208,11 @@ ship "Ember Waste Node"
 		"jump drive" 1
 	outfits
 		Mouthparts? 5
-	gun 3 -83.5 Mouthparts?
-	gun -3 -83.5 Mouthparts?
-	gun 9 -104 Mouthparts?
 	gun -9 -104 Mouthparts?
+	gun 9 -104 Mouthparts?
 	gun 0 -84 Mouthparts?
+	gun -3 -83.5 Mouthparts?
+	gun 3 -83.5 Mouthparts?
 	leak "blood" 40 40
 	explode "blood" 40
 	"final explode" "void sprite adult death"
@@ -292,7 +292,7 @@ ship "Embersylph"
 		"gaslining" 1
 		"inscrutable" 1
 		"atmospheric scan" 1000
-		"shield resistance" 1
+		"ion resistance" 1
 	outfits
 		"Absorption Organ" 1
 	turret 0 0 "Absorption Organ"

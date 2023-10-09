@@ -20,7 +20,6 @@ Files:
  images/outfit/fission?hai*
  images/outfit/fusion?hai*
  images/outfit/heavy?anti-missile?hai*
- images/ship/mbounder*
  images/ship/mfury*
 Copyright: Maximilian Korber
 License: CC-BY-SA-4.0
@@ -935,13 +934,16 @@ License: CC-BY-SA-4.0
 Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
 
 Files:
+ images/projectile/sunbeam/*
  images/ship/blackbird*
+ images/ship/bounder*
  images/ship/falcon*
  images/ship/hawk*
  images/ship/quicksilver*
  images/ship/scout*
  images/ship/sparrow*
  images/thumbnail/blackbird*
+ images/thumbnail/bounder*
  images/thumbnail/falcon*
  images/thumbnail/hawk*
  images/thumbnail/quicksilver*
@@ -963,8 +965,10 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser and Anarchist2 under the same license. Incorporating texture made with JSPlacement by WindMillArt <https://windmillart.net/>.
 
 Files:
+ images/ship/mbounder*
  images/ship/mfalcon*
  images/ship/mquicksilver*
+ images/thumbnail/mbounder*
  images/thumbnail/mfalcon*
  images/thumbnail/mquicksilver*
 Copyright: Maximilian Korber
@@ -1120,6 +1124,7 @@ Files:
  images/outfit/swatter*
  images/outfit/thorax?cannon*
  images/outfit/*rift*
+ images/outfit/decoy?plating*
  images/planet/dyson1*
  images/planet/dyson2*
  images/planet/dyson3*
@@ -1235,9 +1240,9 @@ Files:
  images/_menu/haze-blackbody+*
  images/_menu/haze-full+*
  images/_menu/haze-yellow+*
- images/planet/browndwarf-l-rouge*
+ images/planet/browndwarf-l-rogue*
  images/planet/browndwarf-l*
- images/planet/browndwarf-y-rouge*
+ images/planet/browndwarf-y-rogue*
  images/planet/browndwarf-y*
 Copyright: Lia Gerty (https://github.com/ravenshining)
 License: CC-BY-SA-4.0
@@ -1249,7 +1254,7 @@ License: CC-BY-SA-4.0
 Comment: Derived from public domain work previously submitted to Endless Sky.
 
 Files:
- images/planet/browndwarf-t-rouge*
+ images/planet/browndwarf-t-rogue*
  images/planet/browndwarf-t*
  images/planet/saturn*
 Copyright: Lia Gerty (https://github.com/ravenshining)
@@ -1444,11 +1449,22 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Nate Graham (under the same license).
 
 Files:
+ images/outfit/refueling?module*
+Copyright: Becca Tommaso
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
  images/outfit/tripulse?shredder*
  images/outfit/value?detector*
 Copyright: Ejo Thims
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/outfit/heliarch?license*
+Copyright: Becca Tommaso
+License: CC-BY-SA-4.0
 
 Files:
  images/star/a-dwarf*
@@ -1629,6 +1645,13 @@ Copyright: Ejo Thims <https://github.com/EjoThims>
 License: CC-BY-SA-4.0
 
 Files:
+ images/ship/hai?emperor?beetle*
+ images/thumbnail/hai?emperor?beetle*
+Copyright: Ejo Thims <https://github.com/EjoThims>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Becca Tommaso and Michael Zahniser (under the same license)
+
+Files:
  images/planet/stationh-ancient0*
  images/planet/stationh-ancient1*
  images/planet/stationh-ancient2*
@@ -1644,6 +1667,7 @@ License: CC-BY-SA-3.0
 Comment: Derived from works by Becca Tommaso (under the same license).
 
 Files:
+ images/outfit/shield?refactor?module*
  images/ship/carrier*
  images/ship/combat?drone*
  images/ship/cruiser*
@@ -1688,16 +1712,20 @@ Files:
  images/effect/*vi?flare*
  images/hardpoint/acuit*
  images/hardpoint/ballistic*
+ images/hardpoint/burrower*
  images/hardpoint/choleric*
  images/hardpoint/firestorm?battery*
+ images/hardpoint/ion?torch*
  images/hardpoint/irate*
  images/outfit/acuit*
+ images/outfit/acumen*
  images/outfit/ameliorate?cell*
  images/outfit/astuit*
  images/outfit/ballistic?cannon*
  images/outfit/ballistic?turret*
  images/outfit/battlezone?battery*
  images/outfit/brawl?cell*
+ images/outfit/burrower*
  images/outfit/campaign?core*
  images/outfit/choleric?cannon*
  images/outfit/choleric?turret*
@@ -1706,6 +1734,7 @@ Files:
  images/outfit/firestorm?rack*
  images/outfit/firestorm?torpedo*
  images/outfit/guile?pulse?laser*
+ images/outfit/ion?torch*
  images/outfit/irate?carronade*
  images/outfit/irate?cannon*
  images/outfit/irate?turret*
@@ -1722,9 +1751,13 @@ Files:
  images/outfit/*torch?thruster?vi*
  images/outfit/warforge?battery*
  images/outfit/warzone?core*
+ images/planet/asura*
+ images/planet/*beryl*
  images/planet/tschyss*
  images/planet/*vajra*
  images/planet/vesvi*
+ images/planet/yniu?eiu*
+ images/planet/yniu?ena*
  images/projectile/acuit*
  images/projectile/astuit*
  images/projectile/ballistic*
@@ -1734,7 +1767,9 @@ Files:
  images/projectile/irate*
  images/projectile/locust?blaster*
  images/projectile/mandible?cannon*
+ images/projectile/neutron?bolt*
  images/projectile/thorax?cannon*
+ images/projectile/torch*
  images/scene/rulei?flash*
  images/ship/*astral*
  images/ship/*ayym*
@@ -1742,6 +1777,7 @@ Files:
  images/ship/gegno?augen*
  images/ship/gegno?coesite*
  images/ship/gegno?conglomerate*
+ images/ship/gegno?corundum*
  images/ship/gegno?dolomite*
  images/ship/gegno?dunite*
  images/ship/gegno?eclogite*
@@ -1749,10 +1785,13 @@ Files:
  images/ship/gegno?feldspar*
  images/ship/gegno?felsic*
  images/ship/gegno?gneiss*
+ images/ship/gegno?granofel*
  images/ship/gegno?granulite*
  images/ship/gegno?gypsum*
  images/ship/gegno?halite*
+ images/ship/gegno?kyanite*
  images/ship/gegno?mica*
+ images/ship/gegno?protolith*
  images/ship/gegno?schist*
  images/ship/gegno?shale*
  images/ship/gegno?slate*
@@ -1761,7 +1800,7 @@ Files:
  images/ship/modified?dromedary*
  images/ship/modified?dromedary?wreck*
  images/ship/*vyrmeid*
- images/ship/*vyuira*
+ images/ship/*vyuir*
  images/thumbnail/gegno?augen*
  images/thumbnail/gegno?coesite*
  images/thumbnail/gegno?conglomerate*
@@ -1775,6 +1814,7 @@ Files:
  images/thumbnail/gegno?granulite*
  images/thumbnail/gegno?gypsum*
  images/thumbnail/gegno?halite*
+ images/thumbnail/gegno?kyanite*
  images/thumbnail/gegno?mica*
  images/thumbnail/gegno?schist*
  images/thumbnail/gegno?shale*
@@ -1782,7 +1822,7 @@ Files:
  images/thumbnail/gegno?tridymite*
  images/thumbnail/modified?dromedary*
  images/thumbnail/modified?dromedary?wreck*
- images/thumbnail/vyuira*
+ images/thumbnail/vyuir*
 Copyright: Saugia <https://github.com/Saugia>
 License: CC-BY-SA-4.0
 
@@ -1792,6 +1832,7 @@ Files:
  images/outfit/teciimach?bay*
  images/outfit/teciimach?pod*
  images/planet/gas3-c*
+ images/planet/gas7-r*
  images/ship/aerie*
  images/ship/bactrian*
  images/ship/hailstone*
@@ -1839,6 +1880,7 @@ Files:
  sounds/human?launch*
  sounds/human?launch?external*
  sounds/ion?rain*
+ sounds/ion?torch*
  sounds/korath?afterburner*
  sounds/korath?launch*
  sounds/korath?launch?external*
@@ -1847,6 +1889,7 @@ Files:
  sounds/remnant?afterburner*
  sounds/remnant?launch*
  sounds/remnant?launch?external*
+ sounds/neutron?bolt*
  sounds/scin?launch*
  sounds/sheragi?launch*
  sounds/swarm?missile*
@@ -2021,6 +2064,18 @@ Copyright: Becca Tommaso
 License: CC0
 Comment: Derived from works by ESA/Rosetta spacecraft (under the same license).
 
+
+Files:
+ images/outfit/small?recovery?module*
+Copyright: 1010todd
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/outfit/anti-materiel?gun*
+Copyright: 1010todd
+License: CC-BY-SA-4.0
+
 Files:
  images/outfit/android*
  images/outfit/skadetear*
@@ -2057,11 +2112,24 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Becca Tommaso and Michael Zahniser (under the same license).
 
 Files:
+ images/land/badlands13*
+ images/land/beach15*
  images/land/city19*
  images/land/city20*
  images/land/city21*
  images/land/city22*
  images/land/city23*
+ images/land/city24*
+ images/land/city25*
+ images/land/desert14*
+ images/land/desert15*
+ images/land/forest10*
+ images/land/mountain27*
+ images/land/mountain28*
+ images/land/mountain29*
+ images/land/mountain30*
+ images/land/sea22*
+ images/land/snow22*
 Copyright: Various
 License: CC0
 Comment: Taken from unsplash.com and cropped.
@@ -2082,6 +2150,17 @@ Files:
  images/ui/music?volume*
 Copyright: RisingLeaf (https://github.com/RisingLeaf)
 License: CC-BY-SA-4.0
+
+Files:
+ images/land/hills11*
+Copyright: CyberJudas (cyberjudas@dnmx.org)
+License: CC-BY-SA-4.0
+
+Files:
+ images/ui/sales?key*
+Copyright: Dave Flowers
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
