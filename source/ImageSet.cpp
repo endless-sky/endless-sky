@@ -284,7 +284,7 @@ void ImageSet::Load() noexcept(false)
 	}
 
 	auto FillSwizzleMasks = [&](vector<string> &toFill, unsigned int intendedSize) {
-		if(toFill.size() == 1 && !toFill.empty() && intendedSize > 1)
+		if(toFill.size() == 1 && intendedSize > 1)
 			for(unsigned int i = toFill.size(); i < intendedSize; i++)
 				toFill.emplace_back(toFill.back());
 	};
