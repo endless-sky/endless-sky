@@ -339,7 +339,7 @@ void Body::UnmarkForRemoval()
 void Body::Turn(double amount)
 {
 	angle += amount;
-	if(center.X() == 0. && center.Y() == 0.)
+	if(!center)
 		return;
 
 	auto RotatePointAroundOrigin = [](Point &toRotate, double radians) -> Point {
