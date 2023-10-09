@@ -527,14 +527,17 @@ mission "Battle over Zydee"
 
 mission "Return to Giaru Gegno"
 	landing
-	description `The Quarg known as Adrauni has summoned you back to <destination> to discuss your future with the Gegno.`
+	description `The Quarg known as Adrauni has summoned you back to <destination> to discuss their negotiations with the Gegno.`
+	source
+		not planet "Giaru Gegno"
 	destination "Giaru Gegno"
 	to offer
 		has "event: gegno quarg talks"
 		not "Gegno: Genocide Defense: offered"
 	on enter
-		dialog `Upon departure of <origin>, you receive an incoming message on your communications device. "Greetings, <firslas>. This message is from Adrauni. Please return to our ringworld at your earliest convenience, as there is some to discuss."`
-			accept
+		dialog
+			`Upon departure from <origin>, you receive an incoming message. "Greetings, human <first> <last>. This message is from Adrauni. Please return to our ringworld at your earliest convenience, as there is some discussion to be had."`
+				accept
 
 
 mission "Gegno Anticipation"
@@ -547,7 +550,7 @@ mission "Gegno Anticipation"
 		not "Gegno: Genocide Defense: offererd"
 	on offer
 		conversation
-			`After you land on <planet>, you are greeted by a few Quarg who motion you to follow them. As they escort you through the halls of the ring, you notice that the lack of Gegno presence hasn't changed since your last visit. Down at the end of the next corridor you see Adrauni waiting for you, however beside him is a Gegno in some form of strange attire. Once you meet up with them, the other Quarg head off into a different direction, and Adrauni begins walking down another hallway. "Please, indulge in accompanying us."`
+			`After you land on the ringworld you are greeted by a small group of Quarg who motion you to follow them. As they escort you through the halls of the ring, you notice that the lack of Gegno presence hasn't changed since your last visit. Down at the end of the next corridor you see Adrauni waiting for you, however beside him is a Gegno in some form of strange attire. Once you meet up with them, the other Quarg head off into a different direction, and Adrauni begins walking down another hallway. "Please, indulge in accompanying us."`
 			`	As you follow them, Adrauni begins to speak while holding out one arm. "If you may, as I believe humans strangely call it, humor me, what do you suspect was the result of my negotiations with the Gegno?"`
 			choice
 				`	"That they will accept me?"`
@@ -555,8 +558,6 @@ mission "Gegno Anticipation"
 					goto "deny me"
 				`	"I don't know."`
 					goto "unsure"
-
-
 
 			`	After a brief delay, Adrauni turns to the Gegno, mutters something in their language, then responds to you. "I see. And what do you propose is the reasoning for that?"`
 			choice
@@ -566,27 +567,20 @@ mission "Gegno Anticipation"
 				`	"I don't know."`
 					goto "indecisive"
 
-			`	"That is a rather human response. However, do not conflate your value in assistance with theirs. Even should you provide aids beneficial to the Gegno, a beneficiary response in return is not necessitated. Although you heeded my warnings at this juncture, you simply are doing what the Gegno desired from the beginning, and that is to be left alone."`
+			`	Adrauni ponders for a few moments as you continue walking through the impeccable interior of the ringworld. "That is a rather human response. However, do not conflate your value in assistance with theirs. Even should you provide beneficial assistance to the Gegno, a beneficiary response in return is not necessitated. You have heeded my warnings at this juncture, yet you simply are doing what the Gegno desired from the beginning, and that is to be left alone."`
 			choice
 				`	"Maybe it's better I do leave them alone."`
+					goto "better"
 				`	"There must be something I can do."`
+					goto "understand"
 
 			label "convince"
-			`	"Did I not mention before that we Quarg have attempted such persuasions? It is not within our realm to convince the Gegno of anything. They are devoted to their own, and will go beyond any boundary to oppose counsel, even by us Quarg."`
+			`	Adrauni gives you a slight glare while continuing through the ringworld. "Do you not recall my prior mention of us Quarg having attempted such persuasions? It is not within our realm to convince the Gegno of anything. They are devoted to their own, and will go beyond any boundary to oppose counsel, even by us Quarg."`
 			choice
 				`	"Maybe it's better I do leave them alone."`
+					goto "better"
 				`	"There must be something I can do."`
-
-			label "before"
-			`	"It is wise that you follow my instruction. If it weren't as such, I may not be the one speaking to you at this momemnt. Or perhaps it would be no one. Unfortunately, we cannot do anything further for you here."`
-			choice
-				`	"Maybe it's better I do leave them alone."`
-				`	"There must be something I can do."`
-
-			`	You walk in silence for a short but awkward period of time. A few moments later, Adrauni replies. "It would appear you now understand your circumstance. It is no longer what what I, nor the Quarg, can do for you. It is what you can do for yourself."`
-				goto "visit"
-
-
+					goto "understand"
 
 			label "deny me"
 			`	After a brief delay, Adrauni turns to the Gegno, mutters something in their language, then responds to you. "I see. And what do you propose is the reasoning for that?"`
@@ -597,33 +591,45 @@ mission "Gegno Anticipation"
 				`	"I don't know."`
 					goto "indecisive"
 
-			`	"I see. Indeed, the Gegno are wary of you." Adrauni then gives a strange look towards the Gegno. You aren't sure what it's thinking, but you could have sworn you saw a very brief hint of purple appear on it's skin. "However, you have found yourself in situations we have not. Perhaps that could continue to be the case."`
+			`	"I see. Indeed, the Gegno are wary of you." After a few seconds, Adrauni gives a strange look towards the Gegno. You aren't sure what it's thinking, but you could have sworn you saw a brief hint of purple appear on the Quarg's skin. The Gegno looks back in what appears to be confusion, or perhaps curiousity, but it is hard to tell. They ask something in their langauge, but recieves no response. A few more moments go by before Adrauni speaks again. "You have found yourself in situations we have not. We as a species embraced contact with the Gegno. However, you, as a rather bodacious individual, persist as the only human here. Perhaps there remain implications in such a distinction."`
 			choice
 				`	"Are you saying there's something that I can do?"`
+					goto "understand"
 				`	"I'm not sure I understand."`
+					goto "interest"
 
-			label "visit"
-			`	Visit <destination>.`
-				accept
-
-
+			label "before"
+			`	"I see." Adrauni blinks slowly while staring at you. It's almost as if it is surprised, or at the very least, was not expecting that response. "It is wise that you follow my instruction. If it weren't as such, I may not be the one speaking to you at this momemnt. Or perhaps it would be no one." It then looks forward again as you continue on your stroll. "Unfortunately, the Quarg are unable to further assist you in this matter."`
+			choice
+				`	"Maybe it's better I do leave them alone."`
+					goto "better"
+				`	"There must be something I can do."`
+					goto "understand"
 
 			label "unsure"
-			`	Adrauni turns to you briefly, staring at you blankly, then turns to the Gegno and mutters something in their language before responding to you. "What leads you to a lack of conclusion?"`
-			`	Test, this isn't finished. Accepting.`
+			`	Adrauni turns to you briefly, staring at you blankly, then turns to the Gegno and mutters something in their language before responding to you. "What leads you to your confusion?"`
+			`	Test.`
 				accept
 
 			label "indecisive"
 			`	Test.`
 				accept
 
+			label "interest"
+			`	"I had mentioned prior that the Gegno find concern in your presence. I had also mentioned there existed, however minimal, a curiousity accompanying that concern. You are not here at the whim of your species, you are here at your own desire. Individualism in such a degree may be foreign to the Gegno. Actions you take may be that of a human, but are not willed by that of humanity. Thus, they are dealing with you, not your species." Blinking slowly, Adrauni then turns to the Gegno and begins a somewhat lengthy conversation with them.`
+				goto "visit"
 
+			label "understand"
+			`	You walk in silence for an awkward period of time. The strange architecture of the ringworld does little to comfort you, as it feels like you've walked down the same path several times now. A few moments later, you eventually begin following Adrauni and the Gegno down what appears to be a different section, though it is strangely wider than previous ones. Before you begin asking more questions, Adrauni finally replies. "It is apparent that you may understand something of your circumstance. It is no longer what I, rather, the Quarg, can do for you. It is what you can do for yourself."`
+				goto "visit"
 
+			label "better"
+			`	Test.`
+				goto visit
 
-
-
-
-
+			label "visit"
+			`	Visit <destination>.`
+				accept
 
 
 # mission "Gegno Intervention"
@@ -699,8 +705,6 @@ mission "Gegno Anticipation"
 #				has "Gegno Intervention: offered"
 #			`Test.`
 #				decline
-
-
 
 
 # jobs (mining)
