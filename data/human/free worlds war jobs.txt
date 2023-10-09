@@ -648,7 +648,7 @@ mission "FW Bulk Frontline Resupply [1]"
 	name `Resupply <planet>`
 	description `The frontlines of the war are in need of a resupply. Immediately deliver <cargo> to <destination> by <date>. Payment is <payment>.`
 	deadline 2 1
-	cargo "medical" 25 2 .95
+	cargo "Medical" 25 2 .95
 	to offer
 		random < 15
 		has "salary: Free Worlds"
