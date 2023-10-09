@@ -32,7 +32,7 @@ mission "FW Epilogue: Ijs and Katya"
 					goto excitement
 				`	"It's kind of hard to adjust to civilian life."`
 					goto adjust
-				`	"Is this it? Is the game over now that I completed the free worlds campaign?"`
+				`	"Is this it? Is the game over now that humanity's at peace again?"`
 					goto game
 			
 			label excitement
