@@ -237,7 +237,7 @@ mission "Instruct Novice Pilot"
 
 
 mission "Small Pirate gambling"
-	description "Survive the pirate attack!"
+	invisible
 	minor
 	repeat
 	to offer
