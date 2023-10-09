@@ -190,7 +190,7 @@ government "Deep Security"
 	"hostile hail" "hostile deep"
 
 government "Deep Security (Hostile)"
-	display name "Deep Security"
+	"display name" "Deep Security"
 	swizzle 0
 	"player reputation" -1000
 	# The deep security ships are after the player specifically, so no "attitude toward"
