@@ -447,7 +447,7 @@ mission "Hai Legacy 3"
 			choice
 				`	"Thank you for your trust."`
 					goto trust
-				`	"No thanks; I don't want to pay that much just to be friends with the Unfettered."`
+				`	"No, thanks; I don't want to pay that much just to be friends with the Unfettered."`
 			action
 				"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 				log "Won a fight against a few Lightning Bugs in an Anomalocaris, but decided against paying the daily fee to land."
