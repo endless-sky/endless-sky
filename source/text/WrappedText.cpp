@@ -149,7 +149,7 @@ int WrappedText::Height() const
 
 
 
-// Get the height of the wrapped text.
+// Return the width of the longest line of the wrapped text.
 int WrappedText::Width() const
 {
 	return longestWidth;
