@@ -216,7 +216,7 @@ mission "Hai Legacy 1"
 				die
 			label miss
 			`	You miss your shot. Neither the ship nor the two Hai react, probably not viewing you as a threat. You still have time to do something else or try again. You feel like you heard a chuckle, but you're not sure where it came from.`
-				goto tryagain
+				goto "try again"
 	on defer
 		set "Hai Legacy 1: deferred"
 	on accept
