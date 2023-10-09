@@ -208,7 +208,7 @@ mission "Hai Legacy 1"
 				decline
 			label lucky??
 			`	You manage to land a lucky hit on what you assume to be the ship's navigation system, because it comes down, seemingly crashing. You feel like you hear a robotic voice cry out, but it's hard to tell with all the noise.`
-			`	Unfortunately, the crash is right on top you, and it seems more like a landing than an actual crash, especially considering the Hai are left mostly untouched, having taken a few leaps back right in time.`
+			`	Unfortunately, the crash is right on top of you, and it seems more like a landing than an actual crash, especially considering the Hai are left mostly untouched, having taken a few leaps back right in time.`
 				die
 			label lucky?
 			`	Probably thanks to the fact the ship's shields are down, and its depreciated state, you manage to land a very lucky shot, going through a layer of rust and severely damaging the reactor of the ship. The ship's speakers cry out, "MY REACTOR... NOT MY REACTOR!"`
