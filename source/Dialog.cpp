@@ -336,7 +336,7 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 	text.Wrap(message);
 
 	// If the dialog is too tall, then switch to wide mode
-	int maxHeight = Screen::Height() * 3/4;
+	int maxHeight = Screen::Height() * 3 / 4;
 	if(text.Height() > maxHeight)
 	{
 		isWide = true;
