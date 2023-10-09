@@ -354,7 +354,7 @@ mission "Hai Legacy 3"
 	on fail
 		"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 		# I would deduce the reputation here but being on a planet that becomes hostile as you land seem to cause issues for the game.
-		dialog `The Unfettered hail you. "You failed to complete the duel, and as such, are no longer authorized to land on our worlds. You will not enjoy unwarranted respect any longer!"`
+		dialog `The Unfettered hail you. "You failed to complete the duel, and as such, are no longer authorized to land on our worlds. You will not enjoy unwarranted respect any longer! It would be in your best interest to return the ship to us on Darkcloak, but any of our worlds will do."`
 	npc disable
 		government "Hai (Unfettered Challenger)"
 		to spawn
@@ -492,6 +492,12 @@ mission "Undeserved Anomalocaris"
 				to display
 					not "Hai Legacy 3: offered"
 			`	"We will give you another ship so you can leave, but you must surrender this one," one of them explains to you in a threatening tone.`
+			`	Another one steps forward, "In fact we will even allow you to keep the outfits, provided you give it to us on Darkcloak," they say in a somewhat diplomatic tone.`
+				to display
+					not "flagship planet: Darkcloak"
+			`	Another one steps forward, "Since you so kindly came to Darkcloak to deliver the ship to us, we will allow you to buy back any outfits you may still desire, as a courtesy," they say in a somewhat diplomatic tone.`
+				to display
+					has "flagship planet: Darkcloak"
 			choice
 				`	(Let them have it.)`
 				`	(Take off, now!)`
