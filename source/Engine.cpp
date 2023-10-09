@@ -353,7 +353,8 @@ void Engine::Place()
 			const Personality &person = ship->GetPersonality();
 			bool hasOwnPlanet = ship->GetPlanet();
 			bool launchesWithPlayer = (planet && planet->CanLand(*ship))
-					&& !(person.IsStaying() || person.IsWaiting() || hasOwnPlanet);
+					&& !person.IsStaying() && !person.IsWaiting()
+					&& (!hasOwnPlanet || (ship->IsYours() && ship->GetPlanet() == planet));
 			const StellarObject *object = hasOwnPlanet ?
 					ship->GetSystem()->FindStellar(ship->GetPlanet()) : nullptr;
 			// Default to the player's planet in the case of data definition errors.
@@ -503,8 +504,19 @@ void Engine::Step(bool isActive)
 	{
 		center = flagship->Position();
 		centerVelocity = flagship->Velocity();
-		if(flagship->IsHyperspacing() && Preferences::Has("Extended jump effects"))
-			centerVelocity *= 1. + pow(flagship->GetHyperspacePercentage() / 20., 2);
+		Preferences::ExtendedJumpEffects jumpEffectState = Preferences::GetExtendedJumpEffects();
+		if(flagship->IsHyperspacing() && jumpEffectState != Preferences::ExtendedJumpEffects::OFF)
+			centerVelocity *= 1. + pow(flagship->GetHyperspacePercentage() /
+				(jumpEffectState == Preferences::ExtendedJumpEffects::MEDIUM ? 40. : 20.), 2);
+		if(doEnterLabels)
+		{
+			doEnterLabels = false;
+			// Create the planet labels as soon as we entered a new system.
+			labels.clear();
+			for(const StellarObject &object : player.GetSystem()->Objects())
+				if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsAccessible(flagship.get()))
+					labels.emplace_back(labels, *player.GetSystem(), object);
+		}
 		if(doEnter && flagship->Zoom() == 1. && !flagship->IsHyperspacing())
 		{
 			doEnter = false;
@@ -1344,6 +1356,7 @@ void Engine::EnterSystem()
 		return;
 
 	doEnter = true;
+	doEnterLabels = true;
 	player.IncrementDate();
 	const Date &today = player.GetDate();
 
@@ -1469,13 +1482,6 @@ void Engine::EnterSystem()
 		Messages::Add(GameData::HelpMessage("basics 1"), Messages::Importance::High);
 		Messages::Add(GameData::HelpMessage("basics 2"), Messages::Importance::High);
 	}
-
-	// Create the planet labels.
-	labels.clear();
-	if(system)
-		for(const StellarObject &object : system->Objects())
-			if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsAccessible(flagship))
-				labels.emplace_back(labels, *system, object);
 }
 
 
@@ -2099,7 +2105,7 @@ void Engine::HandleMouseClicks()
 					{
 						if(!planet->CanLand(*flagship))
 							Messages::Add("The authorities on " + planet->Name()
-									+ " refuse to let you land.", Messages::Importance::High);
+									+ " refuse to let you land.", Messages::Importance::Highest);
 						else
 						{
 							activeCommands |= Command::LAND;
