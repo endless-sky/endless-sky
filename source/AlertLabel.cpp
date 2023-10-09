@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "AlertLabel.h"
 
 #include "Angle.h"
-#include "Color.h"
 #include "GameData.h"
 #include "PointerShader.h"
 #include "Projectile.h"
@@ -34,7 +33,7 @@ namespace {
 
 
 AlertLabel::AlertLabel(const Point &position, const Projectile &projectile, const shared_ptr<Ship> &flagship,
-		double zoom, double fogLevel)
+		double zoom)
 	: position(position), zoom(zoom)
 {
 	bool isDangerous = false;
@@ -46,13 +45,13 @@ AlertLabel::AlertLabel(const Point &position, const Projectile &projectile, cons
 		double missileDamage = projectile.GetWeapon().HullDamage() + projectile.GetWeapon().ShieldDamage();
 		isDangerous = (missileDamage / maxHP) > DANGEROUS_ABOVE;
 	}
+
 	if(isDangerous)
 		color = GameData::Colors().Get("missile dangerous");
 	else if(isTargetingFlagship)
 		color = GameData::Colors().Get("missile locked");
 	else
 		color = GameData::Colors().Get("missile enemy");
-
 
 	radius = zoom * projectile.Radius() * 0.75;
 	rotation = projectile.Facing().Degrees();

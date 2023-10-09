@@ -30,9 +30,6 @@ namespace {
 	GLint vertI;
 	GLint texCoordI;
 
-	GLint fogI;
-	GLint zoomI;
-
 	GLuint vao;
 	GLuint vbo;
 }
@@ -49,11 +46,9 @@ void BatchShader::Init()
 		"in vec3 texCoord;\n"
 
 		"out vec3 fragTexCoord;\n"
-		"out vec3 fragPos;\n"
 
 		"void main() {\n"
 		"  gl_Position = vec4(vert * scale, 0, 1);\n"
-		"  fragPos = vec3(gl_Position.x, gl_Position.y, gl_Position.z);\n"
 		"  fragTexCoord = texCoord;\n"
 		"}\n";
 
@@ -65,11 +60,8 @@ void BatchShader::Init()
 #endif
 		"uniform sampler2DArray tex;\n"
 		"uniform float frameCount;\n"
-		"uniform float fog;\n"
-		"uniform float zoom;\n"
 
 		"in vec3 fragTexCoord;\n"
-		"in vec3 fragPos;\n"
 
 		"out vec4 finalColor;\n"
 
@@ -80,20 +72,6 @@ void BatchShader::Init()
 		"  finalColor = mix(\n"
 		"    texture(tex, vec3(fragTexCoord.xy, first)),\n"
 		"    texture(tex, vec3(fragTexCoord.xy, second)), fade);\n"
-		"  float distanceAlpha = 1.f;\n"
-		"  if(fog > 0)\n"
-		"  {\n"
-		"    distanceAlpha = 1. - (fog / 100);\n"
-		"    float length = length(fragPos) * zoom;\n"
-		"    if(length < 1.f)\n" // everything further than 1. away is invisble
-		"    {\n"
-		"      if(length > 0.25f)\n" // everything closer than 0.25 is completely visble
-		"        distanceAlpha = 1.f - (fog / 100) * 1.333 * (length - 0.25);\n" // interpolate between 0.25 and 1.
-		"      else"
-		"        distanceAlpha = 1.f;"
-		"    }\n"
-		"  }\n"
-		"  finalColor = finalColor * distanceAlpha;\n"
 		"}\n";
 
 	// Compile the shaders.
@@ -103,8 +81,6 @@ void BatchShader::Init()
 	frameCountI = shader.Uniform("frameCount");
 	vertI = shader.Attrib("vert");
 	texCoordI = shader.Attrib("texCoord");
-	fogI = shader.Uniform("fog");
-	zoomI = shader.Uniform("zoom");
 
 	// Make sure we're using texture 0.
 	glUseProgram(shader.Object());
@@ -149,7 +125,7 @@ void BatchShader::Bind()
 
 
 
-void BatchShader::Add(const Sprite *sprite, bool isHighDPI, const vector<float> &data, double fog, double zoom)
+void BatchShader::Add(const Sprite *sprite, bool isHighDPI, const vector<float> &data)
 {
 	// Do nothing if there are no sprites to draw.
 	if(data.empty())
@@ -159,9 +135,6 @@ void BatchShader::Add(const Sprite *sprite, bool isHighDPI, const vector<float> 
 	glBindTexture(GL_TEXTURE_2D_ARRAY, sprite->Texture(isHighDPI));
 	// The shader also needs to know how many frames the texture has.
 	glUniform1f(frameCountI, sprite->Frames());
-
-	glUniform1f(fogI, fog);
-	glUniform1f(zoomI, 1 / zoom);
 
 	// Upload the vertex data.
 	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * data.size(), data.data(), GL_STREAM_DRAW);

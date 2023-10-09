@@ -40,7 +40,7 @@ public:
 	void Init(int stars, int width);
 	void SetHaze(const Sprite *sprite, bool allowAnimation);
 
-	void Draw(const Point &pos, const Point &vel, double zoom = 1., const System *system = nullptr, double fog = 0.) const;
+	void Draw(const Point &pos, const Point &vel, double zoom = 1., const System *system = nullptr) const;
 
 
 private:
@@ -71,10 +71,6 @@ private:
 	GLuint elongationI;
 	GLuint translateI;
 	GLuint brightnessI;
-
-	GLint fogI;
-	GLint dimensionsI;
-	GLint zoomI;
 };
 
 
