@@ -265,7 +265,7 @@ mission "Small Pirate gambling"
 			action
 				payment 23974
 			`	Fortunately, you're able to outsmart them anyway and win the game, winding up with a sizable pile of credit chips. They don't look too happy about it, but do not bother you as you quickly leave. You thank your lucky stars: you're nearly 25,000 credits richer and still in one piece after a face-to-face encounter with pirates.`
-				decline
+				accept
 
 			label "bad luck"
 			`	You're starting to bleed money, with more than 10,000 credits in losses already.`
