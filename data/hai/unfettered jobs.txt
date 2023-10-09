@@ -311,7 +311,7 @@ phrase "unfettered medicals payment dialog"
 mission "Unfettered Small Medicals Rush"
 	job
 	repeat
-	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land with the much needed medical supplies."
+	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land with the much-needed medical supplies."
 	name "Express medical stock from <planet stopovers>"
 	description "The Unfettered hospitals on <destination> are in urgent need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered before <date> for <payment>."
 	deadline 5 1
@@ -337,7 +337,7 @@ mission "Unfettered Small Medicals Rush"
 mission "Unfettered Big Medicals Rush"
 	job
 	repeat
-	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land with the much needed medical supplies."
+	clearance "After speaking with the Unfettered and explaining your presence, they give you permission to land with the much-needed medical supplies."
 	name "Medical supplies from <planet stopovers>"
 	description "The Unfettered hospitals on <destination> are in need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered before <date> for <payment>."
 	deadline 10 1

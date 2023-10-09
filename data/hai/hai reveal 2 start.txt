@@ -495,7 +495,7 @@ mission "Hai Rescue: Meroot and Lucy"
 					decline
 			`	The alcove is a dead air space between two utility rooms in the basement of a warehouse. The hole in the wall looks like it was recently dug out by a laser cutter. There's a small refrigerator, a two-person cot, an air processor, and a shelf with typical household items. Books are strewn everywhere; the women must be avid readers. It seems they've set up this tiny space as a decent, albeit very small, apartment.`
 			`	The human woman slides the sheet of steel back into place behind you both once you're in and says, "I'm Lucy."`
-			`	"And I'm Meroot," adds the Hai woman. "I was on Newhome walking to my research lab when some men pulled me into an alley and zapped me with a taser. I woke up in the brig of a space ship."`
+			`	"And I'm Meroot," adds the Hai woman. "I was on Newhome walking to my research lab when some men pulled me into an alley and zapped me with a taser. I woke up in the brig of a spaceship."`
 			`	"My experience was similar. I was walking from my biolab to my house on Serpens. Some men jumped out from behind a dune and zapped me."`
 			`	Meroot continues, "They took us both here. I was able to struggle out of my handcuffs and sneak the keys from the guard. We escaped together, and we've been hiding for weeks. Please take us to <destination>!"`
 			choice
