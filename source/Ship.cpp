@@ -977,7 +977,8 @@ void Ship::Save(DataWriter &out) const
 		}
 		out.EndChild();
 
-		out.Write("center", center.X(), center.Y());
+		if(center)
+			out.Write("center", center.X(), center.Y());
 
 		cargo.Save(out);
 		out.Write("crew", crew);

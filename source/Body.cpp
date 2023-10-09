@@ -350,13 +350,13 @@ void Body::Turn(double amount)
 		return Point(newX, newY);
 	};
 
-	Point rotatedCemter = -RotatePointAroundOrigin(center, angle.Degrees() * TO_RAD);
+	Point rotatedCenter = -RotatePointAroundOrigin(center, angle.Degrees() * TO_RAD);
 
-	position -= rotatedCemter;
+	position -= rotatedCenter;
 
-	rotatedCemter = RotatePointAroundOrigin(rotatedCemter, Angle(amount).Degrees() * TO_RAD);
+	rotatedCenter = RotatePointAroundOrigin(rotatedCenter, Angle(amount).Degrees() * TO_RAD);
 
-	position += rotatedCemter;
+	position += rotatedCenter;
 }
 
 
