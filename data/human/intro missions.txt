@@ -60,7 +60,7 @@ conversation "intro mission"
 		`	"If I wanted to talk with you, I would have said something. Now beat it."`
 			decline
 	label galaxy
-	`	He grins. "Well, don't be too hasty. The galaxy is a big and scary place, and not for the fainthearted. It'll be quite a while until you can make the universe your oyster. Took me years."`
+	`	He grins. "Well, don't be too hasty. The galaxy is a big and scary place, and not for the fainthearted. It'll be quite a while until you can make the universe your oyster. Took me decades."`
 		goto captain
 	
 	label syndicate1
@@ -124,6 +124,15 @@ conversation "intro mission"
 		accept
 
 
+conversation "mission intro end"
+	`As you land on <planet>, James says, "Congrats on your first trip through hyperspace! I'm impressed that you didn't throw up; most folks do, the first time."`
+	`	"Including you?" you ask.`
+	`	"Yeah, and then spent half an hour in orbit cleaning my cabin while hoping the passengers wouldn't come out of their bunk room and see the mess. Not my proudest moment. Anyway, here's your pay." He hands you <payment>.`
+	`	Then he adds, "If you're okay with giving me a lift for a while longer, sell off any of that cargo you bought and then meet me in the spaceport. I'll see if I can rustle up any interesting work for you to do."`
+	``
+	`	(Click the "Spaceport" button to continue this mission.)`
+
+
 # Missions for the New Boston start
 
 mission "Intro [0]"
@@ -150,13 +159,7 @@ mission "Intro [0]"
 	
 	on complete
 		payment 10000
-		conversation
-			`As you land on <planet>, James says, "Congrats on your first trip through hyperspace! I'm impressed that you didn't throw up; most folks do, the first time."`
-			`	"Including you?" you ask.`
-			`	"Yeah, and then spent half an hour in orbit cleaning my cabin while hoping the passengers wouldn't come out of their bunk room and see the mess. Not my proudest moment. Anyway, here's your pay." He hands you <payment>.`
-			`	Then he adds, "If you're okay with giving me a lift for a while longer, sell off any of that cargo you bought and then meet me in the spaceport. I'll see if I can rustle up any interesting work for you to do."`
-			``
-			`	(Click the "Spaceport" button to continue this mission.)`
+		conversation "mission intro end"
 
 
 
@@ -550,13 +553,7 @@ mission "Midgard Intro [0]"
 	
 	on complete
 		payment 10000
-		conversation
-			`As you land on <planet>, James says, "Congrats on your first trip through hyperspace! I'm impressed that you didn't throw up; most folks do, the first time."`
-			`	"Including you?" you ask.`
-			`	"Yeah, and then spent half an hour in orbit cleaning my cabin while hoping the passengers wouldn't come out of their bunk room and see the mess. Not my proudest moment. Anyway, here's your pay." He hands you <payment>.`
-			`	Then he adds, "If you're okay with giving me a lift for a while longer, sell off any of that cargo you bought and then meet me in the spaceport. I'll see if I can rustle up any interesting work for you to do."`
-			``
-			`	(Click the "Spaceport" button to continue this mission.)`
+		conversation "mission intro end"
 
 
 
@@ -583,7 +580,7 @@ mission "Midgard Intro [1 Transport]"
 	on offer
 		conversation
 			`You begin strolling through the spaceport, admiring the architecture and climate of <origin>, and how it is so similar, yet so distinct from your own homeworld. Eventually you find James, with a small group of four middle-aged people in tow.`
-			`	"Captain <last>!" he says. "Wonderful to see you again. I was just talking to this group of scientists. They've been having trouble finding a ship that's willing to bring stopover on a low-profile world like <planet>. They can pay you <payment> to take them there. What do you say?"`
+			`	"Captain <last>!" he says. "Wonderful to see you again. I was just talking to this group of scientists. They've been having trouble finding a ship that's willing to stopover on a low-profile world like <planet>. They can pay you <payment> to take them there. What do you say?"`
 			choice
 				`	"Sure, welcome aboard!"`
 				`	"Sorry, I think I'd rather go off in my own direction from here."`
@@ -615,7 +612,7 @@ mission "Midgard Intro [2 Transport]"
 	
 	on offer
 		conversation
-			`<origin>'s spaceport is far colder than anything you've experienced; you think about buying a winter coat for planets like these as you try to insulate yourself in other ways. Despite its size, the port is almost completely empty. Many storefronts have been shuttered closed, and the provided seating looks brand-new, yet outdated.`
+			`<origin>'s spaceport is far colder than anything you've experienced; you think about buying a winter coat for planets like these as you try to insulate yourself in other ways. Despite its size, the port is almost completely empty. Many storefronts have been shuttered closed, and the provided seating looks brand-new and outdated at the same time.`
 			`	By the time you see James, he's already got a small group of people with him: a middle-aged couple, and a teenage boy. "Hi there, Captain <last>!" says James. "Interested in carrying some tourists to <planet>?"`
 			choice
 				`	"Sure!"`
@@ -630,7 +627,7 @@ mission "Midgard Intro [2 Transport]"
 		conversation
 			`Calda is everything Nifel is not. The planet is warm, wet, and filled to the brim with obnoxious tourists. Shortly after you disembark, you are approached by half a dozen salespeople that each begin to promote their company's luxury hotels and hot springs at the same time. When Simon, Cameron, and Charles step off, the marketeers realize their mistake and begin harassing them instead.`
 			`	While Cameron is busy talking, Simon hands you the payment for the trip. As they walk away, you see a spaceport cleaner accidentally back into Christopher while she's wiping down a bench. Before either of them are able to apologize, a nearby couple in swimsuits walks up and berates the cleaner for her incompetence. Christopher tries to get the couple to back down, but his parents pull him away.`
-			`	After the commotion clears up, James says, "What a shame. That couple didn't care about Christopher or the cleaner; they just wanted an excuse to be angry." Then, he turns to you and says, "Same deal as before. If you want to keep traveling together, meet me in the spaceport."`
+			`	After the commotion clears up, James says, "What a shame. Some people will find any excuse to be angry." Then, he turns to you and says, "Same deal as before. If you want to keep traveling together, meet me in the spaceport."`
 
 
 
@@ -648,7 +645,7 @@ mission "Midgard Intro [3 Transport]"
 	
 	on offer
 		conversation
-			`By the time you find James, it is already night time. You find him overlooking a cliff face covered with hot tubs. Some of the tubs are coated in shimmering platinum; the rest have to settle with mere gold. The patrons enjoying the tubs range from old couples enjoying their retirement to not-entirely-sober teenagers dancing wildly and erratically. Overhead, an aerobatics show leaves streaks of light hanging in the air, forming shapes and names. In one of the tubs, you spot cleaners in drenched overalls draining a pool that has been stained puke-yellow. In another, you see a scantily-clad waitress being yelled at by a red-faced man in a business suit.`
+			`By the time you find James, it is already night time. You find him overlooking a cliff face covered with hot tubs. Some of the tubs are coated in shimmering platinum; the rest must settle with mere gold. The patrons enjoying the tubs range from old couples enjoying their retirement to not-entirely-sober teenagers partying wildly and erratically. Overhead, an aerobatics show leaves streaks of light hanging in the air, forming shapes and names. In one of the tubs, you spot cleaners in drenched overalls draining a pool that has been stained puke-yellow. In another, you see a scantily-clad waitress being yelled at by a red-faced man in a business suit.`
 			`	"It's hardly a wonder why they call them the 'Paradise Worlds,'" James says. "A set of nine planets, including Calda, each terraformed to perfection. Life on one of these worlds is the most sought-after commodity in the galaxy. But behind the scenes on each of these worlds, millions of workers toil night and day to maintain a utopia that they will never enjoy."`
 			`	After taking one last glance at the cliff, he says, "But that's enough of an old man's hypocritical ramblings. Are you willing to take me on one last trip? I need to get to <destination>, and of course I'll pay you quite well to take me there."`
 			choice
@@ -687,20 +684,20 @@ mission "Midgard Intro [1 Transport Alt]"
 	on offer
 		conversation
 			`You begin strolling through the spaceport, admiring the architecture and climate of <origin>, and how it is so similar, yet so distinct from your own homeworld. Eventually you find James, with someone else in tow.`
-			`	"Captain <last>!" he says. "Wonderful to see you again. Katherine here is willing to pay <payment> if you bring her to <planet> so that she can skydive from the edge of space."`
-			`	"Norn has a thick enough atmosphere and low enough gravity that you can get away with aerial stunts you wouldn't be able to on any other world," Katherine says. "Don't worry about handling the procedure for the space jump; I've done it before."`
+			`	"Captain <last>!" he says. "Wonderful to see you again. Kath here is willing to pay <payment> if you bring them to <planet> so that she can skydive from the edge of space."`
+			`	"Norn has a thick enough atmosphere and low enough gravity that you can get away with aerial stunts you wouldn't be able to on any other world," Kath says. "Don't worry about handling the procedure for the space jump; I've done it before."`
 			choice
 				`	"Sure, welcome aboard!"`
 				`	"Sorry, I think I'd rather go off in my own direction from here."`
 					decline
-			`	You and James direct her to your ship.`
+			`	You and James direct them to your ship.`
 				accept
 	
 	on complete
 		payment 10000
 		conversation
-			`Just before you enter <planet>'s atmosphere, you open your loading bay ramp, as directed by Katherine. Shortly afterward, she appears on your cargo hold camera in her full skydiving garb. She takes a running start and launches herself into space, quickly vanishing from your vision.`
-			`	Several minutes after your ship touches down, Katherine approaches you in the spaceport, thanks you, and hands you <payment>. You are already well on your way towards paying down your mortgage!`
+			`Just before you enter <planet>'s atmosphere, you open your loading bay ramp, as directed by Kath. Shortly afterward, they appear on your cargo hold camera in their full skydiving garb. They takes a running start and launches themself into space, quickly vanishing from your vision.`
+			`	Several minutes after your ship touches down, Kath approaches you in the spaceport, thanks you, and hands you <payment>. You are already well on your way towards paying down your mortgage!`
 			`	As James leaves the ship, he says, "Again, if you're okay with continuing to give me a ride, just meet me in the spaceport."`
 			``
 			`	(As before, click the "Spaceport" button to continue this mission.)`
@@ -1007,7 +1004,7 @@ mission "Midgard Intro [2 Interceptor]"
 	on complete
 		payment 40000
 		conversation
-			`The captain of the <npc> hands you <payment> and thanks you for your escort services. From the expression on their face, you'd guess that they're feeling lucky to still be alive after entrusting the safety of her fleet to a rookie pilot like yourself.`
+			`The captain of the <npc> hands you <payment> and thanks you for your escort services. From the expression on their face, you'd guess that they're feeling lucky to still be alive after entrusting the safety of their fleet to a rookie pilot like yourself.`
 			`	After they are gone, James turns to you and says, "Not too bad for your first escort mission. I recognize that look on your face - it's the same one I had after my first job like this back when I was a beginner. If I recall, my first priority after touching down was replacing some of the ship's guns with missile launchers so I'd actually have a chance against pirates. It's a scandal how they sell interceptors with nothing but short-ranged energy weapons these days; trying to use them in combat on such a small ship is practically suicide. Keep your distance with some missiles and you can almost never go wrong. Anyway, I'll stop rambling. If you want to do one last job for me, come and find me in the spaceport before you leave." He picks up his suitcase and heads outside.`
 
 
@@ -1073,13 +1070,7 @@ mission "Mainsail Intro [0]"
 	
 	on complete
 		payment 10000
-		conversation
-			`As you land on <planet>, James says, "Congrats on your first trip through hyperspace! I'm impressed that you didn't throw up; most folks do, the first time."`
-			`	"Including you?" you ask.`
-			`	"Yeah, and then spent half an hour in orbit cleaning my cabin while hoping the passengers wouldn't come out of their bunk room and see the mess. Not my proudest moment. Anyway, here's your pay." He hands you <payment>.`
-			`	Then he adds, "If you're okay with giving me a lift for a while longer, sell off any of that cargo you bought and then meet me in the spaceport. I'll see if I can rustle up any interesting work for you to do."`
-			``
-			`	(Click the "Spaceport" button to continue this mission.)`
+		conversation "mission intro end"
 
 
 
@@ -1117,7 +1108,7 @@ mission "Mainsail Intro [1 Transport]"
 	on complete
 		payment 40000
 		conversation
-			`Along the journey, you learned that the team of engineers you are transporting are working on replacing one of their automated terraforming controllers. "We all graduated from the same class on Chiron," one of the engineers says while grinning. "One of us managed to land a job on Glory thanks to a family connection, and from there, we were able to form our team. There's been ups and downs across our decades of work, but we always managed to figure things out in the end." He looks barely a day over twenty-five.`
+			`Along the journey, you learned that the team of engineers you are transporting are working on replacing one of their automated terraforming controllers. "We all graduated from the same class on Chiron," one of the engineers says while grinning. "One of us managed to land a job on Glory thanks to a family connection, and from there, we were able to form our team. There's been ups and downs over the last few decades, but we always managed to figure things out in the end." He looks barely a day over twenty-five.`
 			`	You say goodbye to them and wish them well, and as agreed they pay you <payment>. You are already well on your way towards paying down your mortgage!`
 			`	As James leaves the ship, he says, "Again, if you're okay with continuing to give me a ride, just meet me in the spaceport."`
 			``
@@ -1255,9 +1246,9 @@ mission "Mainsail Intro [2 Transport Alt]"
 	on complete
 		payment 6000
 		conversation
-			`As you make the final landing descent to the surface of Earth, Marshall looks down on Earth's cluttered surface with his eyes wide open. In an attempt to lighten the mood, James begins telling the both of you some of the history of the cities you are flying over. Despite this, Marshall still wears a dour expression on his face, which stays as he picks up his luggage and prepares to disembark.`
+			`As you make the final landing descent to the surface of Earth, Marshall looks down on Earth's cluttered surface, his eyes wide open. In an attempt to lighten the mood, James begins telling the both of you some of the history of the cities you are flying over, but Marshall wears a dour expression on his face up until he picks up his luggage and prepares to disembark.`
 			`	As you collect your payment, James pulls Marshall aside and says, "Watch out for pickpockets, okay? And take it from an experienced captain, you do not want to be out after dark here. Play it safe, and have a great time."`
-			`	After he leaves, James shakes his head ruefully. "He probably expected Earth to be a relaxing holiday planet, like Caldra or Farseer. I just hope that he's able to see past his misconceptions and use the opportunity to learn and appreciate the planet's history." Then, he picks up his luggage and adds, "Same deal as before. If you want to keep traveling together, meet me in the spaceport."`
+			`	After he leaves, James shakes his head ruefully. "He probably expected Earth to be a relaxing holiday planet, like Caldra or Farseer. I just hope that he's able to see past his misconceptions and use the opportunity to appreciate the planet's history." Then, he picks up his luggage and adds, "Same deal as before. If you want to keep traveling together, meet me in the spaceport."`
 
 
 
@@ -1311,7 +1302,7 @@ mission "Mainsail Intro [1 Freighter]"
 	
 	on offer
 		conversation
-			`The world of <origin> is in full bloom; the fields that the spaceport overlooks are filled with flowers of every color of the rainbow, and a sweet smell rests in the air. You find James talking with a man wearing rugged clothing, completely unlike the rest of the world around him. "Captain <last>!" says James. "Glad you could join us. Raphael here runs a tourism company centered around rock climbing. He's looking to expand his operations to <planet>, but he needs <cargo> delivered there in advance. Are you willing to help out?"`
+			`The world of <origin> is in full bloom; the fields that the spaceport overlooks are filled with flowers of every color of the rainbow, and a sweet smell rests in the air. You find James talking with a man wearing dusty, rugged clothing, completely unlike the rest of the world around him. "Captain <last>!" says James. "Glad you could join us. Raphael here runs a tourism company centered around rock climbing. He's looking to expand his operations to <planet>, but he needs <cargo> delivered there in advance. Are you willing to help out?"`
 			choice
 				`	"Sure, anything I can do to assist them!"`
 				`	"Sorry, but I think I'm going to head out on my own."`
@@ -1407,7 +1398,7 @@ mission "Mainsail Intro [3 Freighter]"
 		conversation
 			`You find James talking with a group of scientists and dock workers, who seem to be old acquaintances of his. As you approach, he says, "Well guys, here comes my ride. I should probably say goodbye." They head back off to do their work. "Even after all my years as a captain," says James, "I still feel uncomfortable every time I land on <origin>. Every day, scientists on this planet work with pathogens capable of wiping out a planet within months. The risk of infection is such that you need a permit to live here. Can you imagine spending your life here?"`
 			choice
-				`	"Somebody has to do the risky stuff so that the rest of humanity can prosper."`
+				`	"Somebody has to do the dangerous stuff so that the rest of humanity can prosper."`
 				`	"It does seem awfully isolated. But some people might enjoy the solitude."`
 			`	"I suppose," he says. "Anyway, I think it's time for the last leg of my journey. Do you think you can give me a lift to <planet>? I'll pay you quite well for your services, of course."`
 			choice
@@ -1431,8 +1422,8 @@ mission "Mainsail Intro [1 Interceptor]"
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 1
 	cargo "confidential documents" 2
-	source "Asgard"
-	destination "Valhalla"
+	source "Glory"
+	destination "Maelstrom"
 	to offer
 		has "Mainsail Intro [0]: done"
 		or
@@ -1448,11 +1439,11 @@ mission "Mainsail Intro [1 Interceptor]"
 	npc
 		government Pirate
 		personality entering plunders
-		ship "Leviathan" "Arm of Odin"
+		ship "Splinter" "Eye of Loki"
 	
 	on offer
 		conversation
-			`You end up finding James in one of the spaceport's bars, talking to a woman wearing a military uniform. "Nice to see you, <first>," he says. "I've been talking to Helen over here, and I think we have a job on our hands."`
+			`The world of <origin> is in full bloom; the fields that the spaceport overlooks are filled with flowers of every color of the rainbow, and a sweet smell rests in the air. You end up finding James in one of the spaceport's gardens, talking to a man wearing a military uniform. "Nice to see you, <first>," he says. "I've been talking to Armen over here, and I think we have a job on our hands."`
 			choice
 				`	"What is it?"`
 					goto job
@@ -1595,13 +1586,7 @@ mission "Delve Intro [0]"
 	
 	on complete
 		payment 10000
-		conversation
-			`As you land on <planet>, James says, "Congrats on your first trip through hyperspace! I'm impressed that you didn't throw up; most folks do, the first time."`
-			`	"Including you?" you ask.`
-			`	"Yeah, and then spent half an hour in orbit cleaning my cabin while hoping the passengers wouldn't come out of their bunk room and see the mess. Not my proudest moment. Anyway, here's your pay." He hands you <payment>.`
-			`	Then he adds, "If you're okay with giving me a lift for a while longer, sell off any of that cargo you bought and then meet me in the spaceport. I'll see if I can rustle up any interesting work for you to do."`
-			``
-			`	(Click the "Spaceport" button to continue this mission.)`
+		conversation "mission intro end"
 
 
 
