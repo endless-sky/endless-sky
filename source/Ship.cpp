@@ -1175,14 +1175,6 @@ const Sprite *Ship::Thumbnail() const
 
 
 
-// Get this ship's category (e.g. "Heavy Warship")
-const string &Ship::Category() const
-{
-	return baseAttributes.Category();
-}
-
-
-
 // Get this ship's cost.
 int64_t Ship::Cost() const
 {
