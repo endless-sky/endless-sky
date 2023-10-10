@@ -154,7 +154,7 @@ private:
 	ExclusiveItem<Color> color;
 
 	std::map<const Government *, double> attitudeToward;
-	double attitudeDefault = 0.;
+	double defaultAttitude = 0.;
 	std::set<const Government *> trusted;
 	std::map<const Government *, std::map<int, double>> customPenalties;
 	double initialPlayerReputation = 0.;

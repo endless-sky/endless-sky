@@ -208,7 +208,7 @@ void Government::Load(const DataNode &node)
 			}
 		}
 		else if(key == "default attitude")
-			attitudeDefault = child.Value(1);
+			defaultAttitude = child.Value(1);
 		else if(key == "reputation")
 		{
 			for(const DataNode &grand : child)
@@ -459,7 +459,7 @@ double Government::AttitudeToward(const Government *other) const
 	if(other == this)
 		return 1.;
 
-	return attitudeToward.count(other) ? attitudeToward.at(other) : attitudeDefault;
+	return attitudeToward.count(other) ? attitudeToward.at(other) : defaultAttitude;
 }
 
 
