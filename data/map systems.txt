@@ -10833,7 +10833,7 @@ system Dom'us
 		distance 707.022
 		period 317.511
 	object Redias
-		sprite planet/gas6
+		sprite planet/redias
 		distance 1536.91
 		period 1017.61
 		object "Pon'tes"
