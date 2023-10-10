@@ -171,7 +171,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		if(shipIt->get() != player.Flagship())
 		{
 			map<const Outfit*, int> uniqueOutfits;
-			auto AddToUniques = [&] (const std::map<const Outfit *, int> &outfits)
+			auto AddToUniques = [&uniqueOutfits] (const std::map<const Outfit *, int> &outfits)
 			{
 				for(const auto &it : outfits)
 					if(it.first->Attributes().Get("unique"))

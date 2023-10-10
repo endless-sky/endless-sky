@@ -344,7 +344,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 		|| !leftUniques.empty())
 	{
 		ostringstream out;
-		auto ListUniques = [&] (const map<const Outfit *, int> uniques)
+		auto ListUniques = [&out] (const map<const Outfit *, int> uniques)
 		{
 			const int detailedSize = (uniques.size() > 5 ? 4 : uniques.size());
 			auto it = uniques.begin();
