@@ -5868,13 +5868,13 @@ phrase "friendly deep"
 		"the Deep's "
 		"those who bring "
 		"the ones who serve "
-		"our shared "
+		"our shared% "
 	word
 		""
-		"valued "
-		"invaluable "
-		"hard-fought "
-		"hard-gained "
+		"%valued "
+		"%invaluable "
+		"%hard-fought "
+		"%hard-gained "
 	word
 		"democracy"
 		"commonwealth"
@@ -5891,6 +5891,9 @@ phrase "friendly deep"
 		"peace among the stars"
 	word
 		"."
+	replace
+		"% %" ", "
+		"% " ""
 
 phrase "friendly deep"
 	word
