@@ -57,6 +57,7 @@ public:
 	// Positional attributes.
 	const Point &Position() const;
 	const Point &Velocity() const;
+	const Point Center() const;
 	const Angle &Facing() const;
 	Point Unit() const;
 	double Zoom() const;
@@ -98,6 +99,7 @@ protected:
 	Point velocity;
 	Angle angle;
 	Point center;
+	Point rotatedCenter;
 	// A zoom of 1 means the sprite should be drawn at half size. For objects
 	// whose sprites should be full size, use zoom = 2.
 	float zoom = 1.f;

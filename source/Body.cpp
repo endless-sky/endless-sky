@@ -150,6 +150,13 @@ const Point &Body::Velocity() const
 
 
 
+const Point Body::Center() const
+{
+	return -rotatedCenter + position;
+}
+
+
+
 // Direction this Body is facing in.
 const Angle &Body::Facing() const
 {
@@ -350,7 +357,7 @@ void Body::Turn(double amount)
 		return Point(newX, newY);
 	};
 
-	Point rotatedCenter = -RotatePointAroundOrigin(center, angle.Degrees() * TO_RAD);
+	rotatedCenter = -RotatePointAroundOrigin(center, (angle - amount).Degrees() * TO_RAD);
 
 	position -= rotatedCenter;
 
