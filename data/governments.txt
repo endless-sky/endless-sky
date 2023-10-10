@@ -173,10 +173,12 @@ government "Coalition"
 	"hostile hail" "hostile coalition"
 	"hostile disabled hail" "hostile disabled coalition"
 
-# Kept for backwards compatibility with old saves
+# https://github.com/endless-sky/endless-sky/pull/9436#pullrequestreview-1666400216
 government "Deep"
+	display name "Deep Security"
 	swizzle 0
 	"player reputation" -1000
+	"hostile hail" "hostile deep"
 
 government "Deep Security"
 	swizzle 0
@@ -187,13 +189,6 @@ government "Deep Security"
 		"Pirate (Devil-Run Gang)" -.2
 		"Smuggler (Hai Trafficker)" .05
 	"friendly hail" "friendly deep"
-	"hostile hail" "hostile deep"
-
-government "Deep Security (Hostile)"
-	"display name" "Deep Security"
-	swizzle 0
-	"player reputation" -1000
-	# The deep security ships are after the player specifically, so no "attitude toward"
 	"hostile hail" "hostile deep"
 
 government "Derelict"
