@@ -175,7 +175,7 @@ government "Coalition"
 
 # https://github.com/endless-sky/endless-sky/pull/9436#pullrequestreview-1666400216
 government "Deep"
-	display name "Deep Security"
+	"display name" "Deep Security"
 	swizzle 0
 	"player reputation" -1000
 	"hostile hail" "hostile deep"
