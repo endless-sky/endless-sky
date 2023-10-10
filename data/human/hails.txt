@@ -5869,12 +5869,14 @@ phrase "friendly deep"
 		"those who bring "
 		"the ones who serve "
 		"our shared% "
+		"our"
 	word
 		""
 		"%valued "
 		"%invaluable "
 		"%hard-fought "
-		"%hard-gained "
+		"%cherished "
+		"%precious"
 	word
 		"democracy"
 		"commonwealth"
@@ -5889,6 +5891,7 @@ phrase "friendly deep"
 		"social cohesion"
 		"peace, prosperity, and progress"
 		"peace among the stars"
+		"freedoms"
 	word
 		"."
 	replace
