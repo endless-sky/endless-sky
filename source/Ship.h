@@ -157,6 +157,8 @@ public:
 	const std::string &Description() const;
 	// Get the shipyard thumbnail for this ship.
 	const Sprite *Thumbnail() const;
+	// Get the category of this ship.
+	const std::string &Category() const;
 	// Get this ship's cost.
 	int64_t Cost() const;
 	int64_t ChassisCost() const;

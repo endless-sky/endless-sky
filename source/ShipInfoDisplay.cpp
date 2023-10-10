@@ -143,6 +143,10 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 
 	attributeHeaderLabels.push_back("model:");
 	attributeHeaderValues.push_back(ship.DisplayModelName());
+
+	attributeHeaderLabels.push_back("category:");
+	attributeHeaderValues.push_back(ship.Category());
+
 	attributesHeight = 20;
 
 	attributeLabels.clear();
