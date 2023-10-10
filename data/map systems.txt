@@ -8188,7 +8188,7 @@ system Chikatip
 	trade Medical 606
 	trade Metal 283
 	trade Plastic 278
-	fleet "Large Quarg" 2000
+	fleet "Large Quarg (Kor Efret)" 2000
 	fleet "Kor Efret Miners" 10800
 	object
 		sprite star/k5
@@ -8369,7 +8369,7 @@ system Chornifath
 	trade Medical 508
 	trade Metal 468
 	trade Plastic 373
-	fleet "Large Quarg" 1000
+	fleet "Large Quarg (Kor Efret)" 1000
 	object
 		sprite star/k0
 		period 10
@@ -13295,7 +13295,7 @@ system Farbutero
 	trade Medical 549
 	trade Metal 450
 	trade Plastic 403
-	fleet "Large Quarg" 2000
+	fleet "Large Quarg (Kor Efret)" 2000
 	fleet "Small Kor Mereti" 9400
 	fleet "Large Kor Mereti" 5000
 	object
@@ -13830,7 +13830,7 @@ system Feroteri
 	trade Medical 492
 	trade Metal 406
 	trade Plastic 451
-	fleet "Large Quarg" 3000
+	fleet "Large Quarg (Kor Efret)" 3000
 	fleet "Small Kor Mereti" 12000
 	fleet "Large Kor Mereti" 6400
 	object
@@ -14165,7 +14165,7 @@ system Fornarep
 	trade Medical 694
 	trade Metal 438
 	trade Plastic 375
-	fleet "Large Quarg" 2000
+	fleet "Large Quarg (Kor Efret)" 2000
 	fleet "Small Kor Mereti" 9000
 	fleet "Large Kor Mereti" 5800
 	object
@@ -14332,7 +14332,7 @@ system Furmeliki
 	trade Medical 536
 	trade Metal 346
 	trade Plastic 313
-	fleet "Large Quarg" 1000
+	fleet "Large Quarg (Kor Efret)" 1000
 	object
 		sprite star/k0
 		period 10
@@ -16163,7 +16163,7 @@ system Hesselpost
 	trade Medical 484
 	trade Metal 536
 	trade Plastic 281
-	fleet "Large Quarg" 1000
+	fleet "Large Quarg (Kor Efret)" 1000
 	fleet "Kor Efret Miners" 7200
 	object
 		sprite star/k0
@@ -18539,7 +18539,7 @@ system Kaliptari
 	trade Medical 675
 	trade Metal 334
 	trade Plastic 398
-	fleet "Large Quarg" 3000
+	fleet "Large Quarg (Kor Efret)" 3000
 	fleet "Small Kor Mereti" 10000
 	fleet "Large Kor Mereti" 4800
 	object
@@ -20200,7 +20200,7 @@ system Korsmanath
 	trade Medical 479
 	trade Metal 427
 	trade Plastic 440
-	fleet "Large Quarg" 3000
+	fleet "Large Quarg (Kor Efret)" 3000
 	fleet "Small Kor Mereti" 8000
 	object
 		sprite star/k0
@@ -21870,7 +21870,7 @@ system Meftarkata
 	trade Medical 599
 	trade Metal 484
 	trade Plastic 334
-	fleet "Large Quarg" 1000
+	fleet "Large Quarg (Kor Efret)" 1000
 	fleet "Kor Efret Miners" 7200
 	object
 		sprite star/f5
@@ -28228,7 +28228,7 @@ system Sabriset
 	trade Medical 621
 	trade Metal 275
 	trade Plastic 441
-	fleet "Large Quarg" 4000
+	fleet "Large Quarg (Kor Efret)" 4000
 	object
 		sprite star/g0
 		distance 34.3036
@@ -29145,7 +29145,7 @@ system Seketra
 	trade Medical 635
 	trade Metal 327
 	trade Plastic 286
-	fleet "Large Quarg" 3000
+	fleet "Large Quarg (Kor Efret)" 3000
 	object
 		sprite star/k5
 		period 10
@@ -29268,7 +29268,7 @@ system Sepriaptu
 	trade Medical 604
 	trade Metal 320
 	trade Plastic 449
-	fleet "Large Quarg" 4000
+	fleet "Large Quarg (Kor Efret)" 4000
 	object
 		sprite star/f5
 		distance 15.0211
@@ -30085,7 +30085,7 @@ system Skeruto
 	trade Medical 621
 	trade Metal 393
 	trade Plastic 333
-	fleet "Large Quarg" 2000
+	fleet "Large Quarg (Kor Efret)" 2000
 	object
 		sprite star/m0
 		period 10
@@ -30614,7 +30614,7 @@ system Solifar
 	trade Medical 678
 	trade Metal 285
 	trade Plastic 442
-	fleet "Large Quarg" 4000
+	fleet "Large Quarg (Kor Efret)" 4000
 	object
 		sprite star/m0
 		period 10
