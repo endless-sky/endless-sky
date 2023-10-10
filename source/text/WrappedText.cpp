@@ -255,8 +255,6 @@ void WrappedText::Wrap()
 
 				// Adjust the spacing of words in the now-complete line.
 				AdjustLine(lineBegin, lineWidth, false);
-				// This is a full width line, so mark it as such.
-				longestWidth = lineWidth;
 			}
 			// Store this word, then advance the x position to the end of it.
 			words.push_back(word);
@@ -268,9 +266,6 @@ void WrappedText::Wrap()
 		// If that whitespace was a newline, we must handle that, too.
 		if(c == '\n')
 		{
-			if(word.x > longestWidth)
-				longestWidth = word.x;
-
 			// The next word will begin on a new line.
 			word.y += lineHeight + paragraphBreak;
 			word.x = 0;
@@ -297,8 +292,6 @@ void WrappedText::Wrap()
 		const int width = font->Width(text.c_str() + word.index);
 		if(word.x + width > wrapWidth)
 		{
-			if(word.x > longestWidth)
-				longestWidth = word.x;
 			// If adding this word would overflow the length of the line,
 			// this final word will be the first (and only) on the next line.
 			word.y += lineHeight;
@@ -317,8 +310,6 @@ void WrappedText::Wrap()
 	if(currentLineHasWords)
 		word.y += lineHeight + paragraphBreak;
 
-	if(word.x > longestWidth)
-		longestWidth = word.x;
 	// Adjust the spacing of words in the final line of text.
 	AdjustLine(lineBegin, lineWidth, true);
 
@@ -332,18 +323,23 @@ void WrappedText::AdjustLine(size_t &lineBegin, int &lineWidth, bool isEnd)
 	int wordCount = static_cast<int>(words.size() - lineBegin);
 	int extraSpace = wrapWidth - lineWidth;
 
+	if(lineWidth > longestWidth)
+		longestWidth = lineWidth;
+
 	// Figure out how much space is left over. Depending on the alignment, we
 	// will add that space to the left, to the right, to both sides, or to the
 	// space in between the words. Exception: the last line of a "justified"
 	// paragraph is left aligned, not justified.
 	if(alignment == Alignment::JUSTIFIED && !isEnd && wordCount > 1)
 	{
+		longestWidth = wrapWidth;
 		for(int i = 0; i < wordCount; ++i)
 			words[lineBegin + i].x += extraSpace * i / (wordCount - 1);
 	}
 	else if(alignment == Alignment::CENTER || alignment == Alignment::RIGHT)
 	{
 		int shift = (alignment == Alignment::CENTER) ? extraSpace / 2 : extraSpace;
+		longestWidth += shift;
 		for(int i = 0; i < wordCount; ++i)
 			words[lineBegin + i].x += shift;
 	}
