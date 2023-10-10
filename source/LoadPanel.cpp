@@ -307,7 +307,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				if(it == files.begin())
 				{
 					it = files.end();
-					sideScroll = 20. * files.size() - 280.;
+					sideScroll = max(0., 20. * files.size() - 280.);
 				}
 				--it;
 			}
@@ -343,7 +343,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				if(it == pit->second.begin())
 				{
 					it = pit->second.end();
-					centerScroll = 20. * pit->second.size() - 280.;
+					centerScroll = max(0., 20. * pit->second.size() - 280.);
 				}
 				--it;
 			}

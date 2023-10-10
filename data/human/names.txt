@@ -11,7 +11,7 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-# Word lists that are re-used for many different ship name phrases
+# Word lists that are reused for many different ship name phrases
 phrase "digit"
 	word
 		"0"
