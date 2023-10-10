@@ -492,7 +492,7 @@ mission "Undeserved Anomalocaris"
 				to display
 					not "Hai Legacy 3: offered"
 			`	"We will give you another ship so you can leave, but you must surrender this one," one of them explains to you in a threatening tone.`
-			`	Another one steps forward, "In fact we will even allow you to keep the outfits, provided you give it to us on Darkcloak," they say in a somewhat diplomatic tone.`
+			`	Another one steps forward, "We will even allow you to keep the outfits, provided you give it to us on Darkcloak," they say in a somewhat diplomatic tone.`
 				to display
 					not "flagship planet: Darkcloak"
 			`	Another one steps forward, "Since you so kindly came to Darkcloak to deliver the ship to us, we will allow you to buy back any outfits you may still desire, as a courtesy," they say in a somewhat diplomatic tone.`
