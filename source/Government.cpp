@@ -72,8 +72,6 @@ namespace {
 				penalty += it.second;
 		return penalty;
 	}
-
-	unsigned nextID = 0;
 }
 
 
@@ -91,8 +89,6 @@ Government::Government()
 	penaltyFor[ShipEvent::SCAN_CARGO] = 0.;
 	penaltyFor[ShipEvent::PROVOKE] = 0.;
 	penaltyFor[ShipEvent::ATROCITY] = 10.;
-
-	id = nextID++;
 }
 
 
@@ -206,11 +202,7 @@ void Government::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 			{
 				if(grand.Size() >= 2)
-				{
-					const Government *gov = GameData::Governments().Get(grand.Token(0));
-					attitudeToward.resize(nextID, 0.);
-					attitudeToward[gov->id] = grand.Value(1);
-				}
+					attitudeToward[GameData::Governments().Get(grand.Token(0))] = grand.Value(1);
 				else
 					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
@@ -266,10 +258,10 @@ void Government::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 			{
 				if(grand.Token(0) == "remove" && grand.Size() >= 2)
-					customPenalties[GameData::Governments().Get(grand.Token(1))->id].clear();
+					customPenalties[GameData::Governments().Get(grand.Token(1))].clear();
 				else
 				{
-					auto &pens = customPenalties[GameData::Governments().Get(grand.Token(0))->id];
+					auto &pens = customPenalties[GameData::Governments().Get(grand.Token(0))];
 					PenaltyHelper(grand, pens);
 				}
 			}
@@ -352,7 +344,7 @@ void Government::Load(const DataNode &node)
 		}
 		else if(key == "foreign penalties for")
 			for(const DataNode &grand : child)
-				useForeignPenaltiesFor.insert(GameData::Governments().Get(grand.Token(0))->id);
+				useForeignPenaltiesFor.insert(GameData::Governments().Get(grand.Token(0)));
 		else if(key == "send untranslated hails")
 			sendUntranslatedHails = true;
 		else if(!hasValue)
@@ -465,10 +457,7 @@ double Government::AttitudeToward(const Government *other) const
 	if(other == this)
 		return 1.;
 
-	if(attitudeToward.size() <= other->id)
-		return 0.;
-
-	return attitudeToward[other->id];
+	return attitudeToward.count(other) ? attitudeToward.at(other) : 0.;
 }
 
 
@@ -491,10 +480,9 @@ double Government::PenaltyFor(int eventType, const Government *other) const
 	if(other == this)
 		return PenaltyHelper(eventType, penaltyFor);
 
-	const int id = other->id;
-	const auto &penalties = useForeignPenaltiesFor.count(id) ? other->penaltyFor : penaltyFor;
+	const auto &penalties = useForeignPenaltiesFor.count(other) ? other->penaltyFor : penaltyFor;
 
-	const auto it = customPenalties.find(id);
+	const auto it = customPenalties.find(other);
 	if(it == customPenalties.end())
 		return PenaltyHelper(eventType, penalties);
 
