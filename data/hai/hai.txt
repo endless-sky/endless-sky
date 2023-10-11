@@ -705,3 +705,82 @@ phrase "hostile disabled unfettered"
 	word
 		"!"
 		"."
+
+phrase "assist hai 1"
+	word
+		`Knowing that `
+		`Since `
+		`Understanding that `
+		`Considering that `
+		`Seeing how `
+		`Knowing how `
+	word
+		`you risked your life `
+		`you risked your ship `
+		`you risked your own ship `
+		`you braved enemy fire `
+		`you braved danger `
+	word
+		`to ` 4
+		`in order to ` 2
+		`so that you could `
+	word
+		`save `
+		`repair `
+		`rescue `
+		`secure `
+	word
+		`the`
+
+phrase "assist hai 2"
+	phrase
+		`assist hai 2 simple` 4
+		`assist hai 2 infinitive`
+		`assist hai 2 present`
+
+phrase "assist hai 2 simple"
+	word
+		``
+
+phrase "assist hai 2 infinitive"
+	word
+		`along with `
+		`in addition to `
+	word
+		`saving its cargo `
+		`securing its cargo `
+		`saving its crew `
+		`rescuing its crew `
+
+phrase "assist hai 2 present"
+	word
+		`and ` 3
+		`and also `
+	word
+		`save its cargo `
+		`secure its cargo `
+		`save its crew `
+		`rescue its crew `
+
+phrase "assist hai 3"
+	word
+		`its `
+		`the `
+		`the ship's `
+		`the vessel's `
+	word
+		`` 4
+		`relieved `
+	word
+		`captain `
+	word
+		`gives you`
+		`offers you`
+		`rewards you with`
+
+phrase "assist hai 4"
+	word
+		`.` 4
+		`in gratitude.`
+		`in thanks.`
+		`as thanks.`
