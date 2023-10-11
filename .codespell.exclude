@@ -100,3 +100,5 @@ planet "Sies Upi"
 		log "Minor People" "Torrey and Irene" `Torrey Dupont, an activist, is friends with SMDP militia NCO Irene Brower. You delivered a package for them.`
 		"Brin"
 		"exis"
+system Anser
+	link Anser

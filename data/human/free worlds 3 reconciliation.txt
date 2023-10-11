@@ -810,7 +810,7 @@ mission "FW Syndicate Capture 1B"
 				"Wasp" 12
 	
 	npc
-		system Puppis
+		system Jabbah
 		government Syndicate
 		personality heroic nemesis staying
 		fleet
@@ -818,7 +818,7 @@ mission "FW Syndicate Capture 1B"
 			variant
 				"Manta (Nuclear)"
 	npc
-		system Puppis
+		system Jabbah
 		government Syndicate
 		personality heroic nemesis staying
 		fleet
@@ -826,7 +826,7 @@ mission "FW Syndicate Capture 1B"
 			variant
 				"Manta (Nuclear)"
 	npc
-		system Puppis
+		system Jabbah
 		government Syndicate
 		personality heroic nemesis staying
 		fleet
@@ -834,7 +834,7 @@ mission "FW Syndicate Capture 1B"
 			variant
 				"Manta (Nuclear)"
 	npc
-		system Botein
+		system "Alpha Scuti"
 		government Syndicate
 		personality heroic nemesis staying
 		fleet
@@ -842,7 +842,7 @@ mission "FW Syndicate Capture 1B"
 			variant
 				"Manta (Nuclear)"
 	npc
-		system Botein
+		system "Alpha Scuti"
 		government Syndicate
 		personality heroic nemesis staying
 		fleet
@@ -850,15 +850,7 @@ mission "FW Syndicate Capture 1B"
 			variant
 				"Manta (Nuclear)"
 	npc
-		system Botein
-		government Syndicate
-		personality heroic nemesis staying
-		fleet
-			names "syndicate capital"
-			variant
-				"Manta (Nuclear)"
-	npc
-		system Scheat
+		system "Alpha Scuti"
 		government Syndicate
 		personality heroic nemesis staying
 		fleet
@@ -882,7 +874,7 @@ mission "FW Syndicate Capture 1B"
 			variant
 				"Manta (Nuclear)"
 	npc
-		system "Beta Lyrae"
+		system Scheat
 		government Syndicate
 		personality heroic nemesis staying
 		fleet
@@ -890,7 +882,7 @@ mission "FW Syndicate Capture 1B"
 			variant
 				"Manta (Nuclear)"
 	npc
-		system "Beta Lyrae"
+		system Sheliak
 		government Syndicate
 		personality heroic nemesis staying
 		fleet
@@ -898,7 +890,15 @@ mission "FW Syndicate Capture 1B"
 			variant
 				"Manta (Nuclear)"
 	npc
-		system "Beta Lyrae"
+		system Sheliak
+		government Syndicate
+		personality heroic nemesis staying
+		fleet
+			names "syndicate capital"
+			variant
+				"Manta (Nuclear)"
+	npc
+		system Sheliak
 		government Syndicate
 		personality heroic nemesis staying
 		fleet
