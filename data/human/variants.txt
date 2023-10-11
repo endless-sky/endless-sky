@@ -1362,7 +1362,7 @@ ship "Cutthroat" "Cutthroat (Jousting)"
 	gun 11 -8.5 "Twin Modified Blaster"
 
 
-Ship "Dagger" "Dagger (Javelin Light)"
+ship "Dagger" "Dagger (Javelin Light)"
 	outfits
 		"Javelin Mini Pod" 3
 		"Javelin" 120
