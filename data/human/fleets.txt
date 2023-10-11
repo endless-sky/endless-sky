@@ -1618,7 +1618,7 @@ fleet "Large Deep Security"
 		"Corvette (Missile)"
 	variant 2
 		"Aerie (Javelin Resupply)" 2
-		"Dagger (Javelin Light) 4
+		"Dagger (Javelin Light)" 4
 
 fleet "Small Oathkeeper"
 	government "Navy (Oathkeeper)"
