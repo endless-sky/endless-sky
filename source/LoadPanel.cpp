@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Interface.h"
 #include "text/layout.hpp"
 #include "MainPanel.h"
+#include "MaskManager.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Rectangle.h"
@@ -550,6 +551,7 @@ void LoadPanel::LoadCallback()
 	gamePanels.CanSave(true);
 
 	player.Load(loadedInfo.Path());
+	GameData::GetMaskManager().ScaleMasks();
 
 	GetUI()->PopThrough(GetUI()->Root().get());
 	gamePanels.Push(new MainPanel(player));
