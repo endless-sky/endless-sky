@@ -1367,7 +1367,7 @@ ship "Dagger" "Dagger (Javelin Light)"
 		"Javelin Mini Pod" 3
 		"Javelin" 120
 		"Supercapacitor"
-		"nVGF-AA Fuel Cell"
+		"nGVF-AA Fuel Cell"
 		"A120 Atomic Thruster"
 		"X1200 Ion Steering"
 
