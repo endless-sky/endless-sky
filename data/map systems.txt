@@ -2996,7 +2996,7 @@ system "Aik Kamgatake"
 system Ain
 	pos -205 29.222224
 	government Syndicate
-	link Fulu
+	link "Eta Normae"
 	link Jabbah
 	asteroids "small rock" 65 4.6221
 	asteroids "medium rock" 67 3.5154
@@ -15276,7 +15276,7 @@ system Fscher
 		distance 15894
 		period 10098.0
 
-system Fulu
+system "Eta Normae"
 	pos -160.77778 39.888889
 	government Syndicate
 	link Ain
@@ -23425,7 +23425,7 @@ system "Mei Yohn"
 			distance 312
 			period 29.0088
 
-system Meissa
+system Mira
 	pos -208.47222 156.86111
 	government Syndicate
 	link "Al Dhanab"
@@ -23884,7 +23884,7 @@ system Noitakt
 	government Syndicate
 	attributes core
 	link Sheliak
-	link Fulu
+	link "Eta Normae"
 	link Maia
 	link Sheratan
 	asteroids "small rock" 30 5.0232
