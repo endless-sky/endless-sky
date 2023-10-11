@@ -771,8 +771,9 @@ phrase "assist hai 3"
 phrase "assist hai 4"
 	word
 		`.` 5
-		`in gratitude.`
-		`in appreciation.`
-		`as an expression of their gratitude.`
-		`in thanks.`
-		`as thanks.`
+		` in gratitude.`
+		` in appreciation.`
+		` as an expression of their gratitude.`
+		` in thanks.`
+		` as thanks.`
+		` for your assistance.`
