@@ -148,7 +148,7 @@ mission "Assisting Hai"
 	to offer
 		random < 27
 	source
-		government "Hai"
+		government "Hai" "Hai Merchant" "Hai Merchant (Sympathizers)" "Hai Merchant (Human)"
 		not attributes "automaton"
 	on offer
 		payment 30000
