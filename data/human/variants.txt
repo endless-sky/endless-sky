@@ -27,6 +27,7 @@ ship "Aerie" "Aerie (Javelin Resupply)"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 
+
 ship "Argosy" "Argosy (Blaster)"
 	outfits
 		"Energy Blaster" 4
