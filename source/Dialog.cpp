@@ -344,7 +344,7 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 		text.SetWrapWidth(Width() - 20);
 		text.Wrap(message);
 
-		if(text.Width() <= WIDTH)
+		if(text.LongestLineWidth() <= WIDTH)
 		{
 			// Formatted text is long and skinny (ie scan result dialog). Go back
 			// to using the default.

@@ -150,9 +150,9 @@ int WrappedText::Height() const
 
 
 // Return the width of the longest line of the wrapped text.
-int WrappedText::Width() const
+int WrappedText::LongestLineWidth() const
 {
-	return longestWidth;
+	return longesLineWidth;
 }
 
 
@@ -213,7 +213,7 @@ void WrappedText::SetText(const char *it, size_t length)
 void WrappedText::Wrap()
 {
 	height = 0;
-	longestWidth = 0;
+	longesLineWidth = 0;
 
 	if(text.empty() || !font)
 		return;
@@ -323,8 +323,8 @@ void WrappedText::AdjustLine(size_t &lineBegin, int &lineWidth, bool isEnd)
 	int wordCount = static_cast<int>(words.size() - lineBegin);
 	int extraSpace = wrapWidth - lineWidth;
 
-	if(lineWidth > longestWidth)
-		longestWidth = lineWidth;
+	if(lineWidth > longesLineWidth)
+		longesLineWidth = lineWidth;
 
 	// Figure out how much space is left over. Depending on the alignment, we
 	// will add that space to the left, to the right, to both sides, or to the
@@ -332,14 +332,12 @@ void WrappedText::AdjustLine(size_t &lineBegin, int &lineWidth, bool isEnd)
 	// paragraph is left aligned, not justified.
 	if(alignment == Alignment::JUSTIFIED && !isEnd && wordCount > 1)
 	{
-		longestWidth = wrapWidth;
 		for(int i = 0; i < wordCount; ++i)
 			words[lineBegin + i].x += extraSpace * i / (wordCount - 1);
 	}
 	else if(alignment == Alignment::CENTER || alignment == Alignment::RIGHT)
 	{
 		int shift = (alignment == Alignment::CENTER) ? extraSpace / 2 : extraSpace;
-		longestWidth += shift;
 		for(int i = 0; i < wordCount; ++i)
 			words[lineBegin + i].x += shift;
 	}
