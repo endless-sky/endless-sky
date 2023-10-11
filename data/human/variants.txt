@@ -11,6 +11,22 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+ship "Aerie" "Aerie (Javelin Resupply)"
+	outfits
+		"Sidewinder Missile Launcher" 2
+		"Sidewinder Missile" 90
+		"Javelin Storage Crate" 14
+		"Javelin" 1400
+		"Anti-Missile Turret" 2
+		"Heavy Anti-Missile Turret"
+		"Dwarf Core"
+		"LP072a Battery Pack"
+		"D67-TM Shield Generator"
+		"Laser Rifle" 2
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+
 ship "Argosy" "Argosy (Blaster)"
 	outfits
 		"Energy Blaster" 4
@@ -1341,6 +1357,15 @@ ship "Cutthroat" "Cutthroat (Jousting)"
 	gun -11 -8.5 "Twin Modified Blaster"
 	gun 11 -8.5 "Twin Modified Blaster"
 
+
+Ship "Dagger" "Dagger (Javelin Light)"
+	outfits
+		"Javelin Mini Pod" 3
+		"Javelin" 120
+		"Supercapacitor"
+		"nVGF-AA Fuel Cell"
+		"A120 Atmoic Thruster"
+		"X1200 Ion Steering"
 
 
 ship "Dreadnought" "Dreadnought (Jump)"
