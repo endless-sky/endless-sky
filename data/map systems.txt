@@ -5429,7 +5429,7 @@ system Ankaa
 	belt 1003
 	haze _menu/haze-133
 	link Markab
-	link Alpha Scuti
+	link "Alpha Scuti"
 	asteroids "medium rock" 1 2.016
 	asteroids "large rock" 1 1.664
 	asteroids "small metal" 1 4.352
