@@ -729,38 +729,28 @@ phrase "assist hai 1"
 		`repair `
 		`rescue `
 		`secure `
+		`assist `
+		`help `
 	word
 		`the`
 
 phrase "assist hai 2"
 	phrase
-		`assist hai 2 simple` 4
-		`assist hai 2 infinitive`
-		`assist hai 2 present`
+		`assist hai 2 simple` 2
+		`assist hai 2 complex`
 
 phrase "assist hai 2 simple"
 	word
-		``
+		`, `
 
-phrase "assist hai 2 infinitive"
+phrase "assist hai 2 complex"
 	word
-		`along with `
-		`in addition to `
+		` and `
 	word
-		`saving its cargo `
-		`securing its cargo `
-		`saving its crew `
-		`rescuing its crew `
-
-phrase "assist hai 2 present"
-	word
-		`and ` 3
-		`and also `
-	word
-		`save its cargo `
-		`secure its cargo `
-		`save its crew `
-		`rescue its crew `
+		`save its cargo, `
+		`secure its cargo, `
+		`save its crew, `
+		`rescue its crew, `
 
 phrase "assist hai 3"
 	word
@@ -780,7 +770,9 @@ phrase "assist hai 3"
 
 phrase "assist hai 4"
 	word
-		`.` 4
+		`.` 5
 		`in gratitude.`
+		`in appreciation.`
+		`as an expression of their gratitude.`
 		`in thanks.`
 		`as thanks.`

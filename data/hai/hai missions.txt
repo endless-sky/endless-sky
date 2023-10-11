@@ -153,7 +153,7 @@ mission "Assisting Hai"
 	on offer
 		payment 30000
 		conversation
-			`${assist hai 1} <origin>, ${assist hai 2} ${assist hai 3} <payment> ${assist hai 4}`
+			`${assist hai 1} <origin>${assist hai 2} ${assist hai 3} <payment> ${assist hai 4}`
 				decline
 	destination "Hai-home"
 
