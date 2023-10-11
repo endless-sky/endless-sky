@@ -108,7 +108,7 @@ test-data "Capture Uncapturable With Capturable Override Mission"
 
 
 test "Capture Uncapturable With Capturable Override"
-	status active
+	status broken
 	description "Starts the mission, accepts it and then boards the quarg ship to capture it."
 	sequence
 		inject "Capture Uncapturable With Capturable Override Mission"

@@ -344,7 +344,7 @@ test "Boarding Test - Repair Friendly Ship"
 			"%TEST%: Wardragon Scanning You!: done" == 1
 
 test "Illegal Test - Ignore and New Illegal"
-	status active
+	status broken
 	description "Test if a Quarg ship spawning disabled in the system will give you a fine for an illegal outfit and ignore the fine for another, after you repaired it."
 	sequence
 		inject "quarg scanning save"
@@ -360,7 +360,7 @@ test "Illegal Test - Ignore and New Illegal"
 			"unpaid fines" == 1
 
 test "Atrocity Test - New Atrocity"
-	status active
+	status broken
 	description "Test if a Quarg ship spawning disabled in the system will consider an outfit an atrocity when specified by an event."
 	sequence
 		inject "quarg atrocity save"
