@@ -148,10 +148,8 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	if(scrollingPanel)
 	{
 		attributeHeaderLabels.push_back("category:");
-		if(ship.BaseAttributes().Category() == "")
-			attributeHeaderValues.push_back("None");
-		else
-			attributeHeaderValues.push_back(ship.BaseAttributes().Category());
+		const string &category = ship.BaseAttributes().Category();
+		attributeHeaderValues.push_back(category.empty() ? "None" : category);
 	}
 
 	attributesHeight = 20;
