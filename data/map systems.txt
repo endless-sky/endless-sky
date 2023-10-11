@@ -2009,7 +2009,7 @@ system Achernar
 	habitable 625
 	belt 1963
 	haze _menu/haze-133
-	link Atlas
+	link Algedi
 	link Polaris
 	link Schedar
 	asteroids "medium metal" 27 1.8676
@@ -2109,12 +2109,12 @@ system Acnanjo
 		distance 3314.9
 		period 1199.60
 
-system Acrab
+system Titawin
 	pos -297.08377 146.935
 	government Syndicate
 	link Fomalhaut
 	link Markab
-	link Tabit
+	link Marfik
 	asteroids "small rock" 40 4.224
 	asteroids "large rock" 32 6.27
 	asteroids "medium metal" 9 5.61
@@ -2987,7 +2987,7 @@ system Ain
 	pos -205 29.222224
 	government Syndicate
 	link Fulu
-	link Puppis
+	link Jabbah
 	asteroids "small rock" 65 4.6221
 	asteroids "medium rock" 67 3.5154
 	asteroids "large rock" 8 3.7107
@@ -3197,8 +3197,8 @@ system "Al Dhanab"
 	habitable 1080
 	belt 1432
 	haze _menu/haze-133
-	link Atlas
-	link Meissa
+	link Algedi
+	link Mira
 	link Mirach
 	link Scheat
 	asteroids "small rock" 65 3.45
@@ -5061,8 +5061,8 @@ system Alpheratz
 	habitable 1115
 	belt 1645
 	haze _menu/haze-133
-	link Atlas
-	link Meissa
+	link Algedi
+	link Mira
 	link Ruchbah
 	asteroids "small rock" 8 5.44
 	asteroids "medium rock" 5 4.12
@@ -5375,7 +5375,7 @@ system Ankaa
 	belt 1003
 	haze _menu/haze-133
 	link Markab
-	link Botein
+	link Alpha Scuti
 	asteroids "medium rock" 1 2.016
 	asteroids "large rock" 1 1.664
 	asteroids "small metal" 1 4.352
@@ -6166,14 +6166,14 @@ system Atik
 		distance 1905.05
 		period 270.619
 
-system Atlas
+system Algedi
 	pos -145.13889 174.86111
 	government Syndicate
 	link Achernar
 	link "Al Dhanab"
 	link Alpheratz
-	link Meissa
-	link Oneldiam
+	link Algedi
+	link Anser
 	asteroids "small rock" 17 3.069
 	asteroids "medium rock" 5 5.3568
 	asteroids "large rock" 8 4.5756
@@ -7023,11 +7023,11 @@ system Belugt
 			distance 694
 			period 68.5535
 
-system "Beta Carinae"
+system Iklil
 	pos -84.250001 90.638889
 	government Syndicate
-	link "Beta Lyrae"
-	link Mira
+	link Sheliak
+	link Acrab
 	asteroids "small rock" 16 5.2164
 	asteroids "medium rock" 66 7.56
 	asteroids "large rock" 129 4.914
@@ -7144,12 +7144,12 @@ system "Beta Lupi"
 		distance 1976.61
 		period 1406.05
 
-system "Beta Lyrae"
+system Sheliak
 	pos -120.44445 65.444447
 	government Syndicate
 	attributes core
-	link "Beta Carinae"
-	link Messiah
+	link Iklil
+	link Noitakt
 	link Ruchbah
 	link Sheratan
 	asteroids "small rock" 30 5.0232
@@ -7793,12 +7793,12 @@ system "Bote Asu"
 			distance 601
 			period 38.6987
 
-system Botein
+system "Alpha Scuti"
 	pos -236.66667 106.44445
 	government Syndicate
 	link Ankaa
-	link Electra
-	link Puppis
+	link "Gamma Ceti"
+	link Jabbah
 	link Ruchbah
 	asteroids "small rock" 18 3.087
 	asteroids "large rock" 1 1.764
@@ -11011,7 +11011,7 @@ system Diphda
 	haze _menu/haze-133
 	link Acamar
 	link Caph
-	link Puppis
+	link Jabbah
 	asteroids "small rock" 22 4.536
 	asteroids "medium rock" 23 7.7112
 	asteroids "large rock" 29 6.0264
@@ -12327,12 +12327,12 @@ system "Elabi Choati"
 		distance 2183.75
 		period 745.253
 
-system Electra
+system "Gamma Ceti"
 	pos -275.77778 73.111113
 	government Syndicate
-	link Botein
-	link Iklil
-	link Puppis
+	link "Alpha Scuti"
+	link Syrma
+	link Jabbah
 	asteroids "small rock" 9 3.4362
 	asteroids "medium rock" 8 3.4362
 	asteroids "large rock" 3 2.07
@@ -13053,12 +13053,12 @@ system Epo'kor
 			distance 327
 			period 223.52302
 
-system "Epsilon Indi"
+system "Prima Hyadum"
 	pos -213.33334 7.6666689
 	government Syndicate
 	attributes core
 	link Maia
-	link "Tau Ceti"
+	link Electra
 	asteroids "small rock" 30 5.0232
 	asteroids "medium rock" 34 5.2052
 	asteroids "large rock" 11 1.82
@@ -14980,7 +14980,7 @@ system Fomalhaut
 	arrival 500
 	habitable 450
 	belt 1854
-	link Acrab
+	link Titawin
 	link Altair
 	asteroids "small rock" 3 7.1415
 	asteroids "medium rock" 2 9.2529
@@ -15216,7 +15216,7 @@ system Fulu
 	pos -160.77778 39.888889
 	government Syndicate
 	link Ain
-	link Messiah
+	link Noitakt
 	asteroids "large rock" 1 3.876
 	asteroids "small metal" 7 2.958
 	asteroids "medium metal" 172 4.233
@@ -17952,11 +17952,11 @@ system Ik'kara'ka
 			distance 369
 			period 24.9998
 
-system Iklil
+system Syrma
 	pos -291.11111 98.333335
 	government Syndicate
-	link Electra
-	link Tabit
+	link "Gamma Ceti"
+	link Marfik
 	asteroids "small rock" 9 1.1271
 	asteroids "medium rock" 1 1.4365
 	asteroids "large rock" 24 2.1216
@@ -19600,10 +19600,10 @@ system Kaliptari
 			distance 316
 			period 29.5684
 
-system Kang
+system "Oneldiam"
 	pos -67.361112 124.41667
 	government Syndicate
-	link Mira
+	link Acrab
 	asteroids "small rock" 4 2.604
 	asteroids "large rock" 7 3.069
 	asteroids "small metal" 9 3.069
@@ -22344,8 +22344,8 @@ system Lurata
 system Maia
 	pos -162.91667 -8.25
 	government Syndicate
-	link "Epsilon Indi"
-	link Messiah
+	link "Prima Hyadum"
+	link Noitakt
 	asteroids "medium rock" 124 5.046
 	asteroids "large rock" 2 4.4573
 	asteroids "small metal" 149 4.2891
@@ -22634,7 +22634,7 @@ system Markab
 	habitable 625
 	belt 1411
 	haze _menu/haze-133
-	link Acrab
+	link Titawin
 	link Ankaa
 	link "Delta Capricorni"
 	link Scheat
@@ -23355,7 +23355,7 @@ system Meissa
 	government Syndicate
 	link "Al Dhanab"
 	link Alpheratz
-	link Atlas
+	link Algedi
 	asteroids "small rock" 6 5.082
 	asteroids "medium rock" 8 6.6
 	asteroids "large rock" 13 4.224
@@ -23611,7 +23611,7 @@ system Menkar
 	haze _menu/haze-133
 	link Bellatrix
 	link Mirfak
-	link "Tau Ceti"
+	link Electra
 	asteroids "small rock" 109 4.3
 	asteroids "medium rock" 33 7.45
 	asteroids "large rock" 44 6.45
@@ -23804,11 +23804,11 @@ system Merak
 		distance 2504.4
 		period 1501.33
 
-system Messiah
+system Noitakt
 	pos -134.19489 23.601667
 	government Syndicate
 	attributes core
-	link "Beta Lyrae"
+	link Sheliak
 	link Fulu
 	link Maia
 	link Sheratan
@@ -24287,12 +24287,12 @@ system Mintaka
 		distance 4566.87
 		period 4209.57
 
-system Mira
+system Acrab
 	pos -91.583334 150.63889
 	government Syndicate
-	link "Beta Carinae"
-	link Kang
-	link Oneldiam
+	link Iklil
+	link "Oneldiam"
+	link Anser
 	asteroids "small metal" 8 1.7028
 	asteroids "medium metal" 108 1.2078
 	asteroids "large metal" 77 1.7226
@@ -24352,7 +24352,7 @@ system Mirach
 	link "Al Dhanab"
 	link "Gamma Cassiopeiae"
 	link Scheat
-	link Noitakt
+	link Fulu
 	asteroids "small rock" 84 3.4884
 	asteroids "medium rock" 64 3.1518
 	asteroids "large rock" 6 4.0698
@@ -25502,7 +25502,7 @@ system Nocte
 		distance 2260.97
 		period 3701.13
 
-system Noitakt
+system Fulu
 	pos -129.13889 225.41667
 	government Syndicate
 	link Mirach
@@ -25883,11 +25883,11 @@ system Oihaug
 		distance 8308
 		period 23946.6
 
-system Oneldiam
+system Anser
 	pos -139.58333 136.41667
 	government Syndicate
-	link Atlas
-	link Mira
+	link Algedi
+	link Acrab
 	asteroids "small metal" 8 1.7028
 	asteroids "medium metal" 108 1.2078
 	asteroids "large metal" 77 1.7226
@@ -28406,13 +28406,13 @@ system Pukako
 			distance 532
 			period 463.83
 
-system Puppis
+system Jabbah
 	pos -231.22223 63.000002
 	government Syndicate
 	link Ain
-	link Botein
+	link "Alpha Scuti"
 	link Diphda
-	link Electra
+	link "Gamma Ceti"
 	link Ruchbah
 	asteroids "small rock" 13 3.2384
 	asteroids "medium rock" 9 4.1998
@@ -29703,10 +29703,10 @@ system Ruchbah
 	link Algol
 	link "Alpha Hydri"
 	link Alpheratz
-	link "Beta Lyrae"
-	link Botein
+	link Sheliak
+	link "Alpha Scuti"
 	link Hamal
-	link Puppis
+	link Jabbah
 	asteroids "small rock" 6 4.8412
 	asteroids "medium rock" 17 2.1476
 	asteroids "large rock" 57 4.7684
@@ -30534,7 +30534,7 @@ system Schedar
 	haze _menu/haze-133
 	link Achernar
 	link Almach
-	link Noitakt
+	link Fulu
 	asteroids "small rock" 10 1.736
 	asteroids "medium rock" 2 0.896
 	asteroids "large rock" 3 1.148
@@ -31283,8 +31283,8 @@ system Sheratan
 	habitable 2085
 	belt 1183
 	haze _menu/haze-133
-	link "Beta Lyrae"
-	link Messiah
+	link Iklil
+	link Noitakt
 	link Zaurak
 	asteroids "large rock" 1 1.358
 	asteroids "large metal" 2 1.218
@@ -33041,11 +33041,11 @@ system Sumprast
 			distance 464
 			period 29.291
 
-system Tabit
+system Marfik
 	pos -265.33333 126.33334
 	government Syndicate
-	link Acrab
-	link Iklil
+	link Titawin
+	link Syrma
 	asteroids "small rock" 21 0.53
 	asteroids "medium rock" 254 0.61
 	asteroids "large rock" 5 0.58
@@ -33351,11 +33351,11 @@ system Tarazed
 			distance 228
 			period 16.9693
 
-system "Tau Ceti"
+system Electra
 	pos -168.19488 -53.953889
 	government Syndicate
 	attributes core
-	link "Epsilon Indi"
+	link "Prima Hyadum"
 	link Menkar
 	link Zaurak
 	asteroids "small rock" 30 5.0232
@@ -36427,7 +36427,7 @@ system Zaurak
 	haze _menu/haze-133
 	link Alcyone
 	link Sheratan
-	link "Tau Ceti"
+	link Electra
 	asteroids "small rock" 30 5.0232
 	asteroids "medium rock" 34 5.2052
 	asteroids "large rock" 11 1.82
