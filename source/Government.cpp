@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipEvent.h"
 
 #include <algorithm>
+#include <cmath>
 
 using namespace std;
 
@@ -72,6 +73,8 @@ namespace {
 				penalty += it.second;
 		return penalty;
 	}
+
+	unsigned nextID = 0;
 }
 
 
@@ -89,6 +92,8 @@ Government::Government()
 	penaltyFor[ShipEvent::SCAN_CARGO] = 0.;
 	penaltyFor[ShipEvent::PROVOKE] = 0.;
 	penaltyFor[ShipEvent::ATROCITY] = 10.;
+
+	id = nextID++;
 }
 
 
@@ -202,7 +207,11 @@ void Government::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 			{
 				if(grand.Size() >= 2)
-					attitudeToward[GameData::Governments().Get(grand.Token(0))] = grand.Value(1);
+				{
+					const Government *gov = GameData::Governments().Get(grand.Token(0));
+					attitudeToward.resize(nextID, numeric_limits<double>::quiet_NaN());
+					attitudeToward[gov->id] = grand.Value(1);
+				}
 				else
 					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
@@ -260,10 +269,10 @@ void Government::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 			{
 				if(grand.Token(0) == "remove" && grand.Size() >= 2)
-					customPenalties[GameData::Governments().Get(grand.Token(1))].clear();
+					customPenalties[GameData::Governments().Get(grand.Token(1))->id].clear();
 				else
 				{
-					auto &pens = customPenalties[GameData::Governments().Get(grand.Token(0))];
+					auto &pens = customPenalties[GameData::Governments().Get(grand.Token(0))->id];
 					PenaltyHelper(grand, pens);
 				}
 			}
@@ -346,7 +355,7 @@ void Government::Load(const DataNode &node)
 		}
 		else if(key == "foreign penalties for")
 			for(const DataNode &grand : child)
-				useForeignPenaltiesFor.insert(GameData::Governments().Get(grand.Token(0)));
+				useForeignPenaltiesFor.insert(GameData::Governments().Get(grand.Token(0))->id);
 		else if(key == "send untranslated hails")
 			sendUntranslatedHails = true;
 		else if(!hasValue)
@@ -459,7 +468,11 @@ double Government::AttitudeToward(const Government *other) const
 	if(other == this)
 		return 1.;
 
-	return attitudeToward.count(other) ? attitudeToward.at(other) : defaultAttitude;
+	if(attitudeToward.size() <= other->id)
+		return defaultAttitude;
+
+	double attitude = attitudeToward[other->id];
+	return std::isnan(attitude) ? defaultAttitude : attitude;
 }
 
 
@@ -482,9 +495,10 @@ double Government::PenaltyFor(int eventType, const Government *other) const
 	if(other == this)
 		return PenaltyHelper(eventType, penaltyFor);
 
-	const auto &penalties = useForeignPenaltiesFor.count(other) ? other->penaltyFor : penaltyFor;
+	const int id = other->id;
+	const auto &penalties = useForeignPenaltiesFor.count(id) ? other->penaltyFor : penaltyFor;
 
-	const auto it = customPenalties.find(other);
+	const auto it = customPenalties.find(id);
 	if(it == customPenalties.end())
 		return PenaltyHelper(eventType, penalties);
 

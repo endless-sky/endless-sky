@@ -148,15 +148,16 @@ public:
 
 
 private:
+	unsigned id;
 	std::string name;
 	std::string displayName;
 	int swizzle = 0;
 	ExclusiveItem<Color> color;
 
-	std::map<const Government *, double> attitudeToward;
+	std::vector<double> attitudeToward;
 	double defaultAttitude = 0.;
 	std::set<const Government *> trusted;
-	std::map<const Government *, std::map<int, double>> customPenalties;
+	std::map<unsigned, std::map<int, double>> customPenalties;
 	double initialPlayerReputation = 0.;
 	double reputationMax = std::numeric_limits<double>::max();
 	double reputationMin = std::numeric_limits<double>::lowest();
@@ -183,7 +184,7 @@ private:
 	// If a government appears in this set, and the reputation with this government is affected by actions,
 	// and events performed against that government, use the penalties that government applies for the
 	// action instead of this governments own penalties.
-	std::set<const Government *> useForeignPenaltiesFor;
+	std::set<unsigned> useForeignPenaltiesFor;
 };
 
 
