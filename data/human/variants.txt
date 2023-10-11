@@ -26,6 +26,9 @@ ship "Aerie" "Aerie (Javelin Resupply)"
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
+	turret "Heavy Anti-Missile Turret"
+	turret "Anti-Missile Turret"
+	turret "Anti-Missile Turret"
 
 
 ship "Argosy" "Argosy (Blaster)"
