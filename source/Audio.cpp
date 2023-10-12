@@ -21,7 +21,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Random.h"
 #include "Sound.h"
-#include "TaskQueue.h"
 
 #if !defined(__APPLE__) || defined(ES_CMAKE)
 #include <AL/al.h>
@@ -32,9 +31,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #endif
 
 #include <algorithm>
-#include <atomic>
 #include <cmath>
 #include <map>
+#include <mutex>
 #include <set>
 #include <stdexcept>
 #include <thread>
@@ -72,9 +71,12 @@ namespace {
 		unsigned source = 0;
 	};
 
-	// Store percentage of sounds that have been loaded.
-	atomic<int> soundLoadingProgress;
-	int totalSounds = 0;
+	// Thread entry point for loading the sound files.
+	void Load();
+
+
+	// Mutex to make sure different threads don't modify the audio at the same time.
+	mutex audioMutex;
 
 	// OpenAL settings.
 	ALCdevice *device = nullptr;
@@ -97,6 +99,10 @@ namespace {
 	vector<unsigned> recycledSources;
 	vector<unsigned> endingSources;
 	unsigned maxSources = 255;
+
+	// Queue and thread for loading sound files in the background.
+	map<string, string> loadQueue;
+	thread loadThread;
 
 	// The current position of the "listener," i.e. the center of the screen.
 	Point listener;
@@ -140,9 +146,6 @@ void Audio::Init(const vector<string> &sources)
 	alDistanceModel(AL_INVERSE_DISTANCE_CLAMPED);
 	alDopplerFactor(0.);
 
-	// Queue for loading sound files in the background.
-	map<string, string> loadQueue;
-
 	// Get all the sound files in the game data and all plugins.
 	for(const string &source : sources)
 	{
@@ -162,21 +165,8 @@ void Audio::Init(const vector<string> &sources)
 		}
 	}
 	// Begin loading the files.
-	totalSounds = loadQueue.size();
-	for(const auto &sound : loadQueue)
-	{
-		// Only the actual pointer is needed to load it. Creating the map entry
-		// inside the task would require a lock.
-		Sound *soundPtr = &sounds[sound.first];
-
-		TaskQueue::Run([sound, soundPtr]
-			{
-				if(!soundPtr->Load(sound.second, sound.first))
-					Logger::LogError("Unable to load sound \"" + sound.first + "\" from path: " + sound.second);
-
-				soundLoadingProgress.fetch_add(1, memory_order_acq_rel);
-			});
-	}
+	if(!loadQueue.empty())
+		loadThread = thread(&Load);
 
 	// Create the music-streaming threads.
 	currentTrack.reset(new Music());
@@ -213,8 +203,14 @@ void Audio::CheckReferences()
 // Report the progress of loading sounds.
 double Audio::GetProgress()
 {
-	double count = soundLoadingProgress.load(memory_order_acquire);
-	return count / totalSounds;
+	unique_lock<mutex> lock(audioMutex);
+
+	if(loadQueue.empty())
+		return 1.;
+
+	double done = sounds.size();
+	double total = done + loadQueue.size();
+	return done / total;
 }
 
 
@@ -241,6 +237,7 @@ void Audio::SetVolume(double level)
 // "sound/" folder, and without ~ if it's on the end, or the extension.
 const Sound *Audio::Get(const string &name)
 {
+	unique_lock<mutex> lock(audioMutex);
 	return &sounds[name];
 }
 
@@ -283,7 +280,10 @@ void Audio::Play(const Sound *sound, const Point &position)
 	if(this_thread::get_id() == mainThreadID)
 		queue[sound].Add(position - listener);
 	else
+	{
+		unique_lock<mutex> lock(audioMutex);
 		deferred[sound].Add(position - listener);
+	}
 }
 
 
@@ -446,6 +446,18 @@ void Audio::Step()
 // Shut down the audio system (because we're about to quit).
 void Audio::Quit()
 {
+	// First, check if sounds are still being loaded in a separate thread, and
+	// if so interrupt that thread and wait for it to quit.
+	unique_lock<mutex> lock(audioMutex);
+	if(!loadQueue.empty())
+		loadQueue.clear();
+	if(loadThread.joinable())
+	{
+		lock.unlock();
+		loadThread.join();
+		lock.lock();
+	}
+
 	// Now, stop and delete any OpenAL sources that are playing.
 	for(const Source &source : sources)
 	{
@@ -565,5 +577,38 @@ namespace {
 	const Sound *Source::GetSound() const
 	{
 		return sound;
+	}
+
+
+
+	// Thread entry point for loading sounds.
+	void Load()
+	{
+		string name;
+		string path;
+		Sound *sound;
+		while(true)
+		{
+			{
+				unique_lock<mutex> lock(audioMutex);
+				// If this is not the first time through, remove the previous item
+				// in the queue. This is a signal that it has been loaded, so we
+				// must not remove it until after loading the file.
+				if(!path.empty() && !loadQueue.empty())
+					loadQueue.erase(loadQueue.begin());
+				if(loadQueue.empty())
+					return;
+				name = loadQueue.begin()->first;
+				path = loadQueue.begin()->second;
+
+				// Since we need to unlock the mutex below, create the map entry to
+				// avoid a race condition when accessing sounds' size.
+				sound = &sounds[name];
+			}
+
+			// Unlock the mutex for the time-intensive part of the loop.
+			if(!sound->Load(path, name))
+				Logger::LogError("Unable to load sound \"" + name + "\" from path: " + path);
+		}
 	}
 }

@@ -61,7 +61,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "StarField.h"
 #include "StellarObject.h"
 #include "System.h"
-#include "TaskQueue.h"
 #include "Test.h"
 #include "TestContext.h"
 #include "Visual.h"
@@ -211,6 +210,9 @@ Engine::Engine(PlayerInfo &player)
 {
 	zoom = Preferences::ViewZoom();
 
+	// Start the thread for doing calculations.
+	calcThread = thread(&Engine::ThreadEntryPoint, this);
+
 	if(!player.IsLoaded() || !player.GetSystem())
 		return;
 
@@ -255,8 +257,12 @@ Engine::Engine(PlayerInfo &player)
 
 Engine::~Engine()
 {
-	if(calculation.valid())
-		calculation.wait();
+	{
+		unique_lock<mutex> lock(swapMutex);
+		terminate = true;
+	}
+	condition.notify_all();
+	calcThread.join();
 }
 
 
@@ -431,8 +437,8 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 // Wait for the previous calculations (if any) to be done.
 void Engine::Wait()
 {
-	if(calculation.valid())
-		calculation.wait();
+	unique_lock<mutex> lock(swapMutex);
+	condition.wait(lock, [this] { return hasFinishedCalculating; });
 	drawTickTock = calcTickTock;
 }
 
@@ -900,13 +906,13 @@ void Engine::Step(bool isActive)
 // Begin the next step of calculations.
 void Engine::Go()
 {
-	++step;
-	calcTickTock = !calcTickTock;
-	calculation = TaskQueue::Run([this]
-		{
-			// While rendering start calculating the next step of the game.
-			CalculateStep();
-		});
+	{
+		unique_lock<mutex> lock(swapMutex);
+		++step;
+		calcTickTock = !calcTickTock;
+		hasFinishedCalculating = false;
+	}
+	condition.notify_all();
 }
 
 
@@ -1096,6 +1102,10 @@ void Engine::Draw() const
 
 	// Draw escort status.
 	escorts.Draw(hud->GetBox("escorts"));
+
+	// Upload any preloaded sprites that are now available. This is to avoid
+	// filling the entire backlog of sprites before landing on a planet.
+	GameData::ProcessSprites();
 
 	if(Preferences::Has("Show CPU / GPU load"))
 	{
@@ -1322,6 +1332,32 @@ void Engine::EnterSystem()
 	{
 		Messages::Add(GameData::HelpMessage("basics 1"), Messages::Importance::High);
 		Messages::Add(GameData::HelpMessage("basics 2"), Messages::Importance::High);
+	}
+}
+
+
+
+// Thread entry point.
+void Engine::ThreadEntryPoint()
+{
+	while(true)
+	{
+		{
+			unique_lock<mutex> lock(swapMutex);
+			condition.wait(lock, [this] { return !hasFinishedCalculating || terminate; });
+
+			if(terminate)
+				break;
+		}
+
+		// Do all the calculations.
+		CalculateStep();
+
+		{
+			unique_lock<mutex> lock(swapMutex);
+			hasFinishedCalculating = true;
+		}
+		condition.notify_one();
 	}
 }
 

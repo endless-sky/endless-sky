@@ -16,14 +16,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef MUSIC_H_
 #define MUSIC_H_
 
-#include <mad.h>
-
 #include <condition_variable>
 #include <cstdint>
 #include <cstdio>
-#include <future>
 #include <mutex>
 #include <string>
+#include <thread>
 #include <vector>
 
 
@@ -35,20 +33,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // so the game won't freeze if the music stops for some reason.
 class Music {
 public:
-	// How many bytes to read from the file at a time:
-	static constexpr size_t INPUT_CHUNK = 65536;
-	// How many samples to put in each output block. Because the output is in
-	// stereo, the duration of the sample is half this amount:
-	static constexpr size_t OUTPUT_CHUNK = INPUT_CHUNK / 2;
-
-	using Buffer = std::vector<int16_t>;
-
-
-public:
 	static void Init(const std::vector<std::string> &sources);
 
 
 public:
+	Music();
 	~Music();
 
 	// Set the source of music. If the path is empty, this music will be silent.
@@ -56,31 +45,33 @@ public:
 	// Get the name of the current music source playing.
 	const std::string &GetSource() const;
 	// Get the next audio buffer to play.
-	const Buffer &NextChunk();
+	const std::vector<int16_t> &NextChunk();
 
 
 private:
-	// Starts a task that decodes a single frame from the currently loaded file.
-	void DecodeFrame();
+	// This is the entry point for the decoding thread.
+	void Decode();
 
 
 private:
 	// Buffers for storing the decoded audio sample. The "silence" buffer holds
 	// a block of silence to be returned if nothing was read from the file.
-	Buffer silence = Buffer(OUTPUT_CHUNK, 0);
-	Buffer next;
-	Buffer current;
+	std::vector<int16_t> silence;
+	std::vector<int16_t> next;
+	std::vector<int16_t> current;
 
 	std::string currentSource;
 	std::string previousPath;
+	// This pointer holds the file for as long as it is owned by the main
+	// thread. When the decode thread takes possession of it, it sets this
+	// pointer to null.
+	FILE *nextFile = nullptr;
+	bool hasNewFile = false;
+	bool done = false;
 
-	// This pointer holds the file that is currently being decoded.
-	FILE *file = nullptr;
-	std::future<void> decoder;
-
-	mad_stream stream;
-	mad_frame frame;
-	mad_synth synth;
+	std::thread thread;
+	std::mutex decodeMutex;
+	std::condition_variable condition;
 };
 
 
