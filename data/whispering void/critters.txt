@@ -28,13 +28,13 @@ ship "Pincer Beast"
 		"hull" 14300
 		"self destruct" 1.0
 		"automaton" 1
-		"mass" 850
-		"drag" 9.6
+		"mass" 1700
+		"drag" 19.2
 		"heat dissipation" .7
 		"cargo space" 75
 		"cooling" 13
-		"thrust" 25
-		"turn" 1100
+		"thrust" 50
+		"turn" 2200
 		"hull repair rate" 5
 		"energy capacity" 1000
 		"energy generation" 5
