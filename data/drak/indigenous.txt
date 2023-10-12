@@ -20,13 +20,13 @@ ship "Subsidurial"
 		category "Light Freighter"
 		"hull" 11600
 		"automaton" 1
-		"mass" 700
+		"mass" 1400
 		"cargo space" 70
-		"drag" 8.2
+		"drag" 16.4
 		"heat dissipation" .8
 		"fuel capacity" 100
-		"thrust" 10
-		"turn" 800
+		"thrust" 20
+		"turn" 1600
 		"hull repair rate" 3
 		"ion protection" 3
 		"scramble protection" 3
@@ -72,13 +72,13 @@ ship "Void Sprite"
 		"hull" 9600
 		"required crew" 4
 		"bunks" 4
-		"mass" 460
-		"drag" 8.2
+		"mass" 940
+		"drag" 16.4
 		"heat dissipation" .8
 		"cargo space" 40
 		"outfit space" 20
-		"thrust" 20
-		"turn" 900
+		"thrust" 40
+		"turn" 1800
 		"hull repair rate" 3
 		"ion protection" 3
 		"scramble protection" 3
@@ -129,13 +129,13 @@ ship "Void Sprite" "Void Sprite (Infant)"
 		"hull" 2800
 		"required crew" 2
 		"bunks" 2
-		"mass" 190
-		"drag" 5.4
+		"mass" 390
+		"drag" 10.8
 		"heat dissipation" .9
 		"cargo space" 20
 		"outfit space" 10
-		"thrust" 18
-		"turn" 450
+		"thrust" 36
+		"turn" 900
 		"hull repair rate" 1
 		"ion protection" 3
 		"scramble protection" 3
@@ -176,14 +176,14 @@ ship "Ember Waste Node"
 		"shields" 5000
 		"required crew" 5
 		"bunks" 5
-		"mass" 1000
-		"drag" 8.2
+		"mass" 2000
+		"drag" 16.4
 		"heat dissipation" 1
 		"fuel capacity" 250
 		"cargo space" 39
 		"outfit space" 0
-		"thrust" 80
-		"turn" 3500
+		"thrust" 160
+		"turn" 7000
 		"hull repair rate" 3
 		"ion protection" 3
 		"scramble protection" 3
@@ -233,13 +233,13 @@ ship "Embershade"
 		"hull" 9600
 		"required crew" 1
 		"bunks" 1
-		"mass" 220
-		"drag" 4.2
+		"mass" 440
+		"drag" 8.4
 		"heat dissipation" .8
 		"cargo space" 40
 		"fuel capacity" 100
-		"thrust" 20
-		"turn" 900
+		"thrust" 40
+		"turn" 1800
 		"energy capacity" 500
 		"energy generation" 6
 		"hull repair rate" 3
@@ -273,14 +273,14 @@ ship "Embersylph"
 		"hull" 1800
 		"required crew" 1
 		"bunks" 1
-		"mass" 140
-		"drag" 3.2
+		"mass" 280
+		"drag" 6.4
 		"heat dissipation" .7
 		"cargo space" 0
 		"fuel capacity" 100
-		"thrust" 8
-		"reverse thrust" 3
-		"turn" 90
+		"thrust" 16
+		"reverse thrust" 6
+		"turn" 180
 		"energy capacity" 800
 		"energy generation" 7
 		"hull repair rate" 2
