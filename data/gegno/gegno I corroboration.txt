@@ -627,6 +627,7 @@ mission "Gegno Anticipation A"
 			action
 				set "gegno word: friend"
 			`	After a pause, Adrauni turns toward you, stares at you briefly, then looks back forward as the three of you continue through the ring. "Quite an important conclusion, is that not? Many times I have said this. The Gegno are not what I would consider humans to be knowledgeable of. Should you learn more, I'm afraid even then the Gegno do not desire, what was the human word... camaraderie?" The Gegno then asks something in their language, and Adrauni begins a somewhat lengthy conversation with them.`
+			choice
 				`	"Maybe it's better I do leave them alone."`
 					goto "better"
 				`	"There must be something I can do."`
@@ -641,17 +642,28 @@ mission "Gegno Anticipation A"
 				goto "visit"
 
 			label "better"
-			`	"Adrauni speaks to the Gegno once more, this time for an extended period of time. The strange architecture of the ringworld does little to comfort you, as it feels like you've walked down the same path several times now. A few moments later, you eventually begin following Adrauni and the Gegno down what appears to be a different section, though it is strangely wider than previous ones. "Yes, it may be that your departure is the most favorable outcome in this affair." A long, awkward silence ensues, at the end of which Adrauni briefly comes to a hault, still facing forward, now crossing its armos behind its back. "Though you and I figure that is... unlikely."`
+			`	Adrauni speaks to the Gegno once more, this time for an extended period of time. The strange architecture of the ringworld does little to comfort you, as it feels like you've walked down the same path several times now. A few moments later, you eventually begin following Adrauni and the Gegno down what appears to be a different section, though it is strangely wider than previous ones. "Yes, it may be that your departure is the most favorable outcome in this affair." A long, awkward silence ensues, at the end of which Adrauni briefly comes to a hault, still facing forward, now crossing its armos behind its back. "Though you and I figure that is... unlikely."`
 				goto visit
 
 			label "visit"
 			`	A few more pathways later, you are at the end of your seemingly long trip through the ringworld, finding yourself back where you started - the docking facility where your ship is stationed at. Although it felt like a dizzying maze to follow Adrauni around back to here, you can't help but imagine how much more confusing it would be to explore the entirety of a ringworld, considering that was only several minutes worth. Adrauni stops and turns to you, slightly lowering down to speak closer to your own height. "You must seek audience on your own behalf. Visit the Gegno homeworld of Dueyu Eitch, present yourself in a manner that you desire to be seen, and only then will you find your answer."`
+			
+			label epilogue
 			choice
 				`	"Won't they prevent me from landing?"`
 				`	"Couldn't we have just asked the Gegno from earlier?"`
+					goto "ask"
 				`	"I'm not sure that's safe. Could you escort me there?"`
+					goto "escort"
 				`	"Thank you. I will leave now."`
 					accept
+
+			label "ask"
+			
+			
+			
+			label "escort"
+
 
 
 mission "Gegno Anticipation B"
@@ -737,7 +749,7 @@ mission "Gegno Anticipation B"
 #	to offer
 #		or
 #			has "Gegno Anticipation A: offered"
-			has "Gegno Anticipation B: offered"
+#			has "Gegno Anticipation B: offered"
 #			has "Gegno Intervention: offered"
 #	on offer
 #		conversation
