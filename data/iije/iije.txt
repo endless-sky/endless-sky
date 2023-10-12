@@ -26,8 +26,8 @@ ship "Jje"
 		"hull" 4000
 		"required crew" 2
 		"bunks" 2
-		"mass" 100
-		"drag" 10
+		"mass" 200
+		"drag" 20
 		"heat dissipation" 20
 		"engine capacity" 200
 		"cargo space" 10
@@ -41,9 +41,9 @@ ship "Jje"
 		"energy capacity" 400
 		"energy generation" 4
 		
-		"thrust" 8
+		"thrust" 16
 		"flare sound" "jje"
-		"turn" 60
+		"turn" 120
 		"steering flare sound" "jje"
 		
 		"burn protection" 2
@@ -78,8 +78,8 @@ ship "Ayym"
 		"hull" 6000
 		"required crew" 4
 		"bunks" 4
-		"mass" 200
-		"drag" 20
+		"mass" 400
+		"drag" 40
 		"heat dissipation" 20
 		"engine capacity" 200
 		"fuel capacity" 100
@@ -95,9 +95,9 @@ ship "Ayym"
 		"atmosphere scan" 10
 		"inscrutable" 1
 		
-		"thrust" 14
+		"thrust" 28
 		"flare sound" "ayym"
-		"turn" 80
+		"turn" 160
 		"steering flare sound" "ayym"
 		
 		"jump fuel" 100
