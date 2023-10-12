@@ -146,7 +146,7 @@ mission "Assisting Hai"
 	assisting
 	repeat
 	to offer
-		random < 27
+		random < 19
 	source
 		government "Hai" "Hai Merchant" "Hai Merchant (Human)"
 		not attributes "automaton"
