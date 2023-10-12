@@ -641,7 +641,7 @@ mission "Earth Day Blackout"
 		month == 5
 	on offer
 		conversation
-			`As you follow the tracking beacons towards Earth's central spaceport, you realize there's something very off; what was the bustling spaceport city is now completely still, and even though it is near midnight, the supertall buildings and skyscrapers are curiously dark; not a light is on for kilometers.`
+			`As you follow the tracking beacons towards Earth's central spaceport, you realize there's something very off. What was the bustling spaceport city is now completely still, and even though it is near midnight, the supertall buildings and skyscrapers are curiously dark; not a light is on for kilometers.`
 			`	Despite this, the spaceport seems to still be operational, because the automated procedures of signing landing documents, refueling, and checking your ship's spaceworthiness are completed as you land. In the spaceport terminal, there are wax candles spaced out to bring some light into the now dark corridors. It's a strange sight for the most populated planet in human space.`
 			choice
 				`	(Find someone and ask.)`
