@@ -31,7 +31,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
-#include "PointerShader.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "Sprite.h"
@@ -127,10 +126,10 @@ bool ShipyardPanel::HasItem(const string &name) const
 
 
 
-void ShipyardPanel::DrawItem(const string &name, const Point &point, int scrollY)
+void ShipyardPanel::DrawItem(const string &name, const Point &point)
 {
 	const Ship *ship = GameData::Ships().Get(name);
-	zones.emplace_back(point, Point(SHIP_SIZE, SHIP_SIZE), ship, scrollY);
+	zones.emplace_back(point, Point(SHIP_SIZE, SHIP_SIZE), ship);
 	if(point.Y() + SHIP_SIZE / 2 < Screen::Top() || point.Y() - SHIP_SIZE / 2 > Screen::Bottom())
 		return;
 
@@ -382,6 +381,7 @@ void ShipyardPanel::BuyShip(const string &name)
 	playerShip = &*player.Ships().back();
 	playerShips.clear();
 	playerShips.insert(playerShip);
+	CheckSelection();
 }
 
 
@@ -400,5 +400,4 @@ void ShipyardPanel::SellShip()
 		}
 	if(playerShip)
 		playerShips.insert(playerShip);
-	player.UpdateCargoCapacities();
 }

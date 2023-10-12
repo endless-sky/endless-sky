@@ -142,6 +142,10 @@ public:
 
 	bool IsProvokedOnScan() const;
 
+	// Determine if ships from this government can travel to the given system or planet.
+	bool IsRestrictedFrom(const System &system) const;
+	bool IsRestrictedFrom(const Planet &planet) const;
+
 
 private:
 	unsigned id;
@@ -164,6 +168,7 @@ private:
 	double bribe = 0.;
 	double fine = 1.;
 	std::vector<LocationFilter> enforcementZones;
+	LocationFilter travelRestrictions;
 	const Conversation *deathSentence = nullptr;
 	const Phrase *friendlyHail = nullptr;
 	const Phrase *friendlyDisabledHail = nullptr;
