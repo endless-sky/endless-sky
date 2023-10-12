@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define ENGINE_H_
 
 #include "AI.h"
+#include "AlertLabel.h"
 #include "AmmoDisplay.h"
 #include "AsteroidField.h"
 #include "BatchDrawList.h"
@@ -25,34 +26,32 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DrawList.h"
 #include "EscortDisplay.h"
 #include "Information.h"
+#include "PlanetLabel.h"
 #include "Point.h"
+#include "Projectile.h"
 #include "Preferences.h"
 #include "Radar.h"
 #include "Rectangle.h"
+#include "TaskQueue.h"
+#include "Visual.h"
+#include "Weather.h"
 
 #include <condition_variable>
 #include <list>
 #include <map>
 #include <memory>
-#include <thread>
 #include <utility>
 #include <vector>
 
-class AlertLabel;
 class Flotsam;
 class Government;
 class NPC;
 class Outfit;
-class PlanetLabel;
 class PlayerInfo;
-class Projectile;
 class Ship;
 class ShipEvent;
 class Sprite;
 class TestContext;
-class Visual;
-class Weather;
-
 
 
 // Class representing the game engine: its job is to track all of the objects in
@@ -65,7 +64,6 @@ class Weather;
 class Engine {
 public:
 	explicit Engine(PlayerInfo &player);
-	~Engine();
 
 	// Place all the player's ships, and "enter" the system the player is in.
 	void Place();
@@ -131,7 +129,6 @@ private:
 private:
 	void EnterSystem();
 
-	void ThreadEntryPoint();
 	void CalculateStep();
 
 	void MoveShip(const std::shared_ptr<Ship> &ship);
@@ -182,14 +179,10 @@ private:
 
 	AI ai;
 
-	std::thread calcThread;
-	std::condition_variable condition;
-	std::mutex swapMutex;
-
+	TaskQueue queue;
 	bool calcTickTock = false;
 	bool drawTickTock = false;
-	bool hasFinishedCalculating = true;
-	bool terminate = false;
+
 	bool wasActive = false;
 	bool isMouseHoldEnabled = false;
 	bool isMouseTurningEnabled = false;

@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class Conversation;
 class PlayerInfo;
+class TaskQueue;
 class UI;
 
 
@@ -31,7 +32,7 @@ class UI;
 // (like game data and save files).
 class GameLoadingPanel final : public Panel {
 public:
-	GameLoadingPanel(PlayerInfo &player, const Conversation &conversation, UI &gamePanels, bool &finishedLoading);
+	GameLoadingPanel(PlayerInfo &player, TaskQueue &queue, const Conversation &conversation, UI &gamePanels, bool &finishedLoading);
 
 	void Step() final;
 	void Draw() final;
@@ -39,6 +40,7 @@ public:
 
 private:
 	PlayerInfo &player;
+	TaskQueue &queue;
 	const Conversation &conversation;
 	UI &gamePanels;
 	bool &finishedLoading;

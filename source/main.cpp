@@ -67,7 +67,7 @@ using namespace std;
 
 void PrintHelp();
 void PrintVersion();
-void GameLoop(PlayerInfo &player, const Conversation &conversation, const string &testToRun, bool debugMode);
+void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversation, const string &testToRun, bool debugMode);
 Conversation LoadConversation();
 void PrintTestsTable();
 #ifdef _WIN32
@@ -128,14 +128,16 @@ int main(int argc, char *argv[])
 		// Load plugin preferences before game data if any.
 		Plugins::LoadSettings();
 
+		TaskQueue queue;
+
 		// Begin loading the game data.
 		bool isConsoleOnly = loadOnly || printTests || printData;
-		future<void> dataLoading = GameData::BeginLoad(isConsoleOnly, debugMode);
+		GameData::BeginLoad(queue, isConsoleOnly, debugMode);
 
 		// If we are not using the UI, or performing some automated task, we should load
-		// all data now. (Sprites and sounds can safely be deferred.)
+		// all data now.
 		if(isConsoleOnly || !testToRunName.empty())
-			dataLoading.wait();
+			queue.Wait();
 
 		if(!testToRunName.empty() && !GameData::Tests().Has(testToRunName))
 		{
@@ -199,7 +201,7 @@ int main(int argc, char *argv[])
 		}
 
 		// This is the main loop where all the action begins.
-		GameLoop(player, conversation, testToRunName, debugMode);
+		GameLoop(player, queue, conversation, testToRunName, debugMode);
 	}
 	catch(Test::known_failure_tag)
 	{
@@ -228,7 +230,7 @@ int main(int argc, char *argv[])
 
 
 
-void GameLoop(PlayerInfo &player, const Conversation &conversation, const string &testToRunName, bool debugMode)
+void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversation, const string &testToRunName, bool debugMode)
 {
 	// gamePanels is used for the main panel where you fly your spaceship.
 	// All other game content related dialogs are placed on top of the gamePanels.
@@ -244,7 +246,7 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 	// Whether the game data is done loading. This is used to trigger any
 	// tests to run.
 	bool dataFinishedLoading = false;
-	menuPanels.Push(new GameLoadingPanel(player, conversation, gamePanels, dataFinishedLoading));
+	menuPanels.Push(new GameLoadingPanel(player, queue, conversation, gamePanels, dataFinishedLoading));
 
 	bool showCursor = true;
 	int cursorTime = 0;
@@ -344,9 +346,6 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 
 		// Tell all the panels to step forward, then draw them.
 		((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
-
-		// Process any tasks to execute.
-		TaskQueue::ProcessTasks();
 
 		// All manual events and processing done. Handle any test inputs and events if we have any.
 		const Test *runningTest = testContext.CurrentTest();

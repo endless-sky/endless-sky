@@ -37,6 +37,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipyardPanel.h"
 #include "SpaceportPanel.h"
 #include "System.h"
+#include "TaskQueue.h"
 #include "TradingPanel.h"
 #include "UI.h"
 
@@ -63,9 +64,8 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 
 	// Since the loading of landscape images is deferred, make sure that the
 	// landscapes for this system are loaded before showing the planet panel.
-	auto preload = GameData::Preload(planet.Landscape());
-	if(preload.valid())
-		preload.wait();
+	TaskQueue queue;
+	GameData::Preload(queue, planet.Landscape());
 }
 
 

@@ -247,16 +247,14 @@ Engine::Engine(PlayerInfo &player)
 	zoomMod = Preferences::Has("Landing zoom") ? 2. : 1.;
 	zoom = baseZoom * zoomMod;
 
-	// Start the thread for doing calculations.
-	calcThread = thread(&Engine::ThreadEntryPoint, this);
-
 	if(!player.IsLoaded() || !player.GetSystem())
 		return;
 
 	// Preload any landscapes for this system.
 	for(const StellarObject &object : player.GetSystem()->Objects())
 		if(object.HasSprite() && object.HasValidPlanet())
-			GameData::Preload(object.GetPlanet()->Landscape());
+			GameData::Preload(queue, object.GetPlanet()->Landscape());
+	queue.Wait();
 
 	// Figure out what planet the player is landed on, if any.
 	const StellarObject *object = player.GetStellarObject();
@@ -288,18 +286,6 @@ Engine::Engine(PlayerInfo &player)
 				system->Position() - player.GetSystem()->Position());
 
 	GameData::SetHaze(player.GetSystem()->Haze(), true);
-}
-
-
-
-Engine::~Engine()
-{
-	{
-		unique_lock<mutex> lock(swapMutex);
-		terminate = true;
-	}
-	condition.notify_all();
-	calcThread.join();
 }
 
 
@@ -478,8 +464,7 @@ void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
 // Wait for the previous calculations (if any) to be done.
 void Engine::Wait()
 {
-	unique_lock<mutex> lock(swapMutex);
-	condition.wait(lock, [this] { return hasFinishedCalculating; });
+	queue.Wait();
 	drawTickTock = calcTickTock;
 }
 
@@ -988,13 +973,9 @@ void Engine::Step(bool isActive)
 // Begin the next step of calculations.
 void Engine::Go()
 {
-	{
-		unique_lock<mutex> lock(swapMutex);
-		++step;
-		calcTickTock = !calcTickTock;
-		hasFinishedCalculating = false;
-	}
-	condition.notify_all();
+	++step;
+	calcTickTock = !calcTickTock;
+	queue.Run([this] { CalculateStep(); });
 }
 
 
@@ -1161,10 +1142,6 @@ void Engine::Draw() const
 	// Draw escort status.
 	escorts.Draw(hud->GetBox("escorts"));
 
-	// Upload any preloaded sprites that are now available. This is to avoid
-	// filling the entire backlog of sprites before landing on a planet.
-	GameData::ProcessSprites();
-
 	if(Preferences::Has("Show CPU / GPU load"))
 	{
 		string loadString = to_string(lround(load * 100.)) + "% CPU";
@@ -1286,7 +1263,7 @@ void Engine::EnterSystem()
 	for(const StellarObject &object : system->Objects())
 		if(object.HasValidPlanet())
 		{
-			GameData::Preload(object.GetPlanet()->Landscape());
+			GameData::Preload(queue, object.GetPlanet()->Landscape());
 			if(object.GetPlanet()->IsWormhole() && !usedWormhole
 					&& flagship->Position().Distance(object.Position()) < 1.)
 				usedWormhole = &object;
@@ -1393,32 +1370,6 @@ void Engine::EnterSystem()
 	{
 		Messages::Add(GameData::HelpMessage("basics 1"), Messages::Importance::High);
 		Messages::Add(GameData::HelpMessage("basics 2"), Messages::Importance::High);
-	}
-}
-
-
-
-// Thread entry point.
-void Engine::ThreadEntryPoint()
-{
-	while(true)
-	{
-		{
-			unique_lock<mutex> lock(swapMutex);
-			condition.wait(lock, [this] { return !hasFinishedCalculating || terminate; });
-
-			if(terminate)
-				break;
-		}
-
-		// Do all the calculations.
-		CalculateStep();
-
-		{
-			unique_lock<mutex> lock(swapMutex);
-			hasFinishedCalculating = true;
-		}
-		condition.notify_one();
 	}
 }
 

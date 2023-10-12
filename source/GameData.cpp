@@ -103,14 +103,14 @@ namespace {
 	int totalSprites = 0;
 
 	// Loads a sprite with total progress tracking.
-	void LoadSprite(const shared_ptr<ImageSet> &image)
+	void LoadSprite(TaskQueue &queue, const shared_ptr<ImageSet> &image)
 	{
-		TaskQueue::Run([image] { image->Load(); },
+		queue.Run([image] { image->Load(); },
 				[image] { image->Upload(SpriteSet::Modify(image->Name())); ++spriteLoadingProgress; });
 		++totalSprites;
 	}
 
-	void LoadPlugin(const string &path)
+	void LoadPlugin(TaskQueue &queue, const string &path)
 	{
 		const auto *plugin = Plugins::Load(path);
 		if(!plugin)
@@ -136,46 +136,48 @@ namespace {
 		if(!icon->IsEmpty())
 		{
 			icon->ValidateFrames();
-			LoadSprite(icon);
+			LoadSprite(queue, icon);
 		}
 	}
 }
 
 
 
-future<void> GameData::BeginLoad(bool onlyLoadData, bool debugMode)
+void GameData::BeginLoad(TaskQueue &queue, bool onlyLoadData, bool debugMode)
 {
 	// Initialize the list of "source" folders based on any active plugins.
-	LoadSources();
+	LoadSources(queue);
 
 	if(!onlyLoadData)
 	{
-		// Now, read all the images in all the path directories. For each unique
-		// name, only remember one instance, letting things on the higher priority
-		// paths override the default images.
-		map<string, shared_ptr<ImageSet>> images = FindImages();
+		queue.Run([&queue] {
+			// Now, read all the images in all the path directories. For each unique
+			// name, only remember one instance, letting things on the higher priority
+			// paths override the default images.
+			map<string, shared_ptr<ImageSet>> images = FindImages();
 
-		// From the name, strip out any frame number, plus the extension.
-		for(const auto &it : images)
-		{
-			// This should never happen, but just in case:
-			if(!it.second)
-				continue;
+			// From the name, strip out any frame number, plus the extension.
+			for(const auto &it : images)
+			{
+				// This should never happen, but just in case:
+				if(!it.second)
+					continue;
 
-			// Reduce the set of images to those that are valid.
-			it.second->ValidateFrames();
-			// For landscapes, remember all the source files but don't load them yet.
-			if(ImageSet::IsDeferred(it.first))
-				deferred[SpriteSet::Get(it.first)] = it.second;
-			else
-				LoadSprite(it.second);
-		}
+				// Reduce the set of images to those that are valid.
+				it.second->ValidateFrames();
+				// For landscapes, remember all the source files but don't load them yet.
+				if(ImageSet::IsDeferred(it.first))
+					deferred[SpriteSet::Get(it.first)] = it.second;
+				else
+					LoadSprite(queue, it.second);
+			}
 
-		// Generate a catalog of music files.
-		Music::Init(sources);
+			// Generate a catalog of music files.
+			Music::Init(sources);
+		});
 	}
 
-	return objects.Load(sources, debugMode);
+	objects.Load(queue, sources, debugMode);
 }
 
 
@@ -246,12 +248,12 @@ bool GameData::IsLoaded()
 
 // Begin loading a sprite that was previously deferred. Currently this is
 // done with all landscapes to speed up the program's startup.
-future<void> GameData::Preload(const Sprite *sprite)
+void GameData::Preload(TaskQueue &queue, const Sprite *sprite)
 {
 	// Make sure this sprite actually is one that uses deferred loading.
 	auto dit = deferred.find(sprite);
 	if(!sprite || dit == deferred.end())
-		return future<void>();
+		return;
 
 	// If this sprite is one of the currently loaded ones, there is no need to
 	// load it again. But, make note of the fact that it is the most recently
@@ -264,7 +266,7 @@ future<void> GameData::Preload(const Sprite *sprite)
 				++it.second;
 
 		pit->second = 0;
-		return future<void>();
+		return;
 	}
 
 	// This sprite is not currently preloaded. Check to see whether we already
@@ -287,7 +289,7 @@ future<void> GameData::Preload(const Sprite *sprite)
 	// Now, load all the files for this sprite.
 	preloaded[sprite] = 0;
 	auto image = dit->second;
-	return TaskQueue::Run([image] { image->Load(); },
+	return queue.Run([image] { image->Load(); },
 			[image] { image->Upload(SpriteSet::Modify(image->Name())); });
 }
 
@@ -839,7 +841,7 @@ const Gamerules &GameData::GetGamerules()
 
 
 
-void GameData::LoadSources()
+void GameData::LoadSources(TaskQueue &queue)
 {
 	sources.clear();
 	sources.push_back(Files::Resources());
@@ -847,12 +849,12 @@ void GameData::LoadSources()
 	vector<string> globalPlugins = Files::ListDirectories(Files::Resources() + "plugins/");
 	for(const string &path : globalPlugins)
 		if(Plugins::IsPlugin(path))
-			LoadPlugin(path);
+			LoadPlugin(queue, path);
 
 	vector<string> localPlugins = Files::ListDirectories(Files::Config() + "plugins/");
 	for(const string &path : localPlugins)
 		if(Plugins::IsPlugin(path))
-			LoadPlugin(path);
+			LoadPlugin(queue, path);
 }
 
 
