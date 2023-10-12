@@ -21,8 +21,8 @@ ship "Earth Shaper"
 		"cost" 500000
 		"hull" 3300
 		"automaton" 1
-		"mass" 30
-		"drag" .9
+		"mass" 39
+		"drag" .99
 		"heat dissipation" .9
 		"fuel capacity" 300
 		"cargo space" 27
@@ -101,8 +101,8 @@ ship "Summer Leaf"
 		"hull" 6700
 		"required crew" 6
 		"bunks" 15
-		"mass" 110
-		"drag" 2.6
+		"mass" 282
+		"drag" 3.6
 		"heat dissipation" .8
 		"fuel capacity" 800
 		"cargo space" 41
@@ -151,8 +151,8 @@ ship "Autumn Leaf"
 		"hull" 7400
 		"required crew" 8
 		"bunks" 16
-		"mass" 130
-		"drag" 2.9
+		"mass" 375
+		"drag" 4.3
 		"heat dissipation" .8
 		"fuel capacity" 1000
 		"cargo space" 45
@@ -213,8 +213,8 @@ ship "Strong Wind"
 		"hull" 19600
 		"required crew" 17
 		"bunks" 39
-		"mass" 260
-		"drag" 4.7
+		"mass" 862
+		"drag" 8.5
 		"heat dissipation" .7
 		"fuel capacity" 600
 		"cargo space" 68
@@ -271,8 +271,8 @@ ship "Tempest"
 		"hull" 25900
 		"required crew" 38
 		"bunks" 53
-		"mass" 320
-		"drag" 6.2
+		"mass" 1340
+		"drag" 13.1
 		"heat dissipation" 0.65
 		"fuel capacity" 600
 		"cargo space" 47
@@ -394,8 +394,8 @@ ship "Derecho"
 		"hull" 32700
 		"required crew" 53
 		"bunks" 82
-		"mass" 540
-		"drag" 8.7
+		"mass" 2010
+		"drag" 20.9
 		"heat dissipation" 0.6
 		"fuel capacity" 500
 		"cargo space" 56
@@ -524,8 +524,8 @@ ship "Hurricane"
 		"hull" 46500
 		"required crew" 76
 		"bunks" 117
-		"mass" 770
-		"drag" 11.9
+		"mass" 4057
+		"drag" 34.5
 		"heat dissipation" 0.55
 		"fuel capacity" 500
 		"cargo space" 98
@@ -664,8 +664,8 @@ ship "Cool Breeze"
 		"hull" 3100
 		"required crew" 1
 		"bunks" 3
-		"mass" 50
-		"drag" 1.8
+		"mass" 123
+		"drag" 2.3
 		"heat dissipation" .9
 		"fuel capacity" 400
 		"cargo space" 14
@@ -721,8 +721,8 @@ ship "Winter Gale"
 		"hull" 14800
 		"required crew" 14
 		"bunks" 23
-		"mass" 240
-		"drag" 5.6
+		"mass" 743
+		"drag" 9.5
 		"heat dissipation" .7
 		"fuel capacity" 600
 		"cargo space" 28
@@ -824,8 +824,8 @@ ship "Deep River"
 		"hull" 47500
 		"required crew" 13
 		"bunks" 22
-		"mass" 750
-		"drag" 9.4
+		"mass" 1974
+		"drag" 19.7
 		"heat dissipation" .6
 		"fuel capacity" 500
 		"cargo space" 1140
@@ -869,36 +869,36 @@ ship "Deep River"
 ship "Deep River" "Deep River 0"
 	sprite "ship/deep river 0"
 	add attributes
-		"mass" -400
-		"drag" -2
+		"mass" -840
+		"drag" -4.2
 		"cargo space" -1140
 
 ship "Deep River" "Deep River 1"
 	sprite "ship/deep river 1"
 	add attributes
-		"mass" -320
-		"drag" -1.6
+		"mass" -672
+		"drag" -3.4
 		"cargo space" -912
 
 ship "Deep River" "Deep River 2"
 	sprite "ship/deep river 2"
 	add attributes
-		"mass" -240
-		"drag" -1.2
+		"mass" -504
+		"drag" -2.6
 		"cargo space" -684
 
 ship "Deep River" "Deep River 3"
 	sprite "ship/deep river 3"
 	add attributes
-		"mass" -160
-		"drag" -.8
+		"mass" -336
+		"drag" -1.8
 		"cargo space" -456
 
 ship "Deep River" "Deep River 4"
 	sprite "ship/deep river 4"
 	add attributes
-		"mass" -80
-		"drag" -.4
+		"mass" -168
+		"drag" -1
 		"cargo space" -228
 
 ship "Deep River Transport"
@@ -913,8 +913,8 @@ ship "Deep River Transport"
 		"hull" 47500
 		"required crew" 13
 		"bunks" 166
-		"mass" 750
-		"drag" 9.4
+		"mass" 1974
+		"drag" 19.7
 		"heat dissipation" .6
 		"fuel capacity" 500
 		"cargo space" 74
@@ -965,8 +965,8 @@ ship "Riptide"
 		"hull" 22350
 		"required crew" 47
 		"bunks" 233
-		"mass" 500
-		"drag" 7.3
+		"mass" 1488
+		"drag" 14.6
 		"heat dissipation" .7
 		"fuel capacity" 800
 		"cargo space" 164
