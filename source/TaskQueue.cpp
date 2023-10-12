@@ -148,7 +148,7 @@ void TaskQueue::ThreadLoop() noexcept
 
 			if(task.sync)
 			{
-				// helpIf the queue's sync task is full, push this task back into the queue
+				// If the queue's sync task is full, push this task back into the queue
 				// to help reduce load on the main thread.
 				unique_lock<mutex> syncLock(task.queue->syncMutex);
 				if(task.queue->syncTasks.size() > MAX_SYNC_TASKS)
