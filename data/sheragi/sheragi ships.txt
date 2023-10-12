@@ -22,8 +22,8 @@ ship "Emerald Sword"
 		"hull" 45000
 		"required crew" 86
 		"bunks" 302
-		"mass" 1520
-		"drag" 20
+		"mass" 7482
+		"drag" 64
 		"heat dissipation" 0.45
 		"fuel capacity" 900
 		"cargo space" 169
@@ -174,8 +174,8 @@ ship "Black Diamond"
 		"shields" 1600
 		"hull" 3400
 		"automaton" 1
-		"mass" 50
-		"drag" .9
+		"mass" 70
+		"drag" .99
 		"heat dissipation" .86
 		"outfit space" 152
 		"weapon capacity" 35
