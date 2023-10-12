@@ -239,7 +239,7 @@ outfit "Refueling Module"
 
 outfit "Shield Refactor Module"
 	category "Systems"
-	cost 2843000
+	cost 8324000
 	thumbnail "outfit/shield refactor module"
 	"mass" 11
 	"outfit space" -11
