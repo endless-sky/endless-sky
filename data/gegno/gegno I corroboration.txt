@@ -651,19 +651,62 @@ mission "Gegno Anticipation A"
 			label epilogue
 			choice
 				`	"Won't they prevent me from landing?"`
+					to display
+						not "gegno: landing dialog"
+
 				`	"Couldn't we have just asked the Gegno from earlier?"`
+					to display
+						not "gegno: asked dialog"
 					goto "ask"
+
 				`	"I'm not sure that's safe. Could you escort me there?"`
+					to display
+						not "gegno: escort dialog"
 					goto "escort"
+			
 				`	"Thank you. I will leave now."`
+					to display
+						has "gegno: landing dialog"
 					accept
 
-			label "ask"
-			
-			
-			
-			label "escort"
+			action
+				set "gegno: landing dialog"
+			`	"On the contrary. I rather believe them to be expecting you. Do remember you must hail the planet for clearance."`
+				goto epilogue
 
+			label "ask"
+			action
+				set "gegno: asked dialog"			
+			`	Adrauni ponders your question for a few moments before answering. "Ah, yes, your naievety to Gegno culture had but briefly passed me. That of the female Scin is tradition to allocate time of research just short of a lifespan. Whom you speak of is devoted to us here, nothing more. For any official matters with the Gegno to pass, they must go through the Heart of the colony."`
+				goto epilogue
+
+			label "escort"
+			action
+				set "gegno: escort dialog"		
+			`	Adrauni blinks at you. "I would have hoped you understand what what was meant by, "for yourself". It looks off to the side in deep thought, then back to you. "Habitually, we Quarg only visit the Gegno for the most minor of reasons. Should you be accompanied at this time, the Gegno's perception of you would likely alter. Imagine if the Quarg visited your planet called Earth with others in tow." You guess that Adrauni then does what the Quarg equivalent of a sigh would be. "However yes, I am capabale of sending you escort. Be certain in your decision."`
+			choice
+				`	"Yes, I would like escort."`
+					goto "quarg escort"
+				`	"No, I should be fine."`
+					goto "no escort"
+
+			label "quarg escort"
+			action
+				set "gegno: escort dialog"
+				set "gegno anticipation: quarg escort"
+			`	Adrauni hesitantly responds. "I shall send for one upon your departure."`
+				goto epilogue
+
+			label "no escort"
+			action
+				set "gegno: escort dialog"
+			`	"That is better for the wiser. "
+				goto epilogue
+
+	on accept
+		clear "gegno: landing dialog"
+		clear "gegno: asked dialog"
+		clear "gegno: escort dialog"
 
 
 mission "Gegno Anticipation B"
