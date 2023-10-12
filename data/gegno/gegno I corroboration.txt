@@ -667,7 +667,7 @@ mission "Gegno Anticipation A"
 				`	"Thank you. I will leave now."`
 					to display
 						has "gegno: landing dialog"
-					accept
+						goto "end"
 
 			action
 				set "gegno: landing dialog"
@@ -676,14 +676,14 @@ mission "Gegno Anticipation A"
 
 			label "ask"
 			action
-				set "gegno: asked dialog"			
-			`	Adrauni ponders your question for a few moments before answering. "Ah, yes, your naievety to Gegno culture had but briefly passed me. That of the female Scin is tradition to allocate time of research just short of a lifespan. Whom you speak of is devoted to us here, nothing more. For any official matters with the Gegno to pass, they must go through the Heart of the colony."`
+				set "gegno: asked dialog"
+			`	Adrauni ponders your question for a few moments before answering. "Ah, yes, your naievety to Gegno culture had but briefly passed me. That of the female Scin is tradition to allocate time of research just short of a lifespan. Whom you speak of is devoted to us here, nothing more. For any official matters with the Gegno to pass, they must go through the heart of the colony."`
 				goto epilogue
 
 			label "escort"
 			action
-				set "gegno: escort dialog"		
-			`	Adrauni blinks at you. "I would have hoped you understand what what was meant by, "for yourself". It looks off to the side in deep thought, then back to you. "Habitually, we Quarg only visit the Gegno for the most minor of reasons. Should you be accompanied at this time, the Gegno's perception of you would likely alter. Imagine if the Quarg visited your planet called Earth with others in tow." You guess that Adrauni then does what the Quarg equivalent of a sigh would be. "However yes, I am capabale of sending you escort. Be certain in your decision."`
+				set "gegno: escort dialog"
+			`	Adrauni blinks at you. "I would have hoped you understand what was meant by, for yourself." It looks off to the side in deep thought, then back to you. "Habitually, we Quarg only visit the Gegno for the most minor of reasons. Should you be accompanied at this time, the Gegno's perception of you would likely alter. Imagine if the Quarg visited your planet called Earth with others in tow." You guess that Adrauni then does what the Quarg equivalent of a sigh would be. "However yes, I am capabale of sending you escort. Be certain in your decision."`
 			choice
 				`	"Yes, I would like escort."`
 					goto "quarg escort"
@@ -700,8 +700,12 @@ mission "Gegno Anticipation A"
 			label "no escort"
 			action
 				set "gegno: escort dialog"
-			`	"That is better for the wiser. "
+			`	"I see. May it be for the best, then."
 				goto epilogue
+
+			label "end"
+			`	"Safe travels, <first> <last>. I aspire in your decisions to befit the wise on your journey ahead." Adrauni bows for an extended period of time, then leaves the hangar. You get the feeling that this might have been the last time you meet with it. As you return to your ship, a few other Quarg, who have been watching the conversation from afar, also return to their normal routine as if nothing had happened. Now, it is up to you to see for yourself whether or not the Gegno will accept you.`
+				accept
 
 	on accept
 		clear "gegno: landing dialog"
