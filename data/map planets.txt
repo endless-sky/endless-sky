@@ -43,6 +43,12 @@ planet Ada
 		threshold 8000
 		fleet "Large Republic" 16
 
+planet Aera
+	attributes "requires: gaslining"
+	landscape land/aera
+	description `Aera is a large tidally locked ice giant close to its parent star. Its methane atmosphere is dominated by a titanic hurricane covering the dayside half of the planet, the result of tidal forces drawing streams of air and clouds into a planet sized storm. The eye of the hurricane is surprisingly calm, but the heat of the perpetually noon sun drives temperatures higher than what most life could survive.`
+	government Uninhabited
+
 planet "Aetuah"
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/nasa30
@@ -2160,6 +2166,12 @@ planet "Iemn Eitch"
 	bribe 0
 	security 0
 
+planet "Igna"
+	landscape land/igna
+	attributes "requires: gaslining"
+	description `This gas giant has a really hot atmosphere probably due to its proximity to the central star. The clouds emit a warm, orange glow creating a good visibillity even into deeper layers. Occasional storms break the almost peaceful atmosphere, raging violently but disappearing as quickly as they appeared.`
+	government Uninhabited
+
 planet "Illbo Avo"
 	attributes bunrodea military moon
 	landscape land/badlands6
@@ -3151,11 +3163,11 @@ planet Ochrescoop
 	bribe 0.1
 	security 0.5
 
-planet Occupas
+planet "Occupas"
 	attributes "requires: gaslining"
-	government "Silent Ones"
-	landscape land/nasa10
+	landscape land/occupas
 	description `There are no places to land on this planet, so you end up simply gliding through the upper layers of clouds. From time to time some strange giant shadows appear in the deeper layers, but they never stay long. This gas giant has relatively calm weather; the winds are mild and storms do not appear very often.`
+	government Uninhabited
 
 planet "Ogmur's Siphon"
 	attributes arach "coalition station" research
@@ -3435,8 +3447,8 @@ planet Rand
 		threshold 3000
 		fleet "Large Militia" 8
 
-planet Redias
-	landscape land/gasgiant1
+planet "Redias"
+	landscape land/redias
 	attributes "requires: gaslining"
 	"required reputation" 1
 	description "The home planet of the Incipias is reigned over by powerful storms. Lightning and thunder appear without pause and a powerful wind moves the clouds at a disorienting speed."
@@ -4381,6 +4393,12 @@ planet Topkapi
 	government Uninhabited
 	security 0
 
+planet Treser
+	attributes "requires: gaslining"
+	landscape land/treser
+	description `A dark world lies beneath you, some chemical compound in the clouds is absorbing over ninety percent of the incoming light. This results in a enormerous amount of heat in the atmosphere of this gas giant. You are barely able to fly through the upermost layers. When the heat exceeds the limit at a point the gas goes into the state of plasma creating a small spot of light on this world of eternal darkness.`
+	government Uninhabited
+
 planet Trinket
 	attributes south tourism
 	landscape land/beach3
@@ -4455,6 +4473,12 @@ planet Tundra
 	tribute 400
 		threshold 3000
 		fleet "Large Militia" 6
+
+planet "Turra"
+	attributes "requires: gaslining"
+	landscape land/turra
+	description `The really thick clouds make this gas giant a dark world. From time to time the wall of clouds gets broken and a ray of light reveals giant caverns of air within the clouds. The local lifeforms are very primitive and are mostly plantlike, some of them look like dark flowers, absorbing all light that shines on them.`
+	government Uninhabited
 
 planet "Turquoise Four"
 	attributes farming kimek
@@ -4753,6 +4777,12 @@ planet "Vivid Aether"
 	landscape land/nasa29
 	description `Whether it be from local evolution or panspermia, Vivid Aether's clouds are home to colonies of anaerobic microbial life, feeding on both sunlight and traces of methane in the atmosphere. These form colorful streaks in the upper atmosphere, which were what initially attracted Saryd explorers to the planet. Now, it is common for Heliarch research patrols to sit in orbit for weeks at a time in order to study the simple, yet exotic, ecology. Occasionally, they send down small vessels capable of withstanding the extreme pressures, though none happen to be nearby right now.`
 	description `	The life-bearing layer only extends downward a few hundred kilometers before pressures rise and the temperature becomes inhospitable to life. Deeper down, the atmosphere is barren and lifeless.`
+	government Uninhabited
+
+planet Vulpa
+	attributes "requires: gaslining"
+	landscape land/vulpa
+	description `At first sight this looks like a friendly gas giant the blue tones invoke the feeling of an ocean world, but not to be decieved as such. The clouds contain countless small glass droplets moving at tremendous speeds cutting through everything in its way. Your spaceships hull is able to deflect most of them but it is advisable not to stay here for too long.`
 	government Uninhabited
 
 planet Warfeed

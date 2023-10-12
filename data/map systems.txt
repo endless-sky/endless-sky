@@ -8992,11 +8992,15 @@ system "Porta Terra"
 	object
 		sprite star/a0
 		period 10
-	object
-		sprite planet/desert0
-		distance 286
-		period 32.023
-	object
+	object Aera
+		sprite planet/aera
+		distance 900
+		period 1097.177
+		object
+			sprite planet/desert4
+			distance 300
+			period 188.115
+	object Igna
 		sprite planet/gas1-b
 		distance 1449
 		period 365.188
@@ -9004,14 +9008,6 @@ system "Porta Terra"
 			sprite planet/ice8
 			distance 504
 			period 427.707
-	object
-		sprite planet/gas17
-		distance 3017
-		period 1097.177
-		object
-			sprite planet/desert4
-			distance 251
-			period 188.115
 
 system "Da Ent"
 	pos -6.22391 -462.536
@@ -16953,7 +16949,7 @@ system Hui'uc
 		sprite planet/ice0
 		distance 1345.09
 		period 508.495
-	object
+	object Turra
 		sprite planet/gas3
 		distance 2880.25
 		period 1593.33
@@ -25771,8 +25767,8 @@ system "Pedita Sec"
 		sprite planet/mercury-b
 		distance 963
 		period 363.737
-	object
-		sprite planet/gas2-b
+	object Treser
+		sprite planet/treser
 		distance 2193
 		period 1249.989
 
@@ -28461,8 +28457,8 @@ system Rota
 			sprite planet/rock14
 			distance 172
 			period 59.035
-	object
-		sprite planet/gas7-b
+	object Vulpa
+		sprite planet/vulpa
 		distance 1978
 		period 476.8
 		object

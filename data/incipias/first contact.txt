@@ -96,6 +96,7 @@ mission "Incipias: The derelict"
 				`    As the tension starts raising even further, you just drop the repair equipment and run back into your ship, you smash the button that closes the lock. You get a last look on the alien, blue and yellow tones are mixing on their skin, but they are not taking any action.`
 				label end
 				`    Apparently they figured how to use the repair equipment, as you fly away the engines of the ship are booting back up.`
+				`    Back on the bridge your eyes fall on the scanner log that is still open on your screen, notably this ship had no Hyperdrive or anything similar installed, how strange considering there is no inhabitated planet in this system.`
 				
 		personality
 			confusion 50
