@@ -25,8 +25,8 @@ ship "Shale"
 		"hull" 800
 		"required crew" 1
 		"bunks" 7
-		"mass" 93
-		"drag" 1.8
+		"mass" 134
+		"drag" 2.2
 		"heat dissipation" 0.8
 		"fuel capacity" 400
 		"cargo space" 54
@@ -63,8 +63,8 @@ ship "Dolomite"
 		"hull" 8200
 		"required crew" 9
 		"bunks" 79
-		"mass" 540
-		"drag" 4.6
+		"mass" 1162
+		"drag" 8.7
 		"heat dissipation" 0.6
 		"fuel capacity" 500
 		"cargo space" 200
@@ -106,8 +106,8 @@ ship "Conglomerate"
 		"hull" 10600
 		"required crew" 13
 		"bunks" 50
-		"mass" 905
-		"drag" 13.9
+		"mass" 2163
+		"drag" 27.8
 		"heat dissipation" 0.6
 		"fuel capacity" 500
 		"cargo space" 415
@@ -154,8 +154,8 @@ ship "Granofel"
 		"hull" 8800
 		"required crew" 10
 		"bunks" 15
-		"mass" 800
-		"drag" 10.5
+		"mass" 1933
+		"drag" 22
 		"heat dissipation" 0.6
 		"fuel capacity" 500
 		"cargo space" 560
@@ -202,8 +202,8 @@ ship "Gypsum"
 		"hull" 5500
 		"required crew" 5
 		"bunks" 9
-		"mass" 360
-		"drag" 3
+		"mass" 720
+		"drag" 4.8
 		"heat dissipation" 0.8
 		"fuel capacity" 600
 		"cargo space" 160
@@ -251,8 +251,8 @@ ship "Corundum"
 		"hull" 5400
 		"required crew" 6
 		"bunks" 9
-		"mass" 440
-		"drag" 3.6
+		"mass" 818
+		"drag" 5.4
 		"heat dissipation" 0.8
 		"fuel capacity" 600
 		"cargo space" 140
@@ -327,8 +327,8 @@ ship "Protolith"
 		"hull" 48600
 		"required crew" 402
 		"bunks" 4040
-		"mass" 4690
-		"drag" 62.4
+		"mass" 15954
+		"drag" 187.2
 		"heat dissipation" 0.36
 		"fuel capacity" 2100
 		"cargo space" 1160
@@ -387,8 +387,8 @@ ship "Dunite"
 		"hull" 500
 		"required crew" 1
 		"bunks" 1
-		"mass" 98
-		"drag" 0.6
+		"mass" 119
+		"drag" 0.66
 		"heat dissipation" 0.9
 		"fuel capacity" 1
 		"cargo capacity" 1
@@ -432,8 +432,8 @@ ship "Augen"
 		"hull" 167000
 		"required crew" 280
 		"bunks" 360
-		"mass" 5000
-		"drag" 50
+		"mass" 25604
+		"drag" 200
 		"heat dissipation" 0.4
 		"fuel capacity" 500
 		"cargo space" 84
@@ -553,8 +553,8 @@ ship "Slate"
 		"hull" 1000
 		"required crew" 1
 		"bunks" 4
-		"mass" 116
-		"drag" 2
+		"mass" 164
+		"drag" 2.4
 		"heat dissipation" 0.8
 		"fuel capacity" 400
 		"cargo space" 81
@@ -592,8 +592,8 @@ ship "Schist"
 		"hull" 10700
 		"required crew" 23
 		"bunks" 73
-		"mass" 560
-		"drag" 5.9
+		"mass" 1332
+		"drag" 11.21
 		"heat dissipation" 0.7
 		"fuel capacity" 500
 		"cargo space" 140
@@ -668,8 +668,8 @@ ship "Eclogite"
 		"hull" 6900
 		"required crew" 9
 		"bunks" 12
-		"mass" 275
-		"drag" 3.7
+		"mass" 611
+		"drag" 5.9
 		"heat dissipation" 0.7
 		"fuel capacity" 400
 		"cargo space" 70
@@ -718,8 +718,8 @@ ship "Diorite"
 		"hull" 7900
 		"required crew" 14
 		"bunks" 29
-		"mass" 238
-		"drag" 5.2
+		"mass" 860
+		"drag" 9.9
 		"heat dissipation" 0.8
 		"fuel capacity" 500
 		"cargo space" 40
@@ -785,8 +785,8 @@ ship "Hornfel"
 		"hull" 14600
 		"required crew" 32
 		"bunks" 48
-		"mass" 740
-		"drag" 6.3
+		"mass" 2238
+		"drag" 13.9
 		"heat dissipation" 0.6
 		"fuel capacity" 600
 		"cargo space" 120
@@ -843,24 +843,24 @@ ship "Hornfel" "Hornfel (Light Load)"
 	sprite "ship/gegno hornfel b"
 	thumbnail "thumbnail/gegno hornfel b"
 	add attributes
-		"mass" 40
-		"drag" 0.4
+		"mass" 88
+		"drag" 0.88
 		"cargo space" 40
 
 ship "Hornfel" "Hornfel (Heavy Load)"
 	sprite "ship/gegno hornfel c"
 	thumbnail "thumbnail/gegno hornfel c"
 	add attributes
-		"mass" 70
-		"drag" 0.7
+		"mass" 154
+		"drag" 1.54
 		"cargo space" 80
 
 ship "Hornfel" "Hornfel (Heavy Weapons)"
 	sprite "ship/gegno hornfel d"
 	thumbnail "thumbnail/gegno hornfel d"
 	add attributes
-		"mass" 60
-		"drag" 1.3
+		"mass" 132
+		"drag" 2.9
 		"cargo space" -70
 		"outfit space" 20
 		"weapon capacity" 70
@@ -909,8 +909,8 @@ ship "Gneiss"
 		"hull" 26300
 		"required crew" 112
 		"bunks" 162
-		"mass" 1032
-		"drag" 12.9
+		"mass" 4404
+		"drag" 36.1
 		"heat dissipation" 0.4
 		"fuel capacity" 500
 		"cargo space" 95
@@ -981,8 +981,8 @@ ship "Granulite"
 		"hull" 21200
 		"required crew" 53
 		"bunks" 237
-		"mass" 1260
-		"drag" 23.5
+		"mass" 5082
+		"drag" 70.5
 		"heat dissipation" 0.4
 		"fuel capacity" 900
 		"cargo space" 718
@@ -1102,8 +1102,8 @@ ship "Mica"
 		"hull" 700
 		"required crew" 1
 		"bunks" 10
-		"mass" 70
-		"drag" 1.7
+		"mass" 108
+		"drag" 2
 		"heat dissipation" 0.8
 		"fuel capacity" 400
 		"cargo space" 36
@@ -1141,8 +1141,8 @@ ship "Coesite"
 		"hull" 5600
 		"required crew" 8
 		"bunks" 14
-		"mass" 230
-		"drag" 4
+		"mass" 428
+		"drag" 5.6
 		"heat dissipation" 0.7
 		"fuel capacity" 500
 		"cargo space" 40
@@ -1195,8 +1195,8 @@ ship "Tridymite"
 		"hull" 4000
 		"required crew" 7
 		"bunks" 29
-		"mass" 190
-		"drag" 3.5
+		"mass" 346
+		"drag" 4.9
 		"heat dissipation" 0.7
 		"fuel capacity" 800
 		"cargo space" 56
@@ -1248,8 +1248,8 @@ ship "Felsic"
 		"hull" 9100
 		"required crew" 18
 		"bunks" 53
-		"mass" 565
-		"drag" 5.9
+		"mass" 1275
+		"drag" 10.6
 		"heat dissipation" 0.7
 		"fuel capacity" 500
 		"cargo space" 150
@@ -1300,8 +1300,8 @@ ship "Feldspar"
 		"hull" 20700
 		"required crew" 133
 		"bunks" 192
-		"mass" 1090
-		"drag" 15
+		"mass" 3574
+		"drag" 37.5
 		"heat dissipation" 0.5
 		"fuel capacity" 600
 		"cargo space" 82
@@ -1386,8 +1386,8 @@ ship "Epidote"
 		"hull" 16900
 		"required crew" 102
 		"bunks" 170
-		"mass" 1146
-		"drag" 16.1
+		"mass" 3693
+		"drag" 40.2
 		"heat dissipation" 0.55
 		"fuel capacity" 600
 		"cargo space" 430
@@ -1449,8 +1449,8 @@ ship "Kyanite"
 		"hull" 13650
 		"required crew" 66
 		"bunks" 93
-		"mass" 985
-		"drag" 14.6
+		"mass" 2487
+		"drag" 30.7
 		"heat dissipation" 0.5
 		"fuel capacity" 400
 		"cargo space" 76
