@@ -23,8 +23,8 @@ ship "Rano'erek"
 		"hull" 16500
 		"required crew" 137
 		"bunks" 357
-		"mass" 1503
-		"drag" 17.1
+		"mass" 5582
+		"drag" 47.9
 		"heat dissipation" .45
 		"fuel capacity" 900
 		"cargo space" 675
@@ -105,8 +105,8 @@ ship "Palavret"
 		"hull" 9000
 		"required crew" 145
 		"bunks" 250
-		"mass" 720
-		"drag" 12
+		"mass" 2816
+		"drag" 28.8
 		"heat dissipation" .5
 		"fuel capacity" 600
 		"cargo space" 175
@@ -179,8 +179,8 @@ ship "Tubfalet"
 		"hull" 11000
 		"required crew" 157
 		"bunks" 250
-		"mass" 952
-		"drag" 15
+		"mass" 3504
+		"drag" 36
 		"heat dissipation" .6
 		"heat protection" 0.1
 		"hull protection" 0.1
@@ -293,8 +293,8 @@ ship "'nra'ret"
 		"hull" 9850
 		"required crew" 193
 		"bunks" 221
-		"mass" 979
-		"drag" 11.3
+		"mass" 3478
+		"drag" 26
 		"heat dissipation" .63
 		"fuel capacity" 900
 		"cargo space" 50
@@ -447,8 +447,8 @@ ship "Rai'alorej"
 		hull 27000
 		"required crew" 523
 		"bunks" 1433
-		"mass" 1660
-		"drag" 27.6
+		"mass" 7698
+		"drag" 93.8
 		"heat dissipation" .36
 		"fuel capacity" 700
 
@@ -528,8 +528,8 @@ ship "Ikatila'ej"
 		"hull" 93000
 		"required crew" 957
 		"bunks" 1933
-		"mass" 5380
-		"drag" 58
+		"mass" 22784
+		"drag" 208.8
 		"heat dissipation" .29
 		"fuel capacity" 800
 		"cargo space" 845
@@ -604,8 +604,8 @@ ship "Lor'kas Ik 577"
 		hull 29600
 		"required crew" 234
 		"bunks" 453
-		"mass" 1885
-		"drag" 19
+		"mass" 7698
+		"drag" 58.9
 		"heat dissipation" .4
 		"fuel capacity" 1000
 		"cargo space" 1375
@@ -679,8 +679,8 @@ ship "Ra'gru Ik 618"
 		hull 39500
 		"required crew" 619
 		"bunks" 794
-		"mass" 1745
-		"drag" 21
+		"mass" 8093
+		"drag" 65.1
 		"heat dissipation" .48
 		"fuel capacity" 1000
 		"cargo space" 191
@@ -763,8 +763,8 @@ ship "Kas'lor Ik 582"
 		hull 26100
 		"required crew" 314
 		"bunks" 551
-		"mass" 1901
-		"drag" 17
+		"mass" 7655
+		"drag" 52.7
 		"heat dissipation" .35
 		"solar collection" 3.8
 		"fuel capacity" 32700
@@ -835,8 +835,8 @@ ship "Lor'nag Ik 590"
 		hull 34800
 		"required crew" 538
 		"bunks" 1492
-		"mass" 1929
-		"drag" 18
+		"mass" 7777
+		"drag" 55.8
 		"heat dissipation" .37
 		"solar collection" 5.6
 		"fuel capacity" 1000
@@ -910,8 +910,8 @@ ship "Ra'at Ik 621"
 		hull 31400
 		"required crew" 794
 		"bunks" 1037
-		"mass" 1755
-		"drag" 27
+		"mass" 7538
+		"drag" 83.7
 		"heat dissipation" .41
 		"fuel capacity" 1000
 		"cargo space" 228
@@ -997,8 +997,8 @@ ship "Kasichara A'awoj"
 		hull 49600
 		"required crew" 543
 		"bunks" 1997
-		"mass" 2105
-		"drag" 24
+		"mass" 8705
+		"drag" 74.4
 		"heat dissipation" .43
 		"solar collection" 12.7
 		"fuel capacity" 600
@@ -1066,8 +1066,8 @@ ship "Korsmanath A'awoj"
 		hull 320690
 		"required crew" 1940
 		"bunks" 31920
-		"mass" 12000
-		"drag" 84
+		"mass" 65130
+		"drag" 378
 		"heat dissipation" .22
 		"solar collection" 4.2
 		"fuel capacity" 1000
@@ -1302,8 +1302,8 @@ ship "Echo-Galleon"
 		hull 27000
 		"required crew" 243
 		"bunks" 972
-		"mass" 1535
-		"drag" 21
+		"mass" 6047
+		"drag" 63
 		"heat dissipation" .6
 		"fuel capacity" 600
 		"cargo space" 734
@@ -1364,8 +1364,8 @@ ship "Arch-Carrack"
 		"hull" 19300
 		"required crew" 54
 		"bunks" 97
-		"mass" 1077
-		"drag" 14.9
+		"mass" 2736
+		"drag" 29.8
 		"heat dissipation" .5
 		"fuel capacity" 600
 		"cargo space" 635
@@ -1427,8 +1427,8 @@ ship "Charm-Shallop"
 		"hull" 15200
 		"required crew" 65
 		"bunks" 203
-		"mass" 495
-		"drag" 7.5
+		"mass" 1269
+		"drag" 13.5
 		"heat dissipation" .7
 		"fuel capacity" 500
 		"cargo space" 194
@@ -1486,8 +1486,8 @@ ship "Kar Ik Vot 349"
 		"hull" 65400
 		"automaton" 1
 		"crew equivalent" 150
-		"mass" 1350
-		"drag" 16.8
+		"mass" 6158
+		"drag" 50.4
 		"heat dissipation" .5
 		"fuel capacity" 400
 		"cargo space" 87
@@ -1553,8 +1553,8 @@ ship "Tek Far 71 - Lek"
 		"hull" 29500
 		"automaton" 1
 		"crew equivalent" 50
-		"mass" 610
-		"drag" 9.6
+		"mass" 1867
+		"drag" 20.2
 		"heat dissipation" .6
 		"fuel capacity" 400
 		"cargo space" 36
@@ -1633,8 +1633,8 @@ ship "Tek Far 78 - Osk"
 		"hull" 34100
 		"automaton" 1
 		"crew equivalent" 50
-		"mass" 690
-		"drag" 10.2
+		"mass" 2251
+		"drag" 22.4
 		"heat dissipation" .55
 		"fuel capacity" 400
 		"cargo space" 43
@@ -1713,8 +1713,8 @@ ship "Tek Far 109"
 		"hull" 15800
 		"automaton" 1
 		"crew equivalent" 100
-		"mass" 540
-		"drag" 9.1
+		"mass" 1571
+		"drag" 18.2
 		"heat dissipation" .65
 		"fuel capacity" 400
 		"cargo space" 31
@@ -1801,8 +1801,8 @@ ship "Met Par Tek 53"
 		"hull" 22200
 		"automaton" 1
 		"crew equivalent" 25
-		"mass" 420
-		"drag" 5.7
+		"mass" 1244
+		"drag" 10.3
 		"heat dissipation" .8
 		"fuel capacity" 400
 		"cargo space" 26
@@ -1942,8 +1942,8 @@ ship "Model 8"
 		"hull" 3320
 		"automaton" 1
 		"crew equivalent" 5
-		"mass" 110
-		"drag" 3.2
+		"mass" 209
+		"drag" 4.2
 		"heat dissipation" 1.5
 		"fuel capacity" 200
 		"cargo space" 29
@@ -1989,8 +1989,8 @@ ship "Model 16"
 		"hull" 9800
 		"automaton" 1
 		"crew equivalent" 10
-		"mass" 250
-		"drag" 6.9
+		"mass" 588
+		"drag" 10.3
 		"heat dissipation" 1.3
 		"fuel capacity" 400
 		"cargo space" 7
@@ -2043,8 +2043,8 @@ ship "Model 32"
 		"hull" 13400
 		"automaton" 1
 		"crew equivalent" 25
-		"mass" 370
-		"drag" 9.0
+		"mass" 966
+		"drag" 15.3
 		"heat dissipation" 1.3
 		"fuel capacity" 400
 		"cargo space" 16
@@ -2098,8 +2098,8 @@ ship "Model 64"
 		"hull" 18000
 		"automaton" 1
 		"crew equivalent" 50
-		"mass" 580
-		"drag" 11.1
+		"mass" 1612
+		"drag" 21.1
 		"heat dissipation" 1.1
 		"fuel capacity" 400
 		"cargo space" 34
@@ -2155,8 +2155,8 @@ ship "Model 128"
 		"hull" 23100
 		"automaton" 1
 		"crew equivalent" 75
-		"mass" 780
-		"drag" 13.2
+		"mass" 2422
+		"drag" 27.7
 		"heat dissipation" 1.0
 		"fuel capacity" 400
 		"cargo space" 53
@@ -2213,8 +2213,8 @@ ship "Model 256"
 		"hull" 28700
 		"automaton" 1
 		"crew equivalent" 100
-		"mass" 970
-		"drag" 15.3
+		"mass" 3710
+		"drag" 38.2
 		"heat dissipation" .9
 		"fuel capacity" 400
 		"cargo space" 78
@@ -2273,8 +2273,8 @@ ship "Model 512"
 		"hull" 34200
 		"automaton" 1
 		"crew equivalent" 150
-		"mass" 1150
-		"drag" 17.4
+		"mass" 5224
+		"drag" 50.5
 		"heat dissipation" .8
 		"fuel capacity" 400
 		"cargo space" 107
