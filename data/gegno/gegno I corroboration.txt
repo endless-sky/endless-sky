@@ -582,7 +582,7 @@ mission "Gegno Anticipation A"
 					goto "understand"
 
 			label "convince"
-			`	Adrauni gives you a slight glare while continuing through the ringworld. "Do you not recall my prior mention of us Quarg having attempted such persuasions? It is not within our realm to convince the Gegno of anything. They are devoted to their own, and will go beyond any boundary to oppose counsel, even by us Quarg."`
+			`	Adrauni gives you a slight glare while continuing through the ringworld. "Do you not recall my prior mention of us Quarg having attempted such desired persuasions? It is not within our ability to convince the Gegno of anything. They are greatly devoted to their own, and will go beyond any boundary to oppose counsel, even by us Quarg."`
 			choice
 				`	"Maybe it's better I do leave them alone."`
 					goto "better"
@@ -600,7 +600,7 @@ mission "Gegno Anticipation A"
 				`	"I don't know."`
 					goto "unsure"
 
-			`	"Indeed, the Gegno are wary of you, who lacks caution." A few seconds, and Adrauni gives a strange look towards the Gegno. You aren't sure what it's thinking. The Gegno asks something in their language, but receives no response. A few more moments go by before Adrauni speaks again. "Despite that, you have found yourself in situations we have not. We as a species embraced contact with the Gegno, however, you remain the only human here. Perhaps therein lies an implication of distinction."`
+			`	"Indeed, the Gegno are wary of you, who lacks caution." A few seconds, and Adrauni gives a strange look towards the Gegno. You aren't sure what it's thinking. The Gegno asks something in their language, but receives no response. A few more moments go by before Adrauni speaks again. "Despite that, you have found yourself in precarious situations we have not. We as a species embraced contact with the Gegno, however, you remain the only human here. Perhaps therein lies a notable implication of distinction."`
 			choice
 				`	"Are you saying there's something I can do?"`
 					goto "understand"
@@ -608,7 +608,7 @@ mission "Gegno Anticipation A"
 					goto "interest"
 
 			label "before"
-			`	"I see." Adrauni blinks slowly while staring at you. It's almost as if it is surprised, or at the very least, not expecting that response. "It is wise that you follow my instruction. If it weren't as such, I may not be the one speaking with you at this moment. Or, perhaps, it would be no one." It then looks forward again as you continue on your stroll, leaving you to think on those words. "Unfortunately, the Quarg are unable to further assist you in this matter. If you recall, we have attempted prior consel with the Gegno, yet bound they are in their ways, even should it mean opposing us Quarg."`
+			`	"I see." Adrauni blinks slowly while staring at you. It's almost as if it is surprised, or at the very least, not expecting that response. "Wise it is that you follow my fortunate instruction. If it weren't as such, I may not be the one speaking with you in this moment. Or, perhaps, it would be no one." It then looks forward again as you continue on your stroll, leaving you to think on those words. "Unfortunately, the Quarg are unable to further assist you in this delicate matter. If you recall, we have attempted prior consel with the Gegno, yet bound they are in their ways, even should it mean incredulously opposing us Quarg."`
 			choice
 				`	"Maybe it's better I do leave them alone."`
 					goto "better"
@@ -626,7 +626,7 @@ mission "Gegno Anticipation A"
 
 			action
 				set "gegno word: friend"
-			`	After a pause, Adrauni turns toward you, stares at you briefly, then looks back forward as the three of you continue through the ring. "Quite an important conclusion, is that not? Many times I have said this. The Gegno are not what I would consider humans to be knowledgeable of. Should you learn more, I'm afraid even then the Gegno do not desire, what was the human word... camaraderie?" The Gegno then asks something in their language, and Adrauni begins a somewhat lengthy conversation with them.`
+			`	After a pause, Adrauni turns toward you, stares at you briefly, then looks back forward as the three of you continue through the ring. "Quite an important conclusion, is that not? Many times I have said this, that the Gegno are not what I would consider humans to posses knowledge of. Should you learn more, I'm afraid even then the Gegno do not contrastingly desire, what was the human word... camaraderie?" The Gegno then asks something in their language, and Adrauni begins a somewhat lengthy conversation with them.`
 			choice
 				`	"Maybe it's better I do leave them alone."`
 					goto "better"
@@ -634,19 +634,19 @@ mission "Gegno Anticipation A"
 					goto "understand"
 
 			label "interest"
-			`	The Quarg turns back to you. "You are here not at the whim of your species, but at your own behest. Actions you take may be that of a human, but are not willed by that of humanity." Blinking slowly, Adrauni then turns to the Gegno and begins a somewhat lengthy conversation with them.`
+			`	The Quarg turns back to you. "You are here not at the whim of your fanatic species, but at your own behest. Actions you take may be that of a human, but are not willed by that of humanity." Blinking slowly, Adrauni then turns to the Gegno and begins a somewhat lengthy conversation with them.`
 				goto "visit"
 
 			label "understand"
-			`	You walk in silence for an awkward period of time. The strange architecture of the ringworld does little to comfort you, as it feels like you've walked down the same path several times now. A few moments later, you eventually begin following Adrauni and the Gegno down what appears to be a different section, though it is strangely wider than previous ones. Before you begin asking more questions, Adrauni finally replies. "It is apparent that you may understand something of your circumstance. It is no longer what I, rather, the Quarg, can do for you. It is what you can do for yourself."`
+			`	You walk in silence for an awkward period of time. The strange architecture of the ringworld does little to comfort you, as it feels like you've walked down the same path several times now. A few moments later, you eventually begin following Adrauni and the Gegno down what appears to be a different section, though it is strangely wider than previous ones. Before you begin asking more questions, Adrauni finally replies. "It is apparent that you may understand something of your fragile circumstance. It is no longer what I, rather, the Quarg, can do for you. It is what you can do for yourself."`
 				goto "visit"
 
 			label "better"
-			`	Adrauni speaks to the Gegno once more, this time for an extended period of time. The strange architecture of the ringworld does little to comfort you, as it feels like you've walked down the same path several times now. A few moments later, you eventually begin following Adrauni and the Gegno down what appears to be a different section, though it is strangely wider than previous ones. "Yes, it may be that your departure is the most favorable outcome in this affair." A long, awkward silence ensues, at the end of which Adrauni briefly comes to a hault, still facing forward, now crossing its armos behind its back. "Though you and I figure that is... unlikely."`
+			`	Adrauni speaks to the Gegno once more, this time for an extended period of time. The strange architecture of the ringworld does little to comfort you, as it feels like you've walked down the same path several times now. A few moments later, you eventually begin following Adrauni and the Gegno down what appears to be a different section, though it is strangely wider than previous ones. "Yes, it may be that your timely departure is the most favorable outcome in this affair." A long, awkward silence ensues, at the end of which Adrauni briefly comes to a hault, still facing forward, now crossing its armos behind its back. "Though you and I figure that is... unlikely."`
 				goto visit
 
 			label "visit"
-			`	A few more pathways later, you are at the end of your seemingly long trip through the ringworld, finding yourself back where you started - the docking facility where your ship is stationed at. Although it felt like a dizzying maze to follow Adrauni around back to here, you can't help but imagine how much more confusing it would be to explore the entirety of a ringworld, considering that was only several minutes worth. Adrauni stops and turns to you, slightly lowering down to speak closer to your own height. "You must seek audience on your own behalf. Visit the Gegno homeworld of Dueyu Eitch, present yourself in a manner that you desire to be seen, and only then will you find your answer."`
+			`	A few more pathways later, you are at the end of your seemingly long trip through the ringworld, finding yourself back where you started - the docking facility where your ship is stationed at. Although it felt like a dizzying maze to follow Adrauni around back to here, you can't help but imagine how much more confusing it would be to explore the entirety of a ringworld, considering that was only several minutes worth. Adrauni stops and turns to you, slightly lowering down to speak closer to your own height. "You must seek audience on your own, tenacious, behalf. Visit the Gegno homeworld of Dueyu Eitch, present yourself in a manner that you desire to be perceived. Only then will you find your desired answer."`
 			
 			label epilogue
 			choice
@@ -667,27 +667,27 @@ mission "Gegno Anticipation A"
 				`	"Thank you. I will leave now."`
 					to display
 						has "gegno: landing dialog"
-						goto "end"
+					goto "end"
 
 			action
 				set "gegno: landing dialog"
-			`	"On the contrary. I rather believe them to be expecting you. Do remember you must hail the planet for clearance."`
+			`	"Contrarily, I rather believe them to be expecting of you. Do remember you must hail the planet for clearance."`
 				goto epilogue
 
 			label "ask"
 			action
 				set "gegno: asked dialog"
-			`	Adrauni ponders your question for a few moments before answering. "Ah, yes, your naievety to Gegno culture had but briefly passed me. That of the female Scin is tradition to allocate time of research just short of a lifespan. Whom you speak of is devoted to us here, nothing more. For any official matters with the Gegno to pass, they must go through the heart of the colony."`
+			`	Adrauni ponders your question for a few moments before answering. "Ah, yes, your naievety to Gegno culture had but briefly passed me. That of the female Scin is tradition to allocate time of research just short of a lifespan. Whom you speak of is very much devoted to us here, nothing more. For any official matters with the Gegno to pass, they must go through the great heart of the colony."`
 				goto epilogue
 
 			label "escort"
 			action
 				set "gegno: escort dialog"
-			`	Adrauni blinks at you. "I would have hoped you understand what was meant by, for yourself." It looks off to the side in deep thought, then back to you. "Habitually, we Quarg only visit the Gegno for the most minor of reasons. Should you be accompanied at this time, the Gegno's perception of you would likely alter. Imagine if the Quarg visited your planet called Earth with others in tow." You guess that Adrauni then does what the Quarg equivalent of a sigh would be. "However yes, I am capabale of sending you escort. Be certain in your decision."`
+			`	Adrauni blinks at you. "I would have hoped you understand what was meant by your previous realization." It looks off to the side in deep thought, then back to you. "Habitually, we Quarg scarcely visit the Gegno for the most minor of reasons. Should you be accompanied at this time, the Gegno's unstable perception of you would alter further. Imagine if the Quarg visited your own planet called Earth with strange others in tow." You guess that Adrauni then does what the Quarg equivalent of a sigh would be. "However yes, I am capabale of sending you escort. Be certain in this decision."`
 			choice
 				`	"Yes, I would like escort."`
 					goto "quarg escort"
-				`	"No, I should be fine."`
+				`	"Actually, I should be fine."`
 					goto "no escort"
 
 			label "quarg escort"
@@ -700,17 +700,28 @@ mission "Gegno Anticipation A"
 			label "no escort"
 			action
 				set "gegno: escort dialog"
-			`	"I see. May it be for the best, then."
+			`	"I see. May it be for the best, then."`
 				goto epilogue
 
 			label "end"
-			`	"Safe travels, <first> <last>. I aspire in your decisions to befit the wise on your journey ahead." Adrauni bows for an extended period of time, then leaves the hangar. You get the feeling that this might have been the last time you meet with it. As you return to your ship, a few other Quarg, who have been watching the conversation from afar, also return to their normal routine as if nothing had happened. Now, it is up to you to see for yourself whether or not the Gegno will accept you.`
+			`	"Safe travels, <first> <last>. I aspire in your daring decisions to befit the wise on your journey ahead." Adrauni bows for an extended period of time, then leaves the hangar. You get the feeling that this might have been the last time you meet with it. As you return to your ship, a few other Quarg, who have been watching the conversation from afar, also return to their normal routine as if nothing had happened. Now, it is up to you to see for yourself whether or not the Gegno will accept you.`
 				accept
 
 	on accept
 		clear "gegno: landing dialog"
 		clear "gegno: asked dialog"
 		clear "gegno: escort dialog"
+
+	npc
+		to spawn
+			has "gegno anticipation: quarg escort"
+		government "Quarg (Gegno)"
+		system "Heutesl"
+		personality entering staying escort
+		fleet
+			names "quarg"
+			variant
+				"Quarg Wardragon"
 
 
 mission "Gegno Anticipation B"
