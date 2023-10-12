@@ -1,4 +1,17 @@
-test-data "Wormhole Navigation"
+# Copyright (c) 2020 by Peter van der Meer
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+test-data "Wormhole Navigation Save"
 	category "savegame"
 	contents
 		pilot Bobbi Bughunter
@@ -44,11 +57,12 @@ test-data "Wormhole Navigation"
 				"gaslining" 1
 				"atmosphere scan" 100
 				"outfit scan power" 175
-				"outfit scan speed" 1
+				"outfit scan efficiency" 1
 				"tactical scan power" 350
 				"force protection" 1
 				"heat protection" 1.5
 				"ion resistance" 0.3
+				"scramble resistance" 0.3
 				"slowing resistance" 3
 				"remnant node" 11
 				weapon
@@ -114,7 +128,7 @@ test-data "Wormhole Navigation"
 		visited "Heia Due"
 		"visited planet" "Wormhole Alpha"
 
-test-data "Ember Wastes Navigation"
+test-data "Ember Wastes Navigation Save"
 	category "savegame"
 	contents
 		pilot Bobbi Bughunter
@@ -160,11 +174,12 @@ test-data "Ember Wastes Navigation"
 				"gaslining" 1
 				"atmosphere scan" 100
 				"outfit scan power" 175
-				"outfit scan speed" 1
+				"outfit scan efficiency" 1
 				"tactical scan power" 350
 				"force protection" 1
 				"heat protection" 1.5
 				"ion resistance" 0.3
+				"scramble resistance" 0.3
 				"slowing resistance" 3
 				"remnant node" 11
 				weapon
@@ -236,12 +251,12 @@ test-data "Ember Wastes Navigation"
 		"visited planet" "Ember Wormhole"
 		"visited planet" "Remnant Wormhole"
 
-test "Tests - Wormhole Navigation"
+test "Wormhole Navigation"
 	status active
 	description "Tests - Navigation to and from Hai space, to test wormhole functionality."
 	sequence
 		# Create/inject the savegame and load it.
-		inject "Wormhole Navigation"
+		inject "Wormhole Navigation Save"
 		call "Load First Savegame"
 		# Set desired travel plan.
 		navigate
@@ -312,12 +327,12 @@ test "Tests - Wormhole Navigation"
 		branch notBetelgeuse
 			not "flagship system: Betelgeuse"
 
-test "Tests - Ember Wastes Navigation"
+test "Ember Wastes Navigation"
 	status active
 	description "Tests - Navigation to and from the Ember Wastes, testing wormholes that require outfits to land."
 	sequence
 		# Create/inject the savegame and load it.
-		inject "Ember Wastes Navigation"
+		inject "Ember Wastes Navigation Save"
 		call "Load First Savegame"
 		# Set desired travel plan.
 		navigate
@@ -335,7 +350,6 @@ test "Tests - Ember Wastes Navigation"
 			travel Peragenor
 			"travel destination" "Remnant Wormhole"
 			travel Edusa
-			#"travel destination" Viminal
 			travel Arculus
 			travel Edusa
 			travel Peragenor
@@ -350,14 +364,10 @@ test "Tests - Ember Wastes Navigation"
 			travel Terminus
 			travel Limen
 			travel Mora
-		# Our test-savegames don't have the date conditions serialized. Need to
-		# have passed at least one date-transition to get the date conditions set
-		# (until PR https://github.com/endless-sky/endless-sky/pull/5244 removes
-		# this need to serialize the date conditions completely).
-		#assert
-		#	year == 3013
-		#	month == 12
-		#	day == 16
+		assert
+			year == 3013
+			month == 12
+			day == 16
 		call "Depart"
 		# Give jump command.
 		assert

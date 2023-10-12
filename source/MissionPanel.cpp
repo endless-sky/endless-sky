@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
@@ -146,20 +147,7 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 				break;
 	}
 
-	// Auto select the destination system for the current mission.
-	if(availableIt != available.end())
-	{
-		selectedSystem = availableIt->Destination()->GetSystem();
-		DoScroll(available, availableIt, availableScroll, false);
-	}
-	else if(acceptedIt != accepted.end())
-	{
-		selectedSystem = acceptedIt->Destination()->GetSystem();
-		DoScroll(accepted, acceptedIt, acceptedScroll, true);
-	}
-
-	// Center on the selected system.
-	CenterOnSystem(selectedSystem, true);
+	SetSelectedScrollAndCenter(true);
 }
 
 
@@ -197,6 +185,8 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 			if(FindMissionForSystem(*it))
 				break;
 	}
+
+	SetSelectedScrollAndCenter();
 }
 
 
@@ -218,24 +208,36 @@ void MissionPanel::Draw()
 	// Update the tooltip timer [0-60].
 	hoverSortCount += hoverSort >= 0 ? (hoverSortCount < HOVER_TIME) : (hoverSortCount ? -1 : 0);
 
-	Color routeColor(.2f, .1f, 0.f, 0.f);
-	const System *system = selectedSystem;
-	while(distance.Days(system) > 0)
+	const Set<Color> &colors = GameData::Colors();
+
+	const Color &routeColor = *colors.Get("mission route");
+	const Ship *flagship = player.Flagship();
+	const double jumpRange = flagship ? flagship->JumpNavigation().JumpRange() : 0.;
+	const System *previous = nullptr;
+	const System *next = selectedSystem;
+	for(; distance.Days(next) > 0; next = previous)
 	{
-		const System *next = distance.Route(system);
+		previous = distance.Route(next);
 
-		Point from = Zoom() * (next->Position() + center);
-		Point to = Zoom() * (system->Position() + center);
-		Point unit = (from - to).Unit() * 7.;
-		from -= unit;
-		to += unit;
+		bool isJump, isWormhole, isMappable;
+		if(!GetTravelInfo(previous, next, jumpRange, isJump, isWormhole, isMappable, nullptr))
+			break;
+		if(isWormhole && !isMappable)
+			continue;
 
-		LineShader::Draw(from, to, 5.f, routeColor);
+		Point from = Zoom() * (previous->Position() + center);
+		Point to = Zoom() * (next->Position() + center);
+		const Point unit = (to - from).Unit();
+		from += LINK_OFFSET * unit;
+		to -= LINK_OFFSET * unit;
 
-		system = next;
+		// Non-hyperspace jumps are drawn with a dashed line.
+		if(isJump)
+			LineShader::DrawDashed(from, to, unit, 5.f, routeColor, 11., 4.);
+		else
+			LineShader::Draw(from, to, 5.f, routeColor);
 	}
 
-	const Set<Color> &colors = GameData::Colors();
 	const Color &availableColor = *colors.Get("available back");
 	const Color &unavailableColor = *colors.Get("unavailable back");
 	const Color &currentColor = *colors.Get("active back");
@@ -267,7 +269,7 @@ void MissionPanel::Draw()
 	DrawSelectedSystem();
 	DrawMissionInfo();
 	DrawTooltips();
-	DrawButtons("is missions");
+	FinishDrawing("is missions");
 }
 
 
@@ -348,17 +350,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 
 	// To reach here, we changed the selected mission. Scroll the active
 	// mission list, update the selected system, and pan the map.
-	if(availableIt != available.end())
-	{
-		selectedSystem = availableIt->Destination()->GetSystem();
-		DoScroll(available, availableIt, availableScroll, false);
-	}
-	else if(acceptedIt != accepted.end())
-	{
-		selectedSystem = acceptedIt->Destination()->GetSystem();
-		DoScroll(accepted, acceptedIt, acceptedScroll, true);
-	}
-	CenterOnSystem(selectedSystem);
+	SetSelectedScrollAndCenter();
 
 	return true;
 }
@@ -405,14 +397,18 @@ bool MissionPanel::Click(int x, int y, int clicks)
 		unsigned index = max(0, (y + static_cast<int>(availableScroll) - 36 - Screen::Top()) / 20);
 		if(index < available.size())
 		{
+			const auto lastAvailableIt = availableIt;
 			availableIt = available.begin();
 			while(index--)
 				++availableIt;
 			acceptedIt = accepted.end();
 			dragSide = -1;
-			selectedSystem = availableIt->Destination()->GetSystem();
-			DoScroll(available, availableIt, availableScroll, false);
-			CenterOnSystem(selectedSystem);
+			if(availableIt == lastAvailableIt)
+			{
+				CycleInvolvedSystems(*availableIt);
+				return true;
+			}
+			SetSelectedScrollAndCenter();
 			return true;
 		}
 	}
@@ -422,6 +418,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 		int index = max(0, (y + static_cast<int>(acceptedScroll) - 36 - Screen::Top()) / 20);
 		if(index < AcceptedVisible())
 		{
+			const auto lastAcceptedIt = acceptedIt;
 			acceptedIt = accepted.begin();
 			while(index || !acceptedIt->IsVisible())
 			{
@@ -430,9 +427,12 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			}
 			availableIt = available.end();
 			dragSide = 1;
-			selectedSystem = acceptedIt->Destination()->GetSystem();
-			DoScroll(accepted, acceptedIt, acceptedScroll, true);
-			CenterOnSystem(selectedSystem);
+			if(lastAcceptedIt == acceptedIt)
+			{
+				CycleInvolvedSystems(*acceptedIt);
+				return true;
+			}
+			SetSelectedScrollAndCenter();
 			return true;
 		}
 	}
@@ -460,7 +460,33 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			else
 				acceptedIt = accepted.begin();
 		}
-		while(options--)
+
+		// When clicking a new system, select the first available mission
+		// (instead of continuing from wherever the iterator happens to be)
+		if((availableIt != available.end() && !Involves(*availableIt, system)) ||
+			(acceptedIt != accepted.end() && !Involves(*acceptedIt, system)))
+		{
+			auto firstExistingIt = find_if(available.begin(), available.end(),
+				[&system](const Mission &m) { return Involves(m, system); });
+
+			if(firstExistingIt != available.end())
+			{
+				availableIt = firstExistingIt;
+				acceptedIt = accepted.end();
+			}
+			else
+			{
+				firstExistingIt = find_if(accepted.begin(), accepted.end(),
+					[&system](const Mission &m) { return m.IsVisible() && Involves(m, system); });
+
+				if(firstExistingIt != accepted.end())
+				{
+					availableIt = available.end();
+					acceptedIt = firstExistingIt;
+				}
+			}
+		}
+		else while(options--)
 		{
 			if(availableIt != available.end())
 			{
@@ -573,6 +599,28 @@ bool MissionPanel::Scroll(double dx, double dy)
 		return Drag(0., dy * Preferences::ScrollSpeed());
 
 	return MapPanel::Scroll(dx, dy);
+}
+
+
+
+void MissionPanel::SetSelectedScrollAndCenter(bool immediate)
+{
+	// Auto select the destination system for the current mission.
+	if(availableIt != available.end())
+	{
+		selectedSystem = availableIt->Destination()->GetSystem();
+		DoScroll(available, availableIt, availableScroll, false);
+	}
+	else if(acceptedIt != accepted.end())
+	{
+		selectedSystem = acceptedIt->Destination()->GetSystem();
+		DoScroll(accepted, acceptedIt, acceptedScroll, true);
+	}
+
+	// Center on the selected system.
+	CenterOnSystem(selectedSystem, immediate);
+
+	cycleInvolvedIndex = 0;
 }
 
 
@@ -919,20 +967,26 @@ void MissionPanel::Accept(bool force)
 		ostringstream out;
 		if(cargoToSell > 0 && crewToFire > 0)
 			out << "You must fire " << crewToFire << " of your flagship's non-essential crew members and sell "
-				<< cargoToSell << " tons of ordinary commodities to make room for this mission. Continue?";
+				<< Format::CargoString(cargoToSell, "ordinary commodities") << " to make room for this mission. Continue?";
 		else if(crewToFire > 0)
 			out << "You must fire " << crewToFire
 				<< " of your flagship's non-essential crew members to make room for this mission. Continue?";
 		else
-			out << "You must sell " << cargoToSell
-				<< " tons of ordinary commodities to make room for this mission. Continue?";
+			out << "You must sell " << Format::CargoString(cargoToSell, "ordinary commodities")
+				<< " to make room for this mission. Continue?";
 		GetUI()->Push(new Dialog(this, &MissionPanel::MakeSpaceAndAccept, out.str()));
 		return;
 	}
 
 	++availableIt;
 	player.AcceptJob(toAccept, GetUI());
-	if(availableIt == available.end() && !available.empty())
+
+	cycleInvolvedIndex = 0;
+
+	if(available.empty())
+		return;
+
+	if(availableIt == available.end())
 		--availableIt;
 
 	// Check if any other jobs are available with the same destination. Prefer
@@ -941,13 +995,34 @@ void MissionPanel::Accept(bool force)
 	{
 		const Planet *planet = toAccept.Destination();
 		const System *system = planet->GetSystem();
-		for(auto it = available.begin(); it != available.end(); ++it)
+		bool stillLooking = true;
+
+		// Updates availableIt if matching system found, returns true if planet also matches.
+		auto SelectNext = [this, planet, system, &stillLooking](list<Mission>::const_iterator &it) -> bool
+		{
 			if(it->Destination() && it->Destination()->IsInSystem(system))
 			{
-				availableIt = it;
 				if(it->Destination() == planet)
-					break;
+				{
+					availableIt = it;
+					return true;
+				}
+				else if(stillLooking)
+				{
+					stillLooking = false;
+					availableIt = it;
+				}
 			}
+			return false;
+		};
+
+		const list<Mission>::const_iterator startHere = availableIt;
+		for(auto it = startHere; it != available.end(); ++it)
+			if(SelectNext(it))
+				return;
+		for(auto it = startHere; it != available.begin(); )
+			if(SelectNext(--it))
+				return;
 	}
 }
 
@@ -1044,4 +1119,30 @@ bool MissionPanel::SelectAnyMission()
 		return availableIt != available.end() || acceptedIt != accepted.end();
 	}
 	return false;
+}
+
+
+
+void MissionPanel::CycleInvolvedSystems(const Mission &mission)
+{
+	cycleInvolvedIndex++;
+
+	int index = 0;
+	for(const System *waypoint : mission.Waypoints())
+		if(++index == cycleInvolvedIndex)
+		{
+			CenterOnSystem(waypoint);
+			return;
+		}
+
+	for(const Planet *stopover : mission.Stopovers())
+		if(++index == cycleInvolvedIndex)
+		{
+			CenterOnSystem(stopover->GetSystem());
+			return;
+		}
+
+
+	cycleInvolvedIndex = 0;
+	CenterOnSystem(mission.Destination()->GetSystem());
 }

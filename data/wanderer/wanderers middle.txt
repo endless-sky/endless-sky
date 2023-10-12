@@ -20,7 +20,7 @@ mission "Wanderers: Pre-Colony"
 	on offer
 		conversation
 			`With the Eye fully opened, Wanderer ships have begun flooding into this region of space. This desolate planet seems to be of particular interest to them, with drones rapidly surveying in all directions, and a small outpost beginning to form.`
-			`	As you land on the outskirts of this settlement, one of the workers comes up to you as you leave your ship. "[Greetings, welcome], it is [delightful, pleasing] to see you have come to show your interest in our exploration. Unfortunately, there exists much [hazard, risk] on a world we know so little about. This will be our staging ground to [explore, catalog] this new region, but it will take some time to be assured of the [safety, security] of our outpost. I suggest you take time to [orient, locate] yourself in these systems while we set up before returning to help. Of course you are welcome when we have [determined, established] safety, there will be many ships needed to help heal the many ruined planets here.`
+			`	As you land on the outskirts of this settlement, one of the workers comes up to you as you leave your ship. "[Greetings, welcome], it is [delightful, pleasing] to see you have come to show your interest in our exploration. Unfortunately, there exists much [hazard, risk] on a world we know so little about. This will be our staging ground to [explore, catalog] this new region, but it will take some time to be assured of the [safety, security] of our outpost. I suggest you take time to [orient, locate] yourself in these systems while we set up before returning to help. Of course you are welcome when we have [determined, established] safety, there will be many ships needed to help heal the many ruined planets here."`
 				decline
 
 mission "Wanderers: Surveying 1"
@@ -256,7 +256,7 @@ event "wanderers: kaliptari battle begins"
 
 event "wanderers: kaliptari battle ends"
 	system Kaliptari
-		add fleet "Large Quarg" 2000
+		add fleet "Large Quarg (Kor Efret)" 2000
 		add fleet "Small Kor Mereti" 8000
 		add fleet "Large Kor Mereti" 3600
 		add fleet "Wanderer Defense" 1000
@@ -462,7 +462,7 @@ mission "Wanderers: Quarg Assistance 2"
 	on visit
 		dialog `You've reached <planet>, but you left one of the Quarg ships behind. Better depart and wait for it to arrive.`
 	npc accompany save
-		government "Quarg"
+		government "Quarg (Kor Efret)"
 		personality escort
 		ship "Quarg Wardragon" "Elearu-quara"
 		ship "Quarg Wardragon" "Kumawar Kwarca"
@@ -477,7 +477,7 @@ mission "Wanderers: Quarg Defenders"
 	to offer
 		has "Wanderers: Quarg Assistance 2: done"
 	npc kill
-		government "Quarg"
+		government "Quarg (Kor Efret)"
 		personality staying uninterested heroic
 		ship "Quarg Wardragon" "Elearu-quara"
 		ship "Quarg Wardragon" "Kumawar Kwarca"
@@ -714,8 +714,8 @@ event "wanderers: kashikt battle begins"
 
 event "wanderers: kashikt battle ends"
 	system "Kashikt"
-		fleet "Quarg" 1000
-		fleet "Large Quarg" 2000
+		fleet "Quarg (Kor Efret)" 1000
+		fleet "Large Quarg (Kor Efret)" 2000
 		fleet "Kor Efret Home" 1000
 
 mission "Wanderers: Kor Efret 3"
@@ -775,14 +775,14 @@ mission "Wanderers: Kor Efret 3"
 				"Arch-Carrack" 2
 				"Charm-Shallop" 4
 	npc
-		government "Quarg"
+		government "Quarg (Kor Efret)"
 		personality heroic staying entering
 		fleet
 			names "quarg"
 			variant
 				"Quarg Wardragon" 1
 	npc
-		government "Quarg"
+		government "Quarg (Kor Efret)"
 		personality heroic
 		system "Host"
 		fleet
@@ -790,7 +790,7 @@ mission "Wanderers: Kor Efret 3"
 			variant
 				"Quarg Wardragon" 3
 	npc
-		government "Quarg"
+		government "Quarg (Kor Efret)"
 		personality heroic
 		system "Mesuket"
 		fleet
@@ -1070,6 +1070,9 @@ event "wanderers: kor mereti friendly"
 	government "Kor Mereti"
 		"attitude toward"
 			"Wanderer" 1
+	government "Quarg (Kor Efret)"
+		"attitude toward"
+			"Kor Mereti" 0
 	government "Quarg"
 		"attitude toward"
 			"Kor Mereti" 0
@@ -1109,6 +1112,7 @@ mission "Wanderers: Mind 6"
 		has "Wanderers: Mind 5: done"
 	on offer
 		event "wanderers: kor mereti friendly"
+		fail "Wanderers: Kor Mereti Quarg Attitude Patch"
 		conversation
 			`With the Wanderer fleet keeping the automata off your back, you carefully pilot your ship into an abandoned docking bay. The Wanderers install the Mind in a niche near the back of the bay and then begin welding sheets of metal over the opening to prevent the Mereti drones from gaining easy access to the Mind to shut it down or destroy it. Meanwhile, every few seconds the bay is lit by a bright flash of weapons fire or exploding ships outside. Hopefully the Wanderer fleet is managing to hold its own against the drones.`
 			`	Soon the engineers are done, and you return to your ship to take off. As soon as you depart, the bay doors, which seemed inactive when you first entered, slam shut, and your ship's sensors detect Korath hull repair drones swarming over the doors, welding them in place and piling new layers of hull material on top of them. There is no longer any possibility of returning to the bay to retrieve the Mind. And meanwhile, it is time to rejoin the battle...`
@@ -1141,6 +1145,17 @@ mission "Wanderers: Mind 6"
 				"Model 16" 8
 	on visit
 		dialog `You've landed on <planet>, but there are still hostile Kor Mereti drones in the Chimitarp system. Better depart and make sure they've been taken care of.`
+
+# For compatibility with saves that got the "wanderers: kor mereti peaceful" event
+# before the introduction of the "Quarg (Kor Efret)" government."
+mission "Wanderers: Kor Mereti Quarg Attitude Patch"
+	landing
+	invisible
+	to offer
+		has "event: wanderers: kor mereti friendly"
+	on offer
+		event "wanderers: kor mereti friendly"
+		fail
 
 
 
@@ -1585,7 +1600,7 @@ event "wanderers: battle in solifar begins"
 
 event "wanderers: battle in solifar ends"
 	system Solifar
-		fleet "Large Quarg" 3000
+		fleet "Large Quarg (Kor Efret)" 3000
 		fleet "Wanderer Defense" 1800
 		fleet "Wanderer Drones" 700
 		fleet "Wanderer Flycatchers" 800
@@ -1625,7 +1640,8 @@ mission "Wanderers: Sestor Attack"
 		personality staying heroic
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349 (Trapper)"
 				"Tek Far 71 - Lek (Close Quarters)"
@@ -1634,7 +1650,8 @@ mission "Wanderers: Sestor Attack"
 				"Met Par Tek 53 (Sniper)"
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349 (Defense)"
 				"Tek Far 78 - Osk (Close Quarters)"
@@ -1645,7 +1662,8 @@ mission "Wanderers: Sestor Attack"
 		personality entering heroic
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Tek Far 109"
 				"Tek Far 71 - Lek"
@@ -1655,14 +1673,16 @@ mission "Wanderers: Sestor Attack"
 				"Met Par Tek 53 (Sniper)" 2
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Tek Far 109" 3
 				"Far Lek 14" 27
 				"Far Osk 27" 21
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349 (Trapper)"
 				"Tek Far 71 - Lek (Close Quarters)"
@@ -1763,7 +1783,7 @@ mission "Wanderers: Sestor Search"
 		never
 	destination "Vara K'chrai"
 	on offer
-		log "Someone else seems to have located the Kor Sestor command center before the Wanderers did, and has taken control of the Kor Sestor fleet. Most of the Kor Sestor drones flew through the Eye into the old Wanderer territory, where the Wanderers will probably not be prepared to fight them."
+		log "Someone else seems to have located the Kor Sestor central command before the Wanderers did, and has taken control of the Kor Sestor fleet. Most of the Kor Sestor drones flew through the Eye into the old Wanderer territory, where the Wanderers will probably not be prepared to fight them."
 		event "wanderers: kor sestor are aimless"
 		conversation
 			`You return to the planet expecting the Wanderers to be celebrating their victory, but the leaders have grim news. "The drones we fought were only the [rearguard? remnant?] of the fleet," says Tele'ek. "Dozens of [capital ships?] passed through this system and continued on. With this [heading, destination]." On the holographic projector, he brings up a star map, and points to the system where the Eye is. The wormhole leading back to Wanderer space.`
@@ -1807,7 +1827,8 @@ mission "Wanderers: Sestor: Alnilam Fleet 1"
 		personality heroic staying target
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349 (Defense)"
 				"Met Par Tek 53" 3
@@ -1882,7 +1903,7 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 				`	"You should be glad you're still in one piece."`
 					goto glad1
 					
-			`	"Well," the pilot says, "we had hired a beefy Leviathan escort to Farpoint. When we were going in for landing, two of these hostile ships jumped in from the northwest, the direction of all the anarchist colonies in this area. The ships weren't big, but they were tough: our four heavy laser turrets weren't enough to produce even a dent in their shields. They made short work of the Leviathan, and nearly disabled our ship, too. It was lucky I decided that jumping would be faster than landing. We warped out of the system while in atmosphere, saving the ship, but now I'm in debt to all my crew because I couldn't meet a rush delivery deadline. Still had to deliver the goods, but lost a pretty substantial bonus."`
+			`	"Well," the pilot says, "we had hired a beefy Leviathan escort to Farpoint. When we were going in for landing, two of these hostile ships jumped in from the northwest, the direction of all the anarchist colonies in this area. The ships weren't big, but they were tough: our four Heavy Laser Turrets weren't enough to produce even a dent in their shields. They made short work of the Leviathan, and nearly disabled our ship, too. It was lucky I decided that jumping would be faster than landing. We warped out of the system while in atmosphere, saving the ship, but now I'm in debt to all my crew because I couldn't meet a rush delivery deadline. Still had to deliver the goods, but lost a pretty substantial bonus."`
 			choice
 				`	"You're lucky as hell to be here today."`
 					goto glad
@@ -1898,7 +1919,7 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 					goto thanks
 			
 			label glad1
-			`	"I am! The attacking ships weren't big, but they were tough: our four heavy laser turrets couldn't even produce a dent in their shields," the captain says. "We even hired a beefy Leviathan to protect us from the pirate raids as we traveled to Farpoint, but when these hostile ships jumped in from the northwest, they made short work of our escort and nearly disabled our ship, too. I had to jump out of the system while in atmosphere to save the ship, but now I'm in debt to all my crew because I didn't meet a rush delivery deadline. Still had to deliver the goods, but lost a pretty substantial bonus."`
+			`	"I am! The attacking ships weren't big, but they were tough: our four Heavy Laser Turrets couldn't even produce a dent in their shields," the captain says. "We even hired a beefy Leviathan to protect us from the pirate raids as we traveled to Farpoint, but when these hostile ships jumped in from the northwest, they made short work of our escort and nearly disabled our ship, too. I had to jump out of the system while in atmosphere to save the ship, but now I'm in debt to all my crew because I didn't meet a rush delivery deadline. Still had to deliver the goods, but lost a pretty substantial bonus."`
 			choice
 				`	"You really are lucky as hell to be here today."`
 					goto glad
@@ -1908,7 +1929,7 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 			label thanks
 			`	"No problem, kiddo," the captain says, although he looks awed that you are even attempting to fight such powerful ships. "Remember, northwest of Farpoint. If they're anarchists of any sort, they'll be hiding in one of those pirate systems up there. Take care of yourself out there; those are some dangerous ships that jumped us." With that, he bids you farewell.`
 				decline
-					
+				
 			label glad
 			`	"Yeah, those ships would have obliterated us if we hadn't jumped pronto." The pilot looks at you, then asks quizzically, "Say, do you know anything about those ships?"`
 			choice
@@ -1996,7 +2017,8 @@ mission "Wanderers: Sestor: Farpoint Attack 1"
 		personality heroic staying
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349"
 				"Tek Far 71 - Lek"
@@ -2004,7 +2026,8 @@ mission "Wanderers: Sestor: Farpoint Attack 1"
 				"Met Par Tek 53" 2
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349 (Offense)"
 				"Tek Far 78 - Osk"
@@ -2012,7 +2035,8 @@ mission "Wanderers: Sestor: Farpoint Attack 1"
 				"Met Par Tek 53 (Sniper)"
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349 (Defense)"
 				"Kar Ik Vot 349 (Trapper)"
@@ -2022,7 +2046,8 @@ mission "Wanderers: Sestor: Farpoint Attack 1"
 		personality heroic
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Lance" 4
@@ -2034,7 +2059,8 @@ mission "Wanderers: Sestor: Farpoint Attack 1"
 				"Gunboat (Mark II)" 2
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser"
 				"Combat Drone" 4
@@ -2045,7 +2071,8 @@ mission "Wanderers: Sestor: Farpoint Attack 1"
 		personality heroic staying
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Lance" 4
@@ -2057,7 +2084,8 @@ mission "Wanderers: Sestor: Farpoint Attack 1"
 				"Gunboat (Mark II)" 2
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser"
 				"Combat Drone" 4
@@ -2065,7 +2093,8 @@ mission "Wanderers: Sestor: Farpoint Attack 1"
 				"Rainmaker"
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier"
 				"Lance" 4
@@ -2112,7 +2141,7 @@ mission "Wanderers: Sestor: Quarg Help 2"
 	on accept
 		log "Recruited some Quarg warships to help defend human space from the Kor Sestor drones, which are now presumably under Alpha control."
 	npc accompany save
-		government "Quarg"
+		government "Quarg (Hai)"
 		personality heroic waiting escort
 		ship "Quarg Wardragon" "Leukos-nikeseh"
 		ship "Quarg Wardragon" "Purros-machaira"
@@ -2140,7 +2169,8 @@ mission "Wanderers: Sestor: Alnilam Fleet 2"
 		personality heroic staying target
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349 (Defense)"
 				"Tek Far 71 - Lek (Close Quarters)"
@@ -2202,7 +2232,7 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 	on visit
 		dialog `Danforth notices your ship land as the sky lights up with the explosions of Navy ships. "Did you use the bomb?" he asks. The stress in his voice is palpable. You shake your head. "Then what the hell are you doing here? Get up there and drop the bomb already!"`
 	npc
-		government "Quarg"
+		government "Quarg (Hai)"
 		personality heroic staying
 		ship "Quarg Wardragon" "Leukos-nikeseh"
 		ship "Quarg Wardragon" "Purros-machaira"
@@ -2213,7 +2243,8 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 		personality heroic staying
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Lance" 4
@@ -2225,7 +2256,8 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 				"Gunboat (Mark II)" 2
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser"
 				"Combat Drone" 4
@@ -2233,7 +2265,8 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 				"Rainmaker"
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier"
 				"Lance" 4
@@ -2245,7 +2278,8 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 				"Gunboat" 2
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -2253,7 +2287,8 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 				"Rainmaker (Mark II)"
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Lance" 4
@@ -2264,7 +2299,8 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 		personality heroic staying
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349"
 				"Tek Far 71 - Lek"
@@ -2272,7 +2308,8 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 				"Met Par Tek 53" 2
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349 (Defense)"
 				"Tek Far 71 - Lek (Close Quarters)"
@@ -2280,7 +2317,8 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 				"Met Par Tek 53 (Sniper)" 2
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349 (Offense)"
 				"Tek Far 78 - Osk"
@@ -2288,7 +2326,8 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 				"Met Par Tek 53 (Sniper)"
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349 (Trapper)"
 				"Tek Far 78 - Osk (Close Quarters)"
@@ -2296,7 +2335,8 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 				"Met Par Tek 53 (Sniper)"
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349 (Defense)"
 				"Tek Far 71 - Lek (Close Quarters)"
@@ -2305,7 +2345,8 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 				"Far Osk 27" 8
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349 (Offense)"
 				"Tek Far 71 - Lek"
@@ -2314,7 +2355,8 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 				"Far Osk 27" 7
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349 (Trapper)"
 				"Tek Far 71 - Lek (Close Quarters)"
@@ -2323,27 +2365,31 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 				"Far Osk 27" 6
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349 (Defense)"
 				"Met Par Tek 53" 2
 				"Met Par Tek 53 (Sniper)"
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349 (Offense)"
 				"Met Par Tek 53"
 				"Met Par Tek 53 (Sniper)" 2
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349 (Trapper)"
 				"Met Par Tek 53 (Sniper)" 3
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Tek Far 109"
 				"Tek Far 71 - Lek"
@@ -2353,7 +2399,8 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 				"Met Par Tek 53 (Sniper)" 2
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Tek Far 109"
 				"Tek Far 71 - Lek (Close Quarters)"
@@ -2378,7 +2425,8 @@ mission "Wanderers: Sestor: Scattered Remnant"
 		personality heroic staying target
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349"
 				"Tek Far 71 - Lek"
@@ -2391,7 +2439,8 @@ mission "Wanderers: Sestor: Scattered Remnant"
 		personality heroic staying target
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349 (Defense)"
 				"Tek Far 71 - Lek (Close Quarters)"
@@ -2404,7 +2453,8 @@ mission "Wanderers: Sestor: Scattered Remnant"
 		personality heroic staying target
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349 (Offense)"
 				"Tek Far 78 - Osk"
@@ -2412,7 +2462,8 @@ mission "Wanderers: Sestor: Scattered Remnant"
 				"Met Par Tek 53 (Sniper)"
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349 (Trapper)"
 				"Tek Far 78 - Osk (Close Quarters)"
@@ -2425,7 +2476,8 @@ mission "Wanderers: Sestor: Scattered Remnant"
 		personality heroic staying target
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349 (Defense)"
 				"Tek Far 71 - Lek (Close Quarters)"
@@ -2439,7 +2491,8 @@ mission "Wanderers: Sestor: Scattered Remnant"
 		personality heroic staying target
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349 (Offense)"
 				"Tek Far 71 - Lek"
@@ -2453,7 +2506,8 @@ mission "Wanderers: Sestor: Scattered Remnant"
 		personality heroic staying target
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349 (Trapper)"
 				"Tek Far 71 - Lek (Close Quarters)"
@@ -2467,7 +2521,8 @@ mission "Wanderers: Sestor: Scattered Remnant"
 		personality heroic staying target
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349 (Defense)"
 				"Met Par Tek 53" 2
@@ -2479,7 +2534,8 @@ mission "Wanderers: Sestor: Scattered Remnant"
 		personality heroic staying target
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349 (Offense)"
 				"Met Par Tek 53"
@@ -2491,7 +2547,8 @@ mission "Wanderers: Sestor: Scattered Remnant"
 		personality heroic staying target
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349 (Trapper)"
 				"Met Par Tek 53 (Sniper)" 3
@@ -2502,7 +2559,8 @@ mission "Wanderers: Sestor: Scattered Remnant"
 		personality heroic staying target
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Tek Far 109"
 				"Tek Far 71 - Lek"
@@ -2517,7 +2575,8 @@ mission "Wanderers: Sestor: Scattered Remnant"
 		personality heroic staying target
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Tek Far 109"
 				"Tek Far 71 - Lek (Close Quarters)"
@@ -2687,7 +2746,8 @@ mission "Wanderers: Sestor: Drones in Alnilam"
 		personality heroic escort
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Lance" 4
@@ -2699,7 +2759,8 @@ mission "Wanderers: Sestor: Drones in Alnilam"
 				"Gunboat (Mark II)" 2
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser"
 				"Combat Drone" 4
@@ -2707,7 +2768,8 @@ mission "Wanderers: Sestor: Drones in Alnilam"
 				"Rainmaker" 4
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier"
 				"Lance" 4
@@ -2818,6 +2880,20 @@ mission "Wanderers: Sestor Alt: Alnilam 3"
 		ship "Cruiser (Mark II)" "R.N.S. Virtue"
 	on visit
 		dialog `You've reached <planet>, but not all of the Navy Cruisers have entered the system yet. Better depart and wait for them to arrive.`
+
+event "liberated zenith"
+	planet "Zenith"
+		bribe .04
+		"required reputation" 0
+
+mission "Wanderers: Sestor Alt: Zenith Patch"
+	landing
+	invisible
+	to offer
+		has "Wanderers: Sestor Alt: Alnilam 2: done"
+	on offer
+		event "liberated zenith"
+		fail
 
 
 
@@ -3010,9 +3086,6 @@ mission "Wanderers: Sestor: Exiles 3"
 	to offer
 		has "Wanderers: Sestor: Exiles 2: active"
 	on offer
-		log "Succeeded in communicating with the Korath exiles, by landing on the one habitable planet in their territory. (It seems like the exiles might have a taboo against using weapons on that world.) The exiles agreed to send some ships to help disable the remaining Kor Sestor factory."
-		fail "Wanderers: Sestor: Exiles 2"
-		event "wanderers: exiles peaceful"
 		conversation
 			`The Korath ships tail you to the planet's surface, but they do not fire on you. Instead, they hover above your ship for a long, indecisive moment. You hold your fire, and they eventually land in the sand next to you. Their airlocks open, and a few of them step out and approach your ship. They do not appear to be armed. Perhaps they have a cultural taboo against using weapons on this world.`
 			choice
@@ -3029,6 +3102,10 @@ mission "Wanderers: Sestor: Exiles 3"
 			label end
 			`	Rek speaks with the Korath again, and then tells you, "They say that three of their 'world-ships' will travel with us to meet with the Wanderer leaders. If they are able to work out favorable terms, and are convinced that the Wanderers have peaceful intentions, they will go with us to the Sestor factory world and shut it down."`
 				accept
+	on accept
+		log "Succeeded in communicating with the Korath exiles, by landing on the one habitable planet in their territory. (It seems like the exiles might have a taboo against using weapons on that world.) The exiles agreed to send some ships to help disable the remaining Kor Sestor factory."
+		fail "Wanderers: Sestor: Exiles 2"
+		event "wanderers: exiles peaceful"
 	npc accompany save
 		government "Korath"
 		personality escort
@@ -3140,7 +3217,8 @@ mission "Wanderers: Sestor: Factory 2"
 		personality waiting staying heroic
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349"
 				"Tek Far 71 - Lek"
@@ -3148,7 +3226,8 @@ mission "Wanderers: Sestor: Factory 2"
 				"Met Par Tek 53" 2
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Kar Ik Vot 349 (Offense)"
 				"Tek Far 78 - Osk"
@@ -3156,7 +3235,8 @@ mission "Wanderers: Sestor: Factory 2"
 				"Met Par Tek 53 (Sniper)" 2
 		fleet
 			names "kor sestor"
-			fighters "kor sestor fighter"
+			fighters
+				names "kor sestor fighter"
 			variant
 				"Tek Far 109"
 				"Tek Far 71 - Lek"
@@ -3309,7 +3389,7 @@ event "wanderers: sestor eliminated"
 event "wanderers: sabira eseskrai colony"
 	system "Skeruto"
 		government "Wanderer"
-		fleet "Large Quarg" 1000
+		fleet "Large Quarg (Kor Efret)" 1000
 		fleet "Wanderer Defense" 1200
 		fleet "Wanderer Drones" 800
 		fleet "Kor Efret Home" 800
@@ -3362,6 +3442,7 @@ mission "Wanderers: Sestor: Final: Patched"
 		log "Discovered that when the Korath exiles shut down the Kor Sestor factory, they also took enough technology from the factory to be able to begin producing war drones of their own. It is possible that the exiles have just become a whole lot more dangerous than they used to be."
 		log "Factions" "Wanderers" `After the Eye opened, creating a wormhole link between Wanderer territory and the region of space that harbors the devastated Korath worlds, the Wanderers have established several new colonies in the Korath sector and have begun to migrate to this area of Space. They have established formal relations with the Kor Efreti and were able to end the war between the Kor Mereti and the Kor Sestor.`
 		log "Factions" "Korath" `The Wanderers, who have begun to establish colonies on some deserted Korath systems, were able to end the war between the Kor Mereti and the Kor Sestor. The Kor Efreti have begun to rebuild their worlds and are tutored in this endeavor by the Wanderers.`
+		set "wanderers sestor done"
 		event "wanderers: exiles have drones" 20
 		event "wanderers: sabira eseskrai colony" 30
 		event "wanderers: sestor eliminated" 40
@@ -3382,6 +3463,7 @@ mission "Wanderers: Sestor: Combined Patch 1"
 	to fail
 		has "Wanderers: Sestor: Final: Patched: offered"
 	on offer
+		set "wanderers sestor done"
 		event "wanderers: sestor planets unrestricted" 40
 		event "wanderers taking jobs from kor efreti" 5
 		event "wanderers: moonbeam mass production" 5

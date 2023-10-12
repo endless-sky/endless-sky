@@ -1,0 +1,88 @@
+# Copyright (c) 2022 by Saugia
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+ship "vyu-Ir"
+	noun "entity"
+	sprite "ship/vyuir/vyuir"
+		"frame rate" 4
+	thumbnail "thumbnail/vyuir"
+	swizzle 0
+	"never disabled"
+	attributes
+		category "Heavy Warship"
+		"cost" 77777777
+		"shields" 68000
+		"shield generation" 13
+		"shield energy" 13
+		"hull" 49000
+		"hull repair rate" 1.9
+		"automaton" 1
+		"required crew" 1
+		"bunks" 100
+		"mass" 600
+		"drag" 20
+		"heat dissipation" 10
+		"fuel capacity" 1000
+		"cargo space" 1000
+		"outfit space" 1000
+		"weapon capacity" 1000
+		"engine capacity" 1000
+		
+		"energy capacity" 60000
+		"energy generation" 80
+		"heat generation" 20
+		
+		"thrust" 50
+		"thrusting energy" 20
+		"thrusting heat" 10
+		"flare sound" "impulse engine"
+		"reverse thrust" 50
+		"reverse thrusting energy" 20
+		"reverse thrusting heat" 10
+		"reverse flare sound" "impulse engine"
+		"turn" 600
+		"turning energy" 10
+		"turning heat" 5
+		"steering flare sound" "impulse engine"
+		
+		"disruption protection" 2
+		"energy protection" 2
+		"force protection" 1
+		"ion protection" 2
+		"scramble protection" 2
+		"slowing protection" 1
+		weapon
+			"blast radius" 200
+			"shield damage" 20000
+			"hull damage" 10000
+			"hit force" 30000
+	outfits
+		"Abyssal Composer"
+		"Fate Sealer" 2
+		"Fate Divider" 2
+	engine 0 200
+	"steering engine" 0 200
+	"reverse engine" 0 200
+	gun -73 -9 "Fate Sealer"
+	gun 73 -9 "Fate Sealer"
+	gun -102 -76 "Fate Divider"
+	gun 102 -76 "Fate Divider"
+	gun 0 -90 "Abyssal Composer"
+	explode "huge explosion" 15
+	explode "large explosion" 50
+	explode "medium explosion" 70
+	explode "small explosion" 60
+	explode "tiny explosion" 120
+	"final explode" "final explosion large"
+	description `The vyu-Ir is an ancient ship of the Vyu, one of several chambers of the Rulei. It is not known whether or not this was their final ship-class, or one of many, but the technology found on it may represent the height of the Rulei's advancements, as well as the cause of their downfall.`
+

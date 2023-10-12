@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "text/Format.h"
+#include "Phrase.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 
@@ -89,15 +90,15 @@ bool Conversation::RequiresLaunch(int outcome)
 
 
 // Construct and Load() at the same time.
-Conversation::Conversation(const DataNode &node, const string &missionName)
+Conversation::Conversation(const DataNode &node)
 {
-	Load(node, missionName);
+	Load(node);
 }
 
 
 
 // Load a conversation from file.
-void Conversation::Load(const DataNode &node, const string &missionName)
+void Conversation::Load(const DataNode &node)
 {
 	// Make sure this really is a conversation specification.
 	if(node.Token(0) != "conversation")
@@ -183,7 +184,7 @@ void Conversation::Load(const DataNode &node, const string &missionName)
 			// Don't merge "action" nodes with any other nodes. Allow the legacy keyword "apply," too.
 			AddNode();
 			nodes.back().canMergeOnto = false;
-			nodes.back().actions.Load(child, missionName);
+			nodes.back().actions.Load(child);
 		}
 		// Check for common errors such as indenting a goto incorrectly:
 		else if(child.Size() > 1)
@@ -361,7 +362,7 @@ Conversation Conversation::Instantiate(map<string, string> &subs, int jumps, int
 	for(Node &node : result.nodes)
 	{
 		for(Element &element : node.elements)
-			element.text = Format::Replace(element.text, subs);
+			element.text = Format::Replace(Phrase::ExpandPhrases(element.text), subs);
 		if(!node.actions.IsEmpty())
 			node.actions = node.actions.Instantiate(subs, jumps, payload);
 	}

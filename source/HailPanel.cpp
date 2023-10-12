@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "HailPanel.h"
 
 #include "text/alignment.hpp"
+#include "Dialog.h"
 #include "DrawList.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -25,7 +26,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Information.h"
 #include "Interface.h"
 #include "Messages.h"
-#include "Phrase.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Politics.h"
@@ -52,25 +52,23 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 	if(!ship->Name().empty())
 		header = gov->GetName() + " " + ship->Noun() + " \"" + ship->Name() + "\":";
 	else
-		header = ship->ModelName() + " (" + gov->GetName() + "): ";
+		header = ship->DisplayModelName() + " (" + gov->GetName() + "): ";
 	// Drones are always unpiloted, so they never respond to hails.
 	bool isMute = ship->GetPersonality().IsMute() || (ship->Attributes().Category() == "Drone");
 	hasLanguage = !isMute && (gov->Language().empty() || player.Conditions().Get("language: " + gov->Language()));
+	canAssistPlayer = !ship->CanBeCarried();
 
 	if(isMute)
 		message = "(There is no response to your hail.)";
 	else if(!hasLanguage)
 		message = "(An alien voice says something in a language you do not recognize.)";
-	// Update default hail responses based on the hailed ship's government and status condition.
 	else if(gov->IsEnemy())
 	{
+		// Enemy ships always show hostile messages.
+		// They either show bribing messages,
+		// or standard hostile messages, if disabled.
 		if(!ship->IsDisabled())
-		{
 			SetBribe(gov->GetBribeFraction());
-			if(bribe)
-				message = "If you want us to leave you alone, it'll cost you "
-					+ Format::Credits(bribe) + " credits.";
-		}
 	}
 	else if(ship->IsDisabled())
 	{
@@ -86,13 +84,13 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 		if(flagship->NeedsFuel(false))
 		{
 			playerNeedsHelp = true;
-			canGiveFuel = ship->CanRefuel(*flagship);
+			canGiveFuel = ship->CanRefuel(*flagship) && canAssistPlayer;
 		}
 		// Check if the player is disabled.
 		if(flagship->IsDisabled())
 		{
 			playerNeedsHelp = true;
-			canRepair = true;
+			canRepair = canAssistPlayer;
 		}
 
 		if(ship->GetPersonality().IsSurveillance())
@@ -114,6 +112,8 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 			else if(canRepair)
 				message += "patch you up?";
 		}
+		else if(playerNeedsHelp && !canAssistPlayer)
+			message = "Sorry, my ship is too small to have the right equipment to assist you.";
 	}
 
 	if(message.empty())
@@ -132,10 +132,10 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 		header = gov->GetName() + " " + planet->Noun() + " \"" + planet->Name() + "\":";
 	hasLanguage = (gov->Language().empty() || player.Conditions().Get("language: " + gov->Language()));
 
-	if(!hasLanguage)
-		message = "(An alien voice says something in a language you do not recognize.)";
-	else if(planet && player.Flagship())
-	{
+	// If the player is hailing a planet, determine if a mission grants them clearance before checking
+	// if they have a language that matches the planet's government. This allows mission clearance
+	// to bypass language barriers.
+	if(planet && player.Flagship())
 		for(const Mission &mission : player.Missions())
 			if(mission.HasClearance(planet) && mission.ClearanceMessage() != "auto"
 					&& mission.HasFullClearance())
@@ -144,6 +144,11 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 				message = mission.ClearanceMessage();
 				return;
 			}
+
+	if(!hasLanguage)
+		message = "(An alien voice says something in a language you do not recognize.)";
+	else if(planet && player.Flagship())
+	{
 		if(planet->CanLand())
 			message = "You are cleared to land, " + player.Flagship()->Name() + ".";
 		else
@@ -151,7 +156,7 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 			SetBribe(planet->GetBribeFraction());
 			if(bribe)
 				message = "If you want to land here, it'll cost you "
-					+ Format::Credits(bribe) + " credits.";
+					+ Format::CreditString(bribe) + ".";
 			else if(gov->IsEnemy())
 				message = "You are not welcome here.";
 			else
@@ -173,8 +178,15 @@ void HailPanel::Draw()
 		info.SetCondition("show assist");
 		if(hasLanguage && !ship->IsDisabled())
 		{
+			if(requestedToBribeShip)
+				info.SetCondition("show pay bribe");
 			if(ship->GetGovernment()->IsEnemy())
-				info.SetCondition("can bribe");
+			{
+				if(requestedToBribeShip)
+					info.SetCondition("can pay bribe");
+				else
+					info.SetCondition("can bribe");
+			}
 			else if(!ship->CanBeCarried() && ship->GetShipToAssist() != player.FlagshipPtr())
 				info.SetCondition("can assist");
 		}
@@ -202,14 +214,12 @@ void HailPanel::Draw()
 
 	DrawList draw;
 	// If this is a ship, copy its swizzle, animation settings, etc.
+	// Also draw its fighters and weapon hardpoints.
 	if(ship)
-		draw.Add(Body(*ship, center, Point(), facing, zoom));
-	else
-		draw.Add(Body(sprite, center, Point(), facing, zoom));
-
-	// If hailing a ship, draw its turret sprites.
-	if(ship)
-		for(const Hardpoint &hardpoint : ship->Weapons())
+	{
+		bool hasFighters = ship->PositionFighters();
+		auto addHardpoint = [this, &draw, &center, zoom](const Hardpoint &hardpoint) -> void
+		{
 			if(hardpoint.GetOutfit() && hardpoint.GetOutfit()->HardpointSprite().HasSprite())
 			{
 				Body body(
@@ -220,6 +230,40 @@ void HailPanel::Draw()
 					zoom);
 				draw.Add(body);
 			}
+		};
+		auto addFighter = [this, &draw, &center, zoom](const Ship::Bay &bay) -> void
+		{
+			if(bay.ship)
+			{
+				Body body(
+					*bay.ship,
+					center + zoom * facing.Rotate(bay.point),
+					Point(),
+					facing + bay.facing,
+					zoom);
+				draw.Add(body);
+			}
+		};
+
+		if(hasFighters)
+			for(const Ship::Bay &bay : ship->Bays())
+				if(bay.side == Ship::Bay::UNDER)
+					addFighter(bay);
+		for(const Hardpoint &hardpoint : ship->Weapons())
+			if(hardpoint.IsUnder())
+				addHardpoint(hardpoint);
+		draw.Add(Body(*ship, center, Point(), facing, zoom));
+		for(const Hardpoint &hardpoint : ship->Weapons())
+			if(!hardpoint.IsUnder())
+				addHardpoint(hardpoint);
+		if(hasFighters)
+			for(const Ship::Bay &bay : ship->Bays())
+				if(bay.side == Ship::Bay::OVER)
+					addFighter(bay);
+	}
+	else
+		draw.Add(Body(sprite, center, Point(), facing, zoom));
+
 	draw.Draw();
 
 	// Draw the current message.
@@ -248,22 +292,27 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		if(GameData::GetPolitics().HasDominated(planet))
 		{
 			GameData::GetPolitics().DominatePlanet(planet, false);
-			player.Conditions().Erase("tribute: " + planet->Name());
+			// Set payment 0 to erase the tribute.
+			player.SetTribute(planet, 0);
 			message = "Thank you for granting us our freedom!";
 		}
+		else if(!planet->IsDefending())
+			GetUI()->Push(new Dialog([this]() { message = planet->DemandTribute(player); },
+				"Demanding tribute may cause this planet to launch defense fleets to fight you. "
+				"After battling the fleets, you can demand tribute again for the planet to relent.\n"
+				"This act may hurt your reputation severely. Do you want to proceed?",
+				Truncate::NONE, true, false));
 		else
 			message = planet->DemandTribute(player);
 		return true;
 	}
-	else if(key == 'h' && hasLanguage && ship)
+	else if(key == 'h' && hasLanguage && ship && canAssistPlayer)
 	{
 		if(shipIsEnemy || ship->IsDisabled())
 			return false;
 		if(playerNeedsHelp)
 		{
-			if(ship->CanBeCarried())
-				message = "Sorry, my ship is too small to have the right equipment to assist you.";
-			else if(ship->GetPersonality().IsSurveillance())
+			if(ship->GetPersonality().IsSurveillance())
 				message = "Sorry, I'm too busy to help you right now.";
 			else if(canGiveFuel || canRepair)
 			{
@@ -293,24 +342,35 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			message = "Sorry, but you don't have enough money to be worth my while.";
 		else if(bribe)
 		{
+			if(!ship || requestedToBribeShip)
+			{
+				player.Accounts().AddCredits(-bribe);
+				message = "It's a pleasure doing business with you.";
+			}
 			if(ship)
 			{
-				bribed = ship->GetGovernment();
-				bribed->Bribe();
-				Messages::Add("You bribed a " + bribed->GetName() + " ship "
-					+ Format::Credits(bribe) + " credits to refrain from attacking you today."
-						, Messages::Importance::High);
+				if(!requestedToBribeShip)
+				{
+					message = "If you want us to leave you alone, it'll cost you "
+						+ Format::CreditString(bribe) + ".";
+					requestedToBribeShip = true;
+				}
+				else
+				{
+					bribed = ship->GetGovernment();
+					bribed->Bribe();
+					Messages::Add("You bribed a " + bribed->GetName() + " ship "
+						+ Format::CreditString(bribe) + " to refrain from attacking you today."
+							, Messages::Importance::High);
+				}
 			}
 			else
 			{
 				planet->Bribe();
 				Messages::Add("You bribed the authorities on " + planet->Name() + " "
-					+ Format::Credits(bribe) + " credits to permit you to land."
+					+ Format::CreditString(bribe) + " to permit you to land."
 						, Messages::Importance::High);
 			}
-
-			player.Accounts().AddCredits(-bribe);
-			message = "It's a pleasure doing business with you.";
 		}
 		else
 			message = "I do not want your money.";
@@ -328,7 +388,8 @@ void HailPanel::SetBribe(double scale)
 	for(const shared_ptr<Ship> &it : player.Ships())
 		value += it->Cost();
 
+	if(value <= 0)
+		value = 1;
+
 	bribe = 1000 * static_cast<int64_t>(sqrt(value) * scale);
-	if(scale && !bribe)
-		bribe = 1000;
 }

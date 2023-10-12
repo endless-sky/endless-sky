@@ -25,17 +25,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
-#include "text/Format.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
 #include "text/layout.hpp"
 #include "MainPanel.h"
-#include "Messages.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Rectangle.h"
-#include "ShipyardPanel.h"
 #include "StarField.h"
 #include "StartConditionsPanel.h"
 #include "text/truncate.hpp"
@@ -44,27 +41,45 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "opengl.h"
 
 #include <algorithm>
+#include <cstdlib>
 #include <stdexcept>
+#include <utility>
 
 using namespace std;
 
 namespace {
+	// Return a pair containing settings to use for time formatting.
+	pair<pair<string, string>, size_t> TimestampFormatString(Preferences::DateFormat fmt)
+	{
+		// pair<string, string>: Linux (1st) and Windows (2nd) format strings
+		// size_t: BUF_SIZE
+		if(fmt == Preferences::DateFormat::YMD)
+			return make_pair(make_pair("%F %T", "%F %T"), 26);
+		if(fmt == Preferences::DateFormat::MDY)
+			return make_pair(make_pair("%-I:%M %p on %b %-d, %Y", "%#I:%M %p on %b %#d, %Y"), 25);
+		if(fmt == Preferences::DateFormat::DMY)
+			return make_pair(make_pair("%-I:%M %p on %-d %b %Y", "%#I:%M %p on %#d %b %Y"), 24);
+
+		// Return YYYY-MM-DD by default.
+		return make_pair(make_pair("%F %T", "%F %T"), 26);
+	}
+
 	// Convert a time_t to a human-readable time and date.
 	string TimestampString(time_t timestamp)
 	{
-		static const size_t BUF_SIZE = 24;
-		char buf[BUF_SIZE];
+		pair<pair<string, string>, size_t> fmt = TimestampFormatString(Preferences::GetDateFormat());
+		char* buf = static_cast<char*>(std::malloc(fmt.second));
 
 #ifdef _WIN32
 		tm date;
 		localtime_s(&date, &timestamp);
-		static const char *FORMAT = "%#I:%M %p on %#d %b %Y";
-		return string(buf, strftime(buf, BUF_SIZE, FORMAT, &date));
+		auto str = string(buf, strftime(buf, fmt.second, fmt.first.second.c_str(), &date));
 #else
 		const tm *date = localtime(&timestamp);
-		static const char *FORMAT = "%-I:%M %p on %-d %b %Y";
-		return string(buf, strftime(buf, BUF_SIZE, FORMAT, date));
+		auto str = string(buf, strftime(buf, fmt.second, fmt.first.first.c_str(), date));
 #endif
+		std::free(buf);
+		return str;
 	}
 
 	// Extract the date from this pilot's most recent save.
@@ -267,42 +282,69 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		if(sideHasFocus)
 		{
 			auto it = files.begin();
-			for( ; it != files.end(); ++it)
+			int index = 0;
+			for( ; it != files.end(); ++it, ++index)
 				if(it->first == selectedPilot)
 					break;
 
 			if(key == SDLK_DOWN)
 			{
+				const int lastVisibleIndex = (sideScroll / 20.) + 13.;
+				if(index >= lastVisibleIndex)
+					sideScroll += 20.;
 				++it;
 				if(it == files.end())
+				{
 					it = files.begin();
+					sideScroll = 0.;
+				}
 			}
 			else
 			{
+				const int firstVisibleIndex = sideScroll / 20.;
+				if(index <= firstVisibleIndex)
+					sideScroll -= 20.;
 				if(it == files.begin())
+				{
 					it = files.end();
+					sideScroll = max(0., 20. * files.size() - 280.);
+				}
 				--it;
 			}
 			selectedPilot = it->first;
 			selectedFile = it->second.front().first;
+			centerScroll = 0.;
 		}
 		else if(pit != files.end())
 		{
 			auto it = pit->second.begin();
-			for( ; it != pit->second.end(); ++it)
+			int index = 0;
+			for( ; it != pit->second.end(); ++it, ++index)
 				if(it->first == selectedFile)
 					break;
 
 			if(key == SDLK_DOWN)
 			{
 				++it;
+				const int lastVisibleIndex = (centerScroll / 20.) + 13.;
+				if(index >= lastVisibleIndex)
+					centerScroll += 20.;
 				if(it == pit->second.end())
+				{
 					it = pit->second.begin();
+					centerScroll = 0.;
+				}
 			}
 			else
 			{
+				const int firstVisibleIndex = centerScroll / 20.;
+				if(index <= firstVisibleIndex)
+					centerScroll -= 20.;
 				if(it == pit->second.begin())
+				{
 					it = pit->second.end();
+					centerScroll = max(0., 20. * pit->second.size() - 280.);
+				}
 				--it;
 			}
 			selectedFile = it->first;
@@ -352,8 +394,9 @@ bool LoadPanel::Click(int x, int y, int clicks)
 		for(const auto &it : filesIt->second)
 			if(i++ == selected)
 			{
+				const bool sameSelected = selectedFile == it.first;
 				selectedFile = it.first;
-				if(clicks > 1)
+				if(sameSelected && clicks > 1)
 					KeyDown('l', 0, Command(), true);
 				break;
 			}

@@ -291,6 +291,42 @@ ship "Arach Spindle" "Arach Spindle (Miner)"
 		"Small Steering Module"
 		"Hyperdrive"
 
+ship "Arach Spindle" "Arach Spindle (Plasma)"
+	outfits
+		"Hyperdrive"
+		"Outfits Expansion" 3
+		"Small Shield Module"
+		"Small Repair Module" 2
+		"Large Repair Module"
+		"Cooling Module" 5
+		"Small Thrust Module" 3
+		"Large Thrust Module" 2
+		"Small Steering Module"
+		"Small Battery Module"
+		"Large Battery Module"
+		"Large Steering Module" 2
+		"Fusion Reactor"
+		"Plasma Turret" 2
+
+ship "Arach Spindle" "Arach Spindle (Jump Drive)"
+	outfits
+		"Large Collector Module" 3
+		"Small Collector Module" 2
+		"Large Battery Module"
+		"Large Shield Module"
+		"Small Shield Module"
+		"Large Repair Module"
+		"Small Repair Module" 2
+		"Cooling Module" 2
+		"Fuel Module" 4
+		
+		"Large Thrust Module" 2
+		"Small Thrust Module" 3
+		"Large Steering Module" 2
+		"Small Steering Module"
+		"Jump Drive"
+
+
 ship "Arach Transport"
 	sprite "ship/arach transport"
 	thumbnail "thumbnail/arach transport"
@@ -374,6 +410,7 @@ ship "Heliarch Breacher"
 		"drag" 3.2
 		"heat dissipation" .77
 		"ion protection" .1
+		"scramble protection" .1
 		"fuel capacity" 800
 		"cargo space" 13
 		"outfit space" 372
@@ -491,6 +528,7 @@ ship "Heliarch Hunter"
 		"drag" 5.3
 		"heat dissipation" .71
 		"ion protection" .2
+		"scramble protection" .2
 		"fuel capacity" 1500
 		"cargo space" 27
 		"outfit space" 552
@@ -676,6 +714,7 @@ ship "Heliarch Interdictor"
 		"drag" 7.4
 		"heat dissipation" .70
 		"ion protection" .2
+		"scramble protection" .2
 		"fuel capacity" 800
 		"cargo space" 79
 		"outfit space" 544
@@ -848,6 +887,7 @@ ship "Heliarch Judicator"
 		"drag" 7.9
 		"heat dissipation" .67
 		"ion protection" .2
+		"scramble protection" .2
 		"fuel capacity" 900
 		"cargo space" 136
 		"outfit space" 524
@@ -887,11 +927,17 @@ ship "Heliarch Judicator"
 	gun 13 -124.5 "Finisher Pod"
 	turret 0 45 "Ion Hail Turret"
 	bay "Fighter" -34.5 -82
+		"launch effect" "coalition launch"
 	bay "Fighter" 34.5 -82
+		"launch effect" "coalition launch"
 	bay "Fighter" -67.5 35
+		"launch effect" "coalition launch"
 	bay "Fighter" -67.5 35
+		"launch effect" "coalition launch"
 	bay "Fighter" 67.5 35
+		"launch effect" "coalition launch"
 	bay "Fighter" 67.5 35
+		"launch effect" "coalition launch"
 	explode "small explosion" 20
 	explode "medium explosion" 50
 	explode "large explosion" 20
@@ -1025,6 +1071,7 @@ ship "Heliarch Neutralizer"
 		"drag" 4.1
 		"heat dissipation" .75
 		"ion protection" .1
+		"scramble protection" .1
 		"fuel capacity" 1000
 		"cargo space" 36
 		"outfit space" 367
@@ -1145,6 +1192,7 @@ ship "Heliarch Punisher"
 		"drag" 12.2
 		"heat dissipation" .60
 		"ion protection" .3
+		"scramble protection" .3
 		"fuel capacity" 600
 		"cargo space" 94
 		"outfit space" 885
@@ -1225,6 +1273,28 @@ ship "Heliarch Punisher" "Heliarch Punisher (Burst Fire)"
 	gun
 	gun "Finisher Maegrolain"
 	gun "Finisher Maegrolain"
+
+ship "Heliarch Punisher" "Heliarch Punisher (Fuel)"
+	outfits
+		"Finisher Pod" 2
+		"Finisher Torpedo" 80
+		"Bombardment Turret" 4
+		
+		"Large Reactor Module" 2
+		"Large Battery Module"
+		"Overcharged Shield Module" 2
+		"Overclocked Repair Module" 2
+		"Cooling Module" 4
+		"Scanning Module" 4
+		"Fuel Module" 4
+		"Enforcer Riot Staff" 160
+		"Enforcer Confrontation Gear" 150
+	
+		"Large Thrust Module" 2
+		"Small Thrust Module" 2
+		"Large Steering Module" 2
+		"Small Steering Module" 2
+		"Jump Drive"
 
 ship "Heliarch Punisher" "Heliarch Punisher (Interdicting)"
 	outfits
@@ -1555,6 +1625,7 @@ ship "Kimek Briar"
 		"Small Shield Module" 2
 		
 		"Large Thrust Module"
+		"Large Reverse Module"
 		"Large Steering Module"
 		"Hyperdrive"
 		
@@ -1580,6 +1651,7 @@ ship "Kimek Briar" "Kimek Briar (Miner)"
 		"Small Shield Module" 2
 		
 		"Large Thrust Module"
+		"Large Reverse Module"
 		"Large Steering Module"
 		"Hyperdrive"
 
@@ -1723,6 +1795,22 @@ ship "Kimek Thistle" "Kimek Thistle (Miner)"
 		"Small Reverse Module" 2
 		"Small Steering Module"
 		"Hyperdrive"
+
+ship "Kimek Thistle" "Kimek Thistle (Torpedoes)"
+	outfits
+		"Hyperdrive"
+		"Small Shield Module" 2
+		"Small Repair Module" 2
+		"Cooling Module" 2
+		"Small Thrust Module" 2
+		"Small Steering Module"
+		"Large Thrust Module"
+		"Small Battery Module"
+		"Large Steering Module"
+		"Heavy Anti-Missile Turret"
+		"Torpedo Launcher" 2
+		Torpedo 60
+		"Breeder Reactor"
 
 ship "Kimek Thorn"
 	sprite "ship/kimek thorn"
@@ -1917,6 +2005,22 @@ ship "Saryd Sojourner" "Saryd Sojourner (Miner)"
 		"Small Reverse Module" 3
 		"Small Steering Module"
 		"Hyperdrive"
+
+ship "Saryd Sojourner" "Saryd Sojourner (Bombardments)"
+	outfits
+		"Hyperdrive"
+		"Bombardment Turret" 3
+		"Ion Rain Gun" 2
+		"Large Reactor Module"
+		"Small Battery Module"
+		"Large Battery Module" 2
+		"Cooling Module" 3
+		"Small Thrust Module" 3
+		"Large Thrust Module" 2
+		"Small Steering Module" 2
+		"Large Steering Module" 2
+		"Overclocked Repair Module"
+		"Overcharged Shield Module"
 
 ship "Saryd Traveler"
 	sprite "ship/saryd traveler"

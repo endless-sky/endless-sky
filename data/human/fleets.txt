@@ -73,6 +73,8 @@ fleet "Small Southern Merchants"
 		"Berserker"
 	variant 1
 		"Scout"
+	variant 1
+		"Scrapper"
 
 fleet "Large Southern Merchants"
 	government "Merchant"
@@ -227,6 +229,8 @@ fleet "Small Core Merchants"
 		"Scout"
 	variant 1
 		"Scout (Speedy)"
+	variant 1
+		"Scrapper"
 
 fleet "Large Core Merchants"
 	government "Merchant"
@@ -529,6 +533,8 @@ fleet "Small Northern Merchants"
 		"Scout"
 	variant 5
 		"Scout (Speedy)"
+	variant 1
+		"Scrapper"
 
 fleet "Large Northern Merchants"
 	government "Merchant"
@@ -1171,7 +1177,7 @@ fleet "Large Free Worlds"
 
 fleet "Small Militia"
 	government "Militia"
-	names "militia"
+	names "militia small"
 	cargo 1
 	personality
 		heroic frugal
@@ -1226,7 +1232,7 @@ fleet "Small Militia"
 
 fleet "Large Militia"
 	government "Militia"
-	names "militia"
+	names "militia capital"
 	cargo 1
 	personality
 		heroic frugal
@@ -1316,7 +1322,8 @@ fleet "Small Republic"
 fleet "Large Republic"
 	government "Republic"
 	names "republic capital"
-	fighters "republic fighter"
+	fighters
+		names "republic fighter"
 	cargo 0
 	personality
 		heroic opportunistic
@@ -1357,7 +1364,8 @@ fleet "Large Republic"
 fleet "Republic Logistics"
 	government "Republic"
 	names "republic capital"
-	fighters "republic fighter"
+	fighters
+		names "republic fighter"
 	cargo 3
 	personality
 		heroic opportunistic
@@ -1409,7 +1417,8 @@ fleet "Republic Logistics"
 fleet "Navy Surveillance"
 	government "Republic"
 	names "republic capital"
-	fighters "republic fighter"
+	fighters
+		names "republic fighter"
 	cargo 0
 	personality
 		surveillance opportunistic
@@ -1517,7 +1526,8 @@ fleet "Large Deep Merchants"
 fleet "Small Deep Security"
 	government "Deep Security"
 	names "deep"
-	fighters "deep fighter"
+	fighters
+		names "deep fighter"
 	cargo 0
 	personality
 		heroic
@@ -1546,7 +1556,8 @@ fleet "Small Deep Security"
 fleet "Large Deep Security"
 	government "Deep Security"
 	names "deep"
-	fighters "deep fighter"
+	fighters
+		names "deep fighter"
 	cargo 0
 	personality
 		heroic
@@ -1626,7 +1637,8 @@ fleet "Small Oathkeeper"
 fleet "Large Oathkeeper"
 	government "Navy (Oathkeeper)"
 	names "republic capital"
-	fighters "republic fighter"
+	fighters
+		names "republic fighter"
 	cargo 0
 	personality
 		heroic opportunistic
@@ -1690,7 +1702,8 @@ fleet "Small Syndicate"
 fleet "Large Syndicate"
 	government "Syndicate"
 	names "syndicate capital"
-	fighters "syndicate fighter"
+	fighters
+		names "syndicate fighter"
 	cargo 2
 	personality
 		heroic
@@ -1837,6 +1850,24 @@ fleet "Small Southern Pirates"
 		"Clipper (Speedy)"
 	variant 1
 		"Modified Argosy"
+	variant 3
+		"Scrapper"
+	variant 2
+		"Scrapper (Minimal)"
+	variant 1
+		"Scrapper (Mod Blaster)"
+	variant 2
+		"Scrapper" 2
+	variant 2
+		"Scrapper (Minimal)" 2
+	variant 1
+		"Scrapper"
+		"Sparrow"
+	variant 1
+		"Sparrow"
+		"Scrapper (Minimal)"
+	variant 1
+		"Scrapper (Gatling)"
 
 fleet "Large Southern Pirates"
 	government "Pirate"
@@ -2004,6 +2035,10 @@ fleet "Small Independent"
 		"Clipper (Heavy)"
 	variant 1
 		"Clipper (Speedy)"
+	variant 4
+		"Scrapper"
+	variant 3
+		"Scrapper (Minimal)"
 
 fleet "Large Independent"
 	government "Independent"
@@ -2106,6 +2141,14 @@ fleet "Small Core Pirates"
 		"Wasp (Plasma)"
 	variant 2
 		"Wasp (Proton)"
+	variant 1
+		"Scrapper"
+	variant 2
+		"Scrapper (Minimal)"
+	variant 1
+		"Scrapper (Mod Blaster)"
+	variant 1
+		"Scrapper (Gatling)"
 
 fleet "Large Core Pirates"
 	government "Pirate"
@@ -2241,6 +2284,15 @@ fleet "Small Northern Pirates"
 		"Scout"
 	variant 4
 		"Scout (Speedy)"
+	variant 2
+		"Scrapper"
+	variant 1
+		"Scrapper (Mod Blaster)"
+	variant 1
+		"Scrapper" 2
+	variant 1
+		"Scrapper"
+		"Sparrow"
 
 fleet "Large Northern Pirates"
 	government "Pirate"
@@ -2347,6 +2399,140 @@ fleet "Large Northern Pirates"
 		"Dagger" 3
 
 fleet "pirate raid"
+	government "Pirate"
+	names "pirate"
+	cargo 1
+	personality
+		disables nemesis plunders harvests
+		confusion 20
+	variant 3
+		"Argosy (Blaster)"
+	variant 2
+		"Argosy (Laser)"
+	variant 2
+		"Argosy (Turret)"
+	variant 1
+		"Modified Argosy"
+	variant 1
+		"Modified Argosy (Heavy)"
+	variant 1
+		"Modified Argosy (Blaster)"
+	variant 2
+		"Clipper (Speedy)"
+	variant 1
+		"Clipper"
+		"Hawk"
+	variant 1
+		"Clipper (Speedy)"
+		"Hawk (Speedy)"
+	variant 6
+		"Hawk (Speedy)" 3
+	variant 4
+		"Hawk" 2
+	variant 4
+		"Fury" 2
+	variant 1
+		"Argosy (Blaster)"
+		"Hawk"
+	variant 1
+		"Argosy (Laser)"
+		"Hawk (Speedy)"
+	variant 1
+		"Argosy (Turret)"
+		"Hawk (Speedy)"
+	variant 1
+		"Argosy"
+		"Hawk"
+	variant 1
+		"Modified Argosy (Heavy)"
+		"Hawk (Speedy)" 2
+	variant 1
+		"Modified Argosy (Blaster)"
+		"Raven (Afterburner)" 2
+	variant 2
+		"Falcon"
+	variant 1
+		"Falcon (Heavy)"
+	variant 1
+		"Falcon (Laser)"
+	variant 5
+		"Quicksilver (Proton)" 3
+	variant 2
+		"Quicksilver" 3
+	variant 3
+		"Splinter"
+		"Quicksilver (Proton)"
+	variant 3
+		"Splinter (Laser)"
+		"Quicksilver"
+	variant 3
+		"Splinter (Proton)"
+		"Quicksilver"
+	variant 4
+		"Manta (Proton)"
+	variant 2
+		"Manta"
+	variant 2
+		"Splinter" 2
+	variant 1
+		"Splinter (Laser)" 2
+	variant 1
+		"Splinter (Proton)" 2
+	variant 2
+		"Firebird"
+	variant 1
+		"Firebird (Laser)"
+	variant 1
+		"Firebird (Plasma)"
+	variant 4
+		"Firebird"
+	variant 2
+		"Firebird (Laser)"
+	variant 2
+		"Firebird (Plasma)"
+	variant 3
+		"Firebird"
+		"Corvette"
+	variant 1
+		"Firebird (Plasma)"
+		"Corvette (Speedy)"
+	variant 2
+		"Firebird"
+		"Berserker" 2
+	variant 1
+		"Firebird (Plasma)"
+		"Fury (Missile)"
+	variant 1
+		"Firebird (Missile)"
+		"Fury"
+	variant 8
+		"Raven (Afterburner)" 2
+	variant 2
+		"Raven (Heavy)" 2
+	variant 1
+		"Headhunter (Particle)" 3
+	variant 1
+		"Fury (Heavy)" 2
+		"Firebird (Missile)"
+	variant 2
+		"Leviathan"
+		"Firebird"
+	variant 2
+		"Leviathan (Laser)"
+		"Firebird"
+	variant 2
+		"Leviathan (Heavy)"
+		"Firebird (Plasma)"
+	variant 1
+		"Berserker" 3
+	variant 8
+		"Berserker (Afterburner)" 3
+	variant 2
+		"Berserker (Afterburner)" 2
+	variant 3
+		"Scout (Speedy)" 3
+
+fleet "pirate explosive"
 	government "Pirate"
 	names "pirate"
 	cargo 1
@@ -2483,7 +2669,8 @@ fleet "pirate raid"
 fleet "Syndicate Extremists"
 	government "Syndicate (Extremist)"
 	names "syndicate capital"
-	fighters "syndicate fighter"
+	fighters
+		names "syndicate fighter"
 	cargo 0
 	personality
 		heroic
@@ -3149,7 +3336,8 @@ fleet "Hired Guns"
 fleet "Human Wormhole Guards"
 	government "Republic that won't enter wormhole"
 	names "republic capital"
-	fighters "republic fighter"
+	fighters
+		names "republic fighter"
 	cargo 0
 	personality
 		heroic opportunistic
@@ -3158,7 +3346,7 @@ fleet "Human Wormhole Guards"
 		"Combat Drone" 6
 		"Lance (Gatling)" 4
 	variant 1
-		"Auxiliary (Transport)"
+		"Auxiliary (Transport Mark II)"
 	variant 2
 		"Cruiser (Plasma Anti-Missile)"
 		"Combat Drone" 4

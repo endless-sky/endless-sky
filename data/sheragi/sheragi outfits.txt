@@ -71,7 +71,7 @@ outfit "Fission Drive"
 	"engine capacity" -38
 	"energy generation" 5.2
 	"heat generation" 19.4
-	"thrust" 15.47
+	"thrust" 17.8
 	"thrusting energy" 1.508
 	"thrusting heat" 2.86
 	"turn" 319.8
@@ -85,7 +85,7 @@ outfit "Fission Drive"
 		"frame rate" 30
 		"rewind"
 	"steering flare sound" "atomic tiny"
-	description "A much smaller cousin of the fusion drive, it relies on fission instead of fusion to function, providing the necessary power generation and thrust to drive the Heavy Ion Cyclotron."
+	description "A much smaller cousin of the Fusion Drive, it relies on fission instead of fusion to function, providing the necessary power generation and thrust to drive the Heavy Ion Cyclotron."
 
 outfit "Fusion Drive"
 	category "Engines"
@@ -101,10 +101,10 @@ outfit "Fusion Drive"
 	"turn" 2496.0
 	"turning energy" 4.55
 	"turning heat" 12.35
-	"thrust" 190
+	"thrust" 180.5
 	"thrusting energy" 11
 	"thrusting heat" 33
-	"reverse thrust" 44.8
+	"reverse thrust" 42.6
 	"reverse thrusting energy" 4.9
 	"reverse thrusting heat" 13.3
 	"flare sprite" "effect/fusionflare"
@@ -225,7 +225,7 @@ outfit "Sheragi Anti-Missile"
 		"reload" 60
 		"firing energy" 220
 		"firing heat" 440
-	description "This Sheragi anti-missile system fires an extremely powerful laser pulse capable of obliterating any missile in a single shot, but it comes at the expense of a long recharge time."
+	description "The Sheragi Anti-Missile fires an extremely powerful laser pulse capable of obliterating any missile in a single shot, but it comes at the expense of a long recharge time."
 
 effect "sheragiam"
 	sprite "effect/sheragiam"
@@ -263,6 +263,7 @@ outfit "Particle Waveform Turret"
 		"hull damage" 270
 		"heat damage" 224
 		"ion damage" 4.2
+		"scrambling damage" 4.2
 	description "This ancient Sheragi turret accelerates a dense packet of electrons that, while very ineffective against any kind of shielding, has a very long range and disrupts electrical systems. By the nature of these weapons, one can deduce that their tactics likely involved using the Dragonflame Cannon at long range to break the enemy shields and finishing them off at relatively close range with the Particle Waveform Turrets."
 
 effect "lightning flare"

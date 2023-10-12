@@ -21,19 +21,17 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ConversationPanel.h"
 #include "DataFile.h"
 #include "DataNode.h"
-#include "DataWriter.h"
-#include "Dialog.h"
 #include "Files.h"
 #include "text/Font.h"
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "GameLoadingPanel.h"
 #include "GameWindow.h"
-#include "Hardpoint.h"
 #include "Logger.h"
 #include "MenuPanel.h"
 #include "Panel.h"
 #include "PlayerInfo.h"
+#include "Plugins.h"
 #include "Preferences.h"
 #include "PrintData.h"
 #include "Screen.h"
@@ -91,6 +89,7 @@ int main(int argc, char *argv[])
 	bool loadOnly = false;
 	bool printTests = false;
 	bool printData = false;
+	bool noTestMute = false;
 	string testToRunName = "";
 
 	// Ensure that we log errors to the errors.txt file.
@@ -119,18 +118,15 @@ int main(int argc, char *argv[])
 			testToRunName = *it;
 		else if(arg == "--tests")
 			printTests = true;
+		else if(arg == "--nomute")
+			noTestMute = true;
 	}
-	if(PrintData::IsPrintDataArgument(argv))
-		printData = true;
+	printData = PrintData::IsPrintDataArgument(argv);
 	Files::Init(argv);
 
 	try {
-		// Initialize the necessary threading, which also needs to be
-		// correctly destroyed after use.
-		TaskQueue::Init();
-		struct TaskQueueDeleter {
-			~TaskQueueDeleter() { TaskQueue::Destroy(); }
-		} _;
+		// Load plugin preferences before game data if any.
+		Plugins::LoadSettings();
 
 		// Begin loading the game data.
 		bool isConsoleOnly = loadOnly || printTests || printData;
@@ -190,19 +186,24 @@ int main(int argc, char *argv[])
 		if(!GameWindow::Init())
 			return 1;
 
-		GameData::LoadShaders(!GameWindow::HasSwizzle());
+		GameData::LoadShaders();
 
 		// Show something other than a blank window.
 		GameWindow::Step();
 
 		Audio::Init(GameData::Sources());
 
+		if(!testToRunName.empty() && !noTestMute)
+		{
+			Audio::SetVolume(0);
+		}
+
 		// This is the main loop where all the action begins.
 		GameLoop(player, conversation, testToRunName, debugMode);
 	}
 	catch(Test::known_failure_tag)
 	{
-		// This is not an error. Simply exit succesfully.
+		// This is not an error. Simply exit successfully.
 	}
 	catch(const exception &error)
 	{
@@ -217,6 +218,7 @@ int main(int argc, char *argv[])
 	Preferences::Set("fullscreen", GameWindow::IsFullscreen());
 	Screen::SetRaw(GameWindow::Width(), GameWindow::Height());
 	Preferences::Save();
+	Plugins::Save();
 
 	Audio::Quit();
 	GameWindow::Quit();
@@ -302,16 +304,16 @@ void GameLoop(PlayerInfo &player, const Conversation &conversation, const string
 				// and the OpenGL viewport to match.
 				GameWindow::AdjustViewport();
 			}
-			else if(activeUI.Handle(event))
-			{
-				// The UI handled the event.
-			}
 			else if(event.type == SDL_KEYDOWN && !toggleTimeout
 					&& (Command(event.key.keysym.sym).Has(Command::FULLSCREEN)
 					|| (event.key.keysym.sym == SDLK_RETURN && (event.key.keysym.mod & KMOD_ALT))))
 			{
 				toggleTimeout = 30;
 				Preferences::ToggleScreenMode();
+			}
+			else if(activeUI.Handle(event))
+			{
+				// The UI handled the event.
 			}
 			else if(event.type == SDL_KEYDOWN && !event.key.repeat
 					&& (Command(event.key.keysym.sym).Has(Command::FASTFORWARD)))
@@ -444,6 +446,7 @@ void PrintHelp()
 	cerr << "    -p, --parse-save: load the most recent saved game and inspect it for content errors." << endl;
 	cerr << "    --tests: print table of available tests, then exit." << endl;
 	cerr << "    --test <name>: run given test from resources directory." << endl;
+	cerr << "    --nomute: don't mute the game while running tests." << endl;
 	PrintData::Help();
 	cerr << endl;
 	cerr << "Report bugs to: <https://github.com/endless-sky/endless-sky/issues>" << endl;
@@ -456,7 +459,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky ver. 0.9.17-alpha" << endl;
+	cerr << "Endless Sky ver. 0.10.4-alpha" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;

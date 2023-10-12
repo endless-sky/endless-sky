@@ -51,6 +51,9 @@ protected:
 
 
 private:
+	// Use availableIt/acceptedIt to set MapPanel::selectedSystem, call DoScroll/CenterOnSystem.
+	// CenterOnSystem will either pan to the system or immediately jump to it.
+	void SetSelectedScrollAndCenter(bool immediate = false);
 	// Display and explain the various pointers that may appear on the map.
 	void DrawKey() const;
 	// Display the name of and distance to the selected system.
@@ -78,10 +81,13 @@ private:
 	// Selects the first available or accepted mission if no mission is already
 	// selected. Returns true if the selection was changed.
 	bool SelectAnyMission();
+	// Centers on the next involved system for the clicked mission from the mission list
+	void CycleInvolvedSystems(const Mission &mission);
 
 private:
 	const std::list<Mission> &available;
 	const std::list<Mission> &accepted;
+	int cycleInvolvedIndex = 0;
 	std::list<Mission>::const_iterator availableIt;
 	std::list<Mission>::const_iterator acceptedIt;
 	double availableScroll = 0.;

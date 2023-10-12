@@ -17,11 +17,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Audio.h"
 #include "BatchShader.h"
+#include "CategoryList.h"
 #include "Color.h"
 #include "Command.h"
 #include "ConditionsStore.h"
 #include "Conversation.h"
-#include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Effect.h"
@@ -48,9 +48,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Person.h"
 #include "Phrase.h"
 #include "Planet.h"
+#include "Plugins.h"
 #include "PointerShader.h"
 #include "Politics.h"
-#include "Random.h"
 #include "RingShader.h"
 #include "Ship.h"
 #include "Sprite.h"
@@ -87,8 +87,6 @@ namespace {
 
 	StarField background;
 
-	map<string, string> plugins;
-
 	vector<string> sources;
 	map<const Sprite *, shared_ptr<ImageSet>> deferred;
 	map<const Sprite *, int> preloaded;
@@ -110,6 +108,36 @@ namespace {
 		TaskQueue::Run([image] { image->Load(); },
 				[image] { image->Upload(SpriteSet::Modify(image->Name())); ++spriteLoadingProgress; });
 		++totalSprites;
+	}
+
+	void LoadPlugin(const string &path)
+	{
+		const auto *plugin = Plugins::Load(path);
+		if(!plugin)
+			return;
+
+		if(plugin->enabled)
+			sources.push_back(path);
+
+		// Load the icon for the plugin, if any.
+		auto icon = make_shared<ImageSet>(plugin->name);
+
+		// Try adding all the possible icon variants.
+		if(Files::Exists(path + "icon.png"))
+			icon->Add(path + "icon.png");
+		else if(Files::Exists(path + "icon.jpg"))
+			icon->Add(path + "icon.jpg");
+
+		if(Files::Exists(path + "icon@2x.png"))
+			icon->Add(path + "icon@2x.png");
+		else if(Files::Exists(path + "icon@2x.jpg"))
+			icon->Add(path + "icon@2x.jpg");
+
+		if(!icon->IsEmpty())
+		{
+			icon->ValidateFrames();
+			LoadSprite(icon);
+		}
 	}
 }
 
@@ -178,7 +206,7 @@ void GameData::CheckReferences()
 
 
 
-void GameData::LoadShaders(bool useShaderSwizzle)
+void GameData::LoadShaders()
 {
 	FontSet::Add(Files::Images() + "font/ubuntu14r.png", 14);
 	FontSet::Add(Files::Images() + "font/ubuntu18r.png", 18);
@@ -193,7 +221,7 @@ void GameData::LoadShaders(bool useShaderSwizzle)
 	OutlineShader::Init();
 	PointerShader::Init();
 	RingShader::Init();
-	SpriteShader::Init(useShaderSwizzle);
+	SpriteShader::Init();
 	BatchShader::Init();
 
 	background.Init(16384, 4096);
@@ -269,6 +297,14 @@ future<void> GameData::Preload(const Sprite *sprite)
 const vector<string> &GameData::Sources()
 {
 	return sources;
+}
+
+
+
+// Get a reference to the UniverseObjects object.
+UniverseObjects &GameData::Objects()
+{
+	return objects;
 }
 
 
@@ -492,7 +528,6 @@ const Set<Effect> &GameData::Effects()
 
 
 
-
 const Set<GameEvent> &GameData::Events()
 {
 	return objects.events;
@@ -546,7 +581,6 @@ const Set<Minable> &GameData::Minables()
 {
 	return objects.minables;
 }
-
 
 
 
@@ -676,7 +710,6 @@ const vector<Trade::Commodity> &GameData::Commodities()
 
 
 
-
 const vector<Trade::Commodity> &GameData::SpecialCommodities()
 {
 	return objects.trade.SpecialCommodities();
@@ -732,8 +765,8 @@ const string &GameData::Rating(const string &type, int level)
 
 
 
-// Strings for ship, bay type, and outfit categories.
-const vector<string> &GameData::Category(const CategoryType type)
+// Collections for ship, bay type, outfit, and other categories.
+const CategoryList &GameData::GetCategory(const CategoryType type)
 {
 	return objects.categories[type];
 }
@@ -785,13 +818,6 @@ const map<string, string> &GameData::HelpTemplates()
 
 
 
-const map<string, string> &GameData::PluginAboutText()
-{
-	return plugins;
-}
-
-
-
 MaskManager &GameData::GetMaskManager()
 {
 	return maskManager;
@@ -806,6 +832,13 @@ const TextReplacements &GameData::GetTextReplacements()
 
 
 
+const Gamerules &GameData::GetGamerules()
+{
+	return objects.gamerules;
+}
+
+
+
 void GameData::LoadSources()
 {
 	sources.clear();
@@ -813,48 +846,13 @@ void GameData::LoadSources()
 
 	vector<string> globalPlugins = Files::ListDirectories(Files::Resources() + "plugins/");
 	for(const string &path : globalPlugins)
-	{
-		if(Files::Exists(path + "data") || Files::Exists(path + "images") || Files::Exists(path + "sounds"))
-			sources.push_back(path);
-	}
+		if(Plugins::IsPlugin(path))
+			LoadPlugin(path);
 
 	vector<string> localPlugins = Files::ListDirectories(Files::Config() + "plugins/");
 	for(const string &path : localPlugins)
-	{
-		if(Files::Exists(path + "data") || Files::Exists(path + "images") || Files::Exists(path + "sounds"))
-			sources.push_back(path);
-	}
-
-	// Load the plugin data, if any.
-	for(auto it = sources.begin() + 1; it != sources.end(); ++it)
-	{
-		// Get the name of the folder containing the plugin.
-		size_t pos = it->rfind('/', it->length() - 2) + 1;
-		string name = it->substr(pos, it->length() - 1 - pos);
-
-		// Load the about text and the icon, if any.
-		plugins[name] = Files::Read(*it + "about.txt");
-
-		// Create an image set for the plugin icon.
-		auto icon = make_shared<ImageSet>(name);
-
-		// Try adding all the possible icon variants.
-		if(Files::Exists(*it + "icon.png"))
-			icon->Add(*it + "icon.png");
-		else if(Files::Exists(*it + "icon.jpg"))
-			icon->Add(*it + "icon.jpg");
-
-		if(Files::Exists(*it + "icon@2x.png"))
-			icon->Add(*it + "icon@2x.png");
-		else if(Files::Exists(*it + "icon@2x.jpg"))
-			icon->Add(*it + "icon@2x.jpg");
-
-		if(!icon->IsEmpty())
-		{
-			icon->ValidateFrames();
-			LoadSprite(icon);
-		}
-	}
+		if(Plugins::IsPlugin(path))
+			LoadPlugin(path);
 }
 
 

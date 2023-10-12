@@ -288,7 +288,7 @@ mission "Mystery Cube Delivery Job Station"
 mission "Mystery Cube Retrieval Job"
 	job
 	repeat
-	name "Mystery retrieval"
+	name "Mystery retrieval from <planet stopovers>"
 	description "Retrieve a package from <stopovers>, then return to <destination>. Payment is <payment>."
 	source
 		attributes "deep"
@@ -326,8 +326,9 @@ mission "Transport scientists"
 		attributes "deep"
 	stopover
 		attributes "research"
+		not attributes "uninhabited"
 		distance 2 50
-	passengers 5 16
+	passengers 3 4 .43
 	to offer
 		random < 15
 	on stopover
@@ -338,6 +339,28 @@ mission "Transport scientists"
 		dialog "You bid goodbye to the scientists and accept your payment of <payment>."
 		payment
 		payment 30000
+
+
+mission "Transport science department"
+	job
+	repeat
+	description "A department of <bunks> scientists needs some research notes analyzed at the facility on <stopovers>. Take the scientists there and then return them to <planet> for <payment>."
+	source
+		attributes "deep"
+	stopover
+		attributes "research"
+		not attributes "uninhabited"
+		distance 2 50
+	passengers 20 4 .1
+	to offer
+		random < "passenger space" - 30
+	on stopover
+		dialog "The scientists have been giddily sharing and discussing the results of each of their research teams during the entire trip. You're happy for a bit of peace and quiet as they make tracks for a prominent research lab to have the results analyzed. You prepare for the return journey to <planet>."
+	on visit
+		dialog phrase "generic missing stopover or passengers"
+	on complete
+		dialog "You bid goodbye to the scientists and accept your payment of <payment>."
+		payment 180000 100
 
 
 mission "Escort science vessel"
@@ -446,7 +469,7 @@ phrase "secure package dropoff payment"
 	word
 		` `
 	word
-		`Your bank account immediately notifies you that the agreed-upon payment of <payment> has been deposited. You wonder how they knew.`
+		`Your bank account immediately notifies you that the agreed-upon payment of <payment> has been deposited.`
 
 
 mission "Secure Transport Job (Secret) [0]"
@@ -820,7 +843,7 @@ mission "Secure Transport Job (Deep Security) [1]"
 mission "Deep Consultants"
 	minor
 	name "Transport consultants to <planet>"
-	description "Julie and her assistant missed their transport and need to reach <destination> by <date> in order to make several important business meetings.."
+	description "Julie and her assistant missed their transport and need to reach <destination> by <date> in order to make several important business meetings."
 	source
 		attributes "deep"
 		attributes "urban"
@@ -849,13 +872,13 @@ mission "Deep Consultants"
 				`	"Who are you?"`
 			`	Julie holds out her hand in greeting. "Apologies, let's do this properly. My name is Julie Gillar. My assistant and I were held back with our duties and missed our booked transport. We're in dire need of passage to Valhalla for several important business meetings, but unfortunately everything is booked up for the next five days straight, and that's just not acceptable to my employer."`
 			choice
-				`	"Sure, I'd be glad to help.`
+				`	"Sure, I'd be glad to help."`
 					goto sure
 				`	"Who's your employer?"`
 			`	Julie furtively glances at the people nearby. "Well, I have a few employers actually, but at the moment, indirectly, Deep Security."`
 			`	She leans in slightly closer and lowers her voice. "We have access to their list of trustworthy pilots for emergencies. You'll be paid quite well."`
 			choice
-				`	"Sure, I'd be glad to help.`
+				`	"Sure, I'd be glad to help."`
 					goto sure
 				`	"I'm sorry, but I really can't help you right now."`
 					decline

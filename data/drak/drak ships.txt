@@ -40,7 +40,9 @@ ship "Archon"
 		"hull repair rate" 100
 		"hull energy" 100
 		"ion protection" 3
+		"scramble protection" 3
 		"ion resistance" 1
+		"scramble resistance" 1
 		"ramscoop" 100
 		"thrust" 80
 		"thrusting energy" 20

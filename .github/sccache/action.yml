@@ -1,14 +1,10 @@
 name: Install sccache
 description: Installs sccache for the current platform
-inputs:
-  read-only:
-    description: Whether the cache should be read-only
-    default: 'false'
 runs:
   using: 'composite'
   steps:
     - name: Set environment variables
-      run: echo "SCCACHE_VERSION=v0.3.3" >> $GITHUB_ENV
+      run: echo "SCCACHE_VERSION=v0.5.0" >> $GITHUB_ENV
       shell: bash
     - name: Download sccache
       run: |
@@ -26,14 +22,15 @@ runs:
       run: tar xf sccache-*.tar.gz --strip-components=1
       shell: bash
     - name: Add to PATH
+      if: ${{ runner.os != 'Windows' }}
       run: echo "$PWD" >> $GITHUB_PATH
       shell: bash
-    - name: Write to the cache
-      if: ${{ inputs.read-only == 'false' && github.event_name == 'push' }}
-      run: echo "SCCACHE_GHA_CACHE_TO=sccache-${{ github.sha }}" >> $GITHUB_ENV
-      shell: bash
-    - name: Read from the cache
-      run: echo "SCCACHE_GHA_CACHE_FROM=sccache-" >> $GITHUB_ENV
+    - name: Add to PATH (Windows)
+      if: ${{ runner.os == 'Windows' }}
+      run: (Get-Item .).FullName >> $env:GITHUB_PATH
+      shell: pwsh
+    - name: Enable sccache
+      run: echo "SCCACHE_GHA_ENABLED=true" >> $GITHUB_ENV
       shell: bash
     - name: Configure sccache
       uses: actions/github-script@v6

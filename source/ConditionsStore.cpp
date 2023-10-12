@@ -142,77 +142,6 @@ ConditionsStore::ConditionEntry &ConditionsStore::ConditionEntry::operator-=(int
 
 
 
-ConditionsStore::PrimariesIterator::PrimariesIterator(CondMapItType it, CondMapItType endIt)
-	: condMapIt(it), condMapEnd(endIt)
-{
-	MoveToValueCondition();
-}
-
-
-
-pair<string, int64_t> ConditionsStore::PrimariesIterator::operator*() const
-{
-	return itVal;
-}
-
-
-
-const pair<string, int64_t> *ConditionsStore::PrimariesIterator::operator->()
-{
-	return &itVal;
-}
-
-
-
-ConditionsStore::PrimariesIterator &ConditionsStore::PrimariesIterator::operator++()
-{
-	condMapIt++;
-	MoveToValueCondition();
-	return *this;
-}
-
-
-
-ConditionsStore::PrimariesIterator ConditionsStore::PrimariesIterator::operator++(int)
-{
-	PrimariesIterator tmp = *this;
-	condMapIt++;
-	MoveToValueCondition();
-	return tmp;
-}
-
-
-
-// Equation operators, we can just compare the upstream iterators.
-bool ConditionsStore::PrimariesIterator::operator==(const ConditionsStore::PrimariesIterator &rhs) const
-{
-	return condMapIt == rhs.condMapIt;
-}
-
-
-
-bool ConditionsStore::PrimariesIterator::operator!=(const ConditionsStore::PrimariesIterator &rhs) const
-{
-	return condMapIt != rhs.condMapIt;
-}
-
-
-
-// Helper function to ensure that the primary-conditions iterator points
-// to a primary (value) condition or to the end-iterator value.
-void ConditionsStore::PrimariesIterator::MoveToValueCondition()
-{
-	while((condMapIt != condMapEnd) && (condMapIt->second).provider)
-		condMapIt++;
-
-	// We have a valid value when we are not at the end, and callers should
-	// not try to dereference the value when we actually are at the end.
-	if(condMapIt != condMapEnd)
-		itVal = make_pair(condMapIt->first, (condMapIt->second).value);
-}
-
-
-
 // Constructor with loading primary conditions from datanode.
 ConditionsStore::ConditionsStore(const DataNode &node)
 {
@@ -249,22 +178,23 @@ void ConditionsStore::Load(const DataNode &node)
 
 void ConditionsStore::Save(DataWriter &out) const
 {
-	if(PrimariesBegin() != PrimariesEnd())
+	out.Write("conditions");
+	out.BeginChild();
+	for(auto it = storage.begin(); it != storage.end(); ++it)
 	{
-		out.Write("conditions");
-		out.BeginChild();
-		{
-			for(auto it = PrimariesBegin(); it != PrimariesEnd(); ++it)
-			{
-				// If the condition's value is 1, don't bother writing the 1.
-				if(it->second == 1)
-					out.Write(it->first);
-				else if(it->second)
-					out.Write(it->first, it->second);
-			}
-		}
-		out.EndChild();
+		// We don't need to save derived conditions that have a provider.
+		if(it->second.provider)
+			continue;
+		// If the condition's value is 0, don't write it at all.
+		if(!it->second.value)
+			continue;
+		// If the condition's value is 1, don't bother writing the 1.
+		if(it->second.value == 1)
+			out.Write(it->first);
+		else
+			out.Write(it->first, it->second.value);
 	}
+	out.EndChild();
 }
 
 
@@ -393,27 +323,6 @@ ConditionsStore::ConditionEntry &ConditionsStore::operator[](const string &name)
 
 
 
-ConditionsStore::PrimariesIterator ConditionsStore::PrimariesBegin() const
-{
-	return PrimariesIterator(storage.begin(), storage.end());
-}
-
-
-
-ConditionsStore::PrimariesIterator ConditionsStore::PrimariesEnd() const
-{
-	return PrimariesIterator(storage.end(), storage.end());
-}
-
-
-
-ConditionsStore::PrimariesIterator ConditionsStore::PrimariesLowerBound(const string &key) const
-{
-	return PrimariesIterator(storage.lower_bound(key), storage.end());
-}
-
-
-
 // Build a provider for a given prefix.
 ConditionsStore::DerivedProvider &ConditionsStore::GetProviderPrefixed(const string &prefix)
 {
@@ -470,6 +379,22 @@ void ConditionsStore::Clear()
 {
 	storage.clear();
 	providers.clear();
+}
+
+
+
+// Helper for testing; check how many primary conditions are registered.
+int64_t ConditionsStore::PrimariesSize() const
+{
+	int64_t result = 0;
+	for(auto it = storage.begin(); it != storage.end(); ++it)
+	{
+		// We only count primary conditions; conditions that don't have a provider.
+		if(it->second.provider)
+			continue;
+		++result;
+	}
+	return result;
 }
 
 

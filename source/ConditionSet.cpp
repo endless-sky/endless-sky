@@ -443,6 +443,23 @@ void ConditionSet::Apply(ConditionsStore &conditions) const
 
 
 
+// Get the names of the conditions that are relevant for this ConditionSet.
+set<string> ConditionSet::RelevantConditions() const
+{
+	set<std::string> result;
+	// Add the names from the expressions.
+	// TODO: also sub-expressions?
+	for(const auto &expr : expressions)
+		result.emplace(expr.Name());
+	// Add the names from the children.
+	for(const auto &child : children)
+		for(const auto &rc : child.RelevantConditions())
+			result.emplace(rc);
+	return result;
+}
+
+
+
 // Check if this set is satisfied by either the created, temporary conditions, or the given conditions.
 bool ConditionSet::TestSet(const ConditionsStore &conditions, const ConditionsStore &created) const
 {

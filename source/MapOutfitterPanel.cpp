@@ -90,10 +90,11 @@ const string &MapOutfitterPanel::KeyLabel(int index) const
 	if(index == 2 && selected && selected->Get("minable") > 0.)
 		return MINE;
 
-	static const string LABEL[3] = {
+	static const string LABEL[4] = {
 		"Has no outfitter",
 		"Has outfitter",
-		"Sells this outfit"
+		"Sells this outfit",
+		"Outfit in storage"
 	};
 	return LABEL[index];
 }
@@ -141,10 +142,14 @@ double MapOutfitterPanel::SystemValue(const System *system) const
 		return numeric_limits<double>::quiet_NaN();
 
 	// Visiting a system is sufficient to know what ports are available on its planets.
-	double value = -.5;
+	double value = -1.;
+	const auto &planetStorage = player.PlanetaryStorage();
 	for(const StellarObject &object : system->Objects())
 		if(object.HasSprite() && object.HasValidPlanet())
 		{
+			const auto storage = planetStorage.find(object.GetPlanet());
+			if(storage != planetStorage.end() && storage->second.Get(selected))
+				return .5;
 			const auto &outfitter = object.GetPlanet()->Outfitter();
 			if(outfitter.Has(selected))
 				return 1.;
@@ -182,8 +187,9 @@ void MapOutfitterPanel::DrawItems()
 		DoHelp("map advanced shops");
 	list.clear();
 	Point corner = Screen::TopLeft() + Point(0, scroll);
-	for(const string &category : categories)
+	for(const auto &cat : categories)
 	{
+		const string &category = cat.Name();
 		auto it = catalog.find(category);
 		if(it == catalog.end())
 			continue;
@@ -194,7 +200,7 @@ void MapOutfitterPanel::DrawItems()
 
 		for(const Outfit *outfit : it->second)
 		{
-			string price = Format::Credits(outfit->Cost()) + " credits";
+			string price = Format::CreditString(outfit->Cost());
 
 			string info;
 			if(outfit->Get("minable") > 0.)
@@ -202,12 +208,12 @@ void MapOutfitterPanel::DrawItems()
 			else if(outfit->Get("installable") < 0.)
 			{
 				double space = outfit->Mass();
-				info = Format::Number(space) + (abs(space) == 1. ? " ton" : " tons") + " of space";
+				info = Format::CargoString(space, "space");
 			}
 			else
 			{
 				double space = -outfit->Get("outfit space");
-				info = Format::Number(space) + (abs(space) == 1. ? " ton" : " tons");
+				info = Format::MassString(space);
 				if(space && -outfit->Get("weapon capacity") == space)
 					info += " of weapon space";
 				else if(space && -outfit->Get("engine capacity") == space)
@@ -229,9 +235,12 @@ void MapOutfitterPanel::DrawItems()
 						continue;
 
 					const Planet &planet = *object.GetPlanet();
-					const auto pit = storage.find(&planet);
-					if(pit != storage.end())
-						storedInSystem += pit->second.Get(outfit);
+					if(planet.HasOutfitter())
+					{
+						const auto pit = storage.find(&planet);
+						if(pit != storage.end())
+							storedInSystem += pit->second.Get(outfit);
+					}
 					if(planet.Outfitter().Has(outfit))
 					{
 						isForSale = true;
@@ -239,11 +248,13 @@ void MapOutfitterPanel::DrawItems()
 					}
 				}
 			}
-			if(!isForSale && !storedInSystem && onlyShowSoldHere)
+			if(!isForSale && onlyShowSoldHere)
+				continue;
+			if(!storedInSystem && onlyShowStorageHere)
 				continue;
 
-			const std::string storage_details =
-				storedInSystem == 0
+			const string storage_details =
+				onlyShowSoldHere || storedInSystem == 0
 				? ""
 				: storedInSystem == 1
 				? "1 unit in storage"
@@ -275,12 +286,13 @@ void MapOutfitterPanel::Init()
 
 	// Add outfits in storage
 	for(const auto &it : player.PlanetaryStorage())
-		for(const auto &oit : it.second.Outfits())
-			if(!seen.count(oit.first))
-			{
-				catalog[oit.first->Category()].push_back(oit.first);
-				seen.insert(oit.first);
-			}
+		if(it.first->HasOutfitter())
+			for(const auto &oit : it.second.Outfits())
+				if(!seen.count(oit.first))
+				{
+					catalog[oit.first->Category()].push_back(oit.first);
+					seen.insert(oit.first);
+				}
 
 	// Add all known minables.
 	for(const auto &it : player.Harvested())

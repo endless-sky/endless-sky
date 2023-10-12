@@ -16,7 +16,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef CONDITION_SET_H_
 #define CONDITION_SET_H_
 
+#include <cstdint>
 #include <map>
+#include <set>
 #include <string>
 #include <vector>
 
@@ -61,6 +63,9 @@ public:
 	// (Order of operations is like the order of specification: all sibling
 	// expressions are applied, then any and/or nodes are applied.)
 	void Apply(ConditionsStore &conditions) const;
+
+	// Get the names of the conditions that are modified by this ConditionSet.
+	std::set<std::string> RelevantConditions() const;
 
 
 private:
