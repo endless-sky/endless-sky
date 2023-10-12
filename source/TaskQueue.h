@@ -44,7 +44,7 @@ public:
 
 public:
 	// Initialize the threads used to execute the tasks.
-	TaskQueue() noexcept = default;
+	TaskQueue() = default;
 	TaskQueue(const TaskQueue &) = delete;
 	TaskQueue &operator=(const TaskQueue &) = delete;
 	~TaskQueue();
