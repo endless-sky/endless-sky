@@ -2140,7 +2140,7 @@ system Titawin
 		distance 255
 		period 296.14716
 	object
-		sprite planet/browndwarf-t-rouge
+		sprite planet/browndwarf-t-rogue
 		distance 1226
 		period 3122.0008
 	object
@@ -15297,11 +15297,11 @@ system "Eta Normae"
 	habitable 200
 	belt 1529
 	object
-		sprite planet/browndwarf-y-rouge
+		sprite planet/browndwarf-y-rogue
 		distance 226
 		period 169.87625
 	object
-		sprite planet/browndwarf-t-rouge
+		sprite planet/browndwarf-t-rogue
 		distance 226
 		period 169.87625
 		offset 180
