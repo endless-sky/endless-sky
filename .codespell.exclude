@@ -98,5 +98,4 @@ planet "Sies Upi"
 			`		MSGT BROWER, IRENE`
 			`As you leave the quartermaster's building, you spot a familiar face coming in the other direction: Irene Brower, the gunnery sergeant you delivered a care package to before the war, though she seems to have master sergeant insignia now. She's on crutches, with what looks like a brand-new prosthetic leg. When she spots you, her pained face brightens. "Hey, I know you! You brought me that package from Tor before. Thanks!" She shifts her weight, then winces and shifts it back.`
 		log "Minor People" "Torrey and Irene" `Torrey Dupont, an activist, is friends with SMDP militia NCO Irene Brower. You delivered a package for them.`
-		"Brin"
 		"exis"
