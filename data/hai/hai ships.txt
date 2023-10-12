@@ -21,8 +21,8 @@ ship "Aphid"
 		"hull" 1400
 		"required crew" 1
 		"bunks" 5
-		"mass" 100
-		"drag" 1.9
+		"mass" 157
+		"drag" 2.3
 		"heat dissipation" .90
 		"fuel capacity" 400
 		"cargo space" 51
@@ -89,8 +89,8 @@ ship "Centipede"
 		"hull" 2400
 		"required crew" 35
 		"bunks" 131
-		"mass" 187
-		"drag" 3.9
+		"mass" 693
+		"drag" 7.4
 		"heat dissipation" .75
 		"fuel capacity" 600
 		"cargo space" 38
@@ -201,8 +201,8 @@ ship "Cicada"
 		"hull" 2000
 		"required crew" 8
 		"bunks" 51
-		"mass" 300
-		"drag" 4.7
+		"mass" 674
+		"drag" 7.5
 		"heat dissipation" .75
 		"fuel capacity" 500
 		"cargo space" 143
@@ -301,8 +301,8 @@ ship "Geocoris"
 		"hull" 6200
 		"required crew" 15
 		"bunks" 56
-		"mass" 810
-		"drag" 17.1
+		"mass" 2341
+		"drag" 35.9
 		"heat dissipation" 0.45
 		"fuel capacity" 800
 		"cargo space" 761
@@ -384,8 +384,8 @@ ship "Grasshopper"
 		"hull" 600
 		"required crew" 1
 		"bunks" 5
-		"mass" 95
-		"drag" 1.5
+		"mass" 154
+		"drag" 1.8
 		"heat dissipation" .85
 		"fuel capacity" 300
 		"cargo space" 29
@@ -473,8 +473,8 @@ ship "Lightning Bug"
 		"hull" 1700
 		"required crew" 4
 		"bunks" 10
-		"mass" 220
-		"drag" 3.8
+		"mass" 519
+		"drag" 6.1
 		"heat dissipation" .85
 		"fuel capacity" 600
 		"cargo space" 73
@@ -571,8 +571,8 @@ ship "Ladybug"
 		"hull" 3600
 		"required crew" 9
 		"bunks" 33
-		"mass" 280
-		"drag" 5.4
+		"mass" 946
+		"drag" 10.3
 		"heat dissipation" .85
 		"fuel capacity" 900
 		"cargo space" 91
@@ -709,8 +709,8 @@ ship "Pond Strider"
 		"hull" 3000
 		"required crew" 9
 		"bunks" 18
-		"mass" 168
-		"drag" 3.55
+		"mass" 690
+		"drag" 7.1
 		"hull repair rate" 1
 		"heat dissipation" .5
 		"fuel capacity" 300
@@ -856,8 +856,8 @@ ship "Sea Scorpion"
 		"hull" 4900
 		"required crew" 14
 		"bunks" 36
-		"mass" 320
-		"drag" 5.2
+		"mass" 1150
+		"drag" 10.4
 		"heat dissipation" .7
 		"fuel capacity" 500
 		"cargo space" 45
@@ -1008,8 +1008,8 @@ ship "Scarab"
 		"hull" 1500
 		"required crew" 4
 		"bunks" 27
-		"mass" 146
-		"drag" 3.8
+		"mass" 297
+		"drag" 5.3
 		"heat dissipation" .87
 		"fuel capacity" 400
 		"cargo space" 44
@@ -1059,8 +1059,8 @@ ship "Shield Beetle"
 		"hull" 9800
 		"required crew" 47
 		"bunks" 95
-		"mass" 650
-		"drag" 8.8
+		"mass" 3112
+		"drag" 23.8
 		"heat dissipation" .60
 		"fuel capacity" 500
 		"cargo space" 142
@@ -1446,8 +1446,8 @@ ship "Emperor Beetle"
 		"hull" 19600
 		"required crew" 83
 		"bunks" 91
-		"mass" 870
-		"drag" 9.8
+		"mass" 3864
+		"drag" 26.5
 		"outfit space" 891
 		"cargo space" 27
 		"weapon capacity" 352
@@ -1559,8 +1559,8 @@ ship "Solifuge"
 		"hull" 11000
 		"required crew" 62
 		"bunks" 118
-		"mass" 925
-		"drag" 15.4
+		"mass" 4256
+		"drag" 44.7
 		"heat dissipation" .42
 		"fuel capacity" 600
 		"cargo space" 142
@@ -1791,8 +1791,8 @@ ship "Water Bug"
 		"hull" 4500
 		"required crew" 5
 		"bunks" 29
-		"mass" 270
-		"drag" 5.9
+		"mass" 653
+		"drag" 9.4
 		"heat dissipation" .75
 		"fuel capacity" 600
 		"cargo space" 197
