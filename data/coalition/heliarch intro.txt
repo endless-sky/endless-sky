@@ -1618,7 +1618,7 @@ mission "Heliarch Drills 1"
 		has "license: Coalition"
 		not "joined the lunarium"
 		not "assisting lunarium"
-		random < 8
+		random < 11
 		"combat rating" >= 8104
 	on offer
 		conversation

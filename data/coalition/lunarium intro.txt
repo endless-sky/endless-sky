@@ -2050,3 +2050,83 @@ event "first lunarium unlock"
 		outfitter "Lunarium Basics"
 	planet "Refuge of Belugt"
 		outfitter "Lunarium Basics"
+
+
+
+# Patch for if the player joined both Heliarch and Lunarium prior to a fix.
+mission "Coalition Intro Join Patch"
+	landing
+	invisible
+	to offer
+		has "joined the lunarium"
+		has "joined the heliarchs"
+		has "event: first lunarium unlock"
+		has "event: first heliarch unlock"
+		has "license: Heliarch"
+	on offer
+		conversation
+			`(You have joined both the Coalition's Lunarium and Heliarch factions due to an unintended bug. Please choose which side you prefer to be with.)`
+			choice
+				`	(Side with the Heliarchs.)`
+					goto "heliarch"
+				`	(Side with the Lunarium.)`
+
+			action
+				clear "license: Heliarch"
+				clear "joined the heliarchs"
+				event "fix: chose lunarium"
+			`	(You've sided with the Lunarium.)`
+				decline
+
+			label "heliarch"
+			action
+				clear "joined the lunarium"
+				event "fix: chose heliarchs"
+			`	(You've sided with the Heliarchs.)`
+				decline
+
+event "fix: chose heliarchs"
+	planet "Remote Blue"
+		remove outfitter "Lunarium Basics"
+	planet "Fourth Shadow"
+		remove outfitter "Lunarium Basics"
+	planet "Into White"
+		remove outfitter "Lunarium Basics"
+	planet "Secret Sky"
+		remove outfitter "Lunarium Basics"
+	planet "Shifting Sand"
+		remove outfitter "Lunarium Basics"
+	planet "Mebla's Portion"
+		remove outfitter "Lunarium Basics"
+	planet "Refuge of Belugt"
+		remove outfitter "Lunarium Basics"
+
+event "fix: chose lunarium"
+	planet "Ring of Friendship"
+		remove outfitter "Heliarch Basics"
+	planet "Ring of Power"
+		remove outfitter "Heliarch Basics"
+	planet "Ring of Wisdom"
+		remove outfitter "Heliarch Basics"
+	planet "Saros"
+		remove outfitter "Heliarch Basics"
+	planet "Ahr"
+		remove outfitter "Heliarch Basics"
+	planet "Ki Patek Ka"
+		remove outfitter "Heliarch Basics"
+	planet "Belug's Plunge"
+		remove outfitter "Heliarch Basics"
+	planet "Stronghold of Flugbu"
+		remove outfitter "Heliarch Basics"
+	planet "Delve of Bloptab"
+		remove outfitter "Heliarch Basics"
+	planet "Far Home"
+		remove outfitter "Heliarch Basics"
+	planet "Dwelling of Speloog"
+		remove outfitter "Heliarch Basics"
+	planet "Blue Interor"
+		remove outfitter "Heliarch Basics"
+	planet "Sandy Two"
+		remove outfitter "Heliarch Basics"
+	planet "Second Rose"
+		remove outfitter "Heliarch Basics"
