@@ -153,6 +153,7 @@ void TaskQueue::ThreadLoop() noexcept
 				unique_lock<mutex> syncLock(task.queue->syncMutex);
 				if(task.queue->syncTasks.size() > MAX_SYNC_TASKS)
 				{
+					syncLock.unlock();
 					lock.lock();
 					tasks.push(std::move(task));
 					continue;
