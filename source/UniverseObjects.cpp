@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "UniverseObjects.h"
 
+#include "ConditionSet.h"
 #include "ConditionsStore.h"
 #include "DataFile.h"
 #include "DataNode.h"
@@ -61,6 +62,19 @@ namespace {
 		it.second.SetName(it.first);
 		Warn(noun, it.first);
 	}
+
+	ConditionsStore parserConditions;
+	void PrepareParserConditions()
+	{
+		auto &&pluginProvider = parserConditions.GetProviderPrefixed("plugin active: ");
+		auto pluginFun = [](const string &name) -> bool
+		{
+			const Plugin *plugin = Plugins::Get().Find(name.substr(strlen("plugin active: ")));
+			return plugin ? plugin->IsValid() && plugin->enabled : false;
+		};
+		pluginProvider.SetHasFunction(pluginFun);
+		pluginProvider.SetGetFunction(pluginFun);
+	}
 }
 
 
@@ -74,6 +88,8 @@ future<void> UniverseObjects::Load(const vector<string> &sources, bool debugMode
 	// function (except for calling GetProgress which is safe due to the atomic).
 	return async(launch::async, [this, sources, debugMode]() noexcept -> void
 		{
+			PrepareParserConditions();
+
 			vector<string> files;
 			for(const string &source : sources)
 			{
@@ -336,9 +352,36 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 	if(debugMode)
 		Logger::LogError("Parsing: " + path);
 
+	bool active = true;
 	for(const DataNode &node : data)
 	{
 		const string &key = node.Token(0);
+
+		// Check for preparsers
+		if(!active && key != "?ENDIF" && key != "?ELSE")
+			continue;
+		if(key == "?IF")
+		{
+			ConditionSet condition;
+			condition.Load(node);
+			if(!condition.Test(parserConditions))
+			{
+				active = false;
+				continue;
+			}
+		}
+		else if(key == "?ELSE")
+		{
+			active = !active;
+			continue;
+		}
+		else if(key == "?ENDIF")
+		{
+			active = true;
+			continue;
+		}
+
+
 		if(key == "color" && node.Size() >= 5)
 			colors.Get(node.Token(1))->Load(
 				node.Value(2), node.Value(3), node.Value(4), node.Size() >= 6 ? node.Value(5) : 1.);
@@ -496,15 +539,6 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 			}
 			else
 				node.PrintTrace("Invalid use of keyword \"disable\" for class \"" + category + "\"");
-		}
-		else if(key == "?IF" && node.Size() >= 3)
-		{
-			if(node.Token(1) == "LOADED")
-			{
-				auto *plugin = Plugins::Get().Find(node.Token(2));
-				if(!plugin || !plugin->enabled)
-					return;
-			}
 		}
 		else
 			node.PrintTrace("Skipping unrecognized root object:");
