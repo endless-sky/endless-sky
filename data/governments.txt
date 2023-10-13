@@ -173,7 +173,7 @@ government "Coalition"
 	"hostile hail" "hostile coalition"
 	"hostile disabled hail" "hostile disabled coalition"
 
-# https://github.com/endless-sky/endless-sky/pull/9436#pullrequestreview-1666400216
+# This is an independent government from Deep Security used for the Deep Archaeology mission change. It was originally added before Deep Security and has been kept to prevent saves being broken.
 government "Deep"
 	"display name" "Deep Security"
 	swizzle 0
