@@ -78,6 +78,7 @@ public:
 	// Accessor functions for various attributes.
 	int Lifetime() const;
 	int RandomLifetime() const;
+	int FadeOut() const;
 	double Reload() const;
 	double BurstReload() const;
 	int BurstCount() const;
@@ -239,6 +240,7 @@ private:
 	// Attributes.
 	int lifetime = 0;
 	int randomLifetime = 0;
+	int fadeOut = 0;
 	double reload = 1.;
 	double burstReload = 1.;
 	int burstCount = 1;
@@ -340,6 +342,7 @@ private:
 // Inline the accessors because they get called so frequently.
 inline int Weapon::Lifetime() const { return lifetime; }
 inline int Weapon::RandomLifetime() const { return randomLifetime; }
+inline int Weapon::FadeOut() const { return fadeOut; }
 inline double Weapon::Reload() const { return reload; }
 inline double Weapon::BurstReload() const { return burstReload; }
 inline int Weapon::BurstCount() const { return burstCount; }

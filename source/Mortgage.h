@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef MORTGAGE_H_
 #define MORTGAGE_H_
 
+#include <cstdint>
 #include <string>
 
 class DataNode;

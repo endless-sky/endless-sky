@@ -273,6 +273,11 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 	// sub-munitions next turn.
 	if(target && (position - target->Position()).Length() < weapon->SplitRange())
 		lifetime = 0;
+
+	// A projectile will begin to fade out when the remaining lifetime is smaller
+	// than the specified "fade out" time.
+	if(lifetime < weapon->FadeOut())
+		alpha = static_cast<double>(lifetime) / weapon->FadeOut();
 }
 
 

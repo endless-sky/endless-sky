@@ -36,20 +36,9 @@ namespace {
 	// disallowed or undesirable behaviors (such as dividing by zero).
 	const auto MINIMUM_OVERRIDES = map<string, double>{
 		// Attributes which are present and map to zero may have any value.
-		{"cooling energy", 0.},
-		{"cloaking energy", 0.},
-		{"cloaking fuel", 0.},
-		{"cloaking heat", 0.},
-		{"cloaking hull", 0.},
-		{"cloaking repair delay", 0.},
-		{"cloaking shield", 0.},
-		{"cloaking shield delay", 0.},
-		{"cloaked firing", 0.},
-		{"shield generation", 0.},
 		{"shield energy", 0.},
 		{"shield fuel", 0.},
 		{"shield heat", 0.},
-		{"hull repair rate", 0.},
 		{"hull energy", 0.},
 		{"hull fuel", 0.},
 		{"hull heat", 0.},
@@ -142,6 +131,15 @@ namespace {
 		{"slowing resistance heat", 0.},
 		{"crew equivalent", 0.},
 
+		{"cloaking energy", 0.},
+		{"cloaking fuel", 0.},
+		{"cloaking heat", 0.},
+		{"cloaking hull", 0.},
+		{"cloaking repair delay", 0.},
+		{"cloaking shield", 0.},
+		{"cloaking shield delay", 0.},
+		{"cloaked firing", 0.},
+
 		// "Protection" attributes appear in denominators and are incremented by 1.
 		{"shield protection", -0.99},
 		{"hull protection", -0.99},
@@ -162,10 +160,12 @@ namespace {
 		{"slowing protection", -0.99},
 
 		// "Multiplier" attributes appear in numerators and are incremented by 1.
+		{"hull multiplier", -1. },
 		{"hull repair multiplier", -1.},
 		{"hull energy multiplier", -1.},
 		{"hull fuel multiplier", -1.},
 		{"hull heat multiplier", -1.},
+		{"shield multiplier", -1. },
 		{"shield generation multiplier", -1.},
 		{"shield energy multiplier", -1.},
 		{"shield fuel multiplier", -1.},
@@ -177,7 +177,8 @@ namespace {
 		auto oit = find_if(thisFlares.begin(), thisFlares.end(),
 			[&it](const pair<Body, int> &flare)
 			{
-				return it.first.GetSprite() == flare.first.GetSprite();
+				return (it.first.GetSprite() == flare.first.GetSprite()
+					&& it.first.Scale() == flare.first.Scale());
 			}
 		);
 

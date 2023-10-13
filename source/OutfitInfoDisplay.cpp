@@ -166,6 +166,8 @@ namespace {
 		{"burn resistance", 2},
 
 		{"cloak by mass", 3},
+		{"shield multiplier", 3},
+		{"hull multiplier", 3},
 		{"hull repair multiplier", 3},
 		{"hull energy multiplier", 3},
 		{"hull fuel multiplier", 3},
