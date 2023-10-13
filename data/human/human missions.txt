@@ -2026,7 +2026,6 @@ ship "Asteroid"
 	sprite "asteroid/medium rock/spin"
 		"frame rate" 10
 	attributes
-		"fuel capacity" 1
 		"hull" 10000
 		"mass" 1000
 		"drag" 10
