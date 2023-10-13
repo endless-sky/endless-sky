@@ -12,7 +12,6 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 outfit "Strange Ray"
-	category "Guns"
 	mass 25
 	"outfit space" -20
 	"gun ports" -1
@@ -29,6 +28,15 @@ outfit "Strange Ray"
 		"hull damage" 43
 		"minable damage" 64
 
+outfit "Internal Plasma Exhaust"
+	"mass" 25
+	"outfit space" -25
+	"engine capacity" -25
+	"thrust" 24
+	"turn" 2000
+	"flare sprite" "effect/plasma exhaust"
+			"frame rate" 16
+
 ship "Silent Harvester"
 	sprite "ship/silent harvester"
 	swizzle 0
@@ -37,17 +45,15 @@ ship "Silent Harvester"
 		category Interceptor
 		cost 500000
 		"mass" 350
-		"outfit space" 20
+		"outfit space" 45
 		"weapon capacity" 20
+		"engine capacity" 25
 		"cargo space" 500
 		"hull" 1500
 		"solar collection" 200
 		"fuel capacity" 200
 
-		"thrust" 24
-		"turn" 2000
 		"heat dissipation" 0.7
-
 		"energy capacity" 1000
 
 		"required crew" 1
@@ -55,7 +61,9 @@ ship "Silent Harvester"
 		"bunks" 40
 	outfits
 		"Strange Ray"
+		"Internal Plasma Exhaust"
 	gun 0 -64 "Strange Ray"
+	engine 0 0
 	explode "huge explosion" 10
 	explode "large explosion" 40
 	explode "medium explosion" 50
@@ -74,6 +82,18 @@ mission "The Silent Ones"
 		personality timid mute mining harvests
 		system Il'le
 		ship "Silent Harvester" "???"
+	npc save
+		government "Silent Ones"
+		personality timid mute mining harvests
+		system Il'le
 		ship "Silent Harvester" "???"
+	npc save
+		government "Silent Ones"
+		personality timid mute mining harvests
+		system Il'le
 		ship "Silent Harvester" "???"
+	npc save
+		government "Silent Ones"
+		personality timid mute mining harvests
+		system Il'le
 		ship "Silent Harvester" "???"
