@@ -173,7 +173,7 @@ government "Coalition"
 	"hostile hail" "hostile coalition"
 	"hostile disabled hail" "hostile disabled coalition"
 
-# This is an independent government from Deep Security used for the Deep Archaeology mission change. It was originally added before Deep Security and has been kept to prevent saves being broken.
+# This is a government that is independent of Deep Security and is used for the Deep Archaeology mission where ships chase you out of the Deep. It was originally added before Deep Security and has been kept to prevent broken saves.
 government "Deep"
 	"display name" "Deep Security"
 	swizzle 0
