@@ -63,13 +63,14 @@ namespace {
 		Warn(noun, it.first);
 	}
 
+	// The conditions that can be accessed while parsing a data file.
 	ConditionsStore parserConditions;
 	void PrepareParserConditions()
 	{
-		auto &&pluginProvider = parserConditions.GetProviderPrefixed("plugin active: ");
+		auto &&pluginProvider = parserConditions.GetProviderPrefixed("installed plugin: ");
 		auto pluginFun = [](const string &name) -> bool
 		{
-			const Plugin *plugin = Plugins::Get().Find(name.substr(strlen("plugin active: ")));
+			const Plugin *plugin = Plugins::Get().Find(name.substr(strlen("installed plugin: ")));
 			return plugin ? plugin->IsValid() && plugin->enabled : false;
 		};
 		pluginProvider.SetHasFunction(pluginFun);
