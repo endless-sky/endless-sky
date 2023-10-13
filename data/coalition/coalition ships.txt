@@ -2035,7 +2035,7 @@ ship "Saryd Traveler"
 		"required crew" 10
 		"bunks" 54
 		"mass" 1000
-		"drag" 5.5
+		"drag" 9.9
 		"heat dissipation" .60
 		"fuel capacity" 600
 		"cargo space" 164
@@ -2110,7 +2110,7 @@ ship "Saryd Visitor"
 		"required crew" 5
 		"bunks" 32
 		"mass" 565
-		"drag" 4.4
+		"drag" 6.6
 		"heat dissipation" .65
 		"fuel capacity" 400
 		"cargo space" 108
