@@ -48,6 +48,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Trade.h"
 #include "Wormhole.h"
 
+#include <atomic>
 #include <map>
 #include <mutex>
 #include <set>
