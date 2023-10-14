@@ -85,7 +85,7 @@ ship "Argosy"
 		"hull" 2600
 		"required crew" 4
 		"bunks" 14
-		"mass" 750
+		"mass" 740
 		"drag" 10
 		"heat dissipation" .7
 		"fuel capacity" 400
