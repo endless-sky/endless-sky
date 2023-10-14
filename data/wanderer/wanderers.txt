@@ -954,6 +954,18 @@ event "wanderers: the eye opens"
 	system Kaliptari
 		government "Wanderer"
 
+event "wanderers: patch defenses retreat"
+	system "Chirr'ay'akai"
+		remove fleet "Wanderer Defense"
+	system "Sich'ka'ara"
+		remove fleet "Wanderer Defense"
+	system "Prakacha'a"
+		remove fleet "Wanderer Defense"
+	system "Ik'kara'ka"
+		remove fleet "Wanderer Defense"
+	system "Chy'chra"
+		remove fleet "Wanderer Defense"
+
 event "wanderers: derecho mass production"
 	fleet "Wanderer Defense"
 		add variant 4
