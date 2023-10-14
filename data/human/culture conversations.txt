@@ -623,3 +623,69 @@ mission "Sol-Bound Shuttle"
 			label end
 			`	You say your goodbyes as you board your ships. Although you are both captains, the trajectory of your lives have taken very different courses.`
 				decline
+
+mission "Burthen Triathlon"
+	#minor
+	#source "Burthen"
+	source 
+		planet "New Boston"
+	to offer
+	#	random < 1
+	on offer
+		conversation
+			`Burthen's planetary spaceport is not known to be well-trafficked because of its planet's high gravity, but today it seems to have a lot of visitors. Many of the usually empty landing pads are now occupied by shuttlecraft, and as you step out onto the spaceport's rather untarnished apron, you notice there's a sizable crowd at the edge of the spaceport, some of them obviously from offworld judging by their height. There's even a few media crews standing by, although it looks like a couple of their camera drones are struggling in Burthen's gravity.`
+			choice
+				`	(See what's going on.)`
+				`	(Avoid the commotion and tend to your own business.)`
+					decline
+			`	Every step takes significantly more effort than you're used to, but you eventually reach the crowd. From the signs that have been put up on the way, it looks like the 'Burthen Triathlon' is taking place today, and the spaceport has been designated the finishing point. A couple of especially sturdy-looking marquees have been set up; the smaller one appears to be the administration tent, currently blocked off to non-competitors and staff, while the other one is far larger and is catering food and drinks for the crowd nearby.`
+			choice
+				`	(Walk over to the catering tent.)`
+				`	(Stay outside.)`
+					goto outside
+				`	(Return to your ship.)`
+					decline
+
+			`	Thankfully the walk to the catering tent is far shorter than the walk from your ship, but nevertheless you're exhausted by the time you drag your feet inside. A lot of effort has been put into this tent: the metal chairs are all sturdy to allow offworlders not used to the gravity to pull themselves up, but cushioned as to not make it uncomfortable to sit in; a small firepit has been built in the middle of the tent, along with a couple fire extinguishers placed nearby; and the whole place is brightly lit in contrast to Burthen's typically chilly weather.`
+			`	There's a counter in the corner with two levels, apparently so that the Burthensider attending it can serve both offwolders and locals (the Burthensider uses a raised platform to serve offwolders). Alongside the typical drinks you've seen in spaceport bars as well as some ones local to the southern Core, the counter also offers a local drink called the 'Antigrav' that claims to "ease visitors from Burthen's natural pull", and comes in a specially made glass, all for 30 credits.`
+			choice
+				`	(Order a drink from the counter.)`
+				`	(Order the 'Antigrav' from the counter.)`
+					goto antigrav
+				`	(Don't order anything and leave the tent.)`
+					goto "leave tent"
+			action
+				payment -1
+			`	You hand over a credit for the drink and leave the tent, sipping with some difficulty as you go. The crowd appears to be a bit more active when you return outside, and you see over the heads of the locals that the leading triathlete is a particularly stocky Burthensider, wearing a white helmet and wearing some sort of dark compression sportswear.`
+				goto "after tent"
+
+			label antigrav
+			action
+				payment -30
+				outfit "Antigrav Glass"
+			`	It turns out the glass the 'Antigrav' comes with has a miniature repulsor installed so that you don't need to hold it while drinking it; the 'Antigrav' itself is a sort of highly carbonated raspberry-like pop, made from native berries found in 'Westland', the planetary country the spaceport is located in.`
+
+			label "leave tent"
+			`	The crowd appears to be a bit more active when you return outside, and you see over the heads of the locals that the leading triathlete is a particularly stocky Burthensider, wearing a white helmet and wearing some sort of dark compression sportswear.`
+				goto "after tent"
+
+			label outside
+			`	Staying outside in the oppressive gravity and the chilly temperature, you move over to the sidelines and watch the large, portable screen that is broadcasting the leading competitors from above. It appears that competitors are divided into Burthensiders and offworlders, with Burthensiders wearing white helmets and offworlders wearing red helmets. It's nearing the end of the whole event; the competitor in front is named Abernathy, a stocky Burthensider apparently doing his eleventh triathlon. Meanwhile, the leading offworlder is a five hundred meters behind him, a Martinisider named Caldarone.`
+			`	After a couple minutes, Abernathy emerges from behind a bend, camera drones chasing him. Cheers and whoops erupt from the crowd, raising enormously as he dashes through the finishing straight, the drones now circling around him. Just over the crowd a loudspeaker announces, "and here comes the winner of the Syndicated Athletics Burthen Triathlon, the world triathlete champion, competitor number fifty-eight Samuel Abernathy!"`
+				goto end
+
+			label "after tent"
+			`	As he nears the finishline cheers and whoops erupt from the crowd, and the camera drones, their repulsors now calibrated for Burthen's gravity, circle around the finishing straight. Just over the crowd a loudspeaker announces, "and here comes the winner of the <year> Syndicated Athletics Burthen Triathlon, the world triathlete champion, competitor number fifty-eight Samuel Abernathy!"`
+
+			label "end"
+			`	The Burthensider slows down into the finish line and seizes the tape, making a yelp of simultaneous joy and relief, and holds the tape up before everybody in the crowd and at the cameras pointed at him before accepting a bottle of water from someone on the sidelines.`
+				decline
+
+outfit "Antigrav Glass"
+	category "Hand to Hand"
+	plural "Antigrav Glasses"
+	cost 25
+	thumbnail "outfit/unknown"
+	"capture attack" .2
+	"unplunderable" 1
+	description "The miniature repulsor makes this glass a bit heavier than other cups, so if the time ever comes that you need to knock someone else out with a drinking vessel, you guess this one will probably be more effective than whatever alternative you've got."
