@@ -50,14 +50,20 @@ include_directories(
 
 add_definitions("-DES_GLES")
 
-# Generate a version stringp
-execute_process(COMMAND git describe --tags --match "v*.*.*" --abbrev=0
-                OUTPUT_VARIABLE ENDLESS_SKY_VERSION
-                OUTPUT_STRIP_TRAILING_WHITESPACE)
+# Generate a version string
+# Extract the version from the credits.txt
+set(version "")
+file(STRINGS "${CMAKE_SOURCE_DIR}/../../../credits.txt" matched)
+if(matched)
+	string(REGEX MATCH "[0-9]+\\.[0-9]+\\.[0-9]+" version ${matched})
+endif()
+
+# Append the git tag
 execute_process(COMMAND git describe --tags
-                OUTPUT_VARIABLE ENDLESS_MOBILE_VERSION
-                OUTPUT_STRIP_TRAILING_WHITESPACE)
-set(ENDLESS_SKY_VERSION "${ENDLESS_SKY_VERSION}-${ENDLESS_MOBILE_VERSION}")
+						OUTPUT_VARIABLE mobile_version
+						OUTPUT_STRIP_TRAILING_WHITESPACE)
+
+set(ENDLESS_SKY_VERSION "${version}-${mobile_version}")
 add_definitions(-DENDLESS_SKY_VERSION="${ENDLESS_SKY_VERSION}")
 
 add_library(main SHARED
