@@ -625,12 +625,11 @@ mission "Sol-Bound Shuttle"
 				decline
 
 mission "Burthen Triathlon"
-	#minor
-	#source "Burthen"
-	source 
-		planet "New Boston"
+	minor
+	source
+		planet "Burthen"
 	to offer
-	#	random < 1
+		random < 1
 	on offer
 		conversation
 			`Burthen's planetary spaceport is not known to be well-trafficked because of its planet's high gravity, but today it seems to have a lot of visitors. Many of the usually empty landing pads are now occupied by shuttlecraft, and as you step out onto the spaceport's rather untarnished apron, you notice there's a sizable crowd at the edge of the spaceport, some of them obviously from offworld judging by their height. There's even a few media crews standing by, although it looks like a couple of their camera drones are struggling in Burthen's gravity.`
@@ -688,4 +687,4 @@ outfit "Antigrav Glass"
 	thumbnail "outfit/unknown"
 	"capture attack" .2
 	"unplunderable" 1
-	description "The miniature repulsor installed on the bottom makes this glass a bit heavier than other cups, so if the time ever comes that you need to knock someone else out with a drinking vessel, you guess this one will probably be more effective than whatever alternative you've got."
+	description "The miniature repulsor installed on the bottom makes this glass a bit heavier than other cups, so if the time ever comes that you need to knock someone else out with a drinking vessel, you guess this one will probably be more effective than anything else you've got."
