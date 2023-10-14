@@ -31,7 +31,7 @@ mission "Incipias: Meet the Quarg"
 	on offer
 		conversation
 			branch "ut divitas" "spec inci"
-				"flagship planet: Ut Divitas"
+				has "flagship planet: Ut Divitas"
 			label "ut divitas"
 			`With a soft jolt your spaceship lands. A small group of Quarg quickly gathers around your ship, they make some simple but clear gestures to tell you to wait. After they noticed that you understood them. One of them walks away in a hurrily manner.`
 			`   Only a moment later the Quarg returns with another Quarg. The new one starts talking with a very strange accent.`
@@ -97,7 +97,6 @@ mission "Incipias: The derelict"
 				label end
 				`    Apparently they figured how to use the repair equipment, as you fly away the engines of the ship are booting back up.`
 				`    Back on the bridge your eyes fall on the scanner log that is still open on your screen, notably this ship had no Hyperdrive or anything similar installed, how strange considering there is no inhabitated planet in this system.`
-				
 		personality
 			confusion 50
 			derelict uninterested

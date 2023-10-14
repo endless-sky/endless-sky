@@ -15,49 +15,21 @@
 phrase "hicemus military"
 	word
 		"HIC "
-	word
-		"Ab"
-		"Do"
-		"Na"
-		"Ar"
-		"La"
-	word
-		"is"
-		"as"
-		"os"
-		"im"
-		"it"
+	phrase
+		"latin name"
 	word
 		"en #"
 	phrase
-		"hex digit"
-	phrase
-		"hex digit"
-	phrase
-		"hex digit"
-	phrase
-		"hex digit"
-	phrase
-		"hex digit"
-	phrase
-		"hex digit"
+		"hex color"
 
 phrase "incipias civilian"
-	word
-		"En"
-		"Nun"
-		"An"
-		"Sin"
-		"Ad"
-		"Res"
+	phrase
+		"vokal consonant (capitalized)" 5
+		"consonant vokal (capitalized)" 10
 	word
 		"'"
-	word
-		"dur"
-		"lil"
-		"dan"
-		"tum"
-		"ill"
+	phrase
+		"latin name"
 	word
 		"ius"
 		"ias"
@@ -65,6 +37,87 @@ phrase "incipias civilian"
 		"iam"
 	word
 		" #"
+	phrase
+		"hex color"
+
+phrase "latin name"
+	phrase
+		"vokal consonant (capitalized)" 5
+		"consonant vokal (capitalized)" 10
+	phrase
+		"vokal consonant" 10
+		"consonant vokal" 5
+	phrase
+		"vokal consonant" 5
+		"consonant vokal" 10
+
+phrase "vokal consonant"
+	phrase
+		"vokal"
+	phrase
+		"consonant"
+
+phrase "consonant vokal"
+	phrase
+		"consonant"
+	phrase
+		"vokal"
+
+phrase "vokal consonant (capitalized)"
+	phrase
+		"vokal (capitalized)"
+	phrase
+		"consonant"
+
+phrase "consonant vokal (capitalized)"
+	phrase
+		"consonant (capitalized)"
+	phrase
+		"vokal"
+
+phrase "vokal"
+	word
+		"a"
+		"e"
+		"i"
+		"o"
+		"u"
+
+phrase "vokal (capitalized)"
+	word
+		"A"
+		"E"
+		"I"
+		"O"
+		"U"
+
+phrase "consonant"
+	word
+		"b"
+		"d"
+		"g"
+		"k"
+		"l"
+		"m"
+		"n"
+		"r"
+		"s"
+		"t"
+
+phrase "consonant (capitalized)"
+	word
+		"B"
+		"D"
+		"G"
+		"K"
+		"L"
+		"M"
+		"N"
+		"R"
+		"S"
+		"T"
+
+phrase "hex color"
 	phrase
 		"hex digit"
 	phrase
@@ -97,8 +150,20 @@ phrase "hex digit"
 		"e"
 		"f"
 
+fleet "Hicemus Standard Surveilance"
+	government "Hicemus"
+	names "hicemus military"
+	cargo 0
+	personality
+		heroic vindictive
+	variant 10
+		"Nimbus"
+	variant 4
+		"Nimbus" 2
+	variant 4
+		"Venta"
 
-fleet "Hicemus Standard Mining"
+fleet "Incipias Standard Mining"
 	government "Incipias Civilian"
 	names "incipias civilian"
 	cargo 0
@@ -114,20 +179,7 @@ fleet "Hicemus Standard Mining"
 		"Nimbo Stratus"
 		"Nimbus"
 
-fleet "Hicemus Standard Surveilance"
-	government "Hicemus"
-	names "hicemus military"
-	cargo 0
-	personality
-		heroic vindictive
-	variant 10
-		"Nimbus"
-	variant 4
-		"Nimbus" 2
-	variant 4
-		"Venta"
-
-fleet "Hicemus Standard Trade"
+fleet "Incipias Standard Trade"
 	government "Incipias Civilian"
 	names "incipias civilian"
 	cargo 4
@@ -173,7 +225,7 @@ shipyard "Hicemus"
 
 news "Incipias common"
 	location
-		government "Incipias" "Hicemus"
+		government "Conlatio" "Hicemus"
 	name
 		word
 			"Incipias Captain"

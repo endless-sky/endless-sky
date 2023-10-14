@@ -10812,9 +10812,9 @@ system Dom'us
 	trade Medical 842
 	trade Metal 270
 	trade Plastic 267
-	fleet "Hicemus Standard Mining" 900
 	fleet "Hicemus Standard Surveilance" 2400
-	fleet "Hicemus Standard Trade" 1500
+	fleet "Incipias Standard Trade" 1500
+	fleet "Incipias Standard Mining" 900
 	object
 		sprite star/f0
 		distance 500.6777

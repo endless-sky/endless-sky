@@ -3455,7 +3455,7 @@ planet "Redias"
 	description "The Incipias have adjusted perfectly to this harsh environment. Their cities are built like them: large balloon-like structures which hold spheres of buildings in the air. The Incipias themselves can move freely through the atmosphere, so the cities have no roads. To travel larger distances, they use gliders that can fly against the powerful winds."
 	spaceport "Because of the size of their homeworld the Incipias built not only one but four spaceports. These spaceports are the only platforms with fixed positions. They were built in heights where the storms are not so strong, but they still need a lot of energy to be held in place."
 	spaceport "The spaceport itself is a giant circular platform with a few of the Incipias' housing spheres at the bottom. Traffic is negligible because only one ship can land here at a time."
-	government "Incipias"
+	government "Conlatio"
 
 planet Redwatch
 	attributes hai station uninhabited

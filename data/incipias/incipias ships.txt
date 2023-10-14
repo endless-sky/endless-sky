@@ -30,7 +30,7 @@ ship "Venta"
 		"heat dissipation" .7
 		"cargo space" 20
 		"outfit space" 520
-		"weapon capacity" 230
+		"weapon capacity" 240
 		"engine capacity" 130
 		"gaslining" 1
 		"fuel capacity" 200
@@ -38,10 +38,10 @@ ship "Venta"
 		"Solid-Class Shield"
 		"Liquid-Class Shield"
 		"Liquid Hydrogen Cell"
-		"Plasma Discharger" 4
-		"Star Tail" 2
-		"Star Tail Cell" 60
-		"Star Tail Storage"
+		"Plasma Discharger" 2
+		"Star Tail" 4
+		"Star Tail Cell" 80
+		"Star Tail Storage" 2
 		"Heavy Machine Gun" 40
 
 		"MH Red-Class Engine"
@@ -146,7 +146,7 @@ ship "Nimbo Stratus"
 	explode "medium explosion" 10
 	explode "large explosion" 20
 	"final explode" "final explosion medium"
-	description "Mining has always been a big business in Incipias society, that is why the Stratus is one of the most popular ships for captains in their early year, while not too expensive it is able to bring money in quickly. While the stratus could be used in combat, it stands no chance to the Nimbus and therefore has never been used by the Hicemus military forces."
+	description "Mining has always been a big business in Incipias society, that is why the Stratus is one of the most popular ships for captains in their early year, while not too expensive it is able to bring money in quickly. While the Stratus could be used in combat, it stands no chance to the Nimbus and therefore has never been used by the Hicemus military forces."
 
 ship "Nimbo Cirrus"
 	"plural" "Cirri"

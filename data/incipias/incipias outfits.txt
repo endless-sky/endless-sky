@@ -109,7 +109,12 @@ outfit "Star Tail"
 		"shield damage" 820
 		"hull damage" 860
 		"range override" 3000
-		"parallel"
+		
+		# To make the AI fire even if the ship is not directly in front.
+		"homing" 1
+		"optical tracking" 1
+		"turn" 3
+
 		ammo "Star Tail Cell"
 		"submunition" "Star Tail Projectile" 1
 
@@ -124,9 +129,6 @@ outfit "Star Tail Projectile"
 		acceleration 5
 		drag .2
 		"lifetime" 120
-		"reload" 40
-		"firing energy" 60
-		"firing heat" 30
 		"shield damage" 410
 		"hull damage" 430
 		"homing" 1
@@ -144,8 +146,8 @@ effect "star tail hit"
 effect "star tail live"
 	sprite "effect/star tail live"
 		"no repeat"
-		"frame rate" 14
-	"lifetime" 30
+		"frame rate" 28
+	"lifetime" 15
 	"velocity scale" 0.
 
 outfit "Star Tail Cell"

@@ -659,10 +659,10 @@ government "Hicemus"
 	language "Incups"
 	"player reputation" 0
 	"attitude toward"
-		"Incipias" 1
+		"Conlatio" 1
 		"Incipias Civilian" 1
 
-government "Incipias"
+government "Conlatio"
 	swizzle 0
 	color 0.5 0.0 0.9
 	"crew attack" .2
@@ -682,7 +682,7 @@ government "Incipias Civilian"
 	"player reputation" 0
 	"attitude toward"
 		"Hicemus" 1
-		"Incipias" 1
+		"Conlatio" 1
 
 color "governments: Independent" .78 .36 .36
 
@@ -1208,12 +1208,12 @@ government "Quarg (Incipias)"
 		"Pirate" -.01
 		"Pirate (Devil-Run Gang)" -.01
 	"custom penalties for"
-		"Incipias"
+		"Conlatio"
 			disable -10.
 			board -10.
 			capture -20.
 			destroy -40.
-		"Incipias Civillian"
+		"Incipias Civilian"
 			disable -10.
 			board -10.
 			capture -20.
