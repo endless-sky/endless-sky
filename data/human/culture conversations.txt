@@ -632,12 +632,12 @@ mission "Burthen Triathlon"
 		random < 1
 	on offer
 		conversation
-			`Burthen's planetary spaceport is not known to be well-trafficked because of its planet's high gravity, but today it seems to have a lot of visitors. Many of the usually empty landing pads are now occupied by shuttlecraft, and as you step out onto the spaceport's rather untarnished apron, you notice there's a sizable crowd at the edge of the spaceport, some of them obviously from offworld judging by their height. There's even a few media crews standing by, although it looks like a couple of their camera drones are struggling in Burthen's gravity.`
+			`Burthen's planetary spaceport is not known to be well-trafficked because of the planet's high gravity, but today it seems to have a lot of visitors. Many of the usually empty landing pads are now occupied by shuttlecraft, and as you step out onto the spaceport's rather untarnished apron, you notice there's a sizable crowd at the edge of the spaceport, some of them obviously from offworld judging by their height. There's even a few media crews standing by, although it looks like a couple of their camera drones are struggling in Burthen's gravity.`
 			choice
 				`	(See what's going on.)`
 				`	(Avoid the commotion and tend to your own business.)`
 					decline
-			`	Every step takes significantly more effort than you're used to, but you eventually reach the crowd. From the signs that have been put up on the way it looks like the 'Burthen Triathlon' is taking place today, and the spaceport has been designated the finishing point. A couple of especially sturdy-looking marquees have been set up; the smaller one appears to be the administration tent, currently blocked off to non-competitors and staff, while the other one is far larger and is catering food and drinks for the crowd nearby.`
+			`	Every step takes significantly more effort than you're used to, but you eventually reach the crowd. From the signs that have been put up on the way it looks like the 'Burthen Triathlon' is taking place today, and the spaceport has been designated the finishing point. A couple of especially sturdy-looking marquees have been set up; the smaller one appears to be the administration tent, currently only accessible to event staff, while the other one is far larger and is catering food and drinks for the crowd nearby.`
 			choice
 				`	(Walk over to the catering tent.)`
 				`	(Stay outside.)`
