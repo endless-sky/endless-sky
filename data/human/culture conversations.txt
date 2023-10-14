@@ -670,7 +670,7 @@ mission "Burthen Triathlon"
 				goto "after tent"
 
 			label outside
-			`	Staying outside in the oppressive gravity and the chilly temperature, you move over to the sidelines and watch the large, portable screen that is broadcasting the leading competitors from above. It appears that competitors are divided into Burthensiders and offworlders, with Burthensiders wearing white helmets and offworlders wearing red helmets. It's nearing the end of the whole event; the competitor in front is named Abernathy, a stocky Burthensider apparently doing his eleventh triathlon. Meanwhile, the leading offworlder is a five hundred meters behind him, a Martinisider named Caldarone.`
+			`	Staying outside in the oppressive gravity and the chilly temperature, you move over to the sidelines and watch the large, portable screen that is broadcasting the leading competitors from above. It appears that competitors are divided into Burthensiders and offworlders, with Burthensiders wearing white helmets and offworlders wearing red helmets. It's nearing the end of the whole event; the competitor in front is named Abernathy, a stocky Burthensider apparently doing his eleventh triathlon. Meanwhile, the leading offworlder is five hundred meters behind him, a Martinisider named Caldarone. Apparently, they've been at it for over 11 hours, beginning with a 1.5 kilometer swim, then a 40 kilometer bicycle ride, and finally a 10 kilometer run.`
 			`	After a couple minutes, Abernathy emerges from behind a bend, camera drones chasing him. Cheers and whoops erupt from the crowd, raising enormously as he dashes through the finishing straight, the drones now circling around him. Just over the crowd a loudspeaker announces, "and here comes the winner of the Syndicated Athletics Burthen Triathlon, the world triathlete champion, competitor number fifty-eight Samuel Abernathy!"`
 				goto end
 
@@ -688,4 +688,4 @@ outfit "Antigrav Glass"
 	thumbnail "outfit/unknown"
 	"capture attack" .2
 	"unplunderable" 1
-	description "The miniature repulsor makes this glass a bit heavier than other cups, so if the time ever comes that you need to knock someone else out with a drinking vessel, you guess this one will probably be more effective than whatever alternative you've got."
+	description "The miniature repulsor installed on the bottom makes this glass a bit heavier than other cups, so if the time ever comes that you need to knock someone else out with a drinking vessel, you guess this one will probably be more effective than whatever alternative you've got."
