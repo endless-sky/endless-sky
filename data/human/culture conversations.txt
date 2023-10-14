@@ -637,7 +637,7 @@ mission "Burthen Triathlon"
 				`	(See what's going on.)`
 				`	(Avoid the commotion and tend to your own business.)`
 					decline
-			`	Every step takes significantly more effort than you're used to, but you eventually reach the crowd. From the signs that have been put up on the way, it looks like the 'Burthen Triathlon' is taking place today, and the spaceport has been designated the finishing point. A couple of especially sturdy-looking marquees have been set up; the smaller one appears to be the administration tent, currently blocked off to non-competitors and staff, while the other one is far larger and is catering food and drinks for the crowd nearby.`
+			`	Every step takes significantly more effort than you're used to, but you eventually reach the crowd. From the signs that have been put up on the way it looks like the 'Burthen Triathlon' is taking place today, and the spaceport has been designated the finishing point. A couple of especially sturdy-looking marquees have been set up; the smaller one appears to be the administration tent, currently blocked off to non-competitors and staff, while the other one is far larger and is catering food and drinks for the crowd nearby.`
 			choice
 				`	(Walk over to the catering tent.)`
 				`	(Stay outside.)`
@@ -662,15 +662,15 @@ mission "Burthen Triathlon"
 			action
 				payment -30
 				outfit "Antigrav Glass"
-			`	It turns out the glass the 'Antigrav' comes with has a miniature repulsor installed so that you don't need to hold it while drinking it; the 'Antigrav' itself is a sort of highly carbonated soda that tastes in between lingonberry and raspberry, made from the native berries found in 'Westland', the planetside country the spaceport is located in. The Burthensider at the counter advises you not to drink too much of it at once and to not turn it off if it's levitating, "lest it falls on your foot and we have to treat your bone fractures."`
+			`	It turns out the glass the 'Antigrav' comes with has a miniature repulsor installed so that you don't need to hold it while drinking it; the 'Antigrav' itself is a sort of highly carbonated soda that tastes like somthing in between lingonberry and raspberry, made from the native berries found in 'Westland', the planetside country the spaceport is located in. The Burthensider at the counter advises you not to drink too much of it at once and to not turn it off while it's levitating, "lest it falls on your foot and we have to treat your bone fractures."`
 
 			label "leave tent"
-			`	The crowd appears to be a bit more active when you return outside, and over the heads of the locals you see on a large, portable screen that the leading triathlete is a particularly stocky Burthensider, wearing a white helmet and wearing some sort of dark tight sportswear.`
+			`	The crowd appears to be a bit more active when you return outside, and over the heads of the locals you see on a large, portable screen that the leading triathlete is a particularly stocky Burthensider, wearing a white helmet and some sort of tight, dark sportswear.`
 				goto "after tent"
 
 			label outside
 			`	Staying outside in the oppressive gravity and the chilly temperature, you move over to the sidelines and watch the large, portable screen that is broadcasting the leading competitors from above. It appears that competitors are divided into Burthensiders and offworlders, with Burthensiders wearing white helmets and offworlders wearing red helmets. It's nearing the end of the whole event; the competitor in front is named Abernathy, a stocky Burthensider apparently doing his eleventh Burthen Triathlon. Meanwhile, the leading offworlder is five hundred meters behind him, a competitor from Martini named Caldarone. Apparently, they've been at it for over 11 hours, beginning with a 1.5 kilometer swim, then a 40 kilometer bicycle ride, and finally a 10 kilometer run.`
-			`	After a couple minutes, Abernathy emerges from behind a bend, camera drones chasing him. Cheers, whoops, and rather ethusiastic hollers erupt from the crowd, raising enormously as he dashes through the finishing straight, the drones now circling around him, and just over the crowd a loudspeaker announces, "and here comes the winner of the Syndicated Athletics Burthen Triathlon, the world triathlete champion, competitor number fifty-eight Samuel Abernathy!"`
+			`	After a couple minutes, Abernathy emerges from behind a bend, camera drones chasing him. Cheers, whoops, and rather overly ethusiastic hollers erupt from the crowd, raising enormously as he dashes through the finishing straight, the drones now circling around him. Just over the crowd a loudspeaker announces, "and here comes the winner of the Syndicated Athletics Burthen Triathlon, the world triathlete champion, competitor number fifty-eight Samuel Abernathy!"`
 				goto end
 
 			label "after tent"
@@ -687,4 +687,4 @@ outfit "Antigrav Glass"
 	thumbnail "outfit/unknown"
 	"capture attack" .2
 	"unplunderable" 1
-	description "The miniature repulsor installed on the bottom makes this glass a bit heavier than other cups, so if the time ever comes that you need to knock someone else out with a drinking vessel, you guess this one will probably be more effective than anything else you've got."
+	description "When it is not activated, the miniature repulsor installed on the bottom makes this glass a bit heavier than other cups, so if the time ever comes that you need to knock someone else out with a drinking vessel, you guess this one will probably be more effective than anything else you've got."
