@@ -195,6 +195,10 @@ string Format::Number(double value)
 {
 	if(!value)
 		return "0";
+	else if(isnan(value))
+		return "???";
+	else if(isinf(value))
+		return value > 0. ? "infinity" : "-infinity";
 
 	string result;
 	bool isNegative = (value < 0.);
@@ -260,6 +264,15 @@ string Format::Decimal(double value, int places)
 // It can also contain spaces or "," as separators like 1,000 or 1 000.
 double Format::Parse(const string &str)
 {
+	if(str == "???")
+		return NAN;
+	else if(str == "infinity") {
+		static_assert(numeric_limits<double>::is_iec559, "Cannot parse infinity without IEEE 754 compatibility");
+		return numeric_limits<double>::infinity();
+	} else if(str == "-infinity") {
+		static_assert(numeric_limits<double>::is_iec559, "Cannot parse negative infinity without IEEE 754 compatibility");
+		return -numeric_limits<double>::infinity();
+	}
 	double place = 1.;
 	double value = 0.;
 
