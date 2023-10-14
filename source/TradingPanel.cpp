@@ -224,7 +224,9 @@ void TradingPanel::Draw()
 // Only override the ones you need; the default action is to return false.
 bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(key == SDLK_UP)
+	if(command.Has(Command::HELP))
+		DoHelp("trading", true);
+	else if(key == SDLK_UP)
 		player.SetMapColoring(max(0, player.MapColoring() - 1));
 	else if(key == SDLK_DOWN)
 		player.SetMapColoring(max(0, min(COMMODITY_COUNT - 1, player.MapColoring() + 1)));

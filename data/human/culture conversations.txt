@@ -88,14 +88,6 @@ mission "Gift Store Interaction"
 			`	Curious, you turn over your own mug, and when you spot the 50 credit price tag your heart sinks. You could never afford such an expensive mug. You put it back and walk away while pondering your financial situation.`
 				decline
 
-outfit "Mug"
-	category "Hand to Hand"
-	cost 50
-	thumbnail "outfit/unknown"
-	"capture attack" .1
-	"unplunderable" 1
-	description "You can throw it in a pinch, you guess."
-
 
 
 mission "New China Mourners"
