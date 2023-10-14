@@ -639,15 +639,18 @@ mission "Burthen Triathlon"
 
 			`	Thankfully the walk to the catering tent is far shorter than the walk from your ship, but nevertheless you're exhausted by the time you drag your feet inside. A lot of effort has been put into this tent: the metal chairs are all sturdy to allow offworlders not used to the gravity to pull themselves up, but cushioned as to not make it uncomfortable to sit in; a small firepit has been built in the middle of the tent, along with a couple fire extinguishers placed nearby; and the whole place is brightly lit in contrast to Burthen's typically chilly weather. Quite a few people, both Burthensiders and offworlders, are mingling about here.`
 			`	There's a counter in the corner with two levels, apparently so that the Burthensider attending it can serve both offwolders and locals. Alongside the typical drinks you've seen in spaceport bars as well as some ones local to the southern Core, the counter also offers a local drink called the 'Antigrav' that claims to "ease visitors from Burthen's natural pull", and comes in a specially made glass, all for 30 credits.`
+			branch "no credits"
+				credits < 30
 			choice
 				`	(Order a drink from the counter.)`
 				`	(Order the 'Antigrav' from the counter.)`
 					goto antigrav
 				`	(Don't order anything and leave the tent.)`
 					goto "leave tent"
+
 			action
 				payment -2
-			`	You hand over a couple credits for the drink and leave the tent, sipping with some difficulty as you go; the Burthensider at the counter advises you not to drink too much of it, and not to drop it "lest it falls on your foot and we have to treat your bone fractures."`
+			`	You hand over a couple credits for the drink and leave the tent, sipping with some difficulty as you go; the Burthensider at the counter advises you not to drink too much of it, and not to drop the cup "unless you want a munted foot for a few weeks."`
 				goto "leave tent"
 
 			label antigrav
@@ -655,6 +658,12 @@ mission "Burthen Triathlon"
 				payment -30
 				outfit "Antigrav Glass"
 			`	It turns out the glass the 'Antigrav' comes with has a miniature repulsor installed so that you don't need to hold it while drinking it; the 'Antigrav' itself is a sort of highly carbonated soda that tastes like something in between lingonberry and raspberry, made from the native berries found in 'Westland', the planetside country the spaceport is located in. The Burthensider at the counter advises you not to drink too much of it at once and to not turn it off while it's levitating, "lest it falls on your foot and we have to treat your bone fractures."`
+				goto "leave tent"
+
+			label "no credits"
+			`	Unfortunately, it looks like all the drinks are too pricy for you.`
+			choice
+				`	(Don't order anything and leave the tent.)`
 
 			label "leave tent"
 			`	The crowd appears to be a bit more active when you return outside, and over the heads of the locals you see on a large, portable screen that the leading triathlete is a particularly stocky Burthensider, wearing a white helmet and some sort of tight, dark sportswear.`
