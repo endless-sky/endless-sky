@@ -5869,14 +5869,14 @@ phrase "friendly deep"
 		"those who bring "
 		"the ones who serve "
 		"our shared% "
-		"our"
+		"our "
 	word
 		""
 		"%valued "
 		"%invaluable "
 		"%hard-fought "
 		"%cherished "
-		"%precious"
+		"%precious "
 	word
 		"democracy"
 		"commonwealth"
@@ -5896,7 +5896,7 @@ phrase "friendly deep"
 		"."
 	replace
 		"% %" ", "
-		"% " ""
+		"%" ""
 
 phrase "friendly deep"
 	word
