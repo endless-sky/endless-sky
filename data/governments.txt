@@ -896,22 +896,6 @@ government "Lunarium"
 		"Heliarch" -.01
 		"Pirate" -.01
 
-government "Lunarium (Hidden)"
-    "display name" "Lunarium"
-	swizzle 5
-	"crew attack" 1.2
-	"crew defense" 2.7
-	language "Coalition"
-	"player reputation" 1
-	"friendly hail" "friendly lunarium"
-	"friendly disabled hail" "friendly disabled lunarium"
-	"hostile hail" "hostile lunarium"
-	"hostile disabled hail" "hostile disabled lunarium"
-	"attitude toward"
-		"Quarg" .01
-		"Heliarch" -.01
-		"Pirate" -.01
-
 government "Marauder"
 	swizzle 6
 	"player reputation" 1
