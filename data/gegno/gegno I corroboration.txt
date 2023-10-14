@@ -530,10 +530,9 @@ mission "Gegno Apprehension"
 #	invisible
 	landing
 	to offer
-		has
-			or
-				"vi backlash" > 0
-				"Full Vi Backlash: offered"
+		has or
+			"vi backlash" > 0
+			"Full Vi Backlash: offered"
 		has "Scin on Cyife: offered"
 		has "Battle over Zydee: offered"
 	on offer
@@ -568,10 +567,9 @@ mission "Gegno Anticipation"
 	on offer
 		conversation
 			branch "negative rep"
-				has
-					or
-						"reputation: Gegno Vi" < 0
-						"reputation: Gegno Scin" < 0				
+				has or
+					"reputation: Gegno Vi" < 0
+					"reputation: Gegno Scin" < 0				
 
 			`Once you land on the ringworld, you are greeted by a small group of Quarg who quickly motion you to follow them. They escort you through various halls of the ring, still seemingly lacking presence of the Gegno. Down at the end of the next corridor, you see Adrauni waiting for you, though beside him is a Gegno in some form of strange attire. Once you meet up with them, the other Quarg head off to a different direction, and Adrauni begins walking down another hallway. "Please, indulge in accompanying us."`
 			`	As you follow them, Adrauni begins to speak while holding out one arm. "If you may, as humans say, humor me, what do you suspect was the result of my negotiations with the Gegno?"`
@@ -653,17 +651,17 @@ mission "Gegno Anticipation"
 
 			label "interest"
 			`	The Quarg turns back to you. "You are here not at the whim of your fanatic species, but at your own behest. Actions you take may be that of a human, but are not willed by that of humanity." Blinking slowly, Adrauni then turns to the Gegno and begins a somewhat lengthy conversation with them.`
-				goto "visit"
+				goto "visit a"
 
 			label "understand"
 			`	You walk in silence for an awkward period of time. The strange architecture of the ringworld does little to comfort you, as it feels like you've walked down the same path several times now. A few moments later, you eventually begin following Adrauni and the Gegno down what appears to be a different section, though it is strangely wider than previous ones. Before you begin asking more questions, Adrauni finally replies. "It is apparent that you may understand something of your fragile circumstance. It is no longer what I, rather, the Quarg, can do for you. It is what you can do for yourself."`
-				goto "visit"
+				goto "visit a"
 
 			label "better"
 			`	Adrauni speaks to the Gegno once more, this time for an extended period of time. The strange architecture of the ringworld does little to comfort you, as it feels like you've walked down the same path several times now. A few moments later, you eventually begin following Adrauni and the Gegno down what appears to be a different section, though it is strangely wider than previous ones. "Yes, it may be that your timely departure is the most favorable outcome in this affair." A long, awkward silence ensues, at the end of which Adrauni briefly comes to a hault, still facing forward, now crossing its armos behind its back. "Though you and I figure that is... unlikely."`
-				goto visit
+				goto "visit a"
 
-			label "visit"
+			label "visit a"
 			`	A few more pathways later, you are at the end of your seemingly long trip through the ringworld, finding yourself back where you started - the docking facility where your ship is stationed at. Although it felt like a dizzying maze to follow Adrauni around back to here, you can't help but imagine how much more confusing it would be to explore the entirety of a ringworld, considering that was only several minutes worth. Adrauni stops and turns to you, slightly lowering down to speak closer to your own height. "You must seek audience on your own, tenacious, behalf. Visit the Gegno homeworld of Dueyu Eitch, present yourself in a manner that you desire to be perceived. Only then will you find your desired answer."`
 			
 			label epilogue
@@ -731,26 +729,70 @@ mission "Gegno Anticipation"
 			label "negative rep"
 
 			`Once you land on the ringworld, you notice a group of Gegno off to the side of the hangar you are stationed in. They appear to be warrors of the Vi based on their appearance, and while they aren't moving from their position, they watch you intently as you exit your ship. A small group of Quarg then approach you and quickly motion you to follow them, escorting you through various halls of the ring. Eventually you are led to the room where you met Adrauni in the past, or perhaps one identical to it. "Please, seat yourself with I."`
-			`	You sit down, along with two other Quarg, and the rest of them leave the room, shutting the tall door behind them. Adrauni stares blankly at you for a while, then speaks. "I presume you understand what result came from my negotiations with the tedious Gegno."
+			`	You sit down, along with two other Quarg, and the rest of them leave the room with the door sliding shut behind them. Adrauni stares blankly at you for a while, then speaks. "I presume you understand what result came from my negotiations with the tedious Gegno."`
 			choice
-				`	"That they will tolerate me?"
-				`	"That they are upset with me?"
+				`	"That they will tolerate me?"`
+				`	"That they are upset with me?"`
+					goto "upset"
 				`	"No, I do not."`
-			
-			`	Adrauni continues to stare at you, then slowly blinks. "Do you recall what I had mentioned in prior audience with you?"
+					goto "no idea"
+
+			`	Adrauni continues to stare at you, then slowly blinks. "I see. What is your strange understanding of the term, tolerance, in this capacity?"`
 			choice
-				`	"To leave Gegno space?"`
-				`	"To be careful with the Gegno?"`
-				`	"I don't remember."`
+				`	"Permission to land on their worlds."`
+				`	"Allow me access to their technology."`
+					goto "tech"
+				`	"I don't know."`
+					goto "dont know"
+
+			`	Adrauni ponders for a few moments. "That is a rather human response. Although we Quarg are, by your definition, minimally tolerative of your species, access to only some of our wonderous worlds we give you. However, what of humans to others? Should the Gegno, or species of other eccentricities, be given leisure to your planet Earth? May it be the case with you, though with anxious humanity, it certainly would not be." One of the other Quarg in the room says something to Adrauni, to which it begins a conversation in its own language."`
+			choice
+				`	"Is there no way I can work with the Gegno?"`
+					goto "work"
+				`	"I guess I should leave them alone."`
+					goto "alone"
+
+			label "tech"
+			`	Adrauni clicks its teeth together in what appears to be a laughing manner, a reaction you have yet to see from it. "And we many Quarg, of those who live among ambitious humans, allowance of our tech have we given? One is not owed rights to another's under pretensive tolernace."` The other Quarg in the room look at Adrauni strangely, to which it begins a conversation with them in their own language. After a few moments, they too stare at you with strange looks, followed by an awkward silence, which is broken by Adrauni speaking to you once more. "With us as well, hardly do the Gegno share much intrigue at all."
+			choice
+				`	"Then is there no way I can work with the Gegno?"`
+					goto "work"
+				`	"I guess I should leave them alone."`
+					goto "alone"
+
+			label "dont know"
+			`	"Indeed, you do not. To tolerate is to authorize unrestricted occurence despite undesired preface. In this lies not the Gegno's interest, as once I have said before." It looks up in thought for several moments. "Perhaps in your naive judgement I am mistaken. Humans tolerate their own undesirables, those who have come to be known as corsairs. Portions of your species permit their tiresome actions, while others do not. Be that as it may, suppose a species other than humanity begins similar agitation. I would presume the case to be different."` Adrauni then begins a conversation with the other Quarg in the room."`
+			choice
+				`	"Are you saying there's no way I can work with the Gegno?"`
+					goto "work"
+				`	"I guess I should leave them alone."`
+					goto "alone"
+
+
+			label "upset"
+				`	"Then is there no way I can work with the Gegno?"`
+					goto "work"
+				`	"I guess I should leave them alone."`
+					goto "alone"
+
+
+			label "no idea"
+				`	"Then is there no way I can work with the Gegno?"`
+					goto "work"
+				`	"I guess I should leave them alone."`
+					goto "alone"		
+
+
+			label "alone"
+			`	Test.`
+				goto "visit b"
 			
+			label "work"
+			`	Test.`
+				goto "visit b"
 			
-			
-
-
-
-
-
-
+			label "visit b"
+				accept
 
 
 
