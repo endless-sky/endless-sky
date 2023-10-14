@@ -262,17 +262,9 @@ string Format::Decimal(double value, int places)
 // Convert a string into a number. As with the output of Number(), the
 // string can have suffixes like "M", "B", etc.
 // It can also contain spaces or "," as separators like 1,000 or 1 000.
+// Does not support parsing NaN or infinite values.
 double Format::Parse(const string &str)
 {
-	if(str == "???")
-		return NAN;
-	else if(str == "infinity") {
-		static_assert(numeric_limits<double>::is_iec559, "Cannot parse infinity without IEEE 754 compatibility");
-		return numeric_limits<double>::infinity();
-	} else if(str == "-infinity") {
-		static_assert(numeric_limits<double>::is_iec559, "Cannot parse negative infinity without IEEE 754 compatibility");
-		return -numeric_limits<double>::infinity();
-	}
 	double place = 1.;
 	double value = 0.;
 
