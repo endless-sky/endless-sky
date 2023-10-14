@@ -662,7 +662,7 @@ mission "Burthen Triathlon"
 			action
 				payment -30
 				outfit "Antigrav Glass"
-			`	It turns out the glass the 'Antigrav' comes with has a miniature repulsor installed so that you don't need to hold it while drinking it; the 'Antigrav' itself is a sort of highly carbonated soda that tastes like somthing in between lingonberry and raspberry, made from the native berries found in 'Westland', the planetside country the spaceport is located in. The Burthensider at the counter advises you not to drink too much of it at once and to not turn it off while it's levitating, "lest it falls on your foot and we have to treat your bone fractures."`
+			`	It turns out the glass the 'Antigrav' comes with has a miniature repulsor installed so that you don't need to hold it while drinking it; the 'Antigrav' itself is a sort of highly carbonated soda that tastes like something in between lingonberry and raspberry, made from the native berries found in 'Westland', the planetside country the spaceport is located in. The Burthensider at the counter advises you not to drink too much of it at once and to not turn it off while it's levitating, "lest it falls on your foot and we have to treat your bone fractures."`
 
 			label "leave tent"
 			`	The crowd appears to be a bit more active when you return outside, and over the heads of the locals you see on a large, portable screen that the leading triathlete is a particularly stocky Burthensider, wearing a white helmet and some sort of tight, dark sportswear.`
