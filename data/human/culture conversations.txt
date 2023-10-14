@@ -624,12 +624,12 @@ mission "Burthen Triathlon"
 		random < 1
 	on offer
 		conversation
-			`Burthen's planetary spaceport is not known to be well-trafficked because of the planet's high gravity, but today it seems to have a lot of visitors. Many of the usually empty landing pads are now occupied by shuttlecraft, and as you step out onto the spaceport's rather untarnished apron, you notice there's a sizable crowd at the edge of the spaceport, some of them obviously from offworld judging by their height. There's even a few media crews standing by, although it looks like a couple of their camera drones are struggling in Burthen's gravity.`
+			`Burthen's planetary spaceport is not a common destination thanks to the planet's high gravity, but today it seems to have a lot of visitors. Many of the usually empty landing pads are occupied by shuttlecraft and you notice there's a sizable crowd at the edge of the spaceport as you step out onto its rather untarnished apron. Some members of the crowd are obviously from offworld judging by their height, and there's even a few media crews standing by, although it looks like a couple of their camera drones are struggling in Burthen's gravity.`
 			choice
 				`	(See what's going on.)`
 				`	(Avoid the commotion and tend to your own business.)`
 					decline
-			`	Every step takes significantly more effort than you're used to, but you eventually reach the crowd. From the signs that have been put up on the way it looks like the 'Burthen Triathlon' is taking place today, and the spaceport has been designated the finishing point. A couple of especially sturdy-looking marquees have been set up; the smaller one appears to be the administration tent, currently only accessible to event staff, while the other one is far larger and is catering food and drinks for the crowd nearby.`
+			`	Every step takes significantly more effort than you're used to, but you eventually reach the crowd. From the signs that have been put up on the way it looks like the "Burthen Triathlon" is taking place today, and the spaceport has been designated the finishing point. A couple of especially sturdy-looking marquees have been set up; the smaller one appears to be the administration tent, currently only accessible to event staff, while the other one is far larger and is catering food and drinks for the crowd nearby.`
 			choice
 				`	(Walk over to the catering tent.)`
 				`	(Stay outside.)`
@@ -637,27 +637,27 @@ mission "Burthen Triathlon"
 				`	(Return to your ship.)`
 					decline
 
-			`	Thankfully the walk to the catering tent is far shorter than the walk from your ship, but nevertheless you're exhausted by the time you drag your feet inside. A lot of effort has been put into this tent: the metal chairs are all sturdy to allow offworlders not used to the gravity to pull themselves up, but cushioned as to not make it uncomfortable to sit in; a small firepit has been built in the middle of the tent, along with a couple fire extinguishers placed nearby; and the whole place is brightly lit in contrast to Burthen's typically chilly weather. Quite a few people, both Burthensiders and offworlders, are mingling about here.`
-			`	There's a counter in the corner with two levels, apparently so that the Burthensider attending it can serve both offwolders and locals. Alongside the typical drinks you've seen in spaceport bars as well as some ones local to the southern Core, the counter also offers a local drink called the 'Antigrav' that claims to "ease visitors from Burthen's natural pull", and comes in a specially made glass, all for 30 credits.`
+			`	Thankfully the walk to the catering tent is far shorter than the walk from your ship, but nevertheless you're exhausted by the time you drag your feet inside. A lot of effort has been put into this tent: the metal chairs are all sturdy to allow offworlders not used to the gravity to pull themselves up, but cushioned as to not make it uncomfortable to sit in. A small firepit has been built in the middle of the tent, along with a couple fire extinguishers placed nearby, and the whole place is brightly lit in contrast to Burthen's typically chilly weather. Quite a few people, both Burthensiders and offworlders, are mingling about here.`
+			`	There's a counter in the corner with two levels, apparently so that the Burthensider attending it can serve both offwolders and locals. Alongside the typical drinks you've seen in spaceport bars and some local to the southern Core, the counter also offers a local drink called the "Antigrav" that claims to "ease visitors from Burthen's natural pull", and comes in a specially made glass, all for 30 credits.`
 			branch "no credits"
 				credits < 30
 			choice
 				`	(Order a drink from the counter.)`
-				`	(Order the 'Antigrav' from the counter.)`
+				`	(Order the Antigrav from the counter.)`
 					goto antigrav
 				`	(Don't order anything and leave the tent.)`
 					goto "leave tent"
 
 			action
 				payment -2
-			`	You hand over a couple credits for the drink and leave the tent, sipping with some difficulty as you go; the Burthensider at the counter advises you not to drink too much of it, and not to drop the cup "unless you want a munted foot for a few weeks."`
+			`	You hand over a couple credits for the drink and leave the tent, sipping with some difficulty as you go. The Burthensider at the counter advises you not to drink too much of it, and not to drop the cup "unless you want a munted foot for a few weeks."`
 				goto "leave tent"
 
 			label antigrav
 			action
 				payment -30
 				outfit "Antigrav Glass"
-			`	It turns out the glass the 'Antigrav' comes with has a miniature repulsor installed so that you don't need to hold it while drinking it; the 'Antigrav' itself is a sort of highly carbonated soda that tastes like something in between lingonberry and raspberry, made from the native berries found in 'Westland', the planetside country the spaceport is located in. The Burthensider at the counter advises you not to drink too much of it at once and to not turn it off while it's levitating, "lest it falls on your foot and we have to treat your bone fractures."`
+			`	It turns out the glass the Antigrav comes with has a miniature repulsor installed so that you don't need to hold it while drinking it. The drink itself is a sort of highly carbonated soda that tastes like something in between lingonberry and raspberry, made from the native berries found in Westland, the planetside district the spaceport is located in. The Burthensider at the counter advises you not to drink too much of it at once and to not turn it off while it's levitating, "lest it falls on your foot and we have to treat your bone fractures."`
 				goto "leave tent"
 
 			label "no credits"
@@ -675,7 +675,7 @@ mission "Burthen Triathlon"
 				goto end
 
 			label "after tent"
-			`	As he nears the finishline the Burthensiders' ethusiastic cheers, whoops, and hollers erupt from the crowd, and the camera drones, their repulsors apparently now calibrated for Burthen's gravity, circle around the finishing straight. Just over the crowd a loudspeaker announces, "and here comes the winner of the Syndicated Athletics Burthen Triathlon, the world triathlete champion, competitor number fifty-eight Samuel Abernathy!"`
+			`	As he nears the finish line the Burthensiders' enthusiastic cheers, whoops, and hollers erupt from the crowd, and the camera drones, their repulsors apparently now calibrated for Burthen's gravity, circle around the finishing straight. Just over the crowd a loudspeaker announces, "and here comes the winner of the Syndicated Athletics Burthen Triathlon, the world triathlete champion, competitor number fifty-eight, Samuel Abernathy!"`
 
 			label "end"
 			`	The Burthensider slows down into the finish line and seizes the tape, making a yelp of simultaneous joy and relief, and holds the tape up before everybody in the crowd and at the cameras pointed at him before accepting a bottle of water from someone on the sidelines.`
