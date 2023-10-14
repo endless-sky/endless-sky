@@ -404,6 +404,15 @@ outfit "Mug"
 	"unplunderable" 1
 	description "You can throw it in a pinch, you guess."
 
+outfit "Antigrav Glass"
+	category "Hand to Hand"
+	plural "Antigrav Glasses"
+	cost 25
+	thumbnail "outfit/unknown"
+	"capture attack" .2
+	"unique" 1
+	"unplunderable" 1
+	description "When it is not activated, the miniature repulsor installed on the bottom makes this glass a bit heavier than other cups, so if the time ever comes that you need to knock someone else out with a drinking vessel, you guess this one will probably be more effective than anything else you've got."
 
 outfit "Puny"
 	category "Unique"
