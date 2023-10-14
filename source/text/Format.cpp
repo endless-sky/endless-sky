@@ -195,9 +195,9 @@ string Format::Number(double value)
 {
 	if(!value)
 		return "0";
-	else if(isnan(value))
+	else if(std::isnan(value))
 		return "???";
-	else if(isinf(value))
+	else if(std::isinf(value))
 		return value > 0. ? "infinity" : "-infinity";
 
 	string result;
