@@ -83,6 +83,8 @@ void MainPanel::Step()
 	}
 	else if(show.Has(Command::HAIL))
 		isActive = !ShowHailPanel();
+	else if(show.Has(Command::HELP))
+		isActive = !ShowHelp(true);
 	show = Command::NONE;
 
 	// If the player just landed, pop up the planet panel. When it closes, it
@@ -95,51 +97,8 @@ void MainPanel::Step()
 	}
 
 	// Display any relevant help/tutorial messages.
-	const Ship *flagship = player.Flagship();
-	if(flagship)
-	{
-		// Check if any help messages should be shown.
-		if(isActive && Preferences::Has("Control ship with mouse"))
-			isActive = !DoHelp("control ship with mouse");
-		if(isActive && flagship->IsTargetable())
-			isActive = !DoHelp("navigation");
-		if(isActive && flagship->IsDestroyed())
-			isActive = !DoHelp("dead");
-		if(isActive && flagship->IsDisabled() && !flagship->IsDestroyed())
-			isActive = !DoHelp("disabled");
-		bool canRefuel = player.GetSystem()->HasFuelFor(*flagship);
-		if(isActive && !flagship->IsHyperspacing() && !flagship->JumpsRemaining() && !canRefuel)
-			isActive = !DoHelp("stranded");
-		shared_ptr<Ship> target = flagship->GetTargetShip();
-		if(isActive && target && target->IsDisabled() && !target->GetGovernment()->IsEnemy())
-			isActive = !DoHelp("friendly disabled");
-		if(isActive && player.Ships().size() > 1)
-			isActive = !DoHelp("multiple ship controls");
-		if(isActive && flagship->IsTargetable() && player.Ships().size() > 1)
-			isActive = !DoHelp("fleet harvest tutorial");
-		if(isActive && flagship->IsTargetable() &&
-				flagship->Attributes().Get("asteroid scan power") &&
-				player.Ships().size() > 1)
-			isActive = !DoHelp("fleet asteroid mining") && !DoHelp("fleet asteroid mining shortcuts");
-		if(isActive && player.DisplayCarrierHelp())
-			isActive = !DoHelp("try out fighters transfer cargo");
-		if(isActive && Preferences::Has("Fighters transfer cargo"))
-			isActive = !DoHelp("fighters transfer cargo");
-		if(isActive && !flagship->IsHyperspacing() && flagship->Position().Length() > 10000.
-				&& player.GetDate() <= player.StartData().GetDate() + 4)
-		{
-			++lostness;
-			int count = 1 + lostness / 3600;
-			if(count > lostCount && count <= 7)
-			{
-				string message = "lost 1";
-				message.back() += lostCount;
-				++lostCount;
-
-				isActive = !DoHelp(message);
-			}
-		}
-	}
+	if(isActive)
+		isActive = !ShowHelp(false);
 
 	engine.Step(isActive);
 
@@ -231,7 +190,7 @@ bool MainPanel::AllowsFastForward() const noexcept
 // Only override the ones you need; the default action is to return false.
 bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(command.Has(Command::MAP | Command::INFO | Command::HAIL))
+	if(command.Has(Command::MAP | Command::INFO | Command::HAIL | Command::HELP))
 		show = command;
 	else if(command.Has(Command::AMMO))
 	{
@@ -496,6 +455,129 @@ bool MainPanel::ShowHailPanel()
 		Messages::Add("Unable to send hail: no target selected.", Messages::Importance::High);
 
 	return false;
+}
+
+
+
+bool MainPanel::ShowHelp(bool force)
+{
+	const Ship *flagship = player.Flagship();
+	if(!flagship)
+		return false;
+
+	vector<string> forced;
+	// Check if any help messages should be shown.
+	if(Preferences::Has("Control ship with mouse"))
+	{
+		if(force)
+			forced.push_back("control ship with mouse");
+		else if(DoHelp("control ship with mouse"))
+			return true;
+	}
+	if(flagship->IsTargetable())
+	{
+		if(force)
+			forced.push_back("navigation");
+		else if(DoHelp("navigation"))
+			return true;
+	}
+	if(flagship->IsDestroyed())
+	{
+		if(force)
+			forced.push_back("dead");
+		else if(DoHelp("dead"))
+			return true;
+	}
+	else if(flagship->IsDisabled())
+	{
+		if(force)
+			forced.push_back("disabled");
+		else if(DoHelp("disabled"))
+			return true;
+	}
+	bool canRefuel = player.GetSystem()->HasFuelFor(*flagship);
+	if(!flagship->IsHyperspacing() && !flagship->JumpsRemaining() && !canRefuel)
+	{
+		if(force)
+			forced.push_back("stranded");
+		else if(DoHelp("stranded"))
+			return true;
+	}
+	shared_ptr<Ship> target = flagship->GetTargetShip();
+	if(target && target->IsDisabled() && !target->GetGovernment()->IsEnemy())
+	{
+		if(force)
+			forced.push_back("friendly disabled");
+		else if(DoHelp("friendly disabled"))
+			return true;
+	}
+	if(player.Ships().size() > 1)
+	{
+		if(force)
+			forced.push_back("multiple ship controls");
+		else if(DoHelp("multiple ship controls"))
+			return true;
+	}
+	if(flagship->IsTargetable() && player.Ships().size() > 1)
+	{
+		if(force)
+			forced.push_back("fleet harvest tutorial");
+		else if(DoHelp("fleet harvest tutorial"))
+			return true;
+	}
+	if(flagship->IsTargetable() &&
+			flagship->Attributes().Get("asteroid scan power") &&
+			player.Ships().size() > 1)
+	{
+		// Different order of these messages is intentional,
+		// because we're displaying the forced messages in reverse order.
+		if(force)
+		{
+			forced.push_back("fleet asteroid mining");
+			forced.push_back("fleet asteroid mining shortcuts");
+		}
+		else if(DoHelp("fleet asteroid mining shortcuts") && DoHelp("fleet asteroid mining"))
+			return true;
+	}
+	if(player.DisplayCarrierHelp())
+	{
+		if(force)
+			forced.push_back("try out fighters transfer cargo");
+		else if(DoHelp("try out fighters transfer cargo"))
+			return true;
+	}
+	if(Preferences::Has("Fighters transfer cargo"))
+	{
+		if(force)
+			forced.push_back("fighters transfer cargo");
+		else if(DoHelp("fighters transfer cargo"))
+			return true;
+	}
+	if(!flagship->IsHyperspacing() && flagship->Position().Length() > 10000.
+			&& player.GetDate() <= player.StartData().GetDate() + 4)
+	{
+		++lostness;
+		int count = 1 + lostness / 3600;
+		if(count > lostCount && count <= 7)
+		{
+			string message = "lost 1";
+			message.back() += lostCount;
+			++lostCount;
+			if(force)
+				forced.push_back(message);
+			else if(DoHelp(message))
+				return true;
+		}
+	}
+
+	if(!force || forced.empty())
+		return false;
+
+	bool hasValidHelp = false;
+	// Reverse-iterate so that the player will see the basic messages first.
+	for(auto it = forced.rbegin(); it != forced.rend(); ++it)
+		hasValidHelp |= DoHelp(*it, true);
+	return hasValidHelp;
 }
 
 
