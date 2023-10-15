@@ -15,8 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DisplayText.h"
 
-#include <utility>
-
 
 
 DisplayText::DisplayText(const char *text, Layout layout)
