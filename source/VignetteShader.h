@@ -1,5 +1,5 @@
-/* AlertLabel.h
-Copyright (c) 2022 by Daniel Yoon
+/* VignetteShader.h
+Copyright (c) 2023 by quyykk
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -13,33 +13,16 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ALERT_LABEL_H_
-#define ALERT_LABEL_H_
-
-#include "Color.h"
-#include "Point.h"
-
-#include <memory>
-
-class Projectile;
-class Ship;
+#ifndef VIGNETTE_SHADER_H_
+#define VIGNETTE_SHADER_H_
 
 
-// A class that holds an overlay for a missile.
-class AlertLabel {
+
+// Shader for drawing a vignette on the screen. Used for "fog of war" damage.
+class VignetteShader {
 public:
-	AlertLabel(const Point &position, const Projectile &projectile, const std::shared_ptr<Ship> &flagship, double zoom);
-
-	void Draw() const;
-
-
-private:
-	double rotation = 0.;
-	Point position;
-	double zoom = 1.;
-	bool isTargetingFlagship = true;
-	double radius = 15.;
-	const Color *color;
+	static void Init();
+	static void Draw(double fog, double zoom);
 };
 
 

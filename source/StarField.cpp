@@ -126,7 +126,7 @@ void StarField::SetHaze(const Sprite *sprite, bool allowAnimation)
 
 
 
-void StarField::Draw(const Point &pos, const Point &vel, double zoom, const System *system, double fog) const
+void StarField::Draw(const Point &pos, const Point &vel, double zoom, const System *system) const
 {
 	double density = system ? system->StarfieldDensity() : 1.;
 
@@ -167,11 +167,6 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 
 			glUniform1f(elongationI, length * zoom);
 			glUniform1f(brightnessI, min(1., pow(zoom, .5)));
-
-			glUniform1f(fogI, fog);
-			float dimensions = static_cast<float>(Screen::RawHeight()) / static_cast<float>(Screen::RawWidth());
-			glUniform1f(dimensionsI, dimensions);
-			glUniform1f(zoomI, 1 / zoom);
 
 			// Stars this far beyond the border may still overlap the screen.
 			double borderX = fabs(vel.X()) + 1.;
@@ -237,7 +232,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 		AddHaze(drawList, haze[1], topLeft, bottomRight, 1 - transparency);
 	AddHaze(drawList, haze[0], topLeft, bottomRight, transparency);
 
-	drawList.Draw(zoom, fog);
+	drawList.Draw();
 }
 
 
@@ -251,7 +246,6 @@ void StarField::SetUpGraphics()
 		"uniform vec2 scale;\n"
 		"uniform float elongation;\n"
 		"uniform float brightness;\n"
-		"uniform float dimensions;\n"
 
 		"in vec2 offset;\n"
 		"in float size;\n"
@@ -259,48 +253,23 @@ void StarField::SetUpGraphics()
 		"out float fragmentAlpha;\n"
 		"out vec2 coord;\n"
 
-		"out vec2 fragTexCoord;\n"
-		"out vec2 fragPos;\n"
-
 		"void main() {\n"
 		"  fragmentAlpha = brightness * (4. / (4. + elongation)) * size * .2 + .05;\n"
 		"  coord = vec2(sin(corner), cos(corner));\n"
 		"  vec2 elongated = vec2(coord.x * size, coord.y * (size + elongation));\n"
 		"  gl_Position = vec4((rotate * elongated + translate + offset) * scale, 0, 1);\n"
-		"  fragPos = vec2(gl_Position.x, gl_Position.y);\n"
-		"  fragPos.y *= dimensions;\n"
 		"}\n";
 
 	static const char *fragmentCode =
-		"uniform float fog;\n"
-		"uniform float zoom;\n"
-
 		"// fragment starfield shader\n"
 		"precision mediump float;\n"
 		"in float fragmentAlpha;\n"
 		"in vec2 coord;\n"
 		"out vec4 finalColor;\n"
 
-		"in vec2 fragTexCoord;\n"
-		"in vec2 fragPos;\n"
-
 		"void main() {\n"
 		"  float alpha = fragmentAlpha * (1. - abs(coord.x) - abs(coord.y));\n"
 		"  finalColor = vec4(1, 1, 1, 1) * alpha;\n"
-
-		"  float distanceAlpha = 1.f;\n"
-		"  if(fog > 0)\n"
-		"  {\n"
-		"    distanceAlpha = 1. - (fog / 100);\n"
-		"    float length = length(fragPos) * zoom;\n"
-		"    {\n"
-		"      if(length > 0.25f)\n" // everything closer than 0.25 is completely visble
-		"        distanceAlpha = 1.f - (fog / 100) * 1.333 * (length - 0.25);\n" // interpolate between 0.25 and 1.
-		"      else"
-		"        distanceAlpha = 1.f;"
-		"    }\n"
-		"  }\n"
-		"  finalColor = finalColor * max(distanceAlpha, 0.5);\n"
 		"}\n";
 
 	shader = Shader(vertexCode, fragmentCode);
@@ -322,10 +291,6 @@ void StarField::SetUpGraphics()
 	elongationI = shader.Uniform("elongation");
 	translateI = shader.Uniform("translate");
 	brightnessI = shader.Uniform("brightness");
-
-	fogI = shader.Uniform("fog");
-	dimensionsI = shader.Uniform("dimensions");
-	zoomI = shader.Uniform("zoom");
 }
 
 

@@ -321,6 +321,8 @@ target_sources(EndlessSkyLib PRIVATE
 	UniverseObjects.h
 	Variant.cpp
 	Variant.h
+	VignetteShader.cpp
+	VignetteShader.h
 	Visual.cpp
 	Visual.h
 	Weapon.cpp
