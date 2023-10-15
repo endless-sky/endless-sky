@@ -34,6 +34,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include <cmath>
+#include <utility>
 
 using namespace std;
 
@@ -86,7 +87,7 @@ namespace {
 
 
 Dialog::Dialog(function<void()> okFunction, const string &message, Truncate truncate, bool canCancel, bool okIsActive)
-	: voidFun(okFunction)
+	: voidFun(std::move(okFunction))
 {
 	Init(message, truncate, canCancel, false);
 	this->okIsActive = okIsActive;

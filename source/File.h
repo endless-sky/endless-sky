@@ -35,8 +35,8 @@ public:
 	// Move assignment is OK though.
 	File &operator=(File &&) noexcept;
 
-	operator bool() const;
-	operator FILE*() const;
+	explicit operator bool() const;
+	explicit operator FILE*() const;
 
 private:
 	FILE *file = nullptr;

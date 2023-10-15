@@ -36,7 +36,7 @@ const int Flotsam::TONS_PER_BOX = 5;
 
 // Constructors for flotsam carrying either a commodity or an outfit.
 Flotsam::Flotsam(const string &commodity, int count, const Government *sourceGovernment)
-	: commodity(commodity), count(count), sourceGovernment(sourceGovernment)
+	: commodity(std::move(commodity)), count(count), sourceGovernment(sourceGovernment)
 {
 	lifetime = Random::Int(3600) + 7200;
 	// Scale lifetime in proportion to the expected amount per box.

@@ -38,7 +38,7 @@ public:
 	Angle() noexcept = default;
 	// Construct an Angle from the given angle in degrees. Allow this conversion
 	// to be implicit to allow syntax like "angle += 30".
-	Angle(double degrees) noexcept;
+	explicit Angle(double degrees) noexcept;
 	// Construct an angle pointing in the direction of the given vector.
 	explicit Angle(const Point &point) noexcept;
 

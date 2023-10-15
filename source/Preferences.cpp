@@ -55,7 +55,7 @@ namespace {
 	class OverlaySetting {
 	public:
 		OverlaySetting() = default;
-		OverlaySetting(const Preferences::OverlayState &state) : state(state) {}
+		explicit OverlaySetting(const Preferences::OverlayState &state) : state(state) {}
 
 		operator Preferences::OverlayState() const { return state; }
 

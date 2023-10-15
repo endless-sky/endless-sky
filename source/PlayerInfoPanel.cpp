@@ -175,7 +175,7 @@ PlayerInfoPanel::PlayerInfoPanel(PlayerInfo &player)
 }
 
 PlayerInfoPanel::PlayerInfoPanel(PlayerInfo &player, InfoPanelState panelState)
-	: player(player), panelState(panelState)
+	: player(player), panelState(std::move(panelState))
 {
 	SetInterruptible(false);
 }
@@ -916,6 +916,6 @@ PlayerInfoPanel::SortableColumn::SortableColumn(
 	Layout layout,
 	InfoPanelState::ShipComparator *shipSort
 )
-: name(name), offset(offset), endX(endX), layout(layout), shipSort(shipSort)
+: name(std::move(name)), offset(offset), endX(endX), layout(layout), shipSort(shipSort)
 {
 }

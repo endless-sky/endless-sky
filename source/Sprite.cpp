@@ -59,7 +59,7 @@ namespace {
 
 
 Sprite::Sprite(const string &name)
-	: name(name)
+	: name(std::move(name))
 {
 }
 

@@ -593,7 +593,7 @@ bool MissionPanel::Hover(int x, int y)
 	if(oldSort != hoverSort)
 		tooltip.clear();
 
-	return dragSide ? true : MapPanel::Hover(x, y);
+	return dragSide || MapPanel::Hover(x, y);
 }
 
 

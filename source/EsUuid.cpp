@@ -31,8 +31,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <uuid/uuid.h>
 #endif
 
-namespace es_uuid {
-namespace detail {
+
+namespace es_uuid::detail {
 #if defined(_WIN32)
 // Get a version 4 (random) Universally Unique Identifier (see IETF RFC 4122).
 EsUuid::UuidType MakeUuid()
@@ -129,7 +129,7 @@ signed int Compare(const EsUuid::UuidType &a, const EsUuid::UuidType &b) noexcep
 }
 #endif
 }
-}
+
 using namespace es_uuid::detail;
 
 

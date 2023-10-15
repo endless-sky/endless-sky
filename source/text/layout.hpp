@@ -26,9 +26,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Layout {
 public:
 	Layout() noexcept = default;
-	Layout(int width) noexcept;
-	Layout(Alignment alignment) noexcept;
-	Layout(Truncate truncateType) noexcept;
+	explicit Layout(int width) noexcept;
+	explicit Layout(Alignment alignment) noexcept;
+	explicit Layout(Truncate truncateType) noexcept;
 	Layout(int width, Alignment alignment) noexcept;
 	Layout(int width, Truncate truncateType) noexcept;
 	Layout(int width, Alignment alignment, Truncate truncateType) noexcept;

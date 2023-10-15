@@ -40,7 +40,7 @@ public:
 	public:
 		Entry() = default;
 		Entry(int step, const std::string &message, Importance importance)
-			: step(step), message(message), importance(importance) {}
+			: step(step), message(std::move(message)), importance(importance) {}
 
 		int step;
 		std::string message;

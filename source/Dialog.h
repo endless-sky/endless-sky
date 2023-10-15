@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <functional>
 #include <string>
+#include <utility>
 
 class DataNode;
 class PlayerInfo;
@@ -158,7 +159,7 @@ Dialog::Dialog(T *t, void (T::*fun)(const std::string &), const std::string &tex
 	std::string initialValue, Truncate truncate, bool allowsFastForward)
 	: stringFun(std::bind(fun, t, std::placeholders::_1)),
 	allowsFastForward(allowsFastForward),
-	input(initialValue)
+	input(std::move(initialValue))
 {
 	Init(text, truncate);
 }
@@ -172,7 +173,7 @@ Dialog::Dialog(T *t, void (T::*fun)(const std::string &), const std::string &tex
 	validateFun(std::move(validate)),
 	isOkDisabled(true),
 	allowsFastForward(allowsFastForward),
-	input(initialValue)
+	input(std::move(initialValue))
 {
 	Init(text, truncate);
 }

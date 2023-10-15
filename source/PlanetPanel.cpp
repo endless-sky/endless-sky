@@ -47,7 +47,7 @@ using namespace std;
 
 
 PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
-	: player(player), callback(callback),
+	: player(player), callback(std::move(callback)),
 	planet(*player.GetPlanet()), system(*player.GetSystem()),
 	ui(*GameData::Interfaces().Get("planet"))
 {
@@ -344,7 +344,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 		|| !leftUniques.empty())
 	{
 		ostringstream out;
-		auto ListUniques = [&out] (const map<const Outfit *, int> uniques)
+		auto ListUniques = [&out] (const map<const Outfit *, int>& uniques)
 		{
 			const int detailedSize = (uniques.size() > 5 ? 4 : uniques.size());
 			auto it = uniques.begin();

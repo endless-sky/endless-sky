@@ -90,7 +90,7 @@ int main(int argc, char *argv[])
 	bool printTests = false;
 	bool printData = false;
 	bool noTestMute = false;
-	string testToRunName = "";
+	string testToRunName;
 
 	// Ensure that we log errors to the errors.txt file.
 	Logger::SetLogErrorCallback([](const string &errorMessage) { Files::LogErrorToFile(errorMessage); });
