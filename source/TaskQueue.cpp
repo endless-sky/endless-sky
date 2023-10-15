@@ -30,8 +30,6 @@ namespace {
 	condition_variable asyncCondition;
 	bool shouldQuit = false;
 
-
-
 	// The maximum amount of sync tasks to execute in one go.
 	constexpr int MAX_SYNC_TASKS = 100;
 
@@ -125,7 +123,7 @@ bool TaskQueue::IsDone() const
 
 
 
-// Waits for all of this queue's task to finish while properly processes any outstanding main thread tasks.
+// Waits for all of this queue's task to finish while properly processing any outstanding main thread tasks.
 void TaskQueue::Wait()
 {
 	// Process tasks while any task is still being executed.

@@ -31,7 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // (which needs to happen on the main thread on OpenGL).
 class TaskQueue {
 public:
-	// An internal structure representing an async task to execute.
+	// An internal structure representing a task to execute.
 	struct Task {
 		TaskQueue *queue;
 
@@ -41,7 +41,7 @@ public:
 		// the function above has finished executing.
 		std::function<void()> sync;
 
-		// The pointer to the future stored in the queue.
+		// The pointer to this task's future stored in the queue.
 		std::list<std::shared_future<void>>::const_iterator futureIt;
 
 		std::promise<void> futurePromise;
@@ -68,7 +68,7 @@ public:
 	// that need to be executed on the main thread.
 	bool IsDone() const;
 
-	// Waits for all of this queue's task to finish while properly processes any outstanding main thread tasks.
+	// Waits for all of this queue's task to finish while properly processing any outstanding main thread tasks.
 	void Wait();
 
 
