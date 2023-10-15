@@ -94,7 +94,7 @@ Files:
 Copyright: Emily Mell <hasmidas@gmail.com>
 License: public-domain
 Comment: Based on images taken from unsplash.com before June 2017, when all images
-uploaded to that site were donated to the public domain.
+ uploaded to that site were donated to the public domain.
 
 Files:
  images/icon/gat*
@@ -191,13 +191,13 @@ Files:
  images/planet/venus*
 Copyright: NASA
 License: public-domain
- From NASA, and therefore in the public domain because they were created by
+Comment: From NASA, and therefore in the public domain because they were created by
  government employees while doing work for the government.
 
 Files: images/scene/*
 Copyright: Various
 License: public-domain
- Taken from morguefile.com, a collection of photographs that have been donated
+Comment: Taken from morguefile.com, a collection of photographs that have been donated
  and placed in the public domain. (Exceptions noted below.)
 
 Files: images/scene/geoscan*
@@ -207,13 +207,13 @@ License: CC-BY-SA-4.0
 Files: images/scene/loc*
 Copyright: Library of Congress
 License: public-domain
- From the Library of Congress. Public domain because they are photographs taken
+Comment: From the Library of Congress. Public domain because they are photographs taken
  by a government employee as part of their job.
 
 Files: images/scene/army*
 Copyright: US Army
 License: public-domain
- From the US Army. Public domain because they are photographs taken by a
+Comment: From the US Army. Public domain because they are photographs taken by a
  government employee as part of their job.
 
 Files: images/scene/eso*
@@ -225,13 +225,13 @@ Files:
  images/scene/engine2*
 Copyright: NASA
 License: public-domain
- From NASA, and therefore in the public domain because they were created by
+Comment: From NASA, and therefore in the public domain because they were created by
  government employees while doing work for the government.
 
 Files: images/land/*
 Copyright: Various
 License: public-domain
- Taken from morgue-file.com, a collection of photographs that have been donated
+Comment: Taken from morgue-file.com, a collection of photographs that have been donated
  and placed in the public domain. (Exceptions noted below.)
 
 Files: images/land/bwerner*
@@ -341,9 +341,9 @@ Files: images/portrait/*
 Copyright: Various
 License: Depends
 Comment: Taken from unsplash.com and added to the game after June 2017. If the pictures were
-uploaded to unsplash.com before June 2017, they were donated and placed in the public
-domain. If the pictures were uploaded to unsplash.com after June 2017, they are subject
-to the Unsplash License.
+ uploaded to unsplash.com before June 2017, they were donated and placed in the public
+ domain. If the pictures were uploaded to unsplash.com after June 2017, they are subject
+ to the Unsplash License.
 
 Files:
  images/outfit/quarg?skylance*
@@ -594,7 +594,7 @@ Files:
 Copyright: Various
 License: public-domain
 Comment: Taken from unsplash.com and added to the game before June 2017, when it was
-a collection of photographs that had been donated and placed in the public domain.
+ a collection of photographs that had been donated and placed in the public domain.
 
 Files:
  images/land/badlands1*
@@ -703,9 +703,9 @@ Files:
 Copyright: Various
 License: Depends
 Comment: Taken from unsplash.com and added to the game after June 2017. If the pictures were
-uploaded to unsplash.com before June 2017, they were donated and placed in the public
-domain. If the pictures were uploaded to unsplash.com after June 2017, they are subject
-to the Unsplash License.
+ uploaded to unsplash.com before June 2017, they were donated and placed in the public
+ domain. If the pictures were uploaded to unsplash.com after June 2017, they are subject
+ to the Unsplash License.
 
 Files:
  images/land/lava0*
@@ -725,7 +725,7 @@ Files:
 Copyright: NASA
 License: public-domain
 Comment: From NASA, and therefore in the public domain because they were created by
-government employees while doing work for the government.
+ government employees while doing work for the government.
 
 Files:
  images/land/station8*
@@ -2064,9 +2064,9 @@ Files:
 Copyright: unsplash.com/
 License: Depends
 Comment: Taken from unsplash.com and added to the game after June 2017. If the pictures were
-uploaded to unsplash.com before June 2017, they were donated and placed in the public
-domain. If the pictures were uploaded to unsplash.com after June 2017, they are subject
-to the Unsplash License.
+ uploaded to unsplash.com before June 2017, they were donated and placed in the public
+ domain. If the pictures were uploaded to unsplash.com after June 2017, they are subject
+ to the Unsplash License.
 
 Files:
  images/scene/hroar*
@@ -2147,9 +2147,9 @@ Files:
 Copyright: Various
 License: Depends
 Comment: Taken from unsplash.com, cropped, and added to the game after June 2017. If the pictures
-were uploaded to unsplash.com before June 2017, they were donated and placed in the public
-domain. If the pictures were uploaded to unsplash.com after June 2017, they are subject
-to the Unsplash License.
+ were uploaded to unsplash.com before June 2017, they were donated and placed in the public
+ domain. If the pictures were uploaded to unsplash.com after June 2017, they are subject
+ to the Unsplash License.
 
 Files:
  images/ui/red?alert*
