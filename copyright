@@ -93,7 +93,8 @@ Files:
  images/land/canyon9*
 Copyright: Emily Mell <hasmidas@gmail.com>
 License: public-domain
-Comment: Based on public domain images taken from unsplash.com
+Comment: Based on images taken from unsplash.com before June 2017, when all images
+uploaded to that site were donated to the public domain.
 
 Files:
  images/icon/gat*
@@ -338,9 +339,7 @@ Comment: Derived from works by Iaz Poolar (under the same license).
 
 Files: images/portrait/*
 Copyright: Various
-License: public-domain
- Taken from unsplash.com, a collection of photographs that have been donated and
- placed in the public domain.
+License: Depends*
 
 Files:
  images/outfit/quarg?skylance*
@@ -531,114 +530,124 @@ Comment: Derived from works by Rob Lavinsky (under the same license).
 
 Files:
  images/land/badlands0*
- images/land/badlands1*
- images/land/badlands2*
  images/land/badlands5*
- images/land/badlands6*
  images/land/badlands7*
  images/land/badlands8*
- images/land/badlands10*
- images/land/badlands11*
- images/land/badlands12*
  images/land/beach0*
  images/land/beach2*
  images/land/beach3*
  images/land/beach5*
  images/land/beach6*
+ images/land/canyon0*
+ images/land/canyon7*
+ images/land/city4*
+ images/land/city6*
+ images/land/city8*
+ images/land/city9*
+ images/land/city10*
+ images/land/desert1*
+ images/land/desert2*
+ images/land/fields1*
+ images/land/fields2*
+ images/land/fields5*
+ images/land/fields6*
+ images/land/fields7*
+ images/land/fields9*
+ images/land/fog0*
+ images/land/fog2*
+ images/land/fog4*
+ images/land/forest1*
+ images/land/forest2*
+ images/land/forest3*
+ images/land/forest4*
+ images/land/hills2*
+ images/land/lava1*
+ images/land/lava2*
+ images/land/lava6*
+ images/land/mountain1*
+ images/land/mountain3*
+ images/land/mountain5*
+ images/land/mountain6*
+ images/land/mountain7*
+ images/land/mountain8*
+ images/land/mountain9*
+ images/land/sea8*
+ images/land/sky0*
+ images/land/sky3*
+ images/land/sky7*
+ images/land/sky8*
+ images/land/sky9*
+ images/land/snow0*
+ images/land/snow1*
+ images/land/snow2*
+ images/land/snow3*
+ images/land/snow4*
+ images/land/snow6*
+ images/land/snow7*
+ images/land/space2*
+ images/land/water0*
+ images/land/water8*
+
+Copyright: Various
+License: public-domain
+ Taken from unsplash.com and added to the game before June 2017, when it was a collection of photographs 
+ that had been donated and placed in the public domain.
+
+Files:
+ images/land/badlands1*
+ images/land/badlands2*
+ images/land/badlands6*
+ images/land/badlands10*
+ images/land/badlands11*
+ images/land/badlands12*
  images/land/beach13*
  images/land/beach14*
- images/land/canyon0*
  images/land/canyon1*
- images/land/canyon7*
  images/land/canyon8*
  images/land/canyon13*
  images/land/canyon14*
  images/land/canyon15*
  images/land/city2*
- images/land/city4*
- images/land/city6*
  images/land/city7*
- images/land/city8*
- images/land/city9*
- images/land/city10*
  images/land/city11*
  images/land/city12*
- images/land/desert1*
- images/land/desert2*
  images/land/desert11*
  images/land/desert12*
  images/land/desert13*
  images/land/dune1*
- images/land/fields1*
- images/land/fields2*
  images/land/fields3*
- images/land/fields5*
- images/land/fields6*
- images/land/fields7*
- images/land/fields9*
  images/land/fields13*
  images/land/fields14*
  images/land/fields15*
- images/land/fog0*
+ images/land/mountain0*
+ images/land/mountain4*
+ images/land/hills0*
  images/land/fog1*
- images/land/fog2*
- images/land/fog4*
  images/land/fog6*
  images/land/fog8*
  images/land/fog9*
  images/land/fog10*
  images/land/fog11*
- images/land/forest1*
- images/land/forest2*
- images/land/forest3*
- images/land/forest4*
  images/land/forest5*
  images/land/forest6*
  images/land/forest7*
  images/land/forest8*
  images/land/forest9*
  images/land/garden1*
- images/land/hills0*
- images/land/hills2*
  images/land/hills8*
- images/land/lava1*
- images/land/lava2*
- images/land/lava6*
  images/land/lava12*
  images/land/lava13*
  images/land/loc3*
- images/land/mountain0*
- images/land/mountain1*
- images/land/mountain3*
- images/land/mountain4*
- images/land/mountain5*
- images/land/mountain6*
- images/land/mountain7*
- images/land/mountain8*
- images/land/mountain9*
  images/land/sea1*
  images/land/sea5*
  images/land/sea7*
- images/land/sea8*
  images/land/sea18*
  images/land/sea19*
- images/land/sky0*
- images/land/sky3*
  images/land/sky4*
  images/land/sky5*
- images/land/sky7*
- images/land/sky8*
- images/land/sky9*
  images/land/sky10*
  images/land/sky11*
- images/land/snow0*
- images/land/snow1*
- images/land/snow2*
- images/land/snow3*
- images/land/snow4*
  images/land/snow5*
- images/land/snow6*
- images/land/snow7*
  images/land/snow10*
  images/land/snow14*
  images/land/snow15*
@@ -648,7 +657,6 @@ Files:
  images/land/snow19*
  images/land/snow20*
  images/land/snow21*
- images/land/space2*
  images/land/station4*
  images/land/station6*
  images/land/station7*
@@ -685,17 +693,16 @@ Files:
  images/land/station43*
  images/land/station44*
  images/land/station45*
- images/land/station46*
- images/land/water0*
  images/land/water3*
  images/land/water4*
- images/land/water8*
  images/land/water12*
  images/land/water13*
 Copyright: Various
-License: public-domain
- Taken from unsplash.com, a collection of photographs that have been donated and
- placed in the public domain.
+License: Depends
+ Taken from unsplash.com and added to the game after June 2017. If the pictures were
+ uploaded to unsplash.com before June 2017, they were donated and placed in the public
+ domain. If the pictures were uploaded to unsplash.com after June 2017, they are subject
+ to the Unsplash License.
 
 Files:
  images/land/lava0*
@@ -2052,7 +2059,11 @@ Files:
  images/scene/icepicture*
  images/scene/snowplain*
 Copyright: unsplash.com/
-License: CC0
+License: Depends
+ Taken from unsplash.com and added to the game after June 2017. If the pictures were
+ uploaded to unsplash.com before June 2017, they were donated and placed in the public
+ domain. If the pictures were uploaded to unsplash.com after June 2017, they are subject
+ to the Unsplash License.
 
 Files:
  images/scene/hroar*
@@ -2131,8 +2142,11 @@ Files:
  images/land/sea22*
  images/land/snow22*
 Copyright: Various
-License: CC0
-Comment: Taken from unsplash.com and cropped.
+License: Depends
+Comment: Taken from unsplash.com, cropped, and added to the game after June 2017. If the pictures
+were uploaded to unsplash.com before June 2017, they were donated and placed in the public
+domain. If the pictures were uploaded to unsplash.com after June 2017, they are subject
+to the Unsplash License.
 
 Files:
  images/ui/red?alert*
@@ -2160,6 +2174,22 @@ Files:
 Copyright: Dave Flowers
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
+
+License: Depends
+Taken from unsplash.com. Until June 2017, this was a collection of photographs that had been donated and
+placed in the public domain. In June 2017, Unsplash modified their terms and conditions to make all images 
+uploaded after that date subject to a permissive license (the "Unsplash License.") These pictures were added
+to the game after June 2017, but could have been uploaded before then. Therefore, the license of these images 
+depends on when they were uploaded. If they were uploaded before June 2017, they are in the public domain. If
+they were uploaded after June 2017, they are subject to the Unsplash License.
+
+License: Unsplash License
+Unsplash grants you an irrevocable, nonexclusive, worldwide copyright 
+license to download, copy, modify, distribute, perform, and use photos 
+from Unsplash for free, including for commercial purposes, without 
+permission  from or attributing the photographer or Unsplash. This 
+license does not include the right to compile photos from Unsplash to 
+replicate a similar or competing service.
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
