@@ -428,7 +428,7 @@ vector<string> Format::Split(const string &str, const string &separator)
 
 
 
-string Format::ExpandConditions(const string &source, const ConditionGetter& getter)
+string Format::ExpandConditions(const string &source, const ConditionGetter &getter)
 {
 	// Optimization for most common case: no conditions
 	if(source.find('&') == string::npos)
