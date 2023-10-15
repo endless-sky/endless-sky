@@ -2783,6 +2783,13 @@ set<Ship *> PlayerInfo::GetGroup(int group)
 
 // Keep track of any outfits that you have sold since landing. These will be
 // available to buy back until you take off.
+const map<const Outfit *, int> &PlayerInfo::GetStock() const
+{
+	return stock;
+}
+
+
+
 int PlayerInfo::Stock(const Outfit *outfit) const
 {
 	auto it = stock.find(outfit);

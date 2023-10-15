@@ -217,6 +217,7 @@ namespace {
 		{"jump drive", "Lets you jump to any nearby system."},
 		{"minable", "This item is mined from asteroids."},
 		{"atrocity", "This outfit is considered an atrocity."},
+		{"unique", "This item is unique."},
 		{"cloaked afterburner", "You may use your afterburner when cloaked"},
 		{"cloaked boarding", "You may board even when cloaked."},
 		{"cloaked communication", "You may make hails when cloaked."},
