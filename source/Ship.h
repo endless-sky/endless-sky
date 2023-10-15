@@ -243,7 +243,6 @@ public:
 	// Check the status of this ship.
 	bool IsCapturable() const;
 	bool IsTargetable() const;
-	bool IsCloakTargetable() const;
 	bool IsOverheated() const;
 	bool IsDisabled() const;
 	bool IsBoarding() const;
@@ -263,7 +262,7 @@ public:
 	// The amount of cloaking this ship can do, per frame.
 	double CloakingSpeed() const;
 	// If this ship should be immune to the next damage caused.
-	bool Phases(Projectile projectile) const;
+	bool Phases(Projectile &projectile) const;
 	// Check if this ship is entering (rather than leaving) hyperspace.
 	bool IsEnteringHyperspace() const;
 	// Check if this ship is entering or leaving hyperspace.

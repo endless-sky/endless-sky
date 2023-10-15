@@ -2024,7 +2024,7 @@ bool Ship::IsCapturable() const
 
 bool Ship::IsTargetable() const
 {
-	return (zoom == 1.f && !explosionRate && !forget && !isInvisible && IsCloakTargetable()
+	return (zoom == 1.f && !explosionRate && !forget && !isInvisible && !IsCloaked()
 		&& hull >= 0. && hyperspaceCount < 70);
 }
 
@@ -2095,21 +2095,27 @@ bool Ship::CannotAct(ActionType actionType) const
 		{
 			case ActionType::AFTERBURNER:
 				canActCloaked = attributes.Get("cloaked afterburner");
+				break;
 			case ActionType::BOARD:
 				canActCloaked = attributes.Get("cloaked boarding");
+				break;
 			case ActionType::COMMUNICATION:
 				canActCloaked = attributes.Get("cloaked communication");
+				break;
 			case ActionType::FIRE:
 				canActCloaked = attributes.Get("cloaked firing");
+				break;
 			case ActionType::PICKUP:
 				canActCloaked = attributes.Get("cloaked pickup");
+				break;
 			case ActionType::SCAN:
 				canActCloaked = attributes.Get("cloaked scanning");
+				break;
 		}
 	bool canSendHail = (actionType != ActionType::COMMUNICATION || crew);
-	return (zoom != 1.f || isDisabled || hyperspaceCount || pilotError || !canSendHail
-		|| ((cloak == 1. && !canActCloaked)
-		|| (cloak != 1. && cloak && !cloakDisruption && !canActCloaked)));
+	return zoom != 1.f || isDisabled || hyperspaceCount || pilotError || !canSendHail
+		|| (cloak == 1. && !canActCloaked)
+		|| (cloak != 1. && cloak && !cloakDisruption && !canActCloaked);
 }
 
 
@@ -2545,13 +2551,6 @@ double Ship::DisruptionLevel() const
 
 
 
-bool Ship::IsCloakTargetable() const
-{
-	return cloak < 1.;
-}
-
-
-
 // Get the (absolute) amount of hull that needs to be damaged until the
 // ship becomes disabled. Returns 0 if the ships hull is already below the
 // disabled threshold.
@@ -2673,7 +2672,7 @@ double Ship::CloakingSpeed() const
 
 
 
-bool Ship::Phases(Projectile projectile) const
+bool Ship::Phases(Projectile &projectile) const
 {
 	bool phases = IsCloaked() && (projectile.Phases(*this) ||
 		attributes.Get("cloak phasing") >= Random::Real());

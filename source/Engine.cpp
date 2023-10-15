@@ -809,7 +809,7 @@ void Engine::Step(bool isActive)
 	}
 	else
 	{
-		if(target->GetSystem() == player.GetSystem() && target->IsCloakTargetable())
+		if(target->GetSystem() == player.GetSystem() && !target->IsCloaked())
 			targetUnit = target->Facing().Unit();
 		info.SetSprite("target sprite", target->GetSprite(), targetUnit, target->GetFrame(step));
 		info.SetString("target name", target->Name());
@@ -2169,7 +2169,7 @@ void Engine::DoCollisions(Projectile &projectile)
 			{
 				const Ship *ship = reinterpret_cast<const Ship *>(body);
 				if(body == projectile.Target() || (gov->IsEnemy(body->GetGovernment())
-						&& ship->IsCloakTargetable()))
+						&& !ship->IsCloaked()))
 				{
 					closestHit = 0.;
 					break;
@@ -2182,7 +2182,7 @@ void Engine::DoCollisions(Projectile &projectile)
 			Ship *ship = reinterpret_cast<Ship *>(shipCollisions.Line(projectile, &closestHit));
 			if(ship)
 			{
-				// Check if we can hit this.
+				// Check if the ship makes the projectile pass trough it.
 				if(ship->Phases(projectile))
 					closestHit = 1.;
 				else
@@ -2649,7 +2649,7 @@ void Engine::CreateStatusOverlays()
 	for(const auto &it : ships)
 	{
 		if(!it->GetGovernment() || it->GetSystem() != currentSystem ||
-				!it->IsCloakTargetable())
+				it->IsCloaked())
 			continue;
 		// Don't show status for dead ships.
 		if(it->IsDestroyed())
