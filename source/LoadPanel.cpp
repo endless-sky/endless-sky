@@ -551,6 +551,8 @@ void LoadPanel::LoadCallback()
 	gamePanels.CanSave(true);
 
 	player.Load(loadedInfo.Path());
+
+	// Scale any new masks that might have been added by the newly loaded save file.
 	GameData::GetMaskManager().ScaleMasks();
 
 	GetUI()->PopThrough(GetUI()->Root().get());
