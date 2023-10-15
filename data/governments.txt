@@ -898,6 +898,22 @@ government "Lunarium"
 		"Heliarch" -.01
 		"Pirate" -.01
 
+government "Lunarium (Hidden)"
+	"display name" "Lunarium"
+	swizzle 5
+	"crew attack" 1.2
+	"crew defense" 2.7
+	language "Coalition"
+	"player reputation" 1
+	"friendly hail" "friendly lunarium"
+	"friendly disabled hail" "friendly disabled lunarium"
+	"hostile hail" "hostile lunarium"
+	"hostile disabled hail" "hostile disabled lunarium"
+	"attitude toward"
+		"Quarg" .01
+		"Heliarch" -.01
+		"Pirate" -.01
+
 government "Marauder"
 	swizzle 6
 	"player reputation" 1
@@ -1079,6 +1095,8 @@ government "Pug"
 	"friendly disabled hail" "friendly disabled pug"
 	"hostile hail" "hostile pug"
 	"hostile disabled hail" "hostile pug"
+	"travel restrictions"
+		not government "Pug"
 
 # A pug government with distinct reputation toward the player compared to those met during the main campaign.
 government "Pug (Wanderer)"
@@ -1097,6 +1115,8 @@ government "Pug (Wanderer)"
 	"friendly disabled hail" "friendly disabled pug"
 	"hostile hail" "hostile pug"
 	"hostile disabled hail" "hostile pug"
+	"travel restrictions"
+		not government "Pug (Wanderer)"
 
 # Quarg are split up to their respective areas, and an overall one is kept for missions or other use.
 government "Quarg"
