@@ -34,6 +34,31 @@ using namespace std;
 
 
 
+Minable::Payload::Payload(const DataNode &node)
+{
+	outfit = GameData::Outfits().Get(node.Token(1));
+	dropSize = (node.Size() == 2 ? 1 : max<int>(1, node.Value(2)));
+
+	for(const DataNode &child : node)
+	{
+		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
+
+		if(!hasValue)
+			child.PrintTrace("Error: Expected key to have a value:");
+		else if(key == "drop size")
+			dropSize = max<int>(1, child.Value(1));
+		else if(key == "drop rate")
+			dropRate = max(0., min(child.Value(1), 1.));
+		else if(key == "toughness")
+			toughness = max(1., child.Value(1));
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
+	}
+}
+
+
+
 // Load a definition of a minable object.
 void Minable::Load(const DataNode &node)
 {
@@ -46,21 +71,23 @@ void Minable::Load(const DataNode &node)
 		const string &key = child.Token(0);
 		bool hasValue = child.Size() >= 2;
 
-		if(key == "display name" && hasValue)
+		if(!hasValue)
+			child.PrintTrace("Error: Expected key to have a value:");
+		else if(key == "display name")
 			displayName = child.Token(1);
-		else if(key == "noun" && hasValue)
+		else if(key == "noun")
 			noun = child.Token(1);
 		// A full sprite definition (frame rate, etc.) is not needed, because
 		// the frame rate will be set randomly and it will always be looping.
-		else if(key == "sprite" && hasValue)
+		else if(key == "sprite")
 			SetSprite(SpriteSet::Get(child.Token(1)));
-		else if(key == "hull" && hasValue)
+		else if(key == "hull")
 			hull = child.Value(1);
-		else if(key == "random hull" && hasValue)
+		else if(key == "random hull")
 			randomHull = max(0., child.Value(1));
-		else if(key == "payload" && hasValue)
+		else if(key == "payload")
 			payload.emplace_back(child);
-		else if(key == "explode" && hasValue)
+		else if(key == "explode")
 		{
 			int count = (child.Size() == 2 ? 1 : child.Value(2));
 			explosions[GameData::Effects().Get(child.Token(1))] += count;
@@ -254,27 +281,4 @@ const vector<Minable::Payload> &Minable::GetPayload() const
 const int64_t &Minable::GetValue() const
 {
 	return value;
-}
-
-
-
-Minable::Payload::Payload(const DataNode& node)
-{
-	outfit = GameData::Outfits().Get(node.Token(1));
-	dropSize = (node.Size() == 2 ? 1 : max<int>(1, node.Value(2)));
-
-	for(const DataNode &child : node)
-	{
-		const string &key = child.Token(0);
-		bool hasValue = child.Size() >= 2;
-
-		if(key == "drop size" && hasValue)
-			dropSize = max<int>(1, child.Value(1));
-		else if(key == "drop rate" && hasValue)
-			dropRate = max(0., min(child.Value(1), 1.));
-		else if(key == "toughness" && hasValue)
-			toughness = max(1., child.Value(1));
-		else
-			child.PrintTrace("Skipping unrecognized attribute:");
-	}
 }
