@@ -678,5 +678,5 @@ mission "Burthen Triathlon"
 			`	As he nears the finish line the Burthensiders' enthusiastic cheers, whoops, and hollers erupt from the crowd, and the camera drones, their repulsors apparently now calibrated for Burthen's gravity, circle around the finishing straight. Just over the crowd a loudspeaker announces, "and here comes the winner of the Syndicated Athletics Burthen Triathlon, the world triathlete champion, competitor number fifty-eight, Samuel Abernathy!"`
 
 			label "end"
-			`	The Burthensider slows down into the finish line and seizes the tape, making a yelp of simultaneous joy and relief, and holds the tape up before everybody in the crowd and at the cameras pointed at him before accepting a bottle of water from someone on the sidelines.`
+			`	The Burthensider doesn't slow down until he's within an arm's length of the finishing line; as he crosses it he seizes the tape, making a yelp of simultaneous joy and relief. He holds the tape up before everybody in the crowd and at the cameras pointed at him, taking in the attention (and catching his breath) before accepting a bottle of water from someone on the sidelines.`
 				decline
