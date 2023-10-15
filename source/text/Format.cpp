@@ -53,7 +53,7 @@ namespace {
 	//
 	// The getter() acts like ConditionsStore.Get(), providing condition values.
 	// These are passed through Format::Whatever(), and appended to the result.
-	void AppendCondition(string &result, const string &source, const Format::ConditionGetter& getter,
+	void AppendCondition(string &result, const string &source, const Format::ConditionGetter &getter,
 		size_t formatStart, size_t formatSize, size_t conditionStart, size_t conditionSize)
 	{
 		int64_t value = getter(source, conditionStart, conditionSize);
@@ -428,7 +428,7 @@ vector<string> Format::Split(const string &str, const string &separator)
 
 
 
-string Format::ExpandConditions(const string &source, const ConditionGetter& getter)
+string Format::ExpandConditions(const string &source, const ConditionGetter &getter)
 {
 	// Optimization for most common case: no conditions
 	if(source.find('&') == string::npos)
