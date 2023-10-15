@@ -75,7 +75,7 @@ void MaskManager::ScaleMasks()
 		for(auto it = scales.begin(); it != scales.end(); ++it)
 		{
 			// Skip mask generation for scales that have already been generated previously.
-			if(it == baseIt || !it->second.empty())
+			if(!it->second.empty())
 				continue;
 
 			auto &masks = it->second;
