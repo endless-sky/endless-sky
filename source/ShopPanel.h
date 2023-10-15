@@ -79,7 +79,7 @@ protected:
 	virtual int TileSize() const = 0;
 	virtual int VisibilityCheckboxesSize() const;
 	virtual bool HasItem(const std::string &name) const = 0;
-	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) = 0;
+	virtual void DrawItem(const std::string &name, const Point &point) = 0;
 	virtual int DividerOffset() const = 0;
 	virtual int DetailWidth() const = 0;
 	virtual int DrawDetails(const Point &center) = 0;
@@ -106,20 +106,19 @@ protected:
 
 	int64_t LicenseCost(const Outfit *outfit, bool onlyOwned = false) const;
 
+	void CheckSelection();
+
 
 protected:
 	class Zone : public ClickZone<const Ship *> {
 	public:
-		explicit Zone(Point center, Point size, const Ship *ship, double scrollY = 0.);
-		explicit Zone(Point center, Point size, const Outfit *outfit, double scrollY = 0.);
+		explicit Zone(Point center, Point size, const Ship *ship);
+		explicit Zone(Point center, Point size, const Outfit *outfit);
 
 		const Ship *GetShip() const;
 		const Outfit *GetOutfit() const;
 
-		double ScrollY() const;
-
 	private:
-		double scrollY = 0.;
 		const Outfit *outfit = nullptr;
 	};
 
@@ -162,20 +161,19 @@ protected:
 	// (It may be worth moving the above pointers into the derived classes in the future.)
 
 	double mainScroll = 0.;
+	double mainSmoothScroll = 0;
 	double sidebarScroll = 0.;
+	double sidebarSmoothScroll = 0.;
 	double infobarScroll = 0.;
+	double infobarSmoothScroll = 0.;
 	double maxMainScroll = 0.;
 	double maxSidebarScroll = 0.;
 	double maxInfobarScroll = 0.;
 	ShopPane activePane = ShopPane::Main;
-	int mainDetailHeight = 0;
-	int sideDetailHeight = 0;
-	bool scrollDetailsIntoView = false;
-	double selectedTopY = 0.;
-	bool sameSelectedTopY = false;
 	char hoverButton = '\0';
 
 	std::vector<Zone> zones;
+	std::vector<ClickZone<const Ship *>> shipZones;
 	std::vector<ClickZone<std::string>> categoryZones;
 
 	std::map<std::string, std::vector<std::string>> catalog;
@@ -202,15 +200,20 @@ private:
 	bool SetScrollToBottom();
 	void SideSelect(int count);
 	void SideSelect(Ship *ship);
+	void MainAutoScroll(const std::vector<Zone>::const_iterator &selected);
 	void MainLeft();
 	void MainRight();
 	void MainUp();
 	void MainDown();
+	void CategoryAdvance(const std::string &category);
 	std::vector<Zone>::const_iterator Selected() const;
-	std::vector<Zone>::const_iterator MainStart() const;
 	// Check if the given point is within the button zone, and if so return the
 	// letter of the button (or ' ' if it's not on a button).
 	char CheckButton(int x, int y);
+
+
+private:
+	bool delayedAutoScroll = false;
 };
 
 

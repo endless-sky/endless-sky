@@ -185,7 +185,7 @@ public:
 	CargoHold &Cargo();
 	const CargoHold &Cargo() const;
 	// Get items stored on the player's current planet.
-	CargoHold *Storage(bool forceCreate = false);
+	CargoHold &Storage();
 	// Get items stored on all planets (for map display).
 	const std::map<const Planet *, CargoHold> &PlanetaryStorage() const;
 	// Get cost basis for commodities.
@@ -312,6 +312,7 @@ public:
 
 	// Keep track of any outfits that you have sold since landing. These will be
 	// available to buy back until you take off.
+	const std::map<const Outfit*, int> &GetStock() const;
 	int Stock(const Outfit *outfit) const;
 	void AddStock(const Outfit *outfit, int count);
 	// Get depreciation information.
