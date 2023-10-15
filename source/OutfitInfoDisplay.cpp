@@ -171,6 +171,8 @@ namespace {
 		{"burn resistance", 2},
 		{"fog resistance", 2},
 
+		{"shield multiplier", 3},
+		{"hull multiplier", 3},
 		{"hull repair multiplier", 3},
 		{"hull energy multiplier", 3},
 		{"hull fuel multiplier", 3},

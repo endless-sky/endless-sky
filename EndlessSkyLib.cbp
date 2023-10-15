@@ -251,6 +251,8 @@
 		<Unit filename="source/Music.h" />
 		<Unit filename="source/NPC.cpp" />
 		<Unit filename="source/NPC.h" />
+		<Unit filename="source/NPCAction.cpp" />
+		<Unit filename="source/NPCAction.h" />
 		<Unit filename="source/News.cpp" />
 		<Unit filename="source/News.h" />
 		<Unit filename="source/Outfit.cpp" />
@@ -297,6 +299,8 @@
 		<Unit filename="source/Projectile.h" />
 		<Unit filename="source/Radar.cpp" />
 		<Unit filename="source/Radar.h" />
+		<Unit filename="source/RaidFleet.cpp" />
+		<Unit filename="source/RaidFleet.h" />
 		<Unit filename="source/Random.cpp" />
 		<Unit filename="source/Random.h" />
 		<Unit filename="source/RandomEvent.h" />
@@ -322,6 +326,8 @@
 		<Unit filename="source/ShipInfoDisplay.h" />
 		<Unit filename="source/ShipInfoPanel.cpp" />
 		<Unit filename="source/ShipInfoPanel.h" />
+		<Unit filename="source/ShipManager.cpp" />
+		<Unit filename="source/ShipManager.h" />
 		<Unit filename="source/ShipJumpNavigation.cpp" />
 		<Unit filename="source/ShipJumpNavigation.h" />
 		<Unit filename="source/ShipyardPanel.cpp" />
