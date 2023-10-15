@@ -339,7 +339,11 @@ Comment: Derived from works by Iaz Poolar (under the same license).
 
 Files: images/portrait/*
 Copyright: Various
-License: Depends*
+License: Depends
+Comment: Taken from unsplash.com and added to the game after June 2017. If the pictures were
+uploaded to unsplash.com before June 2017, they were donated and placed in the public
+domain. If the pictures were uploaded to unsplash.com after June 2017, they are subject
+to the Unsplash License.
 
 Files:
  images/outfit/quarg?skylance*
@@ -590,8 +594,8 @@ Files:
 
 Copyright: Various
 License: public-domain
- Taken from unsplash.com and added to the game before June 2017, when it was a collection of photographs 
- that had been donated and placed in the public domain.
+Comment: Taken from unsplash.com and added to the game before June 2017, when it was
+a collection of photographs that had been donated and placed in the public domain.
 
 Files:
  images/land/badlands1*
@@ -699,17 +703,17 @@ Files:
  images/land/water13*
 Copyright: Various
 License: Depends
- Taken from unsplash.com and added to the game after June 2017. If the pictures were
- uploaded to unsplash.com before June 2017, they were donated and placed in the public
- domain. If the pictures were uploaded to unsplash.com after June 2017, they are subject
- to the Unsplash License.
+Comment: Taken from unsplash.com and added to the game after June 2017. If the pictures were
+uploaded to unsplash.com before June 2017, they were donated and placed in the public
+domain. If the pictures were uploaded to unsplash.com after June 2017, they are subject
+to the Unsplash License.
 
 Files:
  images/land/lava0*
 Copyright: USGS
 License: public-domain
- From the USGS, and therefore in the public domain because they were created by
- government employees while doing work for the government.
+Comment: From the USGS, and therefore in the public domain because they were created by
+government employees while doing work for the government.
 
 Files:
  images/land/desert0*
@@ -721,8 +725,8 @@ Files:
  images/land/station3*
 Copyright: NASA
 License: public-domain
- From NASA, and therefore in the public domain because they were created by
- government employees while doing work for the government.
+Comment: From NASA, and therefore in the public domain because they were created by
+government employees while doing work for the government.
 
 Files:
  images/land/station8*
@@ -2060,10 +2064,10 @@ Files:
  images/scene/snowplain*
 Copyright: unsplash.com/
 License: Depends
- Taken from unsplash.com and added to the game after June 2017. If the pictures were
- uploaded to unsplash.com before June 2017, they were donated and placed in the public
- domain. If the pictures were uploaded to unsplash.com after June 2017, they are subject
- to the Unsplash License.
+Comment: Taken from unsplash.com and added to the game after June 2017. If the pictures were
+uploaded to unsplash.com before June 2017, they were donated and placed in the public
+domain. If the pictures were uploaded to unsplash.com after June 2017, they are subject
+to the Unsplash License.
 
 Files:
  images/scene/hroar*
