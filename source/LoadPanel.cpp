@@ -465,7 +465,7 @@ void LoadPanel::UpdateLists()
 		string fileName = Files::Name(path);
 		// The file name is either "Pilot Name.txt" or "Pilot Name~SnapshotTitle.txt".
 		size_t pos = fileName.find('~');
-		bool isSnapshot = pos != string::npos;
+		const bool isSnapshot = (pos != string::npos);
 		if(!isSnapshot)
 			pos = fileName.size() - 4;
 
