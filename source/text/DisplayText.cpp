@@ -27,7 +27,7 @@ DisplayText::DisplayText(const char *text, Layout layout)
 
 
 DisplayText::DisplayText(const std::string &text, Layout layout)
-	: layout(layout), text(std::move(text))
+	: layout(layout), text(text)
 {
 }
 

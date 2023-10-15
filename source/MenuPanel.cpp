@@ -66,7 +66,7 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 		for(const auto &source : GameData::Sources())
 		{
 			auto credit = Format::Split(Files::Read(source + "credits.txt"), "\n");
-			if(!credit.empty() || credit.front().empty())
+			if(!credit.empty() || !credit.front().empty())
 			{
 				credits.insert(credits.end(), credit.begin(), credit.end());
 				credits.insert(credits.end(), 15, "");
