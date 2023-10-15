@@ -1945,7 +1945,8 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 	bool isFacing = (dp.Unit().Dot(angle.Unit()) > .95);
 	if(!isClose || (!isFacing && !shouldReverse))
 		command.SetTurn(TurnToward(ship, dp, 0.9999));
-	// Work with a slightly lower maximum velocity to avoid border cases.
+	// Drag is not applied when not thrusting, so stop thrusting when close to max speed
+	// to save energy. Work with a slightly lower maximum velocity to avoid border cases.
 	double maxVelocity = ship.MaxVelocity() * ship.MaxVelocity() * .99;
 	if(isFacing && (velocity.LengthSquared() <= maxVelocity
 			|| dp.Unit().Dot(velocity.Unit()) < .95))
