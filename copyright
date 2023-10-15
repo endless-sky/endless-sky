@@ -93,7 +93,8 @@ Files:
  images/land/canyon9*
 Copyright: Emily Mell <hasmidas@gmail.com>
 License: public-domain
-Comment: Based on images taken from unsplash.com before June 2017, when all images
+Comment: 
+ Based on images taken from unsplash.com before June 2017, when all images
  uploaded to that site were donated to the public domain.
 
 Files:
@@ -191,13 +192,15 @@ Files:
  images/planet/venus*
 Copyright: NASA
 License: public-domain
-Comment: From NASA, and therefore in the public domain because they were created by
+Comment: 
+ From NASA, and therefore in the public domain because they were created by
  government employees while doing work for the government.
 
 Files: images/scene/*
 Copyright: Various
 License: public-domain
-Comment: Taken from morguefile.com, a collection of photographs that have been donated
+Comment: 
+ Taken from morguefile.com, a collection of photographs that have been donated
  and placed in the public domain. (Exceptions noted below.)
 
 Files: images/scene/geoscan*
@@ -207,13 +210,15 @@ License: CC-BY-SA-4.0
 Files: images/scene/loc*
 Copyright: Library of Congress
 License: public-domain
-Comment: From the Library of Congress. Public domain because they are photographs taken
+Comment: 
+ From the Library of Congress. Public domain because they are photographs taken
  by a government employee as part of their job.
 
 Files: images/scene/army*
 Copyright: US Army
 License: public-domain
-Comment: From the US Army. Public domain because they are photographs taken by a
+Comment: 
+ From the US Army. Public domain because they are photographs taken by a
  government employee as part of their job.
 
 Files: images/scene/eso*
@@ -225,13 +230,15 @@ Files:
  images/scene/engine2*
 Copyright: NASA
 License: public-domain
-Comment: From NASA, and therefore in the public domain because they were created by
+Comment: 
+ From NASA, and therefore in the public domain because they were created by
  government employees while doing work for the government.
 
 Files: images/land/*
 Copyright: Various
 License: public-domain
-Comment: Taken from morgue-file.com, a collection of photographs that have been donated
+Comment: 
+ Taken from morgue-file.com, a collection of photographs that have been donated
  and placed in the public domain. (Exceptions noted below.)
 
 Files: images/land/bwerner*
@@ -288,7 +295,8 @@ License: CC-BY-SA-4.0
 Files: images/land/sivael*
 Copyright: Tymoteusz Kapuściński (Sivael)
 License: CC-BY-SA-4.0
-Comment: Screenshots of environments created with assets purchased by Tymoteusz
+Comment: 
+ Screenshots of environments created with assets purchased by Tymoteusz
  Kapuściński from the Unity Asset Store. Post-processing applied by Michael
  Zahniser to make the images look less artificial.
 
@@ -340,7 +348,8 @@ Comment: Derived from works by Iaz Poolar (under the same license).
 Files: images/portrait/*
 Copyright: Various
 License: Depends
-Comment: Taken from unsplash.com and added to the game after June 2017. If the pictures were
+Comment: 
+ Taken from unsplash.com and added to the game after June 2017. If the pictures were
  uploaded to unsplash.com before June 2017, they were donated and placed in the public
  domain. If the pictures were uploaded to unsplash.com after June 2017, they are subject
  to the Unsplash License.
@@ -593,7 +602,8 @@ Files:
  images/land/water8*
 Copyright: Various
 License: public-domain
-Comment: Taken from unsplash.com and added to the game before June 2017, when it was
+Comment: 
+ Taken from unsplash.com and added to the game before June 2017, when it was
  a collection of photographs that had been donated and placed in the public domain.
 
 Files:
@@ -702,7 +712,8 @@ Files:
  images/land/water13*
 Copyright: Various
 License: Depends
-Comment: Taken from unsplash.com and added to the game after June 2017. If the pictures were
+Comment: 
+ Taken from unsplash.com and added to the game after June 2017. If the pictures were
  uploaded to unsplash.com before June 2017, they were donated and placed in the public
  domain. If the pictures were uploaded to unsplash.com after June 2017, they are subject
  to the Unsplash License.
@@ -711,8 +722,9 @@ Files:
  images/land/lava0*
 Copyright: USGS
 License: public-domain
-Comment: From the USGS, and therefore in the public domain because they were created by
-government employees while doing work for the government.
+Comment: 
+ From the USGS, and therefore in the public domain because they were created by
+ government employees while doing work for the government.
 
 Files:
  images/land/desert0*
@@ -724,7 +736,8 @@ Files:
  images/land/station3*
 Copyright: NASA
 License: public-domain
-Comment: From NASA, and therefore in the public domain because they were created by
+Comment: 
+ From NASA, and therefore in the public domain because they were created by
  government employees while doing work for the government.
 
 Files:
@@ -2063,7 +2076,8 @@ Files:
  images/scene/snowplain*
 Copyright: unsplash.com/
 License: Depends
-Comment: Taken from unsplash.com and added to the game after June 2017. If the pictures were
+Comment: 
+ Taken from unsplash.com and added to the game after June 2017. If the pictures were
  uploaded to unsplash.com before June 2017, they were donated and placed in the public
  domain. If the pictures were uploaded to unsplash.com after June 2017, they are subject
  to the Unsplash License.
@@ -2146,7 +2160,8 @@ Files:
  images/land/snow22*
 Copyright: Various
 License: Depends
-Comment: Taken from unsplash.com, cropped, and added to the game after June 2017. If the pictures
+Comment: 
+ Taken from unsplash.com, cropped, and added to the game after June 2017. If the pictures
  were uploaded to unsplash.com before June 2017, they were donated and placed in the public
  domain. If the pictures were uploaded to unsplash.com after June 2017, they are subject
  to the Unsplash License.
