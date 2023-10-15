@@ -2324,7 +2324,7 @@ planet Kisarra
 
 planet "Korati Efreti"
 	attributes efret station
-	landscape land/station15
+	landscape land/station7
 	music ambient/machinery
 	description `This small Korath station is positioned at the Lagrangian point in between this system's sun and the planet that the Quarg had been mining for material to build the ringworld. The station is dwarfed by the ringworld, but nonetheless manages to make a statement: re-asserting the territorial rights of the Korath in the face of an alien species that chose to build a settlement in one of their systems.`
 	spaceport `As the Korath civil war became more and more brutal, the safest home for those who wanted to avoid the fighting was right here in the shadow of the Quarg. This small station is still home to well over a thousand Korath, and they are constantly on the move from one section to another, their boots ringing loudly on the metal floors.`
