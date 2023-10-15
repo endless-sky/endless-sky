@@ -502,7 +502,7 @@ mission "FW Frontline Resupply [0]"
 	name `Resupply <planet>`
 	description `The frontlines of the war are in need of a resupply. Immediately deliver <cargo> to <destination> by <date>. Payment is <payment>.`
 	deadline 2 1
-	cargo "food" 5 2 .1
+	cargo "Food" 5 2 .1
 	to offer
 		random < 40
 		has "salary: Free Worlds"
@@ -531,7 +531,7 @@ mission "FW Frontline Resupply [1]"
 	name `Resupply <planet>`
 	description `The frontlines of the war are in need of a resupply. Immediately deliver <cargo> to <destination> by <date>. Payment is <payment>.`
 	deadline 2 1
-	cargo "medical" 5 2 .1
+	cargo "Medical" 5 2 .1
 	to offer
 		random < 30
 		has "salary: Free Worlds"
@@ -560,7 +560,7 @@ mission "FW Frontline Resupply [2]"
 	name `Resupply <planet>`
 	description `The frontlines of the war are in need of a resupply. Immediately deliver <cargo> to <destination> by <date>. Payment is <payment>.`
 	deadline 2 1
-	cargo "heavy metals" 5 2 .1
+	cargo "Heavy Metals" 5 2 .1
 	to offer
 		random < 20
 		has "salary: Free Worlds"
@@ -619,7 +619,7 @@ mission "FW Bulk Frontline Resupply [0]"
 	name `Resupply <planet>`
 	description `The frontlines of the war are in need of a resupply. Immediately deliver <cargo> to <destination> by <date>. Payment is <payment>.`
 	deadline 2 1
-	cargo "food" 25 2 .95
+	cargo "Food" 25 2 .95
 	to offer
 		random < 30
 		has "salary: Free Worlds"
@@ -648,7 +648,7 @@ mission "FW Bulk Frontline Resupply [1]"
 	name `Resupply <planet>`
 	description `The frontlines of the war are in need of a resupply. Immediately deliver <cargo> to <destination> by <date>. Payment is <payment>.`
 	deadline 2 1
-	cargo "medical" 25 2 .95
+	cargo "Medical" 25 2 .95
 	to offer
 		random < 15
 		has "salary: Free Worlds"

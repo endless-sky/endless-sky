@@ -155,7 +155,6 @@ void Preferences::Load()
 	settings["Show planet labels"] = true;
 	settings["Show asteroid scanner overlay"] = true;
 	settings["Show hyperspace flash"] = true;
-	settings["Extended jump effects"] = true;
 	settings["Draw background haze"] = true;
 	settings["Draw starfield"] = true;
 	settings["Hide unexplored map regions"] = true;
