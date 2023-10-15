@@ -40,7 +40,7 @@ class StellarObject;
 class HailPanel : public Panel {
 public:
 	HailPanel(PlayerInfo &player, const std::shared_ptr<Ship> &ship,
-		std::function<void(const Government *)> &bribeCallback);
+		std::function<void(const Government *)> bribeCallback);
 	HailPanel(PlayerInfo &player, const StellarObject *object);
 
 	virtual void Draw() override;

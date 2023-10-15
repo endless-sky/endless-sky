@@ -36,7 +36,7 @@ public:
 	File &operator=(File &&) noexcept;
 
 	explicit operator bool() const;
-	explicit operator FILE*() const;
+	operator FILE*() const;
 
 private:
 	FILE *file = nullptr;

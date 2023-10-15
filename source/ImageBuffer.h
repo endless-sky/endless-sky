@@ -31,7 +31,7 @@ class ImageBuffer {
 public:
 	// When initializing a buffer, we know the number of frames but not the size
 	// of them. So, it must be Allocate()d later.
-	explicit ImageBuffer(int frames = 1);
+	ImageBuffer(int frames = 1);
 	ImageBuffer(const ImageBuffer &) = delete;
 	~ImageBuffer();
 
