@@ -64,7 +64,7 @@ namespace {
 
 
 
-void UniverseObjects::Load(TaskQueue &queue, const vector<string> &sources, bool debugMode)
+std::shared_future<void> UniverseObjects::Load(TaskQueue &queue, const vector<string> &sources, bool debugMode)
 {
 	progress = 0.;
 

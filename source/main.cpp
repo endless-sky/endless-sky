@@ -133,12 +133,12 @@ int main(int argc, char *argv[])
 
 		// Begin loading the game data.
 		bool isConsoleOnly = loadOnly || printTests || printData;
-		GameData::BeginLoad(queue, isConsoleOnly, debugMode);
+		auto dataFuture = GameData::BeginLoad(queue, isConsoleOnly, debugMode);
 
 		// If we are not using the UI, or performing some automated task, we should load
 		// all data now.
 		if(isConsoleOnly || !testToRunName.empty())
-			queue.Wait();
+			dataFuture.wait();
 
 		if(!testToRunName.empty() && !GameData::Tests().Has(testToRunName))
 		{

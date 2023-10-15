@@ -70,19 +70,25 @@ TaskQueue::~TaskQueue()
 
 // Queue a function to execute in parallel, with an another optional function that
 // will get executed on the main thread after the first function finishes.
-void TaskQueue::Run(function<void()> f, function<void()> g)
+// Returns a future representing the future result of the async call. Ignores
+// any main thread task that still need to be executed!
+std::shared_future<void> TaskQueue::Run(function<void()> asyncTask, function<void()> syncTask)
 {
+	std::shared_future<void> result;
 	{
 		lock_guard<mutex> lock(asyncMutex);
 		// Do nothing if we are destroying the queue already.
 		if(shouldQuit)
-			return;
+			return result;
 
 		// Queue this task for execution and create a future to track its state.
-		tasks.push(Task{this, std::move(f), std::move(g)});
+		tasks.push(Task{this, std::move(asyncTask), std::move(syncTask)});
 		futures.emplace_back(tasks.back().futurePromise.get_future());
+		result = futures.back();
+		tasks.back().futureIt = std::prev(futures.end());
 	}
 	asyncCondition.notify_one();
+	return result;
 }
 
 
@@ -105,21 +111,26 @@ void TaskQueue::ProcessTasks()
 
 
 
+// Whether there are any outstanding tasks left in this queue, including any outstanding tasks
+// that need to be executed on the main thread.
 bool TaskQueue::IsDone() const
 {
-	return std::all_of(futures.begin(), futures.end(), [](const shared_future<void> &future) {
-			return future.wait_for(std::chrono::seconds(0)) == future_status::ready;
-		}) && syncTasks.empty();
+	{
+		lock_guard<mutex> lock(asyncMutex);
+		if(!futures.empty())
+			return false;
+	}
+	return syncTasks.empty();
 }
 
 
-// Waits for all of this queue's task to finish.
+
+// Waits for all of this queue's task to finish while properly processes any outstanding main thread tasks.
 void TaskQueue::Wait()
 {
 	// Process tasks while any task is still being executed.
 	while(!IsDone())
 		ProcessTasks();
-	futures.clear();
 }
 
 
@@ -148,12 +159,15 @@ void TaskQueue::ThreadLoop() noexcept
 
 			if(task.sync)
 			{
+				std::size_t size;
+				{
+					unique_lock<mutex> syncLock(task.queue->syncMutex);
+					size = task.queue->syncTasks.size();
+				}
 				// If the queue's sync task is full, push this task back into the queue
 				// to help reduce load on the main thread.
-				unique_lock<mutex> syncLock(task.queue->syncMutex);
-				if(task.queue->syncTasks.size() > MAX_SYNC_TASKS)
+				if(size > MAX_SYNC_TASKS)
 				{
-					syncLock.unlock();
 					lock.lock();
 					tasks.push(std::move(task));
 					continue;
@@ -184,6 +198,10 @@ void TaskQueue::ThreadLoop() noexcept
 			task.futurePromise.set_value();
 
 			lock.lock();
+
+			// Now that the task has been executed, stop tracking the future internally.
+			// Anybody who still cares about the future will have a copy themselves.
+			task.queue->futures.erase(task.futureIt);
 		}
 
 		asyncCondition.wait(lock);

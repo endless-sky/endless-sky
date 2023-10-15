@@ -143,7 +143,7 @@ namespace {
 
 
 
-void GameData::BeginLoad(TaskQueue &queue, bool onlyLoadData, bool debugMode)
+std::shared_future<void> GameData::BeginLoad(TaskQueue &queue, bool onlyLoadData, bool debugMode)
 {
 	// Initialize the list of "source" folders based on any active plugins.
 	LoadSources(queue);
@@ -177,7 +177,7 @@ void GameData::BeginLoad(TaskQueue &queue, bool onlyLoadData, bool debugMode)
 		});
 	}
 
-	objects.Load(queue, sources, debugMode);
+	return objects.Load(queue, sources, debugMode);
 }
 
 
@@ -289,8 +289,8 @@ void GameData::Preload(TaskQueue &queue, const Sprite *sprite)
 	// Now, load all the files for this sprite.
 	preloaded[sprite] = 0;
 	auto image = dit->second;
-	return queue.Run([image] { image->Load(); },
-			[image] { image->Upload(SpriteSet::Modify(image->Name())); });
+	queue.Run([image] { image->Load(); },
+		[image] { image->Upload(SpriteSet::Modify(image->Name())); });
 }
 
 

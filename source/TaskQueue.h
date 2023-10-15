@@ -18,14 +18,17 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <functional>
 #include <future>
+#include <list>
 #include <mutex>
 #include <queue>
-#include <vector>
 
 
 
 // Class for queuing up tasks that are to be executed in parallel by using
 // every thread available on the executing CPU.
+// The queue is also responsible to execute follow-up tasks that need to
+// executed after the async task, for example uploading a loaded to the GPU
+// (which needs to happen on the main thread on OpenGL).
 class TaskQueue {
 public:
 	// An internal structure representing an async task to execute.
@@ -37,6 +40,9 @@ public:
 		// If specified, this function is called in the main thread after
 		// the function above has finished executing.
 		std::function<void()> sync;
+
+		// The pointer to the future stored in the queue.
+		std::list<std::shared_future<void>>::const_iterator futureIt;
 
 		std::promise<void> futurePromise;
 	};
@@ -51,15 +57,18 @@ public:
 
 	// Queue a function to execute in parallel, with an another optional function that
 	// will get executed on the main thread after the first function finishes.
-	void Run(std::function<void()> f, std::function<void()> g = {});
+	// Returns a future representing the future result of the async call. Ignores
+	// any main thread task that still need to be executed!
+	std::shared_future<void> Run(std::function<void()> asyncTask, std::function<void()> syncTask = {});
 
 	// Process any tasks to be scheduled to be executed on the main thread.
 	void ProcessTasks();
 
-	// Whether there are any outstanding tasks left in this queue.
+	// Whether there are any outstanding tasks left in this queue, including any outstanding tasks
+	// that need to be executed on the main thread.
 	bool IsDone() const;
 
-	// Waits for all of this queue's task to finish.
+	// Waits for all of this queue's task to finish while properly processes any outstanding main thread tasks.
 	void Wait();
 
 
@@ -69,7 +78,7 @@ public:
 
 
 private:
-	std::vector<std::shared_future<void>> futures;
+	std::list<std::shared_future<void>> futures;
 
 	// Tasks from ths queue that need to be executed on the main thread.
 	std::queue<std::function<void()>> syncTasks;
