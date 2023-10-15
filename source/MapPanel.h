@@ -184,7 +184,8 @@ private:
 	public:
 		Node(const Point &position, const Color &color, const std::string &name,
 			const Color &nameColor, const Government *government)
-			: position(std::move(position)), color(std::move(color)), name(std::move(name)), nameColor(std::move(nameColor)), government(government) {}
+			: position(std::move(position)), color(std::move(color)), name(std::move(name)),
+				nameColor(std::move(nameColor)), government(government) {}
 
 		Point position;
 		Color color;

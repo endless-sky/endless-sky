@@ -44,7 +44,7 @@ using namespace std;
 
 
 HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<void(const Government *)> bribeCallback)
-	: player(player), ship(ship), bribeCallback(std::move(bribeCallback)), sprite(ship->GetSprite()), facing(ship->Facing())
+	: player(player), ship(ship), bribeCallback(bribeCallback), sprite(ship->GetSprite()), facing(ship->Facing())
 {
 	SetInterruptible(false);
 

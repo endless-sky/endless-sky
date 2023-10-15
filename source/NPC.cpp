@@ -712,7 +712,7 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 
 	// Set the cargo for each ship in the NPC if the NPC itself has cargo settings.
 	if(overrideFleetCargo)
-		for(const auto& ship : result.ships)
+		for(const auto &ship : result.ships)
 			cargo.SetCargo(&*ship);
 
 	// String replacement:
