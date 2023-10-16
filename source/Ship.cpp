@@ -1616,7 +1616,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 // Launch any ships that are ready to launch.
 void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 {
-		// Allow carried ships to launch from a disabled ship, but not from a ship that
+	// Allow carried ships to launch from a disabled ship, but not from a ship that
 	// is landing, jumping, or cloaked. If already destroyed (e.g. self-destructing),
 	// eject any ships still docked, possibly destroying them in the process.
 	bool ejecting = IsDestroyed();
@@ -1954,8 +1954,9 @@ bool Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 				if(cloak)
 				{
 					double cloakingFiring = attributes.Get("cloaked firing");
-					// Any negative value means this does not take off any cloak.
-					cloak -= cloakingFiring > 0. ? cloakingFiring : 0.;
+					// Any negative value means shooting does not decloak.
+					if(cloakingFiring > 0)
+						cloak -= cloakingFiring;
 				}
 			}
 		}
@@ -2089,6 +2090,10 @@ bool Ship::CanLand() const
 
 bool Ship::CannotAct(ActionType actionType) const
 {
+	bool cannotAct = zoom != 1.f || isDisabled || hyperspaceCount || pilotError ||
+		(actionType == ActionType::COMMUNICATION && !Crew());
+	if(cannotAct)
+		return true;
 	bool canActCloaked = true;
 	if(cloak)
 		switch(actionType)
@@ -2112,9 +2117,7 @@ bool Ship::CannotAct(ActionType actionType) const
 				canActCloaked = attributes.Get("cloaked scanning");
 				break;
 		}
-	bool canSendHail = (actionType != ActionType::COMMUNICATION || crew);
-	return zoom != 1.f || isDisabled || hyperspaceCount || pilotError || !canSendHail
-		|| (cloak == 1. && !canActCloaked)
+	return  (cloak == 1. && !canActCloaked)
 		|| (cloak != 1. && cloak && !cloakDisruption && !canActCloaked);
 }
 

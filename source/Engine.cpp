@@ -2034,7 +2034,7 @@ void Engine::HandleMouseClicks()
 	double clickRange = 50.;
 	shared_ptr<Ship> clickTarget;
 	for(shared_ptr<Ship> &ship : ships)
-		if(ship->GetSystem() == playerSystem && &*ship != flagship && (ship->IsTargetable() || ship->IsYours()))
+		if(ship->GetSystem() == playerSystem && &*ship != flagship && ship->IsTargetable()))
 		{
 			Point position = ship->Position() - flagship->Position();
 			const Mask &mask = ship->GetMask(step);
