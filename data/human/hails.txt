@@ -5951,42 +5951,6 @@ phrase "friendly deep"
 	word
 		"."
 
-phrase "friendly deep"
-	word
-		"The Deep"
-	word
-		" "
-	word
-		"bids"
-		"wishes"
-		"offers"
-		"works to give"
-		"ensures"
-	word
-		" "
-	word
-		"you"
-		"your ship"
-		"your vessel"
-		"your enterprise"
-	word
-		" "
-	word
-		"peace, prosperity, and progress"
-		"peace"
-		"prosperity"
-		"progress"
-		"success"
-		"wealth"
-	word
-		" "
-	word
-		"in these times"
-		"in our space"
-		"throughout our space"
-		"throughout the commonwealth"
-	word
-		"."
 
 phrase "friendly deep"
 	word
@@ -5994,6 +5958,7 @@ phrase "friendly deep"
 		"We"
 		"The citizens of the Deep"
 		"The ships of the Deep"
+		"The Deep%"
 	word
 		" "
 	word
@@ -6001,6 +5966,7 @@ phrase "friendly deep"
 		"wish"
 		"offer"
 		"work to give"
+		"ensure"
 	word
 		" "
 	word
@@ -6026,6 +5992,12 @@ phrase "friendly deep"
 		"throughout the commonwealth"
 	word
 		"."
+	replace
+		"% bid" " bids"
+		"% wish" " wishes"
+		"% offer" " offers"
+		"% work to give" " works to give"
+		"% ensure" " ensures"
 
 phrase "friendly deep"
 	word
