@@ -3713,6 +3713,8 @@ bool AI::TargetMinable(Ship &ship) const
 	auto UpdateBestMinable = MinableStrategy();
 	for(auto &&minable : minables)
 	{
+		if(GetDistanceMetric(*minable) > scanRangeMetric)
+			continue;
 		if(bestMinable)
 			UpdateBestMinable(minable);
 		else
