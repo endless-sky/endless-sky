@@ -92,12 +92,9 @@ private:
 	std::map<std::string, std::vector<const Outfit *>> outfits;
 
 	// Track all the clickable parts of the UI (other than the buttons).
-	std::vector<ClickZone<int>> zonesRight;
-	std::vector<ClickZone<int>> zonesLeft;
-	std::vector<const Hardpoint *> weaponsRight;
-	std::vector<int> indicesRight;
-	std::vector<const Hardpoint *> weaponsLeft;
-	std::vector<int> indicesLeft;
+	std::vector<ClickZone<int>> weaponZones[2];
+	std::vector<const Hardpoint *> weapons[2];
+	std::vector<int> indices[2];
 	bool hoverRight = false;
 	bool dragRight = false;
 

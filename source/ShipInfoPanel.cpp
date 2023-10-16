@@ -47,6 +47,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cmath>
 #include <utility>
 
+#include "Logger.h"
+
 using namespace std;
 
 namespace {
@@ -289,10 +291,10 @@ bool ShipInfoPanel::Drag(double dx, double dy)
 
 bool ShipInfoPanel::Release(int /* x */, int /* y */)
 {
-	if(draggingIndex >= 0 && hoverIndex >= 0 && hoverIndex != draggingIndex)
+	if(draggingIndex >= 0 && hoverIndex >= 0 && (hoverIndex != draggingIndex || hoverRight != dragRight))
 	{
-		int swapHoverIndex = hoverRight ? indicesRight[hoverIndex] : indicesLeft[hoverIndex];
-		int swapDragIndex = dragRight ? indicesRight[draggingIndex] : indicesLeft[draggingIndex];
+		int swapHoverIndex = indices[hoverRight][hoverIndex];
+		int swapDragIndex = indices[dragRight][draggingIndex];
 		(**shipIt).GetArmament().Swap(swapHoverIndex, swapDragIndex);
 	}
 
@@ -329,8 +331,8 @@ void ShipInfoPanel::UpdateInfo()
 
 void ShipInfoPanel::ClearZones()
 {
-	zonesRight.clear();
-	zonesLeft.clear();
+	weaponZones[0].clear();
+	weaponZones[1].clear();
 	commodityZones.clear();
 	plunderZones.clear();
 }
@@ -339,10 +341,10 @@ void ShipInfoPanel::ClearZones()
 
 void ShipInfoPanel::SetUpHardpointCalcs(const Rectangle &bounds)
 {
-	weaponsRight.clear();
-	weaponsLeft.clear();
-	indicesRight.clear();
-	indicesLeft.clear();
+	weapons[0].clear();
+	weapons[1].clear();
+	indices[0].clear();
+	indices[1].clear();
 	maxX = 0.;
 	pageIndex = 1;
 
@@ -366,19 +368,19 @@ void ShipInfoPanel::SetUpHardpointCalcs(const Rectangle &bounds)
 	int count[2][2] = {{0, 0}, {0, 0}};
 	auto SortIntoIndices = [&] (std::vector<pair<const Hardpoint *, int>> &toSort)
 	{
-		for(pair<const Hardpoint *, int> &hardpoint : toSort)
+		for(const pair<const Hardpoint *, int> &hardpoint : toSort)
 		{
 			maxX = max(maxX, fabs(2. * hardpoint.first->GetPoint().X()));
 			++count[hardpoint.first->GetPoint().X() >= 0.][hardpoint.first->IsTurret()];
 			if(hardpoint.first->GetPoint().X() >= 0.)
 			{
-				indicesRight.emplace_back(hardpoint.second);
-				weaponsRight.emplace_back(hardpoint.first);
+				indices[0].emplace_back(hardpoint.second);
+				weapons[0].emplace_back(hardpoint.first);
 			}
 			else
 			{
-				indicesLeft.emplace_back(hardpoint.second);
-				weaponsLeft.emplace_back(hardpoint.first);
+				indices[1].emplace_back(hardpoint.second);
+				weapons[1].emplace_back(hardpoint.first);
 			}
 		}
 	};
@@ -562,14 +564,11 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 
 		double y = (weaponIndex - (pageIndex - 1) * rowsPerPage) * 20. + 40. + (isTurret) * 10.;
 		double x = right ? centerX + LABEL_DX : centerX - LABEL_DX - LABEL_WIDTH;
-		bool isHover = (weaponIndex == hoverIndex && (right ? hoverRight : !hoverRight));
+		bool isHover = (weaponIndex == hoverIndex && (right ? !hoverRight : hoverRight));
 		layout.align = right ? Alignment::LEFT : Alignment::RIGHT;
 		font.Draw({name, layout}, Point(x, y + TEXT_OFF), isHover ? bright : dim);
 		Point zoneCenter(labelCenter[right], y + .5 * LINE_HEIGHT);
-		if(right)
-			zonesRight.emplace_back(zoneCenter, LINE_SIZE, weaponIndex);
-		else
-			zonesLeft.emplace_back(zoneCenter, LINE_SIZE, weaponIndex);
+		weaponZones[right].emplace_back(zoneCenter, LINE_SIZE, weaponIndex);
 
 		// Determine what color to use for the line.
 		Color color;
@@ -596,10 +595,10 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 
 	for(int weaponIndex = (pageIndex - 1) * rowsPerPage; weaponIndex < pageIndex * rowsPerPage; weaponIndex++)
 	{
-		if(weaponsRight.size() > static_cast<unsigned int>(weaponIndex))
-			DrawElements(weaponsRight, weaponIndex, true);
-		if(weaponsLeft.size() > static_cast<unsigned int>(weaponIndex))
-			DrawElements(weaponsLeft, weaponIndex, false);
+		if(weapons[0].size() > static_cast<unsigned int>(weaponIndex))
+			DrawElements(weapons[0], weaponIndex, true);
+		if(weapons[1].size() > static_cast<unsigned int>(weaponIndex))
+			DrawElements(weapons[1], weaponIndex, false);
 	}
 
 	// Make sure the line for whatever hardpoint we're hovering is always on top.
@@ -609,7 +608,7 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	// Re-positioning weapons.
 	if(draggingIndex >= 0)
 	{
-		const Outfit *outfit = ship.Weapons()[draggingIndex].GetOutfit();
+		const Outfit *outfit = ship.Weapons()[indices[dragRight][draggingIndex]].GetOutfit();
 		string name = outfit ? outfit->DisplayName() : "[empty]";
 		Point pos(hoverPoint.X() - .5 * font.Width(name), hoverPoint.Y());
 		font.Draw(name, pos + Point(1., 1.), Color(0., 1.));
@@ -740,24 +739,26 @@ bool ShipInfoPanel::Hover(const Point &point)
 	hoverPoint = point;
 
 	hoverIndex = -1;
-	bool dragIsTurret = (draggingIndex >= 0 && weaponsRight[draggingIndex]->IsTurret());
-	for(const auto &zone : zonesRight)
+	bool dragIsTurret = (draggingIndex >= 0 && weapons[0][draggingIndex]->IsTurret());
+	for(const auto &zone : weaponZones[0])
 	{
-		bool isTurret = weaponsRight[zone.Value()]->IsTurret();
+		bool isTurret = weapons[0][zone.Value()]->IsTurret();
 		if(zone.Contains(hoverPoint) && (draggingIndex == -1 || isTurret == dragIsTurret))
 		{
 			hoverRight = true;
 			hoverIndex = zone.Value();
+			return true;
 		}
 	}
-	dragIsTurret = (draggingIndex >= 0 && weaponsLeft[draggingIndex]->IsTurret());
-	for(const auto &zone : zonesLeft)
+	dragIsTurret = (draggingIndex >= 0 && weapons[1][draggingIndex]->IsTurret());
+	for(const auto &zone : weaponZones[1])
 	{
-		bool isTurret = weaponsLeft[zone.Value()]->IsTurret();
+		bool isTurret = weapons[1][zone.Value()]->IsTurret();
 		if(zone.Contains(hoverPoint) && (draggingIndex == -1 || isTurret == dragIsTurret))
 		{
 			hoverRight = false;
 			hoverIndex = zone.Value();
+			return true;
 		}
 	}
 
