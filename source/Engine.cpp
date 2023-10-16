@@ -2191,6 +2191,8 @@ void Engine::DoCollisions(Projectile &projectile)
 					hitVelocity = ship->Velocity();
 				}
 			}
+			else
+				projectile.SetPhases(nullptr);
 		}
 		// "Phasing" projectiles can pass through asteroids. For all other
 		// projectiles, check if they've hit an asteroid that is closer than any

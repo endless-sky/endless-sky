@@ -448,12 +448,12 @@ double Projectile::DistanceTraveled() const
 
 bool Projectile::Phases(const Ship &ship) const
 {
-	return phasedShips.count(&ship);
+	return phasedShip == &ship;
 }
 
 
 
-void Projectile::SetPhases(const Ship &ship)
+void Projectile::SetPhases(const Ship *ship)
 {
-	phasedShips.emplace(&ship);
+	phasedShip = ship;
 }

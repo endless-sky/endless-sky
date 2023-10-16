@@ -2679,7 +2679,7 @@ bool Ship::Phases(Projectile &projectile) const
 	bool phases = IsCloaked() && (projectile.Phases(*this) ||
 		attributes.Get("cloak phasing") >= Random::Real());
 	if(phases)
-		projectile.SetPhases(*this);
+		projectile.SetPhases(this);
 	return phases;
 }
 
