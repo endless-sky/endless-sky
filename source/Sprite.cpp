@@ -72,8 +72,8 @@ const string &Sprite::Name() const
 
 
 
-// Upload the given frames. The given buffer will be cleared afterwards.
-void Sprite::AddFrames(ImageBuffer &buffer, bool is2x)
+	// Add the given frames, optionally uploading thyem. The given buffer will be cleared afterwards.
+void Sprite::AddFrames(ImageBuffer &buffer, bool is2x, bool enableUpload)
 {
 	// Do nothing if the buffer is empty.
 	if(!buffer.Pixels())
@@ -87,7 +87,8 @@ void Sprite::AddFrames(ImageBuffer &buffer, bool is2x)
 		frames = buffer.Frames();
 	}
 
-	AddBuffer(buffer, &texture[is2x]);
+	if(enableUpload)
+		AddBuffer(buffer, &texture[is2x]);
 }
 
 

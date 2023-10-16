@@ -69,7 +69,7 @@ string GameWindow::SDLVersions()
 
 
 
-bool GameWindow::Init()
+bool GameWindow::Init(bool isTesting)
 {
 #ifdef _WIN32
 	// Tell Windows this process is high dpi aware and doesn't need to get scaled.
@@ -79,6 +79,10 @@ bool GameWindow::Init()
 	// This sets it for both X11 and Wayland.
 	setenv("SDL_VIDEO_X11_WMCLASS", "io.github.endless_sky.endless_sky", true);
 #endif
+
+	// When running the integration tests, don't create a window nor an OpenGL context.
+	if(isTesting)
+		SDL_SetHint(SDL_HINT_VIDEODRIVER, "dummy");
 
 	// This needs to be called before any other SDL commands.
 	if(SDL_Init(SDL_INIT_VIDEO) != 0)
@@ -136,6 +140,15 @@ bool GameWindow::Init()
 	{
 		ExitWithError("Unable to create window!");
 		return false;
+	}
+
+	// Bail out early if we are testing, no need to initialize all the OpenGL stuff.
+	if(isTesting)
+	{
+		width = windowWidth;
+		height = windowHeight;
+		Screen::SetRaw(width, height);
+		return true;
 	}
 
 	// Settings that must be declared before the context creation.

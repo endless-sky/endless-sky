@@ -311,16 +311,22 @@ void ImageSet::Load() noexcept(false)
 
 
 
-// Create the sprite and upload the image data to the GPU. After this is
+// Create the sprite and optionally upload the image data to the GPU. After this is
 // called, the internal image buffers and mask vector will be cleared, but
 // the paths are saved in case the sprite needs to be loaded again.
-void ImageSet::Upload(Sprite *sprite)
+void ImageSet::Upload(Sprite *sprite, bool enableUpload)
 {
 	// Load the frames (this will clear the buffers).
-	sprite->AddFrames(buffer[0], false);
-	sprite->AddFrames(buffer[1], true);
-	sprite->AddSwizzleMaskFrames(buffer[2], false);
-	sprite->AddSwizzleMaskFrames(buffer[3], true);
+	sprite->AddFrames(buffer[0], false, enableUpload);
+	sprite->AddFrames(buffer[1], true, enableUpload);
+
+	// Swizzle masks aren't necessary when the game isn't drawn.
+	if(enableUpload)
+	{
+		sprite->AddSwizzleMaskFrames(buffer[2], false);
+		sprite->AddSwizzleMaskFrames(buffer[3], true);
+	}
+
 	GameData::GetMaskManager().SetMasks(sprite, std::move(masks));
 	masks.clear();
 }
