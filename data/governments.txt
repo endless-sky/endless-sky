@@ -195,7 +195,7 @@ government "Drak"
 	"attitude toward"
 		"Indigenous Lifeform" 1
 		"Ember Waste" 1
-		"Korath (Civilian)" 0.02
+		"Korath (Civilian)" 0.1
 
 # A Drak government that is always hostile to the player.
 government "Drak (Hostile)"
