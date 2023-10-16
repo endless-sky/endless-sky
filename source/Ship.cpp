@@ -2117,8 +2117,7 @@ bool Ship::CannotAct(ActionType actionType) const
 				canActCloaked = attributes.Get("cloaked scanning");
 				break;
 		}
-	return  (cloak == 1. && !canActCloaked)
-		|| (cloak != 1. && cloak && !cloakDisruption && !canActCloaked);
+	return (cloak == 1. && !canActCloaked) || (cloak != 1. && cloak && !cloakDisruption && !canActCloaked);
 }
 
 
