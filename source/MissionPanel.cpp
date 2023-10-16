@@ -759,7 +759,7 @@ bool MissionPanel::ControllerButtonDown(SDL_GameControllerButton button)
 		}
 		return true;
 	}
-	return false;
+	return MapPanel::ControllerButtonDown(button);
 }
 
 
