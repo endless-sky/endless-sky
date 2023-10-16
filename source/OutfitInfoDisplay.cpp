@@ -478,7 +478,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	{
 		attributeLabels.emplace_back("dropoff modifier:");
 		attributeValues.emplace_back(Format::Number(100 * fullDropoff) + "%");
-		attributesHeight +- 20;
+		attributesHeight += 20;
 	}
 
 	static const vector<pair<string, string>> VALUE_NAMES = {
