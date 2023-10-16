@@ -471,6 +471,16 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	attributeValues.emplace_back(Format::Number(outfit.Range()));
 	attributesHeight += 20;
 
+	// Identify the dropoff at range.
+	double fullDropoff = outfit.DamageDropoff(outfit.Range());
+
+	if(fullDropoff != 1.)
+	{
+		attributeLabels.emplace_back("dropoff modifier:");
+		attributeValues.emplace_back(Format::Number(100 * fullDropoff) + "%");
+		attributesHeight +- 20;
+	}
+
 	static const vector<pair<string, string>> VALUE_NAMES = {
 		{"shield damage", ""},
 		{"hull damage", ""},
@@ -552,11 +562,6 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		outfit.RelativeFiringHull() * 100.,
 		outfit.RelativeFiringShields() * 100.
 	};
-
-	// Identify the dropoff at range.
-	// This is needed in the section immediately below,
-	// and also later on when displaying single shot stats.
-	double fullDropoff = outfit.DamageDropoff(outfit.Range());
 
 	// Add any per-second values to the table.
 	double reload = outfit.Reload();
