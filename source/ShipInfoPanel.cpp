@@ -789,7 +789,7 @@ bool ShipInfoPanel::Hover(const Point &point)
 		}
 	}
 
-	dragIsTurret = (draggingIndex >= 0 && 
+	dragIsTurret = (draggingIndex >= 0 &&
 		static_cast<uint>(draggingIndex) < weapons[1].size() && weapons[1][draggingIndex]->IsTurret());
 	for(const auto &zone : weaponZones[1])
 	{
