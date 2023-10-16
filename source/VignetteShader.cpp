@@ -59,15 +59,17 @@ uniform vec2 dimensions;
 out vec4 finalColor;
 
 void main() {
+  float aspect = dimensions.y / dimensions.x;
   vec2 uv = gl_FragCoord.xy / dimensions;
-  uv = (uv - .5) * fog / (500 * zoom) + .5;
+  uv = (uv - 0.5) * vec2(1, aspect);
+  uv = uv * fog / (500 * zoom) + 0.5;
 
   if(uv.x < 0. || uv.x > 1. || uv.y < 0. || uv.y > 1.)
-    finalColor = vec4(0., 0., 0., .95);
+    finalColor = vec4(0., 0., 0., .925);
   else
   {
     uv *= 1. - uv.yx;
-    finalColor = vec4(0., 0., 0., .95 - pow(uv.x * uv.y * 18., 3.5));
+    finalColor = vec4(0., 0., 0., .925 - pow(uv.x * uv.y * 18., 3.5));
   }
 }
 	)";
