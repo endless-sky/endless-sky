@@ -3769,7 +3769,7 @@ void Ship::DoGeneration()
 			energy, burnEnergy, fuel, burnFuel, heat, burnHeat);
 	}
 
-	if (fogging)
+	if(fogging)
 	{
 		double fogResistance = attributes.Get("fog resistance");
 		double fogEnergy = attributes.Get("fog resistance energy") / fogResistance;
@@ -3895,7 +3895,7 @@ void Ship::DoPassiveEffects(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &
 		CreateSparks(visuals, "leakage spark", leakage * .1);
 	if(burning)
 		CreateSparks(visuals, "burning spark", burning * .1);
-	if (fogging)
+	if(fogging)
 		CreateSparks(visuals, "fogging spark", fogging * .1);
 }
 
