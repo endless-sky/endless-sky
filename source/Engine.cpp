@@ -1404,7 +1404,7 @@ void Engine::EnterSystem()
 				labels.emplace_back(labels, *system, object);
 	if(flagship->Cloaking() < 1)
 		for(const shared_ptr<Ship> &ship : ships)
-			if(ship->GetSystem() == system && ship->Cloaking() < 1)
+			if(ship->GetSystem() == system && ship->Cloaking() < 1.)
 				eventQueue.emplace_back(player.FlagshipPtr(), ship, ShipEvent::ENCOUNTER);
 }
 
@@ -1480,7 +1480,7 @@ void Engine::CalculateStep()
 	{
 		bool wasCloaked = it->Cloaking() == 1;
 		MoveShip(it);
-		// If we decloaked, and we're in the same system as the player, they Encounter us
+		// If we decloaked, and we're in the same system as the player, they encounter us.
 		if(wasCloaked && it->Cloaking() < 1 && flagship->GetSystem() == it->GetSystem()
 			&& flagship->Cloaking() < 1 && it.get() != flagship)
 				eventQueue.emplace_back(player.FlagshipPtr(), it, ShipEvent::ENCOUNTER);
@@ -1755,7 +1755,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 				for(const auto &sound : jumpSounds)
 					Audio::Play(sound.first, position);
 
-			if(flagship->Cloaking() < 1 && ship->Cloaking() < 1)
+			if(flagship->Cloaking() < 1. && ship->Cloaking() < 1.)
 				eventQueue.emplace_back(player.FlagshipPtr(), ship, ShipEvent::ENCOUNTER);
 		}
 	}
