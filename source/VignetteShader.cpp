@@ -63,11 +63,11 @@ void main() {
   uv = (uv - .5) * fog / (500 * zoom) + .5;
 
   if(uv.x < 0. || uv.x > 1. || uv.y < 0. || uv.y > 1.)
-    finalColor = vec4(0., 0., 0., 1.);
+    finalColor = vec4(0., 0., 0., .95);
   else
   {
     uv *= 1. - uv.yx;
-    finalColor = vec4(0., 0., 0., 1. - pow(uv.x * uv.y * 18., 3.5));
+    finalColor = vec4(0., 0., 0., .95 - pow(uv.x * uv.y * 18., 3.5));
   }
 }
 	)";
@@ -97,8 +97,8 @@ void VignetteShader::Draw(double fog, double zoom)
 	glUniform1f(fogI, static_cast<GLfloat>(fog));
 	glUniform1f(zoomI, static_cast<GLfloat>(zoom));
 	GLfloat dimensions[2] = {
-		static_cast<GLfloat>(Screen::Width()),
-		static_cast<GLfloat>(Screen::Height())};
+		static_cast<GLfloat>(Screen::RawWidth()),
+		static_cast<GLfloat>(Screen::RawHeight())};
 	glUniform2fv(dimensionsI, 1, dimensions);
 
 	// Draw the vignette.
