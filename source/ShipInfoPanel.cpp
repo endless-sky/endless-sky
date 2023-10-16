@@ -594,11 +594,11 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	};
 
 
-	for(uint weaponIndex = (pageIndex - 1) * rowsPerPage; weaponIndex < pageIndex * rowsPerPage; weaponIndex++)
+	for(int weaponIndex = (pageIndex - 1) * rowsPerPage; weaponIndex < pageIndex * rowsPerPage; weaponIndex++)
 	{
-		if(weapons[0].size() > weaponIndex)
+		if(weapons[0].size() > static_cast<uint>(weaponIndex))
 			DrawElements(weapons[0], weaponIndex, true);
-		if(weapons[1].size() > weaponIndex)
+		if(weapons[1].size() > static_cast<uint>(weaponIndex))
 			DrawElements(weapons[1], weaponIndex, false);
 	}
 
@@ -741,7 +741,7 @@ bool ShipInfoPanel::Hover(const Point &point)
 
 	hoverIndex = -1;
 	bool dragIsTurret = (draggingIndex >= 0 &&
-		draggingIndex < weapons[0].size() && weapons[0][draggingIndex]->IsTurret());
+		static_cast<uint>(draggingIndex) < weapons[0].size() && weapons[0][draggingIndex]->IsTurret());
 	for(const auto &zone : weaponZones[0])
 	{
 		bool isTurret = weapons[0][zone.Value()]->IsTurret();
@@ -754,7 +754,7 @@ bool ShipInfoPanel::Hover(const Point &point)
 	}
 
 	dragIsTurret = (draggingIndex >= 0 && 
-		draggingIndex < weapons[1].size() && weapons[1][draggingIndex]->IsTurret());
+		static_cast<uint>(draggingIndex) < weapons[1].size() && weapons[1][draggingIndex]->IsTurret());
 	for(const auto &zone : weaponZones[1])
 	{
 		bool isTurret = weapons[1][zone.Value()]->IsTurret();
