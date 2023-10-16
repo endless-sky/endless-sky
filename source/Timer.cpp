@@ -244,11 +244,11 @@ void Timer::ResetOn(ResetCondition cond, PlayerInfo &player, UI *ui)
 		timeElapsed = 0;
 		timeToWait = base + Random::Int(rand);
 		if(repeatReset || !resetFired)
-			{
-				resetAction.Do(player, ui, mission);
-				resetFired = true;
-			}
-			isActive = false;
+		{
+			resetAction.Do(player, ui, mission);
+			resetFired = true;
+		}
+		isActive = false;
 	}
 }
 
@@ -257,6 +257,8 @@ void Timer::ResetOn(ResetCondition cond, PlayerInfo &player, UI *ui)
 void Timer::Step(PlayerInfo &player, UI *ui)
 {
 	if(isComplete)
+		return;
+	if(!player.Flagship())
 		return;
 	if((system && player.Flagship()->GetSystem() != system) ||
 		(!systems.IsEmpty() && !systems.Matches(player.Flagship()->GetSystem())))

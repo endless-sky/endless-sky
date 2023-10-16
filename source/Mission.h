@@ -167,7 +167,7 @@ public:
 	// takes off from a planet, they should be added to the active ships.
 	const std::list<NPC> &NPCs() const;
 	// Get a list of timers associated with this mission.
-	std::vector<Timer> &Timers();
+	std::list<Timer> &Timers();
 	// Update which NPCs are active based on their spawn and despawn conditions.
 	void UpdateNPCs(const PlayerInfo &player);
 	// Checks if the given ship belongs to one of the mission's NPCs.
@@ -268,7 +268,7 @@ private:
 	// NPCs:
 	std::list<NPC> npcs;
 	// Timers:
-	std::vector<Timer> timers;
+	std::list<Timer> timers;
 
 	// Actions to perform:
 	std::map<Trigger, MissionAction> actions;
