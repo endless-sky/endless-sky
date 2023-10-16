@@ -293,8 +293,8 @@ bool ShipInfoPanel::Release(int /* x */, int /* y */)
 {
 	if(draggingIndex >= 0 && hoverIndex >= 0 && (hoverIndex != draggingIndex || hoverRight != dragRight))
 	{
-		int swapHoverIndex = indices[hoverRight][hoverIndex];
-		int swapDragIndex = indices[dragRight][draggingIndex];
+		int swapHoverIndex = indices[!hoverRight][hoverIndex];
+		int swapDragIndex = indices[!dragRight][draggingIndex];
 		(**shipIt).GetArmament().Swap(swapHoverIndex, swapDragIndex);
 	}
 
@@ -395,12 +395,13 @@ void ShipInfoPanel::SetUpHardpointCalcs(const Rectangle &bounds)
 	bool overflowsPage = height > bounds.Height();
 	height = overflowsPage ? bounds.Height() - HARDPOINT_PAGE_BUTTON_SPACE : height;
 	pages = overflowsPage ? 0 : 1;
+
+	// One row is 20 pixels in height, minus one for the buffer between turrets and guns.
+	rowsPerPage = static_cast<int>(height - 10.) / 20.;
+
 	// Everything fits on one page, no further calculations needed.
 	if(!overflowsPage)
 		return;
-
-	// One row is 20 pixels in height, minus one for the buffer between turrets and guns.
-	rowsPerPage = static_cast<int>(height) / 20. - 1;
 
 	// Get the total amount of pages
 	int gunPages = floor(gunRows / rowsPerPage);
@@ -564,11 +565,11 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 
 		double y = (weaponIndex - (pageIndex - 1) * rowsPerPage) * 20. + 40. + (isTurret) * 10.;
 		double x = right ? centerX + LABEL_DX : centerX - LABEL_DX - LABEL_WIDTH;
-		bool isHover = (weaponIndex == hoverIndex && (right ? !hoverRight : hoverRight));
+		bool isHover = (weaponIndex == hoverIndex && (right ? hoverRight : !hoverRight));
 		layout.align = right ? Alignment::LEFT : Alignment::RIGHT;
 		font.Draw({name, layout}, Point(x, y + TEXT_OFF), isHover ? bright : dim);
 		Point zoneCenter(labelCenter[right], y + .5 * LINE_HEIGHT);
-		weaponZones[right].emplace_back(zoneCenter, LINE_SIZE, weaponIndex);
+		weaponZones[!right].emplace_back(zoneCenter, LINE_SIZE, weaponIndex);
 
 		// Determine what color to use for the line.
 		Color color;
@@ -593,11 +594,11 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	};
 
 
-	for(int weaponIndex = (pageIndex - 1) * rowsPerPage; weaponIndex < pageIndex * rowsPerPage; weaponIndex++)
+	for(uint weaponIndex = (pageIndex - 1) * rowsPerPage; weaponIndex < pageIndex * rowsPerPage; weaponIndex++)
 	{
-		if(weapons[0].size() > static_cast<unsigned int>(weaponIndex))
+		if(weapons[0].size() > weaponIndex)
 			DrawElements(weapons[0], weaponIndex, true);
-		if(weapons[1].size() > static_cast<unsigned int>(weaponIndex))
+		if(weapons[1].size() > weaponIndex)
 			DrawElements(weapons[1], weaponIndex, false);
 	}
 
@@ -608,7 +609,7 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	// Re-positioning weapons.
 	if(draggingIndex >= 0)
 	{
-		const Outfit *outfit = ship.Weapons()[indices[dragRight][draggingIndex]].GetOutfit();
+		const Outfit *outfit = ship.Weapons()[indices[!dragRight][draggingIndex]].GetOutfit();
 		string name = outfit ? outfit->DisplayName() : "[empty]";
 		Point pos(hoverPoint.X() - .5 * font.Width(name), hoverPoint.Y());
 		font.Draw(name, pos + Point(1., 1.), Color(0., 1.));
@@ -739,7 +740,8 @@ bool ShipInfoPanel::Hover(const Point &point)
 	hoverPoint = point;
 
 	hoverIndex = -1;
-	bool dragIsTurret = (draggingIndex >= 0 && weapons[0][draggingIndex]->IsTurret());
+	bool dragIsTurret = (draggingIndex >= 0 &&
+		draggingIndex < weapons[0].size() && weapons[0][draggingIndex]->IsTurret());
 	for(const auto &zone : weaponZones[0])
 	{
 		bool isTurret = weapons[0][zone.Value()]->IsTurret();
@@ -750,7 +752,9 @@ bool ShipInfoPanel::Hover(const Point &point)
 			return true;
 		}
 	}
-	dragIsTurret = (draggingIndex >= 0 && weapons[1][draggingIndex]->IsTurret());
+
+	dragIsTurret = (draggingIndex >= 0 && 
+		draggingIndex < weapons[1].size() && weapons[1][draggingIndex]->IsTurret());
 	for(const auto &zone : weaponZones[1])
 	{
 		bool isTurret = weapons[1][zone.Value()]->IsTurret();
