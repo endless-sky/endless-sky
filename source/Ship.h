@@ -251,7 +251,7 @@ public:
 	// Check if this ship is currently able to begin landing on its target.
 	bool CanLand() const;
 	// What kind of action this is we are trying to do.
-	enum ActionType {AFTERBURNER, BOARD, COMMUNICATION, FIRE, PICKUP, SCAN};
+	enum class ActionType {AFTERBURNER, BOARD, COMMUNICATION, FIRE, PICKUP, SCAN};
 	// Check if some condition is keeping this ship from acting. (That is, it is
 	// landing, hyperspacing, cloaking without "cloaked ActionType", disabled, or under-crewed.)
 	bool CannotAct(ActionType actionType) const;
