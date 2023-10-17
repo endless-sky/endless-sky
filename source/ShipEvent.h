@@ -68,7 +68,7 @@ public:
 		// This ship just jumped into a different system.
 		JUMP = (1 << 9),
 		// This ship just met another ship for the first time
-		ENCOUNTER = (1 << 10)
+		ENCOUNTER = (1 << 10),
 	};
 
 

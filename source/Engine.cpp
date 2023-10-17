@@ -1396,7 +1396,7 @@ void Engine::EnterSystem()
 		Messages::Add(GameData::HelpMessage("basics 2"), Messages::Importance::High);
 	}
 
-	if(flagship->Cloaking() < 1)
+	if(flagship->Cloaking() < 1.)
 		for(const shared_ptr<Ship> &ship : ships)
 			if(ship->GetSystem() == system && ship->Cloaking() < 1.)
 				eventQueue.emplace_back(player.FlagshipPtr(), ship, ShipEvent::ENCOUNTER);
@@ -1476,11 +1476,11 @@ void Engine::CalculateStep()
 	{
 		if(it == player.FlagshipPtr())
 			continue;
-		bool wasCloaked = it->Cloaking() == 1;
+		bool wasCloaked = (it->Cloaking() == 1.);
 		MoveShip(it);
-		// If we decloaked, *or* the player decloaked, and we're in the same system as the player, they encounter us
-		if(((wasCloaked && it->Cloaking() < 1) || (flagshipWasCloaked && flagship->Cloaking() < 1))
-			&& flagship->GetSystem() == it->GetSystem() && flagship->Cloaking() < 1 && it.get() != flagship)
+		// If we decloaked, *or* the player decloaked, and we're in the same system as the player, they encounter us.
+		if(((wasCloaked && it->Cloaking() < 1.) || (flagshipWasCloaked && flagship->Cloaking() < 1.))
+			&& flagship->GetSystem() == it->GetSystem() && flagship->Cloaking() < 1.)
 				eventQueue.emplace_back(player.FlagshipPtr(), it, ShipEvent::ENCOUNTER);
 	}
 	// If the flagship just began jumping, play the appropriate sound.
