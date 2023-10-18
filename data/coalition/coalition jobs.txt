@@ -1333,7 +1333,8 @@ mission "Coalition: From Games 3"
 mission "Heliarchs Buy Jump Drive Job 1"
 	job
 	name "Sell Jump Drive"
-	description "Sell a jump drive to the Heliarchs for <payment> credits."
+	"apparent payment" 5000000
+	description "Sell a jump drive to the Heliarchs for <payment>."
 	source
 		government "Heliarch"
 	to offer
@@ -1377,6 +1378,7 @@ mission "Heliarchs Buy Jump Drive Job 2"
 	job
 	repeat
 	name "Sell Jump Drive"
+	"apparent payment" 5000000
 	description "Sell a jump drive to the Heliarchs for <payment>."
 	source
 		government "Heliarch"
