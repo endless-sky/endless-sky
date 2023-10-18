@@ -352,7 +352,8 @@ Comment:
  Taken from unsplash.com and added to the game after June 2017. If the pictures were
  uploaded to unsplash.com before June 2017, they were donated and placed in the public
  domain. If the pictures were uploaded to unsplash.com after June 2017, they are subject
- to the Unsplash License.
+ to the Unsplash License. If they were also uploaded after February 2018, they are
+ subject to additional restrictions.
 
 Files:
  images/outfit/quarg?skylance*
@@ -628,7 +629,8 @@ Copyright: John Fowler
 License: Unsplash License
 Comment:
  Taken from https://unsplash.com/photos/7Ym9rpYtSdA. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the Unsplash License.
+ unsplash.com after June 2017, so it is subject to the Unsplash License. It was
+ uploaded before February 2018, so it is not subject to the additional restriction.
 
 Files:
  images/land/badlands10*
@@ -737,7 +739,8 @@ Comment:
  Taken from unsplash.com and added to the game after June 2017. If the pictures were
  uploaded to unsplash.com before June 2017, they were donated and placed in the public
  domain. If the pictures were uploaded to unsplash.com after June 2017, they are subject
- to the Unsplash License.
+ to the Unsplash License. If they were also uploaded after February 2018, they are
+ subject to additional restrictions.
 
 Files:
  images/land/lava0*
@@ -2101,7 +2104,8 @@ Comment:
  Taken from unsplash.com and added to the game after June 2017. If the pictures were
  uploaded to unsplash.com before June 2017, they were donated and placed in the public
  domain. If the pictures were uploaded to unsplash.com after June 2017, they are subject
- to the Unsplash License.
+ to the Unsplash License. If they were also uploaded after February 2018, they are
+ subject to additional restrictions.
 
 Files:
  images/scene/hroar*
@@ -2185,7 +2189,8 @@ Comment:
  Taken from unsplash.com, cropped, and added to the game after June 2017. If the pictures
  were uploaded to unsplash.com before June 2017, they were donated and placed in the public
  domain. If the pictures were uploaded to unsplash.com after June 2017, they are subject
- to the Unsplash License.
+ to the Unsplash License. If they were also uploaded after February 2018, they are
+ subject to additional restrictions.
 
 Files:
  images/ui/red?alert*
@@ -2220,7 +2225,9 @@ License: Depends
  uploaded after that date subject to a permissive license (the "Unsplash License.") These pictures were added
  to the game after June 2017, but could have been uploaded before then. Therefore, the license of these images
  depends on when they were uploaded. If they were uploaded before June 2017, they are in the public domain. If
- they were uploaded after June 2017, they are subject to the Unsplash License.
+ they were uploaded after June 2017, they are subject to the Unsplash License. Additionally, all images uploaded
+ to Unsplash after February 2018 cannot be sold without making "significant alterations" as they are subject to 
+ more restrictive terms and conditions.
 
 License: Unsplash License
  Unsplash grants you an irrevocable, nonexclusive, worldwide copyright
