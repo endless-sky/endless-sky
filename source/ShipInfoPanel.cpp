@@ -433,7 +433,7 @@ void ShipInfoPanel::SetUpHardpointCalcs(const Rectangle &bounds)
 	pages = overflowsPage ? 0 : 1;
 
 	// One row is 20 pixels in height, minus one for the buffer between turrets and guns.
-	rowsPerPage = static_cast<int>(height - 10.) / 20.;
+	rowsPerPage = static_cast<int>(height - 10. * (gunRows && turretRows)) / 20.;
 
 	// Everything fits on one page, no further calculations needed.
 	if(!overflowsPage)
