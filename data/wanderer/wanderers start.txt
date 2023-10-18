@@ -192,7 +192,7 @@ mission "Wanderers: Diplomacy"
 		log "People" "Sayari" `Now that the crisis with humanity is over she has volunteered to serve as a translator and be the Hai diplomat to the Wanderers as a capstone for her career.`
 		conversation
 			`As you are approaching Hai-home, you contact the Hai government and inform them that you have found new aliens to the north. You submit a request for ambassadorial assistance to help you communicate with the aliens to the north, who seem to speak the Hai language. They immediately direct you to a now familiar private government hangar, where a familiar diplomat meets you.`
-			`	"Good to see you again Captain <last>, I have arranged for some refreshments so please, come and tell me all about these new aliens you have discovered!"`
+			`	"Good to see you again Captain <last>. I have arranged for some refreshments so please, come and tell me all about these new aliens you have discovered!"`
 			`	Her exuberance is catching and after recent stressful events you see a new side to her as you relay your experience with the bird-like aliens. You realize that opportunities like this are why she became a diplomat in the first place and that this is, to some degree, a dream come true.`
 			`	"So in conclusion, it seems you need a translator," she says with a wry smile.`
 			choice
@@ -991,7 +991,7 @@ mission "Wanderers: Alpha Surveillance A"
 		dialog phrase "generic waypoint on visit"
 	on complete
 		log "Planted some surveillance devices, designed by the Wanderers, in Unfettered Hai space. A month from now, they will be done collecting data on ship movements in the area, and may provide a hint of where the Alphas who are selling jump drives to the Unfettered are coming from."
-		log "People" "Hiyamaharu" `Hiyamaharu is an aged Hai ambassador. He appears to have taken of Sayari's role in dealing with humans since her departure from Hai space.`
+		log "People" "Hiyamaharu" `Hiyamaharu is an aged Hai ambassador. He appears to have taken up Sayari's role in dealing with humans since her departure from Hai space.`
 		event "wanderers: alpha surveillance done" 30
 		conversation
 			`The surveillance cubes have all been deployed. While you wait for them to collect their recordings of the ship traffic in the Unfettered systems, you stop by the Hai center of government and ask for the human ambassador. With the combination of your reputation and the more recent discovery of the Wanderers, they quickly give you an appointment.`
@@ -2039,13 +2039,13 @@ mission "Wanderers Hai Assistance 3"
 			`	"Better to die asserting our strength than to live with our hands outstretched to beg," says one of the chiefs.`
 			branch positive
 				"reputation: Hai (Unfettered)" > 0
-			`	You are unable to convince them to change their plans, and as soon as the conversation ends General Choot'k insists that you leave their planet, "You were afforded a safe arrival here because of our history with the mighty Captain <last>, but now you must leave."`
+			`	You are unable to convince them to change their plans, and as soon as the conversation ends General Choot'k insists that you leave their planet. "You were afforded a safe arrival here because of our history with the mighty Captain <last>, but now you must leave."`
 			`	"Beware! Our warriors in orbit are eager to test themselves against this famous human's strength," says one of the chiefs, laughing.`
 			`	As you and Sayari board your ship she mutters to you, "I was told to expect this, there's no need to stay and fight."`
 			`	You are unable to convince them to change their plans, and as soon as the conversation ends they insist that you leave their planet. "Our warriors in orbit are eager to test this human's strength," says one of the chiefs, laughing.`
 				launch
 			label positive
-			`	You are unable to convince them to change their plans, and as soon as the conversation ends General Choot'k insists that you leave their planet, "You are a respected warrior Captain <last>, but now you must leave with this Fettered diplomat."`
+			`	You are unable to convince them to change their plans, and as soon as the conversation ends General Choot'k insists that you leave their planet. "You are a respected warrior, Captain <last>, but now you must leave with this Fettered diplomat."`
 			`	As you and Sayari board your ship she mutters to you, "I was told to expect this, but it was only right to try."`
 				launch
 	on visit

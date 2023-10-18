@@ -44,7 +44,7 @@ mission "Hai Reveal Exploration Period: Concerned Hai"
 			`	He shrugs. "Personally, I think it's a gross habit, but it's far from being the only addictive substance around. It gives Hai a slightly improved intuition for maths by the way, not quite the same effect as on humans. Which is why it's popular with merchants, but that captain has had some bad luck, and they'd been sold out at his last three stops."`
 			choice
 				`	"Sounds like the supply is short."`
-				`	"Sounds like a recipe for danger. Are you ok?"`
+				`	"Sounds like a recipe for danger. Are you okay?"`
 					goto danger
 			`	He makes a very human-sounding tutting noise with his tongue and chuckles. "It's not that short. The brands are still manufactured here, and they have supply stockpiles because the imports are irregular anyway. It's just addicts being addicts.`
 			label danger
@@ -53,7 +53,7 @@ mission "Hai Reveal Exploration Period: Concerned Hai"
 			choice
 				`	"No thank you, have a nice day!"`
 					goto "no purchase"
-				`	"Just a snack thanks."`
+				`	"Just a snack, thanks."`
 				`	"Do you have coffee?"`
 			`	You make your purchase and go about your business.`
 				decline
@@ -63,7 +63,7 @@ mission "Hai Reveal Exploration Period: Concerned Hai"
 			
 			label "query an onlooker"
 			`	Before the crowd disperses fully you spot a Hai waving goodbye to a human walking away from you, and quickly make your way over to him.`
-			`	"Ah, hello uh, Captain? Were you looking for me?"`
+			`	"Ah, hello uh... Captain? Were you looking for me?"`
 			choice
 				`	"Could I ask you a question?"`
 				`	"What was all that about?"`
@@ -156,7 +156,7 @@ mission "Hai Reveal Exploration Period: Local Human Merchants Speak Up"
 		conversation
 			branch "last go"
 				"HREP: Local Human Merchants (defer count)" = 2
-			`While organizing your ship to be refueled, a distinctly not-Hai conversation that the captain of the ship parked in the next bay is having with one of his crew can be heard.`
+			`While organizing for your ship to be refueled, a distinctly not-Hai conversation that the captain of the ship parked in the next bay is having with one of his crew can be heard.`
 			`	They look like they're almost ready to depart.`
 			choice
 				`	(Approach them.)`
@@ -250,7 +250,7 @@ mission "Hai Reveal Exploration Period: Local Human Merchants Speak Up"
 			
 			label "last go" # Third option start.
 			# If the dice did not see fit to give you an encounter the first two times, the third time will trigger this.
-			`While briefly reviewing the job board, a woman sidles up next you and scans it with clear purpose. "Ahhah!" she says, tapping on her pad, and a moment later a passenger transport job that didn't pay particularly well changes status to 'claimed'.`
+			`While briefly reviewing the job board, a woman sidles up next you and scans it with clear purpose. "Ah ha!" she says, tapping on her pad, and a moment later a passenger transport job that didn't pay particularly well changes status to 'claimed'.`
 			choice
 				`	"You seem very focused?"`
 				`	(Say nothing.)`
@@ -473,7 +473,7 @@ mission "Hai Reveal Concern Period: Humans Going Home"
 				decline
 	on complete
 		payment 100000
-		dialog `The little group of business partners depart from your ship, and their representative addresses you again, "Very pleasant little ride, Captain. We have transferred <payment> as agreed, we were even able to conduct some lucrative business opportunities from within your ship. Until next time, <last>."`
+		dialog `The little group of business partners depart from your ship, and their representative addresses you again, "Very pleasant little ride, Captain. We have transferred <payment> as agreed, and we were even able to conduct some lucrative business opportunities from within your ship. Until next time, <last>."`
 
 
 
@@ -563,7 +563,7 @@ mission "Hai Reveal Concern Period: Raid on Allhome (away)"
 			
 			`	As you approach the human, a relatively young-looking man, glances up at you. "Oh hello, just arrived did you? You didn't happen to see an Argosy out there on your way in?"`
 			`	"Oh shush," says the Hai, "Your uncle will be here when he said he will, no need to bother random folks just going about their business."`
-			`	She looks at you with a wary eye, but then seems to relent. "Though I suppose you did come over here of your own volition didn't you. Can we help you at all, Captain?"`
+			`	She looks at you with a wary eye, but then seems to relent. "Though I suppose you did come over here of your own volition, didn't you. Can we help you at all, Captain?"`
 			choice
 				`	"Is this a common problem for Allhome?"`
 				`	"I heard you say this happened on Solace?"`
@@ -580,14 +580,14 @@ mission "Hai Reveal Concern Period: Raid on Allhome (away)"
 			
 			label resolve
 			`	His lip quivers, and she takes his hand firmly in her own. "You are safe with your uncle and I," she says, forcefully emphasizing the word 'are', "it will take far more than some pressure from a few pirates to threaten the peace here."`
-			`	He nods and stands up, heading towards the restroom. "Excuse me Auntie, I need a minute."`
+			`	He nods and stands up, heading towards the restroom. "Excuse me, Auntie, I need a minute."`
 			
 			choice
 				`	"I'll leave you in peace."`
 					goto peace
-				`	"Will he be ok?"`
+				`	"Will he be okay?"`
 					goto "him ok"
-				`	"Are you ok?"`
+				`	"Are you okay?"`
 					goto "she ok"
 				`	"You're his aunt?"`
 			`	She gives you a strange look, as if unsure whether to dignify that with a response, and then answers. "His mother was in the militia during the war. She died. His father did not survive that loss. He came to be looked after by his uncle who had heard rumors of the Hai, and couldn't afford to both look after him and pay his debts in the Free Worlds. So they came here and found me."`
@@ -655,7 +655,7 @@ mission "Hai Reveal Concern Period: Reactivating Sandsnap"
 			`	There is a greeter, or perhaps a security guard, at the door who appraises you as you approach. "You must be here for the project," he says. "Identification please."`
 			`	After a quick check of your ID he gives you a very professional Hai smile. "Welcome to the Sandsnap Project. Your credentials are sufficient to apply so please, do come in. We hope you'll find the project interesting and the effort rewarding."`
 			`	As you enter a harried Hai gestures you over with enthusiasm. "Greetings," he checks his tablet. "Captain <last>! Your presence in these dire times is greatly appreciated, it has been at least a hundred years since we have had such a threat to our way of life! You must have noticed the spike in pirate activity. Perhaps our northern brethren have had a point all these years."`
-			`	He stops himself. "Not that our politics probably concern you, let us cut to the matter at hand, shall we?"`
+			`	He stops himself. "Not that our politics probably concern you. Let us cut to the matter at hand, shall we?"`
 			choice
 				`	(Nod.)`
 					goto border
@@ -676,7 +676,7 @@ mission "Hai Reveal Concern Period: Reactivating Sandsnap"
 			choice
 				`	"Let's go."`
 					goto depart
-				`	"We were getting paid for this right?"`
+				`	"We were getting paid for this, right?"`
 			`	She blinks in surprise. "Of course, didn't they tell you? Nevermind, you can confirm the details with Heyru after I've checked your vessel."`
 			label depart
 			`	You show her to her bunks. She seems satisfied, and immediately begins calling people to get things sorted. She does not seem to be the kind for casual conversation.`
