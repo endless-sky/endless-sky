@@ -170,26 +170,26 @@ fleet "Incipias Standard Mining"
 	personality
 		timid mining harvests coward
 	variant 2
-		"Nimbus"
+		"Nimbus (Mining)"
 	variant 5
 		"Nimbo Stratus"
 	variant 5
 		"Nimbo Stratus" 2
 	variant 1
 		"Nimbo Stratus"
-		"Nimbus"
+		"Nimbus (Mining)"
 
 fleet "Incipias Standard Trade"
 	government "Incipias Civilian"
 	names "incipias civilian"
-	cargo 4
+	cargo 50
 	personality
 		confusion 40
 		timid appeasing
 	variant 5
 		"Nimbo Cirrus"
 	variant 1
-		"Nimbus"
+		"Nimbus (Civil)"
 	variant 4
 		"Nimbo Cirrus" 2
 	variant 3
@@ -201,7 +201,7 @@ fleet "Incipias Standard Trade"
 		"Nimbo Cirrus"
 	variant 1
 		"Nimbo Cirrus" 2
-		"Nimbus"
+		"Nimbus (Civil)"
 
 outfitter "Hicemus"
 	"Plasma Discharger"
@@ -233,11 +233,12 @@ news "Incipias common"
 	message
 		phrase
 			"incipias common hard defined"
+			"incipias common praise"
 
 phrase "incipias common"
 	phrase
 		"incipias common hard defined"
-		"incipias common generated"
+		"incipias common praise"
 
 phrase "incipias common hard defined"
 	word
@@ -248,8 +249,9 @@ phrase "incipias common hard defined"
 		"It has been [some, a lot of] time since the last great breakthrough has been achieved. The government [says, promises us] that they are working on something, but my guess is that they have no clue what to do."
 		"I saw a plasma discharger with a [leak, crack] not so long ago. The ship looked good from the outside, but the inside was a firestorm."
 		"I have never seen something like [you, your species]. Why don't you float like us?"
+		"I was on a mining mission not so long ago when I saw a goverment ship drop a small box. The box accelerated really fast in one direction and disappeared with a flash."
 
-phrase "incipias common generated"
+phrase "incipias common praise"
 	word
 		"These technologies"
 		"These [ships, relocation mechanisms]"
@@ -267,10 +269,38 @@ phrase "incipias common generated"
 		" "
 	word
 		"are very impressive."
-		"look very impressive."
 		"are very efficient."
-		"look very efficient."
 		"look very stylish."
+
+phrase "incipias common disabled"
+	word
+		"Friend"
+		"[Known one, Stranger]"
+		"Fellow Captain"
+	word
+		", I am "
+	word
+		"in a [bad, unlucky] situation"
+		"in trouble"
+		"in need of repairs"
+		"[unable to fly, near death]"
+		"on the brink of getting useless"
+	word
+		" could you please "
+	word
+		"assist me"
+		"[repair, safe] me"
+		"perform an outstanding deed"
+	word
+		"?"
+
+phrase "incipias hostile disabled"
+	word
+		"Would you really take [lifes, the future]?"
+		"Where is your honor?"
+		"What would happen to our civilisation if there were more like you?"
+		"Stop your [rampage, chaos]!"
+		"Do you not value [life, future]?"
 
 news "Hicemus official"
 	location
@@ -285,6 +315,7 @@ news "Hicemus official"
 			"Have you seen our newest engines? They are much more efficient than anything before them."
 			"Our technology is superior. No one can question our authority."
 			"As long as we exist, we will progress."
+			"The beginning of a new age of space travel is near."
 
 # is this ok derpy? XD
 news "special"

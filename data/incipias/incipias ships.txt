@@ -111,6 +111,25 @@ ship "Nimbus"
 	description "The Nimbus is the first spaceship that the Incipias built that was really able to navigate through a system. Since it was first manufactured it has been loved among wealthier captains and a dream of captains just starting out."
 	description "Although the Nimbus is labeled as a medium warship, it is a multi-purpose ship. Whether one uses it for mining, passengers or cargo it will perform its job nicely. It is only occasionally used in combat because the Incipias are not fighting open wars."
 
+ship "Nimbus" "Nimbus (Civil)"
+	outfits
+		"Liquid-Class Shield"
+		"Liquid Hydrogen Cell"
+
+		"MH Red-Class Engine"
+		"MH Red-Class Steering"
+
+ship "Nimbus" "Nimbus (Mining)"
+	outfits
+		"Liquid-Class Shield"
+		"Liquid Hydrogen Cell"
+		"Plasma Discharger" 4
+		"Tractor Beam" # to be replaced with a floatsam tractor beam
+		"Heavy Machine Gun" 20
+
+		"MH Red-Class Engine"
+		"MH Red-Class Steering"
+
 ship "Nimbo Stratus"
 	"plural" "Strati"
 	"sprite" ship/stratus

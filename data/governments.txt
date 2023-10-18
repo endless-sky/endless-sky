@@ -661,6 +661,9 @@ government "Hicemus"
 	"attitude toward"
 		"Conlatio" 1
 		"Incipias Civilian" 1
+	"friendly hail" "incipias common"
+	"friendly disabled hail" "incipias common disabled"
+	"hostile disabled hail" "incipias hostile disabled"
 
 government "Conlatio"
 	swizzle 0
@@ -672,6 +675,9 @@ government "Conlatio"
 	"attitude toward"
 		"Hicemus" 1
 		"Incipias Civilian" 1
+	"friendly hail" "incipias common"
+	"friendly disabled hail" "incipias common disabled"
+	"hostile disabled hail" "incipias hostile disabled"
 
 government "Incipias Civilian"
 	swizzle 0
@@ -683,6 +689,9 @@ government "Incipias Civilian"
 	"attitude toward"
 		"Hicemus" 1
 		"Conlatio" 1
+	"friendly hail" "incipias common"
+	"friendly disabled hail" "incipias common disabled"
+	"hostile disabled hail" "incipias hostile disabled"
 
 color "governments: Independent" .78 .36 .36
 
