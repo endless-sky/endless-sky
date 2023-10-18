@@ -1160,6 +1160,7 @@ government "Quarg (Hai)"
 		"Quarg (Kor Efret)" 1
 		"Quarg (Gegno)" 1
 		"Merchant" .01
+		"Kor Sestor" -.01
 		"Hai" .01
 		"Hai (Wormhole Access)" .01
 		"Pirate" -.01
