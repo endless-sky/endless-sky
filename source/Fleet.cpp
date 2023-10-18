@@ -306,7 +306,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 				if(object.GetPlanet() == planet)
 					stellarObjects.push_back(&object);
 
-			// If the souce planet isn't in the source for some reason, bail out.
+			// If the source planet isn't in the source for some reason, bail out.
 			if(stellarObjects.empty())
 			{
 				// Log this error.
