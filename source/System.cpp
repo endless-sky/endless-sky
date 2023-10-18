@@ -48,7 +48,7 @@ const double System::DEFAULT_NEIGHBOR_DISTANCE = 100.;
 
 
 
-System::Asteroid::Asteroid(const string &name, int count, double energy)
+System::Asteroid::Asteroid(string name, int count, double energy)
 	: name(std::move(name)), count(count), energy(energy)
 {
 }

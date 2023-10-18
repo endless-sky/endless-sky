@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Visual.h"
 
 #include <cmath>
+#include <utility>
 
 using namespace std;
 
@@ -35,7 +36,7 @@ const int Flotsam::TONS_PER_BOX = 5;
 
 
 // Constructors for flotsam carrying either a commodity or an outfit.
-Flotsam::Flotsam(const string &commodity, int count, const Government *sourceGovernment)
+Flotsam::Flotsam(string commodity, int count, const Government *sourceGovernment)
 	: commodity(std::move(commodity)), count(count), sourceGovernment(sourceGovernment)
 {
 	lifetime = Random::Int(3600) + 7200;

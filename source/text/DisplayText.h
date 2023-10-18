@@ -26,7 +26,7 @@ class DisplayText {
 public:
 	DisplayText() = default;
 	DisplayText(const char *text, Layout layout);
-	DisplayText(const std::string &text, Layout layout);
+	DisplayText(std::string text, Layout layout);
 
 	const std::string &GetText() const noexcept;
 	const Layout &GetLayout() const noexcept;

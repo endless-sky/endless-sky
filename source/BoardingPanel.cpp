@@ -39,6 +39,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include <algorithm>
+#include <utility>
 
 using namespace std;
 
@@ -535,8 +536,8 @@ void BoardingPanel::DoKeyboardNavigation(const SDL_Keycode key)
 // Functions for BoardingPanel::Plunder:
 
 // Constructor (commodity cargo).
-BoardingPanel::Plunder::Plunder(const string &commodity, int count, int unitValue)
-	: name(commodity), outfit(nullptr), count(count), unitValue(unitValue)
+BoardingPanel::Plunder::Plunder(string commodity, int count, int unitValue)
+	: name(std::move(commodity)), outfit(nullptr), count(count), unitValue(unitValue)
 {
 	UpdateStrings();
 }

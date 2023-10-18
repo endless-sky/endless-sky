@@ -183,7 +183,7 @@ bool ImageSet::IsDeferred(const string &path)
 
 
 
-ImageSet::ImageSet(const string &name)
+ImageSet::ImageSet(string name)
 	: name(std::move(name))
 {
 }

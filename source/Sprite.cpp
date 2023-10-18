@@ -58,7 +58,7 @@ namespace {
 
 
 
-Sprite::Sprite(const string &name)
+Sprite::Sprite(string name)
 	: name(std::move(name))
 {
 }

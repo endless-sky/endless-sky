@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cstdint>
 #include <string>
+#include <utility>
 #include <vector>
 
 
@@ -39,7 +40,7 @@ public:
 	class Entry {
 	public:
 		Entry() = default;
-		Entry(int step, const std::string &message, Importance importance)
+		Entry(int step, std::string message, Importance importance)
 			: step(step), message(std::move(message)), importance(importance) {}
 
 		int step;

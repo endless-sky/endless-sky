@@ -3475,7 +3475,7 @@ int Ship::StepDestroyed(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flot
 				Point effectVelocity = velocity + angle.Unit() * (scale * Random::Real());
 				Point effectPosition = position + radius * angle.Unit();
 
-				visuals.emplace_back(*effect, std::move(effectPosition), std::move(effectVelocity), std::move(angle));
+				visuals.emplace_back(*effect, effectPosition, effectVelocity, angle);
 			}
 
 			for(unsigned i = 0; i < explosionTotal / 2; ++i)
@@ -4540,7 +4540,7 @@ void Ship::CreateExplosion(vector<Visual> &visuals, bool spread)
 				double scale = .04 * (Width() + Height());
 				effectVelocity += Angle::Random().Unit() * (scale * Random::Real());
 			}
-			visuals.emplace_back(*it->first, angle.Rotate(point) + position, std::move(effectVelocity), angle);
+			visuals.emplace_back(*it->first, angle.Rotate(point) + position, effectVelocity, angle);
 			++explosionCount;
 			return;
 		}
