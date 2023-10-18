@@ -68,7 +68,7 @@ private:
 	};
 
 
-	// A Part represents a the content contained by a "word", "phrase", or "replace" child node.
+	// A Part represents the content contained by a "word", "phrase", or "replace" child node.
 	class Part {
 	public:
 		// Sources of text, either literal or via phrase invocation.

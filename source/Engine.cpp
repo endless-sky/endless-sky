@@ -1961,7 +1961,7 @@ void Engine::HandleKeyboardInputs()
 	{
 		// Translate shift+BACK to a command to a STOP command to stop all movement of the flagship.
 		// Translation is done here to allow the autopilot (which will execute the STOP-command) to
-		// act on a single STOP command instead of the shift+BACK modifier).
+		// act on a single STOP command instead of the shift+BACK modifier.
 		if(keyHeld.Has(Command::BACK))
 		{
 			activeCommands |= Command::STOP;
