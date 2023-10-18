@@ -184,6 +184,7 @@ void DistanceMap::Init(const Ship *ship)
 	// hyperdrive capability and no jump drive.
 	if(ship)
 	{
+		this->ship = ship;
 		hyperspaceFuel = ship->JumpNavigation().HyperdriveFuel();
 		jumpFuel = ship->JumpNavigation().JumpDriveFuel();
 		jumpRange = ship->JumpNavigation().JumpRange();
@@ -261,9 +262,9 @@ void DistanceMap::Init(const Ship *ship)
 				}
 
 		// Bail out if the maximum number of systems is reached.
-		if(hyperspaceFuel && !Propagate(top, false, ship))
+		if(hyperspaceFuel && !Propagate(top, false))
 			break;
-		if(jumpFuel && !Propagate(top, true, ship))
+		if(jumpFuel && !Propagate(top, true))
 			break;
 	}
 }
@@ -271,7 +272,7 @@ void DistanceMap::Init(const Ship *ship)
 
 
 // Add the given links to the map. Return false if an end condition is hit.
-bool DistanceMap::Propagate(Edge edge, bool useJump, const Ship *ship)
+bool DistanceMap::Propagate(Edge edge, bool useJump)
 {
 	edge.fuel += (useJump ? jumpFuel : hyperspaceFuel);
 	for(const System *link : (useJump ? edge.next->JumpNeighbors(jumpRange) : edge.next->Links()))
@@ -279,8 +280,7 @@ bool DistanceMap::Propagate(Edge edge, bool useJump, const Ship *ship)
 		// Find out whether we already have a better path to this system, and
 		// check whether this link can be traveled. If this route is being
 		// selected by the player, they are constrained to known routes.
-		if((ship && ship->IsRestrictedFrom (*link))
-				|| HasBetter(*link, edge) || !CheckLink(*edge.next, *link, useJump))
+		if(HasBetter(*link, edge) || !CheckLink(*edge.next, *link, useJump))
 			continue;
 
 		Add(*link, edge);
@@ -315,12 +315,12 @@ void DistanceMap::Add(const System &to, Edge edge)
 
 
 // Check whether the given link is travelable. If no player was given in the
-// constructor then this is always true; otherwise, the player must know
+// constructor then this depends on travel restrictions; otherwise, the player must know
 // that the given link exists.
 bool DistanceMap::CheckLink(const System &from, const System &to, bool useJump) const
 {
 	if(!player)
-		return true;
+		return !ship || !ship->IsRestrictedFrom(to);
 
 	if(!player->HasSeen(to))
 		return false;
