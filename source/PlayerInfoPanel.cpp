@@ -916,6 +916,6 @@ PlayerInfoPanel::SortableColumn::SortableColumn(
 	Layout layout,
 	InfoPanelState::ShipComparator *shipSort
 )
-: name(std::move(name)), offset(offset), endX(endX), layout(layout), shipSort(shipSort)
+	: name(std::move(name)), offset(offset), endX(endX), layout(layout), shipSort(shipSort)
 {
 }
