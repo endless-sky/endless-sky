@@ -169,7 +169,7 @@ int main(int argc, char *argv[])
 			// then check the default state of the universe.
 			if(!player.LoadRecent())
 				GameData::CheckReferences();
-			cout << "Parse completed with " << (hasErrors ? "more than one" : "no") << " error(s)." << endl;
+			cout << "Parse completed with " << (hasErrors ? "at least one" : "no") << " error(s)." << endl;
 			return hasErrors;
 		}
 		assert(!isConsoleOnly && "Attempting to use UI when only data was loaded!");
