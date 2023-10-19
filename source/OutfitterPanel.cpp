@@ -46,7 +46,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	// Label for the decription field of the detail pane.
+	// Label for the description field of the detail pane.
 	const string DESCRIPTION = "description";
 
 	// Determine the refillable ammunition a particular ship consumes or stores.
