@@ -31376,6 +31376,7 @@ system Sheratan
 	link Iklil
 	link Noitakt
 	link Zaurak
+	link Sheliak
 	asteroids "large rock" 1 1.358
 	asteroids "large metal" 2 1.218
 	trade Clothing 304
