@@ -569,7 +569,7 @@ mission "Gegno Anticipation"
 			branch "negative rep"
 				has or
 					"reputation: Gegno Vi" < 0
-					"reputation: Gegno Scin" < 0				
+					"reputation: Gegno Scin" < 0
 
 			`Once you land on the ringworld, you are greeted by a small group of Quarg who quickly motion you to follow them. They escort you through various halls of the ring, still seemingly lacking presence of the Gegno. Down at the end of the next corridor, you see Adrauni waiting for you, though beside him is a Gegno in some form of strange attire. Once you meet up with them, the other Quarg head off to a different direction, and Adrauni begins walking down another hallway. "Please, indulge in accompanying us."`
 			`	As you follow them, Adrauni begins to speak while holding out one arm. "If you may, as humans say, humor me, what do you suspect was the result of my negotiations with the Gegno?"`
@@ -745,7 +745,7 @@ mission "Gegno Anticipation"
 				`	"I don't know."`
 					goto "dont know"
 
-			`	Adrauni ponders for a few moments. "That is a rather human response. Although we Quarg are, by your definition, minimally tolerative of your species, access to only some of our wonderous worlds we give you. However, what of humans to others? Should the Gegno, or species of other eccentricities, be given leisure to your planet Earth? May it be the case with you, though with anxious humanity, it certainly would not be." One of the other Quarg in the room says something to Adrauni, to which it begins a conversation in its own language."`
+			`	Adrauni ponders for a few moments. "That is a rather human response. Although we Quarg are, by your definition, minimally tolerative of your species, access to only some of our wondrous worlds we give you. However, what of humans to others? Should the Gegno, or species of other eccentricities, be given leisure to your planet Earth? May it be the case with you, though with anxious humanity, it certainly would not be." One of the other Quarg in the room says something to Adrauni, to which it begins a conversation in its own language."`
 			choice
 				`	"Is there no way I can work with the Gegno?"`
 					goto "work"
@@ -753,7 +753,7 @@ mission "Gegno Anticipation"
 					goto "alone"
 
 			label "tech"
-			`	Adrauni clicks its teeth together in what appears to be a laughing manner, a reaction you have yet to see from it. "And we many Quarg, of those who live among ambitious humans, allowance of our tech have we given? One is not owed rights to another's under pretensive tolernace."` The other Quarg in the room look at Adrauni strangely, to which it begins a conversation with them in their own language. After a few moments, they too stare at you with strange looks, followed by an awkward silence, which is broken by Adrauni speaking to you once more. "With us as well, hardly do the Gegno share much intrigue at all."
+			`	Adrauni clicks its teeth together in what appears to be a laughing manner, a reaction you have yet to see from it. "And we many Quarg, of those who live among ambitious humans, allowance of our tech have we given? One is not owed rights to another's under pretensive tolernace."` The other Quarg in the room look at Adrauni strangely, to which it begins a conversation with them in their own language. After a few moments, they too stare at you with strange looks, followed by an awkward silence, which is broken by Adrauni speaking to you once more. "With us as well, hardly do the Gegno share much intrigue at all."`
 			choice
 				`	"Then is there no way I can work with the Gegno?"`
 					goto "work"
@@ -761,7 +761,7 @@ mission "Gegno Anticipation"
 					goto "alone"
 
 			label "dont know"
-			`	"Indeed, you do not. To tolerate is to authorize unrestricted occurence despite undesired preface. In this lies not the Gegno's interest, as once I have said before." It looks up in thought for several moments. "Perhaps in your naive judgement I am mistaken. Humans tolerate their own undesirables, those who have come to be known as corsairs. Portions of your species permit their tiresome actions, while others do not. Be that as it may, suppose a species other than humanity begins similar agitation. I would presume the case to be different."` Adrauni then begins a conversation with the other Quarg in the room."`
+			`	"Indeed, you do not. To tolerate is to authorize unrestricted occurrence despite undesired preface. In this lies not the Gegno's interest, as once I have said before." It looks up in thought for several moments. "Perhaps in your naive judgment I am mistaken. Humans tolerate their own undesirables, those who have come to be known as corsairs. Portions of your species permit their tiresome actions, while others do not. Be that as it may, suppose a species other than humanity begins similar agitation. I would presume the case to be different." Adrauni then begins a conversation with the other Quarg in the room."`
 			choice
 				`	"Are you saying there's no way I can work with the Gegno?"`
 					goto "work"
@@ -780,7 +780,7 @@ mission "Gegno Anticipation"
 				`	"Then is there no way I can work with the Gegno?"`
 					goto "work"
 				`	"I guess I should leave them alone."`
-					goto "alone"		
+					goto "alone"
 
 
 			label "alone"
