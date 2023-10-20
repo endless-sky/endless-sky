@@ -351,9 +351,9 @@ License: Depends
 Comment:
  Taken from unsplash.com and added to the game after June 2017. If the pictures were
  uploaded to unsplash.com before June 2017, they were donated and placed in the public
- domain. If the pictures were uploaded to unsplash.com after June 2017, they are subject
- to the Unsplash License. If they were also uploaded after February 2018, they are
- subject to additional restrictions.
+ domain. If the pictures were uploaded to unsplash.com on or after June 2017, they are
+ subject to the Unsplash License. If they were also uploaded after February 2018, they
+ are subject to additional restrictions.
 
 Files:
  images/outfit/quarg?skylance*
@@ -612,25 +612,237 @@ Files:
 Copyright: Jason Thompson
 License: public-domain
 Comment:
- Taken from https://unsplash.com/photos/dS3UnDX6InQ. This image was uploaded to
+ Taken from https://v.gd/QFg3aO. This image was uploaded to
  unsplash.com before June 2017, so it is in the public domain.
 
 Files:
  images/land/badlands2*
 Copyright: Koen van Gilst
-License: public-domain
+License: Unsplash License
 Comment:
- Taken from https://unsplash.com/photos/bsB11U3Y9NY. This image was uploaded to
- unsplash.com before June 2017, so it is in the public domain.
+ Taken from https://v.gd/NPSwWQ. This image was uploaded to
+ unsplash.com in June 2017, so it is subject to the Unsplash
+ License. It was uploaded before February 2018, so it is not
+ subject to additional restrictions.
 
 Files:
  images/land/badlands6*
 Copyright: John Fowler
 License: Unsplash License
 Comment:
- Taken from https://unsplash.com/photos/7Ym9rpYtSdA. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the Unsplash License. It was
- uploaded before February 2018, so it is not subject to additional restrictions.
+ Taken from https://v.gd/wxhtKN. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was uploaded before February 2018, so
+ it is not subject to additional restrictions.
+
+Files:
+ images/land/canyon1*
+Copyright: Ana Filipa Neves
+License: public-domain
+Comment:
+ Taken from https://v.gd/snAq4h. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/canyon8*
+Copyright: Benjaimn Esteves
+License: public-domain
+Comment:
+ Taken from https://v.gd/BskeS1. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/city2*
+Copyright: timJ
+License: Unsplash License
+Comment:
+ Taken from https://v.gd/MnJeVj. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was uploaded before February 2018, so
+ it is not subject to additional restrictions. The link to
+ the image on the archive is broken and the published date
+ can't be seen if you just look at the site. If you click
+ view source and search "published_at," you will see it
+ was published in September 2017. You will also see in the
+ source that the image is
+ https://images.unsplash.com/photo-1500021804447-2ca2eaaaabeb,
+ which matches the image.
+
+Files:
+ images/land/city7*
+Copyright: Jason Wong
+License: Unsplash License
+Comment: 
+ Taken from https://v.gd/LxCMge. This image was uploaded to
+ unsplash.com in June 2017, so it is subject to the Unsplash
+ License. It was uploaded before February 2018, so it is not
+ subject to additional restrictions.
+
+Files:
+ images/land/city11*
+Copyright: Bon Bahar
+License: Unsplash License
+Comment:
+ Taken from https://v.gd/uciaGM. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was uploaded before February 2018, so
+ it is not subject to additional restrictions. The link to
+ the image on the archive is broken and the published date
+ can't be seen if you just look at the site. If you click
+ view source and search "datePublished," you will see it
+ was published in August 2017. You will also see in the
+ source that the image is
+ https://images.unsplash.com/photo-1501607087079-27057d2fdc93,
+ which matches the image.
+
+Files:
+ images/land/city12*
+Copyright: Steven Pahel
+License: Unsplash License
+Comment:
+ Taken from https://v.gd/FmJIrr. This image was uploaded to 
+ unsplash.com after June 2017, so it is subject to the 
+ Unsplash License. It was uploaded before February 2018, so
+ it is not subject to additional restrictions.
+
+Files:
+ images/land/dune1*
+Copyright: Wilson Ye
+License: public-domain
+Comment:
+ Taken from https://v.gd/srlvXi. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/fields3*
+Copyright: Doan Tuan
+License: public-domain
+Comment:
+ Taken from https://v.gd/AISIvR. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/fog1*
+Copyright: Peter Hammer
+License: Unsplash License
+Comment:
+ Taken from https://v.gd/VLuiP2. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was uploaded before February 2018, so
+ it is not subject to additional restrictions.
+
+Files:
+ images/land/fog6*
+Copyright: Michael Dam
+License: public-domain
+Comment:
+ Taken from https://v.gd/j78nOU. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/forest5*
+Copyright: Wei Pan
+License: public-domain
+Comment:
+ Taken from https://v.gd/tEvBbm. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/hills0*
+Copyright: Baptist Standaert
+License: Unsplash License
+Comment:
+ Taken from https://v.gd/hvdh7P. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was uploaded before February 2018, so
+ it is not subject to additional restrictions.
+
+Files:
+ images/land/mountain0*
+Copyright: Karsten Wurth
+License: public-domain
+Comment:
+ Taken from https://v.gd/XlWp6c. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/sea1*
+Copyright: Christian Joudrey
+License: public-domain
+Comment:
+ Taken from https://v.gd/Jgnwwh. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/sea5*
+Copyright: Johannes Plenio
+License: Unsplash License
+Comment:
+ Taken from https://v.gd/5GWyqT. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was uploaded before February 2018, so
+ it is not subject to additional restrictions.
+
+Files:
+ images/land/sea7*
+Copyright: Johannes Plenio
+License: public-domain
+Comment:
+ Taken from https://v.gd/5GWyqT. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/sky4*
+Copyright: Sergey Pesterev
+License: Unsplash License
+Comment:
+ Taken from https://v.gd/ckXc0D. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was uploaded before February 2018, so
+ it is not subject to additional restrictions.
+
+Files:
+ images/land/sky5*
+Copyright: Nathan Hulsey
+License: public-domain
+Comment:
+ Taken from https://v.gd/cz7xTH. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/snow5*
+Copyright: Jay Ruzesky
+License: public-domain
+Comment:
+ Taken from https://v.gd/m6K9v6. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/snow10*
+Copyright: Mathias Herheim
+License: Unsplash License
+Comment:
+ Taken from https://v.gd/V5vC8N. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was uploaded before February 2018, so
+ it is not subject to additional restrictions.
+
+Files:
+ images/land/water3*
+Copyright: Jacek Smoter
+License: public-domain
+Comment:
+ Taken from https://v.gd/YliySf. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/water4*
+Copyright: 12019
+License: public-domain
+Comment: Taken from https://pixabay.com/photos/macedonia-sunset-dusk-lake-water-260851,
+resized, cropped, and adjusted gamma. According to Section 3 of the Pixabay Terms and
+Conditions, all images with a "published date" earlier than January 9, 2019 have the
+CC0 license.
 
 Files:
  images/land/badlands10*
@@ -638,33 +850,19 @@ Files:
  images/land/badlands12*
  images/land/beach13*
  images/land/beach14*
- images/land/canyon1*
- images/land/canyon8*
  images/land/canyon13*
  images/land/canyon14*
  images/land/canyon15*
- images/land/city2*
- images/land/city7*
- images/land/city11*
- images/land/city12*
  images/land/desert11*
  images/land/desert12*
  images/land/desert13*
- images/land/dune1*
- images/land/fields3*
  images/land/fields13*
  images/land/fields14*
  images/land/fields15*
- images/land/mountain0*
- images/land/mountain4*
- images/land/hills0*
- images/land/fog1*
- images/land/fog6*
  images/land/fog8*
  images/land/fog9*
  images/land/fog10*
  images/land/fog11*
- images/land/forest5*
  images/land/forest6*
  images/land/forest7*
  images/land/forest8*
@@ -674,17 +872,11 @@ Files:
  images/land/lava12*
  images/land/lava13*
  images/land/loc3*
- images/land/sea1*
- images/land/sea5*
- images/land/sea7*
+ images/land/mountain4*
  images/land/sea18*
  images/land/sea19*
- images/land/sky4*
- images/land/sky5*
  images/land/sky10*
  images/land/sky11*
- images/land/snow5*
- images/land/snow10*
  images/land/snow14*
  images/land/snow15*
  images/land/snow16*
@@ -729,8 +921,6 @@ Files:
  images/land/station43*
  images/land/station44*
  images/land/station45*
- images/land/water3*
- images/land/water4*
  images/land/water12*
  images/land/water13*
 Copyright: Various
@@ -738,9 +928,9 @@ License: Depends
 Comment:
  Taken from unsplash.com and added to the game after June 2017. If the pictures were
  uploaded to unsplash.com before June 2017, they were donated and placed in the public
- domain. If the pictures were uploaded to unsplash.com after June 2017, they are subject
- to the Unsplash License. If they were also uploaded after February 2018, they are
- subject to additional restrictions.
+ domain. If the pictures were uploaded to unsplash.com on or after June 2017, they are
+ subject to the Unsplash License. If they were also uploaded after February 2018, they
+ are subject to additional restrictions.
 
 Files:
  images/land/lava0*
@@ -2103,9 +2293,9 @@ License: Depends
 Comment:
  Taken from unsplash.com and added to the game after June 2017. If the pictures were
  uploaded to unsplash.com before June 2017, they were donated and placed in the public
- domain. If the pictures were uploaded to unsplash.com after June 2017, they are subject
- to the Unsplash License. If they were also uploaded after February 2018, they are
- subject to additional restrictions.
+ domain. If the pictures were uploaded to unsplash.com on or after June 2017, they are
+ subject to the Unsplash License. If they were also uploaded after February 2018, they
+ are subject to additional restrictions.
 
 Files:
  images/scene/hroar*
@@ -2189,7 +2379,7 @@ Comment:
  Taken from unsplash.com, cropped, and added to the game after June 2017. If the pictures
  were uploaded to unsplash.com before June 2017, they were donated and placed in the public
  domain. If the pictures were uploaded to unsplash.com after June 2017, they are subject
- to the Unsplash License. If they were also uploaded after February 2018, they are
+ to the Unsplash License. If they were also uploaded on or after February 2018, they are
  subject to additional restrictions.
 
 Files:
@@ -2225,9 +2415,9 @@ License: Depends
  uploaded after that date subject to a permissive license (the "Unsplash License.") These pictures were added
  to the game after June 2017, but could have been uploaded before then. Therefore, the license of these images
  depends on when they were uploaded. If they were uploaded before June 2017, they are in the public domain. If
- they were uploaded after June 2017, they are subject to the Unsplash License. Additionally, all images uploaded
- to Unsplash after February 2018 cannot be sold without making "significant alterations" as they are subject to
- more restrictive terms and conditions.
+ they were uploaded on or after June 2017, they are subject to the Unsplash License. Additionally, all images
+ uploaded to Unsplash after February 2018 cannot be sold without making "significant alterations" as they are
+ subject to more restrictive terms and conditions.
 
 License: Unsplash License
  Unsplash grants you an irrevocable, nonexclusive, worldwide copyright
