@@ -22,7 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <map>
 #include <string>
 
-
+using namespace std;
 
 namespace { // test namespace
 
@@ -32,22 +32,45 @@ namespace { // test namespace
 
 
 // #region unit tests
-SCENARIO( "Creating an Account" , "[Account][Creation]" ) {
+// run this test first so we don't have to retest the assumption later
+TEST_CASE( "Add credits to an account", "[Account][AddCredits]" ) {
+	Account account;
+	REQUIRE(account.Credits() == 0);
+
+	account.AddCredits(1000);
+	REQUIRE(account.Credits() == 1000);
+}
+
+SCENARIO( "Create an Account" , "[Account][Creation]" ) {
 	GIVEN( "an account" ) {
 		Account account;
-		WHEN( "money is added" ) {
-			REQUIRE( account.Credits() == 0. );
-			account.AddCredits(100);
-			THEN( "the balance is increased" ) {
-				REQUIRE( account.Credits() == 100 );
-			}
-		}
 		WHEN( "a fine is levied" ) {
 			REQUIRE( account.TotalDebt() == 0 );
 			account.AddFine(10000);
 			THEN ( "debt is incurred" ) {
 				REQUIRE( account.TotalDebt() == 10000 );
 			}
+		}
+	}
+}
+
+SCENARIO( "Step forward" , "[Account][Step]" ) {
+	GIVEN( "An account with 1000 credits" ) {
+		Account account;
+		account.AddCredits(1000);
+		THEN( "Account has 1000 credits" ) {
+			REQUIRE( account.Credits() == 1000 );
+		}
+
+		WHEN( "Step() is called with no crew" ) {
+			int64_t assets = 0;      // This is net worth of all ships
+			int64_t salaries = 0;    // total owed in a single day's salaries
+			int64_t maintenance = 0; // sum of maintenance and generated income
+
+			string message = account.Step(assets, salaries, maintenance);
+			INFO(message);
+			string out = "";
+			REQUIRE( message.compare(out) == 0 );
 		}
 	}
 }
