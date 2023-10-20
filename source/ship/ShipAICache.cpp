@@ -100,7 +100,7 @@ void ShipAICache::Calibrate(const Ship &ship)
 		useArtilleryAI = (artilleryDPS > totalDPS * .75
 			&& (ship.MaxReverseVelocity() || maxTurningRadius < 0.2 * shortestArtillery));
 
-		// Don't try to avoid your own splash damage if it means you whould be losing out
+		// Don't try to avoid your own splash damage if it means you would be losing out
 		// on a lot of DPS. Helps with ships with very slow turning and not a lot of splash
 		// weapons being overly afraid of dying.
 		if(minSafeDistance && !(useArtilleryAI || shortestRange * (splashDPS / totalDPS) > maxTurningRadius))

@@ -159,8 +159,7 @@ private:
 		std::vector<Element> elements;
 		// This distinguishes "choice" nodes from "branch" or text nodes. If
 		// this value is false, a one-element node is considered text, and a
-		// node with more than one element is considered is considered a
-		// "branch".
+		// node with more than one element is considered a "branch".
 		bool isChoice;
 		// Keep track of whether it's possible to merge future nodes onto this.
 		bool canMergeOnto;
