@@ -75,7 +75,6 @@ bool Sound::Load(const string &path, const string &name)
 			return false;
 
 		data.resize(bytes);
-		vector<char> data(bytes);
 		if(SDL_RWread(in, &data[0], 1, bytes) != bytes)
 			return false;
 	}
