@@ -10,7 +10,7 @@ Version 0.10.4
       * Cleaned up the descriptions of various spaceport missions. (@Anarchist2)
       * Removed some duplicated text from "Remnant: Celebration 1". (@warp-core)
       * Correctly refer to commodity categories in some FW war jobs. (@tibetiroka)
-      * Make the "Quarg (Hai)" government hostile to the "Kor Sestor" government so the Quarg ships will properly aid in the defense of Farpoint. (@qarp-core)
+      * Make the "Quarg (Hai)" government hostile to the "Kor Sestor" government so the Quarg ships will properly aid in the defense of Farpoint. (@warp-core)
       * Correctly display the payment for Heliarch Jump Drive delivery jobs. (@tibetiroka)
     * Engine bugs:
       * Correctly set the application icon on Linux. (@quyykk)
@@ -41,6 +41,7 @@ Version 0.10.4
     * The main save file for a pilot will always be listed above all the snapshots in the load panel. (@warp-core)
   * CI/CD and development environment:
     * Fix release names when using the release workflow. (@quyykk)
+    * Stop building 32-bit binaries for releases. (@quyykk)
 
 Version 0.10.3
   * Big changes:
