@@ -2,6 +2,10 @@ name: Release CD
 
 on:
   workflow_dispatch:
+    inputs:
+      release_version:
+        required: true
+        type: string
 
 jobs:
   release_appimage_x64:
@@ -9,7 +13,7 @@ jobs:
     runs-on: ubuntu-20.04
     env:
       ARCH: x86_64
-      OUTPUT: Endless_Sky-${{ github.ref_name }}-x86_64.AppImage
+      OUTPUT: Endless_Sky-${{ inputs.release_version  }}-x86_64.AppImage
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v4
@@ -42,7 +46,7 @@ jobs:
     name: Windows x86
     runs-on: windows-2022
     env:
-      OUTPUT: EndlessSky-win32-${{ github.ref_name }}.zip
+      OUTPUT: EndlessSky-win32-${{ inputs.release_version }}.zip
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v4
@@ -80,7 +84,7 @@ jobs:
     name: Windows x64
     runs-on: windows-2022
     env:
-      OUTPUT: EndlessSky-win64-${{ github.ref_name }}.zip
+      OUTPUT: EndlessSky-win64-${{ inputs.release_version }}.zip
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v4
@@ -119,7 +123,7 @@ jobs:
     runs-on: macos-12
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      OUTPUT: Endless-Sky-${{ github.ref_name }}
+      OUTPUT: Endless-Sky-${{ inputs.release_version }}
     steps:
       - uses: actions/checkout@v4
         with:
