@@ -1093,8 +1093,6 @@ government "Pug"
 	"friendly disabled hail" "friendly disabled pug"
 	"hostile hail" "hostile pug"
 	"hostile disabled hail" "hostile pug"
-	"travel restrictions"
-		not government "Pug"
 
 # A pug government with distinct reputation toward the player compared to those met during the main campaign.
 government "Pug (Wanderer)"
@@ -1113,8 +1111,6 @@ government "Pug (Wanderer)"
 	"friendly disabled hail" "friendly disabled pug"
 	"hostile hail" "hostile pug"
 	"hostile disabled hail" "hostile pug"
-	"travel restrictions"
-		not government "Pug (Wanderer)"
 
 # Quarg are split up to their respective areas, and an overall one is kept for missions or other use.
 government "Quarg"
