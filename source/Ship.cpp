@@ -2662,7 +2662,7 @@ int Ship::RequiredCrew() const
 
 int Ship::CrewValue() const
 {
-	double crewEquivalent = attributes.Get("crew equivalent");
+	int crewEquivalent = attributes.Get("crew equivalent");
 	return crewEquivalent ? crewEquivalent : max(Crew(), RequiredCrew());
 }
 
