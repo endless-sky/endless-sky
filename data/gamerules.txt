@@ -53,7 +53,7 @@ gamerules
 
 	# Depreciation related game rules:
 
-	# The depreciated value of an item that is age days old is calculated with the following equation:
+	# The depreciated value of an item that is "age" days old is calculated with the following equation:
 	# Where: "base value" is the undepreciated value of the item;
 	# min is "depreciation min";
 	# "grace period" is "depreciation grace period";
@@ -63,22 +63,23 @@ gamerules
 	# "depreciated value" = "base value" *
 	#   (min + (1 - min) * (daily ^ (age - "grace period")) * ("max age" + "grace period" - age) / "max age")
 
-	# The lowest proportion of it's full price the value of a ship or outfit can depreciate to.
-	# By default, a fully depreciated outfit normally worth 1000 credits will sell for 250 credits.
-	# DEFAULT: 0.25
+	# The lowest value that a ship or outfit can depreciate to relative to its full price.
+	# Captured and gifted items start at this value.
+	# DEFAULT: 0.25 (25 percent)
 	# ALLOWABLE VALUES: any value between 0. and 1.
 	"depreciation min" 0.25
 
-	# Number of days before a new outfit and ship begin to depreciate.
+	# Number of days before a new outfit or ship will begin to depreciate.
 	# DEFAULT: 7 (7 days)
 	# ALLOWABLE VALUES: any integer >= 0.
 	"depreciation grace period" 7
 
+	# The percentage of an item's depreciable value that it maintains day over day.
 	# DEFAULT: .997 (99.7 percent)
 	# ALLOWABLE VALUES: any value between 0. and 1.
 	"depreciation daily" 0.997
 
 	# The age (in days), after the end of the grace period, at which an item will become fully depreciated.
 	# DEFAULT: 1000 (1000 days)
-	# ALLOWABLE VALUES: any integer >= 1.
+	# ALLOWABLE VALUES: any integer >= 0.
 	"depreciation max age" 1000
