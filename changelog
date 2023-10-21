@@ -22,6 +22,8 @@ Version 0.10.4
   * Game content:
     * Mission changes:
       * Changed the government of NPC ships in "FW Katya 2B" from "Pirate" to "Bounty Hunter" to better match the lore. (@Anarchist2)
+    * Graphics:
+      * Swapped a duplicated station landing image for a unique one. (@Saugia)
     * Other:
       * Tweaked some wording in "FW Pirates: Attack 1". (@hexagonrecursion)
       * Tweaked some wording in "FW Diplomacy 1C". (@LazerLit)
