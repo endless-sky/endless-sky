@@ -1380,8 +1380,8 @@ planet "Far'en Lai"
 	landscape land/dune3
 	description `Legends tell of an Archon exiling Korath refugees here with a decree.`
 	description `	"Destroyers of worlds: Hear our words and heed them. Contemplate your Exile in galactic wastelands with dead stars. Witness a living world testing your resolve to coexist. Destroy it, and you destroy yourselves. Seek kinship for liberation."`
-	description `	Once the Exiles achieved kinship with one another, they asked an Archon for liberation. The Archon refused, saying, "Where is your kinship with the dead stars? The living world? Are you not destroyers? We cannot liberate you from yourselves. Return to your contemplation."`
-	description `	Starving in space around this living world, the destroyers have no answers. They named the world Far'en Lai, meaning "last candle-flame." With this final light of salvation, generations meditate on their Exile.`
+	description `	Once the Exiles achieved kinship with one another, they asked the Archons for liberation. The Archons refused, saying, "Where is your kinship with the dead stars? The living world? Are you not destroyers? We cannot liberate you from yourselves. Return to your contemplation."`
+	description `	Starving in space around this living world, the destroyers have no answers. They named the world Far'en Lai, meaning, "last candle-flame." With this final light of salvation, generations meditate on their Exile.`
 	government Uninhabited
 
 planet "Fara Skaeruti"
