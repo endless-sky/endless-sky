@@ -25,6 +25,7 @@ Developers
   Pointedstick
   Quyykk
   Saugia
+  warp-core
   W1zrad
   Zitchas
 
@@ -60,7 +61,9 @@ Storyline & Faction Authors
 
 Editors & Proofreaders
   Arrow2thekn33
+  bene-dictator
   Bladewood
+  EjoThims
   Fzzr
   jafdy
   Janaszar
@@ -68,8 +71,11 @@ Editors & Proofreaders
   MCOfficer
   Moonbeam
   RecursiveParadox
+  roadrunner56
   Tadrix
   temtemy
+  Terin
+  tibetiroka
   W1zrad
   Zearth Goh aka TheMarksman
 
