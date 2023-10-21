@@ -27,6 +27,7 @@ namespace CrashState
 
    void Init(bool is_test);
    void Set(State state);
+   State Get();
    State Previous();
 
    bool HasCrashed();

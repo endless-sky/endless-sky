@@ -20,34 +20,36 @@ namespace CrashState
 {
 
 State g_prev_state = INVALID;
+State g_cur_state = INVALID;
 bool g_is_test = false;
 
-static State Get()
+void Init(bool test)
 {
+   g_is_test = test;
+   g_prev_state = CrashState::INVALID;
    std::string contents = Files::Read(Files::Config() + "/crash_state.txt");
    if (!contents.empty())
    {
       try
       {
          int ret = std::stoi(contents);
-         return static_cast<State>(ret);
+         g_prev_state = static_cast<State>(ret);
       }
       catch (...) {}
    }
-   // Garbage in the state file.
-   return CrashState::INVALID;
-}
 
-void Init(bool test)
-{
-   g_is_test = test;
-   g_prev_state = Get();
    Set(INITIAL);
 }
 
 void Set(State s)
 {
+   g_cur_state = s;
    Files::Write(Files::Config() + "/crash_state.txt", std::to_string(static_cast<int>(s)));
+}
+
+State Get()
+{
+   return g_cur_state;
 }
 
 State Previous() { return g_prev_state; }

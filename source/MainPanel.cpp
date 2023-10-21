@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "BoardingPanel.h"
 #include "Command.h"
+#include "CrashState.h"
 #include "RadialSelectionPanel.h"
 #include "RingShader.h"
 #include "comparators/ByGivenOrder.h"
@@ -98,7 +99,12 @@ void MainPanel::Step()
 		GetUI()->Push(new PlanetPanel(player, bind(&MainPanel::OnCallback, this)));
 		player.Land(GetUI());
 		// Save on landing, in case the app is killed uncleanly
-		player.Save();
+		// Only auto-load on landing if the game is fully loaded. otherwise,
+		// it auto-saves every time the game starts.
+		if(CrashState::Get() == CrashState::LOADED)
+		{
+			player.Save();
+		}
 		isActive = false;
 	}
 
