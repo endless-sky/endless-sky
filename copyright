@@ -651,7 +651,6 @@ Files:
  images/land/space2*
  images/land/station4*
  images/land/station6*
- images/land/station7*
  images/land/station9*
  images/land/station10*
  images/land/station11*
@@ -736,10 +735,18 @@ License: CC0
 Comment: Taken from https://pxhere.com/en/photo/1071635 and cropped.
 
 Files:
- images/land/station15*
+ images/land/station7*
 Copyright: N/A (CC0 Public Domain)
 License: CC0
 Comment: Taken from https://pxhere.com/en/photo/119196 and cropped.
+
+Files:
+ images/land/station15*
+Copyright: N/A (CC0 Public Domain)
+License: CC0
+Comment: Taken from https://pixabay.com/photos/step-industry-steel-3104846/ and cropped.
+ According to Section 3 of the Pixabay Terms of Service, all images with a
+ "published date" earlier than January 9, 2019 have the CC0 license.
 
 Files:
  images/land/station5.jpg
