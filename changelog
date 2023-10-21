@@ -41,6 +41,7 @@ Version 0.10.4
     * The main save file for a pilot will always be listed above all the snapshots in the load panel. (@warp-core)
   * CI/CD and development environment:
     * Fix release names when using the release workflow. (@quyykk)
+    * Stop building 32-bit binaries for releases. (@quyykk)
 
 Version 0.10.3
   * Big changes:
