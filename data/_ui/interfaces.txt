@@ -717,6 +717,17 @@ interface "hud"
 		center 0 100
 
 
+interface "main view"
+	list "zooms"
+		.25
+		.35
+		.5
+		.7
+		1.
+		1.4
+		2.
+
+
 
 interface "escort element"
 	value "width" 120
