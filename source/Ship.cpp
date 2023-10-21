@@ -3769,34 +3769,7 @@ void Ship::DoGeneration()
 	double maxHull = MaxHull();
 	hull = min(hull, maxHull);
 
-	bool isIncapacitated = hull < MinimumHull() || (!crew && RequiredCrew());
-	isDisabled = isOverheated || isIncapacitated;
-
-	if(!isIncapacitated)
-	{
-		double coolingEfficiency = CoolingEfficiency();
-		heat -= coolingEfficiency * attributes.Get("cooling");
-		double activeCooling = coolingEfficiency * attributes.Get("active cooling");
-		// Apply active cooling. The fraction of full cooling to apply equals
-		// your ship's current fraction of its maximum temperature.
-		if(activeCooling > 0. && heat > 0. && energy >= 0.)
-		{
-			// Active cooling always runs at 100% power if overheated
-			// even if below 100% heat.
-			double heatFraction = (isOverheated ? 1. : Heat());
-			// Handle the case where "active cooling"
-			// does not require any energy.
-			double coolingEnergy = attributes.Get("cooling energy");
-			if(coolingEnergy)
-			{
-				double spentEnergy = min(energy, coolingEnergy * heatFraction);
-				heat -= activeCooling * spentEnergy / coolingEnergy;
-				energy -= spentEnergy;
-			}
-			else
-				heat -= activeCooling * heatFraction;
-		}
-	}
+	isDisabled = isOverheated || hull < MinimumHull() || (!crew && RequiredCrew());
 
 	// Update ship supply levels.
 	if(isDisabled)
@@ -3815,9 +3788,11 @@ void Ship::DoGeneration()
 			heat += solarScaling * attributes.Get("solar heat");
 		}
 
+		double coolingEfficiency = CoolingEfficiency();
 		energy += attributes.Get("energy generation") - attributes.Get("energy consumption");
 		fuel += attributes.Get("fuel generation");
 		heat += attributes.Get("heat generation");
+		heat -= coolingEfficiency * attributes.Get("cooling");
 
 		// Convert fuel into energy and heat only when the required amount of fuel is available.
 		if(attributes.Get("fuel consumption") <= fuel)
@@ -3827,6 +3802,23 @@ void Ship::DoGeneration()
 			heat += attributes.Get("fuel heat");
 		}
 
+		// Apply active cooling. The fraction of full cooling to apply equals
+		// your ship's current fraction of its maximum temperature.
+		double activeCooling = coolingEfficiency * attributes.Get("active cooling");
+		if(activeCooling > 0. && heat > 0. && energy >= 0.)
+		{
+			// Handle the case where "active cooling"
+			// does not require any energy.
+			double coolingEnergy = attributes.Get("cooling energy");
+			if(coolingEnergy)
+			{
+				double spentEnergy = min(energy, coolingEnergy * min(1., Heat()));
+				heat -= activeCooling * spentEnergy / coolingEnergy;
+				energy -= spentEnergy;
+			}
+			else
+				heat -= activeCooling * min(1., Heat());
+		}
 	}
 
 	// Don't allow any levels to drop below zero.

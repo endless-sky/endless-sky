@@ -3120,6 +3120,7 @@ mission "Heliarchs Buy Jump Drive Mission"
 	minor
 	landing
 	invisible
+	"apparent payment" 5000000
 	to offer
 		has "known to the heliarchs"
 		has "outfit (cargo): Jump Drive"
