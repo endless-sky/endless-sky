@@ -1858,12 +1858,12 @@ int Ship::Scan(const PlayerInfo &player)
 
 		// Total scan time is:
 		// Proportional to e^(0.5 * (distance / range)^2),
-		// which gives a guassian relation between scan speed and distance.
+		// which gives a gaussian relation between scan speed and distance.
 		// And proportional to: depth^(2 / 3),
 		// which means 8 times the cargo or outfit space takes 4 times as long to scan.
 		// Therefore, scan progress each step is proportional to the reciprocals of these values.
 		// This can be calculated by multiplying the exponents by -1.
-		// Progress = (e^(-0.5 * (distance / range)^2))*deptch^(-2 / 3).
+		// Progress = (e^(-0.5 * (distance / range)^2))*depth^(-2 / 3).
 
 		// Set a minimum scan range to avoid extreme values.
 		const double distanceExponent = -distanceSquared / max<double>(1e-3, 2. * scannerRangeSquared);
@@ -3257,7 +3257,7 @@ bool Ship::CanFire(const Weapon *weapon) const
 
 
 // Fire the given weapon (i.e. deduct whatever energy, ammo, hull, shields
-// or fuel it uses and add whatever heat it generates. Assume that CanFire()
+// or fuel it uses and add whatever heat it generates). Assume that CanFire()
 // is true.
 void Ship::ExpendAmmo(const Weapon &weapon)
 {

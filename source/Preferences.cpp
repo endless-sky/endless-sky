@@ -155,7 +155,6 @@ void Preferences::Load()
 	settings["Show planet labels"] = true;
 	settings["Show asteroid scanner overlay"] = true;
 	settings["Show hyperspace flash"] = true;
-	settings["Extended jump effects"] = true;
 	settings["Draw background haze"] = true;
 	settings["Draw starfield"] = true;
 	settings["Hide unexplored map regions"] = true;
@@ -236,7 +235,7 @@ void Preferences::Load()
 	}
 
 	// For people updating from a version after 0.10.1 (where "Flagship flotsam collection" was added),
-	// but before 0.10.3 (when it was replaaced with "Flotsam Collection").
+	// but before 0.10.3 (when it was replaced with "Flotsam Collection").
 	it = settings.find("Flagship flotsam collection");
 	if(it != settings.end())
 	{
