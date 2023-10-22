@@ -206,10 +206,10 @@ interface "map detail panel"
 interface "map planet card"
 	value "text start" 13
 	value "category size" 20
-	value "height" 130
+	value "categories" 5
+	value "height padding" 30
 	value "width" 235
 	value "planet icon max size" 100
-	value "categories" 5
 
 
 
@@ -449,12 +449,6 @@ interface "controls"
 		dimensions 90 30
 		color medium
 		hover bright
-	label "Press '_x' over keybind to unbind"
-		from -255 200
-		color "bright"
-		align left
-		width 240
-		truncate back
 
 
 
@@ -721,6 +715,17 @@ interface "hud"
 	anchor top
 	point "mini-map"
 		center 0 100
+
+
+interface "main view"
+	list "zooms"
+		.25
+		.35
+		.5
+		.7
+		1.
+		1.4
+		2.
 
 
 
