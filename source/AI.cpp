@@ -3040,7 +3040,7 @@ void AI::DoPatrol(Ship &ship, Command &command) const
 		// Hacky way of differentiating ship behaviour without additional storage,
 		// while keeping it consistent for each ship. TODO: change when Ship::SetTargetLocation exists.
 		// This uses the pointer of the ship to choose a pseudo-random angle and instructs it to
-		// partol the system in a criss-crossing pattern, where each turn is this specific angle.
+		// patrol the system in a criss-crossing pattern, where each turn is this specific angle.
 		intptr_t seed = reinterpret_cast<intptr_t>(&ship);
 		int behaviour = abs(seed % 23);
 		Angle delta = Angle(360. / (behaviour / 2. + 2.) * (behaviour % 2 ? -1. : 1.));
@@ -3994,28 +3994,46 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		// Track all possible landable objects in the current system.
 		auto landables = vector<const StellarObject *>{};
 
-		// If the player is moving slowly over an uninhabited or inaccessible planet,
-		// display the default message explaining why they cannot land there.
 		string message;
+		const bool isMovingSlowly = (ship.Velocity().Length() < (MIN_LANDING_VELOCITY / 60.));
+		const StellarObject *potentialTarget = nullptr;
 		for(const StellarObject &object : ship.GetSystem()->Objects())
 		{
-			if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsAccessible(&ship))
-				landables.emplace_back(&object);
-			else if(object.HasSprite())
+			if(!object.HasSprite())
+				continue;
+
+			// If the player is moving slowly over an object, then the player is considering landing there.
+			// The target object might not be able to be landed on, for example an enemy planet or a star.
+			const bool isTryingLanding = (ship.Position().Distance(object.Position()) < object.Radius() && isMovingSlowly);
+			if(object.HasValidPlanet() && object.GetPlanet()->IsAccessible(&ship))
 			{
-				double distance = ship.Position().Distance(object.Position());
-				if(distance < object.Radius() && ship.Velocity().Length() < (MIN_LANDING_VELOCITY / 60.))
-					message = object.LandingMessage();
+				landables.emplace_back(&object);
+				if(isTryingLanding)
+					potentialTarget = &object;
 			}
+			else if(isTryingLanding)
+				message = object.LandingMessage();
 		}
-		if(!message.empty())
-			Audio::Play(Audio::Get("fail"));
 
 		const StellarObject *target = ship.GetTargetStellar();
 		// Require that the player's planetary target is one of the current system's planets.
 		auto landIt = find(landables.cbegin(), landables.cend(), target);
 		if(landIt == landables.cend())
 			target = nullptr;
+
+		// Consider the potential target as a landing target first.
+		if(!target && potentialTarget)
+		{
+			target = potentialTarget;
+			ship.SetTargetStellar(potentialTarget);
+		}
+
+		// If the player has a target in mind already, don't emit an error if the player
+		// is hovering above a star or inaccessible planet.
+		if(target)
+			message.clear();
+		else if(!message.empty())
+			Audio::Play(Audio::Get("fail"));
 
 		Messages::Importance messageImportance = Messages::Importance::High;
 

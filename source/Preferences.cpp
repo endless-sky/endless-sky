@@ -20,11 +20,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Files.h"
+#include "GameData.h"
 #include "GameWindow.h"
+#include "Interface.h"
 #include "Logger.h"
 #include "Screen.h"
 
 #include <algorithm>
+#include <cstddef>
 #include <map>
 
 using namespace std;
@@ -40,8 +43,7 @@ namespace {
 	const vector<string> DATEFMT_OPTIONS = {"dd/mm/yyyy", "mm/dd/yyyy", "yyyy-mm-dd"};
 	int dateFormatIndex = 0;
 
-	const vector<double> ZOOMS = {.25, .35, .50, .70, 1.00, 1.40, 2.00};
-	int zoomIndex = 4;
+	size_t zoomIndex = 4;
 	constexpr double VOLUME_SCALE = .25;
 
 	// Default to fullscreen.
@@ -179,7 +181,7 @@ void Preferences::Load()
 		else if(node.Token(0) == "Flotsam collection")
 			flotsamIndex = max<int>(0, min<int>(node.Value(1), FLOTSAM_SETTINGS.size() - 1));
 		else if(node.Token(0) == "view zoom")
-			zoomIndex = max<int>(0, min<int>(node.Value(1), ZOOMS.size() - 1));
+			zoomIndex = max(0., node.Value(1));
 		else if(node.Token(0) == "vsync")
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
 		else if(node.Token(0) == "Show all status overlays")
@@ -235,7 +237,7 @@ void Preferences::Load()
 	}
 
 	// For people updating from a version after 0.10.1 (where "Flagship flotsam collection" was added),
-	// but before 0.10.3 (when it was replaaced with "Flotsam Collection").
+	// but before 0.10.3 (when it was replaced with "Flotsam Collection").
 	it = settings.find("Flagship flotsam collection");
 	if(it != settings.end())
 	{
@@ -352,14 +354,18 @@ void Preferences::SetScrollSpeed(int speed)
 // View zoom.
 double Preferences::ViewZoom()
 {
-	return ZOOMS[zoomIndex];
+	const auto &zooms = GameData::Interfaces().Get("main view")->GetList("zooms");
+	if(zoomIndex >= zooms.size())
+		return zooms.empty() ? 1. : zooms.back();
+	return zooms[zoomIndex];
 }
 
 
 
 bool Preferences::ZoomViewIn()
 {
-	if(zoomIndex == static_cast<int>(ZOOMS.size() - 1))
+	const auto &zooms = GameData::Interfaces().Get("main view")->GetList("zooms");
+	if(zooms.empty() || zoomIndex >= zooms.size() - 1)
 		return false;
 
 	++zoomIndex;
@@ -370,8 +376,14 @@ bool Preferences::ZoomViewIn()
 
 bool Preferences::ZoomViewOut()
 {
-	if(zoomIndex == 0)
+	const auto &zooms = GameData::Interfaces().Get("main view")->GetList("zooms");
+	if(!zoomIndex || zooms.size() <= 1)
 		return false;
+
+	// Make sure that we're actually zooming out. This can happen if the zoom index
+	// is out of range.
+	if(zoomIndex >= zooms.size())
+		zoomIndex = zooms.size() - 1;
 
 	--zoomIndex;
 	return true;
@@ -381,21 +393,25 @@ bool Preferences::ZoomViewOut()
 
 double Preferences::MinViewZoom()
 {
-	return ZOOMS[0];
+	const auto &zooms = GameData::Interfaces().Get("main view")->GetList("zooms");
+	return zooms.empty() ? 1. : zooms.front();
 }
 
 
 
 double Preferences::MaxViewZoom()
 {
-	return ZOOMS[ZOOMS.size() - 1];
+	const auto &zooms = GameData::Interfaces().Get("main view")->GetList("zooms");
+	return zooms.empty() ? 1. : zooms.back();
 }
 
 
 
 const vector<double> &Preferences::Zooms()
 {
-	return ZOOMS;
+	static vector<double> DEFAULT_ZOOMS{1.};
+	const auto &zooms = GameData::Interfaces().Get("main view")->GetList("zooms");
+	return zooms.empty() ? DEFAULT_ZOOMS : zooms;
 }
 
 

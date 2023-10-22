@@ -1821,12 +1821,12 @@ int Ship::Scan(const PlayerInfo &player)
 
 		// Total scan time is:
 		// Proportional to e^(0.5 * (distance / range)^2),
-		// which gives a guassian relation between scan speed and distance.
+		// which gives a gaussian relation between scan speed and distance.
 		// And proportional to: depth^(2 / 3),
 		// which means 8 times the cargo or outfit space takes 4 times as long to scan.
 		// Therefore, scan progress each step is proportional to the reciprocals of these values.
 		// This can be calculated by multiplying the exponents by -1.
-		// Progress = (e^(-0.5 * (distance / range)^2))*deptch^(-2 / 3).
+		// Progress = (e^(-0.5 * (distance / range)^2))*depth^(-2 / 3).
 
 		// Set a minimum scan range to avoid extreme values.
 		const double distanceExponent = -distanceSquared / max<double>(1e-3, 2. * scannerRangeSquared);
@@ -3220,7 +3220,7 @@ bool Ship::CanFire(const Weapon *weapon) const
 
 
 // Fire the given weapon (i.e. deduct whatever energy, ammo, hull, shields
-// or fuel it uses and add whatever heat it generates. Assume that CanFire()
+// or fuel it uses and add whatever heat it generates). Assume that CanFire()
 // is true.
 void Ship::ExpendAmmo(const Weapon &weapon)
 {
@@ -3769,34 +3769,7 @@ void Ship::DoGeneration()
 	double maxHull = MaxHull();
 	hull = min(hull, maxHull);
 
-	bool isIncapacitated = hull < MinimumHull() || (!crew && RequiredCrew());
-	isDisabled = isOverheated || isIncapacitated;
-
-	if(!isIncapacitated)
-	{
-		double coolingEfficiency = CoolingEfficiency();
-		heat -= coolingEfficiency * attributes.Get("cooling");
-		double activeCooling = coolingEfficiency * attributes.Get("active cooling");
-		// Apply active cooling. The fraction of full cooling to apply equals
-		// your ship's current fraction of its maximum temperature.
-		if(activeCooling > 0. && heat > 0. && energy >= 0.)
-		{
-			// Active cooling always runs at 100% power if overheated
-			// even if below 100% heat.
-			double heatFraction = (isOverheated ? 1. : Heat());
-			// Handle the case where "active cooling"
-			// does not require any energy.
-			double coolingEnergy = attributes.Get("cooling energy");
-			if(coolingEnergy)
-			{
-				double spentEnergy = min(energy, coolingEnergy * heatFraction);
-				heat -= activeCooling * spentEnergy / coolingEnergy;
-				energy -= spentEnergy;
-			}
-			else
-				heat -= activeCooling * heatFraction;
-		}
-	}
+	isDisabled = isOverheated || hull < MinimumHull() || (!crew && RequiredCrew());
 
 	// Update ship supply levels.
 	if(isDisabled)
@@ -3815,9 +3788,11 @@ void Ship::DoGeneration()
 			heat += solarScaling * attributes.Get("solar heat");
 		}
 
+		double coolingEfficiency = CoolingEfficiency();
 		energy += attributes.Get("energy generation") - attributes.Get("energy consumption");
 		fuel += attributes.Get("fuel generation");
 		heat += attributes.Get("heat generation");
+		heat -= coolingEfficiency * attributes.Get("cooling");
 
 		// Convert fuel into energy and heat only when the required amount of fuel is available.
 		if(attributes.Get("fuel consumption") <= fuel)
@@ -3827,6 +3802,23 @@ void Ship::DoGeneration()
 			heat += attributes.Get("fuel heat");
 		}
 
+		// Apply active cooling. The fraction of full cooling to apply equals
+		// your ship's current fraction of its maximum temperature.
+		double activeCooling = coolingEfficiency * attributes.Get("active cooling");
+		if(activeCooling > 0. && heat > 0. && energy >= 0.)
+		{
+			// Handle the case where "active cooling"
+			// does not require any energy.
+			double coolingEnergy = attributes.Get("cooling energy");
+			if(coolingEnergy)
+			{
+				double spentEnergy = min(energy, coolingEnergy * min(1., Heat()));
+				heat -= activeCooling * spentEnergy / coolingEnergy;
+				energy -= spentEnergy;
+			}
+			else
+				heat -= activeCooling * min(1., Heat());
+		}
 	}
 
 	// Don't allow any levels to drop below zero.
