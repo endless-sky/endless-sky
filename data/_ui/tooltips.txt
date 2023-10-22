@@ -1170,6 +1170,9 @@ tip "Toggle fullscreen"
 tip "Toggle fast-forward"
 	`Toggle a 3x speed fast-forward. Fast-forward may be automatically deactivated by the "Interrupt fast-forward" setting.`
 
+tip "Show help"
+	`Display the help dialogs that are relevant to your current UI panel and situation. Uses the same help dialogs from the "Reactivate first-time help" setting, forcing them to appear even if they have already appeared before.`
+
 tip "Deploy / recall fighters"
 	`Deploy or recall carried ships (e.g. fighters, drones) in your fleet. Requires carriers with space to hold the carried ships.`
 
