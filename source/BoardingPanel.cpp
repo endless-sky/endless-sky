@@ -28,7 +28,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Government.h"
 #include "Information.h"
 #include "Interface.h"
-#include "Messages.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Random.h"

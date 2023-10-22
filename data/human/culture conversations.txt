@@ -21,7 +21,7 @@ mission "Sad Gamblers - Republic"
 		random < 1
 	on offer
 		conversation
-			`Passing through the spaceport you see a sizable group of people waiting on a lottery draw. You hear a whoop of success, and your attention is drawn as one of them wins a moderate sum in a 12th division win. It's one or two day's worth of standard pay.`
+			`Passing through the spaceport you see a sizable group of people waiting on a lottery draw. You hear a whoop of success, and your attention is drawn as one of them wins a moderate sum in a 12th division win. It's one or two days' worth of standard pay.`
 			`	It's difficult not to pity them as they immediately buy more tickets with the whole value.`
 				decline
 
@@ -34,7 +34,7 @@ mission "Sad Gamblers - Syndicate"
 		random < 1
 	on offer
 		conversation
-			`Passing through the spaceport you see a sizable group of people waiting on a lottery draw. You hear a whoop of success, and your attention is drawn as one of them wins a moderate sum in a 12th division win. It's one or two day's worth of standard pay.`
+			`Passing through the spaceport you see a sizable group of people waiting on a lottery draw. You hear a whoop of success, and your attention is drawn as one of them wins a moderate sum in a 12th division win. It's one or two days' worth of standard pay.`
 			`	It's difficult not to pity them as they immediately buy more tickets with the whole value.`
 				decline
 
@@ -88,14 +88,6 @@ mission "Gift Store Interaction"
 			`	Curious, you turn over your own mug, and when you spot the 50 credit price tag your heart sinks. You could never afford such an expensive mug. You put it back and walk away while pondering your financial situation.`
 				decline
 
-outfit "Mug"
-	category "Hand to Hand"
-	cost 50
-	thumbnail "outfit/unknown"
-	"capture attack" .1
-	"unplunderable" 1
-	description "You can throw it in a pinch, you guess."
-
 
 
 mission "New China Mourners"
@@ -143,7 +135,8 @@ mission "Trash Fire Crops"
 	minor
 	source
 		government "Republic"
-		attributes "dirt belt" "farming"
+		attributes "dirt belt"
+		attributes "farming"
 		not attributes "station"
 	to offer
 		random < 1

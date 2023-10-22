@@ -20,11 +20,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Files.h"
+#include "GameData.h"
 #include "GameWindow.h"
+#include "Interface.h"
 #include "Logger.h"
 #include "Screen.h"
 
 #include <algorithm>
+#include <cstddef>
 #include <map>
 
 using namespace std;
@@ -37,8 +40,10 @@ namespace {
 	const string EXPEND_AMMO = "Escorts expend ammo";
 	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 
-	const vector<double> ZOOMS = {.25, .35, .50, .70, 1.00, 1.40, 2.00};
-	int zoomIndex = 4;
+	const vector<string> DATEFMT_OPTIONS = {"dd/mm/yyyy", "mm/dd/yyyy", "yyyy-mm-dd"};
+	int dateFormatIndex = 0;
+
+	size_t zoomIndex = 4;
 	constexpr double VOLUME_SCALE = .25;
 
 	// Default to fullscreen.
@@ -126,6 +131,9 @@ namespace {
 	const vector<string> PARALLAX_SETTINGS = {"off", "fancy", "fast"};
 	int parallaxIndex = 2;
 
+	const vector<string> EXTENDED_JUMP_EFFECT_SETTINGS = {"off", "medium", "heavy"};
+	int extendedJumpEffectIndex = 0;
+
 	const vector<string> ALERT_INDICATOR_SETTING = {"off", "audio", "visual", "both"};
 	int alertIndicatorIndex = 3;
 
@@ -149,7 +157,6 @@ void Preferences::Load()
 	settings["Show planet labels"] = true;
 	settings["Show asteroid scanner overlay"] = true;
 	settings["Show hyperspace flash"] = true;
-	settings["Extended jump effects"] = true;
 	settings["Draw background haze"] = true;
 	settings["Draw starfield"] = true;
 	settings["Hide unexplored map regions"] = true;
@@ -174,7 +181,7 @@ void Preferences::Load()
 		else if(node.Token(0) == "Flotsam collection")
 			flotsamIndex = max<int>(0, min<int>(node.Value(1), FLOTSAM_SETTINGS.size() - 1));
 		else if(node.Token(0) == "view zoom")
-			zoomIndex = max<int>(0, min<int>(node.Value(1), ZOOMS.size() - 1));
+			zoomIndex = max(0., node.Value(1));
 		else if(node.Token(0) == "vsync")
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
 		else if(node.Token(0) == "Show all status overlays")
@@ -193,8 +200,12 @@ void Preferences::Load()
 			autoFireIndex = max<int>(0, min<int>(node.Value(1), AUTO_FIRE_SETTINGS.size() - 1));
 		else if(node.Token(0) == "Parallax background")
 			parallaxIndex = max<int>(0, min<int>(node.Value(1), PARALLAX_SETTINGS.size() - 1));
+		else if(node.Token(0) == "Extended jump effects")
+			extendedJumpEffectIndex = max<int>(0, min<int>(node.Value(1), EXTENDED_JUMP_EFFECT_SETTINGS.size() - 1));
 		else if(node.Token(0) == "fullscreen")
 			screenModeIndex = max<int>(0, min<int>(node.Value(1), SCREEN_MODE_SETTINGS.size() - 1));
+		else if(node.Token(0) == "date format")
+			dateFormatIndex = max<int>(0, min<int>(node.Value(1), DATEFMT_OPTIONS.size() - 1));
 		else if(node.Token(0) == "alert indicator")
 			alertIndicatorIndex = max<int>(0, min<int>(node.Value(1), ALERT_INDICATOR_SETTING.size() - 1));
 		else if(node.Token(0) == "previous saves" && node.Size() >= 2)
@@ -226,7 +237,7 @@ void Preferences::Load()
 	}
 
 	// For people updating from a version after 0.10.1 (where "Flagship flotsam collection" was added),
-	// but before 0.10.3 (when it was replaaced with "Flotsam Collection").
+	// but before 0.10.3 (when it was replaced with "Flotsam Collection").
 	it = settings.find("Flagship flotsam collection");
 	if(it != settings.end())
 	{
@@ -250,6 +261,7 @@ void Preferences::Save()
 	out.Write("Flotsam collection", flotsamIndex);
 	out.Write("view zoom", zoomIndex);
 	out.Write("vsync", vsyncIndex);
+	out.Write("date format", dateFormatIndex);
 	out.Write("Show all status overlays", statusOverlaySettings[OverlayType::ALL].ToInt());
 	out.Write("Show flagship overlay", statusOverlaySettings[OverlayType::FLAGSHIP].ToInt());
 	out.Write("Show escort overlays", statusOverlaySettings[OverlayType::ESCORT].ToInt());
@@ -258,6 +270,7 @@ void Preferences::Save()
 	out.Write("Automatic aiming", autoAimIndex);
 	out.Write("Automatic firing", autoFireIndex);
 	out.Write("Parallax background", parallaxIndex);
+	out.Write("Extended jump effects", extendedJumpEffectIndex);
 	out.Write("alert indicator", alertIndicatorIndex);
 	out.Write("previous saves", previousSaveCount);
 
@@ -299,6 +312,30 @@ string Preferences::AmmoUsage()
 
 
 
+void Preferences::ToggleDateFormat()
+{
+	if(dateFormatIndex == static_cast<int>(DATEFMT_OPTIONS.size() - 1))
+		dateFormatIndex = 0;
+	else
+		++dateFormatIndex;
+}
+
+
+
+Preferences::DateFormat Preferences::GetDateFormat()
+{
+	return static_cast<DateFormat>(dateFormatIndex);
+}
+
+
+
+const string &Preferences::DateFormatSetting()
+{
+	return DATEFMT_OPTIONS[dateFormatIndex];
+}
+
+
+
 // Scroll speed preference.
 int Preferences::ScrollSpeed()
 {
@@ -317,14 +354,18 @@ void Preferences::SetScrollSpeed(int speed)
 // View zoom.
 double Preferences::ViewZoom()
 {
-	return ZOOMS[zoomIndex];
+	const auto &zooms = GameData::Interfaces().Get("main view")->GetList("zooms");
+	if(zoomIndex >= zooms.size())
+		return zooms.empty() ? 1. : zooms.back();
+	return zooms[zoomIndex];
 }
 
 
 
 bool Preferences::ZoomViewIn()
 {
-	if(zoomIndex == static_cast<int>(ZOOMS.size() - 1))
+	const auto &zooms = GameData::Interfaces().Get("main view")->GetList("zooms");
+	if(zooms.empty() || zoomIndex >= zooms.size() - 1)
 		return false;
 
 	++zoomIndex;
@@ -335,8 +376,14 @@ bool Preferences::ZoomViewIn()
 
 bool Preferences::ZoomViewOut()
 {
-	if(zoomIndex == 0)
+	const auto &zooms = GameData::Interfaces().Get("main view")->GetList("zooms");
+	if(!zoomIndex || zooms.size() <= 1)
 		return false;
+
+	// Make sure that we're actually zooming out. This can happen if the zoom index
+	// is out of range.
+	if(zoomIndex >= zooms.size())
+		zoomIndex = zooms.size() - 1;
 
 	--zoomIndex;
 	return true;
@@ -346,14 +393,25 @@ bool Preferences::ZoomViewOut()
 
 double Preferences::MinViewZoom()
 {
-	return ZOOMS[0];
+	const auto &zooms = GameData::Interfaces().Get("main view")->GetList("zooms");
+	return zooms.empty() ? 1. : zooms.front();
 }
 
 
 
 double Preferences::MaxViewZoom()
 {
-	return ZOOMS[ZOOMS.size() - 1];
+	const auto &zooms = GameData::Interfaces().Get("main view")->GetList("zooms");
+	return zooms.empty() ? 1. : zooms.back();
+}
+
+
+
+const vector<double> &Preferences::Zooms()
+{
+	static vector<double> DEFAULT_ZOOMS{1.};
+	const auto &zooms = GameData::Interfaces().Get("main view")->GetList("zooms");
+	return zooms.empty() ? DEFAULT_ZOOMS : zooms;
 }
 
 
@@ -379,6 +437,30 @@ Preferences::BackgroundParallax Preferences::GetBackgroundParallax()
 const string &Preferences::ParallaxSetting()
 {
 	return PARALLAX_SETTINGS[parallaxIndex];
+}
+
+
+
+void Preferences::ToggleExtendedJumpEffects()
+{
+	int targetIndex = extendedJumpEffectIndex + 1;
+	if(targetIndex == static_cast<int>(EXTENDED_JUMP_EFFECT_SETTINGS.size()))
+		targetIndex = 0;
+	extendedJumpEffectIndex = targetIndex;
+}
+
+
+
+Preferences::ExtendedJumpEffects Preferences::GetExtendedJumpEffects()
+{
+	return static_cast<ExtendedJumpEffects>(extendedJumpEffectIndex);
+}
+
+
+
+const string &Preferences::ExtendedJumpEffectsSetting()
+{
+	return EXTENDED_JUMP_EFFECT_SETTINGS[extendedJumpEffectIndex];
 }
 
 

@@ -311,6 +311,9 @@ public:
 	double Health() const;
 	// Get the hull fraction at which this ship is disabled.
 	double DisabledHull() const;
+	// Get the maximum shield and hull values of the ship, accounting for multipliers.
+	double MaxShields() const;
+	double MaxHull() const;
 	// Get the actual shield level of the ship.
 	double ShieldLevel() const;
 	// Get how disrupted this ship's shields are.
@@ -419,7 +422,7 @@ public:
 	// energy, ammo, and fuel to fire it).
 	bool CanFire(const Weapon *weapon) const;
 	// Fire the given weapon (i.e. deduct whatever energy, ammo, or fuel it uses
-	// and add whatever heat it generates. Assume that CanFire() is true.
+	// and add whatever heat it generates). Assume that CanFire() is true.
 	void ExpendAmmo(const Weapon &weapon);
 
 	// Each ship can have a target system (to travel to), a target planet (to

@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #ifndef CONDITION_SET_H_
 #define CONDITION_SET_H_
 
+#include <cstdint>
 #include <map>
 #include <set>
 #include <string>

@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cstdint>
 #include <string>
+#include <vector>
 
 
 
@@ -27,6 +28,12 @@ public:
 		off = 0,
 		on,
 		adaptive,
+	};
+
+	enum class DateFormat : int_fast8_t {
+		DMY = 0, // Day-first format. (Sat, 4 Oct 1941)
+		MDY,     // Month-first format. (Sat, Oct 4, 1941)
+		YMD      // All-numeric ISO 8601. (1941-10-04)
 	};
 
 	enum class OverlayState : int_fast8_t {
@@ -76,6 +83,12 @@ public:
 		FAST
 	};
 
+	enum class ExtendedJumpEffects : int {
+		OFF = 0,
+		MEDIUM,
+		HEAVY
+	};
+
 	enum class AlertIndicator : int_fast8_t {
 		NONE = 0,
 		AUDIO,
@@ -96,6 +109,11 @@ public:
 	static void ToggleAmmoUsage();
 	static std::string AmmoUsage();
 
+	// Date format preferences.
+	static void ToggleDateFormat();
+	static DateFormat GetDateFormat();
+	static const std::string &DateFormatSetting();
+
 	// Scroll speed preference.
 	static int ScrollSpeed();
 	static void SetScrollSpeed(int speed);
@@ -106,6 +124,7 @@ public:
 	static bool ZoomViewOut();
 	static double MinViewZoom();
 	static double MaxViewZoom();
+	static const std::vector<double> &Zooms();
 
 	static void ToggleScreenMode();
 	static const std::string &ScreenModeSetting();
@@ -133,6 +152,11 @@ public:
 	static void ToggleParallax();
 	static BackgroundParallax GetBackgroundParallax();
 	static const std::string &ParallaxSetting();
+
+	// Extended jump effects setting, either "off", "medium", or "heavy".
+	static void ToggleExtendedJumpEffects();
+	static ExtendedJumpEffects GetExtendedJumpEffects();
+	static const std::string &ExtendedJumpEffectsSetting();
 
 	// Boarding target setting, either "proximity", "value" or "mixed".
 	static void ToggleBoarding();

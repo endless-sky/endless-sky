@@ -61,6 +61,7 @@ namespace {
 		DARING,
 		SECRETIVE,
 		RAMMING,
+		UNRESTRICTED,
 		DECLOAKED,
 		ARTILLERY,
 
@@ -102,6 +103,7 @@ namespace {
 		{"daring", DARING},
 		{"secretive", SECRETIVE},
 		{"ramming", RAMMING},
+		{"unrestricted", UNRESTRICTED},
 		{"decloaked", DECLOAKED},
 		{"artillery", ARTILLERY}
 	};
@@ -253,6 +255,13 @@ bool Personality::IsVindictive() const
 bool Personality::IsUnconstrained() const
 {
 	return flags.test(UNCONSTRAINED);
+}
+
+
+
+bool Personality::IsUnrestricted() const
+{
+	return flags.test(UNRESTRICTED);
 }
 
 

@@ -152,6 +152,56 @@ namespace {
 
 		return false;
 	}
+
+	pair<bool, bool> BlinkMissionIndicator(const PlayerInfo &player, const Mission &mission, const int step)
+	{
+		bool blink = false;
+		int daysLeft = 1;
+		if(mission.Deadline())
+		{
+			daysLeft = mission.Deadline() - player.GetDate() + 1;
+			if(daysLeft > 0)
+			{
+				if(Preferences::Has("Deadline blink by distance"))
+				{
+					DistanceMap distance(player, player.GetSystem());
+					if(distance.HasRoute(mission.Destination()->GetSystem()))
+					{
+						set<const System *> toVisit;
+						for(const Planet *stopover : mission.Stopovers())
+						{
+							if(distance.HasRoute(stopover->GetSystem()))
+								toVisit.insert(stopover->GetSystem());
+							--daysLeft;
+						}
+						for(const System *waypoint : mission.Waypoints())
+							if(distance.HasRoute(waypoint))
+								toVisit.insert(waypoint);
+
+						int systemCount = toVisit.size();
+						for(int i = 0; i < systemCount; ++i)
+						{
+							const System *closest;
+							int minimalDist = numeric_limits<int>::max();
+							for(const System *sys : toVisit)
+								if(distance.Days(sys) < minimalDist)
+								{
+									closest = sys;
+									minimalDist = distance.Days(sys);
+								}
+							daysLeft -= distance.Days(closest);
+							distance = DistanceMap(player, closest);
+							toVisit.erase(closest);
+						}
+						daysLeft -= distance.Days(mission.Destination()->GetSystem());
+					}
+				}
+				int blinkFactor = min(6, max(1, daysLeft));
+				blink = (step % (10 * blinkFactor) > 5 * blinkFactor);
+			}
+		}
+		return pair<bool, bool>(blink, daysLeft > 0);
+	}
 }
 
 const float MapPanel::OUTER = 6.f;
@@ -421,16 +471,10 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 
 			if(mission.Destination()->IsInSystem(&system))
 			{
-				bool blink = false;
-				if(mission.Deadline())
+				pair<bool, bool> blink = BlinkMissionIndicator(player, mission, step);
+				if(!blink.first)
 				{
-					int days = min(5, mission.Deadline() - player.GetDate()) + 1;
-					if(days > 0)
-						blink = (step % (10 * days) > 5 * days);
-				}
-				if(!blink)
-				{
-					bool isSatisfied = IsSatisfied(player, mission);
+					bool isSatisfied = IsSatisfied(player, mission) && blink.second;
 					DrawPointer(from, missionCounter, isSatisfied ? currentColor : blockedColor, false);
 				}
 				else
@@ -464,15 +508,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 	Color bright(2.f * alpha, 0.f);
 	// Non-hyperspace jumps are drawn with a dashed directional arrow.
 	if(!isLink)
-	{
-		double length = (to - from).Length();
-		int segments = static_cast<int>(length / 15.);
-		for(int i = 0; i < segments; ++i)
-			LineShader::Draw(
-				from + unit * ((i * length) / segments + 2.),
-				from + unit * (((i + 1) * length) / segments - 2.),
-				LINK_WIDTH, bright);
-	}
+		LineShader::DrawDashed(from, to, unit, LINK_WIDTH, bright, 11., 4.);
 	LineShader::Draw(to, to + Angle(-30.).Rotate(unit) * -10., LINK_WIDTH, bright);
 	LineShader::Draw(to, to + Angle(30.).Rotate(unit) * -10., LINK_WIDTH, bright);
 }
@@ -753,6 +789,10 @@ void MapPanel::Select(const System *system)
 		if(isJumping)
 			plan.push_back(source);
 	}
+
+	// Reset the travel destination if the final system in the travel plan has changed.
+	if(!plan.empty())
+		player.SetTravelDestination(nullptr);
 }
 
 
@@ -830,6 +870,36 @@ int MapPanel::Search(const string &str, const string &sub)
 	auto it = search(str.begin(), str.end(), sub.begin(), sub.end(),
 		[](char a, char b) { return toupper(a) == toupper(b); });
 	return (it == str.end() ? -1 : it - str.begin());
+}
+
+
+
+bool MapPanel::GetTravelInfo(const System *previous, const System *next, const double jumpRange,
+	bool &isJump, bool &isWormhole, bool &isMappable, Color *wormholeColor) const
+{
+	const bool isHyper = previous->Links().count(next);
+	isWormhole = false;
+	isMappable = false;
+	// Short-circuit the loop for MissionPanel, which draws hyperlinks and wormholes the same.
+	if(!isHyper || wormholeColor)
+		for(const StellarObject &object : previous->Objects())
+			if(object.HasSprite() && object.HasValidPlanet()
+				&& object.GetPlanet()->IsWormhole()
+				&& player.HasVisited(*object.GetPlanet())
+				&& player.HasVisited(*previous) && player.HasVisited(*next)
+				&& &object.GetPlanet()->GetWormhole()->WormholeDestination(*previous) == next)
+			{
+				isWormhole = true;
+				if(object.GetPlanet()->GetWormhole()->IsMappable())
+				{
+					isMappable = true;
+					if(wormholeColor)
+						*wormholeColor = *object.GetPlanet()->GetWormhole()->GetLinkColor();
+					break;
+				}
+			}
+	isJump = !isHyper && !isWormhole && previous->JumpNeighbors(jumpRange).count(next);
+	return isHyper || isWormhole || isJump;
 }
 
 
@@ -1004,7 +1074,6 @@ void MapPanel::DrawTravelPlan()
 	const Color &defaultColor = *colors.Get("map travel ok flagship");
 	const Color &outOfFlagshipFuelRangeColor = *colors.Get("map travel ok none");
 	const Color &withinFleetFuelRangeColor = *colors.Get("map travel ok fleet");
-	Color wormholeColor;
 
 	// At each point in the path, keep track of how many ships in the
 	// fleet are able to make it this far.
@@ -1016,7 +1085,7 @@ void MapPanel::DrawTravelPlan()
 	bool hasEscort = false;
 	map<const Ship *, double> fuel;
 	for(const shared_ptr<Ship> &it : player.Ships())
-		if(!it->IsParked() && !it->CanBeCarried() && it->GetSystem() == flagship->GetSystem())
+		if(!it->IsParked() && (!it->CanBeCarried() || it.get() == flagship) && it->GetSystem() == flagship->GetSystem())
 		{
 			if(it->IsDisabled())
 			{
@@ -1029,40 +1098,19 @@ void MapPanel::DrawTravelPlan()
 		}
 	stranded |= !hasEscort;
 
+	const double jumpRange = flagship->JumpNavigation().JumpRange();
 	const System *previous = &playerSystem;
 	const System *next = nullptr;
-	double jumpRange = flagship->JumpNavigation().JumpRange();
 	for(int i = player.TravelPlan().size() - 1; i >= 0; --i, previous = next)
 	{
 		next = player.TravelPlan()[i];
-		bool isHyper = previous->Links().count(next);
-		bool isJump = !isHyper && previous->JumpNeighbors(jumpRange).count(next);
-		bool isWormhole = false;
-		bool skip = true;
-		for(const StellarObject &object : previous->Objects())
-		{
-			// Determine if this step of the travel plan can be completed by traversing a wormhole.
-			bool wormholeConnection = object.HasSprite()
-				&& object.HasValidPlanet()
-				&& object.GetPlanet()->IsWormhole()
-				&& player.HasVisited(*object.GetPlanet())
-				&& player.HasVisited(*previous) && player.HasVisited(*next)
-				&& (&object.GetPlanet()->GetWormhole()->WormholeDestination(*previous) == next);
-			if(wormholeConnection)
-			{
-				isWormhole = true;
-				// If this wormhole is not mappable, don't draw the link for this step of the travel plan.
-				const bool mappable = object.GetPlanet()->GetWormhole()->IsMappable();
-				skip &= !mappable;
-				if(mappable)
-					wormholeColor = *object.GetPlanet()->GetWormhole()->GetLinkColor();
-			}
-		}
-		if(isWormhole && skip)
-			continue;
 
-		if(!isHyper && !isJump && !isWormhole)
+		bool isJump, isWormhole, isMappable;
+		Color wormholeColor;
+		if(!GetTravelInfo(previous, next, jumpRange, isJump, isWormhole, isMappable, &wormholeColor))
 			break;
+		if(isWormhole && !isMappable)
+			continue;
 
 		// Wormholes cost nothing to go through. If this is not a wormhole,
 		// check how much fuel every ship will expend to go through it.
@@ -1090,10 +1138,17 @@ void MapPanel::DrawTravelPlan()
 		else if(fuel[flagship] >= 0.)
 			drawColor = defaultColor;
 
-		Point from = Zoom() * (next->Position() + center);
-		Point to = Zoom() * (previous->Position() + center);
-		Point unit = (from - to).Unit() * LINK_OFFSET;
-		LineShader::Draw(from - unit, to + unit, 3.f, drawColor);
+		Point from = Zoom() * (previous->Position() + center);
+		Point to = Zoom() * (next->Position() + center);
+		const Point unit = (to - from).Unit();
+		from += LINK_OFFSET * unit;
+		to -= LINK_OFFSET * unit;
+
+		// Non-hyperspace jumps are drawn with a dashed line.
+		if(isJump)
+			LineShader::DrawDashed(from, to, unit, 3.f, drawColor, 11., 4.);
+		else
+			LineShader::Draw(from, to, 3.f, drawColor);
 	}
 }
 
@@ -1315,15 +1370,9 @@ void MapPanel::DrawMissions()
 		if(it.drawn >= MAX_MISSION_POINTERS_DRAWN - reserved)
 			continue;
 
-		bool blink = false;
-		if(mission.Deadline())
-		{
-			int days = min(5, mission.Deadline() - player.GetDate()) + 1;
-			if(days > 0)
-				blink = (step % (10 * days) > 5 * days);
-		}
-		bool isSatisfied = IsSatisfied(player, mission);
-		DrawPointer(system, it.drawn, blink ? black : isSatisfied ? currentColor : blockedColor, isSatisfied);
+		pair<bool, bool> blink = BlinkMissionIndicator(player, mission, step);
+		bool isSatisfied = IsSatisfied(player, mission) && blink.second;
+		DrawPointer(system, it.drawn, blink.first ? black : isSatisfied ? currentColor : blockedColor, isSatisfied);
 
 		for(const System *waypoint : mission.Waypoints())
 			DrawPointer(waypoint, missionCount[waypoint].drawn, waypointColor);
