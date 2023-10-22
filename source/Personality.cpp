@@ -61,6 +61,8 @@ namespace {
 		DARING,
 		SECRETIVE,
 		RAMMING,
+		UNRESTRICTED,
+		DECLOAKED,
 
 		// This must be last so it can be used for bounds checking.
 		LAST_ITEM_IN_PERSONALITY_TRAIT_ENUM
@@ -99,7 +101,9 @@ namespace {
 		{"lingering", LINGERING},
 		{"daring", DARING},
 		{"secretive", SECRETIVE},
-		{"ramming", RAMMING}
+		{"ramming", RAMMING},
+		{"unrestricted", UNRESTRICTED},
+		{"decloaked", DECLOAKED}
 	};
 
 	// Tokens that combine two or more flags.
@@ -249,6 +253,13 @@ bool Personality::IsVindictive() const
 bool Personality::IsUnconstrained() const
 {
 	return flags.test(UNCONSTRAINED);
+}
+
+
+
+bool Personality::IsUnrestricted() const
+{
+	return flags.test(UNRESTRICTED);
 }
 
 
@@ -403,6 +414,13 @@ bool Personality::IsMarked() const
 bool Personality::IsMute() const
 {
 	return flags.test(MUTE);
+}
+
+
+
+bool Personality::IsDecloaked() const
+{
+	return flags.test(DECLOAKED);
 }
 
 

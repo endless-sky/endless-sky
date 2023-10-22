@@ -77,7 +77,7 @@ namespace {
 			+ "\", or \"" + lastValidIt->second + '"';
 	}
 
-	// Prepare an keyboard input to one of the UIs.
+	// Prepare a keyboard input to one of the UIs.
 	bool KeyInputToEvent(const char *keyName, Uint16 modKeys)
 	{
 		// Construct the event to send (from keyboard code and modifiers)
@@ -645,5 +645,5 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 void Test::UnexpectedSuccessResult() const
 {
 	throw runtime_error("Unexpected test result: Test marked with status '" + StatusText()
-		+ "' was not expected to finish succesfully.\n");
+		+ "' was not expected to finish successfully.\n");
 }
