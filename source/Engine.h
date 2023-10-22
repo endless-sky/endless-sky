@@ -230,6 +230,7 @@ private:
 	int alarmTime = 0;
 	double flash = 0.;
 	bool doFlash = false;
+	bool doEnterLabels = false;
 	bool doEnter = false;
 	bool hadHostiles = false;
 
@@ -261,8 +262,10 @@ private:
 	TestContext *testContext = nullptr;
 
 	double zoom = 1.;
+	double baseZoom = 1.;
 	// Tracks the next zoom change so that objects aren't drawn at different zooms in a single frame.
 	double nextZoom = 0.;
+	double zoomMod = 2.;
 
 	double load = 0.;
 	int loadCount = 0;

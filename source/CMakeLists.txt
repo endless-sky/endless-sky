@@ -253,6 +253,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Projectile.h
 	Radar.cpp
 	Radar.h
+	RaidFleet.cpp
+	RaidFleet.h
 	Random.cpp
 	Random.h
 	RandomEvent.h
@@ -278,6 +280,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ShipInfoPanel.h
 	ShipJumpNavigation.cpp
 	ShipJumpNavigation.h
+	ShipManager.cpp
+	ShipManager.h
 	ShipyardPanel.cpp
 	ShipyardPanel.h
 	ShopPanel.cpp

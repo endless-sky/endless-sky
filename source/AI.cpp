@@ -901,7 +901,7 @@ void AI::Step(const PlayerInfo &player, Command &activeCommands)
 				// Find the possible parents for orphaned fighters and drones.
 				auto parentChoices = vector<shared_ptr<Ship>>{};
 				parentChoices.reserve(ships.size() * .1);
-				auto getParentFrom = [&it, &gov, &parentChoices](const list<shared_ptr<Ship>> otherShips) -> shared_ptr<Ship>
+				auto getParentFrom = [&it, &gov, &parentChoices](const list<shared_ptr<Ship>> &otherShips) -> shared_ptr<Ship>
 				{
 					for(const auto &other : otherShips)
 						if(other->GetGovernment() == gov && other->GetSystem() == it->GetSystem() && !other->CanBeCarried())
@@ -1694,8 +1694,14 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 			? origin->JumpNeighbors(ship.JumpNavigation().JumpRange()) : origin->Links();
 		if(jumps)
 		{
+			bool unrestricted = ship.GetPersonality().IsUnrestricted();
 			for(const System *link : links)
 			{
+				if(!unrestricted && gov->IsRestrictedFrom(*link))
+				{
+					systemWeights.push_back(0);
+					continue;
+				}
 				// Prefer systems in the direction we're facing.
 				Point direction = link->Position() - origin->Position();
 				int weight = static_cast<int>(
@@ -2760,18 +2766,20 @@ void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) 
 		{
 			const auto &links = ship.JumpNavigation().HasJumpDrive() ?
 				system->JumpNeighbors(ship.JumpNavigation().JumpRange()) : system->Links();
-			targetSystems.insert(targetSystems.end(), links.begin(), links.end());
+			bool unrestricted = ship.GetPersonality().IsUnrestricted();
+			for(const System *link : links)
+				if(unrestricted || !gov->IsRestrictedFrom(*link))
+					targetSystems.push_back(link);
 		}
 
 		unsigned total = targetShips.size() + targetPlanets.size() + targetSystems.size();
+		// If there is nothing for this ship to scan, have it patrol the entire system
+		// instead of drifting or stopping.
 		if(!total)
 		{
-			// If there is nothing for this ship to scan, have it hold still
-			// instead of drifting away from the system center.
-			Stop(ship, command);
+			DoPatrol(ship, command);
 			return;
 		}
-
 		unsigned index = Random::Int(total);
 		if(index < targetShips.size())
 			ship.SetTargetShip(targetShips[index]->shared_from_this());
@@ -3000,6 +3008,52 @@ bool AI::DoCloak(Ship &ship, Command &command)
 		command |= Command::CLOAK;
 
 	return false;
+}
+
+
+
+void AI::DoPatrol(Ship &ship, Command &command) const
+{
+	double radius = ship.GetSystem()->ExtraHyperArrivalDistance();
+	if(radius == 0.)
+		radius = 500.;
+
+	// The ship is outside of the effective range of the system,
+	// so we turn it around.
+	if(ship.Position().LengthSquared() > radius * radius)
+	{
+		// Allow ships to land after a while, otherwise they would continue to accumulate in the system.
+		if(!ship.GetPersonality().IsStaying() && !Random::Int(10000))
+		{
+			vector<const StellarObject *> landingTargets;
+			for(const StellarObject &object : ship.GetSystem()->Objects())
+				if(object.HasSprite() && object.GetPlanet() && object.GetPlanet()->CanLand(ship))
+					landingTargets.push_back(&object);
+			if(landingTargets.size())
+			{
+				ship.SetTargetStellar(landingTargets[Random::Int(landingTargets.size())]);
+				MoveToPlanet(ship, command);
+				command |= Command::LAND;
+				return;
+			}
+		}
+		// Hacky way of differentiating ship behaviour without additional storage,
+		// while keeping it consistent for each ship. TODO: change when Ship::SetTargetLocation exists.
+		// This uses the pointer of the ship to choose a pseudo-random angle and instructs it to
+		// patrol the system in a criss-crossing pattern, where each turn is this specific angle.
+		intptr_t seed = reinterpret_cast<intptr_t>(&ship);
+		int behaviour = abs(seed % 23);
+		Angle delta = Angle(360. / (behaviour / 2. + 2.) * (behaviour % 2 ? -1. : 1.));
+		Angle target = Angle(ship.Position()) + delta;
+		MoveTo(ship, command, target.Unit() * radius / 2, Point(), 10., 1.);
+	}
+	// Otherwise, keep going forward.
+	else
+	{
+		const Point targetVelocity = ship.Facing().Unit() * (ship.MaxVelocity() + 1);
+		const Point targetPosition = ship.Position() + targetVelocity;
+		MoveTo(ship, command, targetPosition, targetVelocity, 10., 1.);
+	}
 }
 
 
@@ -3659,6 +3713,8 @@ bool AI::TargetMinable(Ship &ship) const
 	auto UpdateBestMinable = MinableStrategy();
 	for(auto &&minable : minables)
 	{
+		if(GetDistanceMetric(*minable) > scanRangeMetric)
+			continue;
 		if(bestMinable)
 			UpdateBestMinable(minable);
 		else
@@ -3760,7 +3816,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 					message += (oxfordComma ? ", and " : " and ");
 			}
 			message += " in the system you are jumping to.";
-			Messages::Add(message, Messages::Importance::High);
+			Messages::Add(message, Messages::Importance::Info);
 		}
 		// If any destination was found, find the corresponding stellar object
 		// and set it as your ship's target planet.
@@ -3961,6 +4017,8 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 		if(landIt == landables.cend())
 			target = nullptr;
 
+		Messages::Importance messageImportance = Messages::Importance::High;
+
 		if(target && (ship.Zoom() < 1. || ship.Position().Distance(target->Position()) < target->Radius()))
 		{
 			// Special case: if there are two planets in system and you have one
@@ -3979,6 +4037,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			{
 				message = "The authorities on this " + next->GetPlanet()->Noun() +
 					" refuse to clear you to land here.";
+				messageImportance = Messages::Importance::Highest;
 				Audio::Play(Audio::Get("fail"));
 			}
 			else if(next != target)
@@ -4017,12 +4076,14 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 			if(!target)
 			{
 				message = "There are no planets in this system that you can land on.";
+				messageImportance = Messages::Importance::Highest;
 				Audio::Play(Audio::Get("fail"));
 			}
 			else if(!target->GetPlanet()->CanLand())
 			{
 				message = "The authorities on this " + target->GetPlanet()->Noun() +
 					" refuse to clear you to land here.";
+				messageImportance = Messages::Importance::Highest;
 				Audio::Play(Audio::Get("fail"));
 			}
 			else if(!types.empty())
@@ -4045,7 +4106,7 @@ void AI::MovePlayer(Ship &ship, const PlayerInfo &player, Command &activeCommand
 				message = "Landing on " + target->Name() + ".";
 		}
 		if(!message.empty())
-			Messages::Add(message, Messages::Importance::High);
+			Messages::Add(message, messageImportance);
 	}
 	else if(activeCommands.Has(Command::JUMP | Command::FLEET_JUMP))
 	{

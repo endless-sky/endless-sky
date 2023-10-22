@@ -163,6 +163,8 @@ namespace {
 		{"leak resistance", 2},
 		{"burn resistance", 2},
 
+		{"shield multiplier", 3},
+		{"hull multiplier", 3},
 		{"hull repair multiplier", 3},
 		{"hull energy multiplier", 3},
 		{"hull fuel multiplier", 3},
@@ -207,7 +209,8 @@ namespace {
 		{"hyperdrive", "Allows you to make hyperjumps."},
 		{"jump drive", "Lets you jump to any nearby system."},
 		{"minable", "This item is mined from asteroids."},
-		{"atrocity", "This outfit is considered an atrocity."}
+		{"atrocity", "This outfit is considered an atrocity."},
+		{"unique", "This item is unique."}
 	};
 
 	bool IsNotRequirement(const string &label)

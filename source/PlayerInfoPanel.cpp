@@ -91,7 +91,7 @@ namespace {
 
 	bool CompareModelName(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
 	{
-		return lhs->ModelName() < rhs->ModelName();
+		return lhs->DisplayModelName() < rhs->DisplayModelName();
 	}
 
 	bool CompareSystem(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
@@ -282,6 +282,11 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 			|| key == 'i' || command.Has(Command::INFO))
 	{
 		GetUI()->Pop(this);
+	}
+	else if(command.Has(Command::HELP))
+	{
+		if(panelState.Ships().size() > 1)
+			DoHelp("multiple ships", true);
 	}
 	else if(key == 's' || key == SDLK_RETURN || key == SDLK_KP_ENTER || (control && key == SDLK_TAB))
 	{
@@ -542,11 +547,14 @@ bool PlayerInfoPanel::Click(int x, int y, int clicks)
 	}
 	else
 	{
+		const bool sameIndex = panelState.SelectedIndex() == hoverIndex;
+		panelState.SelectOnly(hoverIndex);
 		// If not landed, clicking a ship name takes you straight to its info.
-		panelState.SetSelectedIndex(hoverIndex);
-
-		GetUI()->Pop(this);
-		GetUI()->Push(new ShipInfoPanel(player, std::move(panelState)));
+		if(!panelState.CanEdit() || sameIndex)
+		{
+			GetUI()->Pop(this);
+			GetUI()->Push(new ShipInfoPanel(player, std::move(panelState)));
+		}
 	}
 
 	return true;
@@ -760,7 +768,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 
 		// Indent the ship name if it is a fighter or drone.
 		table.Draw(ship.CanBeCarried() ? "    " + ship.Name() : ship.Name());
-		table.Draw(ship.ModelName());
+		table.Draw(ship.DisplayModelName());
 
 		const System *system = ship.GetSystem();
 		table.Draw(system ? system->Name() : "");

@@ -58,14 +58,14 @@ namespace {
 
 
 // Construct and Load() at the same time.
-MissionAction::MissionAction(const DataNode &node, const string &missionName)
+MissionAction::MissionAction(const DataNode &node)
 {
-	Load(node, missionName);
+	Load(node);
 }
 
 
 
-void MissionAction::Load(const DataNode &node, const string &missionName)
+void MissionAction::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
 		trigger = node.Token(1);
@@ -73,12 +73,12 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 		system = node.Token(2);
 
 	for(const DataNode &child : node)
-		LoadSingle(child, missionName);
+		LoadSingle(child);
 }
 
 
 
-void MissionAction::LoadSingle(const DataNode &child, const string &missionName)
+void MissionAction::LoadSingle(const DataNode &child)
 {
 	const string &key = child.Token(0);
 	bool hasValue = (child.Size() >= 2);
@@ -104,7 +104,7 @@ void MissionAction::LoadSingle(const DataNode &child, const string &missionName)
 			Dialog::ParseTextNode(child, 1, dialogText);
 	}
 	else if(key == "conversation" && child.HasChildren())
-		conversation = ExclusiveItem<Conversation>(Conversation(child, missionName));
+		conversation = ExclusiveItem<Conversation>(Conversation(child));
 	else if(key == "conversation" && hasValue)
 		conversation = ExclusiveItem<Conversation>(GameData::Conversations().Get(child.Token(1)));
 	else if(key == "require" && hasValue)
@@ -113,7 +113,7 @@ void MissionAction::LoadSingle(const DataNode &child, const string &missionName)
 		if(count >= 0)
 			requiredOutfits[GameData::Outfits().Get(child.Token(1))] = count;
 		else
-			child.PrintTrace("Error: Skipping invalid \"require\" amount:");
+			child.PrintTrace("Error: Skipping invalid \"require\" count:");
 	}
 	// The legacy syntax "outfit <outfit> 0" means "the player must have this outfit installed."
 	else if(key == "outfit" && child.Size() >= 3 && child.Token(2) == "0")
@@ -129,7 +129,7 @@ void MissionAction::LoadSingle(const DataNode &child, const string &missionName)
 			child.PrintTrace("Error: Unsupported use of \"system\" LocationFilter:");
 	}
 	else
-		action.LoadSingle(child, missionName);
+		action.LoadSingle(child);
 }
 
 
@@ -233,7 +233,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 			continue;
 
 		// Outfits may always be taken from the flagship. If landed, they may also be taken from
-		// the collective cargohold of any in-system, non-disabled escorts (player.Cargo()). If
+		// the collective cargo hold of any in-system, non-disabled escorts (player.Cargo()). If
 		// boarding, consider only the flagship's cargo hold. If in-flight, show mission status
 		// by checking the cargo holds of ships that would contribute to player.Cargo if landed.
 		int available = flagship ? flagship->OutfitCount(it.first) : 0;
@@ -243,6 +243,10 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 		if(available < -it.second)
 			return false;
 	}
+
+	for(auto &&it : action.Ships())
+		if(!it.CanBeDone(player))
+			return false;
 
 	for(auto &&it : requiredOutfits)
 	{
@@ -293,7 +297,17 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, const shared_ptr<Ship> &
 
 
 
-void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination,
+bool MissionAction::RequiresGiftedShip(const string &shipId) const
+{
+	for(auto &&it : action.Ships())
+		if(it.Id() == shipId)
+			return true;
+	return false;
+}
+
+
+
+void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const System *destination,
 	const shared_ptr<Ship> &ship, const bool isUnique) const
 {
 	bool isOffer = (trigger == "offer");
@@ -301,7 +315,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination,
 	{
 		// Conversations offered while boarding or assisting reference a ship,
 		// which may be destroyed depending on the player's choices.
-		ConversationPanel *panel = new ConversationPanel(player, *conversation, destination, ship, isOffer);
+		ConversationPanel *panel = new ConversationPanel(player, *conversation, caller, destination, ship, isOffer);
 		if(isOffer)
 			panel->SetCallback(&player, &PlayerInfo::MissionCallback);
 		// Use a basic callback to handle forced departure outside of `on offer`
@@ -333,7 +347,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination,
 	else if(isOffer && ui)
 		player.MissionCallback(Conversation::ACCEPT);
 
-	action.Do(player, ui);
+	action.Do(player, ui, caller);
 }
 
 
