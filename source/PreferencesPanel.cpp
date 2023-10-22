@@ -876,10 +876,36 @@ void PreferencesPanel::DrawPlugins()
 				top.Y() += sprite->Height() + 10.;
 			}
 
+			string text;
+			if(!plugin.dependencies.IsEmpty())
+			{
+				text += "Dependencies:\n";
+				if(plugin.dependencies.required.size() > 0)
+				{
+					text += "  Requires:\n";
+					for (auto& dependency : plugin.dependencies.required)
+						text += "  - " + dependency.first + '\n';
+				}
+				if(plugin.dependencies.optional.size() > 0)
+				{
+					text += "  Optional:\n";
+					for (auto& dependency : plugin.dependencies.optional)
+						text += "  - " + dependency.first + '\n';
+				}
+				if(plugin.dependencies.conflicted.size() > 0)
+				{
+					text += "  Conficts:\n";
+					for (auto& dependency : plugin.dependencies.conflicted)
+						text += "  - " + dependency.first + '\n';
+				}
+				text += '\n';
+			}
+
 			WrappedText wrap(font);
 			wrap.SetWrapWidth(MAX_TEXT_WIDTH);
 			static const string EMPTY = "(No description given.)";
-			wrap.Wrap(plugin.aboutText.empty() ? EMPTY : plugin.aboutText);
+			text += plugin.aboutText.empty() ? EMPTY : plugin.aboutText;
+			wrap.Wrap(text);
 			wrap.Draw(top, medium);
 		}
 	}
