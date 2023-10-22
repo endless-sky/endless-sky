@@ -286,6 +286,8 @@ void Ship::Load(const DataNode &node)
 					engine.zoom = grand.Value(1);
 				else if(grandKey == "angle" && grand.Size() >= 2)
 					engine.facing += Angle(grand.Value(1));
+				else if (grandKey == "gimbal" && grand.Size() >= 2)
+					engine.gimbal += Angle(grand.Value(1));
 				else
 				{
 					for(unsigned j = 1; j < ENGINE_SIDE.size(); ++j)
@@ -956,6 +958,7 @@ void Ship::Save(DataWriter &out) const
 			out.BeginChild();
 			out.Write("zoom", point.zoom);
 			out.Write("angle", point.facing.Degrees());
+			out.Write("gimbal", point.gimbal.Degrees());
 			out.Write(ENGINE_SIDE[point.side]);
 			out.EndChild();
 
@@ -966,6 +969,7 @@ void Ship::Save(DataWriter &out) const
 			out.BeginChild();
 			out.Write("zoom", point.zoom);
 			out.Write("angle", point.facing.Degrees() - 180.);
+			out.Write("gimbal", point.gimbal.Degrees());
 			out.Write(ENGINE_SIDE[point.side]);
 			out.EndChild();
 		}
@@ -975,6 +979,7 @@ void Ship::Save(DataWriter &out) const
 			out.BeginChild();
 			out.Write("zoom", point.zoom);
 			out.Write("angle", point.facing.Degrees());
+			out.Write("gimbal", point.gimbal.Degrees());
 			out.Write(ENGINE_SIDE[point.side]);
 			out.Write(STEERING_FACING[point.steering]);
 			out.EndChild();
@@ -1192,7 +1197,6 @@ vector<string> Ship::FlightCheck() const
 	double afterburner = attributes.Get("afterburner thrust");
 	double thrustEnergy = attributes.Get("thrusting energy");
 	double turn = attributes.Get("turn");
-	double vectoredThrust = attributes.Get("vectored thrust");
 	double turnEnergy = attributes.Get("turning energy");
 	double hyperDrive = navigation.HasHyperdrive();
 	double jumpDrive = navigation.HasJumpDrive();
@@ -1206,7 +1210,7 @@ vector<string> Ship::FlightCheck() const
 		checks.emplace_back("no fuel!");
 	else if(!thrust && !reverseThrust && !afterburner)
 		checks.emplace_back("no thruster!");
-	else if(!turn && !vectoredThrust)
+	else if(!turn)
 		checks.emplace_back("no steering!");
 	else if(RequiredCrew() > attributes.Get("bunks"))
 		checks.emplace_back("insufficient bunks!");
@@ -2633,8 +2637,7 @@ double Ship::InertialMass() const
 
 double Ship::TurnRate() const
 {
-	return (attributes.Get("turn") + attributes.Get("vectored thrust") * Commands().Has(Command::FORWARD))
-		/ InertialMass();
+	return attributes.Get("turn") / InertialMass();
 }
 
 
@@ -4120,8 +4123,6 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 		velocity *= 1. - Drag() / mass;
 	else if(!pilotError)
 	{
-		double thrustCommand = commands.Has(Command::FORWARD) - commands.Has(Command::BACK);
-		double thrust = 0.;
 		if(commands.Turn())
 		{
 			// Check if we are able to turn.
@@ -4171,6 +4172,8 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				angle += commands.Turn() * TurnRate() * slowMultiplier;
 			}
 		}
+		double thrustCommand = commands.Has(Command::FORWARD) - commands.Has(Command::BACK);
+		double thrust = 0.;
 		if(thrustCommand)
 		{
 			// Check if we are able to apply this thrust.
