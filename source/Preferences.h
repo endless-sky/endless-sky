@@ -83,6 +83,12 @@ public:
 		FAST
 	};
 
+	enum class ExtendedJumpEffects : int {
+		OFF = 0,
+		MEDIUM,
+		HEAVY
+	};
+
 	enum class AlertIndicator : int_fast8_t {
 		NONE = 0,
 		AUDIO,
@@ -146,6 +152,11 @@ public:
 	static void ToggleParallax();
 	static BackgroundParallax GetBackgroundParallax();
 	static const std::string &ParallaxSetting();
+
+	// Extended jump effects setting, either "off", "medium", or "heavy".
+	static void ToggleExtendedJumpEffects();
+	static ExtendedJumpEffects GetExtendedJumpEffects();
+	static const std::string &ExtendedJumpEffectsSetting();
 
 	// Boarding target setting, either "proximity", "value" or "mixed".
 	static void ToggleBoarding();

@@ -70,7 +70,7 @@ namespace {
 		if(dy)
 		{
 			// Handle small increments.
-			if(fabs(dy) < 6)
+			if(fabs(dy) < 6 && fabs(dy) > 1)
 				smoothScroll += copysign(1., dy);
 			// Keep scroll value an integer to prevent odd text artifacts.
 			else
@@ -299,6 +299,17 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		if(!isOutfitter)
 			player.UpdateCargoCapacities();
 		GetUI()->Pop(this);
+	}
+	else if(command.Has(Command::HELP))
+	{
+		if(player.Ships().size() > 1)
+			DoHelp("multiple ships", true);
+		if(isOutfitter)
+		{
+			DoHelp("uninstalling and storage", true);
+			DoHelp("cargo management", true);
+			DoHelp("outfitter", true);
+		}
 	}
 	else if(command.Has(Command::MAP))
 	{

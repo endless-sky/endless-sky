@@ -6305,7 +6305,7 @@ mission "Blind Man from Martini"
 mission "Care Package to South 1"
 	minor
 	name "Care package to <planet>"
-	description "An activist named Torrey has asked you to take a care package to her friend, an NCO named Irene in the Southern Mutual Defense Pact militia, stationed on <destination>."
+	description "An activist named Torrey has asked you to take a care package to her friend, an NCO named Irene in the Southern Mutual Defense Pact militia, stationed on <destination>. Payment is <payment>."
 	source
 		government "Republic" "Syndicate"
 		not attributes "rim" "south" "station"
@@ -6425,7 +6425,7 @@ mission "Care Package to South 2b"
 mission "Moving House 1"
 	minor
 	name "Moving House"
-	description "An anarchist named Kris has asked you to help them move house from <planet stopovers> to <destination>."
+	description "An anarchist named Kris has asked you to help move them and <cargo> from <planet stopovers> to <destination>. Payment is <payment>."
 	source
 		government "Republic" "Syndicate"
 		not attributes "rim" "south"
@@ -6509,7 +6509,7 @@ event "kris gets frustrated"
 
 mission "Moving House 2"
 	minor
-	description "Kris is unsatisfied on <origin> and wants your help to move to <destination> instead."
+	description "Kris is unsatisfied with life on <destination> and wants your help to move."
 	landing
 	name "Moving House, Again"
 	source
@@ -6530,6 +6530,7 @@ mission "Moving House 2"
 
 mission "Moving House 3"
 	name "Moving House, Again"
+	description "Kris is unsatisfied on <origin> and wants your help to move to <destination> instead. Payment is <payment>."
 	source "Lichen"
 	destination "Thule"
 	passengers 1
@@ -6563,8 +6564,8 @@ mission "Moving House 3"
 
 mission "Stranded In Paradise 1"
 	minor
-	name "Stranded In Paradise"
-	description "The Burnbeck family was stranded by the bombings, and needs transport back home to <destination>."
+	name "Stranded in Paradise"
+	description "The Burnbeck family was stranded by the bombings, and needs <bunks> free for transport back home to <destination>. Payment is <payment>."
 	source
 		attributes "paradise"
 	destination
@@ -6630,7 +6631,7 @@ mission "Stranded In Paradise 2"
 mission "Southern Fiance 1"
 	name "Fiance to <planet>"
 	minor
-	description "Tom, formerly a marketer for the Syndicate, is going to live with his fiance on <destination>."
+	description "Tom, formerly a marketer for the Syndicate, is going to live with his fiance on <destination>. Payment is <payment>."
 	source
 		attributes "core"
 		not government "Pirate"
@@ -6781,7 +6782,7 @@ mission "Southern Fiance 6"
 
 
 mission "FW Refugees to Humanika"
-	name "Transport Refugee Family"
+	name "Refugee family to <planet>"
 	description "Transport a family of <bunks> refugees and <cargo> to <destination>. Payment is <payment>."
 	minor
 	source
