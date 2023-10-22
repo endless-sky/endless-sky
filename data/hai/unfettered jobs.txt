@@ -315,7 +315,7 @@ mission "Unfettered Small Medicals Rush"
 	name "Express medical stock from <planet stopovers>"
 	description "The Unfettered hospitals on <destination> are in urgent need of resupply. Collect <tons> of medical supplies from <stopovers>, and swiftly bring it to the Unfettered before <date> for <payment>."
 	deadline 2 1
-	cargo "medical supplies" 5 2 .05
+	cargo "medical supplies" 35 4 .05
 	source
 		attributes "unfettered"
 	stopover
@@ -324,14 +324,14 @@ mission "Unfettered Small Medicals Rush"
 		attributes "spaceport"
 	destination "Darkcloak"
 	to offer
-		random < 20 + "Unfettered Jump Drive 2: offered" * 20
+		random < 20 + "Unfettered Jump Drive 1: offered" * 20 "Unfettered Jump Drive 2: offered" * 20
 		"reputation: Hai (Unfettered)" >= 0
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on stopover
 		dialog phrase "unfettered medicals pickup dialog"
 	on complete
-		payment 8000 2500
+		payment 8000 800
 		dialog phrase "unfettered medicals payment dialog"
 
 
