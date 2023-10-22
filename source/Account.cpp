@@ -214,6 +214,8 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	// If you failed to pay any debt, your credit score drops. Otherwise, even
 	// if you have no debts, it increases. (Because, having no debts at all
 	// makes you at least as credit-worthy as someone who pays debts on time.)
+	missedPayment = !b_SalariesPaid.paidInFull;
+	missedPayment = !b_maintencancePaid.paidInFull;
 	creditScore = max(200, min(800, creditScore + (missedPayment ? -5 : 1)));
 
 	// If you didn't make any payments, no need to continue further.
@@ -332,6 +334,12 @@ Bill Account::PayShipMaintenance(int64_t maintenance) {
 	receipt.paidInFull = maintPaid;
 	receipt.creditsPaid = maintenancePaid;
 	return receipt;
+}
+
+
+
+void Account::PayMortgages(std::vector<Mortgage> *mortgages) {
+	return;
 }
 
 
