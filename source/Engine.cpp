@@ -506,8 +506,10 @@ void Engine::Step(bool isActive)
 	{
 		center = flagship->Position();
 		centerVelocity = flagship->Velocity();
-		if(flagship->IsHyperspacing() && Preferences::Has("Extended jump effects"))
-			centerVelocity *= 1. + pow(flagship->GetHyperspacePercentage() / 20., 2);
+		Preferences::ExtendedJumpEffects jumpEffectState = Preferences::GetExtendedJumpEffects();
+		if(flagship->IsHyperspacing() && jumpEffectState != Preferences::ExtendedJumpEffects::OFF)
+			centerVelocity *= 1. + pow(flagship->GetHyperspacePercentage() /
+				(jumpEffectState == Preferences::ExtendedJumpEffects::MEDIUM ? 40. : 20.), 2);
 		if(doEnterLabels)
 		{
 			doEnterLabels = false;
@@ -2075,7 +2077,7 @@ void Engine::HandleKeyboardInputs()
 	{
 		// Translate shift+BACK to a command to a STOP command to stop all movement of the flagship.
 		// Translation is done here to allow the autopilot (which will execute the STOP-command) to
-		// act on a single STOP command instead of the shift+BACK modifier).
+		// act on a single STOP command instead of the shift+BACK modifier.
 		if(keyHeld.Has(Command::BACK))
 		{
 			activeCommands |= Command::STOP;

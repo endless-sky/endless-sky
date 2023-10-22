@@ -74,6 +74,10 @@ bool GameWindow::Init()
 #ifdef _WIN32
 	// Tell Windows this process is high dpi aware and doesn't need to get scaled.
 	SDL_SetHint(SDL_HINT_WINDOWS_DPI_AWARENESS, "permonitorv2");
+#elif defined(__linux__)
+	// Set the class name for the window on Linux. Used to set the application icon.
+	// This sets it for both X11 and Wayland.
+	setenv("SDL_VIDEO_X11_WMCLASS", "io.github.endless_sky.endless_sky", true);
 #endif
 
 	// This needs to be called before any other SDL commands.

@@ -74,7 +74,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT EndlessSky)
 set(CMAKE_VS_JUST_MY_CODE_DEBUGGING ON)
 
-project("Endless Sky" VERSION 0.10.3
+project("Endless Sky" VERSION 0.10.4
 	DESCRIPTION "Space exploration, trading, and combat game."
 	HOMEPAGE_URL https://endless-sky.github.io/
 	LANGUAGES CXX)
@@ -279,7 +279,7 @@ elseif(UNIX)
 	install(TARGETS EndlessSky CONFIGURATIONS Release RUNTIME DESTINATION games)
 
 	# Install the desktop file.
-	install(FILES endless-sky.desktop DESTINATION share/applications)
+	install(FILES io.github.endless_sky.endless_sky.desktop DESTINATION share/applications)
 
 	# Install app center metadata.
 	install(FILES io.github.endless_sky.endless_sky.appdata.xml DESTINATION share/metainfo)

@@ -138,6 +138,9 @@ namespace {
 	const vector<string> PARALLAX_SETTINGS = {"off", "fancy", "fast"};
 	int parallaxIndex = 2;
 
+	const vector<string> EXTENDED_JUMP_EFFECT_SETTINGS = {"off", "medium", "heavy"};
+	int extendedJumpEffectIndex = 0;
+
 	const vector<string> ALERT_INDICATOR_SETTING = {"off", "audio", "visual", "both"};
 	int alertIndicatorIndex = 3;
 
@@ -161,7 +164,6 @@ void Preferences::Load()
 	settings["Show planet labels"] = true;
 	settings["Show asteroid scanner overlay"] = true;
 	settings["Show hyperspace flash"] = true;
-	settings["Extended jump effects"] = true;
 	settings["Draw background haze"] = true;
 	settings["Draw starfield"] = true;
 	settings["Hide unexplored map regions"] = true;
@@ -225,6 +227,8 @@ void Preferences::Load()
 			autoFireIndex = max<int>(0, min<int>(node.Value(1), AUTO_FIRE_SETTINGS.size() - 1));
 		else if(node.Token(0) == "Parallax background")
 			parallaxIndex = max<int>(0, min<int>(node.Value(1), PARALLAX_SETTINGS.size() - 1));
+		else if(node.Token(0) == "Extended jump effects")
+			extendedJumpEffectIndex = max<int>(0, min<int>(node.Value(1), EXTENDED_JUMP_EFFECT_SETTINGS.size() - 1));
 		else if(node.Token(0) == "fullscreen")
 			screenModeIndex = max<int>(0, min<int>(node.Value(1), SCREEN_MODE_SETTINGS.size() - 1));
 		else if(node.Token(0) == "date format")
@@ -260,7 +264,7 @@ void Preferences::Load()
 	}
 
 	// For people updating from a version after 0.10.1 (where "Flagship flotsam collection" was added),
-	// but before 0.10.3 (when it was replaaced with "Flotsam Collection").
+	// but before 0.10.3 (when it was replaced with "Flotsam Collection").
 	it = settings.find("Flagship flotsam collection");
 	if(it != settings.end())
 	{
@@ -301,6 +305,7 @@ void Preferences::Save()
 	out.Write("Automatic aiming", autoAimIndex);
 	out.Write("Automatic firing", autoFireIndex);
 	out.Write("Parallax background", parallaxIndex);
+	out.Write("Extended jump effects", extendedJumpEffectIndex);
 	out.Write("alert indicator", alertIndicatorIndex);
 	out.Write("previous saves", previousSaveCount);
 
@@ -463,6 +468,30 @@ Preferences::BackgroundParallax Preferences::GetBackgroundParallax()
 const string &Preferences::ParallaxSetting()
 {
 	return PARALLAX_SETTINGS[parallaxIndex];
+}
+
+
+
+void Preferences::ToggleExtendedJumpEffects()
+{
+	int targetIndex = extendedJumpEffectIndex + 1;
+	if(targetIndex == static_cast<int>(EXTENDED_JUMP_EFFECT_SETTINGS.size()))
+		targetIndex = 0;
+	extendedJumpEffectIndex = targetIndex;
+}
+
+
+
+Preferences::ExtendedJumpEffects Preferences::GetExtendedJumpEffects()
+{
+	return static_cast<ExtendedJumpEffects>(extendedJumpEffectIndex);
+}
+
+
+
+const string &Preferences::ExtendedJumpEffectsSetting()
+{
+	return EXTENDED_JUMP_EFFECT_SETTINGS[extendedJumpEffectIndex];
 }
 
 

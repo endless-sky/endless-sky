@@ -81,6 +81,7 @@ namespace {
 	const string BOARDING_PRIORITY = "Boarding target priority";
 	const string TARGET_ASTEROIDS_BASED_ON = "Target asteroid based on";
 	const string BACKGROUND_PARALLAX = "Parallax background";
+	const string EXTENDED_JUMP_EFFECTS = "Extended jump effects";
 	const string ALERT_INDICATOR = "Alert indicator";
 
 	// How many pages of settings there are.
@@ -111,7 +112,7 @@ PreferencesPanel::PreferencesPanel()
 
 	// Initialize a centered tooltip.
 	hoverText.SetFont(FontSet::Get(14));
-	hoverText.SetWrapWidth(150);
+	hoverText.SetWrapWidth(250);
 	hoverText.SetAlignment(Alignment::LEFT);
 
 	controlTypeDropdown.SetPadding(0);
@@ -327,6 +328,8 @@ bool PreferencesPanel::FingerUp(int x, int y, int fid)
 				Preferences::ToggleBoarding();
 			else if(zone.Value() == BACKGROUND_PARALLAX)
 				Preferences::ToggleParallax();
+			else if(zone.Value() == EXTENDED_JUMP_EFFECTS)
+				Preferences::ToggleExtendedJumpEffects();
 			else if(zone.Value() == VIEW_ZOOM_FACTOR)
 			{
 				// Increase the zoom factor unless it is at the maximum. In that
@@ -593,6 +596,7 @@ void PreferencesPanel::DrawControls()
 		Command::MENU,
 		Command::FULLSCREEN,
 		Command::FASTFORWARD,
+		Command::HELP,
 		Command::NONE,
 		Command::DEPLOY,
 		Command::FIGHT,
@@ -662,18 +666,18 @@ void PreferencesPanel::DrawControls()
 		}
 	}
 
-	Table shiftTable;
-	shiftTable.AddColumn(125, {150, Alignment::RIGHT});
-	shiftTable.SetUnderline(0, 130);
-	shiftTable.DrawAt(Point(-400, 32));
+	Table infoTable;
+	infoTable.AddColumn(125, {150, Alignment::RIGHT});
+	infoTable.SetUnderline(0, 130);
+	infoTable.DrawAt(Point(-400, 32));
 
-	shiftTable.DrawUnderline(medium);
-	shiftTable.Draw("With <shift> key", bright);
-	shiftTable.DrawGap(5);
-	shiftTable.Draw("Select nearest ship", medium);
-	shiftTable.Draw("Select next escort", medium);
-	shiftTable.Draw("Talk to planet", medium);
-	shiftTable.Draw("Board disabled escort", medium);
+	infoTable.DrawUnderline(medium);
+	infoTable.Draw("Additional info", bright);
+	infoTable.DrawGap(5);
+	infoTable.Draw("Press '_x' over controls", medium);
+	infoTable.Draw("to unbind them.", medium);
+	infoTable.Draw("Controls can share", medium);
+	infoTable.Draw("the same keybind.", medium);
 
 	// Draw gesture table for reference
 	auto* ui = GameData::Interfaces().Get("controls");
@@ -748,7 +752,7 @@ void PreferencesPanel::DrawSettings()
 		"Draw starfield",
 		BACKGROUND_PARALLAX,
 		"Show hyperspace flash",
-		"Extended jump effects",
+		EXTENDED_JUMP_EFFECTS,
 		SHIP_OUTLINES,
 		"\t",
 		"HUD",
@@ -940,6 +944,11 @@ void PreferencesPanel::DrawSettings()
 		else if(setting == BACKGROUND_PARALLAX)
 		{
 			text = Preferences::ParallaxSetting();
+			isOn = text != "off";
+		}
+		else if(setting == EXTENDED_JUMP_EFFECTS)
+		{
+			text = Preferences::ExtendedJumpEffectsSetting();
 			isOn = text != "off";
 		}
 		else if(setting == REACTIVATE_HELP)

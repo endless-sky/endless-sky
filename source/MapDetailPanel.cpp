@@ -64,7 +64,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	// Convert the angle between two vectors into a sortable angle, i.e an angle
+	// Convert the angle between two vectors into a sortable angle, i.e. an angle
 	// plus a length that is used as a tie-breaker.
 	pair<double, double> SortAngle(const Point &reference, const Point &point)
 	{
@@ -216,7 +216,13 @@ bool MapDetailPanel::Scroll(double dx, double dy)
 bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	const double planetCardHeight = MapPlanetCard::Height();
-	if((key == SDLK_TAB || command.Has(Command::JUMP)) && player.Flagship())
+	if(command.Has(Command::HELP))
+	{
+		DoHelp("map advanced ports", true);
+		if(!player.GetPlanet())
+			DoHelp("map", true);
+	}
+	else if((key == SDLK_TAB || command.Has(Command::JUMP)) && player.Flagship())
 	{
 		// Clear the selected planet, if any.
 		selectedPlanet = nullptr;

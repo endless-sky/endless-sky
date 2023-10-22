@@ -197,7 +197,7 @@ env.AlwaysBuild("test")
 env.Install("$DESTDIR$PREFIX/games", sky)
 
 # Install the desktop file:
-env.Install("$DESTDIR$PREFIX/share/applications", "endless-sky.desktop")
+env.Install("$DESTDIR$PREFIX/share/applications", "io.github.endless_sky.endless_sky.desktop")
 
 # Install app center metadata:
 env.Install("$DESTDIR$PREFIX/share/metainfo", "io.github.endless_sky.endless_sky.appdata.xml")
