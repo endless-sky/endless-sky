@@ -317,6 +317,17 @@ Bill Account::PayCrewSalaries(int64_t salaries) {
 
 
 
+Bill Account::PayShipMaintenance(int64_t maintenance) {
+// THIS FUNCTION HAS SIDE EFFECTS, INTERACTING DIRECTLY WITH THE ACCOUNT OBJECT
+	// this function needs to preserve:
+	//    1. The number of credits paid in maintenance
+	//    2. Whether the maintenance was paid in full
+	Bill receipt;
+
+	return receipt;
+}
+
+
 const map<string, int64_t> &Account::SalariesIncome() const
 {
 	return salariesIncome;
@@ -372,6 +383,7 @@ int64_t Account::MaintenanceDue() const
 
 
 
+// THIS FUNCTION IS ONLY USED IN THE BANKPANEL.CPP
 void Account::PayMaintenance(int64_t amount)
 {
 	amount = min(min(amount, maintenanceDue), credits);
