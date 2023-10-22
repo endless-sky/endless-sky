@@ -68,6 +68,10 @@ const Plugin *Plugins::Load(const string &path)
 	string pluginFile = path + "plugin.txt";
 	string aboutText;
 
+	Set<string> requiredDependencies;
+	Set<string> optionalDependencies;
+	Set<string> conflictedDependencies;
+
 	// Load plugin metadata from plugin.txt.
 	bool hasName = false;
 	for(const DataNode &child : DataFile(pluginFile))
@@ -79,6 +83,16 @@ const Plugin *Plugins::Load(const string &path)
 		}
 		else if(child.Token(0) == "about" && child.Size() >= 2)
 			aboutText = child.Token(1);
+		// Dependencies.
+		else if(child.Token(0) == "requires")
+			for(const DataNode& grand : child)
+				requiredDependencies.Get(grand.Token(0));
+		else if(child.Token(0) == "optional")
+			for(const DataNode& grand : child)
+				optionalDependencies.Get(grand.Token(0));
+		else if(child.Token(0) == "conflicts")
+			for(const DataNode& grand : child)
+				conflictedDependencies.Get(grand.Token(0));
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -101,6 +115,34 @@ const Plugin *Plugins::Load(const string &path)
 	plugin->path = path;
 	// Read the deprecated about.txt content if no about text was specified.
 	plugin->aboutText = aboutText.empty() ? Files::Read(path + "about.txt") : std::move(aboutText);
+
+	// Ensure we don't have any duplicate dependencies.
+	for(const auto& it : requiredDependencies)
+		plugin->requiredDependencies.Get(it.first);
+	for(const auto& it : optionalDependencies)
+	{
+		string dependency = it.first;
+		if(requiredDependencies.Find(dependency))
+			Logger::LogError("Warning: Optional dependency with the name \"" + dependency
+				+ "\" in plugin \"" + name
+				+ "\" was already found in required dependencies list.");
+		else
+			plugin->optionalDependencies.Get(dependency);
+	}
+	for (const auto& it : conflictedDependencies)
+	{
+		string dependency = it.first;
+		if(requiredDependencies.Find(dependency))
+			Logger::LogError("Warning: Conflicts dependency with the name \"" + dependency
+				+ "\" in plugin \"" + name
+				+ "\" was already found in required dependencies list.");
+		else if(optionalDependencies.Find(dependency))
+			Logger::LogError("Warning: Conflicts dependency with the name \"" + dependency
+				+ "\" in plugin \"" + name 
+				+ "\" was already found in optional dependencies list.");
+		else
+			plugin->conflictedDependencies.Get(dependency);
+	}
 
 	return plugin;
 }

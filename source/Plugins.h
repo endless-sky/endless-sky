@@ -34,6 +34,13 @@ struct Plugin {
 	// The about text, if any, of this plugin.
 	std::string aboutText;
 
+	// The plugins, if any, which are required by this plugin
+	Set<std::string> requiredDependencies;
+	// The plugins, if any, which are designed to work with this plugin but aren't required.
+	Set<std::string> optionalDependencies;
+	// The plugins, if any, which can't be run along side this plugin
+	Set<std::string> conflictedDependencies;
+
 	// Whether this plugin was enabled, i.e. if it was loaded by the game.
 	bool enabled = true;
 	// The current state of the plugin.
