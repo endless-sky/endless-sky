@@ -206,7 +206,7 @@ namespace {
 	// Return total value of raid fleet (if any) and 60 frames worth of system danger.
 	double DangerFleetTotal(const PlayerInfo &player, const System &system, const bool withRaids)
 	{
-		double danger = system.Danger() * 60;
+		double danger = system.Danger() * 60.;
 		if(withRaids)
 			for(const auto &raidFleet : system.GetGovernment()->RaidFleets())
 				danger += 10. * player.RaidFleetAttraction(raidFleet, &system) *
@@ -954,7 +954,9 @@ void MapPanel::UpdateCache()
 	double dangerScale = 1.;
 	if(commodity == SHOW_DANGER)
 	{
-		// Scale danger to span [0, 1] based on known systems, without including raid fleets.
+		// Scale danger to span [0, 1] based on known systems, without including raid fleets
+		// as those can greatly skew the range once they start having a chance of appearing,
+		// leading to silly (and not very useful) displays.
 		double dangerMin = numeric_limits<double>::max();
 		for(const auto &it : GameData::Systems())
 		{
