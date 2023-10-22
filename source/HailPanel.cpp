@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "HailPanel.h"
 
 #include "text/alignment.hpp"
+#include "Dialog.h"
 #include "DrawList.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -25,7 +26,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Information.h"
 #include "Interface.h"
 #include "Messages.h"
-#include "Phrase.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Politics.h"
@@ -137,10 +137,9 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 	// to bypass language barriers.
 	if(planet && player.Flagship())
 		for(const Mission &mission : player.Missions())
-			if(mission.HasClearance(planet) && mission.ClearanceMessage() != "auto"
-					&& mission.HasFullClearance())
+			if(mission.HasClearance(planet) && mission.ClearanceMessage() != "auto")
 			{
-				planet->Bribe();
+				planet->Bribe(mission.HasFullClearance());
 				message = mission.ClearanceMessage();
 				return;
 			}
@@ -296,6 +295,12 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			player.SetTribute(planet, 0);
 			message = "Thank you for granting us our freedom!";
 		}
+		else if(!planet->IsDefending())
+			GetUI()->Push(new Dialog([this]() { message = planet->DemandTribute(player); },
+				"Demanding tribute may cause this planet to launch defense fleets to fight you. "
+				"After battling the fleets, you can demand tribute again for the planet to relent.\n"
+				"This act may hurt your reputation severely. Do you want to proceed?",
+				Truncate::NONE, true, false));
 		else
 			message = planet->DemandTribute(player);
 		return true;
