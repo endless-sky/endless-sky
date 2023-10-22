@@ -92,6 +92,7 @@ SCENARIO( "Pay crew salaries", "[Account][PayCrewSalaries]" ) {
 			THEN( "The salaries were NOT paid in full and no credits were paid" ) {
 				REQUIRE(salariesPaid.creditsPaid == 0);
 				REQUIRE(salariesPaid.paidInFull == false);
+				REQUIRE(account.CrewSalariesOwed() == 500);
 			}
 		}
 
@@ -101,6 +102,7 @@ SCENARIO( "Pay crew salaries", "[Account][PayCrewSalaries]" ) {
 			THEN( "The salaries were were paid in full and 500 credits were paid" ) {
 				REQUIRE(salariesPaid.creditsPaid == 500);
 				REQUIRE(salariesPaid.paidInFull == true);
+				REQUIRE(account.CrewSalariesOwed() == 0);
 			}
 		}
 	}
